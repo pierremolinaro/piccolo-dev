@@ -47,6 +47,22 @@
 		CF249AF80E2E6DC6004D51F8 /* piccolo_embedded_devices.h in Headers */ = {isa = PBXBuildFile; fileRef = CF249AF60E2E6DC6004D51F8 /* piccolo_embedded_devices.h */; };
 		CF249AF90E2E6DC6004D51F8 /* piccolo_embedded_devices.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CF249AF50E2E6DC6004D51F8 /* piccolo_embedded_devices.cpp */; };
 		CF249AFA0E2E6DC6004D51F8 /* piccolo_embedded_devices.h in Headers */ = {isa = PBXBuildFile; fileRef = CF249AF60E2E6DC6004D51F8 /* piccolo_embedded_devices.h */; };
+		CF249B090E2E7892004D51F8 /* piccoloDevice_grammar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CF249B010E2E7892004D51F8 /* piccoloDevice_grammar.cpp */; };
+		CF249B0A0E2E7892004D51F8 /* piccoloDevice_grammar.h in Headers */ = {isa = PBXBuildFile; fileRef = CF249B020E2E7892004D51F8 /* piccoloDevice_grammar.h */; };
+		CF249B0B0E2E7892004D51F8 /* piccoloDevice_lexique.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CF249B030E2E7892004D51F8 /* piccoloDevice_lexique.cpp */; };
+		CF249B0C0E2E7892004D51F8 /* piccoloDevice_lexique.h in Headers */ = {isa = PBXBuildFile; fileRef = CF249B040E2E7892004D51F8 /* piccoloDevice_lexique.h */; };
+		CF249B0D0E2E7892004D51F8 /* piccoloDevice_semantics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CF249B050E2E7892004D51F8 /* piccoloDevice_semantics.cpp */; };
+		CF249B0E0E2E7892004D51F8 /* piccoloDevice_semantics.h in Headers */ = {isa = PBXBuildFile; fileRef = CF249B060E2E7892004D51F8 /* piccoloDevice_semantics.h */; };
+		CF249B0F0E2E7892004D51F8 /* piccoloDevice_syntax.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CF249B070E2E7892004D51F8 /* piccoloDevice_syntax.cpp */; };
+		CF249B100E2E7892004D51F8 /* piccoloDevice_syntax.h in Headers */ = {isa = PBXBuildFile; fileRef = CF249B080E2E7892004D51F8 /* piccoloDevice_syntax.h */; };
+		CF249B110E2E7892004D51F8 /* piccoloDevice_grammar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CF249B010E2E7892004D51F8 /* piccoloDevice_grammar.cpp */; };
+		CF249B120E2E7892004D51F8 /* piccoloDevice_grammar.h in Headers */ = {isa = PBXBuildFile; fileRef = CF249B020E2E7892004D51F8 /* piccoloDevice_grammar.h */; };
+		CF249B130E2E7892004D51F8 /* piccoloDevice_lexique.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CF249B030E2E7892004D51F8 /* piccoloDevice_lexique.cpp */; };
+		CF249B140E2E7892004D51F8 /* piccoloDevice_lexique.h in Headers */ = {isa = PBXBuildFile; fileRef = CF249B040E2E7892004D51F8 /* piccoloDevice_lexique.h */; };
+		CF249B150E2E7892004D51F8 /* piccoloDevice_semantics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CF249B050E2E7892004D51F8 /* piccoloDevice_semantics.cpp */; };
+		CF249B160E2E7892004D51F8 /* piccoloDevice_semantics.h in Headers */ = {isa = PBXBuildFile; fileRef = CF249B060E2E7892004D51F8 /* piccoloDevice_semantics.h */; };
+		CF249B170E2E7892004D51F8 /* piccoloDevice_syntax.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CF249B070E2E7892004D51F8 /* piccoloDevice_syntax.cpp */; };
+		CF249B180E2E7892004D51F8 /* piccoloDevice_syntax.h in Headers */ = {isa = PBXBuildFile; fileRef = CF249B080E2E7892004D51F8 /* piccoloDevice_syntax.h */; };
 		CF2A8827058CCF12003EF2F4 /* predefined_types.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CF86361A0586289600B23462 /* predefined_types.cpp */; };
 		CF2A8828058CCF2B003EF2F4 /* predefined_types.h in Headers */ = {isa = PBXBuildFile; fileRef = CF86361B0586289600B23462 /* predefined_types.h */; };
 		CF2A882D058CCF2F003EF2F4 /* GGS_binaryset.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CF86365005862B0600B23462 /* GGS_binaryset.cpp */; };
@@ -412,6 +428,14 @@
 		CF249AA70E2E569F004D51F8 /* piccolo_metamodel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = piccolo_metamodel.h; sourceTree = "<group>"; };
 		CF249AF50E2E6DC6004D51F8 /* piccolo_embedded_devices.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = piccolo_embedded_devices.cpp; sourceTree = "<group>"; };
 		CF249AF60E2E6DC6004D51F8 /* piccolo_embedded_devices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = piccolo_embedded_devices.h; sourceTree = "<group>"; };
+		CF249B010E2E7892004D51F8 /* piccoloDevice_grammar.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = piccoloDevice_grammar.cpp; sourceTree = "<group>"; };
+		CF249B020E2E7892004D51F8 /* piccoloDevice_grammar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = piccoloDevice_grammar.h; sourceTree = "<group>"; };
+		CF249B030E2E7892004D51F8 /* piccoloDevice_lexique.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = piccoloDevice_lexique.cpp; sourceTree = "<group>"; };
+		CF249B040E2E7892004D51F8 /* piccoloDevice_lexique.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = piccoloDevice_lexique.h; sourceTree = "<group>"; };
+		CF249B050E2E7892004D51F8 /* piccoloDevice_semantics.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = piccoloDevice_semantics.cpp; sourceTree = "<group>"; };
+		CF249B060E2E7892004D51F8 /* piccoloDevice_semantics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = piccoloDevice_semantics.h; sourceTree = "<group>"; };
+		CF249B070E2E7892004D51F8 /* piccoloDevice_syntax.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = piccoloDevice_syntax.cpp; sourceTree = "<group>"; };
+		CF249B080E2E7892004D51F8 /* piccoloDevice_syntax.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = piccoloDevice_syntax.h; sourceTree = "<group>"; };
 		CF337A2A09EFAED600EC41F6 /* C_SourceTextForCoca.mm */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = sourcecode.cpp.objcpp; path = C_SourceTextForCoca.mm; sourceTree = "<group>"; };
 		CF337A2B09EFAED600EC41F6 /* C_SourceTextForCocoa.h */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = sourcecode.c.h; path = C_SourceTextForCocoa.h; sourceTree = "<group>"; };
 		CF3B8A9B058CD21900D682D2 /* libstdc++.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libstdc++.a"; path = "/usr/lib/gcc/darwin/3.3/libstdc++.a"; sourceTree = "<absolute>"; };
@@ -744,6 +768,14 @@
 		CFD21A8A0913D1890011F11E /* Sources Files */ = {
 			isa = PBXGroup;
 			children = (
+				CF249B010E2E7892004D51F8 /* piccoloDevice_grammar.cpp */,
+				CF249B020E2E7892004D51F8 /* piccoloDevice_grammar.h */,
+				CF249B030E2E7892004D51F8 /* piccoloDevice_lexique.cpp */,
+				CF249B040E2E7892004D51F8 /* piccoloDevice_lexique.h */,
+				CF249B050E2E7892004D51F8 /* piccoloDevice_semantics.cpp */,
+				CF249B060E2E7892004D51F8 /* piccoloDevice_semantics.h */,
+				CF249B070E2E7892004D51F8 /* piccoloDevice_syntax.cpp */,
+				CF249B080E2E7892004D51F8 /* piccoloDevice_syntax.h */,
 				CF249AF50E2E6DC6004D51F8 /* piccolo_embedded_devices.cpp */,
 				CF249AF60E2E6DC6004D51F8 /* piccolo_embedded_devices.h */,
 				CF249AA60E2E569F004D51F8 /* piccolo_metamodel.cpp */,
@@ -1067,6 +1099,10 @@
 				CF249A1A0E2E20CE004D51F8 /* PM_C_Object.h in Headers */,
 				CF249AA90E2E569F004D51F8 /* piccolo_metamodel.h in Headers */,
 				CF249AF80E2E6DC6004D51F8 /* piccolo_embedded_devices.h in Headers */,
+				CF249B0A0E2E7892004D51F8 /* piccoloDevice_grammar.h in Headers */,
+				CF249B0C0E2E7892004D51F8 /* piccoloDevice_lexique.h in Headers */,
+				CF249B0E0E2E7892004D51F8 /* piccoloDevice_semantics.h in Headers */,
+				CF249B100E2E7892004D51F8 /* piccoloDevice_syntax.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1156,6 +1192,10 @@
 				CF249A220E2E20CE004D51F8 /* PM_C_Object.h in Headers */,
 				CF249AAB0E2E569F004D51F8 /* piccolo_metamodel.h in Headers */,
 				CF249AFA0E2E6DC6004D51F8 /* piccolo_embedded_devices.h in Headers */,
+				CF249B120E2E7892004D51F8 /* piccoloDevice_grammar.h in Headers */,
+				CF249B140E2E7892004D51F8 /* piccoloDevice_lexique.h in Headers */,
+				CF249B160E2E7892004D51F8 /* piccoloDevice_semantics.h in Headers */,
+				CF249B180E2E7892004D51F8 /* piccoloDevice_syntax.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1384,6 +1424,10 @@
 				CF249A190E2E20CE004D51F8 /* PM_C_Object.cpp in Sources */,
 				CF249AA80E2E569F004D51F8 /* piccolo_metamodel.cpp in Sources */,
 				CF249AF70E2E6DC6004D51F8 /* piccolo_embedded_devices.cpp in Sources */,
+				CF249B090E2E7892004D51F8 /* piccoloDevice_grammar.cpp in Sources */,
+				CF249B0B0E2E7892004D51F8 /* piccoloDevice_lexique.cpp in Sources */,
+				CF249B0D0E2E7892004D51F8 /* piccoloDevice_semantics.cpp in Sources */,
+				CF249B0F0E2E7892004D51F8 /* piccoloDevice_syntax.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1459,6 +1503,10 @@
 				CF249A210E2E20CE004D51F8 /* PM_C_Object.cpp in Sources */,
 				CF249AAA0E2E569F004D51F8 /* piccolo_metamodel.cpp in Sources */,
 				CF249AF90E2E6DC6004D51F8 /* piccolo_embedded_devices.cpp in Sources */,
+				CF249B110E2E7892004D51F8 /* piccoloDevice_grammar.cpp in Sources */,
+				CF249B130E2E7892004D51F8 /* piccoloDevice_lexique.cpp in Sources */,
+				CF249B150E2E7892004D51F8 /* piccoloDevice_semantics.cpp in Sources */,
+				CF249B170E2E7892004D51F8 /* piccoloDevice_syntax.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

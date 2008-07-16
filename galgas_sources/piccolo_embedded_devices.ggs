@@ -1,4 +1,6 @@
 semantics piccolo_embedded_devices :
+import semantics piccoloDevice_semantics in "piccoloDevice_semantics.ggs" ;
+import grammar piccoloDevice_grammar in "piccoloDevice_grammar.ggs" ;
 
 #----------------------------------------------------*
 
@@ -14,6 +16,8 @@ routine parseDeviceDefinition ??@lstring inDeviceName :
   @string deviceFullName := [inDeviceName string] . ".piccoloDevice" ;
   if [fw fileExistsAtPath !deviceFullName] then
     @string definitionString := [fw fileContentsAtPath !deviceFullName] ;
+    @piccoloDeviceModel piccoloDeviceModel ;
+    grammar piccoloDevice_grammar on definitionString ?piccoloDeviceModel ;
   else
     error inDeviceName: "The '" . inDeviceName . "' definition file is not defined" ;
   end if ;
