@@ -1,0 +1,6 @@
+semantics piccolo_semantics :
+  import option piccolo_options in "piccolo_options.ggs" ;
+
+# ADD YOUR CODE HERE
+
+end semantics ;

@@ -1,0 +1,258 @@
+lexique piccolo_lexique :
+
+@lstring identifierString ;
+@luint uint32value ;
+@lchar charValue ;
+@lstring tokenString ;
+
+style keywordStyle -> "Keywords:" ;
+style instructionStyle -> "Instructions:" ;
+style delimitersStyle -> "Delimiters:" ;
+style integerStyle -> "Integer Constants:" ;
+style characterStyle -> "Character Constants:" ;
+style stringStyle -> "String Constants:" ;
+style commentStyle -> "Comments:" ;
+
+# -------------------------- identifier or key word --------------------
+# keywords can be written in lower or upper case
+# for identifiers, case is significant
+
+$identifier$ ! tokenString error message "an identifier" ;
+
+list controlKeyWordList error message "the '%K' keyword" style keywordStyle :
+  "program",
+  "config",
+  "ram",
+  "interrupt",
+  "routine",
+  "end",
+  "bsr",
+  "w" ;
+
+list instructionKeyWordList error message "the '%K' instruction" style instructionStyle :
+  "addwf",
+  "addwfc",
+  "andwf",
+  "clrf",
+  "comf",
+  "cpfseq",
+  "cpfsgt",
+  "cpfslt",
+  "decf",
+  "decfsz",
+  "dcfsnz",
+  "incf",
+  "incfsz",
+  "infsnz",
+  "iorwf",
+  "movf",
+  "movff",
+  "movwf",
+  "mulwf",
+  "negf",
+  "rlcf",
+  "rlncf",
+  "rrcf",
+  "rrncf",
+  "setf",
+  "subfwb",
+  "subwf",
+  "swapf",
+  "tstfsz",
+  "xorwf",
+  "bcf",
+  "bsf",
+  "btfsc",
+  "btfss",
+  "btg",
+  "bc",
+  "bn",
+  "bnc",
+  "bnn",
+  "bnov",
+  "bnz",
+  "bov",
+  "bra",
+  "call",
+  "clrwdt",
+  "daw",
+  "goto",
+  "nop",
+  "push",
+  "rcall",
+  "reset",
+  "retfie",
+  "retlw",
+  "return",
+  "sleep",
+  "addlw",
+  "andlw",
+  "iorlw",
+  "lfsr",
+  "movlb",
+  "movlw",
+  "mullw",
+  "sublw",
+  "xorlw",
+  "tblrd",
+  "tblwt" ;
+
+rule 'a'->'z' |  'A'->'Z' :
+  repeat
+    enterCharacterIntoString (identifierString, toLower (*)) ;
+    enterCharacterIntoString (tokenString, *) ;
+  while 'a'->'z' | 'A'->'Z' | '_' | '0'->'9' :
+  end repeat ;
+  send
+    search identifierString in instructionKeyWordList
+    default search identifierString in controlKeyWordList
+    default $identifier$
+  ;
+end rule ;
+
+#------------------------------- Integer, floating Point Constant ------------------
+$unsigned_literal_integer$ ! uint32value error message "a 32-bit unsigned decimal number" style integerStyle ;
+
+message decimalNumberTooLarge : "decimal number too large" ;
+message internalError : "internal error" ;
+
+rule '0'->'9' :
+  enterCharacterIntoString (tokenString, *) ;
+  repeat
+  while '0'->'9' :
+    enterCharacterIntoString (tokenString, *) ;
+  while '_' :
+  end repeat ;
+  convertDecimalStringIntoUInt (tokenString , uint32value) error decimalNumberTooLarge, internalError ;
+  send $unsigned_literal_integer$ ;
+end rule ;
+
+#--------------------------------- Character constant ------------------------------------
+$literal_char$ ! charValue error message "a character constant" style characterStyle ;
+
+message incorrectCharConstant : "incorrect literal character" ;
+
+message ASCIIcodeTooLargeError : "ASCII code > 255" ;
+
+rule '\'' :
+  select
+  when '\\' :
+    select
+    when 'f' :
+      enterCharacterIntoCharacter (charValue, '\f') ;
+    when 'n' :
+      enterCharacterIntoCharacter (charValue, '\n') ;
+    when 'r' :
+      enterCharacterIntoCharacter (charValue, '\r') ;
+    when 't' :
+      enterCharacterIntoCharacter (charValue, '\t') ;
+    when 'v' :
+      enterCharacterIntoCharacter (charValue, '\v') ;
+    when '\\' :
+      enterCharacterIntoCharacter (charValue, '\\') ;
+    when '0' :
+      enterCharacterIntoCharacter (charValue, '\0') ;
+    when '\'' :
+      enterCharacterIntoCharacter (charValue, '\'') ;
+    when 'x' | 'X' :
+      select
+      when '0' -> '9' | 'a' -> 'f' | 'A' -> 'F' :
+        repeat
+          enterHexDigitIntoASCIIcharacter (charValue, *) error ASCIIcodeTooLargeError, internalError ;
+        while '0' -> '9' | 'a' -> 'f' | 'A' -> 'F' :
+        end repeat ;
+      default
+        error incorrectCharConstant ;
+      end select ;
+    default
+      error incorrectCharConstant ;
+    end select ;
+  when ' ' -> '\xFF' :
+     enterCharacterIntoCharacter (charValue, *) ;
+  default
+    error incorrectCharConstant ;
+  end select ;
+  select
+  when '\'' :
+    send $literal_char$ ;
+  default
+    error incorrectCharConstant ;
+  end select ;
+end rule ;
+
+# ----------------------------- Delimitors ---------------------------------------
+list delimitorsList error message "the '%K' delimitor" style delimitersStyle :
+  "*",     "|",    ",",      "+",     "--",
+  "::",    ">",    ";",      ":",
+  "-",     "(",    ")",     "->",      "?",
+  "==",   "??",    "!",     ":=",     "++",
+  "[",     "]",   "+=",     "?!",     "!?",
+  "/",    "!=",   ">=",      "&",
+  "{",     "}",   "-=",
+  "^",    ">>",    "~",     "<-" ;
+
+rule list delimitorsList ;
+
+# -------------------- Characters string --------------------------------------
+$literal_string$ ! tokenString error message "a character string constant \"...\"" style stringStyle ;
+
+message incorrectStringEnd : "string does not end with '\"'" ;
+
+rule '"' :
+  repeat
+  while '\\' :
+    select
+    when 'f' :
+      enterCharacterIntoString (tokenString, '\f') ;
+    when 'n' :
+      enterCharacterIntoString (tokenString, '\n') ;
+    when 'r' :
+      enterCharacterIntoString (tokenString, '\r') ;
+    when 't' :
+      enterCharacterIntoString (tokenString, '\t') ;
+    when 'v' :
+      enterCharacterIntoString (tokenString, '\v') ;
+    when '\\' :
+      enterCharacterIntoString (tokenString, '\\') ;
+    when '0' :
+      enterCharacterIntoString (tokenString, '\0') ;
+    when '"' :
+      enterCharacterIntoString (tokenString, '"') ;
+    when '\'' :
+      enterCharacterIntoString (tokenString, '\'') ;
+    when '0' -> '9' :
+      repeat
+        enterHexDigitIntoASCIIcharacter (charValue, *) error ASCIIcodeTooLargeError, internalError ;
+      while '0' -> '9' :
+      end repeat ;
+      enterCharacterIntoString (tokenString, charValue) ;
+    default
+      error incorrectCharConstant ;
+    end select ;
+   while ' ' | '!' | '#'-> '\xFF' :
+    enterCharacterIntoString (tokenString, *) ;
+  end repeat ;
+  select
+  when '"' :
+    send $literal_string$ ;
+  default
+    error incorrectStringEnd ;
+  end select ;
+end rule ;
+
+# ------------------------------------ Comment ----------------------------
+$comment$ error message "a comment" style commentStyle ;
+rule '#' :
+  repeat
+  while '\x1' -> '\x9' | '\xB' | '\xC' | '\xE' -> '\xFF' :
+  end repeat ;
+  drop $comment$ ;
+end rule ;
+
+# --------------------- separators -----------------------------------------
+rule '\x1' -> ' ' :
+end rule ;
+
+#------------------------------------------------------------------------------------
+
+end lexique ;

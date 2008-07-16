@@ -1,0 +1,112 @@
+syntax piccolo_syntax :
+import lexique piccolo_lexique in "piccolo_lexique.ggs" ;
+import option piccolo_options in "piccolo_options.ggs" ;
+import semantics piccolo_semantics in "piccolo_semantics.ggs" ;
+
+#----------------------------------------------------*
+
+nonterminal <configuration_definition> ;
+nonterminal <ram_definition> ;
+nonterminal <interrupt_definition> ;
+nonterminal <routine_definition> ;
+nonterminal <instruction> ;
+nonterminal <start_symbol> ;
+nonterminal <register_parsing> ;
+nonterminal <optional_w_as_dest> ;
+
+#----------------------------------------------------*
+
+rule <start_symbol> :
+  $program$ ;
+  $identifier$ ? @lstring programName ;
+  $literal_string$ ? @lstring controllerName ;
+  $:$ ;
+  repeat
+  while
+    <configuration_definition> ;
+  while
+    <ram_definition> ;
+  while
+    <interrupt_definition> ;
+  while
+    <routine_definition> ;
+  end repeat ;
+  $end$ ;
+end rule ;
+
+#----------------------------------------------------*
+
+rule <configuration_definition> :
+  $config$ ;
+  ${$ ;
+  $}$ ;
+end rule ;
+
+#----------------------------------------------------*
+
+rule <ram_definition> :
+  $ram$ ;
+  ${$ ;
+  $}$ ;
+end rule ;
+
+#----------------------------------------------------*
+
+rule <interrupt_definition> :
+  $interrupt$ ;
+  ${$ ;
+  repeat
+  while
+    <instruction> ;
+  end repeat ;
+  $}$ ;
+end rule ;
+
+#----------------------------------------------------*
+
+rule <routine_definition> :
+  $routine$ ;
+  $identifier$ ? @lstring routineName ;
+  $bsr$ ;
+  $unsigned_literal_integer$ ? @luint assumedBSRvalue ;
+  ${$ ;
+  repeat
+  while
+    <instruction> ;
+  end repeat ;
+  $}$ ;
+end rule ;
+
+#----------------------------------------------------*
+
+rule <instruction> :
+  select
+    $addwf$ ;
+    <register_parsing> ;
+    <optional_w_as_dest> ;
+  or
+    $addwfc$ ;
+    <register_parsing> ;
+    <optional_w_as_dest> ;
+  end select ;
+end rule ;
+
+#----------------------------------------------------*
+
+rule <register_parsing> :
+  $identifier$ ? @lstring registerName ;
+end rule ;
+
+#----------------------------------------------------*
+
+rule <optional_w_as_dest> :
+  select
+  or
+    $,$ ;
+    $w$ ;
+  end select ;
+end rule ;
+
+#----------------------------------------------------*
+
+end syntax ;
