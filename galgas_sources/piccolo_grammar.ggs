@@ -1,0 +1,8 @@
+grammar piccolo_grammar "LL1":
+import lexique piccolo_lexique in "piccolo_lexique.ggs" ;
+import option piccolo_options in "piccolo_options.ggs" ;
+import syntax piccolo_syntax in "piccolo_syntax.ggs" ;
+
+root <start_symbol> ;
+
+end grammar ;

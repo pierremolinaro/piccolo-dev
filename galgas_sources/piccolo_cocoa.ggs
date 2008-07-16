@@ -1,0 +1,3 @@
+gui piccolo_cocoa "cocoa" :
+import grammar piccolo_grammar in "piccolo_grammar.ggs" ;
+end gui ;
