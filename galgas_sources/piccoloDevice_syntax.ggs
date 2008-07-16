@@ -1,0 +1,114 @@
+syntax piccoloDevice_syntax :
+import lexique piccoloDevice_lexique in "piccoloDevice_lexique.ggs" ;
+import semantics piccoloDevice_semantics in "piccoloDevice_semantics.ggs" ;
+
+#----------------------------------------------------*
+
+nonterminal <start_symbol>
+  !@piccoloDeviceModel outPiccoloModel
+;
+
+#----------------------------------------------------*
+
+rule <start_symbol>
+  !@piccoloDeviceModel outPiccoloDeviceModel
+:
+  $controller$ ;
+  $identifier$ ? @lstring deviceName ;
+  ${$ ;
+  $processor$ ;
+  $string$ ? @lstring processorName ;
+  $;$ ;
+  $romsize$ ;
+  $integer$ ? @luint romSize ;
+  $;$ ;
+  $eepromsize$ ;
+  $integer$ ? @luint eepromSize ;
+  $at$ ;
+  $integer$ ? @luint eepromAddress ;
+  $;$ ;
+  $bank$ ;
+  $integer$ ? @luint bankCount ;
+  $;$ ;
+  repeat
+  while
+    $unusedregister$ ;
+    $integer$ ? @luint unusedRegisterStart ;
+    select
+    or
+     $to$ ;
+     $integer$ ? @luint unusedRegisterEnd ;
+    end select ;
+    $;$ ;
+  end repeat ;
+  repeat
+  while
+    $ram$ ;
+    $identifier$ ? @lstring ramName ;
+    $:$ ;
+    $integer$ ? @luint ramStart ;
+    $to$ ;
+    $integer$ ? @luint ramEnd ;
+    $;$ ;
+  end repeat ;
+  repeat
+  while
+    $register$ ;
+    $identifier$ ? @lstring registerName ;
+    $at$ ;
+    repeat
+      $integer$ ? @luint registerAddress ;
+    while
+      $,$ ;
+    end repeat ;
+    $<$ ;
+    repeat
+      select
+        repeat
+          $identifier$ ? @lstring sliceName ;
+          select
+          or
+            $[$ ;
+            $integer$ ? @luint sliceSize ;
+            $]$ ;
+          end select ;
+        while
+          $/$ ;
+        end repeat ;
+      or
+        $-$ ;
+      end select ;
+    while
+      $,$ ;
+    end repeat ;
+    $>$ ;
+    $;$ ;
+  end repeat ;
+  repeat
+  while
+    $config$ ;
+    $identifier$ ? @lstring configRegisterName ;
+    $at$ ;
+    $integer$ ? @luint configRegisterAddress ;
+    $width$ ;
+    $integer$ ? @luint configRegisterWidth ;
+    ${$ ;
+    repeat
+    while
+      $identifier$ ? @lstring maskName ;
+      $mask$ ;
+      $integer$ ? @luint maskValue ;
+      $description$ ;
+      $string$ ? @lstring maskDescriptionString ;
+    end repeat ;
+    $}$ ;
+  end repeat ;
+  $}$ ;
+  outPiccoloDeviceModel := [@piccoloDeviceModel new
+    !romSize
+  ] ;
+end rule ;
+
+#----------------------------------------------------*
+
+end syntax ;

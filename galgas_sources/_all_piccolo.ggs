@@ -5,6 +5,9 @@ compile "piccolo_syntax.ggs" ;
 compile "piccolo_grammar.ggs" ;
 compile "piccolo_cocoa.ggs" ;
 compile "piccolo_semantics.ggs" ;
+compile "piccoloDevice_lexique.ggs" ;
+compile "piccoloDevice_syntax.ggs" ;
+compile "piccoloDevice_grammar.ggs" ;
 compile "piccolo_embedded_devices.ggs" ;
 compile "piccolo_program.ggs" ;
 

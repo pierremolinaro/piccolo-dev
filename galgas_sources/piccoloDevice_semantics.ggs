@@ -1,0 +1,9 @@
+semantics piccoloDevice_semantics :
+
+#----------------------------------------------------*
+
+struct @piccoloDeviceModel {
+  @luint mRomSize ;
+}
+
+end semantics ;
