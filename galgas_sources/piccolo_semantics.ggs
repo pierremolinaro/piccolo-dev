@@ -1,6 +1,84 @@
 semantics piccolo_semantics :
-  import option piccolo_options in "piccolo_options.ggs" ;
+import semantics piccolo_metamodel in "piccolo_metamodel.ggs" ;
+import semantics piccolo_embedded_devices in "piccolo_embedded_devices.ggs" ;
+import option piccolo_options in "piccolo_options.ggs" ;
 
-# ADD YOUR CODE HERE
+#----------------------------------------------------*
+
+map @routineSymbolTable {
+  @uint mRoutineAddress ;
+  insert insertKey error message "the '%K' routine is already declared in %L" ;
+  search searchKey error message "the '%K' routine is not declared" ;
+}
+
+#----------------------------------------------------*
+
+method @instruction.enterLabelAtAddress
+  ?!@routineSymbolTable unused ioRoutineSymbolTable
+  ??@uint unused inAddress
+{
+}
+
+#----------------------------------------------------*
+
+override
+method @instruction_LABEL.enterLabelAtAddress
+  ?!@routineSymbolTable ioRoutineSymbolTable
+  ??@uint inAddress
+{
+  [!?ioRoutineSymbolTable insertKey !mTargetLabel !inAddress] ;
+}
+
+#----------------------------------------------------*
+
+map @registerTable {
+  @uint mRegisterAddress ;
+  @uint mSize ;
+  insert insertKey error message "the '%K' register is already declared in %L" ;
+  search searchKey error message "the '%K' register is not declared" ;
+}
+
+#----------------------------------------------------*
+
+routine analyze ??@piccoloModel inPiccoloModel :
+#-------------------------------- Analyze Device
+  parseDeviceDefinition ![inPiccoloModel mDeviceName] ;
+#-------------------------------- First Pass
+  @uint currentAddress := 26 ;
+  @routineSymbolTable routineSymbolTable [emptyMap] ;
+  foreach [inPiccoloModel mInterruptDefinitionList] do
+    foreach mInstructionList do
+      [mInstruction enterLabelAtAddress !?routineSymbolTable !currentAddress] ;
+      @uint length ;
+      [mInstruction instructionLength ?length] ;
+      currentAddress := currentAddress + length ;
+    end foreach ;
+  #--- Ajouter l'instruction REFFIE
+    currentAddress := currentAddress + 2 ;
+  end foreach ;
+  foreach [inPiccoloModel mRoutineDefinitionList] do
+    [!?routineSymbolTable insertKey !mRoutineName !currentAddress] ;
+    foreach mInstructionList do
+      [mInstruction enterLabelAtAddress !?routineSymbolTable !currentAddress] ;
+      @uint length ;
+      [mInstruction instructionLength ? length] ;
+      currentAddress := currentAddress + length ;
+    end foreach ;
+  end foreach ;
+  foreach routineSymbolTable do
+    message "Symbol '" . key . "': " . [mRoutineAddress hexString] . "\n" ;
+  end foreach ;
+  message "Last Address: " . [currentAddress hexString] . "\n" ;
+#--- Ram definition
+  @uint currentRamAddress := 0 ;
+  @registerTable registerTable [emptyMap] ;
+  foreach [inPiccoloModel mRamDefinitionList] do
+   [!?registerTable insertKey !mName !currentRamAddress ![mSize uint]] ;
+   currentRamAddress := currentRamAddress + [mSize uint] ;
+  end foreach ;
+  message "Used RAM size: " . [currentRamAddress string] . " bytes\n" ;
+end routine ;
+
+#----------------------------------------------------*
 
 end semantics ;

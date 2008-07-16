@@ -27,7 +27,9 @@ list controlKeyWordList error message "the '%K' keyword" style keywordStyle :
   "routine",
   "end",
   "bsr",
-  "w" ;
+  "w",
+  "byte",
+  "label" ;
 
 list instructionKeyWordList error message "the '%K' instruction" style instructionStyle :
   "addwf",
@@ -57,6 +59,7 @@ list instructionKeyWordList error message "the '%K' instruction" style instructi
   "setf",
   "subfwb",
   "subwf",
+  "subwfb",
   "swapf",
   "tstfsz",
   "xorwf",
@@ -73,15 +76,16 @@ list instructionKeyWordList error message "the '%K' instruction" style instructi
   "bnz",
   "bov",
   "bra",
+  "bz",
   "call",
   "clrwdt",
   "daw",
   "goto",
   "nop",
+  "pop",
   "push",
   "rcall",
   "reset",
-  "retfie",
   "retlw",
   "return",
   "sleep",
@@ -95,7 +99,8 @@ list instructionKeyWordList error message "the '%K' instruction" style instructi
   "sublw",
   "xorlw",
   "tblrd",
-  "tblwt" ;
+  "tblwt",
+  "movaw" ;
 
 rule 'a'->'z' |  'A'->'Z' :
   repeat
@@ -111,19 +116,32 @@ rule 'a'->'z' |  'A'->'Z' :
 end rule ;
 
 #------------------------------- Integer, floating Point Constant ------------------
-$unsigned_literal_integer$ ! uint32value error message "a 32-bit unsigned decimal number" style integerStyle ;
+$unsigned_literal_integer$ ! uint32value error message "a 32-bit unsigned number" style integerStyle ;
 
+message hexNumberTooLarge : "hex number too large" ;
 message decimalNumberTooLarge : "decimal number too large" ;
 message internalError : "internal error" ;
 
-rule '0'->'9' :
-  enterCharacterIntoString (tokenString, *) ;
+rule "0x" :
   repeat
   while '0'->'9' :
-    enterCharacterIntoString (tokenString, *) ;
+    enterHexDigitIntoUlong (uint32value, *) error hexNumberTooLarge, internalError ;
+  while 'a'->'f' :
+    enterHexDigitIntoUlong (uint32value, *) error hexNumberTooLarge, internalError ;
+  while 'A'->'F' :
+    enterHexDigitIntoUlong (uint32value, *) error hexNumberTooLarge, internalError ;
   while '_' :
   end repeat ;
-  convertDecimalStringIntoUInt (tokenString , uint32value) error decimalNumberTooLarge, internalError ;
+  send $unsigned_literal_integer$ ;
+end rule ;
+
+rule '0'->'9' :
+  enterDigitIntoUlong (uint32value, *) error decimalNumberTooLarge, internalError ;
+  repeat
+  while '0'->'9' :
+    enterDigitIntoUlong (uint32value, *) error decimalNumberTooLarge, internalError ;
+  while '_' :
+  end repeat ;
   send $unsigned_literal_integer$ ;
 end rule ;
 
@@ -182,14 +200,10 @@ end rule ;
 
 # ----------------------------- Delimitors ---------------------------------------
 list delimitorsList error message "the '%K' delimitor" style delimitersStyle :
-  "*",     "|",    ",",      "+",     "--",
-  "::",    ">",    ";",      ":",
-  "-",     "(",    ")",     "->",      "?",
-  "==",   "??",    "!",     ":=",     "++",
-  "[",     "]",   "+=",     "?!",     "!?",
-  "/",    "!=",   ">=",      "&",
-  "{",     "}",   "-=",
-  "^",    ">>",    "~",     "<-" ;
+  "*",     "*+",   ",",
+  "*-",    "+*",   ";",      ":",
+  "[",     "]",
+  "{",     "}" ;
 
 rule list delimitorsList ;
 

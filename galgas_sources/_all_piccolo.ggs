@@ -1,8 +1,10 @@
 compile "piccolo_lexique.ggs" ;
 compile "piccolo_options.ggs" ;
-compile "piccolo_semantics.ggs" ;
+compile "piccolo_metamodel.ggs" ;
 compile "piccolo_syntax.ggs" ;
 compile "piccolo_grammar.ggs" ;
 compile "piccolo_cocoa.ggs" ;
+compile "piccolo_semantics.ggs" ;
+compile "piccolo_embedded_devices.ggs" ;
 compile "piccolo_program.ggs" ;
 

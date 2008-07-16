@@ -1,3 +1,10 @@
 gui piccolo_cocoa "cocoa" :
-import grammar piccolo_grammar in "piccolo_grammar.ggs" ;
+  import semantics piccolo_metamodel in "piccolo_metamodel.ggs" ;
+  import grammar piccolo_grammar in "piccolo_grammar.ggs" ;
+  import__ "piccolo_lexique.ggs" ;
+
+  blockComment : "#" ;
+
+  label $routine$, $identifier$ ;
+
 end gui ;
