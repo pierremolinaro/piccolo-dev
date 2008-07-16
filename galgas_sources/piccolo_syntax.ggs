@@ -1,37 +1,66 @@
 syntax piccolo_syntax :
 import lexique piccolo_lexique in "piccolo_lexique.ggs" ;
 import option piccolo_options in "piccolo_options.ggs" ;
-import semantics piccolo_semantics in "piccolo_semantics.ggs" ;
+import semantics piccolo_metamodel in "piccolo_metamodel.ggs" ;
 
 #----------------------------------------------------*
 
 nonterminal <configuration_definition> ;
-nonterminal <ram_definition> ;
-nonterminal <interrupt_definition> ;
-nonterminal <routine_definition> ;
-nonterminal <instruction> ;
-nonterminal <start_symbol> ;
-nonterminal <register_parsing> ;
-nonterminal <optional_w_as_dest> ;
+
+nonterminal <ram_definition>
+  ?!@ramDefinitionList ioRamDefinitionList
+;
+
+nonterminal <interrupt_definition>
+  ?!@interruptDefinitionList outInterruptDefinitionList
+;
+
+nonterminal <routine_definition> ?!@routineDefinitionList ioRoutineDefinitionList ;
+
+nonterminal <instruction> !@instruction outInstruction ;
+
+nonterminal <start_symbol>
+  !@piccoloModel outPiccoloModel
+;
+
+nonterminal <register_parsing> !@registerExpression outRegisterExpression ;
+
+nonterminal <optional_w_as_dest> !@bool out_W_isDestination ;
+
+nonterminal <bit_number_parsing> !@bitNumberExpression outBitNumber ;
+
+nonterminal <literal_value_parsing> !@luint outLiteralValue ;
 
 #----------------------------------------------------*
 
-rule <start_symbol> :
+rule <start_symbol>
+  !@piccoloModel outPiccoloModel
+:
   $program$ ;
   $identifier$ ? @lstring programName ;
-  $literal_string$ ? @lstring controllerName ;
+  $literal_string$ ? @lstring deviceName ;
   $:$ ;
+  @interruptDefinitionList interruptDefinitionList [emptyList] ;
+  @routineDefinitionList routineDefinitionList [emptyList] ;
+  @ramDefinitionList ramDefinitionList [emptyList] ;
   repeat
   while
     <configuration_definition> ;
   while
-    <ram_definition> ;
+    <ram_definition> !?ramDefinitionList ;
   while
-    <interrupt_definition> ;
+    <interrupt_definition> !?interruptDefinitionList ;
   while
-    <routine_definition> ;
+    <routine_definition> !?routineDefinitionList ;
   end repeat ;
   $end$ ;
+  outPiccoloModel := [@piccoloModel new
+    !programName
+    !deviceName
+    !ramDefinitionList
+    !interruptDefinitionList
+    !routineDefinitionList
+  ] ;
 end rule ;
 
 #----------------------------------------------------*
@@ -44,66 +73,658 @@ end rule ;
 
 #----------------------------------------------------*
 
-rule <ram_definition> :
+rule <ram_definition>
+  ?!@ramDefinitionList ioRamDefinitionList
+:
   $ram$ ;
   ${$ ;
+  repeat
+  while
+    $byte$ ;
+    $identifier$ ? @lstring name ;
+    @luint size ;
+    select
+      size := [@luint new !1 !here] ;
+    or
+      $[$ ;
+      $unsigned_literal_integer$ ?size ;
+      $]$ ;
+    end select ;
+    ioRamDefinitionList += !name !size ;
+  end repeat ;
   $}$ ;
 end rule ;
 
 #----------------------------------------------------*
 
-rule <interrupt_definition> :
+rule <interrupt_definition>
+  ?!@interruptDefinitionList ioInterruptDefinitionList
+:
   $interrupt$ ;
   ${$ ;
+  @instructionList instructionList [emptyList] ;
   repeat
   while
-    <instruction> ;
+    @instruction instruction ;
+    <instruction> ?instruction ;
+    instructionList += !instruction ;
   end repeat ;
   $}$ ;
+  ioInterruptDefinitionList += !instructionList ;
 end rule ;
 
 #----------------------------------------------------*
 
-rule <routine_definition> :
+rule <routine_definition>
+  ?!@routineDefinitionList ioRoutineDefinitionList
+:
   $routine$ ;
   $identifier$ ? @lstring routineName ;
-  $bsr$ ;
-  $unsigned_literal_integer$ ? @luint assumedBSRvalue ;
+#  $bsr$ ;
+#  $unsigned_literal_integer$ ? @luint assumedBSRvalue ;
   ${$ ;
+  @instructionList instructionList [emptyList] ;
   repeat
   while
-    <instruction> ;
+    @instruction instruction ;
+    <instruction> ?instruction ;
+    instructionList += !instruction ;
   end repeat ;
   $}$ ;
+  ioRoutineDefinitionList += !routineName !instructionList ;
 end rule ;
 
 #----------------------------------------------------*
 
-rule <instruction> :
+rule <register_parsing> !@registerExpression outRegisterExpression :
+  $identifier$ ?@lstring registerName ;
+  @luint offset ;
   select
-    $addwf$ ;
-    <register_parsing> ;
-    <optional_w_as_dest> ;
+    offset := [@luint new !0 !here] ;
   or
-    $addwfc$ ;
-    <register_parsing> ;
-    <optional_w_as_dest> ;
+    $[$ ;
+    $unsigned_literal_integer$ ? offset ;
+    $]$ ;
+  end select ;
+  outRegisterExpression := [@registerExpression new
+    !registerName
+    !offset
+  ] ;
+end rule ;
+
+#----------------------------------------------------*
+
+rule <bit_number_parsing> !@bitNumberExpression outBitNumber :
+  $identifier$ ?@lstring bitNumberLabel ;
+  outBitNumber := [@bitNumberLabelValue new !bitNumberLabel] ;
+end rule ;
+
+#----------------------------------------------------*
+
+rule <bit_number_parsing> !@bitNumberExpression outBitNumber :
+  $unsigned_literal_integer$ ?@luint bitNumberLiteral ;
+  outBitNumber := [@bitNumberLiteralValue new !bitNumberLiteral] ;
+end rule ;
+
+#----------------------------------------------------*
+
+rule <literal_value_parsing> !@luint outLiteralValue :
+  $unsigned_literal_integer$ ? outLiteralValue ;
+end rule ;
+
+#----------------------------------------------------*
+
+rule <literal_value_parsing> !@luint outLiteralValue :
+  $literal_char$ ? @lchar literalCharValue ;
+  outLiteralValue := [@luint new ![[literalCharValue char] uint] ![literalCharValue location]] ;
+end rule ;
+
+#----------------------------------------------------*
+
+rule <optional_w_as_dest> !@bool out_W_isDestination :
+  select
+    out_W_isDestination := false ;
+  or
+    $,$ ;
+    $w$ ;
+    out_W_isDestination := true ;
   end select ;
 end rule ;
 
 #----------------------------------------------------*
 
-rule <register_parsing> :
-  $identifier$ ? @lstring registerName ;
-end rule ;
-
-#----------------------------------------------------*
-
-rule <optional_w_as_dest> :
+rule <instruction> !@instruction outInstruction :
   select
+    $addwf$ ;
+    @registerExpression registerName ;
+    <register_parsing> ?registerName ;
+    @bool W_isDestination ;
+    <optional_w_as_dest> ?W_isDestination ;
+    outInstruction := [@instruction_ADDWF new
+      !registerName
+      !W_isDestination
+    ] ;
   or
+    $addwfc$ ;
+    @registerExpression registerName ;
+    <register_parsing> ?registerName ;
+    @bool W_isDestination ;
+    <optional_w_as_dest> ?W_isDestination ;
+    outInstruction := [@instruction_ADDWFC new
+      !registerName
+      !W_isDestination
+    ] ;
+  or
+    $andwf$ ;
+    @registerExpression registerName ;
+    <register_parsing> ?registerName ;
+    @bool W_isDestination ;
+    <optional_w_as_dest> ?W_isDestination ;
+    outInstruction := [@instruction_ANDWF new
+      !registerName
+      !W_isDestination
+    ] ;
+  or
+    $comf$ ;
+    @registerExpression registerName ;
+    <register_parsing> ?registerName ;
+    @bool W_isDestination ;
+    <optional_w_as_dest> ?W_isDestination ;
+    outInstruction := [@instruction_COMF new
+      !registerName
+      !W_isDestination
+    ] ;
+  or
+    $decf$ ;
+    @registerExpression registerName ;
+    <register_parsing> ?registerName ;
+    @bool W_isDestination ;
+    <optional_w_as_dest> ?W_isDestination ;
+    outInstruction := [@instruction_DECF new
+      !registerName
+      !W_isDestination
+    ] ;
+  or
+    $decfsz$ ;
+    @registerExpression registerName ;
+    <register_parsing> ?registerName ;
+    @bool W_isDestination ;
+    <optional_w_as_dest> ?W_isDestination ;
+    outInstruction := [@instruction_DECFSZ new
+      !registerName
+      !W_isDestination
+    ] ;
+  or
+    $dcfsnz$ ;
+    @registerExpression registerName ;
+    <register_parsing> ?registerName ;
+    @bool W_isDestination ;
+    <optional_w_as_dest> ?W_isDestination ;
+    outInstruction := [@instruction_DCFSNZ new
+      !registerName
+      !W_isDestination
+    ] ;
+  or
+    $incf$ ;
+    @registerExpression registerName ;
+    <register_parsing> ?registerName ;
+    @bool W_isDestination ;
+    <optional_w_as_dest> ?W_isDestination ;
+    outInstruction := [@instruction_INCF new
+      !registerName
+      !W_isDestination
+    ] ;
+  or
+    $incfsz$ ;
+    @registerExpression registerName ;
+    <register_parsing> ?registerName ;
+    @bool W_isDestination ;
+    <optional_w_as_dest> ?W_isDestination ;
+    outInstruction := [@instruction_INCFSZ new
+      !registerName
+      !W_isDestination
+    ] ;
+  or
+    $infsnz$ ;
+    @registerExpression registerName ;
+    <register_parsing> ?registerName ;
+    @bool W_isDestination ;
+    <optional_w_as_dest> ?W_isDestination ;
+    outInstruction := [@instruction_INFSNZ new
+      !registerName
+      !W_isDestination
+    ] ;
+  or
+    $iorwf$ ;
+    @registerExpression registerName ;
+    <register_parsing> ?registerName ;
+    @bool W_isDestination ;
+    <optional_w_as_dest> ?W_isDestination ;
+    outInstruction := [@instruction_IORWF new
+      !registerName
+      !W_isDestination
+    ] ;
+  or
+    $movf$ ;
+    @registerExpression registerName ;
+    <register_parsing> ?registerName ;
+    @bool W_isDestination ;
+    <optional_w_as_dest> ?W_isDestination ;
+    outInstruction := [@instruction_MOVF new
+      !registerName
+      !W_isDestination
+    ] ;
+  or
+    $rlcf$ ;
+    @registerExpression registerName ;
+    <register_parsing> ?registerName ;
+    @bool W_isDestination ;
+    <optional_w_as_dest> ?W_isDestination ;
+    outInstruction := [@instruction_RLCF new
+      !registerName
+      !W_isDestination
+    ] ;
+  or
+    $rlncf$ ;
+    @registerExpression registerName ;
+    <register_parsing> ?registerName ;
+    @bool W_isDestination ;
+    <optional_w_as_dest> ?W_isDestination ;
+    outInstruction := [@instruction_RLNCF new
+      !registerName
+      !W_isDestination
+    ] ;
+  or
+    $rrcf$ ;
+    @registerExpression registerName ;
+    <register_parsing> ?registerName ;
+    @bool W_isDestination ;
+    <optional_w_as_dest> ?W_isDestination ;
+    outInstruction := [@instruction_RRCF new
+      !registerName
+      !W_isDestination
+    ] ;
+  or
+    $rrncf$ ;
+    @registerExpression registerName ;
+    <register_parsing> ?registerName ;
+    @bool W_isDestination ;
+    <optional_w_as_dest> ?W_isDestination ;
+    outInstruction := [@instruction_RRNCF new
+      !registerName
+      !W_isDestination
+    ] ;
+  or
+    $subfwb$ ;
+    @registerExpression registerName ;
+    <register_parsing> ?registerName ;
+    @bool W_isDestination ;
+    <optional_w_as_dest> ?W_isDestination ;
+    outInstruction := [@instruction_SUBFWB new
+      !registerName
+      !W_isDestination
+    ] ;
+  or
+    $subwf$ ;
+    @registerExpression registerName ;
+    <register_parsing> ?registerName ;
+    @bool W_isDestination ;
+    <optional_w_as_dest> ?W_isDestination ;
+    outInstruction := [@instruction_SUBWF new
+      !registerName
+      !W_isDestination
+    ] ;
+  or
+    $subwfb$ ;
+    @registerExpression registerName ;
+    <register_parsing> ?registerName ;
+    @bool W_isDestination ;
+    <optional_w_as_dest> ?W_isDestination ;
+    outInstruction := [@instruction_SUBWFB new
+      !registerName
+      !W_isDestination
+    ] ;
+  or
+    $swapf$ ;
+    @registerExpression registerName ;
+    <register_parsing> ?registerName ;
+    @bool W_isDestination ;
+    <optional_w_as_dest> ?W_isDestination ;
+    outInstruction := [@instruction_SWAPF new
+      !registerName
+      !W_isDestination
+    ] ;
+  or
+    $xorwf$ ;
+    @registerExpression registerName ;
+    <register_parsing> ?registerName ;
+    @bool W_isDestination ;
+    <optional_w_as_dest> ?W_isDestination ;
+    outInstruction := [@instruction_XORWF new
+      !registerName
+      !W_isDestination
+    ] ;
+  or
+    $clrf$ ;
+    @registerExpression registerName ;
+    <register_parsing> ?registerName ;
+    outInstruction := [@instruction_CLRF new
+      !registerName
+    ] ;
+  or
+    $cpfseq$ ;
+    @registerExpression registerName ;
+    <register_parsing> ?registerName ;
+    outInstruction := [@instruction_CPFSEQ new
+      !registerName
+    ] ;
+  or
+    $cpfsgt$ ;
+    @registerExpression registerName ;
+    <register_parsing> ?registerName ;
+    outInstruction := [@instruction_CPFSGT new
+      !registerName
+    ] ;
+  or
+    $cpfslt$ ;
+    @registerExpression registerName ;
+    <register_parsing> ?registerName ;
+    outInstruction := [@instruction_CPFSLT new
+      !registerName
+    ] ;
+  or
+    $movwf$ ;
+    @registerExpression registerName ;
+    <register_parsing> ?registerName ;
+    outInstruction := [@instruction_MOVWF new
+      !registerName
+    ] ;
+  or
+    $mulwf$ ;
+    @registerExpression registerName ;
+    <register_parsing> ?registerName ;
+    outInstruction := [@instruction_MULWF new
+      !registerName
+    ] ;
+  or
+    $negf$ ;
+    @registerExpression registerName ;
+    <register_parsing> ?registerName ;
+    outInstruction := [@instruction_NEGF new
+      !registerName
+    ] ;
+  or
+    $setf$ ;
+    @registerExpression registerName ;
+    <register_parsing> ?registerName ;
+    outInstruction := [@instruction_SETF new
+      !registerName
+    ] ;
+  or
+    $tstfsz$ ;
+    @registerExpression registerName ;
+    <register_parsing> ?registerName ;
+    outInstruction := [@instruction_TSTFSZ new
+      !registerName
+    ] ;
+  or
+    $movff$ ;
+    @registerExpression sourceRegisterName ;
+    <register_parsing> ?sourceRegisterName ;
     $,$ ;
-    $w$ ;
+    @registerExpression destinationRegisterName ;
+    <register_parsing> ? destinationRegisterName ;
+    outInstruction := [@instruction_MOVFF new
+      !sourceRegisterName
+      !destinationRegisterName
+    ] ;
+  or
+    $bcf$ ;
+    @registerExpression registerName ;
+    <register_parsing> ?registerName ;
+    $,$ ;
+    @bitNumberExpression bitNumber ;
+    <bit_number_parsing> ?bitNumber ;
+    outInstruction := [@instruction_BCF new
+      !registerName
+      !bitNumber
+    ] ;
+  or
+    $bsf$ ;
+    @registerExpression registerName ;
+    <register_parsing> ?registerName ;
+    $,$ ;
+    @bitNumberExpression bitNumber ;
+    <bit_number_parsing> ?bitNumber ;
+    outInstruction := [@instruction_BSF new
+      !registerName
+      !bitNumber
+    ] ;
+  or
+    $btfsc$ ;
+    @registerExpression registerName ;
+    <register_parsing> ?registerName ;
+    $,$ ;
+    @bitNumberExpression bitNumber ;
+    <bit_number_parsing> ?bitNumber ;
+    outInstruction := [@instruction_BTFSC new
+      !registerName
+      !bitNumber
+    ] ;
+  or
+    $btfss$ ;
+    @registerExpression registerName ;
+    <register_parsing> ?registerName ;
+    $,$ ;
+    @bitNumberExpression bitNumber ;
+    <bit_number_parsing> ?bitNumber ;
+    outInstruction := [@instruction_BTFSS new
+      !registerName
+      !bitNumber
+    ] ;
+  or
+    $btg$ ;
+    @registerExpression registerName ;
+    <register_parsing> ?registerName ;
+    $,$ ;
+    @bitNumberExpression bitNumber ;
+    <bit_number_parsing> ?bitNumber ;
+    outInstruction := [@instruction_BTG new
+      !registerName
+      !bitNumber
+    ] ;
+  or
+    $bc$ ;
+    $identifier$ ? @lstring targetLabelName ;
+    outInstruction := [@instruction_BC new
+      !targetLabelName
+    ] ;
+  or
+    $bn$ ;
+    $identifier$ ? @lstring targetLabelName ;
+    outInstruction := [@instruction_BN new
+      !targetLabelName
+    ] ;
+  or
+    $bnc$ ;
+    $identifier$ ? @lstring targetLabelName ;
+    outInstruction := [@instruction_BNC new
+      !targetLabelName
+    ] ;
+  or
+    $bnn$ ;
+    $identifier$ ? @lstring targetLabelName ;
+    outInstruction := [@instruction_BNN new
+      !targetLabelName
+    ] ;
+  or
+    $bnov$ ;
+    $identifier$ ? @lstring targetLabelName ;
+    outInstruction := [@instruction_BNOV new
+      !targetLabelName
+    ] ;
+  or
+    $bnz$ ;
+    $identifier$ ? @lstring targetLabelName ;
+    outInstruction := [@instruction_BNZ new
+      !targetLabelName
+    ] ;
+  or
+    $bov$ ;
+    $identifier$ ? @lstring targetLabelName ;
+    outInstruction := [@instruction_BOV new
+      !targetLabelName
+    ] ;
+  or
+    $bz$ ;
+    $identifier$ ? @lstring targetLabelName ;
+    outInstruction := [@instruction_BZ new
+      !targetLabelName
+    ] ;
+  or
+    $bra$ ;
+    $identifier$ ? @lstring targetLabelName ;
+    outInstruction := [@instruction_BRA new
+      !targetLabelName
+    ] ;
+  or
+    $call$ ;
+    $identifier$ ? @lstring targetLabelName ;
+    outInstruction := [@instruction_CALL new
+      !targetLabelName
+    ] ;
+  or
+    $goto$ ;
+    $identifier$ ? @lstring targetLabelName ;
+    outInstruction := [@instruction_GOTO new
+      !targetLabelName
+    ] ;
+  or
+    $rcall$ ;
+    $identifier$ ? @lstring targetLabelName ;
+    outInstruction := [@instruction_RCALL new
+      !targetLabelName
+    ] ;
+  or
+    $clrwdt$ ;
+    outInstruction := [@instruction_CLRWDT new] ;
+  or
+    $daw$ ;
+    outInstruction := [@instruction_DAW new] ;
+  or
+    $nop$ ;
+    outInstruction := [@instruction_NOP new] ;
+  or
+    $pop$ ;
+    outInstruction := [@instruction_POP new] ;
+  or
+    $push$ ;
+    outInstruction := [@instruction_PUSH new] ;
+  or
+    $reset$ ;
+    outInstruction := [@instruction_RESET new] ;
+  or
+    $return$ ;
+    outInstruction := [@instruction_RETURN new] ;
+  or
+    $sleep$ ;
+    outInstruction := [@instruction_SLEEP new] ;
+  or
+    $addlw$ ;
+    @luint literalValue ;
+    <literal_value_parsing> ?literalValue ;
+    outInstruction := [@instruction_ADDLW new !literalValue] ;
+  or
+    $andlw$ ;
+    @luint literalValue ;
+    <literal_value_parsing> ?literalValue ;
+    outInstruction := [@instruction_ANDLW new !literalValue] ;
+  or
+    $iorlw$ ;
+    @luint literalValue ;
+    <literal_value_parsing> ?literalValue ;
+    outInstruction := [@instruction_IORLW new !literalValue] ;
+  or
+    $movlw$ ;
+    @luint literalValue ;
+    <literal_value_parsing> ?literalValue ;
+    outInstruction := [@instruction_MOVLW new !literalValue] ;
+  or
+    $mullw$ ;
+    @luint literalValue ;
+    <literal_value_parsing> ?literalValue ;
+    outInstruction := [@instruction_MULLW new !literalValue] ;
+  or
+    $retlw$ ;
+    @luint literalValue ;
+    <literal_value_parsing> ?literalValue ;
+    outInstruction := [@instruction_RETLW new !literalValue] ;
+  or
+    $sublw$ ;
+    @luint literalValue ;
+    <literal_value_parsing> ?literalValue ;
+    outInstruction := [@instruction_SUBLW new !literalValue] ;
+  or
+    $xorlw$ ;
+    @luint literalValue ;
+    <literal_value_parsing> ?literalValue ;
+    outInstruction := [@instruction_XORLW new !literalValue] ;
+  or
+    $lfsr$ ;
+    $unsigned_literal_integer$ ? @luint FSRindex ;
+    $,$ ;
+    @registerExpression registerName ;
+    <register_parsing> ?registerName ;
+    outInstruction := [@instruction_LFSR new !FSRindex !registerName] ;
+  or
+    $movlb$ ;
+    $unsigned_literal_integer$ ? @luint pageIndex ;
+    outInstruction := [@instruction_MOVLB new !pageIndex] ;
+  or
+    $label$ ;
+    $identifier$ ? @lstring targetLabelName ;
+    outInstruction := [@instruction_LABEL new
+      !targetLabelName
+    ] ;
+  or
+    $movaw$ ;
+    @registerExpression registerName ;
+    <register_parsing> ?registerName ;
+    outInstruction := [@instruction_MOVAW new !registerName] ;
+  or
+    $tblrd$ ;
+    @tableAccessOption accessOption ;
+    select
+      $*$ ;
+      accessOption := [@tableAccessOption simpleAccess] ;
+    or
+      $*+$ ;
+      accessOption := [@tableAccessOption postIncrement] ;
+    or
+      $*-$ ;
+      accessOption := [@tableAccessOption postDecrement] ;
+    or
+      $+*$ ;
+      accessOption := [@tableAccessOption preIncrement] ;
+    end select ;
+    outInstruction := [@instruction_TBLRD new !accessOption] ;
+  or
+    $tblwt$ ;
+    @tableAccessOption accessOption ;
+    select
+      $*$ ;
+      accessOption := [@tableAccessOption simpleAccess] ;
+    or
+      $*+$ ;
+      accessOption := [@tableAccessOption postIncrement] ;
+    or
+      $*-$ ;
+      accessOption := [@tableAccessOption postDecrement] ;
+    or
+      $+*$ ;
+      accessOption := [@tableAccessOption preIncrement] ;
+    end select ;
+    outInstruction := [@instruction_TBLWT new !accessOption] ;
   end select ;
 end rule ;
 

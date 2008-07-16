@@ -1,0 +1,24 @@
+semantics piccolo_embedded_devices :
+
+#----------------------------------------------------*
+
+filewrapper embeddedDevices in "../deviceDefinitions" {
+  "piccoloDevice"
+}{
+}
+
+#----------------------------------------------------*
+
+routine parseDeviceDefinition ??@lstring inDeviceName :
+  @filewrapper fw := [filewrapper embeddedDevices] ;
+  @string deviceFullName := [inDeviceName string] . ".piccoloDevice" ;
+  if [fw fileExistsAtPath !deviceFullName] then
+    @string definitionString := [fw fileContentsAtPath !deviceFullName] ;
+  else
+    error inDeviceName: "The '" . inDeviceName . "' definition file is not defined" ;
+  end if ;
+end routine ;
+
+#----------------------------------------------------*
+
+end semantics ;
