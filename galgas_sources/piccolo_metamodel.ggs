@@ -477,6 +477,7 @@ list @interruptDefinitionList {
 
 list @routineDefinitionList {
   @lstring mRoutineName ;
+  @luint mBanksel ;
   @instructionList mInstructionList ;
 }
 

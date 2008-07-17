@@ -18,6 +18,9 @@ rule <start_symbol>
   ${$ ;
   $processor$ ;
   $string$ ? @lstring processorName ;
+  if [processorName string] != "pic18_60" then
+    error here : "The '" . processorName . "' is not handled" ;
+  end if ;
   $;$ ;
   $romsize$ ;
   $integer$ ? @luint romSize ;
@@ -51,16 +54,20 @@ rule <start_symbol>
     $integer$ ? @luint ramEnd ;
     $;$ ;
   end repeat ;
+  @registerTable registerTable [emptyMap] ;
   repeat
   while
     $register$ ;
     $identifier$ ? @lstring registerName ;
     $at$ ;
+    @uintlist registerAddressList [emptyList] ;
     repeat
       $integer$ ? @luint registerAddress ;
+      registerAddressList += ![registerAddress uint] ;
     while
       $,$ ;
     end repeat ;
+    [!?registerTable insertKey !registerName !registerAddressList !1] ;
     $<$ ;
     repeat
       select
@@ -106,6 +113,8 @@ rule <start_symbol>
   $}$ ;
   outPiccoloDeviceModel := [@piccoloDeviceModel new
     !romSize
+    !bankCount
+    !registerTable
   ] ;
 end rule ;
 

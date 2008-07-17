@@ -87,7 +87,7 @@ rule <ram_definition>
       size := [@luint new !1 !here] ;
     or
       $[$ ;
-      $unsigned_literal_integer$ ?size ;
+      $integer$ ?size ;
       $]$ ;
     end select ;
     ioRamDefinitionList += !name !size ;
@@ -120,8 +120,13 @@ rule <routine_definition>
 :
   $routine$ ;
   $identifier$ ? @lstring routineName ;
-#  $bsr$ ;
-#  $unsigned_literal_integer$ ? @luint assumedBSRvalue ;
+  @luint banksel ;
+  select
+    banksel := [@luint new ![@uint max] !here] ;
+  or
+    $banksel$ ;
+    $integer$ ? banksel ;
+  end select ;
   ${$ ;
   @instructionList instructionList [emptyList] ;
   repeat
@@ -131,7 +136,7 @@ rule <routine_definition>
     instructionList += !instruction ;
   end repeat ;
   $}$ ;
-  ioRoutineDefinitionList += !routineName !instructionList ;
+  ioRoutineDefinitionList += !routineName !banksel !instructionList ;
 end rule ;
 
 #----------------------------------------------------*
@@ -143,7 +148,7 @@ rule <register_parsing> !@registerExpression outRegisterExpression :
     offset := [@luint new !0 !here] ;
   or
     $[$ ;
-    $unsigned_literal_integer$ ? offset ;
+    $integer$ ? offset ;
     $]$ ;
   end select ;
   outRegisterExpression := [@registerExpression new
@@ -162,14 +167,14 @@ end rule ;
 #----------------------------------------------------*
 
 rule <bit_number_parsing> !@bitNumberExpression outBitNumber :
-  $unsigned_literal_integer$ ?@luint bitNumberLiteral ;
+  $integer$ ?@luint bitNumberLiteral ;
   outBitNumber := [@bitNumberLiteralValue new !bitNumberLiteral] ;
 end rule ;
 
 #----------------------------------------------------*
 
 rule <literal_value_parsing> !@luint outLiteralValue :
-  $unsigned_literal_integer$ ? outLiteralValue ;
+  $integer$ ? outLiteralValue ;
 end rule ;
 
 #----------------------------------------------------*
@@ -671,14 +676,14 @@ rule <instruction> !@instruction outInstruction :
     outInstruction := [@instruction_XORLW new !literalValue] ;
   or
     $lfsr$ ;
-    $unsigned_literal_integer$ ? @luint FSRindex ;
+    $integer$ ? @luint FSRindex ;
     $,$ ;
     @registerExpression registerName ;
     <register_parsing> ?registerName ;
     outInstruction := [@instruction_LFSR new !FSRindex !registerName] ;
   or
     $movlb$ ;
-    $unsigned_literal_integer$ ? @luint pageIndex ;
+    $integer$ ? @luint pageIndex ;
     outInstruction := [@instruction_MOVLB new !pageIndex] ;
   or
     $label$ ;
