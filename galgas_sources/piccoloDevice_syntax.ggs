@@ -67,28 +67,47 @@ rule <start_symbol>
     while
       $,$ ;
     end repeat ;
-    [!?registerTable insertKey !registerName !registerAddressList !1] ;
     $<$ ;
+    @uint sliceIndex := 8 ;
+    @bitSliceTable bitSliceTable [emptyMap] ;
     repeat
       select
+        @uint sliceWidth := 0 ; # Means undefined
         repeat
+          @uint sliceBase := sliceIndex ;
           $identifier$ ? @lstring sliceName ;
           select
+            if (sliceWidth != 0) & (sliceWidth != 1) then
+              error sliceName:"a slice of 1 bit is expected for '" . sliceName . "'" ; 
+            end if ;
+            sliceWidth := 1 ;
           or
             $[$ ;
             $integer$ ? @luint sliceSize ;
+            if (sliceWidth != 0) & (sliceWidth != [sliceSize uint]) then
+              error sliceName:"a slice of " . [sliceWidth string] . " bits is expected for '" . sliceName . "'" ; 
+            end if ;
+            sliceWidth := [sliceSize uint] ;
+            sliceBase := sliceBase + 1 - [sliceSize uint] ;
             $]$ ;
           end select ;
+          [!?bitSliceTable insertKey !sliceName !sliceIndex-sliceWidth !sliceWidth] ;
         while
           $/$ ;
         end repeat ;
+        sliceIndex := sliceIndex - sliceWidth ;
       or
         $-$ ;
+        sliceIndex -- ;
       end select ;
     while
       $,$ ;
     end repeat ;
+    if sliceIndex != 0 then
+      error registerName:"Incorrect bit definition for register '" . registerName . "'" ;
+    end if ;
     $>$ ;
+    [!?registerTable insertKey !registerName !registerAddressList !1 !bitSliceTable] ;
     $;$ ;
   end repeat ;
   repeat

@@ -11,7 +11,76 @@
 
 //---------------------------------------------------------------------------*
 
-// ADD YOUR CODE HERE
+static unsigned char gBuffer [16] ;
+static uint32 gBufferEntryCount = 0 ;
+static uint32 gBufferAddress = 0 ;
+static C_String gGeneratedObjectCode ;
+
+//---------------------------------------------------------------------------*
+
+static void flushBuffer (void) {
+  if (gBufferEntryCount > 0) {
+    if (gGeneratedObjectCode.length () == 0) {
+      gGeneratedObjectCode << ":020000040000FA\n" ;
+    }
+    char s [10] ; sprintf (s, ":%02X%04X00", gBufferEntryCount, gBufferAddress) ;
+    unsigned char somme = gBufferEntryCount ;
+    somme += (gBufferAddress >> 8) & 255 ;
+    somme += gBufferAddress & 255 ;
+    gGeneratedObjectCode << s ;
+    for (uint32 i=0 ; i<gBufferEntryCount ; i++) {
+      const unsigned char c = gBuffer [i] ;
+      sprintf (s, "%02X", c) ; gGeneratedObjectCode << s ;
+      somme += c ;
+    }
+    sprintf (s, "%02X", (- somme) & 255) ; gGeneratedObjectCode << s << "\n" ;
+    gBufferAddress += gBufferEntryCount ;
+    gBufferEntryCount = 0 ;
+  }
+}
+
+//---------------------------------------------------------------------------*
+
+static void enterByte (const unsigned char inByte) {
+  if (gBufferEntryCount == 16) {
+    flushBuffer () ;
+  }
+  gBuffer [gBufferEntryCount] = inByte ;
+  gBufferEntryCount ++ ;
+}
+
+//---------------------------------------------------------------------------*
+
+void routine_setEmitAddress (C_Compiler & /* inLexique */,
+                             const GGS_uint inAddress
+                             COMMA_UNUSED_LOCATION_ARGS) {
+  flushBuffer () ;
+  gBufferAddress = inAddress.uintValue () ;
+}
+
+//---------------------------------------------------------------------------*
+
+void routine_emitCode (C_Compiler & /* inLexique */,
+                       const GGS_uint inCode
+                       COMMA_UNUSED_LOCATION_ARGS) {
+  const unsigned char lowByte = inCode.uintValue () & 255 ;
+  const unsigned char highByte = (inCode.uintValue () >> 8) & 255 ;
+  enterByte (lowByte) ;
+  enterByte (highByte) ;
+}
+
+//---------------------------------------------------------------------------*
+
+void routine_getGeneratedContents (C_Compiler & /* inLexique */,
+                                   GGS_string & outFileName
+                                   COMMA_UNUSED_LOCATION_ARGS) {
+  flushBuffer () ;
+  gGeneratedObjectCode << ":00000001FF\n" ;
+//  printf ("--- CODE --\n") ;
+//  printf ("%s", gGeneratedObjectCode.cString ()) ;
+//  printf ("-----------\n") ;
+  outFileName = GGS_string (true, gGeneratedObjectCode) ;
+}
 
 //---------------------------------------------------------------------------*
 

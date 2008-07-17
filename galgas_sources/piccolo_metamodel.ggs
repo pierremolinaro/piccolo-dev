@@ -27,111 +27,175 @@ class @registerExpression {
 abstract class @instruction_FDA extends @instruction {
   @registerExpression mRegisterExpression ;
   @bool m_W_isDestination ;
+  abstract method getBaseCode !@uint outBaseCode ;
 }
 
 #----------------------------------------------------*
 
 class @instruction_ADDWF extends @instruction_FDA {
+  override method getBaseCode !@uint outBaseCode :
+    outBaseCode := 0x2400 ;
+  end method ;
 }
 
 #----------------------------------------------------*
 
 class @instruction_ADDWFC extends @instruction_FDA {
+  override method getBaseCode !@uint outBaseCode :
+    outBaseCode := 0x2000 ;
+  end method ;
 }
 
 #----------------------------------------------------*
 
 class @instruction_ANDWF extends @instruction_FDA {
+  override method getBaseCode !@uint outBaseCode :
+    outBaseCode := 0x1200 ;
+  end method ;
 }
 
 #----------------------------------------------------*
 
 class @instruction_COMF extends @instruction_FDA {
+  override method getBaseCode !@uint outBaseCode :
+    outBaseCode := 0x1C00 ;
+  end method ;
 }
 
 #----------------------------------------------------*
 
 class @instruction_DECF extends @instruction_FDA {
+  override method getBaseCode !@uint outBaseCode :
+    outBaseCode := 0x0400 ;
+  end method ;
 }
 
 #----------------------------------------------------*
 
 class @instruction_DECFSZ extends @instruction_FDA {
+  override method getBaseCode !@uint outBaseCode :
+    outBaseCode := 0x2C00 ;
+  end method ;
 }
 
 #----------------------------------------------------*
 
 class @instruction_DCFSNZ extends @instruction_FDA {
+  override method getBaseCode !@uint outBaseCode :
+    outBaseCode := 0x4C00 ;
+  end method ;
 }
 
 #----------------------------------------------------*
 
 class @instruction_INCF extends @instruction_FDA {
+  override method getBaseCode !@uint outBaseCode :
+    outBaseCode := 0x2800 ;
+  end method ;
 }
 
 #----------------------------------------------------*
 
 class @instruction_INCFSZ extends @instruction_FDA {
+  override method getBaseCode !@uint outBaseCode :
+    outBaseCode := 0x3C00 ;
+  end method ;
 }
 
 #----------------------------------------------------*
 
 class @instruction_INFSNZ extends @instruction_FDA {
+  override method getBaseCode !@uint outBaseCode :
+    outBaseCode := 0x4800 ;
+  end method ;
 }
 
 #----------------------------------------------------*
 
 class @instruction_IORWF extends @instruction_FDA {
+  override method getBaseCode !@uint outBaseCode :
+    outBaseCode := 0x1000 ;
+  end method ;
 }
 
 #----------------------------------------------------*
 
 class @instruction_MOVF extends @instruction_FDA {
+  override method getBaseCode !@uint outBaseCode :
+    outBaseCode := 0x5000 ;
+  end method ;
 }
 
 #----------------------------------------------------*
 
 class @instruction_RLCF extends @instruction_FDA {
+  override method getBaseCode !@uint outBaseCode :
+    outBaseCode := 0x3400 ;
+  end method ;
 }
 
 #----------------------------------------------------*
 
 class @instruction_RLNCF extends @instruction_FDA {
+  override method getBaseCode !@uint outBaseCode :
+    outBaseCode := 0x4400 ;
+  end method ;
 }
 
 #----------------------------------------------------*
 
 class @instruction_RRCF extends @instruction_FDA {
+  override method getBaseCode !@uint outBaseCode :
+    outBaseCode := 0x3000 ;
+  end method ;
 }
 
 #----------------------------------------------------*
 
 class @instruction_RRNCF extends @instruction_FDA {
+  override method getBaseCode !@uint outBaseCode :
+    outBaseCode := 0x4000 ;
+  end method ;
 }
 
 #----------------------------------------------------*
 
 class @instruction_SUBFWB extends @instruction_FDA {
+  override method getBaseCode !@uint outBaseCode :
+    outBaseCode := 0x5400 ;
+  end method ;
 }
 
 #----------------------------------------------------*
 
 class @instruction_SUBWF extends @instruction_FDA {
+  override method getBaseCode !@uint outBaseCode :
+    outBaseCode := 0x5C00 ;
+  end method ;
 }
 
 #----------------------------------------------------*
 
 class @instruction_SUBWFB extends @instruction_FDA {
+  override method getBaseCode !@uint outBaseCode :
+    outBaseCode := 0x5800 ;
+  end method ;
 }
 
 #----------------------------------------------------*
 
 class @instruction_SWAPF extends @instruction_FDA {
+  override method getBaseCode !@uint outBaseCode :
+    outBaseCode := 0x3800 ;
+  end method ;
 }
 
 #----------------------------------------------------*
 
 class @instruction_XORWF extends @instruction_FDA {
+  override method getBaseCode !@uint outBaseCode :
+    outBaseCode := 0x1800 ;
+  end method ;
 }
 
 #----------------------------------------------------*
@@ -212,6 +276,7 @@ class @bitNumberLiteralValue extends @bitNumberExpression {
 
 class @bitNumberLabelValue extends @bitNumberExpression {
   @lstring mBitNumberLabelValue ;
+  @luint mBitNumberIndexValue ;
 }
 
 #----------------------------------------------------*

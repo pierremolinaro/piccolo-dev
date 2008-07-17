@@ -2,9 +2,19 @@ semantics piccoloDevice_semantics :
 
 #----------------------------------------------------*
 
+map @bitSliceTable {
+  @uint mSliceIndex ;
+  @uint mSliceSize ;
+  insert insertKey error message "the '%K' slice is already declared in %L" ;
+  search searchKey error message "the '%K' slice is not declared" ;
+}
+
+#----------------------------------------------------*
+
 map @registerTable {
   @uintlist mRegisterAddressList ;
   @uint mSize ;
+  @bitSliceTable mBitSliceTable ;
   insert insertKey error message "the '%K' register is already declared in %L" ;
   search searchKey error message "the '%K' register is not declared" ;
 }

@@ -161,7 +161,15 @@ end rule ;
 
 rule <bit_number_parsing> !@bitNumberExpression outBitNumber :
   $identifier$ ?@lstring bitNumberLabel ;
-  outBitNumber := [@bitNumberLabelValue new !bitNumberLabel] ;
+  @luint bitIndex ;
+  select
+    bitIndex := [@luint new !0 !here] ;
+  or
+    $[$ ;
+    $integer$ ? bitIndex ;
+    $]$ ;
+  end select ;
+  outBitNumber := [@bitNumberLabelValue new !bitNumberLabel !bitIndex] ;
 end rule ;
 
 #----------------------------------------------------*

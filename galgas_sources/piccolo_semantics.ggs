@@ -5,6 +5,14 @@ import option piccolo_options in "piccolo_options.ggs" ;
 
 #----------------------------------------------------*
 
+extern routine setEmitAddress ??@uint inAddress ;
+
+extern routine emitCode ??@uint inCode ;
+
+extern routine getGeneratedContents !@string outContents ;
+
+#----------------------------------------------------*
+
 map @routineSymbolTable {
   @uint mRoutineAddress ;
   @uint mRequiredSelectedBank ;
@@ -60,16 +68,22 @@ override method @instruction_FDA.generateCodeAtAddress
   @lstring registerName := [mRegisterExpression mRegisterName] ;
   @uintlist registerAddressList ;
   @uint size ;
-  [[inCodeGenerationContext mRegisterTable] searchKey !registerName ?registerAddressList ?size] ;
+  @bitSliceTable bitSliceTable ;
+  [[inCodeGenerationContext mRegisterTable] searchKey !registerName ?registerAddressList ?size ?bitSliceTable] ;
   @bool found := false ;
+  @uint usedRegisterAddress := 0 ;
   foreach registerAddressList while not found do
+    usedRegisterAddress := mValue ;
     found := (mValue < 0x60) | (mValue >= 0xF60) ;
   end foreach ;
+  @bool useBSRregister := false ;
   if (not found) & ([inCodeGenerationContext mCurrentBank] != [@uint max]) then
     @uint lowBound := [inCodeGenerationContext mCurrentBank] * 256 ;
     @uint highBound := lowBound + 255 ;
     foreach registerAddressList while not found do
+      usedRegisterAddress := mValue ;
       found := (mValue >= lowBound) & (mValue <= highBound) ;
+      useBSRregister := true ;
     end foreach ;
   end if ;
   if not found then
@@ -88,6 +102,13 @@ override method @instruction_FDA.generateCodeAtAddress
     end if ;
     error registerName: errorMessage ;
   end if ;
+#--- Emit Code
+  @uint code := 0 ;# [self getBaseCode ? code] ;
+  if useBSRregister then
+    code := code | 0x0100 ;
+  end if ;
+  code := code | (usedRegisterAddress & 255) ;
+  emitCode !code ;
 }
 
 #----------------------------------------------------------------------------*
@@ -99,7 +120,8 @@ override method @instruction_FA.generateCodeAtAddress
   @lstring registerName := [mRegisterExpression mRegisterName] ;
   @uintlist registerAddressList ;
   @uint size ;
-  [[inCodeGenerationContext mRegisterTable] searchKey !registerName ?registerAddressList ?size] ;
+  @bitSliceTable bitSliceTable;
+  [[inCodeGenerationContext mRegisterTable] searchKey !registerName ?registerAddressList ?size ?bitSliceTable] ;
   @bool found := false ;
   foreach registerAddressList while not found do
     found := (mValue < 0x60) | (mValue >= 0xF60) ;
@@ -139,6 +161,41 @@ override method @instruction_MOVFF.generateCodeAtAddress
 
 #----------------------------------------------------------------------------*
 
+abstract method @bitNumberExpression.getBitNumber
+  ??@bitSliceTable inBitSliceTable
+  !@uint outBitNumber
+;
+
+#----------------------------------------------------------------------------*
+
+override method @bitNumberLiteralValue.getBitNumber
+  ??@bitSliceTable unused inBitSliceTable
+  !@uint outBitNumber
+{
+  if [mBitNumberLiteralValue uint] > 7 then
+    error mBitNumberLiteralValue:"The bit number is " . [[mBitNumberLiteralValue uint] string] . " (should be <= 7)" ;
+  end if ;
+  outBitNumber := [mBitNumberLiteralValue uint] ;
+}
+
+#----------------------------------------------------------------------------*
+
+override method @bitNumberLabelValue.getBitNumber
+  ??@bitSliceTable inBitSliceTable
+  !@uint outBitNumber
+{
+  @uint sliceIndex ;
+  @uint sliceSize ;
+  [inBitSliceTable searchKey !mBitNumberLabelValue ?sliceIndex ? sliceSize] ;
+  if [mBitNumberIndexValue uint] > sliceSize then
+    error mBitNumberIndexValue: "The " . [[mBitNumberIndexValue uint] string]
+    . " index is too large (should be < " . [sliceSize string] . ")" ;
+  end if ;
+  outBitNumber := sliceIndex + [mBitNumberIndexValue uint] ;
+}
+
+#----------------------------------------------------------------------------*
+
 override method @instruction_FBA.generateCodeAtAddress
   ??@codeGenerationContext inCodeGenerationContext
   ??@uint unused inAddress
@@ -146,7 +203,8 @@ override method @instruction_FBA.generateCodeAtAddress
   @lstring registerName := [mRegisterExpression mRegisterName] ;
   @uintlist registerAddressList ;
   @uint size ;
-  [[inCodeGenerationContext mRegisterTable] searchKey !registerName ?registerAddressList ?size] ;
+  @bitSliceTable bitSliceTable ;
+  [[inCodeGenerationContext mRegisterTable] searchKey !registerName ?registerAddressList ?size ?bitSliceTable] ;
   @bool found := false ;
   foreach registerAddressList while not found do
     found := (mValue < 0x60) | (mValue >= 0xF60) ;
@@ -368,7 +426,12 @@ override method @instruction_TBLWT.generateCodeAtAddress
 #                                                                            *
 #----------------------------------------------------------------------------*
 
-routine analyze ??@piccoloModel inPiccoloModel :
+routine analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName :
+  @string sourceFileBaseName := [[inSourceFileName lastPathComponent] stringByDeletingPathExtension] ;
+  if sourceFileBaseName != [[inPiccoloModel mProgramName] string] then
+    error [inPiccoloModel mProgramName]: "the program name ('" . [inPiccoloModel mProgramName]
+    . "' should be identical to the file base name '" . sourceFileBaseName . "'" ;
+  end if ;
 #-------------------------------- Analyze Device
   @piccoloDeviceModel piccoloDeviceModel ;
   parseDeviceDefinition ![inPiccoloModel mDeviceName] ?piccoloDeviceModel ;
@@ -400,10 +463,21 @@ routine analyze ??@piccoloModel inPiccoloModel :
   @uint currentRamAddress := 0 ;
   @registerTable registerTable := [piccoloDeviceModel mRegisterTable] ;
   foreach [inPiccoloModel mRamDefinitionList] do
-   [!?registerTable insertKey !mName ![@uintlist listWithValue !currentRamAddress] ![mSize uint]] ;
+   @bitSliceTable bitSliceTable [emptyMap] ;
+   [!?registerTable insertKey !mName ![@uintlist listWithValue !currentRamAddress] ![mSize uint] !bitSliceTable] ;
    currentRamAddress := currentRamAddress + [mSize uint] ;
   end foreach ;
 #  message "Used RAM size: " . [currentRamAddress string] . " bytes\n" ;
+#-------------------------------- Prepare code generation
+  setEmitAddress !0 ;
+  if not [routineSymbolTable hasKey !"main"] then
+    error here: "there is no 'main' routine" ;
+  else
+    @uint mainRoutineAddress ;
+    [routineSymbolTable searchKey ![@lstring new !"main" !here] ?mainRoutineAddress ?*] ;
+    emitCode !0xEF00 | ((mainRoutineAddress >> 1) & 255) ;
+    emitCode !0xF000 | (mainRoutineAddress >> 9) ;
+  end if ;
 #-------------------------------- Second Pass
   @codeGenerationContext codeGenerationContext [new
     !routineSymbolTable
@@ -428,6 +502,13 @@ routine analyze ??@piccoloModel inPiccoloModel :
       currentROMaddress := currentROMaddress + length ;
     end foreach ;
   end foreach ;
+#--- If no error, generate object file
+  if [@uint errorCount] == 0 then
+    @string contents ;
+    getGeneratedContents ? contents ;
+    @string destinationFile := [inSourceFileName stringByDeletingPathExtension] . ".hex" ;
+    [contents writeToFile !destinationFile] ;
+  end if ;
 end routine ;
 
 #----------------------------------------------------*
