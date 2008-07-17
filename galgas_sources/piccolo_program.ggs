@@ -15,7 +15,7 @@ message "a source text file with the .piccolo extension"
 ??@lstring inSourceFile {
   @piccoloModel piccoloModel ;
   grammar piccolo_grammar in inSourceFile ?piccoloModel ;
-  analyze ! piccoloModel ;
+  analyze !piccoloModel ![inSourceFile string] ;
 }
 
 #--- Epilogue routine
