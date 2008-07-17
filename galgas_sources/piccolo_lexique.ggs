@@ -29,7 +29,8 @@ list controlKeyWordList error message "the '%K' keyword" style keywordStyle :
   "bsr",
   "w",
   "byte",
-  "label" ;
+  "label",
+  "banksel" ;
 
 list instructionKeyWordList error message "the '%K' instruction" style instructionStyle :
   "addwf",
@@ -116,7 +117,7 @@ rule 'a'->'z' |  'A'->'Z' :
 end rule ;
 
 #------------------------------- Integer, floating Point Constant ------------------
-$unsigned_literal_integer$ ! uint32value error message "a 32-bit unsigned number" style integerStyle ;
+$integer$ ! uint32value error message "a 32-bit unsigned number" style integerStyle ;
 
 message hexNumberTooLarge : "hex number too large" ;
 message decimalNumberTooLarge : "decimal number too large" ;
@@ -132,7 +133,7 @@ rule "0x" :
     enterHexDigitIntoUlong (uint32value, *) error hexNumberTooLarge, internalError ;
   while '_' :
   end repeat ;
-  send $unsigned_literal_integer$ ;
+  send $integer$ ;
 end rule ;
 
 rule '0'->'9' :
@@ -142,7 +143,7 @@ rule '0'->'9' :
     enterDigitIntoUlong (uint32value, *) error decimalNumberTooLarge, internalError ;
   while '_' :
   end repeat ;
-  send $unsigned_literal_integer$ ;
+  send $integer$ ;
 end rule ;
 
 #--------------------------------- Character constant ------------------------------------

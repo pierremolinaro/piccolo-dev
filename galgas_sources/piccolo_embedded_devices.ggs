@@ -11,15 +11,21 @@ filewrapper embeddedDevices in "../deviceDefinitions" {
 
 #----------------------------------------------------*
 
-routine parseDeviceDefinition ??@lstring inDeviceName :
+routine parseDeviceDefinition
+  ??@lstring inDeviceName
+  !@piccoloDeviceModel outPiccoloDeviceModel
+:
   @filewrapper fw := [filewrapper embeddedDevices] ;
   @string deviceFullName := [inDeviceName string] . ".piccoloDevice" ;
   if [fw fileExistsAtPath !deviceFullName] then
     @string definitionString := [fw fileContentsAtPath !deviceFullName] ;
-    @piccoloDeviceModel piccoloDeviceModel ;
-    grammar piccoloDevice_grammar on definitionString ?piccoloDeviceModel ;
+    grammar piccoloDevice_grammar on definitionString ?outPiccoloDeviceModel ;
   else
-    error inDeviceName: "The '" . inDeviceName . "' definition file is not defined" ;
+    error
+      inDeviceName:
+      "The '" . inDeviceName . "' definition file is not defined"
+      -> outPiccoloDeviceModel
+    ;
   end if ;
 end routine ;
 
