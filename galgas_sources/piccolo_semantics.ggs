@@ -7,9 +7,21 @@ import option piccolo_options in "piccolo_options.ggs" ;
 
 extern routine setEmitAddress ??@uint inAddress ;
 
+extern routine currentEmitAddress !@uint outAddress ;
+
 extern routine emitCode ??@uint inCode ;
 
 extern routine getGeneratedContents !@string outContents ;
+
+#----------------------------------------------------*
+
+routine checkCurrentEmitAddress ??@uint inCurrentAddress :
+  @uint addr ; currentEmitAddress ? addr ;
+  if ([@uint errorCount] == 0) & (addr != inCurrentAddress) then
+    error here:"internal error: current emit address is " . [addr hexString]
+    . "; it should be " . [inCurrentAddress hexString] ;
+  end if ;
+end routine ;
 
 #----------------------------------------------------*
 
@@ -54,6 +66,70 @@ struct @codeGenerationContext {
 #                                                                            *
 #----------------------------------------------------------------------------*
 
+method @registerExpression.getRegisterAddress
+  ??@codeGenerationContext inCodeGenerationContext
+  !@uint outRegisterAddress
+{
+  @uintlist registerAddressList ;
+  @uint size ;
+  [[inCodeGenerationContext mRegisterTable] searchKey !mRegisterName ?registerAddressList ?size ?*] ;
+  if [mOffset uint] > size then
+    error mOffset:"The index (" . [[mOffset uint] string] . ") should be lower than size (" . [size string] . ")" ;
+  end if ;
+  [registerAddressList first ?outRegisterAddress] ;
+  outRegisterAddress := outRegisterAddress + [mOffset uint] ;
+}
+
+#----------------------------------------------------------------------------*
+
+method @registerExpression.getRegisterAddressingInformations
+  ??@codeGenerationContext inCodeGenerationContext
+  !@uint outRegisterAddress
+  !@bool outUseBSRregister
+  !@bitSliceTable outBitSliceTable
+{
+  @uintlist registerAddressList ;
+  @uint size ;
+  [[inCodeGenerationContext mRegisterTable] searchKey !mRegisterName ?registerAddressList ?size ?outBitSliceTable] ;
+  @bool found := false ;
+  outRegisterAddress := 0 ;
+  foreach registerAddressList while not found do
+    outRegisterAddress := mValue ;
+    found := (mValue < 0x60) | (mValue >= 0xF60) ;
+  end foreach ;
+  outUseBSRregister := false ;
+  if (not found) & ([inCodeGenerationContext mCurrentBank] != [@uint max]) then
+    outUseBSRregister := true ;
+    @uint lowBound := [inCodeGenerationContext mCurrentBank] * 256 ;
+    @uint highBound := lowBound + 255 ;
+    foreach registerAddressList while not found do
+      found := (mValue >= lowBound) & (mValue <= highBound) ;
+    end foreach ;
+  end if ;
+  if not found then
+    @string errorMessage := "register '" . mRegisterName . "' at " ;
+    foreach registerAddressList while not found
+    do
+      errorMessage .= [mValue hexString] ;
+    between
+      errorMessage .= ", " ;
+    end foreach ;
+    errorMessage .= " cannot be accessed, neither throught access bank, neither with BSR value" ;
+    if [inCodeGenerationContext mCurrentBank] == [@uint max] then
+      errorMessage .= " (unknown)" ;
+    else
+      errorMessage .= " (" . [[inCodeGenerationContext mCurrentBank] string] . ")" ;
+    end if ;
+    error mRegisterName: errorMessage ;
+  end if ;
+  if found & ([mOffset uint] >= size) then
+    error mOffset:"index (" . [[mOffset uint] string] . ") is should be lower than size (". [size string] . ")" ;
+  end if ;
+  outRegisterAddress := outRegisterAddress + [mOffset uint] ;
+}
+
+#----------------------------------------------------------------------------*
+
 abstract method @instruction.generateCodeAtAddress
   ??@codeGenerationContext unused inCodeGenerationContext
   ??@uint unused inAddress
@@ -65,47 +141,21 @@ override method @instruction_FDA.generateCodeAtAddress
   ??@codeGenerationContext inCodeGenerationContext
   ??@uint unused inAddress
 {
-  @lstring registerName := [mRegisterExpression mRegisterName] ;
-  @uintlist registerAddressList ;
-  @uint size ;
-  @bitSliceTable bitSliceTable ;
-  [[inCodeGenerationContext mRegisterTable] searchKey !registerName ?registerAddressList ?size ?bitSliceTable] ;
-  @bool found := false ;
-  @uint usedRegisterAddress := 0 ;
-  foreach registerAddressList while not found do
-    usedRegisterAddress := mValue ;
-    found := (mValue < 0x60) | (mValue >= 0xF60) ;
-  end foreach ;
-  @bool useBSRregister := false ;
-  if (not found) & ([inCodeGenerationContext mCurrentBank] != [@uint max]) then
-    @uint lowBound := [inCodeGenerationContext mCurrentBank] * 256 ;
-    @uint highBound := lowBound + 255 ;
-    foreach registerAddressList while not found do
-      usedRegisterAddress := mValue ;
-      found := (mValue >= lowBound) & (mValue <= highBound) ;
-      useBSRregister := true ;
-    end foreach ;
-  end if ;
-  if not found then
-    @string errorMessage := "register '" . registerName . "' at " ;
-    foreach registerAddressList while not found
-    do
-      errorMessage .= [mValue hexString] ;
-    between
-      errorMessage .= ", " ;
-    end foreach ;
-    errorMessage .= " cannot be accessed, neither throught access bank, neither with BSR value" ;
-    if [inCodeGenerationContext mCurrentBank] == [@uint max] then
-      errorMessage .= " (unknown)" ;
-    else
-      errorMessage .= " (" . [[inCodeGenerationContext mCurrentBank] string] . ")" ;
-    end if ;
-    error registerName: errorMessage ;
-  end if ;
+  @uint usedRegisterAddress ;
+  @bool useBSRregister ;
+  [mRegisterExpression getRegisterAddressingInformations
+    !inCodeGenerationContext
+    ?usedRegisterAddress
+    ?useBSRregister
+    ?*
+  ] ;
 #--- Emit Code
-  @uint code := 0 ;# [self getBaseCode ? code] ;
+  @uint code ; [self getBaseCode ? code] ;
   if useBSRregister then
     code := code | 0x0100 ;
+  end if ;
+  if not m_W_isDestination then
+    code := code | 0x0200 ;
   end if ;
   code := code | (usedRegisterAddress & 255) ;
   emitCode !code ;
@@ -117,46 +167,35 @@ override method @instruction_FA.generateCodeAtAddress
   ??@codeGenerationContext inCodeGenerationContext
   ??@uint unused inAddress
 {
-  @lstring registerName := [mRegisterExpression mRegisterName] ;
-  @uintlist registerAddressList ;
-  @uint size ;
-  @bitSliceTable bitSliceTable;
-  [[inCodeGenerationContext mRegisterTable] searchKey !registerName ?registerAddressList ?size ?bitSliceTable] ;
-  @bool found := false ;
-  foreach registerAddressList while not found do
-    found := (mValue < 0x60) | (mValue >= 0xF60) ;
-  end foreach ;
-  if (not found) & ([inCodeGenerationContext mCurrentBank] != [@uint max]) then
-    @uint lowBound := [inCodeGenerationContext mCurrentBank] * 256 ;
-    @uint highBound := lowBound + 255 ;
-    foreach registerAddressList while not found do
-      found := (mValue >= lowBound) & (mValue <= highBound) ;
-    end foreach ;
+  @uint usedRegisterAddress ;
+  @bool useBSRregister ;
+  [mRegisterExpression getRegisterAddressingInformations
+    !inCodeGenerationContext
+    ?usedRegisterAddress
+    ?useBSRregister
+    ?*
+  ] ;
+#--- Emit Code
+  @uint code ; [self getBaseCode ? code] ;
+  if useBSRregister then
+    code := code | 0x0100 ;
   end if ;
-  if not found then
-    @string errorMessage := "register '" . registerName . "' at " ;
-    foreach registerAddressList while not found
-    do
-      errorMessage .= [mValue hexString] ;
-    between
-      errorMessage .= ", " ;
-    end foreach ;
-    errorMessage .= " cannot be accessed, neither throught access bank, neither with BSR value" ;
-    if [inCodeGenerationContext mCurrentBank] == [@uint max] then
-      errorMessage .= " (unknown)" ;
-    else
-      errorMessage .= " (" . [[inCodeGenerationContext mCurrentBank] string] . ")" ;
-    end if ;
-    error registerName: errorMessage ;
-  end if ;
+  code := code | (usedRegisterAddress & 255) ;
+  emitCode !code ;
 }
 
 #----------------------------------------------------------------------------*
 
 override method @instruction_MOVFF.generateCodeAtAddress
-  ??@codeGenerationContext unused inCodeGenerationContext
+  ??@codeGenerationContext inCodeGenerationContext
   ??@uint unused inAddress
 {
+  @uint sourceRegisterAddress ;
+  [mSourceRegisterName getRegisterAddress !inCodeGenerationContext ?sourceRegisterAddress] ;
+  @uint destinationRegisterAddress ;
+  [mDestinationRegisterName getRegisterAddress !inCodeGenerationContext ?destinationRegisterAddress] ;
+  emitCode !0xC000 | sourceRegisterAddress ;
+  emitCode !0xF000 | destinationRegisterAddress ;
 }
 
 #----------------------------------------------------------------------------*
@@ -200,62 +239,74 @@ override method @instruction_FBA.generateCodeAtAddress
   ??@codeGenerationContext inCodeGenerationContext
   ??@uint unused inAddress
 {
-  @lstring registerName := [mRegisterExpression mRegisterName] ;
-  @uintlist registerAddressList ;
-  @uint size ;
-  @bitSliceTable bitSliceTable ;
-  [[inCodeGenerationContext mRegisterTable] searchKey !registerName ?registerAddressList ?size ?bitSliceTable] ;
-  @bool found := false ;
-  foreach registerAddressList while not found do
-    found := (mValue < 0x60) | (mValue >= 0xF60) ;
-  end foreach ;
-  if (not found) & ([inCodeGenerationContext mCurrentBank] != [@uint max]) then
-    @uint lowBound := [inCodeGenerationContext mCurrentBank] * 256 ;
-    @uint highBound := lowBound + 255 ;
-    foreach registerAddressList while not found do
-      found := (mValue >= lowBound) & (mValue <= highBound) ;
-    end foreach ;
+#--- Register
+  @bitSliceTable bitSliceTable;
+  @uint usedRegisterAddress ;
+  @bool useBSRregister ;
+  [mRegisterExpression getRegisterAddressingInformations
+    !inCodeGenerationContext
+    ?usedRegisterAddress
+    ?useBSRregister
+    ?bitSliceTable
+  ] ;
+#--- Bit
+  @uint bitNumber ;
+  [mBitNumber getBitNumber !bitSliceTable ?bitNumber] ;
+#--- Emit Code
+  @uint code ; [self getBaseCode ? code] ;
+  if useBSRregister then
+    code := code | 0x0100 ;
   end if ;
-  if not found then
-    @string errorMessage := "register '" . registerName . "' at " ;
-    foreach registerAddressList while not found
-    do
-      errorMessage .= [mValue hexString] ;
-    between
-      errorMessage .= ", " ;
-    end foreach ;
-    errorMessage .= " cannot be accessed, neither throught access bank, neither with BSR value" ;
-    if [inCodeGenerationContext mCurrentBank] == [@uint max] then
-      errorMessage .= " (unknown)" ;
-    else
-      errorMessage .= " (" . [[inCodeGenerationContext mCurrentBank] string] . ")" ;
-    end if ;
-    error registerName: errorMessage ;
-  end if ;
+  code := code | (usedRegisterAddress & 255) ;
+  code := code | (bitNumber << 9) ;
+  emitCode !code ;
 }
 
 #----------------------------------------------------------------------------*
 
 override method @instruction_conditionalBranch.generateCodeAtAddress
-  ??@codeGenerationContext unused inCodeGenerationContext
-  ??@uint unused inAddress
+  ??@codeGenerationContext inCodeGenerationContext
+  ??@uint inAddress
 {
+  @uint targetAddress ;
+  [[inCodeGenerationContext mRoutineSymbolTable] searchKey !mTargetLabel ?targetAddress ?*] ;
+#--- Emit Code
+  @sint displacement := ([targetAddress sint] - 2S - [inAddress sint]) >> 1 ;
+  if (displacement > 0x800S) | (displacement < - 0x800S) then
+    error mTargetLabel: "displacement too large for RCALL instruction" ;
+  end if ;
+  @uint code ; [self getBaseCode ? code] ;
+  code := code | [displacement & 0x00FFS uint] ;
+  emitCode ! code ;
 }
 
 #----------------------------------------------------------------------------*
 
 override method @instruction_BRA.generateCodeAtAddress
-  ??@codeGenerationContext unused inCodeGenerationContext
-  ??@uint unused inAddress
+  ??@codeGenerationContext inCodeGenerationContext
+  ??@uint inAddress
 {
+  @uint targetAddress ;
+  [[inCodeGenerationContext mRoutineSymbolTable] searchKey !mTargetLabel ?targetAddress ?*] ;
+#--- Emit Code
+  @sint displacement := ([targetAddress sint] - 2S - [inAddress sint]) >> 1 ;
+  if (displacement > 0x800S) | (displacement < - 0x800S) then
+    error mTargetLabel: "displacement too large for RCALL instruction" ;
+  end if ;
+  emitCode !0xD000 | [displacement & 0x07FFS uint] ;
 }
 
 #----------------------------------------------------------------------------*
 
 override method @instruction_GOTO.generateCodeAtAddress
-  ??@codeGenerationContext unused inCodeGenerationContext
+  ??@codeGenerationContext inCodeGenerationContext
   ??@uint unused inAddress
 {
+  @uint targetAddress ;
+  [[inCodeGenerationContext mRoutineSymbolTable] searchKey !mTargetLabel ?targetAddress ?*] ;
+#--- Emit Code
+  emitCode !0xEF00 | ((targetAddress >> 1) & 255) ;
+  emitCode !0xF000 | (targetAddress >> 9) ;
 }
 
 #----------------------------------------------------------------------------*
@@ -277,13 +328,16 @@ override method @instruction_CALL.generateCodeAtAddress
     end if ;
     error mTargetLabel: errorMessage ;
   end if ;
+#--- Emit Code
+  emitCode !0xEC00 | ((targetAddress >> 1) & 255) ;
+  emitCode !0xF000 | (targetAddress >> 9) ;
 }
 
 #----------------------------------------------------------------------------*
 
 override method @instruction_RCALL.generateCodeAtAddress
   ??@codeGenerationContext inCodeGenerationContext
-  ??@uint unused inAddress
+  ??@uint inAddress
 {
   @uint targetAddress ;
   @uint requiredSelectedBank ;
@@ -298,6 +352,12 @@ override method @instruction_RCALL.generateCodeAtAddress
     end if ;
     error mTargetLabel: errorMessage ;
   end if ;
+#--- Emit Code
+  @sint displacement := ([targetAddress sint] - 2S - [inAddress sint]) >> 1 ;
+  if (displacement > 0x800S) | (displacement < - 0x800S) then
+    error mTargetLabel: "displacement too large for RCALL instruction" ;
+  end if ;
+  emitCode !0xD800 | [displacement & 0x07FFS uint] ;
 }
 
 #----------------------------------------------------------------------------*
@@ -306,6 +366,7 @@ override method @instruction_CLRWDT.generateCodeAtAddress
   ??@codeGenerationContext unused inCodeGenerationContext
   ??@uint unused inAddress
 {
+  emitCode !0x0004 ;
 }
 
 #----------------------------------------------------------------------------*
@@ -314,6 +375,7 @@ override method @instruction_DAW.generateCodeAtAddress
   ??@codeGenerationContext unused inCodeGenerationContext
   ??@uint unused inAddress
 {
+  emitCode !0x0007 ;
 }
 
 #----------------------------------------------------------------------------*
@@ -322,6 +384,7 @@ override method @instruction_NOP.generateCodeAtAddress
   ??@codeGenerationContext unused inCodeGenerationContext
   ??@uint unused inAddress
 {
+  emitCode !0x0000 ;
 }
 
 #----------------------------------------------------------------------------*
@@ -330,6 +393,7 @@ override method @instruction_POP.generateCodeAtAddress
   ??@codeGenerationContext unused inCodeGenerationContext
   ??@uint unused inAddress
 {
+  emitCode !0x0006 ;
 }
 
 #----------------------------------------------------------------------------*
@@ -338,6 +402,7 @@ override method @instruction_PUSH.generateCodeAtAddress
   ??@codeGenerationContext unused inCodeGenerationContext
   ??@uint unused inAddress
 {
+  emitCode !0x0005 ;
 }
 
 #----------------------------------------------------------------------------*
@@ -346,6 +411,7 @@ override method @instruction_RESET.generateCodeAtAddress
   ??@codeGenerationContext unused inCodeGenerationContext
   ??@uint unused inAddress
 {
+  emitCode !0x00FF ;
 }
 
 #----------------------------------------------------------------------------*
@@ -354,6 +420,7 @@ override method @instruction_RETURN.generateCodeAtAddress
   ??@codeGenerationContext unused inCodeGenerationContext
   ??@uint unused inAddress
 {
+  emitCode !0x0012 ;
 }
 
 #----------------------------------------------------------------------------*
@@ -362,6 +429,7 @@ override method @instruction_SLEEP.generateCodeAtAddress
   ??@codeGenerationContext unused inCodeGenerationContext
   ??@uint unused inAddress
 {
+  emitCode !0x0003 ;
 }
 
 #----------------------------------------------------------------------------*
@@ -370,14 +438,28 @@ override method @instruction_literalOperation.generateCodeAtAddress
   ??@codeGenerationContext unused inCodeGenerationContext
   ??@uint unused inAddress
 {
+  if [mLiteralValue uint] > 255 then
+    error mLiteralValue: "A literal value (" . [[mLiteralValue uint] string] . ") should be lower or equal to 255" ;
+  end if ;
+#--- Emit Code
+  @uint code ; [self getBaseCode ? code] ;
+  code := code | [mLiteralValue uint] ;
+  emitCode !code ;
 }
 
 #----------------------------------------------------------------------------*
 
 override method @instruction_LFSR.generateCodeAtAddress
-  ??@codeGenerationContext unused inCodeGenerationContext
+  ??@codeGenerationContext inCodeGenerationContext
   ??@uint unused inAddress
 {
+  if [mFSRindex uint] > 2 then
+    error mFSRindex: "LFSR index should be lower or equal to 2" ;
+  end if ;
+  @uint sourceRegisterAddress ;
+  [mRegisterExpression getRegisterAddress !inCodeGenerationContext ?sourceRegisterAddress] ;
+  emitCode !0xEE00 | ([mFSRindex uint] << 4) | (sourceRegisterAddress >> 8) ;
+  emitCode !0xF000 | (sourceRegisterAddress & 255) ;
 }
 
 #----------------------------------------------------------------------------*
@@ -391,17 +473,34 @@ override method @instruction_MOVLB.generateCodeAtAddress
 #----------------------------------------------------------------------------*
 
 override method @instruction_LABEL.generateCodeAtAddress
-  ??@codeGenerationContext unused inCodeGenerationContext
-  ??@uint unused inAddress
+  ??@codeGenerationContext inCodeGenerationContext
+  ??@uint inAddress
 {
+  @uint targetAddress ;
+  @uint requiredSelectedBank ;
+  [[inCodeGenerationContext mRoutineSymbolTable] searchKey !mTargetLabel ?targetAddress ?requiredSelectedBank] ;
+  if (targetAddress != inAddress) then
+    error mTargetLabel: "Internal second pass error: the '" . mTargetLabel
+    . "' label gets " . [inAddress hexString] . " value in second pass, while it gets "
+    . [targetAddress hexString] . " in first pass" ;
+  end if ;
 }
 
 #----------------------------------------------------------------------------*
 
 override method @instruction_MOVAW.generateCodeAtAddress
-  ??@codeGenerationContext unused inCodeGenerationContext
+  ??@codeGenerationContext inCodeGenerationContext
   ??@uint unused inAddress
 {
+  @uint registerAddress ;
+  [mRegisterExpression getRegisterAddress
+    !inCodeGenerationContext
+    ?registerAddress
+  ] ;
+  if registerAddress > 255 then
+    error here : "for MOVAW instruction, address (" . [registerAddress hexString] . ") should be lower or equal to 0xFF" ;
+  end if ;
+  emitCode !0x0E00 | registerAddress ;
 }
 
 #----------------------------------------------------------------------------*
@@ -410,6 +509,12 @@ override method @instruction_TBLRD.generateCodeAtAddress
   ??@codeGenerationContext unused inCodeGenerationContext
   ??@uint unused inAddress
 {
+  switch mOption
+  when simpleAccess  : emitCode !0x0008 ;
+  when postIncrement : emitCode !0x0009 ;
+  when postDecrement : emitCode !0x000A ;
+  when preIncrement  : emitCode !0x000B ;
+  end switch ;
 }
 
 #----------------------------------------------------------------------------*
@@ -418,6 +523,12 @@ override method @instruction_TBLWT.generateCodeAtAddress
   ??@codeGenerationContext unused inCodeGenerationContext
   ??@uint unused inAddress
 {
+  switch mOption
+  when simpleAccess  : emitCode !0x000C ;
+  when postIncrement : emitCode !0x000D ;
+  when postDecrement : emitCode !0x000E ;
+  when preIncrement  : emitCode !0x000F ;
+  end switch ;
 }
 
 #----------------------------------------------------------------------------*
@@ -435,20 +546,67 @@ routine analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName :
 #-------------------------------- Analyze Device
   @piccoloDeviceModel piccoloDeviceModel ;
   parseDeviceDefinition ![inPiccoloModel mDeviceName] ?piccoloDeviceModel ;
-#-------------------------------- First Pass
-  @uint currentROMaddress := 26 ;
-  @routineSymbolTable routineSymbolTable [emptyMap] ;
+#-------------------------------- Interrupts ?
+  @bool hasHighInterrupt := false ;
+  @bool hasLowInterrupt := false ;
   foreach [inPiccoloModel mInterruptDefinitionList] do
-    @uint currentlySelectedBank [max] ; # No selected bank by default
-    foreach mInstructionList do
-      [mInstruction enterLabelAtAddress !?routineSymbolTable !currentROMaddress !?currentlySelectedBank] ;
-      @uint length ;
-      [mInstruction instructionLength ?length] ;
-      currentROMaddress := currentROMaddress + length ;
-    end foreach ;
-  #--- Ajouter l'instruction REFFIE
-    currentROMaddress := currentROMaddress + 2 ;
+    if [mInterruptName string] == "high" then
+      if hasHighInterrupt then
+        error mInterruptName: "Only one 'high' interrupt routine is allowed" ;
+      end if ;
+      hasHighInterrupt := true ;
+    elsif [mInterruptName string] == "low" then
+      if hasLowInterrupt then
+        error mInterruptName: "Only one 'low' interrupt routine is allowed" ;
+      end if ;
+      hasLowInterrupt := true ;
+    else
+      error mInterruptName: "An interrupt routine should be named 'low' or 'high'" ;
+    end if ;
   end foreach ;
+#-------------------------------- First Pass
+#--- First, handle low interrupt (if any)
+  @uint currentROMaddress := 0x18 ;
+  @routineSymbolTable routineSymbolTable [emptyMap] ;
+  if hasLowInterrupt then
+    foreach [inPiccoloModel mInterruptDefinitionList] do
+      if [mInterruptName string] == "low" then
+        @uint currentlySelectedBank [max] ; # No selected bank by default
+        foreach mInstructionList do
+          [mInstruction enterLabelAtAddress !?routineSymbolTable !currentROMaddress !?currentlySelectedBank] ;
+          @uint length ;
+          [mInstruction instructionLength ?length] ;
+          currentROMaddress := currentROMaddress + length ;
+        end foreach ;
+      #--- Ajouter l'instruction REFFIE
+        currentROMaddress := currentROMaddress + 2 ;
+      end if ;
+    end foreach ;
+  end if ;
+#--- Then, handle high interrupt (if any)
+  @uint highInterruptStartAddress := currentROMaddress ;
+  if not hasLowInterrupt then
+    currentROMaddress := 0x8 ;
+  end if ;
+  if hasHighInterrupt then
+    foreach [inPiccoloModel mInterruptDefinitionList] do
+      if [mInterruptName string] == "high" then
+        @uint currentlySelectedBank [max] ; # No selected bank by default
+        foreach mInstructionList do
+          [mInstruction enterLabelAtAddress !?routineSymbolTable !currentROMaddress !?currentlySelectedBank] ;
+          @uint length ;
+          [mInstruction instructionLength ?length] ;
+          currentROMaddress := currentROMaddress + length ;
+        end foreach ;
+      #--- Ajouter l'instruction REFFIE
+        currentROMaddress := currentROMaddress + 2 ;
+      end if ;
+    end foreach ;
+  end if ;
+#--- Handle routines
+  if (not hasHighInterrupt) & not hasLowInterrupt then # Both interrupts
+    currentROMaddress := 0x4 ;
+  end if ;
   foreach [inPiccoloModel mRoutineDefinitionList] do
     @uint currentlySelectedBank := [mBanksel uint] ;
     [!?routineSymbolTable insertKey !mRoutineName !currentROMaddress !currentlySelectedBank] ;
@@ -468,7 +626,9 @@ routine analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName :
    currentRamAddress := currentRamAddress + [mSize uint] ;
   end foreach ;
 #  message "Used RAM size: " . [currentRamAddress string] . " bytes\n" ;
+  @uint programSize := currentROMaddress ;
 #-------------------------------- Prepare code generation
+#--- At Address 0, generate a GOTO main instruction
   setEmitAddress !0 ;
   if not [routineSymbolTable hasKey !"main"] then
     error here: "there is no 'main' routine" ;
@@ -478,21 +638,63 @@ routine analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName :
     emitCode !0xEF00 | ((mainRoutineAddress >> 1) & 255) ;
     emitCode !0xF000 | (mainRoutineAddress >> 9) ;
   end if ;
+#---- At address 0x8, if there is an high interrupt routine :
+#  - generate this routine if no low interrupt
+#  - generate a BRA to interrupt routine if there is a low interrupt routine
+  if hasHighInterrupt & hasLowInterrupt then
+    setEmitAddress !8 ;
+    emitCode !0xEF00 | ((highInterruptStartAddress >> 1) & 255) ;
+    emitCode !0xF000 | (highInterruptStartAddress >> 9) ;
+  end if ;
 #-------------------------------- Second Pass
   @codeGenerationContext codeGenerationContext [new
     !routineSymbolTable
     !registerTable
     !0 # Current bank is 0, as BSR is initialized to zero
   ] ;
-  foreach [inPiccoloModel mInterruptDefinitionList] do
-    codeGenerationContext.mCurrentBank := [@uint max] ; # No selected bank
-    foreach mInstructionList do
-      [mInstruction generateCodeAtAddress !codeGenerationContext !currentROMaddress] ;
-      @uint length ;
-      [mInstruction instructionLength ?length] ;
-      currentROMaddress := currentROMaddress + length ;
+#--- Generate low interrupt routine (if any)
+  currentROMaddress := 0x18 ;
+  if hasLowInterrupt then
+    setEmitAddress !0x18 ;
+    foreach [inPiccoloModel mInterruptDefinitionList] do
+      if [mInterruptName string] == "low" then
+        codeGenerationContext.mCurrentBank := [@uint max] ; # No selected bank
+        foreach mInstructionList do
+          [mInstruction generateCodeAtAddress !codeGenerationContext !currentROMaddress] ;
+          @uint length ;
+          [mInstruction instructionLength ?length] ;
+          currentROMaddress := currentROMaddress + length ;
+          checkCurrentEmitAddress !currentROMaddress ;
+        end foreach ;
+        currentROMaddress := currentROMaddress + 2 ;
+        emitCode !0x0011 ; # RETFIE 1
+        checkCurrentEmitAddress !currentROMaddress ;
+      end if ;
     end foreach ;
-  end foreach ;
+  end if ;
+#--- Generate high interrupt routine (if any)
+  if not hasLowInterrupt then
+    currentROMaddress := 0x8 ;
+    setEmitAddress !0x8 ;
+  end if ;
+  if hasHighInterrupt then
+    foreach [inPiccoloModel mInterruptDefinitionList] do
+      if [mInterruptName string] == "high" then
+        codeGenerationContext.mCurrentBank := [@uint max] ; # No selected bank
+        foreach mInstructionList do
+          [mInstruction generateCodeAtAddress !codeGenerationContext !currentROMaddress] ;
+          @uint length ;
+          [mInstruction instructionLength ?length] ;
+          currentROMaddress := currentROMaddress + length ;
+          checkCurrentEmitAddress !currentROMaddress ;
+        end foreach ;
+        currentROMaddress := currentROMaddress + 2 ;
+        emitCode !0x0011 ; # RETFIE 1
+        checkCurrentEmitAddress !currentROMaddress ;
+      end if ;
+    end foreach ;
+  end if ;
+#--- Generate routines
   foreach [inPiccoloModel mRoutineDefinitionList] do
     codeGenerationContext.mCurrentBank := [mBanksel uint] ;
     foreach mInstructionList do
@@ -500,15 +702,21 @@ routine analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName :
       @uint length ;
       [mInstruction instructionLength ?length] ;
       currentROMaddress := currentROMaddress + length ;
+      checkCurrentEmitAddress !currentROMaddress ;
     end foreach ;
   end foreach ;
+  if (programSize != currentROMaddress) then
+    error here: "Internal second pass error: the last address gets " . [currentROMaddress hexString]
+    . " value in second pass, while it gets "
+    . [programSize hexString] . " in first pass" ;
+  end if ;
 #--- If no error, generate object file
-  if [@uint errorCount] == 0 then
+#  if [@uint errorCount] == 0 then
     @string contents ;
     getGeneratedContents ? contents ;
     @string destinationFile := [inSourceFileName stringByDeletingPathExtension] . ".hex" ;
     [contents writeToFile !destinationFile] ;
-  end if ;
+#  end if ;
 end routine ;
 
 #----------------------------------------------------*
