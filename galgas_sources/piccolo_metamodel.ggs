@@ -50,7 +50,7 @@ class @instruction_ADDWFC extends @instruction_FDA {
 
 class @instruction_ANDWF extends @instruction_FDA {
   override method getBaseCode !@uint outBaseCode :
-    outBaseCode := 0x1200 ;
+    outBaseCode := 0x1400 ;
   end method ;
 }
 
@@ -202,51 +202,79 @@ class @instruction_XORWF extends @instruction_FDA {
 
 abstract class @instruction_FA extends @instruction {
   @registerExpression mRegisterExpression ;
+  abstract method getBaseCode !@uint outBaseCode ;
 }
 
 #----------------------------------------------------*
 
 class @instruction_CLRF extends @instruction_FA {
+  override method getBaseCode !@uint outBaseCode :
+    outBaseCode := 0x6A00 ;
+  end method ;
 }
 
 #----------------------------------------------------*
 
 class @instruction_CPFSEQ extends @instruction_FA {
+  override method getBaseCode !@uint outBaseCode :
+    outBaseCode := 0x6200 ;
+  end method ;
 }
 
 #----------------------------------------------------*
 
 class @instruction_CPFSGT extends @instruction_FA {
+  override method getBaseCode !@uint outBaseCode :
+    outBaseCode := 0x6400 ;
+  end method ;
 }
 
 #----------------------------------------------------*
 
 class @instruction_CPFSLT extends @instruction_FA {
+  override method getBaseCode !@uint outBaseCode :
+    outBaseCode := 0x6000 ;
+  end method ;
 }
 
 #----------------------------------------------------*
 
 class @instruction_MOVWF extends @instruction_FA {
+  override method getBaseCode !@uint outBaseCode :
+    outBaseCode := 0x6E00 ;
+  end method ;
 }
 
 #----------------------------------------------------*
 
 class @instruction_MULWF extends @instruction_FA {
+  override method getBaseCode !@uint outBaseCode :
+    outBaseCode := 0x0200 ;
+  end method ;
 }
 
 #----------------------------------------------------*
 
 class @instruction_NEGF extends @instruction_FA {
+  override method getBaseCode !@uint outBaseCode :
+    outBaseCode := 0x6C00 ;
+  end method ;
 }
 
 #----------------------------------------------------*
 
 class @instruction_SETF extends @instruction_FA {
+  override method getBaseCode !@uint outBaseCode :
+    outBaseCode := 0x6800 ;
+  end method ;
 }
 
 #----------------------------------------------------*
 
 class @instruction_TSTFSZ extends @instruction_FA {
+  override method getBaseCode !@uint outBaseCode :
+    outBaseCode := 0x6600 ;
+  end method ;
 }
 
 #----------------------------------------------------*
@@ -284,77 +312,118 @@ class @bitNumberLabelValue extends @bitNumberExpression {
 abstract class @instruction_FBA extends @instruction {
   @registerExpression mRegisterExpression ;
   @bitNumberExpression mBitNumber ;
+  abstract method getBaseCode !@uint outBaseCode ;
 }
 
 #----------------------------------------------------*
 
 class @instruction_BCF extends @instruction_FBA {
+  override method getBaseCode !@uint outBaseCode :
+    outBaseCode := 0x9000 ;
+  end method ;
 }
 
 #----------------------------------------------------*
 
 class @instruction_BSF extends @instruction_FBA {
+  override method getBaseCode !@uint outBaseCode :
+    outBaseCode := 0x8000 ;
+  end method ;
 }
 
 #----------------------------------------------------*
 
 class @instruction_BTFSC extends @instruction_FBA {
+  override method getBaseCode !@uint outBaseCode :
+    outBaseCode := 0xB000 ;
+  end method ;
 }
 
 #----------------------------------------------------*
 
 class @instruction_BTFSS extends @instruction_FBA {
+  override method getBaseCode !@uint outBaseCode :
+    outBaseCode := 0xA000 ;
+  end method ;
 }
 
 #----------------------------------------------------*
 
 class @instruction_BTG extends @instruction_FBA {
+  override method getBaseCode !@uint outBaseCode :
+    outBaseCode := 0x7000 ;
+  end method ;
 }
 
 #----------------------------------------------------*
 
 abstract class @instruction_conditionalBranch extends @instruction {
   @lstring mTargetLabel ;
+  abstract method getBaseCode !@uint outBaseCode ;
 }
 
 #----------------------------------------------------*
 
 class @instruction_BC extends @instruction_conditionalBranch {
+  override method getBaseCode !@uint outBaseCode :
+    outBaseCode := 0xE200 ;
+  end method ;
 }
 
 #----------------------------------------------------*
 
 class @instruction_BN extends @instruction_conditionalBranch {
+  override method getBaseCode !@uint outBaseCode :
+    outBaseCode := 0xE600 ;
+  end method ;
 }
 
 #----------------------------------------------------*
 
 class @instruction_BNC extends @instruction_conditionalBranch {
+  override method getBaseCode !@uint outBaseCode :
+    outBaseCode := 0xE300 ;
+  end method ;
 }
 
 #----------------------------------------------------*
 
 class @instruction_BNN extends @instruction_conditionalBranch {
+  override method getBaseCode !@uint outBaseCode :
+    outBaseCode := 0xE700 ;
+  end method ;
 }
 
 #----------------------------------------------------*
 
 class @instruction_BNOV extends @instruction_conditionalBranch {
+  override method getBaseCode !@uint outBaseCode :
+    outBaseCode := 0xE500 ;
+  end method ;
 }
 
 #----------------------------------------------------*
 
 class @instruction_BNZ extends @instruction_conditionalBranch {
+  override method getBaseCode !@uint outBaseCode :
+    outBaseCode := 0xE100 ;
+  end method ;
 }
 
 #----------------------------------------------------*
 
 class @instruction_BOV extends @instruction_conditionalBranch {
+  override method getBaseCode !@uint outBaseCode :
+    outBaseCode := 0xE400 ;
+  end method ;
 }
 
 #----------------------------------------------------*
 
 class @instruction_BZ extends @instruction_conditionalBranch {
+  override method getBaseCode !@uint outBaseCode :
+    outBaseCode := 0xE000 ;
+  end method ;
 }
 
 #----------------------------------------------------*
@@ -433,46 +502,71 @@ class @instruction_SLEEP extends @instruction {
 
 abstract class @instruction_literalOperation extends @instruction {
   @luint mLiteralValue ;
+  abstract method getBaseCode !@uint outBaseCode ;
 }
 
 #----------------------------------------------------*
 
 class @instruction_ADDLW extends @instruction_literalOperation {
+  override method getBaseCode !@uint outBaseCode :
+    outBaseCode := 0x0F00 ;
+  end method ;
 }
 
 #----------------------------------------------------*
 
 class @instruction_ANDLW extends @instruction_literalOperation {
+  override method getBaseCode !@uint outBaseCode :
+    outBaseCode := 0x0B00 ;
+  end method ;
 }
 
 #----------------------------------------------------*
 
 class @instruction_IORLW extends @instruction_literalOperation {
+  override method getBaseCode !@uint outBaseCode :
+    outBaseCode := 0x0900 ;
+  end method ;
 }
 
 #----------------------------------------------------*
 
 class @instruction_MOVLW extends @instruction_literalOperation {
+  override method getBaseCode !@uint outBaseCode :
+    outBaseCode := 0x0E00 ;
+  end method ;
 }
 
 #----------------------------------------------------*
 
 class @instruction_MULLW extends @instruction_literalOperation {
+  override method getBaseCode !@uint outBaseCode :
+    outBaseCode := 0x0D00 ;
+  end method ;
 }
 
 #----------------------------------------------------*
 
 class @instruction_RETLW extends @instruction_literalOperation {
+  override method getBaseCode !@uint outBaseCode :
+    outBaseCode := 0x0C00 ;
+  end method ;
 }
 
 #----------------------------------------------------*
 
 class @instruction_SUBLW extends @instruction_literalOperation {
+  override method getBaseCode !@uint outBaseCode :
+    outBaseCode := 0x0800 ;
+  end method ;
 }
 
 #----------------------------------------------------*
 
 class @instruction_XORLW extends @instruction_literalOperation {
+  override method getBaseCode !@uint outBaseCode :
+    outBaseCode := 0x0A00 ;
+  end method ;
 }
 
 #----------------------------------------------------*
@@ -535,6 +629,7 @@ class @instruction_TBLWT extends @instruction {
 #----------------------------------------------------*
 
 list @interruptDefinitionList {
+  @lstring mInterruptName ;
   @instructionList mInstructionList ;
 }
 

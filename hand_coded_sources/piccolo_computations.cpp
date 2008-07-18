@@ -60,6 +60,14 @@ void routine_setEmitAddress (C_Compiler & /* inLexique */,
 
 //---------------------------------------------------------------------------*
 
+void routine_currentEmitAddress (C_Compiler & /* inLexique */,
+                                 GGS_uint & outAddress
+                             COMMA_UNUSED_LOCATION_ARGS) {
+  outAddress = GGS_uint (true, gBufferAddress + gBufferEntryCount) ;
+}
+
+//---------------------------------------------------------------------------*
+
 void routine_emitCode (C_Compiler & /* inLexique */,
                        const GGS_uint inCode
                        COMMA_UNUSED_LOCATION_ARGS) {

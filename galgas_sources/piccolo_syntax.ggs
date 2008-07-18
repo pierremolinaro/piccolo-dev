@@ -101,6 +101,7 @@ rule <interrupt_definition>
   ?!@interruptDefinitionList ioInterruptDefinitionList
 :
   $interrupt$ ;
+  $identifier$ ? @lstring interruptName ;
   ${$ ;
   @instructionList instructionList [emptyList] ;
   repeat
@@ -110,7 +111,7 @@ rule <interrupt_definition>
     instructionList += !instruction ;
   end repeat ;
   $}$ ;
-  ioInterruptDefinitionList += !instructionList ;
+  ioInterruptDefinitionList += !interruptName !instructionList ;
 end rule ;
 
 #----------------------------------------------------*
