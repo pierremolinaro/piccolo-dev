@@ -4,6 +4,8 @@ semantics piccolo_metamodel :
 #----------------------------------------------------*
 
 abstract class @instruction {
+  @location mInstructionLocation ;
+
   method instructionLength !@uint outLength :
     outLength := 2 ;
   end method ;
@@ -210,14 +212,6 @@ abstract class @instruction_FA extends @instruction {
 class @instruction_CLRF extends @instruction_FA {
   override method getBaseCode !@uint outBaseCode :
     outBaseCode := 0x6A00 ;
-  end method ;
-}
-
-#----------------------------------------------------*
-
-class @instruction_CPFSEQ extends @instruction_FA {
-  override method getBaseCode !@uint outBaseCode :
-    outBaseCode := 0x6200 ;
   end method ;
 }
 
@@ -634,6 +628,62 @@ class @instruction_MNOP extends @instruction {
   method instructionLength !@uint outLength :
     outLength := [mOccurrenceFactor uint] * 2 ;
   end method ;
+}
+
+#----------------------------------------------------*
+
+class @instruction_FOREVER extends @instruction {
+  @instructionList mInstructionList ;
+  override
+  method instructionLength !@uint outLength :
+    outLength := 2 ; # BRA at the end of instruction list
+    foreach mInstructionList do
+      @uint lg ; [mInstruction instructionLength ?lg] ;
+      outLength := outLength + lg ;
+    end foreach ;
+  end method ;
+}
+
+#----------------------------------------------------*
+
+abstract class @instruction_IF_SEMI_COLON extends @instruction {
+  @registerExpression mRegisterExpression ;
+  @instruction mInstruction ;
+
+  abstract method getBaseCode !@uint outBaseCode ;
+
+  override
+  method instructionLength !@uint outLength :
+    [mInstruction instructionLength ?outLength] ;
+    outLength := outLength + 2 ;
+  end method ;
+}
+
+#----------------------------------------------------*
+
+class @instruction_IF_CPF_NotEqual extends @instruction_IF_SEMI_COLON {
+  override
+  method getBaseCode !@uint outBaseCode :
+    outBaseCode := 0x6200 ; # CPFSEQ
+  end method ; 
+}
+
+#----------------------------------------------------*
+
+class @instruction_IF_CPF_LowerOrEqual extends @instruction_IF_SEMI_COLON {
+  override
+  method getBaseCode !@uint outBaseCode :
+    outBaseCode := 0x6400 ; # CPFSGT
+  end method ; 
+}
+
+#----------------------------------------------------*
+
+class @instruction_IF_CPF_GreaterOrEqual extends @instruction_IF_SEMI_COLON {
+  override
+  method getBaseCode !@uint outBaseCode :
+    outBaseCode := 0x6000 ; # CPFSLT
+  end method ; 
 }
 
 #----------------------------------------------------*

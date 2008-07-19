@@ -17,7 +17,11 @@ nonterminal <interrupt_definition>
 
 nonterminal <routine_definition> ?!@routineDefinitionList ioRoutineDefinitionList ;
 
-nonterminal <instruction> !@instruction outInstruction ;
+nonterminal <simple_instruction> !@instruction outInstruction ;
+
+nonterminal <structured_instruction> !@instruction outInstruction ;
+
+nonterminal <instruction_list> !@instructionList outInstructionList ;
 
 nonterminal <start_symbol>
   !@piccoloModel outPiccoloModel
@@ -100,19 +104,32 @@ end rule ;
 
 #----------------------------------------------------*
 
+rule <instruction_list>
+  !@instructionList outInstructionList
+:
+  outInstructionList := [@instructionList emptyList] ;
+  repeat
+  while
+    @instruction instruction ;
+    <simple_instruction> ?instruction ;
+    outInstructionList += !instruction ;
+  while
+    @instruction instruction ;
+    <structured_instruction> ?instruction ;
+    outInstructionList += !instruction ;
+  end repeat ;
+end rule ;
+
+#----------------------------------------------------*
+
 rule <interrupt_definition>
   ?!@interruptDefinitionList ioInterruptDefinitionList
 :
   $interrupt$ ;
   $identifier$ ? @lstring interruptName ;
   ${$ ;
-  @instructionList instructionList [emptyList] ;
-  repeat
-  while
-    @instruction instruction ;
-    <instruction> ?instruction ;
-    instructionList += !instruction ;
-  end repeat ;
+  @instructionList instructionList ;
+  <instruction_list> ? instructionList ;
   $}$ ;
   ioInterruptDefinitionList += !interruptName !instructionList ;
 end rule ;
@@ -139,13 +156,8 @@ rule <routine_definition>
     noreturn := true ;
   end select ;
   ${$ ;
-  @instructionList instructionList [emptyList] ;
-  repeat
-  while
-    @instruction instruction ;
-    <instruction> ?instruction ;
-    instructionList += !instruction ;
-  end repeat ;
+  @instructionList instructionList ;
+  <instruction_list> ? instructionList ;
   $}$ ;
   ioRoutineDefinitionList += !routineName !banksel !noreturn !instructionList ;
 end rule ;
@@ -217,7 +229,67 @@ end rule ;
 
 #----------------------------------------------------*
 
-rule <instruction> !@instruction outInstruction :
+rule <structured_instruction> !@instruction outInstruction :
+  @location instructionLocation := here ;
+  select
+    $forever$ ;
+    @instructionList instructionList ;
+    <instruction_list> ? instructionList ;
+    $end$ ;
+    outInstruction := [@instruction_FOREVER new
+      !instructionLocation
+      !instructionList
+    ] ;
+    $forever$ ;
+  or
+    $if$ ;
+    @registerExpression registerName ;
+    <register_parsing> ?registerName ;
+    $!=$ ;
+    $w$ ;
+    $:$ ;
+    @instruction instruction ;
+    <simple_instruction> ?instruction ;
+    outInstruction := [@instruction_IF_CPF_NotEqual new
+      !instructionLocation
+      !registerName
+      !instruction
+    ] ;
+  or
+    $if$ ;
+    @registerExpression registerName ;
+    <register_parsing> ?registerName ;
+    $<=$ ;
+    $w$ ;
+    $:$ ;
+    @instruction instruction ;
+    <simple_instruction> ?instruction ;
+    outInstruction := [@instruction_IF_CPF_LowerOrEqual new
+      !instructionLocation
+      !registerName
+      !instruction
+    ] ;
+  or
+    $if$ ;
+    @registerExpression registerName ;
+    <register_parsing> ?registerName ;
+    $>=$ ;
+    $w$ ;
+    $:$ ;
+    @instruction instruction ;
+    <simple_instruction> ?instruction ;
+    outInstruction := [@instruction_IF_CPF_GreaterOrEqual new
+      !instructionLocation
+      !registerName
+      !instruction
+    ] ;
+  end select ;
+end rule ;
+
+#----------------------------------------------------*
+
+rule <simple_instruction> !@instruction outInstruction :
+  @location instructionLocation := here ;
   select
     $addwf$ ;
     @registerExpression registerName ;
@@ -225,6 +297,7 @@ rule <instruction> !@instruction outInstruction :
     @bool W_isDestination ;
     <optional_w_as_dest> ?W_isDestination ;
     outInstruction := [@instruction_ADDWF new
+      !instructionLocation
       !registerName
       !W_isDestination
     ] ;
@@ -235,6 +308,7 @@ rule <instruction> !@instruction outInstruction :
     @bool W_isDestination ;
     <optional_w_as_dest> ?W_isDestination ;
     outInstruction := [@instruction_ADDWFC new
+      !instructionLocation
       !registerName
       !W_isDestination
     ] ;
@@ -245,6 +319,7 @@ rule <instruction> !@instruction outInstruction :
     @bool W_isDestination ;
     <optional_w_as_dest> ?W_isDestination ;
     outInstruction := [@instruction_ANDWF new
+      !instructionLocation
       !registerName
       !W_isDestination
     ] ;
@@ -255,6 +330,7 @@ rule <instruction> !@instruction outInstruction :
     @bool W_isDestination ;
     <optional_w_as_dest> ?W_isDestination ;
     outInstruction := [@instruction_COMF new
+      !instructionLocation
       !registerName
       !W_isDestination
     ] ;
@@ -265,6 +341,7 @@ rule <instruction> !@instruction outInstruction :
     @bool W_isDestination ;
     <optional_w_as_dest> ?W_isDestination ;
     outInstruction := [@instruction_DECF new
+      !instructionLocation
       !registerName
       !W_isDestination
     ] ;
@@ -275,6 +352,7 @@ rule <instruction> !@instruction outInstruction :
     @bool W_isDestination ;
     <optional_w_as_dest> ?W_isDestination ;
     outInstruction := [@instruction_DECFSZ new
+      !instructionLocation
       !registerName
       !W_isDestination
     ] ;
@@ -285,6 +363,7 @@ rule <instruction> !@instruction outInstruction :
     @bool W_isDestination ;
     <optional_w_as_dest> ?W_isDestination ;
     outInstruction := [@instruction_DCFSNZ new
+      !instructionLocation
       !registerName
       !W_isDestination
     ] ;
@@ -295,6 +374,7 @@ rule <instruction> !@instruction outInstruction :
     @bool W_isDestination ;
     <optional_w_as_dest> ?W_isDestination ;
     outInstruction := [@instruction_INCF new
+      !instructionLocation
       !registerName
       !W_isDestination
     ] ;
@@ -305,6 +385,7 @@ rule <instruction> !@instruction outInstruction :
     @bool W_isDestination ;
     <optional_w_as_dest> ?W_isDestination ;
     outInstruction := [@instruction_INCFSZ new
+      !instructionLocation
       !registerName
       !W_isDestination
     ] ;
@@ -315,6 +396,7 @@ rule <instruction> !@instruction outInstruction :
     @bool W_isDestination ;
     <optional_w_as_dest> ?W_isDestination ;
     outInstruction := [@instruction_INFSNZ new
+      !instructionLocation
       !registerName
       !W_isDestination
     ] ;
@@ -325,6 +407,7 @@ rule <instruction> !@instruction outInstruction :
     @bool W_isDestination ;
     <optional_w_as_dest> ?W_isDestination ;
     outInstruction := [@instruction_IORWF new
+      !instructionLocation
       !registerName
       !W_isDestination
     ] ;
@@ -335,6 +418,7 @@ rule <instruction> !@instruction outInstruction :
     @bool W_isDestination ;
     <optional_w_as_dest> ?W_isDestination ;
     outInstruction := [@instruction_MOVF new
+      !instructionLocation
       !registerName
       !W_isDestination
     ] ;
@@ -345,6 +429,7 @@ rule <instruction> !@instruction outInstruction :
     @bool W_isDestination ;
     <optional_w_as_dest> ?W_isDestination ;
     outInstruction := [@instruction_RLCF new
+      !instructionLocation
       !registerName
       !W_isDestination
     ] ;
@@ -355,6 +440,7 @@ rule <instruction> !@instruction outInstruction :
     @bool W_isDestination ;
     <optional_w_as_dest> ?W_isDestination ;
     outInstruction := [@instruction_RLNCF new
+      !instructionLocation
       !registerName
       !W_isDestination
     ] ;
@@ -365,6 +451,7 @@ rule <instruction> !@instruction outInstruction :
     @bool W_isDestination ;
     <optional_w_as_dest> ?W_isDestination ;
     outInstruction := [@instruction_RRCF new
+      !instructionLocation
       !registerName
       !W_isDestination
     ] ;
@@ -375,6 +462,7 @@ rule <instruction> !@instruction outInstruction :
     @bool W_isDestination ;
     <optional_w_as_dest> ?W_isDestination ;
     outInstruction := [@instruction_RRNCF new
+      !instructionLocation
       !registerName
       !W_isDestination
     ] ;
@@ -385,6 +473,7 @@ rule <instruction> !@instruction outInstruction :
     @bool W_isDestination ;
     <optional_w_as_dest> ?W_isDestination ;
     outInstruction := [@instruction_SUBFWB new
+      !instructionLocation
       !registerName
       !W_isDestination
     ] ;
@@ -395,6 +484,7 @@ rule <instruction> !@instruction outInstruction :
     @bool W_isDestination ;
     <optional_w_as_dest> ?W_isDestination ;
     outInstruction := [@instruction_SUBWF new
+      !instructionLocation
       !registerName
       !W_isDestination
     ] ;
@@ -405,6 +495,7 @@ rule <instruction> !@instruction outInstruction :
     @bool W_isDestination ;
     <optional_w_as_dest> ?W_isDestination ;
     outInstruction := [@instruction_SUBWFB new
+      !instructionLocation
       !registerName
       !W_isDestination
     ] ;
@@ -415,6 +506,7 @@ rule <instruction> !@instruction outInstruction :
     @bool W_isDestination ;
     <optional_w_as_dest> ?W_isDestination ;
     outInstruction := [@instruction_SWAPF new
+      !instructionLocation
       !registerName
       !W_isDestination
     ] ;
@@ -425,6 +517,7 @@ rule <instruction> !@instruction outInstruction :
     @bool W_isDestination ;
     <optional_w_as_dest> ?W_isDestination ;
     outInstruction := [@instruction_XORWF new
+      !instructionLocation
       !registerName
       !W_isDestination
     ] ;
@@ -433,13 +526,7 @@ rule <instruction> !@instruction outInstruction :
     @registerExpression registerName ;
     <register_parsing> ?registerName ;
     outInstruction := [@instruction_CLRF new
-      !registerName
-    ] ;
-  or
-    $cpfseq$ ;
-    @registerExpression registerName ;
-    <register_parsing> ?registerName ;
-    outInstruction := [@instruction_CPFSEQ new
+      !instructionLocation
       !registerName
     ] ;
   or
@@ -447,6 +534,7 @@ rule <instruction> !@instruction outInstruction :
     @registerExpression registerName ;
     <register_parsing> ?registerName ;
     outInstruction := [@instruction_CPFSGT new
+      !instructionLocation
       !registerName
     ] ;
   or
@@ -454,6 +542,7 @@ rule <instruction> !@instruction outInstruction :
     @registerExpression registerName ;
     <register_parsing> ?registerName ;
     outInstruction := [@instruction_CPFSLT new
+      !instructionLocation
       !registerName
     ] ;
   or
@@ -461,6 +550,7 @@ rule <instruction> !@instruction outInstruction :
     @registerExpression registerName ;
     <register_parsing> ?registerName ;
     outInstruction := [@instruction_MOVWF new
+      !instructionLocation
       !registerName
     ] ;
   or
@@ -468,6 +558,7 @@ rule <instruction> !@instruction outInstruction :
     @registerExpression registerName ;
     <register_parsing> ?registerName ;
     outInstruction := [@instruction_MULWF new
+      !instructionLocation
       !registerName
     ] ;
   or
@@ -475,6 +566,7 @@ rule <instruction> !@instruction outInstruction :
     @registerExpression registerName ;
     <register_parsing> ?registerName ;
     outInstruction := [@instruction_NEGF new
+      !instructionLocation
       !registerName
     ] ;
   or
@@ -482,6 +574,7 @@ rule <instruction> !@instruction outInstruction :
     @registerExpression registerName ;
     <register_parsing> ?registerName ;
     outInstruction := [@instruction_SETF new
+      !instructionLocation
       !registerName
     ] ;
   or
@@ -489,6 +582,7 @@ rule <instruction> !@instruction outInstruction :
     @registerExpression registerName ;
     <register_parsing> ?registerName ;
     outInstruction := [@instruction_TSTFSZ new
+      !instructionLocation
       !registerName
     ] ;
   or
@@ -499,6 +593,7 @@ rule <instruction> !@instruction outInstruction :
     @registerExpression destinationRegisterName ;
     <register_parsing> ? destinationRegisterName ;
     outInstruction := [@instruction_MOVFF new
+      !instructionLocation
       !sourceRegisterName
       !destinationRegisterName
     ] ;
@@ -510,6 +605,7 @@ rule <instruction> !@instruction outInstruction :
     @bitNumberExpression bitNumber ;
     <bit_number_parsing> ?bitNumber ;
     outInstruction := [@instruction_BCF new
+      !instructionLocation
       !registerName
       !bitNumber
     ] ;
@@ -521,6 +617,7 @@ rule <instruction> !@instruction outInstruction :
     @bitNumberExpression bitNumber ;
     <bit_number_parsing> ?bitNumber ;
     outInstruction := [@instruction_BSF new
+      !instructionLocation
       !registerName
       !bitNumber
     ] ;
@@ -532,6 +629,7 @@ rule <instruction> !@instruction outInstruction :
     @bitNumberExpression bitNumber ;
     <bit_number_parsing> ?bitNumber ;
     outInstruction := [@instruction_BTFSC new
+      !instructionLocation
       !registerName
       !bitNumber
     ] ;
@@ -543,6 +641,7 @@ rule <instruction> !@instruction outInstruction :
     @bitNumberExpression bitNumber ;
     <bit_number_parsing> ?bitNumber ;
     outInstruction := [@instruction_BTFSS new
+      !instructionLocation
       !registerName
       !bitNumber
     ] ;
@@ -554,6 +653,7 @@ rule <instruction> !@instruction outInstruction :
     @bitNumberExpression bitNumber ;
     <bit_number_parsing> ?bitNumber ;
     outInstruction := [@instruction_BTG new
+      !instructionLocation
       !registerName
       !bitNumber
     ] ;
@@ -561,160 +661,173 @@ rule <instruction> !@instruction outInstruction :
     $bc$ ;
     $identifier$ ? @lstring targetLabelName ;
     outInstruction := [@instruction_BC new
+      !instructionLocation
       !targetLabelName
     ] ;
   or
     $bn$ ;
     $identifier$ ? @lstring targetLabelName ;
     outInstruction := [@instruction_BN new
+      !instructionLocation
       !targetLabelName
     ] ;
   or
     $bnc$ ;
     $identifier$ ? @lstring targetLabelName ;
     outInstruction := [@instruction_BNC new
+      !instructionLocation
       !targetLabelName
     ] ;
   or
     $bnn$ ;
     $identifier$ ? @lstring targetLabelName ;
     outInstruction := [@instruction_BNN new
+      !instructionLocation
       !targetLabelName
     ] ;
   or
     $bnov$ ;
     $identifier$ ? @lstring targetLabelName ;
     outInstruction := [@instruction_BNOV new
+      !instructionLocation
       !targetLabelName
     ] ;
   or
     $bnz$ ;
     $identifier$ ? @lstring targetLabelName ;
     outInstruction := [@instruction_BNZ new
+      !instructionLocation
       !targetLabelName
     ] ;
   or
     $bov$ ;
     $identifier$ ? @lstring targetLabelName ;
     outInstruction := [@instruction_BOV new
+      !instructionLocation
       !targetLabelName
     ] ;
   or
     $bz$ ;
     $identifier$ ? @lstring targetLabelName ;
     outInstruction := [@instruction_BZ new
+      !instructionLocation
       !targetLabelName
     ] ;
   or
     $bra$ ;
     $identifier$ ? @lstring targetLabelName ;
     outInstruction := [@instruction_BRA new
+      !instructionLocation
       !targetLabelName
     ] ;
   or
     $call$ ;
     $identifier$ ? @lstring targetLabelName ;
     outInstruction := [@instruction_CALL new
+      !instructionLocation
       !targetLabelName
     ] ;
   or
     $goto$ ;
     $identifier$ ? @lstring targetLabelName ;
     outInstruction := [@instruction_GOTO new
+      !instructionLocation
       !targetLabelName
     ] ;
   or
     $rcall$ ;
     $identifier$ ? @lstring targetLabelName ;
     outInstruction := [@instruction_RCALL new
+      !instructionLocation
       !targetLabelName
     ] ;
   or
     $clrwdt$ ;
-    outInstruction := [@instruction_CLRWDT new] ;
+    outInstruction := [@instruction_CLRWDT new !instructionLocation] ;
   or
     $daw$ ;
-    outInstruction := [@instruction_DAW new] ;
+    outInstruction := [@instruction_DAW new !instructionLocation] ;
   or
     $nop$ ;
-    outInstruction := [@instruction_NOP new] ;
+    outInstruction := [@instruction_NOP new !instructionLocation] ;
   or
     $pop$ ;
-    outInstruction := [@instruction_POP new] ;
+    outInstruction := [@instruction_POP new !instructionLocation] ;
   or
     $push$ ;
-    outInstruction := [@instruction_PUSH new] ;
+    outInstruction := [@instruction_PUSH new !instructionLocation] ;
   or
     $reset$ ;
-    outInstruction := [@instruction_RESET new] ;
+    outInstruction := [@instruction_RESET new !instructionLocation] ;
   or
     $return$ ;
-    outInstruction := [@instruction_RETURN new] ;
+    outInstruction := [@instruction_RETURN new !instructionLocation] ;
   or
     $sleep$ ;
-    outInstruction := [@instruction_SLEEP new] ;
+    outInstruction := [@instruction_SLEEP new !instructionLocation] ;
   or
     $addlw$ ;
     @luint literalValue ;
     <literal_value_parsing> ?literalValue ;
-    outInstruction := [@instruction_ADDLW new !literalValue] ;
+    outInstruction := [@instruction_ADDLW new !instructionLocation !literalValue] ;
   or
     $andlw$ ;
     @luint literalValue ;
     <literal_value_parsing> ?literalValue ;
-    outInstruction := [@instruction_ANDLW new !literalValue] ;
+    outInstruction := [@instruction_ANDLW new !instructionLocation !literalValue] ;
   or
     $iorlw$ ;
     @luint literalValue ;
     <literal_value_parsing> ?literalValue ;
-    outInstruction := [@instruction_IORLW new !literalValue] ;
+    outInstruction := [@instruction_IORLW new !instructionLocation !literalValue] ;
   or
     $movlw$ ;
     @luint literalValue ;
     <literal_value_parsing> ?literalValue ;
-    outInstruction := [@instruction_MOVLW new !literalValue] ;
+    outInstruction := [@instruction_MOVLW new !instructionLocation !literalValue] ;
   or
     $mullw$ ;
     @luint literalValue ;
     <literal_value_parsing> ?literalValue ;
-    outInstruction := [@instruction_MULLW new !literalValue] ;
+    outInstruction := [@instruction_MULLW new !instructionLocation !literalValue] ;
   or
     $retlw$ ;
     @luint literalValue ;
     <literal_value_parsing> ?literalValue ;
-    outInstruction := [@instruction_RETLW new !literalValue] ;
+    outInstruction := [@instruction_RETLW new !instructionLocation !literalValue] ;
   or
     $sublw$ ;
     @luint literalValue ;
     <literal_value_parsing> ?literalValue ;
-    outInstruction := [@instruction_SUBLW new !literalValue] ;
+    outInstruction := [@instruction_SUBLW new !instructionLocation !literalValue] ;
   or
     $xorlw$ ;
     @luint literalValue ;
     <literal_value_parsing> ?literalValue ;
-    outInstruction := [@instruction_XORLW new !literalValue] ;
+    outInstruction := [@instruction_XORLW new !instructionLocation !literalValue] ;
   or
     $lfsr$ ;
     $integer$ ? @luint FSRindex ;
     $,$ ;
     @registerExpression registerName ;
     <register_parsing> ?registerName ;
-    outInstruction := [@instruction_LFSR new !FSRindex !registerName] ;
+    outInstruction := [@instruction_LFSR new !instructionLocation !FSRindex !registerName] ;
   or
     $movlb$ ;
     $integer$ ? @luint pageIndex ;
-    outInstruction := [@instruction_MOVLB new !pageIndex] ;
+    outInstruction := [@instruction_MOVLB new !instructionLocation !pageIndex] ;
   or
     $label$ ;
     $identifier$ ? @lstring targetLabelName ;
     outInstruction := [@instruction_LABEL new
+      !instructionLocation
       !targetLabelName
     ] ;
   or
     $movaw$ ;
     @registerExpression registerName ;
     <register_parsing> ?registerName ;
-    outInstruction := [@instruction_MOVAW new !registerName] ;
+    outInstruction := [@instruction_MOVAW new !instructionLocation !registerName] ;
   or
     $tblrd$ ;
     @tableAccessOption accessOption ;
@@ -731,7 +844,7 @@ rule <instruction> !@instruction outInstruction :
       $+*$ ;
       accessOption := [@tableAccessOption preIncrement] ;
     end select ;
-    outInstruction := [@instruction_TBLRD new !accessOption] ;
+    outInstruction := [@instruction_TBLRD new !instructionLocation !accessOption] ;
   or
     $tblwt$ ;
     @tableAccessOption accessOption ;
@@ -748,11 +861,11 @@ rule <instruction> !@instruction outInstruction :
       $+*$ ;
       accessOption := [@tableAccessOption preIncrement] ;
     end select ;
-    outInstruction := [@instruction_TBLWT new !accessOption] ;
+    outInstruction := [@instruction_TBLWT new !instructionLocation !accessOption] ;
   or
     $mnop$ ;
     $integer$ ? @luint occurrenceFactor ;
-    outInstruction := [@instruction_MNOP new !occurrenceFactor] ;
+    outInstruction := [@instruction_MNOP new !instructionLocation !occurrenceFactor] ;
   end select ;
 end rule ;
 
