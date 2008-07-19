@@ -264,6 +264,22 @@ override method @instruction_FBA.generateCodeAtAddress
 
 #----------------------------------------------------------------------------*
 
+routine emitConditionalBranchInstruction
+  ??@uint inConditionalBranchInstructionAddress
+  ??@uint inTargetAddress
+  ??@location inErrorLocation
+  ??@uint inConditionalBranchInstructionCode
+:
+  @sint displacement := ([inTargetAddress sint] - 2S - [inConditionalBranchInstructionAddress sint]) >> 1 ;
+  if (displacement > 127S) | (displacement < - 128S) then
+    error inErrorLocation: "displacement too large for conditional branch instruction" ;
+  end if ;
+#  log displacement ;
+  emitCode !inConditionalBranchInstructionCode | [displacement & 0x0FFS uint] ;
+end routine ;
+
+#----------------------------------------------------------------------------*
+
 override method @instruction_conditionalBranch.generateCodeAtAddress
   ??@codeGenerationContext inCodeGenerationContext
   ??@uint inAddress
@@ -271,14 +287,29 @@ override method @instruction_conditionalBranch.generateCodeAtAddress
   @uint targetAddress ;
   [[inCodeGenerationContext mRoutineSymbolTable] searchKey !mTargetLabel ?targetAddress ?*] ;
 #--- Emit Code
-  @sint displacement := ([targetAddress sint] - 2S - [inAddress sint]) >> 1 ;
-  if (displacement > 0x800S) | (displacement < - 0x800S) then
-    error mTargetLabel: "displacement too large for RCALL instruction" ;
-  end if ;
-  @uint code ; [self getBaseCode ? code] ;
-  code := code | [displacement & 0x00FFS uint] ;
-  emitCode ! code ;
+  @uint baseCode ; [self getBaseCode ?baseCode] ;
+  emitConditionalBranchInstruction
+    !inAddress
+    !targetAddress
+    ![mTargetLabel location]
+    !baseCode
+  ;
 }
+
+#----------------------------------------------------------------------------*
+
+routine emitBRAinstruction
+  ??@uint inBRAinstructionAddress
+  ??@uint inTargetAddress
+  ??@location inErrorLocation
+:
+  @sint displacement := ([inTargetAddress sint] - 2S - [inBRAinstructionAddress sint]) >> 1 ;
+  if (displacement > 1023S) | (displacement < - 1024S) then
+    error inErrorLocation: "displacement too large for BRA instruction" ;
+  end if ;
+#  log displacement ;
+  emitCode !0xD000 | [displacement & 0x07FFS uint] ;
+end routine ;
 
 #----------------------------------------------------------------------------*
 
@@ -293,7 +324,12 @@ override method @instruction_BRA.generateCodeAtAddress
   if (displacement > 0x800S) | (displacement < - 0x800S) then
     error mTargetLabel: "displacement too large for RCALL instruction" ;
   end if ;
-  emitCode !0xD000 | [displacement & 0x07FFS uint] ;
+#--- Emit Code
+  emitBRAinstruction
+    !inAddress
+    !targetAddress
+    ![mTargetLabel location]
+  ;
 }
 
 #----------------------------------------------------------------------------*
@@ -335,6 +371,21 @@ override method @instruction_CALL.generateCodeAtAddress
 
 #----------------------------------------------------------------------------*
 
+routine emitRCALLinstruction
+  ??@uint inRCALLinstructionAddress
+  ??@uint inTargetAddress
+  ??@location inErrorLocation
+:
+  @sint displacement := ([inTargetAddress sint] - 2S - [inRCALLinstructionAddress sint]) >> 1 ;
+  if (displacement > 1023S) | (displacement < - 1024S) then
+    error inErrorLocation: "displacement too large for RCALL instruction" ;
+  end if ;
+#  log displacement ;
+  emitCode !0xD800 | [displacement & 0x07FFS uint] ;
+end routine ;
+
+#----------------------------------------------------------------------------*
+
 override method @instruction_RCALL.generateCodeAtAddress
   ??@codeGenerationContext inCodeGenerationContext
   ??@uint inAddress
@@ -353,11 +404,11 @@ override method @instruction_RCALL.generateCodeAtAddress
     error mTargetLabel: errorMessage ;
   end if ;
 #--- Emit Code
-  @sint displacement := ([targetAddress sint] - 2S - [inAddress sint]) >> 1 ;
-  if (displacement > 0x800S) | (displacement < - 0x800S) then
-    error mTargetLabel: "displacement too large for RCALL instruction" ;
-  end if ;
-  emitCode !0xD800 | [displacement & 0x07FFS uint] ;
+  emitRCALLinstruction
+    !inAddress
+    !targetAddress
+    ![mTargetLabel location]
+  ;
 }
 
 #----------------------------------------------------------------------------*
@@ -622,7 +673,7 @@ routine analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName :
     end foreach ;
   end if ;
 #--- Handle routines
-  if (not hasHighInterrupt) & not hasLowInterrupt then # Both interrupts
+  if (not hasHighInterrupt) & (not hasLowInterrupt) then # No interrupts
     currentROMaddress := 0x4 ;
   end if ;
   foreach [inPiccoloModel mRoutineDefinitionList] do
@@ -726,6 +777,10 @@ routine analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName :
     end foreach ;
   end if ;
 #--- Generate routines
+  if (not hasLowInterrupt) & (not hasHighInterrupt) then
+    currentROMaddress := 0x4 ;
+    setEmitAddress !0x4 ;
+  end if ;
   foreach [inPiccoloModel mRoutineDefinitionList] do
     codeGenerationContext.mCurrentBank := [mBanksel uint] ;
     if ([mRoutineName string] == "main") & ([mBanksel uint] != 0) then
