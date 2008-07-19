@@ -77,7 +77,9 @@ rule <ram_definition>
   ?!@ramDefinitionList ioRamDefinitionList
 :
   $ram$ ;
+  $identifier$ ? @lstring bankName ;
   ${$ ;
+  @declarationInRamList declarationInRamList [emptyList] ;
   repeat
   while
     $byte$ ;
@@ -90,8 +92,9 @@ rule <ram_definition>
       $integer$ ?size ;
       $]$ ;
     end select ;
-    ioRamDefinitionList += !name !size ;
+    declarationInRamList += !name !size ;
   end repeat ;
+  ioRamDefinitionList += !bankName !declarationInRamList ;
   $}$ ;
 end rule ;
 
@@ -128,6 +131,13 @@ rule <routine_definition>
     $banksel$ ;
     $integer$ ? banksel ;
   end select ;
+  @bool noreturn ;
+  select
+    noreturn := false ;
+  or
+    $noreturn$ ;
+    noreturn := true ;
+  end select ;
   ${$ ;
   @instructionList instructionList [emptyList] ;
   repeat
@@ -137,7 +147,7 @@ rule <routine_definition>
     instructionList += !instruction ;
   end repeat ;
   $}$ ;
-  ioRoutineDefinitionList += !routineName !banksel !instructionList ;
+  ioRoutineDefinitionList += !routineName !banksel !noreturn !instructionList ;
 end rule ;
 
 #----------------------------------------------------*
@@ -739,6 +749,10 @@ rule <instruction> !@instruction outInstruction :
       accessOption := [@tableAccessOption preIncrement] ;
     end select ;
     outInstruction := [@instruction_TBLWT new !accessOption] ;
+  or
+    $mnop$ ;
+    $integer$ ? @luint occurrenceFactor ;
+    outInstruction := [@instruction_MNOP new !occurrenceFactor] ;
   end select ;
 end rule ;
 

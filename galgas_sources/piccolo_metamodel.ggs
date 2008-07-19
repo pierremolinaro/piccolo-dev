@@ -628,6 +628,16 @@ class @instruction_TBLWT extends @instruction {
 
 #----------------------------------------------------*
 
+class @instruction_MNOP extends @instruction {
+  @luint mOccurrenceFactor ;
+  override
+  method instructionLength !@uint outLength :
+    outLength := [mOccurrenceFactor uint] * 2 ;
+  end method ;
+}
+
+#----------------------------------------------------*
+
 list @interruptDefinitionList {
   @lstring mInterruptName ;
   @instructionList mInstructionList ;
@@ -638,14 +648,22 @@ list @interruptDefinitionList {
 list @routineDefinitionList {
   @lstring mRoutineName ;
   @luint mBanksel ;
+  @bool mHasNoReturn ;
   @instructionList mInstructionList ;
 }
 
 #----------------------------------------------------*
 
-list @ramDefinitionList {
+list @declarationInRamList {
   @lstring mName ;
   @luint mSize ;
+}
+
+#----------------------------------------------------*
+
+list @ramDefinitionList {
+  @lstring mBankName ;
+  @declarationInRamList mDeclaration ;
 }
 
 #----------------------------------------------------*

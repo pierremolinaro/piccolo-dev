@@ -21,10 +21,20 @@ map @registerTable {
 
 #----------------------------------------------------*
 
+map @ramBankTable {
+  @uint mFirstFreeAddress ; # Mutable
+  @uint mLastAddressPlusOne ;
+  insert insertKey error message "the '%K' bank ram is already declared in %L" ;
+  search searchKey error message "the '%K' bank ram is not declared" ;
+}
+
+#----------------------------------------------------*
+
 struct @piccoloDeviceModel {
   @luint mRomSize ;
   @luint mBankCount ;
   @registerTable mRegisterTable ;
+  @ramBankTable mRamBankTable ;
 }
 
 #----------------------------------------------------*
