@@ -205,8 +205,8 @@ end rule ;
 # ----------------------------- Delimitors ---------------------------------------
 list delimitorsList error message "the '%K' delimitor" style delimitersStyle :
   "*",  "*+",   ",",  "!=", "<=", ">=",
-  "*-", "+*",   ";",  ":",
-  "[",  "]",
+  "*-", "+*",   ";",  ":",    "!",
+  "[",  "]",    ".",
   "{",  "}" ;
 
 rule list delimitorsList ;

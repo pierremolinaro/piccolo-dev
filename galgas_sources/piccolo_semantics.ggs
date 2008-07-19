@@ -713,6 +713,38 @@ override method @instruction_IF_SEMI_COLON.generateCodeAtAddress
 }
 
 #----------------------------------------------------------------------------*
+
+override method @instruction_IF_BitTest.generateCodeAtAddress
+  ??@codeGenerationContext inCodeGenerationContext
+  ??@uint inAddress
+  ?!@bool ioContinuesInSequence
+{
+  checkInstructionIsReachable !ioContinuesInSequence !mInstructionLocation ;
+  @uint registerAddress ;
+  @bool useBSRregister ;
+  @bitSliceTable bitSliceTable;
+  [mRegisterExpression getRegisterAddressingInformations
+    !inCodeGenerationContext
+    ?registerAddress
+    ?useBSRregister
+    ?bitSliceTable
+  ] ;
+#--- Bit
+  @uint bitNumber ;
+  [mBitNumber getBitNumber !bitSliceTable ?bitNumber] ;
+#--- Emit Code
+  @uint code ; [self getBaseCode ? code] ;
+  if useBSRregister then
+    code := code | 0x0100 ;
+  end if ;
+  code := code | (registerAddress & 255) ;
+  code := code | (bitNumber << 9) ;
+  emitCode !code ;
+  @bool unusedContinuesInSequence := true ;
+  [mInstruction generateCodeAtAddress !inCodeGenerationContext !inAddress + 2 !?unusedContinuesInSequence] ;
+}
+
+#----------------------------------------------------------------------------*
 #                                                                            *
 #               S E M A N T I C    A N A L Y S I S                           *
 #                                                                            *

@@ -283,6 +283,51 @@ rule <structured_instruction> !@instruction outInstruction :
       !registerName
       !instruction
     ] ;
+  or
+    $if$ ;
+    @registerExpression registerName ;
+    <register_parsing> ?registerName ;
+    $:$ ;
+    @instruction instruction ;
+    <simple_instruction> ?instruction ;
+    outInstruction := [@instruction_IF_TST_NotZero new
+      !instructionLocation
+      !registerName
+      !instruction
+    ] ;
+  or
+    $if$ ;
+    @registerExpression registerName ;
+    <register_parsing> ?registerName ;
+    $,$ ;
+    @bitNumberExpression bitNumber ;
+    <bit_number_parsing> ?bitNumber ;
+    $:$ ;
+    @instruction instruction ;
+    <simple_instruction> ?instruction ;
+    outInstruction := [@instruction_IF_BitTest_Set new
+      !instructionLocation
+      !registerName
+      !instruction
+      !bitNumber
+    ] ;
+  or
+    $if$ ;
+    $!$ ;
+    @registerExpression registerName ;
+    <register_parsing> ?registerName ;
+    $,$ ;
+    @bitNumberExpression bitNumber ;
+    <bit_number_parsing> ?bitNumber ;
+    $:$ ;
+    @instruction instruction ;
+    <simple_instruction> ?instruction ;
+    outInstruction := [@instruction_IF_BitTest_Clear new
+      !instructionLocation
+      !registerName
+      !instruction
+      !bitNumber
+    ] ;
   end select ;
 end rule ;
 

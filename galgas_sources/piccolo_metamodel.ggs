@@ -688,6 +688,39 @@ class @instruction_IF_CPF_GreaterOrEqual extends @instruction_IF_SEMI_COLON {
 
 #----------------------------------------------------*
 
+class @instruction_IF_TST_NotZero extends @instruction_IF_SEMI_COLON {
+  override
+  method getBaseCode !@uint outBaseCode :
+    outBaseCode := 0x6600 ; # TSTFSZ
+  end method ; 
+}
+
+#----------------------------------------------------*
+
+abstract class @instruction_IF_BitTest extends @instruction_IF_SEMI_COLON {
+  @bitNumberExpression mBitNumber ;
+}
+
+#----------------------------------------------------*
+
+class @instruction_IF_BitTest_Set extends @instruction_IF_BitTest {
+  override
+  method getBaseCode !@uint outBaseCode :
+    outBaseCode := 0xB000 ; # BTFSC
+  end method ; 
+}
+
+#----------------------------------------------------*
+
+class @instruction_IF_BitTest_Clear extends @instruction_IF_BitTest {
+  override
+  method getBaseCode !@uint outBaseCode :
+    outBaseCode := 0xA000 ; # BTFSS
+  end method ; 
+}
+
+#----------------------------------------------------*
+
 list @interruptDefinitionList {
   @lstring mInterruptName ;
   @instructionList mInstructionList ;
