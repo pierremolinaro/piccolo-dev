@@ -532,6 +532,24 @@ override method @instruction_TBLWT.generateCodeAtAddress
 }
 
 #----------------------------------------------------------------------------*
+
+override method @instruction_MNOP.generateCodeAtAddress
+  ??@codeGenerationContext unused inCodeGenerationContext
+  ??@uint unused inAddress
+{
+  if [mOccurrenceFactor uint] == 0 then
+    warning mOccurrenceFactor: "No generated code" ;
+  end if ;
+  @uint idx := 0 ;
+  loop [mOccurrenceFactor uint] :
+  while idx < [mOccurrenceFactor uint]
+  do
+    emitCode !0x0000 ;
+    idx ++ ;
+  end loop ;
+}
+
+#----------------------------------------------------------------------------*
 #                                                                            *
 #               S E M A N T I C    A N A L Y S I S                           *
 #                                                                            *
@@ -541,7 +559,7 @@ routine analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName :
   @string sourceFileBaseName := [[inSourceFileName lastPathComponent] stringByDeletingPathExtension] ;
   if sourceFileBaseName != [[inPiccoloModel mProgramName] string] then
     error [inPiccoloModel mProgramName]: "the program name ('" . [inPiccoloModel mProgramName]
-    . "' should be identical to the file base name '" . sourceFileBaseName . "'" ;
+    . "') should be identical to the file base name '" . sourceFileBaseName . "'" ;
   end if ;
 #-------------------------------- Analyze Device
   @piccoloDeviceModel piccoloDeviceModel ;
@@ -618,12 +636,25 @@ routine analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName :
     end foreach ;
   end foreach ;
 #--- Ram definition
-  @uint currentRamAddress := 0 ;
+  @ramBankTable ramBank := [piccoloDeviceModel mRamBankTable] ;
   @registerTable registerTable := [piccoloDeviceModel mRegisterTable] ;
   foreach [inPiccoloModel mRamDefinitionList] do
-   @bitSliceTable bitSliceTable [emptyMap] ;
-   [!?registerTable insertKey !mName ![@uintlist listWithValue !currentRamAddress] ![mSize uint] !bitSliceTable] ;
-   currentRamAddress := currentRamAddress + [mSize uint] ;
+  #--- Find ram bank
+    @uint lastAddressPlusOne ;
+    @uint firstFreeAddress ;
+    [ramBank searchKey !mBankName ?firstFreeAddress ?lastAddressPlusOne] ;
+    foreach mDeclaration do
+      if [mSize uint] == 0 then
+        error mSize: "zero size is not allowed" ;
+      end if ;
+      @bitSliceTable bitSliceTable [emptyMap] ;
+      [!?registerTable insertKey !mName ![@uintlist listWithValue !firstFreeAddress] ![mSize uint] !bitSliceTable] ;
+      firstFreeAddress := firstFreeAddress + [mSize uint] ;
+      [!?ramBank setMFirstFreeAddressForKey !firstFreeAddress ![mBankName string]] ;
+      if firstFreeAddress > lastAddressPlusOne then
+        error mName: "overflow in '" . mBankName . "' ram bank for '" . mName . "' declaration" ;
+      end if ;
+    end foreach ;
   end foreach ;
 #  message "Used RAM size: " . [currentRamAddress string] . " bytes\n" ;
   @uint programSize := currentROMaddress ;
@@ -697,6 +728,12 @@ routine analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName :
 #--- Generate routines
   foreach [inPiccoloModel mRoutineDefinitionList] do
     codeGenerationContext.mCurrentBank := [mBanksel uint] ;
+    if ([mRoutineName string] == "main") & ([mBanksel uint] != 0) then
+      error mRoutineName:"as PIC18 is started with BSR register set to 0, the 'main' routine requires the 'banksel 0' declaration" ;
+    end if ;
+    if ([mRoutineName string] == "main") & not mHasNoReturn then
+      error mRoutineName:"as the 'main' routine is an endless loop, it should be declared with 'noreturn' qualifier" ;
+    end if ;
     foreach mInstructionList do
       [mInstruction generateCodeAtAddress !codeGenerationContext !currentROMaddress] ;
       @uint length ;

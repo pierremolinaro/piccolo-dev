@@ -44,6 +44,7 @@ rule <start_symbol>
     end select ;
     $;$ ;
   end repeat ;
+  @ramBankTable ramBankTable [emptyMap] ;
   repeat
   while
     $ram$ ;
@@ -53,6 +54,11 @@ rule <start_symbol>
     $to$ ;
     $integer$ ? @luint ramEnd ;
     $;$ ;
+    [!?ramBankTable insertKey
+      !ramName
+      ![ramStart uint]
+      ![ramEnd uint] + 1
+    ] ;
   end repeat ;
   @registerTable registerTable [emptyMap] ;
   repeat
@@ -134,6 +140,7 @@ rule <start_symbol>
     !romSize
     !bankCount
     !registerTable
+    !ramBankTable
   ] ;
 end rule ;
 
