@@ -14,11 +14,13 @@ nonterminal <ram_definition>
 nonterminal <interrupt_definition>
   ?!@interruptDefinitionList outInterruptDefinitionList
   ?!@bool ioNeedsComputedGoto2 
+  ?!@bool ioNeedsComputedGoto4
 ;
 
 nonterminal <routine_definition>
   ?!@routineDefinitionList ioRoutineDefinitionList
   ?!@bool ioNeedsComputedGoto2 
+  ?!@bool ioNeedsComputedGoto4
 ;
 
 nonterminal <simple_instruction> !@instruction outInstruction ;
@@ -26,11 +28,13 @@ nonterminal <simple_instruction> !@instruction outInstruction ;
 nonterminal <structured_instruction>
   !@instruction outInstruction
   ?!@bool ioNeedsComputedGoto2
+  ?!@bool ioNeedsComputedGoto4
 ;
 
 nonterminal <instruction_list>
   !@instructionList outInstructionList
   ?!@bool ioNeedsComputedGoto2
+  ?!@bool ioNeedsComputedGoto4
 ;
 
 nonterminal <start_symbol>
@@ -58,15 +62,24 @@ rule <start_symbol>
   @routineDefinitionList routineDefinitionList [emptyList] ;
   @ramDefinitionList ramDefinitionList [emptyList] ;
   @bool needsComputedGoto2 := false ;
+  @bool needsComputedGoto4 := false ;
   repeat
   while
     <configuration_definition> ;
   while
     <ram_definition> !?ramDefinitionList ;
   while
-    <interrupt_definition> !?interruptDefinitionList !?needsComputedGoto2 ;
+    <interrupt_definition>
+      !?interruptDefinitionList
+      !?needsComputedGoto2
+      !?needsComputedGoto4
+    ;
   while
-    <routine_definition> !?routineDefinitionList !?needsComputedGoto2 ;
+    <routine_definition>
+      !?routineDefinitionList
+      !?needsComputedGoto2
+      !?needsComputedGoto4
+    ;
   end repeat ;
   $end$ ;
   outPiccoloModel := [@piccoloModel new
@@ -76,6 +89,7 @@ rule <start_symbol>
     !interruptDefinitionList
     !routineDefinitionList
     !needsComputedGoto2
+    !needsComputedGoto4
   ] ;
 end rule ;
 
@@ -119,6 +133,7 @@ end rule ;
 rule <instruction_list>
   !@instructionList outInstructionList
   ?!@bool ioNeedsComputedGoto2
+  ?!@bool ioNeedsComputedGoto4
 :
   outInstructionList := [@instructionList emptyList] ;
   repeat
@@ -128,7 +143,11 @@ rule <instruction_list>
     outInstructionList += !instruction ;
   while
     @instruction instruction ;
-    <structured_instruction> ?instruction !?ioNeedsComputedGoto2  ;
+    <structured_instruction>
+      ?instruction
+      !?ioNeedsComputedGoto2
+      !?ioNeedsComputedGoto4
+    ;
     outInstructionList += !instruction ;
   end repeat ;
 end rule ;
@@ -138,12 +157,17 @@ end rule ;
 rule <interrupt_definition>
   ?!@interruptDefinitionList ioInterruptDefinitionList
   ?!@bool ioNeedsComputedGoto2 
+  ?!@bool ioNeedsComputedGoto4
 :
   $interrupt$ ;
   $identifier$ ? @lstring interruptName ;
   ${$ ;
   @instructionList instructionList ;
-  <instruction_list> ? instructionList !?ioNeedsComputedGoto2 ;
+  <instruction_list>
+    ?instructionList
+    !?ioNeedsComputedGoto2
+    !?ioNeedsComputedGoto4
+  ;
   $}$ ;
   ioInterruptDefinitionList += !interruptName !instructionList ;
 end rule ;
@@ -153,6 +177,7 @@ end rule ;
 rule <routine_definition>
   ?!@routineDefinitionList ioRoutineDefinitionList
   ?!@bool ioNeedsComputedGoto2 
+  ?!@bool ioNeedsComputedGoto4
 :
   $routine$ ;
   $identifier$ ? @lstring routineName ;
@@ -172,7 +197,11 @@ rule <routine_definition>
   end select ;
   ${$ ;
   @instructionList instructionList ;
-  <instruction_list> ? instructionList !?ioNeedsComputedGoto2;
+  <instruction_list>
+    ?instructionList
+    !?ioNeedsComputedGoto2
+    !?ioNeedsComputedGoto4
+  ;
   $}$ ;
   ioRoutineDefinitionList += !routineName !banksel !noreturn !instructionList ;
 end rule ;
@@ -247,12 +276,13 @@ end rule ;
 rule <structured_instruction>
   !@instruction outInstruction
   ?!@bool ioNeedsComputedGoto2
+  ?!@bool ioNeedsComputedGoto4
 :
   @location instructionLocation := here ;
   select
     $forever$ ;
     @instructionList instructionList ;
-    <instruction_list> ? instructionList !?ioNeedsComputedGoto2 ;
+    <instruction_list> ? instructionList !?ioNeedsComputedGoto2 !?ioNeedsComputedGoto4 ;
     $end$ ;
     outInstruction := [@instruction_FOREVER new
       !instructionLocation
@@ -347,7 +377,14 @@ rule <structured_instruction>
       !bitNumber
     ] ;
   or
-    $computed$ ;
+    @bool useRelativeCall ;
+    select
+      $computed$ ;
+      useRelativeCall := false ;
+    or
+      $rcomputed$ ;
+      useRelativeCall := true ;
+    end select ;
     $retlw$ ;
     @luintlist argumentList [emptyList] ;
     repeat
@@ -360,10 +397,18 @@ rule <structured_instruction>
     outInstruction := [@instruction_computed_retlw new
       !instructionLocation
       !argumentList
+      !useRelativeCall
     ] ;
     ioNeedsComputedGoto2 := true ;
   or
-    $computed$ ;
+    @bool useRelativeCall ;
+    select
+      $computed$ ;
+      useRelativeCall := false ;
+    or
+      $rcomputed$ ;
+      useRelativeCall := true ;
+    end select ;
     $bra$ ;
     @lstringlist argumentList [emptyList] ;
     repeat
@@ -375,8 +420,32 @@ rule <structured_instruction>
     outInstruction := [@instruction_computed_bra new
       !instructionLocation
       !argumentList
+      !useRelativeCall
     ] ;
     ioNeedsComputedGoto2 := true ;
+  or
+    @bool useRelativeCall ;
+    select
+      $computed$ ;
+      useRelativeCall := false ;
+    or
+      $rcomputed$ ;
+      useRelativeCall := true ;
+    end select ;
+    $goto$ ;
+    @lstringlist argumentList [emptyList] ;
+    repeat
+      $identifier$ ? @lstring targetRoutine ;
+      argumentList += ! targetRoutine ;
+    while
+      $,$ ;
+    end repeat ;
+    outInstruction := [@instruction_computed_goto new
+      !instructionLocation
+      !argumentList
+      !useRelativeCall
+    ] ;
+    ioNeedsComputedGoto4 := true ;
   end select ;
 end rule ;
 
