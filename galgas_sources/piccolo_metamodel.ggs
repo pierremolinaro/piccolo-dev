@@ -723,10 +723,14 @@ class @instruction_IF_BitTest_Clear extends @instruction_IF_BitTest {
 
 class @instruction_computed_retlw extends @instruction {
   @luintlist mLiteralValues ;
+  @bool mUsesRelativeCall ;
 
   override
   method instructionLength !@uint outLength :
-    outLength := [mLiteralValues length] * 2 + 4 ;
+    outLength := [mLiteralValues length] * 2 + 2 ;
+    if not mUsesRelativeCall then
+      outLength := outLength + 2 ;
+    end if ;
   end method ;
 }
 
@@ -734,10 +738,29 @@ class @instruction_computed_retlw extends @instruction {
 
 class @instruction_computed_bra extends @instruction {
   @lstringlist mTargetLabels ;
+  @bool mUsesRelativeCall ;
 
   override
   method instructionLength !@uint outLength :
-    outLength := [mTargetLabels length] * 2 + 4 ;
+    outLength := [mTargetLabels length] * 2 + 2 ;
+    if not mUsesRelativeCall then
+      outLength := outLength + 2 ;
+    end if ;
+  end method ;
+}
+
+#----------------------------------------------------*
+
+class @instruction_computed_goto extends @instruction {
+  @lstringlist mTargetLabels ;
+  @bool mUsesRelativeCall ;
+
+  override
+  method instructionLength !@uint outLength :
+    outLength := [mTargetLabels length] * 4 + 2 ;
+    if not mUsesRelativeCall then
+      outLength := outLength + 2 ;
+    end if ;
   end method ;
 }
 
@@ -780,6 +803,7 @@ struct @piccoloModel {
   @interruptDefinitionList mInterruptDefinitionList ;
   @routineDefinitionList mRoutineDefinitionList ;
   @bool mNeedsComputedGoto2 ;
+  @bool mNeedsComputedGoto4 ;
 }
 
 #----------------------------------------------------*
