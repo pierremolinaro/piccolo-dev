@@ -1,0 +1,40 @@
+program relative_branch_limits "PIC18F448" :
+
+routine rcall_back_call {
+  mnop 1022 # Adding 1 leads to underflow
+  return
+}
+
+routine main banksel 0 noreturn {
+  rcall rcall_back_call
+  rcall rcall_forward_call
+  mnop 1023 # Adding 1 leads to overflow
+}
+
+routine rcall_forward_call {
+  return
+}
+
+routine bcc_back {
+  mnop 126 # Adding 1 leads to underflow
+  return
+}
+
+routine aRoutine {
+  BZ   bcc_back
+  BZ   bcc_forward
+  mnop 126 # Adding 1 leads to overflow
+  return
+}
+
+routine bcc_forward {
+  return
+}
+
+routine foreverLoop {
+  forever
+    mnop 1023  # Adding 1 leads to underflow
+  end forever
+}
+
+end

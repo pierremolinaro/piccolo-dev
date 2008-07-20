@@ -34,7 +34,8 @@ list controlKeyWordList error message "the '%K' keyword" style keywordStyle :
   "mnop",
   "noreturn",
   "forever",
-  "if" ;
+  "if",
+  "computed" ;
 
 list instructionKeyWordList error message "the '%K' instruction" style instructionStyle :
   "addwf",

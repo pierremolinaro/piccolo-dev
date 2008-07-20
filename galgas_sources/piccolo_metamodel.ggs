@@ -721,6 +721,17 @@ class @instruction_IF_BitTest_Clear extends @instruction_IF_BitTest {
 
 #----------------------------------------------------*
 
+class @instruction_computed_retlw extends @instruction {
+  @luintlist mLiteralValues ;
+
+  override
+  method instructionLength !@uint outLength :
+    outLength := [mLiteralValues length] * 2 + 4 ;
+  end method ;
+}
+
+#----------------------------------------------------*
+
 list @interruptDefinitionList {
   @lstring mInterruptName ;
   @instructionList mInstructionList ;
@@ -757,6 +768,7 @@ struct @piccoloModel {
   @ramDefinitionList mRamDefinitionList ;
   @interruptDefinitionList mInterruptDefinitionList ;
   @routineDefinitionList mRoutineDefinitionList ;
+  @bool mNeedsComputedGoto2 ;
 }
 
 #----------------------------------------------------*
