@@ -8,7 +8,9 @@ routine rcall_back_call {
 routine main banksel 0 noreturn {
   rcall rcall_back_call
   rcall rcall_forward_call
-  mnop 1023 # Adding 1 leads to overflow
+  mnop 1022 # Adding 1 leads to overflow
+  forever
+  end forever
 }
 
 routine rcall_forward_call {

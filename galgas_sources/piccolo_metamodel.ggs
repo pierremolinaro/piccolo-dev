@@ -732,6 +732,17 @@ class @instruction_computed_retlw extends @instruction {
 
 #----------------------------------------------------*
 
+class @instruction_computed_bra extends @instruction {
+  @lstringlist mTargetLabels ;
+
+  override
+  method instructionLength !@uint outLength :
+    outLength := [mTargetLabels length] * 2 + 4 ;
+  end method ;
+}
+
+#----------------------------------------------------*
+
 list @interruptDefinitionList {
   @lstring mInterruptName ;
   @instructionList mInstructionList ;
