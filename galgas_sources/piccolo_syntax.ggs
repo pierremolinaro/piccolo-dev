@@ -13,15 +13,25 @@ nonterminal <ram_definition>
 
 nonterminal <interrupt_definition>
   ?!@interruptDefinitionList outInterruptDefinitionList
+  ?!@bool ioNeedsComputedGoto2 
 ;
 
-nonterminal <routine_definition> ?!@routineDefinitionList ioRoutineDefinitionList ;
+nonterminal <routine_definition>
+  ?!@routineDefinitionList ioRoutineDefinitionList
+  ?!@bool ioNeedsComputedGoto2 
+;
 
 nonterminal <simple_instruction> !@instruction outInstruction ;
 
-nonterminal <structured_instruction> !@instruction outInstruction ;
+nonterminal <structured_instruction>
+  !@instruction outInstruction
+  ?!@bool ioNeedsComputedGoto2
+;
 
-nonterminal <instruction_list> !@instructionList outInstructionList ;
+nonterminal <instruction_list>
+  !@instructionList outInstructionList
+  ?!@bool ioNeedsComputedGoto2
+;
 
 nonterminal <start_symbol>
   !@piccoloModel outPiccoloModel
@@ -47,15 +57,16 @@ rule <start_symbol>
   @interruptDefinitionList interruptDefinitionList [emptyList] ;
   @routineDefinitionList routineDefinitionList [emptyList] ;
   @ramDefinitionList ramDefinitionList [emptyList] ;
+  @bool needsComputedGoto2 := false ;
   repeat
   while
     <configuration_definition> ;
   while
     <ram_definition> !?ramDefinitionList ;
   while
-    <interrupt_definition> !?interruptDefinitionList ;
+    <interrupt_definition> !?interruptDefinitionList !?needsComputedGoto2 ;
   while
-    <routine_definition> !?routineDefinitionList ;
+    <routine_definition> !?routineDefinitionList !?needsComputedGoto2 ;
   end repeat ;
   $end$ ;
   outPiccoloModel := [@piccoloModel new
@@ -64,6 +75,7 @@ rule <start_symbol>
     !ramDefinitionList
     !interruptDefinitionList
     !routineDefinitionList
+    !needsComputedGoto2
   ] ;
 end rule ;
 
@@ -106,6 +118,7 @@ end rule ;
 
 rule <instruction_list>
   !@instructionList outInstructionList
+  ?!@bool ioNeedsComputedGoto2
 :
   outInstructionList := [@instructionList emptyList] ;
   repeat
@@ -115,7 +128,7 @@ rule <instruction_list>
     outInstructionList += !instruction ;
   while
     @instruction instruction ;
-    <structured_instruction> ?instruction ;
+    <structured_instruction> ?instruction !?ioNeedsComputedGoto2  ;
     outInstructionList += !instruction ;
   end repeat ;
 end rule ;
@@ -124,12 +137,13 @@ end rule ;
 
 rule <interrupt_definition>
   ?!@interruptDefinitionList ioInterruptDefinitionList
+  ?!@bool ioNeedsComputedGoto2 
 :
   $interrupt$ ;
   $identifier$ ? @lstring interruptName ;
   ${$ ;
   @instructionList instructionList ;
-  <instruction_list> ? instructionList ;
+  <instruction_list> ? instructionList !?ioNeedsComputedGoto2 ;
   $}$ ;
   ioInterruptDefinitionList += !interruptName !instructionList ;
 end rule ;
@@ -138,6 +152,7 @@ end rule ;
 
 rule <routine_definition>
   ?!@routineDefinitionList ioRoutineDefinitionList
+  ?!@bool ioNeedsComputedGoto2 
 :
   $routine$ ;
   $identifier$ ? @lstring routineName ;
@@ -157,7 +172,7 @@ rule <routine_definition>
   end select ;
   ${$ ;
   @instructionList instructionList ;
-  <instruction_list> ? instructionList ;
+  <instruction_list> ? instructionList !?ioNeedsComputedGoto2;
   $}$ ;
   ioRoutineDefinitionList += !routineName !banksel !noreturn !instructionList ;
 end rule ;
@@ -229,12 +244,15 @@ end rule ;
 
 #----------------------------------------------------*
 
-rule <structured_instruction> !@instruction outInstruction :
+rule <structured_instruction>
+  !@instruction outInstruction
+  ?!@bool ioNeedsComputedGoto2
+:
   @location instructionLocation := here ;
   select
     $forever$ ;
     @instructionList instructionList ;
-    <instruction_list> ? instructionList ;
+    <instruction_list> ? instructionList !?ioNeedsComputedGoto2 ;
     $end$ ;
     outInstruction := [@instruction_FOREVER new
       !instructionLocation
@@ -328,6 +346,22 @@ rule <structured_instruction> !@instruction outInstruction :
       !instruction
       !bitNumber
     ] ;
+  or
+    $computed$ ;
+    $retlw$ ;
+    @luintlist argumentList [emptyList] ;
+    repeat
+      @luint literalValue ;
+      <literal_value_parsing> ?literalValue ;
+      argumentList += ! literalValue ;
+    while
+      $,$ ;
+    end repeat ;
+    outInstruction := [@instruction_computed_retlw new
+      !instructionLocation
+      !argumentList
+    ] ;
+    ioNeedsComputedGoto2 := true ;
   end select ;
 end rule ;
 

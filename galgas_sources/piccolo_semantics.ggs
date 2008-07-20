@@ -58,6 +58,7 @@ struct @codeGenerationContext {
   @routineSymbolTable mRoutineSymbolTable ;
   @registerTable mRegisterTable ;
   @uint mCurrentBank ;
+  @uint mComputedGoto2RoutineAddress ;
 }
 
 #----------------------------------------------------------------------------*
@@ -130,10 +131,11 @@ method @registerExpression.getRegisterAddressingInformations
 
 #----------------------------------------------------------------------------*
 
-routine checkInstructionIsReachable ??@bool isReachable ??@location inErrorLocation :
-  if not isReachable then
+routine checkInstructionIsReachable ?!@bool ioIsReachable ??@location inErrorLocation :
+  if not ioIsReachable then
     error inErrorLocation: "dead code: execution cannot reach this instruction" ;
   end if ;
+  ioIsReachable := true ; # So that error message is sent once
 end routine ;
 
 #----------------------------------------------------------------------------*
@@ -151,7 +153,7 @@ override method @instruction_FDA.generateCodeAtAddress
   ??@uint unused inAddress
   ?!@bool ioContinuesInSequence
 {
-  checkInstructionIsReachable !ioContinuesInSequence !mInstructionLocation ;
+  checkInstructionIsReachable !?ioContinuesInSequence !mInstructionLocation ;
   @uint usedRegisterAddress ;
   @bool useBSRregister ;
   [mRegisterExpression getRegisterAddressingInformations
@@ -179,7 +181,7 @@ override method @instruction_FA.generateCodeAtAddress
   ??@uint unused inAddress
   ?!@bool ioContinuesInSequence
 {
-  checkInstructionIsReachable !ioContinuesInSequence !mInstructionLocation ;
+  checkInstructionIsReachable !?ioContinuesInSequence !mInstructionLocation ;
   @uint usedRegisterAddress ;
   @bool useBSRregister ;
   [mRegisterExpression getRegisterAddressingInformations
@@ -204,7 +206,7 @@ override method @instruction_MOVFF.generateCodeAtAddress
   ??@uint unused inAddress
   ?!@bool ioContinuesInSequence
 {
-  checkInstructionIsReachable !ioContinuesInSequence !mInstructionLocation ;
+  checkInstructionIsReachable !?ioContinuesInSequence !mInstructionLocation ;
   @uint sourceRegisterAddress ;
   [mSourceRegisterName getRegisterAddress !inCodeGenerationContext ?sourceRegisterAddress] ;
   @uint destinationRegisterAddress ;
@@ -255,7 +257,7 @@ override method @instruction_FBA.generateCodeAtAddress
   ??@uint unused inAddress
   ?!@bool ioContinuesInSequence
 {
-  checkInstructionIsReachable !ioContinuesInSequence !mInstructionLocation ;
+  checkInstructionIsReachable !?ioContinuesInSequence !mInstructionLocation ;
 #--- Register
   @bitSliceTable bitSliceTable;
   @uint usedRegisterAddress ;
@@ -302,7 +304,7 @@ override method @instruction_conditionalBranch.generateCodeAtAddress
   ??@uint inAddress
   ?!@bool ioContinuesInSequence
 {
-  checkInstructionIsReachable !ioContinuesInSequence !mInstructionLocation ;
+  checkInstructionIsReachable !?ioContinuesInSequence !mInstructionLocation ;
   @uint targetAddress ;
   [[inCodeGenerationContext mRoutineSymbolTable] searchKey !mTargetLabel ?targetAddress ?*] ;
 #--- Emit Code
@@ -337,7 +339,7 @@ override method @instruction_BRA.generateCodeAtAddress
   ??@uint inAddress
   ?!@bool ioContinuesInSequence
 {
-  checkInstructionIsReachable !ioContinuesInSequence !mInstructionLocation ;
+  checkInstructionIsReachable !?ioContinuesInSequence !mInstructionLocation ;
 ####  ioContinuesInSequence := false ;
   @uint targetAddress ;
   [[inCodeGenerationContext mRoutineSymbolTable] searchKey !mTargetLabel ?targetAddress ?*] ;
@@ -361,7 +363,7 @@ override method @instruction_GOTO.generateCodeAtAddress
   ??@uint unused inAddress
   ?!@bool ioContinuesInSequence
 {
-  checkInstructionIsReachable !ioContinuesInSequence !mInstructionLocation ;
+  checkInstructionIsReachable !?ioContinuesInSequence !mInstructionLocation ;
 ####  ioContinuesInSequence := false ;
   @uint targetAddress ;
   [[inCodeGenerationContext mRoutineSymbolTable] searchKey !mTargetLabel ?targetAddress ?*] ;
@@ -372,12 +374,21 @@ override method @instruction_GOTO.generateCodeAtAddress
 
 #----------------------------------------------------------------------------*
 
+routine emitCALLinstruction
+  ??@uint inTargetAddress
+:
+  emitCode !0xEC00 | ((inTargetAddress >> 1) & 255) ;
+  emitCode !0xF000 | (inTargetAddress >> 9) ;
+end routine ;
+
+#----------------------------------------------------------------------------*
+
 override method @instruction_CALL.generateCodeAtAddress
   ??@codeGenerationContext inCodeGenerationContext
   ??@uint unused inAddress
   ?!@bool ioContinuesInSequence
 {
-  checkInstructionIsReachable !ioContinuesInSequence !mInstructionLocation ;
+  checkInstructionIsReachable !?ioContinuesInSequence !mInstructionLocation ;
   @uint targetAddress ;
   @uint requiredSelectedBank ;
   [[inCodeGenerationContext mRoutineSymbolTable] searchKey !mTargetLabel ?targetAddress ?requiredSelectedBank] ;
@@ -392,8 +403,7 @@ override method @instruction_CALL.generateCodeAtAddress
     error mTargetLabel: errorMessage ;
   end if ;
 #--- Emit Code
-  emitCode !0xEC00 | ((targetAddress >> 1) & 255) ;
-  emitCode !0xF000 | (targetAddress >> 9) ;
+  emitCALLinstruction !targetAddress ;
 }
 
 #----------------------------------------------------------------------------*
@@ -418,7 +428,7 @@ override method @instruction_RCALL.generateCodeAtAddress
   ??@uint inAddress
   ?!@bool ioContinuesInSequence
 {
-  checkInstructionIsReachable !ioContinuesInSequence !mInstructionLocation ;
+  checkInstructionIsReachable !?ioContinuesInSequence !mInstructionLocation ;
   @uint targetAddress ;
   @uint requiredSelectedBank ;
   [[inCodeGenerationContext mRoutineSymbolTable] searchKey !mTargetLabel ?targetAddress ?requiredSelectedBank] ;
@@ -447,7 +457,7 @@ override method @instruction_CLRWDT.generateCodeAtAddress
   ??@uint unused inAddress
   ?!@bool ioContinuesInSequence
 {
-  checkInstructionIsReachable !ioContinuesInSequence !mInstructionLocation ;
+  checkInstructionIsReachable !?ioContinuesInSequence !mInstructionLocation ;
   emitCode !0x0004 ;
 }
 
@@ -458,7 +468,7 @@ override method @instruction_DAW.generateCodeAtAddress
   ??@uint unused inAddress
   ?!@bool ioContinuesInSequence
 {
-  checkInstructionIsReachable !ioContinuesInSequence !mInstructionLocation ;
+  checkInstructionIsReachable !?ioContinuesInSequence !mInstructionLocation ;
   emitCode !0x0007 ;
 }
 
@@ -469,7 +479,7 @@ override method @instruction_NOP.generateCodeAtAddress
   ??@uint unused inAddress
   ?!@bool ioContinuesInSequence
 {
-  checkInstructionIsReachable !ioContinuesInSequence !mInstructionLocation ;
+  checkInstructionIsReachable !?ioContinuesInSequence !mInstructionLocation ;
   emitCode !0x0000 ;
 }
 
@@ -480,7 +490,7 @@ override method @instruction_POP.generateCodeAtAddress
   ??@uint unused inAddress
   ?!@bool ioContinuesInSequence
 {
-  checkInstructionIsReachable !ioContinuesInSequence !mInstructionLocation ;
+  checkInstructionIsReachable !?ioContinuesInSequence !mInstructionLocation ;
   emitCode !0x0006 ;
 }
 
@@ -491,7 +501,7 @@ override method @instruction_PUSH.generateCodeAtAddress
   ??@uint unused inAddress
   ?!@bool ioContinuesInSequence
 {
-  checkInstructionIsReachable !ioContinuesInSequence !mInstructionLocation ;
+  checkInstructionIsReachable !?ioContinuesInSequence !mInstructionLocation ;
   emitCode !0x0005 ;
 }
 
@@ -502,7 +512,7 @@ override method @instruction_RESET.generateCodeAtAddress
   ??@uint unused inAddress
   ?!@bool ioContinuesInSequence
 {
-  checkInstructionIsReachable !ioContinuesInSequence !mInstructionLocation ;
+  checkInstructionIsReachable !?ioContinuesInSequence !mInstructionLocation ;
   emitCode !0x00FF ;
 }
 
@@ -513,7 +523,7 @@ override method @instruction_RETURN.generateCodeAtAddress
   ??@uint unused inAddress
   ?!@bool ioContinuesInSequence
 {
-  checkInstructionIsReachable !ioContinuesInSequence !mInstructionLocation ;
+  checkInstructionIsReachable !?ioContinuesInSequence !mInstructionLocation ;
   emitCode !0x0012 ;
 }
 
@@ -524,7 +534,7 @@ override method @instruction_SLEEP.generateCodeAtAddress
   ??@uint unused inAddress
   ?!@bool ioContinuesInSequence
 {
-  checkInstructionIsReachable !ioContinuesInSequence !mInstructionLocation ;
+  checkInstructionIsReachable !?ioContinuesInSequence !mInstructionLocation ;
   emitCode !0x0003 ;
 }
 
@@ -535,7 +545,7 @@ override method @instruction_literalOperation.generateCodeAtAddress
   ??@uint unused inAddress
   ?!@bool ioContinuesInSequence
 {
-  checkInstructionIsReachable !ioContinuesInSequence !mInstructionLocation ;
+  checkInstructionIsReachable !?ioContinuesInSequence !mInstructionLocation ;
   if [mLiteralValue uint] > 255 then
     error mLiteralValue: "A literal value (" . [[mLiteralValue uint] string] . ") should be lower or equal to 255" ;
   end if ;
@@ -552,7 +562,7 @@ override method @instruction_LFSR.generateCodeAtAddress
   ??@uint unused inAddress
   ?!@bool ioContinuesInSequence
 {
-  checkInstructionIsReachable !ioContinuesInSequence !mInstructionLocation ;
+  checkInstructionIsReachable !?ioContinuesInSequence !mInstructionLocation ;
   if [mFSRindex uint] > 2 then
     error mFSRindex: "LFSR index should be lower or equal to 2" ;
   end if ;
@@ -569,7 +579,7 @@ override method @instruction_MOVLB.generateCodeAtAddress
   ??@uint unused inAddress
   ?!@bool ioContinuesInSequence
 {
-  checkInstructionIsReachable !ioContinuesInSequence !mInstructionLocation ;
+  checkInstructionIsReachable !?ioContinuesInSequence !mInstructionLocation ;
 }
 
 #----------------------------------------------------------------------------*
@@ -597,7 +607,7 @@ override method @instruction_MOVAW.generateCodeAtAddress
   ??@uint unused inAddress
   ?!@bool ioContinuesInSequence
 {
-  checkInstructionIsReachable !ioContinuesInSequence !mInstructionLocation ;
+  checkInstructionIsReachable !?ioContinuesInSequence !mInstructionLocation ;
   @uint registerAddress ;
   [mRegisterExpression getRegisterAddress
     !inCodeGenerationContext
@@ -616,7 +626,7 @@ override method @instruction_TBLRD.generateCodeAtAddress
   ??@uint unused inAddress
   ?!@bool ioContinuesInSequence
 {
-  checkInstructionIsReachable !ioContinuesInSequence !mInstructionLocation ;
+  checkInstructionIsReachable !?ioContinuesInSequence !mInstructionLocation ;
   switch mOption
   when simpleAccess  : emitCode !0x0008 ;
   when postIncrement : emitCode !0x0009 ;
@@ -632,7 +642,7 @@ override method @instruction_TBLWT.generateCodeAtAddress
   ??@uint unused inAddress
   ?!@bool ioContinuesInSequence
 {
-  checkInstructionIsReachable !ioContinuesInSequence !mInstructionLocation ;
+  checkInstructionIsReachable !?ioContinuesInSequence !mInstructionLocation ;
   switch mOption
   when simpleAccess  : emitCode !0x000C ;
   when postIncrement : emitCode !0x000D ;
@@ -648,7 +658,7 @@ override method @instruction_MNOP.generateCodeAtAddress
   ??@uint unused inAddress
   ?!@bool ioContinuesInSequence
 {
-  checkInstructionIsReachable !ioContinuesInSequence !mInstructionLocation ;
+  checkInstructionIsReachable !?ioContinuesInSequence !mInstructionLocation ;
   if [mOccurrenceFactor uint] == 0 then
     warning mOccurrenceFactor: "No generated code" ;
   end if ;
@@ -668,7 +678,7 @@ override method @instruction_FOREVER.generateCodeAtAddress
   ??@uint inAddress
   ?!@bool ioContinuesInSequence
 {
-  checkInstructionIsReachable !ioContinuesInSequence !mInstructionLocation ;
+  checkInstructionIsReachable !?ioContinuesInSequence !mInstructionLocation ;
   ioContinuesInSequence := false ;
   @uint currentAddress := inAddress ;
   @bool continuesInSequence := true ;
@@ -692,7 +702,7 @@ override method @instruction_IF_SEMI_COLON.generateCodeAtAddress
   ??@uint inAddress
   ?!@bool ioContinuesInSequence
 {
-  checkInstructionIsReachable !ioContinuesInSequence !mInstructionLocation ;
+  checkInstructionIsReachable !?ioContinuesInSequence !mInstructionLocation ;
   @uint registerAddress ;
   @bool useBSRregister ;
   [mRegisterExpression getRegisterAddressingInformations
@@ -719,7 +729,7 @@ override method @instruction_IF_BitTest.generateCodeAtAddress
   ??@uint inAddress
   ?!@bool ioContinuesInSequence
 {
-  checkInstructionIsReachable !ioContinuesInSequence !mInstructionLocation ;
+  checkInstructionIsReachable !?ioContinuesInSequence !mInstructionLocation ;
   @uint registerAddress ;
   @bool useBSRregister ;
   @bitSliceTable bitSliceTable;
@@ -742,6 +752,23 @@ override method @instruction_IF_BitTest.generateCodeAtAddress
   emitCode !code ;
   @bool unusedContinuesInSequence := true ;
   [mInstruction generateCodeAtAddress !inCodeGenerationContext !inAddress + 2 !?unusedContinuesInSequence] ;
+}
+#----------------------------------------------------------------------------*
+
+override method @instruction_computed_retlw.generateCodeAtAddress
+  ??@codeGenerationContext inCodeGenerationContext
+  ??@uint unused inAddress
+  ?!@bool ioContinuesInSequence
+{
+  checkInstructionIsReachable !?ioContinuesInSequence !mInstructionLocation ;
+  ioContinuesInSequence := false ;
+  emitCALLinstruction ![inCodeGenerationContext mComputedGoto2RoutineAddress] ;
+  foreach mLiteralValues do
+    if [mValue uint] > 255 then
+      error here : "immediate value (" . [[mValue uint] string] . ") should be lower or equal to 255" ;
+    end if ;
+    emitCode !0x0C00 | [mValue uint] ;
+  end foreach ;
 }
 
 #----------------------------------------------------------------------------*
@@ -830,6 +857,11 @@ routine analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName :
       currentROMaddress := currentROMaddress + length ;
     end foreach ;
   end foreach ;
+#--- computed_goto2 routine needed ?
+  @uint computedGoto2RoutineAddress := currentROMaddress ;
+  if [inPiccoloModel mNeedsComputedGoto2] then
+    currentROMaddress := currentROMaddress + 10 ; # Routine size
+  end if ;
 #--- Ram definition
   @ramBankTable ramBank := [piccoloDeviceModel mRamBankTable] ;
   @registerTable registerTable := [piccoloDeviceModel mRegisterTable] ;
@@ -877,6 +909,7 @@ routine analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName :
     !routineSymbolTable
     !registerTable
     !0 # Current bank is 0, as BSR is initialized to zero
+    !computedGoto2RoutineAddress
   ] ;
 #--- Generate low interrupt routine (if any)
   currentROMaddress := 0x18 ;
@@ -944,18 +977,28 @@ routine analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName :
       checkCurrentEmitAddress !currentROMaddress ;
     end foreach ;
   end foreach ;
+#--- computed_goto2 routine needed ?
+  if [inPiccoloModel mNeedsComputedGoto2] then
+    emitCode !0x24e8 ; # ADDWF WREG, W
+    emitCode !0x26FD ; # ADDWF TOSL, F
+    emitCode !0x0E00 ; # MOVLW 0
+    emitCode !0x22FE ; # ADDWFC TOSH, F
+    emitCode !0x0012 ; # RETURN 0
+    currentROMaddress := currentROMaddress + 10 ; # Routine size
+  end if ;
+#--- Check genereted code size against size computed in the first pass
   if (programSize != currentROMaddress) then
     error here: "Internal second pass error: the last address gets " . [currentROMaddress hexString]
     . " value in second pass, while it gets "
     . [programSize hexString] . " in first pass" ;
   end if ;
 #--- If no error, generate object file
-#  if [@uint errorCount] == 0 then
+  if [@uint errorCount] == 0 then
     @string contents ;
     getGeneratedContents ? contents ;
     @string destinationFile := [inSourceFileName stringByDeletingPathExtension] . ".hex" ;
     [contents writeToFile !destinationFile] ;
-#  end if ;
+  end if ;
 end routine ;
 
 #----------------------------------------------------*
