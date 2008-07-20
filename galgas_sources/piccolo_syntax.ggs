@@ -362,6 +362,21 @@ rule <structured_instruction>
       !argumentList
     ] ;
     ioNeedsComputedGoto2 := true ;
+  or
+    $computed$ ;
+    $bra$ ;
+    @lstringlist argumentList [emptyList] ;
+    repeat
+      $identifier$ ? @lstring targetRoutine ;
+      argumentList += ! targetRoutine ;
+    while
+      $,$ ;
+    end repeat ;
+    outInstruction := [@instruction_computed_bra new
+      !instructionLocation
+      !argumentList
+    ] ;
+    ioNeedsComputedGoto2 := true ;
   end select ;
 end rule ;
 
