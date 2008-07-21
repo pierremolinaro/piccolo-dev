@@ -446,6 +446,45 @@ rule <structured_instruction>
       !useRelativeCall
     ] ;
     ioNeedsComputedGoto4 := true ;
+  or
+    $if$ ;
+    @conditional_branch conditional_branch ;
+    $identifier$ ? @lstring conditionString ;
+    if [conditionString string] == "z" then
+      conditional_branch := [@conditional_branch bnz] ;
+    elsif [conditionString string] == "nz" then
+      conditional_branch := [@conditional_branch bz] ;
+    elsif [conditionString string] == "n" then
+      conditional_branch := [@conditional_branch bnn] ;
+    elsif [conditionString string] == "nn" then
+      conditional_branch := [@conditional_branch bn] ;
+    elsif [conditionString string] == "c" then
+      conditional_branch := [@conditional_branch bnc] ;
+    elsif [conditionString string] == "nc" then
+      conditional_branch := [@conditional_branch bc] ;
+    elsif [conditionString string] == "ov" then
+      conditional_branch := [@conditional_branch bnov] ;
+    elsif [conditionString string] == "nov" then
+      conditional_branch := [@conditional_branch bov] ;
+    else
+      error conditionString: "invalid '" . conditionString
+      . "' condition; valid ones are: 'z', 'nz', 'n', 'nn', 'c', 'nc', 'ov' and 'nov'"
+      -> conditional_branch
+      ;
+    end if ;
+    ${$ ;
+    @instructionList thenInstructionList ;
+    <instruction_list>
+      ?thenInstructionList
+      !?ioNeedsComputedGoto2
+      !?ioNeedsComputedGoto4
+    ;
+    outInstruction := [@instruction_structured_if new
+      !instructionLocation
+      !conditional_branch
+      !thenInstructionList
+    ] ;
+    $}$ ;
   end select ;
 end rule ;
 
