@@ -55,6 +55,26 @@ method @instruction_LABEL.enterLabelAtAddress
 #----------------------------------------------------*
 
 override
+method @instruction_FOREVER.enterLabelAtAddress
+  ?!@routineSymbolTable ioRoutineSymbolTable
+  ??@uint inAddress
+  ?!@uint ioCurrentlySelectedBank
+{
+  @uint address := inAddress ;
+  foreach mInstructionList do
+    [mInstruction enterLabelAtAddress
+      !?ioRoutineSymbolTable
+      !address
+      !?ioCurrentlySelectedBank
+    ] ;
+    @uint lg ; [mInstruction instructionLength ?lg] ;
+    address := address + lg ;
+  end foreach ;
+}
+
+#----------------------------------------------------*
+
+override
 method @instruction_structured_if.enterLabelAtAddress
   ?!@routineSymbolTable ioRoutineSymbolTable
   ??@uint inAddress
@@ -70,18 +90,10 @@ method @instruction_structured_if.enterLabelAtAddress
     @uint lg ; [mInstruction instructionLength ?lg] ;
     address := address + lg ;
   end foreach ;
-}
-
-#----------------------------------------------------*
-
-override
-method @instruction_FOREVER.enterLabelAtAddress
-  ?!@routineSymbolTable ioRoutineSymbolTable
-  ??@uint inAddress
-  ?!@uint ioCurrentlySelectedBank
-{
-  @uint address := inAddress ;
-  foreach mInstructionList do
+  if [mElseInstructionList length] > 0 then
+    address := address + 2 ; # Bra for skking else part
+  end if ;
+  foreach mElseInstructionList do
     [mInstruction enterLabelAtAddress
       !?ioRoutineSymbolTable
       !address
@@ -328,14 +340,16 @@ routine emitConditionalBranchInstruction
   ??@uint inConditionalBranchInstructionAddress
   ??@uint inTargetAddress
   ??@location inErrorLocation
-  ??@uint inConditionalBranchInstructionCode
+  ??@conditional_branch inConditionalBranch
 :
   @sint displacement := ([inTargetAddress sint] - 2S - [inConditionalBranchInstructionAddress sint]) >> 1 ;
   if (displacement > 127S) | (displacement < - 128S) then
     error inErrorLocation: "displacement too large for conditional branch instruction" ;
   end if ;
 #  log displacement ;
-  emitCode !inConditionalBranchInstructionCode | [displacement & 0x0FFS uint] ;
+  @uint baseCode ;
+  getBccBaseCode !inConditionalBranch ?baseCode ;
+  emitCode !baseCode | [displacement & 0x0FFS uint] ;
 end routine ;
 
 #----------------------------------------------------------------------------*
@@ -349,12 +363,11 @@ override method @instruction_conditionalBranch.generateCodeAtAddress
   @uint targetAddress ;
   [[inCodeGenerationContext mRoutineSymbolTable] searchKey !mTargetLabel ?targetAddress ?*] ;
 #--- Emit Code
-  @uint baseCode ; [self getBaseCode ?baseCode] ;
   emitConditionalBranchInstruction
     !inAddress
     !targetAddress
     ![mTargetLabel location]
-    !baseCode
+    !mConditionalBranch
   ;
 }
 
@@ -879,30 +892,103 @@ override method @instruction_computed_goto.generateCodeAtAddress
 
 #----------------------------------------------------------------------------*
 
+abstract method @structured_if_condition.emitInstruction
+  ??@codeGenerationContext inCodeGenerationContext
+  ??@uint inConditionalBranchInstructionAddress
+  ??@uint inTargetAddress
+  ??@location inErrorLocation
+;
+
+#----------------------------------------------------------------------------*
+
+override method @bcc_in_structured_if_condition.emitInstruction
+  ??@codeGenerationContext unused inCodeGenerationContext
+  ??@uint inCurrentAddress
+  ??@uint inTargetAddress
+  ??@location inErrorLocation
+{
+  emitConditionalBranchInstruction
+    !inCurrentAddress
+    !inTargetAddress
+    !inErrorLocation
+    !mCondition
+  ;
+}
+
+#----------------------------------------------------------------------------*
+
+override method @bitTest_in_structured_if_condition.emitInstruction
+  ??@codeGenerationContext inCodeGenerationContext
+  ??@uint inCurrentAddress
+  ??@uint inTargetAddress
+  ??@location inErrorLocation
+{
+#--- Register
+  @bitSliceTable bitSliceTable;
+  @uint usedRegisterAddress ;
+  @bool useBSRregister ;
+  [mRegisterExpression getRegisterAddressingInformations
+    !inCodeGenerationContext
+    ?usedRegisterAddress
+    ?useBSRregister
+    ?bitSliceTable
+  ] ;
+#--- Bit
+  @uint bitNumber ;
+  [mBitNumber getBitNumber !bitSliceTable ?bitNumber] ;
+#--- Emit Code
+  @uint code ;
+  [self baseCode ? code] ;
+  if useBSRregister then
+    code := code | 0x0100 ;
+  end if ;
+  code := code | (usedRegisterAddress & 255) ;
+  code := code | (bitNumber << 9) ;
+  emitCode !code ;
+
+  emitBRAinstruction
+   !inCurrentAddress + 2
+   !inTargetAddress
+   !inErrorLocation
+  ;
+}
+
+#----------------------------------------------------------------------------*
+
 override method @instruction_structured_if.generateCodeAtAddress
   ??@codeGenerationContext inCodeGenerationContext
   ??@uint inAddress
   ?!@bool ioContinuesInSequence
 {
   checkInstructionIsReachable !?ioContinuesInSequence !mInstructionLocation ;
-#--- Get base code
-  @uint baseCode ;
-  getBccBaseCode !mCondition ?baseCode ;
 #--- 'then' instructions length
   @uint thenInstructionsLength := 0 ;
   foreach mThenInstructionList do
     @uint lg ; [mInstruction instructionLength ?lg] ;
     thenInstructionsLength := thenInstructionsLength + lg ;
   end foreach ;
-#--- Emit Bcc instruction
-  emitConditionalBranchInstruction
+#--- 'else' instructions length
+  @uint elseInstructionsLength := 0 ;
+  foreach mElseInstructionList do
+    @uint lg ; [mInstruction instructionLength ?lg] ;
+    elseInstructionsLength := elseInstructionsLength + lg ;
+  end foreach ;
+#--- Condition length
+  @uint conditionLength ;
+  [mIfCondition  conditionLength ?conditionLength] ;
+#--- Emit condition
+  @uint conditionalBranchDestination := inAddress + thenInstructionsLength + conditionLength ;
+  if [mElseInstructionList length] > 0 then
+    conditionalBranchDestination := conditionalBranchDestination + 2 ;
+  end if ;
+  [mIfCondition emitInstruction
+    !inCodeGenerationContext
     !inAddress
-    !inAddress + thenInstructionsLength + 2
+    !conditionalBranchDestination
     !mInstructionLocation
-    !baseCode
-  ;
+  ] ;
 #--- Emit 'then' instructions
-  @uint currentAddress := inAddress + 2 ; # Bcc
+  @uint currentAddress := inAddress + conditionLength ;
   @bool continuesInSequence := true ;
   foreach mThenInstructionList do
     [mInstruction generateCodeAtAddress
@@ -913,6 +999,25 @@ override method @instruction_structured_if.generateCodeAtAddress
     @uint lg ; [mInstruction instructionLength ?lg] ;
     currentAddress := currentAddress + lg ;
   end foreach ;
+#--- Emit 'else' instructions
+  if [mElseInstructionList length] > 0 then
+    emitBRAinstruction
+      !currentAddress
+      !currentAddress + elseInstructionsLength + 2
+      !mInstructionLocation
+    ;
+    currentAddress := currentAddress + 2 ;
+    continuesInSequence := true ;
+    foreach mElseInstructionList do
+      [mInstruction generateCodeAtAddress
+        !inCodeGenerationContext
+        !currentAddress
+        !?continuesInSequence
+      ] ;
+      @uint lg ; [mInstruction instructionLength ?lg] ;
+      currentAddress := currentAddress + lg ;
+    end foreach ;
+  end if ;
 }
 
 #----------------------------------------------------------------------------*
