@@ -531,233 +531,78 @@ end rule ;
 rule <simple_instruction> !@instruction outInstruction :
   @location instructionLocation := here ;
   select
-    $addwf$ ;
+    @instruction_FDA_base_code baseCode ;
+    select
+      $addwf$ ;
+      baseCode := [@instruction_FDA_base_code ADDWF] ;
+    or
+      $addwfc$ ;
+      baseCode := [@instruction_FDA_base_code ADDWFC] ;
+    or
+      $andwf$ ;
+      baseCode := [@instruction_FDA_base_code ANDWF] ;
+    or
+      $comf$ ;
+      baseCode := [@instruction_FDA_base_code COMF] ;
+    or
+      $decf$ ;
+      baseCode := [@instruction_FDA_base_code DECF] ;
+    or
+      $decfsz$ ;
+      baseCode := [@instruction_FDA_base_code DECFSZ] ;
+    or
+      $dcfsnz$ ;
+      baseCode := [@instruction_FDA_base_code DCFSNZ] ;
+    or
+      $incf$ ;
+      baseCode := [@instruction_FDA_base_code INCF] ;
+    or
+      $incfsz$ ;
+      baseCode := [@instruction_FDA_base_code INCFSZ] ;
+    or
+      $infsnz$ ;
+      baseCode := [@instruction_FDA_base_code INFSNZ] ;
+    or
+      $iorwf$ ;
+      baseCode := [@instruction_FDA_base_code IORWF] ;
+    or
+      $movf$ ;
+      baseCode := [@instruction_FDA_base_code MOVF] ;
+    or
+      $rlcf$ ;
+      baseCode := [@instruction_FDA_base_code RLCF] ;
+    or
+      $rlncf$ ;
+      baseCode := [@instruction_FDA_base_code RLNCF] ;
+    or
+      $rrcf$ ;
+      baseCode := [@instruction_FDA_base_code RRCF] ;
+    or
+      $rrncf$ ;
+      baseCode := [@instruction_FDA_base_code RRNCF] ;
+    or
+      $subfwb$ ;
+      baseCode := [@instruction_FDA_base_code SUBFWB] ;
+    or
+      $subwf$ ;
+      baseCode := [@instruction_FDA_base_code SUBWF] ;
+    or
+      $subwfb$ ;
+      baseCode := [@instruction_FDA_base_code SUBWFB] ;
+    or
+      $swapf$ ;
+      baseCode := [@instruction_FDA_base_code SWAPF] ;
+    or
+      $xorwf$ ;
+      baseCode := [@instruction_FDA_base_code XORWF] ;
+    end select ;
     @registerExpression registerName ;
     <register_parsing> ?registerName ;
     @bool W_isDestination ;
     <optional_w_as_dest> ?W_isDestination ;
-    outInstruction := [@instruction_ADDWF new
+    outInstruction := [@instruction_FDA new
       !instructionLocation
-      !registerName
-      !W_isDestination
-    ] ;
-  or
-    $addwfc$ ;
-    @registerExpression registerName ;
-    <register_parsing> ?registerName ;
-    @bool W_isDestination ;
-    <optional_w_as_dest> ?W_isDestination ;
-    outInstruction := [@instruction_ADDWFC new
-      !instructionLocation
-      !registerName
-      !W_isDestination
-    ] ;
-  or
-    $andwf$ ;
-    @registerExpression registerName ;
-    <register_parsing> ?registerName ;
-    @bool W_isDestination ;
-    <optional_w_as_dest> ?W_isDestination ;
-    outInstruction := [@instruction_ANDWF new
-      !instructionLocation
-      !registerName
-      !W_isDestination
-    ] ;
-  or
-    $comf$ ;
-    @registerExpression registerName ;
-    <register_parsing> ?registerName ;
-    @bool W_isDestination ;
-    <optional_w_as_dest> ?W_isDestination ;
-    outInstruction := [@instruction_COMF new
-      !instructionLocation
-      !registerName
-      !W_isDestination
-    ] ;
-  or
-    $decf$ ;
-    @registerExpression registerName ;
-    <register_parsing> ?registerName ;
-    @bool W_isDestination ;
-    <optional_w_as_dest> ?W_isDestination ;
-    outInstruction := [@instruction_DECF new
-      !instructionLocation
-      !registerName
-      !W_isDestination
-    ] ;
-  or
-    $decfsz$ ;
-    @registerExpression registerName ;
-    <register_parsing> ?registerName ;
-    @bool W_isDestination ;
-    <optional_w_as_dest> ?W_isDestination ;
-    outInstruction := [@instruction_DECFSZ new
-      !instructionLocation
-      !registerName
-      !W_isDestination
-    ] ;
-  or
-    $dcfsnz$ ;
-    @registerExpression registerName ;
-    <register_parsing> ?registerName ;
-    @bool W_isDestination ;
-    <optional_w_as_dest> ?W_isDestination ;
-    outInstruction := [@instruction_DCFSNZ new
-      !instructionLocation
-      !registerName
-      !W_isDestination
-    ] ;
-  or
-    $incf$ ;
-    @registerExpression registerName ;
-    <register_parsing> ?registerName ;
-    @bool W_isDestination ;
-    <optional_w_as_dest> ?W_isDestination ;
-    outInstruction := [@instruction_INCF new
-      !instructionLocation
-      !registerName
-      !W_isDestination
-    ] ;
-  or
-    $incfsz$ ;
-    @registerExpression registerName ;
-    <register_parsing> ?registerName ;
-    @bool W_isDestination ;
-    <optional_w_as_dest> ?W_isDestination ;
-    outInstruction := [@instruction_INCFSZ new
-      !instructionLocation
-      !registerName
-      !W_isDestination
-    ] ;
-  or
-    $infsnz$ ;
-    @registerExpression registerName ;
-    <register_parsing> ?registerName ;
-    @bool W_isDestination ;
-    <optional_w_as_dest> ?W_isDestination ;
-    outInstruction := [@instruction_INFSNZ new
-      !instructionLocation
-      !registerName
-      !W_isDestination
-    ] ;
-  or
-    $iorwf$ ;
-    @registerExpression registerName ;
-    <register_parsing> ?registerName ;
-    @bool W_isDestination ;
-    <optional_w_as_dest> ?W_isDestination ;
-    outInstruction := [@instruction_IORWF new
-      !instructionLocation
-      !registerName
-      !W_isDestination
-    ] ;
-  or
-    $movf$ ;
-    @registerExpression registerName ;
-    <register_parsing> ?registerName ;
-    @bool W_isDestination ;
-    <optional_w_as_dest> ?W_isDestination ;
-    outInstruction := [@instruction_MOVF new
-      !instructionLocation
-      !registerName
-      !W_isDestination
-    ] ;
-  or
-    $rlcf$ ;
-    @registerExpression registerName ;
-    <register_parsing> ?registerName ;
-    @bool W_isDestination ;
-    <optional_w_as_dest> ?W_isDestination ;
-    outInstruction := [@instruction_RLCF new
-      !instructionLocation
-      !registerName
-      !W_isDestination
-    ] ;
-  or
-    $rlncf$ ;
-    @registerExpression registerName ;
-    <register_parsing> ?registerName ;
-    @bool W_isDestination ;
-    <optional_w_as_dest> ?W_isDestination ;
-    outInstruction := [@instruction_RLNCF new
-      !instructionLocation
-      !registerName
-      !W_isDestination
-    ] ;
-  or
-    $rrcf$ ;
-    @registerExpression registerName ;
-    <register_parsing> ?registerName ;
-    @bool W_isDestination ;
-    <optional_w_as_dest> ?W_isDestination ;
-    outInstruction := [@instruction_RRCF new
-      !instructionLocation
-      !registerName
-      !W_isDestination
-    ] ;
-  or
-    $rrncf$ ;
-    @registerExpression registerName ;
-    <register_parsing> ?registerName ;
-    @bool W_isDestination ;
-    <optional_w_as_dest> ?W_isDestination ;
-    outInstruction := [@instruction_RRNCF new
-      !instructionLocation
-      !registerName
-      !W_isDestination
-    ] ;
-  or
-    $subfwb$ ;
-    @registerExpression registerName ;
-    <register_parsing> ?registerName ;
-    @bool W_isDestination ;
-    <optional_w_as_dest> ?W_isDestination ;
-    outInstruction := [@instruction_SUBFWB new
-      !instructionLocation
-      !registerName
-      !W_isDestination
-    ] ;
-  or
-    $subwf$ ;
-    @registerExpression registerName ;
-    <register_parsing> ?registerName ;
-    @bool W_isDestination ;
-    <optional_w_as_dest> ?W_isDestination ;
-    outInstruction := [@instruction_SUBWF new
-      !instructionLocation
-      !registerName
-      !W_isDestination
-    ] ;
-  or
-    $subwfb$ ;
-    @registerExpression registerName ;
-    <register_parsing> ?registerName ;
-    @bool W_isDestination ;
-    <optional_w_as_dest> ?W_isDestination ;
-    outInstruction := [@instruction_SUBWFB new
-      !instructionLocation
-      !registerName
-      !W_isDestination
-    ] ;
-  or
-    $swapf$ ;
-    @registerExpression registerName ;
-    <register_parsing> ?registerName ;
-    @bool W_isDestination ;
-    <optional_w_as_dest> ?W_isDestination ;
-    outInstruction := [@instruction_SWAPF new
-      !instructionLocation
-      !registerName
-      !W_isDestination
-    ] ;
-  or
-    $xorwf$ ;
-    @registerExpression registerName ;
-    <register_parsing> ?registerName ;
-    @bool W_isDestination ;
-    <optional_w_as_dest> ?W_isDestination ;
-    outInstruction := [@instruction_XORWF new
-      !instructionLocation
+      !baseCode
       !registerName
       !W_isDestination
     ] ;
