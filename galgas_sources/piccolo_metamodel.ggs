@@ -351,73 +351,53 @@ class @instruction_BTG extends @instruction_FBA {
 
 #----------------------------------------------------*
 
-abstract class @instruction_conditionalBranch extends @instruction {
+enum @conditional_branch {
+  constructor bz ;
+  constructor bnz ;
+  constructor bn ;
+  constructor bnn ;
+  constructor bc ;
+  constructor bnc ;
+  constructor bov ;
+  constructor bnov ;
+}{
+}
+
+#----------------------------------------------------*
+
+routine getBccBaseCode ??@conditional_branch inConditionalBranch !@uint outBaseCode :
+  switch inConditionalBranch
+  when bz   : outBaseCode := 0xE000 ;
+  when bnz  : outBaseCode := 0xE100 ;
+  when bn   : outBaseCode := 0xE600 ;
+  when bnn  : outBaseCode := 0xE700 ;
+  when bc   : outBaseCode := 0xE200 ;
+  when bnc  : outBaseCode := 0xE300 ;
+  when bov  : outBaseCode := 0xE400 ;
+  when bnov : outBaseCode := 0xE500 ;
+  end switch ;
+end routine ;
+
+#----------------------------------------------------*
+
+routine getComplementaryBcc ??@conditional_branch inConditionalBranch !@conditional_branch outComplementary :
+  switch inConditionalBranch
+  when bz   : outComplementary := [@conditional_branch bnz] ;
+  when bnz  : outComplementary := [@conditional_branch bz] ;
+  when bn   : outComplementary := [@conditional_branch bnn] ;
+  when bnn  : outComplementary := [@conditional_branch bn] ;
+  when bc   : outComplementary := [@conditional_branch bnc] ;
+  when bnc  : outComplementary := [@conditional_branch bc] ;
+  when bov  : outComplementary := [@conditional_branch bnov] ;
+  when bnov : outComplementary := [@conditional_branch bov] ;
+  end switch ;
+end routine ;
+
+#----------------------------------------------------*
+
+class @instruction_conditionalBranch extends @instruction {
+  @conditional_branch mConditionalBranch ;
   @lstring mTargetLabel ;
-  abstract method getBaseCode !@uint outBaseCode ;
-}
-
-#----------------------------------------------------*
-
-class @instruction_BC extends @instruction_conditionalBranch {
-  override method getBaseCode !@uint outBaseCode :
-    outBaseCode := 0xE200 ;
-  end method ;
-}
-
-#----------------------------------------------------*
-
-class @instruction_BN extends @instruction_conditionalBranch {
-  override method getBaseCode !@uint outBaseCode :
-    outBaseCode := 0xE600 ;
-  end method ;
-}
-
-#----------------------------------------------------*
-
-class @instruction_BNC extends @instruction_conditionalBranch {
-  override method getBaseCode !@uint outBaseCode :
-    outBaseCode := 0xE300 ;
-  end method ;
-}
-
-#----------------------------------------------------*
-
-class @instruction_BNN extends @instruction_conditionalBranch {
-  override method getBaseCode !@uint outBaseCode :
-    outBaseCode := 0xE700 ;
-  end method ;
-}
-
-#----------------------------------------------------*
-
-class @instruction_BNOV extends @instruction_conditionalBranch {
-  override method getBaseCode !@uint outBaseCode :
-    outBaseCode := 0xE500 ;
-  end method ;
-}
-
-#----------------------------------------------------*
-
-class @instruction_BNZ extends @instruction_conditionalBranch {
-  override method getBaseCode !@uint outBaseCode :
-    outBaseCode := 0xE100 ;
-  end method ;
-}
-
-#----------------------------------------------------*
-
-class @instruction_BOV extends @instruction_conditionalBranch {
-  override method getBaseCode !@uint outBaseCode :
-    outBaseCode := 0xE400 ;
-  end method ;
-}
-
-#----------------------------------------------------*
-
-class @instruction_BZ extends @instruction_conditionalBranch {
-  override method getBaseCode !@uint outBaseCode :
-    outBaseCode := 0xE000 ;
-  end method ;
 }
 
 #----------------------------------------------------*
@@ -697,25 +677,17 @@ class @instruction_IF_TST_NotZero extends @instruction_IF_SEMI_COLON {
 
 #----------------------------------------------------*
 
-abstract class @instruction_IF_BitTest extends @instruction_IF_SEMI_COLON {
+class @instruction_IF_BitTest extends @instruction_IF_SEMI_COLON {
   @bitNumberExpression mBitNumber ;
-}
+  @bool mSkipIfSet ;
 
-#----------------------------------------------------*
-
-class @instruction_IF_BitTest_Set extends @instruction_IF_BitTest {
   override
   method getBaseCode !@uint outBaseCode :
-    outBaseCode := 0xB000 ; # BTFSC
-  end method ; 
-}
-
-#----------------------------------------------------*
-
-class @instruction_IF_BitTest_Clear extends @instruction_IF_BitTest {
-  override
-  method getBaseCode !@uint outBaseCode :
-    outBaseCode := 0xA000 ; # BTFSS
+    if mSkipIfSet then
+      outBaseCode := 0xA000 ; # BTFSS
+    else
+      outBaseCode := 0xB000 ; # BTFSC
+    end if ;
   end method ; 
 }
 
@@ -766,43 +738,56 @@ class @instruction_computed_goto extends @instruction {
 
 #----------------------------------------------------*
 
-enum @conditional_branch {
-  constructor bz ;
-  constructor bnz ;
-  constructor bn ;
-  constructor bnn ;
-  constructor bc ;
-  constructor bnc ;
-  constructor bov ;
-  constructor bnov ;
-}{
+abstract class @structured_if_condition {
+  abstract method conditionLength !@uint outLength ;
+
 }
 
 #----------------------------------------------------*
 
-routine getBccBaseCode ??@conditional_branch inConditionalBranch !@uint outBaseCode :
-  switch inConditionalBranch
-  when bz   : outBaseCode := 0xE000 ;
-  when bnz  : outBaseCode := 0xE100 ;
-  when bn   : outBaseCode := 0xE600 ;
-  when bnn  : outBaseCode := 0xE700 ;
-  when bc   : outBaseCode := 0xE200 ;
-  when bnc  : outBaseCode := 0xE300 ;
-  when bov  : outBaseCode := 0xE400 ;
-  when bnov : outBaseCode := 0xE500 ;
-  end switch ;
-end routine ;
+class @bcc_in_structured_if_condition extends @structured_if_condition {
+  @conditional_branch mCondition ;
+  override method conditionLength !@uint outLength :
+    outLength := 2 ;
+  end method ;
+}
+
+#----------------------------------------------------*
+
+class @bitTest_in_structured_if_condition extends @structured_if_condition {
+  @registerExpression mRegisterExpression ;
+  @bitNumberExpression mBitNumber ;
+  @bool mBTFSSinstruction ;
+  override method conditionLength !@uint outLength :
+    outLength := 4 ; # BTFSx, BRA instructions
+  end method ;
+  method baseCode !@uint outBaseCode :
+    if mBTFSSinstruction then
+      outBaseCode := 0xA000 ;  # BTFSS
+    else
+      outBaseCode := 0xB000 ;  # BTFSC
+    end if ;
+  end method ;
+}
 
 #----------------------------------------------------*
 
 class @instruction_structured_if extends @instruction {
-  @conditional_branch mCondition ;
+  @structured_if_condition mIfCondition ;
   @instructionList mThenInstructionList ;
+  @instructionList mElseInstructionList ;
 
   override
   method instructionLength !@uint outLength :
-    outLength := 2 ; # Bcc
+    [mIfCondition conditionLength ?outLength] ;
     foreach mThenInstructionList do
+      @uint lg ; [mInstruction instructionLength ?lg] ;
+      outLength := outLength + lg ;
+    end foreach ;
+    if [mElseInstructionList length] > 0 then
+      outLength := outLength + 2 ; # Bra for skking else part
+    end if ;
+    foreach mElseInstructionList do
       @uint lg ; [mInstruction instructionLength ?lg] ;
       outLength := outLength + lg ;
     end foreach ;
