@@ -607,67 +607,37 @@ rule <simple_instruction> !@instruction outInstruction :
       !W_isDestination
     ] ;
   or
-    $clrf$ ;
+    @FA_instruction_base_code FAinstruction ;
+    select
+      $clrf$ ;
+      FAinstruction := [@FA_instruction_base_code CLRF] ;
+    or
+      $cpfsgt$ ;
+      FAinstruction := [@FA_instruction_base_code CPFSGT] ;
+    or
+      $cpfslt$ ;
+      FAinstruction := [@FA_instruction_base_code CPFSLT] ;
+    or
+      $movwf$ ;
+      FAinstruction := [@FA_instruction_base_code MOVWF] ;
+    or
+      $mulwf$ ;
+      FAinstruction := [@FA_instruction_base_code MULWF] ;
+    or
+      $negf$ ;
+      FAinstruction := [@FA_instruction_base_code NEGF] ;
+    or
+      $setf$ ;
+      FAinstruction := [@FA_instruction_base_code SETF] ;
+    or
+      $tstfsz$ ;
+      FAinstruction := [@FA_instruction_base_code TSTFSZ] ;
+    end select ;
     @registerExpression registerName ;
     <register_parsing> ?registerName ;
-    outInstruction := [@instruction_CLRF new
+    outInstruction := [@instruction_FA new
       !instructionLocation
-      !registerName
-    ] ;
-  or
-    $cpfsgt$ ;
-    @registerExpression registerName ;
-    <register_parsing> ?registerName ;
-    outInstruction := [@instruction_CPFSGT new
-      !instructionLocation
-      !registerName
-    ] ;
-  or
-    $cpfslt$ ;
-    @registerExpression registerName ;
-    <register_parsing> ?registerName ;
-    outInstruction := [@instruction_CPFSLT new
-      !instructionLocation
-      !registerName
-    ] ;
-  or
-    $movwf$ ;
-    @registerExpression registerName ;
-    <register_parsing> ?registerName ;
-    outInstruction := [@instruction_MOVWF new
-      !instructionLocation
-      !registerName
-    ] ;
-  or
-    $mulwf$ ;
-    @registerExpression registerName ;
-    <register_parsing> ?registerName ;
-    outInstruction := [@instruction_MULWF new
-      !instructionLocation
-      !registerName
-    ] ;
-  or
-    $negf$ ;
-    @registerExpression registerName ;
-    <register_parsing> ?registerName ;
-    outInstruction := [@instruction_NEGF new
-      !instructionLocation
-      !registerName
-    ] ;
-  or
-    $setf$ ;
-    @registerExpression registerName ;
-    <register_parsing> ?registerName ;
-    outInstruction := [@instruction_SETF new
-      !instructionLocation
-      !registerName
-    ] ;
-  or
-    $tstfsz$ ;
-    @registerExpression registerName ;
-    <register_parsing> ?registerName ;
-    outInstruction := [@instruction_TSTFSZ new
-      !instructionLocation
+      !FAinstruction
       !registerName
     ] ;
   or
