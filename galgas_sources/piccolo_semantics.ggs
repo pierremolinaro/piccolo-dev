@@ -38,8 +38,8 @@ method @instruction.enterLabelAtAddress
   ?!@routineSymbolTable unused ioRoutineSymbolTable
   ??@uint unused inAddress
   ?!@uint unused ioCurrentlySelectedBank
-{
-}
+:
+end method ;
 
 #----------------------------------------------------*
 
@@ -48,9 +48,9 @@ method @instruction_LABEL.enterLabelAtAddress
   ?!@routineSymbolTable ioRoutineSymbolTable
   ??@uint inAddress
   ?!@uint ioCurrentlySelectedBank
-{
+:
   [!?ioRoutineSymbolTable insertKey !mTargetLabel !inAddress !ioCurrentlySelectedBank] ;
-}
+end method ;
 
 #----------------------------------------------------*
 
@@ -59,7 +59,7 @@ method @instruction_FOREVER.enterLabelAtAddress
   ?!@routineSymbolTable ioRoutineSymbolTable
   ??@uint inAddress
   ?!@uint ioCurrentlySelectedBank
-{
+:
   @uint address := inAddress ;
   foreach mInstructionList do
     [mInstruction enterLabelAtAddress
@@ -70,7 +70,7 @@ method @instruction_FOREVER.enterLabelAtAddress
     @uint lg ; [mInstruction instructionLength ?lg] ;
     address := address + lg ;
   end foreach ;
-}
+end method ;
 
 #----------------------------------------------------*
 
@@ -79,8 +79,11 @@ method @instruction_structured_if.enterLabelAtAddress
   ?!@routineSymbolTable ioRoutineSymbolTable
   ??@uint inAddress
   ?!@uint ioCurrentlySelectedBank
-{
-  @uint address := inAddress + 2 ;
+:
+#--- Condition length
+  @uint conditionLength ;
+  [mIfCondition  conditionLength ?conditionLength] ;
+  @uint address := inAddress + conditionLength ;
   foreach mThenInstructionList do
     [mInstruction enterLabelAtAddress
       !?ioRoutineSymbolTable
@@ -91,7 +94,7 @@ method @instruction_structured_if.enterLabelAtAddress
     address := address + lg ;
   end foreach ;
   if [mElseInstructionList length] > 0 then
-    address := address + 2 ; # Bra for skking else part
+    address := address + 2 ; # Bra for skipping else part
   end if ;
   foreach mElseInstructionList do
     [mInstruction enterLabelAtAddress
@@ -102,7 +105,7 @@ method @instruction_structured_if.enterLabelAtAddress
     @uint lg ; [mInstruction instructionLength ?lg] ;
     address := address + lg ;
   end foreach ;
-}
+end method ;
 
 #----------------------------------------------------*
 
@@ -123,7 +126,7 @@ struct @codeGenerationContext {
 method @registerExpression.getRegisterAddress
   ??@codeGenerationContext inCodeGenerationContext
   !@uint outRegisterAddress
-{
+:
   @uintlist registerAddressList ;
   @uint size ;
   [[inCodeGenerationContext mRegisterTable] searchKey !mRegisterName ?registerAddressList ?size ?*] ;
@@ -132,7 +135,7 @@ method @registerExpression.getRegisterAddress
   end if ;
   [registerAddressList first ?outRegisterAddress] ;
   outRegisterAddress := outRegisterAddress + [mOffset uint] ;
-}
+end method ;
 
 #----------------------------------------------------------------------------*
 
@@ -141,7 +144,7 @@ method @registerExpression.getRegisterAddressingInformations
   !@uint outRegisterAddress
   !@bool outUseBSRregister
   !@bitSliceTable outBitSliceTable
-{
+:
   @uintlist registerAddressList ;
   @uint size ;
   [[inCodeGenerationContext mRegisterTable] searchKey !mRegisterName ?registerAddressList ?size ?outBitSliceTable] ;
@@ -180,7 +183,7 @@ method @registerExpression.getRegisterAddressingInformations
     error mOffset:"index (" . [[mOffset uint] string] . ") is should be lower than size (". [size string] . ")" ;
   end if ;
   outRegisterAddress := outRegisterAddress + [mOffset uint] ;
-}
+end method ;
 
 #----------------------------------------------------------------------------*
 
@@ -205,7 +208,7 @@ override method @instruction_FDA.generateCodeAtAddress
   ??@codeGenerationContext inCodeGenerationContext
   ??@uint unused inAddress
   ?!@bool ioContinuesInSequence
-{
+:
   checkInstructionIsReachable !?ioContinuesInSequence !mInstructionLocation ;
   @uint usedRegisterAddress ;
   @bool useBSRregister ;
@@ -225,7 +228,7 @@ override method @instruction_FDA.generateCodeAtAddress
   end if ;
   code := code | (usedRegisterAddress & 255) ;
   emitCode !code ;
-}
+end method ;
 
 #----------------------------------------------------------------------------*
 
@@ -233,7 +236,7 @@ override method @instruction_FA.generateCodeAtAddress
   ??@codeGenerationContext inCodeGenerationContext
   ??@uint unused inAddress
   ?!@bool ioContinuesInSequence
-{
+:
   checkInstructionIsReachable !?ioContinuesInSequence !mInstructionLocation ;
   @uint usedRegisterAddress ;
   @bool useBSRregister ;
@@ -250,7 +253,7 @@ override method @instruction_FA.generateCodeAtAddress
   end if ;
   code := code | (usedRegisterAddress & 255) ;
   emitCode !code ;
-}
+end method ;
 
 #----------------------------------------------------------------------------*
 
@@ -258,7 +261,7 @@ override method @instruction_MOVFF.generateCodeAtAddress
   ??@codeGenerationContext inCodeGenerationContext
   ??@uint unused inAddress
   ?!@bool ioContinuesInSequence
-{
+:
   checkInstructionIsReachable !?ioContinuesInSequence !mInstructionLocation ;
   @uint sourceRegisterAddress ;
   [mSourceRegisterName getRegisterAddress !inCodeGenerationContext ?sourceRegisterAddress] ;
@@ -266,7 +269,7 @@ override method @instruction_MOVFF.generateCodeAtAddress
   [mDestinationRegisterName getRegisterAddress !inCodeGenerationContext ?destinationRegisterAddress] ;
   emitCode !0xC000 | sourceRegisterAddress ;
   emitCode !0xF000 | destinationRegisterAddress ;
-}
+end method ;
 
 #----------------------------------------------------------------------------*
 
@@ -280,19 +283,19 @@ abstract method @bitNumberExpression.getBitNumber
 override method @bitNumberLiteralValue.getBitNumber
   ??@bitSliceTable unused inBitSliceTable
   !@uint outBitNumber
-{
+:
   if [mBitNumberLiteralValue uint] > 7 then
     error mBitNumberLiteralValue:"The bit number is " . [[mBitNumberLiteralValue uint] string] . " (should be <= 7)" ;
   end if ;
   outBitNumber := [mBitNumberLiteralValue uint] ;
-}
+end method ;
 
 #----------------------------------------------------------------------------*
 
 override method @bitNumberLabelValue.getBitNumber
   ??@bitSliceTable inBitSliceTable
   !@uint outBitNumber
-{
+:
   @uint sliceIndex ;
   @uint sliceSize ;
   [inBitSliceTable searchKey !mBitNumberLabelValue ?sliceIndex ? sliceSize] ;
@@ -301,7 +304,7 @@ override method @bitNumberLabelValue.getBitNumber
     . " index is too large (should be < " . [sliceSize string] . ")" ;
   end if ;
   outBitNumber := sliceIndex + [mBitNumberIndexValue uint] ;
-}
+end method ;
 
 #----------------------------------------------------------------------------*
 
@@ -309,7 +312,7 @@ override method @instruction_FBA.generateCodeAtAddress
   ??@codeGenerationContext inCodeGenerationContext
   ??@uint unused inAddress
   ?!@bool ioContinuesInSequence
-{
+:
   checkInstructionIsReachable !?ioContinuesInSequence !mInstructionLocation ;
 #--- Register
   @bitSliceTable bitSliceTable;
@@ -332,7 +335,7 @@ override method @instruction_FBA.generateCodeAtAddress
   code := code | (usedRegisterAddress & 255) ;
   code := code | (bitNumber << 9) ;
   emitCode !code ;
-}
+end method ;
 
 #----------------------------------------------------------------------------*
 
@@ -358,7 +361,7 @@ override method @instruction_conditionalBranch.generateCodeAtAddress
   ??@codeGenerationContext inCodeGenerationContext
   ??@uint inAddress
   ?!@bool ioContinuesInSequence
-{
+:
   checkInstructionIsReachable !?ioContinuesInSequence !mInstructionLocation ;
   @uint targetAddress ;
   [[inCodeGenerationContext mRoutineSymbolTable] searchKey !mTargetLabel ?targetAddress ?*] ;
@@ -369,7 +372,7 @@ override method @instruction_conditionalBranch.generateCodeAtAddress
     ![mTargetLabel location]
     !mConditionalBranch
   ;
-}
+end method ;
 
 #----------------------------------------------------------------------------*
 
@@ -392,7 +395,7 @@ override method @instruction_BRA.generateCodeAtAddress
   ??@codeGenerationContext inCodeGenerationContext
   ??@uint inAddress
   ?!@bool ioContinuesInSequence
-{
+:
   checkInstructionIsReachable !?ioContinuesInSequence !mInstructionLocation ;
 ####  ioContinuesInSequence := false ;
   @uint targetAddress ;
@@ -408,7 +411,7 @@ override method @instruction_BRA.generateCodeAtAddress
     !targetAddress
     ![mTargetLabel location]
   ;
-}
+end method ;
 
 #----------------------------------------------------------------------------*
 
@@ -425,14 +428,14 @@ override method @instruction_GOTO.generateCodeAtAddress
   ??@codeGenerationContext inCodeGenerationContext
   ??@uint unused inAddress
   ?!@bool ioContinuesInSequence
-{
+:
   checkInstructionIsReachable !?ioContinuesInSequence !mInstructionLocation ;
 ####  ioContinuesInSequence := false ;
   @uint targetAddress ;
   [[inCodeGenerationContext mRoutineSymbolTable] searchKey !mTargetLabel ?targetAddress ?*] ;
 #--- Emit Code
   emitGOTOinstruction !targetAddress ;
-}
+end method ;
 
 #----------------------------------------------------------------------------*
 
@@ -449,7 +452,7 @@ override method @instruction_CALL.generateCodeAtAddress
   ??@codeGenerationContext inCodeGenerationContext
   ??@uint unused inAddress
   ?!@bool ioContinuesInSequence
-{
+:
   checkInstructionIsReachable !?ioContinuesInSequence !mInstructionLocation ;
   @uint targetAddress ;
   @uint requiredSelectedBank ;
@@ -466,7 +469,7 @@ override method @instruction_CALL.generateCodeAtAddress
   end if ;
 #--- Emit Code
   emitCALLinstruction !targetAddress ;
-}
+end method ;
 
 #----------------------------------------------------------------------------*
 
@@ -489,7 +492,7 @@ override method @instruction_RCALL.generateCodeAtAddress
   ??@codeGenerationContext inCodeGenerationContext
   ??@uint inAddress
   ?!@bool ioContinuesInSequence
-{
+:
   checkInstructionIsReachable !?ioContinuesInSequence !mInstructionLocation ;
   @uint targetAddress ;
   @uint requiredSelectedBank ;
@@ -510,7 +513,7 @@ override method @instruction_RCALL.generateCodeAtAddress
     !targetAddress
     ![mTargetLabel location]
   ;
-}
+end method ;
 
 #----------------------------------------------------------------------------*
 
@@ -518,10 +521,10 @@ override method @instruction_CLRWDT.generateCodeAtAddress
   ??@codeGenerationContext unused inCodeGenerationContext
   ??@uint unused inAddress
   ?!@bool ioContinuesInSequence
-{
+:
   checkInstructionIsReachable !?ioContinuesInSequence !mInstructionLocation ;
   emitCode !0x0004 ;
-}
+end method ;
 
 #----------------------------------------------------------------------------*
 
@@ -529,10 +532,10 @@ override method @instruction_DAW.generateCodeAtAddress
   ??@codeGenerationContext unused inCodeGenerationContext
   ??@uint unused inAddress
   ?!@bool ioContinuesInSequence
-{
+:
   checkInstructionIsReachable !?ioContinuesInSequence !mInstructionLocation ;
   emitCode !0x0007 ;
-}
+end method ;
 
 #----------------------------------------------------------------------------*
 
@@ -540,10 +543,10 @@ override method @instruction_NOP.generateCodeAtAddress
   ??@codeGenerationContext unused inCodeGenerationContext
   ??@uint unused inAddress
   ?!@bool ioContinuesInSequence
-{
+:
   checkInstructionIsReachable !?ioContinuesInSequence !mInstructionLocation ;
   emitCode !0x0000 ;
-}
+end method ;
 
 #----------------------------------------------------------------------------*
 
@@ -551,10 +554,10 @@ override method @instruction_POP.generateCodeAtAddress
   ??@codeGenerationContext unused inCodeGenerationContext
   ??@uint unused inAddress
   ?!@bool ioContinuesInSequence
-{
+:
   checkInstructionIsReachable !?ioContinuesInSequence !mInstructionLocation ;
   emitCode !0x0006 ;
-}
+end method ;
 
 #----------------------------------------------------------------------------*
 
@@ -562,10 +565,10 @@ override method @instruction_PUSH.generateCodeAtAddress
   ??@codeGenerationContext unused inCodeGenerationContext
   ??@uint unused inAddress
   ?!@bool ioContinuesInSequence
-{
+:
   checkInstructionIsReachable !?ioContinuesInSequence !mInstructionLocation ;
   emitCode !0x0005 ;
-}
+end method ;
 
 #----------------------------------------------------------------------------*
 
@@ -573,10 +576,10 @@ override method @instruction_RESET.generateCodeAtAddress
   ??@codeGenerationContext unused inCodeGenerationContext
   ??@uint unused inAddress
   ?!@bool ioContinuesInSequence
-{
+:
   checkInstructionIsReachable !?ioContinuesInSequence !mInstructionLocation ;
   emitCode !0x00FF ;
-}
+end method ;
 
 #----------------------------------------------------------------------------*
 
@@ -584,10 +587,10 @@ override method @instruction_RETURN.generateCodeAtAddress
   ??@codeGenerationContext unused inCodeGenerationContext
   ??@uint unused inAddress
   ?!@bool ioContinuesInSequence
-{
+:
   checkInstructionIsReachable !?ioContinuesInSequence !mInstructionLocation ;
   emitCode !0x0012 ;
-}
+end method ;
 
 #----------------------------------------------------------------------------*
 
@@ -595,10 +598,10 @@ override method @instruction_SLEEP.generateCodeAtAddress
   ??@codeGenerationContext unused inCodeGenerationContext
   ??@uint unused inAddress
   ?!@bool ioContinuesInSequence
-{
+:
   checkInstructionIsReachable !?ioContinuesInSequence !mInstructionLocation ;
   emitCode !0x0003 ;
-}
+end method ;
 
 #----------------------------------------------------------------------------*
 
@@ -606,7 +609,7 @@ override method @instruction_literalOperation.generateCodeAtAddress
   ??@codeGenerationContext unused inCodeGenerationContext
   ??@uint unused inAddress
   ?!@bool ioContinuesInSequence
-{
+:
   checkInstructionIsReachable !?ioContinuesInSequence !mInstructionLocation ;
   if [mLiteralValue uint] > 255 then
     error mLiteralValue: "A literal value (" . [[mLiteralValue uint] string] . ") should be lower or equal to 255" ;
@@ -615,7 +618,7 @@ override method @instruction_literalOperation.generateCodeAtAddress
   @uint code ; [self getBaseCode ? code] ;
   code := code | [mLiteralValue uint] ;
   emitCode !code ;
-}
+end method ;
 
 #----------------------------------------------------------------------------*
 
@@ -623,7 +626,7 @@ override method @instruction_LFSR.generateCodeAtAddress
   ??@codeGenerationContext inCodeGenerationContext
   ??@uint unused inAddress
   ?!@bool ioContinuesInSequence
-{
+:
   checkInstructionIsReachable !?ioContinuesInSequence !mInstructionLocation ;
   if [mFSRindex uint] > 2 then
     error mFSRindex: "LFSR index should be lower or equal to 2" ;
@@ -632,7 +635,7 @@ override method @instruction_LFSR.generateCodeAtAddress
   [mRegisterExpression getRegisterAddress !inCodeGenerationContext ?sourceRegisterAddress] ;
   emitCode !0xEE00 | ([mFSRindex uint] << 4) | (sourceRegisterAddress >> 8) ;
   emitCode !0xF000 | (sourceRegisterAddress & 255) ;
-}
+end method ;
 
 #----------------------------------------------------------------------------*
 
@@ -640,9 +643,9 @@ override method @instruction_MOVLB.generateCodeAtAddress
   ??@codeGenerationContext unused inCodeGenerationContext
   ??@uint unused inAddress
   ?!@bool ioContinuesInSequence
-{
+:
   checkInstructionIsReachable !?ioContinuesInSequence !mInstructionLocation ;
-}
+end method ;
 
 #----------------------------------------------------------------------------*
 
@@ -650,7 +653,7 @@ override method @instruction_LABEL.generateCodeAtAddress
   ??@codeGenerationContext inCodeGenerationContext
   ??@uint inAddress
   ?!@bool ioContinuesInSequence
-{
+:
   ioContinuesInSequence := true ;
   @uint targetAddress ;
   @uint requiredSelectedBank ;
@@ -660,7 +663,7 @@ override method @instruction_LABEL.generateCodeAtAddress
     . "' label gets " . [inAddress hexString] . " value in second pass, while it gets "
     . [targetAddress hexString] . " in first pass" ;
   end if ;
-}
+end method ;
 
 #----------------------------------------------------------------------------*
 
@@ -668,7 +671,7 @@ override method @instruction_MOVAW.generateCodeAtAddress
   ??@codeGenerationContext inCodeGenerationContext
   ??@uint unused inAddress
   ?!@bool ioContinuesInSequence
-{
+:
   checkInstructionIsReachable !?ioContinuesInSequence !mInstructionLocation ;
   @uint registerAddress ;
   [mRegisterExpression getRegisterAddress
@@ -679,7 +682,7 @@ override method @instruction_MOVAW.generateCodeAtAddress
     error here : "for MOVAW instruction, address (" . [registerAddress hexString] . ") should be lower or equal to 0xFF" ;
   end if ;
   emitCode !0x0E00 | registerAddress ;
-}
+end method ;
 
 #----------------------------------------------------------------------------*
 
@@ -687,7 +690,7 @@ override method @instruction_TBLRD.generateCodeAtAddress
   ??@codeGenerationContext unused inCodeGenerationContext
   ??@uint unused inAddress
   ?!@bool ioContinuesInSequence
-{
+:
   checkInstructionIsReachable !?ioContinuesInSequence !mInstructionLocation ;
   switch mOption
   when simpleAccess  : emitCode !0x0008 ;
@@ -695,7 +698,7 @@ override method @instruction_TBLRD.generateCodeAtAddress
   when postDecrement : emitCode !0x000A ;
   when preIncrement  : emitCode !0x000B ;
   end switch ;
-}
+end method ;
 
 #----------------------------------------------------------------------------*
 
@@ -703,7 +706,7 @@ override method @instruction_TBLWT.generateCodeAtAddress
   ??@codeGenerationContext unused inCodeGenerationContext
   ??@uint unused inAddress
   ?!@bool ioContinuesInSequence
-{
+:
   checkInstructionIsReachable !?ioContinuesInSequence !mInstructionLocation ;
   switch mOption
   when simpleAccess  : emitCode !0x000C ;
@@ -711,7 +714,7 @@ override method @instruction_TBLWT.generateCodeAtAddress
   when postDecrement : emitCode !0x000E ;
   when preIncrement  : emitCode !0x000F ;
   end switch ;
-}
+end method ;
 
 #----------------------------------------------------------------------------*
 
@@ -719,7 +722,7 @@ override method @instruction_MNOP.generateCodeAtAddress
   ??@codeGenerationContext unused inCodeGenerationContext
   ??@uint unused inAddress
   ?!@bool ioContinuesInSequence
-{
+:
   checkInstructionIsReachable !?ioContinuesInSequence !mInstructionLocation ;
   if [mOccurrenceFactor uint] == 0 then
     warning mOccurrenceFactor: "No generated code" ;
@@ -731,7 +734,7 @@ override method @instruction_MNOP.generateCodeAtAddress
     emitCode !0x0000 ;
     idx ++ ;
   end loop ;
-}
+end method ;
 
 #----------------------------------------------------------------------------*
 
@@ -739,7 +742,7 @@ override method @instruction_FOREVER.generateCodeAtAddress
   ??@codeGenerationContext inCodeGenerationContext
   ??@uint inAddress
   ?!@bool ioContinuesInSequence
-{
+:
   checkInstructionIsReachable !?ioContinuesInSequence !mInstructionLocation ;
   ioContinuesInSequence := false ;
   @uint currentAddress := inAddress ;
@@ -755,7 +758,7 @@ override method @instruction_FOREVER.generateCodeAtAddress
     !inAddress
     !mInstructionLocation
   ;
-}
+end method ;
 
 #----------------------------------------------------------------------------*
 
@@ -763,7 +766,7 @@ override method @instruction_IF_SEMI_COLON.generateCodeAtAddress
   ??@codeGenerationContext inCodeGenerationContext
   ??@uint inAddress
   ?!@bool ioContinuesInSequence
-{
+:
   checkInstructionIsReachable !?ioContinuesInSequence !mInstructionLocation ;
   @uint registerAddress ;
   @bool useBSRregister ;
@@ -782,7 +785,7 @@ override method @instruction_IF_SEMI_COLON.generateCodeAtAddress
   emitCode !code ;
   @bool unusedContinuesInSequence := true ;
   [mInstruction generateCodeAtAddress !inCodeGenerationContext !inAddress + 2 !?unusedContinuesInSequence] ;
-}
+end method ;
 
 #----------------------------------------------------------------------------*
 
@@ -790,7 +793,7 @@ override method @instruction_IF_BitTest.generateCodeAtAddress
   ??@codeGenerationContext inCodeGenerationContext
   ??@uint inAddress
   ?!@bool ioContinuesInSequence
-{
+:
   checkInstructionIsReachable !?ioContinuesInSequence !mInstructionLocation ;
   @uint registerAddress ;
   @bool useBSRregister ;
@@ -814,7 +817,7 @@ override method @instruction_IF_BitTest.generateCodeAtAddress
   emitCode !code ;
   @bool unusedContinuesInSequence := true ;
   [mInstruction generateCodeAtAddress !inCodeGenerationContext !inAddress + 2 !?unusedContinuesInSequence] ;
-}
+end method ;
 
 #----------------------------------------------------------------------------*
 
@@ -822,7 +825,7 @@ override method @instruction_computed_retlw.generateCodeAtAddress
   ??@codeGenerationContext inCodeGenerationContext
   ??@uint inAddress
   ?!@bool ioContinuesInSequence
-{
+:
   checkInstructionIsReachable !?ioContinuesInSequence !mInstructionLocation ;
   ioContinuesInSequence := false ;
   if mUsesRelativeCall then
@@ -836,7 +839,7 @@ override method @instruction_computed_retlw.generateCodeAtAddress
     end if ;
     emitCode !0x0C00 | [mValue uint] ;
   end foreach ;
-}
+end method ;
 
 #----------------------------------------------------------------------------*
 
@@ -844,7 +847,7 @@ override method @instruction_computed_bra.generateCodeAtAddress
   ??@codeGenerationContext inCodeGenerationContext
   ??@uint inAddress
   ?!@bool ioContinuesInSequence
-{
+:
   checkInstructionIsReachable !?ioContinuesInSequence !mInstructionLocation ;
   ioContinuesInSequence := false ;
   if mUsesRelativeCall then
@@ -864,7 +867,7 @@ override method @instruction_computed_bra.generateCodeAtAddress
     ;
     address := address + 2 ;
   end foreach ;
-}
+end method ;
 
 #----------------------------------------------------------------------------*
 
@@ -872,7 +875,7 @@ override method @instruction_computed_goto.generateCodeAtAddress
   ??@codeGenerationContext inCodeGenerationContext
   ??@uint inAddress
   ?!@bool ioContinuesInSequence
-{
+:
   checkInstructionIsReachable !?ioContinuesInSequence !mInstructionLocation ;
   ioContinuesInSequence := false ;
   if mUsesRelativeCall then
@@ -888,7 +891,7 @@ override method @instruction_computed_goto.generateCodeAtAddress
       !targetAddress
     ;
   end foreach ;
-}
+end method ;
 
 #----------------------------------------------------------------------------*
 
@@ -906,14 +909,14 @@ override method @bcc_in_structured_if_condition.emitInstruction
   ??@uint inCurrentAddress
   ??@uint inTargetAddress
   ??@location inErrorLocation
-{
+:
   emitConditionalBranchInstruction
     !inCurrentAddress
     !inTargetAddress
     !inErrorLocation
     !mCondition
   ;
-}
+end method ;
 
 #----------------------------------------------------------------------------*
 
@@ -922,7 +925,7 @@ override method @bitTest_in_structured_if_condition.emitInstruction
   ??@uint inCurrentAddress
   ??@uint inTargetAddress
   ??@location inErrorLocation
-{
+:
 #--- Register
   @bitSliceTable bitSliceTable;
   @uint usedRegisterAddress ;
@@ -951,7 +954,7 @@ override method @bitTest_in_structured_if_condition.emitInstruction
    !inTargetAddress
    !inErrorLocation
   ;
-}
+end method ;
 
 #----------------------------------------------------------------------------*
 
@@ -959,7 +962,7 @@ override method @instruction_structured_if.generateCodeAtAddress
   ??@codeGenerationContext inCodeGenerationContext
   ??@uint inAddress
   ?!@bool ioContinuesInSequence
-{
+:
   checkInstructionIsReachable !?ioContinuesInSequence !mInstructionLocation ;
 #--- 'then' instructions length
   @uint thenInstructionsLength := 0 ;
@@ -1018,7 +1021,7 @@ override method @instruction_structured_if.generateCodeAtAddress
       currentAddress := currentAddress + lg ;
     end foreach ;
   end if ;
-}
+end method ;
 
 #----------------------------------------------------------------------------*
 #                                                                            *
@@ -1252,9 +1255,9 @@ routine analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName :
 #--- If no error, generate object file
   if [@uint errorCount] == 0 then
     @string contents ;
-    getGeneratedContents ? contents ;
+    getGeneratedContents ?contents ;
     @string destinationFile := [inSourceFileName stringByDeletingPathExtension] . ".hex" ;
-    [contents writeToFile !destinationFile] ;
+    [contents writeToFileWhenDifferentContents !destinationFile] ;
   end if ;
 end routine ;
 

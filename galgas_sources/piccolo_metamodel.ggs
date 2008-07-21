@@ -105,72 +105,55 @@ class @instruction_FDA extends @instruction {
 
 #----------------------------------------------------*
 
-abstract class @instruction_FA extends @instruction {
+enum @FA_instruction_base_code {
+  constructor CLRF ;
+  constructor CPFSGT ;
+  constructor CPFSLT ;
+  constructor MOVWF  ;
+  constructor MULWF  ;
+  constructor NEGF  ;
+  constructor SETF  ;
+  constructor TSTFSZ ;
+}{
+  reader mnemonic :
+    CLRF   -> "CLRF" ;
+    CPFSGT -> "CPFSGT" ;
+    CPFSLT -> "CPFSLT" ;
+    MOVWF  -> "MOVWF" ;
+    MULWF  -> "MULWF" ;
+    NEGF   -> "NEGF";
+    SETF   -> "SETF"  ;
+    TSTFSZ -> "TSTFSZ" ;
+  end reader ;
+}
+
+#----------------------------------------------------*
+
+routine getFAinstructionBaseCode
+  ??@FA_instruction_base_code inInstruction
+  !@uint outBaseCode
+:
+  switch inInstruction
+  when CLRF : outBaseCode := 0x6A00 ;
+  when CPFSGT : outBaseCode := 0x6400 ;
+  when CPFSLT : outBaseCode := 0x6000 ;
+  when MOVWF : outBaseCode := 0x6E00 ;
+  when MULWF : outBaseCode := 0x0200 ;
+  when NEGF : outBaseCode := 0x6C00 ;
+  when SETF : outBaseCode := 0x6800 ;
+  when TSTFSZ : outBaseCode := 0x6600 ;
+  end switch ;
+end routine ;
+
+
+#----------------------------------------------------*
+
+class @instruction_FA extends @instruction {
+  @FA_instruction_base_code mFAinstruction ;
   @registerExpression mRegisterExpression ;
-  abstract method getBaseCode !@uint outBaseCode ;
-}
 
-#----------------------------------------------------*
-
-class @instruction_CLRF extends @instruction_FA {
-  override method getBaseCode !@uint outBaseCode :
-    outBaseCode := 0x6A00 ;
-  end method ;
-}
-
-#----------------------------------------------------*
-
-class @instruction_CPFSGT extends @instruction_FA {
-  override method getBaseCode !@uint outBaseCode :
-    outBaseCode := 0x6400 ;
-  end method ;
-}
-
-#----------------------------------------------------*
-
-class @instruction_CPFSLT extends @instruction_FA {
-  override method getBaseCode !@uint outBaseCode :
-    outBaseCode := 0x6000 ;
-  end method ;
-}
-
-#----------------------------------------------------*
-
-class @instruction_MOVWF extends @instruction_FA {
-  override method getBaseCode !@uint outBaseCode :
-    outBaseCode := 0x6E00 ;
-  end method ;
-}
-
-#----------------------------------------------------*
-
-class @instruction_MULWF extends @instruction_FA {
-  override method getBaseCode !@uint outBaseCode :
-    outBaseCode := 0x0200 ;
-  end method ;
-}
-
-#----------------------------------------------------*
-
-class @instruction_NEGF extends @instruction_FA {
-  override method getBaseCode !@uint outBaseCode :
-    outBaseCode := 0x6C00 ;
-  end method ;
-}
-
-#----------------------------------------------------*
-
-class @instruction_SETF extends @instruction_FA {
-  override method getBaseCode !@uint outBaseCode :
-    outBaseCode := 0x6800 ;
-  end method ;
-}
-
-#----------------------------------------------------*
-
-class @instruction_TSTFSZ extends @instruction_FA {
-  override method getBaseCode !@uint outBaseCode :
-    outBaseCode := 0x6600 ;
+  method getBaseCode !@uint outBaseCode :
+   getFAinstructionBaseCode !mFAinstruction ?outBaseCode ;
   end method ;
 }
 
