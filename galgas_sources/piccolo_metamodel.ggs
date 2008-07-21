@@ -766,6 +766,51 @@ class @instruction_computed_goto extends @instruction {
 
 #----------------------------------------------------*
 
+enum @conditional_branch {
+  constructor bz ;
+  constructor bnz ;
+  constructor bn ;
+  constructor bnn ;
+  constructor bc ;
+  constructor bnc ;
+  constructor bov ;
+  constructor bnov ;
+}{
+}
+
+#----------------------------------------------------*
+
+routine getBccBaseCode ??@conditional_branch inConditionalBranch !@uint outBaseCode :
+  switch inConditionalBranch
+  when bz   : outBaseCode := 0xE000 ;
+  when bnz  : outBaseCode := 0xE100 ;
+  when bn   : outBaseCode := 0xE600 ;
+  when bnn  : outBaseCode := 0xE700 ;
+  when bc   : outBaseCode := 0xE200 ;
+  when bnc  : outBaseCode := 0xE300 ;
+  when bov  : outBaseCode := 0xE400 ;
+  when bnov : outBaseCode := 0xE500 ;
+  end switch ;
+end routine ;
+
+#----------------------------------------------------*
+
+class @instruction_structured_if extends @instruction {
+  @conditional_branch mCondition ;
+  @instructionList mThenInstructionList ;
+
+  override
+  method instructionLength !@uint outLength :
+    outLength := 2 ; # Bcc
+    foreach mThenInstructionList do
+      @uint lg ; [mInstruction instructionLength ?lg] ;
+      outLength := outLength + lg ;
+    end foreach ;
+  end method ;
+}
+
+#----------------------------------------------------*
+
 list @interruptDefinitionList {
   @lstring mInterruptName ;
   @instructionList mInstructionList ;

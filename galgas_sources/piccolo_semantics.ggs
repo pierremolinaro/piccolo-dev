@@ -54,6 +54,46 @@ method @instruction_LABEL.enterLabelAtAddress
 
 #----------------------------------------------------*
 
+override
+method @instruction_structured_if.enterLabelAtAddress
+  ?!@routineSymbolTable ioRoutineSymbolTable
+  ??@uint inAddress
+  ?!@uint ioCurrentlySelectedBank
+{
+  @uint address := inAddress + 2 ;
+  foreach mThenInstructionList do
+    [mInstruction enterLabelAtAddress
+      !?ioRoutineSymbolTable
+      !address
+      !?ioCurrentlySelectedBank
+    ] ;
+    @uint lg ; [mInstruction instructionLength ?lg] ;
+    address := address + lg ;
+  end foreach ;
+}
+
+#----------------------------------------------------*
+
+override
+method @instruction_FOREVER.enterLabelAtAddress
+  ?!@routineSymbolTable ioRoutineSymbolTable
+  ??@uint inAddress
+  ?!@uint ioCurrentlySelectedBank
+{
+  @uint address := inAddress ;
+  foreach mInstructionList do
+    [mInstruction enterLabelAtAddress
+      !?ioRoutineSymbolTable
+      !address
+      !?ioCurrentlySelectedBank
+    ] ;
+    @uint lg ; [mInstruction instructionLength ?lg] ;
+    address := address + lg ;
+  end foreach ;
+}
+
+#----------------------------------------------------*
+
 struct @codeGenerationContext {
   @routineSymbolTable mRoutineSymbolTable ;
   @registerTable mRegisterTable ;
@@ -834,6 +874,44 @@ override method @instruction_computed_goto.generateCodeAtAddress
     emitGOTOinstruction
       !targetAddress
     ;
+  end foreach ;
+}
+
+#----------------------------------------------------------------------------*
+
+override method @instruction_structured_if.generateCodeAtAddress
+  ??@codeGenerationContext inCodeGenerationContext
+  ??@uint inAddress
+  ?!@bool ioContinuesInSequence
+{
+  checkInstructionIsReachable !?ioContinuesInSequence !mInstructionLocation ;
+#--- Get base code
+  @uint baseCode ;
+  getBccBaseCode !mCondition ?baseCode ;
+#--- 'then' instructions length
+  @uint thenInstructionsLength := 0 ;
+  foreach mThenInstructionList do
+    @uint lg ; [mInstruction instructionLength ?lg] ;
+    thenInstructionsLength := thenInstructionsLength + lg ;
+  end foreach ;
+#--- Emit Bcc instruction
+  emitConditionalBranchInstruction
+    !inAddress
+    !inAddress + thenInstructionsLength + 2
+    !mInstructionLocation
+    !baseCode
+  ;
+#--- Emit 'then' instructions
+  @uint currentAddress := inAddress + 2 ; # Bcc
+  @bool continuesInSequence := true ;
+  foreach mThenInstructionList do
+    [mInstruction generateCodeAtAddress
+      !inCodeGenerationContext
+      !currentAddress
+      !?continuesInSequence
+    ] ;
+    @uint lg ; [mInstruction instructionLength ?lg] ;
+    currentAddress := currentAddress + lg ;
   end foreach ;
 }
 
