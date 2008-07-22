@@ -1,5 +1,5 @@
 option piccolo_options :
 
-# ADD YOUR CODE HERE
+@bool generateAssembly : 's', "asm" -> "Generate assembly language text file, instead of hex file" ;
 
 end option ;

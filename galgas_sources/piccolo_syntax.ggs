@@ -293,59 +293,28 @@ rule <structured_instruction>
     $if$ ;
     @registerExpression registerName ;
     <register_parsing> ?registerName ;
-    $!=$ ;
-    $w$ ;
+    @if_semi_colon_op opCode ;
+    select
+      $!=$ ; $w$ ; opCode := [@if_semi_colon_op CPFSEQ] ;
+    or
+      $<=$ ; $w$ ; opCode := [@if_semi_colon_op CPFSGT] ;
+    or
+      $>=$ ; $w$ ; opCode := [@if_semi_colon_op CPFSLT] ;
+    or
+      $identifier$ ? @lstring condition ;
+      if [condition string] != "nz" then
+        error condition:"invalid '" . condition . "' condition; it should be 'nz'" ;
+      end if ;
+      opCode := [@if_semi_colon_op TSTFSZ] ;
+    end select ;
     $:$ ;
     @instruction instruction ;
     <simple_instruction> ?instruction ;
-    outInstruction := [@instruction_IF_CPF_NotEqual new
+    outInstruction := [@instruction_IF_FA_SEMI_COLON new
       !instructionLocation
-      !registerName
       !instruction
-    ] ;
-  or
-    $if$ ;
-    @registerExpression registerName ;
-    <register_parsing> ?registerName ;
-    $<=$ ;
-    $w$ ;
-    $:$ ;
-    @instruction instruction ;
-    <simple_instruction> ?instruction ;
-    outInstruction := [@instruction_IF_CPF_LowerOrEqual new
-      !instructionLocation
+      !opCode
       !registerName
-      !instruction
-    ] ;
-  or
-    $if$ ;
-    @registerExpression registerName ;
-    <register_parsing> ?registerName ;
-    $>=$ ;
-    $w$ ;
-    $:$ ;
-    @instruction instruction ;
-    <simple_instruction> ?instruction ;
-    outInstruction := [@instruction_IF_CPF_GreaterOrEqual new
-      !instructionLocation
-      !registerName
-      !instruction
-    ] ;
-  or
-    $if$ ;
-    @registerExpression registerName ;
-    <register_parsing> ?registerName ;
-    $identifier$ ? @lstring condition ;
-    if [condition string] != "nz" then
-      error condition:"invalid '" . condition . "' condition; it should be 'nz'" ;
-    end if ;
-    $:$ ;
-    @instruction instruction ;
-    <simple_instruction> ?instruction ;
-    outInstruction := [@instruction_IF_TST_NotZero new
-      !instructionLocation
-      !registerName
-      !instruction
     ] ;
   or
     $if$ ;
@@ -368,10 +337,10 @@ rule <structured_instruction>
     <simple_instruction> ?instruction ;
     outInstruction := [@instruction_IF_BitTest new
       !instructionLocation
-      !registerName
       !instruction
-      !bitNumber
       !skipIfSet
+      !registerName
+      !bitNumber
     ] ;
   or
     @bool useRelativeCall ;
@@ -653,62 +622,26 @@ rule <simple_instruction> !@instruction outInstruction :
       !destinationRegisterName
     ] ;
   or
-    $bcf$ ;
+    @bit_oriented_op bitOrientedOp ;
+    select
+      $bcf$ ; bitOrientedOp := [@bit_oriented_op BCF] ;
+    or
+      $bsf$ ; bitOrientedOp := [@bit_oriented_op BSF] ;
+    or
+      $btfsc$ ; bitOrientedOp := [@bit_oriented_op BTFSC] ;
+    or
+      $btfss$ ; bitOrientedOp := [@bit_oriented_op BTFSS] ;
+    or
+      $btg$ ; bitOrientedOp := [@bit_oriented_op BTG] ;
+    end select ;
     @registerExpression registerName ;
     <register_parsing> ?registerName ;
     $.$ ;
     @bitNumberExpression bitNumber ;
     <bit_number_parsing> ?bitNumber ;
-    outInstruction := [@instruction_BCF new
+    outInstruction := [@instruction_FBA new
       !instructionLocation
-      !registerName
-      !bitNumber
-    ] ;
-  or
-    $bsf$ ;
-    @registerExpression registerName ;
-    <register_parsing> ?registerName ;
-    $.$ ;
-    @bitNumberExpression bitNumber ;
-    <bit_number_parsing> ?bitNumber ;
-    outInstruction := [@instruction_BSF new
-      !instructionLocation
-      !registerName
-      !bitNumber
-    ] ;
-  or
-    $btfsc$ ;
-    @registerExpression registerName ;
-    <register_parsing> ?registerName ;
-    $,$ ;
-    @bitNumberExpression bitNumber ;
-    <bit_number_parsing> ?bitNumber ;
-    outInstruction := [@instruction_BTFSC new
-      !instructionLocation
-      !registerName
-      !bitNumber
-    ] ;
-  or
-    $btfss$ ;
-    @registerExpression registerName ;
-    <register_parsing> ?registerName ;
-    $,$ ;
-    @bitNumberExpression bitNumber ;
-    <bit_number_parsing> ?bitNumber ;
-    outInstruction := [@instruction_BTFSS new
-      !instructionLocation
-      !registerName
-      !bitNumber
-    ] ;
-  or
-    $btg$ ;
-    @registerExpression registerName ;
-    <register_parsing> ?registerName ;
-    $.$ ;
-    @bitNumberExpression bitNumber ;
-    <bit_number_parsing> ?bitNumber ;
-    outInstruction := [@instruction_BTG new
-      !instructionLocation
+      !bitOrientedOp
       !registerName
       !bitNumber
     ] ;
@@ -790,45 +723,31 @@ rule <simple_instruction> !@instruction outInstruction :
     $sleep$ ;
     outInstruction := [@instruction_SLEEP new !instructionLocation] ;
   or
-    $addlw$ ;
+    @literal_instruction_opcode literalInstruction ;
+    select
+      $addlw$ ; literalInstruction := [@literal_instruction_opcode ADDLW] ;
+    or
+      $andlw$ ; literalInstruction := [@literal_instruction_opcode ANDLW] ;
+    or
+      $iorlw$ ; literalInstruction := [@literal_instruction_opcode IORLW] ;
+    or
+      $movlw$ ; literalInstruction := [@literal_instruction_opcode MOVLW] ;
+    or
+      $mullw$ ; literalInstruction := [@literal_instruction_opcode MULLW] ;
+    or
+      $retlw$ ; literalInstruction := [@literal_instruction_opcode RETLW] ;
+    or
+      $sublw$ ; literalInstruction := [@literal_instruction_opcode SUBLW] ;
+    or
+      $xorlw$ ; literalInstruction := [@literal_instruction_opcode XORLW] ;
+    end select ;
     @luint literalValue ;
     <literal_value_parsing> ?literalValue ;
-    outInstruction := [@instruction_ADDLW new !instructionLocation !literalValue] ;
-  or
-    $andlw$ ;
-    @luint literalValue ;
-    <literal_value_parsing> ?literalValue ;
-    outInstruction := [@instruction_ANDLW new !instructionLocation !literalValue] ;
-  or
-    $iorlw$ ;
-    @luint literalValue ;
-    <literal_value_parsing> ?literalValue ;
-    outInstruction := [@instruction_IORLW new !instructionLocation !literalValue] ;
-  or
-    $movlw$ ;
-    @luint literalValue ;
-    <literal_value_parsing> ?literalValue ;
-    outInstruction := [@instruction_MOVLW new !instructionLocation !literalValue] ;
-  or
-    $mullw$ ;
-    @luint literalValue ;
-    <literal_value_parsing> ?literalValue ;
-    outInstruction := [@instruction_MULLW new !instructionLocation !literalValue] ;
-  or
-    $retlw$ ;
-    @luint literalValue ;
-    <literal_value_parsing> ?literalValue ;
-    outInstruction := [@instruction_RETLW new !instructionLocation !literalValue] ;
-  or
-    $sublw$ ;
-    @luint literalValue ;
-    <literal_value_parsing> ?literalValue ;
-    outInstruction := [@instruction_SUBLW new !instructionLocation !literalValue] ;
-  or
-    $xorlw$ ;
-    @luint literalValue ;
-    <literal_value_parsing> ?literalValue ;
-    outInstruction := [@instruction_XORLW new !instructionLocation !literalValue] ;
+    outInstruction := [@instruction_literalOperation new
+      !instructionLocation
+      !literalInstruction
+      !literalValue
+    ] ;
   or
     $lfsr$ ;
     $integer$ ? @luint FSRindex ;
@@ -843,8 +762,7 @@ rule <simple_instruction> !@instruction outInstruction :
   or
     $label$ ;
     $identifier$ ? @lstring targetLabelName ;
-    outInstruction := [@instruction_LABEL new
-      !instructionLocation
+    outInstruction := [@pseudo_LABEL new
       !targetLabelName
     ] ;
   or
