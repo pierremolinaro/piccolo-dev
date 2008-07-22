@@ -4,20 +4,43 @@ semantics piccolo_metamodel :
 #----------------------------------------------------*
 
 abstract class @instruction {
-  @location mInstructionLocation ;
 
-  method instructionLength !@uint outLength :
-    outLength := 2 ;
+  abstract method instructionLength !@uint outLength ;
+}
+
+#----------------------------------------------------*
+
+abstract class @pseudoInstruction extends @instruction {
+
+  override method instructionLength !@uint outLength :
+    outLength := 0 ;
   end method ;
 }
 
 #----------------------------------------------------*
 
-class @pseudo_ORG extends @instruction {
+class @pseudo_NULL extends @pseudoInstruction {
+}
+
+#----------------------------------------------------*
+
+class @pseudo_ORG extends @pseudoInstruction {
   @uint mOrigin ;
+}
+
+#----------------------------------------------------*
+
+class @pseudo_LABEL extends @pseudoInstruction {
+  @lstring mTargetLabel ;
+}
+
+#----------------------------------------------------*
+
+abstract class @actualInstruction extends @instruction {
+  @location mInstructionLocation ;
 
   override method instructionLength !@uint outLength :
-    outLength := 0 ;
+    outLength := 2 ;
   end method ;
 }
 
@@ -59,6 +82,29 @@ enum @instruction_FDA_base_code {
   constructor SWAPF ;
   constructor XORWF ;
 }{
+  reader mnemonic :
+    ADDWF -> "ADDWF" ;
+    ADDWFC -> "ADDWFC" ;
+    ANDWF -> "ANDWF" ;
+    COMF -> "COMF" ;
+    DECF -> "DECF" ;
+    DECFSZ -> "DECFSZ" ;
+    DCFSNZ -> "DCFSNZ" ;
+    INCF -> "INCF" ;
+    INCFSZ -> "INCFSZ" ;
+    INFSNZ -> "INFSNZ" ;
+    IORWF -> "IORWF" ;
+    MOVF -> "MOVF" ;
+    RLCF -> "RLCF" ;
+    RLNCF -> "RLNCF" ;
+    RRCF -> "RRCF" ;
+    RRNCF -> "RRNCF" ;
+    SUBFWB -> "SUBFWB" ;
+    SUBWF -> "SUBWF" ;
+    SUBWFB -> "SUBWFB" ;
+    SWAPF -> "SWAPF" ;
+    XORWF -> "XORWF" ;
+  end reader ;
 }
 
 #----------------------------------------------------*
@@ -94,10 +140,11 @@ end routine ;
 
 #----------------------------------------------------*
 
-class @instruction_FDA extends @instruction {
+class @instruction_FDA extends @actualInstruction {
   @instruction_FDA_base_code mInstruction_FDA_base_code ;
   @registerExpression mRegisterExpression ;
   @bool m_W_isDestination ;
+
   method getBaseCode !@uint outBaseCode :
     getFDAinstructionBaseCode !mInstruction_FDA_base_code ?outBaseCode ;
   end method ;
@@ -107,6 +154,7 @@ class @instruction_FDA extends @instruction {
 
 enum @FA_instruction_base_code {
   constructor CLRF ;
+  constructor CPFSEQ ;
   constructor CPFSGT ;
   constructor CPFSLT ;
   constructor MOVWF  ;
@@ -117,6 +165,7 @@ enum @FA_instruction_base_code {
 }{
   reader mnemonic :
     CLRF   -> "CLRF" ;
+    CPFSEQ -> "CPFSEQ" ;
     CPFSGT -> "CPFSGT" ;
     CPFSLT -> "CPFSLT" ;
     MOVWF  -> "MOVWF" ;
@@ -134,13 +183,14 @@ routine getFAinstructionBaseCode
   !@uint outBaseCode
 :
   switch inInstruction
-  when CLRF : outBaseCode := 0x6A00 ;
+  when CLRF   : outBaseCode := 0x6A00 ;
+  when CPFSEQ : outBaseCode := 0x6400 ;
   when CPFSGT : outBaseCode := 0x6400 ;
   when CPFSLT : outBaseCode := 0x6000 ;
-  when MOVWF : outBaseCode := 0x6E00 ;
-  when MULWF : outBaseCode := 0x0200 ;
-  when NEGF : outBaseCode := 0x6C00 ;
-  when SETF : outBaseCode := 0x6800 ;
+  when MOVWF  : outBaseCode := 0x6E00 ;
+  when MULWF  : outBaseCode := 0x0200 ;
+  when NEGF   : outBaseCode := 0x6C00 ;
+  when SETF   : outBaseCode := 0x6800 ;
   when TSTFSZ : outBaseCode := 0x6600 ;
   end switch ;
 end routine ;
@@ -148,7 +198,7 @@ end routine ;
 
 #----------------------------------------------------*
 
-class @instruction_FA extends @instruction {
+class @instruction_FA extends @actualInstruction {
   @FA_instruction_base_code mFAinstruction ;
   @registerExpression mRegisterExpression ;
 
@@ -159,7 +209,7 @@ class @instruction_FA extends @instruction {
 
 #----------------------------------------------------*
 
-class @instruction_MOVFF extends @instruction {
+class @instruction_MOVFF extends @actualInstruction {
   @registerExpression mSourceRegisterName ;
   @registerExpression mDestinationRegisterName ;
   
@@ -189,49 +239,43 @@ class @bitNumberLabelValue extends @bitNumberExpression {
 
 #----------------------------------------------------*
 
-abstract class @instruction_FBA extends @instruction {
+enum @bit_oriented_op {
+  constructor BCF ;
+  constructor BSF ;
+  constructor BTFSC ;
+  constructor BTFSS ;
+  constructor BTG ;
+}{
+  reader mnemonic :
+    BCF -> "BCF" ;
+    BSF -> "BSF" ;
+    BTFSC -> "BTFSC" ;
+    BTFSS -> "BTFSS" ;
+    BTG -> "BTG" ;
+  end reader ;
+}
+
+#----------------------------------------------------*
+
+routine getBitOrientedOpBaseCode ??@bit_oriented_op inInstruction !@uint outBaseCode :
+  switch inInstruction
+  when BCF : outBaseCode := 0x9000 ;
+  when BSF : outBaseCode := 0x8000 ;
+  when BTFSC : outBaseCode := 0xB000 ;
+  when BTFSS : outBaseCode := 0xA000 ;
+  when BTG : outBaseCode := 0x7000 ;
+  end switch ;
+end routine ;
+
+
+#----------------------------------------------------*
+
+class @instruction_FBA extends @actualInstruction {
+  @bit_oriented_op mBitOrientedOp ;
   @registerExpression mRegisterExpression ;
   @bitNumberExpression mBitNumber ;
-  abstract method getBaseCode !@uint outBaseCode ;
-}
-
-#----------------------------------------------------*
-
-class @instruction_BCF extends @instruction_FBA {
-  override method getBaseCode !@uint outBaseCode :
-    outBaseCode := 0x9000 ;
-  end method ;
-}
-
-#----------------------------------------------------*
-
-class @instruction_BSF extends @instruction_FBA {
-  override method getBaseCode !@uint outBaseCode :
-    outBaseCode := 0x8000 ;
-  end method ;
-}
-
-#----------------------------------------------------*
-
-class @instruction_BTFSC extends @instruction_FBA {
-  override method getBaseCode !@uint outBaseCode :
-    outBaseCode := 0xB000 ;
-  end method ;
-}
-
-#----------------------------------------------------*
-
-class @instruction_BTFSS extends @instruction_FBA {
-  override method getBaseCode !@uint outBaseCode :
-    outBaseCode := 0xA000 ;
-  end method ;
-}
-
-#----------------------------------------------------*
-
-class @instruction_BTG extends @instruction_FBA {
-  override method getBaseCode !@uint outBaseCode :
-    outBaseCode := 0x7000 ;
+  method getBaseCode !@uint outBaseCode :
+    getBitOrientedOpBaseCode !mBitOrientedOp ?outBaseCode ;
   end method ;
 }
 
@@ -247,6 +291,16 @@ enum @conditional_branch {
   constructor bov ;
   constructor bnov ;
 }{
+  reader mnemonic :
+    bz   -> "BZ" ;
+    bnz  -> "BNZ" ;
+    bn   -> "BN" ;
+    bnn  -> "BNN" ;
+    bc   -> "BC" ;
+    bnc  -> "BNC" ;
+    bov  -> "BOV" ;
+    bnov -> "BNOV" ;
+  end reader ;
 }
 
 #----------------------------------------------------*
@@ -281,30 +335,20 @@ end routine ;
 
 #----------------------------------------------------*
 
-class @instruction_conditionalBranch extends @instruction {
+class @instruction_conditionalBranch extends @actualInstruction {
   @conditional_branch mConditionalBranch ;
   @lstring mTargetLabel ;
 }
 
 #----------------------------------------------------*
 
-class @instruction_BRA extends @instruction {
+class @instruction_BRA extends @actualInstruction {
   @lstring mTargetLabel ;
 }
 
 #----------------------------------------------------*
 
-class @instruction_CALL extends @instruction {
-  @lstring mTargetLabel ;
-  override
-  method instructionLength !@uint outLength :
-    outLength := 4 ;
-  end method ;
-}
-
-#----------------------------------------------------*
-
-class @instruction_GOTO extends @instruction {
+class @instruction_CALL extends @actualInstruction {
   @lstring mTargetLabel ;
   override
   method instructionLength !@uint outLength :
@@ -314,124 +358,119 @@ class @instruction_GOTO extends @instruction {
 
 #----------------------------------------------------*
 
-class @instruction_RCALL extends @instruction {
+class @instruction_GOTO extends @actualInstruction {
+  @lstring mTargetLabel ;
+  override
+  method instructionLength !@uint outLength :
+    outLength := 4 ;
+  end method ;
+}
+
+#----------------------------------------------------*
+
+class @instruction_RCALL extends @actualInstruction {
   @lstring mTargetLabel ;
 }
 
 #----------------------------------------------------*
 
-class @instruction_CLRWDT extends @instruction {
+class @instruction_CLRWDT extends @actualInstruction {
 }
 
 #----------------------------------------------------*
 
-class @instruction_DAW extends @instruction {
+class @instruction_DAW extends @actualInstruction {
 }
 
 #----------------------------------------------------*
 
-class @instruction_NOP extends @instruction {
+class @instruction_NOP extends @actualInstruction {
 }
 
 #----------------------------------------------------*
 
-class @instruction_POP extends @instruction {
+class @instruction_POP extends @actualInstruction {
 }
 
 #----------------------------------------------------*
 
-class @instruction_PUSH extends @instruction {
+class @instruction_PUSH extends @actualInstruction {
 }
 
 #----------------------------------------------------*
 
-class @instruction_RESET extends @instruction {
+class @instruction_RESET extends @actualInstruction {
 }
 
 #----------------------------------------------------*
 
-class @instruction_RETURN extends @instruction {
+class @instruction_RETURN extends @actualInstruction {
 }
 
 #----------------------------------------------------*
 
-class @instruction_SLEEP extends @instruction {
+class @instruction_RETFIE extends @actualInstruction {
+  @bool mFastReturn ;
 }
 
 #----------------------------------------------------*
 
-abstract class @instruction_literalOperation extends @instruction {
+class @instruction_SLEEP extends @actualInstruction {
+}
+
+#----------------------------------------------------*
+
+enum @literal_instruction_opcode {
+  constructor ADDLW ;
+  constructor ANDLW ;
+  constructor IORLW ;
+  constructor MOVLW ;
+  constructor MULLW ;
+  constructor RETLW ;
+  constructor SUBLW ;
+  constructor XORLW ;
+}{
+  reader mnemonic :
+    ADDLW -> "ADDLW" ;
+    ANDLW -> "ANDLW" ;
+    IORLW -> "IORLW" ;
+    MOVLW -> "MOVLW" ;
+    MULLW -> "MULLW" ;
+    RETLW -> "RETLW" ;
+    SUBLW -> "SUBLW" ;
+    XORLW -> "XORLW" ;
+  end reader ;
+}
+
+#----------------------------------------------------*
+
+routine getLiteralInstructionBaseCode ??@literal_instruction_opcode inInstruction !@uint outBaseCode :
+  switch inInstruction
+  when ADDLW : outBaseCode := 0x0F00 ;
+  when ANDLW : outBaseCode := 0x0B00 ;
+  when IORLW : outBaseCode := 0x0900 ;
+  when MOVLW : outBaseCode := 0x0E00 ;
+  when MULLW : outBaseCode := 0x0D00 ;
+  when RETLW : outBaseCode := 0x0C00 ;
+  when SUBLW : outBaseCode := 0x0800 ;
+  when XORLW : outBaseCode := 0x0A00 ;
+  end switch ;
+end routine ;
+
+
+#----------------------------------------------------*
+
+class @instruction_literalOperation extends @actualInstruction {
+  @literal_instruction_opcode mLiteralInstruction ;
   @luint mLiteralValue ;
-  abstract method getBaseCode !@uint outBaseCode ;
-}
-
-#----------------------------------------------------*
-
-class @instruction_ADDLW extends @instruction_literalOperation {
-  override method getBaseCode !@uint outBaseCode :
-    outBaseCode := 0x0F00 ;
+  method getBaseCode !@uint outBaseCode :
+    getLiteralInstructionBaseCode !mLiteralInstruction ?outBaseCode ;
   end method ;
 }
 
 #----------------------------------------------------*
 
-class @instruction_ANDLW extends @instruction_literalOperation {
-  override method getBaseCode !@uint outBaseCode :
-    outBaseCode := 0x0B00 ;
-  end method ;
-}
-
-#----------------------------------------------------*
-
-class @instruction_IORLW extends @instruction_literalOperation {
-  override method getBaseCode !@uint outBaseCode :
-    outBaseCode := 0x0900 ;
-  end method ;
-}
-
-#----------------------------------------------------*
-
-class @instruction_MOVLW extends @instruction_literalOperation {
-  override method getBaseCode !@uint outBaseCode :
-    outBaseCode := 0x0E00 ;
-  end method ;
-}
-
-#----------------------------------------------------*
-
-class @instruction_MULLW extends @instruction_literalOperation {
-  override method getBaseCode !@uint outBaseCode :
-    outBaseCode := 0x0D00 ;
-  end method ;
-}
-
-#----------------------------------------------------*
-
-class @instruction_RETLW extends @instruction_literalOperation {
-  override method getBaseCode !@uint outBaseCode :
-    outBaseCode := 0x0C00 ;
-  end method ;
-}
-
-#----------------------------------------------------*
-
-class @instruction_SUBLW extends @instruction_literalOperation {
-  override method getBaseCode !@uint outBaseCode :
-    outBaseCode := 0x0800 ;
-  end method ;
-}
-
-#----------------------------------------------------*
-
-class @instruction_XORLW extends @instruction_literalOperation {
-  override method getBaseCode !@uint outBaseCode :
-    outBaseCode := 0x0A00 ;
-  end method ;
-}
-
-#----------------------------------------------------*
-
-class @instruction_LFSR extends @instruction {
+class @instruction_LFSR extends @actualInstruction {
   @luint mFSRindex ;
   @registerExpression mRegisterExpression ;
   
@@ -443,24 +482,13 @@ class @instruction_LFSR extends @instruction {
 
 #----------------------------------------------------*
 
-class @instruction_MOVLB extends @instruction {
+class @instruction_MOVLB extends @actualInstruction {
   @luint mPageIndex ;
 }
 
 #----------------------------------------------------*
 
-class @instruction_LABEL extends @instruction {
-  @lstring mTargetLabel ;
-
-  override
-  method instructionLength !@uint outLength :
-    outLength := 0 ;
-  end method ;
-}
-
-#----------------------------------------------------*
-
-class @instruction_MOVAW extends @instruction {
+class @instruction_MOVAW extends @actualInstruction {
   @registerExpression mRegisterExpression ;
 }
 
@@ -472,23 +500,29 @@ enum @tableAccessOption {
   constructor postDecrement ;
   constructor preIncrement ;
 }{
+  reader mnemonic :
+    simpleAccess -> "*" ;
+    postIncrement -> "*+" ;
+    postDecrement -> "*-" ;
+    preIncrement -> "+*" ;
+  end reader ;
 }
 
 #----------------------------------------------------*
 
-class @instruction_TBLRD extends @instruction {
+class @instruction_TBLRD extends @actualInstruction {
   @tableAccessOption mOption ;
 }
 
 #----------------------------------------------------*
 
-class @instruction_TBLWT extends @instruction {
+class @instruction_TBLWT extends @actualInstruction {
   @tableAccessOption mOption ;
 }
 
 #----------------------------------------------------*
 
-class @instruction_MNOP extends @instruction {
+class @instruction_MNOP extends @actualInstruction {
   @luint mOccurrenceFactor ;
   override
   method instructionLength !@uint outLength :
@@ -498,7 +532,7 @@ class @instruction_MNOP extends @instruction {
 
 #----------------------------------------------------*
 
-class @instruction_FOREVER extends @instruction {
+class @instruction_FOREVER extends @actualInstruction {
   @instructionList mInstructionList ;
   override
   method instructionLength !@uint outLength :
@@ -512,11 +546,35 @@ class @instruction_FOREVER extends @instruction {
 
 #----------------------------------------------------*
 
-abstract class @instruction_IF_SEMI_COLON extends @instruction {
-  @registerExpression mRegisterExpression ;
-  @instruction mInstruction ;
+enum @if_semi_colon_op {
+  constructor CPFSEQ ;
+  constructor CPFSGT ;
+  constructor CPFSLT ;
+  constructor TSTFSZ ;
+}{
+  reader mnemonic :
+    CPFSEQ -> "CPFSEQ" ;
+    CPFSGT -> "CPFSGT" ;
+    CPFSLT -> "CPFSLT" ;
+    TSTFSZ -> "TSTFSZ" ;
+  end reader ;
+}
 
-  abstract method getBaseCode !@uint outBaseCode ;
+#----------------------------------------------------*
+
+routine getBaseCodeForIfSemiColonOp ??@if_semi_colon_op inInstruction !@uint outBaseCode :
+  switch inInstruction
+    when CPFSEQ : outBaseCode := 0x6200 ;
+    when CPFSGT : outBaseCode := 0x6400 ;
+    when CPFSLT : outBaseCode := 0x6000 ;
+    when TSTFSZ : outBaseCode := 0x6600 ;
+  end switch ; 
+end routine ;
+
+#----------------------------------------------------*
+
+abstract class @instruction_IF_SEMI_COLON extends @actualInstruction {
+  @instruction mInstruction ;
 
   override
   method instructionLength !@uint outLength :
@@ -527,47 +585,23 @@ abstract class @instruction_IF_SEMI_COLON extends @instruction {
 
 #----------------------------------------------------*
 
-class @instruction_IF_CPF_NotEqual extends @instruction_IF_SEMI_COLON {
-  override
+class @instruction_IF_FA_SEMI_COLON extends @instruction_IF_SEMI_COLON {
+  @if_semi_colon_op mOpCode ;
+  @registerExpression mRegisterExpression ;
+
   method getBaseCode !@uint outBaseCode :
-    outBaseCode := 0x6200 ; # CPFSEQ
-  end method ; 
-}
+    getBaseCodeForIfSemiColonOp !mOpCode ?outBaseCode ;
+  end method ;
 
-#----------------------------------------------------*
-
-class @instruction_IF_CPF_LowerOrEqual extends @instruction_IF_SEMI_COLON {
-  override
-  method getBaseCode !@uint outBaseCode :
-    outBaseCode := 0x6400 ; # CPFSGT
-  end method ; 
-}
-
-#----------------------------------------------------*
-
-class @instruction_IF_CPF_GreaterOrEqual extends @instruction_IF_SEMI_COLON {
-  override
-  method getBaseCode !@uint outBaseCode :
-    outBaseCode := 0x6000 ; # CPFSLT
-  end method ; 
-}
-
-#----------------------------------------------------*
-
-class @instruction_IF_TST_NotZero extends @instruction_IF_SEMI_COLON {
-  override
-  method getBaseCode !@uint outBaseCode :
-    outBaseCode := 0x6600 ; # TSTFSZ
-  end method ; 
 }
 
 #----------------------------------------------------*
 
 class @instruction_IF_BitTest extends @instruction_IF_SEMI_COLON {
-  @bitNumberExpression mBitNumber ;
   @bool mSkipIfSet ;
+  @registerExpression mRegisterExpression ;
+  @bitNumberExpression mBitNumber ;
 
-  override
   method getBaseCode !@uint outBaseCode :
     if mSkipIfSet then
       outBaseCode := 0xA000 ; # BTFSS
@@ -575,11 +609,19 @@ class @instruction_IF_BitTest extends @instruction_IF_SEMI_COLON {
       outBaseCode := 0xB000 ; # BTFSC
     end if ;
   end method ; 
+
+  method getMnemonic !@string outMnemonic :
+    if mSkipIfSet then
+      outMnemonic := "BTFSS" ;
+    else
+      outMnemonic := "BTFSC" ;
+    end if ;
+  end method ; 
 }
 
 #----------------------------------------------------*
 
-class @instruction_computed_retlw extends @instruction {
+class @instruction_computed_retlw extends @actualInstruction {
   @luintlist mLiteralValues ;
   @bool mUsesRelativeCall ;
 
@@ -594,7 +636,7 @@ class @instruction_computed_retlw extends @instruction {
 
 #----------------------------------------------------*
 
-class @instruction_computed_bra extends @instruction {
+class @instruction_computed_bra extends @actualInstruction {
   @lstringlist mTargetLabels ;
   @bool mUsesRelativeCall ;
 
@@ -609,7 +651,7 @@ class @instruction_computed_bra extends @instruction {
 
 #----------------------------------------------------*
 
-class @instruction_computed_goto extends @instruction {
+class @instruction_computed_goto extends @actualInstruction {
   @lstringlist mTargetLabels ;
   @bool mUsesRelativeCall ;
 
@@ -626,7 +668,6 @@ class @instruction_computed_goto extends @instruction {
 
 abstract class @structured_if_condition {
   abstract method conditionLength !@uint outLength ;
-
 }
 
 #----------------------------------------------------*
@@ -658,7 +699,7 @@ class @bitTest_in_structured_if_condition extends @structured_if_condition {
 
 #----------------------------------------------------*
 
-class @instruction_structured_if extends @instruction {
+class @instruction_structured_if extends @actualInstruction {
   @structured_if_condition mIfCondition ;
   @instructionList mThenInstructionList ;
   @instructionList mElseInstructionList ;

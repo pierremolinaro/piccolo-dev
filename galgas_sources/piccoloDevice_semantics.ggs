@@ -31,6 +31,7 @@ map @ramBankTable {
 #----------------------------------------------------*
 
 struct @piccoloDeviceModel {
+  @lstring mDeviceName ;
   @luint mRomSize ;
   @luint mBankCount ;
   @registerTable mRegisterTable ;

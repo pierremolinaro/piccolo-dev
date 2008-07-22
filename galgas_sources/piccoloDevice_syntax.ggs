@@ -137,6 +137,7 @@ rule <start_symbol>
   end repeat ;
   $}$ ;
   outPiccoloDeviceModel := [@piccoloDeviceModel new
+    !deviceName
     !romSize
     !bankCount
     !registerTable

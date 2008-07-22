@@ -14,6 +14,611 @@ extern routine emitCode ??@uint inCode ;
 extern routine getGeneratedContents !@string outContents ;
 
 #----------------------------------------------------*
+#           DECOMPOSE COMPLEX INSTRUCTION            *
+#----------------------------------------------------*
+
+method @instruction.decomposeComplexInstruction
+  ?!@uint unused ioLocalLabelIndex
+  ?!@instructionList unused ioGeneratedInstructionList
+:
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_FOREVER.decomposeComplexInstruction
+  ?!@uint ioLocalLabelIndex
+  ?!@instructionList ioGeneratedInstructionList
+:
+  [!?ioGeneratedInstructionList popLast ?*] ;
+  @string label0 := "_label_" . [ioLocalLabelIndex string] ; 
+  ioLocalLabelIndex ++ ;
+  ioGeneratedInstructionList += ![@pseudo_LABEL new ![@lstring new !label0 !mInstructionLocation]] ;
+  foreach mInstructionList do
+    ioGeneratedInstructionList += !mInstruction ;
+    [mInstruction decomposeComplexInstruction !?ioLocalLabelIndex !?ioGeneratedInstructionList] ;
+  end foreach ;
+  ioGeneratedInstructionList += ![@instruction_BRA new !mInstructionLocation ![@lstring new !label0 !mInstructionLocation]] ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_IF_FA_SEMI_COLON.decomposeComplexInstruction
+  ?!@uint ioLocalLabelIndex
+  ?!@instructionList ioGeneratedInstructionList
+:
+  [!?ioGeneratedInstructionList popLast ?*] ;
+  @FA_instruction_base_code baseCode ;
+  switch mOpCode
+    when CPFSEQ : baseCode := [@FA_instruction_base_code CPFSEQ] ;
+    when CPFSGT : baseCode := [@FA_instruction_base_code CPFSGT] ;
+    when CPFSLT : baseCode := [@FA_instruction_base_code CPFSLT] ;
+    when TSTFSZ : baseCode := [@FA_instruction_base_code TSTFSZ] ;
+  end switch ;
+  ioGeneratedInstructionList += ![@instruction_FA new
+    !mInstructionLocation
+    !baseCode
+    !mRegisterExpression
+  ] ;
+#--- Append Instruction
+  ioGeneratedInstructionList += !mInstruction ;
+  [mInstruction decomposeComplexInstruction !?ioLocalLabelIndex !?ioGeneratedInstructionList] ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_IF_BitTest.decomposeComplexInstruction
+  ?!@uint ioLocalLabelIndex
+  ?!@instructionList ioGeneratedInstructionList
+:
+  [!?ioGeneratedInstructionList popLast ?*] ;
+  @bit_oriented_op baseCode ;
+  if mSkipIfSet then
+    baseCode := [@bit_oriented_op BTFSS] ;
+  else
+    baseCode := [@bit_oriented_op BTFSC] ;
+  end if ;
+  ioGeneratedInstructionList += ![@instruction_FBA new
+    !mInstructionLocation
+    !baseCode
+    !mRegisterExpression
+    !mBitNumber
+  ] ;
+#--- Append Instruction
+  ioGeneratedInstructionList += !mInstruction ;
+  [mInstruction decomposeComplexInstruction !?ioLocalLabelIndex !?ioGeneratedInstructionList] ;
+end method ;
+
+#----------------------------------------------------*
+
+abstract method @structured_if_condition.decomposeIFcondition
+  ??@location inInstructionLocation
+  ??@string inTargetLabel
+  ?!@instructionList ioGeneratedInstructionList
+;
+
+#----------------------------------------------------*
+
+override method @bcc_in_structured_if_condition.decomposeIFcondition
+  ??@location inInstructionLocation
+  ??@string inTargetLabel
+  ?!@instructionList ioGeneratedInstructionList
+:
+  ioGeneratedInstructionList += ![@instruction_conditionalBranch new
+    !inInstructionLocation
+    !mCondition
+    ![@lstring new !inTargetLabel !inInstructionLocation]
+  ] ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @bitTest_in_structured_if_condition.decomposeIFcondition
+  ??@location inInstructionLocation
+  ??@string inTargetLabel
+  ?!@instructionList ioGeneratedInstructionList
+:
+  @bit_oriented_op op ;
+  if mBTFSSinstruction then
+    op := [@bit_oriented_op BTFSS] ;
+  else
+    op := [@bit_oriented_op BTFSC] ;
+  end if ;
+  ioGeneratedInstructionList += ![@instruction_FBA new
+    !inInstructionLocation
+    !op
+    !mRegisterExpression
+    !mBitNumber
+  ] ;
+  ioGeneratedInstructionList += ![@instruction_BRA new !inInstructionLocation ![@lstring new !inTargetLabel !inInstructionLocation]] ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_structured_if.decomposeComplexInstruction
+  ?!@uint ioLocalLabelIndex
+  ?!@instructionList ioGeneratedInstructionList
+:
+#---
+  [!?ioGeneratedInstructionList popLast ?*] ;
+  @string label0 := "_label_" . [ioLocalLabelIndex string] ; ioLocalLabelIndex ++ ;
+  @string label1 := "_label_" . [ioLocalLabelIndex string] ; ioLocalLabelIndex ++ ;
+#--- Translate condition
+  [mIfCondition decomposeIFcondition !mInstructionLocation !label0 !?ioGeneratedInstructionList] ;
+#--- 'then' instructions
+  foreach mThenInstructionList do
+    ioGeneratedInstructionList += !mInstruction ;
+    [mInstruction decomposeComplexInstruction !?ioLocalLabelIndex !?ioGeneratedInstructionList] ;
+  end foreach ;
+  if [mElseInstructionList length] > 0 then
+    ioGeneratedInstructionList += ![@instruction_BRA new !mInstructionLocation ![@lstring new !label1 !mInstructionLocation]] ;
+  end if ;
+#--- 'else' instructions
+  ioGeneratedInstructionList += ![@pseudo_LABEL new ![@lstring new !label0 !mInstructionLocation]] ;
+  foreach mElseInstructionList do
+    ioGeneratedInstructionList += !mInstruction ;
+    [mInstruction decomposeComplexInstruction !?ioLocalLabelIndex !?ioGeneratedInstructionList] ;
+  end foreach ;
+  if [mElseInstructionList length] > 0 then
+    ioGeneratedInstructionList += ![@pseudo_LABEL new ![@lstring new !label1 !mInstructionLocation]] ;
+  end if ;
+end method ;
+
+#----------------------------------------------------*
+#                BUILD ASSEMBLY CODE                 *
+#----------------------------------------------------*
+
+method @instruction.buildAssemblyCode
+  ??@registerTable unused inRegisterTable
+  ?!@string unused ioString :
+end method ;
+
+#----------------------------------------------------*
+
+override method @pseudo_ORG.buildAssemblyCode
+  ??@registerTable unused inRegisterTable
+  ?!@string ioString
+:
+  ioString .= "  ORG " . [mOrigin hexString] . "\n" ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @pseudo_LABEL.buildAssemblyCode
+  ??@registerTable unused inRegisterTable
+  ?!@string ioString
+:
+  ioString .= [mTargetLabel string] . ":\n" ;
+end method ;
+
+#----------------------------------------------------*
+
+method @registerExpression.buildAssemblyCode
+  ??@registerTable inRegisterTable
+  ?!@string ioString
+  !@bool outUseBSRregister
+  !@bitSliceTable outBitSliceTable
+:
+  ioString .= [mRegisterName string] ;
+  if [mOffset uint] > 0 then
+    ioString .= " + " . [[mOffset uint] hexString] ;
+  end if ;
+  @uintlist registerAddressList ;
+  @uint size ;
+  [inRegisterTable searchKey !mRegisterName ?registerAddressList ?size ?outBitSliceTable] ;
+  @bool found := false ;
+  foreach registerAddressList while not found do
+    found := (mValue < 0x60) | (mValue >= 0xF60) ;
+  end foreach ;
+  outUseBSRregister := false ;
+  if not found then
+    outUseBSRregister := true ;
+  end if ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_FDA.buildAssemblyCode
+  ??@registerTable inRegisterTable
+  ?!@string ioString
+:
+  @bool useBSRaccess ;
+#log mInstruction_FDA_base_code ;
+#message "*** '" . [mInstruction_FDA_base_code mnemonic] . "'\n" ;
+  ioString .= "  " . [mInstruction_FDA_base_code mnemonic] . " " ;
+#  ioString .= "  /* " . [[mInstruction_FDA_base_code mnemonic] description] . " */ " ;
+  [mRegisterExpression buildAssemblyCode !inRegisterTable !?ioString ?useBSRaccess ?*] ;
+  if m_W_isDestination & useBSRaccess then
+    ioString .= ", W, BSR_ACCESS" ;
+  elsif useBSRaccess then
+    ioString .= ", F, BSR_ACCESS" ;
+  elsif m_W_isDestination then
+    ioString .= ", W" ;
+  else
+    ioString .= ", F" ;
+  end if ;
+  ioString .= "\n" ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_MOVFF.buildAssemblyCode
+  ??@registerTable inRegisterTable
+  ?!@string ioString
+:
+  ioString .= "  MOVFF " ;
+  [mSourceRegisterName buildAssemblyCode !inRegisterTable !?ioString ?* ?*] ;
+  ioString .= ", " ;
+  [mDestinationRegisterName buildAssemblyCode !inRegisterTable !?ioString ?* ?*] ;
+  ioString .= "\n" ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+abstract method @bitNumberExpression.getBitNumber
+  ??@bitSliceTable inBitSliceTable
+  !@uint outBitNumber
+;
+
+#----------------------------------------------------------------------------*
+
+override method @bitNumberLiteralValue.getBitNumber
+  ??@bitSliceTable unused inBitSliceTable
+  !@uint outBitNumber
+:
+  if [mBitNumberLiteralValue uint] > 7 then
+    error mBitNumberLiteralValue:"The bit number is " . [[mBitNumberLiteralValue uint] string] . " (should be <= 7)" ;
+  end if ;
+  outBitNumber := [mBitNumberLiteralValue uint] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @bitNumberLabelValue.getBitNumber
+  ??@bitSliceTable inBitSliceTable
+  !@uint outBitNumber
+:
+  @uint sliceIndex ;
+  @uint sliceSize ;
+  [inBitSliceTable searchKey !mBitNumberLabelValue ?sliceIndex ? sliceSize] ;
+  if [mBitNumberIndexValue uint] > sliceSize then
+    error mBitNumberIndexValue: "The " . [[mBitNumberIndexValue uint] string]
+    . " index is too large (should be < " . [sliceSize string] . ")" ;
+  end if ;
+  outBitNumber := sliceIndex + [mBitNumberIndexValue uint] ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_FBA.buildAssemblyCode
+  ??@registerTable inRegisterTable
+  ?!@string ioString
+:
+  @bool useBSRaccess ;
+  ioString .= "  " . [mBitOrientedOp mnemonic] . " " ;
+  @bitSliceTable bitSliceTable ;
+  [mRegisterExpression buildAssemblyCode !inRegisterTable !?ioString ?useBSRaccess ?bitSliceTable] ;
+  @uint bitNumber ;
+  [mBitNumber getBitNumber !bitSliceTable ?bitNumber] ;
+  ioString .= ", " . [bitNumber string] ;
+  if useBSRaccess then
+    ioString .= ", BSR_ACCESS" ;
+  end if ;
+  ioString .= "\n" ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_FA.buildAssemblyCode
+  ??@registerTable inRegisterTable
+  ?!@string ioString
+:
+  @bool useBSRaccess ;
+  ioString .= "  " . [mFAinstruction mnemonic] . " " ;
+  [mRegisterExpression buildAssemblyCode !inRegisterTable !?ioString ?useBSRaccess ?*] ;
+  if useBSRaccess then
+    ioString .= ", BSR_ACCESS" ;
+  end if ;
+  ioString .= "\n" ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_conditionalBranch.buildAssemblyCode
+  ??@registerTable unused inRegisterTable
+  ?!@string ioString
+:
+  ioString .= "  " . [mConditionalBranch mnemonic] . " " . [mTargetLabel string] . "\n" ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_BRA.buildAssemblyCode
+  ??@registerTable unused inRegisterTable
+  ?!@string ioString
+:
+  ioString .= "  BRA  " . [mTargetLabel string] . "\n" ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_CALL.buildAssemblyCode
+  ??@registerTable unused inRegisterTable
+  ?!@string ioString
+:
+  ioString .= "  CALL " . mTargetLabel . "\n" ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_GOTO.buildAssemblyCode
+  ??@registerTable unused inRegisterTable
+  ?!@string ioString
+:
+  ioString .= "  GOTO " . mTargetLabel . "\n" ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_RCALL.buildAssemblyCode
+  ??@registerTable unused inRegisterTable
+  ?!@string ioString
+:
+  ioString .= "  RCALL " . mTargetLabel . "\n" ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_CLRWDT.buildAssemblyCode
+  ??@registerTable unused inRegisterTable
+  ?!@string ioString
+:
+  ioString .= "  CLRWDT\n" ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_DAW.buildAssemblyCode
+  ??@registerTable unused inRegisterTable
+  ?!@string ioString
+:
+  ioString .= "  DAW\n" ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_NOP.buildAssemblyCode
+  ??@registerTable unused inRegisterTable
+  ?!@string ioString
+:
+  ioString .= "  NOP\n" ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_POP.buildAssemblyCode
+  ??@registerTable unused inRegisterTable
+  ?!@string ioString
+:
+  ioString .= "  POP\n" ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_PUSH.buildAssemblyCode
+  ??@registerTable unused inRegisterTable
+  ?!@string ioString
+:
+  ioString .= "  PUSH\n" ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_RESET.buildAssemblyCode
+  ??@registerTable unused inRegisterTable
+  ?!@string ioString
+:
+  ioString .= "  RESET\n" ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_RETURN.buildAssemblyCode
+  ??@registerTable unused inRegisterTable
+  ?!@string ioString
+:
+  ioString .= "  RETURN\n" ;
+end method ;
+
+#----------------------------------------------------*
+
+ override method @instruction_RETFIE.buildAssemblyCode
+  ??@registerTable unused inRegisterTable
+  ?!@string ioString
+:
+  ioString .= "  RETFIE" ;
+  if mFastReturn then
+    ioString .= " 1" ;
+  end if ;
+  ioString .= "\n" ;
+end method ;
+
+#----------------------------------------------------*
+
+ override method @instruction_SLEEP.buildAssemblyCode
+  ??@registerTable unused inRegisterTable
+  ?!@string ioString
+:
+  ioString .= "  SLEEP\n" ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_literalOperation.buildAssemblyCode
+  ??@registerTable unused inRegisterTable
+  ?!@string ioString
+:
+  ioString .= "  " . [mLiteralInstruction mnemonic] . " " . [[mLiteralValue uint] hexString] . "\n" ;
+end method ;
+
+#----------------------------------------------------*
+
+ override method @instruction_LFSR.buildAssemblyCode
+  ??@registerTable inRegisterTable
+  ?!@string ioString
+:
+  ioString .= "  LFSR " . [[mFSRindex uint] string] . ", " ;
+  [mRegisterExpression  buildAssemblyCode
+    !inRegisterTable
+    !?ioString
+    ?*
+    ?*
+  ] ;
+  ioString .= "\n" ;
+end method ;
+
+#----------------------------------------------------*
+
+ override method @instruction_MOVAW.buildAssemblyCode
+  ??@registerTable inRegisterTable
+  ?!@string ioString
+:
+  ioString .= "  MOVLW " ;
+  [mRegisterExpression  buildAssemblyCode
+    !inRegisterTable
+    !?ioString
+    ?*
+    ?*
+  ] ;
+  ioString .= "\n" ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_MNOP.buildAssemblyCode
+  ??@registerTable unused inRegisterTable
+  ?!@string ioString
+:
+  if [mOccurrenceFactor uint] == 0 then
+    warning mOccurrenceFactor: "No generated code" ;
+  end if ;
+  @uint idx := 0 ;
+  loop [mOccurrenceFactor uint] :
+  while idx < [mOccurrenceFactor uint]
+  do
+    ioString .= "  NOP\n" ;
+    idx ++ ;
+  end loop ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_TBLRD.buildAssemblyCode
+  ??@registerTable unused inRegisterTable
+  ?!@string ioString
+:
+  ioString .= "  TBLRD " . [mOption mnemonic] . "\n" ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_TBLWT.buildAssemblyCode
+  ??@registerTable unused inRegisterTable
+  ?!@string ioString
+:
+  ioString .= "  TBLWT " . [mOption mnemonic] . "\n" ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_computed_retlw.buildAssemblyCode
+  ??@registerTable unused inRegisterTable
+  ?!@string ioString
+:
+  if mUsesRelativeCall then
+    ioString .= "  RCALL _computed_goto_2\n" ;
+  else
+    ioString .= "  CALL _computed_goto_2\n" ;
+  end if ;
+  foreach mLiteralValues do
+    ioString .= "  RETLW " . [[mValue uint] hexString] . "\n" ;
+  end foreach ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_computed_bra.buildAssemblyCode
+  ??@registerTable unused inRegisterTable
+  ?!@string ioString
+:
+  if mUsesRelativeCall then
+    ioString .= "  RCALL _computed_goto_2\n" ;
+  else
+    ioString .= "  CALL _computed_goto_2\n" ;
+  end if ;
+  foreach mTargetLabels do
+    ioString .= "  BRA " . [mValue string] . "\n" ;
+  end foreach ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_computed_goto.buildAssemblyCode
+  ??@registerTable unused inRegisterTable
+  ?!@string ioString
+:
+  if mUsesRelativeCall then
+    ioString .= "  RCALL _computed_goto_4\n" ;
+  else
+    ioString .= "  CALL _computed_goto_4\n" ;
+  end if ;
+  foreach mTargetLabels do
+    ioString .= "  GOTO " . [mValue string] . "\n" ;
+  end foreach ;
+end method ;
+
+#----------------------------------------------------*
+
+routine buildAssemblyCode
+  ??@string inProcessorName
+  ??@registerTable inPredefinedRegisters
+  ??@registerTable inAllRegisters
+  ??@instructionList inInstructionList
+  !@string outAssemblyCode
+:
+  outAssemblyCode := "  PROCESSOR " . inProcessorName . "\n" ;
+#--- Prefined registers
+  outAssemblyCode .= ";--- Prefefined registers\n" ;
+  foreach inPredefinedRegisters do
+    @uint firstRegister ; [mRegisterAddressList first ?firstRegister] ;
+    outAssemblyCode .= [key string] . " EQU " . [firstRegister hexString] . "\n" ;
+  end foreach ;
+#--- User defined registers in ram
+  outAssemblyCode .= ";--- User defined registers (in RAM)\n" ;
+  foreach inAllRegisters do
+    if not [inPredefinedRegisters hasKey ![key string]] then
+      @uint firstRegister ; [mRegisterAddressList first ?firstRegister] ;
+      outAssemblyCode .= [key string] . " EQU " . [firstRegister hexString] . "\n" ;
+    end if ;
+  end foreach ;
+#--- PICCOLO defined symbols
+  outAssemblyCode .= ";--- Piccolo defined symbols\n" ;
+  outAssemblyCode .= "F EQU 0\n" ;
+  outAssemblyCode .= "W EQU 1\n" ;
+  outAssemblyCode .= "BSR_ACCESS EQU 1\n" ;
+#--- Code
+  outAssemblyCode .= ";--- Code\n" ;
+  outAssemblyCode .= "  ORG 0\n" ;
+  foreach inInstructionList do
+    [mInstruction buildAssemblyCode !inAllRegisters !?outAssemblyCode] ;
+  end foreach ;
+  outAssemblyCode .= "\n" ;
+  outAssemblyCode .= ";---\n\n" ;
+  outAssemblyCode .= "  END\n\n" ;
+end routine ;
+
+#----------------------------------------------------*
+#                                                    *
+#----------------------------------------------------*
 
 routine checkCurrentEmitAddress ??@uint inCurrentAddress :
   @uint addr ; currentEmitAddress ? addr ;
@@ -44,7 +649,7 @@ end method ;
 #----------------------------------------------------*
 
 override
-method @instruction_LABEL.enterLabelAtAddress
+method @pseudo_LABEL.enterLabelAtAddress
   ?!@routineSymbolTable ioRoutineSymbolTable
   ??@uint inAddress
   ?!@uint ioCurrentlySelectedBank
@@ -269,41 +874,6 @@ override method @instruction_MOVFF.generateCodeAtAddress
   [mDestinationRegisterName getRegisterAddress !inCodeGenerationContext ?destinationRegisterAddress] ;
   emitCode !0xC000 | sourceRegisterAddress ;
   emitCode !0xF000 | destinationRegisterAddress ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
-abstract method @bitNumberExpression.getBitNumber
-  ??@bitSliceTable inBitSliceTable
-  !@uint outBitNumber
-;
-
-#----------------------------------------------------------------------------*
-
-override method @bitNumberLiteralValue.getBitNumber
-  ??@bitSliceTable unused inBitSliceTable
-  !@uint outBitNumber
-:
-  if [mBitNumberLiteralValue uint] > 7 then
-    error mBitNumberLiteralValue:"The bit number is " . [[mBitNumberLiteralValue uint] string] . " (should be <= 7)" ;
-  end if ;
-  outBitNumber := [mBitNumberLiteralValue uint] ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
-override method @bitNumberLabelValue.getBitNumber
-  ??@bitSliceTable inBitSliceTable
-  !@uint outBitNumber
-:
-  @uint sliceIndex ;
-  @uint sliceSize ;
-  [inBitSliceTable searchKey !mBitNumberLabelValue ?sliceIndex ? sliceSize] ;
-  if [mBitNumberIndexValue uint] > sliceSize then
-    error mBitNumberIndexValue: "The " . [[mBitNumberIndexValue uint] string]
-    . " index is too large (should be < " . [sliceSize string] . ")" ;
-  end if ;
-  outBitNumber := sliceIndex + [mBitNumberIndexValue uint] ;
 end method ;
 
 #----------------------------------------------------------------------------*
@@ -649,7 +1219,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @instruction_LABEL.generateCodeAtAddress
+override method @pseudo_LABEL.generateCodeAtAddress
   ??@codeGenerationContext inCodeGenerationContext
   ??@uint inAddress
   ?!@bool ioContinuesInSequence
@@ -762,7 +1332,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @instruction_IF_SEMI_COLON.generateCodeAtAddress
+override method @instruction_IF_FA_SEMI_COLON.generateCodeAtAddress
   ??@codeGenerationContext inCodeGenerationContext
   ??@uint inAddress
   ?!@bool ioContinuesInSequence
@@ -1056,68 +1626,7 @@ routine analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName :
       error mInterruptName: "An interrupt routine should be named 'low' or 'high'" ;
     end if ;
   end foreach ;
-#-------------------------------- First Pass
-#--- First, handle low interrupt (if any)
-  @uint currentROMaddress := 0x18 ;
-  @routineSymbolTable routineSymbolTable [emptyMap] ;
-  if hasLowInterrupt then
-    foreach [inPiccoloModel mInterruptDefinitionList] do
-      if [mInterruptName string] == "low" then
-        @uint currentlySelectedBank [max] ; # No selected bank by default
-        foreach mInstructionList do
-          [mInstruction enterLabelAtAddress !?routineSymbolTable !currentROMaddress !?currentlySelectedBank] ;
-          @uint length ;
-          [mInstruction instructionLength ?length] ;
-          currentROMaddress := currentROMaddress + length ;
-        end foreach ;
-      #--- Ajouter l'instruction REFFIE
-        currentROMaddress := currentROMaddress + 2 ;
-      end if ;
-    end foreach ;
-  end if ;
-#--- Then, handle high interrupt (if any)
-  @uint highInterruptStartAddress := currentROMaddress ;
-  if not hasLowInterrupt then
-    currentROMaddress := 0x8 ;
-  end if ;
-  if hasHighInterrupt then
-    foreach [inPiccoloModel mInterruptDefinitionList] do
-      if [mInterruptName string] == "high" then
-        @uint currentlySelectedBank [max] ; # No selected bank by default
-        foreach mInstructionList do
-          [mInstruction enterLabelAtAddress !?routineSymbolTable !currentROMaddress !?currentlySelectedBank] ;
-          @uint length ;
-          [mInstruction instructionLength ?length] ;
-          currentROMaddress := currentROMaddress + length ;
-        end foreach ;
-      #--- Ajouter l'instruction REFFIE
-        currentROMaddress := currentROMaddress + 2 ;
-      end if ;
-    end foreach ;
-  end if ;
-#--- Handle routines
-  if (not hasHighInterrupt) & (not hasLowInterrupt) then # No interrupts
-    currentROMaddress := 0x4 ;
-  end if ;
-  foreach [inPiccoloModel mRoutineDefinitionList] do
-    @uint currentlySelectedBank := [mBanksel uint] ;
-    [!?routineSymbolTable insertKey !mRoutineName !currentROMaddress !currentlySelectedBank] ;
-    foreach mInstructionList do
-      [mInstruction enterLabelAtAddress !?routineSymbolTable !currentROMaddress !?currentlySelectedBank] ;
-      @uint length ;
-      [mInstruction instructionLength ? length] ;
-      currentROMaddress := currentROMaddress + length ;
-    end foreach ;
-  end foreach ;
-#--- computed_goto2, computed_goto4 routines needed ?
-  @uint computedGoto4RoutineAddress := currentROMaddress ;
-  @uint computedGoto2RoutineAddress := currentROMaddress + 2 ;
-  if [inPiccoloModel mNeedsComputedGoto4] then
-    currentROMaddress := currentROMaddress + 12 ; # Routine size
-  elsif [inPiccoloModel mNeedsComputedGoto2] then
-    currentROMaddress := currentROMaddress + 10 ; # Routine size
-  end if ;
-#--- Ram definition
+#-------------------------------- Ram definition
   @ramBankTable ramBank := [piccoloDeviceModel mRamBankTable] ;
   @registerTable registerTable := [piccoloDeviceModel mRegisterTable] ;
   foreach [inPiccoloModel mRamDefinitionList] do
@@ -1138,7 +1647,132 @@ routine analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName :
       end if ;
     end foreach ;
   end foreach ;
-#  message "Used RAM size: " . [currentRamAddress string] . " bytes\n" ;
+#-------------------------------- First Pass
+  @instructionList generatedInstructionList [emptyList] ;
+  @uint localLabelIndex := 0 ;
+#--- At zero, generate 'goto main' instruction
+  generatedInstructionList += ![@instruction_GOTO new !here ![@lstring new !"main" !here]] ;
+#--- At 0x08, generate 'bra _fast_interrupt' instruction, if both interrupt are defined
+  if hasLowInterrupt & hasHighInterrupt then
+    generatedInstructionList += ![@pseudo_ORG new !0x8] ;
+    generatedInstructionList += ![@instruction_BRA new !here ![@lstring new !"_fast_interrupt" !here]] ;
+  end if ;
+#--- First, handle low interrupt (if any)
+  @uint currentROMaddress := 0x18 ;
+  @routineSymbolTable routineSymbolTable [emptyMap] ;
+  if hasLowInterrupt then
+    generatedInstructionList += ![@pseudo_ORG new !0x18] ;
+    foreach [inPiccoloModel mInterruptDefinitionList] do
+      if [mInterruptName string] == "low" then
+        @uint currentlySelectedBank [max] ; # No selected bank by default
+        foreach mInstructionList do
+          generatedInstructionList += !mInstruction ;
+          [mInstruction decomposeComplexInstruction !?localLabelIndex !?generatedInstructionList] ;
+          [mInstruction enterLabelAtAddress !?routineSymbolTable !currentROMaddress !?currentlySelectedBank] ;
+          @uint length ;
+          [mInstruction instructionLength ?length] ;
+          currentROMaddress := currentROMaddress + length ;
+        end foreach ;
+      #--- Ajouter l'instruction REFFIE
+        generatedInstructionList += ![@instruction_RETFIE new !here !true] ;
+        currentROMaddress := currentROMaddress + 2 ;
+      end if ;
+    end foreach ;
+  end if ;
+#--- Then, handle high interrupt (if any)
+  @uint highInterruptStartAddress := currentROMaddress ;
+  if not hasLowInterrupt then
+    currentROMaddress := 0x8 ;
+  end if ;
+  if hasHighInterrupt then
+    if hasLowInterrupt then
+      generatedInstructionList += ![@pseudo_LABEL new ![@lstring new !"_fast_interrupt" !here]] ;
+    else
+      generatedInstructionList += ![@pseudo_ORG new !0x8] ;
+    end if ;
+    foreach [inPiccoloModel mInterruptDefinitionList] do
+      if [mInterruptName string] == "high" then
+        @uint currentlySelectedBank [max] ; # No selected bank by default
+        foreach mInstructionList do
+          generatedInstructionList += !mInstruction ;
+          [mInstruction decomposeComplexInstruction !?localLabelIndex !?generatedInstructionList] ;
+          [mInstruction enterLabelAtAddress !?routineSymbolTable !currentROMaddress !?currentlySelectedBank] ;
+          @uint length ;
+          [mInstruction instructionLength ?length] ;
+          currentROMaddress := currentROMaddress + length ;
+        end foreach ;
+      #--- Ajouter l'instruction REFFIE
+        generatedInstructionList += ![@instruction_RETFIE new !here !true] ;
+        currentROMaddress := currentROMaddress + 2 ;
+      end if ;
+    end foreach ;
+  end if ;
+#--- Handle routines
+  if (not hasHighInterrupt) & (not hasLowInterrupt) then # No interrupts
+    currentROMaddress := 0x4 ;
+  end if ;
+  foreach [inPiccoloModel mRoutineDefinitionList] do
+    generatedInstructionList += ![@pseudo_LABEL new !mRoutineName] ;
+    @uint currentlySelectedBank := [mBanksel uint] ;
+    [!?routineSymbolTable insertKey !mRoutineName !currentROMaddress !currentlySelectedBank] ;
+    foreach mInstructionList do
+      generatedInstructionList += !mInstruction ;
+      [mInstruction decomposeComplexInstruction !?localLabelIndex !?generatedInstructionList] ;
+      [mInstruction enterLabelAtAddress !?routineSymbolTable !currentROMaddress !?currentlySelectedBank] ;
+      @uint length ;
+      [mInstruction instructionLength ? length] ;
+      currentROMaddress := currentROMaddress + length ;
+    end foreach ;
+  end foreach ;
+#--- computed_goto2, computed_goto4 routines needed ?
+  @uint computedGoto4RoutineAddress := currentROMaddress ;
+  @uint computedGoto2RoutineAddress := currentROMaddress + 2 ;
+  if [inPiccoloModel mNeedsComputedGoto4] then
+    currentROMaddress := currentROMaddress + 12 ; # Routine size
+  elsif [inPiccoloModel mNeedsComputedGoto2] then
+    currentROMaddress := currentROMaddress + 10 ; # Routine size
+  end if ;
+#--- computed_goto2 routine needed ?
+  if [inPiccoloModel mNeedsComputedGoto4] then
+    generatedInstructionList += ![@pseudo_LABEL new ![@lstring new !"_computed_goto_4" !here]] ;
+    generatedInstructionList += ![@instruction_FDA new
+      !here
+      ![@instruction_FDA_base_code ADDWF]
+      ![@registerExpression new ![@lstring new !"WREG" !here] ![@luint new !0 !here]]
+      !true
+    ] ; # ADDWF WREG, W
+  end if ;
+  if [inPiccoloModel mNeedsComputedGoto2] then
+    generatedInstructionList += ![@pseudo_LABEL new ![@lstring new !"_computed_goto_2" !here]] ;
+  end if ;
+  if [inPiccoloModel mNeedsComputedGoto2] | [inPiccoloModel mNeedsComputedGoto4] then
+    generatedInstructionList += ![@instruction_FDA new
+      !here
+      ![@instruction_FDA_base_code ADDWF]
+      ![@registerExpression new ![@lstring new !"WREG" !here] ![@luint new !0 !here]]
+      !true
+    ] ; # ADDWF WREG, W
+    generatedInstructionList += ![@instruction_FDA new
+      !here
+      ![@instruction_FDA_base_code ADDWF]
+      ![@registerExpression new ![@lstring new !"TOSL" !here] ![@luint new !0 !here]]
+      !false
+    ] ; # ADDWF TOSL, F
+    generatedInstructionList += ![@instruction_literalOperation new
+      !here
+      ![@literal_instruction_opcode MOVLW]
+      ![@luint new !0 !here]
+    ] ; # MOVLW 0
+    generatedInstructionList += ![@instruction_FDA new
+      !here
+      ![@instruction_FDA_base_code ADDWFC]
+      ![@registerExpression new ![@lstring new !"TOSH" !here] ![@luint new !0 !here]]
+      !false
+    ] ; # ADDWFC TOSH, F
+    generatedInstructionList += ![@instruction_RETURN new
+      !here
+    ] ; # RETURN 0
+  end if ;
   @uint programSize := currentROMaddress ;
 #-------------------------------- Prepare code generation
 #--- At Address 0, generate a GOTO main instruction
@@ -1254,10 +1888,23 @@ routine analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName :
   end if ;
 #--- If no error, generate object file
   if [@uint errorCount] == 0 then
-    @string contents ;
-    getGeneratedContents ?contents ;
-    @string destinationFile := [inSourceFileName stringByDeletingPathExtension] . ".hex" ;
-    [contents writeToFileWhenDifferentContents !destinationFile] ;
+    if [option piccolo_options. generateAssembly] then
+      @string assemblyCode ;
+      buildAssemblyCode
+        ![[piccoloDeviceModel mDeviceName] string]
+        ![piccoloDeviceModel mRegisterTable]
+        !registerTable
+        !generatedInstructionList
+        ?assemblyCode
+      ;
+      @string destinationFile := [inSourceFileName stringByDeletingPathExtension] . ".asm" ;
+      [assemblyCode writeToFileWhenDifferentContents !destinationFile] ;
+    else
+      @string contents ;
+      getGeneratedContents ?contents ;
+      @string destinationFile := [inSourceFileName stringByDeletingPathExtension] . ".hex" ;
+      [contents writeToFileWhenDifferentContents !destinationFile] ;
+    end if ;
   end if ;
 end routine ;
 
