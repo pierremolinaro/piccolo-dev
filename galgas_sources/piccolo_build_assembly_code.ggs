@@ -1,0 +1,460 @@
+semantics piccolo_build_assembly_code :
+import semantics piccolo_embedded_devices in "piccolo_embedded_devices.ggs" ;
+import semantics piccolo_metamodel in "piccolo_metamodel.ggs" ;
+
+#----------------------------------------------------*
+#                BUILD ASSEMBLY CODE                 *
+#----------------------------------------------------*
+
+method @instruction.buildAssemblyCode
+  ??@registerTable unused inRegisterTable
+  ?!@string unused ioString :
+end method ;
+
+#----------------------------------------------------*
+
+override method @pseudo_ORG.buildAssemblyCode
+  ??@registerTable unused inRegisterTable
+  ?!@string ioString
+:
+  ioString .= "  ORG " . [mOrigin hexString] . "\n" ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @pseudo_LABEL.buildAssemblyCode
+  ??@registerTable unused inRegisterTable
+  ?!@string ioString
+:
+  ioString .= [mTargetLabel string] . ":\n" ;
+end method ;
+
+#----------------------------------------------------*
+
+method @registerExpression.buildAssemblyCode
+  ??@registerTable inRegisterTable
+  ?!@string ioString
+  !@bool outUseBSRregister
+  !@bitSliceTable outBitSliceTable
+:
+  ioString .= [mRegisterName string] ;
+  if [mOffset uint] > 0 then
+    ioString .= " + " . [[mOffset uint] hexString] ;
+  end if ;
+  @uintlist registerAddressList ;
+  @uint size ;
+  [inRegisterTable searchKey !mRegisterName ?registerAddressList ?size ?outBitSliceTable] ;
+  @bool found := false ;
+  foreach registerAddressList while not found do
+    found := (mValue < 0x60) | (mValue >= 0xF60) ;
+  end foreach ;
+  outUseBSRregister := false ;
+  if not found then
+    outUseBSRregister := true ;
+  end if ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_FDA.buildAssemblyCode
+  ??@registerTable inRegisterTable
+  ?!@string ioString
+:
+  @bool useBSRaccess ;
+#log mInstruction_FDA_base_code ;
+#message "*** '" . [mInstruction_FDA_base_code mnemonic] . "'\n" ;
+  ioString .= "  " . [mInstruction_FDA_base_code mnemonic] . " " ;
+#  ioString .= "  /* " . [[mInstruction_FDA_base_code mnemonic] description] . " */ " ;
+  [mRegisterExpression buildAssemblyCode !inRegisterTable !?ioString ?useBSRaccess ?*] ;
+  if m_W_isDestination & useBSRaccess then
+    ioString .= ", W, BSR_ACCESS" ;
+  elsif useBSRaccess then
+    ioString .= ", F, BSR_ACCESS" ;
+  elsif m_W_isDestination then
+    ioString .= ", W" ;
+  else
+    ioString .= ", F" ;
+  end if ;
+  ioString .= "\n" ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_MOVFF.buildAssemblyCode
+  ??@registerTable inRegisterTable
+  ?!@string ioString
+:
+  ioString .= "  MOVFF " ;
+  [mSourceRegisterName buildAssemblyCode !inRegisterTable !?ioString ?* ?*] ;
+  ioString .= ", " ;
+  [mDestinationRegisterName buildAssemblyCode !inRegisterTable !?ioString ?* ?*] ;
+  ioString .= "\n" ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+abstract method @bitNumberExpression.getBitNumber
+  ??@bitSliceTable inBitSliceTable
+  !@uint outBitNumber
+;
+
+#----------------------------------------------------------------------------*
+
+override method @bitNumberLiteralValue.getBitNumber
+  ??@bitSliceTable unused inBitSliceTable
+  !@uint outBitNumber
+:
+  if [mBitNumberLiteralValue uint] > 7 then
+    error mBitNumberLiteralValue:"The bit number is " . [[mBitNumberLiteralValue uint] string] . " (should be <= 7)" ;
+  end if ;
+  outBitNumber := [mBitNumberLiteralValue uint] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @bitNumberLabelValue.getBitNumber
+  ??@bitSliceTable inBitSliceTable
+  !@uint outBitNumber
+:
+  @uint sliceIndex ;
+  @uint sliceSize ;
+  [inBitSliceTable searchKey !mBitNumberLabelValue ?sliceIndex ? sliceSize] ;
+  if [mBitNumberIndexValue uint] > sliceSize then
+    error mBitNumberIndexValue: "The " . [[mBitNumberIndexValue uint] string]
+    . " index is too large (should be < " . [sliceSize string] . ")" ;
+  end if ;
+  outBitNumber := sliceIndex + [mBitNumberIndexValue uint] ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_FBA.buildAssemblyCode
+  ??@registerTable inRegisterTable
+  ?!@string ioString
+:
+  @bool useBSRaccess ;
+  ioString .= "  " . [mBitOrientedOp mnemonic] . " " ;
+  @bitSliceTable bitSliceTable ;
+  [mRegisterExpression buildAssemblyCode !inRegisterTable !?ioString ?useBSRaccess ?bitSliceTable] ;
+  @uint bitNumber ;
+  [mBitNumber getBitNumber !bitSliceTable ?bitNumber] ;
+  ioString .= ", " . [bitNumber string] ;
+  if useBSRaccess then
+    ioString .= ", BSR_ACCESS" ;
+  end if ;
+  ioString .= "\n" ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_FA.buildAssemblyCode
+  ??@registerTable inRegisterTable
+  ?!@string ioString
+:
+  @bool useBSRaccess ;
+  ioString .= "  " . [mFAinstruction mnemonic] . " " ;
+  [mRegisterExpression buildAssemblyCode !inRegisterTable !?ioString ?useBSRaccess ?*] ;
+  if useBSRaccess then
+    ioString .= ", BSR_ACCESS" ;
+  end if ;
+  ioString .= "\n" ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_conditionalBranch.buildAssemblyCode
+  ??@registerTable unused inRegisterTable
+  ?!@string ioString
+:
+  ioString .= "  " . [mConditionalBranch mnemonic] . " " . [mTargetLabel string] . "\n" ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_BRA.buildAssemblyCode
+  ??@registerTable unused inRegisterTable
+  ?!@string ioString
+:
+  ioString .= "  BRA  " . [mTargetLabel string] . "\n" ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_CALL.buildAssemblyCode
+  ??@registerTable unused inRegisterTable
+  ?!@string ioString
+:
+  ioString .= "  CALL " . mTargetLabel . "\n" ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_GOTO.buildAssemblyCode
+  ??@registerTable unused inRegisterTable
+  ?!@string ioString
+:
+  ioString .= "  GOTO " . mTargetLabel . "\n" ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_RCALL.buildAssemblyCode
+  ??@registerTable unused inRegisterTable
+  ?!@string ioString
+:
+  ioString .= "  RCALL " . mTargetLabel . "\n" ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_CLRWDT.buildAssemblyCode
+  ??@registerTable unused inRegisterTable
+  ?!@string ioString
+:
+  ioString .= "  CLRWDT\n" ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_DAW.buildAssemblyCode
+  ??@registerTable unused inRegisterTable
+  ?!@string ioString
+:
+  ioString .= "  DAW\n" ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_NOP.buildAssemblyCode
+  ??@registerTable unused inRegisterTable
+  ?!@string ioString
+:
+  ioString .= "  NOP\n" ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_POP.buildAssemblyCode
+  ??@registerTable unused inRegisterTable
+  ?!@string ioString
+:
+  ioString .= "  POP\n" ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_PUSH.buildAssemblyCode
+  ??@registerTable unused inRegisterTable
+  ?!@string ioString
+:
+  ioString .= "  PUSH\n" ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_RESET.buildAssemblyCode
+  ??@registerTable unused inRegisterTable
+  ?!@string ioString
+:
+  ioString .= "  RESET\n" ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_RETURN.buildAssemblyCode
+  ??@registerTable unused inRegisterTable
+  ?!@string ioString
+:
+  ioString .= "  RETURN\n" ;
+end method ;
+
+#----------------------------------------------------*
+
+ override method @instruction_RETFIE.buildAssemblyCode
+  ??@registerTable unused inRegisterTable
+  ?!@string ioString
+:
+  ioString .= "  RETFIE" ;
+  if mFastReturn then
+    ioString .= " 1" ;
+  end if ;
+  ioString .= "\n" ;
+end method ;
+
+#----------------------------------------------------*
+
+ override method @instruction_SLEEP.buildAssemblyCode
+  ??@registerTable unused inRegisterTable
+  ?!@string ioString
+:
+  ioString .= "  SLEEP\n" ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_literalOperation.buildAssemblyCode
+  ??@registerTable unused inRegisterTable
+  ?!@string ioString
+:
+  ioString .= "  " . [mLiteralInstruction mnemonic] . " " . [[mLiteralValue uint] hexString] . "\n" ;
+end method ;
+
+#----------------------------------------------------*
+
+ override method @instruction_LFSR.buildAssemblyCode
+  ??@registerTable inRegisterTable
+  ?!@string ioString
+:
+  ioString .= "  LFSR " . [[mFSRindex uint] string] . ", " ;
+  [mRegisterExpression  buildAssemblyCode
+    !inRegisterTable
+    !?ioString
+    ?*
+    ?*
+  ] ;
+  ioString .= "\n" ;
+end method ;
+
+#----------------------------------------------------*
+
+ override method @instruction_MOVAW.buildAssemblyCode
+  ??@registerTable inRegisterTable
+  ?!@string ioString
+:
+  ioString .= "  MOVLW " ;
+  [mRegisterExpression  buildAssemblyCode
+    !inRegisterTable
+    !?ioString
+    ?*
+    ?*
+  ] ;
+  ioString .= "\n" ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_MNOP.buildAssemblyCode
+  ??@registerTable unused inRegisterTable
+  ?!@string ioString
+:
+  if [mOccurrenceFactor uint] == 0 then
+    warning mOccurrenceFactor: "No generated code" ;
+  end if ;
+  @uint idx := 0 ;
+  loop [mOccurrenceFactor uint] :
+  while idx < [mOccurrenceFactor uint]
+  do
+    ioString .= "  NOP\n" ;
+    idx ++ ;
+  end loop ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_TBLRD.buildAssemblyCode
+  ??@registerTable unused inRegisterTable
+  ?!@string ioString
+:
+  ioString .= "  TBLRD " . [mOption mnemonic] . "\n" ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_TBLWT.buildAssemblyCode
+  ??@registerTable unused inRegisterTable
+  ?!@string ioString
+:
+  ioString .= "  TBLWT " . [mOption mnemonic] . "\n" ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_computed_retlw.buildAssemblyCode
+  ??@registerTable unused inRegisterTable
+  ?!@string ioString
+:
+  if mUsesRelativeCall then
+    ioString .= "  RCALL _computed_goto_2\n" ;
+  else
+    ioString .= "  CALL _computed_goto_2\n" ;
+  end if ;
+  foreach mLiteralValues do
+    ioString .= "  RETLW " . [[mValue uint] hexString] . "\n" ;
+  end foreach ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_computed_bra.buildAssemblyCode
+  ??@registerTable unused inRegisterTable
+  ?!@string ioString
+:
+  if mUsesRelativeCall then
+    ioString .= "  RCALL _computed_goto_2\n" ;
+  else
+    ioString .= "  CALL _computed_goto_2\n" ;
+  end if ;
+  foreach mTargetLabels do
+    ioString .= "  BRA " . [mValue string] . "\n" ;
+  end foreach ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_computed_goto.buildAssemblyCode
+  ??@registerTable unused inRegisterTable
+  ?!@string ioString
+:
+  if mUsesRelativeCall then
+    ioString .= "  RCALL _computed_goto_4\n" ;
+  else
+    ioString .= "  CALL _computed_goto_4\n" ;
+  end if ;
+  foreach mTargetLabels do
+    ioString .= "  GOTO " . [mValue string] . "\n" ;
+  end foreach ;
+end method ;
+
+#----------------------------------------------------*
+
+routine buildAssemblyCode
+  ??@string inProcessorName
+  ??@registerTable inPredefinedRegisters
+  ??@registerTable inAllRegisters
+  ??@instructionList inInstructionList
+  !@string outAssemblyCode
+:
+  outAssemblyCode := "  PROCESSOR " . inProcessorName . "\n" ;
+#--- Prefined registers
+  outAssemblyCode .= ";--- Prefefined registers\n" ;
+  foreach inPredefinedRegisters do
+    @uint firstRegister ; [mRegisterAddressList first ?firstRegister] ;
+    outAssemblyCode .= [key string] . " EQU " . [firstRegister hexString] . "\n" ;
+  end foreach ;
+#--- User defined registers in ram
+  outAssemblyCode .= ";--- User defined registers (in RAM)\n" ;
+  foreach inAllRegisters do
+    if not [inPredefinedRegisters hasKey ![key string]] then
+      @uint firstRegister ; [mRegisterAddressList first ?firstRegister] ;
+      outAssemblyCode .= [key string] . " EQU " . [firstRegister hexString] . "\n" ;
+    end if ;
+  end foreach ;
+#--- PICCOLO defined symbols
+  outAssemblyCode .= ";--- Piccolo defined symbols\n" ;
+  outAssemblyCode .= "F EQU 0\n" ;
+  outAssemblyCode .= "W EQU 1\n" ;
+  outAssemblyCode .= "BSR_ACCESS EQU 1\n" ;
+#--- Code
+  outAssemblyCode .= ";--- Code\n" ;
+  outAssemblyCode .= "  ORG 0\n" ;
+  foreach inInstructionList do
+    [mInstruction buildAssemblyCode !inAllRegisters !?outAssemblyCode] ;
+  end foreach ;
+  outAssemblyCode .= "\n" ;
+  outAssemblyCode .= ";---\n\n" ;
+  outAssemblyCode .= "  END\n\n" ;
+end routine ;
+
+#----------------------------------------------------*
+
+end semantics ;

@@ -1,0 +1,694 @@
+semantics piccolo_build_binary_code :
+import semantics piccolo_metamodel in "piccolo_metamodel.ggs" ;
+import semantics piccolo_build_assembly_code in "piccolo_build_assembly_code.ggs" ;
+
+#----------------------------------------------------------------------------*
+
+extern routine setEmitAddress ??@uint inAddress ;
+
+extern routine currentEmitAddress !@uint outAddress ;
+
+extern routine emitCode ??@uint inCode ;
+
+extern routine getGeneratedContents !@string outContents ;
+
+#----------------------------------------------------------------------------*
+#                                                                            *
+#----------------------------------------------------------------------------*
+
+routine checkCurrentEmitAddress ??@uint inCurrentAddress :
+  @uint addr ; currentEmitAddress ? addr ;
+  if ([@uint errorCount] == 0) & (addr != inCurrentAddress) then
+    error here:"internal error: current emit address is " . [addr hexString]
+    . "; it should be " . [inCurrentAddress hexString] ;
+  end if ;
+end routine ;
+
+#----------------------------------------------------------------------------*
+
+map @symbolTable {
+  @uint mRoutineAddress ;
+  insert insertKey error message "the '%K' label is already declared in %L" ;
+  search searchKey error message "the '%K' label is not declared" ;
+}
+
+#----------------------------------------------------------------------------*
+#                                                                            *
+#                          enterLabelAtAddress                               *
+#                                                                            *
+#----------------------------------------------------------------------------*
+
+method @instruction.enterLabelAtAddress
+  ?!@symbolTable unused ioRoutineSymbolTable
+  ?!@uint unused ioAddress
+:
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override
+method @pseudo_LABEL.enterLabelAtAddress
+  ?!@symbolTable ioRoutineSymbolTable
+  ?!@uint ioAddress
+:
+  [!?ioRoutineSymbolTable insertKey !mTargetLabel !ioAddress] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override
+method @pseudo_ORG.enterLabelAtAddress
+  ?!@symbolTable unused ioRoutineSymbolTable
+  ?!@uint ioAddress
+:
+  ioAddress := mOrigin ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override
+method @actualInstruction.enterLabelAtAddress
+  ?!@symbolTable unused ioRoutineSymbolTable
+  ?!@uint ioAddress
+:
+  @uint instructionLength ;
+  [self instructionLength ?instructionLength] ;
+  ioAddress := ioAddress  + instructionLength ;
+end method ;
+
+#----------------------------------------------------------------------------*
+#                                                                            *
+#               C O D E    G E N E R A T I O N                               *
+#                                                                            *
+#----------------------------------------------------------------------------*
+
+method @registerExpression.getRegisterAddress
+  ??@registerTable inRegisterTable
+  !@uint outRegisterAddress
+:
+  @uintlist registerAddressList ;
+  @uint size ;
+  [inRegisterTable searchKey !mRegisterName ?registerAddressList ?size ?*] ;
+  if [mOffset uint] > size then
+    error mOffset:"The index (" . [[mOffset uint] string] . ") should be lower than size (" . [size string] . ")" ;
+  end if ;
+  [registerAddressList first ?outRegisterAddress] ;
+  outRegisterAddress := outRegisterAddress + [mOffset uint] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+method @registerExpression.getRegisterAddressingInformations
+  ??@registerTable inRegisterTable
+  ??@symbolTable unused inRoutineSymbolTable
+  !@uint outRegisterAddress
+  !@bool outUseBSRregister
+  !@bitSliceTable outBitSliceTable
+:
+  @uintlist registerAddressList ;
+  @uint size ;
+  [inRegisterTable searchKey !mRegisterName ?registerAddressList ?size ?outBitSliceTable] ;
+  [registerAddressList first ?outRegisterAddress] ;
+  outRegisterAddress := outRegisterAddress + [mOffset uint] ;
+  outUseBSRregister := (outRegisterAddress >= 0x60) & (outRegisterAddress < 0xF60) ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+abstract method @instruction.generateBinaryCodeAtAddress
+  ??@registerTable unused inRegisterTable
+  ??@symbolTable unused inRoutineSymbolTable
+  ?!@uint unused ioAddress
+;
+
+#----------------------------------------------------------------------------*
+
+override
+method @pseudo_ORG.generateBinaryCodeAtAddress
+  ??@registerTable unused inRegisterTable
+  ??@symbolTable unused inRoutineSymbolTable
+  ?!@uint ioAddress
+:
+  ioAddress := mOrigin ;
+  setEmitAddress !mOrigin ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @instruction_FDA.generateBinaryCodeAtAddress
+  ??@registerTable inRegisterTable
+  ??@symbolTable inRoutineSymbolTable
+  ?!@uint unused ioAddress
+:
+  @uint usedRegisterAddress ;
+  @bool useBSRregister ;
+  [mRegisterExpression getRegisterAddressingInformations
+    !inRegisterTable
+    !inRoutineSymbolTable
+    ?usedRegisterAddress
+    ?useBSRregister
+    ?*
+  ] ;
+#--- Emit Code
+  @uint code ; [self getBaseCode ? code] ;
+  if useBSRregister then
+    code := code | 0x0100 ;
+  end if ;
+  if not m_W_isDestination then
+    code := code | 0x0200 ;
+  end if ;
+  code := code | (usedRegisterAddress & 255) ;
+  emitCode !code ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @instruction_FA.generateBinaryCodeAtAddress
+  ??@registerTable inRegisterTable
+  ??@symbolTable inRoutineSymbolTable
+  ?!@uint unused ioAddress
+:
+  @uint usedRegisterAddress ;
+  @bool useBSRregister ;
+  [mRegisterExpression getRegisterAddressingInformations
+    !inRegisterTable
+    !inRoutineSymbolTable
+    ?usedRegisterAddress
+    ?useBSRregister
+    ?*
+  ] ;
+#--- Emit Code
+  @uint code ; [self getBaseCode ? code] ;
+  if useBSRregister then
+    code := code | 0x0100 ;
+  end if ;
+  code := code | (usedRegisterAddress & 255) ;
+  emitCode !code ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @instruction_MOVFF.generateBinaryCodeAtAddress
+  ??@registerTable inRegisterTable
+  ??@symbolTable unused inRoutineSymbolTable
+  ?!@uint unused ioAddress
+:
+  @uint sourceRegisterAddress ;
+  [mSourceRegisterName getRegisterAddress !inRegisterTable ?sourceRegisterAddress] ;
+  @uint destinationRegisterAddress ;
+  [mDestinationRegisterName getRegisterAddress !inRegisterTable ?destinationRegisterAddress] ;
+  emitCode !0xC000 | sourceRegisterAddress ;
+  emitCode !0xF000 | destinationRegisterAddress ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @instruction_FBA.generateBinaryCodeAtAddress
+  ??@registerTable inRegisterTable
+  ??@symbolTable inRoutineSymbolTable
+  ?!@uint unused ioAddress
+:
+#--- Register
+  @bitSliceTable bitSliceTable;
+  @uint usedRegisterAddress ;
+  @bool useBSRregister ;
+  [mRegisterExpression getRegisterAddressingInformations
+    !inRegisterTable
+    !inRoutineSymbolTable
+    ?usedRegisterAddress
+    ?useBSRregister
+    ?bitSliceTable
+  ] ;
+#--- Bit
+  @uint bitNumber ;
+  [mBitNumber getBitNumber !bitSliceTable ?bitNumber] ;
+#--- Emit Code
+  @uint code ; [self getBaseCode ? code] ;
+  if useBSRregister then
+    code := code | 0x0100 ;
+  end if ;
+  code := code | (usedRegisterAddress & 255) ;
+  code := code | (bitNumber << 9) ;
+  emitCode !code ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+routine emitConditionalBranchInstruction
+  ??@uint inConditionalBranchInstructionAddress
+  ??@uint inTargetAddress
+  ??@location inErrorLocation
+  ??@conditional_branch inConditionalBranch
+:
+  @sint displacement := ([inTargetAddress sint] - 2S - [inConditionalBranchInstructionAddress sint]) >> 1 ;
+  if (displacement > 127S) | (displacement < - 128S) then
+    error inErrorLocation: "displacement too large for conditional branch instruction" ;
+  end if ;
+#  log displacement ;
+  @uint baseCode ;
+  getBccBaseCode !inConditionalBranch ?baseCode ;
+  emitCode !baseCode | [displacement & 0x0FFS uint] ;
+end routine ;
+
+#----------------------------------------------------------------------------*
+
+override method @instruction_conditionalBranch.generateBinaryCodeAtAddress
+  ??@registerTable unused inRegisterTable
+  ??@symbolTable inRoutineSymbolTable
+  ?!@uint ioAddress
+:
+  @uint targetAddress ;
+  [inRoutineSymbolTable searchKey !mTargetLabel ?targetAddress] ;
+#--- Emit Code
+  emitConditionalBranchInstruction
+    !ioAddress
+    !targetAddress
+    ![mTargetLabel location]
+    !mConditionalBranch
+  ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+routine emitBRAinstruction
+  ??@uint inBRAinstructionAddress
+  ??@uint inTargetAddress
+  ??@location inErrorLocation
+:
+  @sint displacement := ([inTargetAddress sint] - 2S - [inBRAinstructionAddress sint]) >> 1 ;
+  if (displacement > 1023S) | (displacement < - 1024S) then
+    error inErrorLocation: "displacement too large for BRA instruction" ;
+  end if ;
+#  log displacement ;
+  emitCode !0xD000 | [displacement & 0x07FFS uint] ;
+end routine ;
+
+#----------------------------------------------------------------------------*
+
+override method @instruction_BRA.generateBinaryCodeAtAddress
+  ??@registerTable unused inRegisterTable
+  ??@symbolTable inRoutineSymbolTable
+  ?!@uint ioAddress
+:
+ @uint targetAddress ;
+  [inRoutineSymbolTable searchKey !mTargetLabel ?targetAddress] ;
+#--- Emit Code
+  @sint displacement := ([targetAddress sint] - 2S - [ioAddress sint]) >> 1 ;
+  if (displacement > 0x800S) | (displacement < - 0x800S) then
+    error mTargetLabel: "displacement too large for RCALL instruction" ;
+  end if ;
+#--- Emit Code
+  emitBRAinstruction
+    !ioAddress
+    !targetAddress
+    ![mTargetLabel location]
+  ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+routine emitGOTOinstruction
+  ??@uint inTargetAddress
+:
+  emitCode !0xEF00 | ((inTargetAddress >> 1) & 255) ;
+  emitCode !0xF000 | (inTargetAddress >> 9) ;
+end routine ;
+
+#----------------------------------------------------------------------------*
+
+override method @instruction_GOTO.generateBinaryCodeAtAddress
+  ??@registerTable unused inRegisterTable
+  ??@symbolTable inRoutineSymbolTable
+  ?!@uint unused ioAddress
+:
+  @uint targetAddress ;
+  [inRoutineSymbolTable searchKey !mTargetLabel ?targetAddress] ;
+#--- Emit Code
+  emitGOTOinstruction !targetAddress ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+routine emitCALLinstruction
+  ??@uint inTargetAddress
+:
+  emitCode !0xEC00 | ((inTargetAddress >> 1) & 255) ;
+  emitCode !0xF000 | (inTargetAddress >> 9) ;
+end routine ;
+
+#----------------------------------------------------------------------------*
+
+override method @instruction_CALL.generateBinaryCodeAtAddress
+  ??@registerTable unused inRegisterTable
+  ??@symbolTable inRoutineSymbolTable
+  ?!@uint unused ioAddress
+:
+  @uint targetAddress ;
+  [inRoutineSymbolTable searchKey !mTargetLabel ?targetAddress] ;
+#--- Emit Code
+  emitCALLinstruction !targetAddress ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+routine emitRCALLinstruction
+  ??@uint inRCALLinstructionAddress
+  ??@uint inTargetAddress
+  ??@location inErrorLocation
+:
+  @sint displacement := ([inTargetAddress sint] - 2S - [inRCALLinstructionAddress sint]) >> 1 ;
+  if (displacement > 1023S) | (displacement < - 1024S) then
+    error inErrorLocation: "displacement too large for RCALL instruction" ;
+  end if ;
+#  log displacement ;
+  emitCode !0xD800 | [displacement & 0x07FFS uint] ;
+end routine ;
+
+#----------------------------------------------------------------------------*
+
+override method @instruction_RCALL.generateBinaryCodeAtAddress
+  ??@registerTable unused inRegisterTable
+  ??@symbolTable inRoutineSymbolTable
+  ?!@uint ioAddress
+:
+  @uint targetAddress ;
+  [inRoutineSymbolTable searchKey !mTargetLabel ?targetAddress] ;
+#--- Emit Code
+  emitRCALLinstruction
+    !ioAddress
+    !targetAddress
+    ![mTargetLabel location]
+  ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @instruction_CLRWDT.generateBinaryCodeAtAddress
+  ??@registerTable unused inRegisterTable
+  ??@symbolTable unused inRoutineSymbolTable
+  ?!@uint unused ioAddress
+:
+  emitCode !0x0004 ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @instruction_DAW.generateBinaryCodeAtAddress
+  ??@registerTable unused inRegisterTable
+  ??@symbolTable unused inRoutineSymbolTable
+  ?!@uint unused ioAddress
+:
+  emitCode !0x0007 ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @instruction_NOP.generateBinaryCodeAtAddress
+  ??@registerTable unused inRegisterTable
+  ??@symbolTable unused inRoutineSymbolTable
+  ?!@uint unused ioAddress
+:
+  emitCode !0x0000 ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @instruction_POP.generateBinaryCodeAtAddress
+  ??@registerTable unused inRegisterTable
+  ??@symbolTable unused inRoutineSymbolTable
+  ?!@uint unused ioAddress
+:
+  emitCode !0x0006 ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @instruction_PUSH.generateBinaryCodeAtAddress
+  ??@registerTable unused inRegisterTable
+  ??@symbolTable unused inRoutineSymbolTable
+  ?!@uint unused ioAddress
+:
+  emitCode !0x0005 ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @instruction_RESET.generateBinaryCodeAtAddress
+  ??@registerTable unused inRegisterTable
+  ??@symbolTable unused inRoutineSymbolTable
+  ?!@uint unused ioAddress
+:
+  emitCode !0x00FF ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @instruction_RETURN.generateBinaryCodeAtAddress
+  ??@registerTable unused inRegisterTable
+  ??@symbolTable unused inRoutineSymbolTable
+  ?!@uint unused ioAddress
+:
+  emitCode !0x0012 ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @instruction_RETFIE.generateBinaryCodeAtAddress
+  ??@registerTable unused inRegisterTable
+  ??@symbolTable unused inRoutineSymbolTable
+  ?!@uint unused ioAddress
+:
+  emitCode !0x0011 ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @instruction_SLEEP.generateBinaryCodeAtAddress
+  ??@registerTable unused inRegisterTable
+  ??@symbolTable unused inRoutineSymbolTable
+  ?!@uint unused ioAddress
+:
+  emitCode !0x0003 ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @instruction_literalOperation.generateBinaryCodeAtAddress
+  ??@registerTable unused inRegisterTable
+  ??@symbolTable unused inRoutineSymbolTable
+  ?!@uint unused ioAddress
+:
+#--- Emit Code
+  @uint code ; [self getBaseCode ? code] ;
+  code := code | [mLiteralValue uint] ;
+  emitCode !code ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @instruction_LFSR.generateBinaryCodeAtAddress
+  ??@registerTable inRegisterTable
+  ??@symbolTable unused inRoutineSymbolTable
+  ?!@uint unused ioAddress
+:
+  @uint sourceRegisterAddress ;
+  [mRegisterExpression getRegisterAddress !inRegisterTable ?sourceRegisterAddress] ;
+  emitCode !0xEE00 | ([mFSRindex uint] << 4) | (sourceRegisterAddress >> 8) ;
+  emitCode !0xF000 | (sourceRegisterAddress & 255) ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @instruction_MOVLB.generateBinaryCodeAtAddress
+  ??@registerTable unused inRegisterTable
+  ??@symbolTable unused inRoutineSymbolTable
+  ?!@uint unused ioAddress
+:
+  emitCode !0x0100 | [mPageIndex uint] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @pseudo_LABEL.generateBinaryCodeAtAddress
+  ??@registerTable unused inRegisterTable
+  ??@symbolTable inRoutineSymbolTable
+  ?!@uint ioAddress
+:
+  @uint targetAddress ;
+  [inRoutineSymbolTable searchKey !mTargetLabel ?targetAddress] ;
+  if (targetAddress != ioAddress) then
+    error mTargetLabel: "Internal second pass error: the '" . mTargetLabel
+    . "' label gets " . [ioAddress hexString] . " value in second pass, while it gets "
+    . [targetAddress hexString] . " in first pass" ;
+  end if ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @instruction_MOVAW.generateBinaryCodeAtAddress
+  ??@registerTable inRegisterTable
+  ??@symbolTable unused inRoutineSymbolTable
+  ?!@uint unused ioAddress
+:
+  @uint registerAddress ;
+  [mRegisterExpression getRegisterAddress
+    !inRegisterTable
+    ?registerAddress
+  ] ;
+  emitCode !0x0E00 | registerAddress ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @instruction_TBLRD.generateBinaryCodeAtAddress
+  ??@registerTable unused inRegisterTable
+  ??@symbolTable unused inRoutineSymbolTable
+  ?!@uint unused ioAddress
+:
+  switch mOption
+  when simpleAccess  : emitCode !0x0008 ;
+  when postIncrement : emitCode !0x0009 ;
+  when postDecrement : emitCode !0x000A ;
+  when preIncrement  : emitCode !0x000B ;
+  end switch ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @instruction_TBLWT.generateBinaryCodeAtAddress
+  ??@registerTable unused inRegisterTable
+  ??@symbolTable unused inRoutineSymbolTable
+  ?!@uint unused ioAddress
+:
+  switch mOption
+  when simpleAccess  : emitCode !0x000C ;
+  when postIncrement : emitCode !0x000D ;
+  when postDecrement : emitCode !0x000E ;
+  when preIncrement  : emitCode !0x000F ;
+  end switch ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @instruction_MNOP.generateBinaryCodeAtAddress
+  ??@registerTable unused inRegisterTable
+  ??@symbolTable unused inRoutineSymbolTable
+  ?!@uint unused ioAddress
+:
+  if [mOccurrenceFactor uint] == 0 then
+    warning mOccurrenceFactor: "No generated code" ;
+  end if ;
+  @uint idx := 0 ;
+  loop [mOccurrenceFactor uint] :
+  while idx < [mOccurrenceFactor uint]
+  do
+    emitCode !0x0000 ;
+    idx ++ ;
+  end loop ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @instruction_computed_retlw.generateBinaryCodeAtAddress
+  ??@registerTable unused  inRegisterTable
+  ??@symbolTable inRoutineSymbolTable
+  ?!@uint ioAddress
+:
+  @uint targetAddress ;
+  [inRoutineSymbolTable searchKey ![@lstring new !"_computed_goto_2" !here] ?targetAddress] ;
+  if mUsesRelativeCall then
+    emitRCALLinstruction !ioAddress !targetAddress !mInstructionLocation ;
+  else
+    emitCALLinstruction ! targetAddress ;
+  end if ;
+  foreach mLiteralValues do
+    emitCode !0x0C00 | [mValue uint] ;
+  end foreach ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @instruction_computed_bra.generateBinaryCodeAtAddress
+  ??@registerTable unused inRegisterTable
+  ??@symbolTable inRoutineSymbolTable
+  ?!@uint ioAddress
+:
+  @uint targetAddress ;
+  [inRoutineSymbolTable searchKey ![@lstring new !"_computed_goto_2" !here] ?targetAddress] ;
+  if mUsesRelativeCall then
+    emitRCALLinstruction !ioAddress !targetAddress !mInstructionLocation ;
+  else
+    emitCALLinstruction ! targetAddress ;
+  end if ;
+  @uint address := ioAddress + 4 ;
+  foreach mTargetLabels do
+    [inRoutineSymbolTable searchKey !mValue ?targetAddress] ;
+    emitBRAinstruction
+      !address
+      !targetAddress
+      ![mValue location]
+    ;
+    address := address + 2 ;
+  end foreach ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @instruction_computed_goto.generateBinaryCodeAtAddress
+  ??@registerTable unused inRegisterTable
+  ??@symbolTable inRoutineSymbolTable
+  ?!@uint ioAddress
+:
+  @uint targetAddress ;
+  [inRoutineSymbolTable searchKey ![@lstring new !"_computed_goto_4" !here] ?targetAddress] ;
+  if mUsesRelativeCall then
+    emitRCALLinstruction !ioAddress !targetAddress !mInstructionLocation ;
+  else
+    emitCALLinstruction !targetAddress ;
+  end if ;
+  foreach mTargetLabels do
+    @uint requiredSelectedBank ;
+    [inRoutineSymbolTable searchKey !mValue ?targetAddress] ;
+    emitGOTOinstruction
+      !targetAddress
+    ;
+  end foreach ;
+end method ;
+
+#----------------------------------------------------------------------------*
+#                                                                            *
+#               S E M A N T I C    A N A L Y S I S                           *
+#                                                                            *
+#----------------------------------------------------------------------------*
+
+routine buildBinaryCode
+  ??@registerTable inRegisterTable
+  ??@instructionList inGeneratedInstructionList
+:
+#-------------------------------- First pass: build label map
+  @symbolTable symbolTable [emptyMap] ;
+  @uint currentAddress := 0 ;
+  foreach inGeneratedInstructionList do
+    [mInstruction enterLabelAtAddress !?symbolTable !?currentAddress] ;
+  end foreach ;
+  @uint lastAddressForFirstPass := currentAddress ;
+#-------------------------------- Second pass: generate code
+  currentAddress := 0 ;
+  setEmitAddress !0 ;
+  foreach inGeneratedInstructionList do
+    [mInstruction generateBinaryCodeAtAddress !inRegisterTable !symbolTable !?currentAddress] ;
+    @uint instructionLength ;
+    [mInstruction instructionLength ?instructionLength] ;
+    currentAddress := currentAddress  + instructionLength ;
+    checkCurrentEmitAddress !currentAddress ;
+  end foreach ;
+  if lastAddressForFirstPass != currentAddress then
+    error here: "Internal second pass error: the last address gets " . [currentAddress hexString]
+    . " value in second pass, while it gets "
+    . [lastAddressForFirstPass hexString] . " value in first pass" ;
+  end if ;
+end routine ;
+
+#----------------------------------------------------------------------------*
+
+end semantics ;

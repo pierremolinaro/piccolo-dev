@@ -184,7 +184,7 @@ routine getFAinstructionBaseCode
 :
   switch inInstruction
   when CLRF   : outBaseCode := 0x6A00 ;
-  when CPFSEQ : outBaseCode := 0x6400 ;
+  when CPFSEQ : outBaseCode := 0x6200 ;
   when CPFSGT : outBaseCode := 0x6400 ;
   when CPFSLT : outBaseCode := 0x6000 ;
   when MOVWF  : outBaseCode := 0x6E00 ;
