@@ -155,6 +155,57 @@ end method ;
 
 #----------------------------------------------------*
 
+override method @instruction_do_while.decomposeComplexInstruction
+  ?!@uint ioLocalLabelIndex
+  ?!@instructionList ioGeneratedInstructionList
+:
+#---
+  [!?ioGeneratedInstructionList popLast ?*] ;
+#--- Generate label
+  @string label0 := "_label_" . [ioLocalLabelIndex string] ; ioLocalLabelIndex ++ ;
+#--- Define label
+  ioGeneratedInstructionList += ![@pseudo_LABEL new ![@lstring new !label0 !mInstructionLocation]] ;
+#--- Repeated instructions
+  foreach mRepeatedInstructionList do
+    ioGeneratedInstructionList += !mInstruction ;
+    [mInstruction decomposeComplexInstruction !?ioLocalLabelIndex !?ioGeneratedInstructionList] ;
+  end foreach ;
+#--- Translate condition
+  [mWhileCondition decomposeIFcondition !mInstructionLocation !label0 !?ioGeneratedInstructionList] ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_IF_IncDec.decomposeComplexInstruction
+  ?!@uint ioLocalLabelIndex
+  ?!@instructionList ioGeneratedInstructionList
+:
+#---
+  [!?ioGeneratedInstructionList popLast ?*] ;
+#---
+  @instruction_FDA_base_code baseCode ;
+  if mIncrement & mSkipIfZero then
+    baseCode := [@instruction_FDA_base_code INCFSZ] ;
+  elsif mIncrement & not mSkipIfZero then
+    baseCode := [@instruction_FDA_base_code INFSNZ] ;
+  elsif (not mIncrement) & mSkipIfZero then
+    baseCode := [@instruction_FDA_base_code DECFSZ] ;
+  else
+    baseCode := [@instruction_FDA_base_code DCFSNZ] ;
+  end if ;
+  ioGeneratedInstructionList += ![@instruction_FDA new
+    !mInstructionLocation
+    !baseCode
+    !mRegisterExpression
+    !m_W_isDestination
+  ] ;
+#--- Repeated instructions
+  ioGeneratedInstructionList += !mInstruction ;
+  [mInstruction decomposeComplexInstruction !?ioLocalLabelIndex !?ioGeneratedInstructionList] ;
+end method ;
+
+#----------------------------------------------------*
+
 routine buildAssemblyInstructionList
   ??@piccoloModel inPiccoloModel
   ??@bool inHasHighInterrupt

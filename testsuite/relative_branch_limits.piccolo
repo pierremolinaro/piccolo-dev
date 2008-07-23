@@ -40,14 +40,14 @@ routine foreverLoop {
 }
 
 routine BccOverflow1 {
-  if z { # Native BCC converted to BCC with BRA
+  if (z) { # Native BCC converted to BCC with BRA
     mnop 128
   }
   return
 }
 
 routine BccOverflow2 {
-  if z { # Native BCC converted to BCC with GOTO
+  if (z) { # Native BCC converted to BCC with GOTO
     mnop 1023
   }
   return

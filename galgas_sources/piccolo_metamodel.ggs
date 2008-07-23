@@ -640,6 +640,39 @@ class @instruction_IF_BitTest extends @instruction_IF_SEMI_COLON {
 
 #----------------------------------------------------*
 
+class @instruction_IF_IncDec extends @instruction_IF_SEMI_COLON {
+  @bool mIncrement ;
+  @bool mSkipIfZero ;
+  @registerExpression mRegisterExpression ;
+  @bool m_W_isDestination ;
+
+  method getBaseCode !@uint outBaseCode :
+    if mIncrement & mSkipIfZero then
+      outBaseCode := 0x3C00 ; # INCFSZ
+    elsif mIncrement & not mSkipIfZero then
+      outBaseCode := 0x4800 ; # INFSNZ
+    elsif (not mIncrement) & mSkipIfZero then
+      outBaseCode := 0x2C00 ; # DECFSZ
+    else
+      outBaseCode := 0x4C00 ; # DCFSNZ
+    end if ;
+  end method ; 
+
+  method getMnemonic !@string outMnemonic :
+    if mIncrement & mSkipIfZero then
+      outMnemonic := "INCFSZ" ;
+    elsif mIncrement & not mSkipIfZero then
+      outMnemonic := "INFSNZ" ;
+    elsif (not mIncrement) & mSkipIfZero then
+      outMnemonic := "DECFSZ" ;
+    else
+      outMnemonic := "DCFSNZ" ;
+    end if ;
+  end method ; 
+}
+
+#----------------------------------------------------*
+
 class @instruction_computed_retlw extends @actualInstruction {
   @luintlist mLiteralValues ;
   @bool mUsesRelativeCall ;
@@ -734,6 +767,21 @@ class @instruction_structured_if extends @actualInstruction {
       outLength := outLength + 2 ; # Bra for skking else part
     end if ;
     foreach mElseInstructionList do
+      @uint lg ; [mInstruction instructionLength ?lg] ;
+      outLength := outLength + lg ;
+    end foreach ;
+  end method ;
+}
+#----------------------------------------------------*
+
+class @instruction_do_while extends @actualInstruction {
+  @structured_if_condition mWhileCondition ;
+  @instructionList mRepeatedInstructionList ;
+
+  override
+  method instructionLength !@uint outLength :
+    [mWhileCondition conditionLength ?outLength] ;
+    foreach mRepeatedInstructionList do
       @uint lg ; [mInstruction instructionLength ?lg] ;
       outLength := outLength + lg ;
     end foreach ;
