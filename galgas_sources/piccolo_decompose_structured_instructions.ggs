@@ -94,6 +94,7 @@ override method @bcc_in_structured_if_condition.decomposeIFcondition
 :
   ioGeneratedInstructionList += ![@instruction_conditionalBranch new
     !inInstructionLocation
+    ![@condionalBranchMode native]
     !mCondition
     ![@lstring new !inTargetLabel !inInstructionLocation]
   ] ;

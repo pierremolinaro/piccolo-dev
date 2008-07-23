@@ -1,5 +1,6 @@
 option piccolo_options :
 
 @bool generateAssembly : 's', "asm" -> "Generate assembly language text file, instead of hex file" ;
+@bool doNotConvertRelative : 'r', "do-not-convert-relative" -> "Do not convert relative branch to absolute ones, when needed" ;
 
 end option ;

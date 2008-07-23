@@ -6,6 +6,7 @@ compile "piccolo_syntax.ggs" ;
 compile "piccolo_grammar.ggs" ;
 compile "piccolo_decompose_structured_instructions.ggs" ;
 compile "piccolo_build_assembly_code.ggs" ;
+compile "piccolo_convert_relatives.ggs" ;
 compile "piccolo_build_binary_code.ggs" ;
 compile "piccolo_semantics.ggs" ;
 

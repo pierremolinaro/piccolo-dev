@@ -1,6 +1,7 @@
 semantics piccolo_semantics :
 import semantics piccolo_build_binary_code in "piccolo_build_binary_code.ggs" ;
 import semantics piccolo_decompose_structured_instructions in "piccolo_decompose_structured_instructions.ggs" ;
+import semantics piccolo_convert_relatives in "piccolo_convert_relatives.ggs" ;
 import option piccolo_options in "piccolo_options.ggs" ;
 
 #----------------------------------------------------------------------------*
@@ -67,182 +68,11 @@ routine analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName :
     !hasLowInterrupt
     ?generatedInstructionList
   ;
-##--- First, handle low interrupt (if any)
-#  @uint currentROMaddress := 0x18 ;
-#  @routineSymbolTable routineSymbolTable [emptyMap] ;
-#  if hasLowInterrupt then
-#    foreach [inPiccoloModel mInterruptDefinitionList] do
-#      if [mInterruptName string] == "low" then
-#        @uint currentlySelectedBank [max] ; # No selected bank by default
-#        foreach mInstructionList do
-#          [mInstruction enterLabelAtAddress !?routineSymbolTable !currentROMaddress !?currentlySelectedBank] ;
-#          @uint length ;
-#          [mInstruction instructionLength ?length] ;
-#          currentROMaddress := currentROMaddress + length ;
-#        end foreach ;
-#      #--- Ajouter l'instruction REFFIE
-#        currentROMaddress := currentROMaddress + 2 ;
-#      end if ;
-#    end foreach ;
-#  end if ;
-##--- Then, handle high interrupt (if any)
-#  @uint highInterruptStartAddress := currentROMaddress ;
-#  if not hasLowInterrupt then
-#    currentROMaddress := 0x8 ;
-#  end if ;
-#  if hasHighInterrupt then
-#    foreach [inPiccoloModel mInterruptDefinitionList] do
-#      if [mInterruptName string] == "high" then
-#        @uint currentlySelectedBank [max] ; # No selected bank by default
-#        foreach mInstructionList do
-#          [mInstruction enterLabelAtAddress !?routineSymbolTable !currentROMaddress !?currentlySelectedBank] ;
-#          @uint length ;
-#          [mInstruction instructionLength ?length] ;
-#          currentROMaddress := currentROMaddress + length ;
-#        end foreach ;
-#      #--- Ajouter l'instruction REFFIE
-#        currentROMaddress := currentROMaddress + 2 ;
-#      end if ;
-#    end foreach ;
-#  end if ;
-##--- Handle routines
-#  if (not hasHighInterrupt) & (not hasLowInterrupt) then # No interrupts
-#    currentROMaddress := 0x4 ;
-#  end if ;
-#  foreach [inPiccoloModel mRoutineDefinitionList] do
-#    @uint currentlySelectedBank := [mBanksel uint] ;
-#    [!?routineSymbolTable insertKey !mRoutineName !currentROMaddress !currentlySelectedBank] ;
-#    foreach mInstructionList do
-#      [mInstruction enterLabelAtAddress !?routineSymbolTable !currentROMaddress !?currentlySelectedBank] ;
-#      @uint length ;
-#      [mInstruction instructionLength ? length] ;
-#      currentROMaddress := currentROMaddress + length ;
-#    end foreach ;
-#  end foreach ;
-##--- computed_goto2, computed_goto4 routines needed ?
-#  @uint computedGoto4RoutineAddress := currentROMaddress ;
-#  @uint computedGoto2RoutineAddress := currentROMaddress + 2 ;
-#  if [inPiccoloModel mNeedsComputedGoto4] then
-#    currentROMaddress := currentROMaddress + 12 ; # Routine size
-#  elsif [inPiccoloModel mNeedsComputedGoto2] then
-#    currentROMaddress := currentROMaddress + 10 ; # Routine size
-#  end if ;
-#  @uint programSize := currentROMaddress ;
-##-------------------------------- Prepare code generation
-##--- At Address 0, generate a GOTO main instruction
-#  setEmitAddress !0 ;
-#  if not [routineSymbolTable hasKey !"main"] then
-#    error here: "there is no 'main' routine" ;
-#  else
-#    @uint mainRoutineAddress ;
-#    [routineSymbolTable searchKey ![@lstring new !"main" !here] ?mainRoutineAddress ?*] ;
-#    emitCode !0xEF00 | ((mainRoutineAddress >> 1) & 255) ;
-#    emitCode !0xF000 | (mainRoutineAddress >> 9) ;
-#  end if ;
-##---- At address 0x8, if there is an high interrupt routine :
-##  - generate this routine if no low interrupt
-##  - generate a BRA to interrupt routine if there is a low interrupt routine
-#  if hasHighInterrupt & hasLowInterrupt then
-#    setEmitAddress !8 ;
-#    emitBRAinstruction
-#      !8
-#      !highInterruptStartAddress
-#      !here
-#    ;
-#  end if ;
-##-------------------------------- Second Pass
-#  @codeGenerationContext codeGenerationContext [new
-#    !routineSymbolTable
-#    !registerTable
-#    !0 # Current bank is 0, as BSR is initialized to zero
-#    !computedGoto2RoutineAddress
-#    !computedGoto4RoutineAddress
-#  ] ;
-##--- Generate low interrupt routine (if any)
-#  currentROMaddress := 0x18 ;
-#  if hasLowInterrupt then
-#    setEmitAddress !0x18 ;
-#    foreach [inPiccoloModel mInterruptDefinitionList] do
-#      if [mInterruptName string] == "low" then
-#        codeGenerationContext.mCurrentBank := [@uint max] ; # No selected bank
-#        @bool continuesInSequence := true ;
-#        foreach mInstructionList do
-#          [mInstruction generateCodeAtAddress !codeGenerationContext !currentROMaddress !?continuesInSequence] ;
-#          @uint length ;
-#          [mInstruction instructionLength ?length] ;
-#          currentROMaddress := currentROMaddress + length ;
-#          checkCurrentEmitAddress !currentROMaddress ;
-#        end foreach ;
-#        currentROMaddress := currentROMaddress + 2 ;
-#        emitCode !0x0011 ; # RETFIE 1
-#        checkCurrentEmitAddress !currentROMaddress ;
-#      end if ;
-#    end foreach ;
-#  end if ;
-##--- Generate high interrupt routine (if any)
-#  if not hasLowInterrupt then
-#    currentROMaddress := 0x8 ;
-#    setEmitAddress !0x8 ;
-#  end if ;
-#  if hasHighInterrupt then
-#    foreach [inPiccoloModel mInterruptDefinitionList] do
-#      if [mInterruptName string] == "high" then
-#        codeGenerationContext.mCurrentBank := [@uint max] ; # No selected bank
-#        @bool continuesInSequence := true ;
-#        foreach mInstructionList do
-#          [mInstruction generateCodeAtAddress !codeGenerationContext !currentROMaddress !?continuesInSequence] ;
-#          @uint length ;
-#          [mInstruction instructionLength ?length] ;
-#          currentROMaddress := currentROMaddress + length ;
-#          checkCurrentEmitAddress !currentROMaddress ;
-#        end foreach ;
-#        currentROMaddress := currentROMaddress + 2 ;
-#        emitCode !0x0011 ; # RETFIE 1
-#        checkCurrentEmitAddress !currentROMaddress ;
-#      end if ;
-#    end foreach ;
-#  end if ;
-##--- Generate routines
-#  if (not hasLowInterrupt) & (not hasHighInterrupt) then
-#    currentROMaddress := 0x4 ;
-#    setEmitAddress !0x4 ;
-#  end if ;
-#  foreach [inPiccoloModel mRoutineDefinitionList] do
-#    codeGenerationContext.mCurrentBank := [mBanksel uint] ;
-#    if ([mRoutineName string] == "main") & ([mBanksel uint] != 0) then
-#      error mRoutineName:"as PIC18 is started with BSR register set to 0, the 'main' routine requires the 'banksel 0' declaration" ;
-#    end if ;
-#    if ([mRoutineName string] == "main") & not mHasNoReturn then
-#      error mRoutineName:"as the 'main' routine is an endless loop, it should be declared with 'noreturn' qualifier" ;
-#    end if ;
-#    @bool continuesInSequence := true ;
-#    foreach mInstructionList do
-#      [mInstruction generateCodeAtAddress !codeGenerationContext !currentROMaddress !?continuesInSequence] ;
-#      @uint length ;
-#      [mInstruction instructionLength ?length] ;
-#      currentROMaddress := currentROMaddress + length ;
-#      checkCurrentEmitAddress !currentROMaddress ;
-#    end foreach ;
-#  end foreach ;
-##--- computed_goto2 routine needed ?
-#  if [inPiccoloModel mNeedsComputedGoto4] then
-#    emitCode !0x24E8 ; # ADDWF WREG, W
-#    currentROMaddress := currentROMaddress + 2 ; # Instruction size
-#  end if ;
-#  if [inPiccoloModel mNeedsComputedGoto2] | [inPiccoloModel mNeedsComputedGoto4] then
-#    emitCode !0x24E8 ; # ADDWF WREG, W
-#    emitCode !0x26FD ; # ADDWF TOSL, F
-#    emitCode !0x0E00 ; # MOVLW 0
-#    emitCode !0x22FE ; # ADDWFC TOSH, F
-#    emitCode !0x0012 ; # RETURN 0
-#    currentROMaddress := currentROMaddress + 10 ; # Routine size
-#  end if ;
-##--- Check genereted code size against size computed in the first pass
-#  if (programSize != currentROMaddress) then
-#    error here: "Internal second pass error: the last address gets " . [currentROMaddress hexString]
-#    . " value in second pass, while it gets "
-#    . [programSize hexString] . " in first pass" ;
-#  end if ;
+#-------------------------------- Convert relative branchs to absolute, when needed
+  if not [option piccolo_options.doNotConvertRelative] then
+    convertRelativeBranchsToAbsoluteWhenNeeded !?generatedInstructionList ;
+  end if ;
+#-------------------------------- Code generation
 #--- If no error, generate object file
   if [@uint errorCount] == 0 then
     if [option piccolo_options.generateAssembly] then

@@ -8,7 +8,9 @@ import semantics piccolo_metamodel in "piccolo_metamodel.ggs" ;
 
 method @instruction.buildAssemblyCode
   ??@registerTable unused inRegisterTable
-  ?!@string unused ioString :
+  ?!@string unused ioString 
+  ?!@uint unused ioBccLabelIndex
+:
 end method ;
 
 #----------------------------------------------------*
@@ -16,6 +18,7 @@ end method ;
 override method @pseudo_ORG.buildAssemblyCode
   ??@registerTable unused inRegisterTable
   ?!@string ioString
+  ?!@uint unused ioBccLabelIndex
 :
   ioString .= "  ORG " . [mOrigin hexString] . "\n" ;
 end method ;
@@ -25,6 +28,7 @@ end method ;
 override method @pseudo_LABEL.buildAssemblyCode
   ??@registerTable unused inRegisterTable
   ?!@string ioString
+  ?!@uint unused ioBccLabelIndex
 :
   ioString .= [mTargetLabel string] . ":\n" ;
 end method ;
@@ -59,6 +63,7 @@ end method ;
 override method @instruction_FDA.buildAssemblyCode
   ??@registerTable inRegisterTable
   ?!@string ioString
+  ?!@uint unused ioBccLabelIndex
 :
   @bool useBSRaccess ;
 #log mInstruction_FDA_base_code ;
@@ -83,6 +88,7 @@ end method ;
 override method @instruction_MOVFF.buildAssemblyCode
   ??@registerTable inRegisterTable
   ?!@string ioString
+  ?!@uint unused ioBccLabelIndex
 :
   ioString .= "  MOVFF " ;
   [mSourceRegisterName buildAssemblyCode !inRegisterTable !?ioString ?* ?*] ;
@@ -131,6 +137,7 @@ end method ;
 override method @instruction_FBA.buildAssemblyCode
   ??@registerTable inRegisterTable
   ?!@string ioString
+  ?!@uint unused ioBccLabelIndex
 :
   @bool useBSRaccess ;
   ioString .= "  " . [mBitOrientedOp mnemonic] . " " ;
@@ -150,6 +157,7 @@ end method ;
 override method @instruction_FA.buildAssemblyCode
   ??@registerTable inRegisterTable
   ?!@string ioString
+  ?!@uint unused ioBccLabelIndex
 :
   @bool useBSRaccess ;
   ioString .= "  " . [mFAinstruction mnemonic] . " " ;
@@ -165,8 +173,26 @@ end method ;
 override method @instruction_conditionalBranch.buildAssemblyCode
   ??@registerTable unused inRegisterTable
   ?!@string ioString
+  ?!@uint ioBccLabelIndex
 :
-  ioString .= "  " . [mConditionalBranch mnemonic] . " " . [mTargetLabel string] . "\n" ;
+  switch mBranchMode
+  when native :
+    ioString .= "  " . [mConditionalBranch mnemonic] . " " . [mTargetLabel string] . "\n" ;
+  when usesBRA :
+    @conditional_branch complementary ;
+    getComplementaryBcc !mConditionalBranch ?complementary ;
+    @string aLabel := "_bcc_label_" . [ioBccLabelIndex string] ; ioBccLabelIndex ++ ;
+    ioString .= "  " . [complementary mnemonic] . " " . aLabel . "\n" ;
+    ioString .= "  BRA " . [mTargetLabel string] . "\n" ;
+    ioString .= aLabel . ":\n" ;
+  when usesGOTO :
+    @conditional_branch complementary ;
+    getComplementaryBcc !mConditionalBranch ?complementary ;
+    @string aLabel := "_bcc_label_" . [ioBccLabelIndex string] ; ioBccLabelIndex ++ ;
+    ioString .= "  " . [complementary mnemonic] . " " . aLabel . "\n" ;
+    ioString .= "  GOTO " . [mTargetLabel string] . "\n" ;
+    ioString .= aLabel . ":\n" ;
+  end switch ;
 end method ;
 
 #----------------------------------------------------*
@@ -174,6 +200,7 @@ end method ;
 override method @instruction_BRA.buildAssemblyCode
   ??@registerTable unused inRegisterTable
   ?!@string ioString
+  ?!@uint unused ioBccLabelIndex
 :
   ioString .= "  BRA  " . [mTargetLabel string] . "\n" ;
 end method ;
@@ -183,6 +210,7 @@ end method ;
 override method @instruction_CALL.buildAssemblyCode
   ??@registerTable unused inRegisterTable
   ?!@string ioString
+  ?!@uint unused ioBccLabelIndex
 :
   ioString .= "  CALL " . mTargetLabel . "\n" ;
 end method ;
@@ -192,6 +220,7 @@ end method ;
 override method @instruction_GOTO.buildAssemblyCode
   ??@registerTable unused inRegisterTable
   ?!@string ioString
+  ?!@uint unused ioBccLabelIndex
 :
   ioString .= "  GOTO " . mTargetLabel . "\n" ;
 end method ;
@@ -201,6 +230,7 @@ end method ;
 override method @instruction_RCALL.buildAssemblyCode
   ??@registerTable unused inRegisterTable
   ?!@string ioString
+  ?!@uint unused ioBccLabelIndex
 :
   ioString .= "  RCALL " . mTargetLabel . "\n" ;
 end method ;
@@ -210,6 +240,7 @@ end method ;
 override method @instruction_CLRWDT.buildAssemblyCode
   ??@registerTable unused inRegisterTable
   ?!@string ioString
+  ?!@uint unused ioBccLabelIndex
 :
   ioString .= "  CLRWDT\n" ;
 end method ;
@@ -219,6 +250,7 @@ end method ;
 override method @instruction_DAW.buildAssemblyCode
   ??@registerTable unused inRegisterTable
   ?!@string ioString
+  ?!@uint unused ioBccLabelIndex
 :
   ioString .= "  DAW\n" ;
 end method ;
@@ -228,6 +260,7 @@ end method ;
 override method @instruction_NOP.buildAssemblyCode
   ??@registerTable unused inRegisterTable
   ?!@string ioString
+  ?!@uint unused ioBccLabelIndex
 :
   ioString .= "  NOP\n" ;
 end method ;
@@ -237,6 +270,7 @@ end method ;
 override method @instruction_POP.buildAssemblyCode
   ??@registerTable unused inRegisterTable
   ?!@string ioString
+  ?!@uint unused ioBccLabelIndex
 :
   ioString .= "  POP\n" ;
 end method ;
@@ -246,6 +280,7 @@ end method ;
 override method @instruction_PUSH.buildAssemblyCode
   ??@registerTable unused inRegisterTable
   ?!@string ioString
+  ?!@uint unused ioBccLabelIndex
 :
   ioString .= "  PUSH\n" ;
 end method ;
@@ -255,6 +290,7 @@ end method ;
 override method @instruction_RESET.buildAssemblyCode
   ??@registerTable unused inRegisterTable
   ?!@string ioString
+  ?!@uint unused ioBccLabelIndex
 :
   ioString .= "  RESET\n" ;
 end method ;
@@ -264,6 +300,7 @@ end method ;
 override method @instruction_RETURN.buildAssemblyCode
   ??@registerTable unused inRegisterTable
   ?!@string ioString
+  ?!@uint unused ioBccLabelIndex
 :
   ioString .= "  RETURN\n" ;
 end method ;
@@ -273,6 +310,7 @@ end method ;
  override method @instruction_RETFIE.buildAssemblyCode
   ??@registerTable unused inRegisterTable
   ?!@string ioString
+  ?!@uint unused ioBccLabelIndex
 :
   ioString .= "  RETFIE" ;
   if mFastReturn then
@@ -286,6 +324,7 @@ end method ;
  override method @instruction_SLEEP.buildAssemblyCode
   ??@registerTable unused inRegisterTable
   ?!@string ioString
+  ?!@uint unused ioBccLabelIndex
 :
   ioString .= "  SLEEP\n" ;
 end method ;
@@ -295,6 +334,7 @@ end method ;
 override method @instruction_literalOperation.buildAssemblyCode
   ??@registerTable unused inRegisterTable
   ?!@string ioString
+  ?!@uint unused ioBccLabelIndex
 :
   ioString .= "  " . [mLiteralInstruction mnemonic] . " " . [[mLiteralValue uint] hexString] . "\n" ;
 end method ;
@@ -304,6 +344,7 @@ end method ;
  override method @instruction_LFSR.buildAssemblyCode
   ??@registerTable inRegisterTable
   ?!@string ioString
+  ?!@uint unused ioBccLabelIndex
 :
   ioString .= "  LFSR " . [[mFSRindex uint] string] . ", " ;
   [mRegisterExpression  buildAssemblyCode
@@ -320,6 +361,7 @@ end method ;
  override method @instruction_MOVAW.buildAssemblyCode
   ??@registerTable inRegisterTable
   ?!@string ioString
+  ?!@uint unused ioBccLabelIndex
 :
   ioString .= "  MOVLW " ;
   [mRegisterExpression  buildAssemblyCode
@@ -336,6 +378,7 @@ end method ;
 override method @instruction_MNOP.buildAssemblyCode
   ??@registerTable unused inRegisterTable
   ?!@string ioString
+  ?!@uint unused ioBccLabelIndex
 :
   if [mOccurrenceFactor uint] == 0 then
     warning mOccurrenceFactor: "No generated code" ;
@@ -354,6 +397,7 @@ end method ;
 override method @instruction_TBLRD.buildAssemblyCode
   ??@registerTable unused inRegisterTable
   ?!@string ioString
+  ?!@uint unused ioBccLabelIndex
 :
   ioString .= "  TBLRD " . [mOption mnemonic] . "\n" ;
 end method ;
@@ -363,6 +407,7 @@ end method ;
 override method @instruction_TBLWT.buildAssemblyCode
   ??@registerTable unused inRegisterTable
   ?!@string ioString
+  ?!@uint unused ioBccLabelIndex
 :
   ioString .= "  TBLWT " . [mOption mnemonic] . "\n" ;
 end method ;
@@ -372,6 +417,7 @@ end method ;
 override method @instruction_computed_retlw.buildAssemblyCode
   ??@registerTable unused inRegisterTable
   ?!@string ioString
+  ?!@uint unused ioBccLabelIndex
 :
   if mUsesRelativeCall then
     ioString .= "  RCALL _computed_goto_2\n" ;
@@ -388,6 +434,7 @@ end method ;
 override method @instruction_computed_bra.buildAssemblyCode
   ??@registerTable unused inRegisterTable
   ?!@string ioString
+  ?!@uint unused ioBccLabelIndex
 :
   if mUsesRelativeCall then
     ioString .= "  RCALL _computed_goto_2\n" ;
@@ -404,6 +451,7 @@ end method ;
 override method @instruction_computed_goto.buildAssemblyCode
   ??@registerTable unused inRegisterTable
   ?!@string ioString
+  ?!@uint unused ioBccLabelIndex
 :
   if mUsesRelativeCall then
     ioString .= "  RCALL _computed_goto_4\n" ;
@@ -447,8 +495,9 @@ routine buildAssemblyCode
 #--- Code
   outAssemblyCode .= ";--- Code\n" ;
   outAssemblyCode .= "  ORG 0\n" ;
+  @uint bccLabelIndex := 0 ;
   foreach inInstructionList do
-    [mInstruction buildAssemblyCode !inAllRegisters !?outAssemblyCode] ;
+    [mInstruction buildAssemblyCode !inAllRegisters !?outAssemblyCode !?bccLabelIndex] ;
   end foreach ;
   outAssemblyCode .= "\n" ;
   outAssemblyCode .= ";---\n\n" ;

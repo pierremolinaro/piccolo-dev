@@ -667,6 +667,7 @@ rule <simple_instruction> !@instruction outInstruction :
     $identifier$ ? @lstring targetLabelName ;
     outInstruction := [@instruction_conditionalBranch new
       !instructionLocation
+      ![@condionalBranchMode native]
       !conditionalBranch
       !targetLabelName
     ] ;

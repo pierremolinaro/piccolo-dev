@@ -39,4 +39,17 @@ routine foreverLoop {
   end forever
 }
 
+routine BccOverflow1 {
+  if z { # Native BCC converted to BCC with BRA
+    mnop 128
+  }
+  return
+}
+
+routine BccOverflow2 {
+  if z { # Native BCC converted to BCC with GOTO
+    mnop 1023
+  }
+  return
+}
 end
