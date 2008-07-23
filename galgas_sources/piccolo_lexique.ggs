@@ -37,7 +37,9 @@ list controlKeyWordList error message "the '%K' keyword" style keywordStyle :
   "if",
   "computed",
   "rcomputed",
-  "else" ;
+  "else",
+  "do",
+  "while" ;
 
 list instructionKeyWordList error message "the '%K' instruction" style instructionStyle :
   "addwf",
@@ -210,7 +212,7 @@ list delimitorsList error message "the '%K' delimitor" style delimitersStyle :
   "*",  "*+",   ",",  "!=", "<=", ">=",
   "*-", "+*",   ";",  ":",
   "[",  "]",    ".",
-  "{",  "}" ;
+  "{",  "}", "(", ")" ;
 
 rule list delimitorsList ;
 
