@@ -252,24 +252,6 @@ end routine ;
 
 #----------------------------------------------------------------------------*
 
-override method @instruction_conditionalBranch.generateBinaryCodeAtAddress
-  ??@registerTable unused inRegisterTable
-  ??@symbolTable inRoutineSymbolTable
-  ?!@uint ioAddress
-:
-  @uint targetAddress ;
-  [inRoutineSymbolTable searchKey !mTargetLabel ?targetAddress] ;
-#--- Emit Code
-  emitConditionalBranchInstruction
-    !ioAddress
-    !targetAddress
-    ![mTargetLabel location]
-    !mConditionalBranch
-  ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
 routine emitBRAinstruction
   ??@uint inBRAinstructionAddress
   ??@uint inTargetAddress
@@ -282,6 +264,62 @@ routine emitBRAinstruction
 #  log displacement ;
   emitCode !0xD000 | [displacement & 0x07FFS uint] ;
 end routine ;
+
+#----------------------------------------------------------------------------*
+
+routine emitGOTOinstruction
+  ??@uint inTargetAddress
+:
+  emitCode !0xEF00 | ((inTargetAddress >> 1) & 255) ;
+  emitCode !0xF000 | (inTargetAddress >> 9) ;
+end routine ;
+
+#----------------------------------------------------------------------------*
+
+override method @instruction_conditionalBranch.generateBinaryCodeAtAddress
+  ??@registerTable unused inRegisterTable
+  ??@symbolTable inRoutineSymbolTable
+  ?!@uint ioAddress
+:
+  @uint targetAddress ;
+  [inRoutineSymbolTable searchKey !mTargetLabel ?targetAddress] ;
+#--- Emit Code
+  switch mBranchMode
+  when native :
+    emitConditionalBranchInstruction
+      !ioAddress
+      !targetAddress
+      ![mTargetLabel location]
+      !mConditionalBranch
+    ;
+  when usesBRA :
+    @conditional_branch complementary ;
+    getComplementaryBcc !mConditionalBranch ?complementary ;
+    emitConditionalBranchInstruction
+      !ioAddress
+      !ioAddress + 4
+      ![mTargetLabel location]
+      !complementary
+    ;
+    emitBRAinstruction
+      !ioAddress + 2
+      !targetAddress
+      ![mTargetLabel location]
+    ;
+  when usesGOTO :
+    @conditional_branch complementary ;
+    getComplementaryBcc !mConditionalBranch ?complementary ;
+    emitConditionalBranchInstruction
+      !ioAddress
+      !ioAddress + 6
+      ![mTargetLabel location]
+      !complementary
+    ;
+    emitGOTOinstruction
+      !targetAddress
+    ;
+  end switch ;
+end method ;
 
 #----------------------------------------------------------------------------*
 
@@ -304,15 +342,6 @@ override method @instruction_BRA.generateBinaryCodeAtAddress
     ![mTargetLabel location]
   ;
 end method ;
-
-#----------------------------------------------------------------------------*
-
-routine emitGOTOinstruction
-  ??@uint inTargetAddress
-:
-  emitCode !0xEF00 | ((inTargetAddress >> 1) & 255) ;
-  emitCode !0xF000 | (inTargetAddress >> 9) ;
-end routine ;
 
 #----------------------------------------------------------------------------*
 
@@ -358,7 +387,7 @@ routine emitRCALLinstruction
 :
   @sint displacement := ([inTargetAddress sint] - 2S - [inRCALLinstructionAddress sint]) >> 1 ;
   if (displacement > 1023S) | (displacement < - 1024S) then
-    error inErrorLocation: "displacement too large for RCALL instruction" ;
+    error inErrorLocation: "displacement too large (". [displacement  string] . ") for RCALL instruction (should be between -1024 and 1023)" ;
   end if ;
 #  log displacement ;
   emitCode !0xD800 | [displacement & 0x07FFS uint] ;

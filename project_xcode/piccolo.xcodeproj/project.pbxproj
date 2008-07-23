@@ -284,6 +284,10 @@
 		CF8E305D0D9EE54E00EF3764 /* GGS_lstring.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CFF53891057A558F00854C83 /* GGS_lstring.cpp */; };
 		CF8E305E0D9EE55500EF3764 /* GGS_uint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CFF53897057A558F00854C83 /* GGS_uint.cpp */; };
 		CF8E30600D9EE55B00EF3764 /* GGS_uint64.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CFF53897057A558F00854C84 /* GGS_uint64.cpp */; };
+		CFA03D110E37207000F9710C /* piccolo_convert_relatives.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CFA03D0F0E37207000F9710C /* piccolo_convert_relatives.cpp */; };
+		CFA03D120E37207000F9710C /* piccolo_convert_relatives.h in Headers */ = {isa = PBXBuildFile; fileRef = CFA03D100E37207000F9710C /* piccolo_convert_relatives.h */; };
+		CFA03D130E37207000F9710C /* piccolo_convert_relatives.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CFA03D0F0E37207000F9710C /* piccolo_convert_relatives.cpp */; };
+		CFA03D140E37207000F9710C /* piccolo_convert_relatives.h in Headers */ = {isa = PBXBuildFile; fileRef = CFA03D100E37207000F9710C /* piccolo_convert_relatives.h */; };
 		CFA5D1630A32F661009B4370 /* C_ErrorOut.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CFA5D1610A32F661009B4370 /* C_ErrorOut.cpp */; };
 		CFA5D1640A32F661009B4370 /* C_ErrorOut.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CFA5D1610A32F661009B4370 /* C_ErrorOut.cpp */; };
 		CFA5D1650A32F661009B4370 /* C_ErrorOut.h in Headers */ = {isa = PBXBuildFile; fileRef = CFA5D1620A32F661009B4370 /* C_ErrorOut.h */; };
@@ -556,6 +560,8 @@
 		CF8E30560D9EE52E00EF3764 /* F_main-fake.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "F_main-fake.cpp"; sourceTree = "<group>"; };
 		CF9041F0057F687D007362F4 /* AC_galgas_domain.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = AC_galgas_domain.h; sourceTree = "<group>"; };
 		CF904220057F6B8D007362F4 /* AC_galgas_domain.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = AC_galgas_domain.cpp; sourceTree = "<group>"; };
+		CFA03D0F0E37207000F9710C /* piccolo_convert_relatives.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = piccolo_convert_relatives.cpp; sourceTree = "<group>"; };
+		CFA03D100E37207000F9710C /* piccolo_convert_relatives.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = piccolo_convert_relatives.h; sourceTree = "<group>"; };
 		CFA5D1610A32F661009B4370 /* C_ErrorOut.cpp */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = sourcecode.cpp.cpp; path = C_ErrorOut.cpp; sourceTree = "<group>"; };
 		CFA5D1620A32F661009B4370 /* C_ErrorOut.h */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = sourcecode.c.h; path = C_ErrorOut.h; sourceTree = "<group>"; };
 		CFA61CD4061091C90089CEA5 /* AC_galgas_map.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = AC_galgas_map.cpp; sourceTree = "<group>"; };
@@ -786,6 +792,8 @@
 		CFD21A8A0913D1890011F11E /* Sources Files */ = {
 			isa = PBXGroup;
 			children = (
+				CFA03D0F0E37207000F9710C /* piccolo_convert_relatives.cpp */,
+				CFA03D100E37207000F9710C /* piccolo_convert_relatives.h */,
 				CF2214640E366FDD00B7FDD5 /* piccolo_build_binary_code.cpp */,
 				CF2214650E366FDD00B7FDD5 /* piccolo_build_binary_code.h */,
 				CF2214430E3643D200B7FDD5 /* piccolo_build_assembly_code.cpp */,
@@ -1130,6 +1138,7 @@
 				CF22143E0E3642F300B7FDD5 /* piccolo_decompose_structured_instructions.h in Headers */,
 				CF2214460E3643D200B7FDD5 /* piccolo_build_assembly_code.h in Headers */,
 				CF2214670E366FDD00B7FDD5 /* piccolo_build_binary_code.h in Headers */,
+				CFA03D120E37207000F9710C /* piccolo_convert_relatives.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1226,6 +1235,7 @@
 				CF2214400E3642F300B7FDD5 /* piccolo_decompose_structured_instructions.h in Headers */,
 				CF2214480E3643D200B7FDD5 /* piccolo_build_assembly_code.h in Headers */,
 				CF2214690E366FDD00B7FDD5 /* piccolo_build_binary_code.h in Headers */,
+				CFA03D140E37207000F9710C /* piccolo_convert_relatives.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1461,6 +1471,7 @@
 				CF22143D0E3642F300B7FDD5 /* piccolo_decompose_structured_instructions.cpp in Sources */,
 				CF2214450E3643D200B7FDD5 /* piccolo_build_assembly_code.cpp in Sources */,
 				CF2214660E366FDD00B7FDD5 /* piccolo_build_binary_code.cpp in Sources */,
+				CFA03D110E37207000F9710C /* piccolo_convert_relatives.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1543,6 +1554,7 @@
 				CF22143F0E3642F300B7FDD5 /* piccolo_decompose_structured_instructions.cpp in Sources */,
 				CF2214470E3643D200B7FDD5 /* piccolo_build_assembly_code.cpp in Sources */,
 				CF2214680E366FDD00B7FDD5 /* piccolo_build_binary_code.cpp in Sources */,
+				CFA03D130E37207000F9710C /* piccolo_convert_relatives.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

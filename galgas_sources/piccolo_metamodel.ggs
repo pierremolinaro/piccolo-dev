@@ -335,9 +335,28 @@ end routine ;
 
 #----------------------------------------------------*
 
+enum @condionalBranchMode {
+  constructor native ;
+  constructor usesBRA ;
+  constructor usesGOTO ;
+}{
+}
+
+#----------------------------------------------------*
+
 class @instruction_conditionalBranch extends @actualInstruction {
+  @condionalBranchMode mBranchMode ;
   @conditional_branch mConditionalBranch ;
   @lstring mTargetLabel ;
+
+  override
+  method instructionLength !@uint outLength :
+    switch mBranchMode
+      when native   : outLength := 2 ;
+      when usesBRA  : outLength := 4 ;
+      when usesGOTO : outLength := 6 ;
+    end switch ;
+  end method ;
 }
 
 #----------------------------------------------------*
