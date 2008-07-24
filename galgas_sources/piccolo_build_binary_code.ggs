@@ -1,5 +1,5 @@
 semantics piccolo_build_binary_code :
-import semantics piccolo_metamodel in "piccolo_metamodel.ggs" ;
+import semantics ipic_metamodel in "ipic_metamodel.ggs" ;
 import semantics piccolo_build_assembly_code in "piccolo_build_assembly_code.ggs" ;
 
 #----------------------------------------------------------------------------*
@@ -38,7 +38,7 @@ map @symbolTable {
 #                                                                            *
 #----------------------------------------------------------------------------*
 
-method @instruction.enterLabelAtAddress
+method @ipic_instruction.enterLabelAtAddress
   ?!@symbolTable unused ioRoutineSymbolTable
   ?!@uint unused ioAddress
 :
@@ -47,7 +47,7 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override
-method @pseudo_LABEL.enterLabelAtAddress
+method @ipic_pseudo_LABEL.enterLabelAtAddress
   ?!@symbolTable ioRoutineSymbolTable
   ?!@uint ioAddress
 :
@@ -57,7 +57,7 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override
-method @pseudo_ORG.enterLabelAtAddress
+method @ipic_pseudo_ORG.enterLabelAtAddress
   ?!@symbolTable unused ioRoutineSymbolTable
   ?!@uint ioAddress
 :
@@ -67,7 +67,7 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override
-method @actualInstruction.enterLabelAtAddress
+method @ipic_actualInstruction.enterLabelAtAddress
   ?!@symbolTable unused ioRoutineSymbolTable
   ?!@uint ioAddress
 :
@@ -115,7 +115,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-abstract method @instruction.generateBinaryCodeAtAddress
+abstract method @ipic_instruction.generateBinaryCodeAtAddress
   ??@registerTable unused inRegisterTable
   ??@symbolTable unused inRoutineSymbolTable
   ?!@uint unused ioAddress
@@ -124,7 +124,7 @@ abstract method @instruction.generateBinaryCodeAtAddress
 #----------------------------------------------------------------------------*
 
 override
-method @pseudo_ORG.generateBinaryCodeAtAddress
+method @ipic_pseudo_ORG.generateBinaryCodeAtAddress
   ??@registerTable unused inRegisterTable
   ??@symbolTable unused inRoutineSymbolTable
   ?!@uint ioAddress
@@ -135,7 +135,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @instruction_FDA.generateBinaryCodeAtAddress
+override method @ipic_instruction_FDA.generateBinaryCodeAtAddress
   ??@registerTable inRegisterTable
   ??@symbolTable inRoutineSymbolTable
   ?!@uint unused ioAddress
@@ -163,7 +163,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @instruction_FA.generateBinaryCodeAtAddress
+override method @ipic_instruction_FA.generateBinaryCodeAtAddress
   ??@registerTable inRegisterTable
   ??@symbolTable inRoutineSymbolTable
   ?!@uint unused ioAddress
@@ -188,7 +188,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @instruction_MOVFF.generateBinaryCodeAtAddress
+override method @ipic_instruction_MOVFF.generateBinaryCodeAtAddress
   ??@registerTable inRegisterTable
   ??@symbolTable unused inRoutineSymbolTable
   ?!@uint unused ioAddress
@@ -203,7 +203,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @instruction_FBA.generateBinaryCodeAtAddress
+override method @ipic_instruction_FBA.generateBinaryCodeAtAddress
   ??@registerTable inRegisterTable
   ??@symbolTable inRoutineSymbolTable
   ?!@uint unused ioAddress
@@ -276,7 +276,7 @@ end routine ;
 
 #----------------------------------------------------------------------------*
 
-override method @instruction_conditionalBranch.generateBinaryCodeAtAddress
+override method @ipic_instruction_conditionalBranch.generateBinaryCodeAtAddress
   ??@registerTable unused inRegisterTable
   ??@symbolTable inRoutineSymbolTable
   ?!@uint ioAddress
@@ -323,7 +323,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @instruction_BRA.generateBinaryCodeAtAddress
+override method @ipic_instruction_BRA.generateBinaryCodeAtAddress
   ??@registerTable unused inRegisterTable
   ??@symbolTable inRoutineSymbolTable
   ?!@uint ioAddress
@@ -345,7 +345,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @instruction_GOTO.generateBinaryCodeAtAddress
+override method @ipic_instruction_GOTO.generateBinaryCodeAtAddress
   ??@registerTable unused inRegisterTable
   ??@symbolTable inRoutineSymbolTable
   ?!@uint unused ioAddress
@@ -367,7 +367,7 @@ end routine ;
 
 #----------------------------------------------------------------------------*
 
-override method @instruction_CALL.generateBinaryCodeAtAddress
+override method @ipic_instruction_CALL.generateBinaryCodeAtAddress
   ??@registerTable unused inRegisterTable
   ??@symbolTable inRoutineSymbolTable
   ?!@uint unused ioAddress
@@ -395,7 +395,7 @@ end routine ;
 
 #----------------------------------------------------------------------------*
 
-override method @instruction_RCALL.generateBinaryCodeAtAddress
+override method @ipic_instruction_RCALL.generateBinaryCodeAtAddress
   ??@registerTable unused inRegisterTable
   ??@symbolTable inRoutineSymbolTable
   ?!@uint ioAddress
@@ -412,7 +412,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @instruction_CLRWDT.generateBinaryCodeAtAddress
+override method @ipic_instruction_CLRWDT.generateBinaryCodeAtAddress
   ??@registerTable unused inRegisterTable
   ??@symbolTable unused inRoutineSymbolTable
   ?!@uint unused ioAddress
@@ -422,7 +422,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @instruction_DAW.generateBinaryCodeAtAddress
+override method @ipic_instruction_DAW.generateBinaryCodeAtAddress
   ??@registerTable unused inRegisterTable
   ??@symbolTable unused inRoutineSymbolTable
   ?!@uint unused ioAddress
@@ -432,7 +432,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @instruction_NOP.generateBinaryCodeAtAddress
+override method @ipic_instruction_NOP.generateBinaryCodeAtAddress
   ??@registerTable unused inRegisterTable
   ??@symbolTable unused inRoutineSymbolTable
   ?!@uint unused ioAddress
@@ -442,7 +442,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @instruction_POP.generateBinaryCodeAtAddress
+override method @ipic_instruction_POP.generateBinaryCodeAtAddress
   ??@registerTable unused inRegisterTable
   ??@symbolTable unused inRoutineSymbolTable
   ?!@uint unused ioAddress
@@ -452,7 +452,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @instruction_PUSH.generateBinaryCodeAtAddress
+override method @ipic_instruction_PUSH.generateBinaryCodeAtAddress
   ??@registerTable unused inRegisterTable
   ??@symbolTable unused inRoutineSymbolTable
   ?!@uint unused ioAddress
@@ -462,7 +462,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @instruction_RESET.generateBinaryCodeAtAddress
+override method @ipic_instruction_RESET.generateBinaryCodeAtAddress
   ??@registerTable unused inRegisterTable
   ??@symbolTable unused inRoutineSymbolTable
   ?!@uint unused ioAddress
@@ -472,7 +472,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @instruction_RETURN.generateBinaryCodeAtAddress
+override method @ipic_instruction_RETURN.generateBinaryCodeAtAddress
   ??@registerTable unused inRegisterTable
   ??@symbolTable unused inRoutineSymbolTable
   ?!@uint unused ioAddress
@@ -482,7 +482,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @instruction_RETFIE.generateBinaryCodeAtAddress
+override method @ipic_instruction_RETFIE.generateBinaryCodeAtAddress
   ??@registerTable unused inRegisterTable
   ??@symbolTable unused inRoutineSymbolTable
   ?!@uint unused ioAddress
@@ -492,7 +492,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @instruction_SLEEP.generateBinaryCodeAtAddress
+override method @ipic_instruction_SLEEP.generateBinaryCodeAtAddress
   ??@registerTable unused inRegisterTable
   ??@symbolTable unused inRoutineSymbolTable
   ?!@uint unused ioAddress
@@ -502,7 +502,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @instruction_literalOperation.generateBinaryCodeAtAddress
+override method @ipic_instruction_literalOperation.generateBinaryCodeAtAddress
   ??@registerTable unused inRegisterTable
   ??@symbolTable unused inRoutineSymbolTable
   ?!@uint unused ioAddress
@@ -515,7 +515,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @instruction_LFSR.generateBinaryCodeAtAddress
+override method @ipic_instruction_LFSR.generateBinaryCodeAtAddress
   ??@registerTable inRegisterTable
   ??@symbolTable unused inRoutineSymbolTable
   ?!@uint unused ioAddress
@@ -528,7 +528,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @instruction_MOVLB.generateBinaryCodeAtAddress
+override method @ipic_instruction_MOVLB.generateBinaryCodeAtAddress
   ??@registerTable unused inRegisterTable
   ??@symbolTable unused inRoutineSymbolTable
   ?!@uint unused ioAddress
@@ -538,7 +538,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @pseudo_LABEL.generateBinaryCodeAtAddress
+override method @ipic_pseudo_LABEL.generateBinaryCodeAtAddress
   ??@registerTable unused inRegisterTable
   ??@symbolTable inRoutineSymbolTable
   ?!@uint ioAddress
@@ -554,7 +554,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @instruction_MOVAW.generateBinaryCodeAtAddress
+override method @ipic_instruction_MOVAW.generateBinaryCodeAtAddress
   ??@registerTable inRegisterTable
   ??@symbolTable unused inRoutineSymbolTable
   ?!@uint unused ioAddress
@@ -569,7 +569,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @instruction_TBLRD.generateBinaryCodeAtAddress
+override method @ipic_instruction_TBLRD.generateBinaryCodeAtAddress
   ??@registerTable unused inRegisterTable
   ??@symbolTable unused inRoutineSymbolTable
   ?!@uint unused ioAddress
@@ -584,7 +584,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @instruction_TBLWT.generateBinaryCodeAtAddress
+override method @ipic_instruction_TBLWT.generateBinaryCodeAtAddress
   ??@registerTable unused inRegisterTable
   ??@symbolTable unused inRoutineSymbolTable
   ?!@uint unused ioAddress
@@ -599,7 +599,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @instruction_MNOP.generateBinaryCodeAtAddress
+override method @ipic_instruction_MNOP.generateBinaryCodeAtAddress
   ??@registerTable unused inRegisterTable
   ??@symbolTable unused inRoutineSymbolTable
   ?!@uint unused ioAddress
@@ -618,7 +618,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @instruction_computed_retlw.generateBinaryCodeAtAddress
+override method @ipic_instruction_computed_retlw.generateBinaryCodeAtAddress
   ??@registerTable unused  inRegisterTable
   ??@symbolTable inRoutineSymbolTable
   ?!@uint ioAddress
@@ -637,7 +637,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @instruction_computed_bra.generateBinaryCodeAtAddress
+override method @ipic_instruction_computed_bra.generateBinaryCodeAtAddress
   ??@registerTable unused inRegisterTable
   ??@symbolTable inRoutineSymbolTable
   ?!@uint ioAddress
@@ -663,7 +663,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @instruction_computed_goto.generateBinaryCodeAtAddress
+override method @ipic_instruction_computed_goto.generateBinaryCodeAtAddress
   ??@registerTable unused inRegisterTable
   ??@symbolTable inRoutineSymbolTable
   ?!@uint ioAddress
@@ -692,7 +692,7 @@ end method ;
 
 routine buildBinaryCode
   ??@registerTable inRegisterTable
-  ??@instructionList inGeneratedInstructionList
+  ??@ipic_instructionList inGeneratedInstructionList
 :
 #-------------------------------- First pass: build label map
   @symbolTable symbolTable [emptyMap] ;

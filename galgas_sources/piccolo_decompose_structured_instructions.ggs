@@ -1,41 +1,37 @@
 semantics piccolo_decompose_structured_instructions :
 import semantics piccolo_metamodel in "piccolo_metamodel.ggs" ;
-#import option piccolo_options in "piccolo_options.ggs" ;
+import semantics ipic_metamodel in "ipic_metamodel.ggs" ;
 
 #----------------------------------------------------*
 #           DECOMPOSE COMPLEX INSTRUCTION            *
 #----------------------------------------------------*
 
-method @instruction.decomposeComplexInstruction
+abstract method @piccolo_instruction.decomposeComplexInstruction
   ?!@uint unused ioLocalLabelIndex
-  ?!@instructionList unused ioGeneratedInstructionList
-:
-end method ;
+  ?!@ipic_instructionList unused ioGeneratedInstructionList
+;
 
 #----------------------------------------------------*
 
 override method @instruction_FOREVER.decomposeComplexInstruction
   ?!@uint ioLocalLabelIndex
-  ?!@instructionList ioGeneratedInstructionList
+  ?!@ipic_instructionList ioGeneratedInstructionList
 :
-  [!?ioGeneratedInstructionList popLast ?*] ;
   @string label0 := "_label_" . [ioLocalLabelIndex string] ; 
   ioLocalLabelIndex ++ ;
-  ioGeneratedInstructionList += ![@pseudo_LABEL new ![@lstring new !label0 !mInstructionLocation]] ;
+  ioGeneratedInstructionList += ![@ipic_pseudo_LABEL new ![@lstring new !label0 !mInstructionLocation]] ;
   foreach mInstructionList do
-    ioGeneratedInstructionList += !mInstruction ;
     [mInstruction decomposeComplexInstruction !?ioLocalLabelIndex !?ioGeneratedInstructionList] ;
   end foreach ;
-  ioGeneratedInstructionList += ![@instruction_BRA new !mInstructionLocation ![@lstring new !label0 !mInstructionLocation]] ;
+  ioGeneratedInstructionList += ![@ipic_instruction_BRA new !mInstructionLocation ![@lstring new !label0 !mInstructionLocation]] ;
 end method ;
 
 #----------------------------------------------------*
 
 override method @instruction_IF_FA_SEMI_COLON.decomposeComplexInstruction
   ?!@uint ioLocalLabelIndex
-  ?!@instructionList ioGeneratedInstructionList
+  ?!@ipic_instructionList ioGeneratedInstructionList
 :
-  [!?ioGeneratedInstructionList popLast ?*] ;
   @FA_instruction_base_code baseCode ;
   switch mOpCode
     when CPFSEQ : baseCode := [@FA_instruction_base_code CPFSEQ] ;
@@ -43,13 +39,12 @@ override method @instruction_IF_FA_SEMI_COLON.decomposeComplexInstruction
     when CPFSLT : baseCode := [@FA_instruction_base_code CPFSLT] ;
     when TSTFSZ : baseCode := [@FA_instruction_base_code TSTFSZ] ;
   end switch ;
-  ioGeneratedInstructionList += ![@instruction_FA new
+  ioGeneratedInstructionList += ![@ipic_instruction_FA new
     !mInstructionLocation
     !baseCode
     !mRegisterExpression
   ] ;
 #--- Append Instruction
-  ioGeneratedInstructionList += !mInstruction ;
   [mInstruction decomposeComplexInstruction !?ioLocalLabelIndex !?ioGeneratedInstructionList] ;
 end method ;
 
@@ -57,23 +52,21 @@ end method ;
 
 override method @instruction_IF_BitTest.decomposeComplexInstruction
   ?!@uint ioLocalLabelIndex
-  ?!@instructionList ioGeneratedInstructionList
+  ?!@ipic_instructionList ioGeneratedInstructionList
 :
-  [!?ioGeneratedInstructionList popLast ?*] ;
   @bit_oriented_op baseCode ;
   if mSkipIfSet then
     baseCode := [@bit_oriented_op BTFSS] ;
   else
     baseCode := [@bit_oriented_op BTFSC] ;
   end if ;
-  ioGeneratedInstructionList += ![@instruction_FBA new
+  ioGeneratedInstructionList += ![@ipic_instruction_FBA new
     !mInstructionLocation
     !baseCode
     !mRegisterExpression
     !mBitNumber
   ] ;
 #--- Append Instruction
-  ioGeneratedInstructionList += !mInstruction ;
   [mInstruction decomposeComplexInstruction !?ioLocalLabelIndex !?ioGeneratedInstructionList] ;
 end method ;
 
@@ -83,7 +76,7 @@ abstract method @conditionExpression.decomposeIFcondition
   ??@bool inComplementaryBranch
   ??@location inInstructionLocation
   ??@string inTargetLabel
-  ?!@instructionList ioGeneratedInstructionList
+  ?!@ipic_instructionList ioGeneratedInstructionList
 ;
 
 #----------------------------------------------------*
@@ -92,7 +85,7 @@ override method @bcc_in_structured_if_condition.decomposeIFcondition
   ??@bool inComplementaryBranch
   ??@location inInstructionLocation
   ??@string inTargetLabel
-  ?!@instructionList ioGeneratedInstructionList
+  ?!@ipic_instructionList ioGeneratedInstructionList
 :
   @conditional_branch condition ;
   if inComplementaryBranch then
@@ -100,7 +93,7 @@ override method @bcc_in_structured_if_condition.decomposeIFcondition
   else
     condition := mCondition ;
   end if ;
-  ioGeneratedInstructionList += ![@instruction_conditionalBranch new
+  ioGeneratedInstructionList += ![@ipic_instruction_conditionalBranch new
     !inInstructionLocation
     ![@condionalBranchMode native]
     !condition
@@ -114,7 +107,7 @@ override method @bitTest_in_structured_if_condition.decomposeIFcondition
   ??@bool inComplementaryBranch
   ??@location inInstructionLocation
   ??@string inTargetLabel
-  ?!@instructionList ioGeneratedInstructionList
+  ?!@ipic_instructionList ioGeneratedInstructionList
 :
   @bit_oriented_op op ;
   if mBTFSSinstruction ^ inComplementaryBranch then
@@ -122,43 +115,40 @@ override method @bitTest_in_structured_if_condition.decomposeIFcondition
   else
     op := [@bit_oriented_op BTFSC] ;
   end if ;
-  ioGeneratedInstructionList += ![@instruction_FBA new
+  ioGeneratedInstructionList += ![@ipic_instruction_FBA new
     !inInstructionLocation
     !op
     !mRegisterExpression
     !mBitNumber
   ] ;
-  ioGeneratedInstructionList += ![@instruction_BRA new !inInstructionLocation ![@lstring new !inTargetLabel !inInstructionLocation]] ;
+  ioGeneratedInstructionList += ![@ipic_instruction_BRA new !inInstructionLocation ![@lstring new !inTargetLabel !inInstructionLocation]] ;
 end method ;
 
 #----------------------------------------------------*
 
 override method @instruction_structured_if.decomposeComplexInstruction
   ?!@uint ioLocalLabelIndex
-  ?!@instructionList ioGeneratedInstructionList
+  ?!@ipic_instructionList ioGeneratedInstructionList
 :
 #---
-  [!?ioGeneratedInstructionList popLast ?*] ;
   @string label0 := "_label_" . [ioLocalLabelIndex string] ; ioLocalLabelIndex ++ ;
   @string label1 := "_label_" . [ioLocalLabelIndex string] ; ioLocalLabelIndex ++ ;
 #--- Translate condition
   [mIfCondition decomposeIFcondition !true !mInstructionLocation !label0 !?ioGeneratedInstructionList] ;
 #--- 'then' instructions
   foreach mThenInstructionList do
-    ioGeneratedInstructionList += !mInstruction ;
     [mInstruction decomposeComplexInstruction !?ioLocalLabelIndex !?ioGeneratedInstructionList] ;
   end foreach ;
   if [mElseInstructionList length] > 0 then
-    ioGeneratedInstructionList += ![@instruction_BRA new !mInstructionLocation ![@lstring new !label1 !mInstructionLocation]] ;
+    ioGeneratedInstructionList += ![@ipic_instruction_BRA new !mInstructionLocation ![@lstring new !label1 !mInstructionLocation]] ;
   end if ;
 #--- 'else' instructions
-  ioGeneratedInstructionList += ![@pseudo_LABEL new ![@lstring new !label0 !mInstructionLocation]] ;
+  ioGeneratedInstructionList += ![@ipic_pseudo_LABEL new ![@lstring new !label0 !mInstructionLocation]] ;
   foreach mElseInstructionList do
-    ioGeneratedInstructionList += !mInstruction ;
     [mInstruction decomposeComplexInstruction !?ioLocalLabelIndex !?ioGeneratedInstructionList] ;
   end foreach ;
   if [mElseInstructionList length] > 0 then
-    ioGeneratedInstructionList += ![@pseudo_LABEL new ![@lstring new !label1 !mInstructionLocation]] ;
+    ioGeneratedInstructionList += ![@ipic_pseudo_LABEL new ![@lstring new !label1 !mInstructionLocation]] ;
   end if ;
 end method ;
 
@@ -166,17 +156,15 @@ end method ;
 
 override method @instruction_do_while.decomposeComplexInstruction
   ?!@uint ioLocalLabelIndex
-  ?!@instructionList ioGeneratedInstructionList
+  ?!@ipic_instructionList ioGeneratedInstructionList
 :
 #---
-  [!?ioGeneratedInstructionList popLast ?*] ;
 #--- Generate label
   @string label0 := "_label_" . [ioLocalLabelIndex string] ; ioLocalLabelIndex ++ ;
 #--- Define label
-  ioGeneratedInstructionList += ![@pseudo_LABEL new ![@lstring new !label0 !mInstructionLocation]] ;
+  ioGeneratedInstructionList += ![@ipic_pseudo_LABEL new ![@lstring new !label0 !mInstructionLocation]] ;
 #--- Repeated instructions
   foreach mRepeatedInstructionList do
-    ioGeneratedInstructionList += !mInstruction ;
     [mInstruction decomposeComplexInstruction !?ioLocalLabelIndex !?ioGeneratedInstructionList] ;
   end foreach ;
 #--- Translate condition
@@ -187,10 +175,9 @@ end method ;
 
 override method @instruction_IF_IncDec.decomposeComplexInstruction
   ?!@uint ioLocalLabelIndex
-  ?!@instructionList ioGeneratedInstructionList
+  ?!@ipic_instructionList ioGeneratedInstructionList
 :
 #---
-  [!?ioGeneratedInstructionList popLast ?*] ;
 #---
   @instruction_FDA_base_code baseCode ;
   if mIncrement & mSkipIfZero then
@@ -202,14 +189,13 @@ override method @instruction_IF_IncDec.decomposeComplexInstruction
   else
     baseCode := [@instruction_FDA_base_code DCFSNZ] ;
   end if ;
-  ioGeneratedInstructionList += ![@instruction_FDA new
+  ioGeneratedInstructionList += ![@ipic_instruction_FDA new
     !mInstructionLocation
     !baseCode
     !mRegisterExpression
     !m_W_isDestination
   ] ;
 #--- Repeated instructions
-  ioGeneratedInstructionList += !mInstruction ;
   [mInstruction decomposeComplexInstruction !?ioLocalLabelIndex !?ioGeneratedInstructionList] ;
 end method ;
 
@@ -219,62 +205,59 @@ routine buildAssemblyInstructionList
   ??@piccoloModel inPiccoloModel
   ??@bool inHasHighInterrupt
   ??@bool inHasLowInterrupt
-  !@instructionList outGeneratedInstructionList
+  !@ipic_instructionList outGeneratedInstructionList
 :
 #-------------------------------- First Pass
-  outGeneratedInstructionList := [@instructionList emptyList] ;
+  outGeneratedInstructionList := [@ipic_instructionList emptyList] ;
   @uint localLabelIndex := 0 ;
 #--- At zero, generate 'goto main' instruction
-  outGeneratedInstructionList += ![@instruction_GOTO new !here ![@lstring new !"main" !here]] ;
+  outGeneratedInstructionList += ![@ipic_instruction_GOTO new !here ![@lstring new !"main" !here]] ;
 #--- At 0x08, generate 'bra _fast_interrupt' instruction, if both interrupt are defined
   if inHasLowInterrupt & inHasHighInterrupt then
-    outGeneratedInstructionList += ![@pseudo_ORG new !0x8] ;
-    outGeneratedInstructionList += ![@instruction_BRA new !here ![@lstring new !"_fast_interrupt" !here]] ;
+    outGeneratedInstructionList += ![@ipic_pseudo_ORG new !0x8] ;
+    outGeneratedInstructionList += ![@ipic_instruction_BRA new !here ![@lstring new !"_fast_interrupt" !here]] ;
   end if ;
 #--- First, handle low interrupt (if any)
   if inHasLowInterrupt then
-    outGeneratedInstructionList += ![@pseudo_ORG new !0x18] ;
+    outGeneratedInstructionList += ![@ipic_pseudo_ORG new !0x18] ;
     foreach [inPiccoloModel mInterruptDefinitionList] do
       if [mInterruptName string] == "low" then
         foreach mInstructionList do
-          outGeneratedInstructionList += !mInstruction ;
           [mInstruction decomposeComplexInstruction !?localLabelIndex !? outGeneratedInstructionList] ;
         end foreach ;
       #--- Ajouter l'instruction REFFIE
-        outGeneratedInstructionList += ![@instruction_RETFIE new !here !true] ;
+        outGeneratedInstructionList += ![@ipic_instruction_RETFIE new !here !true] ;
       end if ;
     end foreach ;
   end if ;
 #--- Then, handle high interrupt (if any)
   if inHasHighInterrupt then
     if inHasLowInterrupt then
-      outGeneratedInstructionList += ![@pseudo_LABEL new ![@lstring new !"_fast_interrupt" !here]] ;
+      outGeneratedInstructionList += ![@ipic_pseudo_LABEL new ![@lstring new !"_fast_interrupt" !here]] ;
     else
-      outGeneratedInstructionList += ![@pseudo_ORG new !0x8] ;
+      outGeneratedInstructionList += ![@ipic_pseudo_ORG new !0x8] ;
     end if ;
     foreach [inPiccoloModel mInterruptDefinitionList] do
       if [mInterruptName string] == "high" then
         foreach mInstructionList do
-          outGeneratedInstructionList += !mInstruction ;
           [mInstruction decomposeComplexInstruction !?localLabelIndex !? outGeneratedInstructionList] ;
         end foreach ;
       #--- Ajouter l'instruction REFFIE
-        outGeneratedInstructionList += ![@instruction_RETFIE new !here !true] ;
+        outGeneratedInstructionList += ![@ipic_instruction_RETFIE new !here !true] ;
       end if ;
     end foreach ;
   end if ;
 #--- Handle routines
   foreach [inPiccoloModel mRoutineDefinitionList] do
-    outGeneratedInstructionList += ![@pseudo_LABEL new !mRoutineName] ;
+    outGeneratedInstructionList += ![@ipic_pseudo_LABEL new !mRoutineName] ;
     foreach mInstructionList do
-      outGeneratedInstructionList += !mInstruction ;
       [mInstruction decomposeComplexInstruction !?localLabelIndex !? outGeneratedInstructionList] ;
     end foreach ;
   end foreach ;
 #--- computed_goto2 routine needed ?
   if [inPiccoloModel mNeedsComputedGoto4] then
-    outGeneratedInstructionList += ![@pseudo_LABEL new ![@lstring new !"_computed_goto_4" !here]] ;
-    outGeneratedInstructionList += ![@instruction_FDA new
+    outGeneratedInstructionList += ![@ipic_pseudo_LABEL new ![@lstring new !"_computed_goto_4" !here]] ;
+    outGeneratedInstructionList += ![@ipic_instruction_FDA new
       !here
       ![@instruction_FDA_base_code ADDWF]
       ![@registerExpression new ![@lstring new !"WREG" !here] ![@luint new !0 !here]]
@@ -282,33 +265,33 @@ routine buildAssemblyInstructionList
     ] ; # ADDWF WREG, W
   end if ;
   if [inPiccoloModel mNeedsComputedGoto2] then
-    outGeneratedInstructionList += ![@pseudo_LABEL new ![@lstring new !"_computed_goto_2" !here]] ;
+    outGeneratedInstructionList += ![@ipic_pseudo_LABEL new ![@lstring new !"_computed_goto_2" !here]] ;
   end if ;
   if [inPiccoloModel mNeedsComputedGoto2] | [inPiccoloModel mNeedsComputedGoto4] then
-    outGeneratedInstructionList += ![@instruction_FDA new
+    outGeneratedInstructionList += ![@ipic_instruction_FDA new
       !here
       ![@instruction_FDA_base_code ADDWF]
       ![@registerExpression new ![@lstring new !"WREG" !here] ![@luint new !0 !here]]
       !true
     ] ; # ADDWF WREG, W
-    outGeneratedInstructionList += ![@instruction_FDA new
+    outGeneratedInstructionList += ![@ipic_instruction_FDA new
       !here
       ![@instruction_FDA_base_code ADDWF]
       ![@registerExpression new ![@lstring new !"TOSL" !here] ![@luint new !0 !here]]
       !false
     ] ; # ADDWF TOSL, F
-    outGeneratedInstructionList += ![@instruction_literalOperation new
+    outGeneratedInstructionList += ![@ipic_instruction_literalOperation new
       !here
       ![@literal_instruction_opcode MOVLW]
       ![@luint new !0 !here]
     ] ; # MOVLW 0
-    outGeneratedInstructionList += ![@instruction_FDA new
+    outGeneratedInstructionList += ![@ipic_instruction_FDA new
       !here
       ![@instruction_FDA_base_code ADDWFC]
       ![@registerExpression new ![@lstring new !"TOSH" !here] ![@luint new !0 !here]]
       !false
     ] ; # ADDWFC TOSH, F
-    outGeneratedInstructionList += ![@instruction_RETURN new
+    outGeneratedInstructionList += ![@ipic_instruction_RETURN new
       !here
     ] ; # RETURN 0
   end if ;

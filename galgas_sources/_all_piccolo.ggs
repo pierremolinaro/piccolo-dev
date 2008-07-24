@@ -4,6 +4,7 @@ compile "piccolo_lexique.ggs" ;
 compile "piccolo_metamodel.ggs" ;
 compile "piccolo_syntax.ggs" ;
 compile "piccolo_grammar.ggs" ;
+compile "ipic_metamodel.ggs" ;
 compile "piccolo_decompose_structured_instructions.ggs" ;
 compile "piccolo_build_assembly_code.ggs" ;
 compile "piccolo_convert_relatives.ggs" ;

@@ -1,53 +1,21 @@
 semantics piccolo_metamodel :
-  import option piccolo_options in "piccolo_options.ggs" ;
 
 #----------------------------------------------------*
 
-abstract class @instruction {
-
-  abstract method instructionLength !@uint outLength ;
-}
-
-#----------------------------------------------------*
-
-abstract class @pseudoInstruction extends @instruction {
-
-  override method instructionLength !@uint outLength :
-    outLength := 0 ;
-  end method ;
-}
-
-#----------------------------------------------------*
-
-class @pseudo_NULL extends @pseudoInstruction {
-}
-
-#----------------------------------------------------*
-
-class @pseudo_ORG extends @pseudoInstruction {
-  @uint mOrigin ;
-}
-
-#----------------------------------------------------*
-
-class @pseudo_LABEL extends @pseudoInstruction {
-  @lstring mTargetLabel ;
-}
-
-#----------------------------------------------------*
-
-abstract class @actualInstruction extends @instruction {
+abstract class @piccolo_instruction {
   @location mInstructionLocation ;
-
-  override method instructionLength !@uint outLength :
-    outLength := 2 ;
-  end method ;
 }
 
 #----------------------------------------------------*
 
 list @instructionList {
-  @instruction mInstruction ;
+  @piccolo_instruction mInstruction ;
+}
+
+#----------------------------------------------------*
+
+class @pseudo_LABEL extends @piccolo_instruction {
+  @lstring mTargetLabel ;
 }
 
 #----------------------------------------------------*
@@ -140,14 +108,10 @@ end routine ;
 
 #----------------------------------------------------*
 
-class @instruction_FDA extends @actualInstruction {
+class @instruction_FDA extends @piccolo_instruction {
   @instruction_FDA_base_code mInstruction_FDA_base_code ;
   @registerExpression mRegisterExpression ;
   @bool m_W_isDestination ;
-
-  method getBaseCode !@uint outBaseCode :
-    getFDAinstructionBaseCode !mInstruction_FDA_base_code ?outBaseCode ;
-  end method ;
 }
 
 #----------------------------------------------------*
@@ -198,25 +162,16 @@ end routine ;
 
 #----------------------------------------------------*
 
-class @instruction_FA extends @actualInstruction {
+class @instruction_FA extends @piccolo_instruction {
   @FA_instruction_base_code mFAinstruction ;
   @registerExpression mRegisterExpression ;
-
-  method getBaseCode !@uint outBaseCode :
-   getFAinstructionBaseCode !mFAinstruction ?outBaseCode ;
-  end method ;
 }
 
 #----------------------------------------------------*
 
-class @instruction_MOVFF extends @actualInstruction {
+class @instruction_MOVFF extends @piccolo_instruction {
   @registerExpression mSourceRegisterName ;
   @registerExpression mDestinationRegisterName ;
-  
-  override
-  method instructionLength !@uint outLength :
-    outLength := 4 ;
-  end method ;
 }
 
 #----------------------------------------------------*
@@ -270,13 +225,10 @@ end routine ;
 
 #----------------------------------------------------*
 
-class @instruction_FBA extends @actualInstruction {
+class @instruction_FBA extends @piccolo_instruction {
   @bit_oriented_op mBitOrientedOp ;
   @registerExpression mRegisterExpression ;
   @bitNumberExpression mBitNumber ;
-  method getBaseCode !@uint outBaseCode :
-    getBitOrientedOpBaseCode !mBitOrientedOp ?outBaseCode ;
-  end method ;
 }
 
 #----------------------------------------------------*
@@ -344,97 +296,80 @@ enum @condionalBranchMode {
 
 #----------------------------------------------------*
 
-class @instruction_conditionalBranch extends @actualInstruction {
+class @instruction_conditionalBranch extends @piccolo_instruction {
   @condionalBranchMode mBranchMode ;
   @conditional_branch mConditionalBranch ;
   @lstring mTargetLabel ;
-
-  override
-  method instructionLength !@uint outLength :
-    switch mBranchMode
-      when native   : outLength := 2 ;
-      when usesBRA  : outLength := 4 ;
-      when usesGOTO : outLength := 6 ;
-    end switch ;
-  end method ;
 }
 
 #----------------------------------------------------*
 
-class @instruction_BRA extends @actualInstruction {
+class @instruction_BRA extends @piccolo_instruction {
   @lstring mTargetLabel ;
 }
 
 #----------------------------------------------------*
 
-class @instruction_CALL extends @actualInstruction {
-  @lstring mTargetLabel ;
-  override
-  method instructionLength !@uint outLength :
-    outLength := 4 ;
-  end method ;
-}
-
-#----------------------------------------------------*
-
-class @instruction_GOTO extends @actualInstruction {
-  @lstring mTargetLabel ;
-  override
-  method instructionLength !@uint outLength :
-    outLength := 4 ;
-  end method ;
-}
-
-#----------------------------------------------------*
-
-class @instruction_RCALL extends @actualInstruction {
+class @instruction_CALL extends @piccolo_instruction {
   @lstring mTargetLabel ;
 }
 
 #----------------------------------------------------*
 
-class @instruction_CLRWDT extends @actualInstruction {
+class @instruction_GOTO extends @piccolo_instruction {
+  @lstring mTargetLabel ;
 }
 
 #----------------------------------------------------*
 
-class @instruction_DAW extends @actualInstruction {
+class @instruction_RCALL extends @piccolo_instruction {
+  @lstring mTargetLabel ;
 }
 
 #----------------------------------------------------*
 
-class @instruction_NOP extends @actualInstruction {
+class @instruction_CLRWDT extends @piccolo_instruction {
 }
 
 #----------------------------------------------------*
 
-class @instruction_POP extends @actualInstruction {
+class @instruction_DAW extends @piccolo_instruction {
 }
 
 #----------------------------------------------------*
 
-class @instruction_PUSH extends @actualInstruction {
+class @instruction_NOP extends @piccolo_instruction {
 }
 
 #----------------------------------------------------*
 
-class @instruction_RESET extends @actualInstruction {
+class @instruction_POP extends @piccolo_instruction {
 }
 
 #----------------------------------------------------*
 
-class @instruction_RETURN extends @actualInstruction {
+class @instruction_PUSH extends @piccolo_instruction {
 }
 
 #----------------------------------------------------*
 
-class @instruction_RETFIE extends @actualInstruction {
+class @instruction_RESET extends @piccolo_instruction {
+}
+
+#----------------------------------------------------*
+
+class @instruction_RETURN extends @piccolo_instruction {
+}
+
+#----------------------------------------------------*
+
+class @instruction_RETFIE extends @piccolo_instruction {
   @bool mFastReturn ;
 }
 
 #----------------------------------------------------*
 
-class @instruction_SLEEP extends @actualInstruction {
+class @instruction_SLEEP extends @piccolo_instruction {
 }
 
 #----------------------------------------------------*
@@ -479,35 +414,27 @@ end routine ;
 
 #----------------------------------------------------*
 
-class @instruction_literalOperation extends @actualInstruction {
+class @instruction_literalOperation extends @piccolo_instruction {
   @literal_instruction_opcode mLiteralInstruction ;
   @luint mLiteralValue ;
-  method getBaseCode !@uint outBaseCode :
-    getLiteralInstructionBaseCode !mLiteralInstruction ?outBaseCode ;
-  end method ;
 }
 
 #----------------------------------------------------*
 
-class @instruction_LFSR extends @actualInstruction {
+class @instruction_LFSR extends @piccolo_instruction {
   @luint mFSRindex ;
   @registerExpression mRegisterExpression ;
-  
-  override
-  method instructionLength !@uint outLength :
-    outLength := 4 ;
-  end method ;
 }
 
 #----------------------------------------------------*
 
-class @instruction_MOVLB extends @actualInstruction {
+class @instruction_MOVLB extends @piccolo_instruction {
   @luint mPageIndex ;
 }
 
 #----------------------------------------------------*
 
-class @instruction_MOVAW extends @actualInstruction {
+class @instruction_MOVAW extends @piccolo_instruction {
   @registerExpression mRegisterExpression ;
 }
 
@@ -529,38 +456,26 @@ enum @tableAccessOption {
 
 #----------------------------------------------------*
 
-class @instruction_TBLRD extends @actualInstruction {
+class @instruction_TBLRD extends @piccolo_instruction {
   @tableAccessOption mOption ;
 }
 
 #----------------------------------------------------*
 
-class @instruction_TBLWT extends @actualInstruction {
+class @instruction_TBLWT extends @piccolo_instruction {
   @tableAccessOption mOption ;
 }
 
 #----------------------------------------------------*
 
-class @instruction_MNOP extends @actualInstruction {
+class @instruction_MNOP extends @piccolo_instruction {
   @luint mOccurrenceFactor ;
-  override
-  method instructionLength !@uint outLength :
-    outLength := [mOccurrenceFactor uint] * 2 ;
-  end method ;
 }
 
 #----------------------------------------------------*
 
-class @instruction_FOREVER extends @actualInstruction {
+class @instruction_FOREVER extends @piccolo_instruction {
   @instructionList mInstructionList ;
-  override
-  method instructionLength !@uint outLength :
-    outLength := 2 ; # BRA at the end of instruction list
-    foreach mInstructionList do
-      @uint lg ; [mInstruction instructionLength ?lg] ;
-      outLength := outLength + lg ;
-    end foreach ;
-  end method ;
 }
 
 #----------------------------------------------------*
@@ -592,14 +507,8 @@ end routine ;
 
 #----------------------------------------------------*
 
-abstract class @instruction_IF_SEMI_COLON extends @actualInstruction {
-  @instruction mInstruction ;
-
-  override
-  method instructionLength !@uint outLength :
-    [mInstruction instructionLength ?outLength] ;
-    outLength := outLength + 2 ;
-  end method ;
+abstract class @instruction_IF_SEMI_COLON extends @piccolo_instruction {
+  @piccolo_instruction mInstruction ;
 }
 
 #----------------------------------------------------*
@@ -607,11 +516,6 @@ abstract class @instruction_IF_SEMI_COLON extends @actualInstruction {
 class @instruction_IF_FA_SEMI_COLON extends @instruction_IF_SEMI_COLON {
   @if_semi_colon_op mOpCode ;
   @registerExpression mRegisterExpression ;
-
-  method getBaseCode !@uint outBaseCode :
-    getBaseCodeForIfSemiColonOp !mOpCode ?outBaseCode ;
-  end method ;
-
 }
 
 #----------------------------------------------------*
@@ -645,81 +549,32 @@ class @instruction_IF_IncDec extends @instruction_IF_SEMI_COLON {
   @bool mSkipIfZero ;
   @registerExpression mRegisterExpression ;
   @bool m_W_isDestination ;
-
-  method getBaseCode !@uint outBaseCode :
-    if mIncrement & mSkipIfZero then
-      outBaseCode := 0x3C00 ; # INCFSZ
-    elsif mIncrement & not mSkipIfZero then
-      outBaseCode := 0x4800 ; # INFSNZ
-    elsif (not mIncrement) & mSkipIfZero then
-      outBaseCode := 0x2C00 ; # DECFSZ
-    else
-      outBaseCode := 0x4C00 ; # DCFSNZ
-    end if ;
-  end method ; 
-
-  method getMnemonic !@string outMnemonic :
-    if mIncrement & mSkipIfZero then
-      outMnemonic := "INCFSZ" ;
-    elsif mIncrement & not mSkipIfZero then
-      outMnemonic := "INFSNZ" ;
-    elsif (not mIncrement) & mSkipIfZero then
-      outMnemonic := "DECFSZ" ;
-    else
-      outMnemonic := "DCFSNZ" ;
-    end if ;
-  end method ; 
 }
 
 #----------------------------------------------------*
 
-class @instruction_computed_retlw extends @actualInstruction {
+class @instruction_computed_retlw extends @piccolo_instruction {
   @luintlist mLiteralValues ;
   @bool mUsesRelativeCall ;
-
-  override
-  method instructionLength !@uint outLength :
-    outLength := [mLiteralValues length] * 2 + 2 ;
-    if not mUsesRelativeCall then
-      outLength := outLength + 2 ;
-    end if ;
-  end method ;
 }
 
 #----------------------------------------------------*
 
-class @instruction_computed_bra extends @actualInstruction {
+class @instruction_computed_bra extends @piccolo_instruction {
   @lstringlist mTargetLabels ;
   @bool mUsesRelativeCall ;
-
-  override
-  method instructionLength !@uint outLength :
-    outLength := [mTargetLabels length] * 2 + 2 ;
-    if not mUsesRelativeCall then
-      outLength := outLength + 2 ;
-    end if ;
-  end method ;
 }
 
 #----------------------------------------------------*
 
-class @instruction_computed_goto extends @actualInstruction {
+class @instruction_computed_goto extends @piccolo_instruction {
   @lstringlist mTargetLabels ;
   @bool mUsesRelativeCall ;
-
-  override
-  method instructionLength !@uint outLength :
-    outLength := [mTargetLabels length] * 4 + 2 ;
-    if not mUsesRelativeCall then
-      outLength := outLength + 2 ;
-    end if ;
-  end method ;
 }
 
 #----------------------------------------------------*
 
 abstract class @conditionExpression {
-  abstract method conditionLength !@uint outLength ;
 }
 
 #----------------------------------------------------*
@@ -733,9 +588,6 @@ class @registerTestCondition extends @conditionExpression {
 
 class @bcc_in_structured_if_condition extends @conditionExpression {
   @conditional_branch mCondition ;
-  override method conditionLength !@uint outLength :
-    outLength := 2 ;
-  end method ;
 }
 
 #----------------------------------------------------*
@@ -744,55 +596,20 @@ class @bitTest_in_structured_if_condition extends @conditionExpression {
   @registerExpression mRegisterExpression ;
   @bitNumberExpression mBitNumber ;
   @bool mBTFSSinstruction ;
-  override method conditionLength !@uint outLength :
-    outLength := 4 ; # BTFSx, BRA instructions
-  end method ;
-  method baseCode !@uint outBaseCode :
-    if mBTFSSinstruction then
-      outBaseCode := 0xA000 ;  # BTFSS
-    else
-      outBaseCode := 0xB000 ;  # BTFSC
-    end if ;
-  end method ;
 }
 
 #----------------------------------------------------*
 
-class @instruction_structured_if extends @actualInstruction {
+class @instruction_structured_if extends @piccolo_instruction {
   @conditionExpression mIfCondition ;
   @instructionList mThenInstructionList ;
   @instructionList mElseInstructionList ;
-
-  override
-  method instructionLength !@uint outLength :
-    [mIfCondition conditionLength ?outLength] ;
-    foreach mThenInstructionList do
-      @uint lg ; [mInstruction instructionLength ?lg] ;
-      outLength := outLength + lg ;
-    end foreach ;
-    if [mElseInstructionList length] > 0 then
-      outLength := outLength + 2 ; # Bra for skking else part
-    end if ;
-    foreach mElseInstructionList do
-      @uint lg ; [mInstruction instructionLength ?lg] ;
-      outLength := outLength + lg ;
-    end foreach ;
-  end method ;
 }
 #----------------------------------------------------*
 
-class @instruction_do_while extends @actualInstruction {
+class @instruction_do_while extends @piccolo_instruction {
   @conditionExpression mWhileCondition ;
   @instructionList mRepeatedInstructionList ;
-
-  override
-  method instructionLength !@uint outLength :
-    [mWhileCondition conditionLength ?outLength] ;
-    foreach mRepeatedInstructionList do
-      @uint lg ; [mInstruction instructionLength ?lg] ;
-      outLength := outLength + lg ;
-    end foreach ;
-  end method ;
 }
 
 #----------------------------------------------------*

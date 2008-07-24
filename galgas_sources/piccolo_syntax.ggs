@@ -1,6 +1,5 @@
 syntax piccolo_syntax :
 import lexique piccolo_lexique in "piccolo_lexique.ggs" ;
-import option piccolo_options in "piccolo_options.ggs" ;
 import semantics piccolo_metamodel in "piccolo_metamodel.ggs" ;
 
 #----------------------------------------------------*
@@ -23,10 +22,10 @@ nonterminal <routine_definition>
   ?!@bool ioNeedsComputedGoto4
 ;
 
-nonterminal <simple_instruction> !@instruction outInstruction ;
+nonterminal <simple_instruction> !@piccolo_instruction outInstruction ;
 
 nonterminal <structured_instruction>
-  !@instruction outInstruction
+  !@piccolo_instruction outInstruction
   ?!@bool ioNeedsComputedGoto2
   ?!@bool ioNeedsComputedGoto4
 ;
@@ -140,11 +139,11 @@ rule <instruction_list>
   outInstructionList := [@instructionList emptyList] ;
   repeat
   while
-    @instruction instruction ;
+    @piccolo_instruction instruction ;
     <simple_instruction> ?instruction ;
     outInstructionList += !instruction ;
   while
-    @instruction instruction ;
+    @piccolo_instruction instruction ;
     <structured_instruction>
       ?instruction
       !?ioNeedsComputedGoto2
@@ -354,7 +353,7 @@ end rule ;
 #----------------------------------------------------*
 
 rule <structured_instruction>
-  !@instruction outInstruction
+  !@piccolo_instruction outInstruction
   ?!@bool ioNeedsComputedGoto2
   ?!@bool ioNeedsComputedGoto4
 :
@@ -388,7 +387,7 @@ rule <structured_instruction>
       opCode := [@if_semi_colon_op TSTFSZ] ;
     end select ;
     $:$ ;
-    @instruction instruction ;
+    @piccolo_instruction instruction ;
     <simple_instruction> ?instruction ;
     outInstruction := [@instruction_IF_FA_SEMI_COLON new
       !instructionLocation
@@ -414,7 +413,7 @@ rule <structured_instruction>
       error conditionString:"invalid '" . condition . "' condition; it should be 'z' or 'nz'" -> skipIfSet ;
     end if ;
     $:$ ;
-    @instruction instruction ;
+    @piccolo_instruction instruction ;
     <simple_instruction> ?instruction ;
     outInstruction := [@instruction_IF_BitTest new
       !instructionLocation
@@ -450,7 +449,7 @@ rule <structured_instruction>
       error conditionString:"invalid '" . condition . "' condition; it should be 'z' or 'nz'" -> skipIfZero ;
     end if ;
     $:$ ;
-    @instruction instruction ;
+    @piccolo_instruction instruction ;
     <simple_instruction> ?instruction ;
     outInstruction := [@instruction_IF_IncDec new
       !instructionLocation
@@ -579,7 +578,7 @@ end rule ;
 
 #----------------------------------------------------*
 
-rule <simple_instruction> !@instruction outInstruction :
+rule <simple_instruction> !@piccolo_instruction outInstruction :
   @location instructionLocation := here ;
   select
     @instruction_FDA_base_code baseCode ;
@@ -846,6 +845,7 @@ rule <simple_instruction> !@instruction outInstruction :
     $label$ ;
     $identifier$ ? @lstring targetLabelName ;
     outInstruction := [@pseudo_LABEL new
+      !instructionLocation
       !targetLabelName
     ] ;
   or

@@ -61,7 +61,7 @@ routine analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName :
 #-------------------------------- Perform Semantics checkings
 
 #-------------------------------- Build Assembly Instruction List
-  @instructionList generatedInstructionList ;
+  @ipic_instructionList generatedInstructionList ;
   buildAssemblyInstructionList
     !inPiccoloModel
     !hasHighInterrupt
