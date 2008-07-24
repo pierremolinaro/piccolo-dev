@@ -79,7 +79,8 @@ end method ;
 
 #----------------------------------------------------*
 
-abstract method @structured_if_condition.decomposeIFcondition
+abstract method @conditionExpression.decomposeIFcondition
+  ??@bool inComplementaryBranch
   ??@location inInstructionLocation
   ??@string inTargetLabel
   ?!@instructionList ioGeneratedInstructionList
@@ -88,14 +89,21 @@ abstract method @structured_if_condition.decomposeIFcondition
 #----------------------------------------------------*
 
 override method @bcc_in_structured_if_condition.decomposeIFcondition
+  ??@bool inComplementaryBranch
   ??@location inInstructionLocation
   ??@string inTargetLabel
   ?!@instructionList ioGeneratedInstructionList
 :
+  @conditional_branch condition ;
+  if inComplementaryBranch then
+    getComplementaryBcc !mCondition ?condition ;
+  else
+    condition := mCondition ;
+  end if ;
   ioGeneratedInstructionList += ![@instruction_conditionalBranch new
     !inInstructionLocation
     ![@condionalBranchMode native]
-    !mCondition
+    !condition
     ![@lstring new !inTargetLabel !inInstructionLocation]
   ] ;
 end method ;
@@ -103,12 +111,13 @@ end method ;
 #----------------------------------------------------*
 
 override method @bitTest_in_structured_if_condition.decomposeIFcondition
+  ??@bool inComplementaryBranch
   ??@location inInstructionLocation
   ??@string inTargetLabel
   ?!@instructionList ioGeneratedInstructionList
 :
   @bit_oriented_op op ;
-  if mBTFSSinstruction then
+  if mBTFSSinstruction ^ inComplementaryBranch then
     op := [@bit_oriented_op BTFSS] ;
   else
     op := [@bit_oriented_op BTFSC] ;
@@ -133,7 +142,7 @@ override method @instruction_structured_if.decomposeComplexInstruction
   @string label0 := "_label_" . [ioLocalLabelIndex string] ; ioLocalLabelIndex ++ ;
   @string label1 := "_label_" . [ioLocalLabelIndex string] ; ioLocalLabelIndex ++ ;
 #--- Translate condition
-  [mIfCondition decomposeIFcondition !mInstructionLocation !label0 !?ioGeneratedInstructionList] ;
+  [mIfCondition decomposeIFcondition !true !mInstructionLocation !label0 !?ioGeneratedInstructionList] ;
 #--- 'then' instructions
   foreach mThenInstructionList do
     ioGeneratedInstructionList += !mInstruction ;
@@ -171,7 +180,7 @@ override method @instruction_do_while.decomposeComplexInstruction
     [mInstruction decomposeComplexInstruction !?ioLocalLabelIndex !?ioGeneratedInstructionList] ;
   end foreach ;
 #--- Translate condition
-  [mWhileCondition decomposeIFcondition !mInstructionLocation !label0 !?ioGeneratedInstructionList] ;
+  [mWhileCondition decomposeIFcondition !false !mInstructionLocation !label0 !?ioGeneratedInstructionList] ;
 end method ;
 
 #----------------------------------------------------*

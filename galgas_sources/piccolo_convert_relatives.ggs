@@ -96,7 +96,7 @@ override method @instruction_conditionalBranch.checkRelativeBranch
     @sint displacement := ([targetAddress sint] - 2S - [ioAddress sint]) >> 1 ;
     if (displacement > 127S) | (displacement < - 128S) then
       ioRelativeBranchOverflow := true ;
-      message "  native Bcc overflow, converted to Bcc with BRA\n" ;
+##      message "  native Bcc overflow, converted to Bcc with BRA\n" ;
       @actualInstruction instruction := [@instruction_conditionalBranch new
         !mInstructionLocation
         ![@condionalBranchMode usesBRA]
@@ -111,7 +111,7 @@ override method @instruction_conditionalBranch.checkRelativeBranch
     @sint displacement := ([targetAddress sint] - 2S - [ioAddress sint]) >> 1 ;
     if (displacement > 1023S) | (displacement < - 1024S) then
       ioRelativeBranchOverflow := true ;
-      message "  Bcc with BRA overflow, converted to Bcc with GOTO\n" ;
+##      message "  Bcc with BRA overflow, converted to Bcc with GOTO\n" ;
       @actualInstruction instruction := [@instruction_conditionalBranch new
         !mInstructionLocation
         ![@condionalBranchMode usesGOTO]
@@ -138,7 +138,7 @@ override method @instruction_BRA.checkRelativeBranch
   @sint displacement := ([targetAddress sint] - 2S - [ioAddress sint]) >> 1 ;
   if (displacement > 1023S) | (displacement < - 1024S) then
     ioRelativeBranchOverflow := true ;
-    message "  BRA overflow, converted to GOTO\n" ;
+##    message "  BRA overflow, converted to GOTO\n" ;
     @actualInstruction instruction := [@instruction_GOTO new
       !mInstructionLocation
       !mTargetLabel
@@ -160,7 +160,7 @@ override method @instruction_RCALL.checkRelativeBranch
   [inRoutineSymbolTable searchKey !mTargetLabel ?targetAddress] ;
   @sint displacement := ([targetAddress sint] - 2S - [ioAddress sint]) >> 1 ;
   if (displacement > 1023S) | (displacement < - 1024S) then
-    message "  RCALL overflow, converted to CALL\n" ;
+##    message "  RCALL overflow, converted to CALL\n" ;
     ioRelativeBranchOverflow := true ;
     @actualInstruction instruction := [@instruction_CALL new
       !mInstructionLocation
@@ -203,7 +203,7 @@ override method @instruction_computed_retlw.checkRelativeBranch
     @sint displacement := ([targetAddress sint] - 2S - [ioAddress sint]) >> 1 ;
     if (displacement > 1023S) | (displacement < - 1024S) then
       ioRelativeBranchOverflow := true ;
-      message "  rcomputed retlw overflow, converted to computed retlw\n" ;
+##      message "  rcomputed retlw overflow, converted to computed retlw\n" ;
       @actualInstruction instruction := [@instruction_computed_retlw new
         !mInstructionLocation
         !mLiteralValues
@@ -229,7 +229,7 @@ override method @instruction_computed_bra.checkRelativeBranch
     @sint displacement := ([targetAddress sint] - 2S - [ioAddress sint]) >> 1 ;
     if (displacement > 1023S) | (displacement < - 1024S) then
       ioRelativeBranchOverflow := true ;
-      message "  rcomputed bra overflow, converted to computed bra\n" ;
+##      message "  rcomputed bra overflow, converted to computed bra\n" ;
       @actualInstruction instruction := [@instruction_computed_bra new
         !mInstructionLocation
         !mTargetLabels
@@ -262,7 +262,7 @@ override method @instruction_computed_goto.checkRelativeBranch
     @sint displacement := ([targetAddress sint] - 2S - [ioAddress sint]) >> 1 ;
     if (displacement > 1023S) | (displacement < - 1024S) then
       ioRelativeBranchOverflow := true ;
-      message "  rcomputed goto overflow, converted to computed goto\n" ;
+##      message "  rcomputed goto overflow, converted to computed goto\n" ;
       @actualInstruction instruction := [@instruction_computed_goto new
         !mInstructionLocation
         !mTargetLabels
@@ -294,7 +294,7 @@ routine convertRelativeBranchsToAbsoluteWhenNeeded
   do
     relativeBranchOverflow := false ;
     iteration ++ ;
-    message "convert relatives, pass " . [iteration string] . "\n" ;
+##    message "convert relatives, pass " . [iteration string] . "\n" ;
   #-------------------------------- First pass: build label map
     @symbolTableForConvertingRelatives symbolTable [emptyMap] ;
     @uint currentAddress := 0 ;
