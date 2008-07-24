@@ -339,6 +339,10 @@
 		CFB9E52A0DF28CB300885084 /* TC_UniqueFixedSizeArray.h in Headers */ = {isa = PBXBuildFile; fileRef = CFB9E5120DF28CB300885084 /* TC_UniqueFixedSizeArray.h */; };
 		CFB9E52B0DF28CB300885084 /* TF_AVL_Tree.h in Headers */ = {isa = PBXBuildFile; fileRef = CFB9E5130DF28CB300885084 /* TF_AVL_Tree.h */; };
 		CFBC76070AC67F9900443ACA /* OC_GGS_BuildResultTextView.mm in Sources */ = {isa = PBXBuildFile; fileRef = CFBC76060AC67F9900443ACA /* OC_GGS_BuildResultTextView.mm */; };
+		CFCB61BB0E391B6900BFFF1A /* ipic_metamodel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CFCB61B90E391B6900BFFF1A /* ipic_metamodel.cpp */; };
+		CFCB61BC0E391B6900BFFF1A /* ipic_metamodel.h in Headers */ = {isa = PBXBuildFile; fileRef = CFCB61BA0E391B6900BFFF1A /* ipic_metamodel.h */; };
+		CFCB61BD0E391B6900BFFF1A /* ipic_metamodel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CFCB61B90E391B6900BFFF1A /* ipic_metamodel.cpp */; };
+		CFCB61BE0E391B6900BFFF1A /* ipic_metamodel.h in Headers */ = {isa = PBXBuildFile; fileRef = CFCB61BA0E391B6900BFFF1A /* ipic_metamodel.h */; };
 		CFCD26D90850D5D000A26954 /* piccoloDebug in Resources */ = {isa = PBXBuildFile; fileRef = CFA61CF8061095160089CEA5 /* piccoloDebug */; };
 		CFD284A70A3C3F5B0066AF65 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CFD284A60A3C3F5B0066AF65 /* main.m */; };
 		CFD284A90A3C411C0066AF65 /* piccolo_lexique.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CFE9BAAF0A3C303800C9F7EC /* piccolo_lexique.cpp */; };
@@ -592,6 +596,8 @@
 		CFBC75C70AC6785A00443ACA /* OC_GGS_BuildResultTextView.h */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = sourcecode.c.h; path = OC_GGS_BuildResultTextView.h; sourceTree = "<group>"; };
 		CFBC76060AC67F9900443ACA /* OC_GGS_BuildResultTextView.mm */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = sourcecode.cpp.objcpp; path = OC_GGS_BuildResultTextView.mm; sourceTree = "<group>"; };
 		CFC30F92058A225E003D0386 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		CFCB61B90E391B6900BFFF1A /* ipic_metamodel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ipic_metamodel.cpp; sourceTree = "<group>"; };
+		CFCB61BA0E391B6900BFFF1A /* ipic_metamodel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ipic_metamodel.h; sourceTree = "<group>"; };
 		CFD284A60A3C3F5B0066AF65 /* main.m */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		CFD284AB0A3C41EC0066AF65 /* piccolo_cocoa.mm */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = sourcecode.cpp.objcpp; path = piccolo_cocoa.mm; sourceTree = "<group>"; };
 		CFDA45C4090E688B00D522A4 /* AC_galgas_map.h */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = sourcecode.c.h; path = AC_galgas_map.h; sourceTree = "<group>"; };
@@ -795,6 +801,8 @@
 		CFD21A8A0913D1890011F11E /* Sources Files */ = {
 			isa = PBXGroup;
 			children = (
+				CFCB61B90E391B6900BFFF1A /* ipic_metamodel.cpp */,
+				CFCB61BA0E391B6900BFFF1A /* ipic_metamodel.h */,
 				CFA03D0F0E37207000F9710C /* piccolo_convert_relatives.cpp */,
 				CFA03D100E37207000F9710C /* piccolo_convert_relatives.h */,
 				CF2214640E366FDD00B7FDD5 /* piccolo_build_binary_code.cpp */,
@@ -1142,6 +1150,7 @@
 				CF2214460E3643D200B7FDD5 /* piccolo_build_assembly_code.h in Headers */,
 				CF2214670E366FDD00B7FDD5 /* piccolo_build_binary_code.h in Headers */,
 				CFA03D120E37207000F9710C /* piccolo_convert_relatives.h in Headers */,
+				CFCB61BC0E391B6900BFFF1A /* ipic_metamodel.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1239,6 +1248,7 @@
 				CF2214480E3643D200B7FDD5 /* piccolo_build_assembly_code.h in Headers */,
 				CF2214690E366FDD00B7FDD5 /* piccolo_build_binary_code.h in Headers */,
 				CFA03D140E37207000F9710C /* piccolo_convert_relatives.h in Headers */,
+				CFCB61BE0E391B6900BFFF1A /* ipic_metamodel.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1476,6 +1486,7 @@
 				CF2214450E3643D200B7FDD5 /* piccolo_build_assembly_code.cpp in Sources */,
 				CF2214660E366FDD00B7FDD5 /* piccolo_build_binary_code.cpp in Sources */,
 				CFA03D110E37207000F9710C /* piccolo_convert_relatives.cpp in Sources */,
+				CFCB61BB0E391B6900BFFF1A /* ipic_metamodel.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1559,6 +1570,7 @@
 				CF2214470E3643D200B7FDD5 /* piccolo_build_assembly_code.cpp in Sources */,
 				CF2214680E366FDD00B7FDD5 /* piccolo_build_binary_code.cpp in Sources */,
 				CFA03D130E37207000F9710C /* piccolo_convert_relatives.cpp in Sources */,
+				CFCB61BD0E391B6900BFFF1A /* ipic_metamodel.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

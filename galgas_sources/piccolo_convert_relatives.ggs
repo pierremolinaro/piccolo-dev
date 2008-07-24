@@ -1,5 +1,5 @@
 semantics piccolo_convert_relatives :
-import semantics piccolo_metamodel in "piccolo_metamodel.ggs" ;
+import semantics ipic_metamodel in "ipic_metamodel.ggs" ;
 
 #----------------------------------------------------------------------------*
 
@@ -15,7 +15,7 @@ map @symbolTableForConvertingRelatives {
 #                                                                            *
 #----------------------------------------------------------------------------*
 
-method @instruction.defineLabelAtAddress
+method @ipic_instruction.defineLabelAtAddress
   ?!@symbolTableForConvertingRelatives unused ioRoutineSymbolTable
   ?!@uint unused ioAddress
 :
@@ -24,7 +24,7 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override
-method @pseudo_LABEL.defineLabelAtAddress
+method @ipic_pseudo_LABEL.defineLabelAtAddress
   ?!@symbolTableForConvertingRelatives ioRoutineSymbolTable
   ?!@uint ioAddress
 :
@@ -34,7 +34,7 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override
-method @pseudo_ORG.defineLabelAtAddress
+method @ipic_pseudo_ORG.defineLabelAtAddress
   ?!@symbolTableForConvertingRelatives unused ioRoutineSymbolTable
   ?!@uint ioAddress
 :
@@ -44,7 +44,7 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override
-method @actualInstruction.defineLabelAtAddress
+method @ipic_actualInstruction.defineLabelAtAddress
   ?!@symbolTableForConvertingRelatives unused ioRoutineSymbolTable
   ?!@uint ioAddress
 :
@@ -59,22 +59,22 @@ end method ;
 #                                                                            *
 #----------------------------------------------------------------------------*
 
-abstract method @instruction.checkRelativeBranch
+abstract method @ipic_instruction.checkRelativeBranch
   ??@symbolTableForConvertingRelatives unused inRoutineSymbolTable
   ?!@uint unused ioAddress
   ?!@bool unused ioRelativeBranchOverflow
-  ?!@instructionList unused ioGeneratedInstructionList
+  ?!@ipic_instructionList unused ioGeneratedInstructionList
   ??@uint unused inIndex
 ;
 
 #----------------------------------------------------------------------------*
 
 override
-method @pseudo_ORG.checkRelativeBranch
+method @ipic_pseudo_ORG.checkRelativeBranch
   ??@symbolTableForConvertingRelatives unused inRoutineSymbolTable
   ?!@uint ioAddress
   ?!@bool unused ioRelativeBranchOverflow
-  ?!@instructionList unused ioGeneratedInstructionList
+  ?!@ipic_instructionList unused ioGeneratedInstructionList
   ??@uint unused inIndex
 :
   ioAddress := mOrigin ;
@@ -82,11 +82,11 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @instruction_conditionalBranch.checkRelativeBranch
+override method @ipic_instruction_conditionalBranch.checkRelativeBranch
   ??@symbolTableForConvertingRelatives inRoutineSymbolTable
   ?!@uint ioAddress
   ?!@bool ioRelativeBranchOverflow
-  ?!@instructionList ioGeneratedInstructionList
+  ?!@ipic_instructionList ioGeneratedInstructionList
   ??@uint inIndex
 :
   switch mBranchMode
@@ -97,7 +97,7 @@ override method @instruction_conditionalBranch.checkRelativeBranch
     if (displacement > 127S) | (displacement < - 128S) then
       ioRelativeBranchOverflow := true ;
 ##      message "  native Bcc overflow, converted to Bcc with BRA\n" ;
-      @actualInstruction instruction := [@instruction_conditionalBranch new
+      @ipic_actualInstruction instruction := [@ipic_instruction_conditionalBranch new
         !mInstructionLocation
         ![@condionalBranchMode usesBRA]
         !mConditionalBranch
@@ -112,7 +112,7 @@ override method @instruction_conditionalBranch.checkRelativeBranch
     if (displacement > 1023S) | (displacement < - 1024S) then
       ioRelativeBranchOverflow := true ;
 ##      message "  Bcc with BRA overflow, converted to Bcc with GOTO\n" ;
-      @actualInstruction instruction := [@instruction_conditionalBranch new
+      @ipic_actualInstruction instruction := [@ipic_instruction_conditionalBranch new
         !mInstructionLocation
         ![@condionalBranchMode usesGOTO]
         !mConditionalBranch
@@ -126,11 +126,11 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @instruction_BRA.checkRelativeBranch
+override method @ipic_instruction_BRA.checkRelativeBranch
   ??@symbolTableForConvertingRelatives inRoutineSymbolTable
   ?!@uint ioAddress
   ?!@bool ioRelativeBranchOverflow
-  ?!@instructionList ioGeneratedInstructionList
+  ?!@ipic_instructionList ioGeneratedInstructionList
   ??@uint inIndex
 :
   @uint targetAddress ;
@@ -139,7 +139,7 @@ override method @instruction_BRA.checkRelativeBranch
   if (displacement > 1023S) | (displacement < - 1024S) then
     ioRelativeBranchOverflow := true ;
 ##    message "  BRA overflow, converted to GOTO\n" ;
-    @actualInstruction instruction := [@instruction_GOTO new
+    @ipic_actualInstruction instruction := [@ipic_instruction_GOTO new
       !mInstructionLocation
       !mTargetLabel
     ] ;
@@ -149,11 +149,11 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @instruction_RCALL.checkRelativeBranch
+override method @ipic_instruction_RCALL.checkRelativeBranch
   ??@symbolTableForConvertingRelatives inRoutineSymbolTable
   ?!@uint ioAddress
   ?!@bool ioRelativeBranchOverflow
-  ?!@instructionList ioGeneratedInstructionList
+  ?!@ipic_instructionList ioGeneratedInstructionList
   ??@uint inIndex
 :
   @uint targetAddress ;
@@ -162,7 +162,7 @@ override method @instruction_RCALL.checkRelativeBranch
   if (displacement > 1023S) | (displacement < - 1024S) then
 ##    message "  RCALL overflow, converted to CALL\n" ;
     ioRelativeBranchOverflow := true ;
-    @actualInstruction instruction := [@instruction_CALL new
+    @ipic_actualInstruction instruction := [@ipic_instruction_CALL new
       !mInstructionLocation
       !mTargetLabel
     ] ;
@@ -172,11 +172,11 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @pseudo_LABEL.checkRelativeBranch
+override method @ipic_pseudo_LABEL.checkRelativeBranch
   ??@symbolTableForConvertingRelatives inRoutineSymbolTable
   ?!@uint ioAddress
   ?!@bool unused ioRelativeBranchOverflow
-  ?!@instructionList unused ioGeneratedInstructionList
+  ?!@ipic_instructionList unused ioGeneratedInstructionList
   ??@uint unused inIndex
 :
   @uint targetAddress ;
@@ -190,11 +190,11 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @instruction_computed_retlw.checkRelativeBranch
+override method @ipic_instruction_computed_retlw.checkRelativeBranch
   ??@symbolTableForConvertingRelatives inRoutineSymbolTable
   ?!@uint ioAddress
   ?!@bool ioRelativeBranchOverflow
-  ?!@instructionList ioGeneratedInstructionList
+  ?!@ipic_instructionList ioGeneratedInstructionList
   ??@uint inIndex
 :
   if mUsesRelativeCall then
@@ -204,7 +204,7 @@ override method @instruction_computed_retlw.checkRelativeBranch
     if (displacement > 1023S) | (displacement < - 1024S) then
       ioRelativeBranchOverflow := true ;
 ##      message "  rcomputed retlw overflow, converted to computed retlw\n" ;
-      @actualInstruction instruction := [@instruction_computed_retlw new
+      @ipic_actualInstruction instruction := [@ipic_instruction_computed_retlw new
         !mInstructionLocation
         !mLiteralValues
         !false
@@ -216,11 +216,11 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @instruction_computed_bra.checkRelativeBranch
+override method @ipic_instruction_computed_bra.checkRelativeBranch
   ??@symbolTableForConvertingRelatives inRoutineSymbolTable
   ?!@uint ioAddress
   ?!@bool ioRelativeBranchOverflow
-  ?!@instructionList ioGeneratedInstructionList
+  ?!@ipic_instructionList ioGeneratedInstructionList
   ??@uint inIndex
 :
   if mUsesRelativeCall then
@@ -230,7 +230,7 @@ override method @instruction_computed_bra.checkRelativeBranch
     if (displacement > 1023S) | (displacement < - 1024S) then
       ioRelativeBranchOverflow := true ;
 ##      message "  rcomputed bra overflow, converted to computed bra\n" ;
-      @actualInstruction instruction := [@instruction_computed_bra new
+      @ipic_actualInstruction instruction := [@ipic_instruction_computed_bra new
         !mInstructionLocation
         !mTargetLabels
         !false
@@ -249,11 +249,11 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @instruction_computed_goto.checkRelativeBranch
+override method @ipic_instruction_computed_goto.checkRelativeBranch
   ??@symbolTableForConvertingRelatives inRoutineSymbolTable
   ?!@uint ioAddress
   ?!@bool ioRelativeBranchOverflow
-  ?!@instructionList ioGeneratedInstructionList
+  ?!@ipic_instructionList ioGeneratedInstructionList
   ??@uint inIndex
 :
   if mUsesRelativeCall then
@@ -263,7 +263,7 @@ override method @instruction_computed_goto.checkRelativeBranch
     if (displacement > 1023S) | (displacement < - 1024S) then
       ioRelativeBranchOverflow := true ;
 ##      message "  rcomputed goto overflow, converted to computed goto\n" ;
-      @actualInstruction instruction := [@instruction_computed_goto new
+      @ipic_actualInstruction instruction := [@ipic_instruction_computed_goto new
         !mInstructionLocation
         !mTargetLabels
         !false
@@ -285,7 +285,7 @@ end method ;
 #----------------------------------------------------------------------------*
 
 routine convertRelativeBranchsToAbsoluteWhenNeeded
-  ?!@instructionList ioGeneratedInstructionList
+  ?!@ipic_instructionList ioGeneratedInstructionList
 :
   @bool relativeBranchOverflow := true ;
   @uint iteration := 0 ;
