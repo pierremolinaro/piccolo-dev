@@ -111,6 +111,7 @@
 		CF3B8A80058CD05C00D682D2 /* C_galgas_io.h in Headers */ = {isa = PBXBuildFile; fileRef = CF3FF0B705877B62000D2F8C /* C_galgas_io.h */; };
 		CF3B8A81058CD05D00D682D2 /* C_galgas_io.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CFF53872057A558F00854C83 /* C_galgas_io.cpp */; };
 		CF3B8A9C058CD21900D682D2 /* libstdc++.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CF3B8A9B058CD21900D682D2 /* libstdc++.a */; };
+		CF3EE1BC0E386EFB0090BCD4 /* piccolo_app.icns in Resources */ = {isa = PBXBuildFile; fileRef = CF3EE1BB0E386EFB0090BCD4 /* piccolo_app.icns */; };
 		CF512D86092B3023008F7E87 /* C_BDD_Descriptor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CF512D7A092B3023008F7E87 /* C_BDD_Descriptor.cpp */; };
 		CF512D87092B3023008F7E87 /* C_BDD_Descriptor.h in Headers */ = {isa = PBXBuildFile; fileRef = CF512D7B092B3023008F7E87 /* C_BDD_Descriptor.h */; };
 		CF512D88092B3023008F7E87 /* C_BDD_Set1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CF512D7C092B3023008F7E87 /* C_BDD_Set1.cpp */; };
@@ -461,6 +462,7 @@
 		CF337A2A09EFAED600EC41F6 /* C_SourceTextForCoca.mm */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = sourcecode.cpp.objcpp; path = C_SourceTextForCoca.mm; sourceTree = "<group>"; };
 		CF337A2B09EFAED600EC41F6 /* C_SourceTextForCocoa.h */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = sourcecode.c.h; path = C_SourceTextForCocoa.h; sourceTree = "<group>"; };
 		CF3B8A9B058CD21900D682D2 /* libstdc++.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libstdc++.a"; path = "/usr/lib/gcc/darwin/3.3/libstdc++.a"; sourceTree = "<absolute>"; };
+		CF3EE1BB0E386EFB0090BCD4 /* piccolo_app.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = piccolo_app.icns; sourceTree = "<group>"; };
 		CF3FF0B705877B62000D2F8C /* C_galgas_io.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = C_galgas_io.h; sourceTree = "<group>"; };
 		CF3FF0C005877B62000D2F8C /* galgas_header.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = galgas_header.h; sourceTree = "<group>"; };
 		CF3FF0C105877B62000D2F8C /* GGS_bool.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = GGS_bool.h; sourceTree = "<group>"; };
@@ -703,6 +705,7 @@
 		2A37F4B8FDCFA73011CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				CF3EE1BB0E386EFB0090BCD4 /* piccolo_app.icns */,
 				2A37F4B9FDCFA73011CA2CEA /* Credits.rtf */,
 				CFC30F92058A225E003D0386 /* Info.plist */,
 				089C165FFE840EACC02AAC07 /* InfoPlist.strings */,
@@ -1332,6 +1335,7 @@
 				CF825D57085386810077AEAF /* I_Window.png in Resources */,
 				CF825D610853868A0077AEAF /* MainMenu.nib in Resources */,
 				CF825D620853868A0077AEAF /* OC_GGS_Document.nib in Resources */,
+				CF3EE1BC0E386EFB0090BCD4 /* piccolo_app.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

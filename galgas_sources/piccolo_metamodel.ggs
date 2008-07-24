@@ -718,13 +718,20 @@ class @instruction_computed_goto extends @actualInstruction {
 
 #----------------------------------------------------*
 
-abstract class @structured_if_condition {
+abstract class @conditionExpression {
   abstract method conditionLength !@uint outLength ;
 }
 
 #----------------------------------------------------*
 
-class @bcc_in_structured_if_condition extends @structured_if_condition {
+class @registerTestCondition extends @conditionExpression {
+  @registerExpression mRegisterExpression ;
+  @bool mBranchIfZero ;
+}
+
+#----------------------------------------------------*
+
+class @bcc_in_structured_if_condition extends @conditionExpression {
   @conditional_branch mCondition ;
   override method conditionLength !@uint outLength :
     outLength := 2 ;
@@ -733,7 +740,7 @@ class @bcc_in_structured_if_condition extends @structured_if_condition {
 
 #----------------------------------------------------*
 
-class @bitTest_in_structured_if_condition extends @structured_if_condition {
+class @bitTest_in_structured_if_condition extends @conditionExpression {
   @registerExpression mRegisterExpression ;
   @bitNumberExpression mBitNumber ;
   @bool mBTFSSinstruction ;
@@ -752,7 +759,7 @@ class @bitTest_in_structured_if_condition extends @structured_if_condition {
 #----------------------------------------------------*
 
 class @instruction_structured_if extends @actualInstruction {
-  @structured_if_condition mIfCondition ;
+  @conditionExpression mIfCondition ;
   @instructionList mThenInstructionList ;
   @instructionList mElseInstructionList ;
 
@@ -775,7 +782,7 @@ class @instruction_structured_if extends @actualInstruction {
 #----------------------------------------------------*
 
 class @instruction_do_while extends @actualInstruction {
-  @structured_if_condition mWhileCondition ;
+  @conditionExpression mWhileCondition ;
   @instructionList mRepeatedInstructionList ;
 
   override

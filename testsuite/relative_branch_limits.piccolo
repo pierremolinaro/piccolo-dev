@@ -10,7 +10,7 @@ routine main banksel 0 noreturn {
   rcall rcall_forward_call
   mnop 1022 # Adding 1 leads to overflow
   forever
-  end forever
+  end
 }
 
 routine rcall_forward_call {
@@ -36,20 +36,21 @@ routine bcc_forward {
 routine foreverLoop {
   forever
     mnop 1023  # Adding 1 leads to underflow
-  end forever
+  end
 }
 
 routine BccOverflow1 {
-  if (z) { # Native BCC converted to BCC with BRA
+  if (z) # Native BCC converted to BCC with BRA
     mnop 128
-  }
+  end
   return
 }
 
 routine BccOverflow2 {
-  if (z) { # Native BCC converted to BCC with GOTO
+  if (z) # Native BCC converted to BCC with GOTO
     mnop 1023
-  }
+  end
   return
 }
+
 end

@@ -49,7 +49,7 @@ nonterminal <bit_number_parsing> !@bitNumberExpression outBitNumber ;
 
 nonterminal <literal_value_parsing> !@luint outLiteralValue ;
 
-nonterminal <condition> !@structured_if_condition outCondition ??@bool inComplement ;
+nonterminal <condition> !@conditionExpression outCondition ;
 
 #----------------------------------------------------*
 
@@ -276,8 +276,7 @@ end rule ;
 #----------------------------------------------------*
 
 rule <condition>
-  !@structured_if_condition outCondition
-  ??@bool inComplement
+  !@conditionExpression outCondition
 :
   $($ ;
   select
@@ -287,11 +286,12 @@ rule <condition>
     @bitNumberExpression bitNumberExpression ;
     <bit_number_parsing> ?bitNumberExpression ;
     $identifier$ ? @lstring conditionString ;
+    @string condition := [[conditionString string] uppercaseString] ;
     @bool BTFSSinstruction ;
-    if [conditionString string] == "z" then
-      BTFSSinstruction := inComplement ;
-    elsif [conditionString string] == "nz" then
-      BTFSSinstruction := not inComplement ;
+    if condition == "Z" then
+      BTFSSinstruction := true ;
+    elsif condition == "NZ" then
+      BTFSSinstruction := false ;
     else
       error conditionString: "invalid '" . conditionString
       . "' condition; valid ones are: 'z' and 'nz'"
@@ -304,37 +304,49 @@ rule <condition>
       !BTFSSinstruction
     ] ;
   or
+    @registerExpression registerName ;
+    <register_parsing> ?registerName ;
+    $identifier$ ? @lstring conditionString ;
+    @string condition := [[conditionString string] uppercaseString] ;
+    @bool branchIfZero ;
+    if condition == "Z" then
+      branchIfZero := true ;
+    elsif condition == "NZ" then
+      branchIfZero := false ;
+    else
+      error conditionString: "invalid '" . conditionString
+      . "' condition; valid ones are: 'z' and 'nz'"
+      -> branchIfZero
+      ;
+    end if ;
+    outCondition := [@registerTestCondition new !registerName !branchIfZero] ;
+  or
     @conditional_branch conditional_branch ;
     $identifier$ ? @lstring conditionString ;
-    if [conditionString string] == "z" then
-      conditional_branch := [@conditional_branch bnz] ;
-    elsif [conditionString string] == "nz" then
+    @string condition := [[conditionString string] uppercaseString] ;
+    if condition == "Z" then
       conditional_branch := [@conditional_branch bz] ;
-    elsif [conditionString string] == "n" then
+    elsif condition == "NZ" then
+      conditional_branch := [@conditional_branch bnz] ;
+    elsif condition == "NN" then
       conditional_branch := [@conditional_branch bnn] ;
-    elsif [conditionString string] == "nn" then
+    elsif condition == "N" then
       conditional_branch := [@conditional_branch bn] ;
-    elsif [conditionString string] == "c" then
-      conditional_branch := [@conditional_branch bnc] ;
-    elsif [conditionString string] == "nc" then
+    elsif condition == "C" then
       conditional_branch := [@conditional_branch bc] ;
-    elsif [conditionString string] == "ov" then
-      conditional_branch := [@conditional_branch bnov] ;
-    elsif [conditionString string] == "nov" then
+    elsif condition == "NC" then
+      conditional_branch := [@conditional_branch bnc] ;
+    elsif condition == "OV" then
       conditional_branch := [@conditional_branch bov] ;
+    elsif condition == "NOV" then
+      conditional_branch := [@conditional_branch bnov] ;
     else
       error conditionString: "invalid '" . conditionString
       . "' condition; valid ones are: 'z', 'nz', 'n', 'nn', 'c', 'nc', 'ov' and 'nov'"
       -> conditional_branch
       ;
     end if ;
-    if inComplement then
-      @conditional_branch complementaryCondition ;
-      getComplementaryBcc !conditional_branch ?complementaryCondition ;
-      outCondition := [@bcc_in_structured_if_condition new !complementaryCondition] ;
-    else
-      outCondition := [@bcc_in_structured_if_condition new !conditional_branch] ;
-    end if ;
+    outCondition := [@bcc_in_structured_if_condition new !conditional_branch] ;
   end select ;
   $)$ ;
 end rule ;
@@ -356,7 +368,6 @@ rule <structured_instruction>
       !instructionLocation
       !instructionList
     ] ;
-    $forever$ ;
   or
     $if$ ;
     @registerExpression registerName ;
@@ -369,9 +380,10 @@ rule <structured_instruction>
     or
       $>=$ ; $w$ ; opCode := [@if_semi_colon_op CPFSLT] ;
     or
-      $identifier$ ? @lstring condition ;
-      if [condition string] != "nz" then
-        error condition:"invalid '" . condition . "' condition; it should be 'nz'" ;
+      $identifier$ ? @lstring conditionString ;
+      @string condition := [[conditionString string] uppercaseString] ;
+      if condition != "NZ" then
+        error conditionString:"invalid '" . condition . "' condition; it should be 'nz'" ;
       end if ;
       opCode := [@if_semi_colon_op TSTFSZ] ;
     end select ;
@@ -392,13 +404,14 @@ rule <structured_instruction>
     @bitNumberExpression bitNumber ;
     <bit_number_parsing> ?bitNumber ;
     @bool skipIfSet ;
-    $identifier$ ? @lstring condition ;
-    if [condition string] == "z" then
+    $identifier$ ? @lstring conditionString ;
+    @string condition := [[conditionString string] uppercaseString] ;
+    if condition == "Z" then
       skipIfSet := true ;
-    elsif [condition string] == "nz" then
+    elsif condition == "NZ" then
       skipIfSet := false ;
     else
-      error condition:"invalid '" . condition . "' condition; it should be 'z' or 'nz'" -> skipIfSet ;
+      error conditionString:"invalid '" . condition . "' condition; it should be 'z' or 'nz'" -> skipIfSet ;
     end if ;
     $:$ ;
     @instruction instruction ;
@@ -427,13 +440,14 @@ rule <structured_instruction>
       $,$ ; $w$ ; w_isTarget := true ;
     end select ;
     @bool skipIfZero ;
-    $identifier$ ? @lstring condition ;
-    if [condition string] == "z" then
+    $identifier$ ? @lstring conditionString ;
+    @string condition := [[conditionString string] uppercaseString] ;
+    if condition == "Z" then
       skipIfZero := false ;
-    elsif [condition string] == "nz" then
+    elsif condition == "NZ" then
       skipIfZero := true ;
     else
-      error condition:"invalid '" . condition . "' condition; it should be 'z' or 'nz'" -> skipIfZero ;
+      error conditionString:"invalid '" . condition . "' condition; it should be 'z' or 'nz'" -> skipIfZero ;
     end if ;
     $:$ ;
     @instruction instruction ;
@@ -518,29 +532,26 @@ rule <structured_instruction>
     ioNeedsComputedGoto4 := true ;
   or
     $if$ ;
-    @structured_if_condition structured_if_condition ;
-    <condition> ?structured_if_condition !false ;
-    ${$ ;
+    @conditionExpression structured_if_condition ;
+    <condition> ?structured_if_condition ;
     @instructionList thenInstructionList ;
     <instruction_list>
       ?thenInstructionList
       !?ioNeedsComputedGoto2
       !?ioNeedsComputedGoto4
     ;
-    $}$ ;
     @instructionList elseInstructionList ;
     select
       elseInstructionList := [@instructionList emptyList] ;
     or
       $else$ ;
-      ${$ ;
       <instruction_list>
         ?elseInstructionList
         !?ioNeedsComputedGoto2
         !?ioNeedsComputedGoto4
       ;
-      $}$ ;
     end select ;
+    $end$ ;
     outInstruction := [@instruction_structured_if new
       !instructionLocation
       !structured_if_condition
@@ -556,8 +567,8 @@ rule <structured_instruction>
       !?ioNeedsComputedGoto4
     ;
     $while$ ;
-    @structured_if_condition whileCondition ;
-    <condition> ?whileCondition !true ;
+    @conditionExpression whileCondition ;
+    <condition> ?whileCondition ;
     outInstruction := [@instruction_do_while new
       !instructionLocation
       !whileCondition
