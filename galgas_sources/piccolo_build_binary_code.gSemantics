@@ -394,6 +394,60 @@ routine emitRCALLinstruction
   emitCode !0xD800 | [displacement & 0x07FFS uint] ;
 end routine ;
 
+#----------------------------------------------------*
+
+override method @ipic_jump_test_register.generateBinaryCodeAtAddress
+  ??@registerTable inRegisterTable
+  ??@symbolTable inRoutineSymbolTable
+  ?!@uint ioAddress
+:
+#--- Register
+  @bitSliceTable bitSliceTable;
+  @uint usedRegisterAddress ;
+  @bool useBSRregister ;
+  [mRegisterExpression getRegisterAddressingInformations
+    !inRegisterTable
+    !inRoutineSymbolTable
+    ?usedRegisterAddress
+    ?useBSRregister
+    ?bitSliceTable
+  ] ;
+#--- Generate TSTFSZ instruction
+  @uint code := 0x6600 ; # TSTFSZ
+  if useBSRregister then
+    code := code | 0x0100 ;
+  end if ;
+  code := code | (usedRegisterAddress & 255) ;
+  emitCode !code ;
+#--- Generate BRA and / or GOTO instructions
+  @uint targetAddress ;
+  [inRoutineSymbolTable searchKey ![@lstring new !mTargetLabel !here] ?targetAddress] ;
+  if mBranchIfZero then
+    @uint intermediateTargetAddress ;
+    if mUsesBra then
+      intermediateTargetAddress := ioAddress + 6 ;
+    else
+      intermediateTargetAddress := ioAddress + 8 ;
+    end if ;
+    emitBRAinstruction
+      !ioAddress + 2
+      !intermediateTargetAddress
+      !mInstructionLocation
+    ;
+    if mUsesBra then
+      emitBRAinstruction !ioAddress + 4 !targetAddress !mInstructionLocation ;
+    else
+      emitGOTOinstruction !targetAddress ;
+    end if ;
+  else
+    if mUsesBra then
+      emitBRAinstruction !ioAddress + 2 !targetAddress !mInstructionLocation ;
+    else
+      emitGOTOinstruction !targetAddress ;
+    end if ;
+  end if ;
+end method ;
+
 #----------------------------------------------------------------------------*
 
 override method @ipic_instruction_RCALL.generateBinaryCodeAtAddress

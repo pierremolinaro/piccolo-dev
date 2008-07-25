@@ -160,8 +160,8 @@ override method @ipic_instruction_FA.buildAssemblyCode
   ?!@string ioString
   ?!@uint unused ioBccLabelIndex
 :
-  @bool useBSRaccess ;
   ioString .= "  " . [mFAinstruction mnemonic] . " " ;
+  @bool useBSRaccess ;
   [mRegisterExpression buildAssemblyCode !inRegisterTable !?ioString ?useBSRaccess ?*] ;
   if useBSRaccess then
     ioString .= ", BSR_ACCESS" ;
@@ -194,6 +194,38 @@ override method @ipic_instruction_conditionalBranch.buildAssemblyCode
     ioString .= "  GOTO " . [mTargetLabel string] . "\n" ;
     ioString .= aLabel . ":\n" ;
   end switch ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @ipic_jump_test_register.buildAssemblyCode
+  ??@registerTable inRegisterTable
+  ?!@string ioString
+  ?!@uint ioBccLabelIndex
+:
+  ioString .= "  " . "TSTFSZ " ;
+  @bool useBSRaccess ;
+  [mRegisterExpression buildAssemblyCode !inRegisterTable !?ioString ?useBSRaccess ?*] ;
+  if useBSRaccess then
+    ioString .= ", BSR_ACCESS" ;
+  end if ;
+  ioString .= "\n" ;
+  if mBranchIfZero then
+    @string aLabel := "_bcc_label_" . [ioBccLabelIndex string] ; ioBccLabelIndex ++ ;
+    ioString .= "  BRA " . aLabel . "\n" ;
+    if mUsesBra then
+      ioString .= "  BRA " . mTargetLabel . "\n" ;
+    else
+      ioString .= "  GOTO " . mTargetLabel . "\n" ;
+    end if ;
+    ioString .= aLabel . ":\n" ;
+  else
+    if mUsesBra then
+      ioString .= "  BRA " . mTargetLabel . "\n" ;
+    else
+      ioString .= "  GOTO " . mTargetLabel . "\n" ;
+    end if ;
+  end if ;
 end method ;
 
 #----------------------------------------------------*

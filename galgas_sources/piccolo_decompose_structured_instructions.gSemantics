@@ -7,14 +7,14 @@ import "ipic_metamodel.gSemantics" ;
 #           DECOMPOSE COMPLEX INSTRUCTION            *
 #----------------------------------------------------*
 
-abstract method @piccolo_instruction.decomposeComplexInstruction
+abstract method @piccolo_instruction.buildIPICinstructionList
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic_instructionList unused ioGeneratedInstructionList
 ;
 
 #----------------------------------------------------*
 
-override method @pseudo_LABEL.decomposeComplexInstruction
+override method @pseudo_LABEL.buildIPICinstructionList
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
 :
@@ -25,7 +25,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @instruction_FDA.decomposeComplexInstruction
+override method @instruction_FDA.buildIPICinstructionList
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
 :
@@ -39,7 +39,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @instruction_FA.decomposeComplexInstruction
+override method @instruction_FA.buildIPICinstructionList
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
 :
@@ -52,7 +52,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @instruction_MOVFF.decomposeComplexInstruction
+override method @instruction_MOVFF.buildIPICinstructionList
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
 :
@@ -65,7 +65,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @instruction_FBA.decomposeComplexInstruction
+override method @instruction_FBA.buildIPICinstructionList
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
 :
@@ -79,7 +79,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @instruction_conditionalBranch.decomposeComplexInstruction
+override method @instruction_conditionalBranch.buildIPICinstructionList
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
 :
@@ -93,7 +93,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @instruction_BRA.decomposeComplexInstruction
+override method @instruction_BRA.buildIPICinstructionList
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
 :
@@ -105,7 +105,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @instruction_CALL.decomposeComplexInstruction
+override method @instruction_CALL.buildIPICinstructionList
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
 :
@@ -117,7 +117,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @instruction_GOTO.decomposeComplexInstruction
+override method @instruction_GOTO.buildIPICinstructionList
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
 :
@@ -129,7 +129,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @instruction_RCALL.decomposeComplexInstruction
+override method @instruction_RCALL.buildIPICinstructionList
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
 :
@@ -141,7 +141,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @instruction_CLRWDT.decomposeComplexInstruction
+override method @instruction_CLRWDT.buildIPICinstructionList
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
 :
@@ -152,7 +152,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @instruction_DAW.decomposeComplexInstruction
+override method @instruction_DAW.buildIPICinstructionList
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
 :
@@ -163,7 +163,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @instruction_NOP.decomposeComplexInstruction
+override method @instruction_NOP.buildIPICinstructionList
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
 :
@@ -174,7 +174,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @instruction_POP.decomposeComplexInstruction
+override method @instruction_POP.buildIPICinstructionList
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
 :
@@ -185,7 +185,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @instruction_PUSH.decomposeComplexInstruction
+override method @instruction_PUSH.buildIPICinstructionList
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
 :
@@ -196,7 +196,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @instruction_RESET.decomposeComplexInstruction
+override method @instruction_RESET.buildIPICinstructionList
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
 :
@@ -207,7 +207,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @instruction_RETURN.decomposeComplexInstruction
+override method @instruction_RETURN.buildIPICinstructionList
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
 :
@@ -218,7 +218,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @instruction_RETFIE.decomposeComplexInstruction
+override method @instruction_RETFIE.buildIPICinstructionList
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
 :
@@ -230,7 +230,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @instruction_SLEEP.decomposeComplexInstruction
+override method @instruction_SLEEP.buildIPICinstructionList
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
 :
@@ -241,7 +241,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @instruction_literalOperation.decomposeComplexInstruction
+override method @instruction_literalOperation.buildIPICinstructionList
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
 :
@@ -254,7 +254,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @instruction_LFSR.decomposeComplexInstruction
+override method @instruction_LFSR.buildIPICinstructionList
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
 :
@@ -267,7 +267,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @instruction_MOVLB.decomposeComplexInstruction
+override method @instruction_MOVLB.buildIPICinstructionList
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
 :
@@ -279,7 +279,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @instruction_MOVAW.decomposeComplexInstruction
+override method @instruction_MOVAW.buildIPICinstructionList
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
 :
@@ -291,7 +291,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @instruction_TBLRD.decomposeComplexInstruction
+override method @instruction_TBLRD.buildIPICinstructionList
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
 :
@@ -303,7 +303,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @instruction_TBLWT.decomposeComplexInstruction
+override method @instruction_TBLWT.buildIPICinstructionList
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
 :
@@ -315,7 +315,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @instruction_computed_retlw.decomposeComplexInstruction
+override method @instruction_computed_retlw.buildIPICinstructionList
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
 :
@@ -328,7 +328,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @instruction_MNOP.decomposeComplexInstruction
+override method @instruction_MNOP.buildIPICinstructionList
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
 :
@@ -340,7 +340,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @instruction_computed_bra.decomposeComplexInstruction
+override method @instruction_computed_bra.buildIPICinstructionList
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
 :
@@ -353,7 +353,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @instruction_computed_goto.decomposeComplexInstruction
+override method @instruction_computed_goto.buildIPICinstructionList
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
 :
@@ -366,7 +366,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @instruction_FOREVER.decomposeComplexInstruction
+override method @instruction_FOREVER.buildIPICinstructionList
   ?!@uint ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
 :
@@ -374,14 +374,14 @@ override method @instruction_FOREVER.decomposeComplexInstruction
   ioLocalLabelIndex ++ ;
   ioGeneratedInstructionList += ![@ipic_pseudo_LABEL new ![@lstring new !label0 !mInstructionLocation]] ;
   foreach mInstructionList do
-    [mInstruction decomposeComplexInstruction !?ioLocalLabelIndex !?ioGeneratedInstructionList] ;
+    [mInstruction buildIPICinstructionList !?ioLocalLabelIndex !?ioGeneratedInstructionList] ;
   end foreach ;
   ioGeneratedInstructionList += ![@ipic_instruction_BRA new !mInstructionLocation ![@lstring new !label0 !mInstructionLocation]] ;
 end method ;
 
 #----------------------------------------------------*
 
-override method @instruction_IF_FA_SEMI_COLON.decomposeComplexInstruction
+override method @instruction_IF_FA_SEMI_COLON.buildIPICinstructionList
   ?!@uint ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
 :
@@ -398,12 +398,12 @@ override method @instruction_IF_FA_SEMI_COLON.decomposeComplexInstruction
     !mRegisterExpression
   ] ;
 #--- Append Instruction
-  [mInstruction decomposeComplexInstruction !?ioLocalLabelIndex !?ioGeneratedInstructionList] ;
+  [mInstruction buildIPICinstructionList !?ioLocalLabelIndex !?ioGeneratedInstructionList] ;
 end method ;
 
 #----------------------------------------------------*
 
-override method @instruction_IF_BitTest.decomposeComplexInstruction
+override method @instruction_IF_BitTest.buildIPICinstructionList
   ?!@uint ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
 :
@@ -420,12 +420,12 @@ override method @instruction_IF_BitTest.decomposeComplexInstruction
     !mBitNumber
   ] ;
 #--- Append Instruction
-  [mInstruction decomposeComplexInstruction !?ioLocalLabelIndex !?ioGeneratedInstructionList] ;
+  [mInstruction buildIPICinstructionList !?ioLocalLabelIndex !?ioGeneratedInstructionList] ;
 end method ;
 
 #----------------------------------------------------*
 
-abstract method @conditionExpression.decomposeIFcondition
+abstract method @conditionExpression.buildIPICinstructionForCondition
   ??@bool inComplementaryBranch
   ??@location inInstructionLocation
   ??@string inTargetLabel
@@ -434,7 +434,7 @@ abstract method @conditionExpression.decomposeIFcondition
 
 #----------------------------------------------------*
 
-override method @bcc_in_structured_if_condition.decomposeIFcondition
+override method @bcc_in_structured_if_condition.buildIPICinstructionForCondition
   ??@bool inComplementaryBranch
   ??@location inInstructionLocation
   ??@string inTargetLabel
@@ -456,7 +456,24 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @bitTest_in_structured_if_condition.decomposeIFcondition
+override method @registerTestCondition.buildIPICinstructionForCondition
+  ??@bool inComplementaryBranch
+  ??@location inInstructionLocation
+  ??@string inTargetLabel
+  ?!@ipic_instructionList ioGeneratedInstructionList
+:
+  ioGeneratedInstructionList += ![@ipic_jump_test_register new
+    !inInstructionLocation
+    !mRegisterExpression
+    !inTargetLabel
+    !mBranchIfZero ^ inComplementaryBranch
+    !true # By Default, uses BRA
+  ] ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @bitTest_in_structured_if_condition.buildIPICinstructionForCondition
   ??@bool inComplementaryBranch
   ??@location inInstructionLocation
   ??@string inTargetLabel
@@ -479,7 +496,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @instruction_structured_if.decomposeComplexInstruction
+override method @instruction_structured_if.buildIPICinstructionList
   ?!@uint ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
 :
@@ -487,10 +504,10 @@ override method @instruction_structured_if.decomposeComplexInstruction
   @string label0 := "_label_" . [ioLocalLabelIndex string] ; ioLocalLabelIndex ++ ;
   @string label1 := "_label_" . [ioLocalLabelIndex string] ; ioLocalLabelIndex ++ ;
 #--- Translate condition
-  [mIfCondition decomposeIFcondition !true !mInstructionLocation !label0 !?ioGeneratedInstructionList] ;
+  [mIfCondition buildIPICinstructionForCondition !true !mInstructionLocation !label0 !?ioGeneratedInstructionList] ;
 #--- 'then' instructions
   foreach mThenInstructionList do
-    [mInstruction decomposeComplexInstruction !?ioLocalLabelIndex !?ioGeneratedInstructionList] ;
+    [mInstruction buildIPICinstructionList !?ioLocalLabelIndex !?ioGeneratedInstructionList] ;
   end foreach ;
   if [mElseInstructionList length] > 0 then
     ioGeneratedInstructionList += ![@ipic_instruction_BRA new !mInstructionLocation ![@lstring new !label1 !mInstructionLocation]] ;
@@ -498,7 +515,7 @@ override method @instruction_structured_if.decomposeComplexInstruction
 #--- 'else' instructions
   ioGeneratedInstructionList += ![@ipic_pseudo_LABEL new ![@lstring new !label0 !mInstructionLocation]] ;
   foreach mElseInstructionList do
-    [mInstruction decomposeComplexInstruction !?ioLocalLabelIndex !?ioGeneratedInstructionList] ;
+    [mInstruction buildIPICinstructionList !?ioLocalLabelIndex !?ioGeneratedInstructionList] ;
   end foreach ;
   if [mElseInstructionList length] > 0 then
     ioGeneratedInstructionList += ![@ipic_pseudo_LABEL new ![@lstring new !label1 !mInstructionLocation]] ;
@@ -507,7 +524,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @instruction_do_while.decomposeComplexInstruction
+override method @instruction_do_while.buildIPICinstructionList
   ?!@uint ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
 :
@@ -518,15 +535,15 @@ override method @instruction_do_while.decomposeComplexInstruction
   ioGeneratedInstructionList += ![@ipic_pseudo_LABEL new ![@lstring new !label0 !mInstructionLocation]] ;
 #--- Repeated instructions
   foreach mRepeatedInstructionList do
-    [mInstruction decomposeComplexInstruction !?ioLocalLabelIndex !?ioGeneratedInstructionList] ;
+    [mInstruction buildIPICinstructionList !?ioLocalLabelIndex !?ioGeneratedInstructionList] ;
   end foreach ;
 #--- Translate condition
-  [mWhileCondition decomposeIFcondition !false !mInstructionLocation !label0 !?ioGeneratedInstructionList] ;
+  [mWhileCondition buildIPICinstructionForCondition !false !mInstructionLocation !label0 !?ioGeneratedInstructionList] ;
 end method ;
 
 #----------------------------------------------------*
 
-override method @instruction_IF_IncDec.decomposeComplexInstruction
+override method @instruction_IF_IncDec.buildIPICinstructionList
   ?!@uint ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
 :
@@ -549,7 +566,7 @@ override method @instruction_IF_IncDec.decomposeComplexInstruction
     !m_W_isDestination
   ] ;
 #--- Repeated instructions
-  [mInstruction decomposeComplexInstruction !?ioLocalLabelIndex !?ioGeneratedInstructionList] ;
+  [mInstruction buildIPICinstructionList !?ioLocalLabelIndex !?ioGeneratedInstructionList] ;
 end method ;
 
 #----------------------------------------------------*
@@ -564,7 +581,9 @@ routine buildAssemblyInstructionList
   outGeneratedInstructionList := [@ipic_instructionList emptyList] ;
   @uint localLabelIndex := 0 ;
 #--- At zero, generate 'goto main' instruction
-  outGeneratedInstructionList += ![@ipic_instruction_GOTO new !here ![@lstring new !"main" !here]] ;
+  if inHasLowInterrupt | inHasHighInterrupt then
+    outGeneratedInstructionList += ![@ipic_instruction_GOTO new !here ![@lstring new !"main" !here]] ;
+  end if ;
 #--- At 0x08, generate 'bra _fast_interrupt' instruction, if both interrupt are defined
   if inHasLowInterrupt & inHasHighInterrupt then
     outGeneratedInstructionList += ![@ipic_pseudo_ORG new !0x8] ;
@@ -576,7 +595,7 @@ routine buildAssemblyInstructionList
     foreach [inPiccoloModel mInterruptDefinitionList] do
       if [mInterruptName string] == "low" then
         foreach mInstructionList do
-          [mInstruction decomposeComplexInstruction !?localLabelIndex !? outGeneratedInstructionList] ;
+          [mInstruction buildIPICinstructionList !?localLabelIndex !? outGeneratedInstructionList] ;
         end foreach ;
       #--- Ajouter l'instruction REFFIE
         outGeneratedInstructionList += ![@ipic_instruction_RETFIE new !here !true] ;
@@ -593,7 +612,7 @@ routine buildAssemblyInstructionList
     foreach [inPiccoloModel mInterruptDefinitionList] do
       if [mInterruptName string] == "high" then
         foreach mInstructionList do
-          [mInstruction decomposeComplexInstruction !?localLabelIndex !?outGeneratedInstructionList] ;
+          [mInstruction buildIPICinstructionList !?localLabelIndex !?outGeneratedInstructionList] ;
         end foreach ;
       #--- Ajouter l'instruction REFFIE
         outGeneratedInstructionList += ![@ipic_instruction_RETFIE new !here !true] ;
@@ -604,7 +623,7 @@ routine buildAssemblyInstructionList
   foreach [inPiccoloModel mRoutineDefinitionList] do
     outGeneratedInstructionList += ![@ipic_pseudo_LABEL new !mRoutineName] ;
     foreach mInstructionList do
-      [mInstruction decomposeComplexInstruction !?localLabelIndex !? outGeneratedInstructionList] ;
+      [mInstruction buildIPICinstructionList !?localLabelIndex !? outGeneratedInstructionList] ;
     end foreach ;
   end foreach ;
 #--- computed_goto2 routine needed ?

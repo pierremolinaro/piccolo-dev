@@ -4,7 +4,7 @@ import semantics piccolo_metamodel in "piccolo_metamodel.gSemantics" ;
 
 #----------------------------------------------------*
 
-abstract class @ipic_instruction{
+abstract class @ipic_instruction {
   abstract method instructionLength !@uint outLength ;
 }
 
@@ -718,82 +718,25 @@ class @ipic_instruction_computed_goto extends @ipic_actualInstruction {
 
 #----------------------------------------------------*
 
-#abstract class @conditionExpression {
-#  abstract method conditionLength !@uint outLength ;
-#}
+class @ipic_jump_test_register extends @ipic_actualInstruction {
+  @registerExpression mRegisterExpression ;
+  @string mTargetLabel ;
+  @bool mBranchIfZero ;
+  @bool mUsesBra ;
 
-#----------------------------------------------------*
-
-#class @registerTestCondition extends @conditionExpression {
-#  @registerExpression mRegisterExpression ;
-#  @bool mBranchIfZero ;
-#}
-
-#----------------------------------------------------*
-
-#class @ipic_bcc_in_structured_if_condition extends @conditionExpression {
-#  @conditional_branch mCondition ;
-#  override method conditionLength !@uint outLength :
-#    outLength := 2 ;
-#  end method ;
-#}
-
-#----------------------------------------------------*
-
-#class @ipic_bitTest_in_structured_if_condition extends @conditionExpression {
-#  @registerExpression mRegisterExpression ;
-#  @bitNumberExpression mBitNumber ;
-#  @bool mBTFSSinstruction ;
-#  override method conditionLength !@uint outLength :
-#    outLength := 4 ; # BTFSx, BRA instructions
-#  end method ;
-#  method baseCode !@uint outBaseCode :
-#    if mBTFSSinstruction then
-#      outBaseCode := 0xA000 ;  # BTFSS
-#    else
-#      outBaseCode := 0xB000 ;  # BTFSC
-#    end if ;
-#  end method ;
-#}
-
-#----------------------------------------------------*
-
-#class @ipic_instruction_structured_if extends @ipic_actualInstruction {
-#  @conditionExpression mIfCondition ;
-#  @instructionList mThenInstructionList ;
-#  @instructionList mElseInstructionList ;
-#
-#  override
-#  method instructionLength !@uint outLength :
-#    [mIfCondition conditionLength ?outLength] ;
-#    foreach mThenInstructionList do
-#      @uint lg ; [mInstruction instructionLength ?lg] ;
-#      outLength := outLength + lg ;
-#    end foreach ;
-#    if [mElseInstructionList length] > 0 then
-#      outLength := outLength + 2 ; # Bra for skking else part
-#    end if ;
-#    foreach mElseInstructionList do
-#      @uint lg ; [mInstruction instructionLength ?lg] ;
-#      outLength := outLength + lg ;
-#    end foreach ;
-#  end method ;
-#}
-#----------------------------------------------------*
-
-#class @ipic_instruction_do_while extends @ipic_actualInstruction {
-#  @conditionExpression mWhileCondition ;
-#  @instructionList mRepeatedInstructionList ;
-#
-#  override
-#  method instructionLength !@uint outLength :
-#    [mWhileCondition conditionLength ?outLength] ;
-#    foreach mRepeatedInstructionList do
-#      @uint lg ; [mInstruction instructionLength ?lg] ;
-#      outLength := outLength + lg ;
-#    end foreach ;
-#  end method ;
-#}
+  override
+  method instructionLength !@uint outLength :
+    outLength := 2 ; # TSTFSZ
+    if mBranchIfZero then
+      outLength := outLength + 2 ; # Intermediate BRA
+    end if ;
+    if mUsesBra then
+      outLength := outLength + 2 ; # Final BRA
+    else
+      outLength := outLength + 4 ; # Final GOTO
+    end if ;
+  end method ;
+}
 
 #----------------------------------------------------*
 
