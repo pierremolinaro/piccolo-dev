@@ -279,6 +279,40 @@ rule <condition>
 :
   $($ ;
   select
+    @bool isIncrement ;
+    select
+      $incf$ ; isIncrement := true ;
+    or
+      $decf$ ; isIncrement := false ;
+    end select ;
+    @registerExpression registerExpression ;
+    <register_parsing> ? registerExpression ;
+    @bool W_isDestination ;
+    select
+      W_isDestination := false ;
+    or
+      $,$ ; $w$ ; W_isDestination := true ;
+    end select ;
+    $identifier$ ? @lstring conditionString ;
+    @string condition := [[conditionString string] uppercaseString] ;
+    @bool branchIfZero ;
+    if condition == "Z" then
+      branchIfZero := true ;
+    elsif condition == "NZ" then
+      branchIfZero := false ;
+    else
+      error conditionString: "invalid '" . conditionString
+      . "' condition; valid ones are: 'z' and 'nz'"
+      -> branchIfZero
+      ;
+    end if ;
+    outCondition := [@incDecRegisterInCondition new
+      !registerExpression
+      !isIncrement
+      !W_isDestination
+      !branchIfZero
+    ] ;
+  or
     @registerExpression registerExpression ;
     <register_parsing> ? registerExpression ;
     @registerComparison comparison ;
