@@ -479,6 +479,25 @@ end method ;
 
 #----------------------------------------------------*
 
+override method @incDecRegisterInCondition.buildIPICinstructionForCondition
+  ??@bool inComplementaryBranch
+  ??@location inInstructionLocation
+  ??@string inTargetLabel
+  ?!@ipic_instructionList ioGeneratedInstructionList
+:
+  ioGeneratedInstructionList += ![@ipic_incDecRegisterInCondition new
+    !inInstructionLocation
+    !mRegisterExpression
+    !inTargetLabel
+    !mIncrement
+    !m_W_isDestination
+    !mBranchIfZero ^ inComplementaryBranch
+    !true # By Default, uses BRA
+  ] ;
+end method ;
+
+#----------------------------------------------------*
+
 override method @registerTestCondition.buildIPICinstructionForCondition
   ??@bool inComplementaryBranch
   ??@location inInstructionLocation

@@ -230,6 +230,41 @@ end method ;
 
 #----------------------------------------------------*
 
+override method @ipic_incDecRegisterInCondition.buildAssemblyCode
+  ??@registerTable inRegisterTable
+  ?!@string ioString
+  ?!@uint unused ioBccLabelIndex
+:
+  if mBranchIfZero & mIncrement then
+    ioString .= "  " . "INFSNZ " ;
+  elsif mBranchIfZero & not mIncrement then
+    ioString .= "  " . "DCFSNZ " ;
+  elsif (not mBranchIfZero) & mIncrement then
+    ioString .= "  " . "INCFSZ " ;
+  else
+    ioString .= "  " . "DECFSZ " ;
+  end if ;
+  @bool useBSRaccess ;
+  [mRegisterExpression buildAssemblyCode !inRegisterTable !?ioString ?useBSRaccess ?*] ;
+  if m_W_isDestination & useBSRaccess then
+    ioString .= ", W, BSR_ACCESS" ;
+  elsif useBSRaccess then
+    ioString .= ", F, BSR_ACCESS" ;
+  elsif m_W_isDestination then
+    ioString .= ", W" ;
+  else
+    ioString .= ", F" ;
+  end if ;
+  ioString .= "\n" ;
+  if mUsesBra then
+    ioString .= "  BRA " . mTargetLabel . "\n" ;
+  else
+    ioString .= "  GOTO " . mTargetLabel . "\n" ;
+  end if ;
+end method ;
+
+#----------------------------------------------------*
+
 override method @ipic_registerComparisonCondition.buildAssemblyCode
   ??@registerTable inRegisterTable
   ?!@string ioString

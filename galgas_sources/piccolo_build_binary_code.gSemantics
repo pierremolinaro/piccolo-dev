@@ -450,6 +450,52 @@ end method ;
 
 #----------------------------------------------------*
 
+override method @ipic_incDecRegisterInCondition.generateBinaryCodeAtAddress
+  ??@registerTable inRegisterTable
+  ??@symbolTable inRoutineSymbolTable
+  ?!@uint ioAddress
+:
+#--- Register
+  @bitSliceTable bitSliceTable;
+  @uint usedRegisterAddress ;
+  @bool useBSRregister ;
+  [mRegisterExpression getRegisterAddressingInformations
+    !inRegisterTable
+    !inRoutineSymbolTable
+    ?usedRegisterAddress
+    ?useBSRregister
+    ?bitSliceTable
+  ] ;
+  @uint code ;
+  if mBranchIfZero & mIncrement then
+    code := 0x4800 ; # INFSNZ
+  elsif mBranchIfZero & not mIncrement then
+    code := 0x4C00 ; # DCFSNZ
+  elsif (not mBranchIfZero) & mIncrement then
+    code := 0x3C00 ; # INCFSZ
+  else
+    code := 0x2C00 ; # DECFSZ
+  end if ;
+  if not m_W_isDestination then
+    code := code | 0x0200 ;
+  end if ;
+  if useBSRregister then
+    code := code | 0x0100 ;
+  end if ;
+  code := code | (usedRegisterAddress & 255) ;
+  emitCode !code ;
+#--- Generate BRA and / or GOTO instructions
+  @uint targetAddress ;
+  [inRoutineSymbolTable searchKey ![@lstring new !mTargetLabel !here] ?targetAddress] ;
+  if mUsesBra then
+    emitBRAinstruction !ioAddress + 2 !targetAddress !mInstructionLocation ;
+  else
+    emitGOTOinstruction !targetAddress ;
+  end if ;
+end method ;
+
+#----------------------------------------------------*
+
 override method @ipic_registerComparisonCondition.generateBinaryCodeAtAddress
   ??@registerTable inRegisterTable
   ??@symbolTable inRoutineSymbolTable

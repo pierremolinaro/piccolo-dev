@@ -1,6 +1,12 @@
 program if_do_tests "PIC18F448" :
 
 routine main noreturn {
+  if (INCF FSR0L NZ)
+    CLRF WREG
+  end
+  if (DECF FSR0L, W Z)
+    mnop 1024
+  end
   if (STATUS == W)
     CLRF STATUS
   end

@@ -740,6 +740,26 @@ class @ipic_jump_test_register extends @ipic_actualInstruction {
 
 #----------------------------------------------------*
 
+class @ipic_incDecRegisterInCondition extends @ipic_actualInstruction {
+  @registerExpression mRegisterExpression ;
+  @string mTargetLabel ;
+  @bool mIncrement ;
+  @bool m_W_isDestination ;
+  @bool mBranchIfZero ;
+  @bool mUsesBra ;
+
+  override
+  method instructionLength !@uint outLength :
+    if mUsesBra then
+      outLength := 4 ;
+    else
+      outLength := 6 ;
+    end if ; 
+  end method ;
+}
+
+#----------------------------------------------------*
+
 class @ipic_registerComparisonCondition extends @ipic_actualInstruction {
   @registerExpression mRegisterExpression ;
   @string mTargetLabel ;

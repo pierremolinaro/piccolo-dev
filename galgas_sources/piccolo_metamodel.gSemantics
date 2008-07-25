@@ -621,6 +621,15 @@ class @registerComparisonCondition extends @conditionExpression {
 
 #----------------------------------------------------*
 
+class @incDecRegisterInCondition extends @conditionExpression {
+  @registerExpression mRegisterExpression ;
+  @bool mIncrement ;
+  @bool m_W_isDestination ;
+  @bool mBranchIfZero ;
+}
+
+#----------------------------------------------------*
+
 class @bcc_in_structured_if_condition extends @conditionExpression {
   @conditional_branch mCondition ;
 }
