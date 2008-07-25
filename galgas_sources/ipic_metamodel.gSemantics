@@ -1,16 +1,31 @@
 semantics ipic_metamodel :
-import semantics piccolo_metamodel in "piccolo_metamodel.ggs" ;
+import "piccolo_metamodel.gSemantics" ;
+import semantics piccolo_metamodel in "piccolo_metamodel.gSemantics" ;
 
 #----------------------------------------------------*
 
 abstract class @ipic_instruction{
-
   abstract method instructionLength !@uint outLength ;
 }
 
 #----------------------------------------------------*
 
-abstract class @ipic_pseudoInstruction extends @ipic_instruction {
+list @ipic_instructionList {
+  @ipic_instruction mInstruction ;
+}
+
+#----------------------------------------------------*
+
+class @ipic_pseudo_NULL extends @ipic_instruction {
+  override method instructionLength !@uint outLength :
+    outLength := 0 ;
+  end method ;
+}
+
+#----------------------------------------------------*
+
+class @ipic_pseudo_ORG extends @ipic_instruction {
+  @uint mOrigin ;
 
   override method instructionLength !@uint outLength :
     outLength := 0 ;
@@ -19,19 +34,12 @@ abstract class @ipic_pseudoInstruction extends @ipic_instruction {
 
 #----------------------------------------------------*
 
-class @ipic_pseudo_NULL extends @ipic_pseudoInstruction {
-}
-
-#----------------------------------------------------*
-
-class @ipic_pseudo_ORG extends @ipic_pseudoInstruction {
-  @uint mOrigin ;
-}
-
-#----------------------------------------------------*
-
-class @ipic_pseudo_LABEL extends @ipic_pseudoInstruction {
+class @ipic_pseudo_LABEL extends @ipic_instruction {
   @lstring mTargetLabel ;
+
+  override method instructionLength !@uint outLength :
+    outLength := 0 ;
+  end method ;
 }
 
 #----------------------------------------------------*
@@ -42,12 +50,6 @@ abstract class @ipic_actualInstruction extends @ipic_instruction {
   override method instructionLength !@uint outLength :
     outLength := 2 ;
   end method ;
-}
-
-#----------------------------------------------------*
-
-list @ipic_instructionList {
-  @ipic_instruction mInstruction ;
 }
 
 #----------------------------------------------------*

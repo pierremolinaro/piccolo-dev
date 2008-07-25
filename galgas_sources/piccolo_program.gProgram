@@ -1,9 +1,9 @@
 program piccolo_program "version 1.0.0":
 
 #--- Import clauses
-import semantics piccolo_metamodel in "piccolo_metamodel.ggs" ;
-import semantics piccolo_semantics in "piccolo_semantics.ggs" ;
-import grammar piccolo_grammar in "piccolo_grammar.ggs" ;
+import semantics piccolo_metamodel in "piccolo_metamodel.gSemantics" ;
+import semantics piccolo_semantics in "piccolo_semantics.gSemantics" ;
+import grammar piccolo_grammar in "piccolo_grammar.gGrammar" ;
 
 #--- Prologue routine
 before {

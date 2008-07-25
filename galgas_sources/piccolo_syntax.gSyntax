@@ -1,6 +1,6 @@
 syntax piccolo_syntax :
-import lexique piccolo_lexique in "piccolo_lexique.ggs" ;
-import semantics piccolo_metamodel in "piccolo_metamodel.ggs" ;
+import lexique piccolo_lexique in "piccolo_lexique.gLexique" ;
+import semantics piccolo_metamodel in "piccolo_metamodel.gSemantics" ;
 
 #----------------------------------------------------*
 

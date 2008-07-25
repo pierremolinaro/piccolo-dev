@@ -1,6 +1,6 @@
 syntax piccoloDevice_syntax :
-import lexique piccoloDevice_lexique in "piccoloDevice_lexique.ggs" ;
-import semantics piccoloDevice_semantics in "piccoloDevice_semantics.ggs" ;
+import lexique piccoloDevice_lexique in "piccoloDevice_lexique.gLexique" ;
+import semantics piccoloDevice_semantics in "piccoloDevice_semantics.gSemantics" ;
 
 #----------------------------------------------------*
 
