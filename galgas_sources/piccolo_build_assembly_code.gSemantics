@@ -230,6 +230,46 @@ end method ;
 
 #----------------------------------------------------*
 
+override method @ipic_registerComparisonCondition.buildAssemblyCode
+  ??@registerTable inRegisterTable
+  ?!@string ioString
+  ?!@uint ioBccLabelIndex
+:
+  switch mComparison
+    when notEqual : ioString .= " CPFSEQ " ;
+    when equal : ioString .= " CPFSEQ " ;
+    when greaterOrEqual : ioString .= " CPFSLT " ;
+    when greater : ioString .= " CPFSGT " ;
+    when lowerOrEqual : ioString .= " CPFSGT " ;
+    when lower : ioString .= " CPFSLT " ;
+  end switch ;
+  @bool useBSRaccess ;
+  [mRegisterExpression buildAssemblyCode !inRegisterTable !?ioString ?useBSRaccess ?*] ;
+  if useBSRaccess then
+    ioString .= ", BSR_ACCESS" ;
+  end if ;
+  ioString .= "\n" ;
+  @bool usesIntermediateBRA ; [self usesIntermediateBRA ?usesIntermediateBRA] ;
+  if usesIntermediateBRA then
+    @string aLabel := "_bcc_label_" . [ioBccLabelIndex string] ; ioBccLabelIndex ++ ;
+    ioString .= "  BRA " . aLabel . "\n" ;
+    if mUsesBra then
+      ioString .= "  BRA " . mTargetLabel . "\n" ;
+    else
+      ioString .= "  GOTO " . mTargetLabel . "\n" ;
+    end if ;
+    ioString .= aLabel . ":\n" ;
+  else
+    if mUsesBra then
+      ioString .= "  BRA " . mTargetLabel . "\n" ;
+    else
+      ioString .= "  GOTO " . mTargetLabel . "\n" ;
+    end if ;
+  end if ;
+end method ;
+
+#----------------------------------------------------*
+
 override method @ipic_instruction_BRA.buildAssemblyCode
   ??@registerTable unused inRegisterTable
   ?!@string ioString

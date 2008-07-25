@@ -1,6 +1,26 @@
 program if_do_tests "PIC18F448" :
 
 routine main noreturn {
+  if (STATUS == W)
+    CLRF STATUS
+  end
+  if (STATUS != W)
+    CLRF STATUS
+  end
+  if (STATUS >= W)
+    CLRF STATUS
+  end
+  if (STATUS < W)
+    CLRF STATUS
+  end
+  if (STATUS <= W)
+    CLRF STATUS
+  end
+  if (STATUS > W)
+    CLRF STATUS
+    mnop 1023
+  end
+
   if (STATUS Z)
     mnop 2
   end
@@ -13,6 +33,8 @@ routine main noreturn {
       mnop 1024
     end
     CLRF STATUS
+  end
+  forever
   end
 }
 

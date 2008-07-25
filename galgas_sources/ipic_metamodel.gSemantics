@@ -740,4 +740,39 @@ class @ipic_jump_test_register extends @ipic_actualInstruction {
 
 #----------------------------------------------------*
 
+class @ipic_registerComparisonCondition extends @ipic_actualInstruction {
+  @registerExpression mRegisterExpression ;
+  @string mTargetLabel ;
+  @registerComparison mComparison ;
+  @bool mUsesBra ;
+
+  method usesIntermediateBRA !@bool outUses :
+    switch mComparison
+      when notEqual       : outUses := false ; # CPFSEQ 
+      when equal          : outUses := true  ; # CPFSEQ + BRA
+      when greaterOrEqual : outUses := false ; # CPFLT
+      when greater        : outUses := true  ; # CPFGT + BRA
+      when lowerOrEqual   : outUses := false ; # CPFGT
+      when lower          : outUses := true  ; # CPFLT + BRA
+    end switch ;
+  end method ;
+
+  override
+  method instructionLength !@uint outLength :
+    @bool usesIntermediateBRA ; [self usesIntermediateBRA ?usesIntermediateBRA] ;
+    if usesIntermediateBRA then
+      outLength := 4 ;
+    else
+      outLength := 2 ;
+    end if ; 
+   if mUsesBra then
+      outLength := outLength + 2 ; # Final BRA
+    else
+      outLength := outLength + 4 ; # Final GOTO
+    end if ;
+  end method ;
+}
+
+#----------------------------------------------------*
+
 end semantics ;
