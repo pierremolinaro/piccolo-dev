@@ -426,6 +426,7 @@ end method ;
 #----------------------------------------------------*
 
 abstract method @conditionExpression.buildIPICinstructionForCondition
+  ?!@uint ioLocalLabelIndex
   ??@bool inComplementaryBranch
   ??@location inInstructionLocation
   ??@string inTargetLabel
@@ -435,6 +436,7 @@ abstract method @conditionExpression.buildIPICinstructionForCondition
 #----------------------------------------------------*
 
 override method @bcc_in_structured_if_condition.buildIPICinstructionForCondition
+  ?!@uint unused ioLocalLabelIndex
   ??@bool inComplementaryBranch
   ??@location inInstructionLocation
   ??@string inTargetLabel
@@ -457,6 +459,7 @@ end method ;
 #----------------------------------------------------*
 
 override method @registerComparisonCondition.buildIPICinstructionForCondition
+  ?!@uint unused ioLocalLabelIndex
   ??@bool inComplementaryBranch
   ??@location inInstructionLocation
   ??@string inTargetLabel
@@ -480,6 +483,7 @@ end method ;
 #----------------------------------------------------*
 
 override method @incDecRegisterInCondition.buildIPICinstructionForCondition
+  ?!@uint unused ioLocalLabelIndex
   ??@bool inComplementaryBranch
   ??@location inInstructionLocation
   ??@string inTargetLabel
@@ -499,6 +503,7 @@ end method ;
 #----------------------------------------------------*
 
 override method @registerTestCondition.buildIPICinstructionForCondition
+  ?!@uint unused ioLocalLabelIndex
   ??@bool inComplementaryBranch
   ??@location inInstructionLocation
   ??@string inTargetLabel
@@ -515,7 +520,70 @@ end method ;
 
 #----------------------------------------------------*
 
+override method @negateCondition.buildIPICinstructionForCondition
+  ?!@uint ioLocalLabelIndex
+  ??@bool inComplementaryBranch
+  ??@location inInstructionLocation
+  ??@string inTargetLabel
+  ?!@ipic_instructionList ioGeneratedInstructionList
+:
+  [mCondition buildIPICinstructionForCondition
+    !?ioLocalLabelIndex
+    !not inComplementaryBranch
+    !inInstructionLocation
+    !inTargetLabel
+    !?ioGeneratedInstructionList
+  ] ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @andCondition.buildIPICinstructionForCondition
+  ?!@uint ioLocalLabelIndex
+  ??@bool inComplementaryBranch
+  ??@location inInstructionLocation
+  ??@string inTargetLabel
+  ?!@ipic_instructionList ioGeneratedInstructionList
+:
+  if inComplementaryBranch then
+    [mLeftExpression buildIPICinstructionForCondition
+      !?ioLocalLabelIndex
+      !true
+      !inInstructionLocation
+      !inTargetLabel
+      !?ioGeneratedInstructionList
+    ] ;
+    [mRightExpression buildIPICinstructionForCondition
+      !?ioLocalLabelIndex
+      !true
+      !inInstructionLocation
+      !inTargetLabel
+      !?ioGeneratedInstructionList
+    ] ;
+  else
+    @string label0 := "_label_" . [ioLocalLabelIndex string] ; ioLocalLabelIndex ++ ;
+    [mLeftExpression buildIPICinstructionForCondition
+      !?ioLocalLabelIndex
+      !true
+      !inInstructionLocation
+      !label0
+      !?ioGeneratedInstructionList
+    ] ;
+    [mRightExpression buildIPICinstructionForCondition
+      !?ioLocalLabelIndex
+      !false
+      !inInstructionLocation
+      !inTargetLabel
+      !?ioGeneratedInstructionList
+    ] ;
+    ioGeneratedInstructionList += ![@ipic_pseudo_LABEL new ![@lstring new !label0 !inInstructionLocation]] ;
+  end if ;
+end method ;
+
+#----------------------------------------------------*
+
 override method @bitTest_in_structured_if_condition.buildIPICinstructionForCondition
+  ?!@uint unused ioLocalLabelIndex
   ??@bool inComplementaryBranch
   ??@location inInstructionLocation
   ??@string inTargetLabel
@@ -546,7 +614,7 @@ override method @instruction_structured_if.buildIPICinstructionList
   @string label0 := "_label_" . [ioLocalLabelIndex string] ; ioLocalLabelIndex ++ ;
   @string label1 := "_label_" . [ioLocalLabelIndex string] ; ioLocalLabelIndex ++ ;
 #--- Translate condition
-  [mIfCondition buildIPICinstructionForCondition !true !mInstructionLocation !label0 !?ioGeneratedInstructionList] ;
+  [mIfCondition buildIPICinstructionForCondition !?ioLocalLabelIndex !true !mInstructionLocation !label0 !?ioGeneratedInstructionList] ;
 #--- 'then' instructions
   foreach mThenInstructionList do
     [mInstruction buildIPICinstructionList !?ioLocalLabelIndex !?ioGeneratedInstructionList] ;
@@ -580,7 +648,7 @@ override method @instruction_do_while.buildIPICinstructionList
     [mInstruction buildIPICinstructionList !?ioLocalLabelIndex !?ioGeneratedInstructionList] ;
   end foreach ;
 #--- Translate condition
-  [mWhileCondition buildIPICinstructionForCondition !false !mInstructionLocation !label0 !?ioGeneratedInstructionList] ;
+  [mWhileCondition buildIPICinstructionForCondition !?ioLocalLabelIndex !false !mInstructionLocation !label0 !?ioGeneratedInstructionList] ;
 end method ;
 
 #----------------------------------------------------*

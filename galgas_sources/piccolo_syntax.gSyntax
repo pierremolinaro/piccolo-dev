@@ -48,7 +48,11 @@ nonterminal <bit_number_parsing> !@bitNumberExpression outBitNumber ;
 
 nonterminal <literal_value_parsing> !@luint outLiteralValue ;
 
-nonterminal <condition> !@conditionExpression outCondition ;
+nonterminal <condition_factor> !@conditionExpression outCondition ;
+
+nonterminal <condition_term> !@conditionExpression outCondition ;
+
+nonterminal <condition_expression> !@conditionExpression outCondition ;
 
 #----------------------------------------------------*
 
@@ -274,10 +278,28 @@ end rule ;
 
 #----------------------------------------------------*
 
-rule <condition>
+rule <condition_factor>
   !@conditionExpression outCondition
 :
-  $($ ;
+  $!$ ;
+  @conditionExpression condition ;
+  <condition_factor> ? condition ;
+  outCondition := [@negateCondition new !condition] ;
+end rule ;
+
+#----------------------------------------------------*
+
+rule <condition_factor>
+  !@conditionExpression outCondition
+:
+  <condition_expression> ? outCondition ;
+end rule ;
+
+#----------------------------------------------------*
+
+rule <condition_factor>
+  !@conditionExpression outCondition
+:
   select
     @bool isIncrement ;
     select
@@ -402,7 +424,40 @@ rule <condition>
     end if ;
     outCondition := [@bcc_in_structured_if_condition new !conditional_branch] ;
   end select ;
+end rule ;
+
+#----------------------------------------------------*
+
+rule <condition_expression>
+  !@conditionExpression outCondition
+:
+  $($ ;
+  <condition_term> ? outCondition ;
+  repeat
+  while
+    $|$ ;
+    @conditionExpression c ;
+    <condition_term> ? c ;
+    @conditionExpression rc := [@negateCondition new !c] ;
+    @conditionExpression lc := [@negateCondition new !outCondition] ;
+    outCondition := [@negateCondition new ![@andCondition new !lc !rc]] ;
+  end repeat ;
   $)$ ;
+end rule ;
+
+#----------------------------------------------------*
+
+rule <condition_term>
+  !@conditionExpression outCondition
+:
+  <condition_factor> ? outCondition ;
+  repeat
+  while
+    $&$ ;
+    @conditionExpression c ;
+    <condition_factor> ? c ;
+    outCondition := [@andCondition new !outCondition !c] ;
+  end repeat ;
 end rule ;
 
 #----------------------------------------------------*
@@ -587,7 +642,7 @@ rule <structured_instruction>
   or
     $if$ ;
     @conditionExpression structured_if_condition ;
-    <condition> ?structured_if_condition ;
+    <condition_expression> ?structured_if_condition ;
     @instructionList thenInstructionList ;
     <instruction_list>
       ?thenInstructionList
@@ -622,7 +677,7 @@ rule <structured_instruction>
     ;
     $while$ ;
     @conditionExpression whileCondition ;
-    <condition> ?whileCondition ;
+    <condition_expression> ?whileCondition ;
     outInstruction := [@instruction_do_while new
       !instructionLocation
       !whileCondition

@@ -636,6 +636,19 @@ class @bcc_in_structured_if_condition extends @conditionExpression {
 
 #----------------------------------------------------*
 
+class @negateCondition extends @conditionExpression {
+  @conditionExpression mCondition ;
+}
+
+#----------------------------------------------------*
+
+class @andCondition extends @conditionExpression {
+  @conditionExpression mLeftExpression ;
+  @conditionExpression mRightExpression ;
+}
+
+#----------------------------------------------------*
+
 class @bitTest_in_structured_if_condition extends @conditionExpression {
   @registerExpression mRegisterExpression ;
   @bitNumberExpression mBitNumber ;
