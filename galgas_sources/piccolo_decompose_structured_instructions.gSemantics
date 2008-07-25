@@ -1,6 +1,7 @@
 semantics piccolo_decompose_structured_instructions :
-import semantics piccolo_metamodel in "piccolo_metamodel.ggs" ;
-import semantics ipic_metamodel in "ipic_metamodel.ggs" ;
+import semantics piccolo_metamodel in "piccolo_metamodel.gSemantics" ;
+import semantics ipic_metamodel in "ipic_metamodel.gSemantics" ;
+import "ipic_metamodel.gSemantics" ;
 
 #----------------------------------------------------*
 #           DECOMPOSE COMPLEX INSTRUCTION            *
@@ -10,6 +11,358 @@ abstract method @piccolo_instruction.decomposeComplexInstruction
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic_instructionList unused ioGeneratedInstructionList
 ;
+
+#----------------------------------------------------*
+
+override method @pseudo_LABEL.decomposeComplexInstruction
+  ?!@uint unused ioLocalLabelIndex
+  ?!@ipic_instructionList ioGeneratedInstructionList
+:
+  ioGeneratedInstructionList += ![@ipic_pseudo_LABEL new
+    !mTargetLabel
+  ] ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_FDA.decomposeComplexInstruction
+  ?!@uint unused ioLocalLabelIndex
+  ?!@ipic_instructionList ioGeneratedInstructionList
+:
+  ioGeneratedInstructionList += ![@ipic_instruction_FDA new
+    !mInstructionLocation
+    !mInstruction_FDA_base_code
+    !mRegisterExpression
+    !m_W_isDestination
+  ] ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_FA.decomposeComplexInstruction
+  ?!@uint unused ioLocalLabelIndex
+  ?!@ipic_instructionList ioGeneratedInstructionList
+:
+  ioGeneratedInstructionList += ![@ipic_instruction_FA new
+    !mInstructionLocation
+    !mFAinstruction
+    !mRegisterExpression
+  ] ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_MOVFF.decomposeComplexInstruction
+  ?!@uint unused ioLocalLabelIndex
+  ?!@ipic_instructionList ioGeneratedInstructionList
+:
+  ioGeneratedInstructionList += ![@ipic_instruction_MOVFF new
+    !mInstructionLocation
+    !mSourceRegisterName
+    !mDestinationRegisterName
+  ] ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_FBA.decomposeComplexInstruction
+  ?!@uint unused ioLocalLabelIndex
+  ?!@ipic_instructionList ioGeneratedInstructionList
+:
+  ioGeneratedInstructionList += ![@ipic_instruction_FBA new
+    !mInstructionLocation
+    !mBitOrientedOp
+    !mRegisterExpression
+    !mBitNumber
+  ] ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_conditionalBranch.decomposeComplexInstruction
+  ?!@uint unused ioLocalLabelIndex
+  ?!@ipic_instructionList ioGeneratedInstructionList
+:
+  ioGeneratedInstructionList += ![@ipic_instruction_conditionalBranch new
+    !mInstructionLocation
+    !mBranchMode
+    !mConditionalBranch
+    !mTargetLabel
+  ] ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_BRA.decomposeComplexInstruction
+  ?!@uint unused ioLocalLabelIndex
+  ?!@ipic_instructionList ioGeneratedInstructionList
+:
+  ioGeneratedInstructionList += ![@ipic_instruction_BRA new
+    !mInstructionLocation
+    !mTargetLabel
+  ] ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_CALL.decomposeComplexInstruction
+  ?!@uint unused ioLocalLabelIndex
+  ?!@ipic_instructionList ioGeneratedInstructionList
+:
+  ioGeneratedInstructionList += ![@ipic_instruction_CALL new
+    !mInstructionLocation
+    !mTargetLabel
+  ] ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_GOTO.decomposeComplexInstruction
+  ?!@uint unused ioLocalLabelIndex
+  ?!@ipic_instructionList ioGeneratedInstructionList
+:
+  ioGeneratedInstructionList += ![@ipic_instruction_GOTO new
+    !mInstructionLocation
+    !mTargetLabel
+  ] ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_RCALL.decomposeComplexInstruction
+  ?!@uint unused ioLocalLabelIndex
+  ?!@ipic_instructionList ioGeneratedInstructionList
+:
+  ioGeneratedInstructionList += ![@ipic_instruction_RCALL new
+    !mInstructionLocation
+    !mTargetLabel
+  ] ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_CLRWDT.decomposeComplexInstruction
+  ?!@uint unused ioLocalLabelIndex
+  ?!@ipic_instructionList ioGeneratedInstructionList
+:
+  ioGeneratedInstructionList += ![@ipic_instruction_CLRWDT new
+    !mInstructionLocation
+  ] ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_DAW.decomposeComplexInstruction
+  ?!@uint unused ioLocalLabelIndex
+  ?!@ipic_instructionList ioGeneratedInstructionList
+:
+  ioGeneratedInstructionList += ![@ipic_instruction_DAW new
+    !mInstructionLocation
+  ] ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_NOP.decomposeComplexInstruction
+  ?!@uint unused ioLocalLabelIndex
+  ?!@ipic_instructionList ioGeneratedInstructionList
+:
+  ioGeneratedInstructionList += ![@ipic_instruction_NOP new
+    !mInstructionLocation
+  ] ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_POP.decomposeComplexInstruction
+  ?!@uint unused ioLocalLabelIndex
+  ?!@ipic_instructionList ioGeneratedInstructionList
+:
+  ioGeneratedInstructionList += ![@ipic_instruction_POP new
+    !mInstructionLocation
+  ] ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_PUSH.decomposeComplexInstruction
+  ?!@uint unused ioLocalLabelIndex
+  ?!@ipic_instructionList ioGeneratedInstructionList
+:
+  ioGeneratedInstructionList += ![@ipic_instruction_PUSH new
+    !mInstructionLocation
+  ] ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_RESET.decomposeComplexInstruction
+  ?!@uint unused ioLocalLabelIndex
+  ?!@ipic_instructionList ioGeneratedInstructionList
+:
+  ioGeneratedInstructionList += ![@ipic_instruction_RESET new
+    !mInstructionLocation
+  ] ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_RETURN.decomposeComplexInstruction
+  ?!@uint unused ioLocalLabelIndex
+  ?!@ipic_instructionList ioGeneratedInstructionList
+:
+  ioGeneratedInstructionList += ![@ipic_instruction_RETURN new
+    !mInstructionLocation
+  ] ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_RETFIE.decomposeComplexInstruction
+  ?!@uint unused ioLocalLabelIndex
+  ?!@ipic_instructionList ioGeneratedInstructionList
+:
+  ioGeneratedInstructionList += ![@ipic_instruction_RETFIE new
+    !mInstructionLocation
+    !mFastReturn
+  ] ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_SLEEP.decomposeComplexInstruction
+  ?!@uint unused ioLocalLabelIndex
+  ?!@ipic_instructionList ioGeneratedInstructionList
+:
+  ioGeneratedInstructionList += ![@ipic_instruction_SLEEP new
+    !mInstructionLocation
+  ] ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_literalOperation.decomposeComplexInstruction
+  ?!@uint unused ioLocalLabelIndex
+  ?!@ipic_instructionList ioGeneratedInstructionList
+:
+  ioGeneratedInstructionList += ![@ipic_instruction_literalOperation new
+    !mInstructionLocation
+    !mLiteralInstruction
+    !mLiteralValue
+  ] ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_LFSR.decomposeComplexInstruction
+  ?!@uint unused ioLocalLabelIndex
+  ?!@ipic_instructionList ioGeneratedInstructionList
+:
+  ioGeneratedInstructionList += ![@ipic_instruction_LFSR new
+    !mInstructionLocation
+    !mFSRindex
+    !mRegisterExpression
+  ] ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_MOVLB.decomposeComplexInstruction
+  ?!@uint unused ioLocalLabelIndex
+  ?!@ipic_instructionList ioGeneratedInstructionList
+:
+  ioGeneratedInstructionList += ![@ipic_instruction_MOVLB new
+    !mInstructionLocation
+    !mPageIndex
+  ] ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_MOVAW.decomposeComplexInstruction
+  ?!@uint unused ioLocalLabelIndex
+  ?!@ipic_instructionList ioGeneratedInstructionList
+:
+  ioGeneratedInstructionList += ![@ipic_instruction_MOVAW new
+    !mInstructionLocation
+    !mRegisterExpression
+  ] ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_TBLRD.decomposeComplexInstruction
+  ?!@uint unused ioLocalLabelIndex
+  ?!@ipic_instructionList ioGeneratedInstructionList
+:
+  ioGeneratedInstructionList += ![@ipic_instruction_TBLRD new
+    !mInstructionLocation
+    !mOption
+  ] ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_TBLWT.decomposeComplexInstruction
+  ?!@uint unused ioLocalLabelIndex
+  ?!@ipic_instructionList ioGeneratedInstructionList
+:
+  ioGeneratedInstructionList += ![@ipic_instruction_TBLWT new
+    !mInstructionLocation
+    !mOption
+  ] ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_computed_retlw.decomposeComplexInstruction
+  ?!@uint unused ioLocalLabelIndex
+  ?!@ipic_instructionList ioGeneratedInstructionList
+:
+  ioGeneratedInstructionList += ![@ipic_instruction_computed_retlw new
+    !mInstructionLocation
+    !mLiteralValues
+    !mUsesRelativeCall
+  ] ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_MNOP.decomposeComplexInstruction
+  ?!@uint unused ioLocalLabelIndex
+  ?!@ipic_instructionList ioGeneratedInstructionList
+:
+  ioGeneratedInstructionList += ![@ipic_instruction_MNOP new
+    !mInstructionLocation
+    !mOccurrenceFactor
+  ] ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_computed_bra.decomposeComplexInstruction
+  ?!@uint unused ioLocalLabelIndex
+  ?!@ipic_instructionList ioGeneratedInstructionList
+:
+  ioGeneratedInstructionList += ![@ipic_instruction_computed_bra new
+    !mInstructionLocation
+    !mTargetLabels
+    !mUsesRelativeCall
+  ] ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_computed_goto.decomposeComplexInstruction
+  ?!@uint unused ioLocalLabelIndex
+  ?!@ipic_instructionList ioGeneratedInstructionList
+:
+  ioGeneratedInstructionList += ![@ipic_instruction_computed_goto new
+    !mInstructionLocation
+    !mTargetLabels
+    !mUsesRelativeCall
+  ] ;
+end method ;
 
 #----------------------------------------------------*
 
@@ -240,7 +593,7 @@ routine buildAssemblyInstructionList
     foreach [inPiccoloModel mInterruptDefinitionList] do
       if [mInterruptName string] == "high" then
         foreach mInstructionList do
-          [mInstruction decomposeComplexInstruction !?localLabelIndex !? outGeneratedInstructionList] ;
+          [mInstruction decomposeComplexInstruction !?localLabelIndex !?outGeneratedInstructionList] ;
         end foreach ;
       #--- Ajouter l'instruction REFFIE
         outGeneratedInstructionList += ![@ipic_instruction_RETFIE new !here !true] ;

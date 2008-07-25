@@ -1,17 +1,18 @@
 semantics piccolo_build_assembly_code :
-import semantics piccolo_embedded_devices in "piccolo_embedded_devices.ggs" ;
-import semantics ipic_metamodel in "ipic_metamodel.ggs" ;
+import semantics piccolo_embedded_devices in "piccolo_embedded_devices.gSemantics" ;
+import semantics ipic_metamodel in "ipic_metamodel.gSemantics" ;
+import "ipic_metamodel.gSemantics" ;
+import "piccolo_embedded_devices.gSemantics" ;
 
 #----------------------------------------------------*
 #                BUILD ASSEMBLY CODE                 *
 #----------------------------------------------------*
 
-method @ipic_instruction.buildAssemblyCode
+abstract method @ipic_instruction.buildAssemblyCode
   ??@registerTable unused inRegisterTable
   ?!@string unused ioString 
   ?!@uint unused ioBccLabelIndex
-:
-end method ;
+;
 
 #----------------------------------------------------*
 
@@ -473,25 +474,6 @@ routine buildAssemblyCode
   !@string outAssemblyCode
 :
   outAssemblyCode := "  PROCESSOR " . inProcessorName . "\n" ;
-#--- Prefined registers
-  outAssemblyCode .= ";--- Prefefined registers\n" ;
-  foreach inPredefinedRegisters do
-    @uint firstRegister ; [mRegisterAddressList first ?firstRegister] ;
-    outAssemblyCode .= [key string] . " EQU " . [firstRegister hexString] . "\n" ;
-  end foreach ;
-#--- User defined registers in ram
-  outAssemblyCode .= ";--- User defined registers (in RAM)\n" ;
-  foreach inAllRegisters do
-    if not [inPredefinedRegisters hasKey ![key string]] then
-      @uint firstRegister ; [mRegisterAddressList first ?firstRegister] ;
-      outAssemblyCode .= [key string] . " EQU " . [firstRegister hexString] . "\n" ;
-    end if ;
-  end foreach ;
-#--- PICCOLO defined symbols
-  outAssemblyCode .= ";--- Piccolo defined symbols\n" ;
-  outAssemblyCode .= "F EQU 0\n" ;
-  outAssemblyCode .= "W EQU 1\n" ;
-  outAssemblyCode .= "BSR_ACCESS EQU 1\n" ;
 #--- Code
   outAssemblyCode .= ";--- Code\n" ;
   outAssemblyCode .= "  ORG 0\n" ;
@@ -500,6 +482,27 @@ routine buildAssemblyCode
     [mInstruction buildAssemblyCode !inAllRegisters !?outAssemblyCode !?bccLabelIndex] ;
   end foreach ;
   outAssemblyCode .= "\n" ;
+#--- Prefined registers
+  outAssemblyCode .= ";--- Prefefined registers\n" ;
+  foreach inPredefinedRegisters do
+    @uint firstRegister ; [mRegisterAddressList first ?firstRegister] ;
+    outAssemblyCode .= [key string] . " EQU " . [firstRegister hexString] . "\n" ;
+  end foreach ;
+  outAssemblyCode .= "\n" ;
+#--- User defined registers in ram
+  outAssemblyCode .= ";--- User defined registers (in RAM)\n" ;
+  foreach inAllRegisters do
+    if not [inPredefinedRegisters hasKey ![key string]] then
+      @uint firstRegister ; [mRegisterAddressList first ?firstRegister] ;
+      outAssemblyCode .= [key string] . " EQU " . [firstRegister hexString] . "\n" ;
+    end if ;
+  end foreach ;
+  outAssemblyCode .= "\n" ;
+#--- PICCOLO defined symbols
+  outAssemblyCode .= ";--- Piccolo defined symbols\n" ;
+  outAssemblyCode .= "F EQU 0\n" ;
+  outAssemblyCode .= "W EQU 1\n" ;
+  outAssemblyCode .= "BSR_ACCESS EQU 1\n" ;
   outAssemblyCode .= ";---\n\n" ;
   outAssemblyCode .= "  END\n\n" ;
 end routine ;

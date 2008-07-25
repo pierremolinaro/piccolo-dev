@@ -1,0 +1,10 @@
+grammar piccolo_grammar "SLR":
+import lexique piccolo_lexique in "piccolo_lexique.gLexique" ;
+import option piccolo_options in "piccolo_options.gOption" ;
+import syntax piccolo_syntax in "piccolo_syntax.gSyntax" ;
+
+root <start_symbol>
+  !@piccoloModel outPiccoloModel
+;
+
+end grammar ;

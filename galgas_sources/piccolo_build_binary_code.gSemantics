@@ -1,6 +1,7 @@
 semantics piccolo_build_binary_code :
-import semantics ipic_metamodel in "ipic_metamodel.ggs" ;
-import semantics piccolo_build_assembly_code in "piccolo_build_assembly_code.ggs" ;
+import semantics ipic_metamodel in "ipic_metamodel.gSemantics" ;
+import semantics piccolo_build_assembly_code in "piccolo_build_assembly_code.gSemantics" ;
+import "piccolo_build_assembly_code.gSemantics" ;
 
 #----------------------------------------------------------------------------*
 

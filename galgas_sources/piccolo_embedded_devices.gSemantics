@@ -1,6 +1,7 @@
 semantics piccolo_embedded_devices :
-import semantics piccoloDevice_semantics in "piccoloDevice_semantics.ggs" ;
-import grammar piccoloDevice_grammar in "piccoloDevice_grammar.ggs" ;
+import semantics piccoloDevice_semantics in "piccoloDevice_semantics.gSemantics" ;
+import grammar piccoloDevice_grammar in "piccoloDevice_grammar.gGrammar" ;
+import "piccoloDevice_semantics.gSemantics" ;
 
 #----------------------------------------------------*
 

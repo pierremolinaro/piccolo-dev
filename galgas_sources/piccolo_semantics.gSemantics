@@ -1,8 +1,8 @@
 semantics piccolo_semantics :
-import semantics piccolo_build_binary_code in "piccolo_build_binary_code.ggs" ;
-import semantics piccolo_decompose_structured_instructions in "piccolo_decompose_structured_instructions.ggs" ;
-import semantics piccolo_convert_relatives in "piccolo_convert_relatives.ggs" ;
-import option piccolo_options in "piccolo_options.ggs" ;
+import semantics piccolo_build_binary_code in "piccolo_build_binary_code.gSemantics" ;
+import semantics piccolo_decompose_structured_instructions in "piccolo_decompose_structured_instructions.gSemantics" ;
+import semantics piccolo_convert_relatives in "piccolo_convert_relatives.gSemantics" ;
+import option piccolo_options in "piccolo_options.gOption" ;
 
 #----------------------------------------------------------------------------*
 #                                                                            *

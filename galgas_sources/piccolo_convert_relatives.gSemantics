@@ -1,5 +1,6 @@
 semantics piccolo_convert_relatives :
-import semantics ipic_metamodel in "ipic_metamodel.ggs" ;
+import semantics ipic_metamodel in "ipic_metamodel.gSemantics" ;
+import "ipic_metamodel.gSemantics" ;
 
 #----------------------------------------------------------------------------*
 
