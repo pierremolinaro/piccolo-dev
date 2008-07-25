@@ -586,6 +586,41 @@ class @registerTestCondition extends @conditionExpression {
 
 #----------------------------------------------------*
 
+enum @registerComparison {
+  constructor notEqual ;
+  constructor equal ;
+  constructor greaterOrEqual ;
+  constructor greater ;
+  constructor lowerOrEqual ;
+  constructor lower ;
+}{
+}
+
+#----------------------------------------------------*
+
+routine getRegisterComparisonComplementary
+  ??@registerComparison inComparison
+  !@registerComparison outComparison
+:
+  switch inComparison
+    when notEqual : outComparison := [@registerComparison equal] ;
+    when equal : outComparison := [@registerComparison notEqual] ;
+    when greaterOrEqual : outComparison := [@registerComparison lower] ;
+    when greater : outComparison := [@registerComparison lowerOrEqual] ;
+    when lowerOrEqual : outComparison := [@registerComparison greater] ;
+    when lower : outComparison := [@registerComparison greaterOrEqual] ;
+  end switch ;
+end routine ;
+
+#----------------------------------------------------*
+
+class @registerComparisonCondition extends @conditionExpression {
+  @registerExpression mRegisterExpression ;
+  @registerComparison mComparison ;
+}
+
+#----------------------------------------------------*
+
 class @bcc_in_structured_if_condition extends @conditionExpression {
   @conditional_branch mCondition ;
 }

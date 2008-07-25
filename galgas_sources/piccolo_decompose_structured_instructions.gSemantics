@@ -456,6 +456,29 @@ end method ;
 
 #----------------------------------------------------*
 
+override method @registerComparisonCondition.buildIPICinstructionForCondition
+  ??@bool inComplementaryBranch
+  ??@location inInstructionLocation
+  ??@string inTargetLabel
+  ?!@ipic_instructionList ioGeneratedInstructionList
+:
+  @registerComparison comparison ;
+  if inComplementaryBranch then
+    getRegisterComparisonComplementary !mComparison ?comparison ;
+  else
+    comparison := mComparison ;
+  end if ;
+  ioGeneratedInstructionList += ![@ipic_registerComparisonCondition new
+    !inInstructionLocation
+    !mRegisterExpression
+    !inTargetLabel
+    !comparison
+    !true # By Default, uses BRA
+  ] ;
+end method ;
+
+#----------------------------------------------------*
+
 override method @registerTestCondition.buildIPICinstructionForCondition
   ??@bool inComplementaryBranch
   ??@location inInstructionLocation

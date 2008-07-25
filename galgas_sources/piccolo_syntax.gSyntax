@@ -281,6 +281,27 @@ rule <condition>
   select
     @registerExpression registerExpression ;
     <register_parsing> ? registerExpression ;
+    @registerComparison comparison ;
+    select
+      $!=$ ; $w$ ; comparison := [@registerComparison notEqual] ;
+    or
+      $==$ ; $w$ ; comparison := [@registerComparison equal] ;
+    or
+      $<=$ ; $w$ ; comparison := [@registerComparison lowerOrEqual] ;
+    or
+      $>=$ ; $w$ ; comparison := [@registerComparison greaterOrEqual] ;
+    or
+      $<$  ; $w$ ; comparison := [@registerComparison lower] ;
+    or
+      $>$  ; $w$ ; comparison := [@registerComparison greater] ;
+    end select ;
+    outCondition := [@registerComparisonCondition new
+      !registerExpression
+      !comparison
+    ] ;
+  or
+    @registerExpression registerExpression ;
+    <register_parsing> ? registerExpression ;
     $.$ ;
     @bitNumberExpression bitNumberExpression ;
     <bit_number_parsing> ?bitNumberExpression ;

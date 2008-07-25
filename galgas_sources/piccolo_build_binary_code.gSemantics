@@ -448,6 +448,69 @@ override method @ipic_jump_test_register.generateBinaryCodeAtAddress
   end if ;
 end method ;
 
+#----------------------------------------------------*
+
+override method @ipic_registerComparisonCondition.generateBinaryCodeAtAddress
+  ??@registerTable inRegisterTable
+  ??@symbolTable inRoutineSymbolTable
+  ?!@uint ioAddress
+:
+#--- Register
+  @bitSliceTable bitSliceTable;
+  @uint usedRegisterAddress ;
+  @bool useBSRregister ;
+  [mRegisterExpression getRegisterAddressingInformations
+    !inRegisterTable
+    !inRoutineSymbolTable
+    ?usedRegisterAddress
+    ?useBSRregister
+    ?bitSliceTable
+  ] ;
+#--- Generate TSTFSZ instruction
+  @uint code ; # TSTFSZ
+  switch mComparison
+    when notEqual       : code := 0x6200 ; # CPFSEQ 
+    when equal          : code := 0x6200 ; # CPFSEQ + BRA
+    when greaterOrEqual : code := 0x6000 ; # CPFLT
+    when greater        : code := 0x6400 ; # CPFGT + BRA
+    when lowerOrEqual   : code := 0x6400 ; # CPFGT
+    when lower          : code := 0x6000 ; # CPFLT + BRA
+  end switch ;
+  if useBSRregister then
+    code := code | 0x0100 ;
+  end if ;
+  code := code | (usedRegisterAddress & 255) ;
+  emitCode !code ;
+#--- Generate BRA and / or GOTO instructions
+  @uint targetAddress ;
+  [inRoutineSymbolTable searchKey ![@lstring new !mTargetLabel !here] ?targetAddress] ;
+  @bool usesIntermediateBRA ; [self usesIntermediateBRA ?usesIntermediateBRA] ;
+  if usesIntermediateBRA then
+    @uint intermediateTargetAddress ;
+    if mUsesBra then
+      intermediateTargetAddress := ioAddress + 6 ;
+    else
+      intermediateTargetAddress := ioAddress + 8 ;
+    end if ;
+    emitBRAinstruction
+      !ioAddress + 2
+      !intermediateTargetAddress
+      !mInstructionLocation
+    ;
+    if mUsesBra then
+      emitBRAinstruction !ioAddress + 4 !targetAddress !mInstructionLocation ;
+    else
+      emitGOTOinstruction !targetAddress ;
+    end if ;
+  else
+    if mUsesBra then
+      emitBRAinstruction !ioAddress + 2 !targetAddress !mInstructionLocation ;
+    else
+      emitGOTOinstruction !targetAddress ;
+    end if ;
+  end if ;
+end method ;
+
 #----------------------------------------------------------------------------*
 
 override method @ipic_instruction_RCALL.generateBinaryCodeAtAddress
