@@ -1,0 +1,19 @@
+program if_do_tests "PIC18F448" :
+
+routine main noreturn {
+  if (STATUS Z)
+    mnop 2
+  end
+  if (STATUS NZ)
+    mnop 2
+  end
+  if (STATUS Z)
+    CLRF STATUS
+    if (STATUS NZ)
+      mnop 1024
+    end
+    CLRF STATUS
+  end
+}
+
+end

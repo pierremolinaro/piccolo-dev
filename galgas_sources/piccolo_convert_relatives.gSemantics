@@ -127,6 +127,38 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
+override method @ipic_jump_test_register.checkRelativeBranch
+  ??@symbolTableForConvertingRelatives inRoutineSymbolTable
+  ?!@uint ioAddress
+  ?!@bool ioRelativeBranchOverflow
+  ?!@ipic_instructionList ioGeneratedInstructionList
+  ??@uint inIndex
+:
+  if mUsesBra then
+    @uint BRAaddress := ioAddress + 2 ;
+    if mBranchIfZero then
+      BRAaddress := BRAaddress + 2 ;
+    end if ;
+    @uint targetAddress ;
+    [inRoutineSymbolTable searchKey ![@lstring new !mTargetLabel !here] ?targetAddress] ;
+    @sint displacement := ([targetAddress sint] - 2S - [BRAaddress sint]) >> 1 ;
+    if (displacement > 1023S) | (displacement < - 1024S) then
+      ioRelativeBranchOverflow := true ;
+      message "  BRA overflow, converted to GOTO\n" ;
+      @ipic_actualInstruction instruction := [@ipic_jump_test_register new
+        !mInstructionLocation
+        !mRegisterExpression
+        !mTargetLabel
+        !mBranchIfZero
+        !false
+      ] ;
+      [!?ioGeneratedInstructionList setMInstructionAtIndex !instruction !inIndex] ;
+    end if ;
+  end if ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
 override method @ipic_instruction_BRA.checkRelativeBranch
   ??@symbolTableForConvertingRelatives inRoutineSymbolTable
   ?!@uint ioAddress
