@@ -657,9 +657,17 @@ class @bitTest_in_structured_if_condition extends @conditionExpression {
 
 #----------------------------------------------------*
 
+list @elsifPartList {
+  @conditionExpression mCondition ;
+  @instructionList mInstructionList ;
+}
+
+#----------------------------------------------------*
+
 class @instruction_structured_if extends @piccolo_instruction {
   @conditionExpression mIfCondition ;
   @instructionList mThenInstructionList ;
+  @elsifPartList mElsifPartList ;
   @instructionList mElseInstructionList ;
 }
 #----------------------------------------------------*

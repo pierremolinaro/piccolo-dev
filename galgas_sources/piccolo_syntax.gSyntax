@@ -649,6 +649,20 @@ rule <structured_instruction>
       !?ioNeedsComputedGoto2
       !?ioNeedsComputedGoto4
     ;
+    @elsifPartList elsifPartList [emptyList] ;
+    repeat
+    while
+      $elsif$ ;
+      @conditionExpression condition ;
+      <condition_expression> ?condition ;
+      @instructionList instructionList ;
+      <instruction_list>
+        ?instructionList
+        !?ioNeedsComputedGoto2
+        !?ioNeedsComputedGoto4
+      ;
+      elsifPartList += !condition !instructionList ;
+    end repeat ;
     @instructionList elseInstructionList ;
     select
       elseInstructionList := [@instructionList emptyList] ;
@@ -665,6 +679,7 @@ rule <structured_instruction>
       !instructionLocation
       !structured_if_condition
       !thenInstructionList
+      !elsifPartList
       !elseInstructionList
     ] ;
   or

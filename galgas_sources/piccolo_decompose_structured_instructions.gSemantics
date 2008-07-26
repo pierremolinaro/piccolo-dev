@@ -611,24 +611,34 @@ override method @instruction_structured_if.buildIPICinstructionList
   ?!@ipic_instructionList ioGeneratedInstructionList
 :
 #---
-  @string label0 := "_label_" . [ioLocalLabelIndex string] ; ioLocalLabelIndex ++ ;
-  @string label1 := "_label_" . [ioLocalLabelIndex string] ; ioLocalLabelIndex ++ ;
+  @string label_nextCondition := "_label_" . [ioLocalLabelIndex string] ; ioLocalLabelIndex ++ ;
+  @string label_endOfIfinstruction := "_label_" . [ioLocalLabelIndex string] ; ioLocalLabelIndex ++ ;
 #--- Translate condition
-  [mIfCondition buildIPICinstructionForCondition !?ioLocalLabelIndex !true !mInstructionLocation !label0 !?ioGeneratedInstructionList] ;
+  [mIfCondition buildIPICinstructionForCondition !?ioLocalLabelIndex !true !mInstructionLocation !label_nextCondition !?ioGeneratedInstructionList] ;
 #--- 'then' instructions
   foreach mThenInstructionList do
     [mInstruction buildIPICinstructionList !?ioLocalLabelIndex !?ioGeneratedInstructionList] ;
   end foreach ;
-  if [mElseInstructionList length] > 0 then
-    ioGeneratedInstructionList += ![@ipic_instruction_BRA new !mInstructionLocation ![@lstring new !label1 !mInstructionLocation]] ;
-  end if ;
+#--- 'elsif' parts
+  foreach mElsifPartList do
+    ioGeneratedInstructionList += ![@ipic_instruction_BRA new !mInstructionLocation ![@lstring new !label_endOfIfinstruction !mInstructionLocation]] ;
+    ioGeneratedInstructionList += ![@ipic_pseudo_LABEL new ![@lstring new !label_nextCondition !mInstructionLocation]] ;
+    label_nextCondition := "_label_" . [ioLocalLabelIndex string] ; ioLocalLabelIndex ++ ;
+    [mCondition buildIPICinstructionForCondition !?ioLocalLabelIndex !true !mInstructionLocation !label_nextCondition !?ioGeneratedInstructionList] ;
+    foreach mInstructionList do
+      [mInstruction buildIPICinstructionList !?ioLocalLabelIndex !?ioGeneratedInstructionList] ;
+    end foreach ;
+  end foreach ;
 #--- 'else' instructions
-  ioGeneratedInstructionList += ![@ipic_pseudo_LABEL new ![@lstring new !label0 !mInstructionLocation]] ;
+  if [mElseInstructionList length] > 0 then
+    ioGeneratedInstructionList += ![@ipic_instruction_BRA new !mInstructionLocation ![@lstring new !label_endOfIfinstruction !mInstructionLocation]] ;
+  end if ;
+  ioGeneratedInstructionList += ![@ipic_pseudo_LABEL new ![@lstring new !label_nextCondition !mInstructionLocation]] ;
   foreach mElseInstructionList do
     [mInstruction buildIPICinstructionList !?ioLocalLabelIndex !?ioGeneratedInstructionList] ;
   end foreach ;
-  if [mElseInstructionList length] > 0 then
-    ioGeneratedInstructionList += ![@ipic_pseudo_LABEL new ![@lstring new !label1 !mInstructionLocation]] ;
+  if ([mElseInstructionList length] > 0) | ([mElsifPartList length] > 0) then
+    ioGeneratedInstructionList += ![@ipic_pseudo_LABEL new ![@lstring new !label_endOfIfinstruction !mInstructionLocation]] ;
   end if ;
 end method ;
 

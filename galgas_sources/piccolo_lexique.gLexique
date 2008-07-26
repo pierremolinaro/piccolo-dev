@@ -38,6 +38,7 @@ list controlKeyWordList error message "the '%K' keyword" style keywordStyle :
   "computed",
   "rcomputed",
   "else",
+  "elsif",
   "do",
   "while" ;
 
