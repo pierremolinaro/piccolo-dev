@@ -648,17 +648,27 @@ override method @instruction_do_while.buildIPICinstructionList
   ?!@uint ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
 :
-#---
 #--- Generate label
-  @string label0 := "_label_" . [ioLocalLabelIndex string] ; ioLocalLabelIndex ++ ;
+  @string labelInstructionBegin := "_label_" . [ioLocalLabelIndex string] ; ioLocalLabelIndex ++ ;
 #--- Define label
-  ioGeneratedInstructionList += ![@ipic_pseudo_LABEL new ![@lstring new !label0 !mInstructionLocation]] ;
+  ioGeneratedInstructionList += ![@ipic_pseudo_LABEL new ![@lstring new !labelInstructionBegin !mInstructionLocation]] ;
 #--- Repeated instructions
   foreach mRepeatedInstructionList do
     [mInstruction buildIPICinstructionList !?ioLocalLabelIndex !?ioGeneratedInstructionList] ;
   end foreach ;
-#--- Translate condition
-  [mWhileCondition buildIPICinstructionForCondition !?ioLocalLabelIndex !false !mInstructionLocation !label0 !?ioGeneratedInstructionList] ;
+#--- while parts
+  foreach mWhilePartList do
+    if [mInstructionList length] == 0 then
+      [mCondition buildIPICinstructionForCondition !?ioLocalLabelIndex !false !mInstructionLocation !labelInstructionBegin !?ioGeneratedInstructionList] ;
+    else
+      @string nextBranchLabel := "_label_" . [ioLocalLabelIndex string] ; ioLocalLabelIndex ++ ;
+      [mCondition buildIPICinstructionForCondition !?ioLocalLabelIndex !true !mInstructionLocation !nextBranchLabel !?ioGeneratedInstructionList] ;
+      foreach mInstructionList do
+        [mInstruction buildIPICinstructionList !?ioLocalLabelIndex !?ioGeneratedInstructionList] ;
+      end foreach ;
+      ioGeneratedInstructionList += ![@ipic_pseudo_LABEL new ![@lstring new !nextBranchLabel !mInstructionLocation]] ;
+    end if ;
+  end foreach ;
 end method ;
 
 #----------------------------------------------------*
