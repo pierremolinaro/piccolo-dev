@@ -649,7 +649,7 @@ rule <structured_instruction>
       !?ioNeedsComputedGoto2
       !?ioNeedsComputedGoto4
     ;
-    @elsifPartList elsifPartList [emptyList] ;
+    @partList elsifPartList [emptyList] ;
     repeat
     while
       $elsif$ ;
@@ -690,13 +690,25 @@ rule <structured_instruction>
       !?ioNeedsComputedGoto2
       !?ioNeedsComputedGoto4
     ;
-    $while$ ;
-    @conditionExpression whileCondition ;
-    <condition_expression> ?whileCondition ;
+    @partList whilePartList [emptyList] ;
+    repeat
+      $while$ ;
+      @conditionExpression whileCondition ;
+      <condition_expression> ?whileCondition ;
+      @instructionList instructionList ;
+      <instruction_list>
+        ?instructionList
+        !?ioNeedsComputedGoto2
+        !?ioNeedsComputedGoto4
+      ;
+      whilePartList += !whileCondition !instructionList ;
+    while
+    end repeat ;
+    $end$ ;
     outInstruction := [@instruction_do_while new
       !instructionLocation
-      !whileCondition
       !repeatedInstructionList
+      !whilePartList
     ] ;
   end select ;
 end rule ;
