@@ -1,6 +1,19 @@
+# This program is just intended for checking
+# IF and DO generated code.
+# Trying to execute it does not make sense.
+ 
 program if_do_tests "PIC18F448" :
 
 routine main noreturn {
+#--- IF, elsif, else tests
+  if (C)
+    CLRF WREG
+  elsif (Z)
+    CLRF STATUS
+  else
+    CLRF FSR0L
+  end
+#--- Or operator
   if (STATUS == W | DECF FSR0L, W Z)
     CLRF WREG
   end
