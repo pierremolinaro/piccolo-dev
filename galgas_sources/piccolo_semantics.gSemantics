@@ -6,6 +6,70 @@ import option piccolo_options in "piccolo_options.gOption" ;
 
 #----------------------------------------------------------------------------*
 #                                                                            *
+#           R A M    D E C L A R A T I O N    A N A L Y S I S                *
+#                                                                            *
+#----------------------------------------------------------------------------*
+
+abstract method @declarationInRam.handleDeclaration
+  ?!@ramBankTable ioRamBank
+  ?!@registerTable ioRegisterTable
+  ??@lstring inCurrentRamBank
+;
+
+#----------------------------------------------------------------------------*
+
+override method @commonDeclarationInRam.handleDeclaration
+  ?!@ramBankTable ioRamBank
+  ?!@registerTable ioRegisterTable
+  ??@lstring inCurrentRamBank
+:
+  @uint firstFreeAddressBeforeCommon ;
+  [ioRamBank searchKey !inCurrentRamBank ?firstFreeAddressBeforeCommon ?*] ;
+  @bool firstFreeAddressDefined := false ;
+  @uint firstFreeAddress := 0 ;
+  foreach mBranchList do
+    @ramBankTable ramBank := ioRamBank ;
+    foreach mDeclarations do
+      [mDeclaration handleDeclaration !?ramBank !?ioRegisterTable !inCurrentRamBank] ;
+    end foreach ;
+    @uint ffa ;
+    [ramBank searchKey !inCurrentRamBank ?ffa ?*] ;
+    if not firstFreeAddressDefined then
+      firstFreeAddress := ffa ;
+      firstFreeAddressDefined := true ;
+    elsif ffa != firstFreeAddress then
+      error mEndOfBranchLocation: "this branch allocates " . [ffa - firstFreeAddressBeforeCommon string]
+      . " byte(s), while the first branch allocates "
+      . [firstFreeAddress - firstFreeAddressBeforeCommon string] . " byte(s)" ;
+    end if ;
+  end foreach ;
+  [!?ioRamBank setMFirstFreeAddressForKey !firstFreeAddress ![inCurrentRamBank string]] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @byteDeclarationInRam.handleDeclaration
+  ?!@ramBankTable ioRamBank
+  ?!@registerTable ioRegisterTable
+  ??@lstring inCurrentRamBank
+:
+  @uint lastAddressPlusOne ;
+  @uint firstFreeAddress ;
+  [ioRamBank searchKey !inCurrentRamBank ?firstFreeAddress ?lastAddressPlusOne] ;
+  if [mSize uint] == 0 then
+    error mSize: "zero size is not allowed" ;
+  end if ;
+  @bitSliceTable bitSliceTable [emptyMap] ;
+  [!?ioRegisterTable insertKey !mName ![@uintlist listWithValue !firstFreeAddress] ![mSize uint] !bitSliceTable] ;
+  firstFreeAddress := firstFreeAddress + [mSize uint] ;
+  [!?ioRamBank setMFirstFreeAddressForKey !firstFreeAddress ![inCurrentRamBank string]] ;
+  if firstFreeAddress > lastAddressPlusOne then
+    error mName: "overflow in '" . inCurrentRamBank . "' ram bank for '" . mName . "' declaration" ;
+  end if ;
+end method ;
+
+#----------------------------------------------------------------------------*
+#                                                                            *
 #               S E M A N T I C    A N A L Y S I S                           *
 #                                                                            *
 #----------------------------------------------------------------------------*
@@ -41,21 +105,8 @@ routine analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName :
   @ramBankTable ramBank := [piccoloDeviceModel mRamBankTable] ;
   @registerTable registerTable := [piccoloDeviceModel mRegisterTable] ;
   foreach [inPiccoloModel mRamDefinitionList] do
-  #--- Find ram bank
-    @uint lastAddressPlusOne ;
-    @uint firstFreeAddress ;
-    [ramBank searchKey !mBankName ?firstFreeAddress ?lastAddressPlusOne] ;
     foreach mDeclaration do
-      if [mSize uint] == 0 then
-        error mSize: "zero size is not allowed" ;
-      end if ;
-      @bitSliceTable bitSliceTable [emptyMap] ;
-      [!?registerTable insertKey !mName ![@uintlist listWithValue !firstFreeAddress] ![mSize uint] !bitSliceTable] ;
-      firstFreeAddress := firstFreeAddress + [mSize uint] ;
-      [!?ramBank setMFirstFreeAddressForKey !firstFreeAddress ![mBankName string]] ;
-      if firstFreeAddress > lastAddressPlusOne then
-        error mName: "overflow in '" . mBankName . "' ram bank for '" . mName . "' declaration" ;
-      end if ;
+      [mDeclaration handleDeclaration !?ramBank !?registerTable !mBankName] ;
     end foreach ;
   end foreach ;
 #-------------------------------- Perform Semantics checkings
