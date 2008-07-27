@@ -54,97 +54,17 @@ abstract class @ipic_actualInstruction extends @ipic_instruction {
 
 #----------------------------------------------------*
 
-#class @registerExpression {
-#  @lstring mRegisterName ;
-#  @luint mOffset ;
-#}
-
-#----------------------------------------------------*
-
-#enum @instruction_FDA_base_code {
-#  constructor ADDWF ;
-#  constructor ADDWFC ;
-#  constructor ANDWF ;
-#  constructor COMF ;
-#  constructor DECF ;
-#  constructor DECFSZ ;
-#  constructor DCFSNZ ;
-#  constructor INCF ;
-#  constructor INCFSZ ;
-#  constructor INFSNZ ;
-#  constructor IORWF ;
-#  constructor MOVF ;
-#  constructor RLCF ;
-#  constructor RLNCF ;
-#  constructor RRCF ;
-#  constructor RRNCF ;
-#  constructor SUBFWB ;
-#  constructor SUBWF ;
-#  constructor SUBWFB ;
-#  constructor SWAPF ;
-#  constructor XORWF ;
-#}{
-#  reader mnemonic :
-#    ADDWF -> "ADDWF" ;
-#    ADDWFC -> "ADDWFC" ;
-#    ANDWF -> "ANDWF" ;
-#    COMF -> "COMF" ;
-#    DECF -> "DECF" ;
-#    DECFSZ -> "DECFSZ" ;
-#    DCFSNZ -> "DCFSNZ" ;
-#    INCF -> "INCF" ;
-#    INCFSZ -> "INCFSZ" ;
-#    INFSNZ -> "INFSNZ" ;
-#    IORWF -> "IORWF" ;
-#    MOVF -> "MOVF" ;
-#    RLCF -> "RLCF" ;
-#    RLNCF -> "RLNCF" ;
-#    RRCF -> "RRCF" ;
-#    RRNCF -> "RRNCF" ;
-#    SUBFWB -> "SUBFWB" ;
-#    SUBWF -> "SUBWF" ;
-#    SUBWFB -> "SUBWFB" ;
-#    SWAPF -> "SWAPF" ;
-#    XORWF -> "XORWF" ;
-#  end reader ;
-#}
-
-#----------------------------------------------------*
-
-#routine getFDAinstructionBaseCode
-#  ??@instruction_FDA_base_code inInstruction
-#  !@uint outBaseCode
-#:
-#  switch inInstruction
-#  when ADDWF : outBaseCode := 0x2400 ;
-#  when ADDWFC : outBaseCode := 0x2000 ;
-#  when ANDWF : outBaseCode := 0x1400 ;
-#  when COMF : outBaseCode := 0x1C00 ;
-#  when DECF : outBaseCode := 0x0400 ;
-#  when DECFSZ : outBaseCode := 0x2C00 ;
-#  when DCFSNZ : outBaseCode := 0x4C00 ;
-#  when INCF : outBaseCode := 0x2800 ;
-#  when INCFSZ : outBaseCode := 0x3C00 ;
-#  when INFSNZ : outBaseCode := 0x4800 ;
-#  when IORWF : outBaseCode := 0x1000 ;
-#  when MOVF : outBaseCode := 0x5000 ;
-#  when RLCF : outBaseCode := 0x3400 ;
-#  when RLNCF : outBaseCode := 0x4400 ;
-#  when RRCF : outBaseCode := 0x3000 ;
-#  when RRNCF : outBaseCode := 0x4000 ;
-#  when SUBFWB : outBaseCode := 0x5400 ;
-#  when SUBWF : outBaseCode := 0x5C00 ;
-#  when SUBWFB :  outBaseCode := 0x5800 ;
-#  when SWAPF : outBaseCode := 0x3800 ;
-#  when XORWF : outBaseCode := 0x1800 ;
-#  end switch ;
-#end routine ;
+struct @ipic_registerExpression {
+  @string mAssemblyString ;
+  @uint mRegisterAddress ; # 12 bit full address
+  @bool mNeedsBSR ;
+}
 
 #----------------------------------------------------*
 
 class @ipic_instruction_FDA extends @ipic_actualInstruction {
   @instruction_FDA_base_code mInstruction_FDA_base_code ;
-  @registerExpression mRegisterExpression ;
+  @ipic_registerExpression mRegisterDescription ;
   @bool m_W_isDestination ;
 
   method getBaseCode !@uint outBaseCode :
@@ -154,54 +74,9 @@ class @ipic_instruction_FDA extends @ipic_actualInstruction {
 
 #----------------------------------------------------*
 
-#enum @FA_instruction_base_code {
-#  constructor CLRF ;
-#  constructor CPFSEQ ;
-#  constructor CPFSGT ;
-#  constructor CPFSLT ;
-#  constructor MOVWF  ;
-#  constructor MULWF  ;
-#  constructor NEGF  ;
-#  constructor SETF  ;
-#  constructor TSTFSZ ;
-#}{
-#  reader mnemonic :
-#    CLRF   -> "CLRF" ;
-#    CPFSEQ -> "CPFSEQ" ;
-#    CPFSGT -> "CPFSGT" ;
-#    CPFSLT -> "CPFSLT" ;
-#    MOVWF  -> "MOVWF" ;
-#    MULWF  -> "MULWF" ;
-#    NEGF   -> "NEGF";
-#    SETF   -> "SETF"  ;
-#    TSTFSZ -> "TSTFSZ" ;
-#  end reader ;
-#}
-
-#----------------------------------------------------*
-
-#routine getFAinstructionBaseCode
-#  ??@FA_instruction_base_code inInstruction
-#  !@uint outBaseCode
-#:
-#  switch inInstruction
-#  when CLRF   : outBaseCode := 0x6A00 ;
-#  when CPFSEQ : outBaseCode := 0x6200 ;
-#  when CPFSGT : outBaseCode := 0x6400 ;
-#  when CPFSLT : outBaseCode := 0x6000 ;
-#  when MOVWF  : outBaseCode := 0x6E00 ;
-#  when MULWF  : outBaseCode := 0x0200 ;
-#  when NEGF   : outBaseCode := 0x6C00 ;
-#  when SETF   : outBaseCode := 0x6800 ;
-#  when TSTFSZ : outBaseCode := 0x6600 ;
-#  end switch ;
-#end routine ;
-
-#----------------------------------------------------*
-
 class @ipic_instruction_FA extends @ipic_actualInstruction {
   @FA_instruction_base_code mFAinstruction ;
-  @registerExpression mRegisterExpression ;
+  @ipic_registerExpression mRegisterDescription ;
 
   method getBaseCode !@uint outBaseCode :
    getFAinstructionBaseCode !mFAinstruction ?outBaseCode ;
@@ -211,8 +86,8 @@ class @ipic_instruction_FA extends @ipic_actualInstruction {
 #----------------------------------------------------*
 
 class @ipic_instruction_MOVFF extends @ipic_actualInstruction {
-  @registerExpression mSourceRegisterName ;
-  @registerExpression mDestinationRegisterName ;
+  @ipic_registerExpression mSourceRegisterDescription ;
+  @ipic_registerExpression mDestinationRegisterDescription ;
   
   override
   method instructionLength !@uint outLength :
@@ -222,126 +97,14 @@ class @ipic_instruction_MOVFF extends @ipic_actualInstruction {
 
 #----------------------------------------------------*
 
-#abstract class @bitNumberExpression {
-#}
-
-#----------------------------------------------------*
-
-#class @bitNumberLiteralValue extends @bitNumberExpression {
-#  @luint mBitNumberLiteralValue ;
-#}
-
-#----------------------------------------------------*
-
-#class @bitNumberLabelValue extends @bitNumberExpression {
-#  @lstring mBitNumberLabelValue ;
-#  @luint mBitNumberIndexValue ;
-#}
-
-#----------------------------------------------------*
-
-#enum @bit_oriented_op {
-#  constructor BCF ;
-#  constructor BSF ;
-#  constructor BTFSC ;
-#  constructor BTFSS ;
-#  constructor BTG ;
-#}{
-#  reader mnemonic :
-#    BCF -> "BCF" ;
-#    BSF -> "BSF" ;
-#    BTFSC -> "BTFSC" ;
-#    BTFSS -> "BTFSS" ;
-#    BTG -> "BTG" ;
-#  end reader ;
-#}
-
-#----------------------------------------------------*
-
-#routine getBitOrientedOpBaseCode ??@bit_oriented_op inInstruction !@uint outBaseCode :
-#  switch inInstruction
-#  when BCF : outBaseCode := 0x9000 ;
-#  when BSF : outBaseCode := 0x8000 ;
-#  when BTFSC : outBaseCode := 0xB000 ;
-#  when BTFSS : outBaseCode := 0xA000 ;
-#  when BTG : outBaseCode := 0x7000 ;
-#  end switch ;
-#end routine ;
-
-
-#----------------------------------------------------*
-
 class @ipic_instruction_FBA extends @ipic_actualInstruction {
   @bit_oriented_op mBitOrientedOp ;
-  @registerExpression mRegisterExpression ;
-  @bitNumberExpression mBitNumber ;
+  @ipic_registerExpression mRegisterDescription ;
+  @uint mBitNumber ;
   method getBaseCode !@uint outBaseCode :
     getBitOrientedOpBaseCode !mBitOrientedOp ?outBaseCode ;
   end method ;
 }
-
-#----------------------------------------------------*
-
-#enum @conditional_branch {
-#  constructor bz ;
-#  constructor bnz ;
-#  constructor bn ;
-#  constructor bnn ;
-#  constructor bc ;
-#  constructor bnc ;
-#  constructor bov ;
-#  constructor bnov ;
-#}{
-#  reader mnemonic :
-#    bz   -> "BZ" ;
-#    bnz  -> "BNZ" ;
-#    bn   -> "BN" ;
-#    bnn  -> "BNN" ;
-#    bc   -> "BC" ;
-#    bnc  -> "BNC" ;
-#    bov  -> "BOV" ;
-#    bnov -> "BNOV" ;
-#  end reader ;
-#}
-
-#----------------------------------------------------*
-
-#routine getBccBaseCode ??@conditional_branch inConditionalBranch !@uint outBaseCode :
-#  switch inConditionalBranch
-#  when bz   : outBaseCode := 0xE000 ;
-#  when bnz  : outBaseCode := 0xE100 ;
-#  when bn   : outBaseCode := 0xE600 ;
-#  when bnn  : outBaseCode := 0xE700 ;
-#  when bc   : outBaseCode := 0xE200 ;
-#  when bnc  : outBaseCode := 0xE300 ;
-#  when bov  : outBaseCode := 0xE400 ;
-#  when bnov : outBaseCode := 0xE500 ;
-#  end switch ;
-#end routine ;
-
-#----------------------------------------------------*
-
-#routine getComplementaryBcc ??@conditional_branch inConditionalBranch !@conditional_branch outComplementary :
-#  switch inConditionalBranch
-#  when bz   : outComplementary := [@conditional_branch bnz] ;
-#  when bnz  : outComplementary := [@conditional_branch bz] ;
-#  when bn   : outComplementary := [@conditional_branch bnn] ;
-#  when bnn  : outComplementary := [@conditional_branch bn] ;
-#  when bc   : outComplementary := [@conditional_branch bnc] ;
-#  when bnc  : outComplementary := [@conditional_branch bc] ;
-#  when bov  : outComplementary := [@conditional_branch bnov] ;
-#  when bnov : outComplementary := [@conditional_branch bov] ;
-#  end switch ;
-#end routine ;
-
-#----------------------------------------------------*
-
-#enum @condionalBranchMode {
-#  constructor native ;
-#  constructor usesBRA ;
-#  constructor usesGOTO ;
-#}{
-#}
 
 #----------------------------------------------------*
 
@@ -438,45 +201,6 @@ class @ipic_instruction_RETFIE extends @ipic_actualInstruction {
 class @ipic_instruction_SLEEP extends @ipic_actualInstruction {
 }
 
-##----------------------------------------------------*
-#
-#enum @literal_instruction_opcode {
-#  constructor ADDLW ;
-#  constructor ANDLW ;
-#  constructor IORLW ;
-#  constructor MOVLW ;
-#  constructor MULLW ;
-#  constructor RETLW ;
-#  constructor SUBLW ;
-#  constructor XORLW ;
-#}{
-#  reader mnemonic :
-#    ADDLW -> "ADDLW" ;
-#    ANDLW -> "ANDLW" ;
-#    IORLW -> "IORLW" ;
-#    MOVLW -> "MOVLW" ;
-#    MULLW -> "MULLW" ;
-#    RETLW -> "RETLW" ;
-#    SUBLW -> "SUBLW" ;
-#    XORLW -> "XORLW" ;
-#  end reader ;
-#}
-#
-#----------------------------------------------------*
-
-#routine getLiteralInstructionBaseCode ??@literal_instruction_opcode inInstruction !@uint outBaseCode :
-#  switch inInstruction
-#  when ADDLW : outBaseCode := 0x0F00 ;
-#  when ANDLW : outBaseCode := 0x0B00 ;
-#  when IORLW : outBaseCode := 0x0900 ;
-#  when MOVLW : outBaseCode := 0x0E00 ;
-#  when MULLW : outBaseCode := 0x0D00 ;
-#  when RETLW : outBaseCode := 0x0C00 ;
-#  when SUBLW : outBaseCode := 0x0800 ;
-#  when XORLW : outBaseCode := 0x0A00 ;
-#  end switch ;
-#end routine ;
-
 #----------------------------------------------------*
 
 class @ipic_instruction_literalOperation extends @ipic_actualInstruction {
@@ -491,7 +215,7 @@ class @ipic_instruction_literalOperation extends @ipic_actualInstruction {
 
 class @ipic_instruction_LFSR extends @ipic_actualInstruction {
   @luint mFSRindex ;
-  @registerExpression mRegisterExpression ;
+  @ipic_registerExpression mRegisterDescription ;
   
   override
   method instructionLength !@uint outLength :
@@ -508,24 +232,8 @@ class @ipic_instruction_MOVLB extends @ipic_actualInstruction {
 #----------------------------------------------------*
 
 class @ipic_instruction_MOVAW extends @ipic_actualInstruction {
-  @registerExpression mRegisterExpression ;
+  @ipic_registerExpression mRegisterDescription ;
 }
-
-#----------------------------------------------------*
-
-#enum @tableAccessOption {
-#  constructor simpleAccess ;
-#  constructor postIncrement ;
-#  constructor postDecrement ;
-#  constructor preIncrement ;
-#}{
-#  reader mnemonic :
-#    simpleAccess -> "*" ;
-#    postIncrement -> "*+" ;
-#    postDecrement -> "*-" ;
-#    preIncrement -> "+*" ;
-#  end reader ;
-#}
 
 #----------------------------------------------------*
 
@@ -551,47 +259,6 @@ class @ipic_instruction_MNOP extends @ipic_actualInstruction {
 
 #----------------------------------------------------*
 
-#class @ipic_instruction_FOREVER extends @ipic_actualInstruction {
-#  @instructionList mInstructionList ;
-#  override
-#  method instructionLength !@uint outLength :
-#    outLength := 2 ; # BRA at the end of instruction list
-#    foreach mInstructionList do
-#      @uint lg ; [mInstruction instructionLength ?lg] ;
-#      outLength := outLength + lg ;
-#    end foreach ;
-#  end method ;
-#}
-
-#----------------------------------------------------*
-
-#enum @if_semi_colon_op {
-#  constructor CPFSEQ ;
-#  constructor CPFSGT ;
-#  constructor CPFSLT ;
-#  constructor TSTFSZ ;
-#}{
-#  reader mnemonic :
-#    CPFSEQ -> "CPFSEQ" ;
-#    CPFSGT -> "CPFSGT" ;
-#    CPFSLT -> "CPFSLT" ;
-#    TSTFSZ -> "TSTFSZ" ;
-#  end reader ;
-#}
-
-#----------------------------------------------------*
-
-#routine getBaseCodeForIfSemiColonOp ??@if_semi_colon_op inInstruction !@uint outBaseCode :
-#  switch inInstruction
-#    when CPFSEQ : outBaseCode := 0x6200 ;
-#    when CPFSGT : outBaseCode := 0x6400 ;
-#    when CPFSLT : outBaseCode := 0x6000 ;
-#    when TSTFSZ : outBaseCode := 0x6600 ;
-#  end switch ; 
-#end routine ;
-
-#----------------------------------------------------*
-
 abstract class @ipic_instruction_IF_SEMI_COLON extends @ipic_actualInstruction {
   @ipic_instruction mInstruction ;
 
@@ -600,75 +267,6 @@ abstract class @ipic_instruction_IF_SEMI_COLON extends @ipic_actualInstruction {
     [mInstruction instructionLength ?outLength] ;
     outLength := outLength + 2 ;
   end method ;
-}
-
-#----------------------------------------------------*
-
-class @ipic_instruction_IF_FA_SEMI_COLON extends @instruction_IF_SEMI_COLON {
-  @if_semi_colon_op mOpCode ;
-  @registerExpression mRegisterExpression ;
-
-  method getBaseCode !@uint outBaseCode :
-    getBaseCodeForIfSemiColonOp !mOpCode ?outBaseCode ;
-  end method ;
-
-}
-
-#----------------------------------------------------*
-
-class @ipic_instruction_IF_BitTest extends @instruction_IF_SEMI_COLON {
-  @bool mSkipIfSet ;
-  @registerExpression mRegisterExpression ;
-  @bitNumberExpression mBitNumber ;
-
-  method getBaseCode !@uint outBaseCode :
-    if mSkipIfSet then
-      outBaseCode := 0xA000 ; # BTFSS
-    else
-      outBaseCode := 0xB000 ; # BTFSC
-    end if ;
-  end method ; 
-
-  method getMnemonic !@string outMnemonic :
-    if mSkipIfSet then
-      outMnemonic := "BTFSS" ;
-    else
-      outMnemonic := "BTFSC" ;
-    end if ;
-  end method ; 
-}
-
-#----------------------------------------------------*
-
-class @ipic_instruction_IF_IncDec extends @instruction_IF_SEMI_COLON {
-  @bool mIncrement ;
-  @bool mSkipIfZero ;
-  @registerExpression mRegisterExpression ;
-  @bool m_W_isDestination ;
-
-  method getBaseCode !@uint outBaseCode :
-    if mIncrement & mSkipIfZero then
-      outBaseCode := 0x3C00 ; # INCFSZ
-    elsif mIncrement & not mSkipIfZero then
-      outBaseCode := 0x4800 ; # INFSNZ
-    elsif (not mIncrement) & mSkipIfZero then
-      outBaseCode := 0x2C00 ; # DECFSZ
-    else
-      outBaseCode := 0x4C00 ; # DCFSNZ
-    end if ;
-  end method ; 
-
-  method getMnemonic !@string outMnemonic :
-    if mIncrement & mSkipIfZero then
-      outMnemonic := "INCFSZ" ;
-    elsif mIncrement & not mSkipIfZero then
-      outMnemonic := "INFSNZ" ;
-    elsif (not mIncrement) & mSkipIfZero then
-      outMnemonic := "DECFSZ" ;
-    else
-      outMnemonic := "DCFSNZ" ;
-    end if ;
-  end method ; 
 }
 
 #----------------------------------------------------*
@@ -719,7 +317,7 @@ class @ipic_instruction_computed_goto extends @ipic_actualInstruction {
 #----------------------------------------------------*
 
 class @ipic_jump_test_register extends @ipic_actualInstruction {
-  @registerExpression mRegisterExpression ;
+  @ipic_registerExpression mRegisterDescription ;
   @string mTargetLabel ;
   @bool mBranchIfZero ;
   @bool mUsesBra ;
@@ -741,7 +339,7 @@ class @ipic_jump_test_register extends @ipic_actualInstruction {
 #----------------------------------------------------*
 
 class @ipic_incDecRegisterInCondition extends @ipic_actualInstruction {
-  @registerExpression mRegisterExpression ;
+  @ipic_registerExpression mRegisterDescription ;
   @string mTargetLabel ;
   @bool mIncrement ;
   @bool m_W_isDestination ;
@@ -761,7 +359,7 @@ class @ipic_incDecRegisterInCondition extends @ipic_actualInstruction {
 #----------------------------------------------------*
 
 class @ipic_registerComparisonCondition extends @ipic_actualInstruction {
-  @registerExpression mRegisterExpression ;
+  @ipic_registerExpression mRegisterDescription ;
   @string mTargetLabel ;
   @registerComparison mComparison ;
   @bool mUsesBra ;

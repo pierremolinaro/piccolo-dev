@@ -125,7 +125,50 @@ rule <declaration_in_ram>
     $integer$ ?size ;
     $]$ ;
   end select ;
-  outDeclaration := [@byteDeclarationInRam new !name !size] ;
+  @bitSliceTable bitSliceTable [emptyMap] ;
+  select
+  or
+    $<$ ;
+    @uint sliceIndex := 8 ;
+    repeat
+      select
+        @uint sliceWidth := 0 ; # Means undefined
+        repeat
+          @uint sliceBase := sliceIndex ;
+          $identifier$ ? @lstring sliceName ;
+          select
+            if (sliceWidth != 0) & (sliceWidth != 1) then
+              error sliceName:"a slice of 1 bit is expected for '" . sliceName . "'" ; 
+            end if ;
+            sliceWidth := 1 ;
+          or
+            $[$ ;
+            $integer$ ? @luint sliceSize ;
+            if (sliceWidth != 0) & (sliceWidth != [sliceSize uint]) then
+              error sliceName:"a slice of " . [sliceWidth string] . " bits is expected for '" . sliceName . "'" ; 
+            end if ;
+            sliceWidth := [sliceSize uint] ;
+            sliceBase := sliceBase + 1 - [sliceSize uint] ;
+            $]$ ;
+          end select ;
+          [!?bitSliceTable insertKey !sliceName !sliceIndex-sliceWidth !sliceWidth] ;
+        while
+          $/$ ;
+        end repeat ;
+        sliceIndex := sliceIndex - sliceWidth ;
+      or
+        $-$ ;
+        sliceIndex -- ;
+      end select ;
+    while
+      $,$ ;
+    end repeat ;
+    if sliceIndex != 0 then
+      error name:"Incorrect bit definition for register '" . name . "'" ;
+    end if ;
+    $>$ ;
+  end select ;
+  outDeclaration := [@byteDeclarationInRam new !name !size !bitSliceTable] ;
 end rule ;
 
 #----------------------------------------------------*

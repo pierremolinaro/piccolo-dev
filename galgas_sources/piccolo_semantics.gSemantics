@@ -1,6 +1,6 @@
 semantics piccolo_semantics :
 import semantics piccolo_build_binary_code in "piccolo_build_binary_code.gSemantics" ;
-import semantics piccolo_decompose_structured_instructions in "piccolo_decompose_structured_instructions.gSemantics" ;
+import semantics buildIPICAssemblyInstructionList in "buildIPICAssemblyInstructionList.gSemantics" ;
 import semantics piccolo_convert_relatives in "piccolo_convert_relatives.gSemantics" ;
 import option piccolo_options in "piccolo_options.gOption" ;
 
@@ -59,8 +59,7 @@ override method @byteDeclarationInRam.handleDeclaration
   if [mSize uint] == 0 then
     error mSize: "zero size is not allowed" ;
   end if ;
-  @bitSliceTable bitSliceTable [emptyMap] ;
-  [!?ioRegisterTable insertKey !mName ![@uintlist listWithValue !firstFreeAddress] ![mSize uint] !bitSliceTable] ;
+  [!?ioRegisterTable insertKey !mName ![@uintlist listWithValue !firstFreeAddress] ![mSize uint] !mBitSliceTable] ;
   firstFreeAddress := firstFreeAddress + [mSize uint] ;
   [!?ioRamBank setMFirstFreeAddressForKey !firstFreeAddress ![inCurrentRamBank string]] ;
   if firstFreeAddress > lastAddressPlusOne then
@@ -111,9 +110,16 @@ routine analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName :
   end foreach ;
 #-------------------------------- Perform Semantics checkings
 
-#-------------------------------- Build Assembly Instruction List
+#-------------------------------- Build IPIC Assembly Instruction List
+  @uint accessBankSplitOffset ;
+  switch [piccoloDeviceModel mProcessorType]
+    when pic18_60 : accessBankSplitOffset := 0x60 ;
+    when pic18_80 : accessBankSplitOffset := 0x80 ;
+  end switch ;
   @ipic_instructionList generatedInstructionList ;
-  buildAssemblyInstructionList
+  buildIPICAssemblyInstructionList
+    !accessBankSplitOffset
+    !registerTable
     !inPiccoloModel
     !hasHighInterrupt
     !hasLowInterrupt
@@ -139,8 +145,8 @@ routine analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName :
       [assemblyCode writeToFileWhenDifferentContents !destinationFile] ;
     else
       buildBinaryCode
-        !registerTable
         !generatedInstructionList
+        ![[piccoloDeviceModel mRomSize] uint]
       ;
       @string contents ;
       getGeneratedContents ?contents ;

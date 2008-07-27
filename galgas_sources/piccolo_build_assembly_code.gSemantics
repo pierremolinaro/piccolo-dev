@@ -9,7 +9,6 @@ import "piccolo_embedded_devices.gSemantics" ;
 #----------------------------------------------------*
 
 abstract method @ipic_instruction.buildAssemblyCode
-  ??@registerTable unused inRegisterTable
   ?!@string unused ioString 
   ?!@uint unused ioBccLabelIndex
 ;
@@ -17,7 +16,6 @@ abstract method @ipic_instruction.buildAssemblyCode
 #----------------------------------------------------*
 
 override method @ipic_pseudo_ORG.buildAssemblyCode
-  ??@registerTable unused inRegisterTable
   ?!@string ioString
   ?!@uint unused ioBccLabelIndex
 :
@@ -27,7 +25,6 @@ end method ;
 #----------------------------------------------------*
 
 override method @ipic_pseudo_LABEL.buildAssemblyCode
-  ??@registerTable unused inRegisterTable
   ?!@string ioString
   ?!@uint unused ioBccLabelIndex
 :
@@ -36,45 +33,14 @@ end method ;
 
 #----------------------------------------------------*
 
-method @registerExpression.buildAssemblyCode
-  ??@registerTable inRegisterTable
-  ?!@string ioString
-  !@bool outUseBSRregister
-  !@bitSliceTable outBitSliceTable
-:
-  ioString .= [mRegisterName string] ;
-  if [mOffset uint] > 0 then
-    ioString .= " + " . [[mOffset uint] hexString] ;
-  end if ;
-  @uintlist registerAddressList ;
-  @uint size ;
-  [inRegisterTable searchKey !mRegisterName ?registerAddressList ?size ?outBitSliceTable] ;
-  @bool found := false ;
-  foreach registerAddressList while not found do
-    found := (mValue < 0x60) | (mValue >= 0xF60) ;
-  end foreach ;
-  outUseBSRregister := false ;
-  if not found then
-    outUseBSRregister := true ;
-  end if ;
-end method ;
-
-#----------------------------------------------------*
-
 override method @ipic_instruction_FDA.buildAssemblyCode
-  ??@registerTable inRegisterTable
   ?!@string ioString
   ?!@uint unused ioBccLabelIndex
 :
-  @bool useBSRaccess ;
-#log mInstruction_FDA_base_code ;
-#message "*** '" . [mInstruction_FDA_base_code mnemonic] . "'\n" ;
-  ioString .= "  " . [mInstruction_FDA_base_code mnemonic] . " " ;
-#  ioString .= "  /* " . [[mInstruction_FDA_base_code mnemonic] description] . " */ " ;
-  [mRegisterExpression buildAssemblyCode !inRegisterTable !?ioString ?useBSRaccess ?*] ;
-  if m_W_isDestination & useBSRaccess then
+  ioString .= "  " . [mInstruction_FDA_base_code mnemonic] . " " . [mRegisterDescription mAssemblyString] ;
+  if m_W_isDestination & [mRegisterDescription mNeedsBSR] then
     ioString .= ", W, BSR_ACCESS" ;
-  elsif useBSRaccess then
+  elsif [mRegisterDescription mNeedsBSR] then
     ioString .= ", F, BSR_ACCESS" ;
   elsif m_W_isDestination then
     ioString .= ", W" ;
@@ -87,67 +53,27 @@ end method ;
 #----------------------------------------------------*
 
 override method @ipic_instruction_MOVFF.buildAssemblyCode
-  ??@registerTable inRegisterTable
   ?!@string ioString
   ?!@uint unused ioBccLabelIndex
 :
-  ioString .= "  MOVFF " ;
-  [mSourceRegisterName buildAssemblyCode !inRegisterTable !?ioString ?* ?*] ;
+  ioString .= "  MOVFF ";
+  ioString .= [mSourceRegisterDescription mAssemblyString] ;
   ioString .= ", " ;
-  [mDestinationRegisterName buildAssemblyCode !inRegisterTable !?ioString ?* ?*] ;
+  ioString .= [mDestinationRegisterDescription mAssemblyString] ;
   ioString .= "\n" ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
-abstract method @bitNumberExpression.getBitNumber
-  ??@bitSliceTable inBitSliceTable
-  !@uint outBitNumber
-;
-
-#----------------------------------------------------------------------------*
-
-override method @bitNumberLiteralValue.getBitNumber
-  ??@bitSliceTable unused inBitSliceTable
-  !@uint outBitNumber
-:
-  if [mBitNumberLiteralValue uint] > 7 then
-    error mBitNumberLiteralValue:"The bit number is " . [[mBitNumberLiteralValue uint] string] . " (should be <= 7)" ;
-  end if ;
-  outBitNumber := [mBitNumberLiteralValue uint] ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
-override method @bitNumberLabelValue.getBitNumber
-  ??@bitSliceTable inBitSliceTable
-  !@uint outBitNumber
-:
-  @uint sliceIndex ;
-  @uint sliceSize ;
-  [inBitSliceTable searchKey !mBitNumberLabelValue ?sliceIndex ? sliceSize] ;
-  if [mBitNumberIndexValue uint] > sliceSize then
-    error mBitNumberIndexValue: "The " . [[mBitNumberIndexValue uint] string]
-    . " index is too large (should be < " . [sliceSize string] . ")" ;
-  end if ;
-  outBitNumber := sliceIndex + [mBitNumberIndexValue uint] ;
 end method ;
 
 #----------------------------------------------------*
 
 override method @ipic_instruction_FBA.buildAssemblyCode
-  ??@registerTable inRegisterTable
   ?!@string ioString
   ?!@uint unused ioBccLabelIndex
 :
   @bool useBSRaccess ;
-  ioString .= "  " . [mBitOrientedOp mnemonic] . " " ;
-  @bitSliceTable bitSliceTable ;
-  [mRegisterExpression buildAssemblyCode !inRegisterTable !?ioString ?useBSRaccess ?bitSliceTable] ;
-  @uint bitNumber ;
-  [mBitNumber getBitNumber !bitSliceTable ?bitNumber] ;
-  ioString .= ", " . [bitNumber string] ;
-  if useBSRaccess then
+  ioString .= "  " . [mBitOrientedOp mnemonic] ;
+  ioString .= "  " . [mRegisterDescription mAssemblyString] ;
+  ioString .= ", " . [mBitNumber string] ;
+  if [mRegisterDescription mNeedsBSR] then
     ioString .= ", BSR_ACCESS" ;
   end if ;
   ioString .= "\n" ;
@@ -156,14 +82,11 @@ end method ;
 #----------------------------------------------------*
 
 override method @ipic_instruction_FA.buildAssemblyCode
-  ??@registerTable inRegisterTable
   ?!@string ioString
   ?!@uint unused ioBccLabelIndex
 :
-  ioString .= "  " . [mFAinstruction mnemonic] . " " ;
-  @bool useBSRaccess ;
-  [mRegisterExpression buildAssemblyCode !inRegisterTable !?ioString ?useBSRaccess ?*] ;
-  if useBSRaccess then
+  ioString .= "  " . [mFAinstruction mnemonic] . " " . [mRegisterDescription mAssemblyString] ;
+  if [mRegisterDescription mNeedsBSR] then
     ioString .= ", BSR_ACCESS" ;
   end if ;
   ioString .= "\n" ;
@@ -172,7 +95,6 @@ end method ;
 #----------------------------------------------------*
 
 override method @ipic_instruction_conditionalBranch.buildAssemblyCode
-  ??@registerTable unused inRegisterTable
   ?!@string ioString
   ?!@uint ioBccLabelIndex
 :
@@ -199,14 +121,11 @@ end method ;
 #----------------------------------------------------*
 
 override method @ipic_jump_test_register.buildAssemblyCode
-  ??@registerTable inRegisterTable
   ?!@string ioString
   ?!@uint ioBccLabelIndex
 :
-  ioString .= "  " . "TSTFSZ " ;
-  @bool useBSRaccess ;
-  [mRegisterExpression buildAssemblyCode !inRegisterTable !?ioString ?useBSRaccess ?*] ;
-  if useBSRaccess then
+  ioString .= "  " . "TSTFSZ " . [mRegisterDescription mAssemblyString] ;
+  if [mRegisterDescription mNeedsBSR] then
     ioString .= ", BSR_ACCESS" ;
   end if ;
   ioString .= "\n" ;
@@ -231,7 +150,6 @@ end method ;
 #----------------------------------------------------*
 
 override method @ipic_incDecRegisterInCondition.buildAssemblyCode
-  ??@registerTable inRegisterTable
   ?!@string ioString
   ?!@uint unused ioBccLabelIndex
 :
@@ -244,11 +162,10 @@ override method @ipic_incDecRegisterInCondition.buildAssemblyCode
   else
     ioString .= "  " . "DECFSZ " ;
   end if ;
-  @bool useBSRaccess ;
-  [mRegisterExpression buildAssemblyCode !inRegisterTable !?ioString ?useBSRaccess ?*] ;
-  if m_W_isDestination & useBSRaccess then
+  ioString .= [mRegisterDescription mAssemblyString] ;
+  if m_W_isDestination & [mRegisterDescription mNeedsBSR] then
     ioString .= ", W, BSR_ACCESS" ;
-  elsif useBSRaccess then
+  elsif [mRegisterDescription mNeedsBSR] then
     ioString .= ", F, BSR_ACCESS" ;
   elsif m_W_isDestination then
     ioString .= ", W" ;
@@ -266,7 +183,6 @@ end method ;
 #----------------------------------------------------*
 
 override method @ipic_registerComparisonCondition.buildAssemblyCode
-  ??@registerTable inRegisterTable
   ?!@string ioString
   ?!@uint ioBccLabelIndex
 :
@@ -278,9 +194,8 @@ override method @ipic_registerComparisonCondition.buildAssemblyCode
     when lowerOrEqual : ioString .= " CPFSGT " ;
     when lower : ioString .= " CPFSLT " ;
   end switch ;
-  @bool useBSRaccess ;
-  [mRegisterExpression buildAssemblyCode !inRegisterTable !?ioString ?useBSRaccess ?*] ;
-  if useBSRaccess then
+  ioString .= [mRegisterDescription mAssemblyString] ;
+  if [mRegisterDescription mNeedsBSR] then
     ioString .= ", BSR_ACCESS" ;
   end if ;
   ioString .= "\n" ;
@@ -306,7 +221,6 @@ end method ;
 #----------------------------------------------------*
 
 override method @ipic_instruction_BRA.buildAssemblyCode
-  ??@registerTable unused inRegisterTable
   ?!@string ioString
   ?!@uint unused ioBccLabelIndex
 :
@@ -316,7 +230,6 @@ end method ;
 #----------------------------------------------------*
 
 override method @ipic_instruction_CALL.buildAssemblyCode
-  ??@registerTable unused inRegisterTable
   ?!@string ioString
   ?!@uint unused ioBccLabelIndex
 :
@@ -326,7 +239,6 @@ end method ;
 #----------------------------------------------------*
 
 override method @ipic_instruction_GOTO.buildAssemblyCode
-  ??@registerTable unused inRegisterTable
   ?!@string ioString
   ?!@uint unused ioBccLabelIndex
 :
@@ -336,7 +248,6 @@ end method ;
 #----------------------------------------------------*
 
 override method @ipic_instruction_RCALL.buildAssemblyCode
-  ??@registerTable unused inRegisterTable
   ?!@string ioString
   ?!@uint unused ioBccLabelIndex
 :
@@ -346,7 +257,6 @@ end method ;
 #----------------------------------------------------*
 
 override method @ipic_instruction_CLRWDT.buildAssemblyCode
-  ??@registerTable unused inRegisterTable
   ?!@string ioString
   ?!@uint unused ioBccLabelIndex
 :
@@ -356,7 +266,6 @@ end method ;
 #----------------------------------------------------*
 
 override method @ipic_instruction_DAW.buildAssemblyCode
-  ??@registerTable unused inRegisterTable
   ?!@string ioString
   ?!@uint unused ioBccLabelIndex
 :
@@ -366,7 +275,6 @@ end method ;
 #----------------------------------------------------*
 
 override method @ipic_instruction_NOP.buildAssemblyCode
-  ??@registerTable unused inRegisterTable
   ?!@string ioString
   ?!@uint unused ioBccLabelIndex
 :
@@ -376,7 +284,6 @@ end method ;
 #----------------------------------------------------*
 
 override method @ipic_instruction_POP.buildAssemblyCode
-  ??@registerTable unused inRegisterTable
   ?!@string ioString
   ?!@uint unused ioBccLabelIndex
 :
@@ -386,7 +293,6 @@ end method ;
 #----------------------------------------------------*
 
 override method @ipic_instruction_PUSH.buildAssemblyCode
-  ??@registerTable unused inRegisterTable
   ?!@string ioString
   ?!@uint unused ioBccLabelIndex
 :
@@ -396,7 +302,6 @@ end method ;
 #----------------------------------------------------*
 
 override method @ipic_instruction_RESET.buildAssemblyCode
-  ??@registerTable unused inRegisterTable
   ?!@string ioString
   ?!@uint unused ioBccLabelIndex
 :
@@ -406,7 +311,6 @@ end method ;
 #----------------------------------------------------*
 
 override method @ipic_instruction_RETURN.buildAssemblyCode
-  ??@registerTable unused inRegisterTable
   ?!@string ioString
   ?!@uint unused ioBccLabelIndex
 :
@@ -416,7 +320,6 @@ end method ;
 #----------------------------------------------------*
 
  override method @ipic_instruction_RETFIE.buildAssemblyCode
-  ??@registerTable unused inRegisterTable
   ?!@string ioString
   ?!@uint unused ioBccLabelIndex
 :
@@ -430,7 +333,6 @@ end method ;
 #----------------------------------------------------*
 
  override method @ipic_instruction_SLEEP.buildAssemblyCode
-  ??@registerTable unused inRegisterTable
   ?!@string ioString
   ?!@uint unused ioBccLabelIndex
 :
@@ -440,7 +342,6 @@ end method ;
 #----------------------------------------------------*
 
 override method @ipic_instruction_literalOperation.buildAssemblyCode
-  ??@registerTable unused inRegisterTable
   ?!@string ioString
   ?!@uint unused ioBccLabelIndex
 :
@@ -450,41 +351,25 @@ end method ;
 #----------------------------------------------------*
 
  override method @ipic_instruction_LFSR.buildAssemblyCode
-  ??@registerTable inRegisterTable
   ?!@string ioString
   ?!@uint unused ioBccLabelIndex
 :
   ioString .= "  LFSR " . [[mFSRindex uint] string] . ", " ;
-  [mRegisterExpression  buildAssemblyCode
-    !inRegisterTable
-    !?ioString
-    ?*
-    ?*
-  ] ;
-  ioString .= "\n" ;
+  ioString .= [mRegisterDescription mAssemblyString] . "\n" ;
 end method ;
 
 #----------------------------------------------------*
 
  override method @ipic_instruction_MOVAW.buildAssemblyCode
-  ??@registerTable inRegisterTable
   ?!@string ioString
   ?!@uint unused ioBccLabelIndex
 :
-  ioString .= "  MOVLW " ;
-  [mRegisterExpression  buildAssemblyCode
-    !inRegisterTable
-    !?ioString
-    ?*
-    ?*
-  ] ;
-  ioString .= "\n" ;
+  ioString .= "  MOVLW " . [mRegisterDescription mAssemblyString] . "\n" ;
 end method ;
 
 #----------------------------------------------------*
 
 override method @ipic_instruction_MNOP.buildAssemblyCode
-  ??@registerTable unused inRegisterTable
   ?!@string ioString
   ?!@uint unused ioBccLabelIndex
 :
@@ -503,7 +388,6 @@ end method ;
 #----------------------------------------------------*
 
 override method @ipic_instruction_TBLRD.buildAssemblyCode
-  ??@registerTable unused inRegisterTable
   ?!@string ioString
   ?!@uint unused ioBccLabelIndex
 :
@@ -513,7 +397,6 @@ end method ;
 #----------------------------------------------------*
 
 override method @ipic_instruction_TBLWT.buildAssemblyCode
-  ??@registerTable unused inRegisterTable
   ?!@string ioString
   ?!@uint unused ioBccLabelIndex
 :
@@ -523,7 +406,6 @@ end method ;
 #----------------------------------------------------*
 
 override method @ipic_instruction_computed_retlw.buildAssemblyCode
-  ??@registerTable unused inRegisterTable
   ?!@string ioString
   ?!@uint unused ioBccLabelIndex
 :
@@ -540,7 +422,6 @@ end method ;
 #----------------------------------------------------*
 
 override method @ipic_instruction_computed_bra.buildAssemblyCode
-  ??@registerTable unused inRegisterTable
   ?!@string ioString
   ?!@uint unused ioBccLabelIndex
 :
@@ -557,7 +438,6 @@ end method ;
 #----------------------------------------------------*
 
 override method @ipic_instruction_computed_goto.buildAssemblyCode
-  ??@registerTable unused inRegisterTable
   ?!@string ioString
   ?!@uint unused ioBccLabelIndex
 :
@@ -586,7 +466,7 @@ routine buildAssemblyCode
   outAssemblyCode .= "  ORG 0\n" ;
   @uint bccLabelIndex := 0 ;
   foreach inInstructionList do
-    [mInstruction buildAssemblyCode !inAllRegisters !?outAssemblyCode !?bccLabelIndex] ;
+    [mInstruction buildAssemblyCode !?outAssemblyCode !?bccLabelIndex] ;
   end foreach ;
   outAssemblyCode .= "\n" ;
 #--- Prefined registers

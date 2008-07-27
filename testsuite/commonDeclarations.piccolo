@@ -1,0 +1,19 @@
+program commonDeclarations "PIC18F2580" :
+
+ram accessram {
+  byte first # At address 0
+  common
+    byte common11 # At address 1
+    byte common12 # At address 2
+  |
+    byte common2 [2] # At address 1
+  end
+  byte last # At address 3
+}
+
+routine main noreturn {
+  forever
+  end
+}
+
+end

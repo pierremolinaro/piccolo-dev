@@ -1,4 +1,6 @@
 semantics piccolo_metamodel :
+import "bitSlice.gSemantics" ;
+import semantics bitSlice in "bitSlice.gSemantics" ;
 
 #----------------------------------------------------*
 
@@ -703,6 +705,7 @@ abstract class @declarationInRam {
 class @byteDeclarationInRam extends @declarationInRam {
   @lstring mName ;
   @luint mSize ;
+  @bitSliceTable mBitSliceTable ;
 }
 
 #----------------------------------------------------*

@@ -147,7 +147,7 @@ override method @ipic_jump_test_register.checkRelativeBranch
 ##      message "  BRA overflow, converted to GOTO\n" ;
       @ipic_actualInstruction instruction := [@ipic_jump_test_register new
         !mInstructionLocation
-        !mRegisterExpression
+        !mRegisterDescription
         !mTargetLabel
         !mBranchIfZero
         !false
@@ -180,7 +180,7 @@ override method @ipic_registerComparisonCondition.checkRelativeBranch
 #      message "  BRA overflow, converted to GOTO\n" ;
       @ipic_actualInstruction instruction := [@ipic_registerComparisonCondition new
         !mInstructionLocation
-        !mRegisterExpression
+        !mRegisterDescription
         !mTargetLabel
         !mComparison
         !false
@@ -209,7 +209,7 @@ override method @ipic_incDecRegisterInCondition.checkRelativeBranch
       message "  BRA overflow, converted to GOTO\n" ;
       @ipic_actualInstruction instruction := [@ipic_incDecRegisterInCondition new
         !mInstructionLocation
-        !mRegisterExpression
+        !mRegisterDescription
         !mTargetLabel
         !mIncrement
         !m_W_isDestination
