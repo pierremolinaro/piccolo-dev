@@ -710,6 +710,10 @@ rule <structured_instruction>
       !repeatedInstructionList
       !whilePartList
     ] ;
+  or
+    $mnop$ ;
+    $integer$ ? @luint occurrenceFactor ;
+    outInstruction := [@instruction_MNOP new !instructionLocation !occurrenceFactor] ;
   end select ;
 end rule ;
 
@@ -1024,10 +1028,6 @@ rule <simple_instruction> !@piccolo_instruction outInstruction :
       accessOption := [@tableAccessOption preIncrement] ;
     end select ;
     outInstruction := [@instruction_TBLWT new !instructionLocation !accessOption] ;
-  or
-    $mnop$ ;
-    $integer$ ? @luint occurrenceFactor ;
-    outInstruction := [@instruction_MNOP new !instructionLocation !occurrenceFactor] ;
   end select ;
 end rule ;
 

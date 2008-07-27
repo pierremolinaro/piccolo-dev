@@ -7,6 +7,45 @@ import grammar piccolo_grammar in "piccolo_grammar.gGrammar" ;
 
 #--- Prologue routine
 before {
+#--- Print supported device list
+  if [option piccolo_options.ouputDeviceList] then
+    @stringlist allDevices := [[filewrapper embeddedDevices] allFilePathes] ;
+    message "List of the " . [[allDevices  length] string] . " supported devices:\n" ;
+    @uint index := 0 ;
+    @bool ok := true ;
+    foreach allDevices while ok do
+      @piccoloDeviceModel piccoloDeviceModel ;
+      @string name := [[mValue lastPathComponent] stringByDeletingPathExtension] ;
+      parseDeviceDefinition ![@lstring new !name !here] ?piccoloDeviceModel ;
+      message [name stringByRightPadding !15 !' '] ;
+      ok := [@uint errorCount] == 0 ;
+      index ++ ;
+      if index == 5 then
+        index := 0 ;
+        message "\n" ;
+      end if ;
+    end foreach ;
+    if index != 0 then
+      message "\n" ;
+    end if ;
+  end if ;
+#--- Print RAM description
+  if [[option piccolo_options.ramDescription] length] > 0 then
+    @string devicePath := "/" . [option piccolo_options.ramDescription] . ".piccoloDevice" ;
+    if [[filewrapper embeddedDevices] fileExistsAtPath !devicePath] then
+      @piccoloDeviceModel piccoloDeviceModel ;
+      parseDeviceDefinition ![@lstring new ![option piccolo_options.ramDescription] !here] ?piccoloDeviceModel ;
+      message "The " . [option piccolo_options.ramDescription] . " device has "
+      . [[[piccoloDeviceModel mRamBankTable] count] string] . " RAM banks:\n" ;
+      foreach [piccoloDeviceModel mRamBankTable] do
+        message "  bank \"" . key . "\" from " . [mFirstFreeAddress hexString]
+        . " to " . [mLastAddressPlusOne-1 hexString]
+        . " (" . [mLastAddressPlusOne-mFirstFreeAddress string] . " bytes)\n" ;
+      end foreach ;
+    else
+      error here:"The " . [option piccolo_options.ramDescription] . " device is not supported" ;
+    end if ;
+  end if ;
 }
 
 #--- 'when' clauses

@@ -30,12 +30,23 @@ map @ramBankTable {
 
 #----------------------------------------------------*
 
+enum @processorType {
+  constructor pic18_60 ;
+  constructor pic18_80 ;
+}{
+}
+
+#----------------------------------------------------*
+
 struct @piccoloDeviceModel {
   @lstring mDeviceName ;
+  @processorType mProcessorType ;
   @luint mRomSize ;
   @luint mBankCount ;
   @registerTable mRegisterTable ;
   @ramBankTable mRamBankTable ;
+  @uint mEepromSize ;
+  @uint mEepromAddress ;
 }
 
 #----------------------------------------------------*
