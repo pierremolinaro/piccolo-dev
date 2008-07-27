@@ -30,20 +30,32 @@ before {
     end if ;
   end if ;
 #--- Print RAM description
-  if [[option piccolo_options.ramDescription] length] > 0 then
-    @string devicePath := "/" . [option piccolo_options.ramDescription] . ".piccoloDevice" ;
+  @string deviceForMemoryDescription := [option piccolo_options.memoryDescription] ;
+  if [deviceForMemoryDescription length] > 0 then
+    @string devicePath := "/" . deviceForMemoryDescription . ".piccoloDevice" ;
     if [[filewrapper embeddedDevices] fileExistsAtPath !devicePath] then
       @piccoloDeviceModel piccoloDeviceModel ;
-      parseDeviceDefinition ![@lstring new ![option piccolo_options.ramDescription] !here] ?piccoloDeviceModel ;
-      message "The " . [option piccolo_options.ramDescription] . " device has "
-      . [[[piccoloDeviceModel mRamBankTable] count] string] . " RAM banks:\n" ;
+      parseDeviceDefinition ![@lstring new ! deviceForMemoryDescription !here] ?piccoloDeviceModel ;
+      @uint totalRam := 0 ;
       foreach [piccoloDeviceModel mRamBankTable] do
-        message "  bank \"" . key . "\" from " . [mFirstFreeAddress hexString]
+        totalRam  := totalRam  + mLastAddressPlusOne - mFirstFreeAddress ;
+      end foreach ;
+      message deviceForMemoryDescription . " device:\n" ;
+      message "  " . [[[piccoloDeviceModel mRamBankTable] count] string] . " RAM banks (total " . [totalRam string] . " bytes):\n" ;
+      foreach [piccoloDeviceModel mRamBankTable] do
+        message "    bank \"" . key . "\" from " . [mFirstFreeAddress hexString]
         . " to " . [mLastAddressPlusOne-1 hexString]
         . " (" . [mLastAddressPlusOne-mFirstFreeAddress string] . " bytes)\n" ;
       end foreach ;
+      message "  ROM size: " . [[[piccoloDeviceModel mRomSize] uint] string] . " bytes\n" ;
+      if [piccoloDeviceModel mEepromSize] == 0 then
+        message "  No EEPROM\n" ;
+      else
+        message "  EEPROM size: " . [[piccoloDeviceModel mEepromSize] string] . " bytes (at "
+        . [[piccoloDeviceModel mEepromAddress] hexString] . ")\n" ;
+      end if ;
     else
-      error here:"The " . [option piccolo_options.ramDescription] . " device is not supported" ;
+      error here:"The " . deviceForMemoryDescription . " device is not supported" ;
     end if ;
   end if ;
 }

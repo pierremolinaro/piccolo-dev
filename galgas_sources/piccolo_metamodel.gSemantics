@@ -695,9 +695,33 @@ list @routineDefinitionList {
 
 #----------------------------------------------------*
 
-list @declarationInRamList {
+abstract class @declarationInRam {
+}
+
+#----------------------------------------------------*
+
+class @byteDeclarationInRam extends @declarationInRam {
   @lstring mName ;
   @luint mSize ;
+}
+
+#----------------------------------------------------*
+
+list @declarationInRamList {
+  @declarationInRam mDeclaration ;
+}
+
+#----------------------------------------------------*
+
+list @commonBranchList {
+  @declarationInRamList mDeclarations ;
+  @location mEndOfBranchLocation ;
+}
+
+#----------------------------------------------------*
+
+class @commonDeclarationInRam extends @declarationInRam {
+  @commonBranchList mBranchList ;
 }
 
 #----------------------------------------------------*

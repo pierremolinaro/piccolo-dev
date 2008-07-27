@@ -6,6 +6,10 @@ import semantics piccolo_metamodel in "piccolo_metamodel.gSemantics" ;
 
 nonterminal <configuration_definition> ;
 
+nonterminal <declaration_in_ram>
+  !@declarationInRam outDeclaration
+;
+
 nonterminal <ram_definition>
   ?!@ramDefinitionList ioRamDefinitionList
 ;
@@ -108,6 +112,47 @@ end rule ;
 
 #----------------------------------------------------*
 
+rule <declaration_in_ram>
+  !@declarationInRam outDeclaration
+:
+  $byte$ ;
+  $identifier$ ? @lstring name ;
+  @luint size ;
+  select
+    size := [@luint new !1 !here] ;
+  or
+    $[$ ;
+    $integer$ ?size ;
+    $]$ ;
+  end select ;
+  outDeclaration := [@byteDeclarationInRam new !name !size] ;
+end rule ;
+
+#----------------------------------------------------*
+
+rule <declaration_in_ram>
+  !@declarationInRam outDeclaration
+:
+  $common$ ;
+  @commonBranchList commonBranchList [emptyList] ;
+  repeat
+    @declarationInRamList declarationInRamList [emptyList] ;
+    repeat
+    while
+      @declarationInRam declaration ;
+      <declaration_in_ram> ?declaration ;
+      declarationInRamList += !declaration ;
+    end repeat ;
+    commonBranchList += !declarationInRamList !here ;
+  while
+    $|$ ;
+  end repeat ;
+  outDeclaration := [@commonDeclarationInRam new !commonBranchList] ;
+  $end$ ;
+end rule ;
+
+#----------------------------------------------------*
+
 rule <ram_definition>
   ?!@ramDefinitionList ioRamDefinitionList
 :
@@ -117,17 +162,9 @@ rule <ram_definition>
   @declarationInRamList declarationInRamList [emptyList] ;
   repeat
   while
-    $byte$ ;
-    $identifier$ ? @lstring name ;
-    @luint size ;
-    select
-      size := [@luint new !1 !here] ;
-    or
-      $[$ ;
-      $integer$ ?size ;
-      $]$ ;
-    end select ;
-    declarationInRamList += !name !size ;
+    @declarationInRam declaration ;
+    <declaration_in_ram> ?declaration ;
+    declarationInRamList += !declaration ;
   end repeat ;
   ioRamDefinitionList += !bankName !declarationInRamList ;
   $}$ ;

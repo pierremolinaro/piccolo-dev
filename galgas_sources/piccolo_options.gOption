@@ -4,6 +4,6 @@ option piccolo_options :
 @bool doNotConvertRelative : 'C', "do-not-convert-relative" -> "Do not convert relative branch to absolute ones, when needed" ;
 @bool ouputListFile : 'L', "log" -> "Output a log file" ;
 @bool ouputDeviceList : 'D', "device-list" -> "Output the list of supported devices" ;
-@string ramDescription : 'R', "ram" -> "Output the RAM description of the device named by string" ;
+@string memoryDescription : 'M', "memory" -> "Output the description of RAM, ROM and EEPROM of the device named by string" ;
 
 end option ;
