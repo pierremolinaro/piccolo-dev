@@ -1,13 +1,87 @@
-semantics piccolo_decompose_structured_instructions :
+semantics buildIPICAssemblyInstructionList :
 import semantics piccolo_metamodel in "piccolo_metamodel.gSemantics" ;
 import semantics ipic_metamodel in "ipic_metamodel.gSemantics" ;
+import semantics piccoloDevice_semantics in "piccoloDevice_semantics.gSemantics" ;
 import "ipic_metamodel.gSemantics" ;
+
+#----------------------------------------------------------------------------*
+
+abstract method @bitNumberExpression.getBitNumber
+  ??@bitSliceTable inBitSliceTable
+  !@uint outBitNumber
+;
+
+#----------------------------------------------------------------------------*
+
+override method @bitNumberLiteralValue.getBitNumber
+  ??@bitSliceTable unused inBitSliceTable
+  !@uint outBitNumber
+:
+  if [mBitNumberLiteralValue uint] > 7 then
+    error mBitNumberLiteralValue:"The bit number is " . [[mBitNumberLiteralValue uint] string] . " (should be <= 7)" ;
+  end if ;
+  outBitNumber := [mBitNumberLiteralValue uint] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @bitNumberLabelValue.getBitNumber
+  ??@bitSliceTable inBitSliceTable
+  !@uint outBitNumber
+:
+  @uint sliceIndex ;
+  @uint sliceSize ;
+  [inBitSliceTable searchKey !mBitNumberLabelValue ?sliceIndex ? sliceSize] ;
+  if [mBitNumberIndexValue uint] > sliceSize then
+    error mBitNumberIndexValue: "The " . [[mBitNumberIndexValue uint] string]
+    . " index is too large (should be < " . [sliceSize string] . ")" ;
+  end if ;
+  outBitNumber := sliceIndex + [mBitNumberIndexValue uint] ;
+end method ;
+
+#----------------------------------------------------*
+
+method @registerExpression.resolveAccess
+  ??@uint inAccessBankSplitOffset
+  ??@registerTable inRegisterTable
+  !@ipic_registerExpression outIPICregisterDescription
+  !@bitSliceTable outBitSliceTable
+:
+#--- Build assembly string
+  @string assemblyString := [mRegisterName string] ;
+  if [mOffset uint] > 0 then
+    assemblyString .= " + " . [[mOffset uint] hexString] ;
+  end if ;
+#--- 
+  @uintlist registerAddressList ;
+  @uint size ;
+  @uint registerAddress := 0 ;
+  [inRegisterTable searchKey !mRegisterName ?registerAddressList ?size ?outBitSliceTable] ;
+  @bool found := false ;
+  foreach registerAddressList while not found do
+    found := (mValue < inAccessBankSplitOffset) | (mValue >= (0x0F00 + inAccessBankSplitOffset)) ;
+    registerAddress := mValue ;
+  end foreach ;
+  @bool needsBSRaccess := false ;
+  if not found then
+    needsBSRaccess := true ;
+    [registerAddressList first ?registerAddress] ;
+  end if ;
+#---
+  outIPICregisterDescription := [@ipic_registerExpression new
+    !assemblyString
+    !registerAddress + [mOffset uint]
+    !needsBSRaccess
+  ] ;
+end method ;
 
 #----------------------------------------------------*
 #           DECOMPOSE COMPLEX INSTRUCTION            *
 #----------------------------------------------------*
 
 abstract method @piccolo_instruction.buildIPICinstructionList
+  ??@uint unused inAccessBankSplitOffset
+  ??@registerTable unused inRegisterTable
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic_instructionList unused ioGeneratedInstructionList
 ;
@@ -15,6 +89,8 @@ abstract method @piccolo_instruction.buildIPICinstructionList
 #----------------------------------------------------*
 
 override method @pseudo_LABEL.buildIPICinstructionList
+  ??@uint unused inAccessBankSplitOffset
+  ??@registerTable unused inRegisterTable
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
 :
@@ -26,13 +102,22 @@ end method ;
 #----------------------------------------------------*
 
 override method @instruction_FDA.buildIPICinstructionList
+  ??@uint inAccessBankSplitOffset
+  ??@registerTable inRegisterTable
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
 :
+  @ipic_registerExpression IPICregisterDescription ;
+  [mRegisterExpression resolveAccess
+    !inAccessBankSplitOffset
+    !inRegisterTable
+    ?IPICregisterDescription
+    ?*
+  ] ;
   ioGeneratedInstructionList += ![@ipic_instruction_FDA new
     !mInstructionLocation
     !mInstruction_FDA_base_code
-    !mRegisterExpression
+    !IPICregisterDescription
     !m_W_isDestination
   ] ;
 end method ;
@@ -40,46 +125,88 @@ end method ;
 #----------------------------------------------------*
 
 override method @instruction_FA.buildIPICinstructionList
+  ??@uint inAccessBankSplitOffset
+  ??@registerTable inRegisterTable
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
 :
+  @ipic_registerExpression IPICregisterDescription ;
+  [mRegisterExpression resolveAccess
+    !inAccessBankSplitOffset
+    !inRegisterTable
+    ?IPICregisterDescription
+    ?*
+  ] ;
   ioGeneratedInstructionList += ![@ipic_instruction_FA new
     !mInstructionLocation
     !mFAinstruction
-    !mRegisterExpression
+    !IPICregisterDescription
   ] ;
 end method ;
 
 #----------------------------------------------------*
 
 override method @instruction_MOVFF.buildIPICinstructionList
+  ??@uint inAccessBankSplitOffset
+  ??@registerTable inRegisterTable
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
 :
+  @ipic_registerExpression sourceIPICregisterDescription ;
+  [mSourceRegisterName resolveAccess
+    !inAccessBankSplitOffset
+    !inRegisterTable
+    ?sourceIPICregisterDescription
+    ?*
+  ] ;
+  @ipic_registerExpression destinationIPICregisterDescription ;
+  [mDestinationRegisterName resolveAccess
+    !inAccessBankSplitOffset
+    !inRegisterTable
+    ?destinationIPICregisterDescription
+    ?*
+  ] ;
   ioGeneratedInstructionList += ![@ipic_instruction_MOVFF new
     !mInstructionLocation
-    !mSourceRegisterName
-    !mDestinationRegisterName
+    !sourceIPICregisterDescription
+    !destinationIPICregisterDescription
   ] ;
 end method ;
 
 #----------------------------------------------------*
 
 override method @instruction_FBA.buildIPICinstructionList
+  ??@uint inAccessBankSplitOffset
+  ??@registerTable inRegisterTable
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
 :
+  @bitSliceTable bitSliceTable ;
+  @ipic_registerExpression IPICregisterDescription ;
+  [mRegisterExpression resolveAccess
+    !inAccessBankSplitOffset
+    !inRegisterTable
+    ?IPICregisterDescription
+    ?bitSliceTable
+  ] ;
+  @uint bitNumber ;
+  [mBitNumber getBitNumber
+    !bitSliceTable
+    ?bitNumber
+  ] ;
   ioGeneratedInstructionList += ![@ipic_instruction_FBA new
     !mInstructionLocation
     !mBitOrientedOp
-    !mRegisterExpression
-    !mBitNumber
+    !IPICregisterDescription
+    !bitNumber
   ] ;
 end method ;
 
 #----------------------------------------------------*
 
 override method @instruction_conditionalBranch.buildIPICinstructionList
+  ??@uint unused inAccessBankSplitOffset
+  ??@registerTable unused inRegisterTable
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
 :
@@ -94,6 +221,8 @@ end method ;
 #----------------------------------------------------*
 
 override method @instruction_BRA.buildIPICinstructionList
+  ??@uint unused inAccessBankSplitOffset
+  ??@registerTable unused inRegisterTable
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
 :
@@ -106,6 +235,8 @@ end method ;
 #----------------------------------------------------*
 
 override method @instruction_CALL.buildIPICinstructionList
+  ??@uint unused inAccessBankSplitOffset
+  ??@registerTable unused inRegisterTable
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
 :
@@ -118,6 +249,8 @@ end method ;
 #----------------------------------------------------*
 
 override method @instruction_GOTO.buildIPICinstructionList
+  ??@uint unused inAccessBankSplitOffset
+  ??@registerTable unused inRegisterTable
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
 :
@@ -130,6 +263,8 @@ end method ;
 #----------------------------------------------------*
 
 override method @instruction_RCALL.buildIPICinstructionList
+  ??@uint unused inAccessBankSplitOffset
+  ??@registerTable unused inRegisterTable
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
 :
@@ -142,6 +277,8 @@ end method ;
 #----------------------------------------------------*
 
 override method @instruction_CLRWDT.buildIPICinstructionList
+  ??@uint unused inAccessBankSplitOffset
+  ??@registerTable unused inRegisterTable
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
 :
@@ -153,6 +290,8 @@ end method ;
 #----------------------------------------------------*
 
 override method @instruction_DAW.buildIPICinstructionList
+  ??@uint unused inAccessBankSplitOffset
+  ??@registerTable unused inRegisterTable
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
 :
@@ -164,6 +303,8 @@ end method ;
 #----------------------------------------------------*
 
 override method @instruction_NOP.buildIPICinstructionList
+  ??@uint unused inAccessBankSplitOffset
+  ??@registerTable unused inRegisterTable
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
 :
@@ -175,6 +316,8 @@ end method ;
 #----------------------------------------------------*
 
 override method @instruction_POP.buildIPICinstructionList
+  ??@uint unused inAccessBankSplitOffset
+  ??@registerTable unused inRegisterTable
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
 :
@@ -186,6 +329,8 @@ end method ;
 #----------------------------------------------------*
 
 override method @instruction_PUSH.buildIPICinstructionList
+  ??@uint unused inAccessBankSplitOffset
+  ??@registerTable unused inRegisterTable
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
 :
@@ -197,6 +342,8 @@ end method ;
 #----------------------------------------------------*
 
 override method @instruction_RESET.buildIPICinstructionList
+  ??@uint unused inAccessBankSplitOffset
+  ??@registerTable unused inRegisterTable
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
 :
@@ -208,6 +355,8 @@ end method ;
 #----------------------------------------------------*
 
 override method @instruction_RETURN.buildIPICinstructionList
+  ??@uint unused inAccessBankSplitOffset
+  ??@registerTable unused inRegisterTable
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
 :
@@ -219,6 +368,8 @@ end method ;
 #----------------------------------------------------*
 
 override method @instruction_RETFIE.buildIPICinstructionList
+  ??@uint unused inAccessBankSplitOffset
+  ??@registerTable unused inRegisterTable
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
 :
@@ -231,6 +382,8 @@ end method ;
 #----------------------------------------------------*
 
 override method @instruction_SLEEP.buildIPICinstructionList
+  ??@uint unused inAccessBankSplitOffset
+  ??@registerTable unused inRegisterTable
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
 :
@@ -242,6 +395,8 @@ end method ;
 #----------------------------------------------------*
 
 override method @instruction_literalOperation.buildIPICinstructionList
+  ??@uint unused inAccessBankSplitOffset
+  ??@registerTable unused inRegisterTable
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
 :
@@ -255,19 +410,30 @@ end method ;
 #----------------------------------------------------*
 
 override method @instruction_LFSR.buildIPICinstructionList
+  ??@uint inAccessBankSplitOffset
+  ??@registerTable inRegisterTable
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
 :
+  @ipic_registerExpression IPICregisterDescription ;
+  [mRegisterExpression resolveAccess
+    !inAccessBankSplitOffset
+    !inRegisterTable
+    ?IPICregisterDescription
+    ?*
+  ] ;
   ioGeneratedInstructionList += ![@ipic_instruction_LFSR new
     !mInstructionLocation
     !mFSRindex
-    !mRegisterExpression
+    !IPICregisterDescription
   ] ;
 end method ;
 
 #----------------------------------------------------*
 
 override method @instruction_MOVLB.buildIPICinstructionList
+  ??@uint unused inAccessBankSplitOffset
+  ??@registerTable unused inRegisterTable
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
 :
@@ -280,18 +446,30 @@ end method ;
 #----------------------------------------------------*
 
 override method @instruction_MOVAW.buildIPICinstructionList
+  ??@uint inAccessBankSplitOffset
+  ??@registerTable inRegisterTable
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
 :
+  @ipic_registerExpression IPICregisterDescription ;
+  [mRegisterExpression resolveAccess
+    !inAccessBankSplitOffset
+    !inRegisterTable
+    ?IPICregisterDescription
+    ?*
+  ] ;
+#---
   ioGeneratedInstructionList += ![@ipic_instruction_MOVAW new
     !mInstructionLocation
-    !mRegisterExpression
+    !IPICregisterDescription
   ] ;
 end method ;
 
 #----------------------------------------------------*
 
 override method @instruction_TBLRD.buildIPICinstructionList
+  ??@uint unused inAccessBankSplitOffset
+  ??@registerTable unused inRegisterTable
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
 :
@@ -304,6 +482,8 @@ end method ;
 #----------------------------------------------------*
 
 override method @instruction_TBLWT.buildIPICinstructionList
+  ??@uint unused inAccessBankSplitOffset
+  ??@registerTable unused inRegisterTable
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
 :
@@ -316,6 +496,8 @@ end method ;
 #----------------------------------------------------*
 
 override method @instruction_computed_retlw.buildIPICinstructionList
+  ??@uint unused inAccessBankSplitOffset
+  ??@registerTable unused inRegisterTable
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
 :
@@ -329,6 +511,8 @@ end method ;
 #----------------------------------------------------*
 
 override method @instruction_MNOP.buildIPICinstructionList
+  ??@uint unused inAccessBankSplitOffset
+  ??@registerTable unused inRegisterTable
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
 :
@@ -341,6 +525,8 @@ end method ;
 #----------------------------------------------------*
 
 override method @instruction_computed_bra.buildIPICinstructionList
+  ??@uint unused inAccessBankSplitOffset
+  ??@registerTable unused inRegisterTable
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
 :
@@ -354,6 +540,8 @@ end method ;
 #----------------------------------------------------*
 
 override method @instruction_computed_goto.buildIPICinstructionList
+  ??@uint unused inAccessBankSplitOffset
+  ??@registerTable unused inRegisterTable
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
 :
@@ -367,6 +555,8 @@ end method ;
 #----------------------------------------------------*
 
 override method @instruction_FOREVER.buildIPICinstructionList
+  ??@uint inAccessBankSplitOffset
+  ??@registerTable inRegisterTable
   ?!@uint ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
 :
@@ -374,7 +564,7 @@ override method @instruction_FOREVER.buildIPICinstructionList
   ioLocalLabelIndex ++ ;
   ioGeneratedInstructionList += ![@ipic_pseudo_LABEL new ![@lstring new !label0 !mInstructionLocation]] ;
   foreach mInstructionList do
-    [mInstruction buildIPICinstructionList !?ioLocalLabelIndex !?ioGeneratedInstructionList] ;
+    [mInstruction buildIPICinstructionList !inAccessBankSplitOffset !inRegisterTable !?ioLocalLabelIndex !?ioGeneratedInstructionList] ;
   end foreach ;
   ioGeneratedInstructionList += ![@ipic_instruction_BRA new !mInstructionLocation ![@lstring new !label0 !mInstructionLocation]] ;
 end method ;
@@ -382,6 +572,8 @@ end method ;
 #----------------------------------------------------*
 
 override method @instruction_IF_FA_SEMI_COLON.buildIPICinstructionList
+  ??@uint inAccessBankSplitOffset
+  ??@registerTable inRegisterTable
   ?!@uint ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
 :
@@ -392,18 +584,27 @@ override method @instruction_IF_FA_SEMI_COLON.buildIPICinstructionList
     when CPFSLT : baseCode := [@FA_instruction_base_code CPFSLT] ;
     when TSTFSZ : baseCode := [@FA_instruction_base_code TSTFSZ] ;
   end switch ;
+  @ipic_registerExpression IPICregisterDescription ;
+  [mRegisterExpression resolveAccess
+    !inAccessBankSplitOffset
+    !inRegisterTable
+    ?IPICregisterDescription
+    ?*
+  ] ;
   ioGeneratedInstructionList += ![@ipic_instruction_FA new
     !mInstructionLocation
     !baseCode
-    !mRegisterExpression
+    !IPICregisterDescription
   ] ;
 #--- Append Instruction
-  [mInstruction buildIPICinstructionList !?ioLocalLabelIndex !?ioGeneratedInstructionList] ;
+  [mInstruction buildIPICinstructionList !inAccessBankSplitOffset !inRegisterTable !?ioLocalLabelIndex !?ioGeneratedInstructionList] ;
 end method ;
 
 #----------------------------------------------------*
 
 override method @instruction_IF_BitTest.buildIPICinstructionList
+  ??@uint inAccessBankSplitOffset
+  ??@registerTable inRegisterTable
   ?!@uint ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
 :
@@ -413,19 +614,34 @@ override method @instruction_IF_BitTest.buildIPICinstructionList
   else
     baseCode := [@bit_oriented_op BTFSC] ;
   end if ;
+  @bitSliceTable bitSliceTable ;
+  @ipic_registerExpression IPICregisterDescription ;
+  [mRegisterExpression resolveAccess
+    !inAccessBankSplitOffset
+    !inRegisterTable
+    ?IPICregisterDescription
+    ?bitSliceTable
+  ] ;
+  @uint bitNumber ;
+  [mBitNumber getBitNumber
+    !bitSliceTable
+    ?bitNumber
+  ] ;
   ioGeneratedInstructionList += ![@ipic_instruction_FBA new
     !mInstructionLocation
     !baseCode
-    !mRegisterExpression
-    !mBitNumber
+    !IPICregisterDescription
+    !bitNumber
   ] ;
 #--- Append Instruction
-  [mInstruction buildIPICinstructionList !?ioLocalLabelIndex !?ioGeneratedInstructionList] ;
+  [mInstruction buildIPICinstructionList !inAccessBankSplitOffset !inRegisterTable !?ioLocalLabelIndex !?ioGeneratedInstructionList] ;
 end method ;
 
 #----------------------------------------------------*
 
 abstract method @conditionExpression.buildIPICinstructionForCondition
+  ??@uint inAccessBankSplitOffset
+  ??@registerTable inRegisterTable
   ?!@uint ioLocalLabelIndex
   ??@bool inComplementaryBranch
   ??@location inInstructionLocation
@@ -436,6 +652,8 @@ abstract method @conditionExpression.buildIPICinstructionForCondition
 #----------------------------------------------------*
 
 override method @bcc_in_structured_if_condition.buildIPICinstructionForCondition
+  ??@uint unused inAccessBankSplitOffset
+  ??@registerTable unused inRegisterTable
   ?!@uint unused ioLocalLabelIndex
   ??@bool inComplementaryBranch
   ??@location inInstructionLocation
@@ -459,6 +677,8 @@ end method ;
 #----------------------------------------------------*
 
 override method @registerComparisonCondition.buildIPICinstructionForCondition
+  ??@uint inAccessBankSplitOffset
+  ??@registerTable inRegisterTable
   ?!@uint unused ioLocalLabelIndex
   ??@bool inComplementaryBranch
   ??@location inInstructionLocation
@@ -471,9 +691,18 @@ override method @registerComparisonCondition.buildIPICinstructionForCondition
   else
     comparison := mComparison ;
   end if ;
+#---
+  @ipic_registerExpression IPICregisterDescription ;
+  [mRegisterExpression resolveAccess
+    !inAccessBankSplitOffset
+    !inRegisterTable
+    ?IPICregisterDescription
+    ?*
+  ] ;
+#---
   ioGeneratedInstructionList += ![@ipic_registerComparisonCondition new
     !inInstructionLocation
-    !mRegisterExpression
+    !IPICregisterDescription
     !inTargetLabel
     !comparison
     !true # By Default, uses BRA
@@ -483,15 +712,25 @@ end method ;
 #----------------------------------------------------*
 
 override method @incDecRegisterInCondition.buildIPICinstructionForCondition
+  ??@uint inAccessBankSplitOffset
+  ??@registerTable inRegisterTable
   ?!@uint unused ioLocalLabelIndex
   ??@bool inComplementaryBranch
   ??@location inInstructionLocation
   ??@string inTargetLabel
   ?!@ipic_instructionList ioGeneratedInstructionList
 :
+  @ipic_registerExpression IPICregisterDescription ;
+  [mRegisterExpression resolveAccess
+    !inAccessBankSplitOffset
+    !inRegisterTable
+    ?IPICregisterDescription
+    ?*
+  ] ;
+#---
   ioGeneratedInstructionList += ![@ipic_incDecRegisterInCondition new
     !inInstructionLocation
-    !mRegisterExpression
+    !IPICregisterDescription
     !inTargetLabel
     !mIncrement
     !m_W_isDestination
@@ -503,15 +742,25 @@ end method ;
 #----------------------------------------------------*
 
 override method @registerTestCondition.buildIPICinstructionForCondition
+  ??@uint inAccessBankSplitOffset
+  ??@registerTable inRegisterTable
   ?!@uint unused ioLocalLabelIndex
   ??@bool inComplementaryBranch
   ??@location inInstructionLocation
   ??@string inTargetLabel
   ?!@ipic_instructionList ioGeneratedInstructionList
 :
+  @ipic_registerExpression IPICregisterDescription ;
+  [mRegisterExpression resolveAccess
+    !inAccessBankSplitOffset
+    !inRegisterTable
+    ?IPICregisterDescription
+    ?*
+  ] ;
+#---
   ioGeneratedInstructionList += ![@ipic_jump_test_register new
     !inInstructionLocation
-    !mRegisterExpression
+    !IPICregisterDescription
     !inTargetLabel
     !mBranchIfZero ^ inComplementaryBranch
     !true # By Default, uses BRA
@@ -521,6 +770,8 @@ end method ;
 #----------------------------------------------------*
 
 override method @negateCondition.buildIPICinstructionForCondition
+  ??@uint inAccessBankSplitOffset
+  ??@registerTable inRegisterTable
   ?!@uint ioLocalLabelIndex
   ??@bool inComplementaryBranch
   ??@location inInstructionLocation
@@ -528,6 +779,8 @@ override method @negateCondition.buildIPICinstructionForCondition
   ?!@ipic_instructionList ioGeneratedInstructionList
 :
   [mCondition buildIPICinstructionForCondition
+    !inAccessBankSplitOffset
+    !inRegisterTable
     !?ioLocalLabelIndex
     !not inComplementaryBranch
     !inInstructionLocation
@@ -539,6 +792,8 @@ end method ;
 #----------------------------------------------------*
 
 override method @andCondition.buildIPICinstructionForCondition
+  ??@uint inAccessBankSplitOffset
+  ??@registerTable inRegisterTable
   ?!@uint ioLocalLabelIndex
   ??@bool inComplementaryBranch
   ??@location inInstructionLocation
@@ -547,6 +802,8 @@ override method @andCondition.buildIPICinstructionForCondition
 :
   if inComplementaryBranch then
     [mLeftExpression buildIPICinstructionForCondition
+      !inAccessBankSplitOffset
+      !inRegisterTable
       !?ioLocalLabelIndex
       !true
       !inInstructionLocation
@@ -554,6 +811,8 @@ override method @andCondition.buildIPICinstructionForCondition
       !?ioGeneratedInstructionList
     ] ;
     [mRightExpression buildIPICinstructionForCondition
+      !inAccessBankSplitOffset
+      !inRegisterTable
       !?ioLocalLabelIndex
       !true
       !inInstructionLocation
@@ -563,6 +822,8 @@ override method @andCondition.buildIPICinstructionForCondition
   else
     @string label0 := "_label_" . [ioLocalLabelIndex string] ; ioLocalLabelIndex ++ ;
     [mLeftExpression buildIPICinstructionForCondition
+      !inAccessBankSplitOffset
+      !inRegisterTable
       !?ioLocalLabelIndex
       !true
       !inInstructionLocation
@@ -570,6 +831,8 @@ override method @andCondition.buildIPICinstructionForCondition
       !?ioGeneratedInstructionList
     ] ;
     [mRightExpression buildIPICinstructionForCondition
+      !inAccessBankSplitOffset
+      !inRegisterTable
       !?ioLocalLabelIndex
       !false
       !inInstructionLocation
@@ -583,6 +846,8 @@ end method ;
 #----------------------------------------------------*
 
 override method @bitTest_in_structured_if_condition.buildIPICinstructionForCondition
+  ??@uint inAccessBankSplitOffset
+  ??@registerTable inRegisterTable
   ?!@uint unused ioLocalLabelIndex
   ??@bool inComplementaryBranch
   ??@location inInstructionLocation
@@ -595,11 +860,24 @@ override method @bitTest_in_structured_if_condition.buildIPICinstructionForCondi
   else
     op := [@bit_oriented_op BTFSC] ;
   end if ;
+  @bitSliceTable bitSliceTable ;
+  @ipic_registerExpression IPICregisterDescription ;
+  [mRegisterExpression resolveAccess
+    !inAccessBankSplitOffset
+    !inRegisterTable
+    ?IPICregisterDescription
+    ?bitSliceTable
+  ] ;
+  @uint bitNumber ;
+  [mBitNumber getBitNumber
+    !bitSliceTable
+    ?bitNumber
+  ] ;
   ioGeneratedInstructionList += ![@ipic_instruction_FBA new
     !inInstructionLocation
     !op
-    !mRegisterExpression
-    !mBitNumber
+    !IPICregisterDescription
+    !bitNumber
   ] ;
   ioGeneratedInstructionList += ![@ipic_instruction_BRA new !inInstructionLocation ![@lstring new !inTargetLabel !inInstructionLocation]] ;
 end method ;
@@ -607,6 +885,8 @@ end method ;
 #----------------------------------------------------*
 
 override method @instruction_structured_if.buildIPICinstructionList
+  ??@uint inAccessBankSplitOffset
+  ??@registerTable inRegisterTable
   ?!@uint ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
 :
@@ -614,19 +894,35 @@ override method @instruction_structured_if.buildIPICinstructionList
   @string label_nextCondition := "_label_" . [ioLocalLabelIndex string] ; ioLocalLabelIndex ++ ;
   @string label_endOfIfinstruction := "_label_" . [ioLocalLabelIndex string] ; ioLocalLabelIndex ++ ;
 #--- Translate condition
-  [mIfCondition buildIPICinstructionForCondition !?ioLocalLabelIndex !true !mInstructionLocation !label_nextCondition !?ioGeneratedInstructionList] ;
+  [mIfCondition buildIPICinstructionForCondition
+    !inAccessBankSplitOffset
+    !inRegisterTable
+    !?ioLocalLabelIndex
+    !true
+    !mInstructionLocation
+    !label_nextCondition
+    !?ioGeneratedInstructionList
+  ] ;
 #--- 'then' instructions
   foreach mThenInstructionList do
-    [mInstruction buildIPICinstructionList !?ioLocalLabelIndex !?ioGeneratedInstructionList] ;
+    [mInstruction buildIPICinstructionList !inAccessBankSplitOffset !inRegisterTable !?ioLocalLabelIndex !?ioGeneratedInstructionList] ;
   end foreach ;
 #--- 'elsif' parts
   foreach mElsifPartList do
     ioGeneratedInstructionList += ![@ipic_instruction_BRA new !mInstructionLocation ![@lstring new !label_endOfIfinstruction !mInstructionLocation]] ;
     ioGeneratedInstructionList += ![@ipic_pseudo_LABEL new ![@lstring new !label_nextCondition !mInstructionLocation]] ;
     label_nextCondition := "_label_" . [ioLocalLabelIndex string] ; ioLocalLabelIndex ++ ;
-    [mCondition buildIPICinstructionForCondition !?ioLocalLabelIndex !true !mInstructionLocation !label_nextCondition !?ioGeneratedInstructionList] ;
+    [mCondition buildIPICinstructionForCondition
+      !inAccessBankSplitOffset
+      !inRegisterTable
+      !?ioLocalLabelIndex
+      !true
+      !mInstructionLocation
+      !label_nextCondition
+      !?ioGeneratedInstructionList
+    ] ;
     foreach mInstructionList do
-      [mInstruction buildIPICinstructionList !?ioLocalLabelIndex !?ioGeneratedInstructionList] ;
+      [mInstruction buildIPICinstructionList !inAccessBankSplitOffset !inRegisterTable !?ioLocalLabelIndex !?ioGeneratedInstructionList] ;
     end foreach ;
   end foreach ;
 #--- 'else' instructions
@@ -635,7 +931,7 @@ override method @instruction_structured_if.buildIPICinstructionList
   end if ;
   ioGeneratedInstructionList += ![@ipic_pseudo_LABEL new ![@lstring new !label_nextCondition !mInstructionLocation]] ;
   foreach mElseInstructionList do
-    [mInstruction buildIPICinstructionList !?ioLocalLabelIndex !?ioGeneratedInstructionList] ;
+    [mInstruction buildIPICinstructionList !inAccessBankSplitOffset !inRegisterTable !?ioLocalLabelIndex !?ioGeneratedInstructionList] ;
   end foreach ;
   if ([mElseInstructionList length] > 0) | ([mElsifPartList length] > 0) then
     ioGeneratedInstructionList += ![@ipic_pseudo_LABEL new ![@lstring new !label_endOfIfinstruction !mInstructionLocation]] ;
@@ -645,6 +941,8 @@ end method ;
 #----------------------------------------------------*
 
 override method @instruction_do_while.buildIPICinstructionList
+  ??@uint inAccessBankSplitOffset
+  ??@registerTable inRegisterTable
   ?!@uint ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
 :
@@ -654,17 +952,33 @@ override method @instruction_do_while.buildIPICinstructionList
   ioGeneratedInstructionList += ![@ipic_pseudo_LABEL new ![@lstring new !labelInstructionBegin !mInstructionLocation]] ;
 #--- Repeated instructions
   foreach mRepeatedInstructionList do
-    [mInstruction buildIPICinstructionList !?ioLocalLabelIndex !?ioGeneratedInstructionList] ;
+    [mInstruction buildIPICinstructionList !inAccessBankSplitOffset !inRegisterTable !?ioLocalLabelIndex !?ioGeneratedInstructionList] ;
   end foreach ;
 #--- while parts
   foreach mWhilePartList do
     if [mInstructionList length] == 0 then
-      [mCondition buildIPICinstructionForCondition !?ioLocalLabelIndex !false !mInstructionLocation !labelInstructionBegin !?ioGeneratedInstructionList] ;
+      [mCondition buildIPICinstructionForCondition
+        !inAccessBankSplitOffset
+        !inRegisterTable
+        !?ioLocalLabelIndex
+        !false
+        !mInstructionLocation
+        !labelInstructionBegin
+        !?ioGeneratedInstructionList
+      ] ;
     else
       @string nextBranchLabel := "_label_" . [ioLocalLabelIndex string] ; ioLocalLabelIndex ++ ;
-      [mCondition buildIPICinstructionForCondition !?ioLocalLabelIndex !true !mInstructionLocation !nextBranchLabel !?ioGeneratedInstructionList] ;
+      [mCondition buildIPICinstructionForCondition
+        !inAccessBankSplitOffset
+        !inRegisterTable
+        !?ioLocalLabelIndex
+        !true
+        !mInstructionLocation
+        !nextBranchLabel
+        !?ioGeneratedInstructionList
+      ] ;
       foreach mInstructionList do
-        [mInstruction buildIPICinstructionList !?ioLocalLabelIndex !?ioGeneratedInstructionList] ;
+        [mInstruction buildIPICinstructionList !inAccessBankSplitOffset !inRegisterTable !?ioLocalLabelIndex !?ioGeneratedInstructionList] ;
       end foreach ;
       ioGeneratedInstructionList += ![@ipic_pseudo_LABEL new ![@lstring new !nextBranchLabel !mInstructionLocation]] ;
     end if ;
@@ -674,10 +988,11 @@ end method ;
 #----------------------------------------------------*
 
 override method @instruction_IF_IncDec.buildIPICinstructionList
+  ??@uint inAccessBankSplitOffset
+  ??@registerTable inRegisterTable
   ?!@uint ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
 :
-#---
 #---
   @instruction_FDA_base_code baseCode ;
   if mIncrement & mSkipIfZero then
@@ -689,19 +1004,30 @@ override method @instruction_IF_IncDec.buildIPICinstructionList
   else
     baseCode := [@instruction_FDA_base_code DCFSNZ] ;
   end if ;
+#---
+  @ipic_registerExpression IPICregisterDescription ;
+  [mRegisterExpression resolveAccess
+    !inAccessBankSplitOffset
+    !inRegisterTable
+    ?IPICregisterDescription
+    ?*
+  ] ;
+#---
   ioGeneratedInstructionList += ![@ipic_instruction_FDA new
     !mInstructionLocation
     !baseCode
-    !mRegisterExpression
+    !IPICregisterDescription
     !m_W_isDestination
   ] ;
 #--- Repeated instructions
-  [mInstruction buildIPICinstructionList !?ioLocalLabelIndex !?ioGeneratedInstructionList] ;
+  [mInstruction buildIPICinstructionList !inAccessBankSplitOffset !inRegisterTable !?ioLocalLabelIndex !?ioGeneratedInstructionList] ;
 end method ;
 
 #----------------------------------------------------*
 
-routine buildAssemblyInstructionList
+routine buildIPICAssemblyInstructionList
+  ??@uint inAccessBankSplitOffset
+  ??@registerTable inRegisterTable
   ??@piccoloModel inPiccoloModel
   ??@bool inHasHighInterrupt
   ??@bool inHasLowInterrupt
@@ -725,7 +1051,7 @@ routine buildAssemblyInstructionList
     foreach [inPiccoloModel mInterruptDefinitionList] do
       if [mInterruptName string] == "low" then
         foreach mInstructionList do
-          [mInstruction buildIPICinstructionList !?localLabelIndex !? outGeneratedInstructionList] ;
+          [mInstruction buildIPICinstructionList !inAccessBankSplitOffset !inRegisterTable !?localLabelIndex !? outGeneratedInstructionList] ;
         end foreach ;
       #--- Ajouter l'instruction REFFIE
         outGeneratedInstructionList += ![@ipic_instruction_RETFIE new !here !true] ;
@@ -742,7 +1068,7 @@ routine buildAssemblyInstructionList
     foreach [inPiccoloModel mInterruptDefinitionList] do
       if [mInterruptName string] == "high" then
         foreach mInstructionList do
-          [mInstruction buildIPICinstructionList !?localLabelIndex !?outGeneratedInstructionList] ;
+          [mInstruction buildIPICinstructionList !inAccessBankSplitOffset !inRegisterTable !?localLabelIndex !?outGeneratedInstructionList] ;
         end foreach ;
       #--- Ajouter l'instruction REFFIE
         outGeneratedInstructionList += ![@ipic_instruction_RETFIE new !here !true] ;
@@ -753,16 +1079,43 @@ routine buildAssemblyInstructionList
   foreach [inPiccoloModel mRoutineDefinitionList] do
     outGeneratedInstructionList += ![@ipic_pseudo_LABEL new !mRoutineName] ;
     foreach mInstructionList do
-      [mInstruction buildIPICinstructionList !?localLabelIndex !? outGeneratedInstructionList] ;
+      [mInstruction buildIPICinstructionList !inAccessBankSplitOffset !inRegisterTable !?localLabelIndex !? outGeneratedInstructionList] ;
     end foreach ;
   end foreach ;
+#--- Description of register WREG
+  @registerExpression WREGregister [new ![@lstring new !"WREG" !here] ![@luint new !0 !here]] ;
+  @ipic_registerExpression WREG_IPICregisterDescription ;
+  [WREGregister resolveAccess
+    !inAccessBankSplitOffset
+    !inRegisterTable
+    ?WREG_IPICregisterDescription
+    ?*
+  ] ;
+#--- Description of register TOSL
+  @registerExpression TOSLregister [new ![@lstring new !"TOSL" !here] ![@luint new !0 !here]] ;
+  @ipic_registerExpression TOSL_IPICregisterDescription ;
+  [TOSLregister resolveAccess
+    !inAccessBankSplitOffset
+    !inRegisterTable
+    ?TOSL_IPICregisterDescription
+    ?*
+  ] ;
+#--- Description of register TOSH
+  @registerExpression TOSHregister [new ![@lstring new !"TOSH" !here] ![@luint new !0 !here]] ;
+  @ipic_registerExpression TOSH_IPICregisterDescription ;
+  [TOSHregister resolveAccess
+    !inAccessBankSplitOffset
+    !inRegisterTable
+    ?TOSH_IPICregisterDescription
+    ?*
+  ] ;
 #--- computed_goto2 routine needed ?
   if [inPiccoloModel mNeedsComputedGoto4] then
     outGeneratedInstructionList += ![@ipic_pseudo_LABEL new ![@lstring new !"_computed_goto_4" !here]] ;
     outGeneratedInstructionList += ![@ipic_instruction_FDA new
       !here
       ![@instruction_FDA_base_code ADDWF]
-      ![@registerExpression new ![@lstring new !"WREG" !here] ![@luint new !0 !here]]
+      !WREG_IPICregisterDescription
       !true
     ] ; # ADDWF WREG, W
   end if ;
@@ -773,13 +1126,13 @@ routine buildAssemblyInstructionList
     outGeneratedInstructionList += ![@ipic_instruction_FDA new
       !here
       ![@instruction_FDA_base_code ADDWF]
-      ![@registerExpression new ![@lstring new !"WREG" !here] ![@luint new !0 !here]]
+      !WREG_IPICregisterDescription
       !true
     ] ; # ADDWF WREG, W
     outGeneratedInstructionList += ![@ipic_instruction_FDA new
       !here
       ![@instruction_FDA_base_code ADDWF]
-      ![@registerExpression new ![@lstring new !"TOSL" !here] ![@luint new !0 !here]]
+      !TOSL_IPICregisterDescription
       !false
     ] ; # ADDWF TOSL, F
     outGeneratedInstructionList += ![@ipic_instruction_literalOperation new
@@ -790,7 +1143,7 @@ routine buildAssemblyInstructionList
     outGeneratedInstructionList += ![@ipic_instruction_FDA new
       !here
       ![@instruction_FDA_base_code ADDWFC]
-      ![@registerExpression new ![@lstring new !"TOSH" !here] ![@luint new !0 !here]]
+      !TOSH_IPICregisterDescription
       !false
     ] ; # ADDWFC TOSH, F
     outGeneratedInstructionList += ![@ipic_instruction_RETURN new

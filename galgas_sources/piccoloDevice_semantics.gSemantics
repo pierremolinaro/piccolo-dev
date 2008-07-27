@@ -1,13 +1,6 @@
 semantics piccoloDevice_semantics :
-
-#----------------------------------------------------*
-
-map @bitSliceTable {
-  @uint mSliceIndex ;
-  @uint mSliceSize ;
-  insert insertKey error message "the '%K' slice is already declared in %L" ;
-  search searchKey error message "the '%K' slice is not declared" ;
-}
+import "bitSlice.gSemantics" ;
+import semantics bitSlice in "bitSlice.gSemantics" ;
 
 #----------------------------------------------------*
 

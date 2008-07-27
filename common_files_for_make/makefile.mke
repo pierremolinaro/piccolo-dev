@@ -57,7 +57,7 @@ SOURCES += piccolo_grammar.cpp
 SOURCES += piccolo_program.cpp
 SOURCES += piccolo_metamodel.cpp
 SOURCES += ipic_metamodel.cpp
-SOURCES += piccolo_decompose_structured_instructions.cpp
+SOURCES += buildIPICAssemblyInstructionList.cpp
 SOURCES += piccolo_build_assembly_code.cpp
 SOURCES += piccolo_convert_relatives.cpp
 SOURCES += piccolo_build_binary_code.cpp
@@ -66,6 +66,7 @@ SOURCES += piccoloDevice_semantics.cpp
 SOURCES += piccoloDevice_syntax.cpp
 SOURCES += piccoloDevice_grammar.cpp
 SOURCES += piccolo_embedded_devices.cpp
+SOURCES += bitSlice.cpp
 
 # Hand-coded files
 SOURCES += piccolo_computations.cpp

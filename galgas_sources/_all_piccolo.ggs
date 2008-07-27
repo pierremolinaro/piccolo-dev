@@ -1,11 +1,13 @@
 compile "piccolo_options.gOption" ;
 
 compile "piccolo_lexique.gLexique" ;
+
+compile "bitSlice.gSemantics" ;
 compile "piccolo_metamodel.gSemantics" ;
 compile "piccolo_syntax.gSyntax" ;
 compile "piccolo_grammar.gGrammar" ;
 compile "ipic_metamodel.gSemantics" ;
-compile "piccolo_decompose_structured_instructions.gSemantics" ;
+compile "buildIPICAssemblyInstructionList.gSemantics" ;
 compile "piccolo_build_assembly_code.gSemantics" ;
 compile "piccolo_convert_relatives.gSemantics" ;
 compile "piccolo_build_binary_code.gSemantics" ;

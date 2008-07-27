@@ -1,0 +1,14 @@
+semantics bitSlice :
+
+#----------------------------------------------------*
+
+map @bitSliceTable {
+  @uint mSliceIndex ;
+  @uint mSliceSize ;
+  insert insertKey error message "the '%K' slice is already declared in %L" ;
+  search searchKey error message "the '%K' slice is not declared" ;
+}
+
+#----------------------------------------------------*
+
+end semantics ;

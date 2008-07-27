@@ -7,18 +7,42 @@ import grammar piccolo_grammar in "piccolo_grammar.gGrammar" ;
 
 #--- Prologue routine
 before {
-#--- Print supported device list
+#------------------------------------------------ Print supported device list
   if [option piccolo_options.ouputDeviceList] then
+  #--- Enumerate devices, and parse them
     @stringlist allDevices := [[filewrapper embeddedDevices] allFilePathes] ;
-    message "List of the " . [[allDevices  length] string] . " supported devices:\n" ;
+    @stringlist pic_60_devices [emptyList] ;
+    @stringlist pic_80_devices [emptyList] ;
+    message [[allDevices  length] string] . " supported devices.\n" ;
     @uint index := 0 ;
     @bool ok := true ;
     foreach allDevices while ok do
       @piccoloDeviceModel piccoloDeviceModel ;
       @string name := [[mValue lastPathComponent] stringByDeletingPathExtension] ;
       parseDeviceDefinition ![@lstring new !name !here] ?piccoloDeviceModel ;
-      message [name stringByRightPadding !15 !' '] ;
-      ok := [@uint errorCount] == 0 ;
+      switch [piccoloDeviceModel mProcessorType]
+      when pic18_60 : pic_60_devices += !name ;
+      when pic18_80 : pic_80_devices += !name ;
+      end switch ;
+    end foreach ;
+  #--- List 'pic 60' devices
+    message [[pic_60_devices  length] string] . " devices with access bank split offset 0x60:\n" ;
+    foreach pic_60_devices do
+      message [mValue stringByRightPadding !15 !' '] ;
+      index ++ ;
+      if index == 5 then
+        index := 0 ;
+        message "\n" ;
+      end if ;
+    end foreach ;
+    if index != 0 then
+      message "\n" ;
+    end if ;
+    index := 0 ;
+  #--- List 'pic 80' devices
+    message [[pic_80_devices  length] string] . " devices with access bank split offset 0x80:\n" ;
+    foreach pic_80_devices do
+      message [mValue stringByRightPadding !15 !' '] ;
       index ++ ;
       if index == 5 then
         index := 0 ;
@@ -29,7 +53,7 @@ before {
       message "\n" ;
     end if ;
   end if ;
-#--- Print RAM description
+#------------------------------------------------ Print RAM description
   @string deviceForMemoryDescription := [option piccolo_options.memoryDescription] ;
   if [deviceForMemoryDescription length] > 0 then
     @string devicePath := "/" . deviceForMemoryDescription . ".piccoloDevice" ;
@@ -55,7 +79,28 @@ before {
         . [[piccoloDeviceModel mEepromAddress] hexString] . ")\n" ;
       end if ;
     else
-      error here:"The " . deviceForMemoryDescription . " device is not supported" ;
+      error here:"The " . deviceForMemoryDescription . " device is not supported or does not exist" ;
+    end if ;
+  end if ;
+#------------------------------------------------ Print REGISTERS description
+  @string deviceForRegistersDescription := [option piccolo_options.registerDescription] ;
+  if [deviceForRegistersDescription length] > 0 then
+    @string devicePath := "/" . deviceForRegistersDescription . ".piccoloDevice" ;
+    if [[filewrapper embeddedDevices] fileExistsAtPath !devicePath] then
+      @piccoloDeviceModel piccoloDeviceModel ;
+      parseDeviceDefinition ![@lstring new ! deviceForRegistersDescription !here] ?piccoloDeviceModel ;
+      message deviceForRegistersDescription . " has " . [[[piccoloDeviceModel mRegisterTable] count] string] . " registers:\n" ;
+      foreach [piccoloDeviceModel mRegisterTable] do
+        @string s := "  '" . key . "' at " ;
+        foreach mRegisterAddressList
+        do s .= [mValue hexString] ;
+        between s .= ", " ;
+        end foreach ;
+        s .= "\n" ;
+        message s ;
+      end foreach ;
+    else
+      error here:"The " . deviceForRegistersDescription . " device is not supported or does not exist" ;
     end if ;
   end if ;
 }

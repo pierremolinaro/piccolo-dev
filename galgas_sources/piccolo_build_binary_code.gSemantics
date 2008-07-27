@@ -83,41 +83,7 @@ end method ;
 #                                                                            *
 #----------------------------------------------------------------------------*
 
-method @registerExpression.getRegisterAddress
-  ??@registerTable inRegisterTable
-  !@uint outRegisterAddress
-:
-  @uintlist registerAddressList ;
-  @uint size ;
-  [inRegisterTable searchKey !mRegisterName ?registerAddressList ?size ?*] ;
-  if [mOffset uint] > size then
-    error mOffset:"The index (" . [[mOffset uint] string] . ") should be lower than size (" . [size string] . ")" ;
-  end if ;
-  [registerAddressList first ?outRegisterAddress] ;
-  outRegisterAddress := outRegisterAddress + [mOffset uint] ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
-method @registerExpression.getRegisterAddressingInformations
-  ??@registerTable inRegisterTable
-  ??@symbolTable unused inRoutineSymbolTable
-  !@uint outRegisterAddress
-  !@bool outUseBSRregister
-  !@bitSliceTable outBitSliceTable
-:
-  @uintlist registerAddressList ;
-  @uint size ;
-  [inRegisterTable searchKey !mRegisterName ?registerAddressList ?size ?outBitSliceTable] ;
-  [registerAddressList first ?outRegisterAddress] ;
-  outRegisterAddress := outRegisterAddress + [mOffset uint] ;
-  outUseBSRregister := (outRegisterAddress >= 0x60) & (outRegisterAddress < 0xF60) ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
 abstract method @ipic_instruction.generateBinaryCodeAtAddress
-  ??@registerTable unused inRegisterTable
   ??@symbolTable unused inRoutineSymbolTable
   ?!@uint unused ioAddress
 ;
@@ -126,7 +92,6 @@ abstract method @ipic_instruction.generateBinaryCodeAtAddress
 
 override
 method @ipic_pseudo_ORG.generateBinaryCodeAtAddress
-  ??@registerTable unused inRegisterTable
   ??@symbolTable unused inRoutineSymbolTable
   ?!@uint ioAddress
 :
@@ -137,99 +102,59 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override method @ipic_instruction_FDA.generateBinaryCodeAtAddress
-  ??@registerTable inRegisterTable
-  ??@symbolTable inRoutineSymbolTable
+  ??@symbolTable unused inRoutineSymbolTable
   ?!@uint unused ioAddress
 :
-  @uint usedRegisterAddress ;
-  @bool useBSRregister ;
-  [mRegisterExpression getRegisterAddressingInformations
-    !inRegisterTable
-    !inRoutineSymbolTable
-    ?usedRegisterAddress
-    ?useBSRregister
-    ?*
-  ] ;
 #--- Emit Code
   @uint code ; [self getBaseCode ? code] ;
-  if useBSRregister then
+  if [mRegisterDescription mNeedsBSR] then
     code := code | 0x0100 ;
   end if ;
   if not m_W_isDestination then
     code := code | 0x0200 ;
   end if ;
-  code := code | (usedRegisterAddress & 255) ;
+  code := code | ([mRegisterDescription mRegisterAddress] & 255) ;
   emitCode !code ;
 end method ;
 
 #----------------------------------------------------------------------------*
 
 override method @ipic_instruction_FA.generateBinaryCodeAtAddress
-  ??@registerTable inRegisterTable
-  ??@symbolTable inRoutineSymbolTable
+  ??@symbolTable unused inRoutineSymbolTable
   ?!@uint unused ioAddress
 :
-  @uint usedRegisterAddress ;
-  @bool useBSRregister ;
-  [mRegisterExpression getRegisterAddressingInformations
-    !inRegisterTable
-    !inRoutineSymbolTable
-    ?usedRegisterAddress
-    ?useBSRregister
-    ?*
-  ] ;
 #--- Emit Code
   @uint code ; [self getBaseCode ? code] ;
-  if useBSRregister then
+  if [mRegisterDescription mNeedsBSR] then
     code := code | 0x0100 ;
   end if ;
-  code := code | (usedRegisterAddress & 255) ;
+  code := code | ([mRegisterDescription mRegisterAddress] & 255) ;
   emitCode !code ;
 end method ;
 
 #----------------------------------------------------------------------------*
 
 override method @ipic_instruction_MOVFF.generateBinaryCodeAtAddress
-  ??@registerTable inRegisterTable
   ??@symbolTable unused inRoutineSymbolTable
   ?!@uint unused ioAddress
 :
-  @uint sourceRegisterAddress ;
-  [mSourceRegisterName getRegisterAddress !inRegisterTable ?sourceRegisterAddress] ;
-  @uint destinationRegisterAddress ;
-  [mDestinationRegisterName getRegisterAddress !inRegisterTable ?destinationRegisterAddress] ;
-  emitCode !0xC000 | sourceRegisterAddress ;
-  emitCode !0xF000 | destinationRegisterAddress ;
+  emitCode !0xC000 | [mSourceRegisterDescription mRegisterAddress] ;
+  emitCode !0xF000 | [mDestinationRegisterDescription mRegisterAddress] ;
 end method ;
 
 #----------------------------------------------------------------------------*
 
 override method @ipic_instruction_FBA.generateBinaryCodeAtAddress
-  ??@registerTable inRegisterTable
-  ??@symbolTable inRoutineSymbolTable
+  ??@symbolTable unused inRoutineSymbolTable
   ?!@uint unused ioAddress
 :
-#--- Register
-  @bitSliceTable bitSliceTable;
-  @uint usedRegisterAddress ;
-  @bool useBSRregister ;
-  [mRegisterExpression getRegisterAddressingInformations
-    !inRegisterTable
-    !inRoutineSymbolTable
-    ?usedRegisterAddress
-    ?useBSRregister
-    ?bitSliceTable
-  ] ;
-#--- Bit
-  @uint bitNumber ;
-  [mBitNumber getBitNumber !bitSliceTable ?bitNumber] ;
 #--- Emit Code
   @uint code ; [self getBaseCode ? code] ;
-  if useBSRregister then
+  if [mRegisterDescription mNeedsBSR] then
     code := code | 0x0100 ;
   end if ;
-  code := code | (usedRegisterAddress & 255) ;
-  code := code | (bitNumber << 9) ;
+  code := code | ([mRegisterDescription mRegisterAddress] & 255) ;
+  code := code | (mBitNumber << 9) ;
   emitCode !code ;
 end method ;
 
@@ -278,7 +203,6 @@ end routine ;
 #----------------------------------------------------------------------------*
 
 override method @ipic_instruction_conditionalBranch.generateBinaryCodeAtAddress
-  ??@registerTable unused inRegisterTable
   ??@symbolTable inRoutineSymbolTable
   ?!@uint ioAddress
 :
@@ -325,7 +249,6 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override method @ipic_instruction_BRA.generateBinaryCodeAtAddress
-  ??@registerTable unused inRegisterTable
   ??@symbolTable inRoutineSymbolTable
   ?!@uint ioAddress
 :
@@ -347,7 +270,6 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override method @ipic_instruction_GOTO.generateBinaryCodeAtAddress
-  ??@registerTable unused inRegisterTable
   ??@symbolTable inRoutineSymbolTable
   ?!@uint unused ioAddress
 :
@@ -369,7 +291,6 @@ end routine ;
 #----------------------------------------------------------------------------*
 
 override method @ipic_instruction_CALL.generateBinaryCodeAtAddress
-  ??@registerTable unused inRegisterTable
   ??@symbolTable inRoutineSymbolTable
   ?!@uint unused ioAddress
 :
@@ -397,27 +318,16 @@ end routine ;
 #----------------------------------------------------*
 
 override method @ipic_jump_test_register.generateBinaryCodeAtAddress
-  ??@registerTable inRegisterTable
   ??@symbolTable inRoutineSymbolTable
   ?!@uint ioAddress
 :
-#--- Register
-  @bitSliceTable bitSliceTable;
-  @uint usedRegisterAddress ;
-  @bool useBSRregister ;
-  [mRegisterExpression getRegisterAddressingInformations
-    !inRegisterTable
-    !inRoutineSymbolTable
-    ?usedRegisterAddress
-    ?useBSRregister
-    ?bitSliceTable
-  ] ;
+
 #--- Generate TSTFSZ instruction
   @uint code := 0x6600 ; # TSTFSZ
-  if useBSRregister then
+  if [mRegisterDescription mNeedsBSR] then
     code := code | 0x0100 ;
   end if ;
-  code := code | (usedRegisterAddress & 255) ;
+  code := code | ([mRegisterDescription mRegisterAddress] & 255) ;
   emitCode !code ;
 #--- Generate BRA and / or GOTO instructions
   @uint targetAddress ;
@@ -451,21 +361,9 @@ end method ;
 #----------------------------------------------------*
 
 override method @ipic_incDecRegisterInCondition.generateBinaryCodeAtAddress
-  ??@registerTable inRegisterTable
   ??@symbolTable inRoutineSymbolTable
   ?!@uint ioAddress
 :
-#--- Register
-  @bitSliceTable bitSliceTable;
-  @uint usedRegisterAddress ;
-  @bool useBSRregister ;
-  [mRegisterExpression getRegisterAddressingInformations
-    !inRegisterTable
-    !inRoutineSymbolTable
-    ?usedRegisterAddress
-    ?useBSRregister
-    ?bitSliceTable
-  ] ;
   @uint code ;
   if mBranchIfZero & mIncrement then
     code := 0x4800 ; # INFSNZ
@@ -479,10 +377,10 @@ override method @ipic_incDecRegisterInCondition.generateBinaryCodeAtAddress
   if not m_W_isDestination then
     code := code | 0x0200 ;
   end if ;
-  if useBSRregister then
+  if [mRegisterDescription mNeedsBSR] then
     code := code | 0x0100 ;
   end if ;
-  code := code | (usedRegisterAddress & 255) ;
+  code := code | ([mRegisterDescription mRegisterAddress] & 255) ;
   emitCode !code ;
 #--- Generate BRA and / or GOTO instructions
   @uint targetAddress ;
@@ -497,21 +395,9 @@ end method ;
 #----------------------------------------------------*
 
 override method @ipic_registerComparisonCondition.generateBinaryCodeAtAddress
-  ??@registerTable inRegisterTable
   ??@symbolTable inRoutineSymbolTable
   ?!@uint ioAddress
 :
-#--- Register
-  @bitSliceTable bitSliceTable;
-  @uint usedRegisterAddress ;
-  @bool useBSRregister ;
-  [mRegisterExpression getRegisterAddressingInformations
-    !inRegisterTable
-    !inRoutineSymbolTable
-    ?usedRegisterAddress
-    ?useBSRregister
-    ?bitSliceTable
-  ] ;
 #--- Generate TSTFSZ instruction
   @uint code ; # TSTFSZ
   switch mComparison
@@ -522,10 +408,10 @@ override method @ipic_registerComparisonCondition.generateBinaryCodeAtAddress
     when lowerOrEqual   : code := 0x6400 ; # CPFGT
     when lower          : code := 0x6000 ; # CPFLT + BRA
   end switch ;
-  if useBSRregister then
+  if [mRegisterDescription mNeedsBSR] then
     code := code | 0x0100 ;
   end if ;
-  code := code | (usedRegisterAddress & 255) ;
+  code := code | ([mRegisterDescription mRegisterAddress] & 255) ;
   emitCode !code ;
 #--- Generate BRA and / or GOTO instructions
   @uint targetAddress ;
@@ -560,7 +446,6 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override method @ipic_instruction_RCALL.generateBinaryCodeAtAddress
-  ??@registerTable unused inRegisterTable
   ??@symbolTable inRoutineSymbolTable
   ?!@uint ioAddress
 :
@@ -577,7 +462,6 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override method @ipic_instruction_CLRWDT.generateBinaryCodeAtAddress
-  ??@registerTable unused inRegisterTable
   ??@symbolTable unused inRoutineSymbolTable
   ?!@uint unused ioAddress
 :
@@ -587,7 +471,6 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override method @ipic_instruction_DAW.generateBinaryCodeAtAddress
-  ??@registerTable unused inRegisterTable
   ??@symbolTable unused inRoutineSymbolTable
   ?!@uint unused ioAddress
 :
@@ -597,7 +480,6 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override method @ipic_instruction_NOP.generateBinaryCodeAtAddress
-  ??@registerTable unused inRegisterTable
   ??@symbolTable unused inRoutineSymbolTable
   ?!@uint unused ioAddress
 :
@@ -607,7 +489,6 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override method @ipic_instruction_POP.generateBinaryCodeAtAddress
-  ??@registerTable unused inRegisterTable
   ??@symbolTable unused inRoutineSymbolTable
   ?!@uint unused ioAddress
 :
@@ -617,7 +498,6 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override method @ipic_instruction_PUSH.generateBinaryCodeAtAddress
-  ??@registerTable unused inRegisterTable
   ??@symbolTable unused inRoutineSymbolTable
   ?!@uint unused ioAddress
 :
@@ -627,7 +507,6 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override method @ipic_instruction_RESET.generateBinaryCodeAtAddress
-  ??@registerTable unused inRegisterTable
   ??@symbolTable unused inRoutineSymbolTable
   ?!@uint unused ioAddress
 :
@@ -637,7 +516,6 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override method @ipic_instruction_RETURN.generateBinaryCodeAtAddress
-  ??@registerTable unused inRegisterTable
   ??@symbolTable unused inRoutineSymbolTable
   ?!@uint unused ioAddress
 :
@@ -647,7 +525,6 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override method @ipic_instruction_RETFIE.generateBinaryCodeAtAddress
-  ??@registerTable unused inRegisterTable
   ??@symbolTable unused inRoutineSymbolTable
   ?!@uint unused ioAddress
 :
@@ -657,7 +534,6 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override method @ipic_instruction_SLEEP.generateBinaryCodeAtAddress
-  ??@registerTable unused inRegisterTable
   ??@symbolTable unused inRoutineSymbolTable
   ?!@uint unused ioAddress
 :
@@ -667,7 +543,6 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override method @ipic_instruction_literalOperation.generateBinaryCodeAtAddress
-  ??@registerTable unused inRegisterTable
   ??@symbolTable unused inRoutineSymbolTable
   ?!@uint unused ioAddress
 :
@@ -680,20 +555,16 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override method @ipic_instruction_LFSR.generateBinaryCodeAtAddress
-  ??@registerTable inRegisterTable
   ??@symbolTable unused inRoutineSymbolTable
   ?!@uint unused ioAddress
 :
-  @uint sourceRegisterAddress ;
-  [mRegisterExpression getRegisterAddress !inRegisterTable ?sourceRegisterAddress] ;
-  emitCode !0xEE00 | ([mFSRindex uint] << 4) | (sourceRegisterAddress >> 8) ;
-  emitCode !0xF000 | (sourceRegisterAddress & 255) ;
+  emitCode !0xEE00 | ([mFSRindex uint] << 4) | ([mRegisterDescription mRegisterAddress] >> 8) ;
+  emitCode !0xF000 | ([mRegisterDescription mRegisterAddress] & 255) ;
 end method ;
 
 #----------------------------------------------------------------------------*
 
 override method @ipic_instruction_MOVLB.generateBinaryCodeAtAddress
-  ??@registerTable unused inRegisterTable
   ??@symbolTable unused inRoutineSymbolTable
   ?!@uint unused ioAddress
 :
@@ -703,7 +574,6 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override method @ipic_pseudo_LABEL.generateBinaryCodeAtAddress
-  ??@registerTable unused inRegisterTable
   ??@symbolTable inRoutineSymbolTable
   ?!@uint ioAddress
 :
@@ -719,22 +589,15 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override method @ipic_instruction_MOVAW.generateBinaryCodeAtAddress
-  ??@registerTable inRegisterTable
   ??@symbolTable unused inRoutineSymbolTable
   ?!@uint unused ioAddress
 :
-  @uint registerAddress ;
-  [mRegisterExpression getRegisterAddress
-    !inRegisterTable
-    ?registerAddress
-  ] ;
-  emitCode !0x0E00 | registerAddress ;
+  emitCode !0x0E00 | [mRegisterDescription mRegisterAddress] ;
 end method ;
 
 #----------------------------------------------------------------------------*
 
 override method @ipic_instruction_TBLRD.generateBinaryCodeAtAddress
-  ??@registerTable unused inRegisterTable
   ??@symbolTable unused inRoutineSymbolTable
   ?!@uint unused ioAddress
 :
@@ -749,7 +612,6 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override method @ipic_instruction_TBLWT.generateBinaryCodeAtAddress
-  ??@registerTable unused inRegisterTable
   ??@symbolTable unused inRoutineSymbolTable
   ?!@uint unused ioAddress
 :
@@ -764,7 +626,6 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override method @ipic_instruction_MNOP.generateBinaryCodeAtAddress
-  ??@registerTable unused inRegisterTable
   ??@symbolTable unused inRoutineSymbolTable
   ?!@uint unused ioAddress
 :
@@ -783,7 +644,6 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override method @ipic_instruction_computed_retlw.generateBinaryCodeAtAddress
-  ??@registerTable unused  inRegisterTable
   ??@symbolTable inRoutineSymbolTable
   ?!@uint ioAddress
 :
@@ -802,7 +662,6 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override method @ipic_instruction_computed_bra.generateBinaryCodeAtAddress
-  ??@registerTable unused inRegisterTable
   ??@symbolTable inRoutineSymbolTable
   ?!@uint ioAddress
 :
@@ -828,7 +687,6 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override method @ipic_instruction_computed_goto.generateBinaryCodeAtAddress
-  ??@registerTable unused inRegisterTable
   ??@symbolTable inRoutineSymbolTable
   ?!@uint ioAddress
 :
@@ -855,8 +713,8 @@ end method ;
 #----------------------------------------------------------------------------*
 
 routine buildBinaryCode
-  ??@registerTable inRegisterTable
   ??@ipic_instructionList inGeneratedInstructionList
+  ??@uint inROMsize
 :
 #-------------------------------- First pass: build label map
   @symbolTable symbolTable [emptyMap] ;
@@ -869,7 +727,7 @@ routine buildBinaryCode
   currentAddress := 0 ;
   setEmitAddress !0 ;
   foreach inGeneratedInstructionList do
-    [mInstruction generateBinaryCodeAtAddress !inRegisterTable !symbolTable !?currentAddress] ;
+    [mInstruction generateBinaryCodeAtAddress !symbolTable !?currentAddress] ;
     @uint instructionLength ;
     [mInstruction instructionLength ?instructionLength] ;
     currentAddress := currentAddress  + instructionLength ;
@@ -879,6 +737,10 @@ routine buildBinaryCode
     error here: "Internal second pass error: the last address gets " . [currentAddress hexString]
     . " value in second pass, while it gets "
     . [lastAddressForFirstPass hexString] . " value in first pass" ;
+  elsif lastAddressForFirstPass > inROMsize then
+    error here: "Program too large: " . [lastAddressForFirstPass string]
+    . " bytes (rom size is "
+    . [inROMsize string] . " bytes)" ;
   end if ;
 end routine ;
 
