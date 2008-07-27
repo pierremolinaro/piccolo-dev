@@ -1,0 +1,394 @@
+controller PIC18F45J10 {
+  processor "pic18_80" ;
+  romsize 32760 ;
+  bank 16 ;
+  unusedregister 0x400 to 0x4FF ;
+  unusedregister 0x500 to 0x5FF ;
+  unusedregister 0x600 to 0x6FF ;
+  unusedregister 0x700 to 0x7FF ;
+  unusedregister 0x800 to 0x8FF ;
+  unusedregister 0x900 to 0x9FF ;
+  unusedregister 0xA00 to 0xAFF ;
+  unusedregister 0xB00 to 0xBFF ;
+  unusedregister 0xC00 to 0xCFF ;
+  unusedregister 0xD00 to 0xDFF ;
+  unusedregister 0xE00 to 0xEFF ;
+  unusedregister 0xF00 to 0xF7F ;
+  unusedregister 0xF8F to 0xF91 ;
+  unusedregister 0xF97 to 0xF9A ;
+  unusedregister 0xF9C ;
+  unusedregister 0xFA8 to 0xFAA ;
+  unusedregister 0xFB1 to 0xFB3 ;
+  unusedregister 0xFB9 ;
+  unusedregister 0xFD4 ;
+  unusedregister 0xFD2 ;
+  ram accessram : 0x0 to 0x7F ;
+  ram gpr0 : 0x80 to 0xFF ;
+  ram gpr1 : 0x100 to 0x1FF ;
+  ram gpr2 : 0x200 to 0x2FF ;
+  ram gpr3 : 0x300 to 0x3FF ;
+  # Total ram: 1024
+
+  register ADCON0 at 0xFC2
+    <-, -, CHS [4], GO/nDONE, ADON> ;
+
+  register ADCON1 at 0xFC1
+    <-, -, VCFG [2], PCFG [4]> ;
+
+  register ADCON2 at 0xFC0
+    <ADFM, -, ACQT [3], ADCS [3]> ;
+
+  register ADRESH at 0xFC4
+    <ADRESH [8]> ;
+
+  register ADRESL at 0xFC3
+    <ADRESL [8]> ;
+
+  register BAUDCON at 0xFB8
+    <ABDOVF, RCMT, -, SCKP, BRG16, -, WUE, ABDEN> ;
+
+  register BSR at 0xFE0
+    <-, -, -, -, BSR [4]> ;
+
+  register CCP2CON at 0xFBA
+    <-, -, DC2B [2], CCP2M [4]> ;
+
+  register CCPR1H at 0xFBF
+    <CCPR1H [8]> ;
+
+  register CCPR1L at 0xFBE
+    <CCPR1L [8]> ;
+
+  register CCPR2H at 0xFBC
+    <CCPR2H [8]> ;
+
+  register CCPR2L at 0xFBB
+    <CCPR2L [8]> ;
+
+  register CMCON at 0xFB4
+    <C2OUT, C1OUT, C2INV, C1INV, CIS, CM [3]> ;
+
+  register CVRCON at 0xFB5
+    <CVREN, CVROE, CVRR, CVRSS, CVR [4]> ;
+
+  register ECCP1AS at 0xFB6
+    <ECCPASE, ECCPAS [3], PSSAC [2], PSSBD [2]> ;
+
+  register ECCP1CON at 0xFBD
+    <P1M [2], DC1B [2], CCP1M [4]> ;
+
+  register EECON1 at 0xFA6
+    <-, -, -, FREE, WRERR, WREN, WR, -> ;
+
+  register EECON2 at 0xFA7
+    <EECON2 [8]> ;
+
+  register FSR0H at 0xFEA
+    <-, -, -, -, FSR0H [4]> ;
+
+  register FSR0L at 0xFE9
+    <FSR0L [8]> ;
+
+  register FSR1H at 0xFE2
+    <-, -, -, -, FSR1H [4]> ;
+
+  register FSR1L at 0xFE1
+    <FSR1L [8]> ;
+
+  register FSR2H at 0xFDA
+    <-, -, -, -, FSR2H [4]> ;
+
+  register FSR2L at 0xFD9
+    <FSR2L [8]> ;
+
+  register INDF0 at 0xFEF
+    <INDF0 [8]> ;
+
+  register INDF1 at 0xFE7
+    <INDF1 [8]> ;
+
+  register INDF2 at 0xFDF
+    <INDF2 [8]> ;
+
+  register INTCON at 0xFF2
+    <GIE/GIEH, PEIE/GIEL, TMR0IE, INT0IE, RBIE, TMR0IF, INT0IF, RBIF> ;
+
+  register INTCON2 at 0xFF1
+    <nRBPU, INTEDG0, INTEDG1, INTEDG2, -, TMR0IP, -, RBIP> ;
+
+  register INTCON3 at 0xFF0
+    <INT2IP, INT1IP, -, INT2IE, INT1IE, -, INT2IF, INT1IF> ;
+
+  register IPR1 at 0xF9F
+    <PSPIP, ADIP, RCIP, TXIP, SSP1IP, CCP1IP, TMR2IP, TMR1IP> ;
+
+  register IPR2 at 0xFA2
+    <OSCFIP, CMIP, -, -, BCL1IP, -, -, CCP2IP> ;
+
+  register IPR3 at 0xFA5
+    <SSP2IP, BCL2IP, -, -, -, -, -, -> ;
+
+  register LATA at 0xF89
+    <-, -, LATA5, -, LATA3, LATA2, LATA1, LATA0> ;
+
+  register LATB at 0xF8A
+    <LATB7, LATB6, LATB5, LATB4, LATB3, LATB2, LATB1, LATB0> ;
+
+  register LATC at 0xF8B
+    <LATC7, LATC6, LATC5, LATC4, LATC3, LATC2, LATC1, LATC0> ;
+
+  register LATD at 0xF8C
+    <LATD7, LATD6, LATD5, LATD4, LATD3, LATD2, LATD1, LATD0> ;
+
+  register LATE at 0xF8D
+    <-, -, -, -, -, LATE2, LATE1, LATE0> ;
+
+  register OSCCON at 0xFD3
+    <IDLEN, -, -, -, OSTS, -, SCS [2]> ;
+
+  register OSCTUNE at 0xF9B
+    <-, PLLEN, -, -, -, -, -, -> ;
+
+  register PCL at 0xFF9
+    <PCL [8]> ;
+
+  register PCLATH at 0xFFA
+    <PCH [8]> ;
+
+  register PCLATU at 0xFFB
+    <-, -, -, PCU [5]> ;
+
+  register PIE1 at 0xF9D
+    <PSPIE, ADIE, RCIE, TXIE, SSP1IE, CCP1IE, TMR2IE, TMR1IE> ;
+
+  register PIE2 at 0xFA0
+    <OSCFIE, CMIE, -, -, BCL1IE, -, -, CCP2IE> ;
+
+  register PIE3 at 0xFA3
+    <SSP2IE, BCL2IE, -, -, -, -, -, -> ;
+
+  register PIR1 at 0xF9E
+    <PSPIF, ADIF, RCIF, TXIF, SSP1IF, CCP1IF, TMR2IF, TMR1IF> ;
+
+  register PIR2 at 0xFA1
+    <OSCFIF, CMIF, -, -, BCL1IF, -, -, CCP2IF> ;
+
+  register PIR3 at 0xFA4
+    <SSP2IF, BCL2IF, -, -, -, -, -, -> ;
+
+  register PLUSW0 at 0xFEB
+    <PLUSW0 [8]> ;
+
+  register PLUSW1 at 0xFE3
+    <PLUSW1 [8]> ;
+
+  register PLUSW2 at 0xFDB
+    <PLUSW2 [8]> ;
+
+  register PORTA at 0xF80
+    <-, -, RA5, -, RA3, RA2, RA1, RA0> ;
+
+  register PORTB at 0xF81
+    <RB7, RB6, RB5, RB4, RB3, RB2, RB1, RB0> ;
+
+  register PORTC at 0xF82
+    <RC7, RC6, RC5, RC4, RC3, RC2, RC1, RC0> ;
+
+  register PORTD at 0xF83
+    <RD7, RD6, RD5, RD4, RD3, RD2, RD1, RD0> ;
+
+  register PORTE at 0xF84
+    <-, -, -, -, -, RE2, RE1, RE0> ;
+
+  register POSTDEC0 at 0xFED
+    <POSTDEC0 [8]> ;
+
+  register POSTDEC1 at 0xFE5
+    <POSTDEC1 [8]> ;
+
+  register POSTDEC2 at 0xFDD
+    <POSTDEC2 [8]> ;
+
+  register POSTINC0 at 0xFEE
+    <POSTINC0 [8]> ;
+
+  register POSTINC1 at 0xFE6
+    <POSTINC1 [8]> ;
+
+  register POSTINC2 at 0xFDE
+    <POSTINC2 [8]> ;
+
+  register PR2 at 0xFCB
+    <PR2 [8]> ;
+
+  register PREINC0 at 0xFEC
+    <PREINC0 [8]> ;
+
+  register PREINC1 at 0xFE4
+    <PREINC1 [8]> ;
+
+  register PREINC2 at 0xFDC
+    <PREINC2 [8]> ;
+
+  register PRODH at 0xFF4
+    <PRODH [8]> ;
+
+  register PRODL at 0xFF3
+    <PRODL [8]> ;
+
+  register PWM1CON at 0xFB7
+    <PRSEN, PDC [7]> ;
+
+  register RCON at 0xFD0
+    <IPEN, -, -, nRI, nTO, nPD, nPOR, nBOR> ;
+
+  register RCREG at 0xFAE
+    <RCREG [8]> ;
+
+  register RCSTA at 0xFAB
+    <SPEN, RX9, SREN, CREN, ADDEN, FERR, OERR, RX9D> ;
+
+  register SPBRG at 0xFAF
+    <SPBRG [8]> ;
+
+  register SPBRGH at 0xFB0
+    <SPBRGH [8]> ;
+
+  register SSP2ADD at 0xF88
+    <SSPADD [8]> ;
+
+  register SSP2BUF at 0xF8E
+    <SSPBUF [8]> ;
+
+  register SSP2CON1 at 0xF86
+    <WCOL, SSPOV, SSPEN, CKP, SSPM [4]> ;
+
+  register SSP2CON2 at 0xF85
+    <GCEN, ACKSTAT, ACKDT, ACKEN, RCEN, PEN, RSEN, SEN> ;
+
+  register SSP2STAT at 0xF87
+    <SMP, CKE, D/nA, P, S, R/nW, UA, BF> ;
+
+  register SSPADD at 0xFC8
+    <SSPADD [8]> ;
+
+  register SSPBUF at 0xFC9
+    <SSPBUF [8]> ;
+
+  register SSPCON1 at 0xFC6
+    <WCOL, SSPOV, SSPEN, CKP, SSPM [4]> ;
+
+  register SSPCON2 at 0xFC5
+    <GCEN, ACKSTAT, ACKDT, ACKEN, RCEN, PEN, RSEN, SEN> ;
+
+  register SSPSTAT at 0xFC7
+    <SMP, CKE, D/nA, P, S, R/nW, UA, BF> ;
+
+  register STATUS at 0xFD8
+    <-, -, -, N, OV, Z, DC, C> ;
+
+  register STKPTR at 0xFFC
+    <STKFUL, STKUNF, -, STKPTR [5]> ;
+
+  register T0CON at 0xFD5
+    <TMR0ON, T08BIT, T0CS, T0SE, PSA, T0PS [3]> ;
+
+  register T1CON at 0xFCD
+    <RD16, T1RUN, T1CKPS [2], T1OSCEN, nT1SYNC, TMR1CS, TMR1ON> ;
+
+  register T2CON at 0xFCA
+    <-, TOUTPS [4], TMR2ON, T2CKPS [2]> ;
+
+  register TABLAT at 0xFF5
+    <TABLAT [8]> ;
+
+  register TBLPTRH at 0xFF7
+    <TBLPTRH [8]> ;
+
+  register TBLPTRL at 0xFF6
+    <TBLPTRL [8]> ;
+
+  register TBLPTRU at 0xFF8
+    <-, -, ACSS, TBLPTRU [5]> ;
+
+  register TMR0H at 0xFD7
+    <TMR0H [8]> ;
+
+  register TMR0L at 0xFD6
+    <TMR0L [8]> ;
+
+  register TMR1H at 0xFCF
+    <TMR1H [8]> ;
+
+  register TMR1L at 0xFCE
+    <TMR1L [8]> ;
+
+  register TMR2 at 0xFCC
+    <TMR2 [8]> ;
+
+  register TOSH at 0xFFE
+    <TOSH [8]> ;
+
+  register TOSL at 0xFFD
+    <TOSL [8]> ;
+
+  register TOSU at 0xFFF
+    <-, -, -, TOSU [5]> ;
+
+  register TRISA at 0xF92
+    <-, -, TRISA5, -, TRISA3, TRISA2, TRISA1, TRISA0> ;
+
+  register TRISB at 0xF93
+    <TRISB7, TRISB6, TRISB5, TRISB4, TRISB3, TRISB2, TRISB1, TRISB0> ;
+
+  register TRISC at 0xF94
+    <TRISC7, TRISC6, TRISC5, TRISC4, TRISC3, TRISC2, TRISC1, TRISC0> ;
+
+  register TRISD at 0xF95
+    <TRISD7, TRISD6, TRISD5, TRISD4, TRISD3, TRISD2, TRISD1, TRISD0> ;
+
+  register TRISE at 0xF96
+    <IBF, OBF, IBOV, PSPMODE, -, TRISE2, TRISE1, TRISE0> ;
+
+  register TXREG at 0xFAD
+    <TXREG [8]> ;
+
+  register TXSTA at 0xFAC
+    <CSRC, TX9, TXEN, SYNC, SENDB, BRGH, TRMT, TX9D> ;
+
+  register WDTCON at 0xFD1
+    <-, -, -, -, -, -, -, SWDTEN> ;
+
+  register WREG at 0xFE8
+    <WREG [8]> ;
+
+  config CONFIG1H at 0x7FF9 width 8 {
+    FNOP_0 mask 0xF0 description "Force NOP"
+    SIGN mask 0x8 description "Config Word Signature Bit"
+    CP_0 mask 0x4 description "Code Protect Enable"
+  }
+
+  config CONFIG1L at 0x7FF8 width 8 {
+    BACKBUG mask 0x80 description "Background Debug"
+    ENHCPU mask 0x40 description "Extended CPU Enable"
+    STVREN mask 0x20 description "Stack Overflow Reset Enable"
+    WDTEN mask 0x1 description "Watchdog Timer Enable"
+  }
+
+  config CONFIG2H at 0x7FFB width 8 {
+    FNOP_1 mask 0xF0 description "Force NOP"
+    WDTPS mask 0xF description "Watchdog Timer Postscale"
+  }
+
+  config CONFIG2L at 0x7FFA width 8 {
+    IESO mask 0x80 description "Internal External Switch Over Enable"
+    FCMEN mask 0x40 description "Fail Safe Monitor Clock Enable"
+    FOSC2 mask 0x4 description "Default/Reset System Clock Select"
+    FOSC mask 0x3 description "Oscillator"
+  }
+
+  config CONFIG3H at 0x7FFD width 8 {
+    FNOP_2 mask 0xF0 description "Force NOP"
+    CCP2MX mask 0x1 description "CCP2 Mux"
+  }
+}

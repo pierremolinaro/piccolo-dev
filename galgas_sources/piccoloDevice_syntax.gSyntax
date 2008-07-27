@@ -17,19 +17,33 @@ rule <start_symbol>
   $identifier$ ? @lstring deviceName ;
   ${$ ;
   $processor$ ;
+  @processorType processorType ;
   $string$ ? @lstring processorName ;
-  if [processorName string] != "pic18_60" then
-    error here : "The '" . processorName . "' is not handled" ;
+  if [processorName string] == "pic18_60" then
+    processorType := [@processorType pic18_60] ;
+  elsif [processorName string] == "pic18_80" then
+    processorType := [@processorType pic18_80] ;
+  else
+    error here : "The '" . processorName . "' is not handled" -> processorType ;
   end if ;
   $;$ ;
   $romsize$ ;
   $integer$ ? @luint romSize ;
   $;$ ;
-  $eepromsize$ ;
-  $integer$ ? @luint eepromSize ;
-  $at$ ;
-  $integer$ ? @luint eepromAddress ;
-  $;$ ;
+  @uint eepromSize ;
+  @uint eepromAddress ;
+  select
+    eepromSize := 0 ;
+    eepromAddress := 0 ;
+  or
+    $eepromsize$ ;
+    $integer$ ? @luint l_eepromSize ;
+    eepromSize := [l_eepromSize uint] ;
+    $at$ ;
+    $integer$ ? @luint l_eepromAddress ;
+    eepromAddress := [l_eepromAddress uint] ;
+    $;$ ;
+  end select ;
   $bank$ ;
   $integer$ ? @luint bankCount ;
   $;$ ;
@@ -138,10 +152,13 @@ rule <start_symbol>
   $}$ ;
   outPiccoloDeviceModel := [@piccoloDeviceModel new
     !deviceName
+    !processorType
     !romSize
     !bankCount
     !registerTable
     !ramBankTable
+    !eepromSize
+    !eepromAddress
   ] ;
 end rule ;
 
