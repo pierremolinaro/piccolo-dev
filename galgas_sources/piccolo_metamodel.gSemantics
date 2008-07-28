@@ -16,12 +16,6 @@ list @instructionList {
 
 #----------------------------------------------------*
 
-class @pseudo_LABEL extends @piccolo_instruction {
-  @lstring mTargetLabel ;
-}
-
-#----------------------------------------------------*
-
 class @registerExpression {
   @lstring mRegisterName ;
   @luint mOffset ;
@@ -144,26 +138,6 @@ enum @FA_instruction_base_code {
 
 #----------------------------------------------------*
 
-routine getFAinstructionBaseCode
-  ??@FA_instruction_base_code inInstruction
-  !@uint outBaseCode
-:
-  switch inInstruction
-  when CLRF   : outBaseCode := 0x6A00 ;
-  when CPFSEQ : outBaseCode := 0x6200 ;
-  when CPFSGT : outBaseCode := 0x6400 ;
-  when CPFSLT : outBaseCode := 0x6000 ;
-  when MOVWF  : outBaseCode := 0x6E00 ;
-  when MULWF  : outBaseCode := 0x0200 ;
-  when NEGF   : outBaseCode := 0x6C00 ;
-  when SETF   : outBaseCode := 0x6800 ;
-  when TSTFSZ : outBaseCode := 0x6600 ;
-  end switch ;
-end routine ;
-
-
-#----------------------------------------------------*
-
 class @instruction_FA extends @piccolo_instruction {
   @FA_instruction_base_code mFAinstruction ;
   @registerExpression mRegisterExpression ;
@@ -214,19 +188,6 @@ enum @bit_oriented_op {
 
 #----------------------------------------------------*
 
-routine getBitOrientedOpBaseCode ??@bit_oriented_op inInstruction !@uint outBaseCode :
-  switch inInstruction
-  when BCF : outBaseCode := 0x9000 ;
-  when BSF : outBaseCode := 0x8000 ;
-  when BTFSC : outBaseCode := 0xB000 ;
-  when BTFSS : outBaseCode := 0xA000 ;
-  when BTG : outBaseCode := 0x7000 ;
-  end switch ;
-end routine ;
-
-
-#----------------------------------------------------*
-
 class @instruction_FBA extends @piccolo_instruction {
   @bit_oriented_op mBitOrientedOp ;
   @registerExpression mRegisterExpression ;
@@ -259,21 +220,6 @@ enum @conditional_branch {
 
 #----------------------------------------------------*
 
-routine getBccBaseCode ??@conditional_branch inConditionalBranch !@uint outBaseCode :
-  switch inConditionalBranch
-  when bz   : outBaseCode := 0xE000 ;
-  when bnz  : outBaseCode := 0xE100 ;
-  when bn   : outBaseCode := 0xE600 ;
-  when bnn  : outBaseCode := 0xE700 ;
-  when bc   : outBaseCode := 0xE200 ;
-  when bnc  : outBaseCode := 0xE300 ;
-  when bov  : outBaseCode := 0xE400 ;
-  when bnov : outBaseCode := 0xE500 ;
-  end switch ;
-end routine ;
-
-#----------------------------------------------------*
-
 routine getComplementaryBcc ??@conditional_branch inConditionalBranch !@conditional_branch outComplementary :
   switch inConditionalBranch
   when bz   : outComplementary := [@conditional_branch bnz] ;
@@ -289,36 +235,7 @@ end routine ;
 
 #----------------------------------------------------*
 
-enum @condionalBranchMode {
-  constructor native ;
-  constructor usesBRA ;
-  constructor usesGOTO ;
-}{
-}
-
-#----------------------------------------------------*
-
-class @instruction_conditionalBranch extends @piccolo_instruction {
-  @condionalBranchMode mBranchMode ;
-  @conditional_branch mConditionalBranch ;
-  @lstring mTargetLabel ;
-}
-
-#----------------------------------------------------*
-
-class @instruction_BRA extends @piccolo_instruction {
-  @lstring mTargetLabel ;
-}
-
-#----------------------------------------------------*
-
 class @instruction_CALL extends @piccolo_instruction {
-  @lstring mTargetLabel ;
-}
-
-#----------------------------------------------------*
-
-class @instruction_GOTO extends @piccolo_instruction {
   @lstring mTargetLabel ;
 }
 
@@ -397,22 +314,6 @@ enum @literal_instruction_opcode {
     XORLW -> "XORLW" ;
   end reader ;
 }
-
-#----------------------------------------------------*
-
-routine getLiteralInstructionBaseCode ??@literal_instruction_opcode inInstruction !@uint outBaseCode :
-  switch inInstruction
-  when ADDLW : outBaseCode := 0x0F00 ;
-  when ANDLW : outBaseCode := 0x0B00 ;
-  when IORLW : outBaseCode := 0x0900 ;
-  when MOVLW : outBaseCode := 0x0E00 ;
-  when MULLW : outBaseCode := 0x0D00 ;
-  when RETLW : outBaseCode := 0x0C00 ;
-  when SUBLW : outBaseCode := 0x0800 ;
-  when XORLW : outBaseCode := 0x0A00 ;
-  end switch ;
-end routine ;
-
 
 #----------------------------------------------------*
 
@@ -495,17 +396,6 @@ enum @if_semi_colon_op {
     TSTFSZ -> "TSTFSZ" ;
   end reader ;
 }
-
-#----------------------------------------------------*
-
-routine getBaseCodeForIfSemiColonOp ??@if_semi_colon_op inInstruction !@uint outBaseCode :
-  switch inInstruction
-    when CPFSEQ : outBaseCode := 0x6200 ;
-    when CPFSGT : outBaseCode := 0x6400 ;
-    when CPFSLT : outBaseCode := 0x6000 ;
-    when TSTFSZ : outBaseCode := 0x6600 ;
-  end switch ; 
-end routine ;
 
 #----------------------------------------------------*
 

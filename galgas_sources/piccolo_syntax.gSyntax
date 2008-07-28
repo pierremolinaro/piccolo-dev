@@ -129,12 +129,15 @@ rule <declaration_in_ram>
   select
   or
     $<$ ;
-    @uint sliceIndex := 8 ;
+    @sint sliceIndex := 8S ;
     repeat
       select
         @uint sliceWidth := 0 ; # Means undefined
         repeat
-          @uint sliceBase := sliceIndex ;
+          @uint sliceBase := 0 ;
+          if sliceIndex >= 0S then
+            sliceBase := [sliceIndex uint] ;
+          end if ;
           $identifier$ ? @lstring sliceName ;
           select
             if (sliceWidth != 0) & (sliceWidth != 1) then
@@ -151,11 +154,15 @@ rule <declaration_in_ram>
             sliceBase := sliceBase + 1 - [sliceSize uint] ;
             $]$ ;
           end select ;
-          [!?bitSliceTable insertKey !sliceName !sliceIndex-sliceWidth !sliceWidth] ;
+          @uint base := 0 ;
+          if sliceIndex >= [sliceWidth sint] then
+            base := [sliceIndex uint] - sliceWidth ;
+          end if ;
+          [!?bitSliceTable insertKey !sliceName !base !sliceWidth] ;
         while
           $/$ ;
         end repeat ;
-        sliceIndex := sliceIndex - sliceWidth ;
+        sliceIndex := sliceIndex - [sliceWidth sint] ;
       or
         $-$ ;
         sliceIndex -- ;
@@ -163,8 +170,8 @@ rule <declaration_in_ram>
     while
       $,$ ;
     end repeat ;
-    if sliceIndex != 0 then
-      error name:"Incorrect bit definition for register '" . name . "'" ;
+    if sliceIndex != 0S then
+      error name:"Incorrect bit definition for register '" . name . "': " . [8S - sliceIndex string] . " bits (s) are defined, instead of 8" ;
     end if ;
     $>$ ;
   end select ;
@@ -819,20 +826,8 @@ rule <simple_instruction> !@piccolo_instruction outInstruction :
       $decf$ ;
       baseCode := [@instruction_FDA_base_code DECF] ;
     or
-      $decfsz$ ;
-      baseCode := [@instruction_FDA_base_code DECFSZ] ;
-    or
-      $dcfsnz$ ;
-      baseCode := [@instruction_FDA_base_code DCFSNZ] ;
-    or
       $incf$ ;
       baseCode := [@instruction_FDA_base_code INCF] ;
-    or
-      $incfsz$ ;
-      baseCode := [@instruction_FDA_base_code INCFSZ] ;
-    or
-      $infsnz$ ;
-      baseCode := [@instruction_FDA_base_code INFSNZ] ;
     or
       $iorwf$ ;
       baseCode := [@instruction_FDA_base_code IORWF] ;
@@ -883,12 +878,6 @@ rule <simple_instruction> !@piccolo_instruction outInstruction :
       $clrf$ ;
       FAinstruction := [@FA_instruction_base_code CLRF] ;
     or
-      $cpfsgt$ ;
-      FAinstruction := [@FA_instruction_base_code CPFSGT] ;
-    or
-      $cpfslt$ ;
-      FAinstruction := [@FA_instruction_base_code CPFSLT] ;
-    or
       $movwf$ ;
       FAinstruction := [@FA_instruction_base_code MOVWF] ;
     or
@@ -900,9 +889,6 @@ rule <simple_instruction> !@piccolo_instruction outInstruction :
     or
       $setf$ ;
       FAinstruction := [@FA_instruction_base_code SETF] ;
-    or
-      $tstfsz$ ;
-      FAinstruction := [@FA_instruction_base_code TSTFSZ] ;
     end select ;
     @registerExpression registerName ;
     <register_parsing> ?registerName ;
@@ -930,10 +916,6 @@ rule <simple_instruction> !@piccolo_instruction outInstruction :
     or
       $bsf$ ; bitOrientedOp := [@bit_oriented_op BSF] ;
     or
-      $btfsc$ ; bitOrientedOp := [@bit_oriented_op BTFSC] ;
-    or
-      $btfss$ ; bitOrientedOp := [@bit_oriented_op BTFSS] ;
-    or
       $btg$ ; bitOrientedOp := [@bit_oriented_op BTG] ;
     end select ;
     @registerExpression registerName ;
@@ -948,49 +930,9 @@ rule <simple_instruction> !@piccolo_instruction outInstruction :
       !bitNumber
     ] ;
   or
-    @conditional_branch conditionalBranch ;
-    select
-      $bc$ ; conditionalBranch := [@conditional_branch bc] ;
-    or
-      $bnc$ ; conditionalBranch := [@conditional_branch bnc] ;
-    or
-      $bz$ ; conditionalBranch := [@conditional_branch bz] ;
-    or
-      $bnz$ ; conditionalBranch := [@conditional_branch bnz] ;
-    or
-      $bn$ ; conditionalBranch := [@conditional_branch bn] ;
-    or
-      $bnn$ ; conditionalBranch := [@conditional_branch bnn] ;
-    or
-      $bov$ ; conditionalBranch := [@conditional_branch bov] ;
-    or
-      $bnov$ ; conditionalBranch := [@conditional_branch bnov] ;
-    end select ;
-    $identifier$ ? @lstring targetLabelName ;
-    outInstruction := [@instruction_conditionalBranch new
-      !instructionLocation
-      ![@condionalBranchMode native]
-      !conditionalBranch
-      !targetLabelName
-    ] ;
-  or
-    $bra$ ;
-    $identifier$ ? @lstring targetLabelName ;
-    outInstruction := [@instruction_BRA new
-      !instructionLocation
-      !targetLabelName
-    ] ;
-  or
     $call$ ;
     $identifier$ ? @lstring targetLabelName ;
     outInstruction := [@instruction_CALL new
-      !instructionLocation
-      !targetLabelName
-    ] ;
-  or
-    $goto$ ;
-    $identifier$ ? @lstring targetLabelName ;
-    outInstruction := [@instruction_GOTO new
       !instructionLocation
       !targetLabelName
     ] ;
@@ -1062,13 +1004,6 @@ rule <simple_instruction> !@piccolo_instruction outInstruction :
     $movlb$ ;
     $integer$ ? @luint pageIndex ;
     outInstruction := [@instruction_MOVLB new !instructionLocation !pageIndex] ;
-  or
-    $label$ ;
-    $identifier$ ? @lstring targetLabelName ;
-    outInstruction := [@pseudo_LABEL new
-      !instructionLocation
-      !targetLabelName
-    ] ;
   or
     $movaw$ ;
     @registerExpression registerName ;

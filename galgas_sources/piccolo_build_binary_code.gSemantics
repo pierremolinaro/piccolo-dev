@@ -158,6 +158,21 @@ override method @ipic_instruction_FBA.generateBinaryCodeAtAddress
   emitCode !code ;
 end method ;
 
+#----------------------------------------------------*
+
+routine getBccBaseCode ??@conditional_branch inConditionalBranch !@uint outBaseCode :
+  switch inConditionalBranch
+  when bz   : outBaseCode := 0xE000 ;
+  when bnz  : outBaseCode := 0xE100 ;
+  when bn   : outBaseCode := 0xE600 ;
+  when bnn  : outBaseCode := 0xE700 ;
+  when bc   : outBaseCode := 0xE200 ;
+  when bnc  : outBaseCode := 0xE300 ;
+  when bov  : outBaseCode := 0xE400 ;
+  when bnov : outBaseCode := 0xE500 ;
+  end switch ;
+end routine ;
+
 #----------------------------------------------------------------------------*
 
 routine emitConditionalBranchInstruction
