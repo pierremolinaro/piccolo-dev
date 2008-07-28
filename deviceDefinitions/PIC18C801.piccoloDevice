@@ -16,7 +16,6 @@ controller PIC18C801 {
   unusedregister 0xFA3 to 0xFA5 ;
   unusedregister 0xFA8 to 0xFAA ;
   unusedregister 0xFB4 to 0xFB9 ;
-  unusedregister 0xFD4 ;
   ram accessram : 0x0 to 0x7F ;
   ram gpr0 : 0x80 to 0xFF ;
   ram gpr1 : 0x100 to 0x1FF ;
@@ -370,20 +369,42 @@ controller PIC18C801 {
 
   config CONFIG1H at 0x300001 width 2 {
     OSC mask 0x3 description "Oscillator"
+      setting 0x3 mask 0x3 description "RC"
+      setting 0x2 mask 0x3 description "HS"
+      setting 0x1 mask 0x3 description "EC"
+      setting 0x0 mask 0x3 description "LP"
   }
 
   config CONFIG2H at 0x300003 width 4 {
     WDTPS mask 0xE description "Watchdog Postscaler"
+      setting 0xE mask 0xE description "1:128"
+      setting 0xC mask 0xE description "1:64"
+      setting 0xA mask 0xE description "1:32"
+      setting 0x8 mask 0xE description "1:16"
+      setting 0x6 mask 0xE description "1:8"
+      setting 0x4 mask 0xE description "1:4"
+      setting 0x2 mask 0xE description "1:2"
+      setting 0x0 mask 0xE description "1:1"
     WDT mask 0x1 description "Watchdog Timer"
+      setting 0x1 mask 0x1 description "Enabled"
+      setting 0x0 mask 0x1 description "Disabled"
   }
 
   config CONFIG2L at 0x300002 width 7 {
     BUS mask 0x40 description "Bus Width"
+      setting 0x40 mask 0x40 description "16 Bit"
+      setting 0x0 mask 0x40 description "8 Bit"
     PUT mask 0x1 description "Power Up Timer"
+      setting 0x1 mask 0x1 description "Disabled"
+      setting 0x0 mask 0x1 description "Enabled"
   }
 
   config CONFIG4L at 0x300006 width 8 {
     BACKBUG mask 0x80 description "Background Debug"
+      setting 0x80 mask 0x80 description "Disabled"
+      setting 0x0 mask 0x80 description "Enabled"
     STVR mask 0x1 description "Stack Overflow Reset"
+      setting 0x1 mask 0x1 description "Enabled"
+      setting 0x0 mask 0x1 description "Disabled"
   }
 }

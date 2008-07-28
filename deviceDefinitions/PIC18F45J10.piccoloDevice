@@ -21,7 +21,6 @@ controller PIC18F45J10 {
   unusedregister 0xFB1 to 0xFB3 ;
   unusedregister 0xFB9 ;
   unusedregister 0xFD4 ;
-  unusedregister 0xFD2 ;
   ram accessram : 0x0 to 0x7F ;
   ram gpr0 : 0x80 to 0xFF ;
   ram gpr1 : 0x100 to 0x1FF ;
@@ -364,31 +363,74 @@ controller PIC18F45J10 {
 
   config CONFIG1H at 0x7FF9 width 8 {
     FNOP_0 mask 0xF0 description "Force NOP"
+      setting 0xF0 mask 0xF0 description "NOPd"
     SIGN mask 0x8 description "Config Word Signature Bit"
+      setting 0x8 mask 0x8 description "Bulk erase of memory not conducated"
+      setting 0x0 mask 0x8 description "Bulk erase of memory area complete"
     CP_0 mask 0x4 description "Code Protect Enable"
+      setting 0x4 mask 0x4 description "Disabled"
+      setting 0x0 mask 0x4 description "Enabled"
   }
 
   config CONFIG1L at 0x7FF8 width 8 {
     BACKBUG mask 0x80 description "Background Debug"
-    ENHCPU mask 0x40 description "Extended CPU Enable"
+      setting 0x80 mask 0x80 description "Disabled"
+      setting 0x0 mask 0x80 description "Enabled"
+    XINST mask 0x40 description "Extended Instruction Set Enable bit"
+      setting 0x40 mask 0x40 description "Enabled"
+      setting 0x0 mask 0x40 description "Disabled"
     STVREN mask 0x20 description "Stack Overflow Reset Enable"
+      setting 0x20 mask 0x20 description "Enabled"
+      setting 0x0 mask 0x20 description "Disabled"
     WDTEN mask 0x1 description "Watchdog Timer Enable"
+      setting 0x1 mask 0x1 description "Enabled"
+      setting 0x0 mask 0x1 description "Disabled"
   }
 
   config CONFIG2H at 0x7FFB width 8 {
     FNOP_1 mask 0xF0 description "Force NOP"
+      setting 0xF0 mask 0xF0 description "NOPd"
     WDTPS mask 0xF description "Watchdog Timer Postscale"
+      setting 0xF mask 0xF description "1:32,768"
+      setting 0xE mask 0xF description "1:16,384"
+      setting 0xD mask 0xF description "1:8,192"
+      setting 0xC mask 0xF description "1:4,096"
+      setting 0xB mask 0xF description "1:2,048"
+      setting 0xA mask 0xF description "1:1,024"
+      setting 0x9 mask 0xF description "1:512"
+      setting 0x8 mask 0xF description "1:256"
+      setting 0x7 mask 0xF description "1:128"
+      setting 0x6 mask 0xF description "1:64"
+      setting 0x5 mask 0xF description "1:32"
+      setting 0x4 mask 0xF description "1:16"
+      setting 0x3 mask 0xF description "1:8"
+      setting 0x2 mask 0xF description "1:4"
+      setting 0x1 mask 0xF description "1:2"
+      setting 0x0 mask 0xF description "1:1"
   }
 
   config CONFIG2L at 0x7FFA width 8 {
     IESO mask 0x80 description "Internal External Switch Over Enable"
+      setting 0x80 mask 0x80 description "Enabled"
+      setting 0x0 mask 0x80 description "Disabled"
     FCMEN mask 0x40 description "Fail Safe Monitor Clock Enable"
+      setting 0x40 mask 0x40 description "Enabled"
+      setting 0x0 mask 0x40 description "Disabled"
     FOSC2 mask 0x4 description "Default/Reset System Clock Select"
+      setting 0x4 mask 0x4 description "Clock Select by FOSC"
+      setting 0x0 mask 0x4 description "INTRC enabled"
     FOSC mask 0x3 description "Oscillator"
+      setting 0x3 mask 0x3 description "EC OSC with software PLL and CLKOUT on OSC2"
+      setting 0x2 mask 0x3 description "EC OSC with CLKOUT on OSC2"
+      setting 0x1 mask 0x3 description "HS OSC with software PLL"
+      setting 0x0 mask 0x3 description "HS OSC"
   }
 
   config CONFIG3H at 0x7FFD width 8 {
     FNOP_2 mask 0xF0 description "Force NOP"
+      setting 0xF0 mask 0xF0 description "NOPd"
     CCP2MX mask 0x1 description "CCP2 Mux"
+      setting 0x1 mask 0x1 description "CCP2 I/O Muxed with RC1"
+      setting 0x0 mask 0x1 description "CCP2 I/O Muxed with RB3"
   }
 }

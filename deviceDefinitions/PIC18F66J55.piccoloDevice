@@ -2,10 +2,6 @@ controller PIC18F66J55 {
   processor "pic18_60" ;
   romsize 98296 ;
   bank 16 ;
-  unusedregister 0xF40 to 0xF59 ;
-  unusedregister 0xF87 to 0xF88 ;
-  unusedregister 0xF90 to 0xF91 ;
-  unusedregister 0xF99 to 0xF9A ;
   ram accessram : 0x0 to 0x5F ;
   ram gpr0 : 0x60 to 0xFF ;
   ram gpr1 : 0x100 to 0x1FF ;
@@ -25,10 +21,10 @@ controller PIC18F66J55 {
   ram gpr9 : 0x900 to 0x9FF ;
   # Total ram: 3904
 
-  register ADCON1 at 0xFC2
+  register ADCON0 at 0xFC2
     <VCFG [2], CHS [4], GO/nDONE, ADON> ;
 
-  register ADCON2 at 0xFC1
+  register ADCON1 at 0xFC1
     <ADFM, ADCAL, ACQT [3], ADCS [3]> ;
 
   register ADRESH at 0xFC4
@@ -90,9 +86,6 @@ controller PIC18F66J55 {
 
   register CMSTATUS at 0xF6A
     <-, -, -, -, -, -, COUT2, COUT1> ;
-
-  register CVRCON at 0xFD3
-    <CVREN, CVROE, CVRR, CVRSS, CVR [4]> ;
 
   register ECCP1AS at 0xFBF
     <ECCPASE, ECCPAS [3], PSSAC [2], PSSBD [2]> ;
@@ -184,7 +177,7 @@ controller PIC18F66J55 {
   register LATG at 0xF8F
     <-, -, -, LATG4, LATG3, LATG2, LATG1, LATG0> ;
 
-  register OSCCON at 0xFD4
+  register OSCCON at 0xFD3
     <IDLEN, IRCF [3], OSTS, FLTS, SCS [2]> ;
 
   register OSCTUNE at 0xF9B
@@ -226,53 +219,53 @@ controller PIC18F66J55 {
   register PLUSW2 at 0xFDB
     <PLUSW2 [8]> ;
 
-  register PMPADDRH at 0xF69
+  register PMADDRH at 0xF69
     <CS2, CS1, ADDRH [6]> ;
 
-  register PMPADDRL at 0xF68
+  register PMADDRL at 0xF68
     <ADDRL [8]> ;
 
-  register PMPCONH at 0xF65
+  register PMCONH at 0xF4B
     <PMPEN, -, PSIDL, ADRMUX1, ADRMUX0, PTBEEN, PTWREN, PTRDEN> ;
 
-  register PMPCONL at 0xF64
+  register PMCONL at 0xF4A
     <CSF1, CSF0, ALP, CS2P, CS1P, BEP, WRSP, RDSP> ;
 
-  register PMPDATA1H at 0xF67
+  register PMDIN1H at 0xF67
     <DATAH [8]> ;
 
-  register PMPDATA1L at 0xF66
+  register PMDIN1L at 0xF66
     <DATAL [8]> ;
 
-  register PMPDATA2H at 0xF5F
+  register PMDIN2H at 0xF45
     <DATAH [8]> ;
 
-  register PMPDATA2L at 0xF5E
+  register PMDIN2L at 0xF44
     <DATAL [8]> ;
 
-  register PMPDATAOUT2H at 0xF61
+  register PMDOUT2H at 0xF47
     <DATAH [8]> ;
 
-  register PMPDATAOUT2L at 0xF60
+  register PMDOUT2L at 0xF46
     <DATAL [8]> ;
 
-  register PMPMODEH at 0xF63
-    <BUSY, IRQM [2], INCM [2], MODE16, MODE [2]> ;
-
-  register PMPMODEL at 0xF62
-    <WAITB [2], WAITM [4], WAITE [2]> ;
-
-  register PMPPEH at 0xF5D
+  register PMEH at 0xF43
     <PTENH [8]> ;
 
-  register PMPPEL at 0xF5C
+  register PMEL at 0xF42
     <PTENL [8]> ;
 
-  register PMPSTATH at 0xF5B
-    <IBF, IBOV, -, -, IBFs [4]> ;
+  register PMMODEH at 0xF49
+    <BUSY, IRQM [2], INCM [2], MODE16, MODE [2]> ;
 
-  register PMPSTATL at 0xF5A
-    <OBE, OBUF, -, -, OBEs [4]> ;
+  register PMMODEL at 0xF48
+    <WAITB [2], WAITM [4], WAITE [2]> ;
+
+  register PMSTATH at 0xF41
+    <IBF, IBOV, -, -, IB3F, IB2F, IB1F, IB0F> ;
+
+  register PMSTATL at 0xF40
+    <OBE, OBUF, -, -, OB3E, OB2E, OB1E, OB0E> ;
 
   register PORTA at 0xF80
     <-, -, RA5, RA4, RA3, RA2, RA1, RA0> ;
@@ -499,43 +492,188 @@ controller PIC18F66J55 {
   register TXSTA2 at 0xFA8
     <CSRC, TX9, TXEN, SYNC, SENDB, BRGH, TRMT, TX9D> ;
 
+  register UADDR at 0xF5E
+    <-, ADDR [7]> ;
+
+  register UCFG at 0xF5F
+    <UTEYE, -, -, UPUEN, UTRDIS, FSEN, PPB [2]> ;
+
+  register UCON at 0xF65
+    <-, PPBRST, SE0, PKTDIS, USBEN, RESUME, SUSPND, -> ;
+
+  register UEIE at 0xF5D
+    <BTSEE, -, -, BTOEE, DFN8EE, CRC16EE, CRC5EE, PIDEE> ;
+
+  register UEIR at 0xF63
+    <BTSEF, -, -, BTOEF, DFN8EF, CRC16EF, CRC5EF, PIDEF> ;
+
+  register UEP0 at 0xF4C
+    <-, -, -, EPHSHK, EPCONDIS, EPOUTEN, EPINEN, EPSTALL> ;
+
+  register UEP1 at 0xF4D
+    <-, -, -, EPHSHK, EPCONDIS, EPOUTEN, EPINEN, EPSTALL> ;
+
+  register UEP10 at 0xF56
+    <-, -, -, EPHSHK, EPCONDIS, EPOUTEN, EPINEN, EPSTALL> ;
+
+  register UEP11 at 0xF57
+    <-, -, -, EPHSHK, EPCONDIS, EPOUTEN, EPINEN, EPSTALL> ;
+
+  register UEP12 at 0xF58
+    <-, -, -, EPHSHK, EPCONDIS, EPOUTEN, EPINEN, EPSTALL> ;
+
+  register UEP13 at 0xF59
+    <-, -, -, EPHSHK, EPCONDIS, EPOUTEN, EPINEN, EPSTALL> ;
+
+  register UEP14 at 0xF5A
+    <-, -, -, EPHSHK, EPCONDIS, EPOUTEN, EPINEN, EPSTALL> ;
+
+  register UEP15 at 0xF5B
+    <-, -, -, EPHSHK, EPCONDIS, EPOUTEN, EPINEN, EPSTALL> ;
+
+  register UEP2 at 0xF4E
+    <-, -, -, EPHSHK, EPCONDIS, EPOUTEN, EPINEN, EPSTALL> ;
+
+  register UEP3 at 0xF4F
+    <-, -, -, EPHSHK, EPCONDIS, EPOUTEN, EPINEN, EPSTALL> ;
+
+  register UEP4 at 0xF50
+    <-, -, -, EPHSHK, EPCONDIS, EPOUTEN, EPINEN, EPSTALL> ;
+
+  register UEP5 at 0xF51
+    <-, -, -, EPHSHK, EPCONDIS, EPOUTEN, EPINEN, EPSTALL> ;
+
+  register UEP6 at 0xF52
+    <-, -, -, EPHSHK, EPCONDIS, EPOUTEN, EPINEN, EPSTALL> ;
+
+  register UEP7 at 0xF53
+    <-, -, -, EPHSHK, EPCONDIS, EPOUTEN, EPINEN, EPSTALL> ;
+
+  register UEP8 at 0xF54
+    <-, -, -, EPHSHK, EPCONDIS, EPOUTEN, EPINEN, EPSTALL> ;
+
+  register UEP9 at 0xF55
+    <-, -, -, EPHSHK, EPCONDIS, EPOUTEN, EPINEN, EPSTALL> ;
+
+  register UFRMH at 0xF61
+    <-, -, -, -, -, FRM [3]> ;
+
+  register UFRML at 0xF60
+    <FRM [8]> ;
+
+  register UIE at 0xF5C
+    <-, SOFIE, STALLIE, IDLEIE, TRNIE, ACTIVIE, UERRIE, URSTIE> ;
+
+  register UIR at 0xF62
+    <-, SOFIF, STALLIF, IDLEIF, TRNIF, ACTIVIF, UERRIF, URSTIF> ;
+
+  register USTAT at 0xF64
+    <-, ENDP [4], DIR, PPBI, -> ;
+
   register WDTCON at 0xFC0
-    <VREG_SLP, -, -, DEVCFG, -, -, -, SWDTEN> ;
+    <REGSLP, LVDSTAT, -, ADSHR, -, -, -, SWDTEN> ;
 
   register WREG at 0xFE8
     <WREG [8]> ;
 
-  config CONFIG1H at 0x17FF9 width 4 {
+  config CONFIG1H at 0x17FF9 width 8 {
+    RESERVED mask 0xF0 description "RESERVED"
+      setting 0xF0 mask 0xF0 description "RESERVED"
     SIGN mask 0x8 description "Config Word Signature Bit"
+      setting 0x8 mask 0x8 description "Bulk erase of memory not conducated"
+      setting 0x0 mask 0x8 description "Bulk erase of memory area complete"
     CP_0 mask 0x4 description "Code Protect 000000-0017FF7"
+      setting 0x4 mask 0x4 description "Disabled"
+      setting 0x0 mask 0x4 description "Enabled"
     CPUDIV mask 0x3 description "CPU DIV"
-    RESERVED mask 0x0 description "RESERVED"
+      setting 0x3 mask 0x3 description "No CPU system clock divide"
+      setting 0x2 mask 0x3 description "CPU system clock divide by 2"
+      setting 0x1 mask 0x3 description "CPU system clock divide by 3"
+      setting 0x0 mask 0x3 description "CPU system clock divide by 6"
   }
 
   config CONFIG1L at 0x17FF8 width 8 {
     BACKBUG mask 0x80 description "Background Debug"
-    ENHCPU mask 0x40 description "Extended CPU Enable"
+      setting 0x80 mask 0x80 description "Disabled"
+      setting 0x0 mask 0x80 description "Enabled"
+    XINST mask 0x40 description "Extended Instruction Set Enable bit"
+      setting 0x40 mask 0x40 description "Enabled"
+      setting 0x0 mask 0x40 description "Disabled"
     STVR mask 0x20 description "Stack Overflow Reset"
+      setting 0x20 mask 0x20 description "Enabled"
+      setting 0x0 mask 0x20 description "Disabled"
     PLLDIV mask 0xE description "PLL DIV"
+      setting 0xE mask 0xE description "No Divide (4MHz input)"
+      setting 0xC mask 0xE description "Divide by 2 (8MHz input)"
+      setting 0xA mask 0xE description "Divide by 3 (12MHz input)"
+      setting 0x8 mask 0xE description "Divide by 4 (16MHz input)"
+      setting 0x6 mask 0xE description "Divide by 5 (20MHz input)"
+      setting 0x4 mask 0xE description "Divide by 6 (24MHz input)"
+      setting 0x2 mask 0xE description "Divide by 10 (40MHz input)"
+      setting 0x0 mask 0xE description "Divide by 12 (48MHz input)"
     WDT mask 0x1 description "Watchdog Timer"
+      setting 0x1 mask 0x1 description "Enabled"
+      setting 0x0 mask 0x1 description "Disabled-Controlled by SWDTEN bit"
   }
 
-  config CONFIG2H at 0x17FFB width 4 {
+  config CONFIG2H at 0x17FFB width 8 {
+    RESERVED mask 0xF0 description "RESERVED"
+      setting 0xF0 mask 0xF0 description "RESERVED"
     WDTPS mask 0xF description "Watchdog Postscaler"
-    RESERVED mask 0x0 description "RESERVED"
+      setting 0xF mask 0xF description "1:32768"
+      setting 0xE mask 0xF description "1:16384"
+      setting 0xD mask 0xF description "1:8192"
+      setting 0xC mask 0xF description "1:4096"
+      setting 0xB mask 0xF description "1:2048"
+      setting 0xA mask 0xF description "1:1024"
+      setting 0x9 mask 0xF description "1:512"
+      setting 0x8 mask 0xF description "1:256"
+      setting 0x7 mask 0xF description "1:128"
+      setting 0x6 mask 0xF description "1:64"
+      setting 0x5 mask 0xF description "1:32"
+      setting 0x4 mask 0xF description "1:16"
+      setting 0x3 mask 0xF description "1:8"
+      setting 0x2 mask 0xF description "1:4"
+      setting 0x1 mask 0xF description "1:2"
+      setting 0x0 mask 0xF description "1:1"
   }
 
   config CONFIG2L at 0x17FFA width 8 {
     IESO mask 0x80 description "Internal External Switch Over Mode"
+      setting 0x0 mask 0x80 description "Disabled"
+      setting 0x80 mask 0x80 description "Enabled"
     FCMEN mask 0x40 description "Fail-Safe Clock Monitor Enable"
+      setting 0x0 mask 0x40 description "Disabled"
+      setting 0x40 mask 0x40 description "Enabled"
     OSC mask 0x7 description "Oscillator"
+      setting 0x7 mask 0x7 description "EC+PLL(CLKO-RA6),USB-EC+PLL"
+      setting 0x6 mask 0x7 description "EC(CLKO-RA6),USB-EC"
+      setting 0x5 mask 0x7 description "HS+PLL,USB-HS+PLL"
+      setting 0x4 mask 0x7 description "HS,USB-HS"
+      setting 0x3 mask 0x7 description "INTOSCPLLO(CLKO-RA6)"
+      setting 0x2 mask 0x7 description "INTOSCPLL"
+      setting 0x1 mask 0x7 description "INTOSCO(CLKO-RA6)"
+      setting 0x0 mask 0x7 description "INTOSC"
   }
 
-  config CONFIG3H at 0x17FFD width 4 {
+  config CONFIG3H at 0x17FFD width 8 {
+    RESERVED mask 0xF0 description "RESERVED"
+      setting 0xF0 mask 0xF0 description "RESERVED"
     MSSP7B_EN mask 0x8 description "MSSP V3 7 bit address masking bit mode"
+      setting 0x8 mask 0x8 description "7 bit address masking mode"
+      setting 0x0 mask 0x8 description "5 bit address masking mode"
     PMPMX mask 0x4 description "PMP MUX"
-    ECCPMX mask 0x2 description "ECCP Mux"
+      setting 0x4 mask 0x4 description "PMP ports on PORTD and PORTE"
+      setting 0x0 mask 0x4 description "PMP ports on PORTA,PORTF and PORTH"
+    RESERVED2 mask 0x2 description "RESERVED"
+      setting 0x2 mask 0x2 description "RESERVED"
     CCP2MUX mask 0x1 description "CCP2 Mux"
-    RESERVED mask 0x0 description "RESERVED"
+      setting 0x1 mask 0x1 description "RC1"
+      setting 0x0 mask 0x1 description "RE7 <Microcontroller>"
+  }
+
+  config CONFIG3L at 0x17FFC width 8 {
+    RES mask 0xF8 description "Reserved"
+      setting 0xF8 mask 0xF8 description "maintain these bits as 1"
   }
 }

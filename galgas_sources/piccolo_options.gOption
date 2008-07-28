@@ -5,6 +5,7 @@ option piccolo_options :
 @bool ouputListFile : 'L', "log" -> "Output a log file" ;
 @bool ouputDeviceList : 'D', "device-list" -> "Output the list of supported devices" ;
 @string memoryDescription : 'M', "memory" -> "Output the RAM, ROM and EEPROM description of the device named by string" ;
-@string registerDescription : 'R', "registers" -> "Output the register descriptionof the device named by string" ;
+@string registerDescription : 'R', "registers" -> "Output the special register description of the device named by string" ;
+@string configDescription : 'F', "configuration" -> "Output the configuration register description of the device named by string" ;
 
 end option ;

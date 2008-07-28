@@ -18,7 +18,6 @@ controller PIC18F64J90 {
   unusedregister 0xF87 to 0xF88 ;
   unusedregister 0xF99 to 0xF9A ;
   unusedregister 0xF90 to 0xF91 ;
-  unusedregister 0xFA7 ;
   unusedregister 0xFB0 ;
   ram accessram : 0x0 to 0x5F ;
   ram gpr0 : 0x60 to 0xFF ;
@@ -480,32 +479,94 @@ controller PIC18F64J90 {
   register WREG at 0xFE8
     <WREG [8]> ;
 
-  config CONFIG1H at 0x3FF9 width 4 {
+  config CONFIG1H at 0x3FF9 width 8 {
+    RESERVED mask 0xF0 description "RESERVED"
+      setting 0xF0 mask 0xF0 description "RESERVED"
     SIGN mask 0x8 description "Config Word Signature Bit"
+      setting 0x8 mask 0x8 description "Bulk erase of memory not conducated"
+      setting 0x0 mask 0x8 description "Bulk erase of memory area complete"
     CP_0 mask 0x4 description "Code Protect 000000-01FFF6"
-    RESERVED mask 0x0 description "RESERVED"
+      setting 0x4 mask 0x4 description "Disabled"
+      setting 0x0 mask 0x4 description "Enabled"
   }
 
   config CONFIG1L at 0x3FF8 width 8 {
     BACKBUG mask 0x80 description "Background Debug"
-    ENHCPU mask 0x40 description "Extended CPU Enable"
+      setting 0x80 mask 0x80 description "Disabled"
+      setting 0x0 mask 0x80 description "Enabled"
+    XINST mask 0x40 description "Extended Instruction Set Enable bit"
+      setting 0x40 mask 0x40 description "Enabled"
+      setting 0x0 mask 0x40 description "Disabled"
     STVR mask 0x20 description "Stack Overflow Reset"
+      setting 0x20 mask 0x20 description "Enabled"
+      setting 0x0 mask 0x20 description "Disabled"
     WDT mask 0x1 description "Watchdog Timer"
+      setting 0x1 mask 0x1 description "Enabled"
+      setting 0x0 mask 0x1 description "Disabled-Controlled by SWDTEN bit"
   }
 
-  config CONFIG2H at 0x3FFB width 4 {
+  config CONFIG2H at 0x3FFB width 8 {
+    RESERVED mask 0xF0 description "RESERVED"
+      setting 0xF0 mask 0xF0 description "RESERVED"
     WDTPS mask 0xF description "Watchdog Postscaler"
-    RESERVED mask 0x0 description "RESERVED"
+      setting 0xF mask 0xF description "1:32768"
+      setting 0xE mask 0xF description "1:16384"
+      setting 0xD mask 0xF description "1:8192"
+      setting 0xC mask 0xF description "1:4096"
+      setting 0xB mask 0xF description "1:2048"
+      setting 0xA mask 0xF description "1:1024"
+      setting 0x9 mask 0xF description "1:512"
+      setting 0x8 mask 0xF description "1:256"
+      setting 0x7 mask 0xF description "1:128"
+      setting 0x6 mask 0xF description "1:64"
+      setting 0x5 mask 0xF description "1:32"
+      setting 0x4 mask 0xF description "1:16"
+      setting 0x3 mask 0xF description "1:8"
+      setting 0x2 mask 0xF description "1:4"
+      setting 0x1 mask 0xF description "1:2"
+      setting 0x0 mask 0xF description "1:1"
   }
 
   config CONFIG2L at 0x3FFA width 8 {
     IESO mask 0x80 description "Internal External Switch Over Mode"
+      setting 0x0 mask 0x80 description "Disabled"
+      setting 0x80 mask 0x80 description "Enabled"
     FCMEN mask 0x40 description "Fail-Safe Clock Monitor Enable"
+      setting 0x0 mask 0x40 description "Disabled"
+      setting 0x40 mask 0x40 description "Enabled"
     OSC mask 0x7 description "Oscillator"
+      setting 0x7 mask 0x7 description "OSC1/OSC2 EC+PLL"
+      setting 0x6 mask 0x7 description "OSC1/OSC2 EC"
+      setting 0x5 mask 0x7 description "OSC1/OSC2 HS+PLL"
+      setting 0x4 mask 0x7 description "OSC1/OSC2 HS"
+      setting 0x3 mask 0x7 description "INTOSC EC+PLL"
+      setting 0x2 mask 0x7 description "INTOSC EC"
+      setting 0x1 mask 0x7 description "INTOSC HS+PLL"
+      setting 0x0 mask 0x7 description "INTOSC HS"
   }
 
-  config CONFIG3H at 0x3FFD width 1 {
+  config CONFIG3H at 0x3FFD width 8 {
+    RESERVED mask 0xF0 description "RESERVED"
+      setting 0xF0 mask 0xF0 description "RESERVED"
     CCP2MUX mask 0x1 description "CCP2 Mux"
-    RESERVED mask 0x0 description "RESERVED"
+      setting 0x1 mask 0x1 description "RC1"
+      setting 0x0 mask 0x1 description "RE7 <Microcontroller> / RB3"
+  }
+
+  config CONFIG3L at 0x3FFC width 8 {
+    WAIT mask 0x80 description "External Bus Wait"
+      setting 0x80 mask 0x80 description "Disabled"
+      setting 0x0 mask 0x80 description "Enabled"
+    BW mask 0x40 description "Data Bus Width"
+      setting 0x40 mask 0x40 description "16-bit external bus mode"
+      setting 0x0 mask 0x40 description "8-bit external bus mode"
+    PMODE mask 0x30 description "External Memory Bus"
+      setting 0x30 mask 0x30 description "Microcontroller"
+      setting 0x20 mask 0x30 description "Ext Microcontroller 12-bit"
+      setting 0x10 mask 0x30 description "Ext Microcontroller 16-bit"
+      setting 0x0 mask 0x30 description "Ext Microcontroller 20-bit"
+    EASHFT mask 0x8 description "External Address Bus Shift"
+      setting 0x8 mask 0x8 description "Enabled"
+      setting 0x0 mask 0x8 description "Disabled"
   }
 }

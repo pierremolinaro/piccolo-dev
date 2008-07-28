@@ -31,6 +31,43 @@ enum @processorType {
 
 #----------------------------------------------------*
 
+list @illegalMaskList {
+  @luint mIllegalValue ;
+  @luint mIllegalMask ;
+  @lstring mDescription ;
+}
+
+#----------------------------------------------------*
+
+list @fieldSettingList {
+  @uint mValue ;
+  @uint mMask ;
+  @string mDescription ;
+}
+
+#----------------------------------------------------*
+
+map @configRegisterMaskMap {
+  @luint mMaskValue ;
+  @lstring mDescription ;
+  @fieldSettingList mFieldSettingList ;
+  insert insertKey error message "the '%K' configuration register mask is already declared in %L" ;
+  search searchKey error message "the '%K' configuration register mask is not declared" ;
+}
+
+#----------------------------------------------------*
+
+map @configRegisterMap {
+  @luint mRegisterAddress ;
+  @luint mRegisterWidth ;
+  @configRegisterMaskMap mConfigRegisterMaskMap ;
+  @illegalMaskList mIllegalMaskList ;
+  insert insertKey error message "the '%K' configuration register is already declared in %L" ;
+  search searchKey error message "the '%K' configuration register is not declared" ;
+}
+
+#----------------------------------------------------*
+
 struct @piccoloDeviceModel {
   @lstring mDeviceName ;
   @processorType mProcessorType ;
@@ -40,6 +77,7 @@ struct @piccoloDeviceModel {
   @ramBankTable mRamBankTable ;
   @uint mEepromSize ; # 0 if no EEPROM
   @uint mEepromAddress ; # 0 if no EEPROM
+  @configRegisterMap mConfigRegisterMap ;
 }
 
 #----------------------------------------------------*

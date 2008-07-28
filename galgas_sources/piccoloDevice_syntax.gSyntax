@@ -130,6 +130,7 @@ rule <start_symbol>
     [!?registerTable insertKey !registerName !registerAddressList !1 !bitSliceTable] ;
     $;$ ;
   end repeat ;
+  @configRegisterMap configRegisterMap [emptyMap] ;
   repeat
   while
     $config$ ;
@@ -138,7 +139,19 @@ rule <start_symbol>
     $integer$ ? @luint configRegisterAddress ;
     $width$ ;
     $integer$ ? @luint configRegisterWidth ;
+    @illegalMaskList illegalMaskList [emptyList] ;
+    repeat
+    while
+      $illegal$ ;
+      $integer$ ? @luint illegalValue ;
+      $mask$ ;
+      $integer$ ? @luint illegalMask ;
+      $message$ ;
+      $string$ ? @lstring illegalDescriptionString ;
+      illegalMaskList += !illegalValue !illegalMask !illegalDescriptionString ;
+    end repeat ;
     ${$ ;
+    @configRegisterMaskMap configRegisterMaskMap [emptyMap] ;
     repeat
     while
       $identifier$ ? @lstring maskName ;
@@ -146,8 +159,27 @@ rule <start_symbol>
       $integer$ ? @luint maskValue ;
       $description$ ;
       $string$ ? @lstring maskDescriptionString ;
+      @fieldSettingList fieldSettingList [emptyList] ;
+      repeat
+        $setting$ ;
+        $integer$ ? @luint value ;
+        $mask$ ;
+        $integer$ ? @luint mask ;
+        $description$ ;
+        $string$ ? @lstring descriptionString ;
+        fieldSettingList += ![value uint] ![mask uint] ![descriptionString string] ;
+      while
+      end repeat ;
+      [!?configRegisterMaskMap insertKey !maskName !maskValue !maskDescriptionString !fieldSettingList] ;
     end repeat ;
     $}$ ;
+    [!?configRegisterMap insertKey
+      !configRegisterName
+      !configRegisterAddress
+      !configRegisterWidth
+      !configRegisterMaskMap
+      !illegalMaskList
+    ] ;
   end repeat ;
   $}$ ;
   outPiccoloDeviceModel := [@piccoloDeviceModel new
@@ -159,6 +191,7 @@ rule <start_symbol>
     !ramBankTable
     !eepromSize
     !eepromAddress
+    !configRegisterMap
   ] ;
 end rule ;
 

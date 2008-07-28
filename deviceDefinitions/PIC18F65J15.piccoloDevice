@@ -464,36 +464,82 @@ controller PIC18F65J15 {
   register WREG at 0xFE8
     <WREG [8]> ;
 
-  config CONFIG1H at 0xBFF9 width 4 {
+  config CONFIG1H at 0xBFF9 width 8 {
+    RESERVED mask 0xF0 description "RESERVED"
+      setting 0xF0 mask 0xF0 description "RESERVED"
     SIGN mask 0x8 description "Config Word Signature Bit"
+      setting 0x8 mask 0x8 description "Bulk erase of memory not conducated"
+      setting 0x0 mask 0x8 description "Bulk erase of memory area complete"
     CP_0 mask 0x4 description "Code Protect 000000-00BFF6"
-    RESERVED mask 0x0 description "RESERVED"
+      setting 0x4 mask 0x4 description "Disabled"
+      setting 0x0 mask 0x4 description "Enabled"
   }
 
   config CONFIG1L at 0xBFF8 width 8 {
     BACKBUG mask 0x80 description "Background Debug"
-    ENHCPU mask 0x40 description "Extended CPU Enable"
+      setting 0x80 mask 0x80 description "Disabled"
+      setting 0x0 mask 0x80 description "Enabled"
+    XINST mask 0x40 description "Extended Instruction Set Enable bit"
+      setting 0x40 mask 0x40 description "Enabled"
+      setting 0x0 mask 0x40 description "Disabled"
     STVR mask 0x20 description "Stack Overflow Reset"
+      setting 0x20 mask 0x20 description "Enabled"
+      setting 0x0 mask 0x20 description "Disabled"
     WDT mask 0x1 description "Watchdog Timer"
+      setting 0x1 mask 0x1 description "Enabled"
+      setting 0x0 mask 0x1 description "Disabled-Controlled by SWDTEN bit"
   }
 
-  config CONFIG2H at 0xBFFB width 4 {
+  config CONFIG2H at 0xBFFB width 8 {
+    RESERVED mask 0xF0 description "RESERVED"
+      setting 0xF0 mask 0xF0 description "RESERVED"
     WDTPS mask 0xF description "Watchdog Postscaler"
-    RESERVED mask 0x0 description "RESERVED"
+      setting 0xF mask 0xF description "1:32768"
+      setting 0xE mask 0xF description "1:16384"
+      setting 0xD mask 0xF description "1:8192"
+      setting 0xC mask 0xF description "1:4096"
+      setting 0xB mask 0xF description "1:2048"
+      setting 0xA mask 0xF description "1:1024"
+      setting 0x9 mask 0xF description "1:512"
+      setting 0x8 mask 0xF description "1:256"
+      setting 0x7 mask 0xF description "1:128"
+      setting 0x6 mask 0xF description "1:64"
+      setting 0x5 mask 0xF description "1:32"
+      setting 0x4 mask 0xF description "1:16"
+      setting 0x3 mask 0xF description "1:8"
+      setting 0x2 mask 0xF description "1:4"
+      setting 0x1 mask 0xF description "1:2"
+      setting 0x0 mask 0xF description "1:1"
   }
 
   config CONFIG2L at 0xBFFA width 8 {
     IESO mask 0x80 description "Internal External Switch Over Mode"
+      setting 0x0 mask 0x80 description "Disabled"
+      setting 0x80 mask 0x80 description "Enabled"
     FCMEN mask 0x40 description "Fail-Safe Clock Monitor Enable"
+      setting 0x0 mask 0x40 description "Disabled"
+      setting 0x40 mask 0x40 description "Enabled"
     OSC mask 0x7 description "Oscillator"
+      setting 0x7 mask 0x7 description "OSC1/OSC2 EC+PLL"
+      setting 0x6 mask 0x7 description "OSC1/OSC2 EC"
+      setting 0x5 mask 0x7 description "OSC1/OSC2 HS+PLL"
+      setting 0x4 mask 0x7 description "OSC1/OSC2 HS"
+      setting 0x3 mask 0x7 description "INTOSC EC+PLL"
+      setting 0x2 mask 0x7 description "INTOSC EC"
+      setting 0x1 mask 0x7 description "INTOSC HS+PLL"
+      setting 0x0 mask 0x7 description "INTOSC HS"
   }
 
-  config CONFIG3H at 0xBFFD width 1 {
+  config CONFIG3H at 0xBFFD width 8 {
+    RESERVED mask 0xF0 description "RESERVED"
+      setting 0xF0 mask 0xF0 description "RESERVED"
     CCP2MUX mask 0x1 description "CCP2 Mux"
-    RESERVED mask 0x0 description "RESERVED"
+      setting 0x1 mask 0x1 description "RC1"
+      setting 0x0 mask 0x1 description "RE7 <Microcontroller> / RB3"
   }
 
   config CONFIG3L at 0xBFFC width 8 {
     RES mask 0xF8 description "Reserved"
+      setting 0xF8 mask 0xF8 description "maintain these bits as 1"
   }
 }
