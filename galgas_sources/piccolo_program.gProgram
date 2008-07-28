@@ -21,12 +21,12 @@ before {
       @string name := [[mValue lastPathComponent] stringByDeletingPathExtension] ;
       parseDeviceDefinition ![@lstring new !name !here] ?piccoloDeviceModel ;
       switch [piccoloDeviceModel mProcessorType]
-      when pic18_60 : pic_60_devices += !name ;
-      when pic18_80 : pic_80_devices += !name ;
+        when pic18_60 : pic_60_devices += !name ;
+        when pic18_80 : pic_80_devices += !name ;
       end switch ;
     end foreach ;
   #--- List 'pic 60' devices
-    message [[pic_60_devices  length] string] . " devices with access bank split offset 0x60:\n" ;
+    message [[pic_60_devices length] string] . " devices with access bank split offset 0x60:\n" ;
     foreach pic_60_devices do
       message [mValue stringByRightPadding !15 !' '] ;
       index ++ ;
@@ -38,8 +38,8 @@ before {
     if index != 0 then
       message "\n" ;
     end if ;
-    index := 0 ;
   #--- List 'pic 80' devices
+    index := 0 ;
     message [[pic_80_devices  length] string] . " devices with access bank split offset 0x80:\n" ;
     foreach pic_80_devices do
       message [mValue stringByRightPadding !15 !' '] ;
@@ -52,6 +52,95 @@ before {
     if index != 0 then
       message "\n" ;
     end if ;
+#  #--- Enumerate devices, and parse them
+#    @stringlist allDevices := [[filewrapper embeddedDevices] allFilePathes] ;
+#    @stringlist pic_60_standard_cpu_devices [emptyList] ;
+#    @stringlist pic_80_standard_cpu_devices [emptyList] ;
+#    @stringlist pic_60_extended_cpu_devices [emptyList] ;
+#    @stringlist pic_80_extended_cpu_devices [emptyList] ;
+#    message [[allDevices  length] string] . " supported devices.\n" ;
+#    @uint index := 0 ;
+#    @bool ok := true ;
+#    foreach allDevices while ok do
+#      @piccoloDeviceModel piccoloDeviceModel ;
+#      @string name := [[mValue lastPathComponent] stringByDeletingPathExtension] ;
+#      parseDeviceDefinition ![@lstring new !name !here] ?piccoloDeviceModel ;
+#    #--- Find if has extended instruction set
+#      @bool hasExtendedInstructionSet := true ;
+#      if not [[piccoloDeviceModel mConfigRegisterMap] hasKey !"CONFIG4L"] then
+#        message "No CONFIG4L configuration register for '" . name . "' device.\n" ;
+#      else
+#        @configRegisterMaskMap CONFIG4L_maskMap ;
+#        [[piccoloDeviceModel mConfigRegisterMap] searchKey ![@lstring new !"CONFIG4L" !here] ?* ?* ?CONFIG4L_maskMap] ;
+#        hasExtendedInstructionSet := [CONFIG4L_maskMap hasKey !"ENHCPU"] ;
+#      end if ;
+#      if hasExtendedInstructionSet then
+#        switch [piccoloDeviceModel mProcessorType]
+#          when pic18_60 : pic_60_extended_cpu_devices += !name ;
+#          when pic18_80 : pic_80_extended_cpu_devices += !name ;
+#        end switch ;
+#      else
+#        switch [piccoloDeviceModel mProcessorType]
+#          when pic18_60 : pic_60_standard_cpu_devices += !name ;
+#          when pic18_80 : pic_80_standard_cpu_devices += !name ;
+#        end switch ;
+#      end if ;
+#    end foreach ;
+#  #--- List 'pic 60' devices with standard cpu
+#    message [[pic_60_standard_cpu_devices  length] string] . " devices with standard instruction set and access bank split offset 0x60:\n" ;
+#    foreach pic_60_standard_cpu_devices do
+#      message [mValue stringByRightPadding !15 !' '] ;
+#      index ++ ;
+#      if index == 5 then
+#        index := 0 ;
+#        message "\n" ;
+#      end if ;
+#    end foreach ;
+#    if index != 0 then
+#      message "\n" ;
+#    end if ;
+#  #--- List 'pic 80' devices with standard cpu
+#    index := 0 ;
+#    message [[pic_80_standard_cpu_devices  length] string] . " devices with standard instruction set and access bank split offset 0x80:\n" ;
+#    foreach pic_80_standard_cpu_devices do
+#      message [mValue stringByRightPadding !15 !' '] ;
+#      index ++ ;
+#      if index == 5 then
+#        index := 0 ;
+#        message "\n" ;
+#      end if ;
+#    end foreach ;
+#    if index != 0 then
+#      message "\n" ;
+#    end if ;
+#  #--- List 'pic 60' devices with extended cpu
+#    index := 0 ;
+#    message [[pic_60_extended_cpu_devices  length] string] . " devices with extended instruction set and access bank split offset 0x60:\n" ;
+#    foreach pic_60_extended_cpu_devices do
+#      message [mValue stringByRightPadding !15 !' '] ;
+#      index ++ ;
+#      if index == 5 then
+#        index := 0 ;
+#        message "\n" ;
+#      end if ;
+#    end foreach ;
+#    if index != 0 then
+#      message "\n" ;
+#    end if ;
+#  #--- List 'pic 80' devices with extended cpu
+#    index := 0 ;
+#    message [[pic_80_extended_cpu_devices  length] string] . " devices with extended instruction set and access bank split offset 0x80:\n" ;
+#    foreach pic_80_extended_cpu_devices do
+#      message [mValue stringByRightPadding !15 !' '] ;
+#      index ++ ;
+#      if index == 5 then
+#        index := 0 ;
+#        message "\n" ;
+#      end if ;
+#    end foreach ;
+#    if index != 0 then
+#      message "\n" ;
+#    end if ;
   end if ;
 #------------------------------------------------ Print RAM description
   @string deviceForMemoryDescription := [option piccolo_options.memoryDescription] ;
@@ -89,7 +178,7 @@ before {
     if [[filewrapper embeddedDevices] fileExistsAtPath !devicePath] then
       @piccoloDeviceModel piccoloDeviceModel ;
       parseDeviceDefinition ![@lstring new ! deviceForRegistersDescription !here] ?piccoloDeviceModel ;
-      message deviceForRegistersDescription . " has " . [[[piccoloDeviceModel mRegisterTable] count] string] . " registers:\n" ;
+      message deviceForRegistersDescription . " has " . [[[piccoloDeviceModel mRegisterTable] count] string] . " special registers:\n" ;
       foreach [piccoloDeviceModel mRegisterTable] do
         @string s := "  '" . key . "' at " ;
         foreach mRegisterAddressList
@@ -103,9 +192,35 @@ before {
       error here:"The " . deviceForRegistersDescription . " device is not supported or does not exist" ;
     end if ;
   end if ;
+#------------------------------------------------ Print CONFIGURATION description
+  @string deviceForConfigDescription := [option piccolo_options.configDescription] ;
+  if [deviceForConfigDescription length] > 0 then
+    @string devicePath := "/" . deviceForConfigDescription . ".piccoloDevice" ;
+    if [[filewrapper embeddedDevices] fileExistsAtPath !devicePath] then
+      @piccoloDeviceModel piccoloDeviceModel ;
+      parseDeviceDefinition ![@lstring new ! deviceForConfigDescription !here] ?piccoloDeviceModel ;
+      message deviceForConfigDescription . " has " . [[[piccoloDeviceModel mConfigRegisterMap] count] string] . " configuration registers:\n" ;
+      foreach [piccoloDeviceModel mConfigRegisterMap] do
+        @string s := "  '" . key . "' at " . [[mRegisterAddress uint] hexString] . ", width " . [[mRegisterWidth uint] string] . "\n" ;
+        foreach mIllegalMaskList do
+          s .= "    illegal " . [[key uint] hexString] . "' mask " . [[mIllegalMask uint] hexString] . " description \"" . mDescription . "\"\n" ;
+        end foreach ;
+        foreach mConfigRegisterMaskMap do
+          s .= "    '" . key . "': mask " . [[mMaskValue uint] hexString] . " description \"" . mDescription . "\"\n" ;
+          foreach mFieldSettingList do
+            s .= "      setting " . [mValue hexString] . " description \"" . mDescription . "\"\n" ;
+          end foreach ;
+        end foreach ;
+        message s ;
+      end foreach ;
+    else
+      error here:"The " . deviceForConfigDescription . " device is not supported or does not exist" ;
+    end if ;
+  end if ;
 }
 
-#--- 'when' clauses
+#----------------------------------------------------------------------------*
+
 when . "piccolo"
 message "a source text file with the .piccolo extension"
 ??@lstring inSourceFile {
@@ -114,10 +229,12 @@ message "a source text file with the .piccolo extension"
   analyze !piccoloModel ![inSourceFile string] ;
 }
 
+#----------------------------------------------------------------------------*
+
 #--- Epilogue routine
 after {
 }
 
-#---
+#----------------------------------------------------------------------------*
 
 end program ;

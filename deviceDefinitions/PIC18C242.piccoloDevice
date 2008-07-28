@@ -304,29 +304,63 @@ controller PIC18C242 {
 
   config CONFIG1H at 0x300001 width 6 {
     OSCS mask 0x20 description "Osc. Switch Enable"
+      setting 0x20 mask 0x20 description "Disabled"
+      setting 0x0 mask 0x20 description "Enabled"
     OSC mask 0x7 description "Oscillator"
+      setting 0x7 mask 0x7 description "RC-OSC2 as RA6"
+      setting 0x6 mask 0x7 description "HS-PLL Enabled"
+      setting 0x5 mask 0x7 description "EC-OSC2 as RA6"
+      setting 0x4 mask 0x7 description "EC-OSC2 as Clock Out"
+      setting 0x3 mask 0x7 description "RC"
+      setting 0x2 mask 0x7 description "HS"
+      setting 0x1 mask 0x7 description "XT"
+      setting 0x0 mask 0x7 description "LP"
   }
 
   config CONFIG1L at 0x300000 width 8 {
     CP mask 0xFF description "Code Protect"
+      setting 0xFF mask 0xFF description "Disabled"
+      setting 0x0 mask 0xFF description "Enabled"
   }
 
   config CONFIG2H at 0x300003 width 4 {
     WDTPS mask 0xE description "Watchdog Postscaler"
+      setting 0xE mask 0xE description "1:128"
+      setting 0xC mask 0xE description "1:64"
+      setting 0xA mask 0xE description "1:32"
+      setting 0x8 mask 0xE description "1:16"
+      setting 0x6 mask 0xE description "1:8"
+      setting 0x4 mask 0xE description "1:4"
+      setting 0x2 mask 0xE description "1:2"
+      setting 0x0 mask 0xE description "1:1"
     WDT mask 0x1 description "Watchdog Timer"
+      setting 0x1 mask 0x1 description "Enabled"
+      setting 0x0 mask 0x1 description "Disabled"
   }
 
   config CONFIG2L at 0x300002 width 4 {
     BODENV mask 0xC description "Brown Out Voltage"
+      setting 0xC mask 0xC description "2.5V"
+      setting 0x8 mask 0xC description "2.7V"
+      setting 0x4 mask 0xC description "4.2V"
+      setting 0x0 mask 0xC description "4.5V"
     BODEN mask 0x2 description "Brown Out Detect"
+      setting 0x2 mask 0x2 description "Enabled"
+      setting 0x0 mask 0x2 description "Disabled"
     PUT mask 0x1 description "Power Up Timer"
+      setting 0x1 mask 0x1 description "Disabled"
+      setting 0x0 mask 0x1 description "Enabled"
   }
 
   config CONFIG3H at 0x300005 width 1 {
     CCP2MUX mask 0x1 description "CCP2 Mux"
+      setting 0x1 mask 0x1 description "RC1"
+      setting 0x0 mask 0x1 description "RB3"
   }
 
   config CONFIG4L at 0x300006 width 1 {
     STVR mask 0x1 description "Stack Overflow Reset"
+      setting 0x1 mask 0x1 description "Enabled"
+      setting 0x0 mask 0x1 description "Disabled"
   }
 }

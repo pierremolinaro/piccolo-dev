@@ -25,9 +25,6 @@ controller PIC18F2221 {
   unusedregister 0xFAA ;
   unusedregister 0xFB9 ;
   unusedregister 0xFD4 ;
-  unusedregister 0xF83 to 0xF84 ;
-  unusedregister 0xF8C to 0xF8D ;
-  unusedregister 0xF95 to 0xF96 ;
   ram accessram : 0x0 to 0x7F ;
   ram gpr0 : 0x80 to 0xFF ;
   ram gpr1 : 0x100 to 0x1FF ;
@@ -344,64 +341,153 @@ controller PIC18F2221 {
 
   config CONFIG1H at 0x300001 width 8 {
     IESO mask 0x80 description "Internal External Switch Over Enable"
+      setting 0x80 mask 0x80 description "Enabled"
+      setting 0x0 mask 0x80 description "Disabled"
     FCMEN mask 0x40 description "Fail Safe Monitor Clock Enable"
+      setting 0x40 mask 0x40 description "Enabled"
+      setting 0x0 mask 0x40 description "Disabled"
     FOSC mask 0xF description "Oscillator"
+      setting 0xC mask 0xC description "11XX EXT RC-CLKOUT on RA6"
+      setting 0xA mask 0xF description "101X EXT RC-CLKOUT on RA6"
+      setting 0x9 mask 0xF description "INT RC-CLKOUT on RA6,Port on RA7"
+      setting 0x8 mask 0xF description "INT RC-Port on RA6,Port on RA7"
+      setting 0x7 mask 0xF description "EXT RC-Port on RA6"
+      setting 0x6 mask 0xF description "HS-PLL enabled freq=4xFosc1"
+      setting 0x5 mask 0xF description "EC-Port on RA6"
+      setting 0x4 mask 0xF description "EC-CLKOUT on RA6"
+      setting 0x3 mask 0xF description "0011 EXT RC-CLKOUT on RA6"
+      setting 0x2 mask 0xF description "HS"
+      setting 0x1 mask 0xF description "XT"
+      setting 0x0 mask 0xF description "LP"
   }
 
   config CONFIG2H at 0x300003 width 5 {
     WDTPS mask 0x1E description "Watchdog Timer Postscale"
+      setting 0x1E mask 0x1E description "1:32,768"
+      setting 0x1C mask 0x1E description "1:16,384"
+      setting 0x1A mask 0x1E description "1:8,192"
+      setting 0x18 mask 0x1E description "1:4,096"
+      setting 0x16 mask 0x1E description "1:2,048"
+      setting 0x14 mask 0x1E description "1:1,024"
+      setting 0x12 mask 0x1E description "1:512"
+      setting 0x10 mask 0x1E description "1:256"
+      setting 0xE mask 0x1E description "1:128"
+      setting 0xC mask 0x1E description "1:64"
+      setting 0xA mask 0x1E description "1:32"
+      setting 0x8 mask 0x1E description "1:16"
+      setting 0x6 mask 0x1E description "1:8"
+      setting 0x4 mask 0x1E description "1:4"
+      setting 0x2 mask 0x1E description "1:2"
+      setting 0x0 mask 0x1E description "1:1"
     WDT mask 0x1 description "Watchdog Timer"
+      setting 0x1 mask 0x1 description "Enabled"
+      setting 0x0 mask 0x1 description "Disabled-Controlled by SWDTEN bit"
   }
 
   config CONFIG2L at 0x300002 width 5 {
     BORV mask 0x18 description "Brown-out Reset Voltage"
+      setting 0x18 mask 0x18 description "2.0V"
+      setting 0x10 mask 0x18 description "2.7V"
+      setting 0x8 mask 0x18 description "4.2V"
+      setting 0x0 mask 0x18 description "4.5V"
     BOREN mask 0x6 description "Brown-out Reset Enable"
+      setting 0x6 mask 0x6 description "Enabled In Hardware, SBOREN Ignored"
+      setting 0x4 mask 0x6 description "Enabled When Not In SLEEP, SBOREN Ignored"
+      setting 0x2 mask 0x6 description "Controlled By SBOREN"
+      setting 0x0 mask 0x6 description "Disabled, SBOREN Ignored"
     PWRTEN mask 0x1 description "Power-up Timer Enable"
+      setting 0x1 mask 0x1 description "Disabled"
+      setting 0x0 mask 0x1 description "Enabled"
   }
 
   config CONFIG3H at 0x300005 width 8 {
     MCLRE mask 0x80 description "MCLR Pin Enable"
+      setting 0x80 mask 0x80 description "MCLR Enabled, RE3 Disabled"
+      setting 0x0 mask 0x80 description "MCLR Disabled, RE3 Enabled"
     LPT1OSC mask 0x4 description "Low Power Timer1 Osc Enable"
+      setting 0x4 mask 0x4 description "Low Power Consumption, Low Noise Immunity"
+      setting 0x0 mask 0x4 description "High Power Consumption, High Noise Immunity"
     PBADEN mask 0x2 description "Port B A/D Enable"
+      setting 0x2 mask 0x2 description "Port B[4:0] Are Analog Inputs on Reset"
+      setting 0x0 mask 0x2 description "Port B[4:0] Are Digital I/O on Reset"
     CCP2MX mask 0x1 description "CCP2 Mux"
+      setting 0x1 mask 0x1 description "CCP2 I/O Muxed With RC1"
+      setting 0x0 mask 0x1 description "CCP2 I/O Muxed With RB3"
   }
 
   config CONFIG4L at 0x300006 width 8 {
     BACKBUG mask 0x80 description "Background Debug"
-    ENHCPU mask 0x40 description "Extended CPU Enable"
+      setting 0x80 mask 0x80 description "Disabled"
+      setting 0x0 mask 0x80 description "Enabled"
+    XINST mask 0x40 description "Extended Instruction Set Enable bit"
+      setting 0x40 mask 0x40 description "Enabled"
+      setting 0x0 mask 0x40 description "Disabled"
     BBSIZ mask 0x30 description "Boot Block Size Select"
+      setting 0x30 mask 0x30 description "512 W (512 W)"
+      setting 0x20 mask 0x30 description "512 W (512 W)"
+      setting 0x10 mask 0x30 description "512 W (512 W)"
+      setting 0x0 mask 0x30 description "256 W (256 W)"
     ENICPORT mask 0x8 description "Dedicated In-Circuit PORT Enable"
+      setting 0x0 mask 0x8 description "Disabled"
     LVP mask 0x4 description "Low Voltage Programming Enable"
+      setting 0x4 mask 0x4 description "Enabled"
+      setting 0x0 mask 0x4 description "Disabled"
     STVREN mask 0x1 description "Stack Overflow Reset Enable"
+      setting 0x1 mask 0x1 description "Enabled"
+      setting 0x0 mask 0x1 description "Disabled"
   }
 
   config CONFIG5H at 0x300009 width 8 {
     CPD mask 0x80 description "Code Protect Data EEPROM"
+      setting 0x80 mask 0x80 description "Disabled"
+      setting 0x0 mask 0x80 description "Enabled"
     CPB mask 0x40 description "Code Protect Boot"
+      setting 0x40 mask 0x40 description "Disabled"
+      setting 0x0 mask 0x40 description "Enabled"
   }
 
   config CONFIG5L at 0x300008 width 2 {
     CP_1 mask 0x2 description "Code Protect Block 1"
+      setting 0x2 mask 0x2 description "Disabled"
+      setting 0x0 mask 0x2 description "Enabled"
     CP_0 mask 0x1 description "Code Protect Block 0"
+      setting 0x1 mask 0x1 description "Disabled"
+      setting 0x0 mask 0x1 description "Enabled"
   }
 
   config CONFIG6H at 0x30000B width 8 {
     WRTD mask 0x80 description "Write Protect Data EEPROM"
+      setting 0x80 mask 0x80 description "Disabled"
+      setting 0x0 mask 0x80 description "Enabled"
     WRTB mask 0x40 description "Write Protect Boot Block"
+      setting 0x40 mask 0x40 description "Disabled"
+      setting 0x0 mask 0x40 description "Enabled"
     WRTC mask 0x20 description "Write Protect Config Bits"
+      setting 0x20 mask 0x20 description "Disabled"
+      setting 0x0 mask 0x20 description "Enabled"
   }
 
   config CONFIG6L at 0x30000A width 2 {
     WRT1 mask 0x2 description "Write Protect Block 1"
+      setting 0x2 mask 0x2 description "Disabled"
+      setting 0x0 mask 0x2 description "Enabled"
     WRT0 mask 0x1 description "Write Protect Block 0"
+      setting 0x1 mask 0x1 description "Disabled"
+      setting 0x0 mask 0x1 description "Enabled"
   }
 
   config CONFIG7H at 0x30000D width 7 {
     EBTRB mask 0x40 description "Table Read Protect Boot Block"
+      setting 0x40 mask 0x40 description "Disabled"
+      setting 0x0 mask 0x40 description "Enabled"
   }
 
   config CONFIG7L at 0x30000C width 2 {
     EBTR1 mask 0x2 description "Table Read Protect Block 1"
+      setting 0x2 mask 0x2 description "Disabled"
+      setting 0x0 mask 0x2 description "Enabled"
     EBTR0 mask 0x1 description "Table Read Protect Block 0"
+      setting 0x1 mask 0x1 description "Disabled"
+      setting 0x0 mask 0x1 description "Enabled"
   }
 }

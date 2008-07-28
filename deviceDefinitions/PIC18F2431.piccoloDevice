@@ -24,9 +24,6 @@ controller PIC18F2431 {
   unusedregister 0xFB9 ;
   unusedregister 0xFC5 ;
   unusedregister 0xFD4 ;
-  unusedregister 0xF83 ;
-  unusedregister 0xF8C to 0xF8D ;
-  unusedregister 0xF95 to 0xF96 ;
   ram accessram : 0x0 to 0x5F ;
   ram gpr0 : 0x60 to 0xFF ;
   ram gpr1 : 0x100 to 0x1FF ;
@@ -186,12 +183,6 @@ controller PIC18F2431 {
   register LVDCON at 0xFD2
     <-, -, IRVST, LVDEN, LVDL [4]> ;
 
-  register MAXCNTH at 0xF65
-    <MAXCNTH [8]> ;
-
-  register MAXCNTL at 0xF64
-    <MAXCNTL [8]> ;
-
   register OSCCON at 0xFD3
     <IDLEN, IRCF [3], OSTS, FLTS, SCS [2]> ;
 
@@ -273,12 +264,6 @@ controller PIC18F2431 {
   register PORTC at 0xF82
     <RC7, RC6, RC5, RC4, RC3, RC2, RC1, RC0> ;
 
-  register POSCNTH at 0xF67
-    <POSCNTH [8]> ;
-
-  register POSCNTL at 0xF66
-    <POSCNTL [8]> ;
-
   register POSTDEC0 at 0xFED
     <POSTDEC0 [8]> ;
 
@@ -346,7 +331,7 @@ controller PIC18F2431 {
     <SEVOPS [4], SEVTDIR, -, UDIS, OSYNC> ;
 
   register QEICON at 0xFB6
-    <nVELM, -, UP/nDOWN, QEIM [3], PDEC [2]> ;
+    <nVELM, ERROR, UP/nDOWN, QEIM [3], PDEC [2]> ;
 
   register RCON at 0xFD0
     <IPEN, -, -, nRI, nTO, nPD, nPOR, nBOR> ;
@@ -456,90 +441,189 @@ controller PIC18F2431 {
   register TXSTA at 0xFAC
     <CSRC, TX9, TXEN, SYNC, SENDB, BRGH, TRMT, TX9D> ;
 
-  register VELRH at 0xF69
-    <VELRH [8]> ;
-
-  register VELRL at 0xF68
-    <VELRL [8]> ;
-
   register WDTCON at 0xFD1
-    <WDT [7], SWDTEN> ;
+    <WDT, -, -, -, -, -, -, SWDTEN> ;
 
   register WREG at 0xFE8
     <WREG [8]> ;
 
   config CONFIG1H at 0x300001 width 8 {
     IESO mask 0x80 description "Internal External Switch Over Mode"
+      setting 0x0 mask 0x80 description "Disabled"
+      setting 0x80 mask 0x80 description "Enabled"
     FCMEN mask 0x40 description "Fail-Safe Clock Monitor Enable"
+      setting 0x40 mask 0x40 description "Enabled"
+      setting 0x0 mask 0x40 description "Disabled"
     OSC mask 0xF description "Oscillator"
+      setting 0xC mask 0xC description "11XX EXT RC-CLKOUT on RA6"
+      setting 0xA mask 0xE description "101X EXT RC-CLKOUT on RA6"
+      setting 0x9 mask 0xF description "INT RC-CLKOUT on RA6,Port on RA7"
+      setting 0x8 mask 0xF description "INT RC-Port on RA6,Port on RA7"
+      setting 0x7 mask 0xF description "EXT RC-Port on RA6"
+      setting 0x6 mask 0xF description "HS-PLL enabled freq=4xFosc1"
+      setting 0x5 mask 0xF description "EC-Port on RA6"
+      setting 0x4 mask 0xF description "EC-CLKOUT on RA6"
+      setting 0x3 mask 0xF description "0011 EXT RC-CLKOUT on RA6"
+      setting 0x2 mask 0xF description "HS"
+      setting 0x1 mask 0xF description "XT"
+      setting 0x0 mask 0xF description "LP"
   }
 
   config CONFIG2H at 0x300003 width 6 {
     WINEN mask 0x20 description "Watchdog Timer Window"
+      setting 0x20 mask 0x20 description "Disabled"
+      setting 0x0 mask 0x20 description "Enabled"
     WDTPS mask 0x1E description "Watchdog Postscaler"
+      setting 0x1E mask 0x1E description "1:32768"
+      setting 0x1C mask 0x1E description "1:16384"
+      setting 0x1A mask 0x1E description "1:8192"
+      setting 0x18 mask 0x1E description "1:4096"
+      setting 0x16 mask 0x1E description "1:2048"
+      setting 0x14 mask 0x1E description "1:1024"
+      setting 0x12 mask 0x1E description "1:512"
+      setting 0x10 mask 0x1E description "1:256"
+      setting 0xE mask 0x1E description "1:128"
+      setting 0xC mask 0x1E description "1:64"
+      setting 0xA mask 0x1E description "1:32"
+      setting 0x8 mask 0x1E description "1:16"
+      setting 0x6 mask 0x1E description "1:8"
+      setting 0x4 mask 0x1E description "1:4"
+      setting 0x2 mask 0x1E description "1:2"
+      setting 0x0 mask 0x1E description "1:1"
     WDT mask 0x1 description "Watchdog Timer"
+      setting 0x1 mask 0x1 description "Enabled"
+      setting 0x0 mask 0x1 description "Disabled"
   }
 
-  config CONFIG2L at 0x300002 width 4 {
+  config CONFIG2L at 0x300002 width 4
+    illegal 0xC mask 0xC message "Brown out voltage cannot be set to an undefined valued if Brown Out Detect is enabled" {
     BODENV mask 0xC description "Brown Out Voltage"
+      setting 0xC mask 0xC description "Undefined"
+      setting 0x8 mask 0xC description "2.7V"
+      setting 0x4 mask 0xC description "4.2V"
+      setting 0x0 mask 0xC description "4.5V"
     BODEN mask 0x2 description "Brown Out Detect"
+      setting 0x2 mask 0x2 description "Enabled"
+      setting 0x0 mask 0x2 description "Disabled"
     PUT mask 0x1 description "Power Up Timer"
+      setting 0x1 mask 0x1 description "Disabled"
+      setting 0x0 mask 0x1 description "Enabled"
   }
 
   config CONFIG3H at 0x300005 width 8 {
     MCLRE mask 0x80 description "Master Clear Enable"
+      setting 0x80 mask 0x80 description "MCLR Enabled, RE3 Disabled"
+      setting 0x0 mask 0x80 description "MCLR Disabled, RE3 Enabled"
     EXCLKMX mask 0x10 description "TMR0/T5CKI EXT CLK Mux"
+      setting 0x0 mask 0x10 description "TMR0/T5CKI external clock input is multiplexed with RD0"
+      setting 0x10 mask 0x10 description "TMR0/T5CKI external clock input is multiplexed with RC3"
     PWM4MX mask 0x8 description "PWM4 Mux"
+      setting 0x8 mask 0x8 description "PWM4 output muxed w/ RB5"
+      setting 0x0 mask 0x8 description "PWM4 output muxed w/ RD5"
     SSPMX mask 0x4 description "SSP I/O Mux"
+      setting 0x0 mask 0x4 description "SPI not assigned"
+      setting 0x4 mask 0x4 description "SCK/SCL, SDA/SDI and SDO are mux w/ RC5, RC4 and RC7 respectively."
     FLTAMX mask 0x1 description "FLTA Mux"
+      setting 0x1 mask 0x1 description "FLTA input muxed with RC1"
+      setting 0x0 mask 0x1 description "FLTA input muxed with RD4"
   }
 
   config CONFIG3L at 0x300004 width 6 {
     T1OSCMX mask 0x20 description "Timer1 OSC"
+      setting 0x20 mask 0x20 description "Low Power"
+      setting 0x0 mask 0x20 description "Legacy"
     HPOL mask 0x10 description "High-Side Transistors Polarity"
+      setting 0x10 mask 0x10 description "PWM 1, 3, 5, and 7 are active high"
+      setting 0x0 mask 0x10 description "PWM 1, 3, 5, and 7 are active low"
     LPOL mask 0x8 description "Low-Side Transistors Polarity"
+      setting 0x8 mask 0x8 description "PWM 0, 2, 4 and 6 are active high"
+      setting 0x0 mask 0x8 description "PWM 0, 2, 4 and 6 are active low"
     PWMPIN mask 0x4 description "PWM Output Pin Reset"
+      setting 0x4 mask 0x4 description "PWM outputs disabled upon RESET"
+      setting 0x0 mask 0x4 description "PWM outputs drive active states upon RESET"
   }
 
   config CONFIG4L at 0x300006 width 8 {
     BACKBUG mask 0x80 description "Background Debug"
+      setting 0x80 mask 0x80 description "Disabled"
+      setting 0x0 mask 0x80 description "Enabled"
     LVP mask 0x4 description "Low Voltage Program"
+      setting 0x4 mask 0x4 description "Enabled"
+      setting 0x0 mask 0x4 description "Disabled"
     STVR mask 0x1 description "Stack Overflow Reset"
+      setting 0x1 mask 0x1 description "Enabled"
+      setting 0x0 mask 0x1 description "Disabled"
   }
 
   config CONFIG5H at 0x300009 width 8 {
     CPD mask 0x80 description "Data EE Read Protect"
+      setting 0x80 mask 0x80 description "Disabled"
+      setting 0x0 mask 0x80 description "Enabled"
     CPB mask 0x40 description "Code Protect Boot"
+      setting 0x40 mask 0x40 description "Disabled"
+      setting 0x0 mask 0x40 description "Enabled"
   }
 
   config CONFIG5L at 0x300008 width 4 {
     CP_3 mask 0x8 description "Code Protect 03000-03FFF"
+      setting 0x8 mask 0x8 description "Disabled"
+      setting 0x0 mask 0x8 description "Enabled"
     CP_2 mask 0x4 description "Code Protect 02000-02FFF"
+      setting 0x4 mask 0x4 description "Disabled"
+      setting 0x0 mask 0x4 description "Enabled"
     CP_1 mask 0x2 description "Code Protect 01000-01FFF"
+      setting 0x2 mask 0x2 description "Disabled"
+      setting 0x0 mask 0x2 description "Enabled"
     CP_0 mask 0x1 description "Code Protect 00200-00FFF"
+      setting 0x1 mask 0x1 description "Disabled"
+      setting 0x0 mask 0x1 description "Enabled"
   }
 
   config CONFIG6H at 0x30000B width 8 {
     WRTD mask 0x80 description "Data EE Write Protect"
+      setting 0x80 mask 0x80 description "Disabled"
+      setting 0x0 mask 0x80 description "Enabled"
     WRTB mask 0x40 description "Table Write Protect Boot"
+      setting 0x40 mask 0x40 description "Disabled"
+      setting 0x0 mask 0x40 description "Enabled"
     WRTC mask 0x20 description "Config. Write Protect"
+      setting 0x20 mask 0x20 description "Disabled"
+      setting 0x0 mask 0x20 description "Enabled"
   }
 
   config CONFIG6L at 0x30000A width 4 {
     WRT_3 mask 0x8 description "Table Write Protect 03000-03FFF"
+      setting 0x8 mask 0x8 description "Disabled"
+      setting 0x0 mask 0x8 description "Enabled"
     WRT_2 mask 0x4 description "Table Write Protect 02000-02FFF"
+      setting 0x4 mask 0x4 description "Disabled"
+      setting 0x0 mask 0x4 description "Enabled"
     WRT_1 mask 0x2 description "Table Write Protect 01000-01FFF"
+      setting 0x2 mask 0x2 description "Disabled"
+      setting 0x0 mask 0x2 description "Enabled"
     WRT_0 mask 0x1 description "Table Write Protect 00200-00FFF"
+      setting 0x1 mask 0x1 description "Disabled"
+      setting 0x0 mask 0x1 description "Enabled"
   }
 
   config CONFIG7H at 0x30000D width 7 {
     EBTRB mask 0x40 description "Table Read Protect Boot"
+      setting 0x40 mask 0x40 description "Disabled"
+      setting 0x0 mask 0x40 description "Enabled"
   }
 
   config CONFIG7L at 0x30000C width 4 {
     EBTR_3 mask 0x8 description "Table Read Protect 03000-03FFF"
+      setting 0x8 mask 0x8 description "Disabled"
+      setting 0x0 mask 0x8 description "Enabled"
     EBTR_2 mask 0x4 description "Table Read Protect 02000-02FFF"
+      setting 0x4 mask 0x4 description "Disabled"
+      setting 0x0 mask 0x4 description "Enabled"
     EBTR_1 mask 0x2 description "Table Read Protect 01000-01FFF"
+      setting 0x2 mask 0x2 description "Disabled"
+      setting 0x0 mask 0x2 description "Enabled"
     EBTR_0 mask 0x1 description "Table Read Protect 00200-00FFF"
+      setting 0x1 mask 0x1 description "Disabled"
+      setting 0x0 mask 0x1 description "Enabled"
   }
 }

@@ -712,33 +712,85 @@ controller PIC18F86J60 {
   register WREG at 0xFE8
     <WREG [8]> ;
 
-  config CONFIG1H at 0xFFF9 width 3 {
+  config CONFIG1H at 0xFFF9 width 8 {
+    RESERVED mask 0xF0 description "RESERVED"
+      setting 0x0 mask 0xF0 description "RESERVED"
     CP_0 mask 0x4 description "Code Protect 000000-00FFFF"
-    RESERVED mask 0x0 description "RESERVED"
+      setting 0x4 mask 0x4 description "Disabled"
+      setting 0x0 mask 0x4 description "Enabled"
   }
 
   config CONFIG1L at 0xFFF8 width 8 {
     BACKBUG mask 0x80 description "Background Debug"
-    ENHCPU mask 0x40 description "Extended CPU Enable"
+      setting 0x80 mask 0x80 description "Disabled"
+      setting 0x0 mask 0x80 description "Enabled"
+    XINST mask 0x40 description "Extended Instruction Set Enable bit"
+      setting 0x40 mask 0x40 description "Enabled"
+      setting 0x0 mask 0x40 description "Disabled"
     STVREN mask 0x20 description "Stack Overflow Reset Enable"
+      setting 0x20 mask 0x20 description "Enabled"
+      setting 0x0 mask 0x20 description "Disabled"
     WDTEN mask 0x1 description "Watchdog Timer Enable"
+      setting 0x1 mask 0x1 description "Enabled"
+      setting 0x0 mask 0x1 description "Disabled"
   }
 
-  config CONFIG2H at 0xFFFB width 4 {
+  config CONFIG2H at 0xFFFB width 8 {
+    RESERVED mask 0xF0 description "RESERVED"
+      setting 0x0 mask 0xF0 description "RESERVED"
     WDTPS mask 0xF description "Watchdog Timer Postscale"
-    RESERVED mask 0x0 description "RESERVED"
+      setting 0xF mask 0xF description "1:32,768"
+      setting 0xE mask 0xF description "1:16,384"
+      setting 0xD mask 0xF description "1:8,192"
+      setting 0xC mask 0xF description "1:4,096"
+      setting 0xB mask 0xF description "1:2,048"
+      setting 0xA mask 0xF description "1:1,024"
+      setting 0x9 mask 0xF description "1:512"
+      setting 0x8 mask 0xF description "1:256"
+      setting 0x7 mask 0xF description "1:128"
+      setting 0x6 mask 0xF description "1:64"
+      setting 0x5 mask 0xF description "1:32"
+      setting 0x4 mask 0xF description "1:16"
+      setting 0x3 mask 0xF description "1:8"
+      setting 0x2 mask 0xF description "1:4"
+      setting 0x1 mask 0xF description "1:2"
+      setting 0x0 mask 0xF description "1:1"
   }
 
   config CONFIG2L at 0xFFFA width 8 {
     IESO mask 0x80 description "Internal External Switch Over Enable"
+      setting 0x80 mask 0x80 description "Enabled"
+      setting 0x0 mask 0x80 description "Disabled"
     FCMEN mask 0x40 description "Fail Safe Monitor Clock Enable"
+      setting 0x40 mask 0x40 description "Enabled"
+      setting 0x0 mask 0x40 description "Disabled"
     FOSC mask 0x7 description "Oscillator"
+      setting 0x7 mask 0x7 description "OSC1/OSC2 as Primary, EC+PLL Osc with CLKOUT Function"
+      setting 0x6 mask 0x7 description "OSC1/OSC2 as Primary, EC Osc with CLKOUT Function"
+      setting 0x5 mask 0x7 description "OSC1/OSC2 as primary, HS+PLL Osc"
+      setting 0x4 mask 0x7 description "OSC1/OSC2 as primary, HS Osc"
+      setting 0x3 mask 0x7 description "INTOSC as Primary, EC+PLL Osc with CLKOUT"
+      setting 0x2 mask 0x7 description "INTOSC as Primary, EC Osc with CLKOUT"
+      setting 0x1 mask 0x7 description "INTOSC as Primary, HS+PLL Osc"
+      setting 0x0 mask 0x7 description "INTOSC as Primary, HS Osc"
   }
 
-  config CONFIG3H at 0xFFFD width 3 {
+  config CONFIG3H at 0xFFFD width 8 {
+    RESERVED mask 0xF0 description "RESERVED"
+      setting 0x0 mask 0xF0 description "RESERVED"
     ETHLED mask 0x4 description "Ethernet LED Enable"
+      setting 0x4 mask 0x4 description "LEDA/LEDB On RA0/RA1 With Ethernet, RA0/AN0 Without"
+      setting 0x0 mask 0x4 description "RA0 On RA0/AN0), RA1 On RA1/AN1"
     ECCPXM mask 0x2 description "ECCP Mux"
+      setting 0x2 mask 0x2 description "P1B/P1C On RE6/RE5, P3B/P3C On RE4/RE3"
+      setting 0x0 mask 0x2 description "P1B/P1C On RH7/RH6, P3B/P3C Onto RH5/RH4"
     CCP2MX mask 0x1 description "CCP2 Mux"
-    RESERVED mask 0x0 description "RESERVED"
+      setting 0x1 mask 0x1 description "ECCP2 I/O Muxed With RC1"
+      setting 0x0 mask 0x1 description "ECCP2 IP Muxed With RE7"
+  }
+
+  config CONFIG3L at 0xFFFC width 8 {
+    RES mask 0xF8 description "Reserved"
+      setting 0xF8 mask 0xF8 description "maintain these bits as 1"
   }
 }

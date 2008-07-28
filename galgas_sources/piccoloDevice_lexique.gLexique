@@ -32,7 +32,10 @@ list controlKeyWordList error message "the '%K' keyword" style keywordStyle :
   "config",
   "width",
   "description",
-  "mask" ;
+  "mask",
+  "illegal",
+  "message",
+  "setting" ;
 
 rule 'a'->'z' |  'A'->'Z' :
   repeat
