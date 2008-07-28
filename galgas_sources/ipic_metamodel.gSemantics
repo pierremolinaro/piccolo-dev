@@ -74,6 +74,25 @@ class @ipic_instruction_FDA extends @ipic_actualInstruction {
 
 #----------------------------------------------------*
 
+routine getFAinstructionBaseCode
+  ??@FA_instruction_base_code inInstruction
+  !@uint outBaseCode
+:
+  switch inInstruction
+  when CLRF   : outBaseCode := 0x6A00 ;
+  when CPFSEQ : outBaseCode := 0x6200 ;
+  when CPFSGT : outBaseCode := 0x6400 ;
+  when CPFSLT : outBaseCode := 0x6000 ;
+  when MOVWF  : outBaseCode := 0x6E00 ;
+  when MULWF  : outBaseCode := 0x0200 ;
+  when NEGF   : outBaseCode := 0x6C00 ;
+  when SETF   : outBaseCode := 0x6800 ;
+  when TSTFSZ : outBaseCode := 0x6600 ;
+  end switch ;
+end routine ;
+
+#----------------------------------------------------*
+
 class @ipic_instruction_FA extends @ipic_actualInstruction {
   @FA_instruction_base_code mFAinstruction ;
   @ipic_registerExpression mRegisterDescription ;
@@ -97,6 +116,19 @@ class @ipic_instruction_MOVFF extends @ipic_actualInstruction {
 
 #----------------------------------------------------*
 
+routine getBitOrientedOpBaseCode ??@bit_oriented_op inInstruction !@uint outBaseCode :
+  switch inInstruction
+  when BCF : outBaseCode := 0x9000 ;
+  when BSF : outBaseCode := 0x8000 ;
+  when BTFSC : outBaseCode := 0xB000 ;
+  when BTFSS : outBaseCode := 0xA000 ;
+  when BTG : outBaseCode := 0x7000 ;
+  end switch ;
+end routine ;
+
+
+#----------------------------------------------------*
+
 class @ipic_instruction_FBA extends @ipic_actualInstruction {
   @bit_oriented_op mBitOrientedOp ;
   @ipic_registerExpression mRegisterDescription ;
@@ -104,6 +136,15 @@ class @ipic_instruction_FBA extends @ipic_actualInstruction {
   method getBaseCode !@uint outBaseCode :
     getBitOrientedOpBaseCode !mBitOrientedOp ?outBaseCode ;
   end method ;
+}
+
+#----------------------------------------------------*
+
+enum @condionalBranchMode {
+  constructor native ;
+  constructor usesBRA ;
+  constructor usesGOTO ;
+}{
 }
 
 #----------------------------------------------------*
@@ -200,6 +241,22 @@ class @ipic_instruction_RETFIE extends @ipic_actualInstruction {
 
 class @ipic_instruction_SLEEP extends @ipic_actualInstruction {
 }
+
+#----------------------------------------------------*
+
+routine getLiteralInstructionBaseCode ??@literal_instruction_opcode inInstruction !@uint outBaseCode :
+  switch inInstruction
+  when ADDLW : outBaseCode := 0x0F00 ;
+  when ANDLW : outBaseCode := 0x0B00 ;
+  when IORLW : outBaseCode := 0x0900 ;
+  when MOVLW : outBaseCode := 0x0E00 ;
+  when MULLW : outBaseCode := 0x0D00 ;
+  when RETLW : outBaseCode := 0x0C00 ;
+  when SUBLW : outBaseCode := 0x0800 ;
+  when XORLW : outBaseCode := 0x0A00 ;
+  end switch ;
+end routine ;
+
 
 #----------------------------------------------------*
 
