@@ -220,11 +220,15 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @ipic_instruction_BRA.buildAssemblyCode
+override method @ipic_instruction_JUMP.buildAssemblyCode
   ?!@string ioString
   ?!@uint unused ioBccLabelIndex
 :
-  ioString .= "  BRA  " . [mTargetLabel string] . "\n" ;
+  if mUsesBRA then
+    ioString .= "  BRA  " . [mTargetLabel string] . "\n" ;
+  else
+    ioString .= "  GOTO  " . [mTargetLabel string] . "\n" ;
+  end if ;
 end method ;
 
 #----------------------------------------------------*
