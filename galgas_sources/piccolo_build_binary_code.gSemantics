@@ -688,7 +688,7 @@ override method @ipic_instruction_computed_retlw.generateBinaryCodeAtAddress
 :
   @uint targetAddress ;
   [inRoutineSymbolTable searchKey ![@lstring new !"_computed_goto_2" !here] ?targetAddress] ;
-  if mUsesRelativeCall then
+  if mUsesRCALL then
     emitRCALLinstruction !ioAddress !targetAddress !mInstructionLocation ;
   else
     emitCALLinstruction ! targetAddress ;
@@ -706,7 +706,7 @@ override method @ipic_instruction_computed_bra.generateBinaryCodeAtAddress
 :
   @uint targetAddress ;
   [inRoutineSymbolTable searchKey ![@lstring new !"_computed_goto_2" !here] ?targetAddress] ;
-  if mUsesRelativeCall then
+  if mUsesRCALL then
     emitRCALLinstruction !ioAddress !targetAddress !mInstructionLocation ;
   else
     emitCALLinstruction ! targetAddress ;
@@ -731,7 +731,7 @@ override method @ipic_instruction_computed_goto.generateBinaryCodeAtAddress
 :
   @uint targetAddress ;
   [inRoutineSymbolTable searchKey ![@lstring new !"_computed_goto_4" !here] ?targetAddress] ;
-  if mUsesRelativeCall then
+  if mUsesRCALL then
     emitRCALLinstruction !ioAddress !targetAddress !mInstructionLocation ;
   else
     emitCALLinstruction !targetAddress ;
