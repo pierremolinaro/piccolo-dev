@@ -294,6 +294,71 @@ rule <routine_definition>
     !?ioNeedsComputedGoto2
     !?ioNeedsComputedGoto4
   ;
+#--- As last instruction computed RETLW, BRA or GOTO are accepted
+  @location instructionLocation := here ;
+  select
+    $computed$ ;
+    $retlw$ ;
+    if noreturn then
+      error here: "A routine declared with 'noreturn' qualifier cannot end with a computed RETLW" ;
+    end if ;
+    @luintlist argumentList [emptyList] ;
+    repeat
+      @luint literalValue ;
+      <literal_value_parsing> ?literalValue ;
+      argumentList += ! literalValue ;
+    while
+      $,$ ;
+    end repeat ;
+    instructionList += ![@instruction_computed_retlw new
+      !instructionLocation
+      !argumentList
+      !true
+    ] ;
+    ioNeedsComputedGoto2 := true ;
+  or
+    $computed$ ;
+    $bra$ ;
+    if not noreturn then
+      error here: "A routine declared without 'noreturn' qualifier cannot end with a computed BRA" ;
+    end if ;
+    @lstringlist argumentList [emptyList] ;
+    repeat
+      $identifier$ ? @lstring targetRoutine ;
+      argumentList += ! targetRoutine ;
+    while
+      $,$ ;
+    end repeat ;
+    instructionList += ![@instruction_computed_bra new
+      !instructionLocation
+      !argumentList
+      !true
+    ] ;
+    ioNeedsComputedGoto2 := true ;
+  or
+    $computed$ ;
+    $goto$ ;
+    if not noreturn then
+      error here: "A routine declared without 'noreturn' qualifier cannot end with a computed GOTO" ;
+    end if ;
+    @lstringlist argumentList [emptyList] ;
+    repeat
+      $identifier$ ? @lstring targetRoutine ;
+      argumentList += ! targetRoutine ;
+    while
+      $,$ ;
+    end repeat ;
+    instructionList += ![@instruction_computed_goto new
+      !instructionLocation
+      !argumentList
+      !true
+    ] ;
+    ioNeedsComputedGoto4 := true ;
+  or # By default, add a RETURN instruction
+    if not noreturn then
+      instructionList += ![@instruction_RETURN new !instructionLocation] ;
+    end if ;
+  end select ;
   $}$ ;
   ioRoutineDefinitionList += !routineName !banksel !noreturn !instructionList ;
 end rule ;
@@ -657,76 +722,6 @@ rule <structured_instruction>
       !w_isTarget
     ] ;
   or
-    @bool useRelativeCall ;
-    select
-      $computed$ ;
-      useRelativeCall := false ;
-    or
-      $rcomputed$ ;
-      useRelativeCall := true ;
-    end select ;
-    $retlw$ ;
-    @luintlist argumentList [emptyList] ;
-    repeat
-      @luint literalValue ;
-      <literal_value_parsing> ?literalValue ;
-      argumentList += ! literalValue ;
-    while
-      $,$ ;
-    end repeat ;
-    outInstruction := [@instruction_computed_retlw new
-      !instructionLocation
-      !argumentList
-      !useRelativeCall
-    ] ;
-    ioNeedsComputedGoto2 := true ;
-  or
-    @bool useRelativeCall ;
-    select
-      $computed$ ;
-      useRelativeCall := false ;
-    or
-      $rcomputed$ ;
-      useRelativeCall := true ;
-    end select ;
-    $bra$ ;
-    @lstringlist argumentList [emptyList] ;
-    repeat
-      $identifier$ ? @lstring targetRoutine ;
-      argumentList += ! targetRoutine ;
-    while
-      $,$ ;
-    end repeat ;
-    outInstruction := [@instruction_computed_bra new
-      !instructionLocation
-      !argumentList
-      !useRelativeCall
-    ] ;
-    ioNeedsComputedGoto2 := true ;
-  or
-    @bool useRelativeCall ;
-    select
-      $computed$ ;
-      useRelativeCall := false ;
-    or
-      $rcomputed$ ;
-      useRelativeCall := true ;
-    end select ;
-    $goto$ ;
-    @lstringlist argumentList [emptyList] ;
-    repeat
-      $identifier$ ? @lstring targetRoutine ;
-      argumentList += ! targetRoutine ;
-    while
-      $,$ ;
-    end repeat ;
-    outInstruction := [@instruction_computed_goto new
-      !instructionLocation
-      !argumentList
-      !useRelativeCall
-    ] ;
-    ioNeedsComputedGoto4 := true ;
-  or
     $if$ ;
     @conditionExpression structured_if_condition ;
     <condition_expression> ?structured_if_condition ;
@@ -968,9 +963,6 @@ rule <simple_instruction> !@piccolo_instruction outInstruction :
   or
     $reset$ ;
     outInstruction := [@instruction_RESET new !instructionLocation] ;
-  or
-    $return$ ;
-    outInstruction := [@instruction_RETURN new !instructionLocation] ;
   or
     $sleep$ ;
     outInstruction := [@instruction_SLEEP new !instructionLocation] ;
