@@ -334,6 +334,26 @@ routine emitRCALLinstruction
   emitCode !0xD800 | [displacement & 0x07FFS uint] ;
 end routine ;
 
+#----------------------------------------------------------------------------*
+
+override method @ipic_instruction_JSR.generateBinaryCodeAtAddress
+  ??@symbolTable inRoutineSymbolTable
+  ?!@uint ioAddress
+:
+  @uint targetAddress ;
+  [inRoutineSymbolTable searchKey !mTargetLabel ?targetAddress] ;
+#--- Emit Code
+  if mUsesRCALL then
+    emitRCALLinstruction
+      !ioAddress
+      !targetAddress
+      !mInstructionLocation
+    ;
+  else
+    emitCALLinstruction !targetAddress ;
+  end if ;
+end method ;
+
 #----------------------------------------------------*
 
 override method @ipic_jump_test_register.generateBinaryCodeAtAddress

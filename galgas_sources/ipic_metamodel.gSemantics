@@ -181,7 +181,7 @@ class @ipic_instruction_JUMP extends @ipic_actualInstruction {
 
 #----------------------------------------------------*
 
-class @ipic_instruction_CALL extends @ipic_actualInstruction {
+class @ipic_instruction_GOTO extends @ipic_actualInstruction {
   @lstring mTargetLabel ;
   override
   method instructionLength !@uint outLength :
@@ -191,7 +191,22 @@ class @ipic_instruction_CALL extends @ipic_actualInstruction {
 
 #----------------------------------------------------*
 
-class @ipic_instruction_GOTO extends @ipic_actualInstruction {
+class @ipic_instruction_JSR extends @ipic_actualInstruction {
+  @lstring mTargetLabel ;
+  @bool mUsesRCALL ;
+  override
+  method instructionLength !@uint outLength :
+    if mUsesRCALL then
+      outLength := 2 ;
+    else
+      outLength := 4 ;
+    end if ;
+  end method ;
+}
+
+#----------------------------------------------------*
+
+class @ipic_instruction_CALL extends @ipic_actualInstruction {
   @lstring mTargetLabel ;
   override
   method instructionLength !@uint outLength :

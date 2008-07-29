@@ -235,6 +235,12 @@ end routine ;
 
 #----------------------------------------------------*
 
+class @instruction_JSR extends @piccolo_instruction {
+  @lstring mTargetLabel ;
+}
+
+#----------------------------------------------------*
+
 class @instruction_CALL extends @piccolo_instruction {
   @lstring mTargetLabel ;
 }
