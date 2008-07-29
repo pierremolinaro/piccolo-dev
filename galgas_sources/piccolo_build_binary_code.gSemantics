@@ -263,23 +263,27 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @ipic_instruction_BRA.generateBinaryCodeAtAddress
+override method @ipic_instruction_JUMP.generateBinaryCodeAtAddress
   ??@symbolTable inRoutineSymbolTable
   ?!@uint ioAddress
 :
- @uint targetAddress ;
+  @uint targetAddress ;
   [inRoutineSymbolTable searchKey !mTargetLabel ?targetAddress] ;
-#--- Emit Code
-  @sint displacement := ([targetAddress sint] - 2S - [ioAddress sint]) >> 1 ;
-  if (displacement > 0x800S) | (displacement < - 0x800S) then
-    error mTargetLabel: "displacement too large for RCALL instruction" ;
+  if mUsesBRA then
+  #--- Emit Code
+    @sint displacement := ([targetAddress sint] - 2S - [ioAddress sint]) >> 1 ;
+    if (displacement > 0x800S) | (displacement < - 0x800S) then
+      error mTargetLabel: "displacement too large for RCALL instruction" ;
+    end if ;
+  #--- Emit Code
+    emitBRAinstruction
+      !ioAddress
+      !targetAddress
+      ![mTargetLabel location]
+    ;
+  else
+    emitGOTOinstruction !targetAddress ;
   end if ;
-#--- Emit Code
-  emitBRAinstruction
-    !ioAddress
-    !targetAddress
-    ![mTargetLabel location]
-  ;
 end method ;
 
 #----------------------------------------------------------------------------*

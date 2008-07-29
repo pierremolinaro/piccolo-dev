@@ -509,7 +509,7 @@ override method @instruction_FOREVER.buildIPICinstructionList
   foreach mInstructionList do
     [mInstruction buildIPICinstructionList !inAccessBankSplitOffset !inRegisterTable !?ioLocalLabelIndex !?ioGeneratedInstructionList] ;
   end foreach ;
-  ioGeneratedInstructionList += ![@ipic_instruction_BRA new !mInstructionLocation ![@lstring new !label0 !mInstructionLocation]] ;
+  ioGeneratedInstructionList += ![@ipic_instruction_JUMP new !mInstructionLocation ![@lstring new !label0 !mInstructionLocation] !true] ;
 end method ;
 
 #----------------------------------------------------*
@@ -822,7 +822,7 @@ override method @bitTest_in_structured_if_condition.buildIPICinstructionForCondi
     !IPICregisterDescription
     !bitNumber
   ] ;
-  ioGeneratedInstructionList += ![@ipic_instruction_BRA new !inInstructionLocation ![@lstring new !inTargetLabel !inInstructionLocation]] ;
+  ioGeneratedInstructionList += ![@ipic_instruction_JUMP new !inInstructionLocation ![@lstring new !inTargetLabel !inInstructionLocation] !true] ;
 end method ;
 
 #----------------------------------------------------*
@@ -852,7 +852,7 @@ override method @instruction_structured_if.buildIPICinstructionList
   end foreach ;
 #--- 'elsif' parts
   foreach mElsifPartList do
-    ioGeneratedInstructionList += ![@ipic_instruction_BRA new !mInstructionLocation ![@lstring new !label_endOfIfinstruction !mInstructionLocation]] ;
+    ioGeneratedInstructionList += ![@ipic_instruction_JUMP new !mInstructionLocation ![@lstring new !label_endOfIfinstruction !mInstructionLocation] !true] ;
     ioGeneratedInstructionList += ![@ipic_pseudo_LABEL new ![@lstring new !label_nextCondition !mInstructionLocation]] ;
     label_nextCondition := "_label_" . [ioLocalLabelIndex string] ; ioLocalLabelIndex ++ ;
     [mCondition buildIPICinstructionForCondition
@@ -870,7 +870,7 @@ override method @instruction_structured_if.buildIPICinstructionList
   end foreach ;
 #--- 'else' instructions
   if [mElseInstructionList length] > 0 then
-    ioGeneratedInstructionList += ![@ipic_instruction_BRA new !mInstructionLocation ![@lstring new !label_endOfIfinstruction !mInstructionLocation]] ;
+    ioGeneratedInstructionList += ![@ipic_instruction_JUMP new !mInstructionLocation ![@lstring new !label_endOfIfinstruction !mInstructionLocation] !true] ;
   end if ;
   ioGeneratedInstructionList += ![@ipic_pseudo_LABEL new ![@lstring new !label_nextCondition !mInstructionLocation]] ;
   foreach mElseInstructionList do
@@ -923,7 +923,7 @@ override method @instruction_do_while.buildIPICinstructionList
       foreach mInstructionList do
         [mInstruction buildIPICinstructionList !inAccessBankSplitOffset !inRegisterTable !?ioLocalLabelIndex !?ioGeneratedInstructionList] ;
       end foreach ;
-      ioGeneratedInstructionList += ![@ipic_instruction_BRA new !mInstructionLocation ![@lstring new !labelInstructionBegin !mInstructionLocation]] ;
+      ioGeneratedInstructionList += ![@ipic_instruction_JUMP new !mInstructionLocation ![@lstring new !labelInstructionBegin !mInstructionLocation] !true] ;
       ioGeneratedInstructionList += ![@ipic_pseudo_LABEL new ![@lstring new !nextBranchLabel !mInstructionLocation]] ;
     end if ;
   end foreach ;
@@ -987,7 +987,7 @@ routine buildIPICAssemblyInstructionList
 #--- At 0x08, generate 'bra _fast_interrupt' instruction, if both interrupt are defined
   if inHasLowInterrupt & inHasHighInterrupt then
     outGeneratedInstructionList += ![@ipic_pseudo_ORG new !0x8] ;
-    outGeneratedInstructionList += ![@ipic_instruction_BRA new !here ![@lstring new !"_fast_interrupt" !here]] ;
+    outGeneratedInstructionList += ![@ipic_instruction_JUMP new !here ![@lstring new !"_fast_interrupt" !here] !true] ;
   end if ;
 #--- First, handle low interrupt (if any)
   if inHasLowInterrupt then

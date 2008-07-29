@@ -166,8 +166,9 @@ class @ipic_instruction_conditionalBranch extends @ipic_actualInstruction {
 
 #----------------------------------------------------*
 
-class @ipic_instruction_BRA extends @ipic_actualInstruction {
+class @ipic_instruction_JUMP extends @ipic_actualInstruction {
   @lstring mTargetLabel ;
+  @bool mUsesBRA ;
 }
 
 #----------------------------------------------------*
