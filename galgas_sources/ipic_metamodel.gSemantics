@@ -169,6 +169,14 @@ class @ipic_instruction_conditionalBranch extends @ipic_actualInstruction {
 class @ipic_instruction_JUMP extends @ipic_actualInstruction {
   @lstring mTargetLabel ;
   @bool mUsesBRA ;
+  override
+  method instructionLength !@uint outLength :
+    if mUsesBRA then
+      outLength := 2 ;
+    else
+      outLength := 4 ;
+    end if ;
+  end method ;
 }
 
 #----------------------------------------------------*
