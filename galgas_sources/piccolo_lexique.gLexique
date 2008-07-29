@@ -71,6 +71,7 @@ list instructionKeyWordList error message "the '%K' instruction" style instructi
   "bsf",
   "btg",
   "bra",
+  "jsr",
   "call",
   "clrwdt",
   "daw",

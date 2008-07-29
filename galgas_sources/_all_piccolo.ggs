@@ -8,8 +8,8 @@ compile "piccolo_syntax.gSyntax" ;
 compile "piccolo_grammar.gGrammar" ;
 compile "ipic_metamodel.gSemantics" ;
 compile "buildIPICAssemblyInstructionList.gSemantics" ;
-compile "piccolo_build_assembly_code.gSemantics" ;
 compile "piccolo_convert_relatives.gSemantics" ;
+compile "piccolo_build_assembly_code.gSemantics" ;
 compile "piccolo_build_binary_code.gSemantics" ;
 compile "piccolo_semantics.gSemantics" ;
 

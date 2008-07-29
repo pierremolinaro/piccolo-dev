@@ -191,6 +191,21 @@ end method ;
 
 #----------------------------------------------------*
 
+override method @instruction_JSR.buildIPICinstructionList
+  ??@uint unused inAccessBankSplitOffset
+  ??@registerTable unused inRegisterTable
+  ?!@uint unused ioLocalLabelIndex
+  ?!@ipic_instructionList ioGeneratedInstructionList
+:
+  ioGeneratedInstructionList += ![@ipic_instruction_JSR new
+    !mInstructionLocation
+    !mTargetLabel
+    !true
+  ] ;
+end method ;
+
+#----------------------------------------------------*
+
 override method @instruction_CALL.buildIPICinstructionList
   ??@uint unused inAccessBankSplitOffset
   ??@registerTable unused inRegisterTable

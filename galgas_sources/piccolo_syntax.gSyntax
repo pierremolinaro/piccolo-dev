@@ -930,6 +930,13 @@ rule <simple_instruction> !@piccolo_instruction outInstruction :
       !bitNumber
     ] ;
   or
+    $jsr$ ;
+    $identifier$ ? @lstring targetLabelName ;
+    outInstruction := [@instruction_JSR new
+      !instructionLocation
+      !targetLabelName
+    ] ;
+  or
     $call$ ;
     $identifier$ ? @lstring targetLabelName ;
     outInstruction := [@instruction_CALL new

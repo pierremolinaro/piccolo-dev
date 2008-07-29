@@ -233,6 +233,15 @@ end method ;
 
 #----------------------------------------------------*
 
+override method @ipic_instruction_GOTO.buildAssemblyCode
+  ?!@string ioString
+  ?!@uint unused ioBccLabelIndex
+:
+  ioString .= "  GOTO " . mTargetLabel . "\n" ;
+end method ;
+
+#----------------------------------------------------*
+
 override method @ipic_instruction_CALL.buildAssemblyCode
   ?!@string ioString
   ?!@uint unused ioBccLabelIndex
@@ -242,11 +251,15 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @ipic_instruction_GOTO.buildAssemblyCode
+override method @ipic_instruction_JSR.buildAssemblyCode
   ?!@string ioString
   ?!@uint unused ioBccLabelIndex
 :
-  ioString .= "  GOTO " . mTargetLabel . "\n" ;
+  if mUsesRCALL then
+    ioString .= "  RCALL " . mTargetLabel . "\n" ;
+  else
+    ioString .= "  CALL " . mTargetLabel . "\n" ;
+  end if ;
 end method ;
 
 #----------------------------------------------------*

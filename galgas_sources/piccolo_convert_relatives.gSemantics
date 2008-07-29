@@ -249,24 +249,27 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @ipic_instruction_RCALL.checkRelativeBranch
+override method @ipic_instruction_JSR.checkRelativeBranch
   ??@symbolTableForConvertingRelatives inRoutineSymbolTable
   ?!@uint ioAddress
   ?!@bool ioRelativeBranchOverflow
   ?!@ipic_instructionList ioGeneratedInstructionList
   ??@uint inIndex
 :
-  @uint targetAddress ;
-  [inRoutineSymbolTable searchKey !mTargetLabel ?targetAddress] ;
-  @sint displacement := ([targetAddress sint] - 2S - [ioAddress sint]) >> 1 ;
-  if (displacement > 1023S) | (displacement < - 1024S) then
+  if mUsesRCALL then
+    @uint targetAddress ;
+    [inRoutineSymbolTable searchKey !mTargetLabel ?targetAddress] ;
+    @sint displacement := ([targetAddress sint] - 2S - [ioAddress sint]) >> 1 ;
+    if (displacement > 1023S) | (displacement < - 1024S) then
 ##    message "  RCALL overflow, converted to CALL\n" ;
-    ioRelativeBranchOverflow := true ;
-    @ipic_actualInstruction instruction := [@ipic_instruction_CALL new
-      !mInstructionLocation
-      !mTargetLabel
-    ] ;
-    [!?ioGeneratedInstructionList setMInstructionAtIndex !instruction !inIndex] ;
+      ioRelativeBranchOverflow := true ;
+      @ipic_actualInstruction instruction := [@ipic_instruction_JSR new
+        !mInstructionLocation
+        !mTargetLabel
+        !false
+      ] ;
+      [!?ioGeneratedInstructionList setMInstructionAtIndex !instruction !inIndex] ;
+    end if ;
   end if ;
 end method ;
 
