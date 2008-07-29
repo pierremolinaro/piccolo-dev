@@ -1,5 +1,6 @@
 semantics piccolo_convert_relatives :
 import semantics ipic_metamodel in "ipic_metamodel.gSemantics" ;
+import option piccolo_options in "piccolo_options.gOption" ;
 import "ipic_metamodel.gSemantics" ;
 
 #----------------------------------------------------------------------------*
@@ -66,6 +67,7 @@ abstract method @ipic_instruction.checkRelativeBranch
   ?!@bool unused ioRelativeBranchOverflow
   ?!@ipic_instructionList unused ioGeneratedInstructionList
   ??@uint unused inIndex
+  ?!@string unused ioListFileContents
 ;
 
 #----------------------------------------------------------------------------*
@@ -77,6 +79,7 @@ method @ipic_pseudo_ORG.checkRelativeBranch
   ?!@bool unused ioRelativeBranchOverflow
   ?!@ipic_instructionList unused ioGeneratedInstructionList
   ??@uint unused inIndex
+  ?!@string unused ioListFileContents
 :
   ioAddress := mOrigin ;
 end method ;
@@ -89,6 +92,7 @@ override method @ipic_instruction_conditionalBranch.checkRelativeBranch
   ?!@bool ioRelativeBranchOverflow
   ?!@ipic_instructionList ioGeneratedInstructionList
   ??@uint inIndex
+  ?!@string ioListFileContents
 :
   switch mBranchMode
   when native :
@@ -97,7 +101,9 @@ override method @ipic_instruction_conditionalBranch.checkRelativeBranch
     @sint displacement := ([targetAddress sint] - 2S - [ioAddress sint]) >> 1 ;
     if (displacement > 127S) | (displacement < - 128S) then
       ioRelativeBranchOverflow := true ;
-##      message "  native Bcc overflow, converted to Bcc with BRA\n" ;
+      if [option piccolo_options.ouputListFile] then
+        ioListFileContents .= "line " . [inIndex string] . ":  native Bcc overflow, converted to Bcc with BRA\n" ;
+      end if ;
       @ipic_actualInstruction instruction := [@ipic_instruction_conditionalBranch new
         !mInstructionLocation
         ![@condionalBranchMode usesBRA]
@@ -112,7 +118,9 @@ override method @ipic_instruction_conditionalBranch.checkRelativeBranch
     @sint displacement := ([targetAddress sint] - 2S - [ioAddress sint]) >> 1 ;
     if (displacement > 1023S) | (displacement < - 1024S) then
       ioRelativeBranchOverflow := true ;
-##      message "  Bcc with BRA overflow, converted to Bcc with GOTO\n" ;
+      if [option piccolo_options.ouputListFile] then
+        ioListFileContents .= "line " . [inIndex string] . ":  Bcc with BRA overflow, converted to Bcc with GOTO\n" ;
+      end if ;
       @ipic_actualInstruction instruction := [@ipic_instruction_conditionalBranch new
         !mInstructionLocation
         ![@condionalBranchMode usesGOTO]
@@ -133,6 +141,7 @@ override method @ipic_jump_test_register.checkRelativeBranch
   ?!@bool ioRelativeBranchOverflow
   ?!@ipic_instructionList ioGeneratedInstructionList
   ??@uint inIndex
+  ?!@string ioListFileContents
 :
   if mUsesBra then
     @uint BRAaddress := ioAddress + 2 ;
@@ -144,7 +153,9 @@ override method @ipic_jump_test_register.checkRelativeBranch
     @sint displacement := ([targetAddress sint] - 2S - [BRAaddress sint]) >> 1 ;
     if (displacement > 1023S) | (displacement < - 1024S) then
       ioRelativeBranchOverflow := true ;
-##      message "  BRA overflow, converted to GOTO\n" ;
+      if [option piccolo_options.ouputListFile] then
+        ioListFileContents .= "line " . [inIndex string] . ":  JUMP with BRA overflow, converted to JUMP with GOTO\n" ;
+      end if ;
       @ipic_actualInstruction instruction := [@ipic_jump_test_register new
         !mInstructionLocation
         !mRegisterDescription
@@ -165,6 +176,7 @@ override method @ipic_registerComparisonCondition.checkRelativeBranch
   ?!@bool ioRelativeBranchOverflow
   ?!@ipic_instructionList ioGeneratedInstructionList
   ??@uint inIndex
+  ?!@string ioListFileContents
 :
   @bool uses ; [self usesIntermediateBRA ?uses] ;
   if mUsesBra then
@@ -177,7 +189,9 @@ override method @ipic_registerComparisonCondition.checkRelativeBranch
     @sint displacement := ([targetAddress sint] - 2S - [BRAaddress sint]) >> 1 ;
     if (displacement > 1023S) | (displacement < - 1024S) then
       ioRelativeBranchOverflow := true ;
-#      message "  BRA overflow, converted to GOTO\n" ;
+      if [option piccolo_options.ouputListFile] then
+        ioListFileContents .= "line " . [inIndex string] . ":  JUMP with BRA overflow, converted to JUMP with GOTO\n" ;
+      end if ;
       @ipic_actualInstruction instruction := [@ipic_registerComparisonCondition new
         !mInstructionLocation
         !mRegisterDescription
@@ -198,6 +212,7 @@ override method @ipic_incDecRegisterInCondition.checkRelativeBranch
   ?!@bool ioRelativeBranchOverflow
   ?!@ipic_instructionList ioGeneratedInstructionList
   ??@uint inIndex
+  ?!@string ioListFileContents
 :
   if mUsesBra then
     @uint BRAaddress := ioAddress + 2 ;
@@ -206,7 +221,9 @@ override method @ipic_incDecRegisterInCondition.checkRelativeBranch
     @sint displacement := ([targetAddress sint] - 2S - [BRAaddress sint]) >> 1 ;
     if (displacement > 1023S) | (displacement < - 1024S) then
       ioRelativeBranchOverflow := true ;
-      message "  BRA overflow, converted to GOTO\n" ;
+      if [option piccolo_options.ouputListFile] then
+        ioListFileContents .= "line " . [inIndex string] . ":  JUMP with BRA overflow, converted to JUMP with GOTO\n" ;
+      end if ;
       @ipic_actualInstruction instruction := [@ipic_incDecRegisterInCondition new
         !mInstructionLocation
         !mRegisterDescription
@@ -229,6 +246,7 @@ override method @ipic_instruction_JUMP.checkRelativeBranch
   ?!@bool ioRelativeBranchOverflow
   ?!@ipic_instructionList ioGeneratedInstructionList
   ??@uint inIndex
+  ?!@string ioListFileContents
 :
   if mUsesBRA then
     @uint targetAddress ;
@@ -236,7 +254,9 @@ override method @ipic_instruction_JUMP.checkRelativeBranch
     @sint displacement := ([targetAddress sint] - 2S - [ioAddress sint]) >> 1 ;
     if (displacement > 1023S) | (displacement < - 1024S) then
       ioRelativeBranchOverflow := true ;
-##    message "  BRA overflow, converted to GOTO\n" ;
+      if [option piccolo_options.ouputListFile] then
+        ioListFileContents .= "line " . [inIndex string] . ":  JUMP with BRA overflow, converted to JUMP with GOTO\n" ;
+      end if ;
       @ipic_actualInstruction instruction := [@ipic_instruction_JUMP new
         !mInstructionLocation
         !mTargetLabel
@@ -255,13 +275,16 @@ override method @ipic_instruction_JSR.checkRelativeBranch
   ?!@bool ioRelativeBranchOverflow
   ?!@ipic_instructionList ioGeneratedInstructionList
   ??@uint inIndex
+  ?!@string ioListFileContents
 :
   if mUsesRCALL then
     @uint targetAddress ;
     [inRoutineSymbolTable searchKey !mTargetLabel ?targetAddress] ;
     @sint displacement := ([targetAddress sint] - 2S - [ioAddress sint]) >> 1 ;
     if (displacement > 1023S) | (displacement < - 1024S) then
-##    message "  RCALL overflow, converted to CALL\n" ;
+      if [option piccolo_options.ouputListFile] then
+        ioListFileContents .= "line " . [inIndex string] . ":  JSR with RCALL overflow, converted to JSR with CALL\n" ;
+      end if ;
       ioRelativeBranchOverflow := true ;
       @ipic_actualInstruction instruction := [@ipic_instruction_JSR new
         !mInstructionLocation
@@ -281,6 +304,7 @@ override method @ipic_pseudo_LABEL.checkRelativeBranch
   ?!@bool unused ioRelativeBranchOverflow
   ?!@ipic_instructionList unused ioGeneratedInstructionList
   ??@uint unused inIndex
+  ?!@string unused ioListFileContents
 :
   @uint targetAddress ;
   [inRoutineSymbolTable searchKey !mTargetLabel ?targetAddress] ;
@@ -299,14 +323,17 @@ override method @ipic_instruction_computed_retlw.checkRelativeBranch
   ?!@bool ioRelativeBranchOverflow
   ?!@ipic_instructionList ioGeneratedInstructionList
   ??@uint inIndex
+  ?!@string ioListFileContents
 :
-  if mUsesRelativeCall then
+  if mUsesRCALL then
     @uint targetAddress ;
     [inRoutineSymbolTable searchKey ![@lstring new !"_computed_goto_2" !here] ?targetAddress] ;
     @sint displacement := ([targetAddress sint] - 2S - [ioAddress sint]) >> 1 ;
     if (displacement > 1023S) | (displacement < - 1024S) then
       ioRelativeBranchOverflow := true ;
-##      message "  rcomputed retlw overflow, converted to computed retlw\n" ;
+      if [option piccolo_options.ouputListFile] then
+        ioListFileContents .= "line " . [inIndex string] . ":  COMPUTED RETLW with RCALL overflow, converted to COMPUTED RETLW with CALL\n" ;
+      end if ;
       @ipic_actualInstruction instruction := [@ipic_instruction_computed_retlw new
         !mInstructionLocation
         !mLiteralValues
@@ -325,14 +352,17 @@ override method @ipic_instruction_computed_bra.checkRelativeBranch
   ?!@bool ioRelativeBranchOverflow
   ?!@ipic_instructionList ioGeneratedInstructionList
   ??@uint inIndex
+  ?!@string ioListFileContents
 :
-  if mUsesRelativeCall then
+  if mUsesRCALL then
     @uint targetAddress ;
     [inRoutineSymbolTable searchKey ![@lstring new !"_computed_goto_2" !here] ?targetAddress] ;
     @sint displacement := ([targetAddress sint] - 2S - [ioAddress sint]) >> 1 ;
     if (displacement > 1023S) | (displacement < - 1024S) then
       ioRelativeBranchOverflow := true ;
-##      message "  rcomputed bra overflow, converted to computed bra\n" ;
+      if [option piccolo_options.ouputListFile] then
+        ioListFileContents .= "line " . [inIndex string] . ":  COMPUTED BRA with RCALL overflow, converted to COMPUTED BRA with CALL\n" ;
+      end if ;
       @ipic_actualInstruction instruction := [@ipic_instruction_computed_bra new
         !mInstructionLocation
         !mTargetLabels
@@ -358,14 +388,17 @@ override method @ipic_instruction_computed_goto.checkRelativeBranch
   ?!@bool ioRelativeBranchOverflow
   ?!@ipic_instructionList ioGeneratedInstructionList
   ??@uint inIndex
+  ?!@string ioListFileContents
 :
-  if mUsesRelativeCall then
+  if mUsesRCALL then
     @uint targetAddress ;
     [inRoutineSymbolTable searchKey ![@lstring new !"_computed_goto_4" !here] ?targetAddress] ;
     @sint displacement := ([targetAddress sint] - 2S - [ioAddress sint]) >> 1 ;
     if (displacement > 1023S) | (displacement < - 1024S) then
       ioRelativeBranchOverflow := true ;
-##      message "  rcomputed goto overflow, converted to computed goto\n" ;
+      if [option piccolo_options.ouputListFile] then
+        ioListFileContents .= "line " . [inIndex string] . ":  COMPUTED GOTO with RCALL overflow, converted to COMPUTED GOTO with CALL\n" ;
+      end if ;
       @ipic_actualInstruction instruction := [@ipic_instruction_computed_goto new
         !mInstructionLocation
         !mTargetLabels
@@ -377,7 +410,6 @@ override method @ipic_instruction_computed_goto.checkRelativeBranch
   foreach mTargetLabels do
     @uint targetAddress ;
     [inRoutineSymbolTable searchKey !mValue ?targetAddress] ;
-
   end foreach ;
 end method ;
 
@@ -389,7 +421,13 @@ end method ;
 
 routine convertRelativeBranchsToAbsoluteWhenNeeded
   ?!@ipic_instructionList ioGeneratedInstructionList
+  ?!@string ioListFileContents
 :
+  if [option piccolo_options.ouputListFile] then
+    ioListFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n" ;
+    ioListFileContents .= "*" . ["CONVERT RELATIVES" stringByLeftAndRightPadding !77 !' '] . "*\n" ;
+    ioListFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n\n" ;
+  end if ;
   @bool relativeBranchOverflow := true ;
   @uint iteration := 0 ;
   loop [ioGeneratedInstructionList length] :
@@ -397,7 +435,9 @@ routine convertRelativeBranchsToAbsoluteWhenNeeded
   do
     relativeBranchOverflow := false ;
     iteration ++ ;
-##    message "convert relatives, pass " . [iteration string] . "\n" ;
+    if [option piccolo_options.ouputListFile] then
+      ioListFileContents .= "Pass " . [iteration string] . ":\n" ;
+    end if ;
   #-------------------------------- First pass: build label map
     @symbolTableForConvertingRelatives symbolTable [emptyMap] ;
     @uint currentAddress := 0 ;
@@ -410,13 +450,17 @@ routine convertRelativeBranchsToAbsoluteWhenNeeded
     foreach ioGeneratedInstructionList:idx do
       @uint instructionLength ;
       [mInstruction instructionLength ?instructionLength] ;
-      [mInstruction checkRelativeBranch !symbolTable !?currentAddress !?relativeBranchOverflow !?ioGeneratedInstructionList !idx] ;
+      [mInstruction checkRelativeBranch !symbolTable !?currentAddress !?relativeBranchOverflow !?ioGeneratedInstructionList !idx !?ioListFileContents] ;
       currentAddress := currentAddress  + instructionLength ;
     end foreach ;
     if lastAddressForFirstPass != currentAddress then
       error here: "Internal second pass error: the last address gets " . [currentAddress hexString]
-      . " value in second pass, while it gets "
-      . [lastAddressForFirstPass hexString] . " value in first pass" ;
+      . " value when checking relative branches, while it gets "
+      . [lastAddressForFirstPass hexString] . " value when computing routine map" ;
+    end if ;
+    if (not relativeBranchOverflow) & [option piccolo_options.ouputListFile] then
+      ioListFileContents .= "  Ok\n\n" ;
+      ioListFileContents .= "Program size: " . [currentAddress string] . " bytes\n\n" ;
     end if ;
   end loop ;
 end routine ;

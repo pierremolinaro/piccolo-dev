@@ -108,8 +108,21 @@ routine analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName :
       [mDeclaration handleDeclaration !?ramBank !?registerTable !mBankName] ;
     end foreach ;
   end foreach ;
+  @string listFileContents := "" ;
 #-------------------------------- Perform Semantics checkings
-
+  if [option piccolo_options.ouputListFile] then
+    listFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n" ;
+    listFileContents .= "*" . ["DECLARED VARIABLES" stringByLeftAndRightPadding !77 !' '] . "*\n" ;
+    listFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n\n" ;
+    foreach registerTable do
+      if not [[piccoloDeviceModel mRegisterTable] hasKey ![key string]] then
+        listFileContents .= [[key string] stringByLeftPadding !40 !' '] . " " ;
+        @uint address ; [mRegisterAddressList first ?address] ;
+        listFileContents .= [address hexString] . "\n" ;
+      end if ;
+    end foreach ;
+    listFileContents .= "\n" ;
+  end if ;
 #-------------------------------- Build IPIC Assembly Instruction List
   @uint accessBankSplitOffset ;
   switch [piccoloDeviceModel mProcessorType]
@@ -124,12 +137,17 @@ routine analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName :
     !hasHighInterrupt
     !hasLowInterrupt
     ?generatedInstructionList
+    !?listFileContents
   ;
 #-------------------------------- Convert relative branchs to absolute, when needed
   if not [option piccolo_options.doNotConvertRelative] then
-    convertRelativeBranchsToAbsoluteWhenNeeded !?generatedInstructionList ;
+    convertRelativeBranchsToAbsoluteWhenNeeded !?generatedInstructionList !?listFileContents ;
   end if ;
 #-------------------------------- Code generation
+  if [option piccolo_options.ouputListFile] then
+    @string listFile := [inSourceFileName stringByDeletingPathExtension] . ".list" ;
+    [listFileContents writeToFileWhenDifferentContents !listFile] ;
+  end if ;
 #--- If no error, generate object file
   if [@uint errorCount] == 0 then
     if [option piccolo_options.generateAssembly] then

@@ -426,7 +426,7 @@ override method @ipic_instruction_computed_retlw.buildAssemblyCode
   ?!@string ioString
   ?!@uint unused ioBccLabelIndex
 :
-  if mUsesRelativeCall then
+  if mUsesRCALL then
     ioString .= "  RCALL _computed_goto_2\n" ;
   else
     ioString .= "  CALL _computed_goto_2\n" ;
@@ -442,7 +442,7 @@ override method @ipic_instruction_computed_bra.buildAssemblyCode
   ?!@string ioString
   ?!@uint unused ioBccLabelIndex
 :
-  if mUsesRelativeCall then
+  if mUsesRCALL then
     ioString .= "  RCALL _computed_goto_2\n" ;
   else
     ioString .= "  CALL _computed_goto_2\n" ;
@@ -458,7 +458,7 @@ override method @ipic_instruction_computed_goto.buildAssemblyCode
   ?!@string ioString
   ?!@uint unused ioBccLabelIndex
 :
-  if mUsesRelativeCall then
+  if mUsesRCALL then
     ioString .= "  RCALL _computed_goto_4\n" ;
   else
     ioString .= "  CALL _computed_goto_4\n" ;

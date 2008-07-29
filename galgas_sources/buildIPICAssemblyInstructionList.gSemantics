@@ -2,6 +2,7 @@ semantics buildIPICAssemblyInstructionList :
 import semantics piccolo_metamodel in "piccolo_metamodel.gSemantics" ;
 import semantics ipic_metamodel in "ipic_metamodel.gSemantics" ;
 import semantics piccoloDevice_semantics in "piccoloDevice_semantics.gSemantics" ;
+import option piccolo_options in "piccolo_options.gOption" ;
 import "ipic_metamodel.gSemantics" ;
 
 #----------------------------------------------------------------------------*
@@ -991,6 +992,7 @@ routine buildIPICAssemblyInstructionList
   ??@bool inHasHighInterrupt
   ??@bool inHasLowInterrupt
   !@ipic_instructionList outGeneratedInstructionList
+  ?!@string ioListFileContents
 :
 #-------------------------------- First Pass
   outGeneratedInstructionList := [@ipic_instructionList emptyList] ;
@@ -1108,6 +1110,23 @@ routine buildIPICAssemblyInstructionList
     outGeneratedInstructionList += ![@ipic_instruction_RETURN new
       !here
     ] ; # RETURN 0
+  end if ;
+#--- Output a listing ?
+  if [option piccolo_options.ouputListFile] then
+    ioListFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n" ;
+    ioListFileContents .= "*" . ["IPIC INSTRUCTION LIST" stringByLeftAndRightPadding !77 !' '] . "*\n" ;
+    ioListFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n\n" ;
+    @uint index := 0 ;
+    @uint currentAddress := 0 ;
+    foreach outGeneratedInstructionList do
+      [mInstruction setCurrentAddress !?currentAddress] ;
+      ioListFileContents .= [[index string] stringByLeftPadding !5 !'0'] . ": " ;
+      [mInstruction displayIPICinstruction !? ioListFileContents] ;
+      ioListFileContents .= "\n" ;
+      index ++ ;
+    end foreach ;
+    ioListFileContents .= "\n" ;
+    ioListFileContents .= "Minimum size without optimization: " . [currentAddress string] . " bytes.\n\n" ;
   end if ;
 end routine ;
 

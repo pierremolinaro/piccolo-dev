@@ -216,6 +216,17 @@ enum @conditional_branch {
     bov  -> "BOV" ;
     bnov -> "BNOV" ;
   end reader ;
+
+  reader condition :
+    bz   -> "Z" ;
+    bnz  -> "NZ" ;
+    bn   -> "N" ;
+    bnn  -> "NN" ;
+    bc   -> "C" ;
+    bnc  -> "NC" ;
+    bov  -> "OV" ;
+    bnov -> "NOV" ;
+  end reader ;
 }
 
 #----------------------------------------------------*
@@ -492,6 +503,14 @@ enum @registerComparison {
   constructor lowerOrEqual ;
   constructor lower ;
 }{
+  reader mnemonic :
+    notEqual -> "!=" ;
+    equal    -> "==" ;
+    greaterOrEqual -> ">=" ;
+    greater -> ">"  ;
+    lowerOrEqual -> "<="  ;
+    lower -> "<" ;
+  end reader ;
 }
 
 #----------------------------------------------------*
