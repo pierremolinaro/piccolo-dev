@@ -2,6 +2,8 @@ semantics piccolo_semantics :
 import semantics piccolo_build_binary_code in "piccolo_build_binary_code.gSemantics" ;
 import semantics buildIPICAssemblyInstructionList in "buildIPICAssemblyInstructionList.gSemantics" ;
 import semantics piccolo_convert_relatives in "piccolo_convert_relatives.gSemantics" ;
+import semantics ipic_optimizations in "ipic_optimizations.gSemantics" ;
+
 import option piccolo_options in "piccolo_options.gOption" ;
 
 #----------------------------------------------------------------------------*
@@ -139,6 +141,10 @@ routine analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName :
     ?generatedInstructionList
     !?listFileContents
   ;
+#-------------------------------- Perform Code Optimization
+  if [option piccolo_options.performOptimizations] then
+    performOptimizations !?generatedInstructionList !?listFileContents ;
+  end if ;
 #-------------------------------- Convert relative branchs to absolute, when needed
   if not [option piccolo_options.doNotConvertRelative] then
     convertRelativeBranchsToAbsoluteWhenNeeded !?generatedInstructionList !?listFileContents ;

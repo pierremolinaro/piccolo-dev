@@ -978,8 +978,8 @@ rule <simple_instruction> !@piccolo_instruction outInstruction :
       $movlw$ ; literalInstruction := [@literal_instruction_opcode MOVLW] ;
     or
       $mullw$ ; literalInstruction := [@literal_instruction_opcode MULLW] ;
-    or
-      $retlw$ ; literalInstruction := [@literal_instruction_opcode RETLW] ;
+#    or
+#      $retlw$ ; literalInstruction := [@literal_instruction_opcode RETLW] ;
     or
       $sublw$ ; literalInstruction := [@literal_instruction_opcode SUBLW] ;
     or

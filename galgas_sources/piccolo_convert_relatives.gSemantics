@@ -30,7 +30,7 @@ method @ipic_pseudo_LABEL.defineLabelAtAddress
   ?!@symbolTableForConvertingRelatives ioRoutineSymbolTable
   ?!@uint ioAddress
 :
-  [!?ioRoutineSymbolTable insertKey !mTargetLabel !ioAddress] ;
+  [!?ioRoutineSymbolTable insertKey !mLabel !ioAddress] ;
 end method ;
 
 #----------------------------------------------------------------------------*
@@ -240,7 +240,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @ipic_instruction_JUMP.checkRelativeBranch
+override method @ipic_JUMP.checkRelativeBranch
   ??@symbolTableForConvertingRelatives inRoutineSymbolTable
   ?!@uint ioAddress
   ?!@bool ioRelativeBranchOverflow
@@ -248,7 +248,8 @@ override method @ipic_instruction_JUMP.checkRelativeBranch
   ??@uint inIndex
   ?!@string ioListFileContents
 :
-  if mUsesBRA then
+  switch mKind
+  when ipicRelative :
     @uint targetAddress ;
     [inRoutineSymbolTable searchKey !mTargetLabel ?targetAddress] ;
     @sint displacement := ([targetAddress sint] - 2S - [ioAddress sint]) >> 1 ;
@@ -257,19 +258,28 @@ override method @ipic_instruction_JUMP.checkRelativeBranch
       if [option piccolo_options.ouputListFile] then
         ioListFileContents .= "line " . [inIndex string] . ":  JUMP with BRA overflow, converted to JUMP with GOTO\n" ;
       end if ;
-      @ipic_actualInstruction instruction := [@ipic_instruction_JUMP new
+      @ipic_actualInstruction instruction := [@ipic_JUMP new
         !mInstructionLocation
         !mTargetLabel
-        !false
+        ![@jumpInstructionKind ipicAbsolute]
       ] ;
       [!?ioGeneratedInstructionList setMInstructionAtIndex !instruction !inIndex] ;
     end if ;
-  end if ;
+  when ipicAbsolute : # Ok
+  when relative :
+    @uint targetAddress ;
+    [inRoutineSymbolTable searchKey !mTargetLabel ?targetAddress] ;
+    @sint displacement := ([targetAddress sint] - 2S - [ioAddress sint]) >> 1 ;
+    if (displacement > 1023S) | (displacement < - 1024S) then
+      error mInstructionLocation: "displacement (" . [displacement string] . ") too large for BRA instruction (limited to [-1024, 1023])" ;
+    end if ;
+  when absolute : # Ok
+  end switch ;
 end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @ipic_instruction_JSR.checkRelativeBranch
+override method @ipic_JSR.checkRelativeBranch
   ??@symbolTableForConvertingRelatives inRoutineSymbolTable
   ?!@uint ioAddress
   ?!@bool ioRelativeBranchOverflow
@@ -277,7 +287,8 @@ override method @ipic_instruction_JSR.checkRelativeBranch
   ??@uint inIndex
   ?!@string ioListFileContents
 :
-  if mUsesRCALL then
+  switch mKind
+  when ipicRelative :
     @uint targetAddress ;
     [inRoutineSymbolTable searchKey !mTargetLabel ?targetAddress] ;
     @sint displacement := ([targetAddress sint] - 2S - [ioAddress sint]) >> 1 ;
@@ -286,14 +297,23 @@ override method @ipic_instruction_JSR.checkRelativeBranch
         ioListFileContents .= "line " . [inIndex string] . ":  JSR with RCALL overflow, converted to JSR with CALL\n" ;
       end if ;
       ioRelativeBranchOverflow := true ;
-      @ipic_actualInstruction instruction := [@ipic_instruction_JSR new
+      @ipic_actualInstruction instruction := [@ipic_JSR new
         !mInstructionLocation
         !mTargetLabel
-        !false
+        ![@jumpInstructionKind ipicAbsolute]
       ] ;
       [!?ioGeneratedInstructionList setMInstructionAtIndex !instruction !inIndex] ;
     end if ;
-  end if ;
+  when ipicAbsolute : # Ok
+  when relative :
+    @uint targetAddress ;
+    [inRoutineSymbolTable searchKey !mTargetLabel ?targetAddress] ;
+    @sint displacement := ([targetAddress sint] - 2S - [ioAddress sint]) >> 1 ;
+    if (displacement > 1023S) | (displacement < - 1024S) then
+      error mInstructionLocation: "displacement (" . [displacement string] . ") too large for RCALL instruction (limited to [-1024, 1023])" ;
+    end if ;
+  when absolute : # Ok
+  end switch ;
 end method ;
 
 #----------------------------------------------------------------------------*
@@ -307,9 +327,9 @@ override method @ipic_pseudo_LABEL.checkRelativeBranch
   ?!@string unused ioListFileContents
 :
   @uint targetAddress ;
-  [inRoutineSymbolTable searchKey !mTargetLabel ?targetAddress] ;
+  [inRoutineSymbolTable searchKey !mLabel ?targetAddress] ;
   if (targetAddress != ioAddress) then
-    error mTargetLabel: "Internal second pass error: the '" . mTargetLabel
+    error mLabel: "Internal second pass error: the '" . mLabel
     . "' label gets " . [ioAddress hexString] . " value in second pass, while it gets "
     . [targetAddress hexString] . " in first pass" ;
   end if ;
@@ -459,7 +479,7 @@ routine convertRelativeBranchsToAbsoluteWhenNeeded
       . [lastAddressForFirstPass hexString] . " value when computing routine map" ;
     end if ;
     if (not relativeBranchOverflow) & [option piccolo_options.ouputListFile] then
-      ioListFileContents .= "  Ok\n\n" ;
+      ioListFileContents .= "  No relative to convert\n\n" ;
       ioListFileContents .= "Program size: " . [currentAddress string] . " bytes\n\n" ;
     end if ;
   end loop ;
