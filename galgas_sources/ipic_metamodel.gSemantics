@@ -219,8 +219,6 @@ routine getBitOrientedOpBaseCode ??@bit_oriented_op inInstruction !@uint outBase
   switch inInstruction
   when BCF : outBaseCode := 0x9000 ;
   when BSF : outBaseCode := 0x8000 ;
-  when BTFSC : outBaseCode := 0xB000 ;
-  when BTFSS : outBaseCode := 0xA000 ;
   when BTG : outBaseCode := 0x7000 ;
   end switch ;
 end routine ;
@@ -240,16 +238,37 @@ class @ipic_instruction_FBA extends @ipic_actualInstruction {
   method displayIPICinstruction ?!@string ioListFileContents :
     ioListFileContents .= [mBitOrientedOp mnemonic] . " " . [mRegisterDescription mAssemblyString] . ", " . [mBitNumber string] ;
   end method ;
+}
+
+
+#----------------------------------------------------*
+
+class @ipic_instruction_BitTestSkip extends @ipic_actualInstruction {
+  @bool mSkipIfSet ;
+  @ipic_registerExpression mRegisterDescription ;
+  @uint mBitNumber ;
+
+  method getBaseCode !@uint outBaseCode :
+    if mSkipIfSet then
+      outBaseCode := 0xA000 ; # BTFSS
+    else
+      outBaseCode := 0xB000 ; # BTFSC
+    end if ;
+  end method ;
+
+  override
+  method displayIPICinstruction ?!@string ioListFileContents :
+    if mSkipIfSet then
+      ioListFileContents .= "BTFSS" ;
+    else
+      ioListFileContents .= "BTFSC" ;
+    end if ;
+    ioListFileContents .= " " . [mRegisterDescription mAssemblyString] . ", " . [mBitNumber string] ;
+  end method ;
 
   override
   method isSkippingInstruction !@bool outIsSkipping :
-    switch mBitOrientedOp
-      when BCF : outIsSkipping := false ;
-      when BSF : outIsSkipping := false ;
-      when BTFSC : outIsSkipping := true ;
-      when BTFSS : outIsSkipping := true ;
-      when BTG : outIsSkipping := false ;
-    end switch ;
+    outIsSkipping := true ;
   end method ;
 }
 
@@ -322,8 +341,8 @@ class @ipic_JUMP extends @ipic_actualInstruction {
   override
   method displayIPICinstruction ?!@string ioListFileContents :
     switch mKind
-      when ipicRelative : ioListFileContents .= "JUMP (uses BRA) " . mTargetLabel ;
-      when ipicAbsolute : ioListFileContents .= "JUMP (uses GOTO) " . mTargetLabel ;
+      when ipicRelative : ioListFileContents .= "JUMP " . mTargetLabel ;
+      when ipicAbsolute : ioListFileContents .= "JUMP " . mTargetLabel ;
       when relative     : ioListFileContents .= "BRA " . mTargetLabel ;
       when absolute     : ioListFileContents .= "GOTO " . mTargetLabel ;
     end switch ;
@@ -357,8 +376,8 @@ class @ipic_JSR extends @ipic_actualInstruction {
   override
   method displayIPICinstruction ?!@string ioListFileContents :
     switch mKind
-      when ipicRelative : ioListFileContents .= "JSR (uses RCALL) " . mTargetLabel ;
-      when ipicAbsolute : ioListFileContents .= "JSR (uses CALL) " . mTargetLabel ;
+      when ipicRelative : ioListFileContents .= "JSR " . mTargetLabel ;
+      when ipicAbsolute : ioListFileContents .= "JSR " . mTargetLabel ;
       when relative     : ioListFileContents .= "RCALL " . mTargetLabel ;
       when absolute     : ioListFileContents .= "CALL " . mTargetLabel ;
     end switch ;

@@ -42,20 +42,20 @@ routine findFirstInstructionFromAddress
   !@ipic_instruction outFirstInstruction
 :
 #--- Line Index
-  @uint currentLineIndex := inLineIndex ;
+  @uint currentAddress := inLineIndex ;
 #--- Find first executable instruction
   outFirstInstruction := [@ipic_NULL new] ; # By default, no instruction
   @bool found := false ;
   loop [inGeneratedInstructionList length] :
-  while (currentLineIndex < [inGeneratedInstructionList length]) & not found
+  while (currentAddress < [inGeneratedInstructionList length]) & not found
   do
-    cast [inGeneratedInstructionList mInstructionAtIndex !currentLineIndex] :
+    cast [inGeneratedInstructionList mInstructionAtIndex !currentAddress] :
     when >= @ipic_actualInstruction instr do
       outFirstInstruction := instr ;
       found := true ;
     else
+      currentAddress ++ ;
     end cast ;
-    currentLineIndex ++ ;
   end loop ;
 end routine ;
 
@@ -67,14 +67,14 @@ routine findFirstInstructionOrLabelFromAddress
   !@ipic_instruction outFirstInstruction
 :
 #--- Line Index
-  @uint currentLineIndex := inLineIndex ;
+  @uint currentAddress := inLineIndex ;
 #--- Find first executable instruction
   outFirstInstruction := [@ipic_NULL new] ; # By default, no instruction
   @bool found := false ;
   loop [inGeneratedInstructionList length] :
-  while (currentLineIndex < [inGeneratedInstructionList length]) & not found
+  while (currentAddress < [inGeneratedInstructionList length]) & not found
   do
-    cast [inGeneratedInstructionList mInstructionAtIndex !currentLineIndex] :
+    cast [inGeneratedInstructionList mInstructionAtIndex !currentAddress] :
     when >= @ipic_actualInstruction instr do
       outFirstInstruction := instr ;
       found := true ;
@@ -82,8 +82,8 @@ routine findFirstInstructionOrLabelFromAddress
       outFirstInstruction := instr ;
       found := true ;
     else
+      currentAddress ++ ;
     end cast ;
-    currentLineIndex ++ ;
   end loop ;
 end routine ;
 
@@ -352,6 +352,74 @@ method @ipic_registerComparisonCondition.optimizeCMP
 end method ;
 
 #----------------------------------------------------------------------------*
+
+method @ipic_instruction_BitTestSkip.optimizeBitTestSkip
+  ??@uint inLineIndex
+  ?!@ipic_instructionList ioGeneratedInstructionList
+  ?!@string ioListFileContents
+  ?!@bool ioOptimizationsDone
+:
+#--- First following instruction is a JUMP ?
+  @string jumpLabel := "" ; # No By default
+  @bool ok := false ;
+  cast [ioGeneratedInstructionList mInstructionAtIndex !inLineIndex + 1] :
+  when == @ipic_JUMP jump do
+    jumpLabel := [[jump mTargetLabel] string] ;
+    ok := true ;
+  else
+  end cast ;
+#--- Get second following instruction
+  if (ok) then
+    cast [ioGeneratedInstructionList mInstructionAtIndex !inLineIndex + 2] :
+    when >= @ipic_actualInstruction do
+    else
+      ok := false ;
+    end cast ;
+  end if ;
+#--- Get third following instruction
+  if (ok) then
+    @ipic_instruction thirdInstruction := [@ipic_NULL new] ;
+    findFirstInstructionOrLabelFromAddress !inLineIndex + 3 !ioGeneratedInstructionList ?thirdInstruction ;
+    cast thirdInstruction :
+    when >= @ipic_pseudo_LABEL aLabel do
+      ok := [[aLabel mLabel] string] == jumpLabel ;
+    else
+      ok := false ;
+    end cast ;
+  end if ;
+#--- If Ok, perform optimization
+  if ok then
+  #--- Complement Bit test instruction (at inLineIndex)
+    [!?ioGeneratedInstructionList setMInstructionAtIndex
+      ![@ipic_instruction_BitTestSkip new
+        !mInstructionLocation
+        !not mSkipIfSet
+        !mRegisterDescription
+        !mBitNumber
+      ]
+      !inLineIndex
+    ] ;
+  #--- Copy instruction at (inLineIndex + 2) to (inLineIndex + 1)
+    [!?ioGeneratedInstructionList setMInstructionAtIndex
+      ![ioGeneratedInstructionList mInstructionAtIndex !inLineIndex + 2]
+      !inLineIndex + 1
+    ] ;
+  #--- Delete instruction at (inLineIndex + 2)
+    [!?ioGeneratedInstructionList setMInstructionAtIndex
+      ![@ipic_NULL new]
+      !inLineIndex + 2
+    ] ;
+  #--- 
+    ioOptimizationsDone := true ;
+  #--- Log
+    if [option piccolo_options.ouputListFile] then
+      ioListFileContents .= "  lines " . [inLineIndex string] . " to " . [inLineIndex + 2 string] ;
+      ioListFileContents .= " bit test skip, following by a JUMP skipping next instruction, is complemented\n" ;
+    end if ;
+  end if ;
+end method ;
+
+#----------------------------------------------------------------------------*
 #                                                                            *
 #               S E M A N T I C    A N A L Y S I S                           *
 #                                                                            *
@@ -400,6 +468,8 @@ routine performOptimizations
         [ipic_decInc optimizeTestDecInc !symbolTable !idx !?ioGeneratedInstructionList !?ioListFileContents !?optimizationsDone] ;
       when == @ipic_registerComparisonCondition ipic_CMP do
         [ipic_CMP optimizeCMP !symbolTable !idx !?ioGeneratedInstructionList !?ioListFileContents !?optimizationsDone] ;
+      when == @ipic_instruction_BitTestSkip ipic_bitTestSkip do
+        [ipic_bitTestSkip optimizeBitTestSkip !idx !?ioGeneratedInstructionList !?ioListFileContents !?optimizationsDone] ;
       else
       end cast ;
     end foreach ;

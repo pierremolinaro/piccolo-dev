@@ -158,6 +158,22 @@ override method @ipic_instruction_FBA.generateBinaryCodeAtAddress
   emitCode !code ;
 end method ;
 
+#----------------------------------------------------------------------------*
+
+override method @ipic_instruction_BitTestSkip.generateBinaryCodeAtAddress
+  ??@symbolTable unused inRoutineSymbolTable
+  ?!@uint unused ioAddress
+:
+#--- Emit Code
+  @uint code ; [self getBaseCode ? code] ;
+  if [mRegisterDescription mNeedsBSR] then
+    code := code | 0x0100 ;
+  end if ;
+  code := code | ([mRegisterDescription mRegisterAddress] & 255) ;
+  code := code | (mBitNumber << 9) ;
+  emitCode !code ;
+end method ;
+
 #----------------------------------------------------*
 
 routine getBccBaseCode ??@conditional_branch inConditionalBranch !@uint outBaseCode :
