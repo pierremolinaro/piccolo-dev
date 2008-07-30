@@ -1,0 +1,14 @@
+# This program is just intended for checking
+# that Piccolo can generate code > 64 k.
+# Trying to execute it does not make sense.
+
+program code_bigger_than_64k "PIC18F6722" : # Has 128 kB Flash
+
+
+routine main noreturn {
+  forever
+    MNOP 32769
+  end
+}
+
+end

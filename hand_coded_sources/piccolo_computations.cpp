@@ -10,11 +10,68 @@
 #include "utilities/MF_MemoryControl.h"
 
 //---------------------------------------------------------------------------*
+//                                                                           *
+//                  I N T E L    H E X    F O R M A T                        *
+//                                                                           *
+//---------------------------------------------------------------------------*
+//                                                                           *
+// References:                                                               *
+//                                                                           *
+//   http://www.kmitl.ac.th/~kswichit%20/illustrate/hex.htm                  *
+//   http://en.wikipedia.org/wiki/.hex                                       *
+//                                                                           *
+//---------------------------------------------------------------------------*
+//                                                                           *
+// Address prefix example:                                                   *
+// :020000041234B3                                                           *
+//  |||  ||||  |||                                                           *
+//  |||  ||||  ||++-> checksum (2's complement of 03+00+00+04+12+34)         *
+//  |||  |||+--+-> 2 bytes of data : 12 34: fix the 16 upper bits of address *
+//  |||  |++-> Record type 04                                                *
+//  ||+--+-> Address (big endian) : 00 00 (should allways be zero)           *
+//  ++-> Data bytes count (2)                                                *
+//                                                                           *
+// Data line example:                                                        *
+//                                                                           *
+// :03800000028100FA                                                         *
+//  |||  ||||    |||                                                         *
+//  |||  ||||    |++-> checksum (2's complement of 03+80+00+00+00+02+81+00)  *
+//  |||  |||+----+-> 3 bytes of data : 02, 81, 00                            *
+//  |||  |++-> Record type 00                                                *
+//  ||+--+-> Address (big endian) : 80 00                                    *
+//  ++-> Data bytes count (3)                                                *
+//                                                                           *
+// End of file example:                                                      *
+//                                                                           *
+// :00000001FF                                                               *
+//  |||  |||||                                                               *
+//  |||  |||++-> checksum (2's complement of 00+00+00+01)                    *
+//  |||  |++-> Record type 01: end of file                                   *
+//  ||+--+-> Address (big endian) : 00 00                                    *
+//  ++-> Data bytes count (0)                                                *
+//                                                                           *
+//---------------------------------------------------------------------------*
 
 static unsigned char gBuffer [16] ;
 static uint32 gBufferEntryCount = 0 ;
 static uint32 gBufferAddress = 0 ;
+static uint32 gCurrentBufferHighAddress = 0 ;
 static C_String gGeneratedObjectCode ;
+
+//---------------------------------------------------------------------------*
+
+static void enter_04_record (void) {
+  if (gCurrentBufferHighAddress != (gBufferAddress & 0xFFFF0000)) {
+    char s [20] ; sprintf (s, ":02000004%04X", gBufferAddress >> 16) ;
+    gGeneratedObjectCode << s ;
+    unsigned char somme = 2 + 4 ;
+    somme += (gBufferAddress >> 24) & 255 ;
+    somme += (gBufferAddress >> 16) & 255 ;
+    sprintf (s, "%02X", (- somme) & 255) ;
+    gGeneratedObjectCode << s << "\n" ;
+    gCurrentBufferHighAddress = (gBufferAddress & 0xFFFF0000) ;
+  }
+}
 
 //---------------------------------------------------------------------------*
 
@@ -23,7 +80,8 @@ static void flushBuffer (void) {
     if (gGeneratedObjectCode.length () == 0) {
       gGeneratedObjectCode << ":020000040000FA\n" ;
     }
-    char s [10] ; sprintf (s, ":%02X%04X00", gBufferEntryCount, gBufferAddress) ;
+    enter_04_record () ;
+    char s [20] ; sprintf (s, ":%02X%04X00", gBufferEntryCount, gBufferAddress & 0x0000FFFF) ;
     unsigned char somme = gBufferEntryCount ;
     somme += (gBufferAddress >> 8) & 255 ;
     somme += gBufferAddress & 255 ;
@@ -42,7 +100,7 @@ static void flushBuffer (void) {
 //---------------------------------------------------------------------------*
 
 static void enterByte (const unsigned char inByte) {
-  if (gBufferEntryCount == 16) {
+  if ((gBufferEntryCount == 16) || (gCurrentBufferHighAddress != ((gBufferAddress + gBufferEntryCount) & 0xFFFF0000))) {
     flushBuffer () ;
   }
   gBuffer [gBufferEntryCount] = inByte ;
