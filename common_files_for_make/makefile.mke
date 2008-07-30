@@ -59,6 +59,7 @@ SOURCES += piccolo_metamodel.cpp
 SOURCES += ipic_metamodel.cpp
 SOURCES += buildIPICAssemblyInstructionList.cpp
 SOURCES += piccolo_build_assembly_code.cpp
+SOURCES += ipic_optimizations.cpp
 SOURCES += piccolo_convert_relatives.cpp
 SOURCES += piccolo_build_binary_code.cpp
 SOURCES += piccoloDevice_lexique.cpp
