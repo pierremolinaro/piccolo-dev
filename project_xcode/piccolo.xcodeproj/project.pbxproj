@@ -335,6 +335,10 @@
 		CFB9E52A0DF28CB300885084 /* TC_UniqueFixedSizeArray.h in Headers */ = {isa = PBXBuildFile; fileRef = CFB9E5120DF28CB300885084 /* TC_UniqueFixedSizeArray.h */; };
 		CFB9E52B0DF28CB300885084 /* TF_AVL_Tree.h in Headers */ = {isa = PBXBuildFile; fileRef = CFB9E5130DF28CB300885084 /* TF_AVL_Tree.h */; };
 		CFBC76070AC67F9900443ACA /* OC_GGS_BuildResultTextView.mm in Sources */ = {isa = PBXBuildFile; fileRef = CFBC76060AC67F9900443ACA /* OC_GGS_BuildResultTextView.mm */; };
+		CFC41D4A0E4063BC00903884 /* ipic_optimizations.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CFC41D480E4063BC00903884 /* ipic_optimizations.cpp */; };
+		CFC41D4B0E4063BC00903884 /* ipic_optimizations.h in Headers */ = {isa = PBXBuildFile; fileRef = CFC41D490E4063BC00903884 /* ipic_optimizations.h */; };
+		CFC41D4C0E4063BC00903884 /* ipic_optimizations.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CFC41D480E4063BC00903884 /* ipic_optimizations.cpp */; };
+		CFC41D4D0E4063BC00903884 /* ipic_optimizations.h in Headers */ = {isa = PBXBuildFile; fileRef = CFC41D490E4063BC00903884 /* ipic_optimizations.h */; };
 		CFCB61BB0E391B6900BFFF1A /* ipic_metamodel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CFCB61B90E391B6900BFFF1A /* ipic_metamodel.cpp */; };
 		CFCB61BC0E391B6900BFFF1A /* ipic_metamodel.h in Headers */ = {isa = PBXBuildFile; fileRef = CFCB61BA0E391B6900BFFF1A /* ipic_metamodel.h */; };
 		CFCB61BD0E391B6900BFFF1A /* ipic_metamodel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CFCB61B90E391B6900BFFF1A /* ipic_metamodel.cpp */; };
@@ -598,6 +602,8 @@
 		CFBC75C70AC6785A00443ACA /* OC_GGS_BuildResultTextView.h */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = sourcecode.c.h; path = OC_GGS_BuildResultTextView.h; sourceTree = "<group>"; };
 		CFBC76060AC67F9900443ACA /* OC_GGS_BuildResultTextView.mm */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = sourcecode.cpp.objcpp; path = OC_GGS_BuildResultTextView.mm; sourceTree = "<group>"; };
 		CFC30F92058A225E003D0386 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		CFC41D480E4063BC00903884 /* ipic_optimizations.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ipic_optimizations.cpp; sourceTree = "<group>"; };
+		CFC41D490E4063BC00903884 /* ipic_optimizations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ipic_optimizations.h; sourceTree = "<group>"; };
 		CFCB61B90E391B6900BFFF1A /* ipic_metamodel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ipic_metamodel.cpp; sourceTree = "<group>"; };
 		CFCB61BA0E391B6900BFFF1A /* ipic_metamodel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ipic_metamodel.h; sourceTree = "<group>"; };
 		CFD179630E3CD33B00077DD1 /* bitSlice.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = bitSlice.cpp; sourceTree = "<group>"; };
@@ -807,6 +813,8 @@
 		CFD21A8A0913D1890011F11E /* Sources Files */ = {
 			isa = PBXGroup;
 			children = (
+				CFC41D480E4063BC00903884 /* ipic_optimizations.cpp */,
+				CFC41D490E4063BC00903884 /* ipic_optimizations.h */,
 				CFD1796C0E3CDAE800077DD1 /* buildIPICAssemblyInstructionList.cpp */,
 				CFD1796D0E3CDAE800077DD1 /* buildIPICAssemblyInstructionList.h */,
 				CFD179630E3CD33B00077DD1 /* bitSlice.cpp */,
@@ -1160,6 +1168,7 @@
 				CFCB61BC0E391B6900BFFF1A /* ipic_metamodel.h in Headers */,
 				CFD179660E3CD33B00077DD1 /* bitSlice.h in Headers */,
 				CFD1796F0E3CDAE800077DD1 /* buildIPICAssemblyInstructionList.h in Headers */,
+				CFC41D4B0E4063BC00903884 /* ipic_optimizations.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1259,6 +1268,7 @@
 				CFCB61BE0E391B6900BFFF1A /* ipic_metamodel.h in Headers */,
 				CFD179680E3CD33B00077DD1 /* bitSlice.h in Headers */,
 				CFD179710E3CDAE800077DD1 /* buildIPICAssemblyInstructionList.h in Headers */,
+				CFC41D4D0E4063BC00903884 /* ipic_optimizations.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1498,6 +1508,7 @@
 				CFCB61BB0E391B6900BFFF1A /* ipic_metamodel.cpp in Sources */,
 				CFD179650E3CD33B00077DD1 /* bitSlice.cpp in Sources */,
 				CFD1796E0E3CDAE800077DD1 /* buildIPICAssemblyInstructionList.cpp in Sources */,
+				CFC41D4A0E4063BC00903884 /* ipic_optimizations.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1583,6 +1594,7 @@
 				CFCB61BD0E391B6900BFFF1A /* ipic_metamodel.cpp in Sources */,
 				CFD179670E3CD33B00077DD1 /* bitSlice.cpp in Sources */,
 				CFD179700E3CDAE800077DD1 /* buildIPICAssemblyInstructionList.cpp in Sources */,
+				CFC41D4C0E4063BC00903884 /* ipic_optimizations.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

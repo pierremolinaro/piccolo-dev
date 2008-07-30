@@ -52,7 +52,7 @@ method @ipic_pseudo_LABEL.enterLabelAtAddress
   ?!@symbolTable ioRoutineSymbolTable
   ?!@uint ioAddress
 :
-  [!?ioRoutineSymbolTable insertKey !mTargetLabel !ioAddress] ;
+  [!?ioRoutineSymbolTable insertKey !mLabel !ioAddress] ;
 end method ;
 
 #----------------------------------------------------------------------------*
@@ -263,39 +263,26 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @ipic_instruction_JUMP.generateBinaryCodeAtAddress
+override method @ipic_JUMP.generateBinaryCodeAtAddress
   ??@symbolTable inRoutineSymbolTable
   ?!@uint ioAddress
 :
   @uint targetAddress ;
   [inRoutineSymbolTable searchKey !mTargetLabel ?targetAddress] ;
-  if mUsesBRA then
-  #--- Emit Code
+  switch mKind
+  when ipicRelative, relative :
     @sint displacement := ([targetAddress sint] - 2S - [ioAddress sint]) >> 1 ;
     if (displacement > 0x800S) | (displacement < - 0x800S) then
       error mTargetLabel: "displacement too large for RCALL instruction" ;
     end if ;
-  #--- Emit Code
     emitBRAinstruction
       !ioAddress
       !targetAddress
       ![mTargetLabel location]
     ;
-  else
+  when ipicAbsolute, absolute :
     emitGOTOinstruction !targetAddress ;
-  end if ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
-override method @ipic_instruction_GOTO.generateBinaryCodeAtAddress
-  ??@symbolTable inRoutineSymbolTable
-  ?!@uint unused ioAddress
-:
-  @uint targetAddress ;
-  [inRoutineSymbolTable searchKey !mTargetLabel ?targetAddress] ;
-#--- Emit Code
-  emitGOTOinstruction !targetAddress ;
+  end switch ;
 end method ;
 
 #----------------------------------------------------------------------------*
@@ -306,18 +293,6 @@ routine emitCALLinstruction
   emitCode !0xEC00 | ((inTargetAddress >> 1) & 255) ;
   emitCode !0xF000 | (inTargetAddress >> 9) ;
 end routine ;
-
-#----------------------------------------------------------------------------*
-
-override method @ipic_instruction_CALL.generateBinaryCodeAtAddress
-  ??@symbolTable inRoutineSymbolTable
-  ?!@uint unused ioAddress
-:
-  @uint targetAddress ;
-  [inRoutineSymbolTable searchKey !mTargetLabel ?targetAddress] ;
-#--- Emit Code
-  emitCALLinstruction !targetAddress ;
-end method ;
 
 #----------------------------------------------------------------------------*
 
@@ -336,22 +311,26 @@ end routine ;
 
 #----------------------------------------------------------------------------*
 
-override method @ipic_instruction_JSR.generateBinaryCodeAtAddress
+override method @ipic_JSR.generateBinaryCodeAtAddress
   ??@symbolTable inRoutineSymbolTable
   ?!@uint ioAddress
 :
   @uint targetAddress ;
   [inRoutineSymbolTable searchKey !mTargetLabel ?targetAddress] ;
-#--- Emit Code
-  if mUsesRCALL then
+  switch mKind
+  when ipicRelative, relative :
+    @sint displacement := ([targetAddress sint] - 2S - [ioAddress sint]) >> 1 ;
+    if (displacement > 0x800S) | (displacement < - 0x800S) then
+      error mTargetLabel: "displacement too large for RCALL instruction" ;
+    end if ;
     emitRCALLinstruction
       !ioAddress
       !targetAddress
-      !mInstructionLocation
+      ![mTargetLabel location]
     ;
-  else
+  when ipicAbsolute, absolute :
     emitCALLinstruction !targetAddress ;
-  end if ;
+  end switch ;
 end method ;
 
 #----------------------------------------------------*
@@ -484,22 +463,6 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @ipic_instruction_RCALL.generateBinaryCodeAtAddress
-  ??@symbolTable inRoutineSymbolTable
-  ?!@uint ioAddress
-:
-  @uint targetAddress ;
-  [inRoutineSymbolTable searchKey !mTargetLabel ?targetAddress] ;
-#--- Emit Code
-  emitRCALLinstruction
-    !ioAddress
-    !targetAddress
-    ![mTargetLabel location]
-  ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
 override method @ipic_instruction_CLRWDT.generateBinaryCodeAtAddress
   ??@symbolTable unused inRoutineSymbolTable
   ?!@uint unused ioAddress
@@ -617,9 +580,9 @@ override method @ipic_pseudo_LABEL.generateBinaryCodeAtAddress
   ?!@uint ioAddress
 :
   @uint targetAddress ;
-  [inRoutineSymbolTable searchKey !mTargetLabel ?targetAddress] ;
+  [inRoutineSymbolTable searchKey !mLabel ?targetAddress] ;
   if (targetAddress != ioAddress) then
-    error mTargetLabel: "Internal second pass error: the '" . mTargetLabel
+    error mLabel: "Internal second pass error: the '" . mLabel
     . "' label gets " . [ioAddress hexString] . " value in second pass, while it gets "
     . [targetAddress hexString] . " in first pass" ;
   end if ;

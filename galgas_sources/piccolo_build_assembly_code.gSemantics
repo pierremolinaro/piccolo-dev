@@ -28,7 +28,7 @@ override method @ipic_pseudo_LABEL.buildAssemblyCode
   ?!@string ioString
   ?!@uint unused ioBccLabelIndex
 :
-  ioString .= [mTargetLabel string] . ":\n" ;
+  ioString .= [mLabel string] . ":\n" ;
 end method ;
 
 #----------------------------------------------------*
@@ -220,55 +220,30 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @ipic_instruction_JUMP.buildAssemblyCode
+override method @ipic_JUMP.buildAssemblyCode
   ?!@string ioString
   ?!@uint unused ioBccLabelIndex
 :
-  if mUsesBRA then
-    ioString .= "  BRA  " . [mTargetLabel string] . "\n" ;
-  else
-    ioString .= "  GOTO  " . [mTargetLabel string] . "\n" ;
-  end if ;
+  switch mKind
+    when ipicRelative : ioString .= "  BRA   " . [mTargetLabel string] . "\n" ;
+    when ipicAbsolute : ioString .= "  GOTO  " . [mTargetLabel string] . "\n" ;
+    when relative     : ioString .= "  BRA   " . [mTargetLabel string] . "\n" ;
+    when absolute     : ioString .= "  GOTO  " . [mTargetLabel string] . "\n" ;
+  end switch ;
 end method ;
 
 #----------------------------------------------------*
 
-override method @ipic_instruction_GOTO.buildAssemblyCode
+override method @ipic_JSR.buildAssemblyCode
   ?!@string ioString
   ?!@uint unused ioBccLabelIndex
 :
-  ioString .= "  GOTO " . mTargetLabel . "\n" ;
-end method ;
-
-#----------------------------------------------------*
-
-override method @ipic_instruction_CALL.buildAssemblyCode
-  ?!@string ioString
-  ?!@uint unused ioBccLabelIndex
-:
-  ioString .= "  CALL " . mTargetLabel . "\n" ;
-end method ;
-
-#----------------------------------------------------*
-
-override method @ipic_instruction_JSR.buildAssemblyCode
-  ?!@string ioString
-  ?!@uint unused ioBccLabelIndex
-:
-  if mUsesRCALL then
-    ioString .= "  RCALL " . mTargetLabel . "\n" ;
-  else
-    ioString .= "  CALL " . mTargetLabel . "\n" ;
-  end if ;
-end method ;
-
-#----------------------------------------------------*
-
-override method @ipic_instruction_RCALL.buildAssemblyCode
-  ?!@string ioString
-  ?!@uint unused ioBccLabelIndex
-:
-  ioString .= "  RCALL " . mTargetLabel . "\n" ;
+  switch mKind
+    when ipicRelative : ioString .= "  RCALL " . [mTargetLabel string] . "\n" ;
+    when ipicAbsolute : ioString .= "  CALL  " . [mTargetLabel string] . "\n" ;
+    when relative     : ioString .= "  RCALL " . [mTargetLabel string] . "\n" ;
+    when absolute     : ioString .= "  CALL  " . [mTargetLabel string] . "\n" ;
+  end switch ;
 end method ;
 
 #----------------------------------------------------*

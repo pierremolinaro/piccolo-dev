@@ -7,4 +7,5 @@ option piccolo_options :
 @string registerDescription : 'R', "registers" -> "Output the special register description of the device named by string" ;
 @string configDescription : 'F', "configuration" -> "Output the configuration register description of the device named by string" ;
 @bool ouputListFile : 'L', "list" -> "Output a list file" ;
+@bool performOptimizations : 'O', "optimize" -> "Perform code optimizations" ;
 end option ;
