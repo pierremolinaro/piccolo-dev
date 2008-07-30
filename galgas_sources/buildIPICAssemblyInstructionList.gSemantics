@@ -569,12 +569,6 @@ override method @instruction_IF_BitTest.buildIPICinstructionList
   ?!@uint ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
 :
-  @bit_oriented_op baseCode ;
-  if mSkipIfSet then
-    baseCode := [@bit_oriented_op BTFSS] ;
-  else
-    baseCode := [@bit_oriented_op BTFSC] ;
-  end if ;
   @bitSliceTable bitSliceTable ;
   @ipic_registerExpression IPICregisterDescription ;
   [mRegisterExpression resolveAccess
@@ -588,9 +582,9 @@ override method @instruction_IF_BitTest.buildIPICinstructionList
     !bitSliceTable
     ?bitNumber
   ] ;
-  ioGeneratedInstructionList += ![@ipic_instruction_FBA new
+  ioGeneratedInstructionList += ![@ipic_instruction_BitTestSkip new
     !mInstructionLocation
-    !baseCode
+    !mSkipIfSet
     !IPICregisterDescription
     !bitNumber
   ] ;
@@ -815,12 +809,6 @@ override method @bitTest_in_structured_if_condition.buildIPICinstructionForCondi
   ??@string inTargetLabel
   ?!@ipic_instructionList ioGeneratedInstructionList
 :
-  @bit_oriented_op op ;
-  if mBTFSSinstruction ^ inComplementaryBranch then
-    op := [@bit_oriented_op BTFSS] ;
-  else
-    op := [@bit_oriented_op BTFSC] ;
-  end if ;
   @bitSliceTable bitSliceTable ;
   @ipic_registerExpression IPICregisterDescription ;
   [mRegisterExpression resolveAccess
@@ -834,9 +822,9 @@ override method @bitTest_in_structured_if_condition.buildIPICinstructionForCondi
     !bitSliceTable
     ?bitNumber
   ] ;
-  ioGeneratedInstructionList += ![@ipic_instruction_FBA new
+  ioGeneratedInstructionList += ![@ipic_instruction_BitTestSkip new
     !inInstructionLocation
-    !op
+    !mBTFSSinstruction ^ inComplementaryBranch
     !IPICregisterDescription
     !bitNumber
   ] ;
@@ -999,10 +987,8 @@ routine buildIPICAssemblyInstructionList
 #-------------------------------- First Pass
   outGeneratedInstructionList := [@ipic_instructionList emptyList] ;
   @uint localLabelIndex := 0 ;
-#--- At zero, generate 'goto main' instruction
-  if inHasLowInterrupt | inHasHighInterrupt then
-    outGeneratedInstructionList += ![@ipic_JUMP new !here ![@lstring new !"main" !here] ![@jumpInstructionKind ipicRelative]] ;
-  end if ;
+#--- At zero, generate 'jump main' instruction
+  outGeneratedInstructionList += ![@ipic_JUMP new !here ![@lstring new !"main" !here] ![@jumpInstructionKind ipicRelative]] ;
 #--- At 0x08, generate 'bra _fast_interrupt' instruction, if both interrupt are defined
   if inHasLowInterrupt & inHasHighInterrupt then
     outGeneratedInstructionList += ![@ipic_pseudo_ORG new !0x8] ;

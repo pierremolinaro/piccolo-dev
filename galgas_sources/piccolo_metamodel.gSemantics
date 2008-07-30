@@ -173,15 +173,11 @@ class @bitNumberLabelValue extends @bitNumberExpression {
 enum @bit_oriented_op {
   constructor BCF ;
   constructor BSF ;
-  constructor BTFSC ;
-  constructor BTFSS ;
   constructor BTG ;
 }{
   reader mnemonic :
     BCF -> "BCF" ;
     BSF -> "BSF" ;
-    BTFSC -> "BTFSC" ;
-    BTFSS -> "BTFSS" ;
     BTG -> "BTG" ;
   end reader ;
 }

@@ -1,0 +1,36 @@
+# This program is just intended for showing
+# optimizations.
+# Trying to execute it does not make sense.
+
+program optimizations "PIC18F2580" :
+
+routine optimize1 {
+  if (STATUS.Z NZ)
+    movlw 1
+  elsif (STATUS.OV Z)
+    movlw 2
+  else
+    movlw 3
+  end
+}
+
+routine optimize2 {
+  if (STATUS.Z NZ)
+    if (STATUS.OV Z)
+      movlw 1
+    else
+      movlw 2
+    end
+  else
+    movlw 3
+  end
+}
+
+routine main noreturn {
+  rcall optimize1
+  rcall optimize2
+  forever
+  end
+}
+
+end

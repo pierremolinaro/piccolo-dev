@@ -1,3 +1,7 @@
+# This program is just intended for checking
+# rcall and bra branching limits.
+# Trying to execute it does not make sense.
+
 program relative_branch_limits "PIC18F448" :
 
 routine rcall_back_call {

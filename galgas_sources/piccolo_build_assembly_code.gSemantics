@@ -81,6 +81,27 @@ end method ;
 
 #----------------------------------------------------*
 
+override method @ipic_instruction_BitTestSkip.buildAssemblyCode
+  ?!@string ioString
+  ?!@uint unused ioBccLabelIndex
+:
+  @bool useBSRaccess ;
+  ioString .= "  " ;
+  if mSkipIfSet then
+    ioString .= "BTFSS" ;
+  else
+    ioString .= "BTFSC" ;
+  end if ;
+  ioString .= "  " . [mRegisterDescription mAssemblyString] ;
+  ioString .= ", " . [mBitNumber string] ;
+  if [mRegisterDescription mNeedsBSR] then
+    ioString .= ", BSR_ACCESS" ;
+  end if ;
+  ioString .= "\n" ;
+end method ;
+
+#----------------------------------------------------*
+
 override method @ipic_instruction_FA.buildAssemblyCode
   ?!@string ioString
   ?!@uint unused ioBccLabelIndex
