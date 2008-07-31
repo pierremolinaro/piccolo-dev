@@ -152,14 +152,19 @@ rule <start_symbol>
     end repeat ;
     ${$ ;
     @configRegisterMaskMap configRegisterMaskMap [emptyMap] ;
+    @stringset settingNameSet [emptySet] ;
     repeat
     while
       $identifier$ ? @lstring maskName ;
+      if [settingNameSet hasKey ![maskName string]] then
+        error maskName:"The '" . maskName . "' setting is already defined" ;
+      end if ;
+      settingNameSet += ![maskName string] ;
       $mask$ ;
       $integer$ ? @luint maskValue ;
       $description$ ;
       $string$ ? @lstring maskDescriptionString ;
-      @fieldSettingList fieldSettingList [emptyList] ;
+      @fieldSettingMap fieldSettingMap [emptyMap] ;
       repeat
         $setting$ ;
         $integer$ ? @luint value ;
@@ -167,10 +172,10 @@ rule <start_symbol>
         $integer$ ? @luint mask ;
         $description$ ;
         $string$ ? @lstring descriptionString ;
-        fieldSettingList += ![value uint] ![mask uint] ![descriptionString string] ;
+        [!?fieldSettingMap insertKey !descriptionString ![value uint] ![mask uint]] ;
       while
       end repeat ;
-      [!?configRegisterMaskMap insertKey !maskName !maskValue !maskDescriptionString !fieldSettingList] ;
+      [!?configRegisterMaskMap insertKey !maskName !maskValue !maskDescriptionString !fieldSettingMap] ;
     end repeat ;
     $}$ ;
     [!?configRegisterMap insertKey

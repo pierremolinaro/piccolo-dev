@@ -207,8 +207,8 @@ before {
         end foreach ;
         foreach mConfigRegisterMaskMap do
           s .= "    '" . key . "': mask " . [[mMaskValue uint] hexString] . " description \"" . mDescription . "\"\n" ;
-          foreach mFieldSettingList do
-            s .= "      setting " . [mValue hexString] . " description \"" . mDescription . "\"\n" ;
+          foreach mFieldSettingMap do
+            s .= "      setting " . [mValue hexString] . " description \"" . key . "\"\n" ;
           end foreach ;
         end foreach ;
         message s ;

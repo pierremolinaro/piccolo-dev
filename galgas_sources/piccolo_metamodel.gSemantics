@@ -647,14 +647,37 @@ list @ramDefinitionList {
 
 #----------------------------------------------------*
 
+list @configSettingList {
+  @lstring mSettingName ;
+  @lstring mSettingValue ;
+}
+
+#----------------------------------------------------*
+
+list @configDefinitionList {
+  @configSettingList mSettingList ;
+}
+
+#----------------------------------------------------*
+
 struct @piccoloModel {
   @lstring mProgramName ;
   @lstring mDeviceName ;
+  @configDefinitionList mConfigDefinitionList ;
   @ramDefinitionList mRamDefinitionList ;
   @interruptDefinitionList mInterruptDefinitionList ;
   @routineDefinitionList mRoutineDefinitionList ;
   @bool mNeedsComputedGoto2 ;
   @bool mNeedsComputedGoto4 ;
+}
+
+#----------------------------------------------------------------------------*
+
+map @actualConfigurationMap {
+  @uint mRegisterAddress ;
+  @uint mRegisterValue ;
+  insert insertKey error message "the '%K' configuration register is already declared in %L" ;
+  search searchKey error message "the '%K' configuration register is not declared" ;
 }
 
 #----------------------------------------------------*

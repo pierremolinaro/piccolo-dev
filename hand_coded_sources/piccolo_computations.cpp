@@ -80,7 +80,6 @@ static void flushBuffer (void) {
     if (gGeneratedObjectCode.length () == 0) {
       gGeneratedObjectCode << ":020000040000FA\n" ;
     }
-    enter_04_record () ;
     char s [20] ; sprintf (s, ":%02X%04X00", gBufferEntryCount, gBufferAddress & 0x0000FFFF) ;
     unsigned char somme = gBufferEntryCount ;
     somme += (gBufferAddress >> 8) & 255 ;
@@ -114,6 +113,7 @@ void routine_setEmitAddress (C_Compiler & /* inLexique */,
                              COMMA_UNUSED_LOCATION_ARGS) {
   flushBuffer () ;
   gBufferAddress = inAddress.uintValue () ;
+  enter_04_record () ;
 }
 
 //---------------------------------------------------------------------------*
@@ -126,9 +126,14 @@ void routine_currentEmitAddress (C_Compiler & /* inLexique */,
 
 //---------------------------------------------------------------------------*
 
-void routine_emitCode (C_Compiler & /* inLexique */,
+void routine_emitCode (C_Compiler & inLexique,
                        const GGS_uint inCode
-                       COMMA_UNUSED_LOCATION_ARGS) {
+                       COMMA_LOCATION_ARGS) {
+  if ((inCode.uintValue () >> 16) != 0) {
+    C_String errorMessage ;
+    errorMessage << "Internal error: code (" << inCode.uintValue () << ") greater than 2**16-1" ;
+    inLexique.onTheFlySemanticError (errorMessage COMMA_THERE) ;
+  }
   const unsigned char lowByte = inCode.uintValue () & 255 ;
   const unsigned char highByte = (inCode.uintValue () >> 8) & 255 ;
   enterByte (lowByte) ;

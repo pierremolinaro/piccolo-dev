@@ -471,6 +471,7 @@ routine buildAssemblyCode
   ??@registerTable inPredefinedRegisters
   ??@registerTable inAllRegisters
   ??@ipic_instructionList inInstructionList
+  ??@actualConfigurationMap inActualConfigurationMap
   !@string outAssemblyCode
 :
   outAssemblyCode := "  PROCESSOR " . inProcessorName . "\n" ;
@@ -502,7 +503,16 @@ routine buildAssemblyCode
   outAssemblyCode .= ";--- Piccolo defined symbols\n" ;
   outAssemblyCode .= "F EQU 0\n" ;
   outAssemblyCode .= "W EQU 1\n" ;
-  outAssemblyCode .= "BSR_ACCESS EQU 1\n" ;
+  outAssemblyCode .= "BSR_ACCESS EQU 1\n\n" ;
+#-------------------------------- Add Configuration
+  if [inActualConfigurationMap count] > 0 then
+    outAssemblyCode .= ";--- Configuration\n\n" ;
+    foreach inActualConfigurationMap do
+      outAssemblyCode .= "  ORG " . [mRegisterAddress hexString] . "\n" ;
+      outAssemblyCode .= "  DW " . [mRegisterValue hexString] . "\n" ;
+    end foreach ;
+  end if ;
+#-------------------------------- End
   outAssemblyCode .= ";---\n\n" ;
   outAssemblyCode .= "  END\n\n" ;
 end routine ;

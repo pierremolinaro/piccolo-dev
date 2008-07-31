@@ -733,6 +733,7 @@ end method ;
 routine buildBinaryCode
   ??@ipic_instructionList inGeneratedInstructionList
   ??@uint inROMsize
+  ??@actualConfigurationMap inActualConfigurationMap
 :
 #-------------------------------- First pass: build label map
   @symbolTable symbolTable [emptyMap] ;
@@ -760,6 +761,11 @@ routine buildBinaryCode
     . " bytes (rom size is "
     . [inROMsize string] . " bytes)" ;
   end if ;
+#-------------------------------- Add Configuration
+  foreach inActualConfigurationMap do
+    setEmitAddress !mRegisterAddress ;
+    emitCode !mRegisterValue ;
+  end foreach ;
 end routine ;
 
 #----------------------------------------------------------------------------*

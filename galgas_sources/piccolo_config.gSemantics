@@ -1,0 +1,142 @@
+semantics piccolo_config :
+import semantics piccolo_metamodel in "piccolo_metamodel.gSemantics" ;
+import semantics piccoloDevice_semantics in "piccoloDevice_semantics.gSemantics" ;
+
+#----------------------------------------------------------------------------*
+
+map @configFieldMap {
+  @lstring mRegisterName ;
+  @luint mMaskValue ;
+  @lstring mDescription ;
+  @fieldSettingMap mFieldSettingMap ;
+  insert insertKey error message "the '%K' configuration field is already declared in %L" ;
+  search searchKey error message "the '%K' configuration field is not declared" ;
+}
+
+#----------------------------------------------------*
+
+routine actualBuildConfig
+ ??@configRegisterMap inConfigRegisterMap
+ ??@configDefinitionList inConfigDefinitionList
+ ?!@string ioListFileContents
+ !@actualConfigurationMap outActualConfigurationMap
+:
+#--- From config description of device, build dictionary of all settings
+# This should succeed, since absence of potentiel setting name conflict has been
+# checked when parsing device definition string.
+  @actualConfigurationMap temporaryActualConfigurationMap [emptyMap] ;
+  @configFieldMap configFieldMap [emptyMap] ;
+  foreach inConfigRegisterMap do
+    @uint defaultValue := (1 << [mRegisterWidth uint]) - 1 ;
+    [!?temporaryActualConfigurationMap insertKey !key ![mRegisterAddress uint] !defaultValue] ;
+    @lstring registerName := key ;
+    foreach mConfigRegisterMaskMap do
+      [!?configFieldMap insertKey !key !registerName !mMaskValue !mDescription !mFieldSettingMap] ;
+    end foreach ;
+  end foreach ;
+#--- Analyze config parts
+  @stringset actualSettingNameSet [emptySet] ;
+  foreach inConfigDefinitionList do
+    foreach mSettingList do
+      if [actualSettingNameSet hasKey ![mSettingName string]] then
+        error mSettingName: "the '" . mSettingName . "' setting is already defined" ;
+      end if ;
+      actualSettingNameSet += ![mSettingName string] ;
+      @lstring registerName ;
+      @luint maskValue ;
+      @lstring settingDescription ;
+      @fieldSettingMap fieldSettingMap ;
+      [configFieldMap searchKey !mSettingName ?registerName ?maskValue ?settingDescription ?fieldSettingMap] ;
+      if [fieldSettingMap hasKey ![mSettingValue string]] then
+        @uint settingValue ;
+        @uint settingMask ;
+        [fieldSettingMap searchKey !mSettingValue ?settingValue ?settingMask] ;
+        @uint registerValue ;
+        [temporaryActualConfigurationMap searchKey !registerName ?* ?registerValue] ;
+        registerValue := (registerValue & ~ settingMask) | settingValue ;
+        [!? temporaryActualConfigurationMap setMRegisterValueForKey !registerValue ![registerName string]] ;
+      elsif [fieldSettingMap count] > 0 then
+        @string errorMessage := "the '" . mSettingValue . "' value is not defined for configuration setting '"
+        . mSettingName . "'; possible values are:" ;
+        foreach fieldSettingMap do
+          errorMessage .= "\n-  \"" . key . "\"" ;
+        end foreach ;
+        error mSettingValue: errorMessage ;
+      end if ;
+    end foreach ;
+  end foreach ;
+#--- Set all setting are actually defined
+  @stringset notDefinedSetting := [configFieldMap allKeys] - actualSettingNameSet ;
+  if [notDefinedSetting count] > 0 then
+    @string errorMessage := "the following configuration settings are not defined:" ;
+    foreach notDefinedSetting do
+      errorMessage .= "\n-  " . key ;
+    end foreach ;
+    error here : errorMessage ;
+  end if ;
+#--- Convert temporary configuration map, so that definitive map contains
+# 16-bits entries, at even addresses.
+  outActualConfigurationMap := [@actualConfigurationMap emptyMap] ;
+  foreach temporaryActualConfigurationMap do
+    @uint registerAddress := mRegisterAddress & ([@uint max] - 1) ;
+    @lstring newKey [new ![registerAddress string] !here] ;
+    if [outActualConfigurationMap hasKey ![newKey string]] then
+      @uint value ;
+      [outActualConfigurationMap searchKey !newKey ?* ?value] ;
+      if ((mRegisterAddress & 1) == 0) then
+        value := (value & 0xFF00) | mRegisterValue ;
+      else
+        value := (value & 0x00FF) | (mRegisterValue << 8) ;
+      end if ;
+      [!?outActualConfigurationMap setMRegisterValueForKey !value ![newKey string]] ;
+    else
+      @uint value := 0xFFFF ;
+      if ((mRegisterAddress & 1) == 0) then
+        value := 0xFF00 | mRegisterValue ;
+      else
+        value := 0x00FF | (mRegisterValue << 8) ;
+      end if ;
+      [!?outActualConfigurationMap insertKey !newKey !registerAddress !value] ;
+    end if ;
+  end foreach ;
+#--- Display conguration information in log file
+  foreach temporaryActualConfigurationMap do
+    ioListFileContents .= "Register '" . key . "' at " . [mRegisterAddress hexString] . " set to " . [mRegisterValue hexString] . "\n" ;
+    @configRegisterMaskMap configRegisterMaskMap ;
+    [inConfigRegisterMap searchKey !key ?* ?* ?configRegisterMaskMap ?*] ;
+    foreach configRegisterMaskMap do
+      @lstring settingName := key ;
+      foreach mFieldSettingMap do
+        if (mRegisterValue & [mMaskValue uint]) == mValue then
+          ioListFileContents .= "  setting '" . settingName . "' set to " . [mValue hexString] . " (\"" . key . "\")\n" ;
+        end if ;
+      end foreach ;
+    end foreach ;
+    ioListFileContents .= "\n" ;
+  end foreach ;
+end routine ;
+
+#----------------------------------------------------*
+
+routine buildConfig
+ ??@configRegisterMap inConfigRegisterMap
+ ??@configDefinitionList inConfigDefinitionList
+ ?!@string ioListFileContents
+ !@actualConfigurationMap outActualConfigurationMap
+:
+#--- Log
+  ioListFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n" ;
+  ioListFileContents .= "*" . ["MICROCONTROLLER CONFIGURATION" stringByLeftAndRightPadding !77 !' '] . "*\n" ;
+  ioListFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n\n" ;
+#--- 
+  if [inConfigDefinitionList length] > 0 then
+    actualBuildConfig !inConfigRegisterMap !inConfigDefinitionList !?ioListFileContents ?outActualConfigurationMap ;
+  else
+    outActualConfigurationMap := [@actualConfigurationMap emptyMap] ;
+    ioListFileContents .= "No configuration.\n\n" ;
+  end if ;
+end routine ;
+
+#----------------------------------------------------*
+
+end semantics ;

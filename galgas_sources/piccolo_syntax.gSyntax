@@ -4,7 +4,9 @@ import semantics piccolo_metamodel in "piccolo_metamodel.gSemantics" ;
 
 #----------------------------------------------------*
 
-nonterminal <configuration_definition> ;
+nonterminal <configuration_definition>
+  ?!@configDefinitionList ioConfigDefinitionList
+;
 
 nonterminal <declaration_in_ram>
   !@declarationInRam outDeclaration
@@ -70,11 +72,12 @@ rule <start_symbol>
   @interruptDefinitionList interruptDefinitionList [emptyList] ;
   @routineDefinitionList routineDefinitionList [emptyList] ;
   @ramDefinitionList ramDefinitionList [emptyList] ;
+  @configDefinitionList configDefinitionList [emptyList] ;
   @bool needsComputedGoto2 := false ;
   @bool needsComputedGoto4 := false ;
   repeat
   while
-    <configuration_definition> ;
+    <configuration_definition> !?configDefinitionList ;
   while
     <ram_definition> !?ramDefinitionList ;
   while
@@ -94,6 +97,7 @@ rule <start_symbol>
   outPiccoloModel := [@piccoloModel new
     !programName
     !deviceName
+    !configDefinitionList
     !ramDefinitionList
     !interruptDefinitionList
     !routineDefinitionList
@@ -104,10 +108,26 @@ end rule ;
 
 #----------------------------------------------------*
 
-rule <configuration_definition> :
+rule <configuration_definition>
+  ?!@configDefinitionList ioConfigDefinitionList
+:
   $config$ ;
+  @configSettingList settingList [emptyList] ;
   ${$ ;
+  repeat
+  while
+    $identifier$ ? @lstring settingName ;
+    $:$ ;
+    @lstring settingValue ;
+    select
+      $identifier$ ? settingValue ;
+    or
+      $literal_string$ ? settingValue ;
+    end select ;
+    settingList += !settingName !settingValue ;
+  end repeat ;
   $}$ ;
+  ioConfigDefinitionList += !settingList ;
 end rule ;
 
 #----------------------------------------------------*
