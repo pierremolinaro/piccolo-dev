@@ -39,10 +39,11 @@ list @illegalMaskList {
 
 #----------------------------------------------------*
 
-list @fieldSettingList {
+map @fieldSettingMap {
   @uint mValue ;
   @uint mMask ;
-  @string mDescription ;
+  insert insertKey error message "the '%K' configuration register setting is already declared in %L" ;
+  search searchKey error message "the '%K' configuration register setting is not declared" ;
 }
 
 #----------------------------------------------------*
@@ -50,7 +51,7 @@ list @fieldSettingList {
 map @configRegisterMaskMap {
   @luint mMaskValue ;
   @lstring mDescription ;
-  @fieldSettingList mFieldSettingList ;
+  @fieldSettingMap mFieldSettingMap ;
   insert insertKey error message "the '%K' configuration register mask is already declared in %L" ;
   search searchKey error message "the '%K' configuration register mask is not declared" ;
 }

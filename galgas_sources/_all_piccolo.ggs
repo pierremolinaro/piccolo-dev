@@ -6,6 +6,7 @@ compile "bitSlice.gSemantics" ;
 compile "piccolo_metamodel.gSemantics" ;
 compile "piccolo_syntax.gSyntax" ;
 compile "piccolo_grammar.gGrammar" ;
+compile "piccolo_config.gSemantics" ;
 compile "ipic_metamodel.gSemantics" ;
 compile "buildIPICAssemblyInstructionList.gSemantics" ;
 compile "ipic_optimizations.gSemantics" ;

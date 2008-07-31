@@ -3,6 +3,7 @@ import semantics piccolo_build_binary_code in "piccolo_build_binary_code.gSemant
 import semantics buildIPICAssemblyInstructionList in "buildIPICAssemblyInstructionList.gSemantics" ;
 import semantics piccolo_convert_relatives in "piccolo_convert_relatives.gSemantics" ;
 import semantics ipic_optimizations in "ipic_optimizations.gSemantics" ;
+import semantics piccolo_config in "piccolo_config.gSemantics" ;
 
 import option piccolo_options in "piccolo_options.gOption" ;
 
@@ -81,6 +82,7 @@ routine analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName :
     error [inPiccoloModel mProgramName]: "the program name ('" . [inPiccoloModel mProgramName]
     . "') should be identical to the file base name '" . sourceFileBaseName . "'" ;
   end if ;
+  @string listFileContents := "" ;
 #-------------------------------- Analyze Device
   @piccoloDeviceModel piccoloDeviceModel ;
   parseDeviceDefinition ![inPiccoloModel mDeviceName] ?piccoloDeviceModel ;
@@ -102,6 +104,14 @@ routine analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName :
       error mInterruptName: "An interrupt routine should be named 'low' or 'high'" ;
     end if ;
   end foreach ;
+#-------------------------------- Config definition
+  @actualConfigurationMap actualConfigurationMap ;
+  buildConfig
+    ![piccoloDeviceModel mConfigRegisterMap]
+    ![inPiccoloModel mConfigDefinitionList]
+    !?listFileContents
+    ?actualConfigurationMap
+  ;
 #-------------------------------- Ram definition
   @ramBankTable ramBank := [piccoloDeviceModel mRamBankTable] ;
   @registerTable registerTable := [piccoloDeviceModel mRegisterTable] ;
@@ -110,8 +120,6 @@ routine analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName :
       [mDeclaration handleDeclaration !?ramBank !?registerTable !mBankName] ;
     end foreach ;
   end foreach ;
-  @string listFileContents := "" ;
-#-------------------------------- Perform Semantics checkings
   if [option piccolo_options.ouputListFile] then
     listFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n" ;
     listFileContents .= "*" . ["DECLARED VARIABLES" stringByLeftAndRightPadding !77 !' '] . "*\n" ;
@@ -125,6 +133,7 @@ routine analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName :
     end foreach ;
     listFileContents .= "\n" ;
   end if ;
+#-------------------------------- Perform Semantics checkings
 #-------------------------------- Build IPIC Assembly Instruction List
   @uint accessBankSplitOffset ;
   switch [piccoloDeviceModel mProcessorType]
@@ -163,6 +172,7 @@ routine analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName :
         ![piccoloDeviceModel mRegisterTable]
         !registerTable
         !generatedInstructionList
+        !actualConfigurationMap
         ?assemblyCode
       ;
       @string destinationFile := [inSourceFileName stringByDeletingPathExtension] . ".asm" ;
@@ -171,6 +181,7 @@ routine analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName :
       buildBinaryCode
         !generatedInstructionList
         ![[piccoloDeviceModel mRomSize] uint]
+        !actualConfigurationMap
       ;
       @string contents ;
       getGeneratedContents ?contents ;

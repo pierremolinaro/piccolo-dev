@@ -116,6 +116,17 @@ method @ipic_JUMP.optimizeJUMP
     if [option piccolo_options.ouputListFile] then
       ioListFileContents .= "  line " . [inLineIndex string] . ": JUMP branching to RETURN replaced by RETURN\n" ;
     end if ;
+  when == @ipic_instruction_literalOperation literalOp do
+    if [literalOp mLiteralInstruction] == [@literal_instruction_opcode RETLW] then
+      [!?ioGeneratedInstructionList setMInstructionAtIndex
+        !literalOp
+        !inLineIndex
+      ] ;
+      ioOptimizationsDone := true ;
+      if [option piccolo_options.ouputListFile] then
+        ioListFileContents .= "  line " . [inLineIndex string] . ": JUMP branching to RETLW replaced by RETLW\n" ;
+      end if ;
+    end if ;
   when == @ipic_JUMP jump do
     if mTargetLabel != [jump mTargetLabel] then
       [!?ioGeneratedInstructionList setMInstructionAtIndex
