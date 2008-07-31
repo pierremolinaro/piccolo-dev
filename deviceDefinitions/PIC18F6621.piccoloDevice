@@ -462,7 +462,6 @@ controller PIC18F6621 {
       setting 0xE mask 0xF description "HS oscillator with SW enabled 4x PLL"
       setting 0xD mask 0xF description "EC-OSC2 as RA6, software enabled 4X PLL"
       setting 0xC mask 0xF description "EC-OSC2 as RA6, hardware enabled 4X PLL"
-      setting 0x7 mask 0xF description "RC-OSC2 as RA6"
       setting 0x6 mask 0xF description "HS-hardware enabled 4X PLL"
       setting 0x5 mask 0xF description "EC-OSC2 as RA6"
       setting 0x4 mask 0xF description "EC-OSC2 as divide by 4 CLKOUT"

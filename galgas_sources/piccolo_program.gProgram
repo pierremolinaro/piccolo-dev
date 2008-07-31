@@ -203,7 +203,7 @@ before {
       foreach [piccoloDeviceModel mConfigRegisterMap] do
         @string s := "  '" . key . "' at " . [[mRegisterAddress uint] hexString] . ", width " . [[mRegisterWidth uint] string] . "\n" ;
         foreach mIllegalMaskList do
-          s .= "    illegal " . [[key uint] hexString] . "' mask " . [[mIllegalMask uint] hexString] . " description \"" . mDescription . "\"\n" ;
+          s .= "    illegal value " . [[mIllegalValue uint] hexString] . " mask " . [[mIllegalMask uint] hexString] . " description \"" . mDescription . "\"\n" ;
         end foreach ;
         foreach mConfigRegisterMaskMap do
           s .= "    '" . key . "': mask " . [[mMaskValue uint] hexString] . " description \"" . mDescription . "\"\n" ;

@@ -664,6 +664,7 @@ struct @piccoloModel {
   @lstring mProgramName ;
   @lstring mDeviceName ;
   @configDefinitionList mConfigDefinitionList ;
+  @bool mAcceptDefaultConfiguration ;
   @ramDefinitionList mRamDefinitionList ;
   @interruptDefinitionList mInterruptDefinitionList ;
   @routineDefinitionList mRoutineDefinitionList ;

@@ -424,8 +424,6 @@ controller PIC18F2221 {
       setting 0x0 mask 0x40 description "Disabled"
     BBSIZ mask 0x30 description "Boot Block Size Select"
       setting 0x30 mask 0x30 description "512 W (512 W)"
-      setting 0x20 mask 0x30 description "512 W (512 W)"
-      setting 0x10 mask 0x30 description "512 W (512 W)"
       setting 0x0 mask 0x30 description "256 W (256 W)"
     ENICPORT mask 0x8 description "Dedicated In-Circuit PORT Enable"
       setting 0x0 mask 0x8 description "Disabled"
