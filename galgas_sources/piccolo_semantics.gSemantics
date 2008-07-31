@@ -109,6 +109,7 @@ routine analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName :
   buildConfig
     ![piccoloDeviceModel mConfigRegisterMap]
     ![inPiccoloModel mConfigDefinitionList]
+    ![inPiccoloModel mAcceptDefaultConfiguration]
     !?listFileContents
     ?actualConfigurationMap
   ;

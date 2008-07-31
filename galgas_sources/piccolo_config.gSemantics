@@ -18,6 +18,7 @@ map @configFieldMap {
 routine actualBuildConfig
  ??@configRegisterMap inConfigRegisterMap
  ??@configDefinitionList inConfigDefinitionList
+ ??@bool inAcceptDefaultConfiguration
  ?!@string ioListFileContents
  !@actualConfigurationMap outActualConfigurationMap
 :
@@ -65,14 +66,16 @@ routine actualBuildConfig
       end if ;
     end foreach ;
   end foreach ;
-#--- Set all setting are actually defined
-  @stringset notDefinedSetting := [configFieldMap allKeys] - actualSettingNameSet ;
-  if [notDefinedSetting count] > 0 then
-    @string errorMessage := "the following configuration settings are not defined:" ;
-    foreach notDefinedSetting do
-      errorMessage .= "\n-  " . key ;
-    end foreach ;
-    error here : errorMessage ;
+#--- Check if all settings are actually defined
+  if not inAcceptDefaultConfiguration then
+    @stringset notDefinedSetting := [configFieldMap allKeys] - actualSettingNameSet ;
+    if [notDefinedSetting count] > 0 then
+      @string errorMessage := "the following configuration settings are not defined:" ;
+      foreach notDefinedSetting do
+        errorMessage .= "\n-  " . key ;
+      end foreach ;
+      error here : errorMessage ;
+    end if ;
   end if ;
 #--- Convert temporary configuration map, so that definitive map contains
 # 16-bits entries, at even addresses.
@@ -114,6 +117,18 @@ routine actualBuildConfig
     end foreach ;
     ioListFileContents .= "\n" ;
   end foreach ;
+#--- Detect illegal configurations
+  foreach temporaryActualConfigurationMap do
+    @illegalMaskList illegalMaskList ;
+    [inConfigRegisterMap searchKey !key ?* ?* ?* ?illegalMaskList] ;
+     foreach illegalMaskList do
+      if (mRegisterValue & [mIllegalMask uint]) == [mIllegalValue uint] then
+        error here:"illegal setting for '" . key . "' register: " . mDescription ;
+        ioListFileContents .= "*** ILLEGAL SETTING for register '" . key . "' ***\n" ;
+        ioListFileContents .= "  message: " . mDescription . "\n\n" ;
+      end if ;
+    end foreach ;
+  end foreach ;
 end routine ;
 
 #----------------------------------------------------*
@@ -121,6 +136,7 @@ end routine ;
 routine buildConfig
  ??@configRegisterMap inConfigRegisterMap
  ??@configDefinitionList inConfigDefinitionList
+ ??@bool inAcceptDefaultConfiguration
  ?!@string ioListFileContents
  !@actualConfigurationMap outActualConfigurationMap
 :
@@ -130,7 +146,13 @@ routine buildConfig
   ioListFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n\n" ;
 #--- 
   if [inConfigDefinitionList length] > 0 then
-    actualBuildConfig !inConfigRegisterMap !inConfigDefinitionList !?ioListFileContents ?outActualConfigurationMap ;
+    actualBuildConfig
+      !inConfigRegisterMap
+      !inConfigDefinitionList
+      !inAcceptDefaultConfiguration
+      !?ioListFileContents
+      ?outActualConfigurationMap
+    ;
   else
     outActualConfigurationMap := [@actualConfigurationMap emptyMap] ;
     ioListFileContents .= "No configuration.\n\n" ;
