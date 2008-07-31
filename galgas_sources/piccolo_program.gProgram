@@ -9,25 +9,21 @@ import grammar piccolo_grammar in "piccolo_grammar.gGrammar" ;
 before {
 #------------------------------------------------ Print supported device list
   if [option piccolo_options.ouputDeviceList] then
-  #--- Enumerate devices, and parse them
+  #--- Enumerate devices
     @stringlist allDevices := [[filewrapper embeddedDevices] allFilePathes] ;
-    @stringlist pic_60_devices [emptyList] ;
-    @stringlist pic_80_devices [emptyList] ;
-    message [[allDevices  length] string] . " supported devices.\n" ;
-    @uint index := 0 ;
+    @stringlist pic_devices [emptyList] ;
+    message [[allDevices length] string] . " supported devices.\n" ;
+  #--- Parse them
     @bool ok := true ;
     foreach allDevices while ok do
       @piccoloDeviceModel piccoloDeviceModel ;
       @string name := [[mValue lastPathComponent] stringByDeletingPathExtension] ;
       parseDeviceDefinition ![@lstring new !name !here] ?piccoloDeviceModel ;
-      switch [piccoloDeviceModel mProcessorType]
-        when pic18_60 : pic_60_devices += !name ;
-        when pic18_80 : pic_80_devices += !name ;
-      end switch ;
+      pic_devices += !name ;
     end foreach ;
-  #--- List 'pic 60' devices
-    message [[pic_60_devices length] string] . " devices with access bank split offset 0x60:\n" ;
-    foreach pic_60_devices do
+  #--- Print device list
+    @uint index := 0 ;
+    foreach pic_devices do
       message [mValue stringByRightPadding !15 !' '] ;
       index ++ ;
       if index == 5 then
@@ -38,20 +34,50 @@ before {
     if index != 0 then
       message "\n" ;
     end if ;
-  #--- List 'pic 80' devices
-    index := 0 ;
-    message [[pic_80_devices  length] string] . " devices with access bank split offset 0x80:\n" ;
-    foreach pic_80_devices do
-      message [mValue stringByRightPadding !15 !' '] ;
-      index ++ ;
-      if index == 5 then
-        index := 0 ;
-        message "\n" ;
-      end if ;
-    end foreach ;
-    if index != 0 then
-      message "\n" ;
-    end if ;
+#  #--- Enumerate devices, and parse them
+#    @stringlist allDevices := [[filewrapper embeddedDevices] allFilePathes] ;
+#    @stringlist pic_60_devices [emptyList] ;
+#    @stringlist pic_80_devices [emptyList] ;
+#    message [[allDevices  length] string] . " supported devices.\n" ;
+#    @uint index := 0 ;
+#    @bool ok := true ;
+#    foreach allDevices while ok do
+#      @piccoloDeviceModel piccoloDeviceModel ;
+#      @string name := [[mValue lastPathComponent] stringByDeletingPathExtension] ;
+#      parseDeviceDefinition ![@lstring new !name !here] ?piccoloDeviceModel ;
+#      switch [piccoloDeviceModel mProcessorType]
+#        when pic18_60 : pic_60_devices += !name ;
+#        when pic18_80 : pic_80_devices += !name ;
+#      end switch ;
+#    end foreach ;
+#  #--- List 'pic 60' devices
+#    message [[pic_60_devices length] string] . " devices with access bank split offset 0x60:\n" ;
+#    foreach pic_60_devices do
+#      message [mValue stringByRightPadding !15 !' '] ;
+#      index ++ ;
+#      if index == 5 then
+#        index := 0 ;
+#        message "\n" ;
+#      end if ;
+#    end foreach ;
+#    if index != 0 then
+#      message "\n" ;
+#    end if ;
+#  #--- List 'pic 80' devices
+#    index := 0 ;
+#    message [[pic_80_devices  length] string] . " devices with access bank split offset 0x80:\n" ;
+#    foreach pic_80_devices do
+#      message [mValue stringByRightPadding !15 !' '] ;
+#      index ++ ;
+#      if index == 5 then
+#        index := 0 ;
+#        message "\n" ;
+#      end if ;
+#    end foreach ;
+#    if index != 0 then
+#      message "\n" ;
+#    end if ;
+
 #  #--- Enumerate devices, and parse them
 #    @stringlist allDevices := [[filewrapper embeddedDevices] allFilePathes] ;
 #    @stringlist pic_60_standard_cpu_devices [emptyList] ;
@@ -201,14 +227,14 @@ before {
       parseDeviceDefinition ![@lstring new ! deviceForConfigDescription !here] ?piccoloDeviceModel ;
       message deviceForConfigDescription . " has " . [[[piccoloDeviceModel mConfigRegisterMap] count] string] . " configuration registers:\n" ;
       foreach [piccoloDeviceModel mConfigRegisterMap] do
-        @string s := "  '" . key . "' at " . [[mRegisterAddress uint] hexString] . ", width " . [[mRegisterWidth uint] string] . "\n" ;
+        @string s := "REGISTER '" . key . "' at " . [[mRegisterAddress uint] hexString] . ", width " . [[mRegisterWidth uint] string] . "\n" ;
         foreach mIllegalMaskList do
-          s .= "    illegal value " . [[mIllegalValue uint] hexString] . " mask " . [[mIllegalMask uint] hexString] . " description \"" . mDescription . "\"\n" ;
+          s .= "  illegal value " . [[mIllegalValue uint] hexString] . " mask " . [[mIllegalMask uint] hexString] . " description \"" . mDescription . "\"\n" ;
         end foreach ;
         foreach mConfigRegisterMaskMap do
-          s .= "    '" . key . "': mask " . [[mMaskValue uint] hexString] . " description \"" . mDescription . "\"\n" ;
+          s .= "  setting '" . key . "': mask " . [[mMaskValue uint] hexString] . " description \"" . mDescription . "\"\n" ;
           foreach mFieldSettingMap do
-            s .= "      setting " . [mValue hexString] . " description \"" . key . "\"\n" ;
+            s .= "    value " . [mValue hexString] . " description \"" . key . "\"\n" ;
           end foreach ;
         end foreach ;
         message s ;
