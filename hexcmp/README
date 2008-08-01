@@ -1,0 +1,60 @@
+I have found this very usefull program. As the library is useless for me, I
+have simply taken together source files, and modified the Makefile.
+
+For Unix like systems, I have added an 'install' goal that installs
+'hexcmp' executable in /usr/local/bin.
+
+Pierre Molinaro, August 1st, 2008.
+
+***** ORIGINAL README ****
+ Hexcmp - Compare two hex files
+
+
+ Description
+ 
+  Hexcmp is a very simple program that tells you whether the memory
+  represented in two hex files is equivalent.  In other words, even if two
+  hex files are formatted differently, if they contain the same data, hexcmp
+  will recognize that they are the same.
+ 
+  The program will tell you the lowest memory address where the two files
+  differ, and the contents of memory at that address for each file.  Note
+  that this may not be the first sequential difference in either hex file,
+  since it is perfectly valid to list records out of order in a hex file.
+ 
+  Hexcmp compiles under Linux and other Unix-like operating systems.  It
+  probably even works under Microsoft Windows, although I haven't had
+  occasion to test it.
+ 
+  I wrote the program because once I had needed a program like that, and
+  couldn't find one.  When I wrote my dis51 8051 disassembly program, I had
+  to write routines to parse a hex file.  I found it would be trivial to
+  write hexcmp using those routines.
+ 
+ 
+ Compiling and using hexcmp
+ 
+  You can download the hexcmp source for free from
+  http://home.earthlink.net/~davesullins/software/hexcmp-0.2.tar.gz.  It is
+  released under the GNU Public License.  See the file COPYING for more
+  details.
+
+  First, you will need to install libhexfile if you don't already have it. 
+  Change to the libhexfile-0.0 directory, edit the Makefile as necessary,
+  and run "make install" as root to install the library.
+ 
+  To compile hexcmp, change to the hexcmp-0.2 directory, then edit the
+  Makefile if necessary.  After editing the Makefile, type "make" and you're
+  done.
+ 
+  To run hexcmp, simply type "hexcmp file1.hex file2.hex".  You will
+  probably want to put hexcmp in some bin directory for convenience.
+ 
+  If you don't want to install libhexfile, you can try "make static" from
+  the hexcmp directory.  This will statically link libhexfile into your
+  program.
+
+ 
+ Bugs
+ 
+  Please report any bugs by emailing me at davesullins@earthlink.net.

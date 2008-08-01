@@ -173,8 +173,19 @@ routine analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName :
     @string listFile := [inSourceFileName stringByDeletingPathExtension] . ".list" ;
     [listFileContents writeToFileWhenDifferentContents !listFile] ;
   end if ;
-#--- If no error, generate object file
+#--- If no error, generate object file(s)
   if [@uint errorCount] == 0 then
+  #--- Generate hex file
+    buildBinaryCode
+      !generatedInstructionList
+      ![[piccoloDeviceModel mRomSize] uint]
+      !actualConfigurationMap
+    ;
+    @string contents ;
+    getGeneratedContents ?contents ;
+    @string destinationFile := [inSourceFileName stringByDeletingPathExtension] . ".hex" ;
+    [contents writeToFileWhenDifferentContents !destinationFile] ;
+  #--- Generate asm file, if corresponding option enabled
     if [option piccolo_options.generateAssembly] then
       @string assemblyCode ;
       buildAssemblyCode
@@ -187,16 +198,6 @@ routine analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName :
       ;
       @string destinationFile := [inSourceFileName stringByDeletingPathExtension] . ".asm" ;
       [assemblyCode writeToFileWhenDifferentContents !destinationFile] ;
-    else
-      buildBinaryCode
-        !generatedInstructionList
-        ![[piccoloDeviceModel mRomSize] uint]
-        !actualConfigurationMap
-      ;
-      @string contents ;
-      getGeneratedContents ?contents ;
-      @string destinationFile := [inSourceFileName stringByDeletingPathExtension] . ".hex" ;
-      [contents writeToFileWhenDifferentContents !destinationFile] ;
     end if ;
   end if ;
 end routine ;

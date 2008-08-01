@@ -89,6 +89,71 @@ abstract method @piccolo_instruction.buildIPICinstructionList
 
 #----------------------------------------------------*
 
+override method @instruction_nobanksel.buildIPICinstructionList
+  ??@uint unused inAccessBankSplitOffset
+  ??@registerTable unused inRegisterTable
+  ?!@uint unused ioLocalLabelIndex
+  ?!@ipic_instructionList unused ioGeneratedInstructionList
+:
+#--- Generates no code
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_savebank.buildIPICinstructionList
+  ??@uint inAccessBankSplitOffset
+  ??@registerTable inRegisterTable
+  ?!@uint ioLocalLabelIndex
+  ?!@ipic_instructionList ioGeneratedInstructionList
+:
+#--- Get values for BSR register
+  @registerExpression BSRregister [new ![@lstring new !"BSR" !here] ![@luint new !0 !here]] ;
+  @ipic_registerExpression BSR_IPICregisterDescription ;
+  [BSRregister resolveAccess
+    !inAccessBankSplitOffset
+    !inRegisterTable
+    ?BSR_IPICregisterDescription
+    ?*
+  ] ;
+#--- Get values for register used for saving
+  @ipic_registerExpression save_IPICregisterDescription ;
+  [mRegister resolveAccess
+    !inAccessBankSplitOffset
+    !inRegisterTable
+    ?save_IPICregisterDescription
+    ?*
+  ] ;
+#--- Generate "MOVFF BSR, save_register" instruction
+  ioGeneratedInstructionList += ![@ipic_instruction_MOVFF new
+    !mInstructionLocation
+    !BSR_IPICregisterDescription
+    !save_IPICregisterDescription
+  ] ;
+#--- Generate instruction list
+  foreach mInstructionList do
+    [mInstruction buildIPICinstructionList !inAccessBankSplitOffset !inRegisterTable !?ioLocalLabelIndex !?ioGeneratedInstructionList] ;
+  end foreach ;
+#--- Generate "MOVFF save_register, BSR" instruction
+  ioGeneratedInstructionList += ![@ipic_instruction_MOVFF new
+    !mInstructionLocation
+    !save_IPICregisterDescription
+    !BSR_IPICregisterDescription
+  ] ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_banksel.buildIPICinstructionList
+  ??@uint unused inAccessBankSplitOffset
+  ??@registerTable unused inRegisterTable
+  ?!@uint unused ioLocalLabelIndex
+  ?!@ipic_instructionList ioGeneratedInstructionList
+:
+  ioGeneratedInstructionList += ![@ipic_instruction_MOVLB new !mInstructionLocation !mBankIndex] ;
+end method ;
+
+#----------------------------------------------------*
+
 override method @instruction_FDA.buildIPICinstructionList
   ??@uint inAccessBankSplitOffset
   ??@registerTable inRegisterTable

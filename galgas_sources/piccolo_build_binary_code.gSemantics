@@ -586,7 +586,7 @@ override method @ipic_instruction_MOVLB.generateBinaryCodeAtAddress
   ??@symbolTable unused inRoutineSymbolTable
   ?!@uint unused ioAddress
 :
-  emitCode !0x0100 | [mPageIndex uint] ;
+  emitCode !0x0100 | [mBankIndex uint] ;
 end method ;
 
 #----------------------------------------------------------------------------*
@@ -690,15 +690,20 @@ override method @ipic_instruction_computed_bra.generateBinaryCodeAtAddress
   else
     emitCALLinstruction ! targetAddress ;
   end if ;
-  @uint address := ioAddress + 4 ;
+#---
+  @uint addressForComputingBRA := ioAddress + 2 ;
+  if not mUsesRCALL then
+    addressForComputingBRA := addressForComputingBRA + 2 ; # GOTO takes 2 more bytes
+  end if ;
+#---
   foreach mTargetLabels do
     [inRoutineSymbolTable searchKey !mValue ?targetAddress] ;
     emitBRAinstruction
-      !address
+      !addressForComputingBRA
       !targetAddress
       ![mValue location]
     ;
-    address := address + 2 ;
+    addressForComputingBRA := addressForComputingBRA + 2 ;
   end foreach ;
 end method ;
 

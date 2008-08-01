@@ -1,0 +1,67 @@
+<html>
+<head>
+ <title>Hexcmp - Compare two hex files</title>
+</head>
+<body bgcolor="#ffffff">
+
+ <h1 align="center">Hexcmp - Compare two hex files</h1>
+ <h2>Description</h2>
+ <p>
+  Hexcmp is a very simple program that tells you whether the memory
+  represented in two hex files is equivalent.  In other words, even if
+  two hex files are formatted differently, if they contain the same
+  data, hexcmp will recognize that they are the same.
+ </p>
+ <p>
+  The program will tell you the lowest memory address where the two files
+  differ, and the contents of memory at that address for each file.  Note
+  that this may not be the first sequential difference in either hex file,
+  since it is perfectly valid to list records out of order in a hex file.
+ </p>
+ <p>
+  Hexcmp compiles under Linux and other Unix-like operating systems.  It
+  probably even works under Microsoft Windows, although I haven't had
+  occasion to test it.
+ </p>
+ <p>
+  I wrote the program because once I had needed a program like that, and
+  couldn't find one.  When I wrote my <a href="dis51.html">dis51</a> 8051
+  disassembly program, I had to write routines to parse a hex file.  I found
+  it would be trivial to write hexcmp using those routines.
+ </p>
+ 
+ <h2>Compiling and using hexcmp</h2>
+ <p>
+  You can <a href="hexcmp-0.2.tar.gz">download the hexcmp source</a> for
+  free.  It is released under the GNU Public License.  See <a
+  href="http://www.gnu.org/licenses/gpl.html">the GNU website</a> for more
+  details.
+ </p>
+ <p>
+  First, you will need to install libhexfile if you don't already have it. 
+  Change to the libhexfile-0.0 directory, edit the Makefile as necessary,
+  and run "make install" as root to install the library.
+ </p>
+ <p>
+  To compile hexcmp, change to the hexcmp-0.2 directory, then edit the
+  Makefile if necessary.  After editing the Makefile, type "make" and you're
+  done.
+ </p>
+ <p>
+  To run hexcmp, type "hexcmp file1.hex file2.hex".  You will probably
+  want to put hexcmp in some bin directory for convenience.
+ </p>
+ <p>
+  If you don't want to install libhexfile, you can try "make static" from
+  the hexcmp directory.
+ </p>
+ 
+ <h2>Bugs</h2>
+ <p>
+  Please report any bugs by emailing me at davesullins@earthlink.net. 
+ </p>
+
+ <a href="index.html">Back to Dave's software page</a>
+ 
+</body>
+</html>

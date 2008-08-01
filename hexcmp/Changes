@@ -1,0 +1,15 @@
+14 February 2003
+
+I updated the program to use the new improved libhexfile.  The program is
+now shorter and cleaner.  Released version 0.2.
+
+15 July 2002
+
+I changed the name of the program from hexdiff to hexcmp.  A Google search
+showed me there are a lot of programs out there named "hexdiff," and I just
+don't want to get sued.
+
+Instead of using bcmp to compare memory, I now check each byte individually
+so I can output at which byte the hex files differ.  Downside: there are
+more efficient implementations than byte-by-byte (such as that used in GNU
+cmp).

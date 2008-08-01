@@ -187,6 +187,12 @@ rule <start_symbol>
     ] ;
   end repeat ;
   $}$ ;
+#--- Check some registers are actual defined
+  [registerTable searchKey ![@lstring new !"BSR" !here] ?* ?* ?*] ;
+  [registerTable searchKey ![@lstring new !"TOSL" !here] ?* ?* ?*] ;
+  [registerTable searchKey ![@lstring new !"TOSH" !here] ?* ?* ?*] ;
+  [registerTable searchKey ![@lstring new !"TOSU" !here] ?* ?* ?*] ;
+#---
   outPiccoloDeviceModel := [@piccoloDeviceModel new
     !deviceName
     !processorType

@@ -8,7 +8,7 @@ routine rcall_back_call {
   mnop 1022 # Adding 1 leads to underflow
 }
 
-routine main banksel 0 noreturn {
+noreturn routine main requiresbank 0 {
   rcall rcall_back_call
   rcall rcall_forward_call
   mnop 1022 # Adding 1 leads to overflow
@@ -36,7 +36,7 @@ routine aRoutine {
 routine bcc_forward {
 }
 
-routine foreverLoop noreturn {
+noreturn routine foreverLoop {
   forever
     mnop 1023  # Adding 1 leads to underflow
   end

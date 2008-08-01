@@ -4,8 +4,7 @@
 
 program code_bigger_than_64k "PIC18F6722" : # Has 128 kB Flash
 
-
-routine main noreturn {
+noreturn routine main requiresbank 0 {
   forever
     MNOP 32769
   end

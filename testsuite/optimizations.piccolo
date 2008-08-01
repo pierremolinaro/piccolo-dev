@@ -26,7 +26,7 @@ routine optimize2 {
   end
 }
 
-routine main noreturn {
+noreturn routine main requiresbank 0 {
   rcall optimize1
   rcall optimize2
   forever

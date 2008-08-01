@@ -398,15 +398,18 @@ override method @ipic_instruction_computed_bra.checkRelativeBranch
       [!?ioGeneratedInstructionList setMInstructionAtIndex !instruction !inIndex] ;
     end if ;
   end if ;
-  @uint address := ioAddress + 4 ;
+  @uint addressForCheckingBRA := ioAddress + 2 ;
+  if not mUsesRCALL then
+    addressForCheckingBRA := addressForCheckingBRA + 2 ; # GOTO takes 2 more bytes
+  end if ;
   foreach mTargetLabels do
     @uint targetAddress ;
     [inRoutineSymbolTable searchKey !mValue ?targetAddress] ;
-    @sint displacement := ([targetAddress sint] - 2S - [address sint]) >> 1 ;
+    @sint displacement := ([targetAddress sint] - 2S - [addressForCheckingBRA sint]) >> 1 ;
     if (displacement > 1023S) | (displacement < - 1024S) then
       error mValue: "displacement (" . [displacement string] . ") too large for BRA instruction (limited to [-1024, 1023])" ;
     end if ;
-    address := address + 2 ;
+    addressForCheckingBRA := addressForCheckingBRA + 2 ;
   end foreach ;
 end method ;
 
@@ -438,8 +441,7 @@ override method @ipic_instruction_computed_goto.checkRelativeBranch
     end if ;
   end if ;
   foreach mTargetLabels do
-    @uint targetAddress ;
-    [inRoutineSymbolTable searchKey !mValue ?targetAddress] ;
+    [inRoutineSymbolTable searchKey !mValue ?*] ;
   end foreach ;
 end method ;
 
