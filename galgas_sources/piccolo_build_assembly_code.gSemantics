@@ -269,6 +269,15 @@ end method ;
 
 #----------------------------------------------------*
 
+override method @ipic_instruction_MOVLB.buildAssemblyCode
+  ?!@string ioString
+  ?!@uint unused ioBccLabelIndex
+:
+  ioString .= "  MOVLB " . [[mBankIndex uint] hexString] . "\n" ;
+end method ;
+
+#----------------------------------------------------*
+
 override method @ipic_instruction_CLRWDT.buildAssemblyCode
   ?!@string ioString
   ?!@uint unused ioBccLabelIndex

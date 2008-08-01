@@ -10,7 +10,7 @@ config {
   BODENV : Undefined # This setting is illegal if BODEN is enabled
 }
 
-noreturn routine main requiresbank 0 {
+noreturn routine main bank:required 0 {
   forever
   end
 }

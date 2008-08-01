@@ -623,7 +623,9 @@ list @interruptDefinitionList {
 
 list @routineDefinitionList {
   @lstring mRoutineName ;
-  @luint mBanksel ;
+  @luint mRequiredBank ;
+  @luint mReturnedBank ;
+  @bool mPreservesBank ;
   @bool mIsNoReturn ;
   @instructionList mInstructionList ;
   @location mEndOfRoutineLocation ;
