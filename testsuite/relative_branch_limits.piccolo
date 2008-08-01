@@ -8,7 +8,7 @@ routine rcall_back_call {
   mnop 1022 # Adding 1 leads to underflow
 }
 
-noreturn routine main requiresbank 0 {
+noreturn routine main bank:required 0 {
   rcall rcall_back_call
   rcall rcall_forward_call
   mnop 1022 # Adding 1 leads to overflow

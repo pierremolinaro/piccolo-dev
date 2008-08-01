@@ -10,6 +10,8 @@ import "ipic_metamodel.gSemantics" ;
 map @routineMap {
   @bool mIsNoReturn ;
   @uint mRequiredBank ;
+  @uint mReturnedBank ;
+  @bool mPreservesBank ;
   insert insertKey error message "the '%K' routine is already declared in %L" ;
   search searchKey error message "the '%K' routine is not declared" ;
 }
@@ -136,6 +138,7 @@ method @piccolo_instruction.check
   ??@routineMap unused inRoutineMap
   ??@registerTable unused inRegisterTable
   ?!@uint unused ioCurrentBank
+  ??@bool unused inShouldPreserveBSR
   ?!@bool unused ioContinuesInSequence
   ??@routineKind unused inRoutineKind
 :
@@ -148,6 +151,7 @@ routine checkInstructionList
   ??@routineMap inRoutineMap
   ??@registerTable inRegisterTable
   ?!@uint ioCurrentBank
+  ??@bool inShouldPreserveBSR
   !@bool outContinuesInSequence
   ??@routineKind inRoutineKind
   ??@instructionList inInstructionList
@@ -163,6 +167,7 @@ routine checkInstructionList
       !inRoutineMap
       !inRegisterTable
       !?ioCurrentBank
+      !inShouldPreserveBSR
       !?outContinuesInSequence
       !inRoutineKind
     ] ;
@@ -176,9 +181,13 @@ override method @instruction_nobanksel.check
   ??@routineMap unused inRoutineMap
   ??@registerTable unused inRegisterTable
   ?!@uint ioCurrentBank
+  ??@bool inShouldPreserveBSR
   ?!@bool unused ioContinuesInSequence
   ??@routineKind unused inRoutineKind
 :
+  if inShouldPreserveBSR then
+    error mInstructionLocation: "cannot use \nobank\" here: BSR should be preserved (use it in a \"banksave\" construct)" ;
+  end if ;
   ioCurrentBank := [@uint max] ;
 end method ;
 
@@ -189,9 +198,13 @@ override method @instruction_banksel.check
   ??@routineMap unused inRoutineMap
   ??@registerTable unused inRegisterTable
   ?!@uint ioCurrentBank
+  ??@bool inShouldPreserveBSR
   ?!@bool unused ioContinuesInSequence
   ??@routineKind unused inRoutineKind
 :
+  if inShouldPreserveBSR then
+    error mInstructionLocation: "cannot use \"banksel\" here: BSR should be preserved (use it in \"banksave\" construct)" ;
+  end if ;
   if [mBankIndex uint] > 15 then
     error mBankIndex:"selected bank index should be lower or equal to 15" ;
     ioCurrentBank := [@uint max] ; # No selected bank
@@ -209,6 +222,7 @@ override method @instruction_savebank.check
   ??@routineMap inRoutineMap
   ??@registerTable inRegisterTable
   ?!@uint ioCurrentBank
+  ??@bool unused inShouldPreserveBSR
   ?!@bool ioContinuesInSequence
   ??@routineKind inRoutineKind
 :
@@ -220,6 +234,7 @@ override method @instruction_savebank.check
     !inRoutineMap
     !inRegisterTable
     !?finalBank
+    !false # Do not preserve bank now
     ?ioContinuesInSequence
     !inRoutineKind
     !mInstructionList
@@ -236,6 +251,7 @@ override method @instruction_FDA.check
   ??@routineMap unused inRoutineMap
   ??@registerTable inRegisterTable
   ?!@uint ioCurrentBank
+  ??@bool unused inShouldPreserveBSR
   ?!@bool unused ioContinuesInSequence
   ??@routineKind unused inRoutineKind
 :
@@ -254,6 +270,7 @@ override method @instruction_FA.check
   ??@routineMap unused inRoutineMap
   ??@registerTable inRegisterTable
   ?!@uint ioCurrentBank
+  ??@bool unused inShouldPreserveBSR
   ?!@bool unused ioContinuesInSequence
   ??@routineKind unused inRoutineKind
 :
@@ -272,6 +289,7 @@ override method @instruction_MOVFF.check
   ??@routineMap unused inRoutineMap
   ??@registerTable inRegisterTable
   ?!@uint unused ioCurrentBank
+  ??@bool unused inShouldPreserveBSR
   ?!@bool unused ioContinuesInSequence
   ??@routineKind unused inRoutineKind
 :
@@ -286,6 +304,7 @@ override method @instruction_FBA.check
   ??@routineMap unused inRoutineMap
   ??@registerTable inRegisterTable
   ?!@uint ioCurrentBank
+  ??@bool unused inShouldPreserveBSR
   ?!@bool unused ioContinuesInSequence
   ??@routineKind unused inRoutineKind
 :
@@ -306,12 +325,15 @@ override method @instruction_JSR.check
   ??@routineMap inRoutineMap
   ??@registerTable unused inRegisterTable
   ?!@uint ioCurrentBank
+  ??@bool unused inShouldPreserveBSR
   ?!@bool unused ioContinuesInSequence
   ??@routineKind unused inRoutineKind
 :
   @bool isNoReturn ;
   @uint requiredBank ;
-  [inRoutineMap searchKey !mTargetLabel ?isNoReturn ?requiredBank] ;
+  @uint returnedBank ;
+  @bool preservesBank ;
+  [inRoutineMap searchKey !mTargetLabel ?isNoReturn ?requiredBank ?returnedBank ?preservesBank] ;
   if (requiredBank != [@uint max]) & (requiredBank != ioCurrentBank) then
     @string errorMessage := "the routine '" . mTargetLabel . "' requires BSR to be set to " . [requiredBank string] ;
     errorMessage .= ", but BSR " ;
@@ -325,6 +347,9 @@ override method @instruction_JSR.check
   if isNoReturn then
     error mTargetLabel:"a \"noreturn\" routine should be called with a BRA, GOTO, Bcc or JUMP instruction" ;
   end if ;
+  if not preservesBank then
+    ioCurrentBank := returnedBank ;
+  end if ;
 end method ;
 
 #----------------------------------------------------------------------------*
@@ -334,12 +359,13 @@ override method @instruction_JUMP.check
   ??@routineMap inRoutineMap
   ??@registerTable unused inRegisterTable
   ?!@uint ioCurrentBank
+  ??@bool unused inShouldPreserveBSR
   ?!@bool ioContinuesInSequence
   ??@routineKind unused inRoutineKind
 :
   @bool isNoReturn ;
   @uint requiredBank ;
-  [inRoutineMap searchKey !mTargetLabel ?isNoReturn ?requiredBank] ;
+  [inRoutineMap searchKey !mTargetLabel ?isNoReturn ?requiredBank ?* ?*] ;
   if (requiredBank != [@uint max]) & (requiredBank != ioCurrentBank) then
     @string errorMessage := "the routine '" . mTargetLabel . "' requires BSR to be set to " . [requiredBank string] ;
     errorMessage .= ", but BSR " ;
@@ -363,12 +389,13 @@ override method @instruction_JUMPCC.check
   ??@routineMap inRoutineMap
   ??@registerTable unused inRegisterTable
   ?!@uint ioCurrentBank
+  ??@bool unused inShouldPreserveBSR
   ?!@bool unused ioContinuesInSequence
   ??@routineKind unused inRoutineKind
 :
   @bool isNoReturn ;
   @uint requiredBank ;
-  [inRoutineMap searchKey !mTargetLabel ?isNoReturn ?requiredBank] ;
+  [inRoutineMap searchKey !mTargetLabel ?isNoReturn ?requiredBank ?* ?*] ;
   if (requiredBank != [@uint max]) & (requiredBank != ioCurrentBank) then
     @string errorMessage := "the routine '" . mTargetLabel . "' requires BSR to be set to " . [requiredBank string] ;
     errorMessage .= ", but BSR " ;
@@ -391,6 +418,7 @@ override method @instruction_literalOperation.check
   ??@routineMap unused inRoutineMap
   ??@registerTable unused inRegisterTable
   ?!@uint unused ioCurrentBank
+  ??@bool unused inShouldPreserveBSR
   ?!@bool unused ioContinuesInSequence
   ??@routineKind unused inRoutineKind
 :
@@ -406,6 +434,7 @@ override method @instruction_LFSR.check
   ??@routineMap unused inRoutineMap
   ??@registerTable inRegisterTable
   ?!@uint unused ioCurrentBank
+  ??@bool unused inShouldPreserveBSR
   ?!@bool unused ioContinuesInSequence
   ??@routineKind unused inRoutineKind
 :
@@ -422,6 +451,7 @@ override method @instruction_MOVAW.check
   ??@routineMap unused inRoutineMap
   ??@registerTable inRegisterTable
   ?!@uint unused ioCurrentBank
+  ??@bool unused inShouldPreserveBSR
   ?!@bool unused ioContinuesInSequence
   ??@routineKind unused inRoutineKind
 :
@@ -435,6 +465,7 @@ override method @instruction_computed_retlw.check
   ??@routineMap unused inRoutineMap
   ??@registerTable unused inRegisterTable
   ?!@uint unused ioCurrentBank
+  ??@bool unused inShouldPreserveBSR
   ?!@bool ioContinuesInSequence
   ??@routineKind inRoutineKind
 :
@@ -455,6 +486,7 @@ override method @instruction_MNOP.check
   ??@routineMap unused inRoutineMap
   ??@registerTable unused inRegisterTable
   ?!@uint unused ioCurrentBank
+  ??@bool unused inShouldPreserveBSR
   ?!@bool unused ioContinuesInSequence
   ??@routineKind unused inRoutineKind
 :
@@ -470,13 +502,14 @@ override method @instruction_computed_bra.check
   ??@routineMap inRoutineMap
   ??@registerTable unused inRegisterTable
   ?!@uint ioCurrentBank
+  ??@bool unused inShouldPreserveBSR
   ?!@bool ioContinuesInSequence
   ??@routineKind inRoutineKind
 :
   foreach mTargetLabels do
     @bool isNoReturn ;
     @uint requiredBank ;
-    [inRoutineMap searchKey !mValue ?isNoReturn ?requiredBank] ;
+    [inRoutineMap searchKey !mValue ?isNoReturn ?requiredBank ?* ?*] ;
     if (requiredBank != [@uint max]) & (requiredBank != ioCurrentBank) then
       @string errorMessage := "the routine '" . mValue . "' requires BSR to be set to " . [requiredBank string] ;
       errorMessage .= ", but BSR " ;
@@ -508,13 +541,14 @@ override method @instruction_computed_goto.check
   ??@routineMap inRoutineMap
   ??@registerTable unused inRegisterTable
   ?!@uint ioCurrentBank
+  ??@bool unused inShouldPreserveBSR
   ?!@bool ioContinuesInSequence
   ??@routineKind inRoutineKind
 :
   foreach mTargetLabels do
     @bool isNoReturn ;
     @uint requiredBank ;
-    [inRoutineMap searchKey !mValue ?isNoReturn ?requiredBank] ;
+    [inRoutineMap searchKey !mValue ?isNoReturn ?requiredBank ?* ?*] ;
     if (requiredBank != [@uint max]) & (requiredBank != ioCurrentBank) then
       @string errorMessage := "the routine '" . mValue . "' requires BSR to be set to " . [requiredBank string] ;
       errorMessage .= ", but BSR " ;
@@ -546,6 +580,7 @@ override method @instruction_FOREVER.check
   ??@routineMap inRoutineMap
   ??@registerTable inRegisterTable
   ?!@uint ioCurrentBank
+  ??@bool inShouldPreserveBSR
   ?!@bool ioContinuesInSequence
   ??@routineKind inRoutineKind
 :
@@ -563,6 +598,7 @@ override method @instruction_FOREVER.check
     !inRoutineMap
     !inRegisterTable
     !?finalBank
+    !inShouldPreserveBSR
     ?ioContinuesInSequence
     !inRoutineKind
     !mInstructionList
@@ -581,6 +617,7 @@ override method @instruction_IF_FA_SEMI_COLON.check
   ??@routineMap inRoutineMap
   ??@registerTable inRegisterTable
   ?!@uint ioCurrentBank
+  ??@bool inShouldPreserveBSR
   ?!@bool unused ioContinuesInSequence
   ??@routineKind inRoutineKind
 :
@@ -597,6 +634,7 @@ override method @instruction_IF_FA_SEMI_COLON.check
     !inRoutineMap
     !inRegisterTable
     !?ioCurrentBank
+    !inShouldPreserveBSR
     !?unusedContinuesInSequence
     !inRoutineKind
   ] ;
@@ -609,6 +647,7 @@ override method @instruction_IF_BitTest.check
   ??@routineMap inRoutineMap
   ??@registerTable inRegisterTable
   ?!@uint ioCurrentBank
+  ??@bool inShouldPreserveBSR
   ?!@bool unused ioContinuesInSequence
   ??@routineKind inRoutineKind
 :
@@ -627,6 +666,7 @@ override method @instruction_IF_BitTest.check
     !inRoutineMap
     !inRegisterTable
     !?ioCurrentBank
+    !inShouldPreserveBSR
     !?unusedContinuesInSequence
     !inRoutineKind
   ] ;
@@ -751,6 +791,7 @@ override method @instruction_structured_if.check
   ??@routineMap inRoutineMap
   ??@registerTable inRegisterTable
   ?!@uint ioCurrentBank
+  ??@bool inShouldPreserveBSR
   ?!@bool ioContinuesInSequence
   ??@routineKind inRoutineKind
 :
@@ -767,6 +808,7 @@ override method @instruction_structured_if.check
     !inRoutineMap
     !inRegisterTable
     !?finalBank
+    !inShouldPreserveBSR
     ?ioContinuesInSequence
     !inRoutineKind
     !mThenInstructionList
@@ -785,6 +827,7 @@ override method @instruction_structured_if.check
       !inRoutineMap
       !inRegisterTable
       !?elsifPartCurrentBank
+      !inShouldPreserveBSR
       ?continuesInSequence
       !inRoutineKind
       !mInstructionList
@@ -802,6 +845,7 @@ override method @instruction_structured_if.check
     !inRoutineMap
     !inRegisterTable
     !?elsePartCurrentBank
+    !inShouldPreserveBSR
     ?continuesInSequence
     !inRoutineKind
     !mElseInstructionList
@@ -821,6 +865,7 @@ override method @instruction_do_while.check
   ??@routineMap inRoutineMap
   ??@registerTable inRegisterTable
   ?!@uint ioCurrentBank
+  ??@bool inShouldPreserveBSR
   ?!@bool ioContinuesInSequence
   ??@routineKind inRoutineKind
 :
@@ -831,6 +876,7 @@ override method @instruction_do_while.check
     !inRoutineMap
     !inRegisterTable
     !?finalBank
+    !inShouldPreserveBSR
     ?ioContinuesInSequence
     !inRoutineKind
     !mRepeatedInstructionList
@@ -851,6 +897,7 @@ override method @instruction_do_while.check
       !inRoutineMap
       !inRegisterTable
       !?bank
+      !inShouldPreserveBSR
       ?ioContinuesInSequence
       !inRoutineKind
       !mInstructionList
@@ -868,6 +915,7 @@ override method @instruction_IF_IncDec.check
   ??@routineMap inRoutineMap
   ??@registerTable inRegisterTable
   ?!@uint ioCurrentBank
+  ??@bool inShouldPreserveBSR
   ?!@bool unused ioContinuesInSequence
   ??@routineKind inRoutineKind
 :
@@ -884,6 +932,7 @@ override method @instruction_IF_IncDec.check
     !inRoutineMap
     !inRegisterTable
     !?ioCurrentBank
+    !inShouldPreserveBSR
     !?unusedContinuesInSequence
     !inRoutineKind
   ] ;
@@ -902,13 +951,19 @@ routine semanticsCheckings
 #-------------------------------- Build routine map
   @routineMap routineMap [emptyMap] ;
   foreach [inPiccoloModel mRoutineDefinitionList] do
-    [!?routineMap insertKey !mRoutineName !mIsNoReturn ![mBanksel uint]] ;
+    if ([mRequiredBank uint] != [@uint max]) & ([mRequiredBank uint] > 15) then
+      error mRequiredBank:"the required bank value should be lower or equal to 15" ;
+    end if ;
+    if ([mReturnedBank uint] != [@uint max]) & ([mReturnedBank uint] > 15) then
+      error mReturnedBank:"the returned bank value should be lower or equal to 15" ;
+    end if ;
+    [!?routineMap insertKey !mRoutineName !mIsNoReturn ![mRequiredBank uint] ![mReturnedBank uint] !mPreservesBank] ;
   end foreach ;
 #-------------------------------- Check the "main" routine is declared
   if [routineMap hasKey !"main"] then
     @bool isNoReturn ;
     @uint requiredBank ;
-    [routineMap searchKey ![@lstring new !"main" !here] ?isNoReturn ?requiredBank] ;
+    [routineMap searchKey ![@lstring new !"main" !here] ?isNoReturn ?requiredBank ?* ?*] ;
     if not isNoReturn then
       error here :"the \"main\" should be declared with \"noreturn\" qualifier: \"noreturn main requiresbank 0\"" ;
     end if ;
@@ -921,7 +976,7 @@ routine semanticsCheckings
 #-------------------------------- Check routines
   foreach [inPiccoloModel mRoutineDefinitionList] do
     @bool continuesInSequence := true ;
-    @uint currentBank := [mBanksel uint] ;
+    @uint currentBank := [mRequiredBank uint] ;
     @routineKind routineKind ;
     if mIsNoReturn then
       routineKind := [@routineKind noReturnRoutine] ;
@@ -938,15 +993,13 @@ routine semanticsCheckings
         !routineMap
         !inRegisterTable
         !?currentBank
+        !mPreservesBank
         !?continuesInSequence
         !routineKind
       ] ;
     end foreach ;
-    if ([mBanksel uint] == [@uint max]) & (currentBank != [@uint max]) & (not mIsNoReturn) then
-      error mEndOfRoutineLocation:"execution will change BSR contents" ;
-    end if ;
-    if ([mBanksel uint] != [@uint max]) & (currentBank != [mBanksel uint]) & (not mIsNoReturn) then
-      error mEndOfRoutineLocation:"execution will change BSR contents" ;
+    if (not mIsNoReturn) & ([mReturnedBank uint] != [@uint max]) & (currentBank != [mReturnedBank uint]) then
+      error mEndOfRoutineLocation:"execution will not set BSR to " . [[mReturnedBank uint] string] ;
     end if ;
     if mIsNoReturn & continuesInSequence then
       error mEndOfRoutineLocation:"execution should not reach the end of a \"noreturn\" routine" ;
@@ -966,6 +1019,7 @@ routine semanticsCheckings
         !routineMap
         !inRegisterTable
         !?currentBank
+        !false # Can change BSR
         !?continuesInSequence
         ![@routineKind interruptRoutine]
       ] ;

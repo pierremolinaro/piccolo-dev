@@ -1,0 +1,33 @@
+program exemples_bsr "PIC18F2580" :
+
+ram accessram {
+  byte varAccessBank # At address 0
+}
+
+ram gpr1 {
+  byte varBank1 # At address 0x100
+}
+
+ram gpr2 {
+  byte varBank2 # At address 0x200
+  byte save_bsr
+}
+
+noreturn routine main bank:required 0 {
+  banksel 2
+  jsr maRoutine
+  forever
+  end
+}
+
+routine maRoutine {  CLRF varAccessBank
+  if (Z)
+    banksel 1    CLRF varBank1
+    nobank
+  else
+    banksel 2    CLRF varBank2
+    nobank
+  end
+}
+
+end
