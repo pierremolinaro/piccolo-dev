@@ -106,6 +106,7 @@ rule <start_symbol>
     !routineDefinitionList
     !needsComputedGoto2
     !needsComputedGoto4
+    !here
   ] ;
 end rule ;
 
@@ -290,8 +291,8 @@ rule <interrupt_definition>
     !?ioNeedsComputedGoto2
     !?ioNeedsComputedGoto4
   ;
-  ioInterruptDefinitionList += !interruptName !instructionList !here ;
   $}$ ;
+  ioInterruptDefinitionList += !interruptName !instructionList !here ;
 end rule ;
 
 #----------------------------------------------------*
@@ -301,21 +302,21 @@ rule <routine_definition>
   ?!@bool ioNeedsComputedGoto2 
   ?!@bool ioNeedsComputedGoto4
 :
-  $routine$ ;
-  $identifier$ ? @lstring routineName ;
-  @luint banksel ;
-  select
-    banksel := [@luint new ![@uint max] !here] ;
-  or
-    $banksel$ ;
-    $integer$ ? banksel ;
-  end select ;
   @bool noreturn ;
   select
     noreturn := false ;
   or
     $noreturn$ ;
     noreturn := true ;
+  end select ;
+  $routine$ ;
+  $identifier$ ? @lstring routineName ;
+  @luint banksel ;
+  select
+    banksel := [@luint new ![@uint max] !here] ;
+  or
+    $requiresbank$ ;
+    $integer$ ? banksel ;
   end select ;
   ${$ ;
   @instructionList instructionList ;
@@ -324,8 +325,8 @@ rule <routine_definition>
     !?ioNeedsComputedGoto2
     !?ioNeedsComputedGoto4
   ;
-  ioRoutineDefinitionList += !routineName !banksel !noreturn !instructionList !here ;
   $}$ ;
+  ioRoutineDefinitionList += !routineName !banksel !noreturn !instructionList !here ;
 end rule ;
 
 #----------------------------------------------------*
@@ -585,6 +586,28 @@ rule <structured_instruction>
   ?!@bool ioNeedsComputedGoto4
 :
   select
+    $banksel$ ;
+    @location instructionLocation := here ;
+    $integer$ ? @luint bank ;
+    outInstruction := [@instruction_banksel new ! instructionLocation !bank] ;
+  or
+    $nobank$ ;
+    outInstruction := [@instruction_nobanksel new !here] ;
+  or
+    $banksave$ ;
+    @location instructionLocation := here ;
+    @registerExpression register ;
+    <register_parsing> ?register ;
+    @instructionList instructionList ;
+    <instruction_list> ?instructionList !?ioNeedsComputedGoto2 !?ioNeedsComputedGoto4 ;
+    $end$ ;
+    outInstruction := [@instruction_savebank new
+      !instructionLocation
+      !register
+      !instructionList
+      !here
+    ] ;
+  or
     $computed$ ;
     @location instructionLocation := here ;
     $retlw$ ;
@@ -645,6 +668,7 @@ rule <structured_instruction>
     outInstruction := [@instruction_FOREVER new
       !instructionLocation
       !instructionList
+      !here
     ] ;
   or
     $if$ ;
@@ -764,7 +788,7 @@ rule <structured_instruction>
         !?ioNeedsComputedGoto2
         !?ioNeedsComputedGoto4
       ;
-      elsifPartList += !condition !instructionList ;
+      elsifPartList += !condition !instructionList !here ;
     end repeat ;
     @instructionList elseInstructionList ;
     select
@@ -777,6 +801,7 @@ rule <structured_instruction>
         !?ioNeedsComputedGoto4
       ;
     end select ;
+    @location endOfElsePartLocation := here ;
     $end$ ;
     outInstruction := [@instruction_structured_if new
       !instructionLocation
@@ -784,6 +809,7 @@ rule <structured_instruction>
       !thenInstructionList
       !elsifPartList
       !elseInstructionList
+      !endOfElsePartLocation
     ] ;
   or
     $do$ ;
@@ -794,6 +820,7 @@ rule <structured_instruction>
       !?ioNeedsComputedGoto2
       !?ioNeedsComputedGoto4
     ;
+    @location endOfRepeatedInstructionList := here ;
     @partList whilePartList [emptyList] ;
     repeat
       $while$ ;
@@ -805,13 +832,14 @@ rule <structured_instruction>
         !?ioNeedsComputedGoto2
         !?ioNeedsComputedGoto4
       ;
-      whilePartList += !whileCondition !instructionList ;
+      whilePartList += !whileCondition !instructionList !here ;
     while
     end repeat ;
     $end$ ;
     outInstruction := [@instruction_do_while new
       !instructionLocation
       !repeatedInstructionList
+      !endOfRepeatedInstructionList
       !whilePartList
     ] ;
   or

@@ -9,6 +9,7 @@ import "ipic_metamodel.gSemantics" ;
 
 map @routineMap {
   @bool mIsNoReturn ;
+  @uint mRequiredBank ;
   insert insertKey error message "the '%K' routine is already declared in %L" ;
   search searchKey error message "the '%K' routine is not declared" ;
 }
@@ -84,7 +85,7 @@ end method ;
 method @registerExpression.checkRegisterAddressingAndBankAccess
   ??@uint inAccessBankSplitOffset
   ??@registerTable inRegisterTable
-  ??@uint inCurrentBank
+  ?!@uint ioCurrentBank
   !@bitSliceTable outBitSliceTable
 :
 #--- 
@@ -102,16 +103,16 @@ method @registerExpression.checkRegisterAddressingAndBankAccess
   end foreach ;
 #--- If not, try BSR
   if not found then
-    if inCurrentBank == [@uint max] then
+    if ioCurrentBank == [@uint max] then
       error mRegisterName:"the register '" . mRegisterName . "' should be addressed with BSR, but BSR does not contain a reliable value" ;
     else
-      @uint bankFirst := inCurrentBank * 256 ;
+      @uint bankFirst := ioCurrentBank * 256 ;
       @uint bankLast := bankFirst + 255 ;
       foreach registerAddressList while not found do
         found := (mValue >= bankFirst) & (mValue <= bankLast) ;
       end foreach ;
       if not found then
-        error mRegisterName:"the register '" . mRegisterName . "' should be addressed with BSR, but BSR contains " . [inCurrentBank string] . " that does not correspond to register bank" ;
+        error mRegisterName:"the register '" . mRegisterName . "' should be addressed with BSR, but BSR contains " . [ioCurrentBank string] . " that does not correspond to register bank" ;
       end if ;
     end if ;
   end if ;
@@ -134,10 +135,98 @@ method @piccolo_instruction.check
   ??@uint unused inAccessBankSplitOffset
   ??@routineMap unused inRoutineMap
   ??@registerTable unused inRegisterTable
-  ??@uint unused inCurrentBank
+  ?!@uint unused ioCurrentBank
   ?!@bool unused ioContinuesInSequence
   ??@routineKind unused inRoutineKind
 :
+end method ;
+
+#----------------------------------------------------------------------------*
+
+routine checkInstructionList
+  ??@uint inAccessBankSplitOffset
+  ??@routineMap inRoutineMap
+  ??@registerTable inRegisterTable
+  ?!@uint ioCurrentBank
+  !@bool outContinuesInSequence
+  ??@routineKind inRoutineKind
+  ??@instructionList inInstructionList
+:
+  outContinuesInSequence := true ;
+  foreach inInstructionList do
+    if not outContinuesInSequence then
+      error [mInstruction mInstructionLocation] : "Unreachable code" ;
+      outContinuesInSequence := true ;
+    end if ;
+    [mInstruction check
+      !inAccessBankSplitOffset
+      !inRoutineMap
+      !inRegisterTable
+      !?ioCurrentBank
+      !?outContinuesInSequence
+      !inRoutineKind
+    ] ;
+  end foreach ;
+end routine ;
+
+#----------------------------------------------------------------------------*
+
+override method @instruction_nobanksel.check
+  ??@uint unused inAccessBankSplitOffset
+  ??@routineMap unused inRoutineMap
+  ??@registerTable unused inRegisterTable
+  ?!@uint ioCurrentBank
+  ?!@bool unused ioContinuesInSequence
+  ??@routineKind unused inRoutineKind
+:
+  ioCurrentBank := [@uint max] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @instruction_banksel.check
+  ??@uint unused inAccessBankSplitOffset
+  ??@routineMap unused inRoutineMap
+  ??@registerTable unused inRegisterTable
+  ?!@uint ioCurrentBank
+  ?!@bool unused ioContinuesInSequence
+  ??@routineKind unused inRoutineKind
+:
+  if [mBankIndex uint] > 15 then
+    error mBankIndex:"selected bank index should be lower or equal to 15" ;
+    ioCurrentBank := [@uint max] ; # No selected bank
+  elsif [mBankIndex uint] == ioCurrentBank then
+    warning mBankIndex:"useless instruction: the bank " . [ioCurrentBank string] . " is already selected" ;
+  else
+    ioCurrentBank := [mBankIndex uint] ;
+  end if ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @instruction_savebank.check
+  ??@uint inAccessBankSplitOffset
+  ??@routineMap inRoutineMap
+  ??@registerTable inRegisterTable
+  ?!@uint ioCurrentBank
+  ?!@bool ioContinuesInSequence
+  ??@routineKind inRoutineKind
+:
+  [mRegister checkRegisterDeclaration !inRegisterTable] ;
+#---
+  @uint finalBank := ioCurrentBank ;
+  checkInstructionList
+    !inAccessBankSplitOffset
+    !inRoutineMap
+    !inRegisterTable
+    !?finalBank
+    ?ioContinuesInSequence
+    !inRoutineKind
+    !mInstructionList
+  ;
+  if not ioContinuesInSequence then
+    error mEndOfSaveBankInstruction:"useless saving: execution does reach the end of \"savebank\" instruction list" ;
+  end if ;
 end method ;
 
 #----------------------------------------------------------------------------*
@@ -146,14 +235,14 @@ override method @instruction_FDA.check
   ??@uint inAccessBankSplitOffset
   ??@routineMap unused inRoutineMap
   ??@registerTable inRegisterTable
-  ??@uint inCurrentBank
+  ?!@uint ioCurrentBank
   ?!@bool unused ioContinuesInSequence
   ??@routineKind unused inRoutineKind
 :
   [mRegisterExpression checkRegisterAddressingAndBankAccess
     !inAccessBankSplitOffset
     !inRegisterTable
-    !inCurrentBank
+    !?ioCurrentBank
     ?*
   ] ;
 end method ;
@@ -164,14 +253,14 @@ override method @instruction_FA.check
   ??@uint inAccessBankSplitOffset
   ??@routineMap unused inRoutineMap
   ??@registerTable inRegisterTable
-  ??@uint inCurrentBank
+  ?!@uint ioCurrentBank
   ?!@bool unused ioContinuesInSequence
   ??@routineKind unused inRoutineKind
 :
   [mRegisterExpression checkRegisterAddressingAndBankAccess
     !inAccessBankSplitOffset
     !inRegisterTable
-    !inCurrentBank
+    !?ioCurrentBank
     ?*
   ] ;
 end method ;
@@ -182,7 +271,7 @@ override method @instruction_MOVFF.check
   ??@uint unused inAccessBankSplitOffset
   ??@routineMap unused inRoutineMap
   ??@registerTable inRegisterTable
-  ??@uint unused inCurrentBank
+  ?!@uint unused ioCurrentBank
   ?!@bool unused ioContinuesInSequence
   ??@routineKind unused inRoutineKind
 :
@@ -196,7 +285,7 @@ override method @instruction_FBA.check
   ??@uint inAccessBankSplitOffset
   ??@routineMap unused inRoutineMap
   ??@registerTable inRegisterTable
-  ??@uint inCurrentBank
+  ?!@uint ioCurrentBank
   ?!@bool unused ioContinuesInSequence
   ??@routineKind unused inRoutineKind
 :
@@ -204,7 +293,7 @@ override method @instruction_FBA.check
   [mRegisterExpression checkRegisterAddressingAndBankAccess
     !inAccessBankSplitOffset
     !inRegisterTable
-    !inCurrentBank
+    !?ioCurrentBank
     ?bitSliceTable
   ] ;
   [mBitNumber checkBitNumber !bitSliceTable] ;
@@ -216,12 +305,23 @@ override method @instruction_JSR.check
   ??@uint unused inAccessBankSplitOffset
   ??@routineMap inRoutineMap
   ??@registerTable unused inRegisterTable
-  ??@uint unused inCurrentBank
+  ?!@uint ioCurrentBank
   ?!@bool unused ioContinuesInSequence
   ??@routineKind unused inRoutineKind
 :
   @bool isNoReturn ;
-  [inRoutineMap searchKey !mTargetLabel ?isNoReturn] ;
+  @uint requiredBank ;
+  [inRoutineMap searchKey !mTargetLabel ?isNoReturn ?requiredBank] ;
+  if (requiredBank != [@uint max]) & (requiredBank != ioCurrentBank) then
+    @string errorMessage := "the routine '" . mTargetLabel . "' requires BSR to be set to " . [requiredBank string] ;
+    errorMessage .= ", but BSR " ;
+    if ioCurrentBank == [@uint max] then
+      errorMessage .= "does contain any reliable value" ;
+    else
+      errorMessage .= "is set to " . [ioCurrentBank string] ;
+    end if ;
+    error mTargetLabel:errorMessage ;
+  end if ;
   if isNoReturn then
     error mTargetLabel:"a \"noreturn\" routine should be called with a BRA, GOTO, Bcc or JUMP instruction" ;
   end if ;
@@ -233,15 +333,27 @@ override method @instruction_JUMP.check
   ??@uint unused inAccessBankSplitOffset
   ??@routineMap inRoutineMap
   ??@registerTable unused inRegisterTable
-  ??@uint unused inCurrentBank
-  ?!@bool unused ioContinuesInSequence
+  ?!@uint ioCurrentBank
+  ?!@bool ioContinuesInSequence
   ??@routineKind unused inRoutineKind
 :
   @bool isNoReturn ;
-  [inRoutineMap searchKey !mTargetLabel ?isNoReturn] ;
+  @uint requiredBank ;
+  [inRoutineMap searchKey !mTargetLabel ?isNoReturn ?requiredBank] ;
+  if (requiredBank != [@uint max]) & (requiredBank != ioCurrentBank) then
+    @string errorMessage := "the routine '" . mTargetLabel . "' requires BSR to be set to " . [requiredBank string] ;
+    errorMessage .= ", but BSR " ;
+    if ioCurrentBank == [@uint max] then
+      errorMessage .= "does contain any reliable value" ;
+    else
+      errorMessage .= "is set to " . [ioCurrentBank string] ;
+    end if ;
+    error mTargetLabel:errorMessage ;
+  end if ;
   if not isNoReturn then
     error mTargetLabel:"a regular routine should be called with a RCALL, CALL or JSR instruction" ;
   end if ;
+  ioContinuesInSequence := false ;
 end method ;
 
 #----------------------------------------------------------------------------*
@@ -250,12 +362,23 @@ override method @instruction_JUMPCC.check
   ??@uint unused inAccessBankSplitOffset
   ??@routineMap inRoutineMap
   ??@registerTable unused inRegisterTable
-  ??@uint unused inCurrentBank
+  ?!@uint ioCurrentBank
   ?!@bool unused ioContinuesInSequence
   ??@routineKind unused inRoutineKind
 :
   @bool isNoReturn ;
-  [inRoutineMap searchKey !mTargetLabel ?isNoReturn] ;
+  @uint requiredBank ;
+  [inRoutineMap searchKey !mTargetLabel ?isNoReturn ?requiredBank] ;
+  if (requiredBank != [@uint max]) & (requiredBank != ioCurrentBank) then
+    @string errorMessage := "the routine '" . mTargetLabel . "' requires BSR to be set to " . [requiredBank string] ;
+    errorMessage .= ", but BSR " ;
+    if ioCurrentBank == [@uint max] then
+      errorMessage .= "does contain any reliable value" ;
+    else
+      errorMessage .= "is set to " . [ioCurrentBank string] ;
+    end if ;
+    error mTargetLabel:errorMessage ;
+  end if ;
   if not isNoReturn then
     error mTargetLabel:"a regular routine should be called with a RCALL, CALL or JSR instruction" ;
   end if ;
@@ -267,7 +390,7 @@ override method @instruction_literalOperation.check
   ??@uint unused inAccessBankSplitOffset
   ??@routineMap unused inRoutineMap
   ??@registerTable unused inRegisterTable
-  ??@uint unused inCurrentBank
+  ?!@uint unused ioCurrentBank
   ?!@bool unused ioContinuesInSequence
   ??@routineKind unused inRoutineKind
 :
@@ -282,7 +405,7 @@ override method @instruction_LFSR.check
   ??@uint unused inAccessBankSplitOffset
   ??@routineMap unused inRoutineMap
   ??@registerTable inRegisterTable
-  ??@uint unused inCurrentBank
+  ?!@uint unused ioCurrentBank
   ?!@bool unused ioContinuesInSequence
   ??@routineKind unused inRoutineKind
 :
@@ -298,7 +421,7 @@ override method @instruction_MOVAW.check
   ??@uint unused inAccessBankSplitOffset
   ??@routineMap unused inRoutineMap
   ??@registerTable inRegisterTable
-  ??@uint unused inCurrentBank
+  ?!@uint unused ioCurrentBank
   ?!@bool unused ioContinuesInSequence
   ??@routineKind unused inRoutineKind
 :
@@ -311,7 +434,7 @@ override method @instruction_computed_retlw.check
   ??@uint unused inAccessBankSplitOffset
   ??@routineMap unused inRoutineMap
   ??@registerTable unused inRegisterTable
-  ??@uint unused inCurrentBank
+  ?!@uint unused ioCurrentBank
   ?!@bool ioContinuesInSequence
   ??@routineKind inRoutineKind
 :
@@ -331,7 +454,7 @@ override method @instruction_MNOP.check
   ??@uint unused inAccessBankSplitOffset
   ??@routineMap unused inRoutineMap
   ??@registerTable unused inRegisterTable
-  ??@uint unused inCurrentBank
+  ?!@uint unused ioCurrentBank
   ?!@bool unused ioContinuesInSequence
   ??@routineKind unused inRoutineKind
 :
@@ -346,13 +469,24 @@ override method @instruction_computed_bra.check
   ??@uint unused inAccessBankSplitOffset
   ??@routineMap inRoutineMap
   ??@registerTable unused inRegisterTable
-  ??@uint unused inCurrentBank
+  ?!@uint ioCurrentBank
   ?!@bool ioContinuesInSequence
   ??@routineKind inRoutineKind
 :
   foreach mTargetLabels do
     @bool isNoReturn ;
-    [inRoutineMap searchKey !mValue ?isNoReturn] ;
+    @uint requiredBank ;
+    [inRoutineMap searchKey !mValue ?isNoReturn ?requiredBank] ;
+    if (requiredBank != [@uint max]) & (requiredBank != ioCurrentBank) then
+      @string errorMessage := "the routine '" . mValue . "' requires BSR to be set to " . [requiredBank string] ;
+      errorMessage .= ", but BSR " ;
+      if ioCurrentBank == [@uint max] then
+        errorMessage .= "does contain any reliable value" ;
+      else
+        errorMessage .= "is set to " . [ioCurrentBank string] ;
+      end if ;
+      error mValue: errorMessage ;
+    end if ;
     if not isNoReturn then
       error mValue:"for being named in a computed bra, the '" . mValue . "' routine should be declared with the \"noreturn\" qualifier" ;
 	 end if ;
@@ -373,13 +507,24 @@ override method @instruction_computed_goto.check
   ??@uint unused inAccessBankSplitOffset
   ??@routineMap inRoutineMap
   ??@registerTable unused inRegisterTable
-  ??@uint unused inCurrentBank
+  ?!@uint ioCurrentBank
   ?!@bool ioContinuesInSequence
   ??@routineKind inRoutineKind
 :
   foreach mTargetLabels do
     @bool isNoReturn ;
-    [inRoutineMap searchKey !mValue ?isNoReturn] ;
+    @uint requiredBank ;
+    [inRoutineMap searchKey !mValue ?isNoReturn ?requiredBank] ;
+    if (requiredBank != [@uint max]) & (requiredBank != ioCurrentBank) then
+      @string errorMessage := "the routine '" . mValue . "' requires BSR to be set to " . [requiredBank string] ;
+      errorMessage .= ", but BSR " ;
+      if ioCurrentBank == [@uint max] then
+        errorMessage .= "does contain any reliable value" ;
+      else
+        errorMessage .= "is set to " . [ioCurrentBank string] ;
+      end if ;
+      error mValue: errorMessage ;
+    end if ;
     if not isNoReturn then
       error mValue:"for being named in a computed goto, the '" . mValue . "' routine should be declared with the \"noreturn\" qualifier" ;
 	 end if ;
@@ -397,14 +542,13 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override method @instruction_FOREVER.check
-  ??@uint unused inAccessBankSplitOffset
-  ??@routineMap unused inRoutineMap
-  ??@registerTable unused inRegisterTable
-  ??@uint unused inCurrentBank
+  ??@uint inAccessBankSplitOffset
+  ??@routineMap inRoutineMap
+  ??@registerTable inRegisterTable
+  ?!@uint ioCurrentBank
   ?!@bool ioContinuesInSequence
   ??@routineKind inRoutineKind
 :
-  ioContinuesInSequence := false ;
   switch inRoutineKind
   when regularRoutine :
     error mInstructionLocation:"a regular routine does not accept the \"forever\" instruction" ;
@@ -412,6 +556,22 @@ override method @instruction_FOREVER.check
   when interruptRoutine :
     error mInstructionLocation:"an interrupt routine does not accept the \"forever\" instruction" ;
   end switch ;
+#--- Check instruction list does not change bank
+  @uint finalBank := ioCurrentBank ;
+  checkInstructionList
+    !inAccessBankSplitOffset
+    !inRoutineMap
+    !inRegisterTable
+    !?finalBank
+    ?ioContinuesInSequence
+    !inRoutineKind
+    !mInstructionList
+  ;
+  if ioCurrentBank != finalBank then
+    error mEndOfInstructionList:"instruction list does not leave BSR value unchanged";
+  end if ;
+#---
+  ioContinuesInSequence := false ;
 end method ;
 
 #----------------------------------------------------------------------------*
@@ -420,14 +580,14 @@ override method @instruction_IF_FA_SEMI_COLON.check
   ??@uint inAccessBankSplitOffset
   ??@routineMap inRoutineMap
   ??@registerTable inRegisterTable
-  ??@uint inCurrentBank
+  ?!@uint ioCurrentBank
   ?!@bool unused ioContinuesInSequence
   ??@routineKind inRoutineKind
 :
   [mRegisterExpression checkRegisterAddressingAndBankAccess
     !inAccessBankSplitOffset
     !inRegisterTable
-    !inCurrentBank
+    !?ioCurrentBank
     ?*
   ] ;
 #--- Check embedded instruction
@@ -436,7 +596,7 @@ override method @instruction_IF_FA_SEMI_COLON.check
     !inAccessBankSplitOffset
     !inRoutineMap
     !inRegisterTable
-    !inCurrentBank
+    !?ioCurrentBank
     !?unusedContinuesInSequence
     !inRoutineKind
   ] ;
@@ -448,7 +608,7 @@ override method @instruction_IF_BitTest.check
   ??@uint inAccessBankSplitOffset
   ??@routineMap inRoutineMap
   ??@registerTable inRegisterTable
-  ??@uint inCurrentBank
+  ?!@uint ioCurrentBank
   ?!@bool unused ioContinuesInSequence
   ??@routineKind inRoutineKind
 :
@@ -456,7 +616,7 @@ override method @instruction_IF_BitTest.check
   [mRegisterExpression checkRegisterAddressingAndBankAccess
     !inAccessBankSplitOffset
     !inRegisterTable
-    !inCurrentBank
+    !?ioCurrentBank
     ?bitSliceTable
   ] ;
   [mBitNumber checkBitNumber !bitSliceTable] ;
@@ -466,7 +626,7 @@ override method @instruction_IF_BitTest.check
     !inAccessBankSplitOffset
     !inRoutineMap
     !inRegisterTable
-    !inCurrentBank
+    !?ioCurrentBank
     !?unusedContinuesInSequence
     !inRoutineKind
   ] ;
@@ -477,7 +637,7 @@ end method ;
 abstract method @conditionExpression.checkCondition
   ??@uint inAccessBankSplitOffset
   ??@registerTable inRegisterTable
-  ??@uint inCurrentBank
+  ?!@uint ioCurrentBank
 ;
 
 #----------------------------------------------------------------------------*
@@ -485,7 +645,7 @@ abstract method @conditionExpression.checkCondition
 override method @bcc_in_structured_if_condition.checkCondition
   ??@uint unused inAccessBankSplitOffset
   ??@registerTable unused inRegisterTable
-  ??@uint unused inCurrentBank
+  ?!@uint unused ioCurrentBank
 :
 end method ;
 
@@ -494,12 +654,12 @@ end method ;
 override method @registerComparisonCondition.checkCondition
   ??@uint inAccessBankSplitOffset
   ??@registerTable inRegisterTable
-  ??@uint inCurrentBank
+  ?!@uint ioCurrentBank
 :
   [mRegisterExpression checkRegisterAddressingAndBankAccess
     !inAccessBankSplitOffset
     !inRegisterTable
-    !inCurrentBank
+    !?ioCurrentBank
     ?*
   ] ;
 end method ;
@@ -509,12 +669,12 @@ end method ;
 override method @incDecRegisterInCondition.checkCondition
   ??@uint inAccessBankSplitOffset
   ??@registerTable inRegisterTable
-  ??@uint inCurrentBank
+  ?!@uint ioCurrentBank
 :
   [mRegisterExpression checkRegisterAddressingAndBankAccess
     !inAccessBankSplitOffset
     !inRegisterTable
-    !inCurrentBank
+    !?ioCurrentBank
     ?*
   ] ;
 end method ;
@@ -524,12 +684,12 @@ end method ;
 override method @registerTestCondition.checkCondition
   ??@uint inAccessBankSplitOffset
   ??@registerTable inRegisterTable
-  ??@uint inCurrentBank
+  ?!@uint ioCurrentBank
 :
   [mRegisterExpression checkRegisterAddressingAndBankAccess
     !inAccessBankSplitOffset
     !inRegisterTable
-    !inCurrentBank
+    !?ioCurrentBank
     ?*
   ] ;
 end method ;
@@ -539,12 +699,12 @@ end method ;
 override method @negateCondition.checkCondition
   ??@uint inAccessBankSplitOffset
   ??@registerTable inRegisterTable
-  ??@uint inCurrentBank
+  ?!@uint ioCurrentBank
 :
   [mCondition checkCondition
     !inAccessBankSplitOffset
     !inRegisterTable
-    !inCurrentBank
+    !?ioCurrentBank
   ] ;
 end method ;
 
@@ -553,17 +713,17 @@ end method ;
 override method @andCondition.checkCondition
   ??@uint inAccessBankSplitOffset
   ??@registerTable inRegisterTable
-  ??@uint inCurrentBank
+  ?!@uint ioCurrentBank
 :
   [mLeftExpression checkCondition
     !inAccessBankSplitOffset
     !inRegisterTable
-    !inCurrentBank
+    !?ioCurrentBank
   ] ;
   [mRightExpression checkCondition
     !inAccessBankSplitOffset
     !inRegisterTable
-    !inCurrentBank
+    !?ioCurrentBank
   ] ;
 end method ;
 
@@ -572,13 +732,13 @@ end method ;
 override method @bitTest_in_structured_if_condition.checkCondition
   ??@uint inAccessBankSplitOffset
   ??@registerTable inRegisterTable
-  ??@uint inCurrentBank
+  ?!@uint ioCurrentBank
 :
   @bitSliceTable bitSliceTable ;
   [mRegisterExpression checkRegisterAddressingAndBankAccess
     !inAccessBankSplitOffset
     !inRegisterTable
-    !inCurrentBank
+    !?ioCurrentBank
     ?bitSliceTable
   ] ;
   [mBitNumber checkBitNumber !bitSliceTable] ;
@@ -586,39 +746,11 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-routine checkInstructionList
-  ??@uint inAccessBankSplitOffset
-  ??@routineMap inRoutineMap
-  ??@registerTable inRegisterTable
-  ??@uint inCurrentBank
-  !@bool outContinuesInSequence
-  ??@routineKind inRoutineKind
-  ??@instructionList inInstructionList
-:
-  outContinuesInSequence := true ;
-  foreach inInstructionList do
-    if not outContinuesInSequence then
-      error [mInstruction mInstructionLocation] : "Unreachable code" ;
-      outContinuesInSequence := true ;
-    end if ;
-    [mInstruction check
-      !inAccessBankSplitOffset
-      !inRoutineMap
-      !inRegisterTable
-      !inCurrentBank
-      !?outContinuesInSequence
-      !inRoutineKind
-    ] ;
-  end foreach ;
-end routine ;
-
-#----------------------------------------------------------------------------*
-
 override method @instruction_structured_if.check
   ??@uint inAccessBankSplitOffset
   ??@routineMap inRoutineMap
   ??@registerTable inRegisterTable
-  ??@uint inCurrentBank
+  ?!@uint ioCurrentBank
   ?!@bool ioContinuesInSequence
   ??@routineKind inRoutineKind
 :
@@ -626,14 +758,15 @@ override method @instruction_structured_if.check
   [mIfCondition checkCondition
     !inAccessBankSplitOffset
     !inRegisterTable
-    !inCurrentBank
+    !?ioCurrentBank
   ] ;
 #--- 'then' instructions
+  @uint finalBank := ioCurrentBank ;
   checkInstructionList
     !inAccessBankSplitOffset
     !inRoutineMap
     !inRegisterTable
-    !inCurrentBank
+    !?finalBank
     ?ioContinuesInSequence
     !inRoutineKind
     !mThenInstructionList
@@ -643,32 +776,42 @@ override method @instruction_structured_if.check
     [mCondition checkCondition
       !inAccessBankSplitOffset
       !inRegisterTable
-      !inCurrentBank
+      !?ioCurrentBank
     ] ;
     @bool continuesInSequence ;
+    @uint elsifPartCurrentBank := ioCurrentBank ;
     checkInstructionList
       !inAccessBankSplitOffset
       !inRoutineMap
       !inRegisterTable
-      !inCurrentBank
+      !?elsifPartCurrentBank
       ?continuesInSequence
       !inRoutineKind
       !mInstructionList
     ;
+    if elsifPartCurrentBank != finalBank then
+      error mEndOfPartLocation:"This branch does not leave BSR value as the first one does";
+    end if ;
     ioContinuesInSequence := ioContinuesInSequence | continuesInSequence ;
   end foreach ;
 #--- 'else' instructions
   @bool continuesInSequence ;
+  @uint elsePartCurrentBank := ioCurrentBank ;
   checkInstructionList
     !inAccessBankSplitOffset
     !inRoutineMap
     !inRegisterTable
-    !inCurrentBank
+    !?elsePartCurrentBank
     ?continuesInSequence
     !inRoutineKind
     !mElseInstructionList
   ;
+  if elsePartCurrentBank != finalBank then
+    error mEndOfElsePartLocation:"This branch does not leave BSR value as the first one does";
+  end if ;
+#---
   ioContinuesInSequence := ioContinuesInSequence | continuesInSequence ;
+  ioCurrentBank := finalBank ;
 end method ;
 
 #----------------------------------------------------------------------------*
@@ -677,36 +820,44 @@ override method @instruction_do_while.check
   ??@uint inAccessBankSplitOffset
   ??@routineMap inRoutineMap
   ??@registerTable inRegisterTable
-  ??@uint inCurrentBank
+  ?!@uint ioCurrentBank
   ?!@bool ioContinuesInSequence
   ??@routineKind inRoutineKind
 :
 #--- Repeated instructions
+  @uint finalBank := ioCurrentBank ;
   checkInstructionList
     !inAccessBankSplitOffset
     !inRoutineMap
     !inRegisterTable
-    !inCurrentBank
+    !?finalBank
     ?ioContinuesInSequence
     !inRoutineKind
     !mRepeatedInstructionList
   ;
+  if ioCurrentBank != finalBank then
+    error mEndOfRepeatedInstructionList:"This branch does not leave BSR value unchanged";
+  end if ;
 #--- while parts
   foreach mWhilePartList do
     [mCondition checkCondition
       !inAccessBankSplitOffset
       !inRegisterTable
-      !inCurrentBank
+      !?ioCurrentBank
     ] ;
+    @uint bank := ioCurrentBank ;
     checkInstructionList
       !inAccessBankSplitOffset
       !inRoutineMap
       !inRegisterTable
-      !inCurrentBank
+      !?bank
       ?ioContinuesInSequence
       !inRoutineKind
       !mInstructionList
     ;
+    if ioCurrentBank != bank then
+      error mEndOfPartLocation:"This branch does not leave BSR value unchanged";
+    end if ;
   end foreach ;
 end method ;
 
@@ -716,14 +867,14 @@ override method @instruction_IF_IncDec.check
   ??@uint inAccessBankSplitOffset
   ??@routineMap inRoutineMap
   ??@registerTable inRegisterTable
-  ??@uint inCurrentBank
+  ?!@uint ioCurrentBank
   ?!@bool unused ioContinuesInSequence
   ??@routineKind inRoutineKind
 :
   [mRegisterExpression checkRegisterAddressingAndBankAccess
     !inAccessBankSplitOffset
     !inRegisterTable
-    !inCurrentBank
+    !?ioCurrentBank
     ?*
   ] ;
 #--- Check embedded instruction
@@ -732,7 +883,7 @@ override method @instruction_IF_IncDec.check
     !inAccessBankSplitOffset
     !inRoutineMap
     !inRegisterTable
-    !inCurrentBank
+    !?ioCurrentBank
     !?unusedContinuesInSequence
     !inRoutineKind
   ] ;
@@ -751,8 +902,22 @@ routine semanticsCheckings
 #-------------------------------- Build routine map
   @routineMap routineMap [emptyMap] ;
   foreach [inPiccoloModel mRoutineDefinitionList] do
-    [!?routineMap insertKey !mRoutineName !mIsNoReturn] ;
+    [!?routineMap insertKey !mRoutineName !mIsNoReturn ![mBanksel uint]] ;
   end foreach ;
+#-------------------------------- Check the "main" routine is declared
+  if [routineMap hasKey !"main"] then
+    @bool isNoReturn ;
+    @uint requiredBank ;
+    [routineMap searchKey ![@lstring new !"main" !here] ?isNoReturn ?requiredBank] ;
+    if not isNoReturn then
+      error here :"the \"main\" should be declared with \"noreturn\" qualifier: \"noreturn main requiresbank 0\"" ;
+    end if ;
+    if requiredBank != 0 then
+      error here :"the \"main\" should be declared with \"requiresbank 0\" qualifier: \"noreturn main requiresbank 0\"" ;
+    end if ;
+  else
+    error [inPiccoloModel mEndOfProgram]: "the program should declare the \"main\" routine" ;
+  end if ;
 #-------------------------------- Check routines
   foreach [inPiccoloModel mRoutineDefinitionList] do
     @bool continuesInSequence := true ;
@@ -772,11 +937,17 @@ routine semanticsCheckings
         !inAccessBankSplitOffset
         !routineMap
         !inRegisterTable
-        !currentBank
+        !?currentBank
         !?continuesInSequence
         !routineKind
       ] ;
     end foreach ;
+    if ([mBanksel uint] == [@uint max]) & (currentBank != [@uint max]) & (not mIsNoReturn) then
+      error mEndOfRoutineLocation:"execution will change BSR contents" ;
+    end if ;
+    if ([mBanksel uint] != [@uint max]) & (currentBank != [mBanksel uint]) & (not mIsNoReturn) then
+      error mEndOfRoutineLocation:"execution will change BSR contents" ;
+    end if ;
     if mIsNoReturn & continuesInSequence then
       error mEndOfRoutineLocation:"execution should not reach the end of a \"noreturn\" routine" ;
     end if ;
@@ -794,7 +965,7 @@ routine semanticsCheckings
         !inAccessBankSplitOffset
         !routineMap
         !inRegisterTable
-        !currentBank
+        !?currentBank
         !?continuesInSequence
         ![@routineKind interruptRoutine]
       ] ;

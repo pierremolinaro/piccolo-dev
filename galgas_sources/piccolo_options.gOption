@@ -1,6 +1,6 @@
 option piccolo_options :
 
-@bool generateAssembly : 'S', "asm" -> "Generate assembly language text file, instead of hex file" ;
+@bool generateAssembly : 'S', "asm" -> "Generate also an assembly language text file (with .asm extension)" ;
 @bool doNotConvertRelative : 'C', "do-not-convert-relative" -> "Do not convert relative branch to absolute ones, when needed" ;
 @bool ouputDeviceList : 'D', "device-list" -> "Output the list of supported devices" ;
 @string memoryDescription : 'M', "memory" -> "Output the RAM, ROM and EEPROM description of the device named by string" ;

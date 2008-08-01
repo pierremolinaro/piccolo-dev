@@ -69,6 +69,7 @@ SOURCES += piccoloDevice_grammar.cpp
 SOURCES += piccolo_embedded_devices.cpp
 SOURCES += bitSlice.cpp
 SOURCES += piccolo_config.cpp
+SOURCES += semanticsCheckings.cpp
 
 # Hand-coded files
 SOURCES += piccolo_computations.cpp

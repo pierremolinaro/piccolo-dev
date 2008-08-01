@@ -535,11 +535,11 @@ class @ipic_instruction_LFSR extends @ipic_actualInstruction {
 #----------------------------------------------------*
 
 class @ipic_instruction_MOVLB extends @ipic_actualInstruction {
-  @luint mPageIndex ;
+  @luint mBankIndex ;
 
   override
   method displayIPICinstruction ?!@string ioListFileContents :
-    ioListFileContents .= "MOVLB " . [[mPageIndex uint] string] ;
+    ioListFileContents .= "MOVLB " . [[mBankIndex uint] string] ;
   end method ;
 }
 

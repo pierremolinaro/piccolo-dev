@@ -11,7 +11,7 @@ ram accessram {
   byte last # At address 3
 }
 
-routine main noreturn {
+noreturn routine main requiresbank 0 {
   forever
   end
 }

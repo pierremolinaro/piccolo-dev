@@ -16,9 +16,28 @@ list @instructionList {
 
 #----------------------------------------------------*
 
+class @instruction_nobanksel extends @piccolo_instruction {
+}
+
+#----------------------------------------------------*
+
+class @instruction_banksel extends @piccolo_instruction {
+  @luint mBankIndex ;
+}
+
+#----------------------------------------------------*
+
 class @registerExpression {
   @lstring mRegisterName ;
   @luint mOffset ;
+}
+
+#----------------------------------------------------*
+
+class @instruction_savebank extends @piccolo_instruction {
+  @registerExpression mRegister ;
+  @instructionList mInstructionList ;
+  @location mEndOfSaveBankInstruction ;
 }
 
 #----------------------------------------------------*
@@ -389,6 +408,7 @@ class @instruction_MNOP extends @piccolo_instruction {
 
 class @instruction_FOREVER extends @piccolo_instruction {
   @instructionList mInstructionList ;
+  @location mEndOfInstructionList ;
 }
 
 #----------------------------------------------------*
@@ -570,6 +590,7 @@ class @bitTest_in_structured_if_condition extends @conditionExpression {
 list @partList {
   @conditionExpression mCondition ;
   @instructionList mInstructionList ;
+  @location mEndOfPartLocation ;
 }
 
 #----------------------------------------------------*
@@ -579,11 +600,14 @@ class @instruction_structured_if extends @piccolo_instruction {
   @instructionList mThenInstructionList ;
   @partList mElsifPartList ;
   @instructionList mElseInstructionList ;
+  @location mEndOfElsePartLocation ;
 }
+
 #----------------------------------------------------*
 
 class @instruction_do_while extends @piccolo_instruction {
   @instructionList mRepeatedInstructionList ;
+  @location mEndOfRepeatedInstructionList ;
   @partList mWhilePartList ;
 }
 
@@ -669,6 +693,7 @@ struct @piccoloModel {
   @routineDefinitionList mRoutineDefinitionList ;
   @bool mNeedsComputedGoto2 ;
   @bool mNeedsComputedGoto4 ;
+  @location mEndOfProgram ;
 }
 
 #----------------------------------------------------------------------------*
