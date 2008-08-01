@@ -290,8 +290,8 @@ rule <interrupt_definition>
     !?ioNeedsComputedGoto2
     !?ioNeedsComputedGoto4
   ;
+  ioInterruptDefinitionList += !interruptName !instructionList !here ;
   $}$ ;
-  ioInterruptDefinitionList += !interruptName !instructionList ;
 end rule ;
 
 #----------------------------------------------------*
@@ -324,73 +324,8 @@ rule <routine_definition>
     !?ioNeedsComputedGoto2
     !?ioNeedsComputedGoto4
   ;
-#--- As last instruction computed RETLW, BRA or GOTO are accepted
-  @location instructionLocation := here ;
-  select
-    $computed$ ;
-    $retlw$ ;
-    if noreturn then
-      error here: "A routine declared with 'noreturn' qualifier cannot end with a computed RETLW" ;
-    end if ;
-    @luintlist argumentList [emptyList] ;
-    repeat
-      @luint literalValue ;
-      <literal_value_parsing> ?literalValue ;
-      argumentList += ! literalValue ;
-    while
-      $,$ ;
-    end repeat ;
-    instructionList += ![@instruction_computed_retlw new
-      !instructionLocation
-      !argumentList
-      !true
-    ] ;
-    ioNeedsComputedGoto2 := true ;
-  or
-    $computed$ ;
-    $bra$ ;
-    if not noreturn then
-      error here: "A routine declared without 'noreturn' qualifier cannot end with a computed BRA" ;
-    end if ;
-    @lstringlist argumentList [emptyList] ;
-    repeat
-      $identifier$ ? @lstring targetRoutine ;
-      argumentList += ! targetRoutine ;
-    while
-      $,$ ;
-    end repeat ;
-    instructionList += ![@instruction_computed_bra new
-      !instructionLocation
-      !argumentList
-      !true
-    ] ;
-    ioNeedsComputedGoto2 := true ;
-  or
-    $computed$ ;
-    $goto$ ;
-    if not noreturn then
-      error here: "A routine declared without 'noreturn' qualifier cannot end with a computed GOTO" ;
-    end if ;
-    @lstringlist argumentList [emptyList] ;
-    repeat
-      $identifier$ ? @lstring targetRoutine ;
-      argumentList += ! targetRoutine ;
-    while
-      $,$ ;
-    end repeat ;
-    instructionList += ![@instruction_computed_goto new
-      !instructionLocation
-      !argumentList
-      !true
-    ] ;
-    ioNeedsComputedGoto4 := true ;
-  or # By default, add a RETURN instruction
-    if not noreturn then
-      instructionList += ![@instruction_RETURN new !instructionLocation] ;
-    end if ;
-  end select ;
+  ioRoutineDefinitionList += !routineName !banksel !noreturn !instructionList !here ;
   $}$ ;
-  ioRoutineDefinitionList += !routineName !banksel !noreturn !instructionList ;
 end rule ;
 
 #----------------------------------------------------*
@@ -649,11 +584,63 @@ rule <structured_instruction>
   ?!@bool ioNeedsComputedGoto2
   ?!@bool ioNeedsComputedGoto4
 :
-  @location instructionLocation := here ;
   select
+    $computed$ ;
+    @location instructionLocation := here ;
+    $retlw$ ;
+    @luintlist argumentList [emptyList] ;
+    repeat
+      @luint literalValue ;
+      <literal_value_parsing> ?literalValue ;
+      argumentList += ! literalValue ;
+    while
+      $,$ ;
+    end repeat ;
+    outInstruction := [@instruction_computed_retlw new
+      !instructionLocation
+      !argumentList
+      !true
+    ] ;
+    ioNeedsComputedGoto2 := true ;
+  or
+    $computed$ ;
+    @location instructionLocation := here ;
+    $bra$ ;
+    @lstringlist argumentList [emptyList] ;
+    repeat
+      $identifier$ ? @lstring targetRoutine ;
+      argumentList += ! targetRoutine ;
+    while
+      $,$ ;
+    end repeat ;
+    outInstruction := [@instruction_computed_bra new
+      !instructionLocation
+      !argumentList
+      !true
+    ] ;
+    ioNeedsComputedGoto2 := true ;
+  or
+    $computed$ ;
+    @location instructionLocation := here ;
+    $goto$ ;
+    @lstringlist argumentList [emptyList] ;
+    repeat
+      $identifier$ ? @lstring targetRoutine ;
+      argumentList += ! targetRoutine ;
+    while
+      $,$ ;
+    end repeat ;
+    outInstruction := [@instruction_computed_goto new
+      !instructionLocation
+      !argumentList
+      !true
+    ] ;
+    ioNeedsComputedGoto4 := true ;
+  or
     $forever$ ;
+    @location instructionLocation := here ;
     @instructionList instructionList ;
-    <instruction_list> ? instructionList !?ioNeedsComputedGoto2 !?ioNeedsComputedGoto4 ;
+    <instruction_list> ?instructionList !?ioNeedsComputedGoto2 !?ioNeedsComputedGoto4 ;
     $end$ ;
     outInstruction := [@instruction_FOREVER new
       !instructionLocation
@@ -661,6 +648,7 @@ rule <structured_instruction>
     ] ;
   or
     $if$ ;
+    @location instructionLocation := here ;
     @registerExpression registerName ;
     <register_parsing> ?registerName ;
     @if_semi_colon_op opCode ;
@@ -689,6 +677,7 @@ rule <structured_instruction>
     ] ;
   or
     $if$ ;
+    @location instructionLocation := here ;
     @registerExpression registerName ;
     <register_parsing> ?registerName ;
     $.$ ;
@@ -716,6 +705,7 @@ rule <structured_instruction>
     ] ;
   or
     $if$ ;
+    @location instructionLocation := here ;
     @bool increment ;
     select
       $decf$ ; increment := false ;
@@ -753,6 +743,7 @@ rule <structured_instruction>
     ] ;
   or
     $if$ ;
+    @location instructionLocation := here ;
     @conditionExpression structured_if_condition ;
     <condition_expression> ?structured_if_condition ;
     @instructionList thenInstructionList ;
@@ -796,6 +787,7 @@ rule <structured_instruction>
     ] ;
   or
     $do$ ;
+    @location instructionLocation := here ;
     @instructionList repeatedInstructionList ;
     <instruction_list>
       ?repeatedInstructionList
@@ -824,6 +816,7 @@ rule <structured_instruction>
     ] ;
   or
     $mnop$ ;
+    @location instructionLocation := here ;
     $integer$ ? @luint occurrenceFactor ;
     outInstruction := [@instruction_MNOP new !instructionLocation !occurrenceFactor] ;
   end select ;
@@ -832,7 +825,6 @@ end rule ;
 #----------------------------------------------------*
 
 rule <simple_instruction> !@piccolo_instruction outInstruction :
-  @location instructionLocation := here ;
   select
     @instruction_FDA_base_code baseCode ;
     select
@@ -887,6 +879,7 @@ rule <simple_instruction> !@piccolo_instruction outInstruction :
       $xorwf$ ;
       baseCode := [@instruction_FDA_base_code XORWF] ;
     end select ;
+    @location instructionLocation := here ;
     @registerExpression registerName ;
     <register_parsing> ?registerName ;
     @bool W_isDestination ;
@@ -915,6 +908,7 @@ rule <simple_instruction> !@piccolo_instruction outInstruction :
       $setf$ ;
       FAinstruction := [@FA_instruction_base_code SETF] ;
     end select ;
+    @location instructionLocation := here ;
     @registerExpression registerName ;
     <register_parsing> ?registerName ;
     outInstruction := [@instruction_FA new
@@ -924,6 +918,7 @@ rule <simple_instruction> !@piccolo_instruction outInstruction :
     ] ;
   or
     $movff$ ;
+    @location instructionLocation := here ;
     @registerExpression sourceRegisterName ;
     <register_parsing> ?sourceRegisterName ;
     $,$ ;
@@ -943,6 +938,7 @@ rule <simple_instruction> !@piccolo_instruction outInstruction :
     or
       $btg$ ; bitOrientedOp := [@bit_oriented_op BTG] ;
     end select ;
+    @location instructionLocation := here ;
     @registerExpression registerName ;
     <register_parsing> ?registerName ;
     $.$ ;
@@ -956,46 +952,141 @@ rule <simple_instruction> !@piccolo_instruction outInstruction :
     ] ;
   or
     $jsr$ ;
+    @location instructionLocation := here ;
     $identifier$ ? @lstring targetLabelName ;
     outInstruction := [@instruction_JSR new
       !instructionLocation
       !targetLabelName
+      ![@jumpInstructionKind ipicRelative]
     ] ;
   or
     $call$ ;
+    @location instructionLocation := here ;
     $identifier$ ? @lstring targetLabelName ;
-    outInstruction := [@instruction_CALL new
+    outInstruction := [@instruction_JSR new
       !instructionLocation
       !targetLabelName
+      ![@jumpInstructionKind absolute]
     ] ;
   or
     $rcall$ ;
+    @location instructionLocation := here ;
     $identifier$ ? @lstring targetLabelName ;
-    outInstruction := [@instruction_RCALL new
+    outInstruction := [@instruction_JSR new
       !instructionLocation
       !targetLabelName
+      ![@jumpInstructionKind relative]
+    ] ;
+  or
+    $jump$ ;
+    @location instructionLocation := here ;
+    $identifier$ ? @lstring targetLabelName ;
+    outInstruction := [@instruction_JUMP new
+      !instructionLocation
+      !targetLabelName
+      ![@jumpInstructionKind ipicRelative]
+    ] ;
+  or
+    $goto$ ;
+    @location instructionLocation := here ;
+    $identifier$ ? @lstring targetLabelName ;
+    outInstruction := [@instruction_JUMP new
+      !instructionLocation
+      !targetLabelName
+      ![@jumpInstructionKind absolute]
+    ] ;
+  or
+    $bra$ ;
+    @location instructionLocation := here ;
+    $identifier$ ? @lstring targetLabelName ;
+    outInstruction := [@instruction_JUMP new
+      !instructionLocation
+      !targetLabelName
+      ![@jumpInstructionKind relative]
+    ] ;
+  or
+    @conditional_branch condition ;
+    select
+      $bc$ ; condition := [@conditional_branch bc] ;
+    or
+      $bnc$ ; condition := [@conditional_branch bnc] ;
+    or
+      $bn$ ; condition := [@conditional_branch bn] ;
+    or
+      $bnn$ ; condition := [@conditional_branch bnn] ;
+    or
+      $bov$ ; condition := [@conditional_branch bov] ;
+    or
+      $bnov$ ; condition := [@conditional_branch bnov] ;
+    or
+      $bz$ ; condition := [@conditional_branch bz] ;
+    or
+      $bnz$ ; condition := [@conditional_branch bnz] ;
+    end select ;
+    @location instructionLocation := here ;
+    $identifier$ ? @lstring targetLabelName ;
+    outInstruction := [@instruction_JUMPCC new
+      !instructionLocation
+      !targetLabelName
+      !condition
+      !true
+    ] ;
+  or
+    $jump$ ;
+    @location instructionLocation := here ;
+    @conditional_branch conditional_branch ;
+    $identifier$ ? @lstring conditionString ;
+    @string condition := [[conditionString string] uppercaseString] ;
+    if condition == "Z" then
+      conditional_branch := [@conditional_branch bz] ;
+    elsif condition == "NZ" then
+      conditional_branch := [@conditional_branch bnz] ;
+    elsif condition == "NN" then
+      conditional_branch := [@conditional_branch bnn] ;
+    elsif condition == "N" then
+      conditional_branch := [@conditional_branch bn] ;
+    elsif condition == "C" then
+      conditional_branch := [@conditional_branch bc] ;
+    elsif condition == "NC" then
+      conditional_branch := [@conditional_branch bnc] ;
+    elsif condition == "OV" then
+      conditional_branch := [@conditional_branch bov] ;
+    elsif condition == "NOV" then
+      conditional_branch := [@conditional_branch bnov] ;
+    else
+      error conditionString: "invalid '" . conditionString
+      . "' condition; valid ones are: 'z', 'nz', 'n', 'nn', 'c', 'nc', 'ov' and 'nov'"
+      -> conditional_branch
+      ;
+    end if ;
+    $identifier$ ? @lstring targetLabelName ;
+    outInstruction := [@instruction_JUMPCC new
+      !instructionLocation
+      !targetLabelName
+      !conditional_branch
+      !false
     ] ;
   or
     $clrwdt$ ;
-    outInstruction := [@instruction_CLRWDT new !instructionLocation] ;
+    outInstruction := [@instruction_CLRWDT new !here] ;
   or
     $daw$ ;
-    outInstruction := [@instruction_DAW new !instructionLocation] ;
+    outInstruction := [@instruction_DAW new !here] ;
   or
     $nop$ ;
-    outInstruction := [@instruction_NOP new !instructionLocation] ;
+    outInstruction := [@instruction_NOP new !here] ;
   or
     $pop$ ;
-    outInstruction := [@instruction_POP new !instructionLocation] ;
+    outInstruction := [@instruction_POP new !here] ;
   or
     $push$ ;
-    outInstruction := [@instruction_PUSH new !instructionLocation] ;
+    outInstruction := [@instruction_PUSH new !here] ;
   or
     $reset$ ;
-    outInstruction := [@instruction_RESET new !instructionLocation] ;
+    outInstruction := [@instruction_RESET new !here] ;
   or
     $sleep$ ;
-    outInstruction := [@instruction_SLEEP new !instructionLocation] ;
+    outInstruction := [@instruction_SLEEP new !here] ;
   or
     @literal_instruction_opcode literalInstruction ;
     select
@@ -1008,13 +1099,12 @@ rule <simple_instruction> !@piccolo_instruction outInstruction :
       $movlw$ ; literalInstruction := [@literal_instruction_opcode MOVLW] ;
     or
       $mullw$ ; literalInstruction := [@literal_instruction_opcode MULLW] ;
-#    or
-#      $retlw$ ; literalInstruction := [@literal_instruction_opcode RETLW] ;
     or
       $sublw$ ; literalInstruction := [@literal_instruction_opcode SUBLW] ;
     or
       $xorlw$ ; literalInstruction := [@literal_instruction_opcode XORLW] ;
     end select ;
+    @location instructionLocation := here ;
     @luint literalValue ;
     <literal_value_parsing> ?literalValue ;
     outInstruction := [@instruction_literalOperation new
@@ -1024,22 +1114,21 @@ rule <simple_instruction> !@piccolo_instruction outInstruction :
     ] ;
   or
     $lfsr$ ;
+    @location instructionLocation := here ;
     $integer$ ? @luint FSRindex ;
     $,$ ;
     @registerExpression registerName ;
     <register_parsing> ?registerName ;
     outInstruction := [@instruction_LFSR new !instructionLocation !FSRindex !registerName] ;
   or
-    $movlb$ ;
-    $integer$ ? @luint pageIndex ;
-    outInstruction := [@instruction_MOVLB new !instructionLocation !pageIndex] ;
-  or
     $movaw$ ;
+    @location instructionLocation := here ;
     @registerExpression registerName ;
     <register_parsing> ?registerName ;
     outInstruction := [@instruction_MOVAW new !instructionLocation !registerName] ;
   or
     $tblrd$ ;
+    @location instructionLocation := here ;
     @tableAccessOption accessOption ;
     select
       $*$ ;
@@ -1057,6 +1146,7 @@ rule <simple_instruction> !@piccolo_instruction outInstruction :
     outInstruction := [@instruction_TBLRD new !instructionLocation !accessOption] ;
   or
     $tblwt$ ;
+    @location instructionLocation := here ;
     @tableAccessOption accessOption ;
     select
       $*$ ;

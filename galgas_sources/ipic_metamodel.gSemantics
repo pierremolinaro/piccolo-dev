@@ -276,8 +276,9 @@ class @ipic_instruction_BitTestSkip extends @ipic_actualInstruction {
 
 enum @condionalBranchMode {
   constructor native ;
-  constructor usesBRA ;
-  constructor usesGOTO ;
+  constructor ipicNative ;
+  constructor ipicBRA ;
+  constructor ipicGOTO ;
 }{
 }
 
@@ -291,9 +292,10 @@ class @ipic_instruction_conditionalBranch extends @ipic_actualInstruction {
   override
   method instructionLength !@uint outLength :
     switch mBranchMode
-      when native   : outLength := 2 ;
-      when usesBRA  : outLength := 4 ;
-      when usesGOTO : outLength := 6 ;
+      when native     : outLength := 2 ;
+      when ipicNative : outLength := 2 ;
+      when ipicBRA    : outLength := 4 ;
+      when ipicGOTO   : outLength := 6 ;
     end switch ;
   end method ;
 
@@ -301,25 +303,16 @@ class @ipic_instruction_conditionalBranch extends @ipic_actualInstruction {
   method displayIPICinstruction ?!@string ioListFileContents :
     ioListFileContents .= "JUMP " . [mConditionalBranch condition] . " " . mTargetLabel ;
     switch mBranchMode
-      when native   : ioListFileContents .= " (native)" ;
-      when usesBRA  : ioListFileContents .= " (uses BRA)" ;
-      when usesGOTO : ioListFileContents .= " (uses GOTO)" ;
+      when native     : ioListFileContents .= " (native)" ;
+      when ipicNative : ioListFileContents .= " (uses Bcc)" ;
+      when ipicBRA    : ioListFileContents .= " (uses BRA)" ;
+      when ipicGOTO   : ioListFileContents .= " (uses GOTO)" ;
     end switch ;
   end method ;
 
   override method enterReferencedLabel ?!@stringset ioReferencedLabelSet :
     ioReferencedLabelSet += ![mTargetLabel string] ;
   end method ;
-}
-
-#----------------------------------------------------*
-
-enum @jumpInstructionKind {
-  constructor ipicRelative ;
-  constructor ipicAbsolute ;
-  constructor relative ;
-  constructor absolute ;
-}{
 }
 
 #----------------------------------------------------*

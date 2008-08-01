@@ -241,14 +241,14 @@ override method @ipic_instruction_conditionalBranch.generateBinaryCodeAtAddress
   [inRoutineSymbolTable searchKey !mTargetLabel ?targetAddress] ;
 #--- Emit Code
   switch mBranchMode
-  when native :
+  when native, ipicNative :
     emitConditionalBranchInstruction
       !ioAddress
       !targetAddress
       ![mTargetLabel location]
       !mConditionalBranch
     ;
-  when usesBRA :
+  when ipicBRA :
     @conditional_branch complementary ;
     getComplementaryBcc !mConditionalBranch ?complementary ;
     emitConditionalBranchInstruction
@@ -262,7 +262,7 @@ override method @ipic_instruction_conditionalBranch.generateBinaryCodeAtAddress
       !targetAddress
       ![mTargetLabel location]
     ;
-  when usesGOTO :
+  when ipicGOTO :
     @conditional_branch complementary ;
     getComplementaryBcc !mConditionalBranch ?complementary ;
     emitConditionalBranchInstruction
