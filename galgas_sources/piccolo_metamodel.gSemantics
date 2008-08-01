@@ -242,20 +242,34 @@ end routine ;
 
 #----------------------------------------------------*
 
+enum @jumpInstructionKind {
+  constructor ipicRelative ;
+  constructor ipicAbsolute ;
+  constructor relative ;
+  constructor absolute ;
+}{
+}
+
+#----------------------------------------------------*
+
 class @instruction_JSR extends @piccolo_instruction {
   @lstring mTargetLabel ;
+  @jumpInstructionKind mKind ;
 }
 
 #----------------------------------------------------*
 
-class @instruction_CALL extends @piccolo_instruction {
+class @instruction_JUMP extends @piccolo_instruction {
   @lstring mTargetLabel ;
+  @jumpInstructionKind mKind ;
 }
 
 #----------------------------------------------------*
 
-class @instruction_RCALL extends @piccolo_instruction {
+class @instruction_JUMPCC extends @piccolo_instruction {
   @lstring mTargetLabel ;
+  @conditional_branch mConditionalBranch ;
+  @bool mIsBcc ;
 }
 
 #----------------------------------------------------*
@@ -286,17 +300,6 @@ class @instruction_PUSH extends @piccolo_instruction {
 #----------------------------------------------------*
 
 class @instruction_RESET extends @piccolo_instruction {
-}
-
-#----------------------------------------------------*
-
-class @instruction_RETURN extends @piccolo_instruction {
-}
-
-#----------------------------------------------------*
-
-class @instruction_RETFIE extends @piccolo_instruction {
-  @bool mFastReturn ;
 }
 
 #----------------------------------------------------*
@@ -340,12 +343,6 @@ class @instruction_literalOperation extends @piccolo_instruction {
 class @instruction_LFSR extends @piccolo_instruction {
   @luint mFSRindex ;
   @registerExpression mRegisterExpression ;
-}
-
-#----------------------------------------------------*
-
-class @instruction_MOVLB extends @piccolo_instruction {
-  @luint mPageIndex ;
 }
 
 #----------------------------------------------------*
@@ -595,6 +592,7 @@ class @instruction_do_while extends @piccolo_instruction {
 list @interruptDefinitionList {
   @lstring mInterruptName ;
   @instructionList mInstructionList ;
+  @location mEndOfInterruptLocation ;
 }
 
 #----------------------------------------------------*
@@ -602,8 +600,9 @@ list @interruptDefinitionList {
 list @routineDefinitionList {
   @lstring mRoutineName ;
   @luint mBanksel ;
-  @bool mHasNoReturn ;
+  @bool mIsNoReturn ;
   @instructionList mInstructionList ;
+  @location mEndOfRoutineLocation ;
 }
 
 #----------------------------------------------------*

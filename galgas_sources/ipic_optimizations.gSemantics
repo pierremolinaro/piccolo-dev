@@ -1,6 +1,5 @@
 semantics ipic_optimizations :
 import semantics ipic_metamodel in "ipic_metamodel.gSemantics" ;
-import option piccolo_options in "piccolo_options.gOption" ;
 import "ipic_metamodel.gSemantics" ;
 
 #----------------------------------------------------------------------------*
@@ -113,9 +112,7 @@ method @ipic_JUMP.optimizeJUMP
       !inLineIndex
     ] ;
     ioOptimizationsDone := true ;
-    if [option piccolo_options.ouputListFile] then
-      ioListFileContents .= "  line " . [inLineIndex string] . ": JUMP branching to RETURN replaced by RETURN\n" ;
-    end if ;
+    ioListFileContents .= "  line " . [inLineIndex string] . ": JUMP branching to RETURN replaced by RETURN\n" ;
   when == @ipic_instruction_literalOperation literalOp do
     if [literalOp mLiteralInstruction] == [@literal_instruction_opcode RETLW] then
       [!?ioGeneratedInstructionList setMInstructionAtIndex
@@ -123,9 +120,7 @@ method @ipic_JUMP.optimizeJUMP
         !inLineIndex
       ] ;
       ioOptimizationsDone := true ;
-      if [option piccolo_options.ouputListFile] then
-        ioListFileContents .= "  line " . [inLineIndex string] . ": JUMP branching to RETLW replaced by RETLW\n" ;
-      end if ;
+      ioListFileContents .= "  line " . [inLineIndex string] . ": JUMP branching to RETLW replaced by RETLW\n" ;
     end if ;
   when == @ipic_JUMP jump do
     if mTargetLabel != [jump mTargetLabel] then
@@ -134,9 +129,7 @@ method @ipic_JUMP.optimizeJUMP
         !inLineIndex
       ] ;
       ioOptimizationsDone := true ;
-      if [option piccolo_options.ouputListFile] then
-        ioListFileContents .= "  line " . [inLineIndex string] . ": JUMP branching to JUMP replaced by JUMP\n" ;
-      end if ;
+      ioListFileContents .= "  line " . [inLineIndex string] . ": JUMP branching to JUMP replaced by JUMP\n" ;
     end if ;
   else # The next instruction is the target label ?
     @ipic_instruction nextInstruction ;
@@ -171,9 +164,7 @@ method @ipic_JSR.optimizeJSR
       !inLineIndex
     ] ;
     ioOptimizationsDone := true ;
-    if [option piccolo_options.ouputListFile] then
-      ioListFileContents .= "  line " . [inLineIndex string] . ": JSR followed by RETURN replaced by JUMP\n" ;
-    end if ;
+    ioListFileContents .= "  line " . [inLineIndex string] . ": JSR followed by RETURN replaced by JUMP\n" ;
   else
   end cast ;
 end method ;
@@ -198,9 +189,7 @@ method @ipic_instruction_literalOperation.optimizeMOVLW
         !inLineIndex
       ] ;
       ioOptimizationsDone := true ;
-      if [option piccolo_options.ouputListFile] then
-        ioListFileContents .= "  line " . [inLineIndex string] . ": MOVLW followed by RETURN replaced by RETLW\n" ;
-      end if ;
+      ioListFileContents .= "  line " . [inLineIndex string] . ": MOVLW followed by RETURN replaced by RETLW\n" ;
     else
     end cast ;
   end if ;
@@ -223,12 +212,12 @@ method @ipic_instruction_conditionalBranch.optimizeBCC
 #--- Optimization from found first instruction
   cast firstInstruction :
   when == @ipic_JUMP jump do
-    [!?ioGeneratedInstructionList setMInstructionAtIndex
-      ![@ipic_instruction_conditionalBranch new !mInstructionLocation !mBranchMode !mConditionalBranch ![jump mTargetLabel]]
-      !inLineIndex
-    ] ;
-    ioOptimizationsDone := true ;
-    if [option piccolo_options.ouputListFile] then
+    if [mTargetLabel string] != [[jump mTargetLabel] string] then
+      [!?ioGeneratedInstructionList setMInstructionAtIndex
+        ![@ipic_instruction_conditionalBranch new !mInstructionLocation !mBranchMode !mConditionalBranch ![jump mTargetLabel]]
+        !inLineIndex
+      ] ;
+      ioOptimizationsDone := true ;
       ioListFileContents .= "  line " . [inLineIndex string] . ": label of JUMP " . [mConditionalBranch condition] . " branching to JUMP replaced by second JUMP label\n" ;
     end if ;
   else
@@ -252,12 +241,12 @@ method @ipic_jump_test_register.optimizeTestReg
 #--- Optimization from found first instruction
   cast firstInstruction :
   when == @ipic_JUMP jump do
-    [!?ioGeneratedInstructionList setMInstructionAtIndex
-      ![@ipic_jump_test_register new !mInstructionLocation !mRegisterDescription ![[jump mTargetLabel] string] !mBranchIfZero !mUsesBra]
-      !inLineIndex
-    ] ;
-    ioOptimizationsDone := true ;
-    if [option piccolo_options.ouputListFile] then
+    if mTargetLabel != [[jump mTargetLabel] string] then
+      [!?ioGeneratedInstructionList setMInstructionAtIndex
+        ![@ipic_jump_test_register new !mInstructionLocation !mRegisterDescription ![[jump mTargetLabel] string] !mBranchIfZero !mUsesBra]
+        !inLineIndex
+      ] ;
+      ioOptimizationsDone := true ;
       ioListFileContents .= "  line " . [inLineIndex string] . ": label of JUMP " . [mRegisterDescription mAssemblyString] ;
       if mBranchIfZero then
         ioListFileContents .= "Z" ;
@@ -300,25 +289,23 @@ method @ipic_incDecRegisterInCondition.optimizeTestDecInc
       !inLineIndex
     ] ;
     ioOptimizationsDone := true ;
-    if [option piccolo_options.ouputListFile] then
-      ioListFileContents .= "  line " . [inLineIndex string] . ": label of " ;
-      ioListFileContents .= "JUMP " ;
-      if mIncrement then
-        ioListFileContents .= "INCF " ;
-      else
-        ioListFileContents .= "DECF " ;
-      end if ;
-      ioListFileContents .= [mRegisterDescription mAssemblyString] ;
-      if m_W_isDestination then
-        ioListFileContents .= ", W " ;
-      end if ;
-      if mBranchIfZero then
-        ioListFileContents .= "Z" ;
-      else
-        ioListFileContents .= "NZ" ;
-      end if ;
-      ioListFileContents .= " branching to JUMP replaced by second JUMP label\n" ;
+    ioListFileContents .= "  line " . [inLineIndex string] . ": label of " ;
+    ioListFileContents .= "JUMP " ;
+    if mIncrement then
+      ioListFileContents .= "INCF " ;
+    else
+      ioListFileContents .= "DECF " ;
     end if ;
+    ioListFileContents .= [mRegisterDescription mAssemblyString] ;
+    if m_W_isDestination then
+      ioListFileContents .= ", W " ;
+    end if ;
+    if mBranchIfZero then
+      ioListFileContents .= "Z" ;
+    else
+      ioListFileContents .= "NZ" ;
+    end if ;
+    ioListFileContents .= " branching to JUMP replaced by second JUMP label\n" ;
   else
   end cast ;
 end method ;
@@ -351,13 +338,11 @@ method @ipic_registerComparisonCondition.optimizeCMP
       !inLineIndex
     ] ;
     ioOptimizationsDone := true ;
-    if [option piccolo_options.ouputListFile] then
-      ioListFileContents .= "  line " . [inLineIndex string] . ": label of " ;
-      ioListFileContents .= "JUMP " ;
-      ioListFileContents .= [mRegisterDescription mAssemblyString] ;
-      ioListFileContents .= " " . [mComparison mnemonic] ;
-      ioListFileContents .= " branching to JUMP replaced by second JUMP label\n" ;
-    end if ;
+    ioListFileContents .= "  line " . [inLineIndex string] . ": label of " ;
+    ioListFileContents .= "JUMP " ;
+    ioListFileContents .= [mRegisterDescription mAssemblyString] ;
+    ioListFileContents .= " " . [mComparison mnemonic] ;
+    ioListFileContents .= " branching to JUMP replaced by second JUMP label\n" ;
   else
   end cast ;
 end method ;
@@ -423,10 +408,8 @@ method @ipic_instruction_BitTestSkip.optimizeBitTestSkip
   #--- 
     ioOptimizationsDone := true ;
   #--- Log
-    if [option piccolo_options.ouputListFile] then
-      ioListFileContents .= "  lines " . [inLineIndex string] . " to " . [inLineIndex + 2 string] ;
-      ioListFileContents .= " bit test skip, following by a JUMP skipping next instruction, is complemented\n" ;
-    end if ;
+    ioListFileContents .= "  lines " . [inLineIndex string] . " to " . [inLineIndex + 2 string] ;
+    ioListFileContents .= " bit test skip, following by a JUMP skipping next instruction, is complemented\n" ;
   end if ;
 end method ;
 
@@ -441,11 +424,9 @@ routine performOptimizations
   ?!@string ioListFileContents
 :
 #-------------------------------- List file
-  if [option piccolo_options.ouputListFile] then
-    ioListFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n" ;
-    ioListFileContents .= "*" . ["CODE OPTIMIZATION" stringByLeftAndRightPadding !77 !' '] . "*\n" ;
-    ioListFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n\n" ;
-  end if ;
+  ioListFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n" ;
+  ioListFileContents .= "*" . ["CODE OPTIMIZATION" stringByLeftAndRightPadding !77 !' '] . "*\n" ;
+  ioListFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n\n" ;
 #-------------------------------- Build label map
   @symbolTableForOptimizations symbolTable [emptyMap] ;
   foreach ioGeneratedInstructionList:lineIndex do
@@ -459,9 +440,7 @@ routine performOptimizations
   do
     optimizationsDone := false ;
     iteration ++ ;
-    if [option piccolo_options.ouputListFile] then
-      ioListFileContents .= "Pass " . [iteration string] . ":\n" ;
-    end if ;
+    ioListFileContents .= "Pass " . [iteration string] . ":\n" ;
   #--- Optimization loop
     foreach ioGeneratedInstructionList :idx do
       cast mInstruction :
@@ -519,8 +498,7 @@ routine performOptimizations
          end if ;
        end if ;
     end foreach ;
-  #---
-    if (not optimizationsDone) & [option piccolo_options.ouputListFile] then
+    if not optimizationsDone then
       ioListFileContents .= "  No optimization\n\n" ;
     #--- Compute code size
       @uint currentAddress := 0 ;

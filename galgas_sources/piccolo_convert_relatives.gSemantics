@@ -100,19 +100,26 @@ override method @ipic_instruction_conditionalBranch.checkRelativeBranch
     [inRoutineSymbolTable searchKey !mTargetLabel ?targetAddress] ;
     @sint displacement := ([targetAddress sint] - 2S - [ioAddress sint]) >> 1 ;
     if (displacement > 127S) | (displacement < - 128S) then
+      error mInstructionLocation: "displacement (" . [displacement string] . ") too large for Bcc instruction (limited to [-128, 127])" ;
+    end if ;
+  when ipicNative :
+    @uint targetAddress ;
+    [inRoutineSymbolTable searchKey !mTargetLabel ?targetAddress] ;
+    @sint displacement := ([targetAddress sint] - 2S - [ioAddress sint]) >> 1 ;
+    if (displacement > 127S) | (displacement < - 128S) then
       ioRelativeBranchOverflow := true ;
       if [option piccolo_options.ouputListFile] then
         ioListFileContents .= "line " . [inIndex string] . ":  native Bcc overflow, converted to Bcc with BRA\n" ;
       end if ;
       @ipic_actualInstruction instruction := [@ipic_instruction_conditionalBranch new
         !mInstructionLocation
-        ![@condionalBranchMode usesBRA]
+        ![@condionalBranchMode ipicBRA]
         !mConditionalBranch
         !mTargetLabel
       ] ;
       [!?ioGeneratedInstructionList setMInstructionAtIndex !instruction !inIndex] ;
     end if ;
-  when usesBRA :
+  when ipicBRA :
     @uint targetAddress ;
     [inRoutineSymbolTable searchKey !mTargetLabel ?targetAddress] ;
     @sint displacement := ([targetAddress sint] - 2S - [ioAddress sint]) >> 1 ;
@@ -123,13 +130,13 @@ override method @ipic_instruction_conditionalBranch.checkRelativeBranch
       end if ;
       @ipic_actualInstruction instruction := [@ipic_instruction_conditionalBranch new
         !mInstructionLocation
-        ![@condionalBranchMode usesGOTO]
+        ![@condionalBranchMode ipicGOTO]
         !mConditionalBranch
         !mTargetLabel
       ] ;
       [!?ioGeneratedInstructionList setMInstructionAtIndex !instruction !inIndex] ;
     end if ;
-  when usesGOTO : # No overflow, do nothing
+  when ipicGOTO : # No overflow, do nothing
   end switch ;
 end method ;
 
@@ -395,7 +402,10 @@ override method @ipic_instruction_computed_bra.checkRelativeBranch
   foreach mTargetLabels do
     @uint targetAddress ;
     [inRoutineSymbolTable searchKey !mValue ?targetAddress] ;
-
+    @sint displacement := ([targetAddress sint] - 2S - [address sint]) >> 1 ;
+    if (displacement > 1023S) | (displacement < - 1024S) then
+      error mValue: "displacement (" . [displacement string] . ") too large for BRA instruction (limited to [-1024, 1023])" ;
+    end if ;
     address := address + 2 ;
   end foreach ;
 end method ;

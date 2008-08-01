@@ -120,16 +120,16 @@ override method @ipic_instruction_conditionalBranch.buildAssemblyCode
   ?!@uint ioBccLabelIndex
 :
   switch mBranchMode
-  when native :
+  when native, ipicNative :
     ioString .= "  " . [mConditionalBranch mnemonic] . " " . [mTargetLabel string] . "\n" ;
-  when usesBRA :
+  when ipicBRA :
     @conditional_branch complementary ;
     getComplementaryBcc !mConditionalBranch ?complementary ;
     @string aLabel := "_bcc_label_" . [ioBccLabelIndex string] ; ioBccLabelIndex ++ ;
     ioString .= "  " . [complementary mnemonic] . " " . aLabel . "\n" ;
     ioString .= "  BRA " . [mTargetLabel string] . "\n" ;
     ioString .= aLabel . ":\n" ;
-  when usesGOTO :
+  when ipicGOTO :
     @conditional_branch complementary ;
     getComplementaryBcc !mConditionalBranch ?complementary ;
     @string aLabel := "_bcc_label_" . [ioBccLabelIndex string] ; ioBccLabelIndex ++ ;

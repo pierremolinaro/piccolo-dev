@@ -36,7 +36,7 @@ routine aRoutine {
 routine bcc_forward {
 }
 
-routine foreverLoop {
+routine foreverLoop noreturn {
   forever
     mnop 1023  # Adding 1 leads to underflow
   end

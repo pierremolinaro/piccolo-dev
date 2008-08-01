@@ -201,37 +201,44 @@ override method @instruction_JSR.buildIPICinstructionList
   ioGeneratedInstructionList += ![@ipic_JSR new
     !mInstructionLocation
     !mTargetLabel
-    ![@jumpInstructionKind ipicRelative]
+    !mKind
   ] ;
 end method ;
 
 #----------------------------------------------------*
 
-override method @instruction_CALL.buildIPICinstructionList
+override method @instruction_JUMP.buildIPICinstructionList
   ??@uint unused inAccessBankSplitOffset
   ??@registerTable unused inRegisterTable
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
 :
-  ioGeneratedInstructionList += ![@ipic_JSR new
+  ioGeneratedInstructionList += ![@ipic_JUMP new
     !mInstructionLocation
     !mTargetLabel
-    ![@jumpInstructionKind absolute]
+    !mKind
   ] ;
 end method ;
 
 #----------------------------------------------------*
 
-override method @instruction_RCALL.buildIPICinstructionList
+override method @instruction_JUMPCC.buildIPICinstructionList
   ??@uint unused inAccessBankSplitOffset
   ??@registerTable unused inRegisterTable
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
 :
-  ioGeneratedInstructionList += ![@ipic_JSR new
+  @condionalBranchMode mode ;
+  if mIsBcc then
+    mode := [@condionalBranchMode native] ;
+  else
+    mode := [@condionalBranchMode native] ;
+  end if ;
+  ioGeneratedInstructionList += ![@ipic_instruction_conditionalBranch new
     !mInstructionLocation
+    !mode
+    !mConditionalBranch
     !mTargetLabel
-    ![@jumpInstructionKind relative]
   ] ;
 end method ;
 
@@ -315,33 +322,6 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @instruction_RETURN.buildIPICinstructionList
-  ??@uint unused inAccessBankSplitOffset
-  ??@registerTable unused inRegisterTable
-  ?!@uint unused ioLocalLabelIndex
-  ?!@ipic_instructionList ioGeneratedInstructionList
-:
-  ioGeneratedInstructionList += ![@ipic_instruction_RETURN new
-    !mInstructionLocation
-  ] ;
-end method ;
-
-#----------------------------------------------------*
-
-override method @instruction_RETFIE.buildIPICinstructionList
-  ??@uint unused inAccessBankSplitOffset
-  ??@registerTable unused inRegisterTable
-  ?!@uint unused ioLocalLabelIndex
-  ?!@ipic_instructionList ioGeneratedInstructionList
-:
-  ioGeneratedInstructionList += ![@ipic_instruction_RETFIE new
-    !mInstructionLocation
-    !mFastReturn
-  ] ;
-end method ;
-
-#----------------------------------------------------*
-
 override method @instruction_SLEEP.buildIPICinstructionList
   ??@uint unused inAccessBankSplitOffset
   ??@registerTable unused inRegisterTable
@@ -387,20 +367,6 @@ override method @instruction_LFSR.buildIPICinstructionList
     !mInstructionLocation
     !mFSRindex
     !IPICregisterDescription
-  ] ;
-end method ;
-
-#----------------------------------------------------*
-
-override method @instruction_MOVLB.buildIPICinstructionList
-  ??@uint unused inAccessBankSplitOffset
-  ??@registerTable unused inRegisterTable
-  ?!@uint unused ioLocalLabelIndex
-  ?!@ipic_instructionList ioGeneratedInstructionList
-:
-  ioGeneratedInstructionList += ![@ipic_instruction_MOVLB new
-    !mInstructionLocation
-    !mPageIndex
   ] ;
 end method ;
 
@@ -1019,7 +985,7 @@ routine buildIPICAssemblyInstructionList
         foreach mInstructionList do
           [mInstruction buildIPICinstructionList !inAccessBankSplitOffset !inRegisterTable !?localLabelIndex !?outGeneratedInstructionList] ;
         end foreach ;
-      #--- Ajouter l'instruction REFFIE
+      #--- Add a REFFIE instruction
         outGeneratedInstructionList += ![@ipic_instruction_RETFIE new !here !true] ;
       end if ;
     end foreach ;
@@ -1028,8 +994,12 @@ routine buildIPICAssemblyInstructionList
   foreach [inPiccoloModel mRoutineDefinitionList] do
     outGeneratedInstructionList += ![@ipic_pseudo_LABEL new !mRoutineName] ;
     foreach mInstructionList do
-      [mInstruction buildIPICinstructionList !inAccessBankSplitOffset !inRegisterTable !?localLabelIndex !? outGeneratedInstructionList] ;
+      [mInstruction buildIPICinstructionList !inAccessBankSplitOffset !inRegisterTable !?localLabelIndex !?outGeneratedInstructionList] ;
     end foreach ;
+  #--- Add a RETURN instruction (if it is a regular routine)
+    if not mIsNoReturn then
+      outGeneratedInstructionList += ![@ipic_instruction_RETURN new ![mRoutineName location]] ;
+    end if ;
   end foreach ;
 #--- Description of register WREG
   @registerExpression WREGregister [new ![@lstring new !"WREG" !here] ![@luint new !0 !here]] ;

@@ -3,6 +3,7 @@ import semantics piccolo_build_binary_code in "piccolo_build_binary_code.gSemant
 import semantics buildIPICAssemblyInstructionList in "buildIPICAssemblyInstructionList.gSemantics" ;
 import semantics piccolo_convert_relatives in "piccolo_convert_relatives.gSemantics" ;
 import semantics ipic_optimizations in "ipic_optimizations.gSemantics" ;
+import semantics semanticsCheckings in "semanticsCheckings.gSemantics" ;
 import semantics piccolo_config in "piccolo_config.gSemantics" ;
 
 import option piccolo_options in "piccolo_options.gOption" ;
@@ -86,6 +87,11 @@ routine analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName :
 #-------------------------------- Analyze Device
   @piccoloDeviceModel piccoloDeviceModel ;
   parseDeviceDefinition ![inPiccoloModel mDeviceName] ?piccoloDeviceModel ;
+  @uint accessBankSplitOffset ;
+  switch [piccoloDeviceModel mProcessorType]
+    when pic18_60 : accessBankSplitOffset := 0x60 ;
+    when pic18_80 : accessBankSplitOffset := 0x80 ;
+  end switch ;
 #-------------------------------- Interrupts ?
   @bool hasHighInterrupt := false ;
   @bool hasLowInterrupt := false ;
@@ -135,12 +141,15 @@ routine analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName :
     listFileContents .= "\n" ;
   end if ;
 #-------------------------------- Perform Semantics checkings
+  semanticsCheckings
+    !accessBankSplitOffset
+    !registerTable
+    !inPiccoloModel
+    !hasHighInterrupt
+    !hasLowInterrupt
+    !?listFileContents
+  ;
 #-------------------------------- Build IPIC Assembly Instruction List
-  @uint accessBankSplitOffset ;
-  switch [piccoloDeviceModel mProcessorType]
-    when pic18_60 : accessBankSplitOffset := 0x60 ;
-    when pic18_80 : accessBankSplitOffset := 0x80 ;
-  end switch ;
   @ipic_instructionList generatedInstructionList ;
   buildIPICAssemblyInstructionList
     !accessBankSplitOffset
