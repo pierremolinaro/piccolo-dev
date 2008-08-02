@@ -618,7 +618,7 @@ class @instruction_do_while extends @piccolo_instruction {
 
 list @interruptDefinitionList {
   @lstring mInterruptName ;
-  @bool mIsFast ;
+  @bool mFastReturn ;
   @instructionList mInstructionList ;
   @location mEndOfInterruptLocation ;
 }

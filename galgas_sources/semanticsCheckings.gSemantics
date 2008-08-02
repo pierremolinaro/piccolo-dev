@@ -1043,7 +1043,7 @@ routine semanticsCheckings
         !routineMap
         !inRegisterTable
         !?currentBank
-        !false # Can change BSR
+        !not mFastReturn # Preserve BSR if not "fast"
         !?continuesInSequence
         ![@routineKind interruptRoutine]
       ] ;

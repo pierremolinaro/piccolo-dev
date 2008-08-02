@@ -11,6 +11,8 @@
 			<array>
 				<string>piccolo</string>
 			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>piccolo_source</string>
 			<key>CFBundleTypeName</key>
 			<string>piccolo Source</string>
 			<key>CFBundleTypeOSTypes</key>

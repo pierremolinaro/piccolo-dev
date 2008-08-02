@@ -99,13 +99,13 @@ routine analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName :
   @bool lowInterruptIsFast := false ;
   foreach [inPiccoloModel mInterruptDefinitionList] do
     if [mInterruptName string] == "high" then
-      highInterruptIsFast := mIsFast ;
+      highInterruptIsFast := mFastReturn ;
       if hasHighInterrupt then
         error mInterruptName: "Only one 'high' interrupt routine is allowed" ;
       end if ;
       hasHighInterrupt := true ;
     elsif [mInterruptName string] == "low" then
-      lowInterruptIsFast := mIsFast ;
+      lowInterruptIsFast := mFastReturn ;
       if hasLowInterrupt then
         error mInterruptName: "Only one 'low' interrupt routine is allowed" ;
       end if ;
@@ -168,11 +168,11 @@ routine analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName :
     !?listFileContents
   ;
 #-------------------------------- Perform Code Optimization
-  if [option piccolo_options.performOptimizations] then
+  if ([@uint errorCount] == 0) & [option piccolo_options.performOptimizations] then
     performOptimizations !?generatedInstructionList !?listFileContents ;
   end if ;
 #-------------------------------- Convert relative branchs to absolute, when needed
-  if not [option piccolo_options.doNotConvertRelative] then
+  if [@uint errorCount] == 0 then
     convertRelativeBranchsToAbsoluteWhenNeeded !?generatedInstructionList !?listFileContents ;
   end if ;
 #-------------------------------- Code generation
@@ -190,8 +190,8 @@ routine analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName :
     ;
     @string contents ;
     getGeneratedContents ?contents ;
-    @string destinationFile := [inSourceFileName stringByDeletingPathExtension] . ".hex" ;
-    [contents writeToFileWhenDifferentContents !destinationFile] ;
+    @string hexDestinationFile := [inSourceFileName stringByDeletingPathExtension] . ".hex" ;
+    [contents writeToFileWhenDifferentContents !hexDestinationFile] ;
   #--- Generate asm file, if corresponding option enabled
     if [option piccolo_options.generateAssembly] then
       @string assemblyCode ;
@@ -203,8 +203,17 @@ routine analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName :
         !actualConfigurationMap
         ?assemblyCode
       ;
-      @string destinationFile := [inSourceFileName stringByDeletingPathExtension] . ".asm" ;
-      [assemblyCode writeToFileWhenDifferentContents !destinationFile] ;
+      @string asmDestinationFile := [inSourceFileName stringByDeletingPathExtension] . ".asm" ;
+      [assemblyCode writeToFileWhenDifferentContents !asmDestinationFile] ;
+    end if ;
+  else # There are errors : delete hex and asm files
+    @string hexDestinationFile := [inSourceFileName stringByDeletingPathExtension] . ".hex" ;
+    if [hexDestinationFile fileExists] then
+      [@string deleteFile !hexDestinationFile] ;
+    end if ;
+    @string asmDestinationFile := [inSourceFileName stringByDeletingPathExtension] . ".asm" ;
+    if [asmDestinationFile fileExists] then
+      [@string deleteFile !asmDestinationFile] ;
     end if ;
   end if ;
 end routine ;
