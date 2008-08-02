@@ -1034,7 +1034,7 @@ routine buildIPICAssemblyInstructionList
           [mInstruction buildIPICinstructionList !inAccessBankSplitOffset !inRegisterTable !?localLabelIndex !? outGeneratedInstructionList] ;
         end foreach ;
       #--- Ajouter l'instruction REFFIE
-        outGeneratedInstructionList += ![@ipic_instruction_RETFIE new !here !mIsFast] ;
+        outGeneratedInstructionList += ![@ipic_instruction_RETFIE new !here !mFastReturn] ;
       end if ;
     end foreach ;
   end if ;
