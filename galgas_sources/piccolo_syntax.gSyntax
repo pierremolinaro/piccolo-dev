@@ -157,12 +157,15 @@ rule <declaration_in_ram>
     $]$ ;
   end select ;
   @bitSliceTable bitSliceTable [emptyMap] ;
+  @string bitDefinitionString ;
   select
+    bitDefinitionString := "" ;
   or
     $<$ ;
+    bitDefinitionString := " <" ;
     @sint sliceIndex := 8S ;
     repeat
-      select
+     select
         @uint sliceWidth := 0 ; # Means undefined
         repeat
           @uint sliceBase := 0 ;
@@ -175,6 +178,7 @@ rule <declaration_in_ram>
               error sliceName:"a slice of 1 bit is expected for '" . sliceName . "'" ; 
             end if ;
             sliceWidth := 1 ;
+            bitDefinitionString .= [sliceName string] ; 
           or
             $[$ ;
             $integer$ ? @luint sliceSize ;
@@ -183,6 +187,7 @@ rule <declaration_in_ram>
             end if ;
             sliceWidth := [sliceSize uint] ;
             sliceBase := sliceBase + 1 - [sliceSize uint] ;
+            bitDefinitionString .= [sliceName string] . "[" . [[sliceSize uint] string] . "]" ; 
             $]$ ;
           end select ;
           @uint base := 0 ;
@@ -192,21 +197,25 @@ rule <declaration_in_ram>
           [!?bitSliceTable insertKey !sliceName !base !sliceWidth] ;
         while
           $/$ ;
+          bitDefinitionString .= "/" ;
         end repeat ;
         sliceIndex := sliceIndex - [sliceWidth sint] ;
       or
         $-$ ;
+        bitDefinitionString .= "-" ;
         sliceIndex -- ;
       end select ;
     while
       $,$ ;
+      bitDefinitionString .= ", " ; 
     end repeat ;
     if sliceIndex != 0S then
       error name:"Incorrect bit definition for register '" . name . "': " . [8S - sliceIndex string] . " bits (s) are defined, instead of 8" ;
     end if ;
     $>$ ;
+    bitDefinitionString .= ">" ;
   end select ;
-  outDeclaration := [@byteDeclarationInRam new !name !size !bitSliceTable] ;
+  outDeclaration := [@byteDeclarationInRam new !name !size !bitSliceTable !bitDefinitionString] ;
 end rule ;
 
 #----------------------------------------------------*
@@ -284,6 +293,13 @@ rule <interrupt_definition>
 :
   $interrupt$ ;
   $identifier$ ? @lstring interruptName ;
+  @bool isFast ;
+  select
+    isFast := false ;
+  or
+    $fast$ ;
+    isFast := true ;
+  end select ;
   ${$ ;
   @instructionList instructionList ;
   <instruction_list>
@@ -292,7 +308,7 @@ rule <interrupt_definition>
     !?ioNeedsComputedGoto4
   ;
   $}$ ;
-  ioInterruptDefinitionList += !interruptName !instructionList !here ;
+  ioInterruptDefinitionList += !interruptName !isFast !instructionList !here ;
 end rule ;
 
 #----------------------------------------------------*
@@ -644,55 +660,60 @@ rule <structured_instruction>
   or
     $computed$ ;
     @location instructionLocation := here ;
-    $retlw$ ;
-    @luintlist argumentList [emptyList] ;
-    repeat
-      @luint literalValue ;
-      <literal_value_parsing> ?literalValue ;
-      argumentList += ! literalValue ;
-    while
-      $,$ ;
-    end repeat ;
-    outInstruction := [@instruction_computed_retlw new
-      !instructionLocation
-      !argumentList
-      !true
-    ] ;
-    ioNeedsComputedGoto2 := true ;
-  or
-    $computed$ ;
-    @location instructionLocation := here ;
-    $bra$ ;
-    @lstringlist argumentList [emptyList] ;
-    repeat
-      $identifier$ ? @lstring targetRoutine ;
-      argumentList += ! targetRoutine ;
-    while
-      $,$ ;
-    end repeat ;
-    outInstruction := [@instruction_computed_bra new
-      !instructionLocation
-      !argumentList
-      !true
-    ] ;
-    ioNeedsComputedGoto2 := true ;
-  or
-    $computed$ ;
-    @location instructionLocation := here ;
-    $goto$ ;
-    @lstringlist argumentList [emptyList] ;
-    repeat
-      $identifier$ ? @lstring targetRoutine ;
-      argumentList += ! targetRoutine ;
-    while
-      $,$ ;
-    end repeat ;
-    outInstruction := [@instruction_computed_goto new
-      !instructionLocation
-      !argumentList
-      !true
-    ] ;
-    ioNeedsComputedGoto4 := true ;
+    $[$ ;
+    @luint size ;
+    <literal_value_parsing> ?size ;
+    $]$ ;
+    select
+      $retlw$ ;
+      @luintlist argumentList [emptyList] ;
+      repeat
+        @luint literalValue ;
+        <literal_value_parsing> ?literalValue ;
+        argumentList += ! literalValue ;
+      while
+        $,$ ;
+      end repeat ;
+      outInstruction := [@instruction_computed_retlw new
+        !instructionLocation
+        !size
+        !argumentList
+        !true
+      ] ;
+      ioNeedsComputedGoto2 := true ;
+    or
+      $bra$ ;
+      @lstringlist argumentList [emptyList] ;
+      repeat
+        $identifier$ ? @lstring targetRoutine ;
+        argumentList += ! targetRoutine ;
+      while
+        $,$ ;
+     end repeat ;
+       outInstruction := [@instruction_computed_bra new
+        !instructionLocation
+        !size
+        !argumentList
+        !true
+      ] ;
+      ioNeedsComputedGoto2 := true ;
+    or
+      $goto$ ;
+      @lstringlist argumentList [emptyList] ;
+      repeat
+        $identifier$ ? @lstring targetRoutine ;
+        argumentList += ! targetRoutine ;
+      while
+        $,$ ;
+      end repeat ;
+      outInstruction := [@instruction_computed_goto new
+        !instructionLocation
+        !size
+        !argumentList
+        !true
+      ] ;
+      ioNeedsComputedGoto4 := true ;
+    end select ;
   or
     $forever$ ;
     @location instructionLocation := here ;

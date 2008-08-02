@@ -476,6 +476,7 @@ class @instruction_IF_IncDec extends @instruction_IF_SEMI_COLON {
 #----------------------------------------------------*
 
 class @instruction_computed_retlw extends @piccolo_instruction {
+  @luint mSize ;
   @luintlist mLiteralValues ;
   @bool mUsesRelativeCall ;
 }
@@ -483,6 +484,7 @@ class @instruction_computed_retlw extends @piccolo_instruction {
 #----------------------------------------------------*
 
 class @instruction_computed_bra extends @piccolo_instruction {
+  @luint mSize ;
   @lstringlist mTargetLabels ;
   @bool mUsesRelativeCall ;
 }
@@ -490,6 +492,7 @@ class @instruction_computed_bra extends @piccolo_instruction {
 #----------------------------------------------------*
 
 class @instruction_computed_goto extends @piccolo_instruction {
+  @luint mSize ;
   @lstringlist mTargetLabels ;
   @bool mUsesRelativeCall ;
 }
@@ -615,6 +618,7 @@ class @instruction_do_while extends @piccolo_instruction {
 
 list @interruptDefinitionList {
   @lstring mInterruptName ;
+  @bool mIsFast ;
   @instructionList mInstructionList ;
   @location mEndOfInterruptLocation ;
 }
@@ -642,6 +646,7 @@ class @byteDeclarationInRam extends @declarationInRam {
   @lstring mName ;
   @luint mSize ;
   @bitSliceTable mBitSliceTable ;
+  @string mBitDefinitionString ;
 }
 
 #----------------------------------------------------*

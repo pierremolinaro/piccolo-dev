@@ -90,6 +90,7 @@ rule <start_symbol>
     $<$ ;
     @uint sliceIndex := 8 ;
     @bitSliceTable bitSliceTable [emptyMap] ;
+    @string bitDefinitionString := " <" ;
     repeat
       select
         @uint sliceWidth := 0 ; # Means undefined
@@ -101,6 +102,7 @@ rule <start_symbol>
               error sliceName:"a slice of 1 bit is expected for '" . sliceName . "'" ; 
             end if ;
             sliceWidth := 1 ;
+            bitDefinitionString .= [sliceName string] ; 
           or
             $[$ ;
             $integer$ ? @luint sliceSize ;
@@ -110,24 +112,29 @@ rule <start_symbol>
             sliceWidth := [sliceSize uint] ;
             sliceBase := sliceBase + 1 - [sliceSize uint] ;
             $]$ ;
+            bitDefinitionString .= [sliceName string] . "[" . [[sliceSize uint] string] . "]" ; 
           end select ;
           [!?bitSliceTable insertKey !sliceName !sliceIndex-sliceWidth !sliceWidth] ;
         while
           $/$ ;
+          bitDefinitionString .= "/" ;
         end repeat ;
         sliceIndex := sliceIndex - sliceWidth ;
       or
         $-$ ;
+        bitDefinitionString .= "-" ;
         sliceIndex -- ;
       end select ;
     while
       $,$ ;
+      bitDefinitionString .= ", " ; 
     end repeat ;
     if sliceIndex != 0 then
       error registerName:"Incorrect bit definition for register '" . registerName . "'" ;
     end if ;
+    bitDefinitionString .= ">" ;
     $>$ ;
-    [!?registerTable insertKey !registerName !registerAddressList !1 !bitSliceTable] ;
+    [!?registerTable insertKey !registerName !registerAddressList !1 !bitSliceTable !bitDefinitionString] ;
     $;$ ;
   end repeat ;
   @configRegisterMap configRegisterMap [emptyMap] ;
@@ -188,10 +195,10 @@ rule <start_symbol>
   end repeat ;
   $}$ ;
 #--- Check some registers are actual defined
-  [registerTable searchKey ![@lstring new !"BSR" !here] ?* ?* ?*] ;
-  [registerTable searchKey ![@lstring new !"TOSL" !here] ?* ?* ?*] ;
-  [registerTable searchKey ![@lstring new !"TOSH" !here] ?* ?* ?*] ;
-  [registerTable searchKey ![@lstring new !"TOSU" !here] ?* ?* ?*] ;
+  [registerTable searchKey ![@lstring new !"BSR" !here] ?4*] ;
+  [registerTable searchKey ![@lstring new !"TOSL" !here] ?4*] ;
+  [registerTable searchKey ![@lstring new !"TOSH" !here] ?4*] ;
+  [registerTable searchKey ![@lstring new !"TOSU" !here] ?4*] ;
 #---
   outPiccoloDeviceModel := [@piccoloDeviceModel new
     !deviceName

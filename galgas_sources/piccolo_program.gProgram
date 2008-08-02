@@ -211,7 +211,7 @@ before {
         do s .= [mValue hexString] ;
         between s .= ", " ;
         end foreach ;
-        s .= "\n" ;
+        s .= mBitDefinitionString . "\n" ;
         message s ;
       end foreach ;
     else

@@ -8,6 +8,7 @@ map @registerTable {
   @uintlist mRegisterAddressList ;
   @uint mSize ;
   @bitSliceTable mBitSliceTable ;
+  @string mBitDefinitionString ;
   insert insertKey error message "the '%K' register is already declared in %L" ;
   search searchKey error message "the '%K' register is not declared" ;
 }

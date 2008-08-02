@@ -57,7 +57,7 @@ method @registerExpression.resolveAccess
   @uintlist registerAddressList ;
   @uint size ;
   @uint registerAddress := 0 ;
-  [inRegisterTable searchKey !mRegisterName ?registerAddressList ?size ?outBitSliceTable] ;
+  [inRegisterTable searchKey !mRegisterName ?registerAddressList ?size ?outBitSliceTable ?*] ;
   @bool found := false ;
   foreach registerAddressList while not found do
     found := (mValue < inAccessBankSplitOffset) | (mValue >= (0x0F00 + inAccessBankSplitOffset)) ;
@@ -1034,7 +1034,7 @@ routine buildIPICAssemblyInstructionList
           [mInstruction buildIPICinstructionList !inAccessBankSplitOffset !inRegisterTable !?localLabelIndex !? outGeneratedInstructionList] ;
         end foreach ;
       #--- Ajouter l'instruction REFFIE
-        outGeneratedInstructionList += ![@ipic_instruction_RETFIE new !here !true] ;
+        outGeneratedInstructionList += ![@ipic_instruction_RETFIE new !here !mIsFast] ;
       end if ;
     end foreach ;
   end if ;
@@ -1093,6 +1093,15 @@ routine buildIPICAssemblyInstructionList
     ?TOSH_IPICregisterDescription
     ?*
   ] ;
+#--- Description of register TOSU
+  @registerExpression TOSUregister [new ![@lstring new !"TOSU" !here] ![@luint new !0 !here]] ;
+  @ipic_registerExpression TOSU_IPICregisterDescription ;
+  [TOSUregister resolveAccess
+    !inAccessBankSplitOffset
+    !inRegisterTable
+    ?TOSU_IPICregisterDescription
+    ?*
+  ] ;
 #--- computed_goto2 routine needed ?
   if [inPiccoloModel mNeedsComputedGoto4] then
     outGeneratedInstructionList += ![@ipic_pseudo_LABEL new ![@lstring new !"_computed_goto_4" !here]] ;
@@ -1115,10 +1124,10 @@ routine buildIPICAssemblyInstructionList
     ] ; # ADDWF WREG, W
     outGeneratedInstructionList += ![@ipic_instruction_FDA new
       !here
-      ![@instruction_FDA_base_code ADDWF]
+      ![@instruction_FDA_base_code ADDWFC]
       !TOSL_IPICregisterDescription
       !false
-    ] ; # ADDWF TOSL, F
+    ] ; # ADDWFC TOSL, F
     outGeneratedInstructionList += ![@ipic_instruction_literalOperation new
       !here
       ![@literal_instruction_opcode MOVLW]
@@ -1130,6 +1139,12 @@ routine buildIPICAssemblyInstructionList
       !TOSH_IPICregisterDescription
       !false
     ] ; # ADDWFC TOSH, F
+    outGeneratedInstructionList += ![@ipic_instruction_FDA new
+      !here
+      ![@instruction_FDA_base_code ADDWFC]
+      !TOSU_IPICregisterDescription
+      !false
+    ] ; # ADDWFC TOSU, F
     outGeneratedInstructionList += ![@ipic_instruction_RETURN new
       !here
     ] ; # RETURN 0

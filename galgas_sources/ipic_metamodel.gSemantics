@@ -463,6 +463,9 @@ class @ipic_instruction_RETFIE extends @ipic_actualInstruction {
   override
   method displayIPICinstruction ?!@string ioListFileContents :
     ioListFileContents .= "RETFIE" ;
+    if mFastReturn then
+      ioListFileContents .= " FAST" ;
+    end if ;
   end method ;
 
   override method nextInstructionIsReachable !@bool outIsReachable :
