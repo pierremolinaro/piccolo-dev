@@ -63,7 +63,7 @@ override method @byteDeclarationInRam.handleDeclaration
   if [mSize uint] == 0 then
     error mSize: "zero size is not allowed" ;
   end if ;
-  [!?ioRegisterTable insertKey !mName ![@uintlist listWithValue !firstFreeAddress] ![mSize uint] !mBitSliceTable] ;
+  [!?ioRegisterTable insertKey !mName ![@uintlist listWithValue !firstFreeAddress] ![mSize uint] !mBitSliceTable !mBitDefinitionString] ;
   firstFreeAddress := firstFreeAddress + [mSize uint] ;
   [!?ioRamBank setMFirstFreeAddressForKey !firstFreeAddress ![inCurrentRamBank string]] ;
   if firstFreeAddress > lastAddressPlusOne then
@@ -94,20 +94,27 @@ routine analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName :
   end switch ;
 #-------------------------------- Interrupts ?
   @bool hasHighInterrupt := false ;
+  @bool highInterruptIsFast := false ;
   @bool hasLowInterrupt := false ;
+  @bool lowInterruptIsFast := false ;
   foreach [inPiccoloModel mInterruptDefinitionList] do
     if [mInterruptName string] == "high" then
+      highInterruptIsFast := mIsFast ;
       if hasHighInterrupt then
         error mInterruptName: "Only one 'high' interrupt routine is allowed" ;
       end if ;
       hasHighInterrupt := true ;
     elsif [mInterruptName string] == "low" then
+      lowInterruptIsFast := mIsFast ;
       if hasLowInterrupt then
         error mInterruptName: "Only one 'low' interrupt routine is allowed" ;
       end if ;
       hasLowInterrupt := true ;
     else
       error mInterruptName: "An interrupt routine should be named 'low' or 'high'" ;
+    end if ;
+    if highInterruptIsFast & lowInterruptIsFast then
+      error mInterruptName:"either low interrupt or high interrupt can be \"fast\", not both" ;
     end if ;
   end foreach ;
 #-------------------------------- Config definition
@@ -135,7 +142,7 @@ routine analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName :
       if not [[piccoloDeviceModel mRegisterTable] hasKey ![key string]] then
         listFileContents .= [[key string] stringByLeftPadding !40 !' '] . " " ;
         @uint address ; [mRegisterAddressList first ?address] ;
-        listFileContents .= [address hexString] . "\n" ;
+        listFileContents .= [address hexString] . mBitDefinitionString . "\n" ;
       end if ;
     end foreach ;
     listFileContents .= "\n" ;

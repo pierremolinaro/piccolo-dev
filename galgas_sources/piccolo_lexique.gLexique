@@ -47,7 +47,8 @@ list controlKeyWordList error message "the '%K' keyword" style keywordStyle :
   "do",
   "while",
   "common",
-  "default" ;
+  "default",
+  "fast" ;
 
 list instructionKeyWordList error message "the '%K' instruction" style instructionStyle :
   "addwf",

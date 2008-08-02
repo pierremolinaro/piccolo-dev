@@ -20,14 +20,5 @@ noreturn routine main bank:required 0 {
   end
 }
 
-routine maRoutine {  CLRF varAccessBank
-  if (Z)
-    banksel 1    CLRF varBank1
-    nobank
-  else
-    banksel 2    CLRF varBank2
-    nobank
-  end
-}
-
+routine maRoutine bank:required 2{  CLRF varAccessBank  if (Z)    banksel 1    CLRF varBank1    banksel 2  end  CLRF varBank2}
 end

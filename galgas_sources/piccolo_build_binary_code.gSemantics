@@ -546,7 +546,14 @@ override method @ipic_instruction_RETFIE.generateBinaryCodeAtAddress
   ??@symbolTable unused inRoutineSymbolTable
   ?!@uint unused ioAddress
 :
-  emitCode !0x0011 ;
+  @uint code ;
+  if mFastReturn then
+    code := 0x0011 ; # RETFIE FAST
+  else
+    code := 0x0010 ; # RETFIE
+  end if ;
+
+  emitCode !code ;
 end method ;
 
 #----------------------------------------------------------------------------*

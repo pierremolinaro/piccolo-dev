@@ -57,7 +57,7 @@ method @registerExpression.checkRegisterDeclaration
 :
 #--- 
   @uint size ;
-  [inRegisterTable searchKey !mRegisterName ?* ?size ?*] ;
+  [inRegisterTable searchKey !mRegisterName ?* ?size ?* ?*] ;
 #--- Check size
   if [mOffset uint] >= size then
     error mOffset:"index (" . [[mOffset uint] string] . ") should be lower than size (" . [size string] . ")" ;
@@ -71,7 +71,7 @@ method @registerExpression.checkRegisterDeclarationAndAddressLowerThan256
 :
 #--- Do not check size
   @uintlist registerAddressList ;
-  [inRegisterTable searchKey !mRegisterName ?registerAddressList ?* ?*] ;
+  [inRegisterTable searchKey !mRegisterName ?registerAddressList ?* ?* ?*] ;
 #--- Check if register has address < 256
   @bool found := false ;
   foreach registerAddressList while not found do
@@ -87,13 +87,13 @@ end method ;
 method @registerExpression.checkRegisterAddressingAndBankAccess
   ??@uint inAccessBankSplitOffset
   ??@registerTable inRegisterTable
-  ?!@uint ioCurrentBank
+  ??@uint ioCurrentBank
   !@bitSliceTable outBitSliceTable
 :
 #--- 
   @uintlist registerAddressList ;
   @uint size ;
-  [inRegisterTable searchKey !mRegisterName ?registerAddressList ?size ?outBitSliceTable] ;
+  [inRegisterTable searchKey !mRegisterName ?registerAddressList ?size ?outBitSliceTable ?*] ;
 #--- Check size
   if [mOffset uint] >= size then
     error mOffset:"index (" . [[mOffset uint] string] . ") should be lower than size (" . [size string] . ")" ;
@@ -258,7 +258,7 @@ override method @instruction_FDA.check
   [mRegisterExpression checkRegisterAddressingAndBankAccess
     !inAccessBankSplitOffset
     !inRegisterTable
-    !?ioCurrentBank
+    !ioCurrentBank
     ?*
   ] ;
 end method ;
@@ -277,7 +277,7 @@ override method @instruction_FA.check
   [mRegisterExpression checkRegisterAddressingAndBankAccess
     !inAccessBankSplitOffset
     !inRegisterTable
-    !?ioCurrentBank
+    !ioCurrentBank
     ?*
   ] ;
 end method ;
@@ -312,7 +312,7 @@ override method @instruction_FBA.check
   [mRegisterExpression checkRegisterAddressingAndBankAccess
     !inAccessBankSplitOffset
     !inRegisterTable
-    !?ioCurrentBank
+    !ioCurrentBank
     ?bitSliceTable
   ] ;
   [mBitNumber checkBitNumber !bitSliceTable] ;
@@ -469,6 +469,13 @@ override method @instruction_computed_retlw.check
   ?!@bool ioContinuesInSequence
   ??@routineKind inRoutineKind
 :
+  if [mSize uint] < 2 then
+    error mSize:"the computed range (" . [[mSize uint] string] . ") should be greater or equal to 2" ;
+  elsif [mSize uint] > 128 then
+    error mSize:"the computed range (" . [[mSize uint] string] . ") should be lower or equal to 128" ;
+  elsif [mSize uint] != [mLiteralValues length] then
+    error mSize:"the constant list length (" . [[mLiteralValues length] string] . ") should be equal to the computed range (" . [[mSize uint] string] . ")" ;
+  end if ;
   ioContinuesInSequence := false ;
   switch inRoutineKind
   when regularRoutine : # ok
@@ -506,6 +513,13 @@ override method @instruction_computed_bra.check
   ?!@bool ioContinuesInSequence
   ??@routineKind inRoutineKind
 :
+  if [mSize uint] < 2 then
+    error mSize:"the computed range (" . [[mSize uint] string] . ") should be greater or equal to 2" ;
+  elsif [mSize uint] > 128 then
+    error mSize:"the computed range (" . [[mSize uint] string] . ") should be lower or equal to 128" ;
+  elsif [mSize uint] != [mTargetLabels length] then
+    error mSize:"the routine name list length (" . [[mTargetLabels length] string] . ") should be equal to the computed range (" . [[mSize uint] string] . ")" ;
+  end if ;
   foreach mTargetLabels do
     @bool isNoReturn ;
     @uint requiredBank ;
@@ -545,6 +559,13 @@ override method @instruction_computed_goto.check
   ?!@bool ioContinuesInSequence
   ??@routineKind inRoutineKind
 :
+  if [mSize uint] < 2 then
+    error mSize:"the computed range (" . [[mSize uint] string] . ") should be greater or equal to 2" ;
+  elsif [mSize uint] > 64 then
+    error mSize:"the computed range (" . [[mSize uint] string] . ") should be lower or equal to 64" ;
+  elsif [mSize uint] != [mTargetLabels length] then
+    error mSize:"the routine name list length (" . [[mTargetLabels length] string] . ") should be equal to the computed range (" . [[mSize uint] string] . ")" ;
+  end if ;
   foreach mTargetLabels do
     @bool isNoReturn ;
     @uint requiredBank ;
@@ -624,7 +645,7 @@ override method @instruction_IF_FA_SEMI_COLON.check
   [mRegisterExpression checkRegisterAddressingAndBankAccess
     !inAccessBankSplitOffset
     !inRegisterTable
-    !?ioCurrentBank
+    !ioCurrentBank
     ?*
   ] ;
 #--- Check embedded instruction
@@ -655,7 +676,7 @@ override method @instruction_IF_BitTest.check
   [mRegisterExpression checkRegisterAddressingAndBankAccess
     !inAccessBankSplitOffset
     !inRegisterTable
-    !?ioCurrentBank
+    !ioCurrentBank
     ?bitSliceTable
   ] ;
   [mBitNumber checkBitNumber !bitSliceTable] ;
@@ -677,7 +698,7 @@ end method ;
 abstract method @conditionExpression.checkCondition
   ??@uint inAccessBankSplitOffset
   ??@registerTable inRegisterTable
-  ?!@uint ioCurrentBank
+  ??@uint ioCurrentBank
 ;
 
 #----------------------------------------------------------------------------*
@@ -685,7 +706,7 @@ abstract method @conditionExpression.checkCondition
 override method @bcc_in_structured_if_condition.checkCondition
   ??@uint unused inAccessBankSplitOffset
   ??@registerTable unused inRegisterTable
-  ?!@uint unused ioCurrentBank
+  ??@uint unused ioCurrentBank
 :
 end method ;
 
@@ -694,12 +715,12 @@ end method ;
 override method @registerComparisonCondition.checkCondition
   ??@uint inAccessBankSplitOffset
   ??@registerTable inRegisterTable
-  ?!@uint ioCurrentBank
+  ??@uint ioCurrentBank
 :
   [mRegisterExpression checkRegisterAddressingAndBankAccess
     !inAccessBankSplitOffset
     !inRegisterTable
-    !?ioCurrentBank
+    !ioCurrentBank
     ?*
   ] ;
 end method ;
@@ -709,12 +730,12 @@ end method ;
 override method @incDecRegisterInCondition.checkCondition
   ??@uint inAccessBankSplitOffset
   ??@registerTable inRegisterTable
-  ?!@uint ioCurrentBank
+  ??@uint ioCurrentBank
 :
   [mRegisterExpression checkRegisterAddressingAndBankAccess
     !inAccessBankSplitOffset
     !inRegisterTable
-    !?ioCurrentBank
+    !ioCurrentBank
     ?*
   ] ;
 end method ;
@@ -724,12 +745,12 @@ end method ;
 override method @registerTestCondition.checkCondition
   ??@uint inAccessBankSplitOffset
   ??@registerTable inRegisterTable
-  ?!@uint ioCurrentBank
+  ??@uint ioCurrentBank
 :
   [mRegisterExpression checkRegisterAddressingAndBankAccess
     !inAccessBankSplitOffset
     !inRegisterTable
-    !?ioCurrentBank
+    !ioCurrentBank
     ?*
   ] ;
 end method ;
@@ -739,12 +760,12 @@ end method ;
 override method @negateCondition.checkCondition
   ??@uint inAccessBankSplitOffset
   ??@registerTable inRegisterTable
-  ?!@uint ioCurrentBank
+  ??@uint ioCurrentBank
 :
   [mCondition checkCondition
     !inAccessBankSplitOffset
     !inRegisterTable
-    !?ioCurrentBank
+    !ioCurrentBank
   ] ;
 end method ;
 
@@ -753,17 +774,17 @@ end method ;
 override method @andCondition.checkCondition
   ??@uint inAccessBankSplitOffset
   ??@registerTable inRegisterTable
-  ?!@uint ioCurrentBank
+  ??@uint ioCurrentBank
 :
   [mLeftExpression checkCondition
     !inAccessBankSplitOffset
     !inRegisterTable
-    !?ioCurrentBank
+    !ioCurrentBank
   ] ;
   [mRightExpression checkCondition
     !inAccessBankSplitOffset
     !inRegisterTable
-    !?ioCurrentBank
+    !ioCurrentBank
   ] ;
 end method ;
 
@@ -772,13 +793,13 @@ end method ;
 override method @bitTest_in_structured_if_condition.checkCondition
   ??@uint inAccessBankSplitOffset
   ??@registerTable inRegisterTable
-  ?!@uint ioCurrentBank
+  ??@uint ioCurrentBank
 :
   @bitSliceTable bitSliceTable ;
   [mRegisterExpression checkRegisterAddressingAndBankAccess
     !inAccessBankSplitOffset
     !inRegisterTable
-    !?ioCurrentBank
+    !ioCurrentBank
     ?bitSliceTable
   ] ;
   [mBitNumber checkBitNumber !bitSliceTable] ;
@@ -799,26 +820,27 @@ override method @instruction_structured_if.check
   [mIfCondition checkCondition
     !inAccessBankSplitOffset
     !inRegisterTable
-    !?ioCurrentBank
+    !ioCurrentBank
   ] ;
 #--- 'then' instructions
-  @uint finalBank := ioCurrentBank ;
+  @uint firstBranchFinalBank := ioCurrentBank ;
   checkInstructionList
     !inAccessBankSplitOffset
     !inRoutineMap
     !inRegisterTable
-    !?finalBank
+    !?firstBranchFinalBank
     !inShouldPreserveBSR
     ?ioContinuesInSequence
     !inRoutineKind
     !mThenInstructionList
   ;
+  @uint finalBank := firstBranchFinalBank ;
 #--- 'elsif' parts
   foreach mElsifPartList do
     [mCondition checkCondition
       !inAccessBankSplitOffset
       !inRegisterTable
-      !?ioCurrentBank
+      !ioCurrentBank
     ] ;
     @bool continuesInSequence ;
     @uint elsifPartCurrentBank := ioCurrentBank ;
@@ -832,8 +854,9 @@ override method @instruction_structured_if.check
       !inRoutineKind
       !mInstructionList
     ;
-    if elsifPartCurrentBank != finalBank then
+    if elsifPartCurrentBank != firstBranchFinalBank then
       error mEndOfPartLocation:"This branch does not leave BSR value as the first one does";
+      finalBank := [@uint max] ; # No available value for BSR
     end if ;
     ioContinuesInSequence := ioContinuesInSequence | continuesInSequence ;
   end foreach ;
@@ -850,8 +873,9 @@ override method @instruction_structured_if.check
     !inRoutineKind
     !mElseInstructionList
   ;
-  if elsePartCurrentBank != finalBank then
+  if elsePartCurrentBank != firstBranchFinalBank then
     error mEndOfElsePartLocation:"This branch does not leave BSR value as the first one does";
+    finalBank := [@uint max] ; # No available value for BSR
   end if ;
 #---
   ioContinuesInSequence := ioContinuesInSequence | continuesInSequence ;
@@ -889,7 +913,7 @@ override method @instruction_do_while.check
     [mCondition checkCondition
       !inAccessBankSplitOffset
       !inRegisterTable
-      !?ioCurrentBank
+      !ioCurrentBank
     ] ;
     @uint bank := ioCurrentBank ;
     checkInstructionList
@@ -922,7 +946,7 @@ override method @instruction_IF_IncDec.check
   [mRegisterExpression checkRegisterAddressingAndBankAccess
     !inAccessBankSplitOffset
     !inRegisterTable
-    !?ioCurrentBank
+    !ioCurrentBank
     ?*
   ] ;
 #--- Check embedded instruction
