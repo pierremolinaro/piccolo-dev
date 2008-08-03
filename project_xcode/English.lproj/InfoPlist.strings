@@ -1,7 +1,7 @@
 /* Localized versions of Info.plist keys */
 CFBundleName = "cocoaPiccolo";
 CFBundleShortVersionString = "1.0.0";
-CFBundleGetInfoString = "Cocoa Piccolo version 1.0.0, Copyright __MyCompanyName__.";
-NSHumanReadableCopyright = "Copyright __MyCompanyName__.";
+CFBundleGetInfoString = "Cocoa Piccolo version 1.0.0, Copyright Pierre Molinaro.";
+NSHumanReadableCopyright = "Copyright Pierre Molinaro.";
 LSMinimumSystemVersion = "10.3.9";
 
