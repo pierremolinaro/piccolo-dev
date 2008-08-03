@@ -65,4 +65,7 @@ SOURCES += piccolo_embedded_devices.cpp
 SOURCES += piccolo_program.cpp
 
 
+#--- Extern files ---------------------
+
+
 #---------------------------------------------------------------*
