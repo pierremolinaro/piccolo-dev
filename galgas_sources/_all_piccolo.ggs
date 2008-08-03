@@ -1,27 +1,31 @@
-compile "piccolo_options.gOption" ;
 
-compile "piccolo_lexique.gLexique" ;
+project
+  compile "piccolo_options.gOption" ;
 
-compile "bitSlice.gSemantics" ;
-compile "piccolo_metamodel.gSemantics" ;
-compile "piccolo_syntax.gSyntax" ;
-compile "piccolo_grammar.gGrammar" ;
-compile "piccolo_config.gSemantics" ;
-compile "semanticsCheckings.gSemantics" ;
-compile "ipic_metamodel.gSemantics" ;
-compile "buildIPICAssemblyInstructionList.gSemantics" ;
-compile "ipic_optimizations.gSemantics" ;
-compile "piccolo_convert_relatives.gSemantics" ;
-compile "piccolo_build_assembly_code.gSemantics" ;
-compile "piccolo_build_binary_code.gSemantics" ;
-compile "piccolo_semantics.gSemantics" ;
+  compile "piccolo_lexique.gLexique" ;
 
-compile "piccoloDevice_lexique.gLexique" ;
-compile "piccoloDevice_semantics.gSemantics" ;
-compile "piccoloDevice_syntax.gSyntax" ;
-compile "piccoloDevice_grammar.gGrammar" ;
+  compile "bitSlice.gSemantics" ;
+  compile "piccolo_metamodel.gSemantics" ;
+  compile "piccolo_syntax.gSyntax" ;
+  compile "piccolo_grammar.gGrammar" ;
+  compile "piccolo_config.gSemantics" ;
+  compile "semanticsCheckings.gSemantics" ;
+  compile "ipic_metamodel.gSemantics" ;
+  compile "buildIPICAssemblyInstructionList.gSemantics" ;
+  compile "ipic_optimizations.gSemantics" ;
+  compile "piccolo_convert_relatives.gSemantics" ;
+  compile "piccolo_build_assembly_code.gSemantics" ;
+  compile "piccolo_build_binary_code.gSemantics" ;
+  compile "piccolo_semantics.gSemantics" ;
 
-compile "piccolo_embedded_devices.gSemantics" ;
-compile "piccolo_cocoa.gGui" ;
-compile "piccolo_program.gProgram" ;
+  compile "piccoloDevice_lexique.gLexique" ;
+  compile "piccoloDevice_semantics.gSemantics" ;
+  compile "piccoloDevice_syntax.gSyntax" ;
+  compile "piccoloDevice_grammar.gGrammar" ;
+
+  compile "piccolo_cocoa.gGui" ;
+
+  compile "piccolo_embedded_devices.gSemantics" ;
+  compile "piccolo_program.gProgram" ;
+end project ;
 
