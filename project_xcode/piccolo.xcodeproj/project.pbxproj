@@ -451,7 +451,7 @@
 		4F3FF0CB05877B62000D2F8F /* GGS_lsint.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = GGS_lsint.h; sourceTree = "<group>"; };
 		4FF53897057A558F00854C84 /* GGS_luint64.cpp */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = sourcecode.cpp.cpp; path = GGS_luint64.cpp; sourceTree = "<group>"; };
 		4FF53897057D558F00854C83 /* GGS_lsint.cpp */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = sourcecode.cpp.cpp; path = GGS_lsint.cpp; sourceTree = "<group>"; };
-		8D15AC370486D014006FF6A4 /* cocoapiccolo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = cocoapiccolo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D15AC370486D014006FF6A4 /* cocoaPiccolo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = cocoaPiccolo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF3FF0CB05877B62000D2FEF /* GGS_lsint64.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = GGS_lsint64.h; sourceTree = "<group>"; };
 		AFF53897057D558F00854C8F /* GGS_lsint64.cpp */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = sourcecode.cpp.cpp; path = GGS_lsint64.cpp; sourceTree = "<group>"; };
 		CF2214430E3643D200B7FDD5 /* piccolo_build_assembly_code.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = piccolo_build_assembly_code.cpp; sourceTree = "<group>"; };
@@ -704,7 +704,7 @@
 		19C28FB0FE9D524F11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8D15AC370486D014006FF6A4 /* cocoapiccolo.app */,
+				8D15AC370486D014006FF6A4 /* cocoaPiccolo.app */,
 				CFA61CF6061095160089CEA5 /* piccolo */,
 				CFA61CF8061095160089CEA5 /* piccoloDebug */,
 			);
@@ -1315,7 +1315,7 @@
 			name = "Cocoa piccolo";
 			productInstallPath = "$(HOME)/Applications";
 			productName = piccolo_cocoa;
-			productReference = 8D15AC370486D014006FF6A4 /* cocoapiccolo.app */;
+			productReference = 8D15AC370486D014006FF6A4 /* cocoaPiccolo.app */;
 			productType = "com.apple.product-type.application";
 		};
 		8DD76F620486A84900D96B5E /* piccolo tool */ = {
@@ -1704,7 +1704,7 @@
 				GCC_WARN_PROTOTYPE_CONVERSION = NO;
 				GCC_WARN_UNUSED_PARAMETER = NO;
 				INFOPLIST_FILE = Info.plist;
-				PRODUCT_NAME = cocoapiccolo;
+				PRODUCT_NAME = cocoaPiccolo;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Default;
