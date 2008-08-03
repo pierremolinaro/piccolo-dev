@@ -39,10 +39,10 @@
 	<string>${PRODUCT_NAME}</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
-	<key>CFBundleSignature</key>
-	<string>????</string>
+	<key>CFBundleShortVersionString</key>
+	<string>PICCOLO_BETA_VERSION</string>
 	<key>CFBundleVersion</key>
-	<string>1.0</string>
+	<string>BUILD_AND_LIBPM</string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
