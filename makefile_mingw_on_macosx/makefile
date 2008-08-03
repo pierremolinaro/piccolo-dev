@@ -10,8 +10,8 @@
 #                                                                           *
 #---------------------------------------------------------------------------*
 
-EXECUTABLE := piccolo
-EXECUTABLE_DEBUG := piccolo_debug
+EXECUTABLE := piccolo.exe
+EXECUTABLE_DEBUG := piccolo_debug.exe
 
 #---------------------------------------------------------------------------*
 #                                                                           *
