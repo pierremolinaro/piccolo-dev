@@ -12,7 +12,7 @@ before {
   #--- Enumerate devices
     @stringlist allDevices := [[filewrapper embeddedDevices] allFilePathes] ;
     @stringlist pic_devices [emptyList] ;
-    message [[allDevices length] string] . " supported devices by Piccolo " . [@string stringWithVersionString] . ":\n" ;
+    message [[allDevices length] string] . " devices supported by Piccolo " . [@string stringWithVersionString] . ":\n" ;
   #--- Parse them
     @bool ok := true ;
     foreach allDevices while ok do

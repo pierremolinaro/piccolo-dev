@@ -24,19 +24,11 @@ DEBUG_OBJECTS_DIR := debug_objects
 
 #---------------------------------------------------------------------------*
 #                                                                           *
-#                  Install directory (for "install" goal)                   *
+#                       Linker Options for Win32                            *
 #                                                                           *
 #---------------------------------------------------------------------------*
 
-INSTALL_DIR := /usr/local/bin
-
-#---------------------------------------------------------------------------*
-#                                                                           *
-#                       Linker Options for Mac OS X                         *
-#                                                                           *
-#---------------------------------------------------------------------------*
-
-PLATFORM_LINKER_OPTIONS :=
+PLATFORM_LINKER_OPTIONS := -lcomdlg32
 
 #---------------------------------------------------------------------------*
 #                                                                           *
@@ -52,7 +44,7 @@ include ../galgas_sources/GALGAS_OUTPUT/file_list.mke
 #                                                                           *
 #---------------------------------------------------------------------------*
 
-include $(LIB_PM_PATH)/included_makefiles/macosx_gcc_tools_32.mke
+include $(LIB_PM_PATH)/included_makefiles/mingw_on_macosx_gcc_tools_32.mke
 
 #---------------------------------------------------------------------------*
 #                                                                           *
