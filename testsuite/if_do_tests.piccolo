@@ -4,7 +4,7 @@
  
 program if_do_tests "PIC18F448" :
 
-noreturn routine main bank:required 0 {
+noreturn routine main bank:requires 0 {
 #--- IF, elsif, else tests
   if (C)
     CLRF WREG

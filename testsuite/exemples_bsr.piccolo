@@ -13,12 +13,12 @@ ram gpr2 {
   byte save_bsr
 }
 
-noreturn routine main bank:required 0 {
+noreturn routine main bank:requires 0 {
   banksel 2
   jsr maRoutine
   forever
   end
 }
 
-routine maRoutine bank:required 2{  CLRF varAccessBank  if (Z)    banksel 1    CLRF varBank1    banksel 2  end  CLRF varBank2}
+routine maRoutine bank:requires 2{  CLRF varAccessBank  if (Z)    banksel 1    CLRF varBank1    banksel 2  end  CLRF varBank2}
 end

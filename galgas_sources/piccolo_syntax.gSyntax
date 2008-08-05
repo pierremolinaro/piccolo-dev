@@ -346,20 +346,20 @@ rule <routine_definition>
       requiredBank := [@luint new ![@uint max] !here] ;
       returnedBank := [@luint new ![@uint max] !here] ;
     or
-      $required$ ;
+      $requires$ ;
       $integer$ ? requiredBank ;
       preservesBank := false ;
       select
         returnedBank := [@luint new ![@uint max] !here] ;
       or
-        $returned$ ;
+        $ensures$ ;
         $integer$ ? returnedBank ;
         if noreturn then
           error here: "a \"noreturn\" routine cannot accept \"bank:returned\" setting" ;
         end if ;
       end select ;
     or
-      $returned$ ;
+      $ensures$ ;
       $integer$ ? returnedBank ;
       if noreturn then
         error here: "a \"noreturn\" routine cannot accept \"bank:returned\" setting" ;

@@ -42,8 +42,8 @@ list controlKeyWordList error message "the '%K' keyword" style keywordStyle :
   "preserved",
   "program",
   "ram",
-  "required",
-  "returned",
+  "requires",
+  "ensures",
   "routine",
   "w",
   "while"
