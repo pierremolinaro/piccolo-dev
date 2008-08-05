@@ -22,11 +22,11 @@ routine optimize2 {
       movlw 2
     end
   else
-    movlw 3
+    addlw 3
   end
 }
 
-noreturn routine main bank:required 0 {
+noreturn routine main bank:requires 0 {
   rcall optimize1
   rcall optimize2
   forever
