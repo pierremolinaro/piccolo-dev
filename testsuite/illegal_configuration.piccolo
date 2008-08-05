@@ -2,7 +2,7 @@
 # that Piccolo detects illegal configurations.
 # Trying to execute it does not make sense.
 
-program illegal_configuration "PIC18F4431" :
+program illegal_configuration "18F4431" :
 
 config {
   default # By default, all configuration bits are set to 1
