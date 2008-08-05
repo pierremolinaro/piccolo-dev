@@ -2,7 +2,7 @@
 # that Piccolo can generate code > 64 k.
 # Trying to execute it does not make sense.
 
-program code_bigger_than_64k "PIC18F6722" : # Has 128 kB Flash
+program code_bigger_than_64k "18F6722" : # Has 128 kB Flash
 
 noreturn routine main bank:requires 0 {
   forever
