@@ -1,5 +1,5 @@
 I have found this very usefull program. As the library is useless for me, I
-have simply taken together source files, and modified the Makefile.
+have simply put together source files, and modified the Makefile.
 
 For Unix like systems, I have added an 'install' goal that installs
 'hexcmp' executable in /usr/local/bin.
