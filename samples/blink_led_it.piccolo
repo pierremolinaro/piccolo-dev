@@ -1,0 +1,134 @@
+#----------------------------------------------------------------------------*
+#                                                                            *
+#            PROGRAMME D'EXEMPLE "BLINK_LED_IT"                              *
+#                                                                            *
+# Ce simple programme fait clignoter ˆ 4 Hz une led connectee au port RE0    *
+# Il programme donc RE0 (broche 8) en sortie.                                *
+#                                                                            *
+# La configuration suppose qu'il est connectŽ ˆ une horloge externe a 40MHz  *
+# sur la broche 13.                                                          *
+#                                                                            *
+# La boucle infinie compte le temps en decrementant un mot de 24 bits,       *
+# contenu dans compteurL (poids faible), compteurH et compteurU (poids fort) *
+# Quand le compteur atteint zero, il est recharge a 1 000 000 = 0xF4240, ce  *
+# permet d'avoir une periode de clignotement de 1 Hz environ.                *
+#                                                                            *
+#----------------------------------------------------------------------------*
+
+program blink_led_it "18F448" :
+
+#----------------------------------------------------------------------------*
+#                                                                            *
+#                  CONFIGURATION DU MICRO-CONTROLEUR                         *
+#                                                                            *
+#----------------------------------------------------------------------------*
+
+config {
+  OSC : "EC-OSC2 as RA6"
+  OSCS : Disabled
+  WDT : "Disabled-Controlled by SWDTEN bit"
+  WDTPS : "1:128"
+  STVR : Disabled
+  LVP : Disabled
+  CP_0 : Disabled
+  CP_1 : Disabled
+  CP_2 : Disabled
+  CP_3 : Disabled
+  WRT_1 : Disabled
+  WRT_2 : Disabled
+  WRT_3 : Disabled
+  WRT_0 : Disabled
+  EBTR_0 : Disabled
+  EBTR_1 : Disabled
+  EBTR_2 : Disabled
+  EBTR_3 : Disabled
+  BACKBUG : Disabled
+  BODEN : Disabled
+  BODENV : "4.5V"
+  CPB : Disabled
+  CPD : Disabled
+  EBTRB : Disabled
+  PUT : Enabled
+  WRTB : Disabled
+  WRTC : Disabled
+  WRTD : Disabled
+}
+
+#----------------------------------------------------------------------------*
+#                                                                            *
+#                                  RAM                                       *
+#                                                                            *
+#----------------------------------------------------------------------------*
+
+ram gpr2 {
+  byte compteurL
+  byte compteurH
+}
+
+#----------------------------------------------------------------------------*
+#                                                                            *
+#                       SOUS-PROGRAMME D'INTERRUPTION                        *
+#                                                                            *
+#----------------------------------------------------------------------------*
+
+interrupt high fast {
+#------------------------------ Acquitter l'interruption du timer 2
+  BCF  PIR1.TMR2IF
+#------------------------------ Decompter le temps
+  banksel 2
+  if (compteurL NZ)
+    DECF compteurL
+  elsif (compteurH NZ)
+    DECF compteurH
+    SETF compteurL
+  else
+  #--- Reinitialiser les compteurs
+    MOVLW  0x13
+    MOVWF  compteurH
+    MOVLW  0x87
+    MOVWF  compteurL
+  #--- Clignoter
+    BTG  PORTE.0
+  end
+}
+
+#----------------------------------------------------------------------------*
+#                                                                            *
+#                                MAIN                                        *
+#                                                                            *
+#----------------------------------------------------------------------------*
+
+noreturn routine main bank:requires 0 {
+#--- Aucune entree analogique
+  MOVLW 7
+  MOVWF ADCON1
+#--- Programmer RE0 en sortie
+  BCF  TRISE.0
+  BCF  TRISE.1
+#--- Initialiser les compteurs
+  banksel 2
+  CLRF compteurL
+  CLRF compteurH
+#--- Initialiser le Timer 2
+#  Horloge de base : 10 MHz
+#  Le Prescaler est fixŽ ˆ 4 -> 2 500 kHz
+#  PR2 est fixŽ ˆ 250 -> 10 kHz
+  MOVLW  249 # La periode est PR2 + 1
+  MOVWF  PR2
+  MOVLW  5
+  MOVWF  T2CON  
+#--- Autoriser les priorites d'interruption
+  BSF  RCON.IPEN
+#--- Autoriser l'interruption en provenance du Timer 0
+  BSF  PIE1.TMR2IE
+#--- Valider les its
+  BSF  INTCON.GIEH
+  BSF  INTCON.GIEL
+#--- Boucle infinie
+  forever
+  end
+}
+
+#----------------------------------------------------------------------------*
+
+end
