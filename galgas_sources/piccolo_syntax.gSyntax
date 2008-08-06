@@ -43,6 +43,12 @@ nonterminal <instruction_list>
   ?!@bool ioNeedsComputedGoto4
 ;
 
+nonterminal <structured_if_instruction>
+  !@piccolo_instruction outInstruction
+  ?!@bool ioNeedsComputedGoto2
+  ?!@bool ioNeedsComputedGoto4
+;
+
 nonterminal <start_symbol>
   !@piccoloModel outPiccoloModel
 ;
@@ -822,50 +828,12 @@ rule <structured_instruction>
     ] ;
   or
     $if$ ;
-    @location instructionLocation := here ;
-    @conditionExpression structured_if_condition ;
-    <condition_expression> ?structured_if_condition ;
-    @instructionList thenInstructionList ;
-    <instruction_list>
-      ?thenInstructionList
+    <structured_if_instruction>
+      ?outInstruction
       !?ioNeedsComputedGoto2
       !?ioNeedsComputedGoto4
     ;
-    @partList elsifPartList [emptyList] ;
-    repeat
-    while
-      $elsif$ ;
-      @conditionExpression condition ;
-      <condition_expression> ?condition ;
-      @instructionList instructionList ;
-      <instruction_list>
-        ?instructionList
-        !?ioNeedsComputedGoto2
-        !?ioNeedsComputedGoto4
-      ;
-      elsifPartList += !condition !instructionList !here ;
-    end repeat ;
-    @instructionList elseInstructionList ;
-    select
-      elseInstructionList := [@instructionList emptyList] ;
-    or
-      $else$ ;
-      <instruction_list>
-        ?elseInstructionList
-        !?ioNeedsComputedGoto2
-        !?ioNeedsComputedGoto4
-      ;
-    end select ;
-    @location endOfElsePartLocation := here ;
     $end$ ;
-    outInstruction := [@instruction_structured_if new
-      !instructionLocation
-      !structured_if_condition
-      !thenInstructionList
-      !elsifPartList
-      !elseInstructionList
-      !endOfElsePartLocation
-    ] ;
   or
     $do$ ;
     @location instructionLocation := here ;
@@ -903,6 +871,53 @@ rule <structured_instruction>
     $integer$ ? @luint occurrenceFactor ;
     outInstruction := [@instruction_MNOP new !instructionLocation !occurrenceFactor] ;
   end select ;
+end rule ;
+
+#----------------------------------------------------*
+
+rule <structured_if_instruction>
+  !@piccolo_instruction outInstruction
+  ?!@bool ioNeedsComputedGoto2
+  ?!@bool ioNeedsComputedGoto4
+:
+  @location instructionLocation := here ;
+  @conditionExpression structured_if_condition ;
+  <condition_expression> ?structured_if_condition ;
+  @instructionList thenInstructionList ;
+  <instruction_list>
+    ?thenInstructionList
+    !?ioNeedsComputedGoto2
+    !?ioNeedsComputedGoto4
+  ;
+  @instructionList elseInstructionList ;
+  select
+    elseInstructionList := [@instructionList emptyList] ;
+  or
+    $elsif$ ;
+    @piccolo_instruction elsifPartInstruction ;
+    <structured_if_instruction>
+      ?elsifPartInstruction
+      !?ioNeedsComputedGoto2
+      !?ioNeedsComputedGoto4
+    ;
+    elseInstructionList := [@instructionList emptyList] ;
+    elseInstructionList += !elsifPartInstruction ;
+  or
+    $else$ ;
+    <instruction_list>
+      ?elseInstructionList
+      !?ioNeedsComputedGoto2
+      !?ioNeedsComputedGoto4
+    ;
+  end select ;
+  @location endOfElsePartLocation := here ;
+  outInstruction := [@instruction_structured_if new
+    !instructionLocation
+    !structured_if_condition
+    !thenInstructionList
+    !elseInstructionList
+    !endOfElsePartLocation
+  ] ;
 end rule ;
 
 #----------------------------------------------------*

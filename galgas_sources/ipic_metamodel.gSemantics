@@ -302,12 +302,12 @@ class @ipic_instruction_conditionalBranch extends @ipic_actualInstruction {
   override
   method displayIPICinstruction ?!@string ioListFileContents :
     ioListFileContents .= "JUMP " . [mConditionalBranch condition] . " " . mTargetLabel ;
-    switch mBranchMode
-      when native     : ioListFileContents .= " (native)" ;
-      when ipicNative : ioListFileContents .= " (uses Bcc)" ;
-      when ipicBRA    : ioListFileContents .= " (uses BRA)" ;
-      when ipicGOTO   : ioListFileContents .= " (uses GOTO)" ;
-    end switch ;
+#    switch mBranchMode
+#      when native     : ioListFileContents .= " (native)" ;
+#      when ipicNative : ioListFileContents .= " (uses Bcc)" ;
+#      when ipicBRA    : ioListFileContents .= " (uses BRA)" ;
+#      when ipicGOTO   : ioListFileContents .= " (uses GOTO)" ;
+#    end switch ;
   end method ;
 
   override method enterReferencedLabel ?!@stringset ioReferencedLabelSet :
@@ -739,11 +739,6 @@ class @ipic_jump_test_register extends @ipic_actualInstruction {
       ioListFileContents .= " NZ" ;
     end if ;
     ioListFileContents .= " " . mTargetLabel ;
-    if mUsesBra then
-      ioListFileContents .= " (uses BRA)" ;
-    else
-      ioListFileContents .= " (uses GOTO)" ;
-    end if ;
   end method ;
 
   override method enterReferencedLabel ?!@stringset ioReferencedLabelSet :
@@ -788,11 +783,6 @@ class @ipic_incDecRegisterInCondition extends @ipic_actualInstruction {
       ioListFileContents .= "NZ" ;
     end if ;
     ioListFileContents .= " " . mTargetLabel ;
-    if mUsesBra then
-      ioListFileContents .= " (uses BRA)" ;
-    else
-      ioListFileContents .= " (uses GOTO)" ;
-    end if ;
   end method ;
 
   override method enterReferencedLabel ?!@stringset ioReferencedLabelSet :
@@ -840,11 +830,6 @@ class @ipic_registerComparisonCondition extends @ipic_actualInstruction {
     ioListFileContents .= [mRegisterDescription mAssemblyString] ;
     ioListFileContents .= " " . [mComparison mnemonic] ;
     ioListFileContents .= " " . mTargetLabel ;
-    if mUsesBra then
-      ioListFileContents .= " (uses BRA)" ;
-    else
-      ioListFileContents .= " (uses GOTO)" ;
-    end if ;
   end method ;
 
   override method enterReferencedLabel ?!@stringset ioReferencedLabelSet :
