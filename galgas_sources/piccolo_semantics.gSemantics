@@ -134,7 +134,7 @@ routine analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName :
       [mDeclaration handleDeclaration !?ramBank !?registerTable !mBankName] ;
     end foreach ;
   end foreach ;
-  if [option piccolo_options.ouputListFile] then
+  if [option piccolo_options.ouputListingFile] then
     listFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n" ;
     listFileContents .= "*" . ["DECLARED VARIABLES" stringByLeftAndRightPadding !77 !' '] . "*\n" ;
     listFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n\n" ;
@@ -176,7 +176,7 @@ routine analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName :
     convertRelativeBranchsToAbsoluteWhenNeeded !?generatedInstructionList !?listFileContents ;
   end if ;
 #-------------------------------- Code generation
-  if [option piccolo_options.ouputListFile] then
+  if [option piccolo_options.ouputListingFile] then
     @string listFile := [inSourceFileName stringByDeletingPathExtension] . ".list" ;
     [listFileContents writeToFileWhenDifferentContents !listFile] ;
   end if ;

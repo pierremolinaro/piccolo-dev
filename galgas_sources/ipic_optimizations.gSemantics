@@ -102,46 +102,49 @@ method @ipic_JUMP.optimizeJUMP
   ?!@string ioListFileContents
   ?!@bool ioOptimizationsDone
 :
-#--- Find destination label definition line
-  @uint line ; [inSymbolTable searchKey !mTargetLabel ?line] ;
-#--- Find first executable instruction
-  @ipic_instruction firstInstruction ;
-  findFirstInstructionFromAddress !line + 1 !ioGeneratedInstructionList ?firstInstruction ;
-#--- Optimization from found first instruction
-  cast firstInstruction :
-  when == @ipic_instruction_RETURN do
-    [!?ioGeneratedInstructionList setMInstructionAtIndex
-      ![@ipic_instruction_RETURN new !mInstructionLocation]
-      !inLineIndex
-    ] ;
-    ioOptimizationsDone := true ;
-    ioListFileContents .= "  line " . [inLineIndex string] . ": JUMP branching to RETURN replaced by RETURN\n" ;
-  when == @ipic_instruction_literalOperation literalOp do
-    if [literalOp mLiteralInstruction] == [@literal_instruction_opcode RETLW] then
+#--- The JUMP goes to the next instruction ?
+  @stringset reachedLabelSet ;
+  findFirstInstructionOrLabelFromAddress !inLineIndex+1 !ioGeneratedInstructionList ?* ?reachedLabelSet ;
+#  log reachedLabelSet ; log inLineIndex ;
+  if [reachedLabelSet hasKey ![mTargetLabel string]] then
+    [!?ioGeneratedInstructionList setMInstructionAtIndex ![@ipic_NULL new] !inLineIndex] ;
+    ioListFileContents .= "  line " . [inLineIndex string] . ": JUMP branching to next instruction deleted\n" ;
+  else      
+  #--- Find destination label definition line
+    @uint line ; [inSymbolTable searchKey !mTargetLabel ?line] ;
+  #--- Find first executable instruction
+    @ipic_instruction firstInstruction ;
+    findFirstInstructionFromAddress !line + 1 !ioGeneratedInstructionList ?firstInstruction ;
+  #--- Optimization from found first instruction
+    cast firstInstruction :
+    when == @ipic_instruction_RETURN do
       [!?ioGeneratedInstructionList setMInstructionAtIndex
-        !literalOp
+        ![@ipic_instruction_RETURN new !mInstructionLocation]
         !inLineIndex
       ] ;
       ioOptimizationsDone := true ;
-      ioListFileContents .= "  line " . [inLineIndex string] . ": JUMP branching to RETLW replaced by RETLW\n" ;
-    end if ;
-  when == @ipic_JUMP jump do
-    if mTargetLabel != [jump mTargetLabel] then
-      [!?ioGeneratedInstructionList setMInstructionAtIndex
-        ![@ipic_JUMP new !mInstructionLocation ![jump mTargetLabel] !mKind]
-        !inLineIndex
-      ] ;
-      ioOptimizationsDone := true ;
-      ioListFileContents .= "  line " . [inLineIndex string] . ": JUMP branching to JUMP replaced by JUMP\n" ;
-    end if ;
-  else # The next instruction is the target label ?
-    @stringset reachedLabelSet ;
-    findFirstInstructionOrLabelFromAddress !inLineIndex+1 !ioGeneratedInstructionList ?* ?reachedLabelSet ;
-    if [reachedLabelSet hasKey ![mTargetLabel string]] then
-      [!?ioGeneratedInstructionList setMInstructionAtIndex ![@ipic_NULL new] !inLineIndex] ;
-      ioListFileContents .= "  line " . [inLineIndex string] . ": JUMP branching to next instruction deleted\n" ;
-    end if ;      
-  end cast ;
+      ioListFileContents .= "  line " . [inLineIndex string] . ": JUMP branching to RETURN replaced by RETURN\n" ;
+    when == @ipic_instruction_literalOperation literalOp do
+      if [literalOp mLiteralInstruction] == [@literal_instruction_opcode RETLW] then
+        [!?ioGeneratedInstructionList setMInstructionAtIndex
+          !literalOp
+          !inLineIndex
+        ] ;
+        ioOptimizationsDone := true ;
+        ioListFileContents .= "  line " . [inLineIndex string] . ": JUMP branching to RETLW replaced by RETLW\n" ;
+      end if ;
+    when == @ipic_JUMP jump do
+      if mTargetLabel != [jump mTargetLabel] then
+        [!?ioGeneratedInstructionList setMInstructionAtIndex
+          ![@ipic_JUMP new !mInstructionLocation ![jump mTargetLabel] !mKind]
+          !inLineIndex
+        ] ;
+        ioOptimizationsDone := true ;
+        ioListFileContents .= "  line " . [inLineIndex string] . ": JUMP branching to JUMP replaced by JUMP\n" ;
+      end if ;
+    else # No Optimization
+    end cast ;
+  end if ;      
 end method ;
 
 #----------------------------------------------------------------------------*

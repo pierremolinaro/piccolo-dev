@@ -1150,7 +1150,7 @@ routine buildIPICAssemblyInstructionList
     ] ; # RETURN 0
   end if ;
 #--- Output a listing ?
-  if [option piccolo_options.ouputListFile] then
+  if [option piccolo_options.ouputListingFile] then
     ioListFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n" ;
     ioListFileContents .= "*" . ["IPIC INSTRUCTION LIST" stringByLeftAndRightPadding !77 !' '] . "*\n" ;
     ioListFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n\n" ;

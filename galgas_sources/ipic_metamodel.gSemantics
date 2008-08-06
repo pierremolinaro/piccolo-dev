@@ -734,9 +734,9 @@ class @ipic_jump_test_register extends @ipic_actualInstruction {
   method displayIPICinstruction ?!@string ioListFileContents :
     ioListFileContents .= "JUMP " . [mRegisterDescription mAssemblyString] ;
     if mBranchIfZero then
-      ioListFileContents .= "Z" ;
+      ioListFileContents .= " Z" ;
     else
-      ioListFileContents .= "NZ" ;
+      ioListFileContents .= " NZ" ;
     end if ;
     ioListFileContents .= " " . mTargetLabel ;
     if mUsesBra then

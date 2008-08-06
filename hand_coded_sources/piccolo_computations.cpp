@@ -93,6 +93,7 @@ static void flushBuffer (void) {
     sprintf (s, "%02X", (- somme) & 255) ; gGeneratedObjectCode << s << "\n" ;
     gBufferAddress += gBufferEntryCount ;
     gBufferEntryCount = 0 ;
+    enter_04_record () ;
   }
 }
 
