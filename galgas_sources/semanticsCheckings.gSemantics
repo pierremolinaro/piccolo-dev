@@ -835,31 +835,6 @@ override method @instruction_structured_if.check
     !mThenInstructionList
   ;
   @uint finalBank := firstBranchFinalBank ;
-#--- 'elsif' parts
-  foreach mElsifPartList do
-    [mCondition checkCondition
-      !inAccessBankSplitOffset
-      !inRegisterTable
-      !ioCurrentBank
-    ] ;
-    @bool continuesInSequence ;
-    @uint elsifPartCurrentBank := ioCurrentBank ;
-    checkInstructionList
-      !inAccessBankSplitOffset
-      !inRoutineMap
-      !inRegisterTable
-      !?elsifPartCurrentBank
-      !inShouldPreserveBSR
-      ?continuesInSequence
-      !inRoutineKind
-      !mInstructionList
-    ;
-    if elsifPartCurrentBank != firstBranchFinalBank then
-      error mEndOfPartLocation:"This branch does not leave BSR value as the first one does";
-      finalBank := [@uint max] ; # No available value for BSR
-    end if ;
-    ioContinuesInSequence := ioContinuesInSequence | continuesInSequence ;
-  end foreach ;
 #--- 'else' instructions
   @bool continuesInSequence ;
   @uint elsePartCurrentBank := ioCurrentBank ;

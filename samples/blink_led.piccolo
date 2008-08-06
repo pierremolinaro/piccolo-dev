@@ -78,6 +78,7 @@ noreturn routine main bank:requires 0 {
   MOVWF ADCON1
 #--- Programmer RE0 en sortie
   BCF  TRISE.0
+  BCF  TRISE.1
 #--- Initialiser les compteurs
   CLRF compteurL
   CLRF compteurH

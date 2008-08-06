@@ -547,6 +547,22 @@ end routine ;
 
 #----------------------------------------------------*
 
+routine getRegisterComparisonInstructionCount
+  ??@registerComparison inComparison
+  !@uint outInstructionCount
+:
+  switch inComparison
+    when notEqual       : outInstructionCount := 2 ;
+    when equal          : outInstructionCount := 3 ;
+    when greaterOrEqual : outInstructionCount := 2 ;
+    when greater        : outInstructionCount := 3 ;
+    when lowerOrEqual   : outInstructionCount := 2 ;
+    when lower          : outInstructionCount := 3 ;
+  end switch ;
+end routine ;
+
+#----------------------------------------------------*
+
 class @registerComparisonCondition extends @conditionExpression {
   @registerExpression mRegisterExpression ;
   @registerComparison mComparison ;
@@ -590,20 +606,19 @@ class @bitTest_in_structured_if_condition extends @conditionExpression {
 
 #----------------------------------------------------*
 
-list @partList {
-  @conditionExpression mCondition ;
-  @instructionList mInstructionList ;
-  @location mEndOfPartLocation ;
+class @instruction_structured_if extends @piccolo_instruction {
+  @conditionExpression mIfCondition ;
+  @instructionList mThenInstructionList ;
+  @instructionList mElseInstructionList ;
+  @location mEndOfElsePartLocation ;
 }
 
 #----------------------------------------------------*
 
-class @instruction_structured_if extends @piccolo_instruction {
-  @conditionExpression mIfCondition ;
-  @instructionList mThenInstructionList ;
-  @partList mElsifPartList ;
-  @instructionList mElseInstructionList ;
-  @location mEndOfElsePartLocation ;
+list @partList {
+  @conditionExpression mCondition ;
+  @instructionList mInstructionList ;
+  @location mEndOfPartLocation ;
 }
 
 #----------------------------------------------------*
