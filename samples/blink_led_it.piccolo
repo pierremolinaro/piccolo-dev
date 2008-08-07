@@ -113,9 +113,9 @@ noreturn routine main bank:requires 0 {
 #  Horloge de base : 10 MHz
 #  Le Prescaler est fixŽ ˆ 4 -> 2 500 kHz
 #  PR2 est fixŽ ˆ 250 -> 10 kHz
-  MOVLW  249 # La periode est PR2 + 1
+  MOVLW  250 - 1 # La periode est PR2 + 1
   MOVWF  PR2
-  MOVLW  5
+  MOVLW  @T2CON (TOUTPS:0, TMR2ON:1, T2CKPS:1)
   MOVWF  T2CON  
 #--- Autoriser les priorites d'interruption
   BSF  RCON.IPEN

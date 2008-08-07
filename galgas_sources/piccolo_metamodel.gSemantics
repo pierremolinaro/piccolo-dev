@@ -493,6 +493,20 @@ class @immediatComplement extends @immediatExpression {
 
 #----------------------------------------------------*
 
+list @immediatSliceExpressionList {
+  @lstring mSliceName ;
+  @immediatExpression mExpression ;
+}
+
+#----------------------------------------------------*
+
+class @immediatSlice extends @immediatExpression {
+  @lstring mRegisterName ;
+  @immediatSliceExpressionList mSliceExpressionList ;
+}
+
+#----------------------------------------------------*
+
 class @instruction_literalOperation extends @piccolo_instruction {
   @literal_instruction_opcode mLiteralInstruction ;
   @immediatExpression mImmediatExpression ;

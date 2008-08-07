@@ -1413,6 +1413,22 @@ rule <immediate_primary> !@immediatExpression outExpression :
     $($ ;
     <immediate_expression> ?outExpression ;
     $)$ ;
+  or
+    $@$ ;
+    $identifier$ ? @lstring registerName ;
+    $($ ;
+    @immediatSliceExpressionList sliceExpressionList [emptyList] ;
+    repeat
+      $identifier$ ? @lstring sliceName ;
+      $:$ ;
+      @immediatExpression expression ;
+      <immediate_expression> ?expression ;
+      sliceExpressionList += !sliceName !expression ;
+    while
+      $,$ ;
+    end repeat ;
+    $)$ ;
+    outExpression := [@immediatSlice new !registerName !sliceExpressionList] ;
   end select ;
 end rule ;
 

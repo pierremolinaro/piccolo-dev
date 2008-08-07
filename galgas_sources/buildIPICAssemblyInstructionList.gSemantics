@@ -262,6 +262,35 @@ override method @immediatComplement.eval
 end method ;
 
 #----------------------------------------------------------------------------*
+
+override method @immediatSlice.eval
+  ??@registerTable inRegisterTable
+  !@sint outResult
+:
+  @bitSliceTable bitSliceTable ;
+  outResult := 0S ;
+  [inRegisterTable searchKey !mRegisterName ?* ?* ? bitSliceTable ?*] ;
+  @stringset sliceNameSet [emptySet] ;
+  foreach mSliceExpressionList do
+    if [sliceNameSet hasKey ![mSliceName string]] then
+      error mSliceName:"the '" . mSliceName . "' bit field has been already defined" ;
+    else
+      sliceNameSet += ![mSliceName string] ;
+      @uint sliceIndex ;
+      @uint sliceSize ;
+      [bitSliceTable searchKey !mSliceName ?sliceIndex ?sliceSize] ;
+      @sint result ; [mExpression eval !inRegisterTable ?result] ;
+      if (result < 0S) | (result > (1S << (sliceSize - 1))) then
+log mSliceName ;
+        error mSliceName:"invalid immediat value associated to the '" . mSliceName . "' bit field, evaluated as " . [result string]
+        . " (should be between 0 and " . [1S << (sliceSize - 1) string] . ")" ;
+      end if ;
+      outResult := outResult | (result << sliceIndex) ;
+      end if ;
+  end foreach ;
+end method ;
+
+#----------------------------------------------------------------------------*
 #                                                                            *
 #                        BIT NUMBER EXPRESSION                               *
 #                                                                            *
