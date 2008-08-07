@@ -573,7 +573,7 @@ override method @ipic_instruction_literalOperation.generateBinaryCodeAtAddress
 :
 #--- Emit Code
   @uint code ; [self getBaseCode ? code] ;
-  code := code | [mLiteralValue uint] ;
+  code := code | mLiteralValue ;
   emitCode !code ;
 end method ;
 
@@ -583,8 +583,8 @@ override method @ipic_instruction_LFSR.generateBinaryCodeAtAddress
   ??@symbolTable unused inRoutineSymbolTable
   ?!@uint unused ioAddress
 :
-  emitCode !0xEE00 | ([mFSRindex uint] << 4) | ([mRegisterDescription mRegisterAddress] >> 8) ;
-  emitCode !0xF000 | ([mRegisterDescription mRegisterAddress] & 255) ;
+  emitCode !0xEE00 | ([mFSRindex uint] << 4) | (mValue >> 8) ;
+  emitCode !0xF000 | (mValue & 255) ;
 end method ;
 
 #----------------------------------------------------------------------------*
@@ -609,15 +609,6 @@ override method @ipic_pseudo_LABEL.generateBinaryCodeAtAddress
     . "' label gets " . [ioAddress hexString] . " value in second pass, while it gets "
     . [targetAddress hexString] . " in first pass" ;
   end if ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
-override method @ipic_instruction_MOVAW.generateBinaryCodeAtAddress
-  ??@symbolTable unused inRoutineSymbolTable
-  ?!@uint unused ioAddress
-:
-  emitCode !0x0E00 | [mRegisterDescription mRegisterAddress] ;
 end method ;
 
 #----------------------------------------------------------------------------*
@@ -680,7 +671,7 @@ override method @ipic_instruction_computed_retlw.generateBinaryCodeAtAddress
     emitCALLinstruction ! targetAddress ;
   end if ;
   foreach mLiteralValues do
-    emitCode !0x0C00 | [mValue uint] ;
+    emitCode !0x0C00 | mValue ;
   end foreach ;
 end method ;
 

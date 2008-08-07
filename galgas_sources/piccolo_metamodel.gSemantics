@@ -352,22 +352,157 @@ enum @literal_instruction_opcode {
 
 #----------------------------------------------------*
 
+abstract class @immediatExpression {
+}
+
+#----------------------------------------------------*
+
+class @immediatInteger extends @immediatExpression {
+  @luint mValue ;
+}
+
+#----------------------------------------------------*
+
+class @immediatRegister extends @immediatExpression {
+  @registerExpression mRegister ;
+}
+
+#----------------------------------------------------*
+
+class @immediatAdd extends @immediatExpression {
+  @immediatExpression mLeftExpression ;
+  @immediatExpression mRightExpression ;
+}
+
+#----------------------------------------------------*
+
+class @immediatSub extends @immediatExpression {
+  @immediatExpression mLeftExpression ;
+  @immediatExpression mRightExpression ;
+}
+
+#----------------------------------------------------*
+
+class @immediatMul extends @immediatExpression {
+  @immediatExpression mLeftExpression ;
+  @immediatExpression mRightExpression ;
+}
+
+#----------------------------------------------------*
+
+class @immediatDiv extends @immediatExpression {
+  @immediatExpression mLeftExpression ;
+  @immediatExpression mRightExpression ;
+}
+
+#----------------------------------------------------*
+
+class @immediatMod extends @immediatExpression {
+  @immediatExpression mLeftExpression ;
+  @immediatExpression mRightExpression ;
+}
+
+#----------------------------------------------------*
+
+class @immediatOr extends @immediatExpression {
+  @immediatExpression mLeftExpression ;
+  @immediatExpression mRightExpression ;
+}
+
+#----------------------------------------------------*
+
+class @immediatAnd extends @immediatExpression {
+  @immediatExpression mLeftExpression ;
+  @immediatExpression mRightExpression ;
+}
+
+#----------------------------------------------------*
+
+class @immediatXor extends @immediatExpression {
+  @immediatExpression mLeftExpression ;
+  @immediatExpression mRightExpression ;
+}
+
+#----------------------------------------------------*
+
+class @immediatLeftShift extends @immediatExpression {
+  @immediatExpression mLeftExpression ;
+  @immediatExpression mRightExpression ;
+}
+
+#----------------------------------------------------*
+
+class @immediatRightShift extends @immediatExpression {
+  @immediatExpression mLeftExpression ;
+  @immediatExpression mRightExpression ;
+}
+
+#----------------------------------------------------*
+
+class @immediatEqualTest extends @immediatExpression {
+  @immediatExpression mLeftExpression ;
+  @immediatExpression mRightExpression ;
+}
+
+#----------------------------------------------------*
+
+class @immediatNotEqualTest extends @immediatExpression {
+  @immediatExpression mLeftExpression ;
+  @immediatExpression mRightExpression ;
+}
+
+#----------------------------------------------------*
+
+class @immediatGreaterTest extends @immediatExpression {
+  @immediatExpression mLeftExpression ;
+  @immediatExpression mRightExpression ;
+}
+
+#----------------------------------------------------*
+
+class @immediatGreaterOrEqualTest extends @immediatExpression {
+  @immediatExpression mLeftExpression ;
+  @immediatExpression mRightExpression ;
+}
+
+#----------------------------------------------------*
+
+class @immediatLowerTest extends @immediatExpression {
+  @immediatExpression mLeftExpression ;
+  @immediatExpression mRightExpression ;
+}
+
+#----------------------------------------------------*
+
+class @immediatLowerOrEqualTest extends @immediatExpression {
+  @immediatExpression mLeftExpression ;
+  @immediatExpression mRightExpression ;
+}
+
+#----------------------------------------------------*
+
+class @immediatNegate extends @immediatExpression {
+  @immediatExpression mExpression ;
+}
+
+#----------------------------------------------------*
+
+class @immediatComplement extends @immediatExpression {
+  @immediatExpression mExpression ;
+}
+
+#----------------------------------------------------*
+
 class @instruction_literalOperation extends @piccolo_instruction {
   @literal_instruction_opcode mLiteralInstruction ;
-  @luint mLiteralValue ;
+  @immediatExpression mImmediatExpression ;
 }
 
 #----------------------------------------------------*
 
 class @instruction_LFSR extends @piccolo_instruction {
   @luint mFSRindex ;
-  @registerExpression mRegisterExpression ;
-}
-
-#----------------------------------------------------*
-
-class @instruction_MOVAW extends @piccolo_instruction {
-  @registerExpression mRegisterExpression ;
+  @immediatExpression mImmediatExpression ;
 }
 
 #----------------------------------------------------*
@@ -475,16 +610,22 @@ class @instruction_IF_IncDec extends @instruction_IF_SEMI_COLON {
 
 #----------------------------------------------------*
 
+list @immediatExpressionList {
+  @immediatExpression mExpression ;
+}
+
+#----------------------------------------------------*
+
 class @instruction_computed_retlw extends @piccolo_instruction {
-  @luint mSize ;
-  @luintlist mLiteralValues ;
+  @immediatExpression mSizeExpression ;
+  @immediatExpressionList mImmediateExpressionList ;
   @bool mUsesRelativeCall ;
 }
 
 #----------------------------------------------------*
 
 class @instruction_computed_bra extends @piccolo_instruction {
-  @luint mSize ;
+  @immediatExpression mSizeExpression ;
   @lstringlist mTargetLabels ;
   @bool mUsesRelativeCall ;
 }
@@ -492,7 +633,7 @@ class @instruction_computed_bra extends @piccolo_instruction {
 #----------------------------------------------------*
 
 class @instruction_computed_goto extends @piccolo_instruction {
-  @luint mSize ;
+  @immediatExpression mSizeExpression ;
   @lstringlist mTargetLabels ;
   @bool mUsesRelativeCall ;
 }

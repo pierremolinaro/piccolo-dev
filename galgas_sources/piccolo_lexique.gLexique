@@ -81,7 +81,6 @@ list instructionKeyWordList error message "the '%K' instruction" style instructi
   "jump",
   "lfsr",
   "mnop",
-  "movaw",
   "movf",
   "movff",
   "movlw",
@@ -214,7 +213,8 @@ list delimitorsList error message "the '%K' delimitor" style delimitersStyle :
   "*",  "*+",   ",",  "!=", "<=", ">=",
   "*-", "+*",   ";",  ":",  "==", "<", ">",
   "[",  "]",    ".",  "!", "&", "|",
-  "{",  "}", "(", ")", "/", "-" ;
+  "{",  "}", "(", ")", "/", "-", "+",
+  "^", "<<", ">>", "~", "%" ;
 
 rule list delimitorsList ;
 

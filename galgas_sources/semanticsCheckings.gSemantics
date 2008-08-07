@@ -413,7 +413,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @instruction_literalOperation.check
+override method @instruction_LFSR.check
   ??@uint unused inAccessBankSplitOffset
   ??@routineMap unused inRoutineMap
   ??@registerTable unused inRegisterTable
@@ -422,40 +422,9 @@ override method @instruction_literalOperation.check
   ?!@bool unused ioContinuesInSequence
   ??@routineKind unused inRoutineKind
 :
-  if [mLiteralValue uint] > 255 then
-    error mLiteralValue:"the literal value (" . [[mLiteralValue uint] string] . ") should be lower or equal to 255" ;
-  end if ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
-override method @instruction_LFSR.check
-  ??@uint unused inAccessBankSplitOffset
-  ??@routineMap unused inRoutineMap
-  ??@registerTable inRegisterTable
-  ?!@uint unused ioCurrentBank
-  ??@bool unused inShouldPreserveBSR
-  ?!@bool unused ioContinuesInSequence
-  ??@routineKind unused inRoutineKind
-:
   if [mFSRindex uint] > 2 then
     error mFSRindex:"the LFSR register index (" . [[mFSRindex uint] string] . ") should be lower or equal to 2" ;
   end if ;
-  [mRegisterExpression checkRegisterDeclaration !inRegisterTable] ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
-override method @instruction_MOVAW.check
-  ??@uint unused inAccessBankSplitOffset
-  ??@routineMap unused inRoutineMap
-  ??@registerTable inRegisterTable
-  ?!@uint unused ioCurrentBank
-  ??@bool unused inShouldPreserveBSR
-  ?!@bool unused ioContinuesInSequence
-  ??@routineKind unused inRoutineKind
-:
-  [mRegisterExpression checkRegisterDeclarationAndAddressLowerThan256 !inRegisterTable] ;
 end method ;
 
 #----------------------------------------------------------------------------*
@@ -469,13 +438,6 @@ override method @instruction_computed_retlw.check
   ?!@bool ioContinuesInSequence
   ??@routineKind inRoutineKind
 :
-  if [mSize uint] < 2 then
-    error mSize:"the computed range (" . [[mSize uint] string] . ") should be greater or equal to 2" ;
-  elsif [mSize uint] > 128 then
-    error mSize:"the computed range (" . [[mSize uint] string] . ") should be lower or equal to 128" ;
-  elsif [mSize uint] != [mLiteralValues length] then
-    error mSize:"the constant list length (" . [[mLiteralValues length] string] . ") should be equal to the computed range (" . [[mSize uint] string] . ")" ;
-  end if ;
   ioContinuesInSequence := false ;
   switch inRoutineKind
   when regularRoutine : # ok
@@ -513,13 +475,6 @@ override method @instruction_computed_bra.check
   ?!@bool ioContinuesInSequence
   ??@routineKind inRoutineKind
 :
-  if [mSize uint] < 2 then
-    error mSize:"the computed range (" . [[mSize uint] string] . ") should be greater or equal to 2" ;
-  elsif [mSize uint] > 128 then
-    error mSize:"the computed range (" . [[mSize uint] string] . ") should be lower or equal to 128" ;
-  elsif [mSize uint] != [mTargetLabels length] then
-    error mSize:"the routine name list length (" . [[mTargetLabels length] string] . ") should be equal to the computed range (" . [[mSize uint] string] . ")" ;
-  end if ;
   foreach mTargetLabels do
     @bool isNoReturn ;
     @uint requiredBank ;
@@ -559,13 +514,6 @@ override method @instruction_computed_goto.check
   ?!@bool ioContinuesInSequence
   ??@routineKind inRoutineKind
 :
-  if [mSize uint] < 2 then
-    error mSize:"the computed range (" . [[mSize uint] string] . ") should be greater or equal to 2" ;
-  elsif [mSize uint] > 64 then
-    error mSize:"the computed range (" . [[mSize uint] string] . ") should be lower or equal to 64" ;
-  elsif [mSize uint] != [mTargetLabels length] then
-    error mSize:"the routine name list length (" . [[mTargetLabels length] string] . ") should be equal to the computed range (" . [[mSize uint] string] . ")" ;
-  end if ;
   foreach mTargetLabels do
     @bool isNoReturn ;
     @uint requiredBank ;
