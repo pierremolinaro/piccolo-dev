@@ -367,7 +367,7 @@ override method @ipic_instruction_literalOperation.buildAssemblyCode
   ?!@string ioString
   ?!@uint unused ioBccLabelIndex
 :
-  ioString .= "  " . [mLiteralInstruction mnemonic] . " " . [[mLiteralValue uint] hexString] . "\n" ;
+  ioString .= "  " . [mLiteralInstruction mnemonic] . " " . [mLiteralValue hexString] . "\n" ;
 end method ;
 
 #----------------------------------------------------*
@@ -377,16 +377,7 @@ end method ;
   ?!@uint unused ioBccLabelIndex
 :
   ioString .= "  LFSR " . [[mFSRindex uint] string] . ", " ;
-  ioString .= [mRegisterDescription mAssemblyString] . "\n" ;
-end method ;
-
-#----------------------------------------------------*
-
- override method @ipic_instruction_MOVAW.buildAssemblyCode
-  ?!@string ioString
-  ?!@uint unused ioBccLabelIndex
-:
-  ioString .= "  MOVLW " . [mRegisterDescription mAssemblyString] . "\n" ;
+  ioString .= [mValue hexString] . "\n" ;
 end method ;
 
 #----------------------------------------------------*
@@ -437,7 +428,7 @@ override method @ipic_instruction_computed_retlw.buildAssemblyCode
     ioString .= "  CALL _computed_goto_2\n" ;
   end if ;
   foreach mLiteralValues do
-    ioString .= "  RETLW " . [[mValue uint] hexString] . "\n" ;
+    ioString .= "  RETLW " . [mValue hexString] . "\n" ;
   end foreach ;
 end method ;
 

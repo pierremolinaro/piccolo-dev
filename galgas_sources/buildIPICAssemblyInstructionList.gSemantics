@@ -6,6 +6,266 @@ import option piccolo_options in "piccolo_options.gOption" ;
 import "ipic_metamodel.gSemantics" ;
 
 #----------------------------------------------------------------------------*
+#                                                                            *
+#                    IMMEDIAT EXPRESSION EVALUATION                          *
+#                                                                            *
+#----------------------------------------------------------------------------*
+
+abstract method @immediatExpression.eval
+  ??@registerTable inRegisterTable
+  !@sint outResult
+;
+
+#----------------------------------------------------------------------------*
+
+override method @immediatInteger.eval
+  ??@registerTable unused inRegisterTable
+  !@sint outResult
+:
+  outResult := [[mValue uint] sint] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @immediatRegister.eval
+  ??@registerTable inRegisterTable
+  !@sint outResult
+:
+  @uintlist registerAddressList ;
+  @uint size ;
+  [inRegisterTable searchKey ![mRegister mRegisterName] ?registerAddressList ?size ?* ?*] ;
+  @uint registerAddress ; [registerAddressList first ?registerAddress] ;
+  if [[mRegister mOffset] uint] >= size then
+    error [mRegister mOffset]:"index (" . [[[mRegister mOffset] uint] string] . ") should be lower than size (" . [size string] . ")" ;
+  end if ;
+  outResult := [registerAddress + [[mRegister mOffset] uint] sint] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @immediatAdd.eval
+  ??@registerTable inRegisterTable
+  !@sint outResult
+:
+  @sint leftResult ; [mLeftExpression eval !inRegisterTable ?leftResult] ;
+  @sint rightResult ; [mRightExpression eval !inRegisterTable ?rightResult] ;
+  outResult := leftResult + rightResult ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @immediatSub.eval
+  ??@registerTable inRegisterTable
+  !@sint outResult
+:
+  @sint leftResult ; [mLeftExpression eval !inRegisterTable ?leftResult] ;
+  @sint rightResult ; [mRightExpression eval !inRegisterTable ?rightResult] ;
+  outResult := leftResult - rightResult ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @immediatMul.eval
+  ??@registerTable inRegisterTable
+  !@sint outResult
+:
+  @sint leftResult ; [mLeftExpression eval !inRegisterTable ?leftResult] ;
+  @sint rightResult ; [mRightExpression eval !inRegisterTable ?rightResult] ;
+  outResult := leftResult * rightResult ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @immediatDiv.eval
+  ??@registerTable inRegisterTable
+  !@sint outResult
+:
+  @sint leftResult ; [mLeftExpression eval !inRegisterTable ?leftResult] ;
+  @sint rightResult ; [mRightExpression eval !inRegisterTable ?rightResult] ;
+  outResult := leftResult * rightResult ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @immediatMod.eval
+  ??@registerTable inRegisterTable
+  !@sint outResult
+:
+  @sint leftResult ; [mLeftExpression eval !inRegisterTable ?leftResult] ;
+  @sint rightResult ; [mRightExpression eval !inRegisterTable ?rightResult] ;
+  outResult := leftResult mod rightResult ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @immediatAnd.eval
+  ??@registerTable inRegisterTable
+  !@sint outResult
+:
+  @sint leftResult ; [mLeftExpression eval !inRegisterTable ?leftResult] ;
+  @sint rightResult ; [mRightExpression eval !inRegisterTable ?rightResult] ;
+  outResult := leftResult & rightResult ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @immediatOr.eval
+  ??@registerTable inRegisterTable
+  !@sint outResult
+:
+  @sint leftResult ; [mLeftExpression eval !inRegisterTable ?leftResult] ;
+  @sint rightResult ; [mRightExpression eval !inRegisterTable ?rightResult] ;
+  outResult := leftResult | rightResult ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @immediatXor.eval
+  ??@registerTable inRegisterTable
+  !@sint outResult
+:
+  @sint leftResult ; [mLeftExpression eval !inRegisterTable ?leftResult] ;
+  @sint rightResult ; [mRightExpression eval !inRegisterTable ?rightResult] ;
+  outResult := leftResult ^ rightResult ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @immediatLeftShift.eval
+  ??@registerTable inRegisterTable
+  !@sint outResult
+:
+  @sint leftResult ; [mLeftExpression eval !inRegisterTable ?leftResult] ;
+  @sint rightResult ; [mRightExpression eval !inRegisterTable ?rightResult] ;
+  outResult := leftResult << [rightResult uint] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @immediatRightShift.eval
+  ??@registerTable inRegisterTable
+  !@sint outResult
+:
+  @sint leftResult ; [mLeftExpression eval !inRegisterTable ?leftResult] ;
+  @sint rightResult ; [mRightExpression eval !inRegisterTable ?rightResult] ;
+  outResult := leftResult >> [rightResult uint] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @immediatEqualTest.eval
+  ??@registerTable inRegisterTable
+  !@sint outResult
+:
+  @sint leftResult ; [mLeftExpression eval !inRegisterTable ?leftResult] ;
+  @sint rightResult ; [mRightExpression eval !inRegisterTable ?rightResult] ;
+  if leftResult == rightResult then
+    outResult := 1S ;
+  else
+    outResult := 0S ;
+  end if ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @immediatNotEqualTest.eval
+  ??@registerTable inRegisterTable
+  !@sint outResult
+:
+  @sint leftResult ; [mLeftExpression eval !inRegisterTable ?leftResult] ;
+  @sint rightResult ; [mRightExpression eval !inRegisterTable ?rightResult] ;
+  if leftResult != rightResult then
+    outResult := 1S ;
+  else
+    outResult := 0S ;
+  end if ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @immediatGreaterOrEqualTest.eval
+  ??@registerTable inRegisterTable
+  !@sint outResult
+:
+  @sint leftResult ; [mLeftExpression eval !inRegisterTable ?leftResult] ;
+  @sint rightResult ; [mRightExpression eval !inRegisterTable ?rightResult] ;
+  if leftResult >= rightResult then
+    outResult := 1S ;
+  else
+    outResult := 0S ;
+  end if ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @immediatLowerOrEqualTest.eval
+  ??@registerTable inRegisterTable
+  !@sint outResult
+:
+  @sint leftResult ; [mLeftExpression eval !inRegisterTable ?leftResult] ;
+  @sint rightResult ; [mRightExpression eval !inRegisterTable ?rightResult] ;
+  if leftResult <= rightResult then
+    outResult := 1S ;
+  else
+    outResult := 0S ;
+  end if ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @immediatGreaterTest.eval
+  ??@registerTable inRegisterTable
+  !@sint outResult
+:
+  @sint leftResult ; [mLeftExpression eval !inRegisterTable ?leftResult] ;
+  @sint rightResult ; [mRightExpression eval !inRegisterTable ?rightResult] ;
+  if leftResult > rightResult then
+    outResult := 1S ;
+  else
+    outResult := 0S ;
+  end if ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @immediatLowerTest.eval
+  ??@registerTable inRegisterTable
+  !@sint outResult
+:
+  @sint leftResult ; [mLeftExpression eval !inRegisterTable ?leftResult] ;
+  @sint rightResult ; [mRightExpression eval !inRegisterTable ?rightResult] ;
+  if leftResult < rightResult then
+    outResult := 1S ;
+  else
+    outResult := 0S ;
+  end if ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @immediatNegate.eval
+  ??@registerTable inRegisterTable
+  !@sint outResult
+:
+  @sint result ; [mExpression eval !inRegisterTable ?result] ;
+  outResult := - result ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @immediatComplement.eval
+  ??@registerTable inRegisterTable
+  !@sint outResult
+:
+  @sint result ; [mExpression eval !inRegisterTable ?result] ;
+  outResult := ~ result ;
+end method ;
+
+#----------------------------------------------------------------------------*
+#                                                                            *
+#                        BIT NUMBER EXPRESSION                               *
+#                                                                            *
+#----------------------------------------------------------------------------*
 
 abstract method @bitNumberExpression.getBitNumber
   ??@bitSliceTable inBitSliceTable
@@ -420,61 +680,42 @@ end method ;
 
 override method @instruction_literalOperation.buildIPICinstructionList
   ??@uint unused inAccessBankSplitOffset
-  ??@registerTable unused inRegisterTable
+  ??@registerTable inRegisterTable
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
   ?!@string unused ioListFileContents
 :
+  @sint result ; [mImmediatExpression eval !inRegisterTable ?result] ;
+#---
+   if (result > 255S) | (result < -128S) then
+     error mInstructionLocation:"immediate value is evaluated as " . [result string] . " (should be betwween -128 and 255)" ;
+   end if ;
+#---  
   ioGeneratedInstructionList += ![@ipic_instruction_literalOperation new
     !mInstructionLocation
     !mLiteralInstruction
-    !mLiteralValue
+    ![result & 0x000000FFS uint]
   ] ;
 end method ;
 
 #----------------------------------------------------*
 
 override method @instruction_LFSR.buildIPICinstructionList
-  ??@uint inAccessBankSplitOffset
+  ??@uint unused inAccessBankSplitOffset
   ??@registerTable inRegisterTable
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
   ?!@string unused ioListFileContents
 :
-  @ipic_registerExpression IPICregisterDescription ;
-  [mRegisterExpression resolveAccess
-    !inAccessBankSplitOffset
-    !inRegisterTable
-    ?IPICregisterDescription
-    ?*
-  ] ;
+  @sint result ; [mImmediatExpression eval !inRegisterTable ?result] ;
+#---
+   if (result > 0xFFFS) | (result < 0S) then
+     error mInstructionLocation:"immediate value is evaluated as " . [result string] . " (should be between 0 and 4095)" ;
+   end if ;
   ioGeneratedInstructionList += ![@ipic_instruction_LFSR new
     !mInstructionLocation
     !mFSRindex
-    !IPICregisterDescription
-  ] ;
-end method ;
-
-#----------------------------------------------------*
-
-override method @instruction_MOVAW.buildIPICinstructionList
-  ??@uint inAccessBankSplitOffset
-  ??@registerTable inRegisterTable
-  ?!@uint unused ioLocalLabelIndex
-  ?!@ipic_instructionList ioGeneratedInstructionList
-  ?!@string unused ioListFileContents
-:
-  @ipic_registerExpression IPICregisterDescription ;
-  [mRegisterExpression resolveAccess
-    !inAccessBankSplitOffset
-    !inRegisterTable
-    ?IPICregisterDescription
-    ?*
-  ] ;
-#---
-  ioGeneratedInstructionList += ![@ipic_instruction_MOVAW new
-    !mInstructionLocation
-    !IPICregisterDescription
+    ![result uint]
   ] ;
 end method ;
 
@@ -512,14 +753,32 @@ end method ;
 
 override method @instruction_computed_retlw.buildIPICinstructionList
   ??@uint unused inAccessBankSplitOffset
-  ??@registerTable unused inRegisterTable
+  ??@registerTable inRegisterTable
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
   ?!@string unused ioListFileContents
 :
+  @sint size ; [mSizeExpression eval !inRegisterTable ?size] ;
+  if size < 2S then
+    error mInstructionLocation:"the computed range (" . [size string] . ") should be greater or equal to 2" ;
+  elsif size > 128S then
+    error mInstructionLocation:"the computed range (" . [size string] . ") should be lower or equal to 128" ;
+  elsif [size uint] != [mImmediateExpressionList length] then
+    error mInstructionLocation:"the constant list length (" . [[mImmediateExpressionList length] string] . ") should be equal to the computed range (" . [size string] . ")" ;
+  end if ;
+#--- 
+  @uintlist literalValues [emptyList] ;
+  foreach mImmediateExpressionList :idx do
+    @sint v ; [mExpression eval !inRegisterTable ?v] ;
+    if (v > 255S) | (v < -128S) then
+      error mInstructionLocation:"immediate value with index " . [idx string] . " is evaluated as " . [v string] . " (should be <= 255)" ;
+    end if ;
+    literalValues += ![v & 0x000000FFS uint] ;
+  end foreach ;
+#---
   ioGeneratedInstructionList += ![@ipic_instruction_computed_retlw new
     !mInstructionLocation
-    !mLiteralValues
+    !literalValues
     !mUsesRelativeCall
   ] ;
 end method ;
@@ -543,11 +802,20 @@ end method ;
 
 override method @instruction_computed_bra.buildIPICinstructionList
   ??@uint unused inAccessBankSplitOffset
-  ??@registerTable unused inRegisterTable
+  ??@registerTable inRegisterTable
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
   ?!@string unused ioListFileContents
 :
+  @sint size ; [mSizeExpression eval !inRegisterTable ?size] ;
+  if size < 2S then
+    error mInstructionLocation:"the computed range (" . [size string] . ") should be greater or equal to 2" ;
+  elsif size > 128S then
+    error mInstructionLocation:"the computed range (" . [size string] . ") should be lower or equal to 128" ;
+  elsif [size uint] != [mTargetLabels length] then
+    error mInstructionLocation:"the routine name list length (" . [[mTargetLabels length] string] . ") should be equal to the computed range (" . [size string] . ")" ;
+  end if ;
+#---
   ioGeneratedInstructionList += ![@ipic_instruction_computed_bra new
     !mInstructionLocation
     !mTargetLabels
@@ -559,11 +827,20 @@ end method ;
 
 override method @instruction_computed_goto.buildIPICinstructionList
   ??@uint unused inAccessBankSplitOffset
-  ??@registerTable unused inRegisterTable
+  ??@registerTable inRegisterTable
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
   ?!@string unused ioListFileContents
 :
+  @sint size ; [mSizeExpression eval !inRegisterTable ?size] ;
+  if size < 2S then
+    error mInstructionLocation:"the computed range (" . [size string] . ") should be greater or equal to 2" ;
+  elsif size > 64S then
+    error mInstructionLocation:"the computed range (" . [size string] . ") should be lower or equal to 64" ;
+  elsif [size uint] != [mTargetLabels length] then
+    error mInstructionLocation:"the routine name list length (" . [[mTargetLabels length] string] . ") should be equal to the computed range (" . [size string] . ")" ;
+  end if ;
+#---
   ioGeneratedInstructionList += ![@ipic_instruction_computed_goto new
     !mInstructionLocation
     !mTargetLabels
@@ -1309,7 +1586,7 @@ routine buildIPICAssemblyInstructionList
     outGeneratedInstructionList += ![@ipic_instruction_literalOperation new
       !here
       ![@literal_instruction_opcode MOVLW]
-      ![@luint new !0 !here]
+      !0
     ] ; # MOVLW 0
     outGeneratedInstructionList += ![@ipic_instruction_FDA new
       !here

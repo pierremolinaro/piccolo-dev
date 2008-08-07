@@ -59,13 +59,23 @@ nonterminal <optional_w_as_dest> !@bool out_W_isDestination ;
 
 nonterminal <bit_number_parsing> !@bitNumberExpression outBitNumber ;
 
-nonterminal <literal_value_parsing> !@luint outLiteralValue ;
-
 nonterminal <condition_factor> !@conditionExpression outCondition ;
 
 nonterminal <condition_term> !@conditionExpression outCondition ;
 
 nonterminal <condition_expression> !@conditionExpression outCondition ;
+
+nonterminal <immediate_expression> !@immediatExpression outExpression ;
+
+nonterminal <immediate_bitwise_term> !@immediatExpression outExpression ;
+
+nonterminal <immediate_bitwise_factor> !@immediatExpression outExpression ;
+
+nonterminal <immediate_term> !@immediatExpression outExpression ;
+
+nonterminal <immediate_factor> !@immediatExpression outExpression ;
+
+nonterminal <immediate_primary> !@immediatExpression outExpression ;
 
 #----------------------------------------------------*
 
@@ -427,19 +437,6 @@ end rule ;
 
 #----------------------------------------------------*
 
-rule <literal_value_parsing> !@luint outLiteralValue :
-  $integer$ ? outLiteralValue ;
-end rule ;
-
-#----------------------------------------------------*
-
-rule <literal_value_parsing> !@luint outLiteralValue :
-  $literal_char$ ? @lchar literalCharValue ;
-  outLiteralValue := [@luint new ![[literalCharValue char] uint] ![literalCharValue location]] ;
-end rule ;
-
-#----------------------------------------------------*
-
 rule <optional_w_as_dest> !@bool out_W_isDestination :
   select
     out_W_isDestination := false ;
@@ -667,22 +664,22 @@ rule <structured_instruction>
     $computed$ ;
     @location instructionLocation := here ;
     $[$ ;
-    @luint size ;
-    <literal_value_parsing> ?size ;
+    @immediatExpression sizeExpression ;
+    <immediate_expression> ?sizeExpression ;
     $]$ ;
     select
       $retlw$ ;
-      @luintlist argumentList [emptyList] ;
+      @immediatExpressionList argumentList [emptyList] ;
       repeat
-        @luint literalValue ;
-        <literal_value_parsing> ?literalValue ;
-        argumentList += ! literalValue ;
+        @immediatExpression expression ;
+        <immediate_expression> ?expression ;
+        argumentList += !expression ;
       while
         $,$ ;
       end repeat ;
       outInstruction := [@instruction_computed_retlw new
         !instructionLocation
-        !size
+        !sizeExpression
         !argumentList
         !true
       ] ;
@@ -698,7 +695,7 @@ rule <structured_instruction>
      end repeat ;
        outInstruction := [@instruction_computed_bra new
         !instructionLocation
-        !size
+        !sizeExpression
         !argumentList
         !true
       ] ;
@@ -714,7 +711,7 @@ rule <structured_instruction>
       end repeat ;
       outInstruction := [@instruction_computed_goto new
         !instructionLocation
-        !size
+        !sizeExpression
         !argumentList
         !true
       ] ;
@@ -1203,27 +1200,21 @@ rule <simple_instruction> !@piccolo_instruction outInstruction :
       $xorlw$ ; literalInstruction := [@literal_instruction_opcode XORLW] ;
     end select ;
     @location instructionLocation := here ;
-    @luint literalValue ;
-    <literal_value_parsing> ?literalValue ;
+    @immediatExpression expression ;
+    <immediate_expression> ?expression ;
     outInstruction := [@instruction_literalOperation new
       !instructionLocation
       !literalInstruction
-      !literalValue
+      !expression
     ] ;
   or
     $lfsr$ ;
     @location instructionLocation := here ;
     $integer$ ? @luint FSRindex ;
     $,$ ;
-    @registerExpression registerName ;
-    <register_parsing> ?registerName ;
-    outInstruction := [@instruction_LFSR new !instructionLocation !FSRindex !registerName] ;
-  or
-    $movaw$ ;
-    @location instructionLocation := here ;
-    @registerExpression registerName ;
-    <register_parsing> ?registerName ;
-    outInstruction := [@instruction_MOVAW new !instructionLocation !registerName] ;
+    @immediatExpression expression ;
+    <immediate_expression> ?expression ;
+    outInstruction := [@instruction_LFSR new !instructionLocation !FSRindex !expression] ;
   or
     $tblrd$ ;
     @location instructionLocation := here ;
@@ -1260,6 +1251,168 @@ rule <simple_instruction> !@piccolo_instruction outInstruction :
       accessOption := [@tableAccessOption preIncrement] ;
     end select ;
     outInstruction := [@instruction_TBLWT new !instructionLocation !accessOption] ;
+  end select ;
+end rule ;
+
+#----------------------------------------------------*
+
+rule <immediate_expression> !@immediatExpression outExpression :
+  <immediate_bitwise_term> ?outExpression ;
+  repeat
+  while
+    $|$ ;
+    @immediatExpression rightExpression ;
+    <immediate_bitwise_term> ?rightExpression ;
+    outExpression := [@immediatOr new !outExpression! rightExpression] ;
+  while
+    $^$ ;
+    @immediatExpression rightExpression ;
+    <immediate_bitwise_term> ?rightExpression ;
+    outExpression := [@immediatXor new !outExpression! rightExpression] ;
+  end repeat ;
+end rule ;
+
+#----------------------------------------------------*
+
+rule  <immediate_bitwise_term> !@immediatExpression outExpression :
+  <immediate_bitwise_factor> ?outExpression ;
+  repeat
+  while
+    $&$ ;
+    @immediatExpression rightExpression ;
+    <immediate_bitwise_factor> ?rightExpression ;
+    outExpression := [@immediatAnd new !outExpression! rightExpression] ;
+  end repeat ;
+end rule ;
+
+#----------------------------------------------------*
+
+rule <immediate_bitwise_factor> !@immediatExpression outExpression :
+  <immediate_term> ?outExpression ;
+  select
+  or
+    $==$ ; 
+    @immediatExpression rightExpression ;
+    <immediate_term> ?rightExpression ;
+    outExpression := [@immediatEqualTest new !outExpression! rightExpression] ;
+  or
+    $!=$ ; 
+    @immediatExpression rightExpression ;
+    <immediate_term> ?rightExpression ;
+    outExpression := [@immediatNotEqualTest new !outExpression! rightExpression] ;
+  or
+    $>=$ ; 
+    @immediatExpression rightExpression ;
+    <immediate_term> ?rightExpression ;
+    outExpression := [@immediatGreaterOrEqualTest new !outExpression! rightExpression] ;
+  or
+    $<=$ ; 
+    @immediatExpression rightExpression ;
+    <immediate_term> ?rightExpression ;
+    outExpression := [@immediatLowerOrEqualTest new !outExpression! rightExpression] ;
+  or
+    $>$ ; 
+    @immediatExpression rightExpression ;
+    <immediate_term> ?rightExpression ;
+    outExpression := [@immediatGreaterTest new !outExpression! rightExpression] ;
+  or
+    $<$ ; 
+    @immediatExpression rightExpression ;
+    <immediate_term> ?rightExpression ;
+    outExpression := [@immediatLowerTest new !outExpression! rightExpression] ;
+  end select ;
+end rule ;
+
+#----------------------------------------------------*
+
+rule <immediate_term> !@immediatExpression outExpression :
+  <immediate_factor> ?outExpression ;
+  repeat
+  while
+    $+$ ;
+    @immediatExpression rightExpression ;
+    <immediate_factor> ?rightExpression ;
+    outExpression := [@immediatAdd new !outExpression! rightExpression] ;
+  while
+    $-$ ;
+    @immediatExpression rightExpression ;
+    <immediate_factor> ?rightExpression ;
+    outExpression := [@immediatSub new !outExpression! rightExpression] ;
+  while
+    $<<$ ;
+    @immediatExpression rightExpression ;
+    <immediate_factor> ?rightExpression ;
+    outExpression := [@immediatLeftShift new !outExpression! rightExpression] ;
+  while
+    $>>$ ;
+    @immediatExpression rightExpression ;
+    <immediate_factor> ?rightExpression ;
+    outExpression := [@immediatRightShift new !outExpression! rightExpression] ;
+  end repeat ;
+end rule ;
+
+#----------------------------------------------------*
+
+rule <immediate_factor> !@immediatExpression outExpression :
+  <immediate_primary> ?outExpression ;
+  repeat
+  while
+    $*$ ;
+    @immediatExpression rightExpression ;
+    <immediate_primary> ?rightExpression ;
+    outExpression := [@immediatMul new !outExpression! rightExpression] ;
+  while
+    $%$ ;
+    @immediatExpression rightExpression ;
+    <immediate_primary> ?rightExpression ;
+    outExpression := [@immediatMod new !outExpression! rightExpression] ;
+  while
+    $/$ ;
+    @immediatExpression rightExpression ;
+    <immediate_primary> ?rightExpression ;
+    outExpression := [@immediatDiv new !outExpression! rightExpression] ;
+  end repeat ;
+end rule ;
+
+
+#----------------------------------------------------*
+
+rule <immediate_primary> !@immediatExpression outExpression :
+  select
+    $-$ ;
+    @immediatExpression expression ;
+    <immediate_primary> ?expression ;
+    outExpression := [@immediatNegate new !expression] ;
+  or
+    $~$ ;
+    @immediatExpression expression ;
+    <immediate_primary> ?expression ;
+    outExpression := [@immediatComplement new !expression] ;
+  or
+    $integer$ ? @luint constant ;
+    outExpression := [@immediatInteger new !constant] ;
+  or
+    $literal_char$ ? @lchar literalCharValue ;
+    outExpression := [@immediatInteger new ![@luint new ![[literalCharValue char] uint] ![literalCharValue location]]] ;
+  or
+    $identifier$ ?@lstring registerName ;
+    @luint offset ;
+    select
+      offset := [@luint new !0 !here] ;
+    or
+      $[$ ;
+      $integer$ ? offset ;
+      $]$ ;
+    end select ;
+    @registerExpression registerExpression [new
+      !registerName
+      !offset
+    ] ;
+    outExpression := [@immediatRegister new !registerExpression] ;
+  or
+    $($ ;
+    <immediate_expression> ?outExpression ;
+    $)$ ;
   end select ;
 end rule ;
 

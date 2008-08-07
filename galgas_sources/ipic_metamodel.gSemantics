@@ -503,14 +503,15 @@ end routine ;
 
 class @ipic_instruction_literalOperation extends @ipic_actualInstruction {
   @literal_instruction_opcode mLiteralInstruction ;
-  @luint mLiteralValue ;
+  @uint mLiteralValue ;
+
   method getBaseCode !@uint outBaseCode :
     getLiteralInstructionBaseCode !mLiteralInstruction ?outBaseCode ;
   end method ;
 
   override
   method displayIPICinstruction ?!@string ioListFileContents :
-    ioListFileContents .= [mLiteralInstruction mnemonic] . " " . [[mLiteralValue uint] hexString] ;
+    ioListFileContents .= [mLiteralInstruction mnemonic] . " " . [mLiteralValue hexString] ;
   end method ;
 
   override method nextInstructionIsReachable !@bool outIsReachable :
@@ -522,7 +523,7 @@ class @ipic_instruction_literalOperation extends @ipic_actualInstruction {
 
 class @ipic_instruction_LFSR extends @ipic_actualInstruction {
   @luint mFSRindex ;
-  @ipic_registerExpression mRegisterDescription ;
+  @uint mValue ;
   
   override
   method instructionLength !@uint outLength :
@@ -531,7 +532,7 @@ class @ipic_instruction_LFSR extends @ipic_actualInstruction {
 
   override
   method displayIPICinstruction ?!@string ioListFileContents :
-    ioListFileContents .= "LFSR " . [[mFSRindex uint] string] . ", " . [mRegisterDescription mAssemblyString] ;
+    ioListFileContents .= "LFSR " . [[mFSRindex uint] string] . ", " . [mValue hexString] ;
   end method ;
 }
 
@@ -543,17 +544,6 @@ class @ipic_instruction_MOVLB extends @ipic_actualInstruction {
   override
   method displayIPICinstruction ?!@string ioListFileContents :
     ioListFileContents .= "MOVLB " . [[mBankIndex uint] string] ;
-  end method ;
-}
-
-#----------------------------------------------------*
-
-class @ipic_instruction_MOVAW extends @ipic_actualInstruction {
-  @ipic_registerExpression mRegisterDescription ;
-
-  override
-  method displayIPICinstruction ?!@string ioListFileContents :
-    ioListFileContents .= "MOVAW " . [mRegisterDescription mAssemblyString] ;
   end method ;
 }
 
@@ -597,7 +587,7 @@ class @ipic_instruction_MNOP extends @ipic_actualInstruction {
 #----------------------------------------------------*
 
 class @ipic_instruction_computed_retlw extends @ipic_actualInstruction {
-  @luintlist mLiteralValues ;
+  @uintlist mLiteralValues ;
   @bool mUsesRCALL ;
 
   override
@@ -617,7 +607,7 @@ class @ipic_instruction_computed_retlw extends @ipic_actualInstruction {
       ioListFileContents .= " (uses CALL)" ;
     end if ;
     foreach mLiteralValues do
-      ioListFileContents .= ", " . [[mValue uint] hexString] ;
+      ioListFileContents .= ", " . [mValue hexString] ;
     end foreach ;
   end method ;
 
