@@ -509,7 +509,6 @@ routine buildAssemblyCode
     outAssemblyCode .= ";--- Configuration\n\n" ;
     foreach inActualConfigurationMap do
       outAssemblyCode .= "  __config " . [mRegisterAddress hexString] . ", " . [mRegisterValue & 255 hexString] . "\n" ;
-      outAssemblyCode .= "  __config " . [mRegisterAddress+1 hexString] . ", " . [(mRegisterValue >> 8) & 255 hexString] . "\n" ;
     end foreach ;
   end if ;
 #-------------------------------- End

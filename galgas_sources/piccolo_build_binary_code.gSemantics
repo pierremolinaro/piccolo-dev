@@ -11,6 +11,8 @@ extern routine currentEmitAddress !@uint outAddress ;
 
 extern routine emitCode ??@uint inCode ;
 
+extern routine emitByte ??@uint inCode ;
+
 extern routine getGeneratedContents !@string outContents ;
 
 #----------------------------------------------------------------------------*
@@ -767,7 +769,7 @@ routine buildBinaryCode
 #-------------------------------- Add Configuration
   foreach inActualConfigurationMap do
     setEmitAddress !mRegisterAddress ;
-    emitCode !mRegisterValue ;
+    emitByte !mRegisterValue ;
   end foreach ;
 end routine ;
 
