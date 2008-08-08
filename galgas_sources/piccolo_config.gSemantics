@@ -25,11 +25,11 @@ routine actualBuildConfig
 #--- From config description of device, build dictionary of all settings
 # This should succeed, since absence of potentiel setting name conflict has been
 # checked when parsing device definition string.
-  @actualConfigurationMap temporaryActualConfigurationMap [emptyMap] ;
+  outActualConfigurationMap := [@actualConfigurationMap emptyMap] ;
   @configFieldMap configFieldMap [emptyMap] ;
   foreach inConfigRegisterMap do
     @uint defaultValue := (1 << [mRegisterWidth uint]) - 1 ;
-    [!?temporaryActualConfigurationMap insertKey !key ![mRegisterAddress uint] !defaultValue] ;
+    [!? outActualConfigurationMap insertKey !key ![mRegisterAddress uint] !defaultValue] ;
     @lstring registerName := key ;
     foreach mConfigRegisterMaskMap do
       [!?configFieldMap insertKey !key !registerName !mMaskValue !mDescription !mFieldSettingMap] ;
@@ -53,9 +53,9 @@ routine actualBuildConfig
         @uint settingMask ;
         [fieldSettingMap searchKey !mSettingValue ?settingValue ?settingMask] ;
         @uint registerValue ;
-        [temporaryActualConfigurationMap searchKey !registerName ?* ?registerValue] ;
+        [outActualConfigurationMap searchKey !registerName ?* ?registerValue] ;
         registerValue := (registerValue & ~ settingMask) | settingValue ;
-        [!? temporaryActualConfigurationMap setMRegisterValueForKey !registerValue ![registerName string]] ;
+        [!? outActualConfigurationMap setMRegisterValueForKey !registerValue ![registerName string]] ;
       elsif [fieldSettingMap count] > 0 then
         @string errorMessage := "the '" . mSettingValue . "' value is not defined for configuration setting '"
         . mSettingName . "'; possible values are:" ;
@@ -77,33 +77,8 @@ routine actualBuildConfig
       error here : errorMessage ;
     end if ;
   end if ;
-#--- Convert temporary configuration map, so that definitive map contains
-# 16-bits entries, at even addresses.
-  outActualConfigurationMap := [@actualConfigurationMap emptyMap] ;
-  foreach temporaryActualConfigurationMap do
-    @uint registerAddress := mRegisterAddress & ([@uint max] - 1) ;
-    @lstring newKey [new ![registerAddress string] !here] ;
-    if [outActualConfigurationMap hasKey ![newKey string]] then
-      @uint value ;
-      [outActualConfigurationMap searchKey !newKey ?* ?value] ;
-      if ((mRegisterAddress & 1) == 0) then
-        value := (value & 0xFF00) | mRegisterValue ;
-      else
-        value := (value & 0x00FF) | (mRegisterValue << 8) ;
-      end if ;
-      [!?outActualConfigurationMap setMRegisterValueForKey !value ![newKey string]] ;
-    else
-      @uint value := 0xFFFF ;
-      if ((mRegisterAddress & 1) == 0) then
-        value := 0xFF00 | mRegisterValue ;
-      else
-        value := 0x00FF | (mRegisterValue << 8) ;
-      end if ;
-      [!?outActualConfigurationMap insertKey !newKey !registerAddress !value] ;
-    end if ;
-  end foreach ;
 #--- Display conguration information in log file
-  foreach temporaryActualConfigurationMap do
+  foreach outActualConfigurationMap do
     ioListFileContents .= "Register '" . key . "' at " . [mRegisterAddress hexString] . " set to " . [mRegisterValue hexString] . "\n" ;
     @configRegisterMaskMap configRegisterMaskMap ;
     [inConfigRegisterMap searchKey !key ?* ?* ?configRegisterMaskMap ?*] ;
@@ -118,7 +93,7 @@ routine actualBuildConfig
     ioListFileContents .= "\n" ;
   end foreach ;
 #--- Detect illegal configurations
-  foreach temporaryActualConfigurationMap do
+  foreach outActualConfigurationMap do
     @illegalMaskList illegalMaskList ;
     [inConfigRegisterMap searchKey !key ?* ?* ?* ?illegalMaskList] ;
      foreach illegalMaskList do

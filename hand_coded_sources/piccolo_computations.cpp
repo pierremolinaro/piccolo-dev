@@ -130,7 +130,7 @@ void routine_currentEmitAddress (C_Compiler & /* inLexique */,
 void routine_emitCode (C_Compiler & inLexique,
                        const GGS_uint inCode
                        COMMA_LOCATION_ARGS) {
-  if ((inCode.uintValue () >> 16) != 0) {
+  if (inCode.uintValue () > 0xFFFF) {
     C_String errorMessage ;
     errorMessage << "Internal error: code (" << inCode.uintValue () << ") greater than 2**16-1" ;
     inLexique.onTheFlySemanticError (errorMessage COMMA_THERE) ;
@@ -139,6 +139,19 @@ void routine_emitCode (C_Compiler & inLexique,
   const unsigned char highByte = (inCode.uintValue () >> 8) & 255 ;
   enterByte (lowByte) ;
   enterByte (highByte) ;
+}
+
+//---------------------------------------------------------------------------*
+
+void routine_emitByte (C_Compiler & inLexique,
+                       const GGS_uint inCode
+                       COMMA_LOCATION_ARGS) {
+  if (inCode.uintValue () > 0xFF) {
+    C_String errorMessage ;
+    errorMessage << "Internal error: code (" << inCode.uintValue () << ") greater than 255" ;
+    inLexique.onTheFlySemanticError (errorMessage COMMA_THERE) ;
+  }
+  enterByte (inCode.uintValue () & 255) ;
 }
 
 //---------------------------------------------------------------------------*

@@ -31,6 +31,16 @@ echo "-------------- blink_led_it" &&
 piccolo -v -S -O -L blink_led_it.piccolo &&
 $GPUTILS_PATH/gpasm blink_led_it.asm -o blink_led_it-2.asm &&
 hexcmp blink_led_it.hex blink_led_it-2.hex &&
+#--- Exemples BSR
+echo "-------------- exemples_bsr" &&
+piccolo -v -S -O -L exemples_bsr.piccolo &&
+$GPUTILS_PATH/gpasm exemples_bsr.asm -o exemples_bsr-2.asm &&
+hexcmp exemples_bsr.hex exemples_bsr-2.hex &&
+#--- Optimisations
+echo "-------------- optimizations" &&
+piccolo -v -S -O -L optimizations.piccolo &&
+$GPUTILS_PATH/gpasm optimizations.asm -o optimizations-2.asm &&
+hexcmp optimizations.hex optimizations-2.hex &&
 #----
 echo "-------------- SUCCES ---------------" ||
 echo "-------------- ECHEC ----------------"
