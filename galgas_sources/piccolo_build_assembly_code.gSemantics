@@ -508,8 +508,8 @@ routine buildAssemblyCode
   if [inActualConfigurationMap count] > 0 then
     outAssemblyCode .= ";--- Configuration\n\n" ;
     foreach inActualConfigurationMap do
-      outAssemblyCode .= "  ORG " . [mRegisterAddress hexString] . "\n" ;
-      outAssemblyCode .= "  DW " . [mRegisterValue hexString] . "\n" ;
+      outAssemblyCode .= "  __config " . [mRegisterAddress hexString] . ", " . [mRegisterValue & 255 hexString] . "\n" ;
+      outAssemblyCode .= "  __config " . [mRegisterAddress+1 hexString] . ", " . [(mRegisterValue >> 8) & 255 hexString] . "\n" ;
     end foreach ;
   end if ;
 #-------------------------------- End

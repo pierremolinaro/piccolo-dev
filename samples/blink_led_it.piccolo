@@ -2,16 +2,20 @@
 #                                                                            *
 #            PROGRAMME D'EXEMPLE "BLINK_LED_IT"                              *
 #                                                                            *
-# Ce simple programme fait clignoter ˆ 4 Hz une led connectee au port RE0    *
+# Ce simple programme fait clignoter a 4 Hz une led connectee au port RE0    *
 # Il programme donc RE0 (broche 8) en sortie.                                *
 #                                                                            *
-# La configuration suppose qu'il est connectŽ ˆ une horloge externe a 40MHz  *
+# La configuration suppose qu'il est connecte a une horloge externe a 40MHz  *
 # sur la broche 13.                                                          *
 #                                                                            *
-# La boucle infinie compte le temps en decrementant un mot de 24 bits,       *
-# contenu dans compteurL (poids faible), compteurH et compteurU (poids fort) *
-# Quand le compteur atteint zero, il est recharge a 1 000 000 = 0xF4240, ce  *
-# permet d'avoir une periode de clignotement de 1 Hz environ.                *
+# Un sous-programme d'interruption est dÃ©clenchÃ© toutes les 0,1 ms par le    *
+# timer 2.                                                                   *
+#                                                                            *
+# Pour illustrer les instructions de gestion des bancs, les deux             *
+# variables sont placÃ©es dans le banc 2.                                     *
+#                                                                            *
+# Supprimez ou dÃ©placez les instructions "banksel", pour mettre en Ã©vidence  *
+# les vÃ©rifications faites par le compilateur.                               * 
 #                                                                            *
 #----------------------------------------------------------------------------*
 
@@ -104,15 +108,14 @@ noreturn routine main bank:requires 0 {
   MOVWF ADCON1
 #--- Programmer RE0 en sortie
   BCF  TRISE.0
-  BCF  TRISE.1
 #--- Initialiser les compteurs
   banksel 2
   CLRF compteurL
   CLRF compteurH
 #--- Initialiser le Timer 2
 #  Horloge de base : 10 MHz
-#  Le Prescaler est fixŽ ˆ 4 -> 2 500 kHz
-#  PR2 est fixŽ ˆ 250 -> 10 kHz
+#  Le Prescaler est fixe a 4 -> 2 500 kHz
+#  PR2 est fixÃ© Ã  250 -> 10 kHz
   MOVLW  250 - 1 # La periode est PR2 + 1
   MOVWF  PR2
   MOVLW  @T2CON (TOUTPS:0, TMR2ON:1, T2CKPS:1)

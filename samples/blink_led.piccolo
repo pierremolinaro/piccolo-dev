@@ -2,10 +2,10 @@
 #                                                                            *
 #            PROGRAMME D'EXEMPLE "BLINK_LED"                                 *
 #                                                                            *
-# Ce simple programme fait clignoter à 4 Hz une led connectee au port RE0    *
+# Ce simple programme fait clignoter a 1 Hz une led connectee au port RE0    *
 # Il programme donc RE0 (broche 8) en sortie.                                *
 #                                                                            *
-# La configuration suppose qu'il est connecté à une horloge externe a 40MHz  *
+# La configuration suppose qu'il est connecte a une horloge externe a 40MHz  *
 # sur la broche 13.                                                          *
 #                                                                            *
 # La boucle infinie compte le temps en decrementant un mot de 24 bits,       *
@@ -78,7 +78,6 @@ noreturn routine main bank:requires 0 {
   MOVWF ADCON1
 #--- Programmer RE0 en sortie
   BCF  TRISE.0
-  BCF  TRISE.1
 #--- Initialiser les compteurs
   CLRF compteurL
   CLRF compteurH
@@ -100,7 +99,7 @@ noreturn routine main bank:requires 0 {
       MOVWF  compteurU
       MOVLW  0x42
       MOVWF  compteurH
-      MOVLW  0x3F
+      MOVLW  0x40
       MOVWF  compteurL
     #--- Clignoter
       BTG  PORTE.0
