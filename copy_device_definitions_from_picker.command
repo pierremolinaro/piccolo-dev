@@ -1,7 +1,7 @@
 #!/bin/sh
 DIR=`dirname $0` &&
 { 
-  for source in $DIR/../picker/generatedDefinitions_8_10/PIC18*.piccoloDevice
+  for source in $DIR/../picker/generatedDefinitions_8_10/pic18/PIC18*.piccoloDevice
   do
     base=`basename "$source"`
     base2=`echo "$base" | sed 's/PIC18/18/g'`
