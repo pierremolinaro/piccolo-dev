@@ -82,7 +82,7 @@ override method @immediatDiv.eval
 :
   @sint leftResult ; [mLeftExpression eval !inRegisterTable ?leftResult] ;
   @sint rightResult ; [mRightExpression eval !inRegisterTable ?rightResult] ;
-  outResult := leftResult * rightResult ;
+  outResult := leftResult / rightResult ;
 end method ;
 
 #----------------------------------------------------------------------------*
@@ -280,10 +280,9 @@ override method @immediatSlice.eval
       @uint sliceSize ;
       [bitSliceTable searchKey !mSliceName ?sliceIndex ?sliceSize] ;
       @sint result ; [mExpression eval !inRegisterTable ?result] ;
-      if (result < 0S) | (result > (1S << (sliceSize - 1))) then
-log mSliceName ;
+      if (result < 0S) | (result > ((1S << sliceSize) - 1S)) then
         error mSliceName:"invalid immediat value associated to the '" . mSliceName . "' bit field, evaluated as " . [result string]
-        . " (should be between 0 and " . [1S << (sliceSize - 1) string] . ")" ;
+        . " (should be between 0 and " . [(1 << sliceSize) - 1 string] . ")" ;
       end if ;
       outResult := outResult | (result << sliceIndex) ;
       end if ;
