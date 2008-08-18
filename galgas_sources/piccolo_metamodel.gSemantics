@@ -860,6 +860,13 @@ list @configDefinitionList {
 
 #----------------------------------------------------*
 
+list @constantDefinitionList {
+  @lstring mConstantName ;
+  @immediatExpression mExpression ;
+}
+
+#----------------------------------------------------*
+
 struct @piccoloModel {
   @lstring mProgramName ;
   @lstring mDeviceName ;
@@ -867,6 +874,7 @@ struct @piccoloModel {
   @bool mAcceptDefaultConfiguration ;
   @ramDefinitionList mRamDefinitionList ;
   @interruptDefinitionList mInterruptDefinitionList ;
+  @constantDefinitionList mConstantDefinitionList ;
   @routineDefinitionList mRoutineDefinitionList ;
   @bool mNeedsComputedGoto2 ;
   @bool mNeedsComputedGoto4 ;
