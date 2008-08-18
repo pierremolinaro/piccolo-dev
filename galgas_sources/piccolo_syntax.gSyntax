@@ -17,6 +17,10 @@ nonterminal <ram_definition>
   ?!@ramDefinitionList ioRamDefinitionList
 ;
 
+nonterminal <constant_definition>
+  ?!@constantDefinitionList ioConstantDefinitionList
+;
+
 nonterminal <interrupt_definition>
   ?!@interruptDefinitionList outInterruptDefinitionList
   ?!@bool ioNeedsComputedGoto2 
@@ -90,6 +94,7 @@ rule <start_symbol>
   @routineDefinitionList routineDefinitionList [emptyList] ;
   @ramDefinitionList ramDefinitionList [emptyList] ;
   @configDefinitionList configDefinitionList [emptyList] ;
+  @constantDefinitionList constantDefinitionList [emptyList] ;
   @bool acceptDefaultConfiguration := false ;
   @bool needsComputedGoto2 := false ;
   @bool needsComputedGoto4 := false ;
@@ -98,6 +103,8 @@ rule <start_symbol>
     <configuration_definition> !?configDefinitionList !?acceptDefaultConfiguration ;
   while
     <ram_definition> !?ramDefinitionList ;
+  while
+    <constant_definition> !?constantDefinitionList ;
   while
     <interrupt_definition>
       !?interruptDefinitionList
@@ -119,6 +126,7 @@ rule <start_symbol>
     !acceptDefaultConfiguration
     !ramDefinitionList
     !interruptDefinitionList
+    !constantDefinitionList
     !routineDefinitionList
     !needsComputedGoto2
     !needsComputedGoto4
@@ -274,6 +282,19 @@ rule <ram_definition>
   end repeat ;
   ioRamDefinitionList += !bankName !declarationInRamList ;
   $}$ ;
+end rule ;
+
+#----------------------------------------------------*
+
+rule <constant_definition>
+  ?!@constantDefinitionList ioConstantDefinitionList
+:
+  $const$ ;
+  $identifier$ ? @lstring constantName ;
+  $=$ ;
+  @immediatExpression expression ;
+  <immediate_expression> ?expression ;
+  ioConstantDefinitionList += !constantName !expression ;
 end rule ;
 
 #----------------------------------------------------*

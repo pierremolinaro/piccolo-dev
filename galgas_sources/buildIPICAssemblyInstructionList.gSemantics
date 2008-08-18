@@ -6,6 +6,16 @@ import option piccolo_options in "piccolo_options.gOption" ;
 import "ipic_metamodel.gSemantics" ;
 
 #----------------------------------------------------------------------------*
+#                          CONSTANT MAP                                      *
+#----------------------------------------------------------------------------*
+
+map @constantMap {
+  @sint mValue ;
+  insert insertKey error message "the '%K' constant is already declared in %L" ;
+  search searchKey error message "the '%K' constant is not declared" ;
+}
+
+#----------------------------------------------------------------------------*
 #                          ROUTINE MAP                                       *
 #----------------------------------------------------------------------------*
 
@@ -35,6 +45,7 @@ enum @routineKind {
 
 abstract method @immediatExpression.eval
   ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
   !@sint outResult
 ;
 
@@ -42,6 +53,7 @@ abstract method @immediatExpression.eval
 
 override method @immediatInteger.eval
   ??@registerTable unused inRegisterTable
+  ??@constantMap unused inConstantMap
   !@sint outResult
 :
   outResult := [[mValue uint] sint] ;
@@ -51,26 +63,37 @@ end method ;
 
 override method @immediatRegister.eval
   ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
   !@sint outResult
 :
-  @uintlist registerAddressList ;
-  @uint size ;
-  [inRegisterTable searchKey ![mRegister mRegisterName] ?registerAddressList ?size ?* ?*] ;
-  @uint registerAddress ; [registerAddressList first ?registerAddress] ;
-  if [[mRegister mOffset] uint] >= size then
-    error [mRegister mOffset]:"index (" . [[[mRegister mOffset] uint] string] . ") should be lower than size (" . [size string] . ")" ;
+  if [inRegisterTable hasKey ![[mRegister mRegisterName] string]] then
+    @uintlist registerAddressList ;
+    @uint size ;
+    [inRegisterTable searchKey ![mRegister mRegisterName] ?registerAddressList ?size ?* ?*] ;
+    @uint registerAddress ; [registerAddressList first ?registerAddress] ;
+    if [[mRegister mOffset] uint] >= size then
+      error [mRegister mOffset]:"index (" . [[[mRegister mOffset] uint] string] . ") should be lower than size (" . [size string] . ")" ;
+    end if ;
+    outResult := [registerAddress + [[mRegister mOffset] uint] sint] ;
+  elsif [inConstantMap hasKey ![[mRegister mRegisterName] string]] then
+    [inConstantMap searchKey ![mRegister mRegisterName] ?outResult] ;
+    if [[mRegister mOffset] uint] > 0 then
+      error [mRegister mOffset]:"index notation (" . [[[mRegister mOffset] uint] string] . ") cannot be used with a constant" ;
+    end if ;
+  else
+    error [mRegister mRegisterName]: "'" . [mRegister mRegisterName] . "' should be declared as ram register or as constant" -> outResult ;
   end if ;
-  outResult := [registerAddress + [[mRegister mOffset] uint] sint] ;
 end method ;
 
 #----------------------------------------------------------------------------*
 
 override method @immediatAdd.eval
   ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
   !@sint outResult
 :
-  @sint leftResult ; [mLeftExpression eval !inRegisterTable ?leftResult] ;
-  @sint rightResult ; [mRightExpression eval !inRegisterTable ?rightResult] ;
+  @sint leftResult ; [mLeftExpression eval !inRegisterTable !inConstantMap ?leftResult] ;
+  @sint rightResult ; [mRightExpression eval !inRegisterTable !inConstantMap ?rightResult] ;
   outResult := leftResult + rightResult ;
 end method ;
 
@@ -78,10 +101,11 @@ end method ;
 
 override method @immediatSub.eval
   ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
   !@sint outResult
 :
-  @sint leftResult ; [mLeftExpression eval !inRegisterTable ?leftResult] ;
-  @sint rightResult ; [mRightExpression eval !inRegisterTable ?rightResult] ;
+  @sint leftResult ; [mLeftExpression eval !inRegisterTable !inConstantMap ?leftResult] ;
+  @sint rightResult ; [mRightExpression eval !inRegisterTable !inConstantMap ?rightResult] ;
   outResult := leftResult - rightResult ;
 end method ;
 
@@ -89,10 +113,11 @@ end method ;
 
 override method @immediatMul.eval
   ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
   !@sint outResult
 :
-  @sint leftResult ; [mLeftExpression eval !inRegisterTable ?leftResult] ;
-  @sint rightResult ; [mRightExpression eval !inRegisterTable ?rightResult] ;
+  @sint leftResult ; [mLeftExpression eval !inRegisterTable !inConstantMap ?leftResult] ;
+  @sint rightResult ; [mRightExpression eval !inRegisterTable !inConstantMap ?rightResult] ;
   outResult := leftResult * rightResult ;
 end method ;
 
@@ -100,10 +125,11 @@ end method ;
 
 override method @immediatDiv.eval
   ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
   !@sint outResult
 :
-  @sint leftResult ; [mLeftExpression eval !inRegisterTable ?leftResult] ;
-  @sint rightResult ; [mRightExpression eval !inRegisterTable ?rightResult] ;
+  @sint leftResult ; [mLeftExpression eval !inRegisterTable !inConstantMap ?leftResult] ;
+  @sint rightResult ; [mRightExpression eval !inRegisterTable !inConstantMap ?rightResult] ;
   outResult := leftResult / rightResult ;
 end method ;
 
@@ -111,10 +137,11 @@ end method ;
 
 override method @immediatMod.eval
   ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
   !@sint outResult
 :
-  @sint leftResult ; [mLeftExpression eval !inRegisterTable ?leftResult] ;
-  @sint rightResult ; [mRightExpression eval !inRegisterTable ?rightResult] ;
+  @sint leftResult ; [mLeftExpression eval !inRegisterTable !inConstantMap ?leftResult] ;
+  @sint rightResult ; [mRightExpression eval !inRegisterTable !inConstantMap ?rightResult] ;
   outResult := leftResult mod rightResult ;
 end method ;
 
@@ -122,10 +149,11 @@ end method ;
 
 override method @immediatAnd.eval
   ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
   !@sint outResult
 :
-  @sint leftResult ; [mLeftExpression eval !inRegisterTable ?leftResult] ;
-  @sint rightResult ; [mRightExpression eval !inRegisterTable ?rightResult] ;
+  @sint leftResult ; [mLeftExpression eval !inRegisterTable !inConstantMap ?leftResult] ;
+  @sint rightResult ; [mRightExpression eval !inRegisterTable !inConstantMap ?rightResult] ;
   outResult := leftResult & rightResult ;
 end method ;
 
@@ -133,10 +161,11 @@ end method ;
 
 override method @immediatOr.eval
   ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
   !@sint outResult
 :
-  @sint leftResult ; [mLeftExpression eval !inRegisterTable ?leftResult] ;
-  @sint rightResult ; [mRightExpression eval !inRegisterTable ?rightResult] ;
+  @sint leftResult ; [mLeftExpression eval !inRegisterTable !inConstantMap ?leftResult] ;
+  @sint rightResult ; [mRightExpression eval !inRegisterTable !inConstantMap ?rightResult] ;
   outResult := leftResult | rightResult ;
 end method ;
 
@@ -144,10 +173,11 @@ end method ;
 
 override method @immediatXor.eval
   ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
   !@sint outResult
 :
-  @sint leftResult ; [mLeftExpression eval !inRegisterTable ?leftResult] ;
-  @sint rightResult ; [mRightExpression eval !inRegisterTable ?rightResult] ;
+  @sint leftResult ; [mLeftExpression eval !inRegisterTable !inConstantMap ?leftResult] ;
+  @sint rightResult ; [mRightExpression eval !inRegisterTable !inConstantMap ?rightResult] ;
   outResult := leftResult ^ rightResult ;
 end method ;
 
@@ -155,10 +185,11 @@ end method ;
 
 override method @immediatLeftShift.eval
   ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
   !@sint outResult
 :
-  @sint leftResult ; [mLeftExpression eval !inRegisterTable ?leftResult] ;
-  @sint rightResult ; [mRightExpression eval !inRegisterTable ?rightResult] ;
+  @sint leftResult ; [mLeftExpression eval !inRegisterTable !inConstantMap ?leftResult] ;
+  @sint rightResult ; [mRightExpression eval !inRegisterTable !inConstantMap ?rightResult] ;
   outResult := leftResult << [rightResult uint] ;
 end method ;
 
@@ -166,10 +197,11 @@ end method ;
 
 override method @immediatRightShift.eval
   ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
   !@sint outResult
 :
-  @sint leftResult ; [mLeftExpression eval !inRegisterTable ?leftResult] ;
-  @sint rightResult ; [mRightExpression eval !inRegisterTable ?rightResult] ;
+  @sint leftResult ; [mLeftExpression eval !inRegisterTable !inConstantMap ?leftResult] ;
+  @sint rightResult ; [mRightExpression eval !inRegisterTable !inConstantMap ?rightResult] ;
   outResult := leftResult >> [rightResult uint] ;
 end method ;
 
@@ -177,10 +209,11 @@ end method ;
 
 override method @immediatEqualTest.eval
   ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
   !@sint outResult
 :
-  @sint leftResult ; [mLeftExpression eval !inRegisterTable ?leftResult] ;
-  @sint rightResult ; [mRightExpression eval !inRegisterTable ?rightResult] ;
+  @sint leftResult ; [mLeftExpression eval !inRegisterTable !inConstantMap ?leftResult] ;
+  @sint rightResult ; [mRightExpression eval !inRegisterTable !inConstantMap ?rightResult] ;
   if leftResult == rightResult then
     outResult := 1S ;
   else
@@ -192,10 +225,11 @@ end method ;
 
 override method @immediatNotEqualTest.eval
   ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
   !@sint outResult
 :
-  @sint leftResult ; [mLeftExpression eval !inRegisterTable ?leftResult] ;
-  @sint rightResult ; [mRightExpression eval !inRegisterTable ?rightResult] ;
+  @sint leftResult ; [mLeftExpression eval !inRegisterTable !inConstantMap ?leftResult] ;
+  @sint rightResult ; [mRightExpression eval !inRegisterTable !inConstantMap ?rightResult] ;
   if leftResult != rightResult then
     outResult := 1S ;
   else
@@ -207,10 +241,11 @@ end method ;
 
 override method @immediatGreaterOrEqualTest.eval
   ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
   !@sint outResult
 :
-  @sint leftResult ; [mLeftExpression eval !inRegisterTable ?leftResult] ;
-  @sint rightResult ; [mRightExpression eval !inRegisterTable ?rightResult] ;
+  @sint leftResult ; [mLeftExpression eval !inRegisterTable !inConstantMap ?leftResult] ;
+  @sint rightResult ; [mRightExpression eval !inRegisterTable !inConstantMap ?rightResult] ;
   if leftResult >= rightResult then
     outResult := 1S ;
   else
@@ -222,10 +257,11 @@ end method ;
 
 override method @immediatLowerOrEqualTest.eval
   ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
   !@sint outResult
 :
-  @sint leftResult ; [mLeftExpression eval !inRegisterTable ?leftResult] ;
-  @sint rightResult ; [mRightExpression eval !inRegisterTable ?rightResult] ;
+  @sint leftResult ; [mLeftExpression eval !inRegisterTable !inConstantMap ?leftResult] ;
+  @sint rightResult ; [mRightExpression eval !inRegisterTable !inConstantMap ?rightResult] ;
   if leftResult <= rightResult then
     outResult := 1S ;
   else
@@ -237,10 +273,11 @@ end method ;
 
 override method @immediatGreaterTest.eval
   ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
   !@sint outResult
 :
-  @sint leftResult ; [mLeftExpression eval !inRegisterTable ?leftResult] ;
-  @sint rightResult ; [mRightExpression eval !inRegisterTable ?rightResult] ;
+  @sint leftResult ; [mLeftExpression eval !inRegisterTable !inConstantMap ?leftResult] ;
+  @sint rightResult ; [mRightExpression eval !inRegisterTable !inConstantMap ?rightResult] ;
   if leftResult > rightResult then
     outResult := 1S ;
   else
@@ -252,10 +289,11 @@ end method ;
 
 override method @immediatLowerTest.eval
   ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
   !@sint outResult
 :
-  @sint leftResult ; [mLeftExpression eval !inRegisterTable ?leftResult] ;
-  @sint rightResult ; [mRightExpression eval !inRegisterTable ?rightResult] ;
+  @sint leftResult ; [mLeftExpression eval !inRegisterTable !inConstantMap ?leftResult] ;
+  @sint rightResult ; [mRightExpression eval !inRegisterTable !inConstantMap ?rightResult] ;
   if leftResult < rightResult then
     outResult := 1S ;
   else
@@ -267,9 +305,10 @@ end method ;
 
 override method @immediatNegate.eval
   ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
   !@sint outResult
 :
-  @sint result ; [mExpression eval !inRegisterTable ?result] ;
+  @sint result ; [mExpression eval !inRegisterTable !inConstantMap ?result] ;
   outResult := - result ;
 end method ;
 
@@ -277,9 +316,10 @@ end method ;
 
 override method @immediatComplement.eval
   ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
   !@sint outResult
 :
-  @sint result ; [mExpression eval !inRegisterTable ?result] ;
+  @sint result ; [mExpression eval !inRegisterTable !inConstantMap ?result] ;
   outResult := ~ result ;
 end method ;
 
@@ -287,6 +327,7 @@ end method ;
 
 override method @immediatSlice.eval
   ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
   !@sint outResult
 :
   @bitSliceTable bitSliceTable ;
@@ -301,7 +342,7 @@ override method @immediatSlice.eval
       @uint sliceIndex ;
       @uint sliceSize ;
       [bitSliceTable searchKey !mSliceName ?sliceIndex ?sliceSize] ;
-      @sint result ; [mExpression eval !inRegisterTable ?result] ;
+      @sint result ; [mExpression eval !inRegisterTable !inConstantMap ?result] ;
       if (result < 0S) | (result > ((1S << sliceSize) - 1S)) then
         error mSliceName:"invalid immediat value associated to the '" . mSliceName . "' bit field, evaluated as " . [result string]
         . " (should be between 0 and " . [(1 << sliceSize) - 1 string] . ")" ;
@@ -393,7 +434,8 @@ end method ;
 abstract method @piccolo_instruction.buildIPICinstructionList
   ??@uint unused inAccessBankSplitOffset
   ??@routineMap unused inRoutineMap
-  ??@registerTable unused inRegisterTable
+  ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic_instructionList unused ioGeneratedInstructionList
   ?!@string unused ioListFileContents
@@ -410,6 +452,7 @@ routine handleInstructionList
   ??@uint inAccessBankSplitOffset
   ??@routineMap inRoutineMap
   ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
   ?!@uint ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
   ?!@string ioListFileContents
@@ -428,6 +471,7 @@ routine handleInstructionList
       !inAccessBankSplitOffset
       !inRoutineMap
       !inRegisterTable
+      !inConstantMap
       !?ioLocalLabelIndex
       !?ioGeneratedInstructionList
       !?ioListFileContents
@@ -445,6 +489,7 @@ override method @instruction_nobanksel.buildIPICinstructionList
   ??@uint unused inAccessBankSplitOffset
   ??@routineMap unused inRoutineMap
   ??@registerTable unused inRegisterTable
+  ??@constantMap unused inConstantMap
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic_instructionList unused ioGeneratedInstructionList
   ?!@string unused ioListFileContents
@@ -466,6 +511,7 @@ override method @instruction_savebank.buildIPICinstructionList
   ??@uint inAccessBankSplitOffset
   ??@routineMap inRoutineMap
   ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
   ?!@uint ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
   ?!@string ioListFileContents
@@ -504,6 +550,7 @@ override method @instruction_savebank.buildIPICinstructionList
     !inAccessBankSplitOffset
     !inRoutineMap
     !inRegisterTable
+    !inConstantMap
     !?ioLocalLabelIndex
     !?ioGeneratedInstructionList
     !?ioListFileContents
@@ -529,6 +576,7 @@ override method @instruction_banksel.buildIPICinstructionList
   ??@uint unused inAccessBankSplitOffset
   ??@routineMap unused inRoutineMap
   ??@registerTable unused inRegisterTable
+  ??@constantMap unused inConstantMap
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
   ?!@string unused ioListFileContents
@@ -558,6 +606,7 @@ override method @instruction_FDA.buildIPICinstructionList
   ??@uint inAccessBankSplitOffset
   ??@routineMap unused inRoutineMap
   ??@registerTable inRegisterTable
+  ??@constantMap unused inConstantMap
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
   ?!@string unused ioListFileContents
@@ -587,6 +636,7 @@ override method @instruction_FA.buildIPICinstructionList
   ??@uint inAccessBankSplitOffset
   ??@routineMap unused inRoutineMap
   ??@registerTable inRegisterTable
+  ??@constantMap unused inConstantMap
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
   ?!@string unused ioListFileContents
@@ -615,6 +665,7 @@ override method @instruction_MOVFF.buildIPICinstructionList
   ??@uint inAccessBankSplitOffset
   ??@routineMap unused inRoutineMap
   ??@registerTable inRegisterTable
+  ??@constantMap unused inConstantMap
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
   ?!@string unused ioListFileContents
@@ -650,6 +701,7 @@ override method @instruction_FBA.buildIPICinstructionList
   ??@uint inAccessBankSplitOffset
   ??@routineMap unused inRoutineMap
   ??@registerTable inRegisterTable
+  ??@constantMap unused inConstantMap
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
   ?!@string unused ioListFileContents
@@ -685,6 +737,7 @@ override method @instruction_JSR.buildIPICinstructionList
   ??@uint unused inAccessBankSplitOffset
   ??@routineMap inRoutineMap
   ??@registerTable unused inRegisterTable
+  ??@constantMap unused inConstantMap
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
   ?!@string unused ioListFileContents
@@ -729,6 +782,7 @@ override method @instruction_JUMP.buildIPICinstructionList
   ??@uint unused inAccessBankSplitOffset
   ??@routineMap inRoutineMap
   ??@registerTable unused inRegisterTable
+  ??@constantMap unused inConstantMap
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
   ?!@string unused ioListFileContents
@@ -769,6 +823,7 @@ override method @instruction_JUMPCC.buildIPICinstructionList
   ??@uint unused inAccessBankSplitOffset
   ??@routineMap inRoutineMap
   ??@registerTable unused inRegisterTable
+  ??@constantMap unused inConstantMap
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
   ?!@string unused ioListFileContents
@@ -815,6 +870,7 @@ override method @instruction_CLRWDT.buildIPICinstructionList
   ??@uint unused inAccessBankSplitOffset
   ??@routineMap unused inRoutineMap
   ??@registerTable unused inRegisterTable
+  ??@constantMap unused inConstantMap
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
   ?!@string unused ioListFileContents
@@ -834,6 +890,7 @@ override method @instruction_DAW.buildIPICinstructionList
   ??@uint unused inAccessBankSplitOffset
   ??@routineMap unused inRoutineMap
   ??@registerTable unused inRegisterTable
+  ??@constantMap unused inConstantMap
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
   ?!@string unused ioListFileContents
@@ -853,6 +910,7 @@ override method @instruction_NOP.buildIPICinstructionList
   ??@uint unused inAccessBankSplitOffset
   ??@routineMap unused inRoutineMap
   ??@registerTable unused inRegisterTable
+  ??@constantMap unused inConstantMap
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
   ?!@string unused ioListFileContents
@@ -872,6 +930,7 @@ override method @instruction_POP.buildIPICinstructionList
   ??@uint unused inAccessBankSplitOffset
   ??@routineMap unused inRoutineMap
   ??@registerTable unused inRegisterTable
+  ??@constantMap unused inConstantMap
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
   ?!@string unused ioListFileContents
@@ -891,6 +950,7 @@ override method @instruction_PUSH.buildIPICinstructionList
   ??@uint unused inAccessBankSplitOffset
   ??@routineMap unused inRoutineMap
   ??@registerTable unused inRegisterTable
+  ??@constantMap unused inConstantMap
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
   ?!@string unused ioListFileContents
@@ -910,6 +970,7 @@ override method @instruction_RESET.buildIPICinstructionList
   ??@uint unused inAccessBankSplitOffset
   ??@routineMap unused inRoutineMap
   ??@registerTable unused inRegisterTable
+  ??@constantMap unused inConstantMap
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
   ?!@string unused ioListFileContents
@@ -929,6 +990,7 @@ override method @instruction_SLEEP.buildIPICinstructionList
   ??@uint unused inAccessBankSplitOffset
   ??@routineMap unused inRoutineMap
   ??@registerTable unused inRegisterTable
+  ??@constantMap unused inConstantMap
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
   ?!@string unused ioListFileContents
@@ -948,6 +1010,7 @@ override method @instruction_literalOperation.buildIPICinstructionList
   ??@uint unused inAccessBankSplitOffset
   ??@routineMap unused inRoutineMap
   ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
   ?!@string unused ioListFileContents
@@ -956,7 +1019,7 @@ override method @instruction_literalOperation.buildIPICinstructionList
   ?!@bool unused ioContinuesInSequence
   ??@routineKind unused inRoutineKind
 :
-  @sint result ; [mImmediatExpression eval !inRegisterTable ?result] ;
+  @sint result ; [mImmediatExpression eval !inRegisterTable !inConstantMap ?result] ;
 #---
    if (result > 255S) | (result < -128S) then
      error mInstructionLocation:"immediate value is evaluated as " . [result string] . " (should be betwween -128 and 255)" ;
@@ -975,6 +1038,7 @@ override method @instruction_LFSR.buildIPICinstructionList
   ??@uint unused inAccessBankSplitOffset
   ??@routineMap unused inRoutineMap
   ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
   ?!@string unused ioListFileContents
@@ -987,7 +1051,7 @@ override method @instruction_LFSR.buildIPICinstructionList
     error mFSRindex:"the LFSR register index (" . [[mFSRindex uint] string] . ") should be lower or equal to 2" ;
   end if ;
 #---
-  @sint result ; [mImmediatExpression eval !inRegisterTable ?result] ;
+  @sint result ; [mImmediatExpression eval !inRegisterTable !inConstantMap ?result] ;
 #---
    if (result > 0xFFFS) | (result < 0S) then
      error mInstructionLocation:"immediate value is evaluated as " . [result string] . " (should be between 0 and 4095)" ;
@@ -1005,6 +1069,7 @@ override method @instruction_TBLRD.buildIPICinstructionList
   ??@uint unused inAccessBankSplitOffset
   ??@routineMap unused inRoutineMap
   ??@registerTable unused inRegisterTable
+  ??@constantMap unused inConstantMap
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
   ?!@string unused ioListFileContents
@@ -1025,6 +1090,7 @@ override method @instruction_TBLWT.buildIPICinstructionList
   ??@uint unused inAccessBankSplitOffset
   ??@routineMap unused inRoutineMap
   ??@registerTable unused inRegisterTable
+  ??@constantMap unused inConstantMap
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
   ?!@string unused ioListFileContents
@@ -1045,6 +1111,7 @@ override method @instruction_computed_retlw.buildIPICinstructionList
   ??@uint unused inAccessBankSplitOffset
   ??@routineMap unused inRoutineMap
   ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
   ?!@string unused ioListFileContents
@@ -1062,7 +1129,7 @@ override method @instruction_computed_retlw.buildIPICinstructionList
     error mInstructionLocation:"an interrupt routine does not accept computed retlw instruction" ;
   end switch ;
 #---
-  @sint size ; [mSizeExpression eval !inRegisterTable ?size] ;
+  @sint size ; [mSizeExpression eval !inRegisterTable !inConstantMap ?size] ;
   if size < 2S then
     error mInstructionLocation:"the computed range (" . [size string] . ") should be greater or equal to 2" ;
   elsif size > 128S then
@@ -1073,7 +1140,7 @@ override method @instruction_computed_retlw.buildIPICinstructionList
 #--- 
   @uintlist literalValues [emptyList] ;
   foreach mImmediateExpressionList :idx do
-    @sint v ; [mExpression eval !inRegisterTable ?v] ;
+    @sint v ; [mExpression eval !inRegisterTable !inConstantMap ?v] ;
     if (v > 255S) | (v < -128S) then
       error mInstructionLocation:"immediate value with index " . [idx string] . " is evaluated as " . [v string] . " (should be <= 255)" ;
     end if ;
@@ -1093,6 +1160,7 @@ override method @instruction_MNOP.buildIPICinstructionList
   ??@uint unused inAccessBankSplitOffset
   ??@routineMap unused inRoutineMap
   ??@registerTable unused inRegisterTable
+  ??@constantMap unused inConstantMap
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
   ?!@string unused ioListFileContents
@@ -1118,6 +1186,7 @@ override method @instruction_computed_bra.buildIPICinstructionList
   ??@uint unused inAccessBankSplitOffset
   ??@routineMap inRoutineMap
   ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
   ?!@string unused ioListFileContents
@@ -1154,7 +1223,7 @@ override method @instruction_computed_bra.buildIPICinstructionList
     error mInstructionLocation:"an interrupt routine does not accept computed bra instruction" ;
   end switch ;
 #---
-  @sint size ; [mSizeExpression eval !inRegisterTable ?size] ;
+  @sint size ; [mSizeExpression eval !inRegisterTable !inConstantMap ?size] ;
   if size < 2S then
     error mInstructionLocation:"the computed range (" . [size string] . ") should be greater or equal to 2" ;
   elsif size > 128S then
@@ -1176,6 +1245,7 @@ override method @instruction_computed_goto.buildIPICinstructionList
   ??@uint unused inAccessBankSplitOffset
   ??@routineMap inRoutineMap
   ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
   ?!@string unused ioListFileContents
@@ -1212,7 +1282,7 @@ override method @instruction_computed_goto.buildIPICinstructionList
     error mInstructionLocation:"an interrupt routine does not accept computed goto instruction" ;
   end switch ;
 #---
-  @sint size ; [mSizeExpression eval !inRegisterTable ?size] ;
+  @sint size ; [mSizeExpression eval !inRegisterTable !inConstantMap ?size] ;
   if size < 2S then
     error mInstructionLocation:"the computed range (" . [size string] . ") should be greater or equal to 2" ;
   elsif size > 64S then
@@ -1234,6 +1304,7 @@ override method @instruction_FOREVER.buildIPICinstructionList
   ??@uint inAccessBankSplitOffset
   ??@routineMap inRoutineMap
   ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
   ?!@uint ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
   ?!@string ioListFileContents
@@ -1259,6 +1330,7 @@ override method @instruction_FOREVER.buildIPICinstructionList
     !inAccessBankSplitOffset
     !inRoutineMap
     !inRegisterTable
+    !inConstantMap
     !?ioLocalLabelIndex
     !?ioGeneratedInstructionList
     !?ioListFileContents
@@ -1282,6 +1354,7 @@ override method @instruction_IF_FA_SEMI_COLON.buildIPICinstructionList
   ??@uint inAccessBankSplitOffset
   ??@routineMap inRoutineMap
   ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
   ?!@uint ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
   ?!@string ioListFileContents
@@ -1315,6 +1388,7 @@ override method @instruction_IF_FA_SEMI_COLON.buildIPICinstructionList
     !inAccessBankSplitOffset
     !inRoutineMap
     !inRegisterTable
+    !inConstantMap
     !?ioLocalLabelIndex
     !?ioGeneratedInstructionList
     !?ioListFileContents
@@ -1331,6 +1405,7 @@ override method @instruction_IF_BitTest.buildIPICinstructionList
   ??@uint inAccessBankSplitOffset
   ??@routineMap inRoutineMap
   ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
   ?!@uint ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
   ?!@string ioListFileContents
@@ -1364,6 +1439,7 @@ override method @instruction_IF_BitTest.buildIPICinstructionList
     !inAccessBankSplitOffset
     !inRoutineMap
     !inRegisterTable
+    !inConstantMap
     !?ioLocalLabelIndex
     !?ioGeneratedInstructionList
     !?ioListFileContents
@@ -1725,6 +1801,7 @@ override method @instruction_structured_if.buildIPICinstructionList
   ??@uint inAccessBankSplitOffset
   ??@routineMap inRoutineMap
   ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
   ?!@uint ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
   ?!@string ioListFileContents
@@ -1779,6 +1856,7 @@ override method @instruction_structured_if.buildIPICinstructionList
       !inAccessBankSplitOffset
       !inRoutineMap
       !inRegisterTable
+      !inConstantMap
       !?ioLocalLabelIndex
       !?ioGeneratedInstructionList
       !?ioListFileContents
@@ -1797,6 +1875,7 @@ override method @instruction_structured_if.buildIPICinstructionList
       !inAccessBankSplitOffset
       !inRoutineMap
       !inRegisterTable
+      !inConstantMap
       !?ioLocalLabelIndex
       !?ioGeneratedInstructionList
       !?ioListFileContents
@@ -1829,6 +1908,7 @@ override method @instruction_structured_if.buildIPICinstructionList
       !inAccessBankSplitOffset
       !inRoutineMap
       !inRegisterTable
+      !inConstantMap
       !?ioLocalLabelIndex
       !?ioGeneratedInstructionList
       !?ioListFileContents
@@ -1847,6 +1927,7 @@ override method @instruction_structured_if.buildIPICinstructionList
       !inAccessBankSplitOffset
       !inRoutineMap
       !inRegisterTable
+      !inConstantMap
       !?ioLocalLabelIndex
       !?ioGeneratedInstructionList
       !?ioListFileContents
@@ -1875,6 +1956,7 @@ override method @instruction_do_while.buildIPICinstructionList
   ??@uint inAccessBankSplitOffset
   ??@routineMap inRoutineMap
   ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
   ?!@uint ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
   ?!@string ioListFileContents
@@ -1894,6 +1976,7 @@ override method @instruction_do_while.buildIPICinstructionList
     !inAccessBankSplitOffset
     !inRoutineMap
     !inRegisterTable
+    !inConstantMap
     !?ioLocalLabelIndex
     !?ioGeneratedInstructionList
     !?ioListFileContents
@@ -1936,6 +2019,7 @@ override method @instruction_do_while.buildIPICinstructionList
         !inAccessBankSplitOffset
         !inRoutineMap
         !inRegisterTable
+        !inConstantMap
         !?ioLocalLabelIndex
         !?ioGeneratedInstructionList
         !?ioListFileContents
@@ -1959,6 +2043,7 @@ override method @instruction_IF_IncDec.buildIPICinstructionList
   ??@uint inAccessBankSplitOffset
   ??@routineMap inRoutineMap
   ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
   ?!@uint ioLocalLabelIndex
   ?!@ipic_instructionList ioGeneratedInstructionList
   ?!@string ioListFileContents
@@ -1999,6 +2084,7 @@ override method @instruction_IF_IncDec.buildIPICinstructionList
     !inAccessBankSplitOffset
     !inRoutineMap
     !inRegisterTable
+    !inConstantMap
     !?ioLocalLabelIndex
     !?ioGeneratedInstructionList
     !?ioListFileContents
@@ -2032,6 +2118,16 @@ routine buildIPICAssemblyInstructionList
     end if ;
     [!?routineMap insertKey !mRoutineName !mIsNoReturn ![mRequiredBank uint] ![mReturnedBank uint] !mPreservesBank] ;
   end foreach ;
+#-------------------------------- Build contant map
+  @constantMap constantMap [emptyMap] ;
+  foreach [inPiccoloModel mConstantDefinitionList] do
+    @sint result ; [mExpression eval !inRegisterTable !constantMap ?result] ;
+    if [inRegisterTable hasKey ![mConstantName string]] then
+      error mConstantName: "'" . mConstantName . "' is alreday declared as ram register or special register" ;
+    else
+      [!?constantMap insertKey !mConstantName !result] ;
+    end if ;
+  end foreach ;
 #-------------------------------- Check the "main" routine is declared
   if [routineMap hasKey !"main"] then
     @bool isNoReturn ;
@@ -2046,7 +2142,7 @@ routine buildIPICAssemblyInstructionList
   else
     error [inPiccoloModel mEndOfProgram]: "the program should declare the \"main\" routine" ;
   end if ;
-#-------------------------------- First Pass
+#-------------------------------- Check and translate interrupt routines
   outGeneratedInstructionList := [@ipic_instructionList emptyList] ;
   @uint localLabelIndex := 0 ;
 #--- At zero, generate 'jump main' instruction
@@ -2068,6 +2164,7 @@ routine buildIPICAssemblyInstructionList
           !inAccessBankSplitOffset
           !routineMap
           !inRegisterTable
+          !constantMap
           !?localLabelIndex
           !?outGeneratedInstructionList
           !?generationOptimizationMessages
@@ -2100,6 +2197,7 @@ routine buildIPICAssemblyInstructionList
           !inAccessBankSplitOffset
           !routineMap
           !inRegisterTable
+          !constantMap
           !?localLabelIndex
           !?outGeneratedInstructionList
           !?generationOptimizationMessages
@@ -2116,7 +2214,7 @@ routine buildIPICAssemblyInstructionList
       end if ;
     end foreach ;
   end if ;
-#--- Handle routines
+#-------------------------------- Check and translate routines
   foreach [inPiccoloModel mRoutineDefinitionList] do
     @bool continuesInSequence ;
     @uint currentBank := [mRequiredBank uint] ;
@@ -2132,6 +2230,7 @@ routine buildIPICAssemblyInstructionList
       !inAccessBankSplitOffset
       !routineMap
       !inRegisterTable
+      !constantMap
       !?localLabelIndex
       !?outGeneratedInstructionList
       !?generationOptimizationMessages

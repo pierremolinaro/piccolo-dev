@@ -25,6 +25,7 @@ list controlKeyWordList error message "the '%K' keyword" style keywordStyle :
   "banksel",
   "byte",
   "config",
+  "const",
   "common",
   "computed",
   "default",
@@ -212,7 +213,7 @@ end rule ;
 list delimitorsList error message "the '%K' delimitor" style delimitersStyle :
   "*",  "*+",   ",",  "!=", "<=", ">=",
   "*-", "+*",   ";",  ":",  "==", "<", ">",
-  "[",  "]",    ".",  "!", "&", "|",
+  "[",  "]",    ".",  "!", "&", "|", "=",
   "{",  "}", "(", ")", "/", "-", "+",
   "^", "<<", ">>", "~", "%", "@" ;
 
