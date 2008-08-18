@@ -50,7 +50,6 @@ SOURCES += piccolo_metamodel.cpp
 SOURCES += piccolo_syntax.cpp
 SOURCES += piccolo_grammar.cpp
 SOURCES += piccolo_config.cpp
-SOURCES += semanticsCheckings.cpp
 SOURCES += ipic_metamodel.cpp
 SOURCES += buildIPICAssemblyInstructionList.cpp
 SOURCES += ipic_optimizations.cpp
