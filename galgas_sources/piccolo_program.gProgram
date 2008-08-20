@@ -11,19 +11,25 @@ before {
   if [option piccolo_options.ouputDeviceList] then
   #--- Enumerate devices
     @stringlist allDevices := [[filewrapper embeddedDevices] allFilePathes] ;
-    @stringlist pic_devices [emptyList] ;
-    message [[allDevices length] string] . " devices supported by Piccolo " . [@string stringWithVersionString] . ":\n" ;
+    @stringlist pic18_devices [emptyList] ;
+    @stringlist midrange_devices [emptyList] ;
+    @stringlist baseline_devices [emptyList] ;
   #--- Parse them
     @bool ok := true ;
     foreach allDevices while ok do
       @piccoloDeviceModel piccoloDeviceModel ;
       @string name := [[mValue lastPathComponent] stringByDeletingPathExtension] ;
       parseDeviceDefinition ![@lstring new !name !here] ?piccoloDeviceModel ;
-      pic_devices += !name ;
+      switch [piccoloDeviceModel mProcessorType]
+      when pic18_60, pic18_80 : pic18_devices += !name ;
+      when midrange : midrange_devices += !name ;
+      when baseline : baseline_devices += !name ;
+      end switch ;
     end foreach ;
-  #--- Print device list
+  #--- Print baseline device list
+    message [[baseline_devices length] string] . " baseline devices supported by Piccolo " . [@string stringWithVersionString] . ":\n" ;
     @uint index := 0 ;
-    foreach pic_devices do
+    foreach baseline_devices do
       message [mValue stringByRightPadding !15 !' '] ;
       index ++ ;
       if index == 5 then
@@ -34,139 +40,35 @@ before {
     if index != 0 then
       message "\n" ;
     end if ;
-#  #--- Enumerate devices, and parse them
-#    @stringlist allDevices := [[filewrapper embeddedDevices] allFilePathes] ;
-#    @stringlist pic_60_devices [emptyList] ;
-#    @stringlist pic_80_devices [emptyList] ;
-#    message [[allDevices  length] string] . " supported devices.\n" ;
-#    @uint index := 0 ;
-#    @bool ok := true ;
-#    foreach allDevices while ok do
-#      @piccoloDeviceModel piccoloDeviceModel ;
-#      @string name := [[mValue lastPathComponent] stringByDeletingPathExtension] ;
-#      parseDeviceDefinition ![@lstring new !name !here] ?piccoloDeviceModel ;
-#      switch [piccoloDeviceModel mProcessorType]
-#        when pic18_60 : pic_60_devices += !name ;
-#        when pic18_80 : pic_80_devices += !name ;
-#      end switch ;
-#    end foreach ;
-#  #--- List 'pic 60' devices
-#    message [[pic_60_devices length] string] . " devices with access bank split offset 0x60:\n" ;
-#    foreach pic_60_devices do
-#      message [mValue stringByRightPadding !15 !' '] ;
-#      index ++ ;
-#      if index == 5 then
-#        index := 0 ;
-#        message "\n" ;
-#      end if ;
-#    end foreach ;
-#    if index != 0 then
-#      message "\n" ;
-#    end if ;
-#  #--- List 'pic 80' devices
-#    index := 0 ;
-#    message [[pic_80_devices  length] string] . " devices with access bank split offset 0x80:\n" ;
-#    foreach pic_80_devices do
-#      message [mValue stringByRightPadding !15 !' '] ;
-#      index ++ ;
-#      if index == 5 then
-#        index := 0 ;
-#        message "\n" ;
-#      end if ;
-#    end foreach ;
-#    if index != 0 then
-#      message "\n" ;
-#    end if ;
-
-#  #--- Enumerate devices, and parse them
-#    @stringlist allDevices := [[filewrapper embeddedDevices] allFilePathes] ;
-#    @stringlist pic_60_standard_cpu_devices [emptyList] ;
-#    @stringlist pic_80_standard_cpu_devices [emptyList] ;
-#    @stringlist pic_60_extended_cpu_devices [emptyList] ;
-#    @stringlist pic_80_extended_cpu_devices [emptyList] ;
-#    message [[allDevices  length] string] . " supported devices.\n" ;
-#    @uint index := 0 ;
-#    @bool ok := true ;
-#    foreach allDevices while ok do
-#      @piccoloDeviceModel piccoloDeviceModel ;
-#      @string name := [[mValue lastPathComponent] stringByDeletingPathExtension] ;
-#      parseDeviceDefinition ![@lstring new !name !here] ?piccoloDeviceModel ;
-#    #--- Find if has extended instruction set
-#      @bool hasExtendedInstructionSet := true ;
-#      if not [[piccoloDeviceModel mConfigRegisterMap] hasKey !"CONFIG4L"] then
-#        message "No CONFIG4L configuration register for '" . name . "' device.\n" ;
-#      else
-#        @configRegisterMaskMap CONFIG4L_maskMap ;
-#        [[piccoloDeviceModel mConfigRegisterMap] searchKey ![@lstring new !"CONFIG4L" !here] ?* ?* ?CONFIG4L_maskMap] ;
-#        hasExtendedInstructionSet := [CONFIG4L_maskMap hasKey !"ENHCPU"] ;
-#      end if ;
-#      if hasExtendedInstructionSet then
-#        switch [piccoloDeviceModel mProcessorType]
-#          when pic18_60 : pic_60_extended_cpu_devices += !name ;
-#          when pic18_80 : pic_80_extended_cpu_devices += !name ;
-#        end switch ;
-#      else
-#        switch [piccoloDeviceModel mProcessorType]
-#          when pic18_60 : pic_60_standard_cpu_devices += !name ;
-#          when pic18_80 : pic_80_standard_cpu_devices += !name ;
-#        end switch ;
-#      end if ;
-#    end foreach ;
-#  #--- List 'pic 60' devices with standard cpu
-#    message [[pic_60_standard_cpu_devices  length] string] . " devices with standard instruction set and access bank split offset 0x60:\n" ;
-#    foreach pic_60_standard_cpu_devices do
-#      message [mValue stringByRightPadding !15 !' '] ;
-#      index ++ ;
-#      if index == 5 then
-#        index := 0 ;
-#        message "\n" ;
-#      end if ;
-#    end foreach ;
-#    if index != 0 then
-#      message "\n" ;
-#    end if ;
-#  #--- List 'pic 80' devices with standard cpu
-#    index := 0 ;
-#    message [[pic_80_standard_cpu_devices  length] string] . " devices with standard instruction set and access bank split offset 0x80:\n" ;
-#    foreach pic_80_standard_cpu_devices do
-#      message [mValue stringByRightPadding !15 !' '] ;
-#      index ++ ;
-#      if index == 5 then
-#        index := 0 ;
-#        message "\n" ;
-#      end if ;
-#    end foreach ;
-#    if index != 0 then
-#      message "\n" ;
-#    end if ;
-#  #--- List 'pic 60' devices with extended cpu
-#    index := 0 ;
-#    message [[pic_60_extended_cpu_devices  length] string] . " devices with extended instruction set and access bank split offset 0x60:\n" ;
-#    foreach pic_60_extended_cpu_devices do
-#      message [mValue stringByRightPadding !15 !' '] ;
-#      index ++ ;
-#      if index == 5 then
-#        index := 0 ;
-#        message "\n" ;
-#      end if ;
-#    end foreach ;
-#    if index != 0 then
-#      message "\n" ;
-#    end if ;
-#  #--- List 'pic 80' devices with extended cpu
-#    index := 0 ;
-#    message [[pic_80_extended_cpu_devices  length] string] . " devices with extended instruction set and access bank split offset 0x80:\n" ;
-#    foreach pic_80_extended_cpu_devices do
-#      message [mValue stringByRightPadding !15 !' '] ;
-#      index ++ ;
-#      if index == 5 then
-#        index := 0 ;
-#        message "\n" ;
-#      end if ;
-#    end foreach ;
-#    if index != 0 then
-#      message "\n" ;
-#    end if ;
+  #--- Print mid-range device list
+    message [[midrange_devices length] string] . " mid-range devices supported by Piccolo " . [@string stringWithVersionString] . ":\n" ;
+    index := 0 ;
+    foreach midrange_devices do
+      message [mValue stringByRightPadding !15 !' '] ;
+      index ++ ;
+      if index == 5 then
+        index := 0 ;
+        message "\n" ;
+      end if ;
+    end foreach ;
+    if index != 0 then
+      message "\n" ;
+    end if ;
+  #--- Print pic18 device list
+    message [[pic18_devices length] string] . " pic18 devices supported by Piccolo " . [@string stringWithVersionString] . ":\n" ;
+    index := 0 ;
+    foreach pic18_devices do
+      message [mValue stringByRightPadding !15 !' '] ;
+      index ++ ;
+      if index == 5 then
+        index := 0 ;
+        message "\n" ;
+      end if ;
+    end foreach ;
+    if index != 0 then
+      message "\n" ;
+    end if ;
+  #---
   end if ;
 #------------------------------------------------ Print RAM description
   @string deviceForMemoryDescription := [option piccolo_options.memoryDescription] ;
@@ -184,7 +86,13 @@ before {
       foreach [piccoloDeviceModel mRamBankTable] do
         message "    bank \"" . key . "\" from " . [mFirstFreeAddress hexString]
         . " to " . [mLastAddressPlusOne-1 hexString]
-        . " (" . [mLastAddressPlusOne-mFirstFreeAddress string] . " bytes)\n" ;
+        . " (" . [mLastAddressPlusOne-mFirstFreeAddress string] . " bytes)" ;
+        foreach mMirrorOffsetList
+        before  message ", mirror at " ;
+        do message [mFirstFreeAddress  + mValue hexString] ;
+        between message ", " ;
+        end foreach ;
+        message "\n" ;
       end foreach ;
       message "  ROM size: " . [[[piccoloDeviceModel mRomSize] uint] string] . " bytes\n" ;
       if [piccoloDeviceModel mEepromSize] == 0 then

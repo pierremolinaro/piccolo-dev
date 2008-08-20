@@ -27,7 +27,7 @@ override method @commonDeclarationInRam.handleDeclaration
   ??@lstring inCurrentRamBank
 :
   @uint firstFreeAddressBeforeCommon ;
-  [ioRamBank searchKey !inCurrentRamBank ?firstFreeAddressBeforeCommon ?*] ;
+  [ioRamBank searchKey !inCurrentRamBank ?firstFreeAddressBeforeCommon ?* ?*] ;
   @bool firstFreeAddressDefined := false ;
   @uint firstFreeAddress := 0 ;
   foreach mBranchList do
@@ -36,7 +36,7 @@ override method @commonDeclarationInRam.handleDeclaration
       [mDeclaration handleDeclaration !?ramBank !?ioRegisterTable !inCurrentRamBank] ;
     end foreach ;
     @uint ffa ;
-    [ramBank searchKey !inCurrentRamBank ?ffa ?*] ;
+    [ramBank searchKey !inCurrentRamBank ?ffa ?* ?*] ;
     if not firstFreeAddressDefined then
       firstFreeAddress := ffa ;
       firstFreeAddressDefined := true ;
@@ -58,7 +58,7 @@ override method @byteDeclarationInRam.handleDeclaration
 :
   @uint lastAddressPlusOne ;
   @uint firstFreeAddress ;
-  [ioRamBank searchKey !inCurrentRamBank ?firstFreeAddress ?lastAddressPlusOne] ;
+  [ioRamBank searchKey !inCurrentRamBank ?firstFreeAddress ?lastAddressPlusOne ?*] ;
   if [mSize uint] == 0 then
     error mSize: "zero size is not allowed" ;
   end if ;
@@ -90,6 +90,8 @@ routine analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName :
   switch [piccoloDeviceModel mProcessorType]
     when pic18_60 : accessBankSplitOffset := 0x60 ;
     when pic18_80 : accessBankSplitOffset := 0x80 ;
+    when midrange : error [inPiccoloModel mDeviceName]: "a midrange device is not accepted here" -> accessBankSplitOffset ;
+    when baseline : error [inPiccoloModel mDeviceName]: "a baseline device is not accepted here" -> accessBankSplitOffset ;
   end switch ;
 #-------------------------------- Interrupts ?
   @bool hasHighInterrupt := false ;

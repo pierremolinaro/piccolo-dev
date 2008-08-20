@@ -302,7 +302,7 @@ controller PIC18C252 {
   register WREG at 0xFE8
     <WREG [8]> ;
 
-  config CONFIG1H at 0x300001 width 6 {
+  configuration CONFIG1H at 0x300001 width 6 {
     OSCS mask 0x20 description "Osc. Switch Enable"
       setting 0x20 mask 0x20 description "Disabled"
       setting 0x0 mask 0x20 description "Enabled"
@@ -317,13 +317,13 @@ controller PIC18C252 {
       setting 0x0 mask 0x7 description "LP"
   }
 
-  config CONFIG1L at 0x300000 width 8 {
+  configuration CONFIG1L at 0x300000 width 8 {
     CP mask 0xFF description "Code Protect"
       setting 0xFF mask 0xFF description "Disabled"
       setting 0x0 mask 0xFF description "Enabled"
   }
 
-  config CONFIG2H at 0x300003 width 4 {
+  configuration CONFIG2H at 0x300003 width 4 {
     WDTPS mask 0xE description "Watchdog Postscaler"
       setting 0xE mask 0xE description "1:128"
       setting 0xC mask 0xE description "1:64"
@@ -338,7 +338,7 @@ controller PIC18C252 {
       setting 0x0 mask 0x1 description "Disabled"
   }
 
-  config CONFIG2L at 0x300002 width 4 {
+  configuration CONFIG2L at 0x300002 width 4 {
     BODENV mask 0xC description "Brown Out Voltage"
       setting 0xC mask 0xC description "2.5V"
       setting 0x8 mask 0xC description "2.7V"
@@ -352,13 +352,13 @@ controller PIC18C252 {
       setting 0x0 mask 0x1 description "Enabled"
   }
 
-  config CONFIG3H at 0x300005 width 1 {
+  configuration CONFIG3H at 0x300005 width 1 {
     CCP2MUX mask 0x1 description "CCP2 Mux"
       setting 0x1 mask 0x1 description "RC1"
       setting 0x0 mask 0x1 description "RB3"
   }
 
-  config CONFIG4L at 0x300006 width 1 {
+  configuration CONFIG4L at 0x300006 width 1 {
     STVR mask 0x1 description "Stack Overflow Reset"
       setting 0x1 mask 0x1 description "Enabled"
       setting 0x0 mask 0x1 description "Disabled"

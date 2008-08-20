@@ -1,0 +1,42 @@
+controller PIC16HV540 {
+  processor "baseline" ;
+  romsize 512 ;
+  bank 1 ;
+  ram gprs : 0x7 to 0x1F ;
+  # Total ram: 25
+
+  register FSR at 0x4
+    <FSR [8]> ;
+
+  register INDF at 0x0
+    <INDF [8]> ;
+
+  register PCL at 0x2
+    <PCL [8]> ;
+
+  register PORTA at 0x5
+    <-, -, -, T0CKI, RA3, RA2, RA1, RA0> ;
+
+  register PORTB at 0x6
+    <RB7, RB6, RB5, RB4, RB3, RB2, RB1, RB0> ;
+
+  register STATUS at 0x3
+    <nPCWUF, PA1, PA0, nTO, nPD, Z, DC, C> ;
+
+  register TMR0 at 0x1
+    <TMR0 [8]> ;
+
+  configuration CONFIG at 0xFFF width 4 {
+    CP mask 0x8 description "Code Protect"
+      setting 0x8 mask 0x8 description "Off"
+      setting 0x0 mask 0x8 description "On"
+    WDT mask 0x4 description "Watchdog Timer"
+      setting 0x4 mask 0x4 description "On"
+      setting 0x0 mask 0x4 description "Off"
+    OSC mask 0x3 description "Oscillator"
+      setting 0x3 mask 0x3 description "RC"
+      setting 0x0 mask 0x3 description "LP"
+      setting 0x1 mask 0x3 description "XT"
+      setting 0x2 mask 0x3 description "HS"
+  }
+}

@@ -1,0 +1,62 @@
+controller PIC12F519 {
+  processor "baseline" ;
+  romsize 1024 ;
+  bank 2 ;
+  ram gpr0 : 0x10 to 0x1F ;
+  ram gpr1 : 0x30 to 0x3F ;
+  ram gprnobnk : 0x7 to 0xF mirrorat 0x27 ;
+  # Total ram: 41
+
+  register EEADR at 0x26
+    <EEADR [8]> ;
+
+  register EECON at 0x21
+    <-, -, -, FREE, WRERR, WREN, WR, RD> ;
+
+  register EEDATA at 0x25
+    <EEDATA [8]> ;
+
+  register FSR at 0x4, 0x24
+    <FSR [8]> ;
+
+  register INDF at 0x0, 0x20
+    <INDF [8]> ;
+
+  register OSCCAL at 0x5
+    <CAL [7], -> ;
+
+  register PCL at 0x2, 0x22
+    <PCL [8]> ;
+
+  register PORTB at 0x6
+    <-, -, RB5, RB4, RB3, RB2, RB1, RB0> ;
+
+  register STATUS at 0x3, 0x23
+    <RBWUF, -, PA0, nTO, nPD, Z, DC, C> ;
+
+  register TMR0 at 0x1
+    <TMR0 [8]> ;
+
+  configuration CONFIG at 0xFFF width 7 {
+    CPSW mask 0x40 description "Code Protect bit - Self Writable Memory"
+      setting 0x40 mask 0x40 description "Off"
+      setting 0x0 mask 0x40 description "On"
+    IOSCFS mask 0x20 description "Internal Oscillator Frequency Select"
+      setting 0x20 mask 0x20 description "8 MHz INTOSC Speed"
+      setting 0x0 mask 0x20 description "4 MHz INTOSC Speed"
+    MCLRE mask 0x10 description "Master Clear Enable"
+      setting 0x10 mask 0x10 description "RB3/MCLR Functions as MCLR"
+      setting 0x0 mask 0x10 description "RB3/MCLR Functions as RB3"
+    CP mask 0x8 description "Code Protect"
+      setting 0x8 mask 0x8 description "Off"
+      setting 0x0 mask 0x8 description "On"
+    WDT mask 0x4 description "Watchdog Timer Enable"
+      setting 0x4 mask 0x4 description "Enabled"
+      setting 0x0 mask 0x4 description "Disabled"
+    OSC mask 0x3 description "Oscillator"
+      setting 0x0 mask 0x3 description "LP Osc With 18 ms DRT"
+      setting 0x1 mask 0x3 description "XT Osc With 18 ms DRT"
+      setting 0x2 mask 0x3 description "INTRC With 1 ms DRT"
+      setting 0x3 mask 0x3 description "EXTRC With 1 ms DRT"
+  }
+}

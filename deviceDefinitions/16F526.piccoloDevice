@@ -1,0 +1,86 @@
+controller PIC16F526 {
+  processor "baseline" ;
+  romsize 1024 ;
+  bank 4 ;
+  ram gpr0 : 0x10 to 0x1F ;
+  ram gpr1 : 0x30 to 0x3F ;
+  ram gpr2 : 0x50 to 0x5F ;
+  ram gpr3 : 0x70 to 0x7F ;
+  ram gprnobnk : 0xD to 0xF mirrorat 0x2D, 0x4D, 0x6D ;
+  # Total ram: 67
+
+  register ADCON0 at 0x9, 0x29, 0x49, 0x69
+    <ANS [2], ADCS [2], CHS [2], GO/nDONE, ADON> ;
+
+  register ADRES at 0xA, 0x2A, 0x4A, 0x6A
+    <ADRES [8]> ;
+
+  register CM1CON0 at 0x8, 0x28, 0x48, 0x68
+    <C1OUT, nC1OUTEN, C1POL, nC1T0CS, C1ON, C1NREF, C1PREF, nC1WU> ;
+
+  register CM2CON0 at 0xB, 0x2B, 0x4B, 0x6B
+    <C2OUT, nC2OUTEN, C2POL, C2PREF2, C2ON, C2NREF, C2PREF1, nC2WU> ;
+
+  register EEADR at 0x26, 0x66
+    <EEADR [8]> ;
+
+  register EECON at 0x21, 0x61
+    <-, -, -, FREE, WRERR, WREN, WR, RD> ;
+
+  register EEDATA at 0x25, 0x65
+    <EEDATA [8]> ;
+
+  register FSR at 0x4, 0x24, 0x44, 0x64
+    <FSR [8]> ;
+
+  register INDF at 0x0, 0x20, 0x40, 0x60
+    <INDF [8]> ;
+
+  register OSCCAL at 0x5, 0x45
+    <CAL [7], -> ;
+
+  register PCL at 0x2, 0x22, 0x42, 0x62
+    <PCL [8]> ;
+
+  register PORTB at 0x6, 0x46
+    <-, -, RB [6]> ;
+
+  register PORTC at 0x7, 0x27, 0x47, 0x67
+    <-, -, RC [6]> ;
+
+  register STATUS at 0x3, 0x23, 0x43, 0x63
+    <RBWUF, CWUF, PA0, nTO, nPD, Z, DC, C> ;
+
+  register TMR0 at 0x1, 0x41
+    <TMR0 [8]> ;
+
+  register VRCON at 0xC, 0x2C, 0x4C, 0x6C
+    <VREN, VROE, VRR, -, VR [4]> ;
+
+  configuration CONFIG at 0xFFF width 8 {
+    CPDF mask 0x80 description "Code Protect bit - Flash Data Memory"
+      setting 0x80 mask 0x80 description "Off"
+      setting 0x0 mask 0x80 description "On"
+    IOSCFS mask 0x40 description "Internal Oscillator Frequency Select"
+      setting 0x40 mask 0x40 description "8 MHz INTOSC Speed"
+      setting 0x0 mask 0x40 description "4 MHz INTOSC Speed"
+    MCLRE mask 0x20 description "Master Clear Enable"
+      setting 0x20 mask 0x20 description "RB3/MCLR functions as MCLR"
+      setting 0x0 mask 0x20 description "RB3/MCLR functions as RB3, MCLR internally tied to Vdd"
+    CP mask 0x10 description "Code Protect"
+      setting 0x10 mask 0x10 description "Off"
+      setting 0x0 mask 0x10 description "On"
+    WDT mask 0x8 description "Watchdog Timer Enable"
+      setting 0x8 mask 0x8 description "Enabled"
+      setting 0x0 mask 0x8 description "Disabled"
+    FOSC mask 0x7 description "Oscillator"
+      setting 0x0 mask 0x7 description "LP oscillator and 18 ms DRT"
+      setting 0x1 mask 0x7 description "XT oscillator and 18 ms DRT"
+      setting 0x2 mask 0x7 description "HS oscillator and 18 ms DRT"
+      setting 0x3 mask 0x7 description "EC oscillator with RB4 function on RB4/OSC2/CLKOUT and 1 ms DRT"
+      setting 0x4 mask 0x7 description "INTRC with RB4 function on RB4/OSC2/CLKOUT and 1 ms DRT"
+      setting 0x5 mask 0x7 description "INTRC with CLKOUT function on RB4/OSC2/CLKOUT and 1 ms DRT"
+      setting 0x6 mask 0x7 description "EXTRC with RB4 function on RB4/OSC2/CLKOUT and 1 ms DRT"
+      setting 0x7 mask 0x7 description "EXTRC with CLKOUT function on RB4/OSC2/CLKOUT and 1 ms DRT"
+  }
+}

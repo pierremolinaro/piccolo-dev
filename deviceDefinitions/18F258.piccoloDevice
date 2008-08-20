@@ -664,7 +664,7 @@ controller PIC18F258 {
   register WREG at 0xFE8
     <WREG [8]> ;
 
-  config CONFIG1H at 0x300001 width 6 {
+  configuration CONFIG1H at 0x300001 width 6 {
     OSCS mask 0x20 description "Osc. Switch Enable"
       setting 0x20 mask 0x20 description "Disabled"
       setting 0x0 mask 0x20 description "Enabled"
@@ -679,7 +679,7 @@ controller PIC18F258 {
       setting 0x0 mask 0x7 description "LP"
   }
 
-  config CONFIG2H at 0x300003 width 4 {
+  configuration CONFIG2H at 0x300003 width 4 {
     WDTPS mask 0xE description "Watchdog Postscaler"
       setting 0xE mask 0xE description "1:128"
       setting 0xC mask 0xE description "1:64"
@@ -694,7 +694,7 @@ controller PIC18F258 {
       setting 0x0 mask 0x1 description "Disabled-Controlled by SWDTEN bit"
   }
 
-  config CONFIG2L at 0x300002 width 4 {
+  configuration CONFIG2L at 0x300002 width 4 {
     BODENV mask 0xC description "Brown Out Voltage"
       setting 0xC mask 0xC description "2.0V"
       setting 0x8 mask 0xC description "2.7V"
@@ -708,7 +708,7 @@ controller PIC18F258 {
       setting 0x0 mask 0x1 description "Enabled"
   }
 
-  config CONFIG4L at 0x300006 width 8 {
+  configuration CONFIG4L at 0x300006 width 8 {
     BACKBUG mask 0x80 description "Background Debug"
       setting 0x80 mask 0x80 description "Disabled"
       setting 0x0 mask 0x80 description "Enabled"
@@ -720,7 +720,7 @@ controller PIC18F258 {
       setting 0x0 mask 0x1 description "Disabled"
   }
 
-  config CONFIG5H at 0x300009 width 8 {
+  configuration CONFIG5H at 0x300009 width 8 {
     CPD mask 0x80 description "Data EE Read Protect"
       setting 0x80 mask 0x80 description "Disabled"
       setting 0x0 mask 0x80 description "Enabled"
@@ -729,7 +729,7 @@ controller PIC18F258 {
       setting 0x0 mask 0x40 description "Enabled"
   }
 
-  config CONFIG5L at 0x300008 width 4 {
+  configuration CONFIG5L at 0x300008 width 4 {
     CP_3 mask 0x8 description "Code Protect 06000-07FFF"
       setting 0x8 mask 0x8 description "Disabled"
       setting 0x0 mask 0x8 description "Enabled"
@@ -744,7 +744,7 @@ controller PIC18F258 {
       setting 0x0 mask 0x1 description "Enabled"
   }
 
-  config CONFIG6H at 0x30000B width 8 {
+  configuration CONFIG6H at 0x30000B width 8 {
     WRTD mask 0x80 description "Data EE Write Protect"
       setting 0x80 mask 0x80 description "Disabled"
       setting 0x0 mask 0x80 description "Enabled"
@@ -756,7 +756,7 @@ controller PIC18F258 {
       setting 0x0 mask 0x20 description "Enabled"
   }
 
-  config CONFIG6L at 0x30000A width 4 {
+  configuration CONFIG6L at 0x30000A width 4 {
     WRT_3 mask 0x8 description "Table Write Protect 06000-07FFF"
       setting 0x8 mask 0x8 description "Disabled"
       setting 0x0 mask 0x8 description "Enabled"
@@ -771,13 +771,13 @@ controller PIC18F258 {
       setting 0x0 mask 0x1 description "Enabled"
   }
 
-  config CONFIG7H at 0x30000D width 7 {
+  configuration CONFIG7H at 0x30000D width 7 {
     EBTRB mask 0x40 description "Table Read Protect Boot"
       setting 0x40 mask 0x40 description "Disabled"
       setting 0x0 mask 0x40 description "Enabled"
   }
 
-  config CONFIG7L at 0x30000C width 4 {
+  configuration CONFIG7L at 0x30000C width 4 {
     EBTR_3 mask 0x8 description "Table Read Protect 06000-07FFF"
       setting 0x8 mask 0x8 description "Disabled"
       setting 0x0 mask 0x8 description "Enabled"

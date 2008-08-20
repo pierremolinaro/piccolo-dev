@@ -1,0 +1,263 @@
+controller PIC16F724 {
+  processor "mid-range" ;
+  romsize 4096 ;
+  bank 4 ;
+  unusedregister 0x97 ;
+  unusedregister 0x9A to 0x9B ;
+  unusedregister 0x9E ;
+  unusedregister 0x105 to 0x107 ;
+  unusedregister 0x110 to 0x11F ;
+  unusedregister 0x130 to 0x16F ;
+  unusedregister 0x187 ;
+  unusedregister 0x18D to 0x1EF ;
+  ram gpr0 : 0x20 to 0x6F ;
+  ram gpr1 : 0xA0 to 0xEF ;
+  ram gpr2 : 0x120 to 0x12F ;
+  ram gprnobnk : 0x70 to 0x7F mirrorat 0xF0, 0x170, 0x1F0 ;
+  # Total ram: 192
+
+  register ADCON0 at 0x1F
+    <-, -, CHS [4], GO/nDONE, ADON> ;
+
+  register ADCON1 at 0x9F
+    <-, ADCS [3], -, -, ADREF [2]> ;
+
+  register ADRES at 0x1E
+    <ADRES [8]> ;
+
+  register ANSELA at 0x185
+    <-, -, ANSA [6]> ;
+
+  register ANSELB at 0x186
+    <-, -, ANSB [6]> ;
+
+  register ANSELD at 0x188
+    <ANSD [8]> ;
+
+  register ANSELE at 0x189
+    <-, -, -, -, -, ANSE [3]> ;
+
+  register APFCON at 0x9C
+    <-, -, -, -, -, -, SSSEL, CCP2SEL> ;
+
+  register CCP1CON at 0x17
+    <-, -, DC1B [2], CCP1M [4]> ;
+
+  register CCP2CON at 0x1D
+    <-, -, DC2B [2], CCP2M [4]> ;
+
+  register CCPR1H at 0x16
+    <CCPR1H [8]> ;
+
+  register CCPR1L at 0x15
+    <CCPR1L [8]> ;
+
+  register CCPR2H at 0x1C
+    <CCPR2H [8]> ;
+
+  register CCPR2L at 0x1B
+    <CCPR2L [8]> ;
+
+  register CPSCON0 at 0x108
+    <CPSON, -, -, -, CPSRNG [2], CPSOUT, T0XCS> ;
+
+  register CPSCON1 at 0x109
+    <-, -, -, -, CPSCH [4]> ;
+
+  register FSR at 0x4, 0x84, 0x104, 0x184
+    <FSR [8]> ;
+
+  register FVRCON at 0x9D
+    <FVRRDY, FVREN, -, -, -, -, ADFVR1, ADFVR0> ;
+
+  register INDF at 0x0, 0x80, 0x100, 0x180
+    <INDF [8]> ;
+
+  register INTCON at 0xB, 0x8B, 0x10B, 0x18B
+    <GIE, PEIE, TMR0IE, INTE, RBIE, TMR0IF, INTF, RBIF> ;
+
+  register IOCB at 0x96
+    <IOCB [8]> ;
+
+  register OPTION_REG at 0x81, 0x181
+    <nRBPU, INTEDG, T0CS, T0SE, PSA, PS [3]> ;
+
+  register OSCCON at 0x90
+    <-, -, IRCF [2], ICSL, ICSS, -, -> ;
+
+  register OSCTUNE at 0x91
+    <-, -, TUN [6]> ;
+
+  register PCL at 0x2, 0x82, 0x102, 0x182
+    <PCL [8]> ;
+
+  register PCLATH at 0xA, 0x8A, 0x10A, 0x18A
+    <-, -, -, PCLATH [5]> ;
+
+  register PCON at 0x8E
+    <-, -, -, -, -, -, nPOR, nBOR> ;
+
+  register PIE1 at 0x8C
+    <TMR1GIE, ADIE, RCIE, TXIE, SSPIE, CCP1IE, TMR2IE, TMR1IE> ;
+
+  register PIE2 at 0x8D
+    <-, -, -, -, -, -, -, CCP2IE> ;
+
+  register PIR1 at 0xC
+    <TMR1GIF, ADIF, RCIF, TXIF, SSPIF, CCP1IF, TMR2IF, TMR1IF> ;
+
+  register PIR2 at 0xD
+    <-, -, -, -, -, -, -, CCP2IF> ;
+
+  register PMADRH at 0x10F
+    <-, -, -, PMADRH [5]> ;
+
+  register PMADRL at 0x10D
+    <PMADRL [8]> ;
+
+  register PMCON1 at 0x18C
+    <-, -, -, -, -, -, -, RD> ;
+
+  register PMDATH at 0x10E
+    <-, -, PMDATH [6]> ;
+
+  register PMDATL at 0x10C
+    <PMDATL [8]> ;
+
+  register PORTA at 0x5
+    <RA7, RA6, RA5, RA4, RA3, RA2, RA1, RA0> ;
+
+  register PORTB at 0x6
+    <RB7, RB6, RB5, RB4, RB3, RB2, RB1, RB0> ;
+
+  register PORTC at 0x7
+    <RC7, RC6, RC5, RC4, RC3, RC2, RC1, RC0> ;
+
+  register PORTD at 0x8
+    <RD7, RD6, RD5, RD4, RD3, RD2, RD1, RD0> ;
+
+  register PORTE at 0x9
+    <-, -, -, -, RE3, RE2, RE1, RE0> ;
+
+  register PR2 at 0x92
+    <PR2 [8]> ;
+
+  register RCREG at 0x1A
+    <RCREG [8]> ;
+
+  register RCSTA at 0x18
+    <SPEN, RX9, SREN, CREN, ADDEN, FERR, OERR, RX9D> ;
+
+  register SPBRG at 0x99
+    <SPBRG [8]> ;
+
+  register SSPADD at 0x93
+    <SSPADD [8]> ;
+
+  register SSPBUF at 0x13
+    <SSPBUF [8]> ;
+
+  register SSPCON at 0x14
+    <WCOL, SSPOV, SSPEN, CKP, SSPM [4]> ;
+
+  register SSPSTAT at 0x94
+    <SMP, CKE, D/nA, P, S, R/nW, UA, BF> ;
+
+  register STATUS at 0x3, 0x83, 0x103, 0x183
+    <IRP, RP [2], nTO, nPD, Z, DC, C> ;
+
+  register T1CON at 0x10
+    <TMR1CS [2], T1CKPS [2], T1OSCEN, T1SYNC, -, TMR1ON> ;
+
+  register T1GCON at 0x8F
+    <TMR1GE, T1GPOL, T1GTM, T1G1SE, T1GGO_DONE, T1GVAL, T1GSS [2]> ;
+
+  register T2CON at 0x12
+    <-, TOUTPS [4], TMR2ON, T2CKPS [2]> ;
+
+  register TMR0 at 0x1, 0x101
+    <TMR0 [8]> ;
+
+  register TMR1H at 0xF
+    <TMR1H [8]> ;
+
+  register TMR1L at 0xE
+    <TMR1L [8]> ;
+
+  register TMR2 at 0x11
+    <TMR2 [8]> ;
+
+  register TRISA at 0x85
+    <TRISA7, TRISA6, TRISA5, TRISA4, TRISA3, TRISA2, TRISA1, TRISA0> ;
+
+  register TRISB at 0x86
+    <TRISB7, TRISB6, TRISB5, TRISB4, TRISB3, TRISB2, TRISB1, TRISB0> ;
+
+  register TRISC at 0x87
+    <TRISC7, TRISC6, TRISC5, TRISC4, TRISC3, TRISC2, TRISC1, TRISC0> ;
+
+  register TRISD at 0x88
+    <TRISD7, TRISD6, TRISD5, TRISD4, TRISD3, TRISD2, TRISD1, TRISD0> ;
+
+  register TRISE at 0x89
+    <-, -, -, -, TRISE3, TRISE2, TRISE1, TRISE0> ;
+
+  register TXREG at 0x19
+    <TXREG [8]> ;
+
+  register TXSTA at 0x98
+    <CSRC, TX9, TXEN, SYNC, -, BRGH, TRMT, TX9D> ;
+
+  register WPUB at 0x95
+    <WPUB [8]> ;
+
+  configuration CONFIG at 0x2007 width 14 {
+    DEBUG mask 0x2000 description "Background Debug"
+      setting 0x2000 mask 0x2000 description "Disabled"
+      setting 0x0 mask 0x2000 description "Enabled"
+    PLLEN mask 0x1000 description "INTOSC PLLEN Enable Bit"
+      setting 0x1000 mask 0x1000 description "16MHz"
+      setting 0x0 mask 0x1000 description "500KHz"
+    WDTCS mask 0x800 description "Watchdog Timer Clock Select"
+      setting 0x800 mask 0x800 description "Standard Watchdog Timer is selected"
+      setting 0x0 mask 0x800 description "Low Power Watchdog Timer is selected"
+    BORV mask 0x400 description "Brown-out Reset Voltage Selection"
+      setting 0x400 mask 0x400 description "1.9V"
+      setting 0x0 mask 0x400 description "2.5V"
+    BOREN mask 0x300 description "Brown Out Reset Enable"
+      setting 0x0 mask 0x300 description "BOR disabled"
+      setting 0x200 mask 0x300 description "BOR enabled in run, disabled in sleep"
+      setting 0x300 mask 0x300 description "BOR Enabled"
+    RES mask 0x80 description "Reserved"
+      setting 0x80 mask 0x80 description "Reserved"
+    CP mask 0x40 description "Code Protect"
+      setting 0x40 mask 0x40 description "Off"
+      setting 0x0 mask 0x40 description "On"
+    MCLRE mask 0x20 description "Master Clear Enable"
+      setting 0x0 mask 0x20 description "RE3 is digital input"
+      setting 0x20 mask 0x20 description "/MCLR is external"
+    nPWRTE mask 0x10 description "Power Up Timer"
+      setting 0x10 mask 0x10 description "Off"
+      setting 0x0 mask 0x10 description "On"
+    WDT mask 0x8 description "Watchdog Timer"
+      setting 0x8 mask 0x8 description "On"
+      setting 0x0 mask 0x8 description "Off"
+    FOSC mask 0x7 description "Oscillator"
+      setting 0x7 mask 0x7 description "External RC Clockout"
+      setting 0x6 mask 0x7 description "External RC No Clock"
+      setting 0x5 mask 0x7 description "Internal RC Clockout"
+      setting 0x4 mask 0x7 description "Internal RC No Clock"
+      setting 0x3 mask 0x7 description "EC"
+      setting 0x2 mask 0x7 description "HS"
+      setting 0x1 mask 0x7 description "XT"
+      setting 0x0 mask 0x7 description "LP"
+  }
+
+  configuration CONFIG2 at 0x2008 width 6 {
+    VCAPEN mask 0x30 description "Voltage Regulator Capacitor Enable bits"
+      setting 0x30 mask 0x30 description "All VCAP pin functions are disabled"
+      setting 0x20 mask 0x30 description "VCAP functionality is enabled on RA6"
+      setting 0x10 mask 0x30 description "VCAP functionality is enabled on RA5"
+      setting 0x0 mask 0x30 description "VCAP functionality is enabled on RA0"
+  }
+}

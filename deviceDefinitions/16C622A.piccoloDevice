@@ -1,0 +1,90 @@
+controller PIC16C622A {
+  processor "mid-range" ;
+  romsize 2048 ;
+  bank 2 ;
+  unusedregister 0x7 to 0x9 ;
+  unusedregister 0xD to 0x1E ;
+  unusedregister 0x87 to 0x89 ;
+  unusedregister 0x8D ;
+  unusedregister 0x8F to 0x9E ;
+  unusedregister 0xC0 to 0xEF ;
+  ram gpr0 : 0x20 to 0x6F ;
+  ram gpr1 : 0xA0 to 0xBF ;
+  ram gprnobnk : 0x70 to 0x7F mirrorat 0xF0 ;
+  # Total ram: 128
+
+  register CMCON at 0x1F
+    <C2OUT, C1OUT, -, -, CIS, CM [3]> ;
+
+  register FSR at 0x4, 0x84
+    <FSR [8]> ;
+
+  register INDF at 0x0, 0x80
+    <INDF [8]> ;
+
+  register INTCON at 0xB, 0x8B
+    <GIE, PEIE, TMR0IE, INTE, RBIE, TMR0IF, INTF, RBIF> ;
+
+  register OPTION_REG at 0x81
+    <nRBPU, INTEDG, T0CS, T0SE, PSA, PS [3]> ;
+
+  register PCL at 0x2, 0x82
+    <PCL [8]> ;
+
+  register PCLATH at 0xA, 0x8A
+    <-, -, -, PCLATH [5]> ;
+
+  register PCON at 0x8E
+    <-, -, -, -, -, -, nPOR, nBOR> ;
+
+  register PIE1 at 0x8C
+    <-, CMIE, -, -, -, -, -, -> ;
+
+  register PIR1 at 0xC
+    <-, CMIF, -, -, -, -, -, -> ;
+
+  register PORTA at 0x5
+    <-, -, -, RA4, RA3, RA2, RA1, RA0> ;
+
+  register PORTB at 0x6
+    <RB7, RB6, RB5, RB4, RB3, RB2, RB1, RB0> ;
+
+  register STATUS at 0x3, 0x83
+    <IRP, RP [2], nTO, nPD, Z, DC, C> ;
+
+  register TMR0 at 0x1
+    <TMR0 [8]> ;
+
+  register TRISA at 0x85
+    <-, -, -, TRISA4, TRISA3, TRISA2, TRISA1, TRISA0> ;
+
+  register TRISB at 0x86
+    <TRISB7, TRISB6, TRISB5, TRISB4, TRISB3, TRISB2, TRISB1, TRISB0> ;
+
+  register VRCON at 0x9F
+    <VREN, VROE, VRR, -, VR [4]> ;
+
+  configuration CONFIG at 0x2007 width 14
+    illegal 0x40 mask 0x40 message "Current settings of PWRT and BOD are in conflict"
+    illegal 0x8 mask 0x8 message "Current settings of PWRT and BOD are in conflict" {
+    CP mask 0x3F30 description "Code Protect"
+      setting 0x3F30 mask 0x3F30 description "Off"
+      setting 0x2A20 mask 0x3F30 description "400:7FF"
+      setting 0x1510 mask 0x3F30 description "200:7FF"
+      setting 0x0 mask 0x3F30 description "All"
+    BODEN mask 0x40 description "Brown Out Detect"
+      setting 0x40 mask 0x40 description "On"
+      setting 0x0 mask 0x40 description "Off"
+    PUT mask 0x8 description "Power Up Timer"
+      setting 0x8 mask 0x8 description "Off"
+      setting 0x0 mask 0x8 description "On"
+    WDT mask 0x4 description "Watchdog Timer"
+      setting 0x4 mask 0x4 description "On"
+      setting 0x0 mask 0x4 description "Off"
+    OSC mask 0x3 description "Oscillator"
+      setting 0x3 mask 0x3 description "RC"
+      setting 0x0 mask 0x3 description "LP"
+      setting 0x1 mask 0x3 description "XT"
+      setting 0x2 mask 0x3 description "HS"
+  }
+}

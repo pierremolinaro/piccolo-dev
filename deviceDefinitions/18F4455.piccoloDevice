@@ -444,7 +444,7 @@ controller PIC18F4455 {
   register WREG at 0xFE8
     <WREG [8]> ;
 
-  config CONFIG1H at 0x300001 width 8 {
+  configuration CONFIG1H at 0x300001 width 8 {
     IESO mask 0x80 description "Internal External Switch Over Mode"
       setting 0x0 mask 0x80 description "Disabled"
       setting 0x80 mask 0x80 description "Enabled"
@@ -466,7 +466,7 @@ controller PIC18F4455 {
       setting 0x0 mask 0xE description "XT: USB-XT"
   }
 
-  config CONFIG1L at 0x300000 width 6 {
+  configuration CONFIG1L at 0x300000 width 6 {
     USBPLL mask 0x20 description "Full-Speed USB Clock Source Selection"
       setting 0x20 mask 0x20 description "Clock src from 96MHz PLL/2"
       setting 0x0 mask 0x20 description "Clock src from OSC1/OSC2"
@@ -486,7 +486,7 @@ controller PIC18F4455 {
       setting 0x0 mask 0x7 description "No Divide (4MHz input)"
   }
 
-  config CONFIG2H at 0x300003 width 5 {
+  configuration CONFIG2H at 0x300003 width 5 {
     WDTPS mask 0x1E description "Watchdog Postscaler"
       setting 0x1E mask 0x1E description "1:32768"
       setting 0x1C mask 0x1E description "1:16384"
@@ -509,7 +509,7 @@ controller PIC18F4455 {
       setting 0x0 mask 0x1 description "Disabled-Controlled by SWDTEN bit"
   }
 
-  config CONFIG2L at 0x300002 width 6 {
+  configuration CONFIG2L at 0x300002 width 6 {
     VREGEN mask 0x20 description "USB Voltage Regulator"
       setting 0x20 mask 0x20 description "Enabled"
       setting 0x0 mask 0x20 description "Disabled"
@@ -528,7 +528,7 @@ controller PIC18F4455 {
       setting 0x0 mask 0x1 description "Enabled"
   }
 
-  config CONFIG3H at 0x300005 width 8 {
+  configuration CONFIG3H at 0x300005 width 8 {
     MCLRE mask 0x80 description "Master Clear Enable"
       setting 0x80 mask 0x80 description "MCLR Enabled,RE3 Disabled"
       setting 0x0 mask 0x80 description "MCLR Disabled,RE3 Enabled"
@@ -543,7 +543,7 @@ controller PIC18F4455 {
       setting 0x0 mask 0x1 description "RB3"
   }
 
-  config CONFIG4L at 0x300006 width 8 {
+  configuration CONFIG4L at 0x300006 width 8 {
     BACKBUG mask 0x80 description "Background Debug"
       setting 0x80 mask 0x80 description "Disabled"
       setting 0x0 mask 0x80 description "Enabled"
@@ -561,7 +561,7 @@ controller PIC18F4455 {
       setting 0x0 mask 0x1 description "Disabled"
   }
 
-  config CONFIG5H at 0x300009 width 8 {
+  configuration CONFIG5H at 0x300009 width 8 {
     CPD mask 0x80 description "Data EE Read Protect"
       setting 0x80 mask 0x80 description "Disabled"
       setting 0x0 mask 0x80 description "Enabled"
@@ -570,7 +570,7 @@ controller PIC18F4455 {
       setting 0x0 mask 0x40 description "Enabled"
   }
 
-  config CONFIG5L at 0x300008 width 3 {
+  configuration CONFIG5L at 0x300008 width 3 {
     CP_2 mask 0x4 description "Code Protect 04000-05FFF"
       setting 0x4 mask 0x4 description "Disabled"
       setting 0x0 mask 0x4 description "Enabled"
@@ -582,7 +582,7 @@ controller PIC18F4455 {
       setting 0x0 mask 0x1 description "Enabled"
   }
 
-  config CONFIG6H at 0x30000B width 8 {
+  configuration CONFIG6H at 0x30000B width 8 {
     WRTD mask 0x80 description "Data EE Write Protect"
       setting 0x80 mask 0x80 description "Disabled"
       setting 0x0 mask 0x80 description "Enabled"
@@ -594,7 +594,7 @@ controller PIC18F4455 {
       setting 0x0 mask 0x20 description "Enabled"
   }
 
-  config CONFIG6L at 0x30000A width 3 {
+  configuration CONFIG6L at 0x30000A width 3 {
     WRT_2 mask 0x4 description "Table Write Protect 04000-05FFF"
       setting 0x4 mask 0x4 description "Disabled"
       setting 0x0 mask 0x4 description "Enabled"
@@ -606,13 +606,13 @@ controller PIC18F4455 {
       setting 0x0 mask 0x1 description "Enabled"
   }
 
-  config CONFIG7H at 0x30000D width 7 {
+  configuration CONFIG7H at 0x30000D width 7 {
     EBTRB mask 0x40 description "Table Read Protect Boot"
       setting 0x40 mask 0x40 description "Disabled"
       setting 0x0 mask 0x40 description "Enabled"
   }
 
-  config CONFIG7L at 0x30000C width 3 {
+  configuration CONFIG7L at 0x30000C width 3 {
     EBTR_2 mask 0x4 description "Table Read Protect 04000-05FFF"
       setting 0x4 mask 0x4 description "Disabled"
       setting 0x0 mask 0x4 description "Enabled"

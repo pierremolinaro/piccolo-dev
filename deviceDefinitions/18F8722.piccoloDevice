@@ -490,7 +490,7 @@ controller PIC18F8722 {
   register WREG at 0xFE8
     <WREG [8]> ;
 
-  config CONFIG1H at 0x300001 width 8 {
+  configuration CONFIG1H at 0x300001 width 8 {
     IESO mask 0x80 description "Internal External Switch Over Mode"
       setting 0x0 mask 0x80 description "Disabled"
       setting 0x80 mask 0x80 description "Enabled"
@@ -512,7 +512,7 @@ controller PIC18F8722 {
       setting 0x0 mask 0xF description "LP"
   }
 
-  config CONFIG2H at 0x300003 width 5 {
+  configuration CONFIG2H at 0x300003 width 5 {
     WDTPS mask 0x1E description "Watchdog Postscaler"
       setting 0x1E mask 0x1E description "1:32768"
       setting 0x1C mask 0x1E description "1:16384"
@@ -535,7 +535,7 @@ controller PIC18F8722 {
       setting 0x0 mask 0x1 description "Disabled-Controlled by SWDTEN bit"
   }
 
-  config CONFIG2L at 0x300002 width 5 {
+  configuration CONFIG2L at 0x300002 width 5 {
     BODENV mask 0x18 description "Brown Out Voltage"
       setting 0x18 mask 0x18 description "2.0V"
       setting 0x10 mask 0x18 description "2.7V"
@@ -551,7 +551,7 @@ controller PIC18F8722 {
       setting 0x0 mask 0x1 description "Enabled"
   }
 
-  config CONFIG3H at 0x300005 width 8 {
+  configuration CONFIG3H at 0x300005 width 8 {
     MCLRE mask 0x80 description "Master Clear Enable"
       setting 0x80 mask 0x80 description "MCLR Enabled,RG5 Disabled"
       setting 0x0 mask 0x80 description "MCLR Disabled, RG5 Enabled"
@@ -566,7 +566,7 @@ controller PIC18F8722 {
       setting 0x0 mask 0x1 description "RE7-Microcontroller Mode/RB3-All other modes"
   }
 
-  config CONFIG3L at 0x300004 width 8 {
+  configuration CONFIG3L at 0x300004 width 8 {
     WAIT mask 0x80 description "External Bus Wait"
       setting 0x80 mask 0x80 description "Disabled"
       setting 0x0 mask 0x80 description "Enabled"
@@ -585,7 +585,7 @@ controller PIC18F8722 {
       setting 0x0 mask 0x3 description "Ext Microcontroller"
   }
 
-  config CONFIG4L at 0x300006 width 8 {
+  configuration CONFIG4L at 0x300006 width 8 {
     BACKBUG mask 0x80 description "Background Debug"
       setting 0x80 mask 0x80 description "Disabled"
       setting 0x0 mask 0x80 description "Enabled"
@@ -604,7 +604,7 @@ controller PIC18F8722 {
       setting 0x0 mask 0x1 description "Disabled"
   }
 
-  config CONFIG5H at 0x300009 width 8 {
+  configuration CONFIG5H at 0x300009 width 8 {
     CPD mask 0x80 description "Data EE Read Protect"
       setting 0x80 mask 0x80 description "Disabled"
       setting 0x0 mask 0x80 description "Enabled"
@@ -613,7 +613,7 @@ controller PIC18F8722 {
       setting 0x0 mask 0x40 description "Enabled"
   }
 
-  config CONFIG5L at 0x300008 width 8 {
+  configuration CONFIG5L at 0x300008 width 8 {
     CP_7 mask 0x80 description "Code Protect 1C000-1FFFF"
       setting 0x80 mask 0x80 description "Disabled"
       setting 0x0 mask 0x80 description "Enabled"
@@ -640,7 +640,7 @@ controller PIC18F8722 {
       setting 0x0 mask 0x1 description "Enabled"
   }
 
-  config CONFIG6H at 0x30000B width 8 {
+  configuration CONFIG6H at 0x30000B width 8 {
     WRTD mask 0x80 description "Data EE Write Protect"
       setting 0x80 mask 0x80 description "Disabled"
       setting 0x0 mask 0x80 description "Enabled"
@@ -652,7 +652,7 @@ controller PIC18F8722 {
       setting 0x0 mask 0x20 description "Enabled"
   }
 
-  config CONFIG6L at 0x30000A width 8 {
+  configuration CONFIG6L at 0x30000A width 8 {
     WRT_7 mask 0x80 description "Table Write Protect 1C000-1FFFF"
       setting 0x80 mask 0x80 description "Disabled"
       setting 0x0 mask 0x80 description "Enabled"
@@ -679,13 +679,13 @@ controller PIC18F8722 {
       setting 0x0 mask 0x1 description "Enabled"
   }
 
-  config CONFIG7H at 0x30000D width 7 {
+  configuration CONFIG7H at 0x30000D width 7 {
     EBTRB mask 0x40 description "Table Read Protect Boot"
       setting 0x40 mask 0x40 description "Disabled"
       setting 0x0 mask 0x40 description "Enabled"
   }
 
-  config CONFIG7L at 0x30000C width 8 {
+  configuration CONFIG7L at 0x30000C width 8 {
     EBTR_7 mask 0x80 description "Table Read Protect 1C000-1FFFF"
       setting 0x80 mask 0x80 description "Disabled"
       setting 0x0 mask 0x80 description "Enabled"

@@ -1,0 +1,257 @@
+controller PIC16C765 {
+  processor "mid-range" ;
+  romsize 8192 ;
+  bank 4 ;
+  unusedregister 0x13 to 0x14 ;
+  unusedregister 0x8F to 0x91 ;
+  unusedregister 0x93 to 0x97 ;
+  unusedregister 0x9A to 0x9E ;
+  unusedregister 0x105 ;
+  unusedregister 0x107 to 0x109 ;
+  unusedregister 0x10C to 0x11F ;
+  unusedregister 0x185 ;
+  unusedregister 0x187 to 0x189 ;
+  unusedregister 0x18C to 0x18F ;
+  unusedregister 0x19B to 0x19F ;
+  unusedregister 0x1E0 to 0x1EF ;
+  ram gpr0 : 0x20 to 0x6F ;
+  ram gpr1 : 0xA0 to 0xEF ;
+  ram gpr2 : 0x120 to 0x16F ;
+  ram gprnobnk : 0x70 to 0x7F mirrorat 0xF0, 0x170, 0x1F0 ;
+  # Total ram: 256
+
+  register ADCON0 at 0x1F
+    <ADCS [2], CHS [3], GO/nDONE, -, ADON> ;
+
+  register ADCON1 at 0x9F
+    <-, -, -, -, -, PCFG [3]> ;
+
+  register ADRES at 0x1E
+    <ADRES [8]> ;
+
+  register BD0IAL at 0x1A6
+    <BUFADRL [8]> ;
+
+  register BD0IBC at 0x1A5
+    <-, -, -, -, BC [4]> ;
+
+  register BD0IST at 0x1A4
+    <UOWN, DATA0, PID3, PID2, PID1/DTS, PID0/BSTALL, -, -> ;
+
+  register BD0OAL at 0x1A2
+    <BUFADRL [8]> ;
+
+  register BD0OBC at 0x1A1
+    <-, -, -, -, BC [4]> ;
+
+  register BD0OST at 0x1A0
+    <UOWN, DATA0, PID3, PID2, PID1/DTS, PID0/BSTALL, -, -> ;
+
+  register BD1IAL at 0x1AE
+    <BUFADRL [8]> ;
+
+  register BD1IBC at 0x1AD
+    <-, -, -, -, BC [4]> ;
+
+  register BD1IST at 0x1AC
+    <UOWN, DATA0, PID3, PID2, PID1/DTS, PID0/BSTALL, -, -> ;
+
+  register BD1OAL at 0x1AA
+    <BUFADRL [8]> ;
+
+  register BD1OBC at 0x1A9
+    <-, -, -, -, BC [4]> ;
+
+  register BD1OST at 0x1A8
+    <UOWN, DATA0, PID3, PID2, PID1/DTS, PID0/BSTALL, -, -> ;
+
+  register BD2IAL at 0x1B6
+    <BUFADRL [8]> ;
+
+  register BD2IBC at 0x1B5
+    <-, -, -, -, BC [4]> ;
+
+  register BD2IST at 0x1B4
+    <UOWN, DATA0, PID3, PID2, PID1/DTS, PID0/BSTALL, -, -> ;
+
+  register BD2OAL at 0x1B2
+    <BUFADRL [8]> ;
+
+  register BD2OBC at 0x1B1
+    <-, -, -, -, BC [4]> ;
+
+  register BD2OST at 0x1B0
+    <UOWN, DATA0_1, PID3, PID2, PID1_DTS, PID0_BSTALL, -, -> ;
+
+  register CCP1CON at 0x17
+    <-, -, DC1B [2], CCP1M [4]> ;
+
+  register CCP2CON at 0x1D
+    <-, -, DC2B [2], CCP2M [4]> ;
+
+  register CCPR1H at 0x16
+    <CCPR1H [8]> ;
+
+  register CCPR1L at 0x15
+    <CCPR1L [8]> ;
+
+  register CCPR2H at 0x1C
+    <CCPR2H [8]> ;
+
+  register CCPR2L at 0x1B
+    <CCPR2L [8]> ;
+
+  register FSR at 0x4, 0x84, 0x104, 0x184
+    <FSR [8]> ;
+
+  register INDF at 0x0, 0x80, 0x100, 0x180
+    <INDF [8]> ;
+
+  register INTCON at 0xB, 0x8B, 0x10B, 0x18B
+    <GIE, PEIE, TMR0IE, INTE, RBIE, TMR0IF, INTF, RBIF> ;
+
+  register OPTION_REG at 0x81, 0x181
+    <nRBPU, INTEDG, T0CS, T0SE, PSA, PS [3]> ;
+
+  register PCL at 0x2, 0x82, 0x102, 0x182
+    <PCL [8]> ;
+
+  register PCLATH at 0xA, 0x8A, 0x10A, 0x18A
+    <-, -, -, PCLATH [5]> ;
+
+  register PCON at 0x8E
+    <-, -, -, -, -, -, nPOR, nBOR> ;
+
+  register PIE1 at 0x8C
+    <PSPIE, ADIE, RCIE, TXIE, USBIE, CCP1IE, TMR2IE, TMR1IE> ;
+
+  register PIE2 at 0x8D
+    <-, -, -, -, -, -, -, CCP2IE> ;
+
+  register PIR1 at 0xC
+    <PSPIF, ADIF, RCIF, TXIF, USBIF, CCP1IF, TMR2IF, TMR1IF> ;
+
+  register PIR2 at 0xD
+    <-, -, -, -, -, -, -, CCP2IF> ;
+
+  register PORTA at 0x5
+    <-, -, RA5, RA4, RA3, RA2, RA1, RA0> ;
+
+  register PORTB at 0x6, 0x106
+    <RB7, RB6, RB5, RB4, RB3, RB2, RB1, RB0> ;
+
+  register PORTC at 0x7
+    <RC7, RC6, -, -, -, RC2, RC1, RC0> ;
+
+  register PORTD at 0x8
+    <RD7, RD6, RD5, RD4, RD3, RD2, RD1, RD0> ;
+
+  register PORTE at 0x9
+    <-, -, -, -, -, RE2, RE1, RE0> ;
+
+  register PR2 at 0x92
+    <PR2 [8]> ;
+
+  register RCREG at 0x1A
+    <RCREG [8]> ;
+
+  register RCSTA at 0x18
+    <SPEN, RX9, SREN, CREN, -, FERR, OERR, RX9D> ;
+
+  register SPBRG at 0x99
+    <SPBRG [8]> ;
+
+  register STATUS at 0x3, 0x83, 0x103, 0x183
+    <IRP, RP [2], nTO, nPD, Z, DC, C> ;
+
+  register T1CON at 0x10
+    <-, -, T1CKPS [2], T1OSCEN, nT1SYNC, TMR1CS, TMR1ON> ;
+
+  register T2CON at 0x12
+    <-, TOUTPS [4], TMR2ON, T2CKPS [2]> ;
+
+  register TMR0 at 0x1, 0x101
+    <TMR0 [8]> ;
+
+  register TMR1H at 0xF
+    <TMR1H [8]> ;
+
+  register TMR1L at 0xE
+    <TMR1L [8]> ;
+
+  register TMR2 at 0x11
+    <TMR2 [8]> ;
+
+  register TRISA at 0x85
+    <-, -, TRISA5, TRISA4, TRISA3, TRISA2, TRISA1, TRISA0> ;
+
+  register TRISB at 0x86, 0x186
+    <TRISB7, TRISB6, TRISB5, TRISB4, TRISB3, TRISB2, TRISB1, TRISB0> ;
+
+  register TRISC at 0x87
+    <TRISC7, TRISC6, -, -, -, TRISC2, TRISC1, TRISC0> ;
+
+  register TRISD at 0x88
+    <TRISD7, TRISD6, TRISD5, TRISD4, TRISD3, TRISD2, TRISD1, TRISD0> ;
+
+  register TRISE at 0x89
+    <IBF, OBF, IBOV, PSPMODE, -, TRISE2, TRISE1, TRISE0> ;
+
+  register TXREG at 0x19
+    <TXREG [8]> ;
+
+  register TXSTA at 0x98
+    <CSRC, TX9, TXEN, SYNC, -, BRGH, TRMT, TX9D> ;
+
+  register UADDR at 0x196
+    <-, ADDR [7]> ;
+
+  register UCTRL at 0x195
+    <-, -, SE0, PKT_DIS, DEV_ATT, RESUME, SUSPND, -> ;
+
+  register UEIE at 0x193
+    <BTS_ERR, OWN_ERR, WRT_ERR, BTO_ERR, DFN8, CRC16, CRC5, PID_ERR> ;
+
+  register UEIR at 0x192
+    <BTS_ERR, OWN_ERR, WRT_ERR, BTO_ERR, DFN8, CRC16, CRC5, PID_ERR> ;
+
+  register UEP0 at 0x198
+    <-, -, -, -, EP_CTL_DIS, EP_OUT_EN, EP_IN_EN, EP_STALL> ;
+
+  register UEP1 at 0x199
+    <-, -, -, -, EP_CTL_DIS, EP_OUT_EN, EP_IN_EN, EP_STALL> ;
+
+  register UEP2 at 0x19A
+    <-, -, -, -, EP_CTL_DIS, EP_OUT_EN, EP_IN_EN, EP_STALL> ;
+
+  register UIE at 0x191
+    <-, -, STALL, UIDLE, TOK_DNE, ACTIVITY, UERR, USB_RST> ;
+
+  register UIR at 0x190
+    <-, -, STALL, UIDLE, TOK_DNE, ACTIVITY, UERR, USB_RST> ;
+
+  register USTAT at 0x194
+    <-, -, -, ENDP [2], IN, -, -> ;
+
+  register USWSTAT at 0x197
+    <USWSTAT [8]> ;
+
+  configuration CONFIG at 0x2007 width 14 {
+    CP mask 0x3F30 description "Code Protect"
+      setting 0x3F30 mask 0x3F30 description "Off"
+      setting 0x2A20 mask 0x3F30 description "1000:1FFF"
+      setting 0x1510 mask 0x3F30 description "800:1FFF"
+      setting 0x0 mask 0x3F30 description "All"
+    PUT mask 0x8 description "Power Up Timer"
+      setting 0x8 mask 0x8 description "Off"
+      setting 0x0 mask 0x8 description "On"
+    WDT mask 0x4 description "Watchdog Timer"
+      setting 0x4 mask 0x4 description "On"
+      setting 0x0 mask 0x4 description "Off"
+    OSC mask 0x3 description "Oscillator"
+      setting 0x3 mask 0x3 description "E4"
+      setting 0x0 mask 0x3 description "HS"
+      setting 0x1 mask 0x3 description "EC"
+      setting 0x2 mask 0x3 description "H4"
+  }
+}

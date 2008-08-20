@@ -339,7 +339,7 @@ controller PIC18F2221 {
   register WREG at 0xFE8
     <WREG [8]> ;
 
-  config CONFIG1H at 0x300001 width 8 {
+  configuration CONFIG1H at 0x300001 width 8 {
     IESO mask 0x80 description "Internal External Switch Over Enable"
       setting 0x80 mask 0x80 description "Enabled"
       setting 0x0 mask 0x80 description "Disabled"
@@ -361,7 +361,7 @@ controller PIC18F2221 {
       setting 0x0 mask 0xF description "LP"
   }
 
-  config CONFIG2H at 0x300003 width 5 {
+  configuration CONFIG2H at 0x300003 width 5 {
     WDTPS mask 0x1E description "Watchdog Timer Postscale"
       setting 0x1E mask 0x1E description "1:32,768"
       setting 0x1C mask 0x1E description "1:16,384"
@@ -384,7 +384,7 @@ controller PIC18F2221 {
       setting 0x0 mask 0x1 description "Disabled-Controlled by SWDTEN bit"
   }
 
-  config CONFIG2L at 0x300002 width 5 {
+  configuration CONFIG2L at 0x300002 width 5 {
     BORV mask 0x18 description "Brown-out Reset Voltage"
       setting 0x18 mask 0x18 description "2.0V"
       setting 0x10 mask 0x18 description "2.7V"
@@ -400,7 +400,7 @@ controller PIC18F2221 {
       setting 0x0 mask 0x1 description "Enabled"
   }
 
-  config CONFIG3H at 0x300005 width 8 {
+  configuration CONFIG3H at 0x300005 width 8 {
     MCLRE mask 0x80 description "MCLR Pin Enable"
       setting 0x80 mask 0x80 description "MCLR Enabled, RE3 Disabled"
       setting 0x0 mask 0x80 description "MCLR Disabled, RE3 Enabled"
@@ -415,7 +415,7 @@ controller PIC18F2221 {
       setting 0x0 mask 0x1 description "CCP2 I/O Muxed With RB3"
   }
 
-  config CONFIG4L at 0x300006 width 8 {
+  configuration CONFIG4L at 0x300006 width 8 {
     BACKBUG mask 0x80 description "Background Debug"
       setting 0x80 mask 0x80 description "Disabled"
       setting 0x0 mask 0x80 description "Enabled"
@@ -435,7 +435,7 @@ controller PIC18F2221 {
       setting 0x0 mask 0x1 description "Disabled"
   }
 
-  config CONFIG5H at 0x300009 width 8 {
+  configuration CONFIG5H at 0x300009 width 8 {
     CPD mask 0x80 description "Code Protect Data EEPROM"
       setting 0x80 mask 0x80 description "Disabled"
       setting 0x0 mask 0x80 description "Enabled"
@@ -444,7 +444,7 @@ controller PIC18F2221 {
       setting 0x0 mask 0x40 description "Enabled"
   }
 
-  config CONFIG5L at 0x300008 width 2 {
+  configuration CONFIG5L at 0x300008 width 2 {
     CP_1 mask 0x2 description "Code Protect Block 1"
       setting 0x2 mask 0x2 description "Disabled"
       setting 0x0 mask 0x2 description "Enabled"
@@ -453,7 +453,7 @@ controller PIC18F2221 {
       setting 0x0 mask 0x1 description "Enabled"
   }
 
-  config CONFIG6H at 0x30000B width 8 {
+  configuration CONFIG6H at 0x30000B width 8 {
     WRTD mask 0x80 description "Write Protect Data EEPROM"
       setting 0x80 mask 0x80 description "Disabled"
       setting 0x0 mask 0x80 description "Enabled"
@@ -465,7 +465,7 @@ controller PIC18F2221 {
       setting 0x0 mask 0x20 description "Enabled"
   }
 
-  config CONFIG6L at 0x30000A width 2 {
+  configuration CONFIG6L at 0x30000A width 2 {
     WRT1 mask 0x2 description "Write Protect Block 1"
       setting 0x2 mask 0x2 description "Disabled"
       setting 0x0 mask 0x2 description "Enabled"
@@ -474,13 +474,13 @@ controller PIC18F2221 {
       setting 0x0 mask 0x1 description "Enabled"
   }
 
-  config CONFIG7H at 0x30000D width 7 {
+  configuration CONFIG7H at 0x30000D width 7 {
     EBTRB mask 0x40 description "Table Read Protect Boot Block"
       setting 0x40 mask 0x40 description "Disabled"
       setting 0x0 mask 0x40 description "Enabled"
   }
 
-  config CONFIG7L at 0x30000C width 2 {
+  configuration CONFIG7L at 0x30000C width 2 {
     EBTR1 mask 0x2 description "Table Read Protect Block 1"
       setting 0x2 mask 0x2 description "Disabled"
       setting 0x0 mask 0x2 description "Enabled"

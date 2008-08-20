@@ -1,0 +1,178 @@
+controller PIC16C782 {
+  processor "mid-range" ;
+  romsize 2048 ;
+  bank 4 ;
+  unusedregister 0x7 to 0x9 ;
+  unusedregister 0xD ;
+  unusedregister 0x11 to 0x1D ;
+  unusedregister 0x87 to 0x89 ;
+  unusedregister 0x8D ;
+  unusedregister 0x8F to 0x94 ;
+  unusedregister 0x97 to 0x9A ;
+  unusedregister 0x9E ;
+  unusedregister 0xC0 to 0xEF ;
+  unusedregister 0x105 ;
+  unusedregister 0x107 to 0x109 ;
+  unusedregister 0x113 to 0x118 ;
+  unusedregister 0x11D ;
+  unusedregister 0x120 to 0x16F ;
+  unusedregister 0x185 ;
+  unusedregister 0x187 to 0x189 ;
+  unusedregister 0x18D to 0x1EF ;
+  ram gpr0 : 0x20 to 0x6F ;
+  ram gpr1 : 0xA0 to 0xBF ;
+  ram gprnobnk : 0x70 to 0x7F mirrorat 0xF0, 0x170, 0x1F0 ;
+  # Total ram: 128
+
+  register ADCON0 at 0x1F
+    <ADCS [2], CHS [3], GO/nDONE, CHS3, ADON> ;
+
+  register ADCON1 at 0x9F
+    <-, -, VCFG [2], -, -, -, -> ;
+
+  register ADRES at 0x1E
+    <ADRES [8]> ;
+
+  register ANSEL at 0x9D
+    <ANS7, ANS6, ANS5, ANS4, ANS3, ANS2, ANS1, ANS0> ;
+
+  register CALCON at 0x110
+    <CAL, CALERR, CALREF, -, -, -, -, -> ;
+
+  register CM1CON0 at 0x119
+    <C1ON, C1OUT, C1OE, C1POL, C1SP, C1R, C1CH [2]> ;
+
+  register CM2CON0 at 0x11A
+    <C2ON, C2OUT, C2OE, C2POL, C2SP, C2R, C2CH [2]> ;
+
+  register CM2CON1 at 0x11B
+    <MC1OUT, MC2OUT, -, -, -, -, -, C2SYNC> ;
+
+  register DAC at 0x11E
+    <DA7, DA6, DA5, DA4, DA3, DA2, DA1, DA0> ;
+
+  register DACON0 at 0x11F
+    <DAON, DAOE, -, -, -, -, DARS [2]> ;
+
+  register FSR at 0x4, 0x84, 0x104, 0x184
+    <FSR [8]> ;
+
+  register INDF at 0x0, 0x80, 0x100, 0x180
+    <INDF [8]> ;
+
+  register INTCON at 0xB, 0x8B, 0x10B, 0x18B
+    <GIE, PEIE, TMR0IE, INTE, RBIE, TMR0IF, INTF, RBIF> ;
+
+  register IOCB at 0x96
+    <IOCB7, IOCB6, IOCB5, IOCB4, IOCB3, IOCB2, IOCB1, IOCB0> ;
+
+  register LVDCON at 0x9C
+    <-, -, BGST, LVDEN, LV [4]> ;
+
+  register OPACON at 0x11C
+    <OPAON, CMPEN, -, -, -, -, -, GBWP> ;
+
+  register OPTION_REG at 0x81, 0x181
+    <nRBPU, INTEDG, T0CS, T0SE, PSA, PS [3]> ;
+
+  register PCL at 0x2, 0x82, 0x102, 0x182
+    <PCL [8]> ;
+
+  register PCLATH at 0xA, 0x8A, 0x10A, 0x18A
+    <-, -, -, PCLATH [5]> ;
+
+  register PCON at 0x8E
+    <-, -, -, WDTON, OSCF, -, nPOR, nBOR> ;
+
+  register PIE1 at 0x8C
+    <LVDIE, ADIE, C2IE, C1IE, -, -, -, TMR1IE> ;
+
+  register PIR1 at 0xC
+    <LVDIF, ADIF, C2IF, C1IF, -, -, -, TMR1IF> ;
+
+  register PMADRH at 0x10F
+    <-, -, -, -, -, PMADRH [3]> ;
+
+  register PMADRL at 0x10D
+    <PMADRL [8]> ;
+
+  register PMCON1 at 0x18C
+    <-, -, -, -, -, -, -, RD> ;
+
+  register PMDATH at 0x10E
+    <-, -, PMDATH [6]> ;
+
+  register PMDATL at 0x10C
+    <PMDATL [8]> ;
+
+  register PORTA at 0x5
+    <RA7, RA6, RA5, RA4, RA3, RA2, RA1, RA0> ;
+
+  register PORTB at 0x6, 0x106
+    <RB7, RB6, RB5, RB4, RB3, RB2, RB1, RB0> ;
+
+  register PSMCCON0 at 0x111
+    <SMCCL [2], MINDC [2], MAXDC [2], DC [2]> ;
+
+  register PSMCCON1 at 0x112
+    <SMCON, S1APOL, S1BPOL, -, SCEN, SMCOM, PWM/nPSM, SMCCS> ;
+
+  register REFCON at 0x9B
+    <-, -, -, -, VREN, VROE, -, -> ;
+
+  register STATUS at 0x3, 0x83, 0x103, 0x183
+    <IRP, RP [2], nTO, nPD, Z, DC, C> ;
+
+  register T1CON at 0x10
+    <-, TMR1GE, T1CKPS [2], T1OSCEN, nT1SYNC, TMR1CS, TMR1ON> ;
+
+  register TMR0 at 0x1, 0x101
+    <TMR0 [8]> ;
+
+  register TMR1H at 0xF
+    <TMR1H [8]> ;
+
+  register TMR1L at 0xE
+    <TMR1L [8]> ;
+
+  register TRISA at 0x85
+    <TRISA7, TRISA6, TRISA5, TRISA4, TRISA3, TRISA2, TRISA1, TRISA0> ;
+
+  register TRISB at 0x86, 0x186
+    <TRISB7, TRISB6, TRISB5, TRISB4, TRISB3, TRISB2, TRISB1, TRISB0> ;
+
+  register WPUB at 0x95
+    <WPUB7, WPUB6, WPUB5, WPUB4, WPUB3, WPUB2, WPUB1, WPUB0> ;
+
+  configuration CONFIG at 0x2007 width 14 {
+    CP mask 0x3300 description "Code Protect"
+      setting 0x3300 mask 0x3300 description "Off"
+      setting 0x0 mask 0x3300 description "All"
+    BODENV mask 0xC00 description "Brown Out Voltage"
+      setting 0xC00 mask 0xC00 description "2.5V"
+      setting 0x800 mask 0xC00 description "2.7V"
+      setting 0x400 mask 0xC00 description "4.2V"
+      setting 0x0 mask 0xC00 description "4.5V"
+    BODEN mask 0x40 description "Brown Out Detect"
+      setting 0x40 mask 0x40 description "On"
+      setting 0x0 mask 0x40 description "Off"
+    MCLRE mask 0x20 description "Master Clear Enable"
+      setting 0x20 mask 0x20 description "External"
+      setting 0x0 mask 0x20 description "Internal"
+    PUT mask 0x10 description "Power Up Timer"
+      setting 0x10 mask 0x10 description "Off"
+      setting 0x0 mask 0x10 description "On"
+    WDT mask 0x8 description "Watchdog Timer"
+      setting 0x8 mask 0x8 description "On"
+      setting 0x0 mask 0x8 description "Off"
+    OSC mask 0x7 description "Oscillator"
+      setting 0x7 mask 0x7 description "RC CLKOUT"
+      setting 0x6 mask 0x7 description "RC I/O"
+      setting 0x5 mask 0x7 description "INTRC CLKOUT"
+      setting 0x4 mask 0x7 description "INTRC I/O"
+      setting 0x3 mask 0x7 description "EC I/O"
+      setting 0x2 mask 0x7 description "HS"
+      setting 0x1 mask 0x7 description "XT"
+      setting 0x0 mask 0x7 description "LP"
+  }
+}

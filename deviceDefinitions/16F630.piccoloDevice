@@ -1,0 +1,138 @@
+controller PIC16F630 {
+  processor "mid-range" ;
+  romsize 1024 ;
+  eepromsize 128 at 0x2100 ;
+  bank 2 ;
+  unusedregister 0x6 ;
+  unusedregister 0x8 to 0x9 ;
+  unusedregister 0xD ;
+  unusedregister 0x11 to 0x18 ;
+  unusedregister 0x1A to 0x1F ;
+  unusedregister 0x60 to 0x7F ;
+  unusedregister 0x86 ;
+  unusedregister 0x88 to 0x89 ;
+  unusedregister 0x8D ;
+  unusedregister 0x8F ;
+  unusedregister 0x91 to 0x94 ;
+  unusedregister 0x97 to 0x98 ;
+  unusedregister 0x9E to 0x9F ;
+  unusedregister 0xE0 to 0xFF ;
+  ram gpr0 : 0x20 to 0x5F mirrorat 0xA0 ;
+  # Total ram: 64
+
+  register CMCON at 0x19
+    <-, COUT, -, CINV, CIS, CM [3]> ;
+
+  register EEADR at 0x9B
+    <-, EEADR [7]> ;
+
+  register EECON1 at 0x9C
+    <-, -, -, -, WRERR, WREN, WR, RD> ;
+
+  register EECON2 at 0x9D
+    <EECON2 [8]> ;
+
+  register EEDAT at 0x9A
+    <EEDAT [8]> ;
+
+  register FSR at 0x4, 0x84
+    <FSR [8]> ;
+
+  register INDF at 0x0, 0x80
+    <INDF [8]> ;
+
+  register INTCON at 0xB, 0x8B
+    <GIE, PEIE, TMR0IE, INTE, RAIE, TMR0IF, INTF, RAIF> ;
+
+  register IOCA at 0x96
+    <-, -, IOCA5, IOCA4, IOCA3, IOCA2, IOCA1, IOCA0> ;
+
+  register OPTION_REG at 0x81
+    <nRAPU, INTEDG, T0CS, T0SE, PSA, PS [3]> ;
+
+  register OSCCAL at 0x90
+    <CAL [6], -, -> ;
+
+  register PCL at 0x2, 0x82
+    <PCL [8]> ;
+
+  register PCLATH at 0xA, 0x8A
+    <-, -, -, PCLATH [5]> ;
+
+  register PCON at 0x8E
+    <-, -, -, -, -, -, nPOR, nBOR> ;
+
+  register PIE1 at 0x8C
+    <EEIE, ADIE, -, -, CMIE, -, -, TMR1IE> ;
+
+  register PIR1 at 0xC
+    <EEIF, ADIF, -, -, CMIF, -, -, TMR1IF> ;
+
+  register PORTA at 0x5
+    <-, -, RA5, RA4, RA3, RA2, RA1, RA0> ;
+
+  register PORTC at 0x7
+    <-, -, RC5, RC4, RC3, RC2, RC1, RC0> ;
+
+  register STATUS at 0x3, 0x83
+    <IRP, RP [2], nTO, nPD, Z, DC, C> ;
+
+  register T1CON at 0x10
+    <-, TMR1GE, T1CKPS [2], T1OSCEN, nT1SYNC, TMR1CS, TMR1ON> ;
+
+  register TMR0 at 0x1
+    <TMR0 [8]> ;
+
+  register TMR1H at 0xF
+    <TMR1H [8]> ;
+
+  register TMR1L at 0xE
+    <TMR1L [8]> ;
+
+  register TRISA at 0x85
+    <-, -, TRISA5, TRISA4, TRISA3, TRISA2, TRISA1, TRISA0> ;
+
+  register TRISC at 0x87
+    <-, -, TRISC5, TRISC4, TRISC3, TRISC2, TRISC1, TRISC0> ;
+
+  register VRCON at 0x99
+    <VREN, -, VRR, -, VR [4]> ;
+
+  register WPUA at 0x95
+    <-, -, WPUA5, WPUA4, -, WPUA2, WPUA1, WPUA0> ;
+
+  configuration CONFIG at 0x2007 width 14
+    illegal 0x48 mask 0x48 message "Current settings of PWRT and BOD are in conflict" {
+    BG mask 0x3000 description "Bandgap Calibration Bits"
+      setting 0x3000 mask 0x3000 description "Adjust Bandgap Voltage (-100mV)"
+      setting 0x1000 mask 0x3000 description "Target Bandgap Voltage (2.1V)"
+      setting 0x0 mask 0x3000 description "Adjust Bandgap Voltage (100mv)"
+    CPD mask 0x100 description "Data EE Read Protect"
+      setting 0x100 mask 0x100 description "Off"
+      setting 0x0 mask 0x100 description "On"
+    CP mask 0x80 description "Code Protect"
+      setting 0x80 mask 0x80 description "Off"
+      setting 0x0 mask 0x80 description "On"
+    BODEN mask 0x40 description "Brown Out Detect"
+      setting 0x40 mask 0x40 description "On"
+      setting 0x0 mask 0x40 description "Off"
+    MCLRE mask 0x20 description "Master Clear Enable"
+      setting 0x20 mask 0x20 description "External"
+      setting 0x0 mask 0x20 description "Internal"
+    PUT mask 0x10 description "Power Up Timer"
+      setting 0x10 mask 0x10 description "Off"
+      setting 0x0 mask 0x10 description "On"
+    WDT mask 0x8 description "Watchdog Timer"
+      setting 0x8 mask 0x8 description "On"
+      setting 0x0 mask 0x8 description "Off"
+    OSC mask 0x7 description "Oscillator"
+      setting 0x7 mask 0x7 description "External RC Clockout"
+      setting 0x6 mask 0x7 description "External RC No Clock"
+      setting 0x5 mask 0x7 description "Internal RC Clockout"
+      setting 0x4 mask 0x7 description "Internal RC No Clock"
+      setting 0x3 mask 0x7 description "EC"
+      setting 0x2 mask 0x7 description "HS"
+      setting 0x1 mask 0x7 description "XT"
+      setting 0x0 mask 0x7 description "LP"
+  }
+}

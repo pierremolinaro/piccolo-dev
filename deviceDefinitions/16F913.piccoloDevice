@@ -1,0 +1,278 @@
+controller PIC16F913 {
+  processor "mid-range" ;
+  romsize 4096 ;
+  eepromsize 256 at 0x2100 ;
+  bank 4 ;
+  unusedregister 0x8 ;
+  unusedregister 0x1B to 0x1D ;
+  unusedregister 0x88 ;
+  unusedregister 0x9A to 0x9B ;
+  unusedregister 0x112 ;
+  unusedregister 0x115 ;
+  unusedregister 0x118 ;
+  unusedregister 0x11B ;
+  unusedregister 0x11E to 0x11F ;
+  unusedregister 0x185 ;
+  unusedregister 0x187 to 0x189 ;
+  unusedregister 0x18E to 0x18F ;
+  unusedregister 0x190 to 0x1EF ;
+  ram gpr0 : 0x20 to 0x6F ;
+  ram gpr1 : 0xA0 to 0xEF ;
+  ram gpr2 : 0x120 to 0x16F ;
+  ram gprnobnk : 0x70 to 0x7F mirrorat 0xF0, 0x170, 0x1F0 ;
+  # Total ram: 256
+
+  register ADCON0 at 0x1F
+    <ADFM, VCFG [2], CHS [3], GO/nDONE, ADON> ;
+
+  register ADCON1 at 0x9F
+    <-, ADCS [3], -, -, -, -> ;
+
+  register ADRESH at 0x1E
+    <ADRESH [8]> ;
+
+  register ADRESL at 0x9E
+    <ADRESL [8]> ;
+
+  register ANSEL at 0x91
+    <AN [8]> ;
+
+  register CCP1CON at 0x17
+    <-, -, CCP1X, CCP1Y, CCP1M [4]> ;
+
+  register CCPR1H at 0x16
+    <CCPR1H [8]> ;
+
+  register CCPR1L at 0x15
+    <CCPR1L [8]> ;
+
+  register CMCON0 at 0x9C
+    <C2OUT, C1OUT, C2INV, C1INV, CIS, CM [3]> ;
+
+  register CMCON1 at 0x97
+    <-, -, -, -, -, -, T1GSS, C2SYNC> ;
+
+  register EEADRH at 0x10F
+    <-, -, -, EEADRH [5]> ;
+
+  register EEADRL at 0x10D
+    <EEADRL [8]> ;
+
+  register EECON1 at 0x18C
+    <EEPGD, -, -, -, WRERR, WREN, WR, RD> ;
+
+  register EECON2 at 0x18D
+    <EECON2 [8]> ;
+
+  register EEDATH at 0x10E
+    <-, -, EEDATH [6]> ;
+
+  register EEDATL at 0x10C
+    <EEDATL [8]> ;
+
+  register FSR at 0x4, 0x84, 0x104, 0x184
+    <FSR [8]> ;
+
+  register INDF at 0x0, 0x80, 0x100, 0x180
+    <INDF [8]> ;
+
+  register INTCON at 0xB, 0x8B, 0x10B, 0x18B
+    <GIE, PEIE, TMR0IE, INTE, RBIE, TMR0IF, INTF, RBIF> ;
+
+  register IOCB at 0x96
+    <IOCB [4], -, -, -, -> ;
+
+  register LCDCON at 0x107
+    <LCDEN, SLPEN, WERR, VLCDEN, CS [2], LMUX [2]> ;
+
+  register LCDDATA0 at 0x110
+    <SEG7, SEG6, SEG5, SEG4, SEG3, SEG2, SEG1, SEG0> ;
+
+  register LCDDATA1 at 0x111
+    <SEG15, SEG14, SEG13, SEG12, SEG11, SEG10, SEG9, SEG8> ;
+
+  register LCDDATA10 at 0x11A
+    <SEG15, SEG14, SEG13, SEG12, SEG11, SEG10, SEG9, SEG8> ;
+
+  register LCDDATA3 at 0x113
+    <SEG7, SEG6, SEG5, SEG4, SEG3, SEG2, SEG1, SEG0> ;
+
+  register LCDDATA4 at 0x114
+    <SEG15, SEG14, SEG13, SEG12, SEG11, SEG10, SEG9, SEG8> ;
+
+  register LCDDATA6 at 0x116
+    <SEG7, SEG6, SEG5, SEG4, SEG3, SEG2, SEG1, SEG0> ;
+
+  register LCDDATA7 at 0x117
+    <SEG15, SEG14, SEG13, SEG12, SEG11, SEG10, SEG9, SEG8> ;
+
+  register LCDDATA9 at 0x119
+    <SEG7, SEG6, SEG5, SEG4, SEG3, SEG2, SEG1, SEG0> ;
+
+  register LCDPS at 0x108
+    <WFT, BIASMD, LCDA, WA, LP [4]> ;
+
+  register LCDSE0 at 0x11C
+    <SEG7, SEG6, SEG5, SEG4, SEG3, SEG2, SEG1, SEG0> ;
+
+  register LCDSE1 at 0x11D
+    <SEG15, SEG14, SEG13, SEG12, SEG11, SEG10, SEG9, SEG8> ;
+
+  register LVDCON at 0x109
+    <-, -, IRVST, LVDEN, -, LVDL [3]> ;
+
+  register OPTION_REG at 0x81, 0x181
+    <nRBPU, INTEDG, T0CS, T0SE, PSA, PS [3]> ;
+
+  register OSCCON at 0x8F
+    <-, IRCF [3], OSTS, HTS, LTS, SCS> ;
+
+  register OSCTUNE at 0x90
+    <-, -, -, TUN [5]> ;
+
+  register PCL at 0x2, 0x82, 0x102, 0x182
+    <PCL [8]> ;
+
+  register PCLATH at 0xA, 0x8A, 0x10A, 0x18A
+    <-, -, -, PCLATH [5]> ;
+
+  register PCON at 0x8E
+    <-, -, -, SBOREN, -, -, nPOR, nBOR> ;
+
+  register PIE1 at 0x8C
+    <EEIE, ADIE, RCIE, TXIE, SSPIE, CCP1IE, TMR2IE, TMR1IE> ;
+
+  register PIE2 at 0x8D
+    <OSFIE, C2IE, C1IE, LCDIE, -, LVDIE, -, -> ;
+
+  register PIR1 at 0xC
+    <EEIF, ADIF, RCIF, TXIF, SSPIF, CCP1IF, TMR2IF, TMR1IF> ;
+
+  register PIR2 at 0xD
+    <OSFIF, C2IF, C1IF, LCDIF, -, LVDIF, -, -> ;
+
+  register PORTA at 0x5
+    <RA7, RA6, RA5, RA4, RA3, RA2, RA1, RA0> ;
+
+  register PORTB at 0x6, 0x106
+    <RB7, RB6, RB5, RB4, RB3, RB2, RB1, RB0> ;
+
+  register PORTC at 0x7
+    <RC7, RC6, RC5, RC4, RC3, RC2, RC1, RC0> ;
+
+  register PORTE at 0x9
+    <-, -, -, -, RE3, -, -, -> ;
+
+  register PR2 at 0x92
+    <PR2 [8]> ;
+
+  register RCREG at 0x1A
+    <RCREG [8]> ;
+
+  register RCSTA at 0x18
+    <SPEN, RX9, SREN, CREN, ADDEN, FERR, OERR, RX9D> ;
+
+  register SPBRG at 0x99
+    <SPBRG [8]> ;
+
+  register SSPADD at 0x93
+    <SSPADD [8]> ;
+
+  register SSPBUF at 0x13
+    <SSPBUF [8]> ;
+
+  register SSPCON at 0x14
+    <WCOL, SSPOV, SSPEN, CKP, SSPM [4]> ;
+
+  register SSPSTAT at 0x94
+    <SMP, CKE, D/nA, P, S, R/nW, UA, BF> ;
+
+  register STATUS at 0x3, 0x83, 0x103, 0x183
+    <IRP, RP [2], nTO, nPD, Z, DC, C> ;
+
+  register T1CON at 0x10
+    <T1GINV, TMR1GE, T1CKPS [2], T1OSCEN, nT1SYNC, TMR1CS, TMR1ON> ;
+
+  register T2CON at 0x12
+    <-, TOUTPS [4], TMR2ON, T2CKPS [2]> ;
+
+  register TMR0 at 0x1, 0x101
+    <TMR0 [8]> ;
+
+  register TMR1H at 0xF
+    <TMR1H [8]> ;
+
+  register TMR1L at 0xE
+    <TMR1L [8]> ;
+
+  register TMR2 at 0x11
+    <TMR2 [8]> ;
+
+  register TRISA at 0x85
+    <TRISA7, TRISA6, TRISA5, TRISA4, TRISA3, TRISA2, TRISA1, TRISA0> ;
+
+  register TRISB at 0x86, 0x186
+    <TRISB7, TRISB6, TRISB5, TRISB4, TRISB3, TRISB2, TRISB1, TRISB0> ;
+
+  register TRISC at 0x87
+    <TRISC7, TRISC6, TRISC5, TRISC4, TRISC3, TRISC2, TRISC1, TRISC0> ;
+
+  register TRISE at 0x89
+    <-, -, -, -, TRISE3, -, -, -> ;
+
+  register TXREG at 0x19
+    <TXREG [8]> ;
+
+  register TXSTA at 0x98
+    <CSRC, TX9, TXEN, SYNC, -, BRGH, TRMT, TX9D> ;
+
+  register VRCON at 0x9D
+    <VREN, -, VRR, -, VR [4]> ;
+
+  register WDTCON at 0x105
+    <-, -, -, WDTPS [4], SWDTEN> ;
+
+  register WPUB at 0x95
+    <WPUB [8]> ;
+
+  configuration CONFIG at 0x2007 width 13 {
+    BACKBUG mask 0x1000 description "Background Debug"
+      setting 0x1000 mask 0x1000 description "Disabled"
+      setting 0x0 mask 0x1000 description "Enabled"
+    FCMEN mask 0x800 description "Fail Clock Monitor Enable"
+      setting 0x800 mask 0x800 description "Enabled"
+      setting 0x0 mask 0x800 description "Disabled"
+    IESO mask 0x400 description "Internal-External Switch Over"
+      setting 0x400 mask 0x400 description "Enabled"
+      setting 0x0 mask 0x400 description "Disabled"
+    BODEN mask 0x300 description "Brown Out Detect"
+      setting 0x300 mask 0x300 description "BOD Enabled, SBODEN Disabled"
+      setting 0x200 mask 0x300 description "BOD Enabled While Running, Disabled In Sleep, SBODEN Disabled"
+      setting 0x100 mask 0x300 description "Controlled by SBODEN"
+      setting 0x0 mask 0x300 description "BOD And SBODEN Disabled"
+    CPD mask 0x80 description "Data EE Read Protect"
+      setting 0x80 mask 0x80 description "Off"
+      setting 0x0 mask 0x80 description "On"
+    CP mask 0x40 description "Code Protect"
+      setting 0x40 mask 0x40 description "Off"
+      setting 0x0 mask 0x40 description "On"
+    MCLRE mask 0x20 description "MCLR Pin Function Select"
+      setting 0x20 mask 0x20 description "External"
+      setting 0x0 mask 0x20 description "Internal"
+    PUT mask 0x10 description "Power Up Timer"
+      setting 0x10 mask 0x10 description "Off"
+      setting 0x0 mask 0x10 description "On"
+    WDT mask 0x8 description "Watchdog Timer"
+      setting 0x8 mask 0x8 description "On"
+      setting 0x0 mask 0x8 description "Off"
+    OSC mask 0x7 description "Oscillator"
+      setting 0x0 mask 0x7 description "LP"
+      setting 0x1 mask 0x7 description "XT"
+      setting 0x2 mask 0x7 description "HS"
+      setting 0x3 mask 0x7 description "EC"
+      setting 0x4 mask 0x7 description "INTOSCIO"
+      setting 0x5 mask 0x7 description "INTOSC"
+      setting 0x6 mask 0x7 description "EXTRCIO"
+      setting 0x7 mask 0x7 description "EXTRC"
+  }
+}

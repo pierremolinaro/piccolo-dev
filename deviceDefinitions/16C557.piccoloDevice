@@ -1,0 +1,79 @@
+controller PIC16C557 {
+  processor "mid-range" ;
+  romsize 2048 ;
+  bank 2 ;
+  unusedregister 0x8 to 0x9 ;
+  unusedregister 0xC to 0x1F ;
+  unusedregister 0x88 to 0x89 ;
+  unusedregister 0x8C to 0x8D ;
+  unusedregister 0x8F to 0x9F ;
+  unusedregister 0xC0 to 0xFF ;
+  ram gpr0 : 0x20 to 0x6F ;
+  ram gpr1 : 0xA0 to 0xBF ;
+  ram gprnobnk : 0x70 to 0x7F ;
+  # Total ram: 128
+
+  register FSR at 0x4, 0x84
+    <FSR [8]> ;
+
+  register INDF at 0x0, 0x80
+    <INDF [8]> ;
+
+  register INTCON at 0xB, 0x8B
+    <GIE, -, TMR0IE, INTE, RBIE, TMR0IF, INTF, RBIF> ;
+
+  register OPTION_REG at 0x81
+    <nRBPU, INTEDG, T0CS, T0SE, PSA, PS [3]> ;
+
+  register PCL at 0x2, 0x82
+    <PCL [8]> ;
+
+  register PCLATH at 0xA, 0x8A
+    <-, -, -, PCLATH [5]> ;
+
+  register PCON at 0x8E
+    <-, -, -, -, -, -, nPOR, -> ;
+
+  register PORTA at 0x5
+    <-, -, -, RA4, RA3, RA2, RA1, RA0> ;
+
+  register PORTB at 0x6
+    <RB7, RB6, RB5, RB4, RB3, RB2, RB1, RB0> ;
+
+  register PORTC at 0x7
+    <RC7, RC6, RC5, RC4, RC3, RC2, RC1, RC0> ;
+
+  register STATUS at 0x3, 0x83
+    <IRP, RP [2], nTO, nPD, Z, DC, C> ;
+
+  register TMR0 at 0x1
+    <TMR0 [8]> ;
+
+  register TRISA at 0x85
+    <-, -, -, TRISA4, TRISA3, TRISA2, TRISA1, TRISA0> ;
+
+  register TRISB at 0x86
+    <TRISB7, TRISB6, TRISB5, TRISB4, TRISB3, TRISB2, TRISB1, TRISB0> ;
+
+  register TRISC at 0x87
+    <TRISC7, TRISC6, TRISC5, TRISC4, TRISC3, TRISC2, TRISC1, TRISC0> ;
+
+  configuration CONFIG at 0x2007 width 14 {
+    CP mask 0x3F30 description "Code Protect"
+      setting 0x3F30 mask 0x3F30 description "Off"
+      setting 0x2A20 mask 0x3F30 description "0400h-07FFh Code Protected"
+      setting 0x1510 mask 0x3F30 description "0200h-07FFh Code Protected"
+      setting 0x0 mask 0x3F30 description "0000h-07FFh Code Protected"
+    PUT mask 0x8 description "Power Up Timer"
+      setting 0x8 mask 0x8 description "Off"
+      setting 0x0 mask 0x8 description "On"
+    WDT mask 0x4 description "Watchdog Timer"
+      setting 0x4 mask 0x4 description "On"
+      setting 0x0 mask 0x4 description "Off"
+    OSC mask 0x3 description "Oscillator"
+      setting 0x3 mask 0x3 description "RC"
+      setting 0x2 mask 0x3 description "HS"
+      setting 0x1 mask 0x3 description "XT"
+      setting 0x0 mask 0x3 description "LP"
+  }
+}

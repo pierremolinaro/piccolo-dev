@@ -361,7 +361,7 @@ controller PIC18F45J10 {
   register WREG at 0xFE8
     <WREG [8]> ;
 
-  config CONFIG1H at 0x7FF9 width 8 {
+  configuration CONFIG1H at 0x7FF9 width 8 {
     FNOP_0 mask 0xF0 description "Force NOP"
       setting 0xF0 mask 0xF0 description "NOPd"
     SIGN mask 0x8 description "Config Word Signature Bit"
@@ -372,7 +372,7 @@ controller PIC18F45J10 {
       setting 0x0 mask 0x4 description "Enabled"
   }
 
-  config CONFIG1L at 0x7FF8 width 8 {
+  configuration CONFIG1L at 0x7FF8 width 8 {
     BACKBUG mask 0x80 description "Background Debug"
       setting 0x80 mask 0x80 description "Disabled"
       setting 0x0 mask 0x80 description "Enabled"
@@ -387,7 +387,7 @@ controller PIC18F45J10 {
       setting 0x0 mask 0x1 description "Disabled"
   }
 
-  config CONFIG2H at 0x7FFB width 8 {
+  configuration CONFIG2H at 0x7FFB width 8 {
     FNOP_1 mask 0xF0 description "Force NOP"
       setting 0xF0 mask 0xF0 description "NOPd"
     WDTPS mask 0xF description "Watchdog Timer Postscale"
@@ -409,7 +409,7 @@ controller PIC18F45J10 {
       setting 0x0 mask 0xF description "1:1"
   }
 
-  config CONFIG2L at 0x7FFA width 8 {
+  configuration CONFIG2L at 0x7FFA width 8 {
     IESO mask 0x80 description "Internal External Switch Over Enable"
       setting 0x80 mask 0x80 description "Enabled"
       setting 0x0 mask 0x80 description "Disabled"
@@ -426,7 +426,7 @@ controller PIC18F45J10 {
       setting 0x0 mask 0x3 description "HS OSC"
   }
 
-  config CONFIG3H at 0x7FFD width 8 {
+  configuration CONFIG3H at 0x7FFD width 8 {
     FNOP_2 mask 0xF0 description "Force NOP"
       setting 0xF0 mask 0xF0 description "NOPd"
     CCP2MX mask 0x1 description "CCP2 Mux"
