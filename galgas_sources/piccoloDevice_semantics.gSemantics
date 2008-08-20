@@ -18,6 +18,7 @@ map @registerTable {
 map @ramBankTable {
   @uint mFirstFreeAddress ; # Mutable
   @uint mLastAddressPlusOne ;
+  @uintlist mMirrorOffsetList ;
   insert insertKey error message "the '%K' bank ram is already declared in %L" ;
   search searchKey error message "the '%K' bank ram is not declared" ;
 }
@@ -27,6 +28,8 @@ map @ramBankTable {
 enum @processorType {
   constructor pic18_60 ;
   constructor pic18_80 ;
+  constructor midrange ;
+  constructor baseline ;
 }{
 }
 

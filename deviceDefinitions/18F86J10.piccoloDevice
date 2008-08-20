@@ -479,7 +479,7 @@ controller PIC18F86J10 {
   register WREG at 0xFE8
     <WREG [8]> ;
 
-  config CONFIG1H at 0xFFF9 width 8 {
+  configuration CONFIG1H at 0xFFF9 width 8 {
     RESERVED mask 0xF0 description "RESERVED"
       setting 0xF0 mask 0xF0 description "RESERVED"
     SIGN mask 0x8 description "Config Word Signature Bit"
@@ -490,7 +490,7 @@ controller PIC18F86J10 {
       setting 0x0 mask 0x4 description "Enabled"
   }
 
-  config CONFIG1L at 0xFFF8 width 8 {
+  configuration CONFIG1L at 0xFFF8 width 8 {
     BACKBUG mask 0x80 description "Background Debug"
       setting 0x80 mask 0x80 description "Disabled"
       setting 0x0 mask 0x80 description "Enabled"
@@ -505,7 +505,7 @@ controller PIC18F86J10 {
       setting 0x0 mask 0x1 description "Disabled-Controlled by SWDTEN bit"
   }
 
-  config CONFIG2H at 0xFFFB width 8 {
+  configuration CONFIG2H at 0xFFFB width 8 {
     RESERVED mask 0xF0 description "RESERVED"
       setting 0xF0 mask 0xF0 description "RESERVED"
     WDTPS mask 0xF description "Watchdog Postscaler"
@@ -527,7 +527,7 @@ controller PIC18F86J10 {
       setting 0x0 mask 0xF description "1:1"
   }
 
-  config CONFIG2L at 0xFFFA width 8 {
+  configuration CONFIG2L at 0xFFFA width 8 {
     IESO mask 0x80 description "Internal External Switch Over Mode"
       setting 0x0 mask 0x80 description "Disabled"
       setting 0x80 mask 0x80 description "Enabled"
@@ -545,7 +545,7 @@ controller PIC18F86J10 {
       setting 0x0 mask 0x7 description "INTOSC HS"
   }
 
-  config CONFIG3H at 0xFFFD width 8 {
+  configuration CONFIG3H at 0xFFFD width 8 {
     RESERVED mask 0xF0 description "RESERVED"
       setting 0xF0 mask 0xF0 description "RESERVED"
     ECCPMX mask 0x2 description "ECCP Mux"
@@ -556,7 +556,7 @@ controller PIC18F86J10 {
       setting 0x0 mask 0x1 description "RE7 <Microcontroller> / RB3"
   }
 
-  config CONFIG3L at 0xFFFC width 8 {
+  configuration CONFIG3L at 0xFFFC width 8 {
     WAIT mask 0x80 description "External Bus Wait"
       setting 0x80 mask 0x80 description "Disabled"
       setting 0x0 mask 0x80 description "Enabled"

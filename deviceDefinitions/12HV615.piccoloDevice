@@ -1,0 +1,158 @@
+controller PIC12HV615 {
+  processor "mid-range" ;
+  romsize 1024 ;
+  bank 2 ;
+  unusedregister 0x6 to 0x9 ;
+  unusedregister 0xD ;
+  unusedregister 0x18 ;
+  unusedregister 0x1B ;
+  unusedregister 0x1D ;
+  unusedregister 0x20 to 0x3F ;
+  unusedregister 0x86 to 0x89 ;
+  unusedregister 0x8D ;
+  unusedregister 0x8F ;
+  unusedregister 0x91 ;
+  unusedregister 0x94 ;
+  unusedregister 0x97 to 0x9D ;
+  unusedregister 0xA0 to 0xEF ;
+  ram gpr0 : 0x40 to 0x6F ;
+  ram gprnobnk : 0x70 to 0x7F mirrorat 0xF0 ;
+  # Total ram: 64
+
+  register ADCON0 at 0x1F
+    <ADFM, VCFG, -, CHS [3], GO/nDONE, ADON> ;
+
+  register ADRESH at 0x1E
+    <ADRESH [8]> ;
+
+  register ADRESL at 0x9E
+    <ADRESL [8]> ;
+
+  register ANSEL at 0x9F
+    <-, ADCS [3], ANS [4]> ;
+
+  register APFCON at 0x93
+    <-, -, -, T1GSEL, -, -, P1BSEL, P1ASEL> ;
+
+  register CCP1CON at 0x15
+    <P1M, -, DCB [2], CCP1M [4]> ;
+
+  register CCPR1H at 0x14
+    <CCPR1H [8]> ;
+
+  register CCPR1L at 0x13
+    <CCPR1L [8]> ;
+
+  register CMCON0 at 0x1A
+    <C1ON, C1OUT, C1OE, C1POL, -, C1R, -, C1CH> ;
+
+  register CMCON1 at 0x1C
+    <-, -, -, T1ACS, C1HYS, -, T1GSS, C1SYNC> ;
+
+  register ECCPAS at 0x17
+    <ECCPASE, ECCPAS [3], PSSAC [2], PSSBD [2]> ;
+
+  register FSR at 0x4, 0x84
+    <FSR [8]> ;
+
+  register GPIO at 0x5
+    <-, -, GP5, GP4, GP3, GP2, GP1, GP0> ;
+
+  register INDF at 0x0, 0x80
+    <INDF [8]> ;
+
+  register INTCON at 0xB, 0x8B
+    <GIE, PEIE, TMR0IE, INTE, GPIE, TMR0IF, INTF, GPIF> ;
+
+  register IOC at 0x96
+    <-, -, IOC5, IOC4, IOC3, IOC2, IOC1, IOC0> ;
+
+  register OPTION_REG at 0x81
+    <nGPPU, INTEDG, T0CS, T0SE, PSA, PS [3]> ;
+
+  register OSCTUNE at 0x90
+    <-, -, -, TUN [5]> ;
+
+  register PCL at 0x2, 0x82
+    <PCL [8]> ;
+
+  register PCLATH at 0xA, 0x8A
+    <-, -, -, PCLATH [5]> ;
+
+  register PCON at 0x8E
+    <-, -, -, -, -, -, nPOR, nBOR> ;
+
+  register PIE1 at 0x8C
+    <-, ADIE, ECCPIE, -, C1IE, -, TMR2IE, TMR1IE> ;
+
+  register PIR1 at 0xC
+    <-, ADIF, ECCPIF, -, C1IF, -, TMR2IF, TMR1IF> ;
+
+  register PR2 at 0x92
+    <PR2 [8]> ;
+
+  register PWM1CON at 0x16
+    <PRSEN, PDC [7]> ;
+
+  register STATUS at 0x3, 0x83
+    <IRP, RP [2], nTO, nPD, Z, DC, C> ;
+
+  register T1CON at 0x10
+    <T1GINV, TMR1GE, T1CKPS [2], T1OSCEN, nT1SYNC, TMR1CS, TMR1ON> ;
+
+  register T2CON at 0x12
+    <-, TOUTPS [4], TMR2ON, T2CKPS [2]> ;
+
+  register TMR0 at 0x1
+    <TMR0 [8]> ;
+
+  register TMR1H at 0xF
+    <TMR1H [8]> ;
+
+  register TMR1L at 0xE
+    <TMR1L [8]> ;
+
+  register TMR2 at 0x11
+    <TMR2 [8]> ;
+
+  register TRISIO at 0x85
+    <-, -, TRISIO5, TRISIO4, TRISIO3, TRISIO2, TRISIO1, TRISIO0> ;
+
+  register VRCON at 0x19
+    <C1VREN, -, VRR, FBREN, VR [4]> ;
+
+  register WPU at 0x95
+    <-, -, WPUA5, WPUA4, -, WPUA2, WPUA1, WPUA0> ;
+
+  configuration CONFIG at 0x2007 width 10
+    illegal 0x48 mask 0x48 message "Current settings of PWRT and BOD are in conflict" {
+    BODEN mask 0x300 description "Brown Out Detect"
+      setting 0x0 mask 0x300 description "BOD disabled"
+      setting 0x200 mask 0x300 description "BOD enabled in run, disabled in sleep"
+      setting 0x300 mask 0x300 description "BOD Enabled"
+    IOSCFS mask 0x80 description "Internal Oscillator Frequency Select"
+      setting 0x80 mask 0x80 description "8 MHz"
+      setting 0x0 mask 0x80 description "4 MHz"
+    CP mask 0x40 description "Code Protect"
+      setting 0x40 mask 0x40 description "Off"
+      setting 0x0 mask 0x40 description "On"
+    MCLRE mask 0x20 description "Master Clear Enable"
+      setting 0x20 mask 0x20 description "External"
+      setting 0x0 mask 0x20 description "Internal"
+    PUT mask 0x10 description "Power Up Timer"
+      setting 0x10 mask 0x10 description "Off"
+      setting 0x0 mask 0x10 description "On"
+    WDT mask 0x8 description "Watchdog Timer"
+      setting 0x8 mask 0x8 description "On"
+      setting 0x0 mask 0x8 description "Off"
+    OSC mask 0x7 description "Oscillator"
+      setting 0x7 mask 0x7 description "External RC Clockout"
+      setting 0x6 mask 0x7 description "External RC No Clock"
+      setting 0x5 mask 0x7 description "Internal RC Clockout"
+      setting 0x4 mask 0x7 description "Internal RC No Clock"
+      setting 0x3 mask 0x7 description "EC"
+      setting 0x2 mask 0x7 description "HS"
+      setting 0x1 mask 0x7 description "XT"
+      setting 0x0 mask 0x7 description "LP"
+  }
+}

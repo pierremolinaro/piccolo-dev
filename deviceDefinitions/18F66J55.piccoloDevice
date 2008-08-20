@@ -576,7 +576,7 @@ controller PIC18F66J55 {
   register WREG at 0xFE8
     <WREG [8]> ;
 
-  config CONFIG1H at 0x17FF9 width 8 {
+  configuration CONFIG1H at 0x17FF9 width 8 {
     RESERVED mask 0xF0 description "RESERVED"
       setting 0xF0 mask 0xF0 description "RESERVED"
     SIGN mask 0x8 description "Config Word Signature Bit"
@@ -592,7 +592,7 @@ controller PIC18F66J55 {
       setting 0x0 mask 0x3 description "CPU system clock divide by 6"
   }
 
-  config CONFIG1L at 0x17FF8 width 8 {
+  configuration CONFIG1L at 0x17FF8 width 8 {
     BACKBUG mask 0x80 description "Background Debug"
       setting 0x80 mask 0x80 description "Disabled"
       setting 0x0 mask 0x80 description "Enabled"
@@ -616,7 +616,7 @@ controller PIC18F66J55 {
       setting 0x0 mask 0x1 description "Disabled-Controlled by SWDTEN bit"
   }
 
-  config CONFIG2H at 0x17FFB width 8 {
+  configuration CONFIG2H at 0x17FFB width 8 {
     RESERVED mask 0xF0 description "RESERVED"
       setting 0xF0 mask 0xF0 description "RESERVED"
     WDTPS mask 0xF description "Watchdog Postscaler"
@@ -638,7 +638,7 @@ controller PIC18F66J55 {
       setting 0x0 mask 0xF description "1:1"
   }
 
-  config CONFIG2L at 0x17FFA width 8 {
+  configuration CONFIG2L at 0x17FFA width 8 {
     IESO mask 0x80 description "Internal External Switch Over Mode"
       setting 0x0 mask 0x80 description "Disabled"
       setting 0x80 mask 0x80 description "Enabled"
@@ -656,7 +656,7 @@ controller PIC18F66J55 {
       setting 0x0 mask 0x7 description "INTOSC"
   }
 
-  config CONFIG3H at 0x17FFD width 8 {
+  configuration CONFIG3H at 0x17FFD width 8 {
     RESERVED mask 0xF0 description "RESERVED"
       setting 0xF0 mask 0xF0 description "RESERVED"
     MSSP7B_EN mask 0x8 description "MSSP V3 7 bit address masking bit mode"
@@ -672,7 +672,7 @@ controller PIC18F66J55 {
       setting 0x0 mask 0x1 description "RE7 <Microcontroller>"
   }
 
-  config CONFIG3L at 0x17FFC width 8 {
+  configuration CONFIG3L at 0x17FFC width 8 {
     RES mask 0xF8 description "Reserved"
       setting 0xF8 mask 0xF8 description "maintain these bits as 1"
   }

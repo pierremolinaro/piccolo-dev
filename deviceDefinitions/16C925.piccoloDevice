@@ -1,0 +1,240 @@
+controller PIC16C925 {
+  processor "mid-range" ;
+  romsize 4096 ;
+  bank 4 ;
+  unusedregister 0xD ;
+  unusedregister 0x18 to 0x1D ;
+  unusedregister 0x8D ;
+  unusedregister 0x8F to 0x91 ;
+  unusedregister 0x95 to 0x9D ;
+  unusedregister 0x105 ;
+  unusedregister 0x109 ;
+  unusedregister 0x120 to 0x16F ;
+  unusedregister 0x185 ;
+  unusedregister 0x189 ;
+  unusedregister 0x190 to 0x1EF ;
+  ram gpr0 : 0x20 to 0x6F ;
+  ram gpr1 : 0xA0 to 0xEF ;
+  ram gprnobnk : 0x70 to 0x7F mirrorat 0xF0, 0x170, 0x1F0 ;
+  # Total ram: 176
+
+  register ADCON0 at 0x1F
+    <ADCS [2], CHS [3], GO/nDONE, -, ADON> ;
+
+  register ADCON1 at 0x9F
+    <ADFM, -, -, -, PCFG [4]> ;
+
+  register ADRESH at 0x1E
+    <ADRESH [8]> ;
+
+  register ADRESL at 0x9E
+    <ADRESL [8]> ;
+
+  register CCP1CON at 0x17
+    <-, -, DC1B [2], CCP1M [4]> ;
+
+  register CCPR1H at 0x16
+    <CCPR1H [8]> ;
+
+  register CCPR1L at 0x15
+    <CCPR1L [8]> ;
+
+  register FSR at 0x4, 0x84, 0x104, 0x184
+    <FSR [8]> ;
+
+  register INDF at 0x0, 0x80, 0x100, 0x180
+    <INDF [8]> ;
+
+  register INTCON at 0xB, 0x8B, 0x10B, 0x18B
+    <GIE, PEIE, TMR0IE, INTE, RBIE, TMR0IF, INTF, RBIF> ;
+
+  register LCDCON at 0x10F
+    <LCDEN, SLPEN, -, VGEN, CS [2], LMUX [2]> ;
+
+  register LCDD00 at 0x110
+    <SEG07, SEG06, SEG05, SEG04, SEG03, SEG02, SEG01, SEG00> ;
+
+  register LCDD01 at 0x111
+    <SEG15, SEG14, SEG13, SEG12, SEG11, SEG10, SEG09, SEG08> ;
+
+  register LCDD02 at 0x112
+    <SEG23, SEG22, SEG21, SEG20, SEG19, SEG18, SEG17, SEG16> ;
+
+  register LCDD03 at 0x113
+    <SEG31, SEG30, SEG29, SEG28, SEG27, SEG26, SEG25, SEG24> ;
+
+  register LCDD04 at 0x114
+    <SEG07, SEG06, SEG05, SEG04, SEG03, SEG02, SEG01, SEG00> ;
+
+  register LCDD05 at 0x115
+    <SEG15, SEG14, SEG13, SEG12, SEG11, SEG10, SEG09, SEG08> ;
+
+  register LCDD06 at 0x116
+    <SEG23, SEG22, SEG21, SEG20, SEG19, SEG18, SEG17, SEG16> ;
+
+  register LCDD07 at 0x117
+    <SEG31, SEG30, SEG29, SEG28, SEG27, SEG26, SEG25, SEG24> ;
+
+  register LCDD08 at 0x118
+    <SEG07, SEG06, SEG05, SEG04, SEG03, SEG02, SEG01, SEG00> ;
+
+  register LCDD09 at 0x119
+    <SEG15, SEG14, SEG13, SEG12, SEG11, SEG10, SEG09, SEG08> ;
+
+  register LCDD10 at 0x11A
+    <SEG23, SEG22, SEG21, SEG20, SEG19, SEG18, SEG17, SEG16> ;
+
+  register LCDD11 at 0x11B
+    <SEG31, SEG30, SEG29, SEG28, SEG27, SEG26, SEG25, SEG24> ;
+
+  register LCDD12 at 0x11C
+    <SEG07, SEG06, SEG05, SEG04, SEG03, SEG02, SEG01, SEG00> ;
+
+  register LCDD13 at 0x11D
+    <SEG15, SEG14, SEG13, SEG12, SEG11, SEG10, SEG09, SEG08> ;
+
+  register LCDD14 at 0x11E
+    <SEG23, SEG22, SEG21, SEG20, SEG19, SEG18, SEG17, SEG16> ;
+
+  register LCDD15 at 0x11F
+    <SEG31, SEG30, SEG29, SEG28, SEG27, SEG26, SEG25, SEG24> ;
+
+  register LCDPS at 0x10E
+    <-, -, -, -, LP [4]> ;
+
+  register LCDSE at 0x10D
+    <SE29, SE27, SE20, SE16, SE12, SE9, SE5, SE0> ;
+
+  register OPTION_REG at 0x81, 0x181
+    <nRBPU, INTEDG, T0CS, T0SE, PSA, PS [3]> ;
+
+  register PCL at 0x2, 0x82, 0x102, 0x182
+    <PCL [8]> ;
+
+  register PCLATH at 0xA, 0x8A, 0x10A, 0x18A
+    <-, -, -, PCLATH [5]> ;
+
+  register PCON at 0x8E
+    <-, -, -, -, -, -, nPOR, nBOR> ;
+
+  register PIE1 at 0x8C
+    <LCDIE, ADIE, -, -, SSPIE, CCP1IE, TMR2IE, TMR1IE> ;
+
+  register PIR1 at 0xC
+    <LCDIF, ADIF, -, -, SSPIF, CCP1IF, TMR2IF, TMR1IF> ;
+
+  register PMADR at 0x18D
+    <PMADR [8]> ;
+
+  register PMADRH at 0x18F
+    <-, -, -, PMADRH [5]> ;
+
+  register PMCON1 at 0x10C
+    <-, -, -, -, -, -, -, RD> ;
+
+  register PMDATA at 0x18C
+    <PMDATA [8]> ;
+
+  register PMDATH at 0x18E
+    <-, -, PMDATH [6]> ;
+
+  register PORTA at 0x5
+    <-, -, RA5, RA4, RA3, RA2, RA1, RA0> ;
+
+  register PORTB at 0x6, 0x106
+    <RB7, RB6, RB5, RB4, RB3, RB2, RB1, RB0> ;
+
+  register PORTC at 0x7
+    <-, -, RC5, RC4, RC3, RC2, RC1, RC0> ;
+
+  register PORTD at 0x8
+    <RD7, RD6, RD5, RD4, RD3, RD2, RD1, RD0> ;
+
+  register PORTE at 0x9
+    <RE7, RE6, RE5, RE4, RE3, RE2, RE1, RE0> ;
+
+  register PORTF at 0x107
+    <RF7, RF6, RF5, RF4, RF3, RF2, RF1, RF0> ;
+
+  register PORTG at 0x108
+    <RG7, RG6, RG5, RG4, RG3, RG2, RG1, RG0> ;
+
+  register PR2 at 0x92
+    <PR2 [8]> ;
+
+  register SSPADD at 0x93
+    <SSPADD [8]> ;
+
+  register SSPBUF at 0x13
+    <SSPBUF [8]> ;
+
+  register SSPCON at 0x14
+    <WCOL, SSPOV, SSPEN, CKP, SSPM [4]> ;
+
+  register SSPSTAT at 0x94
+    <SMP, CKE, D/nA, P, S, R/nW, UA, BF> ;
+
+  register STATUS at 0x3, 0x83, 0x103, 0x183
+    <IRP, RP [2], nTO, nPD, Z, DC, C> ;
+
+  register T1CON at 0x10
+    <-, -, T1CKPS [2], T1OSCEN, nT1SYNC, TMR1CS, TMR1ON> ;
+
+  register T2CON at 0x12
+    <-, TOUTPS [4], TMR2ON, T2CKPS [2]> ;
+
+  register TMR0 at 0x1, 0x101
+    <TMR0 [8]> ;
+
+  register TMR1H at 0xF
+    <TMR1H [8]> ;
+
+  register TMR1L at 0xE
+    <TMR1L [8]> ;
+
+  register TMR2 at 0x11
+    <TMR2 [8]> ;
+
+  register TRISA at 0x85
+    <-, -, TRISA5, TRISA4, TRISA3, TRISA2, TRISA1, TRISA0> ;
+
+  register TRISB at 0x86, 0x186
+    <TRISB7, TRISB6, TRISB5, TRISB4, TRISB3, TRISB2, TRISB1, TRISB0> ;
+
+  register TRISC at 0x87
+    <-, -, TRISC5, TRISC4, TRISC3, TRISC2, TRISC1, TRISC0> ;
+
+  register TRISD at 0x88
+    <TRISD7, TRISD6, TRISD5, TRISD4, TRISD3, TRISD2, TRISD1, TRISD0> ;
+
+  register TRISE at 0x89
+    <TRISE7, TRISE6, TRISE5, TRISE4, TRISE3, TRISE2, TRISE1, TRISE0> ;
+
+  register TRISF at 0x187
+    <TRISF7, TRISF6, TRISF5, TRISF4, TRISF3, TRISF2, TRISF1, TRISF0> ;
+
+  register TRISG at 0x188
+    <TRISG7, TRISG6, TRISG5, TRISG4, TRISG3, TRISG2, TRISG1, TRISG0> ;
+
+  configuration CONFIG at 0x2007 width 7 {
+    BODEN mask 0x40 description "Brown Out Detect"
+      setting 0x40 mask 0x40 description "On"
+      setting 0x0 mask 0x40 description "Off"
+    CP mask 0x30 description "Code Protect"
+      setting 0x30 mask 0x30 description "Off"
+      setting 0x20 mask 0x30 description "0000:07FF"
+      setting 0x10 mask 0x30 description "0000:0EFF"
+      setting 0x0 mask 0x30 description "All"
+    PUT mask 0x8 description "Power Up Timer"
+      setting 0x8 mask 0x8 description "Off"
+      setting 0x0 mask 0x8 description "On"
+    WDT mask 0x4 description "Watchdog Timer"
+      setting 0x4 mask 0x4 description "On"
+      setting 0x0 mask 0x4 description "Off"
+    OSC mask 0x3 description "Oscillator"
+      setting 0x3 mask 0x3 description "RC"
+      setting 0x0 mask 0x3 description "LP"
+      setting 0x1 mask 0x3 description "XT"
+      setting 0x2 mask 0x3 description "HS"
+  }
+}

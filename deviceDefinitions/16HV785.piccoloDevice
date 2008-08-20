@@ -1,0 +1,224 @@
+controller PIC16HV785 {
+  processor "mid-range" ;
+  romsize 2048 ;
+  eepromsize 256 at 0x2100 ;
+  bank 4 ;
+  unusedregister 0x8 to 0x9 ;
+  unusedregister 0xD ;
+  unusedregister 0x16 to 0x17 ;
+  unusedregister 0x19 to 0x1D ;
+  unusedregister 0x88 to 0x89 ;
+  unusedregister 0x8D ;
+  unusedregister 0x94 ;
+  unusedregister 0x97 ;
+  unusedregister 0xC0 to 0xEF ;
+  unusedregister 0x108 to 0x109 ;
+  unusedregister 0x10C to 0x10F ;
+  unusedregister 0x115 to 0x118 ;
+  unusedregister 0x11E to 0x16F ;
+  unusedregister 0x188 to 0x189 ;
+  unusedregister 0x18C to 0x18D ;
+  unusedregister 0x18E to 0x18F ;
+  unusedregister 0x190 to 0x1EF ;
+  ram gpr0 : 0x20 to 0x6F ;
+  ram gpr1 : 0xA0 to 0xBF ;
+  ram gpr2 : 0x70 to 0x7F mirrorat 0xF0, 0x170, 0x1F0 ;
+  # Total ram: 128
+
+  register ADCON0 at 0x1F
+    <ADFM, VCFG, CHS [4], GO/nDONE, ADON> ;
+
+  register ADCON1 at 0x9F
+    <-, ADCS [3], -, -, -, -> ;
+
+  register ADRESH at 0x1E
+    <ADRESH [8]> ;
+
+  register ADRESL at 0x9E
+    <ADRESL [8]> ;
+
+  register ANSEL0 at 0x91
+    <ANS7, ANS6, ANS5, ANS4, ANS3, ANS2, ANS1, ANS0> ;
+
+  register ANSEL1 at 0x93
+    <-, -, -, -, ANS11, ANS10, ANS9, ANS8> ;
+
+  register CCP1CON at 0x15
+    <-, -, DCB [2], CCP1M [4]> ;
+
+  register CCPR1H at 0x14
+    <CCPRH [8]> ;
+
+  register CCPR1L at 0x13
+    <CCPRL [8]> ;
+
+  register CM1CON0 at 0x119
+    <C1ON, C1OUT, C1OE, C1POL, C1SP, C1R, C1CH [2]> ;
+
+  register CM2CON0 at 0x11A
+    <C2ON, C2OUT, C2OE, C2POL, C2SP, C2R, C2CH [2]> ;
+
+  register CM2CON1 at 0x11B
+    <MC1OUT, MC2OUT, -, -, -, -, T1GSS, C2SYNC> ;
+
+  register EEADR at 0x9B
+    <EEADR [8]> ;
+
+  register EECON1 at 0x9C
+    <-, -, -, -, WRERR, WREN, WR, RD> ;
+
+  register EECON2 at 0x9D
+    <EECON2 [8]> ;
+
+  register EEDATA at 0x9A
+    <EEDATA [8]> ;
+
+  register FSR at 0x4, 0x84, 0x104, 0x184
+    <FSR [8]> ;
+
+  register INDF at 0x0, 0x80, 0x100, 0x180
+    <INDF [8]> ;
+
+  register INTCON at 0xB, 0x8B, 0x10B, 0x18B
+    <GIE, PEIE, TMR0IE, INTE, RAIE, TMR0IF, INTF, RAIF> ;
+
+  register IOCA at 0x96
+    <-, -, IOCA5, IOCA4, IOCA3, IOCA2, IOCA1, IOCA0> ;
+
+  register OPA1CON at 0x11C
+    <OPAON, -, -, -, -, -, -, -> ;
+
+  register OPA2CON at 0x11D
+    <OPAON, -, -, -, -, -, -, -> ;
+
+  register OPTION_REG at 0x81, 0x181
+    <nRAPU, INTEDG, T0CS, T0SE, PSA, PS [3]> ;
+
+  register OSCCON at 0x8F
+    <-, IRCF [3], OSTS, HTS, LTS, SCS> ;
+
+  register OSCTUNE at 0x90
+    <-, -, -, TUN [5]> ;
+
+  register PCL at 0x2, 0x82, 0x102, 0x182
+    <PCL [8]> ;
+
+  register PCLATH at 0xA, 0x8A, 0x10A, 0x18A
+    <-, -, -, PCLATH [5]> ;
+
+  register PCON at 0x8E
+    <-, -, -, SBOREN, -, -, nPOR, nBOR> ;
+
+  register PIE1 at 0x8C
+    <EEIE, ADIE, CCP1IE, C2IE, C1IE, OSFIE, TMR2IE, TMR1IE> ;
+
+  register PIR1 at 0xC
+    <EEIF, ADIF, CCP1IF, C2IF, C1IF, OSFIF, TMR2IF, TMR1IF> ;
+
+  register PORTA at 0x5, 0x105
+    <-, -, RA5, RA4, RA3, RA2, RA1, RA0> ;
+
+  register PORTB at 0x6, 0x106
+    <RB7, RB6, RB5, RB4, -, -, -, -> ;
+
+  register PORTC at 0x7, 0x107
+    <RC7, RC6, RC5, RC4, RC3, RC2, RC1, RC0> ;
+
+  register PR2 at 0x92
+    <PR2 [8]> ;
+
+  register PWMCLK at 0x112
+    <PWMASE, PS [2], PER [5]> ;
+
+  register PWMCON0 at 0x111
+    <PRSEN, PASEN, BLANK2, BLANK1, SYNC [2], PH2EN, PH1EN> ;
+
+  register PWMCON1 at 0x110
+    <OVRLP, COMOD [2], CMDLY [5]> ;
+
+  register PWMPH1 at 0x113
+    <POL, C2EN, C1EN, PH [5]> ;
+
+  register PWMPH2 at 0x114
+    <POL, C2EN, C1EN, PH [5]> ;
+
+  register REFCON at 0x98
+    <-, -, BGST, VRBB, VREN, VROE, CVROE, -> ;
+
+  register STATUS at 0x3, 0x83, 0x103, 0x183
+    <IRP, RP [2], nTO, nPD, Z, DC, C> ;
+
+  register T1CON at 0x10
+    <T1GINV, TMR1GE, T1CKPS [2], T1OSCEN, nT1SYNC, TMR1CS, TMR1ON> ;
+
+  register T2CON at 0x12
+    <-, TOUTPS [4], TMR2ON, T2CKPS [2]> ;
+
+  register TMR0 at 0x1, 0x101
+    <TMR0 [8]> ;
+
+  register TMR1H at 0xF
+    <TMR1H [8]> ;
+
+  register TMR1L at 0xE
+    <TMR1L [8]> ;
+
+  register TMR2 at 0x11
+    <TMR2 [8]> ;
+
+  register TRISA at 0x85, 0x185
+    <-, -, TRISA5, TRISA4, TRISA3, TRISA2, TRISA1, TRISA0> ;
+
+  register TRISB at 0x86, 0x186
+    <TRISB7, TRISB6, TRISB5, TRISB4, -, -, -, -> ;
+
+  register TRISC at 0x87, 0x187
+    <TRISC7, TRISC6, TRISC5, TRISC4, TRISC3, TRISC2, TRISC1, TRISC0> ;
+
+  register VRCON at 0x99
+    <C1VREN, C2VREN, VRR, -, VR3, VR2, VR1, VR0> ;
+
+  register WDTCON at 0x18
+    <-, -, -, WDTPS [4], SWDTEN> ;
+
+  register WPUA at 0x95
+    <-, -, WPUA5, WPUA4, -, WPUA2, WPUA1, WPUA0> ;
+
+  configuration CONFIG at 0x2007 width 12 {
+    FCMEN mask 0x800 description "Monitor Clock Fail-safe"
+      setting 0x800 mask 0x800 description "Enabled"
+      setting 0x0 mask 0x800 description "Disabled"
+    IESO mask 0x400 description "Internal External Switch Over Mode"
+      setting 0x400 mask 0x400 description "Enabled"
+      setting 0x0 mask 0x400 description "Disabled"
+    BODEN mask 0x300 description "Brown Out Detect"
+      setting 0x0 mask 0x300 description "BOD and SBOREN disabled"
+      setting 0x100 mask 0x300 description "SBOREN controls BOR function"
+      setting 0x200 mask 0x300 description "BOD enabled in run, disabled in sleep, SBOREN disabled"
+      setting 0x300 mask 0x300 description "BOD Enabled, SBOREN Disabled"
+    CPD mask 0x80 description "Data EE Read Protect"
+      setting 0x80 mask 0x80 description "Off"
+      setting 0x0 mask 0x80 description "On"
+    CP mask 0x40 description "Code Protect"
+      setting 0x40 mask 0x40 description "Off"
+      setting 0x0 mask 0x40 description "On"
+    MCLRE mask 0x20 description "Master Clear Enable"
+      setting 0x20 mask 0x20 description "External"
+      setting 0x0 mask 0x20 description "Internal"
+    PUT mask 0x10 description "Power Up Timer"
+      setting 0x10 mask 0x10 description "Off"
+      setting 0x0 mask 0x10 description "On"
+    WDT mask 0x8 description "Watchdog Timer"
+      setting 0x8 mask 0x8 description "On"
+      setting 0x0 mask 0x8 description "Off"
+    OSC mask 0x7 description "Oscillator"
+      setting 0x7 mask 0x7 description "EXTRC: CLKOUT on RA4, RC on RA5"
+      setting 0x6 mask 0x7 description "EXTRCIO: I/O on RA4, RC on RA5"
+      setting 0x5 mask 0x7 description "INTOSC: CLKOUT on RA4, I/O on RA5"
+      setting 0x4 mask 0x7 description "INTOSCIO: I/O on RA4/RA5"
+      setting 0x3 mask 0x7 description "EC"
+      setting 0x2 mask 0x7 description "HS"
+      setting 0x1 mask 0x7 description "XT"
+      setting 0x0 mask 0x7 description "LP"
+  }
+}

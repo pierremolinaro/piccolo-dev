@@ -678,7 +678,7 @@ controller PIC18F67J60 {
   register WREG at 0xFE8
     <WREG [8]> ;
 
-  config CONFIG1H at 0x1FFF9 width 8 {
+  configuration CONFIG1H at 0x1FFF9 width 8 {
     RESERVED mask 0xF0 description "RESERVED"
       setting 0x0 mask 0xF0 description "RESERVED"
     CP_0 mask 0x4 description "Code Protect 000000-01FFFF"
@@ -686,7 +686,7 @@ controller PIC18F67J60 {
       setting 0x0 mask 0x4 description "Enabled"
   }
 
-  config CONFIG1L at 0x1FFF8 width 8 {
+  configuration CONFIG1L at 0x1FFF8 width 8 {
     BACKBUG mask 0x80 description "Background Debug"
       setting 0x80 mask 0x80 description "Disabled"
       setting 0x0 mask 0x80 description "Enabled"
@@ -701,7 +701,7 @@ controller PIC18F67J60 {
       setting 0x0 mask 0x1 description "Disabled"
   }
 
-  config CONFIG2H at 0x1FFFB width 8 {
+  configuration CONFIG2H at 0x1FFFB width 8 {
     RESERVED mask 0xF0 description "RESERVED"
       setting 0x0 mask 0xF0 description "RESERVED"
     WDTPS mask 0xF description "Watchdog Timer Postscale"
@@ -723,7 +723,7 @@ controller PIC18F67J60 {
       setting 0x0 mask 0xF description "1:1"
   }
 
-  config CONFIG2L at 0x1FFFA width 8 {
+  configuration CONFIG2L at 0x1FFFA width 8 {
     IESO mask 0x80 description "Internal External Switch Over Enable"
       setting 0x80 mask 0x80 description "Enabled"
       setting 0x0 mask 0x80 description "Disabled"
@@ -741,7 +741,7 @@ controller PIC18F67J60 {
       setting 0x0 mask 0x7 description "INTOSC as Primary, HS Osc"
   }
 
-  config CONFIG3H at 0x1FFFD width 8 {
+  configuration CONFIG3H at 0x1FFFD width 8 {
     RESERVED mask 0xF0 description "RESERVED"
       setting 0x0 mask 0xF0 description "RESERVED"
     ETHLED mask 0x4 description "Ethernet LED Enable"
@@ -755,7 +755,7 @@ controller PIC18F67J60 {
       setting 0x0 mask 0x1 description "ECCP2 IP Muxed With RE7"
   }
 
-  config CONFIG3L at 0x1FFFC width 8 {
+  configuration CONFIG3L at 0x1FFFC width 8 {
     RES mask 0xF8 description "Reserved"
       setting 0xF8 mask 0xF8 description "maintain these bits as 1"
   }

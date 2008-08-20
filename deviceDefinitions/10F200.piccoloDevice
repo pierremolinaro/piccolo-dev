@@ -1,0 +1,41 @@
+controller PIC10F200 {
+  processor "baseline" ;
+  romsize 256 ;
+  bank 1 ;
+  unusedregister 0x8 to 0xF ;
+  ram gprs : 0x10 to 0x1F ;
+  # Total ram: 16
+
+  register FSR at 0x4
+    <FSR [8]> ;
+
+  register GPIO at 0x6
+    <-, -, -, -, GPIO3, GPIO2, GPIO1, GPIO0> ;
+
+  register INDF at 0x0
+    <INDF [8]> ;
+
+  register OSCCAL at 0x5
+    <CAL [7], -> ;
+
+  register PCL at 0x2
+    <PCL [8]> ;
+
+  register STATUS at 0x3
+    <GPWUF, -, -, nTO, nPD, Z, DC, C> ;
+
+  register TMR0 at 0x1
+    <TMR0 [8]> ;
+
+  configuration CONFIG at 0xFFF width 5 {
+    MCLRE mask 0x10 description "Master Clear Enable"
+      setting 0x10 mask 0x10 description "Functions as Master Clear"
+      setting 0x0 mask 0x10 description "Functions as GP3"
+    CP mask 0x8 description "Code Protect"
+      setting 0x8 mask 0x8 description "Off"
+      setting 0x0 mask 0x8 description "On"
+    WDT mask 0x4 description "Watchdog Timer"
+      setting 0x4 mask 0x4 description "On"
+      setting 0x0 mask 0x4 description "Off"
+  }
+}

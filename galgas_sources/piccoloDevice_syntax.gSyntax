@@ -23,8 +23,12 @@ rule <start_symbol>
     processorType := [@processorType pic18_60] ;
   elsif [processorName string] == "pic18_80" then
     processorType := [@processorType pic18_80] ;
+  elsif [processorName string] == "mid-range" then
+    processorType := [@processorType midrange] ;
+  elsif [processorName string] == "baseline" then
+    processorType := [@processorType baseline] ;
   else
-    error here : "The '" . processorName . "' is not handled" -> processorType ;
+    error here : "The '" . processorName . "' processor is not handled" -> processorType ;
   end if ;
   $;$ ;
   $romsize$ ;
@@ -67,11 +71,23 @@ rule <start_symbol>
     $integer$ ? @luint ramStart ;
     $to$ ;
     $integer$ ? @luint ramEnd ;
+    @uintlist mirrorOffsetList [emptyList] ;
+    select
+    or
+      $mirrorat$ ;
+      repeat
+        $integer$ ? @luint mirrorStartAddress ;
+        mirrorOffsetList += ![mirrorStartAddress uint] - [ramStart uint] ;
+      while
+        $,$ ;
+      end repeat ;
+    end select ;
     $;$ ;
     [!?ramBankTable insertKey
       !ramName
       ![ramStart uint]
       ![ramEnd uint] + 1
+      !mirrorOffsetList
     ] ;
   end repeat ;
   @registerTable registerTable [emptyMap] ;
@@ -140,7 +156,7 @@ rule <start_symbol>
   @configRegisterMap configRegisterMap [emptyMap] ;
   repeat
   while
-    $config$ ;
+    $configuration$ ;
     $identifier$ ? @lstring configRegisterName ;
     $at$ ;
     $integer$ ? @luint configRegisterAddress ;
@@ -195,10 +211,12 @@ rule <start_symbol>
   end repeat ;
   $}$ ;
 #--- Check some registers are actual defined
-  [registerTable searchKey ![@lstring new !"BSR" !here] ?4*] ;
-  [registerTable searchKey ![@lstring new !"TOSL" !here] ?4*] ;
-  [registerTable searchKey ![@lstring new !"TOSH" !here] ?4*] ;
-  [registerTable searchKey ![@lstring new !"TOSU" !here] ?4*] ;
+  if ([processorName string] == "pic18_60") | ([processorName string] == "pic18_80") then
+    [registerTable searchKey ![@lstring new !"BSR" !here] ?4*] ;
+    [registerTable searchKey ![@lstring new !"TOSL" !here] ?4*] ;
+    [registerTable searchKey ![@lstring new !"TOSH" !here] ?4*] ;
+    [registerTable searchKey ![@lstring new !"TOSU" !here] ?4*] ;
+  end if ;
 #---
   outPiccoloDeviceModel := [@piccoloDeviceModel new
     !deviceName
