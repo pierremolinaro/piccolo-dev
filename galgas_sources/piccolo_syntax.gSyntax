@@ -1,6 +1,7 @@
 syntax piccolo_syntax :
 import lexique piccolo_lexique in "piccolo_lexique.gLexique" ;
 import semantics piccolo_metamodel in "piccolo_metamodel.gSemantics" ;
+import semantics pic18_semantics in "pic18_semantics.gSemantics" ;
 
 #----------------------------------------------------*
 
@@ -53,9 +54,7 @@ nonterminal <structured_if_instruction>
   ?!@bool ioNeedsComputedGoto4
 ;
 
-nonterminal <start_symbol>
-  !@piccoloModel outPiccoloModel
-;
+nonterminal <start_symbol> ;
 
 nonterminal <register_parsing> !@registerExpression outRegisterExpression ;
 
@@ -83,9 +82,7 @@ nonterminal <immediate_primary> !@immediatExpression outExpression ;
 
 #----------------------------------------------------*
 
-rule <start_symbol>
-  !@piccoloModel outPiccoloModel
-:
+rule <start_symbol> :
   $pic18$ ;
   $identifier$ ? @lstring programName ;
   $literal_string$ ? @lstring deviceName ;
@@ -119,19 +116,32 @@ rule <start_symbol>
     ;
   end repeat ;
   $end$ ;
-  outPiccoloModel := [@piccoloModel new
-    !programName
-    !deviceName
-    !configDefinitionList
-    !acceptDefaultConfiguration
-    !ramDefinitionList
-    !interruptDefinitionList
-    !constantDefinitionList
-    !routineDefinitionList
-    !needsComputedGoto2
-    !needsComputedGoto4
-    !here
-  ] ;
+#--- Semantic analysis
+  if [@uint errorCount] == 0 then
+    @piccoloModel piccoloModel [new
+      !programName
+      !deviceName
+      !configDefinitionList
+      !acceptDefaultConfiguration
+      !ramDefinitionList
+      !interruptDefinitionList
+      !constantDefinitionList
+      !routineDefinitionList
+      !needsComputedGoto2
+      !needsComputedGoto4
+      !here
+    ] ;
+    pic18_analyze !piccoloModel ![@string stringWithSourceFilePath] ;
+  else
+    @string hexDestinationFile := [[@string stringWithSourceFilePath] stringByDeletingPathExtension] . ".hex" ;
+    if [hexDestinationFile fileExists] then
+      [@string deleteFile !hexDestinationFile] ;
+    end if ;
+    @string asmDestinationFile := [[@string stringWithSourceFilePath] stringByDeletingPathExtension] . ".asm" ;
+    if [asmDestinationFile fileExists] then
+      [@string deleteFile !asmDestinationFile] ;
+    end if ;
+  end if ;
 end rule ;
 
 #----------------------------------------------------*

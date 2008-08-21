@@ -1,0 +1,370 @@
+semantics midrange_metamodel :
+import "piccolo_metamodel.gSemantics" ;
+import semantics piccolo_metamodel in "piccolo_metamodel.gSemantics" ;
+
+#----------------------------------------------------*
+
+abstract class @midrange_instruction {
+  @location mInstructionLocation ;
+}
+
+#----------------------------------------------------*
+
+list @midrange_instructionList {
+  @midrange_instruction mInstruction ;
+}
+
+#----------------------------------------------------*
+
+class @midrange_instruction_nobanksel extends @midrange_instruction {
+}
+
+#----------------------------------------------------*
+
+class @midrange_instruction_banksel extends @midrange_instruction {
+  @luint mBankIndex ;
+}
+
+#----------------------------------------------------*
+
+class @midrange_instruction_savebank extends @midrange_instruction {
+  @registerExpression mRegister ;
+  @midrange_instructionList mInstructionList ;
+  @location mEndOfSaveBankInstruction ;
+}
+
+#----------------------------------------------------*
+
+enum @midrange_instruction_FD_base_code {
+  constructor ADDWF ;
+  constructor ANDWF ;
+  constructor COMF ;
+  constructor DECF ;
+  constructor DECFSZ ;
+  constructor INCF ;
+  constructor INCFSZ ;
+  constructor IORWF ;
+  constructor MOVF ;
+  constructor RLF ;
+  constructor RRF ;
+  constructor SUBWF ;
+  constructor SWAPF ;
+  constructor XORWF ;
+}{
+  reader mnemonic :
+    ADDWF -> "ADDWF" ;
+    ANDWF -> "ANDWF" ;
+    COMF -> "COMF" ;
+    DECF -> "DECF" ;
+    DECFSZ -> "DECFSZ" ;
+    INCF -> "INCF" ;
+    INCFSZ -> "INCFSZ" ;
+    IORWF -> "IORWF" ;
+    MOVF -> "MOVF" ;
+    RLF -> "RLF" ;
+    RRF -> "RRF" ;
+    SUBWF -> "SUBWF" ;
+    SWAPF -> "SWAPF" ;
+    XORWF -> "XORWF" ;
+  end reader ;
+}
+
+#----------------------------------------------------*
+
+routine getMidRangeFDInstructionBaseCode
+  ??@midrange_instruction_FD_base_code inInstruction
+  !@uint outBaseCode
+:
+  switch inInstruction
+  when ADDWF : outBaseCode := 0x0700 ;
+  when ANDWF : outBaseCode := 0x0500 ;
+  when COMF : outBaseCode := 0x0900 ;
+  when DECF : outBaseCode := 0x0300 ;
+  when DECFSZ : outBaseCode := 0x0B00 ;
+  when INCF : outBaseCode := 0x0A00 ;
+  when INCFSZ : outBaseCode := 0x0F00 ;
+  when IORWF : outBaseCode := 0x0400 ;
+  when MOVF : outBaseCode := 0x0800 ;
+  when RLF : outBaseCode := 0x0D00 ;
+  when RRF : outBaseCode := 0x0C00 ;
+  when SUBWF : outBaseCode := 0x0200 ;
+  when SWAPF : outBaseCode := 0x0E00 ;
+  when XORWF : outBaseCode := 0x0600 ;
+  end switch ;
+end routine ;
+
+#----------------------------------------------------*
+
+class @midrange_instruction_FD extends @midrange_instruction {
+  @midrange_instruction_FD_base_code mInstruction_FD_base_code ;
+  @registerExpression mRegisterExpression ;
+  @bool m_W_isDestination ;
+}
+
+#----------------------------------------------------*
+
+enum @midrange_F_instruction_base_code {
+  constructor CLRF ;
+  constructor MOVWF  ;
+}{
+  reader mnemonic :
+    CLRF   -> "CLRF" ;
+    MOVWF  -> "MOVWF" ;
+  end reader ;
+}
+
+#----------------------------------------------------*
+
+class @midrange_instruction_F extends @midrange_instruction {
+  @midrange_F_instruction_base_code mFAinstruction ;
+  @registerExpression mRegisterExpression ;
+}
+
+#----------------------------------------------------*
+
+enum @midrange_bit_oriented_op {
+  constructor BCF ;
+  constructor BSF ;
+}{
+  reader mnemonic :
+    BCF -> "BCF" ;
+    BSF -> "BSF" ;
+  end reader ;
+}
+
+#----------------------------------------------------*
+
+class @midrange_instruction_FB extends @midrange_instruction {
+  @midrange_bit_oriented_op mBitOrientedOp ;
+  @registerExpression mRegisterExpression ;
+  @bitNumberExpression mBitNumber ;
+}
+
+#----------------------------------------------------*
+
+enum @midrange_jumpInstructionKind {
+  constructor ipicExtended ;
+  constructor native ;
+}{
+}
+
+#----------------------------------------------------*
+
+class @midrange_instruction_JSR extends @midrange_instruction {
+  @lstring mTargetLabel ;
+  @midrange_jumpInstructionKind mKind ;
+}
+
+#----------------------------------------------------*
+
+class @midrange_instruction_JUMP extends @midrange_instruction {
+  @lstring mTargetLabel ;
+  @midrange_jumpInstructionKind mKind ;
+}
+#----------------------------------------------------*
+
+class @midrange_instruction_CLRWDT extends @midrange_instruction {
+}
+
+#----------------------------------------------------*
+
+class @midrange_instruction_NOP extends @midrange_instruction {
+}
+
+#----------------------------------------------------*
+
+class @midrange_instruction_SLEEP extends @midrange_instruction {
+}
+
+#----------------------------------------------------*
+
+enum @midrange_literal_instruction_opcode {
+  constructor ADDLW ;
+  constructor ANDLW ;
+  constructor IORLW ;
+  constructor MOVLW ;
+  constructor RETLW ;
+  constructor SUBLW ;
+  constructor XORLW ;
+}{
+  reader mnemonic :
+    ADDLW -> "ADDLW" ;
+    ANDLW -> "ANDLW" ;
+    IORLW -> "IORLW" ;
+    MOVLW -> "MOVLW" ;
+    RETLW -> "RETLW" ;
+    SUBLW -> "SUBLW" ;
+    XORLW -> "XORLW" ;
+  end reader ;
+}
+
+#----------------------------------------------------*
+
+class @midrange_instruction_literalOperation extends @midrange_instruction {
+  @midrange_literal_instruction_opcode mLiteralInstruction ;
+  @immediatExpression mImmediatExpression ;
+}
+
+#----------------------------------------------------*
+
+class @midrange_instruction_MNOP extends @midrange_instruction {
+  @luint mOccurrenceFactor ;
+}
+
+#----------------------------------------------------*
+
+class @midrange_instruction_FOREVER extends @midrange_instruction {
+  @midrange_instructionList mInstructionList ;
+  @location mEndOfInstructionList ;
+}
+
+#----------------------------------------------------*
+
+abstract class @midrange_instruction_IF_SEMI_COLON extends @midrange_instruction {
+  @midrange_instruction mInstruction ;
+}
+
+#----------------------------------------------------*
+
+class @midrange_instruction_IF_BitTest extends @midrange_instruction_IF_SEMI_COLON {
+  @bool mSkipIfSet ;
+  @registerExpression mRegisterExpression ;
+  @bitNumberExpression mBitNumber ;
+
+  method getBaseCode !@uint outBaseCode :
+    if mSkipIfSet then
+      outBaseCode := 0x1C00 ; # BTFSS
+    else
+      outBaseCode := 0x1800 ; # BTFSC
+    end if ;
+  end method ; 
+
+  method getMnemonic !@string outMnemonic :
+    if mSkipIfSet then
+      outMnemonic := "BTFSS" ;
+    else
+      outMnemonic := "BTFSC" ;
+    end if ;
+  end method ; 
+}
+
+#----------------------------------------------------*
+
+class @midrange_instruction_IF_IncDec extends @midrange_instruction_IF_SEMI_COLON {
+  @bool mIncrement ;
+  @registerExpression mRegisterExpression ;
+  @bool m_W_isDestination ;
+}
+
+#----------------------------------------------------*
+
+class @midrange_instruction_computed_retlw extends @midrange_instruction {
+  @immediatExpression mSizeExpression ;
+  @immediatExpressionList mImmediateExpressionList ;
+}
+
+#----------------------------------------------------*
+
+class @midrange_instruction_computed_goto extends @midrange_instruction {
+  @immediatExpression mSizeExpression ;
+  @lstringlist mTargetLabels ;
+}
+
+#----------------------------------------------------*
+
+abstract class @midrange_conditionExpression {
+}
+
+#----------------------------------------------------*
+
+class @midrange_incDecRegisterInCondition extends @midrange_conditionExpression {
+  @registerExpression mRegisterExpression ;
+  @bool mIncrement ;
+  @bool m_W_isDestination ;
+  @bool mBranchIfZero ;
+}
+
+#----------------------------------------------------*
+
+class @midrange_negateCondition extends @midrange_conditionExpression {
+  @midrange_conditionExpression mCondition ;
+}
+
+#----------------------------------------------------*
+
+class @midrange_andCondition extends @midrange_conditionExpression {
+  @midrange_conditionExpression mLeftExpression ;
+  @midrange_conditionExpression mRightExpression ;
+}
+
+#----------------------------------------------------*
+
+class @midrange_bitTest_in_structured_if_condition extends @midrange_conditionExpression {
+  @registerExpression mRegisterExpression ;
+  @bitNumberExpression mBitNumber ;
+  @bool mBTFSSinstruction ;
+}
+
+#----------------------------------------------------*
+
+class @midrange_instruction_structured_if extends @midrange_instruction {
+  @midrange_conditionExpression mIfCondition ;
+  @midrange_instructionList mThenInstructionList ;
+  @midrange_instructionList mElseInstructionList ;
+  @location mEndOfElsePartLocation ;
+}
+
+#----------------------------------------------------*
+
+list @midrange_partList {
+  @midrange_conditionExpression mCondition ;
+  @midrange_instructionList mInstructionList ;
+  @location mEndOfPartLocation ;
+}
+
+#----------------------------------------------------*
+
+class @midrange_instruction_do_while extends @midrange_instruction {
+  @midrange_instructionList mRepeatedInstructionList ;
+  @location mEndOfRepeatedInstructionList ;
+  @midrange_partList mWhilePartList ;
+}
+
+#----------------------------------------------------*
+
+list @midrange_interruptDefinitionList {
+  @midrange_instructionList mInstructionList ;
+  @location mInterruptLocation ;
+}
+
+#----------------------------------------------------*
+
+list @midrange_routineDefinitionList {
+  @lstring mRoutineName ;
+  @luint mRequiredBank ;
+  @luint mReturnedBank ;
+  @bool mPreservesBank ;
+  @bool mIsNoReturn ;
+  @midrange_instructionList mInstructionList ;
+  @location mEndOfRoutineLocation ;
+}
+
+#----------------------------------------------------*
+
+struct @midrange_model {
+  @lstring mProgramName ;
+  @lstring mDeviceName ;
+  @configDefinitionList mConfigDefinitionList ;
+  @bool mAcceptDefaultConfiguration ;
+  @ramDefinitionList mRamDefinitionList ;
+  @midrange_interruptDefinitionList mInterruptDefinitionList ;
+  @constantDefinitionList mConstantDefinitionList ;
+  @midrange_routineDefinitionList mRoutineDefinitionList ;
+  @bool mNeedsComputedGoto2 ;
+  @bool mNeedsComputedGoto4 ;
+  @location mEndOfProgram ;
+}
+
+#----------------------------------------------------*
+
+end semantics ;

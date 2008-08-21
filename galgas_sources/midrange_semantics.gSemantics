@@ -1,0 +1,124 @@
+semantics midrange_semantics :
+#import semantics ipic18_build_binary_code in "ipic18_build_binary_code.gSemantics" ;
+#import semantics pic18_checkingAndBuildIPIC in "pic18_checkingAndBuildIPIC.gSemantics" ;
+#import semantics ipc18_convert_relatives in "ipc18_convert_relatives.gSemantics" ;
+import semantics piccolo_embedded_devices in "piccolo_embedded_devices.gSemantics" ;
+import semantics midrange_metamodel in "midrange_metamodel.gSemantics" ;
+import semantics piccolo_config in "piccolo_config.gSemantics" ;
+import semantics ram_sections in "ram_sections.gSemantics" ;
+
+import option piccolo_options in "piccolo_options.gOption" ;
+
+#----------------------------------------------------------------------------*
+#                                                                            *
+#               S E M A N T I C    A N A L Y S I S                           *
+#                                                                            *
+#----------------------------------------------------------------------------*
+
+routine midrange_analyze ??@midrange_model inPiccoloModel ??@string inSourceFileName :
+  @string sourceFileBaseName := [[inSourceFileName lastPathComponent] stringByDeletingPathExtension] ;
+  if sourceFileBaseName != [[inPiccoloModel mProgramName] string] then
+    error [inPiccoloModel mProgramName]: "the program name ('" . [inPiccoloModel mProgramName]
+    . "') should be identical to the file base name '" . sourceFileBaseName . "'" ;
+  end if ;
+  @string listFileContents := "" ;
+#-------------------------------- Analyze Device
+  @piccoloDeviceModel piccoloDeviceModel ;
+  parseDeviceDefinition ![inPiccoloModel mDeviceName] ?piccoloDeviceModel ;
+  switch [piccoloDeviceModel mProcessorType]
+    when midrange :
+    when pic18_60, pic18_80 : error [inPiccoloModel mDeviceName]: "a pic18 device is not accepted here : only a mid-range device" ;
+    when baseline : error [inPiccoloModel mDeviceName]: "a baseline device is not accepted here : only a mid-range device" ;
+  end switch ;
+#-------------------------------- Interrupts ?
+  @bool hasInterrupt := false ;
+  foreach [inPiccoloModel mInterruptDefinitionList] do
+    if hasInterrupt then
+      error mInterruptLocation:"only one interrupt routine can be defined" ;
+    end if ;
+    hasInterrupt := true ;
+  end foreach ;
+#-------------------------------- Config definition
+  @actualConfigurationMap actualConfigurationMap ;
+  buildConfig
+    ![piccoloDeviceModel mConfigRegisterMap]
+    ![inPiccoloModel mConfigDefinitionList]
+    ![inPiccoloModel mAcceptDefaultConfiguration]
+    !?listFileContents
+    ?actualConfigurationMap
+  ;
+#-------------------------------- Ram definition
+  @ramBankTable ramBank := [piccoloDeviceModel mRamBankTable] ;
+  @registerTable registerTable ;
+  analyze_ram_sections
+    ![inPiccoloModel mRamDefinitionList]
+    !?ramBank
+    ![piccoloDeviceModel mRegisterTable]
+    !?listFileContents
+    ?registerTable
+  ;
+##-------------------------------- Build IPIC Assembly Instruction List
+#  @ipic_instructionList generatedInstructionList ;
+#  buildIPICAssemblyInstructionList
+#    !accessBankSplitOffset
+#    !registerTable
+#    !inPiccoloModel
+#    !hasHighInterrupt
+#    !hasLowInterrupt
+#    ?generatedInstructionList
+#    !?listFileContents
+#  ;
+##-------------------------------- Perform Code Optimization
+#  if ([@uint errorCount] == 0) & [option piccolo_options.performOptimizations] then
+#    performOptimizations !?generatedInstructionList !?listFileContents ;
+#  end if ;
+##-------------------------------- Convert relative branchs to absolute, when needed
+#  if [@uint errorCount] == 0 then
+#    convertRelativeBranchsToAbsoluteWhenNeeded !?generatedInstructionList !?listFileContents ;
+#  end if ;
+#-------------------------------- Code generation
+  if [option piccolo_options.ouputListingFile] then
+    @string listFile := [inSourceFileName stringByDeletingPathExtension] . ".list" ;
+    [listFileContents writeToFileWhenDifferentContents !listFile] ;
+  end if ;
+#--- If no error, generate object file(s)
+  if [@uint errorCount] == 0 then
+#  #--- Generate hex file
+#    buildBinaryCode
+#      !generatedInstructionList
+#      ![[piccoloDeviceModel mRomSize] uint]
+#      !actualConfigurationMap
+#    ;
+#    @string contents ;
+#    getGeneratedContents ?contents ;
+#    @string hexDestinationFile := [inSourceFileName stringByDeletingPathExtension] . ".hex" ;
+#    [contents writeToFileWhenDifferentContents !hexDestinationFile] ;
+#  #--- Generate asm file, if corresponding option enabled
+#    if [option piccolo_options.generateAssembly] then
+#      @string assemblyCode ;
+#      buildAssemblyCode
+#        ![[piccoloDeviceModel mDeviceName] string]
+#        ![piccoloDeviceModel mRegisterTable]
+#        !registerTable
+#        !generatedInstructionList
+#        !actualConfigurationMap
+#        ?assemblyCode
+#      ;
+#      @string asmDestinationFile := [inSourceFileName stringByDeletingPathExtension] . ".asm" ;
+#      [assemblyCode writeToFileWhenDifferentContents !asmDestinationFile] ;
+#    end if ;
+  else # There are errors : delete hex and asm files
+    @string hexDestinationFile := [inSourceFileName stringByDeletingPathExtension] . ".hex" ;
+    if [hexDestinationFile fileExists] then
+      [@string deleteFile !hexDestinationFile] ;
+    end if ;
+    @string asmDestinationFile := [inSourceFileName stringByDeletingPathExtension] . ".asm" ;
+    if [asmDestinationFile fileExists] then
+      [@string deleteFile !asmDestinationFile] ;
+    end if ;
+  end if ;
+end routine ;
+
+#----------------------------------------------------*
+
+end semantics ;
