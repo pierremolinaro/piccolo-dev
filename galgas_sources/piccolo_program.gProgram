@@ -70,13 +70,27 @@ before {
     end if ;
   #---
   end if ;
+#------------------------------------------------ Export Device definition files
+  if [[option piccolo_options.exportDeviceFiles] length] > 0 then
+    @string dir := [option piccolo_options.exportDeviceFiles] ;
+    if not [dir directoryExists] then
+      [dir makeDirectory] ;
+    end if ;
+    @filewrapper fw := [filewrapper embeddedDevices] ;
+    @stringlist allDevices := [[filewrapper embeddedDevices] allFilePathes] ;
+    foreach allDevices do
+      @string definitionString := [fw fileContentsAtPath !mValue] ;
+      [definitionString writeToFile !dir . mValue] ;
+    end foreach ;
+    message [[allDevices length] string] . " devices copied in '" . dir . "' directory\n" ;
+  end if ;
 #------------------------------------------------ Print RAM description
   @string deviceForMemoryDescription := [option piccolo_options.memoryDescription] ;
   if [deviceForMemoryDescription length] > 0 then
     @string devicePath := "/" . deviceForMemoryDescription . ".piccoloDevice" ;
     if [[filewrapper embeddedDevices] fileExistsAtPath !devicePath] then
       @piccoloDeviceModel piccoloDeviceModel ;
-      parseDeviceDefinition ![@lstring new ! deviceForMemoryDescription !here] ?piccoloDeviceModel ;
+      parseDeviceDefinition ![@lstring new !deviceForMemoryDescription !here] ?piccoloDeviceModel ;
       @uint totalRam := 0 ;
       foreach [piccoloDeviceModel mRamBankTable] do
         totalRam  := totalRam  + mLastAddressPlusOne - mFirstFreeAddress ;

@@ -1,4 +1,4 @@
-program commonDeclarations "18F2580" :
+pic18 commonDeclarations "18F2580" :
 
 ram accessram {
   byte first # At address 0

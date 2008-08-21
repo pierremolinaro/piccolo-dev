@@ -2,7 +2,7 @@
 # rcall and bra branching limits.
 # Trying to execute it does not make sense.
 
-program relative_branch_limits "18F448" :
+pic18 relative_branch_limits "18F448" :
 
 routine rcall_back_call {
   mnop 1022 # Adding 1 leads to underflow
