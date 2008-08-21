@@ -86,7 +86,7 @@ nonterminal <immediate_primary> !@immediatExpression outExpression ;
 rule <start_symbol>
   !@piccoloModel outPiccoloModel
 :
-  $program$ ;
+  $pic18$ ;
   $identifier$ ? @lstring programName ;
   $literal_string$ ? @lstring deviceName ;
   $:$ ;
@@ -140,7 +140,7 @@ rule <configuration_definition>
   ?!@configDefinitionList ioConfigDefinitionList
   ?!@bool ioAcceptDefaultConfiguration
 :
-  $config$ ;
+  $configuration$ ;
   @configSettingList settingList [emptyList] ;
   ${$ ;
   repeat

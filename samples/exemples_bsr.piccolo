@@ -1,4 +1,4 @@
-program exemples_bsr "18F2580" :
+pic18 exemples_bsr "18F2580" :
 
 ram accessram {
   byte varAccessBank # At address 0

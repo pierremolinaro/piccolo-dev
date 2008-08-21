@@ -5,6 +5,8 @@ option piccolo_options :
 @string memoryDescription : 'M', "memory" -> "Output the RAM, ROM and EEPROM description of the device named by string" ;
 @string registerDescription : 'R', "registers" -> "Output the special register description of the device named by string" ;
 @string configDescription : 'F', "configuration" -> "Output the configuration register description of the device named by string" ;
+@string exportDeviceFiles : 'E', "export" -> "Export device definition files to the directory named by string" ;
+#@string importDeviceFiles : 'I', "import" -> "Read device definition files from the directory named by string" ;
 @bool ouputListingFile : 'L', "list" -> "Output a list file" ;
 @bool performOptimizations : 'O', "optimize" -> "Perform code optimizations" ;
 end option ;
