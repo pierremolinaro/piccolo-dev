@@ -1,0 +1,513 @@
+semantics ipic18_optimizations :
+import semantics ipic18_metamodel in "ipic18_metamodel.gSemantics" ;
+import "ipic18_metamodel.gSemantics" ;
+
+#----------------------------------------------------------------------------*
+
+map @symbolTableForOptimizations {
+  @uint mDefinitionLineIndex ;
+  insert insertKey error message "the '%K' label is already declared in %L" ;
+  search searchKey error message "the '%K' label is not declared" ;
+  remove removeKey error message "the '%K' label is not declared" ;
+}
+
+#----------------------------------------------------------------------------*
+#                                                                            *
+#                          defineLabel                                       *
+#                                                                            *
+#----------------------------------------------------------------------------*
+
+method @ipic_instruction. defineLabel
+  ?!@symbolTableForOptimizations unused ioRoutineSymbolTable
+  ??@uint unused inLineIndex
+:
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override
+method @ipic_pseudo_LABEL.defineLabel
+  ?!@symbolTableForOptimizations ioRoutineSymbolTable
+  ??@uint inLineIndex
+:
+  [!?ioRoutineSymbolTable insertKey !mLabel !inLineIndex] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+routine findFirstInstructionFromAddress
+  ??@uint inLineIndex
+  ??@ipic_instructionList inGeneratedInstructionList
+  !@ipic_instruction outFirstInstruction
+:
+#--- Line Index
+  @uint currentAddress := inLineIndex ;
+#--- Find first executable instruction
+  outFirstInstruction := [@ipic_NULL new] ; # By default, no instruction
+  @bool found := false ;
+  loop [inGeneratedInstructionList length] :
+  while (currentAddress < [inGeneratedInstructionList length]) & not found
+  do
+    cast [inGeneratedInstructionList mInstructionAtIndex !currentAddress] :
+    when >= @ipic_actualInstruction instr do
+      outFirstInstruction := instr ;
+      found := true ;
+    else
+      currentAddress ++ ;
+    end cast ;
+  end loop ;
+end routine ;
+
+#----------------------------------------------------------------------------*
+
+routine findFirstInstructionOrLabelFromAddress
+  ??@uint inLineIndex
+  ??@ipic_instructionList inGeneratedInstructionList
+  !@ipic_instruction outFirstInstruction
+  !@stringset outReachedLabelSet
+:
+  outReachedLabelSet := [@stringset emptySet] ;
+#--- Line Index
+  @uint currentAddress := inLineIndex ;
+#--- Find first executable instruction
+  outFirstInstruction := [@ipic_NULL new] ; # By default, no instruction
+  @bool found := false ;
+  loop [inGeneratedInstructionList length] :
+  while (currentAddress < [inGeneratedInstructionList length]) & not found
+  do
+    cast [inGeneratedInstructionList mInstructionAtIndex !currentAddress] :
+    when >= @ipic_actualInstruction instr do
+      outFirstInstruction := instr ;
+      found := true ;
+    when == @ipic_pseudo_LABEL instr do
+      outFirstInstruction := instr ;
+      outReachedLabelSet += ![[instr mLabel] string] ;
+      currentAddress ++ ;
+    else
+      currentAddress ++ ;
+    end cast ;
+  end loop ;
+end routine ;
+
+#----------------------------------------------------------------------------*
+#                                                                            *
+#                           O P T I M I Z E                                  *
+#                                                                            *
+#----------------------------------------------------------------------------*
+
+method @ipic_JUMP.optimizeJUMP
+  ??@symbolTableForOptimizations inSymbolTable
+  ??@uint inLineIndex
+  ?!@ipic_instructionList ioGeneratedInstructionList
+  ?!@string ioListFileContents
+  ?!@bool ioOptimizationsDone
+:
+#--- The JUMP goes to the next instruction ?
+  @stringset reachedLabelSet ;
+  findFirstInstructionOrLabelFromAddress !inLineIndex+1 !ioGeneratedInstructionList ?* ?reachedLabelSet ;
+#  log reachedLabelSet ; log inLineIndex ;
+  if [reachedLabelSet hasKey ![mTargetLabel string]] then
+    [!?ioGeneratedInstructionList setMInstructionAtIndex ![@ipic_NULL new] !inLineIndex] ;
+    ioListFileContents .= "  line " . [inLineIndex string] . ": JUMP branching to next instruction deleted\n" ;
+  else      
+  #--- Find destination label definition line
+    @uint line ; [inSymbolTable searchKey !mTargetLabel ?line] ;
+  #--- Find first executable instruction
+    @ipic_instruction firstInstruction ;
+    findFirstInstructionFromAddress !line + 1 !ioGeneratedInstructionList ?firstInstruction ;
+  #--- Optimization from found first instruction
+    cast firstInstruction :
+    when == @ipic_instruction_RETURN do
+      [!?ioGeneratedInstructionList setMInstructionAtIndex
+        ![@ipic_instruction_RETURN new !mInstructionLocation]
+        !inLineIndex
+      ] ;
+      ioOptimizationsDone := true ;
+      ioListFileContents .= "  line " . [inLineIndex string] . ": JUMP branching to RETURN replaced by RETURN\n" ;
+    when == @ipic_instruction_literalOperation literalOp do
+      if [literalOp mLiteralInstruction] == [@literal_instruction_opcode RETLW] then
+        [!?ioGeneratedInstructionList setMInstructionAtIndex
+          !literalOp
+          !inLineIndex
+        ] ;
+        ioOptimizationsDone := true ;
+        ioListFileContents .= "  line " . [inLineIndex string] . ": JUMP branching to RETLW replaced by RETLW\n" ;
+      end if ;
+    when == @ipic_JUMP jump do
+      if mTargetLabel != [jump mTargetLabel] then
+        [!?ioGeneratedInstructionList setMInstructionAtIndex
+          ![@ipic_JUMP new !mInstructionLocation ![jump mTargetLabel] !mKind]
+          !inLineIndex
+        ] ;
+        ioOptimizationsDone := true ;
+        ioListFileContents .= "  line " . [inLineIndex string] . ": JUMP branching to JUMP replaced by JUMP\n" ;
+      end if ;
+    else # No Optimization
+    end cast ;
+  end if ;      
+end method ;
+
+#----------------------------------------------------------------------------*
+
+method @ipic_JSR.optimizeJSR
+  ??@uint inLineIndex
+  ?!@ipic_instructionList ioGeneratedInstructionList
+  ?!@string ioListFileContents
+  ?!@bool ioOptimizationsDone
+:
+#--- Find first executable instruction
+  @ipic_instruction firstInstruction ;
+  findFirstInstructionFromAddress !inLineIndex + 1 !ioGeneratedInstructionList ?firstInstruction ;
+#--- Optimization from found first instruction
+  cast firstInstruction :
+  when == @ipic_instruction_RETURN do
+    [!?ioGeneratedInstructionList setMInstructionAtIndex
+      ![@ipic_JUMP new !mInstructionLocation !mTargetLabel !mKind]
+      !inLineIndex
+    ] ;
+    ioOptimizationsDone := true ;
+    ioListFileContents .= "  line " . [inLineIndex string] . ": JSR followed by RETURN replaced by JUMP\n" ;
+  else
+  end cast ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+method @ipic_instruction_literalOperation.optimizeMOVLW
+  ??@uint inLineIndex
+  ?!@ipic_instructionList ioGeneratedInstructionList
+  ?!@string ioListFileContents
+  ?!@bool ioOptimizationsDone
+:
+  if mLiteralInstruction == [@literal_instruction_opcode MOVLW] then
+  #--- Find first executable instruction
+    @ipic_instruction firstInstruction ;
+    findFirstInstructionFromAddress !inLineIndex + 1 !ioGeneratedInstructionList ?firstInstruction ;
+  #--- Optimization from found first instruction
+    cast firstInstruction :
+    when == @ipic_instruction_RETURN do
+      [!?ioGeneratedInstructionList setMInstructionAtIndex
+        ![@ipic_instruction_literalOperation new !mInstructionLocation ![@literal_instruction_opcode RETLW] !mLiteralValue]
+        !inLineIndex
+      ] ;
+      ioOptimizationsDone := true ;
+      ioListFileContents .= "  line " . [inLineIndex string] . ": MOVLW followed by RETURN replaced by RETLW\n" ;
+    else
+    end cast ;
+  end if ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+method @ipic_instruction_conditionalBranch.optimizeBCC
+  ??@symbolTableForOptimizations inSymbolTable
+  ??@uint inLineIndex
+  ?!@ipic_instructionList ioGeneratedInstructionList
+  ?!@string ioListFileContents
+  ?!@bool ioOptimizationsDone
+:
+#--- Find destination label definition line
+  @uint line ; [inSymbolTable searchKey !mTargetLabel ?line] ;
+#--- Find first executable instruction
+  @ipic_instruction firstInstruction ;
+  findFirstInstructionFromAddress !line + 1 !ioGeneratedInstructionList ?firstInstruction ;
+#--- Optimization from found first instruction
+  cast firstInstruction :
+  when == @ipic_JUMP jump do
+    if [mTargetLabel string] != [[jump mTargetLabel] string] then
+      [!?ioGeneratedInstructionList setMInstructionAtIndex
+        ![@ipic_instruction_conditionalBranch new !mInstructionLocation !mBranchMode !mConditionalBranch ![jump mTargetLabel]]
+        !inLineIndex
+      ] ;
+      ioOptimizationsDone := true ;
+      ioListFileContents .= "  line " . [inLineIndex string] . ": label of JUMP " . [mConditionalBranch condition] . " branching to JUMP replaced by second JUMP label\n" ;
+    end if ;
+  else
+  end cast ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+method @ipic_jump_test_register.optimizeTestReg
+  ??@symbolTableForOptimizations inSymbolTable
+  ??@uint inLineIndex
+  ?!@ipic_instructionList ioGeneratedInstructionList
+  ?!@string ioListFileContents
+  ?!@bool ioOptimizationsDone
+:
+#--- Find destination label definition line
+  @uint line ; [inSymbolTable searchKey ![@lstring new !mTargetLabel !here] ?line] ;
+#--- Find first executable instruction
+  @ipic_instruction firstInstruction ;
+  findFirstInstructionFromAddress !line + 1 !ioGeneratedInstructionList ?firstInstruction ;
+#--- Optimization from found first instruction
+  cast firstInstruction :
+  when == @ipic_JUMP jump do
+    if mTargetLabel != [[jump mTargetLabel] string] then
+      [!?ioGeneratedInstructionList setMInstructionAtIndex
+        ![@ipic_jump_test_register new !mInstructionLocation !mRegisterDescription ![[jump mTargetLabel] string] !mBranchIfZero !mUsesBra]
+        !inLineIndex
+      ] ;
+      ioOptimizationsDone := true ;
+      ioListFileContents .= "  line " . [inLineIndex string] . ": label of JUMP " . [mRegisterDescription mAssemblyString] ;
+      if mBranchIfZero then
+        ioListFileContents .= "Z" ;
+      else
+        ioListFileContents .= "NZ" ;
+      end if ;
+      ioListFileContents .= " branching to JUMP replaced by second JUMP label\n" ;
+    end if ;
+  else
+  end cast ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+method @ipic_incDecRegisterInCondition.optimizeTestDecInc
+  ??@symbolTableForOptimizations inSymbolTable
+  ??@uint inLineIndex
+  ?!@ipic_instructionList ioGeneratedInstructionList
+  ?!@string ioListFileContents
+  ?!@bool ioOptimizationsDone
+:
+#--- Find destination label definition line
+  @uint line ; [inSymbolTable searchKey ![@lstring new !mTargetLabel !here] ?line] ;
+#--- Find first executable instruction
+  @ipic_instruction firstInstruction ;
+  findFirstInstructionFromAddress !line + 1 !ioGeneratedInstructionList ?firstInstruction ;
+#--- Optimization from found first instruction
+  cast firstInstruction :
+  when == @ipic_JUMP jump do
+    [!?ioGeneratedInstructionList setMInstructionAtIndex
+      ![@ipic_incDecRegisterInCondition new
+        !mInstructionLocation
+        !mRegisterDescription
+        ![[jump mTargetLabel] string]
+        !mIncrement
+        !m_W_isDestination
+        !mBranchIfZero
+        !mUsesBra
+      ]
+      !inLineIndex
+    ] ;
+    ioOptimizationsDone := true ;
+    ioListFileContents .= "  line " . [inLineIndex string] . ": label of " ;
+    ioListFileContents .= "JUMP " ;
+    if mIncrement then
+      ioListFileContents .= "INCF " ;
+    else
+      ioListFileContents .= "DECF " ;
+    end if ;
+    ioListFileContents .= [mRegisterDescription mAssemblyString] ;
+    if m_W_isDestination then
+      ioListFileContents .= ", W " ;
+    end if ;
+    if mBranchIfZero then
+      ioListFileContents .= "Z" ;
+    else
+      ioListFileContents .= "NZ" ;
+    end if ;
+    ioListFileContents .= " branching to JUMP replaced by second JUMP label\n" ;
+  else
+  end cast ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+method @ipic_registerComparisonCondition.optimizeCMP
+  ??@symbolTableForOptimizations inSymbolTable
+  ??@uint inLineIndex
+  ?!@ipic_instructionList ioGeneratedInstructionList
+  ?!@string ioListFileContents
+  ?!@bool ioOptimizationsDone
+:
+#--- Find destination label definition line
+  @uint line ; [inSymbolTable searchKey ![@lstring new !mTargetLabel !here] ?line] ;
+#--- Find first executable instruction
+  @ipic_instruction firstInstruction ;
+  findFirstInstructionFromAddress !line + 1 !ioGeneratedInstructionList ?firstInstruction ;
+#--- Optimization from found first instruction
+  cast firstInstruction :
+  when == @ipic_JUMP jump do
+    [!?ioGeneratedInstructionList setMInstructionAtIndex
+      ![@ipic_registerComparisonCondition new
+        !mInstructionLocation
+        !mRegisterDescription
+        ![[jump mTargetLabel] string]
+        !mComparison
+        !mUsesBra
+      ]
+      !inLineIndex
+    ] ;
+    ioOptimizationsDone := true ;
+    ioListFileContents .= "  line " . [inLineIndex string] . ": label of " ;
+    ioListFileContents .= "JUMP " ;
+    ioListFileContents .= [mRegisterDescription mAssemblyString] ;
+    ioListFileContents .= " " . [mComparison mnemonic] ;
+    ioListFileContents .= " branching to JUMP replaced by second JUMP label\n" ;
+  else
+  end cast ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+method @ipic_instruction_BitTestSkip.optimizeBitTestSkip
+  ??@uint inLineIndex
+  ?!@ipic_instructionList ioGeneratedInstructionList
+  ?!@string ioListFileContents
+  ?!@bool ioOptimizationsDone
+:
+#--- First following instruction is a JUMP ?
+  @string jumpLabel := "" ; # No By default
+  @bool ok := false ;
+  cast [ioGeneratedInstructionList mInstructionAtIndex !inLineIndex + 1] :
+  when == @ipic_JUMP jump do
+    jumpLabel := [[jump mTargetLabel] string] ;
+    ok := true ;
+  else
+  end cast ;
+#--- Get second following instruction
+  if (ok) then
+    cast [ioGeneratedInstructionList mInstructionAtIndex !inLineIndex + 2] :
+    when >= @ipic_actualInstruction do
+    else
+      ok := false ;
+    end cast ;
+  end if ;
+#--- Get third following instruction
+  if (ok) then
+    @ipic_instruction thirdInstruction := [@ipic_NULL new] ;
+    @stringset reachedLabelSet ;
+    findFirstInstructionOrLabelFromAddress !inLineIndex+3 !ioGeneratedInstructionList ?* ?reachedLabelSet ;
+    ok := [reachedLabelSet hasKey !jumpLabel] ;
+  end if ;
+#--- If Ok, perform optimization
+  if ok then
+  #--- Complement Bit test instruction (at inLineIndex)
+    [!?ioGeneratedInstructionList setMInstructionAtIndex
+      ![@ipic_instruction_BitTestSkip new
+        !mInstructionLocation
+        !not mSkipIfSet
+        !mRegisterDescription
+        !mBitNumber
+      ]
+      !inLineIndex
+    ] ;
+  #--- Copy instruction at (inLineIndex + 2) to (inLineIndex + 1)
+    [!?ioGeneratedInstructionList setMInstructionAtIndex
+      ![ioGeneratedInstructionList mInstructionAtIndex !inLineIndex + 2]
+      !inLineIndex + 1
+    ] ;
+  #--- Delete instruction at (inLineIndex + 2)
+    [!?ioGeneratedInstructionList setMInstructionAtIndex
+      ![@ipic_NULL new]
+      !inLineIndex + 2
+    ] ;
+  #--- 
+    ioOptimizationsDone := true ;
+  #--- Log
+    ioListFileContents .= "  lines " . [inLineIndex string] . " to " . [inLineIndex + 2 string] ;
+    ioListFileContents .= " bit test skip, following by a JUMP skipping next instruction, is complemented\n" ;
+  end if ;
+end method ;
+
+#----------------------------------------------------------------------------*
+#                                                                            *
+#               S E M A N T I C    A N A L Y S I S                           *
+#                                                                            *
+#----------------------------------------------------------------------------*
+
+routine performOptimizations
+  ?!@ipic_instructionList ioGeneratedInstructionList
+  ?!@string ioListFileContents
+:
+#-------------------------------- List file
+  ioListFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n" ;
+  ioListFileContents .= "*" . ["CODE OPTIMIZATION" stringByLeftAndRightPadding !77 !' '] . "*\n" ;
+  ioListFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n\n" ;
+#-------------------------------- Build label map
+  @symbolTableForOptimizations symbolTable [emptyMap] ;
+  foreach ioGeneratedInstructionList:lineIndex do
+    [mInstruction defineLabel !?symbolTable !lineIndex] ;
+  end foreach ;
+#-------------------------------- Iterative optimizations
+  @bool optimizationsDone := true ;
+  @uint iteration := 0 ;
+  loop [ioGeneratedInstructionList length] :
+  while optimizationsDone
+  do
+    optimizationsDone := false ;
+    iteration ++ ;
+    ioListFileContents .= "Pass " . [iteration string] . ":\n" ;
+  #--- Optimization loop
+    foreach ioGeneratedInstructionList :idx do
+      cast mInstruction :
+      when == @ipic_JUMP ipic_JUMP do
+        [ipic_JUMP optimizeJUMP !symbolTable !idx !?ioGeneratedInstructionList !?ioListFileContents !?optimizationsDone] ;
+      when == @ipic_JSR ipic_JSR do
+        [ipic_JSR optimizeJSR !idx !?ioGeneratedInstructionList !?ioListFileContents !?optimizationsDone] ;
+      when == @ipic_instruction_literalOperation ipic_literal do
+        [ipic_literal optimizeMOVLW !idx !?ioGeneratedInstructionList !?ioListFileContents !?optimizationsDone] ;
+      when == @ipic_instruction_conditionalBranch ipic_cc do
+        [ipic_cc optimizeBCC !symbolTable !idx !?ioGeneratedInstructionList !?ioListFileContents !?optimizationsDone] ;
+      when == @ipic_jump_test_register ipic_testReg do
+        [ipic_testReg optimizeTestReg !symbolTable !idx !?ioGeneratedInstructionList !?ioListFileContents !?optimizationsDone] ;
+      when == @ipic_incDecRegisterInCondition ipic_decInc do
+        [ipic_decInc optimizeTestDecInc !symbolTable !idx !?ioGeneratedInstructionList !?ioListFileContents !?optimizationsDone] ;
+      when == @ipic_registerComparisonCondition ipic_CMP do
+        [ipic_CMP optimizeCMP !symbolTable !idx !?ioGeneratedInstructionList !?ioListFileContents !?optimizationsDone] ;
+      when == @ipic_instruction_BitTestSkip ipic_bitTestSkip do
+        [ipic_bitTestSkip optimizeBitTestSkip !idx !?ioGeneratedInstructionList !?ioListFileContents !?optimizationsDone] ;
+      else
+      end cast ;
+    end foreach ;
+  #--- Delete non referenced labels
+    @stringset referencedLabels [emptySet] ;
+    foreach ioGeneratedInstructionList do
+      [mInstruction enterReferencedLabel !?referencedLabels] ;
+    end foreach ;
+    foreach symbolTable do
+      if not [referencedLabels hasKey ![key string]] then
+        @uint definitionLine ; [symbolTable searchKey !key ?definitionLine] ;
+        ioListFileContents .= "  line " . [definitionLine  string] . ": unreferenced label '" . key . "' is deleted\n" ;
+        [!?ioGeneratedInstructionList setMInstructionAtIndex ![@ipic_NULL new] !definitionLine] ;
+        [!?symbolTable removeKey !key ?*] ;
+      end if ;
+    end foreach ;
+  #--- Dead code elimination
+    @bool reachable := true ;
+    @bool skippingInstruction := false ;
+    @bool previousWasSkippingInstruction := false ;
+    foreach ioGeneratedInstructionList :idx do
+       if reachable | previousWasSkippingInstruction then
+         [mInstruction nextInstructionIsReachable ?reachable] ;
+         previousWasSkippingInstruction := skippingInstruction ;
+         [mInstruction isSkippingInstruction ?skippingInstruction] ;
+       else
+         @bool isLABELorORG ; [mInstruction isLABELorORG ?isLABELorORG] ;
+         @bool isNULL ; [mInstruction isNULL ?isNULL] ;
+         if (not isLABELorORG) & (not isNULL) then
+           ioListFileContents .= "  line " . [idx string] . ": unreachable instruction is deleted\n" ;
+           [!?ioGeneratedInstructionList setMInstructionAtIndex ![@ipic_NULL new] !idx] ;
+         elsif isLABELorORG then
+           reachable := true ;
+           previousWasSkippingInstruction := false ;
+           skippingInstruction := false ;
+         end if ;
+       end if ;
+    end foreach ;
+    if not optimizationsDone then
+      ioListFileContents .= "  No optimization\n\n" ;
+    #--- Compute code size
+      @uint currentAddress := 0 ;
+      foreach ioGeneratedInstructionList do
+        [mInstruction setCurrentAddress !?currentAddress] ;
+      end foreach ;
+      ioListFileContents .= "Minimum code size: " . [currentAddress string] . " bytes\n\n" ;
+    end if ;
+  end loop ;
+end routine ;
+
+#----------------------------------------------------------------------------*
+
+end semantics ;

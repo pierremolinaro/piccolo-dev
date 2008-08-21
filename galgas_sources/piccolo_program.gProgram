@@ -2,7 +2,7 @@ program piccolo_program "version PICCOLO_BETA_VERSION":
 
 #--- Import clauses
 import semantics piccolo_metamodel in "piccolo_metamodel.gSemantics" ;
-import semantics piccolo_semantics in "piccolo_semantics.gSemantics" ;
+import semantics pic18_semantics in "pic18_semantics.gSemantics" ;
 import grammar piccolo_grammar in "piccolo_grammar.gGrammar" ;
 
 #--- Prologue routine
@@ -172,20 +172,7 @@ before {
 when . "piccolo"
 message "a source text file with the .piccolo extension"
 ??@lstring inSourceFile {
-  @piccoloModel piccoloModel ;
-  grammar piccolo_grammar in inSourceFile ?piccoloModel ;
-  if [@uint errorCount] == 0 then
-    analyze !piccoloModel ![inSourceFile string] ;
-  else
-    @string hexDestinationFile := [[inSourceFile string] stringByDeletingPathExtension] . ".hex" ;
-    if [hexDestinationFile fileExists] then
-      [@string deleteFile !hexDestinationFile] ;
-    end if ;
-    @string asmDestinationFile := [[inSourceFile string] stringByDeletingPathExtension] . ".asm" ;
-    if [asmDestinationFile fileExists] then
-      [@string deleteFile !asmDestinationFile] ;
-    end if ;
-  end if ;
+  grammar piccolo_grammar in inSourceFile ;
 }
 
 #----------------------------------------------------------------------------*

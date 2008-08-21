@@ -1,0 +1,2363 @@
+semantics pic18_checkingAndBuildIPIC :
+import semantics piccolo_metamodel in "piccolo_metamodel.gSemantics" ;
+import semantics ipic18_metamodel in "ipic18_metamodel.gSemantics" ;
+import semantics piccoloDevice_semantics in "piccoloDevice_semantics.gSemantics" ;
+import option piccolo_options in "piccolo_options.gOption" ;
+import "ipic_metamodel.gSemantics" ;
+
+#----------------------------------------------------------------------------*
+#                          CONSTANT MAP                                      *
+#----------------------------------------------------------------------------*
+
+map @constantMap {
+  @sint mValue ;
+  insert insertKey error message "the '%K' constant is already declared in %L" ;
+  search searchKey error message "the '%K' constant is not declared" ;
+}
+
+#----------------------------------------------------------------------------*
+#                          ROUTINE MAP                                       *
+#----------------------------------------------------------------------------*
+
+map @routineMap {
+  @bool mIsNoReturn ;
+  @uint mRequiredBank ;
+  @uint mReturnedBank ;
+  @bool mPreservesBank ;
+  insert insertKey error message "the '%K' routine is already declared in %L" ;
+  search searchKey error message "the '%K' routine is not declared" ;
+}
+
+#----------------------------------------------------------------------------*
+
+enum @routineKind {
+  constructor regularRoutine ;
+  constructor noReturnRoutine ;
+  constructor interruptRoutine ;
+}{
+}
+
+#----------------------------------------------------------------------------*
+#                                                                            *
+#                    IMMEDIAT EXPRESSION EVALUATION                          *
+#                                                                            *
+#----------------------------------------------------------------------------*
+
+abstract method @immediatExpression.eval
+  ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
+  !@sint outResult
+;
+
+#----------------------------------------------------------------------------*
+
+override method @immediatInteger.eval
+  ??@registerTable unused inRegisterTable
+  ??@constantMap unused inConstantMap
+  !@sint outResult
+:
+  outResult := [[mValue uint] sint] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @immediatRegister.eval
+  ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
+  !@sint outResult
+:
+  if [inRegisterTable hasKey ![[mRegister mRegisterName] string]] then
+    @uintlist registerAddressList ;
+    @uint size ;
+    [inRegisterTable searchKey ![mRegister mRegisterName] ?registerAddressList ?size ?* ?*] ;
+    @uint registerAddress ; [registerAddressList first ?registerAddress] ;
+    if [[mRegister mOffset] uint] >= size then
+      error [mRegister mOffset]:"index (" . [[[mRegister mOffset] uint] string] . ") should be lower than size (" . [size string] . ")" ;
+    end if ;
+    outResult := [registerAddress + [[mRegister mOffset] uint] sint] ;
+  elsif [inConstantMap hasKey ![[mRegister mRegisterName] string]] then
+    [inConstantMap searchKey ![mRegister mRegisterName] ?outResult] ;
+    if [[mRegister mOffset] uint] > 0 then
+      error [mRegister mOffset]:"index notation (" . [[[mRegister mOffset] uint] string] . ") cannot be used with a constant" ;
+    end if ;
+  else
+    error [mRegister mRegisterName]: "'" . [mRegister mRegisterName] . "' should be declared as ram register or as constant" -> outResult ;
+  end if ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @immediatAdd.eval
+  ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
+  !@sint outResult
+:
+  @sint leftResult ; [mLeftExpression eval !inRegisterTable !inConstantMap ?leftResult] ;
+  @sint rightResult ; [mRightExpression eval !inRegisterTable !inConstantMap ?rightResult] ;
+  outResult := leftResult + rightResult ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @immediatSub.eval
+  ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
+  !@sint outResult
+:
+  @sint leftResult ; [mLeftExpression eval !inRegisterTable !inConstantMap ?leftResult] ;
+  @sint rightResult ; [mRightExpression eval !inRegisterTable !inConstantMap ?rightResult] ;
+  outResult := leftResult - rightResult ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @immediatMul.eval
+  ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
+  !@sint outResult
+:
+  @sint leftResult ; [mLeftExpression eval !inRegisterTable !inConstantMap ?leftResult] ;
+  @sint rightResult ; [mRightExpression eval !inRegisterTable !inConstantMap ?rightResult] ;
+  outResult := leftResult * rightResult ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @immediatDiv.eval
+  ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
+  !@sint outResult
+:
+  @sint leftResult ; [mLeftExpression eval !inRegisterTable !inConstantMap ?leftResult] ;
+  @sint rightResult ; [mRightExpression eval !inRegisterTable !inConstantMap ?rightResult] ;
+  outResult := leftResult / rightResult ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @immediatMod.eval
+  ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
+  !@sint outResult
+:
+  @sint leftResult ; [mLeftExpression eval !inRegisterTable !inConstantMap ?leftResult] ;
+  @sint rightResult ; [mRightExpression eval !inRegisterTable !inConstantMap ?rightResult] ;
+  outResult := leftResult mod rightResult ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @immediatAnd.eval
+  ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
+  !@sint outResult
+:
+  @sint leftResult ; [mLeftExpression eval !inRegisterTable !inConstantMap ?leftResult] ;
+  @sint rightResult ; [mRightExpression eval !inRegisterTable !inConstantMap ?rightResult] ;
+  outResult := leftResult & rightResult ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @immediatOr.eval
+  ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
+  !@sint outResult
+:
+  @sint leftResult ; [mLeftExpression eval !inRegisterTable !inConstantMap ?leftResult] ;
+  @sint rightResult ; [mRightExpression eval !inRegisterTable !inConstantMap ?rightResult] ;
+  outResult := leftResult | rightResult ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @immediatXor.eval
+  ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
+  !@sint outResult
+:
+  @sint leftResult ; [mLeftExpression eval !inRegisterTable !inConstantMap ?leftResult] ;
+  @sint rightResult ; [mRightExpression eval !inRegisterTable !inConstantMap ?rightResult] ;
+  outResult := leftResult ^ rightResult ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @immediatLeftShift.eval
+  ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
+  !@sint outResult
+:
+  @sint leftResult ; [mLeftExpression eval !inRegisterTable !inConstantMap ?leftResult] ;
+  @sint rightResult ; [mRightExpression eval !inRegisterTable !inConstantMap ?rightResult] ;
+  outResult := leftResult << [rightResult uint] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @immediatRightShift.eval
+  ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
+  !@sint outResult
+:
+  @sint leftResult ; [mLeftExpression eval !inRegisterTable !inConstantMap ?leftResult] ;
+  @sint rightResult ; [mRightExpression eval !inRegisterTable !inConstantMap ?rightResult] ;
+  outResult := leftResult >> [rightResult uint] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @immediatEqualTest.eval
+  ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
+  !@sint outResult
+:
+  @sint leftResult ; [mLeftExpression eval !inRegisterTable !inConstantMap ?leftResult] ;
+  @sint rightResult ; [mRightExpression eval !inRegisterTable !inConstantMap ?rightResult] ;
+  if leftResult == rightResult then
+    outResult := 1S ;
+  else
+    outResult := 0S ;
+  end if ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @immediatNotEqualTest.eval
+  ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
+  !@sint outResult
+:
+  @sint leftResult ; [mLeftExpression eval !inRegisterTable !inConstantMap ?leftResult] ;
+  @sint rightResult ; [mRightExpression eval !inRegisterTable !inConstantMap ?rightResult] ;
+  if leftResult != rightResult then
+    outResult := 1S ;
+  else
+    outResult := 0S ;
+  end if ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @immediatGreaterOrEqualTest.eval
+  ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
+  !@sint outResult
+:
+  @sint leftResult ; [mLeftExpression eval !inRegisterTable !inConstantMap ?leftResult] ;
+  @sint rightResult ; [mRightExpression eval !inRegisterTable !inConstantMap ?rightResult] ;
+  if leftResult >= rightResult then
+    outResult := 1S ;
+  else
+    outResult := 0S ;
+  end if ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @immediatLowerOrEqualTest.eval
+  ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
+  !@sint outResult
+:
+  @sint leftResult ; [mLeftExpression eval !inRegisterTable !inConstantMap ?leftResult] ;
+  @sint rightResult ; [mRightExpression eval !inRegisterTable !inConstantMap ?rightResult] ;
+  if leftResult <= rightResult then
+    outResult := 1S ;
+  else
+    outResult := 0S ;
+  end if ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @immediatGreaterTest.eval
+  ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
+  !@sint outResult
+:
+  @sint leftResult ; [mLeftExpression eval !inRegisterTable !inConstantMap ?leftResult] ;
+  @sint rightResult ; [mRightExpression eval !inRegisterTable !inConstantMap ?rightResult] ;
+  if leftResult > rightResult then
+    outResult := 1S ;
+  else
+    outResult := 0S ;
+  end if ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @immediatLowerTest.eval
+  ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
+  !@sint outResult
+:
+  @sint leftResult ; [mLeftExpression eval !inRegisterTable !inConstantMap ?leftResult] ;
+  @sint rightResult ; [mRightExpression eval !inRegisterTable !inConstantMap ?rightResult] ;
+  if leftResult < rightResult then
+    outResult := 1S ;
+  else
+    outResult := 0S ;
+  end if ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @immediatNegate.eval
+  ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
+  !@sint outResult
+:
+  @sint result ; [mExpression eval !inRegisterTable !inConstantMap ?result] ;
+  outResult := - result ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @immediatComplement.eval
+  ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
+  !@sint outResult
+:
+  @sint result ; [mExpression eval !inRegisterTable !inConstantMap ?result] ;
+  outResult := ~ result ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @immediatSlice.eval
+  ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
+  !@sint outResult
+:
+  @bitSliceTable bitSliceTable ;
+  outResult := 0S ;
+  [inRegisterTable searchKey !mRegisterName ?* ?* ? bitSliceTable ?*] ;
+  @stringset sliceNameSet [emptySet] ;
+  foreach mSliceExpressionList do
+    if [sliceNameSet hasKey ![mSliceName string]] then
+      error mSliceName:"the '" . mSliceName . "' bit field has been already defined" ;
+    else
+      sliceNameSet += ![mSliceName string] ;
+      @uint sliceIndex ;
+      @uint sliceSize ;
+      [bitSliceTable searchKey !mSliceName ?sliceIndex ?sliceSize] ;
+      @sint result ; [mExpression eval !inRegisterTable !inConstantMap ?result] ;
+      if (result < 0S) | (result > ((1S << sliceSize) - 1S)) then
+        error mSliceName:"invalid immediat value associated to the '" . mSliceName . "' bit field, evaluated as " . [result string]
+        . " (should be between 0 and " . [(1 << sliceSize) - 1 string] . ")" ;
+      end if ;
+      outResult := outResult | (result << sliceIndex) ;
+      end if ;
+  end foreach ;
+end method ;
+
+#----------------------------------------------------------------------------*
+#                                                                            *
+#                        BIT NUMBER EXPRESSION                               *
+#                                                                            *
+#----------------------------------------------------------------------------*
+
+abstract method @bitNumberExpression.getBitNumber
+  ??@bitSliceTable inBitSliceTable
+  !@uint outBitNumber
+;
+
+#----------------------------------------------------------------------------*
+
+override method @bitNumberLiteralValue.getBitNumber
+  ??@bitSliceTable unused inBitSliceTable
+  !@uint outBitNumber
+:
+  if [mBitNumberLiteralValue uint] > 7 then
+    error mBitNumberLiteralValue:"The bit number is " . [[mBitNumberLiteralValue uint] string] . " (should be <= 7)" ;
+  end if ;
+  outBitNumber := [mBitNumberLiteralValue uint] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @bitNumberLabelValue.getBitNumber
+  ??@bitSliceTable inBitSliceTable
+  !@uint outBitNumber
+:
+  @uint sliceIndex ;
+  @uint sliceSize ;
+  [inBitSliceTable searchKey !mBitNumberLabelValue ?sliceIndex ? sliceSize] ;
+  if [mBitNumberIndexValue uint] > sliceSize then
+    error mBitNumberIndexValue: "The " . [[mBitNumberIndexValue uint] string]
+    . " index is too large (should be < " . [sliceSize string] . ")" ;
+  end if ;
+  outBitNumber := sliceIndex + [mBitNumberIndexValue uint] ;
+end method ;
+
+#----------------------------------------------------*
+
+method @registerExpression.resolveAccess
+  ??@uint inAccessBankSplitOffset
+  ??@registerTable inRegisterTable
+  !@ipic_registerExpression outIPICregisterDescription
+  !@bitSliceTable outBitSliceTable
+:
+#--- Build assembly string
+  @string assemblyString := [mRegisterName string] ;
+  if [mOffset uint] > 0 then
+    assemblyString .= " + " . [[mOffset uint] hexString] ;
+  end if ;
+#--- 
+  @uintlist registerAddressList ;
+  @uint size ;
+  @uint registerAddress := 0 ;
+  [inRegisterTable searchKey !mRegisterName ?registerAddressList ?size ?outBitSliceTable ?*] ;
+  @bool found := false ;
+  foreach registerAddressList while not found do
+    found := (mValue < inAccessBankSplitOffset) | (mValue >= (0x0F00 + inAccessBankSplitOffset)) ;
+    registerAddress := mValue ;
+  end foreach ;
+  @bool needsBSRaccess := false ;
+  if not found then
+    needsBSRaccess := true ;
+    [registerAddressList first ?registerAddress] ;
+  end if ;
+#---
+  outIPICregisterDescription := [@ipic_registerExpression new
+    !assemblyString
+    !registerAddress + [mOffset uint]
+    !needsBSRaccess
+  ] ;
+end method ;
+
+#----------------------------------------------------*
+#           DECOMPOSE STRUCTURED INSTRUCTIONS        *
+#----------------------------------------------------*
+
+abstract method @piccolo_instruction.buildIPICinstructionList
+  ??@uint unused inAccessBankSplitOffset
+  ??@routineMap unused inRoutineMap
+  ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
+  ?!@uint unused ioLocalLabelIndex
+  ?!@ipic_instructionList unused ioGeneratedInstructionList
+  ?!@string unused ioListFileContents
+  ?!@uint unused ioCurrentBank
+  ??@bool unused inShouldPreserveBSR
+  ?!@bool unused ioContinuesInSequence
+  ??@routineKind unused inRoutineKind
+;
+
+#----------------------------------------------------------------------------*
+
+routine handleInstructionList
+  ??@instructionList inInstructionList
+  ??@uint inAccessBankSplitOffset
+  ??@routineMap inRoutineMap
+  ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
+  ?!@uint ioLocalLabelIndex
+  ?!@ipic_instructionList ioGeneratedInstructionList
+  ?!@string ioListFileContents
+  ?!@uint ioCurrentBank
+  ??@bool inShouldPreserveBSR
+  !@bool outContinuesInSequence
+  ??@routineKind inRoutineKind
+:
+  outContinuesInSequence := true ;
+  foreach inInstructionList do
+    if not outContinuesInSequence then
+      error [mInstruction mInstructionLocation] : "Unreachable code" ;
+      outContinuesInSequence := true ;
+    end if ;
+    [mInstruction buildIPICinstructionList
+      !inAccessBankSplitOffset
+      !inRoutineMap
+      !inRegisterTable
+      !inConstantMap
+      !?ioLocalLabelIndex
+      !?ioGeneratedInstructionList
+      !?ioListFileContents
+      !?ioCurrentBank
+      !inShouldPreserveBSR
+      !?outContinuesInSequence
+      !inRoutineKind
+    ] ;
+  end foreach ;
+end routine ;
+
+#----------------------------------------------------*
+
+override method @instruction_nobanksel.buildIPICinstructionList
+  ??@uint unused inAccessBankSplitOffset
+  ??@routineMap unused inRoutineMap
+  ??@registerTable unused inRegisterTable
+  ??@constantMap unused inConstantMap
+  ?!@uint unused ioLocalLabelIndex
+  ?!@ipic_instructionList unused ioGeneratedInstructionList
+  ?!@string unused ioListFileContents
+  ?!@uint ioCurrentBank
+  ??@bool inShouldPreserveBSR
+  ?!@bool unused ioContinuesInSequence
+  ??@routineKind unused inRoutineKind
+:
+  if inShouldPreserveBSR then
+    error mInstructionLocation: "cannot use \nobank\" here: BSR should be preserved (use it in a \"banksave\" construct)" ;
+  end if ;
+  ioCurrentBank := [@uint max] ;
+#--- Generates no code
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_savebank.buildIPICinstructionList
+  ??@uint inAccessBankSplitOffset
+  ??@routineMap inRoutineMap
+  ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
+  ?!@uint ioLocalLabelIndex
+  ?!@ipic_instructionList ioGeneratedInstructionList
+  ?!@string ioListFileContents
+  ?!@uint ioCurrentBank
+  ??@bool unused inShouldPreserveBSR
+  ?!@bool ioContinuesInSequence
+  ??@routineKind inRoutineKind
+:
+#--- Get values for BSR register
+  @registerExpression BSRregister [new ![@lstring new !"BSR" !here] ![@luint new !0 !here]] ;
+  @ipic_registerExpression BSR_IPICregisterDescription ;
+  [BSRregister resolveAccess
+    !inAccessBankSplitOffset
+    !inRegisterTable
+    ?BSR_IPICregisterDescription
+    ?*
+  ] ;
+#--- Get values for register used for saving
+  @ipic_registerExpression save_IPICregisterDescription ;
+  [mRegister resolveAccess
+    !inAccessBankSplitOffset
+    !inRegisterTable
+    ?save_IPICregisterDescription
+    ?*
+  ] ;
+#--- Generate "MOVFF BSR, save_register" instruction
+  ioGeneratedInstructionList += ![@ipic_instruction_MOVFF new
+    !mInstructionLocation
+    !BSR_IPICregisterDescription
+    !save_IPICregisterDescription
+  ] ;
+#--- Generate instruction list
+  @uint finalBank := ioCurrentBank ;
+  handleInstructionList
+    !mInstructionList
+    !inAccessBankSplitOffset
+    !inRoutineMap
+    !inRegisterTable
+    !inConstantMap
+    !?ioLocalLabelIndex
+    !?ioGeneratedInstructionList
+    !?ioListFileContents
+    !?finalBank
+    !false # Do not preserve bank now
+    ?ioContinuesInSequence
+    !inRoutineKind
+  ;
+  if not ioContinuesInSequence then
+    error mEndOfSaveBankInstruction:"useless saving: execution does reach the end of \"savebank\" instruction list" ;
+  end if ;
+#--- Generate "MOVFF save_register, BSR" instruction
+  ioGeneratedInstructionList += ![@ipic_instruction_MOVFF new
+    !mInstructionLocation
+    !save_IPICregisterDescription
+    !BSR_IPICregisterDescription
+  ] ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_banksel.buildIPICinstructionList
+  ??@uint unused inAccessBankSplitOffset
+  ??@routineMap unused inRoutineMap
+  ??@registerTable unused inRegisterTable
+  ??@constantMap unused inConstantMap
+  ?!@uint unused ioLocalLabelIndex
+  ?!@ipic_instructionList ioGeneratedInstructionList
+  ?!@string unused ioListFileContents
+  ?!@uint ioCurrentBank
+  ??@bool inShouldPreserveBSR
+  ?!@bool unused ioContinuesInSequence
+  ??@routineKind unused inRoutineKind
+:
+  if inShouldPreserveBSR then
+    error mInstructionLocation: "cannot use \"banksel\" here: BSR should be preserved (use it in \"banksave\" construct)" ;
+  end if ;
+  if [mBankIndex uint] > 15 then
+    error mBankIndex:"selected bank index should be lower or equal to 15" ;
+    ioCurrentBank := [@uint max] ; # No selected bank
+  elsif [mBankIndex uint] == ioCurrentBank then
+    warning mBankIndex:"useless instruction: the bank " . [ioCurrentBank string] . " is already selected" ;
+  else
+    ioCurrentBank := [mBankIndex uint] ;
+  end if ;
+#---
+  ioGeneratedInstructionList += ![@ipic_instruction_MOVLB new !mInstructionLocation !mBankIndex] ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_FDA.buildIPICinstructionList
+  ??@uint inAccessBankSplitOffset
+  ??@routineMap unused inRoutineMap
+  ??@registerTable inRegisterTable
+  ??@constantMap unused inConstantMap
+  ?!@uint unused ioLocalLabelIndex
+  ?!@ipic_instructionList ioGeneratedInstructionList
+  ?!@string unused ioListFileContents
+  ?!@uint unused ioCurrentBank
+  ??@bool unused inShouldPreserveBSR
+  ?!@bool unused ioContinuesInSequence
+  ??@routineKind unused inRoutineKind
+:
+  @ipic_registerExpression IPICregisterDescription ;
+  [mRegisterExpression resolveAccess
+    !inAccessBankSplitOffset
+    !inRegisterTable
+    ?IPICregisterDescription
+    ?*
+  ] ;
+  ioGeneratedInstructionList += ![@ipic_instruction_FDA new
+    !mInstructionLocation
+    !mInstruction_FDA_base_code
+    !IPICregisterDescription
+    !m_W_isDestination
+  ] ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_FA.buildIPICinstructionList
+  ??@uint inAccessBankSplitOffset
+  ??@routineMap unused inRoutineMap
+  ??@registerTable inRegisterTable
+  ??@constantMap unused inConstantMap
+  ?!@uint unused ioLocalLabelIndex
+  ?!@ipic_instructionList ioGeneratedInstructionList
+  ?!@string unused ioListFileContents
+  ?!@uint unused ioCurrentBank
+  ??@bool unused inShouldPreserveBSR
+  ?!@bool unused ioContinuesInSequence
+  ??@routineKind unused inRoutineKind
+:
+  @ipic_registerExpression IPICregisterDescription ;
+  [mRegisterExpression resolveAccess
+    !inAccessBankSplitOffset
+    !inRegisterTable
+    ?IPICregisterDescription
+    ?*
+  ] ;
+  ioGeneratedInstructionList += ![@ipic_instruction_FA new
+    !mInstructionLocation
+    !mFAinstruction
+    !IPICregisterDescription
+  ] ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_MOVFF.buildIPICinstructionList
+  ??@uint inAccessBankSplitOffset
+  ??@routineMap unused inRoutineMap
+  ??@registerTable inRegisterTable
+  ??@constantMap unused inConstantMap
+  ?!@uint unused ioLocalLabelIndex
+  ?!@ipic_instructionList ioGeneratedInstructionList
+  ?!@string unused ioListFileContents
+  ?!@uint unused ioCurrentBank
+  ??@bool unused inShouldPreserveBSR
+  ?!@bool unused ioContinuesInSequence
+  ??@routineKind unused inRoutineKind
+:
+  @ipic_registerExpression sourceIPICregisterDescription ;
+  [mSourceRegisterName resolveAccess
+    !inAccessBankSplitOffset
+    !inRegisterTable
+    ?sourceIPICregisterDescription
+    ?*
+  ] ;
+  @ipic_registerExpression destinationIPICregisterDescription ;
+  [mDestinationRegisterName resolveAccess
+    !inAccessBankSplitOffset
+    !inRegisterTable
+    ?destinationIPICregisterDescription
+    ?*
+  ] ;
+  ioGeneratedInstructionList += ![@ipic_instruction_MOVFF new
+    !mInstructionLocation
+    !sourceIPICregisterDescription
+    !destinationIPICregisterDescription
+  ] ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_FBA.buildIPICinstructionList
+  ??@uint inAccessBankSplitOffset
+  ??@routineMap unused inRoutineMap
+  ??@registerTable inRegisterTable
+  ??@constantMap unused inConstantMap
+  ?!@uint unused ioLocalLabelIndex
+  ?!@ipic_instructionList ioGeneratedInstructionList
+  ?!@string unused ioListFileContents
+  ?!@uint unused ioCurrentBank
+  ??@bool unused inShouldPreserveBSR
+  ?!@bool unused ioContinuesInSequence
+  ??@routineKind unused inRoutineKind
+:
+  @bitSliceTable bitSliceTable ;
+  @ipic_registerExpression IPICregisterDescription ;
+  [mRegisterExpression resolveAccess
+    !inAccessBankSplitOffset
+    !inRegisterTable
+    ?IPICregisterDescription
+    ?bitSliceTable
+  ] ;
+  @uint bitNumber ;
+  [mBitNumber getBitNumber
+    !bitSliceTable
+    ?bitNumber
+  ] ;
+  ioGeneratedInstructionList += ![@ipic_instruction_FBA new
+    !mInstructionLocation
+    !mBitOrientedOp
+    !IPICregisterDescription
+    !bitNumber
+  ] ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_JSR.buildIPICinstructionList
+  ??@uint unused inAccessBankSplitOffset
+  ??@routineMap inRoutineMap
+  ??@registerTable unused inRegisterTable
+  ??@constantMap unused inConstantMap
+  ?!@uint unused ioLocalLabelIndex
+  ?!@ipic_instructionList ioGeneratedInstructionList
+  ?!@string unused ioListFileContents
+  ?!@uint ioCurrentBank
+  ??@bool unused inShouldPreserveBSR
+  ?!@bool unused ioContinuesInSequence
+  ??@routineKind unused inRoutineKind
+:
+#--- Check instruction
+  @bool isNoReturn ;
+  @uint requiredBank ;
+  @uint returnedBank ;
+  @bool preservesBank ;
+  [inRoutineMap searchKey !mTargetLabel ?isNoReturn ?requiredBank ?returnedBank ?preservesBank] ;
+  if (requiredBank != [@uint max]) & (requiredBank != ioCurrentBank) then
+    @string errorMessage := "the routine '" . mTargetLabel . "' requires BSR to be set to " . [requiredBank string] ;
+    errorMessage .= ", but BSR " ;
+    if ioCurrentBank == [@uint max] then
+      errorMessage .= "does contain any reliable value" ;
+    else
+      errorMessage .= "is set to " . [ioCurrentBank string] ;
+    end if ;
+    error mTargetLabel:errorMessage ;
+  end if ;
+  if isNoReturn then
+    error mTargetLabel:"a \"noreturn\" routine should be called with a BRA, GOTO, Bcc or JUMP instruction" ;
+  end if ;
+  if not preservesBank then
+    ioCurrentBank := returnedBank ;
+  end if ;
+#---
+  ioGeneratedInstructionList += ![@ipic_JSR new
+    !mInstructionLocation
+    !mTargetLabel
+    !mKind
+  ] ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_JUMP.buildIPICinstructionList
+  ??@uint unused inAccessBankSplitOffset
+  ??@routineMap inRoutineMap
+  ??@registerTable unused inRegisterTable
+  ??@constantMap unused inConstantMap
+  ?!@uint unused ioLocalLabelIndex
+  ?!@ipic_instructionList ioGeneratedInstructionList
+  ?!@string unused ioListFileContents
+  ?!@uint ioCurrentBank
+  ??@bool unused inShouldPreserveBSR
+  ?!@bool ioContinuesInSequence
+  ??@routineKind unused inRoutineKind
+:
+#--- Check instruction
+  @bool isNoReturn ;
+  @uint requiredBank ;
+  [inRoutineMap searchKey !mTargetLabel ?isNoReturn ?requiredBank ?* ?*] ;
+  if (requiredBank != [@uint max]) & (requiredBank != ioCurrentBank) then
+    @string errorMessage := "the routine '" . mTargetLabel . "' requires BSR to be set to " . [requiredBank string] ;
+    errorMessage .= ", but BSR " ;
+    if ioCurrentBank == [@uint max] then
+      errorMessage .= "does contain any reliable value" ;
+    else
+      errorMessage .= "is set to " . [ioCurrentBank string] ;
+    end if ;
+    error mTargetLabel:errorMessage ;
+  end if ;
+  if not isNoReturn then
+    error mTargetLabel:"a regular routine should be called with a RCALL, CALL or JSR instruction" ;
+  end if ;
+  ioContinuesInSequence := false ;
+#---
+  ioGeneratedInstructionList += ![@ipic_JUMP new
+    !mInstructionLocation
+    !mTargetLabel
+    !mKind
+  ] ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_JUMPCC.buildIPICinstructionList
+  ??@uint unused inAccessBankSplitOffset
+  ??@routineMap inRoutineMap
+  ??@registerTable unused inRegisterTable
+  ??@constantMap unused inConstantMap
+  ?!@uint unused ioLocalLabelIndex
+  ?!@ipic_instructionList ioGeneratedInstructionList
+  ?!@string unused ioListFileContents
+  ?!@uint ioCurrentBank
+  ??@bool unused inShouldPreserveBSR
+  ?!@bool unused ioContinuesInSequence
+  ??@routineKind unused inRoutineKind
+:
+#---
+  @bool isNoReturn ;
+  @uint requiredBank ;
+  [inRoutineMap searchKey !mTargetLabel ?isNoReturn ?requiredBank ?* ?*] ;
+  if (requiredBank != [@uint max]) & (requiredBank != ioCurrentBank) then
+    @string errorMessage := "the routine '" . mTargetLabel . "' requires BSR to be set to " . [requiredBank string] ;
+    errorMessage .= ", but BSR " ;
+    if ioCurrentBank == [@uint max] then
+      errorMessage .= "does contain any reliable value" ;
+    else
+      errorMessage .= "is set to " . [ioCurrentBank string] ;
+    end if ;
+    error mTargetLabel:errorMessage ;
+  end if ;
+  if not isNoReturn then
+    error mTargetLabel:"a regular routine should be called with a RCALL, CALL or JSR instruction" ;
+  end if ;
+#---
+  @condionalBranchMode mode ;
+  if mIsBcc then
+    mode := [@condionalBranchMode native] ;
+  else
+    mode := [@condionalBranchMode native] ;
+  end if ;
+  ioGeneratedInstructionList += ![@ipic_instruction_conditionalBranch new
+    !mInstructionLocation
+    !mode
+    !mConditionalBranch
+    !mTargetLabel
+  ] ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_CLRWDT.buildIPICinstructionList
+  ??@uint unused inAccessBankSplitOffset
+  ??@routineMap unused inRoutineMap
+  ??@registerTable unused inRegisterTable
+  ??@constantMap unused inConstantMap
+  ?!@uint unused ioLocalLabelIndex
+  ?!@ipic_instructionList ioGeneratedInstructionList
+  ?!@string unused ioListFileContents
+  ?!@uint unused ioCurrentBank
+  ??@bool unused inShouldPreserveBSR
+  ?!@bool unused ioContinuesInSequence
+  ??@routineKind unused inRoutineKind
+:
+  ioGeneratedInstructionList += ![@ipic_instruction_CLRWDT new
+    !mInstructionLocation
+  ] ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_DAW.buildIPICinstructionList
+  ??@uint unused inAccessBankSplitOffset
+  ??@routineMap unused inRoutineMap
+  ??@registerTable unused inRegisterTable
+  ??@constantMap unused inConstantMap
+  ?!@uint unused ioLocalLabelIndex
+  ?!@ipic_instructionList ioGeneratedInstructionList
+  ?!@string unused ioListFileContents
+  ?!@uint unused ioCurrentBank
+  ??@bool unused inShouldPreserveBSR
+  ?!@bool unused ioContinuesInSequence
+  ??@routineKind unused inRoutineKind
+:
+  ioGeneratedInstructionList += ![@ipic_instruction_DAW new
+    !mInstructionLocation
+  ] ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_NOP.buildIPICinstructionList
+  ??@uint unused inAccessBankSplitOffset
+  ??@routineMap unused inRoutineMap
+  ??@registerTable unused inRegisterTable
+  ??@constantMap unused inConstantMap
+  ?!@uint unused ioLocalLabelIndex
+  ?!@ipic_instructionList ioGeneratedInstructionList
+  ?!@string unused ioListFileContents
+  ?!@uint unused ioCurrentBank
+  ??@bool unused inShouldPreserveBSR
+  ?!@bool unused ioContinuesInSequence
+  ??@routineKind unused inRoutineKind
+:
+  ioGeneratedInstructionList += ![@ipic_instruction_NOP new
+    !mInstructionLocation
+  ] ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_POP.buildIPICinstructionList
+  ??@uint unused inAccessBankSplitOffset
+  ??@routineMap unused inRoutineMap
+  ??@registerTable unused inRegisterTable
+  ??@constantMap unused inConstantMap
+  ?!@uint unused ioLocalLabelIndex
+  ?!@ipic_instructionList ioGeneratedInstructionList
+  ?!@string unused ioListFileContents
+  ?!@uint unused ioCurrentBank
+  ??@bool unused inShouldPreserveBSR
+  ?!@bool unused ioContinuesInSequence
+  ??@routineKind unused inRoutineKind
+:
+  ioGeneratedInstructionList += ![@ipic_instruction_POP new
+    !mInstructionLocation
+  ] ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_PUSH.buildIPICinstructionList
+  ??@uint unused inAccessBankSplitOffset
+  ??@routineMap unused inRoutineMap
+  ??@registerTable unused inRegisterTable
+  ??@constantMap unused inConstantMap
+  ?!@uint unused ioLocalLabelIndex
+  ?!@ipic_instructionList ioGeneratedInstructionList
+  ?!@string unused ioListFileContents
+  ?!@uint unused ioCurrentBank
+  ??@bool unused inShouldPreserveBSR
+  ?!@bool unused ioContinuesInSequence
+  ??@routineKind unused inRoutineKind
+:
+  ioGeneratedInstructionList += ![@ipic_instruction_PUSH new
+    !mInstructionLocation
+  ] ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_RESET.buildIPICinstructionList
+  ??@uint unused inAccessBankSplitOffset
+  ??@routineMap unused inRoutineMap
+  ??@registerTable unused inRegisterTable
+  ??@constantMap unused inConstantMap
+  ?!@uint unused ioLocalLabelIndex
+  ?!@ipic_instructionList ioGeneratedInstructionList
+  ?!@string unused ioListFileContents
+  ?!@uint unused ioCurrentBank
+  ??@bool unused inShouldPreserveBSR
+  ?!@bool unused ioContinuesInSequence
+  ??@routineKind unused inRoutineKind
+:
+  ioGeneratedInstructionList += ![@ipic_instruction_RESET new
+    !mInstructionLocation
+  ] ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_SLEEP.buildIPICinstructionList
+  ??@uint unused inAccessBankSplitOffset
+  ??@routineMap unused inRoutineMap
+  ??@registerTable unused inRegisterTable
+  ??@constantMap unused inConstantMap
+  ?!@uint unused ioLocalLabelIndex
+  ?!@ipic_instructionList ioGeneratedInstructionList
+  ?!@string unused ioListFileContents
+  ?!@uint unused ioCurrentBank
+  ??@bool unused inShouldPreserveBSR
+  ?!@bool unused ioContinuesInSequence
+  ??@routineKind unused inRoutineKind
+:
+  ioGeneratedInstructionList += ![@ipic_instruction_SLEEP new
+    !mInstructionLocation
+  ] ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_literalOperation.buildIPICinstructionList
+  ??@uint unused inAccessBankSplitOffset
+  ??@routineMap unused inRoutineMap
+  ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
+  ?!@uint unused ioLocalLabelIndex
+  ?!@ipic_instructionList ioGeneratedInstructionList
+  ?!@string unused ioListFileContents
+  ?!@uint unused ioCurrentBank
+  ??@bool unused inShouldPreserveBSR
+  ?!@bool unused ioContinuesInSequence
+  ??@routineKind unused inRoutineKind
+:
+  @sint result ; [mImmediatExpression eval !inRegisterTable !inConstantMap ?result] ;
+#---
+   if (result > 255S) | (result < -128S) then
+     error mInstructionLocation:"immediate value is evaluated as " . [result string] . " (should be betwween -128 and 255)" ;
+   end if ;
+#---  
+  ioGeneratedInstructionList += ![@ipic_instruction_literalOperation new
+    !mInstructionLocation
+    !mLiteralInstruction
+    ![result & 0x000000FFS uint]
+  ] ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_LFSR.buildIPICinstructionList
+  ??@uint unused inAccessBankSplitOffset
+  ??@routineMap unused inRoutineMap
+  ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
+  ?!@uint unused ioLocalLabelIndex
+  ?!@ipic_instructionList ioGeneratedInstructionList
+  ?!@string unused ioListFileContents
+  ?!@uint unused ioCurrentBank
+  ??@bool unused inShouldPreserveBSR
+  ?!@bool unused ioContinuesInSequence
+  ??@routineKind unused inRoutineKind
+:
+  if [mFSRindex uint] > 2 then
+    error mFSRindex:"the LFSR register index (" . [[mFSRindex uint] string] . ") should be lower or equal to 2" ;
+  end if ;
+#---
+  @sint result ; [mImmediatExpression eval !inRegisterTable !inConstantMap ?result] ;
+#---
+   if (result > 0xFFFS) | (result < 0S) then
+     error mInstructionLocation:"immediate value is evaluated as " . [result string] . " (should be between 0 and 4095)" ;
+   end if ;
+  ioGeneratedInstructionList += ![@ipic_instruction_LFSR new
+    !mInstructionLocation
+    !mFSRindex
+    ![result uint]
+  ] ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_TBLRD.buildIPICinstructionList
+  ??@uint unused inAccessBankSplitOffset
+  ??@routineMap unused inRoutineMap
+  ??@registerTable unused inRegisterTable
+  ??@constantMap unused inConstantMap
+  ?!@uint unused ioLocalLabelIndex
+  ?!@ipic_instructionList ioGeneratedInstructionList
+  ?!@string unused ioListFileContents
+  ?!@uint unused ioCurrentBank
+  ??@bool unused inShouldPreserveBSR
+  ?!@bool unused ioContinuesInSequence
+  ??@routineKind unused inRoutineKind
+:
+  ioGeneratedInstructionList += ![@ipic_instruction_TBLRD new
+    !mInstructionLocation
+    !mOption
+  ] ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_TBLWT.buildIPICinstructionList
+  ??@uint unused inAccessBankSplitOffset
+  ??@routineMap unused inRoutineMap
+  ??@registerTable unused inRegisterTable
+  ??@constantMap unused inConstantMap
+  ?!@uint unused ioLocalLabelIndex
+  ?!@ipic_instructionList ioGeneratedInstructionList
+  ?!@string unused ioListFileContents
+  ?!@uint unused ioCurrentBank
+  ??@bool unused inShouldPreserveBSR
+  ?!@bool unused ioContinuesInSequence
+  ??@routineKind unused inRoutineKind
+:
+  ioGeneratedInstructionList += ![@ipic_instruction_TBLWT new
+    !mInstructionLocation
+    !mOption
+  ] ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_computed_retlw.buildIPICinstructionList
+  ??@uint unused inAccessBankSplitOffset
+  ??@routineMap unused inRoutineMap
+  ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
+  ?!@uint unused ioLocalLabelIndex
+  ?!@ipic_instructionList ioGeneratedInstructionList
+  ?!@string unused ioListFileContents
+  ?!@uint unused ioCurrentBank
+  ??@bool unused inShouldPreserveBSR
+  ?!@bool ioContinuesInSequence
+  ??@routineKind inRoutineKind
+:
+  ioContinuesInSequence := false ;
+  switch inRoutineKind
+  when regularRoutine : # ok
+  when noReturnRoutine :
+    error mInstructionLocation:"a \"noreturn\" routine does not accept computed retlw instruction" ;
+  when interruptRoutine :
+    error mInstructionLocation:"an interrupt routine does not accept computed retlw instruction" ;
+  end switch ;
+#---
+  @sint size ; [mSizeExpression eval !inRegisterTable !inConstantMap ?size] ;
+  if size < 2S then
+    error mInstructionLocation:"the computed range (" . [size string] . ") should be greater or equal to 2" ;
+  elsif size > 128S then
+    error mInstructionLocation:"the computed range (" . [size string] . ") should be lower or equal to 128" ;
+  elsif [size uint] != [mImmediateExpressionList length] then
+    error mInstructionLocation:"the constant list length (" . [[mImmediateExpressionList length] string] . ") should be equal to the computed range (" . [size string] . ")" ;
+  end if ;
+#--- 
+  @uintlist literalValues [emptyList] ;
+  foreach mImmediateExpressionList :idx do
+    @sint v ; [mExpression eval !inRegisterTable !inConstantMap ?v] ;
+    if (v > 255S) | (v < -128S) then
+      error mInstructionLocation:"immediate value with index " . [idx string] . " is evaluated as " . [v string] . " (should be <= 255)" ;
+    end if ;
+    literalValues += ![v & 0x000000FFS uint] ;
+  end foreach ;
+#---
+  ioGeneratedInstructionList += ![@ipic_instruction_computed_retlw new
+    !mInstructionLocation
+    !literalValues
+    !mUsesRelativeCall
+  ] ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_MNOP.buildIPICinstructionList
+  ??@uint unused inAccessBankSplitOffset
+  ??@routineMap unused inRoutineMap
+  ??@registerTable unused inRegisterTable
+  ??@constantMap unused inConstantMap
+  ?!@uint unused ioLocalLabelIndex
+  ?!@ipic_instructionList ioGeneratedInstructionList
+  ?!@string unused ioListFileContents
+  ?!@uint unused ioCurrentBank
+  ??@bool unused inShouldPreserveBSR
+  ?!@bool unused ioContinuesInSequence
+  ??@routineKind unused inRoutineKind
+:
+#---
+  if [mOccurrenceFactor uint] == 0 then
+    warning mOccurrenceFactor:"occurrence argument is zero: no generated code" ;
+  end if ;
+#---
+  ioGeneratedInstructionList += ![@ipic_instruction_MNOP new
+    !mInstructionLocation
+    !mOccurrenceFactor
+  ] ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_computed_bra.buildIPICinstructionList
+  ??@uint unused inAccessBankSplitOffset
+  ??@routineMap inRoutineMap
+  ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
+  ?!@uint unused ioLocalLabelIndex
+  ?!@ipic_instructionList ioGeneratedInstructionList
+  ?!@string unused ioListFileContents
+  ?!@uint ioCurrentBank
+  ??@bool unused inShouldPreserveBSR
+  ?!@bool ioContinuesInSequence
+  ??@routineKind inRoutineKind
+:
+#---
+  foreach mTargetLabels do
+    @bool isNoReturn ;
+    @uint requiredBank ;
+    [inRoutineMap searchKey !mValue ?isNoReturn ?requiredBank ?* ?*] ;
+    if (requiredBank != [@uint max]) & (requiredBank != ioCurrentBank) then
+      @string errorMessage := "the routine '" . mValue . "' requires BSR to be set to " . [requiredBank string] ;
+      errorMessage .= ", but BSR " ;
+      if ioCurrentBank == [@uint max] then
+        errorMessage .= "does contain any reliable value" ;
+      else
+        errorMessage .= "is set to " . [ioCurrentBank string] ;
+      end if ;
+      error mValue: errorMessage ;
+    end if ;
+    if not isNoReturn then
+      error mValue:"for being named in a computed bra, the '" . mValue . "' routine should be declared with the \"noreturn\" qualifier" ;
+	 end if ;
+  end foreach ;
+  ioContinuesInSequence := false ;
+  switch inRoutineKind
+  when regularRoutine :
+    error mInstructionLocation:"a regular routine does not accept computed bra instruction" ;
+  when noReturnRoutine : # ok
+  when interruptRoutine :
+    error mInstructionLocation:"an interrupt routine does not accept computed bra instruction" ;
+  end switch ;
+#---
+  @sint size ; [mSizeExpression eval !inRegisterTable !inConstantMap ?size] ;
+  if size < 2S then
+    error mInstructionLocation:"the computed range (" . [size string] . ") should be greater or equal to 2" ;
+  elsif size > 128S then
+    error mInstructionLocation:"the computed range (" . [size string] . ") should be lower or equal to 128" ;
+  elsif [size uint] != [mTargetLabels length] then
+    error mInstructionLocation:"the routine name list length (" . [[mTargetLabels length] string] . ") should be equal to the computed range (" . [size string] . ")" ;
+  end if ;
+#---
+  ioGeneratedInstructionList += ![@ipic_instruction_computed_bra new
+    !mInstructionLocation
+    !mTargetLabels
+    !mUsesRelativeCall
+  ] ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_computed_goto.buildIPICinstructionList
+  ??@uint unused inAccessBankSplitOffset
+  ??@routineMap inRoutineMap
+  ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
+  ?!@uint unused ioLocalLabelIndex
+  ?!@ipic_instructionList ioGeneratedInstructionList
+  ?!@string unused ioListFileContents
+  ?!@uint ioCurrentBank
+  ??@bool unused inShouldPreserveBSR
+  ?!@bool ioContinuesInSequence
+  ??@routineKind inRoutineKind
+:
+#---
+  foreach mTargetLabels do
+    @bool isNoReturn ;
+    @uint requiredBank ;
+    [inRoutineMap searchKey !mValue ?isNoReturn ?requiredBank ?* ?*] ;
+    if (requiredBank != [@uint max]) & (requiredBank != ioCurrentBank) then
+      @string errorMessage := "the routine '" . mValue . "' requires BSR to be set to " . [requiredBank string] ;
+      errorMessage .= ", but BSR " ;
+      if ioCurrentBank == [@uint max] then
+        errorMessage .= "does contain any reliable value" ;
+      else
+        errorMessage .= "is set to " . [ioCurrentBank string] ;
+      end if ;
+      error mValue: errorMessage ;
+    end if ;
+    if not isNoReturn then
+      error mValue:"for being named in a computed goto, the '" . mValue . "' routine should be declared with the \"noreturn\" qualifier" ;
+	 end if ;
+  end foreach ;
+  ioContinuesInSequence := false ;
+  switch inRoutineKind
+  when regularRoutine :
+    error mInstructionLocation:"a regular routine does not accept computed goto instruction" ;
+  when noReturnRoutine : # ok
+  when interruptRoutine :
+    error mInstructionLocation:"an interrupt routine does not accept computed goto instruction" ;
+  end switch ;
+#---
+  @sint size ; [mSizeExpression eval !inRegisterTable !inConstantMap ?size] ;
+  if size < 2S then
+    error mInstructionLocation:"the computed range (" . [size string] . ") should be greater or equal to 2" ;
+  elsif size > 64S then
+    error mInstructionLocation:"the computed range (" . [size string] . ") should be lower or equal to 64" ;
+  elsif [size uint] != [mTargetLabels length] then
+    error mInstructionLocation:"the routine name list length (" . [[mTargetLabels length] string] . ") should be equal to the computed range (" . [size string] . ")" ;
+  end if ;
+#---
+  ioGeneratedInstructionList += ![@ipic_instruction_computed_goto new
+    !mInstructionLocation
+    !mTargetLabels
+    !mUsesRelativeCall
+  ] ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_FOREVER.buildIPICinstructionList
+  ??@uint inAccessBankSplitOffset
+  ??@routineMap inRoutineMap
+  ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
+  ?!@uint ioLocalLabelIndex
+  ?!@ipic_instructionList ioGeneratedInstructionList
+  ?!@string ioListFileContents
+  ?!@uint ioCurrentBank
+  ??@bool inShouldPreserveBSR
+  ?!@bool ioContinuesInSequence
+  ??@routineKind inRoutineKind
+:
+  switch inRoutineKind
+  when regularRoutine :
+    error mInstructionLocation:"a regular routine does not accept the \"forever\" instruction" ;
+  when noReturnRoutine : # ok
+  when interruptRoutine :
+    error mInstructionLocation:"an interrupt routine does not accept the \"forever\" instruction" ;
+  end switch ;
+#--- Check instruction list does not change bank
+  @uint finalBank := ioCurrentBank ;
+  @string label0 := "_label_" . [ioLocalLabelIndex string] ; 
+  ioLocalLabelIndex ++ ;
+  ioGeneratedInstructionList += ![@ipic_pseudo_LABEL new ![@lstring new !label0 !mInstructionLocation]] ;
+  handleInstructionList
+    !mInstructionList 
+    !inAccessBankSplitOffset
+    !inRoutineMap
+    !inRegisterTable
+    !inConstantMap
+    !?ioLocalLabelIndex
+    !?ioGeneratedInstructionList
+    !?ioListFileContents
+    !?finalBank
+    !inShouldPreserveBSR
+    ?ioContinuesInSequence
+    !inRoutineKind
+  ;
+  if ioCurrentBank != finalBank then
+    error mEndOfInstructionList:"instruction list does not leave BSR value unchanged";
+  end if ;
+#--- Generate JUMP to loop start
+  ioGeneratedInstructionList += ![@ipic_JUMP new !mInstructionLocation ![@lstring new !label0 !mInstructionLocation] ![@jumpInstructionKind ipicRelative]] ;
+#---
+  ioContinuesInSequence := false ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_IF_FA_SEMI_COLON.buildIPICinstructionList
+  ??@uint inAccessBankSplitOffset
+  ??@routineMap inRoutineMap
+  ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
+  ?!@uint ioLocalLabelIndex
+  ?!@ipic_instructionList ioGeneratedInstructionList
+  ?!@string ioListFileContents
+  ?!@uint ioCurrentBank
+  ??@bool inShouldPreserveBSR
+  ?!@bool unused ioContinuesInSequence
+  ??@routineKind inRoutineKind
+:
+  @FA_instruction_base_code baseCode ;
+  switch mOpCode
+    when CPFSEQ : baseCode := [@FA_instruction_base_code CPFSEQ] ;
+    when CPFSGT : baseCode := [@FA_instruction_base_code CPFSGT] ;
+    when CPFSLT : baseCode := [@FA_instruction_base_code CPFSLT] ;
+    when TSTFSZ : baseCode := [@FA_instruction_base_code TSTFSZ] ;
+  end switch ;
+  @ipic_registerExpression IPICregisterDescription ;
+  [mRegisterExpression resolveAccess
+    !inAccessBankSplitOffset
+    !inRegisterTable
+    ?IPICregisterDescription
+    ?*
+  ] ;
+  ioGeneratedInstructionList += ![@ipic_instruction_FA new
+    !mInstructionLocation
+    !baseCode
+    !IPICregisterDescription
+  ] ;
+#--- Append Instruction
+  @bool unusedContinuesInSequence := true ;
+  [mInstruction buildIPICinstructionList
+    !inAccessBankSplitOffset
+    !inRoutineMap
+    !inRegisterTable
+    !inConstantMap
+    !?ioLocalLabelIndex
+    !?ioGeneratedInstructionList
+    !?ioListFileContents
+    !?ioCurrentBank
+    !inShouldPreserveBSR
+    !?unusedContinuesInSequence
+    !inRoutineKind
+  ] ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_IF_BitTest.buildIPICinstructionList
+  ??@uint inAccessBankSplitOffset
+  ??@routineMap inRoutineMap
+  ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
+  ?!@uint ioLocalLabelIndex
+  ?!@ipic_instructionList ioGeneratedInstructionList
+  ?!@string ioListFileContents
+  ?!@uint ioCurrentBank
+  ??@bool inShouldPreserveBSR
+  ?!@bool unused ioContinuesInSequence
+  ??@routineKind inRoutineKind
+:
+  @bitSliceTable bitSliceTable ;
+  @ipic_registerExpression IPICregisterDescription ;
+  [mRegisterExpression resolveAccess
+    !inAccessBankSplitOffset
+    !inRegisterTable
+    ?IPICregisterDescription
+    ?bitSliceTable
+  ] ;
+  @uint bitNumber ;
+  [mBitNumber getBitNumber
+    !bitSliceTable
+    ?bitNumber
+  ] ;
+  ioGeneratedInstructionList += ![@ipic_instruction_BitTestSkip new
+    !mInstructionLocation
+    !mSkipIfSet
+    !IPICregisterDescription
+    !bitNumber
+  ] ;
+#--- Append Instruction
+  @bool unusedContinuesInSequence := true ;
+  [mInstruction buildIPICinstructionList
+    !inAccessBankSplitOffset
+    !inRoutineMap
+    !inRegisterTable
+    !inConstantMap
+    !?ioLocalLabelIndex
+    !?ioGeneratedInstructionList
+    !?ioListFileContents
+    !?ioCurrentBank
+    !inShouldPreserveBSR
+    !?unusedContinuesInSequence
+    !inRoutineKind
+  ] ;
+end method ;
+
+#----------------------------------------------------*
+
+abstract method @conditionExpression.buildIPICinstructionForCondition
+  ??@uint inAccessBankSplitOffset
+  ??@registerTable inRegisterTable
+  ?!@uint ioLocalLabelIndex
+  ??@bool inComplementaryBranch
+  ??@location inInstructionLocation
+  ??@string inTargetLabel
+  ?!@ipic_instructionList ioGeneratedInstructionList
+  ?!@string unused ioListFileContents
+;
+
+#----------------------------------------------------*
+
+abstract method @conditionExpression.computeInstructionCountForCondition
+  ??@bool inComplementaryBranch
+  !@uint outInstructionCount
+;
+
+#----------------------------------------------------*
+
+override method @bcc_in_structured_if_condition.buildIPICinstructionForCondition
+  ??@uint unused inAccessBankSplitOffset
+  ??@registerTable unused inRegisterTable
+  ?!@uint unused ioLocalLabelIndex
+  ??@bool inComplementaryBranch
+  ??@location inInstructionLocation
+  ??@string inTargetLabel
+  ?!@ipic_instructionList ioGeneratedInstructionList
+  ?!@string unused ioListFileContents
+:
+  @conditional_branch condition ;
+  if inComplementaryBranch then
+    getComplementaryBcc !mCondition ?condition ;
+  else
+    condition := mCondition ;
+  end if ;
+  ioGeneratedInstructionList += ![@ipic_instruction_conditionalBranch new
+    !inInstructionLocation
+    ![@condionalBranchMode native]
+    !condition
+    ![@lstring new !inTargetLabel !inInstructionLocation]
+  ] ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @bcc_in_structured_if_condition.computeInstructionCountForCondition
+  ??@bool unused inComplementaryBranch
+  !@uint outInstructionCount
+:
+  outInstructionCount := 2 ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @registerComparisonCondition.buildIPICinstructionForCondition
+  ??@uint inAccessBankSplitOffset
+  ??@registerTable inRegisterTable
+  ?!@uint unused ioLocalLabelIndex
+  ??@bool inComplementaryBranch
+  ??@location inInstructionLocation
+  ??@string inTargetLabel
+  ?!@ipic_instructionList ioGeneratedInstructionList
+  ?!@string unused ioListFileContents
+:
+  @registerComparison comparison ;
+  if inComplementaryBranch then
+    getRegisterComparisonComplementary !mComparison ?comparison ;
+  else
+    comparison := mComparison ;
+  end if ;
+#---
+  @ipic_registerExpression IPICregisterDescription ;
+  [mRegisterExpression resolveAccess
+    !inAccessBankSplitOffset
+    !inRegisterTable
+    ?IPICregisterDescription
+    ?*
+  ] ;
+#---
+  ioGeneratedInstructionList += ![@ipic_registerComparisonCondition new
+    !inInstructionLocation
+    !IPICregisterDescription
+    !inTargetLabel
+    !comparison
+    !true # By Default, uses BRA
+  ] ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @registerComparisonCondition.computeInstructionCountForCondition
+  ??@bool inComplementaryBranch
+  !@uint outInstructionCount
+:
+  @registerComparison comparison ;
+  if inComplementaryBranch then
+    getRegisterComparisonComplementary !mComparison ?comparison ;
+  else
+    comparison := mComparison ;
+  end if ;
+  getRegisterComparisonInstructionCount !comparison ?outInstructionCount ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @incDecRegisterInCondition.buildIPICinstructionForCondition
+  ??@uint inAccessBankSplitOffset
+  ??@registerTable inRegisterTable
+  ?!@uint unused ioLocalLabelIndex
+  ??@bool inComplementaryBranch
+  ??@location inInstructionLocation
+  ??@string inTargetLabel
+  ?!@ipic_instructionList ioGeneratedInstructionList
+  ?!@string unused ioListFileContents
+:
+  @ipic_registerExpression IPICregisterDescription ;
+  [mRegisterExpression resolveAccess
+    !inAccessBankSplitOffset
+    !inRegisterTable
+    ?IPICregisterDescription
+    ?*
+  ] ;
+#---
+  ioGeneratedInstructionList += ![@ipic_incDecRegisterInCondition new
+    !inInstructionLocation
+    !IPICregisterDescription
+    !inTargetLabel
+    !mIncrement
+    !m_W_isDestination
+    !mBranchIfZero ^ inComplementaryBranch
+    !true # By Default, uses BRA
+  ] ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @incDecRegisterInCondition.computeInstructionCountForCondition
+  ??@bool unused inComplementaryBranch
+  !@uint outInstructionCount
+:
+  outInstructionCount := 2 ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @registerTestCondition.buildIPICinstructionForCondition
+  ??@uint inAccessBankSplitOffset
+  ??@registerTable inRegisterTable
+  ?!@uint unused ioLocalLabelIndex
+  ??@bool inComplementaryBranch
+  ??@location inInstructionLocation
+  ??@string inTargetLabel
+  ?!@ipic_instructionList ioGeneratedInstructionList
+  ?!@string unused ioListFileContents
+:
+  @ipic_registerExpression IPICregisterDescription ;
+  [mRegisterExpression resolveAccess
+    !inAccessBankSplitOffset
+    !inRegisterTable
+    ?IPICregisterDescription
+    ?*
+  ] ;
+#---
+  ioGeneratedInstructionList += ![@ipic_jump_test_register new
+    !inInstructionLocation
+    !IPICregisterDescription
+    !inTargetLabel
+    !mBranchIfZero ^ inComplementaryBranch
+    !true # By Default, uses BRA
+  ] ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @registerTestCondition.computeInstructionCountForCondition
+  ??@bool inComplementaryBranch
+  !@uint outInstructionCount
+:
+  if mBranchIfZero ^ inComplementaryBranch then
+    outInstructionCount := 3 ;
+  else
+    outInstructionCount := 2 ;
+  end if ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @negateCondition.buildIPICinstructionForCondition
+  ??@uint inAccessBankSplitOffset
+  ??@registerTable inRegisterTable
+  ?!@uint ioLocalLabelIndex
+  ??@bool inComplementaryBranch
+  ??@location inInstructionLocation
+  ??@string inTargetLabel
+  ?!@ipic_instructionList ioGeneratedInstructionList
+  ?!@string ioListFileContents
+:
+  [mCondition buildIPICinstructionForCondition
+    !inAccessBankSplitOffset
+    !inRegisterTable
+    !?ioLocalLabelIndex
+    !not inComplementaryBranch
+    !inInstructionLocation
+    !inTargetLabel
+    !?ioGeneratedInstructionList
+    !?ioListFileContents
+  ] ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @negateCondition.computeInstructionCountForCondition
+  ??@bool inComplementaryBranch
+  !@uint outInstructionCount
+:
+  [mCondition computeInstructionCountForCondition
+    !not inComplementaryBranch
+    ?outInstructionCount
+  ] ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @andCondition.buildIPICinstructionForCondition
+  ??@uint inAccessBankSplitOffset
+  ??@registerTable inRegisterTable
+  ?!@uint ioLocalLabelIndex
+  ??@bool inComplementaryBranch
+  ??@location inInstructionLocation
+  ??@string inTargetLabel
+  ?!@ipic_instructionList ioGeneratedInstructionList
+  ?!@string ioListFileContents
+:
+  if inComplementaryBranch then
+    [mLeftExpression buildIPICinstructionForCondition
+      !inAccessBankSplitOffset
+      !inRegisterTable
+      !?ioLocalLabelIndex
+      !true
+      !inInstructionLocation
+      !inTargetLabel
+      !?ioGeneratedInstructionList
+      !?ioListFileContents
+    ] ;
+    [mRightExpression buildIPICinstructionForCondition
+      !inAccessBankSplitOffset
+      !inRegisterTable
+      !?ioLocalLabelIndex
+      !true
+      !inInstructionLocation
+      !inTargetLabel
+      !?ioGeneratedInstructionList
+      !?ioListFileContents
+    ] ;
+  else
+    @string label0 := "_label_" . [ioLocalLabelIndex string] ; ioLocalLabelIndex ++ ;
+    [mLeftExpression buildIPICinstructionForCondition
+      !inAccessBankSplitOffset
+      !inRegisterTable
+      !?ioLocalLabelIndex
+      !true
+      !inInstructionLocation
+      !label0
+      !?ioGeneratedInstructionList
+      !?ioListFileContents
+    ] ;
+    [mRightExpression buildIPICinstructionForCondition
+      !inAccessBankSplitOffset
+      !inRegisterTable
+      !?ioLocalLabelIndex
+      !false
+      !inInstructionLocation
+      !inTargetLabel
+      !?ioGeneratedInstructionList
+      !?ioListFileContents
+    ] ;
+    ioGeneratedInstructionList += ![@ipic_pseudo_LABEL new ![@lstring new !label0 !inInstructionLocation]] ;
+  end if ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @andCondition.computeInstructionCountForCondition
+  ??@bool inComplementaryBranch
+  !@uint outInstructionCount
+:
+  @uint countLeft ;
+  [mLeftExpression computeInstructionCountForCondition
+    !inComplementaryBranch
+    ?countLeft
+  ] ;
+  @uint countRight ;
+  [mLeftExpression computeInstructionCountForCondition
+    !inComplementaryBranch
+    ?countRight
+  ] ;
+  outInstructionCount := countLeft + countRight ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @bitTest_in_structured_if_condition.buildIPICinstructionForCondition
+  ??@uint inAccessBankSplitOffset
+  ??@registerTable inRegisterTable
+  ?!@uint unused ioLocalLabelIndex
+  ??@bool inComplementaryBranch
+  ??@location inInstructionLocation
+  ??@string inTargetLabel
+  ?!@ipic_instructionList ioGeneratedInstructionList
+  ?!@string unused ioListFileContents
+:
+  @bitSliceTable bitSliceTable ;
+  @ipic_registerExpression IPICregisterDescription ;
+  [mRegisterExpression resolveAccess
+    !inAccessBankSplitOffset
+    !inRegisterTable
+    ?IPICregisterDescription
+    ?bitSliceTable
+  ] ;
+  @uint bitNumber ;
+  [mBitNumber getBitNumber
+    !bitSliceTable
+    ?bitNumber
+  ] ;
+  ioGeneratedInstructionList += ![@ipic_instruction_BitTestSkip new
+    !inInstructionLocation
+    !mBTFSSinstruction ^ inComplementaryBranch
+    !IPICregisterDescription
+    !bitNumber
+  ] ;
+  ioGeneratedInstructionList += ![@ipic_JUMP new !inInstructionLocation ![@lstring new !inTargetLabel !inInstructionLocation] ![@jumpInstructionKind ipicRelative]] ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @bitTest_in_structured_if_condition.computeInstructionCountForCondition
+  ??@bool unused inComplementaryBranch
+  !@uint outInstructionCount
+:
+  outInstructionCount := 2 ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_structured_if.buildIPICinstructionList
+  ??@uint inAccessBankSplitOffset
+  ??@routineMap inRoutineMap
+  ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
+  ?!@uint ioLocalLabelIndex
+  ?!@ipic_instructionList ioGeneratedInstructionList
+  ?!@string ioListFileContents
+  ?!@uint ioCurrentBank
+  ??@bool inShouldPreserveBSR
+  ?!@bool ioContinuesInSequence
+  ??@routineKind inRoutineKind
+:
+  @bool generateComplementaryCondition := false ;
+#--- Direct Test Instruction Count
+  if [option piccolo_options.performOptimizations] then
+    @uint directCount ; [mIfCondition computeInstructionCountForCondition !true ?directCount] ;
+    if [mElseInstructionList length] > 0 then
+      directCount ++ ;
+    end if ;
+    @uint complementaryCount ; [mIfCondition computeInstructionCountForCondition !false ?complementaryCount] ;
+    if [mThenInstructionList length] > 0 then
+      complementaryCount ++ ;
+    end if ;
+    if (complementaryCount < directCount) then
+      generateComplementaryCondition := true ;
+      ioListFileContents .= "  line " . [[ioGeneratedInstructionList length] string] . ": generates complementary test (saves "
+      . [directCount - complementaryCount string] . " instruction" ;
+      if (directCount - complementaryCount) > 1 then
+        ioListFileContents .= "s" ;
+      end if ;
+      ioListFileContents .= ")\n" ;
+    end if ;
+  end if ;
+  @uint elseBranchFinalBank := ioCurrentBank ;
+  @uint thenBranchFinalBank := ioCurrentBank ;
+  @bool elseContinuesInSequence ;
+  @bool thenContinuesInSequence ;
+  if generateComplementaryCondition then
+  #---
+    @string label_nextCondition := "_label_" . [ioLocalLabelIndex string] ; ioLocalLabelIndex ++ ;
+    @string label_endOfIfinstruction := "_label_" . [ioLocalLabelIndex string] ; ioLocalLabelIndex ++ ;
+  #--- Translate condition
+    [mIfCondition buildIPICinstructionForCondition
+      !inAccessBankSplitOffset
+      !inRegisterTable
+      !?ioLocalLabelIndex
+      !false
+      !mInstructionLocation
+      !label_nextCondition
+      !?ioGeneratedInstructionList
+      !?ioListFileContents
+    ] ;
+  #--- 'else' instructions
+    handleInstructionList
+      !mElseInstructionList
+      !inAccessBankSplitOffset
+      !inRoutineMap
+      !inRegisterTable
+      !inConstantMap
+      !?ioLocalLabelIndex
+      !?ioGeneratedInstructionList
+      !?ioListFileContents
+      !?elseBranchFinalBank
+      !inShouldPreserveBSR
+      ?elseContinuesInSequence
+      !inRoutineKind
+    ;
+  #--- 'then' instructions
+    if [mThenInstructionList length] > 0 then
+      ioGeneratedInstructionList += ![@ipic_JUMP new !mInstructionLocation ![@lstring new !label_endOfIfinstruction !mInstructionLocation] ![@jumpInstructionKind ipicRelative]] ;
+    end if ;
+    ioGeneratedInstructionList += ![@ipic_pseudo_LABEL new ![@lstring new !label_nextCondition !mInstructionLocation]] ;
+    handleInstructionList 
+      !mThenInstructionList
+      !inAccessBankSplitOffset
+      !inRoutineMap
+      !inRegisterTable
+      !inConstantMap
+      !?ioLocalLabelIndex
+      !?ioGeneratedInstructionList
+      !?ioListFileContents
+      !?thenBranchFinalBank
+      !inShouldPreserveBSR
+      ?thenContinuesInSequence
+      !inRoutineKind
+     ;
+    if [mThenInstructionList length] > 0 then
+      ioGeneratedInstructionList += ![@ipic_pseudo_LABEL new ![@lstring new !label_endOfIfinstruction !mInstructionLocation]] ;
+    end if ;
+  else
+  #---
+    @string label_nextCondition := "_label_" . [ioLocalLabelIndex string] ; ioLocalLabelIndex ++ ;
+    @string label_endOfIfinstruction := "_label_" . [ioLocalLabelIndex string] ; ioLocalLabelIndex ++ ;
+  #--- Translate condition
+    [mIfCondition buildIPICinstructionForCondition
+      !inAccessBankSplitOffset
+      !inRegisterTable
+      !?ioLocalLabelIndex
+      !true
+      !mInstructionLocation
+      !label_nextCondition
+      !?ioGeneratedInstructionList
+      !?ioListFileContents
+    ] ;
+  #--- 'then' instructions
+    handleInstructionList
+      !mThenInstructionList
+      !inAccessBankSplitOffset
+      !inRoutineMap
+      !inRegisterTable
+      !inConstantMap
+      !?ioLocalLabelIndex
+      !?ioGeneratedInstructionList
+      !?ioListFileContents
+      !?thenBranchFinalBank
+      !inShouldPreserveBSR
+      ?thenContinuesInSequence
+      !inRoutineKind
+    ;
+  #--- 'else' instructions
+    if [mElseInstructionList length] > 0 then
+      ioGeneratedInstructionList += ![@ipic_JUMP new !mInstructionLocation ![@lstring new !label_endOfIfinstruction !mInstructionLocation] ![@jumpInstructionKind ipicRelative]] ;
+    end if ;
+    ioGeneratedInstructionList += ![@ipic_pseudo_LABEL new ![@lstring new !label_nextCondition !mInstructionLocation]] ;
+    handleInstructionList
+      !mElseInstructionList
+      !inAccessBankSplitOffset
+      !inRoutineMap
+      !inRegisterTable
+      !inConstantMap
+      !?ioLocalLabelIndex
+      !?ioGeneratedInstructionList
+      !?ioListFileContents
+      !?elseBranchFinalBank
+      !inShouldPreserveBSR
+      ?elseContinuesInSequence
+      !inRoutineKind
+    ;
+    if [mElseInstructionList length] > 0 then
+      ioGeneratedInstructionList += ![@ipic_pseudo_LABEL new ![@lstring new !label_endOfIfinstruction !mInstructionLocation]] ;
+    end if ;
+  end if ;
+  if elseBranchFinalBank == thenBranchFinalBank then
+    ioCurrentBank := elseBranchFinalBank ;
+  else
+    error mEndOfElsePartLocation:"This branch does not leave BSR value as the first one does";
+    elseBranchFinalBank := [@uint max] ; # No available value for BSR
+  end if ;
+#---
+  ioContinuesInSequence := thenContinuesInSequence | elseContinuesInSequence ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_do_while.buildIPICinstructionList
+  ??@uint inAccessBankSplitOffset
+  ??@routineMap inRoutineMap
+  ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
+  ?!@uint ioLocalLabelIndex
+  ?!@ipic_instructionList ioGeneratedInstructionList
+  ?!@string ioListFileContents
+  ?!@uint ioCurrentBank
+  ??@bool inShouldPreserveBSR
+  ?!@bool ioContinuesInSequence
+  ??@routineKind inRoutineKind
+:
+#--- Generate label
+  @string labelInstructionBegin := "_label_" . [ioLocalLabelIndex string] ; ioLocalLabelIndex ++ ;
+#--- Define label
+  ioGeneratedInstructionList += ![@ipic_pseudo_LABEL new ![@lstring new !labelInstructionBegin !mInstructionLocation]] ;
+#--- Repeated instructions
+  @uint finalBank := ioCurrentBank ;
+  handleInstructionList
+    !mRepeatedInstructionList
+    !inAccessBankSplitOffset
+    !inRoutineMap
+    !inRegisterTable
+    !inConstantMap
+    !?ioLocalLabelIndex
+    !?ioGeneratedInstructionList
+    !?ioListFileContents
+    !?finalBank
+    !inShouldPreserveBSR
+    ?ioContinuesInSequence
+    !inRoutineKind
+  ;
+  if ioCurrentBank != finalBank then
+    error mEndOfRepeatedInstructionList:"This branch does not leave BSR value unchanged";
+  end if ;
+#--- while parts
+  foreach mWhilePartList do
+    if [mInstructionList length] == 0 then
+      [mCondition buildIPICinstructionForCondition
+        !inAccessBankSplitOffset
+        !inRegisterTable
+        !?ioLocalLabelIndex
+        !false
+        !mInstructionLocation
+        !labelInstructionBegin
+        !?ioGeneratedInstructionList
+        !?ioListFileContents
+      ] ;
+    else
+      @string nextBranchLabel := "_label_" . [ioLocalLabelIndex string] ; ioLocalLabelIndex ++ ;
+      [mCondition buildIPICinstructionForCondition
+        !inAccessBankSplitOffset
+        !inRegisterTable
+        !?ioLocalLabelIndex
+        !true
+        !mInstructionLocation
+        !nextBranchLabel
+        !?ioGeneratedInstructionList
+        !?ioListFileContents
+      ] ;
+      @uint bank := ioCurrentBank ;
+      handleInstructionList
+        !mInstructionList
+        !inAccessBankSplitOffset
+        !inRoutineMap
+        !inRegisterTable
+        !inConstantMap
+        !?ioLocalLabelIndex
+        !?ioGeneratedInstructionList
+        !?ioListFileContents
+        !?bank
+        !inShouldPreserveBSR
+        ?ioContinuesInSequence
+        !inRoutineKind
+      ;
+      if ioCurrentBank != bank then
+        error mEndOfPartLocation:"This branch does not leave BSR value unchanged";
+      end if ;
+      ioGeneratedInstructionList += ![@ipic_JUMP new !mInstructionLocation ![@lstring new !labelInstructionBegin !mInstructionLocation] ![@jumpInstructionKind ipicRelative]] ;
+      ioGeneratedInstructionList += ![@ipic_pseudo_LABEL new ![@lstring new !nextBranchLabel !mInstructionLocation]] ;
+    end if ;
+  end foreach ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_IF_IncDec.buildIPICinstructionList
+  ??@uint inAccessBankSplitOffset
+  ??@routineMap inRoutineMap
+  ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
+  ?!@uint ioLocalLabelIndex
+  ?!@ipic_instructionList ioGeneratedInstructionList
+  ?!@string ioListFileContents
+  ?!@uint ioCurrentBank
+  ??@bool inShouldPreserveBSR
+  ?!@bool unused ioContinuesInSequence
+  ??@routineKind inRoutineKind
+:
+#---
+  @instruction_FDA_base_code baseCode ;
+  if mIncrement & mSkipIfZero then
+    baseCode := [@instruction_FDA_base_code INCFSZ] ;
+  elsif mIncrement & not mSkipIfZero then
+    baseCode := [@instruction_FDA_base_code INFSNZ] ;
+  elsif (not mIncrement) & mSkipIfZero then
+    baseCode := [@instruction_FDA_base_code DECFSZ] ;
+  else
+    baseCode := [@instruction_FDA_base_code DCFSNZ] ;
+  end if ;
+#---
+  @ipic_registerExpression IPICregisterDescription ;
+  [mRegisterExpression resolveAccess
+    !inAccessBankSplitOffset
+    !inRegisterTable
+    ?IPICregisterDescription
+    ?*
+  ] ;
+#---
+  ioGeneratedInstructionList += ![@ipic_instruction_FDA new
+    !mInstructionLocation
+    !baseCode
+    !IPICregisterDescription
+    !m_W_isDestination
+  ] ;
+#--- Embedded instruction
+  @bool unusedContinuesInSequence := true ;
+  [mInstruction buildIPICinstructionList
+    !inAccessBankSplitOffset
+    !inRoutineMap
+    !inRegisterTable
+    !inConstantMap
+    !?ioLocalLabelIndex
+    !?ioGeneratedInstructionList
+    !?ioListFileContents
+    !?ioCurrentBank
+    !inShouldPreserveBSR
+    !?unusedContinuesInSequence
+    !inRoutineKind
+  ] ;
+end method ;
+
+#----------------------------------------------------*
+
+routine build_ipic18_assembly_instruction_list
+  ??@uint inAccessBankSplitOffset
+  ??@registerTable inRegisterTable
+  ??@piccoloModel inPiccoloModel
+  ??@bool inHasHighInterrupt
+  ??@bool inHasLowInterrupt
+  !@ipic_instructionList outGeneratedInstructionList
+  ?!@string ioListFileContents
+:
+  @string generationOptimizationMessages := "" ;
+#-------------------------------- Build routine map
+  @routineMap routineMap [emptyMap] ;
+  foreach [inPiccoloModel mRoutineDefinitionList] do
+    if ([mRequiredBank uint] != [@uint max]) & ([mRequiredBank uint] > 15) then
+      error mRequiredBank:"the required bank value should be lower or equal to 15" ;
+    end if ;
+    if ([mReturnedBank uint] != [@uint max]) & ([mReturnedBank uint] > 15) then
+      error mReturnedBank:"the returned bank value should be lower or equal to 15" ;
+    end if ;
+    [!?routineMap insertKey !mRoutineName !mIsNoReturn ![mRequiredBank uint] ![mReturnedBank uint] !mPreservesBank] ;
+  end foreach ;
+#-------------------------------- Build contant map
+  @constantMap constantMap [emptyMap] ;
+  foreach [inPiccoloModel mConstantDefinitionList] do
+    @sint result ; [mExpression eval !inRegisterTable !constantMap ?result] ;
+    if [inRegisterTable hasKey ![mConstantName string]] then
+      error mConstantName: "'" . mConstantName . "' is alreday declared as ram register or special register" ;
+    else
+      [!?constantMap insertKey !mConstantName !result] ;
+    end if ;
+  end foreach ;
+#-------------------------------- Check the "main" routine is declared
+  if [routineMap hasKey !"main"] then
+    @bool isNoReturn ;
+    @uint requiredBank ;
+    [routineMap searchKey ![@lstring new !"main" !here] ?isNoReturn ?requiredBank ?* ?*] ;
+    if not isNoReturn then
+      error here :"the \"main\" should be declared with \"noreturn\" qualifier: \"noreturn main requiresbank 0\"" ;
+    end if ;
+    if requiredBank != 0 then
+      error here :"the \"main\" should be declared with \"requiresbank 0\" qualifier: \"noreturn main requiresbank 0\"" ;
+    end if ;
+  else
+    error [inPiccoloModel mEndOfProgram]: "the program should declare the \"main\" routine" ;
+  end if ;
+#-------------------------------- Check and translate interrupt routines
+  outGeneratedInstructionList := [@ipic_instructionList emptyList] ;
+  @uint localLabelIndex := 0 ;
+#--- At zero, generate 'jump main' instruction
+  outGeneratedInstructionList += ![@ipic_JUMP new !here ![@lstring new !"main" !here] ![@jumpInstructionKind ipicRelative]] ;
+#--- At 0x08, generate 'bra _fast_interrupt' instruction, if both interrupt are defined
+  if inHasLowInterrupt & inHasHighInterrupt then
+    outGeneratedInstructionList += ![@ipic_pseudo_ORG new !0x8] ;
+    outGeneratedInstructionList += ![@ipic_JUMP new !here ![@lstring new !"_fast_interrupt" !here] ![@jumpInstructionKind ipicRelative]] ;
+  end if ;
+#--- First, handle low interrupt (if any)
+  if inHasLowInterrupt then
+    outGeneratedInstructionList += ![@ipic_pseudo_ORG new !0x18] ;
+    foreach [inPiccoloModel mInterruptDefinitionList] do
+      if [mInterruptName string] == "low" then
+        @bool continuesInSequence ;
+        @uint currentBank [max] ; # No bank
+        handleInstructionList
+          !mInstructionList
+          !inAccessBankSplitOffset
+          !routineMap
+          !inRegisterTable
+          !constantMap
+          !?localLabelIndex
+          !?outGeneratedInstructionList
+          !?generationOptimizationMessages
+          !?currentBank
+          !not mFastReturn # Preserve BSR if not "fast"
+          ?continuesInSequence
+          ![@routineKind interruptRoutine]
+        ;
+        if not continuesInSequence then
+          error mEndOfInterruptLocation:"execution cannot reach the end of the interrupt routine" ;
+        end if ;
+      #--- Ajouter l'instruction REFFIE
+        outGeneratedInstructionList += ![@ipic_instruction_RETFIE new !here !mFastReturn] ;
+      end if ;
+    end foreach ;
+  end if ;
+#--- Then, handle high interrupt (if any)
+  if inHasHighInterrupt then
+    if inHasLowInterrupt then
+      outGeneratedInstructionList += ![@ipic_pseudo_LABEL new ![@lstring new !"_fast_interrupt" !here]] ;
+    else
+      outGeneratedInstructionList += ![@ipic_pseudo_ORG new !0x8] ;
+    end if ;
+    foreach [inPiccoloModel mInterruptDefinitionList] do
+      if [mInterruptName string] == "high" then
+        @bool continuesInSequence ;
+        @uint currentBank [max] ; # No bank
+        handleInstructionList
+          !mInstructionList
+          !inAccessBankSplitOffset
+          !routineMap
+          !inRegisterTable
+          !constantMap
+          !?localLabelIndex
+          !?outGeneratedInstructionList
+          !?generationOptimizationMessages
+          !?currentBank
+          !not mFastReturn # Preserve BSR if not "fast"
+          ?continuesInSequence
+          ![@routineKind interruptRoutine]
+        ;
+        if not continuesInSequence then
+          error mEndOfInterruptLocation:"execution cannot reach the end of the interrupt routine" ;
+         end if ;
+      #--- Add a REFFIE instruction
+        outGeneratedInstructionList += ![@ipic_instruction_RETFIE new !here !true] ;
+      end if ;
+    end foreach ;
+  end if ;
+#-------------------------------- Check and translate routines
+  foreach [inPiccoloModel mRoutineDefinitionList] do
+    @bool continuesInSequence ;
+    @uint currentBank := [mRequiredBank uint] ;
+    @routineKind routineKind ;
+    if mIsNoReturn then
+      routineKind := [@routineKind noReturnRoutine] ;
+    else
+      routineKind := [@routineKind regularRoutine] ;
+    end if ;
+    outGeneratedInstructionList += ![@ipic_pseudo_LABEL new !mRoutineName] ;
+    handleInstructionList
+      !mInstructionList
+      !inAccessBankSplitOffset
+      !routineMap
+      !inRegisterTable
+      !constantMap
+      !?localLabelIndex
+      !?outGeneratedInstructionList
+      !?generationOptimizationMessages
+      !?currentBank
+      !mPreservesBank
+      ?continuesInSequence
+      !routineKind
+    ;
+    if (not mIsNoReturn) & ([mReturnedBank uint] != [@uint max]) & (currentBank != [mReturnedBank uint]) then
+      error mRoutineName:"execution will not set BSR to " . [[mReturnedBank uint] string] ;
+    end if ;
+    if mIsNoReturn & continuesInSequence then
+      error mRoutineName:"execution should not reach the end of a \"noreturn\" routine" ;
+    end if ;
+  #--- Add a RETURN instruction (if it is a regular routine)
+    if not mIsNoReturn then
+      outGeneratedInstructionList += ![@ipic_instruction_RETURN new ![mRoutineName location]] ;
+    end if ;
+  end foreach ;
+#--- Description of register WREG
+  @registerExpression WREGregister [new ![@lstring new !"WREG" !here] ![@luint new !0 !here]] ;
+  @ipic_registerExpression WREG_IPICregisterDescription ;
+  [WREGregister resolveAccess
+    !inAccessBankSplitOffset
+    !inRegisterTable
+    ?WREG_IPICregisterDescription
+    ?*
+  ] ;
+#--- Description of register TOSL
+  @registerExpression TOSLregister [new ![@lstring new !"TOSL" !here] ![@luint new !0 !here]] ;
+  @ipic_registerExpression TOSL_IPICregisterDescription ;
+  [TOSLregister resolveAccess
+    !inAccessBankSplitOffset
+    !inRegisterTable
+    ?TOSL_IPICregisterDescription
+    ?*
+  ] ;
+#--- Description of register TOSH
+  @registerExpression TOSHregister [new ![@lstring new !"TOSH" !here] ![@luint new !0 !here]] ;
+  @ipic_registerExpression TOSH_IPICregisterDescription ;
+  [TOSHregister resolveAccess
+    !inAccessBankSplitOffset
+    !inRegisterTable
+    ?TOSH_IPICregisterDescription
+    ?*
+  ] ;
+#--- Description of register TOSU
+  @registerExpression TOSUregister [new ![@lstring new !"TOSU" !here] ![@luint new !0 !here]] ;
+  @ipic_registerExpression TOSU_IPICregisterDescription ;
+  [TOSUregister resolveAccess
+    !inAccessBankSplitOffset
+    !inRegisterTable
+    ?TOSU_IPICregisterDescription
+    ?*
+  ] ;
+#--- computed_goto2 routine needed ?
+  if [inPiccoloModel mNeedsComputedGoto4] then
+    outGeneratedInstructionList += ![@ipic_pseudo_LABEL new ![@lstring new !"_computed_goto_4" !here]] ;
+    outGeneratedInstructionList += ![@ipic_instruction_FDA new
+      !here
+      ![@instruction_FDA_base_code ADDWF]
+      !WREG_IPICregisterDescription
+      !true
+    ] ; # ADDWF WREG, W
+  end if ;
+  if [inPiccoloModel mNeedsComputedGoto2] then
+    outGeneratedInstructionList += ![@ipic_pseudo_LABEL new ![@lstring new !"_computed_goto_2" !here]] ;
+  end if ;
+  if [inPiccoloModel mNeedsComputedGoto2] | [inPiccoloModel mNeedsComputedGoto4] then
+    outGeneratedInstructionList += ![@ipic_instruction_FDA new
+      !here
+      ![@instruction_FDA_base_code ADDWF]
+      !WREG_IPICregisterDescription
+      !true
+    ] ; # ADDWF WREG, W
+    outGeneratedInstructionList += ![@ipic_instruction_FDA new
+      !here
+      ![@instruction_FDA_base_code ADDWFC]
+      !TOSL_IPICregisterDescription
+      !false
+    ] ; # ADDWFC TOSL, F
+    outGeneratedInstructionList += ![@ipic_instruction_literalOperation new
+      !here
+      ![@literal_instruction_opcode MOVLW]
+      !0
+    ] ; # MOVLW 0
+    outGeneratedInstructionList += ![@ipic_instruction_FDA new
+      !here
+      ![@instruction_FDA_base_code ADDWFC]
+      !TOSH_IPICregisterDescription
+      !false
+    ] ; # ADDWFC TOSH, F
+    outGeneratedInstructionList += ![@ipic_instruction_FDA new
+      !here
+      ![@instruction_FDA_base_code ADDWFC]
+      !TOSU_IPICregisterDescription
+      !false
+    ] ; # ADDWFC TOSU, F
+    outGeneratedInstructionList += ![@ipic_instruction_RETURN new
+      !here
+    ] ; # RETURN 0
+  end if ;
+#--- Output a listing ?
+  if [option piccolo_options.ouputListingFile] then
+    ioListFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n" ;
+    ioListFileContents .= "*" . ["IPIC INSTRUCTION LIST" stringByLeftAndRightPadding !77 !' '] . "*\n" ;
+    ioListFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n\n" ;
+    if [generationOptimizationMessages length] > 0 then
+      ioListFileContents .= "Optimizations during generation:\n" ;
+      ioListFileContents .= generationOptimizationMessages ;
+      ioListFileContents .= "\n" ;
+    end if ;
+    ioListFileContents .= "Generated intermediate code:\n" ;
+    @uint index := 0 ;
+    @uint currentAddress := 0 ;
+    foreach outGeneratedInstructionList do
+      [mInstruction setCurrentAddress !?currentAddress] ;
+      ioListFileContents .= [[index string] stringByLeftPadding !5 !' '] . ": " ;
+      [mInstruction displayIPICinstruction !? ioListFileContents] ;
+      ioListFileContents .= "\n" ;
+      index ++ ;
+    end foreach ;
+    ioListFileContents .= "\n" ;
+    ioListFileContents .= "Minimum code size without optimization: " . [currentAddress string] . " bytes.\n\n" ;
+  end if ;
+end routine ;
+
+#----------------------------------------------------*
+
+end semantics ;

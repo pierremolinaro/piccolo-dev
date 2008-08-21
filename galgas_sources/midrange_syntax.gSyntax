@@ -1,0 +1,764 @@
+syntax midrange_syntax :
+import lexique piccolo_lexique in "piccolo_lexique.gLexique" ;
+import semantics piccolo_metamodel in "piccolo_metamodel.gSemantics" ;
+import semantics midrange_metamodel in "midrange_metamodel.gSemantics" ;
+import semantics midrange_semantics in "midrange_semantics.gSemantics" ;
+
+#----------------------------------------------------*
+
+nonterminal <configuration_definition>
+  ?!@configDefinitionList ioConfigDefinitionList
+  ?!@bool ioAcceptDefaultConfiguration
+;
+
+nonterminal <declaration_in_ram>
+  !@declarationInRam outDeclaration
+;
+
+nonterminal <ram_definition>
+  ?!@ramDefinitionList ioRamDefinitionList
+;
+
+nonterminal <constant_definition>
+  ?!@constantDefinitionList ioConstantDefinitionList
+;
+
+nonterminal <midrange_interrupt_definition>
+  ?!@midrange_interruptDefinitionList outInterruptDefinitionList
+  ?!@bool ioNeedsComputedGoto2 
+  ?!@bool ioNeedsComputedGoto4
+;
+
+nonterminal <midrange_routine_definition>
+  ?!@midrange_routineDefinitionList ioRoutineDefinitionList
+  ?!@bool ioNeedsComputedGoto2 
+  ?!@bool ioNeedsComputedGoto4
+;
+
+nonterminal <midrange_simple_instruction> !@midrange_instruction outInstruction ;
+
+nonterminal <midrange_structured_instruction>
+  !@midrange_instruction outInstruction
+  ?!@bool ioNeedsComputedGoto2
+  ?!@bool ioNeedsComputedGoto4
+;
+
+nonterminal <midrange_instruction_list>
+  !@midrange_instructionList outInstructionList
+  ?!@bool ioNeedsComputedGoto2
+  ?!@bool ioNeedsComputedGoto4
+;
+
+nonterminal <midrange_structured_if_instruction>
+  !@midrange_instruction outInstruction
+  ?!@bool ioNeedsComputedGoto2
+  ?!@bool ioNeedsComputedGoto4
+;
+
+nonterminal <start_symbol> ;
+
+nonterminal <register_parsing> !@registerExpression outRegisterExpression ;
+
+nonterminal <optional_w_as_dest> !@bool out_W_isDestination ;
+
+nonterminal <bit_number_parsing> !@bitNumberExpression outBitNumber ;
+
+nonterminal <midrange_condition_factor> !@midrange_conditionExpression outCondition ;
+
+nonterminal <midrange_condition_term> !@midrange_conditionExpression outCondition ;
+
+nonterminal <midrange_condition_expression> !@midrange_conditionExpression outCondition ;
+
+nonterminal <immediate_expression> !@immediatExpression outExpression ;
+
+#----------------------------------------------------*
+
+rule <start_symbol> :
+  $midrange$ ;
+  $identifier$ ? @lstring programName ;
+  $literal_string$ ? @lstring deviceName ;
+  $:$ ;
+  @midrange_interruptDefinitionList interruptDefinitionList [emptyList] ;
+  @midrange_routineDefinitionList routineDefinitionList [emptyList] ;
+  @ramDefinitionList ramDefinitionList [emptyList] ;
+  @configDefinitionList configDefinitionList [emptyList] ;
+  @constantDefinitionList constantDefinitionList [emptyList] ;
+  @bool acceptDefaultConfiguration := false ;
+  @bool needsComputedGoto2 := false ;
+  @bool needsComputedGoto4 := false ;
+  repeat
+  while
+    <configuration_definition> !?configDefinitionList !?acceptDefaultConfiguration ;
+  while
+    <ram_definition> !?ramDefinitionList ;
+  while
+    <constant_definition> !?constantDefinitionList ;
+  while
+    <midrange_interrupt_definition>
+      !?interruptDefinitionList
+      !?needsComputedGoto2
+      !?needsComputedGoto4
+    ;
+  while
+    <midrange_routine_definition>
+      !?routineDefinitionList
+      !?needsComputedGoto2
+      !?needsComputedGoto4
+    ;
+  end repeat ;
+  $end$ ;
+#--- Semantic analysis
+  if [@uint errorCount] == 0 then
+    @midrange_model piccoloModel [new
+      !programName
+      !deviceName
+      !configDefinitionList
+      !acceptDefaultConfiguration
+      !ramDefinitionList
+      !interruptDefinitionList
+      !constantDefinitionList
+      !routineDefinitionList
+      !needsComputedGoto2
+      !needsComputedGoto4
+      !here
+    ] ;
+    midrange_analyze !piccoloModel ![@string stringWithSourceFilePath] ;
+  else
+    @string hexDestinationFile := [[@string stringWithSourceFilePath] stringByDeletingPathExtension] . ".hex" ;
+    if [hexDestinationFile fileExists] then
+      [@string deleteFile !hexDestinationFile] ;
+    end if ;
+    @string asmDestinationFile := [[@string stringWithSourceFilePath] stringByDeletingPathExtension] . ".asm" ;
+    if [asmDestinationFile fileExists] then
+      [@string deleteFile !asmDestinationFile] ;
+    end if ;
+  end if ;
+end rule ;
+
+#----------------------------------------------------*
+
+rule <midrange_instruction_list>
+  !@midrange_instructionList outInstructionList
+  ?!@bool ioNeedsComputedGoto2
+  ?!@bool ioNeedsComputedGoto4
+:
+  outInstructionList := [@midrange_instructionList emptyList] ;
+  repeat
+  while
+    @midrange_instruction instruction ;
+    <midrange_simple_instruction> ?instruction ;
+    outInstructionList += !instruction ;
+  while
+    @midrange_instruction instruction ;
+    <midrange_structured_instruction>
+      ?instruction
+      !?ioNeedsComputedGoto2
+      !?ioNeedsComputedGoto4
+    ;
+    outInstructionList += !instruction ;
+  end repeat ;
+end rule ;
+
+#----------------------------------------------------*
+
+rule <midrange_interrupt_definition>
+  ?!@midrange_interruptDefinitionList ioInterruptDefinitionList
+  ?!@bool ioNeedsComputedGoto2 
+  ?!@bool ioNeedsComputedGoto4
+:
+  $interrupt$ ;
+  @location interruptionLocation := here ;
+  ${$ ;
+  @midrange_instructionList instructionList ;
+  <midrange_instruction_list>
+    ?instructionList
+    !?ioNeedsComputedGoto2
+    !?ioNeedsComputedGoto4
+  ;
+  $}$ ;
+  ioInterruptDefinitionList += !instructionList !interruptionLocation ;
+end rule ;
+
+#----------------------------------------------------*
+
+rule <midrange_routine_definition>
+  ?!@midrange_routineDefinitionList ioRoutineDefinitionList
+  ?!@bool ioNeedsComputedGoto2 
+  ?!@bool ioNeedsComputedGoto4
+:
+  @bool noreturn ;
+  select
+    noreturn := false ;
+  or
+    $noreturn$ ;
+    noreturn := true ;
+  end select ;
+  $routine$ ;
+  $identifier$ ? @lstring routineName ;
+  @luint requiredBank ;
+  @luint returnedBank ;
+  @bool preservesBank ;
+  select
+    requiredBank := [@luint new ![@uint max] !here] ;
+    returnedBank := [@luint new ![@uint max] !here] ;
+    preservesBank := false ;
+  or
+    $bank$ ;
+    $:$ ;
+    select
+      $preserved$ ;
+      if noreturn then
+        error here: "a \"noreturn\" routine cannot accept \"bank:preserved\" setting" ;
+      end if ;
+      preservesBank := true ;
+      requiredBank := [@luint new ![@uint max] !here] ;
+      returnedBank := [@luint new ![@uint max] !here] ;
+    or
+      $requires$ ;
+      $integer$ ? requiredBank ;
+      preservesBank := false ;
+      select
+        returnedBank := [@luint new ![@uint max] !here] ;
+      or
+        $ensures$ ;
+        $integer$ ? returnedBank ;
+        if noreturn then
+          error here: "a \"noreturn\" routine cannot accept \"bank:returned\" setting" ;
+        end if ;
+      end select ;
+    or
+      $ensures$ ;
+      $integer$ ? returnedBank ;
+      if noreturn then
+        error here: "a \"noreturn\" routine cannot accept \"bank:returned\" setting" ;
+      end if ;
+      preservesBank := false ;
+      requiredBank := [@luint new ![@uint max] !here] ;
+    end select ;
+  end select ;
+  ${$ ;
+  @midrange_instructionList instructionList ;
+  <midrange_instruction_list>
+    ?instructionList
+    !?ioNeedsComputedGoto2
+    !?ioNeedsComputedGoto4
+  ;
+  $}$ ;
+  ioRoutineDefinitionList += !routineName !requiredBank !returnedBank !preservesBank !noreturn !instructionList !here ;
+end rule ;
+
+#----------------------------------------------------*
+
+rule <midrange_structured_instruction>
+  !@midrange_instruction outInstruction
+  ?!@bool ioNeedsComputedGoto2
+  ?!@bool ioNeedsComputedGoto4
+:
+  select
+    $banksel$ ;
+    @location instructionLocation := here ;
+    $integer$ ? @luint bank ;
+    outInstruction := [@midrange_instruction_banksel new ! instructionLocation !bank] ;
+  or
+    $nobank$ ;
+    outInstruction := [@midrange_instruction_nobanksel new !here] ;
+  or
+    $banksave$ ;
+    @location instructionLocation := here ;
+    @registerExpression register ;
+    <register_parsing> ?register ;
+    @midrange_instructionList instructionList ;
+    <midrange_instruction_list> ?instructionList !?ioNeedsComputedGoto2 !?ioNeedsComputedGoto4 ;
+    $end$ ;
+    outInstruction := [@midrange_instruction_savebank new
+      !instructionLocation
+      !register
+      !instructionList
+      !here
+    ] ;
+  or
+    $computed$ ;
+    @location instructionLocation := here ;
+    $[$ ;
+    @immediatExpression sizeExpression ;
+    <immediate_expression> ?sizeExpression ;
+    $]$ ;
+    select
+      $retlw$ ;
+      @immediatExpressionList argumentList [emptyList] ;
+      repeat
+        @immediatExpression expression ;
+        <immediate_expression> ?expression ;
+        argumentList += !expression ;
+      while
+        $,$ ;
+      end repeat ;
+      outInstruction := [@midrange_instruction_computed_retlw new
+        !instructionLocation
+        !sizeExpression
+        !argumentList
+      ] ;
+      ioNeedsComputedGoto2 := true ;
+    or
+      $goto$ ;
+      @lstringlist argumentList [emptyList] ;
+      repeat
+        $identifier$ ? @lstring targetRoutine ;
+        argumentList += ! targetRoutine ;
+      while
+        $,$ ;
+      end repeat ;
+      outInstruction := [@midrange_instruction_computed_goto new
+        !instructionLocation
+        !sizeExpression
+        !argumentList
+      ] ;
+      ioNeedsComputedGoto4 := true ;
+    end select ;
+  or
+    $forever$ ;
+    @location instructionLocation := here ;
+    @midrange_instructionList instructionList ;
+    <midrange_instruction_list> ?instructionList !?ioNeedsComputedGoto2 !?ioNeedsComputedGoto4 ;
+    $end$ ;
+    outInstruction := [@midrange_instruction_FOREVER new
+      !instructionLocation
+      !instructionList
+      !here
+    ] ;
+  or
+    $if$ ;
+    @location instructionLocation := here ;
+    @registerExpression registerName ;
+    <register_parsing> ?registerName ;
+    $.$ ;
+    @bitNumberExpression bitNumber ;
+    <bit_number_parsing> ?bitNumber ;
+    @bool skipIfSet ;
+    $identifier$ ? @lstring conditionString ;
+    @string condition := [[conditionString string] uppercaseString] ;
+    if condition == "Z" then
+      skipIfSet := true ;
+    elsif condition == "NZ" then
+      skipIfSet := false ;
+    else
+      error conditionString:"invalid '" . condition . "' condition; it should be 'z' or 'nz'" -> skipIfSet ;
+    end if ;
+    $:$ ;
+    @midrange_instruction instruction ;
+    <midrange_simple_instruction> ?instruction ;
+    outInstruction := [@midrange_instruction_IF_BitTest new
+      !instructionLocation
+      !instruction
+      !skipIfSet
+      !registerName
+      !bitNumber
+    ] ;
+  or
+    $if$ ;
+    @location instructionLocation := here ;
+    @bool increment ;
+    select
+      $decf$ ; increment := false ;
+    or
+      $incf$ ; increment := true ;
+    end select ;
+    @registerExpression registerName ;
+    <register_parsing> ?registerName ;
+    @bool w_isTarget ;
+    select
+      w_isTarget := false ;
+    or
+      $,$ ; $w$ ; w_isTarget := true ;
+    end select ;
+    $identifier$ ? @lstring conditionString ;
+    @string condition := [[conditionString string] uppercaseString] ;
+    if condition != "NZ" then
+      error conditionString:"invalid '" . condition . "' condition; it should be 'nz'" ;
+    end if ;
+    $:$ ;
+    @midrange_instruction instruction ;
+    <midrange_simple_instruction> ?instruction ;
+    outInstruction := [@midrange_instruction_IF_IncDec new
+      !instructionLocation
+      !instruction
+      !increment
+      !registerName
+      !w_isTarget
+    ] ;
+  or
+    $if$ ;
+    <midrange_structured_if_instruction>
+      ?outInstruction
+      !?ioNeedsComputedGoto2
+      !?ioNeedsComputedGoto4
+    ;
+    $end$ ;
+  or
+    $do$ ;
+    @location instructionLocation := here ;
+    @midrange_instructionList repeatedInstructionList ;
+    <midrange_instruction_list>
+      ?repeatedInstructionList
+      !?ioNeedsComputedGoto2
+      !?ioNeedsComputedGoto4
+    ;
+    @location endOfRepeatedInstructionList := here ;
+    @midrange_partList whilePartList [emptyList] ;
+    repeat
+      $while$ ;
+      @midrange_conditionExpression whileCondition ;
+      <midrange_condition_expression> ?whileCondition ;
+      @midrange_instructionList instructionList ;
+      <midrange_instruction_list>
+        ?instructionList
+        !?ioNeedsComputedGoto2
+        !?ioNeedsComputedGoto4
+      ;
+      whilePartList += !whileCondition !instructionList !here ;
+    while
+    end repeat ;
+    $end$ ;
+    outInstruction := [@midrange_instruction_do_while new
+      !instructionLocation
+      !repeatedInstructionList
+      !endOfRepeatedInstructionList
+      !whilePartList
+    ] ;
+  or
+    $mnop$ ;
+    @location instructionLocation := here ;
+    $integer$ ? @luint occurrenceFactor ;
+    outInstruction := [@midrange_instruction_MNOP new !instructionLocation !occurrenceFactor] ;
+  end select ;
+end rule ;
+
+#----------------------------------------------------*
+
+rule <midrange_structured_if_instruction>
+  !@midrange_instruction outInstruction
+  ?!@bool ioNeedsComputedGoto2
+  ?!@bool ioNeedsComputedGoto4
+:
+  @location instructionLocation := here ;
+  @midrange_conditionExpression structured_if_condition ;
+  <midrange_condition_expression> ?structured_if_condition ;
+  @midrange_instructionList thenInstructionList ;
+  <midrange_instruction_list>
+    ?thenInstructionList
+    !?ioNeedsComputedGoto2
+    !?ioNeedsComputedGoto4
+  ;
+  @midrange_instructionList elseInstructionList ;
+  select
+    elseInstructionList := [@midrange_instructionList emptyList] ;
+  or
+    $elsif$ ;
+    @midrange_instruction elsifPartInstruction ;
+    <midrange_structured_if_instruction>
+      ?elsifPartInstruction
+      !?ioNeedsComputedGoto2
+      !?ioNeedsComputedGoto4
+    ;
+    elseInstructionList := [@midrange_instructionList emptyList] ;
+    elseInstructionList += !elsifPartInstruction ;
+  or
+    $else$ ;
+    <midrange_instruction_list>
+      ?elseInstructionList
+      !?ioNeedsComputedGoto2
+      !?ioNeedsComputedGoto4
+    ;
+  end select ;
+  @location endOfElsePartLocation := here ;
+  outInstruction := [@midrange_instruction_structured_if new
+    !instructionLocation
+    !structured_if_condition
+    !thenInstructionList
+    !elseInstructionList
+    !endOfElsePartLocation
+  ] ;
+end rule ;
+
+#----------------------------------------------------*
+
+rule <midrange_simple_instruction> !@midrange_instruction outInstruction :
+  select
+    @midrange_instruction_FD_base_code baseCode ;
+    select
+      $addwf$ ;
+      baseCode := [@midrange_instruction_FD_base_code ADDWF] ;
+    or
+      $andwf$ ;
+      baseCode := [@midrange_instruction_FD_base_code ANDWF] ;
+    or
+      $comf$ ;
+      baseCode := [@midrange_instruction_FD_base_code COMF] ;
+    or
+      $decf$ ;
+      baseCode := [@midrange_instruction_FD_base_code DECF] ;
+    or
+      $incf$ ;
+      baseCode := [@midrange_instruction_FD_base_code INCF] ;
+    or
+      $iorwf$ ;
+      baseCode := [@midrange_instruction_FD_base_code IORWF] ;
+    or
+      $movf$ ;
+      baseCode := [@midrange_instruction_FD_base_code MOVF] ;
+    or
+      $rlf$ ;
+      baseCode := [@midrange_instruction_FD_base_code RLF] ;
+    or
+      $rrf$ ;
+      baseCode := [@midrange_instruction_FD_base_code RRF] ;
+    or
+      $subwf$ ;
+      baseCode := [@midrange_instruction_FD_base_code SUBWF] ;
+    or
+      $swapf$ ;
+      baseCode := [@midrange_instruction_FD_base_code SWAPF] ;
+    or
+      $xorwf$ ;
+      baseCode := [@midrange_instruction_FD_base_code XORWF] ;
+    end select ;
+    @location instructionLocation := here ;
+    @registerExpression registerName ;
+    <register_parsing> ?registerName ;
+    @bool W_isDestination ;
+    <optional_w_as_dest> ?W_isDestination ;
+    outInstruction := [@midrange_instruction_FD new
+      !instructionLocation
+      !baseCode
+      !registerName
+      !W_isDestination
+    ] ;
+  or
+    @midrange_F_instruction_base_code FAinstruction ;
+    select
+      $clrf$ ;
+      FAinstruction := [@midrange_F_instruction_base_code CLRF] ;
+    or
+      $movwf$ ;
+      FAinstruction := [@midrange_F_instruction_base_code MOVWF] ;
+    end select ;
+    @location instructionLocation := here ;
+    @registerExpression registerName ;
+    <register_parsing> ?registerName ;
+    outInstruction := [@midrange_instruction_F new
+      !instructionLocation
+      !FAinstruction
+      !registerName
+    ] ;
+  or
+    @midrange_bit_oriented_op bitOrientedOp ;
+    select
+      $bcf$ ; bitOrientedOp := [@midrange_bit_oriented_op BCF] ;
+    or
+      $bsf$ ; bitOrientedOp := [@midrange_bit_oriented_op BSF] ;
+    end select ;
+    @location instructionLocation := here ;
+    @registerExpression registerName ;
+    <register_parsing> ?registerName ;
+    $.$ ;
+    @bitNumberExpression bitNumber ;
+    <bit_number_parsing> ?bitNumber ;
+    outInstruction := [@midrange_instruction_FB new
+      !instructionLocation
+      !bitOrientedOp
+      !registerName
+      !bitNumber
+    ] ;
+  or
+    $jsr$ ;
+    @location instructionLocation := here ;
+    $identifier$ ? @lstring targetLabelName ;
+    outInstruction := [@midrange_instruction_JSR new
+      !instructionLocation
+      !targetLabelName
+      ![@midrange_jumpInstructionKind ipicExtended]
+    ] ;
+  or
+    $call$ ;
+    @location instructionLocation := here ;
+    $identifier$ ? @lstring targetLabelName ;
+    outInstruction := [@midrange_instruction_JSR new
+      !instructionLocation
+      !targetLabelName
+      ![@midrange_jumpInstructionKind native]
+    ] ;
+  or
+    $jump$ ;
+    @location instructionLocation := here ;
+    $identifier$ ? @lstring targetLabelName ;
+    outInstruction := [@midrange_instruction_JUMP new
+      !instructionLocation
+      !targetLabelName
+      ![@midrange_jumpInstructionKind ipicExtended]
+    ] ;
+  or
+    $goto$ ;
+    @location instructionLocation := here ;
+    $identifier$ ? @lstring targetLabelName ;
+    outInstruction := [@midrange_instruction_JUMP new
+      !instructionLocation
+      !targetLabelName
+      ![@midrange_jumpInstructionKind native]
+    ] ;
+  or
+    $clrwdt$ ;
+    outInstruction := [@midrange_instruction_CLRWDT new !here] ;
+  or
+    $nop$ ;
+    outInstruction := [@midrange_instruction_NOP new !here] ;
+  or
+    $sleep$ ;
+    outInstruction := [@midrange_instruction_SLEEP new !here] ;
+  or
+    @midrange_literal_instruction_opcode literalInstruction ;
+    select
+      $addlw$ ; literalInstruction := [@midrange_literal_instruction_opcode ADDLW] ;
+    or
+      $andlw$ ; literalInstruction := [@midrange_literal_instruction_opcode ANDLW] ;
+    or
+      $iorlw$ ; literalInstruction := [@midrange_literal_instruction_opcode IORLW] ;
+    or
+      $movlw$ ; literalInstruction := [@midrange_literal_instruction_opcode MOVLW] ;
+    or
+      $sublw$ ; literalInstruction := [@midrange_literal_instruction_opcode SUBLW] ;
+    or
+      $xorlw$ ; literalInstruction := [@midrange_literal_instruction_opcode XORLW] ;
+    end select ;
+    @location instructionLocation := here ;
+    @immediatExpression expression ;
+    <immediate_expression> ?expression ;
+    outInstruction := [@midrange_instruction_literalOperation new
+      !instructionLocation
+      !literalInstruction
+      !expression
+    ] ;
+  end select ;
+end rule ;
+
+#----------------------------------------------------*
+
+rule <midrange_condition_factor>
+  !@midrange_conditionExpression outCondition
+:
+  $!$ ;
+  @midrange_conditionExpression condition ;
+  <midrange_condition_factor> ? condition ;
+  outCondition := [@midrange_negateCondition new !condition] ;
+end rule ;
+
+#----------------------------------------------------*
+
+rule <midrange_condition_factor>
+  !@midrange_conditionExpression outCondition
+:
+  <midrange_condition_expression> ? outCondition ;
+end rule ;
+
+#----------------------------------------------------*
+
+rule <midrange_condition_factor>
+  !@midrange_conditionExpression outCondition
+:
+  select
+    @bool isIncrement ;
+    select
+      $incf$ ; isIncrement := true ;
+    or
+      $decf$ ; isIncrement := false ;
+    end select ;
+    @registerExpression registerExpression ;
+    <register_parsing> ? registerExpression ;
+    @bool W_isDestination ;
+    select
+      W_isDestination := false ;
+    or
+      $,$ ; $w$ ; W_isDestination := true ;
+    end select ;
+    $identifier$ ? @lstring conditionString ;
+    @string condition := [[conditionString string] uppercaseString] ;
+    @bool branchIfZero ;
+    if condition == "Z" then
+      branchIfZero := true ;
+    elsif condition == "NZ" then
+      branchIfZero := false ;
+    else
+      error conditionString: "invalid '" . conditionString
+      . "' condition; valid ones are: 'z' and 'nz'"
+      -> branchIfZero
+      ;
+    end if ;
+    outCondition := [@midrange_incDecRegisterInCondition new
+      !registerExpression
+      !isIncrement
+      !W_isDestination
+      !branchIfZero
+    ] ;
+  or
+    @registerExpression registerExpression ;
+    <register_parsing> ? registerExpression ;
+    $.$ ;
+    @bitNumberExpression bitNumberExpression ;
+    <bit_number_parsing> ?bitNumberExpression ;
+    $identifier$ ? @lstring conditionString ;
+    @string condition := [[conditionString string] uppercaseString] ;
+    @bool BTFSSinstruction ;
+    if condition == "Z" then
+      BTFSSinstruction := true ;
+    elsif condition == "NZ" then
+      BTFSSinstruction := false ;
+    else
+      error conditionString: "invalid '" . conditionString
+      . "' condition; valid ones are: 'z' and 'nz'"
+      -> BTFSSinstruction
+      ;
+    end if ;
+    outCondition := [@midrange_bitTest_in_structured_if_condition new
+      !registerExpression
+      !bitNumberExpression
+      !BTFSSinstruction
+    ] ;
+  end select ;
+end rule ;
+
+#----------------------------------------------------*
+
+rule <midrange_condition_expression>
+  !@midrange_conditionExpression outCondition
+:
+  $($ ;
+  <midrange_condition_term> ? outCondition ;
+  repeat
+  while
+    $|$ ;
+    @midrange_conditionExpression c ;
+    <midrange_condition_term> ? c ;
+    @midrange_conditionExpression rc := [@midrange_negateCondition new !c] ;
+    @midrange_conditionExpression lc := [@midrange_negateCondition new !outCondition] ;
+    outCondition := [@midrange_negateCondition new ![@midrange_andCondition new !lc !rc]] ;
+  end repeat ;
+  $)$ ;
+end rule ;
+
+#----------------------------------------------------*
+
+rule <midrange_condition_term>
+  !@midrange_conditionExpression outCondition
+:
+  <midrange_condition_factor> ? outCondition ;
+  repeat
+  while
+    $&$ ;
+    @midrange_conditionExpression c ;
+    <midrange_condition_factor> ? c ;
+    outCondition := [@midrange_andCondition new !outCondition !c] ;
+  end repeat ;
+end rule ;
+
+#----------------------------------------------------*
+
+end syntax ;

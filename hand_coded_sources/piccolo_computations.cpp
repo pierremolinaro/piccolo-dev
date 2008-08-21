@@ -4,7 +4,7 @@
 //                                                                           *
 //---------------------------------------------------------------------------*
 
-#include "piccolo_semantics.h"
+#include "ipic18_build_binary_code.h"
 #include "utilities/MF_MemoryControl.h"
 #include "collections/TC_UniqueSparseArray.h"
 

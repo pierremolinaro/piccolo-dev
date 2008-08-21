@@ -1,0 +1,142 @@
+semantics pic18_semantics :
+import semantics ipic18_build_binary_code in "ipic18_build_binary_code.gSemantics" ;
+import semantics pic18_checkingAndBuildIPIC in "pic18_checkingAndBuildIPIC.gSemantics" ;
+import semantics ipc18_convert_relatives in "ipc18_convert_relatives.gSemantics" ;
+import semantics ipic18_optimizations in "ipic18_optimizations.gSemantics" ;
+import semantics piccolo_config in "piccolo_config.gSemantics" ;
+import semantics ram_sections in "ram_sections.gSemantics" ;
+
+import option piccolo_options in "piccolo_options.gOption" ;
+
+#----------------------------------------------------------------------------*
+#                                                                            *
+#               S E M A N T I C    A N A L Y S I S                           *
+#                                                                            *
+#----------------------------------------------------------------------------*
+
+routine pic18_analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName :
+  @string sourceFileBaseName := [[inSourceFileName lastPathComponent] stringByDeletingPathExtension] ;
+  if sourceFileBaseName != [[inPiccoloModel mProgramName] string] then
+    error [inPiccoloModel mProgramName]: "the program name ('" . [inPiccoloModel mProgramName]
+    . "') should be identical to the file base name '" . sourceFileBaseName . "'" ;
+  end if ;
+  @string listFileContents := "" ;
+#-------------------------------- Analyze Device
+  @piccoloDeviceModel piccoloDeviceModel ;
+  parseDeviceDefinition ![inPiccoloModel mDeviceName] ?piccoloDeviceModel ;
+  @uint accessBankSplitOffset ;
+  switch [piccoloDeviceModel mProcessorType]
+    when pic18_60 : accessBankSplitOffset := 0x60 ;
+    when pic18_80 : accessBankSplitOffset := 0x80 ;
+    when midrange : error [inPiccoloModel mDeviceName]: "a midrange device is not accepted here" -> accessBankSplitOffset ;
+    when baseline : error [inPiccoloModel mDeviceName]: "a baseline device is not accepted here" -> accessBankSplitOffset ;
+  end switch ;
+#-------------------------------- Interrupts ?
+  @bool hasHighInterrupt := false ;
+  @bool highInterruptIsFast := false ;
+  @bool hasLowInterrupt := false ;
+  @bool lowInterruptIsFast := false ;
+  foreach [inPiccoloModel mInterruptDefinitionList] do
+    if [mInterruptName string] == "high" then
+      highInterruptIsFast := mFastReturn ;
+      if hasHighInterrupt then
+        error mInterruptName: "Only one 'high' interrupt routine is allowed" ;
+      end if ;
+      hasHighInterrupt := true ;
+    elsif [mInterruptName string] == "low" then
+      lowInterruptIsFast := mFastReturn ;
+      if hasLowInterrupt then
+        error mInterruptName: "Only one 'low' interrupt routine is allowed" ;
+      end if ;
+      hasLowInterrupt := true ;
+    else
+      error mInterruptName: "An interrupt routine should be named 'low' or 'high'" ;
+    end if ;
+    if highInterruptIsFast & lowInterruptIsFast then
+      error mInterruptName:"either low interrupt or high interrupt can be \"fast\", not both" ;
+    end if ;
+  end foreach ;
+#-------------------------------- Config definition
+  @actualConfigurationMap actualConfigurationMap ;
+  buildConfig
+    ![piccoloDeviceModel mConfigRegisterMap]
+    ![inPiccoloModel mConfigDefinitionList]
+    ![inPiccoloModel mAcceptDefaultConfiguration]
+    !?listFileContents
+    ?actualConfigurationMap
+  ;
+#-------------------------------- Ram definition
+  @ramBankTable ramBank := [piccoloDeviceModel mRamBankTable] ;
+  @registerTable registerTable ;
+  analyze_ram_sections
+    ![inPiccoloModel mRamDefinitionList]
+    !?ramBank
+    ![piccoloDeviceModel mRegisterTable]
+    !?listFileContents
+    ?registerTable
+  ;
+#-------------------------------- Build IPIC Assembly Instruction List
+  @ipic_instructionList generatedInstructionList ;
+  build_ipic18_assembly_instruction_list
+    !accessBankSplitOffset
+    !registerTable
+    !inPiccoloModel
+    !hasHighInterrupt
+    !hasLowInterrupt
+    ?generatedInstructionList
+    !?listFileContents
+  ;
+#-------------------------------- Perform Code Optimization
+  if ([@uint errorCount] == 0) & [option piccolo_options.performOptimizations] then
+    performOptimizations !?generatedInstructionList !?listFileContents ;
+  end if ;
+#-------------------------------- Convert relative branchs to absolute, when needed
+  if [@uint errorCount] == 0 then
+    convertRelativeBranchsToAbsoluteWhenNeeded !?generatedInstructionList !?listFileContents ;
+  end if ;
+#-------------------------------- Code generation
+  if [option piccolo_options.ouputListingFile] then
+    @string listFile := [inSourceFileName stringByDeletingPathExtension] . ".list" ;
+    [listFileContents writeToFileWhenDifferentContents !listFile] ;
+  end if ;
+#--- If no error, generate object file(s)
+  if [@uint errorCount] == 0 then
+  #--- Generate hex file
+    build_ipic18_binary_code
+      !generatedInstructionList
+      ![[piccoloDeviceModel mRomSize] uint]
+      !actualConfigurationMap
+    ;
+    @string contents ;
+    getGeneratedContents ?contents ;
+    @string hexDestinationFile := [inSourceFileName stringByDeletingPathExtension] . ".hex" ;
+    [contents writeToFileWhenDifferentContents !hexDestinationFile] ;
+  #--- Generate asm file, if corresponding option enabled
+    if [option piccolo_options.generateAssembly] then
+      @string assemblyCode ;
+      buildAssemblyCode
+        ![[piccoloDeviceModel mDeviceName] string]
+        ![piccoloDeviceModel mRegisterTable]
+        !registerTable
+        !generatedInstructionList
+        !actualConfigurationMap
+        ?assemblyCode
+      ;
+      @string asmDestinationFile := [inSourceFileName stringByDeletingPathExtension] . ".asm" ;
+      [assemblyCode writeToFileWhenDifferentContents !asmDestinationFile] ;
+    end if ;
+  else # There are errors : delete hex and asm files
+    @string hexDestinationFile := [inSourceFileName stringByDeletingPathExtension] . ".hex" ;
+    if [hexDestinationFile fileExists] then
+      [@string deleteFile !hexDestinationFile] ;
+    end if ;
+    @string asmDestinationFile := [inSourceFileName stringByDeletingPathExtension] . ".asm" ;
+    if [asmDestinationFile fileExists] then
+      [@string deleteFile !asmDestinationFile] ;
+    end if ;
+  end if ;
+end routine ;
+
+#----------------------------------------------------*
+
+end semantics ;
