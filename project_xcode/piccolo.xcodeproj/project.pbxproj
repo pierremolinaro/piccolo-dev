@@ -39,10 +39,6 @@
 		CF249A220E2E20CE004D51F8 /* PM_C_Object.h in Headers */ = {isa = PBXBuildFile; fileRef = CF249A120E2E20CE004D51F8 /* PM_C_Object.h */; };
 		CF249A260E2E20F1004D51F8 /* GGS_lchar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CFF5388B057A558F00854C83 /* GGS_lchar.cpp */; };
 		CF249A270E2E20F7004D51F8 /* GGS_luint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CFF53893057A558F00854C83 /* GGS_luint.cpp */; };
-		CF249AA80E2E569F004D51F8 /* piccolo_metamodel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CF249AA60E2E569F004D51F8 /* piccolo_metamodel.cpp */; };
-		CF249AA90E2E569F004D51F8 /* piccolo_metamodel.h in Headers */ = {isa = PBXBuildFile; fileRef = CF249AA70E2E569F004D51F8 /* piccolo_metamodel.h */; };
-		CF249AAA0E2E569F004D51F8 /* piccolo_metamodel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CF249AA60E2E569F004D51F8 /* piccolo_metamodel.cpp */; };
-		CF249AAB0E2E569F004D51F8 /* piccolo_metamodel.h in Headers */ = {isa = PBXBuildFile; fileRef = CF249AA70E2E569F004D51F8 /* piccolo_metamodel.h */; };
 		CF249AF70E2E6DC6004D51F8 /* piccolo_embedded_devices.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CF249AF50E2E6DC6004D51F8 /* piccolo_embedded_devices.cpp */; };
 		CF249AF80E2E6DC6004D51F8 /* piccolo_embedded_devices.h in Headers */ = {isa = PBXBuildFile; fileRef = CF249AF60E2E6DC6004D51F8 /* piccolo_embedded_devices.h */; };
 		CF249AF90E2E6DC6004D51F8 /* piccolo_embedded_devices.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CF249AF50E2E6DC6004D51F8 /* piccolo_embedded_devices.cpp */; };
@@ -328,10 +324,6 @@
 		CFBCADD70E41C5910074F535 /* piccolo_config.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CFBCADD30E41C5910074F535 /* piccolo_config.cpp */; };
 		CFBCADD80E41C5910074F535 /* piccolo_config.h in Headers */ = {isa = PBXBuildFile; fileRef = CFBCADD40E41C5910074F535 /* piccolo_config.h */; };
 		CFCD26D90850D5D000A26954 /* piccoloDebug in Resources */ = {isa = PBXBuildFile; fileRef = CFA61CF8061095160089CEA5 /* piccoloDebug */; };
-		CFD179650E3CD33B00077DD1 /* bitSlice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CFD179630E3CD33B00077DD1 /* bitSlice.cpp */; };
-		CFD179660E3CD33B00077DD1 /* bitSlice.h in Headers */ = {isa = PBXBuildFile; fileRef = CFD179640E3CD33B00077DD1 /* bitSlice.h */; };
-		CFD179670E3CD33B00077DD1 /* bitSlice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CFD179630E3CD33B00077DD1 /* bitSlice.cpp */; };
-		CFD179680E3CD33B00077DD1 /* bitSlice.h in Headers */ = {isa = PBXBuildFile; fileRef = CFD179640E3CD33B00077DD1 /* bitSlice.h */; };
 		CFD284A70A3C3F5B0066AF65 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CFD284A60A3C3F5B0066AF65 /* main.m */; };
 		CFD284A90A3C411C0066AF65 /* piccolo_lexique.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CFE9BAAF0A3C303800C9F7EC /* piccolo_lexique.cpp */; };
 		CFD284AC0A3C41EC0066AF65 /* piccolo_cocoa.mm in Sources */ = {isa = PBXBuildFile; fileRef = CFD284AB0A3C41EC0066AF65 /* piccolo_cocoa.mm */; };
@@ -390,6 +382,26 @@
 		CFDC50A30961ACE0006A0AFD /* GGS_stringset.h in Headers */ = {isa = PBXBuildFile; fileRef = CFDC50A10961ACE0006A0AFD /* GGS_stringset.h */; };
 		CFDC50A40961ACE0006A0AFD /* GGS_stringset.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CFDC50A00961ACE0006A0AFD /* GGS_stringset.cpp */; };
 		CFDC50A50961ACE0006A0AFD /* GGS_stringset.h in Headers */ = {isa = PBXBuildFile; fileRef = CFDC50A10961ACE0006A0AFD /* GGS_stringset.h */; };
+		CFE927720E5F216C000010C0 /* generic_metamodel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CFE927680E5F216C000010C0 /* generic_metamodel.cpp */; };
+		CFE927730E5F216C000010C0 /* generic_metamodel.h in Headers */ = {isa = PBXBuildFile; fileRef = CFE927690E5F216C000010C0 /* generic_metamodel.h */; };
+		CFE927740E5F216C000010C0 /* ipic_generic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CFE9276A0E5F216C000010C0 /* ipic_generic.cpp */; };
+		CFE927750E5F216C000010C0 /* ipic_generic.h in Headers */ = {isa = PBXBuildFile; fileRef = CFE9276B0E5F216C000010C0 /* ipic_generic.h */; };
+		CFE927760E5F216C000010C0 /* midrange_checkingAndBuildIPIC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CFE9276C0E5F216C000010C0 /* midrange_checkingAndBuildIPIC.cpp */; };
+		CFE927770E5F216C000010C0 /* midrange_checkingAndBuildIPIC.h in Headers */ = {isa = PBXBuildFile; fileRef = CFE9276D0E5F216C000010C0 /* midrange_checkingAndBuildIPIC.h */; };
+		CFE927780E5F216C000010C0 /* midrange_ipic_metamodel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CFE9276E0E5F216C000010C0 /* midrange_ipic_metamodel.cpp */; };
+		CFE927790E5F216C000010C0 /* midrange_ipic_metamodel.h in Headers */ = {isa = PBXBuildFile; fileRef = CFE9276F0E5F216C000010C0 /* midrange_ipic_metamodel.h */; };
+		CFE9277A0E5F216C000010C0 /* pic18_metamodel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CFE927700E5F216C000010C0 /* pic18_metamodel.cpp */; };
+		CFE9277B0E5F216C000010C0 /* pic18_metamodel.h in Headers */ = {isa = PBXBuildFile; fileRef = CFE927710E5F216C000010C0 /* pic18_metamodel.h */; };
+		CFE9277C0E5F216C000010C0 /* generic_metamodel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CFE927680E5F216C000010C0 /* generic_metamodel.cpp */; };
+		CFE9277D0E5F216C000010C0 /* generic_metamodel.h in Headers */ = {isa = PBXBuildFile; fileRef = CFE927690E5F216C000010C0 /* generic_metamodel.h */; };
+		CFE9277E0E5F216C000010C0 /* ipic_generic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CFE9276A0E5F216C000010C0 /* ipic_generic.cpp */; };
+		CFE9277F0E5F216C000010C0 /* ipic_generic.h in Headers */ = {isa = PBXBuildFile; fileRef = CFE9276B0E5F216C000010C0 /* ipic_generic.h */; };
+		CFE927800E5F216C000010C0 /* midrange_checkingAndBuildIPIC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CFE9276C0E5F216C000010C0 /* midrange_checkingAndBuildIPIC.cpp */; };
+		CFE927810E5F216C000010C0 /* midrange_checkingAndBuildIPIC.h in Headers */ = {isa = PBXBuildFile; fileRef = CFE9276D0E5F216C000010C0 /* midrange_checkingAndBuildIPIC.h */; };
+		CFE927820E5F216C000010C0 /* midrange_ipic_metamodel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CFE9276E0E5F216C000010C0 /* midrange_ipic_metamodel.cpp */; };
+		CFE927830E5F216C000010C0 /* midrange_ipic_metamodel.h in Headers */ = {isa = PBXBuildFile; fileRef = CFE9276F0E5F216C000010C0 /* midrange_ipic_metamodel.h */; };
+		CFE927840E5F216C000010C0 /* pic18_metamodel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CFE927700E5F216C000010C0 /* pic18_metamodel.cpp */; };
+		CFE927850E5F216C000010C0 /* pic18_metamodel.h in Headers */ = {isa = PBXBuildFile; fileRef = CFE927710E5F216C000010C0 /* pic18_metamodel.h */; };
 		CFE9BABA0A3C303800C9F7EC /* piccolo_grammar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CFE9BAAD0A3C303800C9F7EC /* piccolo_grammar.cpp */; };
 		CFE9BABB0A3C303800C9F7EC /* piccolo_grammar.h in Headers */ = {isa = PBXBuildFile; fileRef = CFE9BAAE0A3C303800C9F7EC /* piccolo_grammar.h */; };
 		CFE9BABC0A3C303800C9F7EC /* piccolo_lexique.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CFE9BAAF0A3C303800C9F7EC /* piccolo_lexique.cpp */; };
@@ -473,8 +485,6 @@
 		CF249A100E2E20CE004D51F8 /* PM_C_Dictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PM_C_Dictionary.h; sourceTree = "<group>"; };
 		CF249A110E2E20CE004D51F8 /* PM_C_Object.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PM_C_Object.cpp; sourceTree = "<group>"; };
 		CF249A120E2E20CE004D51F8 /* PM_C_Object.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PM_C_Object.h; sourceTree = "<group>"; };
-		CF249AA60E2E569F004D51F8 /* piccolo_metamodel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = piccolo_metamodel.cpp; sourceTree = "<group>"; };
-		CF249AA70E2E569F004D51F8 /* piccolo_metamodel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = piccolo_metamodel.h; sourceTree = "<group>"; };
 		CF249AF50E2E6DC6004D51F8 /* piccolo_embedded_devices.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = piccolo_embedded_devices.cpp; sourceTree = "<group>"; };
 		CF249AF60E2E6DC6004D51F8 /* piccolo_embedded_devices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = piccolo_embedded_devices.h; sourceTree = "<group>"; };
 		CF249B010E2E7892004D51F8 /* piccoloDevice_grammar.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = piccoloDevice_grammar.cpp; sourceTree = "<group>"; };
@@ -618,8 +628,6 @@
 		CFBCADD30E41C5910074F535 /* piccolo_config.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = piccolo_config.cpp; sourceTree = "<group>"; };
 		CFBCADD40E41C5910074F535 /* piccolo_config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = piccolo_config.h; sourceTree = "<group>"; };
 		CFC30F92058A225E003D0386 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		CFD179630E3CD33B00077DD1 /* bitSlice.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = bitSlice.cpp; sourceTree = "<group>"; };
-		CFD179640E3CD33B00077DD1 /* bitSlice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bitSlice.h; sourceTree = "<group>"; };
 		CFD284A60A3C3F5B0066AF65 /* main.m */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		CFD284AB0A3C41EC0066AF65 /* piccolo_cocoa.mm */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = sourcecode.cpp.objcpp; path = piccolo_cocoa.mm; sourceTree = "<group>"; };
 		CFD2ACF50E5DC00600E00129 /* midrange_metamodel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = midrange_metamodel.cpp; sourceTree = "<group>"; };
@@ -649,6 +657,16 @@
 		CFDA45C4090E688B00D522B5 /* AC_galgas_sortedlist.h */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = sourcecode.c.h; path = AC_galgas_sortedlist.h; sourceTree = "<group>"; };
 		CFDC50A00961ACE0006A0AFD /* GGS_stringset.cpp */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = sourcecode.cpp.cpp; path = GGS_stringset.cpp; sourceTree = "<group>"; };
 		CFDC50A10961ACE0006A0AFD /* GGS_stringset.h */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = sourcecode.c.h; path = GGS_stringset.h; sourceTree = "<group>"; };
+		CFE927680E5F216C000010C0 /* generic_metamodel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = generic_metamodel.cpp; sourceTree = "<group>"; };
+		CFE927690E5F216C000010C0 /* generic_metamodel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = generic_metamodel.h; sourceTree = "<group>"; };
+		CFE9276A0E5F216C000010C0 /* ipic_generic.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ipic_generic.cpp; sourceTree = "<group>"; };
+		CFE9276B0E5F216C000010C0 /* ipic_generic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ipic_generic.h; sourceTree = "<group>"; };
+		CFE9276C0E5F216C000010C0 /* midrange_checkingAndBuildIPIC.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = midrange_checkingAndBuildIPIC.cpp; sourceTree = "<group>"; };
+		CFE9276D0E5F216C000010C0 /* midrange_checkingAndBuildIPIC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = midrange_checkingAndBuildIPIC.h; sourceTree = "<group>"; };
+		CFE9276E0E5F216C000010C0 /* midrange_ipic_metamodel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = midrange_ipic_metamodel.cpp; sourceTree = "<group>"; };
+		CFE9276F0E5F216C000010C0 /* midrange_ipic_metamodel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = midrange_ipic_metamodel.h; sourceTree = "<group>"; };
+		CFE927700E5F216C000010C0 /* pic18_metamodel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = pic18_metamodel.cpp; sourceTree = "<group>"; };
+		CFE927710E5F216C000010C0 /* pic18_metamodel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pic18_metamodel.h; sourceTree = "<group>"; };
 		CFE9BAAD0A3C303800C9F7EC /* piccolo_grammar.cpp */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = sourcecode.cpp.cpp; path = piccolo_grammar.cpp; sourceTree = "<group>"; };
 		CFE9BAAE0A3C303800C9F7EC /* piccolo_grammar.h */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = sourcecode.c.h; path = piccolo_grammar.h; sourceTree = "<group>"; };
 		CFE9BAAF0A3C303800C9F7EC /* piccolo_lexique.cpp */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = sourcecode.cpp.cpp; path = piccolo_lexique.cpp; sourceTree = "<group>"; };
@@ -843,6 +861,16 @@
 		CFF53732057A4E5000854C83 /* Generated By Galgas */ = {
 			isa = PBXGroup;
 			children = (
+				CFE927680E5F216C000010C0 /* generic_metamodel.cpp */,
+				CFE927690E5F216C000010C0 /* generic_metamodel.h */,
+				CFE9276A0E5F216C000010C0 /* ipic_generic.cpp */,
+				CFE9276B0E5F216C000010C0 /* ipic_generic.h */,
+				CFE9276C0E5F216C000010C0 /* midrange_checkingAndBuildIPIC.cpp */,
+				CFE9276D0E5F216C000010C0 /* midrange_checkingAndBuildIPIC.h */,
+				CFE9276E0E5F216C000010C0 /* midrange_ipic_metamodel.cpp */,
+				CFE9276F0E5F216C000010C0 /* midrange_ipic_metamodel.h */,
+				CFE927700E5F216C000010C0 /* pic18_metamodel.cpp */,
+				CFE927710E5F216C000010C0 /* pic18_metamodel.h */,
 				CFD2AD380E5DE1B400E00129 /* ram_sections.cpp */,
 				CFD2AD390E5DE1B400E00129 /* ram_sections.h */,
 				CFD2AD280E5DDD2500E00129 /* midrange_semantics.cpp */,
@@ -867,8 +895,6 @@
 				CFD2ACF80E5DC00600E00129 /* midrange_syntax.h */,
 				CFBCADD30E41C5910074F535 /* piccolo_config.cpp */,
 				CFBCADD40E41C5910074F535 /* piccolo_config.h */,
-				CFD179630E3CD33B00077DD1 /* bitSlice.cpp */,
-				CFD179640E3CD33B00077DD1 /* bitSlice.h */,
 				CF249B010E2E7892004D51F8 /* piccoloDevice_grammar.cpp */,
 				CF249B020E2E7892004D51F8 /* piccoloDevice_grammar.h */,
 				CF249B030E2E7892004D51F8 /* piccoloDevice_lexique.cpp */,
@@ -879,8 +905,6 @@
 				CF249B080E2E7892004D51F8 /* piccoloDevice_syntax.h */,
 				CF249AF50E2E6DC6004D51F8 /* piccolo_embedded_devices.cpp */,
 				CF249AF60E2E6DC6004D51F8 /* piccolo_embedded_devices.h */,
-				CF249AA60E2E569F004D51F8 /* piccolo_metamodel.cpp */,
-				CF249AA70E2E569F004D51F8 /* piccolo_metamodel.h */,
 				CFD284AB0A3C41EC0066AF65 /* piccolo_cocoa.mm */,
 				CFE9BAAD0A3C303800C9F7EC /* piccolo_grammar.cpp */,
 				CFE9BAAE0A3C303800C9F7EC /* piccolo_grammar.h */,
@@ -1179,13 +1203,11 @@
 				CF249A160E2E20CE004D51F8 /* PM_C_Array.h in Headers */,
 				CF249A180E2E20CE004D51F8 /* PM_C_Dictionary.h in Headers */,
 				CF249A1A0E2E20CE004D51F8 /* PM_C_Object.h in Headers */,
-				CF249AA90E2E569F004D51F8 /* piccolo_metamodel.h in Headers */,
 				CF249AF80E2E6DC6004D51F8 /* piccolo_embedded_devices.h in Headers */,
 				CF249B0A0E2E7892004D51F8 /* piccoloDevice_grammar.h in Headers */,
 				CF249B0C0E2E7892004D51F8 /* piccoloDevice_lexique.h in Headers */,
 				CF249B0E0E2E7892004D51F8 /* piccoloDevice_semantics.h in Headers */,
 				CF249B100E2E7892004D51F8 /* piccoloDevice_syntax.h in Headers */,
-				CFD179660E3CD33B00077DD1 /* bitSlice.h in Headers */,
 				CFBCADD60E41C5910074F535 /* piccolo_config.h in Headers */,
 				CFD2ACFA0E5DC00600E00129 /* midrange_metamodel.h in Headers */,
 				CFD2ACFC0E5DC00600E00129 /* midrange_syntax.h in Headers */,
@@ -1198,6 +1220,11 @@
 				CFD2AD2D0E5DDD2500E00129 /* midrange_semantics.h in Headers */,
 				CFD2AD2F0E5DDD2500E00129 /* pic18_semantics.h in Headers */,
 				CFD2AD3B0E5DE1B400E00129 /* ram_sections.h in Headers */,
+				CFE927730E5F216C000010C0 /* generic_metamodel.h in Headers */,
+				CFE927750E5F216C000010C0 /* ipic_generic.h in Headers */,
+				CFE927770E5F216C000010C0 /* midrange_checkingAndBuildIPIC.h in Headers */,
+				CFE927790E5F216C000010C0 /* midrange_ipic_metamodel.h in Headers */,
+				CFE9277B0E5F216C000010C0 /* pic18_metamodel.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1284,13 +1311,11 @@
 				CF249A1E0E2E20CE004D51F8 /* PM_C_Array.h in Headers */,
 				CF249A200E2E20CE004D51F8 /* PM_C_Dictionary.h in Headers */,
 				CF249A220E2E20CE004D51F8 /* PM_C_Object.h in Headers */,
-				CF249AAB0E2E569F004D51F8 /* piccolo_metamodel.h in Headers */,
 				CF249AFA0E2E6DC6004D51F8 /* piccolo_embedded_devices.h in Headers */,
 				CF249B120E2E7892004D51F8 /* piccoloDevice_grammar.h in Headers */,
 				CF249B140E2E7892004D51F8 /* piccoloDevice_lexique.h in Headers */,
 				CF249B160E2E7892004D51F8 /* piccoloDevice_semantics.h in Headers */,
 				CF249B180E2E7892004D51F8 /* piccoloDevice_syntax.h in Headers */,
-				CFD179680E3CD33B00077DD1 /* bitSlice.h in Headers */,
 				CFBCADD80E41C5910074F535 /* piccolo_config.h in Headers */,
 				CFD2ACFE0E5DC00600E00129 /* midrange_metamodel.h in Headers */,
 				CFD2AD000E5DC00600E00129 /* midrange_syntax.h in Headers */,
@@ -1303,6 +1328,11 @@
 				CFD2AD310E5DDD2500E00129 /* midrange_semantics.h in Headers */,
 				CFD2AD330E5DDD2500E00129 /* pic18_semantics.h in Headers */,
 				CFD2AD3D0E5DE1B400E00129 /* ram_sections.h in Headers */,
+				CFE9277D0E5F216C000010C0 /* generic_metamodel.h in Headers */,
+				CFE9277F0E5F216C000010C0 /* ipic_generic.h in Headers */,
+				CFE927810E5F216C000010C0 /* midrange_checkingAndBuildIPIC.h in Headers */,
+				CFE927830E5F216C000010C0 /* midrange_ipic_metamodel.h in Headers */,
+				CFE927850E5F216C000010C0 /* pic18_metamodel.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1529,13 +1559,11 @@
 				CF249A150E2E20CE004D51F8 /* PM_C_Array.cpp in Sources */,
 				CF249A170E2E20CE004D51F8 /* PM_C_Dictionary.cpp in Sources */,
 				CF249A190E2E20CE004D51F8 /* PM_C_Object.cpp in Sources */,
-				CF249AA80E2E569F004D51F8 /* piccolo_metamodel.cpp in Sources */,
 				CF249AF70E2E6DC6004D51F8 /* piccolo_embedded_devices.cpp in Sources */,
 				CF249B090E2E7892004D51F8 /* piccoloDevice_grammar.cpp in Sources */,
 				CF249B0B0E2E7892004D51F8 /* piccoloDevice_lexique.cpp in Sources */,
 				CF249B0D0E2E7892004D51F8 /* piccoloDevice_semantics.cpp in Sources */,
 				CF249B0F0E2E7892004D51F8 /* piccoloDevice_syntax.cpp in Sources */,
-				CFD179650E3CD33B00077DD1 /* bitSlice.cpp in Sources */,
 				CFBCADD50E41C5910074F535 /* piccolo_config.cpp in Sources */,
 				CFD2ACF90E5DC00600E00129 /* midrange_metamodel.cpp in Sources */,
 				CFD2ACFB0E5DC00600E00129 /* midrange_syntax.cpp in Sources */,
@@ -1548,6 +1576,11 @@
 				CFD2AD2C0E5DDD2500E00129 /* midrange_semantics.cpp in Sources */,
 				CFD2AD2E0E5DDD2500E00129 /* pic18_semantics.cpp in Sources */,
 				CFD2AD3A0E5DE1B400E00129 /* ram_sections.cpp in Sources */,
+				CFE927720E5F216C000010C0 /* generic_metamodel.cpp in Sources */,
+				CFE927740E5F216C000010C0 /* ipic_generic.cpp in Sources */,
+				CFE927760E5F216C000010C0 /* midrange_checkingAndBuildIPIC.cpp in Sources */,
+				CFE927780E5F216C000010C0 /* midrange_ipic_metamodel.cpp in Sources */,
+				CFE9277A0E5F216C000010C0 /* pic18_metamodel.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1620,13 +1653,11 @@
 				CF249A1D0E2E20CE004D51F8 /* PM_C_Array.cpp in Sources */,
 				CF249A1F0E2E20CE004D51F8 /* PM_C_Dictionary.cpp in Sources */,
 				CF249A210E2E20CE004D51F8 /* PM_C_Object.cpp in Sources */,
-				CF249AAA0E2E569F004D51F8 /* piccolo_metamodel.cpp in Sources */,
 				CF249AF90E2E6DC6004D51F8 /* piccolo_embedded_devices.cpp in Sources */,
 				CF249B110E2E7892004D51F8 /* piccoloDevice_grammar.cpp in Sources */,
 				CF249B130E2E7892004D51F8 /* piccoloDevice_lexique.cpp in Sources */,
 				CF249B150E2E7892004D51F8 /* piccoloDevice_semantics.cpp in Sources */,
 				CF249B170E2E7892004D51F8 /* piccoloDevice_syntax.cpp in Sources */,
-				CFD179670E3CD33B00077DD1 /* bitSlice.cpp in Sources */,
 				CFBCADD70E41C5910074F535 /* piccolo_config.cpp in Sources */,
 				CFD2ACFD0E5DC00600E00129 /* midrange_metamodel.cpp in Sources */,
 				CFD2ACFF0E5DC00600E00129 /* midrange_syntax.cpp in Sources */,
@@ -1639,6 +1670,11 @@
 				CFD2AD300E5DDD2500E00129 /* midrange_semantics.cpp in Sources */,
 				CFD2AD320E5DDD2500E00129 /* pic18_semantics.cpp in Sources */,
 				CFD2AD3C0E5DE1B400E00129 /* ram_sections.cpp in Sources */,
+				CFE9277C0E5F216C000010C0 /* generic_metamodel.cpp in Sources */,
+				CFE9277E0E5F216C000010C0 /* ipic_generic.cpp in Sources */,
+				CFE927800E5F216C000010C0 /* midrange_checkingAndBuildIPIC.cpp in Sources */,
+				CFE927820E5F216C000010C0 /* midrange_ipic_metamodel.cpp in Sources */,
+				CFE927840E5F216C000010C0 /* pic18_metamodel.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

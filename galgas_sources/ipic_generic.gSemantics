@@ -1,0 +1,395 @@
+semantics ipic_generic :
+import semantics generic_metamodel in "generic_metamodel.gSemantics" ;
+import semantics piccoloDevice_semantics in "piccoloDevice_semantics.gSemantics" ;
+import option piccolo_options in "piccolo_options.gOption" ;
+import "ipic_metamodel.gSemantics" ;
+
+#----------------------------------------------------------------------------*
+#                          CONSTANT MAP                                      *
+#----------------------------------------------------------------------------*
+
+map @constantMap {
+  @sint mValue ;
+  insert insertKey error message "the '%K' constant is already declared in %L" ;
+  search searchKey error message "the '%K' constant is not declared" ;
+}
+
+#----------------------------------------------------------------------------*
+#                          ROUTINE MAP                                       *
+#----------------------------------------------------------------------------*
+
+map @routineMap {
+  @bool mIsNoReturn ;
+  @uint mRequiredBank ;
+  @uint mReturnedBank ;
+  @bool mPreservesBank ;
+  insert insertKey error message "the '%K' routine is already declared in %L" ;
+  search searchKey error message "the '%K' routine is not declared" ;
+}
+
+#----------------------------------------------------------------------------*
+
+enum @routineKind {
+  constructor regularRoutine ;
+  constructor noReturnRoutine ;
+  constructor interruptRoutine ;
+}{
+}
+
+#----------------------------------------------------------------------------*
+#                                                                            *
+#                    IMMEDIAT EXPRESSION EVALUATION                          *
+#                                                                            *
+#----------------------------------------------------------------------------*
+
+abstract method @immediatExpression.eval
+  ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
+  !@sint outResult
+;
+
+#----------------------------------------------------------------------------*
+
+override method @immediatInteger.eval
+  ??@registerTable unused inRegisterTable
+  ??@constantMap unused inConstantMap
+  !@sint outResult
+:
+  outResult := [[mValue uint] sint] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @immediatRegister.eval
+  ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
+  !@sint outResult
+:
+  if [inRegisterTable hasKey ![[mRegister mRegisterName] string]] then
+    @uintlist registerAddressList ;
+    @uint size ;
+    [inRegisterTable searchKey ![mRegister mRegisterName] ?registerAddressList ?size ?* ?*] ;
+    @uint registerAddress ; [registerAddressList first ?registerAddress] ;
+    if [[mRegister mOffset] uint] >= size then
+      error [mRegister mOffset]:"index (" . [[[mRegister mOffset] uint] string] . ") should be lower than size (" . [size string] . ")" ;
+    end if ;
+    outResult := [registerAddress + [[mRegister mOffset] uint] sint] ;
+  elsif [inConstantMap hasKey ![[mRegister mRegisterName] string]] then
+    [inConstantMap searchKey ![mRegister mRegisterName] ?outResult] ;
+    if [[mRegister mOffset] uint] > 0 then
+      error [mRegister mOffset]:"index notation (" . [[[mRegister mOffset] uint] string] . ") cannot be used with a constant" ;
+    end if ;
+  else
+    error [mRegister mRegisterName]: "'" . [mRegister mRegisterName] . "' should be declared as ram register or as constant" -> outResult ;
+  end if ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @immediatAdd.eval
+  ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
+  !@sint outResult
+:
+  @sint leftResult ; [mLeftExpression eval !inRegisterTable !inConstantMap ?leftResult] ;
+  @sint rightResult ; [mRightExpression eval !inRegisterTable !inConstantMap ?rightResult] ;
+  outResult := leftResult + rightResult ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @immediatSub.eval
+  ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
+  !@sint outResult
+:
+  @sint leftResult ; [mLeftExpression eval !inRegisterTable !inConstantMap ?leftResult] ;
+  @sint rightResult ; [mRightExpression eval !inRegisterTable !inConstantMap ?rightResult] ;
+  outResult := leftResult - rightResult ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @immediatMul.eval
+  ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
+  !@sint outResult
+:
+  @sint leftResult ; [mLeftExpression eval !inRegisterTable !inConstantMap ?leftResult] ;
+  @sint rightResult ; [mRightExpression eval !inRegisterTable !inConstantMap ?rightResult] ;
+  outResult := leftResult * rightResult ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @immediatDiv.eval
+  ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
+  !@sint outResult
+:
+  @sint leftResult ; [mLeftExpression eval !inRegisterTable !inConstantMap ?leftResult] ;
+  @sint rightResult ; [mRightExpression eval !inRegisterTable !inConstantMap ?rightResult] ;
+  outResult := leftResult / rightResult ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @immediatMod.eval
+  ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
+  !@sint outResult
+:
+  @sint leftResult ; [mLeftExpression eval !inRegisterTable !inConstantMap ?leftResult] ;
+  @sint rightResult ; [mRightExpression eval !inRegisterTable !inConstantMap ?rightResult] ;
+  outResult := leftResult mod rightResult ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @immediatAnd.eval
+  ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
+  !@sint outResult
+:
+  @sint leftResult ; [mLeftExpression eval !inRegisterTable !inConstantMap ?leftResult] ;
+  @sint rightResult ; [mRightExpression eval !inRegisterTable !inConstantMap ?rightResult] ;
+  outResult := leftResult & rightResult ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @immediatOr.eval
+  ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
+  !@sint outResult
+:
+  @sint leftResult ; [mLeftExpression eval !inRegisterTable !inConstantMap ?leftResult] ;
+  @sint rightResult ; [mRightExpression eval !inRegisterTable !inConstantMap ?rightResult] ;
+  outResult := leftResult | rightResult ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @immediatXor.eval
+  ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
+  !@sint outResult
+:
+  @sint leftResult ; [mLeftExpression eval !inRegisterTable !inConstantMap ?leftResult] ;
+  @sint rightResult ; [mRightExpression eval !inRegisterTable !inConstantMap ?rightResult] ;
+  outResult := leftResult ^ rightResult ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @immediatLeftShift.eval
+  ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
+  !@sint outResult
+:
+  @sint leftResult ; [mLeftExpression eval !inRegisterTable !inConstantMap ?leftResult] ;
+  @sint rightResult ; [mRightExpression eval !inRegisterTable !inConstantMap ?rightResult] ;
+  outResult := leftResult << [rightResult uint] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @immediatRightShift.eval
+  ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
+  !@sint outResult
+:
+  @sint leftResult ; [mLeftExpression eval !inRegisterTable !inConstantMap ?leftResult] ;
+  @sint rightResult ; [mRightExpression eval !inRegisterTable !inConstantMap ?rightResult] ;
+  outResult := leftResult >> [rightResult uint] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @immediatEqualTest.eval
+  ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
+  !@sint outResult
+:
+  @sint leftResult ; [mLeftExpression eval !inRegisterTable !inConstantMap ?leftResult] ;
+  @sint rightResult ; [mRightExpression eval !inRegisterTable !inConstantMap ?rightResult] ;
+  if leftResult == rightResult then
+    outResult := 1S ;
+  else
+    outResult := 0S ;
+  end if ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @immediatNotEqualTest.eval
+  ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
+  !@sint outResult
+:
+  @sint leftResult ; [mLeftExpression eval !inRegisterTable !inConstantMap ?leftResult] ;
+  @sint rightResult ; [mRightExpression eval !inRegisterTable !inConstantMap ?rightResult] ;
+  if leftResult != rightResult then
+    outResult := 1S ;
+  else
+    outResult := 0S ;
+  end if ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @immediatGreaterOrEqualTest.eval
+  ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
+  !@sint outResult
+:
+  @sint leftResult ; [mLeftExpression eval !inRegisterTable !inConstantMap ?leftResult] ;
+  @sint rightResult ; [mRightExpression eval !inRegisterTable !inConstantMap ?rightResult] ;
+  if leftResult >= rightResult then
+    outResult := 1S ;
+  else
+    outResult := 0S ;
+  end if ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @immediatLowerOrEqualTest.eval
+  ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
+  !@sint outResult
+:
+  @sint leftResult ; [mLeftExpression eval !inRegisterTable !inConstantMap ?leftResult] ;
+  @sint rightResult ; [mRightExpression eval !inRegisterTable !inConstantMap ?rightResult] ;
+  if leftResult <= rightResult then
+    outResult := 1S ;
+  else
+    outResult := 0S ;
+  end if ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @immediatGreaterTest.eval
+  ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
+  !@sint outResult
+:
+  @sint leftResult ; [mLeftExpression eval !inRegisterTable !inConstantMap ?leftResult] ;
+  @sint rightResult ; [mRightExpression eval !inRegisterTable !inConstantMap ?rightResult] ;
+  if leftResult > rightResult then
+    outResult := 1S ;
+  else
+    outResult := 0S ;
+  end if ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @immediatLowerTest.eval
+  ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
+  !@sint outResult
+:
+  @sint leftResult ; [mLeftExpression eval !inRegisterTable !inConstantMap ?leftResult] ;
+  @sint rightResult ; [mRightExpression eval !inRegisterTable !inConstantMap ?rightResult] ;
+  if leftResult < rightResult then
+    outResult := 1S ;
+  else
+    outResult := 0S ;
+  end if ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @immediatNegate.eval
+  ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
+  !@sint outResult
+:
+  @sint result ; [mExpression eval !inRegisterTable !inConstantMap ?result] ;
+  outResult := - result ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @immediatComplement.eval
+  ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
+  !@sint outResult
+:
+  @sint result ; [mExpression eval !inRegisterTable !inConstantMap ?result] ;
+  outResult := ~ result ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @immediatSlice.eval
+  ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
+  !@sint outResult
+:
+  @bitSliceTable bitSliceTable ;
+  outResult := 0S ;
+  [inRegisterTable searchKey !mRegisterName ?* ?* ? bitSliceTable ?*] ;
+  @stringset sliceNameSet [emptySet] ;
+  foreach mSliceExpressionList do
+    if [sliceNameSet hasKey ![mSliceName string]] then
+      error mSliceName:"the '" . mSliceName . "' bit field has been already defined" ;
+    else
+      sliceNameSet += ![mSliceName string] ;
+      @uint sliceIndex ;
+      @uint sliceSize ;
+      [bitSliceTable searchKey !mSliceName ?sliceIndex ?sliceSize] ;
+      @sint result ; [mExpression eval !inRegisterTable !inConstantMap ?result] ;
+      if (result < 0S) | (result > ((1S << sliceSize) - 1S)) then
+        error mSliceName:"invalid immediat value associated to the '" . mSliceName . "' bit field, evaluated as " . [result string]
+        . " (should be between 0 and " . [(1 << sliceSize) - 1 string] . ")" ;
+      end if ;
+      outResult := outResult | (result << sliceIndex) ;
+      end if ;
+  end foreach ;
+end method ;
+
+#----------------------------------------------------------------------------*
+#                                                                            *
+#                        BIT NUMBER EXPRESSION                               *
+#                                                                            *
+#----------------------------------------------------------------------------*
+
+abstract method @bitNumberExpression.getBitNumber
+  ??@bitSliceTable inBitSliceTable
+  !@uint outBitNumber
+;
+
+#----------------------------------------------------------------------------*
+
+override method @bitNumberLiteralValue.getBitNumber
+  ??@bitSliceTable unused inBitSliceTable
+  !@uint outBitNumber
+:
+  if [mBitNumberLiteralValue uint] > 7 then
+    error mBitNumberLiteralValue:"The bit number is " . [[mBitNumberLiteralValue uint] string] . " (should be <= 7)" ;
+  end if ;
+  outBitNumber := [mBitNumberLiteralValue uint] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @bitNumberLabelValue.getBitNumber
+  ??@bitSliceTable inBitSliceTable
+  !@uint outBitNumber
+:
+  @uint sliceIndex ;
+  @uint sliceSize ;
+  [inBitSliceTable searchKey !mBitNumberLabelValue ?sliceIndex ? sliceSize] ;
+  if [mBitNumberIndexValue uint] > sliceSize then
+    error mBitNumberIndexValue: "The " . [[mBitNumberIndexValue uint] string]
+    . " index is too large (should be < " . [sliceSize string] . ")" ;
+  end if ;
+  outBitNumber := sliceIndex + [mBitNumberIndexValue uint] ;
+end method ;
+
+#----------------------------------------------------*
+
+end semantics ;

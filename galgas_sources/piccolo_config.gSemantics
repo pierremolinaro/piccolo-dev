@@ -1,5 +1,5 @@
 semantics piccolo_config :
-import semantics piccolo_metamodel in "piccolo_metamodel.gSemantics" ;
+import semantics generic_metamodel in "generic_metamodel.gSemantics" ;
 import semantics piccoloDevice_semantics in "piccoloDevice_semantics.gSemantics" ;
 
 #----------------------------------------------------------------------------*

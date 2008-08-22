@@ -38,7 +38,7 @@ controller PIC16F677 {
     <ANS7, ANS6, ANS5, ANS4, ANS3, ANS2, ANS1, ANS0> ;
 
   register ANSELH at 0x11F
-    <-, -, -, -, ANSELH [4]> ;
+    <-, -, -, -, ANS11, ANS10, ANS9, ANS8> ;
 
   register CM1CON0 at 0x119
     <C1ON, C1OUT, C1OE, C1POL, C1SP, C1R, C1CH [2]> ;

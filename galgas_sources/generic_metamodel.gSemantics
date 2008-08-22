@@ -1,0 +1,269 @@
+semantics generic_metamodel :
+
+#----------------------------------------------------*
+
+map @bitSliceTable {
+  @uint mSliceIndex ;
+  @uint mSliceSize ;
+  insert insertKey error message "the '%K' slice is already declared in %L" ;
+  search searchKey error message "the '%K' slice is not declared" ;
+}
+
+#----------------------------------------------------*
+
+class @registerExpression {
+  @lstring mRegisterName ;
+  @luint mOffset ;
+}
+
+#----------------------------------------------------*
+
+abstract class @declarationInRam {
+}
+
+#----------------------------------------------------*
+
+class @byteDeclarationInRam extends @declarationInRam {
+  @lstring mName ;
+  @luint mSize ;
+  @bitSliceTable mBitSliceTable ;
+  @string mBitDefinitionString ;
+}
+
+#----------------------------------------------------*
+
+list @declarationInRamList {
+  @declarationInRam mDeclaration ;
+}
+
+#----------------------------------------------------*
+
+list @commonBranchList {
+  @declarationInRamList mDeclarations ;
+  @location mEndOfBranchLocation ;
+}
+
+#----------------------------------------------------*
+
+class @commonDeclarationInRam extends @declarationInRam {
+  @commonBranchList mBranchList ;
+}
+
+#----------------------------------------------------*
+
+list @ramDefinitionList {
+  @lstring mBankName ;
+  @declarationInRamList mDeclaration ;
+}
+
+#----------------------------------------------------*
+
+list @configSettingList {
+  @lstring mSettingName ;
+  @lstring mSettingValue ;
+}
+
+#----------------------------------------------------*
+
+list @configDefinitionList {
+  @configSettingList mSettingList ;
+}
+
+#----------------------------------------------------*
+
+abstract class @immediatExpression {
+}
+
+#----------------------------------------------------*
+
+list @immediatExpressionList {
+  @immediatExpression mExpression ;
+}
+
+#----------------------------------------------------*
+
+class @immediatInteger extends @immediatExpression {
+  @luint mValue ;
+}
+
+#----------------------------------------------------*
+
+class @immediatRegister extends @immediatExpression {
+  @registerExpression mRegister ;
+}
+
+#----------------------------------------------------*
+
+class @immediatAdd extends @immediatExpression {
+  @immediatExpression mLeftExpression ;
+  @immediatExpression mRightExpression ;
+}
+
+#----------------------------------------------------*
+
+class @immediatSub extends @immediatExpression {
+  @immediatExpression mLeftExpression ;
+  @immediatExpression mRightExpression ;
+}
+
+#----------------------------------------------------*
+
+class @immediatMul extends @immediatExpression {
+  @immediatExpression mLeftExpression ;
+  @immediatExpression mRightExpression ;
+}
+
+#----------------------------------------------------*
+
+class @immediatDiv extends @immediatExpression {
+  @immediatExpression mLeftExpression ;
+  @immediatExpression mRightExpression ;
+}
+
+#----------------------------------------------------*
+
+class @immediatMod extends @immediatExpression {
+  @immediatExpression mLeftExpression ;
+  @immediatExpression mRightExpression ;
+}
+
+#----------------------------------------------------*
+
+class @immediatOr extends @immediatExpression {
+  @immediatExpression mLeftExpression ;
+  @immediatExpression mRightExpression ;
+}
+
+#----------------------------------------------------*
+
+class @immediatAnd extends @immediatExpression {
+  @immediatExpression mLeftExpression ;
+  @immediatExpression mRightExpression ;
+}
+
+#----------------------------------------------------*
+
+class @immediatXor extends @immediatExpression {
+  @immediatExpression mLeftExpression ;
+  @immediatExpression mRightExpression ;
+}
+
+#----------------------------------------------------*
+
+class @immediatLeftShift extends @immediatExpression {
+  @immediatExpression mLeftExpression ;
+  @immediatExpression mRightExpression ;
+}
+
+#----------------------------------------------------*
+
+class @immediatRightShift extends @immediatExpression {
+  @immediatExpression mLeftExpression ;
+  @immediatExpression mRightExpression ;
+}
+
+#----------------------------------------------------*
+
+class @immediatEqualTest extends @immediatExpression {
+  @immediatExpression mLeftExpression ;
+  @immediatExpression mRightExpression ;
+}
+
+#----------------------------------------------------*
+
+class @immediatNotEqualTest extends @immediatExpression {
+  @immediatExpression mLeftExpression ;
+  @immediatExpression mRightExpression ;
+}
+
+#----------------------------------------------------*
+
+class @immediatGreaterTest extends @immediatExpression {
+  @immediatExpression mLeftExpression ;
+  @immediatExpression mRightExpression ;
+}
+
+#----------------------------------------------------*
+
+class @immediatGreaterOrEqualTest extends @immediatExpression {
+  @immediatExpression mLeftExpression ;
+  @immediatExpression mRightExpression ;
+}
+
+#----------------------------------------------------*
+
+class @immediatLowerTest extends @immediatExpression {
+  @immediatExpression mLeftExpression ;
+  @immediatExpression mRightExpression ;
+}
+
+#----------------------------------------------------*
+
+class @immediatLowerOrEqualTest extends @immediatExpression {
+  @immediatExpression mLeftExpression ;
+  @immediatExpression mRightExpression ;
+}
+
+#----------------------------------------------------*
+
+class @immediatNegate extends @immediatExpression {
+  @immediatExpression mExpression ;
+}
+
+#----------------------------------------------------*
+
+class @immediatComplement extends @immediatExpression {
+  @immediatExpression mExpression ;
+}
+
+#----------------------------------------------------*
+
+list @immediatSliceExpressionList {
+  @lstring mSliceName ;
+  @immediatExpression mExpression ;
+}
+
+#----------------------------------------------------*
+
+class @immediatSlice extends @immediatExpression {
+  @lstring mRegisterName ;
+  @immediatSliceExpressionList mSliceExpressionList ;
+}
+
+#----------------------------------------------------*
+
+list @constantDefinitionList {
+  @lstring mConstantName ;
+  @immediatExpression mExpression ;
+}
+
+#----------------------------------------------------------------------------*
+
+map @actualConfigurationMap {
+  @uint mRegisterAddress ;
+  @uint mRegisterValue ;
+  insert insertKey error message "the '%K' configuration register is already declared in %L" ;
+  search searchKey error message "the '%K' configuration register is not declared" ;
+}
+
+#----------------------------------------------------*
+
+abstract class @bitNumberExpression {
+}
+
+#----------------------------------------------------*
+
+class @bitNumberLiteralValue extends @bitNumberExpression {
+  @luint mBitNumberLiteralValue ;
+}
+
+#----------------------------------------------------*
+
+class @bitNumberLabelValue extends @bitNumberExpression {
+  @lstring mBitNumberLabelValue ;
+  @luint mBitNumberIndexValue ;
+}
+
+#----------------------------------------------------*
+
+end semantics ;
