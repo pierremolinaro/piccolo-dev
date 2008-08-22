@@ -17,7 +17,7 @@ map @symbolTableForOptimizations {
 #                                                                            *
 #----------------------------------------------------------------------------*
 
-method @ipic_instruction. defineLabel
+method @ipic18_instruction. defineLabel
   ?!@symbolTableForOptimizations unused ioRoutineSymbolTable
   ??@uint unused inLineIndex
 :
@@ -37,8 +37,8 @@ end method ;
 
 routine findFirstInstructionFromAddress
   ??@uint inLineIndex
-  ??@ipic_instructionList inGeneratedInstructionList
-  !@ipic_instruction outFirstInstruction
+  ??@ipic18_instructionList inGeneratedInstructionList
+  !@ipic18_instruction outFirstInstruction
 :
 #--- Line Index
   @uint currentAddress := inLineIndex ;
@@ -62,8 +62,8 @@ end routine ;
 
 routine findFirstInstructionOrLabelFromAddress
   ??@uint inLineIndex
-  ??@ipic_instructionList inGeneratedInstructionList
-  !@ipic_instruction outFirstInstruction
+  ??@ipic18_instructionList inGeneratedInstructionList
+  !@ipic18_instruction outFirstInstruction
   !@stringset outReachedLabelSet
 :
   outReachedLabelSet := [@stringset emptySet] ;
@@ -98,7 +98,7 @@ end routine ;
 method @ipic_JUMP.optimizeJUMP
   ??@symbolTableForOptimizations inSymbolTable
   ??@uint inLineIndex
-  ?!@ipic_instructionList ioGeneratedInstructionList
+  ?!@ipic18_instructionList ioGeneratedInstructionList
   ?!@string ioListFileContents
   ?!@bool ioOptimizationsDone
 :
@@ -113,18 +113,18 @@ method @ipic_JUMP.optimizeJUMP
   #--- Find destination label definition line
     @uint line ; [inSymbolTable searchKey !mTargetLabel ?line] ;
   #--- Find first executable instruction
-    @ipic_instruction firstInstruction ;
+    @ipic18_instruction firstInstruction ;
     findFirstInstructionFromAddress !line + 1 !ioGeneratedInstructionList ?firstInstruction ;
   #--- Optimization from found first instruction
     cast firstInstruction :
-    when == @ipic_instruction_RETURN do
+    when == @ipic18_instruction_RETURN do
       [!?ioGeneratedInstructionList setMInstructionAtIndex
-        ![@ipic_instruction_RETURN new !mInstructionLocation]
+        ![@ipic18_instruction_RETURN new !mInstructionLocation]
         !inLineIndex
       ] ;
       ioOptimizationsDone := true ;
       ioListFileContents .= "  line " . [inLineIndex string] . ": JUMP branching to RETURN replaced by RETURN\n" ;
-    when == @ipic_instruction_literalOperation literalOp do
+    when == @ipic18_instruction_literalOperation literalOp do
       if [literalOp mLiteralInstruction] == [@literal_instruction_opcode RETLW] then
         [!?ioGeneratedInstructionList setMInstructionAtIndex
           !literalOp
@@ -151,16 +151,16 @@ end method ;
 
 method @ipic_JSR.optimizeJSR
   ??@uint inLineIndex
-  ?!@ipic_instructionList ioGeneratedInstructionList
+  ?!@ipic18_instructionList ioGeneratedInstructionList
   ?!@string ioListFileContents
   ?!@bool ioOptimizationsDone
 :
 #--- Find first executable instruction
-  @ipic_instruction firstInstruction ;
+  @ipic18_instruction firstInstruction ;
   findFirstInstructionFromAddress !inLineIndex + 1 !ioGeneratedInstructionList ?firstInstruction ;
 #--- Optimization from found first instruction
   cast firstInstruction :
-  when == @ipic_instruction_RETURN do
+  when == @ipic18_instruction_RETURN do
     [!?ioGeneratedInstructionList setMInstructionAtIndex
       ![@ipic_JUMP new !mInstructionLocation !mTargetLabel !mKind]
       !inLineIndex
@@ -173,21 +173,21 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-method @ipic_instruction_literalOperation.optimizeMOVLW
+method @ipic18_instruction_literalOperation.optimizeMOVLW
   ??@uint inLineIndex
-  ?!@ipic_instructionList ioGeneratedInstructionList
+  ?!@ipic18_instructionList ioGeneratedInstructionList
   ?!@string ioListFileContents
   ?!@bool ioOptimizationsDone
 :
   if mLiteralInstruction == [@literal_instruction_opcode MOVLW] then
   #--- Find first executable instruction
-    @ipic_instruction firstInstruction ;
+    @ipic18_instruction firstInstruction ;
     findFirstInstructionFromAddress !inLineIndex + 1 !ioGeneratedInstructionList ?firstInstruction ;
   #--- Optimization from found first instruction
     cast firstInstruction :
-    when == @ipic_instruction_RETURN do
+    when == @ipic18_instruction_RETURN do
       [!?ioGeneratedInstructionList setMInstructionAtIndex
-        ![@ipic_instruction_literalOperation new !mInstructionLocation ![@literal_instruction_opcode RETLW] !mLiteralValue]
+        ![@ipic18_instruction_literalOperation new !mInstructionLocation ![@literal_instruction_opcode RETLW] !mLiteralValue]
         !inLineIndex
       ] ;
       ioOptimizationsDone := true ;
@@ -199,24 +199,24 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-method @ipic_instruction_conditionalBranch.optimizeBCC
+method @ipic18_instruction_conditionalBranch.optimizeBCC
   ??@symbolTableForOptimizations inSymbolTable
   ??@uint inLineIndex
-  ?!@ipic_instructionList ioGeneratedInstructionList
+  ?!@ipic18_instructionList ioGeneratedInstructionList
   ?!@string ioListFileContents
   ?!@bool ioOptimizationsDone
 :
 #--- Find destination label definition line
   @uint line ; [inSymbolTable searchKey !mTargetLabel ?line] ;
 #--- Find first executable instruction
-  @ipic_instruction firstInstruction ;
+  @ipic18_instruction firstInstruction ;
   findFirstInstructionFromAddress !line + 1 !ioGeneratedInstructionList ?firstInstruction ;
 #--- Optimization from found first instruction
   cast firstInstruction :
   when == @ipic_JUMP jump do
     if [mTargetLabel string] != [[jump mTargetLabel] string] then
       [!?ioGeneratedInstructionList setMInstructionAtIndex
-        ![@ipic_instruction_conditionalBranch new !mInstructionLocation !mBranchMode !mConditionalBranch ![jump mTargetLabel]]
+        ![@ipic18_instruction_conditionalBranch new !mInstructionLocation !mBranchMode !mConditionalBranch ![jump mTargetLabel]]
         !inLineIndex
       ] ;
       ioOptimizationsDone := true ;
@@ -231,14 +231,14 @@ end method ;
 method @ipic_jump_test_register.optimizeTestReg
   ??@symbolTableForOptimizations inSymbolTable
   ??@uint inLineIndex
-  ?!@ipic_instructionList ioGeneratedInstructionList
+  ?!@ipic18_instructionList ioGeneratedInstructionList
   ?!@string ioListFileContents
   ?!@bool ioOptimizationsDone
 :
 #--- Find destination label definition line
   @uint line ; [inSymbolTable searchKey ![@lstring new !mTargetLabel !here] ?line] ;
 #--- Find first executable instruction
-  @ipic_instruction firstInstruction ;
+  @ipic18_instruction firstInstruction ;
   findFirstInstructionFromAddress !line + 1 !ioGeneratedInstructionList ?firstInstruction ;
 #--- Optimization from found first instruction
   cast firstInstruction :
@@ -266,14 +266,14 @@ end method ;
 method @ipic_incDecRegisterInCondition.optimizeTestDecInc
   ??@symbolTableForOptimizations inSymbolTable
   ??@uint inLineIndex
-  ?!@ipic_instructionList ioGeneratedInstructionList
+  ?!@ipic18_instructionList ioGeneratedInstructionList
   ?!@string ioListFileContents
   ?!@bool ioOptimizationsDone
 :
 #--- Find destination label definition line
   @uint line ; [inSymbolTable searchKey ![@lstring new !mTargetLabel !here] ?line] ;
 #--- Find first executable instruction
-  @ipic_instruction firstInstruction ;
+  @ipic18_instruction firstInstruction ;
   findFirstInstructionFromAddress !line + 1 !ioGeneratedInstructionList ?firstInstruction ;
 #--- Optimization from found first instruction
   cast firstInstruction :
@@ -317,14 +317,14 @@ end method ;
 method @ipic_registerComparisonCondition.optimizeCMP
   ??@symbolTableForOptimizations inSymbolTable
   ??@uint inLineIndex
-  ?!@ipic_instructionList ioGeneratedInstructionList
+  ?!@ipic18_instructionList ioGeneratedInstructionList
   ?!@string ioListFileContents
   ?!@bool ioOptimizationsDone
 :
 #--- Find destination label definition line
   @uint line ; [inSymbolTable searchKey ![@lstring new !mTargetLabel !here] ?line] ;
 #--- Find first executable instruction
-  @ipic_instruction firstInstruction ;
+  @ipic18_instruction firstInstruction ;
   findFirstInstructionFromAddress !line + 1 !ioGeneratedInstructionList ?firstInstruction ;
 #--- Optimization from found first instruction
   cast firstInstruction :
@@ -351,9 +351,9 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-method @ipic_instruction_BitTestSkip.optimizeBitTestSkip
+method @ipic18_instruction_BitTestSkip.optimizeBitTestSkip
   ??@uint inLineIndex
-  ?!@ipic_instructionList ioGeneratedInstructionList
+  ?!@ipic18_instructionList ioGeneratedInstructionList
   ?!@string ioListFileContents
   ?!@bool ioOptimizationsDone
 :
@@ -376,7 +376,7 @@ method @ipic_instruction_BitTestSkip.optimizeBitTestSkip
   end if ;
 #--- Get third following instruction
   if (ok) then
-    @ipic_instruction thirdInstruction := [@ipic_NULL new] ;
+    @ipic18_instruction thirdInstruction := [@ipic_NULL new] ;
     @stringset reachedLabelSet ;
     findFirstInstructionOrLabelFromAddress !inLineIndex+3 !ioGeneratedInstructionList ?* ?reachedLabelSet ;
     ok := [reachedLabelSet hasKey !jumpLabel] ;
@@ -385,7 +385,7 @@ method @ipic_instruction_BitTestSkip.optimizeBitTestSkip
   if ok then
   #--- Complement Bit test instruction (at inLineIndex)
     [!?ioGeneratedInstructionList setMInstructionAtIndex
-      ![@ipic_instruction_BitTestSkip new
+      ![@ipic18_instruction_BitTestSkip new
         !mInstructionLocation
         !not mSkipIfSet
         !mRegisterDescription
@@ -418,7 +418,7 @@ end method ;
 #----------------------------------------------------------------------------*
 
 routine performOptimizations
-  ?!@ipic_instructionList ioGeneratedInstructionList
+  ?!@ipic18_instructionList ioGeneratedInstructionList
   ?!@string ioListFileContents
 :
 #-------------------------------- List file
@@ -446,9 +446,9 @@ routine performOptimizations
         [ipic_JUMP optimizeJUMP !symbolTable !idx !?ioGeneratedInstructionList !?ioListFileContents !?optimizationsDone] ;
       when == @ipic_JSR ipic_JSR do
         [ipic_JSR optimizeJSR !idx !?ioGeneratedInstructionList !?ioListFileContents !?optimizationsDone] ;
-      when == @ipic_instruction_literalOperation ipic_literal do
+      when == @ipic18_instruction_literalOperation ipic_literal do
         [ipic_literal optimizeMOVLW !idx !?ioGeneratedInstructionList !?ioListFileContents !?optimizationsDone] ;
-      when == @ipic_instruction_conditionalBranch ipic_cc do
+      when == @ipic18_instruction_conditionalBranch ipic_cc do
         [ipic_cc optimizeBCC !symbolTable !idx !?ioGeneratedInstructionList !?ioListFileContents !?optimizationsDone] ;
       when == @ipic_jump_test_register ipic_testReg do
         [ipic_testReg optimizeTestReg !symbolTable !idx !?ioGeneratedInstructionList !?ioListFileContents !?optimizationsDone] ;
@@ -456,7 +456,7 @@ routine performOptimizations
         [ipic_decInc optimizeTestDecInc !symbolTable !idx !?ioGeneratedInstructionList !?ioListFileContents !?optimizationsDone] ;
       when == @ipic_registerComparisonCondition ipic_CMP do
         [ipic_CMP optimizeCMP !symbolTable !idx !?ioGeneratedInstructionList !?ioListFileContents !?optimizationsDone] ;
-      when == @ipic_instruction_BitTestSkip ipic_bitTestSkip do
+      when == @ipic18_instruction_BitTestSkip ipic_bitTestSkip do
         [ipic_bitTestSkip optimizeBitTestSkip !idx !?ioGeneratedInstructionList !?ioListFileContents !?optimizationsDone] ;
       else
       end cast ;

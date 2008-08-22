@@ -1,7 +1,7 @@
 program piccolo_program "version PICCOLO_BETA_VERSION":
 
 #--- Import clauses
-import semantics piccolo_metamodel in "piccolo_metamodel.gSemantics" ;
+import semantics pic18_metamodel in "pic18_metamodel.gSemantics" ;
 import semantics pic18_semantics in "pic18_semantics.gSemantics" ;
 import grammar piccolo_grammar in "piccolo_grammar.gGrammar" ;
 
@@ -25,6 +25,16 @@ before {
       when midrange : midrange_devices += !name ;
       when baseline : baseline_devices += !name ;
       end switch ;
+      @uint bankCount := [[piccoloDeviceModel mBankCount] uint] ;
+      if (bankCount == 1) then
+        message name . " has 1 bank\n" ;
+      elsif (bankCount == 2)
+       | (bankCount == 4)
+       | (bankCount == 8)
+       | (bankCount == 16) then
+      else
+        message name . " has " . [bankCount string] . " banks\n" ;
+      end if ;
     end foreach ;
   #--- Print baseline device list
     message [[baseline_devices length] string] . " baseline devices supported by Piccolo " . [@string stringWithVersionString] . ":\n" ;

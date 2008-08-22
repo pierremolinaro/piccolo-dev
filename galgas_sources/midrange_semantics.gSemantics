@@ -1,6 +1,6 @@
 semantics midrange_semantics :
 #import semantics ipic18_build_binary_code in "ipic18_build_binary_code.gSemantics" ;
-#import semantics pic18_checkingAndBuildIPIC in "pic18_checkingAndBuildIPIC.gSemantics" ;
+import semantics midrange_checkingAndBuildIPIC in "midrange_checkingAndBuildIPIC.gSemantics" ;
 #import semantics ipc18_convert_relatives in "ipc18_convert_relatives.gSemantics" ;
 import semantics piccolo_embedded_devices in "piccolo_embedded_devices.gSemantics" ;
 import semantics midrange_metamodel in "midrange_metamodel.gSemantics" ;
@@ -57,17 +57,16 @@ routine midrange_analyze ??@midrange_model inPiccoloModel ??@string inSourceFile
     !?listFileContents
     ?registerTable
   ;
-##-------------------------------- Build IPIC Assembly Instruction List
-#  @ipic_instructionList generatedInstructionList ;
-#  buildIPICAssemblyInstructionList
-#    !accessBankSplitOffset
-#    !registerTable
-#    !inPiccoloModel
-#    !hasHighInterrupt
-#    !hasLowInterrupt
-#    ?generatedInstructionList
-#    !?listFileContents
-#  ;
+#-------------------------------- Build IPIC Assembly Instruction List
+  @midrange_ipic_instructionList generatedInstructionList ;
+  build_midrange_assembly_instruction_list
+    ![[piccoloDeviceModel mBankCount] uint]
+    !registerTable
+    !inPiccoloModel
+    !hasInterrupt
+    ?generatedInstructionList
+    !?listFileContents
+  ;
 ##-------------------------------- Perform Code Optimization
 #  if ([@uint errorCount] == 0) & [option piccolo_options.performOptimizations] then
 #    performOptimizations !?generatedInstructionList !?listFileContents ;

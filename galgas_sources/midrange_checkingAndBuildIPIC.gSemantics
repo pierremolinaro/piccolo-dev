@@ -1,0 +1,1601 @@
+semantics midrange_checkingAndBuildIPIC :
+import semantics midrange_metamodel in "midrange_metamodel.gSemantics" ;
+import semantics piccoloDevice_semantics in "piccoloDevice_semantics.gSemantics" ;
+import semantics midrange_ipic_metamodel in "midrange_ipic_metamodel.gSemantics" ;
+
+import option piccolo_options in "piccolo_options.gOption" ;
+import "ipic_metamodel.gSemantics" ;
+
+#----------------------------------------------------*
+#           DECOMPOSE STRUCTURED INSTRUCTIONS        *
+#----------------------------------------------------*
+
+abstract method @midrange_instruction.build_midrange_ipic_instructionList
+  ??@routineMap unused inRoutineMap
+  ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
+  ?!@uint ioLocalLabelIndex
+  ?!@midrange_ipic_instructionList ioGeneratedInstructionList
+  ?!@string ioListFileContents
+  ??@uint inTotalBankCount
+  ?!@uint ioCurrentBank
+  ??@bool inShouldPreserveBank
+  ?!@bool ioContinuesInSequence
+  ??@routineKind inRoutineKind
+;
+
+#----------------------------------------------------------------------------*
+
+routine handleMidrangeInstructionList
+  ??@midrange_instructionList inInstructionList
+  ??@routineMap inRoutineMap
+  ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
+  ?!@uint ioLocalLabelIndex
+  ?!@midrange_ipic_instructionList ioGeneratedInstructionList
+  ?!@string ioListFileContents
+  ??@uint inTotalBankCount
+  ?!@uint ioCurrentBank
+  ??@bool inShouldPreserveBank
+  !@bool outContinuesInSequence
+  ??@routineKind inRoutineKind
+:
+  outContinuesInSequence := true ;
+  foreach inInstructionList do
+    if not outContinuesInSequence then
+      error [mInstruction mInstructionLocation] : "Unreachable code" ;
+      outContinuesInSequence := true ;
+    end if ;
+    [mInstruction build_midrange_ipic_instructionList
+      !inRoutineMap
+      !inRegisterTable
+      !inConstantMap
+      !?ioLocalLabelIndex
+      !?ioGeneratedInstructionList
+      !?ioListFileContents
+      !inTotalBankCount
+      !?ioCurrentBank
+      !inShouldPreserveBank
+      !?outContinuesInSequence
+      !inRoutineKind
+    ] ;
+  end foreach ;
+end routine ;
+
+#----------------------------------------------------*
+
+override method @midrange_instruction_nobanksel.build_midrange_ipic_instructionList
+  ??@routineMap unused inRoutineMap
+  ??@registerTable unused inRegisterTable
+  ??@constantMap unused inConstantMap
+  ?!@uint unused ioLocalLabelIndex
+  ?!@midrange_ipic_instructionList unused ioGeneratedInstructionList
+  ?!@string unused ioListFileContents
+  ??@uint unused inTotalBankCount
+  ?!@uint ioCurrentBank
+  ??@bool inShouldPreserveBank
+  ?!@bool unused ioContinuesInSequence
+  ??@routineKind unused inRoutineKind
+:
+  if inShouldPreserveBank then
+    error mInstructionLocation: "cannot use \"nobank\" here: bank selection should be preserved (use it in a \"banksave\" construct)" ;
+  end if ;
+  ioCurrentBank := [@uint max] ;
+#--- Generates no code
+end method ;
+
+#----------------------------------------------------*
+
+override method @midrange_instruction_savebank.build_midrange_ipic_instructionList
+  ??@routineMap inRoutineMap
+  ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
+  ?!@uint ioLocalLabelIndex
+  ?!@midrange_ipic_instructionList ioGeneratedInstructionList
+  ?!@string ioListFileContents
+  ??@uint inTotalBankCount
+  ?!@uint ioCurrentBank
+  ??@bool unused inShouldPreserveBank
+  ?!@bool ioContinuesInSequence
+  ??@routineKind inRoutineKind
+:
+#--- Get values for STATUS register
+  @registerExpression STATUS_register [new ![@lstring new !"STATUS" !here] ![@luint new !0 !here]] ;
+  @midrange_ipic_registerExpression STATUS_IPICregisterDescription ;
+  [STATUS_register resolveMidrangeAccess
+    !inTotalBankCount
+    !ioCurrentBank
+    !inRegisterTable
+    ?STATUS_IPICregisterDescription
+    ?*
+  ] ;
+#--- Get values for register used for saving
+  @midrange_ipic_registerExpression save_IPICregisterDescription ;
+  [mRegister resolveMidrangeAccess
+    !inTotalBankCount
+    !ioCurrentBank
+    !inRegisterTable
+    ?save_IPICregisterDescription
+    ?*
+  ] ;
+#--- Generate "SWAPF STATUS, W" instruction
+  ioGeneratedInstructionList += ![@midrange_ipic_instruction_FD new
+    !mInstructionLocation
+    ![@midrange_instruction_FD_base_code SWAPF]
+    !STATUS_IPICregisterDescription
+    !true # W is destination
+  ] ;
+#--- Generate "MOVWF SAVE_REG" instruction
+  ioGeneratedInstructionList += ![@midrange_ipic_instruction_F new
+    !mInstructionLocation
+    ![@midrange_F_instruction_base_code MOVWF]
+    !save_IPICregisterDescription
+  ] ;
+#--- Generate instruction list
+  @uint finalBank := ioCurrentBank ;
+  handleMidrangeInstructionList
+    !mInstructionList
+    !inRoutineMap
+    !inRegisterTable
+    !inConstantMap
+    !?ioLocalLabelIndex
+    !?ioGeneratedInstructionList
+    !?ioListFileContents
+    !inTotalBankCount
+    !?finalBank
+    !false # Do not preserve bank now
+    ?ioContinuesInSequence
+    !inRoutineKind
+  ;
+  if not ioContinuesInSequence then
+    error mEndOfSaveBankInstruction:"useless saving: execution does reach the end of \"savebank\" instruction list" ;
+  end if ;
+#--- Generate "SWAPF SAVE_REG, W" instruction
+  ioGeneratedInstructionList += ![@midrange_ipic_instruction_FD new
+    !mInstructionLocation
+    ![@midrange_instruction_FD_base_code SWAPF]
+    !save_IPICregisterDescription
+    !true # W is destination
+  ] ;
+#--- Generate "MOVWF STATUS" instruction
+  ioGeneratedInstructionList += ![@midrange_ipic_instruction_F new
+    !mInstructionLocation
+    ![@midrange_F_instruction_base_code MOVWF]
+    !STATUS_IPICregisterDescription
+  ] ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @midrange_instruction_banksel.build_midrange_ipic_instructionList
+  ??@routineMap unused inRoutineMap
+  ??@registerTable inRegisterTable
+  ??@constantMap unused inConstantMap
+  ?!@uint unused ioLocalLabelIndex
+  ?!@midrange_ipic_instructionList ioGeneratedInstructionList
+  ?!@string unused ioListFileContents
+  ??@uint inTotalBankCount
+  ?!@uint ioCurrentBank
+  ??@bool inShouldPreserveBank
+  ?!@bool unused ioContinuesInSequence
+  ??@routineKind unused inRoutineKind
+:
+  if inShouldPreserveBank then
+    error mInstructionLocation: "cannot use \"banksel\" here: bank selection should be preserved (save it in \"banksave\" construct)" ;
+  end if ;
+#---
+  @registerExpression STATUS_register [new ![@lstring new !"STATUS" !here] ![@luint new !0 !here]] ;
+  @midrange_ipic_registerExpression STATUS_IPICregisterDescription ;
+  @bitSliceTable bitSliceTable ;
+  [STATUS_register resolveMidrangeAccess
+    !inTotalBankCount
+    !ioCurrentBank
+    !inRegisterTable
+    ?STATUS_IPICregisterDescription
+    ?bitSliceTable
+  ] ;
+  @lstring RP [new !"RP" !mInstructionLocation] ;
+  @uint rpIndex ;
+  @uint sliceSize ;
+  [bitSliceTable searchKey !RP ?rpIndex ?sliceSize] ;
+  if sliceSize != [inTotalBankCount - 1 significantBitCount] then
+    error mInstructionLocation: "internal error: sliceSize == " . [sliceSize string] . ", significant bit count == " . [[inTotalBankCount - 1 significantBitCount] string] ;
+  end if ;
+#---
+  if [mBankIndex uint] == ioCurrentBank then
+    warning mBankIndex:"useless instruction: the bank " . [ioCurrentBank string] . " is already selected" ;
+  elsif [mBankIndex uint] >= inTotalBankCount then
+    error mBankIndex:"the bank " . [[mBankIndex uint] string] . " does not exist (the device has " . [inTotalBankCount string] . " bank(s))" ;
+  elsif ioCurrentBank == [@uint max] then # No currenly selected bank : set all bits
+    @uint n := [inTotalBankCount - 1 significantBitCount] ;
+    @uint shiftedBank := [mBankIndex uint] ;
+    @uint index := 0 ;
+    loop sliceSize : while index < sliceSize do
+      @midrange_bit_oriented_op op ;
+      if ((shiftedBank & 1) == 0) then
+        op := [@midrange_bit_oriented_op BCF] ;
+      else
+        op := [@midrange_bit_oriented_op BSF] ;
+      end if ;
+      ioGeneratedInstructionList += ![@midrange_ipic_instruction_FB new
+        !mInstructionLocation
+        !op
+        !STATUS_IPICregisterDescription
+        !rpIndex + index
+      ] ;
+      index ++ ;      
+      shiftedBank := shiftedBank >> 1 ;
+    end loop ;
+    ioCurrentBank := [mBankIndex uint] ;
+  else
+    @uint shiftedBank := [mBankIndex uint] ;
+    @uint shiftedXorBank := [mBankIndex uint] ^ ioCurrentBank ;
+    @uint index := 0 ;
+    loop sliceSize : while index < sliceSize do
+      if ((shiftedXorBank & 1) != 0) then
+        @midrange_bit_oriented_op op ;
+        if ((shiftedBank & 1) == 0) then
+          op := [@midrange_bit_oriented_op BCF] ;
+        else
+          op := [@midrange_bit_oriented_op BSF] ;
+        end if ;
+        ioGeneratedInstructionList += ![@midrange_ipic_instruction_FB new
+          !mInstructionLocation
+          !op
+          !STATUS_IPICregisterDescription
+          !rpIndex + index
+        ] ;
+      end if ;
+      index ++ ;      
+      shiftedBank := shiftedBank >> 1 ;
+      shiftedXorBank := shiftedXorBank >> 1 ;
+    end loop ;
+    ioCurrentBank := [mBankIndex uint] ;
+  end if ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @midrange_instruction_FD.build_midrange_ipic_instructionList
+  ??@routineMap unused inRoutineMap
+  ??@registerTable inRegisterTable
+  ??@constantMap unused inConstantMap
+  ?!@uint unused ioLocalLabelIndex
+  ?!@midrange_ipic_instructionList ioGeneratedInstructionList
+  ?!@string unused ioListFileContents
+  ??@uint inTotalBankCount
+  ?!@uint ioCurrentBank
+  ??@bool unused inShouldPreserveBank
+  ?!@bool unused ioContinuesInSequence
+  ??@routineKind unused inRoutineKind
+:
+  @midrange_ipic_registerExpression IPICregisterDescription ;
+  [mRegisterExpression resolveMidrangeAccess
+    !inTotalBankCount
+    !ioCurrentBank
+    !inRegisterTable
+    ?IPICregisterDescription
+    ?*
+  ] ;
+  ioGeneratedInstructionList += ![@midrange_ipic_instruction_FD new
+    !mInstructionLocation
+    !mInstruction_FD_base_code
+    !IPICregisterDescription
+    !m_W_isDestination
+  ] ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @midrange_instruction_F.build_midrange_ipic_instructionList
+  ??@routineMap unused inRoutineMap
+  ??@registerTable inRegisterTable
+  ??@constantMap unused inConstantMap
+  ?!@uint unused ioLocalLabelIndex
+  ?!@midrange_ipic_instructionList ioGeneratedInstructionList
+  ?!@string unused ioListFileContents
+  ??@uint inTotalBankCount
+  ?!@uint ioCurrentBank
+  ??@bool unused inShouldPreserveBank
+  ?!@bool unused ioContinuesInSequence
+  ??@routineKind unused inRoutineKind
+:
+  @midrange_ipic_registerExpression IPICregisterDescription ;
+  [mRegisterExpression resolveMidrangeAccess
+    !inTotalBankCount
+    !ioCurrentBank
+    !inRegisterTable
+    ?IPICregisterDescription
+    ?*
+  ] ;
+  ioGeneratedInstructionList += ![@midrange_ipic_instruction_F new
+    !mInstructionLocation
+    !mFAinstruction
+    !IPICregisterDescription
+  ] ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @midrange_instruction_FB.build_midrange_ipic_instructionList
+  ??@routineMap unused inRoutineMap
+  ??@registerTable inRegisterTable
+  ??@constantMap unused inConstantMap
+  ?!@uint unused ioLocalLabelIndex
+  ?!@midrange_ipic_instructionList ioGeneratedInstructionList
+  ?!@string unused ioListFileContents
+  ??@uint inTotalBankCount
+  ?!@uint ioCurrentBank
+  ??@bool unused inShouldPreserveBank
+  ?!@bool unused ioContinuesInSequence
+  ??@routineKind unused inRoutineKind
+:
+  @bitSliceTable bitSliceTable ;
+  @midrange_ipic_registerExpression IPICregisterDescription ;
+  [mRegisterExpression resolveMidrangeAccess
+    !inTotalBankCount
+    !ioCurrentBank
+    !inRegisterTable
+    ?IPICregisterDescription
+    ?bitSliceTable
+  ] ;
+  @uint bitNumber ;
+  [mBitNumber getBitNumber
+    !bitSliceTable
+    ?bitNumber
+  ] ;
+  ioGeneratedInstructionList += ![@midrange_ipic_instruction_FB new
+    !mInstructionLocation
+    !mBitOrientedOp
+    !IPICregisterDescription
+    !bitNumber
+  ] ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @midrange_instruction_JSR.build_midrange_ipic_instructionList
+  ??@routineMap inRoutineMap
+  ??@registerTable unused inRegisterTable
+  ??@constantMap unused inConstantMap
+  ?!@uint unused ioLocalLabelIndex
+  ?!@midrange_ipic_instructionList ioGeneratedInstructionList
+  ?!@string unused ioListFileContents
+  ??@uint unused inTotalBankCount
+  ?!@uint ioCurrentBank
+  ??@bool unused inShouldPreserveBank
+  ?!@bool unused ioContinuesInSequence
+  ??@routineKind unused inRoutineKind
+:
+#--- Check instruction
+  @bool isNoReturn ;
+  @uint requiredBank ;
+  @uint returnedBank ;
+  @bool preservesBank ;
+  [inRoutineMap searchKey !mTargetLabel ?isNoReturn ?requiredBank ?returnedBank ?preservesBank] ;
+  if (requiredBank != [@uint max]) & (requiredBank != ioCurrentBank) then
+    @string errorMessage := "the routine '" . mTargetLabel . "' requires bank selection to be set to " . [requiredBank string] ;
+    errorMessage .= ", but bank selection " ;
+    if ioCurrentBank == [@uint max] then
+      errorMessage .= "does contain any reliable value" ;
+    else
+      errorMessage .= "is set to " . [ioCurrentBank string] ;
+    end if ;
+    error mTargetLabel:errorMessage ;
+  end if ;
+  if isNoReturn then
+    error mTargetLabel:"a \"noreturn\" routine should be called with a BRA, GOTO, Bcc or JUMP instruction" ;
+  end if ;
+  if not preservesBank then
+    ioCurrentBank := returnedBank ;
+  end if ;
+#---
+  ioGeneratedInstructionList += ![@midrange_ipic_JSR new
+    !mInstructionLocation
+    !mTargetLabel
+    !mKind
+  ] ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @midrange_instruction_JUMP.build_midrange_ipic_instructionList
+  ??@routineMap inRoutineMap
+  ??@registerTable unused inRegisterTable
+  ??@constantMap unused inConstantMap
+  ?!@uint unused ioLocalLabelIndex
+  ?!@midrange_ipic_instructionList ioGeneratedInstructionList
+  ?!@string unused ioListFileContents
+  ??@uint unused inTotalBankCount
+  ?!@uint ioCurrentBank
+  ??@bool unused inShouldPreserveBank
+  ?!@bool ioContinuesInSequence
+  ??@routineKind unused inRoutineKind
+:
+#--- Check instruction
+  @bool isNoReturn ;
+  @uint requiredBank ;
+  [inRoutineMap searchKey !mTargetLabel ?isNoReturn ?requiredBank ?* ?*] ;
+  if (requiredBank != [@uint max]) & (requiredBank != ioCurrentBank) then
+    @string errorMessage := "the routine '" . mTargetLabel . "' requires bank selection to be set to " . [requiredBank string] ;
+    errorMessage .= ", but bank selection " ;
+    if ioCurrentBank == [@uint max] then
+      errorMessage .= "does contain any reliable value" ;
+    else
+      errorMessage .= "is set to " . [ioCurrentBank string] ;
+    end if ;
+    error mTargetLabel:errorMessage ;
+  end if ;
+  if not isNoReturn then
+    error mTargetLabel:"a regular routine should be called with a RCALL, CALL or JSR instruction" ;
+  end if ;
+  ioContinuesInSequence := false ;
+#---
+  ioGeneratedInstructionList += ![@midrange_ipic_JUMP new
+    !mInstructionLocation
+    !mTargetLabel
+    !mKind
+  ] ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @midrange_instruction_CLRWDT.build_midrange_ipic_instructionList
+  ??@routineMap unused inRoutineMap
+  ??@registerTable unused inRegisterTable
+  ??@constantMap unused inConstantMap
+  ?!@uint unused ioLocalLabelIndex
+  ?!@midrange_ipic_instructionList ioGeneratedInstructionList
+  ?!@string unused ioListFileContents
+  ??@uint unused inTotalBankCount
+  ?!@uint unused ioCurrentBank
+  ??@bool unused inShouldPreserveBank
+  ?!@bool unused ioContinuesInSequence
+  ??@routineKind unused inRoutineKind
+:
+  ioGeneratedInstructionList += ![@midrange_ipic_instruction_CLRWDT new
+    !mInstructionLocation
+  ] ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @midrange_instruction_CLRW.build_midrange_ipic_instructionList
+  ??@routineMap unused inRoutineMap
+  ??@registerTable unused inRegisterTable
+  ??@constantMap unused inConstantMap
+  ?!@uint unused ioLocalLabelIndex
+  ?!@midrange_ipic_instructionList ioGeneratedInstructionList
+  ?!@string unused ioListFileContents
+  ??@uint unused inTotalBankCount
+  ?!@uint unused ioCurrentBank
+  ??@bool unused inShouldPreserveBank
+  ?!@bool unused ioContinuesInSequence
+  ??@routineKind unused inRoutineKind
+:
+  ioGeneratedInstructionList += ![@midrange_ipic_instruction_CLRW new
+    !mInstructionLocation
+  ] ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @midrange_instruction_NOP.build_midrange_ipic_instructionList
+  ??@routineMap unused inRoutineMap
+  ??@registerTable unused inRegisterTable
+  ??@constantMap unused inConstantMap
+  ?!@uint unused ioLocalLabelIndex
+  ?!@midrange_ipic_instructionList ioGeneratedInstructionList
+  ?!@string unused ioListFileContents
+  ??@uint unused inTotalBankCount
+  ?!@uint unused ioCurrentBank
+  ??@bool unused inShouldPreserveBank
+  ?!@bool unused ioContinuesInSequence
+  ??@routineKind unused inRoutineKind
+:
+  ioGeneratedInstructionList += ![@midrange_ipic_instruction_NOP new
+    !mInstructionLocation
+  ] ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @midrange_instruction_SLEEP.build_midrange_ipic_instructionList
+  ??@routineMap unused inRoutineMap
+  ??@registerTable unused inRegisterTable
+  ??@constantMap unused inConstantMap
+  ?!@uint unused ioLocalLabelIndex
+  ?!@midrange_ipic_instructionList ioGeneratedInstructionList
+  ?!@string unused ioListFileContents
+  ??@uint unused inTotalBankCount
+  ?!@uint unused ioCurrentBank
+  ??@bool unused inShouldPreserveBank
+  ?!@bool unused ioContinuesInSequence
+  ??@routineKind unused inRoutineKind
+:
+  ioGeneratedInstructionList += ![@midrange_ipic_instruction_SLEEP new
+    !mInstructionLocation
+  ] ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @midrange_instruction_literalOperation.build_midrange_ipic_instructionList
+  ??@routineMap unused inRoutineMap
+  ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
+  ?!@uint unused ioLocalLabelIndex
+  ?!@midrange_ipic_instructionList ioGeneratedInstructionList
+  ?!@string unused ioListFileContents
+  ??@uint unused inTotalBankCount
+  ?!@uint unused ioCurrentBank
+  ??@bool unused inShouldPreserveBank
+  ?!@bool unused ioContinuesInSequence
+  ??@routineKind unused inRoutineKind
+:
+  @sint result ; [mImmediatExpression eval !inRegisterTable !inConstantMap ?result] ;
+#---
+   if (result > 255S) | (result < -128S) then
+     error mInstructionLocation:"immediate value is evaluated as " . [result string] . " (should be betwween -128 and 255)" ;
+   end if ;
+#---  
+  ioGeneratedInstructionList += ![@midrange_ipic_instruction_literalOperation new
+    !mInstructionLocation
+    !mLiteralInstruction
+    ![result & 0x000000FFS uint]
+  ] ;
+end method ;
+
+#----------------------------------------------------*
+
+#override method @midrange_instruction_computed_retlw.build_midrange_ipic_instructionList
+#  ??@routineMap unused inRoutineMap
+#  ??@registerTable inRegisterTable
+#  ??@constantMap inConstantMap
+#  ?!@uint unused ioLocalLabelIndex
+#  ?!@midrange_ipic_instructionList ioGeneratedInstructionList
+#  ?!@string unused ioListFileContents
+#  ??@uint inTotalBankCount
+#  ?!@uint unused ioCurrentBank
+#  ??@bool unused inShouldPreserveBank
+#  ?!@bool ioContinuesInSequence
+#  ??@routineKind inRoutineKind
+#:
+#  ioContinuesInSequence := false ;
+#  switch inRoutineKind
+#  when regularRoutine : # ok
+#  when noReturnRoutine :
+#    error mInstructionLocation:"a \"noreturn\" routine does not accept computed retlw instruction" ;
+#  when interruptRoutine :
+#    error mInstructionLocation:"an interrupt routine does not accept computed retlw instruction" ;
+#  end switch ;
+##---
+#  @sint size ; [mSizeExpression eval !inRegisterTable !inConstantMap ?size] ;
+#  if size < 2S then
+#    error mInstructionLocation:"the computed range (" . [size string] . ") should be greater or equal to 2" ;
+#  elsif size > 128S then
+#    error mInstructionLocation:"the computed range (" . [size string] . ") should be lower or equal to 128" ;
+#  elsif [size uint] != [mImmediateExpressionList length] then
+#    error mInstructionLocation:"the constant list length (" . [[mImmediateExpressionList length] string] . ") should be equal to the computed range (" . [size string] . ")" ;
+#  end if ;
+##--- 
+#  @uintlist literalValues [emptyList] ;
+#  foreach mImmediateExpressionList :idx do
+#    @sint v ; [mExpression eval !inRegisterTable !inConstantMap ?v] ;
+#    if (v > 255S) | (v < -128S) then
+#      error mInstructionLocation:"immediate value with index " . [idx string] . " is evaluated as " . [v string] . " (should be <= 255)" ;
+#    end if ;
+#    literalValues += ![v & 0x000000FFS uint] ;
+#  end foreach ;
+##---
+#  ioGeneratedInstructionList += ![@ipic_instruction_computed_retlw new
+#    !mInstructionLocation
+#    !literalValues
+#    !mUsesRelativeCall
+#  ] ;
+#end method ;
+
+#----------------------------------------------------*
+
+override method @midrange_instruction_MNOP.build_midrange_ipic_instructionList
+  ??@routineMap unused inRoutineMap
+  ??@registerTable unused inRegisterTable
+  ??@constantMap unused inConstantMap
+  ?!@uint unused ioLocalLabelIndex
+  ?!@midrange_ipic_instructionList ioGeneratedInstructionList
+  ?!@string unused ioListFileContents
+  ??@uint unused inTotalBankCount
+  ?!@uint unused ioCurrentBank
+  ??@bool unused inShouldPreserveBank
+  ?!@bool unused ioContinuesInSequence
+  ??@routineKind unused inRoutineKind
+:
+#---
+  if [mOccurrenceFactor uint] == 0 then
+    warning mOccurrenceFactor:"occurrence argument is zero: no generated code" ;
+  end if ;
+#---
+  ioGeneratedInstructionList += ![@midrange_ipic_instruction_MNOP new
+    !mInstructionLocation
+    !mOccurrenceFactor
+  ] ;
+end method ;
+
+#----------------------------------------------------*
+
+#override method @midrange_instruction_computed_bra.build_midrange_ipic_instructionList
+#  ??@routineMap inRoutineMap
+#  ??@registerTable inRegisterTable
+#  ??@constantMap inConstantMap
+#  ?!@uint unused ioLocalLabelIndex
+#  ?!@midrange_ipic_instructionList ioGeneratedInstructionList
+#  ?!@string unused ioListFileContents
+#  ??@uint inTotalBankCount
+#  ?!@uint ioCurrentBank
+#  ??@bool unused inShouldPreserveBank
+#  ?!@bool ioContinuesInSequence
+#  ??@routineKind inRoutineKind
+#:
+##---
+#  foreach mTargetLabels do
+#    @bool isNoReturn ;
+#    @uint requiredBank ;
+#    [inRoutineMap searchKey !mValue ?isNoReturn ?requiredBank ?* ?*] ;
+#    if (requiredBank != [@uint max]) & (requiredBank != ioCurrentBank) then
+#      @string errorMessage := "the routine '" . mValue . "' requires bank selection to be set to " . [requiredBank string] ;
+#      errorMessage .= ", but bank selection " ;
+#      if ioCurrentBank == [@uint max] then
+#        errorMessage .= "does contain any reliable value" ;
+#      else
+#        errorMessage .= "is set to " . [ioCurrentBank string] ;
+#      end if ;
+#      error mValue: errorMessage ;
+#    end if ;
+#    if not isNoReturn then
+#      error mValue:"for being named in a computed bra, the '" . mValue . "' routine should be declared with the \"noreturn\" qualifier" ;
+#	 end if ;
+#  end foreach ;
+#  ioContinuesInSequence := false ;
+#  switch inRoutineKind
+#  when regularRoutine :
+#    error mInstructionLocation:"a regular routine does not accept computed bra instruction" ;
+#  when noReturnRoutine : # ok
+#  when interruptRoutine :
+#    error mInstructionLocation:"an interrupt routine does not accept computed bra instruction" ;
+#  end switch ;
+##---
+#  @sint size ; [mSizeExpression eval !inRegisterTable !inConstantMap ?size] ;
+#  if size < 2S then
+#    error mInstructionLocation:"the computed range (" . [size string] . ") should be greater or equal to 2" ;
+#  elsif size > 128S then
+#    error mInstructionLocation:"the computed range (" . [size string] . ") should be lower or equal to 128" ;
+#  elsif [size uint] != [mTargetLabels length] then
+#    error mInstructionLocation:"the routine name list length (" . [[mTargetLabels length] string] . ") should be equal to the computed range (" . [size string] . ")" ;
+#  end if ;
+##---
+#  ioGeneratedInstructionList += ![@ipic_instruction_computed_bra new
+#    !mInstructionLocation
+#    !mTargetLabels
+#    !mUsesRelativeCall
+#  ] ;
+#end method ;
+
+#----------------------------------------------------*
+
+#override method @midrange_instruction_computed_goto.build_midrange_ipic_instructionList
+#  ??@routineMap inRoutineMap
+#  ??@registerTable inRegisterTable
+#  ??@constantMap inConstantMap
+#  ?!@uint unused ioLocalLabelIndex
+#  ?!@midrange_ipic_instructionList ioGeneratedInstructionList
+#  ?!@string unused ioListFileContents
+#  ??@uint inTotalBankCount
+#  ?!@uint ioCurrentBank
+#  ??@bool unused inShouldPreserveBank
+#  ?!@bool ioContinuesInSequence
+#  ??@routineKind inRoutineKind
+#:
+##---
+#  foreach mTargetLabels do
+#    @bool isNoReturn ;
+#    @uint requiredBank ;
+#    [inRoutineMap searchKey !mValue ?isNoReturn ?requiredBank ?* ?*] ;
+#    if (requiredBank != [@uint max]) & (requiredBank != ioCurrentBank) then
+#      @string errorMessage := "the routine '" . mValue . "' requires bank selection to be set to " . [requiredBank string] ;
+#      errorMessage .= ", but bank selection " ;
+#      if ioCurrentBank == [@uint max] then
+#        errorMessage .= "does contain any reliable value" ;
+#      else
+#        errorMessage .= "is set to " . [ioCurrentBank string] ;
+#      end if ;
+#      error mValue: errorMessage ;
+#    end if ;
+#    if not isNoReturn then
+#      error mValue:"for being named in a computed goto, the '" . mValue . "' routine should be declared with the \"noreturn\" qualifier" ;
+#	 end if ;
+#  end foreach ;
+#  ioContinuesInSequence := false ;
+#  switch inRoutineKind
+#  when regularRoutine :
+#    error mInstructionLocation:"a regular routine does not accept computed goto instruction" ;
+#  when noReturnRoutine : # ok
+#  when interruptRoutine :
+#    error mInstructionLocation:"an interrupt routine does not accept computed goto instruction" ;
+#  end switch ;
+##---
+#  @sint size ; [mSizeExpression eval !inRegisterTable !inConstantMap ?size] ;
+#  if size < 2S then
+#    error mInstructionLocation:"the computed range (" . [size string] . ") should be greater or equal to 2" ;
+#  elsif size > 64S then
+#    error mInstructionLocation:"the computed range (" . [size string] . ") should be lower or equal to 64" ;
+#  elsif [size uint] != [mTargetLabels length] then
+#    error mInstructionLocation:"the routine name list length (" . [[mTargetLabels length] string] . ") should be equal to the computed range (" . [size string] . ")" ;
+#  end if ;
+##---
+#  ioGeneratedInstructionList += ![@ipic_instruction_computed_goto new
+#    !mInstructionLocation
+#    !mTargetLabels
+#    !mUsesRelativeCall
+#  ] ;
+#end method ;
+
+#----------------------------------------------------*
+
+override method @midrange_instruction_FOREVER.build_midrange_ipic_instructionList
+  ??@routineMap inRoutineMap
+  ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
+  ?!@uint ioLocalLabelIndex
+  ?!@midrange_ipic_instructionList ioGeneratedInstructionList
+  ?!@string ioListFileContents
+  ??@uint inTotalBankCount
+  ?!@uint ioCurrentBank
+  ??@bool inShouldPreserveBank
+  ?!@bool ioContinuesInSequence
+  ??@routineKind inRoutineKind
+:
+  switch inRoutineKind
+  when regularRoutine :
+    error mInstructionLocation:"a regular routine does not accept the \"forever\" instruction" ;
+  when noReturnRoutine : # ok
+  when interruptRoutine :
+    error mInstructionLocation:"an interrupt routine does not accept the \"forever\" instruction" ;
+  end switch ;
+#--- Check instruction list does not change bank
+  @uint finalBank := ioCurrentBank ;
+  @string label0 := "_label_" . [ioLocalLabelIndex string] ; 
+  ioLocalLabelIndex ++ ;
+  ioGeneratedInstructionList += ![@midrange_ipic_pseudo_LABEL new ![@lstring new !label0 !mInstructionLocation]] ;
+  handleMidrangeInstructionList
+    !mInstructionList 
+    !inRoutineMap
+    !inRegisterTable
+    !inConstantMap
+    !?ioLocalLabelIndex
+    !?ioGeneratedInstructionList
+    !?ioListFileContents
+    !inTotalBankCount
+    !?finalBank
+    !inShouldPreserveBank
+    ?ioContinuesInSequence
+    !inRoutineKind
+  ;
+  if ioCurrentBank != finalBank then
+    error mEndOfInstructionList:"instruction list does not leave bank selection unchanged";
+  end if ;
+#--- Generate JUMP to loop start
+  ioGeneratedInstructionList += ![@midrange_ipic_JUMP new !mInstructionLocation ![@lstring new !label0 !mInstructionLocation] ![@midrange_jumpInstructionKind ipicExtended]] ;
+#---
+  ioContinuesInSequence := false ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @midrange_instruction_IF_BitTest.build_midrange_ipic_instructionList
+  ??@routineMap inRoutineMap
+  ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
+  ?!@uint ioLocalLabelIndex
+  ?!@midrange_ipic_instructionList ioGeneratedInstructionList
+  ?!@string ioListFileContents
+  ??@uint inTotalBankCount
+  ?!@uint ioCurrentBank
+  ??@bool inShouldPreserveBank
+  ?!@bool unused ioContinuesInSequence
+  ??@routineKind inRoutineKind
+:
+  @bitSliceTable bitSliceTable ;
+  @midrange_ipic_registerExpression IPICregisterDescription ;
+  [mRegisterExpression resolveMidrangeAccess
+    !inTotalBankCount
+    !ioCurrentBank
+    !inRegisterTable
+    ?IPICregisterDescription
+    ?bitSliceTable
+  ] ;
+  @uint bitNumber ;
+  [mBitNumber getBitNumber
+    !bitSliceTable
+    ?bitNumber
+  ] ;
+  ioGeneratedInstructionList += ![@midrange_ipic_instruction_BitTestSkip new
+    !mInstructionLocation
+    !mSkipIfSet
+    !IPICregisterDescription
+    !bitNumber
+  ] ;
+#--- Append Instruction
+  @bool unusedContinuesInSequence := true ;
+  [mInstruction build_midrange_ipic_instructionList
+    !inRoutineMap
+    !inRegisterTable
+    !inConstantMap
+    !?ioLocalLabelIndex
+    !?ioGeneratedInstructionList
+    !?ioListFileContents
+    !inTotalBankCount
+    !?ioCurrentBank
+    !inShouldPreserveBank
+    !?unusedContinuesInSequence
+    !inRoutineKind
+  ] ;
+end method ;
+
+#----------------------------------------------------*
+
+abstract method @midrange_conditionExpression.buildIPICinstructionForCondition
+  ??@uint inTotalBankCount
+  ??@uint inCurrentBank
+  ??@registerTable inRegisterTable
+  ?!@uint ioLocalLabelIndex
+  ??@bool inComplementaryBranch
+  ??@location inInstructionLocation
+  ??@string inTargetLabel
+  ?!@midrange_ipic_instructionList ioGeneratedInstructionList
+  ?!@string unused ioListFileContents
+;
+
+#----------------------------------------------------*
+
+abstract method @midrange_conditionExpression.computeInstructionCountForCondition
+  ??@bool inComplementaryBranch
+  !@uint outInstructionCount
+;
+
+#----------------------------------------------------*
+
+override method @midrange_incDecRegisterInCondition.buildIPICinstructionForCondition
+  ??@uint inTotalBankCount
+  ??@uint inCurrentBank
+  ??@registerTable inRegisterTable
+  ?!@uint unused ioLocalLabelIndex
+  ??@bool inComplementaryBranch
+  ??@location inInstructionLocation
+  ??@string inTargetLabel
+  ?!@midrange_ipic_instructionList ioGeneratedInstructionList
+  ?!@string unused ioListFileContents
+:
+  @midrange_ipic_registerExpression IPICregisterDescription ;
+  [mRegisterExpression resolveMidrangeAccess
+    !inTotalBankCount
+    !inCurrentBank
+    !inRegisterTable
+    ?IPICregisterDescription
+    ?*
+  ] ;
+#---
+  ioGeneratedInstructionList += ![@midrange_ipic_incDecRegisterInCondition new
+    !inInstructionLocation
+    !IPICregisterDescription
+    !inTargetLabel
+    !mIncrement
+    !m_W_isDestination
+    !mBranchIfZero ^ inComplementaryBranch
+  ] ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @midrange_incDecRegisterInCondition.computeInstructionCountForCondition
+  ??@bool unused inComplementaryBranch
+  !@uint outInstructionCount
+:
+  outInstructionCount := 2 ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @midrange_negateCondition.buildIPICinstructionForCondition
+  ??@uint inTotalBankCount
+  ??@uint inCurrentBank
+  ??@registerTable inRegisterTable
+  ?!@uint ioLocalLabelIndex
+  ??@bool inComplementaryBranch
+  ??@location inInstructionLocation
+  ??@string inTargetLabel
+  ?!@midrange_ipic_instructionList ioGeneratedInstructionList
+  ?!@string ioListFileContents
+:
+  [mCondition buildIPICinstructionForCondition
+    !inTotalBankCount
+    !inCurrentBank
+    !inRegisterTable
+    !?ioLocalLabelIndex
+    !not inComplementaryBranch
+    !inInstructionLocation
+    !inTargetLabel
+    !?ioGeneratedInstructionList
+    !?ioListFileContents
+  ] ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @midrange_negateCondition.computeInstructionCountForCondition
+  ??@bool inComplementaryBranch
+  !@uint outInstructionCount
+:
+  [mCondition computeInstructionCountForCondition
+    !not inComplementaryBranch
+    ?outInstructionCount
+  ] ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @midrange_andCondition.buildIPICinstructionForCondition
+  ??@uint inTotalBankCount
+  ??@uint inCurrentBank
+  ??@registerTable inRegisterTable
+  ?!@uint ioLocalLabelIndex
+  ??@bool inComplementaryBranch
+  ??@location inInstructionLocation
+  ??@string inTargetLabel
+  ?!@midrange_ipic_instructionList ioGeneratedInstructionList
+  ?!@string ioListFileContents
+:
+  if inComplementaryBranch then
+    [mLeftExpression buildIPICinstructionForCondition
+      !inTotalBankCount
+      !inCurrentBank
+      !inRegisterTable
+      !?ioLocalLabelIndex
+      !true
+      !inInstructionLocation
+      !inTargetLabel
+      !?ioGeneratedInstructionList
+      !?ioListFileContents
+    ] ;
+    [mRightExpression buildIPICinstructionForCondition
+      !inTotalBankCount
+      !inCurrentBank
+      !inRegisterTable
+      !?ioLocalLabelIndex
+      !true
+      !inInstructionLocation
+      !inTargetLabel
+      !?ioGeneratedInstructionList
+      !?ioListFileContents
+    ] ;
+  else
+    @string label0 := "_label_" . [ioLocalLabelIndex string] ; ioLocalLabelIndex ++ ;
+    [mLeftExpression buildIPICinstructionForCondition
+      !inTotalBankCount
+      !inCurrentBank
+      !inRegisterTable
+      !?ioLocalLabelIndex
+      !true
+      !inInstructionLocation
+      !label0
+      !?ioGeneratedInstructionList
+      !?ioListFileContents
+    ] ;
+    [mRightExpression buildIPICinstructionForCondition
+      !inTotalBankCount
+      !inCurrentBank
+      !inRegisterTable
+      !?ioLocalLabelIndex
+      !false
+      !inInstructionLocation
+      !inTargetLabel
+      !?ioGeneratedInstructionList
+      !?ioListFileContents
+    ] ;
+    ioGeneratedInstructionList += ![@midrange_ipic_pseudo_LABEL new ![@lstring new !label0 !inInstructionLocation]] ;
+  end if ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @midrange_andCondition.computeInstructionCountForCondition
+  ??@bool inComplementaryBranch
+  !@uint outInstructionCount
+:
+  @uint countLeft ;
+  [mLeftExpression computeInstructionCountForCondition
+    !inComplementaryBranch
+    ?countLeft
+  ] ;
+  @uint countRight ;
+  [mLeftExpression computeInstructionCountForCondition
+    !inComplementaryBranch
+    ?countRight
+  ] ;
+  outInstructionCount := countLeft + countRight ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @midrange_bitTest_in_structured_if_condition.buildIPICinstructionForCondition
+  ??@uint inTotalBankCount
+  ??@uint inCurrentBank
+  ??@registerTable inRegisterTable
+  ?!@uint unused ioLocalLabelIndex
+  ??@bool inComplementaryBranch
+  ??@location inInstructionLocation
+  ??@string inTargetLabel
+  ?!@midrange_ipic_instructionList ioGeneratedInstructionList
+  ?!@string unused ioListFileContents
+:
+  @bitSliceTable bitSliceTable ;
+  @midrange_ipic_registerExpression IPICregisterDescription ;
+  [mRegisterExpression resolveMidrangeAccess
+    !inTotalBankCount
+    !inCurrentBank
+    !inRegisterTable
+    ?IPICregisterDescription
+    ?bitSliceTable
+  ] ;
+  @uint bitNumber ;
+  [mBitNumber getBitNumber
+    !bitSliceTable
+    ?bitNumber
+  ] ;
+  ioGeneratedInstructionList += ![@midrange_ipic_instruction_BitTestSkip new
+    !inInstructionLocation
+    !mBTFSSinstruction ^ inComplementaryBranch
+    !IPICregisterDescription
+    !bitNumber
+  ] ;
+  ioGeneratedInstructionList += ![@midrange_ipic_JUMP new !inInstructionLocation ![@lstring new !inTargetLabel !inInstructionLocation] ![@midrange_jumpInstructionKind ipicExtended]] ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @midrange_bitTest_in_structured_if_condition.computeInstructionCountForCondition
+  ??@bool unused inComplementaryBranch
+  !@uint outInstructionCount
+:
+  outInstructionCount := 2 ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @midrange_instruction_structured_if.build_midrange_ipic_instructionList
+  ??@routineMap inRoutineMap
+  ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
+  ?!@uint ioLocalLabelIndex
+  ?!@midrange_ipic_instructionList ioGeneratedInstructionList
+  ?!@string ioListFileContents
+  ??@uint inTotalBankCount
+  ?!@uint ioCurrentBank
+  ??@bool inShouldPreserveBank
+  ?!@bool ioContinuesInSequence
+  ??@routineKind inRoutineKind
+:
+  @bool generateComplementaryCondition := false ;
+#--- Direct Test Instruction Count
+  if [option piccolo_options.performOptimizations] then
+    @uint directCount ; [mIfCondition computeInstructionCountForCondition !true ?directCount] ;
+    if [mElseInstructionList length] > 0 then
+      directCount ++ ;
+    end if ;
+    @uint complementaryCount ; [mIfCondition computeInstructionCountForCondition !false ?complementaryCount] ;
+    if [mThenInstructionList length] > 0 then
+      complementaryCount ++ ;
+    end if ;
+    if (complementaryCount < directCount) then
+      generateComplementaryCondition := true ;
+      ioListFileContents .= "  line " . [[ioGeneratedInstructionList length] string] . ": generates complementary test (saves "
+      . [directCount - complementaryCount string] . " instruction" ;
+      if (directCount - complementaryCount) > 1 then
+        ioListFileContents .= "s" ;
+      end if ;
+      ioListFileContents .= ")\n" ;
+    end if ;
+  end if ;
+  @uint elseBranchFinalBank := ioCurrentBank ;
+  @uint thenBranchFinalBank := ioCurrentBank ;
+  @bool elseContinuesInSequence ;
+  @bool thenContinuesInSequence ;
+  if generateComplementaryCondition then
+  #---
+    @string label_nextCondition := "_label_" . [ioLocalLabelIndex string] ; ioLocalLabelIndex ++ ;
+    @string label_endOfIfinstruction := "_label_" . [ioLocalLabelIndex string] ; ioLocalLabelIndex ++ ;
+  #--- Translate condition
+    [mIfCondition buildIPICinstructionForCondition
+      !inTotalBankCount
+      !ioCurrentBank
+      !inRegisterTable
+      !?ioLocalLabelIndex
+      !false
+      !mInstructionLocation
+      !label_nextCondition
+      !?ioGeneratedInstructionList
+      !?ioListFileContents
+    ] ;
+  #--- 'else' instructions
+    handleMidrangeInstructionList
+      !mElseInstructionList
+      !inRoutineMap
+      !inRegisterTable
+      !inConstantMap
+      !?ioLocalLabelIndex
+      !?ioGeneratedInstructionList
+      !?ioListFileContents
+      !inTotalBankCount
+      !?elseBranchFinalBank
+      !inShouldPreserveBank
+      ?elseContinuesInSequence
+      !inRoutineKind
+    ;
+  #--- 'then' instructions
+    if [mThenInstructionList length] > 0 then
+      ioGeneratedInstructionList += ![@midrange_ipic_JUMP new !mInstructionLocation ![@lstring new !label_endOfIfinstruction !mInstructionLocation] ![@midrange_jumpInstructionKind ipicExtended]] ;
+    end if ;
+    ioGeneratedInstructionList += ![@midrange_ipic_pseudo_LABEL new ![@lstring new !label_nextCondition !mInstructionLocation]] ;
+    handleMidrangeInstructionList 
+      !mThenInstructionList
+      !inRoutineMap
+      !inRegisterTable
+      !inConstantMap
+      !?ioLocalLabelIndex
+      !?ioGeneratedInstructionList
+      !?ioListFileContents
+      !inTotalBankCount
+      !?thenBranchFinalBank
+      !inShouldPreserveBank
+      ?thenContinuesInSequence
+      !inRoutineKind
+     ;
+    if [mThenInstructionList length] > 0 then
+      ioGeneratedInstructionList += ![@midrange_ipic_pseudo_LABEL new ![@lstring new !label_endOfIfinstruction !mInstructionLocation]] ;
+    end if ;
+  else
+  #---
+    @string label_nextCondition := "_label_" . [ioLocalLabelIndex string] ; ioLocalLabelIndex ++ ;
+    @string label_endOfIfinstruction := "_label_" . [ioLocalLabelIndex string] ; ioLocalLabelIndex ++ ;
+  #--- Translate condition
+    [mIfCondition buildIPICinstructionForCondition
+      !inTotalBankCount
+      !ioCurrentBank
+      !inRegisterTable
+      !?ioLocalLabelIndex
+      !true
+      !mInstructionLocation
+      !label_nextCondition
+      !?ioGeneratedInstructionList
+      !?ioListFileContents
+    ] ;
+  #--- 'then' instructions
+    handleMidrangeInstructionList
+      !mThenInstructionList
+      !inRoutineMap
+      !inRegisterTable
+      !inConstantMap
+      !?ioLocalLabelIndex
+      !?ioGeneratedInstructionList
+      !?ioListFileContents
+      !inTotalBankCount
+      !?thenBranchFinalBank
+      !inShouldPreserveBank
+      ?thenContinuesInSequence
+      !inRoutineKind
+    ;
+  #--- 'else' instructions
+    if [mElseInstructionList length] > 0 then
+      ioGeneratedInstructionList += ![@midrange_ipic_JUMP new !mInstructionLocation ![@lstring new !label_endOfIfinstruction !mInstructionLocation] ![@midrange_jumpInstructionKind ipicExtended]] ;
+    end if ;
+    ioGeneratedInstructionList += ![@midrange_ipic_pseudo_LABEL new ![@lstring new !label_nextCondition !mInstructionLocation]] ;
+    handleMidrangeInstructionList
+      !mElseInstructionList
+      !inRoutineMap
+      !inRegisterTable
+      !inConstantMap
+      !?ioLocalLabelIndex
+      !?ioGeneratedInstructionList
+      !?ioListFileContents
+      !inTotalBankCount
+      !?elseBranchFinalBank
+      !inShouldPreserveBank
+      ?elseContinuesInSequence
+      !inRoutineKind
+    ;
+    if [mElseInstructionList length] > 0 then
+      ioGeneratedInstructionList += ![@midrange_ipic_pseudo_LABEL new ![@lstring new !label_endOfIfinstruction !mInstructionLocation]] ;
+    end if ;
+  end if ;
+  if elseBranchFinalBank == thenBranchFinalBank then
+    ioCurrentBank := elseBranchFinalBank ;
+  else
+    error mEndOfElsePartLocation:"This branch does not leave bank selection value as the first one does";
+    elseBranchFinalBank := [@uint max] ; # No available value for bank selection
+  end if ;
+#---
+  ioContinuesInSequence := thenContinuesInSequence | elseContinuesInSequence ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @midrange_instruction_do_while.build_midrange_ipic_instructionList
+  ??@routineMap inRoutineMap
+  ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
+  ?!@uint ioLocalLabelIndex
+  ?!@midrange_ipic_instructionList ioGeneratedInstructionList
+  ?!@string ioListFileContents
+  ??@uint inTotalBankCount
+  ?!@uint ioCurrentBank
+  ??@bool inShouldPreserveBank
+  ?!@bool ioContinuesInSequence
+  ??@routineKind inRoutineKind
+:
+#--- Generate label
+  @string labelInstructionBegin := "_label_" . [ioLocalLabelIndex string] ; ioLocalLabelIndex ++ ;
+#--- Define label
+  ioGeneratedInstructionList += ![@midrange_ipic_pseudo_LABEL new ![@lstring new !labelInstructionBegin !mInstructionLocation]] ;
+#--- Repeated instructions
+  @uint finalBank := ioCurrentBank ;
+  handleMidrangeInstructionList
+    !mRepeatedInstructionList
+    !inRoutineMap
+    !inRegisterTable
+    !inConstantMap
+    !?ioLocalLabelIndex
+    !?ioGeneratedInstructionList
+    !?ioListFileContents
+      !inTotalBankCount
+    !?finalBank
+    !inShouldPreserveBank
+    ?ioContinuesInSequence
+    !inRoutineKind
+  ;
+  if ioCurrentBank != finalBank then
+    error mEndOfRepeatedInstructionList:"This branch does not leave bank selection value unchanged";
+  end if ;
+#--- while parts
+  foreach mWhilePartList do
+    if [mInstructionList length] == 0 then
+      [mCondition buildIPICinstructionForCondition
+        !inTotalBankCount
+        !ioCurrentBank
+        !inRegisterTable
+        !?ioLocalLabelIndex
+        !false
+        !mInstructionLocation
+        !labelInstructionBegin
+        !?ioGeneratedInstructionList
+        !?ioListFileContents
+      ] ;
+    else
+      @string nextBranchLabel := "_label_" . [ioLocalLabelIndex string] ; ioLocalLabelIndex ++ ;
+      [mCondition buildIPICinstructionForCondition
+        !inTotalBankCount
+        !ioCurrentBank
+        !inRegisterTable
+        !?ioLocalLabelIndex
+        !true
+        !mInstructionLocation
+        !nextBranchLabel
+        !?ioGeneratedInstructionList
+        !?ioListFileContents
+      ] ;
+      @uint bank := ioCurrentBank ;
+      handleMidrangeInstructionList
+        !mInstructionList
+        !inRoutineMap
+        !inRegisterTable
+        !inConstantMap
+        !?ioLocalLabelIndex
+        !?ioGeneratedInstructionList
+        !?ioListFileContents
+        !inTotalBankCount
+        !?bank
+        !inShouldPreserveBank
+        ?ioContinuesInSequence
+        !inRoutineKind
+      ;
+      if ioCurrentBank != bank then
+        error mEndOfPartLocation:"This branch does not leave bank selection value unchanged";
+      end if ;
+      ioGeneratedInstructionList += ![@midrange_ipic_JUMP new !mInstructionLocation ![@lstring new !labelInstructionBegin !mInstructionLocation] ![@midrange_jumpInstructionKind ipicExtended]] ;
+      ioGeneratedInstructionList += ![@midrange_ipic_pseudo_LABEL new ![@lstring new !nextBranchLabel !mInstructionLocation]] ;
+    end if ;
+  end foreach ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @midrange_instruction_IF_IncDec.build_midrange_ipic_instructionList
+  ??@routineMap inRoutineMap
+  ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
+  ?!@uint ioLocalLabelIndex
+  ?!@midrange_ipic_instructionList ioGeneratedInstructionList
+  ?!@string ioListFileContents
+  ??@uint inTotalBankCount
+  ?!@uint ioCurrentBank
+  ??@bool inShouldPreserveBank
+  ?!@bool unused ioContinuesInSequence
+  ??@routineKind inRoutineKind
+:
+#---
+  @midrange_instruction_FD_base_code baseCode ;
+  if mIncrement then
+    baseCode := [@midrange_instruction_FD_base_code INCFSZ] ;
+  else
+    baseCode := [@midrange_instruction_FD_base_code DECFSZ] ;
+  end if ;
+#---
+  @midrange_ipic_registerExpression IPICregisterDescription ;
+  [mRegisterExpression resolveMidrangeAccess
+    !inTotalBankCount
+    !ioCurrentBank
+    !inRegisterTable
+    ?IPICregisterDescription
+    ?*
+  ] ;
+#---
+  ioGeneratedInstructionList += ![@midrange_ipic_instruction_FD new
+    !mInstructionLocation
+    !baseCode
+    !IPICregisterDescription
+    !m_W_isDestination
+  ] ;
+#---
+  @bool unusedContinuesInSequence := true ;
+  [mInstruction build_midrange_ipic_instructionList
+    !inRoutineMap
+    !inRegisterTable
+    !inConstantMap
+    !?ioLocalLabelIndex
+    !?ioGeneratedInstructionList
+    !?ioListFileContents
+    !inTotalBankCount
+    !?ioCurrentBank
+    !inShouldPreserveBank
+    !?unusedContinuesInSequence
+    !inRoutineKind
+  ] ;
+end method ;
+
+#----------------------------------------------------*
+
+routine build_midrange_assembly_instruction_list
+  ??@uint inTotalBankCount
+  ??@registerTable inRegisterTable
+  ??@midrange_model inPiccoloModel
+  ??@bool inHasInterrupt
+  !@midrange_ipic_instructionList outGeneratedInstructionList
+  ?!@string ioListFileContents
+:
+  @string generationOptimizationMessages := "" ;
+#-------------------------------- Build routine map
+  @routineMap routineMap [emptyMap] ;
+  foreach [inPiccoloModel mRoutineDefinitionList] do
+    if ([mRequiredBank uint] != [@uint max]) & ([mRequiredBank uint] > 15) then
+      error mRequiredBank:"the required bank value should be lower or equal to 15" ;
+    end if ;
+    if ([mReturnedBank uint] != [@uint max]) & ([mReturnedBank uint] > 15) then
+      error mReturnedBank:"the returned bank value should be lower or equal to 15" ;
+    end if ;
+    [!?routineMap insertKey !mRoutineName !mIsNoReturn ![mRequiredBank uint] ![mReturnedBank uint] !mPreservesBank] ;
+  end foreach ;
+#-------------------------------- Build contant map
+  @constantMap constantMap [emptyMap] ;
+  foreach [inPiccoloModel mConstantDefinitionList] do
+    @sint result ; [mExpression eval !inRegisterTable !constantMap ?result] ;
+    if [inRegisterTable hasKey ![mConstantName string]] then
+      error mConstantName: "'" . mConstantName . "' is alreday declared as ram register or special register" ;
+    else
+      [!?constantMap insertKey !mConstantName !result] ;
+    end if ;
+  end foreach ;
+#-------------------------------- Check the "main" routine is declared
+  if [routineMap hasKey !"main"] then
+    @bool isNoReturn ;
+    @uint requiredBank ;
+    [routineMap searchKey ![@lstring new !"main" !here] ?isNoReturn ?requiredBank ?* ?*] ;
+    if not isNoReturn then
+      error here :"the \"main\" should be declared with \"noreturn\" qualifier: \"noreturn main requiresbank 0\"" ;
+    end if ;
+    if requiredBank != 0 then
+      error here :"the \"main\" should be declared with \"requiresbank 0\" qualifier: \"noreturn main requiresbank 0\"" ;
+    end if ;
+  else
+    error [inPiccoloModel mEndOfProgram]: "the program should declare the \"main\" routine" ;
+  end if ;
+#-------------------------------- Check and translate interrupt routines
+  outGeneratedInstructionList := [@midrange_ipic_instructionList emptyList] ;
+  @uint localLabelIndex := 0 ;
+#--- At zero, generate 'jump main' instruction
+  outGeneratedInstructionList += ![@midrange_ipic_JUMP new !here ![@lstring new !"main" !here] ![@midrange_jumpInstructionKind ipicExtended]] ;
+#--- First, handle low interrupt (if any)
+  if inHasInterrupt then
+    outGeneratedInstructionList += ![@midrange_ipic_pseudo_ORG new !0x4] ;
+    foreach [inPiccoloModel mInterruptDefinitionList] do
+      @bool continuesInSequence ;
+      @uint currentBank [max] ; # No bank
+      handleMidrangeInstructionList
+        !mInstructionList
+        !routineMap
+        !inRegisterTable
+        !constantMap
+        !?localLabelIndex
+        !?outGeneratedInstructionList
+        !?generationOptimizationMessages
+        !inTotalBankCount
+        !?currentBank
+        !true # Preserve bank
+        ?continuesInSequence
+        ![@routineKind interruptRoutine]
+      ;
+      if not continuesInSequence then
+        error mEndOfInterruptLocation:"execution cannot reach the end of the interrupt routine" ;
+      end if ;
+    #--- Ajouter l'instruction REFFIE
+      outGeneratedInstructionList += ![@midrange_ipic_instruction_RETFIE new !here] ;
+    end foreach ;
+  end if ;
+#-------------------------------- Check and translate routines
+  foreach [inPiccoloModel mRoutineDefinitionList] do
+    @bool continuesInSequence ;
+    @uint currentBank := [mRequiredBank uint] ;
+    @routineKind routineKind ;
+    if mIsNoReturn then
+      routineKind := [@routineKind noReturnRoutine] ;
+    else
+      routineKind := [@routineKind regularRoutine] ;
+    end if ;
+    outGeneratedInstructionList += ![@midrange_ipic_pseudo_LABEL new !mRoutineName] ;
+    handleMidrangeInstructionList
+      !mInstructionList
+      !routineMap
+      !inRegisterTable
+      !constantMap
+      !?localLabelIndex
+      !?outGeneratedInstructionList
+      !?generationOptimizationMessages
+      !inTotalBankCount
+      !?currentBank
+      !mPreservesBank
+      ?continuesInSequence
+      !routineKind
+    ;
+    if (not mIsNoReturn) & ([mReturnedBank uint] != [@uint max]) & (currentBank != [mReturnedBank uint]) then
+      error mRoutineName:"execution will not set bank selection to " . [[mReturnedBank uint] string] ;
+    end if ;
+    if mIsNoReturn & continuesInSequence then
+      error mRoutineName:"execution should not reach the end of a \"noreturn\" routine" ;
+    end if ;
+  #--- Add a RETURN instruction (if it is a regular routine)
+    if not mIsNoReturn then
+      outGeneratedInstructionList += ![@midrange_ipic_instruction_RETURN new ![mRoutineName location]] ;
+    end if ;
+  end foreach ;
+##--- Description of register WREG
+#  @registerExpression WREGregister [new ![@lstring new !"WREG" !here] ![@luint new !0 !here]] ;
+#  @midrange_ipic_registerExpression WREG_IPICregisterDescription ;
+#  [WREGregister resolveMidrangeAccess
+#    !inTotalBankCount
+#    !ioCurrentBank
+#    !inRegisterTable
+#    ?WREG_IPICregisterDescription
+#    ?*
+#  ] ;
+##--- Description of register TOSL
+#  @registerExpression TOSLregister [new ![@lstring new !"TOSL" !here] ![@luint new !0 !here]] ;
+#  @midrange_ipic_registerExpression TOSL_IPICregisterDescription ;
+#  [TOSLregister resolveMidrangeAccess
+#    !inTotalBankCount
+#    !ioCurrentBank
+#    !inRegisterTable
+#    ?TOSL_IPICregisterDescription
+#    ?*
+#  ] ;
+##--- Description of register TOSH
+#  @registerExpression TOSHregister [new ![@lstring new !"TOSH" !here] ![@luint new !0 !here]] ;
+#  @midrange_ipic_registerExpression TOSH_IPICregisterDescription ;
+#  [TOSHregister resolveMidrangeAccess
+#    !inTotalBankCount
+#    !ioCurrentBank
+#    !inRegisterTable
+#    ?TOSH_IPICregisterDescription
+#    ?*
+#  ] ;
+##--- Description of register TOSU
+#  @registerExpression TOSUregister [new ![@lstring new !"TOSU" !here] ![@luint new !0 !here]] ;
+#  @midrange_ipic_registerExpression TOSU_IPICregisterDescription ;
+#  [TOSUregister resolveMidrangeAccess
+#    !inTotalBankCount
+#    !ioCurrentBank
+#    !inRegisterTable
+#    ?TOSU_IPICregisterDescription
+#    ?*
+#  ] ;
+##--- computed_goto2 routine needed ?
+#  if [inPiccoloModel mNeedsComputedGoto4] then
+#    outGeneratedInstructionList += ![@ipic_pseudo_LABEL new ![@lstring new !"_computed_goto_4" !here]] ;
+#    outGeneratedInstructionList += ![@ipic_instruction_FDA new
+#      !here
+#      ![@midrange_instruction_FDA_base_code ADDWF]
+#      !WREG_IPICregisterDescription
+#      !true
+#    ] ; # ADDWF WREG, W
+#  end if ;
+#  if [inPiccoloModel mNeedsComputedGoto2] then
+#    outGeneratedInstructionList += ![@ipic_pseudo_LABEL new ![@lstring new !"_computed_goto_2" !here]] ;
+#  end if ;
+#  if [inPiccoloModel mNeedsComputedGoto2] | [inPiccoloModel mNeedsComputedGoto4] then
+#    outGeneratedInstructionList += ![@ipic_instruction_FDA new
+#      !here
+#      ![@midrange_instruction_FDA_base_code ADDWF]
+#      !WREG_IPICregisterDescription
+#      !true
+#    ] ; # ADDWF WREG, W
+#    outGeneratedInstructionList += ![@ipic_instruction_FDA new
+#      !here
+#      ![@midrange_instruction_FDA_base_code ADDWFC]
+#      !TOSL_IPICregisterDescription
+#      !false
+#    ] ; # ADDWFC TOSL, F
+#    outGeneratedInstructionList += ![@ipic_instruction_literalOperation new
+#      !here
+#      ![@literal_instruction_opcode MOVLW]
+#      !0
+#    ] ; # MOVLW 0
+#    outGeneratedInstructionList += ![@ipic_instruction_FDA new
+#      !here
+#      ![@midrange_instruction_FDA_base_code ADDWFC]
+#      !TOSH_IPICregisterDescription
+#      !false
+#    ] ; # ADDWFC TOSH, F
+#    outGeneratedInstructionList += ![@ipic_instruction_FDA new
+#      !here
+#      ![@midrange_instruction_FDA_base_code ADDWFC]
+#      !TOSU_IPICregisterDescription
+#      !false
+#    ] ; # ADDWFC TOSU, F
+#    outGeneratedInstructionList += ![@ipic_instruction_RETURN new
+#      !here
+#    ] ; # RETURN 0
+#  end if ;
+#--- Output a listing ?
+  if [option piccolo_options.ouputListingFile] then
+    ioListFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n" ;
+    ioListFileContents .= "*" . ["IPIC INSTRUCTION LIST" stringByLeftAndRightPadding !77 !' '] . "*\n" ;
+    ioListFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n\n" ;
+    if [generationOptimizationMessages length] > 0 then
+      ioListFileContents .= "Optimizations during generation:\n" ;
+      ioListFileContents .= generationOptimizationMessages ;
+      ioListFileContents .= "\n" ;
+    end if ;
+    ioListFileContents .= "Generated intermediate code:\n" ;
+    @uint index := 0 ;
+    @uint currentAddress := 0 ;
+    foreach outGeneratedInstructionList do
+      [mInstruction setCurrentAddress !?currentAddress] ;
+      ioListFileContents .= [[index string] stringByLeftPadding !5 !' '] . ": " ;
+      [mInstruction displayIPICinstruction !? ioListFileContents] ;
+      ioListFileContents .= "\n" ;
+      index ++ ;
+    end foreach ;
+    ioListFileContents .= "\n" ;
+    ioListFileContents .= "Minimum code size without optimization: " . [currentAddress string] . " instructions.\n\n" ;
+  end if ;
+end routine ;
+
+#----------------------------------------------------*
+
+end semantics ;

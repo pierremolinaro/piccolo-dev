@@ -1,6 +1,6 @@
 semantics piccoloDevice_semantics :
-import "bitSlice.gSemantics" ;
-import semantics bitSlice in "bitSlice.gSemantics" ;
+import "generic_metamodel.gSemantics" ;
+import semantics generic_metamodel in "generic_metamodel.gSemantics" ;
 
 #----------------------------------------------------*
 

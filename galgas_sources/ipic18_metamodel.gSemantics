@@ -1,10 +1,55 @@
 semantics ipic18_metamodel :
 import "piccolo_metamodel.gSemantics" ;
-import semantics piccolo_metamodel in "piccolo_metamodel.gSemantics" ;
+import semantics pic18_metamodel in "pic18_metamodel.gSemantics" ;
+import semantics ipic_generic in "ipic_generic.gSemantics" ;
 
 #----------------------------------------------------*
 
-abstract class @ipic_instruction {
+struct @ipic_registerExpression {
+  @string mAssemblyString ;
+  @uint mRegisterAddress ; # 12 bit full address
+  @bool mNeedsBSR ;
+}
+
+#----------------------------------------------------*
+
+method @registerExpression.resolveAccess
+  ??@uint inAccessBankSplitOffset
+  ??@registerTable inRegisterTable
+  !@ipic_registerExpression outIPICregisterDescription
+  !@bitSliceTable outBitSliceTable
+:
+#--- Build assembly string
+  @string assemblyString := [mRegisterName string] ;
+  if [mOffset uint] > 0 then
+    assemblyString .= " + " . [[mOffset uint] hexString] ;
+  end if ;
+#--- 
+  @uintlist registerAddressList ;
+  @uint size ;
+  @uint registerAddress := 0 ;
+  [inRegisterTable searchKey !mRegisterName ?registerAddressList ?size ?outBitSliceTable ?*] ;
+  @bool found := false ;
+  foreach registerAddressList while not found do
+    found := (mValue < inAccessBankSplitOffset) | (mValue >= (0x0F00 + inAccessBankSplitOffset)) ;
+    registerAddress := mValue ;
+  end foreach ;
+  @bool needsBSRaccess := false ;
+  if not found then
+    needsBSRaccess := true ;
+    [registerAddressList first ?registerAddress] ;
+  end if ;
+#---
+  outIPICregisterDescription := [@ipic_registerExpression new
+    !assemblyString
+    !registerAddress + [mOffset uint]
+    !needsBSRaccess
+  ] ;
+end method ;
+
+#----------------------------------------------------*
+
+abstract class @ipic18_instruction {
   abstract method instructionLength !@uint outLength ;
   abstract method displayIPICinstruction ?!@string ioListFileContents ;
 
@@ -36,13 +81,13 @@ abstract class @ipic_instruction {
 
 #----------------------------------------------------*
 
-list @ipic_instructionList {
-  @ipic_instruction mInstruction ;
+list @ipic18_instructionList {
+  @ipic18_instruction mInstruction ;
 }
 
 #----------------------------------------------------*
 
-class @ipic_NULL extends @ipic_instruction {
+class @ipic_NULL extends @ipic18_instruction {
   override method instructionLength !@uint outLength :
     outLength := 0 ;
   end method ;
@@ -59,7 +104,7 @@ class @ipic_NULL extends @ipic_instruction {
 
 #----------------------------------------------------*
 
-class @ipic_pseudo_ORG extends @ipic_instruction {
+class @ipic_pseudo_ORG extends @ipic18_instruction {
   @uint mOrigin ;
 
   override method instructionLength !@uint outLength :
@@ -82,7 +127,7 @@ class @ipic_pseudo_ORG extends @ipic_instruction {
 
 #----------------------------------------------------*
 
-class @ipic_pseudo_LABEL extends @ipic_instruction {
+class @ipic_pseudo_LABEL extends @ipic18_instruction {
   @lstring mLabel ;
 
   override method instructionLength !@uint outLength :
@@ -101,7 +146,7 @@ class @ipic_pseudo_LABEL extends @ipic_instruction {
 
 #----------------------------------------------------*
 
-abstract class @ipic_actualInstruction extends @ipic_instruction {
+abstract class @ipic_actualInstruction extends @ipic18_instruction {
   @location mInstructionLocation ;
 
   override method instructionLength !@uint outLength :
@@ -111,15 +156,7 @@ abstract class @ipic_actualInstruction extends @ipic_instruction {
 
 #----------------------------------------------------*
 
-struct @ipic_registerExpression {
-  @string mAssemblyString ;
-  @uint mRegisterAddress ; # 12 bit full address
-  @bool mNeedsBSR ;
-}
-
-#----------------------------------------------------*
-
-class @ipic_instruction_FDA extends @ipic_actualInstruction {
+class @ipic18_instruction_FDA extends @ipic_actualInstruction {
   @instruction_FDA_base_code mInstruction_FDA_base_code ;
   @ipic_registerExpression mRegisterDescription ;
   @bool m_W_isDestination ;
@@ -177,7 +214,7 @@ end routine ;
 
 #----------------------------------------------------*
 
-class @ipic_instruction_FA extends @ipic_actualInstruction {
+class @ipic18_instruction_FA extends @ipic_actualInstruction {
   @FA_instruction_base_code mFAinstruction ;
   @ipic_registerExpression mRegisterDescription ;
 
@@ -198,7 +235,7 @@ class @ipic_instruction_FA extends @ipic_actualInstruction {
 
 #----------------------------------------------------*
 
-class @ipic_instruction_MOVFF extends @ipic_actualInstruction {
+class @ipic18_instruction_MOVFF extends @ipic_actualInstruction {
   @ipic_registerExpression mSourceRegisterDescription ;
   @ipic_registerExpression mDestinationRegisterDescription ;
   
@@ -226,7 +263,7 @@ end routine ;
 
 #----------------------------------------------------*
 
-class @ipic_instruction_FBA extends @ipic_actualInstruction {
+class @ipic18_instruction_FBA extends @ipic_actualInstruction {
   @bit_oriented_op mBitOrientedOp ;
   @ipic_registerExpression mRegisterDescription ;
   @uint mBitNumber ;
@@ -243,7 +280,7 @@ class @ipic_instruction_FBA extends @ipic_actualInstruction {
 
 #----------------------------------------------------*
 
-class @ipic_instruction_BitTestSkip extends @ipic_actualInstruction {
+class @ipic18_instruction_BitTestSkip extends @ipic_actualInstruction {
   @bool mSkipIfSet ;
   @ipic_registerExpression mRegisterDescription ;
   @uint mBitNumber ;
@@ -284,7 +321,7 @@ enum @condionalBranchMode {
 
 #----------------------------------------------------*
 
-class @ipic_instruction_conditionalBranch extends @ipic_actualInstruction {
+class @ipic18_instruction_conditionalBranch extends @ipic_actualInstruction {
   @condionalBranchMode mBranchMode ;
   @conditional_branch mConditionalBranch ;
   @lstring mTargetLabel ;
@@ -383,7 +420,7 @@ class @ipic_JSR extends @ipic_actualInstruction {
 
 #----------------------------------------------------*
 
-class @ipic_instruction_CLRWDT extends @ipic_actualInstruction {
+class @ipic18_instruction_CLRWDT extends @ipic_actualInstruction {
 
   override
   method displayIPICinstruction ?!@string ioListFileContents :
@@ -393,7 +430,7 @@ class @ipic_instruction_CLRWDT extends @ipic_actualInstruction {
 
 #----------------------------------------------------*
 
-class @ipic_instruction_DAW extends @ipic_actualInstruction {
+class @ipic18_instruction_DAW extends @ipic_actualInstruction {
 
   override
   method displayIPICinstruction ?!@string ioListFileContents :
@@ -403,7 +440,7 @@ class @ipic_instruction_DAW extends @ipic_actualInstruction {
 
 #----------------------------------------------------*
 
-class @ipic_instruction_NOP extends @ipic_actualInstruction {
+class @ipic18_instruction_NOP extends @ipic_actualInstruction {
 
   override
   method displayIPICinstruction ?!@string ioListFileContents :
@@ -413,7 +450,7 @@ class @ipic_instruction_NOP extends @ipic_actualInstruction {
 
 #----------------------------------------------------*
 
-class @ipic_instruction_POP extends @ipic_actualInstruction {
+class @ipic18_instruction_POP extends @ipic_actualInstruction {
 
   override
   method displayIPICinstruction ?!@string ioListFileContents :
@@ -423,7 +460,7 @@ class @ipic_instruction_POP extends @ipic_actualInstruction {
 
 #----------------------------------------------------*
 
-class @ipic_instruction_PUSH extends @ipic_actualInstruction {
+class @ipic18_instruction_PUSH extends @ipic_actualInstruction {
 
   override
   method displayIPICinstruction ?!@string ioListFileContents :
@@ -433,7 +470,7 @@ class @ipic_instruction_PUSH extends @ipic_actualInstruction {
 
 #----------------------------------------------------*
 
-class @ipic_instruction_RESET extends @ipic_actualInstruction {
+class @ipic18_instruction_RESET extends @ipic_actualInstruction {
 
   override
   method displayIPICinstruction ?!@string ioListFileContents :
@@ -443,7 +480,7 @@ class @ipic_instruction_RESET extends @ipic_actualInstruction {
 
 #----------------------------------------------------*
 
-class @ipic_instruction_RETURN extends @ipic_actualInstruction {
+class @ipic18_instruction_RETURN extends @ipic_actualInstruction {
 
   override
   method displayIPICinstruction ?!@string ioListFileContents :
@@ -457,7 +494,7 @@ class @ipic_instruction_RETURN extends @ipic_actualInstruction {
 
 #----------------------------------------------------*
 
-class @ipic_instruction_RETFIE extends @ipic_actualInstruction {
+class @ipic18_instruction_RETFIE extends @ipic_actualInstruction {
   @bool mFastReturn ;
 
   override
@@ -475,7 +512,7 @@ class @ipic_instruction_RETFIE extends @ipic_actualInstruction {
 
 #----------------------------------------------------*
 
-class @ipic_instruction_SLEEP extends @ipic_actualInstruction {
+class @ipic18_instruction_SLEEP extends @ipic_actualInstruction {
 
   override
   method displayIPICinstruction ?!@string ioListFileContents :
@@ -501,7 +538,7 @@ end routine ;
 
 #----------------------------------------------------*
 
-class @ipic_instruction_literalOperation extends @ipic_actualInstruction {
+class @ipic18_instruction_literalOperation extends @ipic_actualInstruction {
   @literal_instruction_opcode mLiteralInstruction ;
   @uint mLiteralValue ;
 
@@ -521,7 +558,7 @@ class @ipic_instruction_literalOperation extends @ipic_actualInstruction {
 
 #----------------------------------------------------*
 
-class @ipic_instruction_LFSR extends @ipic_actualInstruction {
+class @ipic18_instruction_LFSR extends @ipic_actualInstruction {
   @luint mFSRindex ;
   @uint mValue ;
   
@@ -538,7 +575,7 @@ class @ipic_instruction_LFSR extends @ipic_actualInstruction {
 
 #----------------------------------------------------*
 
-class @ipic_instruction_MOVLB extends @ipic_actualInstruction {
+class @ipic18_instruction_MOVLB extends @ipic_actualInstruction {
   @luint mBankIndex ;
 
   override
@@ -549,7 +586,7 @@ class @ipic_instruction_MOVLB extends @ipic_actualInstruction {
 
 #----------------------------------------------------*
 
-class @ipic_instruction_TBLRD extends @ipic_actualInstruction {
+class @ipic18_instruction_TBLRD extends @ipic_actualInstruction {
   @tableAccessOption mOption ;
 
   override
@@ -560,7 +597,7 @@ class @ipic_instruction_TBLRD extends @ipic_actualInstruction {
 
 #----------------------------------------------------*
 
-class @ipic_instruction_TBLWT extends @ipic_actualInstruction {
+class @ipic18_instruction_TBLWT extends @ipic_actualInstruction {
   @tableAccessOption mOption ;
 
   override
@@ -571,7 +608,7 @@ class @ipic_instruction_TBLWT extends @ipic_actualInstruction {
 
 #----------------------------------------------------*
 
-class @ipic_instruction_MNOP extends @ipic_actualInstruction {
+class @ipic18_instruction_MNOP extends @ipic_actualInstruction {
   @luint mOccurrenceFactor ;
   override
   method instructionLength !@uint outLength :
@@ -586,7 +623,7 @@ class @ipic_instruction_MNOP extends @ipic_actualInstruction {
 
 #----------------------------------------------------*
 
-class @ipic_instruction_computed_retlw extends @ipic_actualInstruction {
+class @ipic18_instruction_computed_retlw extends @ipic_actualInstruction {
   @uintlist mLiteralValues ;
   @bool mUsesRCALL ;
 
@@ -622,7 +659,7 @@ class @ipic_instruction_computed_retlw extends @ipic_actualInstruction {
 
 #----------------------------------------------------*
 
-class @ipic_instruction_computed_bra extends @ipic_actualInstruction {
+class @ipic18_instruction_computed_bra extends @ipic_actualInstruction {
   @lstringlist mTargetLabels ;
   @bool mUsesRCALL ;
 
@@ -661,7 +698,7 @@ class @ipic_instruction_computed_bra extends @ipic_actualInstruction {
 
 #----------------------------------------------------*
 
-class @ipic_instruction_computed_goto extends @ipic_actualInstruction {
+class @ipic18_instruction_computed_goto extends @ipic_actualInstruction {
   @lstringlist mTargetLabels ;
   @bool mUsesRCALL ;
 

@@ -1,6 +1,7 @@
 semantics midrange_metamodel :
-import "piccolo_metamodel.gSemantics" ;
-import semantics piccolo_metamodel in "piccolo_metamodel.gSemantics" ;
+
+import "generic_metamodel.gSemantics" ;
+import semantics generic_metamodel in "generic_metamodel.gSemantics" ;
 
 #----------------------------------------------------*
 
@@ -161,9 +162,15 @@ class @midrange_instruction_JUMP extends @midrange_instruction {
   @lstring mTargetLabel ;
   @midrange_jumpInstructionKind mKind ;
 }
+
 #----------------------------------------------------*
 
 class @midrange_instruction_CLRWDT extends @midrange_instruction {
+}
+
+#----------------------------------------------------*
+
+class @midrange_instruction_CLRW extends @midrange_instruction {
 }
 
 #----------------------------------------------------*
@@ -258,17 +265,17 @@ class @midrange_instruction_IF_IncDec extends @midrange_instruction_IF_SEMI_COLO
 
 #----------------------------------------------------*
 
-class @midrange_instruction_computed_retlw extends @midrange_instruction {
-  @immediatExpression mSizeExpression ;
-  @immediatExpressionList mImmediateExpressionList ;
-}
+#class @midrange_instruction_computed_retlw extends @midrange_instruction {
+#  @immediatExpression mSizeExpression ;
+#  @immediatExpressionList mImmediateExpressionList ;
+#}
 
 #----------------------------------------------------*
 
-class @midrange_instruction_computed_goto extends @midrange_instruction {
-  @immediatExpression mSizeExpression ;
-  @lstringlist mTargetLabels ;
-}
+#class @midrange_instruction_computed_goto extends @midrange_instruction {
+#  @immediatExpression mSizeExpression ;
+#  @lstringlist mTargetLabels ;
+#}
 
 #----------------------------------------------------*
 
@@ -333,8 +340,9 @@ class @midrange_instruction_do_while extends @midrange_instruction {
 #----------------------------------------------------*
 
 list @midrange_interruptDefinitionList {
-  @midrange_instructionList mInstructionList ;
   @location mInterruptLocation ;
+  @midrange_instructionList mInstructionList ;
+  @location mEndOfInterruptLocation ;
 }
 
 #----------------------------------------------------*

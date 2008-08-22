@@ -76,7 +76,7 @@ routine pic18_analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName 
     ?registerTable
   ;
 #-------------------------------- Build IPIC Assembly Instruction List
-  @ipic_instructionList generatedInstructionList ;
+  @ipic18_instructionList generatedInstructionList ;
   build_ipic18_assembly_instruction_list
     !accessBankSplitOffset
     !registerTable

@@ -1,6 +1,6 @@
 syntax midrange_syntax :
 import lexique piccolo_lexique in "piccolo_lexique.gLexique" ;
-import semantics piccolo_metamodel in "piccolo_metamodel.gSemantics" ;
+import semantics generic_metamodel in "generic_metamodel.gSemantics" ;
 import semantics midrange_metamodel in "midrange_metamodel.gSemantics" ;
 import semantics midrange_semantics in "midrange_semantics.gSemantics" ;
 
@@ -176,7 +176,7 @@ rule <midrange_interrupt_definition>
     !?ioNeedsComputedGoto4
   ;
   $}$ ;
-  ioInterruptDefinitionList += !instructionList !interruptionLocation ;
+  ioInterruptDefinitionList += !interruptionLocation !instructionList !here ;
 end rule ;
 
 #----------------------------------------------------*
@@ -276,45 +276,45 @@ rule <midrange_structured_instruction>
       !instructionList
       !here
     ] ;
-  or
-    $computed$ ;
-    @location instructionLocation := here ;
-    $[$ ;
-    @immediatExpression sizeExpression ;
-    <immediate_expression> ?sizeExpression ;
-    $]$ ;
-    select
-      $retlw$ ;
-      @immediatExpressionList argumentList [emptyList] ;
-      repeat
-        @immediatExpression expression ;
-        <immediate_expression> ?expression ;
-        argumentList += !expression ;
-      while
-        $,$ ;
-      end repeat ;
-      outInstruction := [@midrange_instruction_computed_retlw new
-        !instructionLocation
-        !sizeExpression
-        !argumentList
-      ] ;
-      ioNeedsComputedGoto2 := true ;
-    or
-      $goto$ ;
-      @lstringlist argumentList [emptyList] ;
-      repeat
-        $identifier$ ? @lstring targetRoutine ;
-        argumentList += ! targetRoutine ;
-      while
-        $,$ ;
-      end repeat ;
-      outInstruction := [@midrange_instruction_computed_goto new
-        !instructionLocation
-        !sizeExpression
-        !argumentList
-      ] ;
-      ioNeedsComputedGoto4 := true ;
-    end select ;
+#  or
+#    $computed$ ;
+#    @location instructionLocation := here ;
+#    $[$ ;
+#    @immediatExpression sizeExpression ;
+#    <immediate_expression> ?sizeExpression ;
+#    $]$ ;
+#    select
+#      $retlw$ ;
+#      @immediatExpressionList argumentList [emptyList] ;
+#      repeat
+#        @immediatExpression expression ;
+#        <immediate_expression> ?expression ;
+#        argumentList += !expression ;
+#      while
+#        $,$ ;
+#      end repeat ;
+#      outInstruction := [@midrange_instruction_computed_retlw new
+#        !instructionLocation
+#        !sizeExpression
+#        !argumentList
+#      ] ;
+#      ioNeedsComputedGoto2 := true ;
+#    or
+#      $goto$ ;
+#      @lstringlist argumentList [emptyList] ;
+#      repeat
+#        $identifier$ ? @lstring targetRoutine ;
+#        argumentList += ! targetRoutine ;
+#      while
+#        $,$ ;
+#      end repeat ;
+#      outInstruction := [@midrange_instruction_computed_goto new
+#        !instructionLocation
+#        !sizeExpression
+#        !argumentList
+#      ] ;
+#      ioNeedsComputedGoto4 := true ;
+#    end select ;
   or
     $forever$ ;
     @location instructionLocation := here ;
@@ -430,6 +430,24 @@ rule <midrange_structured_instruction>
     @location instructionLocation := here ;
     $integer$ ? @luint occurrenceFactor ;
     outInstruction := [@midrange_instruction_MNOP new !instructionLocation !occurrenceFactor] ;
+  or
+    $jsr$ ;
+    @location instructionLocation := here ;
+    $identifier$ ? @lstring targetLabelName ;
+    outInstruction := [@midrange_instruction_JSR new
+      !instructionLocation
+      !targetLabelName
+      ![@midrange_jumpInstructionKind ipicExtended]
+    ] ;
+  or
+    $jump$ ;
+    @location instructionLocation := here ;
+    $identifier$ ? @lstring targetLabelName ;
+    outInstruction := [@midrange_instruction_JUMP new
+      !instructionLocation
+      !targetLabelName
+      ![@midrange_jumpInstructionKind ipicExtended]
+    ] ;
   end select ;
 end rule ;
 
@@ -570,15 +588,6 @@ rule <midrange_simple_instruction> !@midrange_instruction outInstruction :
       !bitNumber
     ] ;
   or
-    $jsr$ ;
-    @location instructionLocation := here ;
-    $identifier$ ? @lstring targetLabelName ;
-    outInstruction := [@midrange_instruction_JSR new
-      !instructionLocation
-      !targetLabelName
-      ![@midrange_jumpInstructionKind ipicExtended]
-    ] ;
-  or
     $call$ ;
     @location instructionLocation := here ;
     $identifier$ ? @lstring targetLabelName ;
@@ -586,15 +595,6 @@ rule <midrange_simple_instruction> !@midrange_instruction outInstruction :
       !instructionLocation
       !targetLabelName
       ![@midrange_jumpInstructionKind native]
-    ] ;
-  or
-    $jump$ ;
-    @location instructionLocation := here ;
-    $identifier$ ? @lstring targetLabelName ;
-    outInstruction := [@midrange_instruction_JUMP new
-      !instructionLocation
-      !targetLabelName
-      ![@midrange_jumpInstructionKind ipicExtended]
     ] ;
   or
     $goto$ ;
@@ -605,6 +605,9 @@ rule <midrange_simple_instruction> !@midrange_instruction outInstruction :
       !targetLabelName
       ![@midrange_jumpInstructionKind native]
     ] ;
+  or
+    $clrw$ ;
+    outInstruction := [@midrange_instruction_CLRW new !here] ;
   or
     $clrwdt$ ;
     outInstruction := [@midrange_instruction_CLRWDT new !here] ;

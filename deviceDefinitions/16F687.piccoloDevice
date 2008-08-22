@@ -41,7 +41,7 @@ controller PIC16F687 {
     <ANS7, ANS6, ANS5, ANS4, ANS3, ANS2, ANS1, ANS0> ;
 
   register ANSELH at 0x11F
-    <-, -, -, -, ANSELH [4]> ;
+    <-, -, -, -, ANS11, ANS10, ANS9, ANS8> ;
 
   register BAUDCTL at 0x9B
     <ABDOVF, RCIDL, -, SCKP, BRG16, -, WUE, ABDEN> ;

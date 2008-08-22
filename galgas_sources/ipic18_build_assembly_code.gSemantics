@@ -8,7 +8,7 @@ import "piccolo_embedded_devices.gSemantics" ;
 #                BUILD ASSEMBLY CODE                 *
 #----------------------------------------------------*
 
-abstract method @ipic_instruction.buildAssemblyCode
+abstract method @ipic18_instruction.buildAssemblyCode
   ?!@string unused ioString 
   ?!@uint unused ioBccLabelIndex
 ;
@@ -33,7 +33,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @ipic_instruction_FDA.buildAssemblyCode
+override method @ipic18_instruction_FDA.buildAssemblyCode
   ?!@string ioString
   ?!@uint unused ioBccLabelIndex
 :
@@ -52,7 +52,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @ipic_instruction_MOVFF.buildAssemblyCode
+override method @ipic18_instruction_MOVFF.buildAssemblyCode
   ?!@string ioString
   ?!@uint unused ioBccLabelIndex
 :
@@ -65,7 +65,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @ipic_instruction_FBA.buildAssemblyCode
+override method @ipic18_instruction_FBA.buildAssemblyCode
   ?!@string ioString
   ?!@uint unused ioBccLabelIndex
 :
@@ -81,7 +81,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @ipic_instruction_BitTestSkip.buildAssemblyCode
+override method @ipic18_instruction_BitTestSkip.buildAssemblyCode
   ?!@string ioString
   ?!@uint unused ioBccLabelIndex
 :
@@ -102,7 +102,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @ipic_instruction_FA.buildAssemblyCode
+override method @ipic18_instruction_FA.buildAssemblyCode
   ?!@string ioString
   ?!@uint unused ioBccLabelIndex
 :
@@ -115,7 +115,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @ipic_instruction_conditionalBranch.buildAssemblyCode
+override method @ipic18_instruction_conditionalBranch.buildAssemblyCode
   ?!@string ioString
   ?!@uint ioBccLabelIndex
 :
@@ -269,7 +269,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @ipic_instruction_MOVLB.buildAssemblyCode
+override method @ipic18_instruction_MOVLB.buildAssemblyCode
   ?!@string ioString
   ?!@uint unused ioBccLabelIndex
 :
@@ -278,7 +278,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @ipic_instruction_CLRWDT.buildAssemblyCode
+override method @ipic18_instruction_CLRWDT.buildAssemblyCode
   ?!@string ioString
   ?!@uint unused ioBccLabelIndex
 :
@@ -287,7 +287,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @ipic_instruction_DAW.buildAssemblyCode
+override method @ipic18_instruction_DAW.buildAssemblyCode
   ?!@string ioString
   ?!@uint unused ioBccLabelIndex
 :
@@ -296,7 +296,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @ipic_instruction_NOP.buildAssemblyCode
+override method @ipic18_instruction_NOP.buildAssemblyCode
   ?!@string ioString
   ?!@uint unused ioBccLabelIndex
 :
@@ -305,7 +305,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @ipic_instruction_POP.buildAssemblyCode
+override method @ipic18_instruction_POP.buildAssemblyCode
   ?!@string ioString
   ?!@uint unused ioBccLabelIndex
 :
@@ -314,7 +314,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @ipic_instruction_PUSH.buildAssemblyCode
+override method @ipic18_instruction_PUSH.buildAssemblyCode
   ?!@string ioString
   ?!@uint unused ioBccLabelIndex
 :
@@ -323,7 +323,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @ipic_instruction_RESET.buildAssemblyCode
+override method @ipic18_instruction_RESET.buildAssemblyCode
   ?!@string ioString
   ?!@uint unused ioBccLabelIndex
 :
@@ -332,7 +332,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @ipic_instruction_RETURN.buildAssemblyCode
+override method @ipic18_instruction_RETURN.buildAssemblyCode
   ?!@string ioString
   ?!@uint unused ioBccLabelIndex
 :
@@ -341,7 +341,7 @@ end method ;
 
 #----------------------------------------------------*
 
- override method @ipic_instruction_RETFIE.buildAssemblyCode
+ override method @ipic18_instruction_RETFIE.buildAssemblyCode
   ?!@string ioString
   ?!@uint unused ioBccLabelIndex
 :
@@ -354,7 +354,7 @@ end method ;
 
 #----------------------------------------------------*
 
- override method @ipic_instruction_SLEEP.buildAssemblyCode
+ override method @ipic18_instruction_SLEEP.buildAssemblyCode
   ?!@string ioString
   ?!@uint unused ioBccLabelIndex
 :
@@ -363,7 +363,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @ipic_instruction_literalOperation.buildAssemblyCode
+override method @ipic18_instruction_literalOperation.buildAssemblyCode
   ?!@string ioString
   ?!@uint unused ioBccLabelIndex
 :
@@ -372,7 +372,7 @@ end method ;
 
 #----------------------------------------------------*
 
- override method @ipic_instruction_LFSR.buildAssemblyCode
+ override method @ipic18_instruction_LFSR.buildAssemblyCode
   ?!@string ioString
   ?!@uint unused ioBccLabelIndex
 :
@@ -382,7 +382,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @ipic_instruction_MNOP.buildAssemblyCode
+override method @ipic18_instruction_MNOP.buildAssemblyCode
   ?!@string ioString
   ?!@uint unused ioBccLabelIndex
 :
@@ -400,7 +400,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @ipic_instruction_TBLRD.buildAssemblyCode
+override method @ipic18_instruction_TBLRD.buildAssemblyCode
   ?!@string ioString
   ?!@uint unused ioBccLabelIndex
 :
@@ -409,7 +409,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @ipic_instruction_TBLWT.buildAssemblyCode
+override method @ipic18_instruction_TBLWT.buildAssemblyCode
   ?!@string ioString
   ?!@uint unused ioBccLabelIndex
 :
@@ -418,7 +418,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @ipic_instruction_computed_retlw.buildAssemblyCode
+override method @ipic18_instruction_computed_retlw.buildAssemblyCode
   ?!@string ioString
   ?!@uint unused ioBccLabelIndex
 :
@@ -434,7 +434,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @ipic_instruction_computed_bra.buildAssemblyCode
+override method @ipic18_instruction_computed_bra.buildAssemblyCode
   ?!@string ioString
   ?!@uint unused ioBccLabelIndex
 :
@@ -450,7 +450,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @ipic_instruction_computed_goto.buildAssemblyCode
+override method @ipic18_instruction_computed_goto.buildAssemblyCode
   ?!@string ioString
   ?!@uint unused ioBccLabelIndex
 :
@@ -470,7 +470,7 @@ routine buildAssemblyCode
   ??@string inProcessorName
   ??@registerTable inPredefinedRegisters
   ??@registerTable inAllRegisters
-  ??@ipic_instructionList inInstructionList
+  ??@ipic18_instructionList inInstructionList
   ??@actualConfigurationMap inActualConfigurationMap
   !@string outAssemblyCode
 :
