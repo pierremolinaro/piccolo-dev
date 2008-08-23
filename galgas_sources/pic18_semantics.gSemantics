@@ -114,7 +114,7 @@ routine pic18_analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName 
   #--- Generate asm file, if corresponding option enabled
     if [option piccolo_options.generateAssembly] then
       @string assemblyCode ;
-      buildAssemblyCode
+      pic18_build_assembly_code
         ![[piccoloDeviceModel mDeviceName] string]
         ![piccoloDeviceModel mRegisterTable]
         !registerTable

@@ -173,7 +173,7 @@ override method @midrange_instruction_banksel.build_midrange_ipic_instructionLis
   ??@constantMap unused inConstantMap
   ?!@uint unused ioLocalLabelIndex
   ?!@midrange_ipic_instructionList ioGeneratedInstructionList
-  ?!@string unused ioListFileContents
+  ?!@string ioListFileContents
   ??@uint inTotalBankCount
   ?!@uint ioCurrentBank
   ??@bool inShouldPreserveBank
@@ -228,23 +228,28 @@ override method @midrange_instruction_banksel.build_midrange_ipic_instructionLis
     end loop ;
     ioCurrentBank := [mBankIndex uint] ;
   else
+    @bool optimize := [option piccolo_options.performOptimizations] ;
     @uint shiftedBank := [mBankIndex uint] ;
     @uint shiftedXorBank := [mBankIndex uint] ^ ioCurrentBank ;
     @uint index := 0 ;
     loop sliceSize : while index < sliceSize do
-      if ((shiftedXorBank & 1) != 0) then
-        @midrange_bit_oriented_op op ;
-        if ((shiftedBank & 1) == 0) then
-          op := [@midrange_bit_oriented_op BCF] ;
-        else
-          op := [@midrange_bit_oriented_op BSF] ;
-        end if ;
+      @midrange_bit_oriented_op op ;
+      if ((shiftedBank & 1) == 0) then
+        op := [@midrange_bit_oriented_op BCF] ;
+      else
+        op := [@midrange_bit_oriented_op BSF] ;
+      end if ;
+      if ((shiftedXorBank & 1) != 0) | not optimize then
         ioGeneratedInstructionList += ![@midrange_ipic_instruction_FB new
           !mInstructionLocation
           !op
           !STATUS_IPICregisterDescription
           !rpIndex + index
         ] ;
+      else
+        ioListFileContents .= "  line " . [[ioGeneratedInstructionList length] string] ;
+        ioListFileContents .= ": useless '" . [op mnemonic] . " STATUS, " ;
+        ioListFileContents .= [rpIndex + index string] . "' not generated\n" ;
       end if ;
       index ++ ;      
       shiftedBank := shiftedBank >> 1 ;

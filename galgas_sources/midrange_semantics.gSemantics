@@ -1,11 +1,11 @@
 semantics midrange_semantics :
-#import semantics ipic18_build_binary_code in "ipic18_build_binary_code.gSemantics" ;
 import semantics midrange_checkingAndBuildIPIC in "midrange_checkingAndBuildIPIC.gSemantics" ;
-#import semantics ipc18_convert_relatives in "ipc18_convert_relatives.gSemantics" ;
+import semantics midrange_ipic_build_assembly_code in "midrange_ipic_build_assembly_code.gSemantics" ;
 import semantics piccolo_embedded_devices in "piccolo_embedded_devices.gSemantics" ;
 import semantics midrange_metamodel in "midrange_metamodel.gSemantics" ;
 import semantics piccolo_config in "piccolo_config.gSemantics" ;
 import semantics ram_sections in "ram_sections.gSemantics" ;
+import semantics midrange_optimizations in "midrange_optimizations.gSemantics" ;
 
 import option piccolo_options in "piccolo_options.gOption" ;
 
@@ -67,10 +67,10 @@ routine midrange_analyze ??@midrange_model inPiccoloModel ??@string inSourceFile
     ?generatedInstructionList
     !?listFileContents
   ;
-##-------------------------------- Perform Code Optimization
-#  if ([@uint errorCount] == 0) & [option piccolo_options.performOptimizations] then
-#    performOptimizations !?generatedInstructionList !?listFileContents ;
-#  end if ;
+#-------------------------------- Perform Code Optimization
+  if ([@uint errorCount] == 0) & [option piccolo_options.performOptimizations] then
+    perform_midrange_optimizations !?generatedInstructionList !?listFileContents ;
+  end if ;
 ##-------------------------------- Convert relative branchs to absolute, when needed
 #  if [@uint errorCount] == 0 then
 #    convertRelativeBranchsToAbsoluteWhenNeeded !?generatedInstructionList !?listFileContents ;
@@ -92,20 +92,20 @@ routine midrange_analyze ??@midrange_model inPiccoloModel ??@string inSourceFile
 #    getGeneratedContents ?contents ;
 #    @string hexDestinationFile := [inSourceFileName stringByDeletingPathExtension] . ".hex" ;
 #    [contents writeToFileWhenDifferentContents !hexDestinationFile] ;
-#  #--- Generate asm file, if corresponding option enabled
-#    if [option piccolo_options.generateAssembly] then
-#      @string assemblyCode ;
-#      buildAssemblyCode
-#        ![[piccoloDeviceModel mDeviceName] string]
-#        ![piccoloDeviceModel mRegisterTable]
-#        !registerTable
-#        !generatedInstructionList
-#        !actualConfigurationMap
-#        ?assemblyCode
-#      ;
-#      @string asmDestinationFile := [inSourceFileName stringByDeletingPathExtension] . ".asm" ;
-#      [assemblyCode writeToFileWhenDifferentContents !asmDestinationFile] ;
-#    end if ;
+  #--- Generate asm file, if corresponding option enabled
+    if [option piccolo_options.generateAssembly] then
+      @string assemblyCode ;
+      midrange_build_assembly_code
+        ![[piccoloDeviceModel mDeviceName] string]
+        ![piccoloDeviceModel mRegisterTable]
+        !registerTable
+        !generatedInstructionList
+        !actualConfigurationMap
+        ?assemblyCode
+      ;
+      @string asmDestinationFile := [inSourceFileName stringByDeletingPathExtension] . ".asm" ;
+      [assemblyCode writeToFileWhenDifferentContents !asmDestinationFile] ;
+    end if ;
   else # There are errors : delete hex and asm files
     @string hexDestinationFile := [inSourceFileName stringByDeletingPathExtension] . ".hex" ;
     if [hexDestinationFile fileExists] then

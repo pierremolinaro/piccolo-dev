@@ -69,7 +69,6 @@ override method @ipic18_instruction_FBA.buildAssemblyCode
   ?!@string ioString
   ?!@uint unused ioBccLabelIndex
 :
-  @bool useBSRaccess ;
   ioString .= "  " . [mBitOrientedOp mnemonic] ;
   ioString .= "  " . [mRegisterDescription mAssemblyString] ;
   ioString .= ", " . [mBitNumber string] ;
@@ -85,7 +84,6 @@ override method @ipic18_instruction_BitTestSkip.buildAssemblyCode
   ?!@string ioString
   ?!@uint unused ioBccLabelIndex
 :
-  @bool useBSRaccess ;
   ioString .= "  " ;
   if mSkipIfSet then
     ioString .= "BTFSS" ;
@@ -466,7 +464,7 @@ end method ;
 
 #----------------------------------------------------*
 
-routine buildAssemblyCode
+routine pic18_build_assembly_code
   ??@string inProcessorName
   ??@registerTable inPredefinedRegisters
   ??@registerTable inAllRegisters

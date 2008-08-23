@@ -5,6 +5,18 @@ import option piccolo_options in "piccolo_options.gOption" ;
 import "ipic_metamodel.gSemantics" ;
 
 #----------------------------------------------------------------------------*
+
+extern routine setEmitAddress ??@uint inAddress ;
+
+extern routine currentEmitAddress !@uint outAddress ;
+
+extern routine emitCode ??@uint inCode ;
+
+extern routine emitByte ??@uint inCode ;
+
+extern routine getGeneratedContents !@string outContents ;
+
+#----------------------------------------------------------------------------*
 #                          CONSTANT MAP                                      *
 #----------------------------------------------------------------------------*
 
@@ -389,6 +401,15 @@ override method @bitNumberLabelValue.getBitNumber
   end if ;
   outBitNumber := sliceIndex + [mBitNumberIndexValue uint] ;
 end method ;
+
+#----------------------------------------------------------------------------*
+
+map @symbolTableForOptimizations {
+  @uint mDefinitionLineIndex ;
+  insert insertKey error message "the '%K' label is already declared in %L" ;
+  search searchKey error message "the '%K' label is not declared" ;
+  remove removeKey error message "the '%K' label is not declared" ;
+}
 
 #----------------------------------------------------*
 
