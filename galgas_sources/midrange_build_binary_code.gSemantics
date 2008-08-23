@@ -1,0 +1,409 @@
+semantics midrange_build_binary_code :
+import semantics midrange_metamodel in "midrange_metamodel.gSemantics" ;
+import semantics midrange_ipic_metamodel in "midrange_ipic_metamodel.gSemantics" ;
+import "midrange_ipic_metamodel.gSemantics" ;
+
+#----------------------------------------------------------------------------*
+
+map @midrange_symbolTable {
+  @uint mRoutineAddress ;
+  insert insertKey error message "the '%K' label is already declared in %L" ;
+  search searchKey error message "the '%K' label is not declared" ;
+}
+
+#----------------------------------------------------------------------------*
+#                                                                            *
+#                          enterLabelAtAddress                               *
+#                                                                            *
+#----------------------------------------------------------------------------*
+
+method @midrange_ipic_instruction.enterLabelAtAddress
+  ?!@midrange_symbolTable unused ioRoutineSymbolTable
+  ?!@uint unused ioAddress
+:
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override
+method @midrange_ipic_pseudo_LABEL.enterLabelAtAddress
+  ?!@midrange_symbolTable ioRoutineSymbolTable
+  ?!@uint ioAddress
+:
+  [!?ioRoutineSymbolTable insertKey !mLabel !ioAddress] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override
+method @midrange_ipic_pseudo_ORG.enterLabelAtAddress
+  ?!@midrange_symbolTable unused ioRoutineSymbolTable
+  ?!@uint ioAddress
+:
+  ioAddress := mOrigin ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override
+method @midrange_ipic_actualInstruction.enterLabelAtAddress
+  ?!@midrange_symbolTable unused ioRoutineSymbolTable
+  ?!@uint ioAddress
+:
+  @uint instructionLength ;
+  [self instructionLength ?instructionLength] ;
+  ioAddress := ioAddress  + instructionLength ;
+end method ;
+
+#----------------------------------------------------------------------------*
+#                                                                            *
+#               C O D E    G E N E R A T I O N                               *
+#                                                                            *
+#----------------------------------------------------------------------------*
+
+abstract method @midrange_ipic_instruction.generateBinaryCodeAtAddress
+  ??@midrange_symbolTable unused inRoutineSymbolTable
+  ?!@uint unused ioAddress
+;
+
+#----------------------------------------------------------------------------*
+
+override
+method @midrange_ipic_pseudo_ORG.generateBinaryCodeAtAddress
+  ??@midrange_symbolTable unused inRoutineSymbolTable
+  ?!@uint ioAddress
+:
+  ioAddress := mOrigin ;
+  setEmitAddress ! mOrigin + mOrigin ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @midrange_ipic_instruction_FD.generateBinaryCodeAtAddress
+  ??@midrange_symbolTable unused inRoutineSymbolTable
+  ?!@uint unused ioAddress
+:
+#--- Emit Code
+  @uint code ; [self getBaseCode ? code] ;
+  if not m_W_isDestination then
+    code := code | 0x80 ;
+  end if ;
+  code := code | ([mRegisterDescription mRegisterAddress] & 127) ;
+  emitCode !code ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @midrange_ipic_instruction_F.generateBinaryCodeAtAddress
+  ??@midrange_symbolTable unused inRoutineSymbolTable
+  ?!@uint unused ioAddress
+:
+#--- Emit Code
+  @uint code ; [self getBaseCode ? code] ;
+  code := code | ([mRegisterDescription mRegisterAddress] & 127) ;
+  emitCode !code ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @midrange_ipic_instruction_FB.generateBinaryCodeAtAddress
+  ??@midrange_symbolTable unused inRoutineSymbolTable
+  ?!@uint unused ioAddress
+:
+#--- Emit Code
+  @uint code ; [self getBaseCode ? code] ;
+  code := code | ([mRegisterDescription mRegisterAddress] & 127) ;
+  code := code | (mBitNumber << 7) ;
+  emitCode !code ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @midrange_ipic_instruction_BitTestSkip.generateBinaryCodeAtAddress
+  ??@midrange_symbolTable unused inRoutineSymbolTable
+  ?!@uint unused ioAddress
+:
+#--- Emit Code
+  @uint code ; [self getBaseCode ?code] ;
+  code := code | ([mRegisterDescription mRegisterAddress] & 127) ;
+  code := code | (mBitNumber << 7) ;
+  emitCode !code ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+routine emit_midrange_GOTOinstruction
+  ??@uint inTargetAddress
+:
+  emitCode !0x2800 | (inTargetAddress & 0x7FF) ;
+end routine ;
+
+#----------------------------------------------------------------------------*
+
+override method @midrange_ipic_JUMP.generateBinaryCodeAtAddress
+  ??@midrange_symbolTable inRoutineSymbolTable
+  ?!@uint unused ioAddress
+:
+  @uint targetAddress ;
+  [inRoutineSymbolTable searchKey !mTargetLabel ?targetAddress] ;
+  emit_midrange_GOTOinstruction !targetAddress ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+routine emit_midrange_CALLinstruction
+  ??@uint inTargetAddress
+:
+  emitCode !0x2000 | (inTargetAddress & 0x7FF) ;
+end routine ;
+
+#----------------------------------------------------------------------------*
+
+override method @midrange_ipic_JSR.generateBinaryCodeAtAddress
+  ??@midrange_symbolTable inRoutineSymbolTable
+  ?!@uint unused ioAddress
+:
+  @uint targetAddress ;
+  [inRoutineSymbolTable searchKey !mTargetLabel ?targetAddress] ;
+  emit_midrange_CALLinstruction ! targetAddress ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @midrange_ipic_incDecRegisterInCondition.generateBinaryCodeAtAddress
+  ??@midrange_symbolTable inRoutineSymbolTable
+  ?!@uint unused ioAddress
+:
+  @uint code ;
+  if mIncrement then
+    code := 0x0F00 ; # INCFSZ
+  else
+    code := 0x0B00 ; # DECFSZ
+  end if ;
+  if not m_W_isDestination then
+    code := code | 0x0080 ;
+  end if ;
+  code := code | ([mRegisterDescription mRegisterAddress] & 127) ;
+  emitCode !code ;
+#--- Generate BRA and / or GOTO instructions
+  @uint targetAddress ;
+  [inRoutineSymbolTable searchKey ![@lstring new !mTargetLabel !here] ?targetAddress] ;
+  emit_midrange_GOTOinstruction !targetAddress ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @midrange_ipic_instruction_CLRWDT.generateBinaryCodeAtAddress
+  ??@midrange_symbolTable unused inRoutineSymbolTable
+  ?!@uint unused ioAddress
+:
+  emitCode !0x0064 ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @midrange_ipic_instruction_CLRW.generateBinaryCodeAtAddress
+  ??@midrange_symbolTable unused inRoutineSymbolTable
+  ?!@uint unused ioAddress
+:
+  emitCode !0x0100 ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @midrange_ipic_instruction_NOP.generateBinaryCodeAtAddress
+  ??@midrange_symbolTable unused inRoutineSymbolTable
+  ?!@uint unused ioAddress
+:
+  emitCode !0x0000 ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @midrange_ipic_instruction_RETURN.generateBinaryCodeAtAddress
+  ??@midrange_symbolTable unused inRoutineSymbolTable
+  ?!@uint unused ioAddress
+:
+  emitCode !0x0008 ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @midrange_ipic_instruction_RETFIE.generateBinaryCodeAtAddress
+  ??@midrange_symbolTable unused inRoutineSymbolTable
+  ?!@uint unused ioAddress
+:
+  emitCode !0x0009 ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @midrange_ipic_instruction_SLEEP.generateBinaryCodeAtAddress
+  ??@midrange_symbolTable unused inRoutineSymbolTable
+  ?!@uint unused ioAddress
+:
+  emitCode !0x0063 ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @midrange_ipic_instruction_literalOperation.generateBinaryCodeAtAddress
+  ??@midrange_symbolTable unused inRoutineSymbolTable
+  ?!@uint unused ioAddress
+:
+#--- Emit Code
+  @uint code ; [self getBaseCode ? code] ;
+  code := code | mLiteralValue ;
+  emitCode !code ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @midrange_ipic_pseudo_LABEL.generateBinaryCodeAtAddress
+  ??@midrange_symbolTable inRoutineSymbolTable
+  ?!@uint ioAddress
+:
+  @uint targetAddress ;
+  [inRoutineSymbolTable searchKey !mLabel ?targetAddress] ;
+  if (targetAddress != ioAddress) then
+    error mLabel: "Internal second pass error: the '" . mLabel
+    . "' label gets " . [ioAddress hexString] . " value in second pass, while it gets "
+    . [targetAddress hexString] . " in first pass" ;
+  end if ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @midrange_ipic_instruction_MNOP.generateBinaryCodeAtAddress
+  ??@midrange_symbolTable unused inRoutineSymbolTable
+  ?!@uint unused ioAddress
+:
+  if [mOccurrenceFactor uint] == 0 then
+    warning mOccurrenceFactor: "No generated code" ;
+  end if ;
+  @uint idx := 0 ;
+  loop [mOccurrenceFactor uint] :
+  while idx < [mOccurrenceFactor uint]
+  do
+    emitCode !0x0000 ;
+    idx ++ ;
+  end loop ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+#override method @midrange_ipic_instruction_computed_retlw.generateBinaryCodeAtAddress
+#  ??@midrange_symbolTable inRoutineSymbolTable
+#  ?!@uint ioAddress
+#:
+#  @uint targetAddress ;
+#  [inRoutineSymbolTable searchKey ![@lstring new !"_computed_goto_2" !here] ?targetAddress] ;
+#  if mUsesRCALL then
+#    emitRCALLinstruction !ioAddress !targetAddress !mInstructionLocation ;
+#  else
+#    emit_midrange_CALLinstruction ! targetAddress ;
+#  end if ;
+#  foreach mLiteralValues do
+#    emitCode !0x0C00 | mValue ;
+#  end foreach ;
+#end method ;
+
+#----------------------------------------------------------------------------*
+
+#override method @midrange_ipic_instruction_computed_bra.generateBinaryCodeAtAddress
+#  ??@midrange_symbolTable inRoutineSymbolTable
+#  ?!@uint ioAddress
+#:
+#  @uint targetAddress ;
+#  [inRoutineSymbolTable searchKey ![@lstring new !"_computed_goto_2" !here] ?targetAddress] ;
+#  if mUsesRCALL then
+#    emitRCALLinstruction !ioAddress !targetAddress !mInstructionLocation ;
+#  else
+#    emit_midrange_CALLinstruction ! targetAddress ;
+#  end if ;
+##---
+#  @uint addressForComputingBRA := ioAddress + 2 ;
+#  if not mUsesRCALL then
+#    addressForComputingBRA := addressForComputingBRA + 2 ; # GOTO takes 2 more bytes
+#  end if ;
+##---
+#  foreach mTargetLabels do
+#    [inRoutineSymbolTable searchKey !mValue ?targetAddress] ;
+#    emitBRAinstruction
+#      !addressForComputingBRA
+#      !targetAddress
+#      ![mValue location]
+#    ;
+#    addressForComputingBRA := addressForComputingBRA + 2 ;
+#  end foreach ;
+#end method ;
+
+#----------------------------------------------------------------------------*
+
+#override method @midrange_ipic_instruction_computed_goto.generateBinaryCodeAtAddress
+#  ??@midrange_symbolTable inRoutineSymbolTable
+#  ?!@uint ioAddress
+#:
+#  @uint targetAddress ;
+#  [inRoutineSymbolTable searchKey ![@lstring new !"_computed_goto_4" !here] ?targetAddress] ;
+#  if mUsesRCALL then
+#    emitRCALLinstruction !ioAddress !targetAddress !mInstructionLocation ;
+#  else
+#    emit_midrange_CALLinstruction !targetAddress ;
+#  end if ;
+#  foreach mTargetLabels do
+#    @uint requiredSelectedBank ;
+#    [inRoutineSymbolTable searchKey !mValue ?targetAddress] ;
+#    emit_midrange_GOTOinstruction
+#      !targetAddress
+#    ;
+#  end foreach ;
+#end method ;
+
+#----------------------------------------------------------------------------*
+#                                                                            *
+#               S E M A N T I C    A N A L Y S I S                           *
+#                                                                            *
+#----------------------------------------------------------------------------*
+
+routine build_midrange_ipic_binary_code
+  ??@midrange_ipic_instructionList inGeneratedInstructionList
+  ??@uint inROMsize
+  ??@actualConfigurationMap inActualConfigurationMap
+:
+#-------------------------------- First pass: build label map
+  @midrange_symbolTable symbolTable [emptyMap] ;
+  @uint currentAddress := 0 ;
+  foreach inGeneratedInstructionList do
+    [mInstruction enterLabelAtAddress !?symbolTable !?currentAddress] ;
+  end foreach ;
+  @uint lastAddressForFirstPass := currentAddress ;
+#-------------------------------- Second pass: generate code
+  currentAddress := 0 ;
+  setEmitAddress !0 ;
+  foreach inGeneratedInstructionList do
+    [mInstruction generateBinaryCodeAtAddress !symbolTable !?currentAddress] ;
+    @uint instructionLength ;
+    [mInstruction instructionLength ?instructionLength] ;
+    currentAddress := currentAddress  + instructionLength ;
+    checkCurrentEmitAddress !currentAddress * 2 ;
+  end foreach ;
+  if lastAddressForFirstPass != currentAddress then
+    error here: "Internal second pass error: the last address gets " . [currentAddress hexString]
+    . " value in second pass, while it gets "
+    . [lastAddressForFirstPass hexString] . " value in first pass" ;
+  elsif lastAddressForFirstPass > inROMsize then
+    error here: "Program too large: " . [lastAddressForFirstPass string]
+    . " bytes (rom size is "
+    . [inROMsize string] . " bytes)" ;
+  end if ;
+#-------------------------------- Add Configuration
+  foreach inActualConfigurationMap do
+    setEmitAddress ! mRegisterAddress + mRegisterAddress ;
+    emitCode !mRegisterValue ;
+  end foreach ;
+end routine ;
+
+#----------------------------------------------------------------------------*
+
+end semantics ;
