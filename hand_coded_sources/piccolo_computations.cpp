@@ -4,7 +4,7 @@
 //                                                                           *
 //---------------------------------------------------------------------------*
 
-#include "ipic18_build_binary_code.h"
+#include "ipic_generic.h"
 #include "utilities/MF_MemoryControl.h"
 #include "collections/TC_UniqueSparseArray.h"
 

@@ -324,6 +324,10 @@
 		CFBCADD70E41C5910074F535 /* piccolo_config.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CFBCADD30E41C5910074F535 /* piccolo_config.cpp */; };
 		CFBCADD80E41C5910074F535 /* piccolo_config.h in Headers */ = {isa = PBXBuildFile; fileRef = CFBCADD40E41C5910074F535 /* piccolo_config.h */; };
 		CFCD26D90850D5D000A26954 /* piccoloDebug in Resources */ = {isa = PBXBuildFile; fileRef = CFA61CF8061095160089CEA5 /* piccoloDebug */; };
+		CFCF36EA0E6013760079FC3D /* midrange_ipic_build_assembly_code.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CFCF36E80E6013760079FC3D /* midrange_ipic_build_assembly_code.cpp */; };
+		CFCF36EB0E6013760079FC3D /* midrange_ipic_build_assembly_code.h in Headers */ = {isa = PBXBuildFile; fileRef = CFCF36E90E6013760079FC3D /* midrange_ipic_build_assembly_code.h */; };
+		CFCF36EC0E6013760079FC3D /* midrange_ipic_build_assembly_code.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CFCF36E80E6013760079FC3D /* midrange_ipic_build_assembly_code.cpp */; };
+		CFCF36ED0E6013760079FC3D /* midrange_ipic_build_assembly_code.h in Headers */ = {isa = PBXBuildFile; fileRef = CFCF36E90E6013760079FC3D /* midrange_ipic_build_assembly_code.h */; };
 		CFD284A70A3C3F5B0066AF65 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CFD284A60A3C3F5B0066AF65 /* main.m */; };
 		CFD284A90A3C411C0066AF65 /* piccolo_lexique.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CFE9BAAF0A3C303800C9F7EC /* piccolo_lexique.cpp */; };
 		CFD284AC0A3C41EC0066AF65 /* piccolo_cocoa.mm in Sources */ = {isa = PBXBuildFile; fileRef = CFD284AB0A3C41EC0066AF65 /* piccolo_cocoa.mm */; };
@@ -424,6 +428,10 @@
 		CFE9BAD20A3C303800C9F7EC /* piccolo_syntax.h in Headers */ = {isa = PBXBuildFile; fileRef = CFE9BAB80A3C303800C9F7EC /* piccolo_syntax.h */; };
 		CFE9BAD70A3C392600C9F7EC /* piccolo_computations.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CFE9BAD60A3C392600C9F7EC /* piccolo_computations.cpp */; };
 		CFE9BAD80A3C392600C9F7EC /* piccolo_computations.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CFE9BAD60A3C392600C9F7EC /* piccolo_computations.cpp */; };
+		CFF1073F0E6038FB00300455 /* midrange_optimizations.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CFF1073D0E6038FB00300455 /* midrange_optimizations.cpp */; };
+		CFF107400E6038FB00300455 /* midrange_optimizations.h in Headers */ = {isa = PBXBuildFile; fileRef = CFF1073E0E6038FB00300455 /* midrange_optimizations.h */; };
+		CFF107410E6038FB00300455 /* midrange_optimizations.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CFF1073D0E6038FB00300455 /* midrange_optimizations.cpp */; };
+		CFF107420E6038FB00300455 /* midrange_optimizations.h in Headers */ = {isa = PBXBuildFile; fileRef = CFF1073E0E6038FB00300455 /* midrange_optimizations.h */; };
 		CFF8619009C0DA6100F90D05 /* C_GGS_Object.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CFF8618E09C0DA6100F90D05 /* C_GGS_Object.cpp */; };
 		CFF8619109C0DA6100F90D05 /* C_GGS_Object.h in Headers */ = {isa = PBXBuildFile; fileRef = CFF8618F09C0DA6100F90D05 /* C_GGS_Object.h */; };
 		CFF8619209C0DA6100F90D05 /* C_GGS_Object.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CFF8618E09C0DA6100F90D05 /* C_GGS_Object.cpp */; };
@@ -628,6 +636,8 @@
 		CFBCADD30E41C5910074F535 /* piccolo_config.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = piccolo_config.cpp; sourceTree = "<group>"; };
 		CFBCADD40E41C5910074F535 /* piccolo_config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = piccolo_config.h; sourceTree = "<group>"; };
 		CFC30F92058A225E003D0386 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		CFCF36E80E6013760079FC3D /* midrange_ipic_build_assembly_code.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = midrange_ipic_build_assembly_code.cpp; sourceTree = "<group>"; };
+		CFCF36E90E6013760079FC3D /* midrange_ipic_build_assembly_code.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = midrange_ipic_build_assembly_code.h; sourceTree = "<group>"; };
 		CFD284A60A3C3F5B0066AF65 /* main.m */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		CFD284AB0A3C41EC0066AF65 /* piccolo_cocoa.mm */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = sourcecode.cpp.objcpp; path = piccolo_cocoa.mm; sourceTree = "<group>"; };
 		CFD2ACF50E5DC00600E00129 /* midrange_metamodel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = midrange_metamodel.cpp; sourceTree = "<group>"; };
@@ -678,6 +688,8 @@
 		CFE9BAB70A3C303800C9F7EC /* piccolo_syntax.cpp */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = sourcecode.cpp.cpp; path = piccolo_syntax.cpp; sourceTree = "<group>"; };
 		CFE9BAB80A3C303800C9F7EC /* piccolo_syntax.h */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = sourcecode.c.h; path = piccolo_syntax.h; sourceTree = "<group>"; };
 		CFE9BAD60A3C392600C9F7EC /* piccolo_computations.cpp */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = sourcecode.cpp.cpp; path = piccolo_computations.cpp; sourceTree = "<group>"; };
+		CFF1073D0E6038FB00300455 /* midrange_optimizations.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = midrange_optimizations.cpp; sourceTree = "<group>"; };
+		CFF1073E0E6038FB00300455 /* midrange_optimizations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = midrange_optimizations.h; sourceTree = "<group>"; };
 		CFF53872057A558F00854C83 /* C_galgas_io.cpp */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = sourcecode.cpp.cpp; path = C_galgas_io.cpp; sourceTree = "<group>"; };
 		CFF53881057A558F00854C83 /* GGS_bool.cpp */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = sourcecode.cpp.cpp; path = GGS_bool.cpp; sourceTree = "<group>"; };
 		CFF53883057A558F00854C83 /* GGS_char.cpp */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = sourcecode.cpp.cpp; path = GGS_char.cpp; sourceTree = "<group>"; };
@@ -861,6 +873,10 @@
 		CFF53732057A4E5000854C83 /* Generated By Galgas */ = {
 			isa = PBXGroup;
 			children = (
+				CFF1073D0E6038FB00300455 /* midrange_optimizations.cpp */,
+				CFF1073E0E6038FB00300455 /* midrange_optimizations.h */,
+				CFCF36E80E6013760079FC3D /* midrange_ipic_build_assembly_code.cpp */,
+				CFCF36E90E6013760079FC3D /* midrange_ipic_build_assembly_code.h */,
 				CFE927680E5F216C000010C0 /* generic_metamodel.cpp */,
 				CFE927690E5F216C000010C0 /* generic_metamodel.h */,
 				CFE9276A0E5F216C000010C0 /* ipic_generic.cpp */,
@@ -1225,6 +1241,8 @@
 				CFE927770E5F216C000010C0 /* midrange_checkingAndBuildIPIC.h in Headers */,
 				CFE927790E5F216C000010C0 /* midrange_ipic_metamodel.h in Headers */,
 				CFE9277B0E5F216C000010C0 /* pic18_metamodel.h in Headers */,
+				CFCF36EB0E6013760079FC3D /* midrange_ipic_build_assembly_code.h in Headers */,
+				CFF107400E6038FB00300455 /* midrange_optimizations.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1333,6 +1351,8 @@
 				CFE927810E5F216C000010C0 /* midrange_checkingAndBuildIPIC.h in Headers */,
 				CFE927830E5F216C000010C0 /* midrange_ipic_metamodel.h in Headers */,
 				CFE927850E5F216C000010C0 /* pic18_metamodel.h in Headers */,
+				CFCF36ED0E6013760079FC3D /* midrange_ipic_build_assembly_code.h in Headers */,
+				CFF107420E6038FB00300455 /* midrange_optimizations.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1581,6 +1601,8 @@
 				CFE927760E5F216C000010C0 /* midrange_checkingAndBuildIPIC.cpp in Sources */,
 				CFE927780E5F216C000010C0 /* midrange_ipic_metamodel.cpp in Sources */,
 				CFE9277A0E5F216C000010C0 /* pic18_metamodel.cpp in Sources */,
+				CFCF36EA0E6013760079FC3D /* midrange_ipic_build_assembly_code.cpp in Sources */,
+				CFF1073F0E6038FB00300455 /* midrange_optimizations.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1675,6 +1697,8 @@
 				CFE927800E5F216C000010C0 /* midrange_checkingAndBuildIPIC.cpp in Sources */,
 				CFE927820E5F216C000010C0 /* midrange_ipic_metamodel.cpp in Sources */,
 				CFE927840E5F216C000010C0 /* pic18_metamodel.cpp in Sources */,
+				CFCF36EC0E6013760079FC3D /* midrange_ipic_build_assembly_code.cpp in Sources */,
+				CFF107410E6038FB00300455 /* midrange_optimizations.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
