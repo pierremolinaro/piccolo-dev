@@ -349,6 +349,7 @@ list @midrange_interruptDefinitionList {
 
 list @midrange_routineDefinitionList {
   @lstring mRoutineName ;
+  @luint mPage ;
   @luint mRequiredBank ;
   @luint mReturnedBank ;
   @bool mPreservesBank ;

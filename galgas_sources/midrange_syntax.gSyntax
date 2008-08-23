@@ -195,6 +195,15 @@ rule <midrange_routine_definition>
   end select ;
   $routine$ ;
   $identifier$ ? @lstring routineName ;
+#--- Page
+  @luint page ;
+  select
+    page := [@luint new !0 !here] ;
+  or
+    $page$ ;
+    $integer$ ? page ;
+  end select ;
+#--- Bank
   @luint requiredBank ;
   @luint returnedBank ;
   @bool preservesBank ;
@@ -244,7 +253,7 @@ rule <midrange_routine_definition>
     !?ioNeedsComputedGoto4
   ;
   $}$ ;
-  ioRoutineDefinitionList += !routineName !requiredBank !returnedBank !preservesBank !noreturn !instructionList !here ;
+  ioRoutineDefinitionList += !routineName !page !requiredBank !returnedBank !preservesBank !noreturn !instructionList !here ;
 end rule ;
 
 #----------------------------------------------------*

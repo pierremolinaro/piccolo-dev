@@ -630,7 +630,7 @@ class @midrange_ipic_incDecRegisterInCondition extends @midrange_ipic_actualInst
   override
   method instructionLength !@uint outLength :
     if mBranchIfZero then
-      outLength := 1 ;
+      outLength := 3 ;
     else
       outLength := 2 ;
     end if ; 
@@ -646,12 +646,12 @@ class @midrange_ipic_incDecRegisterInCondition extends @midrange_ipic_actualInst
     end if ;
     ioListFileContents .= [mRegisterDescription mAssemblyString] ;
     if m_W_isDestination then
-      ioListFileContents .= ", W " ;
+      ioListFileContents .= ", W" ;
     end if ;
     if mBranchIfZero then
-      ioListFileContents .= "Z" ;
+      ioListFileContents .= " Z" ;
     else
-      ioListFileContents .= "NZ" ;
+      ioListFileContents .= " NZ" ;
     end if ;
     ioListFileContents .= " " . mTargetLabel ;
   end method ;

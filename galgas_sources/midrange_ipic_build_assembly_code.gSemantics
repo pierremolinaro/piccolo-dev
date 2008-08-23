@@ -10,14 +10,14 @@ import "piccolo_embedded_devices.gSemantics" ;
 
 abstract method @midrange_ipic_instruction.buildAssemblyCode
   ?!@string unused ioString 
-  ?!@uint unused ioBccLabelIndex
+  ?!@uint unused ioLocalLabelIndex
 ;
 
 #----------------------------------------------------*
 
 override method @midrange_ipic_pseudo_ORG.buildAssemblyCode
   ?!@string ioString
-  ?!@uint unused ioBccLabelIndex
+  ?!@uint unused ioLocalLabelIndex
 :
   ioString .= "  ORG " . [mOrigin hexString] . "\n" ;
 end method ;
@@ -26,7 +26,7 @@ end method ;
 
 override method @midrange_ipic_pseudo_LABEL.buildAssemblyCode
   ?!@string ioString
-  ?!@uint unused ioBccLabelIndex
+  ?!@uint unused ioLocalLabelIndex
 :
   ioString .= [mLabel string] . ":\n" ;
 end method ;
@@ -35,7 +35,7 @@ end method ;
 
 override method @midrange_ipic_instruction_FD.buildAssemblyCode
   ?!@string ioString
-  ?!@uint unused ioBccLabelIndex
+  ?!@uint unused ioLocalLabelIndex
 :
   ioString .= "  " . [mInstruction_FD_base_code mnemonic] . " " . [mRegisterDescription mAssemblyString] ;
   if m_W_isDestination then
@@ -50,7 +50,7 @@ end method ;
 
 override method @midrange_ipic_instruction_FB.buildAssemblyCode
   ?!@string ioString
-  ?!@uint unused ioBccLabelIndex
+  ?!@uint unused ioLocalLabelIndex
 :
   ioString .= "  " . [mBitOrientedOp mnemonic] ;
   ioString .= "  " . [mRegisterDescription mAssemblyString] ;
@@ -62,7 +62,7 @@ end method ;
 
 override method @midrange_ipic_instruction_BitTestSkip.buildAssemblyCode
   ?!@string ioString
-  ?!@uint unused ioBccLabelIndex
+  ?!@uint unused ioLocalLabelIndex
 :
   ioString .= "  " ;
   if mSkipIfSet then
@@ -79,7 +79,7 @@ end method ;
 
 override method @midrange_ipic_instruction_F.buildAssemblyCode
   ?!@string ioString
-  ?!@uint unused ioBccLabelIndex
+  ?!@uint unused ioLocalLabelIndex
 :
   ioString .= "  " . [mFinstruction mnemonic] . " " . [mRegisterDescription mAssemblyString] ;
   ioString .= "\n" ;
@@ -89,7 +89,7 @@ end method ;
 
 override method @midrange_ipic_incDecRegisterInCondition.buildAssemblyCode
   ?!@string ioString
-  ?!@uint unused ioBccLabelIndex
+  ?!@uint ioLocalLabelIndex
 :
   if mIncrement then
     ioString .= "  " . "INCFSZ " ;
@@ -103,14 +103,21 @@ override method @midrange_ipic_incDecRegisterInCondition.buildAssemblyCode
     ioString .= ", F" ;
   end if ;
   ioString .= "\n" ;
-  ioString .= "  GOTO " . mTargetLabel . "\n" ;
+  if mBranchIfZero then
+    @string localLabel := "_local_label_" . [ioLocalLabelIndex string] ; ioLocalLabelIndex ++ ;
+    ioString .= "  GOTO " . localLabel . "\n" ;
+    ioString .= "  GOTO " . mTargetLabel . "\n" ;
+    ioString .= localLabel . ":\n" ;
+  else
+    ioString .= "  GOTO " . mTargetLabel . "\n" ;
+  end if;
 end method ;
 
 #----------------------------------------------------*
 
 override method @midrange_ipic_JUMP.buildAssemblyCode
   ?!@string ioString
-  ?!@uint unused ioBccLabelIndex
+  ?!@uint unused ioLocalLabelIndex
 :
   switch mKind
     when ipicExtended : ioString .= "  GOTO   " . [mTargetLabel string] . "\n" ;
@@ -122,7 +129,7 @@ end method ;
 
 override method @midrange_ipic_JSR.buildAssemblyCode
   ?!@string ioString
-  ?!@uint unused ioBccLabelIndex
+  ?!@uint unused ioLocalLabelIndex
 :
   switch mKind
     when ipicExtended : ioString .= "  CALL   " . [mTargetLabel string] . "\n" ;
@@ -134,7 +141,7 @@ end method ;
 
 override method @midrange_ipic_instruction_CLRWDT.buildAssemblyCode
   ?!@string ioString
-  ?!@uint unused ioBccLabelIndex
+  ?!@uint unused ioLocalLabelIndex
 :
   ioString .= "  CLRWDT\n" ;
 end method ;
@@ -143,7 +150,7 @@ end method ;
 
 override method @midrange_ipic_instruction_CLRW.buildAssemblyCode
   ?!@string ioString
-  ?!@uint unused ioBccLabelIndex
+  ?!@uint unused ioLocalLabelIndex
 :
   ioString .= "  CLRW\n" ;
 end method ;
@@ -152,7 +159,7 @@ end method ;
 
 override method @midrange_ipic_instruction_NOP.buildAssemblyCode
   ?!@string ioString
-  ?!@uint unused ioBccLabelIndex
+  ?!@uint unused ioLocalLabelIndex
 :
   ioString .= "  NOP\n" ;
 end method ;
@@ -161,7 +168,7 @@ end method ;
 
 override method @midrange_ipic_instruction_RETURN.buildAssemblyCode
   ?!@string ioString
-  ?!@uint unused ioBccLabelIndex
+  ?!@uint unused ioLocalLabelIndex
 :
   ioString .= "  RETURN\n" ;
 end method ;
@@ -170,7 +177,7 @@ end method ;
 
  override method @midrange_ipic_instruction_RETFIE.buildAssemblyCode
   ?!@string ioString
-  ?!@uint unused ioBccLabelIndex
+  ?!@uint unused ioLocalLabelIndex
 :
   ioString .= "  RETFIE\n" ;
 end method ;
@@ -179,7 +186,7 @@ end method ;
 
  override method @midrange_ipic_instruction_SLEEP.buildAssemblyCode
   ?!@string ioString
-  ?!@uint unused ioBccLabelIndex
+  ?!@uint unused ioLocalLabelIndex
 :
   ioString .= "  SLEEP\n" ;
 end method ;
@@ -188,7 +195,7 @@ end method ;
 
 override method @midrange_ipic_instruction_literalOperation.buildAssemblyCode
   ?!@string ioString
-  ?!@uint unused ioBccLabelIndex
+  ?!@uint unused ioLocalLabelIndex
 :
   ioString .= "  " . [mLiteralInstruction mnemonic] . " " . [mLiteralValue hexString] . "\n" ;
 end method ;
@@ -197,7 +204,7 @@ end method ;
 
 override method @midrange_ipic_instruction_MNOP.buildAssemblyCode
   ?!@string ioString
-  ?!@uint unused ioBccLabelIndex
+  ?!@uint unused ioLocalLabelIndex
 :
   if [mOccurrenceFactor uint] == 0 then
     warning mOccurrenceFactor: "No generated code" ;
@@ -215,7 +222,7 @@ end method ;
 
 #override method @midrange_ipic_instruction_computed_retlw.buildAssemblyCode
 #  ?!@string ioString
-#  ?!@uint unused ioBccLabelIndex
+#  ?!@uint unused ioLocalLabelIndex
 #:
 #  if mUsesRCALL then
 #    ioString .= "  RCALL _computed_goto_2\n" ;
@@ -231,7 +238,7 @@ end method ;
 
 #override method @midrange_ipic_instruction_computed_bra.buildAssemblyCode
 #  ?!@string ioString
-#  ?!@uint unused ioBccLabelIndex
+#  ?!@uint unused ioLocalLabelIndex
 #:
 #  if mUsesRCALL then
 #    ioString .= "  RCALL _computed_goto_2\n" ;
@@ -247,7 +254,7 @@ end method ;
 
 #override method @midrange_ipic_instruction_computed_goto.buildAssemblyCode
 #  ?!@string ioString
-#  ?!@uint unused ioBccLabelIndex
+#  ?!@uint unused ioLocalLabelIndex
 #:
 #  if mUsesRCALL then
 #    ioString .= "  RCALL _computed_goto_4\n" ;
