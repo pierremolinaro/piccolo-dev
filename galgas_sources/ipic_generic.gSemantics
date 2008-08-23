@@ -5,6 +5,10 @@ import option piccolo_options in "piccolo_options.gOption" ;
 import "ipic_metamodel.gSemantics" ;
 
 #----------------------------------------------------------------------------*
+#                                                                            *
+#                 EXTERN ROUTINES FOR EMITING HEX CODE                       *
+#                                                                            *
+#----------------------------------------------------------------------------*
 
 extern routine setEmitAddress ??@uint inAddress ;
 
@@ -15,6 +19,16 @@ extern routine emitCode ??@uint inCode ;
 extern routine emitByte ??@uint inCode ;
 
 extern routine getGeneratedContents !@string outContents ;
+
+#----------------------------------------------------------------------------*
+
+routine checkCurrentEmitAddress ??@uint inCurrentAddress :
+  @uint addr ; currentEmitAddress ? addr ;
+  if ([@uint errorCount] == 0) & (addr != inCurrentAddress) then
+    error here:"internal error: current emit address is " . [addr hexString]
+    . "; it should be " . [inCurrentAddress hexString] ;
+  end if ;
+end routine ;
 
 #----------------------------------------------------------------------------*
 #                          CONSTANT MAP                                      *

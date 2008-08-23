@@ -6,6 +6,7 @@ import semantics midrange_metamodel in "midrange_metamodel.gSemantics" ;
 import semantics piccolo_config in "piccolo_config.gSemantics" ;
 import semantics ram_sections in "ram_sections.gSemantics" ;
 import semantics midrange_optimizations in "midrange_optimizations.gSemantics" ;
+import semantics midrange_build_binary_code in "midrange_build_binary_code.gSemantics" ;
 
 import option piccolo_options in "piccolo_options.gOption" ;
 
@@ -82,16 +83,16 @@ routine midrange_analyze ??@midrange_model inPiccoloModel ??@string inSourceFile
   end if ;
 #--- If no error, generate object file(s)
   if [@uint errorCount] == 0 then
-#  #--- Generate hex file
-#    buildBinaryCode
-#      !generatedInstructionList
-#      ![[piccoloDeviceModel mRomSize] uint]
-#      !actualConfigurationMap
-#    ;
-#    @string contents ;
-#    getGeneratedContents ?contents ;
-#    @string hexDestinationFile := [inSourceFileName stringByDeletingPathExtension] . ".hex" ;
-#    [contents writeToFileWhenDifferentContents !hexDestinationFile] ;
+  #--- Generate hex file
+    build_midrange_ipic_binary_code
+      !generatedInstructionList
+      ![[piccoloDeviceModel mRomSize] uint]
+      !actualConfigurationMap
+    ;
+    @string contents ;
+    getGeneratedContents ?contents ;
+    @string hexDestinationFile := [inSourceFileName stringByDeletingPathExtension] . ".hex" ;
+    [contents writeToFileWhenDifferentContents !hexDestinationFile] ;
   #--- Generate asm file, if corresponding option enabled
     if [option piccolo_options.generateAssembly] then
       @string assemblyCode ;
