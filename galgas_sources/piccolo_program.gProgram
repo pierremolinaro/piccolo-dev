@@ -8,7 +8,10 @@ import grammar piccolo_grammar in "piccolo_grammar.gGrammar" ;
 #--- Prologue routine
 before {
 #------------------------------------------------ Print supported device list
-  if [option piccolo_options.ouputDeviceList] then
+  if [option piccolo_options.outputDeviceList]
+   | [option piccolo_options.outputPic18DeviceList]
+   | [option piccolo_options.outputBaselineDeviceList]
+   | [option piccolo_options.outputMidrangeDeviceList] then
   #--- Enumerate devices
     @stringlist allDevices := [[filewrapper embeddedDevices] allFilePathes] ;
     @stringlist pic18_devices [emptyList] ;
@@ -25,58 +28,64 @@ before {
       when midrange : midrange_devices += !name ;
       when baseline : baseline_devices += !name ;
       end switch ;
-      @uint bankCount := [[piccoloDeviceModel mBankCount] uint] ;
-      if (bankCount == 1) then
-        message name . " has 1 bank\n" ;
-      elsif (bankCount == 2)
-       | (bankCount == 4)
-       | (bankCount == 8)
-       | (bankCount == 16) then
-      else
-        message name . " has " . [bankCount string] . " banks\n" ;
-      end if ;
+##      @uint bankCount := [[piccoloDeviceModel mBankCount] uint] ;
+##      if (bankCount == 1) then
+##        message name . " has 1 bank\n" ;
+##      elsif (bankCount == 2)
+##       | (bankCount == 4)
+##       | (bankCount == 8)
+##       | (bankCount == 16) then
+##      else
+##        message name . " has " . [bankCount string] . " banks\n" ;
+##      end if ;
     end foreach ;
   #--- Print baseline device list
-    message [[baseline_devices length] string] . " baseline devices supported by Piccolo " . [@string stringWithVersionString] . ":\n" ;
-    @uint index := 0 ;
-    foreach baseline_devices do
-      message [mValue stringByRightPadding !15 !' '] ;
-      index ++ ;
-      if index == 5 then
-        index := 0 ;
+    if [option piccolo_options.outputDeviceList] | [option piccolo_options.outputBaselineDeviceList] then
+      message [[baseline_devices length] string] . " baseline devices (not yet supported by Piccolo " . [@string stringWithVersionString] . "):\n" ;
+      @uint index := 0 ;
+      foreach baseline_devices do
+        message [mValue stringByRightPadding !15 !' '] ;
+        index ++ ;
+        if index == 5 then
+          index := 0 ;
+          message "\n" ;
+        end if ;
+      end foreach ;
+      if index != 0 then
         message "\n" ;
       end if ;
-    end foreach ;
-    if index != 0 then
-      message "\n" ;
     end if ;
   #--- Print mid-range device list
-    message [[midrange_devices length] string] . " mid-range devices supported by Piccolo " . [@string stringWithVersionString] . ":\n" ;
-    index := 0 ;
-    foreach midrange_devices do
-      message [mValue stringByRightPadding !15 !' '] ;
-      index ++ ;
-      if index == 5 then
-        index := 0 ;
+    if [option piccolo_options.outputDeviceList] | [option piccolo_options.outputMidrangeDeviceList] then
+      message [[midrange_devices length] string] . " mid-range devices supported by Piccolo " . [@string stringWithVersionString] . ":\n" ;
+      @uint index := 0 ;
+      foreach midrange_devices do
+        message [mValue stringByRightPadding !15 !' '] ;
+        index ++ ;
+        if index == 5 then
+          index := 0 ;
+          message "\n" ;
+        end if ;
+      end foreach ;
+      if index != 0 then
         message "\n" ;
       end if ;
-    end foreach ;
-    if index != 0 then
-      message "\n" ;
     end if ;
   #--- Print pic18 device list
-    message [[pic18_devices length] string] . " pic18 devices supported by Piccolo " . [@string stringWithVersionString] . ":\n" ;
-    index := 0 ;
-    foreach pic18_devices do
-      message [mValue stringByRightPadding !15 !' '] ;
-      index ++ ;
-      if index == 5 then
-        index := 0 ;
+    if [option piccolo_options.outputDeviceList] | [option piccolo_options.outputPic18DeviceList] then
+      message [[pic18_devices length] string] . " pic18 devices supported by Piccolo " . [@string stringWithVersionString] . ":\n" ;
+      @uint index := 0 ;
+      foreach pic18_devices do
+        message [mValue stringByRightPadding !15 !' '] ;
+        index ++ ;
+        if index == 5 then
+          index := 0 ;
+          message "\n" ;
+        end if ;
+      end foreach ;
+      if index != 0 then
         message "\n" ;
       end if ;
-    end foreach ;
-    if index != 0 then
-      message "\n" ;
     end if ;
   #---
   end if ;
@@ -118,7 +127,20 @@ before {
         end foreach ;
         message "\n" ;
       end foreach ;
-      message "  ROM size: " . [[[piccoloDeviceModel mRomSize] uint] string] . " bytes\n" ;
+      switch [piccoloDeviceModel mProcessorType]
+      when pic18_60, pic18_80 :
+        message "  ROM size: " . [[[piccoloDeviceModel mRomSize] uint] string] . " bytes\n" ;
+      when midrange :
+        @uint pageCount := ([[piccoloDeviceModel mRomSize] uint] + 2047) / 2048 ;
+        @string s := "" ; 
+        if pageCount > 1 then
+          s := "s" ;
+        end if ;
+        message "  ROM size: " . [[[piccoloDeviceModel mRomSize] uint] string] . " instructions ("
+        . [pageCount string] . " page" . s . ")\n" ;
+      when baseline : 
+        message "  ROM size: " . [[[piccoloDeviceModel mRomSize] uint] string] . " instructions\n" ;
+      end switch ;
       if [piccoloDeviceModel mEepromSize] == 0 then
         message "  No EEPROM\n" ;
       else

@@ -1,0 +1,26 @@
+# This program is just intended for checking
+# if ... : ... instructions
+# Trying to execute it does not make sense.
+
+midrange if_semi_colon "16F690" :
+
+#----------------------------------------------------------------------------*
+#                                                                            *
+#                                MAIN                                        *
+#                                                                            *
+#----------------------------------------------------------------------------*
+
+noreturn routine main bank:requires 0 {
+  if STATUS.C Z : BSF PORTA.1
+  if STATUS.C NZ : BSF PORTA.1
+  if DECF FSR NZ : BSF PORTA.1
+  if INCF FSR NZ : BSF PORTA.1
+  if DECF FSR, W NZ : BSF PORTA.1
+  if INCF FSR, W NZ : BSF PORTA.1
+  forever
+  end
+}
+
+#----------------------------------------------------------------------------*
+
+end

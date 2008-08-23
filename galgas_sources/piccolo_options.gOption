@@ -1,7 +1,10 @@
 option piccolo_options :
 
 @bool generateAssembly : 'S', "asm" -> "Generate also an assembly language text file (with .asm extension)" ;
-@bool ouputDeviceList : 'D', "device-list" -> "Output the list of supported devices" ;
+@bool outputDeviceList : 'D', "device-list" -> "Output the list of supported devices" ;
+@bool outputPic18DeviceList : '\0', "pic18" -> "Output the list of supported pic18 devices" ;
+@bool outputMidrangeDeviceList : '\0', "midrange" -> "Output the list of supported mid-range devices" ;
+@bool outputBaselineDeviceList : '\0', "baseline" -> "Output the list of supported baseline devices" ;
 @string memoryDescription : 'M', "memory" -> "Output the RAM, ROM and EEPROM description of the device named by string" ;
 @string registerDescription : 'R', "registers" -> "Output the special register description of the device named by string" ;
 @string configDescription : 'F', "configuration" -> "Output the configuration register description of the device named by string" ;

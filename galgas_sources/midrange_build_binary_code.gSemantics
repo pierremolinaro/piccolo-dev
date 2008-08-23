@@ -172,7 +172,7 @@ end method ;
 
 override method @midrange_ipic_incDecRegisterInCondition.generateBinaryCodeAtAddress
   ??@midrange_symbolTable inRoutineSymbolTable
-  ?!@uint unused ioAddress
+  ?!@uint ioAddress
 :
   @uint code ;
   if mIncrement then
@@ -185,7 +185,11 @@ override method @midrange_ipic_incDecRegisterInCondition.generateBinaryCodeAtAdd
   end if ;
   code := code | ([mRegisterDescription mRegisterAddress] & 127) ;
   emitCode !code ;
-#--- Generate BRA and / or GOTO instructions
+#---
+  if mBranchIfZero then
+    emit_midrange_GOTOinstruction !ioAddress + 3 ;
+  end if ;
+#--- Generate GOTO instruction
   @uint targetAddress ;
   [inRoutineSymbolTable searchKey ![@lstring new !mTargetLabel !here] ?targetAddress] ;
   emit_midrange_GOTOinstruction !targetAddress ;

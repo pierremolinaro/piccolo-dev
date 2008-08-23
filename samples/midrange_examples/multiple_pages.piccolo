@@ -1,0 +1,39 @@
+# This program is just intended for checking
+# JSR, JUMP instructions for jumping
+# in a different page
+# Trying to execute it does not make sense.
+
+midrange multiple_pages "16F690" :
+
+#----------------------------------------------------------------------------*
+#                                                                            *
+#                                MAIN                                        *
+#                                                                            *
+#----------------------------------------------------------------------------*
+
+noreturn routine main page 1 bank:requires 0 {
+  JSR  routinePage0
+  JUMP routineNoReturnPage0
+}
+
+#----------------------------------------------------------------------------*
+
+noreturn  routine routineNoReturnPage0 page 0 {
+  forever
+  end
+}
+
+#----------------------------------------------------------------------------*
+
+routine routinePage0 page 0 {
+  JSR  routinePage1
+}
+
+#----------------------------------------------------------------------------*
+
+routine routinePage1 page 1 {
+}
+
+#----------------------------------------------------------------------------*
+
+end

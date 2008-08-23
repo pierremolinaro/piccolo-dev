@@ -902,10 +902,14 @@ end method ;
 #----------------------------------------------------*
 
 override method @midrange_incDecRegisterInCondition.computeInstructionCountForCondition
-  ??@bool unused inComplementaryBranch
+  ??@bool inComplementaryBranch
   !@uint outInstructionCount
 :
-  outInstructionCount := 2 ;
+  if mBranchIfZero ^ inComplementaryBranch then
+    outInstructionCount := 3 ;
+  else
+    outInstructionCount := 2 ;
+  end if ;
 end method ;
 
 #----------------------------------------------------*
@@ -1378,6 +1382,7 @@ end method ;
 #----------------------------------------------------*
 
 routine build_midrange_assembly_instruction_list
+  ??@uint inTotalPageCount
   ??@uint inTotalBankCount
   ??@registerTable inRegisterTable
   ??@midrange_model inPiccoloModel
@@ -1453,42 +1458,59 @@ routine build_midrange_assembly_instruction_list
       outGeneratedInstructionList += ![@midrange_ipic_instruction_RETFIE new !here] ;
     end foreach ;
   end if ;
-#-------------------------------- Check and translate routines
+#-------------------------------- Check page routine specification is compatible with device
   foreach [inPiccoloModel mRoutineDefinitionList] do
-    @bool continuesInSequence ;
-    @uint currentBank := [mRequiredBank uint] ;
-    @routineKind routineKind ;
-    if mIsNoReturn then
-      routineKind := [@routineKind noReturnRoutine] ;
-    else
-      routineKind := [@routineKind regularRoutine] ;
-    end if ;
-    outGeneratedInstructionList += ![@midrange_ipic_pseudo_LABEL new !mRoutineName] ;
-    handleMidrangeInstructionList
-      !mInstructionList
-      !routineMap
-      !inRegisterTable
-      !constantMap
-      !?localLabelIndex
-      !?outGeneratedInstructionList
-      !?generationOptimizationMessages
-      !inTotalBankCount
-      !?currentBank
-      !mPreservesBank
-      ?continuesInSequence
-      !routineKind
-    ;
-    if (not mIsNoReturn) & ([mReturnedBank uint] != [@uint max]) & (currentBank != [mReturnedBank uint]) then
-      error mRoutineName:"execution will not set bank selection to " . [[mReturnedBank uint] string] ;
-    end if ;
-    if mIsNoReturn & continuesInSequence then
-      error mRoutineName:"execution should not reach the end of a \"noreturn\" routine" ;
-    end if ;
-  #--- Add a RETURN instruction (if it is a regular routine)
-    if not mIsNoReturn then
-      outGeneratedInstructionList += ![@midrange_ipic_instruction_RETURN new ![mRoutineName location]] ;
+    if [mPage uint] >= inTotalPageCount then
+      error mPage:"invalid value (". [[mPage uint] string] . "); the device has " . [inTotalPageCount string] . " 2k page(s) on rom" ;
     end if ;
   end foreach ;
+#-------------------------------- Check and translate routines
+  @uint currentPage := 0 ;
+  loop inTotalPageCount : while currentPage < inTotalPageCount do
+    foreach [inPiccoloModel mRoutineDefinitionList] do
+      @bool orgGenerated := currentPage == 0 ; # No Org for first page
+      if [mPage uint] == currentPage then
+        if not orgGenerated then
+          outGeneratedInstructionList += ![@midrange_ipic_pseudo_ORG new !currentPage * 2048] ;
+          orgGenerated := true ;
+        end if ;
+        @bool continuesInSequence ;
+        @uint currentBank := [mRequiredBank uint] ;
+        @routineKind routineKind ;
+        if mIsNoReturn then
+          routineKind := [@routineKind noReturnRoutine] ;
+        else
+          routineKind := [@routineKind regularRoutine] ;
+        end if ;
+        outGeneratedInstructionList += ![@midrange_ipic_pseudo_LABEL new !mRoutineName] ;
+        handleMidrangeInstructionList
+          !mInstructionList
+          !routineMap
+          !inRegisterTable
+          !constantMap
+          !?localLabelIndex
+          !?outGeneratedInstructionList
+          !?generationOptimizationMessages
+          !inTotalBankCount
+          !?currentBank
+          !mPreservesBank
+          ?continuesInSequence
+          !routineKind
+        ;
+        if (not mIsNoReturn) & ([mReturnedBank uint] != [@uint max]) & (currentBank != [mReturnedBank uint]) then
+          error mRoutineName:"execution will not set bank selection to " . [[mReturnedBank uint] string] ;
+        end if ;
+        if mIsNoReturn & continuesInSequence then
+          error mRoutineName:"execution should not reach the end of a \"noreturn\" routine" ;
+        end if ;
+      #--- Add a RETURN instruction (if it is a regular routine)
+        if not mIsNoReturn then
+          outGeneratedInstructionList += ![@midrange_ipic_instruction_RETURN new ![mRoutineName location]] ;
+        end if ;
+      end if ;
+    end foreach ;
+    currentPage ++ ;
+  end loop ;
 ##--- Description of register WREG
 #  @registerExpression WREGregister [new ![@lstring new !"WREG" !here] ![@luint new !0 !here]] ;
 #  @midrange_ipic_registerExpression WREG_IPICregisterDescription ;
