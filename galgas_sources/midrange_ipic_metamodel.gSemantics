@@ -293,24 +293,35 @@ class @midrange_ipic_instruction_BitTestSkip extends @midrange_ipic_actualInstru
 
 #----------------------------------------------------*
 
+enum @midrange_call_goto_bit {
+  constructor set ;
+  constructor clear ;
+  constructor noChange ;
+}{
+
+}
+
+#----------------------------------------------------*
+
 class @midrange_ipic_JUMP extends @midrange_ipic_actualInstruction {
   @lstring mTargetLabel ;
-  @midrange_jumpInstructionKind mKind ;
+  @midrange_call_goto_bit mBit11 ;
+  @midrange_call_goto_bit mBit12 ;
 
   override
   method instructionLength !@uint outLength :
-    switch mKind
-      when ipicExtended : outLength := 1 ;
-      when native       : outLength := 1 ;
-    end switch ;
+    outLength := 1 ;
+    if mBit11 != [@midrange_call_goto_bit noChange] then
+      outLength ++ ;
+    end if ;
+    if mBit12 != [@midrange_call_goto_bit noChange] then
+      outLength ++ ;
+    end if ;
   end method ;
 
   override
   method displayIPICinstruction ?!@string ioListFileContents :
-    switch mKind
-      when ipicExtended : ioListFileContents .= "JUMP " . mTargetLabel ;
-      when native       : ioListFileContents .= "GOTO " . mTargetLabel ;
-    end switch ;
+    ioListFileContents .= "JUMP " . mTargetLabel ;
   end method ;
 
   override method nextInstructionIsReachable !@bool outIsReachable :
@@ -324,24 +335,64 @@ class @midrange_ipic_JUMP extends @midrange_ipic_actualInstruction {
 
 #----------------------------------------------------*
 
-class @midrange_ipic_JSR extends @midrange_ipic_actualInstruction {
+class @midrange_ipic_GOTO extends @midrange_ipic_actualInstruction {
   @lstring mTargetLabel ;
-  @midrange_jumpInstructionKind mKind ;
 
   override
   method instructionLength !@uint outLength :
-    switch mKind
-      when ipicExtended : outLength := 1 ;
-      when native       : outLength := 1 ;
-    end switch ;
+    outLength := 1 ;
   end method ;
 
   override
   method displayIPICinstruction ?!@string ioListFileContents :
-    switch mKind
-      when ipicExtended : ioListFileContents .= "JSR " . mTargetLabel ;
-      when native       : ioListFileContents .= "CALL " . mTargetLabel ;
-    end switch ;
+    ioListFileContents .= "GOTO " . mTargetLabel ;
+  end method ;
+
+  override method nextInstructionIsReachable !@bool outIsReachable :
+    outIsReachable := false ;
+  end method ;
+
+  override method enterReferencedLabel ?!@stringset ioReferencedLabelSet :
+    ioReferencedLabelSet += ![mTargetLabel string] ;
+  end method ;
+}
+
+#----------------------------------------------------*
+
+class @midrange_ipic_CALL extends @midrange_ipic_actualInstruction {
+  @lstring mTargetLabel ;
+
+  override
+  method displayIPICinstruction ?!@string ioListFileContents :
+    ioListFileContents .= "CALL " . mTargetLabel ;
+  end method ;
+
+  override method enterReferencedLabel ?!@stringset ioReferencedLabelSet :
+    ioReferencedLabelSet += ![mTargetLabel string] ;
+  end method ;
+}
+
+#----------------------------------------------------*
+
+class @midrange_ipic_JSR extends @midrange_ipic_actualInstruction {
+  @lstring mTargetLabel ;
+  @midrange_call_goto_bit mBit11 ;
+  @midrange_call_goto_bit mBit12 ;
+
+  override
+  method instructionLength !@uint outLength :
+    outLength := 1 ;
+    if mBit11 != [@midrange_call_goto_bit noChange] then
+      outLength := outLength  + 2 ;
+    end if ;
+    if mBit12 != [@midrange_call_goto_bit noChange] then
+      outLength := outLength  + 2 ;
+    end if ;
+  end method ;
+
+  override
+  method displayIPICinstruction ?!@string ioListFileContents :
+    ioListFileContents .= "CALL " . mTargetLabel ;
   end method ;
 
   override method enterReferencedLabel ?!@stringset ioReferencedLabelSet :

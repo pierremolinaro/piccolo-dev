@@ -127,7 +127,7 @@ method @midrange_ipic_JUMP.optimizeJUMP
     when == @midrange_ipic_JUMP jump do
       if mTargetLabel != [jump mTargetLabel] then
         [!?ioGeneratedInstructionList setMInstructionAtIndex
-          ![@midrange_ipic_JUMP new !mInstructionLocation ![jump mTargetLabel] !mKind]
+          ![@midrange_ipic_JUMP new !mInstructionLocation ![jump mTargetLabel] ![@midrange_call_goto_bit noChange] ![@midrange_call_goto_bit noChange]]
           !inLineIndex
         ] ;
         ioOptimizationsDone := true ;
@@ -140,27 +140,90 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-method @midrange_ipic_JSR.optimizeJSR
+method @midrange_ipic_GOTO.optimizeGOTO
+  ??@symbolTableForOptimizations inSymbolTable
   ??@uint inLineIndex
   ?!@midrange_ipic_instructionList ioGeneratedInstructionList
   ?!@string ioListFileContents
   ?!@bool ioOptimizationsDone
 :
-#--- Find first executable instruction
-  @midrange_ipic_instruction firstInstruction ;
-  findFirstInstructionFromAddress !inLineIndex + 1 !ioGeneratedInstructionList ?firstInstruction ;
-#--- Optimization from found first instruction
-  cast firstInstruction :
-  when == @midrange_ipic_instruction_RETURN do
-    [!?ioGeneratedInstructionList setMInstructionAtIndex
-      ![@midrange_ipic_JUMP new !mInstructionLocation !mTargetLabel !mKind]
-      !inLineIndex
-    ] ;
-    ioOptimizationsDone := true ;
-    ioListFileContents .= "  line " . [inLineIndex string] . ": JSR followed by RETURN replaced by JUMP\n" ;
-  else
-  end cast ;
+#--- The GOTO goes to the next instruction ?
+  @stringset reachedLabelSet ;
+  findFirstInstructionOrLabelFromAddress !inLineIndex+1 !ioGeneratedInstructionList ?* ?reachedLabelSet ;
+#  log reachedLabelSet ; log inLineIndex ;
+  if [reachedLabelSet hasKey ![mTargetLabel string]] then
+    [!?ioGeneratedInstructionList setMInstructionAtIndex ![@midrange_ipic_NULL new] !inLineIndex] ;
+    ioListFileContents .= "  line " . [inLineIndex string] . ": GOTO branching to next instruction deleted\n" ;
+  else      
+  #--- Find destination label definition line
+    @uint line ; [inSymbolTable searchKey !mTargetLabel ?line] ;
+  #--- Find first executable instruction
+    @midrange_ipic_instruction firstInstruction ;
+    findFirstInstructionFromAddress !line + 1 !ioGeneratedInstructionList ?firstInstruction ;
+  #--- Optimization from found first instruction
+    cast firstInstruction :
+    when == @midrange_ipic_instruction_RETURN do
+      [!?ioGeneratedInstructionList setMInstructionAtIndex
+        ![@midrange_ipic_instruction_RETURN new !mInstructionLocation]
+        !inLineIndex
+      ] ;
+      ioOptimizationsDone := true ;
+      ioListFileContents .= "  line " . [inLineIndex string] . ": GOTO branching to RETURN replaced by RETURN\n" ;
+    when == @midrange_ipic_instruction_literalOperation literalOp do
+      if [literalOp mLiteralInstruction] == [@midrange_literal_instruction_opcode RETLW] then
+        [!?ioGeneratedInstructionList setMInstructionAtIndex
+          !literalOp
+          !inLineIndex
+        ] ;
+        ioOptimizationsDone := true ;
+        ioListFileContents .= "  line " . [inLineIndex string] . ": GOTO branching to RETLW replaced by RETLW\n" ;
+      end if ;
+    when == @midrange_ipic_JUMP jump do
+      if mTargetLabel != [jump mTargetLabel] then
+        [!?ioGeneratedInstructionList setMInstructionAtIndex
+          ![@midrange_ipic_JUMP new !mInstructionLocation ![jump mTargetLabel] ![@midrange_call_goto_bit noChange] ![@midrange_call_goto_bit noChange]]
+          !inLineIndex
+        ] ;
+        ioOptimizationsDone := true ;
+        ioListFileContents .= "  line " . [inLineIndex string] . ": GOTO branching to JUMP replaced by JUMP\n" ;
+      end if ;
+    when == @midrange_ipic_GOTO goto do
+      if mTargetLabel != [goto mTargetLabel] then
+        [!?ioGeneratedInstructionList setMInstructionAtIndex
+          ![@midrange_ipic_GOTO new !mInstructionLocation ![goto mTargetLabel]]
+          !inLineIndex
+        ] ;
+        ioOptimizationsDone := true ;
+        ioListFileContents .= "  line " . [inLineIndex string] . ": GOTO branching to JUMP replaced by JUMP\n" ;
+      end if ;
+    else # No Optimization
+    end cast ;
+  end if ;      
 end method ;
+
+#----------------------------------------------------------------------------*
+
+#method @midrange_ipic_CALL.optimizeCALL
+#  ??@uint inLineIndex
+#  ?!@midrange_ipic_instructionList ioGeneratedInstructionList
+#  ?!@string ioListFileContents
+#  ?!@bool ioOptimizationsDone
+#:
+##--- Find first executable instruction
+#  @midrange_ipic_instruction firstInstruction ;
+#  findFirstInstructionFromAddress !inLineIndex + 1 !ioGeneratedInstructionList ?firstInstruction ;
+##--- Optimization from found first instruction
+#  cast firstInstruction :
+#  when == @midrange_ipic_instruction_RETURN do
+#    [!?ioGeneratedInstructionList setMInstructionAtIndex
+#      ![@midrange_ipic_GOTO new !mInstructionLocation !mTargetLabel]
+#      !inLineIndex
+#    ] ;
+#    ioOptimizationsDone := true ;
+#    ioListFileContents .= "  line " . [inLineIndex string] . ": JSR followed by RETURN replaced by JUMP\n" ;
+#  else
+#  end cast ;
+#end method ;
 
 #----------------------------------------------------------------------------*
 
@@ -331,10 +394,12 @@ routine perform_midrange_optimizations
   #--- Optimization loop
     foreach ioGeneratedInstructionList :idx do
       cast mInstruction :
+      when == @midrange_ipic_GOTO ipic_GOTO do
+        [ipic_GOTO optimizeGOTO !symbolTable !idx !?ioGeneratedInstructionList !?ioListFileContents !?optimizationsDone] ;
       when == @midrange_ipic_JUMP ipic_JUMP do
         [ipic_JUMP optimizeJUMP !symbolTable !idx !?ioGeneratedInstructionList !?ioListFileContents !?optimizationsDone] ;
-      when == @midrange_ipic_JSR ipic_JSR do
-        [ipic_JSR optimizeJSR !idx !?ioGeneratedInstructionList !?ioListFileContents !?optimizationsDone] ;
+#      when == @midrange_ipic_CALL ipic_CALL do
+#        [ipic_CALL optimizeCALL !idx !?ioGeneratedInstructionList !?ioListFileContents !?optimizationsDone] ;
       when == @midrange_ipic_instruction_literalOperation ipic_literal do
         [ipic_literal optimizeMOVLW !idx !?ioGeneratedInstructionList !?ioListFileContents !?optimizationsDone] ;
       when == @midrange_ipic_incDecRegisterInCondition ipic_decInc do

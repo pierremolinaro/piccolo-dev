@@ -13,6 +13,10 @@ echo "-------------- structured_if (with optimization)" &&
 piccolo -v -S -O -L structured_if.piccolo &&
 $GPUTILS_PATH/gpasm structured_if.asm -o structured_if-2.hex &&
 hexcmp structured_if.hex structured_if-2.hex &&
+echo "-------------- multiple_pages" &&
+piccolo -v -S -O -L multiple_pages.piccolo &&
+$GPUTILS_PATH/gpasm multiple_pages.asm -o multiple_pages-2.hex &&
+hexcmp multiple_pages.hex multiple_pages-2.hex &&
 #----
 echo "-------------- SUCCES ---------------" ||
 echo "-------------- ECHEC ----------------"

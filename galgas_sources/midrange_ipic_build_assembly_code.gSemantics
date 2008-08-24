@@ -119,10 +119,26 @@ override method @midrange_ipic_JUMP.buildAssemblyCode
   ?!@string ioString
   ?!@uint unused ioLocalLabelIndex
 :
-  switch mKind
-    when ipicExtended : ioString .= "  GOTO   " . [mTargetLabel string] . "\n" ;
-    when native       : ioString .= "  GOTO  " . [mTargetLabel string] . "\n" ;
+  switch mBit11 
+  when set   : ioString .= "  BSF PCLATH, 3\n" ;
+  when clear : ioString .= "  BCF PCLATH, 3\n" ;
+  when noChange :
   end switch ;
+  switch mBit12 
+  when set   : ioString .= "  BSF PCLATH, 4\n" ;
+  when clear : ioString .= "  BCF PCLATH, 4\n" ;
+  when noChange :
+  end switch ;
+  ioString .= "  GOTO   " . [mTargetLabel string] . "\n" ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @midrange_ipic_GOTO.buildAssemblyCode
+  ?!@string ioString
+  ?!@uint unused ioLocalLabelIndex
+:
+  ioString .= "  GOTO   " . [mTargetLabel string] . "\n" ;
 end method ;
 
 #----------------------------------------------------*
@@ -131,10 +147,36 @@ override method @midrange_ipic_JSR.buildAssemblyCode
   ?!@string ioString
   ?!@uint unused ioLocalLabelIndex
 :
-  switch mKind
-    when ipicExtended : ioString .= "  CALL   " . [mTargetLabel string] . "\n" ;
-    when native       : ioString .= "  CALL  " . [mTargetLabel string] . "\n" ;
+  switch mBit11 
+  when set   : ioString .= "  BSF PCLATH, 3\n" ;
+  when clear : ioString .= "  BCF PCLATH, 3\n" ;
+  when noChange :
   end switch ;
+  switch mBit12 
+  when set   : ioString .= "  BSF PCLATH, 4\n" ;
+  when clear : ioString .= "  BCF PCLATH, 4\n" ;
+  when noChange :
+  end switch ;
+  ioString .= "  CALL  " . [mTargetLabel string] . "\n" ;
+  switch mBit11 
+  when set   : ioString .= "  BCF PCLATH, 3\n" ;
+  when clear : ioString .= "  BSF PCLATH, 3\n" ;
+  when noChange :
+  end switch ;
+  switch mBit12 
+  when set   : ioString .= "  BCF PCLATH, 4\n" ;
+  when clear : ioString .= "  BSF PCLATH, 4\n" ;
+  when noChange :
+  end switch ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @midrange_ipic_CALL.buildAssemblyCode
+  ?!@string ioString
+  ?!@uint unused ioLocalLabelIndex
+:
+  ioString .= "  CALL  " . [mTargetLabel string] . "\n" ;
 end method ;
 
 #----------------------------------------------------*
@@ -276,7 +318,8 @@ routine midrange_build_assembly_code
   ??@actualConfigurationMap inActualConfigurationMap
   !@string outAssemblyCode
 :
-  outAssemblyCode := "  errorlevel -302 ; No Warning on registers not in bank 0\n\n" ; 
+  outAssemblyCode := "  errorlevel -302 ; No Warning on registers not in bank 0\n" ; 
+  outAssemblyCode := "  errorlevel -306 ; No Warning on crossing page boundary\n\n" ; 
   outAssemblyCode .= "  PROCESSOR " . inProcessorName . "\n\n" ;
 #--- Code
   outAssemblyCode .= ";--- Code\n" ;
@@ -303,10 +346,8 @@ routine midrange_build_assembly_code
   end foreach ;
   outAssemblyCode .= "\n" ;
 #--- PICCOLO defined symbols
-  outAssemblyCode .= ";--- Piccolo defined symbols\n" ;
-  outAssemblyCode .= "F EQU 0\n" ;
-  outAssemblyCode .= "W EQU 1\n" ;
-  outAssemblyCode .= "BSR_ACCESS EQU 1\n\n" ;
+  outAssemblyCode .= ";--- Piccolo defined symbol\n" ;
+  outAssemblyCode .= "W EQU 1\n\n" ;
 #-------------------------------- Add Configuration
   if [inActualConfigurationMap count] > 0 then
     outAssemblyCode .= ";--- Configuration\n\n" ;

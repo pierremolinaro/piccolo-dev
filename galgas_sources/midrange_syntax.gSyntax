@@ -446,7 +446,6 @@ rule <midrange_structured_instruction>
     outInstruction := [@midrange_instruction_JSR new
       !instructionLocation
       !targetLabelName
-      ![@midrange_jumpInstructionKind ipicExtended]
     ] ;
   or
     $jump$ ;
@@ -455,7 +454,6 @@ rule <midrange_structured_instruction>
     outInstruction := [@midrange_instruction_JUMP new
       !instructionLocation
       !targetLabelName
-      ![@midrange_jumpInstructionKind ipicExtended]
     ] ;
   end select ;
 end rule ;
@@ -597,22 +595,20 @@ rule <midrange_simple_instruction> !@midrange_instruction outInstruction :
       !bitNumber
     ] ;
   or
-    $call$ ;
-    @location instructionLocation := here ;
-    $identifier$ ? @lstring targetLabelName ;
-    outInstruction := [@midrange_instruction_JSR new
-      !instructionLocation
-      !targetLabelName
-      ![@midrange_jumpInstructionKind native]
-    ] ;
-  or
     $goto$ ;
     @location instructionLocation := here ;
     $identifier$ ? @lstring targetLabelName ;
-    outInstruction := [@midrange_instruction_JUMP new
+    outInstruction := [@midrange_instruction_GOTO new
       !instructionLocation
       !targetLabelName
-      ![@midrange_jumpInstructionKind native]
+    ] ;
+  or
+    $call$ ;
+    @location instructionLocation := here ;
+    $identifier$ ? @lstring targetLabelName ;
+    outInstruction := [@midrange_instruction_CALL new
+      !instructionLocation
+      !targetLabelName
     ] ;
   or
     $clrw$ ;

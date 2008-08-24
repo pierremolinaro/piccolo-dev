@@ -7,6 +7,7 @@ import semantics piccolo_config in "piccolo_config.gSemantics" ;
 import semantics ram_sections in "ram_sections.gSemantics" ;
 import semantics midrange_optimizations in "midrange_optimizations.gSemantics" ;
 import semantics midrange_build_binary_code in "midrange_build_binary_code.gSemantics" ;
+import semantics midrange_compute_JSR_JUMP in "midrange_compute_JSR_JUMP.gSemantics" ;
 
 import option piccolo_options in "piccolo_options.gOption" ;
 
@@ -73,19 +74,22 @@ routine midrange_analyze ??@midrange_model inPiccoloModel ??@string inSourceFile
   if ([@uint errorCount] == 0) & [option piccolo_options.performOptimizations] then
     perform_midrange_optimizations !?generatedInstructionList !?listFileContents ;
   end if ;
-##-------------------------------- Convert relative branchs to absolute, when needed
-#  if [@uint errorCount] == 0 then
-#    convertRelativeBranchsToAbsoluteWhenNeeded !?generatedInstructionList !?listFileContents ;
-#  end if ;
-#-------------------------------- Code generation
+#-------------------------------- Compute inter-pages JUMP and JSR
+  if [@uint errorCount] == 0 then
+    midrange_compute_JSR_JUMP !?generatedInstructionList !?listFileContents ;
+  end if ;
+#-------------------------------- Listing file
   if [option piccolo_options.ouputListingFile] then
     @string listFile := [inSourceFileName stringByDeletingPathExtension] . ".list" ;
     [listFileContents writeToFileWhenDifferentContents !listFile] ;
   end if ;
+#-------------------------------- Code generation
 #--- If no error, generate object file(s)
   if [@uint errorCount] == 0 then
   #--- Generate hex file
     build_midrange_ipic_binary_code
+      !registerTable
+      ![[piccoloDeviceModel mBankCount] uint]
       !generatedInstructionList
       ![[piccoloDeviceModel mRomSize] uint]
       !actualConfigurationMap

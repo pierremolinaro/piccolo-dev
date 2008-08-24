@@ -92,7 +92,7 @@ routine pic18_analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName 
   end if ;
 #-------------------------------- Convert relative branchs to absolute, when needed
   if [@uint errorCount] == 0 then
-    convertRelativeBranchsToAbsoluteWhenNeeded !?generatedInstructionList !?listFileContents ;
+    ipic18_convertRelativeBranchsToAbsoluteWhenNeeded !?generatedInstructionList !?listFileContents ;
   end if ;
 #-------------------------------- Code generation
   if [option piccolo_options.ouputListingFile] then

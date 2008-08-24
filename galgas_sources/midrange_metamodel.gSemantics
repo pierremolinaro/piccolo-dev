@@ -143,24 +143,26 @@ class @midrange_instruction_FB extends @midrange_instruction {
 
 #----------------------------------------------------*
 
-enum @midrange_jumpInstructionKind {
-  constructor ipicExtended ;
-  constructor native ;
-}{
+class @midrange_instruction_CALL extends @midrange_instruction {
+  @lstring mTargetLabel ;
 }
 
 #----------------------------------------------------*
 
 class @midrange_instruction_JSR extends @midrange_instruction {
   @lstring mTargetLabel ;
-  @midrange_jumpInstructionKind mKind ;
 }
 
 #----------------------------------------------------*
 
 class @midrange_instruction_JUMP extends @midrange_instruction {
   @lstring mTargetLabel ;
-  @midrange_jumpInstructionKind mKind ;
+}
+
+#----------------------------------------------------*
+
+class @midrange_instruction_GOTO extends @midrange_instruction {
+  @lstring mTargetLabel ;
 }
 
 #----------------------------------------------------*

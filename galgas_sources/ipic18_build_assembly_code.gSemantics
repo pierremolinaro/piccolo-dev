@@ -499,7 +499,6 @@ routine pic18_build_assembly_code
   outAssemblyCode .= "\n" ;
 #--- PICCOLO defined symbols
   outAssemblyCode .= ";--- Piccolo defined symbols\n" ;
-  outAssemblyCode .= "F EQU 0\n" ;
   outAssemblyCode .= "W EQU 1\n" ;
   outAssemblyCode .= "BSR_ACCESS EQU 1\n\n" ;
 #-------------------------------- Add Configuration
