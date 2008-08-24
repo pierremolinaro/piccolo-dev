@@ -389,7 +389,7 @@ override method @midrange_instruction_JSR.build_midrange_ipic_instructionList
     error mTargetLabel:errorMessage ;
   end if ;
   if isNoReturn then
-    error mTargetLabel:"a \"noreturn\" routine should be called with a BRA, GOTO, Bcc or JUMP instruction" ;
+    error mTargetLabel:"a \"noreturn\" routine should be called with a GOTO or JUMP instruction" ;
   end if ;
   if not preservesBank then
     ioCurrentBank := returnedBank ;
@@ -398,7 +398,52 @@ override method @midrange_instruction_JSR.build_midrange_ipic_instructionList
   ioGeneratedInstructionList += ![@midrange_ipic_JSR new
     !mInstructionLocation
     !mTargetLabel
-    !mKind
+    ![@midrange_call_goto_bit noChange]
+    ![@midrange_call_goto_bit noChange]
+  ] ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @midrange_instruction_CALL.build_midrange_ipic_instructionList
+  ??@routineMap inRoutineMap
+  ??@registerTable unused inRegisterTable
+  ??@constantMap unused inConstantMap
+  ?!@uint unused ioLocalLabelIndex
+  ?!@midrange_ipic_instructionList ioGeneratedInstructionList
+  ?!@string unused ioListFileContents
+  ??@uint unused inTotalBankCount
+  ?!@uint ioCurrentBank
+  ??@bool unused inShouldPreserveBank
+  ?!@bool unused ioContinuesInSequence
+  ??@routineKind unused inRoutineKind
+:
+#--- Check instruction
+  @bool isNoReturn ;
+  @uint requiredBank ;
+  @uint returnedBank ;
+  @bool preservesBank ;
+  [inRoutineMap searchKey !mTargetLabel ?isNoReturn ?requiredBank ?returnedBank ?preservesBank] ;
+  if (requiredBank != [@uint max]) & (requiredBank != ioCurrentBank) then
+    @string errorMessage := "the routine '" . mTargetLabel . "' requires bank selection to be set to " . [requiredBank string] ;
+    errorMessage .= ", but bank selection " ;
+    if ioCurrentBank == [@uint max] then
+      errorMessage .= "does contain any reliable value" ;
+    else
+      errorMessage .= "is set to " . [ioCurrentBank string] ;
+    end if ;
+    error mTargetLabel:errorMessage ;
+  end if ;
+  if isNoReturn then
+    error mTargetLabel:"a \"noreturn\" routine should be called with a GOTO or JUMP instruction" ;
+  end if ;
+  if not preservesBank then
+    ioCurrentBank := returnedBank ;
+  end if ;
+#---
+  ioGeneratedInstructionList += ![@midrange_ipic_CALL new
+    !mInstructionLocation
+    !mTargetLabel
   ] ;
 end method ;
 
@@ -432,14 +477,55 @@ override method @midrange_instruction_JUMP.build_midrange_ipic_instructionList
     error mTargetLabel:errorMessage ;
   end if ;
   if not isNoReturn then
-    error mTargetLabel:"a regular routine should be called with a RCALL, CALL or JSR instruction" ;
+    error mTargetLabel:"a regular routine should be called with a CALL or JSR instruction" ;
   end if ;
   ioContinuesInSequence := false ;
 #---
   ioGeneratedInstructionList += ![@midrange_ipic_JUMP new
     !mInstructionLocation
     !mTargetLabel
-    !mKind
+    ![@midrange_call_goto_bit noChange]
+    ![@midrange_call_goto_bit noChange]
+  ] ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @midrange_instruction_GOTO.build_midrange_ipic_instructionList
+  ??@routineMap inRoutineMap
+  ??@registerTable unused inRegisterTable
+  ??@constantMap unused inConstantMap
+  ?!@uint unused ioLocalLabelIndex
+  ?!@midrange_ipic_instructionList ioGeneratedInstructionList
+  ?!@string unused ioListFileContents
+  ??@uint unused inTotalBankCount
+  ?!@uint ioCurrentBank
+  ??@bool unused inShouldPreserveBank
+  ?!@bool ioContinuesInSequence
+  ??@routineKind unused inRoutineKind
+:
+#--- Check instruction
+  @bool isNoReturn ;
+  @uint requiredBank ;
+  [inRoutineMap searchKey !mTargetLabel ?isNoReturn ?requiredBank ?* ?*] ;
+  if (requiredBank != [@uint max]) & (requiredBank != ioCurrentBank) then
+    @string errorMessage := "the routine '" . mTargetLabel . "' requires bank selection to be set to " . [requiredBank string] ;
+    errorMessage .= ", but bank selection " ;
+    if ioCurrentBank == [@uint max] then
+      errorMessage .= "does contain any reliable value" ;
+    else
+      errorMessage .= "is set to " . [ioCurrentBank string] ;
+    end if ;
+    error mTargetLabel:errorMessage ;
+  end if ;
+  if not isNoReturn then
+    error mTargetLabel:"a regular routine should be called with a CALL or JSR instruction" ;
+  end if ;
+  ioContinuesInSequence := false ;
+#---
+  ioGeneratedInstructionList += ![@midrange_ipic_GOTO new
+    !mInstructionLocation
+    !mTargetLabel
   ] ;
 end method ;
 
@@ -789,7 +875,10 @@ override method @midrange_instruction_FOREVER.build_midrange_ipic_instructionLis
     error mEndOfInstructionList:"instruction list does not leave bank selection unchanged";
   end if ;
 #--- Generate JUMP to loop start
-  ioGeneratedInstructionList += ![@midrange_ipic_JUMP new !mInstructionLocation ![@lstring new !label0 !mInstructionLocation] ![@midrange_jumpInstructionKind ipicExtended]] ;
+  ioGeneratedInstructionList += ![@midrange_ipic_GOTO new
+    !mInstructionLocation
+    ![@lstring new !label0 !mInstructionLocation]
+  ] ;
 #---
   ioContinuesInSequence := false ;
 end method ;
@@ -1066,7 +1155,13 @@ override method @midrange_bitTest_in_structured_if_condition.buildIPICinstructio
     !IPICregisterDescription
     !bitNumber
   ] ;
-  ioGeneratedInstructionList += ![@midrange_ipic_JUMP new !inInstructionLocation ![@lstring new !inTargetLabel !inInstructionLocation] ![@midrange_jumpInstructionKind ipicExtended]] ;
+  ioGeneratedInstructionList += ![@midrange_ipic_JUMP new
+    !inInstructionLocation
+    ![@lstring new !inTargetLabel
+    !inInstructionLocation]
+    ![@midrange_call_goto_bit noChange]
+    ![@midrange_call_goto_bit noChange]
+   ] ;
 end method ;
 
 #----------------------------------------------------*
@@ -1151,7 +1246,7 @@ override method @midrange_instruction_structured_if.build_midrange_ipic_instruct
     ;
   #--- 'then' instructions
     if [mThenInstructionList length] > 0 then
-      ioGeneratedInstructionList += ![@midrange_ipic_JUMP new !mInstructionLocation ![@lstring new !label_endOfIfinstruction !mInstructionLocation] ![@midrange_jumpInstructionKind ipicExtended]] ;
+      ioGeneratedInstructionList += ![@midrange_ipic_GOTO new !mInstructionLocation ![@lstring new !label_endOfIfinstruction !mInstructionLocation]] ;
     end if ;
     ioGeneratedInstructionList += ![@midrange_ipic_pseudo_LABEL new ![@lstring new !label_nextCondition !mInstructionLocation]] ;
     handleMidrangeInstructionList 
@@ -1204,7 +1299,7 @@ override method @midrange_instruction_structured_if.build_midrange_ipic_instruct
     ;
   #--- 'else' instructions
     if [mElseInstructionList length] > 0 then
-      ioGeneratedInstructionList += ![@midrange_ipic_JUMP new !mInstructionLocation ![@lstring new !label_endOfIfinstruction !mInstructionLocation] ![@midrange_jumpInstructionKind ipicExtended]] ;
+      ioGeneratedInstructionList += ![@midrange_ipic_GOTO new !mInstructionLocation ![@lstring new !label_endOfIfinstruction !mInstructionLocation]] ;
     end if ;
     ioGeneratedInstructionList += ![@midrange_ipic_pseudo_LABEL new ![@lstring new !label_nextCondition !mInstructionLocation]] ;
     handleMidrangeInstructionList
@@ -1318,7 +1413,7 @@ override method @midrange_instruction_do_while.build_midrange_ipic_instructionLi
       if ioCurrentBank != bank then
         error mEndOfPartLocation:"This branch does not leave bank selection value unchanged";
       end if ;
-      ioGeneratedInstructionList += ![@midrange_ipic_JUMP new !mInstructionLocation ![@lstring new !labelInstructionBegin !mInstructionLocation] ![@midrange_jumpInstructionKind ipicExtended]] ;
+      ioGeneratedInstructionList += ![@midrange_ipic_GOTO new !mInstructionLocation ![@lstring new !labelInstructionBegin !mInstructionLocation]] ;
       ioGeneratedInstructionList += ![@midrange_ipic_pseudo_LABEL new ![@lstring new !nextBranchLabel !mInstructionLocation]] ;
     end if ;
   end foreach ;
@@ -1430,7 +1525,12 @@ routine build_midrange_assembly_instruction_list
   outGeneratedInstructionList := [@midrange_ipic_instructionList emptyList] ;
   @uint localLabelIndex := 0 ;
 #--- At zero, generate 'jump main' instruction
-  outGeneratedInstructionList += ![@midrange_ipic_JUMP new !here ![@lstring new !"main" !here] ![@midrange_jumpInstructionKind ipicExtended]] ;
+  outGeneratedInstructionList += ![@midrange_ipic_JUMP new
+    !here
+    ![@lstring new !"main" !here]
+    ![@midrange_call_goto_bit noChange]
+    ![@midrange_call_goto_bit noChange]
+  ] ;
 #--- First, handle low interrupt (if any)
   if inHasInterrupt then
     outGeneratedInstructionList += ![@midrange_ipic_pseudo_ORG new !0x4] ;
@@ -1467,8 +1567,8 @@ routine build_midrange_assembly_instruction_list
 #-------------------------------- Check and translate routines
   @uint currentPage := 0 ;
   loop inTotalPageCount : while currentPage < inTotalPageCount do
+    @bool orgGenerated := currentPage == 0 ; # No Org for first page
     foreach [inPiccoloModel mRoutineDefinitionList] do
-      @bool orgGenerated := currentPage == 0 ; # No Org for first page
       if [mPage uint] == currentPage then
         if not orgGenerated then
           outGeneratedInstructionList += ![@midrange_ipic_pseudo_ORG new !currentPage * 2048] ;

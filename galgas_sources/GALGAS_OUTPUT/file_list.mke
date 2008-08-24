@@ -63,6 +63,7 @@ SOURCES += midrange_ipic_metamodel.cpp
 SOURCES += midrange_syntax.cpp
 SOURCES += midrange_checkingAndBuildIPIC.cpp
 SOURCES += midrange_optimizations.cpp
+SOURCES += midrange_compute_JSR_JUMP.cpp
 SOURCES += midrange_ipic_build_assembly_code.cpp
 SOURCES += midrange_build_binary_code.cpp
 SOURCES += midrange_semantics.cpp

@@ -24,6 +24,7 @@ project
   compile "midrange_syntax.gSyntax" ;
   compile "midrange_checkingAndBuildIPIC.gSemantics" ;
   compile "midrange_optimizations.gSemantics" ;
+  compile "midrange_compute_JSR_JUMP.gSemantics" ;
   compile "midrange_ipic_build_assembly_code.gSemantics" ;
   compile "midrange_build_binary_code.gSemantics" ;
   compile "midrange_semantics.gSemantics" ;

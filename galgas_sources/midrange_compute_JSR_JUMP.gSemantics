@@ -1,0 +1,352 @@
+semantics midrange_compute_JSR_JUMP :
+import semantics midrange_ipic_metamodel in "midrange_ipic_metamodel.gSemantics" ;
+import "midrange_ipic_metamodel.gSemantics" ;
+
+#----------------------------------------------------------------------------*
+
+map @midrange_symbolTableForConvertingRelatives {
+  @uint mRoutineAddress ;
+  insert insertKey error message "the '%K' label is already declared in %L" ;
+  search searchKey error message "the '%K' label is not declared" ;
+}
+
+#----------------------------------------------------------------------------*
+#                                                                            *
+#                          defineLabelAtAddress                              *
+#                                                                            *
+#----------------------------------------------------------------------------*
+
+method @midrange_ipic_instruction.defineLabelAtAddress
+  ?!@midrange_symbolTableForConvertingRelatives unused ioRoutineSymbolTable
+  ?!@uint unused ioAddress
+:
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override
+method @midrange_ipic_pseudo_LABEL.defineLabelAtAddress
+  ?!@midrange_symbolTableForConvertingRelatives ioRoutineSymbolTable
+  ?!@uint ioAddress
+:
+  [!?ioRoutineSymbolTable insertKey !mLabel !ioAddress] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override
+method @midrange_ipic_pseudo_ORG.defineLabelAtAddress
+  ?!@midrange_symbolTableForConvertingRelatives unused ioRoutineSymbolTable
+  ?!@uint ioAddress
+:
+  if (ioAddress > mOrigin) then
+    error here :"internal error: current address ("
+     . [ioAddress hexString] . ") is greater than origin (" . [mOrigin hexString] . ")" ;
+  end if ;
+  ioAddress := mOrigin ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override
+method @midrange_ipic_actualInstruction.defineLabelAtAddress
+  ?!@midrange_symbolTableForConvertingRelatives unused ioRoutineSymbolTable
+  ?!@uint ioAddress
+:
+  @uint instructionLength ;
+  [self instructionLength ?instructionLength] ;
+  @uint nextAddress := ioAddress  + instructionLength ;
+  if ((nextAddress ^ ioAddress) & 0xF800) != 0 then
+    error mInstructionLocation:"Routine too long, crosses page boundary at this instruction" ;
+  end if ;
+  ioAddress := nextAddress ;
+end method ;
+
+#----------------------------------------------------------------------------*
+#                                                                            *
+#               R E L A T I V E    B R A N C H    C H E C K I N G            *
+#                                                                            *
+#----------------------------------------------------------------------------*
+
+abstract method @midrange_ipic_instruction.compute
+  ??@midrange_symbolTableForConvertingRelatives unused inRoutineSymbolTable
+  ?!@uint unused ioAddress
+  ?!@bool unused ioJUMP_or_JSR_fixed
+  ?!@midrange_ipic_instructionList unused ioGeneratedInstructionList
+  ??@uint unused inIndex
+  ?!@string unused ioListFileContents
+;
+
+#----------------------------------------------------------------------------*
+
+override
+method @midrange_ipic_pseudo_ORG.compute
+  ??@midrange_symbolTableForConvertingRelatives unused inRoutineSymbolTable
+  ?!@uint ioAddress
+  ?!@bool unused ioJUMP_or_JSR_fixed
+  ?!@midrange_ipic_instructionList unused ioGeneratedInstructionList
+  ??@uint unused inIndex
+  ?!@string unused ioListFileContents
+:
+  ioAddress := mOrigin ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @midrange_ipic_JUMP.compute
+  ??@midrange_symbolTableForConvertingRelatives inRoutineSymbolTable
+  ?!@uint ioAddress
+  ?!@bool ioJUMP_or_JSR_fixed
+  ?!@midrange_ipic_instructionList ioGeneratedInstructionList
+  ??@uint inIndex
+  ?!@string ioListFileContents
+:
+#--- Get target address
+    @uint targetAddress ;
+    [inRoutineSymbolTable searchKey !mTargetLabel ?targetAddress] ;
+#--- Change bit 11 ?
+   @uint flags := ioAddress ^ targetAddress ;
+   @midrange_call_goto_bit bit11 ;
+   if (flags & 0x800) == 0 then
+     bit11 := [@midrange_call_goto_bit noChange] ;
+   elsif (targetAddress & 0x800) == 0 then
+     bit11 := [@midrange_call_goto_bit clear] ;
+   else
+     bit11 := [@midrange_call_goto_bit set] ;
+   end if ;
+#--- Change bit 12 ?
+   @midrange_call_goto_bit bit12 ;
+   if (flags & 0x1000) == 0 then
+     bit12 := [@midrange_call_goto_bit noChange] ;
+   elsif (targetAddress & 0x1000) == 0 then
+     bit12 := [@midrange_call_goto_bit clear] ;
+   else
+     bit12 := [@midrange_call_goto_bit set] ;
+   end if ;
+#--- Change ?
+  if (bit11 != mBit11) | (bit12 != mBit12) then
+    @midrange_ipic_actualInstruction instruction := [@midrange_ipic_JUMP new
+      !mInstructionLocation
+      !mTargetLabel
+      !bit11
+      !bit12
+    ] ;
+    [!?ioGeneratedInstructionList setMInstructionAtIndex !instruction !inIndex] ;
+    ioJUMP_or_JSR_fixed := true ;
+    ioListFileContents .= "  line " . [inIndex string] . ":  JUMP to other page fixed\n" ;
+  end if ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @midrange_ipic_JSR.compute
+  ??@midrange_symbolTableForConvertingRelatives inRoutineSymbolTable
+  ?!@uint ioAddress
+  ?!@bool ioJUMP_or_JSR_fixed
+  ?!@midrange_ipic_instructionList ioGeneratedInstructionList
+  ??@uint inIndex
+  ?!@string ioListFileContents
+:
+#--- Get target address
+    @uint targetAddress ;
+    [inRoutineSymbolTable searchKey !mTargetLabel ?targetAddress] ;
+#--- Change bit 11 ?
+   @uint flags := ioAddress ^ targetAddress ;
+   @midrange_call_goto_bit bit11 ;
+   if (flags & 0x800) == 0 then
+     bit11 := [@midrange_call_goto_bit noChange] ;
+   elsif (targetAddress & 0x800) == 0 then
+     bit11 := [@midrange_call_goto_bit clear] ;
+   else
+     bit11 := [@midrange_call_goto_bit set] ;
+   end if ;
+#--- Change bit 12 ?
+   @midrange_call_goto_bit bit12 ;
+   if (flags & 0x1000) == 0 then
+     bit12 := [@midrange_call_goto_bit noChange] ;
+   elsif (targetAddress & 0x1000) == 0 then
+     bit12 := [@midrange_call_goto_bit clear] ;
+   else
+     bit12 := [@midrange_call_goto_bit set] ;
+   end if ;
+#--- Change ?
+  if (bit11 != mBit11) | (bit12 != mBit12) then
+    @midrange_ipic_actualInstruction instruction := [@midrange_ipic_JSR new
+      !mInstructionLocation
+      !mTargetLabel
+      !bit11
+      !bit12
+    ] ;
+    [!?ioGeneratedInstructionList setMInstructionAtIndex !instruction !inIndex] ;
+    ioJUMP_or_JSR_fixed := true ;
+    ioListFileContents .= "  line " . [inIndex string] . ":  JSR to other page fixed\n" ;
+  end if ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @midrange_ipic_pseudo_LABEL.compute
+  ??@midrange_symbolTableForConvertingRelatives inRoutineSymbolTable
+  ?!@uint ioAddress
+  ?!@bool unused ioJUMP_or_JSR_fixed
+  ?!@midrange_ipic_instructionList unused ioGeneratedInstructionList
+  ??@uint unused inIndex
+  ?!@string unused ioListFileContents
+:
+  @uint targetAddress ;
+  [inRoutineSymbolTable searchKey !mLabel ?targetAddress] ;
+  if (targetAddress != ioAddress) then
+    error mLabel: "Internal second pass error: the '" . mLabel
+    . "' label gets " . [ioAddress hexString] . " value in second pass, while it gets "
+    . [targetAddress hexString] . " in first pass" ;
+  end if ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+#override method @midrange_ipic_instruction_computed_retlw.compute
+#  ??@midrange_symbolTableForConvertingRelatives inRoutineSymbolTable
+#  ?!@uint ioAddress
+#  ?!@bool ioJUMP_or_JSR_fixed
+#  ?!@midrange_ipic_instructionList ioGeneratedInstructionList
+#  ??@uint inIndex
+#  ?!@string ioListFileContents
+#:
+#  if mUsesRCALL then
+#    @uint targetAddress ;
+#    [inRoutineSymbolTable searchKey ![@lstring new !"_computed_goto_2" !here] ?targetAddress] ;
+#    @sint displacement := ([targetAddress sint] - 2S - [ioAddress sint]) >> 1 ;
+#    if (displacement > 1023S) | (displacement < - 1024S) then
+#      ioJUMP_or_JSR_fixed := true ;
+#      ioListFileContents .= "  line " . [inIndex string] . ":  COMPUTED RETLW with RCALL overflow, converted to COMPUTED RETLW with CALL\n" ;
+#      @ipic_actualInstruction instruction := [@midrange_ipic_instruction_computed_retlw new
+#        !mInstructionLocation
+#        !mLiteralValues
+#        !false
+#      ] ;
+#      [!?ioGeneratedInstructionList setMInstructionAtIndex !instruction !inIndex] ;
+#    end if ;
+#  end if ;
+#end method ;
+
+#----------------------------------------------------------------------------*
+
+#override method @midrange_ipic_instruction_computed_bra.compute
+#  ??@midrange_symbolTableForConvertingRelatives inRoutineSymbolTable
+#  ?!@uint ioAddress
+#  ?!@bool ioJUMP_or_JSR_fixed
+#  ?!@midrange_ipic_instructionList ioGeneratedInstructionList
+#  ??@uint inIndex
+#  ?!@string ioListFileContents
+#:
+#  if mUsesRCALL then
+#    @uint targetAddress ;
+#    [inRoutineSymbolTable searchKey ![@lstring new !"_computed_goto_2" !here] ?targetAddress] ;
+#    @sint displacement := ([targetAddress sint] - 2S - [ioAddress sint]) >> 1 ;
+#    if (displacement > 1023S) | (displacement < - 1024S) then
+#      ioJUMP_or_JSR_fixed := true ;
+#      ioListFileContents .= "  line " . [inIndex string] . ":  COMPUTED BRA with RCALL overflow, converted to COMPUTED BRA with CALL\n" ;
+#      @ipic_actualInstruction instruction := [@midrange_ipic_instruction_computed_bra new
+#        !mInstructionLocation
+#        !mTargetLabels
+#        !false
+#      ] ;
+#      [!?ioGeneratedInstructionList setMInstructionAtIndex !instruction !inIndex] ;
+#    end if ;
+#  end if ;
+#  @uint addressForCheckingBRA := ioAddress + 2 ;
+#  if not mUsesRCALL then
+#    addressForCheckingBRA := addressForCheckingBRA + 2 ; # GOTO takes 2 more bytes
+#  end if ;
+#  foreach mTargetLabels do
+#    @uint targetAddress ;
+#    [inRoutineSymbolTable searchKey !mValue ?targetAddress] ;
+#    @sint displacement := ([targetAddress sint] - 2S - [addressForCheckingBRA sint]) >> 1 ;
+#    if (displacement > 1023S) | (displacement < - 1024S) then
+#      error mValue: "displacement (" . [displacement string] . ") too large for BRA instruction (limited to [-1024, 1023])" ;
+#    end if ;
+#    addressForCheckingBRA := addressForCheckingBRA + 2 ;
+#  end foreach ;
+#end method ;
+
+#----------------------------------------------------------------------------*
+
+#override method @midrange_ipic_instruction_computed_goto.compute
+#  ??@midrange_symbolTableForConvertingRelatives inRoutineSymbolTable
+#  ?!@uint ioAddress
+#  ?!@bool ioJUMP_or_JSR_fixed
+#  ?!@midrange_ipic_instructionList ioGeneratedInstructionList
+#  ??@uint inIndex
+#  ?!@string ioListFileContents
+#:
+#  if mUsesRCALL then
+#    @uint targetAddress ;
+#    [inRoutineSymbolTable searchKey ![@lstring new !"_computed_goto_4" !here] ?targetAddress] ;
+#    @sint displacement := ([targetAddress sint] - 2S - [ioAddress sint]) >> 1 ;
+#    if (displacement > 1023S) | (displacement < - 1024S) then
+#      ioJUMP_or_JSR_fixed := true ;
+#      ioListFileContents .= "  line " . [inIndex string] . ":  COMPUTED GOTO with RCALL overflow, converted to COMPUTED GOTO with CALL\n" ;
+#      @ipic_actualInstruction instruction := [@midrange_ipic_instruction_computed_goto new
+#        !mInstructionLocation
+#        !mTargetLabels
+#        !false
+#      ] ;
+#      [!?ioGeneratedInstructionList setMInstructionAtIndex !instruction !inIndex] ;
+#    end if ;
+#  end if ;
+#  foreach mTargetLabels do
+#    [inRoutineSymbolTable searchKey !mValue ?*] ;
+#  end foreach ;
+#end method ;
+
+#----------------------------------------------------------------------------*
+#                                                                            *
+#               S E M A N T I C    A N A L Y S I S                           *
+#                                                                            *
+#----------------------------------------------------------------------------*
+
+routine midrange_compute_JSR_JUMP
+  ?!@midrange_ipic_instructionList ioGeneratedInstructionList
+  ?!@string ioListFileContents
+:
+  ioListFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n" ;
+  ioListFileContents .= "*" . ["COMPUTE JSR and JUMP" stringByLeftAndRightPadding !77 !' '] . "*\n" ;
+  ioListFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n\n" ;
+  @bool JUMP_or_JSR_fixed := true ;
+  @uint iteration := 0 ;
+  loop [ioGeneratedInstructionList length] :
+  while JUMP_or_JSR_fixed & ([@uint errorCount] == 0)
+  do
+    JUMP_or_JSR_fixed := false ;
+    iteration ++ ;
+    ioListFileContents .= "Pass " . [iteration string] . ":\n" ;
+  #-------------------------------- First pass: build label map
+    @midrange_symbolTableForConvertingRelatives symbolTable [emptyMap] ;
+    @uint currentAddress := 0 ;
+    foreach ioGeneratedInstructionList do
+      [mInstruction defineLabelAtAddress !?symbolTable !?currentAddress] ;
+    end foreach ;
+    @uint lastAddressForFirstPass := currentAddress ;
+  #-------------------------------- Second pass: generate code
+    currentAddress := 0 ;
+    foreach ioGeneratedInstructionList:idx do
+      @uint instructionLength ;
+      [mInstruction instructionLength ?instructionLength] ;
+      [mInstruction compute !symbolTable !?currentAddress !?JUMP_or_JSR_fixed !?ioGeneratedInstructionList !idx !?ioListFileContents] ;
+      currentAddress := currentAddress  + instructionLength ;
+    end foreach ;
+    if lastAddressForFirstPass != currentAddress then
+      error here: "Internal second pass error: the last address gets " . [currentAddress hexString]
+      . " value when checking relative branches, while it gets "
+      . [lastAddressForFirstPass hexString] . " value when computing routine map" ;
+    end if ;
+    if not JUMP_or_JSR_fixed then
+      ioListFileContents .= "  No JUMP, no JSR to fix\n\n" ;
+      ioListFileContents .= "Program size: " . [currentAddress string] . " instructions\n\n" ;
+    end if ;
+  end loop ;
+end routine ;
+
+#----------------------------------------------------------------------------*
+
+end semantics ;
