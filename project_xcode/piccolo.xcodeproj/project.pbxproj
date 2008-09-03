@@ -461,6 +461,10 @@
 		CFF8619209C0DA6100F90D05 /* C_GGS_Object.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CFF8618E09C0DA6100F90D05 /* C_GGS_Object.cpp */; };
 		CFF8619309C0DA6100F90D05 /* C_GGS_Object.h in Headers */ = {isa = PBXBuildFile; fileRef = CFF8618F09C0DA6100F90D05 /* C_GGS_Object.h */; };
 		CFF8619409C0DA6100F90D05 /* C_GGS_Object.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CFF8618E09C0DA6100F90D05 /* C_GGS_Object.cpp */; };
+		CFFD8CA90E6F03CF00865B5E /* AC_OutputUnicodeStream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CFFD8CA70E6F03CF00865B5E /* AC_OutputUnicodeStream.cpp */; };
+		CFFD8CAA0E6F03CF00865B5E /* AC_OutputUnicodeStream.h in Headers */ = {isa = PBXBuildFile; fileRef = CFFD8CA80E6F03CF00865B5E /* AC_OutputUnicodeStream.h */; };
+		CFFD8CAB0E6F03CF00865B5E /* AC_OutputUnicodeStream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CFFD8CA70E6F03CF00865B5E /* AC_OutputUnicodeStream.cpp */; };
+		CFFD8CAC0E6F03CF00865B5E /* AC_OutputUnicodeStream.h in Headers */ = {isa = PBXBuildFile; fileRef = CFFD8CA80E6F03CF00865B5E /* AC_OutputUnicodeStream.h */; };
 		DFA61CD5061091C90089CEA5 /* AC_galgas_class.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DFA61CD4061091C90089CEA5 /* AC_galgas_class.cpp */; };
 		DFA61CD6061091C90089CEA5 /* AC_galgas_class.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DFA61CD4061091C90089CEA5 /* AC_galgas_class.cpp */; };
 		DFDA45C5090E688B00D522A4 /* AC_galgas_class.h in Headers */ = {isa = PBXBuildFile; fileRef = DFDA45C4090E688B00D522A4 /* AC_galgas_class.h */; };
@@ -741,6 +745,8 @@
 		CFF53897057D558F00854C8F /* GGS_sint64.cpp */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = sourcecode.cpp.cpp; path = GGS_sint64.cpp; sourceTree = "<group>"; };
 		CFF8618E09C0DA6100F90D05 /* C_GGS_Object.cpp */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = sourcecode.cpp.cpp; path = C_GGS_Object.cpp; sourceTree = "<group>"; };
 		CFF8618F09C0DA6100F90D05 /* C_GGS_Object.h */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = sourcecode.c.h; path = C_GGS_Object.h; sourceTree = "<group>"; };
+		CFFD8CA70E6F03CF00865B5E /* AC_OutputUnicodeStream.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AC_OutputUnicodeStream.cpp; sourceTree = "<group>"; };
+		CFFD8CA80E6F03CF00865B5E /* AC_OutputUnicodeStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AC_OutputUnicodeStream.h; sourceTree = "<group>"; };
 		DFA61CD4061091C90089CEA5 /* AC_galgas_class.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = AC_galgas_class.cpp; sourceTree = "<group>"; };
 		DFDA45C4090E688B00D522A4 /* AC_galgas_class.h */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = sourcecode.c.h; path = AC_galgas_class.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1055,6 +1061,8 @@
 		CFF53851057A54FB00854C83 /* streams */ = {
 			isa = PBXGroup;
 			children = (
+				CFFD8CA70E6F03CF00865B5E /* AC_OutputUnicodeStream.cpp */,
+				CFFD8CA80E6F03CF00865B5E /* AC_OutputUnicodeStream.h */,
 				CFA5D1610A32F661009B4370 /* C_ErrorOut.cpp */,
 				CFA5D1620A32F661009B4370 /* C_ErrorOut.h */,
 				CF825DB9085387530077AEAF /* AC_OutputStream.cpp */,
@@ -1306,6 +1314,7 @@
 				CFA16D8C0E69E56300DDD359 /* unicode_string_routines.h in Headers */,
 				CFA16DA30E69E77B00DDD359 /* string_class_template.h in Headers */,
 				CFEFF5F90E6D9E5900A9EB16 /* unicode_character.h in Headers */,
+				CFFD8CAA0E6F03CF00865B5E /* AC_OutputUnicodeStream.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1423,6 +1432,7 @@
 				CFA16D8F0E69E56300DDD359 /* unicode_string_routines.h in Headers */,
 				CFA16DA40E69E77B00DDD359 /* string_class_template.h in Headers */,
 				CFEFF5FB0E6D9E5900A9EB16 /* unicode_character.h in Headers */,
+				CFFD8CAC0E6F03CF00865B5E /* AC_OutputUnicodeStream.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1678,6 +1688,7 @@
 				CFBBE4010E69B27700D95DEF /* C_UnicodeString.cpp in Sources */,
 				CFA16D8B0E69E56300DDD359 /* unicode_string_routines.cpp in Sources */,
 				CFEFF5F80E6D9E5900A9EB16 /* unicode_character.cpp in Sources */,
+				CFFD8CA90E6F03CF00865B5E /* AC_OutputUnicodeStream.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1779,6 +1790,7 @@
 				CFBBE3FF0E69B27700D95DEF /* C_UnicodeString.cpp in Sources */,
 				CFA16D8E0E69E56300DDD359 /* unicode_string_routines.cpp in Sources */,
 				CFEFF5FA0E6D9E5900A9EB16 /* unicode_character.cpp in Sources */,
+				CFFD8CAB0E6F03CF00865B5E /* AC_OutputUnicodeStream.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
