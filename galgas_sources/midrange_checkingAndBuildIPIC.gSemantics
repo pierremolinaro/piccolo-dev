@@ -4,7 +4,10 @@ import semantics piccoloDevice_semantics in "piccoloDevice_semantics.gSemantics"
 import semantics midrange_ipic_metamodel in "midrange_ipic_metamodel.gSemantics" ;
 
 import option piccolo_options in "piccolo_options.gOption" ;
-import "ipic_metamodel.gSemantics" ;
+import "midrange_metamodel.gSemantics" ;
+import "piccoloDevice_semantics.gSemantics" ;
+import "midrange_ipic_metamodel.gSemantics" ;
+import "ipic_generic.gSemantics" ;
 
 #----------------------------------------------------*
 #           DECOMPOSE STRUCTURED INSTRUCTIONS        *
@@ -1611,93 +1614,6 @@ routine build_midrange_assembly_instruction_list
     end foreach ;
     currentPage ++ ;
   end loop ;
-##--- Description of register WREG
-#  @registerExpression WREGregister [new ![@lstring new !"WREG" !here] ![@luint new !0 !here]] ;
-#  @midrange_ipic_registerExpression WREG_IPICregisterDescription ;
-#  [WREGregister resolveMidrangeAccess
-#    !inTotalBankCount
-#    !ioCurrentBank
-#    !inRegisterTable
-#    ?WREG_IPICregisterDescription
-#    ?*
-#  ] ;
-##--- Description of register TOSL
-#  @registerExpression TOSLregister [new ![@lstring new !"TOSL" !here] ![@luint new !0 !here]] ;
-#  @midrange_ipic_registerExpression TOSL_IPICregisterDescription ;
-#  [TOSLregister resolveMidrangeAccess
-#    !inTotalBankCount
-#    !ioCurrentBank
-#    !inRegisterTable
-#    ?TOSL_IPICregisterDescription
-#    ?*
-#  ] ;
-##--- Description of register TOSH
-#  @registerExpression TOSHregister [new ![@lstring new !"TOSH" !here] ![@luint new !0 !here]] ;
-#  @midrange_ipic_registerExpression TOSH_IPICregisterDescription ;
-#  [TOSHregister resolveMidrangeAccess
-#    !inTotalBankCount
-#    !ioCurrentBank
-#    !inRegisterTable
-#    ?TOSH_IPICregisterDescription
-#    ?*
-#  ] ;
-##--- Description of register TOSU
-#  @registerExpression TOSUregister [new ![@lstring new !"TOSU" !here] ![@luint new !0 !here]] ;
-#  @midrange_ipic_registerExpression TOSU_IPICregisterDescription ;
-#  [TOSUregister resolveMidrangeAccess
-#    !inTotalBankCount
-#    !ioCurrentBank
-#    !inRegisterTable
-#    ?TOSU_IPICregisterDescription
-#    ?*
-#  ] ;
-##--- computed_goto2 routine needed ?
-#  if [inPiccoloModel mNeedsComputedGoto4] then
-#    outGeneratedInstructionList += ![@ipic_pseudo_LABEL new ![@lstring new !"_computed_goto_4" !here]] ;
-#    outGeneratedInstructionList += ![@ipic_instruction_FDA new
-#      !here
-#      ![@midrange_instruction_FDA_base_code ADDWF]
-#      !WREG_IPICregisterDescription
-#      !true
-#    ] ; # ADDWF WREG, W
-#  end if ;
-#  if [inPiccoloModel mNeedsComputedGoto2] then
-#    outGeneratedInstructionList += ![@ipic_pseudo_LABEL new ![@lstring new !"_computed_goto_2" !here]] ;
-#  end if ;
-#  if [inPiccoloModel mNeedsComputedGoto2] | [inPiccoloModel mNeedsComputedGoto4] then
-#    outGeneratedInstructionList += ![@ipic_instruction_FDA new
-#      !here
-#      ![@midrange_instruction_FDA_base_code ADDWF]
-#      !WREG_IPICregisterDescription
-#      !true
-#    ] ; # ADDWF WREG, W
-#    outGeneratedInstructionList += ![@ipic_instruction_FDA new
-#      !here
-#      ![@midrange_instruction_FDA_base_code ADDWFC]
-#      !TOSL_IPICregisterDescription
-#      !false
-#    ] ; # ADDWFC TOSL, F
-#    outGeneratedInstructionList += ![@ipic_instruction_literalOperation new
-#      !here
-#      ![@literal_instruction_opcode MOVLW]
-#      !0
-#    ] ; # MOVLW 0
-#    outGeneratedInstructionList += ![@ipic_instruction_FDA new
-#      !here
-#      ![@midrange_instruction_FDA_base_code ADDWFC]
-#      !TOSH_IPICregisterDescription
-#      !false
-#    ] ; # ADDWFC TOSH, F
-#    outGeneratedInstructionList += ![@ipic_instruction_FDA new
-#      !here
-#      ![@midrange_instruction_FDA_base_code ADDWFC]
-#      !TOSU_IPICregisterDescription
-#      !false
-#    ] ; # ADDWFC TOSU, F
-#    outGeneratedInstructionList += ![@ipic_instruction_RETURN new
-#      !here
-#    ] ; # RETURN 0
-#  end if ;
 #--- Output a listing ?
   if [option piccolo_options.ouputListingFile] then
     ioListFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n" ;

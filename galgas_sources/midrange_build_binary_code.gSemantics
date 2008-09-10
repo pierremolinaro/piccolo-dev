@@ -1,6 +1,7 @@
 semantics midrange_build_binary_code :
 import semantics midrange_metamodel in "midrange_metamodel.gSemantics" ;
 import semantics midrange_ipic_metamodel in "midrange_ipic_metamodel.gSemantics" ;
+import "ipic_generic.gSemantics" ;
 import "midrange_ipic_metamodel.gSemantics" ;
 
 #----------------------------------------------------------------------------*
@@ -440,82 +441,6 @@ override method @midrange_ipic_instruction_MNOP.generateBinaryCodeAtAddress
     idx ++ ;
   end loop ;
 end method ;
-
-#----------------------------------------------------------------------------*
-
-#override method @midrange_ipic_instruction_computed_retlw.generateBinaryCodeAtAddress
-#  ??@registerTable unused inRegisterTable
-#  ??@uint unused inTotalBankCount
-#  ??@midrange_symbolTable inRoutineSymbolTable
-#  ?!@uint ioAddress
-#:
-#  @uint targetAddress ;
-#  [inRoutineSymbolTable searchKey ![@lstring new !"_computed_goto_2" !here] ?targetAddress] ;
-#  if mUsesRCALL then
-#    emitRCALLinstruction !ioAddress !targetAddress !mInstructionLocation ;
-#  else
-#    emit_midrange_CALLinstruction ! targetAddress ;
-#  end if ;
-#  foreach mLiteralValues do
-#    emitCode !0x0C00 | mValue ;
-#  end foreach ;
-#end method ;
-
-#----------------------------------------------------------------------------*
-
-#override method @midrange_ipic_instruction_computed_bra.generateBinaryCodeAtAddress
-#  ??@registerTable unused inRegisterTable
-#  ??@uint unused inTotalBankCount
-#  ??@midrange_symbolTable inRoutineSymbolTable
-#  ?!@uint ioAddress
-#:
-#  @uint targetAddress ;
-#  [inRoutineSymbolTable searchKey ![@lstring new !"_computed_goto_2" !here] ?targetAddress] ;
-#  if mUsesRCALL then
-#    emitRCALLinstruction !ioAddress !targetAddress !mInstructionLocation ;
-#  else
-#    emit_midrange_CALLinstruction ! targetAddress ;
-#  end if ;
-##---
-#  @uint addressForComputingBRA := ioAddress + 2 ;
-#  if not mUsesRCALL then
-#    addressForComputingBRA := addressForComputingBRA + 2 ; # GOTO takes 2 more bytes
-#  end if ;
-##---
-#  foreach mTargetLabels do
-#    [inRoutineSymbolTable searchKey !mValue ?targetAddress] ;
-#    emitBRAinstruction
-#      !addressForComputingBRA
-#      !targetAddress
-#      ![mValue location]
-#    ;
-#    addressForComputingBRA := addressForComputingBRA + 2 ;
-#  end foreach ;
-#end method ;
-
-#----------------------------------------------------------------------------*
-
-#override method @midrange_ipic_instruction_computed_goto.generateBinaryCodeAtAddress
-#  ??@registerTable unused inRegisterTable
-#  ??@uint unused inTotalBankCount
-#  ??@midrange_symbolTable inRoutineSymbolTable
-#  ?!@uint ioAddress
-#:
-#  @uint targetAddress ;
-#  [inRoutineSymbolTable searchKey ![@lstring new !"_computed_goto_4" !here] ?targetAddress] ;
-#  if mUsesRCALL then
-#    emitRCALLinstruction !ioAddress !targetAddress !mInstructionLocation ;
-#  else
-#    emit_midrange_CALLinstruction !targetAddress ;
-#  end if ;
-#  foreach mTargetLabels do
-#    @uint requiredSelectedBank ;
-#    [inRoutineSymbolTable searchKey !mValue ?targetAddress] ;
-#    emit_midrange_GOTOinstruction
-#      !targetAddress
-#    ;
-#  end foreach ;
-#end method ;
 
 #----------------------------------------------------------------------------*
 #                                                                            *

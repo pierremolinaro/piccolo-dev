@@ -5,7 +5,9 @@ import semantics piccoloDevice_semantics in "piccoloDevice_semantics.gSemantics"
 import semantics ipic_generic in "ipic_generic.gSemantics" ;
 
 import option piccolo_options in "piccolo_options.gOption" ;
-import "ipic_metamodel.gSemantics" ;
+import "ipic_generic.gSemantics" ;
+import "piccoloDevice_semantics.gSemantics" ;
+import "ipic18_metamodel.gSemantics" ;
 
 #----------------------------------------------------*
 #           DECOMPOSE STRUCTURED INSTRUCTIONS        *

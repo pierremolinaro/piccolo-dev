@@ -402,6 +402,10 @@
 		CFDC50A30961ACE0006A0AFD /* GGS_stringset.h in Headers */ = {isa = PBXBuildFile; fileRef = CFDC50A10961ACE0006A0AFD /* GGS_stringset.h */; };
 		CFDC50A40961ACE0006A0AFD /* GGS_stringset.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CFDC50A00961ACE0006A0AFD /* GGS_stringset.cpp */; };
 		CFDC50A50961ACE0006A0AFD /* GGS_stringset.h in Headers */ = {isa = PBXBuildFile; fileRef = CFDC50A10961ACE0006A0AFD /* GGS_stringset.h */; };
+		CFE12BE10E71940F00E28618 /* unicode_character.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CFEFF5F60E6D9E5900A9EB16 /* unicode_character.cpp */; };
+		CFE12BE30E71942100E28618 /* C_UnicodeString.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CFBBE3FD0E69B27700D95DEF /* C_UnicodeString.cpp */; };
+		CFE12BE50E71943000E28618 /* AC_OutputUnicodeStream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CFFD8CA70E6F03CF00865B5E /* AC_OutputUnicodeStream.cpp */; };
+		CFE12BE60E71943100E28618 /* unicode_string_routines.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CFA16D880E69E56300DDD359 /* unicode_string_routines.cpp */; };
 		CFE927720E5F216C000010C0 /* generic_metamodel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CFE927680E5F216C000010C0 /* generic_metamodel.cpp */; };
 		CFE927730E5F216C000010C0 /* generic_metamodel.h in Headers */ = {isa = PBXBuildFile; fileRef = CFE927690E5F216C000010C0 /* generic_metamodel.h */; };
 		CFE927740E5F216C000010C0 /* ipic_generic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CFE9276A0E5F216C000010C0 /* ipic_generic.cpp */; };
@@ -1588,6 +1592,10 @@
 				CF8E30600D9EE55B00EF3764 /* GGS_uint64.cpp in Sources */,
 				CF249A260E2E20F1004D51F8 /* GGS_lchar.cpp in Sources */,
 				CF249A270E2E20F7004D51F8 /* GGS_luint.cpp in Sources */,
+				CFE12BE10E71940F00E28618 /* unicode_character.cpp in Sources */,
+				CFE12BE30E71942100E28618 /* C_UnicodeString.cpp in Sources */,
+				CFE12BE50E71943000E28618 /* AC_OutputUnicodeStream.cpp in Sources */,
+				CFE12BE60E71943100E28618 /* unicode_string_routines.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
