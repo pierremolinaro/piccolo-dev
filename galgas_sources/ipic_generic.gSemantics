@@ -2,7 +2,7 @@ semantics ipic_generic :
 import semantics generic_metamodel in "generic_metamodel.gSemantics" ;
 import semantics piccoloDevice_semantics in "piccoloDevice_semantics.gSemantics" ;
 import option piccolo_options in "piccolo_options.gOption" ;
-import "ipic_metamodel.gSemantics" ;
+import "piccoloDevice_semantics.gSemantics" ;
 
 #----------------------------------------------------------------------------*
 #                                                                            *

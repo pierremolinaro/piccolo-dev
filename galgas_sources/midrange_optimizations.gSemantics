@@ -26,7 +26,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-routine findFirstInstructionFromAddress
+routine findMidRangeFirstInstructionFromAddress
   ??@uint inLineIndex
   ??@midrange_ipic_instructionList inGeneratedInstructionList
   !@midrange_ipic_instruction outFirstInstruction
@@ -51,7 +51,7 @@ end routine ;
 
 #----------------------------------------------------------------------------*
 
-routine findFirstInstructionOrLabelFromAddress
+routine findMidRangeFirstInstructionOrLabelFromAddress
   ??@uint inLineIndex
   ??@midrange_ipic_instructionList inGeneratedInstructionList
   !@midrange_ipic_instruction outFirstInstruction
@@ -95,7 +95,7 @@ method @midrange_ipic_JUMP.optimizeJUMP
 :
 #--- The JUMP goes to the next instruction ?
   @stringset reachedLabelSet ;
-  findFirstInstructionOrLabelFromAddress !inLineIndex+1 !ioGeneratedInstructionList ?* ?reachedLabelSet ;
+  findMidRangeFirstInstructionOrLabelFromAddress !inLineIndex+1 !ioGeneratedInstructionList ?* ?reachedLabelSet ;
 #  log reachedLabelSet ; log inLineIndex ;
   if [reachedLabelSet hasKey ![mTargetLabel string]] then
     [!?ioGeneratedInstructionList setMInstructionAtIndex ![@midrange_ipic_NULL new] !inLineIndex] ;
@@ -105,7 +105,7 @@ method @midrange_ipic_JUMP.optimizeJUMP
     @uint line ; [inSymbolTable searchKey !mTargetLabel ?line] ;
   #--- Find first executable instruction
     @midrange_ipic_instruction firstInstruction ;
-    findFirstInstructionFromAddress !line + 1 !ioGeneratedInstructionList ?firstInstruction ;
+    findMidRangeFirstInstructionFromAddress !line + 1 !ioGeneratedInstructionList ?firstInstruction ;
   #--- Optimization from found first instruction
     cast firstInstruction :
     when == @midrange_ipic_instruction_RETURN do
@@ -149,7 +149,7 @@ method @midrange_ipic_GOTO.optimizeGOTO
 :
 #--- The GOTO goes to the next instruction ?
   @stringset reachedLabelSet ;
-  findFirstInstructionOrLabelFromAddress !inLineIndex+1 !ioGeneratedInstructionList ?* ?reachedLabelSet ;
+  findMidRangeFirstInstructionOrLabelFromAddress !inLineIndex+1 !ioGeneratedInstructionList ?* ?reachedLabelSet ;
 #  log reachedLabelSet ; log inLineIndex ;
   if [reachedLabelSet hasKey ![mTargetLabel string]] then
     [!?ioGeneratedInstructionList setMInstructionAtIndex ![@midrange_ipic_NULL new] !inLineIndex] ;
@@ -159,7 +159,7 @@ method @midrange_ipic_GOTO.optimizeGOTO
     @uint line ; [inSymbolTable searchKey !mTargetLabel ?line] ;
   #--- Find first executable instruction
     @midrange_ipic_instruction firstInstruction ;
-    findFirstInstructionFromAddress !line + 1 !ioGeneratedInstructionList ?firstInstruction ;
+    findMidRangeFirstInstructionFromAddress !line + 1 !ioGeneratedInstructionList ?firstInstruction ;
   #--- Optimization from found first instruction
     cast firstInstruction :
     when == @midrange_ipic_instruction_RETURN do
@@ -236,7 +236,7 @@ method @midrange_ipic_instruction_literalOperation.optimizeMOVLW
   if mLiteralInstruction == [@midrange_literal_instruction_opcode MOVLW] then
   #--- Find first executable instruction
     @midrange_ipic_instruction firstInstruction ;
-    findFirstInstructionFromAddress !inLineIndex + 1 !ioGeneratedInstructionList ?firstInstruction ;
+    findMidRangeFirstInstructionFromAddress !inLineIndex + 1 !ioGeneratedInstructionList ?firstInstruction ;
   #--- Optimization from found first instruction
     cast firstInstruction :
     when == @midrange_ipic_instruction_RETURN do
@@ -264,7 +264,7 @@ method @midrange_ipic_incDecRegisterInCondition.optimizeTestDecInc
   @uint line ; [inSymbolTable searchKey ![@lstring new !mTargetLabel !here] ?line] ;
 #--- Find first executable instruction
   @midrange_ipic_instruction firstInstruction ;
-  findFirstInstructionFromAddress !line + 1 !ioGeneratedInstructionList ?firstInstruction ;
+  findMidRangeFirstInstructionFromAddress !line + 1 !ioGeneratedInstructionList ?firstInstruction ;
 #--- Optimization from found first instruction
   cast firstInstruction :
   when == @midrange_ipic_JUMP jump do
@@ -330,7 +330,7 @@ method @midrange_ipic_instruction_BitTestSkip.optimizeBitTestSkip
   if (ok) then
     @midrange_ipic_instruction thirdInstruction := [@midrange_ipic_NULL new] ;
     @stringset reachedLabelSet ;
-    findFirstInstructionOrLabelFromAddress !inLineIndex+3 !ioGeneratedInstructionList ?* ?reachedLabelSet ;
+    findMidRangeFirstInstructionOrLabelFromAddress !inLineIndex+3 !ioGeneratedInstructionList ?* ?reachedLabelSet ;
     ok := [reachedLabelSet hasKey !jumpLabel] ;
   end if ;
 #--- If Ok, perform optimization

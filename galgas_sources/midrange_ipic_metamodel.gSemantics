@@ -1,5 +1,6 @@
 semantics midrange_ipic_metamodel :
-import "piccolo_metamodel.gSemantics" ;
+import "midrange_metamodel.gSemantics" ;
+import "ipic_generic.gSemantics" ;
 import semantics midrange_metamodel in "midrange_metamodel.gSemantics" ;
 import semantics ipic_generic in "ipic_generic.gSemantics" ;
 
@@ -470,7 +471,7 @@ class @midrange_ipic_instruction_SLEEP extends @midrange_ipic_actualInstruction 
 
 #----------------------------------------------------*
 
-routine getLiteralInstructionBaseCode ??@midrange_literal_instruction_opcode inInstruction !@uint outBaseCode :
+routine getMidRangeLiteralInstructionBaseCode ??@midrange_literal_instruction_opcode inInstruction !@uint outBaseCode :
   switch inInstruction
   when ADDLW : outBaseCode := 0x3E00 ;
   when ANDLW : outBaseCode := 0x3900 ;
@@ -489,7 +490,7 @@ class @midrange_ipic_instruction_literalOperation extends @midrange_ipic_actualI
   @uint mLiteralValue ;
 
   method getBaseCode !@uint outBaseCode :
-    getLiteralInstructionBaseCode !mLiteralInstruction ?outBaseCode ;
+    getMidRangeLiteralInstructionBaseCode !mLiteralInstruction ?outBaseCode ;
   end method ;
 
   override

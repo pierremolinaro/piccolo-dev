@@ -83,7 +83,7 @@ emit_data_record (C_String & ioGeneratedCode,
     const uint32 startAddressMod16 = startAddress & 0x0000FFFF ;
     char s [20] ; sprintf (s, ":%02X%04X00", ioBufferEntryCount, startAddressMod16) ;
     ioGeneratedCode << s ;
-    unsigned char somme = ioBufferEntryCount ;
+    unsigned char somme = (unsigned char) ioBufferEntryCount ;
     somme += (startAddressMod16 >> 8) & 255 ;
     somme += startAddressMod16 & 255 ;
     for (uint32 i=0 ; i<ioBufferEntryCount ; i++) {
@@ -161,8 +161,8 @@ void routine_emitCode (C_Compiler & inLexique,
     errorMessage << "Internal error: code (" << inCode.uintValue () << ") greater than 2**16-1" ;
     inLexique.onTheFlySemanticError (errorMessage COMMA_THERE) ;
   }
-  const unsigned char lowByte = inCode.uintValue () & 255 ;
-  const unsigned char highByte = (inCode.uintValue () >> 8) & 255 ;
+  const unsigned char lowByte = (unsigned char) (inCode.uintValue () & 255) ;
+  const unsigned char highByte = (unsigned char) ((inCode.uintValue () >> 8) & 255) ;
 //--- Low Byte
   gSparseArray.setObjectAtIndex (lowByte, gCurrentAddress) ;
   if (gSparseArray.isDefaultObjectAtIndex (gCurrentAddress)) {
@@ -192,7 +192,7 @@ void routine_emitByte (C_Compiler & inLexique,
     inLexique.onTheFlySemanticError (errorMessage COMMA_THERE) ;
   }
 //---
-  gSparseArray.setObjectAtIndex (inCode.uintValue () & 255, gCurrentAddress) ;
+  gSparseArray.setObjectAtIndex ((unsigned char) (inCode.uintValue () & 255), gCurrentAddress) ;
   if (gSparseArray.isDefaultObjectAtIndex (gCurrentAddress)) {
     C_String errorMessage ;
     errorMessage << "Internal error: still default object at index " << gCurrentAddress ;

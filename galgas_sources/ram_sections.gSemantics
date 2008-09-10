@@ -1,11 +1,8 @@
 semantics ram_sections :
-#import semantics ipic18_build_binary_code in "ipic18_build_binary_code.gSemantics" ;
-#import semantics pic18_checkingAndBuildIPIC in "pic18_checkingAndBuildIPIC.gSemantics" ;
-#import semantics ipc18_convert_relatives in "ipc18_convert_relatives.gSemantics" ;
-#import semantics ipic18_optimizations in "ipic18_optimizations.gSemantics" ;
-#import semantics piccolo_config in "piccolo_config.gSemantics" ;
 import semantics piccoloDevice_semantics in "piccoloDevice_semantics.gSemantics" ;
 import semantics ipic18_metamodel in "ipic18_metamodel.gSemantics" ;
+import "piccoloDevice_semantics.gSemantics" ;
+import "ipic18_metamodel.gSemantics" ;
 
 import option piccolo_options in "piccolo_options.gOption" ;
 

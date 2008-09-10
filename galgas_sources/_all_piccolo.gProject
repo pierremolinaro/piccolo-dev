@@ -1,22 +1,43 @@
-compile "piccolo_options.gOption" ;
+project
+  compile "piccolo_options.gOption" ;
 
-compile "piccolo_lexique.gLexique" ;
-compile "piccolo_metamodel.gSemantics" ;
-compile "piccolo_syntax.gSyntax" ;
-compile "piccolo_grammar.gGrammar" ;
-compile "ipic_metamodel.gSemantics" ;
-compile "piccolo_decompose_structured_instructions.gSemantics" ;
-compile "piccolo_build_assembly_code.gSemantics" ;
-compile "piccolo_convert_relatives.gSemantics" ;
-compile "piccolo_build_binary_code.gSemantics" ;
-compile "piccolo_semantics.gSemantics" ;
+  compile "piccolo_lexique.gLexique" ;
 
-compile "piccoloDevice_lexique.gLexique" ;
-compile "piccoloDevice_semantics.gSemantics" ;
-compile "piccoloDevice_syntax.gSyntax" ;
-compile "piccoloDevice_grammar.gGrammar" ;
+  compile "generic_metamodel.gSemantics" ;
+  compile "ipic_generic.gSemantics" ;
 
-compile "piccolo_embedded_devices.gSemantics" ;
-compile "piccolo_cocoa.gGui" ;
-compile "piccolo_program.gProgram" ;
+  compile "pic18_metamodel.gSemantics" ;
+  compile "piccolo_syntax.gSyntax" ;
+  compile "piccolo_grammar.gGrammar" ;
+  compile "piccolo_config.gSemantics" ;
 
+  compile "ipic18_metamodel.gSemantics" ;
+  compile "pic18_checkingAndBuildIPIC.gSemantics" ;
+  compile "ipic18_optimizations.gSemantics" ;
+  compile "ipc18_convert_relatives.gSemantics" ;
+  compile "ipic18_build_assembly_code.gSemantics" ;
+  compile "ipic18_build_binary_code.gSemantics" ;
+  compile "pic18_semantics.gSemantics" ;
+
+  compile "midrange_metamodel.gSemantics" ;
+  compile "midrange_ipic_metamodel.gSemantics" ;
+  compile "midrange_syntax.gSyntax" ;
+  compile "midrange_checkingAndBuildIPIC.gSemantics" ;
+  compile "midrange_optimizations.gSemantics" ;
+  compile "midrange_compute_JSR_JUMP.gSemantics" ;
+  compile "midrange_ipic_build_assembly_code.gSemantics" ;
+  compile "midrange_build_binary_code.gSemantics" ;
+  compile "midrange_semantics.gSemantics" ;
+
+  compile "ram_sections.gSemantics" ;
+
+  compile "piccoloDevice_lexique.gLexique" ;
+  compile "piccoloDevice_semantics.gSemantics" ;
+  compile "piccoloDevice_syntax.gSyntax" ;
+  compile "piccoloDevice_grammar.gGrammar" ;
+
+  compile "piccolo_cocoa.gGui" ;
+
+  compile "piccolo_embedded_devices.gSemantics" ;
+  compile "piccolo_program.gProgram" ;
+end project ;
