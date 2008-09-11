@@ -71,6 +71,16 @@ abstract method @midrange_ipic_instruction.generateBinaryCodeAtAddress
 
 #----------------------------------------------------------------------------*
 
+override method @midrange_ipic_NULL.generateBinaryCodeAtAddress
+  ??@registerTable unused inRegisterTable
+  ??@uint unused inTotalBankCount
+  ??@midrange_symbolTable unused inRoutineSymbolTable
+  ?!@uint unused ioAddress
+:
+end method ;
+
+#----------------------------------------------------------------------------*
+
 override
 method @midrange_ipic_pseudo_ORG.generateBinaryCodeAtAddress
   ??@registerTable unused inRegisterTable

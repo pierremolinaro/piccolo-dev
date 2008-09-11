@@ -68,6 +68,14 @@ abstract method @ipic18_instruction.generateBinaryCodeAtAddress
 
 #----------------------------------------------------------------------------*
 
+override method @ipic_NULL.generateBinaryCodeAtAddress
+  ??@ipic18_symbolTable unused inRoutineSymbolTable
+  ?!@uint unused ioAddress
+:
+end method ;
+
+#----------------------------------------------------------------------------*
+
 override
 method @ipic_pseudo_ORG.generateBinaryCodeAtAddress
   ??@ipic18_symbolTable unused inRoutineSymbolTable
