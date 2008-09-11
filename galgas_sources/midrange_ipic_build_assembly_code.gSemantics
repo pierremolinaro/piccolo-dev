@@ -15,6 +15,14 @@ abstract method @midrange_ipic_instruction.buildAssemblyCode
 
 #----------------------------------------------------*
 
+override method @midrange_ipic_NULL.buildAssemblyCode
+  ?!@string unused ioString 
+  ?!@uint unused ioLocalLabelIndex
+:
+end method ;
+
+#----------------------------------------------------*
+
 override method @midrange_ipic_pseudo_ORG.buildAssemblyCode
   ?!@string ioString
   ?!@uint unused ioLocalLabelIndex

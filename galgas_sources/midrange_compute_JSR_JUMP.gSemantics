@@ -79,6 +79,30 @@ abstract method @midrange_ipic_instruction.compute
 
 #----------------------------------------------------------------------------*
 
+override method @midrange_ipic_NULL.compute
+  ??@midrange_symbolTableForConvertingRelatives unused inRoutineSymbolTable
+  ?!@uint unused ioAddress
+  ?!@bool unused ioJUMP_or_JSR_fixed
+  ?!@midrange_ipic_instructionList unused ioGeneratedInstructionList
+  ??@uint unused inIndex
+  ?!@string unused ioListFileContents
+:
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @midrange_ipic_actualInstruction.compute
+  ??@midrange_symbolTableForConvertingRelatives unused inRoutineSymbolTable
+  ?!@uint unused ioAddress
+  ?!@bool unused ioJUMP_or_JSR_fixed
+  ?!@midrange_ipic_instructionList unused ioGeneratedInstructionList
+  ??@uint unused inIndex
+  ?!@string unused ioListFileContents
+:
+end method ;
+
+#----------------------------------------------------------------------------*
+
 override
 method @midrange_ipic_pseudo_ORG.compute
   ??@midrange_symbolTableForConvertingRelatives unused inRoutineSymbolTable

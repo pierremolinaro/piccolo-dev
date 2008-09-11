@@ -75,6 +75,30 @@ abstract method @ipic18_instruction.checkRelativeBranch
 
 #----------------------------------------------------------------------------*
 
+override method @ipic_NULL.checkRelativeBranch
+  ??@ipic18_symbolTableForConvertingRelatives unused inRoutineSymbolTable
+  ?!@uint unused ioAddress
+  ?!@bool unused ioRelativeBranchOverflow
+  ?!@ipic18_instructionList unused ioGeneratedInstructionList
+  ??@uint unused inIndex
+  ?!@string unused ioListFileContents
+:
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @ipic_actualInstruction.checkRelativeBranch
+  ??@ipic18_symbolTableForConvertingRelatives unused inRoutineSymbolTable
+  ?!@uint unused ioAddress
+  ?!@bool unused ioRelativeBranchOverflow
+  ?!@ipic18_instructionList unused ioGeneratedInstructionList
+  ??@uint unused inIndex
+  ?!@string unused ioListFileContents
+:
+end method ;
+
+#----------------------------------------------------------------------------*
+
 override
 method @ipic_pseudo_ORG.checkRelativeBranch
   ??@ipic18_symbolTableForConvertingRelatives unused inRoutineSymbolTable

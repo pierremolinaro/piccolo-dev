@@ -15,6 +15,14 @@ abstract method @ipic18_instruction.buildAssemblyCode
 
 #----------------------------------------------------*
 
+override method @ipic_NULL.buildAssemblyCode
+  ?!@string unused ioString 
+  ?!@uint unused ioBccLabelIndex
+:
+end method ;
+
+#----------------------------------------------------*
+
 override method @ipic_pseudo_ORG.buildAssemblyCode
   ?!@string ioString
   ?!@uint unused ioBccLabelIndex
