@@ -168,6 +168,10 @@ rule <midrange_interrupt_definition>
 :
   $interrupt$ ;
   @location interruptionLocation := here ;
+  $contextsave$ ;
+  $identifier$ ? @lstring firstSaveRegister ;
+  $,$ ;
+  $identifier$ ? @lstring secondSaveRegister ;
   ${$ ;
   @midrange_instructionList instructionList ;
   <midrange_instruction_list>
@@ -176,7 +180,13 @@ rule <midrange_interrupt_definition>
     !?ioNeedsComputedGoto4
   ;
   $}$ ;
-  ioInterruptDefinitionList += !interruptionLocation !instructionList !here ;
+  ioInterruptDefinitionList +=
+   !interruptionLocation
+   !instructionList
+   !firstSaveRegister
+   !secondSaveRegister
+   !here
+  ;
 end rule ;
 
 #----------------------------------------------------*

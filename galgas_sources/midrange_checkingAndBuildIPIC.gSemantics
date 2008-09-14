@@ -10,6 +10,63 @@ import "midrange_ipic_metamodel.gSemantics" ;
 import "ipic_generic.gSemantics" ;
 
 #----------------------------------------------------*
+#           INSTRUCTIONS USES GOTO OR CALL           *
+#----------------------------------------------------*
+
+method @midrange_instruction.instructionUsesGOTOorCALL
+  ?!@bool unused ioUsesGOTOorCALL
+:
+end method ;
+
+#----------------------------------------------------*
+
+override method @midrange_instruction_FOREVER.instructionUsesGOTOorCALL
+  ?!@bool ioUsesGOTOorCALL
+:
+  ioUsesGOTOorCALL := true ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @midrange_instruction_structured_if.instructionUsesGOTOorCALL
+  ?!@bool ioUsesGOTOorCALL
+:
+  ioUsesGOTOorCALL := true ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @midrange_instruction_CALL.instructionUsesGOTOorCALL
+  ?!@bool ioUsesGOTOorCALL
+:
+  ioUsesGOTOorCALL := true ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @midrange_instruction_JSR.instructionUsesGOTOorCALL
+  ?!@bool ioUsesGOTOorCALL
+:
+  ioUsesGOTOorCALL := true ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @midrange_instruction_GOTO.instructionUsesGOTOorCALL
+  ?!@bool ioUsesGOTOorCALL
+:
+  ioUsesGOTOorCALL := true ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @midrange_instruction_JUMP.instructionUsesGOTOorCALL
+  ?!@bool ioUsesGOTOorCALL
+:
+  ioUsesGOTOorCALL := true ;
+end method ;
+
+#----------------------------------------------------*
 #           DECOMPOSE STRUCTURED INSTRUCTIONS        *
 #----------------------------------------------------*
 
@@ -1524,7 +1581,26 @@ routine build_midrange_assembly_instruction_list
   else
     error [inPiccoloModel mEndOfProgram]: "the program should declare the \"main\" routine" ;
   end if ;
-#-------------------------------- Check and translate interrupt routines
+#-------------------------------- Check page routine specification is compatible with device
+  @bool needsToSavePCLATH := false ;
+  foreach [inPiccoloModel mRoutineDefinitionList] do
+    if [mPage uint] > 0 then
+      needsToSavePCLATH := true ;
+    end if ;
+    if [mPage uint] >= inTotalPageCount then
+      error mPage:"invalid value (". [[mPage uint] string] . "); the device has " . [inTotalPageCount string] . " 2k page(s) on rom" ;
+    end if ;
+  end foreach ;
+#-------------------------------- Evaluate if interrupt routine uses GOTO or CALL (need to save PCLATH ?)
+  if needsToSavePCLATH then
+    needsToSavePCLATH := false ;
+    foreach [inPiccoloModel mInterruptDefinitionList] while not needsToSavePCLATH do
+      foreach mInstructionList while not needsToSavePCLATH do
+        [mInstruction instructionUsesGOTOorCALL !?needsToSavePCLATH] ;
+      end foreach ;
+    end foreach ;
+  end if ;
+#-------------------------------- Check and translate interrupt routine
   outGeneratedInstructionList := [@midrange_ipic_instructionList emptyList] ;
   @uint localLabelIndex := 0 ;
 #--- At zero, generate 'jump main' instruction
@@ -1538,35 +1614,145 @@ routine build_midrange_assembly_instruction_list
   if inHasInterrupt then
     outGeneratedInstructionList += ![@midrange_ipic_pseudo_ORG new !0x4] ;
     foreach [inPiccoloModel mInterruptDefinitionList] do
-      @bool continuesInSequence ;
-      @uint currentBank [max] ; # No bank
-      handleMidrangeInstructionList
-        !mInstructionList
-        !routineMap
-        !inRegisterTable
-        !constantMap
-        !?localLabelIndex
-        !?outGeneratedInstructionList
-        !?generationOptimizationMessages
-        !inTotalBankCount
-        !?currentBank
-        !true # Preserve bank
-        ?continuesInSequence
-        ![@routineKind interruptRoutine]
-      ;
-      if not continuesInSequence then
-        error mEndOfInterruptLocation:"execution cannot reach the end of the interrupt routine" ;
+    #--- Check firstSaveRegister register is defined in RAM, is accessible from bank 0, and has a size of 1
+      @uintlist registerAddressList ;
+      @uint size ;
+      [inRegisterTable searchKey !mFirstSaveRegister ?registerAddressList ?size ?* ?*] ;
+      @bool accessibleFromBank0 := false ;
+      foreach registerAddressList while not accessibleFromBank0 do
+        accessibleFromBank0 := (mValue & 0xF80) == 0 ;
+      end foreach ;
+      if not accessibleFromBank0 then
+        error mFirstSaveRegister: "the '" . mFirstSaveRegister . "' variable cannot be accessed from bank 0" ;
       end if ;
-    #--- Ajouter l'instruction REFFIE
-      outGeneratedInstructionList += ![@midrange_ipic_instruction_RETFIE new !here] ;
+      if needsToSavePCLATH & (size != 2) then
+        error mFirstSaveRegister: "the '" . mFirstSaveRegister . "' variable size is " . [size string] . " (it should be 2)" ;
+      elsif (not needsToSavePCLATH) & (size != 1) then
+        error mFirstSaveRegister: "the '" . mFirstSaveRegister . "' variable size is " . [size string] . " (it should be 1)" ;
+      end if ;
+    #--- Check secondSaveRegister register is defined in RAM, is accessible from any bank, and has a size of 1
+      [inRegisterTable searchKey !mSecondSaveRegister ?registerAddressList ?size ?* ?*] ;
+      @uint bankAccessibility := 0 ;
+      foreach registerAddressList do
+        bankAccessibility := bankAccessibility | (1 << (mValue >> 7)) ;
+      end foreach ;
+      if (bankAccessibility + 1) != (1 << inTotalBankCount) then
+        error mSecondSaveRegister: "the '" . mSecondSaveRegister . "' variable cannot be accessed from any bank" ;
+      end if ;
+      if size != 1 then
+        error mSecondSaveRegister: "the '" . mSecondSaveRegister . "' variable size is " . [size string] . " (it should be 1)" ;
+      end if ;
+    #--- Generate save context instructions
+      if [@uint errorCount] == 0 then
+        @registerExpression first_register [new !mFirstSaveRegister ![@luint new !0 !here]] ;
+        @midrange_ipic_registerExpression first_IPICregisterDescription ;
+        [first_register resolveMidrangeAccess
+          !inTotalBankCount
+          !0
+          !inRegisterTable
+          ?first_IPICregisterDescription
+          ?*
+        ] ;
+        @registerExpression second_register [new !mSecondSaveRegister ![@luint new !0 !here]] ;
+        @midrange_ipic_registerExpression second_IPICregisterDescription ;
+        [second_register resolveMidrangeAccess
+          !inTotalBankCount
+          ![@uint max]
+          !inRegisterTable
+          ?second_IPICregisterDescription
+          ?*
+        ] ;
+      #--- Get values for STATUS register
+        @registerExpression STATUS_register [new ![@lstring new !"STATUS" !here] ![@luint new !0 !here]] ;
+        @midrange_ipic_registerExpression STATUS_IPICregisterDescription ;
+        [STATUS_register resolveMidrangeAccess
+          !inTotalBankCount
+          ![@uint max]
+          !inRegisterTable
+          ?STATUS_IPICregisterDescription
+          ?*
+        ] ;
+        outGeneratedInstructionList += ![@midrange_ipic_instruction_F new !here ![@midrange_F_instruction_base_code MOVWF] !second_IPICregisterDescription] ;
+        outGeneratedInstructionList += ![@midrange_ipic_instruction_FD new !here ![@midrange_instruction_FD_base_code SWAPF] !STATUS_IPICregisterDescription !true] ;
+        outGeneratedInstructionList += ![@midrange_ipic_instruction_F new !here ![@midrange_F_instruction_base_code CLRF] !STATUS_IPICregisterDescription] ;
+        outGeneratedInstructionList += ![@midrange_ipic_instruction_F new !here ![@midrange_F_instruction_base_code MOVWF] !first_IPICregisterDescription] ;
+        if needsToSavePCLATH then
+          @registerExpression first_register_second_byte [new !mFirstSaveRegister ![@luint new !1 !here]] ;
+          @midrange_ipic_registerExpression first_var_second_byte_IPICregisterDescription ;
+          [first_register_second_byte resolveMidrangeAccess
+            !inTotalBankCount
+            !0
+            !inRegisterTable
+            ?first_var_second_byte_IPICregisterDescription
+            ?*
+          ] ;
+        #--- Get values for PCLATH register
+          @registerExpression PCLATH_register [new ![@lstring new !"PCLATH" !here] ![@luint new !0 !here]] ;
+          @midrange_ipic_registerExpression PCLATH_IPICregisterDescription ;
+          [PCLATH_register resolveMidrangeAccess
+            !inTotalBankCount
+            ![@uint max]
+            !inRegisterTable
+            ?PCLATH_IPICregisterDescription
+            ?*
+          ] ;
+          outGeneratedInstructionList += ![@midrange_ipic_instruction_FD new !here ![@midrange_instruction_FD_base_code MOVF] !PCLATH_IPICregisterDescription !true] ;
+          outGeneratedInstructionList += ![@midrange_ipic_instruction_F new !here ![@midrange_F_instruction_base_code MOVWF] !first_var_second_byte_IPICregisterDescription] ;
+          outGeneratedInstructionList += ![@midrange_ipic_instruction_F new !here ![@midrange_F_instruction_base_code CLRF] !PCLATH_IPICregisterDescription] ;
+        end if ;
+      #--- Parse instruction list
+        @bool continuesInSequence ;
+        @uint currentBank := 0 ; # Bank 0 is selected
+        handleMidrangeInstructionList
+          !mInstructionList
+          !routineMap
+          !inRegisterTable
+          !constantMap
+          !?localLabelIndex
+          !?outGeneratedInstructionList
+          !?generationOptimizationMessages
+          !inTotalBankCount
+          !?currentBank
+          !true # Preserve bank
+          ?continuesInSequence
+          ![@routineKind interruptRoutine]
+        ;
+        if not continuesInSequence then
+          error mEndOfInterruptLocation:"execution cannot reach the end of the interrupt routine" ;
+        end if ;
+        if needsToSavePCLATH then
+          @registerExpression first_register_second_byte [new !mFirstSaveRegister ![@luint new !1 !here]] ;
+          @midrange_ipic_registerExpression first_var_second_byte_IPICregisterDescription ;
+          [first_register_second_byte resolveMidrangeAccess
+            !inTotalBankCount
+            !0
+            !inRegisterTable
+            ?first_var_second_byte_IPICregisterDescription
+            ?*
+          ] ;
+        #--- Get values for PCLATH register
+          @registerExpression PCLATH_register [new ![@lstring new !"PCLATH" !here] ![@luint new !0 !here]] ;
+          @midrange_ipic_registerExpression PCLATH_IPICregisterDescription ;
+          [PCLATH_register resolveMidrangeAccess
+            !inTotalBankCount
+            ![@uint max]
+            !inRegisterTable
+            ?PCLATH_IPICregisterDescription
+            ?*
+          ] ;
+          outGeneratedInstructionList += ![@midrange_ipic_instruction_FD new !here ![@midrange_instruction_FD_base_code MOVF] !first_var_second_byte_IPICregisterDescription !true] ;
+          outGeneratedInstructionList += ![@midrange_ipic_instruction_F new !here ![@midrange_F_instruction_base_code MOVWF] !PCLATH_IPICregisterDescription] ;
+        end if ;
+      #--- Restore context
+        outGeneratedInstructionList += ![@midrange_ipic_instruction_FD new !here ![@midrange_instruction_FD_base_code SWAPF] !first_IPICregisterDescription !true] ;
+        outGeneratedInstructionList += ![@midrange_ipic_instruction_F new !here ![@midrange_F_instruction_base_code MOVWF] ! STATUS_IPICregisterDescription] ;
+        outGeneratedInstructionList += ![@midrange_ipic_instruction_FD new !here ![@midrange_instruction_FD_base_code SWAPF] !second_IPICregisterDescription !false] ;
+        outGeneratedInstructionList += ![@midrange_ipic_instruction_FD new !here ![@midrange_instruction_FD_base_code SWAPF] !second_IPICregisterDescription !true] ;
+      #--- Add REFFIE
+        outGeneratedInstructionList += ![@midrange_ipic_instruction_RETFIE new !here] ;
+      end if ;
     end foreach ;
   end if ;
-#-------------------------------- Check page routine specification is compatible with device
-  foreach [inPiccoloModel mRoutineDefinitionList] do
-    if [mPage uint] >= inTotalPageCount then
-      error mPage:"invalid value (". [[mPage uint] string] . "); the device has " . [inTotalPageCount string] . " 2k page(s) on rom" ;
-    end if ;
-  end foreach ;
 #-------------------------------- Check and translate routines
   @uint currentPage := 0 ;
   loop inTotalPageCount : while currentPage < inTotalPageCount do
