@@ -64,6 +64,10 @@ configuration {
 #                                                                            *
 #----------------------------------------------------------------------------*
 
+# Une section ram décrit l’attribution de la RAM du micro-contrôleur.# Le nom gpr2 est le nom du banc qui commence à l’adresse 0x100. Les adresses
+# sont allouées séquentiellement : compteurL a pour adresse 0x100,
+# et compteurH a pour adresse 0x101.# Ces deux registres ne seront donc accessibles que via le registre BSR.
+
 ram gpr2 {
   byte compteurL
   byte compteurH
@@ -74,6 +78,15 @@ ram gpr2 {
 #                       SOUS-PROGRAMME D'INTERRUPTION                        *
 #                                                                            *
 #----------------------------------------------------------------------------*
+
+#Une section « interrupt » définit un sous-programme d’interruption. Il porte
+# le nom « high », ce qui signifie qu’il est attaché au point d’entrée
+# d’adresse 0x8. Il porte aussi le qualificatif « fast », ce qui signifie
+# que l’instruction RETFIE 1 sera engendrée pour effectuer le retour
+# d’interruption.# Dans un programme plus complexe, il n’est pas possible de prévoir à la
+# compilation la valeur de BSR quand une interruption survient.
+# Aussi l’instruction « banksel 2 » est obligatoire avant d’adresser
+# les registres du compteur (essayez de la supprimer…)
 
 interrupt high fast {
 #------------------------------ Acquitter l'interruption du timer 2
@@ -101,6 +114,12 @@ interrupt high fast {
 #                                MAIN                                        *
 #                                                                            *
 #----------------------------------------------------------------------------*
+
+# Deux commentaires : ici aussi, l’instruction « banksel 2 » est obligatoire
+# avant d’adresser les registres du compteur (essayez de la supprimer…) ;
+# tous les autres accès s’effectuant via l’acces bank, il n’est pas nécessaire
+# de changer la valeur de BSR.# L’instruction#       MOVLW  @T2CON (TOUTPS:0, TMR2ON:1, T2CKPS:1)# est particulière : elle permet de construire une valeur immédiate champ
+# par champ.
 
 noreturn routine main bank:requires 0 {
 #--- Aucune entree analogique

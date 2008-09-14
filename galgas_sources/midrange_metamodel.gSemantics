@@ -344,6 +344,8 @@ class @midrange_instruction_do_while extends @midrange_instruction {
 list @midrange_interruptDefinitionList {
   @location mInterruptLocation ;
   @midrange_instructionList mInstructionList ;
+  @lstring mFirstSaveRegister ;
+  @lstring mSecondSaveRegister ;
   @location mEndOfInterruptLocation ;
 }
 
