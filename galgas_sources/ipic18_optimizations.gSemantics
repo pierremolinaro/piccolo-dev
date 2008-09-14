@@ -360,7 +360,9 @@ method @ipic18_instruction_BitTestSkip.optimizeBitTestSkip
 #--- Get second following instruction
   if (ok) then
     cast [ioGeneratedInstructionList mInstructionAtIndex !inLineIndex + 2] :
-    when >= @ipic_actualInstruction do
+    when >= @ipic_actualInstruction instruction do
+      @uint instructionLength ; [instruction instructionLength ?instructionLength] ;
+      ok := instructionLength == 1 ;
     else
       ok := false ;
     end cast ;

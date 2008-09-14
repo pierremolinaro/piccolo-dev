@@ -83,6 +83,7 @@ struct @piccoloDeviceModel {
   @uint mEepromSize ; # 0 if no EEPROM
   @uint mEepromAddress ; # 0 if no EEPROM
   @configRegisterMap mConfigRegisterMap ;
+  @string mSharedBankName ;
 }
 
 #----------------------------------------------------*
