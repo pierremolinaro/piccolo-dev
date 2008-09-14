@@ -217,6 +217,19 @@ rule <start_symbol>
     [registerTable searchKey ![@lstring new !"TOSH" !here] ?4*] ;
     [registerTable searchKey ![@lstring new !"TOSU" !here] ?4*] ;
   end if ;
+#--- Check if controller has a shared bank
+  @string sharedBankName := "" ; # No shared bank by default
+  if [processorName string] == "mid-range" then
+    foreach ramBankTable while sharedBankName  == "" do
+      @uint bankAccessibility := 1 << (mFirstFreeAddress >> 7) ;
+      foreach mMirrorOffsetList do
+        bankAccessibility := bankAccessibility  | (1 << ((mFirstFreeAddress + mValue) >> 7)) ;
+      end foreach ;
+      if (1 << [bankCount uint]) == (bankAccessibility + 1) then
+        sharedBankName := [key string] ;
+      end if ;
+    end foreach ;
+  end if ;
 #---
   outPiccoloDeviceModel := [@piccoloDeviceModel new
     !deviceName
@@ -228,6 +241,7 @@ rule <start_symbol>
     !eepromSize
     !eepromAddress
     !configRegisterMap
+    !sharedBankName
   ] ;
 end rule ;
 
