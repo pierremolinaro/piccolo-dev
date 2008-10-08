@@ -10,7 +10,7 @@
 # Saving interrupt context requires to declare one byte in
 # ram bank #0, and one byte in any other bank.
 
-midrange interrupt3 "16F873" :
+midrange interrupt4 "16F873" :
 
 #----------------------------------------------------------------------------*
 #                                                                            *
@@ -19,7 +19,7 @@ midrange interrupt3 "16F873" :
 #----------------------------------------------------------------------------*
 
 ram gpr0 {
-  byte itSave0 [2]
+  byte itSave0 [3]
 }
 
 #----------------------------------------------------------------------------*
@@ -35,7 +35,9 @@ ram gpr1 {
 #----------------------------------------------------------------------------*
 
 interrupt contextsave itSave0, itsave1 {
-  nop
+  if (STATUS.C NZ) 
+    mnop 2
+  end
 }
 
 #----------------------------------------------------------------------------*
@@ -46,7 +48,13 @@ interrupt contextsave itSave0, itsave1 {
 
 noreturn routine main bank:requires 0 {
   forever
+    jsr  routineInPage1
   end
+}
+
+#----------------------------------------------------------------------------*
+
+routine routineInPage1 page 1 bank:preserved {
 }
 
 #----------------------------------------------------------------------------*
