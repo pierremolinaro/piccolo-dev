@@ -2,6 +2,14 @@
 # interruption routine code generation
 # Trying to execute it does not make sense.
 
+# This program shows interrupt routine generation :
+#  - for a midrange controller with common bank (gprnobnk)
+#  - when code use several rom pages and interrupt routine
+#    contains branch or call instruction(s).
+
+# Saving interrupt context requires to declare two bytes in
+# ram bank #0, and one byte in shared bank.
+
 midrange interrupt2 "16F690" :
 
 #----------------------------------------------------------------------------*
