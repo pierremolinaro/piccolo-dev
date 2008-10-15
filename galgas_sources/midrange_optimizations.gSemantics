@@ -70,6 +70,9 @@ routine findMidRangeFirstInstructionOrLabelFromAddress
     when >= @midrange_ipic_actualInstruction instr do
       outFirstInstruction := instr ;
       found := true ;
+    when >= @midrange_ipic_pseudo_ORG instr do
+      outFirstInstruction := instr ;
+      found := true ;
     when == @midrange_ipic_pseudo_LABEL instr do
       outFirstInstruction := instr ;
       outReachedLabelSet += ![[instr mLabel] string] ;

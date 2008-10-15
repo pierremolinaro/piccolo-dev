@@ -1,0 +1,27 @@
+# This program is just intended for checking
+# JUMP instruction for calling a no return routine
+# in an other page
+# Trying to execute it does not make sense.
+
+midrange routine4 "16F690" :
+
+#----------------------------------------------------------------------------*
+#                                                                            *
+#                                MAIN                                        *
+#                                                                            *
+#----------------------------------------------------------------------------*
+
+noreturn routine main page 0 bank:requires 0 {
+  JUMP  r
+}
+
+#----------------------------------------------------------------------------*
+
+noreturn routine r page 1 bank:requires 0 {
+  forever
+  end
+}
+
+#----------------------------------------------------------------------------*
+
+end

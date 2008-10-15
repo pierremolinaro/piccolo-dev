@@ -1,0 +1,27 @@
+# This program is just intended for checking
+# JSR instruction for calling a routine
+# in an other page
+# Trying to execute it does not make sense.
+
+midrange routine2 "16F690" :
+
+#----------------------------------------------------------------------------*
+#                                                                            *
+#                                MAIN                                        *
+#                                                                            *
+#----------------------------------------------------------------------------*
+
+noreturn routine main page 0 bank:requires 0 {
+  forever
+    JSR  r
+  end
+}
+
+#----------------------------------------------------------------------------*
+
+routine r page 1 bank:requires 0 ensures 0 {
+}
+
+#----------------------------------------------------------------------------*
+
+end
