@@ -26,9 +26,9 @@ before {
       switch [piccoloDeviceModel mProcessorType]
       when pic18_60, pic18_80 : pic18_devices += !name ;
       when midrange : midrange_devices += !name ;
-##      if [piccoloDeviceModel mSharedBankName] == "" then
-##        message name . " has " . [[[piccoloDeviceModel mBankCount] uint] string] . " banks\n" ;
-##      end if ;
+      if [[piccoloDeviceModel mBankCount] uint] > 4 then
+        message name . " has " . [[[piccoloDeviceModel mBankCount] uint] string] . " banks\n" ;
+      end if ;
       when baseline : baseline_devices += !name ;
       end switch ;
 ##      @uint bankCount := [[piccoloDeviceModel mBankCount] uint] ;
