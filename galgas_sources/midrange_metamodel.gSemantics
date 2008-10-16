@@ -28,14 +28,6 @@ class @midrange_instruction_banksel extends @midrange_instruction {
 
 #----------------------------------------------------*
 
-class @midrange_instruction_savebank extends @midrange_instruction {
-  @registerExpression mRegister ;
-  @midrange_instructionList mInstructionList ;
-  @location mEndOfSaveBankInstruction ;
-}
-
-#----------------------------------------------------*
-
 enum @midrange_instruction_FD_base_code {
   constructor ADDWF ;
   constructor ANDWF ;

@@ -225,14 +225,6 @@ rule <midrange_routine_definition>
     $bank$ ;
     $:$ ;
     select
-      $preserved$ ;
-      if noreturn then
-        error here: "a \"noreturn\" routine cannot accept \"bank:preserved\" setting" ;
-      end if ;
-      preservesBank := true ;
-      requiredBank := [@luint new ![@uint max] !here] ;
-      returnedBank := [@luint new ![@uint max] !here] ;
-    or
       $requires$ ;
       $integer$ ? requiredBank ;
       preservesBank := false ;
@@ -281,20 +273,6 @@ rule <midrange_structured_instruction>
   or
     $nobank$ ;
     outInstruction := [@midrange_instruction_nobanksel new !here] ;
-  or
-    $banksave$ ;
-    @location instructionLocation := here ;
-    @registerExpression register ;
-    <register_parsing> ?register ;
-    @midrange_instructionList instructionList ;
-    <midrange_instruction_list> ?instructionList !?ioNeedsComputedGoto2 !?ioNeedsComputedGoto4 ;
-    $end$ ;
-    outInstruction := [@midrange_instruction_savebank new
-      !instructionLocation
-      !register
-      !instructionList
-      !here
-    ] ;
 #  or
 #    $computed$ ;
 #    @location instructionLocation := here ;
