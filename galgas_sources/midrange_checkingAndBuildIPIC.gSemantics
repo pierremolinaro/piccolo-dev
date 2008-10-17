@@ -146,6 +146,87 @@ end method ;
 
 #----------------------------------------------------*
 
+override method @midrange_instruction_savebank.build_midrange_ipic_instructionList
+  ??@routineMap inRoutineMap
+  ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
+  ?!@uint ioLocalLabelIndex
+  ?!@midrange_ipic_instructionList ioGeneratedInstructionList
+  ?!@string ioListFileContents
+  ??@uint inTotalBankCount
+  ?!@uint ioCurrentBank
+  ??@bool unused inShouldPreserveBank
+  ?!@bool ioContinuesInSequence
+  ??@routineKind inRoutineKind
+:
+#--- Get values for STATUS register
+  @registerExpression STATUS_register [new ![@lstring new !"STATUS" !here] ![@luint new !0 !here]] ;
+  @midrange_ipic_registerExpression STATUS_IPICregisterDescription ;
+  [STATUS_register resolveMidrangeAccess
+    !inTotalBankCount
+    ![@uint max] # No selected bank
+    !inRegisterTable
+    ?STATUS_IPICregisterDescription
+    ?*
+  ] ;
+#--- Get values for register used for saving
+  @midrange_ipic_registerExpression save_IPICregisterDescription ;
+  [mRegister resolveMidrangeAccess
+    !inTotalBankCount
+    ![@uint max] # No selected bank
+    !inRegisterTable
+    ?save_IPICregisterDescription
+    ?*
+  ] ;
+#--- Generate "SWAPF STATUS, W" instruction
+  ioGeneratedInstructionList += ![@midrange_ipic_instruction_FD new
+    !mInstructionLocation
+    ![@midrange_instruction_FD_base_code SWAPF]
+    !STATUS_IPICregisterDescription
+    !true # W is destination
+  ] ;
+#--- Generate "MOVWF SAVE_REG" instruction
+  ioGeneratedInstructionList += ![@midrange_ipic_instruction_F new
+    !mInstructionLocation
+    ![@midrange_F_instruction_base_code MOVWF]
+    !save_IPICregisterDescription
+  ] ;
+#--- Generate instruction list
+  @uint finalBank := ioCurrentBank ;
+  handleMidrangeInstructionList
+    !mInstructionList
+    !inRoutineMap
+    !inRegisterTable
+    !inConstantMap
+    !?ioLocalLabelIndex
+    !?ioGeneratedInstructionList
+    !?ioListFileContents
+    !inTotalBankCount
+    !?finalBank
+    !false # Do not preserve bank now
+    ?ioContinuesInSequence
+    !inRoutineKind
+  ;
+  if not ioContinuesInSequence then
+    error mEndOfSaveBankInstruction:"useless saving: execution does reach the end of \"savebank\" instruction list" ;
+  end if ;
+#--- Generate "SWAPF SAVE_REG, W" instruction
+  ioGeneratedInstructionList += ![@midrange_ipic_instruction_FD new
+    !mInstructionLocation
+    ![@midrange_instruction_FD_base_code SWAPF]
+    !save_IPICregisterDescription
+    !true # W is destination
+  ] ;
+#--- Generate "MOVWF STATUS" instruction
+  ioGeneratedInstructionList += ![@midrange_ipic_instruction_F new
+    !mInstructionLocation
+    ![@midrange_F_instruction_base_code MOVWF]
+    !STATUS_IPICregisterDescription
+  ] ;
+end method ;
+
+#----------------------------------------------------*
+
 override method @midrange_instruction_banksel.build_midrange_ipic_instructionList
   ??@routineMap unused inRoutineMap
   ??@registerTable inRegisterTable
@@ -160,7 +241,7 @@ override method @midrange_instruction_banksel.build_midrange_ipic_instructionLis
   ??@routineKind unused inRoutineKind
 :
   if inShouldPreserveBank then
-    error mInstructionLocation: "cannot use \"banksel\" here: bank selection should be preserved (save it in \"banksave\" construct)" ;
+    error mInstructionLocation: "cannot use \"banksel\" here: bank selection should be preserved (save it with \"banksave\" construct)" ;
   end if ;
 #---
   @registerExpression STATUS_register [new ![@lstring new !"STATUS" !here] ![@luint new !0 !here]] ;
@@ -1818,10 +1899,10 @@ routine build_midrange_assembly_instruction_list
     @uint requiredBank ;
     [routineMap searchKey ![@lstring new !"main" !here] ?isNoReturn ?requiredBank ?* ?*] ;
     if not isNoReturn then
-      error here :"the \"main\" should be declared with \"noreturn\" qualifier: \"noreturn main requiresbank 0\"" ;
+      error here :"the \"main\" should be declared with \"noreturn\" qualifier: \"noreturn main bank:requires 0\"" ;
     end if ;
     if requiredBank != 0 then
-      error here :"the \"main\" should be declared with \"requiresbank 0\" qualifier: \"noreturn main requiresbank 0\"" ;
+      error here :"the \"main\" should be declared with \"requiresbank 0\" qualifier: \"noreturn main bank:requires 0\"" ;
     end if ;
   else
     error [inPiccoloModel mEndOfProgram]: "the program should declare the \"main\" routine" ;

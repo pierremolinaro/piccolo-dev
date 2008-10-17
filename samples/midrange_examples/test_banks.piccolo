@@ -1,0 +1,85 @@
+# This program is just intended for illustrating
+# Piccolo compiler error detection
+# COMPILING THIS PROGRAM RAISES ERRORS.
+
+midrange test_banks "16F690" :
+
+#----------------------------------------------------------------------------*
+
+ram gprnobnk {  byte varAnyBank # At address 0x70, 0xF0, 0x170, 0x1F0
+  byte save_status # At address 0x71, 0xF1, 0x171, 0x1F1}ram gpr1 {  byte varBank1 # At address 0xA0}ram gpr2 {  byte varBank2 # At address 0x120}
+
+#----------------------------------------------------------------------------*
+
+routine myRoutine1 {  CLRF varAnyBank  CLRF varBank1  CLRF varBank2}
+
+#----------------------------------------------------------------------------*
+
+routine myRoutine2 {  CLRF varAnyBank  banksel 1  CLRF varBank1  banksel 2  CLRF varBank2}
+
+#----------------------------------------------------------------------------*
+
+routine myRoutine3 bank:preserved {  CLRF varAnyBank  banksel 1  CLRF varBank1  banksel 2  CLRF varBank2}
+
+#----------------------------------------------------------------------------*
+
+routine myRoutine4 bank:preserved {  CLRF varAnyBank  banksave save_status    banksel 1    CLRF varBank1    banksel 2    CLRF varBank2  end}
+
+#----------------------------------------------------------------------------*
+
+routine myRoutine5 bank:requires 3 {  CLRF varAnyBank  banksel 1  CLRF varBank1  banksel 2  CLRF varBank2}
+
+#----------------------------------------------------------------------------*
+
+routine myRoutine6 bank:requires 3 ensures 0 {  CLRF varAnyBank  banksel 1  CLRF varBank1  banksel 2  CLRF varBank2}
+
+#----------------------------------------------------------------------------*
+
+routine myRoutine7 bank:requires 3 ensures 0 {  CLRF varAnyBank  banksel 1  CLRF varBank1  banksel 2  CLRF varBank2  banksel 0}
+
+#----------------------------------------------------------------------------*
+
+routine myRoutine8 bank:requires 1 ensures 2 {  CLRF varAnyBank  CLRF varBank1  banksel 2  CLRF varBank2}routine myRoutine8a {  JSR myRoutine8  CLRF varBank2}
+
+#----------------------------------------------------------------------------*
+
+routine myRoutine9 bank:requires 1 ensures 2 {  CLRF varAnyBank  CLRF varBank1  banksel 2  CLRF varBank2}routine myRoutine9a {  banksel 1  JSR myRoutine9  CLRF varBank2}
+
+#----------------------------------------------------------------------------*
+
+routine myRoutine10 bank:requires 2 {  CLRF varAnyBank  if (STATUS.C Z)    CLRF varBank1  else    CLRF varBank2  end}
+
+#----------------------------------------------------------------------------*
+
+routine myRoutine11 bank:requires 2 {  CLRF varAnyBank  if (STATUS.C Z)    banksel 1    CLRF varBank1  else    CLRF varBank2  end}
+
+#----------------------------------------------------------------------------*
+
+routine maRoutine12 bank:requires 2 {  CLRF varAnyBank  if (STATUS.C Z)    banksel 1    CLRF varBank1    banksel 2  else    CLRF varBank2  end}
+
+#----------------------------------------------------------------------------*
+
+routine maRoutine13 bank:requires 2 {  CLRF varAnyBank  if (STATUS.C Z)    banksel 1    CLRF varBank1    nobank  else    CLRF varBank2    nobank  end}
+
+#----------------------------------------------------------------------------*
+
+routine myRoutine14 bank:requires 2 {  CLRF varAnyBank  if (STATUS.C Z)    banksel 1    CLRF varBank1  end  CLRF varBank2}
+
+#----------------------------------------------------------------------------*
+
+routine myRoutine15 bank:requires 2 {  CLRF varAnyBank  if (STATUS.C Z)    banksel 1    CLRF varBank1    banksel 2  end  CLRF varBank2}
+
+#----------------------------------------------------------------------------*
+
+routine myRoutine16 bank:requires 2 {  CLRF varAnyBank  if (STATUS.C Z)    banksel 1    CLRF varBank1    nobank  else    nobank  end  banksel 2  CLRF varBank2}
+
+#----------------------------------------------------------------------------*
+
+noreturn routine main bank:requires 0 {
+  forever
+  end
+}
+
+#----------------------------------------------------------------------------*
+
+end
