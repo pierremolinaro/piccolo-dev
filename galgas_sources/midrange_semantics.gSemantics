@@ -82,7 +82,7 @@ routine midrange_analyze ??@midrange_model inPiccoloModel ??@string inSourceFile
 #-------------------------------- Listing file
   if [option piccolo_options.ouputListingFile] then
     @string listFile := [inSourceFileName stringByDeletingPathExtension] . ".list" ;
-    [listFileContents writeToFileWhenDifferentContents !listFile] ;
+    [listFileContents writeToFileWhenDifferentContents !listFile ?*] ;
   end if ;
 #-------------------------------- Code generation
 #--- If no error, generate object file(s)
@@ -98,7 +98,7 @@ routine midrange_analyze ??@midrange_model inPiccoloModel ??@string inSourceFile
     @string contents ;
     getGeneratedContents ?contents ;
     @string hexDestinationFile := [inSourceFileName stringByDeletingPathExtension] . ".hex" ;
-    [contents writeToFileWhenDifferentContents !hexDestinationFile] ;
+    [contents writeToFileWhenDifferentContents !hexDestinationFile ?*] ;
   #--- Generate asm file, if corresponding option enabled
     if [option piccolo_options.generateAssembly] then
       @string assemblyCode ;
@@ -111,7 +111,7 @@ routine midrange_analyze ??@midrange_model inPiccoloModel ??@string inSourceFile
         ?assemblyCode
       ;
       @string asmDestinationFile := [inSourceFileName stringByDeletingPathExtension] . ".asm" ;
-      [assemblyCode writeToFileWhenDifferentContents !asmDestinationFile] ;
+      [assemblyCode writeToFileWhenDifferentContents !asmDestinationFile ?*] ;
     end if ;
   else # There are errors : delete hex and asm files
     @string hexDestinationFile := [inSourceFileName stringByDeletingPathExtension] . ".hex" ;
