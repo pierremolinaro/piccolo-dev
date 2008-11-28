@@ -42,7 +42,5 @@ project
   program "piccolo_program.gProgram" : makefile, xcode ;
 
   extern "piccolo_computations.cpp" : makefile, xcode ;
-  extern "../project_xcode/piccolo_app.icns" : xcode ;
-  extern "../project_xcode/piccolo_source.icns" : xcode ;
 end project ;
 
