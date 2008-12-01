@@ -1700,7 +1700,7 @@ routine build_ipic18_assembly_instruction_list
     end if ;
     [!?routineMap insertKey !mRoutineName !mIsNoReturn ![mRequiredBank uint] ![mReturnedBank uint] !mPreservesBank] ;
   end foreach ;
-#-------------------------------- Build contant map
+#-------------------------------- Build constant map
   @constantMap constantMap [emptyMap] ;
   foreach [inPiccoloModel mConstantDefinitionList] do
     @sint result ; [mExpression eval !inRegisterTable !constantMap ?result] ;
@@ -1710,6 +1710,13 @@ routine build_ipic18_assembly_instruction_list
       [!?constantMap insertKey !mConstantName !result] ;
     end if ;
   end foreach ;
+#-------------------------------- Print constant map
+  if [option piccolo_options.ouputListingFile] then
+    print_constant_definition
+      !constantMap
+      !?ioListFileContents
+    ;
+  end if ;
 #-------------------------------- Check the "main" routine is declared
   if [routineMap hasKey !"main"] then
     @bool isNoReturn ;
