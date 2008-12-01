@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 42;
+	objectVersion = 45;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -284,14 +284,14 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 6BBF9AC94A7E459509A20ED0 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 6976570B0353203EC4474217 /* Piccolo Tool Debug */;
+			remoteGlobalIDString = 6976570B0353203EC4474217;
 			remoteInfo = "Piccolo Tool Debug";
 		};
 		CF63AD890EE0572C00220E75 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6BBF9AC94A7E459509A20ED0 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 38835DA0B6F6EA37BCF8BCB7 /* Piccolo Tool */;
+			remoteGlobalIDString = 38835DA0B6F6EA37BCF8BCB7;
 			remoteInfo = "Piccolo Tool";
 		};
 /* End PBXContainerItemProxy section */
@@ -1069,8 +1069,11 @@
 /* Begin PBXProject section */
 		6BBF9AC94A7E459509A20ED0 /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+			};
 			buildConfigurationList = E6A13CF5EAA496D51FEA6406 /* Build configuration list for PBXProject "piccolo" */;
-			compatibilityVersion = "Xcode 2.4";
+			compatibilityVersion = "Xcode 3.1";
 			hasScannedForEncodings = 1;
 			mainGroup = D8F918A4AA29BE29D2C386FB;
 			projectDirPath = "";
@@ -1479,7 +1482,7 @@
 					../../libpm,
 				);
 				PREBINDING = NO;
-				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
+				SDKROOT = macosx10.4;
 			};
 			name = Default;
 		};

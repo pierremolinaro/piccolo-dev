@@ -425,6 +425,27 @@ map @symbolTableForOptimizations {
   remove removeKey error message "the '%K' label is not declared" ;
 }
 
+#----------------------------------------------------------------------------*
+#                                                                            *
+#               P R I N T    C O N S T A N T    M A P                        *
+#                                                                            *
+#----------------------------------------------------------------------------*
+
+routine print_constant_definition
+  ??@constantMap inConstantMap
+  ?!@string ioListFileContents
+:
+  if [inConstantMap count] > 0 then
+    ioListFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n" ;
+    ioListFileContents .= "*" . ["CONSTANTS" stringByLeftAndRightPadding !77 !' '] . "*\n" ;
+    ioListFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n\n" ;
+    foreach inConstantMap do
+      ioListFileContents .= [[key string] stringByLeftPadding !40 !' '] . " " . [mValue string] . "\n" ;
+    end foreach ;
+    ioListFileContents .= "\n" ;
+  end if ;
+end routine ;
+
 #----------------------------------------------------*
 
 end semantics ;
