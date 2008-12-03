@@ -324,7 +324,7 @@ override method @instruction_JSR.buildIPICinstructionList
   ?!@ipic18_instructionList ioGeneratedInstructionList
   ?!@string unused ioListFileContents
   ?!@uint ioCurrentBank
-  ??@bool unused inShouldPreserveBSR
+  ??@bool inShouldPreserveBSR
   ?!@bool unused ioContinuesInSequence
   ??@routineKind unused inRoutineKind
 :
@@ -349,6 +349,9 @@ override method @instruction_JSR.buildIPICinstructionList
   end if ;
   if not preservesBank then
     ioCurrentBank := returnedBank ;
+    if inShouldPreserveBSR then
+      error mTargetLabel:"the routine call should preserve bank selection" ;
+    end if ;
   end if ;
 #---
   ioGeneratedInstructionList += ![@ipic_JSR new
