@@ -747,6 +747,22 @@ rule <structured_instruction>
         !true
       ] ;
       ioNeedsComputedGoto4 := true ;
+    or
+      $rcall$ ;
+      @lstringlist argumentList [emptyList] ;
+      repeat
+        $identifier$ ? @lstring targetRoutine ;
+        argumentList += ! targetRoutine ;
+      while
+        $,$ ;
+      end repeat ;
+      outInstruction := [@instruction_computed_rcall new
+        !instructionLocation
+        !sizeExpression
+        !argumentList
+        !true
+      ] ;
+      ioNeedsComputedGoto4 := true ;
     end select ;
   or
     $forever$ ;

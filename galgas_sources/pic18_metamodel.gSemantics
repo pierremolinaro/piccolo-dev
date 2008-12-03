@@ -468,6 +468,14 @@ class @instruction_computed_goto extends @piccolo_instruction {
 
 #----------------------------------------------------*
 
+class @instruction_computed_rcall extends @piccolo_instruction {
+  @immediatExpression mSizeExpression ;
+  @lstringlist mTargetLabels ;
+  @bool mUsesRelativeCall ;
+}
+
+#----------------------------------------------------*
+
 abstract class @conditionExpression {
 }
 

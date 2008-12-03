@@ -41,11 +41,11 @@ echo "-------------- optimizations" &&
 piccolo -v -S -O -L optimizations.piccolo &&
 $GPUTILS_PATH/gpasm optimizations.asm -o optimizations-2.hex &&
 hexcmp optimizations.hex optimizations-2.hex &&
-#--- Computed bra
-echo "-------------- Computed bra" &&
-piccolo -v -S -O -L computed_branch_samples.piccolo &&
-$GPUTILS_PATH/gpasm computed_branch_samples.asm -o computed_branch_samples-2.hex &&
-hexcmp computed_branch_samples.hex computed_branch_samples-2.hex &&
+#--- Computed RCALL
+echo "-------------- Computed RCALL" &&
+piccolo -v -S -O -L computed_rcall_samples.piccolo &&
+$GPUTILS_PATH/gpasm computed_rcall_samples.asm -o computed_rcall_samples-2.hex &&
+hexcmp computed_rcall_samples.hex computed_rcall_samples-2.hex &&
 #----
 echo "-------------- SUCCES ---------------" ||
 echo "-------------- ECHEC ----------------"
