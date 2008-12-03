@@ -727,6 +727,46 @@ class @ipic18_instruction_computed_goto extends @ipic_actualInstruction {
     outIsReachable := false ;
   end method ;
 
+  override method enterReferencedLabel ?!@stringset ioReferencedLabelSet :
+    ioReferencedLabelSet += !"_computed_goto_4" ;
+    foreach mTargetLabels do
+      ioReferencedLabelSet += ![mValue string] ;
+    end foreach ;
+  end method ;
+}
+
+#----------------------------------------------------*
+
+class @ipic18_instruction_computed_rcall extends @ipic_actualInstruction {
+  @lstringlist mTargetLabels ;
+  @string mEndOfInstructionLabel ;
+  @bool mUsesRCALL ;
+
+  override
+  method instructionLength !@uint outLength :
+    outLength := [mTargetLabels length] * 4 ;
+    if not mUsesRCALL then
+      outLength := outLength + 2 ;
+    end if ;
+  end method ;
+
+  override
+  method displayIPICinstruction ?!@string ioListFileContents :
+    ioListFileContents .= "COMPUTED RCALL " ;
+    if mUsesRCALL then
+      ioListFileContents .= "(uses RCALL)" ;
+    else
+      ioListFileContents .= "(uses CALL)" ;
+    end if ;
+    foreach mTargetLabels do
+      ioListFileContents .= ", " . mValue ;
+    end foreach ;
+  end method ;
+
+  override method nextInstructionIsReachable !@bool outIsReachable :
+    outIsReachable := true ;
+  end method ;
+
 
   override method enterReferencedLabel ?!@stringset ioReferencedLabelSet :
     ioReferencedLabelSet += !"_computed_goto_4" ;

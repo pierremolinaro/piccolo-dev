@@ -472,6 +472,28 @@ end method ;
 
 #----------------------------------------------------*
 
+override method @ipic18_instruction_computed_rcall.buildAssemblyCode
+  ?!@string ioString
+  ?!@uint unused ioBccLabelIndex
+:
+  if mUsesRCALL then
+    ioString .= "  RCALL _computed_goto_4\n" ;
+  else
+    ioString .= "  CALL _computed_goto_4\n" ;
+  end if ;
+  @uint index := 0 ;
+  foreach mTargetLabels do
+    index ++ ;
+    ioString .= "  RCALL " . [mValue string] . "\n" ;
+    if index < [mTargetLabels length] then
+      ioString .= "  BRA   " . mEndOfInstructionLabel . "\n" ;
+    end if ;
+  end foreach ;
+  ioString .= mEndOfInstructionLabel . ":\n" ;
+end method ;
+
+#----------------------------------------------------*
+
 routine pic18_build_assembly_code
   ??@string inProcessorName
   ??@registerTable inPredefinedRegisters

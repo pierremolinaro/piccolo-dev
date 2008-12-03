@@ -714,6 +714,37 @@ override method @ipic18_instruction_computed_goto.generateBinaryCodeAtAddress
 end method ;
 
 #----------------------------------------------------------------------------*
+
+override method @ipic18_instruction_computed_rcall.generateBinaryCodeAtAddress
+  ??@ipic18_symbolTable inRoutineSymbolTable
+  ?!@uint ioAddress
+:
+  @uint targetAddress ;
+  [inRoutineSymbolTable searchKey ![@lstring new !"_computed_goto_4" !here] ?targetAddress] ;
+  @uint currentInstructionAddress ;
+  if mUsesRCALL then
+    emitRCALLinstruction !ioAddress !targetAddress !mInstructionLocation ;
+    currentInstructionAddress := ioAddress + 2 ;
+  else
+    emit_pic18_CALLinstruction !targetAddress ;
+    currentInstructionAddress := ioAddress + 4 ;
+  end if ;
+  @uint nextInstructionAddress := currentInstructionAddress + [mTargetLabels length] * 4 - 2 ;
+  @uint index := 0 ;
+  foreach mTargetLabels do
+    index ++ ;
+    @uint requiredSelectedBank ;
+    [inRoutineSymbolTable searchKey !mValue ?targetAddress] ;
+    emitRCALLinstruction !currentInstructionAddress !targetAddress ![mValue location] ;
+    currentInstructionAddress := currentInstructionAddress + 2 ;
+    if index < [mTargetLabels length] then
+      emitBRAinstruction !currentInstructionAddress !nextInstructionAddress ![mValue location] ;
+      currentInstructionAddress := currentInstructionAddress + 2 ;
+    end if ;
+  end foreach ;
+end method ;
+
+#----------------------------------------------------------------------------*
 #                                                                            *
 #               S E M A N T I C    A N A L Y S I S                           *
 #                                                                            *
