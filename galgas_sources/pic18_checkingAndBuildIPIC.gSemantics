@@ -773,15 +773,21 @@ override method @instruction_computed_bra.buildIPICinstructionList
   ?!@ipic18_instructionList ioGeneratedInstructionList
   ?!@string unused ioListFileContents
   ?!@uint ioCurrentBank
-  ??@bool unused inShouldPreserveBSR
+  ??@bool inShouldPreserveBSR
   ?!@bool ioContinuesInSequence
   ??@routineKind inRoutineKind
 :
 #---
+  @bool allPreserveBankSetting := true ;
+  @bool allReturnBank := true ;
+  @uint returnedBankValue [max] ;
   foreach mTargetLabels do
     @bool isNoReturn ;
     @uint requiredBank ;
-    [inRoutineMap searchKey !mValue ?isNoReturn ?requiredBank ?* ?*] ;
+    @uint returnedBank ;
+    @bool preservesBank ;
+    [inRoutineMap searchKey !mValue ?isNoReturn ?requiredBank ?returnedBank ?preservesBank] ;
+  #--- Check bank "requires"
     if (requiredBank != [@uint max]) & (requiredBank != ioCurrentBank) then
       @string errorMessage := "the routine '" . mValue . "' requires BSR to be set to " . [requiredBank string] ;
       errorMessage .= ", but BSR " ;
@@ -791,15 +797,35 @@ override method @instruction_computed_bra.buildIPICinstructionList
         errorMessage .= "is set to " . [ioCurrentBank string] ;
       end if ;
       error mValue: errorMessage ;
+    end if ;    
+  #--- Check bank "preserved", "ensures"
+    if preservesBank then
+      allReturnBank := false ;
+    elsif (returnedBankValue != [@uint max]) & (returnedBankValue != returnedBank) then
+      error mValue:"this routine ensures setting of bank '" . [returnedBank string] . "', but "
+      . "previous routine(s) ensure setting of bank '" . [returnedBankValue string] . "'." ;
+    else
+      allPreserveBankSetting := false ;
+      returnedBankValue := returnedBank ;
     end if ;
-    if not isNoReturn then
-      error mValue:"for being named in a computed bra, the '" . mValue . "' routine should be declared with the \"noreturn\" qualifier" ;
+    if ([@routineKind regularRoutine ] != inRoutineKind) & not isNoReturn then
+      error mValue:"for being named in a computed bra from a regular routine, the '" . mValue . "' routine should be declared without any \"noreturn\" qualifier" ;
 	 end if ;
   end foreach ;
+#---
+  if allReturnBank & not allPreserveBankSetting then
+    ioCurrentBank := returnedBankValue ;
+  elsif (not allReturnBank) & not allPreserveBankSetting then
+    error mInstructionLocation:"invoked routine should either all preserve bank, eihter return the same selected bank" ;
+  end if ;
+  if inShouldPreserveBSR & not allPreserveBankSetting then
+    error mInstructionLocation:"invoked routine(s) do(es) not preserve bank selection" ;
+  end if ;
+#---
   ioContinuesInSequence := false ;
   switch inRoutineKind
   when regularRoutine :
-    error mInstructionLocation:"a regular routine does not accept computed bra instruction" ;
+#    error mInstructionLocation:"a regular routine does not accept computed bra instruction" ;
   when noReturnRoutine : # ok
   when interruptRoutine :
     error mInstructionLocation:"an interrupt routine does not accept computed bra instruction" ;
