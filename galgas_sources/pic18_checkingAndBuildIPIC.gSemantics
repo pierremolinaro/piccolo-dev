@@ -911,6 +911,68 @@ end method ;
 
 #----------------------------------------------------*
 
+override method @instruction_computed_rcall.buildIPICinstructionList
+  ??@uint unused inAccessBankSplitOffset
+  ??@routineMap inRoutineMap
+  ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
+  ?!@uint ioLocalLabelIndex
+  ?!@ipic18_instructionList ioGeneratedInstructionList
+  ?!@string unused ioListFileContents
+  ?!@uint ioCurrentBank
+  ??@bool unused inShouldPreserveBSR
+  ?!@bool ioContinuesInSequence
+  ??@routineKind inRoutineKind
+:
+#---
+  foreach mTargetLabels do
+    @bool isNoReturn ;
+    @uint requiredBank ;
+    [inRoutineMap searchKey !mValue ?isNoReturn ?requiredBank ?* ?*] ;
+    if (requiredBank != [@uint max]) & (requiredBank != ioCurrentBank) then
+      @string errorMessage := "the routine '" . mValue . "' requires BSR to be set to " . [requiredBank string] ;
+      errorMessage .= ", but BSR " ;
+      if ioCurrentBank == [@uint max] then
+        errorMessage .= "does contain any reliable value" ;
+      else
+        errorMessage .= "is set to " . [ioCurrentBank string] ;
+      end if ;
+      error mValue: errorMessage ;
+    end if ;
+    if isNoReturn then
+      error mValue:"for being named in a computed rcall, the '" . mValue . "' routine should be declared without the \"noreturn\" qualifier" ;
+	 end if ;
+  end foreach ;
+  ioContinuesInSequence := true ;
+  switch inRoutineKind
+  when regularRoutine :
+  when noReturnRoutine : # ok
+    error mInstructionLocation:"a no return routine does not accept computed rcall instruction" ;
+  when interruptRoutine :
+    error mInstructionLocation:"an interrupt routine does not accept computed goto instruction" ;
+  end switch ;
+#---
+  @sint size ; [mSizeExpression eval !inRegisterTable !inConstantMap ?size] ;
+  if size < 2S then
+    error mInstructionLocation:"the computed range (" . [size string] . ") should be greater or equal to 2" ;
+  elsif size > 64S then
+    error mInstructionLocation:"the computed range (" . [size string] . ") should be lower or equal to 64" ;
+  elsif [size uint] != [mTargetLabels length] then
+    error mInstructionLocation:"the routine name list length (" . [[mTargetLabels length] string] . ") should be equal to the computed range (" . [size string] . ")" ;
+  end if ;
+#---
+  @string label0 := "_label_" . [ioLocalLabelIndex string] ; 
+  ioLocalLabelIndex ++ ;
+  ioGeneratedInstructionList += ![@ipic18_instruction_computed_rcall new
+    !mInstructionLocation
+    !mTargetLabels
+    !label0
+    !mUsesRelativeCall
+  ] ;
+end method ;
+
+#----------------------------------------------------*
+
 override method @instruction_FOREVER.buildIPICinstructionList
   ??@uint inAccessBankSplitOffset
   ??@routineMap inRoutineMap
