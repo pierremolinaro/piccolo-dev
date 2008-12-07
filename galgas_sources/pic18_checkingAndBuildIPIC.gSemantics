@@ -915,15 +915,20 @@ override method @instruction_computed_rcall.buildIPICinstructionList
   ?!@ipic18_instructionList ioGeneratedInstructionList
   ?!@string unused ioListFileContents
   ?!@uint ioCurrentBank
-  ??@bool unused inShouldPreserveBSR
+  ??@bool inShouldPreserveBSR
   ?!@bool ioContinuesInSequence
-  ??@routineKind inRoutineKind
+  ??@routineKind unused inRoutineKind
 :
 #---
+  @bool allPreserveBank := true ;
+  @bool someReturnsBank := false ;
+  @uint returnedBankSelection := ioCurrentBank ;
   foreach mTargetLabels do
     @bool isNoReturn ;
     @uint requiredBank ;
-    [inRoutineMap searchKey !mValue ?isNoReturn ?requiredBank ?* ?*] ;
+    @uint returnedBank ;
+    @bool preservesBank ;
+    [inRoutineMap searchKey !mValue ?isNoReturn ?requiredBank ?returnedBank ?preservesBank] ;
     if (requiredBank != [@uint max]) & (requiredBank != ioCurrentBank) then
       @string errorMessage := "the routine '" . mValue . "' requires BSR to be set to " . [requiredBank string] ;
       errorMessage .= ", but BSR " ;
@@ -937,15 +942,33 @@ override method @instruction_computed_rcall.buildIPICinstructionList
     if isNoReturn then
       error mValue:"for being named in a computed rcall, the '" . mValue . "' routine should be declared without the \"noreturn\" qualifier" ;
 	 end if ;
+     if inShouldPreserveBSR & not preservesBank then
+       error mValue:"the '" . mValue . "' routine should preserved bank selection" ;
+     elsif (not inShouldPreserveBSR) & not preservesBank then
+       if not someReturnsBank then
+         returnedBankSelection := returnedBank ;
+         someReturnsBank := true ;
+       elsif returnedBankSelection != returnedBank then 
+         @string errorMessage := "the '" . mValue . "' routine returns " ;
+         if returnedBank == [@uint max] then
+           errorMessage .= "no bank selection" ;
+         else
+           errorMessage .= "bank selection set to  ". [returnedBank string] ;
+         end if ;
+         errorMessage .= ", but previous routine(s) return(s) " ;
+         if returnedBankSelection == [@uint max] then
+           errorMessage .= "no bank selection" ;
+         else
+           errorMessage .= "bank selection set to  ". [returnedBankSelection string] ;
+         end if ;
+         error mValue: errorMessage ;
+       end if ;
+     elsif (not inShouldPreserveBSR) & preservesBank then
+     end if ;
   end foreach ;
+#---
   ioContinuesInSequence := true ;
-  switch inRoutineKind
-  when regularRoutine :
-  when noReturnRoutine : # ok
-    error mInstructionLocation:"a no return routine does not accept computed rcall instruction" ;
-  when interruptRoutine :
-    error mInstructionLocation:"an interrupt routine does not accept computed goto instruction" ;
-  end switch ;
+  ioCurrentBank := returnedBankSelection ;
 #---
   @sint size ; [mSizeExpression eval !inRegisterTable !inConstantMap ?size] ;
   if size < 2S then
