@@ -104,20 +104,16 @@ override method @instruction_savebank.buildIPICinstructionList
 :
 #--- Get values for BSR register
   @registerExpression BSRregister [new ![@lstring new !"BSR" !here] ![@luint new !0 !here]] ;
-  @ipic_registerExpression BSR_IPICregisterDescription ;
-  [BSRregister resolveAccess
-    !inAccessBankSplitOffset
+  @ipic_registerExpressionWithoutBSRIndication BSR_IPICregisterDescription ;
+  [BSRregister resolveAccessWithoutCheckingBank
     !inRegisterTable
     ?BSR_IPICregisterDescription
-    ?*
   ] ;
 #--- Get values for register used for saving
-  @ipic_registerExpression save_IPICregisterDescription ;
-  [mRegister resolveAccess
-    !inAccessBankSplitOffset
+  @ipic_registerExpressionWithoutBSRIndication save_IPICregisterDescription ;
+  [mRegister resolveAccessWithoutCheckingBank
     !inRegisterTable
     ?save_IPICregisterDescription
-    ?*
   ] ;
 #--- Generate "MOVFF BSR, save_register" instruction
   ioGeneratedInstructionList += ![@ipic18_instruction_MOVFF new
@@ -192,7 +188,7 @@ override method @instruction_FDA.buildIPICinstructionList
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic18_instructionList ioGeneratedInstructionList
   ?!@string unused ioListFileContents
-  ?!@uint unused ioCurrentBank
+  ?!@uint ioCurrentBank
   ??@bool unused inShouldPreserveBSR
   ?!@bool unused ioContinuesInSequence
   ??@routineKind unused inRoutineKind
@@ -200,6 +196,7 @@ override method @instruction_FDA.buildIPICinstructionList
   @ipic_registerExpression IPICregisterDescription ;
   [mRegisterExpression resolveAccess
     !inAccessBankSplitOffset
+    !ioCurrentBank
     !inRegisterTable
     ?IPICregisterDescription
     ?*
@@ -222,7 +219,7 @@ override method @instruction_FA.buildIPICinstructionList
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic18_instructionList ioGeneratedInstructionList
   ?!@string unused ioListFileContents
-  ?!@uint unused ioCurrentBank
+  ?!@uint ioCurrentBank
   ??@bool unused inShouldPreserveBSR
   ?!@bool unused ioContinuesInSequence
   ??@routineKind unused inRoutineKind
@@ -230,6 +227,7 @@ override method @instruction_FA.buildIPICinstructionList
   @ipic_registerExpression IPICregisterDescription ;
   [mRegisterExpression resolveAccess
     !inAccessBankSplitOffset
+    !ioCurrentBank
     !inRegisterTable
     ?IPICregisterDescription
     ?*
@@ -244,7 +242,7 @@ end method ;
 #----------------------------------------------------*
 
 override method @instruction_MOVFF.buildIPICinstructionList
-  ??@uint inAccessBankSplitOffset
+  ??@uint unused inAccessBankSplitOffset
   ??@routineMap unused inRoutineMap
   ??@registerTable inRegisterTable
   ??@constantMap unused inConstantMap
@@ -256,19 +254,15 @@ override method @instruction_MOVFF.buildIPICinstructionList
   ?!@bool unused ioContinuesInSequence
   ??@routineKind unused inRoutineKind
 :
-  @ipic_registerExpression sourceIPICregisterDescription ;
-  [mSourceRegisterName resolveAccess
-    !inAccessBankSplitOffset
+  @ipic_registerExpressionWithoutBSRIndication sourceIPICregisterDescription ;
+  [mSourceRegisterName resolveAccessWithoutCheckingBank
     !inRegisterTable
     ?sourceIPICregisterDescription
-    ?*
   ] ;
-  @ipic_registerExpression destinationIPICregisterDescription ;
-  [mDestinationRegisterName resolveAccess
-    !inAccessBankSplitOffset
+  @ipic_registerExpressionWithoutBSRIndication destinationIPICregisterDescription ;
+  [mDestinationRegisterName resolveAccessWithoutCheckingBank
     !inRegisterTable
     ?destinationIPICregisterDescription
-    ?*
   ] ;
   ioGeneratedInstructionList += ![@ipic18_instruction_MOVFF new
     !mInstructionLocation
@@ -287,7 +281,7 @@ override method @instruction_FBA.buildIPICinstructionList
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic18_instructionList ioGeneratedInstructionList
   ?!@string unused ioListFileContents
-  ?!@uint unused ioCurrentBank
+  ?!@uint ioCurrentBank
   ??@bool unused inShouldPreserveBSR
   ?!@bool unused ioContinuesInSequence
   ??@routineKind unused inRoutineKind
@@ -296,6 +290,7 @@ override method @instruction_FBA.buildIPICinstructionList
   @ipic_registerExpression IPICregisterDescription ;
   [mRegisterExpression resolveAccess
     !inAccessBankSplitOffset
+    !ioCurrentBank
     !inRegisterTable
     ?IPICregisterDescription
     ?bitSliceTable
@@ -1046,6 +1041,7 @@ override method @instruction_IF_FA_SEMI_COLON.buildIPICinstructionList
   @ipic_registerExpression IPICregisterDescription ;
   [mRegisterExpression resolveAccess
     !inAccessBankSplitOffset
+    !ioCurrentBank
     !inRegisterTable
     ?IPICregisterDescription
     ?*
@@ -1091,6 +1087,7 @@ override method @instruction_IF_BitTest.buildIPICinstructionList
   @ipic_registerExpression IPICregisterDescription ;
   [mRegisterExpression resolveAccess
     !inAccessBankSplitOffset
+    !ioCurrentBank
     !inRegisterTable
     ?IPICregisterDescription
     ?bitSliceTable
@@ -1127,6 +1124,7 @@ end method ;
 
 abstract method @conditionExpression.buildIPICinstructionForCondition
   ??@uint inAccessBankSplitOffset
+  ??@uint inCurrentBank
   ??@registerTable inRegisterTable
   ?!@uint ioLocalLabelIndex
   ??@bool inComplementaryBranch
@@ -1147,6 +1145,7 @@ abstract method @conditionExpression.computeInstructionCountForCondition
 
 override method @bcc_in_structured_if_condition.buildIPICinstructionForCondition
   ??@uint unused inAccessBankSplitOffset
+  ??@uint unused inCurrentBank
   ??@registerTable unused inRegisterTable
   ?!@uint unused ioLocalLabelIndex
   ??@bool inComplementaryBranch
@@ -1182,6 +1181,7 @@ end method ;
 
 override method @registerComparisonCondition.buildIPICinstructionForCondition
   ??@uint inAccessBankSplitOffset
+  ??@uint inCurrentBank
   ??@registerTable inRegisterTable
   ?!@uint unused ioLocalLabelIndex
   ??@bool inComplementaryBranch
@@ -1200,6 +1200,7 @@ override method @registerComparisonCondition.buildIPICinstructionForCondition
   @ipic_registerExpression IPICregisterDescription ;
   [mRegisterExpression resolveAccess
     !inAccessBankSplitOffset
+    !inCurrentBank
     !inRegisterTable
     ?IPICregisterDescription
     ?*
@@ -1233,6 +1234,7 @@ end method ;
 
 override method @incDecRegisterInCondition.buildIPICinstructionForCondition
   ??@uint inAccessBankSplitOffset
+  ??@uint inCurrentBank
   ??@registerTable inRegisterTable
   ?!@uint unused ioLocalLabelIndex
   ??@bool inComplementaryBranch
@@ -1244,6 +1246,7 @@ override method @incDecRegisterInCondition.buildIPICinstructionForCondition
   @ipic_registerExpression IPICregisterDescription ;
   [mRegisterExpression resolveAccess
     !inAccessBankSplitOffset
+    !inCurrentBank
     !inRegisterTable
     ?IPICregisterDescription
     ?*
@@ -1273,6 +1276,7 @@ end method ;
 
 override method @registerTestCondition.buildIPICinstructionForCondition
   ??@uint inAccessBankSplitOffset
+  ??@uint inCurrentBank
   ??@registerTable inRegisterTable
   ?!@uint unused ioLocalLabelIndex
   ??@bool inComplementaryBranch
@@ -1284,6 +1288,7 @@ override method @registerTestCondition.buildIPICinstructionForCondition
   @ipic_registerExpression IPICregisterDescription ;
   [mRegisterExpression resolveAccess
     !inAccessBankSplitOffset
+    !inCurrentBank
     !inRegisterTable
     ?IPICregisterDescription
     ?*
@@ -1315,6 +1320,7 @@ end method ;
 
 override method @negateCondition.buildIPICinstructionForCondition
   ??@uint inAccessBankSplitOffset
+  ??@uint inCurrentBank
   ??@registerTable inRegisterTable
   ?!@uint ioLocalLabelIndex
   ??@bool inComplementaryBranch
@@ -1325,6 +1331,7 @@ override method @negateCondition.buildIPICinstructionForCondition
 :
   [mCondition buildIPICinstructionForCondition
     !inAccessBankSplitOffset
+    !inCurrentBank
     !inRegisterTable
     !?ioLocalLabelIndex
     !not inComplementaryBranch
@@ -1351,6 +1358,7 @@ end method ;
 
 override method @andCondition.buildIPICinstructionForCondition
   ??@uint inAccessBankSplitOffset
+  ??@uint inCurrentBank
   ??@registerTable inRegisterTable
   ?!@uint ioLocalLabelIndex
   ??@bool inComplementaryBranch
@@ -1362,6 +1370,7 @@ override method @andCondition.buildIPICinstructionForCondition
   if inComplementaryBranch then
     [mLeftExpression buildIPICinstructionForCondition
       !inAccessBankSplitOffset
+      !inCurrentBank
       !inRegisterTable
       !?ioLocalLabelIndex
       !true
@@ -1372,6 +1381,7 @@ override method @andCondition.buildIPICinstructionForCondition
     ] ;
     [mRightExpression buildIPICinstructionForCondition
       !inAccessBankSplitOffset
+      !inCurrentBank
       !inRegisterTable
       !?ioLocalLabelIndex
       !true
@@ -1384,6 +1394,7 @@ override method @andCondition.buildIPICinstructionForCondition
     @string label0 := "_label_" . [ioLocalLabelIndex string] ; ioLocalLabelIndex ++ ;
     [mLeftExpression buildIPICinstructionForCondition
       !inAccessBankSplitOffset
+      !inCurrentBank
       !inRegisterTable
       !?ioLocalLabelIndex
       !true
@@ -1394,6 +1405,7 @@ override method @andCondition.buildIPICinstructionForCondition
     ] ;
     [mRightExpression buildIPICinstructionForCondition
       !inAccessBankSplitOffset
+      !inCurrentBank
       !inRegisterTable
       !?ioLocalLabelIndex
       !false
@@ -1429,6 +1441,7 @@ end method ;
 
 override method @bitTest_in_structured_if_condition.buildIPICinstructionForCondition
   ??@uint inAccessBankSplitOffset
+  ??@uint inCurrentBank
   ??@registerTable inRegisterTable
   ?!@uint unused ioLocalLabelIndex
   ??@bool inComplementaryBranch
@@ -1441,6 +1454,7 @@ override method @bitTest_in_structured_if_condition.buildIPICinstructionForCondi
   @ipic_registerExpression IPICregisterDescription ;
   [mRegisterExpression resolveAccess
     !inAccessBankSplitOffset
+    !inCurrentBank
     !inRegisterTable
     ?IPICregisterDescription
     ?bitSliceTable
@@ -1515,6 +1529,7 @@ override method @instruction_structured_if.buildIPICinstructionList
   #--- Translate condition
     [mIfCondition buildIPICinstructionForCondition
       !inAccessBankSplitOffset
+      !ioCurrentBank
       !inRegisterTable
       !?ioLocalLabelIndex
       !false
@@ -1567,6 +1582,7 @@ override method @instruction_structured_if.buildIPICinstructionList
   #--- Translate condition
     [mIfCondition buildIPICinstructionForCondition
       !inAccessBankSplitOffset
+      !ioCurrentBank
       !inRegisterTable
       !?ioLocalLabelIndex
       !true
@@ -1666,6 +1682,7 @@ override method @instruction_do_while.buildIPICinstructionList
     if [mInstructionList length] == 0 then
       [mCondition buildIPICinstructionForCondition
         !inAccessBankSplitOffset
+        !ioCurrentBank
         !inRegisterTable
         !?ioLocalLabelIndex
         !false
@@ -1678,6 +1695,7 @@ override method @instruction_do_while.buildIPICinstructionList
       @string nextBranchLabel := "_label_" . [ioLocalLabelIndex string] ; ioLocalLabelIndex ++ ;
       [mCondition buildIPICinstructionForCondition
         !inAccessBankSplitOffset
+        !ioCurrentBank
         !inRegisterTable
         !?ioLocalLabelIndex
         !true
@@ -1740,6 +1758,7 @@ override method @instruction_IF_IncDec.buildIPICinstructionList
   @ipic_registerExpression IPICregisterDescription ;
   [mRegisterExpression resolveAccess
     !inAccessBankSplitOffset
+    !ioCurrentBank
     !inRegisterTable
     ?IPICregisterDescription
     ?*
@@ -1935,6 +1954,7 @@ routine build_ipic18_assembly_instruction_list
   @ipic_registerExpression WREG_IPICregisterDescription ;
   [WREGregister resolveAccess
     !inAccessBankSplitOffset
+    !0 # Current bank
     !inRegisterTable
     ?WREG_IPICregisterDescription
     ?*
@@ -1944,6 +1964,7 @@ routine build_ipic18_assembly_instruction_list
   @ipic_registerExpression TOSL_IPICregisterDescription ;
   [TOSLregister resolveAccess
     !inAccessBankSplitOffset
+    !0 # Current bank
     !inRegisterTable
     ?TOSL_IPICregisterDescription
     ?*
@@ -1953,6 +1974,7 @@ routine build_ipic18_assembly_instruction_list
   @ipic_registerExpression TOSH_IPICregisterDescription ;
   [TOSHregister resolveAccess
     !inAccessBankSplitOffset
+    !0 # Current bank
     !inRegisterTable
     ?TOSH_IPICregisterDescription
     ?*
@@ -1962,6 +1984,7 @@ routine build_ipic18_assembly_instruction_list
   @ipic_registerExpression TOSU_IPICregisterDescription ;
   [TOSUregister resolveAccess
     !inAccessBankSplitOffset
+    !0 # Current bank
     !inRegisterTable
     ?TOSU_IPICregisterDescription
     ?*
