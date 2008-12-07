@@ -5,6 +5,13 @@ import semantics ipic_generic in "ipic_generic.gSemantics" ;
 
 #----------------------------------------------------*
 
+struct @ipic_registerExpressionWithoutBSRIndication {
+  @string mAssemblyString ;
+  @uint mRegisterAddress ; # 12 bit full address
+}
+
+#----------------------------------------------------*
+
 struct @ipic_registerExpression {
   @string mAssemblyString ;
   @uint mRegisterAddress ; # 12 bit full address
@@ -15,6 +22,7 @@ struct @ipic_registerExpression {
 
 method @registerExpression.resolveAccess
   ??@uint inAccessBankSplitOffset
+  ??@uint inCurrentBank
   ??@registerTable inRegisterTable
   !@ipic_registerExpression outIPICregisterDescription
   !@bitSliceTable outBitSliceTable
@@ -29,6 +37,11 @@ method @registerExpression.resolveAccess
   @uint size ;
   @uint registerAddress := 0 ;
   [inRegisterTable searchKey !mRegisterName ?registerAddressList ?size ?outBitSliceTable ?*] ;
+#---
+  if [mOffset uint] > size then
+    error mOffset: "this offset is too large: should be lower than " . [size string] ;
+  end if ;
+#---
   @bool found := false ;
   foreach registerAddressList while not found do
     found := (mValue < inAccessBankSplitOffset) | (mValue >= (0x0F00 + inAccessBankSplitOffset)) ;
@@ -38,12 +51,50 @@ method @registerExpression.resolveAccess
   if not found then
     needsBSRaccess := true ;
     [registerAddressList first ?registerAddress] ;
+    @uint neededBank := registerAddress >> 8 ;
+    if (neededBank != inCurrentBank) then
+      @string errorMessage := "Accessing the '" . mRegisterName . "' needs the bank selection set to " . [neededBank string] ;
+      if inCurrentBank == [@uint max] then
+        errorMessage .= ", but current bank selection cannot be known" ;
+      else
+        errorMessage .= ", but current bank selection is set to " . [inCurrentBank string] ;
+      end if ;
+      error mRegisterName: errorMessage ;
+    end if ;
   end if ;
 #---
   outIPICregisterDescription := [@ipic_registerExpression new
     !assemblyString
     !registerAddress + [mOffset uint]
     !needsBSRaccess
+  ] ;
+end method ;
+
+#----------------------------------------------------*
+
+method @registerExpression.resolveAccessWithoutCheckingBank
+  ??@registerTable inRegisterTable
+  !@ipic_registerExpressionWithoutBSRIndication outIPICregisterDescription
+:
+#--- Build assembly string
+  @string assemblyString := [mRegisterName string] ;
+  if [mOffset uint] > 0 then
+    assemblyString .= " + " . [[mOffset uint] hexString] ;
+  end if ;
+#--- 
+  @uintlist registerAddressList ;
+  @uint size ;
+  [inRegisterTable searchKey !mRegisterName ?registerAddressList ?size ?* ?*] ;
+  @uint registerAddress ;
+  [registerAddressList first ?registerAddress] ;
+#---
+  if [mOffset uint] > size then
+    error mOffset: "this offset is too large: should be lower than " . [size string] ;
+  end if ;
+#---
+  outIPICregisterDescription := [@ipic_registerExpressionWithoutBSRIndication new
+    !assemblyString
+    !registerAddress + [mOffset uint]
   ] ;
 end method ;
 
@@ -236,8 +287,8 @@ class @ipic18_instruction_FA extends @ipic_actualInstruction {
 #----------------------------------------------------*
 
 class @ipic18_instruction_MOVFF extends @ipic_actualInstruction {
-  @ipic_registerExpression mSourceRegisterDescription ;
-  @ipic_registerExpression mDestinationRegisterDescription ;
+  @ipic_registerExpressionWithoutBSRIndication mSourceRegisterDescription ;
+  @ipic_registerExpressionWithoutBSRIndication mDestinationRegisterDescription ;
   
   override
   method instructionLength !@uint outLength :
