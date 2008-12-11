@@ -85,7 +85,8 @@ rule <start_symbol>
     $;$ ;
     [!?ramBankTable insertKey
       !ramName
-      ![ramStart uint]
+      ![ramStart uint] # Start
+      ![ramStart uint] # First free address (mutable)
       ![ramEnd uint] + 1
       !mirrorOffsetList
     ] ;
