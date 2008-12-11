@@ -6,5 +6,8 @@ gui piccolo_cocoa "cocoa" :
   blockComment : "#" ;
 
   label $routine$, $identifier$ ;
+  label $mark$, $literal_string$ ;
+  label $ram$, $identifier$ ;
+  label $interrupt$, $identifier$ ;
 
 end gui ;

@@ -39,6 +39,7 @@ list controlKeyWordList error message "the '%K' keyword" style keywordStyle :
   "forever",
   "if",
   "interrupt",
+  "mark",
   "midrange",
   "nobank",
   "noreturn",

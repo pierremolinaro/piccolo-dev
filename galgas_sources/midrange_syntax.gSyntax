@@ -88,6 +88,9 @@ rule <start_symbol> :
   @bool needsComputedGoto4 := false ;
   repeat
   while
+    $mark$ ;
+    $literal_string$ ?* ;
+  while
     <configuration_definition> !?configDefinitionList !?acceptDefaultConfiguration ;
   while
     <ram_definition> !?ramDefinitionList ;
