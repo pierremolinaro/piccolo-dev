@@ -88,17 +88,34 @@ routine midrange_analyze ??@midrange_model inPiccoloModel ??@string inSourceFile
 #--- If no error, generate object file(s)
   if [@uint errorCount] == 0 then
   #--- Generate hex file
+    @uint usedROMsize ;
     build_midrange_ipic_binary_code
       !registerTable
       ![[piccoloDeviceModel mBankCount] uint]
       !generatedInstructionList
       ![[piccoloDeviceModel mRomSize] uint]
       !actualConfigurationMap
+      ?usedROMsize
     ;
     @string contents ;
     getGeneratedContents ?contents ;
     @string hexDestinationFile := [inSourceFileName stringByDeletingPathExtension] . ".hex" ;
     [contents writeToFileWhenDifferentContents !hexDestinationFile ?*] ;
+  #--- Write infos (if verbose mode)
+    if [option.verbose_output] then
+      @string verboseMessage := "  ROM size: " . [[[piccoloDeviceModel mRomSize] uint] string] . " words;" ;
+      verboseMessage .= " used: " . [usedROMsize string] . " words (" ;
+      verboseMessage .= [(usedROMsize * 100) / [[piccoloDeviceModel mRomSize] uint] string] . "%).\n" ;
+      foreach ramBank do
+        @uint bankSize := mLastAddressPlusOne - mFirstAddress ;
+        @uint usedSize := mFirstFreeAddress - mFirstAddress ;
+        verboseMessage .= "  RAM bank '" . [key string] . "': " ;
+        verboseMessage .= [bankSize string] . " bytes, used " ;
+        verboseMessage .= [usedSize string] . " bytes (" ;
+        verboseMessage .= [(usedSize * 100) / bankSize string] . "%).\n" ;
+      end foreach ;
+      message verboseMessage ;
+    end if ;
   #--- Generate asm file, if corresponding option enabled
     if [option piccolo_options.generateAssembly] then
       @string assemblyCode ;

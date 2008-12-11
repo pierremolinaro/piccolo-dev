@@ -754,6 +754,7 @@ routine build_ipic18_binary_code
   ??@ipic18_instructionList inGeneratedInstructionList
   ??@uint inROMsize
   ??@actualConfigurationMap inActualConfigurationMap
+  !@uint outUsedROMsize
 :
 #-------------------------------- First pass: build label map
   @ipic18_symbolTable symbolTable [emptyMap] ;
@@ -762,6 +763,7 @@ routine build_ipic18_binary_code
     [mInstruction enterLabelAtAddress !?symbolTable !?currentAddress] ;
   end foreach ;
   @uint lastAddressForFirstPass := currentAddress ;
+  outUsedROMsize := currentAddress ;
 #-------------------------------- Second pass: generate code
   currentAddress := 0 ;
   setEmitAddress !0 ;

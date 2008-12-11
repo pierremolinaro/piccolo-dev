@@ -464,6 +464,7 @@ routine build_midrange_ipic_binary_code
   ??@midrange_ipic_instructionList inGeneratedInstructionList
   ??@uint inROMsize
   ??@actualConfigurationMap inActualConfigurationMap
+  !@uint outUsedROMsize
 :
 #-------------------------------- First pass: build label map
   @midrange_symbolTable symbolTable [emptyMap] ;
@@ -472,6 +473,7 @@ routine build_midrange_ipic_binary_code
     [mInstruction enterLabelAtAddress !?symbolTable !?currentAddress] ;
   end foreach ;
   @uint lastAddressForFirstPass := currentAddress ;
+  outUsedROMsize := currentAddress ;
 #-------------------------------- Second pass: generate code
   currentAddress := 0 ;
   setEmitAddress !0 ;

@@ -16,6 +16,7 @@ map @registerTable {
 #----------------------------------------------------*
 
 map @ramBankTable {
+  @uint mFirstAddress ;
   @uint mFirstFreeAddress ; # Mutable
   @uint mLastAddressPlusOne ;
   @uintlist mMirrorOffsetList ;
