@@ -301,11 +301,12 @@ end routine ;
 routine emitRCALLinstruction
   ??@uint inRCALLinstructionAddress
   ??@uint inTargetAddress
-  ??@location inErrorLocation
+  ??@lstring inTargetLabel
 :
   @sint displacement := ([inTargetAddress sint] - 2S - [inRCALLinstructionAddress sint]) >> 1 ;
   if (displacement > 1023S) | (displacement < - 1024S) then
-    error inErrorLocation: "displacement too large (". [displacement  string] . ") for RCALL instruction (should be between -1024 and 1023)" ;
+    error inTargetLabel: "displacement too large (". [displacement  string]
+    . ") for RCALL instruction to '" . inTargetLabel . "' (should be between -1024 and 1023)" ;
   end if ;
 #  log displacement ;
   emitCode !0xD800 | [displacement & 0x07FFS uint] ;
@@ -328,7 +329,7 @@ override method @ipic_JSR.generateBinaryCodeAtAddress
     emitRCALLinstruction
       !ioAddress
       !targetAddress
-      ![mTargetLabel location]
+      !mTargetLabel
     ;
   when ipicAbsolute, absolute :
     emit_pic18_CALLinstruction !targetAddress ;
@@ -650,9 +651,10 @@ override method @ipic18_instruction_computed_retlw.generateBinaryCodeAtAddress
   ?!@uint ioAddress
 :
   @uint targetAddress ;
-  [inRoutineSymbolTable searchKey ![@lstring new !"_computed_goto_2" !here] ?targetAddress] ;
+  @lstring target [new !"_computed_goto_2" !mInstructionLocation] ;
+  [inRoutineSymbolTable searchKey !target ?targetAddress] ;
   if mUsesRCALL then
-    emitRCALLinstruction !ioAddress !targetAddress !mInstructionLocation ;
+    emitRCALLinstruction !ioAddress !targetAddress !target ;
   else
     emit_pic18_CALLinstruction ! targetAddress ;
   end if ;
@@ -667,10 +669,11 @@ override method @ipic18_instruction_computed_bra.generateBinaryCodeAtAddress
   ??@ipic18_symbolTable inRoutineSymbolTable
   ?!@uint ioAddress
 :
+  @lstring target [new !"_computed_goto_2" !mInstructionLocation] ;
   @uint targetAddress ;
-  [inRoutineSymbolTable searchKey ![@lstring new !"_computed_goto_2" !here] ?targetAddress] ;
+  [inRoutineSymbolTable searchKey !target ?targetAddress] ;
   if mUsesRCALL then
-    emitRCALLinstruction !ioAddress !targetAddress !mInstructionLocation ;
+    emitRCALLinstruction !ioAddress !targetAddress !target ;
   else
     emit_pic18_CALLinstruction ! targetAddress ;
   end if ;
@@ -697,10 +700,11 @@ override method @ipic18_instruction_computed_goto.generateBinaryCodeAtAddress
   ??@ipic18_symbolTable inRoutineSymbolTable
   ?!@uint ioAddress
 :
+  @lstring target [new !"_computed_goto_4" !mInstructionLocation] ;
   @uint targetAddress ;
-  [inRoutineSymbolTable searchKey ![@lstring new !"_computed_goto_4" !here] ?targetAddress] ;
+  [inRoutineSymbolTable searchKey !target ?targetAddress] ;
   if mUsesRCALL then
-    emitRCALLinstruction !ioAddress !targetAddress !mInstructionLocation ;
+    emitRCALLinstruction !ioAddress !targetAddress !target ;
   else
     emit_pic18_CALLinstruction !targetAddress ;
   end if ;
@@ -719,11 +723,12 @@ override method @ipic18_instruction_computed_rcall.generateBinaryCodeAtAddress
   ??@ipic18_symbolTable inRoutineSymbolTable
   ?!@uint ioAddress
 :
+  @lstring target [new !"_computed_goto_4" !mInstructionLocation] ;
   @uint targetAddress ;
-  [inRoutineSymbolTable searchKey ![@lstring new !"_computed_goto_4" !here] ?targetAddress] ;
+  [inRoutineSymbolTable searchKey !target ?targetAddress] ;
   @uint currentInstructionAddress ;
   if mUsesRCALL then
-    emitRCALLinstruction !ioAddress !targetAddress !mInstructionLocation ;
+    emitRCALLinstruction !ioAddress !targetAddress !target ;
     currentInstructionAddress := ioAddress + 2 ;
   else
     emit_pic18_CALLinstruction !targetAddress ;
@@ -735,7 +740,7 @@ override method @ipic18_instruction_computed_rcall.generateBinaryCodeAtAddress
     index ++ ;
     @uint requiredSelectedBank ;
     [inRoutineSymbolTable searchKey !mValue ?targetAddress] ;
-    emitRCALLinstruction !currentInstructionAddress !targetAddress ![mValue location] ;
+    emitRCALLinstruction !currentInstructionAddress !targetAddress !mValue ;
     currentInstructionAddress := currentInstructionAddress + 2 ;
     if index < [mTargetLabels length] then
       emitBRAinstruction !currentInstructionAddress !nextInstructionAddress ![mValue location] ;
