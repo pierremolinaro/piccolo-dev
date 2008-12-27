@@ -447,9 +447,40 @@ override method @ipic18_instruction_computed_goto.checkRelativeBranch
       [!?ioGeneratedInstructionList setMInstructionAtIndex !instruction !inIndex] ;
     end if ;
   end if ;
-  foreach mTargetLabels do
-    [inRoutineSymbolTable searchKey !mValue ?*] ;
-  end foreach ;
+#  foreach mTargetLabels do
+#    [inRoutineSymbolTable searchKey !mValue ?*] ;
+#  end foreach ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @ipic18_instruction_computed_rcall.checkRelativeBranch
+  ??@ipic18_symbolTableForConvertingRelatives inRoutineSymbolTable
+  ?!@uint ioAddress
+  ?!@bool ioRelativeBranchOverflow
+  ?!@ipic18_instructionList ioGeneratedInstructionList
+  ??@uint inIndex
+  ?!@string ioListFileContents
+:
+  if mUsesRCALL then
+    @uint targetAddress ;
+    [inRoutineSymbolTable searchKey ![@lstring new !"_computed_goto_4" !here] ?targetAddress] ;
+    @sint displacement := ([targetAddress sint] - 2S - [ioAddress sint]) >> 1 ;
+    if (displacement > 1023S) | (displacement < - 1024S) then
+      ioRelativeBranchOverflow := true ;
+      ioListFileContents .= "  line " . [inIndex string] . ":  COMPUTED RCALL with RCALL overflow, converted to COMPUTED RCALL with CALL\n" ;
+      @ipic_actualInstruction instruction := [@ipic18_instruction_computed_rcall new
+        !mInstructionLocation
+        !mTargetLabels
+        !mEndOfInstructionLabel
+        !false
+      ] ;
+      [!?ioGeneratedInstructionList setMInstructionAtIndex !instruction !inIndex] ;
+    end if ;
+  end if ;
+#  foreach mTargetLabels do
+#    [inRoutineSymbolTable searchKey !mValue ?*] ;
+#  end foreach ;
 end method ;
 
 #----------------------------------------------------------------------------*
