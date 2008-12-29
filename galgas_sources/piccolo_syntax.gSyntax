@@ -566,19 +566,35 @@ rule <condition_factor>
     $.$ ;
     @bitNumberExpression bitNumberExpression ;
     <bit_number_parsing> ?bitNumberExpression ;
-    $identifier$ ? @lstring conditionString ;
-    @string condition := [[conditionString string] uppercaseString] ;
     @bool BTFSSinstruction ;
-    if condition == "Z" then
-      BTFSSinstruction := true ;
-    elsif condition == "NZ" then
+    select
       BTFSSinstruction := false ;
-    else
-      error conditionString: "invalid '" . conditionString
-      . "' condition; valid ones are: 'z' and 'nz'"
-      -> BTFSSinstruction
-      ;
-    end if ;
+    or
+      $identifier$ ? @lstring conditionString ;
+      @string condition := [[conditionString string] uppercaseString] ;
+      if condition == "Z" then
+        BTFSSinstruction := true ;
+        @string s := "! " . [[registerExpression mRegisterName] string] ;
+        if [[registerExpression mOffset] uint] > 0 then
+          s .= " [" . [[[registerExpression mOffset] uint] string] . "]" ;
+        end if ;
+        s .= "." ; [bitNumberExpression display !?s] ;
+        warning conditionString: "In Piccolo 1.2.0 and later, this construction is deprecated; use '" . s . "' instead" ; 
+      elsif condition == "NZ" then
+        BTFSSinstruction := false ;
+        @string s := [[registerExpression mRegisterName] string] ;
+        if [[registerExpression mOffset] uint] > 0 then
+          s .= " [" . [[[registerExpression mOffset] uint] string] . "]" ;
+        end if ;
+        s .= "." ; [bitNumberExpression display !?s] ;
+        warning conditionString: "In Piccolo 1.2.0 and later, this construction is deprecated; use '" . s . "' instead" ; 
+      else
+        error conditionString: "invalid '" . conditionString
+        . "' condition; valid ones are: 'z' and 'nz'"
+        -> BTFSSinstruction
+        ;
+      end if ;
+    end select ;
     outCondition := [@bitTest_in_structured_if_condition new
       !registerExpression
       !bitNumberExpression
@@ -811,20 +827,46 @@ rule <structured_instruction>
     $if$ ;
     @location instructionLocation := here ;
     @registerExpression registerName ;
-    <register_parsing> ?registerName ;
-    $.$ ;
     @bitNumberExpression bitNumber ;
-    <bit_number_parsing> ?bitNumber ;
     @bool skipIfSet ;
-    $identifier$ ? @lstring conditionString ;
-    @string condition := [[conditionString string] uppercaseString] ;
-    if condition == "Z" then
-      skipIfSet := true ;
-    elsif condition == "NZ" then
-      skipIfSet := false ;
-    else
-      error conditionString:"invalid '" . condition . "' condition; it should be 'z' or 'nz'" -> skipIfSet ;
-    end if ;
+    select
+      $!$ ;
+      <register_parsing> ?registerName ;
+      $.$ ;
+      <bit_number_parsing> ?bitNumber ;
+       skipIfSet := true ;
+    or
+      <register_parsing> ?registerName ;
+      $.$ ;
+      <bit_number_parsing> ?bitNumber ;
+      select
+        skipIfSet := false ;
+      or
+        $identifier$ ? @lstring conditionString ;
+        @string condition := [[conditionString string] uppercaseString] ;
+        if condition == "Z" then
+          skipIfSet := true ;
+          @string s := "if ! " . [registerName mRegisterName] ;
+          if [[registerName mOffset] uint] > 0 then
+            s .= " [" . [[[registerName mOffset] uint] string] . "]" ;
+          end if ;
+          s .= "." ; [bitNumber display !?s] ;
+          s .= " :" ;
+          warning conditionString: "In Piccolo 1.2.0 and later, this construction is deprecated; use '" . s . "' instead" ; 
+        elsif condition == "NZ" then
+          skipIfSet := false ;
+          @string s := "if " . [registerName mRegisterName] ;
+          if [[registerName mOffset] uint] > 0 then
+            s .= " [" . [[[registerName mOffset] uint] string] . "]" ;
+          end if ;
+          s .= "." ; [bitNumber display !?s] ;
+          s .= " :" ;
+          warning conditionString: "In Piccolo 1.2.0 and later, this construction is deprecated; use '" . s . "' instead" ; 
+        else
+          error conditionString:"invalid '" . condition . "' condition; it should be 'z' or 'nz'" -> skipIfSet ;
+        end if ;
+      end select ;
+    end select ;
     $:$ ;
     @piccolo_instruction instruction ;
     <simple_instruction> ?instruction ;

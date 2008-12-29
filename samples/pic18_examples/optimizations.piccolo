@@ -5,9 +5,9 @@
 pic18 optimizations "18F2580" :
 
 routine optimize1 {
-  if (STATUS.Z NZ)
+  if (STATUS.Z)
     movlw 1
-  elsif (STATUS.OV Z)
+  elsif (! STATUS.OV)
     movlw 2
   else
     movlw 3
@@ -15,8 +15,8 @@ routine optimize1 {
 }
 
 routine optimize2 {
-  if (STATUS.Z NZ)
-    if (STATUS.OV Z)
+  if (STATUS.Z)
+    if (! STATUS.OV)
       movlw 1
     else
       movlw 2
