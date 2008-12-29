@@ -11,8 +11,8 @@ midrange if_semi_colon "16F690" :
 #----------------------------------------------------------------------------*
 
 noreturn routine main bank:requires 0 {
-  if STATUS.C Z : BSF PORTA.1
-  if STATUS.C NZ : BSF PORTA.1
+  if ! STATUS.C : BSF PORTA.1
+  if   STATUS.C : BSF PORTA.1
   if DECF FSR NZ : BSF PORTA.1
   if INCF FSR NZ : BSF PORTA.1
   if DECF FSR, W NZ : BSF PORTA.1

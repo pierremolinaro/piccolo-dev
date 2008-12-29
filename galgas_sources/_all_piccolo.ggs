@@ -7,8 +7,8 @@ project
   semantics "ipic_generic.gSemantics" : makefile, xcode ;
 
   semantics "pic18_metamodel.gSemantics" : makefile, xcode ;
-  syntax "piccolo_syntax.gSyntax" : makefile, xcode ;
-  grammar "piccolo_grammar.gGrammar" : makefile, xcode ;
+  syntax    "piccolo_syntax.gSyntax" : makefile, xcode ;
+  grammar   "piccolo_grammar.gGrammar" : makefile, xcode ;
   semantics "piccolo_config.gSemantics" : makefile, xcode ;
 
   semantics "ipic18_metamodel.gSemantics" : makefile, xcode ;
@@ -21,7 +21,7 @@ project
 
   semantics "midrange_metamodel.gSemantics" : makefile, xcode ;
   semantics "midrange_ipic_metamodel.gSemantics" : makefile, xcode ;
-  syntax "midrange_syntax.gSyntax" : makefile, xcode ;
+  syntax    "midrange_syntax.gSyntax" : makefile, xcode ;
   semantics "midrange_checkingAndBuildIPIC.gSemantics" : makefile, xcode ;
   semantics "midrange_optimizations.gSemantics" : makefile, xcode ;
   semantics "midrange_compute_JSR_JUMP.gSemantics" : makefile, xcode ;

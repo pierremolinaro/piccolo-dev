@@ -355,21 +355,47 @@ rule <midrange_structured_instruction>
   or
     $if$ ;
     @location instructionLocation := here ;
-    @registerExpression registerName ;
-    <register_parsing> ?registerName ;
-    $.$ ;
-    @bitNumberExpression bitNumber ;
-    <bit_number_parsing> ?bitNumber ;
+    @registerExpression registerExpression ;
+    @bitNumberExpression bitNumberExpression ;
     @bool skipIfSet ;
-    $identifier$ ? @lstring conditionString ;
-    @string condition := [[conditionString string] uppercaseString] ;
-    if condition == "Z" then
+    select
+      $!$ ;
+      <register_parsing> ? registerExpression ;
+      $.$ ;
+      <bit_number_parsing> ? bitNumberExpression ;
       skipIfSet := true ;
-    elsif condition == "NZ" then
-      skipIfSet := false ;
-    else
-      error conditionString:"invalid '" . condition . "' condition; it should be 'z' or 'nz'" -> skipIfSet ;
-    end if ;
+    or
+      <register_parsing> ? registerExpression ;
+      $.$ ;
+      <bit_number_parsing> ? bitNumberExpression ;
+      select
+        skipIfSet := false ;
+      or
+        $identifier$ ? @lstring conditionString ;
+        @string condition := [[conditionString string] uppercaseString] ;
+        if condition == "Z" then
+          skipIfSet := true ;
+          @string s := "if ! " . [[registerExpression mRegisterName] string] ;
+          if [[registerExpression mOffset] uint] > 0 then
+            s .= " [" . [[[registerExpression mOffset] uint] string] . "]" ;
+          end if ;
+          s .= "." ; [bitNumberExpression display !?s] ;
+          s .= " :" ;
+          warning conditionString: "In Piccolo 1.2.0 and later, this construction is deprecated; use '" . s . "' instead" ; 
+        elsif condition == "NZ" then
+          skipIfSet := false ;
+          @string s := "if " . [[registerExpression mRegisterName] string] ;
+          if [[registerExpression mOffset] uint] > 0 then
+            s .= " [" . [[[registerExpression mOffset] uint] string] . "]" ;
+          end if ;
+          s .= "." ; [bitNumberExpression display !?s] ;
+          s .= " :" ;
+          warning conditionString: "In Piccolo 1.2.0 and later, this construction is deprecated; use '" . s . "' instead" ; 
+        else
+          error conditionString:"invalid '" . condition . "' condition; it should be 'z' or 'nz'" -> skipIfSet ;
+        end if ;
+      end select ;
+    end select ;
     $:$ ;
     @midrange_instruction instruction ;
     <midrange_simple_instruction> ?instruction ;
@@ -377,8 +403,8 @@ rule <midrange_structured_instruction>
       !instructionLocation
       !instruction
       !skipIfSet
-      !registerName
-      !bitNumber
+      !registerExpression
+      !bitNumberExpression
     ] ;
   or
     $if$ ;
@@ -389,8 +415,8 @@ rule <midrange_structured_instruction>
     or
       $incf$ ; increment := true ;
     end select ;
-    @registerExpression registerName ;
-    <register_parsing> ?registerName ;
+    @registerExpression registerExpression ;
+    <register_parsing> ? registerExpression ;
     @bool w_isTarget ;
     select
       w_isTarget := false ;
@@ -409,7 +435,7 @@ rule <midrange_structured_instruction>
       !instructionLocation
       !instruction
       !increment
-      !registerName
+      !registerExpression
       !w_isTarget
     ] ;
   or
@@ -565,14 +591,14 @@ rule <midrange_simple_instruction> !@midrange_instruction outInstruction :
       baseCode := [@midrange_instruction_FD_base_code XORWF] ;
     end select ;
     @location instructionLocation := here ;
-    @registerExpression registerName ;
-    <register_parsing> ?registerName ;
+    @registerExpression registerExpression ;
+    <register_parsing> ? registerExpression ;
     @bool W_isDestination ;
     <optional_w_as_dest> ?W_isDestination ;
     outInstruction := [@midrange_instruction_FD new
       !instructionLocation
       !baseCode
-      !registerName
+      !registerExpression
       !W_isDestination
     ] ;
   or
@@ -585,12 +611,12 @@ rule <midrange_simple_instruction> !@midrange_instruction outInstruction :
       FAinstruction := [@midrange_F_instruction_base_code MOVWF] ;
     end select ;
     @location instructionLocation := here ;
-    @registerExpression registerName ;
-    <register_parsing> ?registerName ;
+    @registerExpression registerExpression ;
+    <register_parsing> ? registerExpression ;
     outInstruction := [@midrange_instruction_F new
       !instructionLocation
       !FAinstruction
-      !registerName
+      !registerExpression
     ] ;
   or
     @midrange_bit_oriented_op bitOrientedOp ;
@@ -600,16 +626,16 @@ rule <midrange_simple_instruction> !@midrange_instruction outInstruction :
       $bsf$ ; bitOrientedOp := [@midrange_bit_oriented_op BSF] ;
     end select ;
     @location instructionLocation := here ;
-    @registerExpression registerName ;
-    <register_parsing> ?registerName ;
+    @registerExpression registerExpression ;
+    <register_parsing> ? registerExpression ;
     $.$ ;
-    @bitNumberExpression bitNumber ;
-    <bit_number_parsing> ?bitNumber ;
+    @bitNumberExpression bitNumberExpression ;
+    <bit_number_parsing> ? bitNumberExpression ;
     outInstruction := [@midrange_instruction_FB new
       !instructionLocation
       !bitOrientedOp
-      !registerName
-      !bitNumber
+      !registerExpression
+      !bitNumberExpression
     ] ;
   or
     $goto$ ;
@@ -725,23 +751,39 @@ rule <midrange_condition_factor>
     ] ;
   or
     @registerExpression registerExpression ;
+    @bitNumberExpression bitNumberExpression ;
+    @bool BTFSSinstruction ;
     <register_parsing> ? registerExpression ;
     $.$ ;
-    @bitNumberExpression bitNumberExpression ;
     <bit_number_parsing> ?bitNumberExpression ;
-    $identifier$ ? @lstring conditionString ;
-    @string condition := [[conditionString string] uppercaseString] ;
-    @bool BTFSSinstruction ;
-    if condition == "Z" then
-      BTFSSinstruction := true ;
-    elsif condition == "NZ" then
+    select
       BTFSSinstruction := false ;
-    else
-      error conditionString: "invalid '" . conditionString
-      . "' condition; valid ones are: 'z' and 'nz'"
-      -> BTFSSinstruction
-      ;
-    end if ;
+    or
+      $identifier$ ? @lstring conditionString ;
+      @string condition := [[conditionString string] uppercaseString] ;
+      if condition == "Z" then
+        BTFSSinstruction := true ;
+        @string s := "! " . [[registerExpression mRegisterName] string] ;
+        if [[registerExpression mOffset] uint] > 0 then
+          s .= " [" . [[[registerExpression mOffset] uint] string] . "]" ;
+        end if ;
+        s .= "." ; [bitNumberExpression display !?s] ;
+        warning conditionString: "In Piccolo 1.2.0 and later, this construction is deprecated; use '" . s . "' instead" ; 
+      elsif condition == "NZ" then
+        BTFSSinstruction := false ;
+        @string s := [[registerExpression mRegisterName] string] ;
+        if [[registerExpression mOffset] uint] > 0 then
+          s .= " [" . [[[registerExpression mOffset] uint] string] . "]" ;
+        end if ;
+        s .= "." ; [bitNumberExpression display !?s] ;
+        warning conditionString: "In Piccolo 1.2.0 and later, this construction is deprecated; use '" . s . "' instead" ; 
+      else
+        error conditionString: "invalid '" . conditionString
+        . "' condition; valid ones are: 'z' and 'nz'"
+        -> BTFSSinstruction
+        ;
+      end if ;
+    end select ;
     outCondition := [@midrange_bitTest_in_structured_if_condition new
       !registerExpression
       !bitNumberExpression
