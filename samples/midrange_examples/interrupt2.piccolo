@@ -35,7 +35,7 @@ ram gprnobnk {
 #----------------------------------------------------------------------------*
 
 interrupt contextsave itSave0, itsave1 {
-  if (STATUS.C NZ) 
+  if (STATUS.C) 
     mnop 2
   end
 }

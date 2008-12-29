@@ -12,7 +12,7 @@ midrange structured_if "16F690" :
 
 noreturn routine main bank:requires 0 {
 #--- This instruction is opimitized to "if STATUS.C Z : BSF PORTA.1"
-  if (STATUS.C Z)
+  if (! STATUS.C)
     BSF PORTA.1
   end
 #--- basic structured if
