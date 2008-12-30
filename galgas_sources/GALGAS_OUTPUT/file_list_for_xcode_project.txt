@@ -5,6 +5,7 @@ generic_metamodel
 ipic_generic
 pic18_metamodel
 piccolo_syntax
+pic18_bootloader_syntax
 piccolo_grammar
 piccolo_config
 ipic18_metamodel

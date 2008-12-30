@@ -24,6 +24,7 @@ list controlKeyWordList error message "the '%K' keyword" style keywordStyle :
   "banksave",
   "banksel",
   "baseline",
+  "bootloader",
   "byte",
   "common",
   "computed",
@@ -38,6 +39,7 @@ list controlKeyWordList error message "the '%K' keyword" style keywordStyle :
   "fast",
   "forever",
   "if",
+  "implements",
   "interrupt",
   "mark",
   "midrange",
@@ -48,8 +50,10 @@ list controlKeyWordList error message "the '%K' keyword" style keywordStyle :
   "preserved",
   "ram",
   "requires",
+  "rom",
   "ensures",
   "routine",
+  "uses",
   "w",
   "while"
  ;

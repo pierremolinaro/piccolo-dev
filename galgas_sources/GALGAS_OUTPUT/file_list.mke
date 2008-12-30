@@ -49,6 +49,7 @@ SOURCES += generic_metamodel.cpp
 SOURCES += ipic_generic.cpp
 SOURCES += pic18_metamodel.cpp
 SOURCES += piccolo_syntax.cpp
+SOURCES += pic18_bootloader_syntax.cpp
 SOURCES += piccolo_grammar.cpp
 SOURCES += piccolo_config.cpp
 SOURCES += ipic18_metamodel.cpp
