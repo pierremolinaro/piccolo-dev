@@ -1,0 +1,139 @@
+syntax pic18_bootloader_syntax :
+import lexique piccolo_lexique in "piccolo_lexique.gLexique" ;
+import semantics pic18_metamodel in "pic18_metamodel.gSemantics" ;
+import semantics pic18_semantics in "pic18_semantics.gSemantics" ;
+
+#----------------------------------------------------*
+
+nonterminal <ram_definition>
+  ?!@ramDefinitionList ioRamDefinitionList
+;
+
+nonterminal <start_symbol> ;
+
+nonterminal <routine_declaration>
+  ?!@routineDefinitionList ioRoutineDefinitionList
+;
+
+#----------------------------------------------------*
+
+rule <start_symbol> :
+  $pic18$ ;
+  $bootloader$ ;
+  $identifier$ ? @lstring bootloaderName ;
+  $literal_string$ ? @lstring deviceName ;
+#--- First part
+  ${$ ;
+  @routineDefinitionList bootloaderRoutineDefinitionList [emptyList] ;
+  repeat
+  while
+    <routine_declaration> !?bootloaderRoutineDefinitionList ;
+  end repeat ;
+  $}$ ;
+#--- Second part
+  ${$ ;
+  @routineDefinitionList userRoutineDefinitionList [emptyList] ;
+  repeat
+  while
+    <routine_declaration> !?userRoutineDefinitionList ;
+  end repeat ;
+  $}$ ;
+#--- Third part
+  @ramDefinitionList ramDefinitionList [emptyList] ;
+  ${$ ;
+  repeat
+  while
+    <ram_definition> !?ramDefinitionList ;
+  end repeat ;
+  $}$ ;
+#--- Semantic analysis
+#  if [@uint errorCount] == 0 then
+#    @piccoloModel piccoloModel [new
+#      !programName
+#      !deviceName
+#      !configDefinitionList
+#      !acceptDefaultConfiguration
+#      !ramDefinitionList
+#      !interruptDefinitionList
+#      !constantDefinitionList
+#      !routineDefinitionList
+#      !needsComputedGoto2
+#      !needsComputedGoto4
+#      !here
+#    ] ;
+#    pic18_analyze !piccoloModel ![@string stringWithSourceFilePath] ;
+#  else
+#    @string hexDestinationFile := [[@string stringWithSourceFilePath] stringByDeletingPathExtension] . ".hex" ;
+#    if [hexDestinationFile fileExists] then
+#      [@string deleteFile !hexDestinationFile] ;
+#    end if ;
+#    @string asmDestinationFile := [[@string stringWithSourceFilePath] stringByDeletingPathExtension] . ".asm" ;
+#    if [asmDestinationFile fileExists] then
+#      [@string deleteFile !asmDestinationFile] ;
+#    end if ;
+#  end if ;
+end rule ;
+
+#----------------------------------------------------*
+
+rule <routine_declaration>
+  ?!@routineDefinitionList ioRoutineDefinitionList
+:
+  @bool noreturn ;
+  select
+    noreturn := false ;
+  or
+    $noreturn$ ;
+    noreturn := true ;
+  end select ;
+  $routine$ ;
+  $identifier$ ? @lstring routineName ;
+  @luint requiredBank ;
+  @luint returnedBank ;
+  @bool preservesBank ;
+  select
+    requiredBank := [@luint new ![@uint max] !here] ;
+    returnedBank := [@luint new ![@uint max] !here] ;
+    preservesBank := false ;
+  or
+    $bank$ ;
+    $:$ ;
+    select
+      $preserved$ ;
+      if noreturn then
+        error here: "a \"noreturn\" routine cannot accept \"bank:preserved\" setting" ;
+      end if ;
+      preservesBank := true ;
+      requiredBank := [@luint new ![@uint max] !here] ;
+      returnedBank := [@luint new ![@uint max] !here] ;
+    or
+      $requires$ ;
+      $integer$ ? requiredBank ;
+      preservesBank := false ;
+      select
+        returnedBank := [@luint new ![@uint max] !here] ;
+      or
+        $ensures$ ;
+        $integer$ ? returnedBank ;
+        if noreturn then
+          error here: "a \"noreturn\" routine cannot accept \"bank:returned\" setting" ;
+        end if ;
+      end select ;
+    or
+      $ensures$ ;
+      $integer$ ? returnedBank ;
+      if noreturn then
+        error here: "a \"noreturn\" routine cannot accept \"bank:returned\" setting" ;
+      end if ;
+      preservesBank := false ;
+      requiredBank := [@luint new ![@uint max] !here] ;
+    end select ;
+  end select ;
+#---
+  @instructionList instructionList [emptyList] ;
+  ioRoutineDefinitionList += !routineName !requiredBank !returnedBank !preservesBank !noreturn !instructionList !here ;
+end rule ;
+
+#----------------------------------------------------*
+
+end syntax ;

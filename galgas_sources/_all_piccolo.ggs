@@ -8,6 +8,7 @@ project
 
   semantics "pic18_metamodel.gSemantics" : makefile, xcode ;
   syntax    "piccolo_syntax.gSyntax" : makefile, xcode ;
+  syntax    "pic18_bootloader_syntax.gSyntax" : makefile, xcode ;
   grammar   "piccolo_grammar.gGrammar" : makefile, xcode ;
   semantics "piccolo_config.gSemantics" : makefile, xcode ;
 
