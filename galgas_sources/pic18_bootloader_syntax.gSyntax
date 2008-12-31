@@ -19,6 +19,8 @@ label importBootloaderSpecification
   !@registerTable outRegisterTable
   !@bootloaderReservedRAMmap outBootloaderReservedRAMmap
   !@routineDeclarationList outBootloaderRoutineDeclarationList
+  !@routineDeclarationList outUserRoutineDeclarationList
+  !@luint outBootloaderReservedROMsize
 ;
 
 nonterminal <routine_declaration> ?!@routineDeclarationList ioRoutineDefinitionList ;
@@ -171,11 +173,11 @@ label importBootloaderSpecification
   !@registerTable outRegisterTable
   !@bootloaderReservedRAMmap outBootloaderReservedRAMmap
   !@routineDeclarationList outBootloaderRoutineDeclarationList
+  !@routineDeclarationList outUserRoutineDeclarationList
+  !@luint outBootloaderReservedROMsize
 :
   @lstring bootloaderName ;
   @lstring deviceName ;
-  @luint reservedRomSize ;
-  @routineDeclarationList userRoutineDeclarationList ;
   @ramDefinitionList sharedRamDefinitionList ;
   @string listFileContents ;
   <parse_bootloader>
@@ -183,8 +185,8 @@ label importBootloaderSpecification
     ?deviceName
     ?outBootloaderRoutineDeclarationList
     ?outBootloaderReservedRAMmap
-    ?reservedRomSize
-    ?userRoutineDeclarationList
+    ?outBootloaderReservedROMsize
+    ?outUserRoutineDeclarationList
     ?sharedRamDefinitionList
     ?listFileContents
     ?outPiccoloDeviceModel

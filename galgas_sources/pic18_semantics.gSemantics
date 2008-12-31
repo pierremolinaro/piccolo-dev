@@ -30,6 +30,8 @@ routine pic18_analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName 
   @ramBankTable ramBank ;
   @bootloaderReservedRAMmap bootloaderReservedRAMmap ; # Used only for bootloader implementation
   @routineDeclarationList bootloaderRoutineDeclarationList ; # Empty for regular program
+  @routineDeclarationList userRoutineDeclarationList ; # Empty for regular program
+  @luint bootloaderReservedROMsize ; # Used only for bootloader implementation or user program implementation, zero for regular program
   @registerTable registerTable ;
   switch [inPiccoloModel mProgramKind]
   when regularProgram : 
@@ -44,6 +46,8 @@ routine pic18_analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName 
     bootloaderReservedRAMmap := [@bootloaderReservedRAMmap emptyMap] ;
     registerTable := [piccoloDeviceModel mRegisterTable] ;
     bootloaderRoutineDeclarationList := [@routineDeclarationList emptyList] ;
+    userRoutineDeclarationList := [@routineDeclarationList emptyList] ;
+    bootloaderReservedROMsize := [@luint new !0 !here] ;
   when bootloaderProgram :
     grammar piccolo_grammar label importBootloaderSpecification in [inPiccoloModel mDeviceNameOrBootLoaderReference]
       ?piccoloDeviceModel
@@ -52,6 +56,8 @@ routine pic18_analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName 
       ?registerTable
       ?bootloaderReservedRAMmap
       ?bootloaderRoutineDeclarationList
+      ?userRoutineDeclarationList
+      ?bootloaderReservedROMsize
     ;
    #--- Reset first free addresses for all banks
     foreach ramBank do
@@ -125,6 +131,8 @@ routine pic18_analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName 
   @ipic18_instructionList generatedInstructionList ;
   build_ipic18_assembly_instruction_list
     !bootloaderRoutineDeclarationList # Empty for regular program
+    !userRoutineDeclarationList # Empty for regular program
+    !bootloaderReservedROMsize
     !accessBankSplitOffset
     !registerTable
     !inPiccoloModel
