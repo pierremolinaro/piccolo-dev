@@ -86,11 +86,10 @@ routine analyze_ram_sections
   ?!@ramBankTable ioRamBankTable
   ??@registerTable inSpecialRegisterTable
   ?!@string ioListFileContents
-  !@registerTable outAllRegisters :
-  outAllRegisters := inSpecialRegisterTable ;
+  ?!@registerTable ioAllRegisters :
   foreach inRamDefinitionList do
     foreach mDeclaration do
-      [mDeclaration handleDeclaration !?ioRamBankTable !?outAllRegisters !mBankName] ;
+      [mDeclaration handleDeclaration !?ioRamBankTable !?ioAllRegisters !mBankName] ;
     end foreach ;
   end foreach ;
   if [option piccolo_options.ouputListingFile] then
@@ -98,7 +97,7 @@ routine analyze_ram_sections
     ioListFileContents .= "*" . [inListingTitle stringByLeftAndRightPadding !77 !' '] . "*\n" ;
     ioListFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n\n" ;
     ioListFileContents .= ["Variable" stringByLeftPadding !40 !' '] . " Address\n" ;
-    foreach outAllRegisters do
+    foreach ioAllRegisters do
       if not [inSpecialRegisterTable hasKey ![key string]] then
         ioListFileContents .= [[key string] stringByLeftPadding !40 !' '] . " " ;
         foreach mRegisterAddressList

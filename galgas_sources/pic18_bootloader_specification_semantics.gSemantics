@@ -13,6 +13,10 @@ routine pic18BootloaderSpecificationAnalysis
   ??@routineDeclarationList inUserRoutineDeclarationList
   ??@ramDefinitionList inSharedRamDefinitionList
   !@string outListFileContents
+  !@piccoloDeviceModel outPiccoloDeviceModel
+  !@uint outAccessBankSplitOffset
+  !@ramBankTable outRamBank
+  !@registerTable outRegisterTable
 :
 #-------------------------------- Check source file name
   @string sourceFileBaseName := [[inSourceFileName lastPathComponent] stringByDeletingPathExtension] ;
@@ -22,40 +26,38 @@ routine pic18BootloaderSpecificationAnalysis
   end if ;
   outListFileContents := "" ;
 #-------------------------------- Analyze Device
-  @piccoloDeviceModel piccoloDeviceModel ;
-  parseDeviceDefinition !inDeviceName ?piccoloDeviceModel ;
-  @uint accessBankSplitOffset ;
-  switch [piccoloDeviceModel mProcessorType]
-    when pic18_60 : accessBankSplitOffset := 0x60 ;
-    when pic18_80 : accessBankSplitOffset := 0x80 ;
-    when midrange : error inDeviceName: "a midrange device is not accepted here" -> accessBankSplitOffset ;
-    when baseline : error inDeviceName: "a baseline device is not accepted here" -> accessBankSplitOffset ;
+  parseDeviceDefinition !inDeviceName ? outPiccoloDeviceModel ;
+  switch [outPiccoloDeviceModel mProcessorType]
+    when pic18_60 : outAccessBankSplitOffset := 0x60 ;
+    when pic18_80 : outAccessBankSplitOffset := 0x80 ;
+    when midrange : error inDeviceName: "a midrange device is not accepted here" -> outAccessBankSplitOffset ;
+    when baseline : error inDeviceName: "a baseline device is not accepted here" -> outAccessBankSplitOffset ;
   end switch ;
 #-------------------------------- Check reserved ROM size < microcontroller ROM size
   outListFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n" ;
   outListFileContents .= "*" . ["BOOTLOADER FOOTPRINT" stringByLeftAndRightPadding !77 !' '] . "*\n" ;
   outListFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n\n" ;
-  if [inReservedRomSize uint] >= [[piccoloDeviceModel mRomSize] uint] then
+  if [inReservedRomSize uint] >= [[outPiccoloDeviceModel mRomSize] uint] then
     error inReservedRomSize: "reserved size for bootloader ("
     . [[inReservedRomSize uint] string] . " bytes) is greater than ROM size ("
-    . [[[piccoloDeviceModel mRomSize] uint] string] . " bytes) of "
+    . [[[outPiccoloDeviceModel mRomSize] uint] string] . " bytes) of "
     . inDeviceName . " micro controller" ; 
   end if ;
   outListFileContents .= "ROM size : " . [[inReservedRomSize uint] string] . " bytes.\n\n" ;
 #-------------------------------- Check reserved RAM size <= microcontroller RAM size (in every bank)
-  @ramBankTable ramBank := [piccoloDeviceModel mRamBankTable] ;
+  outRamBank := [outPiccoloDeviceModel mRamBankTable] ;
   foreach inBootloaderReservedRAMmap do
     @uint firstAddress ;
     @uint firstFreeAddress ; # Mutable
     @uint lastAddressPlusOne ;
     @uintlist mirrorOffsetList ;
-    [ramBank searchKey !key ?firstAddress ?firstFreeAddress ?lastAddressPlusOne ?mirrorOffsetList] ;
+    [outRamBank searchKey !key ?firstAddress ?firstFreeAddress ?lastAddressPlusOne ?mirrorOffsetList] ;
     firstFreeAddress := firstFreeAddress + [mReservedSize uint] ;
     if (firstFreeAddress > lastAddressPlusOne) then
       error mReservedSize: "reserved size is greater than size of '" . key . "' bank ("
       . [lastAddressPlusOne - firstAddress string] . " bytes)" ;
     else
-      [!?ramBank setMFirstFreeAddressForKey !firstFreeAddress ![key string]] ;
+      [!?outRamBank setMFirstFreeAddressForKey !firstFreeAddress ![key string]] ;
       outListFileContents .= "'" . key . "' RAM size : " . [[mReservedSize uint] string] . " bytes (from "
       . [firstAddress hexString] . " to " . [firstFreeAddress - 1 hexString] . ").\n\n" ;
     end if ;
@@ -97,14 +99,14 @@ routine pic18BootloaderSpecificationAnalysis
   end foreach ;
   outListFileContents .= "\n" ;
 #-------------------------------- Check shared RAM
-  @registerTable registerTable ;
+  outRegisterTable := [outPiccoloDeviceModel mRegisterTable] ;
   analyze_ram_sections
     !"SHARED VARIABLES"
     !inSharedRamDefinitionList
-    !?ramBank
-    ![piccoloDeviceModel mRegisterTable]
+    !?outRamBank
+    ![outPiccoloDeviceModel mRegisterTable]
     !?outListFileContents
-    ?registerTable
+    !?outRegisterTable
   ;
   outListFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n\n" ;
 end routine ;

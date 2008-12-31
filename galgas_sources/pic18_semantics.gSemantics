@@ -6,7 +6,9 @@ import semantics ipic18_optimizations in "ipic18_optimizations.gSemantics" ;
 import semantics piccolo_config in "piccolo_config.gSemantics" ;
 import semantics ram_sections in "ram_sections.gSemantics" ;
 
-import option piccolo_options in "piccolo_options.gOption" ;
+import grammar piccolo_grammar in "piccolo_grammar.gGrammar" ;
+
+#import option piccolo_options in "piccolo_options.gOption" ;
 
 #----------------------------------------------------------------------------*
 #                                                                            *
@@ -24,13 +26,37 @@ routine pic18_analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName 
   @string listFileContents := "" ;
 #-------------------------------- Analyze Device
   @piccoloDeviceModel piccoloDeviceModel ;
-  parseDeviceDefinition ![inPiccoloModel mDeviceName] ?piccoloDeviceModel ;
   @uint accessBankSplitOffset ;
-  switch [piccoloDeviceModel mProcessorType]
-    when pic18_60 : accessBankSplitOffset := 0x60 ;
-    when pic18_80 : accessBankSplitOffset := 0x80 ;
-    when midrange : error [inPiccoloModel mDeviceName]: "a midrange device is not accepted here" -> accessBankSplitOffset ;
-    when baseline : error [inPiccoloModel mDeviceName]: "a baseline device is not accepted here" -> accessBankSplitOffset ;
+  @ramBankTable ramBank ;
+  @bootloaderReservedRAMmap bootloaderReservedRAMmap ; # Used only for bootloader implementation
+  @routineDeclarationList bootloaderRoutineDeclarationList ; # Empty for regular program
+  @registerTable registerTable ;
+  switch [inPiccoloModel mProgramKind]
+  when regularProgram : 
+    parseDeviceDefinition ![inPiccoloModel mDeviceNameOrBootLoaderReference] ?piccoloDeviceModel ;
+    switch [piccoloDeviceModel mProcessorType]
+      when pic18_60 : accessBankSplitOffset := 0x60 ;
+      when pic18_80 : accessBankSplitOffset := 0x80 ;
+      when midrange : error [inPiccoloModel mDeviceNameOrBootLoaderReference]: "a midrange device is not accepted here" -> accessBankSplitOffset ;
+      when baseline : error [inPiccoloModel mDeviceNameOrBootLoaderReference]: "a baseline device is not accepted here" -> accessBankSplitOffset ;
+    end switch ;
+    ramBank := [piccoloDeviceModel mRamBankTable] ;
+    bootloaderReservedRAMmap := [@bootloaderReservedRAMmap emptyMap] ;
+    registerTable := [piccoloDeviceModel mRegisterTable] ;
+    bootloaderRoutineDeclarationList := [@routineDeclarationList emptyList] ;
+  when bootloaderProgram :
+    grammar piccolo_grammar label importBootloaderSpecification in [inPiccoloModel mDeviceNameOrBootLoaderReference]
+      ?piccoloDeviceModel
+      ?accessBankSplitOffset
+      ?ramBank
+      ?registerTable
+      ?bootloaderReservedRAMmap
+      ?bootloaderRoutineDeclarationList
+    ;
+   #--- Reset first free addresses for all banks
+    foreach ramBank do
+      [!?ramBank setMFirstFreeAddressForKey !mFirstAddress ![key string]] ;
+    end foreach ;
   end switch ;
 #-------------------------------- Interrupts ?
   @bool hasHighInterrupt := false ;
@@ -67,19 +93,38 @@ routine pic18_analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName 
     ?actualConfigurationMap
   ;
 #-------------------------------- Ram definition
-  @ramBankTable ramBank := [piccoloDeviceModel mRamBankTable] ;
-  @registerTable registerTable ;
   analyze_ram_sections
     !"DECLARED VARIABLES"
     ![inPiccoloModel mRamDefinitionList]
     !?ramBank
     ![piccoloDeviceModel mRegisterTable]
     !?listFileContents
-    ?registerTable
+    !?registerTable
   ;
+#--- For bootloader implementation, check declared var footprint does not span beyond values declared in specification
+  if [inPiccoloModel mProgramKind] == [@programKind bootloaderProgram] then
+    foreach ramBank do
+      if [bootloaderReservedRAMmap hasKey ![key string]] then
+        @luint bootloaderReservedSize ;
+        [bootloaderReservedRAMmap searchKey !key ?bootloaderReservedSize] ;
+        if (mFirstFreeAddress - mFirstAddress) > [bootloaderReservedSize uint] then
+          error here: "for '" . key . "' RAM bank, the bootloader implementation declares "
+          . [mFirstFreeAddress - mFirstAddress string]
+          . " byte(s), althought the bootloader specification reserves "
+          . [[bootloaderReservedSize uint] string]
+          . " byte(s)" ;
+        end if ;
+      elsif mFirstFreeAddress > mFirstAddress then
+        error here: "for '" . key . "' RAM bank, the bootloader implementation declares "
+        . [mFirstFreeAddress - mFirstAddress string]
+        . " byte(s), althought the bootloader specification reserves no space" ;
+      end if ;
+    end foreach ;
+  end if ;
 #-------------------------------- Build IPIC Assembly Instruction List
   @ipic18_instructionList generatedInstructionList ;
   build_ipic18_assembly_instruction_list
+    !bootloaderRoutineDeclarationList # Empty for regular program
     !accessBankSplitOffset
     !registerTable
     !inPiccoloModel
@@ -146,13 +191,9 @@ routine pic18_analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName 
     end if ;
   else # There are errors : delete hex and asm files
     @string hexDestinationFile := [inSourceFileName stringByDeletingPathExtension] . ".hex" ;
-    if [hexDestinationFile fileExists] then
-      [@string deleteFile !hexDestinationFile] ;
-    end if ;
+    [@string deleteFileIfExists !hexDestinationFile] ;
     @string asmDestinationFile := [inSourceFileName stringByDeletingPathExtension] . ".asm" ;
-    if [asmDestinationFile fileExists] then
-      [@string deleteFile !asmDestinationFile] ;
-    end if ;
+    [@string deleteFileIfExists !asmDestinationFile] ;
   end if ;
 end routine ;
 

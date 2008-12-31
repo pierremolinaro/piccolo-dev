@@ -9,7 +9,6 @@ project
   semantics "pic18_metamodel.gSemantics" : makefile, xcode ;
   syntax    "piccolo_syntax.gSyntax" : makefile, xcode ;
   syntax    "pic18_bootloader_syntax.gSyntax" : makefile, xcode ;
-  grammar   "piccolo_grammar.gGrammar" : makefile, xcode ;
   semantics "piccolo_config.gSemantics" : makefile, xcode ;
 
   semantics "ipic18_metamodel.gSemantics" : makefile, xcode ;
@@ -30,6 +29,8 @@ project
   semantics "midrange_ipic_build_assembly_code.gSemantics" : makefile, xcode ;
   semantics "midrange_build_binary_code.gSemantics" : makefile, xcode ;
   semantics "midrange_semantics.gSemantics" : makefile, xcode ;
+
+  grammar   "piccolo_grammar.gGrammar" : makefile, xcode ;
 
   semantics "ram_sections.gSemantics" : makefile, xcode ;
 

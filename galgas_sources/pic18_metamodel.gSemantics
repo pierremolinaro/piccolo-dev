@@ -11,6 +11,7 @@ import semantics generic_metamodel in "generic_metamodel.gSemantics" ;
 map @bootloaderReservedRAMmap {
   @luint mReservedSize ;
   insert insertKey error message "the reserved size for the '%K' bank is already declared" ;
+  search searchKey error message "the reserved size for the '%K' bank is not declared" ;
 }
 
 #----------------------------------------------------*
@@ -650,9 +651,18 @@ list @routineDeclarationList {
 
 #----------------------------------------------------*
 
+enum @programKind {
+  constructor regularProgram ;
+  constructor bootloaderProgram ;
+}{
+}
+
+#----------------------------------------------------*
+
 struct @piccoloModel {
   @lstring mProgramName ;
-  @lstring mDeviceName ;
+  @programKind mProgramKind ;
+  @lstring mDeviceNameOrBootLoaderReference ;
   @configDefinitionList mConfigDefinitionList ;
   @bool mAcceptDefaultConfiguration ;
   @ramDefinitionList mRamDefinitionList ;

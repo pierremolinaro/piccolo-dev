@@ -1813,6 +1813,7 @@ end method ;
 #----------------------------------------------------*
 
 routine build_ipic18_assembly_instruction_list
+  ??@routineDeclarationList inBootloaderRoutineDeclarationList # Empty for regular program
   ??@uint inAccessBankSplitOffset
   ??@registerTable inRegisterTable
   ??@piccoloModel inPiccoloModel
@@ -1832,6 +1833,22 @@ routine build_ipic18_assembly_instruction_list
       error mReturnedBank:"the returned bank value should be lower or equal to 15" ;
     end if ;
     [!?routineMap insertKey !mRoutineName !mIsNoReturn ![mRequiredBank uint] ![mReturnedBank uint] !mPreservesBank] ;
+  end foreach ;
+#-------------------------------- Check bootloader routine definition
+# For a bootloader implementation, check all bootloader routines are declared
+  foreach inBootloaderRoutineDeclarationList do
+    if [routineMap hasKey ![mRoutineName string]] then
+      @bool isNoReturn ;
+      @uint requiredBank ;
+      @uint returnedBank ;
+      @bool preservesBank ;
+      [routineMap searchKey !mRoutineName ?isNoReturn ?requiredBank ?returnedBank ?preservesBank] ;
+      if (isNoReturn != mIsNoReturn) | (requiredBank != [mRequiredBank uint]) | (returnedBank != [mReturnedBank uint])  | (preservesBank != mPreservesBank) then
+        error [routineMap locationForKey ![mRoutineName string]] : "the '" . mRoutineName . "' routine header does not conform to its declaration in bootloader specification" ;
+      end if ;
+    else
+      error here:"The bootloader specification requires the implementation to define the '" . mRoutineName . "' routine" ;
+    end if ;
   end foreach ;
 #-------------------------------- Build constant map
   @constantMap constantMap [emptyMap] ;
@@ -1869,14 +1886,45 @@ routine build_ipic18_assembly_instruction_list
   @uint localLabelIndex := 0 ;
 #--- At zero, generate 'jump main' instruction
   outGeneratedInstructionList += ![@ipic_JUMP new !here ![@lstring new !"main" !here] ![@jumpInstructionKind ipicRelative]] ;
-#--- At 0x08, generate 'bra _fast_interrupt' instruction, if both interrupt are defined
-  if inHasLowInterrupt & inHasHighInterrupt then
-    outGeneratedInstructionList += ![@ipic_pseudo_ORG new !0x8] ;
-    outGeneratedInstructionList += ![@ipic_JUMP new !here ![@lstring new !"_fast_interrupt" !here] ![@jumpInstructionKind ipicRelative]] ;
+#--- At 0x04, generate the first bootloader entry point (if any)
+  @routineDeclarationList tempBootloaderRoutineDeclarationList := inBootloaderRoutineDeclarationList ;
+  if [tempBootloaderRoutineDeclarationList length] > 0 then
+    outGeneratedInstructionList += ![@ipic_pseudo_ORG new !0x04] ;
+    @lstring routineName ;
+    [!?tempBootloaderRoutineDeclarationList popFirst ?routineName ?* ?* ?* ?*] ;
+    outGeneratedInstructionList += ![@ipic_JUMP new !here !routineName ![@jumpInstructionKind ipicRelative]] ;
   end if ;
-#--- First, handle low interrupt (if any)
+#--- At 0x08, generate 'bra _high_interrupt' instruction, if fast interrupt is defined
+  if inHasHighInterrupt then
+    outGeneratedInstructionList += ![@ipic_pseudo_ORG new !0x8] ;
+    outGeneratedInstructionList += ![@ipic_JUMP new !here ![@lstring new !"_high_interrupt" !here] ![@jumpInstructionKind ipicRelative]] ;
+  end if ;
+#--- At 0x0C, 0x10, 0x14, generate the bootloader entry points (if they exists)
+  @uint entryPoint := 0x0C ;
+  loop [tempBootloaderRoutineDeclarationList length] :
+  while ([tempBootloaderRoutineDeclarationList length] > 0) & (entryPoint < 0x18) 
+  do
+    outGeneratedInstructionList += ![@ipic_pseudo_ORG new !entryPoint] ;
+    @lstring routineName ;
+    [!?tempBootloaderRoutineDeclarationList popFirst ?routineName ?* ?* ?* ?*] ;
+    outGeneratedInstructionList += ![@ipic_JUMP new !here !routineName ![@jumpInstructionKind ipicRelative]] ;
+    entryPoint := entryPoint + 0x4 ;
+  end loop ;
+#--- Handle JUMP to low interrupt (if any)
   if inHasLowInterrupt then
     outGeneratedInstructionList += ![@ipic_pseudo_ORG new !0x18] ;
+    outGeneratedInstructionList += ![@ipic_JUMP new !here ![@lstring new !"_low_interrupt" !here] ![@jumpInstructionKind ipicRelative]] ;
+  end if ;
+#-------------------------------- Generate entry points for remaining bootloader routines
+  entryPoint := 0x1C ;
+  foreach tempBootloaderRoutineDeclarationList do
+    outGeneratedInstructionList += ![@ipic_pseudo_ORG new !entryPoint] ;
+    outGeneratedInstructionList += ![@ipic_JUMP new !here !mRoutineName ![@jumpInstructionKind ipicRelative]] ;
+    entryPoint := entryPoint + 0x4 ;
+  end foreach ;
+#--- Generate low interrupt routine (if any)
+  if inHasLowInterrupt then
+    outGeneratedInstructionList += ![@ipic_pseudo_LABEL new ![@lstring new !"_low_interrupt" !here]] ;
     foreach [inPiccoloModel mInterruptDefinitionList] do
       if [mInterruptName string] == "low" then
         @bool continuesInSequence ;
@@ -1903,13 +1951,9 @@ routine build_ipic18_assembly_instruction_list
       end if ;
     end foreach ;
   end if ;
-#--- Then, handle high interrupt (if any)
+#--- Then, generate high interrupt routine (if any)
   if inHasHighInterrupt then
-    if inHasLowInterrupt then
-      outGeneratedInstructionList += ![@ipic_pseudo_LABEL new ![@lstring new !"_fast_interrupt" !here]] ;
-    else
-      outGeneratedInstructionList += ![@ipic_pseudo_ORG new !0x8] ;
-    end if ;
+    outGeneratedInstructionList += ![@ipic_pseudo_LABEL new ![@lstring new !"_high_interrupt" !here]] ;
     foreach [inPiccoloModel mInterruptDefinitionList] do
       if [mInterruptName string] == "high" then
         @bool continuesInSequence ;

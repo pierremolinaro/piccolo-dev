@@ -6,7 +6,6 @@ ipic_generic
 pic18_metamodel
 piccolo_syntax
 pic18_bootloader_syntax
-piccolo_grammar
 piccolo_config
 ipic18_metamodel
 pic18_checkingAndBuildIPIC
@@ -25,6 +24,7 @@ midrange_compute_JSR_JUMP
 midrange_ipic_build_assembly_code
 midrange_build_binary_code
 midrange_semantics
+piccolo_grammar
 ram_sections
 piccoloDevice_lexique
 piccoloDevice_semantics

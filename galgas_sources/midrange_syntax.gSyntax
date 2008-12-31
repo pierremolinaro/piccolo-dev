@@ -9,67 +9,108 @@ import semantics midrange_semantics in "midrange_semantics.gSemantics" ;
 nonterminal <configuration_definition>
   ?!@configDefinitionList ioConfigDefinitionList
   ?!@bool ioAcceptDefaultConfiguration
+label parse
 ;
 
 nonterminal <declaration_in_ram>
   !@declarationInRam outDeclaration
+label parse
 ;
 
 nonterminal <ram_definition>
   ?!@ramDefinitionList ioRamDefinitionList
+label parse
 ;
 
 nonterminal <constant_definition>
   ?!@constantDefinitionList ioConstantDefinitionList
+label parse
 ;
 
 nonterminal <midrange_interrupt_definition>
   ?!@midrange_interruptDefinitionList outInterruptDefinitionList
   ?!@bool ioNeedsComputedGoto2 
   ?!@bool ioNeedsComputedGoto4
+label parse
 ;
 
 nonterminal <midrange_routine_definition>
   ?!@midrange_routineDefinitionList ioRoutineDefinitionList
   ?!@bool ioNeedsComputedGoto2 
   ?!@bool ioNeedsComputedGoto4
+label parse
 ;
 
-nonterminal <midrange_simple_instruction> !@midrange_instruction outInstruction ;
+nonterminal <midrange_simple_instruction>
+  !@midrange_instruction outInstruction
+label parse
+;
 
 nonterminal <midrange_structured_instruction>
   !@midrange_instruction outInstruction
   ?!@bool ioNeedsComputedGoto2
   ?!@bool ioNeedsComputedGoto4
+label parse
 ;
 
 nonterminal <midrange_instruction_list>
   !@midrange_instructionList outInstructionList
   ?!@bool ioNeedsComputedGoto2
   ?!@bool ioNeedsComputedGoto4
+label parse
 ;
 
 nonterminal <midrange_structured_if_instruction>
   !@midrange_instruction outInstruction
   ?!@bool ioNeedsComputedGoto2
   ?!@bool ioNeedsComputedGoto4
+label parse
 ;
 
-nonterminal <start_symbol> ;
+nonterminal <start_symbol>
+label importBootloaderSpecification
+  !@piccoloDeviceModel outPiccoloDeviceModel
+  !@uint outAccessBankSplitOffset
+  !@ramBankTable outRamBank
+  !@registerTable outRegisterTable
+  !@bootloaderReservedRAMmap outBootloaderReservedRAMmap
+  !@routineDeclarationList outBootloaderRoutineDeclarationList
+;
 
-nonterminal <register_parsing> !@registerExpression outRegisterExpression ;
+nonterminal <register_parsing>
+  !@registerExpression outRegisterExpression
+label parse
+;
 
-nonterminal <optional_w_as_dest> !@bool out_W_isDestination ;
+nonterminal <optional_w_as_dest>
+  !@bool out_W_isDestination
+label parse
+;
 
-nonterminal <bit_number_parsing> !@bitNumberExpression outBitNumber ;
+nonterminal <bit_number_parsing>
+  !@bitNumberExpression outBitNumber
+label parse
+;
 
-nonterminal <midrange_condition_factor> !@midrange_conditionExpression outCondition ;
+nonterminal <midrange_condition_factor>
+  !@midrange_conditionExpression outCondition
+label parse
+;
 
-nonterminal <midrange_condition_term> !@midrange_conditionExpression outCondition ;
+nonterminal <midrange_condition_term>
+  !@midrange_conditionExpression outCondition
+label parse
+;
 
-nonterminal <midrange_condition_expression> !@midrange_conditionExpression outCondition ;
+nonterminal <midrange_condition_expression>
+  !@midrange_conditionExpression outCondition
+label parse
+;
 
-nonterminal <immediate_expression> !@immediatExpression outExpression ;
+nonterminal <immediate_expression>
+  !@immediatExpression outExpression
+label parse
+;
 
 #----------------------------------------------------*
 
@@ -136,6 +177,37 @@ rule <start_symbol> :
       [@string deleteFile !asmDestinationFile] ;
     end if ;
   end if ;
+label importBootloaderSpecification
+  !@piccoloDeviceModel outPiccoloDeviceModel
+  !@uint outAccessBankSplitOffset
+  !@ramBankTable outRamBank
+  !@registerTable outRegisterTable
+  !@bootloaderReservedRAMmap outBootloaderReservedRAMmap
+  !@routineDeclarationList outBootloaderRoutineDeclarationList
+:
+  $midrange$ ;
+  $identifier$ ? @lstring programName ;
+  error programName: "this file does not define a bootloader specification"
+   -> outPiccoloDeviceModel, outAccessBankSplitOffset, outRamBank, outRegisterTable,
+      outBootloaderReservedRAMmap, outBootloaderRoutineDeclarationList ;
+  $literal_string$ ? * ;
+  $:$ ;
+  repeat
+  while
+    $mark$ ;
+    $literal_string$ ?* ;
+  while
+    <configuration_definition> parse ;
+  while
+    <ram_definition> parse ;
+  while
+    <constant_definition> parse ;
+  while
+    <midrange_interrupt_definition> parse ;
+  while
+    <midrange_routine_definition> parse ;
+  end repeat ;
+  $end$ ;
 end rule ;
 
 #----------------------------------------------------*
