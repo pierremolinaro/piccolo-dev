@@ -17,6 +17,7 @@ ram gpr2 {
 }
 
 interrupt low {
+  jsr userRoutine2
 }
 
 interrupt high {
@@ -42,8 +43,7 @@ routine routineBootloader2 bank:preserved {
 }
 
 noreturn routine routineBootloader6 {
-  forever
-  end
+  jump userRoutine6
 }
 
 noreturn routine routineBootloader7 bank:requires 15 {

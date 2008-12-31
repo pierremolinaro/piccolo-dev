@@ -13,6 +13,8 @@ label importBootloaderSpecification
   !@registerTable outRegisterTable
   !@bootloaderReservedRAMmap outBootloaderReservedRAMmap
   !@routineDeclarationList outBootloaderRoutineDeclarationList
+  !@routineDeclarationList outUserRoutineDeclarationList
+  !@luint outBootloaderReservedROMsize
 ;
 
 end grammar ;

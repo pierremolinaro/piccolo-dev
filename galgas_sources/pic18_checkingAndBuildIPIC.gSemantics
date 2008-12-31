@@ -1814,6 +1814,8 @@ end method ;
 
 routine build_ipic18_assembly_instruction_list
   ??@routineDeclarationList inBootloaderRoutineDeclarationList # Empty for regular program
+  ??@routineDeclarationList inUserRoutineDeclarationList # Empty for regular program
+  ??@luint inBootloaderReservedROMsize
   ??@uint inAccessBankSplitOffset
   ??@registerTable inRegisterTable
   ??@piccoloModel inPiccoloModel
@@ -1832,6 +1834,9 @@ routine build_ipic18_assembly_instruction_list
     if ([mReturnedBank uint] != [@uint max]) & ([mReturnedBank uint] > 15) then
       error mReturnedBank:"the returned bank value should be lower or equal to 15" ;
     end if ;
+    [!?routineMap insertKey !mRoutineName !mIsNoReturn ![mRequiredBank uint] ![mReturnedBank uint] !mPreservesBank] ;
+  end foreach ;
+  foreach inUserRoutineDeclarationList do
     [!?routineMap insertKey !mRoutineName !mIsNoReturn ![mRequiredBank uint] ![mReturnedBank uint] !mPreservesBank] ;
   end foreach ;
 #-------------------------------- Check bootloader routine definition
@@ -2016,6 +2021,7 @@ routine build_ipic18_assembly_instruction_list
       outGeneratedInstructionList += ![@ipic18_instruction_RETURN new ![mRoutineName location]] ;
     end if ;
   end foreach ;
+#-------------------------------- Generate _computed_goto_4 and _computed_goto_2 (if needed)
 #--- Description of register WREG
   @registerExpression WREGregister [new ![@lstring new !"WREG" !here] ![@luint new !0 !here]] ;
   @ipic_registerExpression WREG_IPICregisterDescription ;
@@ -2103,6 +2109,19 @@ routine build_ipic18_assembly_instruction_list
       !here
     ] ; # RETURN 0
   end if ;
+#-------------------------------- Generate default user routines
+  entryPoint := [inBootloaderReservedROMsize uint] ;
+  foreach inUserRoutineDeclarationList do
+    outGeneratedInstructionList += ![@ipic_pseudo_ORG new !entryPoint] ;
+    outGeneratedInstructionList += ![@ipic_pseudo_LABEL new !mRoutineName] ;
+    if mIsNoReturn then
+      outGeneratedInstructionList += ![@ipic_JUMP new !here !mRoutineName ![@jumpInstructionKind ipicRelative]] ;
+    elsif [mReturnedBank uint] != [@uint max] then
+      outGeneratedInstructionList += ![@ipic18_instruction_MOVLB new !here !mReturnedBank] ;
+    end if ;
+    outGeneratedInstructionList += ![@ipic18_instruction_RETURN new !here] ;
+    entryPoint := entryPoint + 4 ;
+  end foreach ;
 #--- Output a listing ?
   if [option piccolo_options.ouputListingFile] then
     ioListFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n" ;

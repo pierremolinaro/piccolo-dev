@@ -73,6 +73,8 @@ label importBootloaderSpecification
   !@registerTable outRegisterTable
   !@bootloaderReservedRAMmap outBootloaderReservedRAMmap
   !@routineDeclarationList outBootloaderRoutineDeclarationList
+  !@routineDeclarationList outUserRoutineDeclarationList
+  !@luint outBootloaderReservedROMsize
 ;
 
 nonterminal <register_parsing> !@registerExpression outRegisterExpression
@@ -205,13 +207,17 @@ label importBootloaderSpecification
   !@registerTable outRegisterTable
   !@bootloaderReservedRAMmap outBootloaderReservedRAMmap
   !@routineDeclarationList outBootloaderRoutineDeclarationList
+  !@routineDeclarationList outUserRoutineDeclarationList
+  !@luint outBootloaderReservedROMsize
 :
   $pic18$ ;
   $identifier$ ? @lstring programName ;
   error programName: "this file does not define a bootloader specification"
    -> outPiccoloDeviceModel, outAccessBankSplitOffset, outRamBank, outRegisterTable,
       outBootloaderReservedRAMmap,
-      outBootloaderRoutineDeclarationList ;
+      outBootloaderRoutineDeclarationList,
+      outUserRoutineDeclarationList,
+      outBootloaderReservedROMsize ;
   select
   or
     $implements$ ;
