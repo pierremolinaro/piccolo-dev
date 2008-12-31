@@ -1,19 +1,16 @@
 syntax pic18_bootloader_syntax :
 import lexique piccolo_lexique in "piccolo_lexique.gLexique" ;
 import semantics pic18_metamodel in "pic18_metamodel.gSemantics" ;
-import semantics pic18_semantics in "pic18_semantics.gSemantics" ;
+import semantics pic18_bootloader_specification_semantics in "pic18_bootloader_specification_semantics.gSemantics" ;
+import option piccolo_options in "piccolo_options.gOption" ;
 
 #----------------------------------------------------*
 
-nonterminal <ram_definition>
-  ?!@ramDefinitionList ioRamDefinitionList
-;
+nonterminal <ram_definition> ?!@ramDefinitionList ioRamDefinitionList ;
 
 nonterminal <start_symbol> ;
 
-nonterminal <routine_declaration>
-  ?!@routineDefinitionList ioRoutineDefinitionList
-;
+nonterminal <routine_declaration> ?!@routineDeclarationList ioRoutineDefinitionList ;
 
 #----------------------------------------------------*
 
@@ -24,60 +21,83 @@ rule <start_symbol> :
   $literal_string$ ? @lstring deviceName ;
 #--- First part
   ${$ ;
-  @routineDefinitionList bootloaderRoutineDefinitionList [emptyList] ;
+  @routineDeclarationList bootloaderRoutineDeclarationList [emptyList] ;
+  @bootloaderReservedRAMmap bootloaderReservedRAMmap [emptyMap] ;
+  @luint reservedRomSize [new !0 !here] ;
   repeat
   while
-    <routine_declaration> !?bootloaderRoutineDefinitionList ;
+    <routine_declaration> !?bootloaderRoutineDeclarationList ;
+  while
+    $rom$ ;
+    $=$ ;
+    $integer$ ? @luint rs ;
+    if [reservedRomSize uint] != 0 then
+      error rs : "ROM size already defined" ;
+    elsif [rs uint] == 0 then
+      error rs: "ROM size should be > 0" ;
+    elsif ([rs uint] mod 8) != 0 then
+      error rs: "ROM size should be a multiple of 8" ;
+    else
+      reservedRomSize := rs ;
+    end if ;
+  while
+    $ram$ ;
+    $identifier$ ? @lstring bankName ;
+    $=$ ;
+    $integer$ ? @luint rs ;
+    if [bootloaderReservedRAMmap hasKey ![bankName string]] then
+      error rs : "RAM size already defined for '" . bankName . "' bank" ;
+    elsif [rs uint] == 0 then
+      error rs: "RAM size should be > 0" ;
+    else
+      [!?bootloaderReservedRAMmap  insertKey !bankName !rs] ;
+    end if ;
   end repeat ;
   $}$ ;
 #--- Second part
   ${$ ;
-  @routineDefinitionList userRoutineDefinitionList [emptyList] ;
+  @routineDeclarationList userRoutineDeclarationList [emptyList] ;
   repeat
   while
-    <routine_declaration> !?userRoutineDefinitionList ;
+    <routine_declaration> !? userRoutineDeclarationList ;
   end repeat ;
   $}$ ;
 #--- Third part
-  @ramDefinitionList ramDefinitionList [emptyList] ;
+  @ramDefinitionList sharedRamDefinitionList [emptyList] ;
   ${$ ;
   repeat
   while
-    <ram_definition> !?ramDefinitionList ;
+    <ram_definition> !?sharedRamDefinitionList ;
   end repeat ;
   $}$ ;
 #--- Semantic analysis
-#  if [@uint errorCount] == 0 then
-#    @piccoloModel piccoloModel [new
-#      !programName
-#      !deviceName
-#      !configDefinitionList
-#      !acceptDefaultConfiguration
-#      !ramDefinitionList
-#      !interruptDefinitionList
-#      !constantDefinitionList
-#      !routineDefinitionList
-#      !needsComputedGoto2
-#      !needsComputedGoto4
-#      !here
-#    ] ;
-#    pic18_analyze !piccoloModel ![@string stringWithSourceFilePath] ;
-#  else
-#    @string hexDestinationFile := [[@string stringWithSourceFilePath] stringByDeletingPathExtension] . ".hex" ;
-#    if [hexDestinationFile fileExists] then
-#      [@string deleteFile !hexDestinationFile] ;
-#    end if ;
-#    @string asmDestinationFile := [[@string stringWithSourceFilePath] stringByDeletingPathExtension] . ".asm" ;
-#    if [asmDestinationFile fileExists] then
-#      [@string deleteFile !asmDestinationFile] ;
-#    end if ;
-#  end if ;
+  @string listingFile := [[@string stringWithSourceFilePath] stringByDeletingPathExtension] . ".list" ;
+  if [@uint errorCount] == 0 then
+    @string listFileContents ;
+    pic18BootloaderSpecificationAnalysis
+      ![@string stringWithSourceFilePath]
+      !bootloaderName
+      !deviceName
+      !bootloaderRoutineDeclarationList
+      !bootloaderReservedRAMmap
+      !reservedRomSize
+      !userRoutineDeclarationList
+      !sharedRamDefinitionList
+      ?listFileContents
+    ;
+    if ([@uint errorCount] == 0) & [option piccolo_options.ouputListingFile] then
+      [listFileContents writeToFileWhenDifferentContents !listingFile ?*] ;
+    end if ;
+  end if ;
+  if [@uint errorCount] > 0 then
+    [@string deleteFileIfExists !listingFile] ;
+  end if ;
 end rule ;
 
 #----------------------------------------------------*
 
 rule <routine_declaration>
-  ?!@routineDefinitionList ioRoutineDefinitionList
+  ?!@routineDeclarationList ioRoutineDefinitionList
 :
   @bool noreturn ;
   select
@@ -130,8 +150,7 @@ rule <routine_declaration>
     end select ;
   end select ;
 #---
-  @instructionList instructionList [emptyList] ;
-  ioRoutineDefinitionList += !routineName !requiredBank !returnedBank !preservesBank !noreturn !instructionList !here ;
+  ioRoutineDefinitionList += !routineName !requiredBank !returnedBank !preservesBank !noreturn ;
 end rule ;
 
 #----------------------------------------------------*

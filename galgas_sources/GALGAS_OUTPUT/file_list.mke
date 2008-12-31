@@ -59,6 +59,7 @@ SOURCES += ipc18_convert_relatives.cpp
 SOURCES += ipic18_build_assembly_code.cpp
 SOURCES += ipic18_build_binary_code.cpp
 SOURCES += pic18_semantics.cpp
+SOURCES += pic18_bootloader_specification_semantics.cpp
 SOURCES += midrange_metamodel.cpp
 SOURCES += midrange_ipic_metamodel.cpp
 SOURCES += midrange_syntax.cpp
