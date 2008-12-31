@@ -81,6 +81,7 @@ end method ;
 #----------------------------------------------------------------------------*
 
 routine analyze_ram_sections
+  ??@string inListingTitle
   ??@ramDefinitionList inRamDefinitionList
   ?!@ramBankTable ioRamBankTable
   ??@registerTable inSpecialRegisterTable
@@ -94,7 +95,7 @@ routine analyze_ram_sections
   end foreach ;
   if [option piccolo_options.ouputListingFile] then
     ioListFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n" ;
-    ioListFileContents .= "*" . ["DECLARED VARIABLES" stringByLeftAndRightPadding !77 !' '] . "*\n" ;
+    ioListFileContents .= "*" . [inListingTitle stringByLeftAndRightPadding !77 !' '] . "*\n" ;
     ioListFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n\n" ;
     ioListFileContents .= ["Variable" stringByLeftPadding !40 !' '] . " Address\n" ;
     foreach outAllRegisters do

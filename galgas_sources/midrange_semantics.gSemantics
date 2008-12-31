@@ -53,6 +53,7 @@ routine midrange_analyze ??@midrange_model inPiccoloModel ??@string inSourceFile
   @ramBankTable ramBank := [piccoloDeviceModel mRamBankTable] ;
   @registerTable registerTable ;
   analyze_ram_sections
+    !"DECLARED VARIABLES"
     ![inPiccoloModel mRamDefinitionList]
     !?ramBank
     ![piccoloDeviceModel mRegisterTable]

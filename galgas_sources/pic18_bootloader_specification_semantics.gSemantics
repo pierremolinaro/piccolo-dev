@@ -1,0 +1,114 @@
+semantics pic18_bootloader_specification_semantics :
+import semantics pic18_semantics in "pic18_semantics.gSemantics" ;
+
+#----------------------------------------------------------------------------*
+
+routine pic18BootloaderSpecificationAnalysis
+  ??@string inSourceFileName
+  ??@lstring inBootloaderName
+  ??@lstring inDeviceName
+  ??@routineDeclarationList inBootloaderRoutineDeclarationList
+  ??@bootloaderReservedRAMmap inBootloaderReservedRAMmap
+  ??@luint inReservedRomSize
+  ??@routineDeclarationList inUserRoutineDeclarationList
+  ??@ramDefinitionList inSharedRamDefinitionList
+  !@string outListFileContents
+:
+#-------------------------------- Check source file name
+  @string sourceFileBaseName := [[inSourceFileName lastPathComponent] stringByDeletingPathExtension] ;
+  if sourceFileBaseName != [inBootloaderName string] then
+    error inBootloaderName: "the bootloader name ('" . inBootloaderName
+    . "') should be identical to the file base name '" . sourceFileBaseName . "'" ;
+  end if ;
+  outListFileContents := "" ;
+#-------------------------------- Analyze Device
+  @piccoloDeviceModel piccoloDeviceModel ;
+  parseDeviceDefinition !inDeviceName ?piccoloDeviceModel ;
+  @uint accessBankSplitOffset ;
+  switch [piccoloDeviceModel mProcessorType]
+    when pic18_60 : accessBankSplitOffset := 0x60 ;
+    when pic18_80 : accessBankSplitOffset := 0x80 ;
+    when midrange : error inDeviceName: "a midrange device is not accepted here" -> accessBankSplitOffset ;
+    when baseline : error inDeviceName: "a baseline device is not accepted here" -> accessBankSplitOffset ;
+  end switch ;
+#-------------------------------- Check reserved ROM size < microcontroller ROM size
+  outListFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n" ;
+  outListFileContents .= "*" . ["BOOTLOADER FOOTPRINT" stringByLeftAndRightPadding !77 !' '] . "*\n" ;
+  outListFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n\n" ;
+  if [inReservedRomSize uint] >= [[piccoloDeviceModel mRomSize] uint] then
+    error inReservedRomSize: "reserved size for bootloader ("
+    . [[inReservedRomSize uint] string] . " bytes) is greater than ROM size ("
+    . [[[piccoloDeviceModel mRomSize] uint] string] . " bytes) of "
+    . inDeviceName . " micro controller" ; 
+  end if ;
+  outListFileContents .= "ROM size : " . [[inReservedRomSize uint] string] . " bytes.\n\n" ;
+#-------------------------------- Check reserved RAM size <= microcontroller RAM size (in every bank)
+  @ramBankTable ramBank := [piccoloDeviceModel mRamBankTable] ;
+  foreach inBootloaderReservedRAMmap do
+    @uint firstAddress ;
+    @uint firstFreeAddress ; # Mutable
+    @uint lastAddressPlusOne ;
+    @uintlist mirrorOffsetList ;
+    [ramBank searchKey !key ?firstAddress ?firstFreeAddress ?lastAddressPlusOne ?mirrorOffsetList] ;
+    firstFreeAddress := firstFreeAddress + [mReservedSize uint] ;
+    if (firstFreeAddress > lastAddressPlusOne) then
+      error mReservedSize: "reserved size is greater than size of '" . key . "' bank ("
+      . [lastAddressPlusOne - firstAddress string] . " bytes)" ;
+    else
+      [!?ramBank setMFirstFreeAddressForKey !firstFreeAddress ![key string]] ;
+      outListFileContents .= "'" . key . "' RAM size : " . [[mReservedSize uint] string] . " bytes (from "
+      . [firstAddress hexString] . " to " . [firstFreeAddress - 1 hexString] . ").\n\n" ;
+    end if ;
+  end foreach ;
+#-------------------------------- Check bootloader routines
+  outListFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n" ;
+  outListFileContents .= "*" . ["BOOTLOADER ROUTINES" stringByLeftAndRightPadding !77 !' '] . "*\n" ;
+  outListFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n\n" ;
+  outListFileContents .= ["Routine" stringByLeftPadding !40 !' '] . " Entry point address\n" ;
+  @stringset routineNameSet [emptySet] ;
+  @uint entryPointAddress := 0x4 ;
+  foreach inBootloaderRoutineDeclarationList do
+    if [routineNameSet hasKey ![mRoutineName string]] then
+      error mRoutineName:"This routine is already declared" ;
+    end if ;
+    routineNameSet += ![mRoutineName string] ;
+    outListFileContents .= [[mRoutineName string] stringByLeftPadding !40 !' '] . " " . [entryPointAddress hexString] . "\n" ;
+    entryPointAddress := entryPointAddress + 4 ;
+    if entryPointAddress == 0x08 then
+      entryPointAddress := 0x0C ;
+    elsif entryPointAddress == 0x18 then
+      entryPointAddress := 0x1C ;
+    end if ;
+  end foreach ;
+  outListFileContents .= "\n" ;
+#-------------------------------- Check user program routines
+  outListFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n" ;
+  outListFileContents .= "*" . ["USER PROGRAM ROUTINES" stringByLeftAndRightPadding !77 !' '] . "*\n" ;
+  outListFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n\n" ;
+  outListFileContents .= ["Routine" stringByLeftPadding !40 !' '] . " Entry point address\n" ;
+  entryPointAddress := [inReservedRomSize uint] ;
+  foreach inUserRoutineDeclarationList do
+    if [routineNameSet hasKey ![mRoutineName string]] then
+      error mRoutineName:"This routine is already declared" ;
+    end if ;
+    routineNameSet += ![mRoutineName string] ;
+    outListFileContents .= [[mRoutineName string] stringByLeftPadding !40 !' '] . " " . [entryPointAddress hexString] . "\n" ;
+    entryPointAddress := entryPointAddress + 4 ;
+  end foreach ;
+  outListFileContents .= "\n" ;
+#-------------------------------- Check shared RAM
+  @registerTable registerTable ;
+  analyze_ram_sections
+    !"SHARED VARIABLES"
+    !inSharedRamDefinitionList
+    !?ramBank
+    ![piccoloDeviceModel mRegisterTable]
+    !?outListFileContents
+    ?registerTable
+  ;
+  outListFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n\n" ;
+end routine ;
+
+#----------------------------------------------------------------------------*
+
+end semantics ;

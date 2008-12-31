@@ -15,6 +15,7 @@ ipc18_convert_relatives
 ipic18_build_assembly_code
 ipic18_build_binary_code
 pic18_semantics
+pic18_bootloader_specification_semantics
 midrange_metamodel
 midrange_ipic_metamodel
 midrange_syntax
