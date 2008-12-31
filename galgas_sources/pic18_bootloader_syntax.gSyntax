@@ -6,92 +6,192 @@ import option piccolo_options in "piccolo_options.gOption" ;
 
 #----------------------------------------------------*
 
-nonterminal <ram_definition> ?!@ramDefinitionList ioRamDefinitionList ;
+nonterminal <ram_definition>
+  ?!@ramDefinitionList ioRamDefinitionList
+label parse
+;
 
-nonterminal <start_symbol> ;
+nonterminal <start_symbol>
+label importBootloaderSpecification
+  !@piccoloDeviceModel outPiccoloDeviceModel
+  !@uint outAccessBankSplitOffset
+  !@ramBankTable outRamBank
+  !@registerTable outRegisterTable
+  !@bootloaderReservedRAMmap outBootloaderReservedRAMmap
+  !@routineDeclarationList outBootloaderRoutineDeclarationList
+;
 
 nonterminal <routine_declaration> ?!@routineDeclarationList ioRoutineDefinitionList ;
 
+nonterminal <parse_bootloader>
+  !@lstring outBootloaderName
+  !@lstring outDeviceName
+  !@routineDeclarationList outBootloaderRoutineDeclarationList
+  !@bootloaderReservedRAMmap outBootloaderReservedRAMmap
+  !@luint outReservedRomSize
+  !@routineDeclarationList outUserRoutineDeclarationList
+  !@ramDefinitionList outSharedRamDefinitionList
+  !@string outListFileContents
+  !@piccoloDeviceModel outPiccoloDeviceModel
+  !@uint outAccessBankSplitOffset
+  !@ramBankTable outRamBank
+  !@registerTable outRegisterTable
+;
+
 #----------------------------------------------------*
 
-rule <start_symbol> :
+rule <parse_bootloader>
+  !@lstring outBootloaderName
+  !@lstring outDeviceName
+  !@routineDeclarationList outBootloaderRoutineDeclarationList
+  !@bootloaderReservedRAMmap outBootloaderReservedRAMmap
+  !@luint outReservedRomSize
+  !@routineDeclarationList outUserRoutineDeclarationList
+  !@ramDefinitionList outSharedRamDefinitionList
+  !@string outListFileContents
+  !@piccoloDeviceModel outPiccoloDeviceModel
+  !@uint outAccessBankSplitOffset
+  !@ramBankTable outRamBank
+  !@registerTable outRegisterTable
+:
   $pic18$ ;
   $bootloader$ ;
-  $identifier$ ? @lstring bootloaderName ;
-  $literal_string$ ? @lstring deviceName ;
+  $identifier$ ? outBootloaderName ;
+  $literal_string$ ? outDeviceName ;
 #--- First part
   ${$ ;
-  @routineDeclarationList bootloaderRoutineDeclarationList [emptyList] ;
-  @bootloaderReservedRAMmap bootloaderReservedRAMmap [emptyMap] ;
-  @luint reservedRomSize [new !0 !here] ;
+  outBootloaderRoutineDeclarationList := [@routineDeclarationList emptyList] ;
+  outBootloaderReservedRAMmap := [@bootloaderReservedRAMmap emptyMap] ;
+  outReservedRomSize := [@luint new !0 !here] ;
   repeat
   while
-    <routine_declaration> !?bootloaderRoutineDeclarationList ;
+    <routine_declaration> !?outBootloaderRoutineDeclarationList ;
   while
     $rom$ ;
     $=$ ;
     $integer$ ? @luint rs ;
-    if [reservedRomSize uint] != 0 then
+    if [outReservedRomSize uint] != 0 then
       error rs : "ROM size already defined" ;
     elsif [rs uint] == 0 then
       error rs: "ROM size should be > 0" ;
     elsif ([rs uint] mod 8) != 0 then
       error rs: "ROM size should be a multiple of 8" ;
     else
-      reservedRomSize := rs ;
+      outReservedRomSize := rs ;
     end if ;
   while
     $ram$ ;
     $identifier$ ? @lstring bankName ;
     $=$ ;
     $integer$ ? @luint rs ;
-    if [bootloaderReservedRAMmap hasKey ![bankName string]] then
+    if [outBootloaderReservedRAMmap hasKey ![bankName string]] then
       error rs : "RAM size already defined for '" . bankName . "' bank" ;
     elsif [rs uint] == 0 then
       error rs: "RAM size should be > 0" ;
     else
-      [!?bootloaderReservedRAMmap  insertKey !bankName !rs] ;
+      [!?outBootloaderReservedRAMmap  insertKey !bankName !rs] ;
     end if ;
   end repeat ;
   $}$ ;
 #--- Second part
   ${$ ;
-  @routineDeclarationList userRoutineDeclarationList [emptyList] ;
+  outUserRoutineDeclarationList := [@routineDeclarationList emptyList] ;
   repeat
   while
-    <routine_declaration> !? userRoutineDeclarationList ;
+    <routine_declaration> !? outUserRoutineDeclarationList ;
   end repeat ;
   $}$ ;
 #--- Third part
-  @ramDefinitionList sharedRamDefinitionList [emptyList] ;
+  outSharedRamDefinitionList := [@ramDefinitionList emptyList] ;
   ${$ ;
   repeat
   while
-    <ram_definition> !?sharedRamDefinitionList ;
+    <ram_definition> !?outSharedRamDefinitionList ;
   end repeat ;
   $}$ ;
 #--- Semantic analysis
+  pic18BootloaderSpecificationAnalysis
+    ![@string stringWithSourceFilePath]
+    !outBootloaderName
+    !outDeviceName
+    !outBootloaderRoutineDeclarationList
+    !outBootloaderReservedRAMmap
+    !outReservedRomSize
+    !outUserRoutineDeclarationList
+    !outSharedRamDefinitionList
+    ?outListFileContents
+    ?outPiccoloDeviceModel
+    ?outAccessBankSplitOffset
+    ?outRamBank
+    ?outRegisterTable
+  ;
+end rule ;
+
+#----------------------------------------------------*
+
+rule <start_symbol> :
+  @lstring bootloaderName ;
+  @lstring deviceName ;
+  @routineDeclarationList bootloaderRoutineDeclarationList ;
+  @bootloaderReservedRAMmap bootloaderReservedRAMmap ;
+  @luint reservedRomSize ;
+  @routineDeclarationList userRoutineDeclarationList ;
+  @ramDefinitionList sharedRamDefinitionList ;
+  @string listFileContents ;
+  @piccoloDeviceModel piccoloDeviceModel ;
+  @uint accessBankSplitOffset ;
+  @ramBankTable ramBank ;
+  @registerTable registerTable ;
+  <parse_bootloader>
+    ?bootloaderName
+    ?deviceName
+    ?bootloaderRoutineDeclarationList
+    ?bootloaderReservedRAMmap
+    ?reservedRomSize
+    ?userRoutineDeclarationList
+    ?sharedRamDefinitionList
+    ?listFileContents
+    ?piccoloDeviceModel
+    ?accessBankSplitOffset
+    ?ramBank
+    ?registerTable
+  ;
+#--- Semantic analysis
   @string listingFile := [[@string stringWithSourceFilePath] stringByDeletingPathExtension] . ".list" ;
-  if [@uint errorCount] == 0 then
-    @string listFileContents ;
-    pic18BootloaderSpecificationAnalysis
-      ![@string stringWithSourceFilePath]
-      !bootloaderName
-      !deviceName
-      !bootloaderRoutineDeclarationList
-      !bootloaderReservedRAMmap
-      !reservedRomSize
-      !userRoutineDeclarationList
-      !sharedRamDefinitionList
-      ?listFileContents
-    ;
-    if ([@uint errorCount] == 0) & [option piccolo_options.ouputListingFile] then
-      [listFileContents writeToFileWhenDifferentContents !listingFile ?*] ;
-    end if ;
+  if ([@uint errorCount] == 0) & [option piccolo_options.ouputListingFile] then
+    [listFileContents writeToFileWhenDifferentContents !listingFile ?*] ;
   end if ;
   if [@uint errorCount] > 0 then
     [@string deleteFileIfExists !listingFile] ;
   end if ;
+label importBootloaderSpecification
+  !@piccoloDeviceModel outPiccoloDeviceModel
+  !@uint outAccessBankSplitOffset
+  !@ramBankTable outRamBank
+  !@registerTable outRegisterTable
+  !@bootloaderReservedRAMmap outBootloaderReservedRAMmap
+  !@routineDeclarationList outBootloaderRoutineDeclarationList
+:
+  @lstring bootloaderName ;
+  @lstring deviceName ;
+  @luint reservedRomSize ;
+  @routineDeclarationList userRoutineDeclarationList ;
+  @ramDefinitionList sharedRamDefinitionList ;
+  @string listFileContents ;
+  <parse_bootloader>
+    ?bootloaderName
+    ?deviceName
+    ?outBootloaderRoutineDeclarationList
+    ?outBootloaderReservedRAMmap
+    ?reservedRomSize
+    ?userRoutineDeclarationList
+    ?sharedRamDefinitionList
+    ?listFileContents
+    ?outPiccoloDeviceModel
+    ?outAccessBankSplitOffset
+    ?outRamBank
+    ?outRegisterTable
+  ;
 end rule ;
 
 #----------------------------------------------------*

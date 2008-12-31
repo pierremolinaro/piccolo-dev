@@ -8,84 +8,136 @@ import semantics pic18_semantics in "pic18_semantics.gSemantics" ;
 nonterminal <configuration_definition>
   ?!@configDefinitionList ioConfigDefinitionList
   ?!@bool ioAcceptDefaultConfiguration
+label parse
 ;
 
 nonterminal <declaration_in_ram>
   !@declarationInRam outDeclaration
+label parse
 ;
 
 nonterminal <ram_definition>
   ?!@ramDefinitionList ioRamDefinitionList
+label parse
 ;
 
 nonterminal <constant_definition>
   ?!@constantDefinitionList ioConstantDefinitionList
+label parse
 ;
 
 nonterminal <interrupt_definition>
   ?!@interruptDefinitionList outInterruptDefinitionList
   ?!@bool ioNeedsComputedGoto2 
   ?!@bool ioNeedsComputedGoto4
+label parse
 ;
 
 nonterminal <routine_definition>
   ?!@routineDefinitionList ioRoutineDefinitionList
   ?!@bool ioNeedsComputedGoto2 
   ?!@bool ioNeedsComputedGoto4
+label parse
 ;
 
-nonterminal <simple_instruction> !@piccolo_instruction outInstruction ;
+nonterminal <simple_instruction> !@piccolo_instruction outInstruction
+label parse
+;
 
 nonterminal <structured_instruction>
   !@piccolo_instruction outInstruction
   ?!@bool ioNeedsComputedGoto2
   ?!@bool ioNeedsComputedGoto4
+label parse
 ;
 
 nonterminal <instruction_list>
   !@instructionList outInstructionList
   ?!@bool ioNeedsComputedGoto2
   ?!@bool ioNeedsComputedGoto4
+label parse
 ;
 
 nonterminal <structured_if_instruction>
   !@piccolo_instruction outInstruction
   ?!@bool ioNeedsComputedGoto2
   ?!@bool ioNeedsComputedGoto4
+label parse
 ;
 
-nonterminal <start_symbol> ;
+nonterminal <start_symbol>
+label importBootloaderSpecification
+  !@piccoloDeviceModel outPiccoloDeviceModel
+  !@uint outAccessBankSplitOffset
+  !@ramBankTable outRamBank
+  !@registerTable outRegisterTable
+  !@bootloaderReservedRAMmap outBootloaderReservedRAMmap
+  !@routineDeclarationList outBootloaderRoutineDeclarationList
+;
 
-nonterminal <register_parsing> !@registerExpression outRegisterExpression ;
+nonterminal <register_parsing> !@registerExpression outRegisterExpression
+label parse
+;
 
-nonterminal <optional_w_as_dest> !@bool out_W_isDestination ;
+nonterminal <optional_w_as_dest> !@bool out_W_isDestination
+label parse
+;
 
-nonterminal <bit_number_parsing> !@bitNumberExpression outBitNumber ;
+nonterminal <bit_number_parsing> !@bitNumberExpression outBitNumber
+label parse
+;
 
-nonterminal <condition_factor> !@conditionExpression outCondition ;
+nonterminal <condition_factor> !@conditionExpression outCondition
+label parse
+;
 
-nonterminal <condition_term> !@conditionExpression outCondition ;
+nonterminal <condition_term> !@conditionExpression outCondition
+label parse
+;
 
-nonterminal <condition_expression> !@conditionExpression outCondition ;
+nonterminal <condition_expression> !@conditionExpression outCondition
+label parse
+;
 
-nonterminal <immediate_expression> !@immediatExpression outExpression ;
+nonterminal <immediate_expression> !@immediatExpression outExpression
+label parse
+;
 
-nonterminal <immediate_bitwise_term> !@immediatExpression outExpression ;
+nonterminal <immediate_bitwise_term> !@immediatExpression outExpression
+label parse
+;
 
-nonterminal <immediate_bitwise_factor> !@immediatExpression outExpression ;
+nonterminal <immediate_bitwise_factor> !@immediatExpression outExpression
+label parse
+;
 
-nonterminal <immediate_term> !@immediatExpression outExpression ;
+nonterminal <immediate_term> !@immediatExpression outExpression
+label parse
+;
 
-nonterminal <immediate_factor> !@immediatExpression outExpression ;
+nonterminal <immediate_factor> !@immediatExpression outExpression
+label parse
+;
 
-nonterminal <immediate_primary> !@immediatExpression outExpression ;
+nonterminal <immediate_primary> !@immediatExpression outExpression
+label parse
+;
 
 #----------------------------------------------------*
 
 rule <start_symbol> :
   $pic18$ ;
   $identifier$ ? @lstring programName ;
-  $literal_string$ ? @lstring deviceName ;
+  @lstring deviceNameOrBootloaderReference ;
+  @programKind programKind ;
+  select
+    programKind := [@programKind regularProgram] ;
+  or
+    $implements$ ;
+    $bootloader$ ;
+    programKind := [@programKind bootloaderProgram] ;
+  end select ;
+  $literal_string$ ? deviceNameOrBootloaderReference ;
   $:$ ;
   @interruptDefinitionList interruptDefinitionList [emptyList] ;
   @routineDefinitionList routineDefinitionList [emptyList] ;
@@ -123,7 +175,8 @@ rule <start_symbol> :
   if [@uint errorCount] == 0 then
     @piccoloModel piccoloModel [new
       !programName
-      !deviceName
+      !programKind
+      !deviceNameOrBootloaderReference
       !configDefinitionList
       !acceptDefaultConfiguration
       !ramDefinitionList
@@ -145,6 +198,44 @@ rule <start_symbol> :
       [@string deleteFile !asmDestinationFile] ;
     end if ;
   end if ;
+label importBootloaderSpecification
+  !@piccoloDeviceModel outPiccoloDeviceModel
+  !@uint outAccessBankSplitOffset
+  !@ramBankTable outRamBank
+  !@registerTable outRegisterTable
+  !@bootloaderReservedRAMmap outBootloaderReservedRAMmap
+  !@routineDeclarationList outBootloaderRoutineDeclarationList
+:
+  $pic18$ ;
+  $identifier$ ? @lstring programName ;
+  error programName: "this file does not define a bootloader specification"
+   -> outPiccoloDeviceModel, outAccessBankSplitOffset, outRamBank, outRegisterTable,
+      outBootloaderReservedRAMmap,
+      outBootloaderRoutineDeclarationList ;
+  select
+  or
+    $implements$ ;
+    $bootloader$ ;
+  end select ;
+  $literal_string$ ? * ;
+  $:$ ;
+  repeat
+  while
+    $mark$ ;
+    $literal_string$ ?* ;
+  while
+    <configuration_definition> parse ;
+  while
+    <ram_definition> parse ;
+  while
+    <constant_definition> parse ;
+  while
+    <interrupt_definition> parse ;
+  while
+    <routine_definition> parse ;
+  end repeat ;
+  $end$ ;
+  
 end rule ;
 
 #----------------------------------------------------*

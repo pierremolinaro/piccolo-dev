@@ -1,0 +1,54 @@
+pic18 bootloader_implementation implements bootloader "bootloader_specification.piccolo" :
+
+ram accessram {
+  byte bootloaderVar 
+}
+
+ram gpr0 {
+  byte bootloaderVar0 
+}
+
+ram gpr1 {
+  byte bootloaderVar1
+}
+
+ram gpr2 {
+  byte bootloaderVar2
+}
+
+interrupt low {
+}
+
+interrupt high {
+}
+
+noreturn routine main bank:requires 0 {
+  forever
+  end
+}
+
+routine routineBootloader1 {
+}
+
+routine routineBootloader2 bank:preserved {
+}
+routine routineBootloader3 bank:requires 15 {
+}
+routine routineBootloader4 bank:ensures 15 {
+  banksel 15
+}
+routine routineBootloader5 bank:requires 15 ensures 12 {
+  banksel 12
+}
+
+noreturn routine routineBootloader6 {
+  forever
+  end
+}
+
+noreturn routine routineBootloader7 bank:requires 15 {
+  forever
+  end
+}
+
+end

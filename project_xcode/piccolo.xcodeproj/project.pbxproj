@@ -284,18 +284,18 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		CFFB83430F0B8BDE000AB7E3 /* PBXContainerItemProxy */ = {
+		CFFB83810F0BBAA2000AB7E3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6BBF9AC94A7E459509A20ED0 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 80CAB8C45637ABC7493ECDDD /* Piccolo Tool Debug */;
+			remoteGlobalIDString = 80CAB8C45637ABC7493ECDDD;
 			remoteInfo = "Piccolo Tool Debug";
 		};
-		CFFB83440F0B8BDE000AB7E3 /* PBXContainerItemProxy */ = {
+		CFFB83820F0BBAA2000AB7E3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6BBF9AC94A7E459509A20ED0 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = C48A2CFB5F2217FBFB00722D /* Piccolo Tool */;
+			remoteGlobalIDString = C48A2CFB5F2217FBFB00722D;
 			remoteInfo = "Piccolo Tool";
 		};
 /* End PBXContainerItemProxy section */
@@ -1405,12 +1405,12 @@
 		D8F918A4AA29BE29D2C386FB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = C48A2CFB5F2217FBFB00722D /* Piccolo Tool */;
-			targetProxy = CFFB83440F0B8BDE000AB7E3 /* PBXContainerItemProxy */;
+			targetProxy = CFFB83820F0BBAA2000AB7E3 /* PBXContainerItemProxy */;
 		};
 		E6A13CF5EAA496D51FEA6406 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 80CAB8C45637ABC7493ECDDD /* Piccolo Tool Debug */;
-			targetProxy = CFFB83430F0B8BDE000AB7E3 /* PBXContainerItemProxy */;
+			targetProxy = CFFB83810F0BBAA2000AB7E3 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

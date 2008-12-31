@@ -5,6 +5,14 @@ import syntax piccolo_syntax in "piccolo_syntax.gSyntax" ;
 import syntax midrange_syntax in "midrange_syntax.gSyntax" ;
 import syntax pic18_bootloader_syntax in "pic18_bootloader_syntax.gSyntax" ;
 
-root <start_symbol> ;
+root <start_symbol>
+label importBootloaderSpecification
+  !@piccoloDeviceModel outPiccoloDeviceModel
+  !@uint outAccessBankSplitOffset
+  !@ramBankTable outRamBank
+  !@registerTable outRegisterTable
+  !@bootloaderReservedRAMmap outBootloaderReservedRAMmap
+  !@routineDeclarationList outBootloaderRoutineDeclarationList
+;
 
 end grammar ;

@@ -1,5 +1,6 @@
 gui piccolo_cocoa "cocoa" :
-#  import semantics pic18_metamodel in "pic18_metamodel.gSemantics" ;
+  import semantics piccoloDevice_semantics in "piccoloDevice_semantics.gSemantics" ;
+  import semantics pic18_metamodel in "pic18_metamodel.gSemantics" ;
   import grammar piccolo_grammar in "piccolo_grammar.gGrammar" ;
   import__ "piccolo_lexique.gLexique" ;
 
