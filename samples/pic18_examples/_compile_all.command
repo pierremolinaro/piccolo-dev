@@ -46,14 +46,19 @@ echo "-------------- Computed RCALL" &&
 piccolo -v -S -O -L --Werror computed_rcall_samples.piccolo &&
 $GPUTILS_PATH/gpasm computed_rcall_samples.asm -o computed_rcall_samples-2.hex &&
 hexcmp computed_rcall_samples.hex computed_rcall_samples-2.hex &&
-#--- Computed RCALL
+#--- Bootloader specification
 echo "-------------- Bootloader specification" &&
 piccolo -v -S -O -L --Werror bootloader_specification.piccolo &&
-#--- Computed RCALL
+#--- Bootloader implementation
 echo "-------------- Bootloader implementation" &&
 piccolo -v -S -O -L --Werror bootloader_implementation.piccolo &&
 $GPUTILS_PATH/gpasm bootloader_implementation.asm -o bootloader_implementation-2.hex &&
 hexcmp bootloader_implementation.hex bootloader_implementation-2.hex &&
+#--- Bootloader user program
+echo "-------------- Bootloader user program" &&
+piccolo -v -S -O -L --Werror bootloader_user_program.piccolo &&
+$GPUTILS_PATH/gpasm bootloader_user_program.asm -o bootloader_user_program-2.hex &&
+hexcmp bootloader_user_program.hex bootloader_user_program-2.hex &&
 #----
 echo "-------------- SUCCES ---------------" ||
 echo "-------------- ECHEC ----------------"

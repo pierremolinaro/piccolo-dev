@@ -1813,9 +1813,12 @@ end method ;
 #----------------------------------------------------*
 
 routine build_ipic18_assembly_instruction_list
-  ??@routineDeclarationList inBootloaderRoutineDeclarationList # Empty for regular program
-  ??@routineDeclarationList inUserRoutineDeclarationList # Empty for regular program
+  ??@programKind inProgramKind
+  ??@routineDeclarationList inBootloaderRoutineDeclarationListForBootloaderImplementation
+  ??@routineDeclarationList inUserRoutineDeclarationListForBootloaderImplementation
   ??@luint inBootloaderReservedROMsize
+  ??@routineDeclarationList inBootloaderRoutineDeclarationListForUserProgramImplementation
+  ??@routineDeclarationList inUserRoutineDeclarationListForUserProgramImplementation
   ??@uint inAccessBankSplitOffset
   ??@registerTable inRegisterTable
   ??@piccoloModel inPiccoloModel
@@ -1827,6 +1830,12 @@ routine build_ipic18_assembly_instruction_list
   @string generationOptimizationMessages := "" ;
 #-------------------------------- Build routine map
   @routineMap routineMap [emptyMap] ;
+  foreach inUserRoutineDeclarationListForBootloaderImplementation do
+    [!?routineMap insertKey !mRoutineName !mIsNoReturn ![mRequiredBank uint] ![mReturnedBank uint] !mPreservesBank] ;
+  end foreach ;
+  foreach inBootloaderRoutineDeclarationListForUserProgramImplementation do
+    [!?routineMap insertKey !mRoutineName !mIsNoReturn ![mRequiredBank uint] ![mReturnedBank uint] !mPreservesBank] ;
+  end foreach ;
   foreach [inPiccoloModel mRoutineDefinitionList] do
     if ([mRequiredBank uint] != [@uint max]) & ([mRequiredBank uint] > 15) then
       error mRequiredBank:"the required bank value should be lower or equal to 15" ;
@@ -1836,12 +1845,25 @@ routine build_ipic18_assembly_instruction_list
     end if ;
     [!?routineMap insertKey !mRoutineName !mIsNoReturn ![mRequiredBank uint] ![mReturnedBank uint] !mPreservesBank] ;
   end foreach ;
-  foreach inUserRoutineDeclarationList do
-    [!?routineMap insertKey !mRoutineName !mIsNoReturn ![mRequiredBank uint] ![mReturnedBank uint] !mPreservesBank] ;
-  end foreach ;
 #-------------------------------- Check bootloader routine definition
 # For a bootloader implementation, check all bootloader routines are declared
-  foreach inBootloaderRoutineDeclarationList do
+  foreach inBootloaderRoutineDeclarationListForBootloaderImplementation do
+    if [routineMap hasKey ![mRoutineName string]] then
+      @bool isNoReturn ;
+      @uint requiredBank ;
+      @uint returnedBank ;
+      @bool preservesBank ;
+      [routineMap searchKey !mRoutineName ?isNoReturn ?requiredBank ?returnedBank ?preservesBank] ;
+      if (isNoReturn != mIsNoReturn) | (requiredBank != [mRequiredBank uint]) | (returnedBank != [mReturnedBank uint])  | (preservesBank != mPreservesBank) then
+        error [routineMap locationForKey ![mRoutineName string]] : "the '" . mRoutineName . "' routine header does not conform to its declaration in bootloader specification" ;
+      end if ;
+    else
+      error here:"The bootloader specification requires the implementation to define the '" . mRoutineName . "' routine" ;
+    end if ;
+  end foreach ;
+#-------------------------------- Check user program routine definition
+# For an user program implementation, check all user routines are declared
+  foreach inUserRoutineDeclarationListForUserProgramImplementation do
     if [routineMap hasKey ![mRoutineName string]] then
       @bool isNoReturn ;
       @uint requiredBank ;
@@ -1873,39 +1895,61 @@ routine build_ipic18_assembly_instruction_list
     ;
   end if ;
 #-------------------------------- Check the "main" routine is declared
-  if [routineMap hasKey !"main"] then
-    @bool isNoReturn ;
-    @uint requiredBank ;
-    [routineMap searchKey ![@lstring new !"main" !here] ?isNoReturn ?requiredBank ?* ?*] ;
-    if not isNoReturn then
-      error here :"the \"main\" should be declared with \"noreturn\" qualifier: \"noreturn main requiresbank 0\"" ;
+  if inProgramKind != [@programKind userProgram] then
+    if [routineMap hasKey !"main"] then
+      @bool isNoReturn ;
+      @uint requiredBank ;
+      [routineMap searchKey ![@lstring new !"main" !here] ?isNoReturn ?requiredBank ?* ?*] ;
+      if not isNoReturn then
+        error here :"the \"main\" should be declared with \"noreturn\" qualifier: \"noreturn main requiresbank 0\"" ;
+      end if ;
+      if requiredBank != 0 then
+        error here :"the \"main\" should be declared with \"requiresbank 0\" qualifier: \"noreturn main requiresbank 0\"" ;
+      end if ;
+    else
+      error [inPiccoloModel mEndOfProgram]: "the program should declare the \"main\" routine" ;
     end if ;
-    if requiredBank != 0 then
-      error here :"the \"main\" should be declared with \"requiresbank 0\" qualifier: \"noreturn main requiresbank 0\"" ;
-    end if ;
-  else
-    error [inPiccoloModel mEndOfProgram]: "the program should declare the \"main\" routine" ;
   end if ;
-#-------------------------------- Check and translate interrupt routines
+#-------------------------------- Generate bootstrap entry points for user program
   outGeneratedInstructionList := [@ipic18_instructionList emptyList] ;
-  @uint localLabelIndex := 0 ;
-#--- At zero, generate 'jump main' instruction
-  outGeneratedInstructionList += ![@ipic_JUMP new !here ![@lstring new !"main" !here] ![@jumpInstructionKind ipicRelative]] ;
-#--- At 0x04, generate the first bootloader entry point (if any)
-  @routineDeclarationList tempBootloaderRoutineDeclarationList := inBootloaderRoutineDeclarationList ;
+  @uint entryPoint := 0x04 ;
+  foreach inBootloaderRoutineDeclarationListForUserProgramImplementation do
+    outGeneratedInstructionList += ![@ipic_pseudo_ORG new !entryPoint] ;
+    outGeneratedInstructionList += ![@ipic_pseudo_LABEL new !mRoutineName] ;
+    entryPoint := entryPoint + 4 ;
+    if entryPoint == 0x08 then
+      entryPoint := 0x0C ;
+    elsif entryPoint == 0x18 then
+      entryPoint := 0x1C ;
+    end if ;
+  end foreach ;
+#-------------------------------- Generate user program entry points for user program
+  entryPoint := [inBootloaderReservedROMsize uint] ;
+  foreach inUserRoutineDeclarationListForUserProgramImplementation do
+    outGeneratedInstructionList += ![@ipic_pseudo_ORG new !entryPoint] ;
+    outGeneratedInstructionList += ![@ipic_JUMP new !here !mRoutineName ![@jumpInstructionKind ipicRelative]] ;
+    entryPoint := entryPoint + 4 ;
+  end foreach ;
+#-------------------------------- At zero, generate 'jump main' instruction
+  if inProgramKind != [@programKind userProgram] then
+    outGeneratedInstructionList += ![@ipic_pseudo_ORG new !0] ;
+    outGeneratedInstructionList += ![@ipic_JUMP new !here ![@lstring new !"main" !here] ![@jumpInstructionKind ipicRelative]] ;
+  end if ;
+#-------------------------------- At 0x04, generate the first bootloader entry point (if any)
+  @routineDeclarationList tempBootloaderRoutineDeclarationList := inBootloaderRoutineDeclarationListForBootloaderImplementation ;
   if [tempBootloaderRoutineDeclarationList length] > 0 then
     outGeneratedInstructionList += ![@ipic_pseudo_ORG new !0x04] ;
     @lstring routineName ;
     [!?tempBootloaderRoutineDeclarationList popFirst ?routineName ?* ?* ?* ?*] ;
     outGeneratedInstructionList += ![@ipic_JUMP new !here !routineName ![@jumpInstructionKind ipicRelative]] ;
   end if ;
-#--- At 0x08, generate 'bra _high_interrupt' instruction, if fast interrupt is defined
+#-------------------------------- At 0x08, generate 'bra _high_interrupt' instruction, if fast interrupt is defined
   if inHasHighInterrupt then
     outGeneratedInstructionList += ![@ipic_pseudo_ORG new !0x8] ;
     outGeneratedInstructionList += ![@ipic_JUMP new !here ![@lstring new !"_high_interrupt" !here] ![@jumpInstructionKind ipicRelative]] ;
   end if ;
-#--- At 0x0C, 0x10, 0x14, generate the bootloader entry points (if they exists)
-  @uint entryPoint := 0x0C ;
+#-------------------------------- At 0x0C, 0x10, 0x14, generate the bootloader entry points (if they exists)
+  entryPoint := 0x0C ;
   loop [tempBootloaderRoutineDeclarationList length] :
   while ([tempBootloaderRoutineDeclarationList length] > 0) & (entryPoint < 0x18) 
   do
@@ -1915,7 +1959,7 @@ routine build_ipic18_assembly_instruction_list
     outGeneratedInstructionList += ![@ipic_JUMP new !here !routineName ![@jumpInstructionKind ipicRelative]] ;
     entryPoint := entryPoint + 0x4 ;
   end loop ;
-#--- Handle JUMP to low interrupt (if any)
+#-------------------------------- Generate JUMP to low interrupt (if any)
   if inHasLowInterrupt then
     outGeneratedInstructionList += ![@ipic_pseudo_ORG new !0x18] ;
     outGeneratedInstructionList += ![@ipic_JUMP new !here ![@lstring new !"_low_interrupt" !here] ![@jumpInstructionKind ipicRelative]] ;
@@ -1927,7 +1971,8 @@ routine build_ipic18_assembly_instruction_list
     outGeneratedInstructionList += ![@ipic_JUMP new !here !mRoutineName ![@jumpInstructionKind ipicRelative]] ;
     entryPoint := entryPoint + 0x4 ;
   end foreach ;
-#--- Generate low interrupt routine (if any)
+#-------------------------------- Generate low interrupt routine (if any)
+  @uint localLabelIndex := 0 ;
   if inHasLowInterrupt then
     outGeneratedInstructionList += ![@ipic_pseudo_LABEL new ![@lstring new !"_low_interrupt" !here]] ;
     foreach [inPiccoloModel mInterruptDefinitionList] do
@@ -1956,7 +2001,7 @@ routine build_ipic18_assembly_instruction_list
       end if ;
     end foreach ;
   end if ;
-#--- Then, generate high interrupt routine (if any)
+#-------------------------------- Generate high interrupt routine (if any)
   if inHasHighInterrupt then
     outGeneratedInstructionList += ![@ipic_pseudo_LABEL new ![@lstring new !"_high_interrupt" !here]] ;
     foreach [inPiccoloModel mInterruptDefinitionList] do
@@ -2111,7 +2156,7 @@ routine build_ipic18_assembly_instruction_list
   end if ;
 #-------------------------------- Generate default user routines
   entryPoint := [inBootloaderReservedROMsize uint] ;
-  foreach inUserRoutineDeclarationList do
+  foreach inUserRoutineDeclarationListForBootloaderImplementation do
     outGeneratedInstructionList += ![@ipic_pseudo_ORG new !entryPoint] ;
     outGeneratedInstructionList += ![@ipic_pseudo_LABEL new !mRoutineName] ;
     if mIsNoReturn then

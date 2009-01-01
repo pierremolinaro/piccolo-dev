@@ -29,8 +29,10 @@ routine pic18_analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName 
   @uint accessBankSplitOffset ;
   @ramBankTable ramBank ;
   @bootloaderReservedRAMmap bootloaderReservedRAMmap ; # Used only for bootloader implementation
-  @routineDeclarationList bootloaderRoutineDeclarationList ; # Empty for regular program
-  @routineDeclarationList userRoutineDeclarationList ; # Empty for regular program
+  @routineDeclarationList bootloaderRoutineDeclarationListForBootloaderImplementation ;
+  @routineDeclarationList userRoutineDeclarationListForBootloaderImplementation ;
+  @routineDeclarationList bootloaderRoutineDeclarationListForUserProgramImplementation ;
+  @routineDeclarationList userRoutineDeclarationListForUserProgramImplementation ;
   @luint bootloaderReservedROMsize ; # Used only for bootloader implementation or user program implementation, zero for regular program
   @registerTable registerTable ;
   switch [inPiccoloModel mProgramKind]
@@ -45,24 +47,40 @@ routine pic18_analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName 
     ramBank := [piccoloDeviceModel mRamBankTable] ;
     bootloaderReservedRAMmap := [@bootloaderReservedRAMmap emptyMap] ;
     registerTable := [piccoloDeviceModel mRegisterTable] ;
-    bootloaderRoutineDeclarationList := [@routineDeclarationList emptyList] ;
-    userRoutineDeclarationList := [@routineDeclarationList emptyList] ;
+    bootloaderRoutineDeclarationListForBootloaderImplementation := [@routineDeclarationList emptyList] ;
+    userRoutineDeclarationListForBootloaderImplementation := [@routineDeclarationList emptyList] ;
+    bootloaderRoutineDeclarationListForUserProgramImplementation := [@routineDeclarationList emptyList] ;
+    userRoutineDeclarationListForUserProgramImplementation := [@routineDeclarationList emptyList] ;
     bootloaderReservedROMsize := [@luint new !0 !here] ;
   when bootloaderProgram :
+    bootloaderRoutineDeclarationListForUserProgramImplementation := [@routineDeclarationList emptyList] ;
+    userRoutineDeclarationListForUserProgramImplementation := [@routineDeclarationList emptyList] ;
     grammar piccolo_grammar label importBootloaderSpecification in [inPiccoloModel mDeviceNameOrBootLoaderReference]
       ?piccoloDeviceModel
       ?accessBankSplitOffset
       ?ramBank
       ?registerTable
       ?bootloaderReservedRAMmap
-      ?bootloaderRoutineDeclarationList
-      ?userRoutineDeclarationList
+      ?bootloaderRoutineDeclarationListForBootloaderImplementation
+      ?userRoutineDeclarationListForBootloaderImplementation
       ?bootloaderReservedROMsize
     ;
-   #--- Reset first free addresses for all banks
-    foreach ramBank do
+    foreach ramBank do #--- Reset first free addresses for all banks
       [!?ramBank setMFirstFreeAddressForKey !mFirstAddress ![key string]] ;
     end foreach ;
+  when userProgram :
+    grammar piccolo_grammar label importBootloaderSpecification in [inPiccoloModel mDeviceNameOrBootLoaderReference]
+      ?piccoloDeviceModel
+      ?accessBankSplitOffset
+      ?ramBank
+      ?registerTable
+      ?bootloaderReservedRAMmap
+      ?bootloaderRoutineDeclarationListForUserProgramImplementation
+      ?userRoutineDeclarationListForUserProgramImplementation
+      ?bootloaderReservedROMsize
+    ;
+    bootloaderRoutineDeclarationListForBootloaderImplementation := [@routineDeclarationList emptyList] ;
+    userRoutineDeclarationListForBootloaderImplementation := [@routineDeclarationList emptyList] ;
   end switch ;
 #-------------------------------- Interrupts ?
   @bool hasHighInterrupt := false ;
@@ -70,6 +88,9 @@ routine pic18_analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName 
   @bool hasLowInterrupt := false ;
   @bool lowInterruptIsFast := false ;
   foreach [inPiccoloModel mInterruptDefinitionList] do
+    if [inPiccoloModel mProgramKind] == [@programKind userProgram] then
+      error mInterruptName: "interrupt routine is not allowed for a bootloader user program" ;
+    end if ;
     if [mInterruptName string] == "high" then
       highInterruptIsFast := mFastReturn ;
       if hasHighInterrupt then
@@ -91,13 +112,20 @@ routine pic18_analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName 
   end foreach ;
 #-------------------------------- Config definition
   @actualConfigurationMap actualConfigurationMap ;
-  buildConfig
-    ![piccoloDeviceModel mConfigRegisterMap]
-    ![inPiccoloModel mConfigDefinitionList]
-    ![inPiccoloModel mAcceptDefaultConfiguration]
-    !?listFileContents
-    ?actualConfigurationMap
-  ;
+  if [inPiccoloModel mProgramKind] == [@programKind userProgram] then
+    foreach [inPiccoloModel mConfigDefinitionList] do
+      error mDefinitionLocation: "configuration is not allowed for a bootloader user program" ;
+    end foreach ;
+    actualConfigurationMap := [@actualConfigurationMap emptyMap] ;
+  else
+    buildConfig
+      ![piccoloDeviceModel mConfigRegisterMap]
+      ![inPiccoloModel mConfigDefinitionList]
+      ![inPiccoloModel mAcceptDefaultConfiguration]
+      !?listFileContents
+      ?actualConfigurationMap
+    ;
+  end if ;
 #-------------------------------- Ram definition
   analyze_ram_sections
     !"DECLARED VARIABLES"
@@ -130,9 +158,12 @@ routine pic18_analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName 
 #-------------------------------- Build IPIC Assembly Instruction List
   @ipic18_instructionList generatedInstructionList ;
   build_ipic18_assembly_instruction_list
-    !bootloaderRoutineDeclarationList # Empty for regular program
-    !userRoutineDeclarationList # Empty for regular program
+    ![inPiccoloModel mProgramKind]
+    !bootloaderRoutineDeclarationListForBootloaderImplementation # Empty for regular program
+    !userRoutineDeclarationListForBootloaderImplementation # Empty for regular program
     !bootloaderReservedROMsize
+    !bootloaderRoutineDeclarationListForUserProgramImplementation
+    !userRoutineDeclarationListForUserProgramImplementation
     !accessBankSplitOffset
     !registerTable
     !inPiccoloModel

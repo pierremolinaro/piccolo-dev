@@ -138,6 +138,10 @@ rule <start_symbol> :
     $implements$ ;
     $bootloader$ ;
     programKind := [@programKind bootloaderProgram] ;
+  or
+    $uses$ ;
+    $bootloader$ ;
+    programKind := [@programKind userProgram] ;
   end select ;
   $literal_string$ ? deviceNameOrBootloaderReference ;
   $:$ ;
@@ -222,6 +226,9 @@ label importBootloaderSpecification
   or
     $implements$ ;
     $bootloader$ ;
+  or
+    $uses$ ;
+    $bootloader$ ;
   end select ;
   $literal_string$ ? * ;
   $:$ ;
@@ -251,6 +258,7 @@ rule <configuration_definition>
   ?!@bool ioAcceptDefaultConfiguration
 :
   $configuration$ ;
+  @location defLocation := here ;
   @configSettingList settingList [emptyList] ;
   ${$ ;
   repeat
@@ -272,7 +280,7 @@ rule <configuration_definition>
     settingList += !settingName !settingValue ;
   end repeat ;
   $}$ ;
-  ioConfigDefinitionList += !settingList ;
+  ioConfigDefinitionList += !defLocation !settingList ;
 end rule ;
 
 #----------------------------------------------------*

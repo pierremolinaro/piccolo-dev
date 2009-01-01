@@ -66,6 +66,7 @@ list @configSettingList {
 #----------------------------------------------------*
 
 list @configDefinitionList {
+  @location mDefinitionLocation ;
   @configSettingList mSettingList ;
 }
 
