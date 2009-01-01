@@ -562,7 +562,7 @@ routine performOptimizations
       foreach ioGeneratedInstructionList do
         [mInstruction setCurrentAddress !?currentAddress] ;
       end foreach ;
-      ioListFileContents .= "Minimum code size: " . [currentAddress string] . " instructions\n\n" ;
+      ioListFileContents .= "Minimum code size: " . [currentAddress string] . " bytes\n\n" ;
     end if ;
   end loop ;
 end routine ;

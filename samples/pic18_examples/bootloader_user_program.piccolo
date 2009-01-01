@@ -1,0 +1,57 @@
+pic18 bootloader_user_program uses bootloader "bootloader_specification.piccolo" :
+
+#configuration {
+#}
+
+ram accessram {
+  byte userVar 
+}
+
+ram gpr0 {
+  byte userVar0 
+}
+
+ram gpr1 {
+  byte userVar1
+}
+
+ram gpr2 {
+  byte userVar2
+}
+
+#interrupt low {
+#}
+
+#interrupt high {
+#}
+
+routine userRoutine1 {
+  nop
+  jsr routineBootloader1
+  nop
+}
+
+routine userRoutine2 bank:preserved {
+  mnop 2
+}
+routine userRoutine3 bank:requires 15 {
+  mnop 2
+}
+routine userRoutine4 bank:ensures 15 {
+  banksel 15
+}
+routine userRoutine5 bank:requires 15 ensures 12 {
+  banksel 12
+}
+
+noreturn routine userRoutine6 {
+  forever
+  end
+}
+
+noreturn routine userRoutine7 bank:requires 15 {
+  forever
+  end
+}
+
+end
