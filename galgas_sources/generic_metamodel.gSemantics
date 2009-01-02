@@ -33,7 +33,7 @@ class @byteDeclarationInRam extends @declarationInRam {
 #----------------------------------------------------*
 
 list @declarationInRamList {
-  @declarationInRam mDeclaration ;
+  @declarationInRam mDeclarationInRAM ;
 }
 
 #----------------------------------------------------*
