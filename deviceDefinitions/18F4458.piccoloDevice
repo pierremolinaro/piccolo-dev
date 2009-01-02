@@ -25,7 +25,11 @@ controller PIC18F4458 {
   ram gpr1 : 0x100 to 0x1FF ;
   ram gpr2 : 0x200 to 0x2FF ;
   ram gpr3 : 0x300 to 0x3FF ;
-  # Total ram: 1024
+  ram usb4 : 0x400 to 0x4FF ;
+  ram usb5 : 0x500 to 0x5FF ;
+  ram usb6 : 0x600 to 0x6FF ;
+  ram usb7 : 0x700 to 0x7FF ;
+  # Total ram: 2048
 
   register ADCON0 at 0xFC2
     <-, -, CHS [4], GO/nDONE, ADON> ;

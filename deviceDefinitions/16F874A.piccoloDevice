@@ -8,13 +8,15 @@ controller PIC16F874A {
   unusedregister 0x9A to 0x9B ;
   unusedregister 0x105 ;
   unusedregister 0x107 to 0x109 ;
-  unusedregister 0x110 to 0x11F ;
   unusedregister 0x185 ;
   unusedregister 0x187 to 0x189 ;
-  unusedregister 0x18E to 0x19F ;
-  ram gpr0 : 0x20 to 0x7F mirrorat 0x120 ;
-  ram gpr1 : 0xA0 to 0xFF mirrorat 0x1A0 ;
-  # Total ram: 192
+  unusedregister 0x18E to 0x18F ;
+  ram gpr0 : 0x20 to 0x6F ;
+  ram gpr1 : 0xA0 to 0xEF ;
+  ram gpr2 : 0x110 to 0x16F ;
+  ram gpr3 : 0x190 to 0x1EF ;
+  ram gprnobnk : 0x70 to 0x7F mirrorat 0xF0, 0x170, 0x1F0 ;
+  # Total ram: 368
 
   register ADCON0 at 0x1F
     <ADCS [2], CHS [3], GO/nDONE, -, ADON> ;
