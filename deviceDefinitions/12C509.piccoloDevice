@@ -2,8 +2,9 @@ controller PIC12C509 {
   processor "baseline" ;
   romsize 1024 ;
   bank 2 ;
-  ram gpr0 : 0x7 to 0x1F ;
+  ram gpr0 : 0x10 to 0x1F ;
   ram gpr1 : 0x30 to 0x3F ;
+  ram gprnobnk : 0x7 to 0xF mirrorat 0x27 ;
   # Total ram: 41
 
   register FSR at 0x4, 0x24

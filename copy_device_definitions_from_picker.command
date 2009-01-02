@@ -1,8 +1,9 @@
 #!/bin/sh
 DIR=`dirname $0` &&
+SOURCE_DIR=generatedDefinitions_8_15a &&
 #--- pic 18
 { 
-  for source in $DIR/../picker/generatedDefinitions_8_10/pic18/PIC18*.piccoloDevice
+  for source in $DIR/../picker/$SOURCE_DIR/pic18/PIC18*.piccoloDevice
   do
     base=`basename "$source"`
     base2=`echo "$base" | sed 's/PIC18/18/g'`
@@ -20,7 +21,7 @@ DIR=`dirname $0` &&
 } &&
 #--- Mid-range
 { 
-  for source in $DIR/../picker/generatedDefinitions_8_10/mid-range/*.piccoloDevice
+  for source in $DIR/../picker/$SOURCE_DIR/mid-range/*.piccoloDevice
   do
     base=`basename "$source"`
     base2=`echo "$base" | sed 's/PIC//g'`
@@ -38,7 +39,7 @@ DIR=`dirname $0` &&
 } &&
 #--- baseline
 { 
-  for source in $DIR/../picker/generatedDefinitions_8_10/baseline/*.piccoloDevice
+  for source in $DIR/../picker/$SOURCE_DIR/baseline/*.piccoloDevice
   do
     base=`basename "$source"`
     base2=`echo "$base" | sed 's/PIC//g'`

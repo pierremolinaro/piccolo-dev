@@ -18,7 +18,6 @@ controller PIC18F67J10 {
   ram gpr12 : 0xC00 to 0xCFF ;
   ram gpr13 : 0xD00 to 0xDFF ;
   ram gpr14 : 0xE00 to 0xEFF ;
-  ram gpr15 : 0xF00 to 0xF5F ;
   ram gpr2 : 0x200 to 0x2FF ;
   ram gpr3 : 0x300 to 0x3FF ;
   ram gpr4 : 0x400 to 0x4FF ;
@@ -27,7 +26,7 @@ controller PIC18F67J10 {
   ram gpr7 : 0x700 to 0x7FF ;
   ram gpr8 : 0x800 to 0x8FF ;
   ram gpr9 : 0x900 to 0x9FF ;
-  # Total ram: 3936
+  # Total ram: 3840
 
   register ADCON0 at 0xFC2
     <-, -, CHS [4], GO/nDONE, ADON> ;

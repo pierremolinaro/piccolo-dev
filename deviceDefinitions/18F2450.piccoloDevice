@@ -27,7 +27,8 @@ controller PIC18F2450 {
   ram accessram : 0x0 to 0x5F ;
   ram gpr0 : 0x60 to 0xFF ;
   ram gpr1 : 0x100 to 0x1FF ;
-  # Total ram: 512
+  ram usb4 : 0x400 to 0x4FF ;
+  # Total ram: 768
 
   register ADCON0 at 0xFC2
     <-, -, CHS [4], GO/nDONE, ADON> ;
