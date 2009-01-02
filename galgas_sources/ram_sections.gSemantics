@@ -32,7 +32,7 @@ override method @commonDeclarationInRam.handleDeclaration
   foreach mBranchList do
     @ramBankTable ramBank := ioRamBank ;
     foreach mDeclarations do
-      [mDeclaration handleDeclaration !?ramBank !?ioRegisterTable !inCurrentRamBank] ;
+      [mDeclarationInRAM handleDeclaration !?ramBank !?ioRegisterTable !inCurrentRamBank] ;
     end foreach ;
     @uint ffa ;
     [ramBank searchKey !inCurrentRamBank ?* ?ffa ?* ?*] ;
@@ -89,7 +89,7 @@ routine analyze_ram_sections
   ?!@registerTable ioAllRegisters :
   foreach inRamDefinitionList do
     foreach mDeclaration do
-      [mDeclaration handleDeclaration !?ioRamBankTable !?ioAllRegisters !mBankName] ;
+      [mDeclarationInRAM handleDeclaration !?ioRamBankTable !?ioAllRegisters !mBankName] ;
     end foreach ;
   end foreach ;
   if [option piccolo_options.ouputListingFile] then
