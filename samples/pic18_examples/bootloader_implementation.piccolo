@@ -1,5 +1,42 @@
+#--- Implémentation d'un bootloader : son en-tête fait référence
+# à une spécification
 pic18 bootloader_implementation implements bootloader "bootloader_specification.piccolo" :
 
+#--- Configuration du micro-contrôleur : comme pour un programme ordinaire
+# (Voir l'exemple blink_led.piccolo)
+configuration {
+  OSC : "EC-OSC2 as RA6"
+  OSCS : Disabled
+  WDT : "Disabled-Controlled by SWDTEN bit"
+  WDTPS : "1:128"
+  STVR : Disabled
+  LVP : Disabled
+  CP_0 : Disabled
+  CP_1 : Disabled
+  CP_2 : Disabled
+  CP_3 : Disabled
+  WRT_1 : Disabled
+  WRT_2 : Disabled
+  WRT_3 : Disabled
+  WRT_0 : Disabled
+  EBTR_0 : Disabled
+  EBTR_1 : Disabled
+  EBTR_2 : Disabled
+  EBTR_3 : Disabled
+  BACKBUG : Disabled
+  BODEN : Disabled
+  BODENV : "4.5V"
+  CPB : Disabled
+  CPD : Disabled
+  EBTRB : Disabled
+  PUT : Enabled
+  WRTB : Disabled
+  WRTC : Disabled
+  WRTD : Disabled
+}
+
+#---- Données du bootloader : elles doivent loger dans l'espace réservée, qui a été
+#     déclarée dans la spécification
 ram accessram {
   byte bootloaderVar 
 }
@@ -16,6 +53,7 @@ ram gpr2 {
   byte bootloaderVar2
 }
 
+#--- Les routines d'interruption
 interrupt low {
   jsr userRoutine2
 }
@@ -23,11 +61,13 @@ interrupt low {
 interrupt high {
 }
 
+#--- La routine main, exécutée au démarrage du micro-contrôleur
 noreturn routine main bank:requires 0 {
   forever
   end
 }
 
+#--- Définir les routines en fonction de leur déclaration dans la sépécification
 routine routineBootloader1 {
 }
 

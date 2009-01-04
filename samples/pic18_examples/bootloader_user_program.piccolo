@@ -1,8 +1,21 @@
+#--- Programme applicatif d'un bootloader : son en-tête fait référence
+# à une spécification
 pic18 bootloader_user_program uses bootloader "bootloader_specification.piccolo" :
 
+#--- Pas de configuration possible : décommenter ce code engendre une erreur de compilation
 #configuration {
 #}
 
+#--- Pas de routine d'interruption possible : décommenter ce code
+# engendre une erreur de compilation
+#interrupt low {
+#}
+
+#interrupt high {
+#}
+
+#--- Les données du programme applicatif : elles sont rangées après
+#  les données partagées
 ram accessram {
   byte userVar 
 }
@@ -19,12 +32,7 @@ ram gpr2 {
   byte userVar2
 }
 
-#interrupt low {
-#}
-
-#interrupt high {
-#}
-
+#--- Implémentation des routines déclarées dans la spécification
 routine userRoutine1 {
   nop
   jsr routineBootloader1
