@@ -159,6 +159,7 @@ routine pic18_analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName 
   @ipic18_instructionList generatedInstructionList ;
   build_ipic18_assembly_instruction_list
     ![inPiccoloModel mProgramKind]
+    ![[[piccoloDeviceModel mRomSize] uint] sint]
     !bootloaderRoutineDeclarationListForBootloaderImplementation # Empty for regular program
     !userRoutineDeclarationListForBootloaderImplementation # Empty for regular program
     !bootloaderReservedROMsize

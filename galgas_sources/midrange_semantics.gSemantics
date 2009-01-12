@@ -65,6 +65,7 @@ routine midrange_analyze ??@midrange_model inPiccoloModel ??@string inSourceFile
   build_midrange_assembly_instruction_list
     !([[piccoloDeviceModel mRomSize] uint] + 2047) / 2048
     ![[piccoloDeviceModel mBankCount] uint]
+    ![[[piccoloDeviceModel mRomSize] uint] sint]
     ![piccoloDeviceModel mSharedBankName] != ""
     !registerTable
     !inPiccoloModel
