@@ -1814,6 +1814,7 @@ end method ;
 
 routine build_ipic18_assembly_instruction_list
   ??@programKind inProgramKind
+  ??@sint inROMSize
   ??@routineDeclarationList inBootloaderRoutineDeclarationListForBootloaderImplementation
   ??@routineDeclarationList inUserRoutineDeclarationListForBootloaderImplementation
   ??@luint inBootloaderReservedROMsize
@@ -1879,10 +1880,19 @@ routine build_ipic18_assembly_instruction_list
   end foreach ;
 #-------------------------------- Build constant map
   @constantMap constantMap [emptyMap] ;
+#--- Add "ROM_SIZE" constant
+  @lstring romSizeString [new !"ROM_SIZE" !here] ;
+  [!?constantMap insertKey !romSizeString !inROMSize] ;
+#--- Add "BOOTLOADER_SIZE" constant
+  if inProgramKind != [@programKind regularProgram] then
+    @lstring bootloaderSizeString [new !"BOOTLOADER_SIZE" !here] ;
+    [!?constantMap insertKey !bootloaderSizeString ![[inBootloaderReservedROMsize uint] sint]] ;
+  end if ;
+#--- Add declared constants
   foreach [inPiccoloModel mConstantDefinitionList] do
     @sint result ; [mExpression eval !inRegisterTable !constantMap ?result] ;
     if [inRegisterTable hasKey ![mConstantName string]] then
-      error mConstantName: "'" . mConstantName . "' is alreday declared as ram register or special register" ;
+      error mConstantName: "'" . mConstantName . "' is already declared as ram register or special register" ;
     else
       [!?constantMap insertKey !mConstantName !result] ;
     end if ;
