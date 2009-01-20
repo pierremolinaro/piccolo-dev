@@ -709,7 +709,6 @@ override method @ipic18_instruction_computed_goto.generateBinaryCodeAtAddress
     emit_pic18_CALLinstruction !targetAddress ;
   end if ;
   foreach mTargetLabels do
-    @uint requiredSelectedBank ;
     [inRoutineSymbolTable searchKey !mValue ?targetAddress] ;
     emit_pic18_GOTOinstruction
       !targetAddress
@@ -738,7 +737,6 @@ override method @ipic18_instruction_computed_rcall.generateBinaryCodeAtAddress
   @uint index := 0 ;
   foreach mTargetLabels do
     index ++ ;
-    @uint requiredSelectedBank ;
     [inRoutineSymbolTable searchKey !mValue ?targetAddress] ;
     emitRCALLinstruction !currentInstructionAddress !targetAddress !mValue ;
     currentInstructionAddress := currentInstructionAddress + 2 ;
