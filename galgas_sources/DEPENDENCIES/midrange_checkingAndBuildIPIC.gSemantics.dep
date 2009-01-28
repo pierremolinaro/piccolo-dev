@@ -1,0 +1,9 @@
+0::
+midrange_metamodel.gSemantics
+generic_metamodel.gSemantics
+piccoloDevice_semantics.gSemantics
+midrange_ipic_metamodel.gSemantics
+ipic_generic.gSemantics
+piccolo_options.gOption::
+../project_xcode/../galgas_sources/GALGAS_OUTPUT/midrange_checkingAndBuildIPIC.h
+../project_xcode/../galgas_sources/GALGAS_OUTPUT/midrange_checkingAndBuildIPIC.cpp

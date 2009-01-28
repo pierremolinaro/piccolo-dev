@@ -1,0 +1,5 @@
+0::
+generic_metamodel.gSemantics
+piccoloDevice_semantics.gSemantics::
+../project_xcode/../galgas_sources/GALGAS_OUTPUT/piccolo_config.h
+../project_xcode/../galgas_sources/GALGAS_OUTPUT/piccolo_config.cpp

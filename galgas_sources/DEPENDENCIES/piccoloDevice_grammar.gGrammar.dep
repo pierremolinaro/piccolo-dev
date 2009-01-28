@@ -1,0 +1,7 @@
+0::
+piccoloDevice_lexique.gLexique
+piccoloDevice_syntax.gSyntax
+piccoloDevice_semantics.gSemantics
+generic_metamodel.gSemantics::
+GALGAS_OUTPUT/piccoloDevice_grammar.cpp
+GALGAS_OUTPUT/piccoloDevice_grammar.h

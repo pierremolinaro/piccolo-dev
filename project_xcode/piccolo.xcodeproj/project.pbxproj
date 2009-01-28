@@ -316,14 +316,14 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 6BBF9AC94A7E459509A20ED0 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = CFA18CA70F29D75F00F8200B /* GALGAS Compile */;
+			remoteGlobalIDString = CFA18CA70F29D75F00F8200B;
 			remoteInfo = "GALGAS Compile";
 		};
 		CFA18CB80F29D83C00F8200B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6BBF9AC94A7E459509A20ED0 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = CFA18CA70F29D75F00F8200B /* GALGAS Compile */;
+			remoteGlobalIDString = CFA18CA70F29D75F00F8200B;
 			remoteInfo = "GALGAS Compile";
 		};
 /* End PBXContainerItemProxy section */

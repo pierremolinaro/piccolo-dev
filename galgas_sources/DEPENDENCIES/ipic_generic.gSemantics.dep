@@ -1,0 +1,6 @@
+0::
+generic_metamodel.gSemantics
+piccoloDevice_semantics.gSemantics
+piccolo_options.gOption::
+../project_xcode/../galgas_sources/GALGAS_OUTPUT/ipic_generic.h
+../project_xcode/../galgas_sources/GALGAS_OUTPUT/ipic_generic.cpp

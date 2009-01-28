@@ -1,0 +1,9 @@
+0::
+piccoloDevice_semantics.gSemantics
+generic_metamodel.gSemantics
+ipic18_metamodel.gSemantics
+pic18_metamodel.gSemantics
+ipic_generic.gSemantics
+piccolo_options.gOption::
+GALGAS_OUTPUT/ram_sections.h
+GALGAS_OUTPUT/ram_sections.cpp
