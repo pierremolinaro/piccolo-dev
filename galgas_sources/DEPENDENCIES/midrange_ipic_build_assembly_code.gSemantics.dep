@@ -5,5 +5,5 @@ generic_metamodel.gSemantics
 midrange_ipic_metamodel.gSemantics
 midrange_metamodel.gSemantics
 ipic_generic.gSemantics::
-../project_xcode/../galgas_sources/GALGAS_OUTPUT/midrange_ipic_build_assembly_code.h
-../project_xcode/../galgas_sources/GALGAS_OUTPUT/midrange_ipic_build_assembly_code.cpp
+GALGAS_OUTPUT/midrange_ipic_build_assembly_code.h
+GALGAS_OUTPUT/midrange_ipic_build_assembly_code.cpp

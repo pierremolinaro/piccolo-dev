@@ -5,5 +5,5 @@ piccoloDevice_semantics.gSemantics
 midrange_ipic_metamodel.gSemantics
 ipic_generic.gSemantics
 piccolo_options.gOption::
-../project_xcode/../galgas_sources/GALGAS_OUTPUT/midrange_checkingAndBuildIPIC.h
-../project_xcode/../galgas_sources/GALGAS_OUTPUT/midrange_checkingAndBuildIPIC.cpp
+GALGAS_OUTPUT/midrange_checkingAndBuildIPIC.h
+GALGAS_OUTPUT/midrange_checkingAndBuildIPIC.cpp

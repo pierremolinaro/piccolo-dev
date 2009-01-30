@@ -5,5 +5,5 @@ ipic18_metamodel.gSemantics
 ipic_generic.gSemantics
 piccoloDevice_semantics.gSemantics
 piccolo_options.gOption::
-../project_xcode/../galgas_sources/GALGAS_OUTPUT/pic18_checkingAndBuildIPIC.h
-../project_xcode/../galgas_sources/GALGAS_OUTPUT/pic18_checkingAndBuildIPIC.cpp
+GALGAS_OUTPUT/pic18_checkingAndBuildIPIC.h
+GALGAS_OUTPUT/pic18_checkingAndBuildIPIC.cpp
