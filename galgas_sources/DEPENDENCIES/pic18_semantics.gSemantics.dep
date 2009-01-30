@@ -14,5 +14,5 @@ piccolo_config.gSemantics
 ram_sections.gSemantics
 piccolo_grammar.gGrammar
 piccolo_options.gOption::
-../project_xcode/../galgas_sources/GALGAS_OUTPUT/pic18_semantics.h
-../project_xcode/../galgas_sources/GALGAS_OUTPUT/pic18_semantics.cpp
+GALGAS_OUTPUT/pic18_semantics.h
+GALGAS_OUTPUT/pic18_semantics.cpp

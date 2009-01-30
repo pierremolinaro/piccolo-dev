@@ -15,5 +15,5 @@ midrange_optimizations.gSemantics
 midrange_build_binary_code.gSemantics
 midrange_compute_JSR_JUMP.gSemantics
 piccolo_options.gOption::
-../project_xcode/../galgas_sources/GALGAS_OUTPUT/midrange_semantics.h
-../project_xcode/../galgas_sources/GALGAS_OUTPUT/midrange_semantics.cpp
+GALGAS_OUTPUT/midrange_semantics.h
+GALGAS_OUTPUT/midrange_semantics.cpp

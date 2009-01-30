@@ -3,5 +3,5 @@ pic18_metamodel.gSemantics
 generic_metamodel.gSemantics
 ipic_generic.gSemantics
 piccoloDevice_semantics.gSemantics::
-../project_xcode/../galgas_sources/GALGAS_OUTPUT/ipic18_metamodel.h
-../project_xcode/../galgas_sources/GALGAS_OUTPUT/ipic18_metamodel.cpp
+GALGAS_OUTPUT/ipic18_metamodel.h
+GALGAS_OUTPUT/ipic18_metamodel.cpp

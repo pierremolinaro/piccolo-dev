@@ -1,4 +1,4 @@
 0::
 ::
-../project_xcode/../galgas_sources/GALGAS_OUTPUT/generic_metamodel.h
-../project_xcode/../galgas_sources/GALGAS_OUTPUT/generic_metamodel.cpp
+GALGAS_OUTPUT/generic_metamodel.h
+GALGAS_OUTPUT/generic_metamodel.cpp

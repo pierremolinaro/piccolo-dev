@@ -13,5 +13,5 @@ ipc18_convert_relatives.gSemantics
 ipic18_optimizations.gSemantics
 piccolo_config.gSemantics
 ram_sections.gSemantics::
-../project_xcode/../galgas_sources/GALGAS_OUTPUT/pic18_bootloader_specification_semantics.h
-../project_xcode/../galgas_sources/GALGAS_OUTPUT/pic18_bootloader_specification_semantics.cpp
+GALGAS_OUTPUT/pic18_bootloader_specification_semantics.h
+GALGAS_OUTPUT/pic18_bootloader_specification_semantics.cpp

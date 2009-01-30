@@ -1,4 +1,4 @@
 0::
 generic_metamodel.gSemantics::
-../project_xcode/../galgas_sources/GALGAS_OUTPUT/pic18_metamodel.h
-../project_xcode/../galgas_sources/GALGAS_OUTPUT/pic18_metamodel.cpp
+GALGAS_OUTPUT/pic18_metamodel.h
+GALGAS_OUTPUT/pic18_metamodel.cpp

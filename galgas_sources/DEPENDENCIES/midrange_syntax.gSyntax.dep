@@ -16,5 +16,5 @@ pic18_metamodel.gSemantics
 midrange_optimizations.gSemantics
 midrange_build_binary_code.gSemantics
 midrange_compute_JSR_JUMP.gSemantics::
-../project_xcode/../galgas_sources/GALGAS_OUTPUT/midrange_syntax.h
-../project_xcode/../galgas_sources/GALGAS_OUTPUT/midrange_syntax.cpp
+GALGAS_OUTPUT/midrange_syntax.h
+GALGAS_OUTPUT/midrange_syntax.cpp

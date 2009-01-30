@@ -14,5 +14,5 @@ ipc18_convert_relatives.gSemantics
 ipic18_optimizations.gSemantics
 piccolo_config.gSemantics
 ram_sections.gSemantics::
-../project_xcode/../galgas_sources/GALGAS_OUTPUT/piccolo_syntax.h
-../project_xcode/../galgas_sources/GALGAS_OUTPUT/piccolo_syntax.cpp
+GALGAS_OUTPUT/piccolo_syntax.h
+GALGAS_OUTPUT/piccolo_syntax.cpp
