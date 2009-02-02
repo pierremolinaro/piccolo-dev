@@ -34,3 +34,7 @@ piccolo_cocoa
 piccolo_embedded_devices
 piccolo_program
 piccolo_computations
+::
+piccolo_options
+piccolo_lexique
+piccolo_cocoa

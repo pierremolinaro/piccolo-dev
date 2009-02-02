@@ -5,4 +5,4 @@ pic18_metamodel.gSemantics
 piccolo_grammar.gGrammar
 piccolo_options.gOption
 piccolo_lexique.gLexique::
-GALGAS_OUTPUT/piccolo_cocoa.mm
+../project_xcode/../galgas_sources/GALGAS_OUTPUT/piccolo_cocoa.mm
