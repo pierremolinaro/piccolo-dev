@@ -27,5 +27,5 @@ midrange_build_binary_code.gSemantics
 midrange_compute_JSR_JUMP.gSemantics
 pic18_bootloader_syntax.gSyntax
 pic18_bootloader_specification_semantics.gSemantics::
-GALGAS_OUTPUT/piccolo_grammar.cpp
-GALGAS_OUTPUT/piccolo_grammar.h
+../project_xcode/../galgas_sources/GALGAS_OUTPUT/piccolo_grammar.cpp
+../project_xcode/../galgas_sources/GALGAS_OUTPUT/piccolo_grammar.h

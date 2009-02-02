@@ -15,5 +15,5 @@ piccolo_config.gSemantics
 ram_sections.gSemantics
 piccolo_grammar.gGrammar
 piccolo_options.gOption::
-GALGAS_OUTPUT/piccolo_program.h
-GALGAS_OUTPUT/piccolo_program.cpp
+../project_xcode/../galgas_sources/GALGAS_OUTPUT/piccolo_program.h
+../project_xcode/../galgas_sources/GALGAS_OUTPUT/piccolo_program.cpp

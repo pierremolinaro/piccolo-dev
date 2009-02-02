@@ -135,4 +135,4 @@ GALGAS_OUTPUT/piccolo_program.h
 GALGAS_OUTPUT/piccolo_program.cpp
 DEPENDENCIES/piccolo_program.gProgram.dep
 GALGAS_OUTPUT/file_list.mke
-GALGAS_OUTPUT/file_list_for_xcode_project.txt
+DEPENDENCIES/file_list_for_xcode_project.txt

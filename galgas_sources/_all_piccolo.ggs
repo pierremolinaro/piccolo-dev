@@ -1,49 +1,49 @@
 project
-  option    "piccolo_options.gOption" : makefile, xcode ;
+  option    "piccolo_options.gOption" : makefile, xcode_tool, xcode_app ;
 
-  lexique   "piccolo_lexique.gLexique" : makefile, xcode ;
+  lexique   "piccolo_lexique.gLexique" : makefile, xcode_tool, xcode_app ;
 
-  semantics "generic_metamodel.gSemantics" : makefile, xcode ;
-  semantics "ipic_generic.gSemantics" : makefile, xcode ;
+  semantics "generic_metamodel.gSemantics" : makefile, xcode_tool ;
+  semantics "ipic_generic.gSemantics" : makefile, xcode_tool ;
 
-  semantics "pic18_metamodel.gSemantics" : makefile, xcode ;
-  syntax    "piccolo_syntax.gSyntax" : makefile, xcode ;
-  syntax    "pic18_bootloader_syntax.gSyntax" : makefile, xcode ;
-  semantics "piccolo_config.gSemantics" : makefile, xcode ;
+  semantics "pic18_metamodel.gSemantics" : makefile, xcode_tool ;
+  syntax    "piccolo_syntax.gSyntax" : makefile, xcode_tool ;
+  syntax    "pic18_bootloader_syntax.gSyntax" : makefile, xcode_tool ;
+  semantics "piccolo_config.gSemantics" : makefile, xcode_tool ;
 
-  semantics "ipic18_metamodel.gSemantics" : makefile, xcode ;
-  semantics "pic18_checkingAndBuildIPIC.gSemantics" : makefile, xcode ;
-  semantics "ipic18_optimizations.gSemantics" : makefile, xcode ;
-  semantics "ipc18_convert_relatives.gSemantics" : makefile, xcode ;
-  semantics "ipic18_build_assembly_code.gSemantics" : makefile, xcode ;
-  semantics "ipic18_build_binary_code.gSemantics" : makefile, xcode ;
-  semantics "pic18_semantics.gSemantics" : makefile, xcode ;
-  semantics "pic18_bootloader_specification_semantics.gSemantics" : makefile, xcode ;
+  semantics "ipic18_metamodel.gSemantics" : makefile, xcode_tool ;
+  semantics "pic18_checkingAndBuildIPIC.gSemantics" : makefile, xcode_tool ;
+  semantics "ipic18_optimizations.gSemantics" : makefile, xcode_tool ;
+  semantics "ipc18_convert_relatives.gSemantics" : makefile, xcode_tool ;
+  semantics "ipic18_build_assembly_code.gSemantics" : makefile, xcode_tool ;
+  semantics "ipic18_build_binary_code.gSemantics" : makefile, xcode_tool ;
+  semantics "pic18_semantics.gSemantics" : makefile, xcode_tool ;
+  semantics "pic18_bootloader_specification_semantics.gSemantics" : makefile, xcode_tool ;
 
-  semantics "midrange_metamodel.gSemantics" : makefile, xcode ;
-  semantics "midrange_ipic_metamodel.gSemantics" : makefile, xcode ;
-  syntax    "midrange_syntax.gSyntax" : makefile, xcode ;
-  semantics "midrange_checkingAndBuildIPIC.gSemantics" : makefile, xcode ;
-  semantics "midrange_optimizations.gSemantics" : makefile, xcode ;
-  semantics "midrange_compute_JSR_JUMP.gSemantics" : makefile, xcode ;
-  semantics "midrange_ipic_build_assembly_code.gSemantics" : makefile, xcode ;
-  semantics "midrange_build_binary_code.gSemantics" : makefile, xcode ;
-  semantics "midrange_semantics.gSemantics" : makefile, xcode ;
+  semantics "midrange_metamodel.gSemantics" : makefile, xcode_tool ;
+  semantics "midrange_ipic_metamodel.gSemantics" : makefile, xcode_tool ;
+  syntax    "midrange_syntax.gSyntax" : makefile, xcode_tool ;
+  semantics "midrange_checkingAndBuildIPIC.gSemantics" : makefile, xcode_tool ;
+  semantics "midrange_optimizations.gSemantics" : makefile, xcode_tool ;
+  semantics "midrange_compute_JSR_JUMP.gSemantics" : makefile, xcode_tool ;
+  semantics "midrange_ipic_build_assembly_code.gSemantics" : makefile, xcode_tool ;
+  semantics "midrange_build_binary_code.gSemantics" : makefile, xcode_tool ;
+  semantics "midrange_semantics.gSemantics" : makefile, xcode_tool ;
 
-  grammar   "piccolo_grammar.gGrammar" : makefile, xcode ;
+  grammar   "piccolo_grammar.gGrammar" : makefile, xcode_tool ;
 
-  semantics "ram_sections.gSemantics" : makefile, xcode ;
+  semantics "ram_sections.gSemantics" : makefile, xcode_tool ;
 
-  lexique   "piccoloDevice_lexique.gLexique" : makefile, xcode ;
-  semantics "piccoloDevice_semantics.gSemantics" : makefile, xcode ;
-  syntax    "piccoloDevice_syntax.gSyntax" : makefile, xcode ;
-  grammar   "piccoloDevice_grammar.gGrammar" : makefile, xcode ;
+  lexique   "piccoloDevice_lexique.gLexique" : makefile, xcode_tool ;
+  semantics "piccoloDevice_semantics.gSemantics" : makefile, xcode_tool ;
+  syntax    "piccoloDevice_syntax.gSyntax" : makefile, xcode_tool ;
+  grammar   "piccoloDevice_grammar.gGrammar" : makefile, xcode_tool ;
 
-  gui       "piccolo_cocoa.gGui" : xcode ;
+  gui       "piccolo_cocoa.gGui" : xcode_tool, xcode_app ;
 
-  semantics "piccolo_embedded_devices.gSemantics" : makefile, xcode ;
-  program   "piccolo_program.gProgram" : makefile, xcode ;
+  semantics "piccolo_embedded_devices.gSemantics" : makefile, xcode_tool ;
+  program   "piccolo_program.gProgram" : makefile, xcode_tool ;
 
-  extern    "piccolo_computations.cpp" : makefile, xcode ;
+  extern    "piccolo_computations.cpp" : makefile, xcode_tool ;
 end project ;
 
