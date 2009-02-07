@@ -1,4 +1,4 @@
-project
+project all_piccolo :
   option    "piccolo_options.gOption" : makefile, xcode_tool, xcode_app ;
 
   lexique   "piccolo_lexique.gLexique" : makefile, xcode_tool, xcode_app ;
