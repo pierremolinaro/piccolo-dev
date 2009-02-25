@@ -39,7 +39,7 @@ project all_piccolo :
   syntax    "piccoloDevice_syntax.gSyntax" : makefile, xcode_tool ;
   grammar   "piccoloDevice_grammar.gGrammar" : makefile, xcode_tool ;
 
-  gui       "piccolo_cocoa.gGui" : xcode_tool, xcode_app ;
+  gui       "piccolo_cocoa.gGui" : xcode_app ;
 
   semantics "piccolo_embedded_devices.gSemantics" : makefile, xcode_tool ;
   program   "piccolo_program.gProgram" : makefile, xcode_tool ;
