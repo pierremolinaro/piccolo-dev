@@ -1,8 +1,0 @@
-0::
-piccoloDevice_semantics.gSemantics
-generic_metamodel.gSemantics
-pic18_metamodel.gSemantics
-piccolo_grammar.gGrammar
-piccolo_options.gOption
-piccolo_lexique.gLexique::
-GALGAS_OUTPUT/piccolo_cocoa.mm

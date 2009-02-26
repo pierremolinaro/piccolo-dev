@@ -1,7 +1,0 @@
-0::
-pic18_metamodel.gSemantics
-generic_metamodel.gSemantics
-ipic_generic.gSemantics
-piccoloDevice_semantics.gSemantics::
-GALGAS_OUTPUT/ipic18_metamodel.h
-GALGAS_OUTPUT/ipic18_metamodel.cpp
