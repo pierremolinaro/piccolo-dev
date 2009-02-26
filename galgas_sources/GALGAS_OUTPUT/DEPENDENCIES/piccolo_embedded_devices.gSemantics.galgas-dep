@@ -1,6 +1,0 @@
-0::
-piccoloDevice_semantics.gSemantics
-generic_metamodel.gSemantics
-piccoloDevice_grammar.gGrammar::
-GALGAS_OUTPUT/piccolo_embedded_devices.h
-GALGAS_OUTPUT/piccolo_embedded_devices.cpp

@@ -1,9 +1,0 @@
-0::
-piccolo_embedded_devices.gSemantics
-piccoloDevice_semantics.gSemantics
-generic_metamodel.gSemantics
-ipic18_metamodel.gSemantics
-pic18_metamodel.gSemantics
-ipic_generic.gSemantics::
-GALGAS_OUTPUT/ipic18_build_assembly_code.h
-GALGAS_OUTPUT/ipic18_build_assembly_code.cpp

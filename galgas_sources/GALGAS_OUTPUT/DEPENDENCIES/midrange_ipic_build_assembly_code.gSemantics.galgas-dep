@@ -1,9 +1,0 @@
-0::
-piccolo_embedded_devices.gSemantics
-piccoloDevice_semantics.gSemantics
-generic_metamodel.gSemantics
-midrange_ipic_metamodel.gSemantics
-midrange_metamodel.gSemantics
-ipic_generic.gSemantics::
-GALGAS_OUTPUT/midrange_ipic_build_assembly_code.h
-GALGAS_OUTPUT/midrange_ipic_build_assembly_code.cpp
