@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4F9E55D5E4E4F82F9F00E7D4 /* piccolo_computations.cpp */ = {isa = PBXBuildFile; fileRef = 95D565EF66E7DFF9F98764DA ; settings = {ATTRIBUTES = (); }; };
+		4F9E55D5E4E4F82F9F00E7D4 /* ../hand_coded_sources/piccolo_computations.cpp */ = {isa = PBXBuildFile; fileRef = 95D565EF66E7DFF9F98764DA ; settings = {ATTRIBUTES = (); }; };
 		0A271FF252C1903E7132CD68 /* generic_metamodel.cpp */ = {isa = PBXBuildFile; fileRef = 9D4C2F636F067F89CC14862C ; settings = {ATTRIBUTES = (); }; };
 		BF1BCFE8450A1A41C200364C /* ipc18_convert_relatives.cpp */ = {isa = PBXBuildFile; fileRef = A2F3E71D9181A67B7542122C ; settings = {ATTRIBUTES = (); }; };
 		AEA0A9C4655800E8A7B9EA28 /* ipic18_build_assembly_code.cpp */ = {isa = PBXBuildFile; fileRef = 5A880FAF6FB5E6087EB1B2DC ; settings = {ATTRIBUTES = (); }; };
@@ -112,7 +112,7 @@
 		8C6F66DCFC8A3282AC2BF10A /* C_String.cpp */ = {isa = PBXBuildFile; fileRef = F6347E897F954495EAB16A88 ; settings = {ATTRIBUTES = (); }; };
 		1F1DED46C25D28119A85C6C2 /* unicode_character.cpp */ = {isa = PBXBuildFile; fileRef = 5B344BC40F3BC04F65B7A357 ; settings = {ATTRIBUTES = (); }; };
 		0B7BA1AB13D742E22EED8DA2 /* unicode_string_routines.cpp */ = {isa = PBXBuildFile; fileRef = AF6023646EDE0E1F7C1EAC75 ; settings = {ATTRIBUTES = (); }; };
-		F3A0F9DADA0C2B5B66452017 /* piccolo_computations.cpp */ = {isa = PBXBuildFile; fileRef = 95D565EF66E7DFF9F98764DA ; settings = {ATTRIBUTES = (); }; };
+		F3A0F9DADA0C2B5B66452017 /* ../hand_coded_sources/piccolo_computations.cpp */ = {isa = PBXBuildFile; fileRef = 95D565EF66E7DFF9F98764DA ; settings = {ATTRIBUTES = (); }; };
 		E093F7B804FA0150B875B868 /* generic_metamodel.cpp */ = {isa = PBXBuildFile; fileRef = 9D4C2F636F067F89CC14862C ; settings = {ATTRIBUTES = (); }; };
 		21E561E1E3DE768AC819FFBB /* ipc18_convert_relatives.cpp */ = {isa = PBXBuildFile; fileRef = A2F3E71D9181A67B7542122C ; settings = {ATTRIBUTES = (); }; };
 		C8051CFD4E9EA8072E3189E2 /* ipic18_build_assembly_code.cpp */ = {isa = PBXBuildFile; fileRef = 5A880FAF6FB5E6087EB1B2DC ; settings = {ATTRIBUTES = (); }; };
@@ -286,6 +286,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		95D565EF66E7DFF9F98764DA /* piccolo_computations.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = piccolo_computations.cpp; path = ../hand_coded_sources/piccolo_computations.cpp; sourceTree = "<group>"; };
 		8EBCB58C6CE932B957B6F332 /* AC_CLI_Options.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AC_CLI_Options.cpp; path = AC_CLI_Options.cpp; sourceTree = "<group>"; };
 		66EC4FA56EB1E1F8CBE183B9 /* AC_CLI_Options.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AC_CLI_Options.h; path = AC_CLI_Options.h; sourceTree = "<group>"; };
 		5FC9A3002CE38BBE070EC3F5 /* AC_CoreString.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AC_CoreString.cpp; path = AC_CoreString.cpp; sourceTree = "<group>"; };
@@ -522,7 +523,6 @@
 		778DFAECDC212708F721B788 /* piccoloDevice_syntax.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = piccoloDevice_syntax.h; path = piccoloDevice_syntax.h; sourceTree = "<group>"; };
 		85AAB05244A4FB8FD91BF4EE /* piccolo_app.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = piccolo_app.icns; path = piccolo_app.icns; sourceTree = "<group>"; };
 		8E4C41F2747BFA2F1B5F87DB /* piccolo_cocoa.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = piccolo_cocoa.mm; path = piccolo_cocoa.mm; sourceTree = "<group>"; };
-		95D565EF66E7DFF9F98764DA /* piccolo_computations.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = piccolo_computations.cpp; path = piccolo_computations.cpp; sourceTree = "<group>"; };
 		4DFA42CADDBD0694A4E9BDC8 /* piccolo_config.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = piccolo_config.cpp; path = piccolo_config.cpp; sourceTree = "<group>"; };
 		19AD8176D665453CFB2E55F0 /* piccolo_config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = piccolo_config.h; path = piccolo_config.h; sourceTree = "<group>"; };
 		20B524AFDA05122893C2FE8E = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = piccolo_debug; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -569,10 +569,10 @@
 		A0B923820DCC509A6F75849B /* Hand Coded Sources */ = {
 			isa = PBXGroup;
 			children = (
-				95D565EF66E7DFF9F98764DA /* piccolo_computations.cpp */,
+				95D565EF66E7DFF9F98764DA /* ../hand_coded_sources/piccolo_computations.cpp */,
 			);
 			name = "Hand Coded Sources";
-			path = "../hand_coded_sources";
+			path = "../galgas_sources";
 			sourceTree = "<group>";
 		};
 		14875E45BBA028A21ED38046 /* Generated by GALGAS */ = {
