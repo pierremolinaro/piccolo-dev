@@ -996,7 +996,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		F378EFACC9B924EC161E7639 = {
+		4A4D452035300F18B984988C = {
 			isa = PBXGroup;
 			children = (
 				A0B923820DCC509A6F75849B /* Hand Coded Sources */,
@@ -1067,10 +1067,10 @@
 /* Begin PBXProject section */
 		6BBF9AC94A7E459509A20ED0 /* Project object */ = {
 			isa = PBXProject;
-			buildConfigurationList = 4A4D452035300F18B984988C /* Build configuration list for PBXProject "piccolo" */;
+			buildConfigurationList = F378EFACC9B924EC161E7639 /* Build configuration list for PBXProject "piccolo" */;
 			compatibilityVersion = "Xcode 2.4";
 			hasScannedForEncodings = 1;
-			mainGroup = F378EFACC9B924EC161E7639;
+			mainGroup = 4A4D452035300F18B984988C;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -1542,7 +1542,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Default;
 		};
-		4A4D452035300F18B984988C /* Build configuration list for PBXProject "piccolo" */ = {
+		F378EFACC9B924EC161E7639 /* Build configuration list for PBXProject "piccolo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E1538FB6C45901D524EE2F98 /* Default */,
