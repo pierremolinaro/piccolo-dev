@@ -207,7 +207,7 @@ rule '\'' :
     default
       error incorrectCharConstant ;
     end select ;
-  when ' ' -> '\xFF' :
+  when ' ' -> '\u007E' :
      enterCharacterIntoCharacter (charValue, *) ;
   default
     error incorrectCharConstant ;
@@ -266,7 +266,7 @@ rule '"' :
     default
       error incorrectCharConstant ;
     end select ;
-   while ' ' | '!' | '#'-> '\xFF' :
+   while ' ' | '!' | '#'-> '\u007E' :
     enterCharacterIntoString (tokenString, *) ;
   end repeat ;
   select
@@ -281,13 +281,13 @@ end rule ;
 $comment$ error message "a comment" style commentStyle ;
 rule '#' :
   repeat
-  while '\x1' -> '\x9' | '\xB' | '\xC' | '\xE' -> '\xFF' :
+  while '\u0001' -> '\u0009' | '\u000B' | '\u000C' | '\u000E' -> '\uFFFD' :
   end repeat ;
   drop $comment$ ;
 end rule ;
 
 # --------------------- separators -----------------------------------------
-rule '\x1' -> ' ' :
+rule '\u0001' -> ' ' :
 end rule ;
 
 #------------------------------------------------------------------------------------
