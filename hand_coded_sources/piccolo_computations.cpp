@@ -158,7 +158,7 @@ void routine_emitCode (C_Compiler & inLexique,
                        COMMA_LOCATION_ARGS) {
   if (inCode.uintValue () > 0xFFFF) {
     C_String errorMessage ;
-    errorMessage << "Internal error: code (" << inCode.uintValue () << ") greater than 2**16-1" ;
+    errorMessage << "Internal error: code (" << cStringWithUnsigned (inCode.uintValue ()) << ") greater than 2**16-1" ;
     inLexique.onTheFlySemanticError (errorMessage COMMA_THERE) ;
   }
   const unsigned char lowByte = (unsigned char) (inCode.uintValue () & 255) ;
@@ -167,7 +167,7 @@ void routine_emitCode (C_Compiler & inLexique,
   gSparseArray.setObjectAtIndex (lowByte, gCurrentAddress) ;
   if (gSparseArray.isDefaultObjectAtIndex (gCurrentAddress)) {
     C_String errorMessage ;
-    errorMessage << "Internal error: still default object at index " << gCurrentAddress ;
+    errorMessage << "Internal error: still default object at index " << cStringWithUnsigned (gCurrentAddress) ;
     inLexique.onTheFlySemanticError (errorMessage COMMA_THERE) ;
   }
   gCurrentAddress ++ ;
@@ -175,7 +175,7 @@ void routine_emitCode (C_Compiler & inLexique,
   gSparseArray.setObjectAtIndex (highByte, gCurrentAddress) ;
   if (gSparseArray.isDefaultObjectAtIndex (gCurrentAddress)) {
     C_String errorMessage ;
-    errorMessage << "Internal error: still default object at index " << gCurrentAddress ;
+    errorMessage << "Internal error: still default object at index " << cStringWithUnsigned (gCurrentAddress) ;
     inLexique.onTheFlySemanticError (errorMessage COMMA_THERE) ;
   }
   gCurrentAddress ++ ;
@@ -188,14 +188,14 @@ void routine_emitByte (C_Compiler & inLexique,
                        COMMA_LOCATION_ARGS) {
   if (inCode.uintValue () > 0xFF) {
     C_String errorMessage ;
-    errorMessage << "Internal error: code (" << inCode.uintValue () << ") greater than 255" ;
+    errorMessage << "Internal error: code (" << cStringWithUnsigned (inCode.uintValue ()) << ") greater than 255" ;
     inLexique.onTheFlySemanticError (errorMessage COMMA_THERE) ;
   }
 //---
   gSparseArray.setObjectAtIndex ((unsigned char) (inCode.uintValue () & 255), gCurrentAddress) ;
   if (gSparseArray.isDefaultObjectAtIndex (gCurrentAddress)) {
     C_String errorMessage ;
-    errorMessage << "Internal error: still default object at index " << gCurrentAddress ;
+    errorMessage << "Internal error: still default object at index " << cStringWithUnsigned (gCurrentAddress) ;
     inLexique.onTheFlySemanticError (errorMessage COMMA_THERE) ;
   }
   gCurrentAddress ++ ;
