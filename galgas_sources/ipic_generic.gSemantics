@@ -68,7 +68,7 @@ enum @routineKind {
 #                                                                            *
 #----------------------------------------------------------------------------*
 
-abstract method @immediatExpression.eval
+abstract method @immediatExpression eval
   ??@registerTable inRegisterTable
   ??@constantMap inConstantMap
   !@sint outResult
@@ -76,7 +76,7 @@ abstract method @immediatExpression.eval
 
 #----------------------------------------------------------------------------*
 
-override method @immediatInteger.eval
+override method @immediatInteger eval
   ??@registerTable unused inRegisterTable
   ??@constantMap unused inConstantMap
   !@sint outResult
@@ -86,7 +86,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @immediatRegister.eval
+override method @immediatRegister eval
   ??@registerTable inRegisterTable
   ??@constantMap inConstantMap
   !@sint outResult
@@ -112,7 +112,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @immediatAdd.eval
+override method @immediatAdd eval
   ??@registerTable inRegisterTable
   ??@constantMap inConstantMap
   !@sint outResult
@@ -124,7 +124,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @immediatSub.eval
+override method @immediatSub eval
   ??@registerTable inRegisterTable
   ??@constantMap inConstantMap
   !@sint outResult
@@ -136,7 +136,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @immediatMul.eval
+override method @immediatMul eval
   ??@registerTable inRegisterTable
   ??@constantMap inConstantMap
   !@sint outResult
@@ -148,7 +148,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @immediatDiv.eval
+override method @immediatDiv eval
   ??@registerTable inRegisterTable
   ??@constantMap inConstantMap
   !@sint outResult
@@ -160,7 +160,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @immediatMod.eval
+override method @immediatMod eval
   ??@registerTable inRegisterTable
   ??@constantMap inConstantMap
   !@sint outResult
@@ -172,7 +172,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @immediatAnd.eval
+override method @immediatAnd eval
   ??@registerTable inRegisterTable
   ??@constantMap inConstantMap
   !@sint outResult
@@ -184,7 +184,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @immediatOr.eval
+override method @immediatOr eval
   ??@registerTable inRegisterTable
   ??@constantMap inConstantMap
   !@sint outResult
@@ -196,7 +196,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @immediatXor.eval
+override method @immediatXor eval
   ??@registerTable inRegisterTable
   ??@constantMap inConstantMap
   !@sint outResult
@@ -208,7 +208,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @immediatLeftShift.eval
+override method @immediatLeftShift eval
   ??@registerTable inRegisterTable
   ??@constantMap inConstantMap
   !@sint outResult
@@ -220,7 +220,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @immediatRightShift.eval
+override method @immediatRightShift eval
   ??@registerTable inRegisterTable
   ??@constantMap inConstantMap
   !@sint outResult
@@ -232,7 +232,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @immediatEqualTest.eval
+override method @immediatEqualTest eval
   ??@registerTable inRegisterTable
   ??@constantMap inConstantMap
   !@sint outResult
@@ -248,7 +248,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @immediatNotEqualTest.eval
+override method @immediatNotEqualTest eval
   ??@registerTable inRegisterTable
   ??@constantMap inConstantMap
   !@sint outResult
@@ -264,7 +264,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @immediatGreaterOrEqualTest.eval
+override method @immediatGreaterOrEqualTest eval
   ??@registerTable inRegisterTable
   ??@constantMap inConstantMap
   !@sint outResult
@@ -280,7 +280,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @immediatLowerOrEqualTest.eval
+override method @immediatLowerOrEqualTest eval
   ??@registerTable inRegisterTable
   ??@constantMap inConstantMap
   !@sint outResult
@@ -296,7 +296,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @immediatGreaterTest.eval
+override method @immediatGreaterTest eval
   ??@registerTable inRegisterTable
   ??@constantMap inConstantMap
   !@sint outResult
@@ -312,7 +312,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @immediatLowerTest.eval
+override method @immediatLowerTest eval
   ??@registerTable inRegisterTable
   ??@constantMap inConstantMap
   !@sint outResult
@@ -328,7 +328,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @immediatNegate.eval
+override method @immediatNegate eval
   ??@registerTable inRegisterTable
   ??@constantMap inConstantMap
   !@sint outResult
@@ -339,7 +339,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @immediatComplement.eval
+override method @immediatComplement eval
   ??@registerTable inRegisterTable
   ??@constantMap inConstantMap
   !@sint outResult
@@ -350,7 +350,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @immediatSlice.eval
+override method @immediatSlice eval
   ??@registerTable inRegisterTable
   ??@constantMap inConstantMap
   !@sint outResult
@@ -383,14 +383,14 @@ end method ;
 #                                                                            *
 #----------------------------------------------------------------------------*
 
-abstract method @bitNumberExpression.getBitNumber
+abstract method @bitNumberExpression getBitNumber
   ??@bitSliceTable inBitSliceTable
   !@uint outBitNumber
 ;
 
 #----------------------------------------------------------------------------*
 
-override method @bitNumberLiteralValue.getBitNumber
+override method @bitNumberLiteralValue getBitNumber
   ??@bitSliceTable unused inBitSliceTable
   !@uint outBitNumber
 :
@@ -402,7 +402,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @bitNumberLabelValue.getBitNumber
+override method @bitNumberLabelValue getBitNumber
   ??@bitSliceTable inBitSliceTable
   !@uint outBitNumber
 :

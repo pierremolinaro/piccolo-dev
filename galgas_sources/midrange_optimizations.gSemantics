@@ -8,7 +8,7 @@ import "midrange_ipic_metamodel.gSemantics" ;
 #                                                                            *
 #----------------------------------------------------------------------------*
 
-method @midrange_ipic_instruction.defineLabel
+method @midrange_ipic_instruction defineLabel
   ?!@symbolTableForOptimizations unused ioRoutineSymbolTable
   ??@uint unused inLineIndex
 :
@@ -17,7 +17,7 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override
-method @midrange_ipic_pseudo_LABEL.defineLabel
+method @midrange_ipic_pseudo_LABEL defineLabel
   ?!@symbolTableForOptimizations ioRoutineSymbolTable
   ??@uint inLineIndex
 :
@@ -89,7 +89,7 @@ end routine ;
 #                                                                            *
 #----------------------------------------------------------------------------*
 
-method @midrange_ipic_JUMP.optimizeJUMP
+method @midrange_ipic_JUMP optimizeJUMP
   ??@symbolTableForOptimizations inSymbolTable
   ??@uint inLineIndex
   ?!@midrange_ipic_instructionList ioGeneratedInstructionList
@@ -143,7 +143,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-method @midrange_ipic_GOTO.optimizeGOTO
+method @midrange_ipic_GOTO optimizeGOTO
   ??@symbolTableForOptimizations inSymbolTable
   ??@uint inLineIndex
   ?!@midrange_ipic_instructionList ioGeneratedInstructionList
@@ -230,7 +230,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-method @midrange_ipic_instruction_literalOperation.optimizeMOVLW
+method @midrange_ipic_instruction_literalOperation optimizeMOVLW
   ??@uint inLineIndex
   ?!@midrange_ipic_instructionList ioGeneratedInstructionList
   ?!@string ioListFileContents
@@ -256,7 +256,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-method @midrange_ipic_incDecRegisterInCondition.optimizeTestDecInc
+method @midrange_ipic_incDecRegisterInCondition optimizeTestDecInc
   ??@symbolTableForOptimizations inSymbolTable
   ??@uint inLineIndex
   ?!@midrange_ipic_instructionList ioGeneratedInstructionList
@@ -306,7 +306,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-method @midrange_ipic_instruction_BitTestSkip.optimizeBitTestSkip
+method @midrange_ipic_instruction_BitTestSkip optimizeBitTestSkip
   ??@uint inLineIndex
   ?!@midrange_ipic_instructionList ioGeneratedInstructionList
   ?!@string ioListFileContents

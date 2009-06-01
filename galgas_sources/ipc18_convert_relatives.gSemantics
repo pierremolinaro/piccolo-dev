@@ -16,7 +16,7 @@ map @ipic18_symbolTableForConvertingRelatives {
 #                                                                            *
 #----------------------------------------------------------------------------*
 
-method @ipic18_instruction.defineLabelAtAddress
+method @ipic18_instruction defineLabelAtAddress
   ?!@ipic18_symbolTableForConvertingRelatives unused ioRoutineSymbolTable
   ?!@uint unused ioAddress
 :
@@ -25,7 +25,7 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override
-method @ipic_pseudo_LABEL.defineLabelAtAddress
+method @ipic_pseudo_LABEL defineLabelAtAddress
   ?!@ipic18_symbolTableForConvertingRelatives ioRoutineSymbolTable
   ?!@uint ioAddress
 :
@@ -35,7 +35,7 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override
-method @ipic_pseudo_ORG.defineLabelAtAddress
+method @ipic_pseudo_ORG defineLabelAtAddress
   ?!@ipic18_symbolTableForConvertingRelatives unused ioRoutineSymbolTable
   ?!@uint ioAddress
 :
@@ -49,7 +49,7 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override
-method @ipic_actualInstruction.defineLabelAtAddress
+method @ipic_actualInstruction defineLabelAtAddress
   ?!@ipic18_symbolTableForConvertingRelatives unused ioRoutineSymbolTable
   ?!@uint ioAddress
 :
@@ -64,7 +64,7 @@ end method ;
 #                                                                            *
 #----------------------------------------------------------------------------*
 
-abstract method @ipic18_instruction.checkRelativeBranch
+abstract method @ipic18_instruction checkRelativeBranch
   ??@ipic18_symbolTableForConvertingRelatives unused inRoutineSymbolTable
   ?!@uint unused ioAddress
   ?!@bool unused ioRelativeBranchOverflow
@@ -75,7 +75,7 @@ abstract method @ipic18_instruction.checkRelativeBranch
 
 #----------------------------------------------------------------------------*
 
-override method @ipic_NULL.checkRelativeBranch
+override method @ipic_NULL checkRelativeBranch
   ??@ipic18_symbolTableForConvertingRelatives unused inRoutineSymbolTable
   ?!@uint unused ioAddress
   ?!@bool unused ioRelativeBranchOverflow
@@ -87,7 +87,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @ipic_actualInstruction.checkRelativeBranch
+override method @ipic_actualInstruction checkRelativeBranch
   ??@ipic18_symbolTableForConvertingRelatives unused inRoutineSymbolTable
   ?!@uint unused ioAddress
   ?!@bool unused ioRelativeBranchOverflow
@@ -100,7 +100,7 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override
-method @ipic_pseudo_ORG.checkRelativeBranch
+method @ipic_pseudo_ORG checkRelativeBranch
   ??@ipic18_symbolTableForConvertingRelatives unused inRoutineSymbolTable
   ?!@uint ioAddress
   ?!@bool unused ioRelativeBranchOverflow
@@ -113,7 +113,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @ipic18_instruction_conditionalBranch.checkRelativeBranch
+override method @ipic18_instruction_conditionalBranch checkRelativeBranch
   ??@ipic18_symbolTableForConvertingRelatives inRoutineSymbolTable
   ?!@uint ioAddress
   ?!@bool ioRelativeBranchOverflow
@@ -165,7 +165,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @ipic_jump_test_register.checkRelativeBranch
+override method @ipic_jump_test_register checkRelativeBranch
   ??@ipic18_symbolTableForConvertingRelatives inRoutineSymbolTable
   ?!@uint ioAddress
   ?!@bool ioRelativeBranchOverflow
@@ -198,7 +198,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @ipic_registerComparisonCondition.checkRelativeBranch
+override method @ipic_registerComparisonCondition checkRelativeBranch
   ??@ipic18_symbolTableForConvertingRelatives inRoutineSymbolTable
   ?!@uint ioAddress
   ?!@bool ioRelativeBranchOverflow
@@ -232,7 +232,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @ipic_incDecRegisterInCondition.checkRelativeBranch
+override method @ipic_incDecRegisterInCondition checkRelativeBranch
   ??@ipic18_symbolTableForConvertingRelatives inRoutineSymbolTable
   ?!@uint ioAddress
   ?!@bool ioRelativeBranchOverflow
@@ -264,7 +264,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @ipic_JUMP.checkRelativeBranch
+override method @ipic_JUMP checkRelativeBranch
   ??@ipic18_symbolTableForConvertingRelatives inRoutineSymbolTable
   ?!@uint ioAddress
   ?!@bool ioRelativeBranchOverflow
@@ -301,7 +301,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @ipic_JSR.checkRelativeBranch
+override method @ipic_JSR checkRelativeBranch
   ??@ipic18_symbolTableForConvertingRelatives inRoutineSymbolTable
   ?!@uint ioAddress
   ?!@bool ioRelativeBranchOverflow
@@ -338,7 +338,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @ipic_pseudo_LABEL.checkRelativeBranch
+override method @ipic_pseudo_LABEL checkRelativeBranch
   ??@ipic18_symbolTableForConvertingRelatives inRoutineSymbolTable
   ?!@uint ioAddress
   ?!@bool unused ioRelativeBranchOverflow
@@ -357,7 +357,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @ipic18_instruction_computed_retlw.checkRelativeBranch
+override method @ipic18_instruction_computed_retlw checkRelativeBranch
   ??@ipic18_symbolTableForConvertingRelatives inRoutineSymbolTable
   ?!@uint ioAddress
   ?!@bool ioRelativeBranchOverflow
@@ -384,7 +384,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @ipic18_instruction_computed_bra.checkRelativeBranch
+override method @ipic18_instruction_computed_bra checkRelativeBranch
   ??@ipic18_symbolTableForConvertingRelatives inRoutineSymbolTable
   ?!@uint ioAddress
   ?!@bool ioRelativeBranchOverflow
@@ -424,7 +424,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @ipic18_instruction_computed_goto.checkRelativeBranch
+override method @ipic18_instruction_computed_goto checkRelativeBranch
   ??@ipic18_symbolTableForConvertingRelatives inRoutineSymbolTable
   ?!@uint ioAddress
   ?!@bool ioRelativeBranchOverflow
@@ -454,7 +454,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @ipic18_instruction_computed_rcall.checkRelativeBranch
+override method @ipic18_instruction_computed_rcall checkRelativeBranch
   ??@ipic18_symbolTableForConvertingRelatives inRoutineSymbolTable
   ?!@uint ioAddress
   ?!@bool ioRelativeBranchOverflow

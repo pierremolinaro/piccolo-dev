@@ -12,7 +12,7 @@ import option piccolo_options in "piccolo_options.gOption" ;
 #                                                                            *
 #----------------------------------------------------------------------------*
 
-abstract method @declarationInRam.handleDeclaration
+abstract method @declarationInRam handleDeclaration
   ?!@ramBankTable ioRamBank
   ?!@registerTable ioRegisterTable
   ??@lstring inCurrentRamBank
@@ -20,7 +20,7 @@ abstract method @declarationInRam.handleDeclaration
 
 #----------------------------------------------------------------------------*
 
-override method @commonDeclarationInRam.handleDeclaration
+override method @commonDeclarationInRam handleDeclaration
   ?!@ramBankTable ioRamBank
   ?!@registerTable ioRegisterTable
   ??@lstring inCurrentRamBank
@@ -50,7 +50,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @byteDeclarationInRam.handleDeclaration
+override method @byteDeclarationInRam handleDeclaration
   ?!@ramBankTable ioRamBank
   ?!@registerTable ioRegisterTable
   ??@lstring inCurrentRamBank

@@ -16,7 +16,7 @@ map @midrange_symbolTableForConvertingRelatives {
 #                                                                            *
 #----------------------------------------------------------------------------*
 
-method @midrange_ipic_instruction.defineLabelAtAddress
+method @midrange_ipic_instruction defineLabelAtAddress
   ?!@midrange_symbolTableForConvertingRelatives unused ioRoutineSymbolTable
   ?!@uint unused ioAddress
 :
@@ -25,7 +25,7 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override
-method @midrange_ipic_pseudo_LABEL.defineLabelAtAddress
+method @midrange_ipic_pseudo_LABEL defineLabelAtAddress
   ?!@midrange_symbolTableForConvertingRelatives ioRoutineSymbolTable
   ?!@uint ioAddress
 :
@@ -35,7 +35,7 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override
-method @midrange_ipic_pseudo_ORG.defineLabelAtAddress
+method @midrange_ipic_pseudo_ORG defineLabelAtAddress
   ?!@midrange_symbolTableForConvertingRelatives unused ioRoutineSymbolTable
   ?!@uint ioAddress
 :
@@ -49,7 +49,7 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override
-method @midrange_ipic_actualInstruction.defineLabelAtAddress
+method @midrange_ipic_actualInstruction defineLabelAtAddress
   ?!@midrange_symbolTableForConvertingRelatives unused ioRoutineSymbolTable
   ?!@uint ioAddress
 :
@@ -68,7 +68,7 @@ end method ;
 #                                                                            *
 #----------------------------------------------------------------------------*
 
-abstract method @midrange_ipic_instruction.compute
+abstract method @midrange_ipic_instruction compute
   ??@midrange_symbolTableForConvertingRelatives unused inRoutineSymbolTable
   ?!@uint unused ioAddress
   ?!@bool unused ioJUMP_or_JSR_fixed
@@ -79,7 +79,7 @@ abstract method @midrange_ipic_instruction.compute
 
 #----------------------------------------------------------------------------*
 
-override method @midrange_ipic_NULL.compute
+override method @midrange_ipic_NULL compute
   ??@midrange_symbolTableForConvertingRelatives unused inRoutineSymbolTable
   ?!@uint unused ioAddress
   ?!@bool unused ioJUMP_or_JSR_fixed
@@ -91,7 +91,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @midrange_ipic_actualInstruction.compute
+override method @midrange_ipic_actualInstruction compute
   ??@midrange_symbolTableForConvertingRelatives unused inRoutineSymbolTable
   ?!@uint unused ioAddress
   ?!@bool unused ioJUMP_or_JSR_fixed
@@ -104,7 +104,7 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override
-method @midrange_ipic_pseudo_ORG.compute
+method @midrange_ipic_pseudo_ORG compute
   ??@midrange_symbolTableForConvertingRelatives unused inRoutineSymbolTable
   ?!@uint ioAddress
   ?!@bool unused ioJUMP_or_JSR_fixed
@@ -117,7 +117,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @midrange_ipic_JUMP.compute
+override method @midrange_ipic_JUMP compute
   ??@midrange_symbolTableForConvertingRelatives inRoutineSymbolTable
   ?!@uint ioAddress
   ?!@bool ioJUMP_or_JSR_fixed
@@ -163,7 +163,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @midrange_ipic_JSR.compute
+override method @midrange_ipic_JSR compute
   ??@midrange_symbolTableForConvertingRelatives inRoutineSymbolTable
   ?!@uint ioAddress
   ?!@bool ioJUMP_or_JSR_fixed
@@ -209,7 +209,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @midrange_ipic_pseudo_LABEL.compute
+override method @midrange_ipic_pseudo_LABEL compute
   ??@midrange_symbolTableForConvertingRelatives inRoutineSymbolTable
   ?!@uint ioAddress
   ?!@bool unused ioJUMP_or_JSR_fixed
@@ -228,7 +228,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-#override method @midrange_ipic_instruction_computed_retlw.compute
+#override method @midrange_ipic_instruction_computed_retlw compute
 #  ??@midrange_symbolTableForConvertingRelatives inRoutineSymbolTable
 #  ?!@uint ioAddress
 #  ?!@bool ioJUMP_or_JSR_fixed
@@ -255,7 +255,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-#override method @midrange_ipic_instruction_computed_bra.compute
+#override method @midrange_ipic_instruction_computed_bra compute
 #  ??@midrange_symbolTableForConvertingRelatives inRoutineSymbolTable
 #  ?!@uint ioAddress
 #  ?!@bool ioJUMP_or_JSR_fixed
@@ -295,7 +295,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-#override method @midrange_ipic_instruction_computed_goto.compute
+#override method @midrange_ipic_instruction_computed_goto compute
 #  ??@midrange_symbolTableForConvertingRelatives inRoutineSymbolTable
 #  ?!@uint ioAddress
 #  ?!@bool ioJUMP_or_JSR_fixed

@@ -56,7 +56,7 @@ routine actualBuildConfig
         @uint registerValue ;
         [outActualConfigurationMap searchKey !registerName ?* ?registerValue] ;
         registerValue := (registerValue & ~ settingMask) | settingValue ;
-        [!? outActualConfigurationMap setMRegisterValueForKey !registerValue ![registerName string]] ;
+        [!?outActualConfigurationMap setMRegisterValueForKey !registerValue ![registerName string]] ;
       elsif [fieldSettingMap count] > 0 then
         @string errorMessage := "the '" . mSettingValue . "' value is not defined for configuration setting '"
         . mSettingName . "'; possible values are:" ;

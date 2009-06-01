@@ -8,7 +8,7 @@ import "ipic18_metamodel.gSemantics" ;
 #                                                                            *
 #----------------------------------------------------------------------------*
 
-method @ipic18_instruction. defineLabel
+method @ipic18_instruction defineLabel
   ?!@symbolTableForOptimizations unused ioRoutineSymbolTable
   ??@uint unused inLineIndex
 :
@@ -17,7 +17,7 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override
-method @ipic_pseudo_LABEL.defineLabel
+method @ipic_pseudo_LABEL defineLabel
   ?!@symbolTableForOptimizations ioRoutineSymbolTable
   ??@uint inLineIndex
 :
@@ -86,7 +86,7 @@ end routine ;
 #                                                                            *
 #----------------------------------------------------------------------------*
 
-method @ipic_JUMP.optimizeJUMP
+method @ipic_JUMP optimizeJUMP
   ??@symbolTableForOptimizations inSymbolTable
   ??@uint inLineIndex
   ?!@ipic18_instructionList ioGeneratedInstructionList
@@ -140,7 +140,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-method @ipic_JSR.optimizeJSR
+method @ipic_JSR optimizeJSR
   ??@uint inLineIndex
   ?!@ipic18_instructionList ioGeneratedInstructionList
   ?!@string ioListFileContents
@@ -164,7 +164,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-method @ipic18_instruction_literalOperation.optimizeMOVLW
+method @ipic18_instruction_literalOperation optimizeMOVLW
   ??@uint inLineIndex
   ?!@ipic18_instructionList ioGeneratedInstructionList
   ?!@string ioListFileContents
@@ -190,7 +190,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-method @ipic18_instruction_conditionalBranch.optimizeBCC
+method @ipic18_instruction_conditionalBranch optimizeBCC
   ??@symbolTableForOptimizations inSymbolTable
   ??@uint inLineIndex
   ?!@ipic18_instructionList ioGeneratedInstructionList
@@ -219,7 +219,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-method @ipic_jump_test_register.optimizeTestReg
+method @ipic_jump_test_register optimizeTestReg
   ??@symbolTableForOptimizations inSymbolTable
   ??@uint inLineIndex
   ?!@ipic18_instructionList ioGeneratedInstructionList
@@ -254,7 +254,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-method @ipic_incDecRegisterInCondition.optimizeTestDecInc
+method @ipic_incDecRegisterInCondition optimizeTestDecInc
   ??@symbolTableForOptimizations inSymbolTable
   ??@uint inLineIndex
   ?!@ipic18_instructionList ioGeneratedInstructionList
@@ -305,7 +305,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-method @ipic_registerComparisonCondition.optimizeCMP
+method @ipic_registerComparisonCondition optimizeCMP
   ??@symbolTableForOptimizations inSymbolTable
   ??@uint inLineIndex
   ?!@ipic18_instructionList ioGeneratedInstructionList
@@ -342,7 +342,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-method @ipic18_instruction_BitTestSkip.optimizeBitTestSkip
+method @ipic18_instruction_BitTestSkip optimizeBitTestSkip
   ??@uint inLineIndex
   ?!@ipic18_instructionList ioGeneratedInstructionList
   ?!@string ioListFileContents

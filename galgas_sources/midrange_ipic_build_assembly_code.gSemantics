@@ -8,14 +8,14 @@ import "piccolo_embedded_devices.gSemantics" ;
 #                BUILD ASSEMBLY CODE                 *
 #----------------------------------------------------*
 
-abstract method @midrange_ipic_instruction.buildAssemblyCode
+abstract method @midrange_ipic_instruction buildAssemblyCode
   ?!@string unused ioString 
   ?!@uint unused ioLocalLabelIndex
 ;
 
 #----------------------------------------------------*
 
-override method @midrange_ipic_NULL.buildAssemblyCode
+override method @midrange_ipic_NULL buildAssemblyCode
   ?!@string unused ioString 
   ?!@uint unused ioLocalLabelIndex
 :
@@ -23,7 +23,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @midrange_ipic_pseudo_ORG.buildAssemblyCode
+override method @midrange_ipic_pseudo_ORG buildAssemblyCode
   ?!@string ioString
   ?!@uint unused ioLocalLabelIndex
 :
@@ -32,7 +32,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @midrange_ipic_pseudo_LABEL.buildAssemblyCode
+override method @midrange_ipic_pseudo_LABEL buildAssemblyCode
   ?!@string ioString
   ?!@uint unused ioLocalLabelIndex
 :
@@ -41,7 +41,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @midrange_ipic_instruction_FD.buildAssemblyCode
+override method @midrange_ipic_instruction_FD buildAssemblyCode
   ?!@string ioString
   ?!@uint unused ioLocalLabelIndex
 :
@@ -56,7 +56,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @midrange_ipic_instruction_FB.buildAssemblyCode
+override method @midrange_ipic_instruction_FB buildAssemblyCode
   ?!@string ioString
   ?!@uint unused ioLocalLabelIndex
 :
@@ -68,7 +68,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @midrange_ipic_instruction_BitTestSkip.buildAssemblyCode
+override method @midrange_ipic_instruction_BitTestSkip buildAssemblyCode
   ?!@string ioString
   ?!@uint unused ioLocalLabelIndex
 :
@@ -85,7 +85,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @midrange_ipic_instruction_F.buildAssemblyCode
+override method @midrange_ipic_instruction_F buildAssemblyCode
   ?!@string ioString
   ?!@uint unused ioLocalLabelIndex
 :
@@ -95,7 +95,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @midrange_ipic_incDecRegisterInCondition.buildAssemblyCode
+override method @midrange_ipic_incDecRegisterInCondition buildAssemblyCode
   ?!@string ioString
   ?!@uint ioLocalLabelIndex
 :
@@ -123,7 +123,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @midrange_ipic_JUMP.buildAssemblyCode
+override method @midrange_ipic_JUMP buildAssemblyCode
   ?!@string ioString
   ?!@uint unused ioLocalLabelIndex
 :
@@ -142,7 +142,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @midrange_ipic_GOTO.buildAssemblyCode
+override method @midrange_ipic_GOTO buildAssemblyCode
   ?!@string ioString
   ?!@uint unused ioLocalLabelIndex
 :
@@ -151,7 +151,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @midrange_ipic_JSR.buildAssemblyCode
+override method @midrange_ipic_JSR buildAssemblyCode
   ?!@string ioString
   ?!@uint unused ioLocalLabelIndex
 :
@@ -180,7 +180,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @midrange_ipic_CALL.buildAssemblyCode
+override method @midrange_ipic_CALL buildAssemblyCode
   ?!@string ioString
   ?!@uint unused ioLocalLabelIndex
 :
@@ -189,7 +189,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @midrange_ipic_instruction_CLRWDT.buildAssemblyCode
+override method @midrange_ipic_instruction_CLRWDT buildAssemblyCode
   ?!@string ioString
   ?!@uint unused ioLocalLabelIndex
 :
@@ -198,7 +198,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @midrange_ipic_instruction_CLRW.buildAssemblyCode
+override method @midrange_ipic_instruction_CLRW buildAssemblyCode
   ?!@string ioString
   ?!@uint unused ioLocalLabelIndex
 :
@@ -207,7 +207,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @midrange_ipic_instruction_NOP.buildAssemblyCode
+override method @midrange_ipic_instruction_NOP buildAssemblyCode
   ?!@string ioString
   ?!@uint unused ioLocalLabelIndex
 :
@@ -216,7 +216,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @midrange_ipic_instruction_RETURN.buildAssemblyCode
+override method @midrange_ipic_instruction_RETURN buildAssemblyCode
   ?!@string ioString
   ?!@uint unused ioLocalLabelIndex
 :
@@ -225,7 +225,7 @@ end method ;
 
 #----------------------------------------------------*
 
- override method @midrange_ipic_instruction_RETFIE.buildAssemblyCode
+ override method @midrange_ipic_instruction_RETFIE buildAssemblyCode
   ?!@string ioString
   ?!@uint unused ioLocalLabelIndex
 :
@@ -234,7 +234,7 @@ end method ;
 
 #----------------------------------------------------*
 
- override method @midrange_ipic_instruction_SLEEP.buildAssemblyCode
+ override method @midrange_ipic_instruction_SLEEP buildAssemblyCode
   ?!@string ioString
   ?!@uint unused ioLocalLabelIndex
 :
@@ -243,7 +243,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @midrange_ipic_instruction_literalOperation.buildAssemblyCode
+override method @midrange_ipic_instruction_literalOperation buildAssemblyCode
   ?!@string ioString
   ?!@uint unused ioLocalLabelIndex
 :
@@ -252,7 +252,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @midrange_ipic_instruction_MNOP.buildAssemblyCode
+override method @midrange_ipic_instruction_MNOP buildAssemblyCode
   ?!@string ioString
   ?!@uint unused ioLocalLabelIndex
 :
@@ -270,7 +270,7 @@ end method ;
 
 #----------------------------------------------------*
 
-#override method @midrange_ipic_instruction_computed_retlw.buildAssemblyCode
+#override method @midrange_ipic_instruction_computed_retlw buildAssemblyCode
 #  ?!@string ioString
 #  ?!@uint unused ioLocalLabelIndex
 #:
@@ -286,7 +286,7 @@ end method ;
 
 #----------------------------------------------------*
 
-#override method @midrange_ipic_instruction_computed_bra.buildAssemblyCode
+#override method @midrange_ipic_instruction_computed_bra buildAssemblyCode
 #  ?!@string ioString
 #  ?!@uint unused ioLocalLabelIndex
 #:
@@ -302,7 +302,7 @@ end method ;
 
 #----------------------------------------------------*
 
-#override method @midrange_ipic_instruction_computed_goto.buildAssemblyCode
+#override method @midrange_ipic_instruction_computed_goto buildAssemblyCode
 #  ?!@string ioString
 #  ?!@uint unused ioLocalLabelIndex
 #:

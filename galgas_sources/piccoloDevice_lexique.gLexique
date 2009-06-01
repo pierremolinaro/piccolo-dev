@@ -1,9 +1,9 @@
 lexique piccoloDevice_lexique :
 
-@lstring identifierString ;
-@luint uint32value ;
-@lchar charValue ;
-@lstring tokenString ;
+@string identifierString ;
+@uint uint32value ;
+@char charValue ;
+@string tokenString ;
 
 style keywordStyle -> "Keywords:" ;
 style instructionStyle -> "Instructions:" ;
@@ -40,8 +40,8 @@ list controlKeyWordList error message "the '%K' keyword" style keywordStyle :
 
 rule 'a'->'z' |  'A'->'Z' :
   repeat
-    enterCharacterIntoString (identifierString, toLower (*)) ;
-    enterCharacterIntoString (tokenString, *) ;
+    enterCharacterIntoString !?identifierString !toLower (!*) ;
+    enterCharacterIntoString !?tokenString !* ;
   while 'a'->'z' | 'A'->'Z' | '_' | '0'->'9' :
   end repeat ;
   send
@@ -60,21 +60,21 @@ message internalError : "internal error" ;
 rule "0x" :
   repeat
   while '0'->'9' :
-    enterHexDigitIntoUlong (uint32value, *) error hexNumberTooLarge, internalError ;
+    enterHexDigitIntoUInt !* !?uint32value error hexNumberTooLarge, internalError ;
   while 'a'->'f' :
-    enterHexDigitIntoUlong (uint32value, *) error hexNumberTooLarge, internalError ;
+    enterHexDigitIntoUInt !* !?uint32value error hexNumberTooLarge, internalError ;
   while 'A'->'F' :
-    enterHexDigitIntoUlong (uint32value, *) error hexNumberTooLarge, internalError ;
+    enterHexDigitIntoUInt !* !?uint32value error hexNumberTooLarge, internalError ;
   while '_' :
   end repeat ;
   send $integer$ ;
 end rule ;
 
 rule '0'->'9' :
-  enterDigitIntoUlong (uint32value, *) error decimalNumberTooLarge, internalError ;
+  enterDigitIntoUInt !* !?uint32value error decimalNumberTooLarge, internalError ;
   repeat
   while '0'->'9' :
-    enterDigitIntoUlong (uint32value, *) error decimalNumberTooLarge, internalError ;
+    enterDigitIntoUInt !* !?uint32value error decimalNumberTooLarge, internalError ;
   while '_' :
   end repeat ;
   send $integer$ ;
@@ -101,34 +101,34 @@ rule '"' :
   while '\\' :
     select
     when 'f' :
-      enterCharacterIntoString (tokenString, '\f') ;
+      enterCharacterIntoString !?tokenString !'\f' ;
     when 'n' :
-      enterCharacterIntoString (tokenString, '\n') ;
+      enterCharacterIntoString !?tokenString !'\n' ;
     when 'r' :
-      enterCharacterIntoString (tokenString, '\r') ;
+      enterCharacterIntoString !?tokenString !'\r' ;
     when 't' :
-      enterCharacterIntoString (tokenString, '\t') ;
+      enterCharacterIntoString !?tokenString !'\t' ;
     when 'v' :
-      enterCharacterIntoString (tokenString, '\v') ;
+      enterCharacterIntoString !?tokenString !'\v' ;
     when '\\' :
-      enterCharacterIntoString (tokenString, '\\') ;
+      enterCharacterIntoString !?tokenString !'\\' ;
     when '0' :
-      enterCharacterIntoString (tokenString, '\0') ;
+      enterCharacterIntoString !?tokenString !'\0' ;
     when '"' :
-      enterCharacterIntoString (tokenString, '"') ;
+      enterCharacterIntoString !?tokenString !'"' ;
     when '\'' :
-      enterCharacterIntoString (tokenString, '\'') ;
+      enterCharacterIntoString !?tokenString !'\'' ;
     when '0' -> '9' :
       repeat
-        enterHexDigitIntoASCIIcharacter (charValue, *) error ASCIIcodeTooLargeError, internalError ;
+        enterHexDigitIntoASCIIcharacter !?charValue !* error ASCIIcodeTooLargeError, internalError ;
       while '0' -> '9' :
       end repeat ;
-      enterCharacterIntoString (tokenString, charValue) ;
+      enterCharacterIntoString !?tokenString !charValue ;
     default
       error incorrectCharConstant ;
     end select ;
    while ' ' | '!' | '#'-> '\u007E' :
-    enterCharacterIntoString (tokenString, *) ;
+    enterCharacterIntoString !?tokenString !* ;
   end repeat ;
   select
   when '"' :
