@@ -13,7 +13,7 @@ import "ipic18_metamodel.gSemantics" ;
 #           DECOMPOSE STRUCTURED INSTRUCTIONS        *
 #----------------------------------------------------*
 
-abstract method @piccolo_instruction.buildIPICinstructionList
+abstract method @piccolo_instruction buildIPICinstructionList
   ??@uint unused inAccessBankSplitOffset
   ??@routineMap unused inRoutineMap
   ??@registerTable inRegisterTable
@@ -67,7 +67,7 @@ end routine ;
 
 #----------------------------------------------------*
 
-override method @instruction_nobanksel.buildIPICinstructionList
+override method @instruction_nobanksel buildIPICinstructionList
   ??@uint unused inAccessBankSplitOffset
   ??@routineMap unused inRoutineMap
   ??@registerTable unused inRegisterTable
@@ -89,7 +89,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @instruction_savebank.buildIPICinstructionList
+override method @instruction_savebank buildIPICinstructionList
   ??@uint inAccessBankSplitOffset
   ??@routineMap inRoutineMap
   ??@registerTable inRegisterTable
@@ -150,7 +150,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @instruction_banksel.buildIPICinstructionList
+override method @instruction_banksel buildIPICinstructionList
   ??@uint unused inAccessBankSplitOffset
   ??@routineMap unused inRoutineMap
   ??@registerTable unused inRegisterTable
@@ -180,7 +180,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @instruction_FDA.buildIPICinstructionList
+override method @instruction_FDA buildIPICinstructionList
   ??@uint inAccessBankSplitOffset
   ??@routineMap unused inRoutineMap
   ??@registerTable inRegisterTable
@@ -211,7 +211,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @instruction_FA.buildIPICinstructionList
+override method @instruction_FA buildIPICinstructionList
   ??@uint inAccessBankSplitOffset
   ??@routineMap unused inRoutineMap
   ??@registerTable inRegisterTable
@@ -241,7 +241,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @instruction_MOVFF.buildIPICinstructionList
+override method @instruction_MOVFF buildIPICinstructionList
   ??@uint unused inAccessBankSplitOffset
   ??@routineMap unused inRoutineMap
   ??@registerTable inRegisterTable
@@ -273,7 +273,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @instruction_FBA.buildIPICinstructionList
+override method @instruction_FBA buildIPICinstructionList
   ??@uint inAccessBankSplitOffset
   ??@routineMap unused inRoutineMap
   ??@registerTable inRegisterTable
@@ -310,7 +310,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @instruction_JSR.buildIPICinstructionList
+override method @instruction_JSR buildIPICinstructionList
   ??@uint unused inAccessBankSplitOffset
   ??@routineMap inRoutineMap
   ??@registerTable unused inRegisterTable
@@ -358,7 +358,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @instruction_JUMP.buildIPICinstructionList
+override method @instruction_JUMP buildIPICinstructionList
   ??@uint unused inAccessBankSplitOffset
   ??@routineMap inRoutineMap
   ??@registerTable unused inRegisterTable
@@ -399,7 +399,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @instruction_JUMPCC.buildIPICinstructionList
+override method @instruction_JUMPCC buildIPICinstructionList
   ??@uint unused inAccessBankSplitOffset
   ??@routineMap inRoutineMap
   ??@registerTable unused inRegisterTable
@@ -446,7 +446,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @instruction_CLRWDT.buildIPICinstructionList
+override method @instruction_CLRWDT buildIPICinstructionList
   ??@uint unused inAccessBankSplitOffset
   ??@routineMap unused inRoutineMap
   ??@registerTable unused inRegisterTable
@@ -466,7 +466,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @instruction_DAW.buildIPICinstructionList
+override method @instruction_DAW buildIPICinstructionList
   ??@uint unused inAccessBankSplitOffset
   ??@routineMap unused inRoutineMap
   ??@registerTable unused inRegisterTable
@@ -486,7 +486,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @instruction_NOP.buildIPICinstructionList
+override method @instruction_NOP buildIPICinstructionList
   ??@uint unused inAccessBankSplitOffset
   ??@routineMap unused inRoutineMap
   ??@registerTable unused inRegisterTable
@@ -506,7 +506,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @instruction_POP.buildIPICinstructionList
+override method @instruction_POP buildIPICinstructionList
   ??@uint unused inAccessBankSplitOffset
   ??@routineMap unused inRoutineMap
   ??@registerTable unused inRegisterTable
@@ -526,7 +526,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @instruction_PUSH.buildIPICinstructionList
+override method @instruction_PUSH buildIPICinstructionList
   ??@uint unused inAccessBankSplitOffset
   ??@routineMap unused inRoutineMap
   ??@registerTable unused inRegisterTable
@@ -546,7 +546,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @instruction_RESET.buildIPICinstructionList
+override method @instruction_RESET buildIPICinstructionList
   ??@uint unused inAccessBankSplitOffset
   ??@routineMap unused inRoutineMap
   ??@registerTable unused inRegisterTable
@@ -566,7 +566,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @instruction_SLEEP.buildIPICinstructionList
+override method @instruction_SLEEP buildIPICinstructionList
   ??@uint unused inAccessBankSplitOffset
   ??@routineMap unused inRoutineMap
   ??@registerTable unused inRegisterTable
@@ -586,7 +586,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @instruction_literalOperation.buildIPICinstructionList
+override method @instruction_literalOperation buildIPICinstructionList
   ??@uint unused inAccessBankSplitOffset
   ??@routineMap unused inRoutineMap
   ??@registerTable inRegisterTable
@@ -614,7 +614,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @instruction_LFSR.buildIPICinstructionList
+override method @instruction_LFSR buildIPICinstructionList
   ??@uint unused inAccessBankSplitOffset
   ??@routineMap unused inRoutineMap
   ??@registerTable inRegisterTable
@@ -645,7 +645,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @instruction_TBLRD.buildIPICinstructionList
+override method @instruction_TBLRD buildIPICinstructionList
   ??@uint unused inAccessBankSplitOffset
   ??@routineMap unused inRoutineMap
   ??@registerTable unused inRegisterTable
@@ -666,7 +666,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @instruction_TBLWT.buildIPICinstructionList
+override method @instruction_TBLWT buildIPICinstructionList
   ??@uint unused inAccessBankSplitOffset
   ??@routineMap unused inRoutineMap
   ??@registerTable unused inRegisterTable
@@ -687,7 +687,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @instruction_computed_retlw.buildIPICinstructionList
+override method @instruction_computed_retlw buildIPICinstructionList
   ??@uint unused inAccessBankSplitOffset
   ??@routineMap unused inRoutineMap
   ??@registerTable inRegisterTable
@@ -736,7 +736,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @instruction_MNOP.buildIPICinstructionList
+override method @instruction_MNOP buildIPICinstructionList
   ??@uint unused inAccessBankSplitOffset
   ??@routineMap unused inRoutineMap
   ??@registerTable unused inRegisterTable
@@ -762,7 +762,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @instruction_computed_bra.buildIPICinstructionList
+override method @instruction_computed_bra buildIPICinstructionList
   ??@uint unused inAccessBankSplitOffset
   ??@routineMap inRoutineMap
   ??@registerTable inRegisterTable
@@ -847,7 +847,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @instruction_computed_goto.buildIPICinstructionList
+override method @instruction_computed_goto buildIPICinstructionList
   ??@uint unused inAccessBankSplitOffset
   ??@routineMap inRoutineMap
   ??@registerTable inRegisterTable
@@ -906,7 +906,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @instruction_computed_rcall.buildIPICinstructionList
+override method @instruction_computed_rcall buildIPICinstructionList
   ??@uint unused inAccessBankSplitOffset
   ??@routineMap inRoutineMap
   ??@registerTable inRegisterTable
@@ -991,7 +991,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @instruction_FOREVER.buildIPICinstructionList
+override method @instruction_FOREVER buildIPICinstructionList
   ??@uint inAccessBankSplitOffset
   ??@routineMap inRoutineMap
   ??@registerTable inRegisterTable
@@ -1041,7 +1041,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @instruction_IF_FA_SEMI_COLON.buildIPICinstructionList
+override method @instruction_IF_FA_SEMI_COLON buildIPICinstructionList
   ??@uint inAccessBankSplitOffset
   ??@routineMap inRoutineMap
   ??@registerTable inRegisterTable
@@ -1093,7 +1093,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @instruction_IF_BitTest.buildIPICinstructionList
+override method @instruction_IF_BitTest buildIPICinstructionList
   ??@uint inAccessBankSplitOffset
   ??@routineMap inRoutineMap
   ??@registerTable inRegisterTable
@@ -1145,7 +1145,7 @@ end method ;
 
 #----------------------------------------------------*
 
-abstract method @conditionExpression.buildIPICinstructionForCondition
+abstract method @conditionExpression buildIPICinstructionForCondition
   ??@uint inAccessBankSplitOffset
   ??@uint inCurrentBank
   ??@registerTable inRegisterTable
@@ -1159,14 +1159,14 @@ abstract method @conditionExpression.buildIPICinstructionForCondition
 
 #----------------------------------------------------*
 
-abstract method @conditionExpression.computeInstructionCountForCondition
+abstract method @conditionExpression computeInstructionCountForCondition
   ??@bool inComplementaryBranch
   !@uint outInstructionCount
 ;
 
 #----------------------------------------------------*
 
-override method @bcc_in_structured_if_condition.buildIPICinstructionForCondition
+override method @bcc_in_structured_if_condition buildIPICinstructionForCondition
   ??@uint unused inAccessBankSplitOffset
   ??@uint unused inCurrentBank
   ??@registerTable unused inRegisterTable
@@ -1193,7 +1193,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @bcc_in_structured_if_condition.computeInstructionCountForCondition
+override method @bcc_in_structured_if_condition computeInstructionCountForCondition
   ??@bool unused inComplementaryBranch
   !@uint outInstructionCount
 :
@@ -1202,7 +1202,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @registerComparisonCondition.buildIPICinstructionForCondition
+override method @registerComparisonCondition buildIPICinstructionForCondition
   ??@uint inAccessBankSplitOffset
   ??@uint inCurrentBank
   ??@registerTable inRegisterTable
@@ -1240,7 +1240,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @registerComparisonCondition.computeInstructionCountForCondition
+override method @registerComparisonCondition computeInstructionCountForCondition
   ??@bool inComplementaryBranch
   !@uint outInstructionCount
 :
@@ -1255,7 +1255,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @incDecRegisterInCondition.buildIPICinstructionForCondition
+override method @incDecRegisterInCondition buildIPICinstructionForCondition
   ??@uint inAccessBankSplitOffset
   ??@uint inCurrentBank
   ??@registerTable inRegisterTable
@@ -1288,7 +1288,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @incDecRegisterInCondition.computeInstructionCountForCondition
+override method @incDecRegisterInCondition computeInstructionCountForCondition
   ??@bool unused inComplementaryBranch
   !@uint outInstructionCount
 :
@@ -1297,7 +1297,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @registerTestCondition.buildIPICinstructionForCondition
+override method @registerTestCondition buildIPICinstructionForCondition
   ??@uint inAccessBankSplitOffset
   ??@uint inCurrentBank
   ??@registerTable inRegisterTable
@@ -1328,7 +1328,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @registerTestCondition.computeInstructionCountForCondition
+override method @registerTestCondition computeInstructionCountForCondition
   ??@bool inComplementaryBranch
   !@uint outInstructionCount
 :
@@ -1341,7 +1341,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @negateCondition.buildIPICinstructionForCondition
+override method @negateCondition buildIPICinstructionForCondition
   ??@uint inAccessBankSplitOffset
   ??@uint inCurrentBank
   ??@registerTable inRegisterTable
@@ -1367,7 +1367,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @negateCondition.computeInstructionCountForCondition
+override method @negateCondition computeInstructionCountForCondition
   ??@bool inComplementaryBranch
   !@uint outInstructionCount
 :
@@ -1379,7 +1379,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @andCondition.buildIPICinstructionForCondition
+override method @andCondition buildIPICinstructionForCondition
   ??@uint inAccessBankSplitOffset
   ??@uint inCurrentBank
   ??@registerTable inRegisterTable
@@ -1443,7 +1443,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @andCondition.computeInstructionCountForCondition
+override method @andCondition computeInstructionCountForCondition
   ??@bool inComplementaryBranch
   !@uint outInstructionCount
 :
@@ -1462,7 +1462,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @bitTest_in_structured_if_condition.buildIPICinstructionForCondition
+override method @bitTest_in_structured_if_condition buildIPICinstructionForCondition
   ??@uint inAccessBankSplitOffset
   ??@uint inCurrentBank
   ??@registerTable inRegisterTable
@@ -1498,7 +1498,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @bitTest_in_structured_if_condition.computeInstructionCountForCondition
+override method @bitTest_in_structured_if_condition computeInstructionCountForCondition
   ??@bool unused inComplementaryBranch
   !@uint outInstructionCount
 :
@@ -1507,7 +1507,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @instruction_structured_if.buildIPICinstructionList
+override method @instruction_structured_if buildIPICinstructionList
   ??@uint inAccessBankSplitOffset
   ??@routineMap inRoutineMap
   ??@registerTable inRegisterTable
@@ -1664,7 +1664,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @instruction_do_while.buildIPICinstructionList
+override method @instruction_do_while buildIPICinstructionList
   ??@uint inAccessBankSplitOffset
   ??@routineMap inRoutineMap
   ??@registerTable inRegisterTable
@@ -1753,7 +1753,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @instruction_IF_IncDec.buildIPICinstructionList
+override method @instruction_IF_IncDec buildIPICinstructionList
   ??@uint inAccessBankSplitOffset
   ??@routineMap inRoutineMap
   ??@registerTable inRegisterTable

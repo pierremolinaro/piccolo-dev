@@ -13,7 +13,7 @@ struct @midrange_ipic_registerExpression {
 
 #----------------------------------------------------*
 
-method @registerExpression.resolveMidrangeAccess
+method @registerExpression resolveMidrangeAccess
   ??@uint inTotalBankCount
   ??@uint inCurrentBank
   ??@registerTable inRegisterTable
