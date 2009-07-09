@@ -73,12 +73,15 @@ routine routineBootloader1 {
 
 routine routineBootloader2 bank:preserved {
 }
-routine routineBootloader3 bank:requires 15 {
+
+routine routineBootloader3 bank:requires 15 {
 }
-routine routineBootloader4 bank:ensures 15 {
+
+routine routineBootloader4 bank:ensures 15 {
   banksel 15
 }
-routine routineBootloader5 bank:requires 15 ensures 12 {
+
+routine routineBootloader5 bank:requires 15 ensures 12 {
   banksel 12
 }
 

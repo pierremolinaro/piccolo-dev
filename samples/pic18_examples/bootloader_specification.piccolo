@@ -3,7 +3,8 @@
 #  - un exemple de programme applicatif : bootloader_user_program.piccolo
 
 pic18 bootloader bootloader_specification "18F448" {
-#--- Cette partie spécifie les caractéristiques que doit respecter une implémentation  rom = 688 # Le bootloader occupe les adresses 0 à 687 (soit 0x2AF) en Flash
+#--- Cette partie spécifie les caractéristiques que doit respecter une implémentation
+  rom = 688 # Le bootloader occupe les adresses 0 à 687 (soit 0x2AF) en Flash
 # Données privées du bootloader
   ram accessram = 18 # Le bootloader utilise les adresses 0 à 17 dans l'accessram
   ram gpr1 = 5 # Le bootloader utilise les adresses 0x100 à 0x104 dans le banc gpr1
@@ -11,13 +12,39 @@ pic18 bootloader bootloader_specification "18F448" {
   ram gpr2 = 1 # Le bootloader utilise l'adresse 0x200 dans le banc gpr1
 #--- Routines définies dans l'implémentation du bootloader, et appelable
 #    par un programme applicatif ; les 7 en têtes présentent toutes les
-#    possibilités différentes offertes par Piccolo   routine routineBootloader1  routine routineBootloader2 bank:preserved  routine routineBootloader3 bank:requires 15  routine routineBootloader4 bank:ensures 15  routine routineBootloader5 bank:requires 15 ensures 12  noreturn routine routineBootloader6  noreturn routine routineBootloader7 bank:requires 15}{
+#    possibilités différentes offertes par Piccolo 
+  routine routineBootloader1
+  routine routineBootloader2 bank:preserved
+  routine routineBootloader3 bank:requires 15
+  routine routineBootloader4 bank:ensures 15
+  routine routineBootloader5 bank:requires 15 ensures 12
+  noreturn routine routineBootloader6
+  noreturn routine routineBootloader7 bank:requires 15
+}{
 #--- Routines définies dans un programme applicatif, et appelable
 #    par le bootloader ; les 7 en têtes présentent toutes les
-#    possibilités différentes offertes par Piccolo   routine userRoutine1  routine userRoutine2 bank:preserved  routine userRoutine3 bank:requires 15  routine userRoutine4 bank:ensures 15  routine userRoutine5 bank:requires 15 ensures 12  noreturn routine userRoutine6  noreturn routine userRoutine7 bank:requires 15}{
+#    possibilités différentes offertes par Piccolo 
+  routine userRoutine1
+  routine userRoutine2 bank:preserved
+  routine userRoutine3 bank:requires 15
+  routine userRoutine4 bank:ensures 15
+  routine userRoutine5 bank:requires 15 ensures 12
+  noreturn routine userRoutine6
+  noreturn routine userRoutine7 bank:requires 15
+}{
 #--- Mémoires partagées par le bootloader et un programme applicatif ;
 # dans chaque banc, les données déclarées sont placées à la suite des
 # données utilisées par le bootloader.
-  ram accessram {    byte maDonneePartagee # en 18  }  ram gpr0 {    byte maDonneePartagee0 # En 0x61
-  }  ram gpr1 {    byte maDonneePartagee1 # En 0x105
-  }  ram gpr2 {    byte maDonneePartagee2 # En 0x201  }}
+  ram accessram {
+    byte maDonneePartagee # en 18
+  }
+  ram gpr0 {
+    byte maDonneePartagee0 # En 0x61
+  }
+  ram gpr1 {
+    byte maDonneePartagee1 # En 0x105
+  }
+  ram gpr2 {
+    byte maDonneePartagee2 # En 0x201
+  }
+}
