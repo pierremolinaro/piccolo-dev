@@ -35,9 +35,14 @@ pic18 blink_led "18F448" :
 
 # Une section 'configuration' définit les valeurs associées aux registres de
 # configuration. Les valeurs ainsi définies sont intégrées dans le fichier
-# hex et le fichier assembleur engendrés.# Pour connaître la liste des registres de configuration d’un micro-contrôleur :#	piccolo -F=18F448
+# hex et le fichier assembleur engendrés.
 
-# La définition de la configuration est une liste d’affectations du type :#	setting : description# où setting est le nom d’un champ d’un registre de configuration, et
+# Pour connaître la liste des registres de configuration d’un micro-contrôleur :
+# piccolo -F=18F448
+
+# La définition de la configuration est une liste d’affectations du type :
+# setting : description
+# où setting est le nom d’un champ d’un registre de configuration, et
 # description la chaîne de caractères qui décrit la valeur choisie.
 
 configuration {
@@ -77,10 +82,15 @@ configuration {
 #                                                                            *
 #----------------------------------------------------------------------------*
 
-# Une section ram décrit l’attribution de la RAM du micro-contrôleur.# Le nom accesram est le nom de l’un des bancs définis par le micro-contrôleur,
+# Une section ram décrit l’attribution de la RAM du micro-contrôleur.
+
+# Le nom accesram est le nom de l’un des bancs définis par le micro-contrôleur,
 # qui commence à l’adresse zéro. Les adresses sont allouées séquentiellement :
-# compteurL a pour adresse 0, compteurH a pour adresse 1, …# Pour connaître la configuration mémoire d’un micro-contrôleur,
-# utilisez l’option « -M » :#       piccolo -M=18F448
+# compteurL a pour adresse 0, compteurH a pour adresse 1, …
+
+# Pour connaître la configuration mémoire d’un micro-contrôleur,
+# utilisez l’option « -M » :
+#       piccolo -M=18F448
 
 ram accessram {
   byte compteurL
@@ -96,12 +106,17 @@ ram accessram {
 
 # Une section routine définit du code exécutable. Dans un programme, il y a
 # au moins une routine qui s’appelle obligatoirement le nom « main ».
-# Celle-ci est exécutée au démarrage du micro-contrôleur. # Elle porte le qualificatif « noreturn » parce que son exécution ne doit 
+# Celle-ci est exécutée au démarrage du micro-contrôleur. 
+# Elle porte le qualificatif « noreturn » parce que son exécution ne doit 
 # jamais terminer, ce que le compilateur Piccolo vérifie 
-# (sa dernière instruction est une boucle infinie).# L’en-tête de la routine « main » contient aussi obligatoirement la
+# (sa dernière instruction est une boucle infinie).
+
+# L’en-tête de la routine « main » contient aussi obligatoirement la
 # déclaration « bank:requires 0 » qui traduit le fait qu’au démarrage,
 # le registre BSR est initialisé à zéro (BSR est sans importance dans ce
-# programme d’exemple, tous les accès se font via l’acces bank).# À côté des instructions assembleur, on trouve une instruction « if »
+# programme d’exemple, tous les accès se font via l’acces bank).
+
+# À côté des instructions assembleur, on trouve une instruction « if »
 # structurée, dont les conditions cachent une utilisation de
 # l’instruction TSTFSZ.
 noreturn routine main bank:requires 0 {
@@ -126,7 +141,7 @@ noreturn routine main bank:requires 0 {
       SETF compteurH
       SETF compteurL
     else
-    #--- Reinitialiser les compteurs
+    #--- Réinitialiser les compteurs
       MOVLW  0x0F
       MOVWF  compteurU
       MOVLW  0x42

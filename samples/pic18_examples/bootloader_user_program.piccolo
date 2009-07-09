@@ -42,13 +42,16 @@ routine userRoutine1 {
 routine userRoutine2 bank:preserved {
   mnop 2
 }
-routine userRoutine3 bank:requires 15 {
+
+routine userRoutine3 bank:requires 15 {
   mnop 2
 }
-routine userRoutine4 bank:ensures 15 {
+
+routine userRoutine4 bank:ensures 15 {
   banksel 15
 }
-routine userRoutine5 bank:requires 15 ensures 12 {
+
+routine userRoutine5 bank:requires 15 ensures 12 {
   banksel 12
 }
 
