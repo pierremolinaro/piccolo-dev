@@ -1,6 +1,6 @@
 #!/bin/sh
 DIR=`dirname $0` &&
-SOURCE_DIR=generatedDefinitions_8_15a &&
+SOURCE_DIR=generatedDefinitions_8_33 &&
 #--- pic 18
 { 
   for source in $DIR/../picker/$SOURCE_DIR/pic18/PIC18*.piccoloDevice
