@@ -808,7 +808,7 @@ override method @instruction_computed_bra buildIPICinstructionList
     end if ;
     if ([@routineKind regularRoutine ] != inRoutineKind) & not isNoReturn then
       error mValue:"for being named in a computed bra from a regular routine, the '" . mValue . "' routine should be declared without any \"noreturn\" qualifier" ;
-	 end if ;
+  end if ;
   end foreach ;
 #---
   if allReturnBank & not allPreserveBankSetting then
@@ -877,7 +877,7 @@ override method @instruction_computed_goto buildIPICinstructionList
     end if ;
     if not isNoReturn then
       error mValue:"for being named in a computed goto, the '" . mValue . "' routine should be declared with the \"noreturn\" qualifier" ;
-	 end if ;
+  end if ;
   end foreach ;
   ioContinuesInSequence := false ;
   switch inRoutineKind
@@ -941,7 +941,7 @@ override method @instruction_computed_rcall buildIPICinstructionList
     end if ;
     if isNoReturn then
       error mValue:"for being named in a computed rcall, the '" . mValue . "' routine should be declared without the \"noreturn\" qualifier" ;
-	 end if ;
+  end if ;
      if inShouldPreserveBSR & not preservesBank then
        error mValue:"the '" . mValue . "' routine should preserved bank selection" ;
      elsif (not inShouldPreserveBSR) & not preservesBank then

@@ -804,7 +804,7 @@ end method ;
 #    end if ;
 #    if not isNoReturn then
 #      error mValue:"for being named in a computed bra, the '" . mValue . "' routine should be declared with the \"noreturn\" qualifier" ;
-#	 end if ;
+#  end if ;
 #  end foreach ;
 #  ioContinuesInSequence := false ;
 #  switch inRoutineKind
@@ -863,7 +863,7 @@ end method ;
 #    end if ;
 #    if not isNoReturn then
 #      error mValue:"for being named in a computed goto, the '" . mValue . "' routine should be declared with the \"noreturn\" qualifier" ;
-#	 end if ;
+#  end if ;
 #  end foreach ;
 #  ioContinuesInSequence := false ;
 #  switch inRoutineKind
