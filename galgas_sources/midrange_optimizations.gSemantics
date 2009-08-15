@@ -150,6 +150,7 @@ method @midrange_ipic_GOTO optimizeGOTO
   ?!@string ioListFileContents
   ?!@bool ioOptimizationsDone
 :
+#  message "GOTO (line " . [inLineIndex string] . ")\n" ;
 #--- The GOTO goes to the next instruction ?
   @stringset reachedLabelSet ;
   findMidRangeFirstInstructionOrLabelFromAddress !inLineIndex+1 !ioGeneratedInstructionList ?* ?reachedLabelSet ;
@@ -164,6 +165,7 @@ method @midrange_ipic_GOTO optimizeGOTO
     @midrange_ipic_instruction firstInstruction ;
     findMidRangeFirstInstructionFromAddress !line + 1 !ioGeneratedInstructionList ?firstInstruction ;
   #--- Optimization from found first instruction
+#    log firstInstruction ;
     cast firstInstruction :
     when == @midrange_ipic_instruction_RETURN do
       [!?ioGeneratedInstructionList setMInstructionAtIndex
@@ -197,7 +199,7 @@ method @midrange_ipic_GOTO optimizeGOTO
           !inLineIndex
         ] ;
         ioOptimizationsDone := true ;
-        ioListFileContents .= "  line " . [inLineIndex string] . ": GOTO branching to JUMP replaced by JUMP\n" ;
+        ioListFileContents .= "  line " . [inLineIndex string] . ": GOTO branching to GOTO replaced by GOTO\n" ;
       end if ;
     else # No Optimization
     end cast ;
@@ -263,12 +265,14 @@ method @midrange_ipic_incDecRegisterInCondition optimizeTestDecInc
   ?!@string ioListFileContents
   ?!@bool ioOptimizationsDone
 :
+#  message "optimizeTestDecInc " . [inLineIndex string] . "\n" ;
 #--- Find destination label definition line
   @uint line ; [inSymbolTable searchKey ![@lstring new !mTargetLabel !here] ?line] ;
 #--- Find first executable instruction
   @midrange_ipic_instruction firstInstruction ;
   findMidRangeFirstInstructionFromAddress !line + 1 !ioGeneratedInstructionList ?firstInstruction ;
 #--- Optimization from found first instruction
+#  log firstInstruction ;
   cast firstInstruction :
   when == @midrange_ipic_JUMP jump do
     [!?ioGeneratedInstructionList setMInstructionAtIndex
@@ -299,7 +303,37 @@ method @midrange_ipic_incDecRegisterInCondition optimizeTestDecInc
     else
       ioListFileContents .= "NZ" ;
     end if ;
-    ioListFileContents .= " branching to JUMP replaced by second JUMP label\n" ;
+    ioListFileContents .= ": branching to JUMP replaced by second JUMP label\n" ;
+  when == @midrange_ipic_GOTO goto do
+    [!?ioGeneratedInstructionList setMInstructionAtIndex
+      ![@midrange_ipic_incDecRegisterInCondition new
+        !mInstructionLocation
+        !mRegisterDescription
+        ![[goto mTargetLabel] string]
+        !mIncrement
+        !m_W_isDestination
+        !mBranchIfZero
+      ]
+      !inLineIndex
+    ] ;
+    ioOptimizationsDone := true ;
+    ioListFileContents .= "  line " . [inLineIndex string] . ": label of " ;
+    ioListFileContents .= "JUMP " ;
+    if mIncrement then
+      ioListFileContents .= "INCF " ;
+    else
+      ioListFileContents .= "DECF " ;
+    end if ;
+    ioListFileContents .= [mRegisterDescription mAssemblyString] ;
+    if m_W_isDestination then
+      ioListFileContents .= ", W" ;
+    end if ;
+    if mBranchIfZero then
+      ioListFileContents .= " Z" ;
+    else
+      ioListFileContents .= " NZ" ;
+    end if ;
+    ioListFileContents .= ": branching to GOTO replaced by second JUMP label\n" ;
   else
   end cast ;
 end method ;
