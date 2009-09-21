@@ -53,14 +53,14 @@
 
 static void
 emit_04_record (C_String & ioGeneratedCode,
-                uint32 & ioBufferHighAddress,
-                const uint32 inStartAddress) {
+                PMUInt32 & ioBufferHighAddress,
+                const PMUInt32 inStartAddress) {
   if (ioBufferHighAddress != (inStartAddress & 0xFFFF0000)) {
     char s [20] ; sprintf (s, ":02000004%04X", inStartAddress >> 16) ;
     ioGeneratedCode << s ;
-    uint8 somme = 2 + 4 ;
-    somme = (uint8) (somme + ((inStartAddress >> 24) & 255 )) ;
-    somme = (uint8) (somme + ((inStartAddress >> 16) & 255 )) ;
+    PMUInt8 somme = 2 + 4 ;
+    somme = (PMUInt8) (somme + ((inStartAddress >> 24) & 255 )) ;
+    somme = (PMUInt8) (somme + ((inStartAddress >> 16) & 255 )) ;
     sprintf (s, "%02X", (- somme) & 255) ;
     ioGeneratedCode << s << "\n" ;
     ioBufferHighAddress = (inStartAddress & 0xFFFF0000) ;
@@ -71,25 +71,25 @@ emit_04_record (C_String & ioGeneratedCode,
 
 static void
 emit_data_record (C_String & ioGeneratedCode,
-                  uint32 & ioBufferHighAddress,
-                  const uint8 inBuffer [16],
-                  uint32 & ioBufferEntryCount,
-                  const uint32 inCurrentAddress) {
+                  PMUInt32 & ioBufferHighAddress,
+                  const PMUInt8 inBuffer [16],
+                  PMUInt32 & ioBufferEntryCount,
+                  const PMUInt32 inCurrentAddress) {
   if (ioBufferEntryCount != 0) {
-    const uint32 startAddress = inCurrentAddress - ioBufferEntryCount ;
+    const PMUInt32 startAddress = inCurrentAddress - ioBufferEntryCount ;
   //--- Emit 04 record (if needed)
     emit_04_record (ioGeneratedCode, ioBufferHighAddress, startAddress) ;
   //---
-    const uint32 startAddressMod16 = startAddress & 0x0000FFFF ;
+    const PMUInt32 startAddressMod16 = startAddress & 0x0000FFFF ;
     char s [20] ; sprintf (s, ":%02X%04X00", ioBufferEntryCount, startAddressMod16) ;
     ioGeneratedCode << s ;
-    uint8 somme = (uint8) ioBufferEntryCount ;
-    somme = (uint8) (somme + ((startAddressMod16 >> 8) & 255)) ;
-    somme = (uint8) (somme + (startAddressMod16 & 255)) ;
-    for (uint32 i=0 ; i<ioBufferEntryCount ; i++) {
+    PMUInt8 somme = (PMUInt8) ioBufferEntryCount ;
+    somme = (PMUInt8) (somme + ((startAddressMod16 >> 8) & 255)) ;
+    somme = (PMUInt8) (somme + (startAddressMod16 & 255)) ;
+    for (PMUInt32 i=0 ; i<ioBufferEntryCount ; i++) {
       const unsigned char c = inBuffer [i] ;
       sprintf (s, "%02X", c) ; ioGeneratedCode << s ;
-      somme = (uint8) (somme + c) ;
+      somme = (PMUInt8) (somme + c) ;
     }
     sprintf (s, "%02X", (- somme) & 255) ; ioGeneratedCode << s << "\n" ;
     ioBufferEntryCount = 0 ;
@@ -99,19 +99,19 @@ emit_data_record (C_String & ioGeneratedCode,
 //---------------------------------------------------------------------------*
 
 static C_String
-generateHexCodeFromSpareArray (const TC_UniqueSparseArray <uint8> & inSpareArray) {
+generateHexCodeFromSpareArray (const TC_UniqueSparseArray <PMUInt8> & inSpareArray) {
   C_String hexCode ;
 //--- Header
   hexCode << ":020000040000FA\n" ;
 //--- Loop
-  uint32 bufferHighAddress = 0 ;
-  uint32 address = 0 ;
+  PMUInt32 bufferHighAddress = 0 ;
+  PMUInt32 address = 0 ;
   bool loop = true ;
   while (loop && inSpareArray.findFirstEntryWithIndex (address)) {
-    // const uint32 startAddress = address ;
+    // const PMUInt32 startAddress = address ;
   //--- Emit data
-    uint8 buffer [16] ;
-    uint32 bufferEntryCount = 0 ;
+    PMUInt8 buffer [16] ;
+    PMUInt32 bufferEntryCount = 0 ;
     do{
       buffer [bufferEntryCount] = inSpareArray.objectAtIndex (address) ;
       bufferEntryCount ++ ;
@@ -132,8 +132,8 @@ generateHexCodeFromSpareArray (const TC_UniqueSparseArray <uint8> & inSpareArray
 
 //---------------------------------------------------------------------------*
 
-static TC_UniqueSparseArray <uint8> gSparseArray (0) ;
-static uint32 gCurrentAddress = 0 ;
+static TC_UniqueSparseArray <PMUInt8> gSparseArray (0) ;
+static PMUInt32 gCurrentAddress = 0 ;
 
 //---------------------------------------------------------------------------*
 
