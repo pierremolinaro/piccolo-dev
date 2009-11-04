@@ -167,7 +167,7 @@ override method @instruction_banksel buildIPICinstructionList
     error mInstructionLocation: "cannot use \"banksel\" here: BSR should be preserved (use it in \"banksave\" construct)" ;
   end if ;
   if [mBankIndex uint] > 15 then
-    error mBankIndex:"selected bank index should be lower or equal to 15" ;
+    error mBankIndex:"selected bank idx should be lower or equal to 15" ;
     ioCurrentBank := [@uint max] ; # No selected bank
   elsif [mBankIndex uint] == ioCurrentBank then
     warning mBankIndex:"useless instruction: the bank " . [ioCurrentBank string] . " is already selected" ;
@@ -628,7 +628,7 @@ override method @instruction_LFSR buildIPICinstructionList
   ??@routineKind unused inRoutineKind
 :
   if [mFSRindex uint] > 2 then
-    error mFSRindex:"the LFSR register index (" . [[mFSRindex uint] string] . ") should be lower or equal to 2" ;
+    error mFSRindex:"the LFSR register idx (" . [[mFSRindex uint] string] . ") should be lower or equal to 2" ;
   end if ;
 #---
   @sint result ; [mImmediatExpression eval !inRegisterTable !inConstantMap ?result] ;
@@ -722,7 +722,7 @@ override method @instruction_computed_retlw buildIPICinstructionList
   foreach mImmediateExpressionList :idx do
     @sint v ; [mExpression eval !inRegisterTable !inConstantMap ?v] ;
     if (v > 255S) | (v < -128S) then
-      error mInstructionLocation:"immediate value with index " . [idx string] . " is evaluated as " . [v string] . " (should be <= 255)" ;
+      error mInstructionLocation:"immediate value with idx " . [idx string] . " is evaluated as " . [v string] . " (should be <= 255)" ;
     end if ;
     literalValues += ![v & 0x000000FFS uint] ;
   end foreach ;
@@ -2188,14 +2188,14 @@ routine build_ipic18_assembly_instruction_list
       ioListFileContents .= "\n" ;
     end if ;
     ioListFileContents .= "Generated intermediate code:\n" ;
-    @uint index := 0 ;
+    @uint idx := 0 ;
     @uint currentAddress := 0 ;
     foreach outGeneratedInstructionList do
       [mInstruction setCurrentAddress !?currentAddress] ;
-      ioListFileContents .= [[index string] stringByLeftPadding !5 !' '] . ": " ;
+      ioListFileContents .= [[idx string] stringByLeftPadding !5 !' '] . ": " ;
       [mInstruction displayIPICinstruction !? ioListFileContents] ;
       ioListFileContents .= "\n" ;
-      index ++ ;
+      idx ++ ;
     end foreach ;
     ioListFileContents .= "\n" ;
     ioListFileContents .= "Minimum code size without optimization: " . [currentAddress string] . " bytes.\n\n" ;
