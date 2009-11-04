@@ -45,48 +45,48 @@ before {
   #--- Print baseline device list
     if [option piccolo_options.outputDeviceList] | [option piccolo_options.outputBaselineDeviceList] then
       message [[baseline_devices length] string] . " baseline devices (not yet supported by Piccolo " . [@string stringWithVersionString] . "):\n" ;
-      @uint index := 0 ;
+      @uint idx := 0 ;
       foreach baseline_devices do
         message [mValue stringByRightPadding !15 !' '] ;
-        index ++ ;
-        if index == 5 then
-          index := 0 ;
+        idx ++ ;
+        if idx == 5 then
+          idx := 0 ;
           message "\n" ;
         end if ;
       end foreach ;
-      if index != 0 then
+      if idx != 0 then
         message "\n" ;
       end if ;
     end if ;
   #--- Print mid-range device list
     if [option piccolo_options.outputDeviceList] | [option piccolo_options.outputMidrangeDeviceList] then
       message [[midrange_devices length] string] . " mid-range devices supported by Piccolo " . [@string stringWithVersionString] . ":\n" ;
-      @uint index := 0 ;
+      @uint idx := 0 ;
       foreach midrange_devices do
         message [mValue stringByRightPadding !15 !' '] ;
-        index ++ ;
-        if index == 5 then
-          index := 0 ;
+        idx ++ ;
+        if idx == 5 then
+          idx := 0 ;
           message "\n" ;
         end if ;
       end foreach ;
-      if index != 0 then
+      if idx != 0 then
         message "\n" ;
       end if ;
     end if ;
   #--- Print pic18 device list
     if [option piccolo_options.outputDeviceList] | [option piccolo_options.outputPic18DeviceList] then
       message [[pic18_devices length] string] . " pic18 devices supported by Piccolo " . [@string stringWithVersionString] . ":\n" ;
-      @uint index := 0 ;
+      @uint idx := 0 ;
       foreach pic18_devices do
         message [mValue stringByRightPadding !15 !' '] ;
-        index ++ ;
-        if index == 5 then
-          index := 0 ;
+        idx ++ ;
+        if idx == 5 then
+          idx := 0 ;
           message "\n" ;
         end if ;
       end foreach ;
-      if index != 0 then
+      if idx != 0 then
         message "\n" ;
       end if ;
     end if ;
@@ -188,10 +188,10 @@ before {
         foreach mIllegalMaskList do
           s .= "  illegal value " . [[mIllegalValue uint] hexString] . " mask " . [[mIllegalMask uint] hexString] . " description \"" . mDescription . "\"\n" ;
         end foreach ;
-        foreach mConfigRegisterMaskMap do
-          s .= "  setting '" . key . "': mask " . [[mMaskValue uint] hexString] . " description \"" . mDescription . "\"\n" ;
-          foreach mFieldSettingMap do
-            s .= "    value " . [mValue hexString] . " description \"" . key . "\"\n" ;
+        foreach mConfigRegisterMaskMap prefixedby others_ do
+          s .= "  setting '" . key . "': mask " . [[others_mMaskValue uint] hexString] . " description \"" . others_mDescription . "\"\n" ;
+          foreach others_mFieldSettingMap prefixedby second_ do
+            s .= "    value " . [second_mValue hexString] . " description \"" . second_key . "\"\n" ;
           end foreach ;
         end foreach ;
         message s ;

@@ -734,13 +734,13 @@ override method @ipic18_instruction_computed_rcall generateBinaryCodeAtAddress
     currentInstructionAddress := ioAddress + 4 ;
   end if ;
   @uint nextInstructionAddress := currentInstructionAddress + [mTargetLabels length] * 4 - 2 ;
-  @uint index := 0 ;
+  @uint idx := 0 ;
   foreach mTargetLabels do
-    index ++ ;
+    idx ++ ;
     [inRoutineSymbolTable searchKey !mValue ?targetAddress] ;
     emitRCALLinstruction !currentInstructionAddress !targetAddress !mValue ;
     currentInstructionAddress := currentInstructionAddress + 2 ;
-    if index < [mTargetLabels length] then
+    if idx < [mTargetLabels length] then
       emitBRAinstruction !currentInstructionAddress !nextInstructionAddress ![mValue location] ;
       currentInstructionAddress := currentInstructionAddress + 2 ;
     end if ;

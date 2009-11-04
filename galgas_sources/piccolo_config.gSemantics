@@ -32,8 +32,8 @@ routine actualBuildConfig
     @uint defaultValue := (1 << [mRegisterWidth uint]) - 1 ;
     [!? outActualConfigurationMap insertKey !key ![mRegisterAddress uint] !defaultValue] ;
     @lstring registerName := key ;
-    foreach mConfigRegisterMaskMap do
-      [!?configFieldMap insertKey !key !registerName !mMaskValue !mDescription !mFieldSettingMap] ;
+    foreach mConfigRegisterMaskMap prefixedby other_ do
+      [!?configFieldMap insertKey !other_key !registerName !other_mMaskValue !other_mDescription !other_mFieldSettingMap] ;
     end foreach ;
   end foreach ;
 #--- Analyze config parts
@@ -83,11 +83,11 @@ routine actualBuildConfig
     ioListFileContents .= "Register '" . key . "' at " . [mRegisterAddress hexString] . " set to " . [mRegisterValue hexString] . "\n" ;
     @configRegisterMaskMap configRegisterMaskMap ;
     [inConfigRegisterMap searchKey !key ?* ?* ?configRegisterMaskMap ?*] ;
-    foreach configRegisterMaskMap do
-      @lstring settingName := key ;
-      foreach mFieldSettingMap do
-        if (mRegisterValue & [mMaskValue uint]) == mValue then
-          ioListFileContents .= "  setting '" . settingName . "' set to " . [mValue hexString] . " (\"" . key . "\")\n" ;
+    foreach configRegisterMaskMap prefixedby others_ do
+      @lstring settingName := others_key ;
+      foreach others_mFieldSettingMap prefixedby second_ do
+        if (mRegisterValue & [others_mMaskValue uint]) == second_mValue then
+          ioListFileContents .= "  setting '" . settingName . "' set to " . [second_mValue hexString] . " (\"" . second_key . "\")\n" ;
         end if ;
       end foreach ;
     end foreach ;

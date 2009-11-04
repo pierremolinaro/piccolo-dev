@@ -481,11 +481,11 @@ override method @ipic18_instruction_computed_rcall buildAssemblyCode
   else
     ioString .= "  CALL _computed_goto_4\n" ;
   end if ;
-  @uint index := 0 ;
+  @uint idx := 0 ;
   foreach mTargetLabels do
-    index ++ ;
+    idx ++ ;
     ioString .= "  RCALL " . [mValue string] . "\n" ;
-    if index < [mTargetLabels length] then
+    if idx < [mTargetLabels length] then
       ioString .= "  BRA   " . mEndOfInstructionLabel . "\n" ;
     end if ;
   end foreach ;

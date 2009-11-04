@@ -269,8 +269,8 @@ override method @midrange_instruction_banksel build_midrange_ipic_instructionLis
   elsif ioCurrentBank == [@uint max] then # No currenly selected bank : set all bits
     @uint n := [inTotalBankCount - 1 significantBitCount] ;
     @uint shiftedBank := [mBankIndex uint] ;
-    @uint index := 0 ;
-    loop sliceSize : while index < sliceSize do
+    @uint idx := 0 ;
+    loop sliceSize : while idx < sliceSize do
       @midrange_bit_oriented_op op ;
       if ((shiftedBank & 1) == 0) then
         op := [@midrange_bit_oriented_op BCF] ;
@@ -281,9 +281,9 @@ override method @midrange_instruction_banksel build_midrange_ipic_instructionLis
         !mInstructionLocation
         !op
         !STATUS_IPICregisterDescription
-        !rpIndex + index
+        !rpIndex + idx
       ] ;
-      index ++ ;      
+      idx ++ ;      
       shiftedBank := shiftedBank >> 1 ;
     end loop ;
     ioCurrentBank := [mBankIndex uint] ;
@@ -291,8 +291,8 @@ override method @midrange_instruction_banksel build_midrange_ipic_instructionLis
     @bool optimize := [option piccolo_options.performOptimizations] ;
     @uint shiftedBank := [mBankIndex uint] ;
     @uint shiftedXorBank := [mBankIndex uint] ^ ioCurrentBank ;
-    @uint index := 0 ;
-    loop sliceSize : while index < sliceSize do
+    @uint idx := 0 ;
+    loop sliceSize : while idx < sliceSize do
       @midrange_bit_oriented_op op ;
       if ((shiftedBank & 1) == 0) then
         op := [@midrange_bit_oriented_op BCF] ;
@@ -304,14 +304,14 @@ override method @midrange_instruction_banksel build_midrange_ipic_instructionLis
           !mInstructionLocation
           !op
           !STATUS_IPICregisterDescription
-          !rpIndex + index
+          !rpIndex + idx
         ] ;
       else
         ioListFileContents .= "  line " . [[ioGeneratedInstructionList length] string] ;
         ioListFileContents .= ": useless '" . [op mnemonic] . " STATUS, " ;
-        ioListFileContents .= [rpIndex + index string] . "' not generated\n" ;
+        ioListFileContents .= [rpIndex + idx string] . "' not generated\n" ;
       end if ;
-      index ++ ;      
+      idx ++ ;      
       shiftedBank := shiftedBank >> 1 ;
       shiftedXorBank := shiftedXorBank >> 1 ;
     end loop ;
@@ -734,7 +734,7 @@ end method ;
 #  foreach mImmediateExpressionList :idx do
 #    @sint v ; [mExpression eval !inRegisterTable !inConstantMap ?v] ;
 #    if (v > 255S) | (v < -128S) then
-#      error mInstructionLocation:"immediate value with index " . [idx string] . " is evaluated as " . [v string] . " (should be <= 255)" ;
+#      error mInstructionLocation:"immediate value with idx " . [idx string] . " is evaluated as " . [v string] . " (should be <= 255)" ;
 #    end if ;
 #    literalValues += ![v & 0x000000FFS uint] ;
 #  end foreach ;
@@ -2043,14 +2043,14 @@ routine build_midrange_assembly_instruction_list
       ioListFileContents .= "\n" ;
     end if ;
     ioListFileContents .= "Generated intermediate code:\n" ;
-    @uint index := 0 ;
+    @uint idx := 0 ;
     @uint currentAddress := 0 ;
     foreach outGeneratedInstructionList do
       [mInstruction setCurrentAddress !?currentAddress] ;
-      ioListFileContents .= [[index string] stringByLeftPadding !5 !' '] . ": " ;
+      ioListFileContents .= [[idx string] stringByLeftPadding !5 !' '] . ": " ;
       [mInstruction displayIPICinstruction !? ioListFileContents] ;
       ioListFileContents .= "\n" ;
-      index ++ ;
+      idx ++ ;
     end foreach ;
     ioListFileContents .= "\n" ;
     ioListFileContents .= "Minimum code size without optimization: " . [currentAddress string] . " instructions.\n\n" ;
