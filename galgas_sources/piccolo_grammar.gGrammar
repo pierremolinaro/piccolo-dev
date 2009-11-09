@@ -1,4 +1,8 @@
 grammar piccolo_grammar "SLR":
+with "piccolo_syntax.gSyntax" ;
+with "midrange_syntax.gSyntax" ;
+with "pic18_bootloader_syntax.gSyntax" ;
+
 import lexique piccolo_lexique in "piccolo_lexique.gLexique" ;
 import option piccolo_options in "piccolo_options.gOption" ;
 import syntax piccolo_syntax in "piccolo_syntax.gSyntax" ;
