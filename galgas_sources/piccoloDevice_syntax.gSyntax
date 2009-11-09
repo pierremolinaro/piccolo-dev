@@ -1,4 +1,5 @@
 syntax piccoloDevice_syntax :
+with "piccoloDevice_lexique.gLexique" ;
 import lexique piccoloDevice_lexique in "piccoloDevice_lexique.gLexique" ;
 import semantics piccoloDevice_semantics in "piccoloDevice_semantics.gSemantics" ;
 

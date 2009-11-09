@@ -1,4 +1,5 @@
 syntax midrange_syntax :
+with "piccolo_lexique.gLexique" ;
 import lexique piccolo_lexique in "piccolo_lexique.gLexique" ;
 import semantics generic_metamodel in "generic_metamodel.gSemantics" ;
 import semantics midrange_metamodel in "midrange_metamodel.gSemantics" ;
