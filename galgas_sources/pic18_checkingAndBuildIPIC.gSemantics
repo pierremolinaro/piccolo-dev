@@ -719,7 +719,7 @@ override method @instruction_computed_retlw buildIPICinstructionList
   end if ;
 #--- 
   @uintlist literalValues [emptyList] ;
-  foreach mImmediateExpressionList :idx do
+  foreach mImmediateExpressionList index idx do
     @sint v ; [mExpression eval !inRegisterTable !inConstantMap ?v] ;
     if (v > 255S) | (v < -128S) then
       error mInstructionLocation:"immediate value with idx " . [idx string] . " is evaluated as " . [v string] . " (should be <= 255)" ;
