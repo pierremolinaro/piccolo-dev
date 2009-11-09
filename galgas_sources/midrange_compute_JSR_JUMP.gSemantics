@@ -353,7 +353,7 @@ routine midrange_compute_JSR_JUMP
     @uint lastAddressForFirstPass := currentAddress ;
   #-------------------------------- Second pass: generate code
     currentAddress := 0 ;
-    foreach ioGeneratedInstructionList:idx do
+    foreach ioGeneratedInstructionList index idx do
       @uint instructionLength ;
       [mInstruction instructionLength ?instructionLength] ;
       [mInstruction compute !symbolTable !?currentAddress !?JUMP_or_JSR_fixed !?ioGeneratedInstructionList !idx !?ioListFileContents] ;

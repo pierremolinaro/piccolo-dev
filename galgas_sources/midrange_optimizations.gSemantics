@@ -418,7 +418,7 @@ routine perform_midrange_optimizations
   ioListFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n\n" ;
 #-------------------------------- Build label map
   @symbolTableForOptimizations symbolTable [emptyMap] ;
-  foreach ioGeneratedInstructionList:lineIndex do
+  foreach ioGeneratedInstructionList index lineIndex do
     [mInstruction defineLabel !?symbolTable !lineIndex] ;
   end foreach ;
 #-------------------------------- Iterative optimizations
@@ -431,7 +431,7 @@ routine perform_midrange_optimizations
     iteration ++ ;
     ioListFileContents .= "Pass " . [iteration string] . ":\n" ;
   #--- Optimization loop
-    foreach ioGeneratedInstructionList :idx do
+    foreach ioGeneratedInstructionList index idx do
       cast mInstruction :
       when == @midrange_ipic_GOTO ipic_GOTO do
         [ipic_GOTO optimizeGOTO !symbolTable !idx !?ioGeneratedInstructionList !?ioListFileContents !?optimizationsDone] ;
@@ -465,7 +465,7 @@ routine perform_midrange_optimizations
     @bool reachable := true ;
     @bool skippingInstruction := false ;
     @bool previousWasSkippingInstruction := false ;
-    foreach ioGeneratedInstructionList :idx do
+    foreach ioGeneratedInstructionList index idx do
        if reachable | previousWasSkippingInstruction then
          [mInstruction nextInstructionIsReachable ?reachable] ;
          previousWasSkippingInstruction := skippingInstruction ;
