@@ -288,7 +288,7 @@ override method @midrange_instruction_banksel build_midrange_ipic_instructionLis
     end loop ;
     ioCurrentBank := [mBankIndex uint] ;
   else
-    @bool optimize := [option piccolo_options.performOptimizations] ;
+    @bool optimize := [option piccolo_options.performOptimizations value] ;
     @uint shiftedBank := [mBankIndex uint] ;
     @uint shiftedXorBank := [mBankIndex uint] ^ ioCurrentBank ;
     @uint idx := 0 ;
@@ -1250,7 +1250,7 @@ override method @midrange_instruction_structured_if build_midrange_ipic_instruct
 :
   @bool generateComplementaryCondition := false ;
 #--- Direct Test Instruction Count
-  if [option piccolo_options.performOptimizations] then
+  if [option piccolo_options.performOptimizations value] then
     @uint directCount ; [mIfCondition computeInstructionCountForCondition !true ?directCount] ;
     if [mElseInstructionList length] > 0 then
       directCount ++ ;
@@ -1899,7 +1899,7 @@ routine build_midrange_assembly_instruction_list
     end if ;
   end foreach ;
 #-------------------------------- Print constant map
-  if [option piccolo_options.ouputListingFile] then
+  if [option piccolo_options.ouputListingFile value] then
     print_constant_definition
       !constantMap
       !?ioListFileContents
@@ -2033,7 +2033,7 @@ routine build_midrange_assembly_instruction_list
     currentPage ++ ;
   end loop ;
 #--- Output a listing ?
-  if [option piccolo_options.ouputListingFile] then
+  if [option piccolo_options.ouputListingFile value] then
     ioListFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n" ;
     ioListFileContents .= "*" . ["IPIC INSTRUCTION LIST" stringByLeftAndRightPadding !77 !' '] . "*\n" ;
     ioListFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n\n" ;

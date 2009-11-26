@@ -1522,7 +1522,7 @@ override method @instruction_structured_if buildIPICinstructionList
 :
   @bool generateComplementaryCondition := false ;
 #--- Direct Test Instruction Count
-  if [option piccolo_options.performOptimizations] then
+  if [option piccolo_options.performOptimizations value] then
     @uint directCount ; [mIfCondition computeInstructionCountForCondition !true ?directCount] ;
     if [mElseInstructionList length] > 0 then
       directCount ++ ;
@@ -1898,7 +1898,7 @@ routine build_ipic18_assembly_instruction_list
     end if ;
   end foreach ;
 #-------------------------------- Print constant map
-  if [option piccolo_options.ouputListingFile] then
+  if [option piccolo_options.ouputListingFile value] then
     print_constant_definition
       !constantMap
       !?ioListFileContents
@@ -2178,7 +2178,7 @@ routine build_ipic18_assembly_instruction_list
     entryPoint := entryPoint + 4 ;
   end foreach ;
 #--- Output a listing ?
-  if [option piccolo_options.ouputListingFile] then
+  if [option piccolo_options.ouputListingFile value] then
     ioListFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n" ;
     ioListFileContents .= "*" . ["IPIC INSTRUCTION LIST" stringByLeftAndRightPadding !77 !' '] . "*\n" ;
     ioListFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n\n" ;

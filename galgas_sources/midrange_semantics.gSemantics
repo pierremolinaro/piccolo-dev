@@ -74,7 +74,7 @@ routine midrange_analyze ??@midrange_model inPiccoloModel ??@string inSourceFile
     !?listFileContents
   ;
 #-------------------------------- Perform Code Optimization
-  if ([@uint errorCount] == 0) & [option piccolo_options.performOptimizations] then
+  if ([@uint errorCount] == 0) & [option piccolo_options.performOptimizations value] then
     perform_midrange_optimizations !?generatedInstructionList !?listFileContents ;
   end if ;
 #-------------------------------- Compute inter-pages JUMP and JSR
@@ -82,7 +82,7 @@ routine midrange_analyze ??@midrange_model inPiccoloModel ??@string inSourceFile
     midrange_compute_JSR_JUMP !?generatedInstructionList !?listFileContents ;
   end if ;
 #-------------------------------- Listing file
-  if [option piccolo_options.ouputListingFile] then
+  if [option piccolo_options.ouputListingFile value] then
     @string listFile := [inSourceFileName stringByDeletingPathExtension] . ".list" ;
     [listFileContents writeToFileWhenDifferentContents !listFile ?*] ;
   end if ;
@@ -104,7 +104,7 @@ routine midrange_analyze ??@midrange_model inPiccoloModel ??@string inSourceFile
     @string hexDestinationFile := [inSourceFileName stringByDeletingPathExtension] . ".hex" ;
     [contents writeToFileWhenDifferentContents !hexDestinationFile ?*] ;
   #--- Write infos (if verbose mode)
-    if [option.verbose_output] then
+    if [option.verbose_output value] then
       @string verboseMessage := "  ROM size: " . [[[piccoloDeviceModel mRomSize] uint] string] . " words;" ;
       verboseMessage .= " used: " . [usedROMsize string] . " words (" ;
       verboseMessage .= [(usedROMsize * 100) / [[piccoloDeviceModel mRomSize] uint] string] . "%).\n" ;
@@ -119,7 +119,7 @@ routine midrange_analyze ??@midrange_model inPiccoloModel ??@string inSourceFile
       message verboseMessage ;
     end if ;
   #--- Generate asm file, if corresponding option enabled
-    if [option piccolo_options.generateAssembly] then
+    if [option piccolo_options.generateAssembly value] then
       @string assemblyCode ;
       midrange_build_assembly_code
         ![[piccoloDeviceModel mDeviceName] string]

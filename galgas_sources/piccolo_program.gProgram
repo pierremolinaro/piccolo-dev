@@ -8,10 +8,10 @@ import grammar piccolo_grammar in "piccolo_grammar.gGrammar" ;
 #--- Prologue routine
 before {
 #------------------------------------------------ Print supported device list
-  if [option piccolo_options.outputDeviceList]
-   | [option piccolo_options.outputPic18DeviceList]
-   | [option piccolo_options.outputBaselineDeviceList]
-   | [option piccolo_options.outputMidrangeDeviceList] then
+  if [option piccolo_options.outputDeviceList value]
+   | [option piccolo_options.outputPic18DeviceList value]
+   | [option piccolo_options.outputBaselineDeviceList value]
+   | [option piccolo_options.outputMidrangeDeviceList value] then
   #--- Enumerate devices
     @stringlist allDevices := [[filewrapper embeddedDevices] allFilePathes] ;
     @stringlist pic18_devices [emptyList] ;
@@ -43,7 +43,7 @@ before {
 ##      end if ;
     end foreach ;
   #--- Print baseline device list
-    if [option piccolo_options.outputDeviceList] | [option piccolo_options.outputBaselineDeviceList] then
+    if [option piccolo_options.outputDeviceList value] | [option piccolo_options.outputBaselineDeviceList value] then
       message [[baseline_devices length] string] . " baseline devices (not yet supported by Piccolo " . [@string stringWithVersionString] . "):\n" ;
       @uint idx := 0 ;
       foreach baseline_devices do
@@ -59,7 +59,7 @@ before {
       end if ;
     end if ;
   #--- Print mid-range device list
-    if [option piccolo_options.outputDeviceList] | [option piccolo_options.outputMidrangeDeviceList] then
+    if [option piccolo_options.outputDeviceList value] | [option piccolo_options.outputMidrangeDeviceList value] then
       message [[midrange_devices length] string] . " mid-range devices supported by Piccolo " . [@string stringWithVersionString] . ":\n" ;
       @uint idx := 0 ;
       foreach midrange_devices do
@@ -75,7 +75,7 @@ before {
       end if ;
     end if ;
   #--- Print pic18 device list
-    if [option piccolo_options.outputDeviceList] | [option piccolo_options.outputPic18DeviceList] then
+    if [option piccolo_options.outputDeviceList value] | [option piccolo_options.outputPic18DeviceList value] then
       message [[pic18_devices length] string] . " pic18 devices supported by Piccolo " . [@string stringWithVersionString] . ":\n" ;
       @uint idx := 0 ;
       foreach pic18_devices do
@@ -93,8 +93,8 @@ before {
   #---
   end if ;
 #------------------------------------------------ Export Device definition files
-  if [[option piccolo_options.exportDeviceFiles] length] > 0 then
-    @string dir := [option piccolo_options.exportDeviceFiles] ;
+  if [[option piccolo_options.exportDeviceFiles value] length] > 0 then
+    @string dir := [option piccolo_options.exportDeviceFiles value] ;
     if not [dir directoryExists] then
       [dir makeDirectory] ;
     end if ;
@@ -107,7 +107,7 @@ before {
     message [[allDevices length] string] . " devices copied in '" . dir . "' directory\n" ;
   end if ;
 #------------------------------------------------ Print RAM description
-  @string deviceForMemoryDescription := [option piccolo_options.memoryDescription] ;
+  @string deviceForMemoryDescription := [option piccolo_options.memoryDescription value] ;
   if [deviceForMemoryDescription length] > 0 then
     @string devicePath := "/" . deviceForMemoryDescription . ".piccoloDevice" ;
     if [[filewrapper embeddedDevices] fileExistsAtPath !devicePath] then
@@ -155,7 +155,7 @@ before {
     end if ;
   end if ;
 #------------------------------------------------ Print REGISTERS description
-  @string deviceForRegistersDescription := [option piccolo_options.registerDescription] ;
+  @string deviceForRegistersDescription := [option piccolo_options.registerDescription value] ;
   if [deviceForRegistersDescription length] > 0 then
     @string devicePath := "/" . deviceForRegistersDescription . ".piccoloDevice" ;
     if [[filewrapper embeddedDevices] fileExistsAtPath !devicePath] then
@@ -176,7 +176,7 @@ before {
     end if ;
   end if ;
 #------------------------------------------------ Print CONFIGURATION description
-  @string deviceForConfigDescription := [option piccolo_options.configDescription] ;
+  @string deviceForConfigDescription := [option piccolo_options.configDescription value] ;
   if [deviceForConfigDescription length] > 0 then
     @string devicePath := "/" . deviceForConfigDescription . ".piccoloDevice" ;
     if [[filewrapper embeddedDevices] fileExistsAtPath !devicePath] then

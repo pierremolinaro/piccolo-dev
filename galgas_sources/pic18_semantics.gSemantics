@@ -174,7 +174,7 @@ routine pic18_analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName 
     !?listFileContents
   ;
 #-------------------------------- Perform Code Optimization
-  if ([@uint errorCount] == 0) & [option piccolo_options.performOptimizations] then
+  if ([@uint errorCount] == 0) & [option piccolo_options.performOptimizations value] then
     performOptimizations !?generatedInstructionList !?listFileContents ;
   end if ;
 #-------------------------------- Convert relative branchs to absolute, when needed
@@ -182,7 +182,7 @@ routine pic18_analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName 
     ipic18_convertRelativeBranchsToAbsoluteWhenNeeded !?generatedInstructionList !?listFileContents ;
   end if ;
 #-------------------------------- Code generation
-  if [option piccolo_options.ouputListingFile] then
+  if [option piccolo_options.ouputListingFile value] then
     @string listFile := [inSourceFileName stringByDeletingPathExtension] . ".list" ;
     [listFileContents writeToFileWhenDifferentContents !listFile ?*] ;
   end if ;
@@ -201,7 +201,7 @@ routine pic18_analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName 
     @string hexDestinationFile := [inSourceFileName stringByDeletingPathExtension] . ".hex" ;
     [contents writeToFileWhenDifferentContents !hexDestinationFile ?*] ;
   #--- Write infos (if verbose mode)
-    if [option.verbose_output] then
+    if [option.verbose_output value] then
       @string verboseMessage := "  ROM size: " . [[[piccoloDeviceModel mRomSize] uint] string] . " bytes;" ;
       verboseMessage .= " used: " . [usedROMsize string] . " bytes (" ;
       verboseMessage .= [(usedROMsize * 100) / [[piccoloDeviceModel mRomSize] uint] string] . "%).\n" ;
@@ -216,7 +216,7 @@ routine pic18_analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName 
       message verboseMessage ;
     end if ;
   #--- Generate asm file, if corresponding option enabled
-    if [option piccolo_options.generateAssembly] then
+    if [option piccolo_options.generateAssembly value] then
       @string assemblyCode ;
       pic18_build_assembly_code
         ![[piccoloDeviceModel mDeviceName] string]
