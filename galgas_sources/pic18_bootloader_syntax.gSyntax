@@ -161,7 +161,7 @@ rule <start_symbol> :
   ;
 #--- Semantic analysis
   @string listingFile := [[@string stringWithSourceFilePath] stringByDeletingPathExtension] . ".list" ;
-  if ([@uint errorCount] == 0) & [option piccolo_options.ouputListingFile] then
+  if ([@uint errorCount] == 0) & [option piccolo_options.ouputListingFile value] then
     [listFileContents writeToFileWhenDifferentContents !listingFile ?*] ;
   end if ;
   if [@uint errorCount] > 0 then

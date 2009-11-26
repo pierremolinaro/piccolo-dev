@@ -92,7 +92,7 @@ routine analyze_ram_sections
       [mDeclarationInRAM handleDeclaration !?ioRamBankTable !?ioAllRegisters !mBankName] ;
     end foreach ;
   end foreach ;
-  if [option piccolo_options.ouputListingFile] then
+  if [option piccolo_options.ouputListingFile value] then
     ioListFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n" ;
     ioListFileContents .= "*" . [inListingTitle stringByLeftAndRightPadding !77 !' '] . "*\n" ;
     ioListFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n\n" ;
