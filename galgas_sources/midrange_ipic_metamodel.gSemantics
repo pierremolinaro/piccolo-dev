@@ -295,9 +295,7 @@ class @midrange_ipic_instruction_BitTestSkip extends @midrange_ipic_actualInstru
 #----------------------------------------------------*
 
 enum @midrange_call_goto_bit {
-  constructor set ;
-  constructor clear ;
-  constructor noChange ;
+  set, clear, noChange
 }{
 
 }

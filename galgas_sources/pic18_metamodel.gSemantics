@@ -48,27 +48,8 @@ class @instruction_savebank extends @piccolo_instruction {
 #----------------------------------------------------*
 
 enum @instruction_FDA_base_code {
-  constructor ADDWF ;
-  constructor ADDWFC ;
-  constructor ANDWF ;
-  constructor COMF ;
-  constructor DECF ;
-  constructor DECFSZ ;
-  constructor DCFSNZ ;
-  constructor INCF ;
-  constructor INCFSZ ;
-  constructor INFSNZ ;
-  constructor IORWF ;
-  constructor MOVF ;
-  constructor RLCF ;
-  constructor RLNCF ;
-  constructor RRCF ;
-  constructor RRNCF ;
-  constructor SUBFWB ;
-  constructor SUBWF ;
-  constructor SUBWFB ;
-  constructor SWAPF ;
-  constructor XORWF ;
+  ADDWF, ADDWFC, ANDWF, COMF, DECF, DECFSZ, DCFSNZ, INCF, INCFSZ, INFSNZ,
+  IORWF, MOVF, RLCF, RLNCF, RRCF, RRNCF, SUBFWB, SUBWF, SUBWFB, SWAPF, XORWF
 }{
   reader mnemonic :
     ADDWF -> "ADDWF" ;
@@ -137,15 +118,7 @@ class @instruction_FDA extends @piccolo_instruction {
 #----------------------------------------------------*
 
 enum @FA_instruction_base_code {
-  constructor CLRF ;
-  constructor CPFSEQ ;
-  constructor CPFSGT ;
-  constructor CPFSLT ;
-  constructor MOVWF  ;
-  constructor MULWF  ;
-  constructor NEGF  ;
-  constructor SETF  ;
-  constructor TSTFSZ ;
+  CLRF, CPFSEQ, CPFSGT, CPFSLT, MOVWF, MULWF, NEGF, SETF, TSTFSZ
 }{
   reader mnemonic :
     CLRF   -> "CLRF" ;
@@ -177,9 +150,7 @@ class @instruction_MOVFF extends @piccolo_instruction {
 #----------------------------------------------------*
 
 enum @bit_oriented_op {
-  constructor BCF ;
-  constructor BSF ;
-  constructor BTG ;
+  BCF, BSF, BTG
 }{
   reader mnemonic :
     BCF -> "BCF" ;
@@ -199,14 +170,7 @@ class @instruction_FBA extends @piccolo_instruction {
 #----------------------------------------------------*
 
 enum @conditional_branch {
-  constructor bz ;
-  constructor bnz ;
-  constructor bn ;
-  constructor bnn ;
-  constructor bc ;
-  constructor bnc ;
-  constructor bov ;
-  constructor bnov ;
+  bz, bnz, bn, bnn, bc, bnc, bov, bnov
 }{
   reader mnemonic :
     bz   -> "BZ" ;
@@ -249,10 +213,7 @@ end routine ;
 #----------------------------------------------------*
 
 enum @jumpInstructionKind {
-  constructor ipicRelative ;
-  constructor ipicAbsolute ;
-  constructor relative ;
-  constructor absolute ;
+  ipicRelative, ipicAbsolute, relative, absolute
 }{
 }
 
@@ -316,14 +277,7 @@ class @instruction_SLEEP extends @piccolo_instruction {
 #----------------------------------------------------*
 
 enum @literal_instruction_opcode {
-  constructor ADDLW ;
-  constructor ANDLW ;
-  constructor IORLW ;
-  constructor MOVLW ;
-  constructor MULLW ;
-  constructor RETLW ;
-  constructor SUBLW ;
-  constructor XORLW ;
+  ADDLW, ANDLW, IORLW, MOVLW, MULLW, RETLW, SUBLW, XORLW
 }{
   reader mnemonic :
     ADDLW -> "ADDLW" ;
@@ -354,10 +308,7 @@ class @instruction_LFSR extends @piccolo_instruction {
 #----------------------------------------------------*
 
 enum @tableAccessOption {
-  constructor simpleAccess ;
-  constructor postIncrement ;
-  constructor postDecrement ;
-  constructor preIncrement ;
+  simpleAccess, postIncrement, postDecrement, preIncrement
 }{
   reader mnemonic :
     simpleAccess -> "*" ;
@@ -395,10 +346,7 @@ class @instruction_FOREVER extends @piccolo_instruction {
 #----------------------------------------------------*
 
 enum @if_semi_colon_op {
-  constructor CPFSEQ ;
-  constructor CPFSGT ;
-  constructor CPFSLT ;
-  constructor TSTFSZ ;
+  CPFSEQ, CPFSGT, CPFSLT, TSTFSZ
 }{
   reader mnemonic :
     CPFSEQ -> "CPFSEQ" ;
@@ -501,12 +449,7 @@ class @registerTestCondition extends @conditionExpression {
 #----------------------------------------------------*
 
 enum @registerComparison {
-  constructor notEqual ;
-  constructor equal ;
-  constructor greaterOrEqual ;
-  constructor greater ;
-  constructor lowerOrEqual ;
-  constructor lower ;
+  notEqual, equal, greaterOrEqual, greater, lowerOrEqual, lower
 }{
   reader mnemonic :
     notEqual -> "!=" ;
@@ -652,9 +595,7 @@ list @routineDeclarationList {
 #----------------------------------------------------*
 
 enum @programKind {
-  constructor regularProgram ;
-  constructor bootloaderProgram ;
-  constructor userProgram ;
+  regularProgram, bootloaderProgram, userProgram
 }{
 }
 

@@ -363,10 +363,7 @@ class @ipic18_instruction_BitTestSkip extends @ipic_actualInstruction {
 #----------------------------------------------------*
 
 enum @condionalBranchMode {
-  constructor native ;
-  constructor ipicNative ;
-  constructor ipicBRA ;
-  constructor ipicGOTO ;
+  native, ipicNative, ipicBRA, ipicGOTO
 }{
 }
 

@@ -37,20 +37,7 @@ class @midrange_instruction_savebank extends @midrange_instruction {
 #----------------------------------------------------*
 
 enum @midrange_instruction_FD_base_code {
-  constructor ADDWF ;
-  constructor ANDWF ;
-  constructor COMF ;
-  constructor DECF ;
-  constructor DECFSZ ;
-  constructor INCF ;
-  constructor INCFSZ ;
-  constructor IORWF ;
-  constructor MOVF ;
-  constructor RLF ;
-  constructor RRF ;
-  constructor SUBWF ;
-  constructor SWAPF ;
-  constructor XORWF ;
+  ADDWF, ANDWF, COMF, DECF, DECFSZ, INCF, INCFSZ, IORWF, MOVF, RLF, RRF, SUBWF, SWAPF, XORWF
 }{
   reader mnemonic :
     ADDWF -> "ADDWF" ;
@@ -105,8 +92,7 @@ class @midrange_instruction_FD extends @midrange_instruction {
 #----------------------------------------------------*
 
 enum @midrange_F_instruction_base_code {
-  constructor CLRF ;
-  constructor MOVWF  ;
+  CLRF, MOVWF
 }{
   reader mnemonic :
     CLRF   -> "CLRF" ;
@@ -124,8 +110,7 @@ class @midrange_instruction_F extends @midrange_instruction {
 #----------------------------------------------------*
 
 enum @midrange_bit_oriented_op {
-  constructor BCF ;
-  constructor BSF ;
+  BCF, BSF
 }{
   reader mnemonic :
     BCF -> "BCF" ;
@@ -188,13 +173,7 @@ class @midrange_instruction_SLEEP extends @midrange_instruction {
 #----------------------------------------------------*
 
 enum @midrange_literal_instruction_opcode {
-  constructor ADDLW ;
-  constructor ANDLW ;
-  constructor IORLW ;
-  constructor MOVLW ;
-  constructor RETLW ;
-  constructor SUBLW ;
-  constructor XORLW ;
+  ADDLW, ANDLW, IORLW, MOVLW, RETLW, SUBLW, XORLW
 }{
   reader mnemonic :
     ADDLW -> "ADDLW" ;

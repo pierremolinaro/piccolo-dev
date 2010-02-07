@@ -27,10 +27,7 @@ map @ramBankTable {
 #----------------------------------------------------*
 
 enum @processorType {
-  constructor pic18_60 ;
-  constructor pic18_80 ;
-  constructor midrange ;
-  constructor baseline ;
+  pic18_60, pic18_80, midrange, baseline
 }{
 }
 

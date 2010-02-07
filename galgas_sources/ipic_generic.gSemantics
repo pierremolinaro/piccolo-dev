@@ -56,9 +56,7 @@ map @routineMap {
 #----------------------------------------------------------------------------*
 
 enum @routineKind {
-  constructor regularRoutine ;
-  constructor noReturnRoutine ;
-  constructor interruptRoutine ;
+  regularRoutine, noReturnRoutine, interruptRoutine
 }{
 }
 
