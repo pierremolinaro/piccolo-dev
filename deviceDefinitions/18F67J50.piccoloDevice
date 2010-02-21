@@ -617,7 +617,7 @@ controller PIC18F67J50 {
   }
 
   configuration CONFIG2H at 0x1FFFB width 8 {
-    RESERVED mask 0xF0 description "RESERVED"
+    RESERVED_CONFIG2H mask 0xF0 description "RESERVED"
       setting 0xF0 mask 0xF0 description "RESERVED"
     WDTPS mask 0xF description "Watchdog Postscaler"
       setting 0xF mask 0xF description "1:32768"
@@ -657,7 +657,7 @@ controller PIC18F67J50 {
   }
 
   configuration CONFIG3H at 0x1FFFD width 8 {
-    RESERVED mask 0xF0 description "RESERVED"
+    RESERVED_CONFIG3H mask 0xF0 description "RESERVED"
       setting 0xF0 mask 0xF0 description "RESERVED"
     MSSP7B_EN mask 0x8 description "MSSP address masking"
       setting 0x8 mask 0x8 description "7 bit address masking mode"

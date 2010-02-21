@@ -1224,7 +1224,7 @@ controller PIC18F2480 {
   }
 
   configuration CONFIG6L at 0x30000A width 4 {
-    Reserved mask 0xC description "Reserved"
+    Reserved_CONFIG6L mask 0xC description "Reserved"
       setting 0xC mask 0xC description "Reserved"
     WRT_1 mask 0x2 description "Table Write Protect 02000-03FFF"
       setting 0x2 mask 0x2 description "Disabled"
@@ -1241,7 +1241,7 @@ controller PIC18F2480 {
   }
 
   configuration CONFIG7L at 0x30000C width 4 {
-    Reserved mask 0xC description "Reserved"
+    Reserved_CONFIG7L mask 0xC description "Reserved"
       setting 0xC mask 0xC description "Reserved"
     EBTR_1 mask 0x2 description "Table Read Protect 02000-03FFF"
       setting 0x2 mask 0x2 description "Disabled"
