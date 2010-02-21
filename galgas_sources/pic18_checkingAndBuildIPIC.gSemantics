@@ -2139,10 +2139,10 @@ routine build_ipic18_assembly_instruction_list
     ] ; # ADDWF WREG, W
     outGeneratedInstructionList += ![@ipic18_instruction_FDA new
       !here
-      ![@instruction_FDA_base_code ADDWFC]
+      ![@instruction_FDA_base_code ADDWF]
       !TOSL_IPICregisterDescription
       !false
-    ] ; # ADDWFC TOSL, F
+    ] ; # ADDWF TOSL, F
     outGeneratedInstructionList += ![@ipic18_instruction_literalOperation new
       !here
       ![@literal_instruction_opcode MOVLW]

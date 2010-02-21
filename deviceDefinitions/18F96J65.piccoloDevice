@@ -752,7 +752,7 @@ controller PIC18F96J65 {
   }
 
   configuration CONFIG2H at 0x17FFB width 8 {
-    RESERVED mask 0xF0 description "RESERVED"
+    RESERVED_CONFIG2H mask 0xF0 description "RESERVED"
       setting 0x0 mask 0xF0 description "RESERVED"
     WDTPS mask 0xF description "Watchdog Timer Postscale"
       setting 0xF mask 0xF description "1:32,768"
@@ -792,7 +792,7 @@ controller PIC18F96J65 {
   }
 
   configuration CONFIG3H at 0x17FFD width 8 {
-    RESERVED mask 0xF0 description "RESERVED"
+    RESERVED_CONFIG3H mask 0xF0 description "RESERVED"
       setting 0x0 mask 0xF0 description "RESERVED"
     ETHLED mask 0x4 description "Ethernet LED Enable"
       setting 0x4 mask 0x4 description "LEDA/LEDB On RA0/RA1 With Ethernet, RA0/AN0 Without"

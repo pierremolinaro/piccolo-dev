@@ -521,7 +521,7 @@ controller PIC18F83J90 {
   }
 
   configuration CONFIG2H at 0x1FFB width 8 {
-    RESERVED mask 0xF0 description "RESERVED"
+    RESERVED_CONFIG2H mask 0xF0 description "RESERVED"
       setting 0xF0 mask 0xF0 description "RESERVED"
     WDTPS mask 0xF description "Watchdog Postscaler"
       setting 0xF mask 0xF description "1:32768"
@@ -561,7 +561,7 @@ controller PIC18F83J90 {
   }
 
   configuration CONFIG3H at 0x1FFD width 8 {
-    RESERVED mask 0xF0 description "RESERVED"
+    RESERVED_CONFIG3H mask 0xF0 description "RESERVED"
       setting 0xF0 mask 0xF0 description "RESERVED"
     CCP2MUX mask 0x1 description "CCP2 Mux"
       setting 0x1 mask 0x1 description "RC1"

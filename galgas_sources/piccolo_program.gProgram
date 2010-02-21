@@ -189,7 +189,7 @@ before {
           s .= "  illegal value " . [[mIllegalValue uint] hexString] . " mask " . [[mIllegalMask uint] hexString] . " description \"" . mDescription . "\"\n" ;
         end foreach ;
         foreach mConfigRegisterMaskMap prefixedby others_ do
-          s .= "  setting '" . key . "': mask " . [[others_mMaskValue uint] hexString] . " description \"" . others_mDescription . "\"\n" ;
+          s .= "  setting '" . others_key . "': mask " . [[others_mMaskValue uint] hexString] . " description \"" . others_mDescription . "\"\n" ;
           foreach others_mFieldSettingMap prefixedby second_ do
             s .= "    value " . [second_mValue hexString] . " description \"" . second_key . "\"\n" ;
           end foreach ;

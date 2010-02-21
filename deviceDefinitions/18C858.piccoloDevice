@@ -786,7 +786,7 @@ controller PIC18C858 {
   }
 
   configuration CONFIG4L at 0x300006 width 2 {
-    RES1 mask 0x2 description "Reserved"
+    RES1_CONFIG4L mask 0x2 description "Reserved"
       setting 0x2 mask 0x2 description "Reserved"
     STVR mask 0x1 description "Stack Overflow Reset"
       setting 0x1 mask 0x1 description "Enabled"

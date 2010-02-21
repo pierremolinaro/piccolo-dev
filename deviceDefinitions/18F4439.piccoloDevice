@@ -377,7 +377,7 @@ controller PIC18F4439 {
   }
 
   configuration CONFIG5L at 0x300008 width 4 {
-    RES1 mask 0x8 description "Reserved"
+    RES1_CONFIG5L mask 0x8 description "Reserved"
       setting 0x8 mask 0x8 description "Reserved"
     CP_2 mask 0x4 description "Code Protect 04000-05FFF"
       setting 0x4 mask 0x4 description "Disabled"
@@ -403,7 +403,7 @@ controller PIC18F4439 {
   }
 
   configuration CONFIG6L at 0x30000A width 4 {
-    RES1 mask 0x8 description "Reserved"
+    RES1_CONFIG6L mask 0x8 description "Reserved"
       setting 0x8 mask 0x8 description "Reserved"
     WRT_2 mask 0x4 description "Table Write Protect 04000-05FFF"
       setting 0x4 mask 0x4 description "Disabled"
@@ -423,7 +423,7 @@ controller PIC18F4439 {
   }
 
   configuration CONFIG7L at 0x30000C width 4 {
-    RES1 mask 0x8 description "Reserved"
+    RES1_CONFIG7L mask 0x8 description "Reserved"
       setting 0x8 mask 0x8 description "Reserved"
     EBTR_2 mask 0x4 description "Table Read Protect 04000-05FFF"
       setting 0x4 mask 0x4 description "Disabled"
@@ -437,7 +437,7 @@ controller PIC18F4439 {
   }
 
   configuration RESERVED1 at 0x300005 width 1 {
-    RES1 mask 0x1 description "Reserved"
+    RES1_RESERVED1 mask 0x1 description "Reserved"
       setting 0x1 mask 0x1 description "Reserved"
   }
 }
