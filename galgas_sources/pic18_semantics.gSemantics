@@ -8,7 +8,55 @@ import semantics ram_sections in "ram_sections.gSemantics" ;
 
 import grammar piccolo_grammar in "piccolo_grammar.gGrammar" ;
 
-#import option piccolo_options in "piccolo_options.gOption" ;
+#----------------------------------------------------------------------------*
+#                                                                            *
+#       L I S T I N G   O F    G E N E R A T E D   C O D E                   *
+#                                                                            *
+#----------------------------------------------------------------------------*
+
+routine pic18_build_listing_of_generated_code
+  ??@ipic18_instructionList inInstructionList
+  ?!@string ioListFileContents
+:
+#--- Build symbol table
+  @ipic18_symbolTable symbolTable [emptyMap] ;
+  @uint currentAddress := 0 ;
+  foreach inInstructionList do
+    [mInstruction enterLabelAtAddress !?symbolTable !?currentAddress] ;
+  end foreach ;
+  ioListFileContents .= "*******************************************************************************\n" ;
+  ioListFileContents .= "*                              GENERATED CODE                                 *\n" ;
+  ioListFileContents .= "*******************************************************************************\n\n" ;
+  ioListFileContents .= " Line  Address  Code      Assembly\n" ;
+  @uint bccLabelIndex := 0 ;
+  currentAddress := 0 ;
+  foreach inInstructionList index idx do
+    @stringlist lineList [emptyList] ;
+    [mInstruction buildAssemblyCode !?lineList !?bccLabelIndex] ;
+    @emittedCodeList code [emptyList] ;
+    [mInstruction generateBinaryCodeAtAddress !symbolTable !?currentAddress !?code] ;
+    loop [lineList length] :
+    while [lineList length] > [code length] do
+      code += ![@uintlist emptyList] ;
+    end loop ;
+    if [lineList length] != [code length] then
+      error here : "internal error for listing line " . [idx string]
+             . " : " . [[lineList length] string] . " != " . [[code length] string] ;
+    end if ;
+    foreach lineList, code do
+      @string codeString := "" ;
+      foreach mCode do
+        codeString .= [[mValue xString] stringByLeftPadding !4 !'0'] . " " ;
+      end foreach ;
+      ioListFileContents .= [[idx string] stringByLeftPadding !5 !' '] . "  "
+                         . [[currentAddress xString] stringByLeftPadding !6 !'0'] . " : "
+                         . [codeString stringByRightPadding !10 !' ']
+                         . mValue . "\n" ;
+      currentAddress := currentAddress + [mCode length] * 2 ;
+    end foreach ;
+  end foreach ;
+  ioListFileContents .= "\n*******************************************************************************\n" ;
+end routine ;
 
 #----------------------------------------------------------------------------*
 #                                                                            *
@@ -181,11 +229,6 @@ routine pic18_analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName 
   if [@uint errorCount] == 0 then
     ipic18_convertRelativeBranchsToAbsoluteWhenNeeded !?generatedInstructionList !?listFileContents ;
   end if ;
-#-------------------------------- Code generation
-  if [option piccolo_options.ouputListingFile value] then
-    @string listFile := [inSourceFileName stringByDeletingPathExtension] . ".list" ;
-    [listFileContents writeToFileWhenDifferentContents !listFile ?*] ;
-  end if ;
 #--- If no error, generate object file(s)
   if [@uint errorCount] == 0 then
   #--- Generate hex file
@@ -234,6 +277,17 @@ routine pic18_analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName 
     [@string deleteFileIfExists !hexDestinationFile] ;
     @string asmDestinationFile := [inSourceFileName stringByDeletingPathExtension] . ".asm" ;
     [@string deleteFileIfExists !asmDestinationFile] ;
+  end if ;
+#-------------------------------- Write listing fule
+  if [option piccolo_options.ouputListingFile value] then
+    if [@uint errorCount] == 0 then
+      pic18_build_listing_of_generated_code
+        !generatedInstructionList
+        !?listFileContents
+      ;
+    end if ;
+    @string listFile := [inSourceFileName stringByDeletingPathExtension] . ".list" ;
+    [listFileContents writeToFileWhenDifferentContents !listFile ?*] ;
   end if ;
 end routine ;
 

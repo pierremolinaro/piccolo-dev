@@ -61,9 +61,16 @@ end method ;
 #                                                                            *
 #----------------------------------------------------------------------------*
 
+list @emittedCodeList {
+  @uintlist mCode ;
+}
+
+#----------------------------------------------------------------------------*
+
 abstract method @ipic18_instruction generateBinaryCodeAtAddress
-  ??@ipic18_symbolTable unused inRoutineSymbolTable
-  ?!@uint unused ioAddress
+  ??@ipic18_symbolTable inRoutineSymbolTable
+  ?!@uint ioAddress
+  ?!@emittedCodeList ioCode
 ;
 
 #----------------------------------------------------------------------------*
@@ -71,6 +78,7 @@ abstract method @ipic18_instruction generateBinaryCodeAtAddress
 override method @ipic_NULL generateBinaryCodeAtAddress
   ??@ipic18_symbolTable unused inRoutineSymbolTable
   ?!@uint unused ioAddress
+  ?!@emittedCodeList unused ioCode
 :
 end method ;
 
@@ -80,9 +88,9 @@ override
 method @ipic_pseudo_ORG generateBinaryCodeAtAddress
   ??@ipic18_symbolTable unused inRoutineSymbolTable
   ?!@uint ioAddress
+  ?!@emittedCodeList unused ioCode
 :
   ioAddress := mOrigin ;
-  setEmitAddress !mOrigin ;
 end method ;
 
 #----------------------------------------------------------------------------*
@@ -90,6 +98,7 @@ end method ;
 override method @ipic18_instruction_FDA generateBinaryCodeAtAddress
   ??@ipic18_symbolTable unused inRoutineSymbolTable
   ?!@uint unused ioAddress
+  ?!@emittedCodeList ioCode
 :
 #--- Emit Code
   @uint code ; [self getBaseCode ? code] ;
@@ -100,7 +109,7 @@ override method @ipic18_instruction_FDA generateBinaryCodeAtAddress
     code := code | 0x0200 ;
   end if ;
   code := code | ([mRegisterDescription mRegisterAddress] & 255) ;
-  emitCode !code ;
+  ioCode += ![@uintlist listWithValue !code] ;
 end method ;
 
 #----------------------------------------------------------------------------*
@@ -108,6 +117,7 @@ end method ;
 override method @ipic18_instruction_FA generateBinaryCodeAtAddress
   ??@ipic18_symbolTable unused inRoutineSymbolTable
   ?!@uint unused ioAddress
+  ?!@emittedCodeList ioCode
 :
 #--- Emit Code
   @uint code ; [self getBaseCode ? code] ;
@@ -115,7 +125,7 @@ override method @ipic18_instruction_FA generateBinaryCodeAtAddress
     code := code | 0x0100 ;
   end if ;
   code := code | ([mRegisterDescription mRegisterAddress] & 255) ;
-  emitCode !code ;
+  ioCode += ![@uintlist listWithValue !code] ;
 end method ;
 
 #----------------------------------------------------------------------------*
@@ -123,9 +133,12 @@ end method ;
 override method @ipic18_instruction_MOVFF generateBinaryCodeAtAddress
   ??@ipic18_symbolTable unused inRoutineSymbolTable
   ?!@uint unused ioAddress
+  ?!@emittedCodeList ioCode
 :
-  emitCode !0xC000 | [mSourceRegisterDescription mRegisterAddress] ;
-  emitCode !0xF000 | [mDestinationRegisterDescription mRegisterAddress] ;
+  @uintlist code [emptyList] ;
+  code += !0xC000 | [mSourceRegisterDescription mRegisterAddress] ;
+  code += !0xF000 | [mDestinationRegisterDescription mRegisterAddress] ;
+  ioCode += !code ;
 end method ;
 
 #----------------------------------------------------------------------------*
@@ -133,6 +146,7 @@ end method ;
 override method @ipic18_instruction_FBA generateBinaryCodeAtAddress
   ??@ipic18_symbolTable unused inRoutineSymbolTable
   ?!@uint unused ioAddress
+  ?!@emittedCodeList ioCode
 :
 #--- Emit Code
   @uint code ; [self getBaseCode ? code] ;
@@ -141,7 +155,7 @@ override method @ipic18_instruction_FBA generateBinaryCodeAtAddress
   end if ;
   code := code | ([mRegisterDescription mRegisterAddress] & 255) ;
   code := code | (mBitNumber << 9) ;
-  emitCode !code ;
+  ioCode += ![@uintlist listWithValue !code] ;
 end method ;
 
 #----------------------------------------------------------------------------*
@@ -149,6 +163,7 @@ end method ;
 override method @ipic18_instruction_BitTestSkip generateBinaryCodeAtAddress
   ??@ipic18_symbolTable unused inRoutineSymbolTable
   ?!@uint unused ioAddress
+  ?!@emittedCodeList ioCode
 :
 #--- Emit Code
   @uint code ; [self getBaseCode ? code] ;
@@ -157,7 +172,7 @@ override method @ipic18_instruction_BitTestSkip generateBinaryCodeAtAddress
   end if ;
   code := code | ([mRegisterDescription mRegisterAddress] & 255) ;
   code := code | (mBitNumber << 9) ;
-  emitCode !code ;
+  ioCode += ![@uintlist listWithValue !code] ;
 end method ;
 
 #----------------------------------------------------*
@@ -182,6 +197,7 @@ routine emitConditionalBranchInstruction
   ??@uint inTargetAddress
   ??@location inErrorLocation
   ??@conditional_branch inConditionalBranch
+  ?!@emittedCodeList ioCode
 :
   @sint displacement := ([inTargetAddress sint] - 2S - [inConditionalBranchInstructionAddress sint]) >> 1 ;
   if (displacement > 127S) | (displacement < - 128S) then
@@ -190,7 +206,7 @@ routine emitConditionalBranchInstruction
 #  log displacement ;
   @uint baseCode ;
   getBccBaseCode !inConditionalBranch ?baseCode ;
-  emitCode !baseCode | [displacement & 0x0FFS uint] ;
+  ioCode += ![@uintlist listWithValue !baseCode | [displacement & 0x0FFS uint]] ;
 end routine ;
 
 #----------------------------------------------------------------------------*
@@ -199,22 +215,26 @@ routine emitBRAinstruction
   ??@uint inBRAinstructionAddress
   ??@uint inTargetAddress
   ??@location inErrorLocation
+  ?!@emittedCodeList ioCode
 :
   @sint displacement := ([inTargetAddress sint] - 2S - [inBRAinstructionAddress sint]) >> 1 ;
   if (displacement > 1023S) | (displacement < - 1024S) then
     error inErrorLocation: "displacement too large for BRA instruction" ;
   end if ;
 #  log displacement ;
-  emitCode !0xD000 | [displacement & 0x07FFS uint] ;
+  ioCode += ![@uintlist listWithValue !0xD000 | [displacement & 0x07FFS uint]] ;
 end routine ;
 
 #----------------------------------------------------------------------------*
 
 routine emit_pic18_GOTOinstruction
   ??@uint inTargetAddress
+  ?!@emittedCodeList ioCode
 :
-  emitCode !0xEF00 | ((inTargetAddress >> 1) & 255) ;
-  emitCode !0xF000 | (inTargetAddress >> 9) ;
+  @uintlist code [emptyList] ;
+  code += !0xEF00 | ((inTargetAddress >> 1) & 255) ;
+  code += !0xF000 | (inTargetAddress >> 9) ;
+  ioCode += !code ;
 end routine ;
 
 #----------------------------------------------------------------------------*
@@ -222,6 +242,7 @@ end routine ;
 override method @ipic18_instruction_conditionalBranch generateBinaryCodeAtAddress
   ??@ipic18_symbolTable inRoutineSymbolTable
   ?!@uint ioAddress
+  ?!@emittedCodeList ioCode
 :
   @uint targetAddress ;
   [inRoutineSymbolTable searchKey !mTargetLabel ?targetAddress] ;
@@ -233,6 +254,7 @@ override method @ipic18_instruction_conditionalBranch generateBinaryCodeAtAddres
       !targetAddress
       ![mTargetLabel location]
       !mConditionalBranch
+      !?ioCode
     ;
   when ipicBRA :
     @conditional_branch complementary ;
@@ -242,11 +264,13 @@ override method @ipic18_instruction_conditionalBranch generateBinaryCodeAtAddres
       !ioAddress + 4
       ![mTargetLabel location]
       !complementary
+      !?ioCode
     ;
     emitBRAinstruction
       !ioAddress + 2
       !targetAddress
       ![mTargetLabel location]
+      !?ioCode
     ;
   when ipicGOTO :
     @conditional_branch complementary ;
@@ -256,9 +280,11 @@ override method @ipic18_instruction_conditionalBranch generateBinaryCodeAtAddres
       !ioAddress + 6
       ![mTargetLabel location]
       !complementary
+      !?ioCode
     ;
     emit_pic18_GOTOinstruction
       !targetAddress
+      !?ioCode
     ;
   end switch ;
 end method ;
@@ -268,6 +294,7 @@ end method ;
 override method @ipic_JUMP generateBinaryCodeAtAddress
   ??@ipic18_symbolTable inRoutineSymbolTable
   ?!@uint ioAddress
+  ?!@emittedCodeList ioCode
 :
   @uint targetAddress ;
   [inRoutineSymbolTable searchKey !mTargetLabel ?targetAddress] ;
@@ -281,9 +308,13 @@ override method @ipic_JUMP generateBinaryCodeAtAddress
       !ioAddress
       !targetAddress
       ![mTargetLabel location]
+      !?ioCode
     ;
   when ipicAbsolute, absolute :
-    emit_pic18_GOTOinstruction !targetAddress ;
+    emit_pic18_GOTOinstruction
+      !targetAddress
+      !?ioCode
+    ;
   end switch ;
 end method ;
 
@@ -291,9 +322,12 @@ end method ;
 
 routine emit_pic18_CALLinstruction
   ??@uint inTargetAddress
+  ?!@emittedCodeList ioCode
 :
-  emitCode !0xEC00 | ((inTargetAddress >> 1) & 255) ;
-  emitCode !0xF000 | (inTargetAddress >> 9) ;
+  @uintlist code [emptyList] ;
+  code += !0xEC00 | ((inTargetAddress >> 1) & 255) ;
+  code += !0xF000 | (inTargetAddress >> 9) ;
+  ioCode += !code ;
 end routine ;
 
 #----------------------------------------------------------------------------*
@@ -302,6 +336,7 @@ routine emitRCALLinstruction
   ??@uint inRCALLinstructionAddress
   ??@uint inTargetAddress
   ??@lstring inTargetLabel
+  ?!@emittedCodeList ioCode
 :
   @sint displacement := ([inTargetAddress sint] - 2S - [inRCALLinstructionAddress sint]) >> 1 ;
   if (displacement > 1023S) | (displacement < - 1024S) then
@@ -309,7 +344,7 @@ routine emitRCALLinstruction
     . ") for RCALL instruction to '" . inTargetLabel . "' (should be between -1024 and 1023)" ;
   end if ;
 #  log displacement ;
-  emitCode !0xD800 | [displacement & 0x07FFS uint] ;
+  ioCode += ![@uintlist listWithValue !0xD800 | [displacement & 0x07FFS uint]] ;
 end routine ;
 
 #----------------------------------------------------------------------------*
@@ -317,6 +352,7 @@ end routine ;
 override method @ipic_JSR generateBinaryCodeAtAddress
   ??@ipic18_symbolTable inRoutineSymbolTable
   ?!@uint ioAddress
+  ?!@emittedCodeList ioCode
 :
   @uint targetAddress ;
   [inRoutineSymbolTable searchKey !mTargetLabel ?targetAddress] ;
@@ -330,9 +366,13 @@ override method @ipic_JSR generateBinaryCodeAtAddress
       !ioAddress
       !targetAddress
       !mTargetLabel
+      !?ioCode
     ;
   when ipicAbsolute, absolute :
-    emit_pic18_CALLinstruction !targetAddress ;
+    emit_pic18_CALLinstruction
+      !targetAddress
+      !?ioCode
+    ;
   end switch ;
 end method ;
 
@@ -341,6 +381,7 @@ end method ;
 override method @ipic_jump_test_register generateBinaryCodeAtAddress
   ??@ipic18_symbolTable inRoutineSymbolTable
   ?!@uint ioAddress
+  ?!@emittedCodeList ioCode
 :
 
 #--- Generate TSTFSZ instruction
@@ -349,7 +390,7 @@ override method @ipic_jump_test_register generateBinaryCodeAtAddress
     code := code | 0x0100 ;
   end if ;
   code := code | ([mRegisterDescription mRegisterAddress] & 255) ;
-  emitCode !code ;
+  ioCode += ![@uintlist listWithValue !code] ;
 #--- Generate BRA and / or GOTO instructions
   @uint targetAddress ;
   [inRoutineSymbolTable searchKey ![@lstring new !mTargetLabel !here] ?targetAddress] ;
@@ -364,17 +405,18 @@ override method @ipic_jump_test_register generateBinaryCodeAtAddress
       !ioAddress + 2
       !intermediateTargetAddress
       !mInstructionLocation
+      !?ioCode
     ;
     if mUsesBra then
-      emitBRAinstruction !ioAddress + 4 !targetAddress !mInstructionLocation ;
+      emitBRAinstruction !ioAddress + 4 !targetAddress !mInstructionLocation !?ioCode ;
     else
-      emit_pic18_GOTOinstruction !targetAddress ;
+      emit_pic18_GOTOinstruction !targetAddress !?ioCode ;
     end if ;
   else
     if mUsesBra then
-      emitBRAinstruction !ioAddress + 2 !targetAddress !mInstructionLocation ;
+      emitBRAinstruction !ioAddress + 2 !targetAddress !mInstructionLocation !?ioCode ;
     else
-      emit_pic18_GOTOinstruction !targetAddress ;
+      emit_pic18_GOTOinstruction !targetAddress !?ioCode ;
     end if ;
   end if ;
 end method ;
@@ -384,6 +426,7 @@ end method ;
 override method @ipic_incDecRegisterInCondition generateBinaryCodeAtAddress
   ??@ipic18_symbolTable inRoutineSymbolTable
   ?!@uint ioAddress
+  ?!@emittedCodeList ioCode
 :
   @uint code ;
   if mBranchIfZero & mIncrement then
@@ -402,14 +445,14 @@ override method @ipic_incDecRegisterInCondition generateBinaryCodeAtAddress
     code := code | 0x0100 ;
   end if ;
   code := code | ([mRegisterDescription mRegisterAddress] & 255) ;
-  emitCode !code ;
+  ioCode += ![@uintlist listWithValue !code] ;
 #--- Generate BRA and / or GOTO instructions
   @uint targetAddress ;
   [inRoutineSymbolTable searchKey ![@lstring new !mTargetLabel !here] ?targetAddress] ;
   if mUsesBra then
-    emitBRAinstruction !ioAddress + 2 !targetAddress !mInstructionLocation ;
+    emitBRAinstruction !ioAddress + 2 !targetAddress !mInstructionLocation !?ioCode ;
   else
-    emit_pic18_GOTOinstruction !targetAddress ;
+    emit_pic18_GOTOinstruction !targetAddress!?ioCode ;
   end if ;
 end method ;
 
@@ -418,6 +461,7 @@ end method ;
 override method @ipic_registerComparisonCondition generateBinaryCodeAtAddress
   ??@ipic18_symbolTable inRoutineSymbolTable
   ?!@uint ioAddress
+  ?!@emittedCodeList ioCode
 :
 #--- Generate TSTFSZ instruction
   @uint code ; # TSTFSZ
@@ -433,7 +477,7 @@ override method @ipic_registerComparisonCondition generateBinaryCodeAtAddress
     code := code | 0x0100 ;
   end if ;
   code := code | ([mRegisterDescription mRegisterAddress] & 255) ;
-  emitCode !code ;
+  ioCode += ![@uintlist listWithValue !code] ;
 #--- Generate BRA and / or GOTO instructions
   @uint targetAddress ;
   [inRoutineSymbolTable searchKey ![@lstring new !mTargetLabel !here] ?targetAddress] ;
@@ -449,17 +493,18 @@ override method @ipic_registerComparisonCondition generateBinaryCodeAtAddress
       !ioAddress + 2
       !intermediateTargetAddress
       !mInstructionLocation
+      !?ioCode
     ;
     if mUsesBra then
-      emitBRAinstruction !ioAddress + 4 !targetAddress !mInstructionLocation ;
+      emitBRAinstruction !ioAddress + 4 !targetAddress !mInstructionLocation !?ioCode ;
     else
-      emit_pic18_GOTOinstruction !targetAddress ;
+      emit_pic18_GOTOinstruction !targetAddress !?ioCode ;
     end if ;
   else
     if mUsesBra then
-      emitBRAinstruction !ioAddress + 2 !targetAddress !mInstructionLocation ;
+      emitBRAinstruction !ioAddress + 2 !targetAddress !mInstructionLocation !?ioCode ;
     else
-      emit_pic18_GOTOinstruction !targetAddress ;
+      emit_pic18_GOTOinstruction !targetAddress !?ioCode ;
     end if ;
   end if ;
 end method ;
@@ -469,8 +514,9 @@ end method ;
 override method @ipic18_instruction_CLRWDT generateBinaryCodeAtAddress
   ??@ipic18_symbolTable unused inRoutineSymbolTable
   ?!@uint unused ioAddress
+  ?!@emittedCodeList ioCode
 :
-  emitCode !0x0004 ;
+  ioCode += ![@uintlist listWithValue !0x0004] ;
 end method ;
 
 #----------------------------------------------------------------------------*
@@ -478,8 +524,9 @@ end method ;
 override method @ipic18_instruction_DAW generateBinaryCodeAtAddress
   ??@ipic18_symbolTable unused inRoutineSymbolTable
   ?!@uint unused ioAddress
+  ?!@emittedCodeList ioCode
 :
-  emitCode !0x0007 ;
+  ioCode += ![@uintlist listWithValue !0x0007] ;
 end method ;
 
 #----------------------------------------------------------------------------*
@@ -487,8 +534,9 @@ end method ;
 override method @ipic18_instruction_NOP generateBinaryCodeAtAddress
   ??@ipic18_symbolTable unused inRoutineSymbolTable
   ?!@uint unused ioAddress
+  ?!@emittedCodeList ioCode
 :
-  emitCode !0x0000 ;
+  ioCode += ![@uintlist listWithValue !0x0000] ;
 end method ;
 
 #----------------------------------------------------------------------------*
@@ -496,8 +544,9 @@ end method ;
 override method @ipic18_instruction_POP generateBinaryCodeAtAddress
   ??@ipic18_symbolTable unused inRoutineSymbolTable
   ?!@uint unused ioAddress
+  ?!@emittedCodeList ioCode
 :
-  emitCode !0x0006 ;
+  ioCode += ![@uintlist listWithValue !0x0006] ;
 end method ;
 
 #----------------------------------------------------------------------------*
@@ -505,8 +554,9 @@ end method ;
 override method @ipic18_instruction_PUSH generateBinaryCodeAtAddress
   ??@ipic18_symbolTable unused inRoutineSymbolTable
   ?!@uint unused ioAddress
+  ?!@emittedCodeList ioCode
 :
-  emitCode !0x0005 ;
+  ioCode += ![@uintlist listWithValue !0x0005] ;
 end method ;
 
 #----------------------------------------------------------------------------*
@@ -514,8 +564,9 @@ end method ;
 override method @ipic18_instruction_RESET generateBinaryCodeAtAddress
   ??@ipic18_symbolTable unused inRoutineSymbolTable
   ?!@uint unused ioAddress
+  ?!@emittedCodeList ioCode
 :
-  emitCode !0x00FF ;
+  ioCode += ![@uintlist listWithValue !0x00FF] ;
 end method ;
 
 #----------------------------------------------------------------------------*
@@ -523,8 +574,9 @@ end method ;
 override method @ipic18_instruction_RETURN generateBinaryCodeAtAddress
   ??@ipic18_symbolTable unused inRoutineSymbolTable
   ?!@uint unused ioAddress
+  ?!@emittedCodeList ioCode
 :
-  emitCode !0x0012 ;
+  ioCode += ![@uintlist listWithValue !0x0012] ;
 end method ;
 
 #----------------------------------------------------------------------------*
@@ -532,6 +584,7 @@ end method ;
 override method @ipic18_instruction_RETFIE generateBinaryCodeAtAddress
   ??@ipic18_symbolTable unused inRoutineSymbolTable
   ?!@uint unused ioAddress
+  ?!@emittedCodeList ioCode
 :
   @uint code ;
   if mFastReturn then
@@ -540,7 +593,7 @@ override method @ipic18_instruction_RETFIE generateBinaryCodeAtAddress
     code := 0x0010 ; # RETFIE
   end if ;
 
-  emitCode !code ;
+  ioCode += ![@uintlist listWithValue !code] ;
 end method ;
 
 #----------------------------------------------------------------------------*
@@ -548,8 +601,9 @@ end method ;
 override method @ipic18_instruction_SLEEP generateBinaryCodeAtAddress
   ??@ipic18_symbolTable unused inRoutineSymbolTable
   ?!@uint unused ioAddress
+  ?!@emittedCodeList ioCode
 :
-  emitCode !0x0003 ;
+  ioCode += ![@uintlist listWithValue !0x0003] ;
 end method ;
 
 #----------------------------------------------------------------------------*
@@ -557,11 +611,12 @@ end method ;
 override method @ipic18_instruction_literalOperation generateBinaryCodeAtAddress
   ??@ipic18_symbolTable unused inRoutineSymbolTable
   ?!@uint unused ioAddress
+  ?!@emittedCodeList ioCode
 :
 #--- Emit Code
   @uint code ; [self getBaseCode ? code] ;
   code := code | mLiteralValue ;
-  emitCode !code ;
+  ioCode += ![@uintlist listWithValue !code] ;
 end method ;
 
 #----------------------------------------------------------------------------*
@@ -569,9 +624,12 @@ end method ;
 override method @ipic18_instruction_LFSR generateBinaryCodeAtAddress
   ??@ipic18_symbolTable unused inRoutineSymbolTable
   ?!@uint unused ioAddress
+  ?!@emittedCodeList ioCode
 :
-  emitCode !0xEE00 | ([mFSRindex uint] << 4) | (mValue >> 8) ;
-  emitCode !0xF000 | (mValue & 255) ;
+  @uintlist code [emptyList] ;
+  code += !0xEE00 | ([mFSRindex uint] << 4) | (mValue >> 8) ;
+  code += !0xF000 | (mValue & 255) ;
+  ioCode += !code ;
 end method ;
 
 #----------------------------------------------------------------------------*
@@ -579,8 +637,9 @@ end method ;
 override method @ipic18_instruction_MOVLB generateBinaryCodeAtAddress
   ??@ipic18_symbolTable unused inRoutineSymbolTable
   ?!@uint unused ioAddress
+  ?!@emittedCodeList ioCode
 :
-  emitCode !0x0100 | [mBankIndex uint] ;
+  ioCode += ![@uintlist listWithValue !0x0100 | [mBankIndex uint]] ;
 end method ;
 
 #----------------------------------------------------------------------------*
@@ -588,6 +647,7 @@ end method ;
 override method @ipic_pseudo_LABEL generateBinaryCodeAtAddress
   ??@ipic18_symbolTable inRoutineSymbolTable
   ?!@uint ioAddress
+  ?!@emittedCodeList unused ioCode
 :
   @uint targetAddress ;
   [inRoutineSymbolTable searchKey !mLabel ?targetAddress] ;
@@ -603,12 +663,13 @@ end method ;
 override method @ipic18_instruction_TBLRD generateBinaryCodeAtAddress
   ??@ipic18_symbolTable unused inRoutineSymbolTable
   ?!@uint unused ioAddress
+  ?!@emittedCodeList ioCode
 :
   switch mOption
-  when simpleAccess  : emitCode !0x0008 ;
-  when postIncrement : emitCode !0x0009 ;
-  when postDecrement : emitCode !0x000A ;
-  when preIncrement  : emitCode !0x000B ;
+  when simpleAccess  : ioCode += ![@uintlist listWithValue !0x0008] ;
+  when postIncrement : ioCode += ![@uintlist listWithValue !0x0009] ;
+  when postDecrement : ioCode += ![@uintlist listWithValue !0x000A] ;
+  when preIncrement  : ioCode += ![@uintlist listWithValue !0x000B] ;
   end switch ;
 end method ;
 
@@ -617,12 +678,13 @@ end method ;
 override method @ipic18_instruction_TBLWT generateBinaryCodeAtAddress
   ??@ipic18_symbolTable unused inRoutineSymbolTable
   ?!@uint unused ioAddress
+  ?!@emittedCodeList ioCode
 :
   switch mOption
-  when simpleAccess  : emitCode !0x000C ;
-  when postIncrement : emitCode !0x000D ;
-  when postDecrement : emitCode !0x000E ;
-  when preIncrement  : emitCode !0x000F ;
+  when simpleAccess  : ioCode += ![@uintlist listWithValue !0x000C] ;
+  when postIncrement : ioCode += ![@uintlist listWithValue !0x000D] ;
+  when postDecrement : ioCode += ![@uintlist listWithValue !0x000E] ;
+  when preIncrement  : ioCode += ![@uintlist listWithValue !0x000F] ;
   end switch ;
 end method ;
 
@@ -631,6 +693,7 @@ end method ;
 override method @ipic18_instruction_MNOP generateBinaryCodeAtAddress
   ??@ipic18_symbolTable unused inRoutineSymbolTable
   ?!@uint unused ioAddress
+  ?!@emittedCodeList ioCode
 :
   if [mOccurrenceFactor uint] == 0 then
     warning mOccurrenceFactor: "No generated code" ;
@@ -639,7 +702,7 @@ override method @ipic18_instruction_MNOP generateBinaryCodeAtAddress
   loop [mOccurrenceFactor uint] :
   while idx < [mOccurrenceFactor uint]
   do
-    emitCode !0x0000 ;
+    ioCode += ![@uintlist listWithValue !0x0000] ;
     idx ++ ;
   end loop ;
 end method ;
@@ -649,17 +712,18 @@ end method ;
 override method @ipic18_instruction_computed_retlw generateBinaryCodeAtAddress
   ??@ipic18_symbolTable inRoutineSymbolTable
   ?!@uint ioAddress
+  ?!@emittedCodeList ioCode
 :
   @uint targetAddress ;
   @lstring target [new !"_computed_goto_2" !mInstructionLocation] ;
   [inRoutineSymbolTable searchKey !target ?targetAddress] ;
   if mUsesRCALL then
-    emitRCALLinstruction !ioAddress !targetAddress !target ;
+    emitRCALLinstruction !ioAddress !targetAddress !target !?ioCode ;
   else
-    emit_pic18_CALLinstruction ! targetAddress ;
+    emit_pic18_CALLinstruction ! targetAddress !?ioCode ;
   end if ;
   foreach mLiteralValues do
-    emitCode !0x0C00 | mValue ;
+    ioCode += ![@uintlist listWithValue !0x0C00 | mValue] ;
   end foreach ;
 end method ;
 
@@ -668,14 +732,15 @@ end method ;
 override method @ipic18_instruction_computed_bra generateBinaryCodeAtAddress
   ??@ipic18_symbolTable inRoutineSymbolTable
   ?!@uint ioAddress
+  ?!@emittedCodeList ioCode
 :
   @lstring target [new !"_computed_goto_2" !mInstructionLocation] ;
   @uint targetAddress ;
   [inRoutineSymbolTable searchKey !target ?targetAddress] ;
   if mUsesRCALL then
-    emitRCALLinstruction !ioAddress !targetAddress !target ;
+    emitRCALLinstruction !ioAddress !targetAddress !target!?ioCode ;
   else
-    emit_pic18_CALLinstruction ! targetAddress ;
+    emit_pic18_CALLinstruction ! targetAddress!?ioCode ;
   end if ;
 #---
   @uint addressForComputingBRA := ioAddress + 2 ;
@@ -689,6 +754,7 @@ override method @ipic18_instruction_computed_bra generateBinaryCodeAtAddress
       !addressForComputingBRA
       !targetAddress
       ![mValue location]
+      !?ioCode
     ;
     addressForComputingBRA := addressForComputingBRA + 2 ;
   end foreach ;
@@ -699,19 +765,21 @@ end method ;
 override method @ipic18_instruction_computed_goto generateBinaryCodeAtAddress
   ??@ipic18_symbolTable inRoutineSymbolTable
   ?!@uint ioAddress
+  ?!@emittedCodeList ioCode
 :
   @lstring target [new !"_computed_goto_4" !mInstructionLocation] ;
   @uint targetAddress ;
   [inRoutineSymbolTable searchKey !target ?targetAddress] ;
   if mUsesRCALL then
-    emitRCALLinstruction !ioAddress !targetAddress !target ;
+    emitRCALLinstruction !ioAddress !targetAddress !target!?ioCode ;
   else
-    emit_pic18_CALLinstruction !targetAddress ;
+    emit_pic18_CALLinstruction !targetAddress!?ioCode ;
   end if ;
   foreach mTargetLabels do
     [inRoutineSymbolTable searchKey !mValue ?targetAddress] ;
     emit_pic18_GOTOinstruction
       !targetAddress
+      !?ioCode
     ;
   end foreach ;
 end method ;
@@ -721,16 +789,17 @@ end method ;
 override method @ipic18_instruction_computed_rcall generateBinaryCodeAtAddress
   ??@ipic18_symbolTable inRoutineSymbolTable
   ?!@uint ioAddress
+  ?!@emittedCodeList ioCode
 :
   @lstring target [new !"_computed_goto_4" !mInstructionLocation] ;
   @uint targetAddress ;
   [inRoutineSymbolTable searchKey !target ?targetAddress] ;
   @uint currentInstructionAddress ;
   if mUsesRCALL then
-    emitRCALLinstruction !ioAddress !targetAddress !target ;
+    emitRCALLinstruction !ioAddress !targetAddress !target!?ioCode ;
     currentInstructionAddress := ioAddress + 2 ;
   else
-    emit_pic18_CALLinstruction !targetAddress ;
+    emit_pic18_CALLinstruction !targetAddress!?ioCode ;
     currentInstructionAddress := ioAddress + 4 ;
   end if ;
   @uint nextInstructionAddress := currentInstructionAddress + [mTargetLabels length] * 4 - 2 ;
@@ -738,10 +807,10 @@ override method @ipic18_instruction_computed_rcall generateBinaryCodeAtAddress
   foreach mTargetLabels do
     idx ++ ;
     [inRoutineSymbolTable searchKey !mValue ?targetAddress] ;
-    emitRCALLinstruction !currentInstructionAddress !targetAddress !mValue ;
+    emitRCALLinstruction !currentInstructionAddress !targetAddress !mValue!?ioCode ;
     currentInstructionAddress := currentInstructionAddress + 2 ;
     if idx < [mTargetLabels length] then
-      emitBRAinstruction !currentInstructionAddress !nextInstructionAddress ![mValue location] ;
+      emitBRAinstruction !currentInstructionAddress !nextInstructionAddress ![mValue location]!?ioCode ;
       currentInstructionAddress := currentInstructionAddress + 2 ;
     end if ;
   end foreach ;
@@ -771,7 +840,17 @@ routine build_ipic18_binary_code
   currentAddress := 0 ;
   setEmitAddress !0 ;
   foreach inGeneratedInstructionList do
-    [mInstruction generateBinaryCodeAtAddress !symbolTable !?currentAddress] ;
+    @emittedCodeList code [emptyList] ;
+    const @uint startAddress := currentAddress ;
+    [mInstruction generateBinaryCodeAtAddress !symbolTable !?currentAddress !?code] ;
+    if startAddress != currentAddress then
+      setEmitAddress !currentAddress ;
+    end if ;
+    foreach code do
+      foreach mCode do
+        emitCode !mValue ;
+      end foreach ;
+    end foreach ;
     @uint instructionLength ;
     [mInstruction instructionLength ?instructionLength] ;
     currentAddress := currentAddress  + instructionLength ;
