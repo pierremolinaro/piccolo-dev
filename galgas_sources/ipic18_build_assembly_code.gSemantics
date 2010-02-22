@@ -9,14 +9,14 @@ import "piccolo_embedded_devices.gSemantics" ;
 #----------------------------------------------------*
 
 abstract method @ipic18_instruction buildAssemblyCode
-  ?!@string unused ioString 
+  ?!@stringlist unused ioStringList
   ?!@uint unused ioBccLabelIndex
 ;
 
 #----------------------------------------------------*
 
 override method @ipic_NULL buildAssemblyCode
-  ?!@string unused ioString 
+  ?!@stringlist unused ioStringList
   ?!@uint unused ioBccLabelIndex
 :
 end method ;
@@ -24,152 +24,152 @@ end method ;
 #----------------------------------------------------*
 
 override method @ipic_pseudo_ORG buildAssemblyCode
-  ?!@string ioString
+  ?!@stringlist ioStringList
   ?!@uint unused ioBccLabelIndex
 :
-  ioString .= "  ORG " . [mOrigin hexString] . "\n" ;
+  ioStringList += !"  ORG " . [mOrigin hexString] ;
 end method ;
 
 #----------------------------------------------------*
 
 override method @ipic_pseudo_LABEL buildAssemblyCode
-  ?!@string ioString
+  ?!@stringlist ioStringList
   ?!@uint unused ioBccLabelIndex
 :
-  ioString .= [mLabel string] . ":\n" ;
+  ioStringList += ![mLabel string] . ":" ;
 end method ;
 
 #----------------------------------------------------*
 
 override method @ipic18_instruction_FDA buildAssemblyCode
-  ?!@string ioString
+  ?!@stringlist ioStringList
   ?!@uint unused ioBccLabelIndex
 :
-  ioString .= "  " . [mInstruction_FDA_base_code mnemonic] . " " . [mRegisterDescription mAssemblyString] ;
+  @string s := "  " . [mInstruction_FDA_base_code mnemonic] . " " . [mRegisterDescription mAssemblyString] ;
   if m_W_isDestination & [mRegisterDescription mNeedsBSR] then
-    ioString .= ", W, BSR_ACCESS" ;
+    s .= ", W, BSR_ACCESS" ;
   elsif [mRegisterDescription mNeedsBSR] then
-    ioString .= ", F, BSR_ACCESS" ;
+    s .= ", F, BSR_ACCESS" ;
   elsif m_W_isDestination then
-    ioString .= ", W" ;
+    s .= ", W" ;
   else
-    ioString .= ", F" ;
+    s .= ", F" ;
   end if ;
-  ioString .= "\n" ;
+  ioStringList += !s ;
 end method ;
 
 #----------------------------------------------------*
 
 override method @ipic18_instruction_MOVFF buildAssemblyCode
-  ?!@string ioString
+  ?!@stringlist ioStringList
   ?!@uint unused ioBccLabelIndex
 :
-  ioString .= "  MOVFF ";
-  ioString .= [mSourceRegisterDescription mAssemblyString] ;
-  ioString .= ", " ;
-  ioString .= [mDestinationRegisterDescription mAssemblyString] ;
-  ioString .= "\n" ;
+  @string s := "  MOVFF ";
+  s .= [mSourceRegisterDescription mAssemblyString] ;
+  s .= ", " ;
+  s .= [mDestinationRegisterDescription mAssemblyString] ;
+  ioStringList += !s ;
 end method ;
 
 #----------------------------------------------------*
 
 override method @ipic18_instruction_FBA buildAssemblyCode
-  ?!@string ioString
+  ?!@stringlist ioStringList
   ?!@uint unused ioBccLabelIndex
 :
-  ioString .= "  " . [mBitOrientedOp mnemonic] ;
-  ioString .= "  " . [mRegisterDescription mAssemblyString] ;
-  ioString .= ", " . [mBitNumber string] ;
+  @string s := "  " . [mBitOrientedOp mnemonic] ;
+  s .= "  " . [mRegisterDescription mAssemblyString] ;
+  s .= ", " . [mBitNumber string] ;
   if [mRegisterDescription mNeedsBSR] then
-    ioString .= ", BSR_ACCESS" ;
+    s .= ", BSR_ACCESS" ;
   end if ;
-  ioString .= "\n" ;
+  ioStringList += !s ;
 end method ;
 
 #----------------------------------------------------*
 
 override method @ipic18_instruction_BitTestSkip buildAssemblyCode
-  ?!@string ioString
+  ?!@stringlist ioStringList
   ?!@uint unused ioBccLabelIndex
 :
-  ioString .= "  " ;
+  @string s := "  " ;
   if mSkipIfSet then
-    ioString .= "BTFSS" ;
+    s .= "BTFSS" ;
   else
-    ioString .= "BTFSC" ;
+    s .= "BTFSC" ;
   end if ;
-  ioString .= "  " . [mRegisterDescription mAssemblyString] ;
-  ioString .= ", " . [mBitNumber string] ;
+  s .= "  " . [mRegisterDescription mAssemblyString] ;
+  s .= ", " . [mBitNumber string] ;
   if [mRegisterDescription mNeedsBSR] then
-    ioString .= ", BSR_ACCESS" ;
+    s .= ", BSR_ACCESS" ;
   end if ;
-  ioString .= "\n" ;
+  ioStringList += !s ;
 end method ;
 
 #----------------------------------------------------*
 
 override method @ipic18_instruction_FA buildAssemblyCode
-  ?!@string ioString
+  ?!@stringlist ioStringList
   ?!@uint unused ioBccLabelIndex
 :
-  ioString .= "  " . [mFAinstruction mnemonic] . " " . [mRegisterDescription mAssemblyString] ;
+  @string s := "  " . [mFAinstruction mnemonic] . " " . [mRegisterDescription mAssemblyString] ;
   if [mRegisterDescription mNeedsBSR] then
-    ioString .= ", BSR_ACCESS" ;
+    s .= ", BSR_ACCESS" ;
   end if ;
-  ioString .= "\n" ;
+  ioStringList += !s ;
 end method ;
 
 #----------------------------------------------------*
 
 override method @ipic18_instruction_conditionalBranch buildAssemblyCode
-  ?!@string ioString
+  ?!@stringlist ioStringList
   ?!@uint ioBccLabelIndex
 :
   switch mBranchMode
   when native, ipicNative :
-    ioString .= "  " . [mConditionalBranch mnemonic] . " " . [mTargetLabel string] . "\n" ;
+    ioStringList += !"  " . [mConditionalBranch mnemonic] . " " . [mTargetLabel string] ;
   when ipicBRA :
     @conditional_branch complementary ;
     getComplementaryBcc !mConditionalBranch ?complementary ;
     @string aLabel := "_bcc_label_" . [ioBccLabelIndex string] ; ioBccLabelIndex ++ ;
-    ioString .= "  " . [complementary mnemonic] . " " . aLabel . "\n" ;
-    ioString .= "  BRA " . [mTargetLabel string] . "\n" ;
-    ioString .= aLabel . ":\n" ;
+    ioStringList += !"  " . [complementary mnemonic] . " " . aLabel ;
+    ioStringList += !"  BRA " . [mTargetLabel string] ;
+    ioStringList += !aLabel . ":" ;
   when ipicGOTO :
     @conditional_branch complementary ;
     getComplementaryBcc !mConditionalBranch ?complementary ;
     @string aLabel := "_bcc_label_" . [ioBccLabelIndex string] ; ioBccLabelIndex ++ ;
-    ioString .= "  " . [complementary mnemonic] . " " . aLabel . "\n" ;
-    ioString .= "  GOTO " . [mTargetLabel string] . "\n" ;
-    ioString .= aLabel . ":\n" ;
+    ioStringList += !"  " . [complementary mnemonic] . " " . aLabel ;
+    ioStringList += !"  GOTO " . [mTargetLabel string] ;
+    ioStringList += !aLabel . ":" ;
   end switch ;
 end method ;
 
 #----------------------------------------------------*
 
 override method @ipic_jump_test_register buildAssemblyCode
-  ?!@string ioString
+  ?!@stringlist ioStringList
   ?!@uint ioBccLabelIndex
 :
-  ioString .= "  " . "TSTFSZ " . [mRegisterDescription mAssemblyString] ;
+  @string s := "  TSTFSZ " . [mRegisterDescription mAssemblyString] ;
   if [mRegisterDescription mNeedsBSR] then
-    ioString .= ", BSR_ACCESS" ;
+    s .= ", BSR_ACCESS" ;
   end if ;
-  ioString .= "\n" ;
+  ioStringList += !s ;
   if mBranchIfZero then
     @string aLabel := "_bcc_label_" . [ioBccLabelIndex string] ; ioBccLabelIndex ++ ;
-    ioString .= "  BRA " . aLabel . "\n" ;
+    ioStringList += !"  BRA " . aLabel ;
     if mUsesBra then
-      ioString .= "  BRA " . mTargetLabel . "\n" ;
+      ioStringList += !"  BRA " . mTargetLabel ;
     else
-      ioString .= "  GOTO " . mTargetLabel . "\n" ;
+      ioStringList += !"  GOTO " . mTargetLabel ;
     end if ;
-    ioString .= aLabel . ":\n" ;
+    ioStringList += !aLabel . ":" ;
   else
     if mUsesBra then
-      ioString .= "  BRA " . mTargetLabel . "\n" ;
+      ioStringList += !"  BRA " . mTargetLabel ;
     else
-      ioString .= "  GOTO " . mTargetLabel . "\n" ;
+      ioStringList += !"  GOTO " . mTargetLabel ;
     end if ;
   end if ;
 end method ;
@@ -177,70 +177,72 @@ end method ;
 #----------------------------------------------------*
 
 override method @ipic_incDecRegisterInCondition buildAssemblyCode
-  ?!@string ioString
+  ?!@stringlist ioStringList
   ?!@uint unused ioBccLabelIndex
 :
+  @string s := "" ;
   if mBranchIfZero & mIncrement then
-    ioString .= "  " . "INFSNZ " ;
+    s .= "  INFSNZ " ;
   elsif mBranchIfZero & not mIncrement then
-    ioString .= "  " . "DCFSNZ " ;
+    s .= "  DCFSNZ " ;
   elsif (not mBranchIfZero) & mIncrement then
-    ioString .= "  " . "INCFSZ " ;
+    s .= "  INCFSZ " ;
   else
-    ioString .= "  " . "DECFSZ " ;
+    s .= "  DECFSZ " ;
   end if ;
-  ioString .= [mRegisterDescription mAssemblyString] ;
+  s .= [mRegisterDescription mAssemblyString] ;
   if m_W_isDestination & [mRegisterDescription mNeedsBSR] then
-    ioString .= ", W, BSR_ACCESS" ;
+    s .= ", W, BSR_ACCESS" ;
   elsif [mRegisterDescription mNeedsBSR] then
-    ioString .= ", F, BSR_ACCESS" ;
+    s .= ", F, BSR_ACCESS" ;
   elsif m_W_isDestination then
-    ioString .= ", W" ;
+    s .= ", W" ;
   else
-    ioString .= ", F" ;
+    s .= ", F" ;
   end if ;
-  ioString .= "\n" ;
+  ioStringList += !s ;
   if mUsesBra then
-    ioString .= "  BRA " . mTargetLabel . "\n" ;
+    ioStringList += !"  BRA " . mTargetLabel ;
   else
-    ioString .= "  GOTO " . mTargetLabel . "\n" ;
+    ioStringList += !"  GOTO " . mTargetLabel ;
   end if ;
 end method ;
 
 #----------------------------------------------------*
 
 override method @ipic_registerComparisonCondition buildAssemblyCode
-  ?!@string ioString
+  ?!@stringlist ioStringList
   ?!@uint ioBccLabelIndex
 :
+  @string s := "" ;
   switch mComparison
-    when notEqual : ioString .= " CPFSEQ " ;
-    when equal : ioString .= " CPFSEQ " ;
-    when greaterOrEqual : ioString .= " CPFSLT " ;
-    when greater : ioString .= " CPFSGT " ;
-    when lowerOrEqual : ioString .= " CPFSGT " ;
-    when lower : ioString .= " CPFSLT " ;
+    when notEqual : s .= "  CPFSEQ " ;
+    when equal : s .= "  CPFSEQ " ;
+    when greaterOrEqual : s .= "  CPFSLT " ;
+    when greater : s .= "  CPFSGT " ;
+    when lowerOrEqual : s .= "  CPFSGT " ;
+    when lower : s .= "  CPFSLT " ;
   end switch ;
-  ioString .= [mRegisterDescription mAssemblyString] ;
+  s .= [mRegisterDescription mAssemblyString] ;
   if [mRegisterDescription mNeedsBSR] then
-    ioString .= ", BSR_ACCESS" ;
+    s .= ", BSR_ACCESS" ;
   end if ;
-  ioString .= "\n" ;
+  ioStringList += !s ;
   @bool usesIntermediateBRA ; [self usesIntermediateBRA ?usesIntermediateBRA] ;
   if usesIntermediateBRA then
     @string aLabel := "_bcc_label_" . [ioBccLabelIndex string] ; ioBccLabelIndex ++ ;
-    ioString .= "  BRA " . aLabel . "\n" ;
+    ioStringList += !"  BRA " . aLabel ;
     if mUsesBra then
-      ioString .= "  BRA " . mTargetLabel . "\n" ;
+      ioStringList += !"  BRA " . mTargetLabel ;
     else
-      ioString .= "  GOTO " . mTargetLabel . "\n" ;
+      ioStringList += !"  GOTO " . mTargetLabel ;
     end if ;
-    ioString .= aLabel . ":\n" ;
+    ioStringList += !aLabel . ":" ;
   else
     if mUsesBra then
-      ioString .= "  BRA " . mTargetLabel . "\n" ;
+      ioStringList += !"  BRA " . mTargetLabel ;
     else
-      ioString .= "  GOTO " . mTargetLabel . "\n" ;
+      ioStringList += !"  GOTO " . mTargetLabel ;
     end if ;
   end if ;
 end method ;
@@ -248,148 +250,147 @@ end method ;
 #----------------------------------------------------*
 
 override method @ipic_JUMP buildAssemblyCode
-  ?!@string ioString
+  ?!@stringlist ioStringList
   ?!@uint unused ioBccLabelIndex
 :
   switch mKind
-    when ipicRelative : ioString .= "  BRA   " . [mTargetLabel string] . "\n" ;
-    when ipicAbsolute : ioString .= "  GOTO  " . [mTargetLabel string] . "\n" ;
-    when relative     : ioString .= "  BRA   " . [mTargetLabel string] . "\n" ;
-    when absolute     : ioString .= "  GOTO  " . [mTargetLabel string] . "\n" ;
+    when ipicRelative : ioStringList += !"  BRA   " . [mTargetLabel string] ;
+    when ipicAbsolute : ioStringList += !"  GOTO  " . [mTargetLabel string] ;
+    when relative     : ioStringList += !"  BRA   " . [mTargetLabel string] ;
+    when absolute     : ioStringList += !"  GOTO  " . [mTargetLabel string] ;
   end switch ;
 end method ;
 
 #----------------------------------------------------*
 
 override method @ipic_JSR buildAssemblyCode
-  ?!@string ioString
+  ?!@stringlist ioStringList
   ?!@uint unused ioBccLabelIndex
 :
   switch mKind
-    when ipicRelative : ioString .= "  RCALL " . [mTargetLabel string] . "\n" ;
-    when ipicAbsolute : ioString .= "  CALL  " . [mTargetLabel string] . "\n" ;
-    when relative     : ioString .= "  RCALL " . [mTargetLabel string] . "\n" ;
-    when absolute     : ioString .= "  CALL  " . [mTargetLabel string] . "\n" ;
+    when ipicRelative : ioStringList += !"  RCALL " . [mTargetLabel string] ;
+    when ipicAbsolute : ioStringList += !"  CALL  " . [mTargetLabel string] ;
+    when relative     : ioStringList += !"  RCALL " . [mTargetLabel string] ;
+    when absolute     : ioStringList += !"  CALL  " . [mTargetLabel string] ;
   end switch ;
 end method ;
 
 #----------------------------------------------------*
 
 override method @ipic18_instruction_MOVLB buildAssemblyCode
-  ?!@string ioString
+  ?!@stringlist ioStringList
   ?!@uint unused ioBccLabelIndex
 :
-  ioString .= "  MOVLB " . [[mBankIndex uint] hexString] . "\n" ;
+  ioStringList += !"  MOVLB " . [[mBankIndex uint] hexString] ;
 end method ;
 
 #----------------------------------------------------*
 
 override method @ipic18_instruction_CLRWDT buildAssemblyCode
-  ?!@string ioString
+  ?!@stringlist ioStringList
   ?!@uint unused ioBccLabelIndex
 :
-  ioString .= "  CLRWDT\n" ;
+  ioStringList += !"  CLRWDT" ;
 end method ;
 
 #----------------------------------------------------*
 
 override method @ipic18_instruction_DAW buildAssemblyCode
-  ?!@string ioString
+  ?!@stringlist ioStringList
   ?!@uint unused ioBccLabelIndex
 :
-  ioString .= "  DAW\n" ;
+  ioStringList += !"  DAW" ;
 end method ;
 
 #----------------------------------------------------*
 
 override method @ipic18_instruction_NOP buildAssemblyCode
-  ?!@string ioString
+  ?!@stringlist ioStringList
   ?!@uint unused ioBccLabelIndex
 :
-  ioString .= "  NOP\n" ;
+  ioStringList += !"  NOP" ;
 end method ;
 
 #----------------------------------------------------*
 
 override method @ipic18_instruction_POP buildAssemblyCode
-  ?!@string ioString
+  ?!@stringlist ioStringList
   ?!@uint unused ioBccLabelIndex
 :
-  ioString .= "  POP\n" ;
+  ioStringList += !"  POP" ;
 end method ;
 
 #----------------------------------------------------*
 
 override method @ipic18_instruction_PUSH buildAssemblyCode
-  ?!@string ioString
+  ?!@stringlist ioStringList
   ?!@uint unused ioBccLabelIndex
 :
-  ioString .= "  PUSH\n" ;
+  ioStringList += !"  PUSH" ;
 end method ;
 
 #----------------------------------------------------*
 
 override method @ipic18_instruction_RESET buildAssemblyCode
-  ?!@string ioString
+  ?!@stringlist ioStringList
   ?!@uint unused ioBccLabelIndex
 :
-  ioString .= "  RESET\n" ;
+  ioStringList += !"  RESET" ;
 end method ;
 
 #----------------------------------------------------*
 
 override method @ipic18_instruction_RETURN buildAssemblyCode
-  ?!@string ioString
+  ?!@stringlist ioStringList
   ?!@uint unused ioBccLabelIndex
 :
-  ioString .= "  RETURN\n" ;
+  ioStringList += !"  RETURN" ;
 end method ;
 
 #----------------------------------------------------*
 
  override method @ipic18_instruction_RETFIE buildAssemblyCode
-  ?!@string ioString
+  ?!@stringlist ioStringList
   ?!@uint unused ioBccLabelIndex
 :
-  ioString .= "  RETFIE" ;
+  @string s := "  RETFIE" ;
   if mFastReturn then
-    ioString .= " 1" ;
+    s .= " 1" ;
   end if ;
-  ioString .= "\n" ;
+  ioStringList += !s ;
 end method ;
 
 #----------------------------------------------------*
 
  override method @ipic18_instruction_SLEEP buildAssemblyCode
-  ?!@string ioString
+  ?!@stringlist ioStringList
   ?!@uint unused ioBccLabelIndex
 :
-  ioString .= "  SLEEP\n" ;
+  ioStringList += !"  SLEEP" ;
 end method ;
 
 #----------------------------------------------------*
 
 override method @ipic18_instruction_literalOperation buildAssemblyCode
-  ?!@string ioString
+  ?!@stringlist ioStringList
   ?!@uint unused ioBccLabelIndex
 :
-  ioString .= "  " . [mLiteralInstruction mnemonic] . " " . [mLiteralValue hexString] . "\n" ;
+  ioStringList += !"  " . [mLiteralInstruction mnemonic] . " " . [mLiteralValue hexString] ;
 end method ;
 
 #----------------------------------------------------*
 
  override method @ipic18_instruction_LFSR buildAssemblyCode
-  ?!@string ioString
+  ?!@stringlist ioStringList
   ?!@uint unused ioBccLabelIndex
 :
-  ioString .= "  LFSR " . [[mFSRindex uint] string] . ", " ;
-  ioString .= [mValue hexString] . "\n" ;
+  ioStringList += !"  LFSR " . [[mFSRindex uint] string] . ", " . [mValue hexString] ;
 end method ;
 
 #----------------------------------------------------*
 
 override method @ipic18_instruction_MNOP buildAssemblyCode
-  ?!@string ioString
+  ?!@stringlist ioStringList
   ?!@uint unused ioBccLabelIndex
 :
   if [mOccurrenceFactor uint] == 0 then
@@ -399,7 +400,7 @@ override method @ipic18_instruction_MNOP buildAssemblyCode
   loop [mOccurrenceFactor uint] :
   while idx < [mOccurrenceFactor uint]
   do
-    ioString .= "  NOP\n" ;
+    ioStringList += !"  NOP" ;
     idx ++ ;
   end loop ;
 end method ;
@@ -407,89 +408,89 @@ end method ;
 #----------------------------------------------------*
 
 override method @ipic18_instruction_TBLRD buildAssemblyCode
-  ?!@string ioString
+  ?!@stringlist ioStringList
   ?!@uint unused ioBccLabelIndex
 :
-  ioString .= "  TBLRD " . [mOption mnemonic] . "\n" ;
+  ioStringList += !"  TBLRD " . [mOption mnemonic] ;
 end method ;
 
 #----------------------------------------------------*
 
 override method @ipic18_instruction_TBLWT buildAssemblyCode
-  ?!@string ioString
+  ?!@stringlist ioStringList
   ?!@uint unused ioBccLabelIndex
 :
-  ioString .= "  TBLWT " . [mOption mnemonic] . "\n" ;
+  ioStringList += !"  TBLWT " . [mOption mnemonic] ;
 end method ;
 
 #----------------------------------------------------*
 
 override method @ipic18_instruction_computed_retlw buildAssemblyCode
-  ?!@string ioString
+  ?!@stringlist ioStringList
   ?!@uint unused ioBccLabelIndex
 :
   if mUsesRCALL then
-    ioString .= "  RCALL _computed_goto_2\n" ;
+    ioStringList += !"  RCALL _computed_goto_2" ;
   else
-    ioString .= "  CALL _computed_goto_2\n" ;
+    ioStringList += !"  CALL _computed_goto_2" ;
   end if ;
   foreach mLiteralValues do
-    ioString .= "  RETLW " . [mValue hexString] . "\n" ;
+    ioStringList += !"  RETLW " . [mValue hexString] ;
   end foreach ;
 end method ;
 
 #----------------------------------------------------*
 
 override method @ipic18_instruction_computed_bra buildAssemblyCode
-  ?!@string ioString
+  ?!@stringlist ioStringList
   ?!@uint unused ioBccLabelIndex
 :
   if mUsesRCALL then
-    ioString .= "  RCALL _computed_goto_2\n" ;
+    ioStringList += !"  RCALL _computed_goto_2" ;
   else
-    ioString .= "  CALL _computed_goto_2\n" ;
+    ioStringList += !"  CALL _computed_goto_2" ;
   end if ;
   foreach mTargetLabels do
-    ioString .= "  BRA " . [mValue string] . "\n" ;
+    ioStringList += !"  BRA " . [mValue string] ;
   end foreach ;
 end method ;
 
 #----------------------------------------------------*
 
 override method @ipic18_instruction_computed_goto buildAssemblyCode
-  ?!@string ioString
+  ?!@stringlist ioStringList
   ?!@uint unused ioBccLabelIndex
 :
   if mUsesRCALL then
-    ioString .= "  RCALL _computed_goto_4\n" ;
+    ioStringList += !"  RCALL _computed_goto_4" ;
   else
-    ioString .= "  CALL _computed_goto_4\n" ;
+    ioStringList += !"  CALL _computed_goto_4" ;
   end if ;
   foreach mTargetLabels do
-    ioString .= "  GOTO " . [mValue string] . "\n" ;
+    ioStringList += !"  GOTO " . [mValue string] ;
   end foreach ;
 end method ;
 
 #----------------------------------------------------*
 
 override method @ipic18_instruction_computed_rcall buildAssemblyCode
-  ?!@string ioString
+  ?!@stringlist ioStringList
   ?!@uint unused ioBccLabelIndex
 :
   if mUsesRCALL then
-    ioString .= "  RCALL _computed_goto_4\n" ;
+    ioStringList += !"  RCALL _computed_goto_4" ;
   else
-    ioString .= "  CALL _computed_goto_4\n" ;
+    ioStringList += !"  CALL _computed_goto_4" ;
   end if ;
   @uint idx := 0 ;
   foreach mTargetLabels do
     idx ++ ;
-    ioString .= "  RCALL " . [mValue string] . "\n" ;
+    ioStringList += !"  RCALL " . [mValue string] ;
     if idx < [mTargetLabels length] then
-      ioString .= "  BRA   " . mEndOfInstructionLabel . "\n" ;
+      ioStringList += !"  BRA   " . mEndOfInstructionLabel ;
     end if ;
   end foreach ;
-  ioString .= mEndOfInstructionLabel . ":\n" ;
+  ioStringList += !mEndOfInstructionLabel . ":" ;
 end method ;
 
 #----------------------------------------------------*
@@ -508,7 +509,11 @@ routine pic18_build_assembly_code
   outAssemblyCode .= "  ORG 0\n" ;
   @uint bccLabelIndex := 0 ;
   foreach inInstructionList do
-    [mInstruction buildAssemblyCode !?outAssemblyCode !?bccLabelIndex] ;
+    @stringlist lineList [emptyList] ;
+    [mInstruction buildAssemblyCode !?lineList !?bccLabelIndex] ;
+    foreach lineList do
+      outAssemblyCode .= mValue . "\n" ;
+    end foreach ;
   end foreach ;
   outAssemblyCode .= "\n" ;
 #--- Prefined registers
