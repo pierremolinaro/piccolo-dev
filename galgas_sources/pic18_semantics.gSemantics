@@ -89,8 +89,8 @@ routine pic18_analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName 
     switch [piccoloDeviceModel mProcessorType]
       when pic18_60 : accessBankSplitOffset := 0x60 ;
       when pic18_80 : accessBankSplitOffset := 0x80 ;
-      when midrange : error [inPiccoloModel mDeviceNameOrBootLoaderReference]: "a midrange device is not accepted here" -> accessBankSplitOffset ;
-      when baseline : error [inPiccoloModel mDeviceNameOrBootLoaderReference]: "a baseline device is not accepted here" -> accessBankSplitOffset ;
+      when midrange : error [inPiccoloModel mDeviceNameOrBootLoaderReference]: "a midrange device is not accepted here" : accessBankSplitOffset ;
+      when baseline : error [inPiccoloModel mDeviceNameOrBootLoaderReference]: "a baseline device is not accepted here" : accessBankSplitOffset ;
     end switch ;
     ramBank := [piccoloDeviceModel mRamBankTable] ;
     bootloaderReservedRAMmap := [@bootloaderReservedRAMmap emptyMap] ;

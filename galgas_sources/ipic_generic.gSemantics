@@ -104,7 +104,7 @@ override method @immediatRegister eval
       error [mRegister mOffset]:"index notation (" . [[[mRegister mOffset] uint] string] . ") cannot be used with a constant" ;
     end if ;
   else
-    error [mRegister mRegisterName]: "'" . [mRegister mRegisterName] . "' should be declared as ram register or as constant" -> outResult ;
+    error [mRegister mRegisterName]: "'" . [mRegister mRegisterName] . "' should be declared as ram register or as constant" : outResult ;
   end if ;
 end method ;
 

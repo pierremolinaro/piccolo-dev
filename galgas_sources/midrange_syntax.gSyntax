@@ -193,7 +193,7 @@ label importBootloaderSpecification
   $midrange$ ;
   $identifier$ ? @lstring programName ;
   error programName: "this file does not define a bootloader specification"
-   -> outPiccoloDeviceModel, outAccessBankSplitOffset, outRamBank, outRegisterTable,
+   : outPiccoloDeviceModel, outAccessBankSplitOffset, outRamBank, outRegisterTable,
       outBootloaderReservedRAMmap, outBootloaderRoutineDeclarationList,
       outUserRoutineDeclarationList,
       outBootloaderReservedROMsize ;
@@ -471,7 +471,7 @@ rule <midrange_structured_instruction>
           s .= " :" ;
           warning conditionString: "In Piccolo 1.2.0 and later, this construction is deprecated; use '" . s . "' instead" ; 
         else
-          error conditionString:"invalid '" . condition . "' condition; it should be 'z' or 'nz'" -> skipIfSet ;
+          error conditionString:"invalid '" . condition . "' condition; it should be 'z' or 'nz'" : skipIfSet ;
         end if ;
       end select ;
     end select ;
@@ -819,7 +819,7 @@ rule <midrange_condition_factor>
     else
       error conditionString: "invalid '" . conditionString
       . "' condition; valid ones are: 'z' and 'nz'"
-      -> branchIfZero
+      : branchIfZero
       ;
     end if ;
     outCondition := [@midrange_incDecRegisterInCondition new
@@ -859,7 +859,7 @@ rule <midrange_condition_factor>
       else
         error conditionString: "invalid '" . conditionString
         . "' condition; valid ones are: 'z' and 'nz'"
-        -> BTFSSinstruction
+        : BTFSSinstruction
         ;
       end if ;
     end select ;

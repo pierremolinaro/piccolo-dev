@@ -218,7 +218,7 @@ label importBootloaderSpecification
   $pic18$ ;
   $identifier$ ? @lstring programName ;
   error programName: "this file does not define a bootloader specification"
-   -> outPiccoloDeviceModel, outAccessBankSplitOffset, outRamBank, outRegisterTable,
+   : outPiccoloDeviceModel, outAccessBankSplitOffset, outRamBank, outRegisterTable,
       outBootloaderReservedRAMmap,
       outBootloaderRoutineDeclarationList,
       outUserRoutineDeclarationList,
@@ -636,7 +636,7 @@ rule <condition_factor>
     else
       error conditionString: "invalid '" . conditionString
       . "' condition; valid ones are: 'z' and 'nz'"
-      -> branchIfZero
+      : branchIfZero
       ;
     end if ;
     outCondition := [@incDecRegisterInCondition new
@@ -697,7 +697,7 @@ rule <condition_factor>
       else
         error conditionString: "invalid '" . conditionString
         . "' condition; valid ones are: 'z' and 'nz'"
-        -> BTFSSinstruction
+        : BTFSSinstruction
         ;
       end if ;
     end select ;
@@ -719,7 +719,7 @@ rule <condition_factor>
     else
       error conditionString: "invalid '" . conditionString
       . "' condition; valid ones are: 'z' and 'nz'"
-      -> branchIfZero
+      : branchIfZero
       ;
     end if ;
     outCondition := [@registerTestCondition new !registerName !branchIfZero] ;
@@ -746,7 +746,7 @@ rule <condition_factor>
     else
       error conditionString: "invalid '" . conditionString
       . "' condition; valid ones are: 'z', 'nz', 'n', 'nn', 'c', 'nc', 'ov' and 'nov'"
-      -> conditional_branch
+      : conditional_branch
       ;
     end if ;
     outCondition := [@bcc_in_structured_if_condition new !conditional_branch] ;
@@ -969,7 +969,7 @@ rule <structured_instruction>
           s .= " :" ;
           warning conditionString: "In Piccolo 1.2.0 and later, this construction is deprecated; use '" . s . "' instead" ; 
         else
-          error conditionString:"invalid '" . condition . "' condition; it should be 'z' or 'nz'" -> skipIfSet ;
+          error conditionString:"invalid '" . condition . "' condition; it should be 'z' or 'nz'" : skipIfSet ;
         end if ;
       end select ;
     end select ;
@@ -1008,7 +1008,7 @@ rule <structured_instruction>
     elsif condition == "NZ" then
       skipIfZero := true ;
     else
-      error conditionString:"invalid '" . condition . "' condition; it should be 'z' or 'nz'" -> skipIfZero ;
+      error conditionString:"invalid '" . condition . "' condition; it should be 'z' or 'nz'" : skipIfZero ;
     end if ;
     $:$ ;
     @piccolo_instruction instruction ;
@@ -1349,7 +1349,7 @@ rule <simple_instruction> !@piccolo_instruction outInstruction :
     else
       error conditionString: "invalid '" . conditionString
       . "' condition; valid ones are: 'z', 'nz', 'n', 'nn', 'c', 'nc', 'ov' and 'nov'"
-      -> conditional_branch
+      : conditional_branch
       ;
     end if ;
     $identifier$ ? @lstring targetLabelName ;
