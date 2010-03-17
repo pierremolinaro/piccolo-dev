@@ -29,7 +29,7 @@ rule <start_symbol>
   elsif [processorName string] == "baseline" then
     processorType := [@processorType baseline] ;
   else
-    error here : "The '" . processorName . "' processor is not handled" -> processorType ;
+    error here : "The '" . processorName . "' processor is not handled" : processorType ;
   end if ;
   $;$ ;
   $romsize$ ;

@@ -30,8 +30,8 @@ routine pic18BootloaderSpecificationAnalysis
   switch [outPiccoloDeviceModel mProcessorType]
     when pic18_60 : outAccessBankSplitOffset := 0x60 ;
     when pic18_80 : outAccessBankSplitOffset := 0x80 ;
-    when midrange : error inDeviceName: "a midrange device is not accepted here" -> outAccessBankSplitOffset ;
-    when baseline : error inDeviceName: "a baseline device is not accepted here" -> outAccessBankSplitOffset ;
+    when midrange : error inDeviceName: "a midrange device is not accepted here" : outAccessBankSplitOffset ;
+    when baseline : error inDeviceName: "a baseline device is not accepted here" : outAccessBankSplitOffset ;
   end switch ;
 #-------------------------------- Check reserved ROM size < microcontroller ROM size
   outListFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n" ;
