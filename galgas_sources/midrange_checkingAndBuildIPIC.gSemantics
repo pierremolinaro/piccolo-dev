@@ -254,12 +254,12 @@ override method @midrange_instruction_banksel build_midrange_ipic_instructionLis
     ?STATUS_IPICregisterDescription
     ?bitSliceTable
   ] ;
-  @lstring RP [new !"RP" !mInstructionLocation] ;
+  const @lstring RP [new !"RP" !mInstructionLocation] ;
   @uint rpIndex ;
   @uint sliceSize ;
   [bitSliceTable searchKey !RP ?rpIndex ?sliceSize] ;
   if sliceSize != [inTotalBankCount - 1 significantBitCount] then
-    error mInstructionLocation: "internal error: sliceSize == " . [sliceSize string] . ", significant bit count == " . [[inTotalBankCount - 1 significantBitCount] string] ;
+    error mInstructionLocation: "internal error: sliceSize == " . [sliceSize string] . ", total bank count == " . [inTotalBankCount string] ;
   end if ;
 #---
   if [mBankIndex uint] == ioCurrentBank then
