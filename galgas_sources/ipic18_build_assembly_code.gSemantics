@@ -520,15 +520,15 @@ routine pic18_build_assembly_code
   outAssemblyCode .= ";--- Prefefined registers\n" ;
   foreach inPredefinedRegisters do
     @uint firstRegister ; [mRegisterAddressList first ?firstRegister] ;
-    outAssemblyCode .= [key string] . " EQU " . [firstRegister hexString] . "\n" ;
+    outAssemblyCode .= [lkey string] . " EQU " . [firstRegister hexString] . "\n" ;
   end foreach ;
   outAssemblyCode .= "\n" ;
 #--- User defined registers in ram
   outAssemblyCode .= ";--- User defined registers (in RAM)\n" ;
   foreach inAllRegisters do
-    if not [inPredefinedRegisters hasKey ![key string]] then
+    if not [inPredefinedRegisters hasKey ![lkey string]] then
       @uint firstRegister ; [mRegisterAddressList first ?firstRegister] ;
-      outAssemblyCode .= [key string] . " EQU " . [firstRegister hexString] . "\n" ;
+      outAssemblyCode .= [lkey string] . " EQU " . [firstRegister hexString] . "\n" ;
     end if ;
   end foreach ;
   outAssemblyCode .= "\n" ;

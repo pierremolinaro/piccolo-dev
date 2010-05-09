@@ -120,7 +120,7 @@ before {
       message deviceForMemoryDescription . " device:\n" ;
       message "  " . [[[piccoloDeviceModel mRamBankTable] count] string] . " RAM banks (total " . [totalRam string] . " bytes):\n" ;
       foreach [piccoloDeviceModel mRamBankTable] do
-        message "    bank \"" . key . "\" from " . [mFirstFreeAddress hexString]
+        message "    bank \"" . lkey . "\" from " . [mFirstFreeAddress hexString]
         . " to " . [mLastAddressPlusOne-1 hexString]
         . " (" . [mLastAddressPlusOne-mFirstFreeAddress string] . " bytes)" ;
         foreach mMirrorOffsetList
@@ -163,7 +163,7 @@ before {
       parseDeviceDefinition ![@lstring new ! deviceForRegistersDescription !here] ?piccoloDeviceModel ;
       message deviceForRegistersDescription . " has " . [[[piccoloDeviceModel mRegisterTable] count] string] . " special registers:\n" ;
       foreach [piccoloDeviceModel mRegisterTable] do
-        @string s := "  '" . key . "' at " ;
+        @string s := "  '" . lkey . "' at " ;
         foreach mRegisterAddressList
         do s .= [mValue hexString] ;
         between s .= ", " ;
@@ -184,14 +184,14 @@ before {
       parseDeviceDefinition ![@lstring new ! deviceForConfigDescription !here] ?piccoloDeviceModel ;
       message deviceForConfigDescription . " has " . [[[piccoloDeviceModel mConfigRegisterMap] count] string] . " configuration registers:\n" ;
       foreach [piccoloDeviceModel mConfigRegisterMap] do
-        @string s := "REGISTER '" . key . "' at " . [[mRegisterAddress uint] hexString] . ", width " . [[mRegisterWidth uint] string] . "\n" ;
+        @string s := "REGISTER '" . lkey . "' at " . [[mRegisterAddress uint] hexString] . ", width " . [[mRegisterWidth uint] string] . "\n" ;
         foreach mIllegalMaskList do
           s .= "  illegal value " . [[mIllegalValue uint] hexString] . " mask " . [[mIllegalMask uint] hexString] . " description \"" . mDescription . "\"\n" ;
         end foreach ;
         foreach mConfigRegisterMaskMap prefixedby others_ do
-          s .= "  setting '" . others_key . "': mask " . [[others_mMaskValue uint] hexString] . " description \"" . others_mDescription . "\"\n" ;
+          s .= "  setting '" . others_lkey . "': mask " . [[others_mMaskValue uint] hexString] . " description \"" . others_mDescription . "\"\n" ;
           foreach others_mFieldSettingMap prefixedby second_ do
-            s .= "    value " . [second_mValue hexString] . " description \"" . second_key . "\"\n" ;
+            s .= "    value " . [second_mValue hexString] . " description \"" . second_lkey . "\"\n" ;
           end foreach ;
         end foreach ;
         message s ;

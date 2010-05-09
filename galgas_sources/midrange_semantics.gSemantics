@@ -111,7 +111,7 @@ routine midrange_analyze ??@midrange_model inPiccoloModel ??@string inSourceFile
       foreach ramBank do
         @uint bankSize := mLastAddressPlusOne - mFirstAddress ;
         @uint usedSize := mFirstFreeAddress - mFirstAddress ;
-        verboseMessage .= "  RAM bank '" . [key string] . "': " ;
+        verboseMessage .= "  RAM bank '" . lkey . "': " ;
         verboseMessage .= [bankSize string] . " bytes, used " ;
         verboseMessage .= [usedSize string] . " bytes (" ;
         verboseMessage .= [(usedSize * 100) / bankSize string] . "%).\n" ;

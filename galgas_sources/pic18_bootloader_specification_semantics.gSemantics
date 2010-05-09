@@ -51,14 +51,14 @@ routine pic18BootloaderSpecificationAnalysis
     @uint firstFreeAddress ; # Mutable
     @uint lastAddressPlusOne ;
     @uintlist mirrorOffsetList ;
-    [outRamBank searchKey !key ?firstAddress ?firstFreeAddress ?lastAddressPlusOne ?mirrorOffsetList] ;
+    [outRamBank searchKey !lkey ?firstAddress ?firstFreeAddress ?lastAddressPlusOne ?mirrorOffsetList] ;
     firstFreeAddress := firstFreeAddress + [mReservedSize uint] ;
     if (firstFreeAddress > lastAddressPlusOne) then
-      error mReservedSize: "reserved size is greater than size of '" . key . "' bank ("
+      error mReservedSize: "reserved size is greater than size of '" . lkey . "' bank ("
       . [lastAddressPlusOne - firstAddress string] . " bytes)" ;
     else
-      [!?outRamBank setMFirstFreeAddressForKey !firstFreeAddress ![key string]] ;
-      outListFileContents .= "'" . key . "' RAM size : " . [[mReservedSize uint] string] . " bytes (from "
+      [!?outRamBank setMFirstFreeAddressForKey !firstFreeAddress ![lkey string]] ;
+      outListFileContents .= "'" . lkey . "' RAM size : " . [[mReservedSize uint] string] . " bytes (from "
       . [firstAddress hexString] . " to " . [firstFreeAddress - 1 hexString] . ").\n\n" ;
     end if ;
   end foreach ;

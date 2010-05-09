@@ -114,7 +114,7 @@ routine pic18_analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName 
       ?bootloaderReservedROMsize
     ;
     foreach ramBank do #--- Reset first free addresses for all banks
-      [!?ramBank setMFirstFreeAddressForKey !mFirstAddress ![key string]] ;
+      [!?ramBank setMFirstFreeAddressForKey !mFirstAddress ![lkey string]] ;
     end foreach ;
   when userProgram :
     grammar piccolo_grammar label importBootloaderSpecification in [inPiccoloModel mDeviceNameOrBootLoaderReference]
@@ -186,18 +186,18 @@ routine pic18_analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName 
 #--- For bootloader implementation, check declared var footprint does not span beyond values declared in specification
   if [inPiccoloModel mProgramKind] == [@programKind bootloaderProgram] then
     foreach ramBank do
-      if [bootloaderReservedRAMmap hasKey ![key string]] then
+      if [bootloaderReservedRAMmap hasKey ![lkey string]] then
         @luint bootloaderReservedSize ;
-        [bootloaderReservedRAMmap searchKey !key ?bootloaderReservedSize] ;
+        [bootloaderReservedRAMmap searchKey !lkey ?bootloaderReservedSize] ;
         if (mFirstFreeAddress - mFirstAddress) > [bootloaderReservedSize uint] then
-          error here: "for '" . key . "' RAM bank, the bootloader implementation declares "
+          error here: "for '" . lkey . "' RAM bank, the bootloader implementation declares "
           . [mFirstFreeAddress - mFirstAddress string]
           . " byte(s), althought the bootloader specification reserves "
           . [[bootloaderReservedSize uint] string]
           . " byte(s)" ;
         end if ;
       elsif mFirstFreeAddress > mFirstAddress then
-        error here: "for '" . key . "' RAM bank, the bootloader implementation declares "
+        error here: "for '" . lkey . "' RAM bank, the bootloader implementation declares "
         . [mFirstFreeAddress - mFirstAddress string]
         . " byte(s), althought the bootloader specification reserves no space" ;
       end if ;
@@ -251,7 +251,7 @@ routine pic18_analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName 
       foreach ramBank do
         @uint bankSize := mLastAddressPlusOne - mFirstAddress ;
         @uint usedSize := mFirstFreeAddress - mFirstAddress ;
-        verboseMessage .= "  RAM bank '" . [key string] . "': " ;
+        verboseMessage .= "  RAM bank '" . lkey . "': " ;
         verboseMessage .= [bankSize string] . " bytes, used " ;
         verboseMessage .= [usedSize string] . " bytes (" ;
         verboseMessage .= [(usedSize * 100) / bankSize string] . "%).\n" ;

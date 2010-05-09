@@ -30,10 +30,10 @@ routine actualBuildConfig
   @configFieldMap configFieldMap [emptyMap] ;
   foreach inConfigRegisterMap do
     @uint defaultValue := (1 << [mRegisterWidth uint]) - 1 ;
-    [!? outActualConfigurationMap insertKey !key ![mRegisterAddress uint] !defaultValue] ;
-    @lstring registerName := key ;
+    [!? outActualConfigurationMap insertKey !lkey ![mRegisterAddress uint] !defaultValue] ;
+    @lstring registerName := lkey ;
     foreach mConfigRegisterMaskMap prefixedby other_ do
-      [!?configFieldMap insertKey !other_key !registerName !other_mMaskValue !other_mDescription !other_mFieldSettingMap] ;
+      [!?configFieldMap insertKey !other_lkey !registerName !other_mMaskValue !other_mDescription !other_mFieldSettingMap] ;
     end foreach ;
   end foreach ;
 #--- Analyze config parts
@@ -61,7 +61,7 @@ routine actualBuildConfig
         @string errorMessage := "the '" . mSettingValue . "' value is not defined for configuration setting '"
         . mSettingName . "'; possible values are:" ;
         foreach fieldSettingMap do
-          errorMessage .= "\n-  \"" . key . "\"" ;
+          errorMessage .= "\n-  \"" . lkey . "\"" ;
         end foreach ;
         error mSettingValue: errorMessage ;
       end if ;
@@ -80,14 +80,14 @@ routine actualBuildConfig
   end if ;
 #--- Display conguration information in log file
   foreach outActualConfigurationMap do
-    ioListFileContents .= "Register '" . key . "' at " . [mRegisterAddress hexString] . " set to " . [mRegisterValue hexString] . "\n" ;
+    ioListFileContents .= "Register '" . lkey . "' at " . [mRegisterAddress hexString] . " set to " . [mRegisterValue hexString] . "\n" ;
     @configRegisterMaskMap configRegisterMaskMap ;
-    [inConfigRegisterMap searchKey !key ?* ?* ?configRegisterMaskMap ?*] ;
+    [inConfigRegisterMap searchKey !lkey ?* ?* ?configRegisterMaskMap ?*] ;
     foreach configRegisterMaskMap prefixedby others_ do
-      @lstring settingName := others_key ;
+      @lstring settingName := others_lkey ;
       foreach others_mFieldSettingMap prefixedby second_ do
         if (mRegisterValue & [others_mMaskValue uint]) == second_mValue then
-          ioListFileContents .= "  setting '" . settingName . "' set to " . [second_mValue hexString] . " (\"" . second_key . "\")\n" ;
+          ioListFileContents .= "  setting '" . settingName . "' set to " . [second_mValue hexString] . " (\"" . second_lkey . "\")\n" ;
         end if ;
       end foreach ;
     end foreach ;
@@ -96,11 +96,11 @@ routine actualBuildConfig
 #--- Detect illegal configurations
   foreach outActualConfigurationMap do
     @illegalMaskList illegalMaskList ;
-    [inConfigRegisterMap searchKey !key ?* ?* ?* ?illegalMaskList] ;
+    [inConfigRegisterMap searchKey !lkey ?* ?* ?* ?illegalMaskList] ;
      foreach illegalMaskList do
       if (mRegisterValue & [mIllegalMask uint]) == [mIllegalValue uint] then
-        error here:"illegal setting for '" . key . "' register: " . mDescription ;
-        ioListFileContents .= "*** ILLEGAL SETTING for register '" . key . "' ***\n" ;
+        error here:"illegal setting for '" . lkey . "' register: " . mDescription ;
+        ioListFileContents .= "*** ILLEGAL SETTING for register '" . lkey . "' ***\n" ;
         ioListFileContents .= "  message: " . mDescription . "\n\n" ;
       end if ;
     end foreach ;
