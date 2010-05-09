@@ -98,8 +98,8 @@ routine analyze_ram_sections
     ioListFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n\n" ;
     ioListFileContents .= ["Variable" stringByLeftPadding !40 !' '] . " Address\n" ;
     foreach ioAllRegisters do
-      if not [inSpecialRegisterTable hasKey ![key string]] then
-        ioListFileContents .= [[key string] stringByLeftPadding !40 !' '] . " " ;
+      if not [inSpecialRegisterTable hasKey ![lkey string]] then
+        ioListFileContents .= [[lkey string] stringByLeftPadding !40 !' '] . " " ;
         foreach mRegisterAddressList
         do ioListFileContents .= [mValue hexString] ;
         between ioListFileContents .= ", " ;

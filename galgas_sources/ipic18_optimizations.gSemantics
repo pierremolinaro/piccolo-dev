@@ -526,11 +526,11 @@ routine performOptimizations
       [mInstruction enterReferencedLabel !?referencedLabels] ;
     end foreach ;
     foreach symbolTable do
-      if not [referencedLabels hasKey ![key string]] then
-        @uint definitionLine ; [symbolTable searchKey !key ?definitionLine] ;
-        ioListFileContents .= "  line " . [definitionLine  string] . ": unreferenced label '" . key . "' is deleted\n" ;
+      if not [referencedLabels hasKey ![lkey string]] then
+        @uint definitionLine ; [symbolTable searchKey !lkey ?definitionLine] ;
+        ioListFileContents .= "  line " . [definitionLine  string] . ": unreferenced label '" . lkey . "' is deleted\n" ;
         [!?ioGeneratedInstructionList setMInstructionAtIndex ![@ipic_NULL new] !definitionLine] ;
-        [!?symbolTable removeKey !key ?*] ;
+        [!?symbolTable removeKey !lkey ?*] ;
       end if ;
     end foreach ;
   #--- Dead code elimination

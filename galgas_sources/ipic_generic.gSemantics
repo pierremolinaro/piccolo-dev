@@ -439,7 +439,7 @@ routine print_constant_definition
     ioListFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n\n" ;
     ioListFileContents .= ["Constant" stringByLeftPadding !40 !' '] . " Value\n" ;
     foreach inConstantMap do
-      ioListFileContents .= [[key string] stringByLeftPadding !40 !' '] . " " . [mValue string] . "\n" ;
+      ioListFileContents .= [[lkey string] stringByLeftPadding !40 !' '] . " " . [mValue string] . "\n" ;
     end foreach ;
     ioListFileContents .= "\n" ;
   end if ;
