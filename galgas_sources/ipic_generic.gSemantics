@@ -20,6 +20,10 @@ extern routine emitByte ??@uint inCode ;
 
 extern routine getGeneratedContents !@string outContents ;
 
+extern routine get_C_ArrayImplementation ??@string inSourceName !@string outContents ;
+
+extern routine get_C_ArrayHeader ??@string inSourceName !@string outContents ;
+
 #----------------------------------------------------------------------------*
 
 routine checkCurrentEmitAddress ??@uint inCurrentAddress :

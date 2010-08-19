@@ -101,8 +101,17 @@ routine midrange_analyze ??@midrange_model inPiccoloModel ??@string inSourceFile
     ;
     @string contents ;
     getGeneratedContents ?contents ;
-    @string hexDestinationFile := [inSourceFileName stringByDeletingPathExtension] . ".hex" ;
-    [contents writeToFileWhenDifferentContents !hexDestinationFile ?*] ;
+    @string destinationFile := [inSourceFileName stringByDeletingPathExtension] . ".hex" ;
+    [contents writeToFileWhenDifferentContents !destinationFile ?*] ;
+    if [option piccolo_options.output_C_Array value] then
+      const @string baseName := [[inSourceFileName lastPathComponent] stringByDeletingPathExtension] ;
+      get_C_ArrayImplementation !baseName ?contents ;
+      destinationFile := [inSourceFileName stringByDeletingPathExtension] . ".c" ;
+      [contents writeToFileWhenDifferentContents !destinationFile ?*] ;
+      get_C_ArrayHeader !baseName ?contents ;
+      destinationFile := [inSourceFileName stringByDeletingPathExtension] . ".h" ;
+      [contents writeToFileWhenDifferentContents !destinationFile ?*] ;
+    end if ;
   #--- Write infos (if verbose mode)
     if [option.verbose_output value] then
       @string verboseMessage := "  ROM size: " . [[[piccoloDeviceModel mRomSize] uint] string] . " words;" ;

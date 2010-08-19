@@ -659,6 +659,7 @@
 		CE68DAD4D52D063967F0A705 /* AC_GGS_sortedlist.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AC_GGS_sortedlist.cpp; sourceTree = "<group>"; };
 		CED301B442654DD8C23B3FC9 /* scanner_actions.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = scanner_actions.cpp; sourceTree = "<group>"; };
 		CEEA167A5A36DEDD4BEA2543 /* ipic18_build_assembly_code.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ipic18_build_assembly_code.h; sourceTree = "<group>"; };
+		CF4D4796121D6F6A00E4A7E5 /* TC_UniqueSparseArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TC_UniqueSparseArray.h; sourceTree = "<group>"; };
 		CFA5649E7003B83DD4755294 /* PMArrayDebugCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMArrayDebugCategory.h; sourceTree = "<group>"; };
 		D2755B24C4E168C5FC2EBD40 /* GALGAS_uint_36__34_.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GALGAS_uint_36__34_.cpp; sourceTree = "<group>"; };
 		D39FD083F55D4182BF88826D /* AC_GGS_listmap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AC_GGS_listmap.cpp; sourceTree = "<group>"; };
@@ -854,6 +855,7 @@
 		2B5D3E95D4A733FCFB77BD7E /* Collections */ = {
 			isa = PBXGroup;
 			children = (
+				CF4D4796121D6F6A00E4A7E5 /* TC_UniqueSparseArray.h */,
 				C77E35A4A3F3CBD1E429B5DC /* TC_AVL_TreeForCollision.h */,
 				18FCB43975065399B0D1E48E /* TC_Array.h */,
 				C279E471F4D180B08D62B00A /* TC_Array2.h */,

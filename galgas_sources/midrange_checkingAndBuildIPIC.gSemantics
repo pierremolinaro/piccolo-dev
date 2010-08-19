@@ -1550,16 +1550,16 @@ routine generateInterruptRoutineForControllerWithSharedRAM
   ?!@uint ioLocalLabelIndex
   ?!@string ioGenerationOptimizationMessages
 :
-#--- Check firstSaveRegister register is defined in RAM, is accessible from bank 0, and has a size of 1
+#--- Check firstSaveRegister register is defined in RAM, is accessible from any bank, and has a size of 1
   @uintlist registerAddressList ;
   @uint size ;
   [inRegisterTable searchKey ! inFirstSaveRegister ?registerAddressList ?size ?* ?*] ;
-  @bool accessibleFromBank0 := false ;
-  foreach registerAddressList while not accessibleFromBank0 do
-    accessibleFromBank0 := (mValue & 0xF80) == 0 ;
+  @uint bankAccessibility := 0 ;
+  foreach registerAddressList do
+    bankAccessibility := bankAccessibility | (1 << (mValue >> 7)) ;
   end foreach ;
-  if not accessibleFromBank0 then
-    error inFirstSaveRegister: "the '" . inFirstSaveRegister . "' variable cannot be accessed from bank 0" ;
+  if (bankAccessibility + 1) != (1 << inTotalBankCount) then
+    error inFirstSaveRegister: "the '" . inFirstSaveRegister . "' variable cannot be accessed from any bank" ;
   end if ;
   if inNeedsToSavePCLATH & (size != 2) then
     error inFirstSaveRegister: "the '" . inFirstSaveRegister . "' variable size is " . [size string] . " (it should be 2)" ;
@@ -1568,7 +1568,7 @@ routine generateInterruptRoutineForControllerWithSharedRAM
   end if ;
 #--- Check secondSaveRegister register is defined in RAM, is accessible from any bank, and has a size of 1
   [inRegisterTable searchKey ! inSecondSaveRegister ?registerAddressList ?size ?* ?*] ;
-  @uint bankAccessibility := 0 ;
+  bankAccessibility := 0 ;
   foreach registerAddressList do
     bankAccessibility := bankAccessibility | (1 << (mValue >> 7)) ;
   end foreach ;
@@ -1649,7 +1649,7 @@ routine generateInterruptRoutineForControllerWithSharedRAM
       !?ioGenerationOptimizationMessages
       !inTotalBankCount
       !?currentBank
-      !true # Preserve bank
+      !false # Preserve bank is not required
       ?continuesInSequence
       ![@routineKind interruptRoutine]
     ;
