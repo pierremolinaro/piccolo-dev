@@ -99,6 +99,134 @@ emit_data_record (C_String & ioGeneratedCode,
 //---------------------------------------------------------------------------*
 
 static C_String
+generate_C_ArrayImplementationFileFromSpareArray (const C_String & inSourceName,
+                                                  const TC_UniqueSparseArray <PMUInt8> & inSpareArray) {
+  C_String implementationCode ;
+  implementationCode << "#include \"" << inSourceName << ".h\"\n\n" ;
+  implementationCode.append_C_HyphenLineComment () ;
+  TC_UniqueArray <PMUInt32> startAddressArray ;
+  TC_UniqueArray <PMUInt32> blockLengthArray ;
+//--- Loop
+  PMUInt32 currentAddress = 0 ;
+  while (inSpareArray.findFirstEntryWithIndex (currentAddress)) {
+    C_String currentStream ;
+    PMUInt32 currentStreamEntryCount = 0 ;
+    startAddressArray.addObject (currentAddress) ;
+    while (! inSpareArray.isDefaultObjectAtIndex (currentAddress)) {
+      if (currentStreamEntryCount > 0) {
+        currentStream << "," ;
+      }
+      if ((currentStreamEntryCount % 16) == 0) {
+        currentStream << "\n  " ;
+      }
+      currentStream << "0x" ;
+      currentStream.appendUnsignedHex2 (inSpareArray.objectAtIndex (currentAddress)) ;
+      currentAddress ++ ;
+      currentStreamEntryCount ++ ;
+    }
+    implementationCode << "\n"
+                          "static unsigned char gArray_" << cStringWithUnsigned (blockLengthArray.count ()) << " [" << cStringWithUnsigned (currentStreamEntryCount) << "] = {"
+                       << currentStream << "\n} ;\n\n" ;
+    implementationCode.append_C_HyphenLineComment () ;
+    blockLengthArray.addObject (currentStreamEntryCount) ;
+  }
+//--- Start address array
+  implementationCode << "\n"
+                        "static unsigned long gBlockStartAddressArray [" << cStringWithUnsigned (startAddressArray.count ()) << "] = {" ;
+  for (PMSInt32 i=0 ; i<startAddressArray.count () ; i++) {
+    if (i > 0) {
+      implementationCode << "," ;
+    }
+    implementationCode << "\n  0x" ;
+    implementationCode.appendUnsignedHex (startAddressArray (i COMMA_HERE)) ;
+  }
+  implementationCode << "\n} ;\n\n" ;
+  implementationCode.append_C_HyphenLineComment () ;
+//--- block length array
+  implementationCode << "\n"
+                        "static unsigned long gBlockLengthArray [" << cStringWithUnsigned (blockLengthArray.count ()) << "] = {" ;
+  for (PMSInt32 i=0 ; i<blockLengthArray.count () ; i++) {
+    if (i > 0) {
+      implementationCode << "," ;
+    }
+    implementationCode << "\n  " ;
+    implementationCode.appendUnsigned (blockLengthArray (i COMMA_HERE)) ;
+  }
+  implementationCode << "\n} ;\n\n" ;
+  implementationCode.append_C_HyphenLineComment () ;
+//--- block data array
+  implementationCode << "\n"
+                        "static unsigned char * gBlockDataArray [" << cStringWithUnsigned (blockLengthArray.count ()) << "] = {" ;
+  for (PMSInt32 i=0 ; i<blockLengthArray.count () ; i++) {
+    if (i > 0) {
+      implementationCode << "," ;
+    }
+    implementationCode << "\n  gArray_" ;
+    implementationCode.appendUnsigned (i) ;
+  }
+  implementationCode << "\n} ;\n\n" ;
+  implementationCode.append_C_HyphenLineComment () ;
+//--- routines
+  implementationCode << "\n"
+                        "unsigned long " << inSourceName << "_blockCount (void) {\n"
+                        "  return " << cStringWithUnsigned (blockLengthArray.count ()) << " ;\n"
+                        "}\n\n" ;
+  implementationCode.append_C_HyphenLineComment () ;
+  implementationCode << "\n"
+                        "unsigned long " << inSourceName << "_blockStartAddressForIndex (const unsigned long inIndex) {\n"
+                        "  return gBlockStartAddressArray [inIndex] ;\n"
+                        "}\n\n" ;
+  implementationCode.append_C_HyphenLineComment () ;
+  implementationCode << "\n"
+                        "unsigned long " << inSourceName << "_blockLengthForIndex (const unsigned long inIndex) {\n"
+                        "  return gBlockLengthArray [inIndex] ;\n"
+                        "}\n\n" ;
+  implementationCode.append_C_HyphenLineComment () ;
+  implementationCode << "\n"
+                        "unsigned char " << inSourceName << "_dataForIndexAndOffset (const unsigned long inIndex,\n"
+                        "                                     const unsigned long inOffset) {\n"
+                        "  return gBlockDataArray [inIndex] [inOffset] ;\n"
+                        "}\n\n" ;
+  implementationCode.append_C_HyphenLineComment () ;
+//---
+  return implementationCode ;
+}
+
+//---------------------------------------------------------------------------*
+
+static C_String
+generate_C_ArrayHeaderFileFromSpareArray (const C_String & inSourceName,
+                                          const TC_UniqueSparseArray <PMUInt8> & /* inSpareArray */) {
+  C_String headerCode ;
+  headerCode << "#ifdef __cplusplus\n"
+                "  extern \"C\" {\n"
+                "#endif\n\n" ;
+  headerCode.append_C_HyphenLineComment () ;
+  headerCode << "\n"
+                "unsigned long " << inSourceName << "_blockCount (void) ;\n\n" ;
+  headerCode.append_C_HyphenLineComment () ;
+  headerCode << "\n"
+                "unsigned long " << inSourceName << "_blockStartAddressForIndex (const unsigned long inIndex) ;\n\n" ;
+  headerCode.append_C_HyphenLineComment () ;
+  headerCode << "\n"
+                "unsigned long " << inSourceName << "_blockLengthForIndex (const unsigned long inIndex) ;\n\n" ;
+  headerCode.append_C_HyphenLineComment () ;
+  headerCode << "\n"
+                "unsigned char " << inSourceName << "_dataForIndexAndOffset (const unsigned long inIndex,\n"
+                        "                                     const unsigned long inOffset) ;\n\n" ;
+  headerCode.append_C_HyphenLineComment () ;
+  headerCode << "\n"
+                "#ifdef __cplusplus\n"
+                "  }\n"
+                "#endif\n\n" ;
+  headerCode.append_C_HyphenLineComment () ;
+//---
+  return headerCode ;
+}
+
+//---------------------------------------------------------------------------*
+
+static C_String
 generateHexCodeFromSpareArray (const TC_UniqueSparseArray <PMUInt8> & inSpareArray) {
   C_String hexCode ;
 //--- Header
@@ -204,11 +332,27 @@ void routine_emitByte (C_Compiler & inLexique,
 //---------------------------------------------------------------------------*
 
 void routine_getGeneratedContents (C_Compiler & /* inLexique */,
-                                   GGS_string & outFileName
+                                   GGS_string & outHexFileContents
                                    COMMA_UNUSED_LOCATION_ARGS) {
-  outFileName = GGS_string (true, generateHexCodeFromSpareArray (gSparseArray)) ;
-//---
-  gSparseArray.free () ;
+  outHexFileContents = GGS_string (true, generateHexCodeFromSpareArray (gSparseArray)) ;
+}
+
+//---------------------------------------------------------------------------*
+
+void routine_get_C_ArrayImplementation (C_Compiler & /* inLexique */,
+                                        GGS_string inSourceName,
+                                        GGS_string & outHexFileContents
+                                        COMMA_UNUSED_LOCATION_ARGS) {
+  outHexFileContents = GGS_string (true, generate_C_ArrayImplementationFileFromSpareArray (inSourceName.string (), gSparseArray)) ;
+}
+
+//---------------------------------------------------------------------------*
+
+void routine_get_C_ArrayHeader (C_Compiler & /* inLexique */,
+                                GGS_string inSourceName,
+                                GGS_string & outHexFileContents
+                                COMMA_UNUSED_LOCATION_ARGS) {
+  outHexFileContents = GGS_string (true, generate_C_ArrayHeaderFileFromSpareArray (inSourceName.string (), gSparseArray)) ;
 }
 
 //---------------------------------------------------------------------------*
