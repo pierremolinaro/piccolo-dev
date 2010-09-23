@@ -1,6 +1,10 @@
 syntax piccolo_syntax :
 with "piccolo_lexique.gLexique" ;
+
 import lexique piccolo_lexique in "piccolo_lexique.gLexique" ;
+
+import "pic18_metamodel.gSemantics" ;
+import "pic18_semantics.gSemantics" ;
 import semantics pic18_metamodel in "pic18_metamodel.gSemantics" ;
 import semantics pic18_semantics in "pic18_semantics.gSemantics" ;
 

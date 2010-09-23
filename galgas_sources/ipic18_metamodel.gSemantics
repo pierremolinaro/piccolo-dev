@@ -1,5 +1,6 @@
 semantics ipic18_metamodel :
 import "pic18_metamodel.gSemantics" ;
+import "ipic_generic.gSemantics" ;
 import semantics pic18_metamodel in "pic18_metamodel.gSemantics" ;
 import semantics ipic_generic in "ipic_generic.gSemantics" ;
 

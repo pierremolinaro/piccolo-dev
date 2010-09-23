@@ -1,7 +1,9 @@
 semantics ipic18_build_binary_code :
+import "ipic18_metamodel.gSemantics" ;
+import "ipic18_build_assembly_code.gSemantics" ;
+
 import semantics ipic18_metamodel in "ipic18_metamodel.gSemantics" ;
 import semantics ipic18_build_assembly_code in "ipic18_build_assembly_code.gSemantics" ;
-import "ipic18_build_assembly_code.gSemantics" ;
 
 #----------------------------------------------------------------------------*
 
