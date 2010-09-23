@@ -1,10 +1,12 @@
 semantics ram_sections :
 import semantics piccoloDevice_semantics in "piccoloDevice_semantics.gSemantics" ;
 import semantics ipic18_metamodel in "ipic18_metamodel.gSemantics" ;
+import option piccolo_options in "piccolo_options.gOption" ;
+
 import "piccoloDevice_semantics.gSemantics" ;
 import "ipic18_metamodel.gSemantics" ;
+import "piccolo_options.gOption" ;
 
-import option piccolo_options in "piccolo_options.gOption" ;
 
 #----------------------------------------------------------------------------*
 #                                                                            *

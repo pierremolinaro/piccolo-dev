@@ -1,4 +1,12 @@
 semantics pic18_semantics :
+import "ipic18_build_binary_code.gSemantics" ;
+import "pic18_checkingAndBuildIPIC.gSemantics" ;
+import "ipc18_convert_relatives.gSemantics" ;
+import "ipic18_optimizations.gSemantics" ;
+import "piccolo_config.gSemantics" ;
+import "ram_sections.gSemantics" ;
+import "piccolo_grammar.gGrammar" ;
+
 import semantics ipic18_build_binary_code in "ipic18_build_binary_code.gSemantics" ;
 import semantics pic18_checkingAndBuildIPIC in "pic18_checkingAndBuildIPIC.gSemantics" ;
 import semantics ipc18_convert_relatives in "ipc18_convert_relatives.gSemantics" ;
