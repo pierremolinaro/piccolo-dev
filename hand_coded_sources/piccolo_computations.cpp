@@ -7,6 +7,7 @@
 #include "ipic_generic.h"
 #include "utilities/MF_MemoryControl.h"
 #include "collections/TC_UniqueSparseArray.h"
+#include "galgas-utilities/C_Compiler.h"
 
 //---------------------------------------------------------------------------*
 //                                                                           *
@@ -83,7 +84,7 @@ emit_data_record (C_String & ioGeneratedCode,
     const PMUInt32 startAddressMod16 = startAddress & 0x0000FFFF ;
     char s [20] ; sprintf (s, ":%02X%04X00", ioBufferEntryCount, startAddressMod16) ;
     ioGeneratedCode << s ;
-    PMUInt8 somme = (PMUInt8) ioBufferEntryCount ;
+    PMUInt8 somme = (PMUInt8) (ioBufferEntryCount & 255) ;
     somme = (PMUInt8) (somme + ((startAddressMod16 >> 8) & 255)) ;
     somme = (PMUInt8) (somme + (startAddressMod16 & 255)) ;
     for (PMUInt32 i=0 ; i<ioBufferEntryCount ; i++) {
@@ -265,29 +266,39 @@ static PMUInt32 gCurrentAddress = 0 ;
 
 //---------------------------------------------------------------------------*
 
-void routine_setEmitAddress (C_Compiler & /* inLexique */,
-                             const GGS_uint inAddress
+static void freeSparseArray (void) {
+  gSparseArray.free () ;
+}
+
+//---------------------------------------------------------------------------*
+
+C_PrologueEpilogue freeSparseArrayOnEpilogue (NULL, freeSparseArray) ;
+
+//---------------------------------------------------------------------------*
+
+void routine_setEmitAddress (const GALGAS_uint inAddress,
+                             C_Compiler * /* inCompiler */
                              COMMA_UNUSED_LOCATION_ARGS) {
   gCurrentAddress = inAddress.uintValue () ;
 }
 
 //---------------------------------------------------------------------------*
 
-void routine_currentEmitAddress (C_Compiler & /* inLexique */,
-                                 GGS_uint & outAddress
-                             COMMA_UNUSED_LOCATION_ARGS) {
-  outAddress = GGS_uint (true, gCurrentAddress) ;
+void routine_currentEmitAddress (GALGAS_uint & outAddress,
+                                 C_Compiler * /* inCompiler */
+                                 COMMA_UNUSED_LOCATION_ARGS) {
+  outAddress = GALGAS_uint (gCurrentAddress) ;
 }
 
 //---------------------------------------------------------------------------*
 
-void routine_emitCode (C_Compiler & inLexique,
-                       const GGS_uint inCode
+void routine_emitCode (const GALGAS_uint inCode,
+                       C_Compiler * inCompiler
                        COMMA_LOCATION_ARGS) {
   if (inCode.uintValue () > 0xFFFF) {
     C_String errorMessage ;
     errorMessage << "Internal error: code (" << cStringWithUnsigned (inCode.uintValue ()) << ") greater than 2**16-1" ;
-    inLexique.onTheFlySemanticError (errorMessage COMMA_THERE) ;
+    inCompiler->onTheFlySemanticError (errorMessage COMMA_THERE) ;
   }
   const unsigned char lowByte = (unsigned char) (inCode.uintValue () & 255) ;
   const unsigned char highByte = (unsigned char) ((inCode.uintValue () >> 8) & 255) ;
@@ -296,7 +307,7 @@ void routine_emitCode (C_Compiler & inLexique,
   if (gSparseArray.isDefaultObjectAtIndex (gCurrentAddress)) {
     C_String errorMessage ;
     errorMessage << "Internal error: still default object at index " << cStringWithUnsigned (gCurrentAddress) ;
-    inLexique.onTheFlySemanticError (errorMessage COMMA_THERE) ;
+    inCompiler->onTheFlySemanticError (errorMessage COMMA_THERE) ;
   }
   gCurrentAddress ++ ;
 //--- High Byte
@@ -304,55 +315,55 @@ void routine_emitCode (C_Compiler & inLexique,
   if (gSparseArray.isDefaultObjectAtIndex (gCurrentAddress)) {
     C_String errorMessage ;
     errorMessage << "Internal error: still default object at index " << cStringWithUnsigned (gCurrentAddress) ;
-    inLexique.onTheFlySemanticError (errorMessage COMMA_THERE) ;
+    inCompiler->onTheFlySemanticError (errorMessage COMMA_THERE) ;
   }
   gCurrentAddress ++ ;
 }
 
 //---------------------------------------------------------------------------*
 
-void routine_emitByte (C_Compiler & inLexique,
-                       const GGS_uint inCode
+void routine_emitByte (const GALGAS_uint inCode,
+                       C_Compiler * inCompiler
                        COMMA_LOCATION_ARGS) {
   if (inCode.uintValue () > 0xFF) {
     C_String errorMessage ;
     errorMessage << "Internal error: code (" << cStringWithUnsigned (inCode.uintValue ()) << ") greater than 255" ;
-    inLexique.onTheFlySemanticError (errorMessage COMMA_THERE) ;
+    inCompiler->onTheFlySemanticError (errorMessage COMMA_THERE) ;
   }
 //---
   gSparseArray.setObjectAtIndex ((unsigned char) (inCode.uintValue () & 255), gCurrentAddress) ;
   if (gSparseArray.isDefaultObjectAtIndex (gCurrentAddress)) {
     C_String errorMessage ;
     errorMessage << "Internal error: still default object at index " << cStringWithUnsigned (gCurrentAddress) ;
-    inLexique.onTheFlySemanticError (errorMessage COMMA_THERE) ;
+    inCompiler->onTheFlySemanticError (errorMessage COMMA_THERE) ;
   }
   gCurrentAddress ++ ;
 }
 
 //---------------------------------------------------------------------------*
 
-void routine_getGeneratedContents (C_Compiler & /* inLexique */,
-                                   GGS_string & outHexFileContents
+void routine_getGeneratedContents (GALGAS_string & outHexFileContents,
+                                   C_Compiler * /* inCompiler */
                                    COMMA_UNUSED_LOCATION_ARGS) {
-  outHexFileContents = GGS_string (true, generateHexCodeFromSpareArray (gSparseArray)) ;
+  outHexFileContents = GALGAS_string (generateHexCodeFromSpareArray (gSparseArray)) ;
 }
 
 //---------------------------------------------------------------------------*
 
-void routine_get_C_ArrayImplementation (C_Compiler & /* inLexique */,
-                                        GGS_string inSourceName,
-                                        GGS_string & outHexFileContents
-                                        COMMA_UNUSED_LOCATION_ARGS) {
-  outHexFileContents = GGS_string (true, generate_C_ArrayImplementationFileFromSpareArray (inSourceName.string (), gSparseArray)) ;
+void routine_get_5F_C_5F_ArrayImplementation (const GALGAS_string inSourceName,
+                                              GALGAS_string & outHexFileContents,
+                                              C_Compiler * /* inCompiler */
+                                              COMMA_UNUSED_LOCATION_ARGS) {
+  outHexFileContents = GALGAS_string (generate_C_ArrayImplementationFileFromSpareArray (inSourceName.stringValue (), gSparseArray)) ;
 }
 
 //---------------------------------------------------------------------------*
 
-void routine_get_C_ArrayHeader (C_Compiler & /* inLexique */,
-                                GGS_string inSourceName,
-                                GGS_string & outHexFileContents
-                                COMMA_UNUSED_LOCATION_ARGS) {
-  outHexFileContents = GGS_string (true, generate_C_ArrayHeaderFileFromSpareArray (inSourceName.string (), gSparseArray)) ;
+void routine_get_5F_C_5F_ArrayHeader (GALGAS_string inSourceName,
+                                      GALGAS_string & outHexFileContents,
+                                      C_Compiler * /* inCompiler */
+                                      COMMA_UNUSED_LOCATION_ARGS) {
+  outHexFileContents = GALGAS_string (generate_C_ArrayHeaderFileFromSpareArray (inSourceName.stringValue (), gSparseArray)) ;
 }
 
 //---------------------------------------------------------------------------*

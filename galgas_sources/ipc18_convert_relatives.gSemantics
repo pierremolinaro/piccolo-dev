@@ -11,6 +11,24 @@ map @ipic18_symbolTableForConvertingRelatives {
 }
 
 #----------------------------------------------------------------------------*
+
+abstract class @toto { }
+class @toto1 extends @toto { }
+abstract class @toto2 extends @toto1 { }
+class @toto3 extends @toto2 { }
+
+#override method @toto1 m : end method ;
+#override method @toto3 m : end method ;
+#override abstract method @toto2 m ;
+#abstract method @toto m ;
+
+override abstract reader @toto2 r -> @uint result ;
+override reader @toto3 r -> @uint result : result := 0 ; end reader ;
+override reader @toto1 r -> @uint result : result := 0 ; end reader ;
+reader @toto1 rr -> @uint result : result := 0 ; end reader ;
+abstract reader @toto r -> @uint result ;
+
+#----------------------------------------------------------------------------*
 #                                                                            *
 #                          defineLabelAtAddress                              *
 #                                                                            *
@@ -24,8 +42,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override
-method @ipic_pseudo_LABEL defineLabelAtAddress
+override method @ipic_pseudo_LABEL defineLabelAtAddress
   ?!@ipic18_symbolTableForConvertingRelatives ioRoutineSymbolTable
   ?!@uint ioAddress
 :
@@ -34,8 +51,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override
-method @ipic_pseudo_ORG defineLabelAtAddress
+override method @ipic_pseudo_ORG defineLabelAtAddress
   ?!@ipic18_symbolTableForConvertingRelatives unused ioRoutineSymbolTable
   ?!@uint ioAddress
 :
@@ -48,8 +64,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override
-method @ipic_actualInstruction defineLabelAtAddress
+override method @ipic_actualInstruction defineLabelAtAddress
   ?!@ipic18_symbolTableForConvertingRelatives unused ioRoutineSymbolTable
   ?!@uint ioAddress
 :
