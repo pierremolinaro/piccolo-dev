@@ -242,7 +242,7 @@ list @constantDefinitionList {
 
 map @actualConfigurationMap {
   @uint mRegisterAddress ;
-  @uint mRegisterValue feature setter ;
+  @uint mRegisterValue ; # feature setter ;
   insert insertKey error message "the '%K' configuration register is already declared in %L" ;
   search searchKey error message "the '%K' configuration register is not declared" ;
 }
