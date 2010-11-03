@@ -280,14 +280,14 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 6BBF9AC94A7E459509A20ED0 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 84F762EBA80AA538B0C527F7 /* Piccolo Tool Debug */;
+			remoteGlobalIDString = 84F762EBA80AA538B0C527F7;
 			remoteInfo = "Piccolo Tool Debug";
 		};
 		CF788968127F0B890091BAB2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6BBF9AC94A7E459509A20ED0 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = C859D284DC13885A37CE8D81 /* Piccolo Tool */;
+			remoteGlobalIDString = C859D284DC13885A37CE8D81;
 			remoteInfo = "Piccolo Tool";
 		};
 /* End PBXContainerItemProxy section */
