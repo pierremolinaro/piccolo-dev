@@ -1,5 +1,4 @@
 semantics ipic18_optimizations :
-import semantics ipic18_metamodel in "ipic18_metamodel.gSemantics" ;
 import "ipic18_metamodel.gSemantics" ;
 
 #----------------------------------------------------------------------------*

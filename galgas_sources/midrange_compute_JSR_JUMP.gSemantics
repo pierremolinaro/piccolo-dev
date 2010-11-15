@@ -1,5 +1,4 @@
 semantics midrange_compute_JSR_JUMP :
-import semantics midrange_ipic_metamodel in "midrange_ipic_metamodel.gSemantics" ;
 import "midrange_ipic_metamodel.gSemantics" ;
 
 #----------------------------------------------------------------------------*

@@ -1,6 +1,5 @@
 semantics pic18_metamodel :
 import "generic_metamodel.gSemantics" ;
-import semantics generic_metamodel in "generic_metamodel.gSemantics" ;
 
 #---------------------------------------------------------------------------*
 #                                                                           *

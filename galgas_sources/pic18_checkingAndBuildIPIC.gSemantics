@@ -1,10 +1,4 @@
 semantics pic18_checkingAndBuildIPIC :
-import semantics pic18_metamodel in "pic18_metamodel.gSemantics" ;
-import semantics ipic18_metamodel in "ipic18_metamodel.gSemantics" ;
-import semantics piccoloDevice_semantics in "piccoloDevice_semantics.gSemantics" ;
-import semantics ipic_generic in "ipic_generic.gSemantics" ;
-import option piccolo_options in "piccolo_options.gOption" ;
-
 import "piccolo_options.gOption" ;
 import "pic18_metamodel.gSemantics" ;
 import "ipic_generic.gSemantics" ;

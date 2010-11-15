@@ -1,5 +1,4 @@
 semantics ipc18_convert_relatives :
-import semantics ipic18_metamodel in "ipic18_metamodel.gSemantics" ;
 import "ipic18_metamodel.gSemantics" ;
 
 #----------------------------------------------------------------------------*

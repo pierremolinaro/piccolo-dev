@@ -1,6 +1,5 @@
 semantics pic18_bootloader_specification_semantics :
 import "pic18_semantics.gSemantics" ;
-import semantics pic18_semantics in "pic18_semantics.gSemantics" ;
 
 #----------------------------------------------------------------------------*
 

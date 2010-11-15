@@ -1,6 +1,4 @@
 semantics midrange_build_binary_code :
-import semantics midrange_metamodel in "midrange_metamodel.gSemantics" ;
-import semantics midrange_ipic_metamodel in "midrange_ipic_metamodel.gSemantics" ;
 import "ipic_generic.gSemantics" ;
 import "midrange_ipic_metamodel.gSemantics" ;
 

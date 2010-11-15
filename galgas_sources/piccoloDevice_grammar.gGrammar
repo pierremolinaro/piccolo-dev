@@ -1,8 +1,5 @@
 grammar piccoloDevice_grammar "LL1":
 with "piccoloDevice_syntax.gSyntax" ;
-import lexique piccoloDevice_lexique in "piccoloDevice_lexique.gLexique" ;
-import syntax piccoloDevice_syntax in "piccoloDevice_syntax.gSyntax" ;
-
 root <start_symbol>
   !@piccoloDeviceModel outPiccoloDeviceModel
 ;

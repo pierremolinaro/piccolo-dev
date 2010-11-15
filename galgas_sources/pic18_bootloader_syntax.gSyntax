@@ -1,13 +1,7 @@
-syntax pic18_bootloader_syntax :
-with "piccolo_lexique.gLexique" ;
-
-import lexique piccolo_lexique in "piccolo_lexique.gLexique" ;
+syntax pic18_bootloader_syntax ("piccolo_lexique.gLexique") :
 import "pic18_metamodel.gSemantics" ;
 import "pic18_bootloader_specification_semantics.gSemantics" ;
 import "piccolo_options.gOption" ;
-import semantics pic18_metamodel in "pic18_metamodel.gSemantics" ;
-import semantics pic18_bootloader_specification_semantics in "pic18_bootloader_specification_semantics.gSemantics" ;
-import option piccolo_options in "piccolo_options.gOption" ;
 
 #----------------------------------------------------*
 

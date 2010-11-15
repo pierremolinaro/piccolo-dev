@@ -1,9 +1,4 @@
 semantics midrange_checkingAndBuildIPIC :
-import semantics midrange_metamodel in "midrange_metamodel.gSemantics" ;
-import semantics piccoloDevice_semantics in "piccoloDevice_semantics.gSemantics" ;
-import semantics midrange_ipic_metamodel in "midrange_ipic_metamodel.gSemantics" ;
-import option piccolo_options in "piccolo_options.gOption" ;
-
 import "midrange_metamodel.gSemantics" ;
 import "piccoloDevice_semantics.gSemantics" ;
 import "midrange_ipic_metamodel.gSemantics" ;

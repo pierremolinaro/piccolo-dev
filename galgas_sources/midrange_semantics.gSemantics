@@ -10,17 +10,6 @@ import "midrange_build_binary_code.gSemantics" ;
 import "midrange_compute_JSR_JUMP.gSemantics" ;
 import "piccolo_options.gOption" ;
 
-import semantics midrange_checkingAndBuildIPIC in "midrange_checkingAndBuildIPIC.gSemantics" ;
-import semantics midrange_ipic_build_assembly_code in "midrange_ipic_build_assembly_code.gSemantics" ;
-import semantics piccolo_embedded_devices in "piccolo_embedded_devices.gSemantics" ;
-import semantics midrange_metamodel in "midrange_metamodel.gSemantics" ;
-import semantics piccolo_config in "piccolo_config.gSemantics" ;
-import semantics ram_sections in "ram_sections.gSemantics" ;
-import semantics midrange_optimizations in "midrange_optimizations.gSemantics" ;
-import semantics midrange_build_binary_code in "midrange_build_binary_code.gSemantics" ;
-import semantics midrange_compute_JSR_JUMP in "midrange_compute_JSR_JUMP.gSemantics" ;
-import option piccolo_options in "piccolo_options.gOption" ;
-
 #----------------------------------------------------------------------------*
 #                                                                            *
 #               S E M A N T I C    A N A L Y S I S                           *

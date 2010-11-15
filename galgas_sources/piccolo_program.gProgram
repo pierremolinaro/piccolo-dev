@@ -3,11 +3,6 @@ import "pic18_metamodel.gSemantics" ;
 import "pic18_semantics.gSemantics" ;
 import "piccolo_grammar.gGrammar" ;
 
-#--- Import clauses
-import semantics pic18_metamodel in "pic18_metamodel.gSemantics" ;
-import semantics pic18_semantics in "pic18_semantics.gSemantics" ;
-import grammar piccolo_grammar in "piccolo_grammar.gGrammar" ;
-
 #--- Prologue routine
 before {
 #------------------------------------------------ Print supported device list
