@@ -1,6 +1,4 @@
 semantics ipic18_build_assembly_code :
-import semantics piccolo_embedded_devices in "piccolo_embedded_devices.gSemantics" ;
-import semantics ipic18_metamodel in "ipic18_metamodel.gSemantics" ;
 import "ipic18_metamodel.gSemantics" ;
 import "piccolo_embedded_devices.gSemantics" ;
 
