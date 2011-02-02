@@ -79,34 +79,36 @@ end method ;
 #----------------------------------------------------*
 
 abstract class @midrange_ipic_instruction {
-  abstract method instructionLength !@uint outLength ;
-  abstract method displayIPICinstruction ?!@string ioListFileContents ;
-
-  method setCurrentAddress ?!@uint ioCurrentAddress :
-    @uint length ;
-    [self instructionLength ?length] ;
-    ioCurrentAddress := ioCurrentAddress + length ;
-  end method ;
-
-  method isLABELorORG !@bool outIsLABELorORG :
-    outIsLABELorORG := false ;
-  end method ;
-
-  method isNULL !@bool outIsNULL :
-    outIsNULL := false ;
-  end method ;
-
-  method nextInstructionIsReachable !@bool outIsReachable :
-    outIsReachable := true ;
-  end method ;
-
-  method isSkippingInstruction !@bool outIsSkipping :
-    outIsSkipping := false ;
-  end method ;
-
-  method enterReferencedLabel ?!@stringset unused ioReferencedLabelSet :
-  end method ;
 }
+
+abstract method @midrange_ipic_instruction instructionLength !@uint outLength ;
+abstract method @midrange_ipic_instruction displayIPICinstruction ?!@string ioListFileContents ;
+
+method @midrange_ipic_instruction setCurrentAddress ?!@uint ioCurrentAddress :
+  @uint length ;
+  [self instructionLength ?length] ;
+  ioCurrentAddress := ioCurrentAddress + length ;
+end method ;
+
+method @midrange_ipic_instruction isLABELorORG !@bool outIsLABELorORG :
+  outIsLABELorORG := false ;
+end method ;
+
+method @midrange_ipic_instruction isNULL !@bool outIsNULL :
+  outIsNULL := false ;
+end method ;
+
+method @midrange_ipic_instruction nextInstructionIsReachable !@bool outIsReachable :
+  outIsReachable := true ;
+end method ;
+
+method @midrange_ipic_instruction isSkippingInstruction !@bool outIsSkipping :
+  outIsSkipping := false ;
+end method ;
+
+method @midrange_ipic_instruction enterReferencedLabel ?!@stringset unused ioReferencedLabelSet :
+end method ;
+
 
 #----------------------------------------------------*
 
@@ -117,71 +119,72 @@ list @midrange_ipic_instructionList {
 #----------------------------------------------------*
 
 class @midrange_ipic_NULL extends @midrange_ipic_instruction {
-  override method instructionLength !@uint outLength :
-    outLength := 0 ;
-  end method ;
-
-  override
-  method displayIPICinstruction ?!@string ioListFileContents :
-    ioListFileContents .= "-" ;
-  end method ;
-
-  override method isNULL !@bool outIsNULL :
-    outIsNULL := true ;
-  end method ;
 }
+override method @midrange_ipic_NULL instructionLength !@uint outLength :
+  outLength := 0 ;
+end method ;
+
+override
+method @midrange_ipic_NULL displayIPICinstruction ?!@string ioListFileContents :
+  ioListFileContents .= "-" ;
+end method ;
+
+override method @midrange_ipic_NULL isNULL !@bool outIsNULL :
+  outIsNULL := true ;
+end method ;
+
 
 #----------------------------------------------------*
 
 class @midrange_ipic_pseudo_ORG extends @midrange_ipic_instruction {
   @uint mOrigin ;
-
-  override method instructionLength !@uint outLength :
-    outLength := 0 ;
-  end method ;
-
-  override method setCurrentAddress ?!@uint ioCurrentAddress :
-    ioCurrentAddress := mOrigin ;
-  end method ;
-
-  override
-  method displayIPICinstruction ?!@string ioListFileContents :
-    ioListFileContents .= "ORG " . [mOrigin hexString] ;
-  end method ;
-
-  override method isLABELorORG !@bool outIsLABELorORG :
-    outIsLABELorORG := true ;
-  end method ;
 }
+
+override method @midrange_ipic_pseudo_ORG instructionLength !@uint outLength :
+  outLength := 0 ;
+end method ;
+
+override method @midrange_ipic_pseudo_ORG setCurrentAddress ?!@uint ioCurrentAddress :
+  ioCurrentAddress := mOrigin ;
+end method ;
+
+override
+method @midrange_ipic_pseudo_ORG displayIPICinstruction ?!@string ioListFileContents :
+  ioListFileContents .= "ORG " . [mOrigin hexString] ;
+end method ;
+
+override method @midrange_ipic_pseudo_ORG isLABELorORG !@bool outIsLABELorORG :
+  outIsLABELorORG := true ;
+end method ;
 
 #----------------------------------------------------*
 
 class @midrange_ipic_pseudo_LABEL extends @midrange_ipic_instruction {
   @lstring mLabel ;
-
-  override method instructionLength !@uint outLength :
-    outLength := 0 ;
-  end method ;
-
-  override
-  method displayIPICinstruction ?!@string ioListFileContents :
-    ioListFileContents .= "LABEL " . mLabel ;
-  end method ;
-
-  override method isLABELorORG !@bool outIsLABELorORG :
-    outIsLABELorORG := true ;
-  end method ;
 }
+
+override method @midrange_ipic_pseudo_LABEL instructionLength !@uint outLength :
+  outLength := 0 ;
+end method ;
+
+override
+method @midrange_ipic_pseudo_LABEL displayIPICinstruction ?!@string ioListFileContents :
+  ioListFileContents .= "LABEL " . mLabel ;
+end method ;
+
+override method @midrange_ipic_pseudo_LABEL isLABELorORG !@bool outIsLABELorORG :
+  outIsLABELorORG := true ;
+end method ;
 
 #----------------------------------------------------*
 
 abstract class @midrange_ipic_actualInstruction extends @midrange_ipic_instruction {
   @location mInstructionLocation ;
-
-  override method instructionLength !@uint outLength :
-    outLength := 1 ;
-  end method ;
 }
+
+override method @midrange_ipic_actualInstruction instructionLength !@uint outLength :
+  outLength := 1 ;
+end method ;
 
 #----------------------------------------------------*
 
@@ -189,19 +192,19 @@ class @midrange_ipic_instruction_FD extends @midrange_ipic_actualInstruction {
   @midrange_instruction_FD_base_code mInstruction_FD_base_code ;
   @midrange_ipic_registerExpression mRegisterDescription ;
   @bool m_W_isDestination ;
-
-  method getBaseCode !@uint outBaseCode :
-    getMidRangeFDInstructionBaseCode !mInstruction_FD_base_code ?outBaseCode ;
-  end method ;
-
-  override
-  method displayIPICinstruction ?!@string ioListFileContents :
-    ioListFileContents .= [mInstruction_FD_base_code mnemonic] . " " . [mRegisterDescription mAssemblyString] ;
-    if m_W_isDestination then
-      ioListFileContents .= ", W" ;
-    end if ;
-  end method ;
 }
+
+method @midrange_ipic_instruction_FD getBaseCode !@uint outBaseCode :
+  getMidRangeFDInstructionBaseCode !mInstruction_FD_base_code ?outBaseCode ;
+end method ;
+
+override
+method @midrange_ipic_instruction_FD displayIPICinstruction ?!@string ioListFileContents :
+  ioListFileContents .= [mInstruction_FD_base_code mnemonic] . " " . [mRegisterDescription mAssemblyString] ;
+  if m_W_isDestination then
+    ioListFileContents .= ", W" ;
+  end if ;
+end method ;
 
 #----------------------------------------------------*
 
@@ -220,16 +223,16 @@ end routine ;
 class @midrange_ipic_instruction_F extends @midrange_ipic_actualInstruction {
   @midrange_F_instruction_base_code mFinstruction ;
   @midrange_ipic_registerExpression mRegisterDescription ;
-
-  method getBaseCode !@uint outBaseCode :
-    getMidRangeFinstructionBaseCode !mFinstruction ?outBaseCode ;
-  end method ;
-
-  override
-  method displayIPICinstruction ?!@string ioListFileContents :
-    ioListFileContents .= [mFinstruction mnemonic] . " " . [mRegisterDescription mAssemblyString] ;
-  end method ;
 }
+
+method @midrange_ipic_instruction_F getBaseCode !@uint outBaseCode :
+  getMidRangeFinstructionBaseCode !mFinstruction ?outBaseCode ;
+end method ;
+
+override
+method @midrange_ipic_instruction_F displayIPICinstruction ?!@string ioListFileContents :
+  ioListFileContents .= [mFinstruction mnemonic] . " " . [mRegisterDescription mAssemblyString] ;
+end method ;
 
 #----------------------------------------------------*
 
@@ -247,17 +250,16 @@ class @midrange_ipic_instruction_FB extends @midrange_ipic_actualInstruction {
   @midrange_bit_oriented_op mBitOrientedOp ;
   @midrange_ipic_registerExpression mRegisterDescription ;
   @uint mBitNumber ;
-
-  method getBaseCode !@uint outBaseCode :
-    getMidRangeBitOrientedOpBaseCode !mBitOrientedOp ?outBaseCode ;
-  end method ;
-
-  override
-  method displayIPICinstruction ?!@string ioListFileContents :
-    ioListFileContents .= [mBitOrientedOp mnemonic] . " " . [mRegisterDescription mAssemblyString] . ", " . [mBitNumber string] ;
-  end method ;
 }
 
+method @midrange_ipic_instruction_FB getBaseCode !@uint outBaseCode :
+  getMidRangeBitOrientedOpBaseCode !mBitOrientedOp ?outBaseCode ;
+end method ;
+
+override
+method @midrange_ipic_instruction_FB displayIPICinstruction ?!@string ioListFileContents :
+  ioListFileContents .= [mBitOrientedOp mnemonic] . " " . [mRegisterDescription mAssemblyString] . ", " . [mBitNumber string] ;
+end method ;
 
 #----------------------------------------------------*
 
@@ -265,30 +267,30 @@ class @midrange_ipic_instruction_BitTestSkip extends @midrange_ipic_actualInstru
   @bool mSkipIfSet ;
   @midrange_ipic_registerExpression mRegisterDescription ;
   @uint mBitNumber ;
-
-  method getBaseCode !@uint outBaseCode :
-    if mSkipIfSet then
-      outBaseCode := 0x1C00 ; # BTFSS
-    else
-      outBaseCode := 0x1800 ; # BTFSC
-    end if ;
-  end method ;
-
-  override
-  method displayIPICinstruction ?!@string ioListFileContents :
-    if mSkipIfSet then
-      ioListFileContents .= "BTFSS" ;
-    else
-      ioListFileContents .= "BTFSC" ;
-    end if ;
-    ioListFileContents .= " " . [mRegisterDescription mAssemblyString] . ", " . [mBitNumber string] ;
-  end method ;
-
-  override
-  method isSkippingInstruction !@bool outIsSkipping :
-    outIsSkipping := true ;
-  end method ;
 }
+
+method @midrange_ipic_instruction_BitTestSkip getBaseCode !@uint outBaseCode :
+  if mSkipIfSet then
+    outBaseCode := 0x1C00 ; # BTFSS
+  else
+    outBaseCode := 0x1800 ; # BTFSC
+  end if ;
+end method ;
+
+override
+method @midrange_ipic_instruction_BitTestSkip displayIPICinstruction ?!@string ioListFileContents :
+  if mSkipIfSet then
+    ioListFileContents .= "BTFSS" ;
+  else
+    ioListFileContents .= "BTFSC" ;
+  end if ;
+  ioListFileContents .= " " . [mRegisterDescription mAssemblyString] . ", " . [mBitNumber string] ;
+end method ;
+
+override
+method @midrange_ipic_instruction_BitTestSkip isSkippingInstruction !@bool outIsSkipping :
+  outIsSkipping := true ;
+end method ;
 
 #----------------------------------------------------*
 
@@ -304,70 +306,71 @@ class @midrange_ipic_JUMP extends @midrange_ipic_actualInstruction {
   @lstring mTargetLabel ;
   @midrange_call_goto_bit mBit11 ;
   @midrange_call_goto_bit mBit12 ;
-
-  override
-  method instructionLength !@uint outLength :
-    outLength := 1 ;
-    if mBit11 != [@midrange_call_goto_bit noChange] then
-      outLength ++ ;
-    end if ;
-    if mBit12 != [@midrange_call_goto_bit noChange] then
-      outLength ++ ;
-    end if ;
-  end method ;
-
-  override
-  method displayIPICinstruction ?!@string ioListFileContents :
-    ioListFileContents .= "JUMP " . mTargetLabel ;
-  end method ;
-
-  override method nextInstructionIsReachable !@bool outIsReachable :
-    outIsReachable := false ;
-  end method ;
-
-  override method enterReferencedLabel ?!@stringset ioReferencedLabelSet :
-    ioReferencedLabelSet += ![mTargetLabel string] ;
-  end method ;
 }
+
+override
+method @midrange_ipic_JUMP instructionLength !@uint outLength :
+  outLength := 1 ;
+  if mBit11 != [@midrange_call_goto_bit noChange] then
+    outLength ++ ;
+  end if ;
+  if mBit12 != [@midrange_call_goto_bit noChange] then
+    outLength ++ ;
+  end if ;
+end method ;
+
+override
+method @midrange_ipic_JUMP displayIPICinstruction ?!@string ioListFileContents :
+  ioListFileContents .= "JUMP " . mTargetLabel ;
+end method ;
+
+override method @midrange_ipic_JUMP nextInstructionIsReachable !@bool outIsReachable :
+  outIsReachable := false ;
+end method ;
+
+override method @midrange_ipic_JUMP enterReferencedLabel ?!@stringset ioReferencedLabelSet :
+  ioReferencedLabelSet += ![mTargetLabel string] ;
+end method ;
+
 
 #----------------------------------------------------*
 
 class @midrange_ipic_GOTO extends @midrange_ipic_actualInstruction {
   @lstring mTargetLabel ;
-
-  override
-  method instructionLength !@uint outLength :
-    outLength := 1 ;
-  end method ;
-
-  override
-  method displayIPICinstruction ?!@string ioListFileContents :
-    ioListFileContents .= "GOTO " . mTargetLabel ;
-  end method ;
-
-  override method nextInstructionIsReachable !@bool outIsReachable :
-    outIsReachable := false ;
-  end method ;
-
-  override method enterReferencedLabel ?!@stringset ioReferencedLabelSet :
-    ioReferencedLabelSet += ![mTargetLabel string] ;
-  end method ;
 }
+
+override
+method @midrange_ipic_GOTO instructionLength !@uint outLength :
+  outLength := 1 ;
+end method ;
+
+override
+method @midrange_ipic_GOTO displayIPICinstruction ?!@string ioListFileContents :
+  ioListFileContents .= "GOTO " . mTargetLabel ;
+end method ;
+
+override method @midrange_ipic_GOTO nextInstructionIsReachable !@bool outIsReachable :
+  outIsReachable := false ;
+end method ;
+
+override method @midrange_ipic_GOTO enterReferencedLabel ?!@stringset ioReferencedLabelSet :
+  ioReferencedLabelSet += ![mTargetLabel string] ;
+end method ;
 
 #----------------------------------------------------*
 
 class @midrange_ipic_CALL extends @midrange_ipic_actualInstruction {
   @lstring mTargetLabel ;
-
-  override
-  method displayIPICinstruction ?!@string ioListFileContents :
-    ioListFileContents .= "CALL " . mTargetLabel ;
-  end method ;
-
-  override method enterReferencedLabel ?!@stringset ioReferencedLabelSet :
-    ioReferencedLabelSet += ![mTargetLabel string] ;
-  end method ;
 }
+
+override
+method @midrange_ipic_CALL displayIPICinstruction ?!@string ioListFileContents :
+  ioListFileContents .= "CALL " . mTargetLabel ;
+end method ;
+
+override method @midrange_ipic_CALL enterReferencedLabel ?!@stringset ioReferencedLabelSet :
+  ioReferencedLabelSet += ![mTargetLabel string] ;
+end method ;
 
 #----------------------------------------------------*
 
@@ -375,95 +378,96 @@ class @midrange_ipic_JSR extends @midrange_ipic_actualInstruction {
   @lstring mTargetLabel ;
   @midrange_call_goto_bit mBit11 ;
   @midrange_call_goto_bit mBit12 ;
-
-  override
-  method instructionLength !@uint outLength :
-    outLength := 1 ;
-    if mBit11 != [@midrange_call_goto_bit noChange] then
-      outLength := outLength  + 2 ;
-    end if ;
-    if mBit12 != [@midrange_call_goto_bit noChange] then
-      outLength := outLength  + 2 ;
-    end if ;
-  end method ;
-
-  override
-  method displayIPICinstruction ?!@string ioListFileContents :
-    ioListFileContents .= "CALL " . mTargetLabel ;
-  end method ;
-
-  override method enterReferencedLabel ?!@stringset ioReferencedLabelSet :
-    ioReferencedLabelSet += ![mTargetLabel string] ;
-  end method ;
 }
+
+override
+method @midrange_ipic_JSR instructionLength !@uint outLength :
+  outLength := 1 ;
+  if mBit11 != [@midrange_call_goto_bit noChange] then
+    outLength := outLength  + 2 ;
+  end if ;
+  if mBit12 != [@midrange_call_goto_bit noChange] then
+    outLength := outLength  + 2 ;
+  end if ;
+end method ;
+
+override
+method @midrange_ipic_JSR displayIPICinstruction ?!@string ioListFileContents :
+  ioListFileContents .= "CALL " . mTargetLabel ;
+end method ;
+
+override method @midrange_ipic_JSR enterReferencedLabel ?!@stringset ioReferencedLabelSet :
+  ioReferencedLabelSet += ![mTargetLabel string] ;
+end method ;
 
 #----------------------------------------------------*
 
 class @midrange_ipic_instruction_CLRWDT extends @midrange_ipic_actualInstruction {
-
-  override
-  method displayIPICinstruction ?!@string ioListFileContents :
-    ioListFileContents .= "CLRWDT" ;
-  end method ;
 }
+
+override
+method @midrange_ipic_instruction_CLRWDT displayIPICinstruction ?!@string ioListFileContents :
+  ioListFileContents .= "CLRWDT" ;
+end method ;
 
 #----------------------------------------------------*
 
 class @midrange_ipic_instruction_CLRW extends @midrange_ipic_actualInstruction {
-
-  override
-  method displayIPICinstruction ?!@string ioListFileContents :
-    ioListFileContents .= "CLRW" ;
-  end method ;
 }
+
+override
+method @midrange_ipic_instruction_CLRW displayIPICinstruction ?!@string ioListFileContents :
+  ioListFileContents .= "CLRW" ;
+end method ;
+
 
 #----------------------------------------------------*
 
 class @midrange_ipic_instruction_NOP extends @midrange_ipic_actualInstruction {
-
-  override
-  method displayIPICinstruction ?!@string ioListFileContents :
-    ioListFileContents .= "NOP" ;
-  end method ;
 }
+
+override
+method @midrange_ipic_instruction_NOP displayIPICinstruction ?!@string ioListFileContents :
+  ioListFileContents .= "NOP" ;
+end method ;
 
 #----------------------------------------------------*
 
 class @midrange_ipic_instruction_RETURN extends @midrange_ipic_actualInstruction {
-
-  override
-  method displayIPICinstruction ?!@string ioListFileContents :
-    ioListFileContents .= "RETURN" ;
-  end method ;
-
-  override method nextInstructionIsReachable !@bool outIsReachable :
-    outIsReachable := false ;
-  end method ;
 }
+
+override
+method @midrange_ipic_instruction_RETURN displayIPICinstruction ?!@string ioListFileContents :
+  ioListFileContents .= "RETURN" ;
+end method ;
+
+override method @midrange_ipic_instruction_RETURN nextInstructionIsReachable !@bool outIsReachable :
+  outIsReachable := false ;
+end method ;
 
 #----------------------------------------------------*
 
 class @midrange_ipic_instruction_RETFIE extends @midrange_ipic_actualInstruction {
-
-  override
-  method displayIPICinstruction ?!@string ioListFileContents :
-    ioListFileContents .= "RETFIE" ;
-  end method ;
-
-  override method nextInstructionIsReachable !@bool outIsReachable :
-    outIsReachable := false ;
-  end method ;
 }
+
+override
+method @midrange_ipic_instruction_RETFIE displayIPICinstruction ?!@string ioListFileContents :
+  ioListFileContents .= "RETFIE" ;
+end method ;
+
+override method @midrange_ipic_instruction_RETFIE nextInstructionIsReachable !@bool outIsReachable :
+  outIsReachable := false ;
+end method ;
 
 #----------------------------------------------------*
 
 class @midrange_ipic_instruction_SLEEP extends @midrange_ipic_actualInstruction {
-
-  override
-  method displayIPICinstruction ?!@string ioListFileContents :
-    ioListFileContents .= "SLEEP" ;
-  end method ;
 }
+
+override
+method @midrange_ipic_instruction_SLEEP displayIPICinstruction ?!@string ioListFileContents :
+  ioListFileContents .= "SLEEP" ;
+end method ;
 
 #----------------------------------------------------*
 
@@ -484,35 +488,36 @@ end routine ;
 class @midrange_ipic_instruction_literalOperation extends @midrange_ipic_actualInstruction {
   @midrange_literal_instruction_opcode mLiteralInstruction ;
   @uint mLiteralValue ;
-
-  method getBaseCode !@uint outBaseCode :
-    getMidRangeLiteralInstructionBaseCode !mLiteralInstruction ?outBaseCode ;
-  end method ;
-
-  override
-  method displayIPICinstruction ?!@string ioListFileContents :
-    ioListFileContents .= [mLiteralInstruction mnemonic] . " " . [mLiteralValue hexString] ;
-  end method ;
-
-  override method nextInstructionIsReachable !@bool outIsReachable :
-    outIsReachable := mLiteralInstruction != [@midrange_literal_instruction_opcode RETLW] ;
-  end method ;
 }
+
+method @midrange_ipic_instruction_literalOperation getBaseCode !@uint outBaseCode :
+  getMidRangeLiteralInstructionBaseCode !mLiteralInstruction ?outBaseCode ;
+end method ;
+
+override
+method @midrange_ipic_instruction_literalOperation displayIPICinstruction ?!@string ioListFileContents :
+  ioListFileContents .= [mLiteralInstruction mnemonic] . " " . [mLiteralValue hexString] ;
+end method ;
+
+override method @midrange_ipic_instruction_literalOperation nextInstructionIsReachable !@bool outIsReachable :
+  outIsReachable := mLiteralInstruction != [@midrange_literal_instruction_opcode RETLW] ;
+end method ;
 
 #----------------------------------------------------*
 
 class @midrange_ipic_instruction_MNOP extends @midrange_ipic_actualInstruction {
   @luint mOccurrenceFactor ;
-  override
-  method instructionLength !@uint outLength :
-    outLength := [mOccurrenceFactor uint] ;
-  end method ;
-
-  override
-  method displayIPICinstruction ?!@string ioListFileContents :
-    ioListFileContents .= "MNOP " . [[mOccurrenceFactor uint] string] ;
-  end method ;
 }
+
+override
+method @midrange_ipic_instruction_MNOP instructionLength !@uint outLength :
+  outLength := [mOccurrenceFactor uint] ;
+end method ;
+
+override
+method @midrange_ipic_instruction_MNOP displayIPICinstruction ?!@string ioListFileContents :
+  ioListFileContents .= "MNOP " . [[mOccurrenceFactor uint] string] ;
+end method ;
 
 #----------------------------------------------------*
 
@@ -674,40 +679,41 @@ class @midrange_ipic_incDecRegisterInCondition extends @midrange_ipic_actualInst
   @bool mIncrement ;
   @bool m_W_isDestination ;
   @bool mBranchIfZero ;
-
-  override
-  method instructionLength !@uint outLength :
-    if mBranchIfZero then
-      outLength := 3 ;
-    else
-      outLength := 2 ;
-    end if ; 
-  end method ;
-
-  override
-  method displayIPICinstruction ?!@string ioListFileContents :
-    ioListFileContents .= "JUMP " ;
-    if mIncrement then
-      ioListFileContents .= "INCF " ;
-    else
-      ioListFileContents .= "DECF " ;
-    end if ;
-    ioListFileContents .= [mRegisterDescription mAssemblyString] ;
-    if m_W_isDestination then
-      ioListFileContents .= ", W" ;
-    end if ;
-    if mBranchIfZero then
-      ioListFileContents .= " Z" ;
-    else
-      ioListFileContents .= " NZ" ;
-    end if ;
-    ioListFileContents .= " " . mTargetLabel ;
-  end method ;
-
-  override method enterReferencedLabel ?!@stringset ioReferencedLabelSet :
-    ioReferencedLabelSet += !mTargetLabel ;
-  end method ;
 }
+
+override
+method @midrange_ipic_incDecRegisterInCondition instructionLength !@uint outLength :
+  if mBranchIfZero then
+    outLength := 3 ;
+  else
+    outLength := 2 ;
+  end if ; 
+end method ;
+
+override
+method @midrange_ipic_incDecRegisterInCondition displayIPICinstruction ?!@string ioListFileContents :
+  ioListFileContents .= "JUMP " ;
+  if mIncrement then
+    ioListFileContents .= "INCF " ;
+  else
+    ioListFileContents .= "DECF " ;
+  end if ;
+  ioListFileContents .= [mRegisterDescription mAssemblyString] ;
+  if m_W_isDestination then
+    ioListFileContents .= ", W" ;
+  end if ;
+  if mBranchIfZero then
+    ioListFileContents .= " Z" ;
+  else
+    ioListFileContents .= " NZ" ;
+  end if ;
+  ioListFileContents .= " " . mTargetLabel ;
+end method ;
+
+override method @midrange_ipic_incDecRegisterInCondition enterReferencedLabel ?!@stringset ioReferencedLabelSet :
+  ioReferencedLabelSet += !mTargetLabel ;
+end method ;
+
 
 #----------------------------------------------------*
 
