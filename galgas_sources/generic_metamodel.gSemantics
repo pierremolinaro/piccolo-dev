@@ -250,27 +250,36 @@ map @actualConfigurationMap {
 #----------------------------------------------------*
 
 abstract class @bitNumberExpression {
-  abstract method display ?!@string ioString ;
 }
+
+#----------------------------------------------------*
+
+abstract method @bitNumberExpression display ?!@string ioString ;
 
 #----------------------------------------------------*
 
 class @bitNumberLiteralValue extends @bitNumberExpression {
   @luint mBitNumberLiteralValue ;
-  override method display ?!@string ioString :
-    ioString .= [[mBitNumberLiteralValue uint] string] ;
-  end method ;
 }
+
+#----------------------------------------------------*
+
+override method @bitNumberLiteralValue display ?!@string ioString :
+  ioString .= [[mBitNumberLiteralValue uint] string] ;
+end method ;
 
 #----------------------------------------------------*
 
 class @bitNumberLabelValue extends @bitNumberExpression {
   @lstring mBitNumberLabelValue ;
   @luint mBitNumberIndexValue ;
-  override method display ?!@string ioString :
-    ioString .= [mBitNumberLabelValue string] . " [" . [[mBitNumberIndexValue uint] string] . "]" ;
-  end method ;
 }
+
+#----------------------------------------------------*
+
+override method @bitNumberLabelValue display ?!@string ioString :
+  ioString .= [mBitNumberLabelValue string] . " [" . [[mBitNumberIndexValue uint] string] . "]" ;
+end method ;
 
 #----------------------------------------------------*
 

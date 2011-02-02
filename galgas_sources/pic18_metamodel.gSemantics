@@ -374,23 +374,24 @@ class @instruction_IF_BitTest extends @instruction_IF_SEMI_COLON {
   @bool mSkipIfSet ;
   @registerExpression mRegisterExpression ;
   @bitNumberExpression mBitNumber ;
-
-  method getBaseCode !@uint outBaseCode :
-    if mSkipIfSet then
-      outBaseCode := 0xA000 ; # BTFSS
-    else
-      outBaseCode := 0xB000 ; # BTFSC
-    end if ;
-  end method ; 
-
-  method getMnemonic !@string outMnemonic :
-    if mSkipIfSet then
-      outMnemonic := "BTFSS" ;
-    else
-      outMnemonic := "BTFSC" ;
-    end if ;
-  end method ; 
 }
+
+method @instruction_IF_BitTest getBaseCode !@uint outBaseCode :
+  if mSkipIfSet then
+    outBaseCode := 0xA000 ; # BTFSS
+  else
+    outBaseCode := 0xB000 ; # BTFSC
+  end if ;
+end method ; 
+
+method @instruction_IF_BitTest getMnemonic !@string outMnemonic :
+  if mSkipIfSet then
+    outMnemonic := "BTFSS" ;
+  else
+    outMnemonic := "BTFSC" ;
+  end if ;
+end method ; 
+
 
 #----------------------------------------------------*
 
