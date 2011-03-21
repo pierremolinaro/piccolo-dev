@@ -231,7 +231,7 @@ list delimitorsList error message "the '%K' delimitor" style delimitersStyle :
 rule list delimitorsList ;
 
 # -------------------- Characters string --------------------------------------
-$literal_string$ ! tokenString error message "a character string constant \"...\"" style stringStyle ;
+$literal_string$ ! tokenString error message "a character string constant \"...\"" style stringStyle feature nonAtomicSelection ;
 
 message incorrectStringEnd : "string does not end with '\"'" ;
 
@@ -278,7 +278,7 @@ rule '"' :
 end rule ;
 
 # ------------------------------------ Comment ----------------------------
-$comment$ error message "a comment" style commentStyle ;
+$comment$ error message "a comment" style commentStyle feature nonAtomicSelection ;
 rule '#' :
   repeat
   while '\u0001' -> '\u0009' | '\u000B' | '\u000C' | '\u000E' -> '\uFFFD' :
