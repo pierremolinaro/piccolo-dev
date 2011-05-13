@@ -11,7 +11,7 @@ before {
    | [option piccolo_options.outputBaselineDeviceList value]
    | [option piccolo_options.outputMidrangeDeviceList value] then
   #--- Enumerate devices
-    @stringlist allDevices := [[filewrapper embeddedDevices] allFilePathes] ;
+    @stringlist allDevices := [[filewrapper embeddedDevices] allTextFilePathes] ;
     @stringlist pic18_devices [emptyList] ;
     @stringlist midrange_devices [emptyList] ;
     @stringlist baseline_devices [emptyList] ;
@@ -97,9 +97,9 @@ before {
       [dir makeDirectory] ;
     end if ;
     @filewrapper fw := [filewrapper embeddedDevices] ;
-    @stringlist allDevices := [[filewrapper embeddedDevices] allFilePathes] ;
+    @stringlist allDevices := [[filewrapper embeddedDevices] allTextFilePathes] ;
     foreach allDevices do
-      @string definitionString := [fw fileContentsAtPath !mValue] ;
+      @string definitionString := [fw textFileContentsAtPath !mValue] ;
       [definitionString writeToFile !dir . mValue] ;
     end foreach ;
     message [[allDevices length] string] . " devices copied in '" . dir . "' directory\n" ;
