@@ -7,6 +7,7 @@ import "piccoloDevice_grammar.gGrammar" ;
 filewrapper embeddedDevices in "../deviceDefinitions" {
   "piccoloDevice"
 }{
+}{
 }
 
 #----------------------------------------------------*
@@ -18,7 +19,7 @@ routine parseDeviceDefinition
   @filewrapper fw := [filewrapper embeddedDevices] ;
   @string deviceFullName := [inDeviceName string] . ".piccoloDevice" ;
   if [fw fileExistsAtPath !deviceFullName] then
-    @string definitionString := [fw fileContentsAtPath !deviceFullName] ;
+    @string definitionString := [fw textFileContentsAtPath !deviceFullName] ;
     grammar piccoloDevice_grammar on definitionString ?outPiccoloDeviceModel ;
   else
     error

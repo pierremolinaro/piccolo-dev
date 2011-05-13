@@ -8,7 +8,7 @@
 #include "utilities/MF_MemoryControl.h"
 #include "collections/TC_UniqueSparseArray.h"
 #include "galgas2/C_Compiler.h"
-//#include "utilities/C_PrologueEpilogue.h"
+#include "utilities/C_PrologueEpilogue.h"
 
 //---------------------------------------------------------------------------*
 //                                                                           *
