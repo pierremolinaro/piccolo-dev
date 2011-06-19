@@ -86,7 +86,7 @@ abstract method @midrange_ipic_instruction displayIPICinstruction ?!@string ioLi
 
 method @midrange_ipic_instruction setCurrentAddress ?!@uint ioCurrentAddress :
   @uint length ;
-  [self instructionLength ?length] ;
+  [selfcopy instructionLength ?length] ;
   ioCurrentAddress := ioCurrentAddress + length ;
 end method ;
 

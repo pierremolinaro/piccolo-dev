@@ -50,7 +50,7 @@ method @midrange_ipic_actualInstruction enterLabelAtAddress
   ?!@uint ioAddress
 :
   @uint instructionLength ;
-  [self instructionLength ?instructionLength] ;
+  [selfcopy instructionLength ?instructionLength] ;
   ioAddress := ioAddress  + instructionLength ;
 end method ;
 
@@ -99,7 +99,7 @@ override method @midrange_ipic_instruction_FD generateBinaryCodeAtAddress
   ?!@uint unused ioAddress
 :
 #--- Emit Code
-  @uint code ; [self getBaseCode ? code] ;
+  @uint code ; [selfcopy getBaseCode ? code] ;
   if not m_W_isDestination then
     code := code | 0x80 ;
   end if ;
@@ -116,7 +116,7 @@ override method @midrange_ipic_instruction_F generateBinaryCodeAtAddress
   ?!@uint unused ioAddress
 :
 #--- Emit Code
-  @uint code ; [self getBaseCode ? code] ;
+  @uint code ; [selfcopy getBaseCode ? code] ;
   code := code | ([mRegisterDescription mRegisterAddress] & 127) ;
   emitCode !code ;
 end method ;
@@ -130,7 +130,7 @@ override method @midrange_ipic_instruction_FB generateBinaryCodeAtAddress
   ?!@uint unused ioAddress
 :
 #--- Emit Code
-  @uint code ; [self getBaseCode ? code] ;
+  @uint code ; [selfcopy getBaseCode ? code] ;
   code := code | ([mRegisterDescription mRegisterAddress] & 127) ;
   code := code | (mBitNumber << 7) ;
   emitCode !code ;
@@ -145,7 +145,7 @@ override method @midrange_ipic_instruction_BitTestSkip generateBinaryCodeAtAddre
   ?!@uint unused ioAddress
 :
 #--- Emit Code
-  @uint code ; [self getBaseCode ?code] ;
+  @uint code ; [selfcopy getBaseCode ?code] ;
   code := code | ([mRegisterDescription mRegisterAddress] & 127) ;
   code := code | (mBitNumber << 7) ;
   emitCode !code ;
@@ -408,7 +408,7 @@ override method @midrange_ipic_instruction_literalOperation generateBinaryCodeAt
   ?!@uint unused ioAddress
 :
 #--- Emit Code
-  @uint code ; [self getBaseCode ? code] ;
+  @uint code ; [selfcopy getBaseCode ? code] ;
   code := code | mLiteralValue ;
   emitCode !code ;
 end method ;

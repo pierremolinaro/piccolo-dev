@@ -107,7 +107,7 @@ abstract method @ipic18_instruction displayIPICinstruction ?!@string ioListFileC
 
 method @ipic18_instruction setCurrentAddress ?!@uint ioCurrentAddress :
   @uint length ;
-  [self instructionLength ?length] ;
+  [selfcopy instructionLength ?length] ;
   ioCurrentAddress := ioCurrentAddress + length ;
 end method ;
 
@@ -944,7 +944,7 @@ end method ;
 
 override
 method @ipic_registerComparisonCondition instructionLength !@uint outLength :
-  @bool usesIntermediateBRA ; [self usesIntermediateBRA ?usesIntermediateBRA] ;
+  @bool usesIntermediateBRA ; [selfcopy usesIntermediateBRA ?usesIntermediateBRA] ;
   if usesIntermediateBRA then
     outLength := 4 ;
   else
