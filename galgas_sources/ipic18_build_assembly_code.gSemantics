@@ -226,7 +226,7 @@ override method @ipic_registerComparisonCondition buildAssemblyCode
     s .= ", BSR_ACCESS" ;
   end if ;
   ioStringList += !s ;
-  @bool usesIntermediateBRA ; [self usesIntermediateBRA ?usesIntermediateBRA] ;
+  @bool usesIntermediateBRA ; [selfcopy usesIntermediateBRA ?usesIntermediateBRA] ;
   if usesIntermediateBRA then
     @string aLabel := "_bcc_label_" . [ioBccLabelIndex string] ; ioBccLabelIndex ++ ;
     ioStringList += !"  BRA " . aLabel ;

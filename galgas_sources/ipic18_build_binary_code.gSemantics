@@ -50,7 +50,7 @@ method @ipic_actualInstruction enterLabelAtAddress
   ?!@uint ioAddress
 :
   @uint instructionLength ;
-  [self instructionLength ?instructionLength] ;
+  [selfcopy instructionLength ?instructionLength] ;
   ioAddress := ioAddress  + instructionLength ;
 end method ;
 
@@ -100,7 +100,7 @@ override method @ipic18_instruction_FDA generateBinaryCodeAtAddress
   ?!@emittedCodeList ioCode
 :
 #--- Emit Code
-  @uint code ; [self getBaseCode ? code] ;
+  @uint code ; [selfcopy getBaseCode ? code] ;
   if [mRegisterDescription mNeedsBSR] then
     code := code | 0x0100 ;
   end if ;
@@ -119,7 +119,7 @@ override method @ipic18_instruction_FA generateBinaryCodeAtAddress
   ?!@emittedCodeList ioCode
 :
 #--- Emit Code
-  @uint code ; [self getBaseCode ? code] ;
+  @uint code ; [selfcopy getBaseCode ? code] ;
   if [mRegisterDescription mNeedsBSR] then
     code := code | 0x0100 ;
   end if ;
@@ -148,7 +148,7 @@ override method @ipic18_instruction_FBA generateBinaryCodeAtAddress
   ?!@emittedCodeList ioCode
 :
 #--- Emit Code
-  @uint code ; [self getBaseCode ? code] ;
+  @uint code ; [selfcopy getBaseCode ? code] ;
   if [mRegisterDescription mNeedsBSR] then
     code := code | 0x0100 ;
   end if ;
@@ -165,7 +165,7 @@ override method @ipic18_instruction_BitTestSkip generateBinaryCodeAtAddress
   ?!@emittedCodeList ioCode
 :
 #--- Emit Code
-  @uint code ; [self getBaseCode ? code] ;
+  @uint code ; [selfcopy getBaseCode ? code] ;
   if [mRegisterDescription mNeedsBSR] then
     code := code | 0x0100 ;
   end if ;
@@ -480,7 +480,7 @@ override method @ipic_registerComparisonCondition generateBinaryCodeAtAddress
 #--- Generate BRA and / or GOTO instructions
   @uint targetAddress ;
   [inRoutineSymbolTable searchKey ![@lstring new !mTargetLabel !here] ?targetAddress] ;
-  @bool usesIntermediateBRA ; [self usesIntermediateBRA ?usesIntermediateBRA] ;
+  @bool usesIntermediateBRA ; [selfcopy usesIntermediateBRA ?usesIntermediateBRA] ;
   if usesIntermediateBRA then
     @uint intermediateTargetAddress ;
     if mUsesBra then
@@ -613,7 +613,7 @@ override method @ipic18_instruction_literalOperation generateBinaryCodeAtAddress
   ?!@emittedCodeList ioCode
 :
 #--- Emit Code
-  @uint code ; [self getBaseCode ? code] ;
+  @uint code ; [selfcopy getBaseCode ? code] ;
   code := code | mLiteralValue ;
   ioCode += ![@uintlist listWithValue !code] ;
 end method ;

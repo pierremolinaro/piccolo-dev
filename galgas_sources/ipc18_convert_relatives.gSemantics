@@ -10,24 +10,6 @@ map @ipic18_symbolTableForConvertingRelatives {
 }
 
 #----------------------------------------------------------------------------*
-
-abstract class @toto { }
-class @toto1 extends @toto { }
-abstract class @toto2 extends @toto1 { }
-class @toto3 extends @toto2 { }
-
-#override method @toto1 m : end method ;
-#override method @toto3 m : end method ;
-#override abstract method @toto2 m ;
-#abstract method @toto m ;
-
-override abstract reader @toto2 r -> @uint result ;
-override reader @toto3 r -> @uint result : result := 0 ; end reader ;
-override reader @toto1 r -> @uint result : result := 0 ; end reader ;
-reader @toto1 rr -> @uint result : result := 0 ; end reader ;
-abstract reader @toto r -> @uint result ;
-
-#----------------------------------------------------------------------------*
 #                                                                            *
 #                          defineLabelAtAddress                              *
 #                                                                            *
@@ -68,7 +50,7 @@ override method @ipic_actualInstruction defineLabelAtAddress
   ?!@uint ioAddress
 :
   @uint instructionLength ;
-  [self instructionLength ?instructionLength] ;
+  [selfcopy instructionLength ?instructionLength] ;
   ioAddress := ioAddress  + instructionLength ;
 end method ;
 
@@ -220,7 +202,7 @@ override method @ipic_registerComparisonCondition checkRelativeBranch
   ??@uint inIndex
   ?!@string ioListFileContents
 :
-  @bool uses ; [self usesIntermediateBRA ?uses] ;
+  @bool uses ; [selfcopy usesIntermediateBRA ?uses] ;
   if mUsesBra then
     @uint BRAaddress := ioAddress + 2 ;
     if uses then

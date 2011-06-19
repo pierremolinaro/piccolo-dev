@@ -53,7 +53,7 @@ method @midrange_ipic_actualInstruction defineLabelAtAddress
   ?!@uint ioAddress
 :
   @uint instructionLength ;
-  [self instructionLength ?instructionLength] ;
+  [selfcopy instructionLength ?instructionLength] ;
   @uint nextAddress := ioAddress  + instructionLength ;
   if ((nextAddress ^ ioAddress) & 0xF800) != 0 then
     error mInstructionLocation:"Routine too long, crosses page boundary at this instruction" ;
