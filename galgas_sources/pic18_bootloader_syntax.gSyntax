@@ -7,7 +7,6 @@ import "piccolo_options.gOption" ;
 
 nonterminal <ram_definition>
   ?!@ramDefinitionList ioRamDefinitionList
-label parse
 ;
 
 nonterminal <start_symbol>
