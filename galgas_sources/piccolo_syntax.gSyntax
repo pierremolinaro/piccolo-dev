@@ -7,61 +7,51 @@ import "pic18_semantics.gSemantics" ;
 nonterminal <configuration_definition>
   ?!@configDefinitionList ioConfigDefinitionList
   ?!@bool ioAcceptDefaultConfiguration
-label parse
 ;
 
 nonterminal <declaration_in_ram>
   !@declarationInRam outDeclaration
-label parse
 ;
 
 nonterminal <ram_definition>
   ?!@ramDefinitionList ioRamDefinitionList
-label parse
 ;
 
 nonterminal <constant_definition>
   ?!@constantDefinitionList ioConstantDefinitionList
-label parse
 ;
 
 nonterminal <interrupt_definition>
   ?!@interruptDefinitionList outInterruptDefinitionList
   ?!@bool ioNeedsComputedGoto2 
   ?!@bool ioNeedsComputedGoto4
-label parse
 ;
 
 nonterminal <routine_definition>
   ?!@routineDefinitionList ioRoutineDefinitionList
   ?!@bool ioNeedsComputedGoto2 
   ?!@bool ioNeedsComputedGoto4
-label parse
 ;
 
 nonterminal <simple_instruction> !@piccolo_instruction outInstruction
-label parse
 ;
 
 nonterminal <structured_instruction>
   !@piccolo_instruction outInstruction
   ?!@bool ioNeedsComputedGoto2
   ?!@bool ioNeedsComputedGoto4
-label parse
 ;
 
 nonterminal <instruction_list>
   !@instructionList outInstructionList
   ?!@bool ioNeedsComputedGoto2
   ?!@bool ioNeedsComputedGoto4
-label parse
 ;
 
 nonterminal <structured_if_instruction>
   !@piccolo_instruction outInstruction
   ?!@bool ioNeedsComputedGoto2
   ?!@bool ioNeedsComputedGoto4
-label parse
 ;
 
 nonterminal <start_symbol>
@@ -77,51 +67,39 @@ label importBootloaderSpecification
 ;
 
 nonterminal <register_parsing> !@registerExpression outRegisterExpression
-label parse
 ;
 
 nonterminal <optional_w_as_dest> !@bool out_W_isDestination
-label parse
 ;
 
 nonterminal <bit_number_parsing> !@bitNumberExpression outBitNumber
-label parse
 ;
 
 nonterminal <condition_factor> !@conditionExpression outCondition
-label parse
 ;
 
 nonterminal <condition_term> !@conditionExpression outCondition
-label parse
 ;
 
 nonterminal <condition_expression> !@conditionExpression outCondition
-label parse
 ;
 
 nonterminal <immediate_expression> !@immediatExpression outExpression
-label parse
 ;
 
 nonterminal <immediate_bitwise_term> !@immediatExpression outExpression
-label parse
 ;
 
 nonterminal <immediate_bitwise_factor> !@immediatExpression outExpression
-label parse
 ;
 
 nonterminal <immediate_term> !@immediatExpression outExpression
-label parse
 ;
 
 nonterminal <immediate_factor> !@immediatExpression outExpression
-label parse
 ;
 
 nonterminal <immediate_primary> !@immediatExpression outExpression
-label parse
 ;
 
 #----------------------------------------------------*
