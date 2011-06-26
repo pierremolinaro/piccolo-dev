@@ -38,23 +38,26 @@ class @midrange_instruction_savebank extends @midrange_instruction {
 enum @midrange_instruction_FD_base_code {
   ADDWF, ANDWF, COMF, DECF, DECFSZ, INCF, INCFSZ, IORWF, MOVF, RLF, RRF, SUBWF, SWAPF, XORWF
 }{
-  reader mnemonic :
-    ADDWF -> "ADDWF" ;
-    ANDWF -> "ANDWF" ;
-    COMF -> "COMF" ;
-    DECF -> "DECF" ;
-    DECFSZ -> "DECFSZ" ;
-    INCF -> "INCF" ;
-    INCFSZ -> "INCFSZ" ;
-    IORWF -> "IORWF" ;
-    MOVF -> "MOVF" ;
-    RLF -> "RLF" ;
-    RRF -> "RRF" ;
-    SUBWF -> "SUBWF" ;
-    SWAPF -> "SWAPF" ;
-    XORWF -> "XORWF" ;
-  end reader ;
 }
+
+reader @midrange_instruction_FD_base_code mnemonic -> @string outResult :
+  switch selfcopy
+    when ADDWF : outResult := "ADDWF" ;
+    when ANDWF : outResult := "ANDWF" ;
+    when COMF : outResult := "COMF" ;
+    when DECF : outResult := "DECF" ;
+    when DECFSZ : outResult := "DECFSZ" ;
+    when INCF : outResult := "INCF" ;
+    when INCFSZ : outResult := "INCFSZ" ;
+    when IORWF : outResult := "IORWF" ;
+    when MOVF : outResult := "MOVF" ;
+    when RLF : outResult := "RLF" ;
+    when RRF : outResult := "RRF" ;
+    when SUBWF : outResult := "SUBWF" ;
+    when SWAPF : outResult := "SWAPF" ;
+    when XORWF : outResult := "XORWF" ;
+  end switch ;
+end reader ;
 
 #----------------------------------------------------*
 
@@ -93,11 +96,14 @@ class @midrange_instruction_FD extends @midrange_instruction {
 enum @midrange_F_instruction_base_code {
   CLRF, MOVWF
 }{
-  reader mnemonic :
-    CLRF   -> "CLRF" ;
-    MOVWF  -> "MOVWF" ;
-  end reader ;
 }
+
+reader @midrange_F_instruction_base_code mnemonic -> @string outResult :
+  switch selfcopy
+    when CLRF   : outResult := "CLRF" ;
+    when MOVWF  : outResult := "MOVWF" ;
+  end switch ;
+end reader ;
 
 #----------------------------------------------------*
 
@@ -111,11 +117,14 @@ class @midrange_instruction_F extends @midrange_instruction {
 enum @midrange_bit_oriented_op {
   BCF, BSF
 }{
-  reader mnemonic :
-    BCF -> "BCF" ;
-    BSF -> "BSF" ;
-  end reader ;
 }
+
+reader @midrange_bit_oriented_op mnemonic -> @string outResult :
+  switch selfcopy
+    when BCF : outResult := "BCF" ;
+    when BSF : outResult := "BSF" ;
+  end switch ;
+end reader ;
 
 #----------------------------------------------------*
 
@@ -174,16 +183,19 @@ class @midrange_instruction_SLEEP extends @midrange_instruction {
 enum @midrange_literal_instruction_opcode {
   ADDLW, ANDLW, IORLW, MOVLW, RETLW, SUBLW, XORLW
 }{
-  reader mnemonic :
-    ADDLW -> "ADDLW" ;
-    ANDLW -> "ANDLW" ;
-    IORLW -> "IORLW" ;
-    MOVLW -> "MOVLW" ;
-    RETLW -> "RETLW" ;
-    SUBLW -> "SUBLW" ;
-    XORLW -> "XORLW" ;
-  end reader ;
 }
+
+reader @midrange_literal_instruction_opcode mnemonic -> @string outResult :
+  switch selfcopy
+    when ADDLW : outResult := "ADDLW" ;
+    when ANDLW : outResult := "ANDLW" ;
+    when IORLW : outResult := "IORLW" ;
+    when MOVLW : outResult := "MOVLW" ;
+    when RETLW : outResult := "RETLW" ;
+    when SUBLW : outResult := "SUBLW" ;
+    when XORLW : outResult := "XORLW" ;
+  end switch ;
+end reader ;
 
 #----------------------------------------------------*
 

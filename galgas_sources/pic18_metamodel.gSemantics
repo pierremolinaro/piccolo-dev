@@ -50,30 +50,33 @@ enum @instruction_FDA_base_code {
   ADDWF, ADDWFC, ANDWF, COMF, DECF, DECFSZ, DCFSNZ, INCF, INCFSZ, INFSNZ,
   IORWF, MOVF, RLCF, RLNCF, RRCF, RRNCF, SUBFWB, SUBWF, SUBWFB, SWAPF, XORWF
 }{
-  reader mnemonic :
-    ADDWF -> "ADDWF" ;
-    ADDWFC -> "ADDWFC" ;
-    ANDWF -> "ANDWF" ;
-    COMF -> "COMF" ;
-    DECF -> "DECF" ;
-    DECFSZ -> "DECFSZ" ;
-    DCFSNZ -> "DCFSNZ" ;
-    INCF -> "INCF" ;
-    INCFSZ -> "INCFSZ" ;
-    INFSNZ -> "INFSNZ" ;
-    IORWF -> "IORWF" ;
-    MOVF -> "MOVF" ;
-    RLCF -> "RLCF" ;
-    RLNCF -> "RLNCF" ;
-    RRCF -> "RRCF" ;
-    RRNCF -> "RRNCF" ;
-    SUBFWB -> "SUBFWB" ;
-    SUBWF -> "SUBWF" ;
-    SUBWFB -> "SUBWFB" ;
-    SWAPF -> "SWAPF" ;
-    XORWF -> "XORWF" ;
-  end reader ;
 }
+
+reader @instruction_FDA_base_code mnemonic -> @string outResult :
+  switch selfcopy
+    when ADDWF : outResult := "ADDWF" ;
+    when ADDWFC : outResult := "ADDWFC" ;
+    when ANDWF : outResult := "ANDWF" ;
+    when COMF : outResult := "COMF" ;
+    when DECF : outResult := "DECF" ;
+    when DECFSZ : outResult := "DECFSZ" ;
+    when DCFSNZ : outResult := "DCFSNZ" ;
+    when INCF : outResult := "INCF" ;
+    when INCFSZ : outResult := "INCFSZ" ;
+    when INFSNZ : outResult := "INFSNZ" ;
+    when IORWF : outResult := "IORWF" ;
+    when MOVF : outResult := "MOVF" ;
+    when RLCF : outResult := "RLCF" ;
+    when RLNCF : outResult := "RLNCF" ;
+    when RRCF : outResult := "RRCF" ;
+    when RRNCF : outResult := "RRNCF" ;
+    when SUBFWB : outResult := "SUBFWB" ;
+    when SUBWF : outResult := "SUBWF" ;
+    when SUBWFB : outResult := "SUBWFB" ;
+    when SWAPF : outResult := "SWAPF" ;
+    when XORWF : outResult := "XORWF" ;
+  end switch ;
+end reader ;
 
 #----------------------------------------------------*
 
@@ -119,18 +122,21 @@ class @instruction_FDA extends @piccolo_instruction {
 enum @FA_instruction_base_code {
   CLRF, CPFSEQ, CPFSGT, CPFSLT, MOVWF, MULWF, NEGF, SETF, TSTFSZ
 }{
-  reader mnemonic :
-    CLRF   -> "CLRF" ;
-    CPFSEQ -> "CPFSEQ" ;
-    CPFSGT -> "CPFSGT" ;
-    CPFSLT -> "CPFSLT" ;
-    MOVWF  -> "MOVWF" ;
-    MULWF  -> "MULWF" ;
-    NEGF   -> "NEGF";
-    SETF   -> "SETF"  ;
-    TSTFSZ -> "TSTFSZ" ;
-  end reader ;
 }
+
+reader @FA_instruction_base_code mnemonic -> @string outResult :
+  switch selfcopy
+    when CLRF    : outResult := "CLRF" ;
+    when CPFSEQ : outResult := "CPFSEQ" ;
+    when CPFSGT : outResult := "CPFSGT" ;
+    when CPFSLT : outResult := "CPFSLT" ;
+    when MOVWF  : outResult := "MOVWF" ;
+    when MULWF  : outResult := "MULWF" ;
+    when NEGF   : outResult := "NEGF";
+    when SETF   : outResult := "SETF"  ;
+    when TSTFSZ : outResult := "TSTFSZ" ;
+  end switch ;
+end reader ;
 
 #----------------------------------------------------*
 
@@ -151,12 +157,15 @@ class @instruction_MOVFF extends @piccolo_instruction {
 enum @bit_oriented_op {
   BCF, BSF, BTG
 }{
-  reader mnemonic :
-    BCF -> "BCF" ;
-    BSF -> "BSF" ;
-    BTG -> "BTG" ;
-  end reader ;
 }
+
+reader @bit_oriented_op mnemonic  -> @string outResult :
+  switch selfcopy
+    when BCF : outResult := "BCF" ;
+    when BSF : outResult := "BSF" ;
+    when BTG : outResult := "BTG" ;
+  end switch ;
+end reader ;
 
 #----------------------------------------------------*
 
@@ -171,28 +180,33 @@ class @instruction_FBA extends @piccolo_instruction {
 enum @conditional_branch {
   bz, bnz, bn, bnn, bc, bnc, bov, bnov
 }{
-  reader mnemonic :
-    bz   -> "BZ" ;
-    bnz  -> "BNZ" ;
-    bn   -> "BN" ;
-    bnn  -> "BNN" ;
-    bc   -> "BC" ;
-    bnc  -> "BNC" ;
-    bov  -> "BOV" ;
-    bnov -> "BNOV" ;
-  end reader ;
-
-  reader condition :
-    bz   -> "Z" ;
-    bnz  -> "NZ" ;
-    bn   -> "N" ;
-    bnn  -> "NN" ;
-    bc   -> "C" ;
-    bnc  -> "NC" ;
-    bov  -> "OV" ;
-    bnov -> "NOV" ;
-  end reader ;
 }
+
+reader @conditional_branch mnemonic  -> @string outResult :
+  switch selfcopy
+    when bz   : outResult := "BZ" ;
+    when bnz  : outResult := "BNZ" ;
+    when bn   : outResult := "BN" ;
+    when bnn  : outResult := "BNN" ;
+    when bc   : outResult := "BC" ;
+    when bnc  : outResult := "BNC" ;
+    when bov  : outResult := "BOV" ;
+    when bnov : outResult := "BNOV" ;
+  end switch ;
+end reader ;
+
+reader @conditional_branch condition -> @string outResult :
+  switch selfcopy
+    when bz   : outResult := "Z" ;
+    when bnz  : outResult := "NZ" ;
+    when bn   : outResult := "N" ;
+    when bnn  : outResult := "NN" ;
+    when bc   : outResult := "C" ;
+    when bnc  : outResult := "NC" ;
+    when bov  : outResult := "OV" ;
+    when bnov : outResult := "NOV" ;
+  end switch ;
+end reader ;
 
 #----------------------------------------------------*
 
@@ -278,17 +292,20 @@ class @instruction_SLEEP extends @piccolo_instruction {
 enum @literal_instruction_opcode {
   ADDLW, ANDLW, IORLW, MOVLW, MULLW, RETLW, SUBLW, XORLW
 }{
-  reader mnemonic :
-    ADDLW -> "ADDLW" ;
-    ANDLW -> "ANDLW" ;
-    IORLW -> "IORLW" ;
-    MOVLW -> "MOVLW" ;
-    MULLW -> "MULLW" ;
-    RETLW -> "RETLW" ;
-    SUBLW -> "SUBLW" ;
-    XORLW -> "XORLW" ;
-  end reader ;
 }
+
+reader @literal_instruction_opcode mnemonic -> @string outResult :
+  switch selfcopy
+    when ADDLW : outResult := "ADDLW" ;
+    when ANDLW : outResult := "ANDLW" ;
+    when IORLW : outResult := "IORLW" ;
+    when MOVLW : outResult := "MOVLW" ;
+    when MULLW : outResult := "MULLW" ;
+    when RETLW : outResult := "RETLW" ;
+    when SUBLW : outResult := "SUBLW" ;
+    when XORLW : outResult := "XORLW" ;
+  end switch ;
+end reader ;
 
 #----------------------------------------------------*
 
@@ -309,13 +326,15 @@ class @instruction_LFSR extends @piccolo_instruction {
 enum @tableAccessOption {
   simpleAccess, postIncrement, postDecrement, preIncrement
 }{
-  reader mnemonic :
-    simpleAccess -> "*" ;
-    postIncrement -> "*+" ;
-    postDecrement -> "*-" ;
-    preIncrement -> "+*" ;
-  end reader ;
 }
+reader @tableAccessOption mnemonic  -> @string outResult :
+  switch selfcopy
+    when simpleAccess : outResult := "*" ;
+    when postIncrement : outResult := "*+" ;
+    when postDecrement : outResult := "*-" ;
+    when preIncrement : outResult := "+*" ;
+  end switch ;
+end reader ;
 
 #----------------------------------------------------*
 
@@ -347,13 +366,16 @@ class @instruction_FOREVER extends @piccolo_instruction {
 enum @if_semi_colon_op {
   CPFSEQ, CPFSGT, CPFSLT, TSTFSZ
 }{
-  reader mnemonic :
-    CPFSEQ -> "CPFSEQ" ;
-    CPFSGT -> "CPFSGT" ;
-    CPFSLT -> "CPFSLT" ;
-    TSTFSZ -> "TSTFSZ" ;
-  end reader ;
 }
+
+reader @if_semi_colon_op mnemonic -> @string outResult :
+  switch selfcopy
+    when CPFSEQ : outResult := "CPFSEQ" ;
+    when CPFSGT : outResult := "CPFSGT" ;
+    when CPFSLT : outResult := "CPFSLT" ;
+    when TSTFSZ : outResult := "TSTFSZ" ;
+  end switch ;
+end reader ;
 
 #----------------------------------------------------*
 
@@ -451,15 +473,18 @@ class @registerTestCondition extends @conditionExpression {
 enum @registerComparison {
   notEqual, equal, greaterOrEqual, greater, lowerOrEqual, lower
 }{
-  reader mnemonic :
-    notEqual -> "!=" ;
-    equal    -> "==" ;
-    greaterOrEqual -> ">=" ;
-    greater -> ">"  ;
-    lowerOrEqual -> "<="  ;
-    lower -> "<" ;
-  end reader ;
 }
+
+reader @registerComparison mnemonic -> @string outResult :
+  switch selfcopy
+    when notEqual : outResult := "!=" ;
+    when equal    : outResult := "==" ;
+    when greaterOrEqual : outResult := ">=" ;
+    when greater : outResult := ">"  ;
+    when lowerOrEqual : outResult := "<="  ;
+    when lower : outResult := "<" ;
+  end switch ;
+end reader ;
 
 #----------------------------------------------------*
 
