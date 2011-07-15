@@ -134,7 +134,7 @@ end method ;
 #----------------------------------------------------*
 
 list @ipic18_instructionList {
-  @ipic18_instruction mInstruction ;
+  @ipic18_instruction mInstruction feature setter ;
 }
 
 #----------------------------------------------------*
