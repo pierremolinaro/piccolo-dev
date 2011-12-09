@@ -49,6 +49,7 @@ static inline NSInteger imax (const NSInteger a, const NSInteger b) { return a >
     mDocument = inDocument ;
     [self setSyntaxColoringDelegate:inDelegateForSyntaxColoring] ;
     mTextView = [[OC_GGS_TextView alloc] initWithFrame:NSMakeRect (0.0, 0.0, 10.0, 10.0)] ;
+    [mTextView setDisplayDescriptor:self] ;
     mTextView.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable ;
     mTextView.usesFindPanel = YES ;
     mTextView.grammarCheckingEnabled = NO ;
@@ -131,6 +132,12 @@ static inline NSInteger imax (const NSInteger a, const NSInteger b) { return a >
 
 - (NSURL *) sourceURL {
   return mTextSyntaxColoring.sourceURL ;
+}
+
+//---------------------------------------------------------------------------*
+
+- (OC_GGS_Document *) document {
+  return mDocument ;
 }
 
 //---------------------------------------------------------------------------*
@@ -372,18 +379,6 @@ static inline NSInteger imax (const NSInteger a, const NSInteger b) { return a >
 
 //---------------------------------------------------------------------------*
 
-- (NSMenu *) textView:(NSTextView *)view
-             menu:(NSMenu *)menu
-             forEvent:(NSEvent *)event
-             atIndex:(NSUInteger) inCharacterIndex { // Delegate Method
-  const NSRange selectedRange = {inCharacterIndex, 0} ;
-  const NSRange r = [mTextView selectionRangeForProposedRange:selectedRange granularity:NSSelectByWord] ;
-  [mTextView setSelectedRange:r] ;
-  return [mTextSyntaxColoring indexMenuForRange:r] ;
-}
-
-//---------------------------------------------------------------------------*
-
 - (void) noteUndoManagerCheckPointNotification {
   [mDocument triggerDocumentEditedStatusUpdate] ;
 }
@@ -413,13 +408,19 @@ static inline NSInteger imax (const NSInteger a, const NSInteger b) { return a >
     PMErrorOrWarningDescriptor * issue = [mIssueArray objectAtIndex:i] ;
     found = issue.originalIssue == inOriginalIssue ;
     if (found) {
-      [mTextView scrollRangeToVisible:NSMakeRange (issue.location, 0)] ;
-      [mTextView setSelectedRange:NSMakeRange (issue.location, 0)] ;
-      [mTextView.window makeFirstResponder:mTextView] ;
+      [self setSelectionRangeAndMakeItVisible:NSMakeRange (issue.location, 0)] ;
     }
   }
 //---
   return found ;
+}
+
+//---------------------------------------------------------------------------*
+
+- (void) setSelectionRangeAndMakeItVisible: (NSRange) inRange {
+  [mTextView scrollRangeToVisible:inRange] ;
+  [mTextView setSelectedRange:inRange] ;
+  [mTextView.window makeFirstResponder:mTextView] ;
 }
 
 //---------------------------------------------------------------------------*
