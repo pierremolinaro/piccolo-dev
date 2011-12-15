@@ -1,9 +1,13 @@
 //---------------------------------------------------------------------------*
 //                                                                           *
+//  'C_TCPSocketOut' : a class for sending data as TCP socket client         *
+//                                                                           *
 //  This file is part of libpm library                                       *
 //                                                                           *
-//  Copyright (C) 2003, ..., 2009 Pierre Molinaro.                           *
+//  Copyright (C) 2011, ..., 2011 Pierre Molinaro.                           *
+//                                                                           *
 //  e-mail : molinaro@irccyn.ec-nantes.fr                                    *
+//                                                                           *
 //  IRCCyN, Institut de Recherche en Communications et Cybernetique de Nantes*
 //  ECN, Ecole Centrale de Nantes (France)                                   *
 //                                                                           *
@@ -19,18 +23,37 @@
 //                                                                           *
 //---------------------------------------------------------------------------*
 
-#import "OC_GGS_BuildWindowController.h"
+#ifndef CLASS_TCP_SOCKET_OUTPUT_DEFINED
+#define CLASS_TCP_SOCKET_OUTPUT_DEFINED
 
 //---------------------------------------------------------------------------*
 
-@implementation OC_GGS_BuildWindowController
+#include "streams/AC_OutputStream.h"
 
 //---------------------------------------------------------------------------*
 
-- (NSString *) windowTitleForDocumentDisplayName: (NSString *) displayName {
-  return [NSString stringWithFormat: @"build — %@", displayName] ;
-}
+class C_TCPSocketOut : public AC_OutputStream {
+//--- Constructor
+  public : C_TCPSocketOut (void) ; // No connection
+
+//--- Destructor
+  public : virtual ~ C_TCPSocketOut (void) ;
+
+//--- Connect (call it once)
+  public : bool connect (const PMUInt16 inServerPort,
+                         const C_String & inHostName) ;
+
+//--- General stream methods
+  protected : virtual void performActualCharArrayOutput (const char * inCharArray,
+                                                         const PMSInt32 inArrayCount) ;
+
+  protected : virtual void performActualUnicodeArrayOutput (const utf32 * inCharArray,
+                                                            const PMSInt32 inArrayCount) ;
+
+//---
+  private : int mSocket ;
+} ;
 
 //---------------------------------------------------------------------------*
 
-@end
+#endif
