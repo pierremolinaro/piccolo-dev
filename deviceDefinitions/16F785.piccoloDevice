@@ -3,6 +3,9 @@ controller PIC16F785 {
   romsize 2048 ;
   eepromsize 256 at 0x2100 ;
   bank 4 ;
+  unusedregister 0xC0 to 0xEF ;
+  unusedregister 0x120 to 0x16F ;
+  unusedregister 0x1A0 to 0x1EF ;
   unusedregister 0x8 to 0x9 ;
   unusedregister 0xD ;
   unusedregister 0x16 to 0x17 ;
@@ -11,15 +14,12 @@ controller PIC16F785 {
   unusedregister 0x8D ;
   unusedregister 0x94 ;
   unusedregister 0x97 ;
-  unusedregister 0xC0 to 0xEF ;
   unusedregister 0x108 to 0x109 ;
   unusedregister 0x10C to 0x10F ;
   unusedregister 0x115 to 0x118 ;
-  unusedregister 0x11E to 0x16F ;
+  unusedregister 0x11E to 0x11F ;
   unusedregister 0x188 to 0x189 ;
-  unusedregister 0x18C to 0x18D ;
-  unusedregister 0x18E to 0x18F ;
-  unusedregister 0x190 to 0x1EF ;
+  unusedregister 0x18C to 0x19F ;
   ram gpr0 : 0x20 to 0x6F ;
   ram gpr1 : 0xA0 to 0xBF ;
   ram gpr2 : 0x70 to 0x7F mirrorat 0xF0, 0x170, 0x1F0 ;
@@ -47,10 +47,10 @@ controller PIC16F785 {
     <-, -, DCB [2], CCP1M [4]> ;
 
   register CCPR1H at 0x14
-    <CCPRH [8]> ;
+    <CCPR1H [8]> ;
 
   register CCPR1L at 0x13
-    <CCPRL [8]> ;
+    <CCPR1L [8]> ;
 
   register CM1CON0 at 0x119
     <C1ON, C1OUT, C1OE, C1POL, C1SP, C1R, C1CH [2]> ;
@@ -80,7 +80,7 @@ controller PIC16F785 {
     <INDF [8]> ;
 
   register INTCON at 0xB, 0x8B, 0x10B, 0x18B
-    <GIE, PEIE, TMR0IE, INTE, RAIE, TMR0IF, INTF, RAIF> ;
+    <GIE, PEIE, T0IE, INTE, RAIE, T0IF, INTF, RAIF> ;
 
   register IOCA at 0x96
     <-, -, IOCA5, IOCA4, IOCA3, IOCA2, IOCA1, IOCA0> ;
@@ -128,7 +128,7 @@ controller PIC16F785 {
     <PR2 [8]> ;
 
   register PWMCLK at 0x112
-    <PWMASE, PS [2], PER [5]> ;
+    <PWMASE, PWMP [2], PER [5]> ;
 
   register PWMCON0 at 0x111
     <PRSEN, PASEN, BLANK2, BLANK1, SYNC [2], PH2EN, PH1EN> ;
@@ -182,43 +182,43 @@ controller PIC16F785 {
     <-, -, -, WDTPS [4], SWDTEN> ;
 
   register WPUA at 0x95
-    <-, -, WPUA5, WPUA4, -, WPUA2, WPUA1, WPUA0> ;
+    <-, -, WPUA5, WPUA4, WPUA3, WPUA2, WPUA1, WPUA0> ;
 
   configuration CONFIG at 0x2007 width 12 {
-    FCMEN mask 0x800 description "Monitor Clock Fail-safe"
+    FCMEN mask 0x800 description "Fail-Safe Clock Monitor Enabled bit"
       setting 0x800 mask 0x800 description "Enabled"
       setting 0x0 mask 0x800 description "Disabled"
-    IESO mask 0x400 description "Internal External Switch Over Mode"
+    IESO mask 0x400 description "Internal External Switchover bit"
       setting 0x400 mask 0x400 description "Enabled"
       setting 0x0 mask 0x400 description "Disabled"
-    BODEN mask 0x300 description "Brown Out Detect"
-      setting 0x0 mask 0x300 description "BOD and SBOREN disabled"
-      setting 0x100 mask 0x300 description "SBOREN controls BOR function"
-      setting 0x200 mask 0x300 description "BOD enabled in run, disabled in sleep, SBOREN disabled"
-      setting 0x300 mask 0x300 description "BOD Enabled, SBOREN Disabled"
-    CPD mask 0x80 description "Data EE Read Protect"
-      setting 0x80 mask 0x80 description "Off"
-      setting 0x0 mask 0x80 description "On"
-    CP mask 0x40 description "Code Protect"
-      setting 0x40 mask 0x40 description "Off"
-      setting 0x0 mask 0x40 description "On"
-    MCLRE mask 0x20 description "Master Clear Enable"
-      setting 0x20 mask 0x20 description "External"
-      setting 0x0 mask 0x20 description "Internal"
-    PUT mask 0x10 description "Power Up Timer"
-      setting 0x10 mask 0x10 description "Off"
-      setting 0x0 mask 0x10 description "On"
-    WDT mask 0x8 description "Watchdog Timer"
-      setting 0x8 mask 0x8 description "On"
-      setting 0x0 mask 0x8 description "Off"
-    OSC mask 0x7 description "Oscillator"
-      setting 0x7 mask 0x7 description "EXTRC: CLKOUT on RA4, RC on RA5"
-      setting 0x6 mask 0x7 description "EXTRCIO: I/O on RA4, RC on RA5"
-      setting 0x5 mask 0x7 description "INTOSC: CLKOUT on RA4, I/O on RA5"
-      setting 0x4 mask 0x7 description "INTOSCIO: I/O on RA4/RA5"
-      setting 0x3 mask 0x7 description "EC"
-      setting 0x2 mask 0x7 description "HS"
-      setting 0x1 mask 0x7 description "XT"
-      setting 0x0 mask 0x7 description "LP"
+    BOREN mask 0x300 description "Brown Out Detect"
+      setting 0x300 mask 0x300 description "Enabled"
+      setting 0x200 mask 0x300 description "BOR enabled during operation and disabled in Sleep"
+      setting 0x100 mask 0x300 description "BOR controlled by SBOREN bit of the PCON register"
+      setting 0x0 mask 0x300 description "Disabled"
+    CPD mask 0x80 description "Data Code Protection bit"
+      setting 0x80 mask 0x80 description "Disabled"
+      setting 0x0 mask 0x80 description "Enabled"
+    CP mask 0x40 description "Code Protection bit"
+      setting 0x40 mask 0x40 description "Disabled"
+      setting 0x0 mask 0x40 description "Enabled"
+    MCLRE mask 0x20 description "MCLR Pin Function Select bit"
+      setting 0x20 mask 0x20 description "Enabled"
+      setting 0x0 mask 0x20 description "Disabled"
+    PWRTE mask 0x10 description "Power-up Timer Enable bit"
+      setting 0x10 mask 0x10 description "Disabled"
+      setting 0x0 mask 0x10 description "Enabled"
+    WDTE mask 0x8 description "Watchdog Timer Enable bit"
+      setting 0x8 mask 0x8 description "Enabled"
+      setting 0x0 mask 0x8 description "Disabled"
+    FOSC mask 0x7 description "Oscillator Selection bits"
+      setting 0x7 mask 0x7 description "EXTRC oscillator: External RC on RA5/OSC1/CLKIN, CLKOUT function on RA4/OSC2/CLKOUT pin"
+      setting 0x6 mask 0x7 description "EXTRCIO oscillator: External RC on RA5/OSC1/CLKIN, I/O function on RA4/OSC2/CLKOUT pin"
+      setting 0x5 mask 0x7 description "INTOSC oscillator: CLKOUT function on RA4/OSC2/CLKOUT pin, I/O function on RA5/OSC1/CLKIN"
+      setting 0x4 mask 0x7 description "INTOSCIO oscillator: I/O function on RA4/OSC2/CLKOUT pin, I/O function on RA5/OSC1/CLKIN"
+      setting 0x3 mask 0x7 description "EC: I/O function on RA4/OSC2/CLKOUT pin, CLKIN on RA5/OSC1/CLKIN"
+      setting 0x2 mask 0x7 description "HS oscillator: High-speed crystal/resonator on RA4/OSC2/CLKOUT and RA5/OSC1/CLKIN"
+      setting 0x1 mask 0x7 description "XT oscillator: Crystal/resonator on RA4/OSC2/CLKOUT and RA5/OSC1/CLKINT"
+      setting 0x0 mask 0x7 description "LP oscillator: Low-power crystal on RA4/OSC2/CLKOUT and RA5/OSC1/CLKIN"
   }
 }

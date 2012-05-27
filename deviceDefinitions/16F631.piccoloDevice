@@ -3,27 +3,35 @@ controller PIC16F631 {
   romsize 1024 ;
   eepromsize 128 at 0x2100 ;
   bank 4 ;
+  unusedregister 0x20 to 0x3F ;
+  unusedregister 0xA0 to 0xEF ;
+  unusedregister 0x120 to 0x16F ;
+  unusedregister 0x1A0 to 0x1EF ;
   unusedregister 0x8 to 0x9 ;
-  unusedregister 0x11 to 0x3F ;
+  unusedregister 0x11 to 0x1F ;
   unusedregister 0x88 to 0x89 ;
   unusedregister 0x91 to 0x94 ;
-  unusedregister 0x98 to 0xEF ;
+  unusedregister 0x98 to 0x9F ;
   unusedregister 0x108 to 0x109 ;
   unusedregister 0x10E to 0x114 ;
   unusedregister 0x117 ;
-  unusedregister 0x11C to 0x16F ;
+  unusedregister 0x11C to 0x11D ;
+  unusedregister 0x11F ;
   unusedregister 0x188 to 0x189 ;
   unusedregister 0x18E to 0x19D ;
-  unusedregister 0x19F to 0x1EF ;
+  unusedregister 0x19F ;
   ram gpr0 : 0x40 to 0x6F ;
   ram gprnobnk : 0x70 to 0x7F mirrorat 0xF0, 0x170, 0x1F0 ;
   # Total ram: 64
 
+  register ANSEL at 0x11E
+    <ANS7, ANS6, ANS5, ANS4, -, -, ANS1, ANS0> ;
+
   register CM1CON0 at 0x119
-    <C1ON, C1OUT, C1OE, C1POL, C1SP, C1R, C1CH [2]> ;
+    <C1ON, C1OUT, C1OE, C1POL, -, C1R, C1CH [2]> ;
 
   register CM2CON0 at 0x11A
-    <C2ON, C2OUT, C2OE, C2POL, C2SP, C2R, C2CH [2]> ;
+    <C2ON, C2OUT, C2OE, C2POL, -, C2R, C2CH [2]> ;
 
   register CM2CON1 at 0x11B
     <MC1OUT, MC2OUT, -, -, -, -, T1GSS, C2SYNC> ;
@@ -32,7 +40,7 @@ controller PIC16F631 {
     <EEADR [8]> ;
 
   register EECON1 at 0x18C
-    <EEPGD, -, -, -, WRERR, WREN, WR, RD> ;
+    <-, -, -, -, WRERR, WREN, WR, RD> ;
 
   register EECON2 at 0x18D
     <EECON2 [8]> ;
@@ -47,7 +55,7 @@ controller PIC16F631 {
     <INDF [8]> ;
 
   register INTCON at 0xB, 0x8B, 0x10B, 0x18B
-    <GIE, PEIE, TMR0IE, INTE, RABIE, TMR0IF, INTF, RABIF> ;
+    <GIE, PEIE, T0IE, INTE, RABIE, T0IF, INTF, RABIF> ;
 
   register IOCA at 0x96
     <-, -, IOCA5, IOCA4, IOCA3, IOCA2, IOCA1, IOCA0> ;
@@ -56,7 +64,7 @@ controller PIC16F631 {
     <IOCB7, IOCB6, IOCB5, IOCB4, -, -, -, -> ;
 
   register OPTION_REG at 0x81, 0x181
-    <nRAPU, INTEDG, T0CS, T0SE, PSA, PS [3]> ;
+    <nRABPU, INTEDG, T0CS, T0SE, PSA, PS [3]> ;
 
   register OSCCON at 0x8F
     <-, IOSCF [3], OSTS, HTS, LTS, SCS> ;
@@ -74,13 +82,13 @@ controller PIC16F631 {
     <-, -, ULPWUE, SBOREN, -, -, nPOR, nBOR> ;
 
   register PIE1 at 0x8C
-    <-, ADIE, RCIE, TXIE, SSPIE, CCP1IE, TMR2IE, TMR1IE> ;
+    <-, -, -, -, -, -, -, TMR1IE> ;
 
   register PIE2 at 0x8D
     <OSFIE, C2IE, C1IE, EEIE, -, -, -, -> ;
 
   register PIR1 at 0xC
-    <-, ADIF, RCIF, TXIF, SSPIF, -, TMR2IF, TMR1IF> ;
+    <-, -, -, -, -, -, -, TMR1IF> ;
 
   register PIR2 at 0xD
     <OSFIF, C2IF, C1IF, EEIF, -, -, -, -> ;
@@ -101,7 +109,7 @@ controller PIC16F631 {
     <IRP, RP [2], nTO, nPD, Z, DC, C> ;
 
   register T1CON at 0x10
-    <T1GINV, T1GE, T1CKPS [2], T1OSCEN, nT1SYNC, TMR1CS, TMR1ON> ;
+    <T1GINV, TMR1GE, T1CKPS [2], T1OSCEN, nT1SYNC, TMR1CS, TMR1ON> ;
 
   register TMR0 at 0x1, 0x101
     <TMR0 [8]> ;
@@ -135,40 +143,40 @@ controller PIC16F631 {
 
   configuration CONFIG at 0x2007 width 12
     illegal 0x48 mask 0x48 message "Current settings of PWRT and BOD are in conflict" {
-    FCMEN mask 0x800 description "Monitor Clock Fail-safe"
+    FCMEN mask 0x800 description "Fail-Safe Clock Monitor Enabled bit"
       setting 0x800 mask 0x800 description "Enabled"
       setting 0x0 mask 0x800 description "Disabled"
-    IESO mask 0x400 description "Internal External Switch Over Mode"
+    IESO mask 0x400 description "Internal External Switchover bit"
       setting 0x400 mask 0x400 description "Enabled"
       setting 0x0 mask 0x400 description "Disabled"
-    BODEN mask 0x300 description "Brown Out Detect"
-      setting 0x0 mask 0x300 description "BOD and SBOREN disabled"
-      setting 0x100 mask 0x300 description "SBOREN controls BOR function"
-      setting 0x200 mask 0x300 description "BOD enabled in run, disabled in sleep, SBOREN disabled"
-      setting 0x300 mask 0x300 description "BOD Enabled, SBOREN Disabled"
-    CPD mask 0x80 description "Data EE Read Protect"
-      setting 0x80 mask 0x80 description "Off"
-      setting 0x0 mask 0x80 description "On"
-    CP mask 0x40 description "Code Protect"
-      setting 0x40 mask 0x40 description "Off"
-      setting 0x0 mask 0x40 description "On"
-    MCLRE mask 0x20 description "Master Clear Enable"
-      setting 0x20 mask 0x20 description "External"
-      setting 0x0 mask 0x20 description "Internal"
-    PUT mask 0x10 description "Power Up Timer"
-      setting 0x10 mask 0x10 description "Off"
-      setting 0x0 mask 0x10 description "On"
-    WDT mask 0x8 description "Watchdog Timer"
-      setting 0x8 mask 0x8 description "On"
-      setting 0x0 mask 0x8 description "Off"
-    OSC mask 0x7 description "Oscillator"
-      setting 0x7 mask 0x7 description "External RC Clockout"
-      setting 0x6 mask 0x7 description "External RC No Clock"
-      setting 0x5 mask 0x7 description "Internal RC Clockout"
-      setting 0x4 mask 0x7 description "Internal RC No Clock"
-      setting 0x3 mask 0x7 description "EC"
-      setting 0x2 mask 0x7 description "HS"
-      setting 0x1 mask 0x7 description "XT"
-      setting 0x0 mask 0x7 description "LP"
+    BOREN mask 0x300 description "Brown-out Reset Selection bits"
+      setting 0x300 mask 0x300 description "Enabled"
+      setting 0x200 mask 0x300 description "BOR enabled during operation and disabled in Sleep"
+      setting 0x100 mask 0x300 description "BOR controlled by SBOREN bit of the PCON register"
+      setting 0x0 mask 0x300 description "Disabled"
+    CPD mask 0x80 description "Data Code Protection bit"
+      setting 0x80 mask 0x80 description "Disabled"
+      setting 0x0 mask 0x80 description "Enabled"
+    CP mask 0x40 description "Code Protection bit"
+      setting 0x40 mask 0x40 description "Disabled"
+      setting 0x0 mask 0x40 description "Enabled"
+    MCLRE mask 0x20 description "MCLR Pin Function Select bit"
+      setting 0x20 mask 0x20 description "Enabled"
+      setting 0x0 mask 0x20 description "Disabled"
+    PWRTE mask 0x10 description "Power-up Timer Enable bit"
+      setting 0x10 mask 0x10 description "Disabled"
+      setting 0x0 mask 0x10 description "Enabled"
+    WDTE mask 0x8 description "Watchdog Timer Enable bit"
+      setting 0x8 mask 0x8 description "Enabled"
+      setting 0x0 mask 0x8 description "Disabled"
+    OSC mask 0x7 description "Oscillator Selection bits"
+      setting 0x7 mask 0x7 description "RC oscillator: CLKOUT function on RA4/OSC2/CLKOUT pin, RC on RA5/OSC1/CLKIN"
+      setting 0x6 mask 0x7 description "RCIO oscillator: I/O function on RA4/OSC2/CLKOUT pin, RC on RA5/OSC1/CLKIN"
+      setting 0x5 mask 0x7 description "INTOSC oscillator: CLKOUT function on RA4/OSC2/CLKOUT pin, I/O function on RA5/OSC1/CLKIN"
+      setting 0x4 mask 0x7 description "INTOSCIO oscillator: I/O function on RA4/OSC2/CLKOUT pin, I/O function on RA5/OSC1/CLKIN"
+      setting 0x3 mask 0x7 description "EC: I/O function on RA4/OSC2/CLKOUT pin, CLKIN on RA5/OSC1/CLKIN"
+      setting 0x2 mask 0x7 description "HS oscillator: High-speed crystal/resonator on RA4/OSC2/CLKOUT and RA5/OSC1/CLKIN"
+      setting 0x1 mask 0x7 description "XT oscillator: Crystal/resonator on RA4/OSC2/CLKOUT and RA5/OSC1/CLKIN"
+      setting 0x0 mask 0x7 description "LP oscillator: Low-power crystal on RA4/OSC2/CLKOUT and RA5/OSC1/CLKIN"
   }
 }

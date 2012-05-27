@@ -1,0 +1,1505 @@
+controller PIC18F26K80 {
+  processor "pic18_60" ;
+  romsize 65536 ;
+  eepromsize 1024 at 0xF00000 ;
+  bank 16 ;
+  unusedregister 0xF40 to 0xF46 ;
+  unusedregister 0xF83 ;
+  unusedregister 0xF85 to 0xF86 ;
+  unusedregister 0xF8C to 0xF8F ;
+  unusedregister 0xF95 to 0xF98 ;
+  unusedregister 0xFD4 ;
+  ram accessram : 0x0 to 0x5F ;
+  ram gpr0 : 0x60 to 0xFF ;
+  ram gpr1 : 0x100 to 0x1FF ;
+  ram gpr10 : 0xA00 to 0xAFF ;
+  ram gpr11 : 0xB00 to 0xBFF ;
+  ram gpr12 : 0xC00 to 0xCFF ;
+  ram gpr13 : 0xD00 to 0xDFF ;
+  ram gpr14 : 0xE00 to 0xE40 ;
+  ram gpr2 : 0x200 to 0x2FF ;
+  ram gpr3 : 0x300 to 0x3FF ;
+  ram gpr4 : 0x400 to 0x4FF ;
+  ram gpr5 : 0x500 to 0x5FF ;
+  ram gpr6 : 0x600 to 0x6FF ;
+  ram gpr7 : 0x700 to 0x7FF ;
+  ram gpr8 : 0x800 to 0x8FF ;
+  ram gpr9 : 0x900 to 0x9FF ;
+  # Total ram: 3649
+
+  register ADCON0 at 0xFC2
+    <-, CHS [5], GO/nDONE, ADON> ;
+
+  register ADCON1 at 0xFC1
+    <TRIGSEL [2], VCFG [2], VNCFG, CHSN [3]> ;
+
+  register ADCON2 at 0xFC0
+    <ADFM, -, ACQT [3], ADCS [3]> ;
+
+  register ADRESH at 0xFC4
+    <ADRESH [8]> ;
+
+  register ADRESL at 0xFC3
+    <ADRESL [8]> ;
+
+  register ANCON0 at 0xF5D
+    <-, -, -, ANSEL4, ANSEL3, ANSEL2, ANSEL1, ANSEL0> ;
+
+  register ANCON1 at 0xF5C
+    <-, -, -, -, -, ANSEL10, ANSEL9, ANSEL8> ;
+
+  register B0CON at 0xE80
+    <RXFUL/TXBIF, RXM1/TXABT, RXRTRRO/TXLARB, FILHIT4/TXERR, FILHIT3/TXREQ, FILHIT2/RTREN, FILHIT1/TXPRI1, FILHIT0/TXPRI0> ;
+
+  register B0D0 at 0xE86
+    <B0D0 [8]> ;
+
+  register B0D1 at 0xE87
+    <B0D1 [8]> ;
+
+  register B0D2 at 0xE88
+    <B0D2 [8]> ;
+
+  register B0D3 at 0xE89
+    <B0D3 [8]> ;
+
+  register B0D4 at 0xE8A
+    <B0D4 [8]> ;
+
+  register B0D5 at 0xE8B
+    <B0D5 [8]> ;
+
+  register B0D6 at 0xE8C
+    <B0D6 [8]> ;
+
+  register B0D7 at 0xE8D
+    <B0D7 [8]> ;
+
+  register B0DLC at 0xE85
+    <-, RXRTR/TXRTR, RB [2], DLC [4]> ;
+
+  register B0EIDH at 0xE83
+    <EID [8]> ;
+
+  register B0EIDL at 0xE84
+    <EID [8]> ;
+
+  register B0SIDH at 0xE81
+    <SID [8]> ;
+
+  register B0SIDL at 0xE82
+    <SID [3], SRR, EXIDE, -, EID [2]> ;
+
+  register B1CON at 0xE90
+    <RXFUL/TXBIF, RXM1/TXABT, RXRTRRO/TXLARB, FILHIT4/TXERR, FILHIT3/TXREQ, FILHIT2/RTREN, FILHIT1/TXPRI1, FILHIT0/TXPRI0> ;
+
+  register B1D0 at 0xE96
+    <B1D0 [8]> ;
+
+  register B1D1 at 0xE97
+    <B1D1 [8]> ;
+
+  register B1D2 at 0xE98
+    <B1D2 [8]> ;
+
+  register B1D3 at 0xE99
+    <B1D3 [8]> ;
+
+  register B1D4 at 0xE9A
+    <B1D4 [8]> ;
+
+  register B1D5 at 0xE9B
+    <B1D5 [8]> ;
+
+  register B1D6 at 0xE9C
+    <B1D6 [8]> ;
+
+  register B1D7 at 0xE9D
+    <B1D7 [8]> ;
+
+  register B1DLC at 0xE95
+    <-, RXRTR/TXRTR, RB [2], DLC [4]> ;
+
+  register B1EIDH at 0xE93
+    <EID [8]> ;
+
+  register B1EIDL at 0xE94
+    <EID [8]> ;
+
+  register B1SIDH at 0xE91
+    <SID [8]> ;
+
+  register B1SIDL at 0xE92
+    <SID [3], SRR, EXIDE, -, EID [2]> ;
+
+  register B2CON at 0xEA0
+    <RXFUL/TXBIF, RXM1/TXABT, RXRTRRO/TXLARB, FILHIT4/TXERR, FILHIT3/TXREQ, FILHIT2/RTREN, FILHIT1/TXPRI1, FILHIT0/TXPRI0> ;
+
+  register B2D0 at 0xEA6
+    <B2D0 [8]> ;
+
+  register B2D1 at 0xEA7
+    <B2D1 [8]> ;
+
+  register B2D2 at 0xEA8
+    <B2D2 [8]> ;
+
+  register B2D3 at 0xEA9
+    <B2D3 [8]> ;
+
+  register B2D4 at 0xEAA
+    <B2D4 [8]> ;
+
+  register B2D5 at 0xEAB
+    <B2D5 [8]> ;
+
+  register B2D6 at 0xEAC
+    <B2D6 [8]> ;
+
+  register B2D7 at 0xEAD
+    <B2D7 [8]> ;
+
+  register B2DLC at 0xEA5
+    <-, RXRTR/TXRTR, RB [2], DLC [4]> ;
+
+  register B2EIDH at 0xEA3
+    <EID [8]> ;
+
+  register B2EIDL at 0xEA4
+    <EID [8]> ;
+
+  register B2SIDH at 0xEA1
+    <SID [8]> ;
+
+  register B2SIDL at 0xEA2
+    <SID [3], SRR, EXIDE, -, EID [2]> ;
+
+  register B3CON at 0xEB0
+    <RXFUL/TXBIF, RXM1/TXABT, RXRTRRO/TXLARB, FILHIT4/TXERR, FILHIT3/TXREQ, FILHIT2/RTREN, FILHIT1/TXPRI1, FILHIT0/TXPRI0> ;
+
+  register B3D0 at 0xEB6
+    <B3D0 [8]> ;
+
+  register B3D1 at 0xEB7
+    <B3D1 [8]> ;
+
+  register B3D2 at 0xEB8
+    <B3D2 [8]> ;
+
+  register B3D3 at 0xEB9
+    <B3D3 [8]> ;
+
+  register B3D4 at 0xEBA
+    <B3D4 [8]> ;
+
+  register B3D5 at 0xEBB
+    <B3D5 [8]> ;
+
+  register B3D6 at 0xEBC
+    <B3D6 [8]> ;
+
+  register B3D7 at 0xEBD
+    <B3D7 [8]> ;
+
+  register B3DLC at 0xEB5
+    <-, RXRTR/TXRTR, RB [2], DLC [4]> ;
+
+  register B3EIDH at 0xEB3
+    <EID [8]> ;
+
+  register B3EIDL at 0xEB4
+    <EID [8]> ;
+
+  register B3SIDH at 0xEB1
+    <SID [8]> ;
+
+  register B3SIDL at 0xEB2
+    <SID [3], SRR, EXIDE, -, EID [2]> ;
+
+  register B4CON at 0xEC0
+    <RXFUL/TXBIF, RXM1/TXABT, RXRTRRO/TXLARB, FILHIT4/TXERR, FILHIT3/TXREQ, FILHIT2/RTREN, FILHIT1/TXPRI1, FILHIT0/TXPRI0> ;
+
+  register B4D0 at 0xEC6
+    <B4D0 [8]> ;
+
+  register B4D1 at 0xEC7
+    <B4D1 [8]> ;
+
+  register B4D2 at 0xEC8
+    <B4D2 [8]> ;
+
+  register B4D3 at 0xEC9
+    <B4D3 [8]> ;
+
+  register B4D4 at 0xECA
+    <B4D4 [8]> ;
+
+  register B4D5 at 0xECB
+    <B4D5 [8]> ;
+
+  register B4D6 at 0xECC
+    <B4D6 [8]> ;
+
+  register B4D7 at 0xECD
+    <B4D7 [8]> ;
+
+  register B4DLC at 0xEC5
+    <-, RXRTR/TXRTR, RB [2], DLC [4]> ;
+
+  register B4EIDH at 0xEC3
+    <EID [8]> ;
+
+  register B4EIDL at 0xEC4
+    <EID [8]> ;
+
+  register B4SIDH at 0xEC1
+    <SID [8]> ;
+
+  register B4SIDL at 0xEC2
+    <SID [3], SRR, EXIDE, -, EID [2]> ;
+
+  register B5CON at 0xED0
+    <RXFUL/TXBIF, RXM1/TXABT, RXRTRRO/TXLARB, FILHIT4/TXERR, FILHIT3/TXREQ, FILHIT2/RTREN, FILHIT1/TXPRI1, FILHIT0/TXPRI0> ;
+
+  register B5D0 at 0xED6
+    <B5D0 [8]> ;
+
+  register B5D1 at 0xED7
+    <B5D1 [8]> ;
+
+  register B5D2 at 0xED8
+    <B5D2 [8]> ;
+
+  register B5D3 at 0xED9
+    <B5D3 [8]> ;
+
+  register B5D4 at 0xEDA
+    <B5D4 [8]> ;
+
+  register B5D5 at 0xEDB
+    <B5D5 [8]> ;
+
+  register B5D6 at 0xEDC
+    <B5D6 [8]> ;
+
+  register B5D7 at 0xEDD
+    <B5D7 [8]> ;
+
+  register B5DLC at 0xED5
+    <-, RXRTR/TXRTR, RB [2], DLC [4]> ;
+
+  register B5EIDH at 0xED3
+    <EID [8]> ;
+
+  register B5EIDL at 0xED4
+    <EID [8]> ;
+
+  register B5SIDH at 0xED1
+    <SID [8]> ;
+
+  register B5SIDL at 0xED2
+    <SID [3], SRR, EXIDE, -, EID [2]> ;
+
+  register BAUDCON1 at 0xFA7
+    <ABDOVF, RCIDL, RXDTP, TXCKP, BRG16, -, WUE, ABDEN> ;
+
+  register BAUDCON2 at 0xFB9
+    <ABDOVF, RCIDL, RXDTP, TXCKP, BRG16, -, WUE, ABDEN> ;
+
+  register BIE0 at 0xE7E
+    <B5IE, B4IE, B3IE, B2IE, B1IE, B0IE, RXB1IE, RXB0IE> ;
+
+  register BRGCON1 at 0xE43
+    <SJW [2], BRP [6]> ;
+
+  register BRGCON2 at 0xE44
+    <SEG2PHTS, SAM, SEG1PH [3], PRSEG [3]> ;
+
+  register BRGCON3 at 0xE45
+    <WAKDIS, WAKFIL, -, -, -, SEG2PH [3]> ;
+
+  register BSEL0 at 0xE7D
+    <B5TXEN, B4TXEN, B3TXEN, B2TXEN, B1TXEN, B0TXEN, -, -> ;
+
+  register BSR at 0xFE0
+    <-, -, -, -, BSR [4]> ;
+
+  register CANCON at 0xF6F
+    <REQOP [3], ABAT, WIN2/FP3, WIN1/FP2, WIN0/FP1, FP0> ;
+
+  register CANCON_RO0 at 0xF3F
+    <REQOP [3], ABAT, WIN2/FP3, WIN1/FP2, WIN0/FP1, FP0> ;
+
+  register CANCON_RO1 at 0xF2F
+    <REQOP [3], ABAT, WIN2/FP3, WIN1/FP2, WIN0/FP1, FP0> ;
+
+  register CANCON_RO2 at 0xF1F
+    <REQOP [3], ABAT, WIN2/FP3, WIN1/FP2, WIN0/FP1, FP0> ;
+
+  register CANCON_RO3 at 0xF0F
+    <REQOP [3], ABAT, WIN2/FP3, WIN1/FP2, WIN0/FP1, FP0> ;
+
+  register CANCON_RO4 at 0xEDF
+    <REQOP [3], ABAT, WIN2/FP3, WIN1/FP2, WIN0/FP1, FP0> ;
+
+  register CANCON_RO5 at 0xECF
+    <REQOP [3], ABAT, WIN2/FP3, WIN1/FP2, WIN0/FP1, FP0> ;
+
+  register CANCON_RO6 at 0xEBF
+    <REQOP [3], ABAT, WIN2/FP3, WIN1/FP2, WIN0/FP1, FP0> ;
+
+  register CANCON_RO7 at 0xEAF
+    <REQOP [3], ABAT, WIN2/FP3, WIN1/FP2, WIN0/FP1, FP0> ;
+
+  register CANCON_RO8 at 0xE9F
+    <REQOP [3], ABAT, WIN2/FP3, WIN1/FP2, WIN0/FP1, FP0> ;
+
+  register CANCON_RO9 at 0xE8F
+    <REQOP [3], ABAT, WIN2/FP3, WIN1/FP2, WIN0/FP1, FP0> ;
+
+  register CANSTAT at 0xF6E
+    <OPMODE [3], EICODE4, EICODE3/ICODE2, EICODE2/ICODE1, EICODE1/ICODE0, EICODE0> ;
+
+  register CANSTAT_RO0 at 0xF3E
+    <OPMODE [3], EICODE4, EICODE3/ICODE2, EICODE2/ICODE1, EICODE1/ICODE0, EICODE0> ;
+
+  register CANSTAT_RO1 at 0xF2E
+    <OPMODE [3], EICODE4, EICODE3/ICODE2, EICODE2/ICODE1, EICODE1/ICODE0, EICODE0> ;
+
+  register CANSTAT_RO2 at 0xF1E
+    <OPMODE [3], EICODE4, EICODE3/ICODE2, EICODE2/ICODE1, EICODE1/ICODE0, EICODE0> ;
+
+  register CANSTAT_RO3 at 0xF0E
+    <OPMODE [3], EICODE4, EICODE3/ICODE2, EICODE2/ICODE1, EICODE1/ICODE0, EICODE0> ;
+
+  register CANSTAT_RO4 at 0xEDE
+    <OPMODE [3], EICODE4, EICODE3/ICODE2, EICODE2/ICODE1, EICODE1/ICODE0, EICODE0> ;
+
+  register CANSTAT_RO5 at 0xECE
+    <OPMODE [3], EICODE4, EICODE3/ICODE2, EICODE2/ICODE1, EICODE1/ICODE0, EICODE0> ;
+
+  register CANSTAT_RO6 at 0xEBE
+    <OPMODE [3], EICODE4, EICODE3/ICODE2, EICODE2/ICODE1, EICODE1/ICODE0, EICODE0> ;
+
+  register CANSTAT_RO7 at 0xEAE
+    <OPMODE [3], EICODE4, EICODE3/ICODE2, EICODE2/ICODE1, EICODE1/ICODE0, EICODE0> ;
+
+  register CANSTAT_RO8 at 0xE9E
+    <OPMODE [3], EICODE4, EICODE3/ICODE2, EICODE2/ICODE1, EICODE1/ICODE0, EICODE0> ;
+
+  register CANSTAT_RO9 at 0xE8E
+    <OPMODE [3], EICODE4, EICODE3/ICODE2, EICODE2/ICODE1, EICODE1/ICODE0, EICODE0> ;
+
+  register CCP1CON at 0xFBB
+    <P1M [2], DC1B [2], CCP1M [4]> ;
+
+  register CCP2CON at 0xF50
+    <-, -, DC2B [2], CCP2M [4]> ;
+
+  register CCP3CON at 0xF4D
+    <-, -, DC3B [2], CCP3M [4]> ;
+
+  register CCP4CON at 0xF4A
+    <-, -, DC4B [2], CCP4M [4]> ;
+
+  register CCP5CON at 0xF47
+    <-, -, DC5B [2], CCP5M [4]> ;
+
+  register CCPR1H at 0xFBD
+    <CCPR1H [8]> ;
+
+  register CCPR1L at 0xFBC
+    <CCPR1L [8]> ;
+
+  register CCPR2H at 0xF52
+    <CCPR2H [8]> ;
+
+  register CCPR2L at 0xF51
+    <CCPR2L [8]> ;
+
+  register CCPR3H at 0xF4F
+    <CCPR3H [8]> ;
+
+  register CCPR3L at 0xF4E
+    <CCPR3L [8]> ;
+
+  register CCPR4H at 0xF4C
+    <CCPR4H [8]> ;
+
+  register CCPR4L at 0xF4B
+    <CCPR4L [8]> ;
+
+  register CCPR5H at 0xF49
+    <CCPR5H [8]> ;
+
+  register CCPR5L at 0xF48
+    <CCPR5L [8]> ;
+
+  register CCPTMRS at 0xF99
+    <-, -, -, C5TSEL, C4TSEL, C3TSEL, C2TSEL, C1TSEL> ;
+
+  register CIOCON at 0xF70
+    <TX2SRC, TX2EN, ENDRHI, CANCAP, -, -, -, CLKSEL> ;
+
+  register CM1CON at 0xF5F
+    <CON, COE, CPOL, EVPOL [2], CREF, CCH [2]> ;
+
+  register CM2CON at 0xF5E
+    <CON, COE, CPOL, EVPOL [2], CREF, CCH [2]> ;
+
+  register CMSTAT at 0xFB4
+    <CMP2OUT, CMP1OUT, -, -, -, -, -, -> ;
+
+  register COMSTAT at 0xF71
+    <RXB0OVFL, RXB1OVFL, TXBO, TXBP, RXBP, TXWARN, RXWARN, EWARN> ;
+
+  register CTMUCONH at 0xF55
+    <CTMUEN, -, CTMUSIDL, TGEN, EDGEN, EDGSEQEN, IDISSEN, CTTRIG> ;
+
+  register CTMUCONL at 0xF54
+    <EDG2POL, EDG2SEL [2], EDG1POL, EDG1SEL [2], EDG2STAT, EDG1STAT> ;
+
+  register CTMUICON at 0xF53
+    <ITRIM [6], IRNG [2]> ;
+
+  register CVRCON at 0xFB5
+    <CVREN, CVROE, CVRSS, CVR [5]> ;
+
+  register ECANCON at 0xF72
+    <MDSEL [2], FIFOWM, EWIN [5]> ;
+
+  register ECCP1AS at 0xFBF
+    <ECCP1ASE, ECCP1AS [3], PSS1AC [2], PSS1BD [2]> ;
+
+  register ECCP1DEL at 0xFBE
+    <P1RSEN, P1DC [7]> ;
+
+  register EEADR at 0xF74
+    <EEADR [8]> ;
+
+  register EEADRH at 0xF75
+    <EEADRH [8]> ;
+
+  register EECON1 at 0xF7F
+    <EEPGD, CFGS, -, FREE, WRERR, WREN, WR, RD> ;
+
+  register EECON2 at 0xF7E
+    <EECON2 [8]> ;
+
+  register EEDATA at 0xF73
+    <EEDATA [8]> ;
+
+  register FSR0H at 0xFEA
+    <-, -, -, -, FSR0H [4]> ;
+
+  register FSR0L at 0xFE9
+    <FSR0L [8]> ;
+
+  register FSR1H at 0xFE2
+    <-, -, -, -, FSR1H [4]> ;
+
+  register FSR1L at 0xFE1
+    <FSR1L [8]> ;
+
+  register FSR2H at 0xFDA
+    <-, -, -, -, FSR2H [4]> ;
+
+  register FSR2L at 0xFD9
+    <FSR2L [8]> ;
+
+  register HLVDCON at 0xFA8
+    <VDIRMAG, BGVST, IRVST, HLVDEN, HLVDL [4]> ;
+
+  register INDF0 at 0xFEF
+    <INDF0 [8]> ;
+
+  register INDF1 at 0xFE7
+    <INDF1 [8]> ;
+
+  register INDF2 at 0xFDF
+    <INDF2 [8]> ;
+
+  register INTCON at 0xFF2
+    <GIE/GIEH, PEIE/GIEL, TMR0IE, INT0IE, RBIE, TMR0IF, INT0IF, RBIF> ;
+
+  register INTCON2 at 0xFF1
+    <nRBPU, INTEDG0, INTEDG1, INTEDG2, INTEDG3, TMR0IP, INT3IP, RBIP> ;
+
+  register INTCON3 at 0xFF0
+    <INT2IP, INT1IP, INT3IE, INT2IE, INT1IE, INT3IF, INT2IF, INT1IF> ;
+
+  register IOCB at 0xF5A
+    <IOCB7, IOCB6, IOCB5, IOCB4, -, -, -, -> ;
+
+  register IPR1 at 0xF9F
+    <-, ADIP, RC1IP, TX1IP, SSPIP, TMR1GIP, TMR2IP, TMR1IP> ;
+
+  register IPR2 at 0xFA2
+    <OSCFIP, -, -, -, BCLIP, HLVDIP, TMR3IP, TMR3GIP> ;
+
+  register IPR3 at 0xFA5
+    <-, -, RC2IP, TX2IP, CTMUIP, CCP2IP, CCP1IP, -> ;
+
+  register IPR4 at 0xFB8
+    <TMR4IP, EEIP, CMP2IP, CMP1IP, -, CCP5IP, CCP4IP, CCP3IP> ;
+
+  register IPR5 at 0xF78
+    <IRXIP, WAKIP, ERRIP, TXB2IP, TXB1IP, TXB0IP, RXB1IP, RXB0IP> ;
+
+  register LATA at 0xF89
+    <LATA7, LATA6, LATA5, -, LATA3, LATA2, LATA1, LATA0> ;
+
+  register LATB at 0xF8A
+    <LATB7, LATB6, LATB5, LATB4, LATB3, LATB2, LATB1, LATB0> ;
+
+  register LATC at 0xF8B
+    <LATC7, LATC6, LATC5, LATC4, LATC3, LATC2, LATC1, LATC0> ;
+
+  register MSEL0 at 0xE79
+    <FIL3 [2], FIL2 [2], FIL1 [2], FIL0 [2]> ;
+
+  register MSEL1 at 0xE7A
+    <FIL7 [2], FIL6 [2], FIL5 [2], FIL4 [2]> ;
+
+  register MSEL2 at 0xE7B
+    <FIL11 [2], FIL10 [2], FIL9 [2], FIL8 [2]> ;
+
+  register MSEL3 at 0xE7C
+    <FIL15 [2], FIL14 [2], FIL13 [2], FIL12 [2]> ;
+
+  register ODCON at 0xF91
+    <SSPOD, CCP5OD, CCP4OD, CCP3OD, CCP2OD, CCP1OD, U2OD, U1OD> ;
+
+  register OSCCON at 0xFD3
+    <IDLEN, IRCF [3], OSTS, HFIOFS, SCS [2]> ;
+
+  register OSCCON2 at 0xFD2
+    <-, SOSCRUN, -, SOSCDRV, SOSCGO, -, MFIOFS, MFIOSEL> ;
+
+  register OSCTUNE at 0xF9B
+    <INTSRC, PLLEN, TUN [6]> ;
+
+  register PADCFG1 at 0xF56
+    <-, -, -, -, -, -, -, CTMUDS> ;
+
+  register PCL at 0xFF9
+    <PCL [8]> ;
+
+  register PCLATH at 0xFFA
+    <PCH [8]> ;
+
+  register PCLATU at 0xFFB
+    <-, -, -, PCU [5]> ;
+
+  register PIE1 at 0xF9D
+    <-, ADIE, RC1IE, TX1IE, SSPIE, TMR1GIE, TMR2IE, TMR1IE> ;
+
+  register PIE2 at 0xFA0
+    <OSCFIE, -, -, -, BCLIE, HLVDIE, TMR3IE, TMR3GIE> ;
+
+  register PIE3 at 0xFA3
+    <-, -, RC2IE, TX2IE, CTMUIE, CCP2IE, CCP1IE, -> ;
+
+  register PIE4 at 0xFB6
+    <TMR4IE, EEIE, CMP2IE, CMP1IE, -, CCP5IE, CCP4IE, CCP3IE> ;
+
+  register PIE5 at 0xF76
+    <IRXIE, WAKIE, ERRIE, TXB2IE, TXB1IE, TXB0IE, RXB1IE, RXB0IE> ;
+
+  register PIR1 at 0xF9E
+    <-, ADIF, RC1IF, TX1IF, SSPIF, TMR1GIF, TMR2IF, TMR1IF> ;
+
+  register PIR2 at 0xFA1
+    <OSCFIF, -, -, -, BCLIF, HLVDIF, TMR3IF, TMR3GIF> ;
+
+  register PIR3 at 0xFA4
+    <-, -, RC2IF, TX2IF, CTMUIF, CCP2IF, CCP1IF, -> ;
+
+  register PIR4 at 0xFB7
+    <TMR4IF, EEIF, CMP2IF, CMP1IF, -, CCP5IF, CCP4IF, CCP3IF> ;
+
+  register PIR5 at 0xF77
+    <IRXIF, WAKIF, ERRIF, TXB2IF, TXB1IF, TXB0IF, RXB1IF, RXB0IF> ;
+
+  register PLUSW0 at 0xFEB
+    <PLUSW0 [8]> ;
+
+  register PLUSW1 at 0xFE3
+    <PLUSW1 [8]> ;
+
+  register PLUSW2 at 0xFDB
+    <PLUSW2 [8]> ;
+
+  register PMD0 at 0xF59
+    <CCP5MD, CCP4MD, CCP3MD, CCP2MD, CCP1MD, UART2MD, UART1MD, SSPMD> ;
+
+  register PMD1 at 0xF58
+    <PSPMD, CTMUMD, ADCMD, TMR4MD, TMR3MD, TMR2MD, TMR1MD, TMR0MD> ;
+
+  register PMD2 at 0xF57
+    <-, -, -, -, -, ECANMD, CMP2MD, CMP1MD> ;
+
+  register PORTA at 0xF80
+    <RA7, RA6, RA5, -, RA3, RA2, RA1, RA0> ;
+
+  register PORTB at 0xF81
+    <RB7, RB6, RB5, RB4, RB3, RB2, RB1, RB0> ;
+
+  register PORTC at 0xF82
+    <RC7, RC6, RC5, RC4, RC3, RC2, RC1, RC0> ;
+
+  register PORTE at 0xF84
+    <-, -, -, -, RE3, -, -, -> ;
+
+  register POSTDEC0 at 0xFED
+    <POSTDEC0 [8]> ;
+
+  register POSTDEC1 at 0xFE5
+    <POSTDEC1 [8]> ;
+
+  register POSTDEC2 at 0xFDD
+    <POSTDEC2 [8]> ;
+
+  register POSTINC0 at 0xFEE
+    <POSTINC0 [8]> ;
+
+  register POSTINC1 at 0xFE6
+    <POSTINC1 [8]> ;
+
+  register POSTINC2 at 0xFDE
+    <POSTINC2 [8]> ;
+
+  register PR2 at 0xFCB
+    <PR2 [8]> ;
+
+  register PR4 at 0xFA9
+    <PR4 [8]> ;
+
+  register PREINC0 at 0xFEC
+    <PREINC0 [8]> ;
+
+  register PREINC1 at 0xFE4
+    <PREINC1 [8]> ;
+
+  register PREINC2 at 0xFDC
+    <PREINC2 [8]> ;
+
+  register PRODH at 0xFF4
+    <PRODH [8]> ;
+
+  register PRODL at 0xFF3
+    <PRODL [8]> ;
+
+  register PSTR1CON at 0xF9C
+    <CMPL [2], -, STRSYNC, STRD, STRC, STRB, STRA> ;
+
+  register RCON at 0xFD0
+    <IPEN, SBOREN, nCM, nRI, nTO, nPD, nPOR, nBOR> ;
+
+  register RCREG1 at 0xFAE
+    <RCREG1 [8]> ;
+
+  register RCREG2 at 0xF7A
+    <RCREG2 [8]> ;
+
+  register RCSTA1 at 0xFAB
+    <SPEN, RX9, SREN, CREN, ADDEN, FERR, OERR, RX9D> ;
+
+  register RCSTA2 at 0xFA6
+    <SPEN, RX9, SREN, CREN, ADDEN, FERR, OERR, RX9D> ;
+
+  register REFOCON at 0xF9A
+    <ROON, -, ROSSLP, ROSEL, RODIV [4]> ;
+
+  register RXB0CON at 0xF60
+    <RXFUL, RXM1, RXM0/RTRRO, FILHIT4, RXRTRRO_FILHIT3, RB0DBEN_FILHIT2, JTOFF_FILHIT1, FILHIT0> ;
+
+  register RXB0D0 at 0xF66
+    <RXB0D0 [8]> ;
+
+  register RXB0D1 at 0xF67
+    <RXB0D1 [8]> ;
+
+  register RXB0D2 at 0xF68
+    <RXB0D2 [8]> ;
+
+  register RXB0D3 at 0xF69
+    <RXB0D3 [8]> ;
+
+  register RXB0D4 at 0xF6A
+    <RXB0D4 [8]> ;
+
+  register RXB0D5 at 0xF6B
+    <RXB0D5 [8]> ;
+
+  register RXB0D6 at 0xF6C
+    <RXB0D6 [8]> ;
+
+  register RXB0D7 at 0xF6D
+    <RXB0D7 [8]> ;
+
+  register RXB0DLC at 0xF65
+    <-, RXRTR, RB [2], DLC [4]> ;
+
+  register RXB0EIDH at 0xF63
+    <EID [8]> ;
+
+  register RXB0EIDL at 0xF64
+    <EID [8]> ;
+
+  register RXB0SIDH at 0xF61
+    <SID [8]> ;
+
+  register RXB0SIDL at 0xF62
+    <SID [3], SRR, EXID, -, EID [2]> ;
+
+  register RXB1CON at 0xF30
+    <RXFUL, RXM1, RXM0/RTRRO, FILHIT4, RXRTRRO_FILHIT3, FILHIT2, FILHIT1, FILHIT0> ;
+
+  register RXB1D0 at 0xF36
+    <RXB1D0 [8]> ;
+
+  register RXB1D1 at 0xF37
+    <RXB1D1 [8]> ;
+
+  register RXB1D2 at 0xF38
+    <RXB1D2 [8]> ;
+
+  register RXB1D3 at 0xF39
+    <RXB1D3 [8]> ;
+
+  register RXB1D4 at 0xF3A
+    <RXB1D4 [8]> ;
+
+  register RXB1D5 at 0xF3B
+    <RXB1D5 [8]> ;
+
+  register RXB1D6 at 0xF3C
+    <RXB1D6 [8]> ;
+
+  register RXB1D7 at 0xF3D
+    <RXB1D7 [8]> ;
+
+  register RXB1DLC at 0xF35
+    <-, RXRTR, RB [2], DLC [4]> ;
+
+  register RXB1EIDH at 0xF33
+    <EID [8]> ;
+
+  register RXB1EIDL at 0xF34
+    <EID [8]> ;
+
+  register RXB1SIDH at 0xF31
+    <SID [8]> ;
+
+  register RXB1SIDL at 0xF32
+    <SID [3], SRR, EXID, -, EID [2]> ;
+
+  register RXERRCNT at 0xE41
+    <REC [8]> ;
+
+  register RXF0EIDH at 0xEE2
+    <EID [8]> ;
+
+  register RXF0EIDL at 0xEE3
+    <EID [8]> ;
+
+  register RXF0SIDH at 0xEE0
+    <SID [8]> ;
+
+  register RXF0SIDL at 0xEE1
+    <SID [3], -, EXIDEN, -, EID [2]> ;
+
+  register RXF10EIDH at 0xE5A
+    <EID [8]> ;
+
+  register RXF10EIDL at 0xE5B
+    <EID [8]> ;
+
+  register RXF10SIDH at 0xE58
+    <SID [8]> ;
+
+  register RXF10SIDL at 0xE59
+    <SID [3], -, EXIDEN, -, EID [2]> ;
+
+  register RXF11EIDH at 0xE5E
+    <EID [8]> ;
+
+  register RXF11EIDL at 0xE5F
+    <EID [8]> ;
+
+  register RXF11SIDH at 0xE5C
+    <RXFSID [8]> ;
+
+  register RXF11SIDL at 0xE5D
+    <SID [3], -, EXIDEN, -, EID [2]> ;
+
+  register RXF12EIDH at 0xE62
+    <EID [8]> ;
+
+  register RXF12EIDL at 0xE63
+    <EID [8]> ;
+
+  register RXF12SIDH at 0xE60
+    <SID [8]> ;
+
+  register RXF12SIDL at 0xE61
+    <SID [3], -, EXIDEN, -, EID [2]> ;
+
+  register RXF13EIDH at 0xE66
+    <EID [8]> ;
+
+  register RXF13EIDL at 0xE67
+    <EID [8]> ;
+
+  register RXF13SIDH at 0xE64
+    <SID [8]> ;
+
+  register RXF13SIDL at 0xE65
+    <SID [3], -, EXIDEN, -, EID [2]> ;
+
+  register RXF14EIDH at 0xE6A
+    <EID [8]> ;
+
+  register RXF14EIDL at 0xE6B
+    <EID [8]> ;
+
+  register RXF14SIDH at 0xE68
+    <SID [8]> ;
+
+  register RXF14SIDL at 0xE69
+    <SID [3], -, EXIDEN, -, EID [2]> ;
+
+  register RXF15EIDH at 0xE6E
+    <RXFEID [8]> ;
+
+  register RXF15EIDL at 0xE6F
+    <EID [8]> ;
+
+  register RXF15SIDH at 0xE6C
+    <SID [8]> ;
+
+  register RXF15SIDL at 0xE6D
+    <SID [3], -, EXIDEN, -, EID [2]> ;
+
+  register RXF1EIDH at 0xEE6
+    <EID [8]> ;
+
+  register RXF1EIDL at 0xEE7
+    <EID [8]> ;
+
+  register RXF1SIDH at 0xEE4
+    <SID [8]> ;
+
+  register RXF1SIDL at 0xEE5
+    <SID [3], -, EXIDEN, -, EID [2]> ;
+
+  register RXF2EIDH at 0xEEA
+    <EID [8]> ;
+
+  register RXF2EIDL at 0xEEB
+    <EID [8]> ;
+
+  register RXF2SIDH at 0xEE8
+    <SID [8]> ;
+
+  register RXF2SIDL at 0xEE9
+    <SID [3], -, EXIDEN, -, EID [2]> ;
+
+  register RXF3EIDH at 0xEEE
+    <EID [8]> ;
+
+  register RXF3EIDL at 0xEEF
+    <EID [8]> ;
+
+  register RXF3SIDH at 0xEEC
+    <SID [8]> ;
+
+  register RXF3SIDL at 0xEED
+    <SID [3], -, EXIDEN, -, EID [2]> ;
+
+  register RXF4EIDH at 0xEF2
+    <EID [8]> ;
+
+  register RXF4EIDL at 0xEF3
+    <EID [8]> ;
+
+  register RXF4SIDH at 0xEF0
+    <SID [8]> ;
+
+  register RXF4SIDL at 0xEF1
+    <SID [3], -, EXIDEN, -, EID [2]> ;
+
+  register RXF5EIDH at 0xEF6
+    <EID [8]> ;
+
+  register RXF5EIDL at 0xEF7
+    <EID [8]> ;
+
+  register RXF5SIDH at 0xEF4
+    <SID [8]> ;
+
+  register RXF5SIDL at 0xEF5
+    <SID [3], -, EXIDEN, -, EID [2]> ;
+
+  register RXF6EIDH at 0xE4A
+    <EID [8]> ;
+
+  register RXF6EIDL at 0xE4B
+    <EID [8]> ;
+
+  register RXF6SIDH at 0xE48
+    <SID [8]> ;
+
+  register RXF6SIDL at 0xE49
+    <SID [3], -, EXIDEN, -, EID [2]> ;
+
+  register RXF7EIDH at 0xE4E
+    <EID [8]> ;
+
+  register RXF7EIDL at 0xE4F
+    <EID [8]> ;
+
+  register RXF7SIDH at 0xE4C
+    <SID [8]> ;
+
+  register RXF7SIDL at 0xE4D
+    <SID [3], -, EXIDEN, -, EID [2]> ;
+
+  register RXF8EIDH at 0xE52
+    <EID [8]> ;
+
+  register RXF8EIDL at 0xE53
+    <EID [8]> ;
+
+  register RXF8SIDH at 0xE50
+    <SID [8]> ;
+
+  register RXF8SIDL at 0xE51
+    <SID [3], -, EXIDEN, -, EID [2]> ;
+
+  register RXF9EIDH at 0xE56
+    <EID [8]> ;
+
+  register RXF9EIDL at 0xE57
+    <EID [8]> ;
+
+  register RXF9SIDH at 0xE54
+    <SID [8]> ;
+
+  register RXF9SIDL at 0xE55
+    <SID [3], -, EXIDEN, -, EID [2]> ;
+
+  register RXFBCON0 at 0xE71
+    <F1BP [4], F0BP [4]> ;
+
+  register RXFBCON1 at 0xE72
+    <F3BP [4], F2BP [4]> ;
+
+  register RXFBCON2 at 0xE73
+    <F5BP [4], F4BP [4]> ;
+
+  register RXFBCON3 at 0xE74
+    <F7BP [4], F6BP [4]> ;
+
+  register RXFBCON4 at 0xE75
+    <F9BP [4], F8BP [4]> ;
+
+  register RXFBCON5 at 0xE76
+    <F11BP [4], F10BP [4]> ;
+
+  register RXFBCON6 at 0xE77
+    <F13BP [4], F12BP [4]> ;
+
+  register RXFBCON7 at 0xE78
+    <F15BP [4], F14BP [4]> ;
+
+  register RXFCON0 at 0xE46
+    <RXF7EN, RXF6EN, RXF5EN, RXF4EN, RXF3EN, RXF2EN, RXF1EN, RXF0EN> ;
+
+  register RXFCON1 at 0xE47
+    <RXF15EN, RXF14EN, RXF13EN, RXF12EN, RXF11EN, RXF10EN, RXF9EN, RXF8EN> ;
+
+  register RXM0EIDH at 0xEFA
+    <EID [8]> ;
+
+  register RXM0EIDL at 0xEFB
+    <EID [8]> ;
+
+  register RXM0SIDH at 0xEF8
+    <SID [8]> ;
+
+  register RXM0SIDL at 0xEF9
+    <SID [3], -, EXIDEN, -, EID [2]> ;
+
+  register RXM1EIDH at 0xEFE
+    <EID [8]> ;
+
+  register RXM1EIDL at 0xEFF
+    <EID [8]> ;
+
+  register RXM1SIDH at 0xEFC
+    <SID [8]> ;
+
+  register RXM1SIDL at 0xEFD
+    <SID [3], -, EXIDEN, -, EID [2]> ;
+
+  register SDFLC at 0xE70
+    <-, -, -, FLC [5]> ;
+
+  register SLRCON at 0xF90
+    <-, -, -, -, -, SLRC, SLRB, SLRA> ;
+
+  register SPBRG1 at 0xFAF
+    <SPBRG1 [8]> ;
+
+  register SPBRG2 at 0xF7B
+    <SPBRG2 [8]> ;
+
+  register SPBRGH1 at 0xF7D
+    <SPBRGH1 [8]> ;
+
+  register SPBRGH2 at 0xF7C
+    <SPBRGH2 [8]> ;
+
+  register SSPADD at 0xFC8
+    <SSPADD [8]> ;
+
+  register SSPBUF at 0xFC9
+    <SSPBUF [8]> ;
+
+  register SSPCON1 at 0xFC6
+    <WCOL, SSPOV, SSPEN, CKP, SSPM [4]> ;
+
+  register SSPCON2 at 0xFC5
+    <GCEN, ACKSTAT, ACKDT, ACKEN, RCEN, PEN, RSEN, SEN> ;
+
+  register SSPSTAT at 0xFC7
+    <SMP, CKE, D/nA, P, S, R/nW, UA, BF> ;
+
+  register STATUS at 0xFD8
+    <-, -, -, N, OV, Z, DC, C> ;
+
+  register STKPTR at 0xFFC
+    <STKFUL, STKUNF, -, STKPTR [5]> ;
+
+  register T0CON at 0xFD5
+    <TMR0ON, T08BIT, T0CS, T0SE, PSA, T0PS [3]> ;
+
+  register T1CON at 0xFCD
+    <TMR1CS [2], T1CKPS [2], SOSCEN, nT1SYNC, RD16, TMR1ON> ;
+
+  register T1GCON at 0xFAA
+    <TMR1GE, T1GPOL, T1GTM, T1GSPM, T1GGO_nT1DONE, T1GVAL, T1GSS [2]> ;
+
+  register T2CON at 0xFCA
+    <-, T2OUTPS [4], TMR2ON, T2CKPS [2]> ;
+
+  register T3CON at 0xFB1
+    <TMR3CS [2], T3CKPS [2], SOSCEN, nT3SYNC, RD16, TMR3ON> ;
+
+  register T3GCON at 0xFB0
+    <TMR3GE, T3GPOL, T3GTM, T3GSPM, T3GGO_nT3DONE, T3GVAL, T3GSS [2]> ;
+
+  register T4CON at 0xF88
+    <-, T4OUTPS [4], TMR4ON, T4CKPS [2]> ;
+
+  register TABLAT at 0xFF5
+    <TABLAT [8]> ;
+
+  register TBLPTRH at 0xFF7
+    <TBLPTRH [8]> ;
+
+  register TBLPTRL at 0xFF6
+    <TBLPTRL [8]> ;
+
+  register TBLPTRU at 0xFF8
+    <-, -, -, TBLPTRU [5]> ;
+
+  register TMR0H at 0xFD7
+    <TMR0H [8]> ;
+
+  register TMR0L at 0xFD6
+    <TMR0L [8]> ;
+
+  register TMR1H at 0xFCF
+    <TMR1H [8]> ;
+
+  register TMR1L at 0xFCE
+    <TMR1L [8]> ;
+
+  register TMR2 at 0xFCC
+    <TMR2 [8]> ;
+
+  register TMR3H at 0xFB3
+    <TMR3H [8]> ;
+
+  register TMR3L at 0xFB2
+    <TMR3L [8]> ;
+
+  register TMR4 at 0xF87
+    <TMR4 [8]> ;
+
+  register TOSH at 0xFFE
+    <TOSH [8]> ;
+
+  register TOSL at 0xFFD
+    <TOSL [8]> ;
+
+  register TOSU at 0xFFF
+    <-, -, -, TOSU [5]> ;
+
+  register TRISA at 0xF92
+    <TRISA7, TRISA6, TRISA5, -, TRISA3, TRISA2, TRISA1, TRISA0> ;
+
+  register TRISB at 0xF93
+    <TRISB7, TRISB6, TRISB5, TRISB4, TRISB3, TRISB2, TRISB1, TRISB0> ;
+
+  register TRISC at 0xF94
+    <TRISC7, TRISC6, TRISC5, TRISC4, TRISC3, TRISC2, TRISC1, TRISC0> ;
+
+  register TXB0CON at 0xF20
+    <TXBIF, TXABT, TXLARB, TXERR, TXREQ, -, TXPRI [2]> ;
+
+  register TXB0D0 at 0xF26
+    <TXB0D0 [8]> ;
+
+  register TXB0D1 at 0xF27
+    <TXB0D1 [8]> ;
+
+  register TXB0D2 at 0xF28
+    <TXB0D2 [8]> ;
+
+  register TXB0D3 at 0xF29
+    <TXB0D3 [8]> ;
+
+  register TXB0D4 at 0xF2A
+    <TXB0D4 [8]> ;
+
+  register TXB0D5 at 0xF2B
+    <TXB0D5 [8]> ;
+
+  register TXB0D6 at 0xF2C
+    <TXB0D6 [8]> ;
+
+  register TXB0D7 at 0xF2D
+    <TXB0D7 [8]> ;
+
+  register TXB0DLC at 0xF25
+    <-, TXRTR, -, -, DLC [4]> ;
+
+  register TXB0EIDH at 0xF23
+    <EID [8]> ;
+
+  register TXB0EIDL at 0xF24
+    <EID [8]> ;
+
+  register TXB0SIDH at 0xF21
+    <SID [8]> ;
+
+  register TXB0SIDL at 0xF22
+    <SID [3], SRR, EXIDE, -, EID [2]> ;
+
+  register TXB1CON at 0xF10
+    <TXBIF, TXABT, TXLARB, TXERR, TXREQ, -, TXPRI [2]> ;
+
+  register TXB1D0 at 0xF16
+    <TXB1D0 [8]> ;
+
+  register TXB1D1 at 0xF17
+    <TXB1D1 [8]> ;
+
+  register TXB1D2 at 0xF18
+    <TXB1D2 [8]> ;
+
+  register TXB1D3 at 0xF19
+    <TXB1D3 [8]> ;
+
+  register TXB1D4 at 0xF1A
+    <TXB1D4 [8]> ;
+
+  register TXB1D5 at 0xF1B
+    <TXB1D5 [8]> ;
+
+  register TXB1D6 at 0xF1C
+    <TXB1D6 [8]> ;
+
+  register TXB1D7 at 0xF1D
+    <TXB1D7 [8]> ;
+
+  register TXB1DLC at 0xF15
+    <-, TXRTR, -, -, DLC [4]> ;
+
+  register TXB1EIDH at 0xF13
+    <EID [8]> ;
+
+  register TXB1EIDL at 0xF14
+    <EID [8]> ;
+
+  register TXB1SIDH at 0xF11
+    <SID [8]> ;
+
+  register TXB1SIDL at 0xF12
+    <SID [3], SRR, EXIDE, -, EID [2]> ;
+
+  register TXB2CON at 0xF00
+    <TXBIF, TXABT, TXLARB, TXERR, TXREQ, -, TXPRI [2]> ;
+
+  register TXB2D0 at 0xF06
+    <TXB2D0 [8]> ;
+
+  register TXB2D1 at 0xF07
+    <TXB2D1 [8]> ;
+
+  register TXB2D2 at 0xF08
+    <TXB2D2 [8]> ;
+
+  register TXB2D3 at 0xF09
+    <TXB2D3 [8]> ;
+
+  register TXB2D4 at 0xF0A
+    <TXB2D4 [8]> ;
+
+  register TXB2D5 at 0xF0B
+    <TXB2D5 [8]> ;
+
+  register TXB2D6 at 0xF0C
+    <TXB2D6 [8]> ;
+
+  register TXB2D7 at 0xF0D
+    <TXB2D7 [8]> ;
+
+  register TXB2DLC at 0xF05
+    <-, TXRTR, -, -, DLC [4]> ;
+
+  register TXB2EIDH at 0xF03
+    <EID [8]> ;
+
+  register TXB2EIDL at 0xF04
+    <EID [8]> ;
+
+  register TXB2SIDH at 0xF01
+    <SID [8]> ;
+
+  register TXB2SIDL at 0xF02
+    <SID [3], SRR, EXIDE, -, EID [2]> ;
+
+  register TXBIE at 0xE7F
+    <-, -, -, TXB2IE, TXB1IE, TXB0IE, -, -> ;
+
+  register TXERRCNT at 0xE42
+    <TEC [8]> ;
+
+  register TXREG1 at 0xFAD
+    <TXREG1 [8]> ;
+
+  register TXREG2 at 0xF79
+    <TXREG2 [8]> ;
+
+  register TXSTA1 at 0xFAC
+    <CSRC, TX9, TXEN, SYNC, SENDB, BRGH, TRMT, TX9D> ;
+
+  register TXSTA2 at 0xFBA
+    <CSRC, TX9, TXEN, SYNC, SENDB, BRGH, TRMT, TX9D> ;
+
+  register WDTCON at 0xFD1
+    <REGSLP, -, ULPLVL, SRETEN, -, ULPEN, ULPSINK, SWDTEN> ;
+
+  register WPUB at 0xF5B
+    <WPUB7, WPUB6, WPUB5, WPUB4, WPUB3, WPUB2, WPUB1, WPUB0> ;
+
+  register WREG at 0xFE8
+    <WREG [8]> ;
+
+  configuration CONFIG1H at 0x300001 width 8 {
+    IESO mask 0x80 description "Internal External Oscillator Switch Over Mode"
+      setting 0x0 mask 0x80 description "Disabled"
+      setting 0x80 mask 0x80 description "Enabled"
+    FCMEN mask 0x40 description "Fail-Safe Clock Monitor"
+      setting 0x0 mask 0x40 description "Disabled"
+      setting 0x40 mask 0x40 description "Enabled"
+    PLLCFG mask 0x10 description "PLL x4 Enable bit"
+      setting 0x10 mask 0x10 description "Enabled"
+      setting 0x0 mask 0x10 description "Disabled"
+    FOSC mask 0xF description "Oscillator"
+      setting 0x7 mask 0x7 description "External RC oscillator"
+      setting 0x6 mask 0x7 description "External RC oscillator, CLKOUT function on OSC2"
+      setting 0xD mask 0xF description "EC oscillator (Low power, DC - 160 kHz)"
+      setting 0xC mask 0xF description "EC oscillator, CLKOUT function on OSC2 (Low power, DC - 160 kHz)"
+      setting 0xB mask 0xF description "EC oscillator (Medium power, 160 kHz - 4 MHz)"
+      setting 0xA mask 0xF description "EC oscillator, CLKOUT function on OSC2 (Medium power, 160 kHz - 4 MHz)"
+      setting 0x9 mask 0xF description "Internal RC oscillator, CLKOUT function on OSC2"
+      setting 0x8 mask 0xF description "Internal RC oscillator"
+      setting 0x5 mask 0xF description "EC oscillator (High power, 16 MHz - 64 MHz)"
+      setting 0x4 mask 0xF description "EC oscillator, CLKOUT function on OSC2 (High power, 16 MHz - 64 MHz)"
+      setting 0x3 mask 0xF description "HS oscillator (Medium power, 4 MHz - 16 MHz)"
+      setting 0x2 mask 0xF description "HS oscillator (High power, 16 MHz - 25 MHz)"
+      setting 0x1 mask 0xF description "XT oscillator"
+      setting 0x0 mask 0xF description "LP oscillator"
+  }
+
+  configuration CONFIG1L at 0x300000 width 7 {
+    XINST mask 0x40 description "Extended Instruction Set"
+      setting 0x40 mask 0x40 description "Enabled"
+      setting 0x0 mask 0x40 description "Disabled"
+    SOSCSEL mask 0x18 description "SOSC Power Selection and mode Configuration bits"
+      setting 0x18 mask 0x18 description "High Power SOSC circuit selected"
+      setting 0x8 mask 0x18 description "Low Power SOSC circuit selected"
+      setting 0x10 mask 0x18 description "Digital (SCLKI) mode"
+    INTOSCSEL mask 0x4 description "LF-INTOSC Low-power Enable bit"
+      setting 0x4 mask 0x4 description "High Security Code Protection Enable"
+      setting 0x0 mask 0x4 description "LF-INTOSC in Low-power mode during Sleep"
+    RETEN mask 0x1 description "VREG Sleep Enable bit"
+      setting 0x0 mask 0x1 description "Enabled"
+      setting 0x1 mask 0x1 description "Disabled"
+  }
+
+  configuration CONFIG2H at 0x300003 width 7 {
+    WDTPS mask 0x7C description "Watchdog Postscaler"
+      setting 0x7C mask 0x7C description "1:1048576"
+      setting 0x4C mask 0x7C description "1:524288"
+      setting 0x48 mask 0x7C description "1:262144"
+      setting 0x44 mask 0x7C description "1:131072"
+      setting 0x40 mask 0x7C description "1:65536"
+      setting 0x3C mask 0x7C description "1:32768"
+      setting 0x38 mask 0x7C description "1:16384"
+      setting 0x34 mask 0x7C description "1:8192"
+      setting 0x30 mask 0x7C description "1:4096"
+      setting 0x2C mask 0x7C description "1:2048"
+      setting 0x28 mask 0x7C description "1:1024"
+      setting 0x24 mask 0x7C description "1:512"
+      setting 0x20 mask 0x7C description "1:256"
+      setting 0x1C mask 0x7C description "1:128"
+      setting 0x18 mask 0x7C description "1:64"
+      setting 0x14 mask 0x7C description "1:32"
+      setting 0x10 mask 0x7C description "1:16"
+      setting 0xC mask 0x7C description "1:8"
+      setting 0x8 mask 0x7C description "1:4"
+      setting 0x4 mask 0x7C description "1:2"
+      setting 0x0 mask 0x7C description "1:1"
+    WDTEN mask 0x3 description "Watchdog Timer"
+      setting 0x3 mask 0x3 description "WDT enabled in hardware; SWDTEN bit disabled"
+      setting 0x2 mask 0x3 description "WDT controlled by SWDTEN bit setting"
+      setting 0x1 mask 0x3 description "WDT enabled only while device is active and disabled in Sleep mode; SWDTEN bit disabled"
+      setting 0x0 mask 0x3 description "WDT disabled in hardware; SWDTEN bit disabled"
+  }
+
+  configuration CONFIG2L at 0x300002 width 7 {
+    BORPWR mask 0x60 description "BORMV Power level"
+      setting 0x60 mask 0x60 description "ZPBORMV instead of BORMV is selected"
+      setting 0x40 mask 0x60 description "BORMV set to high power level"
+      setting 0x20 mask 0x60 description "BORMV set to medium power level"
+      setting 0x0 mask 0x60 description "BORMV set to low power level"
+    BORV mask 0x18 description "Brown-out Reset Voltage bits"
+      setting 0x18 mask 0x18 description "1.8V"
+      setting 0x10 mask 0x18 description "2.0V"
+      setting 0x8 mask 0x18 description "2.7V"
+      setting 0x0 mask 0x18 description "3.0V"
+    BOREN mask 0x6 description "Brown Out Detect"
+      setting 0x6 mask 0x6 description "Enabled in hardware, SBOREN disabled"
+      setting 0x4 mask 0x6 description "Enabled while active, disabled in SLEEP, SBOREN disabled"
+      setting 0x2 mask 0x6 description "Controlled with SBOREN bit"
+      setting 0x0 mask 0x6 description "Disabled in hardware, SBOREN disabled"
+    PWRTEN mask 0x1 description "Power Up Timer"
+      setting 0x1 mask 0x1 description "Disabled"
+      setting 0x0 mask 0x1 description "Enabled"
+  }
+
+  configuration CONFIG3H at 0x300005 width 8 {
+    MCLRE mask 0x80 description "Master Clear Enable"
+      setting 0x80 mask 0x80 description "MCLR Enabled, RG5 Disabled"
+      setting 0x0 mask 0x80 description "MCLR Disabled, RG5 Enabled"
+    MSSPMSK mask 0x8 description "MSSP address masking"
+      setting 0x8 mask 0x8 description "7 Bit address masking mode"
+      setting 0x0 mask 0x8 description "5 bit address masking mode"
+    RESERVED mask 0x4 description "RESERVED"
+      setting 0x0 mask 0x4 description "Maintain bit as 0"
+    CANMX mask 0x1 description "ECAN Mux bit"
+      setting 0x1 mask 0x1 description "ECAN TX and RX pins are located on RB2 and RB3, respectively"
+      setting 0x0 mask 0x1 description "ECAN TX and RX pins are located on RC6 and RC7, respectively"
+  }
+
+  configuration CONFIG4L at 0x300006 width 8 {
+    DEBUG mask 0x80 description "Background Debug"
+      setting 0x80 mask 0x80 description "Disabled"
+      setting 0x0 mask 0x80 description "Enabled"
+    BBSIZ mask 0x10 description "Boot Block Size"
+      setting 0x10 mask 0x10 description "2K word Boot Block size"
+      setting 0x0 mask 0x10 description "1K word Boot Block size"
+    STVREN mask 0x1 description "Stack Overflow Reset"
+      setting 0x1 mask 0x1 description "Enabled"
+      setting 0x0 mask 0x1 description "Disabled"
+  }
+
+  configuration CONFIG5H at 0x300009 width 8 {
+    CPD mask 0x80 description "Data EE Read Protect"
+      setting 0x80 mask 0x80 description "Disabled"
+      setting 0x0 mask 0x80 description "Enabled"
+    CPB mask 0x40 description "Code Protect Boot"
+      setting 0x40 mask 0x40 description "Disabled"
+      setting 0x0 mask 0x40 description "Enabled"
+  }
+
+  configuration CONFIG5L at 0x300008 width 4 {
+    CP3 mask 0x8 description "Code Protect 0C000-0FFFF"
+      setting 0x8 mask 0x8 description "Disabled"
+      setting 0x0 mask 0x8 description "Enabled"
+    CP2 mask 0x4 description "Code Protect 08000-0BFFF"
+      setting 0x4 mask 0x4 description "Disabled"
+      setting 0x0 mask 0x4 description "Enabled"
+    CP1 mask 0x2 description "Code Protect 04000-07FFF"
+      setting 0x2 mask 0x2 description "Disabled"
+      setting 0x0 mask 0x2 description "Enabled"
+    CP0 mask 0x1 description "Code Protect 00800-03FFF"
+      setting 0x1 mask 0x1 description "Disabled"
+      setting 0x0 mask 0x1 description "Enabled"
+  }
+
+  configuration CONFIG6H at 0x30000B width 8 {
+    WRTD mask 0x80 description "Data EE Write Protect"
+      setting 0x80 mask 0x80 description "Disabled"
+      setting 0x0 mask 0x80 description "Enabled"
+    WRTB mask 0x40 description "Table Write Protect Boot"
+      setting 0x40 mask 0x40 description "Disabled"
+      setting 0x0 mask 0x40 description "Enabled"
+    WRTC mask 0x20 description "Config. Write Protect"
+      setting 0x20 mask 0x20 description "Disabled"
+      setting 0x0 mask 0x20 description "Enabled"
+  }
+
+  configuration CONFIG6L at 0x30000A width 4 {
+    WRT3 mask 0x8 description "Table Write Protect 0C000-0FFFF"
+      setting 0x8 mask 0x8 description "Disabled"
+      setting 0x0 mask 0x8 description "Enabled"
+    WRT2 mask 0x4 description "Table Write Protect 08000-0BFFF"
+      setting 0x4 mask 0x4 description "Disabled"
+      setting 0x0 mask 0x4 description "Enabled"
+    WRT1 mask 0x2 description "Table Write Protect 04000-07FFF"
+      setting 0x2 mask 0x2 description "Disabled"
+      setting 0x0 mask 0x2 description "Enabled"
+    WRT0 mask 0x1 description "Table Write Protect 00800-03FFF"
+      setting 0x1 mask 0x1 description "Disabled"
+      setting 0x0 mask 0x1 description "Enabled"
+  }
+
+  configuration CONFIG7H at 0x30000D width 7 {
+    EBTRB mask 0x40 description "Table Read Protect Boot"
+      setting 0x40 mask 0x40 description "Disabled"
+      setting 0x0 mask 0x40 description "Enabled"
+  }
+
+  configuration CONFIG7L at 0x30000C width 4 {
+    EBTR3 mask 0x8 description "Table Read Protect 0C000-0FFFF"
+      setting 0x8 mask 0x8 description "Disabled"
+      setting 0x0 mask 0x8 description "Enabled"
+    EBTR2 mask 0x4 description "Table Read Protect 08000-0BFFF"
+      setting 0x4 mask 0x4 description "Disabled"
+      setting 0x0 mask 0x4 description "Enabled"
+    EBTR1 mask 0x2 description "Table Read Protect 04000-07FFF"
+      setting 0x2 mask 0x2 description "Disabled"
+      setting 0x0 mask 0x2 description "Enabled"
+    EBTR0 mask 0x1 description "Table Read Protect 00800-03FFF"
+      setting 0x1 mask 0x1 description "Disabled"
+      setting 0x0 mask 0x1 description "Enabled"
+  }
+}

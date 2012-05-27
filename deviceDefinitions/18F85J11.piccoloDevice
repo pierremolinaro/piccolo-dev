@@ -10,10 +10,11 @@ controller PIC18F85J11 {
   unusedregister 0xD00 to 0xDFF ;
   unusedregister 0xE00 to 0xEFF ;
   unusedregister 0xF00 to 0xF5F ;
-  unusedregister 0xFD4 ;
+  unusedregister 0xF6B to 0xF7D ;
   unusedregister 0xFA8 to 0xFAA ;
   unusedregister 0xFB6 to 0xFBF ;
   unusedregister 0xFD2 ;
+  unusedregister 0xFD4 ;
   ram accessram : 0x0 to 0x5F ;
   ram gpr0 : 0x60 to 0xFF ;
   ram gpr1 : 0x100 to 0x1FF ;
@@ -26,7 +27,7 @@ controller PIC18F85J11 {
   # Total ram: 2048
 
   register ADCON0 at 0xFC2
-    <-, -, CHS [4], GO/nDONE, ADON> ;
+    <ADCAL, -, CHS [4], GO/nDONE, ADON> ;
 
   register ADCON1 at 0xFC1
     <-, -, VCFG [2], PCFG [4]> ;
@@ -40,29 +41,29 @@ controller PIC18F85J11 {
   register ADRESL at 0xFC3
     <ADRESL [8]> ;
 
-  register BAUDCTL1 at 0xF7E
-    <ABDOVF, RCMT, DTRXP, SCKP, BRG16, -, WUE, ABDEN> ;
+  register BAUDCON1 at 0xF7E
+    <ABDOVF, RCIDL, RXDTP, TXCKP, BRG16, -, WUE, ABDEN> ;
 
   register BSR at 0xFE0
     <-, -, -, -, BSR [4]> ;
 
   register CCP1CON at 0xF68
-    <-, -, CCPxX, CCPxY, CCPxM3, CCPxM2, CCPxM1, CCPxM0> ;
+    <-, -, DC1B [2], CCP1M [4]> ;
 
   register CCP2CON at 0xF65
-    <-, -, CCPxX, CCPxY, CCPxM3, CCPxM2, CCPxM1, CCPxM0> ;
+    <-, -, DC2B [2], CCP2M [4]> ;
 
   register CCPR1H at 0xF6A
-    <CCPxRH7, CCPxRH6, CCPxRH5, CCPxRH4, CCPxRH3, CCPxRH2, CCPxRH1, CCPxRH0> ;
+    <CCPR1H [8]> ;
 
   register CCPR1L at 0xF69
-    <CCPRxL7, CCPRxL6, CCPRxL5, CCPRxL4, CCPRxL3, CCPRxL2, CCPRxL1, CCPRxL0> ;
+    <CCPR1L [8]> ;
 
   register CCPR2H at 0xF67
-    <CCPxRH7, CCPxRH6, CCPxRH5, CCPxRH4, CCPxRH3, CCPxRH2, CCPxRH1, CCPxRH0> ;
+    <CCPR2H [8]> ;
 
   register CCPR2L at 0xF66
-    <CCPRxL7, CCPRxL6, CCPRxL5, CCPRxL4, CCPRxL3, CCPRxL2, CCPRxL1, CCPRxL0> ;
+    <CCPR2L [8]> ;
 
   register CMCON at 0xFB4
     <C2OUT, C1OUT, C2INV, C1INV, CIS, CM [3]> ;
@@ -113,7 +114,7 @@ controller PIC18F85J11 {
     <INT2IP, INT1IP, INT3IE, INT2IE, INT1IE, INT3IF, INT2IF, INT1IF> ;
 
   register IPR1 at 0xF9F
-    <PSPIP, ADIP, RCIP, TXIP, SSPIP, -, TMR2IP, TMR1IP> ;
+    <PSPIP, ADIP, RC1IP, TX1IP, SSPIP, -, TMR2IP, TMR1IP> ;
 
   register IPR2 at 0xFA2
     <OSCFIP, CMIP, -, -, BCLIP, LVDIP, TMR3IP, -> ;
@@ -140,7 +141,7 @@ controller PIC18F85J11 {
     <LATF7, LATF6, LATF5, LATF4, LATF3, LATF2, LATF1, -> ;
 
   register LATG at 0xF8F
-    <-, -, -, LATG4, LATG3, LATG2, LATG1, LATG0> ;
+    <U2OD, U1OD, -, LATG4, LATG3, LATG2, LATG1, LATG0> ;
 
   register LATH at 0xF90
     <LATH7, LATH6, LATH5, LATH4, LATH3, LATH2, LATH1, LATH0> ;
@@ -152,10 +153,10 @@ controller PIC18F85J11 {
     <EBDIS, -, WAIT [2], -, -, WM [2]> ;
 
   register OSCCON at 0xFD3
-    <-, IRCF2, IRCF1, IRCF0, -, FLTS, -, -> ;
+    <IDLEN, IRCF [3], OSTS, IOFS, SCS [2]> ;
 
   register OSCTUNE at 0xF9B
-    <HF256DIV, -, FTUNH5, FTUNH4, FTUNH3, FTUNH2, FTUNH1, FTUNH0> ;
+    <INTSRC, PLLEN, TUN5, TUN4, TUN3, TUN2, TUN1, TUN0> ;
 
   register PCL at 0xFF9
     <PCL [8]> ;
@@ -167,7 +168,7 @@ controller PIC18F85J11 {
     <-, -, -, PCU [5]> ;
 
   register PIE1 at 0xF9D
-    <PSPIE, ADIE, RCIE, TXIE, SSPIE, -, TMR2IE, TMR1IE> ;
+    <PSPIE, ADIE, RC1IE, TX1IE, SSPIE, -, TMR2IE, TMR1IE> ;
 
   register PIE2 at 0xFA0
     <OSCFIE, CMIE, -, -, BCLIE, LVDIE, TMR3IE, -> ;
@@ -176,10 +177,10 @@ controller PIC18F85J11 {
     <-, -, RC2IE, TX2IE, -, CCP2IE, CCP1IE, -> ;
 
   register PIR1 at 0xF9E
-    <PSPIF, ADIF, RCIF, TXIF, SSPIF, -, TMR2IF, TMR1IF> ;
+    <PSPIF, ADIF, RC1IF, TX1IF, SSPIF, -, TMR2IF, TMR1IF> ;
 
   register PIR2 at 0xFA1
-    <OSFIF, CMIF, -, -, BCLIF, LVDIF, TMR3IF, -> ;
+    <OSCFIF, CMIF, -, -, BCLIF, LVDIF, TMR3IF, -> ;
 
   register PIR3 at 0xFA4
     <-, -, RC2IF, TX2IF, -, CCP2IF, CCP1IF, -> ;
@@ -311,7 +312,7 @@ controller PIC18F85J11 {
     <RD16, T1RUN, T1CKPS [2], T1OSCEN, nT1SYNC, TMR1CS, TMR1ON> ;
 
   register T2CON at 0xFCA
-    <-, TOUTPS [4], TMR2ON, T2CKPS [2]> ;
+    <-, T2OUTPS [4], TMR2ON, T2CKPS [2]> ;
 
   register T3CON at 0xFB1
     <RD16, T3CCP2, T3CKPS [2], T3CCP1, nT3SYNC, TMR3CS, TMR3ON> ;
@@ -377,7 +378,7 @@ controller PIC18F85J11 {
     <TRISF7, TRISF6, TRISF5, TRISF4, TRISF3, TRISF2, TRISF1, -> ;
 
   register TRISG at 0xF98
-    <-, -, -, TRISG4, TRISG3, TRISG2, TRISG1, TRISG0> ;
+    <SPIOD, CCP2OD, CCP1OD, TRISG4, TRISG3, TRISG2, TRISG1, TRISG0> ;
 
   register TRISH at 0xF99
     <TRISH7, TRISH6, TRISH5, TRISH4, TRISH3, TRISH2, TRISH1, TRISH0> ;
@@ -398,7 +399,7 @@ controller PIC18F85J11 {
     <CSRC, TX9, TXEN, SYNC, -, BRGH, TRMT, TX9D> ;
 
   register WDTCON at 0xFD1
-    <-, -, -, -, -, -, -, SWDTEN> ;
+    <REGSLP, -, -, -, -, -, -, SWDTEN> ;
 
   register WREG at 0xFE8
     <WREG [8]> ;
@@ -409,30 +410,30 @@ controller PIC18F85J11 {
     SIGN mask 0x8 description "Config Word Signature Bit"
       setting 0x8 mask 0x8 description "Bulk erase of memory not conducated"
       setting 0x0 mask 0x8 description "Bulk erase of memory area complete"
-    CP_0 mask 0x4 description "Code Protect 000000-007FF7"
+    CP0 mask 0x4 description "Code Protection bit"
       setting 0x4 mask 0x4 description "Disabled"
       setting 0x0 mask 0x4 description "Enabled"
   }
 
   configuration CONFIG1L at 0x7FF8 width 8 {
-    BACKBUG mask 0x80 description "Background Debug"
+    DEBUG mask 0x80 description "Background Debugger Enable bit"
       setting 0x80 mask 0x80 description "Disabled"
       setting 0x0 mask 0x80 description "Enabled"
     XINST mask 0x40 description "Extended Instruction Set Enable bit"
       setting 0x40 mask 0x40 description "Enabled"
       setting 0x0 mask 0x40 description "Disabled"
-    STVR mask 0x20 description "Stack Overflow Reset"
+    STVREN mask 0x20 description "Stack Overflow/Underflow Reset Enable bit"
       setting 0x20 mask 0x20 description "Enabled"
       setting 0x0 mask 0x20 description "Disabled"
-    WDT mask 0x1 description "Watchdog Timer"
+    WDTEN mask 0x1 description "Watchdog Timer Enable bit"
       setting 0x1 mask 0x1 description "Enabled"
-      setting 0x0 mask 0x1 description "Disabled-Controlled by SWDTEN bit"
+      setting 0x0 mask 0x1 description "Disabled"
   }
 
   configuration CONFIG2H at 0x7FFB width 8 {
     RESERVED_CONFIG2H mask 0xF0 description "RESERVED"
       setting 0xF0 mask 0xF0 description "RESERVED"
-    WDTPS mask 0xF description "Watchdog Postscaler"
+    WDTPS mask 0xF description "Watchdog Timer Postscaler Select bits"
       setting 0xF mask 0xF description "1:32768"
       setting 0xE mask 0xF description "1:16384"
       setting 0xD mask 0xF description "1:8192"
@@ -452,44 +453,43 @@ controller PIC18F85J11 {
   }
 
   configuration CONFIG2L at 0x7FFA width 8 {
-    IESO mask 0x80 description "Internal External Switch Over Mode"
+    IESO mask 0x80 description "Two-Speed Start-up (Internal/External Oscillator Switchover) Control bit"
       setting 0x0 mask 0x80 description "Disabled"
       setting 0x80 mask 0x80 description "Enabled"
-    FCMEN mask 0x40 description "Fail-Safe Clock Monitor Enable"
+    FCMEN mask 0x40 description "Fail-Safe Clock Monitor Enable bit"
       setting 0x0 mask 0x40 description "Disabled"
       setting 0x40 mask 0x40 description "Enabled"
-    OSC mask 0x7 description "Oscillator"
-      setting 0x7 mask 0x7 description "OSC1/OSC2 EC+PLL"
-      setting 0x6 mask 0x7 description "OSC1/OSC2 EC"
-      setting 0x5 mask 0x7 description "OSC1/OSC2 HS+PLL"
-      setting 0x4 mask 0x7 description "OSC1/OSC2 HS"
-      setting 0x3 mask 0x7 description "INTOSC EC+PLL"
-      setting 0x2 mask 0x7 description "INTOSC EC"
-      setting 0x1 mask 0x7 description "INTOSC HS+PLL"
-      setting 0x0 mask 0x7 description "INTOSC HS"
+    FOSC2 mask 0x4 description "Default/Reset System Clock Select bit"
+      setting 0x4 mask 0x4 description "Enabled"
+      setting 0x0 mask 0x4 description "Disabled"
+    FOSC mask 0x3 description "Oscillator Selection bits"
+      setting 0x3 mask 0x3 description "EC oscillator, PLL enabled and under software control, CLK function on OSC2"
+      setting 0x2 mask 0x3 description "EC oscillator, CLKO function on OSC2"
+      setting 0x1 mask 0x3 description "HS oscillator, PLL enabled and under software control"
+      setting 0x0 mask 0x3 description "HS oscillator"
   }
 
   configuration CONFIG3H at 0x7FFD width 8 {
     RESERVED_CONFIG3H mask 0xF0 description "RESERVED"
       setting 0xF0 mask 0xF0 description "RESERVED"
-    CCP2MUX mask 0x1 description "CCP2 Mux"
-      setting 0x1 mask 0x1 description "RC1"
-      setting 0x0 mask 0x1 description "RE7 <Microcontroller> / RB3"
+    CCP2MX mask 0x1 description "CCP2 MUX bit"
+      setting 0x1 mask 0x1 description "CCP2 is multiplexed with RC1"
+      setting 0x0 mask 0x1 description "CCP2 is multiplexed with RE7 in Microcontroller mode or with RB3 in Extended Microcontroller mode"
   }
 
   configuration CONFIG3L at 0x7FFC width 8 {
-    WAIT mask 0x80 description "External Bus Wait"
+    WAIT mask 0x80 description "External Bus Wait Enable bit"
       setting 0x80 mask 0x80 description "Disabled"
       setting 0x0 mask 0x80 description "Enabled"
-    BW mask 0x40 description "Data Bus Width"
+    BW mask 0x40 description "Data Bus Width Select bit"
       setting 0x40 mask 0x40 description "16-bit external bus mode"
       setting 0x0 mask 0x40 description "8-bit external bus mode"
-    PMODE mask 0x30 description "External Memory Bus"
-      setting 0x30 mask 0x30 description "Microcontroller"
-      setting 0x20 mask 0x30 description "Ext Microcontroller 12-bit"
-      setting 0x10 mask 0x30 description "Ext Microcontroller 16-bit"
-      setting 0x0 mask 0x30 description "Ext Microcontroller 20-bit"
-    EASHFT mask 0x8 description "External Address Bus Shift"
+    MODE mask 0x30 description "External Memory Bus"
+      setting 0x30 mask 0x30 description "Microcontroller mode - External bus disabled"
+      setting 0x20 mask 0x30 description "Extended Microcontroller mode, 12-bit Address mode"
+      setting 0x10 mask 0x30 description "Extended Microcontroller mode, 16-bit Address mode"
+      setting 0x0 mask 0x30 description "Extended Microcontroller mode, 20-bit Address mode"
+    EASHFT mask 0x8 description "External Address Bus Shift Enable bit"
       setting 0x8 mask 0x8 description "Enabled"
       setting 0x0 mask 0x8 description "Disabled"
   }

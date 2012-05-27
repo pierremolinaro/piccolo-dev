@@ -1,0 +1,2071 @@
+controller PIC18F96J94 {
+  processor "pic18_60" ;
+  romsize 65520 ;
+  bank 16 ;
+  unusedregister 0xFD4 ;
+  ram accessram : 0x0 to 0x5F ;
+  ram gpr0 : 0x60 to 0xFF ;
+  ram gpr1 : 0x100 to 0x1FF ;
+  ram gpr10 : 0xA00 to 0xAFF ;
+  ram gpr11 : 0xB00 to 0xBFF ;
+  ram gpr12 : 0xC00 to 0xCFF ;
+  ram gpr13 : 0xD00 to 0xDFE ;
+  ram gpr2 : 0x200 to 0x2FF ;
+  ram gpr3 : 0x300 to 0x3FF ;
+  ram gpr4 : 0x400 to 0x4FF ;
+  ram gpr5 : 0x500 to 0x5FF ;
+  ram gpr6 : 0x600 to 0x6FF ;
+  ram gpr7 : 0x700 to 0x7FF ;
+  ram gpr8 : 0x800 to 0x8FF ;
+  ram gpr9 : 0x900 to 0x9FF ;
+  # Total ram: 3583
+
+  register ADCBUF0H at 0xFC3
+    <ADCBUF0H [8]> ;
+
+  register ADCBUF0L at 0xFC2
+    <ADCBUF0L [8]> ;
+
+  register ADCBUF10H at 0xE5B
+    <ADCBUF10H [8]> ;
+
+  register ADCBUF10L at 0xE5A
+    <ADCBUF10L [8]> ;
+
+  register ADCBUF11H at 0xE5D
+    <ADCBUF11H [8]> ;
+
+  register ADCBUF11L at 0xE5C
+    <ADCBUF11L [8]> ;
+
+  register ADCBUF12H at 0xE5F
+    <ADCBUF12H [8]> ;
+
+  register ADCBUF12L at 0xE5E
+    <ADCBUF12L [8]> ;
+
+  register ADCBUF13H at 0xE61
+    <ADCBUF13H [8]> ;
+
+  register ADCBUF13L at 0xE60
+    <ADCBUF13L [8]> ;
+
+  register ADCBUF14H at 0xE63
+    <ADCBUF14H [8]> ;
+
+  register ADCBUF14L at 0xE62
+    <ADCBUF14L [8]> ;
+
+  register ADCBUF15H at 0xE65
+    <ADCBUF15H [8]> ;
+
+  register ADCBUF15L at 0xE64
+    <ADCBUF15L [8]> ;
+
+  register ADCBUF16H at 0xE67
+    <ADCBUF16H [8]> ;
+
+  register ADCBUF16L at 0xE66
+    <ADCBUF16L [8]> ;
+
+  register ADCBUF17H at 0xE69
+    <ADCBUF17H [8]> ;
+
+  register ADCBUF17L at 0xE68
+    <ADCBUF17L [8]> ;
+
+  register ADCBUF18H at 0xE6B
+    <ADCBUF18H [8]> ;
+
+  register ADCBUF18L at 0xE6A
+    <ADCBUF18L [8]> ;
+
+  register ADCBUF19H at 0xE6D
+    <ADCBUF19H [8]> ;
+
+  register ADCBUF19L at 0xE6C
+    <ADCBUF19L [8]> ;
+
+  register ADCBUF1H at 0xE49
+    <ADCBUF1H [8]> ;
+
+  register ADCBUF1L at 0xE48
+    <ADCBUF1L [8]> ;
+
+  register ADCBUF20H at 0xE6F
+    <ADCBUF20H [8]> ;
+
+  register ADCBUF20L at 0xE6E
+    <ADCBUF20L [8]> ;
+
+  register ADCBUF21H at 0xE71
+    <ADCBUF21H [8]> ;
+
+  register ADCBUF21L at 0xE70
+    <ADCBUF21L [8]> ;
+
+  register ADCBUF22H at 0xE73
+    <ADCBUF22H [8]> ;
+
+  register ADCBUF22L at 0xE72
+    <ADCBUF22L [8]> ;
+
+  register ADCBUF23H at 0xE75
+    <ADCBUF23H [8]> ;
+
+  register ADCBUF23L at 0xE74
+    <ADCBUF23L [8]> ;
+
+  register ADCBUF24H at 0xE77
+    <ADCBUF24H [8]> ;
+
+  register ADCBUF24L at 0xE76
+    <ADCBUF24L [8]> ;
+
+  register ADCBUF25H at 0xE79
+    <ADCBUF25H [8]> ;
+
+  register ADCBUF25L at 0xE78
+    <ADCBUF25L [8]> ;
+
+  register ADCBUF2H at 0xE4B
+    <ADCBUF2H [8]> ;
+
+  register ADCBUF2L at 0xE4A
+    <ADCBUF2L [8]> ;
+
+  register ADCBUF3H at 0xE4D
+    <ADCBUF3H [8]> ;
+
+  register ADCBUF3L at 0xE4C
+    <ADCBUF3L [8]> ;
+
+  register ADCBUF4H at 0xE4F
+    <ADCBUF4H [8]> ;
+
+  register ADCBUF4L at 0xE4E
+    <ADCBUF4L [8]> ;
+
+  register ADCBUF5H at 0xE51
+    <ADCBUF5H [8]> ;
+
+  register ADCBUF5L at 0xE50
+    <ADCBUF5L [8]> ;
+
+  register ADCBUF6H at 0xE53
+    <ADCBUF6H [8]> ;
+
+  register ADCBUF6L at 0xE52
+    <ADCBUF6L [8]> ;
+
+  register ADCBUF7H at 0xE55
+    <ADCBUF7H [8]> ;
+
+  register ADCBUF7L at 0xE54
+    <ADCBUF7L [8]> ;
+
+  register ADCBUF8H at 0xE57
+    <ADCBUF8H [8]> ;
+
+  register ADCBUF8L at 0xE56
+    <ADCBUF8L [8]> ;
+
+  register ADCBUF9H at 0xE59
+    <ADCBUF9H [8]> ;
+
+  register ADCBUF9L at 0xE58
+    <ADCBUF9L [8]> ;
+
+  register ADCHIT0H at 0xE7F
+    <CHH [8]> ;
+
+  register ADCHIT0L at 0xE7E
+    <CHH [8]> ;
+
+  register ADCHIT1H at 0xE81
+    <CHH [8]> ;
+
+  register ADCHIT1L at 0xE80
+    <CHH [8]> ;
+
+  register ADCHS0H at 0xE87
+    <CHONB [3], CHOSB [5]> ;
+
+  register ADCHS0L at 0xE86
+    <CHONA [3], CHOSA [5]> ;
+
+  register ADCON1H at 0xFC1
+    <ADON, -, -, -, -, MODE12, FORM [2]> ;
+
+  register ADCON1L at 0xFC0
+    <SSRC [4], -, ASAM, SAMP, DONE> ;
+
+  register ADCON2H at 0xE8D
+    <PVCFG [2], NVCFG0, OFFCAL, BUFREGEN, CSCNA, -, -> ;
+
+  register ADCON2L at 0xE8C
+    <BUFS, SMPI [5], BUFM, ALTS> ;
+
+  register ADCON3H at 0xE8B
+    <ADRC, EXTSAM, PUMPEN, SAMC [5]> ;
+
+  register ADCON3L at 0xE8A
+    <ADCS [8]> ;
+
+  register ADCON5H at 0xE89
+    <ASENA, LPENA, CTMUREQ, BGREQ, -, -, ASINTMD [2]> ;
+
+  register ADCON5L at 0xE88
+    <-, -, -, -, WM [2], CM [2]> ;
+
+  register ADCSS0H at 0xE83
+    <CSS [8]> ;
+
+  register ADCSS0L at 0xE82
+    <CSS [8]> ;
+
+  register ADCSS1H at 0xE85
+    <CSS [8]> ;
+
+  register ADCSS1L at 0xE84
+    <CSS [8]> ;
+
+  register ADCTMUEN0H at 0xE7B
+    <CTMUEN [8]> ;
+
+  register ADCTMUEN0L at 0xE7A
+    <CTMUEN [8]> ;
+
+  register ADCTMUEN1H at 0xE7D
+    <CTMUEN [8]> ;
+
+  register ADCTMUEN1L at 0xE7C
+    <CTMUEN [8]> ;
+
+  register ALRMCFG at 0xF5B
+    <ALRMEN, CHIME, AMASK [4], ALRMPTR [2]> ;
+
+  register ALRMRPT at 0xF5A
+    <ARPT [8]> ;
+
+  register ALRMVALH at 0xF59
+    <ALRMVALH [8]> ;
+
+  register ALRMVALL at 0xF58
+    <ALRMVALL [8]> ;
+
+  register ANCFG at 0xF01
+    <-, -, -, -, -, VBG6EN, VBG2EN, VBGEN> ;
+
+  register ANCON1 at 0xE47
+    <ANSEL7, ANSEL6, ANSEL5, ANSEL4, ANSEL3, ANSEL2, ANSEL1, ANSEL0> ;
+
+  register ANCON2 at 0xE46
+    <ANSEL15, ANSEL14, ANSEL13, ANSEL12, ANSEL11, ANSEL10, ANSEL9, ANSEL8> ;
+
+  register ANCON3 at 0xE45
+    <ANSEL23, ANSEL22, ANSEL21, ANSEL20, ANSEL19, ANSEL18, ANSEL17, ANSEL16> ;
+
+  register BAUDCON1 at 0xF67
+    <ABDOVF, RCIDL, RXDTP, TXCKP, BRG16, -, WUE, ABDEN> ;
+
+  register BAUDCON2 at 0xF31
+    <ABDOVF, RCIDL, RXDTP, TXCKP, BRG16, -, WUE, ABDEN> ;
+
+  register BAUDCON3 at 0xF2D
+    <ABDOVF, RCIDL, RXDTP, TXCKP, BRG16, -, WUE, ABDEN> ;
+
+  register BAUDCON4 at 0xEFD
+    <ABDOVF, RCIDL, RXDTP, TXCKP, BRG16, -, WUE, ABDEN> ;
+
+  register BSR at 0xFE0
+    <-, -, -, -, BSR [4]> ;
+
+  register CCP10CON at 0xF40
+    <-, -, DC10B [2], CCP10M [4]> ;
+
+  register CCP1CON at 0xFB9
+    <P1M [2], DC1B [2], CCP1M [4]> ;
+
+  register CCP2CON at 0xF4E
+    <P2M [2], DC2B [2], CCP2M [4]> ;
+
+  register CCP3CON at 0xF49
+    <P3M [2], DC3B [2], CCP3M [4]> ;
+
+  register CCP4CON at 0xF10
+    <-, -, DC4B [2], CCP4M [4]> ;
+
+  register CCP5CON at 0xF0D
+    <-, -, DC5B [2], CCP5M [4]> ;
+
+  register CCP6CON at 0xF0A
+    <-, -, DC6B [2], CCP6M [4]> ;
+
+  register CCP7CON at 0xF07
+    <-, -, DC7B [2], CCP7M [4]> ;
+
+  register CCP8CON at 0xF46
+    <-, -, DC8B [2], CCP8M [4]> ;
+
+  register CCP9CON at 0xF43
+    <-, -, DC9B [2], CCP9M [4]> ;
+
+  register CCPR10H at 0xF42
+    <CCPR10H [8]> ;
+
+  register CCPR10L at 0xF41
+    <CCPR10L [8]> ;
+
+  register CCPR1H at 0xFBB
+    <CCPR1H [8]> ;
+
+  register CCPR1L at 0xFBA
+    <CCPR1L [8]> ;
+
+  register CCPR2H at 0xF50
+    <CCPR2H [8]> ;
+
+  register CCPR2L at 0xF4F
+    <CCPR2L [8]> ;
+
+  register CCPR3H at 0xF4B
+    <CCPR3H [8]> ;
+
+  register CCPR3L at 0xF4A
+    <CCPR3L [8]> ;
+
+  register CCPR4H at 0xF12
+    <CCPR4H [8]> ;
+
+  register CCPR4L at 0xF11
+    <CCPR4L [8]> ;
+
+  register CCPR5H at 0xF0F
+    <CCPR5H [8]> ;
+
+  register CCPR5L at 0xF0E
+    <CCPR5L [8]> ;
+
+  register CCPR6H at 0xF0C
+    <CCPR6H [8]> ;
+
+  register CCPR6L at 0xF0B
+    <CCPR6L [8]> ;
+
+  register CCPR7H at 0xF09
+    <CCPR7H [8]> ;
+
+  register CCPR7L at 0xF08
+    <CCPR7L [8]> ;
+
+  register CCPR8H at 0xF48
+    <CCPR8H [8]> ;
+
+  register CCPR8L at 0xF47
+    <CCPR8L [8]> ;
+
+  register CCPR9H at 0xF45
+    <CCPR9H [8]> ;
+
+  register CCPR9L at 0xF44
+    <CCPR9L [8]> ;
+
+  register CCPTMRS0 at 0xF36
+    <C3TSEL1, C3TSEL0, C2TSEL2, C2TSEL1, C2TSEL0, C1TSEL2, C1TSEL1, C1TSEL0> ;
+
+  register CCPTMRS1 at 0xF35
+    <C7TSEL1, C7TSEL0, -, C6TSEL0, -, C5TSEL0, C4TSEL1, C4TSEL0> ;
+
+  register CCPTMRS2 at 0xF34
+    <-, -, -, C10TSEL0, -, C9TSEL0, C8TSEL1, C8TSEL0> ;
+
+  register CM1CON at 0xF53
+    <CON, COE, CPOL, EVPOL [2], CREF, CCH [2]> ;
+
+  register CM2CON at 0xF38
+    <CON, COE, CPOL, EVPOL [2], CREF, CCH [2]> ;
+
+  register CM3CON at 0xF37
+    <CON, COE, CPOL, EVPOL [2], CREF, CCH [2]> ;
+
+  register CMSTAT at 0xFC4
+    <-, -, -, -, -, C3OUT, C2OUT, C1OUT> ;
+
+  register CTMUCON at 0xEF8
+    <ON, -, SIDL, TGEN, EDGEN, EDGSEQEN, IDISSEN, TRIGEN> ;
+
+  register CTMUCON1 at 0xEF7
+    <ITRIM [6], IRNG [2]> ;
+
+  register CTMUCON2 at 0xEF6
+    <EDG2EN, EDG2POL, EDG2SEL [4], -, -> ;
+
+  register CTMUCON3 at 0xEF5
+    <EDG1EN, EDG1POL, EDG1SEL [4], EDG2STAT, EDG1STAT> ;
+
+  register CVRCONH at 0xFBF
+    <-, -, -, CVR [5]> ;
+
+  register CVRCONL at 0xFBE
+    <CVREN, CVROE, CVRPSS [2], -, -, -, CVRNSS> ;
+
+  register DMABCH at 0xF6B
+    <-, -, -, -, -, -, DMACNTHB [2]> ;
+
+  register DMABCL at 0xF6C
+    <DMACNTLB [8]> ;
+
+  register DMACON1 at 0xF60
+    <SSCON [2], TXINC, RXINC, DUPLEX [2], DLYINTEN, DMAEN> ;
+
+  register DMACON2 at 0xF00
+    <DLYCYC [4], INTLVL [4]> ;
+
+  register DSCONH at 0xF27
+    <DSEN, -, XSEMAEN, -, -, -, -, RTCCWDIS> ;
+
+  register DSCONL at 0xF28
+    <-, -, -, -, -, WAKEDIS, DSBOR, RELEASE> ;
+
+  register DSGPR1 at 0xF24
+    <DSGPR1 [8]> ;
+
+  register DSGPR2 at 0xF23
+    <DSGPR2 [8]> ;
+
+  register DSGPR3 at 0xF22
+    <DSGPR3 [8]> ;
+
+  register DSGPR4 at 0xF21
+    <DSGPR4 [8]> ;
+
+  register DSWAKEH at 0xF25
+    <-, -, -, -, -, -, -, DSINT0> ;
+
+  register DSWAKEL at 0xF26
+    <FAULT, BOR, EXT, DSWDT, RTCC, MCLR, ICD, POR> ;
+
+  register ECCP1AS at 0xFBD
+    <ECCP1ASE, ECCP1AS [3], PSS1AC [2], PSS1BD [2]> ;
+
+  register ECCP2AS at 0xF52
+    <ECCP2ASE, ECCP2AS [3], PSS2AC [2], PSS2BD [2]> ;
+
+  register ECCP3AS at 0xF4D
+    <ECCP3ASE, ECCP3AS [3], PSS3AC [2], PSS3BD [2]> ;
+
+  register EECON1 at 0xF7F
+    <-, -, WWPROG, FREE, WRERR, WREN, WR, -> ;
+
+  register EECON2 at 0xF7E
+    <EECON2 [8]> ;
+
+  register FSR0H at 0xFEA
+    <-, -, -, -, FSR0H [4]> ;
+
+  register FSR0L at 0xFE9
+    <FSR0L [8]> ;
+
+  register FSR1H at 0xFE2
+    <-, -, -, -, FSR1H [4]> ;
+
+  register FSR1L at 0xFE1
+    <FSR1L [8]> ;
+
+  register FSR2H at 0xFDA
+    <-, -, -, -, FSR2H [4]> ;
+
+  register FSR2L at 0xFD9
+    <FSR2L [8]> ;
+
+  register HLVDCON at 0xFA8
+    <VDIRMAG, BGVST, IRVST, HLVDEN, HLVDL [4]> ;
+
+  register INDF0 at 0xFEF
+    <INDF0 [8]> ;
+
+  register INDF1 at 0xFE7
+    <INDF1 [8]> ;
+
+  register INDF2 at 0xFDF
+    <INDF2 [8]> ;
+
+  register INTCON at 0xFF2
+    <GIE_GIEH, PEIE_GIEL, TMR0IE, INT0IE, IOCIE, TMR0IF, INT0IF, IOCIF> ;
+
+  register INTCON2 at 0xFF1
+    <nRBPU, INTEDG0, INTEDG1, INTEDG2, INTEDG3, TMR0IP, INT3IP, IOCIP> ;
+
+  register INTCON3 at 0xFF0
+    <INT2IP, INT1IP, INT3IE, INT2IE, INT1IE, INT3IF, INT2IF, INT1IF> ;
+
+  register IOCF at 0xFD1
+    <IOCF7, IOCF6, IOCF5, IOCF4, IOCF3, IOCF2, IOCF1, IOCF0> ;
+
+  register IOCN at 0xF55
+    <IOCN7, IOCN6, IOCN5, IOCN4, IOCN3, IOCN2, IOCN1, IOCN0> ;
+
+  register IOCP at 0xF56
+    <IOCP7, IOCP6, IOCP5, IOCP4, IOCP3, IOCP2, IOCP1, IOCP0> ;
+
+  register IPR1 at 0xF9F
+    <PSPIP, ADIP, RC1IP, TX1IP, SSP1IP, TMR1GIP, TMR2IP, TMR1IP> ;
+
+  register IPR2 at 0xFA2
+    <OSCFIP, SSP2IP, BCL2IP, USBIP, BCL1IP, HLVDIP, TMR3IP, TMR3GIP> ;
+
+  register IPR3 at 0xFA5
+    <TMR5GIP, LCDIP, RC2IP, TX2IP, CTMUIP, CCP2IP, CCP1IP, RTCCIP> ;
+
+  register IPR4 at 0xFB6
+    <CCP10IP, CCP9IP, CCP8IP, CCP7IP, CCP6IP, CCP5IP, CCP4IP, ECCP3IP> ;
+
+  register IPR5 at 0xFD2
+    <-, FRCCRFIP, FRCCRLIP, TMR8IP, -, TMR6IP, TMR5IP, TMR4IP> ;
+
+  register IPR6 at 0xFA9
+    <RC4IP, TX4IP, RC3IP, TX3IP, -, CMP3IP, CMP2IP, CMP1IP> ;
+
+  register LATA at 0xF89
+    <LATA7, LATA6, LATA5, LATA4, LATA3, LATA2, LATA1, LATA0> ;
+
+  register LATB at 0xF8A
+    <LATB7, LATB6, LATB5, LATB4, LATB3, LATB2, LATB1, LATB0> ;
+
+  register LATC at 0xF8B
+    <LATC7, LATC6, LATC5, LATC4, LATC3, LATC2, LATC1, LATC0> ;
+
+  register LATD at 0xF8C
+    <LATD7, LATD6, LATD5, LATD4, LATD3, LATD2, LATD1, LATD0> ;
+
+  register LATE at 0xF8D
+    <LATE7, LATE6, LATE5, LATE4, LATE3, LATE2, LATE1, LATE0> ;
+
+  register LATF at 0xF8E
+    <LATF7, LATF6, LATF5, LATF4, LATF3, LATF2, LATF1, -> ;
+
+  register LATG at 0xF8F
+    <LATG7, LATG6, LATG5, LATG4, LATG3, LATG2, LATG1, LATG0> ;
+
+  register LATH at 0xF90
+    <LATH7, LATH6, LATH5, LATH4, LATH3, LATH2, LATH1, LATH0> ;
+
+  register LATJ at 0xF91
+    <LATJ7, LATJ6, LATJ5, LATJ4, LATJ3, LATJ2, LATJ1, LATJ0> ;
+
+  register LATK at 0xEE8
+    <LATK7, LATK6, LATK5, LATK4, LATK3, LATK2, LATK1, LATK0> ;
+
+  register LATL at 0xEE5
+    <LATL7, LATL6, LATL5, LATL4, LATL3, LATL2, LATL1, LATL0> ;
+
+  register LATVP at 0xF72
+    <LATVP7, LATVP6, LATVP5, LATVP4, LATVP3, LATVP2, LATVP1, LATVP0> ;
+
+  register LCDCON at 0xED9
+    <ON, SLPEN, WERR, CS [2], LMUX [3]> ;
+
+  register LCDDATA0 at 0xE8E
+    <S07C0, S06C0, S05C0, S04C0, S03C0, S02C0, S01C0, S00C0> ;
+
+  register LCDDATA1 at 0xE8F
+    <S15C0, S14C0, S13C0, S12C0, S11C0, S10C0, S09C0, S08C0> ;
+
+  register LCDDATA10 at 0xE98
+    <S23C1, S22C1, S21C1, S20C1, S19C1, S18C1, S17C1, S16C1> ;
+
+  register LCDDATA11 at 0xE99
+    <S31C1, S30C1, S29C1, S28C1, S27C1, S26C1, S25C1, S24C1> ;
+
+  register LCDDATA12 at 0xE9A
+    <S39C1, S38C1, S37C1, S36C1, S35C1, S34C1, S33C1, S32C1> ;
+
+  register LCDDATA13 at 0xE9B
+    <S47C1, S46C1, S45C1, S44C1, S43C1, S42C1, S41C1, S40C1> ;
+
+  register LCDDATA14 at 0xE9C
+    <S55C1, S54C1, S53C1, S52C1, S51C1, S50C1, S49C1, S48C1> ;
+
+  register LCDDATA15 at 0xE9D
+    <S63C1, S62C1, S61C1, S60C1, S59C1, S58C1, S57C1, S56C1> ;
+
+  register LCDDATA16 at 0xE9E
+    <S07C2, S06C2, S05C2, S04C2, S03C2, S02C2, S01C2, S00C2> ;
+
+  register LCDDATA17 at 0xE9F
+    <S15C2, S14C2, S13C2, S12C2, S11C2, S10C2, S09C2, S08C2> ;
+
+  register LCDDATA18 at 0xEA0
+    <S23C2, S22C2, S21C2, S20C2, S19C2, S18C2, S17C2, S16C2> ;
+
+  register LCDDATA19 at 0xEA1
+    <S31C2, S30C2, S29C2, S28C2, S27C2, S26C2, S25C2, S24C2> ;
+
+  register LCDDATA2 at 0xE90
+    <S23C0, S22C0, S21C0, S20C0, S19C0, S18C0, S17C0, S16C0> ;
+
+  register LCDDATA20 at 0xEA2
+    <S39C2, S38C2, S37C2, S36C2, S35C2, S34C2, S33C2, S32C2> ;
+
+  register LCDDATA21 at 0xEA3
+    <S47C2, S46C2, S45C2, S44C2, S43C2, S42C2, S41C2, S40C2> ;
+
+  register LCDDATA22 at 0xEA4
+    <S55C2, S54C2, S53C2, S52C2, S51C2, S50C2, S49C2, S48C2> ;
+
+  register LCDDATA23 at 0xEA5
+    <S63C2, S62C2, S61C2, S60C2, S59C2, S58C2, S57C2, S56C2> ;
+
+  register LCDDATA24 at 0xEA6
+    <S07C3, S06C3, S05C3, S04C3, S03C3, S02C3, S01C3, S00C3> ;
+
+  register LCDDATA25 at 0xEA7
+    <S15C3, S14C3, S13C3, S12C3, S11C3, S10C3, S09C3, S08C3> ;
+
+  register LCDDATA26 at 0xEA8
+    <S23C3, S22C3, S21C3, S20C3, S19C3, S18C3, S17C3, S16C3> ;
+
+  register LCDDATA27 at 0xEA9
+    <S31C3, S30C3, S29C3, S28C3, S27C3, S26C3, S25C3, S24C3> ;
+
+  register LCDDATA28 at 0xEAA
+    <S39C3, S38C3, S37C3, S36C3, S35C3, S34C3, S33C3, S32C3> ;
+
+  register LCDDATA29 at 0xEAB
+    <S47C3, S46C3, S45C3, S44C3, S43C3, S42C3, S41C3, S40C3> ;
+
+  register LCDDATA3 at 0xE91
+    <S31C0, S30C0, S29C0, S28C0, S27C0, S26C0, S25C0, S24C0> ;
+
+  register LCDDATA30 at 0xEAC
+    <S55C3, S54C3, S53C3, S52C3, S51C3, S50C3, S49C3, S48C3> ;
+
+  register LCDDATA31 at 0xEAD
+    <S63C3, S62C3, S61C3, S60C3, S59C3, S58C3, S57C3, S56C3> ;
+
+  register LCDDATA32 at 0xEAE
+    <S07C4, S06C4, S05C4, S04C4, S03C4, S02C4, S01C4, S00C4> ;
+
+  register LCDDATA33 at 0xEAF
+    <S15C4, S14C4, S13C4, S12C4, S11C4, S10C4, S09C4, S08C4> ;
+
+  register LCDDATA34 at 0xEB0
+    <S23C4, S22C4, S21C4, S20C4, S19C4, S18C4, S17C4, S16C4> ;
+
+  register LCDDATA35 at 0xEB1
+    <S31C4, S30C4, S29C4, S28C4, S27C4, S26C4, S25C4, S24C4> ;
+
+  register LCDDATA36 at 0xEB2
+    <S39C4, S38C4, S37C4, S36C4, S35C4, S34C4, S33C4, S32C4> ;
+
+  register LCDDATA37 at 0xEB3
+    <S47C4, S46C4, S45C4, S44C4, S43C4, S42C4, S41C4, S40C4> ;
+
+  register LCDDATA38 at 0xEB4
+    <S55C4, S54C4, S53C4, S52C4, S51C4, S50C4, S49C4, S48C4> ;
+
+  register LCDDATA39 at 0xEB5
+    <S63C4, S62C4, S61C4, S60C4, S59C4, S58C4, S57C4, S56C4> ;
+
+  register LCDDATA4 at 0xE92
+    <S39C0, S38C0, S37C0, S36C0, S35C0, S34C0, S33C0, S32C0> ;
+
+  register LCDDATA40 at 0xEB6
+    <S07C5, S06C5, S05C5, S04C5, S03C5, S02C5, S01C5, S00C5> ;
+
+  register LCDDATA41 at 0xEB7
+    <S15C5, S14C5, S13C5, S12C5, S11C5, S10C5, S09C5, S08C5> ;
+
+  register LCDDATA42 at 0xEB8
+    <S23C5, S22C5, S21C5, S20C5, S19C5, S18C5, S17C5, S16C5> ;
+
+  register LCDDATA43 at 0xEB9
+    <S31C5, S30C5, S29C5, S28C5, S27C5, S26C5, S25C5, S24C5> ;
+
+  register LCDDATA44 at 0xEBA
+    <S39C5, S38C5, S37C5, S36C5, S35C5, S34C5, S33C5, S32C5> ;
+
+  register LCDDATA45 at 0xEBB
+    <S47C5, S46C5, S45C5, S44C5, S43C5, S42C5, S41C5, S40C5> ;
+
+  register LCDDATA46 at 0xEBC
+    <S55C5, S54C5, S53C5, S52C5, S51C5, S50C5, S49C5, S48C5> ;
+
+  register LCDDATA47 at 0xEBD
+    <S63C5, S62C5, S61C5, S60C5, S59C5, S58C5, S57C5, S56C5> ;
+
+  register LCDDATA48 at 0xEBE
+    <S07C6, S06C6, S05C6, S04C6, S03C6, S02C6, S01C6, S00C6> ;
+
+  register LCDDATA49 at 0xEBF
+    <S15C6, S14C6, S13C6, S12C6, S11C6, S10C6, S09C6, S08C6> ;
+
+  register LCDDATA5 at 0xE93
+    <S47C0, S46C0, S45C0, S44C0, S43C0, S42C0, S41C0, S40C0> ;
+
+  register LCDDATA50 at 0xEC0
+    <S23C6, S22C6, S21C6, S20C6, S19C6, S18C6, S17C6, S16C6> ;
+
+  register LCDDATA51 at 0xEC1
+    <S31C6, S30C6, S29C6, S28C6, S27C6, S26C6, S25C6, S24C6> ;
+
+  register LCDDATA52 at 0xEC2
+    <S39C6, S38C6, S37C6, S36C6, S35C6, S34C6, S33C6, S32C6> ;
+
+  register LCDDATA53 at 0xEC3
+    <S47C6, S46C6, S45C6, S44C6, S43C6, S42C6, S41C6, S40C6> ;
+
+  register LCDDATA54 at 0xEC4
+    <S55C6, S54C6, S53C6, S52C6, S51C6, S50C6, S49C6, S48C6> ;
+
+  register LCDDATA55 at 0xEC5
+    <S63C6, S62C6, S61C6, S60C6, S59C6, S58C6, S57C6, S56C6> ;
+
+  register LCDDATA56 at 0xEC6
+    <S07C7, S06C7, S05C7, S04C7, S03C7, S02C7, S01C7, S00C7> ;
+
+  register LCDDATA57 at 0xEC7
+    <S15C7, S14C7, S13C7, S12C7, S11C7, S10C7, S09C7, S08C7> ;
+
+  register LCDDATA58 at 0xEC8
+    <S23C7, S22C7, S21C7, S20C7, S19C7, S18C7, S17C7, S16C7> ;
+
+  register LCDDATA59 at 0xEC9
+    <S31C7, S30C7, S29C7, S28C7, S27C7, S26C7, S25C7, S24C7> ;
+
+  register LCDDATA6 at 0xE94
+    <S55C0, S54C0, S53C0, S52C0, S51C0, S50C0, S49C0, S48C0> ;
+
+  register LCDDATA60 at 0xECA
+    <S39C7, S38C7, S37C7, S36C7, S35C7, S34C7, S33C7, S32C7> ;
+
+  register LCDDATA61 at 0xECB
+    <S47C7, S46C7, S45C7, S44C7, S43C7, S42C7, S41C7, S40C7> ;
+
+  register LCDDATA62 at 0xECC
+    <S55C7, S54C7, S53C7, S52C7, S51C7, S50C7, S49C7, S48C7> ;
+
+  register LCDDATA63 at 0xECD
+    <S63C7, S62C7, S61C7, S60C7, S59C7, S58C7, S57C7, S56C7> ;
+
+  register LCDDATA7 at 0xE95
+    <S63C0, S62C0, S61C0, S60C0, S59C0, S58C0, S57C0, S56C0> ;
+
+  register LCDDATA8 at 0xE96
+    <S07C1, S06C1, S05C1, S04C1, S03C1, S02C1, S01C1, S00C1> ;
+
+  register LCDDATA9 at 0xE97
+    <S15C1, S14C1, S13C1, S12C1, S11C1, S10C1, S09C1, S08C1> ;
+
+  register LCDPS at 0xEDA
+    <WFT, BIASMD, LCDA, WA, LP [4]> ;
+
+  register LCDREFH at 0xED7
+    <LCDIRE, -, LCDCST [3], VLCD3PE, VLCD2PE, VLCD1PE> ;
+
+  register LCDREFL at 0xED6
+    <LRLAP [2], LRLBP [2], -, LRLAT [3]> ;
+
+  register LCDREG at 0xED8
+    <CPEN, -, BIAS [3], MODE13, CLKSEL [2]> ;
+
+  register LCDSE0 at 0xECE
+    <SE07, SE06, SE05, SE04, SE03, SE02, SE01, SE00> ;
+
+  register LCDSE1 at 0xECF
+    <SE15, SE14, SE13, SE12, SE11, SE10, SE09, SE08> ;
+
+  register LCDSE2 at 0xED0
+    <SE23, SE22, SE21, SE20, SE19, SE18, SE17, SE16> ;
+
+  register LCDSE3 at 0xED1
+    <SE31, SE30, SE29, SE28, SE27, SE26, SE25, SE24> ;
+
+  register LCDSE4 at 0xED2
+    <SE39, SE38, SE37, SE36, SE35, SE34, SE33, SE32> ;
+
+  register LCDSE5 at 0xED3
+    <SE47, SE46, SE45, SE44, SE43, SE42, SE41, SE40> ;
+
+  register LCDSE6 at 0xED4
+    <SE55, SE54, SE53, SE52, SE51, SE50, SE49, SE48> ;
+
+  register LCDSE7 at 0xED5
+    <SE63, SE62, SE61, SE60, SE59, SE58, SE57, SE56> ;
+
+  register MDCARH at 0xEED
+    <MDCHODIS, MDCHPOL, MDCHSYNC, -, MDCH [4]> ;
+
+  register MDCARL at 0xEEC
+    <MDCLODIS, MDCLPOL, MDCLSYNC, -, MDCL [4]> ;
+
+  register MDCON at 0xEEF
+    <MDEN, MDOE, MDSLR, MDOPOL, MDO, -, -, MDBIT> ;
+
+  register MDSRC at 0xEEE
+    <MDSODIS, -, -, -, MDSRC [4]> ;
+
+  register MEMCON at 0xEE3
+    <EBDIS, -, WAIT [2], -, -, WM [2]> ;
+
+  register ODCON1 at 0xEEB
+    <ECCP2OD, ECCP1OD, USART4OD, USART3OD, USART2OD, USART1OD, SSP2OD, SSP1OD> ;
+
+  register ODCON2 at 0xEEA
+    <CCP10OD, CCP9OD, CCP8OD, CCP7OD, CCP6OD, CCP5OD, CCP4OD, ECCP3OD> ;
+
+  register OSCCON at 0xFD3
+    <IDLEN, COSC [3], -, NOSC [3]> ;
+
+  register OSCCON2 at 0xF66
+    <CLKLOCK, IOLOCK, LOCK, -, CF, POSCEN, SOSCGO, -> ;
+
+  register OSCCON3 at 0xF65
+    <-, -, -, -, -, IRCF [3]> ;
+
+  register OSCCON4 at 0xF64
+    <CPDIV [2], PLLGO, -, -, -, -, -> ;
+
+  register OSCCON5 at 0xF63
+    <STEN, -, STSIDL, -, STLOCK, STLPOL, STOR, STORPOL> ;
+
+  register OSCTUNE at 0xF9B
+    <-, -, TUN [6]> ;
+
+  register PADCFG at 0xF54
+    <RDPU, REPU, RFPU, RGPU, RHPU, RJPU, RKPU, RLPU> ;
+
+  register PCL at 0xFF9
+    <PCL [8]> ;
+
+  register PCLATH at 0xFFA
+    <PCH [8]> ;
+
+  register PCLATU at 0xFFB
+    <-, -, -, PCU [5]> ;
+
+  register PIE1 at 0xF9D
+    <PSPIE, ADIE, RC1IE, TX1IE, SSP1IE, TMR1GIE, TMR2IE, TMR1IE> ;
+
+  register PIE2 at 0xFA0
+    <OSCFIE, SSP2IE, BCL2IE, USBIE, BCL1IE, HLVDIE, TMR3IE, TMR3GIE> ;
+
+  register PIE3 at 0xFA3
+    <TMR5GIE, LCDIE, RC2IE, TX2IE, CTMUIE, CCP2IE, CCP1IE, RTCCIE> ;
+
+  register PIE4 at 0xFB4
+    <CCP10IE, CCP9IE, CCP8IE, CCP7IE, CCP6IE, CCP5IE, CCP4IE, ECCP3IE> ;
+
+  register PIE5 at 0xFB7
+    <-, FRCCRFIE, FRCCRLIE, TMR8IE, -, TMR6IE, TMR5IE, TMR4IE> ;
+
+  register PIE6 at 0xF61
+    <RC4IE, TX4IE, RC3IE, TX3IE, -, CMP3IE, CMP2IE, CMP1IE> ;
+
+  register PIR1 at 0xF9E
+    <PSPIF, ADIF, RC1IF, TX1IF, SSP1IF, TMR1GIF, TMR2IF, TMR1IF> ;
+
+  register PIR2 at 0xFA1
+    <OSCFIF, SSP2IF, BCL2IF, USBIF, BCL1IF, HLVDIF, TMR3IF, TMR3GIF> ;
+
+  register PIR3 at 0xFA4
+    <TMR5GIF, LCDIF, RC2IF, TX2IF, CTMUIF, CCP2IF, CCP1IF, RTCCIF> ;
+
+  register PIR4 at 0xFB5
+    <CCP10IF, CCP9IF, CCP8IF, CCP7IF, CCP6IF, CCP5IF, CCP4IF, ECCP3IF> ;
+
+  register PIR5 at 0xFB8
+    <-, FRCCRFIF, FRCCRLIF, TMR8IF, -, TMR6IF, TMR5IF, TMR4IF> ;
+
+  register PIR6 at 0xFA6
+    <RC4IF, TX4IF, RC3IF, TX3IF, -, CMP3IF, CMP2IF, CMP1IF> ;
+
+  register PLUSW0 at 0xFEB
+    <PLUSW0 [8]> ;
+
+  register PLUSW1 at 0xFE3
+    <PLUSW1 [8]> ;
+
+  register PLUSW2 at 0xFDB
+    <PLUSW2 [8]> ;
+
+  register PMD0 at 0xEF4
+    <CCP10MD, CCP9MD, CCP8MD, CCP7MD, CCP6MD, CCP5MD, CCP4MD, ECCP3MD> ;
+
+  register PMD1 at 0xEF3
+    <ECCP2MD, ECCP1MD, UART4MD, UART3MD, UART2MD, UART1MD, SSP2MD, SSP1MD> ;
+
+  register PMD2 at 0xEF2
+    <TMR8MD, TMR6MD, TMR5MD, TMR4MD, TMR3MD, TMR2MD, TMR1MD, TMR0MD> ;
+
+  register PMD3 at 0xEF1
+    <TXMMD, CTMUMD, ADCMD, RTCCMD, LCDMD, PSPMD, REFO1MD, REFO2MD> ;
+
+  register PMD4 at 0xEF0
+    <CMP1MD, CMP2MD, CMP3MD, USBMD, IOCMD, LVDMD, -, EMBMD> ;
+
+  register PORTA at 0xF80
+    <RA7, RA6, RA5, RA4, RA3, RA2, RA1, RA0> ;
+
+  register PORTB at 0xF81
+    <RB7, RB6, RB5, RB4, RB3, RB2, RB1, RB0> ;
+
+  register PORTC at 0xF82
+    <RC7, RC6, RC5, RC4, RC3, RC2, RC1, RC0> ;
+
+  register PORTD at 0xF83
+    <RD7, RD6, RD5, RD4, RD3, RD2, RD1, RD0> ;
+
+  register PORTE at 0xF84
+    <RE7, RE6, RE5, RE4, RE3, RE2, RE1, RE0> ;
+
+  register PORTF at 0xF85
+    <RF7, RF6, RF5, RF4, RF3, RF2, RF1, -> ;
+
+  register PORTG at 0xF86
+    <RG7, RG6, RG5, RG4, RG3, RG2, RG1, RG0> ;
+
+  register PORTH at 0xF87
+    <RH7, RH6, RH5, RH4, RH3, RH2, RH1, RH0> ;
+
+  register PORTJ at 0xF88
+    <RJ7, RJ6, RJ5, RJ4, RJ3, RJ2, RJ1, RJ0> ;
+
+  register PORTK at 0xEE7
+    <RK7, RK6, RK5, RK4, RK3, RK2, RK1, RK0> ;
+
+  register PORTL at 0xEE4
+    <RL7, RL6, RL5, RL4, RL3, RL2, RL1, RL0> ;
+
+  register PORTVP at 0xF71
+    <RVP7, RVP6, RVP5, RVP4, RVP3, RVP2, RVP1, RVP0> ;
+
+  register POSTDEC0 at 0xFED
+    <POSTDEC0 [8]> ;
+
+  register POSTDEC1 at 0xFE5
+    <POSTDEC1 [8]> ;
+
+  register POSTDEC2 at 0xFDD
+    <POSTDEC2 [8]> ;
+
+  register POSTINC0 at 0xFEE
+    <POSTINC0 [8]> ;
+
+  register POSTINC1 at 0xFE6
+    <POSTINC1 [8]> ;
+
+  register POSTINC2 at 0xFDE
+    <POSTINC2 [8]> ;
+
+  register PR2 at 0xFCB
+    <PR2 [8]> ;
+
+  register PR4 at 0xF05
+    <PR4 [8]> ;
+
+  register PR6 at 0xF3E
+    <PR6 [8]> ;
+
+  register PR8 at 0xF3B
+    <PR8 [8]> ;
+
+  register PREINC0 at 0xFEC
+    <PREINC0 [8]> ;
+
+  register PREINC1 at 0xFE4
+    <PREINC1 [8]> ;
+
+  register PREINC2 at 0xFDC
+    <PREINC2 [8]> ;
+
+  register PRODH at 0xFF4
+    <PRODH [8]> ;
+
+  register PRODL at 0xFF3
+    <PRODL [8]> ;
+
+  register PSPCON at 0xFA7
+    <IBF, OBF, IBOV, PSPMODE, -, -, -, -> ;
+
+  register PSTR1CON at 0xF9C
+    <CMPL [2], -, STRSYNC, STRD, STRC, STRB, STRA> ;
+
+  register PSTR2CON at 0xF1C
+    <CMPL [2], -, STRSYNC, STRD, STRC, STRB, STRA> ;
+
+  register PSTR3CON at 0xF1B
+    <CMPL [2], -, STRSYNC, STRD, STRC, STRB, STRA> ;
+
+  register PWM1CON at 0xFBC
+    <PRSEN, PDC [7]> ;
+
+  register PWM2CON at 0xF51
+    <PRSEN, PDC [7]> ;
+
+  register PWM3CON at 0xF4C
+    <PRSEN, PDC [7]> ;
+
+  register RCON at 0xFD0
+    <IPEN, -, nCM, nRI, nTO, nPD, nPOR, nBOR> ;
+
+  register RCON2 at 0xF7D
+    <EXTR, -, SWDTEN, -, AWAKE, -, -, -> ;
+
+  register RCON3 at 0xF7C
+    <-, -, -, BBEN, VDDBOR, VDDPOR, VBPOR, VBAT> ;
+
+  register RCON4 at 0xF7B
+    <TRAPR, IOPUWR, -, SRETEN, -, DPSLP, -, VREGS> ;
+
+  register RCREG1 at 0xFAE
+    <RCREG1 [8]> ;
+
+  register RCREG2 at 0xF1E
+    <RCREG2 [8]> ;
+
+  register RCREG3 at 0xF2A
+    <RCREG3 [8]> ;
+
+  register RCREG4 at 0xEFA
+    <RCREG4 [8]> ;
+
+  register RCSTA1 at 0xFAB
+    <SPEN, RX9, SREN, CREN, ADDEN, FERR, OERR, RX9D> ;
+
+  register RCSTA2 at 0xF33
+    <SPEN, RX9, SREN, CREN, ADDEN, FERR, OERR, RX9D> ;
+
+  register RCSTA3 at 0xF2F
+    <SPEN, RX9, SREN, CREN, ADDEN, FERR, OERR, RX9D> ;
+
+  register RCSTA4 at 0xEFF
+    <SPEN, RX9, SREN, CREN, ADDEN, FERR, OERR, RX9D> ;
+
+  register REFO1CON at 0xEE2
+    <ON, -, SIDL, OE, RSLP, -, DIVSW_EN, ACTIVE> ;
+
+  register REFO1CON1 at 0xEE1
+    <-, -, -, -, ROSEL [4]> ;
+
+  register REFO1CON2 at 0xEE0
+    <RODIV [8]> ;
+
+  register REFO1CON3 at 0xEDF
+    <-, RODIV [7]> ;
+
+  register REFO2CON at 0xEDE
+    <ON, -, SIDL, OE, RSLP, -, DIVSW_EN, ACTIVE> ;
+
+  register REFO2CON1 at 0xEDD
+    <-, -, -, -, ROSEL [4]> ;
+
+  register REFO2CON2 at 0xEDC
+    <RODIV [8]> ;
+
+  register REFO2CON3 at 0xEDB
+    <-, RODIV [7]> ;
+
+  register RPINR0_1 at 0xE2A
+    <U1TXR [4], U1RXR [4]> ;
+
+  register RPINR10_11 at 0xE2F
+    <SCK2R [4], SS1R [4]> ;
+
+  register RPINR12_13 at 0xE30
+    <SS2R [4], SDI2R [4]> ;
+
+  register RPINR14_15 at 0xE31
+    <ECCP1R [4], FLT0R [4]> ;
+
+  register RPINR16_17 at 0xE32
+    <ECCP3R [4], ECCP2R [4]> ;
+
+  register RPINR18_19 at 0xE33
+    <IOC1R [4], IOC0R [4]> ;
+
+  register RPINR20_21 at 0xE34
+    <IOC3R [4], IOC2R [4]> ;
+
+  register RPINR22_23 at 0xE35
+    <IOC5R [4], IOC4R [4]> ;
+
+  register RPINR24_25 at 0xE36
+    <IOC7R [4], IOC6R [4]> ;
+
+  register RPINR26_27 at 0xE37
+    <INT2R [4], INT1R [4]> ;
+
+  register RPINR28_29 at 0xE38
+    <MDMINR [4], INT3R [4]> ;
+
+  register RPINR2_3 at 0xE2B
+    <U2TXR [4], U2RXR [4]> ;
+
+  register RPINR30_31 at 0xE39
+    <MDCIN2R [4], MDCIN1R [4]> ;
+
+  register RPINR32_33 at 0xE3A
+    <CCP5R [4], CCP4R [4]> ;
+
+  register RPINR34_35 at 0xE3B
+    <CCP7R [4], CCP6R [4]> ;
+
+  register RPINR36_37 at 0xE3C
+    <CCP9R [4], CCP8R [4]> ;
+
+  register RPINR38_39 at 0xE3D
+    <T0CKIR [4], CCP10R [4]> ;
+
+  register RPINR40_41 at 0xE3E
+    <T1CKIR [4], T1GR [4]> ;
+
+  register RPINR42_43 at 0xE3F
+    <T3CKIR [4], T3GR [4]> ;
+
+  register RPINR44_45 at 0xE40
+    <T5CKIR [4], T5GR [4]> ;
+
+  register RPINR46_47 at 0xE41
+    <PBIO1R [4], PBIO0R [4]> ;
+
+  register RPINR48_49 at 0xE42
+    <PBIO3R [4], PBIO2R [4]> ;
+
+  register RPINR4_5 at 0xE2C
+    <U3TXR [4], U3RXR [4]> ;
+
+  register RPINR50_51 at 0xE43
+    <PBIO5R [4], PBIO4R [4]> ;
+
+  register RPINR52_53 at 0xE44
+    <PBIO7R [4], PBIO6R [4]> ;
+
+  register RPINR6_7 at 0xE2D
+    <U4TXR [4], U4RXR [4]> ;
+
+  register RPINR8_9 at 0xE2E
+    <SDI1R [4], SCK1R [4]> ;
+
+  register RPOR0_1 at 0xE12
+    <RPO1R [4], RPO0R [4]> ;
+
+  register RPOR10_11 at 0xE17
+    <RPO11R [4], RPO10R [4]> ;
+
+  register RPOR12_13 at 0xE18
+    <RPO13R [4], RPO12R [4]> ;
+
+  register RPOR14_15 at 0xE19
+    <RPO15R [4], RPO14R [4]> ;
+
+  register RPOR16_17 at 0xE1A
+    <RPO17R [4], RPO16R [4]> ;
+
+  register RPOR18_19 at 0xE1B
+    <RPO19R [4], RPO18R [4]> ;
+
+  register RPOR20_21 at 0xE1C
+    <RPO21R [4], RPO20R [4]> ;
+
+  register RPOR22_23 at 0xE1D
+    <RPO23R [4], RPO22R [4]> ;
+
+  register RPOR24_25 at 0xE1E
+    <RPO25R [4], RPO24R [4]> ;
+
+  register RPOR26_27 at 0xE1F
+    <RPO27R [4], RPO26R [4]> ;
+
+  register RPOR28_29 at 0xE20
+    <RPO29R [4], RPO28R [4]> ;
+
+  register RPOR2_3 at 0xE13
+    <RPO3R [4], RPO2R [4]> ;
+
+  register RPOR30_31 at 0xE21
+    <RPO31R [4], RPO30R [4]> ;
+
+  register RPOR32_33 at 0xE22
+    <RPO33R [4], RPO32R [4]> ;
+
+  register RPOR34_35 at 0xE23
+    <RPO35R [4], RPO34R [4]> ;
+
+  register RPOR36_37 at 0xE24
+    <RPO37R [4], RPO36R [4]> ;
+
+  register RPOR38_39 at 0xE25
+    <RPO39R [4], RPO38R [4]> ;
+
+  register RPOR40_41 at 0xE26
+    <RPO41R [4], RPO40R [4]> ;
+
+  register RPOR42_43 at 0xE27
+    <RPO43R [4], RPO42R [4]> ;
+
+  register RPOR44_45 at 0xE28
+    <RPO45R [4], RPO44R [4]> ;
+
+  register RPOR46 at 0xE29
+    <-, -, -, -, RPO46R [4]> ;
+
+  register RPOR4_5 at 0xE14
+    <RPO5R [4], RPO4R [4]> ;
+
+  register RPOR6_7 at 0xE15
+    <RPO7R [4], RPO6R [4]> ;
+
+  register RPOR8_9 at 0xE16
+    <RPO9R [4], RPO8R [4]> ;
+
+  register RTCCAL at 0xF5E
+    <CAL [8]> ;
+
+  register RTCCON1 at 0xF5F
+    <RTCEN, -, RTCWREN, RTCSYNC, HALFSEC, RTCOE, RTCPTR [2]> ;
+
+  register RTCCON2 at 0xF57
+    <PWCEN, PWCPOL, PWCCPRE, PWCSPRE, RTCCLKSEL [2], RTCSECSEL [2]> ;
+
+  register RTCVALH at 0xF5D
+    <RTCVALH [8]> ;
+
+  register RTCVALL at 0xF5C
+    <RTCVALL [8]> ;
+
+  register RXADDRH at 0xF6D
+    <-, -, -, -, DMARCVPTRHB [4]> ;
+
+  register RXADDRL at 0xF6E
+    <DMARCVPTRLB [8]> ;
+
+  register SPBRG1 at 0xFAF
+    <BRG [8]> ;
+
+  register SPBRG2 at 0xF1F
+    <BRG [8]> ;
+
+  register SPBRG3 at 0xF2B
+    <BRG [8]> ;
+
+  register SPBRG4 at 0xEFB
+    <BRG [8]> ;
+
+  register SPBRGH1 at 0xF30
+    <BRG [8]> ;
+
+  register SPBRGH2 at 0xF20
+    <BRG [8]> ;
+
+  register SPBRGH3 at 0xF2C
+    <BRG [8]> ;
+
+  register SPBRGH4 at 0xEFC
+    <BRG [8]> ;
+
+  register SSP1ADD at 0xFC8
+    <SSPADD [8]> ;
+
+  register SSP1BUF at 0xFC9
+    <SSPBUF [8]> ;
+
+  register SSP1CON1 at 0xFC6
+    <WCOL, SSPOV, SSPEN, CKP, SSPM [4]> ;
+
+  register SSP1CON2 at 0xFC5
+    <GCEN, ACKSTAT, ACKDT, ACKEN, RCEN, PEN, RSEN, SEN> ;
+
+  register SSP1CON3 at 0xF69
+    <ACKTIM, PCIE, SCIE, BOEN, SDAHT, SBCDE, AHEN, DHEN> ;
+
+  register SSP1MSK at 0xF68
+    <SSPMSK [8]> ;
+
+  register SSP1STAT at 0xFC7
+    <SMP, CKE, D_nA, P, S, R_nW, UA, BF> ;
+
+  register SSP2ADD at 0xF02
+    <SSPADD [8]> ;
+
+  register SSP2BUF at 0xF03
+    <SSPBUF [8]> ;
+
+  register SSP2CON1 at 0xF19
+    <WCOL, SSPOV, SSPEN, CKP, SSPM [4]> ;
+
+  register SSP2CON2 at 0xF18
+    <GCEN, ACKSTAT, ACKDT, ACKEN, RCEN, PEN, RSEN, SEN> ;
+
+  register SSP2CON3 at 0xF39
+    <ACKTIM, PCIE, SCIE, BOEN, SDAHT, SBCDE, AHEN, DHEN> ;
+
+  register SSP2MSK at 0xF17
+    <SSPMSK [8]> ;
+
+  register SSP2STAT at 0xF1A
+    <SMP, CKE, D_nA, P, S, R_nW, UA, BF> ;
+
+  register STATUS at 0xFD8
+    <-, -, -, N, OV, Z, DC, C> ;
+
+  register STKPTR at 0xFFC
+    <STKFUL, STKUNF, -, STKPTR [5]> ;
+
+  register T0CON at 0xFD5
+    <TMR0ON, T08BIT, T0CS [2], PSA, T0PS [3]> ;
+
+  register T1CON at 0xFCD
+    <TMR1CS [2], TCKPS [2], SOSCEN, nT1SYNC, RD16, TMR1ON> ;
+
+  register T1GCON at 0xFAA
+    <TMR1GE, T1GPOL, T1GTM, T1GSPM, T1GGO_nT1DONE, T1GVAL, T1GSS [2]> ;
+
+  register T2CON at 0xFCA
+    <-, T2OUTPS [4], TMR2ON, T2CKPS [2]> ;
+
+  register T3CON at 0xFB1
+    <TMR3CS [2], TCKPS [2], SOSCEN, nT3SYNC, RD16, TMR3ON> ;
+
+  register T3GCON at 0xFB0
+    <TMR3GE, T3GPOL, T3GTM, T3GSPM, T3GGO_nT3DONE, T3GVAL, T3GSS [2]> ;
+
+  register T4CON at 0xF04
+    <-, T4OUTPS [4], TMR4ON, T4CKPS [2]> ;
+
+  register T5CON at 0xF14
+    <TMR5CS [2], TCKPS [2], SOSCEN, nT5SYNC, RD16, TMR5ON> ;
+
+  register T5GCON at 0xF13
+    <TMR5GE, T5GPOL, T5GTM, T5GSPM, T5GGO_nT5DONE, T5GVAL, T5GSS [2]> ;
+
+  register T6CON at 0xF3D
+    <-, T6OUTPS [4], TMR6ON, T6CKPS [2]> ;
+
+  register T8CON at 0xF3A
+    <-, T8OUTPS [4], TMR8ON, T8CKPS [2]> ;
+
+  register TABLAT at 0xFF5
+    <TABLAT [8]> ;
+
+  register TBLPTRH at 0xFF7
+    <TBLPTRH [8]> ;
+
+  register TBLPTRL at 0xFF6
+    <TBLPTRL [8]> ;
+
+  register TBLPTRU at 0xFF8
+    <-, -, ACSS, TBLPTRU [5]> ;
+
+  register TMR0H at 0xFD7
+    <TMR0H [8]> ;
+
+  register TMR0L at 0xFD6
+    <TMR0L [8]> ;
+
+  register TMR1H at 0xFCF
+    <TMR1H [8]> ;
+
+  register TMR1L at 0xFCE
+    <TMR1L [8]> ;
+
+  register TMR2 at 0xFCC
+    <TMR2 [8]> ;
+
+  register TMR3H at 0xFB3
+    <TMR3H [8]> ;
+
+  register TMR3L at 0xFB2
+    <TMR3L [8]> ;
+
+  register TMR4 at 0xF06
+    <TMR4 [8]> ;
+
+  register TMR5H at 0xF16
+    <TMR5H [8]> ;
+
+  register TMR5L at 0xF15
+    <TMR5L [8]> ;
+
+  register TMR6 at 0xF3F
+    <TMR6 [8]> ;
+
+  register TMR8 at 0xF3C
+    <TMR8 [8]> ;
+
+  register TOSH at 0xFFE
+    <TOSH [8]> ;
+
+  register TOSL at 0xFFD
+    <TOSL [8]> ;
+
+  register TOSU at 0xFFF
+    <-, -, -, TOSU [5]> ;
+
+  register TRISA at 0xF92
+    <TRISA7, TRISA6, TRISA5, TRISA4, TRISA3, TRISA2, TRISA1, TRISA0> ;
+
+  register TRISB at 0xF93
+    <TRISB7, TRISB6, TRISB5, TRISB4, TRISB3, TRISB2, TRISB1, TRISB0> ;
+
+  register TRISC at 0xF94
+    <TRISC7, TRISC6, TRISC5, TRISC4, TRISC3, TRISC2, TRISC1, TRISC0> ;
+
+  register TRISD at 0xF95
+    <TRISD7, TRISD6, TRISD5, TRISD4, TRISD3, TRISD2, TRISD1, TRISD0> ;
+
+  register TRISE at 0xF96
+    <TRISE7, TRISE6, TRISE5, TRISE4, TRISE3, TRISE2, TRISE1, TRISE0> ;
+
+  register TRISF at 0xF97
+    <TRISF7, TRISF6, TRISF5, TRISF4, TRISF3, TRISF2, TRISF1, -> ;
+
+  register TRISG at 0xF98
+    <TRISG7, TRISG6, TRISG5, TRISG4, TRISG3, TRISG2, TRISG1, TRISG0> ;
+
+  register TRISH at 0xF99
+    <TRISH7, TRISH6, TRISH5, TRISH4, TRISH3, TRISH2, TRISH1, TRISH0> ;
+
+  register TRISJ at 0xF9A
+    <TRISJ7, TRISJ6, TRISJ5, TRISJ4, TRISJ3, TRISJ2, TRISJ1, TRISJ0> ;
+
+  register TRISK at 0xEE9
+    <TRISK7, TRISK6, TRISK5, TRISK4, TRISK3, TRISK2, TRISK1, TRISK0> ;
+
+  register TRISL at 0xEE6
+    <TRISL7, TRISL6, TRISL5, TRISL4, TRISL3, TRISL2, TRISL1, TRISL0> ;
+
+  register TRISVP at 0xF73
+    <TRISVP7, TRISVP6, TRISVP5, TRISVP4, TRISVP3, TRISVP2, TRISVP1, TRISVP0> ;
+
+  register TXADDRH at 0xF6F
+    <-, -, -, -, DMATXPTRHB [4]> ;
+
+  register TXADDRL at 0xF70
+    <DMATXPTRLB [8]> ;
+
+  register TXBUF at 0xF6A
+    <TXBUF [8]> ;
+
+  register TXREG1 at 0xFAD
+    <TXREG1 [8]> ;
+
+  register TXREG2 at 0xF1D
+    <TXREG2 [8]> ;
+
+  register TXREG3 at 0xF29
+    <TXREG3 [8]> ;
+
+  register TXREG4 at 0xEF9
+    <TXREG4 [8]> ;
+
+  register TXSTA1 at 0xFAC
+    <CSRC, TX9, TXEN, SYNC, SENDB, BRGH, TRMT, TX9D> ;
+
+  register TXSTA2 at 0xF32
+    <CSRC, TX9, TXEN, SYNC, SENDB, BRGH, TRMT, TX9D> ;
+
+  register TXSTA3 at 0xF2E
+    <CSRC, TX9, TXEN, SYNC, SENDB, BRGH, TRMT, TX9D> ;
+
+  register TXSTA4 at 0xEFE
+    <CSRC, TX9, TXEN, SYNC, SENDB, BRGH, TRMT, TX9D> ;
+
+  register UADDR at 0xF74
+    <-, ADDR [7]> ;
+
+  register UCFG at 0xE11
+    <UTEYE, UOEMON, -, UPUEN, UTRDIS, FSEN, PPB1, PPB0> ;
+
+  register UCON at 0xF75
+    <-, PPBRST, SE0, PKTDIS, USBEN, RESUME, SUSPND, -> ;
+
+  register UEIE at 0xE0F
+    <BTSEE, -, -, BTOEE, DFN8EE, CRC16EE, CRC5EE, PIDEE> ;
+
+  register UEIR at 0xF77
+    <BTSEF, -, -, BTOEF, DFN8EF, CRC16EF, CRC5EF, PIDEF> ;
+
+  register UEP0 at 0xE0E
+    <-, -, -, EPHSHK, EPCONDIS, EPOUTEN, EPINEN, EPSTALL> ;
+
+  register UEP1 at 0xE0D
+    <-, -, -, EPHSHK, EPCONDIS, EPOUTEN, EPINEN, EPSTALL> ;
+
+  register UEP10 at 0xE04
+    <-, -, -, EPHSHK, EPCONDIS, EPOUTEN, EPINEN, EPSTALL> ;
+
+  register UEP11 at 0xE03
+    <-, -, -, EPHSHK, EPCONDIS, EPOUTEN, EPINEN, EPSTALL> ;
+
+  register UEP12 at 0xE02
+    <-, -, -, EPHSHK, EPCONDIS, EPOUTEN, EPINEN, EPSTALL> ;
+
+  register UEP13 at 0xE01
+    <-, -, -, EPHSHK, EPCONDIS, EPOUTEN, EPINEN, EPSTALL> ;
+
+  register UEP14 at 0xE00
+    <-, -, -, EPHSHK, EPCONDIS, EPOUTEN, EPINEN, EPSTALL> ;
+
+  register UEP15 at 0xDFF
+    <-, -, -, EPHSHK, EPCONDIS, EPOUTEN, EPINEN, EPSTALL> ;
+
+  register UEP2 at 0xE0C
+    <-, -, -, EPHSHK, EPCONDIS, EPOUTEN, EPINEN, EPSTALL> ;
+
+  register UEP3 at 0xE0B
+    <-, -, -, EPHSHK, EPCONDIS, EPOUTEN, EPINEN, EPSTALL> ;
+
+  register UEP4 at 0xE0A
+    <-, -, -, EPHSHK, EPCONDIS, EPOUTEN, EPINEN, EPSTALL> ;
+
+  register UEP5 at 0xE09
+    <-, -, -, EPHSHK, EPCONDIS, EPOUTEN, EPINEN, EPSTALL> ;
+
+  register UEP6 at 0xE08
+    <-, -, -, EPHSHK, EPCONDIS, EPOUTEN, EPINEN, EPSTALL> ;
+
+  register UEP7 at 0xE07
+    <-, -, -, EPHSHK, EPCONDIS, EPOUTEN, EPINEN, EPSTALL> ;
+
+  register UEP8 at 0xE06
+    <-, -, -, EPHSHK, EPCONDIS, EPOUTEN, EPINEN, EPSTALL> ;
+
+  register UEP9 at 0xE05
+    <-, -, -, EPHSHK, EPCONDIS, EPOUTEN, EPINEN, EPSTALL> ;
+
+  register UFRMH at 0xF79
+    <-, -, -, -, -, FRM [3]> ;
+
+  register UFRML at 0xF7A
+    <FRM [8]> ;
+
+  register UIE at 0xE10
+    <-, SOFIE, STALLIE, IDLEIE, TRNIE, ACTVIE, UERRIE, URSTIE> ;
+
+  register UIR at 0xF78
+    <-, SOFIF, STALLIF, IDLEIF, TRNIF, ACTVIF, UERRIF, URSTIF> ;
+
+  register USTAT at 0xF76
+    <-, ENDP [4], DIR, PPBI, -> ;
+
+  register WPUB at 0xF62
+    <WPUB7, WPUB6, WPUB5, WPUB4, WPUB3, WPUB2, WPUB1, WPUB0> ;
+
+  register WREG at 0xFE8
+    <WREG [8]> ;
+
+  configuration CONFIG1H at 0xFFF1 width 8 {
+    RESERVED mask 0xF0 description "RESERVED"
+      setting 0xF0 mask 0xF0 description "RESERVED"
+    SIGN mask 0x8 description "Config Word Signature Bit"
+      setting 0x8 mask 0x8 description "Bulk erase of memory not conducted"
+      setting 0x0 mask 0x8 description "Bulk erase of memory area complete"
+    CP0 mask 0x4 description "Code Protect"
+      setting 0x4 mask 0x4 description "Disabled"
+      setting 0x0 mask 0x4 description "Enabled"
+    BORV mask 0x2 description "Brown-out Reset Voltage"
+      setting 0x2 mask 0x2 description "1.8V"
+      setting 0x0 mask 0x2 description "2.0V"
+    BOREN mask 0x1 description "Brown-Out Reset Enable"
+      setting 0x1 mask 0x1 description "Enabled"
+      setting 0x0 mask 0x1 description "Disabled"
+  }
+
+  configuration CONFIG1L at 0xFFF0 width 8 {
+    DEBUG mask 0x80 description "Background Debug"
+      setting 0x80 mask 0x80 description "Disabled"
+      setting 0x0 mask 0x80 description "Enabled"
+    XINST mask 0x40 description "Extended Instruction Set"
+      setting 0x40 mask 0x40 description "Enabled"
+      setting 0x0 mask 0x40 description "Disabled"
+    STVREN mask 0x20 description "Stach Overflow/Underflow Reset"
+      setting 0x20 mask 0x20 description "Enabled"
+      setting 0x0 mask 0x20 description "Disabled"
+  }
+
+  configuration CONFIG2H at 0xFFF3 width 8 {
+    RESERVED_CONFIG2H mask 0xF0 description "RESERVED"
+      setting 0xF0 mask 0xF0 description "RESERVED"
+    PLLDIV mask 0xF description "PLL Frequency Multiplier Select bits"
+      setting 0xF mask 0xF description "No PLL used - PLLGO bit not available to user"
+      setting 0xE mask 0xF description "8x PLL selected"
+      setting 0xD mask 0xF description "6x PLL selected"
+      setting 0xC mask 0xF description "4x PLL selected"
+      setting 0xB mask 0xF description "RESERVED"
+      setting 0x7 mask 0xF description "96 MHz PLL selected; Oscillator divided by 12 (48 MHz input)"
+      setting 0x6 mask 0xF description "96 MHz PLL selected; Oscillator divided by 10 (40 MHz input)"
+      setting 0x5 mask 0xF description "96 MHz PLL selected; Oscillator divided by 6 (24 MHz input)"
+      setting 0x4 mask 0xF description "96 MHz PLL selected; Oscillator divided by 5 (20 MHz input)"
+      setting 0x3 mask 0xF description "96 MHz PLL selected; Oscillator divided by 4 (16 MHz input)"
+      setting 0x2 mask 0xF description "96 MHz PLL selected; Oscillator divided by 3 (12 MHz input)"
+      setting 0x1 mask 0xF description "96 MHz PLL selected; Oscillator divided by 2 (8 MHz input)"
+      setting 0x0 mask 0xF description "96 MHz PLL selected; No divide - Oscillator used directly (4 MHz input)"
+  }
+
+  configuration CONFIG2L at 0xFFF2 width 8 {
+    IESO mask 0x80 description "Internal External Oscillator Switch Over Mode"
+      setting 0x80 mask 0x80 description "Enabled"
+      setting 0x0 mask 0x80 description "Disabled"
+    CLKOEN mask 0x20 description "Clock Out Enable Bit"
+      setting 0x20 mask 0x20 description "Enabled"
+      setting 0x0 mask 0x20 description "Disabled"
+    SOSCSEL mask 0x8 description "T1OSC/SOSC Power Selection Bits"
+      setting 0x8 mask 0x8 description "Low Power T1OSC/SOSC circuit selected"
+      setting 0x0 mask 0x8 description "Digital (SCLKI) mode"
+    FOSC mask 0x7 description "Oscillator"
+      setting 0x7 mask 0x7 description "Fast RC Oscillator with Postscaler (FRCDIV)"
+      setting 0x6 mask 0x7 description "Fast RC Oscillator divided by 16 (500 kHz)"
+      setting 0x5 mask 0x7 description "Low-Power RC Oscillator (LPRC)"
+      setting 0x4 mask 0x7 description "Secondary Oscillator (SOSC)"
+      setting 0x3 mask 0x7 description "Primary Oscillator with PLL module (XTPLL,HSPLL,ECPLL)"
+      setting 0x2 mask 0x7 description "Primary Oscillator (XT, HS, EC)"
+      setting 0x1 mask 0x7 description "Fast RC Oscillator with PLL module (FRCPLL)"
+      setting 0x0 mask 0x7 description "Fast RC Oscillator (FRC)"
+  }
+
+  configuration CONFIG3H at 0xFFF5 width 8 {
+    RESERVED_CONFIG3H mask 0xF0 description "RESERVED"
+      setting 0xF0 mask 0xF0 description "RESERVED"
+  }
+
+  configuration CONFIG3L at 0xFFF4 width 6 {
+    FSCKM mask 0x30 description "Clock Switching and Monitor Selection Configuration bits"
+      setting 0x20 mask 0x20 description "Clock switching is disabled, fail safe clock monitor is disabled"
+      setting 0x10 mask 0x30 description "Clock switching is enabled, fail safe clock monitor is disabled"
+      setting 0x0 mask 0x30 description "Clock switching is enabled, fail safe clock monitor is enabled"
+    POSCMD mask 0x3 description "Primary Oscillator Select"
+      setting 0x3 mask 0x3 description "Primary oscillator disabled"
+      setting 0x2 mask 0x3 description "HS oscillator mode selected(10 MHz - 40 MHz)"
+      setting 0x1 mask 0x3 description "MS oscillator mode selected(3.5 MHz -10 MHz)"
+      setting 0x0 mask 0x3 description "External clock mode selected"
+  }
+
+  configuration CONFIG4H at 0xFFF7 width 8 {
+    RESERVED_CONFIG4H mask 0xF0 description "RESERVED"
+      setting 0xF0 mask 0xF0 description "RESERVED"
+    WPCFG mask 0x4 description "Write Protect Configuration Page Select"
+      setting 0x4 mask 0x4 description "Disabled"
+      setting 0x0 mask 0x4 description "Enabled"
+    WPEND mask 0x2 description "Segment Write Protection End Page Select"
+      setting 0x2 mask 0x2 description "Write Protect from WPFP to the last page of memory"
+      setting 0x0 mask 0x2 description "write Protect from page 0 to WPFP"
+    WPDIS mask 0x1 description "Segment Write Protection Disable"
+      setting 0x1 mask 0x1 description "Disabled"
+      setting 0x0 mask 0x1 description "Enabled"
+  }
+
+  configuration CONFIG4L at 0xFFF6 width 8 {
+    WPFP mask 0xFF description "Write/Erase Protect Page Start/End Boundary"
+      setting 0x0 mask 0xFF description "Write Protect Program Flash Page 0"
+      setting 0x1 mask 0xFF description "Write Protect Program Flash Page 1"
+      setting 0x2 mask 0xFF description "Write Protect Program Flash Page 2"
+      setting 0x3 mask 0xFF description "Write Protect Program Flash Page 3"
+      setting 0x4 mask 0xFF description "Write Protect Program Flash Page 4"
+      setting 0x5 mask 0xFF description "Write Protect Program Flash Page 5"
+      setting 0x6 mask 0xFF description "Write Protect Program Flash Page 6"
+      setting 0x7 mask 0xFF description "Write Protect Program Flash Page 7"
+      setting 0x8 mask 0xFF description "Write Protect Program Flash Page 8"
+      setting 0x9 mask 0xFF description "Write Protect Program Flash Page 9"
+      setting 0xA mask 0xFF description "Write Protect Program Flash Page 10"
+      setting 0xB mask 0xFF description "Write Protect Program Flash Page 11"
+      setting 0xC mask 0xFF description "Write Protect Program Flash Page 12"
+      setting 0xD mask 0xFF description "Write Protect Program Flash Page 13"
+      setting 0xE mask 0xFF description "Write Protect Program Flash Page 14"
+      setting 0xF mask 0xFF description "Write Protect Program Flash Page 15"
+      setting 0x10 mask 0xFF description "Write Protect Program Flash Page 16"
+      setting 0x11 mask 0xFF description "Write Protect Program Flash Page 17"
+      setting 0x12 mask 0xFF description "Write Protect Program Flash Page 18"
+      setting 0x13 mask 0xFF description "Write Protect Program Flash Page 19"
+      setting 0x14 mask 0xFF description "Write Protect Program Flash Page 20"
+      setting 0x15 mask 0xFF description "Write Protect Program Flash Page 21"
+      setting 0x16 mask 0xFF description "Write Protect Program Flash Page 22"
+      setting 0x17 mask 0xFF description "Write Protect Program Flash Page 23"
+      setting 0x18 mask 0xFF description "Write Protect Program Flash Page 24"
+      setting 0x19 mask 0xFF description "Write Protect Program Flash Page 25"
+      setting 0x1A mask 0xFF description "Write Protect Program Flash Page 26"
+      setting 0x1B mask 0xFF description "Write Protect Program Flash Page 27"
+      setting 0x1C mask 0xFF description "Write Protect Program Flash Page 28"
+      setting 0x1D mask 0xFF description "Write Protect Program Flash Page 29"
+      setting 0x1E mask 0xFF description "Write Protect Program Flash Page 30"
+      setting 0x1F mask 0xFF description "Write Protect Program Flash Page 31"
+      setting 0x20 mask 0xFF description "Write Protect Program Flash Page 32"
+      setting 0x21 mask 0xFF description "Write Protect Program Flash Page 33"
+      setting 0x22 mask 0xFF description "Write Protect Program Flash Page 34"
+      setting 0x23 mask 0xFF description "Write Protect Program Flash Page 35"
+      setting 0x24 mask 0xFF description "Write Protect Program Flash Page 36"
+      setting 0x25 mask 0xFF description "Write Protect Program Flash Page 37"
+      setting 0x26 mask 0xFF description "Write Protect Program Flash Page 38"
+      setting 0x27 mask 0xFF description "Write Protect Program Flash Page 39"
+      setting 0x28 mask 0xFF description "Write Protect Program Flash Page 40"
+      setting 0x29 mask 0xFF description "Write Protect Program Flash Page 41"
+      setting 0x2A mask 0xFF description "Write Protect Program Flash Page 42"
+      setting 0x2B mask 0xFF description "Write Protect Program Flash Page 43"
+      setting 0x2C mask 0xFF description "Write Protect Program Flash Page 44"
+      setting 0x2D mask 0xFF description "Write Protect Program Flash Page 45"
+      setting 0x2E mask 0xFF description "Write Protect Program Flash Page 46"
+      setting 0x2F mask 0xFF description "Write Protect Program Flash Page 47"
+      setting 0x30 mask 0xFF description "Write Protect Program Flash Page 48"
+      setting 0x31 mask 0xFF description "Write Protect Program Flash Page 49"
+      setting 0x32 mask 0xFF description "Write Protect Program Flash Page 50"
+      setting 0x33 mask 0xFF description "Write Protect Program Flash Page 51"
+      setting 0x34 mask 0xFF description "Write Protect Program Flash Page 52"
+      setting 0x35 mask 0xFF description "Write Protect Program Flash Page 53"
+      setting 0x36 mask 0xFF description "Write Protect Program Flash Page 54"
+      setting 0x37 mask 0xFF description "Write Protect Program Flash Page 55"
+      setting 0x38 mask 0xFF description "Write Protect Program Flash Page 56"
+      setting 0x39 mask 0xFF description "Write Protect Program Flash Page 57"
+      setting 0x3A mask 0xFF description "Write Protect Program Flash Page 58"
+      setting 0x3B mask 0xFF description "Write Protect Program Flash Page 59"
+      setting 0x3C mask 0xFF description "Write Protect Program Flash Page 60"
+      setting 0x3D mask 0xFF description "Write Protect Program Flash Page 61"
+      setting 0x3E mask 0xFF description "Write Protect Program Flash Page 62"
+      setting 0x3F mask 0xFF description "Write Protect Program Flash Page 63"
+      setting 0x40 mask 0xFF description "Write Protect Program Flash Page 64"
+      setting 0x41 mask 0xFF description "Write Protect Program Flash Page 65"
+      setting 0x42 mask 0xFF description "Write Protect Program Flash Page 66"
+      setting 0x43 mask 0xFF description "Write Protect Program Flash Page 67"
+      setting 0x44 mask 0xFF description "Write Protect Program Flash Page 68"
+      setting 0x45 mask 0xFF description "Write Protect Program Flash Page 69"
+      setting 0x46 mask 0xFF description "Write Protect Program Flash Page 70"
+      setting 0x47 mask 0xFF description "Write Protect Program Flash Page 71"
+      setting 0x48 mask 0xFF description "Write Protect Program Flash Page 72"
+      setting 0x49 mask 0xFF description "Write Protect Program Flash Page 73"
+      setting 0x4A mask 0xFF description "Write Protect Program Flash Page 74"
+      setting 0x4B mask 0xFF description "Write Protect Program Flash Page 75"
+      setting 0x4C mask 0xFF description "Write Protect Program Flash Page 76"
+      setting 0x4D mask 0xFF description "Write Protect Program Flash Page 77"
+      setting 0x4E mask 0xFF description "Write Protect Program Flash Page 78"
+      setting 0x4F mask 0xFF description "Write Protect Program Flash Page 79"
+      setting 0x50 mask 0xFF description "Write Protect Program Flash Page 80"
+      setting 0x51 mask 0xFF description "Write Protect Program Flash Page 81"
+      setting 0x52 mask 0xFF description "Write Protect Program Flash Page 82"
+      setting 0x53 mask 0xFF description "Write Protect Program Flash Page 83"
+      setting 0x54 mask 0xFF description "Write Protect Program Flash Page 84"
+      setting 0x55 mask 0xFF description "Write Protect Program Flash Page 85"
+      setting 0x56 mask 0xFF description "Write Protect Program Flash Page 86"
+      setting 0x57 mask 0xFF description "Write Protect Program Flash Page 87"
+      setting 0x58 mask 0xFF description "Write Protect Program Flash Page 88"
+      setting 0x59 mask 0xFF description "Write Protect Program Flash Page 89"
+      setting 0x5A mask 0xFF description "Write Protect Program Flash Page 90"
+      setting 0x5B mask 0xFF description "Write Protect Program Flash Page 91"
+      setting 0x5C mask 0xFF description "Write Protect Program Flash Page 92"
+      setting 0x5D mask 0xFF description "Write Protect Program Flash Page 93"
+      setting 0x5E mask 0xFF description "Write Protect Program Flash Page 94"
+      setting 0x5F mask 0xFF description "Write Protect Program Flash Page 95"
+      setting 0x60 mask 0xFF description "Write Protect Program Flash Page 96"
+      setting 0x61 mask 0xFF description "Write Protect Program Flash Page 97"
+      setting 0x62 mask 0xFF description "Write Protect Program Flash Page 98"
+      setting 0x63 mask 0xFF description "Write Protect Program Flash Page 99"
+      setting 0x64 mask 0xFF description "Write Protect Program Flash Page 100"
+      setting 0x65 mask 0xFF description "Write Protect Program Flash Page 101"
+      setting 0x66 mask 0xFF description "Write Protect Program Flash Page 102"
+      setting 0x67 mask 0xFF description "Write Protect Program Flash Page 103"
+      setting 0x68 mask 0xFF description "Write Protect Program Flash Page 104"
+      setting 0x69 mask 0xFF description "Write Protect Program Flash Page 105"
+      setting 0x6A mask 0xFF description "Write Protect Program Flash Page 106"
+      setting 0x6B mask 0xFF description "Write Protect Program Flash Page 107"
+      setting 0x6C mask 0xFF description "Write Protect Program Flash Page 108"
+      setting 0x6D mask 0xFF description "Write Protect Program Flash Page 109"
+      setting 0x6E mask 0xFF description "Write Protect Program Flash Page 110"
+      setting 0x6F mask 0xFF description "Write Protect Program Flash Page 111"
+      setting 0x70 mask 0xFF description "Write Protect Program Flash Page 112"
+      setting 0x71 mask 0xFF description "Write Protect Program Flash Page 113"
+      setting 0x72 mask 0xFF description "Write Protect Program Flash Page 114"
+      setting 0x73 mask 0xFF description "Write Protect Program Flash Page 115"
+      setting 0x74 mask 0xFF description "Write Protect Program Flash Page 116"
+      setting 0x75 mask 0xFF description "Write Protect Program Flash Page 117"
+      setting 0x76 mask 0xFF description "Write Protect Program Flash Page 118"
+      setting 0x77 mask 0xFF description "Write Protect Program Flash Page 119"
+      setting 0x78 mask 0xFF description "Write Protect Program Flash Page 120"
+      setting 0x79 mask 0xFF description "Write Protect Program Flash Page 121"
+      setting 0x7A mask 0xFF description "Write Protect Program Flash Page 122"
+      setting 0x7B mask 0xFF description "Write Protect Program Flash Page 123"
+      setting 0x7C mask 0xFF description "Write Protect Program Flash Page 124"
+      setting 0x7D mask 0xFF description "Write Protect Program Flash Page 125"
+      setting 0x7E mask 0xFF description "Write Protect Program Flash Page 126"
+      setting 0x7F mask 0xFF description "Write Protect Program Flash Page 127"
+      setting 0x80 mask 0xFF description "Write Protect Program Flash Page 128"
+      setting 0x81 mask 0xFF description "Write Protect Program Flash Page 129"
+      setting 0x82 mask 0xFF description "Write Protect Program Flash Page 130"
+      setting 0x83 mask 0xFF description "Write Protect Program Flash Page 131"
+      setting 0x84 mask 0xFF description "Write Protect Program Flash Page 132"
+      setting 0x85 mask 0xFF description "Write Protect Program Flash Page 133"
+      setting 0x86 mask 0xFF description "Write Protect Program Flash Page 134"
+      setting 0x87 mask 0xFF description "Write Protect Program Flash Page 135"
+      setting 0x88 mask 0xFF description "Write Protect Program Flash Page 136"
+      setting 0x89 mask 0xFF description "Write Protect Program Flash Page 137"
+      setting 0x8A mask 0xFF description "Write Protect Program Flash Page 138"
+      setting 0x8B mask 0xFF description "Write Protect Program Flash Page 139"
+      setting 0x8C mask 0xFF description "Write Protect Program Flash Page 140"
+      setting 0x8D mask 0xFF description "Write Protect Program Flash Page 141"
+      setting 0x8E mask 0xFF description "Write Protect Program Flash Page 142"
+      setting 0x8F mask 0xFF description "Write Protect Program Flash Page 143"
+      setting 0x90 mask 0xFF description "Write Protect Program Flash Page 144"
+      setting 0x91 mask 0xFF description "Write Protect Program Flash Page 145"
+      setting 0x92 mask 0xFF description "Write Protect Program Flash Page 146"
+      setting 0x93 mask 0xFF description "Write Protect Program Flash Page 147"
+      setting 0x94 mask 0xFF description "Write Protect Program Flash Page 148"
+      setting 0x95 mask 0xFF description "Write Protect Program Flash Page 149"
+      setting 0x96 mask 0xFF description "Write Protect Program Flash Page 150"
+      setting 0x97 mask 0xFF description "Write Protect Program Flash Page 151"
+      setting 0x98 mask 0xFF description "Write Protect Program Flash Page 152"
+      setting 0x99 mask 0xFF description "Write Protect Program Flash Page 153"
+      setting 0x9A mask 0xFF description "Write Protect Program Flash Page 154"
+      setting 0x9B mask 0xFF description "Write Protect Program Flash Page 155"
+      setting 0x9C mask 0xFF description "Write Protect Program Flash Page 156"
+      setting 0x9D mask 0xFF description "Write Protect Program Flash Page 157"
+      setting 0x9E mask 0xFF description "Write Protect Program Flash Page 158"
+      setting 0x9F mask 0xFF description "Write Protect Program Flash Page 159"
+      setting 0xA0 mask 0xFF description "Write Protect Program Flash Page 160"
+      setting 0xA1 mask 0xFF description "Write Protect Program Flash Page 161"
+      setting 0xA2 mask 0xFF description "Write Protect Program Flash Page 162"
+      setting 0xA3 mask 0xFF description "Write Protect Program Flash Page 163"
+      setting 0xA4 mask 0xFF description "Write Protect Program Flash Page 164"
+      setting 0xA5 mask 0xFF description "Write Protect Program Flash Page 165"
+      setting 0xA6 mask 0xFF description "Write Protect Program Flash Page 166"
+      setting 0xA7 mask 0xFF description "Write Protect Program Flash Page 167"
+      setting 0xA8 mask 0xFF description "Write Protect Program Flash Page 168"
+      setting 0xA9 mask 0xFF description "Write Protect Program Flash Page 169"
+      setting 0xAA mask 0xFF description "Write Protect Program Flash Page 170"
+      setting 0xAB mask 0xFF description "Write Protect Program Flash Page 171"
+      setting 0xAC mask 0xFF description "Write Protect Program Flash Page 172"
+      setting 0xAD mask 0xFF description "Write Protect Program Flash Page 173"
+      setting 0xAE mask 0xFF description "Write Protect Program Flash Page 174"
+      setting 0xAF mask 0xFF description "Write Protect Program Flash Page 175"
+      setting 0xB0 mask 0xFF description "Write Protect Program Flash Page 176"
+      setting 0xB1 mask 0xFF description "Write Protect Program Flash Page 177"
+      setting 0xB2 mask 0xFF description "Write Protect Program Flash Page 178"
+      setting 0xB3 mask 0xFF description "Write Protect Program Flash Page 179"
+      setting 0xB4 mask 0xFF description "Write Protect Program Flash Page 180"
+      setting 0xB5 mask 0xFF description "Write Protect Program Flash Page 181"
+      setting 0xB6 mask 0xFF description "Write Protect Program Flash Page 182"
+      setting 0xB7 mask 0xFF description "Write Protect Program Flash Page 183"
+      setting 0xB8 mask 0xFF description "Write Protect Program Flash Page 184"
+      setting 0xB9 mask 0xFF description "Write Protect Program Flash Page 185"
+      setting 0xBA mask 0xFF description "Write Protect Program Flash Page 186"
+      setting 0xBB mask 0xFF description "Write Protect Program Flash Page 187"
+      setting 0xBC mask 0xFF description "Write Protect Program Flash Page 188"
+      setting 0xBD mask 0xFF description "Write Protect Program Flash Page 189"
+      setting 0xBE mask 0xFF description "Write Protect Program Flash Page 190"
+      setting 0xBF mask 0xFF description "Write Protect Program Flash Page 191"
+      setting 0xC0 mask 0xFF description "Write Protect Program Flash Page 192"
+      setting 0xC1 mask 0xFF description "Write Protect Program Flash Page 193"
+      setting 0xC2 mask 0xFF description "Write Protect Program Flash Page 194"
+      setting 0xC3 mask 0xFF description "Write Protect Program Flash Page 195"
+      setting 0xC4 mask 0xFF description "Write Protect Program Flash Page 196"
+      setting 0xC5 mask 0xFF description "Write Protect Program Flash Page 197"
+      setting 0xC6 mask 0xFF description "Write Protect Program Flash Page 198"
+      setting 0xC7 mask 0xFF description "Write Protect Program Flash Page 199"
+      setting 0xC8 mask 0xFF description "Write Protect Program Flash Page 200"
+      setting 0xC9 mask 0xFF description "Write Protect Program Flash Page 201"
+      setting 0xCA mask 0xFF description "Write Protect Program Flash Page 202"
+      setting 0xCB mask 0xFF description "Write Protect Program Flash Page 203"
+      setting 0xCC mask 0xFF description "Write Protect Program Flash Page 204"
+      setting 0xCD mask 0xFF description "Write Protect Program Flash Page 205"
+      setting 0xCE mask 0xFF description "Write Protect Program Flash Page 206"
+      setting 0xCF mask 0xFF description "Write Protect Program Flash Page 207"
+      setting 0xD0 mask 0xFF description "Write Protect Program Flash Page 208"
+      setting 0xD1 mask 0xFF description "Write Protect Program Flash Page 209"
+      setting 0xD2 mask 0xFF description "Write Protect Program Flash Page 210"
+      setting 0xD3 mask 0xFF description "Write Protect Program Flash Page 211"
+      setting 0xD4 mask 0xFF description "Write Protect Program Flash Page 212"
+      setting 0xD5 mask 0xFF description "Write Protect Program Flash Page 213"
+      setting 0xD6 mask 0xFF description "Write Protect Program Flash Page 214"
+      setting 0xD7 mask 0xFF description "Write Protect Program Flash Page 215"
+      setting 0xD8 mask 0xFF description "Write Protect Program Flash Page 216"
+      setting 0xD9 mask 0xFF description "Write Protect Program Flash Page 217"
+      setting 0xDA mask 0xFF description "Write Protect Program Flash Page 218"
+      setting 0xDB mask 0xFF description "Write Protect Program Flash Page 219"
+      setting 0xDC mask 0xFF description "Write Protect Program Flash Page 220"
+      setting 0xDD mask 0xFF description "Write Protect Program Flash Page 221"
+      setting 0xDE mask 0xFF description "Write Protect Program Flash Page 222"
+      setting 0xDF mask 0xFF description "Write Protect Program Flash Page 223"
+      setting 0xE0 mask 0xFF description "Write Protect Program Flash Page 224"
+      setting 0xE1 mask 0xFF description "Write Protect Program Flash Page 225"
+      setting 0xE2 mask 0xFF description "Write Protect Program Flash Page 226"
+      setting 0xE3 mask 0xFF description "Write Protect Program Flash Page 227"
+      setting 0xE4 mask 0xFF description "Write Protect Program Flash Page 228"
+      setting 0xE5 mask 0xFF description "Write Protect Program Flash Page 229"
+      setting 0xE6 mask 0xFF description "Write Protect Program Flash Page 230"
+      setting 0xE7 mask 0xFF description "Write Protect Program Flash Page 231"
+      setting 0xE8 mask 0xFF description "Write Protect Program Flash Page 232"
+      setting 0xE9 mask 0xFF description "Write Protect Program Flash Page 233"
+      setting 0xEA mask 0xFF description "Write Protect Program Flash Page 234"
+      setting 0xEB mask 0xFF description "Write Protect Program Flash Page 235"
+      setting 0xEC mask 0xFF description "Write Protect Program Flash Page 236"
+      setting 0xED mask 0xFF description "Write Protect Program Flash Page 237"
+      setting 0xEE mask 0xFF description "Write Protect Program Flash Page 238"
+      setting 0xEF mask 0xFF description "Write Protect Program Flash Page 239"
+      setting 0xF0 mask 0xFF description "Write Protect Program Flash Page 240"
+      setting 0xF1 mask 0xFF description "Write Protect Program Flash Page 241"
+      setting 0xF2 mask 0xFF description "Write Protect Program Flash Page 242"
+      setting 0xF3 mask 0xFF description "Write Protect Program Flash Page 243"
+      setting 0xF4 mask 0xFF description "Write Protect Program Flash Page 244"
+      setting 0xF5 mask 0xFF description "Write Protect Program Flash Page 245"
+      setting 0xF6 mask 0xFF description "Write Protect Program Flash Page 246"
+      setting 0xF7 mask 0xFF description "Write Protect Program Flash Page 247"
+      setting 0xF8 mask 0xFF description "Write Protect Program Flash Page 248"
+      setting 0xF9 mask 0xFF description "Write Protect Program Flash Page 249"
+      setting 0xFA mask 0xFF description "Write Protect Program Flash Page 250"
+      setting 0xFB mask 0xFF description "Write Protect Program Flash Page 251"
+      setting 0xFC mask 0xFF description "Write Protect Program Flash Page 252"
+      setting 0xFD mask 0xFF description "Write Protect Program Flash Page 253"
+      setting 0xFE mask 0xFF description "Write Protect Program Flash Page 254"
+      setting 0xFF mask 0xFF description "Write Protect Program Flash Page 255"
+  }
+
+  configuration CONFIG5H at 0xFFF9 width 8 {
+    RESERVED_CONFIG5H mask 0xF0 description "RESERVED"
+      setting 0xF0 mask 0xF0 description "RESERVED"
+    MSSPMSK1 mask 0x8 description "MSSP1 7-Bit Address Masking Mode Enable bit"
+      setting 0x8 mask 0x8 description "7 Bit address masking mode"
+      setting 0x0 mask 0x8 description "5 bit address masking mode"
+    MSSPMSK2 mask 0x4 description "MSSP2 7-Bit Address Masking Mode Enable bit"
+      setting 0x4 mask 0x4 description "7 Bit address masking mode"
+      setting 0x0 mask 0x4 description "5 Bit address masking mode"
+    LS48MHZ mask 0x2 description "USB Low Speed Clock Select bit"
+      setting 0x2 mask 0x2 description "Divide-by-2 (System clock must be 12 MHz)"
+      setting 0x0 mask 0x2 description "Divide-by-1 (System clock must be 6 MHz)"
+    IOL1WAY mask 0x1 description "IOLOCK One-Way Set Enable bit"
+      setting 0x1 mask 0x1 description "Enabled"
+      setting 0x0 mask 0x1 description "Disabled"
+  }
+
+  configuration CONFIG5L at 0xFFF8 width 8 {
+    WAIT mask 0x80 description "External Bus Wait"
+      setting 0x80 mask 0x80 description "Disabled"
+      setting 0x0 mask 0x80 description "Enabled"
+    BW mask 0x40 description "Data Bus Width"
+      setting 0x40 mask 0x40 description "16-bit external bus mode"
+      setting 0x0 mask 0x40 description "8-bit external bus mode"
+    ABW mask 0x30 description "Address Bus Width Select bits"
+      setting 0x30 mask 0x30 description "8-bit address bus"
+      setting 0x20 mask 0x30 description "12-bit address bus"
+      setting 0x10 mask 0x30 description "16-bit address bus"
+      setting 0x0 mask 0x30 description "20-bit address bus"
+    EASHFT mask 0x8 description "External Address Shift bit"
+      setting 0x8 mask 0x8 description "Enabled"
+      setting 0x0 mask 0x8 description "Disabled"
+    CINASEL mask 0x2 description "CxINA Gate Select bit"
+      setting 0x2 mask 0x2 description "C1INA and C3INA are on their default pin locations"
+      setting 0x0 mask 0x2 description "C1INA and C3INA are all re-mapped to pin RA5"
+    T5GSEL mask 0x1 description "TMR5 Gate Select bit"
+      setting 0x1 mask 0x1 description "TMR5 Gate is driven by the T5G input"
+      setting 0x0 mask 0x1 description "TMR5 Gate is driven by the T3G input"
+  }
+
+  configuration CONFIG6H at 0xFFFB width 8 {
+    RESERVED_CONFIG6H mask 0xF0 description "RESERVED"
+      setting 0xF0 mask 0xF0 description "RESERVED"
+    WPSA mask 0x8 description "WDT Prescaler"
+      setting 0x8 mask 0x8 description "WDT prescaler ratio of 1:128"
+      setting 0x0 mask 0x8 description "WDT prescaler ratio of 1:32"
+    WINDIS mask 0x4 description "Windowed Watchdog Timer Disable"
+      setting 0x4 mask 0x4 description "Standard WDT selected; windowed WDT disabled"
+      setting 0x0 mask 0x4 description "Windowed WDT enabled"
+    WDTEN mask 0x3 description "Watchdog Timer Enable"
+      setting 0x3 mask 0x3 description "WDT enabled in hardware; SWDTEN bit disabled"
+      setting 0x2 mask 0x3 description "Enabled"
+      setting 0x1 mask 0x3 description "WDT enabled only while device is active and disabled in Sleep mode; SWDTEN bit disabled"
+      setting 0x0 mask 0x3 description "Disabled"
+  }
+
+  configuration CONFIG6L at 0xFFFA width 8 {
+    WDPS mask 0xF0 description "Watchdog Timer Postscale"
+      setting 0xF0 mask 0xF0 description "1:32768"
+      setting 0xE0 mask 0xF0 description "1:16384"
+      setting 0xD0 mask 0xF0 description "1:8192"
+      setting 0xC0 mask 0xF0 description "1:4096"
+      setting 0xB0 mask 0xF0 description "1:2048"
+      setting 0xA0 mask 0xF0 description "1:1024"
+      setting 0x90 mask 0xF0 description "1:512"
+      setting 0x80 mask 0xF0 description "1:256"
+      setting 0x70 mask 0xF0 description "1:128"
+      setting 0x60 mask 0xF0 description "1:64"
+      setting 0x50 mask 0xF0 description "1:32"
+      setting 0x40 mask 0xF0 description "1:16"
+      setting 0x30 mask 0xF0 description "1:8"
+      setting 0x20 mask 0xF0 description "1:4"
+      setting 0x10 mask 0xF0 description "1:2"
+      setting 0x0 mask 0xF0 description "1:1"
+    WDTCLK mask 0xC description "Watch Dog Timer Clock Source"
+      setting 0xC mask 0xC description "Use FRC when WINDIS = 0, system clock is not INTOSC/LPRC and device is not in Sleep; otherwise, use INTOSC/LPRC"
+      setting 0x8 mask 0xC description "Always use INTOSC/LPRC"
+      setting 0x4 mask 0xC description "Always use SOSC"
+      setting 0x0 mask 0xC description "Use FOSC/4 when system clock is not INTOSC/LPRC and device is not in Sleep; otherwise, use INTOSC/LPRC"
+    WDTWIN mask 0x3 description "Watch Dog Timer Window"
+      setting 0x3 mask 0x3 description "Watch Dog Timer Window Width is 25 percent"
+      setting 0x2 mask 0x3 description "Watch Dog Timer Window Width is 37.5 percent"
+      setting 0x1 mask 0x3 description "Watch Dog Timer Window Width is 50 percent"
+      setting 0x0 mask 0x3 description "Watch Dog Timer Window Width is 75 percent"
+  }
+
+  configuration CONFIG7H at 0xFFFD width 8 {
+    RESERVED_CONFIG7H mask 0xF0 description "RESERVED"
+      setting 0xF0 mask 0xF0 description "RESERVED"
+  }
+
+  configuration CONFIG7L at 0xFFFC width 5 {
+    DSBITEN mask 0x10 description "DSEN Bit Enable bit"
+      setting 0x10 mask 0x10 description "Enabled"
+      setting 0x0 mask 0x10 description "Disabled"
+    DSBOREN mask 0x8 description "Deep Sleep BOR Enable"
+      setting 0x8 mask 0x8 description "Enabled"
+      setting 0x0 mask 0x8 description "Disabled"
+    VBTBOR mask 0x4 description "VBAT BOR Enable"
+      setting 0x4 mask 0x4 description "Enabled"
+      setting 0x0 mask 0x4 description "Disabled"
+    RETEN mask 0x1 description "Retention Voltage Regulator Control Enable"
+      setting 0x1 mask 0x1 description "Disabled"
+      setting 0x0 mask 0x1 description "Enabled"
+  }
+
+  configuration CONFIG8H at 0xFFFF width 8 {
+    RESERVED_CONFIG8H mask 0xF0 description "RESERVED"
+      setting 0xF0 mask 0xF0 description "RESERVED"
+    DSWDTOSC mask 0x2 description "DSWDT Reference Clock Select"
+      setting 0x2 mask 0x2 description "DSWDT uses LPRC as reference clock"
+      setting 0x0 mask 0x2 description "DSWDT uses SOSC as reference clock"
+    DSWDTEN mask 0x1 description "Deep Sleep Watchdog Timer Enable"
+      setting 0x1 mask 0x1 description "Enabled"
+      setting 0x0 mask 0x1 description "Disabled"
+  }
+
+  configuration CONFIG8L at 0xFFFE width 8 {
+    DSWDTPS mask 0xF8 description "Deep Sleep Watchdog Timer Postscale Select"
+      setting 0xF8 mask 0xF8 description "1:68719476736 (25.7 Days)"
+      setting 0xF0 mask 0xF8 description "1:34359738368 (12.8  Days)"
+      setting 0xE8 mask 0xF8 description "1:17179869184 (6.4 Days)"
+      setting 0xE0 mask 0xF8 description "1:8589934592 (77 Hours)"
+      setting 0xD8 mask 0xF8 description "1:4294967296 (38.5 Hours)"
+      setting 0xD0 mask 0xF8 description "1:2147483648 (19.2 Hours)"
+      setting 0xC8 mask 0xF8 description "1:1073741824 (9.6 Hours)"
+      setting 0xC0 mask 0xF8 description "1:536870912 (4.8 Hours)"
+      setting 0xB8 mask 0xF8 description "1:268435456 (2.4 Hours)"
+      setting 0xB0 mask 0xF8 description "1:134217728 (72.2 Minutes)"
+      setting 0xA8 mask 0xF8 description "1:67108864 (36.1 Minutes)"
+      setting 0xA0 mask 0xF8 description "1:33554432 (18 Minutes)"
+      setting 0x98 mask 0xF8 description "1:16777216 (9 Minutes)"
+      setting 0x90 mask 0xF8 description "1:8388608 (4.5 Minutes)"
+      setting 0x88 mask 0xF8 description "1:4194304 (135.3 Secs)"
+      setting 0x80 mask 0xF8 description "1:2097152 (67.7 Secs)"
+      setting 0x78 mask 0xF8 description "1:1048576 (33.825 Secs)"
+      setting 0x70 mask 0xF8 description "1:524288 (16.912 Secs)"
+      setting 0x68 mask 0xF8 description "1:262114 (8.456 Secs)"
+      setting 0x60 mask 0xF8 description "1:131072 (4.228 Secs)"
+      setting 0x58 mask 0xF8 description "1:65536 (2.114 Secs)"
+      setting 0x50 mask 0xF8 description "1:32768 (1.057 Secs)"
+      setting 0x48 mask 0xF8 description "1:16384 (528.5 mS)"
+      setting 0x40 mask 0xF8 description "1:8192 (264.3 mS)"
+      setting 0x38 mask 0xF8 description "1:4096 (132.1 mS)"
+      setting 0x30 mask 0xF8 description "1:2048 (66.1 mS)"
+      setting 0x28 mask 0xF8 description "1:1024 (33 mS)"
+      setting 0x20 mask 0xF8 description "1:512 (16.5 mS)"
+      setting 0x18 mask 0xF8 description "1: 256 (8.3 mS)"
+      setting 0x10 mask 0xF8 description "1:128 (4.1 mS)"
+      setting 0x8 mask 0xF8 description "1:64 (2.1 mS)"
+      setting 0x0 mask 0xF8 description "1:32 (1 mS)"
+  }
+}

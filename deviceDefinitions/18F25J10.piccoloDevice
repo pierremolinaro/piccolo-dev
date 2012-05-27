@@ -14,12 +14,15 @@ controller PIC18F25J10 {
   unusedregister 0xD00 to 0xDFF ;
   unusedregister 0xE00 to 0xEFF ;
   unusedregister 0xF00 to 0xF7F ;
-  unusedregister 0xF85 to 0xF88 ;
-  unusedregister 0xF8E to 0xF91 ;
-  unusedregister 0xF97 to 0xF9A ;
+  unusedregister 0xF83 to 0xF88 ;
+  unusedregister 0xF8C to 0xF91 ;
+  unusedregister 0xF95 to 0xF9A ;
   unusedregister 0xF9C ;
+  unusedregister 0xFA3 to 0xFA5 ;
   unusedregister 0xFA8 to 0xFAA ;
+  unusedregister 0xFB1 to 0xFB3 ;
   unusedregister 0xFB9 ;
+  unusedregister 0xFD2 ;
   unusedregister 0xFD4 ;
   ram accessram : 0x0 to 0x7F ;
   ram gpr0 : 0x80 to 0xFF ;
@@ -76,6 +79,9 @@ controller PIC18F25J10 {
   register ECCP1AS at 0xFB6
     <ECCPASE, ECCPAS [3], PSSAC [2], -, -> ;
 
+  register ECCP1DEL at 0xFB7
+    <PRSEN, -, -, -, -, -, -, -> ;
+
   register EECON1 at 0xFA6
     <-, -, -, FREE, WRERR, WREN, WR, -> ;
 
@@ -124,9 +130,6 @@ controller PIC18F25J10 {
   register IPR2 at 0xFA2
     <OSCFIP, CMIP, -, -, BCL1IP, -, -, CCP2IP> ;
 
-  register IPR3 at 0xFA5
-    <-, BCL2IP, -, -, -, -, -, -> ;
-
   register LATA at 0xF89
     <-, -, LATA5, -, LATA3, LATA2, LATA1, LATA0> ;
 
@@ -135,9 +138,6 @@ controller PIC18F25J10 {
 
   register LATC at 0xF8B
     <LATC7, LATC6, LATC5, LATC4, LATC3, LATC2, LATC1, LATC0> ;
-
-  register LVDCON at 0xFD2
-    <-, -, IRVST, LVDEN, LVDL [4]> ;
 
   register OSCCON at 0xFD3
     <IDLEN, -, -, -, OSTS, -, SCS [2]> ;
@@ -160,17 +160,11 @@ controller PIC18F25J10 {
   register PIE2 at 0xFA0
     <OSCFIE, CMIE, -, -, BCL1IE, -, -, CCP2IE> ;
 
-  register PIE3 at 0xFA3
-    <-, BCL2IE, -, -, -, -, -, -> ;
-
   register PIR1 at 0xF9E
     <-, ADIF, RCIF, TXIF, SSP1IF, CCP1IF, TMR2IF, TMR1IF> ;
 
   register PIR2 at 0xFA1
     <OSCFIF, CMIF, -, -, BCL1IF, -, -, CCP2IF> ;
-
-  register PIR3 at 0xFA4
-    <-, BCL2IF, -, -, -, -, -, -> ;
 
   register PLUSW0 at 0xFEB
     <PLUSW0 [8]> ;
@@ -225,9 +219,6 @@ controller PIC18F25J10 {
 
   register PRODL at 0xFF3
     <PRODL [8]> ;
-
-  register PWM1CON at 0xFB7
-    <PRSEN, -, -, -, -, -, -, -> ;
 
   register RCON at 0xFD0
     <IPEN, -, -, nRI, nTO, nPD, nPOR, nBOR> ;
@@ -337,22 +328,22 @@ controller PIC18F25J10 {
     SIGN mask 0x8 description "Config Word Signature Bit"
       setting 0x8 mask 0x8 description "Bulk erase of memory not conducated"
       setting 0x0 mask 0x8 description "Bulk erase of memory area complete"
-    CP_0 mask 0x4 description "Code Protect Enable"
+    CP0 mask 0x4 description "Code Protection bit"
       setting 0x4 mask 0x4 description "Disabled"
       setting 0x0 mask 0x4 description "Enabled"
   }
 
   configuration CONFIG1L at 0x7FF8 width 8 {
-    BACKBUG mask 0x80 description "Background Debug"
+    DEBUG mask 0x80 description "Background Debugger Enable bit"
       setting 0x80 mask 0x80 description "Disabled"
       setting 0x0 mask 0x80 description "Enabled"
     XINST mask 0x40 description "Extended Instruction Set Enable bit"
       setting 0x40 mask 0x40 description "Enabled"
       setting 0x0 mask 0x40 description "Disabled"
-    STVREN mask 0x20 description "Stack Overflow Reset Enable"
+    STVREN mask 0x20 description "Stack Overflow/Underflow Reset Enable bit"
       setting 0x20 mask 0x20 description "Enabled"
       setting 0x0 mask 0x20 description "Disabled"
-    WDTEN mask 0x1 description "Watchdog Timer Enable"
+    WDTEN mask 0x1 description "Watchdog Timer Enable bit"
       setting 0x1 mask 0x1 description "Enabled"
       setting 0x0 mask 0x1 description "Disabled"
   }
@@ -360,13 +351,13 @@ controller PIC18F25J10 {
   configuration CONFIG2H at 0x7FFB width 8 {
     FNOP_1 mask 0xF0 description "Force NOP"
       setting 0xF0 mask 0xF0 description "NOPd"
-    WDTPS mask 0xF description "Watchdog Timer Postscale"
-      setting 0xF mask 0xF description "1:32,768"
-      setting 0xE mask 0xF description "1:16,384"
-      setting 0xD mask 0xF description "1:8,192"
-      setting 0xC mask 0xF description "1:4,096"
-      setting 0xB mask 0xF description "1:2,048"
-      setting 0xA mask 0xF description "1:1,024"
+    WDTPS mask 0xF description "Watchdog Timer Postscale Select bits"
+      setting 0xF mask 0xF description "1:32768"
+      setting 0xE mask 0xF description "1:16384"
+      setting 0xD mask 0xF description "1:8192"
+      setting 0xC mask 0xF description "1:4096"
+      setting 0xB mask 0xF description "1:2048"
+      setting 0xA mask 0xF description "1:1024"
       setting 0x9 mask 0xF description "1:512"
       setting 0x8 mask 0xF description "1:256"
       setting 0x7 mask 0xF description "1:128"
@@ -380,27 +371,27 @@ controller PIC18F25J10 {
   }
 
   configuration CONFIG2L at 0x7FFA width 8 {
-    IESO mask 0x80 description "Internal External Switch Over Enable"
+    IESO mask 0x80 description "Two-Speed Start-up (Internal/External Oscillator Switchover) Control bit"
       setting 0x80 mask 0x80 description "Enabled"
       setting 0x0 mask 0x80 description "Disabled"
-    FCMEN mask 0x40 description "Fail Safe Monitor Clock Enable"
+    FCMEN mask 0x40 description "Fail-Safe Clock Monitor Enable bit"
       setting 0x40 mask 0x40 description "Enabled"
       setting 0x0 mask 0x40 description "Disabled"
-    FOSC2 mask 0x4 description "Default/Reset System Clock Select"
-      setting 0x4 mask 0x4 description "Clock Select by FOSC"
-      setting 0x0 mask 0x4 description "INTRC enabled"
-    FOSC mask 0x3 description "Oscillator"
-      setting 0x3 mask 0x3 description "EC OSC with software PLL and CLKOUT on OSC2"
-      setting 0x2 mask 0x3 description "EC OSC with CLKOUT on OSC2"
-      setting 0x1 mask 0x3 description "HS OSC with software PLL"
-      setting 0x0 mask 0x3 description "HS OSC"
+    FOSC2 mask 0x4 description "Default/Reset System Clock Select bit"
+      setting 0x4 mask 0x4 description "Enabled"
+      setting 0x0 mask 0x4 description "Disabled"
+    FOSC mask 0x3 description "Oscillator Selection bits"
+      setting 0x3 mask 0x3 description "EC oscillator, PLL enabled and under software control, CLKO function on OSC2"
+      setting 0x2 mask 0x3 description "EC oscillator, CLKO function on OSC2"
+      setting 0x1 mask 0x3 description "HS oscillator, PLL enabled and under software control"
+      setting 0x0 mask 0x3 description "HS oscillator"
   }
 
   configuration CONFIG3H at 0x7FFD width 8 {
     FNOP_2 mask 0xF0 description "Force NOP"
       setting 0xF0 mask 0xF0 description "NOPd"
-    CCP2MX mask 0x1 description "CCP2 Mux"
-      setting 0x1 mask 0x1 description "CCP2 I/O Muxed with RC1"
-      setting 0x0 mask 0x1 description "CCP2 I/O Muxed with RB3"
+    CCP2MX mask 0x1 description "CCP2 MUX bit"
+      setting 0x1 mask 0x1 description "CCP2 is multiplexed with RC1"
+      setting 0x0 mask 0x1 description "CCP2 is multiplexed with RB3"
   }
 }

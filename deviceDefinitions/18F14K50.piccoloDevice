@@ -3,6 +3,7 @@ controller PIC18F14K50 {
   romsize 16384 ;
   eepromsize 256 at 0xF00000 ;
   bank 16 ;
+  unusedregister 0x300 to 0x3FF ;
   unusedregister 0x400 to 0x4FF ;
   unusedregister 0x500 to 0x5FF ;
   unusedregister 0x600 to 0x6FF ;
@@ -14,9 +15,8 @@ controller PIC18F14K50 {
   unusedregister 0xC00 to 0xCFF ;
   unusedregister 0xD00 to 0xDFF ;
   unusedregister 0xE00 to 0xEFF ;
-  unusedregister 0x300 to 0x3FF ;
-  unusedregister 0xF40 to 0xF52 ;
-  unusedregister 0xF66 to 0xF67 ;
+  unusedregister 0xF00 to 0xF52 ;
+  unusedregister 0xF65 to 0xF67 ;
   unusedregister 0xF6A ;
   unusedregister 0xF6E ;
   unusedregister 0xF70 to 0xF75 ;
@@ -26,7 +26,9 @@ controller PIC18F14K50 {
   unusedregister 0xF95 to 0xF9A ;
   unusedregister 0xF9C ;
   unusedregister 0xFA3 to 0xFA5 ;
+  unusedregister 0xFAA ;
   unusedregister 0xFB4 to 0xFB5 ;
+  unusedregister 0xFD4 ;
   ram accessram : 0x0 to 0x5F ;
   ram gpr0 : 0x60 to 0xFF ;
   ram gpr1 : 0x100 to 0x1FF ;
@@ -37,7 +39,7 @@ controller PIC18F14K50 {
     <-, -, CHS [4], GO/nDONE, ADON> ;
 
   register ADCON1 at 0xFC1
-    <-, -, VCFG [2], PCFG [4]> ;
+    <-, -, -, -, PVCFG1, PVCFG0, NVCFG1, NVCFG0> ;
 
   register ADCON2 at 0xFC0
     <ADFM, -, ACQT [3], ADCS [3]> ;
@@ -49,13 +51,13 @@ controller PIC18F14K50 {
     <ADRESL [8]> ;
 
   register ANSEL at 0xF7E
-    <ANSEL7, ANSEL6, ANSEL5, ANSEL4, ANSEL3, ANSEL2, ANSEL1, ANSEL0> ;
+    <ANS7, ANS6, ANS5, ANS4, ANS3, -, -, -> ;
 
   register ANSELH at 0xF7F
-    <-, -, -, -, ANSELH [4]> ;
+    <-, -, -, -, ANS11, ANS10, ANS9, ANS8> ;
 
   register BAUDCON at 0xFB8
-    <ABDOVF, RCMT, -, SCKP, BRG16, -, WUE, ABDEN> ;
+    <ABDOVF, RCIDL, DTRXP, CKTXP, BRG16, -, WUE, ABDEN> ;
 
   register BSR at 0xFE0
     <-, -, -, -, BSR [4]> ;
@@ -76,13 +78,13 @@ controller PIC18F14K50 {
     <C2ON, C2OUT, C2OE, C2POL, C2SP, C2R, C2CH [2]> ;
 
   register CM2CON1 at 0xF6C
-    <MC1OUT, MC2OUT, C1RSEL, C2RSEL, -, -, -, -> ;
+    <MC1OUT, MC2OUT, C1RSEL, C2RSEL, C1HYS, C2HYS, C1SYNC, C2SYNC> ;
 
-  register ECCPAS1 at 0xFB6
+  register ECCP1AS at 0xFB6
     <ECCPASE, ECCPAS [3], PSSAC [2], PSSBD [2]> ;
 
   register EEADR at 0xFA9
-    <EEADR [8]> ;
+    <EEADR7, EEADR6, EEADR5, EEADR4, EEADR3, EEADR2, EEADR1, EEADR0> ;
 
   register EECON1 at 0xFA6
     <EEPGD, CFGS, -, FREE, WRERR, WREN, WR, RD> ;
@@ -121,10 +123,10 @@ controller PIC18F14K50 {
     <INDF2 [8]> ;
 
   register INTCON at 0xFF2
-    <GIE/GIEH, PEIE/GIEL, TMR0IE, INT0IE, RBIE, TMR0IF, INT0IF, RBIF> ;
+    <GIE/GIEH, PEIE/GIEL, TMR0IE, INT0IE, RABIE, TMR0IF, INT0IF, RABIF> ;
 
   register INTCON2 at 0xFF1
-    <nRBPU, INTEDG0, INTEDG1, INTEDG2, -, TMR0IP, -, RBIP> ;
+    <nRABPU, INTEDG0, INTEDG1, INTEDG2, -, TMR0IP, -, RABIP> ;
 
   register INTCON3 at 0xFF0
     <INT2IP, INT1IP, -, INT2IE, INT1IE, -, INT2IF, INT1IF> ;
@@ -139,7 +141,7 @@ controller PIC18F14K50 {
     <-, ADIP, RCIP, TXIP, SSPIP, CCP1IP, TMR2IP, TMR1IP> ;
 
   register IPR2 at 0xFA2
-    <OSCFIP, C1IP, C2IP, EEIP, BCLIP, LVDIP, TMR3IP, CCP2IP> ;
+    <OSCFIP, C1IP, C2IP, EEIP, BCLIP, USBIP, TMR3IP, -> ;
 
   register LATA at 0xF89
     <-, -, LATA5, LATA4, -, -, -, -> ;
@@ -151,13 +153,13 @@ controller PIC18F14K50 {
     <LATC7, LATC6, LATC5, LATC4, LATC3, LATC2, LATC1, LATC0> ;
 
   register OSCCON at 0xFD3
-    <-, IRCF [3], -, FLTS, -, -> ;
+    <IDLEN, IRCF [3], OSTS, IOFS, SCS1, SCS0> ;
 
   register OSCCON2 at 0xFD2
     <-, -, -, -, -, PRI_SD, HFIOFL, LFIOFS> ;
 
   register OSCTUNE at 0xF9B
-    <HF256DIV, PLLEN, -, TUN [5]> ;
+    <INTSRC, SPLLEN, TUN [6]> ;
 
   register PCL at 0xFF9
     <PCL [8]> ;
@@ -172,13 +174,13 @@ controller PIC18F14K50 {
     <-, ADIE, RCIE, TXIE, SSPIE, CCP1IE, TMR2IE, TMR1IE> ;
 
   register PIE2 at 0xFA0
-    <OSCFIE, C1IE, C2IE, EEIE, BCLIE, LVDIE, TMR3IE, CCP2IE> ;
+    <OSCFIE, C1IE, C2IE, EEIE, BCLIE, USBIE, TMR3IE, -> ;
 
   register PIR1 at 0xF9E
     <-, ADIF, RCIF, TXIF, SSPIF, CCP1IF, TMR2IF, TMR1IF> ;
 
   register PIR2 at 0xFA1
-    <OSCFIF, C1IF, C2IF, EEIF, BCLIF, LVDIF, TMR3IF, CCP2IF> ;
+    <OSCFIF, C1IF, C2IF, EEIF, BCLIF, USBIF, TMR3IF, -> ;
 
   register PLUSW0 at 0xFEB
     <PLUSW0 [8]> ;
@@ -250,13 +252,13 @@ controller PIC18F14K50 {
     <SPEN, RX9, SREN, CREN, ADDEN, FERR, OERR, RX9D> ;
 
   register REFCON0 at 0xFBA
-    <FVR1EN, FVR1ST, FVR1S1, FVR1S0, TSEN, TSRS, -, -> ;
+    <FVR1EN, FVR1ST, FVR1S1, FVR1S0, -, -, -, -> ;
 
   register REFCON1 at 0xFBB
-    <D1EN, D1LPS, -, -, D1PSS [2], DAC1OE, D1NSS0> ;
+    <D1EN, D1LPS, DAC1OE, -, D1PSS [2], -, D1NSS> ;
 
   register REFCON2 at 0xFBC
-    <REFCON2 [8]> ;
+    <-, -, -, DAC1R4, DAC1R3, DAC1R2, DAC1R1, DAC1R0> ;
 
   register SLRCON at 0xF76
     <-, -, -, -, -, SLRC, SLRB, SLRA> ;
@@ -268,10 +270,10 @@ controller PIC18F14K50 {
     <SPBRGH [8]> ;
 
   register SRCON0 at 0xF68
-    <SREN, SRCCLK [3], SRQEN, SRNQEN, SRPS, SRPR> ;
+    <SRLEN, SRCLK [3], SRQEN, SRNQEN, SRPS, SRPR> ;
 
   register SRCON1 at 0xF69
-    <SRSPE, SRSCKE, SRSCE [2], SRRPE, SRRCKE, SRRCE [2]> ;
+    <SRSPE, SRSCKE, SRSC2E, SRSC1E, SRRPE, SRRCKE, SRRC2E, SRRC1E> ;
 
   register SSPADD at 0xFC8
     <SSPADD [8]> ;
@@ -285,7 +287,7 @@ controller PIC18F14K50 {
   register SSPCON2 at 0xFC5
     <GCEN, ACKSTAT, ACKDT, ACKEN, RCEN, PEN, RSEN, SEN> ;
 
-  register SSPMASK at 0xF6F
+  register SSPMSK at 0xF6F
     <MSK [8]> ;
 
   register SSPSTAT at 0xFC7
@@ -304,10 +306,10 @@ controller PIC18F14K50 {
     <RD16, T1RUN, T1CKPS [2], T1OSCEN, nT1SYNC, TMR1CS, TMR1ON> ;
 
   register T2CON at 0xFCA
-    <-, TOUTPS [4], TMR2ON, T2CKPS [2]> ;
+    <-, T2OUTPS [4], TMR2ON, T2CKPS [2]> ;
 
   register T3CON at 0xFB1
-    <RD16, T3CCP2, T3CKPS [2], T3CCP1, nT3SYNC, TMR3CS, TMR3ON> ;
+    <RD16, -, T3CKPS [2], T3CCP1, nT3SYNC, TMR3CS, TMR3ON> ;
 
   register TABLAT at 0xFF5
     <TABLAT [8]> ;
@@ -352,16 +354,13 @@ controller PIC18F14K50 {
     <-, -, -, TOSU [5]> ;
 
   register TRISA at 0xF92
-    <-, -, TRISA5, TRISA4, TRISA3, -, -, -> ;
+    <-, -, TRISA5, TRISA4, -, -, -, -> ;
 
   register TRISB at 0xF93
     <TRISB7, TRISB6, TRISB5, TRISB4, -, -, -, -> ;
 
   register TRISC at 0xF94
     <TRISC7, TRISC6, TRISC5, TRISC4, TRISC3, TRISC2, TRISC1, TRISC0> ;
-
-  register TSTOUT at 0xF65
-    <-, -, -, -, -, -, -, TSTOUT> ;
 
   register TXREG at 0xFAD
     <TXREG [8]> ;
@@ -372,41 +371,41 @@ controller PIC18F14K50 {
   register UADDR at 0xF5C
     <-, ADDR [7]> ;
 
-  register UCNFG at 0xF61
-    <UTEYE, -, -, USBPUEN, -, FSEN, UPP1, UPP0> ;
+  register UCFG at 0xF61
+    <UTEYE, -, -, UPUEN, -, FSEN, PPB1, PPB0> ;
 
-  register UCTRL at 0xF64
-    <-, ODD_RST, SE0, PKT_DIS, USBEN, RESUME, SUSPND, -> ;
+  register UCON at 0xF64
+    <-, PPBRST, SE0, PKTDIS, USBEN, RESUME, SUSPND, -> ;
 
   register UEIE at 0xF5B
-    <BTS_ERR, -, -, BTO_ERR, DFN8, CRC16, CRC5, PID_ERR> ;
+    <BTSEE, -, -, BTOEE, DFN8EE, CRC16EE, CRC5EE, PIDEE> ;
 
-  register UEIER at 0xF5F
-    <BTS_ERR, -, -, BTO_ERR, DFN8, CRC16, CRC5, PID_ERR> ;
+  register UEIR at 0xF5F
+    <BTSEF, -, -, BTOEF, DFN8EF, CRC16EF, CRC5EF, PIDEF> ;
 
   register UEP0 at 0xF53
-    <-, -, -, -, EP_HSHK, EP_CTL_DIS, EP_OUT_EN, EP_IN_EN> ;
+    <-, -, -, EPHSHK, EPCONDIS, EPOUTEN, EPINEN, EPSTALL> ;
 
   register UEP1 at 0xF54
-    <-, -, -, -, EP_HSHK, EP_CTL_DIS, EP_OUT_EN, EP_IN_EN> ;
+    <-, -, -, EPHSHK, EPCONDIS, EPOUTEN, EPINEN, EPSTALL> ;
 
   register UEP2 at 0xF55
-    <-, -, -, -, EP_HSHK, EP_CTL_DIS, EP_OUT_EN, EP_IN_EN> ;
+    <-, -, -, EPHSHK, EPCONDIS, EPOUTEN, EPINEN, EPSTALL> ;
 
   register UEP3 at 0xF56
-    <-, -, -, -, EP_HSHK, EP_CTL_DIS, EP_OUT_EN, EP_IN_EN> ;
+    <-, -, -, EPHSHK, EPCONDIS, EPOUTEN, EPINEN, EPSTALL> ;
 
   register UEP4 at 0xF57
-    <-, -, -, -, EP_HSHK, EP_CTL_DIS, EP_OUT_EN, EP_IN_EN> ;
+    <-, -, -, EPHSHK, EPCONDIS, EPOUTEN, EPINEN, EPSTALL> ;
 
   register UEP5 at 0xF58
-    <-, -, -, -, EP_HSHK, EP_CTL_DIS, EP_OUT_EN, EP_IN_EN> ;
+    <-, -, -, EPHSHK, EPCONDIS, EPOUTEN, EPINEN, EPSTALL> ;
 
   register UEP6 at 0xF59
-    <-, -, -, -, EP_HSHK, EP_CTL_DIS, EP_OUT_EN, EP_IN_EN> ;
+    <-, -, -, EPHSHK, EPCONDIS, EPOUTEN, EPINEN, EPSTALL> ;
 
   register UEP7 at 0xF5A
-    <-, -, -, -, EP_HSHK, EP_CTL_DIS, EP_OUT_EN, EP_IN_EN> ;
+    <-, -, -, EPHSHK, EPCONDIS, EPOUTEN, EPINEN, EPSTALL> ;
 
   register UFRMH at 0xF5E
     <-, -, -, -, -, FRMH [3]> ;
@@ -415,19 +414,19 @@ controller PIC18F14K50 {
     <FRML [8]> ;
 
   register UIE at 0xF60
-    <-, SOF_TOK, STALL, UIDLE, TOK_DNE, ACTIVITY, UERR, USB_RST> ;
+    <-, SOFIE, STALLIE, IDLEIE, TRNIE, ACTVIE, UERRIE, URSTIE> ;
 
   register UIR at 0xF62
-    <-, SOF_TOK, STALL, UIDLE, TOK_DNE, ACTIVITY, UERR, USB_RST> ;
+    <-, SOFIF, STALLIF, IDLEIF, TRNIF, ACTVIF, UERRIF, URSTIF> ;
 
   register USTAT at 0xF63
-    <-, ENDP3, ENDP2, ENDP1, ENDP0, IN, ODD, -> ;
+    <-, ENDP3, ENDP2, ENDP1, ENDP0, DIR, PPBI, -> ;
 
   register WDTCON at 0xFD1
     <-, -, -, -, -, -, -, SWDTEN> ;
 
   register WPUA at 0xF77
-    <-, -, WPUA [3], -, -, -> ;
+    <-, -, WPUA5, WPUA4, WPUA3, -, -, -> ;
 
   register WPUB at 0xF78
     <WPUB7, WPUB6, WPUB5, WPUB4, -, -, -, -> ;
@@ -436,46 +435,49 @@ controller PIC18F14K50 {
     <WREG [8]> ;
 
   configuration CONFIG1H at 0x300001 width 8 {
-    IESO mask 0x80 description "Internal External Switch Over Mode"
+    IESO mask 0x80 description "Internal/External Oscillator Switchover bit"
       setting 0x0 mask 0x80 description "Disabled"
       setting 0x80 mask 0x80 description "Enabled"
     FCMEN mask 0x40 description "Fail-Safe Clock Monitor Enable"
-      setting 0x0 mask 0x40 description "Disabled"
       setting 0x40 mask 0x40 description "Enabled"
+      setting 0x0 mask 0x40 description "Disabled"
     PCLKEN mask 0x20 description "Primary Clock Enable bit"
-      setting 0x20 mask 0x20 description "Primary Clock enabled"
-      setting 0x0 mask 0x20 description "Primary Clock disabled"
+      setting 0x20 mask 0x20 description "Enabled"
+      setting 0x0 mask 0x20 description "Disabled"
     PLLEN mask 0x10 description "4 X PLL Enable bit"
-      setting 0x10 mask 0x10 description "Oscillator multiplied by 4"
-      setting 0x0 mask 0x10 description "Oscillator used directly"
-    OSC mask 0xF description "Oscillator"
-      setting 0xC mask 0xC description "11XX EXT RC-CLKOUT on RA6"
-      setting 0xA mask 0xE description "101X EXT RC-CLKOUT on RA6"
-      setting 0x9 mask 0xF description "INT RC-CLKOUT on RA6,Port on RA7"
-      setting 0x8 mask 0xF description "INT RC-Port on RA6,Port on RA7"
-      setting 0x7 mask 0xF description "EXT RC-Port on RA6"
-      setting 0x6 mask 0xF description "HS-PLL enabled freq=4xFosc1"
-      setting 0x5 mask 0xF description "EC-Port on RA6"
-      setting 0x4 mask 0xF description "EC-CLKOUT on RA6"
-      setting 0x3 mask 0xF description "0011 EXT RC-CLKOUT on RA6"
-      setting 0x2 mask 0xF description "HS"
-      setting 0x1 mask 0xF description "XT"
-      setting 0x0 mask 0xF description "LP"
+      setting 0x10 mask 0x10 description "Enabled"
+      setting 0x0 mask 0x10 description "Disabled"
+    FOSC mask 0xF description "Oscillator Selection bits"
+      setting 0xE mask 0xE description "111X External RC oscillator, CLKOUT function on OSC2"
+      setting 0xD mask 0xF description "EC (low)"
+      setting 0xC mask 0xF description "EC, CLKOUT function on OSC2 (low)"
+      setting 0xB mask 0xF description "EC (medium)"
+      setting 0xA mask 0xF description "EC, CLKOUT function on OSC2 (medium)"
+      setting 0x9 mask 0xF description "Internal RC oscillator, CLKOUT function on OSC2"
+      setting 0x8 mask 0xF description "Internal RC oscillator"
+      setting 0x7 mask 0xF description "External RC oscillator"
+      setting 0x6 mask 0xF description "0110 External RC oscillator, CLKOUT function on OSC2"
+      setting 0x5 mask 0xF description "EC (high)"
+      setting 0x4 mask 0xF description "EC, CLKOUT function on OSC2 (high)"
+      setting 0x3 mask 0xF description "External RC oscillator, CLKOUT function on OSC2"
+      setting 0x2 mask 0xF description "HS oscillator"
+      setting 0x1 mask 0xF description "XT oscillator"
+      setting 0x0 mask 0xF description "LP oscillator"
   }
 
   configuration CONFIG1L at 0x300000 width 6 {
     USBDIV mask 0x20 description "USB Clock Selection bit"
-      setting 0x20 mask 0x20 description "USB clock comes from the OSC1/OSC2 divided by 2"
-      setting 0x0 mask 0x20 description "USB clock comes directly from the OSC1/OSC2 Oscillator block; no divide"
+      setting 0x20 mask 0x20 description "Enabled"
+      setting 0x0 mask 0x20 description "Disabled"
     CPUDIV mask 0x18 description "CPU System Clock Selection bits"
-      setting 0x18 mask 0x18 description "CPU system clock divided by 4"
-      setting 0x10 mask 0x18 description "CPU system clock divided by 3"
-      setting 0x8 mask 0x18 description "CPU system clock divided by 2"
-      setting 0x0 mask 0x18 description "No CPU system clock divide"
+      setting 0x18 mask 0x18 description "CPU System Clock divided by 4"
+      setting 0x10 mask 0x18 description "CPU System Clock divided by 3"
+      setting 0x8 mask 0x18 description "CPU System Clock divided by 2"
+      setting 0x0 mask 0x18 description "No CPU System Clock divide"
   }
 
   configuration CONFIG2H at 0x300003 width 5 {
-    WDTPS mask 0x1E description "Watchdog Postscaler"
+    WDTPS mask 0x1E description "Watchdog Timer Postscale Select bits"
       setting 0x1E mask 0x1E description "1:32768"
       setting 0x1C mask 0x1E description "1:16384"
       setting 0x1A mask 0x1E description "1:8192"
@@ -492,107 +494,104 @@ controller PIC18F14K50 {
       setting 0x4 mask 0x1E description "1:4"
       setting 0x2 mask 0x1E description "1:2"
       setting 0x0 mask 0x1E description "1:1"
-    WDTEN mask 0x1 description "Watchdog Timer"
+    WDTEN mask 0x1 description "Watchdog Timer Enable bit"
       setting 0x1 mask 0x1 description "Enabled"
-      setting 0x0 mask 0x1 description "Disabled-Controlled by SWDTEN bit"
+      setting 0x0 mask 0x1 description "Disabled"
   }
 
-  configuration CONFIG2L at 0x300002 width 6 {
-    VREGEN mask 0x20 description "Voltage Regulator Enable bit"
-      setting 0x0 mask 0x20 description "Voltage Regulator is disabled"
-      setting 0x20 mask 0x20 description "Voltage Regulator is enabled"
-    BORV mask 0x18 description "Brown Out Voltage"
-      setting 0x18 mask 0x18 description "1.9V"
-      setting 0x10 mask 0x18 description "2.2V"
-      setting 0x8 mask 0x18 description "2.7V"
-      setting 0x0 mask 0x18 description "3.0V"
-    BOREN mask 0x6 description "Brown Out Detect"
-      setting 0x6 mask 0x6 description "Enabled in hardware, SBOREN disabled"
-      setting 0x4 mask 0x6 description "Enabled while active,disabled in SLEEP,SBOREN disabled"
-      setting 0x2 mask 0x6 description "Controlled with SBOREN bit"
-      setting 0x0 mask 0x6 description "Disabled in hardware, SBOREN disabled"
-    nPWRTEN mask 0x1 description "Power Up Timer"
+  configuration CONFIG2L at 0x300002 width 5 {
+    BORV mask 0x18 description "Brown-out Reset Voltage bits"
+      setting 0x18 mask 0x18 description "VBOR set to 1.9 V nominal"
+      setting 0x10 mask 0x18 description "VBOR set to 2.2 V nominal"
+      setting 0x8 mask 0x18 description "VBOR set to 2.7 V nominal"
+      setting 0x0 mask 0x18 description "VBOR set to 3.0 V nominal"
+    BOREN mask 0x6 description "Brown-out Reset Enable bits"
+      setting 0x6 mask 0x6 description "Brown-out Reset enabled in hardware only (SBOREN is disabled)"
+      setting 0x4 mask 0x6 description "Brown-out Reset enabled in hardware only and disabled in Sleep mode (SBOREN is disabled)"
+      setting 0x2 mask 0x6 description "Enabled"
+      setting 0x0 mask 0x6 description "Disabled"
+    PWRTEN mask 0x1 description "Power-up Timer Enable bit"
       setting 0x1 mask 0x1 description "Disabled"
       setting 0x0 mask 0x1 description "Enabled"
   }
 
   configuration CONFIG3H at 0x300005 width 8 {
-    MCLRE mask 0x80 description "Master Clear Enable"
-      setting 0x80 mask 0x80 description "MCLR Enabled,RE3 Disabled"
-      setting 0x0 mask 0x80 description "MCLR Disabled,RE3 Enabled"
-    HFOFST mask 0x8 description "HFINTOSC Fast Start-up"
-      setting 0x8 mask 0x8 description "HFINTOSC starts clocking the CPU without waiting for the oscillator to stabilize"
-      setting 0x0 mask 0x8 description "The system clock is held off until the HFINTOSC is stable"
+    MCLRE mask 0x80 description "MCLR Pin Enable bit"
+      setting 0x80 mask 0x80 description "Enabled"
+      setting 0x0 mask 0x80 description "Disabled"
+    HFOFST mask 0x8 description "HFINTOSC Fast Start-up bit"
+      setting 0x8 mask 0x8 description "Enabled"
+      setting 0x0 mask 0x8 description "Disabled"
   }
 
   configuration CONFIG4L at 0x300006 width 8 {
-    BACKBUG mask 0x80 description "Background Debug"
+    DEBUG mask 0x80 description "Background Debugger Enable bit"
       setting 0x80 mask 0x80 description "Disabled"
       setting 0x0 mask 0x80 description "Enabled"
     XINST mask 0x40 description "Extended Instruction Set Enable bit"
       setting 0x40 mask 0x40 description "Enabled"
       setting 0x0 mask 0x40 description "Disabled"
-    BBSIZ mask 0x8 description "Boot BLock Size Select bit"
-      setting 0x8 mask 0x8 description "2 kW boot block size"
-      setting 0x0 mask 0x8 description "1 kW boot block size"
-    LVP mask 0x4 description "Low Voltage Program"
+    BBSIZ mask 0x8 description "Boot Block Size Select bit"
+      setting 0x8 mask 0x8 description "Enabled"
+      setting 0x0 mask 0x8 description "Disabled"
+    LVP mask 0x4 description "Single-Supply ICSP Enable bit"
       setting 0x4 mask 0x4 description "Enabled"
       setting 0x0 mask 0x4 description "Disabled"
-    STVREN mask 0x1 description "Stack Overflow Reset"
+    STVREN mask 0x1 description "Stack Full/Underflow Reset Enable bit"
       setting 0x1 mask 0x1 description "Enabled"
       setting 0x0 mask 0x1 description "Disabled"
   }
 
   configuration CONFIG5H at 0x300009 width 8 {
-    CPD mask 0x80 description "Data EEPROM Code Protect"
+    CPD mask 0x80 description "Data EEPROM Code Protection bit"
       setting 0x80 mask 0x80 description "Disabled"
       setting 0x0 mask 0x80 description "Enabled"
-    CPB mask 0x40 description "Code Protect Boot"
+    CPB mask 0x40 description "Boot Block Code Protection bit"
       setting 0x40 mask 0x40 description "Disabled"
       setting 0x0 mask 0x40 description "Enabled"
   }
 
   configuration CONFIG5L at 0x300008 width 2 {
-    CP_1 mask 0x2 description "Code Protect 02000-03FFF"
+    CP1 mask 0x2 description "Code Protection bit"
       setting 0x2 mask 0x2 description "Disabled"
       setting 0x0 mask 0x2 description "Enabled"
-    CP_0 mask 0x1 description "Code Protect 00800-01FFF"
+    CP0 mask 0x1 description "Code Protection bit"
       setting 0x1 mask 0x1 description "Disabled"
       setting 0x0 mask 0x1 description "Enabled"
   }
 
   configuration CONFIG6H at 0x30000B width 8 {
-    WRTD mask 0x80 description "Data EEPROM Write Protect"
+    WRTD mask 0x80 description "Data EEPROM Write Protection bit"
       setting 0x80 mask 0x80 description "Disabled"
       setting 0x0 mask 0x80 description "Enabled"
-    WRTB mask 0x40 description "Table Write Protect Boot"
+    WRTB mask 0x40 description "Boot Block Write Protection bit"
       setting 0x40 mask 0x40 description "Disabled"
       setting 0x0 mask 0x40 description "Enabled"
-    WRTC mask 0x20 description "Config. Write Protect"
+    WRTC mask 0x20 description "Configuration Register Write Protection bit"
       setting 0x20 mask 0x20 description "Disabled"
       setting 0x0 mask 0x20 description "Enabled"
   }
 
   configuration CONFIG6L at 0x30000A width 2 {
-    WRT_1 mask 0x2 description "Table Write Protect 02000-03FFF"
+    WRT1 mask 0x2 description "Table Write Protection bit"
       setting 0x2 mask 0x2 description "Disabled"
       setting 0x0 mask 0x2 description "Enabled"
-    WRT_0 mask 0x1 description "Table Write Protect 00800-01FFF"
+    WRT0 mask 0x1 description "Table Write Protection bit"
       setting 0x1 mask 0x1 description "Disabled"
       setting 0x0 mask 0x1 description "Enabled"
   }
 
   configuration CONFIG7H at 0x30000D width 7 {
-    EBTRB mask 0x40 description "Table Read Protect Boot"
+    EBTRB mask 0x40 description "Boot Block Table Read Protection bit"
       setting 0x40 mask 0x40 description "Disabled"
       setting 0x0 mask 0x40 description "Enabled"
   }
 
   configuration CONFIG7L at 0x30000C width 2 {
-    EBTR_1 mask 0x2 description "Table Read Protect 02000-03FFF"
+    EBTR1 mask 0x2 description "Table Read Protection bit"
       setting 0x2 mask 0x2 description "Disabled"
       setting 0x0 mask 0x2 description "Enabled"
-    EBTR_0 mask 0x1 description "Table Read Protect 00800-01FFF"
+    EBTR0 mask 0x1 description "Table Read Protection bit"
       setting 0x1 mask 0x1 description "Disabled"
       setting 0x0 mask 0x1 description "Enabled"
   }

@@ -31,10 +31,10 @@ controller PIC16F877 {
     <ADRESL [8]> ;
 
   register CCP1CON at 0x17
-    <-, -, DC1B [2], CCP1M [4]> ;
+    <-, -, CCP1X, CCP1Y, CCP1M [4]> ;
 
   register CCP2CON at 0x1D
-    <-, -, DC2B [2], CCP2M [4]> ;
+    <-, -, CCP2X, CCP2Y, CCP2M [4]> ;
 
   register CCPR1H at 0x16
     <CCPR1H [8]> ;
@@ -73,7 +73,7 @@ controller PIC16F877 {
     <INDF [8]> ;
 
   register INTCON at 0xB, 0x8B, 0x10B, 0x18B
-    <GIE, PEIE, TMR0IE, INTE, RBIE, TMR0IF, INTF, RBIF> ;
+    <GIE, PEIE, T0IE, INTE, RBIE, T0IF, INTF, RBIF> ;
 
   register OPTION_REG at 0x81, 0x181
     <nRBPU, INTEDG, T0CS, T0SE, PSA, PS [3]> ;
@@ -186,36 +186,36 @@ controller PIC16F877 {
   configuration CONFIG at 0x2007 width 14
     illegal 0x40 mask 0x40 message "Current settings of PWRT and BOD are in conflict"
     illegal 0x8 mask 0x8 message "Current settings of PWRT and BOD are in conflict" {
-    CP mask 0x3030 description "Code Protect"
-      setting 0x3030 mask 0x3030 description "Off"
-      setting 0x2020 mask 0x3030 description "1F00:1FFF"
-      setting 0x1010 mask 0x3030 description "1000:1FFF"
-      setting 0x0 mask 0x3030 description "All"
-    BACKBUG mask 0x800 description "Background Debug"
+    CP mask 0x3030 description "FLASH Program Memory Code Protection bits"
+      setting 0x3030 mask 0x3030 description "Disabled"
+      setting 0x2020 mask 0x3030 description "1F00h to 1FFFh code protected"
+      setting 0x1010 mask 0x3030 description "1000h to 1FFFh code protected"
+      setting 0x0 mask 0x3030 description "0000h to 1FFFh code protected"
+    DEBUG mask 0x800 description "In-Circuit Debugger Mode bit"
       setting 0x800 mask 0x800 description "Disabled"
       setting 0x0 mask 0x800 description "Enabled"
-    WRT_ENABLE mask 0x200 description "Flash Program Write"
+    WRT mask 0x200 description "FLASH Program Memory Write Enable"
       setting 0x200 mask 0x200 description "Enabled"
       setting 0x0 mask 0x200 description "Disabled"
-    CPD mask 0x100 description "Data EE Read Protect"
-      setting 0x100 mask 0x100 description "Off"
-      setting 0x0 mask 0x100 description "On"
-    LVP mask 0x80 description "Low Voltage Program"
+    CPD mask 0x100 description "Data EE Memory Code Protection"
+      setting 0x100 mask 0x100 description "Disabled"
+      setting 0x0 mask 0x100 description "Enabled"
+    LVP mask 0x80 description "Low Voltage In-Circuit Serial Programming Enable bit"
       setting 0x80 mask 0x80 description "Enabled"
       setting 0x0 mask 0x80 description "Disabled"
-    BODEN mask 0x40 description "Brown Out Detect"
-      setting 0x40 mask 0x40 description "On"
-      setting 0x0 mask 0x40 description "Off"
-    PUT mask 0x8 description "Power Up Timer"
-      setting 0x8 mask 0x8 description "Off"
-      setting 0x0 mask 0x8 description "On"
-    WDT mask 0x4 description "Watchdog Timer"
-      setting 0x4 mask 0x4 description "On"
-      setting 0x0 mask 0x4 description "Off"
-    OSC mask 0x3 description "Oscillator"
-      setting 0x3 mask 0x3 description "RC"
-      setting 0x0 mask 0x3 description "LP"
-      setting 0x1 mask 0x3 description "XT"
-      setting 0x2 mask 0x3 description "HS"
+    BOREN mask 0x40 description "Brown-out Reset Enable bit"
+      setting 0x40 mask 0x40 description "Enabled"
+      setting 0x0 mask 0x40 description "Disabled"
+    PWRTE mask 0x8 description "Power-up Timer Enable bit"
+      setting 0x8 mask 0x8 description "Disabled"
+      setting 0x0 mask 0x8 description "Enabled"
+    WDTE mask 0x4 description "Watchdog Timer Enable bit"
+      setting 0x4 mask 0x4 description "Enabled"
+      setting 0x0 mask 0x4 description "Disabled"
+    FOSC mask 0x3 description "Oscillator Selection bits"
+      setting 0x3 mask 0x3 description "RC oscillator"
+      setting 0x2 mask 0x3 description "HS oscillator"
+      setting 0x1 mask 0x3 description "XT oscillator"
+      setting 0x0 mask 0x3 description "LP oscillator"
   }
 }

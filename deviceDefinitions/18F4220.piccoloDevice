@@ -149,13 +149,13 @@ controller PIC18F4220 {
     <-, -, IRVST, LVDEN, LVDL [4]> ;
 
   register OSCCON at 0xFD3
-    <IDLEN, IRCF [3], OSTS, IOFS, SCS [2]> ;
+    <IDLEN, IRCF [3], OSTS, IOFS, SCS1, SCS0> ;
+
+  register OSCTUN2 at 0xF9A
+    <TUNSEL, -, TUN [6]> ;
 
   register OSCTUNE at 0xF9B
     <-, -, TUN [6]> ;
-
-  register OSCTUNE2 at 0xF9A
-    <TUN [8]> ;
 
   register PCL at 0xFF9
     <PCL [8]> ;
@@ -356,27 +356,27 @@ controller PIC18F4220 {
     <WREG [8]> ;
 
   configuration CONFIG1H at 0x300001 width 8 {
-    IESO mask 0x80 description "Internal External Switch Over Mode"
-      setting 0x0 mask 0x80 description "Disabled"
+    IESO mask 0x80 description "Internal/External Switchover bit"
       setting 0x80 mask 0x80 description "Enabled"
-    FCMEN mask 0x40 description "Fail-Safe Clock Monitor Enable"
-      setting 0x0 mask 0x40 description "Disabled"
+      setting 0x0 mask 0x80 description "Disabled"
+    FSCM mask 0x40 description "Fail-Safe Clock Monitor Enable bit"
       setting 0x40 mask 0x40 description "Enabled"
-    OSC mask 0xF description "Oscillator"
-      setting 0xC mask 0xC description "EXT RC-CLKOUT on RA6"
-      setting 0x9 mask 0xF description "INT RC-CLKOUT on RA6,Port on RA7"
-      setting 0x8 mask 0xF description "INT RC-Port on RA6,Port on RA7"
-      setting 0x7 mask 0xF description "EXT RC-Port on RA6"
-      setting 0x6 mask 0xF description "HS-PLL enabled freq=4xFosc1"
-      setting 0x5 mask 0xF description "EC-Port on RA6"
-      setting 0x4 mask 0xF description "EC-CLKOUT on RA6"
-      setting 0x2 mask 0xF description "HS"
-      setting 0x1 mask 0xF description "XT"
-      setting 0x0 mask 0xF description "LP"
+      setting 0x0 mask 0x40 description "Disabled"
+    OSC mask 0xF description "Oscillator Selection bits"
+      setting 0xC mask 0xC description "External RC oscillator, CLKO function on RA6"
+      setting 0x9 mask 0xF description "Internal RC oscillator, CLKO function on RA6 and port function on RA7"
+      setting 0x8 mask 0xF description "Internal RC oscillator, port function on RA6 and port function on RA7"
+      setting 0x7 mask 0xF description "External RC oscillator, port function on RA6"
+      setting 0x6 mask 0xF description "HS oscillator, PLL enabled (clock frequency = 4 x FOSC1)"
+      setting 0x5 mask 0xF description "EC oscillator, port function on RA6"
+      setting 0x4 mask 0xF description "EC oscillator, CLKO function on RA6"
+      setting 0x2 mask 0xF description "HS Oscillator"
+      setting 0x1 mask 0xF description "XT Oscillator"
+      setting 0x0 mask 0xF description "LP Oscillator"
   }
 
   configuration CONFIG2H at 0x300003 width 5 {
-    WDTPS mask 0x1E description "Watchdog Postscaler"
+    WDTPS mask 0x1E description "Watchdog Timer Postscale Select bits"
       setting 0x1E mask 0x1E description "1:32768"
       setting 0x1C mask 0x1E description "1:16384"
       setting 0x1A mask 0x1E description "1:8192"
@@ -393,117 +393,105 @@ controller PIC18F4220 {
       setting 0x4 mask 0x1E description "1:4"
       setting 0x2 mask 0x1E description "1:2"
       setting 0x0 mask 0x1E description "1:1"
-    WDT mask 0x1 description "Watchdog Timer"
+    WDT mask 0x1 description "Watchdog Timer Enable bit"
       setting 0x1 mask 0x1 description "Enabled"
-      setting 0x0 mask 0x1 description "Disabled-Controlled by SWDTEN bit"
+      setting 0x0 mask 0x1 description "Disabled"
   }
 
   configuration CONFIG2L at 0x300002 width 4 {
-    BODENV mask 0xC description "Brown Out Voltage"
-      setting 0xC mask 0xC description "2.0V"
-      setting 0x8 mask 0xC description "2.7V"
-      setting 0x4 mask 0xC description "4.2V"
-      setting 0x0 mask 0xC description "4.5V"
-    BODEN mask 0x2 description "Brown Out Detect"
+    BORV mask 0xC description "Brown-out Reset Voltage bits"
+      setting 0xC mask 0xC description "VBOR set to 2.0V"
+      setting 0x8 mask 0xC description "VBOR set to 2.7V"
+      setting 0x4 mask 0xC description "VBOR set to 4.2V"
+      setting 0x0 mask 0xC description "VBOR set to 4.5V"
+    BOR mask 0x2 description "Brown-out Reset enable bit"
       setting 0x2 mask 0x2 description "Enabled"
       setting 0x0 mask 0x2 description "Disabled"
-    PUT mask 0x1 description "Power Up Timer"
+    PWRT mask 0x1 description "Power-up Timer enable bit"
       setting 0x1 mask 0x1 description "Disabled"
       setting 0x0 mask 0x1 description "Enabled"
   }
 
   configuration CONFIG3H at 0x300005 width 8 {
-    MCLRE mask 0x80 description "Master Clear Enable"
-      setting 0x80 mask 0x80 description "MCLR Enabled,RE3 Disabled"
-      setting 0x0 mask 0x80 description "MCLR Disabled, RE3 Enabled"
-    PBADEN mask 0x2 description "PortB A/D Enable"
-      setting 0x2 mask 0x2 description "PORTB<4:0> configured as analog inputs on RESET"
-      setting 0x0 mask 0x2 description "PORTB<4:0> configured as digital I/O on RESET"
-    CCP2MUX mask 0x1 description "CCP2 Mux"
-      setting 0x1 mask 0x1 description "RC1"
-      setting 0x0 mask 0x1 description "RB3"
+    MCLRE mask 0x80 description "MCLR Pin Enable bit"
+      setting 0x80 mask 0x80 description "Enabled"
+      setting 0x0 mask 0x80 description "Disabled"
+    PBAD mask 0x2 description "PORTB A/D Enable bit"
+      setting 0x2 mask 0x2 description "PORTB<4:0> pins are configured as analog input channels on Reset"
+      setting 0x0 mask 0x2 description "PORTB<4:0> pins are configured as digital I/O on Reset"
+    CCP2MX mask 0x1 description "CCP2 MUX bit"
+      setting 0x1 mask 0x1 description "Enabled"
+      setting 0x0 mask 0x1 description "Disabled"
   }
 
   configuration CONFIG4L at 0x300006 width 8 {
-    BACKBUG mask 0x80 description "Background Debug"
+    DEBUG mask 0x80 description "Background Debugger Enable bit"
       setting 0x80 mask 0x80 description "Disabled"
       setting 0x0 mask 0x80 description "Enabled"
-    LVP mask 0x4 description "Low Voltage Program"
+    LVP mask 0x4 description "Single-Supply ICSP Enable bit"
       setting 0x4 mask 0x4 description "Enabled"
       setting 0x0 mask 0x4 description "Disabled"
-    STVR mask 0x1 description "Stack Overflow Reset"
+    STVR mask 0x1 description "Stack Full/Underflow Reset Enable bit"
       setting 0x1 mask 0x1 description "Enabled"
       setting 0x0 mask 0x1 description "Disabled"
   }
 
   configuration CONFIG5H at 0x300009 width 8 {
-    CPD mask 0x80 description "Data EEPROM Code Protect"
+    CPD mask 0x80 description "Data EEPROM Code Protection bit"
       setting 0x80 mask 0x80 description "Disabled"
       setting 0x0 mask 0x80 description "Enabled"
-    CPB mask 0x40 description "Code Protect Boot"
+    CPB mask 0x40 description "Boot Block Code Protection bit"
       setting 0x40 mask 0x40 description "Disabled"
       setting 0x0 mask 0x40 description "Enabled"
   }
 
   configuration CONFIG5L at 0x300008 width 4 {
-    CP_3 mask 0x8 description "Code Protect 001800-001FFF"
-      setting 0x8 mask 0x8 description "Disabled"
-      setting 0x0 mask 0x8 description "Enabled"
-    CP_2 mask 0x4 description "Code Protect 001000-0017FF"
-      setting 0x4 mask 0x4 description "Disabled"
-      setting 0x0 mask 0x4 description "Enabled"
-    CP_1 mask 0x2 description "Code Protect 000800-000FFF"
+    RESERVED mask 0xC description "RESERVED"
+      setting 0xC mask 0xC description "Maintain bits as 1s."
+    CP1 mask 0x2 description "Code Protection bit"
       setting 0x2 mask 0x2 description "Disabled"
       setting 0x0 mask 0x2 description "Enabled"
-    CP_0 mask 0x1 description "Code Protect 000200-0007FF"
+    CP0 mask 0x1 description "Code Protection bit"
       setting 0x1 mask 0x1 description "Disabled"
       setting 0x0 mask 0x1 description "Enabled"
   }
 
   configuration CONFIG6H at 0x30000B width 8 {
-    WRTD mask 0x80 description "Data EEPROM Write Protect"
+    WRTD mask 0x80 description "Data EEPROM Write Protection bit"
       setting 0x80 mask 0x80 description "Disabled"
       setting 0x0 mask 0x80 description "Enabled"
-    WRTB mask 0x40 description "Table Write Protect Boot"
+    WRTB mask 0x40 description "Boot Block Write Protection bit"
       setting 0x40 mask 0x40 description "Disabled"
       setting 0x0 mask 0x40 description "Enabled"
-    WRTC mask 0x20 description "Config. Write Protect"
+    WRTC mask 0x20 description "Configuration Register Write Protection bit"
       setting 0x20 mask 0x20 description "Disabled"
       setting 0x0 mask 0x20 description "Enabled"
   }
 
   configuration CONFIG6L at 0x30000A width 4 {
-    WRT_3 mask 0x8 description "Table Write Protect 01800-01FFF"
-      setting 0x8 mask 0x8 description "Disabled"
-      setting 0x0 mask 0x8 description "Enabled"
-    WRT_2 mask 0x4 description "Table Write Protect 01000-017FF"
-      setting 0x4 mask 0x4 description "Disabled"
-      setting 0x0 mask 0x4 description "Enabled"
-    WRT_1 mask 0x2 description "Table Write Protect 00800-00FFF"
+    RESERVED_CONFIG6L mask 0xC description "RESERVED"
+      setting 0xC mask 0xC description "Maintain bits as 1s."
+    WRT1 mask 0x2 description "Write Protection bit"
       setting 0x2 mask 0x2 description "Disabled"
       setting 0x0 mask 0x2 description "Enabled"
-    WRT_0 mask 0x1 description "Table Write Protect 00200-007FF"
+    WRT0 mask 0x1 description "Write Protection bit"
       setting 0x1 mask 0x1 description "Disabled"
       setting 0x0 mask 0x1 description "Enabled"
   }
 
   configuration CONFIG7H at 0x30000D width 7 {
-    EBTRB mask 0x40 description "Table Read Protect Boot"
+    EBTRB mask 0x40 description "Boot Block Table Read Protection bit"
       setting 0x40 mask 0x40 description "Disabled"
       setting 0x0 mask 0x40 description "Enabled"
   }
 
   configuration CONFIG7L at 0x30000C width 4 {
-    EBTR_3 mask 0x8 description "Table Read Protect 01800-01FFF"
-      setting 0x8 mask 0x8 description "Disabled"
-      setting 0x0 mask 0x8 description "Enabled"
-    EBTR_2 mask 0x4 description "Table Read Protect 01000-017FF"
-      setting 0x4 mask 0x4 description "Disabled"
-      setting 0x0 mask 0x4 description "Enabled"
-    EBTR_1 mask 0x2 description "Table Read Protect 00800-00FFF"
+    RESERVED_CONFIG7L mask 0xC description "RESERVED"
+      setting 0xC mask 0xC description "Maintain bits as 1s."
+    EBTR1 mask 0x2 description "Table Read Protection bit"
       setting 0x2 mask 0x2 description "Disabled"
       setting 0x0 mask 0x2 description "Enabled"
-    EBTR_0 mask 0x1 description "Table Read Protect 00200-007FF"
+    EBTR0 mask 0x1 description "Table Read Protection bit"
       setting 0x1 mask 0x1 description "Disabled"
       setting 0x0 mask 0x1 description "Enabled"
   }

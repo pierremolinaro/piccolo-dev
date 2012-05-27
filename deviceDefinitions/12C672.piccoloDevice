@@ -2,12 +2,12 @@ controller PIC12C672 {
   processor "mid-range" ;
   romsize 2048 ;
   bank 2 ;
+  unusedregister 0xC0 to 0xEF ;
   unusedregister 0x6 to 0x9 ;
   unusedregister 0xD to 0x1D ;
   unusedregister 0x86 to 0x89 ;
   unusedregister 0x8D ;
   unusedregister 0x90 to 0x9E ;
-  unusedregister 0xC0 to 0xEF ;
   ram gpr0 : 0x20 to 0x6F ;
   ram gpr1 : 0xA0 to 0xBF ;
   ram gprnobnk : 0x70 to 0x7F mirrorat 0xF0 ;
@@ -32,7 +32,7 @@ controller PIC12C672 {
     <INDF [8]> ;
 
   register INTCON at 0xB, 0x8B
-    <GIE, PEIE, TMR0IE, INTE, GPIE, TMR0IF, INTF, GPIF> ;
+    <GIE, PEIE, T0IE, INTE, GPIE, T0IF, INTF, GPIF> ;
 
   register OPTION_REG at 0x81
     <nGPPU, INTEDG, T0CS, T0SE, PSA, PS [3]> ;
@@ -65,27 +65,27 @@ controller PIC12C672 {
     <-, -, TRIS5, TRIS4, TRIS3, TRIS2, TRIS1, TRIS0> ;
 
   configuration CONFIG at 0x2007 width 14 {
-    CP mask 0x3F60 description "Code Protect"
-      setting 0x3F60 mask 0x3F60 description "Off"
-      setting 0x2A40 mask 0x3F60 description "400:7FE"
-      setting 0x1520 mask 0x3F60 description "200:7FE"
-      setting 0x0 mask 0x3F60 description "All"
+    CP mask 0x3F60 description "Code Protection bits"
+      setting 0x3F60 mask 0x3F60 description "Disabled"
+      setting 0x2A40 mask 0x3F60 description "0400h-07FEh code protected"
+      setting 0x1520 mask 0x3F60 description "0200h-07FEh code protected"
+      setting 0x0 mask 0x3F60 description "All memory is code protected"
     MCLRE mask 0x80 description "Master Clear Enable"
-      setting 0x80 mask 0x80 description "External"
-      setting 0x0 mask 0x80 description "Internal"
-    PUT mask 0x10 description "Power Up Timer"
-      setting 0x10 mask 0x10 description "Off"
-      setting 0x0 mask 0x10 description "On"
-    WDT mask 0x8 description "Watchdog Timer"
-      setting 0x8 mask 0x8 description "On"
-      setting 0x0 mask 0x8 description "Off"
-    OSC mask 0x7 description "Oscillator"
-      setting 0x7 mask 0x7 description "External RC Clockout"
-      setting 0x6 mask 0x7 description "External RC No Clock"
-      setting 0x5 mask 0x7 description "Internal RC Clockout"
-      setting 0x4 mask 0x7 description "Internal RC No Clock"
-      setting 0x2 mask 0x7 description "HS"
-      setting 0x1 mask 0x7 description "XT"
-      setting 0x0 mask 0x7 description "LP"
+      setting 0x80 mask 0x80 description "Enabled"
+      setting 0x0 mask 0x80 description "Disabled"
+    PWRTE mask 0x10 description "Power Up Timer"
+      setting 0x10 mask 0x10 description "Disabled"
+      setting 0x0 mask 0x10 description "Enabled"
+    WDTE mask 0x8 description "Watchdog Timer Enable bit"
+      setting 0x8 mask 0x8 description "Enabled"
+      setting 0x0 mask 0x8 description "Disabled"
+    FOSC mask 0x7 description "Oscillator selection bits"
+      setting 0x7 mask 0x7 description "EXTRC, Clockout on OSC2"
+      setting 0x6 mask 0x7 description "EXTRC, OSC2 is I/O"
+      setting 0x5 mask 0x7 description "INTRC, Clockout on OSC2"
+      setting 0x4 mask 0x7 description "INTRC, OSC2 is I/O"
+      setting 0x2 mask 0x7 description "HS oscillator"
+      setting 0x1 mask 0x7 description "XT oscillator"
+      setting 0x0 mask 0x7 description "LP oscillator"
   }
 }
