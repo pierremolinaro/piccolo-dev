@@ -7,41 +7,41 @@ controller PIC12F509 {
   ram gprnobnk : 0x7 to 0xF mirrorat 0x27 ;
   # Total ram: 41
 
-  register FSR at 0x4
+  register FSR at 0x4, 0x24
     <FSR [8]> ;
 
-  register GPIO at 0x6
+  register GPIO at 0x6, 0x26
     <-, -, GP5, GP4, GP3, GP2, GP1, GP0> ;
 
-  register INDF at 0x0
+  register INDF at 0x0, 0x20
     <INDF [8]> ;
 
-  register OSCCAL at 0x5
+  register OSCCAL at 0x5, 0x25
     <CAL [7], -> ;
 
-  register PCL at 0x2
+  register PCL at 0x2, 0x22
     <PCL [8]> ;
 
-  register STATUS at 0x3
+  register STATUS at 0x3, 0x23
     <GPWUF, -, PA0, nTO, nPD, Z, DC, C> ;
 
-  register TMR0 at 0x1
+  register TMR0 at 0x1, 0x21
     <TMR0 [8]> ;
 
   configuration CONFIG at 0xFFF width 5 {
-    MCLRE mask 0x10 description "Master Clear Enable"
-      setting 0x10 mask 0x10 description "External"
-      setting 0x0 mask 0x10 description "Internal"
-    CP mask 0x8 description "Code Protect"
-      setting 0x8 mask 0x8 description "Off"
-      setting 0x0 mask 0x8 description "On"
-    WDT mask 0x4 description "Watchdog Timer"
-      setting 0x4 mask 0x4 description "On"
-      setting 0x0 mask 0x4 description "Off"
-    OSC mask 0x3 description "Oscillator"
-      setting 0x3 mask 0x3 description "EXTRC"
-      setting 0x2 mask 0x3 description "INTOSC"
-      setting 0x1 mask 0x3 description "XT"
-      setting 0x0 mask 0x3 description "LP"
+    MCLRE mask 0x10 description "GP3/MCLR Pin Function Select bit"
+      setting 0x10 mask 0x10 description "Enabled"
+      setting 0x0 mask 0x10 description "Disabled"
+    CP mask 0x8 description "Code Protection bit"
+      setting 0x8 mask 0x8 description "Disabled"
+      setting 0x0 mask 0x8 description "Enabled"
+    WDT mask 0x4 description "Watchdog Timer Enable bit"
+      setting 0x4 mask 0x4 description "Enabled"
+      setting 0x0 mask 0x4 description "Disabled"
+    OSC mask 0x3 description "Oscillator Selection bits"
+      setting 0x3 mask 0x3 description "external RC oscillator"
+      setting 0x0 mask 0x3 description "LP oscillator"
+      setting 0x1 mask 0x3 description "XT oscillator"
+      setting 0x2 mask 0x3 description "internal RC oscillator"
   }
 }

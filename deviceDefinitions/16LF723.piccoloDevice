@@ -2,6 +2,8 @@ controller PIC16LF723 {
   processor "mid-range" ;
   romsize 4096 ;
   bank 4 ;
+  unusedregister 0x130 to 0x16F ;
+  unusedregister 0x1A0 to 0x1EF ;
   unusedregister 0x8 ;
   unusedregister 0x88 ;
   unusedregister 0x97 ;
@@ -9,9 +11,8 @@ controller PIC16LF723 {
   unusedregister 0x9E ;
   unusedregister 0x105 to 0x107 ;
   unusedregister 0x110 to 0x11F ;
-  unusedregister 0x130 to 0x16F ;
   unusedregister 0x187 to 0x189 ;
-  unusedregister 0x18D to 0x1EF ;
+  unusedregister 0x18D to 0x19F ;
   ram gpr0 : 0x20 to 0x6F ;
   ram gpr1 : 0xA0 to 0xEF ;
   ram gpr2 : 0x120 to 0x12F ;
@@ -58,7 +59,7 @@ controller PIC16LF723 {
     <CPSON, -, -, -, CPSRNG [2], CPSOUT, T0XCS> ;
 
   register CPSCON1 at 0x109
-    <-, -, -, -, -, CPSCH [3]> ;
+    <-, -, -, -, CPSCH [4]> ;
 
   register FSR at 0x4, 0x84, 0x104, 0x184
     <FSR [8]> ;
@@ -70,7 +71,7 @@ controller PIC16LF723 {
     <INDF [8]> ;
 
   register INTCON at 0xB, 0x8B, 0x10B, 0x18B
-    <GIE, PEIE, TMR0IE, INTE, RBIE, TMR0IF, INTF, RBIF> ;
+    <GIE, PEIE, T0IE, INTE, RBIE, T0IF, INTF, RBIF> ;
 
   register IOCB at 0x96
     <IOCB [8]> ;
@@ -106,7 +107,7 @@ controller PIC16LF723 {
     <-, -, -, -, -, -, -, CCP2IF> ;
 
   register PMADRH at 0x10F
-    <-, -, -, -, -, PMADRH [3]> ;
+    <-, -, -, PMADRH [5]> ;
 
   register PMADRL at 0x10D
     <PMADRL [8]> ;
@@ -153,6 +154,9 @@ controller PIC16LF723 {
   register SSPCON at 0x14
     <WCOL, SSPOV, SSPEN, CKP, SSPM [4]> ;
 
+  register SSPMSK at 0x93
+    <SSPMSK [8]> ;
+
   register SSPSTAT at 0x94
     <SMP, CKE, D/nA, P, S, R/nW, UA, BF> ;
 
@@ -162,8 +166,8 @@ controller PIC16LF723 {
   register T1CON at 0x10
     <TMR1CS [2], T1CKPS [2], T1OSCEN, T1SYNC, -, TMR1ON> ;
 
-  register T1GCCON at 0x8F
-    <TMR1GE, T1GPOL, T1GTM, T1G1SE, T1GGO_DONE, T1GVAL, T1GSS [2]> ;
+  register T1GCON at 0x8F
+    <TMR1GE, T1GPOL, T1GTM, T1GSPM, T1GGO/nDONE, T1GVAL, T1GSS [2]> ;
 
   register T2CON at 0x12
     <-, TOUTPS [4], TMR2ON, T2CKPS [2]> ;
@@ -190,7 +194,7 @@ controller PIC16LF723 {
     <TRISC7, TRISC6, TRISC5, TRISC4, TRISC3, TRISC2, TRISC1, TRISC0> ;
 
   register TRISE at 0x89
-    <-, -, -, -, TRISE3, TRISE2, TRISE1, TRISE0> ;
+    <-, -, -, -, TRISE3, -, -, -> ;
 
   register TXREG at 0x19
     <TXREG [8]> ;
@@ -202,45 +206,45 @@ controller PIC16LF723 {
     <WPUB [8]> ;
 
   configuration CONFIG1 at 0x2007 width 14 {
-    DEBUG mask 0x2000 description "Background Debug"
+    DEBUG mask 0x2000 description "In-Circuit Debugger Mode bit"
       setting 0x2000 mask 0x2000 description "Disabled"
       setting 0x0 mask 0x2000 description "Enabled"
     PLLEN mask 0x1000 description "INTOSC PLLEN Enable Bit"
-      setting 0x1000 mask 0x1000 description "16MHz"
-      setting 0x0 mask 0x1000 description "500KHz"
+      setting 0x1000 mask 0x1000 description "Enabled"
+      setting 0x0 mask 0x1000 description "Disabled"
     WDTCS mask 0x800 description "Watchdog Timer Clock Select"
       setting 0x800 mask 0x800 description "Standard Watchdog Timer is selected"
       setting 0x0 mask 0x800 description "Low Power Watchdog Timer is selected"
-    BORV mask 0x400 description "Brown-out Reset Voltage Selection"
-      setting 0x400 mask 0x400 description "1.9V"
-      setting 0x0 mask 0x400 description "2.5V"
-    BOREN mask 0x300 description "Brown Out Reset Enable"
-      setting 0x0 mask 0x300 description "BOR disabled"
-      setting 0x200 mask 0x300 description "BOR enabled in run, disabled in sleep"
-      setting 0x300 mask 0x300 description "BOR Enabled"
+    BORV mask 0x400 description "Brown-out Reset Voltage selection bit"
+      setting 0x400 mask 0x400 description "Brown-out Reset Voltage (VBOR) set to 1.9 V nominal"
+      setting 0x0 mask 0x400 description "Brown-out Reset Voltage (VBOR) set to 2.5 V nominal"
+    BOREN mask 0x300 description "Brown-out Reset Selection bits"
+      setting 0x300 mask 0x300 description "Enabled"
+      setting 0x200 mask 0x300 description "BOR enabled during operation and disabled in Sleep"
+      setting 0x100 mask 0x300 description "Disabled"
     RES mask 0x80 description "Reserved"
       setting 0x80 mask 0x80 description "Reserved"
-    CP mask 0x40 description "Code Protect"
-      setting 0x40 mask 0x40 description "Off"
-      setting 0x0 mask 0x40 description "On"
-    MCLRE mask 0x20 description "Master Clear Enable"
-      setting 0x0 mask 0x20 description "RE3 is digital input"
-      setting 0x20 mask 0x20 description "/MCLR is external"
-    nPWRTE mask 0x10 description "Power Up Timer"
-      setting 0x10 mask 0x10 description "Off"
-      setting 0x0 mask 0x10 description "On"
-    WDTEN mask 0x8 description "Watchdog Timer"
-      setting 0x8 mask 0x8 description "On"
-      setting 0x0 mask 0x8 description "Off"
-    FOSC mask 0x7 description "Oscillator"
-      setting 0x7 mask 0x7 description "External RC Clockout"
-      setting 0x6 mask 0x7 description "External RC No Clock"
-      setting 0x5 mask 0x7 description "Internal RC Clockout"
-      setting 0x4 mask 0x7 description "Internal RC No Clock"
-      setting 0x3 mask 0x7 description "EC"
-      setting 0x2 mask 0x7 description "HS"
-      setting 0x1 mask 0x7 description "XT"
-      setting 0x0 mask 0x7 description "LP"
+    CP mask 0x40 description "Code Protection bit"
+      setting 0x40 mask 0x40 description "Disabled"
+      setting 0x0 mask 0x40 description "Enabled"
+    MCLRE mask 0x20 description "RE3/MCLR pin function select bit"
+      setting 0x0 mask 0x20 description "Disabled"
+      setting 0x20 mask 0x20 description "Enabled"
+    PWRTE mask 0x10 description "Power-up Timer Enable bit"
+      setting 0x10 mask 0x10 description "Disabled"
+      setting 0x0 mask 0x10 description "Enabled"
+    WDTE mask 0x8 description "Watchdog Timer Enable bit"
+      setting 0x8 mask 0x8 description "Enabled"
+      setting 0x0 mask 0x8 description "Disabled"
+    FOSC mask 0x7 description "Oscillator Selection bits"
+      setting 0x7 mask 0x7 description "RC oscillator: CLKOUT function on RA6/OSC2/CLKOUT pin, RC on RA7/OSC1/CLKIN"
+      setting 0x6 mask 0x7 description "RCIO oscillator: I/O function on RA6/OSC2/CLKOUT pin, RC on RA7/OSC1/CLKIN"
+      setting 0x5 mask 0x7 description "INTOSC oscillator: CLKOUT function on RA6/OSC2/CLKOUT pin, I/O function on RA7/OSC1/CLKIN"
+      setting 0x4 mask 0x7 description "INTOSCIO oscillator: I/O function on RA6/OSC2/CLKOUT pin, I/O function on RA7/OSC1/CLKIN"
+      setting 0x3 mask 0x7 description "EC: I/O function on RA6/OSC2/CLKOUT pin, CLKIN on RA7/OSC1/CLKIN"
+      setting 0x2 mask 0x7 description "HS oscillator: High-speed crystal/resonator on RA6/OSC2/CLKOUT and RA7/OSC1/CLKIN"
+      setting 0x1 mask 0x7 description "XT oscillator: Crystal/resonator on RA6/OSC2/CLKOUT and RA7/OSC1/CLKIN"
+      setting 0x0 mask 0x7 description "LP oscillator: Low-power crystal on RA6/OSC2/CLKOUT and RA7/OSC1/CLKIN"
   }
 
   configuration CONFIG2 at 0x2008 width 6 {

@@ -2,6 +2,9 @@ controller PIC16C781 {
   processor "mid-range" ;
   romsize 1024 ;
   bank 4 ;
+  unusedregister 0xC0 to 0xEF ;
+  unusedregister 0x120 to 0x16F ;
+  unusedregister 0x18D to 0x1EF ;
   unusedregister 0x7 to 0x9 ;
   unusedregister 0xD ;
   unusedregister 0x11 to 0x1D ;
@@ -10,15 +13,12 @@ controller PIC16C781 {
   unusedregister 0x8F to 0x94 ;
   unusedregister 0x97 to 0x9A ;
   unusedregister 0x9E ;
-  unusedregister 0xC0 to 0xEF ;
   unusedregister 0x105 ;
   unusedregister 0x107 to 0x109 ;
   unusedregister 0x113 to 0x118 ;
   unusedregister 0x11D ;
-  unusedregister 0x120 to 0x16F ;
   unusedregister 0x185 ;
   unusedregister 0x187 to 0x189 ;
-  unusedregister 0x18D to 0x1EF ;
   ram gpr0 : 0x20 to 0x6F ;
   ram gpr1 : 0xA0 to 0xBF ;
   ram gprnobnk : 0x70 to 0x7F mirrorat 0xF0, 0x170, 0x1F0 ;
@@ -61,7 +61,7 @@ controller PIC16C781 {
     <INDF [8]> ;
 
   register INTCON at 0xB, 0x8B, 0x10B, 0x18B
-    <GIE, PEIE, TMR0IE, INTE, RBIE, TMR0IF, INTF, RBIF> ;
+    <GIE, PEIE, T0IE, INTE, RBIE, T0IF, INTF, RBIF> ;
 
   register IOCB at 0x96
     <IOCB7, IOCB6, IOCB5, IOCB4, IOCB3, IOCB2, IOCB1, IOCB0> ;
@@ -144,35 +144,35 @@ controller PIC16C781 {
   register WPUB at 0x95
     <WPUB7, WPUB6, WPUB5, WPUB4, WPUB3, WPUB2, WPUB1, WPUB0> ;
 
-  configuration CONFIG at 0x2007 width 14 {
-    CP mask 0x3300 description "Code Protect"
-      setting 0x3300 mask 0x3300 description "Off"
-      setting 0x0 mask 0x3300 description "All"
+  configuration CONFIG1 at 0x2007 width 14 {
+    CP mask 0x3300 description "Code Protecton bit"
+      setting 0x3300 mask 0x3300 description "Disabled"
+      setting 0x0 mask 0x3300 description "All memory is code protected"
     BODENV mask 0xC00 description "Brown Out Voltage"
-      setting 0xC00 mask 0xC00 description "2.5V"
-      setting 0x800 mask 0xC00 description "2.7V"
-      setting 0x400 mask 0xC00 description "4.2V"
-      setting 0x0 mask 0xC00 description "4.5V"
-    BODEN mask 0x40 description "Brown Out Detect"
-      setting 0x40 mask 0x40 description "On"
-      setting 0x0 mask 0x40 description "Off"
+      setting 0xC00 mask 0xC00 description "VBOR set to 2.5V"
+      setting 0x800 mask 0xC00 description "VBOR set to 2.7V"
+      setting 0x400 mask 0xC00 description "VBOR set to 4.2V"
+      setting 0x0 mask 0xC00 description "VBOR set to 4.5V"
+    BOREN mask 0x40 description "Brown-out Reset Enable bit"
+      setting 0x40 mask 0x40 description "Enabled"
+      setting 0x0 mask 0x40 description "Disabled"
     MCLRE mask 0x20 description "Master Clear Enable"
-      setting 0x20 mask 0x20 description "External"
-      setting 0x0 mask 0x20 description "Internal"
-    PUT mask 0x10 description "Power Up Timer"
-      setting 0x10 mask 0x10 description "Off"
-      setting 0x0 mask 0x10 description "On"
-    WDT mask 0x8 description "Watchdog Timer"
-      setting 0x8 mask 0x8 description "On"
-      setting 0x0 mask 0x8 description "Off"
-    OSC mask 0x7 description "Oscillator"
+      setting 0x20 mask 0x20 description "Enabled"
+      setting 0x0 mask 0x20 description "Disabled"
+    PWRTE mask 0x10 description "Power-up Timer Enable bit"
+      setting 0x10 mask 0x10 description "Disabled"
+      setting 0x0 mask 0x10 description "Enabled"
+    WDTE mask 0x8 description "Watchdog Timer Enable bit"
+      setting 0x8 mask 0x8 description "Enabled"
+      setting 0x0 mask 0x8 description "Disabled"
+    FOSC mask 0x7 description "Oscillator selection bits"
       setting 0x7 mask 0x7 description "RC CLKOUT"
       setting 0x6 mask 0x7 description "RC I/O"
-      setting 0x5 mask 0x7 description "INTRC CLKOUT"
-      setting 0x4 mask 0x7 description "INTRC I/O"
+      setting 0x5 mask 0x7 description "INTRC, clockout on OSC2"
+      setting 0x4 mask 0x7 description "INTRC, OSC2 is I/O"
       setting 0x3 mask 0x7 description "EC I/O"
-      setting 0x2 mask 0x7 description "HS"
-      setting 0x1 mask 0x7 description "XT"
-      setting 0x0 mask 0x7 description "LP"
+      setting 0x2 mask 0x7 description "HS oscillator"
+      setting 0x1 mask 0x7 description "XT oscillator"
+      setting 0x0 mask 0x7 description "LP oscillator"
   }
 }

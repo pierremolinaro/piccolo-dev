@@ -2,6 +2,7 @@ controller PIC16C765 {
   processor "mid-range" ;
   romsize 8192 ;
   bank 4 ;
+  unusedregister 0x1E0 to 0x1EF ;
   unusedregister 0x13 to 0x14 ;
   unusedregister 0x8F to 0x91 ;
   unusedregister 0x93 to 0x97 ;
@@ -13,7 +14,11 @@ controller PIC16C765 {
   unusedregister 0x187 to 0x189 ;
   unusedregister 0x18C to 0x18F ;
   unusedregister 0x19B to 0x19F ;
-  unusedregister 0x1E0 to 0x1EF ;
+  unusedregister 0x1A3 ;
+  unusedregister 0x1A7 ;
+  unusedregister 0x1AB ;
+  unusedregister 0x1AF ;
+  unusedregister 0x1B3 ;
   ram gpr0 : 0x20 to 0x6F ;
   ram gpr1 : 0xA0 to 0xEF ;
   ram gpr2 : 0x120 to 0x16F ;
@@ -36,7 +41,7 @@ controller PIC16C765 {
     <-, -, -, -, BC [4]> ;
 
   register BD0IST at 0x1A4
-    <UOWN, DATA0, PID3, PID2, PID1/DTS, PID0/BSTALL, -, -> ;
+    <UOWN, DATA0:1, PID3, PID2, PID1/DTS, PID0/BSTALL, -, -> ;
 
   register BD0OAL at 0x1A2
     <BUFADRL [8]> ;
@@ -45,7 +50,7 @@ controller PIC16C765 {
     <-, -, -, -, BC [4]> ;
 
   register BD0OST at 0x1A0
-    <UOWN, DATA0, PID3, PID2, PID1/DTS, PID0/BSTALL, -, -> ;
+    <UOWN, DATA0:1, PID3, PID2, PID1/DTS, PID0/BSTALL, -, -> ;
 
   register BD1IAL at 0x1AE
     <BUFADRL [8]> ;
@@ -54,7 +59,7 @@ controller PIC16C765 {
     <-, -, -, -, BC [4]> ;
 
   register BD1IST at 0x1AC
-    <UOWN, DATA0, PID3, PID2, PID1/DTS, PID0/BSTALL, -, -> ;
+    <UOWN, DATA0:1, PID3, PID2, PID1/DTS, PID0/BSTALL, -, -> ;
 
   register BD1OAL at 0x1AA
     <BUFADRL [8]> ;
@@ -63,7 +68,7 @@ controller PIC16C765 {
     <-, -, -, -, BC [4]> ;
 
   register BD1OST at 0x1A8
-    <UOWN, DATA0, PID3, PID2, PID1/DTS, PID0/BSTALL, -, -> ;
+    <UOWN, DATA0:1, PID3, PID2, PID1/DTS, PID0/BSTALL, -, -> ;
 
   register BD2IAL at 0x1B6
     <BUFADRL [8]> ;
@@ -72,7 +77,7 @@ controller PIC16C765 {
     <-, -, -, -, BC [4]> ;
 
   register BD2IST at 0x1B4
-    <UOWN, DATA0, PID3, PID2, PID1/DTS, PID0/BSTALL, -, -> ;
+    <UOWN, DATA0:1, PID3, PID2, PID1/DTS, PID0/BSTALL, -, -> ;
 
   register BD2OAL at 0x1B2
     <BUFADRL [8]> ;
@@ -81,7 +86,7 @@ controller PIC16C765 {
     <-, -, -, -, BC [4]> ;
 
   register BD2OST at 0x1B0
-    <UOWN, DATA0_1, PID3, PID2, PID1_DTS, PID0_BSTALL, -, -> ;
+    <UOWN, DATA0:1, PID3, PID2, PID1/DTS, PID0/BSTALL, -, -> ;
 
   register CCP1CON at 0x17
     <-, -, DC1B [2], CCP1M [4]> ;
@@ -108,7 +113,7 @@ controller PIC16C765 {
     <INDF [8]> ;
 
   register INTCON at 0xB, 0x8B, 0x10B, 0x18B
-    <GIE, PEIE, TMR0IE, INTE, RBIE, TMR0IF, INTF, RBIF> ;
+    <GIE, PEIE, T0IE, INTE, RBIE, T0IF, INTF, RBIF> ;
 
   register OPTION_REG at 0x81, 0x181
     <nRBPU, INTEDG, T0CS, T0SE, PSA, PS [3]> ;
@@ -236,22 +241,22 @@ controller PIC16C765 {
   register USWSTAT at 0x197
     <USWSTAT [8]> ;
 
-  configuration CONFIG at 0x2007 width 14 {
-    CP mask 0x3F30 description "Code Protect"
-      setting 0x3F30 mask 0x3F30 description "Off"
-      setting 0x2A20 mask 0x3F30 description "1000:1FFF"
-      setting 0x1510 mask 0x3F30 description "800:1FFF"
-      setting 0x0 mask 0x3F30 description "All"
-    PUT mask 0x8 description "Power Up Timer"
-      setting 0x8 mask 0x8 description "Off"
-      setting 0x0 mask 0x8 description "On"
-    WDT mask 0x4 description "Watchdog Timer"
-      setting 0x4 mask 0x4 description "On"
-      setting 0x0 mask 0x4 description "Off"
-    OSC mask 0x3 description "Oscillator"
-      setting 0x3 mask 0x3 description "E4"
-      setting 0x0 mask 0x3 description "HS"
-      setting 0x1 mask 0x3 description "EC"
-      setting 0x2 mask 0x3 description "H4"
+  configuration CONFIG1 at 0x2007 width 14 {
+    CP mask 0x3F30 description "Code Protection bits"
+      setting 0x3F30 mask 0x3F30 description "Disabled"
+      setting 0x2A20 mask 0x3F30 description "1000h-1FFFh code protected"
+      setting 0x1510 mask 0x3F30 description "0800h-1FFFh code protected"
+      setting 0x0 mask 0x3F30 description "All memory is code protected"
+    PWRTE mask 0x8 description "Power-up Timer Enable bit"
+      setting 0x8 mask 0x8 description "Disabled"
+      setting 0x0 mask 0x8 description "Enabled"
+    WDTE mask 0x4 description "Watchdog Timer Enable bit"
+      setting 0x4 mask 0x4 description "Enabled"
+      setting 0x0 mask 0x4 description "Disabled"
+    FOSC mask 0x3 description "Oscillator selection bits"
+      setting 0x3 mask 0x3 description "External clock with 4x PLL enabled. CLKOUT on OSC2 pin"
+      setting 0x0 mask 0x3 description "HS oscillator"
+      setting 0x1 mask 0x3 description "External clock. CLKOUT on OSC2 pin"
+      setting 0x2 mask 0x3 description "HS osc with 4x PLL enabled"
   }
 }

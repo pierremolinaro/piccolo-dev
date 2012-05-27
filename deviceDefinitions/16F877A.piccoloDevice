@@ -31,10 +31,10 @@ controller PIC16F877A {
     <ADRESL [8]> ;
 
   register CCP1CON at 0x17
-    <-, -, DC1B [2], CCP1M [4]> ;
+    <-, -, CCP1X, CCP1Y, CCP1M [4]> ;
 
   register CCP2CON at 0x1D
-    <-, -, DC2B [2], CCP2M [4]> ;
+    <-, -, CCP2X, CCP2Y, CCP2M [4]> ;
 
   register CCPR1H at 0x16
     <CCPR1H [8]> ;
@@ -190,36 +190,36 @@ controller PIC16F877A {
     <CSRC, TX9, TXEN, SYNC, -, BRGH, TRMT, TX9D> ;
 
   configuration CONFIG at 0x2007 width 14 {
-    CP mask 0x2000 description "Code Protect"
-      setting 0x2000 mask 0x2000 description "Off"
-      setting 0x0 mask 0x2000 description "On"
-    BACKBUG mask 0x800 description "Background Debug"
+    CP mask 0x2000 description "Flash Program Memory Code Protection bit"
+      setting 0x2000 mask 0x2000 description "Disabled"
+      setting 0x0 mask 0x2000 description "Enabled"
+    DEBUG mask 0x800 description "In-Circuit Debugger Mode bit"
       setting 0x800 mask 0x800 description "Disabled"
       setting 0x0 mask 0x800 description "Enabled"
-    WRT_ENABLE mask 0x600 description "Flash Program Write"
-      setting 0x600 mask 0x600 description "Write Protection Off"
-      setting 0x400 mask 0x600 description "0h to FFh write Protected"
-      setting 0x200 mask 0x600 description "0h to 7FFh write Protected"
-      setting 0x0 mask 0x600 description "0h to FFFh write Protected"
-    CPD mask 0x100 description "Data EE Read Protect"
-      setting 0x100 mask 0x100 description "Off"
-      setting 0x0 mask 0x100 description "On"
-    LVP mask 0x80 description "Low Voltage Program"
+    WRT mask 0x600 description "Flash Program Memory Write Enable bits"
+      setting 0x600 mask 0x600 description "Disabled"
+      setting 0x400 mask 0x600 description "0000h to 00FFh write-protected; 0100h to 1FFFh may be written to by EECON control"
+      setting 0x200 mask 0x600 description "0000h to 07FFh write-protected; 0800h to 1FFFh may be written to by EECON control"
+      setting 0x0 mask 0x600 description "0000h to 0FFFh write-protected; 1000h to 1FFFh may be written to by EECON control"
+    CPD mask 0x100 description "Data EEPROM Memory Code Protection bit"
+      setting 0x100 mask 0x100 description "Disabled"
+      setting 0x0 mask 0x100 description "Enabled"
+    LVP mask 0x80 description "Low-Voltage (Single-Supply) In-Circuit Serial Programming Enable bit"
       setting 0x80 mask 0x80 description "Enabled"
       setting 0x0 mask 0x80 description "Disabled"
-    BODEN mask 0x40 description "Brown Out Detect"
-      setting 0x40 mask 0x40 description "On"
-      setting 0x0 mask 0x40 description "Off"
-    PUT mask 0x8 description "Power Up Timer"
-      setting 0x8 mask 0x8 description "Off"
-      setting 0x0 mask 0x8 description "On"
-    WDT mask 0x4 description "Watchdog Timer"
-      setting 0x4 mask 0x4 description "On"
-      setting 0x0 mask 0x4 description "Off"
-    OSC mask 0x3 description "Oscillator"
-      setting 0x3 mask 0x3 description "RC"
-      setting 0x0 mask 0x3 description "LP"
-      setting 0x1 mask 0x3 description "XT"
-      setting 0x2 mask 0x3 description "HS"
+    BOREN mask 0x40 description "Brown-out Reset Enable bit"
+      setting 0x40 mask 0x40 description "Enabled"
+      setting 0x0 mask 0x40 description "Disabled"
+    PWRTE mask 0x8 description "Power-up Timer Enable bit"
+      setting 0x8 mask 0x8 description "Disabled"
+      setting 0x0 mask 0x8 description "Enabled"
+    WDTE mask 0x4 description "Watchdog Timer Enable bit"
+      setting 0x4 mask 0x4 description "Enabled"
+      setting 0x0 mask 0x4 description "Disabled"
+    FOSC mask 0x3 description "Oscillator Selection bits"
+      setting 0x3 mask 0x3 description "RC oscillator"
+      setting 0x2 mask 0x3 description "HS oscillator"
+      setting 0x1 mask 0x3 description "XT oscillator"
+      setting 0x0 mask 0x3 description "LP oscillator"
   }
 }

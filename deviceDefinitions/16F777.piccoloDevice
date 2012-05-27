@@ -30,13 +30,13 @@ controller PIC16F777 {
     <ADRESL [8]> ;
 
   register CCP1CON at 0x17
-    <-, -, DC1B [2], CCP1M [4]> ;
+    <-, -, CCP1X, CCP1Y, CCP1M [4]> ;
 
   register CCP2CON at 0x1D
-    <-, -, DC2B [2], CCP2M [4]> ;
+    <-, -, CCP2X, CCP2Y, CCP2M [4]> ;
 
   register CCP3CON at 0x97
-    <-, -, DC3B [2], CCP3M [4]> ;
+    <-, -, CCP3X, CCP3Y, CCP3M [4]> ;
 
   register CCPR1H at 0x16
     <CCPR1H [8]> ;
@@ -78,7 +78,7 @@ controller PIC16F777 {
     <nRBPU, INTEDG, T0CS, T0SE, PSA, PS [3]> ;
 
   register OSCCON at 0x8F
-    <-, IRCF [3], OSTS, FLTS, SCS [2]> ;
+    <-, IRCF [3], OSTS, IOFS, SCS [2]> ;
 
   register OSCTUNE at 0x90
     <-, -, TUN [6]> ;
@@ -206,52 +206,52 @@ controller PIC16F777 {
   register WDTCON at 0x105
     <-, -, -, WDTPS [4], SWDTEN> ;
 
-  configuration CONFIG at 0x2007 width 14 {
-    CP mask 0x2000 description "Code Protect"
-      setting 0x2000 mask 0x2000 description "Off"
-      setting 0x0 mask 0x2000 description "On"
-    CCP2MUX mask 0x1000 description "CCP2 Mux"
-      setting 0x1000 mask 0x1000 description "RC1"
-      setting 0x0 mask 0x1000 description "RB3"
-    BACKBUG mask 0x800 description "Background Debug"
+  configuration CONFIG1 at 0x2007 width 14 {
+    CP mask 0x2000 description "Flash Program Memory Code Protection bits"
+      setting 0x2000 mask 0x2000 description "Disabled"
+      setting 0x0 mask 0x2000 description "Enabled"
+    CCP2MX mask 0x1000 description "CCP2 Multiplex bit"
+      setting 0x1000 mask 0x1000 description "CCP2 is on RC1"
+      setting 0x0 mask 0x1000 description "CCP2 is on RB3"
+    DEBUG mask 0x800 description "In-Circuit Debugger Mode bit"
       setting 0x800 mask 0x800 description "Disabled"
       setting 0x0 mask 0x800 description "Enabled"
-    BODENV mask 0x180 description "Brown Out Voltage"
-      setting 0x180 mask 0x180 description "Set to 2.0V"
-      setting 0x100 mask 0x180 description "Set to 2.7V"
-      setting 0x80 mask 0x180 description "Set to 4.2V"
-      setting 0x0 mask 0x180 description "Set to 4.5V"
-    BODEN mask 0x40 description "Brown Out Detect"
-      setting 0x40 mask 0x40 description "Enable"
-      setting 0x0 mask 0x40 description "Disable"
-    MCLRE mask 0x20 description "RE3/MCLR Pin Function Select"
-      setting 0x20 mask 0x20 description "MCLR"
-      setting 0x0 mask 0x20 description "RE3"
-    OSC mask 0x13 description "Oscillator"
-      setting 0x13 mask 0x13 description "EXTRC as Clock Out"
-      setting 0x12 mask 0x13 description "EXTRC as Port I/O"
-      setting 0x11 mask 0x13 description "INTRC as Clock Out"
-      setting 0x10 mask 0x13 description "INTRC as Port I/O"
-      setting 0x3 mask 0x13 description "EXTCLK as Port IO"
-      setting 0x0 mask 0x13 description "LP"
-      setting 0x1 mask 0x13 description "XT"
-      setting 0x2 mask 0x13 description "HS"
-    PUT mask 0x8 description "Power Up Timer"
-      setting 0x8 mask 0x8 description "Off"
-      setting 0x0 mask 0x8 description "On"
-    WDT mask 0x4 description "Watchdog Timer"
-      setting 0x4 mask 0x4 description "On"
-      setting 0x0 mask 0x4 description "Off"
+    BORV mask 0x180 description "Brown-out Reset Voltage bits"
+      setting 0x180 mask 0x180 description "VBOR set to 2.0V"
+      setting 0x100 mask 0x180 description "VBOR set to 2.7V"
+      setting 0x80 mask 0x180 description "VBOR set to 4.2V"
+      setting 0x0 mask 0x180 description "VBOR set to 4.5V"
+    BOREN mask 0x40 description "Brown-out Reset Enable bit"
+      setting 0x40 mask 0x40 description "Enabled"
+      setting 0x0 mask 0x40 description "Disabled"
+    MCLRE mask 0x20 description "MCLR/VPP/RE3 Pin Function Select bit"
+      setting 0x20 mask 0x20 description "Enabled"
+      setting 0x0 mask 0x20 description "Disabled"
+    FOSC mask 0x13 description "Oscillator Selection bits"
+      setting 0x13 mask 0x13 description "EXTRC oscillator; CLKO function on OSC2/CLKO/RA6"
+      setting 0x12 mask 0x13 description "EXTRC oscillator; port I/O function on OSC2/CLKO/RA6"
+      setting 0x11 mask 0x13 description "INTRC oscillator; CLKO function on OSC2/CLKO/RA6 and port I/O function on OSC1/CLKI/RA7"
+      setting 0x10 mask 0x13 description "INTRC oscillator; port I/O function on OSC1/CLKI/RA7 and OSC2/CLKO/RA6"
+      setting 0x3 mask 0x13 description "EXTCLK; port I/O function on OSC2/CLKO/RA6"
+      setting 0x2 mask 0x13 description "HS oscillator"
+      setting 0x1 mask 0x13 description "XT oscillator"
+      setting 0x0 mask 0x13 description "LP oscillator"
+    PWRTE mask 0x8 description "Power-up Timer Enable bit"
+      setting 0x8 mask 0x8 description "Disabled"
+      setting 0x0 mask 0x8 description "Enabled"
+    WDTE mask 0x4 description "Watchdog Timer Enable bit"
+      setting 0x4 mask 0x4 description "Enabled"
+      setting 0x0 mask 0x4 description "Disabled"
   }
 
   configuration CONFIG2 at 0x2008 width 7 {
-    BORSEN mask 0x40 description "BOR Software Enable"
+    BORSEN mask 0x40 description "Brown-out Reset Software Enable bit"
       setting 0x40 mask 0x40 description "Enabled"
       setting 0x0 mask 0x40 description "Disabled"
-    IESO mask 0x2 description "Internal External Switch Over Mode"
+    IESO mask 0x2 description "Internal External Switchover bit"
       setting 0x2 mask 0x2 description "Enabled"
       setting 0x0 mask 0x2 description "Disabled"
-    FCMEN mask 0x1 description "Fail-Safe Clock Monitor Enable"
+    FCMEN mask 0x1 description "Fail-Safe Clock Monitor Enable bit"
       setting 0x1 mask 0x1 description "Enabled"
       setting 0x0 mask 0x1 description "Disabled"
   }

@@ -4,7 +4,8 @@ controller PIC16F884 {
   eepromsize 256 at 0x2100 ;
   bank 4 ;
   unusedregister 0x110 to 0x11F ;
-  unusedregister 0x18E to 0x1EF ;
+  unusedregister 0x190 to 0x1EF ;
+  unusedregister 0x18E to 0x18F ;
   ram gpr0 : 0x20 to 0x6F ;
   ram gpr1 : 0xA0 to 0xEF ;
   ram gpr2 : 0x120 to 0x16F ;
@@ -87,7 +88,7 @@ controller PIC16F884 {
     <INDF [8]> ;
 
   register INTCON at 0xB, 0x8B, 0x10B, 0x18B
-    <GIE, PEIE, TMR0IE, INTE, RBIE, TMR0IF, INTF, RBIF> ;
+    <GIE, PEIE, T0IE, INTE, RBIE, T0IF, INTF, RBIF> ;
 
   register IOCB at 0x96
     <IOCB [8]> ;
@@ -108,7 +109,7 @@ controller PIC16F884 {
     <-, -, -, PCLATH [5]> ;
 
   register PCON at 0x8E
-    <-, -, ULPWU, SBOREN, -, -, nPOR, nBOR> ;
+    <-, -, ULPWUE, SBOREN, -, -, nPOR, nBOR> ;
 
   register PIE1 at 0x8C
     <-, ADIE, RCIE, TXIE, SSPIE, CCP1IE, TMR2IE, TMR1IE> ;
@@ -173,6 +174,9 @@ controller PIC16F884 {
   register SSPCON2 at 0x91
     <GCEN, ACKSTAT, ACKDT, ACKEN, RCEN, PEN, RSEN, SEN> ;
 
+  register SSPMSK at 0x93
+    <MSK7, MSK6, MSK5, MSK4, MSK3, MSK2, MSK1, MSK0> ;
+
   register SSPSTAT at 0x94
     <SMP, CKE, D/nA, P, S, R/nW, UA, BF> ;
 
@@ -216,7 +220,7 @@ controller PIC16F884 {
     <TXREG [8]> ;
 
   register TXSTA at 0x98
-    <CSRC, TX9, TXEN, SYNC, -, BRGH, TRMT, TX9D> ;
+    <CSRC, TX9, TXEN, SYNC, SENDB, BRGH, TRMT, TX9D> ;
 
   register VRCON at 0x97
     <VREN, VROE, VRR, VRSS, VR [4]> ;
@@ -227,59 +231,59 @@ controller PIC16F884 {
   register WPUB at 0x95
     <WPUB [8]> ;
 
-  configuration CONFIG at 0x2007 width 14
+  configuration CONFIG1 at 0x2007 width 14
     illegal 0x48 mask 0x48 message "Current settings of PWRT and BOD are in conflict" {
-    BACKBUG mask 0x2000 description "Background Debug"
+    DEBUG mask 0x2000 description "In-Circuit Debugger Mode bit"
       setting 0x2000 mask 0x2000 description "Disabled"
       setting 0x0 mask 0x2000 description "Enabled"
-    LVP mask 0x1000 description "Low Voltage Program"
+    LVP mask 0x1000 description "Low Voltage Programming Enable bit"
       setting 0x1000 mask 0x1000 description "Enabled"
       setting 0x0 mask 0x1000 description "Disabled"
-    FCMEN mask 0x800 description "Monitor Clock Fail-safe"
+    FCMEN mask 0x800 description "Fail-Safe Clock Monitor Enabled bit"
       setting 0x800 mask 0x800 description "Enabled"
       setting 0x0 mask 0x800 description "Disabled"
-    IESO mask 0x400 description "Internal External Switch Over Mode"
+    IESO mask 0x400 description "Internal External Switchover bit"
       setting 0x400 mask 0x400 description "Enabled"
       setting 0x0 mask 0x400 description "Disabled"
-    BODEN mask 0x300 description "Brown Out Detect"
-      setting 0x0 mask 0x300 description "BOD and SBOREN disabled"
-      setting 0x100 mask 0x300 description "SBOREN controls BOR function"
-      setting 0x200 mask 0x300 description "BOD enabled in run, disabled in sleep, SBOREN disabled"
-      setting 0x300 mask 0x300 description "BOD Enabled, SBOREN Disabled"
-    CPD mask 0x80 description "Data EE Read Protect"
-      setting 0x80 mask 0x80 description "Off"
-      setting 0x0 mask 0x80 description "On"
-    CP mask 0x40 description "Code Protect"
-      setting 0x40 mask 0x40 description "Off"
-      setting 0x0 mask 0x40 description "On"
-    MCLRE mask 0x20 description "Master Clear Enable"
-      setting 0x0 mask 0x20 description "RE3 is digital input"
-      setting 0x20 mask 0x20 description "/MCLR is external"
-    PUT mask 0x10 description "Power Up Timer"
-      setting 0x10 mask 0x10 description "Off"
-      setting 0x0 mask 0x10 description "On"
-    WDT mask 0x8 description "Watchdog Timer"
-      setting 0x8 mask 0x8 description "On"
-      setting 0x0 mask 0x8 description "Off"
-    OSC mask 0x7 description "Oscillator"
-      setting 0x7 mask 0x7 description "External RC Clockout"
-      setting 0x6 mask 0x7 description "External RC No Clock"
-      setting 0x5 mask 0x7 description "Internal RC Clockout"
-      setting 0x4 mask 0x7 description "Internal RC No Clock"
-      setting 0x3 mask 0x7 description "EC"
-      setting 0x2 mask 0x7 description "HS"
-      setting 0x1 mask 0x7 description "XT"
-      setting 0x0 mask 0x7 description "LP"
+    BODEN mask 0x300 description "Brown Out Reset Selection bits"
+      setting 0x300 mask 0x300 description "Enabled"
+      setting 0x200 mask 0x300 description "BOR enabled during operation and disabled in Sleep"
+      setting 0x100 mask 0x300 description "BOR controlled by SBOREN bit of the PCON register"
+      setting 0x0 mask 0x300 description "Disabled"
+    CPD mask 0x80 description "Data Code Protection bit"
+      setting 0x80 mask 0x80 description "Disabled"
+      setting 0x0 mask 0x80 description "Enabled"
+    CP mask 0x40 description "Code Protection bit"
+      setting 0x40 mask 0x40 description "Disabled"
+      setting 0x0 mask 0x40 description "Enabled"
+    MCLRE mask 0x20 description "RE3/MCLR pin function select bit"
+      setting 0x20 mask 0x20 description "Enabled"
+      setting 0x0 mask 0x20 description "Disabled"
+    PWRTE mask 0x10 description "Power-up Timer Enable bit"
+      setting 0x10 mask 0x10 description "Disabled"
+      setting 0x0 mask 0x10 description "Enabled"
+    WDTE mask 0x8 description "Watchdog Timer Enable bit"
+      setting 0x8 mask 0x8 description "Enabled"
+      setting 0x0 mask 0x8 description "Disabled"
+    OSC mask 0x7 description "Oscillator Selection bits"
+      setting 0x7 mask 0x7 description "RC oscillator: CLKOUT function on RA6/OSC2/CLKOUT pin, RC on RA7/OSC1/CLKIN"
+      setting 0x6 mask 0x7 description "RCIO oscillator: I/O function on RA6/OSC2/CLKOUT pin, RC on RA7/OSC1/CLKIN"
+      setting 0x5 mask 0x7 description "INTOSC oscillator: CLKOUT function on RA6/OSC2/CLKOUT pin, I/O function on RA7/OSC1/CLKIN"
+      setting 0x4 mask 0x7 description "INTOSCIO oscillator: I/O function on RA6/OSC2/CLKOUT pin, I/O function on RA7/OSC1/CLKIN"
+      setting 0x3 mask 0x7 description "EC: I/O function on RA6/OSC2/CLKOUT pin, CLKIN on RA7/OSC1/CLKIN"
+      setting 0x2 mask 0x7 description "HS oscillator: High-speed crystal/resonator on RA6/OSC2/CLKOUT and RA7/OSC1/CLKIN"
+      setting 0x1 mask 0x7 description "XT oscillator: Crystal/resonator on RA6/OSC2/CLKOUT and RA7/OSC1/CLKIN"
+      setting 0x0 mask 0x7 description "LP oscillator: Low-power crystal on RA6/OSC2/CLKOUT and RA7/OSC1/CLKIN"
   }
 
   configuration CONFIG2 at 0x2008 width 11 {
-    WRT mask 0x600 description "Self Write Enable"
-      setting 0x0 mask 0x600 description "0000-07ff prot"
-      setting 0x200 mask 0x600 description "0000-03ff prot"
-      setting 0x400 mask 0x600 description "0000-00ff prot"
-      setting 0x600 mask 0x600 description "No protection"
-    BOR4V mask 0x100 description "Brown Out Reset Sel Bit"
-      setting 0x0 mask 0x100 description "Brown out at 2.1V"
-      setting 0x100 mask 0x100 description "Brown out at 4.0V"
+    WRT mask 0x600 description "Flash Program Memory Self Write Enable bits"
+      setting 0x0 mask 0x600 description "0000h to 07FFh write protected, 0800h to 0FFFh may be modified by EECON control"
+      setting 0x200 mask 0x600 description "0000h to 03FFh write protected, 0400h to 0FFFh may be modified by EECON control"
+      setting 0x400 mask 0x600 description "0000h to 00FFh write protected, 0100h to 0FFFh may be modified by EECON control"
+      setting 0x600 mask 0x600 description "Disabled"
+    BOR4V mask 0x100 description "Brown-out Reset Selection bit"
+      setting 0x0 mask 0x100 description "Brown-out Reset set to 2.1V"
+      setting 0x100 mask 0x100 description "Brown-out Reset set to 4.0V"
   }
 }

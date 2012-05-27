@@ -2,17 +2,18 @@ controller PIC12F609 {
   processor "mid-range" ;
   romsize 1024 ;
   bank 2 ;
+  unusedregister 0x20 to 0x3F ;
+  unusedregister 0xA0 to 0xEF ;
   unusedregister 0x6 to 0x9 ;
   unusedregister 0xD ;
   unusedregister 0x11 to 0x18 ;
   unusedregister 0x1B ;
-  unusedregister 0x1D to 0x3F ;
+  unusedregister 0x1D to 0x1F ;
   unusedregister 0x86 to 0x89 ;
   unusedregister 0x8D ;
   unusedregister 0x8F ;
   unusedregister 0x91 to 0x94 ;
   unusedregister 0x97 to 0x9E ;
-  unusedregister 0xA0 to 0xEF ;
   ram gpr0 : 0x40 to 0x6F ;
   ram gprnobnk : 0x70 to 0x7F mirrorat 0xF0 ;
   # Total ram: 64
@@ -20,10 +21,10 @@ controller PIC12F609 {
   register ANSEL at 0x9F
     <-, ADCS [3], ANS [4]> ;
 
-  register CM1CON0 at 0x1A
+  register CMCON0 at 0x1A
     <C1ON, C1OUT, C1OE, C1POL, -, C1R, -, C1CH> ;
 
-  register CM1CON1 at 0x1C
+  register CMCON1 at 0x1C
     <-, -, -, T1ACS, C1HYS, -, T1GSS, C1SYNC> ;
 
   register FSR at 0x4, 0x84
@@ -88,33 +89,34 @@ controller PIC12F609 {
 
   configuration CONFIG at 0x2007 width 10
     illegal 0x48 mask 0x48 message "Current settings of PWRT and BOD are in conflict" {
-    BODEN mask 0x300 description "Brown Out Detect"
-      setting 0x0 mask 0x300 description "BOD disabled"
-      setting 0x200 mask 0x300 description "BOD enabled in run, disabled in sleep"
-      setting 0x300 mask 0x300 description "BOD Enabled"
+    BOREN mask 0x300 description "Brown-out Reset Selection bits"
+      setting 0x300 mask 0x300 description "Enabled"
+      setting 0x200 mask 0x300 description "BOR enabled during operation and disabled in Sleep"
+      setting 0x100 mask 0x300 description "BOR disabled"
+      setting 0x0 mask 0x300 description "Disabled"
     IOSCFS mask 0x80 description "Internal Oscillator Frequency Select"
       setting 0x80 mask 0x80 description "8 MHz"
       setting 0x0 mask 0x80 description "4 MHz"
-    CP mask 0x40 description "Code Protect"
-      setting 0x40 mask 0x40 description "Off"
-      setting 0x0 mask 0x40 description "On"
-    MCLRE mask 0x20 description "Master Clear Enable"
-      setting 0x20 mask 0x20 description "External"
-      setting 0x0 mask 0x20 description "Internal"
-    PUT mask 0x10 description "Power Up Timer"
-      setting 0x10 mask 0x10 description "Off"
-      setting 0x0 mask 0x10 description "On"
-    WDT mask 0x8 description "Watchdog Timer"
-      setting 0x8 mask 0x8 description "On"
-      setting 0x0 mask 0x8 description "Off"
-    OSC mask 0x7 description "Oscillator"
-      setting 0x7 mask 0x7 description "External RC Clockout"
-      setting 0x6 mask 0x7 description "External RC No Clock"
-      setting 0x5 mask 0x7 description "Internal RC Clockout"
-      setting 0x4 mask 0x7 description "Internal RC No Clock"
-      setting 0x3 mask 0x7 description "EC"
-      setting 0x2 mask 0x7 description "HS"
-      setting 0x1 mask 0x7 description "XT"
-      setting 0x0 mask 0x7 description "LP"
+    CP mask 0x40 description "Code Protection bit"
+      setting 0x40 mask 0x40 description "Disabled"
+      setting 0x0 mask 0x40 description "Enabled"
+    MCLRE mask 0x20 description "MCLR Pin Function Select bit"
+      setting 0x20 mask 0x20 description "Enabled"
+      setting 0x0 mask 0x20 description "Disabled"
+    PWRTE mask 0x10 description "Power-up Timer Enable bit"
+      setting 0x10 mask 0x10 description "Disabled"
+      setting 0x0 mask 0x10 description "Enabled"
+    WDTE mask 0x8 description "Watchdog Timer Enable bit"
+      setting 0x8 mask 0x8 description "Enabled"
+      setting 0x0 mask 0x8 description "Disabled"
+    OSC mask 0x7 description "Oscillator Selection bits"
+      setting 0x7 mask 0x7 description "RC oscillator: CLKOUT function on GP4/OSC2/CLKOUT pin, RC on GP5/OSC1/CLKIN"
+      setting 0x6 mask 0x7 description "RCIO oscillator: I/O function on GP4/OSC2/CLKOUT pin, RC on GP5/OSC1/CLKIN"
+      setting 0x5 mask 0x7 description "INTOSC oscillator: CLKOUT function on GP4/OSC2/CLKOUT pin, I/O function on GP5/OSC1/CLKIN"
+      setting 0x4 mask 0x7 description "INTOSCIO oscillator: I/O function on GP4/OSC2/CLKOUT pin, I/O function on GP5/OSC1/CLKIN"
+      setting 0x3 mask 0x7 description "EC: I/O function on GP4/OSC2/CLKOUT pin, CLKIN on GP5/OSC1/CLKIN"
+      setting 0x2 mask 0x7 description "HS oscillator: High-speed crystal/resonator on GP4/OSC2/CLKOUT and GP5/OSC1/CLKIN"
+      setting 0x1 mask 0x7 description "XT oscillator: Crystal/resonator on GP4/OSC2/CLKOUT and GP5/OSC1/CLKIN"
+      setting 0x0 mask 0x7 description "LP oscillator: Low-power crystal on GP4/OSC2/CLKOUT and GP5/OSC1/CLKIN"
   }
 }

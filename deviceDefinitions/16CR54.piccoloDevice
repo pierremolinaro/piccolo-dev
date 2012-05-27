@@ -27,16 +27,16 @@ controller PIC16CR54 {
     <TMR0 [8]> ;
 
   configuration CONFIG at 0xFFF width 4 {
-    CP mask 0x8 description "Code Protect"
-      setting 0x8 mask 0x8 description "Off"
-      setting 0x0 mask 0x8 description "On"
-    WDT mask 0x4 description "Watchdog Timer"
-      setting 0x4 mask 0x4 description "On"
-      setting 0x0 mask 0x4 description "Off"
-    OSC mask 0x3 description "Oscillator"
-      setting 0x3 mask 0x3 description "RC"
-      setting 0x0 mask 0x3 description "LP"
-      setting 0x1 mask 0x3 description "XT"
-      setting 0x2 mask 0x3 description "HS"
+    CP mask 0x8 description "Code protection bit"
+      setting 0x8 mask 0x8 description "Disabled"
+      setting 0x0 mask 0x8 description "Enabled"
+    WDT mask 0x4 description "Watchdog timer enable bit"
+      setting 0x4 mask 0x4 description "Enabled"
+      setting 0x0 mask 0x4 description "Disabled"
+    OSC mask 0x3 description "Oscillator selection bits"
+      setting 0x3 mask 0x3 description "RC oscillator"
+      setting 0x2 mask 0x3 description "HS oscillator"
+      setting 0x1 mask 0x3 description "XT oscillator"
+      setting 0x0 mask 0x3 description "LP oscillator"
   }
 }

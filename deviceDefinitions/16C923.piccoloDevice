@@ -2,6 +2,8 @@ controller PIC16C923 {
   processor "mid-range" ;
   romsize 4096 ;
   bank 4 ;
+  unusedregister 0x120 to 0x16F ;
+  unusedregister 0x1A0 to 0x1EF ;
   unusedregister 0xD ;
   unusedregister 0x18 to 0x1F ;
   unusedregister 0x8D ;
@@ -10,10 +12,9 @@ controller PIC16C923 {
   unusedregister 0x105 ;
   unusedregister 0x109 ;
   unusedregister 0x10C ;
-  unusedregister 0x120 to 0x16F ;
   unusedregister 0x185 ;
   unusedregister 0x189 ;
-  unusedregister 0x18C to 0x1EF ;
+  unusedregister 0x18C to 0x19F ;
   ram gpr0 : 0x20 to 0x6F ;
   ram gpr1 : 0xA0 to 0xEF ;
   ram gprnobnk : 0x70 to 0x7F mirrorat 0xF0, 0x170, 0x1F0 ;
@@ -190,22 +191,22 @@ controller PIC16C923 {
   register TRISG at 0x188
     <TRISG7, TRISG6, TRISG5, TRISG4, TRISG3, TRISG2, TRISG1, TRISG0> ;
 
-  configuration CONFIG at 0x2007 width 14 {
-    CP mask 0x3F30 description "Code Protect"
-      setting 0x3F30 mask 0x3F30 description "Off"
-      setting 0x2A20 mask 0x3F30 description "800:FFF"
-      setting 0x1510 mask 0x3F30 description "400:FFF"
-      setting 0x0 mask 0x3F30 description "All"
-    PUT mask 0x8 description "Power Up Timer"
-      setting 0x8 mask 0x8 description "Off"
-      setting 0x0 mask 0x8 description "On"
-    WDT mask 0x4 description "Watchdog Timer"
-      setting 0x4 mask 0x4 description "On"
-      setting 0x0 mask 0x4 description "Off"
-    OSC mask 0x3 description "Oscillator"
-      setting 0x3 mask 0x3 description "RC"
-      setting 0x0 mask 0x3 description "LP"
-      setting 0x1 mask 0x3 description "XT"
-      setting 0x2 mask 0x3 description "HS"
+  configuration CONFIG1 at 0x2007 width 14 {
+    CP mask 0x3F30 description "Code Protection bits"
+      setting 0x3F30 mask 0x3F30 description "Disabled"
+      setting 0x2A20 mask 0x3F30 description "0800h-0FFFh code protected"
+      setting 0x1510 mask 0x3F30 description "0400h-0FFFh code protected"
+      setting 0x0 mask 0x3F30 description "All memory is code protected"
+    PWRTE mask 0x8 description "Power-up Timer Enable bit"
+      setting 0x8 mask 0x8 description "Disabled"
+      setting 0x0 mask 0x8 description "Enabled"
+    WDTE mask 0x4 description "Watchdog Timer Enable bit"
+      setting 0x4 mask 0x4 description "Enabled"
+      setting 0x0 mask 0x4 description "Disabled"
+    FOSC mask 0x3 description "Oscillator selection bits"
+      setting 0x3 mask 0x3 description "RC oscillator"
+      setting 0x2 mask 0x3 description "HS oscillator"
+      setting 0x1 mask 0x3 description "XT oscillator"
+      setting 0x0 mask 0x3 description "LP oscillator"
   }
 }

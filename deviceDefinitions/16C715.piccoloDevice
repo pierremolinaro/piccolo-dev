@@ -2,18 +2,18 @@ controller PIC16C715 {
   processor "mid-range" ;
   romsize 2048 ;
   bank 2 ;
+  unusedregister 0xC0 to 0xFF ;
   unusedregister 0x7 to 0x9 ;
   unusedregister 0xD to 0x1D ;
   unusedregister 0x87 to 0x89 ;
   unusedregister 0x8D ;
   unusedregister 0x8F to 0x9E ;
-  unusedregister 0xC0 to 0xFF ;
   ram gpr0 : 0x20 to 0x7F ;
   ram gpr1 : 0xA0 to 0xBF ;
   # Total ram: 128
 
   register ADCON0 at 0x1F
-    <ADCS [2], -, CHS [2], GO/nDONE, -, ADON> ;
+    <ADCS [2], CHS [3], GO/nDONE, -, ADON> ;
 
   register ADCON1 at 0x9F
     <-, -, -, -, -, -, PCFG [2]> ;
@@ -28,7 +28,7 @@ controller PIC16C715 {
     <INDF [8]> ;
 
   register INTCON at 0xB, 0x8B
-    <GIE, PEIE, TMR0IE, INTE, RBIE, TMR0IF, INTF, RBIF> ;
+    <GIE, PEIE, T0IE, INTE, RBIE, T0IF, INTF, RBIF> ;
 
   register OPTION_REG at 0x81
     <nRBPU, INTEDG, T0CS, T0SE, PSA, PS [3]> ;
@@ -66,30 +66,30 @@ controller PIC16C715 {
   register TRISB at 0x86
     <TRISB7, TRISB6, TRISB5, TRISB4, TRISB3, TRISB2, TRISB1, TRISB0> ;
 
-  configuration CONFIG at 0x2007 width 14
+  configuration CONFIG1 at 0x2007 width 14
     illegal 0x40 mask 0x40 message "Current settings of PWRT and BOD are in conflict"
     illegal 0x8 mask 0x8 message "Current settings of PWRT and BOD are in conflict" {
-    CP mask 0x3F30 description "Code Protect"
-      setting 0x3F30 mask 0x3F30 description "Off"
-      setting 0x2A20 mask 0x3F30 description "400:7FF"
-      setting 0x1510 mask 0x3F30 description "200:7FF"
-      setting 0x0 mask 0x3F30 description "All"
-    PARITY mask 0x80 description "Parity"
-      setting 0x80 mask 0x80 description "On"
-      setting 0x0 mask 0x80 description "Off"
-    BODEN mask 0x40 description "Brown Out Detect"
-      setting 0x40 mask 0x40 description "On"
-      setting 0x0 mask 0x40 description "Off"
-    PUT mask 0x8 description "Power Up Timer"
-      setting 0x8 mask 0x8 description "Off"
-      setting 0x0 mask 0x8 description "On"
-    WDT mask 0x4 description "Watchdog Timer"
-      setting 0x4 mask 0x4 description "On"
-      setting 0x0 mask 0x4 description "Off"
-    OSC mask 0x3 description "Oscillator"
-      setting 0x3 mask 0x3 description "RC"
-      setting 0x0 mask 0x3 description "LP"
-      setting 0x1 mask 0x3 description "XT"
-      setting 0x2 mask 0x3 description "HS"
+    CP mask 0x3F30 description "Code Protection bits"
+      setting 0x3F30 mask 0x3F30 description "Disabled"
+      setting 0x2A20 mask 0x3F30 description "0400h-07FFh code protected"
+      setting 0x1510 mask 0x3F30 description "0200h-07FFh code protected"
+      setting 0x0 mask 0x3F30 description "All memory is code protected"
+    MPEEN mask 0x80 description "Memory Parity Error Enable"
+      setting 0x80 mask 0x80 description "Enabled"
+      setting 0x0 mask 0x80 description "Disabled"
+    BOREN mask 0x40 description "Brown-out Reset Enable bit"
+      setting 0x40 mask 0x40 description "Enabled"
+      setting 0x0 mask 0x40 description "Disabled"
+    PWRTE mask 0x8 description "Power-up Timer Enable bit"
+      setting 0x8 mask 0x8 description "Disabled"
+      setting 0x0 mask 0x8 description "Enabled"
+    WDTE mask 0x4 description "Watchdog Timer Enable bit"
+      setting 0x4 mask 0x4 description "Enabled"
+      setting 0x0 mask 0x4 description "Disabled"
+    FOSC mask 0x3 description "Oscillator selection bits"
+      setting 0x3 mask 0x3 description "RC oscillator"
+      setting 0x2 mask 0x3 description "HS oscillator"
+      setting 0x1 mask 0x3 description "XT oscillator"
+      setting 0x0 mask 0x3 description "LP oscillator"
   }
 }

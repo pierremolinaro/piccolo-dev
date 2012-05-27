@@ -35,7 +35,7 @@ controller PIC16F88 {
     <-, ANS6, ANS5, ANS4, ANS3, ANS2, ANS1, ANS0> ;
 
   register CCP1CON at 0x17
-    <-, -, DC1B [2], CCP1M [4]> ;
+    <-, -, CCP1X, CCP1Y, CCP1M [4]> ;
 
   register CCPR1H at 0x16
     <CCPR1H [8]> ;
@@ -130,7 +130,7 @@ controller PIC16F88 {
   register SSPBUF at 0x13
     <SSPBUF [8]> ;
 
-  register SSPCON1 at 0x14
+  register SSPCON at 0x14
     <WCOL, SSPOV, SSPEN, CKP, SSPM [4]> ;
 
   register SSPSTAT at 0x94
@@ -172,55 +172,55 @@ controller PIC16F88 {
   register WDTCON at 0x105
     <-, -, -, WDTPS [4], SWDTEN> ;
 
-  configuration CONFIG at 0x2007 width 14 {
-    CP mask 0x2000 description "Code Protect"
-      setting 0x2000 mask 0x2000 description "Off"
-      setting 0x0 mask 0x2000 description "All"
-    CCP1MUX mask 0x1000 description "CCP1 Mux"
-      setting 0x1000 mask 0x1000 description "RB0"
-      setting 0x0 mask 0x1000 description "RB3"
-    BACKBUG mask 0x800 description "Background Debug"
+  configuration CONFIG1 at 0x2007 width 14 {
+    CP mask 0x2000 description "Flash Program Memory Code Protection bit"
+      setting 0x2000 mask 0x2000 description "Disabled"
+      setting 0x0 mask 0x2000 description "Enabled"
+    CCPMX mask 0x1000 description "CCP1 Pin Selection bit"
+      setting 0x1000 mask 0x1000 description "CCP1 function on RB0"
+      setting 0x0 mask 0x1000 description "CCP1 function on RB3"
+    DEBUG mask 0x800 description "In-Circuit Debugger Mode bit"
       setting 0x800 mask 0x800 description "Disabled"
       setting 0x0 mask 0x800 description "Enabled"
-    WRT_ENABLE mask 0x600 description "Flash Program Write"
-      setting 0x600 mask 0x600 description "Write Protect Off"
-      setting 0x400 mask 0x600 description "0000 to 00FF write protected"
-      setting 0x200 mask 0x600 description "0000 to 07FF write protected"
-      setting 0x0 mask 0x600 description "0000 to 0FFF write protected"
-    CPD mask 0x100 description "Data EE Read Protect"
-      setting 0x100 mask 0x100 description "Off"
-      setting 0x0 mask 0x100 description "On"
-    LVP mask 0x80 description "Low Voltage Program"
+    WRT mask 0x600 description "Flash Program Memory Write Enable bits"
+      setting 0x600 mask 0x600 description "Disabled"
+      setting 0x400 mask 0x600 description "0000h to 00FFh write-protected, 0100h to 0FFFh may be modified by EECON control"
+      setting 0x200 mask 0x600 description "0000h to 07FFh write-protected, 0800h to 0FFFh may be modified by EECON control"
+      setting 0x0 mask 0x600 description "0000h to 0FFFh write-protected"
+    CPD mask 0x100 description "Data EE Memory Code Protection bit"
+      setting 0x100 mask 0x100 description "Disabled"
+      setting 0x0 mask 0x100 description "Enabled"
+    LVP mask 0x80 description "Low-Voltage Programming Enable bit"
       setting 0x80 mask 0x80 description "Enabled"
       setting 0x0 mask 0x80 description "Disabled"
-    BODEN mask 0x40 description "Brown Out Detect"
-      setting 0x40 mask 0x40 description "On"
-      setting 0x0 mask 0x40 description "Off"
-    MCLRE mask 0x20 description "RA5/MCLR Pin Function Select"
-      setting 0x20 mask 0x20 description "MCLR"
-      setting 0x0 mask 0x20 description "RA5"
-    OSC mask 0x13 description "Oscillator"
-      setting 0x13 mask 0x13 description "EXTRC-OSC2 as Clock Out"
-      setting 0x12 mask 0x13 description "EXTRC-OSC2 as RA6"
-      setting 0x11 mask 0x13 description "INTRC-OSC2 as Clock Out"
-      setting 0x10 mask 0x13 description "INTRC-OSC2 as RA6"
-      setting 0x3 mask 0x13 description "EXTCLK as Port IO"
-      setting 0x0 mask 0x13 description "LP"
-      setting 0x1 mask 0x13 description "XT"
-      setting 0x2 mask 0x13 description "HS"
-    PUT mask 0x8 description "Power Up Timer"
-      setting 0x8 mask 0x8 description "Off"
-      setting 0x0 mask 0x8 description "On"
-    WDT mask 0x4 description "Watchdog Timer"
-      setting 0x4 mask 0x4 description "On"
-      setting 0x0 mask 0x4 description "Off"
+    BOREN mask 0x40 description "Brown-out Reset Enable bit"
+      setting 0x40 mask 0x40 description "Enabled"
+      setting 0x0 mask 0x40 description "Disabled"
+    MCLRE mask 0x20 description "RA5/MCLR/VPP Pin Function Select bit"
+      setting 0x20 mask 0x20 description "Enabled"
+      setting 0x0 mask 0x20 description "Disabled"
+    FOSC mask 0x13 description "Oscillator Selection bits"
+      setting 0x13 mask 0x13 description "EXTRC oscillator; CLKO function on RA6/OSC2/CLKO"
+      setting 0x12 mask 0x13 description "EXTRC oscillator; port I/O function on RA6/OSC2/CLKO"
+      setting 0x11 mask 0x13 description "INTRC oscillator; CLKO function on RA6/OSC2/CLKO pin and port I/O function on RA7/OSC1/CLKI pin"
+      setting 0x10 mask 0x13 description "INTRC oscillator; port I/O function on both RA6/OSC2/CLKO pin and RA7/OSC1/CLKI pin"
+      setting 0x3 mask 0x13 description "ECIO; port I/O function on RA6/OSC2/CLKO"
+      setting 0x2 mask 0x13 description "HS oscillator"
+      setting 0x1 mask 0x13 description "XT oscillator"
+      setting 0x0 mask 0x13 description "LP oscillator"
+    PWRTE mask 0x8 description "Power-up Timer Enable bit"
+      setting 0x8 mask 0x8 description "Disabled"
+      setting 0x0 mask 0x8 description "Enabled"
+    WDTE mask 0x4 description "Watchdog Timer Enable bit"
+      setting 0x4 mask 0x4 description "Enabled"
+      setting 0x0 mask 0x4 description "Disabled"
   }
 
   configuration CONFIG2 at 0x2008 width 2 {
-    IESO mask 0x2 description "Internal External Switch Over Mode"
+    IESO mask 0x2 description "Internal External Switchover bit"
       setting 0x2 mask 0x2 description "Enabled"
       setting 0x0 mask 0x2 description "Disabled"
-    FCMEN mask 0x1 description "Fail-Safe Clock Monitor Enable"
+    FCMEN mask 0x1 description "Fail-Safe Clock Monitor Enable bit"
       setting 0x1 mask 0x1 description "Enabled"
       setting 0x0 mask 0x1 description "Disabled"
   }

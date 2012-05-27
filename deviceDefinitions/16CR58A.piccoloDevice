@@ -1,0 +1,46 @@
+controller PIC16CR58A {
+  processor "baseline" ;
+  romsize 2048 ;
+  bank 4 ;
+  ram gpr0 : 0x10 to 0x1F ;
+  ram gpr1 : 0x30 to 0x3F ;
+  ram gpr2 : 0x50 to 0x5F ;
+  ram gpr3 : 0x70 to 0x7F ;
+  ram gprnobnk : 0x7 to 0xF mirrorat 0x27, 0x47, 0x67 ;
+  # Total ram: 73
+
+  register FSR at 0x4, 0x24, 0x44, 0x64
+    <FSR [8]> ;
+
+  register INDF at 0x0, 0x20, 0x40, 0x60
+    <INDF [8]> ;
+
+  register PCL at 0x2, 0x22, 0x42, 0x62
+    <PCL [8]> ;
+
+  register PORTA at 0x5, 0x25, 0x45, 0x65
+    <-, -, -, T0CKI, RA3, RA2, RA1, RA0> ;
+
+  register PORTB at 0x6, 0x26, 0x46, 0x66
+    <RB7, RB6, RB5, RB4, RB3, RB2, RB1, RB0> ;
+
+  register STATUS at 0x3, 0x23, 0x43, 0x63
+    <PA [3], nTO, nPD, Z, DC, C> ;
+
+  register TMR0 at 0x1, 0x21, 0x41, 0x61
+    <TMR0 [8]> ;
+
+  configuration CONFIG at 0xFFF width 12 {
+    CP mask 0xFF8 description "Code protection bit"
+      setting 0xFF8 mask 0xFF8 description "Disabled"
+      setting 0x0 mask 0xFF8 description "Enabled"
+    WDT mask 0x4 description "Watchdog timer enable bit"
+      setting 0x4 mask 0x4 description "Enabled"
+      setting 0x0 mask 0x4 description "Disabled"
+    OSC mask 0x3 description "Oscillator selection bits"
+      setting 0x3 mask 0x3 description "RC oscillator"
+      setting 0x2 mask 0x3 description "HS oscillator"
+      setting 0x1 mask 0x3 description "XT oscillator"
+      setting 0x0 mask 0x3 description "LP oscillator"
+  }
+}

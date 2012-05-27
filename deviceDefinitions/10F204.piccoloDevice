@@ -7,19 +7,19 @@ controller PIC10F204 {
   # Total ram: 16
 
   register CMCON0 at 0x7
-    <CMPOUT, COUTEN, POL, nCMPT0CS, CMPON, CNREF, CPREF, nCWU> ;
+    <CMPOUT, nCOUTEN, POL, nCMPT0CS, CMPON, CNREF, CPREF, nCWU> ;
 
   register FSR at 0x4
     <FSR [8]> ;
 
   register GPIO at 0x6
-    <-, -, -, -, GPIO3, GPIO2, GPIO1, GPIO0> ;
+    <-, -, -, -, GP3, GP2, GP1, GP0> ;
 
   register INDF at 0x0
     <INDF [8]> ;
 
   register OSCCAL at 0x5
-    <CAL [7], -> ;
+    <CAL [7], FOSC4> ;
 
   register PCL at 0x2
     <PCL [8]> ;
@@ -32,13 +32,15 @@ controller PIC10F204 {
 
   configuration CONFIG at 0xFFF width 5 {
     MCLRE mask 0x10 description "Master Clear Enable"
-      setting 0x10 mask 0x10 description "Functions as Master Clear"
-      setting 0x0 mask 0x10 description "Functions as GP3"
+      setting 0x10 mask 0x10 description "Enabled"
+      setting 0x0 mask 0x10 description "Disabled"
     CP mask 0x8 description "Code Protect"
-      setting 0x8 mask 0x8 description "Off"
-      setting 0x0 mask 0x8 description "On"
-    WDT mask 0x4 description "Watchdog Timer"
-      setting 0x4 mask 0x4 description "On"
-      setting 0x0 mask 0x4 description "Off"
+      setting 0x8 mask 0x8 description "Disabled"
+      setting 0x0 mask 0x8 description "Enabled"
+    WDTE mask 0x4 description "Watchdog Timer"
+      setting 0x4 mask 0x4 description "Enabled"
+      setting 0x0 mask 0x4 description "Disabled"
+    OSC mask 0x1 description "Oscillator"
+      setting 0x1 mask 0x1 description "This is the only option. It is here for backward compatibility"
   }
 }

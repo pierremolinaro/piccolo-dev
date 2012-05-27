@@ -2,6 +2,7 @@ controller PIC16F716 {
   processor "mid-range" ;
   romsize 2048 ;
   bank 2 ;
+  unusedregister 0xC0 to 0xEF ;
   unusedregister 0x7 to 0x9 ;
   unusedregister 0xD ;
   unusedregister 0x13 to 0x14 ;
@@ -10,7 +11,6 @@ controller PIC16F716 {
   unusedregister 0x8D ;
   unusedregister 0x8F to 0x91 ;
   unusedregister 0x93 to 0x9E ;
-  unusedregister 0xC0 to 0xEF ;
   ram gpr0 : 0x20 to 0x6F ;
   ram gpr1 : 0xA0 to 0xBF ;
   ram gprnobnk : 0x70 to 0x7F mirrorat 0xF0 ;
@@ -105,24 +105,24 @@ controller PIC16F716 {
 
   configuration CONFIG at 0x2007 width 14 {
     CP mask 0x2000 description "Code Protect"
-      setting 0x2000 mask 0x2000 description "Off"
-      setting 0x0 mask 0x2000 description "All"
-    BODENV mask 0x80 description "Brown Out Voltage"
+      setting 0x2000 mask 0x2000 description "Disabled"
+      setting 0x0 mask 0x2000 description "Enabled"
+    BODENV mask 0x80 description "Brown-out Reset Voltage bit"
       setting 0x80 mask 0x80 description "VBOR set to 4.0V"
       setting 0x0 mask 0x80 description "VBOR set to 2.5V"
-    BODEN mask 0x40 description "Brown Out Detect"
-      setting 0x40 mask 0x40 description "On"
-      setting 0x0 mask 0x40 description "Off"
-    PUT mask 0x8 description "Power Up Timer"
-      setting 0x8 mask 0x8 description "Off"
-      setting 0x0 mask 0x8 description "On"
-    WDT mask 0x4 description "Watchdog Timer"
-      setting 0x4 mask 0x4 description "On"
-      setting 0x0 mask 0x4 description "Off"
-    OSC mask 0x3 description "Oscillator"
-      setting 0x3 mask 0x3 description "RC"
-      setting 0x2 mask 0x3 description "HS"
-      setting 0x1 mask 0x3 description "XT"
-      setting 0x0 mask 0x3 description "LP"
+    BODEN mask 0x40 description "Brown-out Reset Enable bit"
+      setting 0x40 mask 0x40 description "Enabled"
+      setting 0x0 mask 0x40 description "Disabled"
+    PWRTE mask 0x8 description "Power-up Timer Enable bit"
+      setting 0x8 mask 0x8 description "Disabled"
+      setting 0x0 mask 0x8 description "Enabled"
+    WDTE mask 0x4 description "Watchdog Timer Enable bit"
+      setting 0x4 mask 0x4 description "Enabled"
+      setting 0x0 mask 0x4 description "Disabled"
+    OSC mask 0x3 description "Oscillator Selection bits"
+      setting 0x3 mask 0x3 description "RC oscillator"
+      setting 0x2 mask 0x3 description "HS oscillator"
+      setting 0x1 mask 0x3 description "XT oscillator"
+      setting 0x0 mask 0x3 description "LP oscillator"
   }
 }

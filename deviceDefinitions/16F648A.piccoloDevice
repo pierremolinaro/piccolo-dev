@@ -3,6 +3,7 @@ controller PIC16F648A {
   romsize 4096 ;
   eepromsize 256 at 0x2100 ;
   bank 4 ;
+  unusedregister 0x1A0 to 0x1EF ;
   unusedregister 0x7 to 0x9 ;
   unusedregister 0xD ;
   unusedregister 0x13 to 0x14 ;
@@ -17,7 +18,7 @@ controller PIC16F648A {
   unusedregister 0x10C to 0x11F ;
   unusedregister 0x185 ;
   unusedregister 0x187 to 0x189 ;
-  unusedregister 0x18C to 0x1EF ;
+  unusedregister 0x18C to 0x19F ;
   ram gpr0 : 0x20 to 0x6F ;
   ram gpr1 : 0xA0 to 0xEF ;
   ram gpr2 : 0x120 to 0x16F ;
@@ -25,7 +26,7 @@ controller PIC16F648A {
   # Total ram: 256
 
   register CCP1CON at 0x17
-    <-, -, DC1B [2], CCP1M [4]> ;
+    <-, -, CCP1X, CCP1Y, CCP1M [4]> ;
 
   register CCPR1H at 0x16
     <CCPR1H [8]> ;
@@ -55,7 +56,7 @@ controller PIC16F648A {
     <INDF [8]> ;
 
   register INTCON at 0xB, 0x8B, 0x10B, 0x18B
-    <GIE, PEIE, TMR0IE, INTE, RBIE, TMR0IF, INTF, RBIF> ;
+    <GIE, PEIE, T0IE, INTE, RBIE, T0IF, INTF, RBIF> ;
 
   register OPTION_REG at 0x81, 0x181
     <nRBPU, INTEDG, T0CS, T0SE, PSA, PS [3]> ;
@@ -88,7 +89,7 @@ controller PIC16F648A {
     <RCREG [8]> ;
 
   register RCSTA at 0x18
-    <SPEN, RX9, SREN, CREN, ADDEN, FERR, OERR, RX9D> ;
+    <SPEN, RX9, SREN, CREN, ADEN, FERR, OERR, RX9D> ;
 
   register SPBRG at 0x99
     <SPBRG [8]> ;
@@ -130,35 +131,35 @@ controller PIC16F648A {
     <VREN, VROE, VRR, -, VR [4]> ;
 
   configuration CONFIG at 0x2007 width 14 {
-    CP mask 0x2000 description "Code Protect"
-      setting 0x2000 mask 0x2000 description "Off"
-      setting 0x0 mask 0x2000 description "On"
-    CPD mask 0x100 description "Data EE Read Protect"
+    CP mask 0x2000 description "Flash Program Memory Code Protection bit"
+      setting 0x2000 mask 0x2000 description "Disabled"
+      setting 0x0 mask 0x2000 description "Enabled"
+    CPD mask 0x100 description "Data EE Memory Code Protection bit"
       setting 0x100 mask 0x100 description "Disabled"
       setting 0x0 mask 0x100 description "Enabled"
-    LVP mask 0x80 description "Low Voltage Program"
+    LVP mask 0x80 description "Low-Voltage Programming Enable bit"
       setting 0x80 mask 0x80 description "Enabled"
       setting 0x0 mask 0x80 description "Disabled"
-    BODEN mask 0x40 description "Brown Out Detect"
+    BOREN mask 0x40 description "Brown-out Detect Enable bit"
       setting 0x40 mask 0x40 description "Enabled"
       setting 0x0 mask 0x40 description "Disabled"
-    MCLRE mask 0x20 description "Master Clear Enable"
+    MCLRE mask 0x20 description "RA5/MCLR/VPP Pin Function Select bit"
       setting 0x20 mask 0x20 description "Enabled"
       setting 0x0 mask 0x20 description "Disabled"
-    OSC mask 0x13 description "Oscillator"
-      setting 0x13 mask 0x13 description "RC: CLKOUT on RA6/OSC2/CLKOUT, RC on RA7/OSC1/CLKIN"
-      setting 0x12 mask 0x13 description "RC: I/O on RA6/OSC2/CLKOUT, RC on RA7/OSC1/CLKIN"
-      setting 0x11 mask 0x13 description "INTOSC: CLKOUT on RA6/OSC2/CLKOUT, I/O on RA7/OSC1/CLKIN"
-      setting 0x10 mask 0x13 description "INTOSC: I/O on RA6/OSC2/CLKOUT, I/O on RA7/OSC1/CLKIN"
-      setting 0x3 mask 0x13 description "EC"
-      setting 0x2 mask 0x13 description "HS"
-      setting 0x1 mask 0x13 description "XT"
-      setting 0x0 mask 0x13 description "LP"
-    PUT mask 0x8 description "Power Up Timer"
+    FOSC mask 0x13 description "Oscillator Selection bits"
+      setting 0x13 mask 0x13 description "RC oscillator: CLKOUT function on RA6/OSC2/CLKOUT pin, Resistor and Capacitor on RA7/OSC1/CLKIN"
+      setting 0x12 mask 0x13 description "RC oscillator: I/O function on RA6/OSC2/CLKOUT pin, Resistor and Capacitor on RA7/OSC1/CLKIN"
+      setting 0x11 mask 0x13 description "INTOSC oscillator: CLKOUT function on RA6/OSC2/CLKOUT pin, I/O function on RA7/OSC1/CLKIN"
+      setting 0x10 mask 0x13 description "INTOSC oscillator: I/O function on RA6/OSC2/CLKOUT pin, I/O function on RA7/OSC1/CLKIN"
+      setting 0x3 mask 0x13 description "EC: I/O function on RA6/OSC2/CLKOUT pin, CLKIN on RA7/OSC1/CLKIN"
+      setting 0x2 mask 0x13 description "HS oscillator: High-speed crystal/resonator on RA6/OSC2/CLKOUT and RA7/OSC1/CLKIN"
+      setting 0x1 mask 0x13 description "XT oscillator: Crystal/resonator on RA6/OSC2/CLKOUT and RA7/OSC1/CLKIN"
+      setting 0x0 mask 0x13 description "LP oscillator: Low-power crystal on RA6/OSC2/CLKOUT and RA7/OSC1/CLKIN"
+    PWRTE mask 0x8 description "Power-up Timer Enable bit"
       setting 0x8 mask 0x8 description "Disabled"
       setting 0x0 mask 0x8 description "Enabled"
-    WDT mask 0x4 description "Watchdog Timer"
-      setting 0x4 mask 0x4 description "On"
-      setting 0x0 mask 0x4 description "Off"
+    WDTE mask 0x4 description "Watchdog Timer Enable bit"
+      setting 0x4 mask 0x4 description "Enabled"
+      setting 0x0 mask 0x4 description "Disabled"
   }
 }

@@ -14,9 +14,9 @@ controller PIC18F8410 {
   unusedregister 0xC00 to 0xCFF ;
   unusedregister 0xD00 to 0xDFF ;
   unusedregister 0xE00 to 0xEFF ;
-  unusedregister 0xF00 to 0xF6A ;
-  unusedregister 0xF70 to 0xF7C ;
-  unusedregister 0xF7D ;
+  unusedregister 0xF00 to 0xF5F ;
+  unusedregister 0xF60 to 0xF6A ;
+  unusedregister 0xF70 to 0xF7D ;
   unusedregister 0xFA6 to 0xFAA ;
   unusedregister 0xFB6 ;
   unusedregister 0xFD4 ;
@@ -42,7 +42,7 @@ controller PIC18F8410 {
     <ADRESL [8]> ;
 
   register BAUDCON1 at 0xF7E
-    <ABDOV, RCMT, RXDTP, TXCKP, BRG16, -, WUE, ABDEN> ;
+    <ABDOVF, RCIDL, -, SCKP, BRG16, -, WUE, ABDEN> ;
 
   register BSR at 0xFE0
     <-, -, -, -, BSR [4]> ;
@@ -99,7 +99,7 @@ controller PIC18F8410 {
     <FSR2L [8]> ;
 
   register HLVDCON at 0xFD2
-    <-, -, BGST, LVDEN, LVDL [4]> ;
+    <VDIRMAG, -, IRVST, HLVDEN, HLVDL [4]> ;
 
   register INDF0 at 0xFEF
     <INDF0 [8]> ;
@@ -123,7 +123,7 @@ controller PIC18F8410 {
     <PSPIP, ADIP, RCIP, TXIP, SSPIP, CCP1IP, TMR2IP, TMR1IP> ;
 
   register IPR2 at 0xFA2
-    <OSCFIP, CMIP, -, -, BCLIP, LVDIP, TMR3IP, CCP2IP> ;
+    <OSCFIP, CMIP, -, -, BCLIP, HLVDIP, TMR3IP, CCP2IP> ;
 
   register IPR3 at 0xFA5
     <-, -, RC2IP, TX2IP, -, -, -, CCP3IP> ;
@@ -177,7 +177,7 @@ controller PIC18F8410 {
     <PSPIE, ADIE, RCIE, TXIE, SSPIE, CCP1IE, TMR2IE, TMR1IE> ;
 
   register PIE2 at 0xFA0
-    <OSCFIE, CMIE, -, -, BCLIE, LVDIE, TMR3IE, CCP2IE> ;
+    <OSCFIE, CMIE, -, -, BCLIE, HLVDIE, TMR3IE, CCP2IE> ;
 
   register PIE3 at 0xFA3
     <-, -, RC2IE, TX2IE, -, -, -, CCP3IE> ;
@@ -186,7 +186,7 @@ controller PIC18F8410 {
     <PSPIF, ADIF, RCIF, TXIF, SSPIF, CCP1IF, TMR2IF, TMR1IF> ;
 
   register PIR2 at 0xFA1
-    <OSCFIF, CMIF, -, -, BCLIF, LVDIF, TMR3IF, CCP2IF> ;
+    <OSCFIF, CMIF, -, -, BCLIF, HLVDIF, TMR3IF, CCP2IF> ;
 
   register PIR3 at 0xFA4
     <-, -, RC2IF, TX2IF, -, -, -, CCP3IF> ;
@@ -420,16 +420,16 @@ controller PIC18F8410 {
     OSC mask 0xF description "Oscillator"
       setting 0xC mask 0xC description "11XX EXT RC-CLKOUT on RA6"
       setting 0xA mask 0xE description "101X EXT RC-CLKOUT on RA6"
-      setting 0x9 mask 0xF description "INT RC-CLKOUT on RA6,Port on RA7"
-      setting 0x8 mask 0xF description "INT RC-Port on RA6,Port on RA7"
-      setting 0x7 mask 0xF description "EXT RC-Port on RA6"
-      setting 0x6 mask 0xF description "HS-PLL enabled freq=4xFosc1"
-      setting 0x5 mask 0xF description "EC-Port on RA6"
-      setting 0x4 mask 0xF description "EC-CLKOUT on RA6"
-      setting 0x3 mask 0xF description "0011 EXT RC-CLKOUT on RA6"
-      setting 0x2 mask 0xF description "HS"
-      setting 0x1 mask 0xF description "XT"
-      setting 0x0 mask 0xF description "LP"
+      setting 0x9 mask 0xF description "Internal oscillator block, CLKO function on RA6, port function on RA7"
+      setting 0x8 mask 0xF description "Internal oscillator block, port function on RA6 and RA7"
+      setting 0x7 mask 0xF description "External RC oscillator, port function on RA6"
+      setting 0x6 mask 0xF description "HS oscillator, PLL enabled (clock frequency = 4 x FOSC1)"
+      setting 0x5 mask 0xF description "EC oscillator, port function on RA6"
+      setting 0x4 mask 0xF description "EC oscillator, CLKO function on RA6"
+      setting 0x3 mask 0xF description "External RC oscillator, CLKO function on RA6"
+      setting 0x2 mask 0xF description "HS oscillator"
+      setting 0x1 mask 0xF description "XT oscillator"
+      setting 0x0 mask 0xF description "LP oscillator"
   }
 
   configuration CONFIG2H at 0x300003 width 5 {
@@ -452,35 +452,35 @@ controller PIC18F8410 {
       setting 0x0 mask 0x1E description "1:1"
     WDT mask 0x1 description "Watchdog Timer"
       setting 0x1 mask 0x1 description "Enabled"
-      setting 0x0 mask 0x1 description "Disabled-Controlled by SWDTEN bit"
+      setting 0x0 mask 0x1 description "Disabled"
   }
 
   configuration CONFIG2L at 0x300002 width 5 {
-    BODENV mask 0x18 description "Brown Out Voltage"
-      setting 0x18 mask 0x18 description "2.0V"
-      setting 0x10 mask 0x18 description "2.7V"
-      setting 0x8 mask 0x18 description "4.2V"
-      setting 0x0 mask 0x18 description "4.5V"
-    BODEN mask 0x6 description "Brown Out Detect"
-      setting 0x6 mask 0x6 description "Enabled in hardware, SBOREN disabled"
-      setting 0x4 mask 0x6 description "Enabled while active,disabled in SLEEP,SBOREN disabled"
-      setting 0x2 mask 0x6 description "Controlled with SBOREN bit"
-      setting 0x0 mask 0x6 description "Disabled in hardware, SBOREN disabled"
-    PUT mask 0x1 description "Power Up Timer"
+    BORV mask 0x18 description "Brown Out Voltage"
+      setting 0x18 mask 0x18 description "VBOR set to 2.1V"
+      setting 0x10 mask 0x18 description "VBOR set to 2.8V"
+      setting 0x8 mask 0x18 description "VBOR set to 4.3V"
+      setting 0x0 mask 0x18 description "VBOR set to 4.6V"
+    BOREN mask 0x6 description "Brown Out Detect"
+      setting 0x6 mask 0x6 description "Brown-out Reset enabled in hardware only (SBOREN is disabled)"
+      setting 0x4 mask 0x6 description "Brown-out Reset enabled in hardware only and disabled in Sleep mode (SBOREN is disabled)"
+      setting 0x2 mask 0x6 description "Enabled"
+      setting 0x0 mask 0x6 description "Disabled"
+    PWRT mask 0x1 description "Power Up Timer"
       setting 0x1 mask 0x1 description "Disabled"
       setting 0x0 mask 0x1 description "Enabled"
   }
 
   configuration CONFIG3H at 0x300005 width 8 {
     MCLRE mask 0x80 description "Master Clear Enable"
-      setting 0x80 mask 0x80 description "MCLR Enabled, RG5 Disabled"
-      setting 0x0 mask 0x80 description "MCLR Disabled, RG5 Enabled"
+      setting 0x80 mask 0x80 description "Enabled"
+      setting 0x0 mask 0x80 description "Disabled"
     LPT1OSC mask 0x4 description "Low Power Timer1 Osc enable"
       setting 0x4 mask 0x4 description "Enabled"
       setting 0x0 mask 0x4 description "Disabled"
-    CCP2MUX mask 0x1 description "CCP2 Mux"
-      setting 0x1 mask 0x1 description "RC1"
-      setting 0x0 mask 0x1 description "RE7 in microcontroller mode - RB3 in others"
+    CCP2MX mask 0x1 description "CCP2 Mux"
+      setting 0x1 mask 0x1 description "CCP2 input/output is multiplexed with RC1"
+      setting 0x0 mask 0x1 description "CCP2 is multiplexed with RB3 in Extended Microcontroller, Microprocessor or Microprocessor with Boot Block mode. Or with RE7 in Microcontroller mode."
   }
 
   configuration CONFIG3L at 0x300004 width 8 {
@@ -488,35 +488,35 @@ controller PIC18F8410 {
       setting 0x80 mask 0x80 description "Disabled"
       setting 0x0 mask 0x80 description "Enabled"
     BW mask 0x40 description "Bus Width"
-      setting 0x40 mask 0x40 description "16-bit external"
-      setting 0x0 mask 0x40 description "8-bit external"
-    PMODE mask 0x3 description "Processor Mode"
-      setting 0x3 mask 0x3 description "Microcontroller"
-      setting 0x2 mask 0x3 description "Microprocessor"
-      setting 0x1 mask 0x3 description "Microprocessor w/Boot"
-      setting 0x0 mask 0x3 description "Ext Microcontroller"
+      setting 0x40 mask 0x40 description "16-bit External Bus Data Width"
+      setting 0x0 mask 0x40 description "8-bit External Bus Data Width"
+    PM mask 0x3 description "Processor Mode"
+      setting 0x3 mask 0x3 description "Microcontroller mode"
+      setting 0x2 mask 0x3 description "Microprocessor mode"
+      setting 0x1 mask 0x3 description "Microprocessor with Boot Block mode"
+      setting 0x0 mask 0x3 description "Extended Microcontroller mode"
   }
 
   configuration CONFIG4L at 0x300006 width 8 {
-    BACKBUG mask 0x80 description "Background Debug"
+    DEBUG mask 0x80 description "Background Debugger Enable bit"
       setting 0x80 mask 0x80 description "Disabled"
       setting 0x0 mask 0x80 description "Enabled"
     XINST mask 0x40 description "Extended Instruction Set Enable bit"
       setting 0x40 mask 0x40 description "Enabled"
       setting 0x0 mask 0x40 description "Disabled"
-    STVR mask 0x1 description "Stack Overflow Reset"
+    STVREN mask 0x1 description "Stack Overflow Reset"
       setting 0x1 mask 0x1 description "Enabled"
       setting 0x0 mask 0x1 description "Disabled"
   }
 
   configuration CONFIG5L at 0x300008 width 1 {
-    CP_0 mask 0x1 description "Code Protect 00000-03FFF"
+    CP mask 0x1 description "Code Protect 00000-03FFF"
       setting 0x1 mask 0x1 description "Disabled"
       setting 0x0 mask 0x1 description "Enabled"
   }
 
   configuration CONFIG7L at 0x30000C width 1 {
-    EBTR_0 mask 0x1 description "Table Read Protect 00000-03FFF"
+    EBTR mask 0x1 description "Table Read Protect 00000-03FFF"
       setting 0x1 mask 0x1 description "Disabled"
       setting 0x0 mask 0x1 description "Enabled"
   }

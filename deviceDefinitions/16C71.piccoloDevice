@@ -2,10 +2,10 @@ controller PIC16C71 {
   processor "mid-range" ;
   romsize 1024 ;
   bank 2 ;
-  unusedregister 0x7 ;
-  unusedregister 0x87 ;
   unusedregister 0x30 to 0x7F ;
   unusedregister 0xB0 to 0xFF ;
+  unusedregister 0x7 ;
+  unusedregister 0x87 ;
   ram gprs : 0xC to 0x2F ;
   # Total ram: 36
 
@@ -54,20 +54,20 @@ controller PIC16C71 {
   register TRISB at 0x86
     <TRISB7, TRISB6, TRISB5, TRISB4, TRISB3, TRISB2, TRISB1, TRISB0> ;
 
-  configuration CONFIG at 0x2007 width 5 {
-    CP mask 0x10 description "Code Protect"
-      setting 0x10 mask 0x10 description "Off"
-      setting 0x0 mask 0x10 description "On"
-    PUT mask 0x8 description "Power Up Timer"
-      setting 0x8 mask 0x8 description "On"
-      setting 0x0 mask 0x8 description "Off"
-    WDT mask 0x4 description "Watchdog Timer"
-      setting 0x4 mask 0x4 description "On"
-      setting 0x0 mask 0x4 description "Off"
-    OSC mask 0x3 description "Oscillator"
-      setting 0x3 mask 0x3 description "RC"
-      setting 0x0 mask 0x3 description "LP"
-      setting 0x1 mask 0x3 description "XT"
-      setting 0x2 mask 0x3 description "HS"
+  configuration CONFIG1 at 0x2007 width 5 {
+    CP mask 0x10 description "Code Protection bit"
+      setting 0x10 mask 0x10 description "Disabled"
+      setting 0x0 mask 0x10 description "Enabled"
+    PWRTE mask 0x8 description "Power-up Timer Enable bit"
+      setting 0x8 mask 0x8 description "Enabled"
+      setting 0x0 mask 0x8 description "Disabled"
+    WDTE mask 0x4 description "Watchdog Timer Enable bit"
+      setting 0x4 mask 0x4 description "Enabled"
+      setting 0x0 mask 0x4 description "Disabled"
+    FOSC mask 0x3 description "Oscillator selection bits"
+      setting 0x3 mask 0x3 description "RC oscillator"
+      setting 0x0 mask 0x3 description "LP oscillator"
+      setting 0x1 mask 0x3 description "XT oscillator"
+      setting 0x2 mask 0x3 description "HS oscillator"
   }
 }
