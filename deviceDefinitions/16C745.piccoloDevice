@@ -43,7 +43,7 @@ controller PIC16C745 {
     <-, -, -, -, BC [4]> ;
 
   register BD0IST at 0x1A4
-    <UOWN, DATA0:1, PID3, PID2, PID1/DTS, PID0/BSTALL, -, -> ;
+    <UOWN, DATA0, PID3, PID2, PID1/DTS, PID0/BSTALL, -, -> ;
 
   register BD0OAL at 0x1A2
     <BUFADRL [8]> ;
@@ -52,7 +52,7 @@ controller PIC16C745 {
     <-, -, -, -, BC [4]> ;
 
   register BD0OST at 0x1A0
-    <UOWN, DATA0:1, PID3, PID2, PID1/DTS, PID0/BSTALL, -, -> ;
+    <UOWN, DATA0, PID3, PID2, PID1/DTS, PID0/BSTALL, -, -> ;
 
   register BD1IAL at 0x1AE
     <BUFADRL [8]> ;
@@ -61,7 +61,7 @@ controller PIC16C745 {
     <-, -, -, -, BC [4]> ;
 
   register BD1IST at 0x1AC
-    <UOWN, DATA0:1, PID3, PID2, PID1/DTS, PID0/BSTALL, -, -> ;
+    <UOWN, DATA0, PID3, PID2, PID1/DTS, PID0/BSTALL, -, -> ;
 
   register BD1OAL at 0x1AA
     <BUFADRL [8]> ;
@@ -70,7 +70,7 @@ controller PIC16C745 {
     <-, -, -, -, BC [4]> ;
 
   register BD1OST at 0x1A8
-    <UOWN, DATA0:1, PID3, PID2, PID1/DTS, PID0/BSTALL, -, -> ;
+    <UOWN, DATA0, PID3, PID2, PID1/DTS, PID0/BSTALL, -, -> ;
 
   register BD2IAL at 0x1B6
     <BUFADRL [8]> ;
@@ -79,7 +79,7 @@ controller PIC16C745 {
     <-, -, -, -, BC [4]> ;
 
   register BD2IST at 0x1B4
-    <UOWN, DATA0:1, PID3, PID2, PID1/DTS, PID0/BSTALL, -, -> ;
+    <UOWN, DATA0, PID3, PID2, PID1/DTS, PID0/BSTALL, -, -> ;
 
   register BD2OAL at 0x1B2
     <BUFADRL [8]> ;
@@ -88,7 +88,7 @@ controller PIC16C745 {
     <-, -, -, -, BC [4]> ;
 
   register BD2OST at 0x1B0
-    <UOWN, DATA0:1, PID3, PID2, PID1/DTS, PID0/BSTALL, -, -> ;
+    <UOWN, DATA0, PID3, PID2, PID1/DTS, PID0/BSTALL, -, -> ;
 
   register CCP1CON at 0x17
     <-, -, DC1B [2], CCP1M [4]> ;
