@@ -1,13 +1,11 @@
 //---------------------------------------------------------------------------*
 //                                                                           *
-//  AC_GALGAS_root : root type for all GALGAS types                          *
+//  Collection of macros for using C++11 std::thread.                        *
 //                                                                           *
 //  This file is part of libpm library                                       *
 //                                                                           *
-//  Copyright (C) 2010, ..., 2011 Pierre Molinaro.                           *
-//                                                                           *
+//  Copyright (C) 2012, ..., 2012 Pierre Molinaro.                           *
 //  e-mail : molinaro@irccyn.ec-nantes.fr                                    *
-//                                                                           *
 //  IRCCyN, Institut de Recherche en Communications et Cybernetique de Nantes*
 //  ECN, Ecole Centrale de Nantes (France)                                   *
 //                                                                           *
@@ -23,71 +21,49 @@
 //                                                                           *
 //---------------------------------------------------------------------------*
 
-#include "galgas2/predefined-types.h"
-#include "galgas2/C_galgas_io.h"
+#ifndef THREAD_MACROS_DEFINED
+#define THREAD_MACROS_DEFINED
 
 //---------------------------------------------------------------------------*
 
-#include <stdio.h>
-
-//---------------------------------------------------------------------------*
-
-macroDeclareMutex (gInsulationMutex) ;
-
-//---------------------------------------------------------------------------*
-
-void AC_GALGAS_root::log (const char * inMessage COMMA_LOCATION_ARGS) const {
-  C_String s ;
-  s << "LOGGING " << inMessage << ": " ;
-  description (s, 0) ;
-  s << "\n" ;
-  ggs_printMessage (s COMMA_THERE) ;
-}
-
-//---------------------------------------------------------------------------*
-
-GALGAS_string AC_GALGAS_root::reader_description (UNUSED_LOCATION_ARGS) const {
-  GALGAS_string result ;
-  if (isValid ()) {
-    C_String s ;
-    description (s, 0) ;
-    result = GALGAS_string (s) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor * AC_GALGAS_root::dynamicTypeDescriptor (void) const {
-  return staticTypeDescriptor () ;
-}
-
-//---------------------------------------------------------------------------*
-
-GALGAS_type AC_GALGAS_root::reader_staticType (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_type (staticTypeDescriptor ()) ;
-}
-
-//---------------------------------------------------------------------------*
-
-GALGAS_type AC_GALGAS_root::reader_dynamicType (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_type (dynamicTypeDescriptor ()) ;
-}
-
-//---------------------------------------------------------------------------*
-
-GALGAS_object AC_GALGAS_root::reader_object (LOCATION_ARGS) const {
-  return GALGAS_object (clonedObject () COMMA_THERE) ;
-}
-
-//---------------------------------------------------------------------------*
-
-#ifndef DO_NOT_GENERATE_CHECKINGS
-  void AC_GALGAS_root::checkIsValid (LOCATION_ARGS) const {
-    MF_AssertThere (isValid (), "Object not valid", 0, 0) ;
-  }
+#ifndef LIBPM_MULTI_THREADING
+  #error the LIBPM_MULTI_THREADING should be defined
 #endif
 
 //---------------------------------------------------------------------------*
 
+#if LIBPM_MULTI_THREADING_ENABLED == 1
+  #include <thread>
+#endif
 
+//---------------------------------------------------------------------------*
+
+#if LIBPM_MULTI_THREADING_ENABLED == 1
+  #define macroDeclareStaticMutex(MUTEX_NAME) static std::mutex MUTEX_NAME ;
+  #define macroDeclareMutex(MUTEX_NAME)              std::mutex MUTEX_NAME ;
+  #define macroDeclareExternMutex(MUTEX_NAME) extern std::mutex MUTEX_NAME ;
+#else
+  #define macroDeclareStaticMutex(MUTEX_NAME)
+  #define macroDeclareMutex(MUTEX_NAME)
+  #define macroDeclareExternMutex(MUTEX_NAME)
+#endif
+
+//---------------------------------------------------------------------------*
+
+#if LIBPM_MULTI_THREADING_ENABLED == 1
+  #define macroMutexLock(MUTEX_NAME) MUTEX_NAME.lock () ;
+#else
+  #define macroMutexLock(MUTEX_NAME)
+#endif
+
+//---------------------------------------------------------------------------*
+
+#if LIBPM_MULTI_THREADING_ENABLED == 1
+  #define macroMutexUnlock(MUTEX_NAME) MUTEX_NAME.unlock () ;
+#else
+  #define macroMutexUnlock(MUTEX_NAME)
+#endif
+
+//---------------------------------------------------------------------------*
+
+#endif
