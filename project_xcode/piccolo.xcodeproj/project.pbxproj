@@ -56,7 +56,7 @@
 		E9A67C9251D3E7C7161C83AC /* C_UIntCommandLineOption.cpp */ = {isa = PBXBuildFile; fileRef = C39F506AF761D2277D853A92 ; settings = {ATTRIBUTES = (); }; };
 		7E12435A724A8F30FDDADD9C /* C_StringCommandLineOption.cpp */ = {isa = PBXBuildFile; fileRef = F34C2313A562076992E50AA3 ; settings = {ATTRIBUTES = (); }; };
 		E0800B49D76FED33A21F6698 /* F_Analyze_CLI_Options.cpp */ = {isa = PBXBuildFile; fileRef = E12ABCB736AB9A754FFB617A ; settings = {ATTRIBUTES = (); }; };
-		467CCD3AA5AF24DB320235DD /* F_main.cpp */ = {isa = PBXBuildFile; fileRef = 102A8D3BE2FE5614F42BA989 ; settings = {ATTRIBUTES = (); }; };
+		467CCD3AA5AF24DB320235DD /* F_mainForLIBPM.cpp */ = {isa = PBXBuildFile; fileRef = 102A8D3BE2FE5614F42BA989 ; settings = {ATTRIBUTES = (); }; };
 		56EA8AE0BE8B5306971900A4 /* C_FileManager.cpp */ = {isa = PBXBuildFile; fileRef = 4FD6BFB47701CBC8A1653ADA ; settings = {ATTRIBUTES = (); }; };
 		B70C9DCD35E62896010CD9FF /* AC_FileHandle.cpp */ = {isa = PBXBuildFile; fileRef = 04CE6E82442C770F7C8606F0 ; settings = {ATTRIBUTES = (); }; };
 		D4B7B94528899DE0A43B9FB3 /* AC_FileHandleForWriting.cpp */ = {isa = PBXBuildFile; fileRef = 827B703E6ACF9C726942A1E4 ; settings = {ATTRIBUTES = (); }; };
@@ -179,7 +179,7 @@
 		1C2EC9232F3A2F028AD5C89B /* C_UIntCommandLineOption.cpp */ = {isa = PBXBuildFile; fileRef = C39F506AF761D2277D853A92 ; settings = {ATTRIBUTES = (); }; };
 		83065D403869739AE7F0995E /* C_StringCommandLineOption.cpp */ = {isa = PBXBuildFile; fileRef = F34C2313A562076992E50AA3 ; settings = {ATTRIBUTES = (); }; };
 		0361D157D9673ECB926AF5AE /* F_Analyze_CLI_Options.cpp */ = {isa = PBXBuildFile; fileRef = E12ABCB736AB9A754FFB617A ; settings = {ATTRIBUTES = (); }; };
-		0BEDED7D215102B49D5C09A0 /* F_main.cpp */ = {isa = PBXBuildFile; fileRef = 102A8D3BE2FE5614F42BA989 ; settings = {ATTRIBUTES = (); }; };
+		0BEDED7D215102B49D5C09A0 /* F_mainForLIBPM.cpp */ = {isa = PBXBuildFile; fileRef = 102A8D3BE2FE5614F42BA989 ; settings = {ATTRIBUTES = (); }; };
 		E8752B27EDA3A12363109E80 /* C_FileManager.cpp */ = {isa = PBXBuildFile; fileRef = 4FD6BFB47701CBC8A1653ADA ; settings = {ATTRIBUTES = (); }; };
 		EA13F91BF3C48159F7C24F78 /* AC_FileHandle.cpp */ = {isa = PBXBuildFile; fileRef = 04CE6E82442C770F7C8606F0 ; settings = {ATTRIBUTES = (); }; };
 		AFDF976CFDC032E3BDE78DE5 /* AC_FileHandleForWriting.cpp */ = {isa = PBXBuildFile; fileRef = 827B703E6ACF9C726942A1E4 ; settings = {ATTRIBUTES = (); }; };
@@ -396,7 +396,8 @@
 		7931B6B7A7D29490FE5EC9F9 /* F_DisplayException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "F_DisplayException.h"; path = "F_DisplayException.h"; sourceTree = "<group>"; };
 		6976570B0353203EC4474217 /* F_GetPrime.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "F_GetPrime.cpp"; path = "F_GetPrime.cpp"; sourceTree = "<group>"; };
 		C48A2CFB5F2217FBFB00722D /* F_GetPrime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "F_GetPrime.h"; path = "F_GetPrime.h"; sourceTree = "<group>"; };
-		102A8D3BE2FE5614F42BA989 /* F_main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "F_main.cpp"; path = "F_main.cpp"; sourceTree = "<group>"; };
+		102A8D3BE2FE5614F42BA989 /* F_mainForLIBPM.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "F_mainForLIBPM.cpp"; path = "F_mainForLIBPM.cpp"; sourceTree = "<group>"; };
+		17772E42B59D74CFF571FBB3 /* F_mainForLIBPM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "F_mainForLIBPM.h"; path = "F_mainForLIBPM.h"; sourceTree = "<group>"; };
 		F65B6DF5B5E3F94D95B11DAF /* GALGAS_application.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "GALGAS_application.cpp"; path = "GALGAS_application.cpp"; sourceTree = "<group>"; };
 		DB5B34375400904F03D8E6A5 /* GALGAS_binaryset.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "GALGAS_binaryset.cpp"; path = "GALGAS_binaryset.cpp"; sourceTree = "<group>"; };
 		5662576BD1AC5AAF16B3FCA4 /* GALGAS_bool.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "GALGAS_bool.cpp"; path = "GALGAS_bool.cpp"; sourceTree = "<group>"; };
@@ -528,7 +529,6 @@
 		22BCC25A6F606EB525FFDC56 /* ipic_generic.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "ipic_generic.cpp"; path = "ipic_generic.cpp"; sourceTree = "<group>"; };
 		F062936A96D3C8BD1F8F2FF3 /* ipic_generic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "ipic_generic.h"; path = "ipic_generic.h"; sourceTree = "<group>"; };
 		685A0DD18FB6A08AF0923DE0 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.obj; name = "main.m"; path = "main.m"; sourceTree = "<group>"; };
-		17772E42B59D74CFF571FBB3 /* mainForLIBPM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "mainForLIBPM.h"; path = "mainForLIBPM.h"; sourceTree = "<group>"; };
 		C689C1D0E3B9CCC3AB651BC5 /* md5.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "md5.cpp"; path = "md5.cpp"; sourceTree = "<group>"; };
 		1E7298BB9930789C8ED59D48 /* md5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "md5.h"; path = "md5.h"; sourceTree = "<group>"; };
 		1EAE257E44AA9D5BADE97BAF /* midrange_build_binary_code.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "midrange_build_binary_code.cpp"; path = "midrange_build_binary_code.cpp"; sourceTree = "<group>"; };
@@ -824,8 +824,8 @@
 				2B5D3E95D4A733FCFB77BD7E /* C_builtin_CLI_Options.h */,
 				E12ABCB736AB9A754FFB617A /* F_Analyze_CLI_Options.cpp */,
 				84FB43402106C575658472FA /* F_Analyze_CLI_Options.h */,
-				102A8D3BE2FE5614F42BA989 /* F_main.cpp */,
-				17772E42B59D74CFF571FBB3 /* mainForLIBPM.h */,
+				102A8D3BE2FE5614F42BA989 /* F_mainForLIBPM.cpp */,
+				17772E42B59D74CFF571FBB3 /* F_mainForLIBPM.h */,
 			);
 			name = "Command Line Interface";
 			path = "command_line_interface";
