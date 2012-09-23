@@ -6,6 +6,7 @@ project all_piccolo -> "piccolo" :
   feature "makefile_mingw_on_macosx" ;
   feature "makefile_msys_on_win32" ;
   feature "SnowLeopard" ;
+  feature applicationBundleBase : "fr.irccyn" ;
 
   option    "piccolo_options.gOption" ;
 

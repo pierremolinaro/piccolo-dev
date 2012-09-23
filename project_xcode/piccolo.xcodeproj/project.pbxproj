@@ -266,7 +266,7 @@
 		B69F8E13F14B405E038DEB64 /* enterDefaultCommandLineOptions.m */ = {isa = PBXBuildFile; fileRef = E1CC6BB9F0CD2A47751A186F ; settings = {ATTRIBUTES = (); }; };
 		4646C57502B480DC052C4FE1 /* OC_GGS_Document.m */ = {isa = PBXBuildFile; fileRef = B098B75C294DFFDC3E463904 ; settings = {ATTRIBUTES = (); }; };
 		D09CF1A0EC3E19C7F2529F2B /* OC_GGS_DocumentData.m */ = {isa = PBXBuildFile; fileRef = B63885E0D7C260CC007E8B9D ; settings = {ATTRIBUTES = (); }; };
-		28506CCB6F72B12C0245DDBC /* OC_GGS_PreferencesController.m */ = {isa = PBXBuildFile; fileRef = 9D8A121CE581499D7B701668 ; settings = {ATTRIBUTES = (); }; };
+		28506CCB6F72B12C0245DDBC /* OC_GGS_ApplicationDelegate.m */ = {isa = PBXBuildFile; fileRef = 9D8A121CE581499D7B701668 ; settings = {ATTRIBUTES = (); }; };
 		2EF83DEFF5C7813A67E14F0A /* PMIssueDescriptor.m */ = {isa = PBXBuildFile; fileRef = 86960EEB576A8FD4C9EC6997 ; settings = {ATTRIBUTES = (); }; };
 		60135C32E34F46A71175850C /* OC_GGS_TextDisplayDescriptor.m */ = {isa = PBXBuildFile; fileRef = E11FB9384C4CF38708677C48 ; settings = {ATTRIBUTES = (); }; };
 		5C68F1206823815F66102863 /* OC_GGS_TextSyntaxColoring.m */ = {isa = PBXBuildFile; fileRef = DE89D9058FCB0B968DBBBD68 ; settings = {ATTRIBUTES = (); }; };
@@ -281,8 +281,8 @@
 		C9FCECB0778AFBC7924494A6 /* piccolo_cocoa.m */ = {isa = PBXBuildFile; fileRef = 8E4C41F2747BFA2F1B5F87DB ; settings = {ATTRIBUTES = (); }; };
 		78CC36C46D02F9AF3BEF918B /* AppKit.framework */ = {isa = PBXBuildFile; fileRef = 743DC5D013B1ABAEBD2FAED2 ; settings = {ATTRIBUTES = (); }; };
 		7D909E714C0774E22CB806F2 /* Cocoa.framework */ = {isa = PBXBuildFile; fileRef = 65C712C49D51A18A32B39F0C ; settings = {ATTRIBUTES = (); }; };
-		B4327BDD4EBBEBCB2BA10A00 /* piccolo_app.icns */ = {isa = PBXBuildFile; fileRef = 9D1751CF3F247855F937B982 ; settings = {ATTRIBUTES = (); }; };
-		CBCC4D7336496819A46A1B68 /* piccolo_source.icns */ = {isa = PBXBuildFile; fileRef = B505FFED0D024130F58C5CFA ; settings = {ATTRIBUTES = (); }; };
+		B4327BDD4EBBEBCB2BA10A00 /* application_icns.icns */ = {isa = PBXBuildFile; fileRef = 9D1751CF3F247855F937B982 ; settings = {ATTRIBUTES = (); }; };
+		CBCC4D7336496819A46A1B68 /* piccolo_icns.icns */ = {isa = PBXBuildFile; fileRef = B505FFED0D024130F58C5CFA ; settings = {ATTRIBUTES = (); }; };
 		CB91BC419542CE9FA43902DC /* piccolo */ = {isa = PBXBuildFile; fileRef = 6393C9111E6526EA173A7C8B ; settings = {ATTRIBUTES = (); }; };
 		897F78948B91F03172341B7B /* piccolo_debug */ = {isa = PBXBuildFile; fileRef = F376FFFE2EE4DDF4A988880D ; settings = {ATTRIBUTES = (); }; };
 		58CF22DF63D3344AD89919CF /* I_Stop.tiff */ = {isa = PBXBuildFile; fileRef = 6DA19D22B51C68001E7E0E54 ; settings = {ATTRIBUTES = (); }; };
@@ -425,6 +425,8 @@
 		3860DB1D11B6ACCA57D8EA88 /* M_SourceLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "M_SourceLocation.h"; path = "M_SourceLocation.h"; sourceTree = "<group>"; };
 		C6FCB220FFE637CDA29BB3F6 /* M_Threads.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "M_Threads.h"; path = "M_Threads.h"; sourceTree = "<group>"; };
 		FC03EB9DED908C236BD1996D /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xib; name = "English"; path = "English.lproj/MainMenu.xib"; sourceTree = "<group>"; };
+		BB0B408017B62254211691B5 /* OC_GGS_ApplicationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "OC_GGS_ApplicationDelegate.h"; path = "OC_GGS_ApplicationDelegate.h"; sourceTree = "<group>"; };
+		9D8A121CE581499D7B701668 /* OC_GGS_ApplicationDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.obj; name = "OC_GGS_ApplicationDelegate.m"; path = "OC_GGS_ApplicationDelegate.m"; sourceTree = "<group>"; };
 		2726FB0A03BB19F2D8D9524D /* OC_GGS_BuildTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "OC_GGS_BuildTask.h"; path = "OC_GGS_BuildTask.h"; sourceTree = "<group>"; };
 		2BA9336A670E36D0ED79BC43 /* OC_GGS_BuildTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.obj; name = "OC_GGS_BuildTask.m"; path = "OC_GGS_BuildTask.m"; sourceTree = "<group>"; };
 		5B3F9FC8EA15D152ADD07294 /* OC_GGS_CommandLineOption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "OC_GGS_CommandLineOption.h"; path = "OC_GGS_CommandLineOption.h"; sourceTree = "<group>"; };
@@ -434,8 +436,6 @@
 		CFA5649E7003B83DD4755294 /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xib; name = "English"; path = "English.lproj/OC_GGS_Document.xib"; sourceTree = "<group>"; };
 		524DEF3DCA464469D2CF9F3E /* OC_GGS_DocumentData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "OC_GGS_DocumentData.h"; path = "OC_GGS_DocumentData.h"; sourceTree = "<group>"; };
 		B63885E0D7C260CC007E8B9D /* OC_GGS_DocumentData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.obj; name = "OC_GGS_DocumentData.m"; path = "OC_GGS_DocumentData.m"; sourceTree = "<group>"; };
-		BB0B408017B62254211691B5 /* OC_GGS_PreferencesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "OC_GGS_PreferencesController.h"; path = "OC_GGS_PreferencesController.h"; sourceTree = "<group>"; };
-		9D8A121CE581499D7B701668 /* OC_GGS_PreferencesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.obj; name = "OC_GGS_PreferencesController.m"; path = "OC_GGS_PreferencesController.m"; sourceTree = "<group>"; };
 		EF840F0C74A814EC9237B6EC /* OC_GGS_RulerViewForBuildOutput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "OC_GGS_RulerViewForBuildOutput.h"; path = "OC_GGS_RulerViewForBuildOutput.h"; sourceTree = "<group>"; };
 		D8F4755FF269862EA77393DD /* OC_GGS_RulerViewForBuildOutput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.obj; name = "OC_GGS_RulerViewForBuildOutput.m"; path = "OC_GGS_RulerViewForBuildOutput.m"; sourceTree = "<group>"; };
 		6EBAAFC66CC0879C71B5DB5C /* OC_GGS_RulerViewForTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "OC_GGS_RulerViewForTextView.h"; path = "OC_GGS_RulerViewForTextView.h"; sourceTree = "<group>"; };
@@ -487,6 +487,7 @@
 		4A4D452035300F18B984988C /* TF_sup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "TF_sup.h"; path = "TF_sup.h"; sourceTree = "<group>"; };
 		59E3BB12D203F45A912EEAF2 /* acPtr_class.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "acPtr_class.cpp"; path = "acPtr_class.cpp"; sourceTree = "<group>"; };
 		CBCC5E5D1C6E28598E8CBBE8 /* acPtr_class.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "acPtr_class.h"; path = "acPtr_class.h"; sourceTree = "<group>"; };
+		9D1751CF3F247855F937B982 /* application_icns.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = "application_icns.icns"; path = "application_icns.icns"; sourceTree = "<group>"; };
 		63A49DA13542E0726B7BB758 /* basic-allocation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "basic-allocation.cpp"; path = "basic-allocation.cpp"; sourceTree = "<group>"; };
 		6E43BE4F209556518C2FCB54 /* basic-allocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "basic-allocation.h"; path = "basic-allocation.h"; sourceTree = "<group>"; };
 		E457DDEF7F2C4F25DC8FA865 /* cCollectionElement.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "cCollectionElement.cpp"; path = "cCollectionElement.cpp"; sourceTree = "<group>"; };
@@ -568,7 +569,6 @@
 		A9DED88F18ECEE47145A72C0 /* piccoloDevice_semantics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "piccoloDevice_semantics.h"; path = "piccoloDevice_semantics.h"; sourceTree = "<group>"; };
 		30BD3DCAEFC96F40275BDC0A /* piccoloDevice_syntax.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "piccoloDevice_syntax.cpp"; path = "piccoloDevice_syntax.cpp"; sourceTree = "<group>"; };
 		778DFAECDC212708F721B788 /* piccoloDevice_syntax.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "piccoloDevice_syntax.h"; path = "piccoloDevice_syntax.h"; sourceTree = "<group>"; };
-		9D1751CF3F247855F937B982 /* piccolo_app.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = "piccolo_app.icns"; path = "piccolo_app.icns"; sourceTree = "<group>"; };
 		8E4C41F2747BFA2F1B5F87DB /* piccolo_cocoa.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.obj; name = "piccolo_cocoa.m"; path = "piccolo_cocoa.m"; sourceTree = "<group>"; };
 		95D565EF66E7DFF9F98764DA /* piccolo_computations.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "piccolo_computations.cpp"; path = "piccolo_computations.cpp"; sourceTree = "<group>"; };
 		4DFA42CADDBD0694A4E9BDC8 /* piccolo_config.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "piccolo_config.cpp"; path = "piccolo_config.cpp"; sourceTree = "<group>"; };
@@ -578,13 +578,13 @@
 		6AB90CE0268229151C9BDE11 /* piccolo_embedded_devices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "piccolo_embedded_devices.h"; path = "piccolo_embedded_devices.h"; sourceTree = "<group>"; };
 		3AFB633E50CDF1B20DE6F466 /* piccolo_grammar.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "piccolo_grammar.cpp"; path = "piccolo_grammar.cpp"; sourceTree = "<group>"; };
 		754BA1C09B3695E0CB6CDE7F /* piccolo_grammar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "piccolo_grammar.h"; path = "piccolo_grammar.h"; sourceTree = "<group>"; };
+		B505FFED0D024130F58C5CFA /* piccolo_icns.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = "piccolo_icns.icns"; path = "piccolo_icns.icns"; sourceTree = "<group>"; };
 		6A60928B05A7E228A89C3799 /* piccolo_lexique.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "piccolo_lexique.cpp"; path = "piccolo_lexique.cpp"; sourceTree = "<group>"; };
 		80A295F8076B1C5722A46AA2 /* piccolo_lexique.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "piccolo_lexique.h"; path = "piccolo_lexique.h"; sourceTree = "<group>"; };
 		A126B2F4B2374F342BE9ED44 /* piccolo_options.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "piccolo_options.cpp"; path = "piccolo_options.cpp"; sourceTree = "<group>"; };
 		7FBDB1988EF4C628EBA02591 /* piccolo_options.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "piccolo_options.h"; path = "piccolo_options.h"; sourceTree = "<group>"; };
 		4163B3523AFE57C2E008BC8C /* piccolo_program.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "piccolo_program.cpp"; path = "piccolo_program.cpp"; sourceTree = "<group>"; };
 		6E7929B125F8597834FA83A4 /* piccolo_program.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "piccolo_program.h"; path = "piccolo_program.h"; sourceTree = "<group>"; };
-		B505FFED0D024130F58C5CFA /* piccolo_source.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = "piccolo_source.icns"; path = "piccolo_source.icns"; sourceTree = "<group>"; };
 		4608232E07D3AA3D998E5135 /* piccolo_syntax.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "piccolo_syntax.cpp"; path = "piccolo_syntax.cpp"; sourceTree = "<group>"; };
 		5C00B1249BBE3554A4FDF6FB /* piccolo_syntax.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "piccolo_syntax.h"; path = "piccolo_syntax.h"; sourceTree = "<group>"; };
 		930E414107EE22B6198C578F /* predefined-types.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "predefined-types.cpp"; path = "predefined-types.cpp"; sourceTree = "<group>"; };
@@ -746,8 +746,8 @@
 				74270FD093EE8A9BF8AE7D0B /* OC_GGS_Document.h */,
 				B63885E0D7C260CC007E8B9D /* OC_GGS_DocumentData.m */,
 				524DEF3DCA464469D2CF9F3E /* OC_GGS_DocumentData.h */,
-				9D8A121CE581499D7B701668 /* OC_GGS_PreferencesController.m */,
-				BB0B408017B62254211691B5 /* OC_GGS_PreferencesController.h */,
+				9D8A121CE581499D7B701668 /* OC_GGS_ApplicationDelegate.m */,
+				BB0B408017B62254211691B5 /* OC_GGS_ApplicationDelegate.h */,
 				86960EEB576A8FD4C9EC6997 /* PMIssueDescriptor.m */,
 				D7DBBB00F97BA6CE92BF5ADD /* PMIssueDescriptor.h */,
 				E11FB9384C4CF38708677C48 /* OC_GGS_TextDisplayDescriptor.m */,
@@ -1047,8 +1047,8 @@
 		2E0716F3D8A7A5C4E0DE0D9A /* User Resources */ = {
 			isa = PBXGroup;
 			children = (
-				9D1751CF3F247855F937B982 /* piccolo_app.icns */,
-				B505FFED0D024130F58C5CFA /* piccolo_source.icns */,
+				9D1751CF3F247855F937B982 /* application_icns.icns */,
+				B505FFED0D024130F58C5CFA /* piccolo_icns.icns */,
 			);
 			name = "User Resources";
 			path = "userResources";
@@ -1569,13 +1569,11 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				GCC_DEBUGGING_SYMBOLS = default;
 				GCC_ENABLE_OBJC_GC = required;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_THREADSAFE_STATICS = NO;
 				GCC_TREAT_IMPLICIT_FUNCTION_DECLARATIONS_AS_ERRORS = YES;
-				GCC_TREAT_NONCONFORMANT_CODE_ERRORS_AS_WARNINGS = YES;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_INVALID_OFFSETOF_MACRO = YES;
@@ -1583,7 +1581,6 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_CHECK_SWITCH_STATEMENTS = YES;
-				GCC_WARN_EFFECTIVE_CPLUSPLUS_VIOLATIONS = YES;
 				GCC_WARN_FOUR_CHARACTER_CONSTANTS = YES;
 				GCC_WARN_HIDDEN_VIRTUAL_FUNCTIONS = YES;
 				GCC_WARN_INHIBIT_ALL_WARNINGS = NO;
@@ -1591,7 +1588,6 @@
 				GCC_WARN_MISSING_PARENTHESES = YES;
 				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
 				GCC_WARN_PEDANTIC = NO;
-				GCC_WARN_PROTOTYPE_CONVERSION = YES;
 				GCC_WARN_SHADOW = NO;
 				GCC_WARN_SIGN_COMPARE = YES;
 				GCC_WARN_TYPECHECK_CALLS_TO_PRINTF = YES;
@@ -1607,7 +1603,6 @@
 					"../galgas_sources/GALGAS_OUTPUT/libpm",
 					"../hand_coded_sources/**",
 				);
-				PREBINDING = NO;
 				SDKROOT = macosx10.6 ;
 			};
 			name = Default;
