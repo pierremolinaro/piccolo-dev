@@ -1,4 +1,4 @@
-program piccolo_program "version PICCOLO_BETA_VERSION":
+program piccolo_program:
 import "pic18_metamodel.gSemantics" ;
 import "pic18_semantics.gSemantics" ;
 import "piccolo_grammar.gGrammar" ;
