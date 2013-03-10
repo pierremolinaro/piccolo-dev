@@ -554,6 +554,20 @@ end method ;
 
 #----------------------------------------------------*
 
+class @ipic18_instruction_RETURN_NOT_OPTIMIZABLE extends @ipic_actualInstruction {
+}
+
+override
+method @ipic18_instruction_RETURN_NOT_OPTIMIZABLE displayIPICinstruction ?!@string ioListFileContents :
+  ioListFileContents .= "RETURN NOT OPTIMIZABLE" ;
+end method ;
+
+override method @ipic18_instruction_RETURN_NOT_OPTIMIZABLE nextInstructionIsReachable !@bool outIsReachable :
+  outIsReachable := false ;
+end method ;
+
+#----------------------------------------------------*
+
 class @ipic18_instruction_RETFIE extends @ipic_actualInstruction {
   @bool mFastReturn ;
 }
