@@ -42,6 +42,8 @@ routine findFirstInstructionFromAddress
     when >= @ipic_actualInstruction instr do
       outFirstInstruction := instr ;
       found := true ;
+    when >= @ipic_pseudo_ORG  do
+      found := true ;
     else
       currentAddress ++ ;
     end cast ;
@@ -67,6 +69,9 @@ routine findFirstInstructionOrLabelFromAddress
   do
     cast [inGeneratedInstructionList mInstructionAtIndex !currentAddress] :
     when >= @ipic_actualInstruction instr do
+      outFirstInstruction := instr ;
+      found := true ;
+    when >= @ipic_pseudo_ORG instr do
       outFirstInstruction := instr ;
       found := true ;
     when == @ipic_pseudo_LABEL instr do
@@ -98,7 +103,7 @@ method @ipic_JUMP optimizeJUMP
 #  log reachedLabelSet ; log inLineIndex ;
   if [reachedLabelSet hasKey ![mTargetLabel string]] then
     [!?ioGeneratedInstructionList setMInstructionAtIndex ![@ipic_NULL new] !inLineIndex] ;
-    ioListFileContents .= "  line " . [inLineIndex string] . ": JUMP branching to next instruction deleted\n" ;
+    ioListFileContents .= "  line " . [inLineIndex string] . ": JUMP '" . mTargetLabel . "' branching to next instruction deleted\n" ;
   else      
   #--- Find destination label definition line
     @uint line ; [inSymbolTable searchKey !mTargetLabel ?line] ;
@@ -113,7 +118,7 @@ method @ipic_JUMP optimizeJUMP
         !inLineIndex
       ] ;
       ioOptimizationsDone := true ;
-      ioListFileContents .= "  line " . [inLineIndex string] . ": JUMP branching to RETURN replaced by RETURN\n" ;
+      ioListFileContents .= "  line " . [inLineIndex string] . ": JUMP '" . mTargetLabel . "' branching to RETURN replaced by RETURN\n" ;
     when == @ipic18_instruction_literalOperation literalOp do
       if [literalOp mLiteralInstruction] == [@literal_instruction_opcode RETLW] then
         [!?ioGeneratedInstructionList setMInstructionAtIndex
@@ -121,7 +126,7 @@ method @ipic_JUMP optimizeJUMP
           !inLineIndex
         ] ;
         ioOptimizationsDone := true ;
-        ioListFileContents .= "  line " . [inLineIndex string] . ": JUMP branching to RETLW replaced by RETLW\n" ;
+        ioListFileContents .= "  line " . [inLineIndex string] . ": JUMP '" . mTargetLabel . "'branching to RETLW replaced by RETLW\n" ;
       end if ;
     when == @ipic_JUMP jump do
       if mTargetLabel != [jump mTargetLabel] then
@@ -130,7 +135,7 @@ method @ipic_JUMP optimizeJUMP
           !inLineIndex
         ] ;
         ioOptimizationsDone := true ;
-        ioListFileContents .= "  line " . [inLineIndex string] . ": JUMP branching to JUMP replaced by JUMP\n" ;
+        ioListFileContents .= "  line " . [inLineIndex string] . ": JUMP '" . mTargetLabel . "' branching to JUMP '" . [jump mTargetLabel] . "' replaced by JUMP '" . [jump mTargetLabel] . "'\n" ;
       end if ;
     else # No Optimization
     end cast ;
@@ -156,7 +161,7 @@ method @ipic_JSR optimizeJSR
       !inLineIndex
     ] ;
     ioOptimizationsDone := true ;
-    ioListFileContents .= "  line " . [inLineIndex string] . ": JSR followed by RETURN replaced by JUMP\n" ;
+    ioListFileContents .= "  line " . [inLineIndex string] . ": JSR '" . mTargetLabel . "' followed by RETURN replaced by JUMP\n" ;
   else
   end cast ;
 end method ;
@@ -181,7 +186,7 @@ method @ipic18_instruction_literalOperation optimizeMOVLW
         !inLineIndex
       ] ;
       ioOptimizationsDone := true ;
-      ioListFileContents .= "  line " . [inLineIndex string] . ": MOVLW followed by RETURN replaced by RETLW\n" ;
+      ioListFileContents .= "  line " . [inLineIndex string] . ": MOVLW " . mLiteralValue . " followed by RETURN replaced by RETLW " . mLiteralValue . "\n" ;
     else
     end cast ;
   end if ;
@@ -210,7 +215,7 @@ method @ipic18_instruction_conditionalBranch optimizeBCC
         !inLineIndex
       ] ;
       ioOptimizationsDone := true ;
-      ioListFileContents .= "  line " . [inLineIndex string] . ": label of JUMP " . [mConditionalBranch condition] . " branching to JUMP replaced by second JUMP label\n" ;
+      ioListFileContents .= "  line " . [inLineIndex string] . ": label of JUMP " . [mConditionalBranch condition] . " branching to JUMP '" . [jump mTargetLabel] . "' replaced by second JUMP '" . [jump mTargetLabel] . "'\n" ;
     end if ;
   else
   end cast ;

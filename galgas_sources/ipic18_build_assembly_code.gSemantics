@@ -347,6 +347,15 @@ end method ;
 
 #----------------------------------------------------*
 
+override method @ipic18_instruction_RETURN_NOT_OPTIMIZABLE buildAssemblyCode
+  ?!@stringlist ioStringList
+  ?!@uint unused ioBccLabelIndex
+:
+  ioStringList += !"  RETURN" ;
+end method ;
+
+#----------------------------------------------------*
+
  override method @ipic18_instruction_RETFIE buildAssemblyCode
   ?!@stringlist ioStringList
   ?!@uint unused ioBccLabelIndex

@@ -2170,7 +2170,7 @@ routine build_ipic18_assembly_instruction_list
     elsif [mReturnedBank uint] != [@uint max] then
       outGeneratedInstructionList += ![@ipic18_instruction_MOVLB new !here !mReturnedBank] ;
     end if ;
-    outGeneratedInstructionList += ![@ipic18_instruction_RETURN new !here] ;
+    outGeneratedInstructionList += ![@ipic18_instruction_RETURN_NOT_OPTIMIZABLE new !here] ;
     entryPoint := entryPoint + 4 ;
   end foreach ;
 #--- Output a listing ?

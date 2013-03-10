@@ -580,6 +580,16 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
+override method @ipic18_instruction_RETURN_NOT_OPTIMIZABLE generateBinaryCodeAtAddress
+  ??@ipic18_symbolTable unused inRoutineSymbolTable
+  ?!@uint unused ioAddress
+  ?!@emittedCodeList ioCode
+:
+  ioCode += ![@uintlist listWithValue !0x0012] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
 override method @ipic18_instruction_RETFIE generateBinaryCodeAtAddress
   ??@ipic18_symbolTable unused inRoutineSymbolTable
   ?!@uint unused ioAddress
