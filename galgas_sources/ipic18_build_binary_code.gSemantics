@@ -49,9 +49,7 @@ method @ipic_actualInstruction enterLabelAtAddress
   ?!@ipic18_symbolTable unused ioRoutineSymbolTable
   ?!@uint ioAddress
 :
-  @uint instructionLength ;
-  [selfcopy instructionLength ?instructionLength] ;
-  ioAddress := ioAddress  + instructionLength ;
+  ioAddress := ioAddress  + [selfcopy instructionLength] ;
 end method ;
 
 #----------------------------------------------------------------------------*
@@ -871,9 +869,7 @@ routine build_ipic18_binary_code
         emitCode !mValue ;
       end foreach ;
     end foreach ;
-    @uint instructionLength ;
-    [mInstruction instructionLength ?instructionLength] ;
-    currentAddress := currentAddress  + instructionLength ;
+    currentAddress := currentAddress  + [mInstruction instructionLength] ;
     checkCurrentEmitAddress !currentAddress ;
   end foreach ;
   if lastAddressForFirstPass != currentAddress then

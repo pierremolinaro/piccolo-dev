@@ -49,9 +49,7 @@ override method @ipic_actualInstruction defineLabelAtAddress
   ?!@ipic18_symbolTableForConvertingRelatives unused ioRoutineSymbolTable
   ?!@uint ioAddress
 :
-  @uint instructionLength ;
-  [selfcopy instructionLength ?instructionLength] ;
-  ioAddress := ioAddress  + instructionLength ;
+  ioAddress := ioAddress  + [selfcopy instructionLength] ;
 end method ;
 
 #----------------------------------------------------------------------------*
@@ -510,10 +508,8 @@ routine ipic18_convertRelativeBranchsToAbsoluteWhenNeeded
   #-------------------------------- Second pass: generate code
     currentAddress := 0 ;
     foreach ioGeneratedInstructionList index idx do
-      @uint instructionLength ;
-      [mInstruction instructionLength ?instructionLength] ;
       [mInstruction checkRelativeBranch !symbolTable !?currentAddress !?relativeBranchOverflow !?ioGeneratedInstructionList !idx !?ioListFileContents] ;
-      currentAddress := currentAddress  + instructionLength ;
+      currentAddress := currentAddress  + [mInstruction instructionLength] ;
     end foreach ;
     if lastAddressForFirstPass != currentAddress then
       error here: "Internal second pass error: the last address gets " . [currentAddress hexString]
