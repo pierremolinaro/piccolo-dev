@@ -630,6 +630,17 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
+override method @ipic18_instruction_RETLW generateBinaryCodeAtAddress
+  ??@ipic18_symbolTable unused inRoutineSymbolTable
+  ?!@uint unused ioAddress
+  ?!@emittedCodeList ioCode
+:
+#--- Emit Code
+  ioCode += ![@uintlist listWithValue !0x0C00 | mLiteralValue] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
 override method @ipic18_instruction_LFSR generateBinaryCodeAtAddress
   ??@ipic18_symbolTable unused inRoutineSymbolTable
   ?!@uint unused ioAddress

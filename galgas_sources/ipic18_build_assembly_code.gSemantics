@@ -387,6 +387,15 @@ end method ;
 
 #----------------------------------------------------*
 
+override method @ipic18_instruction_RETLW buildAssemblyCode
+  ?!@stringlist ioStringList
+  ?!@uint unused ioBccLabelIndex
+:
+  ioStringList += !"  RETLW " . [mLiteralValue hexString] ;
+end method ;
+
+#----------------------------------------------------*
+
  override method @ipic18_instruction_LFSR buildAssemblyCode
   ?!@stringlist ioStringList
   ?!@uint unused ioBccLabelIndex
