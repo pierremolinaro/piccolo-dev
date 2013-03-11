@@ -29,25 +29,27 @@ routine findFirstInstructionFromAddress
   ??@uint inLineIndex
   ??@ipic18_instructionList inGeneratedInstructionList
   !@ipic18_instruction outFirstInstruction
+  !@uint outNextInstructionLineIndex
 :
 #--- Line Index
-  @uint currentAddress := inLineIndex ;
+  outNextInstructionLineIndex := inLineIndex ;
 #--- Find first executable instruction
   outFirstInstruction := [@ipic_NULL new] ; # By default, no instruction
   @bool found := false ;
   loop [inGeneratedInstructionList length] :
-  while (currentAddress < [inGeneratedInstructionList length]) & not found
+  while (outNextInstructionLineIndex < [inGeneratedInstructionList length]) & not found
   do
-    cast [inGeneratedInstructionList mInstructionAtIndex !currentAddress] :
+    cast [inGeneratedInstructionList mInstructionAtIndex !outNextInstructionLineIndex] :
     when >= @ipic_actualInstruction instr do
       outFirstInstruction := instr ;
       found := true ;
     when >= @ipic_pseudo_ORG  do
       found := true ;
     else
-      currentAddress ++ ;
+      outNextInstructionLineIndex ++ ;
     end cast ;
   end loop ;
+  outNextInstructionLineIndex ++ ;
 end routine ;
 
 #----------------------------------------------------------------------------*
@@ -109,7 +111,7 @@ method @ipic_JUMP optimizeJUMP
     @uint line ; [inSymbolTable searchKey !mTargetLabel ?line] ;
   #--- Find first executable instruction
     @ipic18_instruction firstInstruction ;
-    findFirstInstructionFromAddress !line + 1 !ioGeneratedInstructionList ?firstInstruction ;
+    findFirstInstructionFromAddress !line + 1 !ioGeneratedInstructionList ?firstInstruction ?* ;
   #--- Optimization from found first instruction
     cast firstInstruction :
     when == @ipic18_instruction_RETURN do
@@ -151,7 +153,7 @@ method @ipic_JSR optimizeJSR
 :
 #--- Find first executable instruction
   @ipic18_instruction firstInstruction ;
-  findFirstInstructionFromAddress !inLineIndex + 1 !ioGeneratedInstructionList ?firstInstruction ;
+  findFirstInstructionFromAddress !inLineIndex + 1 !ioGeneratedInstructionList ?firstInstruction ?* ;
 #--- Optimization from found first instruction
   cast firstInstruction :
   when == @ipic18_instruction_RETURN do # JSR followed by RETURN
@@ -166,16 +168,45 @@ method @ipic_JSR optimizeJSR
       @uint line ; [inSymbolTable searchKey !mTargetLabel ?line] ;
     #--- Find first executable instruction
       @ipic18_instruction firstSubroutineInstruction ;
-      findFirstInstructionFromAddress !line + 1 !ioGeneratedInstructionList ?firstSubroutineInstruction ;
-      cast firstInstruction :
+      @uint followingInstructionLineIndex ;
+      findFirstInstructionFromAddress
+        !line + 1
+        !ioGeneratedInstructionList
+        ?firstSubroutineInstruction
+        ?followingInstructionLineIndex
+      ;
+      cast firstSubroutineInstruction :
       when == @ipic18_instruction_RETLW RETLWinstruction do # JSR to RETLW replaced by MOVLW
         [!?ioGeneratedInstructionList setMInstructionAtIndex
-          ![@ipic18_instruction_literalOperation new !mInstructionLocation ![@literal_instruction_opcode MOVLW] ![RETLWinstruction mLiteralValue]]
+          ![@ipic18_instruction_literalOperation new
+            !mInstructionLocation
+            ![@literal_instruction_opcode MOVLW]
+            ![RETLWinstruction mLiteralValue]
+          ]
           !inLineIndex
         ] ;
         ioOptimizationsDone := true ;
-        ioListFileContents .= "  line " . [inLineIndex string] . ": JSR '" . mTargetLabel . "' to RETLW " . [RETLWinstruction mLiteralValue] . " replaced by MOVLW " . [RETLWinstruction mLiteralValue] . "\n" ;
-      else
+        ioListFileContents .= "  line " . [inLineIndex string] . ": JSR '" . mTargetLabel
+        . "' to RETLW " . [RETLWinstruction mLiteralValue]
+        . " replaced by MOVLW " . [RETLWinstruction mLiteralValue] . "\n" ;
+      when >= @ipic_actualInstruction actualInstruction do
+        if ([actualInstruction instructionLength] == 2)
+          & [actualInstruction nextInstructionIsReachable]
+          & not [actualInstruction isSkippingInstruction] then
+          @ipic18_instruction followingInstruction ;
+          findFirstInstructionFromAddress !followingInstructionLineIndex !ioGeneratedInstructionList ?followingInstruction ?* ;
+          cast followingInstruction :
+          when == @ipic18_instruction_RETURN do # JSR followed by RETURN
+            [!?ioGeneratedInstructionList setMInstructionAtIndex
+              !actualInstruction
+              !inLineIndex
+            ] ;
+            ioOptimizationsDone := true ;
+            ioListFileContents .= "  line " . [inLineIndex string] . ": JSR '" . mTargetLabel
+            . "' to one instruction routine replaced by instruction\n" ;
+        
+          end cast ;
+        end if ;
       end cast ;
   end cast ;
 end method ;
@@ -191,7 +222,7 @@ method @ipic18_instruction_literalOperation optimizeMOVLW
   if mLiteralInstruction == [@literal_instruction_opcode MOVLW] then
   #--- Find first executable instruction
     @ipic18_instruction firstInstruction ;
-    findFirstInstructionFromAddress !inLineIndex + 1 !ioGeneratedInstructionList ?firstInstruction ;
+    findFirstInstructionFromAddress !inLineIndex + 1 !ioGeneratedInstructionList ?firstInstruction ?* ;
   #--- Optimization from found first instruction
     cast firstInstruction :
     when == @ipic18_instruction_RETURN do
@@ -219,7 +250,7 @@ method @ipic18_instruction_conditionalBranch optimizeBCC
   @uint line ; [inSymbolTable searchKey !mTargetLabel ?line] ;
 #--- Find first executable instruction
   @ipic18_instruction firstInstruction ;
-  findFirstInstructionFromAddress !line + 1 !ioGeneratedInstructionList ?firstInstruction ;
+  findFirstInstructionFromAddress !line + 1 !ioGeneratedInstructionList ?firstInstruction ?* ;
 #--- Optimization from found first instruction
   cast firstInstruction :
   when == @ipic_JUMP jump do
@@ -248,7 +279,7 @@ method @ipic_jump_test_register optimizeTestReg
   @uint line ; [inSymbolTable searchKey ![@lstring new !mTargetLabel !here] ?line] ;
 #--- Find first executable instruction
   @ipic18_instruction firstInstruction ;
-  findFirstInstructionFromAddress !line + 1 !ioGeneratedInstructionList ?firstInstruction ;
+  findFirstInstructionFromAddress !line + 1 !ioGeneratedInstructionList ?firstInstruction ?* ;
 #--- Optimization from found first instruction
   cast firstInstruction :
   when == @ipic_JUMP jump do
@@ -283,7 +314,7 @@ method @ipic_incDecRegisterInCondition optimizeTestDecInc
   @uint line ; [inSymbolTable searchKey ![@lstring new !mTargetLabel !here] ?line] ;
 #--- Find first executable instruction
   @ipic18_instruction firstInstruction ;
-  findFirstInstructionFromAddress !line + 1 !ioGeneratedInstructionList ?firstInstruction ;
+  findFirstInstructionFromAddress !line + 1 !ioGeneratedInstructionList ?firstInstruction ?* ;
 #--- Optimization from found first instruction
   cast firstInstruction :
   when == @ipic_JUMP jump do
@@ -334,7 +365,7 @@ method @ipic_registerComparisonCondition optimizeCMP
   @uint line ; [inSymbolTable searchKey ![@lstring new !mTargetLabel !here] ?line] ;
 #--- Find first executable instruction
   @ipic18_instruction firstInstruction ;
-  findFirstInstructionFromAddress !line + 1 !ioGeneratedInstructionList ?firstInstruction ;
+  findFirstInstructionFromAddress !line + 1 !ioGeneratedInstructionList ?firstInstruction ?* ;
 #--- Optimization from found first instruction
   cast firstInstruction :
   when == @ipic_JUMP jump do
@@ -379,8 +410,7 @@ method @ipic18_instruction_BitTestSkip optimizeBitTestSkip
   if (ok) then
     cast [ioGeneratedInstructionList mInstructionAtIndex !inLineIndex + 2] :
     when >= @ipic_actualInstruction instruction do
-      @uint instructionLength ; [instruction instructionLength ?instructionLength] ;
-      ok := instructionLength == 1 ;
+      ok := [instruction instructionLength] == 1 ;
     else
       ok := false ;
     end cast ;
@@ -557,9 +587,9 @@ routine performOptimizations
     @bool previousWasSkippingInstruction := false ;
     foreach ioGeneratedInstructionList index idx do
        if reachable | previousWasSkippingInstruction then
-         [mInstruction nextInstructionIsReachable ?reachable] ;
+         reachable := [mInstruction nextInstructionIsReachable] ;
          previousWasSkippingInstruction := skippingInstruction ;
-         [mInstruction isSkippingInstruction ?skippingInstruction] ;
+         skippingInstruction := [mInstruction isSkippingInstruction] ;
        else
          @bool isLABELorORG ; [mInstruction isLABELorORG ?isLABELorORG] ;
          @bool isNULL ; [mInstruction isNULL ?isNULL] ;

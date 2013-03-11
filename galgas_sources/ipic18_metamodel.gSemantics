@@ -102,13 +102,11 @@ end method ;
 abstract class @ipic18_instruction {
 }
 
-abstract method @ipic18_instruction instructionLength !@uint outLength ;
+abstract reader @ipic18_instruction instructionLength -> @uint outLength ;
 abstract method @ipic18_instruction displayIPICinstruction ?!@string ioListFileContents ;
 
 method @ipic18_instruction setCurrentAddress ?!@uint ioCurrentAddress :
-  @uint length ;
-  [selfcopy instructionLength ?length] ;
-  ioCurrentAddress := ioCurrentAddress + length ;
+  ioCurrentAddress := ioCurrentAddress + [selfcopy instructionLength] ;
 end method ;
 
 method @ipic18_instruction isLABELorORG !@bool outIsLABELorORG :
@@ -119,13 +117,13 @@ method @ipic18_instruction isNULL !@bool outIsNULL :
   outIsNULL := false ;
 end method ;
 
-method @ipic18_instruction nextInstructionIsReachable !@bool outIsReachable :
+reader @ipic18_instruction nextInstructionIsReachable -> @bool outIsReachable :
   outIsReachable := true ;
-end method ;
+end reader ;
 
-method @ipic18_instruction isSkippingInstruction !@bool outIsSkipping :
+reader @ipic18_instruction isSkippingInstruction -> @bool outIsSkipping :
   outIsSkipping := false ;
-end method ;
+end reader ;
 
 method @ipic18_instruction enterReferencedLabel ?!@stringset unused ioReferencedLabelSet :
 end method ;
@@ -141,9 +139,9 @@ list @ipic18_instructionList {
 
 class @ipic_NULL extends @ipic18_instruction {
 }
-override method @ipic_NULL instructionLength !@uint outLength :
+override reader @ipic_NULL instructionLength -> @uint outLength :
   outLength := 0 ;
-end method ;
+end reader ;
 
 override
 method @ipic_NULL displayIPICinstruction ?!@string ioListFileContents :
@@ -160,9 +158,9 @@ end method ;
 class @ipic_pseudo_ORG extends @ipic18_instruction {
   @uint mOrigin ;
 }
-override method @ipic_pseudo_ORG instructionLength !@uint outLength :
+override reader @ipic_pseudo_ORG instructionLength -> @uint outLength :
   outLength := 0 ;
-end method ;
+end reader ;
 
 override method @ipic_pseudo_ORG setCurrentAddress ?!@uint ioCurrentAddress :
   ioCurrentAddress := mOrigin ;
@@ -184,9 +182,9 @@ class @ipic_pseudo_LABEL extends @ipic18_instruction {
   @lstring mLabel ;
 }
 
-override method @ipic_pseudo_LABEL instructionLength !@uint outLength :
+override reader @ipic_pseudo_LABEL instructionLength -> @uint outLength :
   outLength := 0 ;
-end method ;
+end reader ;
 
 override
 method @ipic_pseudo_LABEL displayIPICinstruction ?!@string ioListFileContents :
@@ -204,9 +202,9 @@ abstract class @ipic_actualInstruction extends @ipic18_instruction {
   @location mInstructionLocation ;
 }
 
-override method @ipic_actualInstruction instructionLength !@uint outLength :
+override reader @ipic_actualInstruction instructionLength -> @uint outLength :
   outLength := 2 ;
-end method ;
+end reader ;
 
 
 #----------------------------------------------------*
@@ -285,9 +283,9 @@ method @ipic18_instruction_FA displayIPICinstruction ?!@string ioListFileContent
 end method ;
 
 override
-method @ipic18_instruction_FA isSkippingInstruction !@bool outIsSkipping :
+reader @ipic18_instruction_FA isSkippingInstruction -> @bool outIsSkipping :
   FAinstructionIsSkippingInstruction !mFAinstruction ?outIsSkipping ;
-end method ;
+end reader ;
 
 
 #----------------------------------------------------*
@@ -298,9 +296,9 @@ class @ipic18_instruction_MOVFF extends @ipic_actualInstruction {
 }
   
 override
-method @ipic18_instruction_MOVFF instructionLength !@uint outLength :
+reader @ipic18_instruction_MOVFF instructionLength -> @uint outLength :
   outLength := 4 ;
-end method ;
+end reader ;
 
 override
 method @ipic18_instruction_MOVFF displayIPICinstruction ?!@string ioListFileContents :
@@ -365,9 +363,9 @@ method @ipic18_instruction_BitTestSkip displayIPICinstruction ?!@string ioListFi
 end method ;
 
 override
-method @ipic18_instruction_BitTestSkip isSkippingInstruction !@bool outIsSkipping :
+reader @ipic18_instruction_BitTestSkip isSkippingInstruction -> @bool outIsSkipping :
   outIsSkipping := true ;
-end method ;
+end reader ;
 
 #----------------------------------------------------*
 
@@ -385,14 +383,14 @@ class @ipic18_instruction_conditionalBranch extends @ipic_actualInstruction {
 }
 
 override
-method @ipic18_instruction_conditionalBranch instructionLength !@uint outLength :
+reader @ipic18_instruction_conditionalBranch instructionLength -> @uint outLength :
   switch mBranchMode
     when native     : outLength := 2 ;
     when ipicNative : outLength := 2 ;
     when ipicBRA    : outLength := 4 ;
     when ipicGOTO   : outLength := 6 ;
   end switch ;
-end method ;
+end reader ;
 
 override
 method @ipic18_instruction_conditionalBranch displayIPICinstruction ?!@string ioListFileContents :
@@ -418,14 +416,14 @@ class @ipic_JUMP extends @ipic_actualInstruction {
 }
 
   override
-  method @ipic_JUMP instructionLength !@uint outLength :
+  reader @ipic_JUMP instructionLength -> @uint outLength :
     switch mKind
       when ipicRelative : outLength := 2 ;
       when ipicAbsolute : outLength := 4 ;
       when relative     : outLength := 2 ;
       when absolute     : outLength := 4 ;
     end switch ;
-  end method ;
+  end reader ;
 
   override
   method @ipic_JUMP displayIPICinstruction ?!@string ioListFileContents :
@@ -437,9 +435,9 @@ class @ipic_JUMP extends @ipic_actualInstruction {
     end switch ;
   end method ;
 
-  override method @ipic_JUMP nextInstructionIsReachable !@bool outIsReachable :
+  override reader @ipic_JUMP nextInstructionIsReachable -> @bool outIsReachable :
     outIsReachable := false ;
-  end method ;
+  end reader ;
 
   override method @ipic_JUMP enterReferencedLabel ?!@stringset ioReferencedLabelSet :
     ioReferencedLabelSet += ![mTargetLabel string] ;
@@ -453,14 +451,14 @@ class @ipic_JSR extends @ipic_actualInstruction {
 }
 
 override
-method @ipic_JSR instructionLength !@uint outLength :
+reader @ipic_JSR instructionLength ->@uint outLength :
   switch mKind
     when ipicRelative : outLength := 2 ;
     when ipicAbsolute : outLength := 4 ;
     when relative     : outLength := 2 ;
     when absolute     : outLength := 4 ;
   end switch ;
-end method ;
+end reader ;
 
 override
 method @ipic_JSR displayIPICinstruction ?!@string ioListFileContents :
@@ -548,9 +546,9 @@ method @ipic18_instruction_RETURN displayIPICinstruction ?!@string ioListFileCon
   ioListFileContents .= "RETURN" ;
 end method ;
 
-override method @ipic18_instruction_RETURN nextInstructionIsReachable !@bool outIsReachable :
+override reader @ipic18_instruction_RETURN nextInstructionIsReachable -> @bool outIsReachable :
   outIsReachable := false ;
-end method ;
+end reader ;
 
 #----------------------------------------------------*
 
@@ -562,9 +560,9 @@ method @ipic18_instruction_RETURN_NOT_OPTIMIZABLE displayIPICinstruction ?!@stri
   ioListFileContents .= "RETURN NOT OPTIMIZABLE" ;
 end method ;
 
-override method @ipic18_instruction_RETURN_NOT_OPTIMIZABLE nextInstructionIsReachable !@bool outIsReachable :
+override reader @ipic18_instruction_RETURN_NOT_OPTIMIZABLE nextInstructionIsReachable -> @bool outIsReachable :
   outIsReachable := false ;
-end method ;
+end reader ;
 
 #----------------------------------------------------*
 
@@ -580,9 +578,9 @@ method @ipic18_instruction_RETFIE displayIPICinstruction ?!@string ioListFileCon
   end if ;
 end method ;
 
-override method @ipic18_instruction_RETFIE nextInstructionIsReachable !@bool outIsReachable :
+override reader @ipic18_instruction_RETFIE nextInstructionIsReachable -> @bool outIsReachable :
   outIsReachable := false ;
-end method ;
+end reader ;
 
 
 #----------------------------------------------------*
@@ -625,9 +623,9 @@ method @ipic18_instruction_literalOperation displayIPICinstruction ?!@string ioL
   ioListFileContents .= [mLiteralInstruction mnemonic] . " " . [mLiteralValue hexString] ;
 end method ;
 
-override method @ipic18_instruction_literalOperation nextInstructionIsReachable !@bool outIsReachable :
+override reader @ipic18_instruction_literalOperation nextInstructionIsReachable -> @bool outIsReachable :
   outIsReachable := true ;
-end method ;
+end reader ;
 
 
 #----------------------------------------------------*
@@ -645,9 +643,9 @@ method @ipic18_instruction_RETLW displayIPICinstruction ?!@string ioListFileCont
   ioListFileContents .= "RETLW " . [mLiteralValue hexString] ;
 end method ;
 
-override method @ipic18_instruction_RETLW nextInstructionIsReachable !@bool outIsReachable :
+override reader @ipic18_instruction_RETLW nextInstructionIsReachable -> @bool outIsReachable :
   outIsReachable := false ;
-end method ;
+end reader ;
 
 
 #----------------------------------------------------*
@@ -657,9 +655,9 @@ class @ipic18_instruction_LFSR extends @ipic_actualInstruction {
   @uint mValue ;
 }  
 override
-method @ipic18_instruction_LFSR instructionLength !@uint outLength :
+reader @ipic18_instruction_LFSR instructionLength -> @uint outLength :
   outLength := 4 ;
-end method ;
+end reader ;
 
 override
 method @ipic18_instruction_LFSR displayIPICinstruction ?!@string ioListFileContents :
@@ -708,9 +706,9 @@ class @ipic18_instruction_MNOP extends @ipic_actualInstruction {
 }
 
 override
-method @ipic18_instruction_MNOP instructionLength !@uint outLength :
+reader @ipic18_instruction_MNOP instructionLength -> @uint outLength :
   outLength := [mOccurrenceFactor uint] * 2 ;
-end method ;
+end reader ;
 
 override
 method @ipic18_instruction_MNOP displayIPICinstruction ?!@string ioListFileContents :
@@ -725,12 +723,12 @@ class @ipic18_instruction_computed_retlw extends @ipic_actualInstruction {
 }
 
 override
-method @ipic18_instruction_computed_retlw instructionLength !@uint outLength :
+reader @ipic18_instruction_computed_retlw instructionLength ->@uint outLength :
   outLength := [mLiteralValues length] * 2 + 2 ;
   if not mUsesRCALL then
     outLength := outLength + 2 ;
   end if ;
-end method ;
+end reader ;
 
 override
 method @ipic18_instruction_computed_retlw displayIPICinstruction ?!@string ioListFileContents :
@@ -745,9 +743,9 @@ method @ipic18_instruction_computed_retlw displayIPICinstruction ?!@string ioLis
   end foreach ;
 end method ;
 
-override method @ipic18_instruction_computed_retlw nextInstructionIsReachable !@bool outIsReachable :
+override reader @ipic18_instruction_computed_retlw nextInstructionIsReachable -> @bool outIsReachable :
   outIsReachable := false ;
-end method ;
+end reader ;
 
 override method @ipic18_instruction_computed_retlw enterReferencedLabel ?!@stringset ioReferencedLabelSet :
   ioReferencedLabelSet += !"_computed_goto_2" ;
@@ -761,12 +759,12 @@ class @ipic18_instruction_computed_bra extends @ipic_actualInstruction {
 }
 
 override
-method @ipic18_instruction_computed_bra instructionLength !@uint outLength :
+reader @ipic18_instruction_computed_bra instructionLength -> @uint outLength :
   outLength := [mTargetLabels length] * 2 + 2 ;
   if not mUsesRCALL then
     outLength := outLength + 2 ;
   end if ;
-end method ;
+end reader ;
 
 override
 method @ipic18_instruction_computed_bra displayIPICinstruction ?!@string ioListFileContents :
@@ -781,9 +779,9 @@ method @ipic18_instruction_computed_bra displayIPICinstruction ?!@string ioListF
   end foreach ;
 end method ;
 
-override method @ipic18_instruction_computed_bra nextInstructionIsReachable !@bool outIsReachable :
+override reader @ipic18_instruction_computed_bra nextInstructionIsReachable -> @bool outIsReachable :
   outIsReachable := false ;
-end method ;
+end reader ;
 
 override method @ipic18_instruction_computed_bra enterReferencedLabel ?!@stringset ioReferencedLabelSet :
   ioReferencedLabelSet += !"_computed_goto_2" ;
@@ -800,12 +798,12 @@ class @ipic18_instruction_computed_goto extends @ipic_actualInstruction {
 }
 
 override
-method @ipic18_instruction_computed_goto instructionLength !@uint outLength :
+reader @ipic18_instruction_computed_goto instructionLength -> @uint outLength :
   outLength := [mTargetLabels length] * 4 + 2 ;
   if not mUsesRCALL then
     outLength := outLength + 2 ;
   end if ;
-end method ;
+end reader ;
 
 override
 method @ipic18_instruction_computed_goto displayIPICinstruction ?!@string ioListFileContents :
@@ -820,9 +818,9 @@ method @ipic18_instruction_computed_goto displayIPICinstruction ?!@string ioList
   end foreach ;
 end method ;
 
-override method @ipic18_instruction_computed_goto nextInstructionIsReachable !@bool outIsReachable :
+override reader @ipic18_instruction_computed_goto nextInstructionIsReachable -> @bool outIsReachable :
   outIsReachable := false ;
-end method ;
+end reader ;
 
 override method @ipic18_instruction_computed_goto enterReferencedLabel ?!@stringset ioReferencedLabelSet :
   ioReferencedLabelSet += !"_computed_goto_4" ;
@@ -840,12 +838,12 @@ class @ipic18_instruction_computed_rcall extends @ipic_actualInstruction {
 }
 
 override
-method @ipic18_instruction_computed_rcall instructionLength !@uint outLength :
+reader @ipic18_instruction_computed_rcall instructionLength -> @uint outLength :
   outLength := [mTargetLabels length] * 4 ;
   if not mUsesRCALL then
     outLength := outLength + 2 ;
   end if ;
-end method ;
+end reader ;
 
 override
 method @ipic18_instruction_computed_rcall displayIPICinstruction ?!@string ioListFileContents :
@@ -860,9 +858,9 @@ method @ipic18_instruction_computed_rcall displayIPICinstruction ?!@string ioLis
   end foreach ;
 end method ;
 
-override method @ipic18_instruction_computed_rcall nextInstructionIsReachable !@bool outIsReachable :
+override reader @ipic18_instruction_computed_rcall nextInstructionIsReachable -> @bool outIsReachable :
   outIsReachable := true ;
-end method ;
+end reader ;
 
 
 override method @ipic18_instruction_computed_rcall enterReferencedLabel ?!@stringset ioReferencedLabelSet :
@@ -882,7 +880,7 @@ class @ipic_jump_test_register extends @ipic_actualInstruction {
 }
 
 override
-method @ipic_jump_test_register instructionLength !@uint outLength :
+reader @ipic_jump_test_register instructionLength -> @uint outLength :
   outLength := 2 ; # TSTFSZ
   if mBranchIfZero then
     outLength := outLength + 2 ; # Intermediate BRA
@@ -892,7 +890,7 @@ method @ipic_jump_test_register instructionLength !@uint outLength :
   else
     outLength := outLength + 4 ; # Final GOTO
   end if ;
-end method ;
+end reader ;
 
 override
 method @ipic_jump_test_register displayIPICinstruction ?!@string ioListFileContents :
@@ -922,13 +920,13 @@ class @ipic_incDecRegisterInCondition extends @ipic_actualInstruction {
 }
 
 override
-method @ipic_incDecRegisterInCondition instructionLength !@uint outLength :
+reader @ipic_incDecRegisterInCondition instructionLength -> @uint outLength :
   if mUsesBra then
     outLength := 4 ;
   else
     outLength := 6 ;
   end if ; 
-end method ;
+end reader ;
 
 override
 method @ipic_incDecRegisterInCondition displayIPICinstruction ?!@string ioListFileContents :
@@ -975,7 +973,7 @@ method @ipic_registerComparisonCondition usesIntermediateBRA !@bool outUses :
 end method ;
 
 override
-method @ipic_registerComparisonCondition instructionLength !@uint outLength :
+reader @ipic_registerComparisonCondition instructionLength -> @uint outLength :
   @bool usesIntermediateBRA ; [selfcopy usesIntermediateBRA ?usesIntermediateBRA] ;
   if usesIntermediateBRA then
     outLength := 4 ;
@@ -987,7 +985,7 @@ method @ipic_registerComparisonCondition instructionLength !@uint outLength :
   else
     outLength := outLength + 4 ; # Final GOTO
   end if ;
-end method ;
+end reader ;
 
 override
 method @ipic_registerComparisonCondition displayIPICinstruction ?!@string ioListFileContents :
