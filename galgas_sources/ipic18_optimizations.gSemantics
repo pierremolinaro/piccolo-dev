@@ -119,15 +119,13 @@ method @ipic_JUMP optimizeJUMP
       ] ;
       ioOptimizationsDone := true ;
       ioListFileContents .= "  line " . [inLineIndex string] . ": JUMP '" . mTargetLabel . "' branching to RETURN replaced by RETURN\n" ;
-    when == @ipic18_instruction_literalOperation literalOp do
-      if [literalOp mLiteralInstruction] == [@literal_instruction_opcode RETLW] then
-        [!?ioGeneratedInstructionList setMInstructionAtIndex
-          !literalOp
-          !inLineIndex
-        ] ;
-        ioOptimizationsDone := true ;
-        ioListFileContents .= "  line " . [inLineIndex string] . ": JUMP '" . mTargetLabel . "'branching to RETLW replaced by RETLW\n" ;
-      end if ;
+    when == @ipic18_instruction_RETLW retlwInstruction do
+      [!?ioGeneratedInstructionList setMInstructionAtIndex
+        !retlwInstruction
+        !inLineIndex
+      ] ;
+      ioOptimizationsDone := true ;
+      ioListFileContents .= "  line " . [inLineIndex string] . ": JUMP '" . mTargetLabel . "'branching to RETLW " . [retlwInstruction mLiteralValue] . "replaced by RETLW " . [retlwInstruction mLiteralValue] . "\n" ;
     when == @ipic_JUMP jump do
       if mTargetLabel != [jump mTargetLabel] then
         [!?ioGeneratedInstructionList setMInstructionAtIndex
@@ -145,6 +143,7 @@ end method ;
 #----------------------------------------------------------------------------*
 
 method @ipic_JSR optimizeJSR
+  ??@symbolTableForOptimizations inSymbolTable
   ??@uint inLineIndex
   ?!@ipic18_instructionList ioGeneratedInstructionList
   ?!@string ioListFileContents
@@ -155,7 +154,7 @@ method @ipic_JSR optimizeJSR
   findFirstInstructionFromAddress !inLineIndex + 1 !ioGeneratedInstructionList ?firstInstruction ;
 #--- Optimization from found first instruction
   cast firstInstruction :
-  when == @ipic18_instruction_RETURN do
+  when == @ipic18_instruction_RETURN do # JSR followed by RETURN
     [!?ioGeneratedInstructionList setMInstructionAtIndex
       ![@ipic_JUMP new !mInstructionLocation !mTargetLabel !mKind]
       !inLineIndex
@@ -163,6 +162,21 @@ method @ipic_JSR optimizeJSR
     ioOptimizationsDone := true ;
     ioListFileContents .= "  line " . [inLineIndex string] . ": JSR '" . mTargetLabel . "' followed by RETURN replaced by JUMP\n" ;
   else
+    #--- Find destination label definition line
+      @uint line ; [inSymbolTable searchKey !mTargetLabel ?line] ;
+    #--- Find first executable instruction
+      @ipic18_instruction firstSubroutineInstruction ;
+      findFirstInstructionFromAddress !line + 1 !ioGeneratedInstructionList ?firstSubroutineInstruction ;
+      cast firstInstruction :
+      when == @ipic18_instruction_RETLW RETLWinstruction do # JSR to RETLW replaced by MOVLW
+        [!?ioGeneratedInstructionList setMInstructionAtIndex
+          ![@ipic18_instruction_literalOperation new !mInstructionLocation ![@literal_instruction_opcode MOVLW] ![RETLWinstruction mLiteralValue]]
+          !inLineIndex
+        ] ;
+        ioOptimizationsDone := true ;
+        ioListFileContents .= "  line " . [inLineIndex string] . ": JSR '" . mTargetLabel . "' to RETLW " . [RETLWinstruction mLiteralValue] . " replaced by MOVLW " . [RETLWinstruction mLiteralValue] . "\n" ;
+      else
+      end cast ;
   end cast ;
 end method ;
 
@@ -182,7 +196,7 @@ method @ipic18_instruction_literalOperation optimizeMOVLW
     cast firstInstruction :
     when == @ipic18_instruction_RETURN do
       [!?ioGeneratedInstructionList setMInstructionAtIndex
-        ![@ipic18_instruction_literalOperation new !mInstructionLocation ![@literal_instruction_opcode RETLW] !mLiteralValue]
+        ![@ipic18_instruction_RETLW new !mInstructionLocation !mLiteralValue]
         !inLineIndex
       ] ;
       ioOptimizationsDone := true ;
@@ -506,7 +520,7 @@ routine performOptimizations
       when == @ipic_JUMP ipic_JUMP do
         [ipic_JUMP optimizeJUMP !symbolTable !idx !?ioGeneratedInstructionList !?ioListFileContents !?optimizationsDone] ;
       when == @ipic_JSR ipic_JSR do
-        [ipic_JSR optimizeJSR !idx !?ioGeneratedInstructionList !?ioListFileContents !?optimizationsDone] ;
+        [ipic_JSR optimizeJSR !symbolTable !idx !?ioGeneratedInstructionList !?ioListFileContents !?optimizationsDone] ;
       when == @ipic18_instruction_literalOperation ipic_literal do
         [ipic_literal optimizeMOVLW !idx !?ioGeneratedInstructionList !?ioListFileContents !?optimizationsDone] ;
       when == @ipic18_instruction_conditionalBranch ipic_cc do
