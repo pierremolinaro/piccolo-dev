@@ -90,6 +90,7 @@ list instructionKeyWordList error message "the '%K' instruction" style instructi
   "jsr",
   "jump",
   "lfsr",
+  "ltblptr",
   "mnop",
   "movf",
   "movff",

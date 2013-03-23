@@ -641,6 +641,131 @@ end method ;
 
 #----------------------------------------------------*
 
+override method @instruction_LTBLPTR buildIPICinstructionList
+  ??@uint inAccessBankSplitOffset
+  ??@routineMap unused inRoutineMap
+  ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
+  ?!@uint unused ioLocalLabelIndex
+  ?!@ipic18_instructionList ioGeneratedInstructionList
+  ?!@string unused ioListFileContents
+  ?!@uint ioCurrentBank
+  ??@bool unused inShouldPreserveBSR
+  ?!@bool unused ioContinuesInSequence
+  ??@routineKind unused inRoutineKind
+:
+  [mImmediatExpression eval !inRegisterTable !inConstantMap ?@sint result] ;
+#---
+  if (result > 0xFF_FFFF_S) | (result < 0S) then
+    error mInstructionLocation:"immediate value is evaluated as " . [result string] . " (should be between 0 and 0xFF_FFFF)" ;
+  end if ;
+  const @uint address := [result uint] ;
+#--- Upper byte
+  const @registerExpression TBLPTRU [new ![@lstring new !"TBLPTRU" !mInstructionLocation] ![@luint new !0 !mInstructionLocation]] ;
+  [TBLPTRU resolveAccess
+    !inAccessBankSplitOffset
+    !ioCurrentBank
+    !inRegisterTable
+    ?@ipic_registerExpression outIPICregisterDescription
+    ?*
+  ] ;
+  const @uint upper := address >> 16 ;
+  if upper == 0 then
+    ioGeneratedInstructionList += ![@ipic18_instruction_FA new
+      !mInstructionLocation
+      ![@FA_instruction_base_code CLRF]
+      !outIPICregisterDescription
+    ] ;  
+  elsif upper == 0xFF then
+    ioGeneratedInstructionList += ![@ipic18_instruction_FA new
+      !mInstructionLocation
+      ![@FA_instruction_base_code SETF]
+      !outIPICregisterDescription
+    ] ;  
+  else
+    ioGeneratedInstructionList += ![@ipic18_instruction_literalOperation new
+      !mInstructionLocation
+      ![@literal_instruction_opcode MOVLW]
+      !upper
+    ] ;
+    ioGeneratedInstructionList += ![@ipic18_instruction_FA new
+      !mInstructionLocation
+      ![@FA_instruction_base_code MOVWF]
+      !outIPICregisterDescription
+    ] ;  
+  end if ;
+#--- High byte
+  const @registerExpression TBLPTRH [new ![@lstring new !"TBLPTRH" !mInstructionLocation] ![@luint new !0 !mInstructionLocation]] ;
+  [TBLPTRH resolveAccess
+    !inAccessBankSplitOffset
+    !ioCurrentBank
+    !inRegisterTable
+    ?outIPICregisterDescription
+    ?*
+  ] ;
+  const @uint high := (address >> 8) & 0xFF ;
+  if high == 0 then
+    ioGeneratedInstructionList += ![@ipic18_instruction_FA new
+      !mInstructionLocation
+      ![@FA_instruction_base_code CLRF]
+      !outIPICregisterDescription
+    ] ;  
+  elsif high == 0xFF then
+    ioGeneratedInstructionList += ![@ipic18_instruction_FA new
+      !mInstructionLocation
+      ![@FA_instruction_base_code SETF]
+      !outIPICregisterDescription
+    ] ;  
+  else
+    ioGeneratedInstructionList += ![@ipic18_instruction_literalOperation new
+      !mInstructionLocation
+      ![@literal_instruction_opcode MOVLW]
+      !high
+    ] ;
+    ioGeneratedInstructionList += ![@ipic18_instruction_FA new
+      !mInstructionLocation
+      ![@FA_instruction_base_code MOVWF]
+      !outIPICregisterDescription
+    ] ;  
+  end if ;
+#--- Low byte
+  const @registerExpression TBLPTRL [new ![@lstring new !"TBLPTRL" !mInstructionLocation] ![@luint new !0 !mInstructionLocation]] ;
+  [TBLPTRL resolveAccess
+    !inAccessBankSplitOffset
+    !ioCurrentBank
+    !inRegisterTable
+    ?outIPICregisterDescription
+    ?*
+  ] ;
+  const @uint low := address & 0xFF ;
+  if low == 0 then
+    ioGeneratedInstructionList += ![@ipic18_instruction_FA new
+      !mInstructionLocation
+      ![@FA_instruction_base_code CLRF]
+      !outIPICregisterDescription
+    ] ;  
+  elsif low == 0xFF then
+    ioGeneratedInstructionList += ![@ipic18_instruction_FA new
+      !mInstructionLocation
+      ![@FA_instruction_base_code SETF]
+      !outIPICregisterDescription
+    ] ;  
+  else
+    ioGeneratedInstructionList += ![@ipic18_instruction_literalOperation new
+      !mInstructionLocation
+      ![@literal_instruction_opcode MOVLW]
+      !low
+    ] ;
+    ioGeneratedInstructionList += ![@ipic18_instruction_FA new
+      !mInstructionLocation
+      ![@FA_instruction_base_code MOVWF]
+      !outIPICregisterDescription
+    ] ;  
+  end if ;
+end method ;
+
+#----------------------------------------------------*
+
 override method @instruction_TBLRD buildIPICinstructionList
   ??@uint unused inAccessBankSplitOffset
   ??@routineMap unused inRoutineMap

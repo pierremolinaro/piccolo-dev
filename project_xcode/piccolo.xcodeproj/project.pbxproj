@@ -27,19 +27,19 @@
 		E2E08964BF9F24B15F0E4900 /* pic18_bootloader_specification_semantics.cpp */ = {isa = PBXBuildFile; fileRef = F766FA44E1ED0FF613F563BD ; settings = {ATTRIBUTES = (); }; };
 		F61279C928F19721878FAC41 /* pic18_bootloader_syntax.cpp */ = {isa = PBXBuildFile; fileRef = EA6328A42E0EB13D585E4C22 ; settings = {ATTRIBUTES = (); }; };
 		B53F4CC0AD3819A36752467B /* pic18_checkingAndBuildIPIC.cpp */ = {isa = PBXBuildFile; fileRef = 93E200C36F7CD9DFD0E5DEAA ; settings = {ATTRIBUTES = (); }; };
-		D8E091C2AB4C7C7DE644D37B /* pic18_metamodel.cpp */ = {isa = PBXBuildFile; fileRef = 395FEDAD7BBBED0ECA3FE2E0 ; settings = {ATTRIBUTES = (); }; };
-		710521C12EE76289D9440817 /* pic18_semantics.cpp */ = {isa = PBXBuildFile; fileRef = 3F027327D8461063F4AC58A6 ; settings = {ATTRIBUTES = (); }; };
-		FF9806D4BCD1EF555BE766CD /* piccoloDevice_grammar.cpp */ = {isa = PBXBuildFile; fileRef = C833DFF4B38FC8D2872F1EC6 ; settings = {ATTRIBUTES = (); }; };
-		0E95574250DABE07151BDC23 /* piccoloDevice_lexique.cpp */ = {isa = PBXBuildFile; fileRef = E875A2E075A1A4A6E1B9770F ; settings = {ATTRIBUTES = (); }; };
-		C83817B7893BCDEED13799B5 /* piccoloDevice_semantics.cpp */ = {isa = PBXBuildFile; fileRef = B79421734881B53E1E1B18B6 ; settings = {ATTRIBUTES = (); }; };
-		6595B338AFBAB333C555292A /* piccoloDevice_syntax.cpp */ = {isa = PBXBuildFile; fileRef = 30BD3DCAEFC96F40275BDC0A ; settings = {ATTRIBUTES = (); }; };
-		2E2CAD213179A3992C0BE53C /* piccolo_config.cpp */ = {isa = PBXBuildFile; fileRef = 4DFA42CADDBD0694A4E9BDC8 ; settings = {ATTRIBUTES = (); }; };
-		96D4281B7C95CD7E74623496 /* piccolo_embedded_devices.cpp */ = {isa = PBXBuildFile; fileRef = E76FC522773286A895BC8436 ; settings = {ATTRIBUTES = (); }; };
-		5D7027454A783C841250BA71 /* piccolo_grammar.cpp */ = {isa = PBXBuildFile; fileRef = 3AFB633E50CDF1B20DE6F466 ; settings = {ATTRIBUTES = (); }; };
-		5462084C5F4E7E85A093E6D7 /* piccolo_lexique.cpp */ = {isa = PBXBuildFile; fileRef = 6A60928B05A7E228A89C3799 ; settings = {ATTRIBUTES = (); }; };
-		BFA6EBDA4840E7360CE6E7EF /* piccolo_options.cpp */ = {isa = PBXBuildFile; fileRef = A126B2F4B2374F342BE9ED44 ; settings = {ATTRIBUTES = (); }; };
-		C737782DEACEFA532D9ADD4C /* piccolo_program.cpp */ = {isa = PBXBuildFile; fileRef = 4163B3523AFE57C2E008BC8C ; settings = {ATTRIBUTES = (); }; };
-		2A44FDD9EE93BDF998C6CA0E /* piccolo_syntax.cpp */ = {isa = PBXBuildFile; fileRef = 4608232E07D3AA3D998E5135 ; settings = {ATTRIBUTES = (); }; };
+		D8E091C2AB4C7C7DE644D37B /* pic18_grammar.cpp */ = {isa = PBXBuildFile; fileRef = 395FEDAD7BBBED0ECA3FE2E0 ; settings = {ATTRIBUTES = (); }; };
+		710521C12EE76289D9440817 /* pic18_metamodel.cpp */ = {isa = PBXBuildFile; fileRef = 3F027327D8461063F4AC58A6 ; settings = {ATTRIBUTES = (); }; };
+		FF9806D4BCD1EF555BE766CD /* pic18_semantics.cpp */ = {isa = PBXBuildFile; fileRef = C833DFF4B38FC8D2872F1EC6 ; settings = {ATTRIBUTES = (); }; };
+		0E95574250DABE07151BDC23 /* pic18_syntax.cpp */ = {isa = PBXBuildFile; fileRef = E875A2E075A1A4A6E1B9770F ; settings = {ATTRIBUTES = (); }; };
+		C83817B7893BCDEED13799B5 /* piccoloDevice_grammar.cpp */ = {isa = PBXBuildFile; fileRef = B79421734881B53E1E1B18B6 ; settings = {ATTRIBUTES = (); }; };
+		6595B338AFBAB333C555292A /* piccoloDevice_lexique.cpp */ = {isa = PBXBuildFile; fileRef = 30BD3DCAEFC96F40275BDC0A ; settings = {ATTRIBUTES = (); }; };
+		2E2CAD213179A3992C0BE53C /* piccoloDevice_semantics.cpp */ = {isa = PBXBuildFile; fileRef = 4DFA42CADDBD0694A4E9BDC8 ; settings = {ATTRIBUTES = (); }; };
+		96D4281B7C95CD7E74623496 /* piccoloDevice_syntax.cpp */ = {isa = PBXBuildFile; fileRef = E76FC522773286A895BC8436 ; settings = {ATTRIBUTES = (); }; };
+		5D7027454A783C841250BA71 /* piccolo_config.cpp */ = {isa = PBXBuildFile; fileRef = 3AFB633E50CDF1B20DE6F466 ; settings = {ATTRIBUTES = (); }; };
+		5462084C5F4E7E85A093E6D7 /* piccolo_embedded_devices.cpp */ = {isa = PBXBuildFile; fileRef = 6A60928B05A7E228A89C3799 ; settings = {ATTRIBUTES = (); }; };
+		BFA6EBDA4840E7360CE6E7EF /* piccolo_lexique.cpp */ = {isa = PBXBuildFile; fileRef = A126B2F4B2374F342BE9ED44 ; settings = {ATTRIBUTES = (); }; };
+		C737782DEACEFA532D9ADD4C /* piccolo_options.cpp */ = {isa = PBXBuildFile; fileRef = 4163B3523AFE57C2E008BC8C ; settings = {ATTRIBUTES = (); }; };
+		2A44FDD9EE93BDF998C6CA0E /* piccolo_program.cpp */ = {isa = PBXBuildFile; fileRef = 4608232E07D3AA3D998E5135 ; settings = {ATTRIBUTES = (); }; };
 		3547C70561BF5E03B95AA99F /* ram_sections.cpp */ = {isa = PBXBuildFile; fileRef = CBF4CAAED33C36B1B5FC2CB1 ; settings = {ATTRIBUTES = (); }; };
 		7F52E2A57ACE4D9A76FD9ACF /* C_BDD_Descriptor.cpp */ = {isa = PBXBuildFile; fileRef = EC990F19C78C75BD1E06F215 ; settings = {ATTRIBUTES = (); }; };
 		F7C92D2124A67EA0F4CB5F85 /* C_BDD_Set1.cpp */ = {isa = PBXBuildFile; fileRef = 976AAB5298D5DA10FE66F21D ; settings = {ATTRIBUTES = (); }; };
@@ -151,19 +151,19 @@
 		C9D3E22E03D3076F98D83CB2 /* pic18_bootloader_specification_semantics.cpp */ = {isa = PBXBuildFile; fileRef = F766FA44E1ED0FF613F563BD ; settings = {ATTRIBUTES = (); }; };
 		A35AB2D6180B0BCA7E46B6F9 /* pic18_bootloader_syntax.cpp */ = {isa = PBXBuildFile; fileRef = EA6328A42E0EB13D585E4C22 ; settings = {ATTRIBUTES = (); }; };
 		EC378BD83E0A727608B5DB01 /* pic18_checkingAndBuildIPIC.cpp */ = {isa = PBXBuildFile; fileRef = 93E200C36F7CD9DFD0E5DEAA ; settings = {ATTRIBUTES = (); }; };
-		3307CA7459BCF75FBD024E09 /* pic18_metamodel.cpp */ = {isa = PBXBuildFile; fileRef = 395FEDAD7BBBED0ECA3FE2E0 ; settings = {ATTRIBUTES = (); }; };
-		43CBC3DC5EEFC89334CACDC1 /* pic18_semantics.cpp */ = {isa = PBXBuildFile; fileRef = 3F027327D8461063F4AC58A6 ; settings = {ATTRIBUTES = (); }; };
-		3FCE66CA401D5F38B48C89AF /* piccoloDevice_grammar.cpp */ = {isa = PBXBuildFile; fileRef = C833DFF4B38FC8D2872F1EC6 ; settings = {ATTRIBUTES = (); }; };
-		11B482724A9B7B0BC0DD85C6 /* piccoloDevice_lexique.cpp */ = {isa = PBXBuildFile; fileRef = E875A2E075A1A4A6E1B9770F ; settings = {ATTRIBUTES = (); }; };
-		8EBE3E76FB4B931C35A169B0 /* piccoloDevice_semantics.cpp */ = {isa = PBXBuildFile; fileRef = B79421734881B53E1E1B18B6 ; settings = {ATTRIBUTES = (); }; };
-		C8F42A0B66751FE636FC6EB0 /* piccoloDevice_syntax.cpp */ = {isa = PBXBuildFile; fileRef = 30BD3DCAEFC96F40275BDC0A ; settings = {ATTRIBUTES = (); }; };
-		5EEE1F970470A3A6658DFDD5 /* piccolo_config.cpp */ = {isa = PBXBuildFile; fileRef = 4DFA42CADDBD0694A4E9BDC8 ; settings = {ATTRIBUTES = (); }; };
-		2BCD9A273F8BBB72BE3A687B /* piccolo_embedded_devices.cpp */ = {isa = PBXBuildFile; fileRef = E76FC522773286A895BC8436 ; settings = {ATTRIBUTES = (); }; };
-		D1D1A4BE65601CC6DDC1520E /* piccolo_grammar.cpp */ = {isa = PBXBuildFile; fileRef = 3AFB633E50CDF1B20DE6F466 ; settings = {ATTRIBUTES = (); }; };
-		5494AE9D2F5A76AA1C00FA2F /* piccolo_lexique.cpp */ = {isa = PBXBuildFile; fileRef = 6A60928B05A7E228A89C3799 ; settings = {ATTRIBUTES = (); }; };
-		FCAEF229B342C437FE2B95F7 /* piccolo_options.cpp */ = {isa = PBXBuildFile; fileRef = A126B2F4B2374F342BE9ED44 ; settings = {ATTRIBUTES = (); }; };
-		8B3E9753913F4D435B53C308 /* piccolo_program.cpp */ = {isa = PBXBuildFile; fileRef = 4163B3523AFE57C2E008BC8C ; settings = {ATTRIBUTES = (); }; };
-		60B4BD07F9BB215D59EF5561 /* piccolo_syntax.cpp */ = {isa = PBXBuildFile; fileRef = 4608232E07D3AA3D998E5135 ; settings = {ATTRIBUTES = (); }; };
+		3307CA7459BCF75FBD024E09 /* pic18_grammar.cpp */ = {isa = PBXBuildFile; fileRef = 395FEDAD7BBBED0ECA3FE2E0 ; settings = {ATTRIBUTES = (); }; };
+		43CBC3DC5EEFC89334CACDC1 /* pic18_metamodel.cpp */ = {isa = PBXBuildFile; fileRef = 3F027327D8461063F4AC58A6 ; settings = {ATTRIBUTES = (); }; };
+		3FCE66CA401D5F38B48C89AF /* pic18_semantics.cpp */ = {isa = PBXBuildFile; fileRef = C833DFF4B38FC8D2872F1EC6 ; settings = {ATTRIBUTES = (); }; };
+		11B482724A9B7B0BC0DD85C6 /* pic18_syntax.cpp */ = {isa = PBXBuildFile; fileRef = E875A2E075A1A4A6E1B9770F ; settings = {ATTRIBUTES = (); }; };
+		8EBE3E76FB4B931C35A169B0 /* piccoloDevice_grammar.cpp */ = {isa = PBXBuildFile; fileRef = B79421734881B53E1E1B18B6 ; settings = {ATTRIBUTES = (); }; };
+		C8F42A0B66751FE636FC6EB0 /* piccoloDevice_lexique.cpp */ = {isa = PBXBuildFile; fileRef = 30BD3DCAEFC96F40275BDC0A ; settings = {ATTRIBUTES = (); }; };
+		5EEE1F970470A3A6658DFDD5 /* piccoloDevice_semantics.cpp */ = {isa = PBXBuildFile; fileRef = 4DFA42CADDBD0694A4E9BDC8 ; settings = {ATTRIBUTES = (); }; };
+		2BCD9A273F8BBB72BE3A687B /* piccoloDevice_syntax.cpp */ = {isa = PBXBuildFile; fileRef = E76FC522773286A895BC8436 ; settings = {ATTRIBUTES = (); }; };
+		D1D1A4BE65601CC6DDC1520E /* piccolo_config.cpp */ = {isa = PBXBuildFile; fileRef = 3AFB633E50CDF1B20DE6F466 ; settings = {ATTRIBUTES = (); }; };
+		5494AE9D2F5A76AA1C00FA2F /* piccolo_embedded_devices.cpp */ = {isa = PBXBuildFile; fileRef = 6A60928B05A7E228A89C3799 ; settings = {ATTRIBUTES = (); }; };
+		FCAEF229B342C437FE2B95F7 /* piccolo_lexique.cpp */ = {isa = PBXBuildFile; fileRef = A126B2F4B2374F342BE9ED44 ; settings = {ATTRIBUTES = (); }; };
+		8B3E9753913F4D435B53C308 /* piccolo_options.cpp */ = {isa = PBXBuildFile; fileRef = 4163B3523AFE57C2E008BC8C ; settings = {ATTRIBUTES = (); }; };
+		60B4BD07F9BB215D59EF5561 /* piccolo_program.cpp */ = {isa = PBXBuildFile; fileRef = 4608232E07D3AA3D998E5135 ; settings = {ATTRIBUTES = (); }; };
 		F13D451727AEFF9082C29A5C /* ram_sections.cpp */ = {isa = PBXBuildFile; fileRef = CBF4CAAED33C36B1B5FC2CB1 ; settings = {ATTRIBUTES = (); }; };
 		C9DFFD8675F6BC2186971DC2 /* C_BDD_Descriptor.cpp */ = {isa = PBXBuildFile; fileRef = EC990F19C78C75BD1E06F215 ; settings = {ATTRIBUTES = (); }; };
 		71F1C9C495413F934DD1A158 /* C_BDD_Set1.cpp */ = {isa = PBXBuildFile; fileRef = 976AAB5298D5DA10FE66F21D ; settings = {ATTRIBUTES = (); }; };
@@ -560,37 +560,37 @@
 		7964F8DDDEB95FC584CD965D /* pic18_bootloader_syntax.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "pic18_bootloader_syntax.h"; path = "pic18_bootloader_syntax.h"; sourceTree = "<group>"; };
 		93E200C36F7CD9DFD0E5DEAA /* pic18_checkingAndBuildIPIC.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "pic18_checkingAndBuildIPIC.cpp"; path = "pic18_checkingAndBuildIPIC.cpp"; sourceTree = "<group>"; };
 		F4C10BF22AA353E27879133C /* pic18_checkingAndBuildIPIC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "pic18_checkingAndBuildIPIC.h"; path = "pic18_checkingAndBuildIPIC.h"; sourceTree = "<group>"; };
-		395FEDAD7BBBED0ECA3FE2E0 /* pic18_metamodel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "pic18_metamodel.cpp"; path = "pic18_metamodel.cpp"; sourceTree = "<group>"; };
-		4CEA9109507CACD8E2F2AEFC /* pic18_metamodel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "pic18_metamodel.h"; path = "pic18_metamodel.h"; sourceTree = "<group>"; };
-		3F027327D8461063F4AC58A6 /* pic18_semantics.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "pic18_semantics.cpp"; path = "pic18_semantics.cpp"; sourceTree = "<group>"; };
-		FC8586DFA4D1BC0E1742C08B /* pic18_semantics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "pic18_semantics.h"; path = "pic18_semantics.h"; sourceTree = "<group>"; };
+		395FEDAD7BBBED0ECA3FE2E0 /* pic18_grammar.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "pic18_grammar.cpp"; path = "pic18_grammar.cpp"; sourceTree = "<group>"; };
+		4CEA9109507CACD8E2F2AEFC /* pic18_grammar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "pic18_grammar.h"; path = "pic18_grammar.h"; sourceTree = "<group>"; };
+		3F027327D8461063F4AC58A6 /* pic18_metamodel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "pic18_metamodel.cpp"; path = "pic18_metamodel.cpp"; sourceTree = "<group>"; };
+		FC8586DFA4D1BC0E1742C08B /* pic18_metamodel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "pic18_metamodel.h"; path = "pic18_metamodel.h"; sourceTree = "<group>"; };
+		C833DFF4B38FC8D2872F1EC6 /* pic18_semantics.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "pic18_semantics.cpp"; path = "pic18_semantics.cpp"; sourceTree = "<group>"; };
+		7260AE62E3B1396831A8398F /* pic18_semantics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "pic18_semantics.h"; path = "pic18_semantics.h"; sourceTree = "<group>"; };
+		E875A2E075A1A4A6E1B9770F /* pic18_syntax.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "pic18_syntax.cpp"; path = "pic18_syntax.cpp"; sourceTree = "<group>"; };
+		CE56D3D6FA748AB6D9AF3FD7 /* pic18_syntax.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "pic18_syntax.h"; path = "pic18_syntax.h"; sourceTree = "<group>"; };
 		273E507E6040FCB07DCB4509 = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "piccolo"; sourceTree = BUILT_PRODUCTS_DIR; };
-		C833DFF4B38FC8D2872F1EC6 /* piccoloDevice_grammar.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "piccoloDevice_grammar.cpp"; path = "piccoloDevice_grammar.cpp"; sourceTree = "<group>"; };
-		7260AE62E3B1396831A8398F /* piccoloDevice_grammar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "piccoloDevice_grammar.h"; path = "piccoloDevice_grammar.h"; sourceTree = "<group>"; };
-		E875A2E075A1A4A6E1B9770F /* piccoloDevice_lexique.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "piccoloDevice_lexique.cpp"; path = "piccoloDevice_lexique.cpp"; sourceTree = "<group>"; };
-		CE56D3D6FA748AB6D9AF3FD7 /* piccoloDevice_lexique.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "piccoloDevice_lexique.h"; path = "piccoloDevice_lexique.h"; sourceTree = "<group>"; };
-		B79421734881B53E1E1B18B6 /* piccoloDevice_semantics.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "piccoloDevice_semantics.cpp"; path = "piccoloDevice_semantics.cpp"; sourceTree = "<group>"; };
-		A9DED88F18ECEE47145A72C0 /* piccoloDevice_semantics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "piccoloDevice_semantics.h"; path = "piccoloDevice_semantics.h"; sourceTree = "<group>"; };
-		30BD3DCAEFC96F40275BDC0A /* piccoloDevice_syntax.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "piccoloDevice_syntax.cpp"; path = "piccoloDevice_syntax.cpp"; sourceTree = "<group>"; };
-		778DFAECDC212708F721B788 /* piccoloDevice_syntax.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "piccoloDevice_syntax.h"; path = "piccoloDevice_syntax.h"; sourceTree = "<group>"; };
+		B79421734881B53E1E1B18B6 /* piccoloDevice_grammar.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "piccoloDevice_grammar.cpp"; path = "piccoloDevice_grammar.cpp"; sourceTree = "<group>"; };
+		A9DED88F18ECEE47145A72C0 /* piccoloDevice_grammar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "piccoloDevice_grammar.h"; path = "piccoloDevice_grammar.h"; sourceTree = "<group>"; };
+		30BD3DCAEFC96F40275BDC0A /* piccoloDevice_lexique.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "piccoloDevice_lexique.cpp"; path = "piccoloDevice_lexique.cpp"; sourceTree = "<group>"; };
+		778DFAECDC212708F721B788 /* piccoloDevice_lexique.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "piccoloDevice_lexique.h"; path = "piccoloDevice_lexique.h"; sourceTree = "<group>"; };
+		4DFA42CADDBD0694A4E9BDC8 /* piccoloDevice_semantics.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "piccoloDevice_semantics.cpp"; path = "piccoloDevice_semantics.cpp"; sourceTree = "<group>"; };
+		19AD8176D665453CFB2E55F0 /* piccoloDevice_semantics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "piccoloDevice_semantics.h"; path = "piccoloDevice_semantics.h"; sourceTree = "<group>"; };
+		E76FC522773286A895BC8436 /* piccoloDevice_syntax.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "piccoloDevice_syntax.cpp"; path = "piccoloDevice_syntax.cpp"; sourceTree = "<group>"; };
+		6AB90CE0268229151C9BDE11 /* piccoloDevice_syntax.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "piccoloDevice_syntax.h"; path = "piccoloDevice_syntax.h"; sourceTree = "<group>"; };
 		8E4C41F2747BFA2F1B5F87DB /* piccolo_cocoa.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.obj; name = "piccolo_cocoa.m"; path = "piccolo_cocoa.m"; sourceTree = "<group>"; };
 		95D565EF66E7DFF9F98764DA /* piccolo_computations.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "piccolo_computations.cpp"; path = "piccolo_computations.cpp"; sourceTree = "<group>"; };
-		4DFA42CADDBD0694A4E9BDC8 /* piccolo_config.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "piccolo_config.cpp"; path = "piccolo_config.cpp"; sourceTree = "<group>"; };
-		19AD8176D665453CFB2E55F0 /* piccolo_config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "piccolo_config.h"; path = "piccolo_config.h"; sourceTree = "<group>"; };
+		3AFB633E50CDF1B20DE6F466 /* piccolo_config.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "piccolo_config.cpp"; path = "piccolo_config.cpp"; sourceTree = "<group>"; };
+		754BA1C09B3695E0CB6CDE7F /* piccolo_config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "piccolo_config.h"; path = "piccolo_config.h"; sourceTree = "<group>"; };
 		0859F2CB9F7C8F8CACB8D2A6 = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "piccolo_debug"; sourceTree = BUILT_PRODUCTS_DIR; };
-		E76FC522773286A895BC8436 /* piccolo_embedded_devices.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "piccolo_embedded_devices.cpp"; path = "piccolo_embedded_devices.cpp"; sourceTree = "<group>"; };
-		6AB90CE0268229151C9BDE11 /* piccolo_embedded_devices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "piccolo_embedded_devices.h"; path = "piccolo_embedded_devices.h"; sourceTree = "<group>"; };
-		3AFB633E50CDF1B20DE6F466 /* piccolo_grammar.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "piccolo_grammar.cpp"; path = "piccolo_grammar.cpp"; sourceTree = "<group>"; };
-		754BA1C09B3695E0CB6CDE7F /* piccolo_grammar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "piccolo_grammar.h"; path = "piccolo_grammar.h"; sourceTree = "<group>"; };
+		6A60928B05A7E228A89C3799 /* piccolo_embedded_devices.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "piccolo_embedded_devices.cpp"; path = "piccolo_embedded_devices.cpp"; sourceTree = "<group>"; };
+		80A295F8076B1C5722A46AA2 /* piccolo_embedded_devices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "piccolo_embedded_devices.h"; path = "piccolo_embedded_devices.h"; sourceTree = "<group>"; };
 		743DC5D013B1ABAEBD2FAED2 /* piccolo_icns.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = "piccolo_icns.icns"; path = "piccolo_icns.icns"; sourceTree = "<group>"; };
-		6A60928B05A7E228A89C3799 /* piccolo_lexique.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "piccolo_lexique.cpp"; path = "piccolo_lexique.cpp"; sourceTree = "<group>"; };
-		80A295F8076B1C5722A46AA2 /* piccolo_lexique.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "piccolo_lexique.h"; path = "piccolo_lexique.h"; sourceTree = "<group>"; };
-		A126B2F4B2374F342BE9ED44 /* piccolo_options.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "piccolo_options.cpp"; path = "piccolo_options.cpp"; sourceTree = "<group>"; };
-		7FBDB1988EF4C628EBA02591 /* piccolo_options.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "piccolo_options.h"; path = "piccolo_options.h"; sourceTree = "<group>"; };
-		4163B3523AFE57C2E008BC8C /* piccolo_program.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "piccolo_program.cpp"; path = "piccolo_program.cpp"; sourceTree = "<group>"; };
-		6E7929B125F8597834FA83A4 /* piccolo_program.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "piccolo_program.h"; path = "piccolo_program.h"; sourceTree = "<group>"; };
-		4608232E07D3AA3D998E5135 /* piccolo_syntax.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "piccolo_syntax.cpp"; path = "piccolo_syntax.cpp"; sourceTree = "<group>"; };
-		5C00B1249BBE3554A4FDF6FB /* piccolo_syntax.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "piccolo_syntax.h"; path = "piccolo_syntax.h"; sourceTree = "<group>"; };
+		A126B2F4B2374F342BE9ED44 /* piccolo_lexique.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "piccolo_lexique.cpp"; path = "piccolo_lexique.cpp"; sourceTree = "<group>"; };
+		7FBDB1988EF4C628EBA02591 /* piccolo_lexique.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "piccolo_lexique.h"; path = "piccolo_lexique.h"; sourceTree = "<group>"; };
+		4163B3523AFE57C2E008BC8C /* piccolo_options.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "piccolo_options.cpp"; path = "piccolo_options.cpp"; sourceTree = "<group>"; };
+		6E7929B125F8597834FA83A4 /* piccolo_options.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "piccolo_options.h"; path = "piccolo_options.h"; sourceTree = "<group>"; };
+		4608232E07D3AA3D998E5135 /* piccolo_program.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "piccolo_program.cpp"; path = "piccolo_program.cpp"; sourceTree = "<group>"; };
+		5C00B1249BBE3554A4FDF6FB /* piccolo_program.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "piccolo_program.h"; path = "piccolo_program.h"; sourceTree = "<group>"; };
 		930E414107EE22B6198C578F /* predefined-types.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "predefined-types.cpp"; path = "predefined-types.cpp"; sourceTree = "<group>"; };
 		83A4C3A763A7E62D825349F7 /* predefined-types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "predefined-types.h"; path = "predefined-types.h"; sourceTree = "<group>"; };
 		CBF4CAAED33C36B1B5FC2CB1 /* ram_sections.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "ram_sections.cpp"; path = "ram_sections.cpp"; sourceTree = "<group>"; };
@@ -668,32 +668,32 @@
 				7964F8DDDEB95FC584CD965D /* pic18_bootloader_syntax.h */,
 				93E200C36F7CD9DFD0E5DEAA /* pic18_checkingAndBuildIPIC.cpp */,
 				F4C10BF22AA353E27879133C /* pic18_checkingAndBuildIPIC.h */,
-				395FEDAD7BBBED0ECA3FE2E0 /* pic18_metamodel.cpp */,
-				4CEA9109507CACD8E2F2AEFC /* pic18_metamodel.h */,
-				3F027327D8461063F4AC58A6 /* pic18_semantics.cpp */,
-				FC8586DFA4D1BC0E1742C08B /* pic18_semantics.h */,
-				C833DFF4B38FC8D2872F1EC6 /* piccoloDevice_grammar.cpp */,
-				7260AE62E3B1396831A8398F /* piccoloDevice_grammar.h */,
-				E875A2E075A1A4A6E1B9770F /* piccoloDevice_lexique.cpp */,
-				CE56D3D6FA748AB6D9AF3FD7 /* piccoloDevice_lexique.h */,
-				B79421734881B53E1E1B18B6 /* piccoloDevice_semantics.cpp */,
-				A9DED88F18ECEE47145A72C0 /* piccoloDevice_semantics.h */,
-				30BD3DCAEFC96F40275BDC0A /* piccoloDevice_syntax.cpp */,
-				778DFAECDC212708F721B788 /* piccoloDevice_syntax.h */,
-				4DFA42CADDBD0694A4E9BDC8 /* piccolo_config.cpp */,
-				19AD8176D665453CFB2E55F0 /* piccolo_config.h */,
-				E76FC522773286A895BC8436 /* piccolo_embedded_devices.cpp */,
-				6AB90CE0268229151C9BDE11 /* piccolo_embedded_devices.h */,
-				3AFB633E50CDF1B20DE6F466 /* piccolo_grammar.cpp */,
-				754BA1C09B3695E0CB6CDE7F /* piccolo_grammar.h */,
-				6A60928B05A7E228A89C3799 /* piccolo_lexique.cpp */,
-				80A295F8076B1C5722A46AA2 /* piccolo_lexique.h */,
-				A126B2F4B2374F342BE9ED44 /* piccolo_options.cpp */,
-				7FBDB1988EF4C628EBA02591 /* piccolo_options.h */,
-				4163B3523AFE57C2E008BC8C /* piccolo_program.cpp */,
-				6E7929B125F8597834FA83A4 /* piccolo_program.h */,
-				4608232E07D3AA3D998E5135 /* piccolo_syntax.cpp */,
-				5C00B1249BBE3554A4FDF6FB /* piccolo_syntax.h */,
+				395FEDAD7BBBED0ECA3FE2E0 /* pic18_grammar.cpp */,
+				4CEA9109507CACD8E2F2AEFC /* pic18_grammar.h */,
+				3F027327D8461063F4AC58A6 /* pic18_metamodel.cpp */,
+				FC8586DFA4D1BC0E1742C08B /* pic18_metamodel.h */,
+				C833DFF4B38FC8D2872F1EC6 /* pic18_semantics.cpp */,
+				7260AE62E3B1396831A8398F /* pic18_semantics.h */,
+				E875A2E075A1A4A6E1B9770F /* pic18_syntax.cpp */,
+				CE56D3D6FA748AB6D9AF3FD7 /* pic18_syntax.h */,
+				B79421734881B53E1E1B18B6 /* piccoloDevice_grammar.cpp */,
+				A9DED88F18ECEE47145A72C0 /* piccoloDevice_grammar.h */,
+				30BD3DCAEFC96F40275BDC0A /* piccoloDevice_lexique.cpp */,
+				778DFAECDC212708F721B788 /* piccoloDevice_lexique.h */,
+				4DFA42CADDBD0694A4E9BDC8 /* piccoloDevice_semantics.cpp */,
+				19AD8176D665453CFB2E55F0 /* piccoloDevice_semantics.h */,
+				E76FC522773286A895BC8436 /* piccoloDevice_syntax.cpp */,
+				6AB90CE0268229151C9BDE11 /* piccoloDevice_syntax.h */,
+				3AFB633E50CDF1B20DE6F466 /* piccolo_config.cpp */,
+				754BA1C09B3695E0CB6CDE7F /* piccolo_config.h */,
+				6A60928B05A7E228A89C3799 /* piccolo_embedded_devices.cpp */,
+				80A295F8076B1C5722A46AA2 /* piccolo_embedded_devices.h */,
+				A126B2F4B2374F342BE9ED44 /* piccolo_lexique.cpp */,
+				7FBDB1988EF4C628EBA02591 /* piccolo_lexique.h */,
+				4163B3523AFE57C2E008BC8C /* piccolo_options.cpp */,
+				6E7929B125F8597834FA83A4 /* piccolo_options.h */,
+				4608232E07D3AA3D998E5135 /* piccolo_program.cpp */,
+				5C00B1249BBE3554A4FDF6FB /* piccolo_program.h */,
 				CBF4CAAED33C36B1B5FC2CB1 /* ram_sections.cpp */,
 				568125ED6C3F678819B6E058 /* ram_sections.h */,
 				8E4C41F2747BFA2F1B5F87DB /* piccolo_cocoa.m */,

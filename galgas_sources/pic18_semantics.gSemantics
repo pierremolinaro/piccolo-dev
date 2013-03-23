@@ -5,7 +5,7 @@ import "ipc18_convert_relatives.gSemantics" ;
 import "ipic18_optimizations.gSemantics" ;
 import "piccolo_config.gSemantics" ;
 import "ram_sections.gSemantics" ;
-import "piccolo_grammar.gGrammar" ;
+import "pic18_grammar.gGrammar" ;
 
 #----------------------------------------------------------------------------*
 #                                                                            *
@@ -102,7 +102,7 @@ routine pic18_analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName 
   when bootloaderProgram :
     bootloaderRoutineDeclarationListForUserProgramImplementation := [@routineDeclarationList emptyList] ;
     userRoutineDeclarationListForUserProgramImplementation := [@routineDeclarationList emptyList] ;
-    grammar piccolo_grammar label importBootloaderSpecification in [inPiccoloModel mDeviceNameOrBootLoaderReference]
+    grammar pic18_grammar label importBootloaderSpecification in [inPiccoloModel mDeviceNameOrBootLoaderReference]
       ?piccoloDeviceModel
       ?accessBankSplitOffset
       ?ramBank
@@ -116,7 +116,7 @@ routine pic18_analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName 
       [!?ramBank setMFirstFreeAddressForKey !mFirstAddress ![lkey string]] ;
     end foreach ;
   when userProgram :
-    grammar piccolo_grammar label importBootloaderSpecification in [inPiccoloModel mDeviceNameOrBootLoaderReference]
+    grammar pic18_grammar label importBootloaderSpecification in [inPiccoloModel mDeviceNameOrBootLoaderReference]
       ?piccoloDeviceModel
       ?accessBankSplitOffset
       ?ramBank
