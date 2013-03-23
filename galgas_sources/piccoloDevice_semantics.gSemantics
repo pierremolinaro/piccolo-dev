@@ -16,7 +16,7 @@ map @registerTable {
 
 map @ramBankTable {
   @uint mFirstAddress ;
-  @uint mFirstFreeAddress ; # feature setter ;
+  @uint mFirstFreeAddress ;
   @uint mLastAddressPlusOne ;
   @uintlist mMirrorOffsetList ;
   insert insertKey error message "the '%K' bank ram is already declared in %L" ;

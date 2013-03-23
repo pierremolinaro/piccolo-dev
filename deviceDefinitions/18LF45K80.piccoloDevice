@@ -15,7 +15,7 @@ controller PIC18LF45K80 {
   ram gpr11 : 0xB00 to 0xBFF ;
   ram gpr12 : 0xC00 to 0xCFF ;
   ram gpr13 : 0xD00 to 0xDFF ;
-  ram gpr14 : 0xE00 to 0xE40 ;
+  ram gpr14 : 0xE00 to 0xE3F ;
   ram gpr2 : 0x200 to 0x2FF ;
   ram gpr3 : 0x300 to 0x3FF ;
   ram gpr4 : 0x400 to 0x4FF ;
@@ -24,7 +24,7 @@ controller PIC18LF45K80 {
   ram gpr7 : 0x700 to 0x7FF ;
   ram gpr8 : 0x800 to 0x8FF ;
   ram gpr9 : 0x900 to 0x9FF ;
-  # Total ram: 3649
+  # Total ram: 3648
 
   register ADCON0 at 0xFC2
     <-, CHS [5], GO/nDONE, ADON> ;

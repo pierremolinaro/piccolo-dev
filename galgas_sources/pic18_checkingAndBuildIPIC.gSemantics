@@ -2075,6 +2075,7 @@ end method ;
 routine build_ipic18_assembly_instruction_list
   ??@programKind inProgramKind
   ??@sint inROMSize
+  ??@sint inRAMSize
   ??@routineDeclarationList inBootloaderRoutineDeclarationListForBootloaderImplementation
   ??@routineDeclarationList inUserRoutineDeclarationListForBootloaderImplementation
   ??@luint inBootloaderReservedROMsize
@@ -2143,9 +2144,9 @@ routine build_ipic18_assembly_instruction_list
   end foreach ;
 #-------------------------------- Build constant map
   @constantMap constantMap := inDataLengthConstantMap ;
-#--- Add "ROM_SIZE" constant
-  @lstring romSizeString [new !"ROM_SIZE" !here] ;
-  [!?constantMap insertKey !romSizeString !inROMSize] ;
+#--- Add "ROM_SIZE" and "RAM_SIZE" constants
+  [!?constantMap insertKey ![@lstring new !"ROM_SIZE" !here] !inROMSize] ;
+  [!?constantMap insertKey ![@lstring new !"RAM_SIZE" !here] !inRAMSize] ;
 #--- Add "BOOTLOADER_SIZE" constant
   if inProgramKind != [@programKind regularProgram] then
     @lstring bootloaderSizeString [new !"BOOTLOADER_SIZE" !here] ;
