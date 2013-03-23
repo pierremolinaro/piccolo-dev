@@ -247,11 +247,19 @@ routine pic18_analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName 
       end if ;
     end foreach ;
   end if ;
+#-------------------------------- Compute RAM size
+  @uint RAMsize := 0 ;
+  foreach ramBank do
+    if mLastAddressPlusOne > RAMsize then
+      RAMsize := mLastAddressPlusOne ;
+    end if ;
+  end foreach ;
 #-------------------------------- Build IPIC Assembly Instruction List
   @ipic18_instructionList generatedInstructionList ;
   build_ipic18_assembly_instruction_list
     ![inPiccoloModel mProgramKind]
     ![[[piccoloDeviceModel mRomSize] uint] sint]
+    ![RAMsize sint]
     !bootloaderRoutineDeclarationListForBootloaderImplementation # Empty for regular program
     !userRoutineDeclarationListForBootloaderImplementation # Empty for regular program
     !bootloaderReservedROMsize
