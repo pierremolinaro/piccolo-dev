@@ -16,10 +16,10 @@ project all_piccolo (0:0:1) -> "piccolo" :
   semantics "ipic_generic.gSemantics" ;
 
   semantics "pic18_metamodel.gSemantics" ;
-  syntax    "piccolo_syntax.gSyntax" ;
+  syntax    "pic18_syntax.gSyntax" ;
   syntax    "pic18_bootloader_syntax.gSyntax" ;
   semantics "piccolo_config.gSemantics" ;
-
+  grammar   "pic18_grammar.gGrammar" ;
   semantics "ipic18_metamodel.gSemantics" ;
   semantics "pic18_checkingAndBuildIPIC.gSemantics" ;
   semantics "ipic18_optimizations.gSemantics" ;
@@ -39,7 +39,6 @@ project all_piccolo (0:0:1) -> "piccolo" :
   semantics "midrange_build_binary_code.gSemantics" ;
   semantics "midrange_semantics.gSemantics" ;
 
-  grammar   "piccolo_grammar.gGrammar" ;
 
   semantics "ram_sections.gSemantics" ;
 

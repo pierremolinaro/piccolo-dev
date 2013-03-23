@@ -322,6 +322,12 @@ class @instruction_LFSR extends @piccolo_instruction {
 
 #----------------------------------------------------*
 
+class @instruction_LTBLPTR extends @piccolo_instruction {
+  @immediatExpression mImmediatExpression ;
+}
+
+#----------------------------------------------------*
+
 enum @tableAccessOption {
   simpleAccess, postIncrement, postDecrement, preIncrement
 }{

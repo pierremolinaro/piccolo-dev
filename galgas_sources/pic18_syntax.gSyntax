@@ -1,4 +1,4 @@
-syntax piccolo_syntax ("piccolo_lexique.gLexique") :
+syntax pic18_syntax ("piccolo_lexique.gLexique") :
 import "pic18_metamodel.gSemantics" ;
 import "pic18_semantics.gSemantics" ;
 
@@ -1389,6 +1389,12 @@ rule <simple_instruction> !@piccolo_instruction outInstruction :
     @immediatExpression expression ;
     <immediate_expression> ?expression ;
     outInstruction := [@instruction_LFSR new !instructionLocation !FSRindex !expression] ;
+  or
+    $ltblptr$ ;
+    @location instructionLocation := here ;
+    @immediatExpression expression ;
+    <immediate_expression> ?expression ;
+    outInstruction := [@instruction_LTBLPTR new !instructionLocation !expression] ;
   or
     $tblrd$ ;
     @location instructionLocation := here ;
