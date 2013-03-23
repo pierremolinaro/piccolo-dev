@@ -125,9 +125,16 @@ reader @ipic18_instruction isSkippingInstruction -> @bool outIsSkipping :
   outIsSkipping := false ;
 end reader ;
 
-method @ipic18_instruction enterReferencedLabel ?!@stringset unused ioReferencedLabelSet :
+method @ipic18_instruction enterReferencedLabel
+  ?!@stringset unused ioReferencedLabelSet
+:
 end method ;
 
+override method @ipic_MOV_LABEL_W enterReferencedLabel
+  ?!@stringset ioReferencedLabelSet
+:
+  ioReferencedLabelSet += !mLabel->string ;
+end method ;
 
 #----------------------------------------------------*
 
@@ -187,6 +194,7 @@ override reader @ipic_pseudo_LABEL instructionLength -> @uint outLength :
 end reader ;
 
 override
+
 method @ipic_pseudo_LABEL displayIPICinstruction ?!@string ioListFileContents :
   ioListFileContents .= "LABEL " . mLabel ;
 end method ;
@@ -195,6 +203,20 @@ override method @ipic_pseudo_LABEL isLABELorORG !@bool outIsLABELorORG :
   outIsLABELorORG := true ;
 end method ;
 
+#----------------------------------------------------*
+
+class @ipic_word extends @ipic18_instruction {
+  @uint mValue ;
+}
+
+override reader @ipic_word instructionLength -> @uint outLength :
+  outLength := 2 ;
+end reader ;
+
+override
+method @ipic_word displayIPICinstruction ?!@string ioListFileContents :
+  ioListFileContents .= "WORD " . [mValue hexString] ;
+end method ;
 
 #----------------------------------------------------*
 
@@ -206,6 +228,19 @@ override reader @ipic_actualInstruction instructionLength -> @uint outLength :
   outLength := 2 ;
 end reader ;
 
+
+#----------------------------------------------------*
+
+class @ipic_MOV_LABEL_W extends @ipic_actualInstruction {
+  @lstring mLabel ;
+  @uint mOffset ;
+  @uint mRightShift ;
+}
+
+override
+method @ipic_MOV_LABEL_W displayIPICinstruction ?!@string ioListFileContents :
+  ioListFileContents .= "MOVLW ((" . mLabel . " + " . mOffset . ") >> " . mRightShift . ") & 0xFF"  ;
+end method ;
 
 #----------------------------------------------------*
 

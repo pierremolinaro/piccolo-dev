@@ -30,6 +30,24 @@ end method ;
 
 #----------------------------------------------------*
 
+override method @ipic_word buildAssemblyCode
+  ?!@stringlist ioStringList
+  ?!@uint unused ioBccLabelIndex
+:
+  ioStringList += !"  WORD " . [mValue hexString] ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @ipic_MOV_LABEL_W buildAssemblyCode
+  ?!@stringlist ioStringList
+  ?!@uint unused ioBccLabelIndex
+:
+  ioStringList += !"  MOVLW ((" . mLabel . " + " . mOffset . ") >> " . mRightShift . ") & 0xFF"  ;
+end method ;
+
+#----------------------------------------------------*
+
 override method @ipic_pseudo_LABEL buildAssemblyCode
   ?!@stringlist ioStringList
   ?!@uint unused ioBccLabelIndex

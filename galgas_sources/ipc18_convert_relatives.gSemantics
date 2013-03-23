@@ -81,6 +81,30 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
+override method @ipic_MOV_LABEL_W checkRelativeBranch
+  ??@ipic18_symbolTableForConvertingRelatives unused inRoutineSymbolTable
+  ?!@uint unused ioAddress
+  ?!@bool unused ioRelativeBranchOverflow
+  ?!@ipic18_instructionList unused ioGeneratedInstructionList
+  ??@uint unused inIndex
+  ?!@string unused ioListFileContents
+:
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @ipic_word checkRelativeBranch
+  ??@ipic18_symbolTableForConvertingRelatives unused inRoutineSymbolTable
+  ?!@uint unused ioAddress
+  ?!@bool unused ioRelativeBranchOverflow
+  ?!@ipic18_instructionList unused ioGeneratedInstructionList
+  ??@uint unused inIndex
+  ?!@string unused ioListFileContents
+:
+end method ;
+
+#----------------------------------------------------------------------------*
+
 override method @ipic_actualInstruction checkRelativeBranch
   ??@ipic18_symbolTableForConvertingRelatives unused inRoutineSymbolTable
   ?!@uint unused ioAddress

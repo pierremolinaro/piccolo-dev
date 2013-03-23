@@ -4,19 +4,6 @@ import "pic18_semantics.gSemantics" ;
 
 #----------------------------------------------------*
 
-nonterminal <configuration_definition>
-  ?!@configDefinitionList ioConfigDefinitionList
-  ?!@bool ioAcceptDefaultConfiguration
-;
-
-nonterminal <declaration_in_ram>
-  !@declarationInRam outDeclaration
-;
-
-nonterminal <ram_definition>
-  ?!@ramDefinitionList ioRamDefinitionList
-;
-
 nonterminal <constant_definition>
   ?!@constantDefinitionList ioConstantDefinitionList
 ;
@@ -127,6 +114,7 @@ rule <start_symbol> :
   @ramDefinitionList ramDefinitionList [emptyList] ;
   @configDefinitionList configDefinitionList [emptyList] ;
   @constantDefinitionList constantDefinitionList [emptyList] ;
+  @dataList dataList [emptyList] ;
   @bool acceptDefaultConfiguration := false ;
   @bool needsComputedGoto2 := false ;
   @bool needsComputedGoto4 := false ;
@@ -152,6 +140,8 @@ rule <start_symbol> :
       !?needsComputedGoto2
       !?needsComputedGoto4
     ;
+  while
+    <data_definition> !?dataList ;
   end repeat ;
   $end$ ;
 #--- Semantic analysis
@@ -163,6 +153,7 @@ rule <start_symbol> :
       !configDefinitionList
       !acceptDefaultConfiguration
       !ramDefinitionList
+      !dataList
       !interruptDefinitionList
       !constantDefinitionList
       !routineDefinitionList
@@ -223,11 +214,32 @@ label importBootloaderSpecification
     <interrupt_definition> parse ;
   while
     <routine_definition> parse ;
+  while
+    <data_definition> parse ;
   end repeat ;
   $end$ ;
   
 end rule ;
 
+#----------------------------------------------------*
+
+rule <data_definition>
+  ?!@dataList ioDataList
+:
+  $data$ ;
+  $identifier$ ? @lstring dataName ;
+  ${$ ;
+  @luintlist valueList [emptyList] ;
+  repeat
+    $integer$ ?@luint value ;
+    valueList += !value ;
+  while
+    $,$ ;
+  end repeat ;
+  $}$ ;
+  ioDataList += !dataName !valueList ;
+end rule ;
+    
 #----------------------------------------------------*
 
 rule <configuration_definition>
@@ -1389,6 +1401,14 @@ rule <simple_instruction> !@piccolo_instruction outInstruction :
     @immediatExpression expression ;
     <immediate_expression> ?expression ;
     outInstruction := [@instruction_LFSR new !instructionLocation !FSRindex !expression] ;
+  or
+    $ldataptr$ ;
+    @location instructionLocation := here ;
+    $identifier$ ?@lstring dataName ;
+    $[$ ;
+    $integer$ ? @luint dataIndex ;
+    $]$ ;
+    outInstruction := [@instruction_LDATAPTR new !instructionLocation !dataName !dataIndex] ;
   or
     $ltblptr$ ;
     @location instructionLocation := here ;

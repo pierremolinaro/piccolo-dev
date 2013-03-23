@@ -5,7 +5,7 @@ import "ipic18_build_assembly_code.gSemantics" ;
 #----------------------------------------------------------------------------*
 
 map @ipic18_symbolTable {
-  @uint mRoutineAddress ;
+  @uint mSymbolAddress ;
   insert insertKey error message "the '%K' label is already declared in %L" ;
   search searchKey error message "the '%K' label is not declared" ;
 }
@@ -88,6 +88,31 @@ method @ipic_pseudo_ORG generateBinaryCodeAtAddress
   ?!@emittedCodeList unused ioCode
 :
   ioAddress := mOrigin ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @ipic_word generateBinaryCodeAtAddress
+  ??@ipic18_symbolTable unused inRoutineSymbolTable
+  ?!@uint unused ioAddress
+  ?!@emittedCodeList ioCode
+:
+#--- Emit Code
+  ioCode += ![@uintlist listWithValue !mValue] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @ipic_MOV_LABEL_W generateBinaryCodeAtAddress
+  ??@ipic18_symbolTable inRoutineSymbolTable
+  ?!@uint unused ioAddress
+  ?!@emittedCodeList ioCode
+:
+#--- Emit Code
+  [inRoutineSymbolTable searchKey !mLabel ?@uint address] ;
+  const @uint code := ((address + mOffset) >> mRightShift) & 0xFF ;
+  const @uint code_MOVLW := 0x0E00 ;
+  ioCode += ![@uintlist listWithValue !code | code_MOVLW] ;
 end method ;
 
 #----------------------------------------------------------------------------*
