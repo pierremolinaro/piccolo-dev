@@ -84,7 +84,8 @@ routine analyze_ram_sections
   ?!@ramBankTable ioRamBankTable
   ??@registerTable inSpecialRegisterTable
   ?!@string ioListFileContents
-  ?!@registerTable ioAllRegisters :
+  ?!@registerTable ioAllRegisters
+:
   foreach inRamDefinitionList do
     foreach mDeclaration do
       [mDeclarationInRAM handleDeclaration !?ioRamBankTable !?ioAllRegisters !mBankName] ;

@@ -5,6 +5,14 @@ import "ipic_generic.gSemantics" ;
 import "piccoloDevice_semantics.gSemantics" ;
 import "ipic18_metamodel.gSemantics" ;
 
+#----------------------------------------------------------------------------*
+
+map @dataMap {
+  @uint mDataSize ;
+  insert insertKey error message "the '%K' data is already declared" ;
+  search searchKey error message "the '%K' data is not declared" ;
+}
+
 #----------------------------------------------------*
 #           DECOMPOSE STRUCTURED INSTRUCTIONS        *
 #----------------------------------------------------*
@@ -13,6 +21,7 @@ abstract method @piccolo_instruction buildIPICinstructionList
   ??@uint unused inAccessBankSplitOffset
   ??@routineMap unused inRoutineMap
   ??@registerTable inRegisterTable
+  ??@dataMap unused inDataMap
   ??@constantMap inConstantMap
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic18_instructionList unused ioGeneratedInstructionList
@@ -30,6 +39,7 @@ routine handleInstructionList
   ??@uint inAccessBankSplitOffset
   ??@routineMap inRoutineMap
   ??@registerTable inRegisterTable
+  ??@dataMap inDataMap
   ??@constantMap inConstantMap
   ?!@uint ioLocalLabelIndex
   ?!@ipic18_instructionList ioGeneratedInstructionList
@@ -49,6 +59,7 @@ routine handleInstructionList
       !inAccessBankSplitOffset
       !inRoutineMap
       !inRegisterTable
+      !inDataMap
       !inConstantMap
       !?ioLocalLabelIndex
       !?ioGeneratedInstructionList
@@ -67,6 +78,7 @@ override method @instruction_nobanksel buildIPICinstructionList
   ??@uint unused inAccessBankSplitOffset
   ??@routineMap unused inRoutineMap
   ??@registerTable unused inRegisterTable
+  ??@dataMap unused inDataMap
   ??@constantMap unused inConstantMap
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic18_instructionList unused ioGeneratedInstructionList
@@ -89,6 +101,7 @@ override method @instruction_savebank buildIPICinstructionList
   ??@uint inAccessBankSplitOffset
   ??@routineMap inRoutineMap
   ??@registerTable inRegisterTable
+  ??@dataMap inDataMap
   ??@constantMap inConstantMap
   ?!@uint ioLocalLabelIndex
   ?!@ipic18_instructionList ioGeneratedInstructionList
@@ -124,6 +137,7 @@ override method @instruction_savebank buildIPICinstructionList
     !inAccessBankSplitOffset
     !inRoutineMap
     !inRegisterTable
+    !inDataMap
     !inConstantMap
     !?ioLocalLabelIndex
     !?ioGeneratedInstructionList
@@ -150,6 +164,7 @@ override method @instruction_banksel buildIPICinstructionList
   ??@uint unused inAccessBankSplitOffset
   ??@routineMap unused inRoutineMap
   ??@registerTable unused inRegisterTable
+  ??@dataMap unused inDataMap
   ??@constantMap unused inConstantMap
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic18_instructionList ioGeneratedInstructionList
@@ -180,6 +195,7 @@ override method @instruction_FDA buildIPICinstructionList
   ??@uint inAccessBankSplitOffset
   ??@routineMap unused inRoutineMap
   ??@registerTable inRegisterTable
+  ??@dataMap unused inDataMap
   ??@constantMap unused inConstantMap
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic18_instructionList ioGeneratedInstructionList
@@ -211,6 +227,7 @@ override method @instruction_FA buildIPICinstructionList
   ??@uint inAccessBankSplitOffset
   ??@routineMap unused inRoutineMap
   ??@registerTable inRegisterTable
+  ??@dataMap unused inDataMap
   ??@constantMap unused inConstantMap
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic18_instructionList ioGeneratedInstructionList
@@ -241,6 +258,7 @@ override method @instruction_MOVFF buildIPICinstructionList
   ??@uint unused inAccessBankSplitOffset
   ??@routineMap unused inRoutineMap
   ??@registerTable inRegisterTable
+  ??@dataMap unused inDataMap
   ??@constantMap unused inConstantMap
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic18_instructionList ioGeneratedInstructionList
@@ -273,6 +291,7 @@ override method @instruction_FBA buildIPICinstructionList
   ??@uint inAccessBankSplitOffset
   ??@routineMap unused inRoutineMap
   ??@registerTable inRegisterTable
+  ??@dataMap unused inDataMap
   ??@constantMap unused inConstantMap
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic18_instructionList ioGeneratedInstructionList
@@ -310,6 +329,7 @@ override method @instruction_JSR buildIPICinstructionList
   ??@uint unused inAccessBankSplitOffset
   ??@routineMap inRoutineMap
   ??@registerTable unused inRegisterTable
+  ??@dataMap unused inDataMap
   ??@constantMap unused inConstantMap
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic18_instructionList ioGeneratedInstructionList
@@ -358,6 +378,7 @@ override method @instruction_JUMP buildIPICinstructionList
   ??@uint unused inAccessBankSplitOffset
   ??@routineMap inRoutineMap
   ??@registerTable unused inRegisterTable
+  ??@dataMap unused inDataMap
   ??@constantMap unused inConstantMap
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic18_instructionList ioGeneratedInstructionList
@@ -399,6 +420,7 @@ override method @instruction_JUMPCC buildIPICinstructionList
   ??@uint unused inAccessBankSplitOffset
   ??@routineMap inRoutineMap
   ??@registerTable unused inRegisterTable
+  ??@dataMap unused inDataMap
   ??@constantMap unused inConstantMap
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic18_instructionList ioGeneratedInstructionList
@@ -446,6 +468,7 @@ override method @instruction_CLRWDT buildIPICinstructionList
   ??@uint unused inAccessBankSplitOffset
   ??@routineMap unused inRoutineMap
   ??@registerTable unused inRegisterTable
+  ??@dataMap unused inDataMap
   ??@constantMap unused inConstantMap
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic18_instructionList ioGeneratedInstructionList
@@ -466,6 +489,7 @@ override method @instruction_DAW buildIPICinstructionList
   ??@uint unused inAccessBankSplitOffset
   ??@routineMap unused inRoutineMap
   ??@registerTable unused inRegisterTable
+  ??@dataMap unused inDataMap
   ??@constantMap unused inConstantMap
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic18_instructionList ioGeneratedInstructionList
@@ -486,6 +510,7 @@ override method @instruction_NOP buildIPICinstructionList
   ??@uint unused inAccessBankSplitOffset
   ??@routineMap unused inRoutineMap
   ??@registerTable unused inRegisterTable
+  ??@dataMap unused inDataMap
   ??@constantMap unused inConstantMap
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic18_instructionList ioGeneratedInstructionList
@@ -506,6 +531,7 @@ override method @instruction_POP buildIPICinstructionList
   ??@uint unused inAccessBankSplitOffset
   ??@routineMap unused inRoutineMap
   ??@registerTable unused inRegisterTable
+  ??@dataMap unused inDataMap
   ??@constantMap unused inConstantMap
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic18_instructionList ioGeneratedInstructionList
@@ -526,6 +552,7 @@ override method @instruction_PUSH buildIPICinstructionList
   ??@uint unused inAccessBankSplitOffset
   ??@routineMap unused inRoutineMap
   ??@registerTable unused inRegisterTable
+  ??@dataMap unused inDataMap
   ??@constantMap unused inConstantMap
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic18_instructionList ioGeneratedInstructionList
@@ -546,6 +573,7 @@ override method @instruction_RESET buildIPICinstructionList
   ??@uint unused inAccessBankSplitOffset
   ??@routineMap unused inRoutineMap
   ??@registerTable unused inRegisterTable
+  ??@dataMap unused inDataMap
   ??@constantMap unused inConstantMap
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic18_instructionList ioGeneratedInstructionList
@@ -566,6 +594,7 @@ override method @instruction_SLEEP buildIPICinstructionList
   ??@uint unused inAccessBankSplitOffset
   ??@routineMap unused inRoutineMap
   ??@registerTable unused inRegisterTable
+  ??@dataMap unused inDataMap
   ??@constantMap unused inConstantMap
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic18_instructionList ioGeneratedInstructionList
@@ -586,6 +615,7 @@ override method @instruction_literalOperation buildIPICinstructionList
   ??@uint unused inAccessBankSplitOffset
   ??@routineMap unused inRoutineMap
   ??@registerTable inRegisterTable
+  ??@dataMap unused inDataMap
   ??@constantMap inConstantMap
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic18_instructionList ioGeneratedInstructionList
@@ -614,6 +644,7 @@ override method @instruction_LFSR buildIPICinstructionList
   ??@uint unused inAccessBankSplitOffset
   ??@routineMap unused inRoutineMap
   ??@registerTable inRegisterTable
+  ??@dataMap unused inDataMap
   ??@constantMap inConstantMap
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic18_instructionList ioGeneratedInstructionList
@@ -645,6 +676,7 @@ override method @instruction_LTBLPTR buildIPICinstructionList
   ??@uint inAccessBankSplitOffset
   ??@routineMap unused inRoutineMap
   ??@registerTable inRegisterTable
+  ??@dataMap unused inDataMap
   ??@constantMap inConstantMap
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic18_instructionList ioGeneratedInstructionList
@@ -766,10 +798,95 @@ end method ;
 
 #----------------------------------------------------*
 
+override method @instruction_LDATAPTR buildIPICinstructionList
+  ??@uint inAccessBankSplitOffset
+  ??@routineMap unused inRoutineMap
+  ??@registerTable inRegisterTable
+  ??@dataMap inDataMap
+  ??@constantMap unused inConstantMap
+  ?!@uint unused ioLocalLabelIndex
+  ?!@ipic18_instructionList ioGeneratedInstructionList
+  ?!@string unused ioListFileContents
+  ?!@uint ioCurrentBank
+  ??@bool unused inShouldPreserveBSR
+  ?!@bool unused ioContinuesInSequence
+  ??@routineKind unused inRoutineKind
+:
+  [inDataMap searchKey !mDataName ?@uint dataSize] ;
+  const @lstring labelName [new !"_data_" . mDataName !mDataName->location] ;
+#--- Check index
+  if [mDataIndex uint] >= dataSize then
+    error mDataIndex: "index should be < " . dataSize ;
+  end if ;
+#--- Upper byte
+  const @registerExpression TBLPTRU [new ![@lstring new !"TBLPTRU" !mInstructionLocation] ![@luint new !0 !mInstructionLocation]] ;
+  [TBLPTRU resolveAccess
+    !inAccessBankSplitOffset
+    !ioCurrentBank
+    !inRegisterTable
+    ?@ipic_registerExpression outIPICregisterDescription
+    ?*
+  ] ;
+  ioGeneratedInstructionList += ![@ipic_MOV_LABEL_W new
+    !mInstructionLocation
+    !labelName
+    ![mDataIndex uint] * 2
+    !16
+  ] ;
+  ioGeneratedInstructionList += ![@ipic18_instruction_FA new
+    !mInstructionLocation
+    ![@FA_instruction_base_code MOVWF]
+    !outIPICregisterDescription
+  ] ;  
+#--- High byte
+  const @registerExpression TBLPTRH [new ![@lstring new !"TBLPTRH" !mInstructionLocation] ![@luint new !0 !mInstructionLocation]] ;
+  [TBLPTRH resolveAccess
+    !inAccessBankSplitOffset
+    !ioCurrentBank
+    !inRegisterTable
+    ?outIPICregisterDescription
+    ?*
+  ] ;
+  ioGeneratedInstructionList += ![@ipic_MOV_LABEL_W new
+    !mInstructionLocation
+    !labelName
+    ![mDataIndex uint] * 2
+    !8
+  ] ;
+  ioGeneratedInstructionList += ![@ipic18_instruction_FA new
+    !mInstructionLocation
+    ![@FA_instruction_base_code MOVWF]
+    !outIPICregisterDescription
+  ] ;  
+#--- Low byte
+  const @registerExpression TBLPTRL [new ![@lstring new !"TBLPTRL" !mInstructionLocation] ![@luint new !0 !mInstructionLocation]] ;
+  [TBLPTRL resolveAccess
+    !inAccessBankSplitOffset
+    !ioCurrentBank
+    !inRegisterTable
+    ?outIPICregisterDescription
+    ?*
+  ] ;
+  ioGeneratedInstructionList += ![@ipic_MOV_LABEL_W new
+    !mInstructionLocation
+    !labelName
+    ![mDataIndex uint] * 2
+    !0
+  ] ;
+  ioGeneratedInstructionList += ![@ipic18_instruction_FA new
+    !mInstructionLocation
+    ![@FA_instruction_base_code MOVWF]
+    !outIPICregisterDescription
+  ] ;  
+end method ;
+
+#----------------------------------------------------*
+
 override method @instruction_TBLRD buildIPICinstructionList
   ??@uint unused inAccessBankSplitOffset
   ??@routineMap unused inRoutineMap
   ??@registerTable unused inRegisterTable
+  ??@dataMap unused inDataMap
   ??@constantMap unused inConstantMap
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic18_instructionList ioGeneratedInstructionList
@@ -791,6 +908,7 @@ override method @instruction_TBLWT buildIPICinstructionList
   ??@uint unused inAccessBankSplitOffset
   ??@routineMap unused inRoutineMap
   ??@registerTable unused inRegisterTable
+  ??@dataMap unused inDataMap
   ??@constantMap unused inConstantMap
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic18_instructionList ioGeneratedInstructionList
@@ -812,6 +930,7 @@ override method @instruction_computed_retlw buildIPICinstructionList
   ??@uint unused inAccessBankSplitOffset
   ??@routineMap unused inRoutineMap
   ??@registerTable inRegisterTable
+  ??@dataMap unused inDataMap
   ??@constantMap inConstantMap
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic18_instructionList ioGeneratedInstructionList
@@ -861,6 +980,7 @@ override method @instruction_MNOP buildIPICinstructionList
   ??@uint unused inAccessBankSplitOffset
   ??@routineMap unused inRoutineMap
   ??@registerTable unused inRegisterTable
+  ??@dataMap unused inDataMap
   ??@constantMap unused inConstantMap
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic18_instructionList ioGeneratedInstructionList
@@ -887,6 +1007,7 @@ override method @instruction_computed_bra buildIPICinstructionList
   ??@uint unused inAccessBankSplitOffset
   ??@routineMap inRoutineMap
   ??@registerTable inRegisterTable
+  ??@dataMap unused inDataMap
   ??@constantMap inConstantMap
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic18_instructionList ioGeneratedInstructionList
@@ -972,6 +1093,7 @@ override method @instruction_computed_goto buildIPICinstructionList
   ??@uint unused inAccessBankSplitOffset
   ??@routineMap inRoutineMap
   ??@registerTable inRegisterTable
+  ??@dataMap unused inDataMap
   ??@constantMap inConstantMap
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic18_instructionList ioGeneratedInstructionList
@@ -1031,6 +1153,7 @@ override method @instruction_computed_rcall buildIPICinstructionList
   ??@uint unused inAccessBankSplitOffset
   ??@routineMap inRoutineMap
   ??@registerTable inRegisterTable
+  ??@dataMap unused inDataMap
   ??@constantMap inConstantMap
   ?!@uint ioLocalLabelIndex
   ?!@ipic18_instructionList ioGeneratedInstructionList
@@ -1116,6 +1239,7 @@ override method @instruction_FOREVER buildIPICinstructionList
   ??@uint inAccessBankSplitOffset
   ??@routineMap inRoutineMap
   ??@registerTable inRegisterTable
+  ??@dataMap inDataMap
   ??@constantMap inConstantMap
   ?!@uint ioLocalLabelIndex
   ?!@ipic18_instructionList ioGeneratedInstructionList
@@ -1142,6 +1266,7 @@ override method @instruction_FOREVER buildIPICinstructionList
     !inAccessBankSplitOffset
     !inRoutineMap
     !inRegisterTable
+    !inDataMap
     !inConstantMap
     !?ioLocalLabelIndex
     !?ioGeneratedInstructionList
@@ -1166,6 +1291,7 @@ override method @instruction_IF_FA_SEMI_COLON buildIPICinstructionList
   ??@uint inAccessBankSplitOffset
   ??@routineMap inRoutineMap
   ??@registerTable inRegisterTable
+  ??@dataMap inDataMap
   ??@constantMap inConstantMap
   ?!@uint ioLocalLabelIndex
   ?!@ipic18_instructionList ioGeneratedInstructionList
@@ -1201,6 +1327,7 @@ override method @instruction_IF_FA_SEMI_COLON buildIPICinstructionList
     !inAccessBankSplitOffset
     !inRoutineMap
     !inRegisterTable
+    !inDataMap
     !inConstantMap
     !?ioLocalLabelIndex
     !?ioGeneratedInstructionList
@@ -1218,6 +1345,7 @@ override method @instruction_IF_BitTest buildIPICinstructionList
   ??@uint inAccessBankSplitOffset
   ??@routineMap inRoutineMap
   ??@registerTable inRegisterTable
+  ??@dataMap inDataMap
   ??@constantMap inConstantMap
   ?!@uint ioLocalLabelIndex
   ?!@ipic18_instructionList ioGeneratedInstructionList
@@ -1253,6 +1381,7 @@ override method @instruction_IF_BitTest buildIPICinstructionList
     !inAccessBankSplitOffset
     !inRoutineMap
     !inRegisterTable
+    !inDataMap
     !inConstantMap
     !?ioLocalLabelIndex
     !?ioGeneratedInstructionList
@@ -1632,6 +1761,7 @@ override method @instruction_structured_if buildIPICinstructionList
   ??@uint inAccessBankSplitOffset
   ??@routineMap inRoutineMap
   ??@registerTable inRegisterTable
+  ??@dataMap inDataMap
   ??@constantMap inConstantMap
   ?!@uint ioLocalLabelIndex
   ?!@ipic18_instructionList ioGeneratedInstructionList
@@ -1688,6 +1818,7 @@ override method @instruction_structured_if buildIPICinstructionList
       !inAccessBankSplitOffset
       !inRoutineMap
       !inRegisterTable
+      !inDataMap
       !inConstantMap
       !?ioLocalLabelIndex
       !?ioGeneratedInstructionList
@@ -1707,6 +1838,7 @@ override method @instruction_structured_if buildIPICinstructionList
       !inAccessBankSplitOffset
       !inRoutineMap
       !inRegisterTable
+      !inDataMap
       !inConstantMap
       !?ioLocalLabelIndex
       !?ioGeneratedInstructionList
@@ -1741,6 +1873,7 @@ override method @instruction_structured_if buildIPICinstructionList
       !inAccessBankSplitOffset
       !inRoutineMap
       !inRegisterTable
+      !inDataMap
       !inConstantMap
       !?ioLocalLabelIndex
       !?ioGeneratedInstructionList
@@ -1760,6 +1893,7 @@ override method @instruction_structured_if buildIPICinstructionList
       !inAccessBankSplitOffset
       !inRoutineMap
       !inRegisterTable
+      !inDataMap
       !inConstantMap
       !?ioLocalLabelIndex
       !?ioGeneratedInstructionList
@@ -1789,6 +1923,7 @@ override method @instruction_do_while buildIPICinstructionList
   ??@uint inAccessBankSplitOffset
   ??@routineMap inRoutineMap
   ??@registerTable inRegisterTable
+  ??@dataMap inDataMap
   ??@constantMap inConstantMap
   ?!@uint ioLocalLabelIndex
   ?!@ipic18_instructionList ioGeneratedInstructionList
@@ -1809,6 +1944,7 @@ override method @instruction_do_while buildIPICinstructionList
     !inAccessBankSplitOffset
     !inRoutineMap
     !inRegisterTable
+    !inDataMap
     !inConstantMap
     !?ioLocalLabelIndex
     !?ioGeneratedInstructionList
@@ -1854,6 +1990,7 @@ override method @instruction_do_while buildIPICinstructionList
         !inAccessBankSplitOffset
         !inRoutineMap
         !inRegisterTable
+        !inDataMap
         !inConstantMap
         !?ioLocalLabelIndex
         !?ioGeneratedInstructionList
@@ -1878,6 +2015,7 @@ override method @instruction_IF_IncDec buildIPICinstructionList
   ??@uint inAccessBankSplitOffset
   ??@routineMap inRoutineMap
   ??@registerTable inRegisterTable
+  ??@dataMap inDataMap
   ??@constantMap inConstantMap
   ?!@uint ioLocalLabelIndex
   ?!@ipic18_instructionList ioGeneratedInstructionList
@@ -1920,6 +2058,7 @@ override method @instruction_IF_IncDec buildIPICinstructionList
     !inAccessBankSplitOffset
     !inRoutineMap
     !inRegisterTable
+    !inDataMap
     !inConstantMap
     !?ioLocalLabelIndex
     !?ioGeneratedInstructionList
@@ -1943,9 +2082,12 @@ routine build_ipic18_assembly_instruction_list
   ??@routineDeclarationList inUserRoutineDeclarationListForUserProgramImplementation
   ??@uint inAccessBankSplitOffset
   ??@registerTable inRegisterTable
+  ??@dataMap inDataMap
   ??@piccoloModel inPiccoloModel
   ??@bool inHasHighInterrupt
   ??@bool inHasLowInterrupt
+  ??@ipic18_instructionList inDataGeneratedInstructionList
+  ??@constantMap inDataLengthConstantMap
   !@ipic18_instructionList outGeneratedInstructionList
   ?!@string ioListFileContents
 :
@@ -2000,7 +2142,7 @@ routine build_ipic18_assembly_instruction_list
     end if ;
   end foreach ;
 #-------------------------------- Build constant map
-  @constantMap constantMap [emptyMap] ;
+  @constantMap constantMap := inDataLengthConstantMap ;
 #--- Add "ROM_SIZE" constant
   @lstring romSizeString [new !"ROM_SIZE" !here] ;
   [!?constantMap insertKey !romSizeString !inROMSize] ;
@@ -2115,6 +2257,7 @@ routine build_ipic18_assembly_instruction_list
           !inAccessBankSplitOffset
           !routineMap
           !inRegisterTable
+          !inDataMap
           !constantMap
           !?localLabelIndex
           !?outGeneratedInstructionList
@@ -2144,6 +2287,7 @@ routine build_ipic18_assembly_instruction_list
           !inAccessBankSplitOffset
           !routineMap
           !inRegisterTable
+          !inDataMap
           !constantMap
           !?localLabelIndex
           !?outGeneratedInstructionList
@@ -2177,6 +2321,7 @@ routine build_ipic18_assembly_instruction_list
       !inAccessBankSplitOffset
       !routineMap
       !inRegisterTable
+      !inDataMap
       !constantMap
       !?localLabelIndex
       !?outGeneratedInstructionList
@@ -2285,6 +2430,10 @@ routine build_ipic18_assembly_instruction_list
       !here
     ] ; # RETURN 0
   end if ;
+#-------------------------------- Add Data definition
+  foreach inDataGeneratedInstructionList do
+    outGeneratedInstructionList += !mInstruction ;
+  end foreach ;
 #-------------------------------- Generate default user routines
   entryPoint := [inBootloaderReservedROMsize uint] ;
   foreach inUserRoutineDeclarationListForBootloaderImplementation do

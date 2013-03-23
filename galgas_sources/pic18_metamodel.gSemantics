@@ -328,6 +328,13 @@ class @instruction_LTBLPTR extends @piccolo_instruction {
 
 #----------------------------------------------------*
 
+class @instruction_LDATAPTR extends @piccolo_instruction {
+  @lstring mDataName ;
+  @luint mDataIndex ;
+}
+
+#----------------------------------------------------*
+
 enum @tableAccessOption {
   simpleAccess, postIncrement, postDecrement, preIncrement
 }{
@@ -631,6 +638,13 @@ enum @programKind {
 
 #----------------------------------------------------*
 
+list @dataList {
+  @lstring mDataName ;
+  @luintlist mValueList ;
+}
+
+#----------------------------------------------------*
+
 struct @piccoloModel {
   @lstring mProgramName ;
   @programKind mProgramKind ;
@@ -638,6 +652,7 @@ struct @piccoloModel {
   @configDefinitionList mConfigDefinitionList ;
   @bool mAcceptDefaultConfiguration ;
   @ramDefinitionList mRamDefinitionList ;
+  @dataList mDataList ;
   @interruptDefinitionList mInterruptDefinitionList ;
   @constantDefinitionList mConstantDefinitionList ;
   @routineDefinitionList mRoutineDefinitionList ;

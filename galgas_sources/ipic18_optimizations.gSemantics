@@ -15,8 +15,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override
-method @ipic_pseudo_LABEL defineLabel
+override method @ipic_pseudo_LABEL defineLabel
   ?!@symbolTableForOptimizations ioRoutineSymbolTable
   ??@uint inLineIndex
 :
@@ -452,70 +451,6 @@ method @ipic18_instruction_BitTestSkip optimizeBitTestSkip
   end if ;
 end method ;
 
-##----------------------------------------------------------------------------*
-#
-#method @ipic18_instruction_computed_rcall.optimizeComputedRCALL
-#  ??@uint inLineIndex
-#  ?!@ipic18_instructionList ioGeneratedInstructionList
-#  ?!@string ioListFileContents
-#  ?!@bool ioOptimizationsDone
-#:
-##--- First following instruction is a JUMP ?
-#  @string jumpLabel := "" ; # No By default
-#  @bool ok := false ;
-#  cast [ioGeneratedInstructionList mInstructionAtIndex !inLineIndex + 1] :
-#  when == @ipic_JUMP jump do
-#    jumpLabel := [[jump mTargetLabel] string] ;
-#    ok := true ;
-#  else
-#  end cast ;
-##--- Get second following instruction
-#  if (ok) then
-#    cast [ioGeneratedInstructionList mInstructionAtIndex !inLineIndex + 2] :
-#    when >= @ipic_actualInstruction instruction do
-#      @uint instructionLength ; [instruction instructionLength ?instructionLength] ;
-#      ok := instructionLength == 1 ;
-#    else
-#      ok := false ;
-#    end cast ;
-#  end if ;
-##--- Get third following instruction
-#  if (ok) then
-#    @ipic18_instruction thirdInstruction := [@ipic_NULL new] ;
-#    @stringset reachedLabelSet ;
-#    findFirstInstructionOrLabelFromAddress !inLineIndex+3 !ioGeneratedInstructionList ?* ?reachedLabelSet ;
-#    ok := [reachedLabelSet hasKey !jumpLabel] ;
-#  end if ;
-##--- If Ok, perform optimization
-#  if ok then
-#  #--- Complement Bit test instruction (at inLineIndex)
-#    [!?ioGeneratedInstructionList setMInstructionAtIndex
-#      ![@ipic18_instruction_BitTestSkip new
-#        !mInstructionLocation
-#        !not mSkipIfSet
-#        !mRegisterDescription
-#        !mBitNumber
-#      ]
-#      !inLineIndex
-#    ] ;
-#  #--- Copy instruction at (inLineIndex + 2) to (inLineIndex + 1)
-#    [!?ioGeneratedInstructionList setMInstructionAtIndex
-#      ![ioGeneratedInstructionList mInstructionAtIndex !inLineIndex + 2]
-#      !inLineIndex + 1
-#    ] ;
-#  #--- Delete instruction at (inLineIndex + 2)
-#    [!?ioGeneratedInstructionList setMInstructionAtIndex
-#      ![@ipic_NULL new]
-#      !inLineIndex + 2
-#    ] ;
-#  #--- 
-#    ioOptimizationsDone := true ;
-#  #--- Log
-#    ioListFileContents .= "  lines " . [inLineIndex string] . " to " . [inLineIndex + 2 string] ;
-#    ioListFileContents .= " bit test skip, following by a JUMP skipping next instruction, is complemented\n" ;
-#  end if ;
-#end method ;
-#
 #----------------------------------------------------------------------------*
 #                                                                            *
 #               S E M A N T I C    A N A L Y S I S                           *
@@ -563,8 +498,6 @@ routine performOptimizations
         [ipic_CMP optimizeCMP !symbolTable !idx !?ioGeneratedInstructionList !?ioListFileContents !?optimizationsDone] ;
       when == @ipic18_instruction_BitTestSkip ipic_bitTestSkip do
         [ipic_bitTestSkip optimizeBitTestSkip !idx !?ioGeneratedInstructionList !?ioListFileContents !?optimizationsDone] ;
-#      when == @ipic18_instruction_computed_rcall ipic_computed_rcall do
-#        [ipic_computed_rcall optimizeComputedRCALL !idx !?ioGeneratedInstructionList !?ioListFileContents !?optimizationsDone] ;
       else
       end cast ;
     end foreach ;

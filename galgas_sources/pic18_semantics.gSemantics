@@ -59,6 +59,43 @@ end routine ;
 
 #----------------------------------------------------------------------------*
 #                                                                            *
+#               A N A L Y Z E    D A T A    S E C T I O N                    *
+#                                                                            *
+#----------------------------------------------------------------------------*
+
+local routine analyze_data_sections
+  ??@dataList inDataDefinitionList
+  ?!@string ioListFileContents
+  !@ipic18_instructionList outDataGeneratedInstructionList
+  !@dataMap outDataMap
+  !@constantMap outConstantMap
+:
+  outConstantMap := [@constantMap emptyMap] ;
+  outDataGeneratedInstructionList := [@ipic18_instructionList emptyList] ;
+  outDataMap := [@dataMap emptyMap] ;
+  foreach inDataDefinitionList
+  before
+    ioListFileContents .= "*******************************************************************************\n" ;
+    ioListFileContents .= "*                    D A T A    D E C L A R A T I O N                         *\n" ;
+    ioListFileContents .= "*******************************************************************************\n\n" ;
+  do
+    ioListFileContents .= "Data '" . mDataName . "', " . [mValueList length] . " words (" . [mValueList length] * 2 . " bytes).\n" ; 
+    [!?outDataMap insertKey !mDataName ![mValueList length]] ;
+    [!?outConstantMap insertKey ![@lstring new !mDataName->string . "_BYTE_COUNT" !mDataName->location] ![[mValueList length] * 2 sint]] ;
+    const @lstring dataName [new !"_data_" . mDataName !mDataName->location] ;
+    outDataGeneratedInstructionList += ![@ipic_pseudo_LABEL new !dataName] ;
+    foreach mValueList do
+      if mValue->uint > 65535 then
+        error mValue: "data value is " . [mValue->uint hexString] . " (greater than 0xFFFF)" ;
+      else
+        outDataGeneratedInstructionList += ![@ipic_word new !mValue->uint] ;
+      end if ;
+    end foreach ;
+  end foreach ;
+end routine ;
+
+#----------------------------------------------------------------------------*
+#                                                                            *
 #               S E M A N T I C    A N A L Y S I S                           *
 #                                                                            *
 #----------------------------------------------------------------------------*
@@ -182,6 +219,14 @@ routine pic18_analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName 
     !?listFileContents
     !?registerTable
   ;
+#-------------------------------- Data definition
+  analyze_data_sections
+    !inPiccoloModel->mDataList
+    !?listFileContents
+    ?@ipic18_instructionList dataGeneratedInstructionList
+    ?@dataMap dataMap
+    ?@constantMap dataLengthConstantMap
+  ;
 #--- For bootloader implementation, check declared var footprint does not span beyond values declared in specification
   if [inPiccoloModel mProgramKind] == [@programKind bootloaderProgram] then
     foreach ramBank do
@@ -214,9 +259,12 @@ routine pic18_analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName 
     !userRoutineDeclarationListForUserProgramImplementation
     !accessBankSplitOffset
     !registerTable
+    !dataMap
     !inPiccoloModel
     !hasHighInterrupt
     !hasLowInterrupt
+    !dataGeneratedInstructionList
+    !dataLengthConstantMap
     ?generatedInstructionList
     !?listFileContents
   ;
