@@ -53,6 +53,15 @@ override method @ipic_actualInstruction defineLabelAtAddress
 end method ;
 
 #----------------------------------------------------------------------------*
+
+override method @ipic_word defineLabelAtAddress
+  ?!@ipic18_symbolTableForConvertingRelatives unused ioRoutineSymbolTable
+  ?!@uint ioAddress
+:
+  ioAddress := ioAddress  + [selfcopy instructionLength] ;
+end method ;
+
+#----------------------------------------------------------------------------*
 #                                                                            *
 #               R E L A T I V E    B R A N C H    C H E C K I N G            *
 #                                                                            *
