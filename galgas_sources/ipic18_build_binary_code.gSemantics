@@ -44,8 +44,16 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override
-method @ipic_actualInstruction enterLabelAtAddress
+override method @ipic_actualInstruction enterLabelAtAddress
+  ?!@ipic18_symbolTable unused ioRoutineSymbolTable
+  ?!@uint ioAddress
+:
+  ioAddress := ioAddress  + [selfcopy instructionLength] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @ipic_word enterLabelAtAddress
   ?!@ipic18_symbolTable unused ioRoutineSymbolTable
   ?!@uint ioAddress
 :
