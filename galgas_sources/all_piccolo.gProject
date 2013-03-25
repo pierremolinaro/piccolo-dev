@@ -17,10 +17,12 @@ project all_piccolo (0:0:1) -> "piccolo" :
 
   semantics "pic18_metamodel.gSemantics" ;
   syntax    "pic18_syntax.gSyntax" ;
+  syntax    "pic18_start_symbol.gSyntax" ;
   syntax    "pic18_bootloader_syntax.gSyntax" ;
-  semantics "piccolo_config.gSemantics" ;
   grammar   "pic18_grammar.gGrammar" ;
+  grammar   "pic18_include_grammar.gGrammar" ;
   semantics "ipic18_metamodel.gSemantics" ;
+  semantics "piccolo_config.gSemantics" ;
   semantics "pic18_checkingAndBuildIPIC.gSemantics" ;
   semantics "ipic18_optimizations.gSemantics" ;
   semantics "ipc18_convert_relatives.gSemantics" ;
