@@ -106,7 +106,9 @@ macroDeclareMutex (gAllocationMutex) ;
     if (inPointer != NULL) {
       macroValidPointerThere (inPointer) ;
     }
+    supprimerPointeur (inPointer, kAllocatedByMacroMyNewPODArray COMMA_THERE) ;
     void * ptr = realloc (inPointer, inSize) ;
+    performRegistering (ptr, kAllocatedByMacroMyNewPODArray COMMA_THERE) ;
     gReallocatedPODArrayCount ++ ;
     if (ptr != inPointer) {
       if (inPointer == NULL) {
@@ -114,9 +116,7 @@ macroDeclareMutex (gAllocationMutex) ;
         gExistingPODArrayCount ++ ;
       }else{
         gPointerChangedOnPODArrayReallocationCount ++ ;
-        supprimerPointeur (inPointer, kAllocatedByMacroMyNewPODArray COMMA_THERE) ;
       }
-      performRegistering (ptr, kAllocatedByMacroMyNewPODArray COMMA_THERE) ;
     }
     return ptr ;
   }

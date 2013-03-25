@@ -1,0 +1,16 @@
+grammar pic18_include_grammar "SLR":
+with "pic18_syntax.gSyntax" ;
+
+root <body>
+  ?!@interruptDefinitionList interruptDefinitionList
+  ?!@routineDefinitionList routineDefinitionList
+  ?!@ramDefinitionList ramDefinitionList
+  ?!@configDefinitionList configDefinitionList
+  ?!@constantDefinitionList constantDefinitionList
+  ?!@dataList dataList
+  ?!@bool acceptDefaultConfiguration
+  ?!@bool needsComputedGoto2
+  ?!@bool needsComputedGoto4
+;
+
+end grammar ;

@@ -41,6 +41,7 @@ list controlKeyWordList error message "the '%K' keyword" style keywordStyle :
   "forever",
   "if",
   "implements",
+  "include",
   "interrupt",
   "mark",
   "midrange",

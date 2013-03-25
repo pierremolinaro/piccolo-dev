@@ -1,123 +1,21 @@
 syntax pic18_syntax ("piccolo_lexique.gLexique") :
 import "pic18_metamodel.gSemantics" ;
 import "pic18_semantics.gSemantics" ;
+import "pic18_include_grammar.gGrammar" ;
 
 #----------------------------------------------------*
 
-nonterminal <constant_definition>
-  ?!@constantDefinitionList ioConstantDefinitionList
-;
-
-nonterminal <interrupt_definition>
-  ?!@interruptDefinitionList outInterruptDefinitionList
-  ?!@bool ioNeedsComputedGoto2 
-  ?!@bool ioNeedsComputedGoto4
-;
-
-nonterminal <routine_definition>
-  ?!@routineDefinitionList ioRoutineDefinitionList
-  ?!@bool ioNeedsComputedGoto2 
-  ?!@bool ioNeedsComputedGoto4
-;
-
-nonterminal <simple_instruction> !@piccolo_instruction outInstruction
-;
-
-nonterminal <structured_instruction>
-  !@piccolo_instruction outInstruction
-  ?!@bool ioNeedsComputedGoto2
-  ?!@bool ioNeedsComputedGoto4
-;
-
-nonterminal <instruction_list>
-  !@instructionList outInstructionList
-  ?!@bool ioNeedsComputedGoto2
-  ?!@bool ioNeedsComputedGoto4
-;
-
-nonterminal <structured_if_instruction>
-  !@piccolo_instruction outInstruction
-  ?!@bool ioNeedsComputedGoto2
-  ?!@bool ioNeedsComputedGoto4
-;
-
-nonterminal <start_symbol>
-label importBootloaderSpecification
-  !@piccoloDeviceModel outPiccoloDeviceModel
-  !@uint outAccessBankSplitOffset
-  !@ramBankTable outRamBank
-  !@registerTable outRegisterTable
-  !@bootloaderReservedRAMmap outBootloaderReservedRAMmap
-  !@routineDeclarationList outBootloaderRoutineDeclarationList
-  !@routineDeclarationList outUserRoutineDeclarationList
-  !@luint outBootloaderReservedROMsize
-;
-
-nonterminal <register_parsing> !@registerExpression outRegisterExpression
-;
-
-nonterminal <optional_w_as_dest> !@bool out_W_isDestination
-;
-
-nonterminal <bit_number_parsing> !@bitNumberExpression outBitNumber
-;
-
-nonterminal <condition_factor> !@conditionExpression outCondition
-;
-
-nonterminal <condition_term> !@conditionExpression outCondition
-;
-
-nonterminal <condition_expression> !@conditionExpression outCondition
-;
-
-nonterminal <immediate_expression> !@immediatExpression outExpression
-;
-
-nonterminal <immediate_bitwise_term> !@immediatExpression outExpression
-;
-
-nonterminal <immediate_bitwise_factor> !@immediatExpression outExpression
-;
-
-nonterminal <immediate_term> !@immediatExpression outExpression
-;
-
-nonterminal <immediate_factor> !@immediatExpression outExpression
-;
-
-nonterminal <immediate_primary> !@immediatExpression outExpression
-;
-
-#----------------------------------------------------*
-
-rule <start_symbol> :
-  $pic18$ ;
-  $identifier$ ? @lstring programName ;
-  @lstring deviceNameOrBootloaderReference ;
-  @programKind programKind ;
-  select
-    programKind := [@programKind regularProgram] ;
-  or
-    $implements$ ;
-    $bootloader$ ;
-    programKind := [@programKind bootloaderProgram] ;
-  or
-    $uses$ ;
-    $bootloader$ ;
-    programKind := [@programKind userProgram] ;
-  end select ;
-  $literal_string$ ? deviceNameOrBootloaderReference ;
-  $:$ ;
-  @interruptDefinitionList interruptDefinitionList [emptyList] ;
-  @routineDefinitionList routineDefinitionList [emptyList] ;
-  @ramDefinitionList ramDefinitionList [emptyList] ;
-  @configDefinitionList configDefinitionList [emptyList] ;
-  @constantDefinitionList constantDefinitionList [emptyList] ;
-  @dataList dataList [emptyList] ;
-  @bool acceptDefaultConfiguration := false ;
-  @bool needsComputedGoto2 := false ;
-  @bool needsComputedGoto4 := false ;
+rule <body>
+  ?!@interruptDefinitionList interruptDefinitionList
+  ?!@routineDefinitionList routineDefinitionList
+  ?!@ramDefinitionList ramDefinitionList
+  ?!@configDefinitionList configDefinitionList
+  ?!@constantDefinitionList constantDefinitionList
+  ?!@dataList dataList
+  ?!@bool acceptDefaultConfiguration
+  ?!@bool needsComputedGoto2
+  ?!@bool needsComputedGoto4
+:
   repeat
   while
     $mark$ ;
@@ -142,83 +40,21 @@ rule <start_symbol> :
     ;
   while
     <data_definition> !?dataList ;
-  end repeat ;
-  $end$ ;
-#--- Semantic analysis
-  if [@uint errorCount] == 0 then
-    @piccoloModel piccoloModel [new
-      !programName
-      !programKind
-      !deviceNameOrBootloaderReference
-      !configDefinitionList
-      !acceptDefaultConfiguration
-      !ramDefinitionList
-      !dataList
-      !interruptDefinitionList
-      !constantDefinitionList
-      !routineDefinitionList
-      !needsComputedGoto2
-      !needsComputedGoto4
-      !here
-    ] ;
-    pic18_analyze !piccoloModel ![@string stringWithSourceFilePath] ;
-  else
-    @string hexDestinationFile := [[@string stringWithSourceFilePath] stringByDeletingPathExtension] . ".hex" ;
-    if [hexDestinationFile fileExists] then
-      [@string deleteFile !hexDestinationFile] ;
-    end if ;
-    @string asmDestinationFile := [[@string stringWithSourceFilePath] stringByDeletingPathExtension] . ".asm" ;
-    if [asmDestinationFile fileExists] then
-      [@string deleteFile !asmDestinationFile] ;
-    end if ;
-  end if ;
-label importBootloaderSpecification
-  !@piccoloDeviceModel outPiccoloDeviceModel
-  !@uint outAccessBankSplitOffset
-  !@ramBankTable outRamBank
-  !@registerTable outRegisterTable
-  !@bootloaderReservedRAMmap outBootloaderReservedRAMmap
-  !@routineDeclarationList outBootloaderRoutineDeclarationList
-  !@routineDeclarationList outUserRoutineDeclarationList
-  !@luint outBootloaderReservedROMsize
-:
-  $pic18$ ;
-  $identifier$ ? @lstring programName ;
-  error programName: "this file does not define a bootloader specification"
-   : outPiccoloDeviceModel, outAccessBankSplitOffset, outRamBank, outRegisterTable,
-      outBootloaderReservedRAMmap,
-      outBootloaderRoutineDeclarationList,
-      outUserRoutineDeclarationList,
-      outBootloaderReservedROMsize ;
-  select
-  or
-    $implements$ ;
-    $bootloader$ ;
-  or
-    $uses$ ;
-    $bootloader$ ;
-  end select ;
-  $literal_string$ ? * ;
-  $:$ ;
-  repeat
   while
-    $mark$ ;
-    $literal_string$ ?* ;
-  while
-    <configuration_definition> parse ;
-  while
-    <ram_definition> parse ;
-  while
-    <constant_definition> parse ;
-  while
-    <interrupt_definition> parse ;
-  while
-    <routine_definition> parse ;
-  while
-    <data_definition> parse ;
-  end repeat ;
-  $end$ ;
-  
+    $include$ ;
+    $literal_string$ ?@lstring includedFilePath ;
+    grammar pic18_include_grammar in includedFilePath
+      !?interruptDefinitionList
+      !?routineDefinitionList
+      !?ramDefinitionList
+      !?configDefinitionList
+      !?constantDefinitionList
+      !?dataList
+      !?acceptDefaultConfiguration
+      !?needsComputedGoto2
+      !?needsComputedGoto4
+    ;
+    end repeat ;
 end rule ;
 
 #----------------------------------------------------*

@@ -1,0 +1,123 @@
+syntax pic18_start_symbol ("piccolo_lexique.gLexique") :
+import "pic18_metamodel.gSemantics" ;
+import "pic18_semantics.gSemantics" ;
+
+#----------------------------------------------------*
+
+nonterminal <body>
+  ?!@interruptDefinitionList interruptDefinitionList
+  ?!@routineDefinitionList routineDefinitionList
+  ?!@ramDefinitionList ramDefinitionList
+  ?!@configDefinitionList configDefinitionList
+  ?!@constantDefinitionList constantDefinitionList
+  ?!@dataList dataList
+  ?!@bool acceptDefaultConfiguration
+  ?!@bool needsComputedGoto2
+  ?!@bool needsComputedGoto4
+;
+
+#----------------------------------------------------*
+
+rule <start_symbol> :
+  $pic18$ ;
+  $identifier$ ? @lstring programName ;
+  @lstring deviceNameOrBootloaderReference ;
+  @programKind programKind ;
+  select
+    programKind := [@programKind regularProgram] ;
+  or
+    $implements$ ;
+    $bootloader$ ;
+    programKind := [@programKind bootloaderProgram] ;
+  or
+    $uses$ ;
+    $bootloader$ ;
+    programKind := [@programKind userProgram] ;
+  end select ;
+  $literal_string$ ? deviceNameOrBootloaderReference ;
+  $:$ ;
+  @interruptDefinitionList interruptDefinitionList [emptyList] ;
+  @routineDefinitionList routineDefinitionList [emptyList] ;
+  @ramDefinitionList ramDefinitionList [emptyList] ;
+  @configDefinitionList configDefinitionList [emptyList] ;
+  @constantDefinitionList constantDefinitionList [emptyList] ;
+  @dataList dataList [emptyList] ;
+  @bool acceptDefaultConfiguration := false ;
+  @bool needsComputedGoto2 := false ;
+  @bool needsComputedGoto4 := false ;
+  <body>
+    !?interruptDefinitionList
+    !?routineDefinitionList
+    !?ramDefinitionList
+    !?configDefinitionList
+    !?constantDefinitionList
+    !?dataList
+    !?acceptDefaultConfiguration
+    !?needsComputedGoto2
+    !?needsComputedGoto4
+  ;
+  $end$ ;
+#--- Semantic analysis
+  if [@uint errorCount] == 0 then
+    @piccoloModel piccoloModel [new
+      !programName
+      !programKind
+      !deviceNameOrBootloaderReference
+      !configDefinitionList
+      !acceptDefaultConfiguration
+      !ramDefinitionList
+      !dataList
+      !interruptDefinitionList
+      !constantDefinitionList
+      !routineDefinitionList
+      !needsComputedGoto2
+      !needsComputedGoto4
+      !here
+    ] ;
+    pic18_analyze !piccoloModel ![@string stringWithSourceFilePath] ;
+  else
+    @string hexDestinationFile := [[@string stringWithSourceFilePath] stringByDeletingPathExtension] . ".hex" ;
+    if [hexDestinationFile fileExists] then
+      [@string deleteFile !hexDestinationFile] ;
+    end if ;
+    @string asmDestinationFile := [[@string stringWithSourceFilePath] stringByDeletingPathExtension] . ".asm" ;
+    if [asmDestinationFile fileExists] then
+      [@string deleteFile !asmDestinationFile] ;
+    end if ;
+  end if ;
+label importBootloaderSpecification
+  !@piccoloDeviceModel outPiccoloDeviceModel
+  !@uint outAccessBankSplitOffset
+  !@ramBankTable outRamBank
+  !@registerTable outRegisterTable
+  !@bootloaderReservedRAMmap outBootloaderReservedRAMmap
+  !@routineDeclarationList outBootloaderRoutineDeclarationList
+  !@routineDeclarationList outUserRoutineDeclarationList
+  !@luint outBootloaderReservedROMsize
+:
+  $pic18$ ;
+  $identifier$ ? @lstring programName ;
+  error programName: "this file does not define a bootloader specification"
+   : outPiccoloDeviceModel, outAccessBankSplitOffset, outRamBank, outRegisterTable,
+      outBootloaderReservedRAMmap,
+      outBootloaderRoutineDeclarationList,
+      outUserRoutineDeclarationList,
+      outBootloaderReservedROMsize ;
+  select
+  or
+    $implements$ ;
+    $bootloader$ ;
+  or
+    $uses$ ;
+    $bootloader$ ;
+  end select ;
+  $literal_string$ ? * ;
+  $:$ ;
+  <body> parse ;
+  $end$ ;
+  
+end rule ;
+
+#----------------------------------------------------*
+
+end syntax ;
