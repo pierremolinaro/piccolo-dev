@@ -7,6 +7,7 @@ import "piccolo_config.gSemantics" ;
 import "piccolo_options.gOption" ;
 import "ram_sections.gSemantics" ;
 import "baseline_semantic_analysis.gSemantics" ;
+import "baseline_print_ipic_instructions.gSemantics" ;
 
 #----------------------------------------------------------------------------*
 #                                                                            *
@@ -173,13 +174,41 @@ routine baseline_analysis
       error mPage:"invalid value (". mPage->uint . "); the device has " . totalPageCount . " 256-bytes page(s) on rom" ;
     end if ;
   end foreach ;
+#-------------------------------- Order routines to place "main" routine first
+  @baseline_routineDefinitionList sortedRoutineDefinitionList [emptyList] ;
+  foreach inPiccoloModel->mRoutineDefinitionList do
+    if mRoutineName->string == "main" then
+      [!?sortedRoutineDefinitionList prependValue 
+        !mRoutineName
+        !mPage
+        !mIsNoReturn
+        !mInstructionList
+        !mEndOfRoutineLocation
+      ] ;
+    else
+      sortedRoutineDefinitionList += 
+        !mRoutineName
+        !mPage
+        !mIsNoReturn
+        !mInstructionList
+        !mEndOfRoutineLocation
+      ;
+    end if ;
+  end foreach ;
 #-------------------------------- Check and translate routines
   @baseline_ipic_instructionList ipicInstructionList [emptyList] ;
   @uint currentPage := 0 ;
   @uint localLabelIndex := 0 ;
   loop totalPageCount : while currentPage < totalPageCount do
-    foreach [inPiccoloModel mRoutineDefinitionList] do
+    @bool pseudo_PAGE_generated := false ;
+    foreach sortedRoutineDefinitionList do
       if [mPage uint] == currentPage then
+      #---
+        if not pseudo_PAGE_generated then
+          pseudo_PAGE_generated := true ;
+          ipicInstructionList += ![@baseline_ipic_pseudo_PAGE new !currentPage] ;
+        end if ;
+      #---
         @routineKind routineKind ;
         if mIsNoReturn then
           routineKind := [@routineKind noReturnRoutine] ;
@@ -211,12 +240,35 @@ routine baseline_analysis
           !?ipicInstructionList
           ?@bool continuesInSequence
           !routineKind
+          !not mIsNoReturn # Last instruction should be RETLW ?
         ;
       end if ;
     end foreach ;
     currentPage ++ ;
   end loop ;
-##-------------------------------- Build IPIC Assembly Instruction List
+#-------------------------------- Print IPIC Instruction List
+  if [option piccolo_options.ouputListingFile value] then
+    listFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n" ;
+    listFileContents .= "*" . ["IPIC INSTRUCTION LIST" stringByLeftAndRightPadding !77 !' '] . "*\n" ;
+    listFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n\n" ;
+    listFileContents .= "Generated intermediate code:\n" ;
+    @uint idx := 0 ;
+    @uint currentAddress := 0 ;
+    foreach ipicInstructionList do
+      [mInstruction setCurrentAddress !?currentAddress] ;
+      listFileContents .= [[idx string] stringByLeftPadding !5 !' '] . ": " ;
+      [mInstruction print !?listFileContents] ;
+      listFileContents .= "\n" ;
+      idx ++ ;
+    end foreach ;
+    listFileContents .= "\n" ;
+    listFileContents .= "Code size without optimization: " . [currentAddress string] . " words.\n\n" ;
+  end if ;
+
+
+
+
+
 #  @baseline_ipic_instructionList generatedInstructionList ;
 #  build_midrange_assembly_instruction_list
 #    !([[piccoloDeviceModel mRomSize] uint] + 2047) / 2048
