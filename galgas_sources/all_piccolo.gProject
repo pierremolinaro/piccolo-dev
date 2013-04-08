@@ -23,6 +23,7 @@ project all_piccolo (0:0:1) -> "piccolo" :
   semantics "baseline_compilation.gSemantics" ;
   semantics "baseline_ipic_classes.gSemantics" ;
   semantics "baseline_semantic_analysis.gSemantics" ;
+  semantics "baseline_print_ipic_instructions.gSemantics" ;
 
 #--- PIC 18
   semantics "pic18_metamodel.gSemantics" ;
