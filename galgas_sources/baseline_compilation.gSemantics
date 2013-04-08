@@ -209,7 +209,6 @@ routine baseline_analysis
           !constantMap
           !?localLabelIndex
           !?ipicInstructionList
-          !?listFileContents
           ?@bool continuesInSequence
           !routineKind
         ;
