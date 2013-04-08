@@ -61,11 +61,8 @@ end reader ;
 
 #----------------------------------------------------*
 
-routine getMidRangeFDInstructionBaseCode
-  ??@midrange_instruction_FD_base_code inInstruction
-  !@uint outBaseCode
-:
-  switch inInstruction
+reader @midrange_instruction_FD_base_code basecode -> @uint outBaseCode :
+  switch selfcopy
   when ADDWF : outBaseCode := 0x0700 ;
   when ANDWF : outBaseCode := 0x0500 ;
   when COMF : outBaseCode := 0x0900 ;
@@ -81,7 +78,7 @@ routine getMidRangeFDInstructionBaseCode
   when SWAPF : outBaseCode := 0x0E00 ;
   when XORWF : outBaseCode := 0x0600 ;
   end switch ;
-end routine ;
+end reader ;
 
 #----------------------------------------------------*
 

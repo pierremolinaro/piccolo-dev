@@ -1,0 +1,614 @@
+syntax baseline_syntax ("piccolo_lexique.gLexique") :
+import "generic_metamodel.gSemantics" ;
+import "baseline_metamodel.gSemantics" ;
+import "baseline_analysis.gSemantics" ;
+
+import "piccoloDevice_semantics.gSemantics" ;
+import "pic18_metamodel.gSemantics" ;
+
+#----------------------------------------------------*
+
+nonterminal <configuration_definition>
+  ?!@configDefinitionList ioConfigDefinitionList
+  ?!@bool ioAcceptDefaultConfiguration
+;
+
+nonterminal <declaration_in_ram>
+  !@declarationInRam outDeclaration
+;
+
+nonterminal <constant_definition>
+  ?!@constantDefinitionList ioConstantDefinitionList
+;
+
+nonterminal <register_parsing>
+  !@registerExpression outRegisterExpression
+;
+
+nonterminal <optional_w_as_dest>
+  !@bool out_W_isDestination
+;
+
+nonterminal <bit_number_parsing>
+  !@bitNumberExpression outBitNumber
+;
+
+nonterminal <immediate_expression>
+  !@immediatExpression outExpression
+;
+
+#----------------------------------------------------*
+
+rule <start_symbol> :
+  $baseline$ ;
+  $identifier$ ? @lstring programName ;
+  $literal_string$ ? @lstring deviceName ;
+  $:$ ;
+  @baseline_routineDefinitionList routineDefinitionList [emptyList] ;
+  @baselineRamDefinitionList ramDefinitionList [emptyList] ;
+  @configDefinitionList configDefinitionList [emptyList] ;
+  @constantDefinitionList constantDefinitionList [emptyList] ;
+  @bool acceptDefaultConfiguration := false ;
+  repeat
+  while
+    $mark$ ;
+    $literal_string$ ?* ;
+  while
+    <configuration_definition> !?configDefinitionList !?acceptDefaultConfiguration ;
+  while
+    <declaration_in_ram> ?@declarationInRam declaration ;
+    ramDefinitionList += !declaration ;
+  while
+    <constant_definition> !?constantDefinitionList ;
+  while
+    <baseline_routine_definition>
+      !?routineDefinitionList
+    ;
+  end repeat ;
+  $end$ ;
+#--- Semantic analysis
+  if [@uint errorCount] == 0 then
+    @baseline_model piccoloModel [new
+      !programName
+      !deviceName
+      !configDefinitionList
+      !acceptDefaultConfiguration
+      !ramDefinitionList
+      !constantDefinitionList
+      !routineDefinitionList
+      !here
+    ] ;
+    baseline_analysis !piccoloModel ![@string stringWithSourceFilePath] ;
+  else
+    @string hexDestinationFile := [[@string stringWithSourceFilePath] stringByDeletingPathExtension] . ".hex" ;
+    if [hexDestinationFile fileExists] then
+      [@string deleteFile !hexDestinationFile] ;
+    end if ;
+    @string asmDestinationFile := [[@string stringWithSourceFilePath] stringByDeletingPathExtension] . ".asm" ;
+    if [asmDestinationFile fileExists] then
+      [@string deleteFile !asmDestinationFile] ;
+    end if ;
+  end if ;
+label importBootloaderSpecification
+  !@piccoloDeviceModel outPiccoloDeviceModel
+  !@uint outAccessBankSplitOffset
+  !@ramBankTable outRamBank
+  !@registerTable outRegisterTable
+  !@bootloaderReservedRAMmap outBootloaderReservedRAMmap
+  !@routineDeclarationList outBootloaderRoutineDeclarationList
+  !@routineDeclarationList outUserRoutineDeclarationList
+  !@luint outBootloaderReservedROMsize
+:
+  $baseline$ ;
+  $identifier$ ? @lstring programName ;
+  error programName: "this file does not define a bootloader specification"
+   : outPiccoloDeviceModel, outAccessBankSplitOffset, outRamBank, outRegisterTable,
+      outBootloaderReservedRAMmap, outBootloaderRoutineDeclarationList,
+      outUserRoutineDeclarationList,
+      outBootloaderReservedROMsize ;
+  $literal_string$ ? * ;
+  $:$ ;
+  repeat
+  while
+    $mark$ ;
+    $literal_string$ ?* ;
+  while
+    <configuration_definition> parse ;
+  while
+    <declaration_in_ram> parse ;
+  while
+    <constant_definition> parse ;
+  while
+    <baseline_routine_definition> parse ;
+  end repeat ;
+  $end$ ;
+end rule ;
+
+#----------------------------------------------------*
+
+rule <baseline_instruction_list>
+  !@baseline_instructionList outInstructionList
+:
+  outInstructionList := [@baseline_instructionList emptyList] ;
+  repeat
+  while
+    @baseline_instruction instruction ;
+    <baseline_simple_instruction> ?instruction ;
+    outInstructionList += !instruction ;
+  while
+    @baseline_instruction instruction ;
+    <baseline_structured_instruction>
+      ?instruction
+    ;
+    outInstructionList += !instruction ;
+  end repeat ;
+end rule ;
+
+#----------------------------------------------------*
+
+rule <baseline_routine_definition>
+  ?!@baseline_routineDefinitionList ioRoutineDefinitionList
+:
+  @bool noreturn ;
+  select
+    noreturn := false ;
+  or
+    $noreturn$ ;
+    noreturn := true ;
+  end select ;
+  $routine$ ;
+  $identifier$ ? @lstring routineName ;
+#--- Page
+  @luint page ;
+  select
+    page := [@luint new !0 !here] ;
+  or
+    $page$ ;
+    $integer$ ? page ;
+  end select ;
+#---
+  ${$ ;
+  @baseline_instructionList instructionList ;
+  <baseline_instruction_list>
+    ?instructionList
+  ;
+  $}$ ;
+  ioRoutineDefinitionList += !routineName !page !noreturn !instructionList !here ;
+end rule ;
+
+#----------------------------------------------------*
+
+rule <baseline_structured_instruction>
+  !@baseline_instruction outInstruction
+:
+  select
+    $forever$ ;
+    @location instructionLocation := here ;
+    @baseline_instructionList instructionList ;
+    <baseline_instruction_list> ?instructionList ;
+    $end$ ;
+    outInstruction := [@baseline_instruction_FOREVER new
+      !instructionLocation
+      !instructionList
+      !here
+    ] ;
+  or
+    $if$ ;
+    @location instructionLocation := here ;
+    @registerExpression registerExpression ;
+    @bitNumberExpression bitNumberExpression ;
+    @bool skipIfSet ;
+    select
+      $!$ ;
+      <register_parsing> ? registerExpression ;
+      $.$ ;
+      <bit_number_parsing> ? bitNumberExpression ;
+      skipIfSet := true ;
+    or
+      <register_parsing> ? registerExpression ;
+      $.$ ;
+      <bit_number_parsing> ? bitNumberExpression ;
+      skipIfSet := false ;
+    end select ;
+    $:$ ;
+    @baseline_instruction instruction ;
+    <baseline_simple_instruction> ?instruction ;
+    outInstruction := [@baseline_instruction_IF_BitTest new
+      !instructionLocation
+      !instruction
+      !skipIfSet
+      !registerExpression
+      !bitNumberExpression
+    ] ;
+  or
+    $if$ ;
+    @location instructionLocation := here ;
+    @bool increment ;
+    select
+      $decf$ ; increment := false ;
+    or
+      $incf$ ; increment := true ;
+    end select ;
+    @registerExpression registerExpression ;
+    <register_parsing> ? registerExpression ;
+    @bool w_isTarget ;
+    select
+      w_isTarget := false ;
+    or
+      $,$ ; $w$ ; w_isTarget := true ;
+    end select ;
+    $identifier$ ? @lstring conditionString ;
+    @string condition := [[conditionString string] uppercaseString] ;
+    if condition != "NZ" then
+      error conditionString:"invalid '" . condition . "' condition; it should be 'nz'" ;
+    end if ;
+    $:$ ;
+    @baseline_instruction instruction ;
+    <baseline_simple_instruction> ?instruction ;
+    outInstruction := [@baseline_instruction_IF_IncDec new
+      !instructionLocation
+      !instruction
+      !increment
+      !registerExpression
+      !w_isTarget
+    ] ;
+  or
+    $if$ ;
+    <baseline_structured_if_instruction>
+      ?outInstruction
+    ;
+    $end$ ;
+  or
+    $do$ ;
+    @location instructionLocation := here ;
+    @baseline_instructionList repeatedInstructionList ;
+    <baseline_instruction_list>
+      ?repeatedInstructionList
+    ;
+    @location endOfRepeatedInstructionList := here ;
+    @baseline_partList whilePartList [emptyList] ;
+    repeat
+      $while$ ;
+      @baseline_conditionExpression whileCondition ;
+      <baseline_condition_expression> ?whileCondition ;
+      @baseline_instructionList instructionList ;
+      <baseline_instruction_list>
+        ?instructionList
+      ;
+      whilePartList += !whileCondition !instructionList !here ;
+    while
+    end repeat ;
+    $end$ ;
+    outInstruction := [@baseline_instruction_do_while new
+      !instructionLocation
+      !repeatedInstructionList
+      !endOfRepeatedInstructionList
+      !whilePartList
+    ] ;
+  or
+    $mnop$ ;
+    @location instructionLocation := here ;
+    $integer$ ? @luint occurrenceFactor ;
+    outInstruction := [@baseline_instruction_MNOP new !instructionLocation !occurrenceFactor] ;
+  end select ;
+end rule ;
+
+#----------------------------------------------------*
+
+rule <baseline_structured_if_instruction>
+  !@baseline_instruction outInstruction
+:
+  @location instructionLocation := here ;
+  @baseline_conditionExpression structured_if_condition ;
+  <baseline_condition_expression> ?structured_if_condition ;
+  @baseline_instructionList thenInstructionList ;
+  <baseline_instruction_list>
+    ?thenInstructionList
+  ;
+  @baseline_instructionList elseInstructionList ;
+  select
+    elseInstructionList := [@baseline_instructionList emptyList] ;
+  or
+    $elsif$ ;
+    @baseline_instruction elsifPartInstruction ;
+    <baseline_structured_if_instruction>
+      ?elsifPartInstruction
+    ;
+    elseInstructionList := [@baseline_instructionList emptyList] ;
+    elseInstructionList += !elsifPartInstruction ;
+  or
+    $else$ ;
+    <baseline_instruction_list>
+      ?elseInstructionList
+    ;
+  end select ;
+  @location endOfElsePartLocation := here ;
+  outInstruction := [@baseline_instruction_structured_if new
+    !instructionLocation
+    !structured_if_condition
+    !thenInstructionList
+    !elseInstructionList
+    !endOfElsePartLocation
+  ] ;
+end rule ;
+
+#----------------------------------------------------*
+
+rule <baseline_simple_instruction> !@baseline_instruction outInstruction :
+  select
+    @baseline_instruction_FD_base_code baseCode ;
+    select
+      $addwf$ ;
+      baseCode := [@baseline_instruction_FD_base_code ADDWF] ;
+    or
+      $andwf$ ;
+      baseCode := [@baseline_instruction_FD_base_code ANDWF] ;
+    or
+      $comf$ ;
+      baseCode := [@baseline_instruction_FD_base_code COMF] ;
+    or
+      $decf$ ;
+      baseCode := [@baseline_instruction_FD_base_code DECF] ;
+    or
+      $incf$ ;
+      baseCode := [@baseline_instruction_FD_base_code INCF] ;
+    or
+      $iorwf$ ;
+      baseCode := [@baseline_instruction_FD_base_code IORWF] ;
+    or
+      $movf$ ;
+      baseCode := [@baseline_instruction_FD_base_code MOVF] ;
+    or
+      $rlf$ ;
+      baseCode := [@baseline_instruction_FD_base_code RLF] ;
+    or
+      $rrf$ ;
+      baseCode := [@baseline_instruction_FD_base_code RRF] ;
+    or
+      $subwf$ ;
+      baseCode := [@baseline_instruction_FD_base_code SUBWF] ;
+    or
+      $swapf$ ;
+      baseCode := [@baseline_instruction_FD_base_code SWAPF] ;
+    or
+      $xorwf$ ;
+      baseCode := [@baseline_instruction_FD_base_code XORWF] ;
+    end select ;
+    @location instructionLocation := here ;
+    @registerExpression registerExpression ;
+    <register_parsing> ? registerExpression ;
+    @bool W_isDestination ;
+    <optional_w_as_dest> ?W_isDestination ;
+    outInstruction := [@baseline_instruction_FD new
+      !instructionLocation
+      !baseCode
+      !registerExpression
+      !W_isDestination
+    ] ;
+  or
+    @baseline_F_instruction_base_code FAinstruction ;
+    select
+      $clrf$ ;
+      FAinstruction := [@baseline_F_instruction_base_code CLRF] ;
+    or
+      $movwf$ ;
+      FAinstruction := [@baseline_F_instruction_base_code MOVWF] ;
+    end select ;
+    @location instructionLocation := here ;
+    @registerExpression registerExpression ;
+    <register_parsing> ? registerExpression ;
+    outInstruction := [@baseline_instruction_F new
+      !instructionLocation
+      !FAinstruction
+      !registerExpression
+    ] ;
+  or
+    @baseline_bit_oriented_op bitOrientedOp ;
+    select
+      $bcf$ ; bitOrientedOp := [@baseline_bit_oriented_op BCF] ;
+    or
+      $bsf$ ; bitOrientedOp := [@baseline_bit_oriented_op BSF] ;
+    end select ;
+    @location instructionLocation := here ;
+    @registerExpression registerExpression ;
+    <register_parsing> ? registerExpression ;
+    $.$ ;
+    @bitNumberExpression bitNumberExpression ;
+    <bit_number_parsing> ? bitNumberExpression ;
+    outInstruction := [@baseline_instruction_FB new
+      !instructionLocation
+      !bitOrientedOp
+      !registerExpression
+      !bitNumberExpression
+    ] ;
+  or
+    $goto$ ;
+    @location instructionLocation := here ;
+    $identifier$ ? @lstring targetLabelName ;
+    outInstruction := [@baseline_instruction_GOTO new
+      !instructionLocation
+      !targetLabelName
+    ] ;
+  or
+    $call$ ;
+    @location instructionLocation := here ;
+    $identifier$ ? @lstring targetLabelName ;
+    outInstruction := [@baseline_instruction_CALL new
+      !instructionLocation
+      !targetLabelName
+    ] ;
+  or
+    $clrw$ ;
+    outInstruction := [@baseline_instruction_CLRW new !here] ;
+  or
+    $clrwdt$ ;
+    outInstruction := [@baseline_instruction_CLRWDT new !here] ;
+  or
+    $nop$ ;
+    outInstruction := [@baseline_instruction_NOP new !here] ;
+  or
+    $option$ ;
+    outInstruction := [@baseline_instruction_OPTION new !here] ;
+  or
+    $sleep$ ;
+    outInstruction := [@baseline_instruction_SLEEP new !here] ;
+  or
+    @baseline_literal_instruction_opcode literalInstruction ;
+    select
+      $andlw$ ; literalInstruction := [@baseline_literal_instruction_opcode ANDLW] ;
+    or
+      $iorlw$ ; literalInstruction := [@baseline_literal_instruction_opcode IORLW] ;
+    or
+      $movlw$ ; literalInstruction := [@baseline_literal_instruction_opcode MOVLW] ;
+    or
+      $xorlw$ ; literalInstruction := [@baseline_literal_instruction_opcode XORLW] ;
+    end select ;
+    @location instructionLocation := here ;
+    @immediatExpression expression ;
+    <immediate_expression> ?expression ;
+    outInstruction := [@baseline_instruction_literalOperation new
+      !instructionLocation
+      !literalInstruction
+      !expression
+    ] ;
+  end select ;
+end rule ;
+
+#----------------------------------------------------*
+
+rule <baseline_condition_factor>
+  !@baseline_conditionExpression outCondition
+:
+  $!$ ;
+  @baseline_conditionExpression condition ;
+  <baseline_condition_factor> ? condition ;
+  outCondition := [@baseline_negateCondition new !condition] ;
+end rule ;
+
+#----------------------------------------------------*
+
+rule <baseline_condition_factor>
+  !@baseline_conditionExpression outCondition
+:
+  <baseline_condition_expression> ? outCondition ;
+end rule ;
+
+#----------------------------------------------------*
+
+rule <baseline_condition_factor>
+  !@baseline_conditionExpression outCondition
+:
+  select
+    @bool isIncrement ;
+    select
+      $incf$ ; isIncrement := true ;
+    or
+      $decf$ ; isIncrement := false ;
+    end select ;
+    @registerExpression registerExpression ;
+    <register_parsing> ? registerExpression ;
+    @bool W_isDestination ;
+    select
+      W_isDestination := false ;
+    or
+      $,$ ; $w$ ; W_isDestination := true ;
+    end select ;
+    $identifier$ ? @lstring conditionString ;
+    @string condition := [[conditionString string] uppercaseString] ;
+    @bool branchIfZero ;
+    if condition == "Z" then
+      branchIfZero := true ;
+    elsif condition == "NZ" then
+      branchIfZero := false ;
+    else
+      error conditionString: "invalid '" . conditionString
+      . "' condition; valid ones are: 'z' and 'nz'"
+      : branchIfZero
+      ;
+    end if ;
+    outCondition := [@baseline_incDecRegisterInCondition new
+      !registerExpression
+      !isIncrement
+      !W_isDestination
+      !branchIfZero
+    ] ;
+  or
+    @registerExpression registerExpression ;
+    @bitNumberExpression bitNumberExpression ;
+    @bool BTFSSinstruction ;
+    <register_parsing> ? registerExpression ;
+    $.$ ;
+    <bit_number_parsing> ?bitNumberExpression ;
+    select
+      BTFSSinstruction := false ;
+    or
+      $identifier$ ? @lstring conditionString ;
+      @string condition := [[conditionString string] uppercaseString] ;
+      if condition == "Z" then
+        BTFSSinstruction := true ;
+        @string s := "! " . [[registerExpression mRegisterName] string] ;
+        if [[registerExpression mOffset] uint] > 0 then
+          s .= " [" . [[[registerExpression mOffset] uint] string] . "]" ;
+        end if ;
+        s .= "." ; [bitNumberExpression display !?s] ;
+        warning conditionString: "In Piccolo 1.2.0 and later, this construction is deprecated; use '" . s . "' instead" ; 
+      elsif condition == "NZ" then
+        BTFSSinstruction := false ;
+        @string s := [[registerExpression mRegisterName] string] ;
+        if [[registerExpression mOffset] uint] > 0 then
+          s .= " [" . [[[registerExpression mOffset] uint] string] . "]" ;
+        end if ;
+        s .= "." ; [bitNumberExpression display !?s] ;
+        warning conditionString: "In Piccolo 1.2.0 and later, this construction is deprecated; use '" . s . "' instead" ; 
+      else
+        error conditionString: "invalid '" . conditionString
+        . "' condition; valid ones are: 'z' and 'nz'"
+        : BTFSSinstruction
+        ;
+      end if ;
+    end select ;
+    outCondition := [@baseline_bitTest_in_structured_if_condition new
+      !registerExpression
+      !bitNumberExpression
+      !BTFSSinstruction
+    ] ;
+  end select ;
+end rule ;
+
+#----------------------------------------------------*
+
+rule <baseline_condition_expression>
+  !@baseline_conditionExpression outCondition
+:
+  $($ ;
+  <baseline_condition_term> ? outCondition ;
+  repeat
+  while
+    $|$ ;
+    @baseline_conditionExpression c ;
+    <baseline_condition_term> ? c ;
+    @baseline_conditionExpression rc := [@baseline_negateCondition new !c] ;
+    @baseline_conditionExpression lc := [@baseline_negateCondition new !outCondition] ;
+    outCondition := [@baseline_negateCondition new ![@baseline_andCondition new !lc !rc]] ;
+  end repeat ;
+  $)$ ;
+end rule ;
+
+#----------------------------------------------------*
+
+rule <baseline_condition_term>
+  !@baseline_conditionExpression outCondition
+:
+  <baseline_condition_factor> ? outCondition ;
+  repeat
+  while
+    $&$ ;
+    @baseline_conditionExpression c ;
+    <baseline_condition_factor> ? c ;
+    outCondition := [@baseline_andCondition new !outCondition !c] ;
+  end repeat ;
+end rule ;
+
+#----------------------------------------------------*
+
+end syntax ;

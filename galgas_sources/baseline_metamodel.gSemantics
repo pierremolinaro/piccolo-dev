@@ -1,0 +1,319 @@
+semantics baseline_metamodel :
+
+import "generic_metamodel.gSemantics" ;
+
+#----------------------------------------------------*
+
+abstract class @baseline_instruction {
+  @location mInstructionLocation ;
+}
+
+#----------------------------------------------------*
+
+list @baseline_instructionList {
+  @baseline_instruction mInstruction ;
+}
+
+#----------------------------------------------------*
+
+enum @baseline_instruction_FD_base_code {
+  ADDWF, ANDWF, COMF, DECF, DECFSZ, INCF, INCFSZ, IORWF, MOVF, RLF, RRF, SUBWF, SWAPF, XORWF
+}{
+}
+
+reader @baseline_instruction_FD_base_code mnemonic -> @string outResult :
+  switch selfcopy
+    when ADDWF : outResult := "ADDWF" ;
+    when ANDWF : outResult := "ANDWF" ;
+    when COMF : outResult := "COMF" ;
+    when DECF : outResult := "DECF" ;
+    when DECFSZ : outResult := "DECFSZ" ;
+    when INCF : outResult := "INCF" ;
+    when INCFSZ : outResult := "INCFSZ" ;
+    when IORWF : outResult := "IORWF" ;
+    when MOVF : outResult := "MOVF" ;
+    when RLF : outResult := "RLF" ;
+    when RRF : outResult := "RRF" ;
+    when SUBWF : outResult := "SUBWF" ;
+    when SWAPF : outResult := "SWAPF" ;
+    when XORWF : outResult := "XORWF" ;
+  end switch ;
+end reader ;
+
+#----------------------------------------------------*
+
+reader @baseline_instruction_FD_base_code basecode -> @uint outBaseCode :
+  switch selfcopy
+  when ADDWF  : outBaseCode := 0x01C0 ;
+  when ANDWF  : outBaseCode := 0x0140 ;
+  when COMF   : outBaseCode := 0x0240 ;
+  when DECF   : outBaseCode := 0x00C0 ;
+  when DECFSZ : outBaseCode := 0x02C0 ;
+  when INCF   : outBaseCode := 0x0280 ;
+  when INCFSZ : outBaseCode := 0x3C00 ;
+  when IORWF  : outBaseCode := 0x0100 ;
+  when MOVF   : outBaseCode := 0x0200 ;
+  when RLF    : outBaseCode := 0x0340 ;
+  when RRF    : outBaseCode := 0x0300 ;
+  when SUBWF  : outBaseCode := 0x0080 ;
+  when SWAPF  : outBaseCode := 0x0380 ;
+  when XORWF  : outBaseCode := 0x0180 ;
+  end switch ;
+end reader ;
+
+#----------------------------------------------------*
+
+class @baseline_instruction_FD extends @baseline_instruction {
+  @baseline_instruction_FD_base_code mInstruction_FD_base_code ;
+  @registerExpression mRegisterExpression ;
+  @bool m_W_isDestination ;
+}
+
+#----------------------------------------------------*
+
+enum @baseline_F_instruction_base_code {
+  CLRF, MOVWF
+}{
+}
+
+reader @baseline_F_instruction_base_code mnemonic -> @string outResult :
+  switch selfcopy
+    when CLRF   : outResult := "CLRF" ;
+    when MOVWF  : outResult := "MOVWF" ;
+  end switch ;
+end reader ;
+
+#----------------------------------------------------*
+
+class @baseline_instruction_F extends @baseline_instruction {
+  @baseline_F_instruction_base_code mFAinstruction ;
+  @registerExpression mRegisterExpression ;
+}
+
+#----------------------------------------------------*
+
+enum @baseline_bit_oriented_op {
+  BCF, BSF
+}{
+}
+
+reader @baseline_bit_oriented_op mnemonic -> @string outResult :
+  switch selfcopy
+    when BCF : outResult := "BCF" ;
+    when BSF : outResult := "BSF" ;
+  end switch ;
+end reader ;
+
+#----------------------------------------------------*
+
+class @baseline_instruction_FB extends @baseline_instruction {
+  @baseline_bit_oriented_op mBitOrientedOp ;
+  @registerExpression mRegisterExpression ;
+  @bitNumberExpression mBitNumber ;
+}
+
+#----------------------------------------------------*
+
+class @baseline_instruction_CALL extends @baseline_instruction {
+  @lstring mTargetLabel ;
+}
+
+#----------------------------------------------------*
+
+class @baseline_instruction_GOTO extends @baseline_instruction {
+  @lstring mTargetLabel ;
+}
+
+#----------------------------------------------------*
+
+class @baseline_instruction_CLRWDT extends @baseline_instruction {
+}
+
+#----------------------------------------------------*
+
+class @baseline_instruction_CLRW extends @baseline_instruction {
+}
+
+#----------------------------------------------------*
+
+class @baseline_instruction_NOP extends @baseline_instruction {
+}
+
+#----------------------------------------------------*
+
+class @baseline_instruction_OPTION extends @baseline_instruction {
+}
+
+#----------------------------------------------------*
+
+class @baseline_instruction_SLEEP extends @baseline_instruction {
+}
+
+#----------------------------------------------------*
+
+enum @baseline_literal_instruction_opcode {
+  ANDLW, IORLW, MOVLW, RETLW, XORLW
+}{
+}
+
+reader @baseline_literal_instruction_opcode mnemonic -> @string outResult :
+  switch selfcopy
+    when ANDLW : outResult := "ANDLW" ;
+    when IORLW : outResult := "IORLW" ;
+    when MOVLW : outResult := "MOVLW" ;
+    when RETLW : outResult := "RETLW" ;
+    when XORLW : outResult := "XORLW" ;
+  end switch ;
+end reader ;
+
+#----------------------------------------------------*
+
+class @baseline_instruction_literalOperation extends @baseline_instruction {
+  @baseline_literal_instruction_opcode mLiteralInstruction ;
+  @immediatExpression mImmediatExpression ;
+}
+
+#----------------------------------------------------*
+
+class @baseline_instruction_MNOP extends @baseline_instruction {
+  @luint mOccurrenceFactor ;
+}
+
+#----------------------------------------------------*
+
+class @baseline_instruction_FOREVER extends @baseline_instruction {
+  @baseline_instructionList mInstructionList ;
+  @location mEndOfInstructionList ;
+}
+
+#----------------------------------------------------*
+
+abstract class @baseline_instruction_IF_SEMI_COLON extends @baseline_instruction {
+  @baseline_instruction mInstruction ;
+}
+
+#----------------------------------------------------*
+
+class @baseline_instruction_IF_BitTest extends @baseline_instruction_IF_SEMI_COLON {
+  @bool mSkipIfSet ;
+  @registerExpression mRegisterExpression ;
+  @bitNumberExpression mBitNumber ;
+}
+
+method @baseline_instruction_IF_BitTest getBaseCode !@uint outBaseCode :
+  if mSkipIfSet then
+    outBaseCode := 0x1C00 ; # BTFSS
+  else
+    outBaseCode := 0x1800 ; # BTFSC
+  end if ;
+end method ; 
+
+method @baseline_instruction_IF_BitTest getMnemonic !@string outMnemonic :
+  if mSkipIfSet then
+    outMnemonic := "BTFSS" ;
+  else
+    outMnemonic := "BTFSC" ;
+  end if ;
+end method ; 
+
+
+#----------------------------------------------------*
+
+class @baseline_instruction_IF_IncDec extends @baseline_instruction_IF_SEMI_COLON {
+  @bool mIncrement ;
+  @registerExpression mRegisterExpression ;
+  @bool m_W_isDestination ;
+}
+
+#----------------------------------------------------*
+
+abstract class @baseline_conditionExpression {
+}
+
+#----------------------------------------------------*
+
+class @baseline_incDecRegisterInCondition extends @baseline_conditionExpression {
+  @registerExpression mRegisterExpression ;
+  @bool mIncrement ;
+  @bool m_W_isDestination ;
+  @bool mBranchIfZero ;
+}
+
+#----------------------------------------------------*
+
+class @baseline_negateCondition extends @baseline_conditionExpression {
+  @baseline_conditionExpression mCondition ;
+}
+
+#----------------------------------------------------*
+
+class @baseline_andCondition extends @baseline_conditionExpression {
+  @baseline_conditionExpression mLeftExpression ;
+  @baseline_conditionExpression mRightExpression ;
+}
+
+#----------------------------------------------------*
+
+class @baseline_bitTest_in_structured_if_condition extends @baseline_conditionExpression {
+  @registerExpression mRegisterExpression ;
+  @bitNumberExpression mBitNumber ;
+  @bool mBTFSSinstruction ;
+}
+
+#----------------------------------------------------*
+
+class @baseline_instruction_structured_if extends @baseline_instruction {
+  @baseline_conditionExpression mIfCondition ;
+  @baseline_instructionList mThenInstructionList ;
+  @baseline_instructionList mElseInstructionList ;
+  @location mEndOfElsePartLocation ;
+}
+
+#----------------------------------------------------*
+
+list @baseline_partList {
+  @baseline_conditionExpression mCondition ;
+  @baseline_instructionList mInstructionList ;
+  @location mEndOfPartLocation ;
+}
+
+#----------------------------------------------------*
+
+class @baseline_instruction_do_while extends @baseline_instruction {
+  @baseline_instructionList mRepeatedInstructionList ;
+  @location mEndOfRepeatedInstructionList ;
+  @baseline_partList mWhilePartList ;
+}
+
+#----------------------------------------------------*
+
+list @baseline_routineDefinitionList {
+  @lstring mRoutineName ;
+  @luint mPage ;
+  @bool mIsNoReturn ;
+  @baseline_instructionList mInstructionList ;
+  @location mEndOfRoutineLocation ;
+}
+
+#----------------------------------------------------*
+
+list @baselineRamDefinitionList {
+  @declarationInRam mDeclaration ;
+}
+
+#----------------------------------------------------*
+
+struct @baseline_model {
+  @lstring mProgramName ;
+  @lstring mDeviceName ;
+  @configDefinitionList mConfigDefinitionList ;
+  @bool mAcceptDefaultConfiguration ;
+  @baselineRamDefinitionList mRamDefinitionList ;
+  @constantDefinitionList mConstantDefinitionList ;
+  @baseline_routineDefinitionList mRoutineDefinitionList ;
+  @location mEndOfProgram ;
+}
+
+#----------------------------------------------------*
+
+end semantics ;

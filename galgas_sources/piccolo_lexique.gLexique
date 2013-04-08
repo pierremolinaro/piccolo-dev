@@ -104,6 +104,7 @@ list instructionKeyWordList error message "the '%K' instruction" style instructi
   "negf",
   "nop",
   "pop",
+  "option",
   "push",
   "rcall",
   "reset",
@@ -123,6 +124,7 @@ list instructionKeyWordList error message "the '%K' instruction" style instructi
   "swapf",
   "tblrd",
   "tblwt",
+  "tris",
   "xorlw",
   "xorwf"
 ;

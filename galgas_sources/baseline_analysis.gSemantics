@@ -1,0 +1,156 @@
+semantics baseline_analysis :
+#import "midrange_checkingAndBuildIPIC.gSemantics" ;
+#import "midrange_ipic_build_assembly_code.gSemantics" ;
+#import "midrange_metamodel.gSemantics" ;
+#import "midrange_optimizations.gSemantics" ;
+#import "midrange_build_binary_code.gSemantics" ;
+#import "midrange_compute_JSR_JUMP.gSemantics" ;
+
+import "baseline_metamodel.gSemantics" ;
+import "piccoloDevice_semantics.gSemantics" ;
+import "piccolo_embedded_devices.gSemantics" ;
+import "piccolo_config.gSemantics" ;
+import "piccolo_options.gOption" ;
+import "ram_sections.gSemantics" ;
+
+#----------------------------------------------------------------------------*
+#                                                                            *
+#               S E M A N T I C    A N A L Y S I S                           *
+#                                                                            *
+#----------------------------------------------------------------------------*
+
+routine baseline_analysis
+  ??@baseline_model inPiccoloModel
+  ??@string inSourceFileName
+:
+  @string sourceFileBaseName := [[inSourceFileName lastPathComponent] stringByDeletingPathExtension] ;
+  if sourceFileBaseName != [[inPiccoloModel mProgramName] string] then
+    error [inPiccoloModel mProgramName]: "the program name ('" . [inPiccoloModel mProgramName]
+    . "') should be identical to the file base name '" . sourceFileBaseName . "'" ;
+  end if ;
+  @string listFileContents := "" ;
+#-------------------------------- Analyze Device
+  @piccoloDeviceModel piccoloDeviceModel ;
+  parseDeviceDefinition ![inPiccoloModel mDeviceName] ?piccoloDeviceModel ;
+  switch [piccoloDeviceModel mProcessorType]
+    when baseline :
+    when pic18_60, pic18_80 : error [inPiccoloModel mDeviceName]: "a pic18 device is not accepted here : only a baseline device" ;
+    when midrange : error [inPiccoloModel mDeviceName]: "a mid-ranfe device is not accepted here : only a baseline device" ;
+  end switch ;
+#-------------------------------- Config definition
+  @actualConfigurationMap actualConfigurationMap ;
+  buildConfig
+    ![piccoloDeviceModel mConfigRegisterMap]
+    ![inPiccoloModel mConfigDefinitionList]
+    ![inPiccoloModel mAcceptDefaultConfiguration]
+    !?listFileContents
+    ?actualConfigurationMap
+  ;
+#-------------------------------- Ram definition
+  # log "" : piccoloDeviceModel->mRamBankTable ;
+  @registerTable registerTable := [piccoloDeviceModel mRegisterTable] ;
+  @ramBankTable ramBank := [piccoloDeviceModel mRamBankTable] ;
+#  analyze_ram_sections
+#    !"DECLARED VARIABLES"
+#    ![@ramDefinitionList listWithValue !["gprs" nowhere] !inPiccoloModel->mRamDefinitionList]
+#    !?ramBank
+#    ![piccoloDeviceModel mRegisterTable]
+#    !?listFileContents
+#    !?registerTable
+#  ;
+##-------------------------------- Build IPIC Assembly Instruction List
+#  @baseline_ipic_instructionList generatedInstructionList ;
+#  build_midrange_assembly_instruction_list
+#    !([[piccoloDeviceModel mRomSize] uint] + 2047) / 2048
+#    ![[piccoloDeviceModel mBankCount] uint]
+#    ![[[piccoloDeviceModel mRomSize] uint] sint]
+#    ![piccoloDeviceModel mSharedBankName] != ""
+#    !registerTable
+#    !inPiccoloModel
+#    !hasInterrupt
+#    ?generatedInstructionList
+#    !?listFileContents
+#  ;
+##-------------------------------- Perform Code Optimization
+#  if ([@uint errorCount] == 0) & [option piccolo_options.performOptimizations value] then
+#    perform_midrange_optimizations !?generatedInstructionList !?listFileContents ;
+#  end if ;
+##-------------------------------- Compute inter-pages JUMP and JSR
+#  if [@uint errorCount] == 0 then
+#    midrange_compute_JSR_JUMP !?generatedInstructionList !?listFileContents ;
+#  end if ;
+##-------------------------------- Listing file
+#  if [option piccolo_options.ouputListingFile value] then
+#    @string listFile := [inSourceFileName stringByDeletingPathExtension] . ".list" ;
+#    [listFileContents writeToFileWhenDifferentContents !listFile ?*] ;
+#  end if ;
+#-------------------------------- Code generation
+#--- If no error, generate object file(s)
+#  if [@uint errorCount] == 0 then
+#  #--- Generate hex file
+#    @uint usedROMsize ;
+#    build_midrange_ipic_binary_code
+#      !registerTable
+#      ![[piccoloDeviceModel mBankCount] uint]
+#      !generatedInstructionList
+#      ![[piccoloDeviceModel mRomSize] uint]
+#      !actualConfigurationMap
+#      ?usedROMsize
+#    ;
+#    @string contents ;
+#    getGeneratedContents ?contents ;
+#    @string destinationFile := [inSourceFileName stringByDeletingPathExtension] . ".hex" ;
+#    [contents writeToFileWhenDifferentContents !destinationFile ?*] ;
+#    if [option piccolo_options.output_C_Array value] then
+#      const @string baseName := [[inSourceFileName lastPathComponent] stringByDeletingPathExtension] ;
+#      get_C_ArrayImplementation !baseName ?contents ;
+#      destinationFile := [inSourceFileName stringByDeletingPathExtension] . ".c" ;
+#      [contents writeToFileWhenDifferentContents !destinationFile ?*] ;
+#      get_C_ArrayHeader !baseName ?contents ;
+#      destinationFile := [inSourceFileName stringByDeletingPathExtension] . ".h" ;
+#      [contents writeToFileWhenDifferentContents !destinationFile ?*] ;
+#    end if ;
+#  #--- Write infos (if verbose mode)
+#    if [option.verbose_output value] then
+#      @string verboseMessage := "  ROM size: " . [[[piccoloDeviceModel mRomSize] uint] string] . " words;" ;
+#      verboseMessage .= " used: " . [usedROMsize string] . " words (" ;
+#      verboseMessage .= [(usedROMsize * 100) / [[piccoloDeviceModel mRomSize] uint] string] . "%).\n" ;
+#      foreach ramBank do
+#        @uint bankSize := mLastAddressPlusOne - mFirstAddress ;
+#        @uint usedSize := mFirstFreeAddress - mFirstAddress ;
+#        verboseMessage .= "  RAM bank '" . lkey . "': " ;
+#        verboseMessage .= [bankSize string] . " bytes, used " ;
+#        verboseMessage .= [usedSize string] . " bytes (" ;
+#        verboseMessage .= [(usedSize * 100) / bankSize string] . "%).\n" ;
+#      end foreach ;
+#      message verboseMessage ;
+#    end if ;
+#  #--- Generate asm file, if corresponding option enabled
+#    if [option piccolo_options.generateAssembly value] then
+#      @string assemblyCode ;
+#      midrange_build_assembly_code
+#        ![[piccoloDeviceModel mDeviceName] string]
+#        ![piccoloDeviceModel mRegisterTable]
+#        !registerTable
+#        !generatedInstructionList
+#        !actualConfigurationMap
+#        ?assemblyCode
+#      ;
+#      @string asmDestinationFile := [inSourceFileName stringByDeletingPathExtension] . ".asm" ;
+#      [assemblyCode writeToFileWhenDifferentContents !asmDestinationFile ?*] ;
+#    end if ;
+#  else # There are errors : delete hex and asm files
+#    @string hexDestinationFile := [inSourceFileName stringByDeletingPathExtension] . ".hex" ;
+#    if [hexDestinationFile fileExists] then
+#      [@string deleteFile !hexDestinationFile] ;
+#    end if ;
+#    @string asmDestinationFile := [inSourceFileName stringByDeletingPathExtension] . ".asm" ;
+#    if [asmDestinationFile fileExists] then
+#      [@string deleteFile !asmDestinationFile] ;
+#    end if ;
+#  end if ;
+end routine ;
+
+#----------------------------------------------------*
+
+end semantics ;
