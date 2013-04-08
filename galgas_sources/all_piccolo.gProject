@@ -15,6 +15,11 @@ project all_piccolo (0:0:1) -> "piccolo" :
   semantics "generic_metamodel.gSemantics" ;
   semantics "ipic_generic.gSemantics" ;
 
+#--- Base Line
+  semantics "baseline_metamodel.gSemantics" ;
+  syntax    "baseline_syntax.gSyntax" ;
+  semantics "baseline_analysis.gSemantics" ;
+
   semantics "pic18_metamodel.gSemantics" ;
   syntax    "pic18_syntax.gSyntax" ;
   syntax    "pic18_start_symbol.gSyntax" ;

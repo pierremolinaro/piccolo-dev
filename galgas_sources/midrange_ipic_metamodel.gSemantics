@@ -195,7 +195,7 @@ class @midrange_ipic_instruction_FD extends @midrange_ipic_actualInstruction {
 }
 
 method @midrange_ipic_instruction_FD getBaseCode !@uint outBaseCode :
-  getMidRangeFDInstructionBaseCode !mInstruction_FD_base_code ?outBaseCode ;
+  outBaseCode := [mInstruction_FD_base_code basecode] ;
 end method ;
 
 override

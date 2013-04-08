@@ -428,33 +428,7 @@ rule <midrange_structured_instruction>
       <register_parsing> ? registerExpression ;
       $.$ ;
       <bit_number_parsing> ? bitNumberExpression ;
-      select
-        skipIfSet := false ;
-      or
-        $identifier$ ? @lstring conditionString ;
-        @string condition := [[conditionString string] uppercaseString] ;
-        if condition == "Z" then
-          skipIfSet := true ;
-          @string s := "if ! " . [[registerExpression mRegisterName] string] ;
-          if [[registerExpression mOffset] uint] > 0 then
-            s .= " [" . [[[registerExpression mOffset] uint] string] . "]" ;
-          end if ;
-          s .= "." ; [bitNumberExpression display !?s] ;
-          s .= " :" ;
-          warning conditionString: "In Piccolo 1.2.0 and later, this construction is deprecated; use '" . s . "' instead" ; 
-        elsif condition == "NZ" then
-          skipIfSet := false ;
-          @string s := "if " . [[registerExpression mRegisterName] string] ;
-          if [[registerExpression mOffset] uint] > 0 then
-            s .= " [" . [[[registerExpression mOffset] uint] string] . "]" ;
-          end if ;
-          s .= "." ; [bitNumberExpression display !?s] ;
-          s .= " :" ;
-          warning conditionString: "In Piccolo 1.2.0 and later, this construction is deprecated; use '" . s . "' instead" ; 
-        else
-          error conditionString:"invalid '" . condition . "' condition; it should be 'z' or 'nz'" : skipIfSet ;
-        end if ;
-      end select ;
+      skipIfSet := false ;
     end select ;
     $:$ ;
     @midrange_instruction instruction ;
