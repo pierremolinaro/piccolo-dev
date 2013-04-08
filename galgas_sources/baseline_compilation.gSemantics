@@ -1,0 +1,315 @@
+semantics baseline_compilation :
+import "baseline_ast.gSemantics" ;
+import "baseline_ipic_classes.gSemantics" ;
+import "piccoloDevice_semantics.gSemantics" ;
+import "piccolo_embedded_devices.gSemantics" ;
+import "piccolo_config.gSemantics" ;
+import "piccolo_options.gOption" ;
+import "ram_sections.gSemantics" ;
+import "baseline_semantic_analysis.gSemantics" ;
+
+#----------------------------------------------------------------------------*
+#                                                                            *
+#    S H O U L D    T E R M I N A T E    W I T H    M O V L W                *
+#                                                                            *
+#----------------------------------------------------------------------------*
+
+method @baseline_instruction shouldTerminateWithMOVLW
+  ??@string inErrorMessage
+:
+  error mInstructionLocation : inErrorMessage ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @baseline_instruction_literalOperation shouldTerminateWithMOVLW
+  ??@string inErrorMessage
+:
+  if mLiteralInstruction != [@baseline_literal_instruction_opcode MOVLW] then
+    error mInstructionLocation : inErrorMessage ;  
+  end if ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @baseline_instruction_structured_if shouldTerminateWithMOVLW
+  ??@string unused inErrorMessage
+:
+#--- THEN branch
+  if [mThenInstructionList length] == 0 then
+    error mInstructionLocation : "the 'then' branch of this 'if' instruction does not have any instruction; it must terminate with a MOVLW instruction" ;
+  else
+   [mThenInstructionList last ?@baseline_instruction lastInstruction] ;
+   [lastInstruction shouldTerminateWithMOVLW !"the 'then' branch of this 'if' instruction must terminate with a MOVLW instruction"] ;
+  end if ;
+#--- ELSE branch
+  if [mElseInstructionList length] == 0 then
+    error mInstructionLocation : "the 'else' branch of this 'if' instruction does not have any instruction; it must terminate with a MOVLW instruction" ;
+  else
+   [mElseInstructionList last ?@baseline_instruction lastInstruction] ;
+   [lastInstruction shouldTerminateWithMOVLW !"the 'else' branch of this 'if' instruction must terminate with a MOVLW instruction"] ;
+  end if ;
+
+end method ;
+
+#----------------------------------------------------------------------------*
+#                                                                            *
+#    N O    R E T U R N    C H E C K I N G                                   *
+#                                                                            *
+#----------------------------------------------------------------------------*
+
+method @baseline_instruction shouldNotContinueInSequence
+  ??@string inErrorMessage
+:
+  error mInstructionLocation : inErrorMessage ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @baseline_instruction_GOTO shouldNotContinueInSequence
+  ??@string unused inErrorMessage
+:
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @baseline_instruction_FOREVER shouldNotContinueInSequence
+  ??@string unused inErrorMessage
+:
+end method ;
+
+#----------------------------------------------------------------------------*
+#                                                                            *
+#               S E M A N T I C    A N A L Y S I S                           *
+#                                                                            *
+#----------------------------------------------------------------------------*
+
+routine baseline_analysis
+  ??@baseline_model inPiccoloModel
+  ??@string inSourceFileName
+:
+  @string sourceFileBaseName := [[inSourceFileName lastPathComponent] stringByDeletingPathExtension] ;
+  if sourceFileBaseName != [[inPiccoloModel mProgramName] string] then
+    error [inPiccoloModel mProgramName]: "the program name ('" . [inPiccoloModel mProgramName]
+    . "') should be identical to the file base name '" . sourceFileBaseName . "'" ;
+  end if ;
+  @string listFileContents := "" ;
+#-------------------------------- Analyze Device
+  @piccoloDeviceModel piccoloDeviceModel ;
+  parseDeviceDefinition ![inPiccoloModel mDeviceName] ?piccoloDeviceModel ;
+  switch [piccoloDeviceModel mProcessorType]
+    when baseline :
+    when pic18_60, pic18_80 : error [inPiccoloModel mDeviceName]: "a pic18 device is not accepted here : only a baseline device" ;
+    when midrange : error [inPiccoloModel mDeviceName]: "a mid-ranfe device is not accepted here : only a baseline device" ;
+  end switch ;
+#-------------------------------- Config definition
+  @actualConfigurationMap actualConfigurationMap ;
+  buildConfig
+    ![piccoloDeviceModel mConfigRegisterMap]
+    ![inPiccoloModel mConfigDefinitionList]
+    ![inPiccoloModel mAcceptDefaultConfiguration]
+    !?listFileContents
+    ?actualConfigurationMap
+  ;
+#-------------------------------- Ram definition
+  @registerTable registerTable := [piccoloDeviceModel mRegisterTable] ;
+  @ramBankTable ramBank := [piccoloDeviceModel mRamBankTable] ;
+  analyze_ram_sections
+    !"DECLARED VARIABLES"
+    !inPiccoloModel->mRamDefinitionList
+    !?ramBank
+    ![piccoloDeviceModel mRegisterTable]
+    !?listFileContents
+    !?registerTable
+  ;
+#-------------------------------- Build routine map
+  @baselineRoutineMap routineMap [emptyMap] ;
+  foreach inPiccoloModel->mRoutineDefinitionList do
+    [!?routineMap insertKey !mRoutineName !mIsNoReturn !mPage] ;
+  end foreach ;
+#-------------------------------- Build constant map
+  @constantMap constantMap [emptyMap] ;
+#--- Add "ROM_SIZE" constant
+  @lstring romSizeString [new !"ROM_SIZE" !here] ;
+  [!?constantMap insertKey !romSizeString ![piccoloDeviceModel->mRomSize sint]] ;
+#--- Add declared constants
+  foreach [inPiccoloModel mConstantDefinitionList] do
+    @sint result ; [mExpression eval !registerTable !constantMap ?result] ;
+    if [registerTable hasKey ![mConstantName string]] then
+      error mConstantName: "'" . mConstantName . "' is already declared as ram register or special register" ;
+    else
+      [!?constantMap insertKey !mConstantName !result] ;
+    end if ;
+  end foreach ;
+#-------------------------------- Print constant map
+  if [option piccolo_options.ouputListingFile value] then
+    print_constant_definition
+      !constantMap
+      !?listFileContents
+    ;
+  end if ;
+#-------------------------------- Check the "main" routine is declared
+  if [routineMap hasKey !"main"] then
+    @bool isNoReturn ;
+    @luint page ;
+    [routineMap searchKey ![@lstring new !"main" !here] ?isNoReturn ?page] ;
+    if not isNoReturn then
+      error [routineMap locationForKey!"main"] :"the \"main\" should be declared with \"noreturn\" qualifier: \"noreturn main bank:requires 0\"" ;
+    end if ;
+    if page->uint != 0 then
+      error page :"the \"main\" should be declared with \"page 0\" qualifier: \"noreturn main page 0\"" ;
+    end if ;
+  else
+    error [inPiccoloModel mEndOfProgram]: "the program should declare the \"main\" routine" ;
+  end if ;
+#-------------------------------- Check page routine specification is compatible with device
+  @bool needsToSavePCLATH := false ;
+  const @uint totalPageCount := ([piccoloDeviceModel->mRomSize uint] + 255) / 256 ;
+  foreach [inPiccoloModel mRoutineDefinitionList] do
+    if [mPage uint] > 0 then
+      needsToSavePCLATH := true ;
+    end if ;
+    if [mPage uint] >= totalPageCount then
+      error mPage:"invalid value (". mPage->uint . "); the device has " . totalPageCount . " 256-bytes page(s) on rom" ;
+    end if ;
+  end foreach ;
+#-------------------------------- Check and translate routines
+  @baseline_ipic_instructionList ipicInstructionList [emptyList] ;
+  @uint currentPage := 0 ;
+  @uint localLabelIndex := 0 ;
+  loop totalPageCount : while currentPage < totalPageCount do
+    foreach [inPiccoloModel mRoutineDefinitionList] do
+      if [mPage uint] == currentPage then
+        @routineKind routineKind ;
+        if mIsNoReturn then
+          routineKind := [@routineKind noReturnRoutine] ;
+        #--- Check does not continue in sequence
+          if [mInstructionList length] == 0 then
+            error mRoutineName : "a noreturn routine should terminate by a GOTO or a FOREVER loop" ;
+          else
+           [mInstructionList last ?@baseline_instruction lastInstruction] ;
+           [lastInstruction shouldNotContinueInSequence !"a noreturn routine should terminate by a GOTO or a FOREVER loop"] ;
+          end if ;
+        else
+          routineKind := [@routineKind regularRoutine] ;
+        #--- Check instruction list terminates by a MOVLW instruction
+          if [mInstructionList length] == 0 then
+            error mRoutineName : "a baseline routine must end with a MOVLW instruction" ;
+          else
+           [mInstructionList last ?@baseline_instruction lastInstruction] ;
+           [lastInstruction shouldTerminateWithMOVLW !"the last routine instruction should be MOVLW"] ;
+          end if ;
+        end if ;
+      #--- Check and translate instructions
+        ipicInstructionList += ![@baseline_ipic_pseudo_LABEL new !mRoutineName] ;
+        handleBaselineInstructionList
+          !mInstructionList
+          !routineMap
+          !registerTable
+          !constantMap
+          !?localLabelIndex
+          !?ipicInstructionList
+          !?listFileContents
+          ?@bool continuesInSequence
+          !routineKind
+        ;
+      end if ;
+    end foreach ;
+    currentPage ++ ;
+  end loop ;
+##-------------------------------- Build IPIC Assembly Instruction List
+#  @baseline_ipic_instructionList generatedInstructionList ;
+#  build_midrange_assembly_instruction_list
+#    !([[piccoloDeviceModel mRomSize] uint] + 2047) / 2048
+#    ![[piccoloDeviceModel mBankCount] uint]
+#    ![[[piccoloDeviceModel mRomSize] uint] sint]
+#    ![piccoloDeviceModel mSharedBankName] != ""
+#    !registerTable
+#    !inPiccoloModel
+#    !hasInterrupt
+#    ?generatedInstructionList
+#    !?listFileContents
+#  ;
+##-------------------------------- Perform Code Optimization
+#  if ([@uint errorCount] == 0) & [option piccolo_options.performOptimizations value] then
+#    perform_midrange_optimizations !?generatedInstructionList !?listFileContents ;
+#  end if ;
+##-------------------------------- Compute inter-pages JUMP and JSR
+#  if [@uint errorCount] == 0 then
+#    midrange_compute_JSR_JUMP !?generatedInstructionList !?listFileContents ;
+#  end if ;
+#-------------------------------- Listing file
+  if [option piccolo_options.ouputListingFile value] then
+    @string listFile := [inSourceFileName stringByDeletingPathExtension] . ".list" ;
+    [listFileContents writeToFileWhenDifferentContents !listFile ?*] ;
+  end if ;
+#-------------------------------- Code generation
+#--- If no error, generate object file(s)
+  if [@uint errorCount] == 0 then
+#  #--- Generate hex file
+#    @uint usedROMsize ;
+#    build_midrange_ipic_binary_code
+#      !registerTable
+#      ![[piccoloDeviceModel mBankCount] uint]
+#      !generatedInstructionList
+#      ![[piccoloDeviceModel mRomSize] uint]
+#      !actualConfigurationMap
+#      ?usedROMsize
+#    ;
+#    @string contents ;
+#    getGeneratedContents ?contents ;
+#    @string destinationFile := [inSourceFileName stringByDeletingPathExtension] . ".hex" ;
+#    [contents writeToFileWhenDifferentContents !destinationFile ?*] ;
+#    if [option piccolo_options.output_C_Array value] then
+#      const @string baseName := [[inSourceFileName lastPathComponent] stringByDeletingPathExtension] ;
+#      get_C_ArrayImplementation !baseName ?contents ;
+#      destinationFile := [inSourceFileName stringByDeletingPathExtension] . ".c" ;
+#      [contents writeToFileWhenDifferentContents !destinationFile ?*] ;
+#      get_C_ArrayHeader !baseName ?contents ;
+#      destinationFile := [inSourceFileName stringByDeletingPathExtension] . ".h" ;
+#      [contents writeToFileWhenDifferentContents !destinationFile ?*] ;
+#    end if ;
+#  #--- Write infos (if verbose mode)
+#    if [option.verbose_output value] then
+#      @string verboseMessage := "  ROM size: " . [[[piccoloDeviceModel mRomSize] uint] string] . " words;" ;
+#      verboseMessage .= " used: " . [usedROMsize string] . " words (" ;
+#      verboseMessage .= [(usedROMsize * 100) / [[piccoloDeviceModel mRomSize] uint] string] . "%).\n" ;
+#      foreach ramBank do
+#        @uint bankSize := mLastAddressPlusOne - mFirstAddress ;
+#        @uint usedSize := mFirstFreeAddress - mFirstAddress ;
+#        verboseMessage .= "  RAM bank '" . lkey . "': " ;
+#        verboseMessage .= [bankSize string] . " bytes, used " ;
+#        verboseMessage .= [usedSize string] . " bytes (" ;
+#        verboseMessage .= [(usedSize * 100) / bankSize string] . "%).\n" ;
+#      end foreach ;
+#      message verboseMessage ;
+#    end if ;
+#  #--- Generate asm file, if corresponding option enabled
+#    if [option piccolo_options.generateAssembly value] then
+#      @string assemblyCode ;
+#      midrange_build_assembly_code
+#        ![[piccoloDeviceModel mDeviceName] string]
+#        ![piccoloDeviceModel mRegisterTable]
+#        !registerTable
+#        !generatedInstructionList
+#        !actualConfigurationMap
+#        ?assemblyCode
+#      ;
+#      @string asmDestinationFile := [inSourceFileName stringByDeletingPathExtension] . ".asm" ;
+#      [assemblyCode writeToFileWhenDifferentContents !asmDestinationFile ?*] ;
+#    end if ;
+#  else # There are errors : delete hex and asm files
+#    @string hexDestinationFile := [inSourceFileName stringByDeletingPathExtension] . ".hex" ;
+#    if [hexDestinationFile fileExists] then
+#      [@string deleteFile !hexDestinationFile] ;
+#    end if ;
+#    @string asmDestinationFile := [inSourceFileName stringByDeletingPathExtension] . ".asm" ;
+#    if [asmDestinationFile fileExists] then
+#      [@string deleteFile !asmDestinationFile] ;
+#    end if ;
+  end if ;
+end routine ;
+
+#----------------------------------------------------*
+
+end semantics ;

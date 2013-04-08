@@ -255,20 +255,6 @@ class @midrange_instruction_IF_IncDec extends @midrange_instruction_IF_SEMI_COLO
 
 #----------------------------------------------------*
 
-#class @midrange_instruction_computed_retlw extends @midrange_instruction {
-#  @immediatExpression mSizeExpression ;
-#  @immediatExpressionList mImmediateExpressionList ;
-#}
-
-#----------------------------------------------------*
-
-#class @midrange_instruction_computed_goto extends @midrange_instruction {
-#  @immediatExpression mSizeExpression ;
-#  @lstringlist mTargetLabels ;
-#}
-
-#----------------------------------------------------*
-
 abstract class @midrange_conditionExpression {
 }
 

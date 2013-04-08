@@ -14,12 +14,17 @@ project all_piccolo (0:0:1) -> "piccolo" :
 
   semantics "generic_metamodel.gSemantics" ;
   semantics "ipic_generic.gSemantics" ;
+  semantics "piccolo_config.gSemantics" ;
 
 #--- Base Line
-  semantics "baseline_metamodel.gSemantics" ;
+  semantics "baseline_instruction_groups.gSemantics" ;
+  semantics "baseline_ast.gSemantics" ;
   syntax    "baseline_syntax.gSyntax" ;
-  semantics "baseline_analysis.gSemantics" ;
+  semantics "baseline_compilation.gSemantics" ;
+  semantics "baseline_ipic_classes.gSemantics" ;
+  semantics "baseline_semantic_analysis.gSemantics" ;
 
+#--- PIC 18
   semantics "pic18_metamodel.gSemantics" ;
   syntax    "pic18_syntax.gSyntax" ;
   syntax    "pic18_start_symbol.gSyntax" ;
@@ -27,7 +32,6 @@ project all_piccolo (0:0:1) -> "piccolo" :
   grammar   "pic18_grammar.gGrammar" ;
   grammar   "pic18_include_grammar.gGrammar" ;
   semantics "ipic18_metamodel.gSemantics" ;
-  semantics "piccolo_config.gSemantics" ;
   semantics "pic18_checkingAndBuildIPIC.gSemantics" ;
   semantics "ipic18_optimizations.gSemantics" ;
   semantics "ipc18_convert_relatives.gSemantics" ;
