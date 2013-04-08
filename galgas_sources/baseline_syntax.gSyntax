@@ -45,7 +45,7 @@ rule <start_symbol> :
   $literal_string$ ? @lstring deviceName ;
   $:$ ;
   @baseline_routineDefinitionList routineDefinitionList [emptyList] ;
-  @baselineRamDefinitionList ramDefinitionList [emptyList] ;
+  @ramDefinitionList ramDefinitionList [emptyList] ;
   @configDefinitionList configDefinitionList [emptyList] ;
   @constantDefinitionList constantDefinitionList [emptyList] ;
   @bool acceptDefaultConfiguration := false ;
@@ -57,7 +57,10 @@ rule <start_symbol> :
     <configuration_definition> !?configDefinitionList !?acceptDefaultConfiguration ;
   while
     <declaration_in_ram> ?@declarationInRam declaration ;
-    ramDefinitionList += !declaration ;
+    ramDefinitionList +=
+      !["gprs" nowhere]
+      ![@declarationInRamList listWithValue !declaration]
+    ;
   while
     <constant_definition> !?constantDefinitionList ;
   while

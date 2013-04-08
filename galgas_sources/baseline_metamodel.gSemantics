@@ -297,18 +297,12 @@ list @baseline_routineDefinitionList {
 
 #----------------------------------------------------*
 
-list @baselineRamDefinitionList {
-  @declarationInRam mDeclaration ;
-}
-
-#----------------------------------------------------*
-
 struct @baseline_model {
   @lstring mProgramName ;
   @lstring mDeviceName ;
   @configDefinitionList mConfigDefinitionList ;
   @bool mAcceptDefaultConfiguration ;
-  @baselineRamDefinitionList mRamDefinitionList ;
+  @ramDefinitionList mRamDefinitionList ;
   @constantDefinitionList mConstantDefinitionList ;
   @baseline_routineDefinitionList mRoutineDefinitionList ;
   @location mEndOfProgram ;

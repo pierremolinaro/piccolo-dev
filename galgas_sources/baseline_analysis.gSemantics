@@ -14,6 +14,25 @@ import "piccolo_options.gOption" ;
 import "ram_sections.gSemantics" ;
 
 #----------------------------------------------------------------------------*
+
+map @baselineRoutineMap {
+  @bool mIsNoReturn ;
+  @luint mPage ;
+  @baseline_instructionList mInstructionList ;
+  insert insertKey error message "the '%K' routine is already declared in %L" ;
+  search searchKey error message "the '%K' routine is not declared" ;
+}
+
+
+#----------------------------------------------------------------------------*
+
+list @baseline_ipic_routine_list {
+  @lstring mRoutineName ;
+  @bool mIsNoReturn ;
+  @luint mPage ;
+}
+
+#----------------------------------------------------------------------------*
 #                                                                            *
 #               S E M A N T I C    A N A L Y S I S                           *
 #                                                                            *
@@ -47,17 +66,115 @@ routine baseline_analysis
     ?actualConfigurationMap
   ;
 #-------------------------------- Ram definition
-  # log "" : piccoloDeviceModel->mRamBankTable ;
   @registerTable registerTable := [piccoloDeviceModel mRegisterTable] ;
   @ramBankTable ramBank := [piccoloDeviceModel mRamBankTable] ;
-#  analyze_ram_sections
-#    !"DECLARED VARIABLES"
-#    ![@ramDefinitionList listWithValue !["gprs" nowhere] !inPiccoloModel->mRamDefinitionList]
-#    !?ramBank
-#    ![piccoloDeviceModel mRegisterTable]
-#    !?listFileContents
-#    !?registerTable
-#  ;
+  analyze_ram_sections
+    !"DECLARED VARIABLES"
+    !inPiccoloModel->mRamDefinitionList
+    !?ramBank
+    ![piccoloDeviceModel mRegisterTable]
+    !?listFileContents
+    !?registerTable
+  ;
+#-------------------------------- Build routine map
+  @baselineRoutineMap routineMap [emptyMap] ;
+  foreach inPiccoloModel->mRoutineDefinitionList do
+    [!?routineMap insertKey !mRoutineName !mIsNoReturn !mPage !mInstructionList] ;
+  end foreach ;
+#-------------------------------- Build constant map
+  @constantMap constantMap [emptyMap] ;
+#--- Add "ROM_SIZE" constant
+  @lstring romSizeString [new !"ROM_SIZE" !here] ;
+  [!?constantMap insertKey !romSizeString ![piccoloDeviceModel->mRomSize sint]] ;
+#--- Add declared constants
+  foreach [inPiccoloModel mConstantDefinitionList] do
+    @sint result ; [mExpression eval !registerTable !constantMap ?result] ;
+    if [registerTable hasKey ![mConstantName string]] then
+      error mConstantName: "'" . mConstantName . "' is already declared as ram register or special register" ;
+    else
+      [!?constantMap insertKey !mConstantName !result] ;
+    end if ;
+  end foreach ;
+#-------------------------------- Print constant map
+  if [option piccolo_options.ouputListingFile value] then
+    print_constant_definition
+      !constantMap
+      !?listFileContents
+    ;
+  end if ;
+#-------------------------------- Check the "main" routine is declared
+  if [routineMap hasKey !"main"] then
+    @bool isNoReturn ;
+    @luint page ;
+    [routineMap searchKey ![@lstring new !"main" !here] ?isNoReturn ?page ?*] ;
+    if not isNoReturn then
+      error [routineMap locationForKey!"main"] :"the \"main\" should be declared with \"noreturn\" qualifier: \"noreturn main bank:requires 0\"" ;
+    end if ;
+    if page->uint != 0 then
+      error page :"the \"main\" should be declared with \"page 0\" qualifier: \"noreturn main page 0\"" ;
+    end if ;
+  else
+    error [inPiccoloModel mEndOfProgram]: "the program should declare the \"main\" routine" ;
+  end if ;
+#-------------------------------- Check page routine specification is compatible with device
+  @bool needsToSavePCLATH := false ;
+  const @uint totalPageCount := ([piccoloDeviceModel->mRomSize uint] + 255) / 256 ;
+  foreach [inPiccoloModel mRoutineDefinitionList] do
+    if [mPage uint] > 0 then
+      needsToSavePCLATH := true ;
+    end if ;
+    if [mPage uint] >= totalPageCount then
+      error mPage:"invalid value (". mPage->uint . "); the device has " . totalPageCount . " 256-bytes page(s) on rom" ;
+    end if ;
+  end foreach ;
+#-------------------------------- Check and translate routines
+  @baseline_ipic_routine_list routineList [emptyList] ;
+  @uint currentPage := 0 ;
+  loop totalPageCount : while currentPage < totalPageCount do
+    foreach [inPiccoloModel mRoutineDefinitionList] do
+      if [mPage uint] == currentPage then
+        @bool continuesInSequence := true ;
+        @bool terminatesWithMOVLW := true ;
+        @routineKind routineKind ;
+        if mIsNoReturn then
+          routineKind := [@routineKind noReturnRoutine] ;
+        else
+          routineKind := [@routineKind regularRoutine] ;
+        end if ;
+#        outGeneratedInstructionList += ![@midrange_ipic_pseudo_LABEL new !mRoutineName] ;
+#        handleMidrangeInstructionList
+#          !mInstructionList
+#          !routineMap
+#          !inRegisterTable
+#          !constantMap
+#          !?localLabelIndex
+#          !?outGeneratedInstructionList
+#          !?generationOptimizationMessages
+#          !inTotalBankCount
+#          !?currentBank
+#          !mPreservesBank
+#          ?continuesInSequence
+#          !routineKind
+#        ;
+        if mIsNoReturn & continuesInSequence then
+          error mRoutineName:"execution should not reach the end of a \"noreturn\" routine" ;
+        end if ;
+        if (not mIsNoReturn) & not terminatesWithMOVLW then
+          error mRoutineName:"the last instruction should be \"MOVLW\"" ;
+        end if ;
+      #--- Add a RETURN instruction (if it is a regular routine)
+        if not mIsNoReturn then
+#          outGeneratedInstructionList += ![@midrange_ipic_instruction_RETURN new ![mRoutineName location]] ;
+        end if ;
+        routineList +=
+          !mRoutineName
+          !mIsNoReturn
+          !mPage
+        ;
+      end if ;
+    end foreach ;
+    currentPage ++ ;
+  end loop ;
 ##-------------------------------- Build IPIC Assembly Instruction List
 #  @baseline_ipic_instructionList generatedInstructionList ;
 #  build_midrange_assembly_instruction_list
@@ -79,14 +196,14 @@ routine baseline_analysis
 #  if [@uint errorCount] == 0 then
 #    midrange_compute_JSR_JUMP !?generatedInstructionList !?listFileContents ;
 #  end if ;
-##-------------------------------- Listing file
-#  if [option piccolo_options.ouputListingFile value] then
-#    @string listFile := [inSourceFileName stringByDeletingPathExtension] . ".list" ;
-#    [listFileContents writeToFileWhenDifferentContents !listFile ?*] ;
-#  end if ;
+#-------------------------------- Listing file
+  if [option piccolo_options.ouputListingFile value] then
+    @string listFile := [inSourceFileName stringByDeletingPathExtension] . ".list" ;
+    [listFileContents writeToFileWhenDifferentContents !listFile ?*] ;
+  end if ;
 #-------------------------------- Code generation
 #--- If no error, generate object file(s)
-#  if [@uint errorCount] == 0 then
+  if [@uint errorCount] == 0 then
 #  #--- Generate hex file
 #    @uint usedROMsize ;
 #    build_midrange_ipic_binary_code
@@ -148,7 +265,7 @@ routine baseline_analysis
 #    if [asmDestinationFile fileExists] then
 #      [@string deleteFile !asmDestinationFile] ;
 #    end if ;
-#  end if ;
+  end if ;
 end routine ;
 
 #----------------------------------------------------*

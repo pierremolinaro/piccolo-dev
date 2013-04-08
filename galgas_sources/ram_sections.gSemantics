@@ -18,36 +18,6 @@ abstract method @declarationInRam handleDeclaration
 
 #----------------------------------------------------------------------------*
 
-override method @commonDeclarationInRam handleDeclaration
-  ?!@ramBankTable ioRamBank
-  ?!@registerTable ioRegisterTable
-  ??@lstring inCurrentRamBank
-:
-  @uint firstFreeAddressBeforeCommon ;
-  [ioRamBank searchKey !inCurrentRamBank ?* ?firstFreeAddressBeforeCommon ?* ?*] ;
-  @bool firstFreeAddressDefined := false ;
-  @uint firstFreeAddress := 0 ;
-  foreach mBranchList do
-    @ramBankTable ramBank := ioRamBank ;
-    foreach mDeclarations do
-      [mDeclarationInRAM handleDeclaration !?ramBank !?ioRegisterTable !inCurrentRamBank] ;
-    end foreach ;
-    @uint ffa ;
-    [ramBank searchKey !inCurrentRamBank ?* ?ffa ?* ?*] ;
-    if not firstFreeAddressDefined then
-      firstFreeAddress := ffa ;
-      firstFreeAddressDefined := true ;
-    elsif ffa != firstFreeAddress then
-      error mEndOfBranchLocation: "this branch allocates " . [ffa - firstFreeAddressBeforeCommon string]
-      . " byte(s), while the first branch allocates "
-      . [firstFreeAddress - firstFreeAddressBeforeCommon string] . " byte(s)" ;
-    end if ;
-  end foreach ;
-  [!?ioRamBank setMFirstFreeAddressForKey !firstFreeAddress ![inCurrentRamBank string]] ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
 override method @byteDeclarationInRam handleDeclaration
   ?!@ramBankTable ioRamBank
   ?!@registerTable ioRegisterTable

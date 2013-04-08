@@ -38,19 +38,6 @@ list @declarationInRamList {
 
 #----------------------------------------------------*
 
-list @commonBranchList {
-  @declarationInRamList mDeclarations ;
-  @location mEndOfBranchLocation ;
-}
-
-#----------------------------------------------------*
-
-class @commonDeclarationInRam extends @declarationInRam {
-  @commonBranchList mBranchList ;
-}
-
-#----------------------------------------------------*
-
 list @ramDefinitionList {
   @lstring mBankName ;
   @declarationInRamList mDeclaration ;

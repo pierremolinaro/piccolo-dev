@@ -26,7 +26,6 @@ list controlKeyWordList error message "the '%K' keyword" style keywordStyle :
   "baseline",
   "bootloader",
   "byte",
-  "common",
   "computed",
   "configuration",
   "const",
