@@ -1,0 +1,119 @@
+semantics baseline_ipic_classes :
+import "baseline_instruction_groups.gSemantics" ;
+
+#-------------------------------------------------------------------------------*
+
+struct @baseline_ipic_registerExpression {
+  @string mAssemblyString ;
+  @uint mRegisterAddress ; # xxx bit full address
+}
+
+#-------------------------------------------------------------------------------*
+
+abstract class @baseline_ipic_instruction {
+}
+
+#-------------------------------------------------------------------------------*
+
+list @baseline_ipic_instructionList {
+  @baseline_ipic_instruction mInstruction feature setter ;
+}
+
+#-------------------------------------------------------------------------------*
+
+class @baseline_ipic_NULL extends @baseline_ipic_instruction {
+}
+
+#-------------------------------------------------------------------------------*
+
+class @baseline_ipic_pseudo_PAGE extends @baseline_ipic_instruction {
+  @uint mPage ;
+}
+
+#-------------------------------------------------------------------------------*
+
+class @baseline_ipic_pseudo_LABEL extends @baseline_ipic_instruction {
+  @lstring mLabel ;
+}
+
+#-------------------------------------------------------------------------------*
+
+abstract class @baseline_ipic_actualInstruction extends @baseline_ipic_instruction {
+  @location mInstructionLocation ;
+}
+
+#-------------------------------------------------------------------------------*
+
+class @baseline_ipic_instruction_FD extends @baseline_ipic_actualInstruction {
+  @baseline_instruction_FD_base_code mInstruction_FD_base_code ;
+  @baseline_ipic_registerExpression mRegisterDescription ;
+  @bool m_W_isDestination ;
+}
+
+#-------------------------------------------------------------------------------*
+
+class @baseline_ipic_instruction_F extends @baseline_ipic_actualInstruction {
+  @baseline_F_instruction_base_code mFinstruction ;
+  @baseline_ipic_registerExpression mRegisterDescription ;
+}
+
+#-------------------------------------------------------------------------------*
+
+class @baseline_ipic_instruction_FB extends @baseline_ipic_actualInstruction {
+  @baseline_bit_oriented_op mBitOrientedOp ;
+  @baseline_ipic_registerExpression mRegisterDescription ;
+  @uint mBitNumber ;
+}
+
+#-------------------------------------------------------------------------------*
+
+class @baseline_ipic_instruction_BitTestSkip extends @baseline_ipic_actualInstruction {
+  @bool mSkipIfSet ;
+  @baseline_ipic_registerExpression mRegisterDescription ;
+  @uint mBitNumber ;
+}
+
+#-------------------------------------------------------------------------------*
+
+class @baseline_ipic_GOTO extends @baseline_ipic_actualInstruction {
+  @lstring mTargetLabel ;
+}
+
+#-------------------------------------------------------------------------------*
+
+class @baseline_ipic_CALL extends @baseline_ipic_actualInstruction {
+  @lstring mTargetLabel ;
+}
+
+#----------------------------------------------------*
+
+class @baseline_ipic_WO_OPERAND extends @baseline_ipic_actualInstruction {
+  @baseline_WO_OPERAND_group mInstruction ;
+}
+
+#-------------------------------------------------------------------------------*
+
+class @baseline_ipic_instruction_literalOperation extends @baseline_ipic_actualInstruction {
+  @baseline_literal_instruction_opcode mLiteralInstruction ;
+  @uint mLiteralValue ;
+}
+
+#-------------------------------------------------------------------------------*
+
+class @baseline_ipic_instruction_MNOP extends @baseline_ipic_actualInstruction {
+  @luint mOccurrenceFactor ;
+}
+
+#-------------------------------------------------------------------------------*
+
+class @baseline_ipic_incDecRegisterInCondition extends @baseline_ipic_actualInstruction {
+  @baseline_ipic_registerExpression mRegisterDescription ;
+  @string mTargetLabel ;
+  @bool mIncrement ;
+  @bool m_W_isDestination ;
+  @bool mBranchIfZero ;
+}
+
+#-------------------------------------------------------------------------------*
+
+end semantics ;

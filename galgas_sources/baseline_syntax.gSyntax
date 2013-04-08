@@ -1,7 +1,7 @@
 syntax baseline_syntax ("piccolo_lexique.gLexique") :
 import "generic_metamodel.gSemantics" ;
-import "baseline_metamodel.gSemantics" ;
-import "baseline_analysis.gSemantics" ;
+import "baseline_ast.gSemantics" ;
+import "baseline_compilation.gSemantics" ;
 
 import "piccoloDevice_semantics.gSemantics" ;
 import "pic18_metamodel.gSemantics" ;
@@ -442,19 +442,19 @@ rule <baseline_simple_instruction> !@baseline_instruction outInstruction :
     ] ;
   or
     $clrw$ ;
-    outInstruction := [@baseline_instruction_CLRW new !here] ;
+    outInstruction := [@baseline_instruction_WO_OPERAND new !here ![@baseline_WO_OPERAND_group CLRW]] ;
   or
     $clrwdt$ ;
-    outInstruction := [@baseline_instruction_CLRWDT new !here] ;
+    outInstruction := [@baseline_instruction_WO_OPERAND new !here ![@baseline_WO_OPERAND_group CLRWDT]] ;
   or
     $nop$ ;
-    outInstruction := [@baseline_instruction_NOP new !here] ;
+    outInstruction := [@baseline_instruction_WO_OPERAND new !here ![@baseline_WO_OPERAND_group NOP]] ;
   or
     $option$ ;
-    outInstruction := [@baseline_instruction_OPTION new !here] ;
+    outInstruction := [@baseline_instruction_WO_OPERAND new !here ![@baseline_WO_OPERAND_group OPTION_]] ;
   or
     $sleep$ ;
-    outInstruction := [@baseline_instruction_SLEEP new !here] ;
+    outInstruction := [@baseline_instruction_WO_OPERAND new !here ![@baseline_WO_OPERAND_group SLEEP]] ;
   or
     @baseline_literal_instruction_opcode literalInstruction ;
     select
