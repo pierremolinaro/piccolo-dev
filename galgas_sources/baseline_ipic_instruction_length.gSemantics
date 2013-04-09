@@ -1,0 +1,52 @@
+semantics baseline_ipic_instruction_length :
+import "baseline_ipic_classes.gSemantics" ;
+
+#-------------------------------------------------------------------------------*
+
+abstract reader @baseline_ipic_instruction length -> @uint outLength ;
+
+#-------------------------------------------------------------------------------*
+
+override reader @baseline_ipic_NULL length -> @uint outLength :
+  outLength := 0 ;
+end reader ;
+
+#-------------------------------------------------------------------------------*
+
+override reader @baseline_ipic_pseudo_PAGE length -> @uint outLength :
+  outLength := 0 ;
+end reader ;
+
+#-------------------------------------------------------------------------------*
+
+override reader @baseline_ipic_pseudo_LABEL length -> @uint outLength :
+  outLength := 0 ;
+end reader ;
+
+#-------------------------------------------------------------------------------*
+
+override reader @baseline_ipic_actualInstruction length -> @uint outLength :
+  outLength := 1 ;
+end reader ;
+
+#-------------------------------------------------------------------------------*
+
+override
+reader @baseline_ipic_instruction_MNOP length -> @uint outLength :
+  outLength := [mOccurrenceFactor uint] ;
+end reader ;
+
+#-------------------------------------------------------------------------------*
+
+
+override reader @baseline_ipic_incDecRegisterInCondition length -> @uint outLength :
+  if mBranchIfZero then
+    outLength := 3 ;
+  else
+    outLength := 2 ;
+  end if ; 
+end reader ;
+
+#-------------------------------------------------------------------------------*
+
+end semantics ;

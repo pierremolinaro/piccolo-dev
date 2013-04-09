@@ -39,6 +39,7 @@ SOURCES += baseline_compilation.cpp
 SOURCES += baseline_ipic_classes.cpp
 SOURCES += baseline_semantic_analysis.cpp
 SOURCES += baseline_print_ipic_instructions.cpp
+SOURCES += baseline_ipic_instruction_length.cpp
 SOURCES += pic18_metamodel.cpp
 SOURCES += pic18_syntax.cpp
 SOURCES += pic18_start_symbol.cpp

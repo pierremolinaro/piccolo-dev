@@ -1,6 +1,6 @@
 semantics baseline_compilation :
 import "baseline_ast.gSemantics" ;
-import "baseline_ipic_classes.gSemantics" ;
+#import "baseline_ipic_classes.gSemantics" ;
 import "piccoloDevice_semantics.gSemantics" ;
 import "piccolo_embedded_devices.gSemantics" ;
 import "piccolo_config.gSemantics" ;
@@ -8,6 +8,7 @@ import "piccolo_options.gOption" ;
 import "ram_sections.gSemantics" ;
 import "baseline_semantic_analysis.gSemantics" ;
 import "baseline_print_ipic_instructions.gSemantics" ;
+import "baseline_ipic_instruction_length.gSemantics" ;
 
 #----------------------------------------------------------------------------*
 #                                                                            *
@@ -248,6 +249,7 @@ routine baseline_analysis
   end loop ;
 #-------------------------------- Print IPIC Instruction List
   if [option piccolo_options.ouputListingFile value] then
+  #  @uint programWordCount := 0 ;
     listFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n" ;
     listFileContents .= "*" . ["IPIC INSTRUCTION LIST" stringByLeftAndRightPadding !77 !' '] . "*\n" ;
     listFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n\n" ;
@@ -260,6 +262,7 @@ routine baseline_analysis
       [mInstruction print !?listFileContents] ;
       listFileContents .= "\n" ;
       idx ++ ;
+   #   programWordCount := programWordCount + [mInstruction length] ;
     end foreach ;
     listFileContents .= "\n" ;
     listFileContents .= "Code size without optimization: " . [currentAddress string] . " words.\n\n" ;
