@@ -27,27 +27,6 @@ end reader ;
 
 #----------------------------------------------------*
 
-reader @baseline_instruction_FD_base_code basecode -> @uint outBaseCode :
-  switch selfcopy
-  when ADDWF  : outBaseCode := 0x01C0 ;
-  when ANDWF  : outBaseCode := 0x0140 ;
-  when COMF   : outBaseCode := 0x0240 ;
-  when DECF   : outBaseCode := 0x00C0 ;
-  when DECFSZ : outBaseCode := 0x02C0 ;
-  when INCF   : outBaseCode := 0x0280 ;
-  when INCFSZ : outBaseCode := 0x3C00 ;
-  when IORWF  : outBaseCode := 0x0100 ;
-  when MOVF   : outBaseCode := 0x0200 ;
-  when RLF    : outBaseCode := 0x0340 ;
-  when RRF    : outBaseCode := 0x0300 ;
-  when SUBWF  : outBaseCode := 0x0080 ;
-  when SWAPF  : outBaseCode := 0x0380 ;
-  when XORWF  : outBaseCode := 0x0180 ;
-  end switch ;
-end reader ;
-
-#----------------------------------------------------*
-
 enum @baseline_F_instruction_base_code {
   CLRF, MOVWF
 }{
@@ -97,31 +76,10 @@ end reader ;
 
 #----------------------------------------------------*
 
-reader @baseline_literal_instruction_opcode opcode -> @uint outBaseCode :
-  switch selfcopy
-  when ANDLW : outBaseCode := 0x3900 ;
-  when IORLW : outBaseCode := 0x3800 ;
-  when MOVLW : outBaseCode := 0x3000 ;
-  when RETLW : outBaseCode := 0x3400 ;
-  when XORLW : outBaseCode := 0x3A00 ;
-  end switch ;
-end reader ;
-
-#----------------------------------------------------*
-
 enum @baseline_IF_BitTest_opcode {
   BTFSS, BTFSC
 }{
 }
-
-#----------------------------------------------------*
-
-reader @baseline_IF_BitTest_opcode opcode -> @uint outBaseCode :
-  switch selfcopy
-  when BTFSS : outBaseCode := 0x1C00 ;
-  when BTFSC : outBaseCode := 0x1800 ;
-  end switch ;
-end reader ; 
 
 #----------------------------------------------------*
 
@@ -138,18 +96,6 @@ enum @baseline_WO_OPERAND_group {
   CLRW, NOP, CLRWDT, OPTION_, SLEEP
 }{
 }
-
-#----------------------------------------------------*
-
-reader @baseline_WO_OPERAND_group opcode -> @uint outOpCode :
-  switch selfcopy
-  when CLRW    : outOpCode := 0x0040 ;
-  when NOP     : outOpCode := 0x0000 ;
-  when CLRWDT  : outOpCode := 0x0004 ;
-  when OPTION_ : outOpCode := 0x0002 ;
-  when SLEEP   : outOpCode := 0x0003 ;
-  end switch ;
-end reader ; 
 
 #----------------------------------------------------*
 

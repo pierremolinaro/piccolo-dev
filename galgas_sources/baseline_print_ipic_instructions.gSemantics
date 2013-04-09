@@ -30,7 +30,7 @@ end method ;
 
 override
 method @baseline_ipic_instruction_FD print ?!@string ioListFileContents :
-  ioListFileContents .= [mInstruction_FD_base_code mnemonic] . " " . [mRegisterDescription mAssemblyString] ;
+  ioListFileContents .= [mInstruction mnemonic] . " " . [mRegisterDescription mAssemblyString] ;
   if m_W_isDestination then
     ioListFileContents .= ", W" ;
   end if ;
@@ -40,14 +40,14 @@ end method ;
 
 override
 method @baseline_ipic_instruction_F print ?!@string ioListFileContents :
-  ioListFileContents .= [mFinstruction mnemonic] . " " . [mRegisterDescription mAssemblyString] ;
+  ioListFileContents .= [mInstruction mnemonic] . " " . [mRegisterDescription mAssemblyString] ;
 end method ;
 
 #-------------------------------------------------------------------------------*
 
 override
 method @baseline_ipic_instruction_FB print ?!@string ioListFileContents :
-  ioListFileContents .= [mBitOrientedOp mnemonic] . " " . [mRegisterDescription mAssemblyString] . ", " . [mBitNumber string] ;
+  ioListFileContents .= [mInstruction mnemonic] . " " . [mRegisterDescription mAssemblyString] . ", " . [mBitNumber string] ;
 end method ;
 
 #-------------------------------------------------------------------------------*
@@ -83,7 +83,7 @@ end method ;
 
 override
 method @baseline_ipic_instruction_literalOperation print ?!@string ioListFileContents :
-  ioListFileContents .= [mLiteralInstruction mnemonic] . " " . [mLiteralValue hexString] ;
+  ioListFileContents .= [mInstruction mnemonic] . " " . [mLiteralValue hexString] ;
 end method ;
 
 #-------------------------------------------------------------------------------*
