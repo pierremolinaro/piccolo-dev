@@ -45,7 +45,7 @@ abstract class @baseline_ipic_actualInstruction extends @baseline_ipic_instructi
 #-------------------------------------------------------------------------------*
 
 class @baseline_ipic_instruction_FD extends @baseline_ipic_actualInstruction {
-  @baseline_instruction_FD_base_code mInstruction_FD_base_code ;
+  @baseline_instruction_FD_base_code mInstruction ;
   @baseline_ipic_registerExpression mRegisterDescription ;
   @bool m_W_isDestination ;
 }
@@ -53,14 +53,14 @@ class @baseline_ipic_instruction_FD extends @baseline_ipic_actualInstruction {
 #-------------------------------------------------------------------------------*
 
 class @baseline_ipic_instruction_F extends @baseline_ipic_actualInstruction {
-  @baseline_F_instruction_base_code mFinstruction ;
+  @baseline_F_instruction_base_code mInstruction ;
   @baseline_ipic_registerExpression mRegisterDescription ;
 }
 
 #-------------------------------------------------------------------------------*
 
 class @baseline_ipic_instruction_FB extends @baseline_ipic_actualInstruction {
-  @baseline_bit_oriented_op mBitOrientedOp ;
+  @baseline_bit_oriented_op mInstruction ;
   @baseline_ipic_registerExpression mRegisterDescription ;
   @uint mBitNumber ;
 }
@@ -94,7 +94,7 @@ class @baseline_ipic_WO_OPERAND extends @baseline_ipic_actualInstruction {
 #-------------------------------------------------------------------------------*
 
 class @baseline_ipic_instruction_literalOperation extends @baseline_ipic_actualInstruction {
-  @baseline_literal_instruction_opcode mLiteralInstruction ;
+  @baseline_literal_instruction_opcode mInstruction ;
   @uint mLiteralValue ;
 }
 

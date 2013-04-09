@@ -1,0 +1,388 @@
+semantics baseline_build_binary_code :
+import "ipic_generic.gSemantics" ;
+import "baseline_ipic_classes.gSemantics" ;
+import "baseline_ipic_instruction_length.gSemantics" ;
+
+#----------------------------------------------------------------------------*
+
+map @baseline_symbolTable {
+  @uint mRoutineAddress ;
+  insert insertKey error message "the '%K' label is already declared in %L" ;
+  search searchKey error message "the '%K' label is not declared" ;
+}
+
+#----------------------------------------------------------------------------*
+#                                                                            *
+#                          enterLabelAtAddress                               *
+#                                                                            *
+#----------------------------------------------------------------------------*
+
+method @baseline_ipic_instruction enterLabelAtAddress
+  ?!@baseline_symbolTable unused ioRoutineSymbolTable
+  ?!@uint unused ioAddress
+:
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @baseline_ipic_pseudo_LABEL enterLabelAtAddress
+  ?!@baseline_symbolTable ioRoutineSymbolTable
+  ?!@uint ioAddress
+:
+  [!?ioRoutineSymbolTable insertKey !mLabel !ioAddress] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @baseline_ipic_pseudo_PAGE enterLabelAtAddress
+  ?!@baseline_symbolTable unused ioRoutineSymbolTable
+  ?!@uint ioAddress
+:
+  ioAddress := mPage * 256 ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @baseline_ipic_actualInstruction enterLabelAtAddress
+  ?!@baseline_symbolTable unused ioRoutineSymbolTable
+  ?!@uint ioAddress
+:
+  ioAddress := ioAddress  + [selfcopy length] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+#                                                                            *
+#               C O D E    G E N E R A T I O N                               *
+#                                                                            *
+#----------------------------------------------------------------------------*
+
+abstract method @baseline_ipic_instruction generateBinaryCodeAtAddress
+  ??@registerTable inRegisterTable
+  ??@baseline_symbolTable unused inRoutineSymbolTable
+  ?!@uint unused ioAddress
+;
+
+#----------------------------------------------------------------------------*
+
+override method @baseline_ipic_NULL generateBinaryCodeAtAddress
+  ??@registerTable unused inRegisterTable
+  ??@baseline_symbolTable unused inRoutineSymbolTable
+  ?!@uint unused ioAddress
+:
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @baseline_ipic_pseudo_PAGE generateBinaryCodeAtAddress
+  ??@registerTable unused inRegisterTable
+  ??@baseline_symbolTable unused inRoutineSymbolTable
+  ?!@uint ioAddress
+:
+  ioAddress := mPage * 256 ;
+  setEmitAddress ! mPage * 512 ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @baseline_ipic_instruction_FD generateBinaryCodeAtAddress
+  ??@registerTable unused inRegisterTable
+  ??@baseline_symbolTable unused inRoutineSymbolTable
+  ?!@uint unused ioAddress
+:
+#--- Emit Code
+  @uint code ;
+  switch mInstruction
+  when ADDWF  : code := 0x01C0 ;
+  when ANDWF  : code := 0x0140 ;
+  when COMF   : code := 0x0240 ;
+  when DECF   : code := 0x00C0 ;
+  when DECFSZ : code := 0x02C0 ;
+  when INCF   : code := 0x0280 ;
+  when INCFSZ : code := 0x3C00 ;
+  when IORWF  : code := 0x0100 ;
+  when MOVF   : code := 0x0200 ;
+  when RLF    : code := 0x0340 ;
+  when RRF    : code := 0x0300 ;
+  when SUBWF  : code := 0x0080 ;
+  when SWAPF  : code := 0x0380 ;
+  when XORWF  : code := 0x0180 ;
+  end switch ;
+  if not m_W_isDestination then
+    code := code | 0x20 ;
+  end if ;
+  code := code | ([mRegisterDescription mRegisterAddress] & 0x1F) ;
+  emitCode !code ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @baseline_ipic_instruction_F generateBinaryCodeAtAddress
+  ??@registerTable unused inRegisterTable
+  ??@baseline_symbolTable unused inRoutineSymbolTable
+  ?!@uint unused ioAddress
+:
+  @uint code ;
+  switch mInstruction
+    when CLRF   : code := 0x0060 ;
+    when MOVWF  : code := 0x0020 ;
+  end switch ;
+  code := code | ([mRegisterDescription mRegisterAddress] & 0x1F) ;
+  emitCode !code ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @baseline_ipic_instruction_FB generateBinaryCodeAtAddress
+  ??@registerTable unused inRegisterTable
+  ??@baseline_symbolTable unused inRoutineSymbolTable
+  ?!@uint unused ioAddress
+:
+  @uint code ;
+  switch mInstruction
+    when BCF : code := 0x0400 ;
+    when BSF : code := 0x0500 ;
+  end switch ;
+  code := code | ([mRegisterDescription mRegisterAddress] & 0x1F) ;
+  code := code | (mBitNumber << 5) ;
+  emitCode !code ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @baseline_ipic_instruction_BitTestSkip generateBinaryCodeAtAddress
+  ??@registerTable unused inRegisterTable
+  ??@baseline_symbolTable unused inRoutineSymbolTable
+  ?!@uint unused ioAddress
+:
+#--- Emit Code
+  @uint code ;
+  if mSkipIfSet then
+    code := 0x0700 ; # "BTFSS"
+  else
+    code := 0x0600 ; # BTFSC
+  end if ;
+  code := code | ([mRegisterDescription mRegisterAddress] & 0x1F) ;
+  code := code | (mBitNumber << 5) ;
+  emitCode !code ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+local routine emit_baseline_GOTOinstruction_nocheck
+  ??@uint inTargetAddress
+:
+  emitCode !0x0A00 | (inTargetAddress & 0x1FF) ;
+end routine ;
+
+#----------------------------------------------------------------------------*
+
+local routine emit_baseline_GOTOinstruction
+  ??@location inIntructionLocation
+  ??@uint inOriginAddress
+  ??@uint inTargetAddress
+:
+  if ((inOriginAddress ^ inTargetAddress) & 0xFE00) != 0 then
+    error inIntructionLocation : "GOTO (from " . [inOriginAddress hexString] . " to " . [inTargetAddress hexString] . ") crosses page boundary" ;
+  end if ;
+  emit_baseline_GOTOinstruction_nocheck  !inTargetAddress ;
+end routine ;
+
+#----------------------------------------------------------------------------*
+
+routine emit_baseline_CALLinstruction_nocheck
+  ??@uint inTargetAddress
+:
+  emitCode !0x0900 | (inTargetAddress & 0xFF) ;
+end routine ;
+
+#----------------------------------------------------------------------------*
+
+routine emit_baseline_CALLinstruction
+  ??@location inIntructionLocation
+  ??@uint inOriginAddress
+  ??@uint inTargetAddress
+:
+  if ((inOriginAddress ^ inTargetAddress) & 0xFF00) != 0 then
+    error inIntructionLocation : "CALL (from " . [inOriginAddress hexString] . " to " . [inTargetAddress hexString] . ") crosses page boundary" ;
+  end if ;
+  emit_baseline_CALLinstruction_nocheck  !inTargetAddress ;
+end routine ;
+
+#----------------------------------------------------------------------------*
+
+override method @baseline_ipic_GOTO generateBinaryCodeAtAddress
+  ??@registerTable unused inRegisterTable
+  ??@baseline_symbolTable inRoutineSymbolTable
+  ?!@uint ioAddress
+:
+#---
+  @uint targetAddress ;
+  [inRoutineSymbolTable searchKey !mTargetLabel ?targetAddress] ;
+#---
+  emit_baseline_GOTOinstruction !mInstructionLocation !ioAddress !targetAddress ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @baseline_ipic_CALL generateBinaryCodeAtAddress
+  ??@registerTable unused inRegisterTable
+  ??@baseline_symbolTable inRoutineSymbolTable
+  ?!@uint ioAddress
+:
+#---
+  @uint targetAddress ;
+  [inRoutineSymbolTable searchKey !mTargetLabel ?targetAddress] ;
+#---
+  emit_baseline_CALLinstruction !mInstructionLocation !ioAddress !targetAddress ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @baseline_ipic_incDecRegisterInCondition generateBinaryCodeAtAddress
+  ??@registerTable unused inRegisterTable
+  ??@baseline_symbolTable inRoutineSymbolTable
+  ?!@uint ioAddress
+:
+  @uint code ;
+  if mIncrement then
+    code := 0x03C0 ; # INCFSZ
+  else
+    code := 0x02C0 ; # DECFSZ
+  end if ;
+  if not m_W_isDestination then
+    code := code | 0x0020 ;
+  end if ;
+  code := code | ([mRegisterDescription mRegisterAddress] & 0x1F) ;
+  emitCode !code ;
+#---
+  if mBranchIfZero then
+    emit_baseline_GOTOinstruction !mInstructionLocation !ioAddress !ioAddress + 3 ;
+  end if ;
+#--- Generate GOTO instruction
+  @uint targetAddress ;
+  [inRoutineSymbolTable searchKey ![@lstring new !mTargetLabel !here] ?targetAddress] ;
+  emit_baseline_GOTOinstruction !mInstructionLocation !ioAddress !targetAddress ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @baseline_ipic_WO_OPERAND generateBinaryCodeAtAddress
+  ??@registerTable unused inRegisterTable
+  ??@baseline_symbolTable unused inRoutineSymbolTable
+  ?!@uint unused ioAddress
+:
+  switch mInstruction
+  when CLRW    : emitCode !0x0040 ;
+  when NOP     : emitCode !0x0000 ;
+  when CLRWDT  : emitCode !0x0004 ;
+  when OPTION_ : emitCode !0x0002 ;
+  when SLEEP   : emitCode !0x0003 ;
+  end switch ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @baseline_ipic_instruction_literalOperation generateBinaryCodeAtAddress
+  ??@registerTable unused inRegisterTable
+  ??@baseline_symbolTable unused inRoutineSymbolTable
+  ?!@uint unused ioAddress
+:
+  @uint code ;
+  switch mInstruction
+  when ANDLW : code := 0x0E00 ;
+  when IORLW : code := 0x0D00 ;
+  when MOVLW : code := 0x0C00 ;
+  when RETLW : code := 0x0800 ;
+  when XORLW : code := 0x0F00 ;
+  end switch ;
+  code := code | mLiteralValue ;
+  emitCode !code ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @baseline_ipic_pseudo_LABEL generateBinaryCodeAtAddress
+  ??@registerTable unused inRegisterTable
+  ??@baseline_symbolTable inRoutineSymbolTable
+  ?!@uint ioAddress
+:
+  @uint targetAddress ;
+  [inRoutineSymbolTable searchKey !mLabel ?targetAddress] ;
+  if (targetAddress != ioAddress) then
+    error mLabel: "Internal second pass error: the '" . mLabel
+    . "' label gets " . [ioAddress hexString] . " value in second pass, while it gets "
+    . [targetAddress hexString] . " in first pass" ;
+  end if ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @baseline_ipic_instruction_MNOP generateBinaryCodeAtAddress
+  ??@registerTable unused inRegisterTable
+  ??@baseline_symbolTable unused inRoutineSymbolTable
+  ?!@uint unused ioAddress
+:
+  if [mOccurrenceFactor uint] == 0 then
+    warning mOccurrenceFactor: "No generated code" ;
+  end if ;
+  @uint idx := 0 ;
+  loop [mOccurrenceFactor uint] :
+  while idx < [mOccurrenceFactor uint]
+  do
+    emitCode !0x0000 ;
+    idx ++ ;
+  end loop ;
+end method ;
+
+#----------------------------------------------------------------------------*
+#                                                                            *
+#               S E M A N T I C    A N A L Y S I S                           *
+#                                                                            *
+#----------------------------------------------------------------------------*
+
+routine build_baseline_ipic_binary_code
+  ??@registerTable inRegisterTable
+  ??@baseline_ipic_instructionList inGeneratedInstructionList
+  ??@uint inROMsize
+  ??@actualConfigurationMap inActualConfigurationMap
+  !@uint outUsedROMsize
+:
+#-------------------------------- First pass: build label map
+  @baseline_symbolTable symbolTable [emptyMap] ;
+  @uint currentAddress := 0 ;
+  foreach inGeneratedInstructionList do
+    [mInstruction enterLabelAtAddress !?symbolTable !?currentAddress] ;
+  end foreach ;
+  @uint lastAddressForFirstPass := currentAddress ;
+  outUsedROMsize := currentAddress ;
+#-------------------------------- Second pass: generate code
+  currentAddress := 0 ;
+  setEmitAddress !0 ;
+  foreach inGeneratedInstructionList do
+    [mInstruction generateBinaryCodeAtAddress
+      !inRegisterTable
+      !symbolTable
+      !?currentAddress
+    ] ;
+    currentAddress := currentAddress  + [mInstruction length] ;
+    checkCurrentEmitAddress !currentAddress * 2 ;
+  end foreach ;
+  if lastAddressForFirstPass != currentAddress then
+    error here: "Internal second pass error: the last address gets " . [currentAddress hexString]
+    . " value in second pass, while it gets "
+    . [lastAddressForFirstPass hexString] . " value in first pass" ;
+  elsif lastAddressForFirstPass > inROMsize then
+    error here: "Program too large: " . [lastAddressForFirstPass string]
+    . " bytes (rom size is "
+    . [inROMsize string] . " bytes)" ;
+  end if ;
+#-------------------------------- Add Configuration
+  foreach inActualConfigurationMap do
+    setEmitAddress ! mRegisterAddress + mRegisterAddress ;
+    emitCode !mRegisterValue ;
+  end foreach ;
+end routine ;
+
+#----------------------------------------------------------------------------*
+
+end semantics ;

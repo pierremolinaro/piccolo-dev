@@ -750,12 +750,6 @@ end method ;
 
 #-------------------------------------------------------------------------------*
 
-method @baseline_ipic_instruction_FD getBaseCode !@uint outBaseCode :
-  outBaseCode := [mInstruction_FD_base_code basecode] ;
-end method ;
-
-#-------------------------------------------------------------------------------*
-
 local routine getBaselineFinstructionBaseCode
   ??@baseline_F_instruction_base_code inInstruction
   !@uint outBaseCode
@@ -768,12 +762,6 @@ end routine ;
 
 #-------------------------------------------------------------------------------*
 
-method @baseline_ipic_instruction_F getBaseCode !@uint outBaseCode :
-  getBaselineFinstructionBaseCode !mFinstruction ?outBaseCode ;
-end method ;
-
-#-------------------------------------------------------------------------------*
-
 local routine getBaselineBitOrientedOpBaseCode ??@baseline_bit_oriented_op inInstruction !@uint outBaseCode :
   switch inInstruction
   when BCF : outBaseCode := 0x1000 ;
@@ -781,29 +769,6 @@ local routine getBaselineBitOrientedOpBaseCode ??@baseline_bit_oriented_op inIns
   end switch ;
 end routine ;
 
-
-#-------------------------------------------------------------------------------*
-
-
-method @baseline_ipic_instruction_FB getBaseCode !@uint outBaseCode :
-  getBaselineBitOrientedOpBaseCode !mBitOrientedOp ?outBaseCode ;
-end method ;
-
-#-------------------------------------------------------------------------------*
-
-
-method @baseline_ipic_instruction_BitTestSkip getBaseCode !@uint outBaseCode :
-  if mSkipIfSet then
-    outBaseCode := 0x1C00 ; # BTFSS
-  else
-    outBaseCode := 0x1800 ; # BTFSC
-  end if ;
-end method ;
-
-override
-method @baseline_ipic_instruction_BitTestSkip isSkippingInstruction !@bool outIsSkipping :
-  outIsSkipping := true ;
-end method ;
 
 #-------------------------------------------------------------------------------*
 
@@ -831,13 +796,8 @@ end method ;
 
 #-------------------------------------------------------------------------------*
 
-
-method @baseline_ipic_instruction_literalOperation getBaseCode !@uint outBaseCode :
-  outBaseCode := [mLiteralInstruction opcode] ;
-end method ;
-
 override method @baseline_ipic_instruction_literalOperation nextInstructionIsReachable !@bool outIsReachable :
-  outIsReachable := mLiteralInstruction != [@baseline_literal_instruction_opcode RETLW] ;
+  outIsReachable := mInstruction != [@baseline_literal_instruction_opcode RETLW] ;
 end method ;
 
 #-------------------------------------------------------------------------------*

@@ -9,6 +9,7 @@ import "ram_sections.gSemantics" ;
 import "baseline_semantic_analysis.gSemantics" ;
 import "baseline_print_ipic_instructions.gSemantics" ;
 import "baseline_ipic_instruction_length.gSemantics" ;
+import "baseline_build_binary_code.gSemantics" ;
 
 #----------------------------------------------------------------------------*
 #                                                                            *
@@ -269,7 +270,17 @@ routine baseline_analysis
     listFileContents .= "\n" ;
     listFileContents .= "Code size without optimization: " . [currentAddress string] . " words.\n\n" ;
   end if ;
-
+#-------------------------------- Code generation
+  if [@uint errorCount] == 0 then
+    @uint usedROMsize ;
+    build_baseline_ipic_binary_code
+      !registerTable
+      !ipicInstructionList
+      ![[piccoloDeviceModel mRomSize] uint]
+      !actualConfigurationMap
+      ?usedROMsize
+    ;
+  end if ;
 
 
 
