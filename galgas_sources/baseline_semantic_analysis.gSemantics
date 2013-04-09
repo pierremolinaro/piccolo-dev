@@ -5,6 +5,7 @@ import "baseline_ipic_classes.gSemantics" ;
 import "piccoloDevice_semantics.gSemantics" ;
 import "ipic_generic.gSemantics" ;
 import "piccolo_options.gOption" ;
+import "baseline_ipic_instruction_length.gSemantics" ;
 
 #----------------------------------------------------------------------------*
 
@@ -701,12 +702,8 @@ end method ;
 #-------------------------------------------------------------------------------*
 #-------------------------------------------------------------------------------*
 
-abstract method @baseline_ipic_instruction instructionLength !@uint outLength ;
-
 method @baseline_ipic_instruction setCurrentAddress ?!@uint ioCurrentAddress :
-  @uint length ;
-  [selfcopy instructionLength ?length] ;
-  ioCurrentAddress := ioCurrentAddress + length ;
+  ioCurrentAddress := ioCurrentAddress + [selfcopy length] ;
 end method ;
 
 method @baseline_ipic_instruction isLABELorORG !@bool outIsLABELorORG :
@@ -731,19 +728,11 @@ end method ;
 
 #-------------------------------------------------------------------------------*
 
-override method @baseline_ipic_NULL instructionLength !@uint outLength :
-  outLength := 0 ;
-end method ;
-
 override method @baseline_ipic_NULL isNULL !@bool outIsNULL :
   outIsNULL := true ;
 end method ;
 
 #-------------------------------------------------------------------------------*
-
-override method @baseline_ipic_pseudo_PAGE instructionLength !@uint outLength :
-  outLength := 0 ;
-end method ;
 
 override method @baseline_ipic_pseudo_PAGE setCurrentAddress ?!@uint ioCurrentAddress :
   ioCurrentAddress := mPage * 256 ;
@@ -755,18 +744,8 @@ end method ;
 
 #-------------------------------------------------------------------------------*
 
-override method @baseline_ipic_pseudo_LABEL instructionLength !@uint outLength :
-  outLength := 0 ;
-end method ;
-
 override method @baseline_ipic_pseudo_LABEL isLABELorORG !@bool outIsLABELorORG :
   outIsLABELorORG := true ;
-end method ;
-
-#-------------------------------------------------------------------------------*
-
-override method @baseline_ipic_actualInstruction instructionLength !@uint outLength :
-  outLength := 1 ;
 end method ;
 
 #-------------------------------------------------------------------------------*
@@ -836,12 +815,6 @@ enum @baseline_call_goto_bit {
 
 #-------------------------------------------------------------------------------*
 
-
-override
-method @baseline_ipic_GOTO instructionLength !@uint outLength :
-  outLength := 1 ;
-end method ;
-
 override method @baseline_ipic_GOTO nextInstructionIsReachable !@bool outIsReachable :
   outIsReachable := false ;
 end method ;
@@ -869,22 +842,6 @@ end method ;
 
 #-------------------------------------------------------------------------------*
 
-override
-method @baseline_ipic_instruction_MNOP instructionLength !@uint outLength :
-  outLength := [mOccurrenceFactor uint] ;
-end method ;
-
-#-------------------------------------------------------------------------------*
-
-
-override
-method @baseline_ipic_incDecRegisterInCondition instructionLength !@uint outLength :
-  if mBranchIfZero then
-    outLength := 3 ;
-  else
-    outLength := 2 ;
-  end if ; 
-end method ;
 
 override method @baseline_ipic_incDecRegisterInCondition enterReferencedLabel ?!@stringset ioReferencedLabelSet :
   ioReferencedLabelSet += !mTargetLabel ;
