@@ -384,7 +384,7 @@ end method ;
 #                                                                            *
 #----------------------------------------------------------------------------*
 
-routine build_baseline_ipic_binary_code
+routine EX_build_baseline_ipic_binary_code
   ??@registerTable inRegisterTable
   ??@baseline_ipic_instructionList inGeneratedInstructionList
   ??@uint inROMsize

@@ -271,20 +271,20 @@ routine baseline_analysis
     listFileContents .= "Code size without optimization: " . [currentAddress string] . " words.\n\n" ;
   end if ;
 #-------------------------------- Code generation
+  @baseline_pic_assembly_instructionList assemblyInstructionList [emptyList] ;
+  if [@uint errorCount] == 0 then
+    build_baseline_ipic_binary_code
+      !ipicInstructionList
+      !actualConfigurationMap
+      !?assemblyInstructionList
+    ;
+  end if ;
+#-------------------------------- Display assembly code
   if [@uint errorCount] == 0 then
     listFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n" ;
     listFileContents .= "*" . ["GENERATED CODE" stringByLeftAndRightPadding !77 !' '] . "*\n" ;
     listFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n\n" ;
     listFileContents .= "Address Code Mnemonic\n" ;
-    @uint usedROMsize ;
-    build_baseline_ipic_binary_code
-      !registerTable
-      !ipicInstructionList
-      ![[piccoloDeviceModel mRomSize] uint]
-      !actualConfigurationMap
-      !?listFileContents
-      ?usedROMsize
-    ;
   end if ;
 
 
