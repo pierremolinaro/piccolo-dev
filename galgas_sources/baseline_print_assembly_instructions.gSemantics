@@ -8,91 +8,95 @@ abstract method @baseline_pic_assembly_instruction print ?!@string ioListFileCon
 #-------------------------------------------------------------------------------*
 
 override method @baseline_pic_assembly_pseudo_ORG print ?!@string ioListFileContents :
-  ioListFileContents .= "ORG " . mOrigin ;
+  ioListFileContents .= "  ORG " . mOrigin ;
 end method ;
 
 
 #-------------------------------------------------------------------------------*
 
 override method @baseline_pic_assembly_pseudo_LABEL print ?!@string ioListFileContents :
-  ioListFileContents .= "LABEL " . mLabel ;
+  ioListFileContents .= mLabel->string . ":" ;
 end method ;
 
 #-------------------------------------------------------------------------------*
 
 override method @baseline_pic_assembly_instruction_FD print ?!@string ioListFileContents :
-  ioListFileContents .= [mInstruction mnemonic] . " " . [mRegisterDescription mAssemblyString] ;
+  ioListFileContents .= "  " . [mInstruction mnemonic] . " " . [mRegisterDescription mAssemblyString] ;
   if m_W_isDestination then
     ioListFileContents .= ", W" ;
+  else
+    ioListFileContents .= ", 1" ;
   end if ;
 end method ;
 
 #-------------------------------------------------------------------------------*
 
 override method @baseline_pic_assembly_instruction_F print ?!@string ioListFileContents :
-  ioListFileContents .= [mInstruction mnemonic] . " " . [mRegisterDescription mAssemblyString] ;
+  ioListFileContents .= "  " . [mInstruction mnemonic] . " " . [mRegisterDescription mAssemblyString] ;
 end method ;
 
 #-------------------------------------------------------------------------------*
 
 override method @baseline_pic_assembly_instruction_FB print ?!@string ioListFileContents :
-  ioListFileContents .= [mInstruction mnemonic] . " " . [mRegisterDescription mAssemblyString] . ", " . [mBitNumber string] ;
+  ioListFileContents .= "  " . [mInstruction mnemonic] . " " . [mRegisterDescription mAssemblyString] . ", " . [mBitNumber string] ;
 end method ;
 
 #-------------------------------------------------------------------------------*
 
 override method @baseline_pic_assembly_instruction_BitTestSkip print ?!@string ioListFileContents :
   if mSkipIfSet then
-    ioListFileContents .= "BTFSS" ;
+    ioListFileContents .= "  BTFSS " ;
   else
-    ioListFileContents .= "BTFSC" ;
+    ioListFileContents .= "  BTFSC " ;
   end if ;
-  ioListFileContents .= " " . [mRegisterDescription mAssemblyString] . ", " . [mBitNumber string] ;
+  ioListFileContents .= [mRegisterDescription mAssemblyString] . ", " . [mBitNumber string] ;
 end method ;
 
 #-------------------------------------------------------------------------------*
 
 override method @baseline_pic_assembly_GOTO print ?!@string ioListFileContents :
-  ioListFileContents .= "GOTO " . mTargetLabel ;
+  ioListFileContents .= "  GOTO " . mTargetLabel ;
 end method ;
 
 #-------------------------------------------------------------------------------*
 
 override method @baseline_pic_assembly_SKIP print ?!@string ioListFileContents :
-  ioListFileContents .= "GOTO * + 2" ;
+  ioListFileContents .= "  GOTO * + 2" ;
 end method ;
 
 #-------------------------------------------------------------------------------*
 
 
 override method @baseline_pic_assembly_CALL print ?!@string ioListFileContents :
-  ioListFileContents .= "CALL " . mTargetLabel ;
+  ioListFileContents .= "  CALL " . mTargetLabel ;
 end method ;
 
 #-------------------------------------------------------------------------------*
 
 override method @baseline_pic_assembly_instruction_literalOperation print ?!@string ioListFileContents :
-  ioListFileContents .= [mInstruction mnemonic] . " " . [mLiteralValue hexString] ;
+  ioListFileContents .= "  " . [mInstruction mnemonic] . " " . [mLiteralValue hexString] ;
 end method ;
 
 #-------------------------------------------------------------------------------*
 
 override method @baseline_pic_assembly_incDecRegisterInCondition print ?!@string ioListFileContents :
   if mIncrement then
-    ioListFileContents .= "INCFSZ " ;
+    ioListFileContents .= "  INCFSZ " ;
   else
-    ioListFileContents .= "DECFSZ " ;
+    ioListFileContents .= "  DECFSZ " ;
   end if ;
   ioListFileContents .= [mRegisterDescription mAssemblyString] ;
   if m_W_isDestination then
     ioListFileContents .= ", W" ;
+  else
+    ioListFileContents .= ", 1" ;
   end if ;
 end method ;
 
 #-------------------------------------------------------------------------------*
 
 override method @baseline_pic_assembly_WO_OPERAND print ?!@string ioListFileContents :
-  ioListFileContents .= [mInstruction mnemonic] ;
+  ioListFileContents .= "  " . [mInstruction mnemonic] ;
 end method ;
 
 #-------------------------------------------------------------------------------*
