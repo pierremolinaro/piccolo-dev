@@ -62,13 +62,16 @@ method @baseline_ipic_instruction_BitTestSkip print ?!@string ioListFileContents
   ioListFileContents .= " " . [mRegisterDescription mAssemblyString] . ", " . [mBitNumber string] ;
 end method ;
 
+#-------------------------------------------------------------------------------*
+
+override method @baseline_ipic_GOTO print ?!@string ioListFileContents :
+  ioListFileContents .= "GOTO " . mTargetLabel ;
+end method ;
 
 #-------------------------------------------------------------------------------*
 
-
-override
-method @baseline_ipic_GOTO print ?!@string ioListFileContents :
-  ioListFileContents .= "GOTO " . mTargetLabel ;
+override method @baseline_ipic_GOTO_ABS print ?!@string ioListFileContents :
+  ioListFileContents .= "GOTO " . [mDestinationAddress hexString] ;
 end method ;
 
 #-------------------------------------------------------------------------------*
