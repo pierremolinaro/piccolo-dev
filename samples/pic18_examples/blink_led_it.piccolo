@@ -28,34 +28,31 @@ pic18 blink_led_it "18F448" :
 #----------------------------------------------------------------------------*
 
 configuration {
-  OSC : "EC-OSC2 as RA6"
+  OSC : "RC oscillator w/ OSC2 configured as RA6"
   OSCS : Disabled
-  WDT : "Disabled-Controlled by SWDTEN bit"
+  WDT : Disabled
   WDTPS : "1:128"
   STVR : Disabled
   LVP : Disabled
-  CP_0 : Disabled
-  CP_1 : Disabled
-  CP_2 : Disabled
-  CP_3 : Disabled
-  WRT_1 : Disabled
-  WRT_2 : Disabled
-  WRT_3 : Disabled
-  WRT_0 : Disabled
-  EBTR_0 : Disabled
-  EBTR_1 : Disabled
-  EBTR_2 : Disabled
-  EBTR_3 : Disabled
-  BACKBUG : Disabled
-  BODEN : Disabled
-  BODENV : "4.5V"
+  CP0 : Disabled
+  CP1 : Disabled
   CPB : Disabled
   CPD : Disabled
-  EBTRB : Disabled
-  PUT : Enabled
+  WRT0 : Disabled
+  WRT1 : Disabled
   WRTB : Disabled
   WRTC : Disabled
   WRTD : Disabled
+  EBTR0 : Disabled
+  EBTR1 : Disabled
+  EBTRB : Disabled
+  DEBUG : Disabled
+  BOR : Disabled
+  BORV : "VBOR set to 4.5V"
+  PWRT : Enabled
+  RESERVED : "Maintain bits as 1s."
+  RESERVED_CONFIG6L : "Maintain bits as 1s."
+  RESERVED_CONFIG7L : "Maintain bits as 1s."
 }
 
 #----------------------------------------------------------------------------*
