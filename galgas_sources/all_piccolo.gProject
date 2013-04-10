@@ -26,6 +26,9 @@ project all_piccolo (0:0:1) -> "piccolo" :
   semantics "baseline_print_ipic_instructions.gSemantics" ;
   semantics "baseline_ipic_instruction_length.gSemantics" ;
   semantics "baseline_pic_assembly_classes.gSemantics" ;
+  semantics "baseline_print_assembly_instructions.gSemantics" ;
+  semantics "baseline_assembly_instruction_length.gSemantics" ;
+  semantics "baseline_build_assembly_code.gSemantics" ;
   semantics "baseline_build_binary_code.gSemantics" ;
 
 #--- PIC 18

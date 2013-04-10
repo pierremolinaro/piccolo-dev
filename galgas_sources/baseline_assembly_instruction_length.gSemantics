@@ -1,0 +1,28 @@
+semantics baseline_assembly_instruction_length :
+import "baseline_pic_assembly_classes.gSemantics" ;
+
+#-------------------------------------------------------------------------------*
+
+abstract reader @baseline_pic_assembly_instruction length -> @uint outLength ;
+
+#-------------------------------------------------------------------------------*
+
+override reader @baseline_pic_assembly_pseudo_ORG length -> @uint outLength :
+  outLength := 0 ;
+end reader ;
+
+#-------------------------------------------------------------------------------*
+
+override reader @baseline_pic_assembly_pseudo_LABEL length -> @uint outLength :
+  outLength := 0 ;
+end reader ;
+
+#-------------------------------------------------------------------------------*
+
+override reader @baseline_pic_assembly_actualInstruction length -> @uint outLength :
+  outLength := 1 ;
+end reader ;
+
+#-------------------------------------------------------------------------------*
+
+end semantics ;
