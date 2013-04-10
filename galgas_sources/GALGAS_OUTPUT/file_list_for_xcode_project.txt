@@ -14,11 +14,11 @@
 		F7C92D2124A67EA0F4CB5F85 /* baseline_build_binary_code.cpp */ = {isa = PBXBuildFile; fileRef = FB98AB9159F51FD0297E236D ; settings = {ATTRIBUTES = (); }; };
 		47C56FC8A4D2A519803D51B3 /* baseline_compilation.cpp */ = {isa = PBXBuildFile; fileRef = 02A44259755D38E6D163E820 ; settings = {ATTRIBUTES = (); }; };
 		5B0EEE1462C82C6964087FF9 /* baseline_instruction_groups.cpp */ = {isa = PBXBuildFile; fileRef = 6FE97759AA27A0C99BFF6710 ; settings = {ATTRIBUTES = (); }; };
-		9FE650923EA331C15AF3B160 /* baseline_ipic_classes.cpp */ = {isa = PBXBuildFile; fileRef = 22BCC25A6F606EB525FFDC56 ; settings = {ATTRIBUTES = (); }; };
-		FA4F5039A8CADC6ACBB4B2CC /* baseline_ipic_instruction_length.cpp */ = {isa = PBXBuildFile; fileRef = 1EAE257E44AA9D5BADE97BAF ; settings = {ATTRIBUTES = (); }; };
-		76FA1A4F25F62E0EB5261CA3 /* baseline_pic_assembly_classes.cpp */ = {isa = PBXBuildFile; fileRef = 5568161A8CDF4AD2299F6D23 ; settings = {ATTRIBUTES = (); }; };
-		8409A4022A2C4C5A5CA3EE19 /* baseline_print_assembly_instructions.cpp */ = {isa = PBXBuildFile; fileRef = 210194C475687BE6106A3B84 ; settings = {ATTRIBUTES = (); }; };
-		F758B5066EF31B18039B8CE5 /* baseline_print_ipic_instructions.cpp */ = {isa = PBXBuildFile; fileRef = F8ED5D21A44B0E5886680CB9 ; settings = {ATTRIBUTES = (); }; };
+		9FE650923EA331C15AF3B160 /* baseline_intermediate_classes.cpp */ = {isa = PBXBuildFile; fileRef = 22BCC25A6F606EB525FFDC56 ; settings = {ATTRIBUTES = (); }; };
+		FA4F5039A8CADC6ACBB4B2CC /* baseline_intermediate_instruction_length.cpp */ = {isa = PBXBuildFile; fileRef = 1EAE257E44AA9D5BADE97BAF ; settings = {ATTRIBUTES = (); }; };
+		76FA1A4F25F62E0EB5261CA3 /* baseline_intermediate_instruction_print.cpp */ = {isa = PBXBuildFile; fileRef = 5568161A8CDF4AD2299F6D23 ; settings = {ATTRIBUTES = (); }; };
+		8409A4022A2C4C5A5CA3EE19 /* baseline_pic_assembly_classes.cpp */ = {isa = PBXBuildFile; fileRef = 210194C475687BE6106A3B84 ; settings = {ATTRIBUTES = (); }; };
+		F758B5066EF31B18039B8CE5 /* baseline_print_assembly_instructions.cpp */ = {isa = PBXBuildFile; fileRef = F8ED5D21A44B0E5886680CB9 ; settings = {ATTRIBUTES = (); }; };
 		76D383480AFA65D325C06ED0 /* baseline_semantic_analysis.cpp */ = {isa = PBXBuildFile; fileRef = 4005F8DA13F42943881C655F ; settings = {ATTRIBUTES = (); }; };
 		E9A67C9251D3E7C7161C83AC /* baseline_syntax.cpp */ = {isa = PBXBuildFile; fileRef = 3463D06DE0CA9A15B6153677 ; settings = {ATTRIBUTES = (); }; };
 		7E12435A724A8F30FDDADD9C /* generic_metamodel.cpp */ = {isa = PBXBuildFile; fileRef = 9DD601BBE69F351039152189 ; settings = {ATTRIBUTES = (); }; };
@@ -153,11 +153,11 @@
 		D139A53512FB8CBB3086AE2E /* baseline_build_binary_code.cpp */ = {isa = PBXBuildFile; fileRef = FB98AB9159F51FD0297E236D ; settings = {ATTRIBUTES = (); }; };
 		1E1C2A5E7E147703232A88F6 /* baseline_compilation.cpp */ = {isa = PBXBuildFile; fileRef = 02A44259755D38E6D163E820 ; settings = {ATTRIBUTES = (); }; };
 		3516E7B05D79744FBD4C9C13 /* baseline_instruction_groups.cpp */ = {isa = PBXBuildFile; fileRef = 6FE97759AA27A0C99BFF6710 ; settings = {ATTRIBUTES = (); }; };
-		2C31EEB1F982BC0EAF81D35F /* baseline_ipic_classes.cpp */ = {isa = PBXBuildFile; fileRef = 22BCC25A6F606EB525FFDC56 ; settings = {ATTRIBUTES = (); }; };
-		03E7DDEDFEF56ACB3B09697F /* baseline_ipic_instruction_length.cpp */ = {isa = PBXBuildFile; fileRef = 1EAE257E44AA9D5BADE97BAF ; settings = {ATTRIBUTES = (); }; };
-		70FE135CF4F7BB55C0E3B59F /* baseline_pic_assembly_classes.cpp */ = {isa = PBXBuildFile; fileRef = 5568161A8CDF4AD2299F6D23 ; settings = {ATTRIBUTES = (); }; };
-		3F08201C7C76CB71FA1DA439 /* baseline_print_assembly_instructions.cpp */ = {isa = PBXBuildFile; fileRef = 210194C475687BE6106A3B84 ; settings = {ATTRIBUTES = (); }; };
-		05A220E2EBC542EB9D950B1E /* baseline_print_ipic_instructions.cpp */ = {isa = PBXBuildFile; fileRef = F8ED5D21A44B0E5886680CB9 ; settings = {ATTRIBUTES = (); }; };
+		2C31EEB1F982BC0EAF81D35F /* baseline_intermediate_classes.cpp */ = {isa = PBXBuildFile; fileRef = 22BCC25A6F606EB525FFDC56 ; settings = {ATTRIBUTES = (); }; };
+		03E7DDEDFEF56ACB3B09697F /* baseline_intermediate_instruction_length.cpp */ = {isa = PBXBuildFile; fileRef = 1EAE257E44AA9D5BADE97BAF ; settings = {ATTRIBUTES = (); }; };
+		70FE135CF4F7BB55C0E3B59F /* baseline_intermediate_instruction_print.cpp */ = {isa = PBXBuildFile; fileRef = 5568161A8CDF4AD2299F6D23 ; settings = {ATTRIBUTES = (); }; };
+		3F08201C7C76CB71FA1DA439 /* baseline_pic_assembly_classes.cpp */ = {isa = PBXBuildFile; fileRef = 210194C475687BE6106A3B84 ; settings = {ATTRIBUTES = (); }; };
+		05A220E2EBC542EB9D950B1E /* baseline_print_assembly_instructions.cpp */ = {isa = PBXBuildFile; fileRef = F8ED5D21A44B0E5886680CB9 ; settings = {ATTRIBUTES = (); }; };
 		4B1F4C4DB0902A8A395CED93 /* baseline_semantic_analysis.cpp */ = {isa = PBXBuildFile; fileRef = 4005F8DA13F42943881C655F ; settings = {ATTRIBUTES = (); }; };
 		4736617F20ABBF2FFD806F6D /* baseline_syntax.cpp */ = {isa = PBXBuildFile; fileRef = 3463D06DE0CA9A15B6153677 ; settings = {ATTRIBUTES = (); }; };
 		6A7B94CB0F55994F679F5956 /* generic_metamodel.cpp */ = {isa = PBXBuildFile; fileRef = 9DD601BBE69F351039152189 ; settings = {ATTRIBUTES = (); }; };
@@ -535,16 +535,16 @@
 		D9CAA6E02C990B0A82652DCA /* baseline_compilation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "baseline_compilation.h"; path = "baseline_compilation.h"; sourceTree = "<group>"; };
 		6FE97759AA27A0C99BFF6710 /* baseline_instruction_groups.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "baseline_instruction_groups.cpp"; path = "baseline_instruction_groups.cpp"; sourceTree = "<group>"; };
 		C124A10E0DB5E4B97FC2AF39 /* baseline_instruction_groups.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "baseline_instruction_groups.h"; path = "baseline_instruction_groups.h"; sourceTree = "<group>"; };
-		22BCC25A6F606EB525FFDC56 /* baseline_ipic_classes.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "baseline_ipic_classes.cpp"; path = "baseline_ipic_classes.cpp"; sourceTree = "<group>"; };
-		F062936A96D3C8BD1F8F2FF3 /* baseline_ipic_classes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "baseline_ipic_classes.h"; path = "baseline_ipic_classes.h"; sourceTree = "<group>"; };
-		1EAE257E44AA9D5BADE97BAF /* baseline_ipic_instruction_length.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "baseline_ipic_instruction_length.cpp"; path = "baseline_ipic_instruction_length.cpp"; sourceTree = "<group>"; };
-		C9B086079795C442636B55FB /* baseline_ipic_instruction_length.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "baseline_ipic_instruction_length.h"; path = "baseline_ipic_instruction_length.h"; sourceTree = "<group>"; };
-		5568161A8CDF4AD2299F6D23 /* baseline_pic_assembly_classes.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "baseline_pic_assembly_classes.cpp"; path = "baseline_pic_assembly_classes.cpp"; sourceTree = "<group>"; };
-		99908345F7439F8FFABDFFC4 /* baseline_pic_assembly_classes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "baseline_pic_assembly_classes.h"; path = "baseline_pic_assembly_classes.h"; sourceTree = "<group>"; };
-		210194C475687BE6106A3B84 /* baseline_print_assembly_instructions.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "baseline_print_assembly_instructions.cpp"; path = "baseline_print_assembly_instructions.cpp"; sourceTree = "<group>"; };
-		8E8850243BE8079A5C74D079 /* baseline_print_assembly_instructions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "baseline_print_assembly_instructions.h"; path = "baseline_print_assembly_instructions.h"; sourceTree = "<group>"; };
-		F8ED5D21A44B0E5886680CB9 /* baseline_print_ipic_instructions.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "baseline_print_ipic_instructions.cpp"; path = "baseline_print_ipic_instructions.cpp"; sourceTree = "<group>"; };
-		748049E45D87B8C7D8B9AACD /* baseline_print_ipic_instructions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "baseline_print_ipic_instructions.h"; path = "baseline_print_ipic_instructions.h"; sourceTree = "<group>"; };
+		22BCC25A6F606EB525FFDC56 /* baseline_intermediate_classes.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "baseline_intermediate_classes.cpp"; path = "baseline_intermediate_classes.cpp"; sourceTree = "<group>"; };
+		F062936A96D3C8BD1F8F2FF3 /* baseline_intermediate_classes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "baseline_intermediate_classes.h"; path = "baseline_intermediate_classes.h"; sourceTree = "<group>"; };
+		1EAE257E44AA9D5BADE97BAF /* baseline_intermediate_instruction_length.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "baseline_intermediate_instruction_length.cpp"; path = "baseline_intermediate_instruction_length.cpp"; sourceTree = "<group>"; };
+		C9B086079795C442636B55FB /* baseline_intermediate_instruction_length.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "baseline_intermediate_instruction_length.h"; path = "baseline_intermediate_instruction_length.h"; sourceTree = "<group>"; };
+		5568161A8CDF4AD2299F6D23 /* baseline_intermediate_instruction_print.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "baseline_intermediate_instruction_print.cpp"; path = "baseline_intermediate_instruction_print.cpp"; sourceTree = "<group>"; };
+		99908345F7439F8FFABDFFC4 /* baseline_intermediate_instruction_print.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "baseline_intermediate_instruction_print.h"; path = "baseline_intermediate_instruction_print.h"; sourceTree = "<group>"; };
+		210194C475687BE6106A3B84 /* baseline_pic_assembly_classes.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "baseline_pic_assembly_classes.cpp"; path = "baseline_pic_assembly_classes.cpp"; sourceTree = "<group>"; };
+		8E8850243BE8079A5C74D079 /* baseline_pic_assembly_classes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "baseline_pic_assembly_classes.h"; path = "baseline_pic_assembly_classes.h"; sourceTree = "<group>"; };
+		F8ED5D21A44B0E5886680CB9 /* baseline_print_assembly_instructions.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "baseline_print_assembly_instructions.cpp"; path = "baseline_print_assembly_instructions.cpp"; sourceTree = "<group>"; };
+		748049E45D87B8C7D8B9AACD /* baseline_print_assembly_instructions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "baseline_print_assembly_instructions.h"; path = "baseline_print_assembly_instructions.h"; sourceTree = "<group>"; };
 		4005F8DA13F42943881C655F /* baseline_semantic_analysis.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "baseline_semantic_analysis.cpp"; path = "baseline_semantic_analysis.cpp"; sourceTree = "<group>"; };
 		7A37563370DED05F5A3BF3EC /* baseline_semantic_analysis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "baseline_semantic_analysis.h"; path = "baseline_semantic_analysis.h"; sourceTree = "<group>"; };
 		3463D06DE0CA9A15B6153677 /* baseline_syntax.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "baseline_syntax.cpp"; path = "baseline_syntax.cpp"; sourceTree = "<group>"; };
@@ -703,16 +703,16 @@
 				D9CAA6E02C990B0A82652DCA /* baseline_compilation.h */,
 				6FE97759AA27A0C99BFF6710 /* baseline_instruction_groups.cpp */,
 				C124A10E0DB5E4B97FC2AF39 /* baseline_instruction_groups.h */,
-				22BCC25A6F606EB525FFDC56 /* baseline_ipic_classes.cpp */,
-				F062936A96D3C8BD1F8F2FF3 /* baseline_ipic_classes.h */,
-				1EAE257E44AA9D5BADE97BAF /* baseline_ipic_instruction_length.cpp */,
-				C9B086079795C442636B55FB /* baseline_ipic_instruction_length.h */,
-				5568161A8CDF4AD2299F6D23 /* baseline_pic_assembly_classes.cpp */,
-				99908345F7439F8FFABDFFC4 /* baseline_pic_assembly_classes.h */,
-				210194C475687BE6106A3B84 /* baseline_print_assembly_instructions.cpp */,
-				8E8850243BE8079A5C74D079 /* baseline_print_assembly_instructions.h */,
-				F8ED5D21A44B0E5886680CB9 /* baseline_print_ipic_instructions.cpp */,
-				748049E45D87B8C7D8B9AACD /* baseline_print_ipic_instructions.h */,
+				22BCC25A6F606EB525FFDC56 /* baseline_intermediate_classes.cpp */,
+				F062936A96D3C8BD1F8F2FF3 /* baseline_intermediate_classes.h */,
+				1EAE257E44AA9D5BADE97BAF /* baseline_intermediate_instruction_length.cpp */,
+				C9B086079795C442636B55FB /* baseline_intermediate_instruction_length.h */,
+				5568161A8CDF4AD2299F6D23 /* baseline_intermediate_instruction_print.cpp */,
+				99908345F7439F8FFABDFFC4 /* baseline_intermediate_instruction_print.h */,
+				210194C475687BE6106A3B84 /* baseline_pic_assembly_classes.cpp */,
+				8E8850243BE8079A5C74D079 /* baseline_pic_assembly_classes.h */,
+				F8ED5D21A44B0E5886680CB9 /* baseline_print_assembly_instructions.cpp */,
+				748049E45D87B8C7D8B9AACD /* baseline_print_assembly_instructions.h */,
 				4005F8DA13F42943881C655F /* baseline_semantic_analysis.cpp */,
 				7A37563370DED05F5A3BF3EC /* baseline_semantic_analysis.h */,
 				3463D06DE0CA9A15B6153677 /* baseline_syntax.cpp */,

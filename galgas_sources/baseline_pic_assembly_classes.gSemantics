@@ -1,6 +1,6 @@
 semantics baseline_pic_assembly_classes :
 import "baseline_instruction_groups.gSemantics" ;
-import "baseline_ipic_classes.gSemantics" ;
+import "baseline_intermediate_classes.gSemantics" ;
 
 #-------------------------------------------------------------------------------*
 
@@ -35,7 +35,7 @@ abstract class @baseline_pic_assembly_actualInstruction extends @baseline_pic_as
 
 class @baseline_pic_assembly_instruction_FD extends @baseline_pic_assembly_actualInstruction {
   @baseline_instruction_FD_base_code mInstruction ;
-  @baseline_ipic_registerExpression mRegisterDescription ;
+  @baseline_intermediate_registerExpression mRegisterDescription ;
   @bool m_W_isDestination ;
 }
 
@@ -43,14 +43,14 @@ class @baseline_pic_assembly_instruction_FD extends @baseline_pic_assembly_actua
 
 class @baseline_pic_assembly_instruction_F extends @baseline_pic_assembly_actualInstruction {
   @baseline_F_instruction_base_code mInstruction ;
-  @baseline_ipic_registerExpression mRegisterDescription ;
+  @baseline_intermediate_registerExpression mRegisterDescription ;
 }
 
 #-------------------------------------------------------------------------------*
 
 class @baseline_pic_assembly_instruction_FB extends @baseline_pic_assembly_actualInstruction {
   @baseline_bit_oriented_op mInstruction ;
-  @baseline_ipic_registerExpression mRegisterDescription ;
+  @baseline_intermediate_registerExpression mRegisterDescription ;
   @uint mBitNumber ;
 }
 
@@ -58,7 +58,7 @@ class @baseline_pic_assembly_instruction_FB extends @baseline_pic_assembly_actua
 
 class @baseline_pic_assembly_instruction_BitTestSkip extends @baseline_pic_assembly_actualInstruction {
   @bool mSkipIfSet ;
-  @baseline_ipic_registerExpression mRegisterDescription ;
+  @baseline_intermediate_registerExpression mRegisterDescription ;
   @uint mBitNumber ;
 }
 
@@ -95,7 +95,7 @@ class @baseline_pic_assembly_instruction_literalOperation extends @baseline_pic_
 #-------------------------------------------------------------------------------*
 
 class @baseline_pic_assembly_incDecRegisterInCondition extends @baseline_pic_assembly_actualInstruction {
-  @baseline_ipic_registerExpression mRegisterDescription ;
+  @baseline_intermediate_registerExpression mRegisterDescription ;
   @bool mIncrement ;
   @bool m_W_isDestination ;
 }

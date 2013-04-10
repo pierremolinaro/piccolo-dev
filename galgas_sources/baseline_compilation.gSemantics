@@ -6,10 +6,30 @@ import "piccolo_config.gSemantics" ;
 import "piccolo_options.gOption" ;
 import "ram_sections.gSemantics" ;
 import "baseline_semantic_analysis.gSemantics" ;
-import "baseline_print_ipic_instructions.gSemantics" ;
-import "baseline_ipic_instruction_length.gSemantics" ;
+import "baseline_intermediate_instruction_print.gSemantics" ;
+import "baseline_intermediate_instruction_length.gSemantics" ;
 import "baseline_build_assembly_code.gSemantics" ;
 import "baseline_build_binary_code.gSemantics" ;
+
+#----------------------------------------------------------------------------*
+#                                                                            *
+#    S E T    C U R R E N T    A D D R E S S                                 *
+#                                                                            *
+#----------------------------------------------------------------------------*
+
+method @baseline_intermediate_instruction setCurrentAddress
+  ?!@uint ioCurrentWordAdress
+:
+  ioCurrentWordAdress := ioCurrentWordAdress + [selfcopy length] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @baseline_intermediate_pseudo_PAGE setCurrentAddress
+  ?!@uint ioCurrentWordAdress
+:
+  ioCurrentWordAdress := mPage * 256 ;
+end method ;
 
 #----------------------------------------------------------------------------*
 #                                                                            *
@@ -198,7 +218,7 @@ routine baseline_analysis
     end if ;
   end foreach ;
 #-------------------------------- Check and translate routines
-  @baseline_ipic_instructionList ipicInstructionList [emptyList] ;
+  @baseline_intermediate_instructionList ipicInstructionList [emptyList] ;
   if [@uint errorCount] == 0 then
     @uint currentPage := 0 ;
     @uint localLabelIndex := 0 ;
@@ -209,7 +229,7 @@ routine baseline_analysis
         #---
           if not pseudo_PAGE_generated then
             pseudo_PAGE_generated := true ;
-            ipicInstructionList += ![@baseline_ipic_pseudo_PAGE new !currentPage] ;
+            ipicInstructionList += ![@baseline_intermediate_pseudo_PAGE new !currentPage] ;
           end if ;
         #---
           @routineKind routineKind ;
@@ -233,7 +253,7 @@ routine baseline_analysis
             end if ;
           end if ;
         #--- Check and translate instructions
-          ipicInstructionList += ![@baseline_ipic_pseudo_LABEL new !mRoutineName] ;
+          ipicInstructionList += ![@baseline_intermediate_pseudo_LABEL new !mRoutineName] ;
           handleBaselineInstructionList
             !mInstructionList
             !routineMap
@@ -273,7 +293,7 @@ routine baseline_analysis
 #-------------------------------- Build assembly instruction list
   @baseline_pic_assembly_instructionList assemblyInstructionList [emptyList] ;
   if [@uint errorCount] == 0 then
-    build_baseline_ipic_assembly_code
+    build_baseline_intermediate_assembly_code
       !ipicInstructionList
       !actualConfigurationMap
       !?assemblyInstructionList
@@ -285,7 +305,7 @@ routine baseline_analysis
     listFileContents .= "*" . ["GENERATED CODE" stringByLeftAndRightPadding !77 !' '] . "*\n" ;
     listFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n\n" ;
     listFileContents .= "Address Code Mnemonic\n" ;
-    build_baseline_ipic_binary_code
+    build_baseline_binary_code
       !assemblyInstructionList
       ![piccoloDeviceModel->mRomSize uint]
       !?listFileContents
@@ -296,7 +316,7 @@ routine baseline_analysis
 
 
 
-#  @baseline_ipic_instructionList generatedInstructionList ;
+#  @baseline_intermediate_instructionList generatedInstructionList ;
 #  build_midrange_assembly_instruction_list
 #    !([[piccoloDeviceModel mRomSize] uint] + 2047) / 2048
 #    ![[piccoloDeviceModel mBankCount] uint]
@@ -326,7 +346,7 @@ routine baseline_analysis
   if [@uint errorCount] == 0 then
 #  #--- Generate hex file
 #    @uint usedROMsize ;
-#    build_midrange_ipic_binary_code
+#    build_midrange_intermediate_binary_code
 #      !registerTable
 #      ![[piccoloDeviceModel mBankCount] uint]
 #      !generatedInstructionList
