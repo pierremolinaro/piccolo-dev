@@ -272,12 +272,17 @@ routine baseline_analysis
   end if ;
 #-------------------------------- Code generation
   if [@uint errorCount] == 0 then
+    listFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n" ;
+    listFileContents .= "*" . ["GENERATED CODE" stringByLeftAndRightPadding !77 !' '] . "*\n" ;
+    listFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n\n" ;
+    listFileContents .= "Address Code Mnemonic\n" ;
     @uint usedROMsize ;
     build_baseline_ipic_binary_code
       !registerTable
       !ipicInstructionList
       ![[piccoloDeviceModel mRomSize] uint]
       !actualConfigurationMap
+      !?listFileContents
       ?usedROMsize
     ;
   end if ;
