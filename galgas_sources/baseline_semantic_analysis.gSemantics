@@ -1,11 +1,11 @@
 semantics baseline_semantic_analysis :
 import "generic_metamodel.gSemantics" ;
 import "baseline_ast.gSemantics" ;
-import "baseline_ipic_classes.gSemantics" ;
+import "baseline_intermediate_classes.gSemantics" ;
 import "piccoloDevice_semantics.gSemantics" ;
 import "ipic_generic.gSemantics" ;
 import "piccolo_options.gOption" ;
-import "baseline_ipic_instruction_length.gSemantics" ;
+import "baseline_intermediate_instruction_length.gSemantics" ;
 
 #----------------------------------------------------------------------------*
 
@@ -20,7 +20,7 @@ map @baselineRoutineMap {
 
 method @registerExpression resolveBaselineAccess
   ??@registerTable inRegisterTable
-  !@baseline_ipic_registerExpression outIPICregisterDescription
+  !@baseline_intermediate_registerExpression outIPICregisterDescription
   !@bitSliceTable outBitSliceTable
 :
 #--- Build assembly string
@@ -34,7 +34,7 @@ method @registerExpression resolveBaselineAccess
   [inRegisterTable searchKey !mRegisterName ?registerAddressList ?size ?outBitSliceTable ?*] ;
   [registerAddressList first ?@uint registerAddress] ;
 #---
-  outIPICregisterDescription := [@baseline_ipic_registerExpression new
+  outIPICregisterDescription := [@baseline_intermediate_registerExpression new
     !assemblyString
     !registerAddress + [mOffset uint]
   ] ;
@@ -48,7 +48,7 @@ routine handleBaselineInstructionList
   ??@registerTable inRegisterTable
   ??@constantMap inConstantMap
   ?!@uint ioLocalLabelIndex
-  ?!@baseline_ipic_instructionList ioGeneratedInstructionList
+  ?!@baseline_intermediate_instructionList ioGeneratedInstructionList
   !@bool outContinuesInSequence
   ??@routineKind inRoutineKind
   ??@bool inLastInstructionShouldReturn
@@ -59,7 +59,7 @@ routine handleBaselineInstructionList
       error [mInstruction mInstructionLocation] : "Unreachable code" ;
       outContinuesInSequence := true ;
     end if ;
-    [mInstruction build_baseline_ipic_instructionList
+    [mInstruction build_baseline_intermediate_instructionList
       !inRoutineMap
       !inRegisterTable
       !inConstantMap
@@ -74,12 +74,12 @@ end routine ;
 
 #----------------------------------------------------------------------------*
 
-abstract method @baseline_instruction build_baseline_ipic_instructionList
+abstract method @baseline_instruction build_baseline_intermediate_instructionList
   ??@baselineRoutineMap inRoutineMap
   ??@registerTable inRegisterTable
   ??@constantMap inConstantMap
   ?!@uint ioLocalLabelIndex
-  ?!@baseline_ipic_instructionList ioGeneratedInstructionList
+  ?!@baseline_intermediate_instructionList ioGeneratedInstructionList
   ?!@bool ioContinuesInSequence
   ??@routineKind inRoutineKind
   ??@bool inLastInstructionShouldReturn
@@ -87,12 +87,12 @@ abstract method @baseline_instruction build_baseline_ipic_instructionList
 
 #----------------------------------------------------------------------------*
 
-override method @baseline_instruction_WO_OPERAND build_baseline_ipic_instructionList
+override method @baseline_instruction_WO_OPERAND build_baseline_intermediate_instructionList
   ??@baselineRoutineMap unused inRoutineMap
   ??@registerTable unused inRegisterTable
   ??@constantMap unused inConstantMap
   ?!@uint unused ioLocalLabelIndex
-  ?!@baseline_ipic_instructionList ioGeneratedInstructionList
+  ?!@baseline_intermediate_instructionList ioGeneratedInstructionList
   ?!@bool unused ioContinuesInSequence
   ??@routineKind unused inRoutineKind
   ??@bool inLastInstructionShouldReturn
@@ -100,17 +100,17 @@ override method @baseline_instruction_WO_OPERAND build_baseline_ipic_instruction
   if inLastInstructionShouldReturn then
     error mInstructionLocation : "this instruction is the last routine instruction and should be MOVLW" ;
   end if ;
-  ioGeneratedInstructionList += ![@baseline_ipic_WO_OPERAND new !mInstructionLocation !mInstruction] ;
+  ioGeneratedInstructionList += ![@baseline_intermediate_WO_OPERAND new !mInstructionLocation !mInstruction] ;
 end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @baseline_instruction_MNOP build_baseline_ipic_instructionList
+override method @baseline_instruction_MNOP build_baseline_intermediate_instructionList
   ??@baselineRoutineMap unused inRoutineMap
   ??@registerTable unused inRegisterTable
   ??@constantMap unused inConstantMap
   ?!@uint unused ioLocalLabelIndex
-  ?!@baseline_ipic_instructionList ioGeneratedInstructionList
+  ?!@baseline_intermediate_instructionList ioGeneratedInstructionList
   ?!@bool unused ioContinuesInSequence
   ??@routineKind unused inRoutineKind
   ??@bool inLastInstructionShouldReturn
@@ -118,17 +118,17 @@ override method @baseline_instruction_MNOP build_baseline_ipic_instructionList
   if inLastInstructionShouldReturn then
     error mInstructionLocation : "this instruction is the last routine instruction and should be MOVLW" ;
   end if ;
-  ioGeneratedInstructionList += ![@baseline_ipic_instruction_MNOP new !mInstructionLocation !mOccurrenceFactor] ;
+  ioGeneratedInstructionList += ![@baseline_intermediate_instruction_MNOP new !mInstructionLocation !mOccurrenceFactor] ;
 end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @baseline_instruction_literalOperation build_baseline_ipic_instructionList
+override method @baseline_instruction_literalOperation build_baseline_intermediate_instructionList
   ??@baselineRoutineMap unused inRoutineMap
   ??@registerTable inRegisterTable
   ??@constantMap inConstantMap
   ?!@uint unused ioLocalLabelIndex
-  ?!@baseline_ipic_instructionList ioGeneratedInstructionList
+  ?!@baseline_intermediate_instructionList ioGeneratedInstructionList
   ?!@bool unused ioContinuesInSequence
   ??@routineKind unused inRoutineKind
   ??@bool inLastInstructionShouldReturn
@@ -143,13 +143,13 @@ override method @baseline_instruction_literalOperation build_baseline_ipic_instr
    end if ;
 #---  
   if inLastInstructionShouldReturn then
-    ioGeneratedInstructionList += ![@baseline_ipic_instruction_literalOperation new
+    ioGeneratedInstructionList += ![@baseline_intermediate_instruction_literalOperation new
       !mInstructionLocation
       ![@baseline_literal_instruction_opcode RETLW]
       ![immediatValue & 0x000000FFS uint]
     ] ;
   else
-    ioGeneratedInstructionList += ![@baseline_ipic_instruction_literalOperation new
+    ioGeneratedInstructionList += ![@baseline_intermediate_instruction_literalOperation new
       !mInstructionLocation
       !mLiteralInstruction
       ![immediatValue & 0x000000FFS uint]
@@ -160,12 +160,12 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @baseline_instruction_FD build_baseline_ipic_instructionList
+override method @baseline_instruction_FD build_baseline_intermediate_instructionList
   ??@baselineRoutineMap unused inRoutineMap
   ??@registerTable inRegisterTable
   ??@constantMap unused inConstantMap
   ?!@uint unused ioLocalLabelIndex
-  ?!@baseline_ipic_instructionList ioGeneratedInstructionList
+  ?!@baseline_intermediate_instructionList ioGeneratedInstructionList
   ?!@bool unused ioContinuesInSequence
   ??@routineKind unused inRoutineKind
   ??@bool inLastInstructionShouldReturn
@@ -175,10 +175,10 @@ override method @baseline_instruction_FD build_baseline_ipic_instructionList
   end if ;
   [mRegisterExpression resolveBaselineAccess
     !inRegisterTable
-    ?@baseline_ipic_registerExpression ipicRegisterDescription
+    ?@baseline_intermediate_registerExpression ipicRegisterDescription
     ?@bitSliceTable bitSliceTable
   ] ;
-  ioGeneratedInstructionList += ![@baseline_ipic_instruction_FD new
+  ioGeneratedInstructionList += ![@baseline_intermediate_instruction_FD new
     !mInstructionLocation
     !mInstruction_FD_base_code
     !ipicRegisterDescription
@@ -188,12 +188,12 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @baseline_instruction_CALL build_baseline_ipic_instructionList
+override method @baseline_instruction_CALL build_baseline_intermediate_instructionList
   ??@baselineRoutineMap inRoutineMap
   ??@registerTable unused inRegisterTable
   ??@constantMap unused inConstantMap
   ?!@uint unused ioLocalLabelIndex
-  ?!@baseline_ipic_instructionList ioGeneratedInstructionList
+  ?!@baseline_intermediate_instructionList ioGeneratedInstructionList
   ?!@bool unused ioContinuesInSequence
   ??@routineKind unused inRoutineKind
   ??@bool inLastInstructionShouldReturn
@@ -206,7 +206,7 @@ override method @baseline_instruction_CALL build_baseline_ipic_instructionList
     error mTargetLabel:"a \"noreturn\" routine should be called with a GOTO or JUMP instruction" ;
   end if ;
 #---
-  ioGeneratedInstructionList += ![@baseline_ipic_CALL new
+  ioGeneratedInstructionList += ![@baseline_intermediate_CALL new
     !mInstructionLocation
     !mTargetLabel
   ] ;
@@ -214,12 +214,12 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @baseline_instruction_F build_baseline_ipic_instructionList
+override method @baseline_instruction_F build_baseline_intermediate_instructionList
   ??@baselineRoutineMap unused inRoutineMap
   ??@registerTable inRegisterTable
   ??@constantMap unused inConstantMap
   ?!@uint unused ioLocalLabelIndex
-  ?!@baseline_ipic_instructionList ioGeneratedInstructionList
+  ?!@baseline_intermediate_instructionList ioGeneratedInstructionList
   ?!@bool unused ioContinuesInSequence
   ??@routineKind unused inRoutineKind
   ??@bool inLastInstructionShouldReturn
@@ -229,10 +229,10 @@ override method @baseline_instruction_F build_baseline_ipic_instructionList
   end if ;
   [mRegisterExpression resolveBaselineAccess
     !inRegisterTable
-    ?@baseline_ipic_registerExpression IPICregisterDescription
+    ?@baseline_intermediate_registerExpression IPICregisterDescription
     ?*
   ] ;
-  ioGeneratedInstructionList += ![@baseline_ipic_instruction_F new
+  ioGeneratedInstructionList += ![@baseline_intermediate_instruction_F new
     !mInstructionLocation
     !mFAinstruction
     !IPICregisterDescription
@@ -241,12 +241,12 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @baseline_instruction_FB build_baseline_ipic_instructionList
+override method @baseline_instruction_FB build_baseline_intermediate_instructionList
   ??@baselineRoutineMap unused inRoutineMap
   ??@registerTable inRegisterTable
   ??@constantMap unused inConstantMap
   ?!@uint unused ioLocalLabelIndex
-  ?!@baseline_ipic_instructionList ioGeneratedInstructionList
+  ?!@baseline_intermediate_instructionList ioGeneratedInstructionList
   ?!@bool unused ioContinuesInSequence
   ??@routineKind unused inRoutineKind
   ??@bool inLastInstructionShouldReturn
@@ -256,7 +256,7 @@ override method @baseline_instruction_FB build_baseline_ipic_instructionList
   end if ;
   [mRegisterExpression resolveBaselineAccess
     !inRegisterTable
-    ?@baseline_ipic_registerExpression IPICregisterDescription
+    ?@baseline_intermediate_registerExpression IPICregisterDescription
     ?@bitSliceTable bitSliceTable
   ] ;
   @uint bitNumber ;
@@ -264,7 +264,7 @@ override method @baseline_instruction_FB build_baseline_ipic_instructionList
     !bitSliceTable
     ?bitNumber
   ] ;
-  ioGeneratedInstructionList += ![@baseline_ipic_instruction_FB new
+  ioGeneratedInstructionList += ![@baseline_intermediate_instruction_FB new
     !mInstructionLocation
     !mBitOrientedOp
     !IPICregisterDescription
@@ -274,12 +274,12 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @baseline_instruction_GOTO build_baseline_ipic_instructionList
+override method @baseline_instruction_GOTO build_baseline_intermediate_instructionList
   ??@baselineRoutineMap inRoutineMap
   ??@registerTable unused inRegisterTable
   ??@constantMap unused inConstantMap
   ?!@uint unused ioLocalLabelIndex
-  ?!@baseline_ipic_instructionList ioGeneratedInstructionList
+  ?!@baseline_intermediate_instructionList ioGeneratedInstructionList
   ?!@bool ioContinuesInSequence
   ??@routineKind unused inRoutineKind
   ??@bool inLastInstructionShouldReturn
@@ -293,7 +293,7 @@ override method @baseline_instruction_GOTO build_baseline_ipic_instructionList
   end if ;
   ioContinuesInSequence := false ;
 #---
-  ioGeneratedInstructionList += ![@baseline_ipic_GOTO new
+  ioGeneratedInstructionList += ![@baseline_intermediate_GOTO new
     !mInstructionLocation
     !mTargetLabel
   ] ;
@@ -301,19 +301,19 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @baseline_instruction_IF_BitTest build_baseline_ipic_instructionList
+override method @baseline_instruction_IF_BitTest build_baseline_intermediate_instructionList
   ??@baselineRoutineMap inRoutineMap
   ??@registerTable inRegisterTable
   ??@constantMap inConstantMap
   ?!@uint ioLocalLabelIndex
-  ?!@baseline_ipic_instructionList ioGeneratedInstructionList
+  ?!@baseline_intermediate_instructionList ioGeneratedInstructionList
   ?!@bool unused ioContinuesInSequence
   ??@routineKind inRoutineKind
   ??@bool inLastInstructionShouldReturn
 :
   [mRegisterExpression resolveBaselineAccess
     !inRegisterTable
-    ?@baseline_ipic_registerExpression IPICregisterDescription
+    ?@baseline_intermediate_registerExpression IPICregisterDescription
     ?@bitSliceTable bitSliceTable
   ] ;
   @uint bitNumber ;
@@ -321,7 +321,7 @@ override method @baseline_instruction_IF_BitTest build_baseline_ipic_instruction
     !bitSliceTable
     ?bitNumber
   ] ;
-  ioGeneratedInstructionList += ![@baseline_ipic_instruction_BitTestSkip new
+  ioGeneratedInstructionList += ![@baseline_intermediate_instruction_BitTestSkip new
     !mInstructionLocation
     !mSkipIfSet
     !IPICregisterDescription
@@ -329,7 +329,7 @@ override method @baseline_instruction_IF_BitTest build_baseline_ipic_instruction
   ] ;
 #--- Append Instruction
   @bool unusedContinuesInSequence := true ;
-  [mInstruction build_baseline_ipic_instructionList
+  [mInstruction build_baseline_intermediate_instructionList
     !inRoutineMap
     !inRegisterTable
     !inConstantMap
@@ -343,12 +343,12 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @baseline_instruction_IF_IncDec build_baseline_ipic_instructionList
+override method @baseline_instruction_IF_IncDec build_baseline_intermediate_instructionList
   ??@baselineRoutineMap inRoutineMap
   ??@registerTable inRegisterTable
   ??@constantMap inConstantMap
   ?!@uint ioLocalLabelIndex
-  ?!@baseline_ipic_instructionList ioGeneratedInstructionList
+  ?!@baseline_intermediate_instructionList ioGeneratedInstructionList
   ?!@bool unused ioContinuesInSequence
   ??@routineKind inRoutineKind
   ??@bool inLastInstructionShouldReturn
@@ -363,11 +363,11 @@ override method @baseline_instruction_IF_IncDec build_baseline_ipic_instructionL
 #---
   [mRegisterExpression resolveBaselineAccess
     !inRegisterTable
-    ?@baseline_ipic_registerExpression IPICregisterDescription
+    ?@baseline_intermediate_registerExpression IPICregisterDescription
     ?@bitSliceTable bitSliceTable
   ] ;
 #---
-  ioGeneratedInstructionList += ![@baseline_ipic_instruction_FD new
+  ioGeneratedInstructionList += ![@baseline_intermediate_instruction_FD new
     !mInstructionLocation
     !baseCode
     !IPICregisterDescription
@@ -375,7 +375,7 @@ override method @baseline_instruction_IF_IncDec build_baseline_ipic_instructionL
   ] ;
 #---
   @bool unusedContinuesInSequence := true ;
-  [mInstruction build_baseline_ipic_instructionList
+  [mInstruction build_baseline_intermediate_instructionList
     !inRoutineMap
     !inRegisterTable
     !inConstantMap
@@ -389,12 +389,12 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @baseline_instruction_FOREVER build_baseline_ipic_instructionList
+override method @baseline_instruction_FOREVER build_baseline_intermediate_instructionList
   ??@baselineRoutineMap inRoutineMap
   ??@registerTable inRegisterTable
   ??@constantMap inConstantMap
   ?!@uint ioLocalLabelIndex
-  ?!@baseline_ipic_instructionList ioGeneratedInstructionList
+  ?!@baseline_intermediate_instructionList ioGeneratedInstructionList
   ?!@bool ioContinuesInSequence
   ??@routineKind inRoutineKind
   ??@bool unused inLastInstructionShouldReturn
@@ -409,7 +409,7 @@ override method @baseline_instruction_FOREVER build_baseline_ipic_instructionLis
 #--- Check instruction list does not change bank
   @string label0 := "_label_" . [ioLocalLabelIndex string] ; 
   ioLocalLabelIndex ++ ;
-  ioGeneratedInstructionList += ![@baseline_ipic_pseudo_LABEL new ![@lstring new !label0 !mInstructionLocation]] ;
+  ioGeneratedInstructionList += ![@baseline_intermediate_pseudo_LABEL new ![@lstring new !label0 !mInstructionLocation]] ;
   handleBaselineInstructionList
     !mInstructionList 
     !inRoutineMap
@@ -422,7 +422,7 @@ override method @baseline_instruction_FOREVER build_baseline_ipic_instructionLis
     !false # Instruction list does not need to end with MOVLW
   ;
 #--- Generate JUMP to loop start
-  ioGeneratedInstructionList += ![@baseline_ipic_GOTO new
+  ioGeneratedInstructionList += ![@baseline_intermediate_GOTO new
     !mInstructionLocation
     ![@lstring new !label0 !mInstructionLocation]
   ] ;
@@ -432,12 +432,12 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @baseline_instruction_do_while build_baseline_ipic_instructionList
+override method @baseline_instruction_do_while build_baseline_intermediate_instructionList
   ??@baselineRoutineMap inRoutineMap
   ??@registerTable inRegisterTable
   ??@constantMap inConstantMap
   ?!@uint ioLocalLabelIndex
-  ?!@baseline_ipic_instructionList ioGeneratedInstructionList
+  ?!@baseline_intermediate_instructionList ioGeneratedInstructionList
   ?!@bool ioContinuesInSequence
   ??@routineKind inRoutineKind
   ??@bool inLastInstructionShouldReturn
@@ -445,7 +445,7 @@ override method @baseline_instruction_do_while build_baseline_ipic_instructionLi
 #--- Generate label
   @string labelInstructionBegin := "_label_" . [ioLocalLabelIndex string] ; ioLocalLabelIndex ++ ;
 #--- Define label
-  ioGeneratedInstructionList += ![@baseline_ipic_pseudo_LABEL new ![@lstring new !labelInstructionBegin !mInstructionLocation]] ;
+  ioGeneratedInstructionList += ![@baseline_intermediate_pseudo_LABEL new ![@lstring new !labelInstructionBegin !mInstructionLocation]] ;
 #--- Repeated instructions
   handleBaselineInstructionList
     !mRepeatedInstructionList
@@ -461,7 +461,7 @@ override method @baseline_instruction_do_while build_baseline_ipic_instructionLi
 #--- while parts
   foreach mWhilePartList do
     if [mInstructionList length] == 0 then
-      [mCondition build_ipic_condition_instructions
+      [mCondition build_intermediate_condition_instructions
         !inRegisterTable
         !?ioLocalLabelIndex
         !false
@@ -471,7 +471,7 @@ override method @baseline_instruction_do_while build_baseline_ipic_instructionLi
       ] ;
     else
       @string nextBranchLabel := "_label_" . [ioLocalLabelIndex string] ; ioLocalLabelIndex ++ ;
-      [mCondition build_ipic_condition_instructions
+      [mCondition build_intermediate_condition_instructions
         !inRegisterTable
         !?ioLocalLabelIndex
         !true
@@ -490,20 +490,20 @@ override method @baseline_instruction_do_while build_baseline_ipic_instructionLi
         !inRoutineKind
         !inLastInstructionShouldReturn
       ;
-      ioGeneratedInstructionList += ![@baseline_ipic_GOTO new !mInstructionLocation ![@lstring new !labelInstructionBegin !mInstructionLocation]] ;
-      ioGeneratedInstructionList += ![@baseline_ipic_pseudo_LABEL new ![@lstring new !nextBranchLabel !mInstructionLocation]] ;
+      ioGeneratedInstructionList += ![@baseline_intermediate_GOTO new !mInstructionLocation ![@lstring new !labelInstructionBegin !mInstructionLocation]] ;
+      ioGeneratedInstructionList += ![@baseline_intermediate_pseudo_LABEL new ![@lstring new !nextBranchLabel !mInstructionLocation]] ;
     end if ;
   end foreach ;
 end method ;
 
 #-------------------------------------------------------------------------------*
 
-override method @baseline_instruction_structured_if build_baseline_ipic_instructionList
+override method @baseline_instruction_structured_if build_baseline_intermediate_instructionList
   ??@baselineRoutineMap inRoutineMap
   ??@registerTable inRegisterTable
   ??@constantMap inConstantMap
   ?!@uint ioLocalLabelIndex
-  ?!@baseline_ipic_instructionList ioGeneratedInstructionList
+  ?!@baseline_intermediate_instructionList ioGeneratedInstructionList
   ?!@bool ioContinuesInSequence
   ??@routineKind inRoutineKind
   ??@bool inLastInstructionShouldReturn
@@ -512,7 +512,7 @@ override method @baseline_instruction_structured_if build_baseline_ipic_instruct
   @string label_nextCondition := "_label_" . [ioLocalLabelIndex string] ; ioLocalLabelIndex ++ ;
   @string label_endOfIfinstruction := "_label_" . [ioLocalLabelIndex string] ; ioLocalLabelIndex ++ ;
 #--- Translate condition
-  [mIfCondition build_ipic_condition_instructions
+  [mIfCondition build_intermediate_condition_instructions
     !inRegisterTable
     !?ioLocalLabelIndex
     !true
@@ -534,9 +534,9 @@ override method @baseline_instruction_structured_if build_baseline_ipic_instruct
   ;
 #--- 'else' instructions
   if ([mElseInstructionList length] > 0) & not inLastInstructionShouldReturn then
-    ioGeneratedInstructionList += ![@baseline_ipic_GOTO new !mInstructionLocation ![@lstring new !label_endOfIfinstruction !mInstructionLocation]] ;
+    ioGeneratedInstructionList += ![@baseline_intermediate_GOTO new !mInstructionLocation ![@lstring new !label_endOfIfinstruction !mInstructionLocation]] ;
   end if ;
-  ioGeneratedInstructionList += ![@baseline_ipic_pseudo_LABEL new ![@lstring new !label_nextCondition !mInstructionLocation]] ;
+  ioGeneratedInstructionList += ![@baseline_intermediate_pseudo_LABEL new ![@lstring new !label_nextCondition !mInstructionLocation]] ;
   handleBaselineInstructionList
     !mElseInstructionList
     !inRoutineMap
@@ -549,7 +549,7 @@ override method @baseline_instruction_structured_if build_baseline_ipic_instruct
     !inLastInstructionShouldReturn
   ;
   if ([mElseInstructionList length] > 0) & not inLastInstructionShouldReturn then
-    ioGeneratedInstructionList += ![@baseline_ipic_pseudo_LABEL new ![@lstring new !label_endOfIfinstruction !mInstructionLocation]] ;
+    ioGeneratedInstructionList += ![@baseline_intermediate_pseudo_LABEL new ![@lstring new !label_endOfIfinstruction !mInstructionLocation]] ;
   end if ;
 #---
   ioContinuesInSequence := thenContinuesInSequence | elseContinuesInSequence ;
@@ -561,32 +561,32 @@ end method ;
 #                                                                               *
 #-------------------------------------------------------------------------------*
 
-abstract method @baseline_conditionExpression build_ipic_condition_instructions
+abstract method @baseline_conditionExpression build_intermediate_condition_instructions
   ??@registerTable inRegisterTable
   ?!@uint ioLocalLabelIndex
   ??@bool inComplementaryBranch
   ??@location inInstructionLocation
   ??@string inTargetLabel
-  ?!@baseline_ipic_instructionList ioGeneratedInstructionList
+  ?!@baseline_intermediate_instructionList ioGeneratedInstructionList
 ;
 
 #----------------------------------------------------*
 
-override method @baseline_incDecRegisterInCondition build_ipic_condition_instructions
+override method @baseline_incDecRegisterInCondition build_intermediate_condition_instructions
   ??@registerTable inRegisterTable
   ?!@uint unused ioLocalLabelIndex
   ??@bool inComplementaryBranch
   ??@location inInstructionLocation
   ??@string inTargetLabel
-  ?!@baseline_ipic_instructionList ioGeneratedInstructionList
+  ?!@baseline_intermediate_instructionList ioGeneratedInstructionList
 :
   [mRegisterExpression resolveBaselineAccess
     !inRegisterTable
-    ?@baseline_ipic_registerExpression IPICregisterDescription
+    ?@baseline_intermediate_registerExpression IPICregisterDescription
     ?@bitSliceTable bitSliceTable
   ] ;
 #---
-  ioGeneratedInstructionList += ![@baseline_ipic_incDecRegisterInCondition new
+  ioGeneratedInstructionList += ![@baseline_intermediate_incDecRegisterInCondition new
     !inInstructionLocation
     !IPICregisterDescription
     !inTargetLabel
@@ -598,15 +598,15 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @baseline_negateCondition build_ipic_condition_instructions
+override method @baseline_negateCondition build_intermediate_condition_instructions
   ??@registerTable inRegisterTable
   ?!@uint ioLocalLabelIndex
   ??@bool inComplementaryBranch
   ??@location inInstructionLocation
   ??@string inTargetLabel
-  ?!@baseline_ipic_instructionList ioGeneratedInstructionList
+  ?!@baseline_intermediate_instructionList ioGeneratedInstructionList
 :
-  [mCondition build_ipic_condition_instructions
+  [mCondition build_intermediate_condition_instructions
     !inRegisterTable
     !?ioLocalLabelIndex
     !not inComplementaryBranch
@@ -618,16 +618,16 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @baseline_andCondition build_ipic_condition_instructions
+override method @baseline_andCondition build_intermediate_condition_instructions
   ??@registerTable inRegisterTable
   ?!@uint ioLocalLabelIndex
   ??@bool inComplementaryBranch
   ??@location inInstructionLocation
   ??@string inTargetLabel
-  ?!@baseline_ipic_instructionList ioGeneratedInstructionList
+  ?!@baseline_intermediate_instructionList ioGeneratedInstructionList
 :
   if inComplementaryBranch then
-    [mLeftExpression build_ipic_condition_instructions
+    [mLeftExpression build_intermediate_condition_instructions
       !inRegisterTable
       !?ioLocalLabelIndex
       !true
@@ -635,7 +635,7 @@ override method @baseline_andCondition build_ipic_condition_instructions
       !inTargetLabel
       !?ioGeneratedInstructionList
     ] ;
-    [mRightExpression build_ipic_condition_instructions
+    [mRightExpression build_intermediate_condition_instructions
       !inRegisterTable
       !?ioLocalLabelIndex
       !true
@@ -645,7 +645,7 @@ override method @baseline_andCondition build_ipic_condition_instructions
     ] ;
   else
     @string label0 := "_label_" . [ioLocalLabelIndex string] ; ioLocalLabelIndex ++ ;
-    [mLeftExpression build_ipic_condition_instructions
+    [mLeftExpression build_intermediate_condition_instructions
       !inRegisterTable
       !?ioLocalLabelIndex
       !true
@@ -653,7 +653,7 @@ override method @baseline_andCondition build_ipic_condition_instructions
       !label0
       !?ioGeneratedInstructionList
     ] ;
-    [mRightExpression build_ipic_condition_instructions
+    [mRightExpression build_intermediate_condition_instructions
       !inRegisterTable
       !?ioLocalLabelIndex
       !false
@@ -661,23 +661,23 @@ override method @baseline_andCondition build_ipic_condition_instructions
       !inTargetLabel
       !?ioGeneratedInstructionList
     ] ;
-    ioGeneratedInstructionList += ![@baseline_ipic_pseudo_LABEL new ![@lstring new !label0 !inInstructionLocation]] ;
+    ioGeneratedInstructionList += ![@baseline_intermediate_pseudo_LABEL new ![@lstring new !label0 !inInstructionLocation]] ;
   end if ;
 end method ;
 
 #----------------------------------------------------*
 
-override method @baseline_bitTest_in_structured_if_condition build_ipic_condition_instructions
+override method @baseline_bitTest_in_structured_if_condition build_intermediate_condition_instructions
   ??@registerTable inRegisterTable
   ?!@uint unused ioLocalLabelIndex
   ??@bool inComplementaryBranch
   ??@location inInstructionLocation
   ??@string inTargetLabel
-  ?!@baseline_ipic_instructionList ioGeneratedInstructionList
+  ?!@baseline_intermediate_instructionList ioGeneratedInstructionList
 :
   [mRegisterExpression resolveBaselineAccess
     !inRegisterTable
-    ?@baseline_ipic_registerExpression IPICregisterDescription
+    ?@baseline_intermediate_registerExpression IPICregisterDescription
     ?@bitSliceTable bitSliceTable
   ] ;
   @uint bitNumber ;
@@ -685,128 +685,17 @@ override method @baseline_bitTest_in_structured_if_condition build_ipic_conditio
     !bitSliceTable
     ?bitNumber
   ] ;
-  ioGeneratedInstructionList += ![@baseline_ipic_instruction_BitTestSkip new
+  ioGeneratedInstructionList += ![@baseline_intermediate_instruction_BitTestSkip new
     !inInstructionLocation
     !mBTFSSinstruction ^ inComplementaryBranch
     !IPICregisterDescription
     !bitNumber
   ] ;
-  ioGeneratedInstructionList += ![@baseline_ipic_GOTO new
+  ioGeneratedInstructionList += ![@baseline_intermediate_GOTO new
     !inInstructionLocation
     ![@lstring new !inTargetLabel !inInstructionLocation]
    ] ;
 end method ;
-
-#-------------------------------------------------------------------------------*
-#-------------------------------------------------------------------------------*
-#-------------------------------------------------------------------------------*
-#-------------------------------------------------------------------------------*
-
-method @baseline_ipic_instruction setCurrentAddress ?!@uint ioCurrentAddress :
-  ioCurrentAddress := ioCurrentAddress + [selfcopy length] ;
-end method ;
-
-method @baseline_ipic_instruction isLABELorORG !@bool outIsLABELorORG :
-  outIsLABELorORG := false ;
-end method ;
-
-method @baseline_ipic_instruction isNULL !@bool outIsNULL :
-  outIsNULL := false ;
-end method ;
-
-method @baseline_ipic_instruction nextInstructionIsReachable !@bool outIsReachable :
-  outIsReachable := true ;
-end method ;
-
-method @baseline_ipic_instruction isSkippingInstruction !@bool outIsSkipping :
-  outIsSkipping := false ;
-end method ;
-
-method @baseline_ipic_instruction enterReferencedLabel ?!@stringset unused ioReferencedLabelSet :
-end method ;
-
-
-#-------------------------------------------------------------------------------*
-
-override method @baseline_ipic_NULL isNULL !@bool outIsNULL :
-  outIsNULL := true ;
-end method ;
-
-#-------------------------------------------------------------------------------*
-
-override method @baseline_ipic_pseudo_PAGE setCurrentAddress ?!@uint ioCurrentAddress :
-  ioCurrentAddress := mPage * 256 ;
-end method ;
-
-override method @baseline_ipic_pseudo_PAGE isLABELorORG !@bool outIsLABELorORG :
-  outIsLABELorORG := true ;
-end method ;
-
-#-------------------------------------------------------------------------------*
-
-override method @baseline_ipic_pseudo_LABEL isLABELorORG !@bool outIsLABELorORG :
-  outIsLABELorORG := true ;
-end method ;
-
-#-------------------------------------------------------------------------------*
-
-local routine getBaselineFinstructionBaseCode
-  ??@baseline_F_instruction_base_code inInstruction
-  !@uint outBaseCode
-:
-  switch inInstruction
-  when CLRF   : outBaseCode := 0x0180 ;
-  when MOVWF  : outBaseCode := 0x0080 ;
-  end switch ;
-end routine ;
-
-#-------------------------------------------------------------------------------*
-
-local routine getBaselineBitOrientedOpBaseCode ??@baseline_bit_oriented_op inInstruction !@uint outBaseCode :
-  switch inInstruction
-  when BCF : outBaseCode := 0x1000 ;
-  when BSF : outBaseCode := 0x1400 ;
-  end switch ;
-end routine ;
-
-
-#-------------------------------------------------------------------------------*
-
-enum @baseline_call_goto_bit {
-  set, clear, noChange
-}{
-
-}
-
-#-------------------------------------------------------------------------------*
-
-override method @baseline_ipic_GOTO nextInstructionIsReachable !@bool outIsReachable :
-  outIsReachable := false ;
-end method ;
-
-override method @baseline_ipic_GOTO enterReferencedLabel ?!@stringset ioReferencedLabelSet :
-  ioReferencedLabelSet += ![mTargetLabel string] ;
-end method ;
-
-#-------------------------------------------------------------------------------*
-
-override method @baseline_ipic_CALL enterReferencedLabel ?!@stringset ioReferencedLabelSet :
-  ioReferencedLabelSet += ![mTargetLabel string] ;
-end method ;
-
-#-------------------------------------------------------------------------------*
-
-override method @baseline_ipic_instruction_literalOperation nextInstructionIsReachable !@bool outIsReachable :
-  outIsReachable := mInstruction != [@baseline_literal_instruction_opcode RETLW] ;
-end method ;
-
-#-------------------------------------------------------------------------------*
-
-
-override method @baseline_ipic_incDecRegisterInCondition enterReferencedLabel ?!@stringset ioReferencedLabelSet :
-  ioReferencedLabelSet += !mTargetLabel ;
-end method ;
-
 
 #-------------------------------------------------------------------------------*
 

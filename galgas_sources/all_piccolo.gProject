@@ -21,10 +21,10 @@ project all_piccolo (0:0:1) -> "piccolo" :
   semantics "baseline_ast.gSemantics" ;
   syntax    "baseline_syntax.gSyntax" ;
   semantics "baseline_compilation.gSemantics" ;
-  semantics "baseline_ipic_classes.gSemantics" ;
+  semantics "baseline_intermediate_classes.gSemantics" ;
   semantics "baseline_semantic_analysis.gSemantics" ;
-  semantics "baseline_print_ipic_instructions.gSemantics" ;
-  semantics "baseline_ipic_instruction_length.gSemantics" ;
+  semantics "baseline_intermediate_instruction_print.gSemantics" ;
+  semantics "baseline_intermediate_instruction_length.gSemantics" ;
   semantics "baseline_pic_assembly_classes.gSemantics" ;
   semantics "baseline_print_assembly_instructions.gSemantics" ;
   semantics "baseline_assembly_instruction_length.gSemantics" ;

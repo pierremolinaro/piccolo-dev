@@ -318,7 +318,7 @@ end method ;
 #                                                                            *
 #----------------------------------------------------------------------------*
 
-routine build_baseline_ipic_binary_code
+routine build_baseline_binary_code
   ??@baseline_pic_assembly_instructionList inAssemblyInstructionList
   ??@uint inROMsize
   ?!@string ioListFileContents
