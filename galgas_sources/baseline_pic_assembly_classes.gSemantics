@@ -70,6 +70,11 @@ class @baseline_pic_assembly_GOTO extends @baseline_pic_assembly_actualInstructi
 
 #-------------------------------------------------------------------------------*
 
+class @baseline_pic_assembly_SKIP extends @baseline_pic_assembly_actualInstruction {
+}
+
+#-------------------------------------------------------------------------------*
+
 class @baseline_pic_assembly_CALL extends @baseline_pic_assembly_actualInstruction {
   @lstring mTargetLabel ;
 }
@@ -91,7 +96,6 @@ class @baseline_pic_assembly_instruction_literalOperation extends @baseline_pic_
 
 class @baseline_pic_assembly_incDecRegisterInCondition extends @baseline_pic_assembly_actualInstruction {
   @baseline_ipic_registerExpression mRegisterDescription ;
-  @string mTargetLabel ;
   @bool mIncrement ;
   @bool m_W_isDestination ;
 }

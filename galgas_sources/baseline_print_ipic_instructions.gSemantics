@@ -13,23 +13,20 @@ end method ;
 
 #-------------------------------------------------------------------------------*
 
-override
-method @baseline_ipic_pseudo_PAGE print ?!@string ioListFileContents :
+override method @baseline_ipic_pseudo_PAGE print ?!@string ioListFileContents :
   ioListFileContents .= "ORG " . [mPage * 256 hexString] ;
 end method ;
 
 
 #-------------------------------------------------------------------------------*
 
-override
-method @baseline_ipic_pseudo_LABEL print ?!@string ioListFileContents :
+override method @baseline_ipic_pseudo_LABEL print ?!@string ioListFileContents :
   ioListFileContents .= "LABEL " . mLabel ;
 end method ;
 
 #-------------------------------------------------------------------------------*
 
-override
-method @baseline_ipic_instruction_FD print ?!@string ioListFileContents :
+override method @baseline_ipic_instruction_FD print ?!@string ioListFileContents :
   ioListFileContents .= [mInstruction mnemonic] . " " . [mRegisterDescription mAssemblyString] ;
   if m_W_isDestination then
     ioListFileContents .= ", W" ;
@@ -38,22 +35,19 @@ end method ;
 
 #-------------------------------------------------------------------------------*
 
-override
-method @baseline_ipic_instruction_F print ?!@string ioListFileContents :
+override method @baseline_ipic_instruction_F print ?!@string ioListFileContents :
   ioListFileContents .= [mInstruction mnemonic] . " " . [mRegisterDescription mAssemblyString] ;
 end method ;
 
 #-------------------------------------------------------------------------------*
 
-override
-method @baseline_ipic_instruction_FB print ?!@string ioListFileContents :
+override method @baseline_ipic_instruction_FB print ?!@string ioListFileContents :
   ioListFileContents .= [mInstruction mnemonic] . " " . [mRegisterDescription mAssemblyString] . ", " . [mBitNumber string] ;
 end method ;
 
 #-------------------------------------------------------------------------------*
 
-override
-method @baseline_ipic_instruction_BitTestSkip print ?!@string ioListFileContents :
+override method @baseline_ipic_instruction_BitTestSkip print ?!@string ioListFileContents :
   if mSkipIfSet then
     ioListFileContents .= "BTFSS" ;
   else
@@ -70,36 +64,26 @@ end method ;
 
 #-------------------------------------------------------------------------------*
 
-override method @baseline_ipic_GOTO_ABS print ?!@string ioListFileContents :
-  ioListFileContents .= "GOTO " . [mDestinationAddress hexString] ;
-end method ;
 
-#-------------------------------------------------------------------------------*
-
-
-override
-method @baseline_ipic_CALL print ?!@string ioListFileContents :
+override method @baseline_ipic_CALL print ?!@string ioListFileContents :
   ioListFileContents .= "CALL " . mTargetLabel ;
 end method ;
 
 #-------------------------------------------------------------------------------*
 
-override
-method @baseline_ipic_instruction_literalOperation print ?!@string ioListFileContents :
+override method @baseline_ipic_instruction_literalOperation print ?!@string ioListFileContents :
   ioListFileContents .= [mInstruction mnemonic] . " " . [mLiteralValue hexString] ;
 end method ;
 
 #-------------------------------------------------------------------------------*
 
-override
-method @baseline_ipic_instruction_MNOP print ?!@string ioListFileContents :
+override method @baseline_ipic_instruction_MNOP print ?!@string ioListFileContents :
   ioListFileContents .= "MNOP " . [[mOccurrenceFactor uint] string] ;
 end method ;
 
 #-------------------------------------------------------------------------------*
 
-override
-method @baseline_ipic_incDecRegisterInCondition print ?!@string ioListFileContents :
+override method @baseline_ipic_incDecRegisterInCondition print ?!@string ioListFileContents :
   ioListFileContents .= "JUMP " ;
   if mIncrement then
     ioListFileContents .= "INCF " ;
@@ -120,8 +104,7 @@ end method ;
 
 #-------------------------------------------------------------------------------*
 
-override
-method @baseline_ipic_WO_OPERAND print ?!@string ioListFileContents :
+override method @baseline_ipic_WO_OPERAND print ?!@string ioListFileContents :
   ioListFileContents .= [mInstruction mnemonic] ;
 end method ;
 

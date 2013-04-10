@@ -161,39 +161,23 @@ end method ;
 override method @baseline_ipic_incDecRegisterInCondition generateAssemblyCode
   ?!@baseline_pic_assembly_instructionList ioAssemblyInstructionList
 :
-  @uint code ;
-  if mIncrement then
-    code := 0x03C0 ; # INCFSZ
-  else
-    code := 0x02C0 ; # DECFSZ
-  end if ;
-  if not m_W_isDestination then
-    code := code | 0x0020 ;
-  end if ;
-  code := code | ([mRegisterDescription mRegisterAddress] & 0x1F) ;
-  emitCodeAtWordAddress !code !?ioWordAddress !selfcopy !?ioListFileContents ;
+  ioAssemblyInstructionList += ![@baseline_pic_assembly_incDecRegisterInCondition new
+    !mInstructionLocation
+    !mRegisterDescription
+    !mIncrement
+    !m_W_isDestination
+  ] ;
 #---
   if mBranchIfZero then
-    @baseline_ipic_instruction instruction := [@baseline_ipic_GOTO_ABS new !mInstructionLocation !ioWordAddress + 2] ;
-    [instruction generateAssemblyCode
-      !inRegisterTable
-      !inRoutineSymbolTable
-      !?ioListFileContents
-      !?ioWordAddress
+    ioAssemblyInstructionList += ![@baseline_pic_assembly_SKIP new
+      !mInstructionLocation
     ] ;
-#    emit_baseline_GOTOinstruction !mInstructionLocation !ioWordAddress !ioWordAddress + 3 ;
   end if ;
 #--- Generate GOTO instruction
-#  @uint targetAddress ;
-#  [inRoutineSymbolTable searchKey ![@lstring new !mTargetLabel !here] ?targetAddress] ;
-  @baseline_ipic_instruction instruction := [@baseline_ipic_GOTO new !mInstructionLocation ![@lstring new !mTargetLabel !here]] ;
-  [instruction generateAssemblyCode
-    !inRegisterTable
-    !inRoutineSymbolTable
-    !?ioListFileContents
-    !?ioWordAddress
+  ioAssemblyInstructionList += ![@baseline_pic_assembly_GOTO new
+    !mInstructionLocation
+    ![@lstring new !mTargetLabel !mInstructionLocation]
   ] ;
-  #emit_baseline_GOTOinstruction !mInstructionLocation !ioWordAddress !targetAddress ;
 end method ;
 
 #----------------------------------------------------------------------------*
@@ -205,12 +189,11 @@ end method ;
 routine build_baseline_ipic_binary_code
   ??@baseline_ipic_instructionList inGeneratedInstructionList
   ??@actualConfigurationMap inActualConfigurationMap
-  !@baseline_pic_assembly_instructionList outAssemblyInstructionList
+  ?!@baseline_pic_assembly_instructionList ioAssemblyInstructionList
 :
-#-------------------------------- First pass: build label map
-  outAssemblyInstructionList := [@baseline_pic_assembly_instructionList emptyList] ;
+#-------------------------------- Build assembly code
   foreach inGeneratedInstructionList do
-    [mInstruction generateAssemblyCode !?outAssemblyInstructionList] ;
+    [mInstruction generateAssemblyCode !?ioAssemblyInstructionList] ;
   end foreach ;
 #-------------------------------- Add Configuration
   foreach inActualConfigurationMap do
