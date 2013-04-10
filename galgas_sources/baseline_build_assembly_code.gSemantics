@@ -1,0 +1,207 @@
+semantics baseline_build_assembly_code :
+import "ipic_generic.gSemantics" ;
+import "baseline_ipic_classes.gSemantics" ;
+import "baseline_ipic_instruction_length.gSemantics" ;
+import "baseline_print_ipic_instructions.gSemantics" ;
+import "baseline_pic_assembly_classes.gSemantics" ;
+
+#----------------------------------------------------------------------------*
+#                                                                            *
+#               C O D E    G E N E R A T I O N                               *
+#                                                                            *
+#----------------------------------------------------------------------------*
+
+abstract method @baseline_ipic_instruction generateAssemblyCode
+  ?!@baseline_pic_assembly_instructionList ioAssemblyInstructionList
+;
+
+#----------------------------------------------------------------------------*
+
+override method @baseline_ipic_NULL generateAssemblyCode
+  ?!@baseline_pic_assembly_instructionList unused ioAssemblyInstructionList
+:
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @baseline_ipic_pseudo_PAGE generateAssemblyCode
+  ?!@baseline_pic_assembly_instructionList ioAssemblyInstructionList
+:
+  ioAssemblyInstructionList += ![@baseline_pic_assembly_pseudo_ORG new !mPage * 256] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @baseline_ipic_instruction_FD generateAssemblyCode
+  ?!@baseline_pic_assembly_instructionList ioAssemblyInstructionList
+:
+  ioAssemblyInstructionList += ![@baseline_pic_assembly_instruction_FD new
+    !mInstructionLocation
+    !mInstruction
+    !mRegisterDescription
+    !m_W_isDestination
+  ] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @baseline_ipic_instruction_F generateAssemblyCode
+  ?!@baseline_pic_assembly_instructionList ioAssemblyInstructionList
+:
+  ioAssemblyInstructionList += ![@baseline_pic_assembly_instruction_F new
+    !mInstructionLocation
+    !mInstruction
+    !mRegisterDescription
+  ] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @baseline_ipic_instruction_FB generateAssemblyCode
+  ?!@baseline_pic_assembly_instructionList ioAssemblyInstructionList
+:
+  ioAssemblyInstructionList += ![@baseline_pic_assembly_instruction_FB new
+    !mInstructionLocation
+    !mInstruction
+    !mRegisterDescription
+    !mBitNumber
+  ] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @baseline_ipic_instruction_BitTestSkip generateAssemblyCode
+  ?!@baseline_pic_assembly_instructionList ioAssemblyInstructionList
+:
+  ioAssemblyInstructionList += ![@baseline_pic_assembly_instruction_BitTestSkip new
+    !mInstructionLocation
+    !mSkipIfSet
+    !mRegisterDescription
+    !mBitNumber
+  ] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @baseline_ipic_WO_OPERAND generateAssemblyCode
+  ?!@baseline_pic_assembly_instructionList ioAssemblyInstructionList
+:
+  ioAssemblyInstructionList += ![@baseline_pic_assembly_WO_OPERAND new
+    !mInstructionLocation
+    !mInstruction
+  ] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @baseline_ipic_instruction_literalOperation generateAssemblyCode
+  ?!@baseline_pic_assembly_instructionList ioAssemblyInstructionList
+:
+  ioAssemblyInstructionList += ![@baseline_pic_assembly_instruction_literalOperation new
+    !mInstructionLocation
+    !mInstruction
+    !mLiteralValue
+  ] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @baseline_ipic_pseudo_LABEL generateAssemblyCode
+  ?!@baseline_pic_assembly_instructionList ioAssemblyInstructionList
+:
+  ioAssemblyInstructionList += ![@baseline_pic_assembly_pseudo_LABEL new
+    !mLabel
+  ] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @baseline_ipic_instruction_MNOP generateAssemblyCode
+  ?!@baseline_pic_assembly_instructionList ioAssemblyInstructionList
+:
+  if [mOccurrenceFactor uint] == 0 then
+    warning mOccurrenceFactor: "No generated code" ;
+  end if ;
+  @uint idx := 0 ;
+  loop [mOccurrenceFactor uint] :
+  while idx < [mOccurrenceFactor uint]
+  do
+    ioAssemblyInstructionList += ![@baseline_pic_assembly_WO_OPERAND new
+      !mInstructionLocation
+      ![@baseline_WO_OPERAND_group NOP]
+    ] ;
+    idx ++ ;
+  end loop ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @baseline_ipic_GOTO generateAssemblyCode
+  ?!@baseline_pic_assembly_instructionList ioAssemblyInstructionList
+:
+  ioAssemblyInstructionList += ![@baseline_pic_assembly_GOTO new
+    !mInstructionLocation
+    !mTargetLabel
+  ] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @baseline_ipic_CALL generateAssemblyCode
+  ?!@baseline_pic_assembly_instructionList ioAssemblyInstructionList
+:
+  ioAssemblyInstructionList += ![@baseline_pic_assembly_CALL new
+    !mInstructionLocation
+    !mTargetLabel
+  ] ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @baseline_ipic_incDecRegisterInCondition generateAssemblyCode
+  ?!@baseline_pic_assembly_instructionList ioAssemblyInstructionList
+:
+  ioAssemblyInstructionList += ![@baseline_pic_assembly_incDecRegisterInCondition new
+    !mInstructionLocation
+    !mRegisterDescription
+    !mIncrement
+    !m_W_isDestination
+  ] ;
+#---
+  if mBranchIfZero then
+    ioAssemblyInstructionList += ![@baseline_pic_assembly_SKIP new
+      !mInstructionLocation
+    ] ;
+  end if ;
+#--- Generate GOTO instruction
+  ioAssemblyInstructionList += ![@baseline_pic_assembly_GOTO new
+    !mInstructionLocation
+    ![@lstring new !mTargetLabel !mInstructionLocation]
+  ] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+#                                                                            *
+#               S E M A N T I C    A N A L Y S I S                           *
+#                                                                            *
+#----------------------------------------------------------------------------*
+
+routine build_baseline_ipic_assembly_code
+  ??@baseline_ipic_instructionList inGeneratedInstructionList
+  ??@actualConfigurationMap inActualConfigurationMap
+  ?!@baseline_pic_assembly_instructionList ioAssemblyInstructionList
+:
+#-------------------------------- Build assembly code
+  foreach inGeneratedInstructionList do
+    [mInstruction generateAssemblyCode !?ioAssemblyInstructionList] ;
+  end foreach ;
+#-------------------------------- Add Configuration
+  foreach inActualConfigurationMap do
+    setEmitAddress ! mRegisterAddress + mRegisterAddress ;
+    emitCode !mRegisterValue ;
+  end foreach ;
+end routine ;
+
+#----------------------------------------------------------------------------*
+
+end semantics ;

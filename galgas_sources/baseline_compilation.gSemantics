@@ -1,6 +1,5 @@
 semantics baseline_compilation :
 import "baseline_ast.gSemantics" ;
-#import "baseline_ipic_classes.gSemantics" ;
 import "piccoloDevice_semantics.gSemantics" ;
 import "piccolo_embedded_devices.gSemantics" ;
 import "piccolo_config.gSemantics" ;
@@ -9,6 +8,7 @@ import "ram_sections.gSemantics" ;
 import "baseline_semantic_analysis.gSemantics" ;
 import "baseline_print_ipic_instructions.gSemantics" ;
 import "baseline_ipic_instruction_length.gSemantics" ;
+import "baseline_build_assembly_code.gSemantics" ;
 import "baseline_build_binary_code.gSemantics" ;
 
 #----------------------------------------------------------------------------*
@@ -270,21 +270,27 @@ routine baseline_analysis
     listFileContents .= "\n" ;
     listFileContents .= "Code size without optimization: " . [currentAddress string] . " words.\n\n" ;
   end if ;
-#-------------------------------- Code generation
+#-------------------------------- Build assembly instruction list
   @baseline_pic_assembly_instructionList assemblyInstructionList [emptyList] ;
   if [@uint errorCount] == 0 then
-    build_baseline_ipic_binary_code
+    build_baseline_ipic_assembly_code
       !ipicInstructionList
       !actualConfigurationMap
       !?assemblyInstructionList
     ;
   end if ;
-#-------------------------------- Display assembly code
+#-------------------------------- Build binary code
   if [@uint errorCount] == 0 then
     listFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n" ;
     listFileContents .= "*" . ["GENERATED CODE" stringByLeftAndRightPadding !77 !' '] . "*\n" ;
     listFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n\n" ;
     listFileContents .= "Address Code Mnemonic\n" ;
+    build_baseline_ipic_binary_code
+      !assemblyInstructionList
+      ![piccoloDeviceModel->mRomSize uint]
+      !?listFileContents
+      ?@uint usedROMsize
+    ;
   end if ;
 
 

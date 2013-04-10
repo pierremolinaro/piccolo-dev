@@ -1,9 +1,97 @@
 semantics baseline_build_binary_code :
-import "ipic_generic.gSemantics" ;
-import "baseline_ipic_classes.gSemantics" ;
-import "baseline_ipic_instruction_length.gSemantics" ;
-import "baseline_print_ipic_instructions.gSemantics" ;
 import "baseline_pic_assembly_classes.gSemantics" ;
+import "baseline_print_assembly_instructions.gSemantics" ;
+import "baseline_assembly_instruction_length.gSemantics" ;
+import "ipic_generic.gSemantics" ;
+
+#----------------------------------------------------------------------------*
+
+map @baseline_symbolTable {
+  @uint mRoutineAddress ;
+  insert insertKey error message "the '%K' label is already declared in %L" ;
+  search searchKey error message "the '%K' label is not declared" ;
+}
+
+#----------------------------------------------------------------------------*
+
+reader @uint x4String ->@string outResult :
+  if selfcopy > 0xFFFF then
+    outResult := "****" ;
+  else
+    outResult := [selfcopy >> 12 xString] ;
+    outResult .= [(selfcopy >> 8) & 0xF xString] ;
+    outResult .= [(selfcopy >> 4) & 0xF xString] ;
+    outResult .= [selfcopy & 0xF xString] ;
+  end if ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+routine emitCodeAtWordAddress
+  ??@uint inCode
+  ?!@uint ioWordAddress
+  ??@baseline_pic_assembly_instruction inInstruction
+  ?!@string ioListFileContents
+:
+  ioListFileContents .= "   " . [ioWordAddress * 2 x4String] ;
+  ioListFileContents .= " " . [inCode x4String] . " " ;
+  [inInstruction print !?ioListFileContents] ;
+  ioListFileContents .= "\n" ;
+  emitCode !inCode ;
+  ioWordAddress := ioWordAddress + 1 ;
+end routine ;
+
+#----------------------------------------------------------------------------*
+
+routine emitNoCodeAtWordAddress
+  ??@uint inWordAddress
+  ??@baseline_pic_assembly_instruction inInstruction
+  ?!@string ioListFileContents
+:
+  ioListFileContents .= "   " . [inWordAddress * 2 x4String] ;
+  ioListFileContents .= "      " ;
+  [inInstruction print !?ioListFileContents] ;
+  ioListFileContents .= "\n" ;
+end routine ;
+
+#----------------------------------------------------------------------------*
+#                                                                            *
+#                          enterLabelAtAddress                               *
+#                                                                            *
+#----------------------------------------------------------------------------*
+
+method @baseline_pic_assembly_instruction enterLabelAtAddress
+  ?!@baseline_symbolTable unused ioRoutineSymbolTable
+  ?!@uint unused ioWordAddress
+:
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @baseline_pic_assembly_pseudo_LABEL enterLabelAtAddress
+  ?!@baseline_symbolTable ioRoutineSymbolTable
+  ?!@uint ioWordAddress
+:
+  [!?ioRoutineSymbolTable insertKey !mLabel !ioWordAddress] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @baseline_pic_assembly_pseudo_ORG enterLabelAtAddress
+  ?!@baseline_symbolTable unused ioRoutineSymbolTable
+  ?!@uint ioWordAddress
+:
+  ioWordAddress := mOrigin ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @baseline_pic_assembly_actualInstruction enterLabelAtAddress
+  ?!@baseline_symbolTable unused ioRoutineSymbolTable
+  ?!@uint ioWordAddress
+:
+  ioWordAddress := ioWordAddress  + [selfcopy length] ;
+end method ;
 
 #----------------------------------------------------------------------------*
 #                                                                            *
@@ -11,173 +99,217 @@ import "baseline_pic_assembly_classes.gSemantics" ;
 #                                                                            *
 #----------------------------------------------------------------------------*
 
-abstract method @baseline_ipic_instruction generateAssemblyCode
-  ?!@baseline_pic_assembly_instructionList ioAssemblyInstructionList
+abstract method @baseline_pic_assembly_instruction generateBinaryCodeAtAddress
+  ??@baseline_symbolTable unused inRoutineSymbolTable
+  ?!@string ioListFileContents
+  ?!@uint ioWordAddress
 ;
 
 #----------------------------------------------------------------------------*
 
-override method @baseline_ipic_NULL generateAssemblyCode
-  ?!@baseline_pic_assembly_instructionList unused ioAssemblyInstructionList
+override method @baseline_pic_assembly_pseudo_ORG generateBinaryCodeAtAddress
+  ??@baseline_symbolTable unused inRoutineSymbolTable
+  ?!@string ioListFileContents
+  ?!@uint ioWordAddress
 :
+  setEmitAddress !mOrigin * 2 ;
+  emitNoCodeAtWordAddress !ioWordAddress !selfcopy !?ioListFileContents ;
 end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @baseline_ipic_pseudo_PAGE generateAssemblyCode
-  ?!@baseline_pic_assembly_instructionList ioAssemblyInstructionList
+override method @baseline_pic_assembly_instruction_FD generateBinaryCodeAtAddress
+  ??@baseline_symbolTable unused inRoutineSymbolTable
+  ?!@string ioListFileContents
+  ?!@uint ioWordAddress
 :
-  ioAssemblyInstructionList += ![@baseline_pic_assembly_pseudo_ORG new !mPage * 256] ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
-override method @baseline_ipic_instruction_FD generateAssemblyCode
-  ?!@baseline_pic_assembly_instructionList ioAssemblyInstructionList
-:
-  ioAssemblyInstructionList += ![@baseline_pic_assembly_instruction_FD new
-    !mInstructionLocation
-    !mInstruction
-    !mRegisterDescription
-    !m_W_isDestination
-  ] ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
-override method @baseline_ipic_instruction_F generateAssemblyCode
-  ?!@baseline_pic_assembly_instructionList ioAssemblyInstructionList
-:
-  ioAssemblyInstructionList += ![@baseline_pic_assembly_instruction_F new
-    !mInstructionLocation
-    !mInstruction
-    !mRegisterDescription
-  ] ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
-override method @baseline_ipic_instruction_FB generateAssemblyCode
-  ?!@baseline_pic_assembly_instructionList ioAssemblyInstructionList
-:
-  ioAssemblyInstructionList += ![@baseline_pic_assembly_instruction_FB new
-    !mInstructionLocation
-    !mInstruction
-    !mRegisterDescription
-    !mBitNumber
-  ] ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
-override method @baseline_ipic_instruction_BitTestSkip generateAssemblyCode
-  ?!@baseline_pic_assembly_instructionList ioAssemblyInstructionList
-:
-  ioAssemblyInstructionList += ![@baseline_pic_assembly_instruction_BitTestSkip new
-    !mInstructionLocation
-    !mSkipIfSet
-    !mRegisterDescription
-    !mBitNumber
-  ] ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
-override method @baseline_ipic_WO_OPERAND generateAssemblyCode
-  ?!@baseline_pic_assembly_instructionList ioAssemblyInstructionList
-:
-  ioAssemblyInstructionList += ![@baseline_pic_assembly_WO_OPERAND new
-    !mInstructionLocation
-    !mInstruction
-  ] ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
-override method @baseline_ipic_instruction_literalOperation generateAssemblyCode
-  ?!@baseline_pic_assembly_instructionList ioAssemblyInstructionList
-:
-  ioAssemblyInstructionList += ![@baseline_pic_assembly_instruction_literalOperation new
-    !mInstructionLocation
-    !mInstruction
-    !mLiteralValue
-  ] ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
-override method @baseline_ipic_pseudo_LABEL generateAssemblyCode
-  ?!@baseline_pic_assembly_instructionList ioAssemblyInstructionList
-:
-  ioAssemblyInstructionList += ![@baseline_pic_assembly_pseudo_LABEL new
-    !mLabel
-  ] ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
-override method @baseline_ipic_instruction_MNOP generateAssemblyCode
-  ?!@baseline_pic_assembly_instructionList ioAssemblyInstructionList
-:
-  if [mOccurrenceFactor uint] == 0 then
-    warning mOccurrenceFactor: "No generated code" ;
+#--- Emit Code
+  @uint code ;
+  switch mInstruction
+  when ADDWF  : code := 0x01C0 ;
+  when ANDWF  : code := 0x0140 ;
+  when COMF   : code := 0x0240 ;
+  when DECF   : code := 0x00C0 ;
+  when DECFSZ : code := 0x02C0 ;
+  when INCF   : code := 0x0280 ;
+  when INCFSZ : code := 0x3C00 ;
+  when IORWF  : code := 0x0100 ;
+  when MOVF   : code := 0x0200 ;
+  when RLF    : code := 0x0340 ;
+  when RRF    : code := 0x0300 ;
+  when SUBWF  : code := 0x0080 ;
+  when SWAPF  : code := 0x0380 ;
+  when XORWF  : code := 0x0180 ;
+  end switch ;
+  if not m_W_isDestination then
+    code := code | 0x20 ;
   end if ;
-  @uint idx := 0 ;
-  loop [mOccurrenceFactor uint] :
-  while idx < [mOccurrenceFactor uint]
-  do
-    ioAssemblyInstructionList += ![@baseline_pic_assembly_WO_OPERAND new
-      !mInstructionLocation
-      ![@baseline_WO_OPERAND_group NOP]
-    ] ;
-    idx ++ ;
-  end loop ;
+  code := code | ([mRegisterDescription mRegisterAddress] & 0x1F) ;
+  emitCodeAtWordAddress !code !?ioWordAddress !selfcopy !?ioListFileContents ;
 end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @baseline_ipic_GOTO generateAssemblyCode
-  ?!@baseline_pic_assembly_instructionList ioAssemblyInstructionList
+override method @baseline_pic_assembly_instruction_F generateBinaryCodeAtAddress
+  ??@baseline_symbolTable unused inRoutineSymbolTable
+  ?!@string ioListFileContents
+  ?!@uint ioWordAddress
 :
-  ioAssemblyInstructionList += ![@baseline_pic_assembly_GOTO new
-    !mInstructionLocation
-    !mTargetLabel
-  ] ;
+  @uint code ;
+  switch mInstruction
+    when CLRF   : code := 0x0060 ;
+    when MOVWF  : code := 0x0020 ;
+  end switch ;
+  code := code | ([mRegisterDescription mRegisterAddress] & 0x1F) ;
+  emitCodeAtWordAddress !code !?ioWordAddress !selfcopy !?ioListFileContents ;
 end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @baseline_ipic_CALL generateAssemblyCode
-  ?!@baseline_pic_assembly_instructionList ioAssemblyInstructionList
+override method @baseline_pic_assembly_instruction_FB generateBinaryCodeAtAddress
+  ??@baseline_symbolTable unused inRoutineSymbolTable
+  ?!@string ioListFileContents
+  ?!@uint ioWordAddress
 :
-  ioAssemblyInstructionList += ![@baseline_pic_assembly_CALL new
-    !mInstructionLocation
-    !mTargetLabel
-  ] ;
+  @uint code ;
+  switch mInstruction
+    when BCF : code := 0x0400 ;
+    when BSF : code := 0x0500 ;
+  end switch ;
+  code := code | ([mRegisterDescription mRegisterAddress] & 0x1F) ;
+  code := code | (mBitNumber << 5) ;
+  emitCodeAtWordAddress !code !?ioWordAddress !selfcopy !?ioListFileContents ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @baseline_pic_assembly_instruction_BitTestSkip generateBinaryCodeAtAddress
+  ??@baseline_symbolTable unused inRoutineSymbolTable
+  ?!@string ioListFileContents
+  ?!@uint ioWordAddress
+:
+#--- Emit Code
+  @uint code ;
+  if mSkipIfSet then
+    code := 0x0700 ; # "BTFSS"
+  else
+    code := 0x0600 ; # BTFSC
+  end if ;
+  code := code | ([mRegisterDescription mRegisterAddress] & 0x1F) ;
+  code := code | (mBitNumber << 5) ;
+  emitCodeAtWordAddress !code !?ioWordAddress !selfcopy !?ioListFileContents ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @baseline_pic_assembly_GOTO generateBinaryCodeAtAddress
+  ??@baseline_symbolTable inRoutineSymbolTable
+  ?!@string ioListFileContents
+  ?!@uint ioWordAddress
+:
+#---
+  @uint targetAddress ;
+  [inRoutineSymbolTable searchKey !mTargetLabel ?targetAddress] ;
+#---
+  emitCodeAtWordAddress !0x0A00 | (targetAddress & 0x1FF) !?ioWordAddress !selfcopy !?ioListFileContents ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @baseline_pic_assembly_SKIP generateBinaryCodeAtAddress
+  ??@baseline_symbolTable unused inRoutineSymbolTable
+  ?!@string ioListFileContents
+  ?!@uint ioWordAddress
+:
+  emitCodeAtWordAddress !0x0A00 | ((ioWordAddress + 2) & 0x1FF) !?ioWordAddress !selfcopy !?ioListFileContents ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @baseline_pic_assembly_CALL generateBinaryCodeAtAddress
+  ??@baseline_symbolTable inRoutineSymbolTable
+  ?!@string ioListFileContents
+  ?!@uint ioWordAddress
+:
+#---
+  @uint targetAddress ;
+  [inRoutineSymbolTable searchKey !mTargetLabel ?targetAddress] ;
+#---
+  emitCodeAtWordAddress !0x0900 | (targetAddress & 0xFF) !?ioWordAddress !selfcopy !?ioListFileContents ;
 end method ;
 
 #----------------------------------------------------*
 
-override method @baseline_ipic_incDecRegisterInCondition generateAssemblyCode
-  ?!@baseline_pic_assembly_instructionList ioAssemblyInstructionList
+override method @baseline_pic_assembly_incDecRegisterInCondition generateBinaryCodeAtAddress
+  ??@baseline_symbolTable unused inRoutineSymbolTable
+  ?!@string ioListFileContents
+  ?!@uint ioWordAddress
 :
-  ioAssemblyInstructionList += ![@baseline_pic_assembly_incDecRegisterInCondition new
-    !mInstructionLocation
-    !mRegisterDescription
-    !mIncrement
-    !m_W_isDestination
-  ] ;
-#---
-  if mBranchIfZero then
-    ioAssemblyInstructionList += ![@baseline_pic_assembly_SKIP new
-      !mInstructionLocation
-    ] ;
+  @uint code ;
+  if mIncrement then
+    code := 0x03C0 ; # INCFSZ
+  else
+    code := 0x02C0 ; # DECFSZ
   end if ;
-#--- Generate GOTO instruction
-  ioAssemblyInstructionList += ![@baseline_pic_assembly_GOTO new
-    !mInstructionLocation
-    ![@lstring new !mTargetLabel !mInstructionLocation]
-  ] ;
+  if not m_W_isDestination then
+    code := code | 0x0020 ;
+  end if ;
+  code := code | ([mRegisterDescription mRegisterAddress] & 0x1F) ;
+  emitCodeAtWordAddress !code !?ioWordAddress !selfcopy !?ioListFileContents ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @baseline_pic_assembly_WO_OPERAND generateBinaryCodeAtAddress
+  ??@baseline_symbolTable unused inRoutineSymbolTable
+  ?!@string ioListFileContents
+  ?!@uint ioWordAddress
+:
+  @uint code ;
+  switch mInstruction
+  when CLRW    : code := 0x0040 ;
+  when NOP     : code := 0x0000 ;
+  when CLRWDT  : code := 0x0004 ;
+  when OPTION_ : code := 0x0002 ;
+  when SLEEP   : code := 0x0003 ;
+  end switch ;
+  emitCodeAtWordAddress !code !?ioWordAddress !selfcopy !?ioListFileContents ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @baseline_pic_assembly_instruction_literalOperation generateBinaryCodeAtAddress
+  ??@baseline_symbolTable unused inRoutineSymbolTable
+  ?!@string ioListFileContents
+  ?!@uint ioWordAddress
+:
+  @uint code ;
+  switch mInstruction
+  when ANDLW : code := 0x0E00 ;
+  when IORLW : code := 0x0D00 ;
+  when MOVLW : code := 0x0C00 ;
+  when RETLW : code := 0x0800 ;
+  when XORLW : code := 0x0F00 ;
+  end switch ;
+  code := code | mLiteralValue ;
+  emitCodeAtWordAddress !code !?ioWordAddress !selfcopy !?ioListFileContents ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @baseline_pic_assembly_pseudo_LABEL generateBinaryCodeAtAddress
+  ??@baseline_symbolTable inRoutineSymbolTable
+  ?!@string ioListFileContents
+  ?!@uint ioWordAddress
+:
+  @uint targetAddress ;
+  [inRoutineSymbolTable searchKey !mLabel ?targetAddress] ;
+  if (targetAddress != ioWordAddress) then
+    error mLabel: "Internal second pass error: the '" . mLabel
+    . "' label gets " . [ioWordAddress hexString] . " value in second pass, while it gets "
+    . [targetAddress hexString] . " in first pass" ;
+  end if ;
+  emitNoCodeAtWordAddress !ioWordAddress !selfcopy !?ioListFileContents ;
 end method ;
 
 #----------------------------------------------------------------------------*
@@ -187,62 +319,40 @@ end method ;
 #----------------------------------------------------------------------------*
 
 routine build_baseline_ipic_binary_code
-  ??@baseline_ipic_instructionList inGeneratedInstructionList
-  ??@actualConfigurationMap inActualConfigurationMap
-  ?!@baseline_pic_assembly_instructionList ioAssemblyInstructionList
+  ??@baseline_pic_assembly_instructionList inAssemblyInstructionList
+  ??@uint inROMsize
+  ?!@string ioListFileContents
+  !@uint outUsedROMsize
 :
-#-------------------------------- Build assembly code
-  foreach inGeneratedInstructionList do
-    [mInstruction generateAssemblyCode !?ioAssemblyInstructionList] ;
+#-------------------------------- First pass: build label map
+  @baseline_symbolTable symbolTable [emptyMap] ;
+  @uint currentWordAddress := 0 ;
+  foreach inAssemblyInstructionList do
+    [mInstruction enterLabelAtAddress !?symbolTable !?currentWordAddress] ;
   end foreach ;
-#-------------------------------- Add Configuration
-  foreach inActualConfigurationMap do
-    setEmitAddress ! mRegisterAddress + mRegisterAddress ;
-    emitCode !mRegisterValue ;
+  @uint lastAddressForFirstPass := currentWordAddress ;
+  outUsedROMsize := currentWordAddress ;
+#-------------------------------- Second pass: generate code
+  currentWordAddress := 0 ;
+  setEmitAddress !0 ;
+  foreach inAssemblyInstructionList do
+    [mInstruction generateBinaryCodeAtAddress
+      !symbolTable
+      !?ioListFileContents
+      !?currentWordAddress
+    ] ;
+    checkCurrentEmitAddress !currentWordAddress * 2 ;
   end foreach ;
+  if lastAddressForFirstPass != currentWordAddress then
+    error here: "Internal second pass error: the last address gets " . [currentWordAddress hexString]
+    . " value in second pass, while it gets "
+    . [lastAddressForFirstPass hexString] . " value in first pass" ;
+  elsif lastAddressForFirstPass > inROMsize then
+    error here: "Program too large: " . [lastAddressForFirstPass string]
+    . " bytes (rom size is "
+    . [inROMsize string] . " bytes)" ;
+  end if ;
 end routine ;
-
-#routine build_baseline_ipic_binary_code
-#  ??@registerTable inRegisterTable
-#  ??@baseline_ipic_instructionList inGeneratedInstructionList
-#  ??@uint inROMsize
-#  ??@actualConfigurationMap inActualConfigurationMap
-#  ?!@string ioListFileContents
-#  !@uint outUsedROMsize
-#:
-##-------------------------------- First pass: build label map
-#  @baseline_symbolTable symbolTable [emptyMap] ;
-#  @uint currentWordAddress := 0 ;
-#  foreach inGeneratedInstructionList do
-#    [mInstruction enterLabelAtAddress !?symbolTable !?currentWordAddress] ;
-#  end foreach ;
-#  @uint lastAddressForFirstPass := currentWordAddress ;
-#  outUsedROMsize := currentWordAddress ;
-##-------------------------------- Second pass: generate code
-#  foreach inGeneratedInstructionList do
-#    [mInstruction generateAssemblyCode
-#      !inRegisterTable
-#      !symbolTable
-#      !?ioListFileContents
-#      !?currentWordAddress
-#    ] ;
-#    checkCurrentEmitAddress !currentWordAddress * 2 ;
-#  end foreach ;
-#  if lastAddressForFirstPass != currentWordAddress then
-#    error here: "Internal second pass error: the last address gets " . [currentWordAddress hexString]
-#    . " value in second pass, while it gets "
-#    . [lastAddressForFirstPass hexString] . " value in first pass" ;
-#  elsif lastAddressForFirstPass > inROMsize then
-#    error here: "Program too large: " . [lastAddressForFirstPass string]
-#    . " bytes (rom size is "
-#    . [inROMsize string] . " bytes)" ;
-#  end if ;
-##-------------------------------- Add Configuration
-#  foreach inActualConfigurationMap do
-#    setEmitAddress ! mRegisterAddress + mRegisterAddress ;
-#    emitCode !mRegisterValue ;
-#  end foreach ;
-#end routine ;
 
 #----------------------------------------------------------------------------*
 
