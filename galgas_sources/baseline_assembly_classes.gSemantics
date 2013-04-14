@@ -21,6 +21,13 @@ class @baseline_assembly_pseudo_ORG extends @baseline_assembly_instruction {
 
 #-------------------------------------------------------------------------------*
 
+class @baseline_assembly_pseudo_INPAGE extends @baseline_assembly_instruction {
+  @lstring mRoutineName ;
+  @uint mPage ;
+}
+
+#-------------------------------------------------------------------------------*
+
 class @baseline_assembly_pseudo_LABEL extends @baseline_assembly_instruction {
   @lstring mLabel ;
 }

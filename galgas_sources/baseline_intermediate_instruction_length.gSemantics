@@ -19,6 +19,12 @@ end reader ;
 
 #-------------------------------------------------------------------------------*
 
+override reader @baseline_intermediate_pseudo_INPAGE length -> @uint outLength :
+  outLength := 0 ;
+end reader ;
+
+#-------------------------------------------------------------------------------*
+
 override reader @baseline_intermediate_pseudo_LABEL length -> @uint outLength :
   outLength := 0 ;
 end reader ;
@@ -27,6 +33,12 @@ end reader ;
 
 override reader @baseline_intermediate_actualInstruction length -> @uint outLength :
   outLength := 1 ;
+end reader ;
+
+#-------------------------------------------------------------------------------*
+
+override reader @baseline_intermediate_GOTO length -> @uint outLength :
+  outLength := 1 + [mCurrentPage ^ mTargetPage oneBitCount] ;
 end reader ;
 
 #-------------------------------------------------------------------------------*

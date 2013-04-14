@@ -1,0 +1,22 @@
+baseline pages_12F510 "12F510" :
+
+configuration {
+  CP : Disabled
+  OSC : "INTOSC with 1.125 ms DRT"
+  WDT : Disabled
+  IOSCFS : Disabled
+  MCLRE : Disabled
+}
+
+noreturn routine main {
+  mnop 510
+  goto routineInPage1
+}
+
+noreturn routine routineInPage1 page 1 {
+  forever
+  end
+}
+
+
+end

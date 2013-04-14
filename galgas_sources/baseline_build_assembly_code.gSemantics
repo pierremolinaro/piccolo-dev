@@ -12,12 +12,16 @@ import "baseline_assembly_classes.gSemantics" ;
 #----------------------------------------------------------------------------*
 
 abstract method @baseline_intermediate_instruction generateAssemblyCode
+  ??@baseline_intermediate_registerExpression inSTATUSregister
+  ??@bitSliceTable inStatusRegisterBitSliceTable
   ?!@baseline_assembly_instructionList ioAssemblyInstructionList
 ;
 
 #----------------------------------------------------------------------------*
 
 override method @baseline_intermediate_NULL generateAssemblyCode
+  ??@baseline_intermediate_registerExpression unused inSTATUSregister
+  ??@bitSliceTable unused inStatusRegisterBitSliceTable
   ?!@baseline_assembly_instructionList unused ioAssemblyInstructionList
 :
 end method ;
@@ -25,14 +29,28 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override method @baseline_intermediate_pseudo_PAGE generateAssemblyCode
+  ??@baseline_intermediate_registerExpression unused inSTATUSregister
+  ??@bitSliceTable unused inStatusRegisterBitSliceTable
   ?!@baseline_assembly_instructionList ioAssemblyInstructionList
 :
-  ioAssemblyInstructionList += ![@baseline_assembly_pseudo_ORG new !mPage * 256] ;
+  ioAssemblyInstructionList += ![@baseline_assembly_pseudo_ORG new !mPage * 512] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @baseline_intermediate_pseudo_INPAGE generateAssemblyCode
+  ??@baseline_intermediate_registerExpression unused inSTATUSregister
+  ??@bitSliceTable unused inStatusRegisterBitSliceTable
+  ?!@baseline_assembly_instructionList ioAssemblyInstructionList
+:
+  ioAssemblyInstructionList += ![@baseline_assembly_pseudo_INPAGE new !mRoutineName !mPage] ;
 end method ;
 
 #----------------------------------------------------------------------------*
 
 override method @baseline_intermediate_instruction_FD generateAssemblyCode
+  ??@baseline_intermediate_registerExpression unused inSTATUSregister
+  ??@bitSliceTable unused inStatusRegisterBitSliceTable
   ?!@baseline_assembly_instructionList ioAssemblyInstructionList
 :
   ioAssemblyInstructionList += ![@baseline_assembly_instruction_FD new
@@ -46,6 +64,8 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override method @baseline_intermediate_instruction_F generateAssemblyCode
+  ??@baseline_intermediate_registerExpression unused inSTATUSregister
+  ??@bitSliceTable unused inStatusRegisterBitSliceTable
   ?!@baseline_assembly_instructionList ioAssemblyInstructionList
 :
   ioAssemblyInstructionList += ![@baseline_assembly_instruction_F new
@@ -58,6 +78,8 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override method @baseline_intermediate_instruction_FB generateAssemblyCode
+  ??@baseline_intermediate_registerExpression unused inSTATUSregister
+  ??@bitSliceTable unused inStatusRegisterBitSliceTable
   ?!@baseline_assembly_instructionList ioAssemblyInstructionList
 :
   ioAssemblyInstructionList += ![@baseline_assembly_instruction_FB new
@@ -71,6 +93,8 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override method @baseline_intermediate_instruction_BitTestSkip generateAssemblyCode
+  ??@baseline_intermediate_registerExpression unused inSTATUSregister
+  ??@bitSliceTable unused inStatusRegisterBitSliceTable
   ?!@baseline_assembly_instructionList ioAssemblyInstructionList
 :
   ioAssemblyInstructionList += ![@baseline_assembly_instruction_BitTestSkip new
@@ -84,6 +108,8 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override method @baseline_intermediate_WO_OPERAND generateAssemblyCode
+  ??@baseline_intermediate_registerExpression unused inSTATUSregister
+  ??@bitSliceTable unused inStatusRegisterBitSliceTable
   ?!@baseline_assembly_instructionList ioAssemblyInstructionList
 :
   ioAssemblyInstructionList += ![@baseline_assembly_WO_OPERAND new
@@ -95,6 +121,8 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override method @baseline_intermediate_TRIS generateAssemblyCode
+  ??@baseline_intermediate_registerExpression unused inSTATUSregister
+  ??@bitSliceTable unused inStatusRegisterBitSliceTable
   ?!@baseline_assembly_instructionList ioAssemblyInstructionList
 :
   ioAssemblyInstructionList += ![@baseline_assembly_TRIS new
@@ -107,6 +135,8 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override method @baseline_intermediate_instruction_literalOperation generateAssemblyCode
+  ??@baseline_intermediate_registerExpression unused inSTATUSregister
+  ??@bitSliceTable unused inStatusRegisterBitSliceTable
   ?!@baseline_assembly_instructionList ioAssemblyInstructionList
 :
   ioAssemblyInstructionList += ![@baseline_assembly_instruction_literalOperation new
@@ -119,6 +149,8 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override method @baseline_intermediate_pseudo_LABEL generateAssemblyCode
+  ??@baseline_intermediate_registerExpression unused inSTATUSregister
+  ??@bitSliceTable unused inStatusRegisterBitSliceTable
   ?!@baseline_assembly_instructionList ioAssemblyInstructionList
 :
   ioAssemblyInstructionList += ![@baseline_assembly_pseudo_LABEL new
@@ -129,6 +161,8 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override method @baseline_intermediate_instruction_MNOP generateAssemblyCode
+  ??@baseline_intermediate_registerExpression unused inSTATUSregister
+  ??@bitSliceTable unused inStatusRegisterBitSliceTable
   ?!@baseline_assembly_instructionList ioAssemblyInstructionList
 :
   if [mOccurrenceFactor uint] == 0 then
@@ -149,8 +183,51 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override method @baseline_intermediate_GOTO generateAssemblyCode
+  ??@baseline_intermediate_registerExpression inSTATUSregister
+  ??@bitSliceTable inStatusRegisterBitSliceTable
   ?!@baseline_assembly_instructionList ioAssemblyInstructionList
 :
+#---
+  @uint pageChangeFlags := mCurrentPage ^ mTargetPage ;
+  @uint targetPageFlags := mTargetPage ;
+  @uint idx := 0 ;
+  loop 8 while pageChangeFlags != 0 do
+    if (pageChangeFlags & 1) != 0 then
+      @uint bitIndex ;
+      if [inStatusRegisterBitSliceTable hasKey !"PA"] then
+        [inStatusRegisterBitSliceTable searchKey 
+          ![@lstring new !"PA" !mInstructionLocation]
+          ?@uint sliceIndex
+          ?@uint sliceSize
+        ] ;
+        if idx >= sliceSize then
+          error mInstructionLocation : "internal error, idx (" . idx . ") >= sliceSize (" . sliceSize . ")" ;
+        end if ;
+        bitIndex := sliceIndex + idx ;
+      elsif [inStatusRegisterBitSliceTable hasKey !"PA". idx] then
+        [inStatusRegisterBitSliceTable searchKey 
+          ![@lstring new !"PA". idx !mInstructionLocation]
+          ?@uint sliceIndex
+          ?@uint sliceSize
+        ] ;
+        if sliceSize != 1 then
+          error mInstructionLocation : "internal error: sliceSize (" . sliceSize . ") != 1" ;
+        end if ;
+        bitIndex := sliceIndex ;
+      else
+        error mInstructionLocation : "internal error, cannot solve page bit addressing" : bitIndex ;
+      end if ;
+      ioAssemblyInstructionList += ![@baseline_assembly_instruction_FB new
+        !mInstructionLocation
+        !if (targetPageFlags & 1) != 0 then [@baseline_bit_oriented_op BSF] else [@baseline_bit_oriented_op BCF] end
+        !inSTATUSregister
+        !bitIndex
+      ] ;
+    end if ;
+    pageChangeFlags := pageChangeFlags / 2 ;
+    targetPageFlags := targetPageFlags / 2 ;
+    idx := idx + 1 ;
+  end loop ;
   ioAssemblyInstructionList += ![@baseline_assembly_GOTO new
     !mInstructionLocation
     !mTargetLabel
@@ -160,6 +237,8 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override method @baseline_intermediate_CALL generateAssemblyCode
+  ??@baseline_intermediate_registerExpression unused inSTATUSregister
+  ??@bitSliceTable unused inStatusRegisterBitSliceTable
   ?!@baseline_assembly_instructionList ioAssemblyInstructionList
 :
   ioAssemblyInstructionList += ![@baseline_assembly_CALL new
@@ -171,6 +250,8 @@ end method ;
 #----------------------------------------------------*
 
 override method @baseline_intermediate_incDecRegisterInCondition generateAssemblyCode
+  ??@baseline_intermediate_registerExpression unused inSTATUSregister
+  ??@bitSliceTable unused inStatusRegisterBitSliceTable
   ?!@baseline_assembly_instructionList ioAssemblyInstructionList
 :
   ioAssemblyInstructionList += ![@baseline_assembly_incDecRegisterInCondition new
@@ -194,18 +275,19 @@ end method ;
 
 #----------------------------------------------------------------------------*
 #                                                                            *
-#               S E M A N T I C    A N A L Y S I S                           *
 #                                                                            *
 #----------------------------------------------------------------------------*
 
-routine build_baseline_intermediate_assembly_code
+routine build_baseline_assembly_code
   ??@baseline_intermediate_instructionList inGeneratedInstructionList
   ??@actualConfigurationMap inActualConfigurationMap
+  ??@baseline_intermediate_registerExpression inSTATUSregister
+  ??@bitSliceTable inStatusRegisterBitSliceTable
   ?!@baseline_assembly_instructionList ioAssemblyInstructionList
 :
 #-------------------------------- Build assembly code
   foreach inGeneratedInstructionList do
-    [mInstruction generateAssemblyCode !?ioAssemblyInstructionList] ;
+    [mInstruction generateAssemblyCode !inSTATUSregister !inStatusRegisterBitSliceTable !?ioAssemblyInstructionList] ;
   end foreach ;
 #-------------------------------- Add Configuration
   foreach inActualConfigurationMap do

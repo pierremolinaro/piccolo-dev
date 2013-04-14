@@ -107,11 +107,25 @@ abstract method @baseline_assembly_instruction generateBinaryCodeAtAddress
 
 #----------------------------------------------------------------------------*
 
+override method @baseline_assembly_pseudo_INPAGE generateBinaryCodeAtAddress
+  ??@baseline_symbolTable unused inRoutineSymbolTable
+  ?!@string ioListFileContents
+  ?!@uint ioWordAddress
+:
+  if ioWordAddress > (mPage * 512 + 512) then
+    error mRoutineName : "the routine is too large, it does not lie in page " . mPage . " (" . (ioWordAddress - (mPage * 512 + 512)) . " word(s) in excess)" ;
+  end if ;
+  emitNoCodeAtWordAddress !ioWordAddress !selfcopy !?ioListFileContents ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
 override method @baseline_assembly_pseudo_ORG generateBinaryCodeAtAddress
   ??@baseline_symbolTable unused inRoutineSymbolTable
   ?!@string ioListFileContents
   ?!@uint ioWordAddress
 :
+  ioWordAddress := mOrigin ;
   setEmitAddress !mOrigin * 2 ;
   emitNoCodeAtWordAddress !ioWordAddress !selfcopy !?ioListFileContents ;
 end method ;
@@ -208,8 +222,7 @@ override method @baseline_assembly_GOTO generateBinaryCodeAtAddress
   ?!@uint ioWordAddress
 :
 #---
-  @uint targetAddress ;
-  [inRoutineSymbolTable searchKey !mTargetLabel ?targetAddress] ;
+  [inRoutineSymbolTable searchKey !mTargetLabel ?@uint targetAddress] ;
 #---
   emitCodeAtWordAddress !0x0A00 | (targetAddress & 0x1FF) !?ioWordAddress !selfcopy !?ioListFileContents ;
 end method ;

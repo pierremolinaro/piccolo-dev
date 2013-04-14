@@ -28,7 +28,7 @@ end method ;
 override method @baseline_intermediate_pseudo_PAGE setCurrentAddress
   ?!@uint ioCurrentWordAdress
 :
-  ioCurrentWordAdress := mPage * 256 ;
+  ioCurrentWordAdress := mPage * 512 ;
 end method ;
 
 #----------------------------------------------------------------------------*
@@ -185,13 +185,13 @@ routine baseline_analysis
   end if ;
 #-------------------------------- Check page routine specification is compatible with device
   @bool needsToSavePCLATH := false ;
-  const @uint totalPageCount := ([piccoloDeviceModel->mRomSize uint] + 255) / 256 ;
+  const @uint totalPageCount := ([piccoloDeviceModel->mRomSize uint] + 511) / 512 ;
   foreach [inPiccoloModel mRoutineDefinitionList] do
     if [mPage uint] > 0 then
       needsToSavePCLATH := true ;
     end if ;
     if [mPage uint] >= totalPageCount then
-      error mPage:"invalid value (". mPage->uint . "); the device has " . totalPageCount . " 256-bytes page(s) on rom" ;
+      error mPage:"invalid value (". mPage->uint . "); the device has " . totalPageCount . " 512 word page(s) on rom" ;
     end if ;
   end foreach ;
 #-------------------------------- Order routines to place "main" routine first
@@ -253,6 +253,7 @@ routine baseline_analysis
         #--- Check and translate instructions
           intermediateInstructionList += ![@baseline_intermediate_pseudo_LABEL new !mRoutineName] ;
           handleBaselineInstructionList
+            !currentPage
             !mInstructionList
             !routineMap
             !registerTable
@@ -264,6 +265,7 @@ routine baseline_analysis
             !routineKind
             !not mIsNoReturn # Last instruction should be RETLW ?
           ;
+          intermediateInstructionList += ![@baseline_intermediate_pseudo_INPAGE new !mRoutineName !currentPage] ;
           if mIsNoReturn & continuesInSequence then
             error mRoutineName:"execution should not reach the end of a \"noreturn\" routine" ;
           end if ;
@@ -272,10 +274,10 @@ routine baseline_analysis
       currentPage ++ ;
     end loop ;
   end if ;
-#-------------------------------- Print IPIC Instruction List
+#-------------------------------- Print intermediate Instruction List
   if ([@uint errorCount] == 0) & [option piccolo_options.ouputListingFile value] then
     listFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n" ;
-    listFileContents .= "*" . ["IPIC INSTRUCTION LIST" stringByLeftAndRightPadding !77 !' '] . "*\n" ;
+    listFileContents .= "*" . ["INTERMEDIATE INSTRUCTION LIST" stringByLeftAndRightPadding !77 !' '] . "*\n" ;
     listFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n\n" ;
     listFileContents .= "Generated intermediate code:\n" ;
     listFileContents .= " Line Length Mnemonic\n" ;
@@ -293,11 +295,19 @@ routine baseline_analysis
     listFileContents .= "Code size without optimization: " . [currentAddress string] . " words.\n\n" ;
   end if ;
 #-------------------------------- Build assembly instruction list
+  const @registerExpression sr [new ![@lstring new !"STATUS" !here] ![@luint new !0 !here]] ;
+  [sr resolveBaselineAccess
+    !registerTable
+    ?@baseline_intermediate_registerExpression statusRegister
+    ?@bitSliceTable statusRegisterBitSliceTable
+  ] ;
   @baseline_assembly_instructionList assemblyInstructionList [emptyList] ;
   if [@uint errorCount] == 0 then
-    build_baseline_intermediate_assembly_code
+    build_baseline_assembly_code
       !intermediateInstructionList
       !actualConfigurationMap
+      !statusRegister
+      !statusRegisterBitSliceTable
       !?assemblyInstructionList
     ;
   end if ;
@@ -305,7 +315,7 @@ routine baseline_analysis
 #  if ([@uint errorCount] == 0) & [option piccolo_options.performOptimizations value] then
 #    perform_midrange_optimizations !?generatedInstructionList !?listFileContents ;
 #  end if ;
-##-------------------------------- Compute inter-pages JUMP and JSR
+##-------------------------------- Compute inter-pages GOTO and JUMP
 #  if [@uint errorCount] == 0 then
 #    midrange_compute_JSR_JUMP !?generatedInstructionList !?listFileContents ;
 #  end if ;

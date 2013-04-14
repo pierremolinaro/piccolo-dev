@@ -14,9 +14,14 @@ end method ;
 #-------------------------------------------------------------------------------*
 
 override method @baseline_intermediate_pseudo_PAGE print ?!@string ioListFileContents :
-  ioListFileContents .= "ORG " . [mPage * 256 hexString] ;
+  ioListFileContents .= "ORG " . [mPage * 512 hexString] ;
 end method ;
 
+#-------------------------------------------------------------------------------*
+
+override method @baseline_intermediate_pseudo_INPAGE print ?!@string ioListFileContents :
+  ioListFileContents .= "CHECK " . mRoutineName . " IN " . mPage ;
+end method ;
 
 #-------------------------------------------------------------------------------*
 
