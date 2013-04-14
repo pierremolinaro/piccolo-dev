@@ -70,7 +70,7 @@ abstract method @midrange_instruction build_midrange_ipic_instructionList
   ??@registerTable inRegisterTable
   ??@constantMap inConstantMap
   ?!@uint ioLocalLabelIndex
-  ?!@midrange_ipic_instructionList ioGeneratedInstructionList
+  ?!@midrange_intermediate_instructionList ioGeneratedInstructionList
   ?!@string ioListFileContents
   ??@uint inTotalBankCount
   ?!@uint ioCurrentBank
@@ -87,7 +87,7 @@ routine handleMidrangeInstructionList
   ??@registerTable inRegisterTable
   ??@constantMap inConstantMap
   ?!@uint ioLocalLabelIndex
-  ?!@midrange_ipic_instructionList ioGeneratedInstructionList
+  ?!@midrange_intermediate_instructionList ioGeneratedInstructionList
   ?!@string ioListFileContents
   ??@uint inTotalBankCount
   ?!@uint ioCurrentBank
@@ -124,7 +124,7 @@ override method @midrange_instruction_nobanksel build_midrange_ipic_instructionL
   ??@registerTable unused inRegisterTable
   ??@constantMap unused inConstantMap
   ?!@uint unused ioLocalLabelIndex
-  ?!@midrange_ipic_instructionList unused ioGeneratedInstructionList
+  ?!@midrange_intermediate_instructionList unused ioGeneratedInstructionList
   ?!@string unused ioListFileContents
   ??@uint unused inTotalBankCount
   ?!@uint ioCurrentBank
@@ -146,7 +146,7 @@ override method @midrange_instruction_savebank build_midrange_ipic_instructionLi
   ??@registerTable inRegisterTable
   ??@constantMap inConstantMap
   ?!@uint ioLocalLabelIndex
-  ?!@midrange_ipic_instructionList ioGeneratedInstructionList
+  ?!@midrange_intermediate_instructionList ioGeneratedInstructionList
   ?!@string ioListFileContents
   ??@uint inTotalBankCount
   ?!@uint ioCurrentBank
@@ -156,7 +156,7 @@ override method @midrange_instruction_savebank build_midrange_ipic_instructionLi
 :
 #--- Get values for STATUS register
   @registerExpression STATUS_register [new ![@lstring new !"STATUS" !here] ![@luint new !0 !here]] ;
-  @midrange_ipic_registerExpression STATUS_IPICregisterDescription ;
+  @midrange_intermediate_registerExpression STATUS_IPICregisterDescription ;
   [STATUS_register resolveMidrangeAccess
     !inTotalBankCount
     ![@uint max] # No selected bank
@@ -165,7 +165,7 @@ override method @midrange_instruction_savebank build_midrange_ipic_instructionLi
     ?*
   ] ;
 #--- Get values for register used for saving
-  @midrange_ipic_registerExpression save_IPICregisterDescription ;
+  @midrange_intermediate_registerExpression save_IPICregisterDescription ;
   [mRegister resolveMidrangeAccess
     !inTotalBankCount
     ![@uint max] # No selected bank
@@ -174,14 +174,14 @@ override method @midrange_instruction_savebank build_midrange_ipic_instructionLi
     ?*
   ] ;
 #--- Generate "SWAPF STATUS, W" instruction
-  ioGeneratedInstructionList += ![@midrange_ipic_instruction_FD new
+  ioGeneratedInstructionList += ![@midrange_intermediate_instruction_FD new
     !mInstructionLocation
     ![@midrange_instruction_FD_base_code SWAPF]
     !STATUS_IPICregisterDescription
     !true # W is destination
   ] ;
 #--- Generate "MOVWF SAVE_REG" instruction
-  ioGeneratedInstructionList += ![@midrange_ipic_instruction_F new
+  ioGeneratedInstructionList += ![@midrange_intermediate_instruction_F new
     !mInstructionLocation
     ![@midrange_F_instruction_base_code MOVWF]
     !save_IPICregisterDescription
@@ -206,14 +206,14 @@ override method @midrange_instruction_savebank build_midrange_ipic_instructionLi
     error mEndOfSaveBankInstruction:"useless saving: execution does reach the end of \"savebank\" instruction list" ;
   end if ;
 #--- Generate "SWAPF SAVE_REG, W" instruction
-  ioGeneratedInstructionList += ![@midrange_ipic_instruction_FD new
+  ioGeneratedInstructionList += ![@midrange_intermediate_instruction_FD new
     !mInstructionLocation
     ![@midrange_instruction_FD_base_code SWAPF]
     !save_IPICregisterDescription
     !true # W is destination
   ] ;
 #--- Generate "MOVWF STATUS" instruction
-  ioGeneratedInstructionList += ![@midrange_ipic_instruction_F new
+  ioGeneratedInstructionList += ![@midrange_intermediate_instruction_F new
     !mInstructionLocation
     ![@midrange_F_instruction_base_code MOVWF]
     !STATUS_IPICregisterDescription
@@ -227,7 +227,7 @@ override method @midrange_instruction_banksel build_midrange_ipic_instructionLis
   ??@registerTable inRegisterTable
   ??@constantMap unused inConstantMap
   ?!@uint unused ioLocalLabelIndex
-  ?!@midrange_ipic_instructionList ioGeneratedInstructionList
+  ?!@midrange_intermediate_instructionList ioGeneratedInstructionList
   ?!@string ioListFileContents
   ??@uint inTotalBankCount
   ?!@uint ioCurrentBank
@@ -240,7 +240,7 @@ override method @midrange_instruction_banksel build_midrange_ipic_instructionLis
   end if ;
 #---
   @registerExpression STATUS_register [new ![@lstring new !"STATUS" !here] ![@luint new !0 !here]] ;
-  @midrange_ipic_registerExpression STATUS_IPICregisterDescription ;
+  @midrange_intermediate_registerExpression STATUS_IPICregisterDescription ;
   @bitSliceTable bitSliceTable ;
   [STATUS_register resolveMidrangeAccess
     !inTotalBankCount
@@ -272,7 +272,7 @@ override method @midrange_instruction_banksel build_midrange_ipic_instructionLis
       else
         op := [@midrange_bit_oriented_op BSF] ;
       end if ;
-      ioGeneratedInstructionList += ![@midrange_ipic_instruction_FB new
+      ioGeneratedInstructionList += ![@midrange_intermediate_instruction_FB new
         !mInstructionLocation
         !op
         !STATUS_IPICregisterDescription
@@ -295,7 +295,7 @@ override method @midrange_instruction_banksel build_midrange_ipic_instructionLis
         op := [@midrange_bit_oriented_op BSF] ;
       end if ;
       if ((shiftedXorBank & 1) != 0) | not optimize then
-        ioGeneratedInstructionList += ![@midrange_ipic_instruction_FB new
+        ioGeneratedInstructionList += ![@midrange_intermediate_instruction_FB new
           !mInstructionLocation
           !op
           !STATUS_IPICregisterDescription
@@ -321,7 +321,7 @@ override method @midrange_instruction_FD build_midrange_ipic_instructionList
   ??@registerTable inRegisterTable
   ??@constantMap unused inConstantMap
   ?!@uint unused ioLocalLabelIndex
-  ?!@midrange_ipic_instructionList ioGeneratedInstructionList
+  ?!@midrange_intermediate_instructionList ioGeneratedInstructionList
   ?!@string unused ioListFileContents
   ??@uint inTotalBankCount
   ?!@uint ioCurrentBank
@@ -329,7 +329,7 @@ override method @midrange_instruction_FD build_midrange_ipic_instructionList
   ?!@bool unused ioContinuesInSequence
   ??@routineKind unused inRoutineKind
 :
-  @midrange_ipic_registerExpression IPICregisterDescription ;
+  @midrange_intermediate_registerExpression IPICregisterDescription ;
   [mRegisterExpression resolveMidrangeAccess
     !inTotalBankCount
     !ioCurrentBank
@@ -337,7 +337,7 @@ override method @midrange_instruction_FD build_midrange_ipic_instructionList
     ?IPICregisterDescription
     ?*
   ] ;
-  ioGeneratedInstructionList += ![@midrange_ipic_instruction_FD new
+  ioGeneratedInstructionList += ![@midrange_intermediate_instruction_FD new
     !mInstructionLocation
     !mInstruction_FD_base_code
     !IPICregisterDescription
@@ -352,7 +352,7 @@ override method @midrange_instruction_F build_midrange_ipic_instructionList
   ??@registerTable inRegisterTable
   ??@constantMap unused inConstantMap
   ?!@uint unused ioLocalLabelIndex
-  ?!@midrange_ipic_instructionList ioGeneratedInstructionList
+  ?!@midrange_intermediate_instructionList ioGeneratedInstructionList
   ?!@string unused ioListFileContents
   ??@uint inTotalBankCount
   ?!@uint ioCurrentBank
@@ -360,7 +360,7 @@ override method @midrange_instruction_F build_midrange_ipic_instructionList
   ?!@bool unused ioContinuesInSequence
   ??@routineKind unused inRoutineKind
 :
-  @midrange_ipic_registerExpression IPICregisterDescription ;
+  @midrange_intermediate_registerExpression IPICregisterDescription ;
   [mRegisterExpression resolveMidrangeAccess
     !inTotalBankCount
     !ioCurrentBank
@@ -368,7 +368,7 @@ override method @midrange_instruction_F build_midrange_ipic_instructionList
     ?IPICregisterDescription
     ?*
   ] ;
-  ioGeneratedInstructionList += ![@midrange_ipic_instruction_F new
+  ioGeneratedInstructionList += ![@midrange_intermediate_instruction_F new
     !mInstructionLocation
     !mFAinstruction
     !IPICregisterDescription
@@ -382,7 +382,7 @@ override method @midrange_instruction_FB build_midrange_ipic_instructionList
   ??@registerTable inRegisterTable
   ??@constantMap unused inConstantMap
   ?!@uint unused ioLocalLabelIndex
-  ?!@midrange_ipic_instructionList ioGeneratedInstructionList
+  ?!@midrange_intermediate_instructionList ioGeneratedInstructionList
   ?!@string unused ioListFileContents
   ??@uint inTotalBankCount
   ?!@uint ioCurrentBank
@@ -391,7 +391,7 @@ override method @midrange_instruction_FB build_midrange_ipic_instructionList
   ??@routineKind unused inRoutineKind
 :
   @bitSliceTable bitSliceTable ;
-  @midrange_ipic_registerExpression IPICregisterDescription ;
+  @midrange_intermediate_registerExpression IPICregisterDescription ;
   [mRegisterExpression resolveMidrangeAccess
     !inTotalBankCount
     !ioCurrentBank
@@ -404,7 +404,7 @@ override method @midrange_instruction_FB build_midrange_ipic_instructionList
     !bitSliceTable
     ?bitNumber
   ] ;
-  ioGeneratedInstructionList += ![@midrange_ipic_instruction_FB new
+  ioGeneratedInstructionList += ![@midrange_intermediate_instruction_FB new
     !mInstructionLocation
     !mBitOrientedOp
     !IPICregisterDescription
@@ -419,7 +419,7 @@ override method @midrange_instruction_JSR build_midrange_ipic_instructionList
   ??@registerTable unused inRegisterTable
   ??@constantMap unused inConstantMap
   ?!@uint unused ioLocalLabelIndex
-  ?!@midrange_ipic_instructionList ioGeneratedInstructionList
+  ?!@midrange_intermediate_instructionList ioGeneratedInstructionList
   ?!@string unused ioListFileContents
   ??@uint unused inTotalBankCount
   ?!@uint ioCurrentBank
@@ -450,7 +450,7 @@ override method @midrange_instruction_JSR build_midrange_ipic_instructionList
     ioCurrentBank := returnedBank ;
   end if ;
 #---
-  ioGeneratedInstructionList += ![@midrange_ipic_JSR new
+  ioGeneratedInstructionList += ![@midrange_intermediate_JSR new
     !mInstructionLocation
     !mTargetLabel
     ![@midrange_call_goto_bit noChange]
@@ -465,7 +465,7 @@ override method @midrange_instruction_CALL build_midrange_ipic_instructionList
   ??@registerTable unused inRegisterTable
   ??@constantMap unused inConstantMap
   ?!@uint unused ioLocalLabelIndex
-  ?!@midrange_ipic_instructionList ioGeneratedInstructionList
+  ?!@midrange_intermediate_instructionList ioGeneratedInstructionList
   ?!@string unused ioListFileContents
   ??@uint unused inTotalBankCount
   ?!@uint ioCurrentBank
@@ -496,7 +496,7 @@ override method @midrange_instruction_CALL build_midrange_ipic_instructionList
     ioCurrentBank := returnedBank ;
   end if ;
 #---
-  ioGeneratedInstructionList += ![@midrange_ipic_CALL new
+  ioGeneratedInstructionList += ![@midrange_intermediate_CALL new
     !mInstructionLocation
     !mTargetLabel
   ] ;
@@ -509,7 +509,7 @@ override method @midrange_instruction_JUMP build_midrange_ipic_instructionList
   ??@registerTable unused inRegisterTable
   ??@constantMap unused inConstantMap
   ?!@uint unused ioLocalLabelIndex
-  ?!@midrange_ipic_instructionList ioGeneratedInstructionList
+  ?!@midrange_intermediate_instructionList ioGeneratedInstructionList
   ?!@string unused ioListFileContents
   ??@uint unused inTotalBankCount
   ?!@uint ioCurrentBank
@@ -536,7 +536,7 @@ override method @midrange_instruction_JUMP build_midrange_ipic_instructionList
   end if ;
   ioContinuesInSequence := false ;
 #---
-  ioGeneratedInstructionList += ![@midrange_ipic_JUMP new
+  ioGeneratedInstructionList += ![@midrange_intermediate_JUMP new
     !mInstructionLocation
     !mTargetLabel
     ![@midrange_call_goto_bit noChange]
@@ -551,7 +551,7 @@ override method @midrange_instruction_GOTO build_midrange_ipic_instructionList
   ??@registerTable unused inRegisterTable
   ??@constantMap unused inConstantMap
   ?!@uint unused ioLocalLabelIndex
-  ?!@midrange_ipic_instructionList ioGeneratedInstructionList
+  ?!@midrange_intermediate_instructionList ioGeneratedInstructionList
   ?!@string unused ioListFileContents
   ??@uint unused inTotalBankCount
   ?!@uint ioCurrentBank
@@ -578,7 +578,7 @@ override method @midrange_instruction_GOTO build_midrange_ipic_instructionList
   end if ;
   ioContinuesInSequence := false ;
 #---
-  ioGeneratedInstructionList += ![@midrange_ipic_GOTO new
+  ioGeneratedInstructionList += ![@midrange_intermediate_GOTO new
     !mInstructionLocation
     !mTargetLabel
   ] ;
@@ -591,7 +591,7 @@ override method @midrange_instruction_CLRWDT build_midrange_ipic_instructionList
   ??@registerTable unused inRegisterTable
   ??@constantMap unused inConstantMap
   ?!@uint unused ioLocalLabelIndex
-  ?!@midrange_ipic_instructionList ioGeneratedInstructionList
+  ?!@midrange_intermediate_instructionList ioGeneratedInstructionList
   ?!@string unused ioListFileContents
   ??@uint unused inTotalBankCount
   ?!@uint unused ioCurrentBank
@@ -599,7 +599,7 @@ override method @midrange_instruction_CLRWDT build_midrange_ipic_instructionList
   ?!@bool unused ioContinuesInSequence
   ??@routineKind unused inRoutineKind
 :
-  ioGeneratedInstructionList += ![@midrange_ipic_instruction_CLRWDT new
+  ioGeneratedInstructionList += ![@midrange_intermediate_instruction_CLRWDT new
     !mInstructionLocation
   ] ;
 end method ;
@@ -611,7 +611,7 @@ override method @midrange_instruction_CLRW build_midrange_ipic_instructionList
   ??@registerTable unused inRegisterTable
   ??@constantMap unused inConstantMap
   ?!@uint unused ioLocalLabelIndex
-  ?!@midrange_ipic_instructionList ioGeneratedInstructionList
+  ?!@midrange_intermediate_instructionList ioGeneratedInstructionList
   ?!@string unused ioListFileContents
   ??@uint unused inTotalBankCount
   ?!@uint unused ioCurrentBank
@@ -619,7 +619,7 @@ override method @midrange_instruction_CLRW build_midrange_ipic_instructionList
   ?!@bool unused ioContinuesInSequence
   ??@routineKind unused inRoutineKind
 :
-  ioGeneratedInstructionList += ![@midrange_ipic_instruction_CLRW new
+  ioGeneratedInstructionList += ![@midrange_intermediate_instruction_CLRW new
     !mInstructionLocation
   ] ;
 end method ;
@@ -631,7 +631,7 @@ override method @midrange_instruction_NOP build_midrange_ipic_instructionList
   ??@registerTable unused inRegisterTable
   ??@constantMap unused inConstantMap
   ?!@uint unused ioLocalLabelIndex
-  ?!@midrange_ipic_instructionList ioGeneratedInstructionList
+  ?!@midrange_intermediate_instructionList ioGeneratedInstructionList
   ?!@string unused ioListFileContents
   ??@uint unused inTotalBankCount
   ?!@uint unused ioCurrentBank
@@ -639,7 +639,7 @@ override method @midrange_instruction_NOP build_midrange_ipic_instructionList
   ?!@bool unused ioContinuesInSequence
   ??@routineKind unused inRoutineKind
 :
-  ioGeneratedInstructionList += ![@midrange_ipic_instruction_NOP new
+  ioGeneratedInstructionList += ![@midrange_intermediate_instruction_NOP new
     !mInstructionLocation
   ] ;
 end method ;
@@ -651,7 +651,7 @@ override method @midrange_instruction_SLEEP build_midrange_ipic_instructionList
   ??@registerTable unused inRegisterTable
   ??@constantMap unused inConstantMap
   ?!@uint unused ioLocalLabelIndex
-  ?!@midrange_ipic_instructionList ioGeneratedInstructionList
+  ?!@midrange_intermediate_instructionList ioGeneratedInstructionList
   ?!@string unused ioListFileContents
   ??@uint unused inTotalBankCount
   ?!@uint unused ioCurrentBank
@@ -659,7 +659,7 @@ override method @midrange_instruction_SLEEP build_midrange_ipic_instructionList
   ?!@bool unused ioContinuesInSequence
   ??@routineKind unused inRoutineKind
 :
-  ioGeneratedInstructionList += ![@midrange_ipic_instruction_SLEEP new
+  ioGeneratedInstructionList += ![@midrange_intermediate_instruction_SLEEP new
     !mInstructionLocation
   ] ;
 end method ;
@@ -671,7 +671,7 @@ override method @midrange_instruction_literalOperation build_midrange_ipic_instr
   ??@registerTable inRegisterTable
   ??@constantMap inConstantMap
   ?!@uint unused ioLocalLabelIndex
-  ?!@midrange_ipic_instructionList ioGeneratedInstructionList
+  ?!@midrange_intermediate_instructionList ioGeneratedInstructionList
   ?!@string unused ioListFileContents
   ??@uint unused inTotalBankCount
   ?!@uint unused ioCurrentBank
@@ -685,7 +685,7 @@ override method @midrange_instruction_literalOperation build_midrange_ipic_instr
      error mInstructionLocation:"immediate value is evaluated as " . [result string] . " (should be betwween -128 and 255)" ;
    end if ;
 #---  
-  ioGeneratedInstructionList += ![@midrange_ipic_instruction_literalOperation new
+  ioGeneratedInstructionList += ![@midrange_intermediate_instruction_literalOperation new
     !mInstructionLocation
     !mLiteralInstruction
     ![result & 0x000000FFS uint]
@@ -699,7 +699,7 @@ override method @midrange_instruction_MNOP build_midrange_ipic_instructionList
   ??@registerTable unused inRegisterTable
   ??@constantMap unused inConstantMap
   ?!@uint unused ioLocalLabelIndex
-  ?!@midrange_ipic_instructionList ioGeneratedInstructionList
+  ?!@midrange_intermediate_instructionList ioGeneratedInstructionList
   ?!@string unused ioListFileContents
   ??@uint unused inTotalBankCount
   ?!@uint unused ioCurrentBank
@@ -712,7 +712,7 @@ override method @midrange_instruction_MNOP build_midrange_ipic_instructionList
     warning mOccurrenceFactor:"occurrence argument is zero: no generated code" ;
   end if ;
 #---
-  ioGeneratedInstructionList += ![@midrange_ipic_instruction_MNOP new
+  ioGeneratedInstructionList += ![@midrange_intermediate_instruction_MNOP new
     !mInstructionLocation
     !mOccurrenceFactor
   ] ;
@@ -725,7 +725,7 @@ override method @midrange_instruction_FOREVER build_midrange_ipic_instructionLis
   ??@registerTable inRegisterTable
   ??@constantMap inConstantMap
   ?!@uint ioLocalLabelIndex
-  ?!@midrange_ipic_instructionList ioGeneratedInstructionList
+  ?!@midrange_intermediate_instructionList ioGeneratedInstructionList
   ?!@string ioListFileContents
   ??@uint inTotalBankCount
   ?!@uint ioCurrentBank
@@ -744,7 +744,7 @@ override method @midrange_instruction_FOREVER build_midrange_ipic_instructionLis
   @uint finalBank := ioCurrentBank ;
   @string label0 := "_label_" . [ioLocalLabelIndex string] ; 
   ioLocalLabelIndex ++ ;
-  ioGeneratedInstructionList += ![@midrange_ipic_pseudo_LABEL new ![@lstring new !label0 !mInstructionLocation]] ;
+  ioGeneratedInstructionList += ![@midrange_intermediate_pseudo_LABEL new ![@lstring new !label0 !mInstructionLocation]] ;
   handleMidrangeInstructionList
     !mInstructionList 
     !inRoutineMap
@@ -763,7 +763,7 @@ override method @midrange_instruction_FOREVER build_midrange_ipic_instructionLis
     error mEndOfInstructionList:"instruction list does not leave bank selection unchanged";
   end if ;
 #--- Generate JUMP to loop start
-  ioGeneratedInstructionList += ![@midrange_ipic_GOTO new
+  ioGeneratedInstructionList += ![@midrange_intermediate_GOTO new
     !mInstructionLocation
     ![@lstring new !label0 !mInstructionLocation]
   ] ;
@@ -778,7 +778,7 @@ override method @midrange_instruction_IF_BitTest build_midrange_ipic_instruction
   ??@registerTable inRegisterTable
   ??@constantMap inConstantMap
   ?!@uint ioLocalLabelIndex
-  ?!@midrange_ipic_instructionList ioGeneratedInstructionList
+  ?!@midrange_intermediate_instructionList ioGeneratedInstructionList
   ?!@string ioListFileContents
   ??@uint inTotalBankCount
   ?!@uint ioCurrentBank
@@ -787,7 +787,7 @@ override method @midrange_instruction_IF_BitTest build_midrange_ipic_instruction
   ??@routineKind inRoutineKind
 :
   @bitSliceTable bitSliceTable ;
-  @midrange_ipic_registerExpression IPICregisterDescription ;
+  @midrange_intermediate_registerExpression IPICregisterDescription ;
   [mRegisterExpression resolveMidrangeAccess
     !inTotalBankCount
     !ioCurrentBank
@@ -800,7 +800,7 @@ override method @midrange_instruction_IF_BitTest build_midrange_ipic_instruction
     !bitSliceTable
     ?bitNumber
   ] ;
-  ioGeneratedInstructionList += ![@midrange_ipic_instruction_BitTestSkip new
+  ioGeneratedInstructionList += ![@midrange_intermediate_instruction_BitTestSkip new
     !mInstructionLocation
     !mSkipIfSet
     !IPICregisterDescription
@@ -833,7 +833,7 @@ abstract method @midrange_conditionExpression buildIPICinstructionForCondition
   ??@bool inComplementaryBranch
   ??@location inInstructionLocation
   ??@string inTargetLabel
-  ?!@midrange_ipic_instructionList ioGeneratedInstructionList
+  ?!@midrange_intermediate_instructionList ioGeneratedInstructionList
   ?!@string unused ioListFileContents
 ;
 
@@ -854,10 +854,10 @@ override method @midrange_incDecRegisterInCondition buildIPICinstructionForCondi
   ??@bool inComplementaryBranch
   ??@location inInstructionLocation
   ??@string inTargetLabel
-  ?!@midrange_ipic_instructionList ioGeneratedInstructionList
+  ?!@midrange_intermediate_instructionList ioGeneratedInstructionList
   ?!@string unused ioListFileContents
 :
-  @midrange_ipic_registerExpression IPICregisterDescription ;
+  @midrange_intermediate_registerExpression IPICregisterDescription ;
   [mRegisterExpression resolveMidrangeAccess
     !inTotalBankCount
     !inCurrentBank
@@ -866,7 +866,7 @@ override method @midrange_incDecRegisterInCondition buildIPICinstructionForCondi
     ?*
   ] ;
 #---
-  ioGeneratedInstructionList += ![@midrange_ipic_incDecRegisterInCondition new
+  ioGeneratedInstructionList += ![@midrange_intermediate_incDecRegisterInCondition new
     !inInstructionLocation
     !IPICregisterDescription
     !inTargetLabel
@@ -899,7 +899,7 @@ override method @midrange_negateCondition buildIPICinstructionForCondition
   ??@bool inComplementaryBranch
   ??@location inInstructionLocation
   ??@string inTargetLabel
-  ?!@midrange_ipic_instructionList ioGeneratedInstructionList
+  ?!@midrange_intermediate_instructionList ioGeneratedInstructionList
   ?!@string ioListFileContents
 :
   [mCondition buildIPICinstructionForCondition
@@ -937,7 +937,7 @@ override method @midrange_andCondition buildIPICinstructionForCondition
   ??@bool inComplementaryBranch
   ??@location inInstructionLocation
   ??@string inTargetLabel
-  ?!@midrange_ipic_instructionList ioGeneratedInstructionList
+  ?!@midrange_intermediate_instructionList ioGeneratedInstructionList
   ?!@string ioListFileContents
 :
   if inComplementaryBranch then
@@ -987,7 +987,7 @@ override method @midrange_andCondition buildIPICinstructionForCondition
       !?ioGeneratedInstructionList
       !?ioListFileContents
     ] ;
-    ioGeneratedInstructionList += ![@midrange_ipic_pseudo_LABEL new ![@lstring new !label0 !inInstructionLocation]] ;
+    ioGeneratedInstructionList += ![@midrange_intermediate_pseudo_LABEL new ![@lstring new !label0 !inInstructionLocation]] ;
   end if ;
 end method ;
 
@@ -1020,11 +1020,11 @@ override method @midrange_bitTest_in_structured_if_condition buildIPICinstructio
   ??@bool inComplementaryBranch
   ??@location inInstructionLocation
   ??@string inTargetLabel
-  ?!@midrange_ipic_instructionList ioGeneratedInstructionList
+  ?!@midrange_intermediate_instructionList ioGeneratedInstructionList
   ?!@string unused ioListFileContents
 :
   @bitSliceTable bitSliceTable ;
-  @midrange_ipic_registerExpression IPICregisterDescription ;
+  @midrange_intermediate_registerExpression IPICregisterDescription ;
   [mRegisterExpression resolveMidrangeAccess
     !inTotalBankCount
     !inCurrentBank
@@ -1037,13 +1037,13 @@ override method @midrange_bitTest_in_structured_if_condition buildIPICinstructio
     !bitSliceTable
     ?bitNumber
   ] ;
-  ioGeneratedInstructionList += ![@midrange_ipic_instruction_BitTestSkip new
+  ioGeneratedInstructionList += ![@midrange_intermediate_instruction_BitTestSkip new
     !inInstructionLocation
     !mBTFSSinstruction ^ inComplementaryBranch
     !IPICregisterDescription
     !bitNumber
   ] ;
-  ioGeneratedInstructionList += ![@midrange_ipic_JUMP new
+  ioGeneratedInstructionList += ![@midrange_intermediate_JUMP new
     !inInstructionLocation
     ![@lstring new !inTargetLabel
     !inInstructionLocation]
@@ -1068,7 +1068,7 @@ override method @midrange_instruction_structured_if build_midrange_ipic_instruct
   ??@registerTable inRegisterTable
   ??@constantMap inConstantMap
   ?!@uint ioLocalLabelIndex
-  ?!@midrange_ipic_instructionList ioGeneratedInstructionList
+  ?!@midrange_intermediate_instructionList ioGeneratedInstructionList
   ?!@string ioListFileContents
   ??@uint inTotalBankCount
   ?!@uint ioCurrentBank
@@ -1134,9 +1134,9 @@ override method @midrange_instruction_structured_if build_midrange_ipic_instruct
     ;
   #--- 'then' instructions
     if [mThenInstructionList length] > 0 then
-      ioGeneratedInstructionList += ![@midrange_ipic_GOTO new !mInstructionLocation ![@lstring new !label_endOfIfinstruction !mInstructionLocation]] ;
+      ioGeneratedInstructionList += ![@midrange_intermediate_GOTO new !mInstructionLocation ![@lstring new !label_endOfIfinstruction !mInstructionLocation]] ;
     end if ;
-    ioGeneratedInstructionList += ![@midrange_ipic_pseudo_LABEL new ![@lstring new !label_nextCondition !mInstructionLocation]] ;
+    ioGeneratedInstructionList += ![@midrange_intermediate_pseudo_LABEL new ![@lstring new !label_nextCondition !mInstructionLocation]] ;
     handleMidrangeInstructionList 
       !mThenInstructionList
       !inRoutineMap
@@ -1152,7 +1152,7 @@ override method @midrange_instruction_structured_if build_midrange_ipic_instruct
       !inRoutineKind
      ;
     if [mThenInstructionList length] > 0 then
-      ioGeneratedInstructionList += ![@midrange_ipic_pseudo_LABEL new ![@lstring new !label_endOfIfinstruction !mInstructionLocation]] ;
+      ioGeneratedInstructionList += ![@midrange_intermediate_pseudo_LABEL new ![@lstring new !label_endOfIfinstruction !mInstructionLocation]] ;
     end if ;
   else
   #---
@@ -1187,9 +1187,9 @@ override method @midrange_instruction_structured_if build_midrange_ipic_instruct
     ;
   #--- 'else' instructions
     if [mElseInstructionList length] > 0 then
-      ioGeneratedInstructionList += ![@midrange_ipic_GOTO new !mInstructionLocation ![@lstring new !label_endOfIfinstruction !mInstructionLocation]] ;
+      ioGeneratedInstructionList += ![@midrange_intermediate_GOTO new !mInstructionLocation ![@lstring new !label_endOfIfinstruction !mInstructionLocation]] ;
     end if ;
-    ioGeneratedInstructionList += ![@midrange_ipic_pseudo_LABEL new ![@lstring new !label_nextCondition !mInstructionLocation]] ;
+    ioGeneratedInstructionList += ![@midrange_intermediate_pseudo_LABEL new ![@lstring new !label_nextCondition !mInstructionLocation]] ;
     handleMidrangeInstructionList
       !mElseInstructionList
       !inRoutineMap
@@ -1205,7 +1205,7 @@ override method @midrange_instruction_structured_if build_midrange_ipic_instruct
       !inRoutineKind
     ;
     if [mElseInstructionList length] > 0 then
-      ioGeneratedInstructionList += ![@midrange_ipic_pseudo_LABEL new ![@lstring new !label_endOfIfinstruction !mInstructionLocation]] ;
+      ioGeneratedInstructionList += ![@midrange_intermediate_pseudo_LABEL new ![@lstring new !label_endOfIfinstruction !mInstructionLocation]] ;
     end if ;
   end if ;
   if elseBranchFinalBank == thenBranchFinalBank then
@@ -1225,7 +1225,7 @@ override method @midrange_instruction_do_while build_midrange_ipic_instructionLi
   ??@registerTable inRegisterTable
   ??@constantMap inConstantMap
   ?!@uint ioLocalLabelIndex
-  ?!@midrange_ipic_instructionList ioGeneratedInstructionList
+  ?!@midrange_intermediate_instructionList ioGeneratedInstructionList
   ?!@string ioListFileContents
   ??@uint inTotalBankCount
   ?!@uint ioCurrentBank
@@ -1236,7 +1236,7 @@ override method @midrange_instruction_do_while build_midrange_ipic_instructionLi
 #--- Generate label
   @string labelInstructionBegin := "_label_" . [ioLocalLabelIndex string] ; ioLocalLabelIndex ++ ;
 #--- Define label
-  ioGeneratedInstructionList += ![@midrange_ipic_pseudo_LABEL new ![@lstring new !labelInstructionBegin !mInstructionLocation]] ;
+  ioGeneratedInstructionList += ![@midrange_intermediate_pseudo_LABEL new ![@lstring new !labelInstructionBegin !mInstructionLocation]] ;
 #--- Repeated instructions
   @uint finalBank := ioCurrentBank ;
   handleMidrangeInstructionList
@@ -1247,7 +1247,7 @@ override method @midrange_instruction_do_while build_midrange_ipic_instructionLi
     !?ioLocalLabelIndex
     !?ioGeneratedInstructionList
     !?ioListFileContents
-      !inTotalBankCount
+    !inTotalBankCount
     !?finalBank
     !inShouldPreserveBank
     ?ioContinuesInSequence
@@ -1301,8 +1301,8 @@ override method @midrange_instruction_do_while build_midrange_ipic_instructionLi
       if ioCurrentBank != bank then
         error mEndOfPartLocation:"This branch does not leave bank selection value unchanged";
       end if ;
-      ioGeneratedInstructionList += ![@midrange_ipic_GOTO new !mInstructionLocation ![@lstring new !labelInstructionBegin !mInstructionLocation]] ;
-      ioGeneratedInstructionList += ![@midrange_ipic_pseudo_LABEL new ![@lstring new !nextBranchLabel !mInstructionLocation]] ;
+      ioGeneratedInstructionList += ![@midrange_intermediate_GOTO new !mInstructionLocation ![@lstring new !labelInstructionBegin !mInstructionLocation]] ;
+      ioGeneratedInstructionList += ![@midrange_intermediate_pseudo_LABEL new ![@lstring new !nextBranchLabel !mInstructionLocation]] ;
     end if ;
   end foreach ;
 end method ;
@@ -1314,7 +1314,7 @@ override method @midrange_instruction_IF_IncDec build_midrange_ipic_instructionL
   ??@registerTable inRegisterTable
   ??@constantMap inConstantMap
   ?!@uint ioLocalLabelIndex
-  ?!@midrange_ipic_instructionList ioGeneratedInstructionList
+  ?!@midrange_intermediate_instructionList ioGeneratedInstructionList
   ?!@string ioListFileContents
   ??@uint inTotalBankCount
   ?!@uint ioCurrentBank
@@ -1330,7 +1330,7 @@ override method @midrange_instruction_IF_IncDec build_midrange_ipic_instructionL
     baseCode := [@midrange_instruction_FD_base_code DECFSZ] ;
   end if ;
 #---
-  @midrange_ipic_registerExpression IPICregisterDescription ;
+  @midrange_intermediate_registerExpression IPICregisterDescription ;
   [mRegisterExpression resolveMidrangeAccess
     !inTotalBankCount
     !ioCurrentBank
@@ -1339,7 +1339,7 @@ override method @midrange_instruction_IF_IncDec build_midrange_ipic_instructionL
     ?*
   ] ;
 #---
-  ioGeneratedInstructionList += ![@midrange_ipic_instruction_FD new
+  ioGeneratedInstructionList += ![@midrange_intermediate_instruction_FD new
     !mInstructionLocation
     !baseCode
     !IPICregisterDescription
@@ -1374,7 +1374,7 @@ routine generateInterruptRoutineForControllerWithSharedRAM
   ??@routineMap inRoutineMap
   ??@constantMap inConstantMap
   ??@location inEndOfInterruptLocation
-  ?!@midrange_ipic_instructionList ioGeneratedInstructionList
+  ?!@midrange_intermediate_instructionList ioGeneratedInstructionList
   ?!@uint ioLocalLabelIndex
   ?!@string ioGenerationOptimizationMessages
 :
@@ -1409,7 +1409,7 @@ routine generateInterruptRoutineForControllerWithSharedRAM
 #--- Generate save context instructions
   if [@uint errorCount] == 0 then
     @registerExpression first_register [new ! inFirstSaveRegister ![@luint new !0 !here]] ;
-    @midrange_ipic_registerExpression first_IPICregisterDescription ;
+    @midrange_intermediate_registerExpression first_IPICregisterDescription ;
     [first_register resolveMidrangeAccess
       !inTotalBankCount
       !0
@@ -1418,7 +1418,7 @@ routine generateInterruptRoutineForControllerWithSharedRAM
       ?*
     ] ;
     @registerExpression second_register [new ! inSecondSaveRegister ![@luint new !0 !here]] ;
-    @midrange_ipic_registerExpression second_IPICregisterDescription ;
+    @midrange_intermediate_registerExpression second_IPICregisterDescription ;
     [second_register resolveMidrangeAccess
       !inTotalBankCount
       ![@uint max]
@@ -1428,7 +1428,7 @@ routine generateInterruptRoutineForControllerWithSharedRAM
     ] ;
   #--- Get values for STATUS register
     @registerExpression STATUS_register [new ![@lstring new !"STATUS" !here] ![@luint new !0 !here]] ;
-    @midrange_ipic_registerExpression STATUS_IPICregisterDescription ;
+    @midrange_intermediate_registerExpression STATUS_IPICregisterDescription ;
     [STATUS_register resolveMidrangeAccess
       !inTotalBankCount
       ![@uint max]
@@ -1436,13 +1436,13 @@ routine generateInterruptRoutineForControllerWithSharedRAM
       ?STATUS_IPICregisterDescription
       ?*
     ] ;
-    ioGeneratedInstructionList += ![@midrange_ipic_instruction_F new !here ![@midrange_F_instruction_base_code MOVWF] !second_IPICregisterDescription] ;
-    ioGeneratedInstructionList += ![@midrange_ipic_instruction_FD new !here ![@midrange_instruction_FD_base_code SWAPF] !STATUS_IPICregisterDescription !true] ;
-    ioGeneratedInstructionList += ![@midrange_ipic_instruction_F new !here ![@midrange_F_instruction_base_code CLRF] !STATUS_IPICregisterDescription] ;
-    ioGeneratedInstructionList += ![@midrange_ipic_instruction_F new !here ![@midrange_F_instruction_base_code MOVWF] !first_IPICregisterDescription] ;
+    ioGeneratedInstructionList += ![@midrange_intermediate_instruction_F new !here ![@midrange_F_instruction_base_code MOVWF] !second_IPICregisterDescription] ;
+    ioGeneratedInstructionList += ![@midrange_intermediate_instruction_FD new !here ![@midrange_instruction_FD_base_code SWAPF] !STATUS_IPICregisterDescription !true] ;
+    ioGeneratedInstructionList += ![@midrange_intermediate_instruction_F new !here ![@midrange_F_instruction_base_code CLRF] !STATUS_IPICregisterDescription] ;
+    ioGeneratedInstructionList += ![@midrange_intermediate_instruction_F new !here ![@midrange_F_instruction_base_code MOVWF] !first_IPICregisterDescription] ;
     if inNeedsToSavePCLATH then
       @registerExpression first_register_second_byte [new ! inFirstSaveRegister ![@luint new !1 !here]] ;
-      @midrange_ipic_registerExpression first_var_second_byte_IPICregisterDescription ;
+      @midrange_intermediate_registerExpression first_var_second_byte_IPICregisterDescription ;
       [first_register_second_byte resolveMidrangeAccess
         !inTotalBankCount
         !0
@@ -1452,7 +1452,7 @@ routine generateInterruptRoutineForControllerWithSharedRAM
       ] ;
     #--- Get values for PCLATH register
       @registerExpression PCLATH_register [new ![@lstring new !"PCLATH" !here] ![@luint new !0 !here]] ;
-      @midrange_ipic_registerExpression PCLATH_IPICregisterDescription ;
+      @midrange_intermediate_registerExpression PCLATH_IPICregisterDescription ;
       [PCLATH_register resolveMidrangeAccess
         !inTotalBankCount
         ![@uint max]
@@ -1460,9 +1460,9 @@ routine generateInterruptRoutineForControllerWithSharedRAM
         ?PCLATH_IPICregisterDescription
         ?*
       ] ;
-      ioGeneratedInstructionList += ![@midrange_ipic_instruction_FD new !here ![@midrange_instruction_FD_base_code MOVF] !PCLATH_IPICregisterDescription !true] ;
-      ioGeneratedInstructionList += ![@midrange_ipic_instruction_F new !here ![@midrange_F_instruction_base_code MOVWF] !first_var_second_byte_IPICregisterDescription] ;
-      ioGeneratedInstructionList += ![@midrange_ipic_instruction_F new !here ![@midrange_F_instruction_base_code CLRF] !PCLATH_IPICregisterDescription] ;
+      ioGeneratedInstructionList += ![@midrange_intermediate_instruction_FD new !here ![@midrange_instruction_FD_base_code MOVF] !PCLATH_IPICregisterDescription !true] ;
+      ioGeneratedInstructionList += ![@midrange_intermediate_instruction_F new !here ![@midrange_F_instruction_base_code MOVWF] !first_var_second_byte_IPICregisterDescription] ;
+      ioGeneratedInstructionList += ![@midrange_intermediate_instruction_F new !here ![@midrange_F_instruction_base_code CLRF] !PCLATH_IPICregisterDescription] ;
     end if ;
   #--- Parse instruction list
     @bool continuesInSequence ;
@@ -1486,7 +1486,7 @@ routine generateInterruptRoutineForControllerWithSharedRAM
     end if ;
     if inNeedsToSavePCLATH then
       @registerExpression first_register_second_byte [new ! inFirstSaveRegister ![@luint new !1 !here]] ;
-      @midrange_ipic_registerExpression first_var_second_byte_IPICregisterDescription ;
+      @midrange_intermediate_registerExpression first_var_second_byte_IPICregisterDescription ;
       [first_register_second_byte resolveMidrangeAccess
         !inTotalBankCount
         !0
@@ -1496,7 +1496,7 @@ routine generateInterruptRoutineForControllerWithSharedRAM
       ] ;
     #--- Get values for PCLATH register
       @registerExpression PCLATH_register [new ![@lstring new !"PCLATH" !here] ![@luint new !0 !here]] ;
-      @midrange_ipic_registerExpression PCLATH_IPICregisterDescription ;
+      @midrange_intermediate_registerExpression PCLATH_IPICregisterDescription ;
       [PCLATH_register resolveMidrangeAccess
         !inTotalBankCount
         ![@uint max]
@@ -1504,16 +1504,16 @@ routine generateInterruptRoutineForControllerWithSharedRAM
         ?PCLATH_IPICregisterDescription
         ?*
       ] ;
-      ioGeneratedInstructionList += ![@midrange_ipic_instruction_FD new !here ![@midrange_instruction_FD_base_code MOVF] !first_var_second_byte_IPICregisterDescription !true] ;
-      ioGeneratedInstructionList += ![@midrange_ipic_instruction_F new !here ![@midrange_F_instruction_base_code MOVWF] !PCLATH_IPICregisterDescription] ;
+      ioGeneratedInstructionList += ![@midrange_intermediate_instruction_FD new !here ![@midrange_instruction_FD_base_code MOVF] !first_var_second_byte_IPICregisterDescription !true] ;
+      ioGeneratedInstructionList += ![@midrange_intermediate_instruction_F new !here ![@midrange_F_instruction_base_code MOVWF] !PCLATH_IPICregisterDescription] ;
     end if ;
   #--- Restore context
-    ioGeneratedInstructionList += ![@midrange_ipic_instruction_FD new !here ![@midrange_instruction_FD_base_code SWAPF] !first_IPICregisterDescription !true] ;
-    ioGeneratedInstructionList += ![@midrange_ipic_instruction_F new !here ![@midrange_F_instruction_base_code MOVWF] ! STATUS_IPICregisterDescription] ;
-    ioGeneratedInstructionList += ![@midrange_ipic_instruction_FD new !here ![@midrange_instruction_FD_base_code SWAPF] !second_IPICregisterDescription !false] ;
-    ioGeneratedInstructionList += ![@midrange_ipic_instruction_FD new !here ![@midrange_instruction_FD_base_code SWAPF] !second_IPICregisterDescription !true] ;
+    ioGeneratedInstructionList += ![@midrange_intermediate_instruction_FD new !here ![@midrange_instruction_FD_base_code SWAPF] !first_IPICregisterDescription !true] ;
+    ioGeneratedInstructionList += ![@midrange_intermediate_instruction_F new !here ![@midrange_F_instruction_base_code MOVWF] ! STATUS_IPICregisterDescription] ;
+    ioGeneratedInstructionList += ![@midrange_intermediate_instruction_FD new !here ![@midrange_instruction_FD_base_code SWAPF] !second_IPICregisterDescription !false] ;
+    ioGeneratedInstructionList += ![@midrange_intermediate_instruction_FD new !here ![@midrange_instruction_FD_base_code SWAPF] !second_IPICregisterDescription !true] ;
   #--- Add REFFIE
-    ioGeneratedInstructionList += ![@midrange_ipic_instruction_RETFIE new !here] ;
+    ioGeneratedInstructionList += ![@midrange_intermediate_instruction_RETFIE new !here] ;
   end if ;
 end routine ;
 
@@ -1529,7 +1529,7 @@ routine generateInterruptRoutineForControllerWithoutSharedRAM
   ??@routineMap inRoutineMap
   ??@constantMap inConstantMap
   ??@location inEndOfInterruptLocation
-  ?!@midrange_ipic_instructionList ioGeneratedInstructionList
+  ?!@midrange_intermediate_instructionList ioGeneratedInstructionList
   ?!@uint ioLocalLabelIndex
   ?!@string ioGenerationOptimizationMessages
 :
@@ -1579,7 +1579,7 @@ routine generateInterruptRoutineForControllerWithoutSharedRAM
 #--- Generate save context instructions
   if [@uint errorCount] == 0 then
     @registerExpression first_register [new !inFirstSaveRegister ![@luint new !0 !here]] ;
-    @midrange_ipic_registerExpression first_IPICregisterDescription ;
+    @midrange_intermediate_registerExpression first_IPICregisterDescription ;
     [first_register resolveMidrangeAccess
       !inTotalBankCount
       !0
@@ -1588,7 +1588,7 @@ routine generateInterruptRoutineForControllerWithoutSharedRAM
       ?*
     ] ;
     @registerExpression first_register_second_byte [new !inFirstSaveRegister ![@luint new !1 !here]] ;
-    @midrange_ipic_registerExpression first_reg_second_byte_IPICregisterDescription ;
+    @midrange_intermediate_registerExpression first_reg_second_byte_IPICregisterDescription ;
     [first_register_second_byte resolveMidrangeAccess
       !inTotalBankCount
       !0
@@ -1598,7 +1598,7 @@ routine generateInterruptRoutineForControllerWithoutSharedRAM
     ] ;
   #--- Get values for STATUS register
     @registerExpression STATUS_register [new ![@lstring new !"STATUS" !here] ![@luint new !0 !here]] ;
-    @midrange_ipic_registerExpression STATUS_IPICregisterDescription ;
+    @midrange_intermediate_registerExpression STATUS_IPICregisterDescription ;
     [STATUS_register resolveMidrangeAccess
       !inTotalBankCount
       ![@uint max]
@@ -1606,13 +1606,13 @@ routine generateInterruptRoutineForControllerWithoutSharedRAM
       ?STATUS_IPICregisterDescription
       ?*
     ] ;
-    ioGeneratedInstructionList += ![@midrange_ipic_instruction_F new !here ![@midrange_F_instruction_base_code MOVWF] ! first_IPICregisterDescription] ;
-    ioGeneratedInstructionList += ![@midrange_ipic_instruction_FD new !here ![@midrange_instruction_FD_base_code SWAPF] !STATUS_IPICregisterDescription !true] ;
-    ioGeneratedInstructionList += ![@midrange_ipic_instruction_F new !here ![@midrange_F_instruction_base_code CLRF] !STATUS_IPICregisterDescription] ;
-    ioGeneratedInstructionList += ![@midrange_ipic_instruction_F new !here ![@midrange_F_instruction_base_code MOVWF] ! first_reg_second_byte_IPICregisterDescription] ;
+    ioGeneratedInstructionList += ![@midrange_intermediate_instruction_F new !here ![@midrange_F_instruction_base_code MOVWF] ! first_IPICregisterDescription] ;
+    ioGeneratedInstructionList += ![@midrange_intermediate_instruction_FD new !here ![@midrange_instruction_FD_base_code SWAPF] !STATUS_IPICregisterDescription !true] ;
+    ioGeneratedInstructionList += ![@midrange_intermediate_instruction_F new !here ![@midrange_F_instruction_base_code CLRF] !STATUS_IPICregisterDescription] ;
+    ioGeneratedInstructionList += ![@midrange_intermediate_instruction_F new !here ![@midrange_F_instruction_base_code MOVWF] ! first_reg_second_byte_IPICregisterDescription] ;
     if inNeedsToSavePCLATH then
       @registerExpression first_register_third_byte [new !inFirstSaveRegister ![@luint new !2 !here]] ;
-      @midrange_ipic_registerExpression first_var_third_byte_IPICregisterDescription ;
+      @midrange_intermediate_registerExpression first_var_third_byte_IPICregisterDescription ;
       [first_register_third_byte resolveMidrangeAccess
         !inTotalBankCount
         !0
@@ -1622,7 +1622,7 @@ routine generateInterruptRoutineForControllerWithoutSharedRAM
       ] ;
     #--- Get values for PCLATH register
       @registerExpression PCLATH_register [new ![@lstring new !"PCLATH" !here] ![@luint new !0 !here]] ;
-      @midrange_ipic_registerExpression PCLATH_IPICregisterDescription ;
+      @midrange_intermediate_registerExpression PCLATH_IPICregisterDescription ;
       [PCLATH_register resolveMidrangeAccess
         !inTotalBankCount
         ![@uint max]
@@ -1630,9 +1630,9 @@ routine generateInterruptRoutineForControllerWithoutSharedRAM
         ?PCLATH_IPICregisterDescription
         ?*
       ] ;
-      ioGeneratedInstructionList += ![@midrange_ipic_instruction_FD new !here ![@midrange_instruction_FD_base_code MOVF] !PCLATH_IPICregisterDescription !true] ;
-      ioGeneratedInstructionList += ![@midrange_ipic_instruction_F new !here ![@midrange_F_instruction_base_code MOVWF] !first_var_third_byte_IPICregisterDescription] ;
-      ioGeneratedInstructionList += ![@midrange_ipic_instruction_F new !here ![@midrange_F_instruction_base_code CLRF] !PCLATH_IPICregisterDescription] ;
+      ioGeneratedInstructionList += ![@midrange_intermediate_instruction_FD new !here ![@midrange_instruction_FD_base_code MOVF] !PCLATH_IPICregisterDescription !true] ;
+      ioGeneratedInstructionList += ![@midrange_intermediate_instruction_F new !here ![@midrange_F_instruction_base_code MOVWF] !first_var_third_byte_IPICregisterDescription] ;
+      ioGeneratedInstructionList += ![@midrange_intermediate_instruction_F new !here ![@midrange_F_instruction_base_code CLRF] !PCLATH_IPICregisterDescription] ;
     end if ;
   #--- Parse instruction list
     @bool continuesInSequence ;
@@ -1656,7 +1656,7 @@ routine generateInterruptRoutineForControllerWithoutSharedRAM
     end if ;
     if inNeedsToSavePCLATH then
       @registerExpression first_register_third_byte [new !inFirstSaveRegister ![@luint new !2 !here]] ;
-      @midrange_ipic_registerExpression first_var_second_byte_IPICregisterDescription ;
+      @midrange_intermediate_registerExpression first_var_second_byte_IPICregisterDescription ;
       [first_register_third_byte resolveMidrangeAccess
         !inTotalBankCount
         !0
@@ -1666,7 +1666,7 @@ routine generateInterruptRoutineForControllerWithoutSharedRAM
       ] ;
     #--- Get values for PCLATH register
       @registerExpression PCLATH_register [new ![@lstring new !"PCLATH" !here] ![@luint new !0 !here]] ;
-      @midrange_ipic_registerExpression PCLATH_IPICregisterDescription ;
+      @midrange_intermediate_registerExpression PCLATH_IPICregisterDescription ;
       [PCLATH_register resolveMidrangeAccess
         !inTotalBankCount
         ![@uint max]
@@ -1674,16 +1674,16 @@ routine generateInterruptRoutineForControllerWithoutSharedRAM
         ?PCLATH_IPICregisterDescription
         ?*
       ] ;
-      ioGeneratedInstructionList += ![@midrange_ipic_instruction_FD new !here ![@midrange_instruction_FD_base_code MOVF] !first_var_second_byte_IPICregisterDescription !true] ;
-      ioGeneratedInstructionList += ![@midrange_ipic_instruction_F new !here ![@midrange_F_instruction_base_code MOVWF] !PCLATH_IPICregisterDescription] ;
+      ioGeneratedInstructionList += ![@midrange_intermediate_instruction_FD new !here ![@midrange_instruction_FD_base_code MOVF] !first_var_second_byte_IPICregisterDescription !true] ;
+      ioGeneratedInstructionList += ![@midrange_intermediate_instruction_F new !here ![@midrange_F_instruction_base_code MOVWF] !PCLATH_IPICregisterDescription] ;
     end if ;
   #--- Restore context
-    ioGeneratedInstructionList += ![@midrange_ipic_instruction_FD new !here ![@midrange_instruction_FD_base_code SWAPF] !first_reg_second_byte_IPICregisterDescription !true] ;
-    ioGeneratedInstructionList += ![@midrange_ipic_instruction_F new !here ![@midrange_F_instruction_base_code MOVWF] !STATUS_IPICregisterDescription] ;
-    ioGeneratedInstructionList += ![@midrange_ipic_instruction_FD new !here ![@midrange_instruction_FD_base_code SWAPF] !first_IPICregisterDescription !false] ;
-    ioGeneratedInstructionList += ![@midrange_ipic_instruction_FD new !here ![@midrange_instruction_FD_base_code SWAPF] !first_IPICregisterDescription !true] ;
+    ioGeneratedInstructionList += ![@midrange_intermediate_instruction_FD new !here ![@midrange_instruction_FD_base_code SWAPF] !first_reg_second_byte_IPICregisterDescription !true] ;
+    ioGeneratedInstructionList += ![@midrange_intermediate_instruction_F new !here ![@midrange_F_instruction_base_code MOVWF] !STATUS_IPICregisterDescription] ;
+    ioGeneratedInstructionList += ![@midrange_intermediate_instruction_FD new !here ![@midrange_instruction_FD_base_code SWAPF] !first_IPICregisterDescription !false] ;
+    ioGeneratedInstructionList += ![@midrange_intermediate_instruction_FD new !here ![@midrange_instruction_FD_base_code SWAPF] !first_IPICregisterDescription !true] ;
   #--- Add REFFIE
-    ioGeneratedInstructionList += ![@midrange_ipic_instruction_RETFIE new !here] ;
+    ioGeneratedInstructionList += ![@midrange_intermediate_instruction_RETFIE new !here] ;
   end if ;
 end routine ;
 
@@ -1697,7 +1697,7 @@ routine build_midrange_assembly_instruction_list
   ??@registerTable inRegisterTable
   ??@midrange_model inPiccoloModel
   ??@bool inHasInterrupt
-  !@midrange_ipic_instructionList outGeneratedInstructionList
+  !@midrange_intermediate_instructionList outGeneratedInstructionList
   ?!@string ioListFileContents
 :
   @string generationOptimizationMessages := "" ;
@@ -1767,10 +1767,10 @@ routine build_midrange_assembly_instruction_list
     end foreach ;
   end if ;
 #-------------------------------- Check and translate interrupt routine
-  outGeneratedInstructionList := [@midrange_ipic_instructionList emptyList] ;
+  outGeneratedInstructionList := [@midrange_intermediate_instructionList emptyList] ;
   @uint localLabelIndex := 0 ;
 #--- At zero, generate 'jump main' instruction
-  outGeneratedInstructionList += ![@midrange_ipic_JUMP new
+  outGeneratedInstructionList += ![@midrange_intermediate_JUMP new
     !here
     ![@lstring new !"main" !here]
     ![@midrange_call_goto_bit noChange]
@@ -1778,7 +1778,7 @@ routine build_midrange_assembly_instruction_list
   ] ;
 #---
   if inHasInterrupt then
-    outGeneratedInstructionList += ![@midrange_ipic_pseudo_ORG new !0x4] ;
+    outGeneratedInstructionList += ![@midrange_intermediate_pseudo_ORG new !0x4] ;
     foreach [inPiccoloModel mInterruptDefinitionList] do
       if inHasSharedRAMBank then
         generateInterruptRoutineForControllerWithSharedRAM
@@ -1820,7 +1820,7 @@ routine build_midrange_assembly_instruction_list
     foreach [inPiccoloModel mRoutineDefinitionList] do
       if [mPage uint] == currentPage then
         if not orgGenerated then
-          outGeneratedInstructionList += ![@midrange_ipic_pseudo_ORG new !currentPage * 2048] ;
+          outGeneratedInstructionList += ![@midrange_intermediate_pseudo_ORG new !currentPage * 2048] ;
           orgGenerated := true ;
         end if ;
         @bool continuesInSequence ;
@@ -1831,7 +1831,7 @@ routine build_midrange_assembly_instruction_list
         else
           routineKind := [@routineKind regularRoutine] ;
         end if ;
-        outGeneratedInstructionList += ![@midrange_ipic_pseudo_LABEL new !mRoutineName] ;
+        outGeneratedInstructionList += ![@midrange_intermediate_pseudo_LABEL new !mRoutineName] ;
         handleMidrangeInstructionList
           !mInstructionList
           !routineMap
@@ -1854,7 +1854,7 @@ routine build_midrange_assembly_instruction_list
         end if ;
       #--- Add a RETURN instruction (if it is a regular routine)
         if not mIsNoReturn then
-          outGeneratedInstructionList += ![@midrange_ipic_instruction_RETURN new ![mRoutineName location]] ;
+          outGeneratedInstructionList += ![@midrange_intermediate_instruction_RETURN new ![mRoutineName location]] ;
         end if ;
       end if ;
     end foreach ;

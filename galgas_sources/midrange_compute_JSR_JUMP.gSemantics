@@ -15,7 +15,7 @@ map @midrange_symbolTableForConvertingRelatives {
 #                                                                            *
 #----------------------------------------------------------------------------*
 
-method @midrange_ipic_instruction defineLabelAtAddress
+method @midrange_intermediate_instruction defineLabelAtAddress
   ?!@midrange_symbolTableForConvertingRelatives unused ioRoutineSymbolTable
   ?!@uint unused ioAddress
 :
@@ -24,7 +24,7 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override
-method @midrange_ipic_pseudo_LABEL defineLabelAtAddress
+method @midrange_intermediate_pseudo_LABEL defineLabelAtAddress
   ?!@midrange_symbolTableForConvertingRelatives ioRoutineSymbolTable
   ?!@uint ioAddress
 :
@@ -34,7 +34,7 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override
-method @midrange_ipic_pseudo_ORG defineLabelAtAddress
+method @midrange_intermediate_pseudo_ORG defineLabelAtAddress
   ?!@midrange_symbolTableForConvertingRelatives unused ioRoutineSymbolTable
   ?!@uint ioAddress
 :
@@ -48,7 +48,7 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override
-method @midrange_ipic_actualInstruction defineLabelAtAddress
+method @midrange_intermediate_actualInstruction defineLabelAtAddress
   ?!@midrange_symbolTableForConvertingRelatives unused ioRoutineSymbolTable
   ?!@uint ioAddress
 :
@@ -67,22 +67,22 @@ end method ;
 #                                                                            *
 #----------------------------------------------------------------------------*
 
-abstract method @midrange_ipic_instruction compute
+abstract method @midrange_intermediate_instruction compute
   ??@midrange_symbolTableForConvertingRelatives unused inRoutineSymbolTable
   ?!@uint unused ioAddress
   ?!@bool unused ioJUMP_or_JSR_fixed
-  ?!@midrange_ipic_instructionList unused ioGeneratedInstructionList
+  ?!@midrange_intermediate_instructionList unused ioGeneratedInstructionList
   ??@uint unused inIndex
   ?!@string unused ioListFileContents
 ;
 
 #----------------------------------------------------------------------------*
 
-override method @midrange_ipic_NULL compute
+override method @midrange_intermediate_NULL compute
   ??@midrange_symbolTableForConvertingRelatives unused inRoutineSymbolTable
   ?!@uint unused ioAddress
   ?!@bool unused ioJUMP_or_JSR_fixed
-  ?!@midrange_ipic_instructionList unused ioGeneratedInstructionList
+  ?!@midrange_intermediate_instructionList unused ioGeneratedInstructionList
   ??@uint unused inIndex
   ?!@string unused ioListFileContents
 :
@@ -90,11 +90,11 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @midrange_ipic_actualInstruction compute
+override method @midrange_intermediate_actualInstruction compute
   ??@midrange_symbolTableForConvertingRelatives unused inRoutineSymbolTable
   ?!@uint unused ioAddress
   ?!@bool unused ioJUMP_or_JSR_fixed
-  ?!@midrange_ipic_instructionList unused ioGeneratedInstructionList
+  ?!@midrange_intermediate_instructionList unused ioGeneratedInstructionList
   ??@uint unused inIndex
   ?!@string unused ioListFileContents
 :
@@ -103,11 +103,11 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override
-method @midrange_ipic_pseudo_ORG compute
+method @midrange_intermediate_pseudo_ORG compute
   ??@midrange_symbolTableForConvertingRelatives unused inRoutineSymbolTable
   ?!@uint ioAddress
   ?!@bool unused ioJUMP_or_JSR_fixed
-  ?!@midrange_ipic_instructionList unused ioGeneratedInstructionList
+  ?!@midrange_intermediate_instructionList unused ioGeneratedInstructionList
   ??@uint unused inIndex
   ?!@string unused ioListFileContents
 :
@@ -116,11 +116,11 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @midrange_ipic_JUMP compute
+override method @midrange_intermediate_JUMP compute
   ??@midrange_symbolTableForConvertingRelatives inRoutineSymbolTable
   ?!@uint ioAddress
   ?!@bool ioJUMP_or_JSR_fixed
-  ?!@midrange_ipic_instructionList ioGeneratedInstructionList
+  ?!@midrange_intermediate_instructionList ioGeneratedInstructionList
   ??@uint inIndex
   ?!@string ioListFileContents
 :
@@ -148,7 +148,7 @@ override method @midrange_ipic_JUMP compute
    end if ;
 #--- Change ?
   if (bit11 != mBit11) | (bit12 != mBit12) then
-    @midrange_ipic_actualInstruction instruction := [@midrange_ipic_JUMP new
+    @midrange_intermediate_actualInstruction instruction := [@midrange_intermediate_JUMP new
       !mInstructionLocation
       !mTargetLabel
       !bit11
@@ -162,11 +162,11 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @midrange_ipic_JSR compute
+override method @midrange_intermediate_JSR compute
   ??@midrange_symbolTableForConvertingRelatives inRoutineSymbolTable
   ?!@uint ioAddress
   ?!@bool ioJUMP_or_JSR_fixed
-  ?!@midrange_ipic_instructionList ioGeneratedInstructionList
+  ?!@midrange_intermediate_instructionList ioGeneratedInstructionList
   ??@uint inIndex
   ?!@string ioListFileContents
 :
@@ -194,7 +194,7 @@ override method @midrange_ipic_JSR compute
    end if ;
 #--- Change ?
   if (bit11 != mBit11) | (bit12 != mBit12) then
-    @midrange_ipic_actualInstruction instruction := [@midrange_ipic_JSR new
+    @midrange_intermediate_actualInstruction instruction := [@midrange_intermediate_JSR new
       !mInstructionLocation
       !mTargetLabel
       !bit11
@@ -208,11 +208,11 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @midrange_ipic_pseudo_LABEL compute
+override method @midrange_intermediate_pseudo_LABEL compute
   ??@midrange_symbolTableForConvertingRelatives inRoutineSymbolTable
   ?!@uint ioAddress
   ?!@bool unused ioJUMP_or_JSR_fixed
-  ?!@midrange_ipic_instructionList unused ioGeneratedInstructionList
+  ?!@midrange_intermediate_instructionList unused ioGeneratedInstructionList
   ??@uint unused inIndex
   ?!@string unused ioListFileContents
 :
@@ -227,11 +227,11 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-#override method @midrange_ipic_instruction_computed_retlw compute
+#override method @midrange_intermediate_instruction_computed_retlw compute
 #  ??@midrange_symbolTableForConvertingRelatives inRoutineSymbolTable
 #  ?!@uint ioAddress
 #  ?!@bool ioJUMP_or_JSR_fixed
-#  ?!@midrange_ipic_instructionList ioGeneratedInstructionList
+#  ?!@midrange_intermediate_instructionList ioGeneratedInstructionList
 #  ??@uint inIndex
 #  ?!@string ioListFileContents
 #:
@@ -242,7 +242,7 @@ end method ;
 #    if (displacement > 1023S) | (displacement < - 1024S) then
 #      ioJUMP_or_JSR_fixed := true ;
 #      ioListFileContents .= "  line " . [inIndex string] . ":  COMPUTED RETLW with RCALL overflow, converted to COMPUTED RETLW with CALL\n" ;
-#      @ipic_actualInstruction instruction := [@midrange_ipic_instruction_computed_retlw new
+#      @ipic_actualInstruction instruction := [@midrange_intermediate_instruction_computed_retlw new
 #        !mInstructionLocation
 #        !mLiteralValues
 #        !false
@@ -254,11 +254,11 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-#override method @midrange_ipic_instruction_computed_bra compute
+#override method @midrange_intermediate_instruction_computed_bra compute
 #  ??@midrange_symbolTableForConvertingRelatives inRoutineSymbolTable
 #  ?!@uint ioAddress
 #  ?!@bool ioJUMP_or_JSR_fixed
-#  ?!@midrange_ipic_instructionList ioGeneratedInstructionList
+#  ?!@midrange_intermediate_instructionList ioGeneratedInstructionList
 #  ??@uint inIndex
 #  ?!@string ioListFileContents
 #:
@@ -269,7 +269,7 @@ end method ;
 #    if (displacement > 1023S) | (displacement < - 1024S) then
 #      ioJUMP_or_JSR_fixed := true ;
 #      ioListFileContents .= "  line " . [inIndex string] . ":  COMPUTED BRA with RCALL overflow, converted to COMPUTED BRA with CALL\n" ;
-#      @ipic_actualInstruction instruction := [@midrange_ipic_instruction_computed_bra new
+#      @ipic_actualInstruction instruction := [@midrange_intermediate_instruction_computed_bra new
 #        !mInstructionLocation
 #        !mTargetLabels
 #        !false
@@ -294,11 +294,11 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-#override method @midrange_ipic_instruction_computed_goto compute
+#override method @midrange_intermediate_instruction_computed_goto compute
 #  ??@midrange_symbolTableForConvertingRelatives inRoutineSymbolTable
 #  ?!@uint ioAddress
 #  ?!@bool ioJUMP_or_JSR_fixed
-#  ?!@midrange_ipic_instructionList ioGeneratedInstructionList
+#  ?!@midrange_intermediate_instructionList ioGeneratedInstructionList
 #  ??@uint inIndex
 #  ?!@string ioListFileContents
 #:
@@ -309,7 +309,7 @@ end method ;
 #    if (displacement > 1023S) | (displacement < - 1024S) then
 #      ioJUMP_or_JSR_fixed := true ;
 #      ioListFileContents .= "  line " . [inIndex string] . ":  COMPUTED GOTO with RCALL overflow, converted to COMPUTED GOTO with CALL\n" ;
-#      @ipic_actualInstruction instruction := [@midrange_ipic_instruction_computed_goto new
+#      @ipic_actualInstruction instruction := [@midrange_intermediate_instruction_computed_goto new
 #        !mInstructionLocation
 #        !mTargetLabels
 #        !false
@@ -329,7 +329,7 @@ end method ;
 #----------------------------------------------------------------------------*
 
 routine midrange_compute_JSR_JUMP
-  ?!@midrange_ipic_instructionList ioGeneratedInstructionList
+  ?!@midrange_intermediate_instructionList ioGeneratedInstructionList
   ?!@string ioListFileContents
 :
   ioListFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n" ;

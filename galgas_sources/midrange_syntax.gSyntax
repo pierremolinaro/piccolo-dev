@@ -22,51 +22,6 @@ nonterminal <constant_definition>
   ?!@constantDefinitionList ioConstantDefinitionList
 ;
 
-nonterminal <midrange_interrupt_definition>
-  ?!@midrange_interruptDefinitionList outInterruptDefinitionList
-  ?!@bool ioNeedsComputedGoto2 
-  ?!@bool ioNeedsComputedGoto4
-;
-
-nonterminal <midrange_routine_definition>
-  ?!@midrange_routineDefinitionList ioRoutineDefinitionList
-  ?!@bool ioNeedsComputedGoto2 
-  ?!@bool ioNeedsComputedGoto4
-;
-
-nonterminal <midrange_simple_instruction>
-  !@midrange_instruction outInstruction
-;
-
-nonterminal <midrange_structured_instruction>
-  !@midrange_instruction outInstruction
-  ?!@bool ioNeedsComputedGoto2
-  ?!@bool ioNeedsComputedGoto4
-;
-
-nonterminal <midrange_instruction_list>
-  !@midrange_instructionList outInstructionList
-  ?!@bool ioNeedsComputedGoto2
-  ?!@bool ioNeedsComputedGoto4
-;
-
-nonterminal <midrange_structured_if_instruction>
-  !@midrange_instruction outInstruction
-  ?!@bool ioNeedsComputedGoto2
-  ?!@bool ioNeedsComputedGoto4
-;
-
-nonterminal <start_symbol>
-label importBootloaderSpecification
-  !@piccoloDeviceModel outPiccoloDeviceModel
-  !@uint outAccessBankSplitOffset
-  !@ramBankTable outRamBank
-  !@registerTable outRegisterTable
-  !@bootloaderReservedRAMmap outBootloaderReservedRAMmap
-  !@routineDeclarationList outBootloaderRoutineDeclarationList
-  !@routineDeclarationList outUserRoutineDeclarationList
-  !@luint outBootloaderReservedROMsize
-;
 
 nonterminal <register_parsing>
   !@registerExpression outRegisterExpression
@@ -78,18 +33,6 @@ nonterminal <optional_w_as_dest>
 
 nonterminal <bit_number_parsing>
   !@bitNumberExpression outBitNumber
-;
-
-nonterminal <midrange_condition_factor>
-  !@midrange_conditionExpression outCondition
-;
-
-nonterminal <midrange_condition_term>
-  !@midrange_conditionExpression outCondition
-;
-
-nonterminal <midrange_condition_expression>
-  !@midrange_conditionExpression outCondition
 ;
 
 nonterminal <immediate_expression>
@@ -326,7 +269,16 @@ rule <midrange_routine_definition>
     !?ioNeedsComputedGoto4
   ;
   $}$ ;
-  ioRoutineDefinitionList += !routineName !page !requiredBank !returnedBank !preservesBank !noreturn !instructionList !here ;
+  ioRoutineDefinitionList +=
+    !routineName
+    !page
+    !requiredBank
+    !returnedBank
+    !preservesBank
+    !noreturn
+    !instructionList
+    !here
+  ;
 end rule ;
 
 #----------------------------------------------------*

@@ -165,6 +165,48 @@ rule <baseline_routine_definition>
     $page$ ;
     $integer$ ? page ;
   end select ;
+#--- Bank
+  @luint requiredBank ;
+  @luint returnedBank ;
+  @bool preservesBank ;
+  select
+    requiredBank := [@luint new ![@uint max] !here] ;
+    returnedBank := [@luint new ![@uint max] !here] ;
+    preservesBank := false ;
+  or
+    $bank$ ;
+    $:$ ;
+    select
+      $preserved$ ;
+      if noreturn then
+        error here: "a \"noreturn\" routine cannot accept \"bank:preserved\" setting" ;
+      end if ;
+      preservesBank := true ;
+      requiredBank := [@luint new ![@uint max] !here] ;
+      returnedBank := [@luint new ![@uint max] !here] ;
+    or
+      $requires$ ;
+      $integer$ ? requiredBank ;
+      preservesBank := false ;
+      select
+        returnedBank := [@luint new ![@uint max] !here] ;
+      or
+        $ensures$ ;
+        $integer$ ? returnedBank ;
+        if noreturn then
+          error here: "a \"noreturn\" routine cannot accept \"bank:returned\" setting" ;
+        end if ;
+      end select ;
+    or
+      $ensures$ ;
+      $integer$ ? returnedBank ;
+      if noreturn then
+        error here: "a \"noreturn\" routine cannot accept \"bank:returned\" setting" ;
+      end if ;
+      preservesBank := false ;
+      requiredBank := [@luint new ![@uint max] !here] ;
+    end select ;
+  end select ;
 #---
   ${$ ;
   @baseline_instructionList instructionList ;
@@ -172,7 +214,16 @@ rule <baseline_routine_definition>
     ?instructionList
   ;
   $}$ ;
-  ioRoutineDefinitionList += !routineName !page !noreturn !instructionList !here ;
+  ioRoutineDefinitionList +=
+    !routineName
+    !page
+    !requiredBank
+    !returnedBank
+    !preservesBank
+    !noreturn
+    !instructionList
+    !here
+  ;
 end rule ;
 
 #----------------------------------------------------*
@@ -181,6 +232,30 @@ rule <baseline_structured_instruction>
   !@baseline_instruction outInstruction
 :
   select
+    $banksel$ ;
+    @location instructionLocation := here ;
+    $integer$ ? @luint bank ;
+    outInstruction := [@baseline_instruction_banksel new ! instructionLocation !bank] ;
+  or
+    $nobank$ ;
+    outInstruction := [@baseline_instruction_nobanksel new !here] ;
+  or
+    $banksave$ ;
+    @location instructionLocation := here ;
+    @registerExpression register ;
+    <register_parsing> ?register ;
+    @baseline_instructionList instructionList ;
+    <baseline_instruction_list>
+      ?instructionList
+    ;
+    $end$ ;
+    outInstruction := [@baseline_instruction_savebank new
+      !instructionLocation
+      !register
+      !instructionList
+      !here
+    ] ;
+  or
     $forever$ ;
     @location instructionLocation := here ;
     @baseline_instructionList instructionList ;
