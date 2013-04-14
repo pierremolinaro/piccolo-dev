@@ -18,6 +18,9 @@ echo "-------------- 16F59" &&
 ../../makefile_macosx/piccolo -v -S -O -L --Werror instructions_16F59.piccolo &&
 $GPUTILS_PATH/gpasm instructions_16F59.asm -o instructions_16F59-2.hex &&
 hexcmp instructions_16F59.hex instructions_16F59-2.hex &&
+echo "-------------- 16F57" &&
+../../makefile_macosx/piccolo -v -S -O -L --Werror banks_16F57.piccolo &&
+$GPUTILS_PATH/gpasm banks_16F57.asm -o banks_16F57-2.hex &&
+hexcmp banks_16F57.hex banks_16F57-2.hex &&
 #----
-echo "-------------- SUCCES ---------------" ||
-echo "-------------- ECHEC ----------------"
+echo "-------------- SUCCES ---------------"

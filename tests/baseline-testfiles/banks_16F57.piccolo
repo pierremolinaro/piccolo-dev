@@ -1,0 +1,27 @@
+baseline banks_16F57 "16F57" :
+
+configuration {
+  CP : Disabled
+  OSC : "RC oscillator"
+  WDT : Disabled
+}
+
+ram gpr0 {
+  byte var
+}
+
+ram gpr1 {
+  byte var1
+}
+
+noreturn routine main page 0 {
+  movf var
+  movwf PORTB
+  movlw var1
+  movwf FSR
+#  movf var1
+  forever
+  end
+}
+
+end

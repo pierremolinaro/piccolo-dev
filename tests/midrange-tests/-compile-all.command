@@ -51,5 +51,4 @@ echo "-------------- routine4" &&
 $GPUTILS_PATH/gpasm routine4.asm -o routine4-2.hex &&
 hexcmp routine4.hex routine4-2.hex &&
 #----
-echo "-------------- SUCCES ---------------" ||
-echo "-------------- ECHEC ----------------"
+echo "-------------- SUCCES ---------------"
