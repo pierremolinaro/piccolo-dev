@@ -3,7 +3,7 @@ import "ipic_generic.gSemantics" ;
 import "baseline_intermediate_classes.gSemantics" ;
 import "baseline_intermediate_instruction_length.gSemantics" ;
 import "baseline_intermediate_instruction_print.gSemantics" ;
-import "baseline_pic_assembly_classes.gSemantics" ;
+import "baseline_assembly_classes.gSemantics" ;
 
 #----------------------------------------------------------------------------*
 #                                                                            *
@@ -12,30 +12,30 @@ import "baseline_pic_assembly_classes.gSemantics" ;
 #----------------------------------------------------------------------------*
 
 abstract method @baseline_intermediate_instruction generateAssemblyCode
-  ?!@baseline_pic_assembly_instructionList ioAssemblyInstructionList
+  ?!@baseline_assembly_instructionList ioAssemblyInstructionList
 ;
 
 #----------------------------------------------------------------------------*
 
 override method @baseline_intermediate_NULL generateAssemblyCode
-  ?!@baseline_pic_assembly_instructionList unused ioAssemblyInstructionList
+  ?!@baseline_assembly_instructionList unused ioAssemblyInstructionList
 :
 end method ;
 
 #----------------------------------------------------------------------------*
 
 override method @baseline_intermediate_pseudo_PAGE generateAssemblyCode
-  ?!@baseline_pic_assembly_instructionList ioAssemblyInstructionList
+  ?!@baseline_assembly_instructionList ioAssemblyInstructionList
 :
-  ioAssemblyInstructionList += ![@baseline_pic_assembly_pseudo_ORG new !mPage * 256] ;
+  ioAssemblyInstructionList += ![@baseline_assembly_pseudo_ORG new !mPage * 256] ;
 end method ;
 
 #----------------------------------------------------------------------------*
 
 override method @baseline_intermediate_instruction_FD generateAssemblyCode
-  ?!@baseline_pic_assembly_instructionList ioAssemblyInstructionList
+  ?!@baseline_assembly_instructionList ioAssemblyInstructionList
 :
-  ioAssemblyInstructionList += ![@baseline_pic_assembly_instruction_FD new
+  ioAssemblyInstructionList += ![@baseline_assembly_instruction_FD new
     !mInstructionLocation
     !mInstruction
     !mRegisterDescription
@@ -46,9 +46,9 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override method @baseline_intermediate_instruction_F generateAssemblyCode
-  ?!@baseline_pic_assembly_instructionList ioAssemblyInstructionList
+  ?!@baseline_assembly_instructionList ioAssemblyInstructionList
 :
-  ioAssemblyInstructionList += ![@baseline_pic_assembly_instruction_F new
+  ioAssemblyInstructionList += ![@baseline_assembly_instruction_F new
     !mInstructionLocation
     !mInstruction
     !mRegisterDescription
@@ -58,9 +58,9 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override method @baseline_intermediate_instruction_FB generateAssemblyCode
-  ?!@baseline_pic_assembly_instructionList ioAssemblyInstructionList
+  ?!@baseline_assembly_instructionList ioAssemblyInstructionList
 :
-  ioAssemblyInstructionList += ![@baseline_pic_assembly_instruction_FB new
+  ioAssemblyInstructionList += ![@baseline_assembly_instruction_FB new
     !mInstructionLocation
     !mInstruction
     !mRegisterDescription
@@ -71,9 +71,9 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override method @baseline_intermediate_instruction_BitTestSkip generateAssemblyCode
-  ?!@baseline_pic_assembly_instructionList ioAssemblyInstructionList
+  ?!@baseline_assembly_instructionList ioAssemblyInstructionList
 :
-  ioAssemblyInstructionList += ![@baseline_pic_assembly_instruction_BitTestSkip new
+  ioAssemblyInstructionList += ![@baseline_assembly_instruction_BitTestSkip new
     !mInstructionLocation
     !mSkipIfSet
     !mRegisterDescription
@@ -84,9 +84,9 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override method @baseline_intermediate_WO_OPERAND generateAssemblyCode
-  ?!@baseline_pic_assembly_instructionList ioAssemblyInstructionList
+  ?!@baseline_assembly_instructionList ioAssemblyInstructionList
 :
-  ioAssemblyInstructionList += ![@baseline_pic_assembly_WO_OPERAND new
+  ioAssemblyInstructionList += ![@baseline_assembly_WO_OPERAND new
     !mInstructionLocation
     !mInstruction
   ] ;
@@ -95,9 +95,9 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override method @baseline_intermediate_TRIS generateAssemblyCode
-  ?!@baseline_pic_assembly_instructionList ioAssemblyInstructionList
+  ?!@baseline_assembly_instructionList ioAssemblyInstructionList
 :
-  ioAssemblyInstructionList += ![@baseline_pic_assembly_TRIS new
+  ioAssemblyInstructionList += ![@baseline_assembly_TRIS new
     !mInstructionLocation
     !mOperand
     !mOpcode
@@ -107,9 +107,9 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override method @baseline_intermediate_instruction_literalOperation generateAssemblyCode
-  ?!@baseline_pic_assembly_instructionList ioAssemblyInstructionList
+  ?!@baseline_assembly_instructionList ioAssemblyInstructionList
 :
-  ioAssemblyInstructionList += ![@baseline_pic_assembly_instruction_literalOperation new
+  ioAssemblyInstructionList += ![@baseline_assembly_instruction_literalOperation new
     !mInstructionLocation
     !mInstruction
     !mLiteralValue
@@ -119,9 +119,9 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override method @baseline_intermediate_pseudo_LABEL generateAssemblyCode
-  ?!@baseline_pic_assembly_instructionList ioAssemblyInstructionList
+  ?!@baseline_assembly_instructionList ioAssemblyInstructionList
 :
-  ioAssemblyInstructionList += ![@baseline_pic_assembly_pseudo_LABEL new
+  ioAssemblyInstructionList += ![@baseline_assembly_pseudo_LABEL new
     !mLabel
   ] ;
 end method ;
@@ -129,7 +129,7 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override method @baseline_intermediate_instruction_MNOP generateAssemblyCode
-  ?!@baseline_pic_assembly_instructionList ioAssemblyInstructionList
+  ?!@baseline_assembly_instructionList ioAssemblyInstructionList
 :
   if [mOccurrenceFactor uint] == 0 then
     warning mOccurrenceFactor: "No generated code" ;
@@ -138,7 +138,7 @@ override method @baseline_intermediate_instruction_MNOP generateAssemblyCode
   loop [mOccurrenceFactor uint] :
   while idx < [mOccurrenceFactor uint]
   do
-    ioAssemblyInstructionList += ![@baseline_pic_assembly_WO_OPERAND new
+    ioAssemblyInstructionList += ![@baseline_assembly_WO_OPERAND new
       !mInstructionLocation
       ![@baseline_WO_OPERAND_group NOP]
     ] ;
@@ -149,9 +149,9 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override method @baseline_intermediate_GOTO generateAssemblyCode
-  ?!@baseline_pic_assembly_instructionList ioAssemblyInstructionList
+  ?!@baseline_assembly_instructionList ioAssemblyInstructionList
 :
-  ioAssemblyInstructionList += ![@baseline_pic_assembly_GOTO new
+  ioAssemblyInstructionList += ![@baseline_assembly_GOTO new
     !mInstructionLocation
     !mTargetLabel
   ] ;
@@ -160,9 +160,9 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override method @baseline_intermediate_CALL generateAssemblyCode
-  ?!@baseline_pic_assembly_instructionList ioAssemblyInstructionList
+  ?!@baseline_assembly_instructionList ioAssemblyInstructionList
 :
-  ioAssemblyInstructionList += ![@baseline_pic_assembly_CALL new
+  ioAssemblyInstructionList += ![@baseline_assembly_CALL new
     !mInstructionLocation
     !mTargetLabel
   ] ;
@@ -171,9 +171,9 @@ end method ;
 #----------------------------------------------------*
 
 override method @baseline_intermediate_incDecRegisterInCondition generateAssemblyCode
-  ?!@baseline_pic_assembly_instructionList ioAssemblyInstructionList
+  ?!@baseline_assembly_instructionList ioAssemblyInstructionList
 :
-  ioAssemblyInstructionList += ![@baseline_pic_assembly_incDecRegisterInCondition new
+  ioAssemblyInstructionList += ![@baseline_assembly_incDecRegisterInCondition new
     !mInstructionLocation
     !mRegisterDescription
     !mIncrement
@@ -181,12 +181,12 @@ override method @baseline_intermediate_incDecRegisterInCondition generateAssembl
   ] ;
 #---
   if mBranchIfZero then
-    ioAssemblyInstructionList += ![@baseline_pic_assembly_SKIP new
+    ioAssemblyInstructionList += ![@baseline_assembly_SKIP new
       !mInstructionLocation
     ] ;
   end if ;
 #--- Generate GOTO instruction
-  ioAssemblyInstructionList += ![@baseline_pic_assembly_GOTO new
+  ioAssemblyInstructionList += ![@baseline_assembly_GOTO new
     !mInstructionLocation
     ![@lstring new !mTargetLabel !mInstructionLocation]
   ] ;
@@ -201,7 +201,7 @@ end method ;
 routine build_baseline_intermediate_assembly_code
   ??@baseline_intermediate_instructionList inGeneratedInstructionList
   ??@actualConfigurationMap inActualConfigurationMap
-  ?!@baseline_pic_assembly_instructionList ioAssemblyInstructionList
+  ?!@baseline_assembly_instructionList ioAssemblyInstructionList
 :
 #-------------------------------- Build assembly code
   foreach inGeneratedInstructionList do

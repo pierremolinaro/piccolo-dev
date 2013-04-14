@@ -1,5 +1,5 @@
 semantics baseline_build_binary_code :
-import "baseline_pic_assembly_classes.gSemantics" ;
+import "baseline_assembly_classes.gSemantics" ;
 import "baseline_print_assembly_instructions.gSemantics" ;
 import "baseline_assembly_instruction_length.gSemantics" ;
 import "ipic_generic.gSemantics" ;
@@ -30,7 +30,7 @@ end reader ;
 routine emitCodeAtWordAddress
   ??@uint inCode
   ?!@uint ioWordAddress
-  ??@baseline_pic_assembly_instruction inInstruction
+  ??@baseline_assembly_instruction inInstruction
   ?!@string ioListFileContents
 :
   ioListFileContents .= "   " . [ioWordAddress * 2 x4String] ;
@@ -45,7 +45,7 @@ end routine ;
 
 routine emitNoCodeAtWordAddress
   ??@uint inWordAddress
-  ??@baseline_pic_assembly_instruction inInstruction
+  ??@baseline_assembly_instruction inInstruction
   ?!@string ioListFileContents
 :
   ioListFileContents .= "   " . [inWordAddress * 2 x4String] ;
@@ -60,7 +60,7 @@ end routine ;
 #                                                                            *
 #----------------------------------------------------------------------------*
 
-method @baseline_pic_assembly_instruction enterLabelAtAddress
+method @baseline_assembly_instruction enterLabelAtAddress
   ?!@baseline_symbolTable unused ioRoutineSymbolTable
   ?!@uint unused ioWordAddress
 :
@@ -68,7 +68,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @baseline_pic_assembly_pseudo_LABEL enterLabelAtAddress
+override method @baseline_assembly_pseudo_LABEL enterLabelAtAddress
   ?!@baseline_symbolTable ioRoutineSymbolTable
   ?!@uint ioWordAddress
 :
@@ -77,7 +77,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @baseline_pic_assembly_pseudo_ORG enterLabelAtAddress
+override method @baseline_assembly_pseudo_ORG enterLabelAtAddress
   ?!@baseline_symbolTable unused ioRoutineSymbolTable
   ?!@uint ioWordAddress
 :
@@ -86,7 +86,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @baseline_pic_assembly_actualInstruction enterLabelAtAddress
+override method @baseline_assembly_actualInstruction enterLabelAtAddress
   ?!@baseline_symbolTable unused ioRoutineSymbolTable
   ?!@uint ioWordAddress
 :
@@ -99,7 +99,7 @@ end method ;
 #                                                                            *
 #----------------------------------------------------------------------------*
 
-abstract method @baseline_pic_assembly_instruction generateBinaryCodeAtAddress
+abstract method @baseline_assembly_instruction generateBinaryCodeAtAddress
   ??@baseline_symbolTable unused inRoutineSymbolTable
   ?!@string ioListFileContents
   ?!@uint ioWordAddress
@@ -107,7 +107,7 @@ abstract method @baseline_pic_assembly_instruction generateBinaryCodeAtAddress
 
 #----------------------------------------------------------------------------*
 
-override method @baseline_pic_assembly_pseudo_ORG generateBinaryCodeAtAddress
+override method @baseline_assembly_pseudo_ORG generateBinaryCodeAtAddress
   ??@baseline_symbolTable unused inRoutineSymbolTable
   ?!@string ioListFileContents
   ?!@uint ioWordAddress
@@ -118,7 +118,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @baseline_pic_assembly_instruction_FD generateBinaryCodeAtAddress
+override method @baseline_assembly_instruction_FD generateBinaryCodeAtAddress
   ??@baseline_symbolTable unused inRoutineSymbolTable
   ?!@string ioListFileContents
   ?!@uint ioWordAddress
@@ -150,7 +150,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @baseline_pic_assembly_instruction_F generateBinaryCodeAtAddress
+override method @baseline_assembly_instruction_F generateBinaryCodeAtAddress
   ??@baseline_symbolTable unused inRoutineSymbolTable
   ?!@string ioListFileContents
   ?!@uint ioWordAddress
@@ -166,7 +166,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @baseline_pic_assembly_instruction_FB generateBinaryCodeAtAddress
+override method @baseline_assembly_instruction_FB generateBinaryCodeAtAddress
   ??@baseline_symbolTable unused inRoutineSymbolTable
   ?!@string ioListFileContents
   ?!@uint ioWordAddress
@@ -183,7 +183,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @baseline_pic_assembly_instruction_BitTestSkip generateBinaryCodeAtAddress
+override method @baseline_assembly_instruction_BitTestSkip generateBinaryCodeAtAddress
   ??@baseline_symbolTable unused inRoutineSymbolTable
   ?!@string ioListFileContents
   ?!@uint ioWordAddress
@@ -202,7 +202,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @baseline_pic_assembly_GOTO generateBinaryCodeAtAddress
+override method @baseline_assembly_GOTO generateBinaryCodeAtAddress
   ??@baseline_symbolTable inRoutineSymbolTable
   ?!@string ioListFileContents
   ?!@uint ioWordAddress
@@ -216,7 +216,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @baseline_pic_assembly_SKIP generateBinaryCodeAtAddress
+override method @baseline_assembly_SKIP generateBinaryCodeAtAddress
   ??@baseline_symbolTable unused inRoutineSymbolTable
   ?!@string ioListFileContents
   ?!@uint ioWordAddress
@@ -226,7 +226,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @baseline_pic_assembly_CALL generateBinaryCodeAtAddress
+override method @baseline_assembly_CALL generateBinaryCodeAtAddress
   ??@baseline_symbolTable inRoutineSymbolTable
   ?!@string ioListFileContents
   ?!@uint ioWordAddress
@@ -240,7 +240,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @baseline_pic_assembly_incDecRegisterInCondition generateBinaryCodeAtAddress
+override method @baseline_assembly_incDecRegisterInCondition generateBinaryCodeAtAddress
   ??@baseline_symbolTable unused inRoutineSymbolTable
   ?!@string ioListFileContents
   ?!@uint ioWordAddress
@@ -260,7 +260,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @baseline_pic_assembly_WO_OPERAND generateBinaryCodeAtAddress
+override method @baseline_assembly_WO_OPERAND generateBinaryCodeAtAddress
   ??@baseline_symbolTable unused inRoutineSymbolTable
   ?!@string ioListFileContents
   ?!@uint ioWordAddress
@@ -278,7 +278,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @baseline_pic_assembly_TRIS generateBinaryCodeAtAddress
+override method @baseline_assembly_TRIS generateBinaryCodeAtAddress
   ??@baseline_symbolTable unused inRoutineSymbolTable
   ?!@string ioListFileContents
   ?!@uint ioWordAddress
@@ -288,7 +288,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @baseline_pic_assembly_instruction_literalOperation generateBinaryCodeAtAddress
+override method @baseline_assembly_instruction_literalOperation generateBinaryCodeAtAddress
   ??@baseline_symbolTable unused inRoutineSymbolTable
   ?!@string ioListFileContents
   ?!@uint ioWordAddress
@@ -307,7 +307,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @baseline_pic_assembly_pseudo_LABEL generateBinaryCodeAtAddress
+override method @baseline_assembly_pseudo_LABEL generateBinaryCodeAtAddress
   ??@baseline_symbolTable inRoutineSymbolTable
   ?!@string ioListFileContents
   ?!@uint ioWordAddress
@@ -329,7 +329,7 @@ end method ;
 #----------------------------------------------------------------------------*
 
 routine build_baseline_binary_code
-  ??@baseline_pic_assembly_instructionList inAssemblyInstructionList
+  ??@baseline_assembly_instructionList inAssemblyInstructionList
   ??@uint inROMsize
   ?!@string ioListFileContents
   !@uint outUsedROMsize

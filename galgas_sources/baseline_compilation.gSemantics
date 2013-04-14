@@ -146,9 +146,15 @@ routine baseline_analysis
     !?registerTable
   ;
 #-------------------------------- Build routine map
-  @baselineRoutineMap routineMap [emptyMap] ;
+  @routineMap routineMap [emptyMap] ;
   foreach inPiccoloModel->mRoutineDefinitionList do
-    [!?routineMap insertKey !mRoutineName !mIsNoReturn !mPage] ;
+    if ([mRequiredBank uint] != [@uint max]) & ([mRequiredBank uint] > 15) then
+      error mRequiredBank:"the required bank value should be lower or equal to 15" ;
+    end if ;
+    if ([mReturnedBank uint] != [@uint max]) & ([mReturnedBank uint] > 15) then
+      error mReturnedBank:"the returned bank value should be lower or equal to 15" ;
+    end if ;
+    [!?routineMap insertKey !mRoutineName !mIsNoReturn ![mRequiredBank uint] ![mReturnedBank uint] !mPreservesBank] ;
   end foreach ;
 #-------------------------------- Build constant map
   @constantMap constantMap [emptyMap] ;
@@ -174,13 +180,13 @@ routine baseline_analysis
 #-------------------------------- Check the "main" routine is declared
   if [routineMap hasKey !"main"] then
     @bool isNoReturn ;
-    @luint page ;
-    [routineMap searchKey ![@lstring new !"main" !here] ?isNoReturn ?page] ;
+    @uint requiredBank ;
+    [routineMap searchKey ![@lstring new !"main" !here] ?isNoReturn ?requiredBank ?* ?*] ;
     if not isNoReturn then
-      error [routineMap locationForKey!"main"] :"the \"main\" should be declared with \"noreturn\" qualifier: \"noreturn main bank:requires 0\"" ;
+      error here :"the \"main\" should be declared with \"noreturn\" qualifier: \"noreturn main bank:requires 0\"" ;
     end if ;
-    if page->uint != 0 then
-      error page :"the \"main\" should be declared with \"page 0\" qualifier: \"noreturn main page 0\"" ;
+    if requiredBank != 0 then
+      error here :"the \"main\" should be declared with \"requiresbank 0\" qualifier: \"noreturn main bank:requires 0\"" ;
     end if ;
   else
     error [inPiccoloModel mEndOfProgram]: "the program should declare the \"main\" routine" ;
@@ -203,6 +209,9 @@ routine baseline_analysis
       [!?sortedRoutineDefinitionList prependValue 
         !mRoutineName
         !mPage
+        !mRequiredBank
+        !mReturnedBank
+        !mPreservesBank
         !mIsNoReturn
         !mInstructionList
         !mEndOfRoutineLocation
@@ -211,6 +220,9 @@ routine baseline_analysis
       sortedRoutineDefinitionList += 
         !mRoutineName
         !mPage
+        !mRequiredBank
+        !mReturnedBank
+        !mPreservesBank
         !mIsNoReturn
         !mInstructionList
         !mEndOfRoutineLocation
@@ -218,7 +230,7 @@ routine baseline_analysis
     end if ;
   end foreach ;
 #-------------------------------- Check and translate routines
-  @baseline_intermediate_instructionList ipicInstructionList [emptyList] ;
+  @baseline_intermediate_instructionList intermediateInstructionList [emptyList] ;
   if [@uint errorCount] == 0 then
     @uint currentPage := 0 ;
     @uint localLabelIndex := 0 ;
@@ -229,7 +241,7 @@ routine baseline_analysis
         #---
           if not pseudo_PAGE_generated then
             pseudo_PAGE_generated := true ;
-            ipicInstructionList += ![@baseline_intermediate_pseudo_PAGE new !currentPage] ;
+            intermediateInstructionList += ![@baseline_intermediate_pseudo_PAGE new !currentPage] ;
           end if ;
         #---
           @routineKind routineKind ;
@@ -253,18 +265,29 @@ routine baseline_analysis
             end if ;
           end if ;
         #--- Check and translate instructions
-          ipicInstructionList += ![@baseline_intermediate_pseudo_LABEL new !mRoutineName] ;
+          @uint currentBank := mRequiredBank->uint ;
+          intermediateInstructionList += ![@baseline_intermediate_pseudo_LABEL new !mRoutineName] ;
           handleBaselineInstructionList
             !mInstructionList
             !routineMap
             !registerTable
             !constantMap
             !?localLabelIndex
-            !?ipicInstructionList
+            !?intermediateInstructionList
+            !?listFileContents
+            !piccoloDeviceModel->mBankCount->uint
+            !?currentBank
+            !mPreservesBank
             ?@bool continuesInSequence
             !routineKind
             !not mIsNoReturn # Last instruction should be RETLW ?
           ;
+          if (not mIsNoReturn) & ([mReturnedBank uint] != [@uint max]) & (currentBank != [mReturnedBank uint]) then
+            error mRoutineName:"execution will not set bank selection to " . [[mReturnedBank uint] string] ;
+          end if ;
+          if mIsNoReturn & continuesInSequence then
+            error mRoutineName:"execution should not reach the end of a \"noreturn\" routine" ;
+          end if ;
         end if ;
       end foreach ;
       currentPage ++ ;
@@ -279,7 +302,7 @@ routine baseline_analysis
     listFileContents .= " Line Length Mnemonic\n" ;
     @uint idx := 1 ;
     @uint currentAddress := 0 ;
-    foreach ipicInstructionList do
+    foreach intermediateInstructionList do
       listFileContents .= [[idx string] stringByLeftPadding !5 !' '] . " " ;
       listFileContents .= [[[mInstruction length] string] stringByLeftPadding !6 !' '] . " " ;
       [mInstruction print !?listFileContents] ;
@@ -291,10 +314,10 @@ routine baseline_analysis
     listFileContents .= "Code size without optimization: " . [currentAddress string] . " words.\n\n" ;
   end if ;
 #-------------------------------- Build assembly instruction list
-  @baseline_pic_assembly_instructionList assemblyInstructionList [emptyList] ;
+  @baseline_assembly_instructionList assemblyInstructionList [emptyList] ;
   if [@uint errorCount] == 0 then
     build_baseline_intermediate_assembly_code
-      !ipicInstructionList
+      !intermediateInstructionList
       !actualConfigurationMap
       !?assemblyInstructionList
     ;

@@ -11,7 +11,7 @@ ram gprs {
   byte var
 }
 
-noreturn routine main page 0 {
+noreturn routine main page 0 bank:requires 0 {
   addwf var
   addwf var, W
   andwf var

@@ -16,7 +16,7 @@ map @midrange_symbolTable {
 #                                                                            *
 #----------------------------------------------------------------------------*
 
-method @midrange_ipic_instruction enterLabelAtAddress
+method @midrange_intermediate_instruction enterLabelAtAddress
   ?!@midrange_symbolTable unused ioRoutineSymbolTable
   ?!@uint unused ioAddress
 :
@@ -25,7 +25,7 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override
-method @midrange_ipic_pseudo_LABEL enterLabelAtAddress
+method @midrange_intermediate_pseudo_LABEL enterLabelAtAddress
   ?!@midrange_symbolTable ioRoutineSymbolTable
   ?!@uint ioAddress
 :
@@ -35,7 +35,7 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override
-method @midrange_ipic_pseudo_ORG enterLabelAtAddress
+method @midrange_intermediate_pseudo_ORG enterLabelAtAddress
   ?!@midrange_symbolTable unused ioRoutineSymbolTable
   ?!@uint ioAddress
 :
@@ -45,7 +45,7 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override
-method @midrange_ipic_actualInstruction enterLabelAtAddress
+method @midrange_intermediate_actualInstruction enterLabelAtAddress
   ?!@midrange_symbolTable unused ioRoutineSymbolTable
   ?!@uint ioAddress
 :
@@ -60,7 +60,7 @@ end method ;
 #                                                                            *
 #----------------------------------------------------------------------------*
 
-abstract method @midrange_ipic_instruction generateBinaryCodeAtAddress
+abstract method @midrange_intermediate_instruction generateBinaryCodeAtAddress
   ??@registerTable inRegisterTable
   ??@uint inTotalBankCount
   ??@midrange_symbolTable unused inRoutineSymbolTable
@@ -69,7 +69,7 @@ abstract method @midrange_ipic_instruction generateBinaryCodeAtAddress
 
 #----------------------------------------------------------------------------*
 
-override method @midrange_ipic_NULL generateBinaryCodeAtAddress
+override method @midrange_intermediate_NULL generateBinaryCodeAtAddress
   ??@registerTable unused inRegisterTable
   ??@uint unused inTotalBankCount
   ??@midrange_symbolTable unused inRoutineSymbolTable
@@ -80,7 +80,7 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override
-method @midrange_ipic_pseudo_ORG generateBinaryCodeAtAddress
+method @midrange_intermediate_pseudo_ORG generateBinaryCodeAtAddress
   ??@registerTable unused inRegisterTable
   ??@uint unused inTotalBankCount
   ??@midrange_symbolTable unused inRoutineSymbolTable
@@ -92,7 +92,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @midrange_ipic_instruction_FD generateBinaryCodeAtAddress
+override method @midrange_intermediate_instruction_FD generateBinaryCodeAtAddress
   ??@registerTable unused inRegisterTable
   ??@uint unused inTotalBankCount
   ??@midrange_symbolTable unused inRoutineSymbolTable
@@ -109,7 +109,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @midrange_ipic_instruction_F generateBinaryCodeAtAddress
+override method @midrange_intermediate_instruction_F generateBinaryCodeAtAddress
   ??@registerTable unused inRegisterTable
   ??@uint unused inTotalBankCount
   ??@midrange_symbolTable unused inRoutineSymbolTable
@@ -123,7 +123,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @midrange_ipic_instruction_FB generateBinaryCodeAtAddress
+override method @midrange_intermediate_instruction_FB generateBinaryCodeAtAddress
   ??@registerTable unused inRegisterTable
   ??@uint unused inTotalBankCount
   ??@midrange_symbolTable unused inRoutineSymbolTable
@@ -138,7 +138,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @midrange_ipic_instruction_BitTestSkip generateBinaryCodeAtAddress
+override method @midrange_intermediate_instruction_BitTestSkip generateBinaryCodeAtAddress
   ??@registerTable unused inRegisterTable
   ??@uint unused inTotalBankCount
   ??@midrange_symbolTable unused inRoutineSymbolTable
@@ -195,7 +195,7 @@ end routine ;
 
 #----------------------------------------------------------------------------*
 
-override method @midrange_ipic_JUMP generateBinaryCodeAtAddress
+override method @midrange_intermediate_JUMP generateBinaryCodeAtAddress
   ??@registerTable inRegisterTable
   ??@uint inTotalBankCount
   ??@midrange_symbolTable inRoutineSymbolTable
@@ -206,7 +206,7 @@ override method @midrange_ipic_JUMP generateBinaryCodeAtAddress
   [inRoutineSymbolTable searchKey !mTargetLabel ?targetAddress] ;
 #--- Get values for PCLATH register
   @registerExpression PCLATH_register [new ![@lstring new !"PCLATH" !here] ![@luint new !0 !here]] ;
-  @midrange_ipic_registerExpression PCLATH_IPICregisterDescription ;
+  @midrange_intermediate_registerExpression PCLATH_IPICregisterDescription ;
   [PCLATH_register resolveMidrangeAccess
     !inTotalBankCount
     ![@uint max] # Means unknown bank
@@ -231,7 +231,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @midrange_ipic_GOTO generateBinaryCodeAtAddress
+override method @midrange_intermediate_GOTO generateBinaryCodeAtAddress
   ??@registerTable unused inRegisterTable
   ??@uint unused inTotalBankCount
   ??@midrange_symbolTable inRoutineSymbolTable
@@ -246,7 +246,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @midrange_ipic_JSR generateBinaryCodeAtAddress
+override method @midrange_intermediate_JSR generateBinaryCodeAtAddress
   ??@registerTable inRegisterTable
   ??@uint inTotalBankCount
   ??@midrange_symbolTable inRoutineSymbolTable
@@ -257,7 +257,7 @@ override method @midrange_ipic_JSR generateBinaryCodeAtAddress
   [inRoutineSymbolTable searchKey !mTargetLabel ?targetAddress] ;
 #--- Get values for PCLATH register
   @registerExpression PCLATH_register [new ![@lstring new !"PCLATH" !here] ![@luint new !0 !here]] ;
-  @midrange_ipic_registerExpression PCLATH_IPICregisterDescription ;
+  @midrange_intermediate_registerExpression PCLATH_IPICregisterDescription ;
   [PCLATH_register resolveMidrangeAccess
     !inTotalBankCount
     ![@uint max] # Means unknown bank
@@ -291,7 +291,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @midrange_ipic_CALL generateBinaryCodeAtAddress
+override method @midrange_intermediate_CALL generateBinaryCodeAtAddress
   ??@registerTable unused inRegisterTable
   ??@uint unused inTotalBankCount
   ??@midrange_symbolTable inRoutineSymbolTable
@@ -306,7 +306,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @midrange_ipic_incDecRegisterInCondition generateBinaryCodeAtAddress
+override method @midrange_intermediate_incDecRegisterInCondition generateBinaryCodeAtAddress
   ??@registerTable unused inRegisterTable
   ??@uint unused inTotalBankCount
   ??@midrange_symbolTable inRoutineSymbolTable
@@ -335,7 +335,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @midrange_ipic_instruction_CLRWDT generateBinaryCodeAtAddress
+override method @midrange_intermediate_instruction_CLRWDT generateBinaryCodeAtAddress
   ??@registerTable unused inRegisterTable
   ??@uint unused inTotalBankCount
   ??@midrange_symbolTable unused inRoutineSymbolTable
@@ -346,7 +346,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @midrange_ipic_instruction_CLRW generateBinaryCodeAtAddress
+override method @midrange_intermediate_instruction_CLRW generateBinaryCodeAtAddress
   ??@registerTable unused inRegisterTable
   ??@uint unused inTotalBankCount
   ??@midrange_symbolTable unused inRoutineSymbolTable
@@ -357,7 +357,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @midrange_ipic_instruction_NOP generateBinaryCodeAtAddress
+override method @midrange_intermediate_instruction_NOP generateBinaryCodeAtAddress
   ??@registerTable unused inRegisterTable
   ??@uint unused inTotalBankCount
   ??@midrange_symbolTable unused inRoutineSymbolTable
@@ -368,7 +368,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @midrange_ipic_instruction_RETURN generateBinaryCodeAtAddress
+override method @midrange_intermediate_instruction_RETURN generateBinaryCodeAtAddress
   ??@registerTable unused inRegisterTable
   ??@uint unused inTotalBankCount
   ??@midrange_symbolTable unused inRoutineSymbolTable
@@ -379,7 +379,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @midrange_ipic_instruction_RETFIE generateBinaryCodeAtAddress
+override method @midrange_intermediate_instruction_RETFIE generateBinaryCodeAtAddress
   ??@registerTable unused inRegisterTable
   ??@uint unused inTotalBankCount
   ??@midrange_symbolTable unused inRoutineSymbolTable
@@ -390,7 +390,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @midrange_ipic_instruction_SLEEP generateBinaryCodeAtAddress
+override method @midrange_intermediate_instruction_SLEEP generateBinaryCodeAtAddress
   ??@registerTable unused inRegisterTable
   ??@uint unused inTotalBankCount
   ??@midrange_symbolTable unused inRoutineSymbolTable
@@ -401,7 +401,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @midrange_ipic_instruction_literalOperation generateBinaryCodeAtAddress
+override method @midrange_intermediate_instruction_literalOperation generateBinaryCodeAtAddress
   ??@registerTable unused inRegisterTable
   ??@uint unused inTotalBankCount
   ??@midrange_symbolTable unused inRoutineSymbolTable
@@ -415,7 +415,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @midrange_ipic_pseudo_LABEL generateBinaryCodeAtAddress
+override method @midrange_intermediate_pseudo_LABEL generateBinaryCodeAtAddress
   ??@registerTable unused inRegisterTable
   ??@uint unused inTotalBankCount
   ??@midrange_symbolTable inRoutineSymbolTable
@@ -432,7 +432,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @midrange_ipic_instruction_MNOP generateBinaryCodeAtAddress
+override method @midrange_intermediate_instruction_MNOP generateBinaryCodeAtAddress
   ??@registerTable unused inRegisterTable
   ??@uint unused inTotalBankCount
   ??@midrange_symbolTable unused inRoutineSymbolTable
@@ -459,7 +459,7 @@ end method ;
 routine build_midrange_ipic_binary_code
   ??@registerTable inRegisterTable
   ??@uint inTotalBankCount
-  ??@midrange_ipic_instructionList inGeneratedInstructionList
+  ??@midrange_intermediate_instructionList inGeneratedInstructionList
   ??@uint inROMsize
   ??@actualConfigurationMap inActualConfigurationMap
   !@uint outUsedROMsize
