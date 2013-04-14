@@ -8,9 +8,14 @@ abstract method @baseline_assembly_instruction print ?!@string ioListFileContent
 #-------------------------------------------------------------------------------*
 
 override method @baseline_assembly_pseudo_ORG print ?!@string ioListFileContents :
-  ioListFileContents .= "  ORG " . mOrigin ;
+  ioListFileContents .= "  ORG " . [mOrigin hexString] ;
 end method ;
 
+#-------------------------------------------------------------------------------*
+
+override method @baseline_assembly_pseudo_INPAGE print ?!@string ioListFileContents :
+  ioListFileContents .= ";  CHECK " . mRoutineName . " IN PAGE " . mPage ;
+end method ;
 
 #-------------------------------------------------------------------------------*
 

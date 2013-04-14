@@ -22,5 +22,13 @@ echo "-------------- 16F57" &&
 ../../makefile_macosx/piccolo -v -S -O -L --Werror banks_16F57.piccolo &&
 $GPUTILS_PATH/gpasm banks_16F57.asm -o banks_16F57-2.hex &&
 hexcmp banks_16F57.hex banks_16F57-2.hex &&
+echo "-------------- Pages 12F510" &&
+../../makefile_macosx/piccolo -v -S -O -L --Werror pages_12F510.piccolo &&
+$GPUTILS_PATH/gpasm pages_12F510.asm -o pages_12F510-2.hex &&
+hexcmp pages_12F510.hex pages_12F510-2.hex &&
+echo "-------------- Pages 16F59" &&
+../../makefile_macosx/piccolo -v -S -O -L --Werror pages_16F59.piccolo &&
+$GPUTILS_PATH/gpasm pages_16F59.asm -o pages_16F59-2.hex &&
+hexcmp pages_16F59.hex pages_16F59-2.hex &&
 #----
 echo "-------------- SUCCES ---------------"
