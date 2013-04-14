@@ -94,6 +94,18 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
+override method @baseline_intermediate_TRIS generateAssemblyCode
+  ?!@baseline_pic_assembly_instructionList ioAssemblyInstructionList
+:
+  ioAssemblyInstructionList += ![@baseline_pic_assembly_TRIS new
+    !mInstructionLocation
+    !mOperand
+    !mOpcode
+  ] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
 override method @baseline_intermediate_instruction_literalOperation generateAssemblyCode
   ?!@baseline_pic_assembly_instructionList ioAssemblyInstructionList
 :

@@ -1,4 +1,4 @@
-baseline instructions "10F206" :
+baseline instructions_10F206 "10F206" :
 
 configuration {
   CP : Disabled
@@ -7,7 +7,9 @@ configuration {
   WDTE : Disabled
 }
 
-byte var
+ram gprs {
+  byte var
+}
 
 noreturn routine main page 0 {
   addwf var
@@ -45,6 +47,7 @@ noreturn routine main page 0 {
   iorlw 55
   option
   sleep
+  tris GPIO
   xorlw 66
   forever
   end

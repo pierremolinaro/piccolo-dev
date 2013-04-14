@@ -85,6 +85,13 @@ class @baseline_pic_assembly_WO_OPERAND extends @baseline_pic_assembly_actualIns
   @baseline_WO_OPERAND_group mInstruction ;
 }
 
+#----------------------------------------------------*
+
+class @baseline_pic_assembly_TRIS extends @baseline_pic_assembly_actualInstruction {
+  @lstring mOperand ;
+  @uint mOpcode ;
+}
+
 #-------------------------------------------------------------------------------*
 
 class @baseline_pic_assembly_instruction_literalOperation extends @baseline_pic_assembly_actualInstruction {

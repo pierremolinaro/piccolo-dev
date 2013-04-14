@@ -101,4 +101,10 @@ end method ;
 
 #-------------------------------------------------------------------------------*
 
+override method @baseline_pic_assembly_TRIS print ?!@string ioListFileContents :
+  ioListFileContents .= "  TRIS " . mOperand ;
+end method ;
+
+#-------------------------------------------------------------------------------*
+
 end semantics ;

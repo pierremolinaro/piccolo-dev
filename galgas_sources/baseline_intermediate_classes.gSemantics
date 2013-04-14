@@ -91,6 +91,13 @@ class @baseline_intermediate_WO_OPERAND extends @baseline_intermediate_actualIns
   @baseline_WO_OPERAND_group mInstruction ;
 }
 
+#----------------------------------------------------*
+
+class @baseline_intermediate_TRIS extends @baseline_intermediate_actualInstruction {
+  @lstring mOperand ;
+  @uint mOpcode ;
+}
+
 #-------------------------------------------------------------------------------*
 
 class @baseline_intermediate_instruction_literalOperation extends @baseline_intermediate_actualInstruction {

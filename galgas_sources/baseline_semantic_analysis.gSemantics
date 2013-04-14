@@ -98,9 +98,52 @@ override method @baseline_instruction_WO_OPERAND build_baseline_intermediate_ins
   ??@bool inLastInstructionShouldReturn
 :
   if inLastInstructionShouldReturn then
-    error mInstructionLocation : "this instruction is the last routine instruction and should be MOVLW" ;
+    error mInstructionLocation : "this instruction is the last routine instruction but should be MOVLW" ;
   end if ;
   ioGeneratedInstructionList += ![@baseline_intermediate_WO_OPERAND new !mInstructionLocation !mInstruction] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+once acceptableTRISoperand -> @stringset set :
+  set := [@stringset emptySet] ;
+  set += !"GPIO" ;
+  set += !"PORTA" ;
+  set += !"PORTB" ;
+  set += !"PORTC" ;
+  set += !"PORTD" ;
+  set += !"PORTE" ;
+end once ;
+
+#----------------------------------------------------------------------------*
+
+override method @baseline_instruction_TRIS build_baseline_intermediate_instructionList
+  ??@baselineRoutineMap unused inRoutineMap
+  ??@registerTable inRegisterTable
+  ??@constantMap unused inConstantMap
+  ?!@uint unused ioLocalLabelIndex
+  ?!@baseline_intermediate_instructionList ioGeneratedInstructionList
+  ?!@bool unused ioContinuesInSequence
+  ??@routineKind unused inRoutineKind
+  ??@bool inLastInstructionShouldReturn
+:
+  if inLastInstructionShouldReturn then
+    error mInstructionLocation : "this instruction is the last routine instruction but should be MOVLW" ;
+  end if ;
+#---
+  if not [acceptableTRISoperand [] hasKey !mOperand->string] then
+    @string s := "" ;
+    foreach acceptableTRISoperand []
+    do s .= key ;
+    between s .= ", " ;    
+    end foreach ;
+    error mInstructionLocation : "invalid TRIS operand; accepted operand are: " . s ;
+  end if ;
+#---
+  [inRegisterTable searchKey !mOperand ?@uintlist registerAddressList ?3*] ;
+  [registerAddressList first ?@uint opcode] ;
+#---
+  ioGeneratedInstructionList += ![@baseline_intermediate_TRIS new !mInstructionLocation !mOperand !opcode] ;
 end method ;
 
 #----------------------------------------------------------------------------*
