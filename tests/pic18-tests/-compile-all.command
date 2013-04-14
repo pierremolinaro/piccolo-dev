@@ -56,5 +56,4 @@ echo "-------------- Bootloader user program" &&
 $GPUTILS_PATH/gpasm bootloader_user_program.asm -o bootloader_user_program-2.hex &&
 hexcmp bootloader_user_program.hex bootloader_user_program-2.hex &&
 #----
-echo "-------------- SUCCES ---------------" ||
-echo "-------------- ECHEC ----------------"
+echo "-------------- SUCCES ---------------"

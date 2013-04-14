@@ -7,11 +7,18 @@ import "ipic_generic.gSemantics" ;
 import "piccolo_options.gOption" ;
 import "baseline_intermediate_instruction_length.gSemantics" ;
 
+#----------------------------------------------------------------------------*
+
+map @baselineRoutineMap {
+  @bool mIsNoReturn ;
+  @luint mPage ;
+  insert insertKey error message "the '%K' routine is already declared in %L" ;
+  search searchKey error message "the '%K' routine is not declared" ;
+}
+
 #----------------------------------------------------*
 
 method @registerExpression resolveBaselineAccess
-  ??@uint inTotalBankCount
-  ??@uint inCurrentBank
   ??@registerTable inRegisterTable
   !@baseline_intermediate_registerExpression outIntermediateRegisterDescription
   !@bitSliceTable outBitSliceTable
@@ -21,50 +28,24 @@ method @registerExpression resolveBaselineAccess
   if [mOffset uint] > 0 then
     assemblyString .= " + " . [[mOffset uint] hexString] ;
   end if ;
-#--- 
-  @uintlist registerAddressList ;
-  @uint size ;
+#--- Find register
+  [inRegisterTable searchKey
+    !mRegisterName
+    ?@uintlist registerAddressList
+    ?@uint size
+    ?outBitSliceTable
+    ?*
+  ] ;
+#--- Accept if one address is <= 0x1F
   @uint registerAddress := 0 ;
-  [inRegisterTable searchKey !mRegisterName ?registerAddressList ?size ?outBitSliceTable ?*] ;
-#--- Find acceptable bank settings
-  @uintlist acceptableBanks [emptyList] ;
-  foreach registerAddressList do
-    acceptableBanks += !mValue >> 7 ;
-  end foreach ;
-#---
-  if inCurrentBank == [@uint max] then
-  #--- No selected bank, register should be mirrored in all banks
-    @uint bank := 0 ;
-    @bool ok := true ;
-    loop inTotalBankCount : while (bank < inTotalBankCount) & ok do
-      ok := false ;
-      foreach registerAddressList while not ok do
-        ok := (mValue >= (bank * 32)) & (mValue < (bank * 32 + 32)) ;
-        registerAddress := mValue & 0x1F ;
-      end foreach ;
-      bank ++ ;
-    end loop ;
-    if not ok then
-      @string acceptableBankMessage := "" ;
-      foreach registerAddressList
-      do acceptableBankMessage .= [mValue >> 5 string] ;
-      between acceptableBankMessage .= ", " ;
-      end foreach ;
-      error mRegisterName:"as no bank is currently known, the '" . mRegisterName . "' register accessible from bank ". acceptableBankMessage  . ", but should be able to be accessed from any bank setting" ;
-    end if ;
-  else
+  if [registerAddressList length] > 0 then
     @bool found := false ;
     foreach registerAddressList while not found do
-      found := (mValue >= (inCurrentBank * 32)) & (mValue < (inCurrentBank * 32 + 32)) ;
-      registerAddress := mValue & 0x1F ;
+      registerAddress := mValue ;
+      found := mValue <= 0x1F ;
     end foreach ;
     if not found then
-      @string acceptableBankMessage := "" ;
-      foreach registerAddressList
-      do acceptableBankMessage .= [mValue >> 5 string] ;
-      between acceptableBankMessage .= ", " ;
-      end foreach ;
-      error mRegisterName:"the '" . mRegisterName . "' register cannot be accessed from bank " . [inCurrentBank string] . " (valid bank setting: " . acceptableBankMessage . ")" ;
+      error mRegisterName : "the register cannot be accessed directly; use indirect addressing throught FSR register" ;
     end if ;
   end if ;
 #---
@@ -78,15 +59,12 @@ end method ;
 
 routine handleBaselineInstructionList
   ??@baseline_instructionList inInstructionList
-  ??@routineMap inRoutineMap
+  ??@baselineRoutineMap inRoutineMap
   ??@registerTable inRegisterTable
   ??@constantMap inConstantMap
   ?!@uint ioLocalLabelIndex
   ?!@baseline_intermediate_instructionList ioGeneratedInstructionList
   ?!@string ioListFileContents
-  ??@uint inTotalBankCount
-  ?!@uint ioCurrentBank
-  ??@bool inShouldPreserveBank
   !@bool outContinuesInSequence
   ??@routineKind inRoutineKind
   ??@bool inLastInstructionShouldReturn
@@ -105,9 +83,6 @@ routine handleBaselineInstructionList
       !?ioGeneratedInstructionList
       !?ioListFileContents
       !?outContinuesInSequence
-      !inTotalBankCount
-      !?ioCurrentBank
-      !inShouldPreserveBank
       !inRoutineKind
       !if (idx + 1) == [inInstructionList length] then inLastInstructionShouldReturn else false end
     ] ;
@@ -117,240 +92,27 @@ end routine ;
 #----------------------------------------------------------------------------*
 
 abstract method @baseline_instruction build_baseline_intermediate_instructionList
-  ??@routineMap unused inRoutineMap
+  ??@baselineRoutineMap unused inRoutineMap
   ??@registerTable inRegisterTable
   ??@constantMap unused inConstantMap
   ?!@uint unused ioLocalLabelIndex
   ?!@baseline_intermediate_instructionList ioGeneratedInstructionList
   ?!@string ioListFileContents
   ?!@bool ioContinuesInSequence
-  ??@uint inTotalBankCount
-  ?!@uint ioCurrentBank
-  ??@bool inShouldPreserveBank
   ??@routineKind unused inRoutineKind
   ??@bool inLastInstructionShouldReturn
 ;
 
-#----------------------------------------------------*
-
-override method @baseline_instruction_nobanksel build_baseline_intermediate_instructionList
-  ??@routineMap unused inRoutineMap
-  ??@registerTable unused inRegisterTable
-  ??@constantMap unused inConstantMap
-  ?!@uint unused ioLocalLabelIndex
-  ?!@baseline_intermediate_instructionList unused ioGeneratedInstructionList
-  ?!@string unused ioListFileContents
-  ?!@bool unused ioContinuesInSequence
-  ??@uint unused inTotalBankCount
-  ?!@uint ioCurrentBank
-  ??@bool inShouldPreserveBank
-  ??@routineKind unused inRoutineKind
-  ??@bool inLastInstructionShouldReturn
-:
-  if inLastInstructionShouldReturn then
-    error mInstructionLocation : "the last routine instruction should be MOVLW" ;
-  end if ;
-  if inShouldPreserveBank then
-    error mInstructionLocation: "cannot use \"nobank\" here: bank selection should be preserved (use it in a \"banksave\" construct)" ;
-  end if ;
-  ioCurrentBank := [@uint max] ;
-#--- Generates no code
-end method ;
-
-#----------------------------------------------------*
-
-override method @baseline_instruction_banksel build_baseline_intermediate_instructionList
-  ??@routineMap unused inRoutineMap
-  ??@registerTable inRegisterTable
-  ??@constantMap unused inConstantMap
-  ?!@uint unused ioLocalLabelIndex
-  ?!@baseline_intermediate_instructionList ioGeneratedInstructionList
-  ?!@string ioListFileContents
-  ?!@bool unused ioContinuesInSequence
-  ??@uint inTotalBankCount
-  ?!@uint ioCurrentBank
-  ??@bool inShouldPreserveBank
-  ??@routineKind unused inRoutineKind
-  ??@bool inLastInstructionShouldReturn
-:
-  if inLastInstructionShouldReturn then
-    error mInstructionLocation : "the last routine instruction should be MOVLW" ;
-  end if ;
-  if inShouldPreserveBank then
-    error mInstructionLocation: "cannot use \"banksel\" here: bank selection should be preserved (save it with \"banksave\" construct)" ;
-  end if ;
-#---
-  @registerExpression STATUS_register [new ![@lstring new !"STATUS" !here] ![@luint new !0 !here]] ;
-  @baseline_intermediate_registerExpression STATUS_IPICregisterDescription ;
-  @bitSliceTable bitSliceTable ;
-  [STATUS_register resolveBaselineAccess
-    !inTotalBankCount
-    !ioCurrentBank
-    !inRegisterTable
-    ?STATUS_IPICregisterDescription
-    ?bitSliceTable
-  ] ;
-  const @lstring RP [new !"RP" !mInstructionLocation] ;
-  @uint rpIndex ;
-  @uint sliceSize ;
-  [bitSliceTable searchKey !RP ?rpIndex ?sliceSize] ;
-  if sliceSize != [inTotalBankCount - 1 significantBitCount] then
-    error mInstructionLocation: "internal error: sliceSize == " . [sliceSize string] . ", total bank count == " . [inTotalBankCount string] ;
-  end if ;
-#---
-  if [mBankIndex uint] == ioCurrentBank then
-    warning mBankIndex:"useless instruction: the bank " . [ioCurrentBank string] . " is already selected" ;
-  elsif [mBankIndex uint] >= inTotalBankCount then
-    error mBankIndex:"the bank " . [[mBankIndex uint] string] . " does not exist (the device has " . [inTotalBankCount string] . " bank(s))" ;
-  elsif ioCurrentBank == [@uint max] then # No currenly selected bank : set all bits
-    @uint n := [inTotalBankCount - 1 significantBitCount] ;
-    @uint shiftedBank := [mBankIndex uint] ;
-    @uint idx := 0 ;
-    loop sliceSize : while idx < sliceSize do
-      @baseline_bit_oriented_op op ;
-      if ((shiftedBank & 1) == 0) then
-        op := [@baseline_bit_oriented_op BCF] ;
-      else
-        op := [@baseline_bit_oriented_op BSF] ;
-      end if ;
-      ioGeneratedInstructionList += ![@baseline_intermediate_instruction_FB new
-        !mInstructionLocation
-        !op
-        !STATUS_IPICregisterDescription
-        !rpIndex + idx
-      ] ;
-      idx ++ ;      
-      shiftedBank := shiftedBank >> 1 ;
-    end loop ;
-    ioCurrentBank := [mBankIndex uint] ;
-  else
-    @bool optimize := [option piccolo_options.performOptimizations value] ;
-    @uint shiftedBank := [mBankIndex uint] ;
-    @uint shiftedXorBank := [mBankIndex uint] ^ ioCurrentBank ;
-    @uint idx := 0 ;
-    loop sliceSize : while idx < sliceSize do
-      @baseline_bit_oriented_op op ;
-      if ((shiftedBank & 1) == 0) then
-        op := [@baseline_bit_oriented_op BCF] ;
-      else
-        op := [@baseline_bit_oriented_op BSF] ;
-      end if ;
-      if ((shiftedXorBank & 1) != 0) | not optimize then
-        ioGeneratedInstructionList += ![@baseline_intermediate_instruction_FB new
-          !mInstructionLocation
-          !op
-          !STATUS_IPICregisterDescription
-          !rpIndex + idx
-        ] ;
-      else
-        ioListFileContents .= "  line " . [[ioGeneratedInstructionList length] string] ;
-        ioListFileContents .= ": useless '" . [op mnemonic] . " STATUS, " ;
-        ioListFileContents .= [rpIndex + idx string] . "' not generated\n" ;
-      end if ;
-      idx ++ ;      
-      shiftedBank := shiftedBank >> 1 ;
-      shiftedXorBank := shiftedXorBank >> 1 ;
-    end loop ;
-    ioCurrentBank := [mBankIndex uint] ;
-  end if ;
-end method ;
-
-#----------------------------------------------------*
-
-override method @baseline_instruction_savebank build_baseline_intermediate_instructionList
-  ??@routineMap inRoutineMap
-  ??@registerTable inRegisterTable
-  ??@constantMap inConstantMap
-  ?!@uint ioLocalLabelIndex
-  ?!@baseline_intermediate_instructionList ioGeneratedInstructionList
-  ?!@string ioListFileContents
-  ?!@bool ioContinuesInSequence
-  ??@uint inTotalBankCount
-  ?!@uint ioCurrentBank
-  ??@bool unused inShouldPreserveBank
-  ??@routineKind inRoutineKind
-  ??@bool inLastInstructionShouldReturn
-:
-#--- Get values for STATUS register
-  @registerExpression STATUS_register [new ![@lstring new !"STATUS" !here] ![@luint new !0 !here]] ;
-  @baseline_intermediate_registerExpression STATUS_IPICregisterDescription ;
-  [STATUS_register resolveBaselineAccess
-    !inTotalBankCount
-    ![@uint max] # No selected bank
-    !inRegisterTable
-    ?STATUS_IPICregisterDescription
-    ?*
-  ] ;
-#--- Get values for register used for saving
-  @baseline_intermediate_registerExpression save_IPICregisterDescription ;
-  [mRegister resolveBaselineAccess
-    !inTotalBankCount
-    ![@uint max] # No selected bank
-    !inRegisterTable
-    ?save_IPICregisterDescription
-    ?*
-  ] ;
-#--- Generate "SWAPF STATUS, W" instruction
-  ioGeneratedInstructionList += ![@baseline_intermediate_instruction_FD new
-    !mInstructionLocation
-    ![@baseline_instruction_FD_base_code SWAPF]
-    !STATUS_IPICregisterDescription
-    !true # W is destination
-  ] ;
-#--- Generate "MOVWF SAVE_REG" instruction
-  ioGeneratedInstructionList += ![@baseline_intermediate_instruction_F new
-    !mInstructionLocation
-    ![@baseline_F_instruction_base_code MOVWF]
-    !save_IPICregisterDescription
-  ] ;
-#--- Generate instruction list
-  @uint finalBank := ioCurrentBank ;
-  handleBaselineInstructionList
-    !mInstructionList
-    !inRoutineMap
-    !inRegisterTable
-    !inConstantMap
-    !?ioLocalLabelIndex
-    !?ioGeneratedInstructionList
-    !?ioListFileContents
-    !inTotalBankCount
-    !?finalBank
-    !false # Do not preserve bank now
-    ?ioContinuesInSequence
-    !inRoutineKind
-    !inLastInstructionShouldReturn
-  ;
-  if not ioContinuesInSequence then
-    error mEndOfSaveBankInstruction:"useless saving: execution does reach the end of \"savebank\" instruction list" ;
-  end if ;
-#--- Generate "SWAPF SAVE_REG, W" instruction
-  ioGeneratedInstructionList += ![@baseline_intermediate_instruction_FD new
-    !mInstructionLocation
-    ![@baseline_instruction_FD_base_code SWAPF]
-    !save_IPICregisterDescription
-    !true # W is destination
-  ] ;
-#--- Generate "MOVWF STATUS" instruction
-  ioGeneratedInstructionList += ![@baseline_intermediate_instruction_F new
-    !mInstructionLocation
-    ![@baseline_F_instruction_base_code MOVWF]
-    !STATUS_IPICregisterDescription
-  ] ;
-end method ;
-
 #----------------------------------------------------------------------------*
 
 override method @baseline_instruction_WO_OPERAND build_baseline_intermediate_instructionList
-  ??@routineMap unused inRoutineMap
+  ??@baselineRoutineMap unused inRoutineMap
   ??@registerTable unused inRegisterTable
   ??@constantMap unused inConstantMap
   ?!@uint unused ioLocalLabelIndex
   ?!@baseline_intermediate_instructionList ioGeneratedInstructionList
   ?!@string unused ioListFileContents
   ?!@bool unused ioContinuesInSequence
-  ??@uint unused inTotalBankCount
-  ?!@uint unused ioCurrentBank
-  ??@bool unused inShouldPreserveBank
   ??@routineKind unused inRoutineKind
   ??@bool inLastInstructionShouldReturn
 :
@@ -375,16 +137,13 @@ end once ;
 #----------------------------------------------------------------------------*
 
 override method @baseline_instruction_TRIS build_baseline_intermediate_instructionList
-  ??@routineMap unused inRoutineMap
+  ??@baselineRoutineMap unused inRoutineMap
   ??@registerTable inRegisterTable
   ??@constantMap unused inConstantMap
   ?!@uint unused ioLocalLabelIndex
   ?!@baseline_intermediate_instructionList ioGeneratedInstructionList
   ?!@string unused ioListFileContents
   ?!@bool unused ioContinuesInSequence
-  ??@uint unused inTotalBankCount
-  ?!@uint unused ioCurrentBank
-  ??@bool unused inShouldPreserveBank
   ??@routineKind unused inRoutineKind
   ??@bool inLastInstructionShouldReturn
 :
@@ -410,16 +169,13 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override method @baseline_instruction_MNOP build_baseline_intermediate_instructionList
-  ??@routineMap unused inRoutineMap
+  ??@baselineRoutineMap unused inRoutineMap
   ??@registerTable unused inRegisterTable
   ??@constantMap unused inConstantMap
   ?!@uint unused ioLocalLabelIndex
   ?!@baseline_intermediate_instructionList ioGeneratedInstructionList
   ?!@string unused ioListFileContents
   ?!@bool unused ioContinuesInSequence
-  ??@uint unused inTotalBankCount
-  ?!@uint unused ioCurrentBank
-  ??@bool unused inShouldPreserveBank
   ??@routineKind unused inRoutineKind
   ??@bool inLastInstructionShouldReturn
 :
@@ -432,16 +188,13 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override method @baseline_instruction_literalOperation build_baseline_intermediate_instructionList
-  ??@routineMap unused inRoutineMap
+  ??@baselineRoutineMap unused inRoutineMap
   ??@registerTable inRegisterTable
   ??@constantMap inConstantMap
   ?!@uint unused ioLocalLabelIndex
   ?!@baseline_intermediate_instructionList ioGeneratedInstructionList
   ?!@string unused ioListFileContents
   ?!@bool unused ioContinuesInSequence
-  ??@uint unused inTotalBankCount
-  ?!@uint unused ioCurrentBank
-  ??@bool unused inShouldPreserveBank
   ??@routineKind unused inRoutineKind
   ??@bool inLastInstructionShouldReturn
 :
@@ -473,16 +226,13 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override method @baseline_instruction_FD build_baseline_intermediate_instructionList
-  ??@routineMap unused inRoutineMap
+  ??@baselineRoutineMap unused inRoutineMap
   ??@registerTable inRegisterTable
   ??@constantMap unused inConstantMap
   ?!@uint unused ioLocalLabelIndex
   ?!@baseline_intermediate_instructionList ioGeneratedInstructionList
   ?!@string unused ioListFileContents
   ?!@bool unused ioContinuesInSequence
-  ??@uint inTotalBankCount
-  ?!@uint ioCurrentBank
-  ??@bool unused inShouldPreserveBank
   ??@routineKind unused inRoutineKind
   ??@bool inLastInstructionShouldReturn
 :
@@ -490,8 +240,6 @@ override method @baseline_instruction_FD build_baseline_intermediate_instruction
     error mInstructionLocation : "this instruction is the last routine instruction and should be MOVLW" ;
   end if ;
   [mRegisterExpression resolveBaselineAccess
-    !inTotalBankCount
-    !ioCurrentBank
     !inRegisterTable
     ?@baseline_intermediate_registerExpression intermediateRegisterDescription
     ?@bitSliceTable bitSliceTable
@@ -507,16 +255,13 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override method @baseline_instruction_CALL build_baseline_intermediate_instructionList
-  ??@routineMap inRoutineMap
+  ??@baselineRoutineMap inRoutineMap
   ??@registerTable unused inRegisterTable
   ??@constantMap unused inConstantMap
   ?!@uint unused ioLocalLabelIndex
   ?!@baseline_intermediate_instructionList ioGeneratedInstructionList
   ?!@string unused ioListFileContents
   ?!@bool unused ioContinuesInSequence
-  ??@uint unused inTotalBankCount
-  ?!@uint ioCurrentBank
-  ??@bool unused inShouldPreserveBank
   ??@routineKind unused inRoutineKind
   ??@bool inLastInstructionShouldReturn
 :
@@ -524,26 +269,9 @@ override method @baseline_instruction_CALL build_baseline_intermediate_instructi
     error mInstructionLocation : "this instruction is the last routine instruction and should be MOVLW" ;
   end if ;
 #--- Check instruction
-  @bool isNoReturn ;
-  @uint requiredBank ;
-  @uint returnedBank ;
-  @bool preservesBank ;
-  [inRoutineMap searchKey !mTargetLabel ?isNoReturn ?requiredBank ?returnedBank ?preservesBank] ;
-  if (requiredBank != [@uint max]) & (requiredBank != ioCurrentBank) then
-    @string errorMessage := "the routine '" . mTargetLabel . "' requires bank selection to be set to " . [requiredBank string] ;
-    errorMessage .= ", but bank selection " ;
-    if ioCurrentBank == [@uint max] then
-      errorMessage .= "does contain any reliable value" ;
-    else
-      errorMessage .= "is set to " . [ioCurrentBank string] ;
-    end if ;
-    error mTargetLabel:errorMessage ;
-  end if ;
+  [inRoutineMap searchKey !mTargetLabel ?@bool isNoReturn ?@luint page] ;
   if isNoReturn then
-    error mTargetLabel:"a \"noreturn\" routine should be called with a GOTO or JUMP instruction" ;
-  end if ;
-  if not preservesBank then
-    ioCurrentBank := returnedBank ;
+    error mTargetLabel:"a \"noreturn\" routine should be called with a GOTO instruction" ;
   end if ;
 #---
   ioGeneratedInstructionList += ![@baseline_intermediate_CALL new
@@ -555,16 +283,13 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override method @baseline_instruction_F build_baseline_intermediate_instructionList
-  ??@routineMap unused inRoutineMap
+  ??@baselineRoutineMap unused inRoutineMap
   ??@registerTable inRegisterTable
   ??@constantMap unused inConstantMap
   ?!@uint unused ioLocalLabelIndex
   ?!@baseline_intermediate_instructionList ioGeneratedInstructionList
   ?!@string unused ioListFileContents
   ?!@bool unused ioContinuesInSequence
-  ??@uint inTotalBankCount
-  ?!@uint ioCurrentBank
-  ??@bool unused inShouldPreserveBank
   ??@routineKind unused inRoutineKind
   ??@bool inLastInstructionShouldReturn
 :
@@ -572,8 +297,6 @@ override method @baseline_instruction_F build_baseline_intermediate_instructionL
     error mInstructionLocation : "this instruction is the last routine instruction and should be MOVLW" ;
   end if ;
   [mRegisterExpression resolveBaselineAccess
-    !inTotalBankCount
-    !ioCurrentBank
     !inRegisterTable
     ?@baseline_intermediate_registerExpression intermediateRegisterDescription
     ?*
@@ -588,16 +311,13 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override method @baseline_instruction_FB build_baseline_intermediate_instructionList
-  ??@routineMap unused inRoutineMap
+  ??@baselineRoutineMap unused inRoutineMap
   ??@registerTable inRegisterTable
   ??@constantMap unused inConstantMap
   ?!@uint unused ioLocalLabelIndex
   ?!@baseline_intermediate_instructionList ioGeneratedInstructionList
   ?!@string unused ioListFileContents
   ?!@bool unused ioContinuesInSequence
-  ??@uint inTotalBankCount
-  ?!@uint ioCurrentBank
-  ??@bool unused inShouldPreserveBank
   ??@routineKind unused inRoutineKind
   ??@bool inLastInstructionShouldReturn
 :
@@ -605,8 +325,6 @@ override method @baseline_instruction_FB build_baseline_intermediate_instruction
     error mInstructionLocation : "this instruction is the last routine instruction and should be MOVLW" ;
   end if ;
   [mRegisterExpression resolveBaselineAccess
-    !inTotalBankCount
-    !ioCurrentBank
     !inRegisterTable
     ?@baseline_intermediate_registerExpression intermediateRegisterDescription
     ?@bitSliceTable bitSliceTable
@@ -627,37 +345,22 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override method @baseline_instruction_GOTO build_baseline_intermediate_instructionList
-  ??@routineMap inRoutineMap
+  ??@baselineRoutineMap inRoutineMap
   ??@registerTable unused inRegisterTable
   ??@constantMap unused inConstantMap
   ?!@uint unused ioLocalLabelIndex
   ?!@baseline_intermediate_instructionList ioGeneratedInstructionList
   ?!@string unused ioListFileContents
   ?!@bool ioContinuesInSequence
-  ??@uint unused inTotalBankCount
-  ?!@uint ioCurrentBank
-  ??@bool unused inShouldPreserveBank
   ??@routineKind unused inRoutineKind
   ??@bool inLastInstructionShouldReturn
 :
   if inLastInstructionShouldReturn then
     error mInstructionLocation : "this instruction is the last routine instruction and should be MOVLW" ;
   end if ;
-  @bool isNoReturn ;
-  @uint requiredBank ;
-  [inRoutineMap searchKey !mTargetLabel ?isNoReturn ?requiredBank ?* ?*] ;
-  if (requiredBank != [@uint max]) & (requiredBank != ioCurrentBank) then
-    @string errorMessage := "the routine '" . mTargetLabel . "' requires bank selection to be set to " . [requiredBank string] ;
-    errorMessage .= ", but bank selection " ;
-    if ioCurrentBank == [@uint max] then
-      errorMessage .= "does contain any reliable value" ;
-    else
-      errorMessage .= "is set to " . [ioCurrentBank string] ;
-    end if ;
-    error mTargetLabel:errorMessage ;
-  end if ;
+  [inRoutineMap searchKey !mTargetLabel ?@bool isNoReturn ?@luint page] ;
   if not isNoReturn then
-    error mTargetLabel:"a regular routine should be called with a CALL or JSR instruction" ;
+    error mTargetLabel:"a regular routine should be called with a CALL instruction" ;
   end if ;
   ioContinuesInSequence := false ;
 #---
@@ -670,22 +373,17 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override method @baseline_instruction_IF_BitTest build_baseline_intermediate_instructionList
-  ??@routineMap inRoutineMap
+  ??@baselineRoutineMap inRoutineMap
   ??@registerTable inRegisterTable
   ??@constantMap inConstantMap
   ?!@uint ioLocalLabelIndex
   ?!@baseline_intermediate_instructionList ioGeneratedInstructionList
   ?!@string ioListFileContents
   ?!@bool unused ioContinuesInSequence
-  ??@uint inTotalBankCount
-  ?!@uint ioCurrentBank
-  ??@bool inShouldPreserveBank
   ??@routineKind inRoutineKind
   ??@bool inLastInstructionShouldReturn
 :
   [mRegisterExpression resolveBaselineAccess
-    !inTotalBankCount
-    !ioCurrentBank
     !inRegisterTable
     ?@baseline_intermediate_registerExpression intermediateRegisterDescription
     ?@bitSliceTable bitSliceTable
@@ -711,9 +409,6 @@ override method @baseline_instruction_IF_BitTest build_baseline_intermediate_ins
     !?ioGeneratedInstructionList
     !?ioListFileContents
     !?unusedContinuesInSequence
-    !inTotalBankCount
-    !?ioCurrentBank
-    !inShouldPreserveBank
     !inRoutineKind
     !inLastInstructionShouldReturn
   ] ;
@@ -722,16 +417,13 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override method @baseline_instruction_IF_IncDec build_baseline_intermediate_instructionList
-  ??@routineMap inRoutineMap
+  ??@baselineRoutineMap inRoutineMap
   ??@registerTable inRegisterTable
   ??@constantMap inConstantMap
   ?!@uint ioLocalLabelIndex
   ?!@baseline_intermediate_instructionList ioGeneratedInstructionList
   ?!@string ioListFileContents
   ?!@bool unused ioContinuesInSequence
-  ??@uint inTotalBankCount
-  ?!@uint ioCurrentBank
-  ??@bool inShouldPreserveBank
   ??@routineKind inRoutineKind
   ??@bool inLastInstructionShouldReturn
 :
@@ -744,8 +436,6 @@ override method @baseline_instruction_IF_IncDec build_baseline_intermediate_inst
   end if ;
 #---
   [mRegisterExpression resolveBaselineAccess
-    !inTotalBankCount
-    !ioCurrentBank
     !inRegisterTable
     ?@baseline_intermediate_registerExpression intermediateRegisterDescription
     ?@bitSliceTable bitSliceTable
@@ -767,9 +457,6 @@ override method @baseline_instruction_IF_IncDec build_baseline_intermediate_inst
     !?ioGeneratedInstructionList
     !?ioListFileContents
     !?unusedContinuesInSequence
-    !inTotalBankCount
-    !?ioCurrentBank
-    !inShouldPreserveBank
     !inRoutineKind
     !inLastInstructionShouldReturn
   ] ;
@@ -778,16 +465,13 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override method @baseline_instruction_FOREVER build_baseline_intermediate_instructionList
-  ??@routineMap inRoutineMap
+  ??@baselineRoutineMap inRoutineMap
   ??@registerTable inRegisterTable
   ??@constantMap inConstantMap
   ?!@uint  ioLocalLabelIndex
   ?!@baseline_intermediate_instructionList ioGeneratedInstructionList
   ?!@string ioListFileContents
   ?!@bool ioContinuesInSequence
-  ??@uint inTotalBankCount
-  ?!@uint ioCurrentBank
-  ??@bool inShouldPreserveBank
   ??@routineKind inRoutineKind
   ??@bool unused inLastInstructionShouldReturn
 :
@@ -799,7 +483,6 @@ override method @baseline_instruction_FOREVER build_baseline_intermediate_instru
     error mInstructionLocation:"an interrupt routine does not accept the \"forever\" instruction" ;
   end switch ;
 #--- Check instruction list does not change bank
-  @uint finalBank := ioCurrentBank ;
   @string label0 := "_label_" . [ioLocalLabelIndex string] ; 
   ioLocalLabelIndex ++ ;
   ioGeneratedInstructionList += ![@baseline_intermediate_pseudo_LABEL new ![@lstring new !label0 !mInstructionLocation]] ;
@@ -811,16 +494,10 @@ override method @baseline_instruction_FOREVER build_baseline_intermediate_instru
     !?ioLocalLabelIndex
     !?ioGeneratedInstructionList
     !?ioListFileContents
-    !inTotalBankCount
-    !?finalBank
-    !inShouldPreserveBank
     ?ioContinuesInSequence
     !inRoutineKind
     !false # Instruction list does not need to end with MOVLW
   ;
-  if ioCurrentBank != finalBank then
-    error mEndOfInstructionList:"instruction list does not leave bank selection unchanged";
-  end if ;
 #--- Generate JUMP to loop start
   ioGeneratedInstructionList += ![@baseline_intermediate_GOTO new
     !mInstructionLocation
@@ -833,16 +510,13 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override method @baseline_instruction_do_while build_baseline_intermediate_instructionList
-  ??@routineMap inRoutineMap
+  ??@baselineRoutineMap inRoutineMap
   ??@registerTable inRegisterTable
   ??@constantMap inConstantMap
   ?!@uint ioLocalLabelIndex
   ?!@baseline_intermediate_instructionList ioGeneratedInstructionList
   ?!@string ioListFileContents
   ?!@bool ioContinuesInSequence
-  ??@uint inTotalBankCount
-  ?!@uint ioCurrentBank
-  ??@bool inShouldPreserveBank
   ??@routineKind inRoutineKind
   ??@bool inLastInstructionShouldReturn
 :
@@ -851,7 +525,6 @@ override method @baseline_instruction_do_while build_baseline_intermediate_instr
 #--- Define label
   ioGeneratedInstructionList += ![@baseline_intermediate_pseudo_LABEL new ![@lstring new !labelInstructionBegin !mInstructionLocation]] ;
 #--- Repeated instructions
-  @uint finalBank := ioCurrentBank ;
   handleBaselineInstructionList
     !mRepeatedInstructionList
     !inRoutineMap
@@ -860,22 +533,14 @@ override method @baseline_instruction_do_while build_baseline_intermediate_instr
     !?ioLocalLabelIndex
     !?ioGeneratedInstructionList
     !?ioListFileContents
-    !inTotalBankCount
-    !?finalBank
-    !inShouldPreserveBank
     ?ioContinuesInSequence
     !inRoutineKind
     !inLastInstructionShouldReturn
   ;
-  if ioCurrentBank != finalBank then
-    error mEndOfRepeatedInstructionList:"This branch does not leave bank selection value unchanged";
-  end if ;
 #--- while parts
   foreach mWhilePartList do
     if [mInstructionList length] == 0 then
       [mCondition build_intermediate_condition_instructions
-        !inTotalBankCount
-        !ioCurrentBank
         !inRegisterTable
         !?ioLocalLabelIndex
         !false
@@ -886,8 +551,6 @@ override method @baseline_instruction_do_while build_baseline_intermediate_instr
     else
       @string nextBranchLabel := "_label_" . [ioLocalLabelIndex string] ; ioLocalLabelIndex ++ ;
       [mCondition build_intermediate_condition_instructions
-        !inTotalBankCount
-        !ioCurrentBank
         !inRegisterTable
         !?ioLocalLabelIndex
         !true
@@ -895,7 +558,6 @@ override method @baseline_instruction_do_while build_baseline_intermediate_instr
         !nextBranchLabel
         !?ioGeneratedInstructionList
       ] ;
-      @uint bank := ioCurrentBank ;
       handleBaselineInstructionList
         !mInstructionList
         !inRoutineMap
@@ -904,16 +566,10 @@ override method @baseline_instruction_do_while build_baseline_intermediate_instr
         !?ioLocalLabelIndex
         !?ioGeneratedInstructionList
         !?ioListFileContents
-        !inTotalBankCount
-        !?bank
-        !inShouldPreserveBank
         ?ioContinuesInSequence
         !inRoutineKind
         !inLastInstructionShouldReturn
       ;
-      if ioCurrentBank != bank then
-        error mEndOfPartLocation:"This branch does not leave bank selection value unchanged";
-      end if ;
       ioGeneratedInstructionList += ![@baseline_intermediate_GOTO new !mInstructionLocation ![@lstring new !labelInstructionBegin !mInstructionLocation]] ;
       ioGeneratedInstructionList += ![@baseline_intermediate_pseudo_LABEL new ![@lstring new !nextBranchLabel !mInstructionLocation]] ;
     end if ;
@@ -923,16 +579,13 @@ end method ;
 #-------------------------------------------------------------------------------*
 
 override method @baseline_instruction_structured_if build_baseline_intermediate_instructionList
-  ??@routineMap inRoutineMap
+  ??@baselineRoutineMap inRoutineMap
   ??@registerTable inRegisterTable
   ??@constantMap inConstantMap
   ?!@uint ioLocalLabelIndex
   ?!@baseline_intermediate_instructionList ioGeneratedInstructionList
   ?!@string ioListFileContents
   ?!@bool ioContinuesInSequence
-  ??@uint inTotalBankCount
-  ?!@uint ioCurrentBank
-  ??@bool inShouldPreserveBank
   ??@routineKind inRoutineKind
   ??@bool inLastInstructionShouldReturn
 :
@@ -941,8 +594,6 @@ override method @baseline_instruction_structured_if build_baseline_intermediate_
   @string label_endOfIfinstruction := "_label_" . [ioLocalLabelIndex string] ; ioLocalLabelIndex ++ ;
 #--- Translate condition
   [mIfCondition build_intermediate_condition_instructions
-    !inTotalBankCount
-    !ioCurrentBank
     !inRegisterTable
     !?ioLocalLabelIndex
     !true
@@ -950,7 +601,6 @@ override method @baseline_instruction_structured_if build_baseline_intermediate_
     !label_nextCondition
     !?ioGeneratedInstructionList
   ] ;
-  @uint thenBranchFinalBank := ioCurrentBank ;
 #--- 'then' instructions
   handleBaselineInstructionList
     !mThenInstructionList
@@ -960,9 +610,6 @@ override method @baseline_instruction_structured_if build_baseline_intermediate_
     !?ioLocalLabelIndex
     !?ioGeneratedInstructionList
     !?ioListFileContents
-    !inTotalBankCount
-    !?thenBranchFinalBank
-    !inShouldPreserveBank
     ?@bool thenContinuesInSequence
     !inRoutineKind
     !inLastInstructionShouldReturn
@@ -972,7 +619,6 @@ override method @baseline_instruction_structured_if build_baseline_intermediate_
     ioGeneratedInstructionList += ![@baseline_intermediate_GOTO new !mInstructionLocation ![@lstring new !label_endOfIfinstruction !mInstructionLocation]] ;
   end if ;
   ioGeneratedInstructionList += ![@baseline_intermediate_pseudo_LABEL new ![@lstring new !label_nextCondition !mInstructionLocation]] ;
-  @uint elseBranchFinalBank := ioCurrentBank ;
   handleBaselineInstructionList
     !mElseInstructionList
     !inRoutineMap
@@ -981,22 +627,12 @@ override method @baseline_instruction_structured_if build_baseline_intermediate_
     !?ioLocalLabelIndex
     !?ioGeneratedInstructionList
     !?ioListFileContents
-    !inTotalBankCount
-    !?elseBranchFinalBank
-    !inShouldPreserveBank
     ?@bool elseContinuesInSequence
     !inRoutineKind
     !inLastInstructionShouldReturn
   ;
   if ([mElseInstructionList length] > 0) & not inLastInstructionShouldReturn then
     ioGeneratedInstructionList += ![@baseline_intermediate_pseudo_LABEL new ![@lstring new !label_endOfIfinstruction !mInstructionLocation]] ;
-  end if ;
-#---
-  if elseBranchFinalBank == thenBranchFinalBank then
-    ioCurrentBank := elseBranchFinalBank ;
-  else
-    error mEndOfElsePartLocation:"This branch does not leave bank selection value as the first one does";
-    elseBranchFinalBank := [@uint max] ; # No available value for bank selection
   end if ;
 #---
   ioContinuesInSequence := thenContinuesInSequence | elseContinuesInSequence ;
@@ -1009,8 +645,6 @@ end method ;
 #-------------------------------------------------------------------------------*
 
 abstract method @baseline_conditionExpression build_intermediate_condition_instructions
-  ??@uint inTotalBankCount
-  ??@uint inCurrentBank
   ??@registerTable inRegisterTable
   ?!@uint ioLocalLabelIndex
   ??@bool inComplementaryBranch
@@ -1022,8 +656,6 @@ abstract method @baseline_conditionExpression build_intermediate_condition_instr
 #----------------------------------------------------*
 
 override method @baseline_incDecRegisterInCondition build_intermediate_condition_instructions
-  ??@uint inTotalBankCount
-  ??@uint inCurrentBank
   ??@registerTable inRegisterTable
   ?!@uint unused ioLocalLabelIndex
   ??@bool inComplementaryBranch
@@ -1032,8 +664,6 @@ override method @baseline_incDecRegisterInCondition build_intermediate_condition
   ?!@baseline_intermediate_instructionList ioGeneratedInstructionList
 :
   [mRegisterExpression resolveBaselineAccess
-    !inTotalBankCount
-    !inCurrentBank
     !inRegisterTable
     ?@baseline_intermediate_registerExpression intermediateRegisterDescription
     ?@bitSliceTable bitSliceTable
@@ -1052,8 +682,6 @@ end method ;
 #----------------------------------------------------*
 
 override method @baseline_negateCondition build_intermediate_condition_instructions
-  ??@uint inTotalBankCount
-  ??@uint inCurrentBank
   ??@registerTable inRegisterTable
   ?!@uint ioLocalLabelIndex
   ??@bool inComplementaryBranch
@@ -1062,8 +690,6 @@ override method @baseline_negateCondition build_intermediate_condition_instructi
   ?!@baseline_intermediate_instructionList ioGeneratedInstructionList
 :
   [mCondition build_intermediate_condition_instructions
-    !inTotalBankCount
-    !inCurrentBank
     !inRegisterTable
     !?ioLocalLabelIndex
     !not inComplementaryBranch
@@ -1076,8 +702,6 @@ end method ;
 #----------------------------------------------------*
 
 override method @baseline_andCondition build_intermediate_condition_instructions
-  ??@uint inTotalBankCount
-  ??@uint inCurrentBank
   ??@registerTable inRegisterTable
   ?!@uint ioLocalLabelIndex
   ??@bool inComplementaryBranch
@@ -1087,8 +711,6 @@ override method @baseline_andCondition build_intermediate_condition_instructions
 :
   if inComplementaryBranch then
     [mLeftExpression build_intermediate_condition_instructions
-      !inTotalBankCount
-      !inCurrentBank
       !inRegisterTable
       !?ioLocalLabelIndex
       !true
@@ -1097,8 +719,6 @@ override method @baseline_andCondition build_intermediate_condition_instructions
       !?ioGeneratedInstructionList
     ] ;
     [mRightExpression build_intermediate_condition_instructions
-      !inTotalBankCount
-      !inCurrentBank
       !inRegisterTable
       !?ioLocalLabelIndex
       !true
@@ -1109,8 +729,6 @@ override method @baseline_andCondition build_intermediate_condition_instructions
   else
     @string label0 := "_label_" . [ioLocalLabelIndex string] ; ioLocalLabelIndex ++ ;
     [mLeftExpression build_intermediate_condition_instructions
-      !inTotalBankCount
-      !inCurrentBank
       !inRegisterTable
       !?ioLocalLabelIndex
       !true
@@ -1119,8 +737,6 @@ override method @baseline_andCondition build_intermediate_condition_instructions
       !?ioGeneratedInstructionList
     ] ;
     [mRightExpression build_intermediate_condition_instructions
-      !inTotalBankCount
-      !inCurrentBank
       !inRegisterTable
       !?ioLocalLabelIndex
       !false
@@ -1135,8 +751,6 @@ end method ;
 #----------------------------------------------------*
 
 override method @baseline_bitTest_in_structured_if_condition build_intermediate_condition_instructions
-  ??@uint inTotalBankCount
-  ??@uint inCurrentBank
   ??@registerTable inRegisterTable
   ?!@uint unused ioLocalLabelIndex
   ??@bool inComplementaryBranch
@@ -1145,8 +759,6 @@ override method @baseline_bitTest_in_structured_if_condition build_intermediate_
   ?!@baseline_intermediate_instructionList ioGeneratedInstructionList
 :
   [mRegisterExpression resolveBaselineAccess
-    !inTotalBankCount
-    !inCurrentBank
     !inRegisterTable
     ?@baseline_intermediate_registerExpression intermediateRegisterDescription
     ?@bitSliceTable bitSliceTable

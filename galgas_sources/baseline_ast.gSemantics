@@ -16,25 +16,6 @@ list @baseline_instructionList {
 
 #----------------------------------------------------*
 
-class @baseline_instruction_nobanksel extends @baseline_instruction {
-}
-
-#----------------------------------------------------*
-
-class @baseline_instruction_banksel extends @baseline_instruction {
-  @luint mBankIndex ;
-}
-
-#----------------------------------------------------*
-
-class @baseline_instruction_savebank extends @baseline_instruction {
-  @registerExpression mRegister ;
-  @baseline_instructionList mInstructionList ;
-  @location mEndOfSaveBankInstruction ;
-}
-
-#----------------------------------------------------*
-
 class @baseline_instruction_FD extends @baseline_instruction {
   @baseline_instruction_FD_base_code mInstruction_FD_base_code ;
   @registerExpression mRegisterExpression ;
@@ -204,9 +185,6 @@ class @baseline_instruction_do_while extends @baseline_instruction {
 list @baseline_routineDefinitionList {
   @lstring mRoutineName ;
   @luint mPage ;
-  @luint mRequiredBank ;
-  @luint mReturnedBank ;
-  @bool mPreservesBank ;
   @bool mIsNoReturn ;
   @baseline_instructionList mInstructionList ;
   @location mEndOfRoutineLocation ;
