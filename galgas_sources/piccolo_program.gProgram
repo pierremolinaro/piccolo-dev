@@ -42,7 +42,7 @@ before {
     end foreach ;
   #--- Print baseline device list
     if [option piccolo_options.outputDeviceList value] | [option piccolo_options.outputBaselineDeviceList value] then
-      message [[baseline_devices length] string] . " baseline devices (not yet supported by Piccolo " . [@string stringWithVersionString] . "):\n" ;
+      message [[baseline_devices length] string] . " baseline devices:\n" ;
       @uint idx := 0 ;
       foreach baseline_devices do
         message [mValue stringByRightPadding !15 !' '] ;

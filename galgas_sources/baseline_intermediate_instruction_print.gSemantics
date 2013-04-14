@@ -110,4 +110,10 @@ end method ;
 
 #-------------------------------------------------------------------------------*
 
+override method @baseline_intermediate_TRIS print ?!@string ioListFileContents :
+  ioListFileContents .= "TRIS " . mOperand ;
+end method ;
+
+#-------------------------------------------------------------------------------*
+
 end semantics ;

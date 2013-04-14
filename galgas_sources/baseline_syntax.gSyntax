@@ -13,8 +13,8 @@ nonterminal <configuration_definition>
   ?!@bool ioAcceptDefaultConfiguration
 ;
 
-nonterminal <declaration_in_ram>
-  !@declarationInRam outDeclaration
+nonterminal <ram_definition>
+  ?!@ramDefinitionList ioRamDefinitionList
 ;
 
 nonterminal <constant_definition>
@@ -56,11 +56,7 @@ rule <start_symbol> :
   while
     <configuration_definition> !?configDefinitionList !?acceptDefaultConfiguration ;
   while
-    <declaration_in_ram> ?@declarationInRam declaration ;
-    ramDefinitionList +=
-      !["gprs" nowhere]
-      ![@declarationInRamList listWithValue !declaration]
-    ;
+    <ram_definition> !?ramDefinitionList ;
   while
     <constant_definition> !?constantDefinitionList ;
   while
@@ -118,7 +114,7 @@ label importBootloaderSpecification
   while
     <configuration_definition> parse ;
   while
-    <declaration_in_ram> parse ;
+    <ram_definition> parse ;
   while
     <constant_definition> parse ;
   while
@@ -455,6 +451,10 @@ rule <baseline_simple_instruction> !@baseline_instruction outInstruction :
   or
     $sleep$ ;
     outInstruction := [@baseline_instruction_WO_OPERAND new !here ![@baseline_WO_OPERAND_group SLEEP]] ;
+  or
+    $tris$ ;
+    $identifier$ ? @lstring operand ;
+    outInstruction := [@baseline_instruction_TRIS new !here !operand] ;
   or
     @baseline_literal_instruction_opcode literalInstruction ;
     select

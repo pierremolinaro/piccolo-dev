@@ -1,0 +1,58 @@
+baseline instructions_12F519 "12F519" :
+
+configuration {
+  CP : Disabled
+  MCLRE : Disabled
+  OSC : "INTRC With 1 ms DRT"
+  WDTE : Disabled
+  CPDF : Disabled
+  IOSCFS : "8 MHz INTOSC Speed"
+}
+
+ram gpr0 {
+  byte var
+}
+
+noreturn routine main page 0 {
+  addwf var
+  addwf var, W
+  andwf var
+  andwf var, W
+  clrf  var
+  clrw
+  comf var, W
+  comf var
+  decf var, W
+  decf var
+  incf var, W
+  incf var
+  iorwf var, W
+  iorwf var
+  movf var, W
+  movf var
+  movwf var
+  nop
+  rlf var, W
+  rlf var
+  rrf var, W
+  rrf var
+  subwf var, W
+  subwf var
+  swapf var, W
+  swapf var
+  xorwf var, W
+  xorwf var
+  bcf var.5
+  bsf var.3
+  andlw 44
+  clrwdt
+  iorlw 55
+  option
+  sleep
+  tris GPIO
+  xorlw 66
+  forever
+  end
+}
+
+end

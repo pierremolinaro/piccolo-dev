@@ -57,6 +57,12 @@ class @baseline_instruction_WO_OPERAND extends @baseline_instruction {
 
 #----------------------------------------------------*
 
+class @baseline_instruction_TRIS extends @baseline_instruction {
+  @lstring mOperand ;
+}
+
+#----------------------------------------------------*
+
 class @baseline_instruction_literalOperation extends @baseline_instruction {
   @baseline_literal_instruction_opcode mLiteralInstruction ;
   @immediatExpression mImmediatExpression ;

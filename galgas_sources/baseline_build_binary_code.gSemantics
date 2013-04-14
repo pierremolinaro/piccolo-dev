@@ -278,6 +278,16 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
+override method @baseline_pic_assembly_TRIS generateBinaryCodeAtAddress
+  ??@baseline_symbolTable unused inRoutineSymbolTable
+  ?!@string ioListFileContents
+  ?!@uint ioWordAddress
+:
+  emitCodeAtWordAddress !mOpcode !?ioWordAddress !selfcopy !?ioListFileContents ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
 override method @baseline_pic_assembly_instruction_literalOperation generateBinaryCodeAtAddress
   ??@baseline_symbolTable unused inRoutineSymbolTable
   ?!@string ioListFileContents
