@@ -13,8 +13,14 @@ end method ;
 
 #-------------------------------------------------------------------------------*
 
-override method @baseline_assembly_pseudo_INPAGE print ?!@string ioListFileContents :
-  ioListFileContents .= ";  CHECK " . mRoutineName . " IN PAGE " . mPage ;
+override method @baseline_assembly_pseudo_BEGINOFROUTINE print ?!@string ioListFileContents :
+  ioListFileContents .= ";  BEGIN OF ROUTINE " . mRoutineName ;
+end method ;
+
+#-------------------------------------------------------------------------------*
+
+override method @baseline_assembly_pseudo_ENDOFROUTINE print ?!@string ioListFileContents :
+  ioListFileContents .= ";  END OF ROUTINE " . mRoutineName . " IN PAGE " . mPage ;
 end method ;
 
 #-------------------------------------------------------------------------------*

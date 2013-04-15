@@ -107,7 +107,20 @@ abstract method @baseline_assembly_instruction generateBinaryCodeAtAddress
 
 #----------------------------------------------------------------------------*
 
-override method @baseline_assembly_pseudo_INPAGE generateBinaryCodeAtAddress
+override method @baseline_assembly_pseudo_BEGINOFROUTINE generateBinaryCodeAtAddress
+  ??@baseline_symbolTable unused inRoutineSymbolTable
+  ?!@string ioListFileContents
+  ?!@uint ioWordAddress
+:
+  if mIsRegular & ((ioWordAddress & 0x0100) != 0) then
+    error mRoutineName : "the 8th bit of the routine address is not 0; a regular routine should be begin in the first half of a page" ;
+  end if ;
+  emitNoCodeAtWordAddress !ioWordAddress !selfcopy !?ioListFileContents ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @baseline_assembly_pseudo_ENDOFROUTINE generateBinaryCodeAtAddress
   ??@baseline_symbolTable unused inRoutineSymbolTable
   ?!@string ioListFileContents
   ?!@uint ioWordAddress

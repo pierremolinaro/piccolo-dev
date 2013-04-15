@@ -10,9 +10,16 @@ abstract reader @baseline_assembly_instruction length -> @uint outLength ;
 override reader @baseline_assembly_pseudo_ORG length -> @uint outLength :
   outLength := 0 ;
 end reader ;
+
 #-------------------------------------------------------------------------------*
 
-override reader @baseline_assembly_pseudo_INPAGE length -> @uint outLength :
+override reader @baseline_assembly_pseudo_BEGINOFROUTINE length -> @uint outLength :
+  outLength := 0 ;
+end reader ;
+
+#-------------------------------------------------------------------------------*
+
+override reader @baseline_assembly_pseudo_ENDOFROUTINE length -> @uint outLength :
   outLength := 0 ;
 end reader ;
 
