@@ -251,6 +251,7 @@ routine baseline_analysis
             end if ;
           end if ;
         #--- Check and translate instructions
+          intermediateInstructionList += ![@baseline_intermediate_pseudo_BEGINOFROUTINE new !mRoutineName !not mIsNoReturn] ;
           intermediateInstructionList += ![@baseline_intermediate_pseudo_LABEL new !mRoutineName] ;
           handleBaselineInstructionList
             !currentPage
@@ -265,7 +266,7 @@ routine baseline_analysis
             !routineKind
             !not mIsNoReturn # Last instruction should be RETLW ?
           ;
-          intermediateInstructionList += ![@baseline_intermediate_pseudo_INPAGE new !mRoutineName !currentPage] ;
+          intermediateInstructionList += ![@baseline_intermediate_pseudo_ENDOFROUTINE new !mRoutineName !currentPage] ;
           if mIsNoReturn & continuesInSequence then
             error mRoutineName:"execution should not reach the end of a \"noreturn\" routine" ;
           end if ;

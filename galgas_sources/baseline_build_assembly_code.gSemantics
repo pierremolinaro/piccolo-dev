@@ -38,12 +38,22 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @baseline_intermediate_pseudo_INPAGE generateAssemblyCode
+override method @baseline_intermediate_pseudo_BEGINOFROUTINE generateAssemblyCode
   ??@baseline_intermediate_registerExpression unused inSTATUSregister
   ??@bitSliceTable unused inStatusRegisterBitSliceTable
   ?!@baseline_assembly_instructionList ioAssemblyInstructionList
 :
-  ioAssemblyInstructionList += ![@baseline_assembly_pseudo_INPAGE new !mRoutineName !mPage] ;
+  ioAssemblyInstructionList += ![@baseline_assembly_pseudo_BEGINOFROUTINE new !mRoutineName !mIsRegular] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @baseline_intermediate_pseudo_ENDOFROUTINE generateAssemblyCode
+  ??@baseline_intermediate_registerExpression unused inSTATUSregister
+  ??@bitSliceTable unused inStatusRegisterBitSliceTable
+  ?!@baseline_assembly_instructionList ioAssemblyInstructionList
+:
+  ioAssemblyInstructionList += ![@baseline_assembly_pseudo_ENDOFROUTINE new !mRoutineName !mPage] ;
 end method ;
 
 #----------------------------------------------------------------------------*
@@ -237,10 +247,51 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override method @baseline_intermediate_CALL generateAssemblyCode
-  ??@baseline_intermediate_registerExpression unused inSTATUSregister
-  ??@bitSliceTable unused inStatusRegisterBitSliceTable
+  ??@baseline_intermediate_registerExpression inSTATUSregister
+  ??@bitSliceTable inStatusRegisterBitSliceTable
   ?!@baseline_assembly_instructionList ioAssemblyInstructionList
 :
+#---
+  @uint pageChangeFlags := mCurrentPage ^ mTargetPage ;
+  @uint targetPageFlags := mTargetPage ;
+  @uint idx := 0 ;
+  loop 8 while pageChangeFlags != 0 do
+    if (pageChangeFlags & 1) != 0 then
+      @uint bitIndex ;
+      if [inStatusRegisterBitSliceTable hasKey !"PA"] then
+        [inStatusRegisterBitSliceTable searchKey 
+          ![@lstring new !"PA" !mInstructionLocation]
+          ?@uint sliceIndex
+          ?@uint sliceSize
+        ] ;
+        if idx >= sliceSize then
+          error mInstructionLocation : "internal error, idx (" . idx . ") >= sliceSize (" . sliceSize . ")" ;
+        end if ;
+        bitIndex := sliceIndex + idx ;
+      elsif [inStatusRegisterBitSliceTable hasKey !"PA". idx] then
+        [inStatusRegisterBitSliceTable searchKey 
+          ![@lstring new !"PA". idx !mInstructionLocation]
+          ?@uint sliceIndex
+          ?@uint sliceSize
+        ] ;
+        if sliceSize != 1 then
+          error mInstructionLocation : "internal error: sliceSize (" . sliceSize . ") != 1" ;
+        end if ;
+        bitIndex := sliceIndex ;
+      else
+        error mInstructionLocation : "internal error, cannot solve page bit addressing" : bitIndex ;
+      end if ;
+      ioAssemblyInstructionList += ![@baseline_assembly_instruction_FB new
+        !mInstructionLocation
+        !if (targetPageFlags & 1) != 0 then [@baseline_bit_oriented_op BSF] else [@baseline_bit_oriented_op BCF] end
+        !inSTATUSregister
+        !bitIndex
+      ] ;
+    end if ;
+    pageChangeFlags := pageChangeFlags / 2 ;
+    targetPageFlags := targetPageFlags / 2 ;
+    idx := idx + 1 ;
+  end loop ;
   ioAssemblyInstructionList += ![@baseline_assembly_CALL new
     !mInstructionLocation
     !mTargetLabel

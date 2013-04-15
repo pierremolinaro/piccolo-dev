@@ -21,7 +21,14 @@ class @baseline_assembly_pseudo_ORG extends @baseline_assembly_instruction {
 
 #-------------------------------------------------------------------------------*
 
-class @baseline_assembly_pseudo_INPAGE extends @baseline_assembly_instruction {
+class @baseline_assembly_pseudo_BEGINOFROUTINE extends @baseline_assembly_instruction {
+  @lstring mRoutineName ;
+  @bool mIsRegular ;
+}
+
+#-------------------------------------------------------------------------------*
+
+class @baseline_assembly_pseudo_ENDOFROUTINE extends @baseline_assembly_instruction {
   @lstring mRoutineName ;
   @uint mPage ;
 }

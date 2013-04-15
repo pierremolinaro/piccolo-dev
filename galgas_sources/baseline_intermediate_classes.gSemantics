@@ -38,7 +38,14 @@ class @baseline_intermediate_pseudo_LABEL extends @baseline_intermediate_instruc
 
 #-------------------------------------------------------------------------------*
 
-class @baseline_intermediate_pseudo_INPAGE extends @baseline_intermediate_instruction {
+class @baseline_intermediate_pseudo_BEGINOFROUTINE extends @baseline_intermediate_instruction {
+  @lstring mRoutineName ;
+  @bool mIsRegular ;
+}
+
+#-------------------------------------------------------------------------------*
+
+class @baseline_intermediate_pseudo_ENDOFROUTINE extends @baseline_intermediate_instruction {
   @lstring mRoutineName ;
   @uint mPage ;
 }
@@ -92,6 +99,8 @@ class @baseline_intermediate_GOTO extends @baseline_intermediate_actualInstructi
 
 class @baseline_intermediate_CALL extends @baseline_intermediate_actualInstruction {
   @lstring mTargetLabel ;
+  @uint mCurrentPage ;
+  @uint mTargetPage ;
 }
 
 #----------------------------------------------------*

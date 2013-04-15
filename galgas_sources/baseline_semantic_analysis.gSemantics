@@ -263,7 +263,7 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override method @baseline_instruction_CALL build_baseline_intermediate_instructionList
-  ??@uint unused inCurrentPage
+  ??@uint inCurrentPage
   ??@baselineRoutineMap inRoutineMap
   ??@registerTable unused inRegisterTable
   ??@constantMap unused inConstantMap
@@ -278,7 +278,7 @@ override method @baseline_instruction_CALL build_baseline_intermediate_instructi
     error mInstructionLocation : "this instruction is the last routine instruction and should be MOVLW" ;
   end if ;
 #--- Check instruction
-  [inRoutineMap searchKey !mTargetLabel ?@bool isNoReturn ?@luint page] ;
+  [inRoutineMap searchKey !mTargetLabel ?@bool isNoReturn ?@luint targetPage] ;
   if isNoReturn then
     error mTargetLabel:"a \"noreturn\" routine should be called with a GOTO instruction" ;
   end if ;
@@ -286,6 +286,8 @@ override method @baseline_instruction_CALL build_baseline_intermediate_instructi
   ioGeneratedInstructionList += ![@baseline_intermediate_CALL new
     !mInstructionLocation
     !mTargetLabel
+    !inCurrentPage
+    !targetPage->uint
   ] ;
 end method ;
 
