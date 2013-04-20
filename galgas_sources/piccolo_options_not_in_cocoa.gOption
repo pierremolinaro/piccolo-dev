@@ -1,0 +1,15 @@
+option piccolo_options_not_in_cocoa :
+
+#@bool generateAssembly : 'S', "asm" -> "Generate also an assembly language text file (with .asm extension)" ;
+#@bool output_C_Array : 'C', "c-files" -> "Generate output code in a C header file and C source file" ;
+@bool outputDeviceList : 'D', "device-list" -> "Output the list of supported devices" ;
+@bool outputPic18DeviceList : '\0', "pic18" -> "Output the list of supported pic18 devices" ;
+@bool outputMidrangeDeviceList : '\0', "midrange" -> "Output the list of supported mid-range devices" ;
+@bool outputBaselineDeviceList : '\0', "baseline" -> "Output the list of supported baseline devices" ;
+@string memoryDescription : 'M', "memory" -> "Output the RAM, ROM and EEPROM description of the device named by string" ;
+@string registerDescription : 'R', "registers" -> "Output the special register description of the device named by string" ;
+@string configDescription : 'F', "configuration" -> "Output the configuration register description of the device named by string" ;
+@string exportDeviceFiles : 'E', "export" -> "Export device definition files to the directory named by string" ;
+#@bool ouputListingFile : 'L', "list" -> "Output a list file" ;
+#@bool performOptimizations : 'O', "optimize" -> "Perform code optimizations" ;
+end option ;

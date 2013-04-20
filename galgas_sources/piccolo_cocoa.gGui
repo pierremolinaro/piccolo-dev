@@ -1,6 +1,8 @@
 gui piccolo_cocoa "cocoa" :
 with option "piccolo_options.gOption" ;
 
+nibAndMainClass : "PMPiccoloCocoa" ;
+
 with lexique "piccolo_lexique.gLexique" {
   blockComment : "#" ;
   fileExtension : "piccolo" ;
