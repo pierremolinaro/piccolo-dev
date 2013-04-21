@@ -1,0 +1,39 @@
+12F683 has 38 special registers:
+  'ADCON0' at 0x1F <ADFM, VCFG, -, -, CHS[2], GO/nDONE, ADON>
+  'ADRESH' at 0x1E <ADRESH[8]>
+  'ADRESL' at 0x9E <ADRESL[8]>
+  'ANSEL' at 0x9F <-, ADCS[3], ANS[4]>
+  'CCP1CON' at 0x15 <-, -, DC1B[2], CCP1M[4]>
+  'CCPR1H' at 0x14 <CCPR1H[8]>
+  'CCPR1L' at 0x13 <CCPR1L[8]>
+  'CMCON0' at 0x19 <-, COUT, -, CINV, CIS, CM[3]>
+  'CMCON1' at 0x1A <-, -, -, -, -, -, T1GSS, CMSYNC>
+  'EEADR' at 0x9B <EEADR[8]>
+  'EECON1' at 0x9C <-, -, -, -, WRERR, WREN, WR, RD>
+  'EECON2' at 0x9D <EECON2[8]>
+  'EEDAT' at 0x9A <EEDAT[8]>
+  'FSR' at 0x4, 0x84 <FSR[8]>
+  'GPIO' at 0x5 <-, -, GP5, GP4, GP3, GP2, GP1, GP0>
+  'INDF' at 0x0, 0x80 <INDF[8]>
+  'INTCON' at 0xB, 0x8B <GIE, PEIE, T0IE, INTE, GPIE, T0IF, INTF, GPIF>
+  'IOC' at 0x96 <-, -, IOC5, IOC4, IOC3, IOC2, IOC1, IOC0>
+  'OPTION_REG' at 0x81 <nGPPU, INTEDG, T0CS, T0SE, PSA, PS[3]>
+  'OSCCON' at 0x8F <-, IRCF[3], OSTS, HTS, LTS, SCS>
+  'OSCTUNE' at 0x90 <-, -, -, TUN[5]>
+  'PCL' at 0x2, 0x82 <PCL[8]>
+  'PCLATH' at 0xA, 0x8A <-, -, -, PCLATH[5]>
+  'PCON' at 0x8E <-, -, ULPWUE, SBODEN, -, -, nPOR, nBOD>
+  'PIE1' at 0x8C <EEIE, ADIE, CCP1IE, -, CMIE, OSFIE, TMR2IE, TMR1IE>
+  'PIR1' at 0xC <EEIF, ADIF, CCP1IF, -, CMIF, OSFIF, TMR2IF, TMR1IF>
+  'PR2' at 0x92 <PR2[8]>
+  'STATUS' at 0x3, 0x83 <IRP, RP[2], nTO, nPD, Z, DC, C>
+  'T1CON' at 0x10 <T1GINV, TMR1GE, T1CKPS[2], T1OSCEN, nT1SYNC, TMR1CS, TMR1ON>
+  'T2CON' at 0x12 <-, TOUTPS[4], TMR2ON, T2CKPS[2]>
+  'TMR0' at 0x1 <TMR0[8]>
+  'TMR1H' at 0xF <TMR1H[8]>
+  'TMR1L' at 0xE <TMR1L[8]>
+  'TMR2' at 0x11 <TMR2[8]>
+  'TRISIO' at 0x85 <-, -, TRISIO5, TRISIO4, TRISIO3, TRISIO2, TRISIO1, TRISIO0>
+  'VRCON' at 0x99 <VREN, -, VRR, -, VR[4]>
+  'WDTCON' at 0x18 <-, -, -, WDTPS[4], SWDTEN>
+  'WPU' at 0x95 <-, -, WPU5, WPU4, -, WPU2, WPU1, WPU0>

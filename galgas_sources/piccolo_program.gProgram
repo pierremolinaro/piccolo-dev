@@ -19,9 +19,8 @@ before {
   #--- Parse them
     @bool ok := true ;
     foreach allDevices while ok do
-      @piccoloDeviceModel piccoloDeviceModel ;
-      @string name := [[mValue lastPathComponent] stringByDeletingPathExtension] ;
-      parseDeviceDefinition ![@lstring new !name !here] ?piccoloDeviceModel ;
+      const @string name := [[mValue lastPathComponent] stringByDeletingPathExtension] ;
+      parseDeviceDefinition ![@lstring new !name !here] ?@piccoloDeviceModel piccoloDeviceModel ;
       switch [piccoloDeviceModel mProcessorType]
       when pic18_60, pic18_80 : pic18_devices += !name ;
       when midrange : midrange_devices += !name ;

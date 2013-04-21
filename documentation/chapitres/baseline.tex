@@ -1,0 +1,57 @@
+%!TEX encoding = UTF-8 Unicode
+%!TEX root = ../piccolo.tex
+
+\cleardoublepage
+
+\chapter{Programmes pour baseline}
+
+%--- Pour supprimer tout en-tête et pied de page sur la 1re page d'un chapitre
+\thispagestyle{empty}
+
+
+
+
+\section{Structure d’un programme pour baseline}
+
+Un programme Piccolo pour \emph{baseline} a la structure suivante :
+
+\begin{lstlisting}[language=piccolo]
+baseline nom "nom_composant" :
+  liste_de_sections
+end
+\end{lstlisting}
+
+
+Dans l’en-tête :
+\begin{itemize}
+  \item le nom « \emph{nom} » est le nom du fichier (sans son extension) qui contient ce texte source ;
+  \item le nom du composant « \emph{nom\_composant} » doit être exactement le nom de l’un des composants supportés (pour obtenir la liste des \emph{baseline} pris en charge, utiliser l’option « \texttt{-{}-baseline} », voir \refSubsectionPage{listeBaseline}).
+\end{itemize}
+
+
+Le corps du programme est constitué d’une liste non ordonnée de sections. Les sections disponibles sont listées dans le \refTableau{sectionsBaseline}.
+\begin{table}[ht]
+  \centering
+  \rowcolors{2}{\fondTableau}{}
+  \begin{tabular}{p{5cm}lll}
+    \textbf{Type de section} & \textbf{Mot-clé introductif} & \textbf{Référence}\\
+    \hline
+    Configuration & \texttt{configuration} & \refChapterPage{configuration}\\
+    Définition de variable & \texttt{ram} & \refChapterPage{ram}\\
+    Définition de constante & \texttt{const} & \refChapterPage{constante}\\
+    Définition de routine baseline & \texttt{routine} & \refSectionPage{routineBaseline}\\
+  \hline
+  \end{tabular}
+  \caption{Les sections d'un programme pour \emph{baseline}}
+  \labelTableau{sectionsBaseline}
+\end{table}
+
+
+
+
+\sectionLabel{Routines baseline}{routineBaseline}
+
+
+
+
+

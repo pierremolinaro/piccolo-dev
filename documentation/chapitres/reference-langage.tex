@@ -1,0 +1,103 @@
+%!TEX encoding = UTF-8 Unicode
+%!TEX root = ../piccolo.tex
+
+\cleardoublepage
+
+\chapter{Description du langage Piccolo}
+
+%--- Pour supprimer tout en-tête et pied de page sur la 1re page d'un chapitre
+\thispagestyle{empty}
+
+
+\section{Éléments lexicaux}
+
+\subsection{Commentaires}
+
+Un commentaire commence par un caractère dièse « \texttt{\#} », et s’étend jusqu’à la fin de la ligne courante.
+
+\subsection{Délimiteurs}
+
+Piccolo définit les délimiteurs suivants :\\
+
+
+\texttt{
+  \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+    \hline
+    *  & *+ & ,  & != & <= & >= & *- & +* & ; & :  & == & < & > & [ & ] & . & ! \\
+    \hline
+    \& & |  & \{ & \} & (  & )  & /  & - & + & \^{} & <{}< & >{}> & \~{} & @ & \% & = & \\
+    \hline
+  \end{tabular}
+}
+
+\subsection{Séparateurs}
+
+Tout caractère dont le code ASCII est compris entre \texttt{0x01} et \texttt{0x20} est considéré comme un séparateur (ceci inclut donc la tabulation horizontale \texttt{HT} (\texttt{0x09}), le passage à la ligne \texttt{LF} (\texttt{0x0A}), le retour-chariot \texttt{CR} (\texttt{0x0D}), et l’espace (\texttt{0x20}).
+
+\subsection{Identificateurs}
+Un identificateur commence par une lettre (minuscule ou majuscule), qui est suivie par zéro, un ou plusieurs lettres (minuscules ou majuscules), chiffres décimaux, caractères « \_ ».
+
+La casse est significative pour les identificateurs.
+
+\subsection{Mots réservés}
+Certains identificateurs sont réservés. La casse n’est pas significative pour les mots réservés, c’est à dire que les mots réservés peuvent être écrits indifféremment avec des lettres minuscules ou majuscules.
+
+
+
+Mots réservés correspondant aux éléments du langage :\\
+\textcolor{blue}{\tt
+  \begin{tabular}{|c|c|c|c|c|c|}
+    \hline
+     bank & banksave & banksel & baseline & bootloader & byte \\
+    \hline
+     computed & configuration & const & contextsave & data & default \\
+    \hline
+     do & end & else & elsif & fast & forever \\
+    \hline
+     if & implements & include & interrupt & mark & midrange \\
+    \hline
+     nobank & noreturn & page & pic18 & preserved & ram \\
+    \hline
+     requires & rom & ensures & routine & uses & w \\
+    \hline
+     while & & & & &\\
+    \hline
+  \end{tabular}
+}
+
+
+Mots réservés correspondant à des instructions exécutables :\\
+\texttt{\color{brown}
+  \begin{tabular}{|c|c|c|c|c|c|c|c|}
+    \hline
+    addlw & addwf & addwfc & andlw & andwf & bc & bcf & bn \\
+    \hline
+    bnc & bnn & bov & bnov & bnz & bsf & bra & btg \\
+    \hline
+    bz & call & clrf & clrw & clrwdt & comf & daw & decf \\
+    \hline
+    incf & iorlw & iorwf & goto & jsr & jump & lfsr & ldataptr \\
+    \hline
+    ltblptr & mnop & movf & movff & movlw & movwf & mullw & mulwf \\
+    \hline
+    negf & nop & pop & option & push & rcall & reset & retlw \\
+    \hline
+    rlcf & rlf & rlncf & rrcf & rrf & rrncf & setf & sleep \\
+    \hline
+    subfwb & sublw & subwf & subwfb & swapf & tblrd & tblwt & tris \\
+    \hline
+    xorlw & xorwf & & & & & & \\
+    \hline
+  \end{tabular}
+}
+
+\subsection{Constante chaîne de caractères}
+
+Comme en C, les chaînes de caractères sont délimitées par des caractères « \texttt{\textquotedbl} ».  Les séquences d’échappement suivantes sont acceptées : « \texttt{\textbackslash f} », « \texttt{\textbackslash n} », « \texttt{\textbackslash r} », « \texttt{\textbackslash v} », « \texttt{\textbackslash\textbackslash} », « \texttt{\textbackslash"} », « \texttt{\textbackslash'} », « \texttt{\textbackslash 0} ».\subsection{Constante caractère}
+
+Comme en C, les caractères sont délimités par des caractères « \texttt{\textquotesingle} ».  Les séquences d’échappement suivantes sont acceptées : « \texttt{\textbackslash f} », « \texttt{\textbackslash n} », « \texttt{\textbackslash r} », « \texttt{\textbackslash v} », « \texttt{\textbackslash\textbackslash} », « \texttt{\textbackslash\textquotesingle} », « \texttt{\textbackslash 0} ».\subsection{Constante entière}
+
+Vous pouvez écrire les constantes entières en décimal ou en hexadécimal. Une constante entière décimale commence par un chiffre décimal, et est suivie par zéro, un ou plusieurs chiffres décimaux, ou caractères « \_ ».Un chiffre hexadécimal est soit un chiffre décimal, soit une lettre entre « a » et « f », écrite indifféremment en minuscule ou en majuscule. Une constante décimale commence par la séquence « 0x », et est suivie par un ou plusieurs chiffres hexadécimal, ou caractères « \_ ».Dans une constante entière, écrite en décimal ou en hexadécimal, le caractère « \_ » peut servir de séparateur ; on peut ainsi écrire indifféremment : 100, 1\_00, 1\_0\_0, 1\_\_\_00, …Attention :contrairement au C, un nombre qui commence par un zéro est un nombre écrit en décimal ;contrairement à l’assembleur PIC, le préfixe « 0x » est indispensable pour écrire un nombre en hexadécimal.\subsection{Format}
+
+Le format est libre, la fin de ligne n’est pas significative (sauf pour les commentaires, qui commencent par un caractère dièse « \# », et s’étendent jusqu’à la fin de la ligne courante). Le compilateur accepte de manière indifférente que les fins de ligne soient codés par un caractère LF (0x0A), un caractère CR (0x0D), ou par la séquence CRLF (0x0D, 0x0A).
+

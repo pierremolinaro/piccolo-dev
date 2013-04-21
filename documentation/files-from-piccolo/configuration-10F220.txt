@@ -1,0 +1,17 @@
+10F220 has 1 configuration registers:
+REGISTER 'CONFIG' at 0xFFF, width 5
+  setting 'CP': mask 0x8 description "Code protection bit"
+    value 0x8 description "Disabled"
+    value 0x0 description "Enabled"
+  setting 'IOSCFS': mask 0x1 description "Internal Oscillator Frequency Select bit"
+    value 0x0 description "4 MHz"
+    value 0x1 description "8 MHz"
+  setting 'MCLRE': mask 0x10 description "GP3/MCLR Pin Function Select bit"
+    value 0x0 description "Disabled"
+    value 0x10 description "Enabled"
+  setting 'MCPU': mask 0x2 description "Master Clear Pull-up Enable bit"
+    value 0x2 description "Disabled"
+    value 0x0 description "Enabled"
+  setting 'WDTE': mask 0x4 description "Watchdog Timer Enable bit"
+    value 0x0 description "Disabled"
+    value 0x4 description "Enabled"
