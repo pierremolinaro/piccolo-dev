@@ -19,13 +19,13 @@ end reader ;
 
 #-------------------------------------------------------------------------------*
 
-override reader @baseline_intermediate_pseudo_BEGINOFROUTINE length -> @uint outLength :
+override reader @baseline_intermediate_pseudo_BEGIN_ROUTINE length -> @uint outLength :
   outLength := 0 ;
 end reader ;
 
 #-------------------------------------------------------------------------------*
 
-override reader @baseline_intermediate_pseudo_ENDOFROUTINE length -> @uint outLength :
+override reader @baseline_intermediate_pseudo_END_ROUTINE length -> @uint outLength :
   outLength := 0 ;
 end reader ;
 

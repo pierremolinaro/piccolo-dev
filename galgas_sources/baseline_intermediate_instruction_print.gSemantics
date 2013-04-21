@@ -19,13 +19,13 @@ end method ;
 
 #-------------------------------------------------------------------------------*
 
-override method @baseline_intermediate_pseudo_BEGINOFROUTINE print ?!@string ioListFileContents :
+override method @baseline_intermediate_pseudo_BEGIN_ROUTINE print ?!@string ioListFileContents :
   ioListFileContents .= "BEGIN OF ROUTINE " . mRoutineName ;
 end method ;
 
 #-------------------------------------------------------------------------------*
 
-override method @baseline_intermediate_pseudo_ENDOFROUTINE print ?!@string ioListFileContents :
+override method @baseline_intermediate_pseudo_END_ROUTINE print ?!@string ioListFileContents :
   ioListFileContents .= "END OF ROUTINE " . mRoutineName . " IN PAGE " . mPage ;
 end method ;
 

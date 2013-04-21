@@ -7,29 +7,9 @@ import "piccolo_options.gOption" ;
 import "ram_sections.gSemantics" ;
 import "baseline_semantic_analysis.gSemantics" ;
 import "baseline_intermediate_instruction_print.gSemantics" ;
-import "baseline_intermediate_instruction_length.gSemantics" ;
 import "baseline_build_assembly_code.gSemantics" ;
 import "baseline_build_binary_code.gSemantics" ;
-
-#----------------------------------------------------------------------------*
-#                                                                            *
-#    S E T    C U R R E N T    A D D R E S S                                 *
-#                                                                            *
-#----------------------------------------------------------------------------*
-
-method @baseline_intermediate_instruction setCurrentAddress
-  ?!@uint ioCurrentWordAdress
-:
-  ioCurrentWordAdress := ioCurrentWordAdress + [selfcopy length] ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
-override method @baseline_intermediate_pseudo_PAGE setCurrentAddress
-  ?!@uint ioCurrentWordAdress
-:
-  ioCurrentWordAdress := mPage * 512 ;
-end method ;
+import "baseline_optimizations.gSemantics" ;
 
 #----------------------------------------------------------------------------*
 #                                                                            *
@@ -251,8 +231,10 @@ routine baseline_analysis
             end if ;
           end if ;
         #--- Check and translate instructions
-          intermediateInstructionList += ![@baseline_intermediate_pseudo_BEGINOFROUTINE new !mRoutineName !not mIsNoReturn] ;
-          intermediateInstructionList += ![@baseline_intermediate_pseudo_LABEL new !mRoutineName] ;
+          if mRoutineName->string != "main" then
+            intermediateInstructionList += ![@baseline_intermediate_pseudo_BEGIN_ROUTINE new !mRoutineName !not mIsNoReturn] ;
+            intermediateInstructionList += ![@baseline_intermediate_pseudo_LABEL new !mRoutineName] ;
+          end if ;
           handleBaselineInstructionList
             !currentPage
             !mInstructionList
@@ -266,7 +248,7 @@ routine baseline_analysis
             !routineKind
             !not mIsNoReturn # Last instruction should be RETLW ?
           ;
-          intermediateInstructionList += ![@baseline_intermediate_pseudo_ENDOFROUTINE new !mRoutineName !currentPage] ;
+          intermediateInstructionList += ![@baseline_intermediate_pseudo_END_ROUTINE new !mRoutineName !currentPage] ;
           if mIsNoReturn & continuesInSequence then
             error mRoutineName:"execution should not reach the end of a \"noreturn\" routine" ;
           end if ;
@@ -282,18 +264,20 @@ routine baseline_analysis
     listFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n\n" ;
     listFileContents .= "Generated intermediate code:\n" ;
     listFileContents .= " Line Length Mnemonic\n" ;
-    @uint idx := 1 ;
     @uint currentAddress := 0 ;
-    foreach intermediateInstructionList do
+    foreach intermediateInstructionList index idx do
       listFileContents .= [[idx string] stringByLeftPadding !5 !' '] . " " ;
       listFileContents .= [[[mInstruction length] string] stringByLeftPadding !6 !' '] . " " ;
       [mInstruction print !?listFileContents] ;
       listFileContents .= "\n" ;
       [mInstruction setCurrentAddress !?currentAddress] ;
-      idx ++ ;
     end foreach ;
     listFileContents .= "\n" ;
     listFileContents .= "Code size without optimization: " . [currentAddress string] . " words.\n\n" ;
+  end if ;
+#-------------------------------- Perform Code Optimization
+  if ([@uint errorCount] == 0) & [option piccolo_options.performOptimizations value] then
+    perform_baseline_optimizations !?intermediateInstructionList !?listFileContents ;
   end if ;
 #-------------------------------- Build assembly instruction list
   const @registerExpression sr [new ![@lstring new !"STATUS" !here] ![@luint new !0 !here]] ;
@@ -312,14 +296,6 @@ routine baseline_analysis
       !?assemblyInstructionList
     ;
   end if ;
-##-------------------------------- Perform Code Optimization
-#  if ([@uint errorCount] == 0) & [option piccolo_options.performOptimizations value] then
-#    perform_midrange_optimizations !?generatedInstructionList !?listFileContents ;
-#  end if ;
-##-------------------------------- Compute inter-pages GOTO and JUMP
-#  if [@uint errorCount] == 0 then
-#    midrange_compute_JSR_JUMP !?generatedInstructionList !?listFileContents ;
-#  end if ;
 #-------------------------------- Build binary code
   if [@uint errorCount] == 0 then
     listFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n" ;
