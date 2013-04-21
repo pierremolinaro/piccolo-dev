@@ -1,0 +1,188 @@
+%!TEX encoding = UTF-8 Unicode
+%!TEX root = ../piccolo.tex
+
+\cleardoublepage
+
+\chapter{Programmes pour pic18}
+
+%--- Pour supprimer tout en-tête et pied de page sur la 1re page d'un chapitre
+\thispagestyle{empty}
+
+
+
+
+\section{Exemples de programmes pour pic18}
+
+\subsection{Premier exemple}
+
+Ce simple programme est destiné à un 18F448 et fait clignoter à 1 Hz environ une led connectée au port \texttt{RE0}. Il programme donc \texttt{RE0} (broche 8) en sortie. La configuration suppose qu'il est connecté à une horloge externe à 40 MHz sur la broche \texttt{OSC1} (broche 13). 
+
+Ce programme a l'allure suivante :
+\begin{lstlisting}[language=piccolo]
+pic18 blink_led "18F448" :
+#------------ Configuration
+configuration {
+  ...
+}
+#------------ RAM
+ram accessram {
+  ...
+}
+#------------ Routine main
+noreturn routine main bank:requires 0 {
+  ...
+}
+end
+\end{lstlisting}
+
+L'en-tête indique qu'il s'agit d'un programme pour \emph{pic18}, qu'il s'appelle \emph{blink\_led}, et qu'il est destiné au micro-contrôleur 18F448. Ce corps de ce programme est constitué de trois sections, décrites dans la suite de cette section : configuration, ram, et routine \emph{main}. D'autres types de sections peuvent être définies, mais sont absentes de ce premier exemple. La \refSectionPage{structurePrgmPic18} donne une liste exhaustive des différentes sections d'un programme pour \emph{pic18}. 
+
+La section \texttt{configuration} décrit les valeurs qui sont affectées aux \emph{bits de configuration} du micro-contrôleur. Les valeurs choisies pour cet exemple sont listées ci-dessous. Pour une description complète de cette section, nous invitons le lecteur à se reporter au \refChapterPage{configuration}.
+\begin{lstlisting}[language=piccolo]
+#------------ Configuration
+configuration {
+  OSC : "EC-OSC2 as RA6"
+  OSCS : Disabled
+  WDT : "Disabled-Controlled by SWDTEN bit"
+  WDTPS : "1:128"
+  STVR : Disabled
+  LVP : Disabled
+  CP_0 : Disabled
+  CP_1 : Disabled
+  CP_2 : Disabled
+  CP_3 : Disabled
+  WRT_1 : Disabled
+  WRT_2 : Disabled
+  WRT_3 : Disabled
+  WRT_0 : Disabled
+  EBTR_0 : Disabled
+  EBTR_1 : Disabled
+  EBTR_2 : Disabled
+  EBTR_3 : Disabled
+  BACKBUG : Disabled
+  BODEN : Disabled
+  BODENV : "4.5V"
+  CPB : Disabled
+  CPD : Disabled
+  EBTRB : Disabled
+  PUT : Enabled
+  WRTB : Disabled
+  WRTC : Disabled
+  WRTD : Disabled
+}
+\end{lstlisting}
+
+La section \texttt{ram} déclare les variables du programme. Ce type de section est complètement décrit au \refChapterPage{ram}. Le 18F448 possède plusieurs bancs mémoire, dont on obtient la composition en appelant \texttt{piccolo} avec l'option \texttt{-{}-memory=18F448} (voir \refSubsectionPage{exempleOptionMemory}) :
+{\footnotesize \lstinputlisting[frame=l]{files-from-piccolo/memory-18F448.txt}}
+
+Ainsi, le 18F448 possède quatre bancs mémoire : \emph{accessram}, \emph{gpr0}, \emph{gpr1} et \emph{gpr2}. En consultant la document du 18F448, on établit que le banc \emph{accessram} est accessible quel que soit \texttt{BSR}, que l'accès aux variables du banc \emph{gpr0} impose que \texttt{BSR} soit égal à 0, que l'accès aux variables du banc \emph{gpr1} impose que \texttt{BSR} soit égal à 1, etc.
+
+Pour simplifier l'écriture de ce premier programme, on place donc les trois variables dont on a besoin dans le banc \emph{accessram} :
+\begin{lstlisting}[language=piccolo]
+#------------ RAM
+ram accessram {
+  byte compteurL
+  byte compteurH
+  byte compteurU
+}
+\end{lstlisting}
+
+Cette écriture alloue les emplacements séquentiellement : \texttt{compteurL} sera à l'adresse 0, \texttt{compteurH} à l'adresse 1, et \texttt{compteurU} à l'adresse 2.
+
+Il reste maintenant à décrire la routine \emph{main}. Un programme valide doit toujours contenir une routine nommée \emph{main} : c'est le point d'entrée de l'exécution à la mise sous tesion ou après un \emph{reset}. L'en-tête de la routine \emph{main} doit en outre comporter deux qualificatifs :
+\begin{itemize}
+  \item \texttt{noreturn} : ceci exprime que la routine doit se terminer par une boucle infinie, ou un branchement à une routine elle aussi sans retour ;
+  \item \texttt{bank:requires 0} : ceci exprime que lors de l'appel, le registre \texttt{BSR} contient la valeur 0\footnote{\texttt{BSR} est initialisé à 0 à la mise sous tension ou lors d'un \emph{reset}.}, et que donc on pourrait utiliser des variables dans le banc \emph{gpr0} sans modifier \texttt{BSR}.
+\end{itemize}
+
+\begin{lstlisting}[language=piccolo]
+#------------ Routine main
+noreturn routine main bank:requires 0 {
+#--- Aucune entree analogique
+  movlw 7
+  movwf ADCON1
+#--- Programmer RE0 en sortie
+  bcf  TRISE.0
+#--- Initialiser les compteurs
+  clrf compteurL
+  clrf compteurH
+  clrf compteurU
+#--- Boucle infinie
+  forever
+    if (compteurL NZ)
+      decf compteurL
+    elsif (compteurH NZ)
+      decf compteurH
+      setf compteurL
+    elsif (compteurU NZ)
+      decf compteurU
+      setf compteurH
+      setf compteurL
+    else
+    #--- Reinitialiser les compteurs
+      movlw  0x0F
+      movwf  compteurU
+      movlw  0x42
+      movwf  compteurH
+      movlw  0x40
+      movwf  compteurL
+    #--- Clignoter
+      btg  PORTE.0
+    end
+  end
+}
+\end{lstlisting}
+
+
+
+
+
+
+
+
+\sectionLabel{Structure d’un programme pour pic18}{structurePrgmPic18}
+
+Un programme Piccolo pour \emph{pic18} a la structure suivante :
+
+\begin{lstlisting}[language=piccolo]
+pic18 nom "nom_composant" :
+  liste_de_sections
+end
+\end{lstlisting}
+
+
+Dans l’en-tête :
+\begin{itemize}
+  \item le nom « \emph{nom} » est le nom du fichier (sans son extension) qui contient ce texte source ;
+  \item le nom du composant « \emph{nom\_composant} » doit être exactement le nom de l’un des composants supportés (pour obtenir la liste des pic18 pris en charge, utiliser l’option « \texttt{-{}-pic18} », voir \refSubsectionPage{listePic18}).
+\end{itemize}
+
+
+Le corps du programme est constitué d’une liste non ordonnée de sections. Les sections disponibles sont listées dans le \refTableau{sectionsPic18}.
+\begin{table}[ht]
+  \centering
+  \rowcolors{2}{\fondTableau}{}
+  \begin{tabular}{p{5cm}lll}
+    \textbf{Type de section} & \textbf{Mot-clé introductif} & \textbf{Référence}\\
+    \hline
+    Configuration & \texttt{configuration} & \refChapterPage{configuration}\\
+    Définition de variable & \texttt{ram} & \refChapterPage{ram}\\
+    Définition de constante & \texttt{const} & \refChapterPage{constante}\\
+    Définition de routine pic18 & \texttt{routine} & \refSectionPage{routinePic18}\\
+    Définition de routine d'interruption pic18 & \texttt{interrupt} & \refSectionPage{routineInterruptionPic18}\\
+  \hline
+  \end{tabular}
+  \caption{Les sections d'un programme pour \emph{pic18}}
+  \labelTableau{sectionsPic18}
+\end{table}
+
+
+
+
+\sectionLabel{Routines pic18}{routinePic18}
+
+
+
+
+\sectionLabel{Routines d'interruption pic18}{routineInterruptionPic18}
+

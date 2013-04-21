@@ -1,0 +1,90 @@
+%!TEX encoding = UTF-8 Unicode
+%!TEX root = ../piccolo.tex
+
+\cleardoublepage
+
+\chapterLabel{Définition de constante}{constante}
+
+%--- Pour supprimer tout en-tête et pied de page sur la 1re page d'un chapitre
+\thispagestyle{empty}
+
+Des constantes peuvent être définies pour les trois types de programme (\emph{baseline}, \emph{mid-range}, \emph{pic18}).
+
+Une constante est définie par la construction :\begin{lstlisting}[language=piccolo]
+const nom_constante = expression_immediate\end{lstlisting}
+
+La forme générale d’une \emph{expression immédiate} est décrite à la \refSectionPage{expressionImmediate}. Voici des exemples de définition de constantes :\begin{lstlisting}[language=piccolo]
+const multiplicateur = 249
+const v1 = 128 - (2500 / multiplicateur)const v2 = 128 + (2500 / multiplicateur)\end{lstlisting}
+L’évaluation des expressions s’effectue en 32 bits signé, et doit pouvoir être calculée à la compilation ; elle peut faire référence à d’autres constantes, du moment qu’elles sont définies auparavant dans le programme. Par exemple, l’écriture suivante déclenche une erreur à la compilation :\begin{lstlisting}[language=piccolo]
+const valeur = mult * 11 # Erreur : mult non defini
+const mult = 23 \end{lstlisting}
+Vous pouvez utiliser une constante dans toute expression immédiate. Par exemple :\begin{lstlisting}[language=piccolo]
+if (! PORTB.7)  if (! PORTB.6)     movlw butSensTrigo   else # Sens horaire     movlw butSensHoraire  endend\end{lstlisting}
+
+
+\sectionLabel{Constantes prédéfinies}{constantesPredefinies}
+
+Piccolo prédéfinit les constantes listées dans le \refTableau{tableauConstantesPredefinies}, en fonction du type du micro-contrôleur. Le fichier listing (obtenu par l'option « \texttt{-L} », voir \refSubsectionPage{listeOptions}) contient la liste des constantes prédéfinies et leur valeur.
+
+\begin{table}[ht]
+  \centering
+  \rowcolors{2}{\fondTableau}{}
+  \begin{tabular}{llccc}
+    \textbf{Nom} & \textbf{Signification} & \textbf{Baseline} & \textbf{Mid-range} & \textbf{Pic18}\\
+    \hline
+    \texttt{ROM\_SIZE} & Taille de la ROM & & \checkmark & \checkmark \\
+    \texttt{BOOTLOADER\_SIZE} & Taille du \emph{bootloader} & & & \checkmark \\
+    \texttt{RAM\_SIZE} & Taille de la RAM & & & \checkmark \\
+  \hline
+  \end{tabular}
+  \caption{Constantes prédéfinies}
+  \labelTableau{tableauConstantesPredefinies}
+\end{table}
+
+\textbf{Attention !} La valeur de \texttt{ROM\_SIZE} est le nombre d'octets pour un \emph{pic18} (une instruction occupe 2 ou 4 octets), et le nombre d'instructions de 14 bits pour un \emph{mid-range}.
+
+La constante \texttt{BOOTLOADER\_SIZE} n’est prédéfinie que pour l’implémentation d’un bootloader ou d’un programme applicatif d'un \emph{pic18}. Elle n’est pas définie pour un programme monolithique. Elle a pour valeur la taille en octets réservée pour l’implémentation du bootloader.
+
+La constante \texttt{RAM\_SIZE} permet d'écrire un code générique pour \emph{pic18} réalisant l'initialisation à zéro de la RAM.
+
+
+
+\subsection{Exemple d'utilisation de \texttt{ROM\_SIZE}}
+
+La constante \texttt{ROM\_SIZE} est définie pour un \emph{pic18}. Associée avec l'instruction \texttt{ltblptr}, elle permet d'écrire une routine générique, valable pour tous les types de \emph{pic18}, qui renvoie dans \emph{W}, la somme des octets de la flash.
+
+
+\begin{lstlisting}[language=piccolo]
+routine CALCULER_SOMME_CONTROLE_FLASH {
+#--- Entrer l'adresse du dernier mot de la flash
+  ltblptr ROM_SIZE - 1
+#--- Accumulateur de la somme de controle
+  movlw 0
+#--- Boucle
+  do
+   tblrd *-
+   addwf TABLAT, W
+  while (TBLPTRU NZ | TBLPTRH NZ | TBLPTRL NZ)
+  end
+}
+\end{lstlisting}
+
+
+
+\subsection{Exemple d'utilisation de \texttt{RAM\_SIZE}}
+
+La constante \texttt{RAM\_SIZE} est définie pour un \emph{pic18}. Elle permet l'écriture d'une séquence générique mettant à zéro toute la RAM d'un micro-contrôleur. On peut faire figurer cette séquence au début de la routine \emph{main}.
+
+
+\begin{lstlisting}[language=piccolo]
+  lfsr 0, RAM_SIZE - 1
+  do
+    clrf POSTDEC0
+  while (FSR0L NZ | FSR0H NZ)
+  end
+  clrf INDF0
+\end{lstlisting}
+
+
+\sectionLabel{Forme générale d'une expression immédiate}{expressionImmediate}

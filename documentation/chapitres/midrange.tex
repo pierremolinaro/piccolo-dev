@@ -1,0 +1,59 @@
+%!TEX encoding = UTF-8 Unicode
+%!TEX root = ../piccolo.tex
+
+\cleardoublepage
+
+\chapter{Programmes pour mid-range}
+
+%--- Pour supprimer tout en-tête et pied de page sur la 1re page d'un chapitre
+\thispagestyle{empty}
+
+
+
+
+\section{Structure d’un programme pour mid-range}
+
+Un programme Piccolo pour \emph{mid-range} a la structure suivante :
+
+\begin{lstlisting}[language=piccolo]
+midrange nom "nom_composant" :
+  liste_de_sections
+end
+\end{lstlisting}
+
+
+Dans l’en-tête :
+\begin{itemize}
+  \item le nom « \emph{nom} » est le nom du fichier (sans son extension) qui contient ce texte source ;
+  \item le nom du composant « \emph{nom\_composant} » doit être exactement le nom de l’un des composants supportés (pour obtenir la liste des \emph{mid-range} pris en charge, utiliser l’option « \texttt{-{}-midrange} », voir \refSubsectionPage{listeMidrange}).
+\end{itemize}
+
+
+Le corps du programme est constitué d’une liste non ordonnée de sections. Les sections disponibles sont listées dans le \refTableau{sectionsMidrange}.
+\begin{table}[ht]
+  \centering
+  \rowcolors{2}{\fondTableau}{}
+  \begin{tabular}{p{5cm}lll}
+    \textbf{Type de section} & \textbf{Mot-clé introductif} & \textbf{Référence}\\
+    \hline
+    Configuration & \texttt{configuration} & \refChapterPage{configuration}\\
+    Définition de variable & \texttt{ram} & \refChapterPage{ram}\\
+    Définition de constante & \texttt{const} & \refChapterPage{constante}\\
+    Définition de routine mid-range & \texttt{routine} & \refSectionPage{routineMidrange}\\
+    Définition de routine d'interruption mid-range & \texttt{interrupt} & \refSectionPage{routineInterruptionMidrange}\\
+  \hline
+  \end{tabular}
+  \caption{Les sections d'un programme pour \emph{mid-range}}
+  \labelTableau{sectionsMidrange}
+\end{table}
+
+
+
+
+\sectionLabel{Routines mid-range}{routineMidrange}
+
+
+
+
+\sectionLabel{Routines d'interruption mid-range}{routineInterruptionMidrange}
+

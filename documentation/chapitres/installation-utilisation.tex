@@ -1,0 +1,152 @@
+%!TEX encoding = UTF-8 Unicode
+%!TEX root = ../piccolo.tex
+
+\cleardoublepage
+
+\chapter{Installation et utilisation}
+
+%--- Pour supprimer tout en-tête et pied de page sur la 1re page d'un chapitre
+\thispagestyle{empty}
+
+
+\section{Installation}
+
+La page \url{http://piccolo.rts-software.org/download/index.php} contient les liens vers la distribution de Piccolo. 
+
+Piccolo est distribué sous la forme d'un \emph{utilitaire en ligne de commande}, sauf pour Mac OS où une application proposant un éditeur avec coloration lexicale est proposée.
+
+\subsection{Windows}
+
+\subsection{Linux}
+
+
+\subsection{Mac OS}
+
+
+
+
+\section{Options de la ligne de commande}
+
+\subsectionLabel{Liste des options}{listeOptions}
+
+Piccolo accepte un certain nombre d’options, qui sont détaillées dans les pages suivantes.
+
+L’analyse des arguments de la ligne de commandes est simple :
+\begin{itemize}
+  \item tout argument qui commence par un « - » est une option ;
+  \item tout argument qui ne commence pas par un « - » est considéré comme un fichier source Piccolo ;
+  \item la seule extension acceptable pour un fichier source Piccolo est « .piccolo ».
+\end{itemize}
+
+En conséquence, un argument ne commençant pas par un « - » et n’ayant pas l’extension « .piccolo » déclenche une erreur.
+
+L’ordre des options et des fichiers sources est quelconque. La ligne de commande est complètement analysée avant le traitement des fichiers sources.
+
+Si plusieurs fichiers sources apparaissent dans la ligne de commande, ils sont traités dans leur ordre d’apparition.
+
+{\bf Note pour Windows.} L’outil Piccolo pour Windows propose par défaut un dialogue invitant à entrer les références d’un fichier source si la ligne ne contient aucun fichier source (c’est le cas quand on double-clique sur l’icône de l’application). Une option « \texttt{-{-}no-dialog} », spécifique à cette plate forme, permet d'inhiber l’apparition du dialogue.
+
+La liste des options est :\index{Options de la ligne de commande}
+\begin{description}
+  \item[\texttt{-{-}version}] Affiche le numéro de version.
+  \item[\texttt{-v}, \texttt{-{-}verbose}] Affiche des messages complémentaires sur le terminal. Par défaut, quand toutes les étapes se déroulent correctement, aucun message n’est affiché.
+  \item[\texttt{-n}, {\tt-{-}no-file-generation}] Aucune écriture sur fichier n’a lieu : ceci permet de garantir que les fichiers de sortie ne seront pas engendrés. La tentative d’écrire un fichier est signalé par un \emph{warning}.
+  \item[\texttt{-W}, \texttt{-{-}Werror}] Tout \emph{warning} est considéré comme une erreur. Cela peut être important dans un script, l’outil de commande renvoyant un code non nul si une ou plusieurs erreurs ont été détectées.
+  \item[\texttt{-d}, \texttt{-{-}detailled-error-messages}] Imprime de manière détaillée les messages d’erreur et d’alerte. Par défaut, ils sont de la même forme que ceux engendrés par \emph{gcc}.
+  \item[\texttt{-S}, \texttt{-{-}asm}] Si la compilation s’effectue sans erreur, engendre aussi un fichier texte assembleur, dans le même répertoire que le fichier source Piccolo, mais avec l’extension « .asm ».
+  \item[\texttt{-D}, \texttt{-{-}device-list}] Affiche sur le terminal la liste des micro-contrôleurs \emph{baseline}, \emph{mid-range} et \emph{pic18} supportés.
+  \item[\texttt{-{-}baseline}] Affiche sur le terminal la liste des micro-contrôleurs \emph{baseline} supportés (voir \refSubsectionPage{listeBaseline}).
+  \item[\texttt{-{-}midrange}] Affiche sur le terminal la liste des micro-contrôleurs \emph{mid-range} supportés (voir \refSubsectionPage{listeMidrange}).
+  \item[\texttt{-{-}pic18}] Affiche sur le terminal la liste des micro-contrôleurs \emph{pic18} supportés (voir \refSubsectionPage{listePic18}).
+  \item[\texttt{-L}, \texttt{-{-}list}] Produit un fichier listing contenant de nombreux détails concernant la configuration, l’allocation de la RAM, les optimisations réalisées et la transformation des branchement relatifs en absolu. Ce fichier est écrit dans le même répertoire que le fichier source, porte le même nom, mais avec l’extension « .list ».
+  \item[\texttt{-o}, \texttt{-{-}optimize}] Effectue de manière itérative des optimisations du code produit.
+  \item[\texttt{-F=string}, \texttt{-{-}configuration=string}] Affiche sur le terminal le détail des registres de configuration du micro-contrôleur désigné par \texttt{string}. Un exemple se trouve à la \refSubsectionPage{exempleOptionConfiguration}.
+  \item[\texttt{-M=string}, \texttt{-{-}memory=string}] Affiche sur le terminal la composition des bancs de la RAM, la taille de la ROM et de l’EEPROM du micro-contrôleur désigné par \texttt{string}. Un exemple se trouve à la \refSubsectionPage{exempleOptionMemory}.
+  \item[\texttt{-R=string}, \texttt{-{-}registers=string}] Affiche sur le terminal la liste alphabétique des registres spéciaux du micro-contrôleur désigné par \texttt{string}, ainsi que le nom de leurs bits. Un exemple se trouve à la \refSubsectionPage{exempleOptionRegisters}.
+  \item[\texttt{-{-}no-dialog}] (\emph{Uniquement sur Windows}) L’outil Piccolo pour Windows propose par défaut un dialogue invitant à entrer les références d’un fichier source si la ligne ne contient aucun fichier source (c’est le cas quand on double-clique sur l’icône de l’application). Cette option permet d'inhiber l’apparition du dialogue.
+\end{description}
+
+\subsectionLabel{Exemple d'utilisation de l'option \texttt{-{}-memory}}{exempleOptionMemory}
+
+Cette option affiche sur le terminal la composition des bancs de la RAM, la taille de la ROM et de l’EEPROM d'un micro-contrôleur.
+
+Par exemple, pour le \texttt{18F448}, on écrit la ligne de commande :
+\begin{quote}
+  \texttt{piccolo -{}-memory=18F448}
+\end{quote}
+
+On obtient ainsi : 
+{\footnotesize \lstinputlisting[frame=l]{files-from-piccolo/memory-18F448.txt}}
+
+
+\subsectionLabel{Exemple d'utilisation de l'option \texttt{-{}-registers}}{exempleOptionRegisters}
+
+Cette option affiche sur le terminal la liste alphabétique des registres spéciaux d'un micro-contrôleur, ainsi que le nom de leurs bits.
+
+Par exemple, pour le \texttt{12F683}, on écrit la ligne de commande :
+\begin{quote}
+  \texttt{piccolo -{}-registers=12F683}
+\end{quote}
+
+On obtient ainsi : 
+{\footnotesize \lstinputlisting[frame=l]{files-from-piccolo/registers-12F683.txt}}
+
+
+\subsectionLabel{Exemple d'utilisation de l'option \texttt{-{}-configuration}}{exempleOptionConfiguration}
+
+Cette option affiche sur le terminal le détail des registres de configuration d'un micro-contrôleur.
+
+Par exemple, pour le \texttt{10F220}, on écrit la ligne de commande :
+\begin{quote}
+  \texttt{piccolo -{}-configuration=10F220}
+\end{quote}
+
+On obtient ainsi : 
+{\footnotesize \lstinputlisting[frame=l]{files-from-piccolo/configuration-10F220.txt}}
+
+
+
+
+
+
+
+
+
+\section{Micro-contrôleurs supportés}
+
+\subsectionLabel{Micro-contrôleurs \emph{baseline}}{listeBaseline}
+
+Pour connaître la liste des micro-contrôleurs \emph{baseline} pris en charge, utiliser l’option « \texttt{-{}-baseline} » :
+\begin{quote}
+\texttt{piccolo -{}-baseline}
+\end{quote}
+
+On obtient ainsi : 
+{\footnotesize \lstinputlisting[frame=l]{files-from-piccolo/baseline.txt}}
+
+
+
+
+\subsectionLabel{Micro-contrôleurs \emph{mid-range}}{listeMidrange}
+
+
+
+Pour connaître la liste des micro-contrôleurs \emph{mid-range} pris en charge, utiliser l’option « \texttt{-{}-midrange} » :
+\begin{quote}
+\texttt{piccolo -{}-midrange}
+\end{quote}
+
+On obtient ainsi : 
+{\footnotesize \lstinputlisting[frame=l]{files-from-piccolo/midrange.txt}}
+
+\subsectionLabel{Micro-contrôleurs \emph{pic18}}{listePic18}
+
+Pour connaître la liste des micro-contrôleurs \emph{pic18} pris en charge, utiliser l’option « \texttt{-{}-pic18} » :
+\begin{quote}
+\texttt{piccolo -{}-pic18}
+\end{quote}
+
+
+On obtient ainsi : 
+{\footnotesize \lstinputlisting[frame=l]{files-from-piccolo/pic18.txt}}
+

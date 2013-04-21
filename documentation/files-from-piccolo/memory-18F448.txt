@@ -1,0 +1,8 @@
+18F448 device:
+  4 RAM banks (total 768 bytes):
+    bank "accessram" from 0x0 to 0x5F (96 bytes)
+    bank "gpr0" from 0x60 to 0xFF (160 bytes)
+    bank "gpr1" from 0x100 to 0x1FF (256 bytes)
+    bank "gpr2" from 0x200 to 0x2FF (256 bytes)
+  ROM size: 16384 bytes
+  EEPROM size: 256 bytes (at 0xF00000)
