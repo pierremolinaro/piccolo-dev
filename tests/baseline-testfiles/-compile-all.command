@@ -26,6 +26,10 @@ echo "-------------- Pages 12F510" &&
 ../../makefile_macosx/piccolo -v -S -O -L --Werror pages_12F510.piccolo &&
 $GPUTILS_PATH/gpasm pages_12F510.asm -o pages_12F510-2.hex &&
 hexcmp pages_12F510.hex pages_12F510-2.hex &&
+echo "-------------- Optimizations 12F510" &&
+../../makefile_macosx/piccolo -v -S -O -L --Werror optimizations_12F510.piccolo &&
+$GPUTILS_PATH/gpasm optimizations_12F510.asm -o optimizations_12F510-2.hex &&
+hexcmp optimizations_12F510.hex optimizations_12F510-2.hex &&
 echo "-------------- Pages 16F59" &&
 ../../makefile_macosx/piccolo -v -S -O -L --Werror pages_16F59.piccolo &&
 $GPUTILS_PATH/gpasm pages_16F59.asm -o pages_16F59-2.hex &&

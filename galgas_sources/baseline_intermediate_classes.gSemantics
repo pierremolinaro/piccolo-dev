@@ -26,26 +26,31 @@ class @baseline_intermediate_NULL extends @baseline_intermediate_instruction {
 
 #-------------------------------------------------------------------------------*
 
-class @baseline_intermediate_pseudo_PAGE extends @baseline_intermediate_instruction {
+abstract class @baseline_intermediate_pseudo extends @baseline_intermediate_instruction {
+}
+
+#-------------------------------------------------------------------------------*
+
+class @baseline_intermediate_pseudo_PAGE extends @baseline_intermediate_pseudo {
   @uint mPage ;
 }
 
 #-------------------------------------------------------------------------------*
 
-class @baseline_intermediate_pseudo_LABEL extends @baseline_intermediate_instruction {
+class @baseline_intermediate_pseudo_LABEL extends @baseline_intermediate_pseudo {
   @lstring mLabel ;
 }
 
 #-------------------------------------------------------------------------------*
 
-class @baseline_intermediate_pseudo_BEGINOFROUTINE extends @baseline_intermediate_instruction {
+class @baseline_intermediate_pseudo_BEGIN_ROUTINE extends @baseline_intermediate_pseudo {
   @lstring mRoutineName ;
   @bool mIsRegular ;
 }
 
 #-------------------------------------------------------------------------------*
 
-class @baseline_intermediate_pseudo_ENDOFROUTINE extends @baseline_intermediate_instruction {
+class @baseline_intermediate_pseudo_END_ROUTINE extends @baseline_intermediate_pseudo {
   @lstring mRoutineName ;
   @uint mPage ;
 }

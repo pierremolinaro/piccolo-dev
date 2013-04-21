@@ -38,7 +38,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @baseline_intermediate_pseudo_BEGINOFROUTINE generateAssemblyCode
+override method @baseline_intermediate_pseudo_BEGIN_ROUTINE generateAssemblyCode
   ??@baseline_intermediate_registerExpression unused inSTATUSregister
   ??@bitSliceTable unused inStatusRegisterBitSliceTable
   ?!@baseline_assembly_instructionList ioAssemblyInstructionList
@@ -48,7 +48,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @baseline_intermediate_pseudo_ENDOFROUTINE generateAssemblyCode
+override method @baseline_intermediate_pseudo_END_ROUTINE generateAssemblyCode
   ??@baseline_intermediate_registerExpression unused inSTATUSregister
   ??@bitSliceTable unused inStatusRegisterBitSliceTable
   ?!@baseline_assembly_instructionList ioAssemblyInstructionList

@@ -41,6 +41,7 @@ SOURCES += baseline_intermediate_classes.cpp
 SOURCES += baseline_semantic_analysis.cpp
 SOURCES += baseline_intermediate_instruction_print.cpp
 SOURCES += baseline_intermediate_instruction_length.cpp
+SOURCES += baseline_optimizations.cpp
 SOURCES += baseline_assembly_classes.cpp
 SOURCES += baseline_print_assembly_instructions.cpp
 SOURCES += baseline_assembly_instruction_length.cpp
