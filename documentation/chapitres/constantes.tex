@@ -10,17 +10,39 @@
 
 Des constantes peuvent être définies pour les trois types de programme (\emph{baseline}, \emph{mid-range}, \emph{pic18}).
 
-Une constante est définie par la construction :\begin{lstlisting}[language=piccolo]
-const nom_constante = expression_immediate\end{lstlisting}
+Une constante est définie par la construction :
 
-La forme générale d’une \emph{expression immédiate} est décrite à la \refSectionPage{expressionImmediate}. Voici des exemples de définition de constantes :\begin{lstlisting}[language=piccolo]
+\begin{lstlisting}[language=piccolo]
+const nom_constante = expression_immediate
+\end{lstlisting}
+
+
+La forme générale d’une \emph{expression immédiate} est décrite à la \refSectionPage{expressionImmediate}. Voici des exemples de définition de constantes :
+
+\begin{lstlisting}[language=piccolo]
 const multiplicateur = 249
-const v1 = 128 - (2500 / multiplicateur)const v2 = 128 + (2500 / multiplicateur)\end{lstlisting}
-L’évaluation des expressions s’effectue en 32 bits signé, et doit pouvoir être calculée à la compilation ; elle peut faire référence à d’autres constantes, du moment qu’elles sont définies auparavant dans le programme. Par exemple, l’écriture suivante déclenche une erreur à la compilation :\begin{lstlisting}[language=piccolo]
+const v1 = 128 - (2500 / multiplicateur)
+const v2 = 128 + (2500 / multiplicateur)
+\end{lstlisting}
+
+L’évaluation des expressions s’effectue en 32 bits signé, et doit pouvoir être calculée à la compilation ; elle peut faire référence à d’autres constantes, du moment qu’elles sont définies auparavant dans le programme. Par exemple, l’écriture suivante déclenche une erreur à la compilation :
+
+\begin{lstlisting}[language=piccolo]
 const valeur = mult * 11 # Erreur : mult non defini
-const mult = 23 \end{lstlisting}
-Vous pouvez utiliser une constante dans toute expression immédiate. Par exemple :\begin{lstlisting}[language=piccolo]
-if (! PORTB.7)  if (! PORTB.6)     movlw butSensTrigo   else # Sens horaire     movlw butSensHoraire  endend\end{lstlisting}
+const mult = 23 
+\end{lstlisting}
+
+Vous pouvez utiliser une constante dans toute expression immédiate. Par exemple :
+
+\begin{lstlisting}[language=piccolo]
+if (! PORTB.7)
+  if (! PORTB.6)
+     movlw butSensTrigo
+   else # Sens horaire
+     movlw butSensHoraire
+  end
+end
+\end{lstlisting}
 
 
 \sectionLabel{Constantes prédéfinies}{constantesPredefinies}
@@ -87,4 +109,62 @@ La constante \texttt{RAM\_SIZE} est définie pour un \emph{pic18}. Elle permet l
 \end{lstlisting}
 
 
-\sectionLabel{Forme générale d'une expression immédiate}{expressionImmediate}
+\sectionLabel{Forme générale d'une expression littérale}{expressionImmediate}
+\textbf{Opérandes.} Piccolo définit les opérandes suivants :\begin{itemize}
+  \item une constante littérale entière, écrite en décimal ou en hexadécimal ;  \item une constante littérale caractère (qui a pour valeur le code ASCII correspondant) ;  \item une constante définie par la construction const (voir à cette page) ;  \item un registre accompagné éventuellement d’un indice ;  \item une valeur descriptive de registre (\refSectionPage{exprLiteraleDescriptiveDeRegistre}).
+\end{itemize}
+
+~\\
+\textbf{Parenthèses.} Vous pouvez utiliser des parenthèses pour exprimer le groupement.
+~\\
+\textbf{Opérateurs.} Les opérateurs définis pour une expression littérale sont donnés par le \refTableau{operateursExpressionImmediate} (par ordre de priorité croissante).
+
+\begin{table}[!ht]
+  \centering
+  \rowcolors{2}{\fondTableau}{}
+  \begin{tabular}{cccc}
+    \textbf{Assembleur} & \textbf{Priorité} & \textbf{Description}\\
+    \hline
+    \texttt{|} & 0 & Ou inclusif bit à bit \\
+    \texttt{\^{}} & 0 & Ou exclusif bit à bit \\
+    \texttt{\&} & 1 & Et bit à bit \\
+    \texttt{==} & 2 & Test d'égalité \\
+    \texttt{!=} & 2 & Test d'inégalité \\
+    \texttt{>=} & 2 & Test supérieur ou égal \\
+    \texttt{>} & 2 & Test strictement supérieur \\
+    \texttt{<=} & 2 & Test inférieur ou égal \\
+    \texttt{<} & 2 & Test strictement inférieur \\
+    \texttt{+} & 3 & Addition \\
+    \texttt{<{}<} & 3 & Décalage à gauche \\
+    \texttt{>{}>} & 3 & Décalage arithmétique à gauche \\
+    \texttt{*} & 4 & Multiplication \\
+    \texttt{/} & 4 & Division \\
+    \texttt{\%} & 4 & Modulo \\
+    \texttt{-} & 5 & Opérateur unaire : négation \\
+    \texttt{\textasciitilde} & 5 & Opérateur unaire : complémentation logique \\
+    \hline
+  \end{tabular}
+  \caption{Opérateurs d'une expression littérale, par ordre de priorité croissante}
+  \labelTableau{operateursExpressionImmediate}
+\end{table}
+
+
+
+\sectionLabel{Expression littérale : valeur descriptive de registre}{exprLiteraleDescriptiveDeRegistre}
+
+Pour illustrer cette construction, nous prenons un exemple. Nous voulons initialiser le registre \texttt{T2CON} du timer 2 (qui existe sur plusieurs PIC18, dont le 18F448). La documentation du composant nous fournit la description ci-contre. Nous voulons affecter les valeurs suivantes :\begin{itemize}
+  \item \texttt{TOUTPS} à 5 (1:6 postscale) ;  \item \texttt{TMR2ON} à 1 ;  \item \texttt{T2CKPS} à 1 (Prescaler is 1).\end{itemize}
+Une première solution est de calculer à la main la valeur à affecter à \texttt{T2CON}. Cela donne :\begin{lstlisting}[language=piccolo]
+movlw   0x2Dmovwf   T2CON\end{lstlisting}
+La seconde solution est d'utiliser la construction que nous allons décrire. Pour cela, il faut d'abord s’assurer que Piccolo connaît la description des champs de bits de \texttt{T2CON}. On lance donc la commande \texttt{piccolo -R=18F448} dans le terminal, et on recherche la définition du registre \texttt{T2CON} dans le listing obtenu ; on obtient :
+\begin{quote}
+\texttt{\textquotesingle T2CON\textquotesingle at 0xFCA <-, TOUTPS[4], TMR2ON, T2CKPS[2]>}\end{quote}
+Les noms correspondent bien. En utilisant ces noms, nous pouvons écrire :\begin{lstlisting}[language=piccolo]
+movlw   @ T2CON (TOUTPS:5, TMR2ON:1, T2CKPS:1)movwf   T2CON
+\end{lstlisting}
+
+L'expression litérale présente la syntaxe suivante : elle est introduite par le délimiteur « \texttt{@} », suivi d’un nom de registre, puis, entre parenthèses, une séquence de couples formés d’un nom de champ et d’une valeur immédiate :\begin{quote}
+\texttt{@ nom\_registre (nom\_champ:expression\_literale, ...)}\end{quote}
+Tout registre spécial, toute variable déclarée (dans une section \texttt{ram}) ayant des champs définis peut être utilisée.Le nom de champ (\texttt{nom\_champ}) est l’un des champs définis par ce registre ou par cette variable. On ne peut utiliser des noms de champ d’un autre registre ou d’une autre variable.L’\texttt{expression\_literale} associée obéit à la syntaxe générale des expressions litérales. La valeur obtenue doit être positive ou nulle, et inférieure ou égal à la valeur maximum que peut contenir le champ (c’est à dire, pour un champ de \texttt{n} bits, $2^n-1$).Un nom de champ ne peut apparaître qu’une fois. L’ordre d’apparition des champs dans cette construction n’a pas d’importance. Tout champ non mentionné a implicitement tous les bits correspondants à zéro.
+
+
