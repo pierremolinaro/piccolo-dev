@@ -1,0 +1,8 @@
+16F690 device:
+  4 RAM banks (total 256 bytes):
+    bank "gpr0" from 0x20 to 0x6F (80 bytes)
+    bank "gpr1" from 0xA0 to 0xEF (80 bytes)
+    bank "gpr2" from 0x120 to 0x16F (80 bytes)
+    bank "gprnobnk" from 0x70 to 0x7F (16 bytes), mirror at 0xF0, 0x170, 0x1F0
+  ROM size: 4096 instructions (2 pages)
+  EEPROM size: 256 bytes (at 0x2100)

@@ -417,7 +417,7 @@
 %---------------------------------------------------- Pour utiliser la police "Fourier"
 \usepackage{fouriernc}
 \usepackage[scaled=0.875]{helvet}
-\usepackage[scaled=0.9]{couriers}
+\usepackage[scaled=0.95]{couriers}
 
 %---------------------------------------------------- Pour utiliser la police "Beton, euler"
 %\usepackage{beton, euler}
@@ -441,12 +441,12 @@
 
 %-----------------------------------------------------------------------------------------------------------------------*
 %                                                                                                                       *
-%   P A Q U E T A G E    « M U L T I R O W »                                                                            *
+%   P A Q U E T A G E    « M U L T I C O L »                                                                            *
 %                                                                                                                       *
 %-----------------------------------------------------------------------------------------------------------------------*
 
-% Pour que les tableaux puissent avoir des lignes fusionnées
-%\usepackage{multirow}
+\usepackage{multicol}
+\setlength{\columnsep}{30pt}
 
 %-----------------------------------------------------------------------------------------------------------------------*
 %                                                                                                                       *
@@ -498,6 +498,9 @@
 %-----------------------------------------------------------------------------------------------------------------------*
 
 \usepackage{listings}
+
+%-----------------------------------------------------------------------------------------------------------------------*
+
 \lstdefinelanguage{piccolo}{
   style=piccolo,
   keywords={bank, banksave, banksel, baseline, bootloader, byte, computed, configuration, const,
@@ -533,6 +536,29 @@
 }
 
 \newcommand\piccolo[1]{{\ttfamily\small #1}}
+
+%-----------------------------------------------------------------------------------------------------------------------*
+
+\lstdefinelanguage{assembleur}{
+  style=assembleur,
+  comment=[l]{\%},
+}
+\ifthenelse{\equal{\sortieEnCouleur}{true}}{
+  \lstdefinestyle{assembleur}{
+    basicstyle=\ttfamily\small,
+%    frame=l,
+%    backgroundcolor=\color{yellow!10},
+    numberstyle=\ttfamily\small,
+    xleftmargin=20pt
+  }
+}{
+  \lstdefinestyle{assembleur}{
+    basicstyle=\ttfamily\small,
+%    frame=l,
+    numberstyle=\ttfamily\small,
+    xleftmargin=20pt
+  }
+}
 
 %-----------------------------------------------------------------------------------------------------------------------*
 %                                                                                                                       *
@@ -649,7 +675,7 @@
 %                                                                                                                       *
 %-----------------------------------------------------------------------------------------------------------------------*
 
-\input{chapitres/avant-propos.tex}
+%\input{chapitres/avant-propos.tex}
 
 %-----------------------------------------------------------------------------------------------------------------------*
 %                                                                                                                       *
@@ -701,6 +727,7 @@
 %                                                                                                                       *
 %-----------------------------------------------------------------------------------------------------------------------*
 
+\input{chapitres/pourquoi-piccolo.tex}
 \input{chapitres/installation-utilisation.tex}
 \input{chapitres/reference-langage.tex}
 \input{chapitres/baseline.tex}
