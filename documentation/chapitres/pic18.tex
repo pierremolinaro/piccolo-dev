@@ -764,7 +764,7 @@ Le \refTableau{pic18InstructionsPropresPiccolo} liste les instructions compléme
   \begin{tabular}{lll}
     \textbf{Piccolo} & \textbf{Description} & \textbf{Référence}\\
     \hline
-    \texttt{mnop k} & Séquence d'instructions \texttt{NOP} & \refSubsectionPage{instructionMNOP} \\
+    \texttt{mnop k} & Séquence d'instructions \texttt{NOP} & \refSectionPage{instructionMNOP} \\
     \texttt{jump} & Appel de routine sans retour & \refSubsectionPage{appelRoutineSansRetourPic18} \\
     \texttt{jsr} & Appel de routine régulière &  \refSubsectionPage{appelRoutineRegulierePic18} \\
     \hline
@@ -804,6 +804,9 @@ Voici leur liste avec les liens vers les sections appropriées :\begin{itemize}
 
 
 
+
+
+\sectionLabel{Les instructions simples}{instructionsSimplesPic18}
 
 
 \subsectionLabel{Instructions nommant un registre}{instructionsNommantRegistre}
@@ -973,14 +976,6 @@ En assembleur comme en Piccolo, l'instruction \texttt{movff fs, fd} comporte deu
 
 
 
-
-
-
-\subsectionLabel{Instruction \texttt{mnop}}{instructionMNOP}
-
-Cette instruction n'existe pas en assembleur. En Piccolo, \texttt{mnop k} engendre une séquence de \texttt{k} instructions \texttt{NOP}.
-
-\texttt{k} est une expression statique. La forme générale des expressions statiques est donnée à la \refSectionPage{expressionImmediate}. Une expression statique est évaluée à la compilation. Le compilateur effectue tous les calculs avec des nombres entiers 32 bits signés.
 
 
 
