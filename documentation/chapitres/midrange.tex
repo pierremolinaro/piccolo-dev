@@ -30,6 +30,7 @@ Dans l’en-tête :
 
 
 Le corps du programme est constitué d’une liste non ordonnée de sections. Les sections disponibles sont listées dans le \refTableau{sectionsMidrange}.
+
 \begin{table}[ht]
   \centering
   \rowcolors{2}{\fondTableau}{}
@@ -52,8 +53,279 @@ Le corps du programme est constitué d’une liste non ordonnée de sections. Le
 
 \sectionLabel{Routines mid-range}{routineMidrange}
 
+Les routines définissent le code exécutable de votre programme. L’une d’entre elles doit s’appeler \texttt{main} : c’est la routine qui s’exécute au démarrage. Il y a deux types de routine, les routines \emph{régulières} et les routines \emph{sans retour}.
+
+
+L’ordre des déclarations des routines est quelconque, il est possible d’appeler une routine qui est déclarée après l’instruction d’appel. Simplement Piccolo engendrera leur code dans leur ordre d’apparition. 
+
+~\\
+\textbf{Routine et sélection de banc.} Un problème important en assembleur est la gestion de la sélection de banc par l’intermédiaire des bits \texttt{RP} du registre \texttt{STATUS} : son utilisation correcte en assembleur est complètement à la charge du programmeur. Piccolo propose des instructions pour sécuriser son emploi : voir à partir de § cette page.
+
+~\\
+\textbf{Liste d’instructions d’une routine.} Elle est structurée : Piccolo définit des instructions de sélection et de répétition : cela signifie que vous ne pouvez pas déclarer d’étiquette, ni utiliser des \texttt{goto} pour effectuer des branchements à l’intérieur d’une routine.
+
+~\\
+\textbf{Routine et page en ROM.} La ROM d’un midrange est divisé en blocs de 2048 instructions, et franchir ces frontières posent des problèmes particuliers (§). Piccolo impose les contraintes suivantes :\begin{itemize}
+  \item une routine doit être complètement contenue dans une page (son code ne peut franchir une frontière) ;  \item les sauts inter-pages ne peuvent être effectués qu’avec les instructions JUMP ou JSR (§).\end{itemize}
+\subsection{Routine régulière}
+
+C'est un sous-programme. Une routine régulière peut ne comporter aucune instruction Piccolo, l'instruction \texttt{return} est implicitement ajoutée. Une routine régulière est déclarée par :
+\begin{lstlisting}[language=piccolo]
+routine maRoutine ... {
+  ...
+}
+\end{lstlisting}
+
+\texttt{maRoutine} est le nom de la routine, celui qui sera nommé dans un instruction d’appel de routine. Entre les accolades « \texttt{\{} » et « \texttt{\}} », apparaît la liste des instructions.
+
+~\\
+\textbf{Appel d’une routine régulière.} Utiliser \texttt{CALL} ou \texttt{JSR}, comme indiqué à §§.
+
+\subsection{Routine sans retour}
+
+L’exécution ne revient pas jamais à l’appelant. Ce type de routine doit donc se terminer par des constructions particulières qui assurent le non-retour : une boucle infinie, un branchement (\texttt{goto} ou \texttt{jump}) vers une autre routine sans retour, un \texttt{goto} calculé vers d’autres routines sans retour.
+
+Une routine sans retour doit être déclarée avec qualificatif « \texttt{noreturn} » :
+\begin{lstlisting}[language=piccolo]
+noreturn routine maRoutine ... {
+  ...
+}
+\end{lstlisting}
+
+~\\
+\textbf{Appel d’une routine sans retour.} Utiliser \texttt{goto} ou \texttt{jump}.
+
+
+~\\
+\textbf{Déclaration de la routine \texttt{main}.} Dans un programme, il doit exister une et une seule routine \texttt{main}, qui doit être déclarée comme suit :
+
+\begin{lstlisting}[language=piccolo]
+noreturn routine main bank:requires 0 {
+   liste d'instructions
+}
+
+\end{lstlisting}
+
+Le compilateur Piccolo insère à l’adresse zéro une instruction \texttt{goto} vers cette routine, de façon que la routine \texttt{main} soit exécutée au démarrage du micro-contrôleur. Le qualificatif « \texttt{bank:requires 0} » est exigé par le compilateur Piccolo car les bits \texttt{RP} du registre \texttt{STATUS} sont initialisés à zéro au démarrage du micro-contrôleur.
+
+
+~\\
+\textbf{Comment terminer une routine sans retour.} La dernière instruction de la liste des instructions d’une routine sans retour doit être :
+\begin{itemize}
+  \item un appel vers une autre routine sans retour, au moyen d’un \texttt{goto} ou d'un \texttt{jump} ;
+  \item un branchement calculé vers une routine parmi plusieurs, au moyen d’un \texttt{computed goto} ;
+  \item une instruction conditionnelle structurée, dont toutes les branches présentent comme dernière instruction les instructions d’appel d’un routine sans retour, un branchement calculé (comme évoqué ci-dessus), ou encore une instruction conditionnelle structurée, dont toutes les branches, etc.
+
+\end{itemize}
+
+Exemple simple : la dernière instruction est une boucle infinie :
+\begin{lstlisting}[language=piccolo]
+noreturn routine maRoutine {
+  ...
+  forever
+    ...
+  end
+}
+\end{lstlisting}
+
+Exemple simple : la dernière instruction est un branchement vers une routine sans retour :
+\begin{lstlisting}[language=piccolo]
+noreturn routine maRoutine {
+  ...
+  goto autreRoutineSansRetour
+}
+\end{lstlisting}
+
+La dernière instruction est un \texttt{computed goto} nommant les routines \texttt{r1}, \texttt{r2}, \texttt{r3} qui doivent être toutes les trois des routines sans retour :
+\begin{lstlisting}[language=piccolo]
+noreturn routine maRoutine {
+  ...
+  computed [3] goto r1, r2, r3
+}
+\end{lstlisting}
+
+La dernière instruction est un \texttt{if} dont aucune des branches ne se termine (\texttt{r1} est une routine sans retour) :
+\begin{lstlisting}[language=piccolo]
+noreturn routine maRoutine {
+  if (...)
+    ...
+    goto r1
+  else
+    ...
+    forever
+      ...
+    end
+  end
+}
+
+\end{lstlisting}
+
+
+La dernière instruction est un \texttt{if} dont la première branche se termine elle même par un \texttt{if} dont les deux branches se terminent par des branchements vers des routines sans retour :
+\begin{lstlisting}[language=piccolo]
+noreturn routine maRoutine {
+  if (...)
+    ...
+    if (...)
+      ...
+      goto r1
+    else
+      ...
+      goto r2
+    end
+  else
+    ...
+    goto r3
+  end
+}
+\end{lstlisting}
+
 
 
 
-\sectionLabel{Routines d'interruption mid-range}{routineInterruptionMidrange}
+
+
+\sectionLabel{Routine d'interruption mid-range}{routineInterruptionMidrange}
+
+
+
+Les micro-contrôleurs \emph{mid-range} acceptent qu’une seule routine d’interruption, à l’adresse 0x04.En Piccolo, la routine d’interruption midrange est décrite dans une section « \texttt{interrupt} » :\begin{lstlisting}[language=piccolo]
+interrupt contextsave ... { instructions}\end{lstlisting}
+La section « \texttt{interrupt} » peut apparaître n’importe où dans le programme, Piccolo rangera toujours le code engendré à l’adresse 0x04. Le qualificatif « \texttt{page} » d’une routine ne peut pas être utilisée pour une routine d’interruption. Le qualificatif « \texttt{contextsave} » permet de préciser les zones mémoire utilisées pour la sauvegarde du contexte (voir à partir de la page suivante).Dans un programme, au plus une routine d’interruption peut être définie : une erreur est signalée si plusieurs le sont.Toutes les instructions décrites sont autorisées, sauf les instructions qui ne terminent jamais telles que la boucle infinie et les instructions de branchement vers une routine sans retour \texttt{GOTO} et \texttt{JUMP}.L’instruction assembleur \texttt{retfie} n’existe pas en Piccolo : le compilateur l’insère automatiquement à la fin de la routine d’interruption.
+
+
+\subsection{Routine d’interruption et sauvegarde du contexte}
+
+La diversité des situations rend la gestion délicate et fragile, car elle dépend du micro-contrôleur, selon qu'il présente une zone mémoire partagée entre tous les bancs ou non.
+
+En effet, durant la réponse à une interruption, PC est sauvé dans la pile, mais aucun autre registre n’est sauvegardé : c’est à la charge du programmeur. Microchip précise qu’il faut aussi sauver le registre \texttt{PCLATH} : « \emph{The (midrange) PIC normally does not require saving the PCLATH. However, if computed GOTO’s are used in the ISR and the main code, the PCLATH must be saved and restored in the ISR} ».
+
+
+
+~\\
+\textbf{Présence d’une zone commune.} C'est le cas de la plupart des \emph{mid-range}. En assembleur, la sauvegarde préconisée par Microchip est la suivante :
+
+\begin{lstlisting}[language=assembleur]
+MOVWF W_TEMP       ;Copy W to TEMP register SWAPF STATUS,W     ;Swap status to be saved into W CLRF  STATUS       ;bank 0, regardless of current bank, Clears IRP,RP1,RP0 MOVWF STATUS_TEMP  ;Save status to bank zero STATUS_TEMP register MOVF     PCLATH, W   ;Only required if using pages 1, 2 and/or 3 MOVWF    PCLATH_TEMP ;Save PCLATH into W CLRF     PCLATH      ;Page zero, regardless of current page : :(ISR) ;(Insert user code here) : MOVF     PCLATH_TEMP, W ;Restore PCLATH MOVWF    PCLATH         ;Move W into PCLATH SWAPF STATUS_TEMP,W ;Swap STATUS_TEMP register into W (sets bank to original state) MOVWF STATUS        ;Move W into STATUS register SWAPF W_TEMP,F      ;Swap W_TEMP SWAPF W_TEMP,W      ;Swap W_TEMP into W
+RETFIE
+\end{lstlisting}
+
+Le registre \texttt{W\_TEMP} est déclaré dans la zone commune, et \texttt{STATUS\_TEMP} est déclaré dans le banc 0. La sauvegarde de \texttt{PCLATH} est effectuée dans \texttt{PCLATH\_TEMP} (déclarée dans le banc 0). Celle-ci n'est nécessaire que si les deux conditions suivantes sont réunies : le programme s’étend sur plusieurs pages et le sous-programme d’interruption contient des appels de sous-programmes.
+
+
+~\\
+\textbf{Pas de zone commune.} C’est par exemple le cas du 16F873. En assembleur, la sauvegarde préconisée par Microchip est la suivante :
+
+
+\begin{lstlisting}[language=assembleur]
+MOVWF    W_TEMP          ;Copy W to TEMP register SWAPF    STATUS,W        ;Swap status to be saved into W CLRF     STATUS          ;bank 0, regardless of current bank, Clears IRP,RP1,RP0 MOVWF    STATUS_TEMP     ;Save status to bank zero STATUS_TEMP register MOVF     PCLATH, W       ;Only required if using pages 1, 2 and/or 3 MOVWF    PCLATH_TEMP     ;Save PCLATH into W CLRF     PCLATH          ;Page zero, regardless of current page : :(ISR) ;(Insert user code here) : MOVF     PCLATH_TEMP, W ;Restore PCLATH MOVWF    PCLATH         ;Move W into PCLATH SWAPF    STATUS_TEMP,W  ;Swap STATUS_TEMP register into W (sets bank to original state) MOVWF    STATUS         ;Move W into STATUS register SWAPF    W_TEMP,F       ;Swap W_TEMP SWAPF    W_TEMP,W       ;Swap W_TEMP into W
+RETFIE
+\end{lstlisting}
+
+Le registre \texttt{W\_TEMP} est déclaré dans chaque banc de façon que sa sauvegarde puisse s’effectuer quelque soit les valeurs courantes des bits \texttt{RP} du registre \texttt{STATUS}. Les registres \texttt{STATUS\_TEMP} et \texttt{PCLATH\_TEMP} sont déclarés dans le banc 0. Comme pour le cas précédent, la sauvegarde de \texttt{PCLATH} est effectuée dans \texttt{PCLATH\_TEMP} (déclarée dans le banc 0). Celle-ci n'est nécessaire que si les deux conditions suivantes sont réunies : le programme s’étend sur plusieurs pages et le sous-programme d’interruption contient des appels de sous-programmes.
+
+
+\subsection{Interruption et sauvegarde du contexte en Piccolo}
+
+En conséquence de l'étude qui précède, il y a donc quatre cas à considérer, en fonction des deux conditions suivantes :
+\begin{itemize}
+  \item le micro-contrôleur présente-t-il une zone mémoire commune à tous les bancs on non ?  \item le programme s’étend-il sur plusieurs pages et le sous-programme d’interruption contient-il des branchements ou des appels de sous-programmes ? Si oui, PCLATH devra aussi être sauvé.\end{itemize}
+Piccolo détecte automatiquement les différents cas, et propose une écriture unique :\begin{lstlisting}[language=piccolo]
+interrupt contextsave sauveA, sauveB {
+  ...
+}\end{lstlisting}
+Le \refTableau{sauvegardeItMidRange} précise comment déclarer \texttt{sauveA} et \texttt{sauveB} en fonction des quatre différentes situations, et le \refTableau{roleVarSauveContexteMidrange} en détaille l'utilisation.
+
+\begin{table}[!ht]
+  \centering
+  \rowcolors{2}{\fondTableau}{}
+  \begin{tabular}{p{5cm}p{4cm}p{4cm}}
+    \textbf{Situation} & \texttt{\bf sauveA} & \texttt{\bf sauveB}\\
+    \hline
+    (1) Zone mémoire commune à tous les bancs, programme dans la page 0 & 1 octet dans le banc 0 & 1 octet dans le banc commun\\
+    (2) Zone mémoire commune à tous les bancs, programme sur plusieurs pages & 2 octets dans le banc 0 & 1 octet dans le banc commun\\
+    (3) Aucune zone mémoire commune à tous les bancs, programme dans la page 0 & 2 octets dans le banc 0 & 1 octet dans le banc commun\\
+    (4) Aucune mémoire commune à tous les bancs, programme sur plusieurs pages & 3 octets dans le banc 0 & 1 octet dans le banc commun\\
+  \hline
+  \end{tabular}
+  \caption{Sauvegarde du contexte pour \emph{mid-range}}
+  \labelTableau{sauvegardeItMidRange}
+\end{table}
+
+\begin{table}[!ht]
+  \centering
+  \rowcolors{2}{\fondTableau}{}
+  \begin{tabular}{p{5cm}p{5cm}l}
+    \textbf{Situation} & \texttt{\bf sauveA} & \texttt{\bf sauveB}\\
+    \hline
+    (1) Zone mémoire commune à tous les bancs, programme dans la page 0 & Sauvegarde de \texttt{STATUS} & Sauvegarde de \texttt{W}\\
+    (2) Zone mémoire commune à tous les bancs, programme sur plusieurs pages & Sauvegarde de \texttt{STATUS} et de \texttt{PCLATH} & Sauvegarde de \texttt{W}\\
+    (3) Aucune zone mémoire commune à tous les bancs, programme dans la page 0 & Sauvegarde de \texttt{W} et de \texttt{STATUS} & Sauvegarde de \texttt{W}\\
+    (4) Aucune mémoire commune à tous les bancs, programme sur plusieurs pages & Sauvegarde de \texttt{W}, \texttt{STATUS} et de \texttt{PCLATH} & Sauvegarde de \texttt{W}\\
+  \hline
+  \end{tabular}
+  \caption{Rôle des variables de sauvegarde du contexte pour \emph{mid-range}}
+  \labelTableau{roleVarSauveContexteMidrange}
+\end{table}
+
+
+~\\
+\textbf{Situation (1) : zone mémoire commune à tous les bancs, programme dans la page 0.} Le code Piccolo est le suivant :
+\begin{lstlisting}[language=piccolo]
+midrange interrupt1 "16F690" :ram gpr0 {  byte itSave0 }ram gprnobnk {  byte itsave1}interrupt contextsave itSave0, itsave1 {  instructions}...
+end
+\end{lstlisting}
+
+Et le code engendré pour la routine d'interruption est :
+\begin{lstlisting}[language=assembleur]
+  ORG 0x4  MOVWF itsave1  SWAPF STATUS, W  CLRF STATUS  MOVWF itSave0  instructions  SWAPF itSave0, W  MOVWF STATUS  SWAPF itsave1, F  SWAPF itsave1, W  RETFIE\end{lstlisting}
+
+
+
+~\\
+\textbf{Situation (2) : zone mémoire commune à tous les bancs, programme sur plusieurs pages.} Le code Piccolo est le suivant :
+\begin{lstlisting}[language=piccolo]
+midrange interrupt2 "16F690" :ram gpr0 {  byte itSave0 [2]}ram gprnobnk {  byte itsave1}interrupt contextsave itSave0, itsave1 {  instructions}
+...
+end
+\end{lstlisting}
+
+Et le code engendré pour la routine d'interruption est :
+\begin{lstlisting}[language=assembleur]
+  ORG 0x4  MOVWF itsave1  SWAPF STATUS, W  CLRF STATUS  MOVWF itSave0  MOVF PCLATH, W  MOVWF itSave0 + 0x1  instructions  MOVF itSave0 + 0x1, W  MOVWF PCLATH  SWAPF itSave0, W  MOVWF STATUS  SWAPF itsave1, F  SWAPF itsave1, W  RETFIE\end{lstlisting}
+
+
+
+
+
+
+
+~\\
+\textbf{Situation (3) : aucune zone mémoire commune à tous les bancs, programme dans la page 0.} Le code Piccolo est le suivant :
+\begin{lstlisting}[language=piccolo]
+midrange interrupt3 "16F873" :ram gpr0 {  byte itSave0 [2]}ram gpr1 {  byte itsave1}interrupt contextsave itSave0, itsave1 {  instructions}
+...end
+\end{lstlisting}
+
+Et le code engendré pour la routine d'interruption est :
+\begin{lstlisting}[language=assembleur]
+  ORG 0x4  MOVWF itSave0  SWAPF STATUS, W  CLRF STATUS  MOVWF itSave0 + 0x1  instructions  SWAPF itSave0 + 0x1, W  MOVWF STATUS  SWAPF itSave0, F  SWAPF itSave0, W  RETFIE\end{lstlisting}
+
+
+
+
+
+~\\
+\textbf{Situation (4) : aucune mémoire commune à tous les bancs, programme sur plusieurs pages.} Le code Piccolo est le suivant :
+\begin{lstlisting}[language=piccolo]
+midrange interrupt4 "16F873" :ram gpr0 {  byte itSave0 [3]}ram gpr1 {  byte itsave1}interrupt contextsave itSave0, itsave1 {  instructions}...
+end
+\end{lstlisting}
+
+Et le code engendré pour la routine d'interruption est :
+\begin{lstlisting}[language=assembleur]
+  ORG 0x4  MOVWF itSave0  SWAPF STATUS, W  CLRF STATUS  MOVWF itSave0 + 0x1  MOVF PCLATH, W  MOVWF itSave0 + 0x2  CLRF PCLATH  instructions  MOVF itSave0 + 0x2, W  MOVWF PCLATH  SWAPF itSave0 + 0x1, W  MOVWF STATUS  SWAPF itSave0, F  SWAPF itSave0, W  RETFIE\end{lstlisting}
+
+
+
 

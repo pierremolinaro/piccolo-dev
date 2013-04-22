@@ -139,12 +139,12 @@ noreturn routine main bank:requires 0 {
 }
 \end{lstlisting}
 
-Pour terminer ce premier exemple, il est utile de jeter un coup d’œil sur le code assembleur engendré (option « \texttt{-S} »), à gauche sans optimisation, à droite avec optimisations grâce à l’option « \texttt{-O} ». L’optimisation gagne 4 instructions (le \texttt{BRA main} initial, et la meilleure utilisation des trois occurrences de l’instruction \texttt{TSTFSZ}. Observez aussi l’optimisation des sauts (ne vous basez pas sur les noms des étiquettes, elles changent de signification avec l’optimisation).
+Pour terminer ce premier exemple, il est utile de jeter un coup d’œil sur le code assembleur engendré (option « \texttt{-S} »), à gauche sans optimisation, à droite avec optimisations grâce à l’option « \texttt{-O} ». L’optimisation gagne 4 instructions (le \texttt{bra main} initial, et la meilleure utilisation des trois occurrences de l’instruction \texttt{TSTFSZ}. Observez aussi l’optimisation des sauts (ne vous basez pas sur les noms des étiquettes, elles changent de signification avec l’optimisation).
 
 \begin{multicols}{2}
 \begin{lstlisting}[language=assembleur]
   ORG 0
-  BRA   main
+  bra   main
 main:
   movlw 0x7
   movwf ADCON1
@@ -154,28 +154,28 @@ main:
   clrf compteurU
 _label_0:
   TSTFSZ compteurL
-  BRA _bcc_label_0
-  BRA _label_1
+  bra _bcc_label_0
+  bra _label_1
 _bcc_label_0:
   decf compteurL, F
-  BRA   _label_2
+  bra   _label_2
 _label_1:
   TSTFSZ compteurH
-  BRA _bcc_label_1
-  BRA _label_3
+  bra _bcc_label_1
+  bra _label_3
 _bcc_label_1:
   decf compteurH, F
   setf compteurL
-  BRA   _label_4
+  bra   _label_4
 _label_3:
   TSTFSZ compteurU
-  BRA _bcc_label_2
-  BRA _label_5
+  bra _bcc_label_2
+  bra _label_5
 _bcc_label_2:
   decf compteurU, F
   setf compteurH
   setf compteurL
-  BRA   _label_6
+  bra   _label_6
 _label_5:
   movlw 0xF
   movwf compteurU
@@ -187,7 +187,7 @@ _label_5:
 _label_6:
 _label_4:
 _label_2:
-  BRA   _label_0
+  bra   _label_0
 \end{lstlisting}
 \columnbreak
 \begin{lstlisting}[language=assembleur]
@@ -200,11 +200,11 @@ _label_2:
   clrf compteurU
 _label_0:
   TSTFSZ compteurL
-  BRA _label_1
+  bra _label_1
   TSTFSZ compteurH
-  BRA _label_3
+  bra _label_3
   TSTFSZ compteurU
-  BRA _label_5
+  bra _label_5
   movlw 0xF
   movwf compteurU
   movlw 0x42
@@ -212,19 +212,19 @@ _label_0:
   movlw 0x40
   movwf compteurL
   BTG  PORTE, 0
-  BRA   _label_0
+  bra   _label_0
 _label_5:
   decf compteurU, F
   setf compteurH
   setf compteurL
-  BRA   _label_0
+  bra   _label_0
 _label_3:
   decf compteurH, F
   setf compteurL
-  BRA   _label_0
+  bra   _label_0
 _label_1:
   decf compteurL, F
-  BRA   _label_0
+  bra   _label_0
 \end{lstlisting}
 \end{multicols}
 
@@ -290,7 +290,7 @@ interrupt high fast {
   end
 }
 \end{lstlisting}
-Une section « \texttt{interrupt} » définit un sous-programme d’interruption. Il porte le nom « \texttt{high} », ce qui signifie qu’il est attaché au point d’entrée d’adresse 0x8. Il porte aussi le qualificatif « \texttt{fast} », ce qui signifie que l’instruction \texttt{RETFIE 1} sera engendrée pour effectuer le retour d’interruption.
+Une section « \texttt{interrupt} » définit un sous-programme d’interruption. Il porte le nom « \texttt{high} », ce qui signifie qu’il est attaché au point d’entrée d’adresse 0x8. Il porte aussi le qualificatif « \texttt{fast} », ce qui signifie que l’instruction \texttt{retfie 1} sera engendrée pour effectuer le retour d’interruption.
 
 Dans un programme plus complexe, il n’est pas possible de prévoir à la compilation la valeur de \texttt{BSR} quand une interruption survient. Aussi l’instruction « \texttt{banksel 2} » est obligatoire avant d’adresser les registres du compteur (essayez de la supprimer, le compilateur engendrera un message d'erreur).
 
@@ -379,10 +379,193 @@ Le corps du programme est constitué d’une liste non ordonnée de sections. Le
 
 
 
+
+
+
+
+
 \sectionLabel{Routines pic18}{routinePic18}
 
+Les routines définissent le code exécutable de votre programme. L’une d’entre elles doit s’appeler \texttt{main} : c’est la routine qui s’exécute au démarrage. Il y a deux types de routine, les routines \emph{régulières} et les routines \emph{sans retour}.
+
+
+L’ordre des déclarations des routines est quelconque, il est possible d’appeler une routine qui est déclarée après l’instruction d’appel. Simplement Piccolo engendrera leur code dans leur ordre d’apparition. 
+
+~\\
+\textbf{Routine et BSR.} Un problème important en assembleur est la gestion du registre de sélection de banc \texttt{BSR} : son utilisation correcte en assembleur est complètement à la charge du programmeur. Piccolo propose des instructions pour sécuriser son emploi : voir à §§.
+
+~\\
+\textbf{Liste d’instructions d’une routine.} Elle est structurée : Piccolo définit des instructions de sélection et de répétition : cela signifie que vous ne pouvez pas déclarer d’étiquette, ni utiliser des \texttt{bra} ni des \texttt{goto} pour effectuer des branchements à l’intérieur d’une routine.
+
+
+\subsection{Routine régulière}
+
+C'est un sous-programme. Une routine régulière peut ne comporter aucune instruction Piccolo, l'instruction \texttt{return} est implicitement ajoutée. Une routine régulière est déclarée par :
+\begin{lstlisting}[language=piccolo]
+routine maRoutine ... {
+  ...
+}
+\end{lstlisting}
+
+\texttt{maRoutine} est le nom de la routine, celui qui sera nommé dans un instruction d’appel de routine. Entre les accolades « \texttt{\{} » et « \texttt{\}} », apparaît la liste des instructions.
+
+~\\
+\textbf{Appel d’une routine régulière.} Utiliser \texttt{RCALL}, \texttt{CALL} ou \texttt{JSR}, comme indiqué à §§.
+
+\subsection{Routine sans retour}
+
+L’exécution ne revient pas jamais à l’appelant. Ce type de routine doit donc se terminer par des constructions particulières qui assurent le non-retour : une boucle infinie, un branchement (\texttt{bra}, Bcc, \texttt{goto} ou \texttt{jump}) vers une autre routine sans retour, un \texttt{bra} calculé ou un \texttt{goto} calculé vers d’autres routines sans retour.
+
+Une routine sans retour doit être déclarée avec qualificatif « \texttt{noreturn} » :
+\begin{lstlisting}[language=piccolo]
+noreturn routine maRoutine ... {
+  ...
+}
+\end{lstlisting}
+
+~\\
+\textbf{Appel d’une routine sans retour.} Utiliser \texttt{bra}, \texttt{goto}, Bcc ou \texttt{jump}.
+
+
+~\\
+\textbf{Déclaration de la routine \texttt{main}.} Dans un programme, il doit exister une et une seule routine \texttt{main}, qui doit être déclarée comme suit :
+
+\begin{lstlisting}[language=piccolo]
+noreturn routine main bank:requires 0 {
+   liste d'instructions
+}
+
+\end{lstlisting}
+
+Le compilateur Piccolo insère à l’adresse zéro une instruction \texttt{bra} (ou \texttt{goto}) vers cette routine, de façon que la routine \texttt{main} soit exécutée au démarrage du micro-contrôleur. Le qualificatif « \texttt{bank:requires 0} » est exigé par le compilateur Piccolo car \texttt{BSR} est initialisé à zéro au démarrage du micro-contrôleur.
+
+
+~\\
+\textbf{Comment terminer une routine sans retour.} La dernière instruction de la liste des instructions d’une routine sans retour doit être :
+\begin{itemize}
+  \item un appel vers une autre routine sans retour, au moyen d’un \texttt{bra}, \texttt{goto}, Bcc ou \texttt{jump} ;
+  \item un branchement calculé vers une routine parmi plusieurs, au moyen d’un \texttt{computed bra} ou d’un \texttt{computed goto} ;
+  \item une instruction conditionnelle structurée, dont toutes les branches présentent comme dernière instruction les instructions d’appel d’un routine sans retour, un branchement calculé (comme évoqué ci-dessus), ou encore une instruction conditionnelle structurée, dont toutes les branches, etc.
+
+\end{itemize}
+
+Exemple simple : la dernière instruction est une boucle infinie :
+\begin{lstlisting}[language=piccolo]
+noreturn routine maRoutine {
+  ...
+  forever
+    ...
+  end
+}
+\end{lstlisting}
+
+Exemple simple : la dernière instruction est un branchement vers une routine sans retour :
+\begin{lstlisting}[language=piccolo]
+noreturn routine maRoutine {
+  ...
+  bra autreRoutineSansRetour
+}
+\end{lstlisting}
+
+La dernière instruction est un \texttt{computed bra} nommant les routines \texttt{r1}, \texttt{r2}, \texttt{r3} qui doivent être toutes les trois des routines sans retour :
+\begin{lstlisting}[language=piccolo]
+noreturn routine maRoutine {
+  ...
+  computed [3] bra r1, r2, r3
+}
+\end{lstlisting}
+
+La dernière instruction est un \texttt{if} dont aucune des branches ne se termine (\texttt{r1} est une routine sans retour) :
+\begin{lstlisting}[language=piccolo]
+noreturn routine maRoutine {
+  if (...)
+    ...
+    bra r1
+  else
+    ...
+    forever
+      ...
+    end
+  end
+}
+
+\end{lstlisting}
+
+
+La dernière instruction est un \texttt{if} dont la première branche se termine elle même par un \texttt{if} dont les deux branches se terminent par des branchements vers des routines sans retour :
+\begin{lstlisting}[language=piccolo]
+noreturn routine maRoutine {
+  if (...)
+    ...
+    if (...)
+      ...
+      bra r1
+    else
+      ...
+      bra r2
+    end
+  else
+    ...
+    bra r3
+  end
+}
+\end{lstlisting}
 
 
 
-\sectionLabel{Routines d'interruption pic18}{routineInterruptionPic18}
+
+
+
+
+
+\sectionLabel{Routines d'interruption}{routineInterruptionPic18}
+
+Les \emph{pic18} acceptent deux niveaux d’interruption, le niveau haut (\texttt{high}), et le niveau faible (\texttt{low}) :
+l’occurrence d’une interruption de niveau haut provoque un branchement à l’adresse 0x08 ;
+l’occurrence d’une interruption de niveau faible provoque un branchement à l’adresse 0x18.
+
+Durant la réponse à une interruption, PC est sauvé dans la pile, et les registres \texttt{WREG}, \texttt{STATUS} et \texttt{BSR} sont sauvés dans des registres cachés. Le retour d’interruption s’effectue par une instruction \texttt{retfie} ; si l’opérande 1 (pour \texttt{FAST}) est précisée (\texttt{retfie 1}), alors \texttt{WREG}, \texttt{STATUS} et \texttt{BSR} sont restitués à partir des registres cachés.
+
+Si les deux interruptions sont activées (\emph{enabled}), Microchip précise que le retour par \texttt{retfie 1} ne peut pas être utilisée fiablement pour l’interruption de faible priorité : « \emph{If both low and high priority interrupts are enabled, the stack registers cannot be used reliably for low priority interrupts. If a high priority interrupt occurs while servicing a low priority interrupt, the stack register values stored by the low priority interrupt will be overwritten} ».
+
+Nous allons voir dans la suite comment Piccolo gère cette situation.
+
+En Piccolo, une routine d’interruption PIC 18 est décrite dans une section « \texttt{interrupt} » :
+
+\begin{lstlisting}[language=piccolo]
+interrupt nom ... {
+ instructions
+}
+\end{lstlisting}
+
+Seuls deux noms sont possibles : « \texttt{low} » pour l’interruption de faible priorité, et « \texttt{high} » pour l’interruption de haute priorité. Bien entendu, un nom ne peut apparaître qu’une seule fois, aussi un programme ne peut comporter qu'au plus deux routines d'interruption, qui peuvent apparaître dans un ordre quelconque.
+
+Dans une routine d'interruption, toutes les instructions décrites sont disponibles, sauf les instructions qui sont sans retour : boucle infinie, \texttt{bra} (branchement vers une routine sans retour), etc.
+
+L’instruction assembleur \texttt{retfie} n’existe pas en Piccolo : le compilateur l’insère automatiquement à la fin des routines d’interruption.
+
+
+
+\subsection{Qualificatif \texttt{fast}}
+
+En Piccolo, vous pouvez ajouter le qualificatif « \texttt{fast} » à l’en-tête d’une routine d’interruption :\begin{lstlisting}[language=piccolo]
+interrupt nom fast { instructions}\end{lstlisting}
+Avec ce qualificatif, l’instruction de retour engendrée par Piccolo est \texttt{retfie 1} (sans ce qualificatif, c’est \texttt{retfie 0}).Si les deux routines d’interruption \texttt{low} et \texttt{high} sont déclarées, et si la routine \texttt{high} est déclarée « \texttt{fast} », alors Piccolo considère comme une erreur de déclarer la routine \texttt{low} avec le qualificatif « \texttt{fast} ».
+
+
+
+
+
+
+\subsection{Routine d'interruption et \texttt{BSR}}
+
+\textbf{Routine déclarée avec « fast ».} Le contenu initial de \texttt{BSR}, au début de la routine d’interruption est inconnu. Il faut donc fixer sa valeur par une instruction « \texttt{banksel} » si besoin est. Comme le retour d’interruption restituera le contenu initial de \texttt{BSR}, il est inutile de le préserver par une construction « \texttt{banksave} ».\begin{lstlisting}[language=piccolo]
+interrupt nom fast {  banksel 1  clrf varBank1 #  Variable declaree dans le banc 1}
+\end{lstlisting}
+
+~\\\textbf{Routine déclarée sans « fast ».} Le contenu initial de \texttt{BSR}, au début de la routine d’interruption est inconnu. Si il doit être utilisé, et comme le retour d’interruption ne restituera pas son contenu initial, il est indispensable de le préserver par une construction « \texttt{banksave} », nommant une variable \texttt{sauve\_bsr} déclarée dans le banc \texttt{accessram}. Il faut ensuite fixer sa valeur par une instruction « \texttt{banksel} ». \begin{lstlisting}[language=piccolo]
+interrupt nom {  banksave sauve_bsr    banksel 1    clrf varBank1 #  Variable declaree dans le banc 1  end}\end{lstlisting}
+Le compilateur Piccolo détectera l’oubli de la sauvegarde par « \texttt{banksave} », en émettant un message d’erreur.
+
+
 
