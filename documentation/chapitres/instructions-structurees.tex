@@ -1,0 +1,109 @@
+%!TEX encoding = UTF-8 Unicode
+%!TEX root = ../piccolo.tex
+
+\cleardoublepage
+
+\chapterLabel{Instructions structurées}{instructionsStructurees}
+
+%--- Pour supprimer tout en-tête et pied de page sur la 1re page d'un chapitre
+\thispagestyle{empty}
+
+En Piccolo, il existe deux types d'instructions :
+\begin{itemize}
+  \item les instructions simples ;
+  \item les instructions composées.
+\end{itemize}
+
+Les instructions simples sont propres à type de micro-contrôleur (\emph{baseline}, \emph{mid-range} et \emph{pic18}) : elles sont donc présentées dans des sections disctinctes :
+\begin{itemize}
+  \item \emph{pic18} : \refSectionPage{instructionsSimplesPic18}.
+\end{itemize}
+
+
+Les instructions structurées sont en grande partie communes aux \emph{baseline}, \emph{mid-range} et \emph{pic18} : aussi elles sont présentées dans ce chapitre commun.
+
+Piccolo définit les instructions structurées suivantes :
+\begin{itemize}
+  \item l'instruction \texttt{mnop} (\refSectionPage{instructionMNOP}) ;
+  \item l'instruction conditionnelle simple (\refSectionPage{instructionConditionnelleSimple}) ;
+  \item l'instruction conditionnelle structurée ;
+  \item l'instruction répétitive ;
+  \item l'instruction de répétition infinie (\refSectionPage{repetitionInfinie}) ;
+  \item l'instruction \texttt{computed retlw} ;
+  \item l'instruction \texttt{computed bra} ;
+  \item l'instruction \texttt{computed goto}.
+\end{itemize}
+
+\sectionLabel{Instruction \texttt{mnop}}{instructionMNOP}
+
+Cette instruction n'existe pas en assembleur. En Piccolo, \texttt{mnop k} engendre une séquence de \texttt{k} instructions \texttt{NOP}.
+
+\texttt{k} est une expression statique. La forme générale des expressions statiques est donnée à la \refSectionPage{expressionImmediate}. Une expression statique est évaluée à la compilation. Le compilateur effectue tous les calculs avec des nombres entiers 32 bits signés.
+
+
+\sectionLabel{Instruction de répétition infinie}{repetitionInfinie}
+Cette instruction exprime la répétition infinie des instructions qu'elle contient.
+\begin{lstlisting}[language=piccolo]
+forever  liste d'instructions simples ou structureesend\end{lstlisting}
+Implémentation : la répétition infinie est simplement réalisée par une instruction de \texttt{jump} (pour les \emph{pic18}) ou \texttt{goto} (pour les \emph{baseline} et \emph{mid-range}), placée à la fin de la séquence d'instructions, qui renvoie l'exécution au début de la séquence.
+
+
+
+\sectionLabel{Instruction conditionnelle simple}{instructionConditionnelleSimple}
+
+Ces instructions permettent d’exploiter directement les instructions assembleur qui ignorent conditionnellement l’instruction qui les suit, c’est à dire :
+\begin{itemize}
+\item pour les \emph{baseline} et les \emph{mid-range} : \texttt{DECFSZ}, \texttt{INCFSZ}, \texttt{BTFSC} et \texttt{BTFSS} ;\item pour les \emph{pic18} : \texttt{CPFSEQ}, \texttt{CPFSGT}, \texttt{CPFSLT}, \texttt{DECFSZ}, \texttt{DCFSNZ}, \texttt{INCFSZ}, \texttt{INFSNZ}, \texttt{TSTFSZ}, \texttt{BTFSC} et \texttt{BTFSS}.\end{itemize}
+~\\
+La syntaxe de l’instruction conditionnelle simple est la suivante :\begin{lstlisting}[language=piccolo]
+if condition_simple : instruction_simple\end{lstlisting}
+Noter que l’instruction exécutée conditionnellement ne peut être qu’une instruction simple.Noter aussi la différence suivante : l’instruction assembleur indique la condition de saut de l’instruction suivante, tandis que le conditionnelle simple nomme sa condition d’exécution, c’est à dire son complémentaire.Pour les \emph{pic18}, seules trois comparaisons d’un registre avec \texttt{W} existent pour l’instruction conditionnelle simple : elles correspondent aux instructions assembleur \texttt{CPFSEQ}, \texttt{CPFSGT} et \texttt{CPFSLT}. L’instruction conditionnelle structurée implémente les six comparaisons.Pour le test individuel d’un bit, la notation \texttt{registre.bit} est utilisée : celle-ci est présentée §.
+
+Le \refTableau{instructionsConditionnellesSimplesBaseline} donne la liste de toutes les instructions conditionnelles simples pour les \emph{baseline} et \emph{mid-range}, et le \refTableau{instructionsConditionnellesSimplesPic18} pour celles des \emph{pic18}.
+
+\begin{table}[!ht]
+  \centering
+  \small
+  \rowcolors{2}{\fondTableau}{}
+  \begin{tabular}{lp{4cm}lll}
+    \textbf{Instruction} & \textbf{Code engendré}\\
+    \hline
+    \texttt{if registre.bit : instruction} & \texttt{BTFSC registre, bit instruction} \\
+    \texttt{if ! registre.bit : instruction} & \texttt{BTFSS registre, bit instruction} \\
+    \texttt{if decf registre nz : instruction} & \texttt{DECFSZ registre instruction} \\
+    \texttt{if decf registre, W nz : instruction} & \texttt{DECFSZ registre, W instruction} \\
+    \texttt{if incf registre nz : instruction} & \texttt{INCFSZ registre instruction} \\
+    \texttt{if incf registre, W nz : instruction} & \texttt{INCFSZ registre, W instruction} \\
+    \hline
+  \end{tabular}
+  \caption{Instructions conditionnelles simples pour \emph{baseline} et \emph{mid-range}}
+  \labelTableau{instructionsConditionnellesSimplesBaseline}
+\end{table}
+
+\begin{table}[!ht]
+  \centering
+  \small
+  \rowcolors{2}{\fondTableau}{}
+  \begin{tabular}{lp{4cm}lll}
+    \textbf{Instruction} & \textbf{Code engendré}\\
+    \hline
+    \texttt{if registre != W : instruction} & \texttt{CPFSEQ registre instruction} \\
+    \texttt{if registre >= W : instruction} & \texttt{CPFSLT registre instruction} \\
+    \texttt{if registre <= W : instruction} & \texttt{CPFSGT registre instruction} \\
+    \texttt{if registre nz : instruction} & \texttt{TSTFSZ registre instruction} \\
+    \texttt{if registre.bit : instruction} & \texttt{BTFSC registre, bit instruction} \\
+    \texttt{if ! registre.bit : instruction} & \texttt{BTFSS registre, bit instruction} \\
+    \texttt{if decf registre z : instruction} & \texttt{DCFSNZ registre instruction} \\
+    \texttt{if decf registre, W z : instruction} & \texttt{DCFSNZ registre, W instruction} \\
+    \texttt{if decf registre nz : instruction} & \texttt{DECFSZ registre instruction} \\
+    \texttt{if decf registre, W nz : instruction} & \texttt{DECFSZ registre, W instruction} \\
+    \texttt{if incf registre z : instruction} & \texttt{INFSNZ registre instruction} \\
+    \texttt{if incf registre, W z : instruction} & \texttt{INFSNZ registre, W instruction} \\
+    \texttt{if incf registre nz : instruction} & \texttt{INCFSZ registre instruction} \\
+    \texttt{if incf registre, W nz : instruction} & \texttt{INCFSZ registre, W instruction} \\
+    \hline
+  \end{tabular}
+  \caption{Instructions conditionnelles simples pour \emph{pic18}}
+  \labelTableau{instructionsConditionnellesSimplesPic18}
+\end{table}
+
