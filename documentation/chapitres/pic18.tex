@@ -332,7 +332,7 @@ L’instruction
 \begin{lstlisting}[language=piccolo]
   movlw  @T2CON (TOUTPS:0, TMR2ON:1, T2CKPS:1)
 \end{lstlisting}
-est particulière : elle permet de construire une valeur immédiate champ par champ (voir à §§).
+est particulière : elle permet de construire une valeur statique champ par champ (voir à §§).
 
 
 
@@ -359,7 +359,7 @@ Dans l’en-tête :
 
 
 Le corps du programme est constitué d’une liste non ordonnée de sections. Les sections disponibles sont listées dans le \refTableau{sectionsPic18}.
-\begin{table}[ht]
+\begin{table}[!ht]
   \centering
   \rowcolors{2}{\fondTableau}{}
   \begin{tabular}{p{5cm}lll}
@@ -548,9 +548,17 @@ L’instruction assembleur \texttt{retfie} n’existe pas en Piccolo : le compil
 
 \subsection{Qualificatif \texttt{fast}}
 
-En Piccolo, vous pouvez ajouter le qualificatif « \texttt{fast} » à l’en-tête d’une routine d’interruption :\begin{lstlisting}[language=piccolo]
-interrupt nom fast { instructions}\end{lstlisting}
-Avec ce qualificatif, l’instruction de retour engendrée par Piccolo est \texttt{retfie 1} (sans ce qualificatif, c’est \texttt{retfie 0}).Si les deux routines d’interruption \texttt{low} et \texttt{high} sont déclarées, et si la routine \texttt{high} est déclarée « \texttt{fast} », alors Piccolo considère comme une erreur de déclarer la routine \texttt{low} avec le qualificatif « \texttt{fast} ».
+En Piccolo, vous pouvez ajouter le qualificatif « \texttt{fast} » à l’en-tête d’une routine d’interruption :
+
+\begin{lstlisting}[language=piccolo]
+interrupt nom fast {
+ instructions
+}
+\end{lstlisting}
+
+Avec ce qualificatif, l’instruction de retour engendrée par Piccolo est \texttt{retfie 1} (sans ce qualificatif, c’est \texttt{retfie 0}).
+
+Si les deux routines d’interruption \texttt{low} et \texttt{high} sont déclarées, et si la routine \texttt{high} est déclarée « \texttt{fast} », alors Piccolo considère comme une erreur de déclarer la routine \texttt{low} avec le qualificatif « \texttt{fast} ».
 
 
 
@@ -559,13 +567,520 @@ interrupt nom fast { instructions}\end{lstlisting}
 
 \subsection{Routine d'interruption et \texttt{BSR}}
 
-\textbf{Routine déclarée avec « fast ».} Le contenu initial de \texttt{BSR}, au début de la routine d’interruption est inconnu. Il faut donc fixer sa valeur par une instruction « \texttt{banksel} » si besoin est. Comme le retour d’interruption restituera le contenu initial de \texttt{BSR}, il est inutile de le préserver par une construction « \texttt{banksave} ».\begin{lstlisting}[language=piccolo]
-interrupt nom fast {  banksel 1  clrf varBank1 #  Variable declaree dans le banc 1}
+\textbf{Routine déclarée avec « fast ».} Le contenu initial de \texttt{BSR}, au début de la routine d’interruption est inconnu. Il faut donc fixer sa valeur par une instruction « \texttt{banksel} » si besoin est. Comme le retour d’interruption restituera le contenu initial de \texttt{BSR}, il est inutile de le préserver par une construction « \texttt{banksave} ».
+
+\begin{lstlisting}[language=piccolo]
+interrupt nom fast {
+  banksel 1
+  clrf varBank1 #  Variable declaree dans le banc 1
+}
 \end{lstlisting}
 
-~\\\textbf{Routine déclarée sans « fast ».} Le contenu initial de \texttt{BSR}, au début de la routine d’interruption est inconnu. Si il doit être utilisé, et comme le retour d’interruption ne restituera pas son contenu initial, il est indispensable de le préserver par une construction « \texttt{banksave} », nommant une variable \texttt{sauve\_bsr} déclarée dans le banc \texttt{accessram}. Il faut ensuite fixer sa valeur par une instruction « \texttt{banksel} ». \begin{lstlisting}[language=piccolo]
-interrupt nom {  banksave sauve_bsr    banksel 1    clrf varBank1 #  Variable declaree dans le banc 1  end}\end{lstlisting}
-Le compilateur Piccolo détectera l’oubli de la sauvegarde par « \texttt{banksave} », en émettant un message d’erreur.
+~\\
+\textbf{Routine déclarée sans « fast ».} Le contenu initial de \texttt{BSR}, au début de la routine d’interruption est inconnu. Si il doit être utilisé, et comme le retour d’interruption ne restituera pas son contenu initial, il est indispensable de le préserver par une construction « \texttt{banksave} », nommant une variable \texttt{sauve\_bsr} déclarée dans le banc \texttt{accessram}. Il faut ensuite fixer sa valeur par une instruction « \texttt{banksel} ». 
+
+\begin{lstlisting}[language=piccolo]
+interrupt nom {
+  banksave sauve_bsr
+    banksel 1
+    clrf varBank1 #  Variable declaree dans le banc 1
+  end
+}
+\end{lstlisting}
+
+Le compilateur Piccolo détectera l’oubli de la sauvegarde par « \texttt{banksave} », en émettant un message d’erreur.
 
 
+\section{Les instructions}
+
+Elles sont de deux types (la distinction est importante pour l’instruction \emph{conditionnelle simple}) :
+\begin{itemize}
+  \item les instructions simples ;
+  \item les instructions composées.
+
+\end{itemize}
+
+
+~\\
+\textbf{Les instructions simples.} Elles correspondent à une partie des instructions assembleur. Attention, pour certaines, la syntaxe n'est pas exactement la même que celle de l'instruction assembleur correspondante.
+
+\textcolor{red}{\bf Dans sa version actuelle, Piccolo ne prend pas en charge le jeu d'instruction étendu.}
+
+Les \refTableau{pic18ByteOrientedOperations}, \refTableau{pic18BitOrientedOperations}, \refTableau{pic18OperationsControle}, \refTableau{pic18BitLiteralOperations} et \refTableau{pic18BitProgramMemoryOperations} donnent la liste des instructions \emph{pic18} et les liens vers les sections précisant leur prise en charge en Piccolo.
+
+Le \refTableau{pic18InstructionsPropresPiccolo} liste les instructions complémentaires disponibles en Piccolo.
+ 
+\begin{table}[!ht]
+  \centering
+  \small
+  \rowcolors{2}{\fondTableau}{}
+  \begin{tabular}{lll}
+    \textbf{Assembleur} & \textbf{Description} & \textbf{Référence en Piccolo}\\
+    \hline
+    \texttt{ADDWF f, d, a} & Add WREG and f & \refSubsectionPage{instructionsNommantRegistreEtW} \\
+    \texttt{ADDWFC f, d, a} & Add WREG and Carry bit to f & \refSubsectionPage{instructionsNommantRegistreEtW}\\
+    \texttt{ANDWF f, d, a} & And WREG with f & \refSubsectionPage{instructionsNommantRegistreEtW}\\
+    \texttt{CLRF f, a} & Clear f & \refSubsectionPage{instructionsNommantRegistre} \\
+    \texttt{COMF f, d, a} & Complement f & \refSubsectionPage{instructionsNommantRegistreEtW}\\
+    \texttt{CPFSEQ f, a} & Compare f with WREG, Skip = & \refSubsectionPage{instructionsPic18Introuvables}\\
+    \texttt{CPFSGT f, a} & Compare f with WREG, Skip > & \refSubsectionPage{instructionsPic18Introuvables}\\
+    \texttt{CPFSLT f, a} & Compare f with WREG, Skip < & \refSubsectionPage{instructionsPic18Introuvables}\\
+    \texttt{DECF f, d, a} & Decrement f & \refSubsectionPage{instructionsNommantRegistreEtW}\\
+    \texttt{DECFSZ f, d, a} & Decrement f, Skip if 0 & \refSubsectionPage{instructionsPic18Introuvables}\\
+    \texttt{DCFSNZ f, d, a} & Decrement f, Skip if Not 0 & \refSubsectionPage{instructionsPic18Introuvables}\\
+    \texttt{INCF f, d, a} & Decrement f & \refSubsectionPage{instructionsNommantRegistreEtW}\\
+    \texttt{INCFSZ f, d, a} & Increment f, Skip if 0 & \refSubsectionPage{instructionsPic18Introuvables}\\
+    \texttt{INFSNZ f, d, a} & Increment f, Skip if Not 0 & \refSubsectionPage{instructionsPic18Introuvables}\\
+    \texttt{IORWF f, d, a} & Inclusive OR WREG with f & \refSubsectionPage{instructionsNommantRegistreEtW}\\
+    \texttt{MOVF f, d, a} & Move f & \refSubsectionPage{instructionsNommantRegistreEtW}\\
+    \texttt{MOVFF fs, fd} & Move fs to fd & \refSubsectionPage{instructionMOVFF} \\
+    \texttt{MULWF f, a} & Multiply WREG with f & \refSubsectionPage{instructionsNommantRegistre}\\
+    \texttt{NEGF f, a} & Negate f & \refSubsectionPage{instructionsNommantRegistre}\\
+    \texttt{RLCF f, d, a} & Rotate Left f through Carry & \refSubsectionPage{instructionsNommantRegistreEtW}\\
+    \texttt{RLNCF f, d, a} & Rotate Left f (No Carry) & \refSubsectionPage{instructionsNommantRegistreEtW}\\
+    \texttt{RRCF f, d, a} & Rotate Right f through Carry & \refSubsectionPage{instructionsNommantRegistreEtW}\\
+    \texttt{RRNCF f, d, a} & Rotate Right f (No Carry) & \refSubsectionPage{instructionsNommantRegistreEtW}\\
+    \texttt{SETF f, a} & Set f & \refSubsectionPage{instructionsNommantRegistre}\\
+    \texttt{SUBFWB f, d, a} & Substract f from WREG with Borrow & \refSubsectionPage{instructionsNommantRegistreEtW}\\
+    \texttt{SUBWF f, d, a} & Substract WREG from f & \refSubsectionPage{instructionsNommantRegistreEtW}\\
+    \texttt{SUBWFB f, d, a} & Substract WREG from f with Borrow & \refSubsectionPage{instructionsNommantRegistreEtW}\\
+    \texttt{SWAPF f, d, a} & Swap Nibbles in f & \refSubsectionPage{instructionsNommantRegistreEtW}\\
+    \texttt{TSTFSZ f, a} & Test f, Skip if 0 & \refSubsectionPage{instructionsPic18Introuvables}\\
+    \texttt{XORWF f, d, a} & Exclusive OR WREG with f & \refSubsectionPage{instructionsNommantRegistreEtW}\\
+  \hline
+  \end{tabular}
+  \caption{Instructions \emph{byte-oriented} pour \emph{pic18}}
+  \labelTableau{pic18ByteOrientedOperations}
+\end{table}
+
+
+\begin{table}[!ht]
+  \centering
+  \small
+  \rowcolors{2}{\fondTableau}{}
+  \begin{tabular}{lll}
+    \textbf{Assembleur} & \textbf{Description} & \textbf{Référence en Piccolo}\\
+    \hline
+    \texttt{BCF f, b, a} & Bit Clear f & \\
+    \texttt{BSF f, b, a} & Bit Set f & \\
+    \texttt{BTFSC f, b, a} & Bit Test f, Skip if Clear & \refSubsectionPage{instructionsPic18Introuvables}\\
+    \texttt{BTFSS f, b, a} & Bit Test f, Skip if Set & \refSubsectionPage{instructionsPic18Introuvables}\\
+    \texttt{BTG f, b, a} & Bit Toggle f & \\
+  \hline
+  \end{tabular}
+  \caption{Instructions \emph{bit-oriented} pour \emph{pic18}}
+  \labelTableau{pic18BitOrientedOperations}
+\end{table}
+
+
+\begin{table}[!ht]
+  \centering
+  \small
+  \rowcolors{2}{\fondTableau}{}
+  \begin{tabular}{lll}
+    \textbf{Assembleur} & \textbf{Description} & \textbf{Référence en Piccolo}\\
+    \hline
+    \texttt{BC n} & Branch if Carry & \refSubsectionPage{appelRoutineSansRetourPic18}\\
+    \texttt{BN n} & Branch if Negative & \refSubsectionPage{appelRoutineSansRetourPic18}\\
+    \texttt{BNC n} & Branch if Not Carry & \refSubsectionPage{appelRoutineSansRetourPic18}\\
+    \texttt{BNN n} & Branch if Not Negative & \refSubsectionPage{appelRoutineSansRetourPic18}\\
+    \texttt{BNOV n} & Branch if Not Overflow & \refSubsectionPage{appelRoutineSansRetourPic18}\\
+    \texttt{BNZ n} & Branch if Not Zero & \refSubsectionPage{appelRoutineSansRetourPic18}\\
+    \texttt{BOV n} & Branch if Overflow & \refSubsectionPage{appelRoutineSansRetourPic18}\\
+    \texttt{BRA n} & Branch Unconditionally & \refSubsectionPage{appelRoutineSansRetourPic18}\\
+    \texttt{BZ n} & Branch if Zero & \refSubsectionPage{appelRoutineSansRetourPic18}\\
+    \texttt{CALL n, s} & Call Subroutine &  \refSubsectionPage{appelRoutineRegulierePic18} \\
+    \texttt{CLRWDT} & Clear Watchdog Timer & \refSubsectionPage{OperationsPic18IdentiquesAssembleur}\\
+    \texttt{DAW} & Decimal Adjust WREG & \refSubsectionPage{OperationsPic18IdentiquesAssembleur}\\
+    \texttt{GOTO n} & Go to Address & \refSubsectionPage{appelRoutineSansRetourPic18} \\
+    \texttt{NOP} & No Operation & \refSubsectionPage{OperationsPic18IdentiquesAssembleur}\\
+    \texttt{POP} & Pop Top of Return Stack & \refSubsectionPage{OperationsPic18IdentiquesAssembleur} \\
+    \texttt{PUSH} & Push Top of Return Stack & \refSubsectionPage{OperationsPic18IdentiquesAssembleur}\\
+    \texttt{RCALL n} & Relative Call & \refSubsectionPage{appelRoutineRegulierePic18} \\
+    \texttt{RESET} & Software Device Reset & \refSubsectionPage{OperationsPic18IdentiquesAssembleur} \\
+    \texttt{RETFIE s} & Return from Interrupt Enable & \refSubsectionPage{instructionsPic18Introuvables}\\
+    \texttt{RETLW k} & Return with Literal in WREG & \refSubsectionPage{instructionsPic18Introuvables}\\
+    \texttt{RETURN s} & Return from Subroutine & \refSubsectionPage{instructionsPic18Introuvables}\\
+    \texttt{SLEEP} & Go into Standby Mode & \refSubsectionPage{OperationsPic18IdentiquesAssembleur}\\
+  \hline
+  \end{tabular}
+  \caption{Instructions de contrôle pour \emph{pic18}}
+  \labelTableau{pic18OperationsControle}
+\end{table}
+
+
+
+\begin{table}[!ht]
+  \centering
+  \small
+  \rowcolors{2}{\fondTableau}{}
+  \begin{tabular}{lll}
+    \textbf{Assembleur} & \textbf{Description} & \textbf{Référence en Piccolo}\\
+    \hline
+    \texttt{ADDLW k} & Add Literal and WREG & \refSubsectionPage{opPic18Immediate}\\
+    \texttt{ANDLW k} & And Literal with WREG & \refSubsectionPage{opPic18Immediate}\\
+    \texttt{IORLW k} & Inclusive OR Literal with WREG & \refSubsectionPage{opPic18Immediate}\\
+    \texttt{LFSR f, k} & Move Literal to FSR(f) & \refSubsectionPage{instructionLFSR} \\
+    \texttt{MOVLB k} & Move Literal to BSR & \refSubsectionPage{instructionsPic18Introuvables}\\
+    \texttt{MULLW k} & Multiply Literal with WREG & \refSubsectionPage{opPic18Immediate}\\
+    \texttt{RETLW k} & Return with Literal in WREG & \refSubsectionPage{instructionsPic18Introuvables} \\
+    \texttt{SUBLW k} & Substract WREG from Literal & \refSubsectionPage{opPic18Immediate}\\
+    \texttt{XORLW k} & Exclusive OR Literal with WREG & \refSubsectionPage{opPic18Immediate}\\
+    \hline
+  \end{tabular}
+  \caption{Opérations statiques pour \emph{pic18}}
+  \labelTableau{pic18BitLiteralOperations}
+\end{table}
+
+
+
+\begin{table}[!ht]
+  \centering
+  \small
+  \rowcolors{2}{\fondTableau}{}
+  \begin{tabular}{lll}
+    \textbf{Assembleur} & \textbf{Description} & \textbf{Référence en Piccolo}\\
+    \hline
+    \texttt{TBLRD*} & Table Read & \refSubsectionPage{OperationsPic18IdentiquesAssembleur} \\
+    \texttt{TBLRD*+} & Table Read with Post-Increment & \refSubsectionPage{OperationsPic18IdentiquesAssembleur} \\
+    \texttt{TBLRD*-} & Table Read with Post-Decrement & \refSubsectionPage{OperationsPic18IdentiquesAssembleur} \\
+    \texttt{TBLRD+*} & Table Read with Pre-Increment & \refSubsectionPage{OperationsPic18IdentiquesAssembleur} \\
+    \texttt{TBLWT*} & Table Write & \refSubsectionPage{OperationsPic18IdentiquesAssembleur} \\
+    \texttt{TBLWT*+} & Table Write with Post-Increment & \refSubsectionPage{OperationsPic18IdentiquesAssembleur} \\
+    \texttt{TBLWT*-} & Table Write with Post-Decrement & \refSubsectionPage{OperationsPic18IdentiquesAssembleur} \\
+    \texttt{TBLWT+*} & Table Write with Pre-Increment & \refSubsectionPage{OperationsPic18IdentiquesAssembleur} \\
+    \hline
+  \end{tabular}
+  \caption{Opérations de transfert entre \emph{mémoire programme} et \emph{mémoire données} pour \emph{pic18}}
+  \labelTableau{pic18BitProgramMemoryOperations}
+\end{table}
+
+
+
+\begin{table}[!ht]
+  \centering
+  \small
+  \rowcolors{2}{\fondTableau}{}
+  \begin{tabular}{lll}
+    \textbf{Piccolo} & \textbf{Description} & \textbf{Référence}\\
+    \hline
+    \texttt{mnop k} & Séquence d'instructions \texttt{NOP} & \refSubsectionPage{instructionMNOP} \\
+    \texttt{jump} & Appel de routine sans retour & \refSubsectionPage{appelRoutineSansRetourPic18} \\
+    \texttt{jsr} & Appel de routine régulière &  \refSubsectionPage{appelRoutineRegulierePic18} \\
+    \hline
+  \end{tabular}
+  \caption{Instructions propres à Piccolo pour \emph{pic18}}
+  \labelTableau{pic18InstructionsPropresPiccolo}
+\end{table}
+
+~\\
+\textbf{Les instructions composées.} Piccolo définit les instructions suivantes :
+\begin{itemize}
+  \item l’instruction conditionnelle simple ;
+  \item l’instruction conditionnelle structurée ;
+  \item l’instruction répétitive ;
+  \item l’instruction de répétition infinie ;
+  \item l’instruction \texttt{MNOP} ;
+  \item l’instruction \texttt{computed retlw} ;
+  \item l’instruction \texttt{computed bra} ;
+  \item l’instruction \texttt{computed goto}.
+\end{itemize}
+
+
+
+
+\subsectionLabel{Les instructions que vous ne trouverez pas en Piccolo}{instructionsPic18Introuvables}
+
+Elles n’existent pas en Piccolo parce qu’elles sont remplacées par des constructions structurées, ou bien engendrées automatiquement lors de la compilation.
+
+Voici leur liste avec les liens vers les sections appropriées :\begin{itemize}
+  \item \texttt{BTFSC}, \texttt{BTFSS}, \texttt{CPFSEQ}, \texttt{CPFSGT}, \texttt{CPFSLT}, \texttt{DECFSZ}, \texttt{DCFSNZ}, \texttt{INCFSZ}, \texttt{INFSZ}, \texttt{TSTFSZ} : ces instructions sont engendrées par l’instruction conditionnelle simple, l’instruction conditionnelle structurée et l’instruction répétitive ;
+  \item \texttt{MOVLB} : l’affectation de \texttt{BSR} est pris en charge par \texttt{banksel} ; voir la section § ;
+  \item \texttt{RETFIE} : engendrée automatiquement lors de la compilation d’une routine d’interruption ;
+  \item \texttt{RETLW} : utiliser une instruction \texttt{MOVLW}, et c’est l’optimiseur qui remplacera la séquence \texttt{MOVLW k, RETURN} par une instruction \texttt{RETLW k} ;
+  \item \texttt{RETURN} : engendrée automatiquement lors de la compilation d’une routine.
+
+\end{itemize}
+
+
+
+
+
+\subsectionLabel{Instructions nommant un registre}{instructionsNommantRegistre}
+
+Ce sont les instructions listées dans le \refTableau{operationsPic18NommantUnRegistre}. Pour ces instructions, l'opérande \texttt{a} est toujours implicite. Le compilateur Piccolo regarde d'abord si le registre \texttt{f} est dans l'\emph{accessram}. Si oui, il engendre l'instruction assembleur correspondante avec \texttt{a} égal à 0. Sinon, il examine si le registre \texttt{BSR} contient la valeur correspondant au banc de \texttt{f}. Si oui, il engendre l'instruction assembleur correspondante avec \texttt{a} égal à 1. Sinon, le compilateur signale l'erreur.
+
+
+
+\begin{table}[!ht]
+  \centering
+  \small
+  \rowcolors{2}{\fondTableau}{}
+  \begin{tabular}{lll}
+    \textbf{Assembleur} & \textbf{Description} & \textbf{Écriture en Piccolo}\\
+    \hline
+    \texttt{CLRF f, a} & Clear f & \texttt{clrf f} \\
+    \texttt{MULWF f, a} & Multiply WREG with f & \texttt{mulwf f} \\
+    \texttt{NEGF f, a} & Negate f & \texttt{negf f} \\
+    \texttt{SETF f, a} & Set f & \texttt{setf f}\\
+  \hline
+  \end{tabular}
+  \caption{Opérations nommant un registre}
+  \labelTableau{operationsPic18NommantUnRegistre}
+\end{table}
+
+
+
+
+
+
+
+
+\subsectionLabel{Instructions nommant un registre, et optionnellement \texttt{W}}{instructionsNommantRegistreEtW}
+
+Ces instructions, ainsi que le traduction en Piccolo, sont listées dans le \refTableau{instructionsPic18RegistreEtW}. En assembleur, elles nomment trois opérandes :
+\begin{itemize}
+  \item \texttt{f} : désigne le registre, il en est de même en Piccolo ;
+  \item \texttt{d} : optionnel en Piccolo ; si absent, le registre \texttt{f} est destination de l'opération, si égal à \texttt{W}, c'est le registre \texttt{WREG} qui est destinaire ;
+  \item \texttt{a} : toujours absent en Piccolo ; le compilateur Piccolo regarde d'abord si le registre \texttt{f} est dans l'\emph{accessram} ; si oui, il engendre l'instruction assembleur correspondante avec \texttt{a} égal à 0, sinon il examine si le registre \texttt{BSR} contient la valeur correspondant au banc de \texttt{f} ; si oui, il engendre l'instruction assembleur correspondante avec \texttt{a} égal à 1, sinon le compilateur signale l'erreur.
+\end{itemize}
+
+
+\begin{table}[!ht]
+  \centering
+  \small
+  \rowcolors{2}{\fondTableau}{}
+  \begin{tabular}{llll}
+     &  & \multicolumn{2}{l}{\textbf{En Piccolo, destination :}} \\
+    \textbf{Assembleur} & \textbf{Description} & \textbf{f} & \textbf{WREG}\\
+    \hline
+    \texttt{ADDWF f, d, a} & Add WREG and f & \texttt{ADDWF f}  & \texttt{ADDWF f, W} \\
+    \texttt{ADDWFC f, d, a} & Add WREG and Carry bit to f & \texttt{ADDWFC f} & \texttt{ADDWFC f, W}\\
+    \texttt{ANDWF f, d, a} & And WREG with f & \texttt{ANDWF f} & \texttt{ANDWF f, W}\\
+    \texttt{COMF f, d, a} & Complement f & \texttt{COMF f} & \texttt{COMF f, W}\\
+    \texttt{DECF f, d, a} & Decrement f & \texttt{DECF f} & \texttt{DECF f, W}\\
+    \texttt{INCF f, d, a} & Increment f & \texttt{INCF f}& \texttt{INCF f, W}\\
+    \texttt{IORWF f, d, a} & Inclusive OR WREG with f & \texttt{IORWF f} & \texttt{IORWF f, W}\\
+    \texttt{MOVF f, d, a} & Move f & \texttt{MOVF f} & \texttt{MOVF f, W}\\
+    \texttt{RLCF f, d, a} & Rotate Left f through Carry & \texttt{RLCF f} & \texttt{RLCF f, W}\\
+    \texttt{RLNCF f, d, a} & Rotate Left f (No Carry) & \texttt{RLNCF f} & \texttt{RLNCF f, W}\\
+    \texttt{RRCF f, d, a} & Rotate Right f through Carry & \texttt{RRCF f} & \texttt{RRCF f, W}\\
+    \texttt{RRNCF f, d, a} & Rotate Right f (No Carry) & \texttt{RRNCF f} & \texttt{RRNCF f, W}\\
+    \texttt{SUBFWB f, d, a} & Substract f from WREG with Borrow & \texttt{SUBFWB f} & \texttt{SUBFWB f, W}\\
+    \texttt{SUBWF f, d, a} & Substract WREG from f & \texttt{SUBWF f} & \texttt{SUBWF f, W}\\
+    \texttt{SUBWFB f, d, a} & Substract WREG from f with Borrow & \texttt{SUBWFB f} & \texttt{SUBWFB f, W}\\
+    \texttt{SWAPF f, d, a} & Swap Nibbles in f & \texttt{SWAPF f} & \texttt{SWAPF f, W}\\
+    \texttt{XORWF f, d, a} & Exclusive OR WREG with f & \texttt{XORWF f} & \texttt{XORWF f, W}\\
+  \hline
+  \end{tabular}
+  \caption{Instructions \emph{pic18} nommant un registre, et optionnellement \texttt{W}}
+  \labelTableau{instructionsPic18RegistreEtW}
+\end{table}
+
+
+\subsectionLabel{Opérations littérales avec \texttt{WREG}}{opPic18Immediate}
+
+Ces opérations sont listées dans le \refTableau{operationsLiteralesPic18AvecW}. L’instruction \texttt{RETLW k} n’existe pas en Piccolo, l’optimiseur repérera une séquence \texttt{MOVLW k RETURN} et la transformera en \texttt{RETLW k}.
+
+En Piccolo, \texttt{k} est une \emph{expression statique}. Une expression statique est une expression dont la valeur est calculée à la compilation. Sa forme générale est présentée à la \refSectionPage{expressionImmediate}. Le compilateur effectue tous les calculs d'une expression statique avec des nombres entiers 32 bits signés.
+
+Pour être valide dans les opérations statiques avec \texttt{WREG}, le résultat devra être :
+\begin{itemize}
+  \item soit un nombre positif inférieur ou égal à 255 ;
+  \item soit un nombre négatif supérieur ou égal à -128.
+\end{itemize}
+
+Par exemple : \texttt{movlw -14} engendre l’instruction assembleur : \texttt{MOVLW 0xf2}.
+
+
+\begin{table}[!ht]
+  \centering
+  \small
+  \rowcolors{2}{\fondTableau}{}
+  \begin{tabular}{lll}
+    \textbf{Assembleur} & \textbf{Description} & \textbf{Écriture en Piccolo}\\
+    \hline
+    \texttt{ADDLW k} & Add Literal and WREG & \texttt{ADDLW k}\\
+    \texttt{ANDLW k} & And Literal with WREG & \texttt{ANDLW k}\\
+    \texttt{IORLW k} & Inclusive OR Literal with WREG & \texttt{IORLW k}\\
+    \texttt{MULLW k} & Multiply Literal with WREG & \texttt{MULLW k}\\
+    \texttt{SUBLW k} & Substract WREG from Literal & \texttt{SUBLW k}\\
+    \texttt{XORLW k} & Exclusive OR Literal with WREG & \texttt{XORLW k}\\
+    \hline
+  \end{tabular}
+  \caption{Opérations statiques avec \texttt{WREG} pour \emph{pic18}}
+  \labelTableau{operationsLiteralesPic18AvecW}
+\end{table}
+
+
+\subsectionLabel{Instructions identiques à celles de l’assembleur}{OperationsPic18IdentiquesAssembleur}
+
+Ces instructions sont listées dans le \refTableau{operationsPic18IdentiquesAssembleur}.
+
+\begin{table}[!ht]
+  \centering
+  \small
+  \rowcolors{2}{\fondTableau}{}
+  \begin{tabular}{lll}
+    \textbf{Assembleur} & \textbf{Description} & \textbf{Écriture en Piccolo}\\
+    \hline
+    \texttt{CLRWDT} & Clear Watchdog Timer & \texttt{CLRWDT}\\
+    \texttt{DAW} & Decimal Adjust WREG & \texttt{DAW}\\
+    \texttt{NOP} & No Operation & \texttt{NOP}\\
+    \texttt{POP} & Pop Top of Return Stack & \texttt{POP} \\
+    \texttt{PUSH} & Push Top of Return Stack & \texttt{PUSH}\\
+    \texttt{RESET} & Software Device Reset & \texttt{RESET} \\
+    \texttt{SLEEP} & Go into Standby Mode & \texttt{SLEEP}\\
+    \texttt{TBLRD*} & Table Read & \texttt{TBLRD*} \\
+    \texttt{TBLRD*+} & Table Read with Post-Increment & \texttt{TBLRD*+} \\
+    \texttt{TBLRD*-} & Table Read with Post-Decrement & \texttt{TBLRD*-} \\
+    \texttt{TBLRD+*} & Table Read with Pre-Increment & \texttt{TBLRD+*} \\
+    \texttt{TBLWT*} & Table Write & \texttt{TBLWT*} \\
+    \texttt{TBLWT*+} & Table Write with Post-Increment & \texttt{TBLWT*+} \\
+    \texttt{TBLWT*-} & Table Write with Post-Decrement & \texttt{TBLWT*-} \\
+    \texttt{TBLWT+*} & Table Write with Pre-Increment & \texttt{TBLWT+*} \\
+    \hline
+  \end{tabular}
+  \caption{Instructions \emph{pic18} identiques en assembleur et en Piccolo}
+  \labelTableau{operationsPic18IdentiquesAssembleur}
+\end{table}
+
+
+\subsectionLabel{Instruction \texttt{lfsr}}{instructionLFSR}
+
+En assembleur comme en Piccolo, l'instruction \texttt{lfsr f, k} comporte deux arguments :
+\begin{itemize}
+  \item \texttt{f} : le numéro du registre destination : une expression statique dont l’évaluation donne le résultat 0, 1 ou 2 ;
+  \item \texttt{k} : la valeur à charger dans le registre, une expression statique dont l’évaluation donne un résultat compris entre 0 et 4095.
+\end{itemize}
+
+La forme générale des expressions statiques est donnée à la \refSectionPage{expressionImmediate}. Une expression statique est évaluée à la compilation. Le compilateur effectue tous les calculs avec des nombres entiers 32 bits signés.
+
+
+
+
+
+
+
+\subsectionLabel{Instruction \texttt{movff}}{instructionMOVFF}
+
+En assembleur comme en Piccolo, l'instruction \texttt{movff fs, fd} comporte deux arguments :
+\begin{itemize}
+  \item \texttt{fs} : le registre source (\refSectionPage{referenceRegistre}) ;
+  \item \texttt{fd} : le registre destination (\refSectionPage{referenceRegistre}).
+\end{itemize}
+
+
+
+
+
+
+
+\subsectionLabel{Instruction \texttt{mnop}}{instructionMNOP}
+
+Cette instruction n'existe pas en assembleur. En Piccolo, \texttt{mnop k} engendre une séquence de \texttt{k} instructions \texttt{NOP}.
+
+\texttt{k} est une expression statique. La forme générale des expressions statiques est donnée à la \refSectionPage{expressionImmediate}. Une expression statique est évaluée à la compilation. Le compilateur effectue tous les calculs avec des nombres entiers 32 bits signés.
+
+
+
+
+\subsectionLabel{Appeler une routine régulière}{appelRoutineRegulierePic18}
+
+Une routine régulière est une routine déclarée sans le qualificatif \texttt{noreturn}. L'appel s’effectue au moyen d’une des trois instructions \texttt{rcall}, \texttt{CALL} ou \texttt{JSR}.
+
+Ces instructions se distinguent par leurs propriétés suivantes :
+\begin{itemize}
+  \item \texttt{rcall} correspond à l’instruction assembleur \texttt{RCALL} : elle occupe deux octets, mais sa compilation entraîne une erreur si le déplacement est trop important pour être codé ;
+  \item \texttt{call} correspond à l’instruction assembleur \texttt{CALL} : elle peut coder tout appel, mais occupe quatre octets ;
+  \item \texttt{jsr} est un ajout propre à Piccolo : cette instruction est par défaut codée par un \texttt{RCALL}, mais, si le déplacement est trop important, elle est silencieusement codée par un \texttt{CALL}.
+\end{itemize}
+
+Syntaxiquement, il faut simplement nommer la routine appelée après le nom de l’instruction d’appel :
+
+\begin{lstlisting}[language=piccolo]
+rcall nom_routine
+\end{lstlisting}
+ou
+\begin{lstlisting}[language=piccolo]
+call nom_routine
+\end{lstlisting}
+ou
+\begin{lstlisting}[language=piccolo]
+jsr nom_routine
+\end{lstlisting}
+
+
+
+
+\subsectionLabel{Appeler une routine sans retour}{appelRoutineSansRetourPic18}
+
+Appeler une routine sans retour (c'est-à-dire déclarée avec le qualificatif \texttt{noreturn}) peut s'effectuer :
+\begin{itemize}
+  \item soit inconditionnellement par une instruction  \texttt{bra}, \texttt{goto} ou \texttt{jump} ;
+  \item soit conditionnellement par une instruction $B_{CC}$ (nom collectif pour les huit instructions de saut conditionnels : \texttt{bc}, \texttt{bnc}, \texttt{bn}, \texttt{bnn}, \texttt{bov}, \texttt{bnov}, \texttt{bz} ou \texttt{bnz}) ;
+  \item soit conditionnellement par une instruction \texttt{jump} $cc$ (où $cc$ est un nom collectif pour les huit conditions : \texttt{c}, \texttt{nc}, \texttt{n}, \texttt{nn}, \texttt{ov}, \texttt{nov}, \texttt{z} ou \texttt{nz}).
+\end{itemize}
+
+
+
+~\\
+\texttt{bra} correspond à l’instruction assembleur \texttt{BRA} : elle occupe deux octets, mais sa compilation entraîne une erreur si le déplacement est trop important pour être codé. L'appel s'écrit :
+\begin{lstlisting}[language=piccolo]
+bra nom_routine
+\end{lstlisting}
+
+
+
+~\\
+\texttt{goto} correspond à l’instruction assembleur \texttt{GOTO} : elle peut coder tout branchement inconditionnel, mais occupe quatre octets. L'appel s'écrit :
+\begin{lstlisting}[language=piccolo]
+goto nom_routine
+\end{lstlisting}
+
+
+~\\
+\texttt{jump} est un ajout propre à Piccolo. Dans sa forme incondionnelle, il engendre par défaut une instruction \texttt{BRA}, ou, si le déplacement est trop important, une instruction \texttt{GOTO}. L'appel s'écrit :
+\begin{lstlisting}[language=piccolo]
+jump nom_routine
+\end{lstlisting}
+
+~\\
+$B_{CC}$ correspond à l’une des huit instructions assembleur citées ci dessus : elle occupe deux octets, mais sa compilation entraîne une erreur si le déplacement est trop important pour être codé. L'appel s'écrit par exemple :
+\begin{lstlisting}[language=piccolo]
+bz nom_routine
+\end{lstlisting}
+
+
+~\\
+La forme conditionnelle de l'instruction \texttt{jump} nomme une des huit conditions $cc$ (voir ci-dessus). L'appel s'écrit par exemple :
+\begin{lstlisting}[language=piccolo]
+jump z nom_routine
+\end{lstlisting}
+
+Le code engendré par une instruction \texttt{jump} $cc$ peut occuper deux, quatre ou six octets en fonction de la distance entre l'instruction d'appel et la routine (\refTableau{codageInstructionJumpCC}). Piccolo choisit toujours le codage le plus court. 
+
+
+
+\begin{table}[!ht]
+  \centering
+  \small
+  \rowcolors{3}{}{\fondTableau}
+  \begin{tabular}{llp{2.5cm}p{2.5cm}}
+      & \multicolumn{3}{c}{\bf Code engendré}\\
+    \textbf{Instruction Piccolo} & \textbf{2 octets} & \textbf{4 octets} & \textbf{6 octets}\\
+    \hline
+    \texttt{jump c routine} & \texttt{BC routine} & \texttt{BNC \$ + 4 bra routine} & \texttt{BNC \$ + 6 goto routine}\\
+    \texttt{jump nc routine} & \texttt{BNC routine} & \texttt{BC ~\$ + 4 bra routine} & \texttt{BC ~\$ + 6 goto routine}\\
+    \texttt{jump z routine} & \texttt{BZ routine} & \texttt{BNZ \$ + 4 bra routine} & \texttt{BNZ \$ + 6 goto routine}\\
+    \texttt{jump nz routine} & \texttt{BNZ routine} & \texttt{BZ ~\$ + 4 bra routine} & \texttt{BZ ~\$ + 6 goto routine}\\
+    \texttt{jump n routine} & \texttt{BN routine} & \texttt{BNN \$ + 4 bra routine} & \texttt{BNN \$ + 6 goto routine}\\
+    \texttt{jump nn routine} & \texttt{BNN routine} & \texttt{BN ~\$ + 4 bra routine} & \texttt{BN ~\$ + 6 goto routine}\\
+    \texttt{jump ov routine} & \texttt{BOV routine} & \texttt{BNOV \$ + 4 bra routine} & \texttt{BNOV \$ + 6 goto routine}\\
+    \texttt{jump nov routine} & \texttt{BNOV routine} & \texttt{BOV ~\$ + 4 bra routine} & \texttt{BOV ~\$ + 6 goto routine}\\
+    \hline
+  \end{tabular}
+  \caption{Codages possibles de l'instruction \texttt{jump} $cc$}
+  \labelTableau{codageInstructionJumpCC}
+\end{table}
 

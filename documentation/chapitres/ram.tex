@@ -17,9 +17,9 @@
 
 \section{Comment est décrite la RAM ?}
 
-Préalablement, vous devez savoir comment la mémoire RAM de votre micro-contrôleur est décrite par Piccolo. Pour cela, utiliser l’option « \texttt{--memory} » (ou sa version courte « \texttt{-M=} »), en nommant ensuite votre micro-contrôleur (voir \refSubsectionPage{exempleOptionMemory}).
+Préalablement, vous devez savoir comment la mémoire RAM de votre micro-contrôleur est décrite par Piccolo. Pour cela, utiliser l'option « \texttt{--memory} » (ou sa version courte « \texttt{-M=} »), en nommant ensuite votre micro-contrôleur (voir \refSubsectionPage{exempleOptionMemory}).
 
-\textcolor{red}{\bf Pour chaque micro-contrôleur, veuillez vérifier l’exactitude de ces renseignements en comparant les résultats fournis par Piccolo avec le \emph{data sheet} de Microchip. La description des micro-contrôleurs est obtenue automatiquement, et je n’ai pas vérifié individuellement chaque description.}
+\textcolor{red}{\bf Pour chaque micro-contrôleur, veuillez vérifier l'exactitude de ces renseignements en comparant les résultats fournis par Piccolo avec le \emph{data sheet} de Microchip. La description des micro-contrôleurs est obtenue automatiquement, et je n'ai pas vérifié individuellement chaque description.}
 
 
 
@@ -50,7 +50,9 @@ Par exemple, pour le 18F448, entrez la ligne de commande \texttt{piccolo -{}-mem
 
 {\footnotesize \lstinputlisting[frame=l]{files-from-piccolo/memory-18F448.txt}}
 
-Le premier banc, \texttt{accessram}, est toujours accessible directement sans utiliser la valeur du registre \texttt{BSR}. Suivant le micro-contrôleur, ce banc occupe les 96 ou les 128 premiers octets de la RAM.Ensuite, l’accès aux bancs \texttt{gprX} imposent la valeur \texttt{X} au registre \texttt{BSR}. Voir à ce sujet comment le registre \texttt{BSR} est géré §.
+Le premier banc, \texttt{accessram}, est toujours accessible directement sans utiliser la valeur du registre \texttt{BSR}. Suivant le micro-contrôleur, ce banc occupe les 96 ou les 128 premiers octets de la RAM.
+
+Ensuite, l'accès aux bancs \texttt{gprX} imposent la valeur \texttt{X} au registre \texttt{BSR}. Voir à ce sujet comment le registre \texttt{BSR} est géré §.
 
 En Piccolo, on ne manipule jamais directement le registre \texttt{BSR} : on utilise l'instruction \texttt{banksel}. L'avantage est que celle-ci permet une vérification statique, à la compilation, de la sélection correcte des bancs.
 
@@ -62,25 +64,62 @@ En Piccolo, on ne manipule jamais directement le registre \texttt{BSR} : on util
 
 \section{Les sections \texttt{ram}}
 
-En Piccolo, les sections \texttt{ram … \{ … \}} décrivent l’attribution de la RAM. Leur syntaxe est la même pour les \emph{baseline}, les \emph{mid-range} et les \emph{pic18}. Dans un programme vous pouvez utiliser autant de sections \texttt{ram} que vous voulez.Voici un exemple :\begin{lstlisting}[language=piccolo]
-ram accessram {  byte premiere ;  byte deuxieme ;  byte troisieme [5] ;  byte quatrieme ;}\end{lstlisting}
-Le mot clé \texttt{ram} est suivi du nom du banc utilisé pour l’attribution. Ce nom doit être l’un des noms de bancs affichés par l’option \texttt{-{}-memory} (voir section précédente).Ensuite, les variables déclarées sont servies dans leur ordre d'apparition.
+En Piccolo, les sections \texttt{ram … \{ … \}} décrivent l'attribution de la RAM. Leur syntaxe est la même pour les \emph{baseline}, les \emph{mid-range} et les \emph{pic18}. Dans un programme vous pouvez utiliser autant de sections \texttt{ram} que vous voulez.
 
-Si la section ci-dessus est la première qui nomme \texttt{accessram} (pour un \emph{pic18}, le banc \texttt{accessram} commençe à l’adresse 0), la variable \texttt{premiere} reçoit l’adresse 0, \texttt{deuxieme} l’adresse 1, \texttt{troisieme} l’adresse 2, et \texttt{quatrieme} l’adresse 7 (\texttt{troisieme} occupe 5 octets).Vous pouvez déclarer autant de variables que vous voulez, à condition de ne pas dépasser la capacité du banc : le compilateur Piccolo émet alors un message d’erreur.
+Voici un exemple :
 
-Les sections \texttt{ram} ont un effet cumulatif : si vous déclarez plusieurs sections pour le même banc, Piccolo attribue les adresses dans l’ordre d’apparition des déclarations. Par exemple, les déclarations suivantes :\begin{lstlisting}[language=piccolo]
-ram accessram {  byte premiere  byte deuxieme}...ram accessram {  byte troisieme [5]  byte quatrieme}\end{lstlisting}
-ont le même effet que la déclaration précédente.Dans cette situation aussi, le compilateur Piccolo émet un message d’erreur quand la capacité d’un banc est dépassée. 
+\begin{lstlisting}[language=piccolo]
+ram accessram {
+  byte premiere ;
+  byte deuxieme ;
+  byte troisieme [5] ;
+  byte quatrieme ;
+}
+\end{lstlisting}
+
+Le mot clé \texttt{ram} est suivi du nom du banc utilisé pour l'attribution. Ce nom doit être l'un des noms de bancs affichés par l'option \texttt{-{}-memory} (voir section précédente).
+
+Ensuite, les variables déclarées sont servies dans leur ordre d'apparition.
+
+Si la section ci-dessus est la première qui nomme \texttt{accessram} (pour un \emph{pic18}, le banc \texttt{accessram} commençe à l'adresse 0), la variable \texttt{premiere} reçoit l'adresse 0, \texttt{deuxieme} l'adresse 1, \texttt{troisieme} l'adresse 2, et \texttt{quatrieme} l'adresse 7 (\texttt{troisieme} occupe 5 octets).
+
+Vous pouvez déclarer autant de variables que vous voulez, à condition de ne pas dépasser la capacité du banc : le compilateur Piccolo émet alors un message d'erreur.
+
+Les sections \texttt{ram} ont un effet cumulatif : si vous déclarez plusieurs sections pour le même banc, Piccolo attribue les adresses dans l'ordre d'apparition des déclarations. Par exemple, les déclarations suivantes :
+
+\begin{lstlisting}[language=piccolo]
+ram accessram {
+  byte premiere
+  byte deuxieme
+}
+...
+ram accessram {
+  byte troisieme [5]
+  byte quatrieme
+}
+\end{lstlisting}
+
+ont le même effet que la déclaration précédente.
+
+Dans cette situation aussi, le compilateur Piccolo émet un message d'erreur quand la capacité d'un banc est dépassée. 
 
 
 
 \section{Déclaration \texttt{byte}}
 
-Comme vous l’avez sûrement deviné à partir des exemples de la section précédente, la déclaration\begin{lstlisting}[language=piccolo]
-byte var \end{lstlisting}
-déclare une variable \texttt{var} occupant un octet. Vous pouvez aussi déclarer une variable occupant \texttt{n} octets consécutifs en indiquant la dimension entre crochets :\begin{lstlisting}[language=piccolo]
-byte var [n]\end{lstlisting}
-\texttt{n} doit être une constante littérale. Évidemment, \texttt{n} doit être strictement positif. Si \texttt{n} vaut 1, la déclaration est sémantiquement équivalente à la première forme.
+Comme vous l'avez sûrement deviné à partir des exemples de la section précédente, la déclaration
+
+\begin{lstlisting}[language=piccolo]
+byte var 
+\end{lstlisting}
+
+déclare une variable \texttt{var} occupant un octet. Vous pouvez aussi déclarer une variable occupant \texttt{n} octets consécutifs en indiquant la dimension entre crochets :
+
+\begin{lstlisting}[language=piccolo]
+byte var [n]
+\end{lstlisting}
+
+\texttt{n} doit être une constante littérale. Évidemment, \texttt{n} doit être strictement positif. Si \texttt{n} vaut 1, la déclaration est sémantiquement équivalente à la première forme.
 
 
 
@@ -89,10 +128,52 @@ byte var [n]\end{lstlisting}
 
 \section{Nommage de bits dans une déclaration \texttt{byte}}
 
-Vous pouvez nommer les bits individuels lors de la déclaration d’une variable, comme par exemple :\begin{lstlisting}[language=piccolo]
-byte var <-, A, b, -, d, e [2], ->\end{lstlisting}
-La déclaration est effectuée entre les délimiteurs « \texttt{<} » et « \texttt{>} », et séparés par une virgule. Le premier bit déclaré est le bit de poids fort (7), le dernier le bit de poids faible (0).Si vous ne voulez pas nommer un bit particulier, mettez le délimiteur « \texttt{-} » : c’est le cas des bits 7, 4 et 0 dans l’exemple ci-dessus.À un nom est associé le numéro du bit correspondant : ainsi \texttt{A} est associé à 6, \texttt{b} à 5, et \texttt{d} à 3. \texttt{e} est complété par une dimension, ce qui signifie que \texttt{e[1]} prend la valeur 2, et \texttt{e[0]} la valeur 1.La déclaration doit toujours comprendre la définition des 8 bits, autrement dit à la dernière définition, juste avant le « \texttt{>} », est associé le numéro 0.Les noms de bits sont locaux, c’est à dire que vous pouvez utiliser les mêmes noms dans des déclarations \texttt{byte} différentes.Enfin, vous pouvez combiner la présence d’une dimension explicite avec le nommage de bits :\begin{lstlisting}[language=piccolo]
-byte var [2] <-, A, b, -, d, e [2], ->\end{lstlisting}
-Dans ce cas, tous les octets du tableaux ont leurs bits nommés de la même façon.Comment utiliser ces noms de bits ? Dans les conditions de l’instruction conditionnelle simple, les conditions élémentaires des instructions conditionnelles structurées et répétitive, dans les instructions \texttt{bcf}, \texttt{bsf} et \texttt{btg} (voir §). 
+Vous pouvez nommer les bits individuels lors de la déclaration d'une variable, comme par exemple :
+
+\begin{lstlisting}[language=piccolo]
+byte var <-, A, b, -, d, e [2], ->
+\end{lstlisting}
+
+La déclaration est effectuée entre les délimiteurs « \texttt{<} » et « \texttt{>} », et séparés par une virgule. Le premier bit déclaré est le bit de poids fort (7), le dernier le bit de poids faible (0).
+
+Si vous ne voulez pas nommer un bit particulier, mettez le délimiteur « \texttt{-} » : c'est le cas des bits 7, 4 et 0 dans l'exemple ci-dessus.
+
+À un nom est associé le numéro du bit correspondant : ainsi \texttt{A} est associé à 6, \texttt{b} à 5, et \texttt{d} à 3. \texttt{e} est complété par une dimension, ce qui signifie que \texttt{e[1]} prend la valeur 2, et \texttt{e[0]} la valeur 1.
+
+La déclaration doit toujours comprendre la définition des 8 bits, autrement dit à la dernière définition, juste avant le « \texttt{>} », est associé le numéro 0.
+
+Les noms de bits sont locaux, c'est à dire que vous pouvez utiliser les mêmes noms dans des déclarations \texttt{byte} différentes.
+
+Enfin, vous pouvez combiner la présence d'une dimension explicite avec le nommage de bits :
+
+\begin{lstlisting}[language=piccolo]
+byte var [2] <-, A, b, -, d, e [2], ->
+\end{lstlisting}
+
+Dans ce cas, tous les octets du tableaux ont leurs bits nommés de la même façon.
+
+Comment utiliser ces noms de bits ? Dans les conditions de l'instruction conditionnelle simple, les conditions élémentaires des instructions conditionnelles structurées et répétitive, dans les instructions \texttt{bcf}, \texttt{bsf} et \texttt{btg} (voir §). 
+
+
+\sectionLabel{Référence à un registre}{referenceRegistre}
+
+De nombreuses instructions nomment un registre, qui peut être :
+\begin{itemize}
+  \item un registre spécial (dont vous pouvez avoir la liste grâce à l'option « \texttt{-{}-registers} ») ;  \item une variable déclarée dans une section \texttt{ram}.\end{itemize}
+En Piccolo, il suffit de nommer simplement le registre avec l'instruction, par exemple :\begin{lstlisting}[language=piccolo]
+clrf registre\end{lstlisting}
+Cette écriture ressemble à l'assembleur, mais il y a une différence fondamentale : le bit indiquant si l'adressage devra être fait via l'\emph{access bank} ou via le registre \texttt{BSR} n'apparaît jamais dans l'instruction Piccolo. Lors de la génération de code, Piccolo fixera automatiquement la valeur de ce bit.Par exemple, en supposant que \texttt{varAccesBank} est accessible via l'\emph{access bank}, que \texttt{varBank1} est dans le banc 1 et \texttt{varBank2} dans le banc 2, on écrira en Piccolo :\begin{lstlisting}[language=piccolo]
+clrf varAccesBankbanksel 1clrf varBank1banksel 2clrf varBank2\end{lstlisting}
+Contrairement à l'assembleur, l'oubli d'une instruction « \texttt{banksel} » est détectée par le compilateur Piccolo.Pour plus de précision sur le contrôle de BSR, voir les pages consacrées au contrôle de BSR en Piccolo.
+
+Si une variable est déclarée avec une dimension, par exemple :\begin{lstlisting}[language=piccolo]
+ram ... { 
+  byte maVariable [4]
+}\end{lstlisting}
+
+Le premier élément du tableau est \texttt{maVariable [0]}, et le dernier  \texttt{maVariable [3]}.
+On peut ainsi écrire :\begin{lstlisting}[language=piccolo]
+  clrf maVariable # Equivalent a clrf maVariable [0]  clrf maVariable [3]  clrf maVariable [4] # Erreur detectee par Piccolo
+\end{lstlisting}
 
 
