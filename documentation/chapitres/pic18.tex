@@ -13,7 +13,7 @@
 
 \section{Exemples de programmes pour pic18}
 
-\subsection{Premier exemple}
+\subsection{Premier exemple : \emph{blink led}}
 
 Ce simple programme est destiné à un 18F448 et fait clignoter à 1 Hz environ une led connectée au port \texttt{RE0}. Il programme donc \texttt{RE0} (broche 8) en sortie. La configuration suppose qu'il est connecté à une horloge externe à 40 MHz sur la broche \texttt{OSC1} (broche 13). 
 
@@ -32,6 +32,7 @@ ram accessram {
 noreturn routine main bank:requires 0 {
   ...
 }
+#------------ Fin
 end
 \end{lstlisting}
 
@@ -72,7 +73,10 @@ configuration {
 }
 \end{lstlisting}
 
+
 La section \texttt{ram} déclare les variables du programme. Ce type de section est complètement décrit au \refChapterPage{ram}. Le 18F448 possède plusieurs bancs mémoire, dont on obtient la composition en appelant \texttt{piccolo} avec l'option \texttt{-{}-memory=18F448} (voir \refSubsectionPage{exempleOptionMemory}) :
+
+
 {\footnotesize \lstinputlisting[frame=l]{files-from-piccolo/memory-18F448.txt}}
 
 Ainsi, le 18F448 possède quatre bancs mémoire : \emph{accessram}, \emph{gpr0}, \emph{gpr1} et \emph{gpr2}. En consultant la document du 18F448, on établit que le banc \emph{accessram} est accessible quel que soit \texttt{BSR}, que l'accès aux variables du banc \emph{gpr0} impose que \texttt{BSR} soit égal à 0, que l'accès aux variables du banc \emph{gpr1} impose que \texttt{BSR} soit égal à 1, etc.
@@ -94,6 +98,8 @@ Il reste maintenant à décrire la routine \emph{main}. Un programme valide doit
   \item \texttt{noreturn} : ceci exprime que la routine doit se terminer par une boucle infinie, ou un branchement à une routine elle aussi sans retour ;
   \item \texttt{bank:requires 0} : ceci exprime que lors de l'appel, le registre \texttt{BSR} contient la valeur 0\footnote{\texttt{BSR} est initialisé à 0 à la mise sous tension ou lors d'un \emph{reset}.}, et que donc on pourrait utiliser des variables dans le banc \emph{gpr0} sans modifier \texttt{BSR}.
 \end{itemize}
+
+Dans le code de la routine, parmi les instructions assembleur, on trouve une instruction « \texttt{if} » structurée, dont les conditions cachent une utilisation de l’instruction \texttt{TSTFSZ}, à l'intérieur d'une boucle infinie implémentée par la construction \texttt{forever ... end}.
 
 \begin{lstlisting}[language=piccolo]
 #------------ Routine main
@@ -133,6 +139,200 @@ noreturn routine main bank:requires 0 {
 }
 \end{lstlisting}
 
+Pour terminer ce premier exemple, il est utile de jeter un coup d’œil sur le code assembleur engendré (option « \texttt{-S} »), à gauche sans optimisation, à droite avec optimisations grâce à l’option « \texttt{-O} ». L’optimisation gagne 4 instructions (le \texttt{BRA main} initial, et la meilleure utilisation des trois occurrences de l’instruction \texttt{TSTFSZ}. Observez aussi l’optimisation des sauts (ne vous basez pas sur les noms des étiquettes, elles changent de signification avec l’optimisation).
+
+\begin{multicols}{2}
+\begin{lstlisting}[language=assembleur]
+  ORG 0
+  BRA   main
+main:
+  movlw 0x7
+  movwf ADCON1
+  bcf  TRISE, 0
+  clrf compteurL
+  clrf compteurH
+  clrf compteurU
+_label_0:
+  TSTFSZ compteurL
+  BRA _bcc_label_0
+  BRA _label_1
+_bcc_label_0:
+  decf compteurL, F
+  BRA   _label_2
+_label_1:
+  TSTFSZ compteurH
+  BRA _bcc_label_1
+  BRA _label_3
+_bcc_label_1:
+  decf compteurH, F
+  setf compteurL
+  BRA   _label_4
+_label_3:
+  TSTFSZ compteurU
+  BRA _bcc_label_2
+  BRA _label_5
+_bcc_label_2:
+  decf compteurU, F
+  setf compteurH
+  setf compteurL
+  BRA   _label_6
+_label_5:
+  movlw 0xF
+  movwf compteurU
+  movlw 0x42
+  movwf compteurH
+  movlw 0x40
+  movwf compteurL
+  BTG  PORTE, 0
+_label_6:
+_label_4:
+_label_2:
+  BRA   _label_0
+\end{lstlisting}
+\columnbreak
+\begin{lstlisting}[language=assembleur]
+  ORG 0
+  movlw 0x7
+  movwf ADCON1
+  bcf  TRISE, 0
+  clrf compteurL
+  clrf compteurH
+  clrf compteurU
+_label_0:
+  TSTFSZ compteurL
+  BRA _label_1
+  TSTFSZ compteurH
+  BRA _label_3
+  TSTFSZ compteurU
+  BRA _label_5
+  movlw 0xF
+  movwf compteurU
+  movlw 0x42
+  movwf compteurH
+  movlw 0x40
+  movwf compteurL
+  BTG  PORTE, 0
+  BRA   _label_0
+_label_5:
+  decf compteurU, F
+  setf compteurH
+  setf compteurL
+  BRA   _label_0
+_label_3:
+  decf compteurH, F
+  setf compteurL
+  BRA   _label_0
+_label_1:
+  decf compteurL, F
+  BRA   _label_0
+\end{lstlisting}
+\end{multicols}
+
+
+\subsection{Deuxième exemple : \emph{blink led} sous interruption}
+
+Ce simple programme fait clignoter à 4 Hz une led connectée au port \texttt{RE0}. Il programme donc \texttt{RE0} (broche 8) en sortie. La configuration suppose qu'il est connecté à une horloge externe à 40 MHz sur \texttt{OSC1} (broche 13). Un sous-programme d'interruption est déclenché toutes les 0,1 ms par le timer 2. Pour illustrer les instructions de gestion des bancs, les deux variables sont placées dans le banc 2. Supprimez ou déplacez les instructions « \texttt{banksel} », pour mettre en évidence les vérifications faites par le compilateur.
+
+Le programme a l'allure suivante :
+\begin{lstlisting}[language=piccolo]
+pic18 blink_led_it "18F448" :
+#------------ Configuration
+configuration {
+  ...
+}
+#------------ RAM
+ram accessram {
+  ...
+}
+#------------ Routine d'interruption
+interrupt high fast {
+  ...
+}
+#------------ Routine main
+noreturn routine main bank:requires 0 {
+  ...
+}
+#------------ Fin
+end
+\end{lstlisting}
+
+Le code de configuration est le même que celui du premier exemple.
+
+
+\begin{lstlisting}[language=piccolo]
+ram gpr2 {
+  byte compteurL
+  byte compteurH
+}
+\end{lstlisting}
+La section \texttt{ram} décrit l’attribution de la RAM du micro-contrôleur. Le nom \texttt{gpr2} est le nom du banc qui commence à l’adresse 0x100. Les adresses sont allouées séquentiellement : \texttt{compteurL} a pour adresse 0x100, et \texttt{compteurH} a pour adresse 0x101. Ces deux registres ne seront donc accessibles que via le registre \texttt{BSR}.
+
+
+\begin{lstlisting}[language=piccolo]
+interrupt high fast {
+#--- Acquitter l'interruption du timer 2 
+  bcf  PIR1.TMR2IF 
+#--- Decompter le temps
+  banksel 2 
+  if (compteurL NZ)
+    decf compteurL
+  elsif (compteurH NZ)
+    decf compteurH
+    setf compteurL
+  else
+  #--- Reinitialiser les compteurs
+    movlw  0x13
+    movwf  compteurH
+    movlw  0x87
+    movwf  compteurL
+  #--- Clignoter
+    btg  PORTE.0
+  end
+}
+\end{lstlisting}
+Une section « \texttt{interrupt} » définit un sous-programme d’interruption. Il porte le nom « \texttt{high} », ce qui signifie qu’il est attaché au point d’entrée d’adresse 0x8. Il porte aussi le qualificatif « \texttt{fast} », ce qui signifie que l’instruction \texttt{RETFIE 1} sera engendrée pour effectuer le retour d’interruption.
+
+Dans un programme plus complexe, il n’est pas possible de prévoir à la compilation la valeur de \texttt{BSR} quand une interruption survient. Aussi l’instruction « \texttt{banksel 2} » est obligatoire avant d’adresser les registres du compteur (essayez de la supprimer, le compilateur engendrera un message d'erreur).
+
+\begin{lstlisting}[language=piccolo]
+noreturn routine main bank:requires 0 {
+#--- Aucune entree analogique
+  movlw 7
+  movwf ADCON1
+#--- Programmer RE0 en sortie
+  bcf  TRISE.0
+#--- Initialiser les compteurs
+  banksel 2
+  clrf compteurL
+  clrf compteurH
+#--- Initialiser le Timer 2
+#  Horloge de base : 10 MHz
+#  Le Prescaler est fixe a 4 -> 2 500 kHz
+#  PR2 est fixe a 250 -> 10 kHz
+  movlw  250 - 1 # La periode est PR2 + 1
+  movwf  PR2
+  movlw  @T2CON (TOUTPS:0, TMR2ON:1, T2CKPS:1)
+  movwf  T2CON  
+#--- Autoriser les priorites d'interruption
+  bsf  RCON.IPEN
+#--- Autoriser l'interruption en provenance du Timer 0
+  bsf  PIE1.TMR2IE
+#--- Valider les its
+  bsf  INTCON.GIEH
+  bsf  INTCON.GIEL
+#--- Boucle infinie
+  forever
+  end
+}
+\end{lstlisting}
+
+Deux commentaires : ici aussi, l’instruction « \texttt{banksel 2} » est obligatoire avant d’adresser les registres du compteur (essayez de la supprimer…) ; tous les autres accès s’effectuant via l’acces bank, il n’est pas nécessaire de changer la valeur de \texttt{BSR}.
+
+L’instruction
+\begin{lstlisting}[language=piccolo]
+  movlw  @T2CON (TOUTPS:0, TMR2ON:1, T2CKPS:1)
+\end{lstlisting}
+est particulière : elle permet de construire une valeur immédiate champ par champ (voir à §§).
 
 
 
