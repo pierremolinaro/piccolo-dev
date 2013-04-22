@@ -2,6 +2,7 @@
 set -x
 cd `dirname $0` &&
 ../makefile_macosx/build.command &&
+../makefile_macosx/piccolo --no-color --version | awk '{ print $4; }' > files-from-piccolo/version-piccolo.txt &&
 ../makefile_macosx/piccolo --no-color --memory=18F448 > files-from-piccolo/memory-18F448.txt &&
 ../makefile_macosx/piccolo --no-color --memory=16F690 > files-from-piccolo/memory-16F690.txt &&
 ../makefile_macosx/piccolo --no-color --memory=16F57 > files-from-piccolo/memory-16F57.txt &&
