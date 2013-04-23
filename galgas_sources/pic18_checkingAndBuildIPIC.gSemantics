@@ -175,7 +175,7 @@ override method @instruction_banksel buildIPICinstructionList
   ??@routineKind unused inRoutineKind
 :
   if inShouldPreserveBSR then
-    error mInstructionLocation: "cannot use \"banksel\" here: BSR should be preserved (use it in \"banksave\" construct)" ;
+    error mInstructionLocation: "cannot use \"banksel\" here: bank selection should be preserved (use \"banksave\" instruction)" ;
   end if ;
   if [mBankIndex uint] > 15 then
     error mBankIndex:"selected bank idx should be lower or equal to 15" ;

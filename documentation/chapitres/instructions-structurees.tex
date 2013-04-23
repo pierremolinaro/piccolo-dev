@@ -26,7 +26,7 @@ Piccolo définit les instructions structurées suivantes :
 \begin{itemize}
   \item l'instruction \texttt{mnop} (\refSectionPage{instructionMNOP}) ;
   \item l'instruction conditionnelle simple (\refSectionPage{instructionConditionnelleSimple}) ;
-  \item l'instruction conditionnelle structurée (\refSectionPage{instructionConditionnelleStructurée}) ;
+  \item l'instruction conditionnelle structurée (\refSectionPage{instructionConditionnelleStructuree}) ;
   \item l'instruction répétitive (\refSectionPage{instructionRepetitive}) ;
   \item l'instruction de répétition infinie (\refSectionPage{repetitionInfinie}) ;
   \item l'instruction \texttt{computed retlw} (\refSubsectionPage{instructionComputedRetlw}) ;
@@ -45,21 +45,6 @@ Piccolo définit les instructions structurées suivantes :
 Cette instruction n'existe pas en assembleur. En Piccolo, \texttt{mnop k} engendre une séquence de \texttt{k} instructions \texttt{NOP}.
 
 \texttt{k} est une expression statique. La forme générale des expressions statiques est donnée à la \refSectionPage{expressionImmediate}. Une expression statique est évaluée à la compilation. Le compilateur effectue tous les calculs avec des nombres entiers 32 bits signés.
-
-
-\sectionLabel{Instruction de répétition infinie}{repetitionInfinie}
-
-Cette instruction exprime la répétition infinie des instructions qu'elle contient.
-\begin{lstlisting}[language=piccolo]
-forever
-  liste d'instructions simples ou structurees
-end
-\end{lstlisting}
-
-Implémentation : la répétition infinie est simplement réalisée par une instruction de \texttt{jump} (pour les \emph{pic18}) ou \texttt{goto} (pour les \emph{baseline} et \emph{mid-range}), placée à la fin de la séquence d'instructions, qui renvoie l'exécution au début de la séquence.
-
-
-
 \sectionLabel{Instruction conditionnelle simple}{instructionConditionnelleSimple}
 
 Ces instructions permettent d'exploiter directement les instructions assembleur qui ignorent conditionnellement l'instruction qui les suit, c'est à dire :
@@ -134,7 +119,7 @@ Le \refTableau{instructionsConditionnellesSimplesBaseline} donne la liste de tou
 
 
 
-\sectionLabel{Instruction conditionnelle structurée}{instructionConditionnelleStructurée}
+\sectionLabel{Instruction conditionnelle structurée}{instructionConditionnelleStructuree}
 
 L'instruction conditionnelle est une construction classique des langages de programmation et accepte zéro, un ou plusieurs blocs \texttt{elsif}, et zéro ou un bloc \texttt{else} ; voici différents exemples, \texttt{cca}, \texttt{ccb} et \texttt{ccc} étant des expressions conditionnelles (voir \refSectionPage{formeGeneraleConditions}).
 
@@ -176,6 +161,21 @@ elsif (ccc)
   instructions 3
 end
 \end{lstlisting}
+
+
+
+
+
+\sectionLabel{Instruction de répétition infinie}{repetitionInfinie}
+
+Cette instruction exprime la répétition infinie des instructions qu'elle contient.
+\begin{lstlisting}[language=piccolo]
+forever
+  liste d'instructions simples ou structurees
+end
+\end{lstlisting}
+
+Implémentation : la répétition infinie est simplement réalisée par une instruction de \texttt{jump} (pour les \emph{pic18}) ou \texttt{goto} (pour les \emph{baseline} et \emph{mid-range}), placée à la fin de la séquence d'instructions, qui renvoie l'exécution au début de la séquence.
 
 
 
@@ -226,7 +226,7 @@ Ce type d'instruction n'est pas classique, c'est pourquoi son organigramme est d
 \sectionLabel{Forme générale des conditions}{formeGeneraleConditions}
 
 
-Les instructions conditionnelles structurées (\refSectionPage{instructionConditionnelleStructurée}) et les instructions répétitives (\refSectionPage{instructionRepetitive}) acceptent les mêmes formes de conditions, qui sont des expressions :\begin{itemize}
+Les instructions conditionnelles structurées (\refSectionPage{instructionConditionnelleStructuree}) et les instructions répétitives (\refSectionPage{instructionRepetitive}) acceptent les mêmes formes de conditions, qui sont des expressions :\begin{itemize}
   \item dont les conditions élémentaires sont données à la \refSubsectionPage{conditionsElementairesPic18} (\emph{pic18}) ;
   \item dont les opérateurs sont la négation « \texttt{!} », le \emph{et logique} « \texttt{\&} », et le \emph{ou logique} « \texttt{|} » ;
   \item utilisant les parenthèses « \texttt{(} » et « \texttt{)} » pour forcer le groupement.
@@ -719,9 +719,55 @@ Le contrat est le suivant :\begin{itemize}
 \item pour l'appelant, aucune contrainte sur la sélection de banc au moment de l'appel, aucune garantie sur la sélection de banc après l'exécution de la routine ; \item pour la routine appelée, cela signifie que la sélection de banc est inconnue au début de la routine : seul un registre accessible à partir de n'importe quel banc pourra être accédé directement ; pour les autres, il faudra utiliser une instruction \texttt{banksel} pour fixer la sélection d'un banc ; la valeur de sélection de banc à la fin de l'exécution de la routine est quelconque.
 \end{itemize}
 
-Par exemple (\texttt{varAnyBank} est accessible quel soit la sélection de banc, \texttt{varBank1} est déclaré dans le banc 1, \texttt{varBank2} dans le banc 2) :
+~\\
+\textbf{Exemple 1.} \texttt{varAnyBank} est accessible quel soit la sélection de banc, \texttt{varBank1} est déclaré dans le banc 1, \texttt{varBank2} dans le banc 2 :
 \begin{lstlisting}[language=piccolo]
 routine maRoutine {  clrf varAnyBank  banksel 1  clrf varBank1  banksel 2  clrf varBank2}\end{lstlisting}
+
+Cette routine est compilée sans erreur.
+
+
+~\\
+\textbf{Exemple 2.} \texttt{varAnyBank} est accessible quel soit la sélection de banc, \texttt{varBank1} est déclaré dans le banc 1, \texttt{varBank2} dans le banc 2 :
+\begin{lstlisting}[language=piccolo]
+routine maRoutine {  clrf varAnyBank  clrf varBank1  clrf varBank2}\end{lstlisting}
+
+La compilation de cette routine provoque deux erreurs (utiliser l’option \texttt{-d} pour obtenir des messages détaillés) :
+
+\begin{quote}\texttt{  clrf varBank1}\\
+\texttt{-{-}-{-}-{-}-{-}-{-}-{-}-\^{}}\\
+\textcolor{red}{\tt semantic error: Accessing the 'varBank1' needs the bank selection set to 1, but current bank selection cannot be known}\\
+
+\texttt{  clrf varBank2}\\
+\texttt{-{-}-{-}-{-}-{-}-{-}-{-}-\^}\\
+\textcolor{red}{\tt semantic error: Accessing the 'varBank2' needs the bank selection set to 2, but current bank selection cannot be known}
+\end{quote}
+
+
+
+
+~\\
+\textbf{Exemple 3.} \texttt{varAnyBank} est accessible quel soit la sélection de banc, \texttt{varBank1} est déclaré dans le banc 1, \texttt{varBank2} dans le banc 2 :
+\begin{lstlisting}[language=piccolo]
+routine maRoutine {  clrf varAnyBank
+  banksel 1  clrf varBank1  clrf varBank2}\end{lstlisting}
+
+La compilation de cette routine provoque une erreur (utiliser l’option \texttt{-d} pour obtenir des messages détaillés) :
+
+\begin{quote}\texttt{  clrf varBank2}\\
+\texttt{-{-}-{-}-{-}-{-}-{-}-{-}-\^}\\
+\textcolor{red}{\tt semantic error: Accessing the 'varBank2' needs the bank selection set to 2, but but current bank selection is set to 1}
+\end{quote}
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -733,11 +779,40 @@ Le contrat est le suivant :\begin{itemize}
 
 Si utiliser une instruction \texttt{banksel} dans la routine est indispensable, la seule façon de préserver la sélection de banc est d'utiliser l'instruction \texttt{banksave}. 
 
-Par exemple (\texttt{varAnyBank} est accessible quel soit la sélection de banc, \texttt{varBank1} est déclaré dans le banc 1, \texttt{varBank2} dans le banc 2) :
+~\\
+\textbf{Exemple 1.} \texttt{varAnyBank} est accessible quel soit la sélection de banc, \texttt{varBank1} est déclaré dans le banc 1, \texttt{varBank2} dans le banc 2 :
 \begin{lstlisting}[language=piccolo]
 routine maRoutine bank:preserved {
   clrf varAnyBank  banksave save_bank    banksel 1    clrf varBank1    banksel 2    clrf varBank2
   end}\end{lstlisting}
+
+Cette routine est compilée sans erreur.
+
+
+~\\
+\textbf{Exemple 2.} \texttt{varAnyBank} est accessible quel soit la sélection de banc, \texttt{varBank1} est déclaré dans le banc 1, \texttt{varBank2} dans le banc 2 :
+\begin{lstlisting}[language=piccolo]
+routine maRoutine bank:preserved {  clrf varAnyBank
+  banksel 1  clrf varBank1  banksel 2  clrf varBank2}\end{lstlisting}
+
+La compilation de cette routine provoque deux erreurs (utiliser l’option \texttt{-d} pour obtenir des messages détaillés) :
+
+\begin{quote}\texttt{ banksel 1}\\
+\texttt{-{-}-{-}-{-}-{-}-\^}\\
+\textcolor{red}{\tt semantic error: cannot use "banksel" here: bank selection should be preserved (use "banksave" instruction)}\\
+
+\texttt{  banksel 2}\\
+\texttt{-{-}-{-}-{-}-{-}-\^}\\
+\textcolor{red}{\tt semantic error: cannot use "banksel" here: bank selection should be preserved (use "banksave" instruction)}
+\end{quote}
+
+
+
+
+
+
+
+
 
 
 
@@ -817,3 +892,62 @@ routine maRoutine bank:requires 1 ensures 2 {
 
 
 
+
+
+
+\subsectionLabel{Sélection de banc et instruction conditionnelle structurée}{selectionBancInstructionConditionnelleStructuree}
+
+L'instruction conditionnelle structurée est présentée à la \refSectionPage{instructionConditionnelleStructuree} et a la forme générale suivante :
+
+\begin{lstlisting}[language=piccolo]
+if (cca)
+  instructions 1
+elsif (ccb)
+  instructions 2
+else
+  instructions 3
+end
+\end{lstlisting}
+
+~\\
+\textbf{Règles :}
+\begin{itemize}
+  \item la sélection initiale de banc sera utilisée pour l’évaluation des conditions \texttt{cca} et \texttt{ccb}, et sera la valeur au début de l'exécution de chaque branche ;  \item toutes les branches doivent laisser la sélection de banc dans le même état : soit avec la même valeur connue, soit avec une valeur considérée comme invalide.\end{itemize}
+L’exemple à cette page §§ illustre comment les instructions « banksel » et « nobank » peuvent être utilisées pour vérifier cette règle. 
+
+
+\subsectionLabel{Sélection de banc et instruction de répétition infinie}{selectionBancInstructionRepetitionInfinie}
+
+L'instruction de répétition infinie est présentée à la \refSectionPage{repetitionInfinie} et a la forme générale suivante :
+
+\begin{lstlisting}[language=piccolo]
+forever
+  instructions_repetees
+end
+\end{lstlisting}
+
+~\\
+\textbf{Règle :}
+\begin{itemize}
+  \item la liste d'instructions \texttt{instructions\_repetees} doit préserver la sélection de banc.\end{itemize}
+
+
+
+\subsectionLabel{Sélection de banc et instruction répétitive}{selectionBancInstructionRepetitive}
+
+L'instruction de répétition infinie est présentée à la \refSectionPage{instructionRepetitive} et a la forme générale suivante :
+
+\begin{lstlisting}[language=piccolo]
+do
+  instructions 1
+while (cca)
+  instructions 2
+while (ccb)
+  instructions 3
+end
+\end{lstlisting}
+
+~\\
+\textbf{Règles :}
+\begin{itemize}
+  \item chaque liste d'instructions (\texttt{instructions 1}, \texttt{instructions 2}, \texttt{instructions 3}) doit préserver la sélection de banc ;  \item l'évaluation des conditions \texttt{cca} et \texttt{ccb} s'effectue avec cette sélection de banc.\end{itemize}

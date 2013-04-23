@@ -236,7 +236,7 @@ override method @midrange_instruction_banksel build_midrange_ipic_instructionLis
   ??@routineKind unused inRoutineKind
 :
   if inShouldPreserveBank then
-    error mInstructionLocation: "cannot use \"banksel\" here: bank selection should be preserved (save it with \"banksave\" construct)" ;
+    error mInstructionLocation: "cannot use \"banksel\" here: bank selection should be preserved (use \"banksave\" instruction)" ;
   end if ;
 #---
   @registerExpression STATUS_register [new ![@lstring new !"STATUS" !here] ![@luint new !0 !here]] ;
