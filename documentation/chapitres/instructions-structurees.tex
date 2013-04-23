@@ -26,12 +26,18 @@ Piccolo définit les instructions structurées suivantes :
 \begin{itemize}
   \item l'instruction \texttt{mnop} (\refSectionPage{instructionMNOP}) ;
   \item l'instruction conditionnelle simple (\refSectionPage{instructionConditionnelleSimple}) ;
-  \item l'instruction conditionnelle structurée ;
-  \item l'instruction répétitive ;
+  \item l'instruction conditionnelle structurée (\refSectionPage{instructionConditionnelleStructurée}) ;
+  \item l'instruction répétitive (\refSectionPage{instructionRepetitive}) ;
   \item l'instruction de répétition infinie (\refSectionPage{repetitionInfinie}) ;
-  \item l'instruction \texttt{computed retlw} ;
-  \item l'instruction \texttt{computed bra} ;
-  \item l'instruction \texttt{computed goto}.
+  \item l'instruction \texttt{computed retlw} (\refSubsectionPage{instructionComputedRetlw}) ;
+  \item l'instruction \texttt{computed bra} (\refSubsectionPage{instructionComputedBra}) ;
+  \item l'instruction \texttt{computed goto} (\refSubsectionPage{instructionComputedGoto}) ;
+  \item l'instruction \texttt{banksel} (\refSubsectionPage{instructionBanksel}) ;
+
+  \item l'instruction \texttt{nobank} (\refSubsectionPage{instructionNoBank}) ;
+
+  \item l'instruction \texttt{banksave} (\refSubsectionPage{instructionBanksave}).
+
 \end{itemize}
 
 \sectionLabel{Instruction \texttt{mnop}}{instructionMNOP}
@@ -42,22 +48,40 @@ Cette instruction n'existe pas en assembleur. En Piccolo, \texttt{mnop k} engend
 
 
 \sectionLabel{Instruction de répétition infinie}{repetitionInfinie}
-Cette instruction exprime la répétition infinie des instructions qu'elle contient.
+
+Cette instruction exprime la répétition infinie des instructions qu'elle contient.
 \begin{lstlisting}[language=piccolo]
-forever  liste d'instructions simples ou structureesend\end{lstlisting}
-Implémentation : la répétition infinie est simplement réalisée par une instruction de \texttt{jump} (pour les \emph{pic18}) ou \texttt{goto} (pour les \emph{baseline} et \emph{mid-range}), placée à la fin de la séquence d'instructions, qui renvoie l'exécution au début de la séquence.
+forever
+  liste d'instructions simples ou structurees
+end
+\end{lstlisting}
+
+Implémentation : la répétition infinie est simplement réalisée par une instruction de \texttt{jump} (pour les \emph{pic18}) ou \texttt{goto} (pour les \emph{baseline} et \emph{mid-range}), placée à la fin de la séquence d'instructions, qui renvoie l'exécution au début de la séquence.
 
 
 
 \sectionLabel{Instruction conditionnelle simple}{instructionConditionnelleSimple}
 
-Ces instructions permettent d’exploiter directement les instructions assembleur qui ignorent conditionnellement l’instruction qui les suit, c’est à dire :
+Ces instructions permettent d'exploiter directement les instructions assembleur qui ignorent conditionnellement l'instruction qui les suit, c'est à dire :
 \begin{itemize}
-\item pour les \emph{baseline} et les \emph{mid-range} : \texttt{DECFSZ}, \texttt{INCFSZ}, \texttt{BTFSC} et \texttt{BTFSS} ;\item pour les \emph{pic18} : \texttt{CPFSEQ}, \texttt{CPFSGT}, \texttt{CPFSLT}, \texttt{DECFSZ}, \texttt{DCFSNZ}, \texttt{INCFSZ}, \texttt{INFSNZ}, \texttt{TSTFSZ}, \texttt{BTFSC} et \texttt{BTFSS}.\end{itemize}
-~\\
-La syntaxe de l’instruction conditionnelle simple est la suivante :\begin{lstlisting}[language=piccolo]
-if condition_simple : instruction_simple\end{lstlisting}
-Noter que l’instruction exécutée conditionnellement ne peut être qu’une instruction simple.Noter aussi la différence suivante : l’instruction assembleur indique la condition de saut de l’instruction suivante, tandis que le conditionnelle simple nomme sa condition d’exécution, c’est à dire son complémentaire.Pour les \emph{pic18}, seules trois comparaisons d’un registre avec \texttt{W} existent pour l’instruction conditionnelle simple : elles correspondent aux instructions assembleur \texttt{CPFSEQ}, \texttt{CPFSGT} et \texttt{CPFSLT}. L’instruction conditionnelle structurée implémente les six comparaisons.Pour le test individuel d’un bit, la notation \texttt{registre.bit} est utilisée : celle-ci est présentée §.
+\item pour les \emph{baseline} et les \emph{mid-range} : \texttt{DECFSZ}, \texttt{INCFSZ}, \texttt{BTFSC} et \texttt{BTFSS} ;
+\item pour les \emph{pic18} : \texttt{CPFSEQ}, \texttt{CPFSGT}, \texttt{CPFSLT}, \texttt{DECFSZ}, \texttt{DCFSNZ}, \texttt{INCFSZ}, \texttt{INFSNZ}, \texttt{TSTFSZ}, \texttt{BTFSC} et \texttt{BTFSS}.
+\end{itemize}
+
+~\\
+La syntaxe de l'instruction conditionnelle simple est la suivante :
+
+\begin{lstlisting}[language=piccolo]
+if condition_simple : instruction_simple
+\end{lstlisting}
+
+Noter que l'instruction exécutée conditionnellement ne peut être qu'une instruction simple.
+
+Noter aussi la différence suivante : l'instruction assembleur indique la condition de saut de l'instruction suivante, tandis que le conditionnelle simple nomme sa condition d'exécution, c'est à dire son complémentaire.
+
+Pour les \emph{pic18}, seules trois comparaisons d'un registre avec \texttt{W} existent pour l'instruction conditionnelle simple : elles correspondent aux instructions assembleur \texttt{CPFSEQ}, \texttt{CPFSGT} et \texttt{CPFSLT}. L'instruction conditionnelle structurée implémente les six comparaisons.
+
+Pour le test individuel d'un bit, la notation \texttt{registre.bit} est utilisée : celle-ci est présentée §.
 
 Le \refTableau{instructionsConditionnellesSimplesBaseline} donne la liste de toutes les instructions conditionnelles simples pour les \emph{baseline} et \emph{mid-range}, et le \refTableau{instructionsConditionnellesSimplesPic18} pour celles des \emph{pic18}.
 
@@ -106,4 +130,690 @@ Le \refTableau{instructionsConditionnellesSimplesBaseline} donne la liste de tou
   \caption{Instructions conditionnelles simples pour \emph{pic18}}
   \labelTableau{instructionsConditionnellesSimplesPic18}
 \end{table}
+
+
+
+
+\sectionLabel{Instruction conditionnelle structurée}{instructionConditionnelleStructurée}
+
+L'instruction conditionnelle est une construction classique des langages de programmation et accepte zéro, un ou plusieurs blocs \texttt{elsif}, et zéro ou un bloc \texttt{else} ; voici différents exemples, \texttt{cca}, \texttt{ccb} et \texttt{ccc} étant des expressions conditionnelles (voir \refSectionPage{formeGeneraleConditions}).
+
+
+Pas de branche \texttt{elsif} ni \texttt{else} :
+\begin{lstlisting}[language=piccolo]
+if (cca)
+  instructions 1
+end
+\end{lstlisting}
+
+Pas de branche \texttt{elsif} et une branche \texttt{else} :
+\begin{lstlisting}[language=piccolo]
+if (cca)
+  instructions 1
+else
+  instructions 3
+end
+\end{lstlisting}
+
+Une branche \texttt{elsif} et une branche \texttt{else} :
+\begin{lstlisting}[language=piccolo]
+if (cca)
+  instructions 1
+elsif (ccb)
+  instructions 2
+else
+  instructions 3
+end
+\end{lstlisting}
+
+Plusieurs branches \texttt{elsif}, pas de branche \texttt{else} :
+\begin{lstlisting}[language=piccolo]
+if (cca)
+  instructions 1
+elsif (ccb)
+  instructions 2
+elsif (ccc)
+  instructions 3
+end
+\end{lstlisting}
+
+
+
+
+
+
+
+
+\sectionLabel{Instruction répétitive}{instructionRepetitive}
+
+
+L'instruction répétitive a une structure moins répandue car elle accepte un ou plusieurs blocs \texttt{while} ; voici plusieurs exemples, \texttt{cca}, \texttt{ccb} et \texttt{ccc} étant des expressions conditionnelles (voir \refSectionPage{formeGeneraleConditions}).
+
+
+Voici un premier exemple, qui a une exécution équivalente à l'instruction \texttt{while (cca) do \{ instructions \}} du langage C :
+\begin{lstlisting}[language=piccolo]
+do
+while (cca)
+  instructions
+end
+\end{lstlisting}
+
+La construction suivante a une exécution équivalente à l'instruction \texttt{do \{ instructions \} while (cca) ;} du langage C :
+\begin{lstlisting}[language=piccolo]
+do
+  instructions
+while (cca)
+end
+\end{lstlisting}
+
+Enfin, voici un exemple avec deux branches \texttt{while} :
+\begin{lstlisting}[language=piccolo]
+do
+  instructions 1
+while (cca)
+  instructions 2
+while (ccb)
+  instructions 3
+end
+\end{lstlisting}
+
+Ce type d'instruction n'est pas classique, c'est pourquoi son organigramme est donné.
+
+
+
+
+
+\sectionLabel{Forme générale des conditions}{formeGeneraleConditions}
+
+
+Les instructions conditionnelles structurées (\refSectionPage{instructionConditionnelleStructurée}) et les instructions répétitives (\refSectionPage{instructionRepetitive}) acceptent les mêmes formes de conditions, qui sont des expressions :\begin{itemize}
+  \item dont les conditions élémentaires sont données à la \refSubsectionPage{conditionsElementairesPic18} (\emph{pic18}) ;
+  \item dont les opérateurs sont la négation « \texttt{!} », le \emph{et logique} « \texttt{\&} », et le \emph{ou logique} « \texttt{|} » ;
+  \item utilisant les parenthèses « \texttt{(} » et « \texttt{)} » pour forcer le groupement.
+\end{itemize}
+
+~\\
+\textbf{La négation « \texttt{!} ».} C'est un opérateur unaire préfixé : si \texttt{cc} est une condition, \texttt{!cc} exprime la condition complémentaire. % Noter que la négation est résolue lors de la compilation, ainsi par exemple les conditions (registre z) et (! registre nz) engendrent exactement le même code.
+
+
+~\\
+\textbf{Le \emph{et logique} « \texttt{\&} ».} C'est un opérateur infixe : si \texttt{cc1} et \texttt{cc2} sont deux conditions, \texttt{cc1 \& cc2} exprime le \emph{et logique} de ces deux conditions. Son fonctionnement est du type court-circuit : \texttt{cc1} est toujours évaluée la première et, si elle est évaluée fausse, \texttt{cc2} n'est pas évaluée. Ce point est important si l'évaluation de la seconde condition a un effet de bord (c'est le cas des conditions nommant \texttt{decf} ou \texttt{incf}).
+
+~\\
+\textbf{Le \emph{ou logique} « \texttt{|} ».} De même, c'est un opérateur infixe : \texttt{cc1 | cc2} exprime le \emph{ou logique} de ces deux conditions. Son fonctionnement est aussi du type court-circuit : \texttt{cc1} est toujours évaluée la première et, si elle est évaluée vraie, \texttt{cc2} n'est pas évaluée.
+
+~\\
+\textbf{Priorité des opérateurs.} La négation « \texttt{!} » est l'opérateur le plus prioritaire, le \emph{ou logique} « \texttt{|} » le moins prioritaire. Par exemple, \texttt{!cc1\&cc2} est équivalent à \texttt{(!cc1)\&cc2} et \texttt{cc1|cc2\&cc3} est équivalent à \texttt{cc1|(cc2\&cc3)}.
+
+~\\
+\textbf{Associativité des opérateurs.} Le \emph{et logique} « \texttt{\&} » et le \emph{ou logique} « \texttt{|} » sont associatifs à gauche. Par exemple, \texttt{cc1\&cc2\&cc3} est équivalent à \texttt{(cc1\&cc2)\&cc3}.
+
+
+\subsectionLabel{Conditions élémentaires pour \emph{baseline} et \emph{mid-range}}{conditionsElementairesBaselineMidRange}
+
+Les conditions élémentaires exploitent les quatre instructions conditionnelles des \emph{baseline} et des \emph{mid-range} : \texttt{BTFSC}, \texttt{BTFSS}, \texttt{DECFSZ} et \texttt{INCFSZ}. Les conditions exprimables en Piccolo peuvent être classées en deux groupes :
+\begin{itemize}
+  \item les conditions basées sur le test d'un bit d'un registre (\refTableau{conditionsElementairesBaselineTestRegistre}) ;
+  \item les conditions basées sur la décrémentation ou l'incrémentation d'un registre (\refTableau{conditionsElementairesBaseLineIncDecRegistre}).
+\end{itemize}
+
+
+Les conditions basées sur le test d'un bit d'un registre sont listées dans le \refTableau{conditionsElementairesBaselineTestRegistre}.
+
+\begin{table}[!ht]
+  \centering
+  \small
+  \begin{tabular}{lll}
+    \textbf{Condition} & \textbf{Signification} & \textbf{Code engendré}\\
+    \hline
+                           \texttt{registre.bit}  & registre.bit $\ne$ 0 ? &\texttt{BTFSS registre,bit}\\
+                                                  &                        & \texttt{GOTO label}\\
+    \rowcolor{\fondTableau}\texttt{! registre.bit}  & registre.bit = 0 ? & \texttt{BTFSC registre,bit} \\
+    \rowcolor{\fondTableau}                         &                    & \texttt{GOTO label}\\
+    \hline
+  \end{tabular}
+  \caption{Conditions pour \emph{baseline} et \emph{mid-range} basées sur le test d'un bit d'un registre}
+  \labelTableau{conditionsElementairesBaselineTestRegistre}
+\end{table}
+
+
+Le \refTableau{conditionsElementairesBaseLineIncDecRegistre} liste les conditions basées sur les instructions \texttt{DECFSZ} et \texttt{INCFSZ}. La non symétrie du jeu d'instructions provoquent des codes engendrés de tailles différentes selon les conditions exprimées. 
+
+\begin{table}[!ht]
+  \centering
+  \small
+  \begin{tabular}{lllll}
+    \textbf{Condition} & \textbf{Signification} & \textbf{Code engendré}\\
+    \hline
+                           \texttt{decf registre z}   & registre := registre - 1    &\texttt{DECFSZ registre}\\
+                                                      & registre = 0 ?              &\texttt{GOTO \$ + 2}      \\
+                                                      &                             &\texttt{GOTO label}      \\
+    \rowcolor{\fondTableau}\texttt{decf registre, W z}& WREG := registre - 1 &\texttt{DECFSZ registre, W}  \\
+    \rowcolor{\fondTableau}                           & WREG = 0 ?           &\texttt{GOTO \$ + 2}          \\
+    \rowcolor{\fondTableau}                           &                      &\texttt{GOTO label}          \\
+                           \texttt{decf registre nz}  & registre := registre - 1    &\texttt{DECFSZ registre} \\
+                                                      & registre $\ne$ 0 ?              &\texttt{GOTO label}   \\
+    \rowcolor{\fondTableau}\texttt{decf registre, W nz}& WREG := registre - 1 &\texttt{DECFSZ registre, W}  \\
+    \rowcolor{\fondTableau}                           & WREG $\ne$ 0 ?           &\texttt{GOTO label}        \\
+                           \texttt{incf registre z}   & registre := registre + 1    &\texttt{INCFSZ registre} \\
+                                                      & registre = 0 ?              &\texttt{GOTO \$ + 2}      \\
+                                                      &                             &\texttt{GOTO label}      \\
+    \rowcolor{\fondTableau}\texttt{incf registre, W z}& WREG := registre + 1 &\texttt{INCFSZ registre, W} \\
+    \rowcolor{\fondTableau}                           & WREG = 0 ?           &\texttt{GOTO \$ + 2}          \\
+    \rowcolor{\fondTableau}                           &                      &\texttt{GOTO label}          \\
+                           \texttt{incf registre nz}  & registre := registre + 1    &\texttt{INCFSZ registre}\\
+                                                      & registre $\ne$ 0 ?              &\texttt{BRA label}   \\
+    \rowcolor{\fondTableau}\texttt{incf registre, W nz}& WREG := registre + 1 &\texttt{INCFSZ registre, W}  \\
+    \rowcolor{\fondTableau}                           & WREG $\ne$ 0 ?           &\texttt{GOTO label}         \\
+    \hline
+  \end{tabular}
+  \caption{Conditions pour \emph{baseline} et \emph{mid-range} basées sur la décrémentation et l'incrémentation d'un registre}
+  \labelTableau{conditionsElementairesBaseLineIncDecRegistre}
+\end{table}
+
+
+
+
+
+\subsectionLabel{Conditions élémentaires pour \emph{pic18}}{conditionsElementairesPic18}
+
+Les conditions élémentaires exploitent les différentes instructions conditionnelles des \emph{pic18}. L'abondance de ces instructions engendre une liste très fournie :
+\begin{itemize}
+  \item les conditions basées sur les instructions de saut conditionnelles (\refTableau{conditionsElementairesPic18SautConditionnel}) ;
+  \item les conditions basées sur la comparaison d'un registre avec \texttt{WREG} (\refTableau{conditionsElementairesPic18ComparaisonsW}) ;
+  \item les conditions basées sur le test d'un registre ou de l'un de ses bits (\refTableau{conditionsElementairesPic18TestRegistre}) ;
+  \item les conditions basées sur la décrémentation ou l'incrémentation d'un registre (\refTableau{conditionsElementairesPic18IncDecRegistre}).
+\end{itemize}
+
+
+Les instructions de saut conditionnel permettent d'exploiter directement la valeur des bits du registre \texttt{STATUS}. Les conditions correspondantes sont listées dans le \refTableau{conditionsElementairesPic18SautConditionnel}. Leur compilation engendre un code de 2, 4 ou 6 octets, selon l'amplitude du branchement. Piccolo engendre toujours le code le plus petit possible.
+
+\begin{table}[!ht]
+  \centering
+  \small
+  \rowcolors{2}{\fondTableau}{}
+  \begin{tabular}{lp{4cm}lp{2.2cm}p{2.5cm}}
+    \textbf{Condition} & \textbf{Signification} & \multicolumn{3}{l}{\bf Code engendré}\\
+                       &                        & \textbf{2 octets} & \textbf{4 octets} & \textbf{6 octets}\\
+    \hline
+    \texttt{c} & Le bit \texttt{C} du registre \texttt{STATUS} est-il non nul ? &\texttt{BC label}  & \texttt{BNC \$ + 4 BRA label}  & \texttt{BNC \$ + 6 GOTO label} \\
+    \texttt{nc} & Le bit \texttt{C} du registre \texttt{STATUS} est-il nul ? &\texttt{BNC label}  & \texttt{BC \$ + 4 BRA label}  & \texttt{BC \$ + 6 GOTO label} \\
+    \texttt{z} & Le bit \texttt{Z} du registre \texttt{STATUS} est-il non nul ? &\texttt{BZ label}  & \texttt{BNZ \$ + 4 BRA label}  & \texttt{BNZ \$ + 6 GOTO label} \\
+    \texttt{nz} & Le bit \texttt{Z} du registre \texttt{STATUS} est-il nul ? &\texttt{BNZ label}  & \texttt{BZ \$ + 4 BRA label}  & \texttt{BZ \$ + 6 GOTO label} \\
+    \texttt{n} & Le bit \texttt{N} du registre \texttt{STATUS} est-il non nul ? &\texttt{BN label}  & \texttt{BNN \$ + 4 BRA label}  & \texttt{BNN \$ + 6 GOTO label} \\
+    \texttt{nn} & Le bit \texttt{N} du registre \texttt{STATUS} est-il nul ? &\texttt{BNN label}  & \texttt{BN \$ + 4 BRA label}  & \texttt{BN \$ + 6 GOTO label} \\
+    \texttt{ov} & Le bit \texttt{OV} du registre \texttt{STATUS} est-il non nul ? &\texttt{BOV label}  & \texttt{BNOV \$ + 4 BRA label}  & \texttt{BNOV \$ + 6 GOTO label} \\
+    \texttt{nov} & Le bit \texttt{OV} du registre \texttt{STATUS} est-il nul ? &\texttt{BNOV label}  & \texttt{BOV \$ + 4 BRA label}  & \texttt{BOV \$ + 6 GOTO label} \\
+    \hline
+  \end{tabular}
+  \caption{Conditions pour \emph{pic18} basées sur les instructions de saut conditionnel}
+  \labelTableau{conditionsElementairesPic18SautConditionnel}
+\end{table}
+
+
+La comparaison du contenu d'un registre avec la valeur de \texttt{WREG} est effectuée par les instructions assembleur \texttt{CPFSEQ}, \texttt{CPFSLT} et \texttt{CPFSGT}. En Piccolo, les 6 comparaisons sont possibles, et la non symétrie des instructions assembleur provoque la génération d'un code pouvant atteindre 8 octets. Piccolo engendre toujours le code le plus petit possible. Le \refTableau{conditionsElementairesPic18ComparaisonsW} liste ces conditions.
+
+\begin{table}[!ht]
+  \centering
+  \small
+  \begin{tabular}{llll}
+    \textbf{Condition} & \multicolumn{3}{l}{\bf Code engendré}\\
+                       & \textbf{4 octets} & \textbf{6 octets} & \textbf{8 octets}\\
+    \hline
+                           \texttt{registre != W} &\texttt{CPFSEQ registre}  & \texttt{CPFSEQ registre}  &  \\
+                                                  &\texttt{BRA label}        & \texttt{GOTO label}  &  \\
+    \rowcolor{\fondTableau}\texttt{registre >= W} &\texttt{CPFSLT registre}  & \texttt{CPFSLT registre}  &  \\
+    \rowcolor{\fondTableau}                       &\texttt{BRA label}        & \texttt{GOTO label}  &  \\
+                           \texttt{registre <= W} &\texttt{CPFSGT registre}  & \texttt{CPFSGT registre}  &  \\
+                           \texttt{registre <= W} &\texttt{BRA label}        & \texttt{GOTO label}  &  \\
+    \rowcolor{\fondTableau}\texttt{registre == W} & &\texttt{CPFSEQ registre}  & \texttt{CPFSEQ registre}  \\
+    \rowcolor{\fondTableau}                       & &\texttt{BRA \$ + 4}       & \texttt{BRA \$ + 6}  \\
+    \rowcolor{\fondTableau}                       & &\texttt{BRA label}        & \texttt{GOTO label}  \\
+                           \texttt{registre > W}  & &\texttt{CPFSGT registre}  & \texttt{CPFSGT registre}  \\
+                                                  & &\texttt{BRA \$ + 4}       & \texttt{BRA \$ + 6}  \\
+                                                  & &\texttt{BRA label}        & \texttt{GOTO label}  \\
+    \rowcolor{\fondTableau}\texttt{registre > W}  & &\texttt{CPFSLT registre}  & \texttt{CPFSLT registre}  \\
+    \rowcolor{\fondTableau}                       & &\texttt{BRA \$ + 4}       & \texttt{BRA \$ + 6}  \\
+    \rowcolor{\fondTableau}                       & &\texttt{BRA label}        & \texttt{GOTO label}  \\
+    \hline
+  \end{tabular}
+  \caption{Conditions pour \emph{pic18} basées sur les comparaisons avec \texttt{WREG}}
+  \labelTableau{conditionsElementairesPic18ComparaisonsW}
+\end{table}
+
+Les conditions basées sur le test d'un registre sont listées dans le \refTableau{conditionsElementairesPic18TestRegistre}. Remarquer que les conditions listées ne sont pas toutes élémentaires. Ainsi, la condition \texttt{! registre nz} est équivalente à \texttt{registre z}, et \texttt{! registre z} équivalente à \texttt{registre nz}. Remarquer aussi que l'absence d'instruction complémentaire à \texttt{TSTFSZ} entraîne un code plus long pour la condition \texttt{registre z}.
+
+\begin{table}[!ht]
+  \centering
+  \small
+  \begin{tabular}{lllll}
+    \textbf{Condition} & \textbf{Signification} & \multicolumn{2}{l}{\bf Code engendré}\\
+                       &                        & \textbf{Court} & \textbf{Long}\\
+    \hline
+                           \texttt{registre nz}   & registre $\ne$ 0 ? &\texttt{TSTFSZ registre}  & \texttt{TSTFSZ registre}\\
+                                                  &                 &\texttt{BRA label}        & \texttt{GOTO label}\\
+    \rowcolor{\fondTableau}\texttt{registre z}    & registre = 0 ? &\texttt{TSTFSZ registre}  & \texttt{TSTFSZ registre}\\
+    \rowcolor{\fondTableau}                       &                &\texttt{BRA \$ + 4}       & \texttt{BRA \$ + 6}  \\
+    \rowcolor{\fondTableau}                       &                 &\texttt{BRA label}        & \texttt{GOTO label}\\
+                           \texttt{registre.bit}  & registre.bit $\ne$ 0 ? &\texttt{BTFSS registre,bit}  & \texttt{BTFSS registre,bit}\\
+                                                  &                     &\texttt{BRA label}        & \texttt{GOTO label}\\
+    \rowcolor{\fondTableau}\texttt{! registre.bit}  & registre.bit = 0 ? &\texttt{BTFSC registre,bit}  & \texttt{BTFSC registre,bit}\\
+    \rowcolor{\fondTableau}                         &                     &\texttt{BRA label}        & \texttt{GOTO label}\\
+    \hline
+  \end{tabular}
+  \caption{Conditions pour \emph{pic18} basées sur le test d'un registre}
+  \labelTableau{conditionsElementairesPic18TestRegistre}
+\end{table}
+
+
+Enfin, le \refTableau{conditionsElementairesPic18IncDecRegistre} liste les conditions basées sur les instructions \texttt{DECFSZ}, \texttt{DECFSZ}, \texttt{INCFSZ} et \texttt{INFSNZ}. Là encore, elles ne sont pas toutes élementaires : par exemple, \texttt{decf registre nz} est équivalente à \texttt{! decf registre z}. 
+
+\begin{table}[!ht]
+  \centering
+  \small
+  \begin{tabular}{lllll}
+    \textbf{Condition} & \textbf{Signification} & \multicolumn{2}{l}{\bf Code engendré}\\
+                       &                        & \textbf{Court} & \textbf{Long}\\
+    \hline
+                           \texttt{decf registre z}   & registre := registre - 1    &\texttt{DCFSNZ registre}  & \texttt{DCFSNZ registre}\\
+                                                      & registre = 0 ?              &\texttt{BRA label}        & \texttt{GOTO label}\\
+    \rowcolor{\fondTableau}\texttt{decf registre, W z}& WREG := registre - 1 &\texttt{DCFSNZ registre, W}  & \texttt{DCFSNZ registre, W}\\
+    \rowcolor{\fondTableau}                           & WREG = 0 ?           &\texttt{BRA label}           & \texttt{GOTO label}\\
+                           \texttt{decf registre nz}  & registre := registre - 1    &\texttt{DECFSZ registre}  & \texttt{DECFSZ registre}\\
+                                                      & registre $\ne$ 0 ?              &\texttt{BRA label}        & \texttt{GOTO label}\\
+    \rowcolor{\fondTableau}\texttt{decf registre, W nz}& WREG := registre - 1 &\texttt{DECFSZ registre, W}  & \texttt{DECFSZ registre, W}\\
+    \rowcolor{\fondTableau}                           & WREG $\ne$ 0 ?           &\texttt{BRA label}           & \texttt{GOTO label}\\
+                           \texttt{incf registre z}   & registre := registre + 1    &\texttt{INFSNZ registre}  & \texttt{INFSNZ registre}\\
+                                                      & registre = 0 ?              &\texttt{BRA label}        & \texttt{GOTO label}\\
+    \rowcolor{\fondTableau}\texttt{incf registre, W z}& WREG := registre + 1 &\texttt{INFSNZ registre, W}  & \texttt{INFSNZ registre, W}\\
+    \rowcolor{\fondTableau}                           & WREG = 0 ?           &\texttt{BRA label}           & \texttt{GOTO label}\\
+                           \texttt{incf registre nz}  & registre := registre + 1    &\texttt{INCFSZ registre}  & \texttt{INCFSZ registre}\\
+                                                      & registre $\ne$ 0 ?              &\texttt{BRA label}        & \texttt{GOTO label}\\
+    \rowcolor{\fondTableau}\texttt{incf registre, W nz}& WREG := registre + 1 &\texttt{INCFSZ registre, W}  & \texttt{INCFSZ registre, W}\\
+    \rowcolor{\fondTableau}                           & WREG $\ne$ 0 ?           &\texttt{BRA label}           & \texttt{GOTO label}\\
+    \hline
+  \end{tabular}
+  \caption{Conditions pour \emph{pic18} basées sur la décrémentation et l'incrémentation d'un registre}
+  \labelTableau{conditionsElementairesPic18IncDecRegistre}
+\end{table}
+
+
+
+
+
+
+
+\section{Instructions \texttt{computed}}
+
+\subsectionLabel{Instruction \texttt{computed retlw}}{instructionComputedRetlw}
+
+\textcolor{red}{\bf Cette instruction n'est valide que pour les \emph{pic18}.}
+
+~\\
+\textbf{Description.} L'instruction \texttt{computed retlw} est la suivante :
+\begin{lstlisting}[language=piccolo]
+computed [n] retlw cst0, cst1, cst2, ...
+\end{lstlisting}
+
+$n$ est une \emph{expression statique} et doit être égale au nombre des constantes citées après \texttt{retlw}. Ce codage redondant permet de s'assurer que la liste des constantes présente une longueur correcte. Chaque \texttt{cst$_i$} doit avoir une valeur comprise entre -128 et 255.
+
+L'implémentation limite à 128 la valeur de $n$.
+
+~\\
+\textbf{Fonctionnement.} Cette instruction remplace la valeur de \texttt{WREG} par la constante qui lui correspond : \texttt{cst0} pour $0$, \texttt{cst1} pour $1$, …, \texttt{cst$_{n-1}$} pour $n-1$. 
+
+~\\
+\textbf{Limitation.} À l'exécution, il est nécessaire que la valeur non signée de \texttt{WREG} soit strictement inférieur au nombre de constantes. \textcolor{red}{\bf Le code engendré par Piccolo n'effectue aucune vérification.} Il est donc probable que ne pas respecter cette règle entraîne un plantage du programme.
+
+
+~\\
+\textbf{Exemple.} Voici comment un chiffre hexadécimal peut être transformé en le caractère ASCII le représentant :
+\begin{lstlisting}[language=piccolo]
+routine CONVERSION_HEX_ASCII {
+  andlw   0x0F
+  computed [16] retlw
+   '0', '1', '2', '3', '4', '5', '6', '7',
+   '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'
+}
+\end{lstlisting}
+
+Le code assembleur engendré est le suivant :
+\begin{lstlisting}[language=assembleur]
+CONVERSION_HEX_ASCII:
+  ANDLW   0x0F
+  RCALL  _computed_goto_2
+  RETLW  '0'
+  RETLW  '1'
+  RETLW  '2'
+  RETLW  '3'
+  RETLW  '4'
+  RETLW  '5'
+  RETLW  '6'
+  RETLW  '7'
+  RETLW  '8'
+  RETLW  '9'
+  RETLW  'A'
+  RETLW  'B'
+  RETLW  'C'
+  RETLW  'D'
+  RETLW  'E'
+  RETLW  'F'
+\end{lstlisting}
+
+Si la distance d'appel est trop longue pour une instruction \texttt{RCALL}, une instruction \texttt{CALL} est utilisée.
+
+Ce code fait appel à la routine \texttt{\_computed\_goto\_2} qui est ajoutée automatiquement si nécessaire, à la fin du code (\refSubsectionPage{implementationComputedGoto}). 
+
+\subsectionLabel{Instruction \texttt{computed bra}}{instructionComputedBra}
+
+\textcolor{red}{\bf Cette instruction n'est valide que pour les \emph{pic18}.}
+
+~\\
+\textbf{Description.} Celle-ci est :
+\begin{lstlisting}[language=piccolo]
+computed [n] bra routine0, routine1, routine2, ...
+\end{lstlisting}
+
+$n$ est une \emph{expression statique} doit être égal au nombre de routines citées après \texttt{bra}. Ce codage redondant permet de s'assurer que la liste des routines présente une longueur correcte. Les routines citées doivent toutes être sans retour (c'est-à-dire déclarées avec le qualificatif \texttt{noreturn}), et pouvoir être atteintes par une instruction \texttt{bra} (si ce n'est pas possible, utiliser le \texttt{computed goto} décrite à la \refSubsectionPage{instructionComputedGoto}).
+
+L'implémentation limite à 128 la valeur de $n$.
+
+~\\
+\textbf{Fonctionnement.} Cette instruction agit comme une instruction de branchement en fonction de la valeur de \texttt{WREG} : branchement vers \texttt{routine0} pour 0, vers \texttt{routine1} pour 1, ..., vers \texttt{routine$_{n-1}$} pour $n-1$. 
+
+~\\
+\textbf{Limitation.} À l'exécution, il est nécessaire que la valeur non signée de \texttt{WREG} soit strictement inférieur au nombre de routines. \textcolor{red}{\bf Le code engendré par Piccolo n'effectue aucune vérification.} Il est donc probable que ne pas respecter cette règle entraîne un plantage du programme.
+
+Ce code fait appel à la routine \texttt{\_computed\_goto\_2} qui est ajoutée automatiquement si nécessaire, à la fin du code (\refSubsectionPage{implementationComputedGoto}). 
+
+
+
+\subsectionLabel{Instruction \texttt{computed goto}}{instructionComputedGoto}
+
+\textcolor{red}{\bf Cette instruction n'est valide que pour les \emph{pic18}.}
+
+~\\
+\textbf{Description.} Celle-ci est :
+\begin{lstlisting}[language=piccolo]
+computed [n] goto routine0, routine1, routine2, ...
+\end{lstlisting}
+
+$n$ est une \emph{expression statique} doit être égal au nombre de routines citées après \texttt{goto}. Ce codage redondant permet de s'assurer que la liste des routines présente une longueur correcte. Les routines citées doivent toutes être sans retour (c'est-à-dire déclarées avec le qualificatif \texttt{noreturn}).
+
+L'implémentation limite à 64 la valeur de $n$.
+
+~\\
+\textbf{Fonctionnement.} Cette instruction agit comme une instruction de branchement en fonction de la valeur de \texttt{WREG} : branchement vers \texttt{routine0} pour 0, vers \texttt{routine1} pour 1, ..., vers \texttt{routine$_{n-1}$} pour $n-1$. 
+
+~\\
+\textbf{Limitation.} À l'exécution, il est nécessaire que la valeur non signée de \texttt{WREG} soit strictement inférieur au nombre de routines. \textcolor{red}{\bf Le code engendré par Piccolo n'effectue aucune vérification.} Il est donc probable que ne pas respecter cette règle entraîne un plantage du programme.
+
+
+Ce code fait appel à la routine \texttt{\_computed\_goto\_4} qui est ajoutée automatiquement si nécessaire, à la fin du code (\refSubsectionPage{implementationComputedGoto}). 
+
+
+
+
+\subsectionLabel{Implémentation de \texttt{\_computed\_goto\_x}}{implementationComputedGoto}
+
+Les deux routines \texttt{\_computed\_goto\_2} et \texttt{\_computed\_goto\_4} sont automatiquement ajoutées à la fin du code, si nécessaire. Voici l'implémentation de \texttt{\_computed\_goto\_2} :
+\begin{lstlisting}[language=assembleur]
+_computed_goto_2:
+  ADDWF  WREG, W
+  ADDWFC TOSL, F
+  MOVLW  0
+  ADDWFC TOSH, F
+  ADDWFC TOSU, F
+  RETURN
+\end{lstlisting}
+
+Et celle de \texttt{\_computed\_goto\_4} :
+\begin{lstlisting}[language=assembleur]
+_computed_goto_4:
+  ADDWF  WREG, W
+  ADDWF  WREG, W
+  ADDWFC TOSL, F
+  MOVLW  0
+  ADDWFC TOSH, F
+  ADDWFC TOSU, F
+  RETURN
+\end{lstlisting}
+
+À noter que Piccolo effectue un partage de code lorsque ces routines sont toutes les deux nécessaires :
+\begin{lstlisting}[language=assembleur]
+_computed_goto_4:
+  ADDWF  WREG, W
+_computed_goto_2:
+  ADDWF  WREG, W
+  ADDWFC TOSL, F
+  MOVLW  0
+  ADDWFC TOSH, F
+  ADDWFC TOSU, F
+  RETURN
+\end{lstlisting}
+
+
+
+
+
+
+
+
+
+
+
+
+\sectionLabel{Instructions de gestion des bancs mémoire}{instructionsGestionBancsMemoire}
+
+Les \emph{baseline} ne possèdent pas de mécanisme pour fixer l'adressage d'un banc : l'accès direct est toujours dans le banc 0 (les adresses comprises entre 0x0 et 0x1F). Les autres bancs doivent être accédés via l'adressage indirect.
+
+\textcolor{red}{\bf Les instructions de gestion de bancs mémoire décrites dans cette section ne sont valides que pour les \emph{mid-range} et les \emph{pic18}.}
+
+Pour un \emph{mid-range}, le banc sélectionné est désigné par la valeur des bits \texttt{RP} du registre \texttt{STATUS}. Certains micro-contrôleurs ont jusqu'à 8 bancs, il y a donc 3 bits \texttt{RP}. En assembleur, le changement de banc est réalisé par une séquence d'instructions \texttt{BCF} et \texttt{BSF} sur ces bits (trois instructions dans le pire des cas). 
+
+
+Pour un \emph{pic18}, le banc sélectionné est désigné par la valeur du registre \texttt{BSR}. En assembleur, le changement de banc est réalisé par une instruction \texttt{MOVLB}.
+
+Le but des instructions de gestion des bancs mémoire de Piccolo est multiple :
+\begin{itemize}
+  \item proposer des instructions génériques pour les \emph{mid-range} et les \emph{pic18} ;
+  \item effectuer à la compilation la vérification de la bonne gestion des bancs.
+\end{itemize}
+
+Le second point est primordial lors que l'on ré-utilise un code écrit auparavant pour un autre micro-contrôleur : il peut y a entre les différents micro-contrôleurs de la même famille des différences de localisation de bancs pour des registres spéciaux de même nom ; Piccolo repérera toutes les erreurs d'adressage de banc.
+
+Le second point a aussi des implications importantes dans les attributs associés aux routines : ceci est discuté dans les sections suivantes.
+
+
+
+
+
+
+
+\subsectionLabel{Instruction et banc courant}{instructionEtBancCourant}
+
+
+Piccolo définit précisément pour chaque instruction son comportement vis à vis de la sélection courante de banc. Cela permet au compilateur de signaler toute erreur.
+
+~\\
+\textbf{En entrée.} Une instruction peut :
+\begin{itemize}
+  \item accepter n'importe quelle sélection de banc ;
+  \item exiger qu'un certain banc soit sélectionné.
+\end{itemize}
+
+Par exemple, considérons l'instruction Piccolo \texttt{bsf STATUS.C}. Pour un \emph{mid-range}, le registre \texttt{STATUS} est présent dans tous les bancs, cette instruction est donc indifférente vis à vis de la sélection de banc. Pour un \emph{pic18}, le registre \texttt{STATUS} est situé dans l'\emph{accessbank}, cette instruction est aussi indifférente vis à vis de la sélection de banc. 
+
+Considérons maintenant l'instruction Piccolo \texttt{clrf var}. Pour un \emph{mid-range}, si la variable \texttt{var} est déclarée dans \emph{gprnobank} qui apparaît en miroir dans tous les bancs, cette instruction est donc indifférente vis à vis de la sélection de banc. Sinon, l'instruction exige que le banc correspondant soit sélectionné. Pour un \emph{pic18}, si la variable \texttt{var} est situés dans l'\emph{accessbank}, cette instruction est aussi indifférente vis à vis de la sélection de banc.  Sinon, l'instruction exige que le banc correspondant soit sélectionné. 
+
+
+~\\
+\textbf{En sortie.} L'exécution d'une instruction peut :
+\begin{itemize}
+  \item préserver la sélection courante de banc ;
+  \item sélectionner un banc particulier ;
+  \item rendre inconnue la sélection courante de banc.
+\end{itemize}
+
+\subsectionLabel{Instruction \texttt{banksel}}{instructionBanksel}
+
+\begin{lstlisting}[language=piccolo]
+banksel b\end{lstlisting}
+Cette instruction sélectionne le banc $b$. Pour les \emph{mid-range}, le compilateur engendre une à trois instructions \texttt{BCF} ou \texttt{BSF} des bits \texttt{RP} du registre \texttt{STATUS}. Pour les \emph{pic18}, le compilateur engendre une instruction \texttt{MOVLB}.
+
+Le compilateur Piccolo garde trace de cette instruction, et permet d'assurer que l'accès aux registres du banc $b$ est possible pour les instructions suivantes.\subsectionLabel{Instruction \texttt{nobank}}{instructionNoBank}
+\begin{lstlisting}[language=piccolo]
+nobank
+\end{lstlisting}
+Cette instruction signifie qu'à partir de ce point, on considère que la sélection courante de banc est inconnue. Elle n'engendre aucun code, c'est juste une information destinée au compilateur.\subsectionLabel{Instruction \texttt{banksave}}{instructionBanksave}
+
+\begin{lstlisting}[language=piccolo]
+banksave var  liste_instructionsend\end{lstlisting}
+
+Pour les \emph{mid-range}, cette instruction sauve le registre \texttt{STATUS} dans la variable \texttt{var} avant l'exécution de \texttt{liste\_instructions}, et restitue le registre \texttt{STATUS} quand le \texttt{end} est atteint. La variable \texttt{var} doit être accessible à partir de n'importe quel banc, c'est-à-dire déclaré dans la zone commune \emph{grpnobnk}. L'accumulateur \texttt{W} est utilisé à chaque fois, aussi bien pour la sauvegarde que pour la restitution.
+
+Pour les \emph{pic18}, cette instruction sauve le registre \texttt{BSR} dans la variable \texttt{var} avant l'exécution de \texttt{liste\_instructions}, et restitue le registre \texttt{BSR} quand le \texttt{end} est atteint. Comme les deux transferts sont réalisés au moyen de l'instruction \texttt{MOVFF}, la variable \texttt{var} peut être déclarée dans n'importe quel banc.
+
+
+\subsectionLabel{Déclaration de routine et gestion des bancs}{declarationRoutineEtBancs}
+
+Le comportement des routines vis à vis de la sélection courante de banc doit être déclaré dans son en-tête. Il y a deux qualificatifs possibles pour une routine sans retour (\refTableau{routineSansRetourEtBanc}), et cinq pour une routine régulière (\refTableau{routineReguliereEtBanc}).
+
+
+
+\begin{table}[!ht]
+  \centering
+  \rowcolors{2}{\fondTableau}{}
+  \begin{tabular}{ll}
+    \textbf{Qualificatif} & \textbf{Sélection de banc lors de l'appel} \\
+    \hline
+    \emph{aucun} & ?\\ 
+    \texttt{bank:requires be} & Banc $be$\\ 
+    \hline
+  \end{tabular}
+  \caption{Routine sans retour et qualificatifs associés aux bancs}
+  \labelTableau{routineSansRetourEtBanc}
+\end{table}
+
+\begin{table}[!ht]
+  \centering
+  \rowcolors{2}{\fondTableau}{}
+  \begin{tabular}{lll}
+    \textbf{Qualificatif} & \multicolumn{2}{l}{\bf Sélection de banc} \\
+                          & \textbf{Lors de l'appel}  & \textbf{Lors du retour} \\
+    \hline
+    \emph{aucun} & ? & ?\\ 
+    \texttt{bank:preserved} & ? & Sélection préservée\\ 
+    \texttt{bank:requires be} & Banc $be$ & ?\\ 
+    \texttt{bank:ensures bs} & ? & Banc $bs$\\ 
+    \texttt{bank:requires be ensures bs} & Banc $be$ & Banc $bs$\\ 
+    \hline
+  \end{tabular}
+  \caption{Routine régulière et qualificatifs associés aux bancs}
+  \labelTableau{routineReguliereEtBanc}
+\end{table}
+
+\subsectionLabel{Déclaration de routine sans qualificatif de banc}{declarationRoutineSansBanc}
+
+Le contrat est le suivant :\begin{itemize}
+\item pour l'appelant, aucune contrainte sur la sélection de banc au moment de l'appel, aucune garantie sur la sélection de banc après l'exécution de la routine ; \item pour la routine appelée, cela signifie que la sélection de banc est inconnue au début de la routine : seul un registre accessible à partir de n'importe quel banc pourra être accédé directement ; pour les autres, il faudra utiliser une instruction \texttt{banksel} pour fixer la sélection d'un banc ; la valeur de sélection de banc à la fin de l'exécution de la routine est quelconque.
+\end{itemize}
+
+Par exemple (\texttt{varAnyBank} est accessible quel soit la sélection de banc, \texttt{varBank1} est déclaré dans le banc 1, \texttt{varBank2} dans le banc 2) :
+\begin{lstlisting}[language=piccolo]
+routine maRoutine {  clrf varAnyBank  banksel 1  clrf varBank1  banksel 2  clrf varBank2}\end{lstlisting}
+
+
+
+\subsectionLabel{Routine déclarée avec \texttt{bank:preserved}}{declarationRoutineBancPreserve}
+
+Le contrat est le suivant :\begin{itemize}
+  \item pour l'appelant, aucune contrainte sur la sélection de banc au moment de l'appel, garantie que l'exécution de la routine ne modifiera pas la sélection de banc ; \item pour la routine appelée, cela signifie que la sélection de banc est inconnue au début de la routine : seul un registre accessible à partir de n'importe quel banc pourra être accédé directement ; pour les autres, il faudra utiliser une instruction \texttt{banksel} pour fixer la sélection d'un banc ; la valeur de sélection de banc à la fin de l'exécution doit être préservée.
+\end{itemize}
+
+Si utiliser une instruction \texttt{banksel} dans la routine est indispensable, la seule façon de préserver la sélection de banc est d'utiliser l'instruction \texttt{banksave}. 
+
+Par exemple (\texttt{varAnyBank} est accessible quel soit la sélection de banc, \texttt{varBank1} est déclaré dans le banc 1, \texttt{varBank2} dans le banc 2) :
+\begin{lstlisting}[language=piccolo]
+routine maRoutine bank:preserved {
+  clrf varAnyBank  banksave save_bank    banksel 1    clrf varBank1    banksel 2    clrf varBank2
+  end}\end{lstlisting}
+
+
+
+
+
+\subsectionLabel{Routine déclarée avec \texttt{bank:requires $b_e$}}{declarationRoutineBancRequires}
+
+Le contrat est le suivant :\begin{itemize}
+  \item pour l'appelant, le banc $b_e$ doit être sélectionné au moment de l'appel, aucune garantie sur la sélection de banc après l'exécution de la routine ;   \item pour la routine appelée, garantie que le banc $b_e$ banc est sélectionné au début de la routine : ainsi les registres accessibles à partir de n'importe quel banc et du banc $be$ peuvent être accédés directement ; pour les autres, il faudra utiliser une instruction \texttt{banksel} pour fixer la sélection ; la valeur de sélection de banc à la fin de l'exécution de la routine est quelconque.
+\end{itemize}
+
+Par exemple (\texttt{varAnyBank} est accessible quel soit la sélection de banc, \texttt{varBank1} est déclaré dans le banc 1, \texttt{varBank2} dans le banc 2) :
+\begin{lstlisting}[language=piccolo]
+routine maRoutine bank:requires 1 {
+  clrf varAnyBank  clrf varBank1  banksel 2
+  clrf varBank2
+}\end{lstlisting}
+
+
+
+
+
+
+
+\subsectionLabel{Routine déclarée avec \texttt{bank:ensures $b_s$}}{declarationRoutineBancEnsures}
+
+Le contrat est le suivant :\begin{itemize}
+  \item pour l'appelant, aucune contrainte sur la sélection de banc au moment de l'appel, garantie que le banc $b_s$ est sélectionné après l'exécution de la routine ;   \item cela signifie que la sélection de banc est inconnue au début de la routine : seul un registre accessible à partir de n'importe quel banc pourra être accédé directement ; pour les autres, il faudra utiliser une instruction \texttt{banksel} pour fixer la sélection d'un banc ; le banc $b_s$ doit être sélectionné à la fin de l'exécution.
+\end{itemize}
+
+Par exemple (\texttt{varAnyBank} est accessible quel soit la sélection de banc, \texttt{varBank1} est déclaré dans le banc 1, \texttt{varBank2} dans le banc 2) :
+\begin{lstlisting}[language=piccolo]
+routine maRoutine bank:ensures 1 {
+  clrf varAnyBank  banksel 1
+  clrf varBank1  banksel 2
+  clrf varBank2
+  banksel 1
+}\end{lstlisting}
+
+La dernière instruction \texttt{banksel 1} est indipensable pour garantir que le banc 1 est sélectionné à la fin de l'exécution de la routine.
+
+
+Par contre, dans le cas suivant, on n'a pas besoin de fixer la sélection de banc à la fin de la routine :
+\begin{lstlisting}[language=piccolo]
+routine maRoutine bank:ensures 2 {
+  clrf varAnyBank  banksel 1
+  clrf varBank1  banksel 2
+  clrf varBank2
+}\end{lstlisting}
+
+
+
+
+
+
+
+
+
+
+
+
+\subsectionLabel{Routine déclarée avec \texttt{bank:requires $b_e$ ensures $b_s$}}{declarationRoutineBancRequiresEnsures}
+
+Le contrat est le suivant :\begin{itemize}
+  \item pour l'appelant, le banc $b_e$ doit être sélectionné au moment de l'appel, garantie que le banc $b_s$ est sélectionné après l'exécution de la routine ;   \item cela signifie que le banc $b_e$ est sélectionné au début de la routine : seul un registre accessible à partir de n'importe quel banc pourra être accédé directement ; pour les autres, il faudra utiliser une instruction \texttt{banksel} pour fixer la sélection d'un banc ; le banc $b_s$ doit être sélectionné à la fin de l'exécution.
+\end{itemize}
+
+Par exemple (\texttt{varAnyBank} est accessible quel soit la sélection de banc, \texttt{varBank1} est déclaré dans le banc 1, \texttt{varBank2} dans le banc 2) :
+\begin{lstlisting}[language=piccolo]
+routine maRoutine bank:requires 1 ensures 2 {
+  clrf varAnyBank  clrf varBank1  banksel 2
+  clrf varBank2
+}\end{lstlisting}
+
+
+
+
+
 
