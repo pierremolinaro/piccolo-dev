@@ -8,7 +8,6 @@ root <body>
   ?!@configDefinitionList configDefinitionList
   ?!@constantDefinitionList constantDefinitionList
   ?!@dataList dataList
-  ?!@bool acceptDefaultConfiguration
   ?!@bool needsComputedGoto2
   ?!@bool needsComputedGoto4
 ;

@@ -650,7 +650,6 @@ struct @piccoloModel {
   @programKind mProgramKind ;
   @lstring mDeviceNameOrBootLoaderReference ;
   @configDefinitionList mConfigDefinitionList ;
-  @bool mAcceptDefaultConfiguration ;
   @ramDefinitionList mRamDefinitionList ;
   @dataList mDataList ;
   @interruptDefinitionList mInterruptDefinitionList ;

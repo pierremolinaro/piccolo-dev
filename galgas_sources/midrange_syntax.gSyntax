@@ -7,7 +7,6 @@ import "midrange_semantics.gSemantics" ;
 
 nonterminal <configuration_definition>
   ?!@configDefinitionList ioConfigDefinitionList
-  ?!@bool ioAcceptDefaultConfiguration
 ;
 
 nonterminal <declaration_in_ram>
@@ -51,7 +50,6 @@ rule <start_symbol> :
   @ramDefinitionList ramDefinitionList [emptyList] ;
   @configDefinitionList configDefinitionList [emptyList] ;
   @constantDefinitionList constantDefinitionList [emptyList] ;
-  @bool acceptDefaultConfiguration := false ;
   @bool needsComputedGoto2 := false ;
   @bool needsComputedGoto4 := false ;
   repeat
@@ -59,7 +57,7 @@ rule <start_symbol> :
     $mark$ ;
     $literal_string$ ?* ;
   while
-    <configuration_definition> !?configDefinitionList !?acceptDefaultConfiguration ;
+    <configuration_definition> !?configDefinitionList ;
   while
     <ram_definition> !?ramDefinitionList ;
   while
@@ -84,7 +82,6 @@ rule <start_symbol> :
       !programName
       !deviceName
       !configDefinitionList
-      !acceptDefaultConfiguration
       !ramDefinitionList
       !interruptDefinitionList
       !constantDefinitionList

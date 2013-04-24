@@ -196,7 +196,6 @@ struct @baseline_model {
   @lstring mProgramName ;
   @lstring mDeviceName ;
   @configDefinitionList mConfigDefinitionList ;
-  @bool mAcceptDefaultConfiguration ;
   @ramDefinitionList mRamDefinitionList ;
   @constantDefinitionList mConstantDefinitionList ;
   @baseline_routineDefinitionList mRoutineDefinitionList ;

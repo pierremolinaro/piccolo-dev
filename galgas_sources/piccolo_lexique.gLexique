@@ -31,7 +31,6 @@ list controlKeyWordList error message "the '%K' keyword" style keywordStyle :
   "const",
   "contextsave",
   "data",
-  "default",
   "do",
   "end",
   "else",
