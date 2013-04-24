@@ -10,7 +10,6 @@ import "pic18_metamodel.gSemantics" ;
 
 nonterminal <configuration_definition>
   ?!@configDefinitionList ioConfigDefinitionList
-  ?!@bool ioAcceptDefaultConfiguration
 ;
 
 nonterminal <ram_definition>
@@ -48,13 +47,12 @@ rule <start_symbol> :
   @ramDefinitionList ramDefinitionList [emptyList] ;
   @configDefinitionList configDefinitionList [emptyList] ;
   @constantDefinitionList constantDefinitionList [emptyList] ;
-  @bool acceptDefaultConfiguration := false ;
   repeat
   while
     $mark$ ;
     $literal_string$ ?* ;
   while
-    <configuration_definition> !?configDefinitionList !?acceptDefaultConfiguration ;
+    <configuration_definition> !?configDefinitionList ;
   while
     <ram_definition> !?ramDefinitionList ;
   while
@@ -71,7 +69,6 @@ rule <start_symbol> :
       !programName
       !deviceName
       !configDefinitionList
-      !acceptDefaultConfiguration
       !ramDefinitionList
       !constantDefinitionList
       !routineDefinitionList

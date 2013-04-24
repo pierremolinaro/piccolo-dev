@@ -110,7 +110,6 @@ routine baseline_analysis
   buildConfig
     ![piccoloDeviceModel mConfigRegisterMap]
     ![inPiccoloModel mConfigDefinitionList]
-    ![inPiccoloModel mAcceptDefaultConfiguration]
     !?listFileContents
     ?actualConfigurationMap
   ;

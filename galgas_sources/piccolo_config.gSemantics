@@ -17,7 +17,6 @@ map @configFieldMap {
 routine actualBuildConfig
  ??@configRegisterMap inConfigRegisterMap
  ??@configDefinitionList inConfigDefinitionList
- ??@bool inAcceptDefaultConfiguration
  ?!@string ioListFileContents
  !@actualConfigurationMap outActualConfigurationMap
 :
@@ -66,15 +65,13 @@ routine actualBuildConfig
     end foreach ;
   end foreach ;
 #--- Check if all settings are actually defined
-  if not inAcceptDefaultConfiguration then
-    @stringset notDefinedSetting := [configFieldMap allKeys] - actualSettingNameSet ;
-    if [notDefinedSetting count] > 0 then
-      @string errorMessage := "the following configuration settings are not defined:" ;
-      foreach notDefinedSetting do
-        errorMessage .= "\n-  " . key ;
-      end foreach ;
-      error here : errorMessage ;
-    end if ;
+  const @stringset notDefinedSetting := [configFieldMap allKeys] - actualSettingNameSet ;
+  if [notDefinedSetting count] > 0 then
+    @string errorMessage := "the following configuration settings are not defined:" ;
+    foreach notDefinedSetting do
+      errorMessage .= "\n-  " . key ;
+    end foreach ;
+    error here : errorMessage ;
   end if ;
 #--- Display conguration information in log file
   foreach outActualConfigurationMap do
@@ -110,7 +107,6 @@ end routine ;
 routine buildConfig
  ??@configRegisterMap inConfigRegisterMap
  ??@configDefinitionList inConfigDefinitionList
- ??@bool inAcceptDefaultConfiguration
  ?!@string ioListFileContents
  !@actualConfigurationMap outActualConfigurationMap
 :
@@ -123,7 +119,6 @@ routine buildConfig
     actualBuildConfig
       !inConfigRegisterMap
       !inConfigDefinitionList
-      !inAcceptDefaultConfiguration
       !?ioListFileContents
       ?outActualConfigurationMap
     ;

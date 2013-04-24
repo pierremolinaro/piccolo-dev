@@ -44,7 +44,6 @@ routine midrange_analyze ??@midrange_model inPiccoloModel ??@string inSourceFile
   buildConfig
     ![piccoloDeviceModel mConfigRegisterMap]
     ![inPiccoloModel mConfigDefinitionList]
-    ![inPiccoloModel mAcceptDefaultConfiguration]
     !?listFileContents
     ?actualConfigurationMap
   ;
