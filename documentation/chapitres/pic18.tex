@@ -661,11 +661,11 @@ Le \refTableau{pic18InstructionsPropresPiccolo} liste les instructions compléme
   \begin{tabular}{lll}
     \textbf{Assembleur} & \textbf{Description} & \textbf{Référence en Piccolo}\\
     \hline
-    \texttt{BCF f, b, a} & Bit Clear f & \\
-    \texttt{BSF f, b, a} & Bit Set f & \\
+    \texttt{BCF f, b, a} & Bit Clear f & \refSubsectionPage{opPic18AffectationBit} \\
+    \texttt{BSF f, b, a} & Bit Set f & \refSubsectionPage{opPic18AffectationBit} \\
     \texttt{BTFSC f, b, a} & Bit Test f, Skip if Clear & \refSubsectionPage{instructionsPic18Introuvables}\\
     \texttt{BTFSS f, b, a} & Bit Test f, Skip if Set & \refSubsectionPage{instructionsPic18Introuvables}\\
-    \texttt{BTG f, b, a} & Bit Toggle f & \\
+    \texttt{BTG f, b, a} & Bit Toggle f & \refSubsectionPage{opPic18AffectationBit} \\
   \hline
   \end{tabular}
   \caption{Instructions \emph{bit-oriented} pour \emph{pic18}}
@@ -764,7 +764,6 @@ Le \refTableau{pic18InstructionsPropresPiccolo} liste les instructions compléme
   \begin{tabular}{lll}
     \textbf{Piccolo} & \textbf{Description} & \textbf{Référence}\\
     \hline
-    \texttt{mnop k} & Séquence d'instructions \texttt{NOP} & \refSectionPage{instructionMNOP} \\
     \texttt{jump} & Appel de routine sans retour & \refSubsectionPage{appelRoutineSansRetourPic18} \\
     \texttt{jsr} & Appel de routine régulière &  \refSubsectionPage{appelRoutineRegulierePic18} \\
     \hline
@@ -776,14 +775,17 @@ Le \refTableau{pic18InstructionsPropresPiccolo} liste les instructions compléme
 ~\\
 \textbf{Les instructions composées.} Piccolo définit les instructions suivantes :
 \begin{itemize}
-  \item l’instruction conditionnelle simple ;
-  \item l’instruction conditionnelle structurée ;
-  \item l’instruction répétitive ;
-  \item l’instruction de répétition infinie ;
-  \item l’instruction \texttt{MNOP} ;
-  \item l’instruction \texttt{computed retlw} ;
-  \item l’instruction \texttt{computed bra} ;
-  \item l’instruction \texttt{computed goto}.
+  \item l'instruction \texttt{mnop} (\refSectionPage{instructionMNOP}) ;
+  \item l'instruction conditionnelle simple (\refSectionPage{instructionConditionnelleSimple}) ;
+  \item l'instruction conditionnelle structurée (\refSectionPage{instructionConditionnelleStructuree}) ;
+  \item l'instruction répétitive (\refSectionPage{instructionRepetitive}) ;
+  \item l'instruction de répétition infinie (\refSectionPage{repetitionInfinie}) ;
+  \item l'instruction \texttt{computed retlw} (\refSubsectionPage{instructionComputedRetlw}) ;
+  \item l'instruction \texttt{computed bra} (\refSubsectionPage{instructionComputedBra}) ;
+  \item l'instruction \texttt{computed goto} (\refSubsectionPage{instructionComputedGoto}) ;
+  \item l'instruction \texttt{banksel} (\refSubsectionPage{instructionBanksel}) ;
+  \item l'instruction \texttt{nobank} (\refSubsectionPage{instructionNoBank}) ;
+  \item l'instruction \texttt{banksave} (\refSubsectionPage{instructionBanksave}).
 \end{itemize}
 
 
@@ -881,7 +883,22 @@ Ces instructions, ainsi que le traduction en Piccolo, sont listées dans le \ref
 \end{table}
 
 
-\subsectionLabel{Opérations littérales avec \texttt{WREG}}{opPic18Immediate}
+\subsectionLabel{Opérations d'affectation de bit}{opPic18AffectationBit}
+
+Ces instructions Piccolo correspondent aux instructions assembleur \texttt{BCF}, \texttt{BSF} et \texttt{BTG}.
+
+En Piccolo, ces instructions ont toujours deux arguments :
+\begin{itemize}
+  \item le premier argument est une référence à un registre (\refSectionPage{referenceRegistre}) ;  \item le second est le bit concerné, précédé par un point.\end{itemize}
+Pour désigner le bit concerné, vous pouvez utiliser un nombre compris entre 0 et 7. Par exemple :\begin{lstlisting}[language=piccolo]
+bcf maVariable.3\end{lstlisting}
+Si le registre a été défini en déclarant des noms de bit :\begin{lstlisting}[language=piccolo]
+ram ... {  byte maVariable <a, -, b [3], -, -, ->}\end{lstlisting}
+Vous pouvez utiliser l’un de ces noms comme second argument :\begin{lstlisting}[language=piccolo]
+bcf maVariable.a # a designe le bit 7\end{lstlisting}
+ou encore\begin{lstlisting}[language=piccolo]
+bcf maVariable.b [1] # b[1] designe le bit 4\end{lstlisting}
+Vous pouvez de cette façon accéder aux bits des registres spéciaux. Pour connaître la liste des registres de contrôle, utilisez l’option \texttt{-{}-registers} (ou sa version courte \texttt{-R}), comme décrite à la \refSubsectionPage{exempleOptionRegisters} ; par exemple : \texttt{piccolo -R=18F442}.\subsectionLabel{Opérations littérales avec \texttt{WREG}}{opPic18Immediate}
 
 Ces opérations sont listées dans le \refTableau{operationsLiteralesPic18AvecW}. L’instruction \texttt{RETLW k} n’existe pas en Piccolo, l’optimiseur repérera une séquence \texttt{MOVLW k RETURN} et la transformera en \texttt{RETLW k}.
 
