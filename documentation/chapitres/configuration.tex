@@ -8,4 +8,108 @@
 %--- Pour supprimer tout en-tête et pied de page sur la 1re page d'un chapitre
 \thispagestyle{empty}
 
+Dans un fichier source Piccolo, une section \texttt{configuration} vous permet de définir le contenu des registres de configuration. Les valeurs ainsi définies sont contenues dans le fichier hex et le fichier asm engendré.
+
+
+Les règles d'utilisation sont les suivantes :
+\begin{itemize}
+  \item en l’absence de section \texttt{configuration}, aucun code de configuration n’est défini ;
+  \item si une ou plusieurs sections \texttt{configuration} existent, le code de configuration est engendré.
+\end{itemize}
+
+Plusieurs sections \texttt{configuration} peuvent exister, leur effet est le même que si tous leurs contenus étaient rassemblés dans une seule. L’ordre des sections \texttt{configuration}, et leurs positions parmi les autres sections sont quelconques.
+
+La description définie par les sections \texttt{configuration} doit être exhaustive, c’est à dire que tous les champs de tous les registres de configuration doivent être définis explicitement.
+
+Le fichier listing (obtenu par l’option \texttt{-L} ou \texttt{-{}-list}) contient le détail de la configuration et les éventuels messages d’erreur de configuration.
+
+
+
+
+\section{Connaître les possibilités de configuration d'un contrôleur}
+
+Pour connaître les possibilités de configurations d’un micro-contrôleur particulier (\refSubsectionPage{exempleOptionConfiguration}), utiliser l’option \texttt{-F} ou \texttt{-{}-configuration}, par exemple, pour le 10F220 :
+\begin{quote}
+\texttt{piccolo -F=10F220}
+\end{quote}
+
+Cette commande affiche :
+{\footnotesize \lstinputlisting[frame=l]{files-from-piccolo/configuration-10F220.txt}}
+
+Le texte obtenu indique qu'il y a cinq champs à définir : \texttt{CP}, \texttt{IOSCFS}, \texttt{MCLRE}, \texttt{MCPU} et \texttt{WDTE}. Le champ \texttt{IOSCFS} peut prendre deux valeurs différentes : \texttt{"4 MHz"} et \texttt{"8 MHz"}. Les autres informations telles que le nom des registres, la chaîne d'information, la valeur des masques, … ne sont pas utiles ici.
+
+Il est indispensable d'effectuer cette opération pour chaque micro-contrôleur, les noms des champs et des valeurs associées peuvent être différents entre le \emph{data sheet} du micro-contrôleur et Piccolo.
+
+\section{Écrire une configuration}
+
+Le principe est simple, il suffit d’écrire dans une ou plusieurs sections \texttt{configuration} une liste d’affectations du type :
+
+\begin{lstlisting}[language=piccolo]
+setting : description
+\end{lstlisting}
+
+où \texttt{setting} est le nom d’un champ d’un registre de configuration, et \texttt{description} la chaîne descriptive de la valeur souhaitée (voir section précédente).
+
+Par exemple, pour le 10F220 :
+
+\begin{lstlisting}[language=piccolo]
+configuration {
+  IOSCFS : "4 MHz"
+  CP : "Enabled"
+  ...
+}
+\end{lstlisting}
+
+Si la valeur descriptive est un identificateur (comme pour \texttt{CP}), alors on peut simplifier l’écriture en :
+
+\begin{lstlisting}[language=piccolo]
+  CP : Enabled
+\end{lstlisting}
+
+La règle est simple : il faut que tous les champs soient explicitement affectés. L’ordre des affectations est sans importance. Piccolo vérifie et considère comme une erreur tout manque.
+
+Un champ ne peut être affecté qu’une seule fois. Plusieurs affectations du même champ déclenchent une erreur.
+
+
+\section{Combinaisons incompatibles}
+
+
+Pour certains micro-contrôleurs, certaines affectations particulières sont incompatibles. Ces interdictions sont contenues dans les fichiers de description des micro-contrôleurs, et par conséquent sont vérifiées par Piccolo. 
+
+C’est par exemple le cas du 18F4431 : le champ \texttt{BOREN} ne doit pas prendre la valeur \texttt{Disabled} quand le champ \texttt{BORV} prend la valeur \texttt{Reserved}. Cette incompabilité peut être mise en évidence en affichant la description de la configuration du 18F4431 (\texttt{piccolo -F=18F4431}), dont voici l'extrait qui nous intéresse :
+{\small
+\begin{lstlisting}[frame=l]
+...
+REGISTER 'CONFIG2L' at 0x300002, width 4
+  illegal value 0xC mask 0xC
+     description "Brown out voltage cannot be set to an undefined valued if Brown Out Detect is enabled"
+  setting 'BOREN': mask 0x2 description "Brown-out Reset Enable bits"
+    value 0x0 description "Disabled"
+    value 0x2 description "Enabled"
+  setting 'BORV': mask 0xC description "Brown Out Reset Voltage bits"
+    value 0xC description "Reserved"
+    value 0x8 description "VBOR set to 2.7V"
+    value 0x4 description "VBOR set to 4.2V"
+    value 0x0 description "VBOR set to 4.5V"
+...
+\end{lstlisting}
+}
+
+
+La ligne qui commence par \texttt{illegal} décrit cette incompabilité. Si on tente de définir cette combinaison interdite :
+\begin{lstlisting}[language=piccolo]
+pic18 illegal_configuration "18F4431" :
+configuration {
+  BOREN : Disabled
+  BORV : Reserved
+  ...
+}
+\end{lstlisting}
+
+La compilation Piccolo de ce programme avec Piccolo provoque un message d’erreur qui cite la chaîne de description de l'incompabilité :
+
+
+\textcolor{red}{\tt error: illegal setting for 'CONFIG2L' register: Brown out voltage cannot be set to an undefined valued if Brown Out Detect is enabled}
+
+Le fichier listing (obtenu par l’option \texttt{-L} ou \texttt{-{}-list}) contient le détail de la configuration et ce message d’erreur.
 

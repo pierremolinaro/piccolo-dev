@@ -33,11 +33,8 @@ Piccolo définit les instructions structurées suivantes :
   \item l'instruction \texttt{computed bra} (\refSubsectionPage{instructionComputedBra}) ;
   \item l'instruction \texttt{computed goto} (\refSubsectionPage{instructionComputedGoto}) ;
   \item l'instruction \texttt{banksel} (\refSubsectionPage{instructionBanksel}) ;
-
   \item l'instruction \texttt{nobank} (\refSubsectionPage{instructionNoBank}) ;
-
   \item l'instruction \texttt{banksave} (\refSubsectionPage{instructionBanksave}).
-
 \end{itemize}
 
 \sectionLabel{Instruction \texttt{mnop}}{instructionMNOP}
@@ -658,24 +655,35 @@ Considérons maintenant l'instruction Piccolo \texttt{clrf var}. Pour un \emph{m
 \subsectionLabel{Instruction \texttt{banksel}}{instructionBanksel}
 
 \begin{lstlisting}[language=piccolo]
-banksel b\end{lstlisting}
-Cette instruction sélectionne le banc $b$. Pour les \emph{mid-range}, le compilateur engendre une à trois instructions \texttt{BCF} ou \texttt{BSF} des bits \texttt{RP} du registre \texttt{STATUS}. Pour les \emph{pic18}, le compilateur engendre une instruction \texttt{MOVLB}.
+banksel b
+\end{lstlisting}
 
-Le compilateur Piccolo garde trace de cette instruction, et permet d'assurer que l'accès aux registres du banc $b$ est possible pour les instructions suivantes.\subsectionLabel{Instruction \texttt{nobank}}{instructionNoBank}
+Cette instruction sélectionne le banc $b$. Pour les \emph{mid-range}, le compilateur engendre une à trois instructions \texttt{BCF} ou \texttt{BSF} des bits \texttt{RP} du registre \texttt{STATUS}. Pour les \emph{pic18}, le compilateur engendre une instruction \texttt{MOVLB}.
+
+Le compilateur Piccolo garde trace de cette instruction, et permet d'assurer que l'accès aux registres du banc $b$ est possible pour les instructions suivantes.
+
+\subsectionLabel{Instruction \texttt{nobank}}{instructionNoBank}
 \begin{lstlisting}[language=piccolo]
 nobank
 \end{lstlisting}
-Cette instruction signifie qu'à partir de ce point, on considère que la sélection courante de banc est inconnue. Elle n'engendre aucun code, c'est juste une information destinée au compilateur.\subsectionLabel{Instruction \texttt{banksave}}{instructionBanksave}
+
+Cette instruction signifie qu'à partir de ce point, on considère que la sélection courante de banc est inconnue. Elle n'engendre aucun code, c'est juste une information destinée au compilateur.
+
+\subsectionLabel{Instruction \texttt{banksave}}{instructionBanksave}
 
 \begin{lstlisting}[language=piccolo]
-banksave var  liste_instructionsend\end{lstlisting}
+banksave var
+  liste_instructions
+end
+\end{lstlisting}
 
 Pour les \emph{mid-range}, cette instruction sauve le registre \texttt{STATUS} dans la variable \texttt{var} avant l'exécution de \texttt{liste\_instructions}, et restitue le registre \texttt{STATUS} quand le \texttt{end} est atteint. La variable \texttt{var} doit être accessible à partir de n'importe quel banc, c'est-à-dire déclaré dans la zone commune \emph{grpnobnk}. L'accumulateur \texttt{W} est utilisé à chaque fois, aussi bien pour la sauvegarde que pour la restitution.
 
 Pour les \emph{pic18}, cette instruction sauve le registre \texttt{BSR} dans la variable \texttt{var} avant l'exécution de \texttt{liste\_instructions}, et restitue le registre \texttt{BSR} quand le \texttt{end} est atteint. Comme les deux transferts sont réalisés au moyen de l'instruction \texttt{MOVFF}, la variable \texttt{var} peut être déclarée dans n'importe quel banc.
 
 
-\subsectionLabel{Déclaration de routine et gestion des bancs}{declarationRoutineEtBancs}
+
+\subsectionLabel{Déclaration de routine et gestion des bancs}{declarationRoutineEtBancs}
 
 Le comportement des routines vis à vis de la sélection courante de banc doit être déclaré dans son en-tête. Il y a deux qualificatifs possibles pour une routine sans retour (\refTableau{routineSansRetourEtBanc}), et cinq pour une routine régulière (\refTableau{routineReguliereEtBanc}).
 
@@ -715,14 +723,23 @@ Le comportement des routines vis à vis de la sélection courante de banc doit �
 
 \subsectionLabel{Déclaration de routine sans qualificatif de banc}{declarationRoutineSansBanc}
 
-Le contrat est le suivant :\begin{itemize}
-\item pour l'appelant, aucune contrainte sur la sélection de banc au moment de l'appel, aucune garantie sur la sélection de banc après l'exécution de la routine ; \item pour la routine appelée, cela signifie que la sélection de banc est inconnue au début de la routine : seul un registre accessible à partir de n'importe quel banc pourra être accédé directement ; pour les autres, il faudra utiliser une instruction \texttt{banksel} pour fixer la sélection d'un banc ; la valeur de sélection de banc à la fin de l'exécution de la routine est quelconque.
+Le contrat est le suivant :
+\begin{itemize}
+\item pour l'appelant, aucune contrainte sur la sélection de banc au moment de l'appel, aucune garantie sur la sélection de banc après l'exécution de la routine ; 
+\item pour la routine appelée, cela signifie que la sélection de banc est inconnue au début de la routine : seul un registre accessible à partir de n'importe quel banc pourra être accédé directement ; pour les autres, il faudra utiliser une instruction \texttt{banksel} pour fixer la sélection d'un banc ; la valeur de sélection de banc à la fin de l'exécution de la routine est quelconque.
 \end{itemize}
 
 ~\\
 \textbf{Exemple 1.} \texttt{varAnyBank} est accessible quel soit la sélection de banc, \texttt{varBank1} est déclaré dans le banc 1, \texttt{varBank2} dans le banc 2 :
 \begin{lstlisting}[language=piccolo]
-routine maRoutine {  clrf varAnyBank  banksel 1  clrf varBank1  banksel 2  clrf varBank2}\end{lstlisting}
+routine maRoutine {
+  clrf varAnyBank
+  banksel 1
+  clrf varBank1
+  banksel 2
+  clrf varBank2
+}
+\end{lstlisting}
 
 Cette routine est compilée sans erreur.
 
@@ -730,11 +747,17 @@ Cette routine est compilée sans erreur.
 ~\\
 \textbf{Exemple 2.} \texttt{varAnyBank} est accessible quel soit la sélection de banc, \texttt{varBank1} est déclaré dans le banc 1, \texttt{varBank2} dans le banc 2 :
 \begin{lstlisting}[language=piccolo]
-routine maRoutine {  clrf varAnyBank  clrf varBank1  clrf varBank2}\end{lstlisting}
+routine maRoutine {
+  clrf varAnyBank
+  clrf varBank1
+  clrf varBank2
+}
+\end{lstlisting}
 
 La compilation de cette routine provoque deux erreurs (utiliser l’option \texttt{-d} pour obtenir des messages détaillés) :
 
-\begin{quote}\texttt{  clrf varBank1}\\
+\begin{quote}
+\texttt{  clrf varBank1}\\
 \texttt{-{-}-{-}-{-}-{-}-{-}-{-}-\^{}}\\
 \textcolor{red}{\tt semantic error: Accessing the 'varBank1' needs the bank selection set to 1, but current bank selection cannot be known}\\
 
@@ -749,12 +772,18 @@ La compilation de cette routine provoque deux erreurs (utiliser l’option \text
 ~\\
 \textbf{Exemple 3.} \texttt{varAnyBank} est accessible quel soit la sélection de banc, \texttt{varBank1} est déclaré dans le banc 1, \texttt{varBank2} dans le banc 2 :
 \begin{lstlisting}[language=piccolo]
-routine maRoutine {  clrf varAnyBank
-  banksel 1  clrf varBank1  clrf varBank2}\end{lstlisting}
+routine maRoutine {
+  clrf varAnyBank
+  banksel 1
+  clrf varBank1
+  clrf varBank2
+}
+\end{lstlisting}
 
 La compilation de cette routine provoque une erreur (utiliser l’option \texttt{-d} pour obtenir des messages détaillés) :
 
-\begin{quote}\texttt{  clrf varBank2}\\
+\begin{quote}
+\texttt{  clrf varBank2}\\
 \texttt{-{-}-{-}-{-}-{-}-{-}-{-}-\^}\\
 \textcolor{red}{\tt semantic error: Accessing the 'varBank2' needs the bank selection set to 2, but but current bank selection is set to 1}
 \end{quote}
@@ -773,8 +802,10 @@ La compilation de cette routine provoque une erreur (utiliser l’option \texttt
 
 \subsectionLabel{Routine déclarée avec \texttt{bank:preserved}}{declarationRoutineBancPreserve}
 
-Le contrat est le suivant :\begin{itemize}
-  \item pour l'appelant, aucune contrainte sur la sélection de banc au moment de l'appel, garantie que l'exécution de la routine ne modifiera pas la sélection de banc ; \item pour la routine appelée, cela signifie que la sélection de banc est inconnue au début de la routine : seul un registre accessible à partir de n'importe quel banc pourra être accédé directement ; pour les autres, il faudra utiliser une instruction \texttt{banksel} pour fixer la sélection d'un banc ; la valeur de sélection de banc à la fin de l'exécution doit être préservée.
+Le contrat est le suivant :
+\begin{itemize}
+  \item pour l'appelant, aucune contrainte sur la sélection de banc au moment de l'appel, garantie que l'exécution de la routine ne modifiera pas la sélection de banc ; 
+\item pour la routine appelée, cela signifie que la sélection de banc est inconnue au début de la routine : seul un registre accessible à partir de n'importe quel banc pourra être accédé directement ; pour les autres, il faudra utiliser une instruction \texttt{banksel} pour fixer la sélection d'un banc ; la valeur de sélection de banc à la fin de l'exécution doit être préservée.
 \end{itemize}
 
 Si utiliser une instruction \texttt{banksel} dans la routine est indispensable, la seule façon de préserver la sélection de banc est d'utiliser l'instruction \texttt{banksave}. 
@@ -783,8 +814,15 @@ Si utiliser une instruction \texttt{banksel} dans la routine est indispensable, 
 \textbf{Exemple 1.} \texttt{varAnyBank} est accessible quel soit la sélection de banc, \texttt{varBank1} est déclaré dans le banc 1, \texttt{varBank2} dans le banc 2 :
 \begin{lstlisting}[language=piccolo]
 routine maRoutine bank:preserved {
-  clrf varAnyBank  banksave save_bank    banksel 1    clrf varBank1    banksel 2    clrf varBank2
-  end}\end{lstlisting}
+  clrf varAnyBank
+  banksave save_bank
+    banksel 1
+    clrf varBank1
+    banksel 2
+    clrf varBank2
+  end
+}
+\end{lstlisting}
 
 Cette routine est compilée sans erreur.
 
@@ -792,12 +830,19 @@ Cette routine est compilée sans erreur.
 ~\\
 \textbf{Exemple 2.} \texttt{varAnyBank} est accessible quel soit la sélection de banc, \texttt{varBank1} est déclaré dans le banc 1, \texttt{varBank2} dans le banc 2 :
 \begin{lstlisting}[language=piccolo]
-routine maRoutine bank:preserved {  clrf varAnyBank
-  banksel 1  clrf varBank1  banksel 2  clrf varBank2}\end{lstlisting}
+routine maRoutine bank:preserved {
+  clrf varAnyBank
+  banksel 1
+  clrf varBank1
+  banksel 2
+  clrf varBank2
+}
+\end{lstlisting}
 
 La compilation de cette routine provoque deux erreurs (utiliser l’option \texttt{-d} pour obtenir des messages détaillés) :
 
-\begin{quote}\texttt{ banksel 1}\\
+\begin{quote}
+\texttt{ banksel 1}\\
 \texttt{-{-}-{-}-{-}-{-}-\^}\\
 \textcolor{red}{\tt semantic error: cannot use "banksel" here: bank selection should be preserved (use "banksave" instruction)}\\
 
@@ -820,16 +865,21 @@ La compilation de cette routine provoque deux erreurs (utiliser l’option \text
 
 \subsectionLabel{Routine déclarée avec \texttt{bank:requires $b_e$}}{declarationRoutineBancRequires}
 
-Le contrat est le suivant :\begin{itemize}
-  \item pour l'appelant, le banc $b_e$ doit être sélectionné au moment de l'appel, aucune garantie sur la sélection de banc après l'exécution de la routine ;   \item pour la routine appelée, garantie que le banc $b_e$ banc est sélectionné au début de la routine : ainsi les registres accessibles à partir de n'importe quel banc et du banc $be$ peuvent être accédés directement ; pour les autres, il faudra utiliser une instruction \texttt{banksel} pour fixer la sélection ; la valeur de sélection de banc à la fin de l'exécution de la routine est quelconque.
+Le contrat est le suivant :
+\begin{itemize}
+  \item pour l'appelant, le banc $b_e$ doit être sélectionné au moment de l'appel, aucune garantie sur la sélection de banc après l'exécution de la routine ; 
+  \item pour la routine appelée, garantie que le banc $b_e$ banc est sélectionné au début de la routine : ainsi les registres accessibles à partir de n'importe quel banc et du banc $be$ peuvent être accédés directement ; pour les autres, il faudra utiliser une instruction \texttt{banksel} pour fixer la sélection ; la valeur de sélection de banc à la fin de l'exécution de la routine est quelconque.
 \end{itemize}
 
 Par exemple (\texttt{varAnyBank} est accessible quel soit la sélection de banc, \texttt{varBank1} est déclaré dans le banc 1, \texttt{varBank2} dans le banc 2) :
 \begin{lstlisting}[language=piccolo]
 routine maRoutine bank:requires 1 {
-  clrf varAnyBank  clrf varBank1  banksel 2
+  clrf varAnyBank
+  clrf varBank1
+  banksel 2
   clrf varBank2
-}\end{lstlisting}
+}
+\end{lstlisting}
 
 
 
@@ -839,18 +889,23 @@ routine maRoutine bank:requires 1 {
 
 \subsectionLabel{Routine déclarée avec \texttt{bank:ensures $b_s$}}{declarationRoutineBancEnsures}
 
-Le contrat est le suivant :\begin{itemize}
-  \item pour l'appelant, aucune contrainte sur la sélection de banc au moment de l'appel, garantie que le banc $b_s$ est sélectionné après l'exécution de la routine ;   \item cela signifie que la sélection de banc est inconnue au début de la routine : seul un registre accessible à partir de n'importe quel banc pourra être accédé directement ; pour les autres, il faudra utiliser une instruction \texttt{banksel} pour fixer la sélection d'un banc ; le banc $b_s$ doit être sélectionné à la fin de l'exécution.
+Le contrat est le suivant :
+\begin{itemize}
+  \item pour l'appelant, aucune contrainte sur la sélection de banc au moment de l'appel, garantie que le banc $b_s$ est sélectionné après l'exécution de la routine ; 
+  \item cela signifie que la sélection de banc est inconnue au début de la routine : seul un registre accessible à partir de n'importe quel banc pourra être accédé directement ; pour les autres, il faudra utiliser une instruction \texttt{banksel} pour fixer la sélection d'un banc ; le banc $b_s$ doit être sélectionné à la fin de l'exécution.
 \end{itemize}
 
 Par exemple (\texttt{varAnyBank} est accessible quel soit la sélection de banc, \texttt{varBank1} est déclaré dans le banc 1, \texttt{varBank2} dans le banc 2) :
 \begin{lstlisting}[language=piccolo]
 routine maRoutine bank:ensures 1 {
-  clrf varAnyBank  banksel 1
-  clrf varBank1  banksel 2
+  clrf varAnyBank
+  banksel 1
+  clrf varBank1
+  banksel 2
   clrf varBank2
   banksel 1
-}\end{lstlisting}
+}
+\end{lstlisting}
 
 La dernière instruction \texttt{banksel 1} est indipensable pour garantir que le banc 1 est sélectionné à la fin de l'exécution de la routine.
 
@@ -858,10 +913,13 @@ La dernière instruction \texttt{banksel 1} est indipensable pour garantir que l
 Par contre, dans le cas suivant, on n'a pas besoin de fixer la sélection de banc à la fin de la routine :
 \begin{lstlisting}[language=piccolo]
 routine maRoutine bank:ensures 2 {
-  clrf varAnyBank  banksel 1
-  clrf varBank1  banksel 2
+  clrf varAnyBank
+  banksel 1
+  clrf varBank1
+  banksel 2
   clrf varBank2
-}\end{lstlisting}
+}
+\end{lstlisting}
 
 
 
@@ -876,16 +934,21 @@ routine maRoutine bank:ensures 2 {
 
 \subsectionLabel{Routine déclarée avec \texttt{bank:requires $b_e$ ensures $b_s$}}{declarationRoutineBancRequiresEnsures}
 
-Le contrat est le suivant :\begin{itemize}
-  \item pour l'appelant, le banc $b_e$ doit être sélectionné au moment de l'appel, garantie que le banc $b_s$ est sélectionné après l'exécution de la routine ;   \item cela signifie que le banc $b_e$ est sélectionné au début de la routine : seul un registre accessible à partir de n'importe quel banc pourra être accédé directement ; pour les autres, il faudra utiliser une instruction \texttt{banksel} pour fixer la sélection d'un banc ; le banc $b_s$ doit être sélectionné à la fin de l'exécution.
+Le contrat est le suivant :
+\begin{itemize}
+  \item pour l'appelant, le banc $b_e$ doit être sélectionné au moment de l'appel, garantie que le banc $b_s$ est sélectionné après l'exécution de la routine ; 
+  \item cela signifie que le banc $b_e$ est sélectionné au début de la routine : seul un registre accessible à partir de n'importe quel banc pourra être accédé directement ; pour les autres, il faudra utiliser une instruction \texttt{banksel} pour fixer la sélection d'un banc ; le banc $b_s$ doit être sélectionné à la fin de l'exécution.
 \end{itemize}
 
 Par exemple (\texttt{varAnyBank} est accessible quel soit la sélection de banc, \texttt{varBank1} est déclaré dans le banc 1, \texttt{varBank2} dans le banc 2) :
 \begin{lstlisting}[language=piccolo]
 routine maRoutine bank:requires 1 ensures 2 {
-  clrf varAnyBank  clrf varBank1  banksel 2
+  clrf varAnyBank
+  clrf varBank1
+  banksel 2
   clrf varBank2
-}\end{lstlisting}
+}
+\end{lstlisting}
 
 
 
@@ -912,8 +975,11 @@ end
 ~\\
 \textbf{Règles :}
 \begin{itemize}
-  \item la sélection initiale de banc sera utilisée pour l’évaluation des conditions \texttt{cca} et \texttt{ccb}, et sera la valeur au début de l'exécution de chaque branche ;  \item toutes les branches doivent laisser la sélection de banc dans le même état : soit avec la même valeur connue, soit avec une valeur considérée comme invalide.\end{itemize}
-L’exemple à cette page §§ illustre comment les instructions « banksel » et « nobank » peuvent être utilisées pour vérifier cette règle. 
+  \item la sélection initiale de banc sera utilisée pour l’évaluation des conditions \texttt{cca} et \texttt{ccb}, et sera la valeur au début de l'exécution de chaque branche ;
+  \item toutes les branches doivent laisser la sélection de banc dans le même état : soit avec la même valeur connue, soit avec une valeur considérée comme invalide.
+\end{itemize}
+
+L’exemple à cette page §§ illustre comment les instructions « banksel » et « nobank » peuvent être utilisées pour vérifier cette règle. 
 
 
 \subsectionLabel{Sélection de banc et instruction de répétition infinie}{selectionBancInstructionRepetitionInfinie}
@@ -929,7 +995,8 @@ end
 ~\\
 \textbf{Règle :}
 \begin{itemize}
-  \item la liste d'instructions \texttt{instructions\_repetees} doit préserver la sélection de banc.\end{itemize}
+  \item la liste d'instructions \texttt{instructions\_repetees} doit préserver la sélection de banc.
+\end{itemize}
 
 
 
@@ -950,4 +1017,6 @@ end
 ~\\
 \textbf{Règles :}
 \begin{itemize}
-  \item chaque liste d'instructions (\texttt{instructions 1}, \texttt{instructions 2}, \texttt{instructions 3}) doit préserver la sélection de banc ;  \item l'évaluation des conditions \texttt{cca} et \texttt{ccb} s'effectue avec cette sélection de banc.\end{itemize}
+  \item chaque liste d'instructions (\texttt{instructions 1}, \texttt{instructions 2}, \texttt{instructions 3}) doit préserver la sélection de banc ;
+  \item l'évaluation des conditions \texttt{cca} et \texttt{ccb} s'effectue avec cette sélection de banc.
+\end{itemize}
