@@ -587,6 +587,20 @@ rule <structured_instruction>
   ?!@bool ioNeedsComputedGoto4
 :
   select
+    $ldataptr$ ;
+    @location instructionLocation := here ;
+    $identifier$ ?@lstring dataName ;
+    $[$ ;
+    $integer$ ? @luint dataIndex ;
+    $]$ ;
+    outInstruction := [@instruction_LDATAPTR new !instructionLocation !dataName !dataIndex] ;
+  or
+    $ltblptr$ ;
+    @location instructionLocation := here ;
+    @immediatExpression expression ;
+    <immediate_expression> ?expression ;
+    outInstruction := [@instruction_LTBLPTR new !instructionLocation !expression] ;
+  or
     $banksel$ ;
     @location instructionLocation := here ;
     $integer$ ? @luint bank ;
@@ -1205,20 +1219,6 @@ rule <simple_instruction> !@piccolo_instruction outInstruction :
     @immediatExpression expression ;
     <immediate_expression> ?expression ;
     outInstruction := [@instruction_LFSR new !instructionLocation !FSRindex !expression] ;
-  or
-    $ldataptr$ ;
-    @location instructionLocation := here ;
-    $identifier$ ?@lstring dataName ;
-    $[$ ;
-    $integer$ ? @luint dataIndex ;
-    $]$ ;
-    outInstruction := [@instruction_LDATAPTR new !instructionLocation !dataName !dataIndex] ;
-  or
-    $ltblptr$ ;
-    @location instructionLocation := here ;
-    @immediatExpression expression ;
-    <immediate_expression> ?expression ;
-    outInstruction := [@instruction_LTBLPTR new !instructionLocation !expression] ;
   or
     $tblrd$ ;
     @location instructionLocation := here ;
