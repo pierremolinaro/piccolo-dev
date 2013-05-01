@@ -72,9 +72,9 @@ La constante \texttt{RAM\_SIZE} permet d'écrire un code générique pour \emph{
 
 
 
-\subsection{Exemple d'utilisation de \texttt{ROM\_SIZE}}
+\subsectionLabel{Exemple d'utilisation de \texttt{ROM\_SIZE}}{exempleLTBLPTR-ROMSIZE}
 
-La constante \texttt{ROM\_SIZE} est définie pour un \emph{pic18}. Associée avec l'instruction \texttt{ltblptr}, elle permet d'écrire une routine générique, valable pour tous les types de \emph{pic18}, qui renvoie dans \emph{W}, la somme des octets de la flash.
+La constante \texttt{ROM\_SIZE} est définie pour un \emph{pic18}. Associée avec l'instruction \texttt{ltblptr}, elle permet d'écrire une routine générique, valable pour tous les types de \emph{pic18}, qui renvoie dans \emph{WREG}, la somme des octets de la flash.
 
 
 \begin{lstlisting}[language=piccolo]
@@ -110,12 +110,19 @@ La constante \texttt{RAM\_SIZE} est définie pour un \emph{pic18}. Elle permet l
 
 
 \sectionLabel{Forme générale d'une expression littérale}{expressionImmediate}
-\textbf{Opérandes.} Piccolo définit les opérandes suivants :\begin{itemize}
-  \item une constante littérale entière, écrite en décimal ou en hexadécimal ;  \item une constante littérale caractère (qui a pour valeur le code ASCII correspondant) ;  \item une constante définie par la construction const (voir à cette page) ;  \item un registre accompagné éventuellement d’un indice ;  \item une valeur descriptive de registre (\refSectionPage{exprLiteraleDescriptiveDeRegistre}).
+
+\textbf{Opérandes.} Piccolo définit les opérandes suivants :
+\begin{itemize}
+  \item une constante littérale entière, écrite en décimal ou en hexadécimal ;
+  \item une constante littérale caractère (qui a pour valeur le code ASCII correspondant) ;
+  \item une constante définie par la construction const (voir à cette page) ;
+  \item un registre accompagné éventuellement d’un indice ;
+  \item une valeur descriptive de registre (\refSectionPage{exprLiteraleDescriptiveDeRegistre}).
 \end{itemize}
 
 ~\\
-\textbf{Parenthèses.} Vous pouvez utiliser des parenthèses pour exprimer le groupement.
+\textbf{Parenthèses.} Vous pouvez utiliser des parenthèses pour exprimer le groupement.
+
 ~\\
 \textbf{Opérateurs.} Les opérateurs définis pour une expression littérale sont donnés par le \refTableau{operateursExpressionImmediate} (par ordre de priorité croissante).
 
@@ -153,18 +160,39 @@ La constante \texttt{RAM\_SIZE} est définie pour un \emph{pic18}. Elle permet l
 \sectionLabel{Expression littérale : valeur descriptive de registre}{exprLiteraleDescriptiveDeRegistre}
 
 Pour illustrer cette construction, nous prenons un exemple. Nous voulons initialiser le registre \texttt{T2CON} du timer 2 (qui existe sur plusieurs PIC18, dont le 18F448). La documentation du composant nous fournit la description ci-contre. Nous voulons affecter les valeurs suivantes :\begin{itemize}
-  \item \texttt{TOUTPS} à 5 (1:6 postscale) ;  \item \texttt{TMR2ON} à 1 ;  \item \texttt{T2CKPS} à 1 (Prescaler is 1).\end{itemize}
-Une première solution est de calculer à la main la valeur à affecter à \texttt{T2CON}. Cela donne :\begin{lstlisting}[language=piccolo]
-movlw   0x2Dmovwf   T2CON\end{lstlisting}
-La seconde solution est d'utiliser la construction que nous allons décrire. Pour cela, il faut d'abord s’assurer que Piccolo connaît la description des champs de bits de \texttt{T2CON}. On lance donc la commande \texttt{piccolo -R=18F448} dans le terminal, et on recherche la définition du registre \texttt{T2CON} dans le listing obtenu ; on obtient :
-\begin{quote}
-\texttt{\textquotesingle T2CON\textquotesingle at 0xFCA <-, TOUTPS[4], TMR2ON, T2CKPS[2]>}\end{quote}
-Les noms correspondent bien. En utilisant ces noms, nous pouvons écrire :\begin{lstlisting}[language=piccolo]
-movlw   @ T2CON (TOUTPS:5, TMR2ON:1, T2CKPS:1)movwf   T2CON
+  \item \texttt{TOUTPS} à 5 (1:6 postscale) ;
+  \item \texttt{TMR2ON} à 1 ;
+  \item \texttt{T2CKPS} à 1 (Prescaler is 1).
+\end{itemize}
+
+Une première solution est de calculer à la main la valeur à affecter à \texttt{T2CON}. Cela donne :
+\begin{lstlisting}[language=piccolo]
+movlw   0x2D
+movwf   T2CON
 \end{lstlisting}
 
-L'expression litérale présente la syntaxe suivante : elle est introduite par le délimiteur « \texttt{@} », suivi d’un nom de registre, puis, entre parenthèses, une séquence de couples formés d’un nom de champ et d’une valeur immédiate :\begin{quote}
-\texttt{@ nom\_registre (nom\_champ:expression\_literale, ...)}\end{quote}
-Tout registre spécial, toute variable déclarée (dans une section \texttt{ram}) ayant des champs définis peut être utilisée.Le nom de champ (\texttt{nom\_champ}) est l’un des champs définis par ce registre ou par cette variable. On ne peut utiliser des noms de champ d’un autre registre ou d’une autre variable.L’\texttt{expression\_literale} associée obéit à la syntaxe générale des expressions litérales. La valeur obtenue doit être positive ou nulle, et inférieure ou égal à la valeur maximum que peut contenir le champ (c’est à dire, pour un champ de \texttt{n} bits, $2^n-1$).Un nom de champ ne peut apparaître qu’une fois. L’ordre d’apparition des champs dans cette construction n’a pas d’importance. Tout champ non mentionné a implicitement tous les bits correspondants à zéro.
+La seconde solution est d'utiliser la construction que nous allons décrire. Pour cela, il faut d'abord s’assurer que Piccolo connaît la description des champs de bits de \texttt{T2CON}. On lance donc la commande \texttt{piccolo -R=18F448} dans le terminal, et on recherche la définition du registre \texttt{T2CON} dans le listing obtenu ; on obtient :
+\begin{quote}
+\texttt{\textquotesingle T2CON\textquotesingle at 0xFCA <-, TOUTPS[4], TMR2ON, T2CKPS[2]>}
+\end{quote}
+
+Les noms correspondent bien. En utilisant ces noms, nous pouvons écrire :
+\begin{lstlisting}[language=piccolo]
+movlw   @ T2CON (TOUTPS:5, TMR2ON:1, T2CKPS:1)
+movwf   T2CON
+\end{lstlisting}
+
+L'expression litérale présente la syntaxe suivante : elle est introduite par le délimiteur « \texttt{@} », suivi d’un nom de registre, puis, entre parenthèses, une séquence de couples formés d’un nom de champ et d’une valeur immédiate :
+\begin{quote}
+\texttt{@ nom\_registre (nom\_champ:expression\_literale, ...)}
+\end{quote}
+
+Tout registre spécial, toute variable déclarée (dans une section \texttt{ram}) ayant des champs définis peut être utilisée.
+
+Le nom de champ (\texttt{nom\_champ}) est l’un des champs définis par ce registre ou par cette variable. On ne peut utiliser des noms de champ d’un autre registre ou d’une autre variable.
+
+L’\texttt{expression\_literale} associée obéit à la syntaxe générale des expressions litérales. La valeur obtenue doit être positive ou nulle, et inférieure ou égal à la valeur maximum que peut contenir le champ (c’est à dire, pour un champ de \texttt{n} bits, $2^n-1$).
+
+Un nom de champ ne peut apparaître qu’une fois. L’ordre d’apparition des champs dans cette construction n’a pas d’importance. Tout champ non mentionné a implicitement tous les bits correspondants à zéro.
 
 

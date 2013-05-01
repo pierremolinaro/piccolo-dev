@@ -370,6 +370,7 @@ Le corps du programme est constitué d’une liste non ordonnée de sections. Le
     Définition de constante & \texttt{const} & \refChapterPage{constante}\\
     Définition de routine pic18 & \texttt{routine} & \refSectionPage{routinePic18}\\
     Définition de routine d'interruption pic18 & \texttt{interrupt} & \refSectionPage{routineInterruptionPic18}\\
+    Data & \texttt{data} & \refSectionPage{sectionData} \\
   \hline
   \end{tabular}
   \caption{Les sections d'un programme pour \emph{pic18}}
@@ -776,6 +777,7 @@ Le \refTableau{pic18InstructionsPropresPiccolo} liste les instructions compléme
 \textbf{Les instructions composées.} Piccolo définit les instructions suivantes :
 \begin{itemize}
   \item l'instruction \texttt{mnop} (\refSectionPage{instructionMNOP}) ;
+  \item l'instruction \texttt{ltblptr} (\refSubsectionPage{instructionLTBLPTR}) ;
   \item l'instruction conditionnelle simple (\refSectionPage{instructionConditionnelleSimple}) ;
   \item l'instruction conditionnelle structurée (\refSectionPage{instructionConditionnelleStructuree}) ;
   \item l'instruction répétitive (\refSectionPage{instructionRepetitive}) ;
@@ -889,16 +891,35 @@ Ces instructions Piccolo correspondent aux instructions assembleur \texttt{BCF},
 
 En Piccolo, ces instructions ont toujours deux arguments :
 \begin{itemize}
-  \item le premier argument est une référence à un registre (\refSectionPage{referenceRegistre}) ;  \item le second est le bit concerné, précédé par un point.\end{itemize}
-Pour désigner le bit concerné, vous pouvez utiliser un nombre compris entre 0 et 7. Par exemple :\begin{lstlisting}[language=piccolo]
-bcf maVariable.3\end{lstlisting}
-Si le registre a été défini en déclarant des noms de bit :\begin{lstlisting}[language=piccolo]
-ram ... {  byte maVariable <a, -, b [3], -, -, ->}\end{lstlisting}
-Vous pouvez utiliser l’un de ces noms comme second argument :\begin{lstlisting}[language=piccolo]
-bcf maVariable.a # a designe le bit 7\end{lstlisting}
-ou encore\begin{lstlisting}[language=piccolo]
-bcf maVariable.b [1] # b[1] designe le bit 4\end{lstlisting}
-Vous pouvez de cette façon accéder aux bits des registres spéciaux. Pour connaître la liste des registres de contrôle, utilisez l’option \texttt{-{}-registers} (ou sa version courte \texttt{-R}), comme décrite à la \refSubsectionPage{exempleOptionRegisters} ; par exemple : \texttt{piccolo -R=18F442}.\subsectionLabel{Opérations littérales avec \texttt{WREG}}{opPic18Immediate}
+  \item le premier argument est une référence à un registre (\refSectionPage{referenceRegistre}) ;
+  \item le second est le bit concerné, précédé par un point.
+\end{itemize}
+
+Pour désigner le bit concerné, vous pouvez utiliser un nombre compris entre 0 et 7. Par exemple :
+\begin{lstlisting}[language=piccolo]
+bcf maVariable.3
+\end{lstlisting}
+
+Si le registre a été défini en déclarant des noms de bit :
+\begin{lstlisting}[language=piccolo]
+ram ... {
+  byte maVariable <a, -, b [3], -, -, ->
+}
+\end{lstlisting}
+
+Vous pouvez utiliser l’un de ces noms comme second argument :
+\begin{lstlisting}[language=piccolo]
+bcf maVariable.a # a designe le bit 7
+\end{lstlisting}
+ou encore
+\begin{lstlisting}[language=piccolo]
+bcf maVariable.b [1] # b[1] designe le bit 4
+\end{lstlisting}
+
+Vous pouvez de cette façon accéder aux bits des registres spéciaux. Pour connaître la liste des registres de contrôle, utilisez l’option \texttt{-{}-registers} (ou sa version courte \texttt{-R}), comme décrite à la \refSubsectionPage{exempleOptionRegisters} ; par exemple : \texttt{piccolo -R=18F442}.
+
+
+\subsectionLabel{Opérations littérales avec \texttt{WREG}}{opPic18Immediate}
 
 Ces opérations sont listées dans le \refTableau{operationsLiteralesPic18AvecW}. L’instruction \texttt{RETLW k} n’existe pas en Piccolo, l’optimiseur repérera une séquence \texttt{MOVLW k RETURN} et la transformera en \texttt{RETLW k}.
 
@@ -1095,4 +1116,140 @@ Le code engendré par une instruction \texttt{jump} $cc$ peut occuper deux, quat
   \caption{Codages possibles de l'instruction \texttt{jump} $cc$}
   \labelTableau{codageInstructionJumpCC}
 \end{table}
+
+
+\sectionLabel{Section \texttt{data}}{sectionData}
+
+La section \texttt{data} permet de définir des tableaux de données qui seront placés en Flash. Son format est le suivant :
+
+\begin{lstlisting}[language=piccolo]
+  data nom {element0, element1, ... }
+\end{lstlisting}
+
+\texttt{nom} est le nom donné au tableau. \texttt{element0}, \texttt{element1}, …, sont des expressions statiques pouvant s'écrire sur 16 bits. L'octet de poids faible de chaque valeur apparaît à une adresse paire, celui de poids fort en adresse impaire.
+
+Pour accéder au tableau :
+\begin{itemize}
+  \item \texttt{nom} est utilisé en argument de l'instruction \texttt{ldataptr} (\refSubsectionPage{instructionLDATAPTR}) pour charger les registres \texttt{TBLPTRU}, \texttt{TBLPTRH} et \texttt{TBLPTRL} pour qu'ils désignent le début du tableau ;
+  \item la constante \texttt{nom}\emph{\small{\_BYTE\_COUNT}} est définie à la valeur du nombre d'\emph{octets} du tableau : elle vaut donc le double du nombre d'éléments du tableau.
+\end{itemize}
+
+
+
+~\\
+\textbf{Exemple.} 
+
+Si on déclare :
+\begin{lstlisting}[language=piccolo]
+  data monTableau {0x1234, 0x5678}
+\end{lstlisting}
+
+Ceci engendre la séquence assembleur :
+
+\begin{lstlisting}[language=assembleur]
+data_monTableau:
+  WORD 0x1234
+  WORD 0x5678
+\end{lstlisting}
+
+
+
+
+
+\section{Instructions \emph{pic18}}
+
+Ces instructions n'existent en Piccolo que pour les \emph{pic18}. Elles sont classées parmi les instructions dites \emph{structurées} car elles ne peuvent pas apparaître comme instruction associée à une \emph{instruction conditionnelle simple} (\refSectionPage{instructionConditionnelleSimple}).
+
+
+
+\subsectionLabel{Instruction \texttt{ltblptr}}{instructionLTBLPTR}
+
+Cette instruction permet de charger les registres \texttt{TBLPTRU}, \texttt{TBLPTRH} et \texttt{TBLPTRL} à partir d'une expression statique qui représente une adresse en Flash.
+
+Son format est :
+\begin{lstlisting}[language=piccolo]
+  ltblptr adresse-en-flash
+\end{lstlisting}
+
+Le code engendré pour l'instruction est le suivant :
+\begin{lstlisting}[language=assembleur]
+  MOVLW (adresse-en-flash >> 16) & 0xFF
+  MOVWF TBLPTRU
+  MOVLW (adresse-en-flash >> 8) & 0xFF
+  MOVWF TBLPTRH
+  MOVLW adresse-en-flash & 0xFF
+  MOVWF TBLPTRL
+\end{lstlisting}
+
+Le registre \texttt{WREG} est donc modifié par cette opération.
+
+~\\
+\textbf{Optimization.} Si une valeur immédiate est 0, l'opération \texttt{CLRF} est utilisée ; si une valeur immédiate est 0xFF, l'opération \texttt{SETF} est utilisée. Par exemple, 
+\begin{lstlisting}[language=piccolo]
+  ltblptr 0x3FFF
+\end{lstlisting}
+
+Engendre le code :
+\begin{lstlisting}[language=assembleur]
+  CLRF TBLPTRU
+  MOVLW 0x3F
+  MOVWF TBLPTRH
+  SETF TBLPTRL
+\end{lstlisting}
+
+
+~\\
+\textbf{Exemple d'utilisation.} Associée à la constante \emph{ROM\_SIZE}, elle permet d'écrire une routine générique, valable pour tous les types de \emph{pic18}, qui renvoie dans \emph{WREG}, la somme des octets de la flash (\refSubsectionPage{exempleLTBLPTR-ROMSIZE}).
+
+
+\subsectionLabel{Instruction \texttt{ldataptr}}{instructionLDATAPTR}
+
+Cette instruction permet de charger les registres \texttt{TBLPTRU}, \texttt{TBLPTRH} et \texttt{TBLPTRL} qui représente l'adresse d'un élément de tableau en flash, défini par une section \texttt{data} (\refSectionPage{sectionData}).
+
+Elle peut prendre deux formes.
+
+~\\
+\textbf{Première forme.}
+
+\begin{lstlisting}[language=piccolo]
+  ldataptr nom_section_data
+\end{lstlisting}
+
+Cette instruction charge les registres \texttt{TBLPTRU}, \texttt{TBLPTRH} et \texttt{TBLPTRL} pour qu'ils désignent l'octet de poids faible premier élément du tableau défini par la section \texttt{data nom\_section\_data}.
+
+Le code engendré est le suivant :
+\begin{lstlisting}[language=assembleur]
+  MOVLW (nom_section_data >> 16) & 0xFF
+  MOVWF TBLPTRU
+  MOVLW (nom_section_data >> 8) & 0xFF
+  MOVWF TBLPTRH
+  MOVLW nom_section_data & 0xFF
+  MOVWF TBLPTRL
+\end{lstlisting}
+
+Cette séquence n'est jamais optimisée, et \texttt{WREG} est toujours modifié.
+
+~\\
+\textbf{Seconde forme.}
+
+\begin{lstlisting}[language=piccolo]
+  ldataptr nom_section_data [indice_element]
+\end{lstlisting}
+
+Dans cette seconde forme, l'instruction charge les registres \texttt{TBLPTRU}, \texttt{TBLPTRH} et \texttt{TBLPTRL} pour qu'ils désignent l'octet de poids faible de l'élément \texttt{indice\_element} du tableau défini par la section \texttt{data nom\_section\_data}. Si \texttt{indice\_element} est nul, elle est équivalent à la première forme.
+
+Le code engendré est le suivant :
+\begin{lstlisting}[language=assembleur]
+  MOVLW ((nom_section_data + 2 * indice_element) >> 16) & 0xFF
+  MOVWF TBLPTRU
+  MOVLW ((nom_section_data + 2 * indice_element) >> 8) & 0xFF
+  MOVWF TBLPTRH
+  MOVLW (nom_section_data + 2 * indice_element) & 0xFF
+  MOVWF TBLPTRL
+\end{lstlisting}
+
+Cette séquence n'est jamais optimisée, et \texttt{WREG} est toujours modifié.
+
+
+
 

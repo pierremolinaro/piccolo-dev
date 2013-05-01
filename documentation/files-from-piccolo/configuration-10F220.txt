@@ -1,5 +1,5 @@
 10F220 has 1 configuration registers:
-REGISTER 'CONFIG' at 0xFFF, width 5
+REGISTER 'CONFIG' at 0xFFF, width 5
   setting 'CP': mask 0x8 description "Code protection bit"
     value 0x8 description "Disabled"
     value 0x0 description "Enabled"
@@ -15,3 +15,4 @@ REGISTER 'CONFIG' at 0xFFF, width 5
   setting 'WDTE': mask 0x4 description "Watchdog Timer Enable bit"
     value 0x0 description "Disabled"
     value 0x4 description "Enabled"
+

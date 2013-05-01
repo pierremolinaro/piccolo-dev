@@ -1,9 +1,10 @@
 16F57 device:
-  5 RAM banks (total 72 bytes):
-    bank "gpr0" from 0x10 to 0x1F (16 bytes)
-    bank "gpr1" from 0x30 to 0x3F (16 bytes)
-    bank "gpr2" from 0x50 to 0x5F (16 bytes)
-    bank "gpr3" from 0x70 to 0x7F (16 bytes)
-    bank "gprnobnk" from 0x8 to 0xF (8 bytes), mirror at 0x28, 0x48, 0x68
-  ROM size: 2048 instructions
-  No EEPROM
+  5 RAM banks (total 72 bytes):
+    bank "gpr0" from 0x10 to 0x1F (16 bytes)
+    bank "gpr1" from 0x30 to 0x3F (16 bytes)
+    bank "gpr2" from 0x50 to 0x5F (16 bytes)
+    bank "gpr3" from 0x70 to 0x7F (16 bytes)
+    bank "gprnobnk" from 0x8 to 0xF (8 bytes), mirror at 0x28, 0x48, 0x68
+  ROM size: 2048 instructions
+  No EEPROM
+
