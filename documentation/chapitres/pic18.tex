@@ -371,6 +371,7 @@ Le corps du programme est constitué d’une liste non ordonnée de sections. Le
     Définition de routine pic18 & \texttt{routine} & \refSectionPage{routinePic18}\\
     Définition de routine d'interruption pic18 & \texttt{interrupt} & \refSectionPage{routineInterruptionPic18}\\
     Data & \texttt{data} & \refSectionPage{sectionData} \\
+    Include & \texttt{include} & \refSectionPage{sectionInclude} \\
   \hline
   \end{tabular}
   \caption{Les sections d'un programme pour \emph{pic18}}
@@ -444,6 +445,7 @@ Le compilateur Piccolo insère à l’adresse zéro une instruction \texttt{bra}
 ~\\
 \textbf{Comment terminer une routine sans retour.} La dernière instruction de la liste des instructions d’une routine sans retour doit être :
 \begin{itemize}
+  \item une instruction de répétition infinie (\refSectionPage{repetitionInfinie}) ;
   \item un appel vers une autre routine sans retour, au moyen d’un \texttt{bra}, \texttt{goto}, Bcc ou \texttt{jump} ;
   \item un branchement calculé vers une routine parmi plusieurs, au moyen d’un \texttt{computed bra} ou d’un \texttt{computed goto} ;
   \item une instruction conditionnelle structurée, dont toutes les branches présentent comme dernière instruction les instructions d’appel d’un routine sans retour, un branchement calculé (comme évoqué ci-dessus), ou encore une instruction conditionnelle structurée, dont toutes les branches, etc.
@@ -1116,6 +1118,27 @@ Le code engendré par une instruction \texttt{jump} $cc$ peut occuper deux, quat
   \caption{Codages possibles de l'instruction \texttt{jump} $cc$}
   \labelTableau{codageInstructionJumpCC}
 \end{table}
+
+
+\sectionLabel{Section \texttt{include}}{sectionInclude}
+
+Une section \texttt{include} permet d'inclure un fichier contenant lui-même des sections telles que définies dans le \refTableauPage{sectionsPic18}.  Son format est le suivant :
+
+\begin{lstlisting}[language=piccolo]
+  include "chemin"
+\end{lstlisting}
+
+\texttt{chemin} est le chemin vers le fichier inclus, et est :
+\begin{itemize}
+  \item soit un chemin absolu (il commence par « \texttt{/} ») ;
+  \item soit un chemin relatif par rapport au fichier source.
+\end{itemize}
+
+
+
+
+
+
 
 
 \sectionLabel{Section \texttt{data}}{sectionData}
