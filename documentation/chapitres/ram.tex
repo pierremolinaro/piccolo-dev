@@ -25,7 +25,7 @@ Préalablement, vous devez savoir comment la mémoire RAM de votre micro-contrô
 
 \subsection{Micro-contrôleur \emph{baseline}}
 
-Par exemple, pour le 16F57, entrez la ligne de commande \texttt{piccolo -{}-memory=16F57}. Piccolo affiche alors les renseignements suivants :
+Par exemple, pour le 16F57, entrez la ligne de commande \texttt{piccolo -M=16F57}. Piccolo affiche alors les renseignements suivants :
 
 {\footnotesize \lstinputlisting[frame=l]{files-from-piccolo/memory-16F57.txt}}
 
@@ -35,7 +35,7 @@ L'instruction \texttt{banksel} n'est donc pas valide pour les \emph{baseline}.
 
 \subsection{Micro-contrôleur \emph{mid-range}}
 
-Par exemple, pour le 16F690, entrez la ligne de commande \texttt{piccolo -{}-memory=16F690}. Piccolo affiche alors les renseignements suivants :
+Par exemple, pour le 16F690, entrez la ligne de commande \texttt{piccolo -M=16F690}. Piccolo affiche alors les renseignements suivants :
 
 {\footnotesize \lstinputlisting[frame=l]{files-from-piccolo/memory-16F690.txt}}
 
@@ -46,7 +46,7 @@ En Piccolo, on ne manipule jamais directement les \texttt{RP} du registre \textt
 
 \subsection{Micro-contrôleur \emph{pic18}}
 
-Par exemple, pour le 18F448, entrez la ligne de commande \texttt{piccolo -{}-memory=18F448}. Piccolo affiche alors les renseignements suivants :
+Par exemple, pour le 18F448, entrez la ligne de commande \texttt{piccolo -M=18F448}. Piccolo affiche alors les renseignements suivants :
 
 {\footnotesize \lstinputlisting[frame=l]{files-from-piccolo/memory-18F448.txt}}
 
@@ -159,21 +159,45 @@ Comment utiliser ces noms de bits ? Dans les conditions de l'instruction conditi
 
 De nombreuses instructions nomment un registre, qui peut être :
 \begin{itemize}
-  \item un registre spécial (dont vous pouvez avoir la liste grâce à l'option « \texttt{-{}-registers} ») ;  \item une variable déclarée dans une section \texttt{ram}.\end{itemize}
-En Piccolo, il suffit de nommer simplement le registre avec l'instruction, par exemple :\begin{lstlisting}[language=piccolo]
-clrf registre\end{lstlisting}
-Cette écriture ressemble à l'assembleur, mais il y a une différence fondamentale : le bit indiquant si l'adressage devra être fait via l'\emph{access bank} ou via le registre \texttt{BSR} n'apparaît jamais dans l'instruction Piccolo. Lors de la génération de code, Piccolo fixera automatiquement la valeur de ce bit.Par exemple, en supposant que \texttt{varAccesBank} est accessible via l'\emph{access bank}, que \texttt{varBank1} est dans le banc 1 et \texttt{varBank2} dans le banc 2, on écrira en Piccolo :\begin{lstlisting}[language=piccolo]
-clrf varAccesBankbanksel 1clrf varBank1banksel 2clrf varBank2\end{lstlisting}
-Contrairement à l'assembleur, l'oubli d'une instruction « \texttt{banksel} » est détectée par le compilateur Piccolo.Pour plus de précision sur le contrôle de BSR, voir les pages consacrées au contrôle de BSR en Piccolo.
+  \item un registre spécial (dont vous pouvez avoir la liste grâce à l'option « \texttt{-{}-registers} ») ;
+  \item une variable déclarée dans une section \texttt{ram}.
+\end{itemize}
 
-Si une variable est déclarée avec une dimension, par exemple :\begin{lstlisting}[language=piccolo]
+En Piccolo, il suffit de nommer simplement le registre avec l'instruction, par exemple :
+\begin{lstlisting}[language=piccolo]
+clrf registre
+\end{lstlisting}
+
+Cette écriture ressemble à l'assembleur, mais il y a une différence fondamentale : le bit indiquant si l'adressage devra être fait via l'\emph{access bank} ou via le registre \texttt{BSR} n'apparaît jamais dans l'instruction Piccolo. Lors de la génération de code, Piccolo fixera automatiquement la valeur de ce bit.
+
+Par exemple, en supposant que \texttt{varAccesBank} est accessible via l'\emph{access bank}, que \texttt{varBank1} est dans le banc 1 et \texttt{varBank2} dans le banc 2, on écrira en Piccolo :
+
+\begin{lstlisting}[language=piccolo]
+clrf varAccesBank
+banksel 1
+clrf varBank1
+banksel 2
+clrf varBank2
+\end{lstlisting}
+
+Contrairement à l'assembleur, l'oubli d'une instruction « \texttt{banksel} » est détectée par le compilateur Piccolo.
+
+Pour plus de précision sur le contrôle de BSR, voir les pages consacrées au contrôle de BSR en Piccolo.
+
+Si une variable est déclarée avec une dimension, par exemple :
+\begin{lstlisting}[language=piccolo]
 ram ... { 
   byte maVariable [4]
-}\end{lstlisting}
+}
+\end{lstlisting}
 
 Le premier élément du tableau est \texttt{maVariable [0]}, et le dernier  \texttt{maVariable [3]}.
-On peut ainsi écrire :\begin{lstlisting}[language=piccolo]
-  clrf maVariable # Equivalent a clrf maVariable [0]  clrf maVariable [3]  clrf maVariable [4] # Erreur detectee par Piccolo
+
+On peut ainsi écrire :
+\begin{lstlisting}[language=piccolo]
+  clrf maVariable # Equivalent a clrf maVariable [0]
+  clrf maVariable [3]
+  clrf maVariable [4] # Erreur detectee par Piccolo
 \end{lstlisting}
 
 
