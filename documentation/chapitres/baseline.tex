@@ -57,7 +57,7 @@ Les routines définissent le code exécutable de votre programme. L’une d’en
 L’ordre des déclarations des routines est quelconque, il est possible d’appeler une routine qui est déclarée après l’instruction d’appel. Simplement Piccolo engendrera leur code dans leur ordre d’apparition. 
 
 ~\\
-\textbf{Routine et BSR.} Un problème important en Piccolo \emph{baseline} est la gestion des pages de la ROM (voir à §§).
+\textbf{Routine et pages de la ROM.} Un problème important en Piccolo \emph{baseline} est la gestion des pages de la ROM (voir \refSectionPage{gestionPagesBaseline}).
 
 ~\\
 \textbf{Liste d’instructions d’une routine.} Elle est structurée : Piccolo définit des instructions de sélection et de répétition : cela signifie que vous ne pouvez pas déclarer d’étiquette, ni utiliser de \texttt{goto} pour effectuer des branchements à l’intérieur d’une routine.
@@ -75,11 +75,77 @@ routine maRoutine ... {
 \texttt{maRoutine} est le nom de la routine, celui qui sera nommé dans un instruction d’appel de routine. Entre les accolades « \texttt{\{} » et « \texttt{\}} », apparaît la liste des instructions.
 
 ~\\
-\textbf{Appel d’une routine régulière.} Utiliser \texttt{CALL} comme indiqué à §§.
+\textbf{Appel d’une routine régulière.} Utiliser l'instruction \texttt{call}.
+
+~\\
+\textbf{Dernière instruction d’une routine régulière.} Une particularité du jeu d'instructions des \emph{baseline} est qu'il ne possède pas d'instruction \texttt{RETURN}, mais une instruction \texttt{RETLW} qui combine retour de sous-programme et chargement immédiat de \texttt{W}. Piccolo ne définit pas l'instruction \texttt{RETLW}, mais définit \texttt{movlw} : c'est le compilateur Piccolo qui repère une instruction \texttt{movlw} comme dernière instruction d'une routine, et qui la transforme en \texttt{RETLW}.
+
+En conséquence, la liste des instructions d'une routine régulière ne peut pas être vide. Elle doit comprendre au moins une instruction. D'une manière générale, la dernière instruction d'une routine régulière peut être :
+\begin{itemize}
+  \item une instruction \texttt{movlw} ; le compilateur Piccolo la transformera en \texttt{RETLW} ;
+  \item une instruction \texttt{call} vers une routine régulière ; le compilateur Piccolo la transformera en \texttt{GOTO} ;
+  \item une instruction \texttt{if} structurée dont toutes les branches se terminent soit par une instruction \texttt{movlw}, soit par une instruction \texttt{call} vers une routine régulière, soit une autre instruction \texttt{if} structurée.
+\end{itemize}
+
+Voici quelques exemples de routines régulières Piccolo et leur traduction en assembleur. Noter qu'il s'agit du code engendré sans aucune optimisation.
+\begin{multicols}{2}
+\textbf{Routine Piccolo}
+\begin{lstlisting}[language=piccolo]
+routine maRoutine {
+  movlw 45
+}
+\end{lstlisting}
+\columnbreak
+\textbf{Traduction assembleur}
+\begin{lstlisting}[language=assembleur]
+maRoutine:
+  RETLW 0x2D
+\end{lstlisting}
+\end{multicols}
+
+\begin{multicols}{2}
+\textbf{Routine Piccolo}
+\begin{lstlisting}[language=piccolo]
+routine maRoutine {
+  call autreRoutineReguliere
+}
+\end{lstlisting}
+\columnbreak
+\textbf{Traduction assembleur}
+\begin{lstlisting}[language=assembleur]
+maRoutine:
+  GOTO autreRoutineReguliere
+\end{lstlisting}
+\end{multicols}
+
+
+\begin{multicols}{2}
+\textbf{Routine Piccolo}
+\begin{lstlisting}[language=piccolo]
+routine maRoutine {
+  if (STATUS.Z)
+    call autreRoutineReguliere
+  else
+    movlw 45
+  end
+}
+\end{lstlisting}
+\columnbreak
+\textbf{Traduction assembleur}
+\begin{lstlisting}[language=assembleur]
+maRoutine:
+  BTFSS STATUS, 2
+  GOTO _label_0
+  GOTO autreRoutineReguliere
+_label_0:
+  RETLW 0x2D
+\end{lstlisting}
+\end{multicols}
+
 
 \subsection{Routine sans retour}
 
-L’exécution ne revient pas jamais à l’appelant. Ce type de routine doit donc se terminer par des constructions particulières qui assurent le non-retour : une boucle infinie, un branchement \texttt{bra} vers une autre routine sans retour.
+L’exécution ne revient pas jamais à l’appelant. Ce type de routine doit donc se terminer par des constructions particulières qui assurent le non-retour : une boucle infinie, un branchement \texttt{goto} vers une autre routine sans retour.
 
 Une routine sans retour doit être déclarée avec qualificatif « \texttt{noreturn} » :
 \begin{lstlisting}[language=piccolo]
@@ -260,7 +326,7 @@ Le \refTableau{instructionsAssembleurBaseline} donnent la liste des instructions
 Elles n’existent pas en Piccolo parce qu’elles sont remplacées par des constructions structurées, ou bien engendrées automatiquement lors de la compilation.
 
 Voici leur liste avec les liens vers les sections appropriées :\begin{itemize}
-  \item \texttt{BTFSC}, \texttt{BTFSS}, \texttt{CPFSEQ}, \texttt{DECFSZ}, \texttt{DCFSNZ} et \texttt{INCFSZ} : ces instructions sont engendrées par l’instruction conditionnelle simple, l’instruction conditionnelle structurée et l’instruction répétitive ;
+  \item \texttt{BTFSC}, \texttt{BTFSS}, \texttt{DCFSNZ} et \texttt{INCFSZ} : ces instructions sont engendrées par l’instruction conditionnelle simple, l’instruction conditionnelle structurée et l’instruction répétitive ;
   \item \texttt{RETLW} : utiliser une instruction \texttt{MOVLW}, et c’est le compilateur Piccolo qui remplacera la séquence \texttt{MOVLW k, RETURN} par une instruction \texttt{RETLW k}.
 
 \end{itemize}
@@ -529,6 +595,7 @@ Une section \texttt{include} permet d'inclure un fichier contenant lui-même des
   \item soit un chemin relatif par rapport au fichier source.
 \end{itemize}
 
+\sectionLabel{Gestion des pages de la ROM}{gestionPagesBaseline}
 
 
 

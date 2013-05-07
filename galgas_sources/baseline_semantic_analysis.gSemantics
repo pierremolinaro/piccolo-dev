@@ -274,21 +274,27 @@ override method @baseline_instruction_CALL build_baseline_intermediate_instructi
   ??@routineKind unused inRoutineKind
   ??@bool inLastInstructionShouldReturn
 :
-  if inLastInstructionShouldReturn then
-    error mInstructionLocation : "this instruction is the last routine instruction and should be MOVLW" ;
-  end if ;
 #--- Check instruction
   [inRoutineMap searchKey !mTargetLabel ?@bool isNoReturn ?@luint targetPage] ;
   if isNoReturn then
     error mTargetLabel:"a \"noreturn\" routine should be called with a GOTO instruction" ;
   end if ;
 #---
-  ioGeneratedInstructionList += ![@baseline_intermediate_CALL new
-    !mInstructionLocation
-    !mTargetLabel
-    !inCurrentPage
-    !targetPage->uint
-  ] ;
+  if inLastInstructionShouldReturn then
+    ioGeneratedInstructionList += ![@baseline_intermediate_GOTO new
+      !mInstructionLocation
+      !mTargetLabel
+      !inCurrentPage
+      !targetPage->uint
+    ] ;
+  else
+    ioGeneratedInstructionList += ![@baseline_intermediate_CALL new
+      !mInstructionLocation
+      !mTargetLabel
+      !inCurrentPage
+      !targetPage->uint
+    ] ;
+  end if ;
 end method ;
 
 #----------------------------------------------------------------------------*

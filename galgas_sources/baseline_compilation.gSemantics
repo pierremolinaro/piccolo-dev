@@ -35,6 +35,13 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
+override method @baseline_instruction_CALL shouldTerminateWithMOVLW
+  ??@string unused inErrorMessage
+:
+end method ;
+
+#----------------------------------------------------------------------------*
+
 override method @baseline_instruction_structured_if shouldTerminateWithMOVLW
   ??@string unused inErrorMessage
 :
