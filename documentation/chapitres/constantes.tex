@@ -87,7 +87,7 @@ routine CALCULER_SOMME_CONTROLE_FLASH {
   do
    tblrd *-
    addwf TABLAT, W
-  while (TBLPTRU NZ | TBLPTRH NZ | TBLPTRL NZ)
+  while (TBLPTRL NZ | TBLPTRH NZ | TBLPTRU NZ)
   end
 }
 \end{lstlisting}
