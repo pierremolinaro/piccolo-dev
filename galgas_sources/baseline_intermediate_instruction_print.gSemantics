@@ -75,9 +75,22 @@ end method ;
 
 #-------------------------------------------------------------------------------*
 
+override method @baseline_intermediate_JUMP print ?!@string ioListFileContents :
+  ioListFileContents .= "JUMP " . mTargetLabel ;
+end method ;
+
+#-------------------------------------------------------------------------------*
+
 
 override method @baseline_intermediate_CALL print ?!@string ioListFileContents :
   ioListFileContents .= "CALL " . mTargetLabel ;
+end method ;
+
+#-------------------------------------------------------------------------------*
+
+
+override method @baseline_intermediate_JSR print ?!@string ioListFileContents :
+  ioListFileContents .= "JSR " . mTargetLabel ;
 end method ;
 
 #-------------------------------------------------------------------------------*

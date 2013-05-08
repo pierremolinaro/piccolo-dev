@@ -113,6 +113,14 @@ end reader ;
 
 #----------------------------------------------------------------------------*
 
+override reader @baseline_intermediate_JUMP nextInstructionIsReachable
+  -> @bool outIsReachable
+:
+  outIsReachable := false ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
 override reader @baseline_intermediate_pseudo_END_ROUTINE nextInstructionIsReachable
   -> @bool outIsReachable
 :
@@ -148,7 +156,23 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
+override method @baseline_intermediate_JUMP enterReferencedLabel
+  ?!@stringset ioReferencedLabelSet
+:
+  ioReferencedLabelSet += !mTargetLabel->string ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
 override method @baseline_intermediate_CALL enterReferencedLabel
+  ?!@stringset ioReferencedLabelSet
+:
+  ioReferencedLabelSet += !mTargetLabel->string ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @baseline_intermediate_JSR enterReferencedLabel
   ?!@stringset ioReferencedLabelSet
 :
   ioReferencedLabelSet += !mTargetLabel->string ;
@@ -273,8 +297,6 @@ method @baseline_intermediate_GOTO optimizeGOTO
           ![@baseline_intermediate_GOTO new
             !mInstructionLocation
             ![goto mTargetLabel]
-            ![goto mCurrentPage]
-            ![goto mTargetPage]
           ]
           !inLineIndex
         ] ;
@@ -284,6 +306,72 @@ method @baseline_intermediate_GOTO optimizeGOTO
     else # No Optimization
     end cast ;
   end if ;      
+end method ;
+
+#----------------------------------------------------------------------------*
+
+method @baseline_intermediate_JUMP optimizeJUMP
+  ??@baselineSymbolTableForOptimizations inSymbolTable
+  ??@uint inLineIndex
+  ?!@baseline_intermediate_instructionList ioGeneratedInstructionList
+  ?!@string ioListFileContents
+  ?!@bool ioOptimizationsDone
+:
+#--- Find destination label definition line
+  [inSymbolTable searchKey !mTargetLabel ?@uint line] ;
+#--- Find first executable instruction
+  findBaselineFirstInstructionFromAddress
+    !line + 1
+    !ioGeneratedInstructionList
+    ?@baseline_intermediate_instruction firstInstruction
+  ;
+#--- Optimization from found first instruction
+  cast firstInstruction :
+  when == @baseline_intermediate_instruction_literalOperation literalOp do
+    if [literalOp mInstruction] == [@baseline_literal_instruction_opcode RETLW] then
+      [!?ioGeneratedInstructionList setMInstructionAtIndex
+        !literalOp
+        !inLineIndex
+      ] ;
+      ioOptimizationsDone := true ;
+      ioListFileContents .= "  line " . [inLineIndex string] . ": JUMP branching to RETLW replaced by RETLW\n" ;
+    end if ;
+  when == @baseline_intermediate_GOTO goto do
+    if mTargetLabel != [goto mTargetLabel] then
+      [!?ioGeneratedInstructionList setMInstructionAtIndex
+        ![@baseline_intermediate_JUMP new
+          !mInstructionLocation
+          ![goto mTargetLabel]
+          !mCurrentPage
+          !mTargetPage
+        ]
+        !inLineIndex
+      ] ;
+      ioOptimizationsDone := true ;
+      ioListFileContents .= "  line " . inLineIndex . ": JUMP " . mTargetLabel
+        . " branching to GOTO " . [goto mTargetLabel]
+        . " replaced by JUMP " . [goto mTargetLabel] . "\n"
+      ;
+    end if ;
+  when == @baseline_intermediate_JUMP jump do
+    if mTargetLabel != [jump mTargetLabel] then
+      [!?ioGeneratedInstructionList setMInstructionAtIndex
+        ![@baseline_intermediate_JUMP new
+          !mInstructionLocation
+          ![jump mTargetLabel]
+          !mCurrentPage
+          ![jump mTargetPage]
+        ]
+        !inLineIndex
+      ] ;
+      ioOptimizationsDone := true ;
+      ioListFileContents .= "  line " . inLineIndex . ": JUMP " . mTargetLabel
+        . " branching to JUMP " . [jump mTargetLabel]
+        . " replaced by JUMP " . [jump mTargetLabel] . "\n"
+      ;
+    end if ;
+  else # No Optimization
+  end cast ;
 end method ;
 
 #----------------------------------------------------------------------------*
@@ -317,6 +405,44 @@ method @baseline_intermediate_CALL optimizeCALL
       ] ;
       ioOptimizationsDone := true ;
       ioListFileContents .= "  line " . inLineIndex . ": CALL " . mTargetLabel
+       . " to RETLW " . [literalOp mLiteralValue]
+       . " replaced by MOVLW " . [literalOp mLiteralValue] . "\n" ;
+    end if ;
+  else
+  end cast ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+method @baseline_intermediate_JSR optimizeJSR
+  ??@baselineSymbolTableForOptimizations inSymbolTable
+  ??@uint inLineIndex
+  ?!@baseline_intermediate_instructionList ioGeneratedInstructionList
+  ?!@string ioListFileContents
+  ?!@bool ioOptimizationsDone
+:
+#--- Find destination label definition line
+  [inSymbolTable searchKey !mTargetLabel ?@uint line] ;
+#--- Find first executable instruction
+  findBaselineFirstInstructionFromAddress
+    !line + 1
+    !ioGeneratedInstructionList
+    ?@baseline_intermediate_instruction firstInstruction
+  ;
+#--- Optimization from found first instruction
+  cast firstInstruction :
+  when == @baseline_intermediate_instruction_literalOperation literalOp do
+    if [literalOp mInstruction] == [@baseline_literal_instruction_opcode RETLW] then
+      [!?ioGeneratedInstructionList setMInstructionAtIndex
+        ![@baseline_intermediate_instruction_literalOperation new
+          !mInstructionLocation
+          ![@baseline_literal_instruction_opcode MOVLW]
+          ![literalOp mLiteralValue]
+        ]
+        !inLineIndex
+      ] ;
+      ioOptimizationsDone := true ;
+      ioListFileContents .= "  line " . inLineIndex . ": JSR " . mTargetLabel
        . " to RETLW " . [literalOp mLiteralValue]
        . " replaced by MOVLW " . [literalOp mLiteralValue] . "\n" ;
     end if ;
@@ -366,8 +492,11 @@ method @baseline_intermediate_incDecRegisterInCondition optimizeTestDecInc
 #--- Find destination label definition line
   [inSymbolTable searchKey ![@lstring new !mTargetLabel !here] ?@uint line] ;
 #--- Find first executable instruction
-  @baseline_intermediate_instruction firstInstruction ;
-  findBaselineFirstInstructionFromAddress !line + 1 !ioGeneratedInstructionList ?firstInstruction ;
+  findBaselineFirstInstructionFromAddress
+    !line + 1
+    !ioGeneratedInstructionList
+    ?@baseline_intermediate_instruction firstInstruction
+  ;
 #--- Optimization from found first instruction
   cast firstInstruction :
   when == @baseline_intermediate_GOTO goto do
@@ -435,16 +564,18 @@ routine perform_baseline_optimizations
   #--- Optimization loop
     foreach ioGeneratedInstructionList index idx do
       cast mInstruction :
-      when == @baseline_intermediate_pseudo_BEGIN_ROUTINE ipic_BEGIN_ROUTINE do
-        [ipic_BEGIN_ROUTINE optimizeBEGIN_ROUTINE !idx !?ioGeneratedInstructionList !?ioListFileContents !?optimizationsDone] ;
-      when == @baseline_intermediate_GOTO ipic_GOTO do
-        [ipic_GOTO optimizeGOTO !symbolTable !idx !?ioGeneratedInstructionList !?ioListFileContents !?optimizationsDone] ;
-      when == @baseline_intermediate_CALL ipic_CALL do
-        [ipic_CALL optimizeCALL !symbolTable !idx !?ioGeneratedInstructionList !?ioListFileContents !?optimizationsDone] ;
-      when == @baseline_intermediate_incDecRegisterInCondition ipic_decInc do
-        [ipic_decInc optimizeTestDecInc !symbolTable !idx !?ioGeneratedInstructionList !?ioListFileContents !?optimizationsDone] ;
-#      when == @baseline_intermediate_instruction_BitTestSkip ipic_bitTestSkip do
-#        [ipic_bitTestSkip optimizeBitTestSkip !idx !?ioGeneratedInstructionList !?ioListFileContents !?optimizationsDone] ;
+      when == @baseline_intermediate_pseudo_BEGIN_ROUTINE inst do
+        [inst optimizeBEGIN_ROUTINE !idx !?ioGeneratedInstructionList !?ioListFileContents !?optimizationsDone] ;
+      when == @baseline_intermediate_GOTO inst do
+        [inst optimizeGOTO !symbolTable !idx !?ioGeneratedInstructionList !?ioListFileContents !?optimizationsDone] ;
+      when == @baseline_intermediate_JUMP inst do
+        [inst optimizeJUMP !symbolTable !idx !?ioGeneratedInstructionList !?ioListFileContents !?optimizationsDone] ;
+      when == @baseline_intermediate_CALL inst do
+        [inst optimizeCALL !symbolTable !idx !?ioGeneratedInstructionList !?ioListFileContents !?optimizationsDone] ;
+      when == @baseline_intermediate_JSR inst do
+        [inst optimizeJSR !symbolTable !idx !?ioGeneratedInstructionList !?ioListFileContents !?optimizationsDone] ;
+      when == @baseline_intermediate_incDecRegisterInCondition inst do
+        [inst optimizeTestDecInc !symbolTable !idx !?ioGeneratedInstructionList !?ioListFileContents !?optimizationsDone] ;
       else
       end cast ;
     end foreach ;

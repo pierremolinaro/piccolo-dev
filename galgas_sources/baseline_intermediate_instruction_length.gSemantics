@@ -43,8 +43,14 @@ end reader ;
 
 #-------------------------------------------------------------------------------*
 
-override reader @baseline_intermediate_GOTO length -> @uint outLength :
+override reader @baseline_intermediate_JUMP length -> @uint outLength :
   outLength := 1 + [mCurrentPage ^ mTargetPage oneBitCount] ;
+end reader ;
+
+#-------------------------------------------------------------------------------*
+
+override reader @baseline_intermediate_JSR length -> @uint outLength :
+  outLength := 1 + 2 * [mCurrentPage ^ mTargetPage oneBitCount] ;
 end reader ;
 
 #-------------------------------------------------------------------------------*

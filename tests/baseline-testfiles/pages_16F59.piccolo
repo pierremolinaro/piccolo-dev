@@ -8,15 +8,15 @@ configuration {
 
 noreturn routine main {
   mnop 509
-  goto routineInPage3
+  jump routineInPage3
 }
 
 noreturn routine routineInPage3 page 3 {
-  goto routineInPage2
+  jump routineInPage2
 }
 
 noreturn routine routineInPage2 page 2 {
-  goto routineInPage1
+  jump routineInPage1
 }
 
 noreturn routine routineInPage1 page 1 {

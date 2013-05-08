@@ -1,17 +1,13 @@
-baseline optimizations_12F510 "12F510" :
+# This program is just intended for showing
+# program memory inter-page branch optimizations.
+# Trying to execute it does not make sense.
 
-configuration {
-  CP : Disabled
-  OSC : "INTOSC with 1.125 ms DRT"
-  WDT : Disabled
-  IOSCFS : Disabled
-  MCLRE : Disabled
-}
+baseline optimizations_12F510 "12F510" :
 
 noreturn routine main {
   call regularRoutineInPage0
-  call regularRoutineInPage1
-  goto routineInPage1
+  jsr regularRoutineInPage1
+  jump routineInPage1
 }
 
 routine regularRoutineInPage0 {
@@ -26,6 +22,5 @@ noreturn routine routineInPage1 page 1 {
 routine regularRoutineInPage1 page 1 {
   movlw 1
 }
-
 
 end

@@ -63,7 +63,7 @@ L’ordre des déclarations des routines est quelconque, il est possible d’app
 \textbf{Liste d’instructions d’une routine.} Elle est structurée : Piccolo définit des instructions de sélection et de répétition : cela signifie que vous ne pouvez pas déclarer d’étiquette, ni utiliser de \texttt{goto} pour effectuer des branchements à l’intérieur d’une routine.
 
 
-\subsection{Routine régulière}
+\subsectionLabel{Routine régulière}{routineReguliereBaseline}
 
 C'est un sous-programme. Une routine régulière peut ne comporter aucune instruction Piccolo, l'instruction \texttt{retlw} est implicitement ajoutée. Une routine régulière est déclarée par :
 \begin{lstlisting}[language=piccolo]
@@ -75,7 +75,7 @@ routine maRoutine ... {
 \texttt{maRoutine} est le nom de la routine, celui qui sera nommé dans un instruction d’appel de routine. Entre les accolades « \texttt{\{} » et « \texttt{\}} », apparaît la liste des instructions.
 
 ~\\
-\textbf{Appel d’une routine régulière.} Utiliser l'instruction \texttt{call}.
+\textbf{Appel d’une routine régulière.} Utiliser l'instruction \texttt{call} ou l'instruction \texttt{jsr} (\refSectionPage{gestionPagesBaseline}).
 
 ~\\
 \textbf{Dernière instruction d’une routine régulière.} Une particularité du jeu d'instructions des \emph{baseline} est qu'il ne possède pas d'instruction \texttt{RETURN}, mais une instruction \texttt{RETLW} qui combine retour de sous-programme et chargement immédiat de \texttt{W}. Piccolo ne définit pas l'instruction \texttt{RETLW}, mais définit \texttt{movlw} : c'est le compilateur Piccolo qui repère une instruction \texttt{movlw} comme dernière instruction d'une routine, et qui la transforme en \texttt{RETLW}.
@@ -83,7 +83,7 @@ routine maRoutine ... {
 En conséquence, la liste des instructions d'une routine régulière ne peut pas être vide. Elle doit comprendre au moins une instruction. D'une manière générale, la dernière instruction d'une routine régulière peut être :
 \begin{itemize}
   \item une instruction \texttt{movlw} ; le compilateur Piccolo la transformera en \texttt{RETLW} ;
-  \item une instruction \texttt{call} vers une routine régulière ; le compilateur Piccolo la transformera en \texttt{GOTO} ;
+  \item une instruction \texttt{call} ou une instruction \texttt{jsr} vers une routine régulière ; le compilateur Piccolo la transformera en \texttt{GOTO} ;
   \item une instruction \texttt{if} structurée dont toutes les branches se terminent soit par une instruction \texttt{movlw}, soit par une instruction \texttt{call} vers une routine régulière, soit une autre instruction \texttt{if} structurée.
 \end{itemize}
 
@@ -145,9 +145,9 @@ _label_0:
 
 \subsection{Routine sans retour}
 
-L’exécution ne revient pas jamais à l’appelant. Ce type de routine doit donc se terminer par des constructions particulières qui assurent le non-retour : une boucle infinie, un branchement \texttt{goto} vers une autre routine sans retour.
+L’exécution ne revient pas jamais à l’appelant. Ce type de routine doit donc se terminer par des constructions particulières qui assurent le non-retour : une boucle infinie, un branchement \texttt{goto} ou \texttt{jump} vers une autre routine sans retour.
 
-Une routine sans retour doit être déclarée avec qualificatif « \texttt{noreturn} » :
+Une routine sans retour doit être déclarée avec qualificatif \texttt{noreturn} :
 \begin{lstlisting}[language=piccolo]
 noreturn routine maRoutine ... {
   ...
@@ -155,7 +155,7 @@ noreturn routine maRoutine ... {
 \end{lstlisting}
 
 ~\\
-\textbf{Appel d’une routine sans retour.} Utiliser \texttt{goto}.
+\textbf{Appel d’une routine sans retour.} Utiliser \texttt{goto} ou l'instruction \texttt{jump} (\refSectionPage{gestionPagesBaseline}).
 
 
 ~\\
@@ -175,7 +175,7 @@ Le compilateur Piccolo place cette routine au début de la ROM, de façon qu'ell
 \textbf{Comment terminer une routine sans retour.} La dernière instruction de la liste des instructions d’une routine sans retour doit être :
 \begin{itemize}
   \item une instruction de répétition infinie (\refSectionPage{repetitionInfinie}) ;
-  \item un appel vers une autre routine sans retour, au moyen d’un \texttt{goto} ;
+  \item un appel vers une autre routine sans retour, au moyen d’un \texttt{goto} ou d'un \texttt{jump} ;
   \item une instruction conditionnelle structurée, dont toutes les branches présentent comme dernière instruction les instructions d’appel d’un routine sans retour, un branchement calculé (comme évoqué ci-dessus), ou encore une instruction conditionnelle structurée, dont toutes les branches, etc.
 
 \end{itemize}
@@ -316,6 +316,8 @@ Le \refTableau{instructionsAssembleurBaseline} donnent la liste des instructions
   \item l'instruction conditionnelle structurée (\refSectionPage{instructionConditionnelleStructuree}) ;
   \item l'instruction répétitive (\refSectionPage{instructionRepetitive}) ;
   \item l'instruction de répétition infinie (\refSectionPage{repetitionInfinie}) ;
+  \item l'instruction d'appel de routine régulière \texttt{jsr} (\refSectionPage{gestionPagesBaseline}) ;
+  \item l'instruction d'appel de routine sans retour \texttt{jump} (\refSectionPage{gestionPagesBaseline}) ;
 \end{itemize}
 
 
@@ -326,8 +328,8 @@ Le \refTableau{instructionsAssembleurBaseline} donnent la liste des instructions
 Elles n’existent pas en Piccolo parce qu’elles sont remplacées par des constructions structurées, ou bien engendrées automatiquement lors de la compilation.
 
 Voici leur liste avec les liens vers les sections appropriées :\begin{itemize}
-  \item \texttt{BTFSC}, \texttt{BTFSS}, \texttt{DCFSNZ} et \texttt{INCFSZ} : ces instructions sont engendrées par l’instruction conditionnelle simple, l’instruction conditionnelle structurée et l’instruction répétitive ;
-  \item \texttt{RETLW} : utiliser une instruction \texttt{MOVLW}, et c’est le compilateur Piccolo qui remplacera la séquence \texttt{MOVLW k, RETURN} par une instruction \texttt{RETLW k}.
+  \item \texttt{BTFSC}, \texttt{BTFSS}, \texttt{DCFSNZ} et \texttt{INCFSZ} : ces instructions sont engendrées par l’instruction conditionnelle simple, l’instruction conditionnelle structurée et l’instruction répétitive (\refSubsectionPage{conditionsElementairesBaselineMidRange}) ;
+  \item \texttt{RETLW} : utiliser une instruction \texttt{MOVLW}, et c’est le compilateur Piccolo qui la remplacera par une instruction \texttt{RETLW k} (\refSubsectionPage{routineReguliereBaseline}).
 
 \end{itemize}
 
@@ -595,7 +597,166 @@ Une section \texttt{include} permet d'inclure un fichier contenant lui-même des
   \item soit un chemin relatif par rapport au fichier source.
 \end{itemize}
 
-\sectionLabel{Gestion des pages de la ROM}{gestionPagesBaseline}
+\sectionLabel{Gestion des pages de la mémoire programme}{gestionPagesBaseline}
+
+La mémoire programme d'un \emph{baseline} est constituée d'une ou plusieurs pages de 512 instructions chacune. Le \refTableau{nombrePagesBaseline} cite quelques micro-contrôleurs \emph{baseline} et le nombre de pages de leur mémoire programme.
+
+\begin{table}[!ht]
+  \centering
+  \small
+  \rowcolors{2}{\fondTableau}{}
+  \begin{tabular}{lll}
+    \textbf{Composant} & \textbf{Mémoire programme} & \textbf{Nombre de pages}\\
+    \hline
+    10F200, 10F204  & 256 instructions & 1\\
+    10F202, 10F206  & 512 instructions & 1\\
+    10F220  & 256 instructions & 1\\
+    12F508  & 512 instructions & 1\\
+    12F509  & 1024 instructions & 2\\
+    12F510, 12F519  & 1024 instructions & 2\\
+    16F505, 16F506  & 1024 instructions & 2\\
+    16F526 & 1024 instructions & 2\\
+    16F54  & 512 instructions & 1\\
+    16F57, 16F59  & 2048 instructions & 4\\
+    \hline
+  \end{tabular}
+  \caption{Mémoire programme de quelques micro-contrôleurs \emph{baseline}}
+  \labelTableau{nombrePagesBaseline}
+\end{table}
+
+Les deux instructions de branchement que le jeu d'instructions des \emph{baseline} définit sont \texttt{CALL} et \texttt{GOTO} (\refTableau{callGotoBaseline}).
+
+\begin{table}[!ht]
+  \centering
+  \small
+  \rowcolors{3}{}{\fondTableau}
+  \begin{tabular}{llllllllllllll}
+    \textbf{Instruction} & \textbf{Description} & \multicolumn{12}{l}{\bf Code binaire}\\
+                         &                      & 11 & 10 & 9 & 8 & 7 & 6 & 5 & 4 & 3 & 2 & 1 & 0\\
+    \hline
+    \texttt{CALL k}  & Call subroutine & 1 & 0 & 0 & 1 & k & k & k & k & k & k & k & k\\
+    \texttt{GOTO k}  & Go to Address   & 1 & 0 & 1 & k & k & k & k & k & k & k & k & k\\
+    \hline
+  \end{tabular}
+  \caption{Instructions \texttt{CALL} et \texttt{GOTO} des \emph{baseline}}
+  \labelTableau{callGotoBaseline}
+\end{table}
+
+En résumé, ces instructions ne permettent pas d'effectuer par elles mêmes un branchement à tout position de la mémoire programme :
+\begin{itemize}
+  \item un \texttt{CALL} utilisé seul exige que la routine appelée soit dans les 256 premiers octets de la page courante ;
+  \item un \texttt{GOTO} utilisé seul permet d'effectuer un branchement à toute position de la page courante.
+\end{itemize}
+
+Pour changer de page, il faut modifier les bits \texttt{PA} du registre \texttt{STATUS} avant d'appeler l'instruction \texttt{CALL} ou \texttt{GOTO}.
+
+Voici comment ces contraintes sont prises en compte en Piccolo :
+\begin{itemize}
+  \item une routine doit complètement résider à l'intérieur d'une page ;
+  \item lors de la déclaration d'une routine, la page dans laquelle elle réside est précisée (\refSubsectionPage{declarationRoutineBaselineEtPage}) ;
+  \item les instructions Piccolo \texttt{call} et \texttt{goto} effectuent des branchements à l'intérieur de la page courante ;
+  \item pour appeler des routines placées dans une autre page, utiliser les instructions Piccolo \texttt{jsr} (\refSubsectionPage{instructionJsrBaseline}) et \texttt{jump} (\refSubsectionPage{instructionJumpBaseline}).
+\end{itemize}
+
+
+
+\subsectionLabel{Instruction \texttt{jump}}{instructionJumpBaseline}
+
+L'instruction Piccolo  \texttt{jump} engendre des instructions assembleurs \texttt{BCF} ou \texttt{BSF} pour modifier les bits \texttt{PA} du registre \texttt{STATUS}, puis l'instruction assembleur \texttt{GOTO}.
+
+Elle occupe donc $n+1$ mots de la mémoire programme, $n$ étant le nombre de bits \texttt{PA} du registre \texttt{STATUS} à changer.
+
+
+
+
+\subsectionLabel{Instruction \texttt{jsr}}{instructionJsrBaseline}
+
+L'instruction Piccolo  \texttt{jsr} engendre des instructions assembleurs \texttt{BCF} ou \texttt{BSF} pour modifier les bits \texttt{PA} du registre \texttt{STATUS}, puis l'instruction assembleur \texttt{GOTO}, puis de nouveau des instructions assembleurs \texttt{BCF} ou \texttt{BSF} pour rétablir les bits \texttt{PA} du registre \texttt{STATUS}.
+
+Elle occupe donc $2n+1$ mots de la mémoire programme, $n$ étant le nombre de bits \texttt{PA} du registre \texttt{STATUS} à changer pour effectuer l'appel.
+
+\subsectionLabel{Déclaration de routine et page}{declarationRoutineBaselineEtPage}
+
+Pour spécifier dans quelle page de la mémoire programme une routine régulière doit résider, il suffit de la déclarer comme suit :
+\begin{lstlisting}[language=piccolo]
+  routine nom page numero_page {
+    ...
+  }
+\end{lstlisting}
+
+Où \texttt{numero\_page} est un entier positif ou nul strictement inférieur au nombre de pages.
+
+Pour une routine régulière sans retour :
+\begin{lstlisting}[language=piccolo]
+  noreturn routine nom page numero_page {
+    ...
+  }
+\end{lstlisting}
+
+\subsection{Exemple}
+
+Différents exemples sont donnés sur la page \url{http://piccolo.rts-software.org/examples/index.php}.
+
+Le 12F510 a une mémoire programme de deux pages. 
+
+\begin{lstlisting}[language=piccolo]
+baseline pages_12F510 "12F510" :
+
+noreturn routine main {
+  mnop 249
+  call regularRoutineInPage0
+  jsr  regularRoutineInPage1
+  jump routineInPage1
+}
+
+routine regularRoutineInPage0 {
+  mnop 256
+  movlw 0
+}
+
+noreturn routine routineInPage1 page 1 {
+  forever
+  end
+}
+
+routine regularRoutineInPage1 page 1 {
+  movlw 0
+}
+
+end
+\end{lstlisting}
+
+Sans aucune optimisation, le code assembleur engendré est :
+
+\begin{lstlisting}[language=assembleur]
+Address Code Mnemonic
+   0000        ORG 0x0
+   0000 0000   NOP
+   (248 lignes semblables)
+   01F2 09FF   CALL regularRoutineInPage0
+   01F4 05A3   BSF STATUS, 5
+   01F6 0901   CALL regularRoutineInPage1
+   01F8 04A3   BCF STATUS, 5
+   01FA 05A3   BSF STATUS, 5
+   01FC 0A00   GOTO routineInPage1
+   01FE      ;  END OF ROUTINE main IN PAGE 0
+   01FE      ;  BEGIN OF ROUTINE regularRoutineInPage0
+   01FE      regularRoutineInPage0:
+   01FE 0000   NOP
+   (255 lignes semblables)
+   03FE 0800   RETLW 0x0
+   0400      ;  END OF ROUTINE regularRoutineInPage0 IN PAGE 0
+   0400        ORG 0x200
+   0400      ;  BEGIN OF ROUTINE routineInPage1
+   0400      routineInPage1:
+   0400      _label_0:
+   0400 0A00   GOTO _label_0
+   0402      ;  END OF ROUTINE routineInPage1 IN PAGE 1
+   0402      ;  BEGIN OF ROUTINE regularRoutineInPage1
+   0402      regularRoutineInPage1:
+   0402 0800   RETLW 0x0
+   0404      ;  END OF ROUTINE regularRoutineInPage1 IN PAGE 1
+\end{lstlisting}
 
 
 
@@ -603,4 +764,31 @@ Une section \texttt{include} permet d'inclure un fichier contenant lui-même des
 
 
 
+
+\section{Optimisation}
+
+Cette section indique les différentes optimisations d'un code \emph{baseline}. L'optimisation est activée par l'option « \texttt{-o} ».
+
+Pour optimiser, Piccolo applique les remplacements indiqués par le \refTableau{optimisationsBaseline}, et élimine le code mort. Le code est balayé de manière répétitive, tant que des optimisations sont effectuées.
+
+\begin{table}[!ht]
+  \centering
+  \small
+  \rowcolors{2}{\fondTableau}{}
+  \begin{tabular}{ll}
+    \textbf{Situation} & \textbf{Optimisation} \\
+    \hline
+    \texttt{CALL} vers \texttt{RETLW k}  & Remplacement par \texttt{MOVLW k}\\
+    \texttt{GOTO} vers \texttt{RETLW k}  & Remplacement par \texttt{RETLW k}\\
+    \texttt{GOTO a} vers \texttt{GOTO b}  & Remplacement par \texttt{GOTO b}\\
+    \texttt{GOTO} vers l'instruction qui suit  & Suppression\\
+    \texttt{JSR} vers \texttt{RETLW k}  & Remplacement par \texttt{MOVLW k}\\
+    \texttt{JUMP} vers \texttt{RETLW k}  & Remplacement par \texttt{RETLW k}\\
+    \texttt{JUMP a} vers \texttt{JUMP b}  & Remplacement par \texttt{JUMP b}\\
+    \texttt{JUMP a} vers \texttt{GOTO b}  & Remplacement par \texttt{JUMP b}\\
+    \hline
+  \end{tabular}
+  \caption{Optimisation du code \emph{baseline}}
+  \labelTableau{optimisationsBaseline}
+\end{table}
 
