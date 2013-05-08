@@ -96,6 +96,12 @@ class @baseline_intermediate_instruction_BitTestSkip extends @baseline_intermedi
 
 class @baseline_intermediate_GOTO extends @baseline_intermediate_actualInstruction {
   @lstring mTargetLabel ;
+}
+
+#-------------------------------------------------------------------------------*
+
+class @baseline_intermediate_JUMP extends @baseline_intermediate_actualInstruction {
+  @lstring mTargetLabel ;
   @uint mCurrentPage ;
   @uint mTargetPage ;
 }
@@ -103,6 +109,12 @@ class @baseline_intermediate_GOTO extends @baseline_intermediate_actualInstructi
 #-------------------------------------------------------------------------------*
 
 class @baseline_intermediate_CALL extends @baseline_intermediate_actualInstruction {
+  @lstring mTargetLabel ;
+}
+
+#-------------------------------------------------------------------------------*
+
+class @baseline_intermediate_JSR extends @baseline_intermediate_actualInstruction {
   @lstring mTargetLabel ;
   @uint mCurrentPage ;
   @uint mTargetPage ;

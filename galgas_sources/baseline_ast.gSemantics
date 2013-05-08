@@ -45,7 +45,19 @@ class @baseline_instruction_CALL extends @baseline_instruction {
 
 #----------------------------------------------------*
 
+class @baseline_instruction_JSR extends @baseline_instruction {
+  @lstring mTargetLabel ;
+}
+
+#----------------------------------------------------*
+
 class @baseline_instruction_GOTO extends @baseline_instruction {
+  @lstring mTargetLabel ;
+}
+
+#----------------------------------------------------*
+
+class @baseline_instruction_JUMP extends @baseline_instruction {
   @lstring mTargetLabel ;
 }
 

@@ -43,55 +43,65 @@ La casse est significative pour les identificateurs.
 Certains identificateurs sont réservés. La casse n’est pas significative pour les mots réservés, c’est à dire que les mots réservés peuvent être écrits indifféremment avec des lettres minuscules ou majuscules.
 
 
-
+~\\
 Mots réservés correspondant aux éléments du langage :\\
-\textcolor{blue}{\tt
-  \begin{tabular}{|c|c|c|c|c|c|}
-    \hline
-     bank & banksave & banksel & baseline & bootloader \\
-    \hline
-      byte & computed & configuration & const & contextsave \\
-    \hline
-     data & do & end & else & elsif \\
-    \hline
-     fast & forever & if & implements & include  \\
-    \hline
-      interrupt & mark & midrange & nobank & noreturn \\
-    \hline
-      page & pic18 & preserved & ram & requires \\
-    \hline
-      rom & ensures & routine & uses & w \\
-    \hline
-      while & & & & \\
-    \hline
-  \end{tabular}
-}
 
+\newcommand\keyWordLanguage[1]{\textcolor{blue}{\bf#1}}
 
+\begin{tabular}{|l|l|l|l|l|l|}
+  \hline
+   \keyWordLanguage{bank} & \keyWordLanguage{banksave} & \keyWordLanguage{banksel} & \keyWordLanguage{baseline} & \keyWordLanguage{bootloader} \\
+  \hline
+    \keyWordLanguage{byte} & \keyWordLanguage{computed} & \keyWordLanguage{configuration} & \keyWordLanguage{const} & \keyWordLanguage{contextsave} \\
+  \hline
+   \keyWordLanguage{data} & \keyWordLanguage{do} & \keyWordLanguage{end} & \keyWordLanguage{else} & \keyWordLanguage{elsif} \\
+  \hline
+   \keyWordLanguage{ensures} & \keyWordLanguage{fast} & \keyWordLanguage{forever} & \keyWordLanguage{if} & \keyWordLanguage{implements}   \\
+  \hline
+    \keyWordLanguage{include} & \keyWordLanguage{interrupt} & \keyWordLanguage{mark} & \keyWordLanguage{midrange} & \keyWordLanguage{nobank} \\
+  \hline
+    \keyWordLanguage{noreturn} & \keyWordLanguage{page} & \keyWordLanguage{pic18} & \keyWordLanguage{preserved} & \keyWordLanguage{ram} \\
+  \hline
+    \keyWordLanguage{requires} & \keyWordLanguage{rom} & \keyWordLanguage{routine} & \keyWordLanguage{uses} & \keyWordLanguage{w} \\
+  \hline
+    \keyWordLanguage{while} & & & & \\
+  \hline
+\end{tabular}
+
+~\\
+Dans tout ce document, ces mots réservés sont écrits en minuscule, gras et en bleu.
+
+~\\
 Mots réservés correspondant à des instructions exécutables :\\
-\texttt{\color{brown}
-  \begin{tabular}{|c|c|c|c|c|c|c|c|}
-    \hline
-    addlw & addwf & addwfc & andlw & andwf & bc & bcf & bn \\
-    \hline
-    bnc & bnn & bov & bnov & bnz & bsf & bra & btg \\
-    \hline
-    bz & call & clrf & clrw & clrwdt & comf & daw & decf \\
-    \hline
-    incf & iorlw & iorwf & goto & jsr & jump & lfsr & ldataptr \\
-    \hline
-    ltblptr & mnop & movf & movff & movlw & movwf & mullw & mulwf \\
-    \hline
-    negf & nop & pop & option & push & rcall & reset & retlw \\
-    \hline
-    rlcf & rlf & rlncf & rrcf & rrf & rrncf & setf & sleep \\
-    \hline
-    subfwb & sublw & subwf & subwfb & swapf & tblrd & tblwt & tris \\
-    \hline
-    xorlw & xorwf & & & & & & \\
-    \hline
-  \end{tabular}
-}
+
+\newcommand\keyWordInstruction[1]{\textcolor{brown}{\bf#1}}
+
+\begin{tabular}{|l|l|l|l|l|l|l|}
+  \hline
+    \keyWordInstruction{addlw} & \keyWordInstruction{addwf} & \keyWordInstruction{addwfc} & \keyWordInstruction{andlw} & \keyWordInstruction{andwf} & \keyWordInstruction{bc} & \keyWordInstruction{bcf} \\
+  \hline
+    \keyWordInstruction{bn} & \keyWordInstruction{bnc} & \keyWordInstruction{bnn} & \keyWordInstruction{bov} & \keyWordInstruction{bnov} & \keyWordInstruction{bnz} & \keyWordInstruction{bsf} \\
+  \hline
+    \keyWordInstruction{bra} & \keyWordInstruction{btg} & \keyWordInstruction{bz} & \keyWordInstruction{call} & \keyWordInstruction{clrf} & \keyWordInstruction{clrw} & \keyWordInstruction{clrwdt} \\
+  \hline
+    \keyWordInstruction{comf} & \keyWordInstruction{daw} & \keyWordInstruction{decf} & \keyWordInstruction{incf} & \keyWordInstruction{iorlw} & \keyWordInstruction{iorwf} & \keyWordInstruction{goto} \\
+  \hline
+    \keyWordInstruction{jsr} & \keyWordInstruction{jump} & \keyWordInstruction{lfsr} & \keyWordInstruction{ldataptr} & \keyWordInstruction{ltblptr} & \keyWordInstruction{mnop} & \keyWordInstruction{movf} \\
+  \hline
+    \keyWordInstruction{movff} & \keyWordInstruction{movlw} & \keyWordInstruction{movwf} & \keyWordInstruction{mullw} & \keyWordInstruction{mulwf} & \keyWordInstruction{negf} & \keyWordInstruction{nop} \\
+  \hline
+    \keyWordInstruction{pop} & \keyWordInstruction{option} & \keyWordInstruction{push} & \keyWordInstruction{rcall} & \keyWordInstruction{reset} & \keyWordInstruction{retlw} & \keyWordInstruction{rlcf} \\
+  \hline
+    \keyWordInstruction{rlf} & \keyWordInstruction{rlncf} & \keyWordInstruction{rrcf} & \keyWordInstruction{rrf} & \keyWordInstruction{rrncf} & \keyWordInstruction{setf} & \keyWordInstruction{sleep} \\
+  \hline
+    \keyWordInstruction{subfwb} & \keyWordInstruction{sublw} & \keyWordInstruction{subwf} & \keyWordInstruction{subwfb} & \keyWordInstruction{swapf} & \keyWordInstruction{tblrd} & \keyWordInstruction{tblwt}\\
+  \hline
+    \keyWordInstruction{tris}\keyWordInstruction{xorlw} & \keyWordInstruction{xorwf} & & & & & \\
+  \hline
+\end{tabular}
+
+Dans tout ce document, ces mots réservés sont écrits en minuscule, gras et en marron. Les instructions assembleur correspondantes sont écrites en majuscules.
+
 
 \subsection{Constante chaîne de caractères}
 

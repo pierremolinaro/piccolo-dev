@@ -184,6 +184,22 @@ rule <baseline_structured_instruction>
   !@baseline_instruction outInstruction
 :
   select
+    $jump$ ;
+    @location instructionLocation := here ;
+    $identifier$ ? @lstring targetLabelName ;
+    outInstruction := [@baseline_instruction_JUMP new
+      !instructionLocation
+      !targetLabelName
+    ] ;
+  or
+    $jsr$ ;
+    @location instructionLocation := here ;
+    $identifier$ ? @lstring targetLabelName ;
+    outInstruction := [@baseline_instruction_JSR new
+      !instructionLocation
+      !targetLabelName
+    ] ;
+  or
     $forever$ ;
     @location instructionLocation := here ;
     @baseline_instructionList instructionList ;

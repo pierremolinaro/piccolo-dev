@@ -1,18 +1,14 @@
+# This program is just intended for showing
+# program memory inter-page branches.
+# Trying to execute it does not make sense.
+
 baseline pages_12F510 "12F510" :
 
-configuration {
-  CP : Disabled
-  OSC : "INTOSC with 1.125 ms DRT"
-  WDT : Disabled
-  IOSCFS : Disabled
-  MCLRE : Disabled
-}
-
 noreturn routine main {
-  mnop 250
+  mnop 249
   call regularRoutineInPage0
-  call regularRoutineInPage1
-  goto routineInPage1
+  jsr  regularRoutineInPage1
+  jump routineInPage1
 }
 
 routine regularRoutineInPage0 {
@@ -28,6 +24,5 @@ noreturn routine routineInPage1 page 1 {
 routine regularRoutineInPage1 page 1 {
   movlw 0
 }
-
 
 end

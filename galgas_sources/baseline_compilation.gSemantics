@@ -83,6 +83,13 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
+override method @baseline_instruction_JUMP shouldNotContinueInSequence
+  ??@string unused inErrorMessage
+:
+end method ;
+
+#----------------------------------------------------------------------------*
+
 override method @baseline_instruction_FOREVER shouldNotContinueInSequence
   ??@string unused inErrorMessage
 :

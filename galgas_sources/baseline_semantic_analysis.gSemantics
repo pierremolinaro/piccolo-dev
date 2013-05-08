@@ -277,18 +277,54 @@ override method @baseline_instruction_CALL build_baseline_intermediate_instructi
 #--- Check instruction
   [inRoutineMap searchKey !mTargetLabel ?@bool isNoReturn ?@luint targetPage] ;
   if isNoReturn then
-    error mTargetLabel:"a \"noreturn\" routine should be called with a GOTO instruction" ;
+    error mTargetLabel:"a \"noreturn\" routine should be called with a GOTO or a JUMP instruction" ;
+  end if ;
+  if inCurrentPage != targetPage->uint then
+    error mTargetLabel:"for an inter-page regular routine call, use a JSR instruction" ;
   end if ;
 #---
   if inLastInstructionShouldReturn then
     ioGeneratedInstructionList += ![@baseline_intermediate_GOTO new
       !mInstructionLocation
       !mTargetLabel
+    ] ;
+  else
+    ioGeneratedInstructionList += ![@baseline_intermediate_CALL new
+      !mInstructionLocation
+      !mTargetLabel
+    ] ;
+  end if ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @baseline_instruction_JSR build_baseline_intermediate_instructionList
+  ??@uint inCurrentPage
+  ??@baselineRoutineMap inRoutineMap
+  ??@registerTable unused inRegisterTable
+  ??@constantMap unused inConstantMap
+  ?!@uint unused ioLocalLabelIndex
+  ?!@baseline_intermediate_instructionList ioGeneratedInstructionList
+  ?!@string unused ioListFileContents
+  ?!@bool unused ioContinuesInSequence
+  ??@routineKind unused inRoutineKind
+  ??@bool inLastInstructionShouldReturn
+:
+#--- Check instruction
+  [inRoutineMap searchKey !mTargetLabel ?@bool isNoReturn ?@luint targetPage] ;
+  if isNoReturn then
+    error mTargetLabel:"a \"noreturn\" routine should be called with a GOTO or a JUMP instruction" ;
+  end if ;
+#---
+  if inLastInstructionShouldReturn then
+    ioGeneratedInstructionList += ![@baseline_intermediate_JUMP new
+      !mInstructionLocation
+      !mTargetLabel
       !inCurrentPage
       !targetPage->uint
     ] ;
   else
-    ioGeneratedInstructionList += ![@baseline_intermediate_CALL new
+    ioGeneratedInstructionList += ![@baseline_intermediate_JSR new
       !mInstructionLocation
       !mTargetLabel
       !inCurrentPage
@@ -379,11 +415,43 @@ override method @baseline_instruction_GOTO build_baseline_intermediate_instructi
   end if ;
   [inRoutineMap searchKey !mTargetLabel ?@bool isNoReturn ?@luint targetPage] ;
   if not isNoReturn then
-    error mTargetLabel:"a regular routine should be called with a CALL instruction" ;
+    error mTargetLabel:"a regular routine should be called with a CALL or a JSR instruction" ;
+  end if ;
+  if inCurrentPage != targetPage->uint then
+    error mTargetLabel:"for an inter-page noreturn routine call, use a JUMP instruction" ;
   end if ;
   ioContinuesInSequence := false ;
 #---
   ioGeneratedInstructionList += ![@baseline_intermediate_GOTO new
+    !mInstructionLocation
+    !mTargetLabel
+  ] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @baseline_instruction_JUMP build_baseline_intermediate_instructionList
+  ??@uint inCurrentPage
+  ??@baselineRoutineMap inRoutineMap
+  ??@registerTable unused inRegisterTable
+  ??@constantMap unused inConstantMap
+  ?!@uint unused ioLocalLabelIndex
+  ?!@baseline_intermediate_instructionList ioGeneratedInstructionList
+  ?!@string unused ioListFileContents
+  ?!@bool ioContinuesInSequence
+  ??@routineKind unused inRoutineKind
+  ??@bool inLastInstructionShouldReturn
+:
+  if inLastInstructionShouldReturn then
+    error mInstructionLocation : "this instruction is the last routine instruction and should be MOVLW" ;
+  end if ;
+  [inRoutineMap searchKey !mTargetLabel ?@bool isNoReturn ?@luint targetPage] ;
+  if not isNoReturn then
+    error mTargetLabel:"a regular routine should be called with a CALL or a JSR instruction" ;
+  end if ;
+  ioContinuesInSequence := false ;
+#---
+  ioGeneratedInstructionList += ![@baseline_intermediate_JUMP new
     !mInstructionLocation
     !mTargetLabel
     !inCurrentPage
@@ -525,12 +593,10 @@ override method @baseline_instruction_FOREVER build_baseline_intermediate_instru
     !inRoutineKind
     !false # Instruction list does not need to end with MOVLW
   ;
-#--- Generate JUMP to loop start
+#--- Generate GOTO to the beginning of the loop
   ioGeneratedInstructionList += ![@baseline_intermediate_GOTO new
     !mInstructionLocation
     ![@lstring new !label0 !mInstructionLocation]
-    !inCurrentPage
-    !inCurrentPage
   ] ;
 #---
   ioContinuesInSequence := false ;
@@ -607,8 +673,6 @@ override method @baseline_instruction_do_while build_baseline_intermediate_instr
       ioGeneratedInstructionList += ![@baseline_intermediate_GOTO new
         !mInstructionLocation
         ![@lstring new !labelInstructionBegin !mInstructionLocation]
-        !inCurrentPage
-        !inCurrentPage
       ] ;
       ioGeneratedInstructionList += ![@baseline_intermediate_pseudo_LABEL new ![@lstring new !nextBranchLabel !mInstructionLocation]] ;
     end if ;
@@ -661,8 +725,6 @@ override method @baseline_instruction_structured_if build_baseline_intermediate_
     ioGeneratedInstructionList += ![@baseline_intermediate_GOTO new
       !mInstructionLocation
       ![@lstring new !label_endOfIfinstruction !mInstructionLocation]
-      !inCurrentPage
-      !inCurrentPage
     ] ;
   end if ;
   ioGeneratedInstructionList += ![@baseline_intermediate_pseudo_LABEL new ![@lstring new !label_nextCondition !mInstructionLocation]] ;
@@ -808,7 +870,7 @@ end method ;
 #----------------------------------------------------*
 
 override method @baseline_bitTest_in_structured_if_condition build_intermediate_condition_instructions
-  ??@uint inCurrentPage
+  ??@uint unused inCurrentPage
   ??@registerTable inRegisterTable
   ?!@uint unused ioLocalLabelIndex
   ??@bool inComplementaryBranch
@@ -835,8 +897,6 @@ override method @baseline_bitTest_in_structured_if_condition build_intermediate_
   ioGeneratedInstructionList += ![@baseline_intermediate_GOTO new
     !inInstructionLocation
     ![@lstring new !inTargetLabel !inInstructionLocation]
-    !inCurrentPage
-    !inCurrentPage
    ] ;
 end method ;
 

@@ -193,6 +193,19 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override method @baseline_intermediate_GOTO generateAssemblyCode
+  ??@baseline_intermediate_registerExpression unused inSTATUSregister
+  ??@bitSliceTable unused inStatusRegisterBitSliceTable
+  ?!@baseline_assembly_instructionList ioAssemblyInstructionList
+:
+  ioAssemblyInstructionList += ![@baseline_assembly_GOTO new
+    !mInstructionLocation
+    !mTargetLabel
+  ] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @baseline_intermediate_JUMP generateAssemblyCode
   ??@baseline_intermediate_registerExpression inSTATUSregister
   ??@bitSliceTable inStatusRegisterBitSliceTable
   ?!@baseline_assembly_instructionList ioAssemblyInstructionList
@@ -247,6 +260,19 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override method @baseline_intermediate_CALL generateAssemblyCode
+  ??@baseline_intermediate_registerExpression unused inSTATUSregister
+  ??@bitSliceTable unused inStatusRegisterBitSliceTable
+  ?!@baseline_assembly_instructionList ioAssemblyInstructionList
+:
+  ioAssemblyInstructionList += ![@baseline_assembly_CALL new
+    !mInstructionLocation
+    !mTargetLabel
+  ] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @baseline_intermediate_JSR generateAssemblyCode
   ??@baseline_intermediate_registerExpression inSTATUSregister
   ??@bitSliceTable inStatusRegisterBitSliceTable
   ?!@baseline_assembly_instructionList ioAssemblyInstructionList
@@ -255,6 +281,7 @@ override method @baseline_intermediate_CALL generateAssemblyCode
   @uint pageChangeFlags := mCurrentPage ^ mTargetPage ;
   @uint targetPageFlags := mTargetPage ;
   @uint idx := 0 ;
+  @baseline_assembly_instructionList pageRestoreInstructions [emptyList] ;
   loop 8 while pageChangeFlags != 0 do
     if (pageChangeFlags & 1) != 0 then
       @uint bitIndex ;
@@ -287,6 +314,12 @@ override method @baseline_intermediate_CALL generateAssemblyCode
         !inSTATUSregister
         !bitIndex
       ] ;
+      pageRestoreInstructions += ![@baseline_assembly_instruction_FB new
+        !mInstructionLocation
+        !if (targetPageFlags & 1) == 0 then [@baseline_bit_oriented_op BSF] else [@baseline_bit_oriented_op BCF] end
+        !inSTATUSregister
+        !bitIndex
+      ] ;
     end if ;
     pageChangeFlags := pageChangeFlags / 2 ;
     targetPageFlags := targetPageFlags / 2 ;
@@ -296,6 +329,9 @@ override method @baseline_intermediate_CALL generateAssemblyCode
     !mInstructionLocation
     !mTargetLabel
   ] ;
+  foreach pageRestoreInstructions do
+    ioAssemblyInstructionList += !mInstruction ;
+  end foreach ;
 end method ;
 
 #----------------------------------------------------*
