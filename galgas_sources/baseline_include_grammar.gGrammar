@@ -1,0 +1,12 @@
+grammar baseline_include_grammar "SLR":
+with "baseline_syntax.gSyntax" ;
+with "communs.gSyntax" ;
+
+root <section_list>
+  ?!@baseline_routineDefinitionList ioRoutineDefinitionList
+  ?!@ramDefinitionList ioRamDefinitionList
+  ?!@configDefinitionList ioConfigDefinitionList
+  ?!@constantDefinitionList ioConstantDefinitionList
+;
+
+end grammar ;

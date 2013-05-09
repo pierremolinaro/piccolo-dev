@@ -3,7 +3,9 @@ with "pic18_syntax.gSyntax" ;
 with "pic18_start_symbol.gSyntax" ;
 with "midrange_syntax.gSyntax" ;
 with "baseline_syntax.gSyntax" ;
+with "baseline_program.gSyntax" ;
 with "pic18_bootloader_syntax.gSyntax" ;
+with "communs.gSyntax" ;
 
 root <start_symbol>
 label importBootloaderSpecification

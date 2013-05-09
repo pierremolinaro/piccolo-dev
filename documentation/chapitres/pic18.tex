@@ -142,6 +142,7 @@ noreturn routine main bank:requires 0 {
 Pour terminer ce premier exemple, il est utile de jeter un coup d’œil sur le code assembleur engendré (option « \texttt{-S} »), à gauche sans optimisation, à droite avec optimisations grâce à l’option « \texttt{-O} ». L’optimisation gagne 4 instructions (le \texttt{bra main} initial, et la meilleure utilisation des trois occurrences de l’instruction \texttt{TSTFSZ}. Observez aussi l’optimisation des sauts (ne vous basez pas sur les noms des étiquettes, elles changent de signification avec l’optimisation).
 
 \begin{multicols}{2}
+\textbf{Code non optimisé}
 \begin{lstlisting}[language=assembleur]
   ORG 0
   bra   main
@@ -190,6 +191,7 @@ _label_2:
   bra   _label_0
 \end{lstlisting}
 \columnbreak
+\textbf{Code optimisé}
 \begin{lstlisting}[language=assembleur]
   ORG 0
   movlw 0x7
