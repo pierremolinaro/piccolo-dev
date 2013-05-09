@@ -21,7 +21,9 @@ project all_piccolo (2:0:0) -> "piccolo" :
 #--- Base Line
   semantics "baseline_instruction_groups.gSemantics" ;
   semantics "baseline_ast.gSemantics" ;
+  syntax    "baseline_program.gSyntax" ;
   syntax    "baseline_syntax.gSyntax" ;
+  grammar   "baseline_include_grammar.gGrammar" ;
   semantics "baseline_compilation.gSemantics" ;
   semantics "baseline_intermediate_classes.gSemantics" ;
   semantics "baseline_semantic_analysis.gSemantics" ;
@@ -62,6 +64,7 @@ project all_piccolo (2:0:0) -> "piccolo" :
   semantics "pic18_bootloader_specification_semantics.gSemantics" ;
 
 
+  syntax    "communs.gSyntax" ;
   semantics "ram_sections.gSemantics" ;
 
   lexique   "piccoloDevice_lexique.gLexique" ;

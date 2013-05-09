@@ -36,11 +36,12 @@ Le corps du programme est constitué d’une liste non ordonnée de sections. Le
   \begin{tabular}{p{5cm}lll}
     \textbf{Type de section} & \textbf{Mot-clé introductif} & \textbf{Référence}\\
     \hline
-    Configuration & \texttt{configuration} & \refChapterPage{configuration}\\
-    Définition de variable & \texttt{ram} & \refChapterPage{ram}\\
-    Définition de constante & \texttt{const} & \refChapterPage{constante}\\
-    Définition de routine baseline & \texttt{routine} & \refSectionPage{routineBaseline}\\
-    Inclusion  & \texttt{include} & \refSectionPage{sectionIncludeBaseline} \\
+    Configuration & \texttt{configuration}\index{Mot réservé!configuration} & \refChapterPage{configuration}\\
+    Définition de variable & \texttt{ram}\index{Mot réservé!ram} & \refChapterPage{ram}\\
+    Définition de constante & \texttt{const}\index{Mot réservé!const} & \refChapterPage{constante}\\
+    Définition de routine régulière & \texttt{routine}\index{Mot réservé!routine} & \refSectionPage{routineBaseline}\\
+    Définition de routine sans retour & \texttt{noreturn}\index{Mot réservé!noreturn} & \refSectionPage{routineBaseline}\\
+    Inclusion  & \texttt{include}\index{Mot réservé!include} & \refSectionPage{sectionIncludeBaseline} \\
   \end{tabular}
   \caption{Les sections d'un programme pour \emph{baseline}}
   \labelTableau{sectionsBaseline}
@@ -57,13 +58,14 @@ Les routines définissent le code exécutable de votre programme. L’une d’en
 L’ordre des déclarations des routines est quelconque, il est possible d’appeler une routine qui est déclarée après l’instruction d’appel. Simplement Piccolo engendrera leur code dans leur ordre d’apparition. 
 
 ~\\
-\textbf{Routine et pages de la ROM.} Un problème important en Piccolo \emph{baseline} est la gestion des pages de la ROM (voir \refSectionPage{gestionPagesBaseline}).
+\textbf{Routine et pages de la mémoire programme.} Un problème important en Piccolo \emph{baseline} est la gestion des pages de la mémoire programme (voir \refSectionPage{gestionPagesBaseline}).
 
 ~\\
 \textbf{Liste d’instructions d’une routine.} Elle est structurée : Piccolo définit des instructions de sélection et de répétition : cela signifie que vous ne pouvez pas déclarer d’étiquette, ni utiliser de \texttt{goto} pour effectuer des branchements à l’intérieur d’une routine.
 
 
 \subsectionLabel{Routine régulière}{routineReguliereBaseline}
+\index{Routine régulière!baseline}
 
 C'est un sous-programme. Une routine régulière peut ne comporter aucune instruction Piccolo, l'instruction \texttt{retlw} est implicitement ajoutée. Une routine régulière est déclarée par :
 \begin{lstlisting}[language=piccolo]
@@ -144,6 +146,7 @@ _label_0:
 
 
 \subsection{Routine sans retour}
+\index{Routine sans retour!baseline}
 
 L’exécution ne revient pas jamais à l’appelant. Ce type de routine doit donc se terminer par des constructions particulières qui assurent le non-retour : une boucle infinie, un branchement \texttt{goto} ou \texttt{jump} vers une autre routine sans retour.
 
@@ -244,6 +247,7 @@ noreturn routine maRoutine {
 
 
 \section{Les instructions}
+\index{Baseline!Instructions machine}
 
 Elles sont de deux types (la distinction est importante pour l’instruction \emph{conditionnelle simple}) :
 \begin{itemize}
@@ -254,9 +258,9 @@ Elles sont de deux types (la distinction est importante pour l’instruction \em
 
 
 ~\\
-\textbf{Les instructions simples.} Elles correspondent à une partie des instructions assembleur. Attention, pour certaines, la syntaxe n'est pas exactement la même que celle de l'instruction assembleur correspondante.
+\textbf{Les instructions simples.} Elles correspondent à une partie des instructions machine. Attention, pour certaines, la syntaxe n'est pas exactement la même que celle de l'instruction assembleur correspondante.
 
-Le \refTableau{instructionsAssembleurBaseline} donnent la liste des instructions assembleur \emph{baseline} et les liens vers les sections précisant leur prise en charge en Piccolo.
+Le \refTableau{instructionsAssembleurBaseline} donnent la liste des instructions machine \emph{baseline} et les liens vers les sections précisant leur prise en charge en Piccolo.
 
  
 \begin{table}[!ht]
@@ -264,7 +268,7 @@ Le \refTableau{instructionsAssembleurBaseline} donnent la liste des instructions
   \small
   \rowcolors{2}{\fondTableau}{}
   \begin{tabular}{lll}
-    \textbf{Assembleur} & \textbf{Description} & \textbf{Référence en Piccolo}\\
+    \textbf{Instruction} & \textbf{Description} & \textbf{Référence en Piccolo}\\
     \hline
     \texttt{ADDWF f, d} & Add W and f & \refSubsectionPage{instructionsBaselineNommantRegistreEtW} \\
     \texttt{ANDLW k} & And Literal with W & \refSubsectionPage{opBaselineImmediate}\\
@@ -299,7 +303,7 @@ Le \refTableau{instructionsAssembleurBaseline} donnent la liste des instructions
     \texttt{XORWF f, d} & Exclusive OR W with f & \refSubsectionPage{instructionsBaselineNommantRegistreEtW}\\
   \hline
   \end{tabular}
-  \caption{Instructions \emph{byte-oriented} pour \emph{baseline}}
+  \caption{Instructions machine des \emph{baseline}}
   \labelTableau{instructionsAssembleurBaseline}
 \end{table}
 
@@ -406,7 +410,7 @@ Ces instructions, ainsi que le traduction en Piccolo, sont listées dans le \ref
 
 \subsectionLabel{Opérations d'affectation de bit}{opBaselineAffectationBit}
 
-Ces instructions Piccolo correspondent aux instructions assembleur \texttt{BCF} et \texttt{BSF} (\refTableau{operationsBaselineAffectationBit}).
+Ces instructions Piccolo correspondent aux instructions machine \texttt{BCF} et \texttt{BSF} (\refTableau{operationsBaselineAffectationBit}).
 
 \begin{table}[!ht]
   \centering
@@ -662,7 +666,7 @@ Voici comment ces contraintes sont prises en compte en Piccolo :
 
 \subsectionLabel{Instruction \texttt{jump}}{instructionJumpBaseline}
 
-L'instruction Piccolo  \texttt{jump} engendre des instructions assembleurs \texttt{BCF} ou \texttt{BSF} pour modifier les bits \texttt{PA} du registre \texttt{STATUS}, puis l'instruction assembleur \texttt{GOTO}.
+L'instruction Piccolo  \texttt{jump} engendre des instructions machine \texttt{BCF} ou \texttt{BSF} pour modifier les bits \texttt{PA} du registre \texttt{STATUS}, puis l'instruction machine \texttt{GOTO}.
 
 Elle occupe donc $n+1$ mots de la mémoire programme, $n$ étant le nombre de bits \texttt{PA} du registre \texttt{STATUS} à changer.
 
@@ -671,7 +675,7 @@ Elle occupe donc $n+1$ mots de la mémoire programme, $n$ étant le nombre de bi
 
 \subsectionLabel{Instruction \texttt{jsr}}{instructionJsrBaseline}
 
-L'instruction Piccolo  \texttt{jsr} engendre des instructions assembleurs \texttt{BCF} ou \texttt{BSF} pour modifier les bits \texttt{PA} du registre \texttt{STATUS}, puis l'instruction assembleur \texttt{GOTO}, puis de nouveau des instructions assembleurs \texttt{BCF} ou \texttt{BSF} pour rétablir les bits \texttt{PA} du registre \texttt{STATUS}.
+L'instruction Piccolo  \texttt{jsr} engendre des instructions machine \texttt{BCF} ou \texttt{BSF} pour modifier les bits \texttt{PA} du registre \texttt{STATUS}, puis l'instruction machine \texttt{GOTO}, puis de nouveau des instructions machine \texttt{BCF} ou \texttt{BSF} pour rétablir les bits \texttt{PA} du registre \texttt{STATUS}.
 
 Elle occupe donc $2n+1$ mots de la mémoire programme, $n$ étant le nombre de bits \texttt{PA} du registre \texttt{STATUS} à changer pour effectuer l'appel.
 

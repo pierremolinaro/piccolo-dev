@@ -38,86 +38,25 @@ nonterminal <immediate_expression>
 
 #----------------------------------------------------*
 
-rule <start_symbol> :
-  $baseline$ ;
-  $identifier$ ? @lstring programName ;
-  $literal_string$ ? @lstring deviceName ;
-  $:$ ;
-  @baseline_routineDefinitionList routineDefinitionList [emptyList] ;
-  @ramDefinitionList ramDefinitionList [emptyList] ;
-  @configDefinitionList configDefinitionList [emptyList] ;
-  @constantDefinitionList constantDefinitionList [emptyList] ;
-  repeat
-  while
-    $mark$ ;
-    $literal_string$ ?* ;
-  while
-    <configuration_definition> !?configDefinitionList ;
-  while
-    <ram_definition> !?ramDefinitionList ;
-  while
-    <constant_definition> !?constantDefinitionList ;
-  while
-    <baseline_routine_definition>
-      !?routineDefinitionList
-    ;
-  end repeat ;
-  $end$ ;
-#--- Semantic analysis
-  if [@uint errorCount] == 0 then
-    @baseline_model piccoloModel [new
-      !programName
-      !deviceName
-      !configDefinitionList
-      !ramDefinitionList
-      !constantDefinitionList
-      !routineDefinitionList
-      !here
-    ] ;
-    baseline_analysis !piccoloModel ![@string stringWithSourceFilePath] ;
-  else
-    @string hexDestinationFile := [[@string stringWithSourceFilePath] stringByDeletingPathExtension] . ".hex" ;
-    if [hexDestinationFile fileExists] then
-      [@string deleteFile !hexDestinationFile] ;
-    end if ;
-    @string asmDestinationFile := [[@string stringWithSourceFilePath] stringByDeletingPathExtension] . ".asm" ;
-    if [asmDestinationFile fileExists] then
-      [@string deleteFile !asmDestinationFile] ;
-    end if ;
-  end if ;
-label importBootloaderSpecification
-  !@piccoloDeviceModel outPiccoloDeviceModel
-  !@uint outAccessBankSplitOffset
-  !@ramBankTable outRamBank
-  !@registerTable outRegisterTable
-  !@bootloaderReservedRAMmap outBootloaderReservedRAMmap
-  !@routineDeclarationList outBootloaderRoutineDeclarationList
-  !@routineDeclarationList outUserRoutineDeclarationList
-  !@luint outBootloaderReservedROMsize
+rule <section_list>
+  ?!@baseline_routineDefinitionList ioRoutineDefinitionList
+  ?!@ramDefinitionList ioRamDefinitionList
+  ?!@configDefinitionList ioConfigDefinitionList
+  ?!@constantDefinitionList ioConstantDefinitionList
 :
-  $baseline$ ;
-  $identifier$ ? @lstring programName ;
-  error programName: "this file does not define a bootloader specification"
-   : outPiccoloDeviceModel, outAccessBankSplitOffset, outRamBank, outRegisterTable,
-      outBootloaderReservedRAMmap, outBootloaderRoutineDeclarationList,
-      outUserRoutineDeclarationList,
-      outBootloaderReservedROMsize ;
-  $literal_string$ ? * ;
-  $:$ ;
   repeat
   while
     $mark$ ;
     $literal_string$ ?* ;
   while
-    <configuration_definition> parse ;
+    <configuration_definition> !?ioConfigDefinitionList ;
   while
-    <ram_definition> parse ;
+    <ram_definition> !?ioRamDefinitionList ;
   while
-    <constant_definition> parse ;
+    <constant_definition> !?ioConstantDefinitionList ;
   while
-    <baseline_routine_definition> parse ;
+    <baseline_routine_definition> !?ioRoutineDefinitionList ;
   end repeat ;
-  $end$ ;
 end rule ;
 
 #----------------------------------------------------*

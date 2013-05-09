@@ -5,6 +5,36 @@ import "pic18_include_grammar.gGrammar" ;
 
 #----------------------------------------------------*
 
+nonterminal <configuration_definition>
+  ?!@configDefinitionList ioConfigDefinitionList
+;
+
+nonterminal <ram_definition>
+  ?!@ramDefinitionList ioRamDefinitionList
+;
+
+nonterminal <constant_definition>
+  ?!@constantDefinitionList ioConstantDefinitionList
+;
+
+nonterminal <immediate_expression>
+  !@immediatExpression outExpression
+;
+
+nonterminal <register_parsing>
+  !@registerExpression outRegisterExpression
+;
+
+nonterminal <optional_w_as_dest>
+  !@bool out_W_isDestination
+;
+
+nonterminal <bit_number_parsing>
+  !@bitNumberExpression outBitNumber
+;
+
+#----------------------------------------------------*
+
 rule <body>
   ?!@interruptDefinitionList interruptDefinitionList
   ?!@routineDefinitionList routineDefinitionList
@@ -74,140 +104,6 @@ rule <data_definition>
   ioDataList += !dataName !valueList ;
 end rule ;
     
-#----------------------------------------------------*
-
-rule <configuration_definition>
-  ?!@configDefinitionList ioConfigDefinitionList
-:
-  $configuration$ ;
-  @location defLocation := here ;
-  @configSettingList settingList [emptyList] ;
-  ${$ ;
-  repeat
-  while
-    $identifier$ ? @lstring settingName ;
-    $:$ ;
-    @lstring settingValue ;
-    select
-      $identifier$ ? settingValue ;
-    or
-      $literal_string$ ? settingValue ;
-    end select ;
-    settingList += !settingName !settingValue ;
-  end repeat ;
-  $}$ ;
-  ioConfigDefinitionList += !defLocation !settingList ;
-end rule ;
-
-#----------------------------------------------------*
-
-rule <declaration_in_ram>
-  !@declarationInRam outDeclaration
-:
-  $byte$ ;
-  $identifier$ ? @lstring name ;
-  @luint size ;
-  select
-    size := [@luint new !1 !here] ;
-  or
-    $[$ ;
-    $integer$ ?size ;
-    $]$ ;
-  end select ;
-  @bitSliceTable bitSliceTable [emptyMap] ;
-  @string bitDefinitionString ;
-  select
-    bitDefinitionString := "" ;
-  or
-    $<$ ;
-    bitDefinitionString := " <" ;
-    @sint sliceIndex := 8S ;
-    repeat
-     select
-        @uint sliceWidth := 0 ; # Means undefined
-        repeat
-          @uint sliceBase := 0 ;
-          if sliceIndex >= 0S then
-            sliceBase := [sliceIndex uint] ;
-          end if ;
-          $identifier$ ? @lstring sliceName ;
-          select
-            if (sliceWidth != 0) & (sliceWidth != 1) then
-              error sliceName:"a slice of 1 bit is expected for '" . sliceName . "'" ; 
-            end if ;
-            sliceWidth := 1 ;
-            bitDefinitionString .= [sliceName string] ; 
-          or
-            $[$ ;
-            $integer$ ? @luint sliceSize ;
-            if (sliceWidth != 0) & (sliceWidth != [sliceSize uint]) then
-              error sliceName:"a slice of " . [sliceWidth string] . " bits is expected for '" . sliceName . "'" ; 
-            end if ;
-            sliceWidth := [sliceSize uint] ;
-            sliceBase := sliceBase + 1 - [sliceSize uint] ;
-            bitDefinitionString .= [sliceName string] . "[" . [[sliceSize uint] string] . "]" ; 
-            $]$ ;
-          end select ;
-          @uint base := 0 ;
-          if sliceIndex >= [sliceWidth sint] then
-            base := [sliceIndex uint] - sliceWidth ;
-          end if ;
-          [!?bitSliceTable insertKey !sliceName !base !sliceWidth] ;
-        while
-          $/$ ;
-          bitDefinitionString .= "/" ;
-        end repeat ;
-        sliceIndex := sliceIndex - [sliceWidth sint] ;
-      or
-        $-$ ;
-        bitDefinitionString .= "-" ;
-        sliceIndex -- ;
-      end select ;
-    while
-      $,$ ;
-      bitDefinitionString .= ", " ; 
-    end repeat ;
-    if sliceIndex != 0S then
-      error name:"Incorrect bit definition for register '" . name . "': " . [8S - sliceIndex string] . " bits (s) are defined, instead of 8" ;
-    end if ;
-    $>$ ;
-    bitDefinitionString .= ">" ;
-  end select ;
-  outDeclaration := [@byteDeclarationInRam new !name !size !bitSliceTable !bitDefinitionString] ;
-end rule ;
-
-#----------------------------------------------------*
-
-rule <ram_definition>
-  ?!@ramDefinitionList ioRamDefinitionList
-:
-  $ram$ ;
-  $identifier$ ? @lstring bankName ;
-  ${$ ;
-  @declarationInRamList declarationInRamList [emptyList] ;
-  repeat
-  while
-    @declarationInRam declaration ;
-    <declaration_in_ram> ?declaration ;
-    declarationInRamList += !declaration ;
-  end repeat ;
-  ioRamDefinitionList += !bankName !declarationInRamList ;
-  $}$ ;
-end rule ;
-
-#----------------------------------------------------*
-
-rule <constant_definition>
-  ?!@constantDefinitionList ioConstantDefinitionList
-:
-  $const$ ;
-  $identifier$ ? @lstring constantName ;
-  $=$ ;
-  @immediatExpression expression ;
-  <immediate_expression> ?expression ;
-  ioConstantDefinitionList += !constantName !expression ;
-end rule ;
-
 #----------------------------------------------------*
 
 rule <instruction_list>
@@ -325,58 +221,6 @@ rule <routine_definition>
   ;
   $}$ ;
   ioRoutineDefinitionList += !routineName !requiredBank !returnedBank !preservesBank !noreturn !instructionList !here ;
-end rule ;
-
-#----------------------------------------------------*
-
-rule <register_parsing> !@registerExpression outRegisterExpression :
-  $identifier$ ?@lstring registerName ;
-  @luint offset ;
-  select
-    offset := [@luint new !0 !here] ;
-  or
-    $[$ ;
-    $integer$ ? offset ;
-    $]$ ;
-  end select ;
-  outRegisterExpression := [@registerExpression new
-    !registerName
-    !offset
-  ] ;
-end rule ;
-
-#----------------------------------------------------*
-
-rule <bit_number_parsing> !@bitNumberExpression outBitNumber :
-  $identifier$ ?@lstring bitNumberLabel ;
-  @luint bitIndex ;
-  select
-    bitIndex := [@luint new !0 !here] ;
-  or
-    $[$ ;
-    $integer$ ? bitIndex ;
-    $]$ ;
-  end select ;
-  outBitNumber := [@bitNumberLabelValue new !bitNumberLabel !bitIndex] ;
-end rule ;
-
-#----------------------------------------------------*
-
-rule <bit_number_parsing> !@bitNumberExpression outBitNumber :
-  $integer$ ?@luint bitNumberLiteral ;
-  outBitNumber := [@bitNumberLiteralValue new !bitNumberLiteral] ;
-end rule ;
-
-#----------------------------------------------------*
-
-rule <optional_w_as_dest> !@bool out_W_isDestination :
-  select
-    out_W_isDestination := false ;
-  or
-    $,$ ;
-    $w$ ;
-    out_W_isDestination := true ;
-  end select ;
 end rule ;
 
 #----------------------------------------------------*
@@ -1255,184 +1099,6 @@ rule <simple_instruction> !@piccolo_instruction outInstruction :
       accessOption := [@tableAccessOption preIncrement] ;
     end select ;
     outInstruction := [@instruction_TBLWT new !instructionLocation !accessOption] ;
-  end select ;
-end rule ;
-
-#----------------------------------------------------*
-
-rule <immediate_expression> !@immediatExpression outExpression :
-  <immediate_bitwise_term> ?outExpression ;
-  repeat
-  while
-    $|$ ;
-    @immediatExpression rightExpression ;
-    <immediate_bitwise_term> ?rightExpression ;
-    outExpression := [@immediatOr new !outExpression! rightExpression] ;
-  while
-    $^$ ;
-    @immediatExpression rightExpression ;
-    <immediate_bitwise_term> ?rightExpression ;
-    outExpression := [@immediatXor new !outExpression! rightExpression] ;
-  end repeat ;
-end rule ;
-
-#----------------------------------------------------*
-
-rule  <immediate_bitwise_term> !@immediatExpression outExpression :
-  <immediate_bitwise_factor> ?outExpression ;
-  repeat
-  while
-    $&$ ;
-    @immediatExpression rightExpression ;
-    <immediate_bitwise_factor> ?rightExpression ;
-    outExpression := [@immediatAnd new !outExpression! rightExpression] ;
-  end repeat ;
-end rule ;
-
-#----------------------------------------------------*
-
-rule <immediate_bitwise_factor> !@immediatExpression outExpression :
-  <immediate_term> ?outExpression ;
-  select
-  or
-    $==$ ; 
-    @immediatExpression rightExpression ;
-    <immediate_term> ?rightExpression ;
-    outExpression := [@immediatEqualTest new !outExpression! rightExpression] ;
-  or
-    $!=$ ; 
-    @immediatExpression rightExpression ;
-    <immediate_term> ?rightExpression ;
-    outExpression := [@immediatNotEqualTest new !outExpression! rightExpression] ;
-  or
-    $>=$ ; 
-    @immediatExpression rightExpression ;
-    <immediate_term> ?rightExpression ;
-    outExpression := [@immediatGreaterOrEqualTest new !outExpression! rightExpression] ;
-  or
-    $<=$ ; 
-    @immediatExpression rightExpression ;
-    <immediate_term> ?rightExpression ;
-    outExpression := [@immediatLowerOrEqualTest new !outExpression! rightExpression] ;
-  or
-    $>$ ; 
-    @immediatExpression rightExpression ;
-    <immediate_term> ?rightExpression ;
-    outExpression := [@immediatGreaterTest new !outExpression! rightExpression] ;
-  or
-    $<$ ; 
-    @immediatExpression rightExpression ;
-    <immediate_term> ?rightExpression ;
-    outExpression := [@immediatLowerTest new !outExpression! rightExpression] ;
-  end select ;
-end rule ;
-
-#----------------------------------------------------*
-
-rule <immediate_term> !@immediatExpression outExpression :
-  <immediate_factor> ?outExpression ;
-  repeat
-  while
-    $+$ ;
-    @immediatExpression rightExpression ;
-    <immediate_factor> ?rightExpression ;
-    outExpression := [@immediatAdd new !outExpression! rightExpression] ;
-  while
-    $-$ ;
-    @immediatExpression rightExpression ;
-    <immediate_factor> ?rightExpression ;
-    outExpression := [@immediatSub new !outExpression! rightExpression] ;
-  while
-    $<<$ ;
-    @immediatExpression rightExpression ;
-    <immediate_factor> ?rightExpression ;
-    outExpression := [@immediatLeftShift new !outExpression! rightExpression] ;
-  while
-    $>>$ ;
-    @immediatExpression rightExpression ;
-    <immediate_factor> ?rightExpression ;
-    outExpression := [@immediatRightShift new !outExpression! rightExpression] ;
-  end repeat ;
-end rule ;
-
-#----------------------------------------------------*
-
-rule <immediate_factor> !@immediatExpression outExpression :
-  <immediate_primary> ?outExpression ;
-  repeat
-  while
-    $*$ ;
-    @immediatExpression rightExpression ;
-    <immediate_primary> ?rightExpression ;
-    outExpression := [@immediatMul new !outExpression! rightExpression] ;
-  while
-    $%$ ;
-    @immediatExpression rightExpression ;
-    <immediate_primary> ?rightExpression ;
-    outExpression := [@immediatMod new !outExpression! rightExpression] ;
-  while
-    $/$ ;
-    @immediatExpression rightExpression ;
-    <immediate_primary> ?rightExpression ;
-    outExpression := [@immediatDiv new !outExpression! rightExpression] ;
-  end repeat ;
-end rule ;
-
-
-#----------------------------------------------------*
-
-rule <immediate_primary> !@immediatExpression outExpression :
-  select
-    $-$ ;
-    @immediatExpression expression ;
-    <immediate_primary> ?expression ;
-    outExpression := [@immediatNegate new !expression] ;
-  or
-    $~$ ;
-    @immediatExpression expression ;
-    <immediate_primary> ?expression ;
-    outExpression := [@immediatComplement new !expression] ;
-  or
-    $integer$ ? @luint constant ;
-    outExpression := [@immediatInteger new !constant] ;
-  or
-    $literal_char$ ? @lchar literalCharValue ;
-    outExpression := [@immediatInteger new ![@luint new ![[literalCharValue char] uint] ![literalCharValue location]]] ;
-  or
-    $identifier$ ?@lstring registerName ;
-    @luint offset ;
-    select
-      offset := [@luint new !0 !here] ;
-    or
-      $[$ ;
-      $integer$ ? offset ;
-      $]$ ;
-    end select ;
-    @registerExpression registerExpression [new
-      !registerName
-      !offset
-    ] ;
-    outExpression := [@immediatRegister new !registerExpression] ;
-  or
-    $($ ;
-    <immediate_expression> ?outExpression ;
-    $)$ ;
-  or
-    $@$ ;
-    $identifier$ ? @lstring registerName ;
-    $($ ;
-    @immediatSliceExpressionList sliceExpressionList [emptyList] ;
-    repeat
-      $identifier$ ? @lstring sliceName ;
-      $:$ ;
-      @immediatExpression expression ;
-      <immediate_expression> ?expression ;
-      sliceExpressionList += !sliceName !expression ;
-    while
-      $,$ ;
-    end repeat ;
-    $)$ ;
-    outExpression := [@immediatSlice new !registerName !sliceExpressionList] ;
   end select ;
 end rule ;
 
