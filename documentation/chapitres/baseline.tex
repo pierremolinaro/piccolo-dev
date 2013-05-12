@@ -273,28 +273,29 @@ Le \refTableau{instructionsAssembleurBaseline} donnent la liste des instructions
     \texttt{ADDWF f, d} & Add W and f & \refSubsectionPage{instructionsBaselineNommantRegistreEtW} \\
     \texttt{ANDLW k} & And Literal with W & \refSubsectionPage{opBaselineImmediate}\\
     \texttt{ANDWF f, d} & And W with f & \refSubsectionPage{instructionsBaselineNommantRegistreEtW}\\
-    \texttt{BCF f, b, a} & Bit Clear f & \refSubsectionPage{opBaselineAffectationBit} \\
-    \texttt{BSF f, b, a} & Bit Set f & \refSubsectionPage{opBaselineAffectationBit} \\
-    \texttt{BTFSC f, b, a} & Bit Test f, Skip if Clear & \refSubsectionPage{instructionsBaselineIntrouvables}\\
-    \texttt{BTFSS f, b, a} & Bit Test f, Skip if Set & \refSubsectionPage{instructionsBaselineIntrouvables}\\
-    \texttt{CALL n, s} & Call Subroutine &  \refSubsectionPage{appelRoutineReguliereBaseline} \\
+    \texttt{BCF f, b} & Bit Clear f & \refSubsectionPage{opBaselineAffectationBit} \\
+    \texttt{BSF f, b} & Bit Set f & \refSubsectionPage{opBaselineAffectationBit} \\
+    \texttt{BTFSC f, b} & Bit Test f, Skip if Clear & \refSubsectionPage{instructionsBaselineIntrouvables}\\
+    \texttt{BTFSS f, b} & Bit Test f, Skip if Set & \refSubsectionPage{instructionsBaselineIntrouvables}\\
+    \texttt{CALL k} & Call Subroutine &  \refSubsectionPage{appelRoutineReguliereBaseline} \\
     \texttt{CLRF f} & Clear f & \refSubsectionPage{instructionsBaseLineNommantRegistre} \\
     \texttt{CLRW} & Clear W & \refSubsectionPage{operationsBaselineIdentiquesAssembleur}\\
     \texttt{CLRWDT} & Clear Watchdog Timer & \refSubsectionPage{operationsBaselineIdentiquesAssembleur}\\
     \texttt{COMF f, d} & Complement f & \refSubsectionPage{instructionsBaselineNommantRegistreEtW}\\
     \texttt{DECF f, d} & Decrement f & \refSubsectionPage{instructionsBaselineNommantRegistreEtW}\\
     \texttt{DECFSZ f, d} & Decrement f, Skip if 0 & \refSubsectionPage{instructionsBaselineIntrouvables}\\
-    \texttt{GOTO n} & Go to Address & \refSubsectionPage{appelRoutineSansRetourBaseline} \\
+    \texttt{GOTO k} & Go to Address & \refSubsectionPage{appelRoutineSansRetourBaseline} \\
     \texttt{INCF f, d} & Decrement f & \refSubsectionPage{instructionsBaselineNommantRegistreEtW}\\
     \texttt{INCFSZ f, d} & Increment f, Skip if 0 & \refSubsectionPage{instructionsBaselineIntrouvables}\\
     \texttt{IORLW k} & Inclusive OR Literal with W & \refSubsectionPage{opBaselineImmediate}\\
     \texttt{IORWF f, d} & Inclusive OR W with f & \refSubsectionPage{instructionsBaselineNommantRegistreEtW}\\
     \texttt{MOVF f, d} & Move f & \refSubsectionPage{instructionsBaselineNommantRegistreEtW}\\
     \texttt{MOVLW k} & Move Literal to W & \refSubsectionPage{opBaselineImmediate}\\
+    \texttt{MOVWF f} & Move W to f & \refSubsectionPage{instructionsBaseLineNommantRegistre} \\
     \texttt{NOP} & No Operation & \refSubsectionPage{operationsBaselineIdentiquesAssembleur}\\
     \texttt{RETLW k} & Return with Literal in W & \refSubsectionPage{instructionsBaselineIntrouvables}\\
     \texttt{RLF f, d} & Rotate Left f through Carry & \refSubsectionPage{instructionsBaselineNommantRegistreEtW}\\
-    \texttt{RLF f, d} & Rotate Left f through Carry & \refSubsectionPage{instructionsBaselineNommantRegistreEtW}\\
+    \texttt{RRF f, d} & Rotate Right f through Carry & \refSubsectionPage{instructionsBaselineNommantRegistreEtW}\\
     \texttt{SLEEP} & Go into Standby Mode & \refSubsectionPage{operationsBaselineIdentiquesAssembleur}\\
     \texttt{SUBWF f, d} & Substract W from f & \refSubsectionPage{instructionsBaselineNommantRegistreEtW}\\
     \texttt{SWAPF f, d} & Swap Nibbles in f & \refSubsectionPage{instructionsBaselineNommantRegistreEtW}\\
@@ -332,7 +333,7 @@ Le \refTableau{instructionsAssembleurBaseline} donnent la liste des instructions
 Elles n’existent pas en Piccolo parce qu’elles sont remplacées par des constructions structurées, ou bien engendrées automatiquement lors de la compilation.
 
 Voici leur liste avec les liens vers les sections appropriées :\begin{itemize}
-  \item \texttt{BTFSC}, \texttt{BTFSS}, \texttt{DCFSNZ} et \texttt{INCFSZ} : ces instructions sont engendrées par l’instruction conditionnelle simple, l’instruction conditionnelle structurée et l’instruction répétitive (\refSubsectionPage{conditionsElementairesBaselineMidRange}) ;
+  \item \texttt{BTFSC}, \texttt{BTFSS}, \texttt{DECFSZ} et \texttt{INCFSZ} : ces instructions sont engendrées par l’instruction conditionnelle simple, l’instruction conditionnelle structurée et l’instruction répétitive (\refSubsectionPage{conditionsElementairesBaselineMidRange}) ;
   \item \texttt{RETLW} : utiliser une instruction \texttt{MOVLW}, et c’est le compilateur Piccolo qui la remplacera par une instruction \texttt{RETLW k} (\refSubsectionPage{routineReguliereBaseline}).
 
 \end{itemize}
@@ -358,7 +359,7 @@ Ce sont les instructions listées dans le \refTableau{operationsBaselineNommantU
     \textbf{Assembleur} & \textbf{Description} & \textbf{Écriture en Piccolo}\\
     \hline
     \texttt{CLRF f} & Clear f & \texttt{clrf f} \\
-    \texttt{MOVWF f} & Move f & \texttt{movf f} \\
+    \texttt{MOVWF f} & Move f & \texttt{movwf f} \\
   \hline
   \end{tabular}
   \caption{Opérations \emph{baseline} nommant un registre}
@@ -485,7 +486,7 @@ Par exemple : \texttt{movlw -14} engendre l’instruction assembleur : \texttt{M
     \texttt{XORLW k} & Exclusive OR Literal with W & \texttt{xorlw k}\\
     \hline
   \end{tabular}
-  \caption{Opérations statiques avec \texttt{W} pour \emph{baseline}}
+  \caption{Opérations litérales avec \texttt{W} pour \emph{baseline}}
   \labelTableau{operationsLiteralesBaselineAvecW}
 \end{table}
 
