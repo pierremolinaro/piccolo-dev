@@ -1,5 +1,7 @@
 semantics midrange_compute_JSR_JUMP :
-import "midrange_ipic_metamodel.gSemantics" ;
+import "midrange_intermediate_classes.gSemantics" ;
+import "piccoloDevice_semantics.gSemantics" ;
+import "midrange_intermediate_instruction_length.gSemantics" ;
 
 #----------------------------------------------------------------------------*
 
@@ -52,9 +54,7 @@ method @midrange_intermediate_actualInstruction defineLabelAtAddress
   ?!@midrange_symbolTableForConvertingRelatives unused ioRoutineSymbolTable
   ?!@uint ioAddress
 :
-  @uint instructionLength ;
-  [selfcopy instructionLength ?instructionLength] ;
-  @uint nextAddress := ioAddress  + instructionLength ;
+  @uint nextAddress := ioAddress  + [selfcopy instructionLength] ;
   if ((nextAddress ^ ioAddress) & 0xF800) != 0 then
     error mInstructionLocation:"Routine too long, crosses page boundary at this instruction" ;
   end if ;
@@ -353,10 +353,8 @@ routine midrange_compute_JSR_JUMP
   #-------------------------------- Second pass: generate code
     currentAddress := 0 ;
     foreach ioGeneratedInstructionList index idx do
-      @uint instructionLength ;
-      [mInstruction instructionLength ?instructionLength] ;
       [mInstruction compute !symbolTable !?currentAddress !?JUMP_or_JSR_fixed !?ioGeneratedInstructionList !idx !?ioListFileContents] ;
-      currentAddress := currentAddress  + instructionLength ;
+      currentAddress := currentAddress  + [mInstruction instructionLength] ;
     end foreach ;
     if lastAddressForFirstPass != currentAddress then
       error here: "Internal second pass error: the last address gets " . [currentAddress hexString]

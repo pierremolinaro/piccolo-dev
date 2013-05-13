@@ -1,5 +1,5 @@
 semantics midrange_ipic_build_assembly_code :
-import "midrange_ipic_metamodel.gSemantics" ;
+import "midrange_intermediate_classes.gSemantics" ;
 import "piccolo_embedded_devices.gSemantics" ;
 
 #----------------------------------------------------*

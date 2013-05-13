@@ -61,27 +61,6 @@ end reader ;
 
 #----------------------------------------------------*
 
-reader @midrange_instruction_FD_base_code basecode -> @uint outBaseCode :
-  switch selfcopy
-  when ADDWF : outBaseCode := 0x0700 ;
-  when ANDWF : outBaseCode := 0x0500 ;
-  when COMF : outBaseCode := 0x0900 ;
-  when DECF : outBaseCode := 0x0300 ;
-  when DECFSZ : outBaseCode := 0x0B00 ;
-  when INCF : outBaseCode := 0x0A00 ;
-  when INCFSZ : outBaseCode := 0x0F00 ;
-  when IORWF : outBaseCode := 0x0400 ;
-  when MOVF : outBaseCode := 0x0800 ;
-  when RLF : outBaseCode := 0x0D00 ;
-  when RRF : outBaseCode := 0x0C00 ;
-  when SUBWF : outBaseCode := 0x0200 ;
-  when SWAPF : outBaseCode := 0x0E00 ;
-  when XORWF : outBaseCode := 0x0600 ;
-  end switch ;
-end reader ;
-
-#----------------------------------------------------*
-
 class @midrange_instruction_FD extends @midrange_instruction {
   @midrange_instruction_FD_base_code mInstruction_FD_base_code ;
   @registerExpression mRegisterExpression ;

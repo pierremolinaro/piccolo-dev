@@ -1,6 +1,7 @@
 semantics midrange_build_binary_code :
 import "ipic_generic.gSemantics" ;
-import "midrange_ipic_metamodel.gSemantics" ;
+import "midrange_intermediate_classes.gSemantics" ;
+import "midrange_display_intermediate_instruction.gSemantics" ;
 
 #----------------------------------------------------------------------------*
 
@@ -49,9 +50,7 @@ method @midrange_intermediate_actualInstruction enterLabelAtAddress
   ?!@midrange_symbolTable unused ioRoutineSymbolTable
   ?!@uint ioAddress
 :
-  @uint instructionLength ;
-  [selfcopy instructionLength ?instructionLength] ;
-  ioAddress := ioAddress  + instructionLength ;
+  ioAddress := ioAddress  + [selfcopy instructionLength] ;
 end method ;
 
 #----------------------------------------------------------------------------*
@@ -90,6 +89,27 @@ method @midrange_intermediate_pseudo_ORG generateBinaryCodeAtAddress
   setEmitAddress ! mOrigin + mOrigin ;
 end method ;
 
+#----------------------------------------------------*
+
+reader @midrange_instruction_FD_base_code basecode -> @uint outBaseCode :
+  switch selfcopy
+  when ADDWF : outBaseCode := 0x0700 ;
+  when ANDWF : outBaseCode := 0x0500 ;
+  when COMF : outBaseCode := 0x0900 ;
+  when DECF : outBaseCode := 0x0300 ;
+  when DECFSZ : outBaseCode := 0x0B00 ;
+  when INCF : outBaseCode := 0x0A00 ;
+  when INCFSZ : outBaseCode := 0x0F00 ;
+  when IORWF : outBaseCode := 0x0400 ;
+  when MOVF : outBaseCode := 0x0800 ;
+  when RLF : outBaseCode := 0x0D00 ;
+  when RRF : outBaseCode := 0x0C00 ;
+  when SUBWF : outBaseCode := 0x0200 ;
+  when SWAPF : outBaseCode := 0x0E00 ;
+  when XORWF : outBaseCode := 0x0600 ;
+  end switch ;
+end reader ;
+
 #----------------------------------------------------------------------------*
 
 override method @midrange_intermediate_instruction_FD generateBinaryCodeAtAddress
@@ -99,13 +119,23 @@ override method @midrange_intermediate_instruction_FD generateBinaryCodeAtAddres
   ?!@uint unused ioAddress
 :
 #--- Emit Code
-  @uint code ; [selfcopy getBaseCode ? code] ;
+  @uint code := [mInstruction_FD_base_code basecode] ;
   if not m_W_isDestination then
     code := code | 0x80 ;
   end if ;
   code := code | ([mRegisterDescription mRegisterAddress] & 127) ;
   emitCode !code ;
 end method ;
+
+#----------------------------------------------------*
+
+reader @midrange_F_instruction_base_code baseCode -> @uint outBaseCode
+:
+  switch selfcopy
+  when CLRF   : outBaseCode := 0x0180 ;
+  when MOVWF  : outBaseCode := 0x0080 ;
+  end switch ;
+end reader ;
 
 #----------------------------------------------------------------------------*
 
@@ -116,10 +146,20 @@ override method @midrange_intermediate_instruction_F generateBinaryCodeAtAddress
   ?!@uint unused ioAddress
 :
 #--- Emit Code
-  @uint code ; [selfcopy getBaseCode ? code] ;
+  @uint code := [mFinstruction baseCode] ;
   code := code | ([mRegisterDescription mRegisterAddress] & 127) ;
   emitCode !code ;
 end method ;
+
+#----------------------------------------------------*
+
+reader @midrange_bit_oriented_op baseCode -> @uint outBaseCode :
+  switch selfcopy
+  when BCF : outBaseCode := 0x1000 ;
+  when BSF : outBaseCode := 0x1400 ;
+  end switch ;
+end reader ;
+
 
 #----------------------------------------------------------------------------*
 
@@ -130,7 +170,7 @@ override method @midrange_intermediate_instruction_FB generateBinaryCodeAtAddres
   ?!@uint unused ioAddress
 :
 #--- Emit Code
-  @uint code ; [selfcopy getBaseCode ? code] ;
+  @uint code := [mBitOrientedOp baseCode] ;
   code := code | ([mRegisterDescription mRegisterAddress] & 127) ;
   code := code | (mBitNumber << 7) ;
   emitCode !code ;
@@ -145,7 +185,12 @@ override method @midrange_intermediate_instruction_BitTestSkip generateBinaryCod
   ?!@uint unused ioAddress
 :
 #--- Emit Code
-  @uint code ; [selfcopy getBaseCode ?code] ;
+  @uint code ;
+  if mSkipIfSet then
+    code := 0x1C00 ; # BTFSS
+  else
+    code := 0x1800 ; # BTFSC
+  end if ;
   code := code | ([mRegisterDescription mRegisterAddress] & 127) ;
   code := code | (mBitNumber << 7) ;
   emitCode !code ;
@@ -399,6 +444,20 @@ override method @midrange_intermediate_instruction_SLEEP generateBinaryCodeAtAdd
   emitCode !0x0063 ;
 end method ;
 
+#----------------------------------------------------*
+
+reader @midrange_literal_instruction_opcode baseCode -> @uint outBaseCode :
+  switch selfcopy
+  when ADDLW : outBaseCode := 0x3E00 ;
+  when ANDLW : outBaseCode := 0x3900 ;
+  when IORLW : outBaseCode := 0x3800 ;
+  when MOVLW : outBaseCode := 0x3000 ;
+  when RETLW : outBaseCode := 0x3400 ;
+  when SUBLW : outBaseCode := 0x3C00 ;
+  when XORLW : outBaseCode := 0x3A00 ;
+  end switch ;
+end reader ;
+
 #----------------------------------------------------------------------------*
 
 override method @midrange_intermediate_instruction_literalOperation generateBinaryCodeAtAddress
@@ -408,7 +467,7 @@ override method @midrange_intermediate_instruction_literalOperation generateBina
   ?!@uint unused ioAddress
 :
 #--- Emit Code
-  @uint code ; [selfcopy getBaseCode ? code] ;
+  @uint code := [mLiteralInstruction baseCode] ;
   code := code | mLiteralValue ;
   emitCode !code ;
 end method ;
@@ -482,9 +541,7 @@ routine build_midrange_ipic_binary_code
       !symbolTable
       !?currentAddress
     ] ;
-    @uint instructionLength ;
-    [mInstruction instructionLength ?instructionLength] ;
-    currentAddress := currentAddress  + instructionLength ;
+    currentAddress := currentAddress  + [mInstruction instructionLength] ;
     checkCurrentEmitAddress !currentAddress * 2 ;
   end foreach ;
   if lastAddressForFirstPass != currentAddress then

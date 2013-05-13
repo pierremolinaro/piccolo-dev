@@ -1,0 +1,242 @@
+semantics midrange_display_intermediate_instruction :
+import "midrange_intermediate_classes.gSemantics" ;
+import "midrange_intermediate_instruction_length.gSemantics" ;
+
+#----------------------------------------------------*
+
+abstract method @midrange_intermediate_instruction displayIPICinstruction ?!@string ioListFileContents ;
+
+method @midrange_intermediate_instruction setCurrentAddress ?!@uint ioCurrentAddress :
+  ioCurrentAddress := ioCurrentAddress + [selfcopy instructionLength] ;
+end method ;
+
+method @midrange_intermediate_instruction nextInstructionIsReachable !@bool outIsReachable :
+  outIsReachable := true ;
+end method ;
+
+method @midrange_intermediate_instruction isSkippingInstruction !@bool outIsSkipping :
+  outIsSkipping := false ;
+end method ;
+
+method @midrange_intermediate_instruction enterReferencedLabel ?!@stringset unused ioReferencedLabelSet :
+end method ;
+
+
+#----------------------------------------------------*
+
+override
+method @midrange_intermediate_NULL displayIPICinstruction ?!@string ioListFileContents :
+  ioListFileContents .= "-" ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @midrange_intermediate_pseudo_ORG setCurrentAddress ?!@uint ioCurrentAddress :
+  ioCurrentAddress := mOrigin ;
+end method ;
+
+override
+method @midrange_intermediate_pseudo_ORG displayIPICinstruction ?!@string ioListFileContents :
+  ioListFileContents .= "ORG " . [mOrigin hexString] ;
+end method ;
+
+#----------------------------------------------------*
+
+override
+method @midrange_intermediate_pseudo_LABEL displayIPICinstruction ?!@string ioListFileContents :
+  ioListFileContents .= "LABEL " . mLabel ;
+end method ;
+
+#----------------------------------------------------*
+
+override
+method @midrange_intermediate_instruction_FD displayIPICinstruction ?!@string ioListFileContents :
+  ioListFileContents .= [mInstruction_FD_base_code mnemonic] . " " . [mRegisterDescription mAssemblyString] ;
+  if m_W_isDestination then
+    ioListFileContents .= ", W" ;
+  end if ;
+end method ;
+
+#----------------------------------------------------*
+
+override
+method @midrange_intermediate_instruction_F displayIPICinstruction ?!@string ioListFileContents :
+  ioListFileContents .= [mFinstruction mnemonic] . " " . [mRegisterDescription mAssemblyString] ;
+end method ;
+
+#----------------------------------------------------*
+
+override
+method @midrange_intermediate_instruction_FB displayIPICinstruction ?!@string ioListFileContents :
+  ioListFileContents .= [mBitOrientedOp mnemonic] . " " . [mRegisterDescription mAssemblyString] . ", " . [mBitNumber string] ;
+end method ;
+
+#----------------------------------------------------*
+
+override
+method @midrange_intermediate_instruction_BitTestSkip displayIPICinstruction ?!@string ioListFileContents :
+  if mSkipIfSet then
+    ioListFileContents .= "BTFSS" ;
+  else
+    ioListFileContents .= "BTFSC" ;
+  end if ;
+  ioListFileContents .= " " . [mRegisterDescription mAssemblyString] . ", " . [mBitNumber string] ;
+end method ;
+
+override
+method @midrange_intermediate_instruction_BitTestSkip isSkippingInstruction !@bool outIsSkipping :
+  outIsSkipping := true ;
+end method ;
+
+#----------------------------------------------------*
+
+override
+method @midrange_intermediate_JUMP displayIPICinstruction ?!@string ioListFileContents :
+  ioListFileContents .= "JUMP " . mTargetLabel ;
+end method ;
+
+override method @midrange_intermediate_JUMP nextInstructionIsReachable !@bool outIsReachable :
+  outIsReachable := false ;
+end method ;
+
+override method @midrange_intermediate_JUMP enterReferencedLabel ?!@stringset ioReferencedLabelSet :
+  ioReferencedLabelSet += ![mTargetLabel string] ;
+end method ;
+
+
+#----------------------------------------------------*
+
+override
+method @midrange_intermediate_GOTO displayIPICinstruction ?!@string ioListFileContents :
+  ioListFileContents .= "GOTO " . mTargetLabel ;
+end method ;
+
+override method @midrange_intermediate_GOTO nextInstructionIsReachable !@bool outIsReachable :
+  outIsReachable := false ;
+end method ;
+
+override method @midrange_intermediate_GOTO enterReferencedLabel ?!@stringset ioReferencedLabelSet :
+  ioReferencedLabelSet += ![mTargetLabel string] ;
+end method ;
+
+#----------------------------------------------------*
+
+override
+method @midrange_intermediate_CALL displayIPICinstruction ?!@string ioListFileContents :
+  ioListFileContents .= "CALL " . mTargetLabel ;
+end method ;
+
+override method @midrange_intermediate_CALL enterReferencedLabel ?!@stringset ioReferencedLabelSet :
+  ioReferencedLabelSet += ![mTargetLabel string] ;
+end method ;
+
+#----------------------------------------------------*
+
+override
+method @midrange_intermediate_JSR displayIPICinstruction ?!@string ioListFileContents :
+  ioListFileContents .= "CALL " . mTargetLabel ;
+end method ;
+
+override method @midrange_intermediate_JSR enterReferencedLabel ?!@stringset ioReferencedLabelSet :
+  ioReferencedLabelSet += ![mTargetLabel string] ;
+end method ;
+
+#----------------------------------------------------*
+
+override
+method @midrange_intermediate_instruction_CLRWDT displayIPICinstruction ?!@string ioListFileContents :
+  ioListFileContents .= "CLRWDT" ;
+end method ;
+
+#----------------------------------------------------*
+
+override
+method @midrange_intermediate_instruction_CLRW displayIPICinstruction ?!@string ioListFileContents :
+  ioListFileContents .= "CLRW" ;
+end method ;
+
+
+#----------------------------------------------------*
+
+override
+method @midrange_intermediate_instruction_NOP displayIPICinstruction ?!@string ioListFileContents :
+  ioListFileContents .= "NOP" ;
+end method ;
+
+#----------------------------------------------------*
+
+override
+method @midrange_intermediate_instruction_RETURN displayIPICinstruction ?!@string ioListFileContents :
+  ioListFileContents .= "RETURN" ;
+end method ;
+
+override method @midrange_intermediate_instruction_RETURN nextInstructionIsReachable !@bool outIsReachable :
+  outIsReachable := false ;
+end method ;
+
+#----------------------------------------------------*
+
+override
+method @midrange_intermediate_instruction_RETFIE displayIPICinstruction ?!@string ioListFileContents :
+  ioListFileContents .= "RETFIE" ;
+end method ;
+
+override method @midrange_intermediate_instruction_RETFIE nextInstructionIsReachable !@bool outIsReachable :
+  outIsReachable := false ;
+end method ;
+
+#----------------------------------------------------*
+
+override
+method @midrange_intermediate_instruction_SLEEP displayIPICinstruction ?!@string ioListFileContents :
+  ioListFileContents .= "SLEEP" ;
+end method ;
+
+#----------------------------------------------------*
+
+override
+method @midrange_intermediate_instruction_literalOperation displayIPICinstruction ?!@string ioListFileContents :
+  ioListFileContents .= [mLiteralInstruction mnemonic] . " " . [mLiteralValue hexString] ;
+end method ;
+
+override method @midrange_intermediate_instruction_literalOperation nextInstructionIsReachable !@bool outIsReachable :
+  outIsReachable := mLiteralInstruction != [@midrange_literal_instruction_opcode RETLW] ;
+end method ;
+
+#----------------------------------------------------*
+
+override
+method @midrange_intermediate_instruction_MNOP displayIPICinstruction ?!@string ioListFileContents :
+  ioListFileContents .= "MNOP " . [[mOccurrenceFactor uint] string] ;
+end method ;
+
+#----------------------------------------------------*
+
+override
+method @midrange_intermediate_incDecRegisterInCondition displayIPICinstruction ?!@string ioListFileContents :
+  ioListFileContents .= "JUMP " ;
+  if mIncrement then
+    ioListFileContents .= "INCF " ;
+  else
+    ioListFileContents .= "DECF " ;
+  end if ;
+  ioListFileContents .= [mRegisterDescription mAssemblyString] ;
+  if m_W_isDestination then
+    ioListFileContents .= ", W" ;
+  end if ;
+  if mBranchIfZero then
+    ioListFileContents .= " Z" ;
+  else
+    ioListFileContents .= " NZ" ;
+  end if ;
+  ioListFileContents .= " " . mTargetLabel ;
+end method ;
+
+override method @midrange_intermediate_incDecRegisterInCondition enterReferencedLabel ?!@stringset ioReferencedLabelSet :
+  ioReferencedLabelSet += !mTargetLabel ;
+end method ;
+
+
+#----------------------------------------------------*
+
+end semantics ;

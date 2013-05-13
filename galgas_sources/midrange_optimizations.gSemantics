@@ -1,5 +1,9 @@
 semantics midrange_optimizations :
-import "midrange_ipic_metamodel.gSemantics" ;
+import "midrange_intermediate_classes.gSemantics" ;
+import "ipic_generic.gSemantics" ;
+import "midrange_display_intermediate_instruction.gSemantics" ;
+import "midrange_intermediate_instruction_is_null.gSemantics" ;
+import "midrange_intermediate_instruction_is_label_or_org.gSemantics" ;
 
 #----------------------------------------------------------------------------*
 #                                                                            *
@@ -358,8 +362,7 @@ method @midrange_intermediate_instruction_BitTestSkip optimizeBitTestSkip
   if (ok) then
     cast [ioGeneratedInstructionList mInstructionAtIndex !inLineIndex + 2] :
     when >= @midrange_intermediate_actualInstruction instruction do
-      @uint instructionLength ; [instruction instructionLength ?instructionLength] ;
-      ok := instructionLength == 1 ;
+      ok := [instruction instructionLength] == 1 ;
     else
       ok := false ;
     end cast ;
@@ -470,9 +473,8 @@ routine perform_midrange_optimizations
          previousWasSkippingInstruction := skippingInstruction ;
          [mInstruction isSkippingInstruction ?skippingInstruction] ;
        else
-         @bool isLABELorORG ; [mInstruction isLABELorORG ?isLABELorORG] ;
-         @bool isNULL ; [mInstruction isNULL ?isNULL] ;
-         if (not isLABELorORG) & (not isNULL) then
+         const @bool isLABELorORG := [mInstruction isLABELorORG] ;
+         if (not isLABELorORG) & (not [mInstruction isNULL]) then
            ioListFileContents .= "  line " . [idx string] . ": unreachable instruction is deleted\n" ;
            [!?ioGeneratedInstructionList setMInstructionAtIndex ![@midrange_intermediate_NULL new] !idx] ;
          elsif isLABELorORG then

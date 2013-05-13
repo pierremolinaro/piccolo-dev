@@ -1,0 +1,78 @@
+semantics midrange_intermediate_instruction_length :
+import "midrange_intermediate_classes.gSemantics" ;
+
+#----------------------------------------------------*
+
+abstract reader @midrange_intermediate_instruction instructionLength -> @uint outLength ;
+
+#----------------------------------------------------*
+
+override reader @midrange_intermediate_NULL instructionLength -> @uint outLength :
+  outLength := 0 ;
+end reader ;
+
+#----------------------------------------------------*
+
+override reader @midrange_intermediate_pseudo_ORG instructionLength -> @uint outLength :
+  outLength := 0 ;
+end reader ;
+
+#----------------------------------------------------*
+
+override reader @midrange_intermediate_pseudo_LABEL instructionLength -> @uint outLength :
+  outLength := 0 ;
+end reader ;
+
+#----------------------------------------------------*
+
+override reader @midrange_intermediate_actualInstruction instructionLength -> @uint outLength :
+  outLength := 1 ;
+end reader ;
+
+#----------------------------------------------------*
+
+override
+reader @midrange_intermediate_JUMP instructionLength -> @uint outLength :
+  outLength := 1 ;
+  if mBit11 != [@midrange_call_goto_bit noChange] then
+    outLength ++ ;
+  end if ;
+  if mBit12 != [@midrange_call_goto_bit noChange] then
+    outLength ++ ;
+  end if ;
+end reader ;
+
+#----------------------------------------------------*
+
+override
+reader @midrange_intermediate_JSR instructionLength -> @uint outLength :
+  outLength := 1 ;
+  if mBit11 != [@midrange_call_goto_bit noChange] then
+    outLength := outLength  + 2 ;
+  end if ;
+  if mBit12 != [@midrange_call_goto_bit noChange] then
+    outLength := outLength  + 2 ;
+  end if ;
+end reader ;
+
+#----------------------------------------------------*
+
+override
+reader @midrange_intermediate_instruction_MNOP instructionLength -> @uint outLength :
+  outLength := [mOccurrenceFactor uint] ;
+end reader ;
+
+#----------------------------------------------------*
+
+override
+reader @midrange_intermediate_incDecRegisterInCondition instructionLength -> @uint outLength :
+  if mBranchIfZero then
+    outLength := 3 ;
+  else
+    outLength := 2 ;
+  end if ; 
+end reader ;
+
+#----------------------------------------------------*
+
+end semantics ;
