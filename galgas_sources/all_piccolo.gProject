@@ -38,8 +38,12 @@ project all_piccolo (2:0:0) -> "piccolo" :
 
 #--- Mid-range
   semantics "midrange_metamodel.gSemantics" ;
-  semantics "midrange_ipic_metamodel.gSemantics" ;
+  semantics "midrange_intermediate_classes.gSemantics" ;
   syntax    "midrange_syntax.gSyntax" ;
+  semantics "midrange_intermediate_instruction_length.gSemantics" ;
+  semantics "midrange_display_intermediate_instruction.gSemantics" ;
+  semantics "midrange_intermediate_instruction_is_label_or_org.gSemantics" ;
+  semantics "midrange_intermediate_instruction_is_null.gSemantics" ;
   semantics "midrange_checkingAndBuildIPIC.gSemantics" ;
   semantics "midrange_optimizations.gSemantics" ;
   semantics "midrange_compute_JSR_JUMP.gSemantics" ;
