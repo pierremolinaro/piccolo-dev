@@ -1,0 +1,18 @@
+semantics midrange_intermediate_instruction_set_current_address :
+import "midrange_intermediate_instruction_length.gSemantics" ;
+
+#----------------------------------------------------------------------------*
+
+method @midrange_intermediate_instruction setCurrentAddress ?!@uint ioCurrentAddress :
+  ioCurrentAddress := ioCurrentAddress + [selfcopy instructionLength] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @midrange_intermediate_pseudo_ORG setCurrentAddress ?!@uint ioCurrentAddress :
+  ioCurrentAddress := mOrigin ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+end semantics ;

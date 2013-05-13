@@ -1,9 +1,142 @@
 semantics midrange_optimizations :
-import "midrange_intermediate_classes.gSemantics" ;
 import "ipic_generic.gSemantics" ;
 import "midrange_display_intermediate_instruction.gSemantics" ;
-import "midrange_intermediate_instruction_is_null.gSemantics" ;
-import "midrange_intermediate_instruction_is_label_or_org.gSemantics" ;
+import "midrange_intermediate_instruction_set_current_address.gSemantics" ;
+
+#----------------------------------------------------------------------------*
+#                                                                            *
+#                   isLABELorORG                                             *
+#                                                                            *
+#----------------------------------------------------------------------------*
+
+reader @midrange_intermediate_instruction isLABELorORG -> @bool outIsLABELorORG :
+  outIsLABELorORG := false ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override reader @midrange_intermediate_pseudo_ORG isLABELorORG -> @bool outIsLABELorORG :
+  outIsLABELorORG := true ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override reader @midrange_intermediate_pseudo_LABEL isLABELorORG -> @bool outIsLABELorORG :
+  outIsLABELorORG := true ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+#                                                                            *
+#                   isNULL                                                   *
+#                                                                            *
+#----------------------------------------------------------------------------*
+
+reader @midrange_intermediate_instruction isNULL -> @bool outIsNULL :
+  outIsNULL := false ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override reader @midrange_intermediate_NULL isNULL -> @bool outIsNULL :
+  outIsNULL := true ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+#                                                                            *
+#                   enterReferencedLabel                                     *
+#                                                                            *
+#----------------------------------------------------------------------------*
+
+method @midrange_intermediate_instruction enterReferencedLabel ?!@stringset unused ioReferencedLabelSet :
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @midrange_intermediate_JUMP enterReferencedLabel ?!@stringset ioReferencedLabelSet :
+  ioReferencedLabelSet += ![mTargetLabel string] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @midrange_intermediate_GOTO enterReferencedLabel ?!@stringset ioReferencedLabelSet :
+  ioReferencedLabelSet += ![mTargetLabel string] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @midrange_intermediate_CALL enterReferencedLabel ?!@stringset ioReferencedLabelSet :
+  ioReferencedLabelSet += ![mTargetLabel string] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @midrange_intermediate_JSR enterReferencedLabel ?!@stringset ioReferencedLabelSet :
+  ioReferencedLabelSet += ![mTargetLabel string] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @midrange_intermediate_incDecRegisterInCondition enterReferencedLabel ?!@stringset ioReferencedLabelSet :
+  ioReferencedLabelSet += !mTargetLabel ;
+end method ;
+
+#----------------------------------------------------------------------------*
+#                                                                            *
+#                   isSkippingInstruction                                    *
+#                                                                            *
+#----------------------------------------------------------------------------*
+
+reader @midrange_intermediate_instruction isSkippingInstruction -> @bool outIsSkipping :
+  outIsSkipping := false ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override
+reader @midrange_intermediate_instruction_BitTestSkip isSkippingInstruction -> @bool outIsSkipping :
+  outIsSkipping := true ;
+end reader ;
+
+
+#----------------------------------------------------------------------------*
+#                                                                            *
+#                   nextInstructionIsReachable                               *
+#                                                                            *
+#----------------------------------------------------------------------------*
+
+reader @midrange_intermediate_instruction nextInstructionIsReachable -> @bool outIsReachable :
+  outIsReachable := true ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override reader @midrange_intermediate_JUMP nextInstructionIsReachable -> @bool outIsReachable :
+  outIsReachable := false ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override reader @midrange_intermediate_GOTO nextInstructionIsReachable -> @bool outIsReachable :
+  outIsReachable := false ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override reader @midrange_intermediate_instruction_RETURN nextInstructionIsReachable -> @bool outIsReachable :
+  outIsReachable := false ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override reader @midrange_intermediate_instruction_RETFIE nextInstructionIsReachable -> @bool outIsReachable :
+  outIsReachable := false ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override reader @midrange_intermediate_instruction_literalOperation nextInstructionIsReachable -> @bool outIsReachable :
+  outIsReachable := mLiteralInstruction != [@midrange_literal_instruction_opcode RETLW] ;
+end reader ;
 
 #----------------------------------------------------------------------------*
 #                                                                            *
@@ -469,9 +602,9 @@ routine perform_midrange_optimizations
     @bool previousWasSkippingInstruction := false ;
     foreach ioGeneratedInstructionList index idx do
        if reachable | previousWasSkippingInstruction then
-         [mInstruction nextInstructionIsReachable ?reachable] ;
+         reachable := [mInstruction nextInstructionIsReachable] ;
          previousWasSkippingInstruction := skippingInstruction ;
-         [mInstruction isSkippingInstruction ?skippingInstruction] ;
+         skippingInstruction := [mInstruction isSkippingInstruction] ;
        else
          const @bool isLABELorORG := [mInstruction isLABELorORG] ;
          if (not isLABELorORG) & (not [mInstruction isNULL]) then
