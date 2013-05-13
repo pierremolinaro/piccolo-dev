@@ -6,28 +6,7 @@ import "ipic_generic.gSemantics" ;
 
 #----------------------------------------------------------------------------*
 
-map @baseline_symbolTable {
-  @uint mRoutineAddress ;
-  insert insertKey error message "the '%K' label is already declared in %L" ;
-  search searchKey error message "the '%K' label is not declared" ;
-}
-
-#----------------------------------------------------------------------------*
-
-reader @uint x4String ->@string outResult :
-  if selfcopy > 0xFFFF then
-    outResult := "****" ;
-  else
-    outResult := [selfcopy >> 12 xString] ;
-    outResult .= [(selfcopy >> 8) & 0xF xString] ;
-    outResult .= [(selfcopy >> 4) & 0xF xString] ;
-    outResult .= [selfcopy & 0xF xString] ;
-  end if ;
-end reader ;
-
-#----------------------------------------------------------------------------*
-
-routine emitCodeAtWordAddress
+local routine emitBaselineCodeAtWordAddress
   ??@uint inCode
   ?!@uint ioWordAddress
   ??@baseline_assembly_instruction inInstruction
@@ -43,7 +22,7 @@ end routine ;
 
 #----------------------------------------------------------------------------*
 
-routine emitNoCodeAtWordAddress
+local routine emitNoBaselineCodeAtWordAddress
   ??@uint inWordAddress
   ??@baseline_assembly_instruction inInstruction
   ?!@string ioListFileContents
@@ -53,6 +32,14 @@ routine emitNoCodeAtWordAddress
   [inInstruction print !?ioListFileContents] ;
   ioListFileContents .= "\n" ;
 end routine ;
+
+#----------------------------------------------------------------------------*
+
+map @baseline_symbolTable {
+  @uint mRoutineAddress ;
+  insert insertKey error message "the '%K' label is already declared in %L" ;
+  search searchKey error message "the '%K' label is not declared" ;
+}
 
 #----------------------------------------------------------------------------*
 #                                                                            *
@@ -115,7 +102,7 @@ override method @baseline_assembly_pseudo_BEGINOFROUTINE generateBinaryCodeAtAdd
   if mIsRegular & ((ioWordAddress & 0x0100) != 0) then
     error mRoutineName : "the 8th bit of the routine address is not 0; a regular routine should be begin in the first half of a page" ;
   end if ;
-  emitNoCodeAtWordAddress !ioWordAddress !selfcopy !?ioListFileContents ;
+  emitNoBaselineCodeAtWordAddress !ioWordAddress !selfcopy !?ioListFileContents ;
 end method ;
 
 #----------------------------------------------------------------------------*
@@ -128,7 +115,7 @@ override method @baseline_assembly_pseudo_ENDOFROUTINE generateBinaryCodeAtAddre
   if ioWordAddress > (mPage * 512 + 512) then
     error mRoutineName : "the routine is too large, it does not lie in page " . mPage . " (" . (ioWordAddress - (mPage * 512 + 512)) . " word(s) in excess)" ;
   end if ;
-  emitNoCodeAtWordAddress !ioWordAddress !selfcopy !?ioListFileContents ;
+  emitNoBaselineCodeAtWordAddress !ioWordAddress !selfcopy !?ioListFileContents ;
 end method ;
 
 #----------------------------------------------------------------------------*
@@ -140,7 +127,7 @@ override method @baseline_assembly_pseudo_ORG generateBinaryCodeAtAddress
 :
   ioWordAddress := mOrigin ;
   setEmitAddress !mOrigin * 2 ;
-  emitNoCodeAtWordAddress !ioWordAddress !selfcopy !?ioListFileContents ;
+  emitNoBaselineCodeAtWordAddress !ioWordAddress !selfcopy !?ioListFileContents ;
 end method ;
 
 #----------------------------------------------------------------------------*
@@ -172,7 +159,7 @@ override method @baseline_assembly_instruction_FD generateBinaryCodeAtAddress
     code := code | 0x20 ;
   end if ;
   code := code | ([mRegisterDescription mRegisterAddress] & 0x1F) ;
-  emitCodeAtWordAddress !code !?ioWordAddress !selfcopy !?ioListFileContents ;
+  emitBaselineCodeAtWordAddress !code !?ioWordAddress !selfcopy !?ioListFileContents ;
 end method ;
 
 #----------------------------------------------------------------------------*
@@ -188,7 +175,7 @@ override method @baseline_assembly_instruction_F generateBinaryCodeAtAddress
     when MOVWF  : code := 0x0020 ;
   end switch ;
   code := code | ([mRegisterDescription mRegisterAddress] & 0x1F) ;
-  emitCodeAtWordAddress !code !?ioWordAddress !selfcopy !?ioListFileContents ;
+  emitBaselineCodeAtWordAddress !code !?ioWordAddress !selfcopy !?ioListFileContents ;
 end method ;
 
 #----------------------------------------------------------------------------*
@@ -205,7 +192,7 @@ override method @baseline_assembly_instruction_FB generateBinaryCodeAtAddress
   end switch ;
   code := code | ([mRegisterDescription mRegisterAddress] & 0x1F) ;
   code := code | (mBitNumber << 5) ;
-  emitCodeAtWordAddress !code !?ioWordAddress !selfcopy !?ioListFileContents ;
+  emitBaselineCodeAtWordAddress !code !?ioWordAddress !selfcopy !?ioListFileContents ;
 end method ;
 
 #----------------------------------------------------------------------------*
@@ -224,7 +211,7 @@ override method @baseline_assembly_instruction_BitTestSkip generateBinaryCodeAtA
   end if ;
   code := code | ([mRegisterDescription mRegisterAddress] & 0x1F) ;
   code := code | (mBitNumber << 5) ;
-  emitCodeAtWordAddress !code !?ioWordAddress !selfcopy !?ioListFileContents ;
+  emitBaselineCodeAtWordAddress !code !?ioWordAddress !selfcopy !?ioListFileContents ;
 end method ;
 
 #----------------------------------------------------------------------------*
@@ -237,7 +224,7 @@ override method @baseline_assembly_GOTO generateBinaryCodeAtAddress
 #---
   [inRoutineSymbolTable searchKey !mTargetLabel ?@uint targetAddress] ;
 #---
-  emitCodeAtWordAddress !0x0A00 | (targetAddress & 0x1FF) !?ioWordAddress !selfcopy !?ioListFileContents ;
+  emitBaselineCodeAtWordAddress !0x0A00 | (targetAddress & 0x1FF) !?ioWordAddress !selfcopy !?ioListFileContents ;
 end method ;
 
 #----------------------------------------------------------------------------*
@@ -247,7 +234,7 @@ override method @baseline_assembly_SKIP generateBinaryCodeAtAddress
   ?!@string ioListFileContents
   ?!@uint ioWordAddress
 :
-  emitCodeAtWordAddress !0x0A00 | ((ioWordAddress + 2) & 0x1FF) !?ioWordAddress !selfcopy !?ioListFileContents ;
+  emitBaselineCodeAtWordAddress !0x0A00 | ((ioWordAddress + 2) & 0x1FF) !?ioWordAddress !selfcopy !?ioListFileContents ;
 end method ;
 
 #----------------------------------------------------------------------------*
@@ -261,7 +248,7 @@ override method @baseline_assembly_CALL generateBinaryCodeAtAddress
   @uint targetAddress ;
   [inRoutineSymbolTable searchKey !mTargetLabel ?targetAddress] ;
 #---
-  emitCodeAtWordAddress !0x0900 | (targetAddress & 0xFF) !?ioWordAddress !selfcopy !?ioListFileContents ;
+  emitBaselineCodeAtWordAddress !0x0900 | (targetAddress & 0xFF) !?ioWordAddress !selfcopy !?ioListFileContents ;
 end method ;
 
 #----------------------------------------------------*
@@ -281,7 +268,7 @@ override method @baseline_assembly_incDecRegisterInCondition generateBinaryCodeA
     code := code | 0x0020 ;
   end if ;
   code := code | ([mRegisterDescription mRegisterAddress] & 0x1F) ;
-  emitCodeAtWordAddress !code !?ioWordAddress !selfcopy !?ioListFileContents ;
+  emitBaselineCodeAtWordAddress !code !?ioWordAddress !selfcopy !?ioListFileContents ;
 end method ;
 
 #----------------------------------------------------------------------------*
@@ -299,7 +286,7 @@ override method @baseline_assembly_WO_OPERAND generateBinaryCodeAtAddress
   when OPTION_ : code := 0x0002 ;
   when SLEEP   : code := 0x0003 ;
   end switch ;
-  emitCodeAtWordAddress !code !?ioWordAddress !selfcopy !?ioListFileContents ;
+  emitBaselineCodeAtWordAddress !code !?ioWordAddress !selfcopy !?ioListFileContents ;
 end method ;
 
 #----------------------------------------------------------------------------*
@@ -309,7 +296,7 @@ override method @baseline_assembly_TRIS generateBinaryCodeAtAddress
   ?!@string ioListFileContents
   ?!@uint ioWordAddress
 :
-  emitCodeAtWordAddress !mOpcode !?ioWordAddress !selfcopy !?ioListFileContents ;
+  emitBaselineCodeAtWordAddress !mOpcode !?ioWordAddress !selfcopy !?ioListFileContents ;
 end method ;
 
 #----------------------------------------------------------------------------*
@@ -328,7 +315,7 @@ override method @baseline_assembly_instruction_literalOperation generateBinaryCo
   when XORLW : code := 0x0F00 ;
   end switch ;
   code := code | mLiteralValue ;
-  emitCodeAtWordAddress !code !?ioWordAddress !selfcopy !?ioListFileContents ;
+  emitBaselineCodeAtWordAddress !code !?ioWordAddress !selfcopy !?ioListFileContents ;
 end method ;
 
 #----------------------------------------------------------------------------*
@@ -345,7 +332,7 @@ override method @baseline_assembly_pseudo_LABEL generateBinaryCodeAtAddress
     . "' label gets " . [ioWordAddress hexString] . " value in second pass, while it gets "
     . [targetAddress hexString] . " in first pass" ;
   end if ;
-  emitNoCodeAtWordAddress !ioWordAddress !selfcopy !?ioListFileContents ;
+  emitNoBaselineCodeAtWordAddress !ioWordAddress !selfcopy !?ioListFileContents ;
 end method ;
 
 #----------------------------------------------------------------------------*

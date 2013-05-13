@@ -492,12 +492,18 @@ Ces instructions sont listées dans le \refTableau{operationsMidRangeIdentiquesA
 
 \subsectionLabel{Appeler une routine régulière}{appelRoutineReguliereMidRange}
 
-Une routine régulière est une routine déclarée sans le qualificatif \texttt{noreturn}. L'appel s’effectue au moyen de l'instruction \texttt{CALL}.
+Une routine régulière est une routine déclarée sans le qualificatif \texttt{noreturn}. L'appel s’effectue avec l'instruction \texttt{CALL}, si la routine se trouve dans la même page de la mémoire programme que l'instruction d'appel, ou avec l'instruction \texttt{jsr} (\refSubsectionPage{instructionJsrMidRange}).
 
-Syntaxiquement, il faut simplement nommer la routine appelée après le nom de l’instruction d’appel :
+Syntaxiquement, il faut simplement nommer la routine appelée après l’instruction d’appel :
 
 \begin{lstlisting}[language=piccolo]
 call nom_routine
+\end{lstlisting}
+
+Ou :
+
+\begin{lstlisting}[language=piccolo]
+jsr nom_routine
 \end{lstlisting}
 
 
@@ -505,9 +511,15 @@ call nom_routine
 
 \subsectionLabel{Appeler une routine sans retour}{appelRoutineSansRetourMidRange}
 
-Appeler une routine sans retour (c'est-à-dire déclarée avec le qualificatif \texttt{noreturn}) s'effectue par une instruction \texttt{goto}. L'appel s'écrit :
+Appeler une routine sans retour (c'est-à-dire déclarée avec le qualificatif \texttt{noreturn}) s'effectue par une instruction \texttt{goto}, si la routine se trouve dans la même page de la mémoire programme que l'instruction d'appel, ou avec l'instruction \texttt{jump} (\refSubsectionPage{instructionJumpMidRange}). L'appel s'écrit :
 \begin{lstlisting}[language=piccolo]
 goto nom_routine
+\end{lstlisting}
+
+Ou :
+
+\begin{lstlisting}[language=piccolo]
+jump nom_routine
 \end{lstlisting}
 
 
@@ -572,7 +584,7 @@ Les deux instructions de branchement que le jeu d'instructions des \emph{mid-ran
 
 Pour changer de page en assembleur, il faut modifier les bits 3 et 4 du registre \texttt{PCLATH} avant d'appeler l'instruction \texttt{CALL} ou \texttt{GOTO}.
 
-Voici comment ces contraintes sont prises en compte en Piccolo :
+En Piccolo, il est déconseillé d'accéder directement à \texttt{PCLATH}. Les instructions \texttt{jsr} et \texttt{jump} prennent en charge les branchements vers une autre page. En résumé :
 \begin{itemize}
   \item une routine doit complètement résider à l'intérieur d'une page ;
   \item lors de la déclaration d'une routine, la page dans laquelle elle réside est précisée (\refSubsectionPage{declarationRoutineMidRangeEtPage}) ;
@@ -584,7 +596,7 @@ Voici comment ces contraintes sont prises en compte en Piccolo :
 
 \subsectionLabel{Instruction \texttt{jump}}{instructionJumpMidRange}
 
-L'instruction Piccolo  \texttt{jump} engendre des instructions machine \texttt{BCF} ou \texttt{BSF} pour modifier les bits 3 et 4 du registre \texttt{PCLATH}, puis l'instruction machine \texttt{GOTO}.
+L'instruction Piccolo \texttt{jump} engendre des instructions machine \texttt{BCF} ou \texttt{BSF} pour modifier les bits 3 et 4 du registre \texttt{PCLATH}, puis l'instruction machine \texttt{GOTO}.
 
 Elle occupe donc $n+1$ mots de la mémoire programme, $n$ étant le nombre de bits du registre \texttt{PCLATH} à changer.
 
@@ -593,7 +605,7 @@ Elle occupe donc $n+1$ mots de la mémoire programme, $n$ étant le nombre de bi
 
 \subsectionLabel{Instruction \texttt{jsr}}{instructionJsrMidRange}
 
-L'instruction Piccolo  \texttt{jsr} engendre des instructions machine \texttt{BCF} ou \texttt{BSF} pour modifier les bits 3 et 4 du registre \texttt{PCLATH}, puis l'instruction machine \texttt{GOTO}, puis de nouveau des instructions machine \texttt{BCF} ou \texttt{BSF} pour rétablir les bits 3 et 4 du registre \texttt{PCLATH}.
+L'instruction Piccolo  \texttt{jsr} engendre des instructions machine \texttt{BCF} ou \texttt{BSF} pour modifier les bits 3 et 4 du registre \texttt{PCLATH}, puis l'instruction machine \texttt{CALL}, puis de nouveau des instructions machine \texttt{BCF} ou \texttt{BSF} pour rétablir les bits 3 et 4 du registre \texttt{PCLATH}.
 
 Elle occupe donc $2n+1$ mots de la mémoire programme, $n$ étant le nombre de bits du registre \texttt{PCLATH} à changer pour effectuer l'appel.
 
@@ -601,16 +613,16 @@ Elle occupe donc $2n+1$ mots de la mémoire programme, $n$ étant le nombre de b
 
 Pour spécifier dans quelle page de la mémoire programme une routine régulière doit résider, il suffit de la déclarer comme suit :
 \begin{lstlisting}[language=piccolo]
-  routine nom page numero_page {
+  routine nom page numero_page bank:... {
     ...
   }
 \end{lstlisting}
 
-Où \texttt{numero\_page} est un entier positif ou nul strictement inférieur au nombre de pages.
+Où \texttt{numero\_page} est un entier positif ou nul strictement inférieur au nombre de pages. Par défaut, si la page n'est pas déclarée, la routine est placée dans la page zéro. La déclaration de la page doit précéder la déclaration de banc \texttt{bank}.
 
 Pour une routine régulière sans retour :
 \begin{lstlisting}[language=piccolo]
-  noreturn routine nom page numero_page {
+  noreturn routine nom page numero_page bank:... {
     ...
   }
 \end{lstlisting}
@@ -619,66 +631,31 @@ Pour une routine régulière sans retour :
 
 Différents exemples sont donnés sur la page \url{http://piccolo.rts-software.org/examples/index.php}.
 
-Le 12F510 a une mémoire programme de deux pages. 
+Le 16F690 a une mémoire programme de deux pages. 
 
 \begin{lstlisting}[language=piccolo]
-MidRange pages_12F510 "12F510" :
+midrange multiple_pages "16F690" :
 
-noreturn routine main {
-  mnop 249
-  call regularRoutineInPage0
-  jsr  regularRoutineInPage1
-  jump routineInPage1
+noreturn routine main page 1 bank:requires 0 {
+  jsr  routinePage0
+  jump routineNoReturnPage0
 }
 
-routine regularRoutineInPage0 {
-  mnop 256
-  movlw 0
-}
-
-noreturn routine routineInPage1 page 1 {
+noreturn  routine routineNoReturnPage0 page 0 {
   forever
   end
 }
 
-routine regularRoutineInPage1 page 1 {
-  movlw 0
+routine routinePage0 page 0 {
+  jsr  routinePage1
+}
+
+routine routinePage1 page 1 {
 }
 
 end
 \end{lstlisting}
 
-Sans aucune optimisation, le code assembleur engendré est :
-
-\begin{lstlisting}[language=assembleur]
-Address Code Mnemonic
-   0000        ORG 0x0
-   0000 0000   NOP
-   (248 lignes semblables)
-   01F2 09FF   CALL regularRoutineInPage0
-   01F4 05A3   BSF STATUS, 5
-   01F6 0901   CALL regularRoutineInPage1
-   01F8 04A3   BCF STATUS, 5
-   01FA 05A3   BSF STATUS, 5
-   01FC 0A00   GOTO routineInPage1
-   01FE      ;  END OF ROUTINE main IN PAGE 0
-   01FE      ;  BEGIN OF ROUTINE regularRoutineInPage0
-   01FE      regularRoutineInPage0:
-   01FE 0000   NOP
-   (255 lignes semblables)
-   03FE 0800   RETLW 0x0
-   0400      ;  END OF ROUTINE regularRoutineInPage0 IN PAGE 0
-   0400        ORG 0x200
-   0400      ;  BEGIN OF ROUTINE routineInPage1
-   0400      routineInPage1:
-   0400      _label_0:
-   0400 0A00   GOTO _label_0
-   0402      ;  END OF ROUTINE routineInPage1 IN PAGE 1
-   0402      ;  BEGIN OF ROUTINE regularRoutineInPage1
-   0402      regularRoutineInPage1:
-   0402 0800   RETLW 0x0
-   0404      ;  END OF ROUTINE regularRoutineInPage1 IN PAGE 1
-\end{lstlisting}
 
 
 

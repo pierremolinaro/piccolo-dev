@@ -4,33 +4,33 @@ import "midrange_intermediate_instruction_length.gSemantics" ;
 
 #----------------------------------------------------------------------------*
 
-abstract method @midrange_intermediate_instruction displayIPICinstruction ?!@string ioListFileContents ;
+abstract method @midrange_intermediate_instruction print ?!@string ioListFileContents ;
 
 #----------------------------------------------------------------------------*
 
 override
-method @midrange_intermediate_NULL displayIPICinstruction ?!@string ioListFileContents :
+method @midrange_intermediate_NULL print ?!@string ioListFileContents :
   ioListFileContents .= "-" ;
 end method ;
 
 #----------------------------------------------------------------------------*
 
 override
-method @midrange_intermediate_pseudo_ORG displayIPICinstruction ?!@string ioListFileContents :
+method @midrange_intermediate_pseudo_ORG print ?!@string ioListFileContents :
   ioListFileContents .= "ORG " . [mOrigin hexString] ;
 end method ;
 
 #----------------------------------------------------------------------------*
 
 override
-method @midrange_intermediate_pseudo_LABEL displayIPICinstruction ?!@string ioListFileContents :
-  ioListFileContents .= "LABEL " . mLabel ;
+method @midrange_intermediate_pseudo_LABEL print ?!@string ioListFileContents :
+  ioListFileContents .= mLabel->string . ":" ;
 end method ;
 
 #----------------------------------------------------------------------------*
 
 override
-method @midrange_intermediate_instruction_FD displayIPICinstruction ?!@string ioListFileContents :
+method @midrange_intermediate_instruction_FD print ?!@string ioListFileContents :
   ioListFileContents .= [mInstruction_FD_base_code mnemonic] . " " . [mRegisterDescription mAssemblyString] ;
   if m_W_isDestination then
     ioListFileContents .= ", W" ;
@@ -40,21 +40,21 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override
-method @midrange_intermediate_instruction_F displayIPICinstruction ?!@string ioListFileContents :
+method @midrange_intermediate_instruction_F print ?!@string ioListFileContents :
   ioListFileContents .= [mFinstruction mnemonic] . " " . [mRegisterDescription mAssemblyString] ;
 end method ;
 
 #----------------------------------------------------------------------------*
 
 override
-method @midrange_intermediate_instruction_FB displayIPICinstruction ?!@string ioListFileContents :
+method @midrange_intermediate_instruction_FB print ?!@string ioListFileContents :
   ioListFileContents .= [mBitOrientedOp mnemonic] . " " . [mRegisterDescription mAssemblyString] . ", " . [mBitNumber string] ;
 end method ;
 
 #----------------------------------------------------------------------------*
 
 override
-method @midrange_intermediate_instruction_BitTestSkip displayIPICinstruction ?!@string ioListFileContents :
+method @midrange_intermediate_instruction_BitTestSkip print ?!@string ioListFileContents :
   if mSkipIfSet then
     ioListFileContents .= "BTFSS" ;
   else
@@ -66,42 +66,42 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override
-method @midrange_intermediate_JUMP displayIPICinstruction ?!@string ioListFileContents :
+method @midrange_intermediate_JUMP print ?!@string ioListFileContents :
   ioListFileContents .= "JUMP " . mTargetLabel ;
 end method ;
 
 #----------------------------------------------------------------------------*
 
 override
-method @midrange_intermediate_GOTO displayIPICinstruction ?!@string ioListFileContents :
+method @midrange_intermediate_GOTO print ?!@string ioListFileContents :
   ioListFileContents .= "GOTO " . mTargetLabel ;
 end method ;
 
 #----------------------------------------------------------------------------*
 
 override
-method @midrange_intermediate_CALL displayIPICinstruction ?!@string ioListFileContents :
+method @midrange_intermediate_CALL print ?!@string ioListFileContents :
   ioListFileContents .= "CALL " . mTargetLabel ;
 end method ;
 
 #----------------------------------------------------------------------------*
 
 override
-method @midrange_intermediate_JSR displayIPICinstruction ?!@string ioListFileContents :
+method @midrange_intermediate_JSR print ?!@string ioListFileContents :
   ioListFileContents .= "CALL " . mTargetLabel ;
 end method ;
 
 #----------------------------------------------------------------------------*
 
 override
-method @midrange_intermediate_instruction_CLRWDT displayIPICinstruction ?!@string ioListFileContents :
+method @midrange_intermediate_instruction_CLRWDT print ?!@string ioListFileContents :
   ioListFileContents .= "CLRWDT" ;
 end method ;
 
 #----------------------------------------------------------------------------*
 
 override
-method @midrange_intermediate_instruction_CLRW displayIPICinstruction ?!@string ioListFileContents :
+method @midrange_intermediate_instruction_CLRW print ?!@string ioListFileContents :
   ioListFileContents .= "CLRW" ;
 end method ;
 
@@ -109,49 +109,49 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override
-method @midrange_intermediate_instruction_NOP displayIPICinstruction ?!@string ioListFileContents :
+method @midrange_intermediate_instruction_NOP print ?!@string ioListFileContents :
   ioListFileContents .= "NOP" ;
 end method ;
 
 #----------------------------------------------------------------------------*
 
 override
-method @midrange_intermediate_instruction_RETURN displayIPICinstruction ?!@string ioListFileContents :
+method @midrange_intermediate_instruction_RETURN print ?!@string ioListFileContents :
   ioListFileContents .= "RETURN" ;
 end method ;
 
 #----------------------------------------------------------------------------*
 
 override
-method @midrange_intermediate_instruction_RETFIE displayIPICinstruction ?!@string ioListFileContents :
+method @midrange_intermediate_instruction_RETFIE print ?!@string ioListFileContents :
   ioListFileContents .= "RETFIE" ;
 end method ;
 
 #----------------------------------------------------------------------------*
 
 override
-method @midrange_intermediate_instruction_SLEEP displayIPICinstruction ?!@string ioListFileContents :
+method @midrange_intermediate_instruction_SLEEP print ?!@string ioListFileContents :
   ioListFileContents .= "SLEEP" ;
 end method ;
 
 #----------------------------------------------------------------------------*
 
 override
-method @midrange_intermediate_instruction_literalOperation displayIPICinstruction ?!@string ioListFileContents :
+method @midrange_intermediate_instruction_literalOperation print ?!@string ioListFileContents :
   ioListFileContents .= [mLiteralInstruction mnemonic] . " " . [mLiteralValue hexString] ;
 end method ;
 
 #----------------------------------------------------------------------------*
 
 override
-method @midrange_intermediate_instruction_MNOP displayIPICinstruction ?!@string ioListFileContents :
+method @midrange_intermediate_instruction_MNOP print ?!@string ioListFileContents :
   ioListFileContents .= "MNOP " . [[mOccurrenceFactor uint] string] ;
 end method ;
 
 #----------------------------------------------------------------------------*
 
 override
-method @midrange_intermediate_incDecRegisterInCondition displayIPICinstruction ?!@string ioListFileContents :
+method @midrange_intermediate_incDecRegisterInCondition print ?!@string ioListFileContents :
   ioListFileContents .= "JUMP " ;
   if mIncrement then
     ioListFileContents .= "INCF " ;
