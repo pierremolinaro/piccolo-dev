@@ -1879,7 +1879,7 @@ routine build_midrange_assembly_instruction_list
     foreach outGeneratedInstructionList do
       [mInstruction setCurrentAddress !?currentAddress] ;
       ioListFileContents .= [[idx string] stringByLeftPadding !5 !' '] . ": " ;
-      [mInstruction displayIPICinstruction !? ioListFileContents] ;
+      [mInstruction print !?ioListFileContents] ;
       ioListFileContents .= "\n" ;
       idx ++ ;
     end foreach ;

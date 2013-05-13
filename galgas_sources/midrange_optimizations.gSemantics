@@ -519,15 +519,10 @@ method @midrange_intermediate_instruction_BitTestSkip optimizeBitTestSkip
       ]
       !inLineIndex
     ] ;
-  #--- Copy instruction at (inLineIndex + 2) to (inLineIndex + 1)
-    [!?ioGeneratedInstructionList setMInstructionAtIndex
-      ![ioGeneratedInstructionList mInstructionAtIndex !inLineIndex + 2]
-      !inLineIndex + 1
-    ] ;
-  #--- Delete instruction at (inLineIndex + 2)
+  #--- Delete instruction at (inLineIndex + 1)
     [!?ioGeneratedInstructionList setMInstructionAtIndex
       ![@midrange_intermediate_NULL new]
-      !inLineIndex + 2
+      !inLineIndex + 1
     ] ;
   #--- 
     ioOptimizationsDone := true ;

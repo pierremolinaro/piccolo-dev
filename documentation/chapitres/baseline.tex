@@ -676,7 +676,7 @@ Elle occupe donc $n+1$ mots de la mémoire programme, $n$ étant le nombre de bi
 
 \subsectionLabel{Instruction \texttt{jsr}}{instructionJsrBaseline}
 
-L'instruction Piccolo  \texttt{jsr} engendre des instructions machine \texttt{BCF} ou \texttt{BSF} pour modifier les bits \texttt{PA} du registre \texttt{STATUS}, puis l'instruction machine \texttt{GOTO}, puis de nouveau des instructions machine \texttt{BCF} ou \texttt{BSF} pour rétablir les bits \texttt{PA} du registre \texttt{STATUS}.
+L'instruction Piccolo  \texttt{jsr} engendre des instructions machine \texttt{BCF} ou \texttt{BSF} pour modifier les bits \texttt{PA} du registre \texttt{STATUS}, puis l'instruction machine \texttt{CALL}, puis de nouveau des instructions machine \texttt{BCF} ou \texttt{BSF} pour rétablir les bits \texttt{PA} du registre \texttt{STATUS}.
 
 Elle occupe donc $2n+1$ mots de la mémoire programme, $n$ étant le nombre de bits \texttt{PA} du registre \texttt{STATUS} à changer pour effectuer l'appel.
 

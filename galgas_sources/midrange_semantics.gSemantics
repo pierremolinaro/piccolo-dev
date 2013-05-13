@@ -79,11 +79,6 @@ routine midrange_analyze ??@midrange_model inPiccoloModel ??@string inSourceFile
   if [@uint errorCount] == 0 then
     midrange_compute_JSR_JUMP !?generatedInstructionList !?listFileContents ;
   end if ;
-#-------------------------------- Listing file
-  if [option piccolo_options.ouputListingFile value] then
-    @string listFile := [inSourceFileName stringByDeletingPathExtension] . ".list" ;
-    [listFileContents writeToFileWhenDifferentContents !listFile ?*] ;
-  end if ;
 #-------------------------------- Code generation
 #--- If no error, generate object file(s)
   if [@uint errorCount] == 0 then
@@ -95,6 +90,7 @@ routine midrange_analyze ??@midrange_model inPiccoloModel ??@string inSourceFile
       !generatedInstructionList
       ![[piccoloDeviceModel mRomSize] uint]
       !actualConfigurationMap
+      !?listFileContents
       ?usedROMsize
     ;
     @string contents ;
@@ -148,6 +144,11 @@ routine midrange_analyze ??@midrange_model inPiccoloModel ??@string inSourceFile
     if [asmDestinationFile fileExists] then
       [@string deleteFile !asmDestinationFile] ;
     end if ;
+  end if ;
+#-------------------------------- Listing file
+  if [option piccolo_options.ouputListingFile value] then
+    @string listFile := [inSourceFileName stringByDeletingPathExtension] . ".list" ;
+    [listFileContents writeToFileWhenDifferentContents !listFile ?*] ;
   end if ;
 end routine ;
 

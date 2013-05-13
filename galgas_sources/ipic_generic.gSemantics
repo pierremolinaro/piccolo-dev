@@ -23,6 +23,19 @@ extern routine get_C_ArrayHeader ??@string inSourceName !@string outContents ;
 
 #----------------------------------------------------------------------------*
 
+reader @uint x4String ->@string outResult :
+  if selfcopy > 0xFFFF then
+    outResult := "****" ;
+  else
+    outResult := [selfcopy >> 12 xString] ;
+    outResult .= [(selfcopy >> 8) & 0xF xString] ;
+    outResult .= [(selfcopy >> 4) & 0xF xString] ;
+    outResult .= [selfcopy & 0xF xString] ;
+  end if ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
 routine checkCurrentEmitAddress ??@uint inCurrentAddress :
   @uint addr ; currentEmitAddress ? addr ;
   if ([@uint errorCount] == 0) & (addr != inCurrentAddress) then
