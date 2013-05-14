@@ -673,26 +673,11 @@ end
 
 Les micro-contrôleurs \emph{mid-range} acceptent qu’une seule routine d’interruption, à l’adresse 0x04.
 
-En Piccolo, la routine d’interruption midrange est décrite dans une section \texttt{interrupt} :
-
-\begin{lstlisting}[language=piccolo]
-interrupt contextsave ... {
- instructions
-}
-\end{lstlisting}
-
-La section \texttt{interrupt} peut apparaître n’importe où dans le programme, Piccolo rangera toujours le code engendré à l’adresse 0x04. Le qualificatif \texttt{page} d’une routine ne peut pas être utilisée pour une routine d’interruption. Le qualificatif \texttt{contextsave} permet de préciser les zones mémoire utilisées pour la sauvegarde du contexte (voir à partir de la page suivante).
-
-Dans un programme, au plus une routine d’interruption peut être définie : une erreur est signalée si plusieurs le sont.
-
-Toutes les instructions décrites sont autorisées, sauf les instructions qui ne terminent jamais telles que la boucle infinie et les instructions de branchement vers une routine sans retour \texttt{GOTO} et \texttt{JUMP}.
-
-L’instruction assembleur \texttt{retfie} n’existe pas en Piccolo : le compilateur l’insère automatiquement à la fin de la routine d’interruption.
 
 
 \subsection{Routine d’interruption et sauvegarde du contexte}
 
-La diversité des situations rend la gestion délicate et fragile, car elle dépend du micro-contrôleur, selon qu'il présente une zone mémoire partagée entre tous les bancs ou non.
+La diversité des situations rend la gestion délicate et fragile, car elle dépend du micro-contrôleur, selon qu'il présente une zone mémoire commune à tous les bancs ou non.
 
 En effet, durant la réponse à une interruption, PC est sauvé dans la pile, mais aucun autre registre n’est sauvegardé : c’est à la charge du programmeur. Microchip précise qu’il faut aussi sauver le registre \texttt{PCLATH} : « \emph{The (midrange) PIC normally does not require saving the PCLATH. However, if computed GOTO’s are used in the ISR and the main code, the PCLATH must be saved and restored in the ISR} ».
 
@@ -714,12 +699,14 @@ CLRF     PCLATH      ;Page zero, regardless of current page
 : 
 MOVF     PCLATH_TEMP, W ;Restore PCLATH 
 MOVWF    PCLATH         ;Move W into PCLATH 
-SWAPF STATUS_TEMP,W ;Swap STATUS_TEMP register into W (sets bank to original state) 
+SWAPF STATUS_TEMP,W ;Swap STATUS_TEMP register into W
+                     (sets bank to original state) 
 MOVWF STATUS        ;Move W into STATUS register 
 SWAPF W_TEMP,F      ;Swap W_TEMP 
 SWAPF W_TEMP,W      ;Swap W_TEMP into W
 RETFIE
 \end{lstlisting}
+
 
 Le registre \texttt{W\_TEMP} est déclaré dans la zone commune, et \texttt{STATUS\_TEMP} est déclaré dans le banc 0. La sauvegarde de \texttt{PCLATH} est effectuée dans \texttt{PCLATH\_TEMP} (déclarée dans le banc 0). Celle-ci n'est nécessaire que si les deux conditions suivantes sont réunies : le programme s’étend sur plusieurs pages et le sous-programme d’interruption contient des appels de sous-programmes.
 
@@ -741,7 +728,8 @@ CLRF     PCLATH          ;Page zero, regardless of current page
 : 
 MOVF     PCLATH_TEMP, W ;Restore PCLATH 
 MOVWF    PCLATH         ;Move W into PCLATH 
-SWAPF    STATUS_TEMP,W  ;Swap STATUS_TEMP register into W (sets bank to original state) 
+SWAPF    STATUS_TEMP,W  ;Swap STATUS_TEMP register into W
+                         (sets bank to original state) 
 MOVWF    STATUS         ;Move W into STATUS register 
 SWAPF    W_TEMP,F       ;Swap W_TEMP 
 SWAPF    W_TEMP,W       ;Swap W_TEMP into W
@@ -750,13 +738,31 @@ RETFIE
 
 Le registre \texttt{W\_TEMP} est déclaré dans chaque banc de façon que sa sauvegarde puisse s’effectuer quelque soit les valeurs courantes des bits \texttt{RP} du registre \texttt{STATUS}. Les registres \texttt{STATUS\_TEMP} et \texttt{PCLATH\_TEMP} sont déclarés dans le banc 0. Comme pour le cas précédent, la sauvegarde de \texttt{PCLATH} est effectuée dans \texttt{PCLATH\_TEMP} (déclarée dans le banc 0). Celle-ci n'est nécessaire que si les deux conditions suivantes sont réunies : le programme s’étend sur plusieurs pages et le sous-programme d’interruption contient des appels de sous-programmes.
 
+\subsection{Description de la routine d'interruption}
+
+
+En Piccolo, la routine d’interruption \emph{midrange} est décrite dans une section \texttt{interrupt} :
+
+\begin{lstlisting}[language=piccolo]
+interrupt contextsave ... {
+ instructions
+}
+\end{lstlisting}
+
+La section \texttt{interrupt} peut apparaître n’importe où dans le programme, Piccolo rangera toujours le code engendré à l’adresse 0x04. Le qualificatif \texttt{page} d’une routine ne peut pas être utilisée pour une routine d’interruption. Le qualificatif \texttt{contextsave} permet de préciser les zones mémoire utilisées pour la sauvegarde du contexte (voir à partir de la page suivante).
+
+Dans un programme, au plus une routine d’interruption peut être définie : une erreur est signalée si plusieurs le sont.
+
+Toutes les instructions décrites sont autorisées, sauf les instructions qui ne terminent jamais telles que la boucle infinie et les instructions de branchement vers une routine sans retour \texttt{GOTO} et \texttt{JUMP}.
+
+L’instruction assembleur \texttt{retfie} n’existe pas en Piccolo : le compilateur l’insère automatiquement à la fin de la routine d’interruption.
 
 \subsection{Interruption et sauvegarde du contexte en Piccolo}
 
 En conséquence de l'étude qui précède, il y a donc quatre cas à considérer, en fonction des deux conditions suivantes :
 \begin{itemize}
   \item le micro-contrôleur présente-t-il une zone mémoire commune à tous les bancs on non ?
-  \item le programme s’étend-il sur plusieurs pages et le sous-programme d’interruption contient-il des branchements ou des appels de sous-programmes ? Si oui, PCLATH devra aussi être sauvé.
+  \item le programme s’étend-il sur plusieurs pages et le sous-programme d’interruption contient-il des branchements ou des appels de sous-programmes ? Si oui, \texttt{PCLATH} devra aussi être sauvé.
 \end{itemize}
 
 
@@ -957,7 +963,7 @@ Et le code engendré pour la routine d'interruption est :
 
 
 
-\section{Optimisation}
+\section{Optimisations}
 
 Cette section indique les différentes optimisations d'un code \emph{mid-range}. L'optimisation est activée par l'option « \texttt{-o} ».
 
