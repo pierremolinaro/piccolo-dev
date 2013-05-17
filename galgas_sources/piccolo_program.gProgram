@@ -17,28 +17,23 @@ before {
     @stringlist midrange_devices [emptyList] ;
     @stringlist baseline_devices [emptyList] ;
   #--- Parse them
-    @bool ok := true ;
-    foreach allDevices while ok do
+    foreach allDevices do
       const @string name := [[mValue lastPathComponent] stringByDeletingPathExtension] ;
       parseDeviceDefinition ![@lstring new !name !here] ?@piccoloDeviceModel piccoloDeviceModel ;
       switch [piccoloDeviceModel mProcessorType]
-      when pic18_60, pic18_80 : pic18_devices += !name ;
-      when midrange : midrange_devices += !name ;
-      if [[piccoloDeviceModel mBankCount] uint] > 4 then
-        message name . " has " . [[[piccoloDeviceModel mBankCount] uint] string] . " banks\n" ;
-      end if ;
-      when baseline : baseline_devices += !name ;
+      when pic18_60, pic18_80 :
+        pic18_devices += !name ;
+      when midrange :
+        midrange_devices += !name ;
+#        if not [piccoloDeviceModel->mRamBankTable hasKey !"gprnobnk"] then
+#          message name . " has no common bank\n" ;
+#        end if ;
+#      if [[piccoloDeviceModel mBankCount] uint] > 4 then
+#        message name . " has " . [[[piccoloDeviceModel mBankCount] uint] string] . " banks\n" ;
+#      end if ;
+      when baseline :
+        baseline_devices += !name ;
       end switch ;
-##      @uint bankCount := [[piccoloDeviceModel mBankCount] uint] ;
-##      if (bankCount == 1) then
-##        message name . " has 1 bank\n" ;
-##      elsif (bankCount == 2)
-##       | (bankCount == 4)
-##       | (bankCount == 8)
-##       | (bankCount == 16) then
-##      else
-##        message name . " has " . [bankCount string] . " banks\n" ;
-##      end if ;
     end foreach ;
   #--- Print baseline device list
     if [option piccolo_options_not_in_cocoa.outputDeviceList value] | [option piccolo_options_not_in_cocoa.outputBaselineDeviceList value] then
