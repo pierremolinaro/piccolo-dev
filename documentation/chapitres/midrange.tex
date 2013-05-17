@@ -59,7 +59,7 @@ Les routines définissent le code exécutable de votre programme. L’une d’en
 L’ordre des déclarations des routines est quelconque, il est possible d’appeler une routine qui est déclarée après l’instruction d’appel. Simplement Piccolo engendrera leur code dans leur ordre d’apparition. 
 
 ~\\
-\textbf{Routine et sélection de banc.} Un problème important en assembleur est la gestion de la sélection de banc par l’intermédiaire des bits \texttt{RP} du registre \texttt{STATUS} : son utilisation correcte en assembleur est complètement à la charge du programmeur. Piccolo propose des instructions pour sécuriser son emploi : voir à partir de § cette page.
+\textbf{Routine et sélection de banc.} Un problème important en assembleur est la gestion de la sélection de banc par l’intermédiaire des bits \texttt{RP} du registre \texttt{STATUS} : son utilisation correcte en assembleur est complètement à la charge du programmeur. Piccolo propose des instructions pour sécuriser son emploi : voir la \refSectionPage{instructionsGestionBancsMemoire}.
 
 ~\\
 \textbf{Liste d’instructions d’une routine.} Elle est structurée : Piccolo définit des instructions de sélection et de répétition : cela signifie que vous ne pouvez pas déclarer d’étiquette, ni utiliser des \texttt{goto} pour effectuer des branchements à l’intérieur d’une routine.
@@ -82,7 +82,7 @@ routine maRoutine ... {
 \texttt{maRoutine} est le nom de la routine, celui qui sera nommé dans un instruction d’appel de routine. Entre les accolades « \texttt{\{} » et « \texttt{\}} », apparaît la liste des instructions.
 
 ~\\
-\textbf{Appel d’une routine régulière.} Utiliser \texttt{CALL} ou \texttt{JSR}, comme indiqué à §§.
+\textbf{Appel d’une routine régulière.} Utiliser \texttt{CALL} ou \texttt{JSR}.
 
 \subsection{Routine sans retour}
 
@@ -562,7 +562,7 @@ La mémoire programme d'un \emph{mid-range} est constituée d'une ou plusieurs p
   \labelTableau{nombrePagesMidRange}
 \end{table}
 
-Les deux instructions de branchement que le jeu d'instructions des \emph{mid-range} définit sont \texttt{CALL} et \texttt{GOTO} (\refTableau{callGotoMidRange}). En résumé, ces instructions ne permettent pas d'effectuer par elles mêmes un branchement à tout position de la mémoire programme, mais uniquement un branchement à toute position de la page courante.
+Les deux instructions machine de branchement que le jeu d'instructions des \emph{mid-range} définit sont \texttt{CALL} et \texttt{GOTO} (\refTableau{callGotoMidRange}). En résumé, ces instructions ne permettent pas d'effectuer par elles mêmes un branchement à tout position de la mémoire programme, mais uniquement un branchement à toute position de la page courante.
 
 \begin{table}[!ht]
   \centering
@@ -755,7 +755,7 @@ Dans un programme, au plus une routine d’interruption peut être définie : un
 
 Toutes les instructions décrites sont autorisées, sauf les instructions qui ne terminent jamais telles que la boucle infinie et les instructions de branchement vers une routine sans retour \texttt{GOTO} et \texttt{JUMP}.
 
-L’instruction assembleur \texttt{retfie} n’existe pas en Piccolo : le compilateur l’insère automatiquement à la fin de la routine d’interruption.
+L’instruction assembleur \texttt{RETFIE} n’existe pas en Piccolo : le compilateur l’insère automatiquement à la fin de la routine d’interruption.
 
 \subsection{Interruption et sauvegarde du contexte en Piccolo}
 

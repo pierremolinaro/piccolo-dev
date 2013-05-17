@@ -14,7 +14,7 @@ controller PIC12F675 {
   unusedregister 0x8F ;
   unusedregister 0x91 to 0x94 ;
   unusedregister 0x97 to 0x98 ;
-  ram gpr0nobnk : 0x20 to 0x5F mirrorat 0xA0 ;
+  ram gprnobnk : 0x20 to 0x5F mirrorat 0xA0 ;
   # Total ram: 64
 
   register ADCON0 at 0x1F
