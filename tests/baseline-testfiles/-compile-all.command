@@ -2,6 +2,10 @@
 cd `dirname $0` &&
 ../../makefile_macosx/build.command &&
 export GPUTILS_PATH=/usr/local/gputils-1.1.0/bin &&
+echo "-------------- 10F204" &&
+../../makefile_macosx/piccolo -v -S -O -L --Werror blink_led_10F204.piccolo &&
+$GPUTILS_PATH/gpasm blink_led_10F204.asm -o blink_led_10F204-2.hex &&
+hexcmp blink_led_10F204.hex blink_led_10F204-2.hex &&
 echo "-------------- 10F206" &&
 ../../makefile_macosx/piccolo -v -S -O -L --Werror instructions_10F206.piccolo &&
 $GPUTILS_PATH/gpasm instructions_10F206.asm -o instructions_10F206-2.hex &&

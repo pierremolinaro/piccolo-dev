@@ -1,0 +1,64 @@
+#---------------------------------------------------------------*
+#                                                               *
+#  BLINK LED for 10F204                                         *
+#                                                               *
+#  Connection:                                                  *
+#    GP2 (pin 3) is connected to a led                          *
+#                                                               *
+#---------------------------------------------------------------*
+
+baseline blink_led_10F204 "10F204" :
+
+configuration {
+  CP : Disabled
+  OSC : "This is the only option. It is here for backward compatibility"
+  WDTE : Disabled
+  MCLRE : Disabled
+}
+
+#--- 24-bit counter varU:varH:varL
+ram gprs {
+  byte varU
+  byte varH
+  byte varL
+}
+
+noreturn routine main page 0 {
+#--- GP2 is an output
+  clrf GPIO
+  movlw 0xFB
+  TRIS GPIO
+#--- Counter <- 0
+  clrf varU
+  clrf varH
+  clrf varL
+#--- Blink loop
+  forever
+  #--- Counter is 0 ?
+    movf varL, W
+    iorwf varH, W
+    iorwf varU, W
+    if (STATUS.Z) # Counter == 0 ?
+    #--- Init counter to 0x70000
+      movlw 7
+      movwf varU
+    #--- Togle led
+      if (GPIO.2)
+        bcf GPIO.2
+      else
+        bsf GPIO.2
+      end
+    else # Counter is != 0
+    #--- Decrement counter
+      decf varL
+      if (incf varL, W Z) # varL == 0xFF ?
+        decf varH
+        if (incf varH, W Z) # varH == 0xFF ?
+          decf varU
+        end
+      end
+    end
+  end
+}
+
+end

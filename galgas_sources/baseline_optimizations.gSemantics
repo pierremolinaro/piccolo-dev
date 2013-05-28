@@ -179,6 +179,14 @@ override method @baseline_intermediate_JSR enterReferencedLabel
 end method ;
 
 #----------------------------------------------------------------------------*
+
+override method @baseline_intermediate_incDecRegisterInCondition enterReferencedLabel
+  ?!@stringset ioReferencedLabelSet
+:
+  ioReferencedLabelSet += !mTargetLabel ;
+end method ;
+
+#----------------------------------------------------------------------------*
 #                                                                            *
 #                          defineLabel                                       *
 #                                                                            *
