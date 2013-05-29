@@ -10,6 +10,10 @@ echo "-------------- 10F206" &&
 ../../makefile_macosx/piccolo -v -S -O -L --Werror instructions_10F206.piccolo &&
 $GPUTILS_PATH/gpasm instructions_10F206.asm -o instructions_10F206-2.hex &&
 hexcmp instructions_10F206.hex instructions_10F206-2.hex &&
+echo "-------------- 12F510" &&
+../../makefile_macosx/piccolo -v -S -O -L --Werror blink_led_pages_12F510.piccolo &&
+$GPUTILS_PATH/gpasm blink_led_pages_12F510.asm -o blink_led_pages_12F510-2.hex &&
+hexcmp blink_led_pages_12F510.hex blink_led_pages_12F510-2.hex &&
 echo "-------------- 12F519" &&
 ../../makefile_macosx/piccolo -v -S -O -L --Werror instructions_12F519.piccolo &&
 $GPUTILS_PATH/gpasm instructions_12F519.asm -o instructions_12F519-2.hex &&

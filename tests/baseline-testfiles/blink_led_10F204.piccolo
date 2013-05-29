@@ -9,6 +9,8 @@
 
 baseline blink_led_10F204 "10F204" :
 
+#---------------------------------------------------------------*
+
 configuration {
   CP : Disabled
   OSC : "This is the only option. It is here for backward compatibility"
@@ -16,20 +18,25 @@ configuration {
   MCLRE : Disabled
 }
 
-#--- 24-bit counter varU:varH:varL
+#---------------------------------------------------------------*
+
+#--- 16-bit counter varH:varL
 ram gprs {
-  byte varU
   byte varH
   byte varL
 }
 
+#---------------------------------------------------------------*
+
 noreturn routine main page 0 {
+#--- Pin 3 is not T0CKI
+  movlw 0xDF
+  option
 #--- GP2 is an output
   clrf GPIO
   movlw 0xFB
   TRIS GPIO
 #--- Counter <- 0
-  clrf varU
   clrf varH
   clrf varL
 #--- Blink loop
@@ -37,12 +44,12 @@ noreturn routine main page 0 {
   #--- Counter is 0 ?
     movf varL, W
     iorwf varH, W
-    iorwf varU, W
     if (STATUS.Z) # Counter == 0 ?
-    #--- Init counter to 0x70000
-      movlw 7
-      movwf varU
-    #--- Togle led
+    #--- Init counter to 0xFFFF
+      movlw 0xFF
+      movwf varH
+      movwf varL
+    #--- Toggle led
       if (GPIO.2)
         bcf GPIO.2
       else
@@ -53,12 +60,11 @@ noreturn routine main page 0 {
       decf varL
       if (incf varL, W Z) # varL == 0xFF ?
         decf varH
-        if (incf varH, W Z) # varH == 0xFF ?
-          decf varU
-        end
       end
     end
   end
 }
+
+#---------------------------------------------------------------*
 
 end

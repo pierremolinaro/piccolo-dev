@@ -1,0 +1,108 @@
+#---------------------------------------------------------------*
+#                                                               *
+#  BLINK LED for 12F510                                         *
+#                                                               *
+#  Connection: GP2 (pin 5) is connected to a led                *
+#  Configuration selects internal 4 MHz oscillator.             *
+#                                                               *
+#  This example uses intentionaly the two program memory pages  *
+#                                                               *
+#---------------------------------------------------------------*
+
+baseline blink_led_pages_12F510 "12F510" :
+
+#---------------------------------------------------------------*
+
+configuration {
+ CP : Disabled
+ IOSCFS : Disabled
+ MCLRE : Disabled
+ OSC : "INTOSC with 1.125 ms DRT"
+ WDT : Disabled
+}
+
+#---------------------------------------------------------------*
+
+#--- 16-bit counter varH:varL
+ram gpr0 {
+  byte varH
+  byte varL
+}
+
+#---------------------------------------------------------------*
+
+noreturn routine main page 0 {
+  jsr init
+#--- Blink loop
+  forever
+  #--- Counter is 0 ?
+    movf varL, W
+    iorwf varH, W
+    if (STATUS.Z) # Counter == 0 ?
+    #--- Init counter to 0xFFFF
+      movlw 0xFF
+      movwf varH
+      movwf varL
+    #--- Toggle led
+      jsr toggle
+    else # Counter is != 0
+    #--- Decrement counter
+      call decrementCounter
+    end
+  end
+}
+
+#---------------------------------------------------------------*
+
+routine initCounter {
+#--- Counter <- 0
+  clrf varH
+  clrf varL
+#--- Return value
+  movlw 0
+}
+
+#---------------------------------------------------------------*
+
+routine decrementCounter {
+  decf varL
+  if (incf varL, W Z) # varL == 0xFF ?
+    decf varH
+  end
+#--- Return value
+  movlw 0
+}
+
+#---------------------------------------------------------------*
+
+routine init page 1 {
+#--- No pins configured for analog input
+  clrf ADCON0
+#--- RB2 is not T0CKI
+  movlw 0xDF
+  option
+#--- GP2 is an output
+  clrf GPIO
+  movlw 0xFB
+  TRIS GPIO
+#--- Counter <- 0
+  jsr initCounter
+#--- Return value
+  movlw 0
+}
+
+#---------------------------------------------------------------*
+
+routine toggle page 1 {
+  if (GPIO.2)
+    bcf GPIO.2
+  else
+    bsf GPIO.2
+  end
+#--- Return value
+  movlw 0
+}
+
+#---------------------------------------------------------------*
+
+end
