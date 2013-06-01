@@ -2,7 +2,7 @@
 # Piccolo compiler error detection
 # COMPILING THIS PROGRAM RAISES ERRORS.
 
-midrange test_banks "16F690" :
+midrange test_banks_16F690 "16F690" :
 
 #----------------------------------------------------------------------------*
 
