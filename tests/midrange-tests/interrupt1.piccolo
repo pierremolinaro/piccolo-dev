@@ -7,8 +7,7 @@
 #  - when code uses only rom page 0 or interrupt routine does not
 #    contain any branch nor call instruction.
 
-# Saving interrupt context requires to declare one byte in
-# ram bank #0, and one byte in shared bank.
+# Saving interrupt context requires to declare two bytes in shared bank.
 
 midrange interrupt1 "16F690" :
 
@@ -18,13 +17,8 @@ midrange interrupt1 "16F690" :
 #                                                                            *
 #----------------------------------------------------------------------------*
 
-ram gpr0 {
-  byte itSave0 
-}
-
-#----------------------------------------------------------------------------*
-
 ram gprnobnk {
+  byte itSave0 
   byte itsave1
 }
 
