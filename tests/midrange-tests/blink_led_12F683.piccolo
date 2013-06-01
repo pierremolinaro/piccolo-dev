@@ -1,0 +1,76 @@
+#---------------------------------------------------------------*
+#                                                               *
+#  BLINK LED for 12F683                                         *
+#                                                               *
+#  Connection:                                                  *
+#    GP2 (pin 3) is connected to a led                          *
+#                                                               *
+#---------------------------------------------------------------*
+
+midrange blink_led_12F683 "12F683" :
+
+#---------------------------------------------------------------*
+
+configuration {
+  CP : Disabled
+  FOSC : "INTOSCIO oscillator: I/O function on RA4/OSC2/CLKOUT pin, I/O function on RA5/OSC1/CLKIN"
+  WDTE : Disabled
+  MCLRE : Disabled
+  BOREN : Disabled
+  CPD : Disabled
+  FCMEN : Disabled
+  IESO : Disabled
+  PWRTE : Disabled
+}
+
+#---------------------------------------------------------------*
+
+#--- 16-bit counter varH:varL
+ram gprnobnk {
+  byte varH
+  byte varL
+}
+
+#---------------------------------------------------------------*
+
+noreturn routine main bank:requires 0 {
+#--- Digital I/O on GP<2:0>
+  movlw 0x07
+  movwf CMCON0
+  banksel 1
+  clrf  ANSEL
+#--- GP2 is an output
+  bcf  TRISIO.2
+  banksel 0
+#--- Counter <- 0
+  clrf varH
+  clrf varL
+#--- Blink loop
+  forever
+  #--- Counter is 0 ?
+    movf varL, W
+    iorwf varH, W
+    if (STATUS.Z) # Counter == 0 ?
+    #--- Init counter to 0xFFFF
+      movlw 0xFF
+      movwf varH
+      movwf varL
+    #--- Toggle led
+      if (GPIO.2)
+        bcf GPIO.2
+      else
+        bsf GPIO.2
+      end
+    else # Counter is != 0
+    #--- Decrement counter
+      decf varL
+      if (incf varL, W Z) # varL == 0xFF ?
+        decf varH
+      end
+    end
+  end
+}
+
+#---------------------------------------------------------------*
+
+end
