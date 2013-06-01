@@ -2,6 +2,14 @@
 cd `dirname $0` &&
 ../../makefile_macosx/build.command &&
 export GPUTILS_PATH=/usr/local/gputils-1.1.0/bin &&
+echo "-------------- blink_led_12F683" &&
+../../makefile_macosx/piccolo -v -S -O -L --Werror blink_led_12F683.piccolo &&
+$GPUTILS_PATH/gpasm blink_led_12F683.asm -o blink_led_12F683-2.hex &&
+hexcmp blink_led_12F683.hex blink_led_12F683-2.hex &&
+echo "-------------- blink_led_it_12F683" &&
+../../makefile_macosx/piccolo -v -S -O -L --Werror blink_led_it_12F683.piccolo &&
+$GPUTILS_PATH/gpasm blink_led_it_12F683.asm -o blink_led_it_12F683-2.hex &&
+hexcmp blink_led_it_12F683.hex blink_led_it_12F683-2.hex &&
 echo "-------------- if_semi_colon" &&
 ../../makefile_macosx/piccolo -v -S -O -L --Werror if_semi_colon.piccolo &&
 $GPUTILS_PATH/gpasm if_semi_colon.asm -o if_semi_colon-2.hex &&
@@ -19,13 +27,13 @@ echo "-------------- multiple_pages" &&
 $GPUTILS_PATH/gpasm multiple_pages.asm -o multiple_pages-2.hex &&
 hexcmp multiple_pages.hex multiple_pages-2.hex &&
 echo "-------------- interrupt1" &&
-#../../makefile_macosx/piccolo -v -S -O -L --Werror interrupt1.piccolo &&
-#$GPUTILS_PATH/gpasm interrupt1.asm -o interrupt1-2.hex &&
-#hexcmp interrupt1.hex interrupt1-2.hex &&
+../../makefile_macosx/piccolo -v -S -O -L --Werror interrupt1.piccolo &&
+$GPUTILS_PATH/gpasm interrupt1.asm -o interrupt1-2.hex &&
+hexcmp interrupt1.hex interrupt1-2.hex &&
 echo "-------------- interrupt2" &&
-#../../makefile_macosx/piccolo -v -S -O -L --Werror interrupt2.piccolo &&
-#$GPUTILS_PATH/gpasm interrupt2.asm -o interrupt2-2.hex &&
-#hexcmp interrupt2.hex interrupt2-2.hex &&
+../../makefile_macosx/piccolo -v -S -O -L --Werror interrupt2.piccolo &&
+$GPUTILS_PATH/gpasm interrupt2.asm -o interrupt2-2.hex &&
+hexcmp interrupt2.hex interrupt2-2.hex &&
 echo "-------------- interrupt3" &&
 ../../makefile_macosx/piccolo -v -S -O -L --Werror interrupt3.piccolo &&
 $GPUTILS_PATH/gpasm interrupt3.asm -o interrupt3-2.hex &&

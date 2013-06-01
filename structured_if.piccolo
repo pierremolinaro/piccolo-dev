@@ -1,0 +1,39 @@
+# This program is just intended for checking
+# structured 'if' instructions
+# Trying to execute it does not make sense.
+
+midrange structured_if "16F690" :
+
+#----------------------------------------------------------------------------*
+#                                                                            *
+#                                MAIN                                        *
+#                                                                            *
+#----------------------------------------------------------------------------*
+
+noreturn routine main bank:requires 0 {
+#--- This instruction is opimitized to "if STATUS.C Z : BSF PORTA.1"
+  if (! STATUS.C)
+    BSF PORTA.1
+  end
+#--- basic structured if
+  mnop 10
+  if (DECF PORTA Z)
+    BCF PORTB.2
+  else
+    BCF PORTB.1
+  end
+#--- When optimized, "then" and "else" branches are swapped on optimization
+  mnop 10
+  if (DECF PORTA NZ)
+    BCF PORTB.2
+  else
+    BCF PORTB.1
+  end
+#---
+  forever
+  end
+}
+
+#----------------------------------------------------------------------------*
+
+end

@@ -1,0 +1,80 @@
+#---------------------------------------------------------------*
+#                                                               *
+#  BLINK LED for 12F683                                         *
+#                                                               *
+#  Connection: GP2 (pin 5) is connected to a led                *
+#  Internal 4 MHz oscillator is used                            *
+#                                                               *
+#---------------------------------------------------------------*
+
+midrange blink_led_it_12F683 "12F683" :
+
+#---------------------------------------------------------------*
+
+configuration {
+  CP : Disabled
+  FOSC : "INTOSCIO oscillator: I/O function on RA4/OSC2/CLKOUT pin, I/O function on RA5/OSC1/CLKIN"
+  WDTE : Disabled
+  MCLRE : Disabled
+  BOREN : Disabled
+  CPD : Disabled
+  FCMEN : Disabled
+  IESO : Disabled
+  PWRTE : Disabled
+}
+
+#---------------------------------------------------------------*
+
+ram gprnobnk {
+  byte sauveA
+  byte sauveB
+}
+
+#---------------------------------------------------------------*
+
+interrupt contextsave sauveA, sauveB {
+#--- Timer 2 interrupt ack
+  bcf PIR1.TMR2IF
+#--- Toggle led
+  if (GPIO.2)
+    bcf GPIO.2
+  else
+    bsf GPIO.2
+  end
+}
+
+#---------------------------------------------------------------*
+
+noreturn routine main bank:requires 0 {
+#--- Digital I/O on GP<2:0>
+  movlw 0x07
+  movwf CMCON0
+  banksel 1
+  clrf  ANSEL
+#--- GP2 is an output
+  bcf  TRISIO.2
+#--- Set PR2
+  movlw 255
+  movwf PR2
+  banksel 0
+#--- Timer 2 programming: T2CON
+# 6-3 : 1111 (1:16 postscaler)
+#   2 : 1 (timer 2 is on)
+# 1-0 : 11 (prescaler is 16)
+  movlw 0xFF
+  movwf T2CON
+#--- Enable Timer 2 interrupt
+  banksel 1
+  bsf     PIE1.TMR2IE
+  banksel 0
+#---
+  bsf     INTCON.PEIE 
+  bsf     INTCON.GIE 
+#--- loop
+  forever
+  end
+}
+
+#---------------------------------------------------------------*
+
+end
