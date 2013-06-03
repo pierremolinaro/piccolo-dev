@@ -669,9 +669,44 @@ end
 
 \sectionLabel{Routine d'interruption mid-range}{routineInterruptionMidrange}
 
+L'architecture des \emph{mid-range} rend la sauvegarde du contexte piégeuse.
+
+Nous allons d'abord voir comment cette sauvegarde doit être réalisée en assembleur, et ensuite nous exposerons comment elle est faite en Piccolo.
 
 
-Les micro-contrôleurs \emph{mid-range} acceptent qu’une seule routine d’interruption, à l’adresse 0x04.
+Les micro-contrôleurs \emph{mid-range} acceptent qu’une seule routine d’interruption (à l’adresse 0x04). Lors de la réponse à une interruption, seul le compteur programme PC est empilé dans la pile matérielle. Or, il peut être nécessaire de sauver :
+\begin{itemize}
+  \item le registre \texttt{W} ;
+  \item le registre \texttt{STATUS} ;
+  \item le registre \texttt{PCLATH} ;
+\end{itemize}
+
+\textbf{Allure générale de la routine d'interruption.} La routine d'interruption a donc l'allure suivante :
+\begin{enumerate}
+  \item sauvegarde de \texttt{W} ;
+  \item sauvegarde de \texttt{STATUS} ;
+  \item sauvegarde de \texttt{PCLATH} ;
+  \item instructions utilisateur;
+  \item restitution de \texttt{PCLATH} ;
+  \item restitution de \texttt{STATUS} ;
+  \item restitution de \texttt{W} ;
+  \item instruction de retour d'interruption.
+\end{enumerate}
+
+Le but de Piccolo est de simplifier au maximum l'expression des opérations de sauvegarde et de restitution en proposant des constructions appropriées.
+
+\textbf{Sauvegarde de \texttt{W}.} Il est nécessaire de sauver \texttt{W} si des instructions de la routine d'interruption le modifie. Pour effectuer cette sauvegarde, on exécute simplement l'instruction suivante, qui copie le contenu de \texttt{W} dans la mémoire \texttt{W\_TEMP} :
+
+\begin{lstlisting}[language=assembleur]
+MOVWF W_TEMP 
+\end{lstlisting}
+
+Où déclarer \texttt{W\_TEMP} ? C'est là où cela se complique. En effet, dans le cas général, le micro-contrôleur présente plusieurs bancs mémoire, et il est impossible de savoir le banc qui est sélectionné au moment où l'interruption survient.
+
+Si le micro-contrôleur présente une zone \emph{partagée} qui apparaît en miroir sur tous les bancs, alors \texttt{W\_TEMP} doit être déclaré dans cette zone. Souvent cette zone partagée apparaît aux adresses 0x70 à 0x7F dans le banc 0, 0xF0 à 0xFF dans le banc 1, …
+
+Malheureusement, certains micro-contrôleurs ne possèdent pas de zone partagée entre tous les bancs : c'est par exemple le cas des 16F873\index{16F873} et 16F874\index{16F874}. En fait, pour ces deux micro-contrôleurs, les emplacements mémoire (les « General Purpose Registers ») du banc 2 sont le miroir du banc 0, et ceux du banc 3 le miroir du banc 1. La seule possibilité est donc de déclarer manuellement une variable dans les deux premiers bancs de façon qu'elles apparaissent en miroir ; par exemple \texttt{W\_TEMP0} dans le banc 0 à l'adresse 0x20 et \texttt{W\_TEMP1} dans le banc 1 à l'adresse 0xA0.
+
 
 
 
