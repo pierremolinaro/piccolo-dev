@@ -1,3 +1,12 @@
+#---------------------------------------------------------------*
+#                                                               *
+#  BLINK LED for 10F204                                         *
+#                                                               *
+#  Connection:                                                  *
+#    GP2 (pin 3) is connected to a led                          *
+#                                                               *
+#---------------------------------------------------------------*
+
 # This program is just intended for showing
 # program memory inter-page branches.
 # Trying to execute it does not make sense.
