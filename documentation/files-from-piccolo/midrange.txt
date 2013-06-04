@@ -1,4 +1,4 @@
-143 mid-range devices supported by Piccolo version 2.0.0:
+143 mid-range devices supported by Piccolo version 2.0.1:
 12C671         12C672         12CE673        12CE674        12F609         
 12F615         12F629         12F635         12F675         12F683         
 12HV609        12HV615        16C432         16C433         16C554         
