@@ -679,7 +679,7 @@ Les micro-contrôleurs \emph{mid-range} acceptent qu’une seule routine d’int
 
 Nous allons d'abord voir comment cette sauvegarde doit être réalisée en assembleur, et ensuite nous exposerons comment elle est faite en Piccolo.
 
-\subsection{Allure générale de la routine d'interruption}
+\subsection{Allure générale de la routine d'interruption en assembleur}
 
 La routine d'interruption a l'allure suivante :
 \begin{enumerate}
@@ -696,7 +696,7 @@ La routine d'interruption a l'allure suivante :
 
 Le but de Piccolo est de simplifier au maximum l'expression des opérations de sauvegarde et de restitution en proposant des constructions appropriées.
 
-\subsection{Sauvegarde de \texttt{W}}
+\subsubsection{Sauvegarde de \texttt{W}}
 
 Il est nécessaire de sauver \texttt{W} si des instructions de la routine d'interruption le modifie. Pour effectuer cette sauvegarde, on exécute simplement l'instruction suivante, qui copie le contenu de \texttt{W} dans la mémoire \texttt{W\_TEMP} :
 
@@ -711,7 +711,7 @@ Si le micro-contrôleur présente une zone \emph{partagée} qui apparaît en mir
 Malheureusement, certains micro-contrôleurs ne possèdent pas de zone partagée entre tous les bancs : c'est par exemple le cas des 16F873\index{16F873} et 16F874\index{16F874}. En fait, pour ces deux micro-contrôleurs, les emplacements mémoire (les « \emph{General Purpose Registers} ») du banc 2 sont le miroir du banc 0, et ceux du banc 3 le miroir du banc 1. La seule possibilité en assembleur est donc de déclarer manuellement une variable dans les deux premiers bancs de façon qu'elles apparaissent en miroir ; par exemple \texttt{W\_TEMP0} dans le banc 0 à l'adresse 0x20 et \texttt{W\_TEMP1} dans le banc 1 à l'adresse 0xA0.
 
 
-\subsection{Sauvegarde de \texttt{STATUS}}
+\subsubsection{Sauvegarde de \texttt{STATUS}}
 
 Il est à noter que l'instruction précédente \texttt{MOVWF W\_TEMP} ne modifie pas les indicateurs du registre d'état \texttt{STATUS}. Pour sauver ce registre dans une mémoire \texttt{STATUS\_TEMP}, il faut passer par l'intermédiaire de \texttt{W}. Pour transférer le contenu de \texttt{STATUS} dans \texttt{W}, on ne peut pas utiliser l'instruction \texttt{MOVF} car elle modififie l'indicateur \texttt{Z}. On utilise donc \texttt{SWAPF}, et, c'est le contenu \emph{swappé} du registre \texttt{STATUS} qui est transféré dans \texttt{W}. Avant d'écrire \texttt{W} dans \texttt{STATUS\_TEMP}, on exécute \texttt{CLRF STATUS}, ce qui a pour effet d'effacer les bits \texttt{RP} : ainsi \texttt{STATUS\_TEMP} doit être déclaré dans le banc 0. La séquence complète de sauvegarde du registre \texttt{STATUS} est donc :
 
@@ -721,7 +721,7 @@ CLRF  STATUS
 MOVWF STATUS_TEMP 
 \end{lstlisting}
 
-\subsection{Sauvegarde de \texttt{PCLATH}}
+\subsubsection{Sauvegarde de \texttt{PCLATH}}
 
 La réponse à l'interruption laisse le registre \texttt{PCLATH} inchangé. Si la routine d'interruption n'invoque ni l'instruction \texttt{CALL} ni l'instruction \texttt{GOTO}, \texttt{PCLATH} n'est pas utilisé et il est inutile de le sauvegarder. Dans le cas contraire, et si le programme s'étend sur plusieurs pages de la mémoire programme, le contenu des bits 3 et 4 de \texttt{PCLATH} -- les bits utilisés par les instructions \texttt{CALL} et \texttt{GOTO} -- est inconnu. Il faut donc sauvegarder ce registre, puis l'effacer (\texttt{PCLATH\_TEMP} est déclaré dans le banc 0) :
 
@@ -734,7 +734,64 @@ CLRF  PCLATH
 
 
 
-\subsection{Restitution du contexte et retour d'interruption}
+\subsubsection{Restitution de \texttt{STATUS}}
+
+La restitution de \texttt{PCLATH} est simple, il suffit de recopier \texttt{PCLATH\_TEMP} dans \texttt{PCLATH}, en se souvenant que \texttt{PCLATH\_TEMP} contient la valeur \emph{swappée} :
+
+\begin{lstlisting}[language=assembleur]
+SWAPF STATUS_TEMP, W
+MOVWF STATUS
+\end{lstlisting}
+
+
+\subsubsection{Restitution de \texttt{W}}
+
+Il y a une petite subtilité, car on ne peut pas utiliser \texttt{MOVF W\_TEMP, W}. En effet, cette instruction modifie l'indicateur \texttt{Z}. On utilise donc l'instruction \texttt{SWAPF} qui a la particularité de ne modifier aucun indicateur. Pour restituer la valeur non \emph{swappée}, on effectue d'abord un \emph{swap} en mémoire :
+
+\begin{lstlisting}[language=assembleur]
+SWAPF W_TEMP, F
+SWAPF W_TEMP, W
+\end{lstlisting}
+
+
+
+
+
+\subsubsection{Récapitulatif}
+
+La routine d'interruption d'un \emph{mid-range} a l'allure suivante en assembleur :
+
+\begin{lstlisting}[language=assembleur]
+; 1- Sauvegarde de W
+  MOVWF W_TEMP 
+; 2- Sauvegarde de STATUS
+  SWAPF STATUS, W
+  CLRF  STATUS
+  MOVWF STATUS_TEMP 
+; 3- Sauvegarde de PCLATH
+  MOVF  PCLATH, W
+  MOVWF PCLATH_TEMP 
+  CLRF  PCLATH
+; 4- instructions utilisateur
+
+; 5- Restitution de PCLATH
+  MOVF  PCLATH_TEMP, W
+  MOVWF PCLATH 
+; 6- Restitution de STATUS
+  SWAPF STATUS_TEMP, W
+  MOVWF STATUS
+; 7- Restitution de W
+  SWAPF W_TEMP, F
+  SWAPF W_TEMP, W
+; 8- Retour d'interruption
+  RETFIE
+\end{lstlisting}
+
+
+
+
+
+\subsubsection{Restitution du contexte et retour d'interruption}
 
 La restitution du contexte est simple, il suffit de charger les registres \texttt{PCLATH}, \texttt{STATUS} et \texttt{W} à partir des images sauvegardées. Le retour d'interruption est réalisé par l'instruction \texttt{RETFIE} :
 
@@ -749,70 +806,8 @@ RETFIE
 \end{lstlisting}
 
 
-\subsection{Routine d’interruption et sauvegarde du contexte}
 
-La diversité des situations rend la gestion délicate et fragile, car elle dépend du micro-contrôleur, selon qu'il présente une zone mémoire commune à tous les bancs ou non.
-
-En effet, durant la réponse à une interruption, PC est sauvé dans la pile, mais aucun autre registre n’est sauvegardé : c’est à la charge du programmeur. Microchip précise qu’il faut aussi sauver le registre \texttt{PCLATH} : « \emph{The (midrange) PIC normally does not require saving the PCLATH. However, if computed GOTO’s are used in the ISR and the main code, the PCLATH must be saved and restored in the ISR} ».
-
-
-
-~\\
-\textbf{Présence d’une zone commune.} C'est le cas de la plupart des \emph{mid-range}. En assembleur, la sauvegarde préconisée par Microchip est la suivante :
-
-\begin{lstlisting}[language=assembleur]
-MOVWF W_TEMP       ;Copy W to TEMP register 
-SWAPF STATUS,W     ;Swap status to be saved into W 
-CLRF  STATUS       ;bank 0, regardless of current bank, Clears IRP,RP1,RP0 
-MOVWF STATUS_TEMP  ;Save status to bank zero STATUS_TEMP register 
-MOVF     PCLATH, W   ;Only required if using pages 1, 2 and/or 3 
-MOVWF    PCLATH_TEMP ;Save PCLATH into W 
-CLRF     PCLATH      ;Page zero, regardless of current page 
-: 
-:(ISR) ;(Insert user code here) 
-: 
-MOVF     PCLATH_TEMP, W ;Restore PCLATH 
-MOVWF    PCLATH         ;Move W into PCLATH 
-SWAPF STATUS_TEMP,W ;Swap STATUS_TEMP register into W
-                     (sets bank to original state) 
-MOVWF STATUS        ;Move W into STATUS register 
-SWAPF W_TEMP,F      ;Swap W_TEMP 
-SWAPF W_TEMP,W      ;Swap W_TEMP into W
-RETFIE
-\end{lstlisting}
-
-
-Le registre \texttt{W\_TEMP} est déclaré dans la zone commune, et \texttt{STATUS\_TEMP} est déclaré dans le banc 0. La sauvegarde de \texttt{PCLATH} est effectuée dans \texttt{PCLATH\_TEMP} (déclarée dans le banc 0). Celle-ci n'est nécessaire que si les deux conditions suivantes sont réunies : le programme s’étend sur plusieurs pages et le sous-programme d’interruption contient des appels de sous-programmes.
-
-
-~\\
-\textbf{Pas de zone commune.} C’est par exemple le cas du 16F873. En assembleur, la sauvegarde préconisée par Microchip est la suivante :
-
-
-\begin{lstlisting}[language=assembleur]
-MOVWF    W_TEMP          ;Copy W to TEMP register 
-SWAPF    STATUS,W        ;Swap status to be saved into W 
-CLRF     STATUS          ;bank 0, regardless of current bank, Clears IRP,RP1,RP0 
-MOVWF    STATUS_TEMP     ;Save status to bank zero STATUS_TEMP register 
-MOVF     PCLATH, W       ;Only required if using pages 1, 2 and/or 3 
-MOVWF    PCLATH_TEMP     ;Save PCLATH into W 
-CLRF     PCLATH          ;Page zero, regardless of current page 
-: 
-:(ISR) ;(Insert user code here) 
-: 
-MOVF     PCLATH_TEMP, W ;Restore PCLATH 
-MOVWF    PCLATH         ;Move W into PCLATH 
-SWAPF    STATUS_TEMP,W  ;Swap STATUS_TEMP register into W
-                         (sets bank to original state) 
-MOVWF    STATUS         ;Move W into STATUS register 
-SWAPF    W_TEMP,F       ;Swap W_TEMP 
-SWAPF    W_TEMP,W       ;Swap W_TEMP into W
-RETFIE
-\end{lstlisting}
-
-Le registre \texttt{W\_TEMP} est déclaré dans chaque banc de façon que sa sauvegarde puisse s’effectuer quelque soit les valeurs courantes des bits \texttt{RP} du registre \texttt{STATUS}. Les registres \texttt{STATUS\_TEMP} et \texttt{PCLATH\_TEMP} sont déclarés dans le banc 0. Comme pour le cas précédent, la sauvegarde de \texttt{PCLATH} est effectuée dans \texttt{PCLATH\_TEMP} (déclarée dans le banc 0). Celle-ci n'est nécessaire que si les deux conditions suivantes sont réunies : le programme s’étend sur plusieurs pages et le sous-programme d’interruption contient des appels de sous-programmes.
-
-\subsection{Description de la routine d'interruption}
+\subsection{Routine d'interruption en Piccolo}
 
 
 En Piccolo, la routine d’interruption \emph{midrange} est décrite dans une section \texttt{interrupt} :
