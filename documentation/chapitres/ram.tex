@@ -27,7 +27,7 @@ Préalablement, vous devez savoir comment la mémoire RAM de votre micro-contrô
 
 Par exemple, pour le 16F57, entrez la ligne de commande \texttt{piccolo -M=16F57}. Piccolo affiche alors les renseignements suivants :
 
-{\footnotesize \lstinputlisting[frame=l]{files-from-piccolo/memory-16F57.txt}}
+\lstinputlisting[language=sortie]{files-from-piccolo/memory-16F57.txt}
 
 Pour les micro-contrôleurs \emph{baseline}, l'accès direct est possible pour les registres dont l'adresse est comprise entre 0x0 et 0x1F : pour le 16F57, ceci comprend les registres spéciaux (non décrits ici, entre 0x0 et 0x07), le banc \texttt{gprnobank}, et le banc \texttt{gpr0}. Les trois deux autres bancs, \texttt{gpr1}, \texttt{gpr2} et \texttt{gpr3}, ne sont accessibles que par adressage indirect via \texttt{FSR}.
 
@@ -37,7 +37,7 @@ L'instruction \texttt{banksel} n'est donc pas valide pour les \emph{baseline}.
 
 Par exemple, pour le 16F690, entrez la ligne de commande \texttt{piccolo -M=16F690}. Piccolo affiche alors les renseignements suivants :
 
-{\footnotesize \lstinputlisting[frame=l]{files-from-piccolo/memory-16F690.txt}}
+\lstinputlisting[language=sortie]{files-from-piccolo/memory-16F690.txt}
 
 Pour les micro-contrôleurs \emph{mid-range}, l'accès aux différents bancs est régi par les bits \texttt{RP} du registre \texttt{STATUS} : c'est le cas des trois premiers bancs \texttt{gpr0} à \texttt{gpr2}. Le dernier banc, \texttt{gprnobnk}, est toujours accessible quelque soient les bits \texttt{RP} du registre \texttt{STATUS} car il apparaît en miroir dans tous les bancs.
 
@@ -48,13 +48,13 @@ En Piccolo, on ne manipule jamais directement les \texttt{RP} du registre \textt
 
 Par exemple, pour le 18F448, entrez la ligne de commande \texttt{piccolo -M=18F448}. Piccolo affiche alors les renseignements suivants :
 
-{\footnotesize \lstinputlisting[frame=l]{files-from-piccolo/memory-18F448.txt}}
+\lstinputlisting[language=sortie]{files-from-piccolo/memory-18F448.txt}
 
-Le premier banc, \texttt{accessram}, est toujours accessible directement sans utiliser la valeur du registre \texttt{BSR}. Suivant le micro-contrôleur, ce banc occupe les 96 ou les 128 premiers octets de la RAM.
+Le premier banc, \texttt{accessram}, est toujours accessible directement sans utiliser la valeur du registre \assembleur{BSR}. Suivant le micro-contrôleur, ce banc occupe les 96 ou les 128 premiers octets de la RAM.
 
-Ensuite, l'accès aux bancs \texttt{gprX} imposent la valeur \texttt{X} au registre \texttt{BSR}. Voir à ce sujet comment le registre \texttt{BSR} est géré §.
+Ensuite, l'accès aux bancs \texttt{gprX} imposent la valeur \texttt{X} au registre \assembleur{BSR}. Voir à ce sujet la \refSectionPage{instructionsGestionBancsMemoire} qui explique comment le registre \assembleur{BSR} est géré en Piccolo.
 
-En Piccolo, on ne manipule jamais directement le registre \texttt{BSR} : on utilise l'instruction \texttt{banksel}. L'avantage est que celle-ci permet une vérification statique, à la compilation, de la sélection correcte des bancs.
+En Piccolo, on ne manipule jamais directement le registre \assembleur{BSR} : on utilise l'instruction \texttt{banksel}. L'avantage est que celle-ci permet une vérification statique, à la compilation, de la sélection correcte des bancs.
 
 
 
@@ -152,7 +152,7 @@ byte var [2] <-, A, b, -, d, e [2], ->
 
 Dans ce cas, tous les octets du tableaux ont leurs bits nommés de la même façon.
 
-Comment utiliser ces noms de bits ? Dans les conditions de l'instruction conditionnelle simple, les conditions élémentaires des instructions conditionnelles structurées et répétitive, dans les instructions \texttt{bcf}, \texttt{bsf} et \texttt{btg} (voir §). 
+Comment utiliser ces noms de bits ? Dans les conditions de l'instruction conditionnelle simple, les conditions élémentaires des instructions conditionnelles structurées et répétitive, dans les instructions \texttt{bcf}, \texttt{bsf} et \texttt{btg} (voir la \refSubsectionPage{opBaselineAffectationBit} pour les \emph{baseline}, la \refSubsectionPage{opMidRangeAffectationBit} pour les \emph{mid-range} et la \refSubsectionPage{opPic18AffectationBit} pour les \emph{pic18}). 
 
 
 \sectionLabel{Référence à un registre}{referenceRegistre}
@@ -168,7 +168,7 @@ En Piccolo, il suffit de nommer simplement le registre avec l'instruction, par e
 clrf registre
 \end{lstlisting}
 
-Cette écriture ressemble à l'assembleur, mais il y a une différence fondamentale : le bit indiquant si l'adressage devra être fait via l'\emph{access bank} ou via le registre \texttt{BSR} n'apparaît jamais dans l'instruction Piccolo. Lors de la génération de code, Piccolo fixera automatiquement la valeur de ce bit.
+Cette écriture ressemble à l'assembleur, mais il y a une différence fondamentale : le bit indiquant si l'adressage devra être fait via l'\emph{access bank} ou via le registre \assembleur{BSR} n'apparaît jamais dans l'instruction Piccolo. Lors de la génération de code, Piccolo fixera automatiquement la valeur de ce bit.
 
 Par exemple, en supposant que \texttt{varAccesBank} est accessible via l'\emph{access bank}, que \texttt{varBank1} est dans le banc 1 et \texttt{varBank2} dans le banc 2, on écrira en Piccolo :
 

@@ -66,7 +66,7 @@ Noter que l'instruction exécutée conditionnellement ne peut être qu'une instr
 
 Noter aussi la différence suivante : l'instruction assembleur indique la condition de saut de l'instruction suivante, tandis que le conditionnelle simple nomme sa condition d'exécution, c'est à dire son complémentaire.
 
-Pour les \emph{pic18}, seules trois comparaisons d'un registre avec \texttt{W} existent pour l'instruction conditionnelle simple : elles correspondent aux instructions assembleur \texttt{CPFSEQ}, \texttt{CPFSGT} et \texttt{CPFSLT}. L'instruction conditionnelle structurée implémente les six comparaisons.
+Pour les \emph{pic18}, seules trois comparaisons d'un registre avec \texttt{W} existent pour l'instruction conditionnelle simple : elles correspondent aux instructions assembleur \assembleur{CPFSEQ}, \assembleur{CPFSGT} et \assembleur{CPFSLT}. L'instruction conditionnelle structurée implémente les six comparaisons.
 
 Pour le test individuel d'un bit, la notation \texttt{registre.bit} est utilisée : celle-ci est présentée §.
 
@@ -79,12 +79,12 @@ Le \refTableau{instructionsConditionnellesSimplesBaseline} donne la liste de tou
   \begin{tabular}{lp{4cm}lll}
     \textbf{Instruction} & \textbf{Code engendré}\\
     \hline
-    \texttt{if registre.bit : instruction} & \texttt{BTFSC registre, bit instruction} \\
-    \texttt{if ! registre.bit : instruction} & \texttt{BTFSS registre, bit instruction} \\
-    \texttt{if decf registre nz : instruction} & \texttt{DECFSZ registre instruction} \\
-    \texttt{if decf registre, W nz : instruction} & \texttt{DECFSZ registre, W instruction} \\
-    \texttt{if incf registre nz : instruction} & \texttt{INCFSZ registre instruction} \\
-    \texttt{if incf registre, W nz : instruction} & \texttt{INCFSZ registre, W instruction} \\
+    \texttt{if reg.bit : instruction} & \texttt{BTFSC reg, bit instruction} \\
+    \texttt{if ! reg.bit : instruction} & \texttt{BTFSS reg, bit instruction} \\
+    \texttt{if decf reg nz : instruction} & \texttt{DECFSZ reg instruction} \\
+    \texttt{if decf reg, W nz : instruction} & \texttt{DECFSZ reg, W instruction} \\
+    \texttt{if incf reg nz : instruction} & \texttt{INCFSZ reg instruction} \\
+    \texttt{if incf reg, W nz : instruction} & \texttt{INCFSZ reg, W instruction} \\
     \hline
   \end{tabular}
   \caption{Instructions conditionnelles simples pour \emph{baseline} et \emph{mid-range}}
@@ -98,20 +98,20 @@ Le \refTableau{instructionsConditionnellesSimplesBaseline} donne la liste de tou
   \begin{tabular}{lp{4cm}lll}
     \textbf{Instruction} & \textbf{Code engendré}\\
     \hline
-    \texttt{if registre != W : instruction} & \texttt{CPFSEQ registre instruction} \\
-    \texttt{if registre >= W : instruction} & \texttt{CPFSLT registre instruction} \\
-    \texttt{if registre <= W : instruction} & \texttt{CPFSGT registre instruction} \\
-    \texttt{if registre nz : instruction} & \texttt{TSTFSZ registre instruction} \\
-    \texttt{if registre.bit : instruction} & \texttt{BTFSC registre, bit instruction} \\
-    \texttt{if ! registre.bit : instruction} & \texttt{BTFSS registre, bit instruction} \\
-    \texttt{if decf registre z : instruction} & \texttt{DCFSNZ registre instruction} \\
-    \texttt{if decf registre, W z : instruction} & \texttt{DCFSNZ registre, W instruction} \\
-    \texttt{if decf registre nz : instruction} & \texttt{DECFSZ registre instruction} \\
-    \texttt{if decf registre, W nz : instruction} & \texttt{DECFSZ registre, W instruction} \\
-    \texttt{if incf registre z : instruction} & \texttt{INFSNZ registre instruction} \\
-    \texttt{if incf registre, W z : instruction} & \texttt{INFSNZ registre, W instruction} \\
-    \texttt{if incf registre nz : instruction} & \texttt{INCFSZ registre instruction} \\
-    \texttt{if incf registre, W nz : instruction} & \texttt{INCFSZ registre, W instruction} \\
+    \texttt{if reg != W : instruction} & \texttt{CPFSEQ reg instruction} \\
+    \texttt{if reg >= W : instruction} & \texttt{CPFSLT reg instruction} \\
+    \texttt{if reg <= W : instruction} & \texttt{CPFSGT reg instruction} \\
+    \texttt{if reg nz : instruction} & \texttt{TSTFSZ reg instruction} \\
+    \texttt{if reg.bit : instruction} & \texttt{BTFSC reg, bit instruction} \\
+    \texttt{if ! reg.bit : instruction} & \texttt{BTFSS reg, bit instruction} \\
+    \texttt{if decf reg z : instruction} & \texttt{DCFSNZ reg instruction} \\
+    \texttt{if decf reg, W z : instruction} & \texttt{DCFSNZ reg, W instruction} \\
+    \texttt{if decf reg nz : instruction} & \texttt{DECFSZ reg instruction} \\
+    \texttt{if decf reg, W nz : instruction} & \texttt{DECFSZ reg, W instruction} \\
+    \texttt{if incf reg z : instruction} & \texttt{INFSNZ reg instruction} \\
+    \texttt{if incf reg, W z : instruction} & \texttt{INFSNZ reg, W instruction} \\
+    \texttt{if incf reg nz : instruction} & \texttt{INCFSZ reg instruction} \\
+    \texttt{if incf reg, W nz : instruction} & \texttt{INCFSZ reg, W instruction} \\
     \hline
   \end{tabular}
   \caption{Instructions conditionnelles simples pour \emph{pic18}}
@@ -253,7 +253,7 @@ Les instructions conditionnelles structurées (\refSectionPage{instructionCondit
 
 \subsectionLabel{Conditions élémentaires pour \emph{baseline} et \emph{mid-range}}{conditionsElementairesBaselineMidRange}
 
-Les conditions élémentaires exploitent les quatre instructions conditionnelles des \emph{baseline} et des \emph{mid-range} : \texttt{BTFSC}, \texttt{BTFSS}, \texttt{DECFSZ} et \texttt{INCFSZ}. Les conditions exprimables en Piccolo peuvent être classées en deux groupes :
+Les conditions élémentaires exploitent les quatre instructions conditionnelles des \emph{baseline} et des \emph{mid-range} : \assembleur{BTFSC}, \assembleur{BTFSS}, \assembleur{DECFSZ} et \assembleur{INCFSZ}. Les conditions exprimables en Piccolo peuvent être classées en deux groupes :
 \begin{itemize}
   \item les conditions basées sur le test d'un bit d'un registre (\refTableau{conditionsElementairesBaselineTestRegistre}) ;
   \item les conditions basées sur la décrémentation ou l'incrémentation d'un registre (\refTableau{conditionsElementairesBaseLineIncDecRegistre}).
@@ -268,10 +268,10 @@ Les conditions basées sur le test d'un bit d'un registre sont listées dans le 
   \begin{tabular}{lll}
     \textbf{Condition} & \textbf{Signification} & \textbf{Code engendré}\\
     \hline
-                           \texttt{registre.bit}  & registre.bit $\ne$ 0 ? &\texttt{BTFSS registre,bit}\\
-                                                  &                        & \texttt{GOTO label}\\
-    \rowcolor{\fondTableau}\texttt{! registre.bit}  & registre.bit = 0 ? & \texttt{BTFSC registre,bit} \\
-    \rowcolor{\fondTableau}                         &                    & \texttt{GOTO label}\\
+                           \texttt{reg.bit}  & reg.bit $\ne$ 0 ? &\assembleur{BTFSS reg,bit}\\
+                                                  &                        & \assembleur{GOTO label}\\
+    \rowcolor{\fondTableau}\texttt{! reg.bit}  & reg.bit = 0 ? & \assembleur{BTFSC reg,bit} \\
+    \rowcolor{\fondTableau}                         &                    & \assembleur{GOTO label}\\
     \hline
   \end{tabular}
   \caption{Conditions pour \emph{baseline} et \emph{mid-range} basées sur le test d'un bit d'un registre}
@@ -279,7 +279,7 @@ Les conditions basées sur le test d'un bit d'un registre sont listées dans le 
 \end{table}
 
 
-Le \refTableau{conditionsElementairesBaseLineIncDecRegistre} liste les conditions basées sur les instructions \texttt{DECFSZ} et \texttt{INCFSZ}. La non symétrie du jeu d'instructions provoquent des codes engendrés de tailles différentes selon les conditions exprimées. 
+Le \refTableau{conditionsElementairesBaseLineIncDecRegistre} liste les conditions basées sur les instructions \assembleur{DECFSZ} et \assembleur{INCFSZ}. La non symétrie du jeu d'instructions provoquent des codes engendrés de tailles différentes selon les conditions exprimées. 
 
 \begin{table}[!ht]
   \centering
@@ -287,26 +287,26 @@ Le \refTableau{conditionsElementairesBaseLineIncDecRegistre} liste les condition
   \begin{tabular}{lllll}
     \textbf{Condition} & \textbf{Signification} & \textbf{Code engendré}\\
     \hline
-                           \texttt{decf registre z}   & registre := registre - 1    &\texttt{DECFSZ registre}\\
-                                                      & registre = 0 ?              &\texttt{GOTO \$ + 2}      \\
-                                                      &                             &\texttt{GOTO label}      \\
-    \rowcolor{\fondTableau}\texttt{decf registre, W z}& WREG := registre - 1 &\texttt{DECFSZ registre, W}  \\
-    \rowcolor{\fondTableau}                           & WREG = 0 ?           &\texttt{GOTO \$ + 2}          \\
-    \rowcolor{\fondTableau}                           &                      &\texttt{GOTO label}          \\
-                           \texttt{decf registre nz}  & registre := registre - 1    &\texttt{DECFSZ registre} \\
-                                                      & registre $\ne$ 0 ?              &\texttt{GOTO label}   \\
-    \rowcolor{\fondTableau}\texttt{decf registre, W nz}& WREG := registre - 1 &\texttt{DECFSZ registre, W}  \\
-    \rowcolor{\fondTableau}                           & WREG $\ne$ 0 ?           &\texttt{GOTO label}        \\
-                           \texttt{incf registre z}   & registre := registre + 1    &\texttt{INCFSZ registre} \\
-                                                      & registre = 0 ?              &\texttt{GOTO \$ + 2}      \\
-                                                      &                             &\texttt{GOTO label}      \\
-    \rowcolor{\fondTableau}\texttt{incf registre, W z}& WREG := registre + 1 &\texttt{INCFSZ registre, W} \\
-    \rowcolor{\fondTableau}                           & WREG = 0 ?           &\texttt{GOTO \$ + 2}          \\
-    \rowcolor{\fondTableau}                           &                      &\texttt{GOTO label}          \\
-                           \texttt{incf registre nz}  & registre := registre + 1    &\texttt{INCFSZ registre}\\
-                                                      & registre $\ne$ 0 ?              &\texttt{BRA label}   \\
-    \rowcolor{\fondTableau}\texttt{incf registre, W nz}& WREG := registre + 1 &\texttt{INCFSZ registre, W}  \\
-    \rowcolor{\fondTableau}                           & WREG $\ne$ 0 ?           &\texttt{GOTO label}         \\
+                           \texttt{decf reg z}   & reg := reg - 1    &\assembleur{DECFSZ reg}\\
+                                                      & reg = 0 ?              &\assembleur{GOTO \$ + 2}      \\
+                                                      &                             &\assembleur{GOTO label}      \\
+    \rowcolor{\fondTableau}\texttt{decf reg, W z}& WREG := reg - 1 &\assembleur{DECFSZ reg, W}  \\
+    \rowcolor{\fondTableau}                           & WREG = 0 ?           &\assembleur{GOTO \$ + 2}          \\
+    \rowcolor{\fondTableau}                           &                      &\assembleur{GOTO label}          \\
+                           \texttt{decf reg nz}  & reg := reg - 1    &\assembleur{DECFSZ reg} \\
+                                                      & reg $\ne$ 0 ?              &\assembleur{GOTO label}   \\
+    \rowcolor{\fondTableau}\texttt{decf reg, W nz}& WREG := reg - 1 &\assembleur{DECFSZ reg, W}  \\
+    \rowcolor{\fondTableau}                           & WREG $\ne$ 0 ?           &\assembleur{GOTO label}        \\
+                           \texttt{incf reg z}   & reg := reg + 1    &\assembleur{INCFSZ reg} \\
+                                                      & reg = 0 ?              &\assembleur{GOTO \$ + 2}      \\
+                                                      &                             &\assembleur{GOTO label}      \\
+    \rowcolor{\fondTableau}\texttt{incf reg, W z}& WREG := reg + 1 &\assembleur{INCFSZ reg, W} \\
+    \rowcolor{\fondTableau}                           & WREG = 0 ?           &\assembleur{GOTO \$ + 2}          \\
+    \rowcolor{\fondTableau}                           &                      &\assembleur{GOTO label}          \\
+                           \texttt{incf reg nz}  & reg := reg + 1    &\assembleur{INCFSZ reg}\\
+                                                      & reg $\ne$ 0 ?              &\assembleur{BRA label}   \\
+    \rowcolor{\fondTableau}\texttt{incf reg, W nz}& WREG := reg + 1 &\assembleur{INCFSZ reg, W}  \\
+    \rowcolor{\fondTableau}                           & WREG $\ne$ 0 ?           &\assembleur{GOTO label}         \\
     \hline
   \end{tabular}
   \caption{Conditions pour \emph{baseline} et \emph{mid-range} basées sur la décrémentation et l'incrémentation d'un registre}
@@ -322,30 +322,30 @@ Le \refTableau{conditionsElementairesBaseLineIncDecRegistre} liste les condition
 Les conditions élémentaires exploitent les différentes instructions conditionnelles des \emph{pic18}. L'abondance de ces instructions engendre une liste très fournie :
 \begin{itemize}
   \item les conditions basées sur les instructions de saut conditionnelles (\refTableau{conditionsElementairesPic18SautConditionnel}) ;
-  \item les conditions basées sur la comparaison d'un registre avec \texttt{WREG} (\refTableau{conditionsElementairesPic18ComparaisonsW}) ;
+  \item les conditions basées sur la comparaison d'un registre avec \assembleur{WREG} (\refTableau{conditionsElementairesPic18ComparaisonsW}) ;
   \item les conditions basées sur le test d'un registre ou de l'un de ses bits (\refTableau{conditionsElementairesPic18TestRegistre}) ;
   \item les conditions basées sur la décrémentation ou l'incrémentation d'un registre (\refTableau{conditionsElementairesPic18IncDecRegistre}).
 \end{itemize}
 
 
-Les instructions de saut conditionnel permettent d'exploiter directement la valeur des bits du registre \texttt{STATUS}. Les conditions correspondantes sont listées dans le \refTableau{conditionsElementairesPic18SautConditionnel}. Leur compilation engendre un code de 2, 4 ou 6 octets, selon l'amplitude du branchement. Piccolo engendre toujours le code le plus petit possible.
+Les instructions de saut conditionnel permettent d'exploiter directement la valeur des bits du registre \assembleur{STATUS}. Les conditions correspondantes sont listées dans le \refTableau{conditionsElementairesPic18SautConditionnel}. Leur compilation engendre un code de 2, 4 ou 6 octets, selon l'amplitude du branchement. Piccolo engendre toujours le code le plus petit possible.
 
 \begin{table}[!ht]
   \centering
   \small
   \rowcolors{2}{\fondTableau}{}
-  \begin{tabular}{lp{4cm}lp{2.2cm}p{2.5cm}}
+  \begin{tabular}{lp{3.5cm}lp{2.2cm}p{2.5cm}}
     \textbf{Condition} & \textbf{Signification} & \multicolumn{3}{l}{\bf Code engendré}\\
                        &                        & \textbf{2 octets} & \textbf{4 octets} & \textbf{6 octets}\\
     \hline
-    \texttt{c} & Le bit \texttt{C} du registre \texttt{STATUS} est-il non nul ? &\texttt{BC label}  & \texttt{BNC \$ + 4 BRA label}  & \texttt{BNC \$ + 6 GOTO label} \\
-    \texttt{nc} & Le bit \texttt{C} du registre \texttt{STATUS} est-il nul ? &\texttt{BNC label}  & \texttt{BC \$ + 4 BRA label}  & \texttt{BC \$ + 6 GOTO label} \\
-    \texttt{z} & Le bit \texttt{Z} du registre \texttt{STATUS} est-il non nul ? &\texttt{BZ label}  & \texttt{BNZ \$ + 4 BRA label}  & \texttt{BNZ \$ + 6 GOTO label} \\
-    \texttt{nz} & Le bit \texttt{Z} du registre \texttt{STATUS} est-il nul ? &\texttt{BNZ label}  & \texttt{BZ \$ + 4 BRA label}  & \texttt{BZ \$ + 6 GOTO label} \\
-    \texttt{n} & Le bit \texttt{N} du registre \texttt{STATUS} est-il non nul ? &\texttt{BN label}  & \texttt{BNN \$ + 4 BRA label}  & \texttt{BNN \$ + 6 GOTO label} \\
-    \texttt{nn} & Le bit \texttt{N} du registre \texttt{STATUS} est-il nul ? &\texttt{BNN label}  & \texttt{BN \$ + 4 BRA label}  & \texttt{BN \$ + 6 GOTO label} \\
-    \texttt{ov} & Le bit \texttt{OV} du registre \texttt{STATUS} est-il non nul ? &\texttt{BOV label}  & \texttt{BNOV \$ + 4 BRA label}  & \texttt{BNOV \$ + 6 GOTO label} \\
-    \texttt{nov} & Le bit \texttt{OV} du registre \texttt{STATUS} est-il nul ? &\texttt{BNOV label}  & \texttt{BOV \$ + 4 BRA label}  & \texttt{BOV \$ + 6 GOTO label} \\
+    \texttt{c} & Le bit \texttt{C} de \texttt{STATUS} est-il non nul ? &\assembleur{BC label}  & \assembleur{BNC \$ + 4 BRA label}  & \assembleur{BNC \$ + 6 GOTO label} \\
+    \texttt{nc} & Le bit \texttt{C} de \texttt{STATUS} est-il nul ? &\assembleur{BNC label}  & \assembleur{BC \$ + 4 BRA label}  & \assembleur{BC \$ + 6 GOTO label} \\
+    \texttt{z} & Le bit \texttt{Z} de \texttt{STATUS} est-il non nul ? &\assembleur{BZ label}  & \assembleur{BNZ \$ + 4 BRA label}  & \assembleur{BNZ \$ + 6 GOTO label} \\
+    \texttt{nz} & Le bit \texttt{Z} de \texttt{STATUS} est-il nul ? &\assembleur{BNZ label}  & \assembleur{BZ \$ + 4 BRA label}  & \assembleur{BZ \$ + 6 GOTO label} \\
+    \texttt{n} & Le bit \texttt{N} de \texttt{STATUS} est-il non nul ? &\assembleur{BN label}  & \assembleur{BNN \$ + 4 BRA label}  & \assembleur{BNN \$ + 6 GOTO label} \\
+    \texttt{nn} & Le bit \texttt{N} de \texttt{STATUS} est-il nul ? &\assembleur{BNN label}  & \assembleur{BN \$ + 4 BRA label}  & \assembleur{BN \$ + 6 GOTO label} \\
+    \texttt{ov} & Le bit \texttt{OV} de \texttt{STATUS} est-il non nul ? &\assembleur{BOV label}  & \assembleur{BNOV \$ + 4 BRA label}  & \assembleur{BNOV \$ + 6 GOTO label} \\
+    \texttt{nov} & Le bit \texttt{OV} de \texttt{STATUS} est-il nul ? &\assembleur{BNOV label}  & \assembleur{BOV \$ + 4 BRA label}  & \assembleur{BOV \$ + 6 GOTO label} \\
     \hline
   \end{tabular}
   \caption{Conditions pour \emph{pic18} basées sur les instructions de saut conditionnel}
@@ -353,7 +353,7 @@ Les instructions de saut conditionnel permettent d'exploiter directement la vale
 \end{table}
 
 
-La comparaison du contenu d'un registre avec la valeur de \texttt{WREG} est effectuée par les instructions assembleur \texttt{CPFSEQ}, \texttt{CPFSLT} et \texttt{CPFSGT}. En Piccolo, les 6 comparaisons sont possibles, et la non symétrie des instructions assembleur provoque la génération d'un code pouvant atteindre 8 octets. Piccolo engendre toujours le code le plus petit possible. Le \refTableau{conditionsElementairesPic18ComparaisonsW} liste ces conditions.
+La comparaison du contenu d'un registre avec la valeur de \assembleur{WREG} est effectuée par les instructions assembleur \assembleur{CPFSEQ}, \assembleur{CPFSLT} et \assembleur{CPFSGT}. En Piccolo, les 6 comparaisons sont possibles, et la non symétrie des instructions assembleur provoque la génération d'un code pouvant atteindre 8 octets. Piccolo engendre toujours le code le plus petit possible. Le \refTableau{conditionsElementairesPic18ComparaisonsW} liste ces conditions.
 
 \begin{table}[!ht]
   \centering
@@ -362,28 +362,28 @@ La comparaison du contenu d'un registre avec la valeur de \texttt{WREG} est effe
     \textbf{Condition} & \multicolumn{3}{l}{\bf Code engendré}\\
                        & \textbf{4 octets} & \textbf{6 octets} & \textbf{8 octets}\\
     \hline
-                           \texttt{registre != W} &\texttt{CPFSEQ registre}  & \texttt{CPFSEQ registre}  &  \\
-                                                  &\texttt{BRA label}        & \texttt{GOTO label}  &  \\
-    \rowcolor{\fondTableau}\texttt{registre >= W} &\texttt{CPFSLT registre}  & \texttt{CPFSLT registre}  &  \\
-    \rowcolor{\fondTableau}                       &\texttt{BRA label}        & \texttt{GOTO label}  &  \\
-                           \texttt{registre <= W} &\texttt{CPFSGT registre}  & \texttt{CPFSGT registre}  &  \\
-                           \texttt{registre <= W} &\texttt{BRA label}        & \texttt{GOTO label}  &  \\
-    \rowcolor{\fondTableau}\texttt{registre == W} & &\texttt{CPFSEQ registre}  & \texttt{CPFSEQ registre}  \\
-    \rowcolor{\fondTableau}                       & &\texttt{BRA \$ + 4}       & \texttt{BRA \$ + 6}  \\
-    \rowcolor{\fondTableau}                       & &\texttt{BRA label}        & \texttt{GOTO label}  \\
-                           \texttt{registre > W}  & &\texttt{CPFSGT registre}  & \texttt{CPFSGT registre}  \\
-                                                  & &\texttt{BRA \$ + 4}       & \texttt{BRA \$ + 6}  \\
-                                                  & &\texttt{BRA label}        & \texttt{GOTO label}  \\
-    \rowcolor{\fondTableau}\texttt{registre > W}  & &\texttt{CPFSLT registre}  & \texttt{CPFSLT registre}  \\
-    \rowcolor{\fondTableau}                       & &\texttt{BRA \$ + 4}       & \texttt{BRA \$ + 6}  \\
-    \rowcolor{\fondTableau}                       & &\texttt{BRA label}        & \texttt{GOTO label}  \\
+                           \texttt{reg != W} &\assembleur{CPFSEQ reg}  & \assembleur{CPFSEQ reg}  &  \\
+                                                  &\assembleur{BRA label}        & \assembleur{GOTO label}  &  \\
+    \rowcolor{\fondTableau}\texttt{reg >= W} &\assembleur{CPFSLT reg}  & \assembleur{CPFSLT reg}  &  \\
+    \rowcolor{\fondTableau}                       &\assembleur{BRA label}        & \assembleur{GOTO label}  &  \\
+                           \texttt{reg <= W} &\assembleur{CPFSGT reg}  & \assembleur{CPFSGT reg}  &  \\
+                           \texttt{reg <= W} &\assembleur{BRA label}        & \assembleur{GOTO label}  &  \\
+    \rowcolor{\fondTableau}\texttt{reg == W} & &\assembleur{CPFSEQ reg}  & \assembleur{CPFSEQ reg}  \\
+    \rowcolor{\fondTableau}                       & &\assembleur{BRA \$ + 4}       & \assembleur{BRA \$ + 6}  \\
+    \rowcolor{\fondTableau}                       & &\assembleur{BRA label}        & \assembleur{GOTO label}  \\
+                           \texttt{reg > W}  & &\assembleur{CPFSGT reg}  & \assembleur{CPFSGT reg}  \\
+                                                  & &\assembleur{BRA \$ + 4}       & \assembleur{BRA \$ + 6}  \\
+                                                  & &\assembleur{BRA label}        & \assembleur{GOTO label}  \\
+    \rowcolor{\fondTableau}\texttt{reg > W}  & &\assembleur{CPFSLT reg}  & \assembleur{CPFSLT reg}  \\
+    \rowcolor{\fondTableau}                       & &\assembleur{BRA \$ + 4}       & \assembleur{BRA \$ + 6}  \\
+    \rowcolor{\fondTableau}                       & &\assembleur{BRA label}        & \assembleur{GOTO label}  \\
     \hline
   \end{tabular}
-  \caption{Conditions pour \emph{pic18} basées sur les comparaisons avec \texttt{WREG}}
+  \caption{Conditions pour \emph{pic18} basées sur les comparaisons avec \assembleur{WREG}}
   \labelTableau{conditionsElementairesPic18ComparaisonsW}
 \end{table}
 
-Les conditions basées sur le test d'un registre sont listées dans le \refTableau{conditionsElementairesPic18TestRegistre}. Remarquer que les conditions listées ne sont pas toutes élémentaires. Ainsi, la condition \texttt{! registre nz} est équivalente à \texttt{registre z}, et \texttt{! registre z} équivalente à \texttt{registre nz}. Remarquer aussi que l'absence d'instruction complémentaire à \texttt{TSTFSZ} entraîne un code plus long pour la condition \texttt{registre z}.
+Les conditions basées sur le test d'un registre sont listées dans le \refTableau{conditionsElementairesPic18TestRegistre}. Remarquer que les conditions listées ne sont pas toutes élémentaires. Ainsi, la condition \texttt{!registre nz} est équivalente à \texttt{registre z}, et \texttt{!registre z} équivalente à \texttt{registre nz}. Remarquer aussi que l'absence d'instruction complémentaire à \assembleur{TSTFSZ} entraîne un code plus long pour la condition \texttt{registre z}.
 
 \begin{table}[!ht]
   \centering
@@ -392,15 +392,15 @@ Les conditions basées sur le test d'un registre sont listées dans le \refTable
     \textbf{Condition} & \textbf{Signification} & \multicolumn{2}{l}{\bf Code engendré}\\
                        &                        & \textbf{Court} & \textbf{Long}\\
     \hline
-                           \texttt{registre nz}   & registre $\ne$ 0 ? &\texttt{TSTFSZ registre}  & \texttt{TSTFSZ registre}\\
-                                                  &                 &\texttt{BRA label}        & \texttt{GOTO label}\\
-    \rowcolor{\fondTableau}\texttt{registre z}    & registre = 0 ? &\texttt{TSTFSZ registre}  & \texttt{TSTFSZ registre}\\
-    \rowcolor{\fondTableau}                       &                &\texttt{BRA \$ + 4}       & \texttt{BRA \$ + 6}  \\
-    \rowcolor{\fondTableau}                       &                 &\texttt{BRA label}        & \texttt{GOTO label}\\
-                           \texttt{registre.bit}  & registre.bit $\ne$ 0 ? &\texttt{BTFSS registre,bit}  & \texttt{BTFSS registre,bit}\\
-                                                  &                     &\texttt{BRA label}        & \texttt{GOTO label}\\
-    \rowcolor{\fondTableau}\texttt{! registre.bit}  & registre.bit = 0 ? &\texttt{BTFSC registre,bit}  & \texttt{BTFSC registre,bit}\\
-    \rowcolor{\fondTableau}                         &                     &\texttt{BRA label}        & \texttt{GOTO label}\\
+                           \texttt{reg nz}   & reg $\ne$ 0 ? &\assembleur{TSTFSZ reg}  & \assembleur{TSTFSZ reg}\\
+                                                  &                 &\assembleur{BRA label}        & \assembleur{GOTO label}\\
+    \rowcolor{\fondTableau}\texttt{reg z}    & reg = 0 ? &\assembleur{TSTFSZ reg}  & \assembleur{TSTFSZ reg}\\
+    \rowcolor{\fondTableau}                       &                &\assembleur{BRA \$ + 4}       & \assembleur{BRA \$ + 6}  \\
+    \rowcolor{\fondTableau}                       &                 &\assembleur{BRA label}        & \assembleur{GOTO label}\\
+                           \texttt{reg.bit}  & reg.bit $\ne$ 0 ? &\assembleur{BTFSS reg,bit}  & \assembleur{BTFSS reg,bit}\\
+                                                  &                     &\assembleur{BRA label}        & \assembleur{GOTO label}\\
+    \rowcolor{\fondTableau}\texttt{! reg.bit}  & reg.bit = 0 ? &\assembleur{BTFSC reg,bit}  & \assembleur{BTFSC reg,bit}\\
+    \rowcolor{\fondTableau}                         &                     &\assembleur{BRA label}        & \assembleur{GOTO label}\\
     \hline
   \end{tabular}
   \caption{Conditions pour \emph{pic18} basées sur le test d'un registre}
@@ -408,7 +408,7 @@ Les conditions basées sur le test d'un registre sont listées dans le \refTable
 \end{table}
 
 
-Enfin, le \refTableau{conditionsElementairesPic18IncDecRegistre} liste les conditions basées sur les instructions \texttt{DECFSZ}, \texttt{DECFSZ}, \texttt{INCFSZ} et \texttt{INFSNZ}. Là encore, elles ne sont pas toutes élementaires : par exemple, \texttt{decf registre nz} est équivalente à \texttt{! decf registre z}. 
+Enfin, le \refTableau{conditionsElementairesPic18IncDecRegistre} liste les conditions basées sur les instructions \assembleur{DECFSZ}, \assembleur{DECFSZ}, \assembleur{INCFSZ} et \assembleur{INFSNZ}. Là encore, elles ne sont pas toutes élementaires : par exemple, \texttt{decf registre nz} est équivalente à \texttt{! decf registre z}. 
 
 \begin{table}[!ht]
   \centering
@@ -417,22 +417,22 @@ Enfin, le \refTableau{conditionsElementairesPic18IncDecRegistre} liste les condi
     \textbf{Condition} & \textbf{Signification} & \multicolumn{2}{l}{\bf Code engendré}\\
                        &                        & \textbf{Court} & \textbf{Long}\\
     \hline
-                           \texttt{decf registre z}   & registre := registre - 1    &\texttt{DCFSNZ registre}  & \texttt{DCFSNZ registre}\\
-                                                      & registre = 0 ?              &\texttt{BRA label}        & \texttt{GOTO label}\\
-    \rowcolor{\fondTableau}\texttt{decf registre, W z}& WREG := registre - 1 &\texttt{DCFSNZ registre, W}  & \texttt{DCFSNZ registre, W}\\
-    \rowcolor{\fondTableau}                           & WREG = 0 ?           &\texttt{BRA label}           & \texttt{GOTO label}\\
-                           \texttt{decf registre nz}  & registre := registre - 1    &\texttt{DECFSZ registre}  & \texttt{DECFSZ registre}\\
-                                                      & registre $\ne$ 0 ?              &\texttt{BRA label}        & \texttt{GOTO label}\\
-    \rowcolor{\fondTableau}\texttt{decf registre, W nz}& WREG := registre - 1 &\texttt{DECFSZ registre, W}  & \texttt{DECFSZ registre, W}\\
-    \rowcolor{\fondTableau}                           & WREG $\ne$ 0 ?           &\texttt{BRA label}           & \texttt{GOTO label}\\
-                           \texttt{incf registre z}   & registre := registre + 1    &\texttt{INFSNZ registre}  & \texttt{INFSNZ registre}\\
-                                                      & registre = 0 ?              &\texttt{BRA label}        & \texttt{GOTO label}\\
-    \rowcolor{\fondTableau}\texttt{incf registre, W z}& WREG := registre + 1 &\texttt{INFSNZ registre, W}  & \texttt{INFSNZ registre, W}\\
-    \rowcolor{\fondTableau}                           & WREG = 0 ?           &\texttt{BRA label}           & \texttt{GOTO label}\\
-                           \texttt{incf registre nz}  & registre := registre + 1    &\texttt{INCFSZ registre}  & \texttt{INCFSZ registre}\\
-                                                      & registre $\ne$ 0 ?              &\texttt{BRA label}        & \texttt{GOTO label}\\
-    \rowcolor{\fondTableau}\texttt{incf registre, W nz}& WREG := registre + 1 &\texttt{INCFSZ registre, W}  & \texttt{INCFSZ registre, W}\\
-    \rowcolor{\fondTableau}                           & WREG $\ne$ 0 ?           &\texttt{BRA label}           & \texttt{GOTO label}\\
+                           \texttt{decf reg z}   & reg := reg - 1    &\assembleur{DCFSNZ reg}  & \assembleur{DCFSNZ reg}\\
+                                                      & reg = 0 ?              &\assembleur{BRA label}        & \assembleur{GOTO label}\\
+    \rowcolor{\fondTableau}\texttt{decf reg, W z}& WREG := reg - 1 &\assembleur{DCFSNZ reg, W}  & \assembleur{DCFSNZ reg, W}\\
+    \rowcolor{\fondTableau}                           & WREG = 0 ?           &\assembleur{BRA label}           & \assembleur{GOTO label}\\
+                           \texttt{decf reg nz}  & reg := reg - 1    &\assembleur{DECFSZ reg}  & \assembleur{DECFSZ reg}\\
+                                                      & reg $\ne$ 0 ?              &\assembleur{BRA label}        & \assembleur{GOTO label}\\
+    \rowcolor{\fondTableau}\texttt{decf reg, W nz}& WREG := reg - 1 &\assembleur{DECFSZ reg, W}  & \assembleur{DECFSZ reg, W}\\
+    \rowcolor{\fondTableau}                           & WREG $\ne$ 0 ?           &\assembleur{BRA label}           & \assembleur{GOTO label}\\
+                           \texttt{incf reg z}   & reg := reg + 1    &\assembleur{INFSNZ reg}  & \assembleur{INFSNZ reg}\\
+                                                      & reg = 0 ?              &\assembleur{BRA label}        & \assembleur{GOTO label}\\
+    \rowcolor{\fondTableau}\texttt{incf reg, W z}& WREG := reg + 1 &\assembleur{INFSNZ reg, W}  & \assembleur{INFSNZ reg, W}\\
+    \rowcolor{\fondTableau}                           & WREG = 0 ?           &\assembleur{BRA label}           & \assembleur{GOTO label}\\
+                           \texttt{incf reg nz}  & reg := reg + 1    &\assembleur{INCFSZ reg}  & \assembleur{INCFSZ reg}\\
+                                                      & reg $\ne$ 0 ?              &\assembleur{BRA label}        & \assembleur{GOTO label}\\
+    \rowcolor{\fondTableau}\texttt{incf reg, W nz}& WREG := reg + 1 &\assembleur{INCFSZ reg, W}  & \assembleur{INCFSZ reg, W}\\
+    \rowcolor{\fondTableau}                           & WREG $\ne$ 0 ?           &\assembleur{BRA label}           & \assembleur{GOTO label}\\
     \hline
   \end{tabular}
   \caption{Conditions pour \emph{pic18} basées sur la décrémentation et l'incrémentation d'un registre}
@@ -462,7 +462,7 @@ $n$ est une \emph{expression statique} et doit être égale au nombre des consta
 L'implémentation limite à 128 la valeur de $n$.
 
 ~\\
-\textbf{Fonctionnement.} Cette instruction remplace la valeur de \texttt{WREG} par la constante qui lui correspond : \texttt{cst0} pour $0$, \texttt{cst1} pour $1$, …, \texttt{cst$_{n-1}$} pour $n-1$. 
+\textbf{Fonctionnement.} Cette instruction remplace la valeur de \assembleur{WREG} par la constante qui lui correspond : \texttt{cst0} pour $0$, \texttt{cst1} pour $1$, …, \texttt{cst$_{n-1}$} pour $n-1$. 
 
 ~\\
 \textbf{Limitation.} À l'exécution, il est nécessaire que la valeur non signée de \texttt{WREG} soit strictement inférieur au nombre de constantes. \textcolor{red}{\bf Le code engendré par Piccolo n'effectue aucune vérification.} Il est donc probable que ne pas respecter cette règle entraîne un plantage du programme.
@@ -502,7 +502,7 @@ CONVERSION_HEX_ASCII:
   RETLW  'F'
 \end{lstlisting}
 
-Si la distance d'appel est trop longue pour une instruction \texttt{RCALL}, une instruction \texttt{CALL} est utilisée.
+Si la distance d'appel est trop longue pour une instruction \assembleur{RCALL}, une instruction \assembleur{CALL} est utilisée.
 
 Ce code fait appel à la routine \texttt{\_computed\_goto\_2} qui est ajoutée automatiquement si nécessaire, à la fin du code (\refSubsectionPage{implementationComputedGoto}). 
 
@@ -521,10 +521,10 @@ $n$ est une \emph{expression statique} doit être égal au nombre de routines ci
 L'implémentation limite à 128 la valeur de $n$.
 
 ~\\
-\textbf{Fonctionnement.} Cette instruction agit comme une instruction de branchement en fonction de la valeur de \texttt{WREG} : branchement vers \texttt{routine0} pour 0, vers \texttt{routine1} pour 1, ..., vers \texttt{routine$_{n-1}$} pour $n-1$. 
+\textbf{Fonctionnement.} Cette instruction agit comme une instruction de branchement en fonction de la valeur de \assembleur{WREG} : branchement vers \texttt{routine0} pour 0, vers \texttt{routine1} pour 1, ..., vers \texttt{routine$_{n-1}$} pour $n-1$. 
 
 ~\\
-\textbf{Limitation.} À l'exécution, il est nécessaire que la valeur non signée de \texttt{WREG} soit strictement inférieur au nombre de routines. \textcolor{red}{\bf Le code engendré par Piccolo n'effectue aucune vérification.} Il est donc probable que ne pas respecter cette règle entraîne un plantage du programme.
+\textbf{Limitation.} À l'exécution, il est nécessaire que la valeur non signée de \assembleur{WREG} soit strictement inférieur au nombre de routines. \textcolor{red}{\bf Le code engendré par Piccolo n'effectue aucune vérification.} Il est donc probable que ne pas respecter cette règle entraîne un plantage du programme.
 
 Ce code fait appel à la routine \texttt{\_computed\_goto\_2} qui est ajoutée automatiquement si nécessaire, à la fin du code (\refSubsectionPage{implementationComputedGoto}). 
 
@@ -545,10 +545,10 @@ $n$ est une \emph{expression statique} doit être égal au nombre de routines ci
 L'implémentation limite à 64 la valeur de $n$.
 
 ~\\
-\textbf{Fonctionnement.} Cette instruction agit comme une instruction de branchement en fonction de la valeur de \texttt{WREG} : branchement vers \texttt{routine0} pour 0, vers \texttt{routine1} pour 1, ..., vers \texttt{routine$_{n-1}$} pour $n-1$. 
+\textbf{Fonctionnement.} Cette instruction agit comme une instruction de branchement en fonction de la valeur de \assembleur{WREG} : branchement vers \texttt{routine0} pour 0, vers \texttt{routine1} pour 1, ..., vers \texttt{routine$_{n-1}$} pour $n-1$. 
 
 ~\\
-\textbf{Limitation.} À l'exécution, il est nécessaire que la valeur non signée de \texttt{WREG} soit strictement inférieur au nombre de routines. \textcolor{red}{\bf Le code engendré par Piccolo n'effectue aucune vérification.} Il est donc probable que ne pas respecter cette règle entraîne un plantage du programme.
+\textbf{Limitation.} À l'exécution, il est nécessaire que la valeur non signée de \assembleur{WREG} soit strictement inférieur au nombre de routines. \textcolor{red}{\bf Le code engendré par Piccolo n'effectue aucune vérification.} Il est donc probable que ne pas respecter cette règle entraîne un plantage du programme.
 
 
 Ce code fait appel à la routine \texttt{\_computed\_goto\_4} qui est ajoutée automatiquement si nécessaire, à la fin du code (\refSubsectionPage{implementationComputedGoto}). 
@@ -611,10 +611,10 @@ Les \emph{baseline} ne possèdent pas de mécanisme pour fixer l'adressage d'un 
 
 \textcolor{red}{\bf Les instructions de gestion de bancs mémoire décrites dans cette section ne sont valides que pour les \emph{mid-range} et les \emph{pic18}.}
 
-Pour un \emph{mid-range}, le banc sélectionné est désigné par la valeur des bits \texttt{RP} du registre \texttt{STATUS}. Certains micro-contrôleurs ont jusqu'à 8 bancs, il y a donc 3 bits \texttt{RP}. En assembleur, le changement de banc est réalisé par une séquence d'instructions \texttt{BCF} et \texttt{BSF} sur ces bits (trois instructions dans le pire des cas). 
+Pour un \emph{mid-range}, le banc sélectionné est désigné par la valeur des bits \assembleur{RP} du registre \assembleur{STATUS}. Certains micro-contrôleurs ont jusqu'à 8 bancs, il y a donc 3 bits \assembleur{RP}. En assembleur, le changement de banc est réalisé par une séquence d'instructions \assembleur{BCF} et \assembleur{BSF} sur ces bits (trois instructions dans le pire des cas). 
 
 
-Pour un \emph{pic18}, le banc sélectionné est désigné par la valeur du registre \texttt{BSR}. En assembleur, le changement de banc est réalisé par une instruction \texttt{MOVLB}.
+Pour un \emph{pic18}, le banc sélectionné est désigné par la valeur du registre \assembleur{BSR}. En assembleur, le changement de banc est réalisé par une instruction \assembleur{MOVLB}.
 
 Le but des instructions de gestion des bancs mémoire de Piccolo est multiple :
 \begin{itemize}
@@ -644,7 +644,7 @@ Piccolo définit précisément pour chaque instruction son comportement vis à v
   \item exiger qu'un certain banc soit sélectionné.
 \end{itemize}
 
-Par exemple, considérons l'instruction Piccolo \texttt{bsf STATUS.C}. Pour un \emph{mid-range}, le registre \texttt{STATUS} est présent dans tous les bancs, cette instruction est donc indifférente vis à vis de la sélection de banc. Pour un \emph{pic18}, le registre \texttt{STATUS} est situé dans l'\emph{accessbank}, cette instruction est aussi indifférente vis à vis de la sélection de banc. 
+Par exemple, considérons l'instruction Piccolo \texttt{bsf STATUS.C}. Pour un \emph{mid-range}, le registre \assembleur{STATUS} est présent dans tous les bancs, cette instruction est donc indifférente vis à vis de la sélection de banc. Pour un \emph{pic18}, le registre \assembleur{STATUS} est situé dans l'\emph{accessbank}, cette instruction est aussi indifférente vis à vis de la sélection de banc. 
 
 Considérons maintenant l'instruction Piccolo \texttt{clrf var}. Pour un \emph{mid-range}, si la variable \texttt{var} est déclarée dans \emph{gprnobank} qui apparaît en miroir dans tous les bancs, cette instruction est donc indifférente vis à vis de la sélection de banc. Sinon, l'instruction exige que le banc correspondant soit sélectionné. Pour un \emph{pic18}, si la variable \texttt{var} est situés dans l'\emph{accessbank}, cette instruction est aussi indifférente vis à vis de la sélection de banc.  Sinon, l'instruction exige que le banc correspondant soit sélectionné. 
 
@@ -663,7 +663,7 @@ Considérons maintenant l'instruction Piccolo \texttt{clrf var}. Pour un \emph{m
 banksel b
 \end{lstlisting}
 
-Cette instruction sélectionne le banc $b$. Pour les \emph{mid-range}, le compilateur engendre une à trois instructions \texttt{BCF} ou \texttt{BSF} des bits \texttt{RP} du registre \texttt{STATUS}. Pour les \emph{pic18}, le compilateur engendre une instruction \texttt{MOVLB}.
+Cette instruction sélectionne le banc $b$. Pour les \emph{mid-range}, le compilateur engendre une à trois instructions \assembleur{BCF} ou \assembleur{BSF} des bits \assembleur{RP} du registre \assembleur{STATUS}. Pour les \emph{pic18}, le compilateur engendre une instruction \assembleur{MOVLB}.
 
 Le compilateur Piccolo garde trace de cette instruction, et permet d'assurer que l'accès aux registres du banc $b$ est possible pour les instructions suivantes.
 
@@ -682,9 +682,9 @@ banksave var
 end
 \end{lstlisting}
 
-Pour les \emph{mid-range}, cette instruction sauve le registre \texttt{STATUS} dans la variable \texttt{var} avant l'exécution de \texttt{liste\_instructions}, et restitue le registre \texttt{STATUS} quand le \texttt{end} est atteint. La variable \texttt{var} doit être accessible à partir de n'importe quel banc, c'est-à-dire déclaré dans la zone commune \emph{grpnobnk}. L'accumulateur \texttt{W} est utilisé à chaque fois, aussi bien pour la sauvegarde que pour la restitution.
+Pour les \emph{mid-range}, cette instruction sauve le registre \assembleur{STATUS} dans la variable \texttt{var} avant l'exécution de \texttt{liste\_instructions}, et restitue le registre \assembleur{STATUS} quand le \texttt{end} est atteint. La variable \texttt{var} doit être accessible à partir de n'importe quel banc, c'est-à-dire déclaré dans la zone commune \emph{grpnobnk}. L'accumulateur \assembleur{W} est utilisé à chaque fois, aussi bien pour la sauvegarde que pour la restitution.
 
-Pour les \emph{pic18}, cette instruction sauve le registre \texttt{BSR} dans la variable \texttt{var} avant l'exécution de \texttt{liste\_instructions}, et restitue le registre \texttt{BSR} quand le \texttt{end} est atteint. Comme les deux transferts sont réalisés au moyen de l'instruction \texttt{MOVFF}, la variable \texttt{var} peut être déclarée dans n'importe quel banc.
+Pour les \emph{pic18}, cette instruction sauve le registre \assembleur{BSR} dans la variable \texttt{var} avant l'exécution de \texttt{liste\_instructions}, et restitue le registre \assembleur{BSR} quand le \texttt{end} est atteint. Comme les deux transferts sont réalisés au moyen de l'instruction \assembleur{MOVFF}, la variable \texttt{var} peut être déclarée dans n'importe quel banc.
 
 
 

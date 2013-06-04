@@ -546,18 +546,27 @@
 \ifthenelse{\equal{\sortieEnCouleur}{true}}{
   \lstdefinestyle{assembleur}{
     basicstyle=\ttfamily\small,
-%    frame=l,
-%    backgroundcolor=\color{yellow!10},
     numberstyle=\ttfamily\small,
     xleftmargin=20pt
   }
 }{
   \lstdefinestyle{assembleur}{
     basicstyle=\ttfamily\small,
-%    frame=l,
     numberstyle=\ttfamily\small,
     xleftmargin=20pt
   }
+}
+
+%-----------------------------------------------------------------------------------------------------------------------*
+
+\lstdefinelanguage{sortie}{
+  style=sortie,
+}
+
+\lstdefinestyle{sortie}{
+  basicstyle=\ttfamily\scriptsize,
+  frame=l,
+%  numberstyle=\ttfamily\small,
 }
 
 %-----------------------------------------------------------------------------------------------------------------------*
