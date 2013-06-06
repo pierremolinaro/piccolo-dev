@@ -214,41 +214,41 @@ Le \refTableau{instructionsAssembleurMidRange} donnent la liste des instructions
   \begin{tabular}{lll}
     \textbf{Instruction} & \textbf{Description} & \textbf{Référence en Piccolo}\\
     \hline
-    \texttt{ADDLW k} & Add Literal and W & \refSubsectionPage{opMidRangeImmediate}\\
-    \texttt{ADDWF f, d} & Add W and f & \refSubsectionPage{instructionsMidRangeNommantRegistreEtW} \\
-    \texttt{ANDLW k} & And Literal with W & \refSubsectionPage{opMidRangeImmediate}\\
-    \texttt{ANDWF f, d} & And W with f & \refSubsectionPage{instructionsMidRangeNommantRegistreEtW}\\
-    \texttt{BCF f, b} & Bit Clear f & \refSubsectionPage{opMidRangeAffectationBit} \\
-    \texttt{BSF f, b} & Bit Set f & \refSubsectionPage{opMidRangeAffectationBit} \\
-    \texttt{BTFSC f, b} & Bit Test f, Skip if Clear & \refSubsectionPage{instructionsMidRangeIntrouvables}\\
-    \texttt{BTFSS f, b} & Bit Test f, Skip if Set & \refSubsectionPage{instructionsMidRangeIntrouvables}\\
-    \texttt{CALL k} & Call Subroutine &  \refSubsectionPage{appelRoutineReguliereMidRange} \\
-    \texttt{CLRF f} & Clear f & \refSubsectionPage{instructionsMidRangeNommantRegistre} \\
-    \texttt{CLRW} & Clear W & \refSubsectionPage{operationsMidRangeIdentiquesAssembleur}\\
-    \texttt{CLRWDT} & Clear Watchdog Timer & \refSubsectionPage{operationsMidRangeIdentiquesAssembleur}\\
-    \texttt{COMF f, d} & Complement f & \refSubsectionPage{instructionsMidRangeNommantRegistreEtW}\\
-    \texttt{DECF f, d} & Decrement f & \refSubsectionPage{instructionsMidRangeNommantRegistreEtW}\\
-    \texttt{DECFSZ f, d} & Decrement f, Skip if 0 & \refSubsectionPage{instructionsMidRangeIntrouvables}\\
-    \texttt{GOTO n} & Go to Address & \refSubsectionPage{appelRoutineSansRetourMidRange} \\
-    \texttt{INCF f, d} & Decrement f & \refSubsectionPage{instructionsMidRangeNommantRegistreEtW}\\
-    \texttt{INCFSZ f, d} & Increment f, Skip if 0 & \refSubsectionPage{instructionsMidRangeIntrouvables}\\
-    \texttt{IORLW k} & Inclusive OR Literal with W & \refSubsectionPage{opMidRangeImmediate}\\
-    \texttt{IORWF f, d} & Inclusive OR W with f & \refSubsectionPage{instructionsMidRangeNommantRegistreEtW}\\
-    \texttt{MOVF f, d} & Move f & \refSubsectionPage{instructionsMidRangeNommantRegistreEtW}\\
-    \texttt{MOVLW k} & Move Literal to W & \refSubsectionPage{opMidRangeImmediate}\\
-    \texttt{MOVWF f} & Move W to f & \refSubsectionPage{instructionsMidRangeNommantRegistre}\\
-    \texttt{NOP} & No Operation & \refSubsectionPage{operationsMidRangeIdentiquesAssembleur}\\
-    \texttt{RETFIE} & Return from interrupt & \refSubsectionPage{instructionsMidRangeIntrouvables}\\
-    \texttt{RETLW k} & Return with Literal in W & \refSubsectionPage{instructionsMidRangeIntrouvables}\\
-    \texttt{RETURN} & Return from Subroutine & \refSubsectionPage{instructionsMidRangeIntrouvables}\\
-    \texttt{RLF f, d} & Rotate Left f through Carry & \refSubsectionPage{instructionsMidRangeNommantRegistreEtW}\\
-    \texttt{RRF f, d} & Rotate Right f through Carry & \refSubsectionPage{instructionsMidRangeNommantRegistreEtW}\\
-    \texttt{SLEEP} & Go into Standby Mode & \refSubsectionPage{operationsMidRangeIdentiquesAssembleur}\\
-    \texttt{SUBLW k} & Substract W from literal & \refSubsectionPage{opMidRangeImmediate}\\
-    \texttt{SUBWF f, d} & Substract W from f & \refSubsectionPage{instructionsMidRangeNommantRegistreEtW}\\
-    \texttt{SWAPF f, d} & Swap Nibbles in f & \refSubsectionPage{instructionsMidRangeNommantRegistreEtW}\\
-    \texttt{XORLW k} & Exclusive OR Literal with W & \refSubsectionPage{opMidRangeImmediate}\\
-    \texttt{XORWF f, d} & Exclusive OR W with f & \refSubsectionPage{instructionsMidRangeNommantRegistreEtW}\\
+    \assembleur{ADDLW k} & Add Literal and W & \refSubsectionPage{opMidRangeImmediate}\\
+    \assembleur{ADDWF f, d} & Add W and f & \refSubsectionPage{instructionsMidRangeNommantRegistreEtW} \\
+    \assembleur{ANDLW k} & And Literal with W & \refSubsectionPage{opMidRangeImmediate}\\
+    \assembleur{ANDWF f, d} & And W with f & \refSubsectionPage{instructionsMidRangeNommantRegistreEtW}\\
+    \assembleur{BCF f, b} & Bit Clear f & \refSubsectionPage{opMidRangeAffectationBit} \\
+    \assembleur{BSF f, b} & Bit Set f & \refSubsectionPage{opMidRangeAffectationBit} \\
+    \assembleur{BTFSC f, b} & Bit Test f, Skip if Clear & \refSubsectionPage{instructionsMidRangeIntrouvables}\\
+    \assembleur{BTFSS f, b} & Bit Test f, Skip if Set & \refSubsectionPage{instructionsMidRangeIntrouvables}\\
+    \assembleur{CALL k} & Call Subroutine &  \refSubsectionPage{appelRoutineReguliereMidRange} \\
+    \assembleur{CLRF f} & Clear f & \refSubsectionPage{instructionsMidRangeNommantRegistre} \\
+    \assembleur{CLRW} & Clear W & \refSubsectionPage{operationsMidRangeIdentiquesAssembleur}\\
+    \assembleur{CLRWDT} & Clear Watchdog Timer & \refSubsectionPage{operationsMidRangeIdentiquesAssembleur}\\
+    \assembleur{COMF f, d} & Complement f & \refSubsectionPage{instructionsMidRangeNommantRegistreEtW}\\
+    \assembleur{DECF f, d} & Decrement f & \refSubsectionPage{instructionsMidRangeNommantRegistreEtW}\\
+    \assembleur{DECFSZ f, d} & Decrement f, Skip if 0 & \refSubsectionPage{instructionsMidRangeIntrouvables}\\
+    \assembleur{GOTO n} & Go to Address & \refSubsectionPage{appelRoutineSansRetourMidRange} \\
+    \assembleur{INCF f, d} & Decrement f & \refSubsectionPage{instructionsMidRangeNommantRegistreEtW}\\
+    \assembleur{INCFSZ f, d} & Increment f, Skip if 0 & \refSubsectionPage{instructionsMidRangeIntrouvables}\\
+    \assembleur{IORLW k} & Inclusive OR Literal with W & \refSubsectionPage{opMidRangeImmediate}\\
+    \assembleur{IORWF f, d} & Inclusive OR W with f & \refSubsectionPage{instructionsMidRangeNommantRegistreEtW}\\
+    \assembleur{MOVF f, d} & Move f & \refSubsectionPage{instructionsMidRangeNommantRegistreEtW}\\
+    \assembleur{MOVLW k} & Move Literal to W & \refSubsectionPage{opMidRangeImmediate}\\
+    \assembleur{MOVWF f} & Move W to f & \refSubsectionPage{instructionsMidRangeNommantRegistre}\\
+    \assembleur{NOP} & No Operation & \refSubsectionPage{operationsMidRangeIdentiquesAssembleur}\\
+    \assembleur{RETFIE} & Return from interrupt & \refSubsectionPage{instructionsMidRangeIntrouvables}\\
+    \assembleur{RETLW k} & Return with Literal in W & \refSubsectionPage{instructionsMidRangeIntrouvables}\\
+    \assembleur{RETURN} & Return from Subroutine & \refSubsectionPage{instructionsMidRangeIntrouvables}\\
+    \assembleur{RLF f, d} & Rotate Left f through Carry & \refSubsectionPage{instructionsMidRangeNommantRegistreEtW}\\
+    \assembleur{RRF f, d} & Rotate Right f through Carry & \refSubsectionPage{instructionsMidRangeNommantRegistreEtW}\\
+    \assembleur{SLEEP} & Go into Standby Mode & \refSubsectionPage{operationsMidRangeIdentiquesAssembleur}\\
+    \assembleur{SUBLW k} & Substract W from literal & \refSubsectionPage{opMidRangeImmediate}\\
+    \assembleur{SUBWF f, d} & Substract W from f & \refSubsectionPage{instructionsMidRangeNommantRegistreEtW}\\
+    \assembleur{SWAPF f, d} & Swap Nibbles in f & \refSubsectionPage{instructionsMidRangeNommantRegistreEtW}\\
+    \assembleur{XORLW k} & Exclusive OR Literal with W & \refSubsectionPage{opMidRangeImmediate}\\
+    \assembleur{XORWF f, d} & Exclusive OR W with f & \refSubsectionPage{instructionsMidRangeNommantRegistreEtW}\\
   \hline
   \end{tabular}
   \caption{Instructions machine des \emph{mid-range}}
@@ -334,23 +334,23 @@ Ces instructions, ainsi que le traduction en Piccolo, sont listées dans le \ref
 \begin{table}[!ht]
   \centering
   \small
-  \rowcolors{2}{\fondTableau}{}
+  \rowcolors{3}{}{\fondTableau}
   \begin{tabular}{llll}
      &  & \multicolumn{2}{l}{\textbf{En Piccolo, destination :}} \\
     \textbf{Assembleur} & \textbf{Description} & \textbf{f} & \textbf{W}\\
     \hline
-    \texttt{ADDWF f, d} & Add W and f & \texttt{addwf f}  & \texttt{addwf f, W} \\
-    \texttt{ANDWF f, d} & And W with f & \texttt{andwf f} & \texttt{andwf f, W}\\
-    \texttt{COMF f, d} & Complement f & \texttt{comf f} & \texttt{comf f, W}\\
-    \texttt{DECF f, d} & Decrement f & \texttt{decf f} & \texttt{decf f, W}\\
-    \texttt{INCF f, d} & Increment f & \texttt{incf f}& \texttt{incf f, W}\\
-    \texttt{IORWF f, d} & Inclusive OR W with f & \texttt{iorwf f} & \texttt{iorwf f, W}\\
-    \texttt{MOVF f, d} & Move f & \texttt{movf f} & \texttt{movf f, W}\\
-    \texttt{RLF f, d} & Rotate Left f through Carry & \texttt{rlf f} & \texttt{rlf f, W}\\
-    \texttt{RRF f, d} & Rotate Right f through Carry & \texttt{rrf f} & \texttt{rrf f, W}\\
-    \texttt{SUBWF f, d} & Substract W from f & \texttt{subwf f} & \texttt{subwf f, W}\\
-    \texttt{SWAPF f, d} & Swap Nibbles in f & \texttt{swapf f} & \texttt{swapf f, W}\\
-    \texttt{XORWF f, d} & Exclusive OR W with f & \texttt{xorwf f} & \texttt{xorwf f, W}\\
+    \assembleur{ADDWF f, d} & Add W and f & \texttt{addwf f}  & \texttt{addwf f, W} \\
+    \assembleur{ANDWF f, d} & And W with f & \texttt{andwf f} & \texttt{andwf f, W}\\
+    \assembleur{COMF f, d} & Complement f & \texttt{comf f} & \texttt{comf f, W}\\
+    \assembleur{DECF f, d} & Decrement f & \texttt{decf f} & \texttt{decf f, W}\\
+    \assembleur{INCF f, d} & Increment f & \texttt{incf f}& \texttt{incf f, W}\\
+    \assembleur{IORWF f, d} & Inclusive OR W with f & \texttt{iorwf f} & \texttt{iorwf f, W}\\
+    \assembleur{MOVF f, d} & Move f & \texttt{movf f} & \texttt{movf f, W}\\
+    \assembleur{RLF f, d} & Rotate Left f through Carry & \texttt{rlf f} & \texttt{rlf f, W}\\
+    \assembleur{RRF f, d} & Rotate Right f through Carry & \texttt{rrf f} & \texttt{rrf f, W}\\
+    \assembleur{SUBWF f, d} & Substract W from f & \texttt{subwf f} & \texttt{subwf f, W}\\
+    \assembleur{SWAPF f, d} & Swap Nibbles in f & \texttt{swapf f} & \texttt{swapf f, W}\\
+    \assembleur{XORWF f, d} & Exclusive OR W with f & \texttt{xorwf f} & \texttt{xorwf f, W}\\
   \hline
   \end{tabular}
   \caption{Instructions \emph{mid-range} nommant un registre, et optionnellement \texttt{W}}
@@ -360,7 +360,7 @@ Ces instructions, ainsi que le traduction en Piccolo, sont listées dans le \ref
 
 \subsectionLabel{Opérations d'affectation de bit}{opMidRangeAffectationBit}
 
-Ces instructions Piccolo correspondent aux instructions machine \texttt{BCF} et \texttt{BSF} (\refTableau{operationsMidRangeAffectationBit}).
+Ces instructions Piccolo correspondent aux instructions machine \assembleur{BCF} et \assembleur{BSF} (\refTableau{operationsMidRangeAffectationBit}).
 
 \begin{table}[!ht]
   \centering
@@ -369,8 +369,8 @@ Ces instructions Piccolo correspondent aux instructions machine \texttt{BCF} et 
   \begin{tabular}{lll}
     \textbf{Assembleur} & \textbf{Description} & \textbf{Écriture en Piccolo}\\
     \hline
-    \texttt{BCF f, b} & Bit Clear f & \texttt{bcf f.b} \\
-    \texttt{BSF f, b} & Bit Set f & \texttt{bsf f.b} \\
+    \assembleur{BCF f, b} & Bit Clear f & \texttt{bcf f.b} \\
+    \assembleur{BSF f, b} & Bit Set f & \texttt{bsf f.b} \\
   \hline
   \end{tabular}
   \caption{Opérations \emph{mid-range} sur un bit d'un registre}
@@ -409,7 +409,7 @@ Vous pouvez de cette façon accéder aux bits des registres spéciaux. Pour conn
 
 \subsectionLabel{Opérations littérales avec \texttt{W}}{opMidRangeImmediate}
 
-Ces opérations sont listées dans le \refTableau{operationsLiteralesMidRangeAvecW}. L’instruction \texttt{RETLW k} n’existe pas en Piccolo, l’optimiseur repérera une instruction \texttt{MOVLW k} en fin de routine et la transformera en \texttt{RETLW k}.
+Ces opérations sont listées dans le \refTableau{operationsLiteralesMidRangeAvecW}. L’instruction \assembleur{RETLW k} n’existe pas en Piccolo, l’optimiseur repérera une instruction \assembleur{MOVLW k} en fin de routine et la transformera en \assembleur{RETLW k}.
 
 En Piccolo, \texttt{k} est une \emph{expression statique}. Une expression statique est une expression dont la valeur est calculée à la compilation. Sa forme générale est présentée à la \refSectionPage{expressionImmediate}. Le compilateur effectue tous les calculs d'une expression statique avec des nombres entiers 32 bits signés.
 
@@ -419,7 +419,7 @@ Pour être valide dans les opérations statiques avec \texttt{W}, le résultat d
   \item soit un nombre négatif supérieur ou égal à -128.
 \end{itemize}
 
-Par exemple : \texttt{movlw -14} engendre l’instruction assembleur : \texttt{MOVLW 0xf2}.
+Par exemple : \texttt{movlw -14} engendre l’instruction assembleur : \assembleur{MOVLW 0xf2}.
 
 
 \begin{table}[!ht]
@@ -429,12 +429,12 @@ Par exemple : \texttt{movlw -14} engendre l’instruction assembleur : \texttt{M
   \begin{tabular}{lll}
     \textbf{Assembleur} & \textbf{Description} & \textbf{Écriture en Piccolo}\\
     \hline
-    \texttt{ADDLW k} & Add Literal and W & \texttt{addlw k}\\
-    \texttt{ANDLW k} & And Literal with W & \texttt{andlw k}\\
-    \texttt{IORLW k} & Inclusive OR Literal with W & \texttt{iorlw k}\\
-    \texttt{MOVLW k} & Move Literal to W & \texttt{movlw k}\\
-    \texttt{SUBLW k} & Substract W frol literal & \texttt{sublw k}\\
-    \texttt{XORLW k} & Exclusive OR Literal with W & \texttt{xorlw k}\\
+    \assembleur{ADDLW k} & Add Literal and W & \texttt{addlw k}\\
+    \assembleur{ANDLW k} & And Literal with W & \texttt{andlw k}\\
+    \assembleur{IORLW k} & Inclusive OR Literal with W & \texttt{iorlw k}\\
+    \assembleur{MOVLW k} & Move Literal to W & \texttt{movlw k}\\
+    \assembleur{SUBLW k} & Substract W frol literal & \texttt{sublw k}\\
+    \assembleur{XORLW k} & Exclusive OR Literal with W & \texttt{xorlw k}\\
     \hline
   \end{tabular}
   \caption{Opérations litérales avec \texttt{W} pour \emph{mid-range}}
@@ -453,11 +453,11 @@ Ces instructions sont listées dans le \refTableau{operationsMidRangeIdentiquesA
   \begin{tabular}{lll}
     \textbf{Assembleur} & \textbf{Description} & \textbf{Écriture en Piccolo}\\
     \hline
-    \texttt{CLRWDT} & Clear Watchdog Timer & \texttt{clrwdt}\\
-    \texttt{CLRW} & Clear W & \texttt{clrw}\\
-    \texttt{NOP} & No Operation & \texttt{nop}\\
-    \texttt{OPTION} & Load OPTION register & \texttt{option}\\
-    \texttt{SLEEP} & Go into Standby Mode & \texttt{sleep}\\
+    \assembleur{CLRWDT} & Clear Watchdog Timer & \texttt{clrwdt}\\
+    \assembleur{CLRW} & Clear W & \texttt{clrw}\\
+    \assembleur{NOP} & No Operation & \texttt{nop}\\
+    \assembleur{OPTION} & Load OPTION register & \texttt{option}\\
+    \assembleur{SLEEP} & Go into Standby Mode & \texttt{sleep}\\
     \hline
   \end{tabular}
   \caption{Instructions \emph{mid-range} identiques en assembleur et en Piccolo}
@@ -492,7 +492,7 @@ Ces instructions sont listées dans le \refTableau{operationsMidRangeIdentiquesA
 
 \subsectionLabel{Appeler une routine régulière}{appelRoutineReguliereMidRange}
 
-Une routine régulière est une routine déclarée sans le qualificatif \texttt{noreturn}. L'appel s’effectue avec l'instruction \texttt{CALL}, si la routine se trouve dans la même page de la mémoire programme que l'instruction d'appel, ou avec l'instruction \texttt{jsr} (\refSubsectionPage{instructionJsrMidRange}).
+Une routine régulière est une routine déclarée sans le qualificatif \texttt{noreturn}. L'appel s’effectue avec l'instruction \texttt{call}, si la routine se trouve dans la même page de la mémoire programme que l'instruction d'appel, ou avec l'instruction \texttt{jsr} (\refSubsectionPage{instructionJsrMidRange}).
 
 Syntaxiquement, il faut simplement nommer la routine appelée après l’instruction d’appel :
 
@@ -562,7 +562,7 @@ La mémoire programme d'un \emph{mid-range} est constituée d'une ou plusieurs p
   \labelTableau{nombrePagesMidRange}
 \end{table}
 
-Les deux instructions machine de branchement que le jeu d'instructions des \emph{mid-range} définit sont \texttt{CALL} et \texttt{GOTO} (\refTableau{callGotoMidRange}). En résumé, ces instructions ne permettent pas d'effectuer par elles mêmes un branchement à tout position de la mémoire programme, mais uniquement un branchement à toute position de la page courante.
+Les deux instructions machine de branchement que le jeu d'instructions des \emph{mid-range} définit sont \assembleur{CALL} et \assembleur{GOTO} (\refTableau{callGotoMidRange}). En résumé, ces instructions ne permettent pas d'effectuer par elles mêmes un branchement à tout position de la mémoire programme, mais uniquement un branchement à toute position de la page courante.
 
 \begin{table}[!ht]
   \centering
@@ -572,19 +572,19 @@ Les deux instructions machine de branchement que le jeu d'instructions des \emph
     \textbf{Instruction} & \textbf{Description} & \multicolumn{4}{l}{\bf Code binaire}\\
                          &                      & 13 & 12 & 11 & 10 à 0\\
     \hline
-    \texttt{CALL k}  & Call subroutine & 1 & 0 & 0 & k \\
-    \texttt{GOTO k}  & Go to Address   & 1 & 0 & 1 & k \\
+    \texttt{call k}  & Call subroutine & 1 & 0 & 0 & k \\
+    \texttt{goto k}  & Go to Address   & 1 & 0 & 1 & k \\
     \hline
   \end{tabular}
-  \caption{Instructions \texttt{CALL} et \texttt{GOTO} des \emph{mid-range}}
+  \caption{Instructions \texttt{call} et \texttt{goto} des \emph{mid-range}}
   \labelTableau{callGotoMidRange}
 \end{table}
 
 
 
-Pour changer de page en assembleur, il faut modifier les bits 3 et 4 du registre \texttt{PCLATH} avant d'appeler l'instruction \texttt{CALL} ou \texttt{GOTO}.
+Pour changer de page en assembleur, il faut modifier les bits 3 et 4 du registre \assembleur{PCLATH} avant d'appeler l'instruction \assembleur{CALL} ou \assembleur{GOTO}.
 
-En Piccolo, il est déconseillé d'accéder directement à \texttt{PCLATH}. Les instructions \texttt{jsr} et \texttt{jump} prennent en charge les branchements vers une autre page. En résumé :
+En Piccolo, il est déconseillé d'accéder directement à \assembleur{PCLATH}. Les instructions \texttt{jsr} et \texttt{jump} prennent en charge les branchements vers une autre page. En résumé :
 \begin{itemize}
   \item une routine doit complètement résider à l'intérieur d'une page ;
   \item lors de la déclaration d'une routine, la page dans laquelle elle réside est précisée (\refSubsectionPage{declarationRoutineMidRangeEtPage}) ;
@@ -596,18 +596,18 @@ En Piccolo, il est déconseillé d'accéder directement à \texttt{PCLATH}. Les 
 
 \subsectionLabel{Instruction \texttt{jump}}{instructionJumpMidRange}
 
-L'instruction Piccolo \texttt{jump} engendre des instructions machine \texttt{BCF} ou \texttt{BSF} pour modifier les bits 3 et 4 du registre \texttt{PCLATH}, puis l'instruction machine \texttt{GOTO}.
+L'instruction Piccolo \texttt{jump} engendre des instructions machine \assembleur{BCF} ou \assembleur{BSF} pour modifier les bits 3 et 4 du registre \assembleur{PCLATH}, puis l'instruction machine \assembleur{GOTO}.
 
-Elle occupe donc $n+1$ mots de la mémoire programme, $n$ étant le nombre de bits du registre \texttt{PCLATH} à changer.
+Elle occupe donc $n+1$ mots de la mémoire programme, $n$ étant le nombre de bits du registre \assembleur{PCLATH} à changer.
 
 
 
 
 \subsectionLabel{Instruction \texttt{jsr}}{instructionJsrMidRange}
 
-L'instruction Piccolo  \texttt{jsr} engendre des instructions machine \texttt{BCF} ou \texttt{BSF} pour modifier les bits 3 et 4 du registre \texttt{PCLATH}, puis l'instruction machine \texttt{CALL}, puis de nouveau des instructions machine \texttt{BCF} ou \texttt{BSF} pour rétablir les bits 3 et 4 du registre \texttt{PCLATH}.
+L'instruction Piccolo  \texttt{jsr} engendre des instructions machine \assembleur{BCF} ou \assembleur{BSF} pour modifier les bits 3 et 4 du registre \assembleur{PCLATH}, puis l'instruction machine \assembleur{CALL}, puis de nouveau des instructions machine \assembleur{BCF} ou \assembleur{BSF} pour rétablir les bits 3 et 4 du registre \assembleur{PCLATH}.
 
-Elle occupe donc $2n+1$ mots de la mémoire programme, $n$ étant le nombre de bits du registre \texttt{PCLATH} à changer pour effectuer l'appel.
+Elle occupe donc $2n+1$ mots de la mémoire programme, $n$ étant le nombre de bits du registre \assembleur{PCLATH} à changer pour effectuer l'appel.
 
 \subsectionLabel{Déclaration de routine et page}{declarationRoutineMidRangeEtPage}
 
@@ -672,9 +672,9 @@ end
 
 Les micro-contrôleurs \emph{mid-range} acceptent qu’une seule routine d’interruption (à l’adresse 0x04). Lors de la réponse à une interruption, seul le compteur programme PC est empilé dans la pile matérielle. Or, il peut être nécessaire de sauver :
 \begin{itemize}
-  \item le registre \texttt{W} ;
-  \item le registre \texttt{STATUS} ;
-  \item le registre \texttt{PCLATH}.
+  \item le registre \assembleur{W} ;
+  \item le registre \assembleur{STATUS} ;
+  \item le registre \assembleur{PCLATH}.
 \end{itemize}
 
 Nous allons d'abord voir comment cette sauvegarde doit être réalisée en assembleur, et ensuite nous exposerons comment elle est faite en Piccolo.
@@ -683,37 +683,37 @@ Nous allons d'abord voir comment cette sauvegarde doit être réalisée en assem
 
 La routine d'interruption a l'allure suivante :
 \begin{enumerate}
-  \item sauvegarde de \texttt{W} ;
-  \item sauvegarde de \texttt{STATUS} ;
-  \item sauvegarde de \texttt{PCLATH} ;
+  \item sauvegarde de \assembleur{W} ;
+  \item sauvegarde de \assembleur{STATUS} ;
+  \item sauvegarde de \assembleur{PCLATH} ;
   \item instructions utilisateur;
-  \item restitution de \texttt{PCLATH} ;
-  \item restitution de \texttt{STATUS} ;
-  \item restitution de \texttt{W} ;
+  \item restitution de \assembleur{PCLATH} ;
+  \item restitution de \assembleur{STATUS} ;
+  \item restitution de \assembleur{W} ;
   \item instruction de retour d'interruption.
 \end{enumerate}
 
 
 Le but de Piccolo est de simplifier au maximum l'expression des opérations de sauvegarde et de restitution en proposant des constructions appropriées.
 
-\subsubsection{Sauvegarde de \texttt{W}}
+\subsubsection{Sauvegarde de \assembleur{W}}
 
-Il est nécessaire de sauver \texttt{W} si des instructions de la routine d'interruption le modifie. Pour effectuer cette sauvegarde, on exécute simplement l'instruction suivante, qui copie le contenu de \texttt{W} dans la mémoire \texttt{W\_TEMP} :
+Il est nécessaire de sauver \assembleur{W} si des instructions de la routine d'interruption le modifie. Pour effectuer cette sauvegarde, on exécute simplement l'instruction suivante, qui copie le contenu de \assembleur{W} dans la mémoire \assembleur{W\_TEMP} :
 
 \begin{lstlisting}[language=assembleur]
 MOVWF W_TEMP 
 \end{lstlisting}
 
-Où déclarer \texttt{W\_TEMP} ? C'est là où cela se complique. En effet, dans le cas général, le micro-contrôleur présente plusieurs bancs mémoire, et il est impossible de savoir le banc qui est sélectionné au moment où l'interruption survient.
+Où déclarer \assembleur{W\_TEMP} ? C'est là où cela se complique. En effet, dans le cas général, le micro-contrôleur présente plusieurs bancs mémoire, et il est impossible de savoir le banc qui est sélectionné au moment où l'interruption survient.
 
-Si le micro-contrôleur présente une zone \emph{partagée} qui apparaît en miroir sur tous les bancs, alors \texttt{W\_TEMP} doit être déclaré dans cette zone. Souvent cette zone partagée apparaît aux adresses 0x70 à 0x7F dans le banc 0, 0xF0 à 0xFF dans le banc 1, …
+Si le micro-contrôleur présente une zone \emph{partagée} qui apparaît en miroir sur tous les bancs, alors \assembleur{W\_TEMP} doit être déclaré dans cette zone. Souvent cette zone partagée apparaît aux adresses 0x70 à 0x7F dans le banc 0, 0xF0 à 0xFF dans le banc 1, …
 
-Malheureusement, certains micro-contrôleurs ne possèdent pas de zone partagée entre tous les bancs : c'est par exemple le cas des 16F873\index{16F873} et 16F874\index{16F874}. En fait, pour ces deux micro-contrôleurs, les emplacements mémoire (les « \emph{General Purpose Registers} ») du banc 2 sont le miroir du banc 0, et ceux du banc 3 le miroir du banc 1. La seule possibilité en assembleur est donc de déclarer manuellement une variable dans les deux premiers bancs de façon qu'elles apparaissent en miroir ; par exemple \texttt{W\_TEMP0} dans le banc 0 à l'adresse 0x20 et \texttt{W\_TEMP1} dans le banc 1 à l'adresse 0xA0.
+Malheureusement, certains micro-contrôleurs ne possèdent pas de zone partagée entre tous les bancs : c'est par exemple le cas des 16F873\index{16F873} et 16F874\index{16F874}. En fait, pour ces deux micro-contrôleurs, les emplacements mémoire (les « \emph{General Purpose Registers} ») du banc 2 sont le miroir du banc 0, et ceux du banc 3 le miroir du banc 1. La seule possibilité en assembleur est donc de déclarer manuellement une variable dans les deux premiers bancs de façon qu'elles apparaissent en miroir ; par exemple \assembleur{W\_TEMP0} dans le banc 0 à l'adresse 0x20 et \assembleur{W\_TEMP1} dans le banc 1 à l'adresse 0xA0.
 
 
-\subsubsection{Sauvegarde de \texttt{STATUS}}
+\subsubsection{Sauvegarde de \assembleur{STATUS}}
 
-Il est à noter que l'instruction précédente \texttt{MOVWF W\_TEMP} ne modifie pas les indicateurs du registre d'état \texttt{STATUS}. Pour sauver ce registre dans une mémoire \texttt{STATUS\_TEMP}, il faut passer par l'intermédiaire de \texttt{W}. Pour transférer le contenu de \texttt{STATUS} dans \texttt{W}, on ne peut pas utiliser l'instruction \texttt{MOVF} car elle modififie l'indicateur \texttt{Z}. On utilise donc \texttt{SWAPF}, et, c'est le contenu \emph{swappé} du registre \texttt{STATUS} qui est transféré dans \texttt{W}. Avant d'écrire \texttt{W} dans \texttt{STATUS\_TEMP}, on exécute \texttt{CLRF STATUS}, ce qui a pour effet d'effacer les bits \texttt{RP} : ainsi \texttt{STATUS\_TEMP} doit être déclaré dans le banc 0. La séquence complète de sauvegarde du registre \texttt{STATUS} est donc :
+Il est à noter que l'instruction précédente \assembleur{MOVWF W\_TEMP} ne modifie pas les indicateurs du registre d'état \assembleur{STATUS}. Pour sauver ce registre dans une mémoire \assembleur{STATUS\_TEMP}, il faut passer par l'intermédiaire de \assembleur{W}. Pour transférer le contenu de \assembleur{STATUS} dans \assembleur{W}, on ne peut pas utiliser l'instruction \assembleur{MOVF} car elle modififie l'indicateur \assembleur{Z}. On utilise donc \assembleur{SWAPF}, et, c'est le contenu \emph{swappé} du registre \assembleur{STATUS} qui est transféré dans \assembleur{W}. Avant d'écrire \assembleur{W} dans \assembleur{STATUS\_TEMP}, on exécute \assembleur{CLRF STATUS}, ce qui a pour effet d'effacer les bits \assembleur{RP} : ainsi \assembleur{STATUS\_TEMP} doit être déclaré dans le banc 0. La séquence complète de sauvegarde du registre \assembleur{STATUS} est donc :
 
 \begin{lstlisting}[language=assembleur]
 SWAPF STATUS, W
@@ -721,9 +721,9 @@ CLRF  STATUS
 MOVWF STATUS_TEMP 
 \end{lstlisting}
 
-\subsubsection{Sauvegarde de \texttt{PCLATH}}
+\subsubsection{Sauvegarde de \assembleur{PCLATH}}
 
-La réponse à l'interruption laisse le registre \texttt{PCLATH} inchangé. Si la routine d'interruption n'invoque ni l'instruction \texttt{CALL} ni l'instruction \texttt{GOTO}, \texttt{PCLATH} n'est pas utilisé et il est inutile de le sauvegarder. Dans le cas contraire, et si le programme s'étend sur plusieurs pages de la mémoire programme, le contenu des bits 3 et 4 de \texttt{PCLATH} -- les bits utilisés par les instructions \texttt{CALL} et \texttt{GOTO} -- est inconnu. Il faut donc sauvegarder ce registre, puis l'effacer (\texttt{PCLATH\_TEMP} est déclaré dans le banc 0) :
+La réponse à l'interruption laisse le registre \assembleur{PCLATH} inchangé. Si la routine d'interruption n'invoque ni l'instruction \assembleur{CALL} ni l'instruction \assembleur{GOTO}, \assembleur{PCLATH} n'est pas utilisé et il est inutile de le sauvegarder. Dans le cas contraire, et si le programme s'étend sur plusieurs pages de la mémoire programme, le contenu des bits 3 et 4 de \assembleur{PCLATH} -- les bits utilisés par les instructions \assembleur{CALL} et \assembleur{GOTO} -- est inconnu. Il faut donc sauvegarder ce registre, puis l'effacer (\assembleur{PCLATH\_TEMP} est déclaré dans le banc 0) :
 
 \begin{lstlisting}[language=assembleur]
 MOVF  PCLATH, W
@@ -734,9 +734,9 @@ CLRF  PCLATH
 
 
 
-\subsubsection{Restitution de \texttt{STATUS}}
+\subsubsection{Restitution de \assembleur{STATUS}}
 
-La restitution de \texttt{PCLATH} est simple, il suffit de recopier \texttt{PCLATH\_TEMP} dans \texttt{PCLATH}, en se souvenant que \texttt{PCLATH\_TEMP} contient la valeur \emph{swappée} :
+La restitution de \assembleur{PCLATH} est simple, il suffit de recopier \assembleur{PCLATH\_TEMP} dans \assembleur{PCLATH}, en se souvenant que \assembleur{PCLATH\_TEMP} contient la valeur \emph{swappée} :
 
 \begin{lstlisting}[language=assembleur]
 SWAPF STATUS_TEMP, W
@@ -744,9 +744,9 @@ MOVWF STATUS
 \end{lstlisting}
 
 
-\subsubsection{Restitution de \texttt{W}}
+\subsubsection{Restitution de \assembleur{W}}
 
-Il y a une petite subtilité, car on ne peut pas utiliser \texttt{MOVF W\_TEMP, W}. En effet, cette instruction modifie l'indicateur \texttt{Z}. On utilise donc l'instruction \texttt{SWAPF} qui a la particularité de ne modifier aucun indicateur. Pour restituer la valeur non \emph{swappée}, on effectue d'abord un \emph{swap} en mémoire :
+Il y a une petite subtilité, car on ne peut pas utiliser \assembleur{MOVF W\_TEMP, W}. En effet, cette instruction modifie l'indicateur \assembleur{Z}. On utilise donc l'instruction \assembleur{SWAPF} qui a la particularité de ne modifier aucun indicateur. Pour restituer la valeur non \emph{swappée}, on effectue d'abord un \emph{swap} en mémoire :
 
 \begin{lstlisting}[language=assembleur]
 SWAPF W_TEMP, F
@@ -791,21 +791,6 @@ La routine d'interruption d'un \emph{mid-range} a l'allure suivante en assembleu
 
 
 
-\subsubsection{Restitution du contexte et retour d'interruption}
-
-La restitution du contexte est simple, il suffit de charger les registres \texttt{PCLATH}, \texttt{STATUS} et \texttt{W} à partir des images sauvegardées. Le retour d'interruption est réalisé par l'instruction \texttt{RETFIE} :
-
-\begin{lstlisting}[language=assembleur]
-MOVF  PCLATH_TEMP, W
-MOVWF PCLATH 
-SWAPF STATUS_TEMP, W
-MOVWF STATUS
-SWAPF W_TEMP, F
-SWAPF W_TEMP, W
-RETFIE
-\end{lstlisting}
-
-
 
 \subsection{Routine d'interruption en Piccolo}
 
@@ -822,16 +807,16 @@ La section \texttt{interrupt} peut apparaître n’importe où dans le programme
 
 Dans un programme, au plus une routine d’interruption peut être définie : une erreur est signalée si plusieurs le sont.
 
-Toutes les instructions décrites sont autorisées, sauf les instructions qui ne terminent jamais telles que la boucle infinie et les instructions de branchement vers une routine sans retour \texttt{GOTO} et \texttt{JUMP}.
+Toutes les instructions décrites sont autorisées, sauf les instructions qui ne terminent jamais telles que la boucle infinie et les instructions de branchement vers une routine sans retour \texttt{goto} et \texttt{jump}.
 
-L’instruction assembleur \texttt{RETFIE} n’existe pas en Piccolo : le compilateur l’insère automatiquement à la fin de la routine d’interruption.
+L’instruction assembleur \assembleur{RETFIE} n’existe pas en Piccolo : le compilateur l’insère automatiquement à la fin de la routine d’interruption.
 
 \subsection{Interruption et sauvegarde du contexte en Piccolo}
 
 En conséquence de l'étude qui précède, il y a donc quatre cas à considérer, en fonction des deux conditions suivantes :
 \begin{itemize}
   \item le micro-contrôleur présente-t-il une zone mémoire commune à tous les bancs on non ?
-  \item le programme s’étend-il sur plusieurs pages et le sous-programme d’interruption contient-il des branchements ou des appels de sous-programmes ? Si oui, \texttt{PCLATH} devra aussi être sauvé.
+  \item le programme s’étend-il sur plusieurs pages et le sous-programme d’interruption contient-il des branchements ou des appels de sous-programmes ? Si oui, \assembleur{PCLATH} devra aussi être sauvé.
 \end{itemize}
 
 

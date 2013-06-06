@@ -146,8 +146,8 @@ routine baseline_analysis
 #-------------------------------- Build constant map
   @constantMap constantMap [emptyMap] ;
 #--- Add "ROM_SIZE" constant
-  @lstring romSizeString [new !"ROM_SIZE" !here] ;
-  [!?constantMap insertKey !romSizeString ![piccoloDeviceModel->mRomSize sint]] ;
+#  @lstring romSizeString [new !"ROM_SIZE" !here] ;
+#  [!?constantMap insertKey !romSizeString ![piccoloDeviceModel->mRomSize sint]] ;
 #--- Add declared constants
   foreach [inPiccoloModel mConstantDefinitionList] do
     @sint result ; [mExpression eval !registerTable !constantMap ?result] ;
