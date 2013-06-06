@@ -8,7 +8,7 @@ import "midrange_intermediate_instruction_set_current_address.gSemantics" ;
 import "piccolo_options.gOption" ;
 
 #----------------------------------------------------------------------------*
-#           INSTRUCTIONS USES GOTO OR CALL           *
+#           INSTRUCTIONS USES GOTO OR CALL                                   *
 #----------------------------------------------------------------------------*
 
 method @midrange_instruction instructionUsesGOTOorCALL
@@ -1365,7 +1365,297 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-routine generateInterruptRoutineForControllerWithSharedRAM
+routine build_midrange_assembly_instruction_list
+  ??@uint inTotalPageCount
+  ??@uint inTotalBankCount
+  ??@sint inROMSize
+  ??@bool inHasSharedRAMBank
+  ??@registerTable inRegisterTable
+  ??@midrange_model inPiccoloModel
+  ??@bool inHasInterrupt
+  !@midrange_intermediate_instructionList outGeneratedInstructionList
+  ?!@string ioListFileContents
+:
+  @string generationOptimizationMessages := "" ;
+#-------------------------------- Build routine map
+  @routineMap routineMap [emptyMap] ;
+  foreach [inPiccoloModel mRoutineDefinitionList] do
+    if ([mRequiredBank uint] != [@uint max]) & ([mRequiredBank uint] > 15) then
+      error mRequiredBank:"the required bank value should be lower or equal to 15" ;
+    end if ;
+    if ([mReturnedBank uint] != [@uint max]) & ([mReturnedBank uint] > 15) then
+      error mReturnedBank:"the returned bank value should be lower or equal to 15" ;
+    end if ;
+    [!?routineMap insertKey !mRoutineName !mIsNoReturn ![mRequiredBank uint] ![mReturnedBank uint] !mPreservesBank] ;
+  end foreach ;
+#-------------------------------- Build constant map
+  @constantMap constantMap [emptyMap] ;
+#--- Add "ROM_SIZE" constant
+  @lstring romSizeString [new !"ROM_SIZE" !here] ;
+  [!?constantMap insertKey !romSizeString !inROMSize] ;
+#--- Add declared constants
+  foreach [inPiccoloModel mConstantDefinitionList] do
+    @sint result ; [mExpression eval !inRegisterTable !constantMap ?result] ;
+    if [inRegisterTable hasKey ![mConstantName string]] then
+      error mConstantName: "'" . mConstantName . "' is already declared as ram register or special register" ;
+    else
+      [!?constantMap insertKey !mConstantName !result] ;
+    end if ;
+  end foreach ;
+#-------------------------------- Print constant map
+  if [option piccolo_options.ouputListingFile value] then
+    print_constant_definition
+      !constantMap
+      !?ioListFileContents
+    ;
+  end if ;
+#-------------------------------- Check the "main" routine is declared
+  if [routineMap hasKey !"main"] then
+    [routineMap searchKey ![@lstring new !"main" !here] ?@bool isNoReturn ?@uint requiredBank ?* ?*] ;
+    const @location mainDeclarationLocation := [routineMap locationForKey!"main"] ;
+    if not isNoReturn then
+      error mainDeclarationLocation :"the \"main\" should be declared with \"noreturn\" qualifier: \"noreturn main bank:requires 0\"" ;
+    end if ;
+    if requiredBank != 0 then
+      error mainDeclarationLocation :"the \"main\" should be declared with \"requires:bank 0\" qualifier: \"noreturn main bank:requires 0\"" ;
+    end if ;
+  else
+    error [inPiccoloModel mEndOfProgram]: "the program should declare the \"main\" routine" ;
+  end if ;
+#-------------------------------- Handle interrupt routine
+  @uint localLabelIndex := 0 ;
+  handleInterruptRoutine
+    !inPiccoloModel
+    !inHasInterrupt
+    !inRegisterTable
+    !inHasSharedRAMBank
+    !routineMap
+    !inTotalBankCount
+    !constantMap
+    !inTotalPageCount
+    !?generationOptimizationMessages
+    !?localLabelIndex
+    !?ioListFileContents
+    ?outGeneratedInstructionList
+  ;
+#-------------------------------- Check and translate routines
+  @uint currentPage := 0 ;
+  loop inTotalPageCount : while currentPage < inTotalPageCount do
+    @bool orgGenerated := currentPage == 0 ; # No Org for first page
+    foreach [inPiccoloModel mRoutineDefinitionList] do
+      if [mPage uint] == currentPage then
+        if not orgGenerated then
+          outGeneratedInstructionList += ![@midrange_intermediate_pseudo_ORG new !currentPage * 2048] ;
+          orgGenerated := true ;
+        end if ;
+        @bool continuesInSequence ;
+        @uint currentBank := [mRequiredBank uint] ;
+        @routineKind routineKind ;
+        if mIsNoReturn then
+          routineKind := [@routineKind noReturnRoutine] ;
+        else
+          routineKind := [@routineKind regularRoutine] ;
+        end if ;
+        outGeneratedInstructionList += ![@midrange_intermediate_pseudo_LABEL new !mRoutineName] ;
+        handleMidrangeInstructionList
+          !mInstructionList
+          !routineMap
+          !inRegisterTable
+          !constantMap
+          !?localLabelIndex
+          !?outGeneratedInstructionList
+          !?generationOptimizationMessages
+          !inTotalBankCount
+          !?currentBank
+          !mPreservesBank
+          ?continuesInSequence
+          !routineKind
+        ;
+        if (not mIsNoReturn) & ([mReturnedBank uint] != [@uint max]) & (currentBank != [mReturnedBank uint]) then
+          error mRoutineName:"execution will not set bank selection to " . [[mReturnedBank uint] string] ;
+        end if ;
+        if mIsNoReturn & continuesInSequence then
+          error mRoutineName:"execution should not reach the end of a \"noreturn\" routine" ;
+        end if ;
+      #--- Add a RETURN instruction (if it is a regular routine)
+        if not mIsNoReturn then
+          outGeneratedInstructionList += ![@midrange_intermediate_instruction_RETURN new ![mRoutineName location]] ;
+        end if ;
+      end if ;
+    end foreach ;
+    currentPage ++ ;
+  end loop ;
+#--- Output a listing ?
+  if [option piccolo_options.ouputListingFile value] then
+    ioListFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n" ;
+    ioListFileContents .= "*" . ["IPIC INSTRUCTION LIST" stringByLeftAndRightPadding !77 !' '] . "*\n" ;
+    ioListFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n\n" ;
+    if [generationOptimizationMessages length] > 0 then
+      ioListFileContents .= "Optimizations during generation:\n" ;
+      ioListFileContents .= generationOptimizationMessages ;
+      ioListFileContents .= "\n" ;
+    end if ;
+    ioListFileContents .= "Generated intermediate code:\n" ;
+    @uint idx := 0 ;
+    @uint currentAddress := 0 ;
+    foreach outGeneratedInstructionList do
+      [mInstruction setCurrentAddress !?currentAddress] ;
+      ioListFileContents .= [[idx string] stringByLeftPadding !5 !' '] . ": " ;
+      [mInstruction print !?ioListFileContents] ;
+      ioListFileContents .= "\n" ;
+      idx ++ ;
+    end foreach ;
+    ioListFileContents .= "\n" ;
+    ioListFileContents .= "Minimum code size without optimization: " . [currentAddress string] . " instructions.\n\n" ;
+  end if ;
+end routine ;
+
+#----------------------------------------------------------------------------*
+
+local routine interruptRoutineShouldSavePCLATH
+  ??@midrange_model inPiccoloModel
+  ??@uint inTotalPageCount
+  ?!@string ioListFileContents
+  !@bool outShouldSavePCLATH
+:
+  ioListFileContents .= "PCLATH should be saved ?\n" ;
+#--- Program uses several pages ?
+  outShouldSavePCLATH := false ;
+  foreach [inPiccoloModel mRoutineDefinitionList] do
+    if [mPage uint] > 0 then
+      outShouldSavePCLATH := true ;
+    end if ;
+    if [mPage uint] >= inTotalPageCount then
+      error mPage:"invalid value (". [[mPage uint] string] . "); the device has " . [inTotalPageCount string] . " 2k page(s) on rom" ;
+    end if ;
+  end foreach ;
+  if outShouldSavePCLATH then
+  ioListFileContents .= "  No, program uses only page 0.\n" ;
+  end if ;
+#--- Evaluate if interrupt routine uses GOTO or CALL (need to save PCLATH ?)
+  if outShouldSavePCLATH then
+    outShouldSavePCLATH := false ;
+    foreach [inPiccoloModel mInterruptDefinitionList] while not outShouldSavePCLATH do
+      foreach mInstructionList while not outShouldSavePCLATH do
+        [mInstruction instructionUsesGOTOorCALL !?outShouldSavePCLATH] ;
+      end foreach ;
+    end foreach ;
+    if outShouldSavePCLATH then
+      ioListFileContents .= "  Yes, program uses several pages and interrupt routine use CALL or GOTO instruction.\n" ;
+    else
+      ioListFileContents .= "  No, program uses several pages, but interrupt routine does not use CALL or GOTO instruction.\n" ;
+    end if ;
+  end if ;
+  ioListFileContents .= "\n" ;
+end routine ;
+
+#----------------------------------------------------------------------------*
+#                                                                            *
+#    H A N D L E    I N T E R R U P T    R O U T I N E                       *
+#                                                                            *
+#----------------------------------------------------------------------------*
+
+local routine handleInterruptRoutine
+  ??@midrange_model inPiccoloModel
+  ??@bool inHasInterrupt
+  ??@registerTable inRegisterTable
+  ??@bool inHasSharedRAMBank
+  ??@routineMap inRoutineMap
+  ??@uint inTotalBankCount
+  ??@constantMap inConstantMap
+  ??@uint inTotalPageCount
+  ?!@string ioGenerationOptimizationMessages
+  ?!@uint ioLocalLabelIndex
+  ?!@string ioListFileContents
+  !@midrange_intermediate_instructionList outGeneratedInstructionList
+:
+  if inHasInterrupt then
+    ioListFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n" ;
+    ioListFileContents .= "*" . ["INTERRUPT ROUTINE" stringByLeftAndRightPadding !77 !' '] . "*\n" ;
+    ioListFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n\n" ;
+  #-------------------------------- Should save PCLATH ?
+    interruptRoutineShouldSavePCLATH
+      !inPiccoloModel
+      !inTotalPageCount
+      !?ioListFileContents
+      ?@bool shouldSavePCLATH
+    ;
+
+
+
+
+
+  end if ;
+
+
+
+
+
+
+
+
+
+
+
+
+#-------------------------------- Should save PCLATH ?
+  interruptRoutineShouldSavePCLATH
+    !inPiccoloModel
+    !inTotalPageCount
+    !?ioListFileContents
+    ?@bool shouldSavePCLATH
+  ;
+#-------------------------------- Check and translate interrupt routine
+  outGeneratedInstructionList := [@midrange_intermediate_instructionList emptyList] ;
+#--- At zero, generate 'jump main' instruction
+  outGeneratedInstructionList += ![@midrange_intermediate_JUMP new
+    !here
+    ![@lstring new !"main" !here]
+    ![@midrange_call_goto_bit noChange]
+    ![@midrange_call_goto_bit noChange]
+  ] ;
+#---
+  if inHasInterrupt then
+    outGeneratedInstructionList += ![@midrange_intermediate_pseudo_ORG new !0x4] ;
+    foreach [inPiccoloModel mInterruptDefinitionList] do
+      if inHasSharedRAMBank then
+        generateInterruptRoutineForControllerWithSharedRAM
+          !inTotalBankCount
+          !inRegisterTable
+          !mFirstSaveRegister
+          !mSecondSaveRegister
+          !shouldSavePCLATH
+          !mInstructionList
+          !inRoutineMap
+          !inConstantMap
+          !mEndOfInterruptLocation
+          !?outGeneratedInstructionList
+          !?ioLocalLabelIndex
+          !?ioGenerationOptimizationMessages
+        ;
+      else
+        generateInterruptRoutineForControllerWithoutSharedRAM
+          !inTotalBankCount
+          !inRegisterTable
+          !mFirstSaveRegister
+          !mSecondSaveRegister
+          !shouldSavePCLATH
+          !mInstructionList
+          !inRoutineMap
+          !inConstantMap
+          !mEndOfInterruptLocation
+          !?outGeneratedInstructionList
+          !?ioLocalLabelIndex
+          !?ioGenerationOptimizationMessages
+        ;
+      end if ;
+    end foreach ;
+  end if ;
+end routine ;
+
+#----------------------------------------------------------------------------*
+
+local routine generateInterruptRoutineForControllerWithSharedRAM
   ??@uint inTotalBankCount
   ??@registerTable inRegisterTable
   ??@lstring inFirstSaveRegister
@@ -1520,7 +1810,7 @@ end routine ;
 
 #----------------------------------------------------------------------------*
 
-routine generateInterruptRoutineForControllerWithoutSharedRAM
+local routine generateInterruptRoutineForControllerWithoutSharedRAM
   ??@uint inTotalBankCount
   ??@registerTable inRegisterTable
   ??@lstring inFirstSaveRegister
@@ -1685,203 +1975,6 @@ routine generateInterruptRoutineForControllerWithoutSharedRAM
     ioGeneratedInstructionList += ![@midrange_intermediate_instruction_FD new !here ![@midrange_instruction_FD_base_code SWAPF] !first_IPICregisterDescription !true] ;
   #--- Add REFFIE
     ioGeneratedInstructionList += ![@midrange_intermediate_instruction_RETFIE new !here] ;
-  end if ;
-end routine ;
-
-#----------------------------------------------------------------------------*
-
-routine build_midrange_assembly_instruction_list
-  ??@uint inTotalPageCount
-  ??@uint inTotalBankCount
-  ??@sint inROMSize
-  ??@bool inHasSharedRAMBank
-  ??@registerTable inRegisterTable
-  ??@midrange_model inPiccoloModel
-  ??@bool inHasInterrupt
-  !@midrange_intermediate_instructionList outGeneratedInstructionList
-  ?!@string ioListFileContents
-:
-  @string generationOptimizationMessages := "" ;
-#-------------------------------- Build routine map
-  @routineMap routineMap [emptyMap] ;
-  foreach [inPiccoloModel mRoutineDefinitionList] do
-    if ([mRequiredBank uint] != [@uint max]) & ([mRequiredBank uint] > 15) then
-      error mRequiredBank:"the required bank value should be lower or equal to 15" ;
-    end if ;
-    if ([mReturnedBank uint] != [@uint max]) & ([mReturnedBank uint] > 15) then
-      error mReturnedBank:"the returned bank value should be lower or equal to 15" ;
-    end if ;
-    [!?routineMap insertKey !mRoutineName !mIsNoReturn ![mRequiredBank uint] ![mReturnedBank uint] !mPreservesBank] ;
-  end foreach ;
-#-------------------------------- Build constant map
-  @constantMap constantMap [emptyMap] ;
-#--- Add "ROM_SIZE" constant
-  @lstring romSizeString [new !"ROM_SIZE" !here] ;
-  [!?constantMap insertKey !romSizeString !inROMSize] ;
-#--- Add declared constants
-  foreach [inPiccoloModel mConstantDefinitionList] do
-    @sint result ; [mExpression eval !inRegisterTable !constantMap ?result] ;
-    if [inRegisterTable hasKey ![mConstantName string]] then
-      error mConstantName: "'" . mConstantName . "' is already declared as ram register or special register" ;
-    else
-      [!?constantMap insertKey !mConstantName !result] ;
-    end if ;
-  end foreach ;
-#-------------------------------- Print constant map
-  if [option piccolo_options.ouputListingFile value] then
-    print_constant_definition
-      !constantMap
-      !?ioListFileContents
-    ;
-  end if ;
-#-------------------------------- Check the "main" routine is declared
-  if [routineMap hasKey !"main"] then
-    [routineMap searchKey ![@lstring new !"main" !here] ?@bool isNoReturn ?@uint requiredBank ?* ?*] ;
-    const @location mainDeclarationLocation := [routineMap locationForKey!"main"] ;
-    if not isNoReturn then
-      error mainDeclarationLocation :"the \"main\" should be declared with \"noreturn\" qualifier: \"noreturn main bank:requires 0\"" ;
-    end if ;
-    if requiredBank != 0 then
-      error mainDeclarationLocation :"the \"main\" should be declared with \"requires:bank 0\" qualifier: \"noreturn main bank:requires 0\"" ;
-    end if ;
-  else
-    error [inPiccoloModel mEndOfProgram]: "the program should declare the \"main\" routine" ;
-  end if ;
-#-------------------------------- Check page routine specification is compatible with device
-  @bool needsToSavePCLATH := false ;
-  foreach [inPiccoloModel mRoutineDefinitionList] do
-    if [mPage uint] > 0 then
-      needsToSavePCLATH := true ;
-    end if ;
-    if [mPage uint] >= inTotalPageCount then
-      error mPage:"invalid value (". [[mPage uint] string] . "); the device has " . [inTotalPageCount string] . " 2k page(s) on rom" ;
-    end if ;
-  end foreach ;
-#-------------------------------- Evaluate if interrupt routine uses GOTO or CALL (need to save PCLATH ?)
-  if needsToSavePCLATH then
-    needsToSavePCLATH := false ;
-    foreach [inPiccoloModel mInterruptDefinitionList] while not needsToSavePCLATH do
-      foreach mInstructionList while not needsToSavePCLATH do
-        [mInstruction instructionUsesGOTOorCALL !?needsToSavePCLATH] ;
-      end foreach ;
-    end foreach ;
-  end if ;
-#-------------------------------- Check and translate interrupt routine
-  outGeneratedInstructionList := [@midrange_intermediate_instructionList emptyList] ;
-  @uint localLabelIndex := 0 ;
-#--- At zero, generate 'jump main' instruction
-  outGeneratedInstructionList += ![@midrange_intermediate_JUMP new
-    !here
-    ![@lstring new !"main" !here]
-    ![@midrange_call_goto_bit noChange]
-    ![@midrange_call_goto_bit noChange]
-  ] ;
-#---
-  if inHasInterrupt then
-    outGeneratedInstructionList += ![@midrange_intermediate_pseudo_ORG new !0x4] ;
-    foreach [inPiccoloModel mInterruptDefinitionList] do
-      if inHasSharedRAMBank then
-        generateInterruptRoutineForControllerWithSharedRAM
-          !inTotalBankCount
-          !inRegisterTable
-          !mFirstSaveRegister
-          !mSecondSaveRegister
-          !needsToSavePCLATH
-          !mInstructionList
-          !routineMap
-          !constantMap
-          !mEndOfInterruptLocation
-          !?outGeneratedInstructionList
-          !?localLabelIndex
-          !?generationOptimizationMessages
-        ;
-      else
-        generateInterruptRoutineForControllerWithoutSharedRAM
-          !inTotalBankCount
-          !inRegisterTable
-          !mFirstSaveRegister
-          !mSecondSaveRegister
-          !needsToSavePCLATH
-          !mInstructionList
-          !routineMap
-          !constantMap
-          !mEndOfInterruptLocation
-          !?outGeneratedInstructionList
-          !?localLabelIndex
-          !?generationOptimizationMessages
-        ;
-      end if ;
-    end foreach ;
-  end if ;
-#-------------------------------- Check and translate routines
-  @uint currentPage := 0 ;
-  loop inTotalPageCount : while currentPage < inTotalPageCount do
-    @bool orgGenerated := currentPage == 0 ; # No Org for first page
-    foreach [inPiccoloModel mRoutineDefinitionList] do
-      if [mPage uint] == currentPage then
-        if not orgGenerated then
-          outGeneratedInstructionList += ![@midrange_intermediate_pseudo_ORG new !currentPage * 2048] ;
-          orgGenerated := true ;
-        end if ;
-        @bool continuesInSequence ;
-        @uint currentBank := [mRequiredBank uint] ;
-        @routineKind routineKind ;
-        if mIsNoReturn then
-          routineKind := [@routineKind noReturnRoutine] ;
-        else
-          routineKind := [@routineKind regularRoutine] ;
-        end if ;
-        outGeneratedInstructionList += ![@midrange_intermediate_pseudo_LABEL new !mRoutineName] ;
-        handleMidrangeInstructionList
-          !mInstructionList
-          !routineMap
-          !inRegisterTable
-          !constantMap
-          !?localLabelIndex
-          !?outGeneratedInstructionList
-          !?generationOptimizationMessages
-          !inTotalBankCount
-          !?currentBank
-          !mPreservesBank
-          ?continuesInSequence
-          !routineKind
-        ;
-        if (not mIsNoReturn) & ([mReturnedBank uint] != [@uint max]) & (currentBank != [mReturnedBank uint]) then
-          error mRoutineName:"execution will not set bank selection to " . [[mReturnedBank uint] string] ;
-        end if ;
-        if mIsNoReturn & continuesInSequence then
-          error mRoutineName:"execution should not reach the end of a \"noreturn\" routine" ;
-        end if ;
-      #--- Add a RETURN instruction (if it is a regular routine)
-        if not mIsNoReturn then
-          outGeneratedInstructionList += ![@midrange_intermediate_instruction_RETURN new ![mRoutineName location]] ;
-        end if ;
-      end if ;
-    end foreach ;
-    currentPage ++ ;
-  end loop ;
-#--- Output a listing ?
-  if [option piccolo_options.ouputListingFile value] then
-    ioListFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n" ;
-    ioListFileContents .= "*" . ["IPIC INSTRUCTION LIST" stringByLeftAndRightPadding !77 !' '] . "*\n" ;
-    ioListFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n\n" ;
-    if [generationOptimizationMessages length] > 0 then
-      ioListFileContents .= "Optimizations during generation:\n" ;
-      ioListFileContents .= generationOptimizationMessages ;
-      ioListFileContents .= "\n" ;
-    end if ;
-    ioListFileContents .= "Generated intermediate code:\n" ;
-    @uint idx := 0 ;
-    @uint currentAddress := 0 ;
-    foreach outGeneratedInstructionList do
-      [mInstruction setCurrentAddress !?currentAddress] ;
-      ioListFileContents .= [[idx string] stringByLeftPadding !5 !' '] . ": " ;
-      [mInstruction print !?ioListFileContents] ;
-      ioListFileContents .= "\n" ;
-      idx ++ ;
-    end foreach ;
-    ioListFileContents .= "\n" ;
-    ioListFileContents .= "Minimum code size without optimization: " . [currentAddress string] . " instructions.\n\n" ;
   end if ;
 end routine ;
 
