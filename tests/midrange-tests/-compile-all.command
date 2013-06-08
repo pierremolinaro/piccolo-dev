@@ -26,22 +26,18 @@ echo "-------------- multiple_pages" &&
 ../../makefile_macosx/piccolo -v -S -O -L --Werror multiple_pages.piccolo &&
 $GPUTILS_PATH/gpasm multiple_pages.asm -o multiple_pages-2.hex &&
 hexcmp multiple_pages.hex multiple_pages-2.hex &&
-echo "-------------- interrupt1" &&
-../../makefile_macosx/piccolo -v -S -O -L --Werror interrupt1.piccolo &&
-$GPUTILS_PATH/gpasm interrupt1.asm -o interrupt1-2.hex &&
-hexcmp interrupt1.hex interrupt1-2.hex &&
-echo "-------------- interrupt2" &&
-../../makefile_macosx/piccolo -v -S -O -L --Werror interrupt2.piccolo &&
-$GPUTILS_PATH/gpasm interrupt2.asm -o interrupt2-2.hex &&
-hexcmp interrupt2.hex interrupt2-2.hex &&
-echo "-------------- interrupt3" &&
-../../makefile_macosx/piccolo -v -S -O -L --Werror interrupt3.piccolo &&
-$GPUTILS_PATH/gpasm interrupt3.asm -o interrupt3-2.hex &&
-hexcmp interrupt3.hex interrupt3-2.hex &&
-echo "-------------- interrupt4" &&
-../../makefile_macosx/piccolo -v -S -O -L --Werror interrupt4.piccolo &&
-$GPUTILS_PATH/gpasm interrupt4.asm -o interrupt4-2.hex &&
-hexcmp interrupt4.hex interrupt4-2.hex &&
+echo "-------------- blink_led_it_pages_16F690" &&
+../../makefile_macosx/piccolo -v -S -O -L --Werror blink_led_it_pages_16F690.piccolo &&
+$GPUTILS_PATH/gpasm blink_led_it_pages_16F690.asm -o blink_led_it_pages_16F690-2.hex &&
+hexcmp blink_led_it_pages_16F690.hex blink_led_it_pages_16F690-2.hex &&
+echo "-------------- interrupt_16F873_page_0" &&
+../../makefile_macosx/piccolo -v -S -O -L --Werror interrupt_16F873_page_0.piccolo &&
+$GPUTILS_PATH/gpasm interrupt_16F873_page_0.asm -o interrupt_16F873_page_0-2.hex &&
+hexcmp interrupt_16F873_page_0.hex interrupt_16F873_page_0-2.hex &&
+echo "-------------- interrupt_16F873_several_pages" &&
+../../makefile_macosx/piccolo -v -S -O -L --Werror interrupt_16F873_several_pages.piccolo &&
+$GPUTILS_PATH/gpasm interrupt_16F873_several_pages.asm -o interrupt_16F873_several_pages-2.hex &&
+hexcmp interrupt_16F873_several_pages.hex interrupt_16F873_several_pages-2.hex &&
 echo "-------------- routine1" &&
 ../../makefile_macosx/piccolo -v -S -O -L --Werror routine1.piccolo &&
 $GPUTILS_PATH/gpasm routine1.asm -o routine1-2.hex &&

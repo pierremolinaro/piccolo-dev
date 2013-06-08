@@ -1490,11 +1490,11 @@ routine build_midrange_assembly_instruction_list
     ioListFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n" ;
     ioListFileContents .= "*" . ["IPIC INSTRUCTION LIST" stringByLeftAndRightPadding !77 !' '] . "*\n" ;
     ioListFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n\n" ;
-    if [generationOptimizationMessages length] > 0 then
-      ioListFileContents .= "Optimizations during generation:\n" ;
-      ioListFileContents .= generationOptimizationMessages ;
-      ioListFileContents .= "\n" ;
-    end if ;
+#    if [generationOptimizationMessages length] > 0 then
+#      ioListFileContents .= "Optimizations during generation:\n" ;
+#      ioListFileContents .= generationOptimizationMessages ;
+#      ioListFileContents .= "\n" ;
+#    end if ;
     ioListFileContents .= "Generated intermediate code:\n" ;
     @uint idx := 0 ;
     @uint currentAddress := 0 ;
