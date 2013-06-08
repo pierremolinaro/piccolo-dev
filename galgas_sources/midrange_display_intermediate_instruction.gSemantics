@@ -88,7 +88,7 @@ end method ;
 
 override
 method @midrange_intermediate_JSR print ?!@string ioListFileContents :
-  ioListFileContents .= "CALL " . mTargetLabel ;
+  ioListFileContents .= "JSR " . mTargetLabel ;
 end method ;
 
 #----------------------------------------------------------------------------*

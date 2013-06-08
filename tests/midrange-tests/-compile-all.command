@@ -14,10 +14,10 @@ echo "-------------- if_semi_colon" &&
 ../../makefile_macosx/piccolo -v -S -O -L --Werror if_semi_colon.piccolo &&
 $GPUTILS_PATH/gpasm if_semi_colon.asm -o if_semi_colon-2.hex &&
 hexcmp if_semi_colon.hex if_semi_colon-2.hex &&
-echo "-------------- structured_if (without optimization)" &&
-../../makefile_macosx/piccolo -v -S -L --Werror structured_if.piccolo &&
-$GPUTILS_PATH/gpasm structured_if.asm -o structured_if-2.hex &&
-hexcmp structured_if.hex structured_if-2.hex &&
+#echo "-------------- structured_if (without optimization)" &&
+#../../makefile_macosx/piccolo -v -S -L --Werror structured_if.piccolo &&
+#$GPUTILS_PATH/gpasm structured_if.asm -o structured_if-2.hex &&
+#hexcmp structured_if.hex structured_if-2.hex &&
 echo "-------------- structured_if (with optimization)" &&
 ../../makefile_macosx/piccolo -v -S -O -L --Werror structured_if.piccolo &&
 $GPUTILS_PATH/gpasm structured_if.asm -o structured_if-2.hex &&

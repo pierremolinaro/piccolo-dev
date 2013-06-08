@@ -18,8 +18,8 @@ midrange interrupt1 "16F690" :
 #----------------------------------------------------------------------------*
 
 ram gprnobnk {
-  byte itSave0 
-  byte itsave1
+  byte W_TEMP 
+  byte STATUS_TEMP
 }
 
 #----------------------------------------------------------------------------*
@@ -28,7 +28,7 @@ ram gprnobnk {
 #                                                                            *
 #----------------------------------------------------------------------------*
 
-interrupt contextsave itSave0, itsave1 {
+interrupt contextsave W_TEMP, STATUS_TEMP {
   nop
 }
 
