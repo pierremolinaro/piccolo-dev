@@ -1,0 +1,100 @@
+#---------------------------------------------------------------*
+#                                                               *
+#  BLINK LED for 16F690                                         *
+#                                                               *
+#  Connection: RA5 (pin 2) is connected to a led                *
+#  Internal 4 MHz oscillator is used                            *
+#                                                               *
+#  Several program memory pages are used.                       *
+#                                                               *
+#---------------------------------------------------------------*
+
+midrange blink_led_it_pages_16F690 "16F690" :
+
+#---------------------------------------------------------------*
+
+configuration {
+  CP : Disabled
+  OSC : "INTOSCIO oscillator: I/O function on RA4/OSC2/CLKOUT pin, I/O function on RA5/OSC1/CLKIN"
+  WDTE : Disabled
+  MCLRE : Disabled
+  BOREN : Disabled
+  CPD : Disabled
+  FCMEN : Disabled
+  IESO : Disabled
+  PWRTE : Disabled
+}
+
+#---------------------------------------------------------------*
+
+ram gprnobnk {
+  byte W_TEMP
+}
+
+#---------------------------------------------------------------*
+
+ram gpr0 {
+  byte STATUS_PCLATH_TEMP [2]
+}
+
+#---------------------------------------------------------------*
+
+interrupt contextsave W_TEMP, STATUS_PCLATH_TEMP {
+#--- Timer 2 interrupt ack
+  bcf PIR1.TMR2IF
+#--- Toggle led
+  if (PORTA.5)
+    bcf PORTA.5
+  else
+    bsf PORTA.5
+  end
+}
+
+#---------------------------------------------------------------*
+
+noreturn routine main bank:requires 0 {
+#--- Init input/output
+  jsr init_IO
+#--- Set PR2
+  movlw 255
+  movwf PR2
+  banksel 0
+#--- Timer 2 programming: T2CON
+# 6-3 : 1111 (1:16 postscaler)
+#   2 : 1 (timer 2 is on)
+# 1-0 : 11 (prescaler is 16)
+  movlw 0xFF
+  movwf T2CON
+#--- Enable Timer 2 interrupt
+  banksel 1
+  bsf     PIE1.TMR2IE
+  banksel 0
+#---
+  bsf     INTCON.PEIE 
+  bsf     INTCON.GIE 
+#--- loop
+  forever
+    jsr wait
+  end
+}
+
+#---------------------------------------------------------------*
+
+routine init_IO page 1 bank:requires 0 ensures 1 {
+#--- Digital I/O
+  banksel 2
+  clrf  ANSEL
+#--- RA5 is an output
+  banksel 1
+  bcf  TRISA.5
+}
+
+#---------------------------------------------------------------*
+
+routine wait page 1 bank:preserved {
+  mnop 2
+}
+
+#---------------------------------------------------------------*
+
+end

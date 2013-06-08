@@ -3,13 +3,14 @@
 # Trying to execute it does not make sense.
 
 # This program shows interrupt routine generation :
-#  - for a midrange controller with common bank (gprnobnk)
+#  - for a midrange controller without any common bank
 #  - when code uses only rom page 0 or interrupt routine does not
 #    contain any branch nor call instruction.
 
-# Saving interrupt context requires to declare two bytes in shared bank.
+# Saving interrupt context requires to declare one byte in
+# ram bank #0, and one byte in any other bank.
 
-midrange interrupt1 "16F690" :
+midrange interrupt_16F873_several_pages "16F873" :
 
 #----------------------------------------------------------------------------*
 #                                                                            *
@@ -17,9 +18,14 @@ midrange interrupt1 "16F690" :
 #                                                                            *
 #----------------------------------------------------------------------------*
 
-ram gprnobnk {
-  byte W_TEMP 
-  byte STATUS_TEMP
+ram gpr0 {
+  byte itSave0 [3]
+}
+
+#----------------------------------------------------------------------------*
+
+ram gpr1 {
+  byte itsave1
 }
 
 #----------------------------------------------------------------------------*
@@ -28,8 +34,10 @@ ram gprnobnk {
 #                                                                            *
 #----------------------------------------------------------------------------*
 
-interrupt contextsave W_TEMP, STATUS_TEMP {
-  nop
+interrupt contextsave itSave0, itsave1 {
+  if (STATUS.C) 
+    mnop 2
+  end
 }
 
 #----------------------------------------------------------------------------*
@@ -40,7 +48,14 @@ interrupt contextsave W_TEMP, STATUS_TEMP {
 
 noreturn routine main bank:requires 0 {
   forever
+    jsr  routineInPage1
   end
+}
+
+#----------------------------------------------------------------------------*
+
+routine routineInPage1 page 1 bank:preserved {
+  mnop 2
 }
 
 #----------------------------------------------------------------------------*
