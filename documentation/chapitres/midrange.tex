@@ -677,7 +677,7 @@ Les micro-contrôleurs \emph{mid-range} acceptent qu’une seule routine d’int
   \item le registre \assembleur{PCLATH}.
 \end{itemize}
 
-Nous allons d'abord voir comment cette sauvegarde doit être réalisée en assembleur, et ensuite nous exposerons comment elle est faite en Piccolo.
+Nous allons d'abord voir comment cette sauvegarde doit être réalisée en assembleur, et ensuite nous exposerons comment elle est faite en Piccolo. Si vous voulez uniquement savoir comment écrire une routine d'interruption en Piccolo, allez directement à la \refSubsectionPage{routineItMidRangeEnPiccolo}.
 
 \subsection{Allure générale de la routine d'interruption en assembleur}
 
@@ -792,7 +792,7 @@ La routine d'interruption d'un \emph{mid-range} a l'allure suivante en assembleu
 
 
 
-\subsection{Routine d'interruption en Piccolo}
+\subsectionLabel{Routine d'interruption en Piccolo}{routineItMidRangeEnPiccolo}
 
 
 En Piccolo, la routine d’interruption \emph{midrange} est décrite dans une section \texttt{interrupt} :
@@ -823,56 +823,66 @@ En conséquence de l'étude qui précède, il y a donc quatre cas à considérer
 Piccolo détecte automatiquement les différents cas, et propose une écriture unique :
 \begin{lstlisting}[language=piccolo]
 interrupt contextsave sauveA, sauveB {
-  ...
+  instructions
 }
 \end{lstlisting}
 
-Le \refTableau{sauvegardeItMidRange} précise comment déclarer \texttt{sauveA} et \texttt{sauveB} en fonction des quatre différentes situations, et le \refTableau{roleVarSauveContexteMidrange} en détaille l'utilisation.
+L'instruction assembleur \assembleur{RETFIE} n'existe pas en Piccolo, le compilateur l'ajoute automatiquement. Le sauvegarde du contexte engendré par Piccolo assure que le banc 0 est sélectionné pour l'exécution de \texttt{instructions}.
 
-\begin{table}[!ht]
-  \centering
-  \rowcolors{2}{\fondTableau}{}
-  \begin{tabular}{p{5cm}p{4cm}p{4cm}}
-    \textbf{Situation} & \texttt{\bf sauveA} & \texttt{\bf sauveB}\\
-    \hline
-    (1) Zone mémoire commune à tous les bancs, programme dans la page 0 & 1 octet dans le banc 0 & 1 octet dans le banc commun\\
-    (2) Zone mémoire commune à tous les bancs, programme sur plusieurs pages & 2 octets dans le banc 0 & 1 octet dans le banc commun\\
-    (3) Aucune zone mémoire commune à tous les bancs, programme dans la page 0 & 2 octets dans le banc 0 & 1 octet dans le banc commun\\
-    (4) Aucune mémoire commune à tous les bancs, programme sur plusieurs pages & 3 octets dans le banc 0 & 1 octet dans le banc commun\\
-  \hline
-  \end{tabular}
-  \caption{Sauvegarde du contexte pour \emph{mid-range}}
-  \labelTableau{sauvegardeItMidRange}
-\end{table}
-
-\begin{table}[!ht]
-  \centering
-  \rowcolors{2}{\fondTableau}{}
-  \begin{tabular}{p{5cm}p{5cm}l}
-    \textbf{Situation} & \texttt{\bf sauveA} & \texttt{\bf sauveB}\\
-    \hline
-    (1) Zone mémoire commune à tous les bancs, programme dans la page 0 & Sauvegarde de \texttt{STATUS} & Sauvegarde de \texttt{W}\\
-    (2) Zone mémoire commune à tous les bancs, programme sur plusieurs pages & Sauvegarde de \texttt{STATUS} et de \texttt{PCLATH} & Sauvegarde de \texttt{W}\\
-    (3) Aucune zone mémoire commune à tous les bancs, programme dans la page 0 & Sauvegarde de \texttt{W} et de \texttt{STATUS} & Sauvegarde de \texttt{W}\\
-    (4) Aucune mémoire commune à tous les bancs, programme sur plusieurs pages & Sauvegarde de \texttt{W}, \texttt{STATUS} et de \texttt{PCLATH} & Sauvegarde de \texttt{W}\\
-  \hline
-  \end{tabular}
-  \caption{Rôle des variables de sauvegarde du contexte pour \emph{mid-range}}
-  \labelTableau{roleVarSauveContexteMidrange}
-\end{table}
+%Le \refTableau{sauvegardeItMidRange} précise comment déclarer \texttt{sauveA} et \texttt{sauveB} en fonction des quatre différentes situations, et le \refTableau{roleVarSauveContexteMidrange} en détaille l'utilisation.
+%
+%\begin{table}[!ht]
+%  \centering
+%  \rowcolors{2}{\fondTableau}{}
+%  \begin{tabular}{p{5cm}p{4cm}p{4cm}}
+%    \textbf{Situation} & \texttt{\bf sauveA} & \texttt{\bf sauveB}\\
+%    \hline
+%    (1) Zone mémoire commune à tous les bancs, programme dans la page 0 & 1 octet dans le banc 0 & 1 octet dans le banc commun\\
+%    (2) Zone mémoire commune à tous les bancs, programme sur plusieurs pages & 2 octets dans le banc 0 & 1 octet dans le banc commun\\
+%    (3) Aucune zone mémoire commune à tous les bancs, programme dans la page 0 & 2 octets dans le banc 0 & 1 octet dans le banc commun\\
+%    (4) Aucune mémoire commune à tous les bancs, programme sur plusieurs pages & 3 octets dans le banc 0 & 1 octet dans le banc commun\\
+%  \hline
+%  \end{tabular}
+%  \caption{Sauvegarde du contexte pour \emph{mid-range}}
+%  \labelTableau{sauvegardeItMidRange}
+%\end{table}
+%
+%\begin{table}[!ht]
+%  \centering
+%  \rowcolors{2}{\fondTableau}{}
+%  \begin{tabular}{p{5cm}p{5cm}l}
+%    \textbf{Situation} & \texttt{\bf sauveA} & \texttt{\bf sauveB}\\
+%    \hline
+%    (1) Zone mémoire commune à tous les bancs, programme dans la page 0 & Sauvegarde de \texttt{STATUS} & Sauvegarde de \texttt{W}\\
+%    (2) Zone mémoire commune à tous les bancs, programme sur plusieurs pages & Sauvegarde de \texttt{STATUS} et de \texttt{PCLATH} & Sauvegarde de \texttt{W}\\
+%    (3) Aucune zone mémoire commune à tous les bancs, programme dans la page 0 & Sauvegarde de \texttt{W} et de \texttt{STATUS} & Sauvegarde de \texttt{W}\\
+%    (4) Aucune mémoire commune à tous les bancs, programme sur plusieurs pages & Sauvegarde de \texttt{W}, \texttt{STATUS} et de \texttt{PCLATH} & Sauvegarde de \texttt{W}\\
+%  \hline
+%  \end{tabular}
+%  \caption{Rôle des variables de sauvegarde du contexte pour \emph{mid-range}}
+%  \labelTableau{roleVarSauveContexteMidrange}
+%\end{table}
 
 
 ~\\
-\textbf{Situation (1) : zone mémoire commune à tous les bancs, programme dans la page 0.} Le code Piccolo est le suivant :
+\textbf{Situation (1) : le micro-contrôleur possède une zone mémoire commune à tous les bancs, le code n'utilise que la page 0 de la mémoire programme ou le sous-programme d'interruption n'invoque ni \assembleur{CALL} ni \assembleur{GOTO}.} Il faut dans ce cas sauver \texttt{W} et \texttt{STATUS}. Les deux variables sont donc déclarées de dimension 1 :
+\begin{itemize}
+  \item \texttt{W\_TEMP} pour sauver \texttt{W} ; cette variable doit être déclarée dans la zone commune à tous les bancs ; celle-ci s'appelle générallement \texttt{gprnobnk} ; 
+  \item \texttt{STATUS\_TEMP} pour sauver \texttt{STATUS} ; cette variable doit être déclarée dans le banc 0, qui s'appelle générallement \texttt{gpr0}. 
+\end{itemize}
+
+
+Le code Piccolo est le suivant :
+
 \begin{lstlisting}[language=piccolo]
 midrange interrupt1 "16F690" :
-ram gpr0 {
-  byte itSave0 
-}
 ram gprnobnk {
-  byte itsave1
+  byte W_TEMP
 }
-interrupt contextsave itSave0, itsave1 {
+ram gpr0 {
+  byte STATUS_TEMP  
+}
+interrupt contextsave W_TEMP, STATUS_TEMP {
   instructions
 }
 ...
@@ -882,31 +892,39 @@ end
 Et le code engendré pour la routine d'interruption est :
 \begin{lstlisting}[language=assembleur]
   ORG 0x4
-  MOVWF itsave1
+  MOVWF W_TEMP
   SWAPF STATUS, W
   CLRF STATUS
-  MOVWF itSave0
-  instructions
-  SWAPF itSave0, W
+  MOVWF STATUS_TEMP
+    instructions
+  SWAPF STATUS_TEMP, W
   MOVWF STATUS
-  SWAPF itsave1, F
-  SWAPF itsave1, W
+  SWAPF W_TEMP, F
+  SWAPF W_TEMP, W
   RETFIE
 \end{lstlisting}
 
 
 
 ~\\
-\textbf{Situation (2) : zone mémoire commune à tous les bancs, programme sur plusieurs pages.} Le code Piccolo est le suivant :
+\textbf{Situation (2) : le micro-contrôleur possède une zone mémoire commune à tous les bancs, le code occupe plusieurs pages de la mémoire programme, et le sous-programme d'interruption invoque \assembleur{CALL} ou \assembleur{GOTO}.} Il faut dans ce cas donc sauver \texttt{W}, \texttt{STATUS} et \texttt{PCLATH}. Les deux variables sont donc déclarées :
+\begin{itemize}
+  \item \texttt{W\_TEMP}, de dimension 1, pour sauver \texttt{W} ; cette variable doit être déclarée dans la zone commune à tous les bancs ; celle-ci s'appelle générallement \texttt{gprnobnk} ; 
+  \item \texttt{STATUS\_PCLATH\_TEMP}, de dimension 2, pour sauver \texttt{STATUS} et  \texttt{PCLATH} ; cette variable doit être déclarée dans le banc 0, qui s'appelle générallement \texttt{gpr0}. 
+\end{itemize}
+
+
+
+Le code Piccolo est le suivant :
 \begin{lstlisting}[language=piccolo]
 midrange interrupt2 "16F690" :
-ram gpr0 {
-  byte itSave0 [2]
-}
 ram gprnobnk {
-  byte itsave1
+  byte W_TEMP
 }
-interrupt contextsave itSave0, itsave1 {
+ram gpr0 {
+  byte STATUS_PCLATH_TEMP [2]
+}
+interrupt contextsave W_TEMP, STATUS_PCLATH_TEMP {
   instructions
 }
 ...
@@ -916,19 +934,20 @@ end
 Et le code engendré pour la routine d'interruption est :
 \begin{lstlisting}[language=assembleur]
   ORG 0x4
-  MOVWF itsave1
+  MOVWF W_TEMP
   SWAPF STATUS, W
-  CLRF STATUS
-  MOVWF itSave0
-  MOVF PCLATH, W
-  MOVWF itSave0 + 0x1
-  instructions
-  MOVF itSave0 + 0x1, W
+  CLRF  STATUS
+  MOVWF STATUS_PCLATH_TEMP
+  MOVF  PCLATH, W
+  MOVWF STATUS_PCLATH_TEMP + 0x1
+  CLRF  PCLATH
+    instructions
+  MOVF  STATUS_PCLATH_TEMP + 0x1, W
   MOVWF PCLATH
-  SWAPF itSave0, W
+  SWAPF STATUS_PCLATH_TEMP, W
   MOVWF STATUS
-  SWAPF itsave1, F
-  SWAPF itsave1, W
+  SWAPF W_TEMP, F
+  SWAPF W_TEMP, W
   RETFIE
 \end{lstlisting}
 
@@ -939,16 +958,29 @@ Et le code engendré pour la routine d'interruption est :
 
 
 ~\\
-\textbf{Situation (3) : aucune zone mémoire commune à tous les bancs, programme dans la page 0.} Le code Piccolo est le suivant :
+\textbf{Situation (3) : le micro-contrôleur ne possède pas de zone mémoire commune à tous les bancs, le code n'utilise que la page 0 de la mémoire programme ou le sous-programme d'interruption n'invoque ni \assembleur{CALL} ni \assembleur{GOTO}.} Il faut dans ce cas sauver \texttt{W} et \texttt{STATUS}.
+
+Cette situation est celle du 16F873. Ce micro-contrôleur possède 4 bancs mémoire, la zone RAM du banc 2 étant un miroir de la zone RAM du banc 0, et la zone RAM du banc 3 étant un miroir de la zone RAM du banc 1. Au moment où l'interruption survient, la sélection courante des bancs est imprévisible, aussi la sauvegarde effectif de \texttt{W} est effectuée soit dans le banc 0, soit dans le banc 1. \textbf{Il est donc indispensable que les deux variables soient déclarées de façon qu'elles présentent le même \emph{offset} à partir de l'adresse de début de leur banc.}
+
+On déclare donc deux variables :
+\begin{itemize}
+  \item la première \texttt{W\_STATUS\_TEMP}, de dimension 2, pour sauver \texttt{W} et \texttt{STATUS} ; cette variable doit être déclarée doit être déclarée dans le banc 0, qui s'appelle générallement \texttt{gpr0} ; 
+  \item \texttt{W\_TEMP\_1} pour sauver \texttt{W}, de dimension 1 ; cette variable doit être déclarée dans le banc 1, qui s'appelle générallement \texttt{gpr1}.
+
+\end{itemize}
+
+Rappelons que ces deux variables doivent présenter le même \emph{offset} à partir de l'adresse de début de leur banc : par exemple si \texttt{W\_STATUS\_TEMP} est à l'adresse 0x20, alors \texttt{W\_TEMP\_1} doit résider à l'adresse 0xA0.
+
+Le code Piccolo est le suivant :
 \begin{lstlisting}[language=piccolo]
 midrange interrupt3 "16F873" :
 ram gpr0 {
-  byte itSave0 [2]
+  byte W_STATUS_TEMP [2]
 }
 ram gpr1 {
-  byte itsave1
+  byte W_TEMP_1
 }
-interrupt contextsave itSave0, itsave1 {
+interrupt contextsave W_STATUS_TEMP, W_TEMP_1 {
   instructions
 }
 ...
@@ -958,15 +990,15 @@ end
 Et le code engendré pour la routine d'interruption est :
 \begin{lstlisting}[language=assembleur]
   ORG 0x4
-  MOVWF itSave0
+  MOVWF W_STATUS_TEMP
   SWAPF STATUS, W
   CLRF STATUS
-  MOVWF itSave0 + 0x1
-  instructions
-  SWAPF itSave0 + 0x1, W
+  MOVWF W_STATUS_TEMP + 0x1
+    instructions
+  SWAPF W_STATUS_TEMP + 0x1, W
   MOVWF STATUS
-  SWAPF itSave0, F
-  SWAPF itSave0, W
+  SWAPF W_STATUS_TEMP, F
+  SWAPF W_STATUS_TEMP, W
   RETFIE
 \end{lstlisting}
 
@@ -975,16 +1007,29 @@ Et le code engendré pour la routine d'interruption est :
 
 
 ~\\
-\textbf{Situation (4) : aucune mémoire commune à tous les bancs, programme sur plusieurs pages.} Le code Piccolo est le suivant :
+\textbf{Situation (4) : le micro-contrôleur ne possède pas de zone mémoire commune à tous les bancs, le code occupe plusieurs pages de la mémoire programme, et le sous-programme d'interruption invoque \assembleur{CALL} ou \assembleur{GOTO}.} Il faut dans ce cas donc sauver \texttt{W}, \texttt{STATUS} et \texttt{PCLATH}.
+
+Cette situation est celle du 16F873. Ce micro-contrôleur possède 4 bancs mémoire, la zone RAM du banc 2 étant un miroir de la zone RAM du banc 0, et la zone RAM du banc 3 étant un miroir de la zone RAM du banc 1. Au moment où l'interruption survient, la sélection courante des bancs est imprévisible, aussi la sauvegarde effectif de \texttt{W} est effectuée soit dans le banc 0, soit dans le banc 1. \textbf{Il est donc indispensable que les deux variables soient déclarées de façon qu'elles présentent le même \emph{offset} à partir de l'adresse de début de leur banc.}
+
+On déclare donc deux variables :
+\begin{itemize}
+  \item la première \texttt{W\_STATUS\_PCLATH\_TEMP}, de dimension 3, pour sauver \texttt{W}, \texttt{STATUS} et \texttt{PCLATH} ; cette variable doit être déclarée doit être déclarée dans le banc 0, qui s'appelle générallement \texttt{gpr0} ; 
+  \item \texttt{W\_TEMP\_1} pour sauver \texttt{W}, de dimension 1 ; cette variable doit être déclarée dans le banc 1, qui s'appelle générallement \texttt{gpr1}.
+
+\end{itemize}
+
+Rappelons que ces deux variables doivent présenter le même \emph{offset} à partir de l'adresse de début de leur banc : par exemple si \texttt{W\_STATUS\_TEMP} est à l'adresse 0x20, alors \texttt{W\_TEMP\_1} doit résider à l'adresse 0xA0.
+
+Le code Piccolo est le suivant :
 \begin{lstlisting}[language=piccolo]
-midrange interrupt4 "16F873" :
+midrange interrupt3 "16F873" :
 ram gpr0 {
-  byte itSave0 [3]
+  byte W_STATUS_PCLATH_TEMP [3]
 }
 ram gpr1 {
-  byte itsave1
+  byte W_TEMP_1
 }
-interrupt contextsave itSave0, itsave1 {
+interrupt contextsave W_STATUS_PCLATH_TEMP, W_TEMP_1 {
   instructions
 }
 ...
@@ -994,21 +1039,23 @@ end
 Et le code engendré pour la routine d'interruption est :
 \begin{lstlisting}[language=assembleur]
   ORG 0x4
-  MOVWF itSave0
+  MOVWF W_STATUS_PCLATH_TEMP
   SWAPF STATUS, W
   CLRF STATUS
-  MOVWF itSave0 + 0x1
-  MOVF PCLATH, W
-  MOVWF itSave0 + 0x2
-  CLRF PCLATH
-  instructions
-  MOVF itSave0 + 0x2, W
+  MOVWF W_STATUS_PCLATH_TEMP + 0x1
+  MOVF  PCLATH, W
+  MOVWF W_STATUS_PCLATH_TEMP + 0x2
+  CLRF  PCLATH
+    instructions
+  MOVF  W_STATUS_PCLATH_TEMP + 0x2, W
   MOVWF PCLATH
-  SWAPF itSave0 + 0x1, W
+  SWAPF W_STATUS_PCLATH_TEMP + 0x1, W
   MOVWF STATUS
-  SWAPF itSave0, F
-  SWAPF itSave0, W
-  RETFIE\end{lstlisting}
+  SWAPF W_STATUS_TEMP, F
+  SWAPF W_STATUS_TEMP, W
+  RETFIE
+\end{lstlisting}
+
 
 
 
