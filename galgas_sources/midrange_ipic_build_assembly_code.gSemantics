@@ -325,7 +325,7 @@ routine midrange_build_assembly_code
   !@string outAssemblyCode
 :
   outAssemblyCode := "  errorlevel -302 ; No Warning on registers not in bank 0\n" ; 
-  outAssemblyCode := "  errorlevel -306 ; No Warning on crossing page boundary\n\n" ; 
+  outAssemblyCode .= "  errorlevel -306 ; No Warning on crossing page boundary\n\n" ; 
   outAssemblyCode .= "  PROCESSOR " . inProcessorName . "\n\n" ;
 #--- Code
   outAssemblyCode .= ";--- Code\n" ;

@@ -26,13 +26,13 @@ configuration {
 #---------------------------------------------------------------*
 
 ram gprnobnk {
-  byte sauveA
-  byte sauveB
+  byte W_TEMP
+  byte STATUS_TEMP
 }
 
 #---------------------------------------------------------------*
 
-interrupt contextsave sauveA, sauveB {
+interrupt contextsave W_TEMP, STATUS_TEMP {
 #--- Timer 2 interrupt ack
   bcf PIR1.TMR2IF
 #--- Toggle led

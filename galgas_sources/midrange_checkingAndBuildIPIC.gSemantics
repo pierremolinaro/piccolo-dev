@@ -1369,7 +1369,7 @@ routine build_midrange_assembly_instruction_list
   ??@uint inTotalPageCount
   ??@uint inTotalBankCount
   ??@sint inROMSize
-  ??@bool inHasSharedRAMBank
+  ??@string inSharedRAMBankName
   ??@registerTable inRegisterTable
   ??@midrange_model inPiccoloModel
   ??@bool inHasInterrupt
@@ -1428,7 +1428,7 @@ routine build_midrange_assembly_instruction_list
     !inPiccoloModel
     !inHasInterrupt
     !inRegisterTable
-    !inHasSharedRAMBank
+    !inSharedRAMBankName
     !routineMap
     !inTotalBankCount
     !constantMap
@@ -1529,8 +1529,8 @@ local routine interruptRoutineShouldSavePCLATH
       error mPage:"invalid value (". [[mPage uint] string] . "); the device has " . [inTotalPageCount string] . " 2k page(s) on rom" ;
     end if ;
   end foreach ;
-  if outShouldSavePCLATH then
-  ioListFileContents .= "  No, program uses only page 0.\n" ;
+  if not outShouldSavePCLATH then
+    ioListFileContents .= "  No, program uses only page 0.\n" ;
   end if ;
 #--- Evaluate if interrupt routine uses GOTO or CALL (need to save PCLATH ?)
   if outShouldSavePCLATH then
@@ -1559,7 +1559,7 @@ local routine handleInterruptRoutine
   ??@midrange_model inPiccoloModel
   ??@bool inHasInterrupt
   ??@registerTable inRegisterTable
-  ??@bool inHasSharedRAMBank
+  ??@string inSharedRAMBankName
   ??@routineMap inRoutineMap
   ??@uint inTotalBankCount
   ??@constantMap inConstantMap
@@ -1569,42 +1569,6 @@ local routine handleInterruptRoutine
   ?!@string ioListFileContents
   !@midrange_intermediate_instructionList outGeneratedInstructionList
 :
-  if inHasInterrupt then
-    ioListFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n" ;
-    ioListFileContents .= "*" . ["INTERRUPT ROUTINE" stringByLeftAndRightPadding !77 !' '] . "*\n" ;
-    ioListFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n\n" ;
-  #-------------------------------- Should save PCLATH ?
-    interruptRoutineShouldSavePCLATH
-      !inPiccoloModel
-      !inTotalPageCount
-      !?ioListFileContents
-      ?@bool shouldSavePCLATH
-    ;
-
-
-
-
-
-  end if ;
-
-
-
-
-
-
-
-
-
-
-
-
-#-------------------------------- Should save PCLATH ?
-  interruptRoutineShouldSavePCLATH
-    !inPiccoloModel
-    !inTotalPageCount
-    !?ioListFileContents
-    ?@bool shouldSavePCLATH
-  ;
 #-------------------------------- Check and translate interrupt routine
   outGeneratedInstructionList := [@midrange_intermediate_instructionList emptyList] ;
 #--- At zero, generate 'jump main' instruction
@@ -1616,9 +1580,20 @@ local routine handleInterruptRoutine
   ] ;
 #---
   if inHasInterrupt then
+    ioListFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n" ;
+    ioListFileContents .= "*" . ["INTERRUPT ROUTINE" stringByLeftAndRightPadding !77 !' '] . "*\n" ;
+    ioListFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n\n" ;
+  #-------------------------------- Should save PCLATH ?
+    interruptRoutineShouldSavePCLATH
+      !inPiccoloModel
+      !inTotalPageCount
+      !?ioListFileContents
+      ?@bool shouldSavePCLATH
+    ;
+  #---
     outGeneratedInstructionList += ![@midrange_intermediate_pseudo_ORG new !0x4] ;
     foreach [inPiccoloModel mInterruptDefinitionList] do
-      if inHasSharedRAMBank then
+      if inSharedRAMBankName != "" then
         generateInterruptRoutineForControllerWithSharedRAM
           !inTotalBankCount
           !inRegisterTable
@@ -1670,9 +1645,7 @@ local routine generateInterruptRoutineForControllerWithSharedRAM
   ?!@string ioGenerationOptimizationMessages
 :
 #--- Check firstSaveRegister register is defined in RAM, is accessible from any bank, and has a size of 1
-  @uintlist registerAddressList ;
-  @uint size ;
-  [inRegisterTable searchKey ! inFirstSaveRegister ?registerAddressList ?size ?* ?*] ;
+  [inRegisterTable searchKey !inFirstSaveRegister ?@uintlist registerAddressList ?@uint size ?* ?*] ;
   @uint bankAccessibility := 0 ;
   foreach registerAddressList do
     bankAccessibility := bankAccessibility | (1 << (mValue >> 7)) ;
@@ -1680,9 +1653,7 @@ local routine generateInterruptRoutineForControllerWithSharedRAM
   if (bankAccessibility + 1) != (1 << inTotalBankCount) then
     error inFirstSaveRegister: "the '" . inFirstSaveRegister . "' variable cannot be accessed from any bank" ;
   end if ;
-  if inNeedsToSavePCLATH & (size != 2) then
-    error inFirstSaveRegister: "the '" . inFirstSaveRegister . "' variable size is " . [size string] . " (it should be 2)" ;
-  elsif (not inNeedsToSavePCLATH) & (size != 1) then
+  if size != 1 then
     error inFirstSaveRegister: "the '" . inFirstSaveRegister . "' variable size is " . [size string] . " (it should be 1)" ;
   end if ;
 #--- Check secondSaveRegister register is defined in RAM, is accessible from any bank, and has a size of 1
@@ -1691,10 +1662,12 @@ local routine generateInterruptRoutineForControllerWithSharedRAM
   foreach registerAddressList do
     bankAccessibility := bankAccessibility | (1 << (mValue >> 7)) ;
   end foreach ;
-  if (bankAccessibility + 1) != (1 << inTotalBankCount) then
-    error inSecondSaveRegister: "the '" . inSecondSaveRegister . "' variable cannot be accessed from any bank" ;
+  if (bankAccessibility & 1) == 0 then
+    error inSecondSaveRegister: "the '" . inSecondSaveRegister . "' variable cannot be accessed from bank 0" ;
   end if ;
-  if size != 1 then
+  if inNeedsToSavePCLATH & (size != 2) then
+    error inSecondSaveRegister: "the '" . inSecondSaveRegister . "' variable size is " . [size string] . " (it should be 2)" ;
+  elsif (not inNeedsToSavePCLATH) & (size != 1) then
     error inSecondSaveRegister: "the '" . inSecondSaveRegister . "' variable size is " . [size string] . " (it should be 1)" ;
   end if ;
 #--- Generate save context instructions
@@ -1712,7 +1685,7 @@ local routine generateInterruptRoutineForControllerWithSharedRAM
     @midrange_intermediate_registerExpression second_IPICregisterDescription ;
     [second_register resolveMidrangeAccess
       !inTotalBankCount
-      ![@uint max]
+      !0 # Bank 0 is currently selected
       !inRegisterTable
       ?second_IPICregisterDescription
       ?*
@@ -1727,18 +1700,16 @@ local routine generateInterruptRoutineForControllerWithSharedRAM
       ?STATUS_IPICregisterDescription
       ?*
     ] ;
-    ioGeneratedInstructionList += ![@midrange_intermediate_instruction_F new !here ![@midrange_F_instruction_base_code MOVWF] !second_IPICregisterDescription] ;
+    ioGeneratedInstructionList += ![@midrange_intermediate_instruction_F new !here ![@midrange_F_instruction_base_code MOVWF] !first_IPICregisterDescription] ;
     ioGeneratedInstructionList += ![@midrange_intermediate_instruction_FD new !here ![@midrange_instruction_FD_base_code SWAPF] !STATUS_IPICregisterDescription !true] ;
     ioGeneratedInstructionList += ![@midrange_intermediate_instruction_F new !here ![@midrange_F_instruction_base_code CLRF] !STATUS_IPICregisterDescription] ;
-    ioGeneratedInstructionList += ![@midrange_intermediate_instruction_F new !here ![@midrange_F_instruction_base_code MOVWF] !first_IPICregisterDescription] ;
+    ioGeneratedInstructionList += ![@midrange_intermediate_instruction_F new !here ![@midrange_F_instruction_base_code MOVWF] !second_IPICregisterDescription] ;
     if inNeedsToSavePCLATH then
-      @registerExpression first_register_second_byte [new ! inFirstSaveRegister ![@luint new !1 !here]] ;
-      @midrange_intermediate_registerExpression first_var_second_byte_IPICregisterDescription ;
-      [first_register_second_byte resolveMidrangeAccess
+      [[@registerExpression new !inSecondSaveRegister ![@luint new !1 !here]] resolveMidrangeAccess
         !inTotalBankCount
         !0
         !inRegisterTable
-        ?first_var_second_byte_IPICregisterDescription
+        ?@midrange_intermediate_registerExpression register_for_saving_PCLATH_description
         ?*
       ] ;
     #--- Get values for PCLATH register
@@ -1752,7 +1723,7 @@ local routine generateInterruptRoutineForControllerWithSharedRAM
         ?*
       ] ;
       ioGeneratedInstructionList += ![@midrange_intermediate_instruction_FD new !here ![@midrange_instruction_FD_base_code MOVF] !PCLATH_IPICregisterDescription !true] ;
-      ioGeneratedInstructionList += ![@midrange_intermediate_instruction_F new !here ![@midrange_F_instruction_base_code MOVWF] !first_var_second_byte_IPICregisterDescription] ;
+      ioGeneratedInstructionList += ![@midrange_intermediate_instruction_F new !here ![@midrange_F_instruction_base_code MOVWF] !register_for_saving_PCLATH_description] ;
       ioGeneratedInstructionList += ![@midrange_intermediate_instruction_F new !here ![@midrange_F_instruction_base_code CLRF] !PCLATH_IPICregisterDescription] ;
     end if ;
   #--- Parse instruction list
@@ -1776,13 +1747,11 @@ local routine generateInterruptRoutineForControllerWithSharedRAM
       error inEndOfInterruptLocation:"execution cannot reach the end of the interrupt routine" ;
     end if ;
     if inNeedsToSavePCLATH then
-      @registerExpression first_register_second_byte [new ! inFirstSaveRegister ![@luint new !1 !here]] ;
-      @midrange_intermediate_registerExpression first_var_second_byte_IPICregisterDescription ;
-      [first_register_second_byte resolveMidrangeAccess
+      [[@registerExpression new ! inSecondSaveRegister ![@luint new !1 !here]] resolveMidrangeAccess
         !inTotalBankCount
         !0
         !inRegisterTable
-        ?first_var_second_byte_IPICregisterDescription
+        ?@midrange_intermediate_registerExpression register_for_saving_PCLATH_description
         ?*
       ] ;
     #--- Get values for PCLATH register
@@ -1795,13 +1764,13 @@ local routine generateInterruptRoutineForControllerWithSharedRAM
         ?PCLATH_IPICregisterDescription
         ?*
       ] ;
-      ioGeneratedInstructionList += ![@midrange_intermediate_instruction_FD new !here ![@midrange_instruction_FD_base_code MOVF] !first_var_second_byte_IPICregisterDescription !true] ;
+      ioGeneratedInstructionList += ![@midrange_intermediate_instruction_FD new !here ![@midrange_instruction_FD_base_code MOVF] !register_for_saving_PCLATH_description !true] ;
       ioGeneratedInstructionList += ![@midrange_intermediate_instruction_F new !here ![@midrange_F_instruction_base_code MOVWF] !PCLATH_IPICregisterDescription] ;
     end if ;
   #--- Restore context
-    ioGeneratedInstructionList += ![@midrange_intermediate_instruction_FD new !here ![@midrange_instruction_FD_base_code SWAPF] !first_IPICregisterDescription !true] ;
+    ioGeneratedInstructionList += ![@midrange_intermediate_instruction_FD new !here ![@midrange_instruction_FD_base_code SWAPF] !second_IPICregisterDescription !true] ;
     ioGeneratedInstructionList += ![@midrange_intermediate_instruction_F new !here ![@midrange_F_instruction_base_code MOVWF] ! STATUS_IPICregisterDescription] ;
-    ioGeneratedInstructionList += ![@midrange_intermediate_instruction_FD new !here ![@midrange_instruction_FD_base_code SWAPF] !second_IPICregisterDescription !false] ;
+    ioGeneratedInstructionList += ![@midrange_intermediate_instruction_FD new !here ![@midrange_instruction_FD_base_code SWAPF] !first_IPICregisterDescription !false] ;
     ioGeneratedInstructionList += ![@midrange_intermediate_instruction_FD new !here ![@midrange_instruction_FD_base_code SWAPF] !second_IPICregisterDescription !true] ;
   #--- Add REFFIE
     ioGeneratedInstructionList += ![@midrange_intermediate_instruction_RETFIE new !here] ;
@@ -1947,12 +1916,11 @@ local routine generateInterruptRoutineForControllerWithoutSharedRAM
     end if ;
     if inNeedsToSavePCLATH then
       @registerExpression first_register_third_byte [new !inFirstSaveRegister ![@luint new !2 !here]] ;
-      @midrange_intermediate_registerExpression first_var_second_byte_IPICregisterDescription ;
       [first_register_third_byte resolveMidrangeAccess
         !inTotalBankCount
         !0
         !inRegisterTable
-        ?first_var_second_byte_IPICregisterDescription
+        ?@midrange_intermediate_registerExpression first_var_second_byte_IPICregisterDescription
         ?*
       ] ;
     #--- Get values for PCLATH register

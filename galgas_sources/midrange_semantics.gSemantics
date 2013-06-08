@@ -64,7 +64,7 @@ routine midrange_analyze ??@midrange_model inPiccoloModel ??@string inSourceFile
     !([[piccoloDeviceModel mRomSize] uint] + 2047) / 2048
     ![[piccoloDeviceModel mBankCount] uint]
     ![[[piccoloDeviceModel mRomSize] uint] sint]
-    ![piccoloDeviceModel mSharedBankName] != ""
+    !piccoloDeviceModel->mSharedBankName
     !registerTable
     !inPiccoloModel
     !hasInterrupt
