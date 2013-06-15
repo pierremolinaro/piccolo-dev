@@ -1,0 +1,115 @@
+semantics pic18_mnemonics :
+import "pic18_metamodel.gSemantics" ;
+
+#----------------------------------------------------*
+
+reader @instruction_FDA_base_code mnemonic -> @string outResult :
+  switch selfcopy
+    when ADDWF : outResult := "ADDWF" ;
+    when ADDWFC : outResult := "ADDWFC" ;
+    when ANDWF : outResult := "ANDWF" ;
+    when COMF : outResult := "COMF" ;
+    when DECF : outResult := "DECF" ;
+    when DECFSZ : outResult := "DECFSZ" ;
+    when DCFSNZ : outResult := "DCFSNZ" ;
+    when INCF : outResult := "INCF" ;
+    when INCFSZ : outResult := "INCFSZ" ;
+    when INFSNZ : outResult := "INFSNZ" ;
+    when IORWF : outResult := "IORWF" ;
+    when MOVF : outResult := "MOVF" ;
+    when RLCF : outResult := "RLCF" ;
+    when RLNCF : outResult := "RLNCF" ;
+    when RRCF : outResult := "RRCF" ;
+    when RRNCF : outResult := "RRNCF" ;
+    when SUBFWB : outResult := "SUBFWB" ;
+    when SUBWF : outResult := "SUBWF" ;
+    when SUBWFB : outResult := "SUBWFB" ;
+    when SWAPF : outResult := "SWAPF" ;
+    when XORWF : outResult := "XORWF" ;
+  end switch ;
+end reader ;
+
+#----------------------------------------------------*
+
+reader @FA_instruction_base_code mnemonic -> @string outResult :
+  switch selfcopy
+    when CLRF    : outResult := "CLRF" ;
+    when CPFSEQ : outResult := "CPFSEQ" ;
+    when CPFSGT : outResult := "CPFSGT" ;
+    when CPFSLT : outResult := "CPFSLT" ;
+    when MOVWF  : outResult := "MOVWF" ;
+    when MULWF  : outResult := "MULWF" ;
+    when NEGF   : outResult := "NEGF";
+    when SETF   : outResult := "SETF"  ;
+    when TSTFSZ : outResult := "TSTFSZ" ;
+  end switch ;
+end reader ;
+
+#----------------------------------------------------*
+
+reader @bit_oriented_op mnemonic  -> @string outResult :
+  switch selfcopy
+    when BCF : outResult := "BCF" ;
+    when BSF : outResult := "BSF" ;
+    when BTG : outResult := "BTG" ;
+  end switch ;
+end reader ;
+
+#----------------------------------------------------*
+
+reader @conditional_branch mnemonic  -> @string outResult :
+  switch selfcopy
+    when bz   : outResult := "BZ" ;
+    when bnz  : outResult := "BNZ" ;
+    when bn   : outResult := "BN" ;
+    when bnn  : outResult := "BNN" ;
+    when bc   : outResult := "BC" ;
+    when bnc  : outResult := "BNC" ;
+    when bov  : outResult := "BOV" ;
+    when bnov : outResult := "BNOV" ;
+  end switch ;
+end reader ;
+
+#----------------------------------------------------*
+
+routine getComplementaryBcc ??@conditional_branch inConditionalBranch !@conditional_branch outComplementary :
+  switch inConditionalBranch
+  when bz   : outComplementary := [@conditional_branch bnz] ;
+  when bnz  : outComplementary := [@conditional_branch bz] ;
+  when bn   : outComplementary := [@conditional_branch bnn] ;
+  when bnn  : outComplementary := [@conditional_branch bn] ;
+  when bc   : outComplementary := [@conditional_branch bnc] ;
+  when bnc  : outComplementary := [@conditional_branch bc] ;
+  when bov  : outComplementary := [@conditional_branch bnov] ;
+  when bnov : outComplementary := [@conditional_branch bov] ;
+  end switch ;
+end routine ;
+
+#----------------------------------------------------*
+
+reader @literal_instruction_opcode mnemonic -> @string outResult :
+  switch selfcopy
+    when ADDLW : outResult := "ADDLW" ;
+    when ANDLW : outResult := "ANDLW" ;
+    when IORLW : outResult := "IORLW" ;
+    when MOVLW : outResult := "MOVLW" ;
+    when MULLW : outResult := "MULLW" ;
+    when SUBLW : outResult := "SUBLW" ;
+    when XORLW : outResult := "XORLW" ;
+  end switch ;
+end reader ;
+
+#----------------------------------------------------*
+
+reader @tableAccessOption mnemonic  -> @string outResult :
+  switch selfcopy
+    when simpleAccess  : outResult := "*" ;
+    when postIncrement : outResult := "*+" ;
+    when postDecrement : outResult := "*-" ;
+    when preIncrement  : outResult := "+*" ;
+  end switch ;
+end reader ;
+
+#----------------------------------------------------*
+
+end semantics ;

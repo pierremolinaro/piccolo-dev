@@ -1,5 +1,5 @@
 semantics midrange_optimizations :
-import "ipic_generic.gSemantics" ;
+import "intermediate_generic.gSemantics" ;
 import "midrange_display_intermediate_instruction.gSemantics" ;
 import "midrange_intermediate_instruction_set_current_address.gSemantics" ;
 

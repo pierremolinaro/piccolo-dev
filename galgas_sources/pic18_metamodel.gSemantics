@@ -52,63 +52,6 @@ enum @instruction_FDA_base_code {
 }{
 }
 
-reader @instruction_FDA_base_code mnemonic -> @string outResult :
-  switch selfcopy
-    when ADDWF : outResult := "ADDWF" ;
-    when ADDWFC : outResult := "ADDWFC" ;
-    when ANDWF : outResult := "ANDWF" ;
-    when COMF : outResult := "COMF" ;
-    when DECF : outResult := "DECF" ;
-    when DECFSZ : outResult := "DECFSZ" ;
-    when DCFSNZ : outResult := "DCFSNZ" ;
-    when INCF : outResult := "INCF" ;
-    when INCFSZ : outResult := "INCFSZ" ;
-    when INFSNZ : outResult := "INFSNZ" ;
-    when IORWF : outResult := "IORWF" ;
-    when MOVF : outResult := "MOVF" ;
-    when RLCF : outResult := "RLCF" ;
-    when RLNCF : outResult := "RLNCF" ;
-    when RRCF : outResult := "RRCF" ;
-    when RRNCF : outResult := "RRNCF" ;
-    when SUBFWB : outResult := "SUBFWB" ;
-    when SUBWF : outResult := "SUBWF" ;
-    when SUBWFB : outResult := "SUBWFB" ;
-    when SWAPF : outResult := "SWAPF" ;
-    when XORWF : outResult := "XORWF" ;
-  end switch ;
-end reader ;
-
-#----------------------------------------------------*
-
-routine getFDAinstructionBaseCode
-  ??@instruction_FDA_base_code inInstruction
-  !@uint outBaseCode
-:
-  switch inInstruction
-  when ADDWF : outBaseCode := 0x2400 ;
-  when ADDWFC : outBaseCode := 0x2000 ;
-  when ANDWF : outBaseCode := 0x1400 ;
-  when COMF : outBaseCode := 0x1C00 ;
-  when DECF : outBaseCode := 0x0400 ;
-  when DECFSZ : outBaseCode := 0x2C00 ;
-  when DCFSNZ : outBaseCode := 0x4C00 ;
-  when INCF : outBaseCode := 0x2800 ;
-  when INCFSZ : outBaseCode := 0x3C00 ;
-  when INFSNZ : outBaseCode := 0x4800 ;
-  when IORWF : outBaseCode := 0x1000 ;
-  when MOVF : outBaseCode := 0x5000 ;
-  when RLCF : outBaseCode := 0x3400 ;
-  when RLNCF : outBaseCode := 0x4400 ;
-  when RRCF : outBaseCode := 0x3000 ;
-  when RRNCF : outBaseCode := 0x4000 ;
-  when SUBFWB : outBaseCode := 0x5400 ;
-  when SUBWF : outBaseCode := 0x5C00 ;
-  when SUBWFB :  outBaseCode := 0x5800 ;
-  when SWAPF : outBaseCode := 0x3800 ;
-  when XORWF : outBaseCode := 0x1800 ;
-  end switch ;
-end routine ;
-
 #----------------------------------------------------*
 
 class @instruction_FDA extends @piccolo_instruction {
@@ -123,20 +66,6 @@ enum @FA_instruction_base_code {
   CLRF, CPFSEQ, CPFSGT, CPFSLT, MOVWF, MULWF, NEGF, SETF, TSTFSZ
 }{
 }
-
-reader @FA_instruction_base_code mnemonic -> @string outResult :
-  switch selfcopy
-    when CLRF    : outResult := "CLRF" ;
-    when CPFSEQ : outResult := "CPFSEQ" ;
-    when CPFSGT : outResult := "CPFSGT" ;
-    when CPFSLT : outResult := "CPFSLT" ;
-    when MOVWF  : outResult := "MOVWF" ;
-    when MULWF  : outResult := "MULWF" ;
-    when NEGF   : outResult := "NEGF";
-    when SETF   : outResult := "SETF"  ;
-    when TSTFSZ : outResult := "TSTFSZ" ;
-  end switch ;
-end reader ;
 
 #----------------------------------------------------*
 
@@ -159,14 +88,6 @@ enum @bit_oriented_op {
 }{
 }
 
-reader @bit_oriented_op mnemonic  -> @string outResult :
-  switch selfcopy
-    when BCF : outResult := "BCF" ;
-    when BSF : outResult := "BSF" ;
-    when BTG : outResult := "BTG" ;
-  end switch ;
-end reader ;
-
 #----------------------------------------------------*
 
 class @instruction_FBA extends @piccolo_instruction {
@@ -181,47 +102,6 @@ enum @conditional_branch {
   bz, bnz, bn, bnn, bc, bnc, bov, bnov
 }{
 }
-
-reader @conditional_branch mnemonic  -> @string outResult :
-  switch selfcopy
-    when bz   : outResult := "BZ" ;
-    when bnz  : outResult := "BNZ" ;
-    when bn   : outResult := "BN" ;
-    when bnn  : outResult := "BNN" ;
-    when bc   : outResult := "BC" ;
-    when bnc  : outResult := "BNC" ;
-    when bov  : outResult := "BOV" ;
-    when bnov : outResult := "BNOV" ;
-  end switch ;
-end reader ;
-
-reader @conditional_branch condition -> @string outResult :
-  switch selfcopy
-    when bz   : outResult := "Z" ;
-    when bnz  : outResult := "NZ" ;
-    when bn   : outResult := "N" ;
-    when bnn  : outResult := "NN" ;
-    when bc   : outResult := "C" ;
-    when bnc  : outResult := "NC" ;
-    when bov  : outResult := "OV" ;
-    when bnov : outResult := "NOV" ;
-  end switch ;
-end reader ;
-
-#----------------------------------------------------*
-
-routine getComplementaryBcc ??@conditional_branch inConditionalBranch !@conditional_branch outComplementary :
-  switch inConditionalBranch
-  when bz   : outComplementary := [@conditional_branch bnz] ;
-  when bnz  : outComplementary := [@conditional_branch bz] ;
-  when bn   : outComplementary := [@conditional_branch bnn] ;
-  when bnn  : outComplementary := [@conditional_branch bn] ;
-  when bc   : outComplementary := [@conditional_branch bnc] ;
-  when bnc  : outComplementary := [@conditional_branch bc] ;
-  when bov  : outComplementary := [@conditional_branch bnov] ;
-  when bnov : outComplementary := [@conditional_branch bov] ;
-  end switch ;
-end routine ;
 
 #----------------------------------------------------*
 
@@ -294,18 +174,6 @@ enum @literal_instruction_opcode {
 }{
 }
 
-reader @literal_instruction_opcode mnemonic -> @string outResult :
-  switch selfcopy
-    when ADDLW : outResult := "ADDLW" ;
-    when ANDLW : outResult := "ANDLW" ;
-    when IORLW : outResult := "IORLW" ;
-    when MOVLW : outResult := "MOVLW" ;
-    when MULLW : outResult := "MULLW" ;
-    when SUBLW : outResult := "SUBLW" ;
-    when XORLW : outResult := "XORLW" ;
-  end switch ;
-end reader ;
-
 #----------------------------------------------------*
 
 class @instruction_literalOperation extends @piccolo_instruction {
@@ -339,14 +207,6 @@ enum @tableAccessOption {
   simpleAccess, postIncrement, postDecrement, preIncrement
 }{
 }
-reader @tableAccessOption mnemonic  -> @string outResult :
-  switch selfcopy
-    when simpleAccess  : outResult := "*" ;
-    when postIncrement : outResult := "*+" ;
-    when postDecrement : outResult := "*-" ;
-    when preIncrement  : outResult := "+*" ;
-  end switch ;
-end reader ;
 
 #----------------------------------------------------*
 
@@ -380,15 +240,6 @@ enum @if_semi_colon_op {
 }{
 }
 
-reader @if_semi_colon_op mnemonic -> @string outResult :
-  switch selfcopy
-    when CPFSEQ : outResult := "CPFSEQ" ;
-    when CPFSGT : outResult := "CPFSGT" ;
-    when CPFSLT : outResult := "CPFSLT" ;
-    when TSTFSZ : outResult := "TSTFSZ" ;
-  end switch ;
-end reader ;
-
 #----------------------------------------------------*
 
 abstract class @instruction_IF_SEMI_COLON extends @piccolo_instruction {
@@ -409,23 +260,6 @@ class @instruction_IF_BitTest extends @instruction_IF_SEMI_COLON {
   @registerExpression mRegisterExpression ;
   @bitNumberExpression mBitNumber ;
 }
-
-method @instruction_IF_BitTest getBaseCode !@uint outBaseCode :
-  if mSkipIfSet then
-    outBaseCode := 0xA000 ; # BTFSS
-  else
-    outBaseCode := 0xB000 ; # BTFSC
-  end if ;
-end method ; 
-
-method @instruction_IF_BitTest getMnemonic !@string outMnemonic :
-  if mSkipIfSet then
-    outMnemonic := "BTFSS" ;
-  else
-    outMnemonic := "BTFSC" ;
-  end if ;
-end method ; 
-
 
 #----------------------------------------------------*
 
@@ -486,49 +320,6 @@ enum @registerComparison {
   notEqual, equal, greaterOrEqual, greater, lowerOrEqual, lower
 }{
 }
-
-reader @registerComparison mnemonic -> @string outResult :
-  switch selfcopy
-    when notEqual : outResult := "!=" ;
-    when equal    : outResult := "==" ;
-    when greaterOrEqual : outResult := ">=" ;
-    when greater : outResult := ">"  ;
-    when lowerOrEqual : outResult := "<="  ;
-    when lower : outResult := "<" ;
-  end switch ;
-end reader ;
-
-#----------------------------------------------------*
-
-routine getRegisterComparisonComplementary
-  ??@registerComparison inComparison
-  !@registerComparison outComparison
-:
-  switch inComparison
-    when notEqual : outComparison := [@registerComparison equal] ;
-    when equal : outComparison := [@registerComparison notEqual] ;
-    when greaterOrEqual : outComparison := [@registerComparison lower] ;
-    when greater : outComparison := [@registerComparison lowerOrEqual] ;
-    when lowerOrEqual : outComparison := [@registerComparison greater] ;
-    when lower : outComparison := [@registerComparison greaterOrEqual] ;
-  end switch ;
-end routine ;
-
-#----------------------------------------------------*
-
-routine getRegisterComparisonInstructionCount
-  ??@registerComparison inComparison
-  !@uint outInstructionCount
-:
-  switch inComparison
-    when notEqual       : outInstructionCount := 2 ;
-    when equal          : outInstructionCount := 3 ;
-    when greaterOrEqual : outInstructionCount := 2 ;
-    when greater        : outInstructionCount := 3 ;
-    when lowerOrEqual   : outInstructionCount := 2 ;
-    when lower          : outInstructionCount := 3 ;
-  end switch ;
-end routine ;
 
 #----------------------------------------------------*
 

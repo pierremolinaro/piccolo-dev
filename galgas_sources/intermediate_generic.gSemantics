@@ -1,4 +1,4 @@
-semantics ipic_generic :
+semantics intermediate_generic :
 import "piccoloDevice_semantics.gSemantics" ;
 
 #----------------------------------------------------------------------------*

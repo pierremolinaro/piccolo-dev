@@ -3,7 +3,7 @@ import "generic_metamodel.gSemantics" ;
 import "baseline_ast.gSemantics" ;
 import "baseline_intermediate_classes.gSemantics" ;
 import "piccoloDevice_semantics.gSemantics" ;
-import "ipic_generic.gSemantics" ;
+import "intermediate_generic.gSemantics" ;
 import "piccolo_options.gOption" ;
 import "baseline_intermediate_instruction_length.gSemantics" ;
 

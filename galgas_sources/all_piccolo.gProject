@@ -15,7 +15,7 @@ project all_piccolo (2:0:1) -> "piccolo" :
   lexique   "piccolo_lexique.gLexique" ;
 
   semantics "generic_metamodel.gSemantics" ;
-  semantics "ipic_generic.gSemantics" ;
+  semantics "intermediate_generic.gSemantics" ;
   semantics "piccolo_config.gSemantics" ;
 
 #--- Base Line
@@ -52,17 +52,18 @@ project all_piccolo (2:0:1) -> "piccolo" :
 
 #--- PIC 18
   semantics "pic18_metamodel.gSemantics" ;
+  semantics "pic18_mnemonics.gSemantics" ;
   syntax    "pic18_syntax.gSyntax" ;
   syntax    "pic18_start_symbol.gSyntax" ;
   syntax    "pic18_bootloader_syntax.gSyntax" ;
   grammar   "pic18_grammar.gGrammar" ;
   grammar   "pic18_include_grammar.gGrammar" ;
-  semantics "ipic18_metamodel.gSemantics" ;
+  semantics "pic18_intermediate_classes.gSemantics" ;
   semantics "pic18_checkingAndBuildIPIC.gSemantics" ;
-  semantics "ipic18_optimizations.gSemantics" ;
-  semantics "ipc18_convert_relatives.gSemantics" ;
-  semantics "ipic18_build_assembly_code.gSemantics" ;
-  semantics "ipic18_build_binary_code.gSemantics" ;
+  semantics "pic18_optimizations.gSemantics" ;
+  semantics "pic18_convert_relatives.gSemantics" ;
+  semantics "pic18_build_assembly_code.gSemantics" ;
+  semantics "pic18_build_binary_code.gSemantics" ;
   semantics "pic18_metrics_analysis.gSemantics" ;
   semantics "pic18_semantics.gSemantics" ;
   semantics "pic18_bootloader_specification_semantics.gSemantics" ;
