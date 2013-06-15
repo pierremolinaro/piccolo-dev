@@ -1,0 +1,598 @@
+semantics pic18_metrics_analysis :
+import "pic18_metamodel.gSemantics" ;
+import "piccolo_options.gOption" ;
+import "ipic18_metamodel.gSemantics" ;
+import "ipic18_optimizations.gSemantics" ;
+
+#----------------------------------------------------------------------------*
+#                                                                            *
+#               R O U T I N E    C A L L    G R A P H                        *
+#                                                                            *
+#----------------------------------------------------------------------------*
+
+graph @routineCallGraph (@stringlist) {
+  insert addNode error message "the '%K' routine is already declared at %L" ;
+}
+
+#---------------------------------------------------------------------------*
+
+method @piccolo_instruction enterCallInGraph
+  ?@lstring unused inRoutineName
+  ?!@routineCallGraph unused ioRoutineCallGraph
+:
+end method ;
+
+#---------------------------------------------------------------------------*
+
+override method @instruction_JSR enterCallInGraph
+  ?@lstring inRoutineName
+  ?!@routineCallGraph ioRoutineCallGraph
+:
+  [!?ioRoutineCallGraph addArc !inRoutineName !mTargetLabel] ;
+end method ;
+
+#---------------------------------------------------------------------------*
+
+override method @instruction_computed_rcall enterCallInGraph
+  ?@lstring inRoutineName
+  ?!@routineCallGraph ioRoutineCallGraph
+:
+  foreach mTargetLabels do
+    [!?ioRoutineCallGraph addArc !inRoutineName !mValue] ;
+  end foreach ;
+end method ;
+
+#---------------------------------------------------------------------------*
+
+override method @instruction_computed_goto enterCallInGraph
+  ?@lstring inRoutineName
+  ?!@routineCallGraph ioRoutineCallGraph
+:
+  foreach mTargetLabels do
+    [!?ioRoutineCallGraph addArc !inRoutineName !mValue] ;
+  end foreach ;
+end method ;
+
+#---------------------------------------------------------------------------*
+
+override method @instruction_FOREVER enterCallInGraph
+  ?@lstring inRoutineName
+  ?!@routineCallGraph ioRoutineCallGraph
+:
+  exploreInstructionList !mInstructionList !inRoutineName !?ioRoutineCallGraph ;
+end method ;
+
+#---------------------------------------------------------------------------*
+
+override method @instruction_structured_if enterCallInGraph
+  ?@lstring inRoutineName
+  ?!@routineCallGraph ioRoutineCallGraph
+:
+  exploreInstructionList !mThenInstructionList !inRoutineName !?ioRoutineCallGraph ;
+  exploreInstructionList !mElseInstructionList !inRoutineName !?ioRoutineCallGraph ;
+end method ;
+
+#---------------------------------------------------------------------------*
+
+override method @instruction_do_while enterCallInGraph
+  ?@lstring inRoutineName
+  ?!@routineCallGraph ioRoutineCallGraph
+:
+  exploreInstructionList !mRepeatedInstructionList !inRoutineName !?ioRoutineCallGraph ;
+  foreach mWhilePartList do
+    exploreInstructionList !mInstructionList !inRoutineName !?ioRoutineCallGraph ;
+  end foreach ;
+end method ;
+
+#---------------------------------------------------------------------------*
+
+override method @instruction_IF_SEMI_COLON enterCallInGraph
+  ?@lstring inRoutineName
+  ?!@routineCallGraph ioRoutineCallGraph
+:
+  [mInstruction enterCallInGraph !inRoutineName !?ioRoutineCallGraph] ;
+end method ;
+
+#---------------------------------------------------------------------------*
+
+local routine exploreInstructionList
+  ?@instructionList inInstructionList
+  ?@lstring inRoutineName
+  ?!@routineCallGraph ioRoutineCallGraph
+:
+  foreach inInstructionList do
+    [mInstruction enterCallInGraph !inRoutineName !?ioRoutineCallGraph] ;
+  end foreach ;
+end routine ;
+
+#----------------------------------------------------------------------------*
+#                                                                            *
+#               C O M P U T E    S T A C K    N E E D S                      *
+#                                                                            *
+#----------------------------------------------------------------------------*
+
+map @symbolTableForStackLevels {
+  @uint mStackLevel ;
+  insert insertKey error message "the '%K' label is already declared in %L" ;
+  search searchKey error message "the '%K' label is not declared" ;
+}
+
+#----------------------------------------------------------------------------*
+
+method @ipic18_instruction exploreStackNeeds
+  ??@ipic18_instructionList unused inGeneratedInstructionList
+  ??@symbolTableForOptimizations unused inSymbolTable
+  ??@symbolTableForStackLevels unused inSymbolTableForStackLevels
+  ??@uint unused inCurrentLine
+  ?!@uint unused ioStackNeeds
+  ?!@bool unused ioExplores
+  ?!@stringset unused ioExploredLineSet
+:
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @ipic18_instruction_RETURN exploreStackNeeds
+  ??@ipic18_instructionList unused inGeneratedInstructionList
+  ??@symbolTableForOptimizations unused inSymbolTable
+  ??@symbolTableForStackLevels unused inSymbolTableForStackLevels
+  ??@uint unused inCurrentLine
+  ?!@uint unused ioStackNeeds
+  ?!@bool ioExplores
+  ?!@stringset unused ioExploredLineSet
+:
+  ioExplores := false ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @ipic18_instruction_RETURN_NOT_OPTIMIZABLE exploreStackNeeds
+  ??@ipic18_instructionList unused inGeneratedInstructionList
+  ??@symbolTableForOptimizations unused inSymbolTable
+  ??@symbolTableForStackLevels unused inSymbolTableForStackLevels
+  ??@uint unused inCurrentLine
+  ?!@uint unused ioStackNeeds
+  ?!@bool ioExplores
+  ?!@stringset unused ioExploredLineSet
+:
+  ioExplores := false ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @ipic18_instruction_RETFIE exploreStackNeeds
+  ??@ipic18_instructionList unused inGeneratedInstructionList
+  ??@symbolTableForOptimizations unused inSymbolTable
+  ??@symbolTableForStackLevels unused inSymbolTableForStackLevels
+  ??@uint unused inCurrentLine
+  ?!@uint unused ioStackNeeds
+  ?!@bool ioExplores
+  ?!@stringset unused ioExploredLineSet
+:
+  ioExplores := false ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @ipic18_instruction_RETLW exploreStackNeeds
+  ??@ipic18_instructionList unused inGeneratedInstructionList
+  ??@symbolTableForOptimizations unused inSymbolTable
+  ??@symbolTableForStackLevels unused inSymbolTableForStackLevels
+  ??@uint unused inCurrentLine
+  ?!@uint unused ioStackNeeds
+  ?!@bool ioExplores
+  ?!@stringset unused ioExploredLineSet
+:
+  ioExplores := false ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @ipic_JSR exploreStackNeeds
+  ??@ipic18_instructionList unused inGeneratedInstructionList
+  ??@symbolTableForOptimizations unused inSymbolTable
+  ??@symbolTableForStackLevels inSymbolTableForStackLevels
+  ??@uint unused inCurrentLine
+  ?!@uint ioStackNeeds
+  ?!@bool unused ioExplores
+  ?!@stringset unused ioExploredLineSet
+:
+  [inSymbolTableForStackLevels searchKey !mTargetLabel ?@uint routineNeeds] ;
+  if ioStackNeeds < routineNeeds then
+    ioStackNeeds := routineNeeds ;
+  end if ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @ipic18_instruction_computed_retlw exploreStackNeeds
+  ??@ipic18_instructionList unused inGeneratedInstructionList
+  ??@symbolTableForOptimizations unused inSymbolTable
+  ??@symbolTableForStackLevels unused inSymbolTableForStackLevels
+  ??@uint unused inCurrentLine
+  ?!@uint ioStackNeeds
+  ?!@bool ioExplores
+  ?!@stringset unused ioExploredLineSet
+:
+  if ioStackNeeds == 0 then
+    ioStackNeeds := 1 ;
+  end if ;
+  ioExplores := false ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @ipic_JUMP exploreStackNeeds
+  ??@ipic18_instructionList inGeneratedInstructionList
+  ??@symbolTableForOptimizations inSymbolTable
+  ??@symbolTableForStackLevels inSymbolTableForStackLevels
+  ??@uint unused inCurrentLine
+  ?!@uint ioStackNeeds
+  ?!@bool ioExplores
+  ?!@stringset ioExploredLineSet
+:
+  computeStackLevelsFromLabel
+    !inGeneratedInstructionList
+    !mTargetLabel
+    !inSymbolTable
+    !inSymbolTableForStackLevels
+    !?ioStackNeeds
+    !?ioExploredLineSet
+  ;
+  ioExplores := false ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @ipic18_instruction_computed_bra exploreStackNeeds
+  ??@ipic18_instructionList inGeneratedInstructionList
+  ??@symbolTableForOptimizations inSymbolTable
+  ??@symbolTableForStackLevels inSymbolTableForStackLevels
+  ??@uint unused inCurrentLine
+  ?!@uint ioStackNeeds
+  ?!@bool ioExplores
+  ?!@stringset ioExploredLineSet
+:
+  if ioStackNeeds == 0 then
+    ioStackNeeds := 1 ;
+  end if ;
+  foreach mTargetLabels do
+    computeStackLevelsFromLabel
+      !inGeneratedInstructionList
+      !mValue
+      !inSymbolTable
+      !inSymbolTableForStackLevels
+      !?ioStackNeeds
+      !?ioExploredLineSet
+    ;
+  end foreach ;
+  ioExplores := false ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @ipic_incDecRegisterInCondition exploreStackNeeds
+  ??@ipic18_instructionList inGeneratedInstructionList
+  ??@symbolTableForOptimizations inSymbolTable
+  ??@symbolTableForStackLevels inSymbolTableForStackLevels
+  ??@uint unused inCurrentLine
+  ?!@uint ioStackNeeds
+  ?!@bool unused ioExplores
+  ?!@stringset ioExploredLineSet
+:
+  computeStackLevelsFromLabel
+    !inGeneratedInstructionList
+    !mTargetLabel
+    !inSymbolTable
+    !inSymbolTableForStackLevels
+    !?ioStackNeeds
+    !?ioExploredLineSet
+  ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @ipic_jump_test_register exploreStackNeeds
+  ??@ipic18_instructionList inGeneratedInstructionList
+  ??@symbolTableForOptimizations inSymbolTable
+  ??@symbolTableForStackLevels inSymbolTableForStackLevels
+  ??@uint unused inCurrentLine
+  ?!@uint ioStackNeeds
+  ?!@bool unused ioExplores
+  ?!@stringset ioExploredLineSet
+:
+  computeStackLevelsFromLabel
+    !inGeneratedInstructionList
+    !mTargetLabel
+    !inSymbolTable
+    !inSymbolTableForStackLevels
+    !?ioStackNeeds
+    !?ioExploredLineSet
+  ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @ipic_registerComparisonCondition exploreStackNeeds
+  ??@ipic18_instructionList inGeneratedInstructionList
+  ??@symbolTableForOptimizations inSymbolTable
+  ??@symbolTableForStackLevels inSymbolTableForStackLevels
+  ??@uint unused inCurrentLine
+  ?!@uint ioStackNeeds
+  ?!@bool unused ioExplores
+  ?!@stringset ioExploredLineSet
+:
+  computeStackLevelsFromLabel
+    !inGeneratedInstructionList
+    !mTargetLabel
+    !inSymbolTable
+    !inSymbolTableForStackLevels
+    !?ioStackNeeds
+    !?ioExploredLineSet
+  ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @ipic18_instruction_BitTestSkip exploreStackNeeds
+  ??@ipic18_instructionList inGeneratedInstructionList
+  ??@symbolTableForOptimizations inSymbolTable
+  ??@symbolTableForStackLevels inSymbolTableForStackLevels
+  ??@uint inCurrentLine
+  ?!@uint ioStackNeeds
+  ?!@bool unused ioExplores
+  ?!@stringset ioExploredLineSet
+:
+  computeStackLevelsFromLine
+    !inGeneratedInstructionList
+    !inCurrentLine + 2
+    !inSymbolTable
+    !inSymbolTableForStackLevels
+    !?ioStackNeeds
+    !?ioExploredLineSet
+  ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @ipic18_instruction_computed_goto exploreStackNeeds
+  ??@ipic18_instructionList inGeneratedInstructionList
+  ??@symbolTableForOptimizations inSymbolTable
+  ??@symbolTableForStackLevels inSymbolTableForStackLevels
+  ??@uint unused inCurrentLine
+  ?!@uint ioStackNeeds
+  ?!@bool ioExplores
+  ?!@stringset ioExploredLineSet
+:
+  if ioStackNeeds == 0 then
+    ioStackNeeds := 1 ;
+  end if ;
+  foreach mTargetLabels do
+    computeStackLevelsFromLabel
+      !inGeneratedInstructionList
+      !mValue
+      !inSymbolTable
+      !inSymbolTableForStackLevels
+      !?ioStackNeeds
+      !?ioExploredLineSet
+    ;
+  end foreach ;
+  ioExplores := false ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @ipic18_instruction_computed_rcall exploreStackNeeds
+  ??@ipic18_instructionList unused inGeneratedInstructionList
+  ??@symbolTableForOptimizations unused inSymbolTable
+  ??@symbolTableForStackLevels inSymbolTableForStackLevels
+  ??@uint unused inCurrentLine
+  ?!@uint ioStackNeeds
+  ?!@bool unused ioExplores
+  ?!@stringset unused ioExploredLineSet
+:
+  if ioStackNeeds == 0 then
+    ioStackNeeds := 1 ;
+  end if ;
+  foreach mTargetLabels do
+    [inSymbolTableForStackLevels searchKey !mValue ?@uint stackNeeds] ;
+    if ioStackNeeds < stackNeeds then
+      ioStackNeeds := stackNeeds ;
+    end if ;
+  end foreach ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @ipic18_instruction_conditionalBranch exploreStackNeeds
+  ??@ipic18_instructionList inGeneratedInstructionList
+  ??@symbolTableForOptimizations inSymbolTable
+  ??@symbolTableForStackLevels inSymbolTableForStackLevels
+  ??@uint unused inCurrentLine
+  ?!@uint ioStackNeeds
+  ?!@bool unused ioExplores
+  ?!@stringset ioExploredLineSet
+:
+  computeStackLevelsFromLabel
+    !inGeneratedInstructionList
+    !mTargetLabel
+    !inSymbolTable
+    !inSymbolTableForStackLevels
+    !?ioStackNeeds
+    !?ioExploredLineSet
+  ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+local routine computeStackLevelsFromLine
+  ??@ipic18_instructionList inGeneratedInstructionList
+  ??@uint inStartLine
+  ??@symbolTableForOptimizations inSymbolTable
+  ??@symbolTableForStackLevels inSymbolTableForStackLevels
+  ?!@uint ioStackNeeds
+  ?!@stringset ioExploredLineSet
+:
+  @uint currentLine := inStartLine ;
+  @bool explores := true ;
+  loop [inGeneratedInstructionList length] : while explores do
+    const @string currentLineString := [currentLine string] ;
+    if [ioExploredLineSet hasKey !currentLineString] then
+      explores := false ;
+    else
+      ioExploredLineSet += ![currentLine string] ;
+      const @ipic18_instruction instruction := [inGeneratedInstructionList mInstructionAtIndex !currentLine] ;
+#      @string s := currentLineString . ":" ;
+#      [instruction displayIPICinstruction !?s] ;
+#      message s  . "\n" ;
+      [instruction exploreStackNeeds
+        !inGeneratedInstructionList
+        !inSymbolTable
+        !inSymbolTableForStackLevels
+        !currentLine
+        !?ioStackNeeds
+        !?explores
+        !?ioExploredLineSet
+      ] ;
+      currentLine := currentLine + 1 ;
+    end if ;
+  end loop ;
+end routine ;
+
+#----------------------------------------------------------------------------*
+
+local routine computeStackLevelsFromLabel
+  ??@ipic18_instructionList inGeneratedInstructionList
+  ??@lstring inStartLabel
+  ??@symbolTableForOptimizations inSymbolTable
+  ??@symbolTableForStackLevels inSymbolTableForStackLevels
+  ?!@uint ioStackNeeds
+  ?!@stringset ioExploredLineSet
+:
+  [inSymbolTable searchKey !inStartLabel ?@uint currentLine] ;
+  computeStackLevelsFromLine
+    !inGeneratedInstructionList
+    !currentLine
+    !inSymbolTable
+    !inSymbolTableForStackLevels
+    !?ioStackNeeds
+    !?ioExploredLineSet
+  ;
+end routine ;
+
+#----------------------------------------------------------------------------*
+
+local routine computeStackNeeds
+  ??@ipic18_instructionList inGeneratedInstructionList
+  ??@lstringlist inSortedRoutineNames
+  ?!@string ioListFileContents
+:
+#-------------------------------- Build label map
+  @symbolTableForOptimizations symbolTable [emptyMap] ;
+  foreach inGeneratedInstructionList index lineIndex do
+    [mInstruction defineLabel !?symbolTable !lineIndex] ;
+  end foreach ;
+#-------------------------------- Build Stack needs
+  ioListFileContents .= "------------ Stack needs:\n" ;
+  ioListFileContents .= ["Routine" stringByLeftPadding !70 !' '] . " Levels\n" ;
+  @symbolTableForStackLevels stackLevelMap [emptyMap] ;
+  foreach inSortedRoutineNames do
+    if not [symbolTable hasKey !mValue->string] then
+      ioListFileContents .= [mValue stringByLeftPadding !70 !' '] . " inlined\n" ;
+    else
+      @stringset exploredLineSet [emptySet] ;
+      @uint stackNeeds := 0 ;
+      # message "------------ " . mValue . "\n" ;
+      computeStackLevelsFromLabel
+        !inGeneratedInstructionList
+        !mValue
+        !symbolTable
+        !stackLevelMap
+        !?stackNeeds
+        !?exploredLineSet
+       ;
+      ioListFileContents .= [mValue stringByLeftPadding !70 !' '] . " " . stackNeeds . "\n" ;
+      [!?stackLevelMap insertKey !mValue !stackNeeds + 1] ;
+    end if ;
+  end foreach ;
+end routine ;
+
+#----------------------------------------------------------------------------*
+#                                                                            *
+#               C O M P U T E    M E T R I C S                               *
+#                                                                            *
+#----------------------------------------------------------------------------*
+
+routine pic18_stack_requirements
+  ??@piccoloModel inPiccoloModel
+  ??@routineDeclarationList inUserRoutineDeclarationListForBootloaderImplementation
+  ??@routineDeclarationList inBootloaderRoutineDeclarationListForUserProgramImplementation
+  ??@ipic18_instructionList inGeneratedInstructionList 
+  ?!@string ioListFileContents
+  ??@string inSourceFileName
+:
+  ioListFileContents .= "*******************************************************************************\n" ;
+  ioListFileContents .= "*           S T A C K    R E Q U I R E M E N T S                              *\n" ;
+  ioListFileContents .= "*******************************************************************************\n\n" ;
+  if [option piccolo_options.doNotComputeStackRequirements value] then
+    ioListFileContents .= "option '" . [option piccolo_options.doNotComputeStackRequirements string] . "': stack requirements are not computed.\n" ;
+  else
+    @routineCallGraph routineCallGraph [emptyGraph] ;
+  #--- Enter routine names
+    foreach inPiccoloModel->mRoutineDefinitionList do
+      [!?routineCallGraph addNode !mRoutineName !mRoutineName->string] ;
+    end foreach ;
+  #--- Enter applicative routine names (for bootloader)
+    foreach inUserRoutineDeclarationListForBootloaderImplementation do
+      [!?routineCallGraph addNode !mRoutineName !mRoutineName->string] ;
+    end foreach ;
+  #--- Enter bootloader routine names (for applicative)
+    foreach inBootloaderRoutineDeclarationListForUserProgramImplementation do
+      [!?routineCallGraph addNode !mRoutineName !mRoutineName->string] ;
+    end foreach ;
+  #--- Enter interrupts routine name, and populate graph
+    foreach inPiccoloModel->mInterruptDefinitionList do
+      @lstring interruptRoutineName [new !"_" . mInterruptName->string . "_interrupt" !mInterruptName->location] ;
+      [!?routineCallGraph addNode !interruptRoutineName !interruptRoutineName->string] ;
+      exploreInstructionList !mInstructionList !interruptRoutineName !?routineCallGraph ;
+    end foreach ;
+  #--- Populate graph from routines
+    foreach inPiccoloModel->mRoutineDefinitionList do
+      exploreInstructionList !mInstructionList !mRoutineName !?routineCallGraph ;
+    end foreach ;
+  #--- Sort routine call graph
+    [routineCallGraph topologicalSort
+      ?*
+      ?@lstringlist sortedRoutineNameList
+      ?*
+      ?@lstringlist unsortedNodeKeyList
+    ] ;
+    if [unsortedNodeKeyList length] > 0 then
+      @string s := "Stack needs cannot be computed, the following routines are called recursively:" ;
+      foreach unsortedNodeKeyList do
+        s .= "\n-  " . mValue ;
+      end foreach ;
+      warning inPiccoloModel->mEndOfProgram : s ;
+      ioListFileContents .= s ;
+    else
+      ioListFileContents .= "No recursive routines.\n" ;
+    end if ;
+  #--- Output a graphviz file
+    const @string graphvizText := [routineCallGraph graphviz] ;
+    const @string graphvizFile := [inSourceFileName stringByDeletingPathExtension] . ".dot" ;
+    [graphvizText writeToFileWhenDifferentContents !graphvizFile ?*] ;
+  #--- Compute stack needs
+    if [unsortedNodeKeyList length] == 0 then
+      computeStackNeeds 
+        !inGeneratedInstructionList
+        !sortedRoutineNameList
+        !?ioListFileContents
+      ;
+    end if ;
+  end if ;
+  ioListFileContents .= "\n" ;
+end routine ;
+
+#----------------------------------------------------*
+
+end semantics ;

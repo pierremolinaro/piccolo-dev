@@ -341,10 +341,10 @@ enum @tableAccessOption {
 }
 reader @tableAccessOption mnemonic  -> @string outResult :
   switch selfcopy
-    when simpleAccess : outResult := "*" ;
+    when simpleAccess  : outResult := "*" ;
     when postIncrement : outResult := "*+" ;
     when postDecrement : outResult := "*-" ;
-    when preIncrement : outResult := "+*" ;
+    when preIncrement  : outResult := "+*" ;
   end switch ;
 end reader ;
 

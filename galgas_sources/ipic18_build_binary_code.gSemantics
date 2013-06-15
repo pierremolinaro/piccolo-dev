@@ -423,7 +423,7 @@ override method @ipic_jump_test_register generateBinaryCodeAtAddress
   ioCode += ![@uintlist listWithValue !code] ;
 #--- Generate BRA and / or GOTO instructions
   @uint targetAddress ;
-  [inRoutineSymbolTable searchKey ![@lstring new !mTargetLabel !here] ?targetAddress] ;
+  [inRoutineSymbolTable searchKey !mTargetLabel ?targetAddress] ;
   if mBranchIfZero then
     @uint intermediateTargetAddress ;
     if mUsesBra then
@@ -478,7 +478,7 @@ override method @ipic_incDecRegisterInCondition generateBinaryCodeAtAddress
   ioCode += ![@uintlist listWithValue !code] ;
 #--- Generate BRA and / or GOTO instructions
   @uint targetAddress ;
-  [inRoutineSymbolTable searchKey ![@lstring new !mTargetLabel !here] ?targetAddress] ;
+  [inRoutineSymbolTable searchKey !mTargetLabel ?targetAddress] ;
   if mUsesBra then
     emitBRAinstruction !ioAddress + 2 !targetAddress !mInstructionLocation !?ioCode ;
   else
@@ -510,7 +510,7 @@ override method @ipic_registerComparisonCondition generateBinaryCodeAtAddress
   ioCode += ![@uintlist listWithValue !code] ;
 #--- Generate BRA and / or GOTO instructions
   @uint targetAddress ;
-  [inRoutineSymbolTable searchKey ![@lstring new !mTargetLabel !here] ?targetAddress] ;
+  [inRoutineSymbolTable searchKey !mTargetLabel ?targetAddress] ;
   @bool usesIntermediateBRA ; [selfcopy usesIntermediateBRA ?usesIntermediateBRA] ;
   if usesIntermediateBRA then
     @uint intermediateTargetAddress ;

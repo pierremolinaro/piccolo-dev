@@ -669,10 +669,6 @@ class @ipic18_instruction_RETLW extends @ipic_actualInstruction {
   @uint mLiteralValue ;
 }
 
-#method @ipic18_instruction_RETLW getBaseCode !@uint outBaseCode :
-#  outBaseCode := 0x0C00 ;
-#end method ;
-
 override
 method @ipic18_instruction_RETLW displayIPICinstruction ?!@string ioListFileContents :
   ioListFileContents .= "RETLW " . [mLiteralValue hexString] ;
@@ -909,7 +905,7 @@ end method ;
 
 class @ipic_jump_test_register extends @ipic_actualInstruction {
   @ipic_registerExpression mRegisterDescription ;
-  @string mTargetLabel ;
+  @lstring mTargetLabel ;
   @bool mBranchIfZero ;
   @bool mUsesBra ;
 }
@@ -939,7 +935,7 @@ method @ipic_jump_test_register displayIPICinstruction ?!@string ioListFileConte
 end method ;
 
 override method @ipic_jump_test_register enterReferencedLabel ?!@stringset ioReferencedLabelSet :
-  ioReferencedLabelSet += !mTargetLabel ;
+  ioReferencedLabelSet += !mTargetLabel->string ;
 end method ;
 
 
@@ -947,7 +943,7 @@ end method ;
 
 class @ipic_incDecRegisterInCondition extends @ipic_actualInstruction {
   @ipic_registerExpression mRegisterDescription ;
-  @string mTargetLabel ;
+  @lstring mTargetLabel ;
   @bool mIncrement ;
   @bool m_W_isDestination ;
   @bool mBranchIfZero ;
@@ -984,14 +980,14 @@ method @ipic_incDecRegisterInCondition displayIPICinstruction ?!@string ioListFi
 end method ;
 
 override method @ipic_incDecRegisterInCondition enterReferencedLabel ?!@stringset ioReferencedLabelSet :
-  ioReferencedLabelSet += !mTargetLabel ;
+  ioReferencedLabelSet += !mTargetLabel->string ;
 end method ;
 
 #----------------------------------------------------*
 
 class @ipic_registerComparisonCondition extends @ipic_actualInstruction {
   @ipic_registerExpression mRegisterDescription ;
-  @string mTargetLabel ;
+  @lstring mTargetLabel ;
   @registerComparison mComparison ;
   @bool mUsesBra ;
 }
@@ -1031,7 +1027,7 @@ method @ipic_registerComparisonCondition displayIPICinstruction ?!@string ioList
 end method ;
 
 override method @ipic_registerComparisonCondition enterReferencedLabel ?!@stringset ioReferencedLabelSet :
-  ioReferencedLabelSet += !mTargetLabel ;
+  ioReferencedLabelSet += !mTargetLabel->string ;
 end method ;
 
 #----------------------------------------------------*

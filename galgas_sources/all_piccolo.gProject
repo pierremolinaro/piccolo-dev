@@ -63,6 +63,7 @@ project all_piccolo (2:0:1) -> "piccolo" :
   semantics "ipc18_convert_relatives.gSemantics" ;
   semantics "ipic18_build_assembly_code.gSemantics" ;
   semantics "ipic18_build_binary_code.gSemantics" ;
+  semantics "pic18_metrics_analysis.gSemantics" ;
   semantics "pic18_semantics.gSemantics" ;
   semantics "pic18_bootloader_specification_semantics.gSemantics" ;
 

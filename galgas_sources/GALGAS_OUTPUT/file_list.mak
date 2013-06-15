@@ -73,6 +73,7 @@ SOURCES += ipic18_optimizations.cpp
 SOURCES += ipc18_convert_relatives.cpp
 SOURCES += ipic18_build_assembly_code.cpp
 SOURCES += ipic18_build_binary_code.cpp
+SOURCES += pic18_metrics_analysis.cpp
 SOURCES += pic18_semantics.cpp
 SOURCES += pic18_bootloader_specification_semantics.cpp
 SOURCES += communs.cpp

@@ -1482,7 +1482,7 @@ override method @registerComparisonCondition buildIPICinstructionForCondition
   ioGeneratedInstructionList += ![@ipic_registerComparisonCondition new
     !inInstructionLocation
     !IPICregisterDescription
-    !inTargetLabel
+    ![@lstring new !inTargetLabel !here]
     !comparison
     !true # By Default, uses BRA
   ] ;
@@ -1528,7 +1528,7 @@ override method @incDecRegisterInCondition buildIPICinstructionForCondition
   ioGeneratedInstructionList += ![@ipic_incDecRegisterInCondition new
     !inInstructionLocation
     !IPICregisterDescription
-    !inTargetLabel
+    ![@lstring new !inTargetLabel !here]
     !mIncrement
     !m_W_isDestination
     !mBranchIfZero ^ inComplementaryBranch
@@ -1570,7 +1570,7 @@ override method @registerTestCondition buildIPICinstructionForCondition
   ioGeneratedInstructionList += ![@ipic_jump_test_register new
     !inInstructionLocation
     !IPICregisterDescription
-    !inTargetLabel
+    ![@lstring new !inTargetLabel !here]
     !mBranchIfZero ^ inComplementaryBranch
     !true # By Default, uses BRA
   ] ;
