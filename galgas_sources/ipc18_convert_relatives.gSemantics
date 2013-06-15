@@ -206,7 +206,7 @@ override method @ipic_jump_test_register checkRelativeBranch
       BRAaddress := BRAaddress + 2 ;
     end if ;
     @uint targetAddress ;
-    [inRoutineSymbolTable searchKey ![@lstring new !mTargetLabel !here] ?targetAddress] ;
+    [inRoutineSymbolTable searchKey !mTargetLabel ?targetAddress] ;
     @sint displacement := ([targetAddress sint] - 2S - [BRAaddress sint]) >> 1 ;
     if (displacement > 1023S) | (displacement < - 1024S) then
       ioRelativeBranchOverflow := true ;
@@ -240,7 +240,7 @@ override method @ipic_registerComparisonCondition checkRelativeBranch
       BRAaddress := BRAaddress + 2 ;
     end if ;
     @uint targetAddress ;
-    [inRoutineSymbolTable searchKey ![@lstring new !mTargetLabel !here] ?targetAddress] ;
+    [inRoutineSymbolTable searchKey !mTargetLabel ?targetAddress] ;
     @sint displacement := ([targetAddress sint] - 2S - [BRAaddress sint]) >> 1 ;
     if (displacement > 1023S) | (displacement < - 1024S) then
       ioRelativeBranchOverflow := true ;
@@ -270,7 +270,7 @@ override method @ipic_incDecRegisterInCondition checkRelativeBranch
   if mUsesBra then
     @uint BRAaddress := ioAddress + 2 ;
     @uint targetAddress ;
-    [inRoutineSymbolTable searchKey ![@lstring new !mTargetLabel !here] ?targetAddress] ;
+    [inRoutineSymbolTable searchKey !mTargetLabel ?targetAddress] ;
     @sint displacement := ([targetAddress sint] - 2S - [BRAaddress sint]) >> 1 ;
     if (displacement > 1023S) | (displacement < - 1024S) then
       ioRelativeBranchOverflow := true ;

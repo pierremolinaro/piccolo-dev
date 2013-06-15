@@ -6,6 +6,7 @@ import "ipic18_optimizations.gSemantics" ;
 import "piccolo_config.gSemantics" ;
 import "ram_sections.gSemantics" ;
 import "pic18_grammar.gGrammar" ;
+import "pic18_metrics_analysis.gSemantics" ;
 
 #----------------------------------------------------------------------------*
 #                                                                            *
@@ -54,7 +55,7 @@ routine pic18_build_listing_of_generated_code
       currentAddress := currentAddress + [mCode length] * 2 ;
     end foreach ;
   end foreach ;
-  ioListFileContents .= "\n*******************************************************************************\n" ;
+  ioListFileContents .= "\n" ;
 end routine ;
 
 #----------------------------------------------------------------------------*
@@ -171,7 +172,7 @@ routine pic18_analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName 
   @bool highInterruptIsFast := false ;
   @bool hasLowInterrupt := false ;
   @bool lowInterruptIsFast := false ;
-  foreach [inPiccoloModel mInterruptDefinitionList] do
+  foreach inPiccoloModel->mInterruptDefinitionList do
     if [inPiccoloModel mProgramKind] == [@programKind userProgram] then
       error mInterruptName: "interrupt routine is not allowed for a bootloader user program" ;
     end if ;
@@ -323,16 +324,15 @@ routine pic18_analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName 
     end if ;
   #--- Generate asm file, if corresponding option enabled
     if [option piccolo_options.generateAssembly value] then
-      @string assemblyCode ;
       pic18_build_assembly_code
         ![[piccoloDeviceModel mDeviceName] string]
         ![piccoloDeviceModel mRegisterTable]
         !registerTable
         !generatedInstructionList
         !actualConfigurationMap
-        ?assemblyCode
+        ?@string assemblyCode
       ;
-      @string asmDestinationFile := [inSourceFileName stringByDeletingPathExtension] . ".asm" ;
+      const @string asmDestinationFile := [inSourceFileName stringByDeletingPathExtension] . ".asm" ;
       [assemblyCode writeToFileWhenDifferentContents !asmDestinationFile ?*] ;
     end if ;
   else # There are errors : delete hex and asm files
@@ -341,14 +341,27 @@ routine pic18_analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName 
     @string asmDestinationFile := [inSourceFileName stringByDeletingPathExtension] . ".asm" ;
     [@string deleteFileIfExists !asmDestinationFile] ;
   end if ;
-#-------------------------------- Write listing fule
+#-------------------------------- Write generated code
+  if [@uint errorCount] == 0 then
+    pic18_build_listing_of_generated_code
+      !generatedInstructionList
+      !?listFileContents
+    ;
+  end if ;
+#-------------------------------- Compute stack requirements
+  if [@uint errorCount] == 0 then
+    pic18_stack_requirements
+      !inPiccoloModel
+      !userRoutineDeclarationListForBootloaderImplementation # Empty for regular program
+      !bootloaderRoutineDeclarationListForUserProgramImplementation
+      !generatedInstructionList
+      !?listFileContents
+      !inSourceFileName
+    ;
+  end if ;
+#-------------------------------- Write listing file
   if [option piccolo_options.ouputListingFile value] then
-    if [@uint errorCount] == 0 then
-      pic18_build_listing_of_generated_code
-        !generatedInstructionList
-        !?listFileContents
-      ;
-    end if ;
+    listFileContents .= "*******************************************************************************\n" ;
     @string listFile := [inSourceFileName stringByDeletingPathExtension] . ".list" ;
     [listFileContents writeToFileWhenDifferentContents !listFile ?*] ;
   end if ;

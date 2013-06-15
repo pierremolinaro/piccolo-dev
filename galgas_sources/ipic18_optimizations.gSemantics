@@ -275,16 +275,16 @@ method @ipic_jump_test_register optimizeTestReg
   ?!@bool ioOptimizationsDone
 :
 #--- Find destination label definition line
-  @uint line ; [inSymbolTable searchKey ![@lstring new !mTargetLabel !here] ?line] ;
+  [inSymbolTable searchKey !mTargetLabel ?@uint line] ;
 #--- Find first executable instruction
   @ipic18_instruction firstInstruction ;
   findFirstInstructionFromAddress !line + 1 !ioGeneratedInstructionList ?firstInstruction ?* ;
 #--- Optimization from found first instruction
   cast firstInstruction :
   when == @ipic_JUMP jump do
-    if mTargetLabel != [[jump mTargetLabel] string] then
+    if mTargetLabel->string != [[jump mTargetLabel] string] then
       [!?ioGeneratedInstructionList setMInstructionAtIndex
-        ![@ipic_jump_test_register new !mInstructionLocation !mRegisterDescription ![[jump mTargetLabel] string] !mBranchIfZero !mUsesBra]
+        ![@ipic_jump_test_register new !mInstructionLocation !mRegisterDescription ![jump mTargetLabel] !mBranchIfZero !mUsesBra]
         !inLineIndex
       ] ;
       ioOptimizationsDone := true ;
@@ -310,7 +310,7 @@ method @ipic_incDecRegisterInCondition optimizeTestDecInc
   ?!@bool ioOptimizationsDone
 :
 #--- Find destination label definition line
-  @uint line ; [inSymbolTable searchKey ![@lstring new !mTargetLabel !here] ?line] ;
+  @uint line ; [inSymbolTable searchKey !mTargetLabel ?line] ;
 #--- Find first executable instruction
   @ipic18_instruction firstInstruction ;
   findFirstInstructionFromAddress !line + 1 !ioGeneratedInstructionList ?firstInstruction ?* ;
@@ -321,7 +321,7 @@ method @ipic_incDecRegisterInCondition optimizeTestDecInc
       ![@ipic_incDecRegisterInCondition new
         !mInstructionLocation
         !mRegisterDescription
-        ![[jump mTargetLabel] string]
+        ![jump mTargetLabel]
         !mIncrement
         !m_W_isDestination
         !mBranchIfZero
@@ -361,7 +361,7 @@ method @ipic_registerComparisonCondition optimizeCMP
   ?!@bool ioOptimizationsDone
 :
 #--- Find destination label definition line
-  @uint line ; [inSymbolTable searchKey ![@lstring new !mTargetLabel !here] ?line] ;
+  [inSymbolTable searchKey !mTargetLabel ?@uint line] ;
 #--- Find first executable instruction
   @ipic18_instruction firstInstruction ;
   findFirstInstructionFromAddress !line + 1 !ioGeneratedInstructionList ?firstInstruction ?* ;
@@ -372,7 +372,7 @@ method @ipic_registerComparisonCondition optimizeCMP
       ![@ipic_registerComparisonCondition new
         !mInstructionLocation
         !mRegisterDescription
-        ![[jump mTargetLabel] string]
+        ![jump mTargetLabel]
         !mComparison
         !mUsesBra
       ]
