@@ -1,7 +1,7 @@
 semantics midrange_checkingAndBuildIPIC :
 import "midrange_metamodel.gSemantics" ;
 import "piccoloDevice_semantics.gSemantics" ;
-import "ipic_generic.gSemantics" ;
+import "intermediate_generic.gSemantics" ;
 import "midrange_intermediate_classes.gSemantics" ;
 import "midrange_display_intermediate_instruction.gSemantics" ;
 import "midrange_intermediate_instruction_set_current_address.gSemantics" ;

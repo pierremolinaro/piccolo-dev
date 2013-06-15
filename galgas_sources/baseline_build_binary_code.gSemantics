@@ -2,7 +2,7 @@ semantics baseline_build_binary_code :
 import "baseline_assembly_classes.gSemantics" ;
 import "baseline_print_assembly_instructions.gSemantics" ;
 import "baseline_assembly_instruction_length.gSemantics" ;
-import "ipic_generic.gSemantics" ;
+import "intermediate_generic.gSemantics" ;
 
 #----------------------------------------------------------------------------*
 

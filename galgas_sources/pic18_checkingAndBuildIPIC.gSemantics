@@ -1,9 +1,9 @@
 semantics pic18_checkingAndBuildIPIC :
 import "piccolo_options.gOption" ;
 import "pic18_metamodel.gSemantics" ;
-import "ipic_generic.gSemantics" ;
 import "piccoloDevice_semantics.gSemantics" ;
-import "ipic18_metamodel.gSemantics" ;
+import "pic18_mnemonics.gSemantics" ;
+import "pic18_intermediate_classes.gSemantics" ;
 
 #----------------------------------------------------------------------------*
 
@@ -24,7 +24,7 @@ abstract method @piccolo_instruction buildIPICinstructionList
   ??@dataMap unused inDataMap
   ??@constantMap inConstantMap
   ?!@uint unused ioLocalLabelIndex
-  ?!@ipic18_instructionList unused ioGeneratedInstructionList
+  ?!@pic18_intermediate_instructionList unused ioGeneratedInstructionList
   ?!@string unused ioListFileContents
   ?!@uint unused ioCurrentBank
   ??@bool unused inShouldPreserveBSR
@@ -42,7 +42,7 @@ routine handleInstructionList
   ??@dataMap inDataMap
   ??@constantMap inConstantMap
   ?!@uint ioLocalLabelIndex
-  ?!@ipic18_instructionList ioGeneratedInstructionList
+  ?!@pic18_intermediate_instructionList ioGeneratedInstructionList
   ?!@string ioListFileContents
   ?!@uint ioCurrentBank
   ??@bool inShouldPreserveBSR
@@ -81,7 +81,7 @@ override method @instruction_nobanksel buildIPICinstructionList
   ??@dataMap unused inDataMap
   ??@constantMap unused inConstantMap
   ?!@uint unused ioLocalLabelIndex
-  ?!@ipic18_instructionList unused ioGeneratedInstructionList
+  ?!@pic18_intermediate_instructionList unused ioGeneratedInstructionList
   ?!@string unused ioListFileContents
   ?!@uint ioCurrentBank
   ??@bool inShouldPreserveBSR
@@ -104,7 +104,7 @@ override method @instruction_savebank buildIPICinstructionList
   ??@dataMap inDataMap
   ??@constantMap inConstantMap
   ?!@uint ioLocalLabelIndex
-  ?!@ipic18_instructionList ioGeneratedInstructionList
+  ?!@pic18_intermediate_instructionList ioGeneratedInstructionList
   ?!@string ioListFileContents
   ?!@uint ioCurrentBank
   ??@bool unused inShouldPreserveBSR
@@ -113,19 +113,19 @@ override method @instruction_savebank buildIPICinstructionList
 :
 #--- Get values for BSR register
   @registerExpression BSRregister [new ![@lstring new !"BSR" !here] ![@luint new !0 !here]] ;
-  @ipic_registerExpressionWithoutBSRIndication BSR_IPICregisterDescription ;
+  @pic18_intermediate_registerExpressionWithoutBSRIndication BSR_IPICregisterDescription ;
   [BSRregister resolveAccessWithoutCheckingBank
     !inRegisterTable
     ?BSR_IPICregisterDescription
   ] ;
 #--- Get values for register used for saving
-  @ipic_registerExpressionWithoutBSRIndication save_IPICregisterDescription ;
+  @pic18_intermediate_registerExpressionWithoutBSRIndication save_IPICregisterDescription ;
   [mRegister resolveAccessWithoutCheckingBank
     !inRegisterTable
     ?save_IPICregisterDescription
   ] ;
 #--- Generate "MOVFF BSR, save_register" instruction
-  ioGeneratedInstructionList += ![@ipic18_instruction_MOVFF new
+  ioGeneratedInstructionList += ![@pic18_intermediate_instruction_MOVFF new
     !mInstructionLocation
     !BSR_IPICregisterDescription
     !save_IPICregisterDescription
@@ -151,7 +151,7 @@ override method @instruction_savebank buildIPICinstructionList
     error mEndOfSaveBankInstruction:"useless saving: execution does reach the end of \"savebank\" instruction list" ;
   end if ;
 #--- Generate "MOVFF save_register, BSR" instruction
-  ioGeneratedInstructionList += ![@ipic18_instruction_MOVFF new
+  ioGeneratedInstructionList += ![@pic18_intermediate_instruction_MOVFF new
     !mInstructionLocation
     !save_IPICregisterDescription
     !BSR_IPICregisterDescription
@@ -167,7 +167,7 @@ override method @instruction_banksel buildIPICinstructionList
   ??@dataMap unused inDataMap
   ??@constantMap unused inConstantMap
   ?!@uint unused ioLocalLabelIndex
-  ?!@ipic18_instructionList ioGeneratedInstructionList
+  ?!@pic18_intermediate_instructionList ioGeneratedInstructionList
   ?!@string unused ioListFileContents
   ?!@uint ioCurrentBank
   ??@bool inShouldPreserveBSR
@@ -186,7 +186,7 @@ override method @instruction_banksel buildIPICinstructionList
     ioCurrentBank := [mBankIndex uint] ;
   end if ;
 #---
-  ioGeneratedInstructionList += ![@ipic18_instruction_MOVLB new !mInstructionLocation !mBankIndex] ;
+  ioGeneratedInstructionList += ![@pic18_intermediate_instruction_MOVLB new !mInstructionLocation !mBankIndex] ;
 end method ;
 
 #----------------------------------------------------*
@@ -198,14 +198,14 @@ override method @instruction_FDA buildIPICinstructionList
   ??@dataMap unused inDataMap
   ??@constantMap unused inConstantMap
   ?!@uint unused ioLocalLabelIndex
-  ?!@ipic18_instructionList ioGeneratedInstructionList
+  ?!@pic18_intermediate_instructionList ioGeneratedInstructionList
   ?!@string unused ioListFileContents
   ?!@uint ioCurrentBank
   ??@bool unused inShouldPreserveBSR
   ?!@bool unused ioContinuesInSequence
   ??@routineKind unused inRoutineKind
 :
-  @ipic_registerExpression IPICregisterDescription ;
+  @pic18_intermediate_registerExpression IPICregisterDescription ;
   [mRegisterExpression resolveAccess
     !inAccessBankSplitOffset
     !ioCurrentBank
@@ -213,7 +213,7 @@ override method @instruction_FDA buildIPICinstructionList
     ?IPICregisterDescription
     ?*
   ] ;
-  ioGeneratedInstructionList += ![@ipic18_instruction_FDA new
+  ioGeneratedInstructionList += ![@pic18_intermediate_instruction_FDA new
     !mInstructionLocation
     !mInstruction_FDA_base_code
     !IPICregisterDescription
@@ -230,14 +230,14 @@ override method @instruction_FA buildIPICinstructionList
   ??@dataMap unused inDataMap
   ??@constantMap unused inConstantMap
   ?!@uint unused ioLocalLabelIndex
-  ?!@ipic18_instructionList ioGeneratedInstructionList
+  ?!@pic18_intermediate_instructionList ioGeneratedInstructionList
   ?!@string unused ioListFileContents
   ?!@uint ioCurrentBank
   ??@bool unused inShouldPreserveBSR
   ?!@bool unused ioContinuesInSequence
   ??@routineKind unused inRoutineKind
 :
-  @ipic_registerExpression IPICregisterDescription ;
+  @pic18_intermediate_registerExpression IPICregisterDescription ;
   [mRegisterExpression resolveAccess
     !inAccessBankSplitOffset
     !ioCurrentBank
@@ -245,7 +245,7 @@ override method @instruction_FA buildIPICinstructionList
     ?IPICregisterDescription
     ?*
   ] ;
-  ioGeneratedInstructionList += ![@ipic18_instruction_FA new
+  ioGeneratedInstructionList += ![@pic18_intermediate_instruction_FA new
     !mInstructionLocation
     !mFAinstruction
     !IPICregisterDescription
@@ -261,24 +261,24 @@ override method @instruction_MOVFF buildIPICinstructionList
   ??@dataMap unused inDataMap
   ??@constantMap unused inConstantMap
   ?!@uint unused ioLocalLabelIndex
-  ?!@ipic18_instructionList ioGeneratedInstructionList
+  ?!@pic18_intermediate_instructionList ioGeneratedInstructionList
   ?!@string unused ioListFileContents
   ?!@uint unused ioCurrentBank
   ??@bool unused inShouldPreserveBSR
   ?!@bool unused ioContinuesInSequence
   ??@routineKind unused inRoutineKind
 :
-  @ipic_registerExpressionWithoutBSRIndication sourceIPICregisterDescription ;
+  @pic18_intermediate_registerExpressionWithoutBSRIndication sourceIPICregisterDescription ;
   [mSourceRegisterName resolveAccessWithoutCheckingBank
     !inRegisterTable
     ?sourceIPICregisterDescription
   ] ;
-  @ipic_registerExpressionWithoutBSRIndication destinationIPICregisterDescription ;
+  @pic18_intermediate_registerExpressionWithoutBSRIndication destinationIPICregisterDescription ;
   [mDestinationRegisterName resolveAccessWithoutCheckingBank
     !inRegisterTable
     ?destinationIPICregisterDescription
   ] ;
-  ioGeneratedInstructionList += ![@ipic18_instruction_MOVFF new
+  ioGeneratedInstructionList += ![@pic18_intermediate_instruction_MOVFF new
     !mInstructionLocation
     !sourceIPICregisterDescription
     !destinationIPICregisterDescription
@@ -294,7 +294,7 @@ override method @instruction_FBA buildIPICinstructionList
   ??@dataMap unused inDataMap
   ??@constantMap unused inConstantMap
   ?!@uint unused ioLocalLabelIndex
-  ?!@ipic18_instructionList ioGeneratedInstructionList
+  ?!@pic18_intermediate_instructionList ioGeneratedInstructionList
   ?!@string unused ioListFileContents
   ?!@uint ioCurrentBank
   ??@bool unused inShouldPreserveBSR
@@ -302,7 +302,7 @@ override method @instruction_FBA buildIPICinstructionList
   ??@routineKind unused inRoutineKind
 :
   @bitSliceTable bitSliceTable ;
-  @ipic_registerExpression IPICregisterDescription ;
+  @pic18_intermediate_registerExpression IPICregisterDescription ;
   [mRegisterExpression resolveAccess
     !inAccessBankSplitOffset
     !ioCurrentBank
@@ -315,7 +315,7 @@ override method @instruction_FBA buildIPICinstructionList
     !bitSliceTable
     ?bitNumber
   ] ;
-  ioGeneratedInstructionList += ![@ipic18_instruction_FBA new
+  ioGeneratedInstructionList += ![@pic18_intermediate_instruction_FBA new
     !mInstructionLocation
     !mBitOrientedOp
     !IPICregisterDescription
@@ -332,7 +332,7 @@ override method @instruction_JSR buildIPICinstructionList
   ??@dataMap unused inDataMap
   ??@constantMap unused inConstantMap
   ?!@uint unused ioLocalLabelIndex
-  ?!@ipic18_instructionList ioGeneratedInstructionList
+  ?!@pic18_intermediate_instructionList ioGeneratedInstructionList
   ?!@string unused ioListFileContents
   ?!@uint ioCurrentBank
   ??@bool inShouldPreserveBSR
@@ -365,7 +365,7 @@ override method @instruction_JSR buildIPICinstructionList
     end if ;
   end if ;
 #---
-  ioGeneratedInstructionList += ![@ipic_JSR new
+  ioGeneratedInstructionList += ![@pic18_intermediate_JSR new
     !mInstructionLocation
     !mTargetLabel
     !mKind
@@ -381,7 +381,7 @@ override method @instruction_JUMP buildIPICinstructionList
   ??@dataMap unused inDataMap
   ??@constantMap unused inConstantMap
   ?!@uint unused ioLocalLabelIndex
-  ?!@ipic18_instructionList ioGeneratedInstructionList
+  ?!@pic18_intermediate_instructionList ioGeneratedInstructionList
   ?!@string unused ioListFileContents
   ?!@uint ioCurrentBank
   ??@bool unused inShouldPreserveBSR
@@ -407,7 +407,7 @@ override method @instruction_JUMP buildIPICinstructionList
   end if ;
   ioContinuesInSequence := false ;
 #---
-  ioGeneratedInstructionList += ![@ipic_JUMP new
+  ioGeneratedInstructionList += ![@pic18_intermediate_JUMP new
     !mInstructionLocation
     !mTargetLabel
     !mKind
@@ -423,7 +423,7 @@ override method @instruction_JUMPCC buildIPICinstructionList
   ??@dataMap unused inDataMap
   ??@constantMap unused inConstantMap
   ?!@uint unused ioLocalLabelIndex
-  ?!@ipic18_instructionList ioGeneratedInstructionList
+  ?!@pic18_intermediate_instructionList ioGeneratedInstructionList
   ?!@string unused ioListFileContents
   ?!@uint ioCurrentBank
   ??@bool unused inShouldPreserveBSR
@@ -454,7 +454,7 @@ override method @instruction_JUMPCC buildIPICinstructionList
   else
     mode := [@condionalBranchMode native] ;
   end if ;
-  ioGeneratedInstructionList += ![@ipic18_instruction_conditionalBranch new
+  ioGeneratedInstructionList += ![@pic18_intermediate_instruction_conditionalBranch new
     !mInstructionLocation
     !mode
     !mConditionalBranch
@@ -471,14 +471,14 @@ override method @instruction_CLRWDT buildIPICinstructionList
   ??@dataMap unused inDataMap
   ??@constantMap unused inConstantMap
   ?!@uint unused ioLocalLabelIndex
-  ?!@ipic18_instructionList ioGeneratedInstructionList
+  ?!@pic18_intermediate_instructionList ioGeneratedInstructionList
   ?!@string unused ioListFileContents
   ?!@uint unused ioCurrentBank
   ??@bool unused inShouldPreserveBSR
   ?!@bool unused ioContinuesInSequence
   ??@routineKind unused inRoutineKind
 :
-  ioGeneratedInstructionList += ![@ipic18_instruction_CLRWDT new
+  ioGeneratedInstructionList += ![@pic18_intermediate_instruction_CLRWDT new
     !mInstructionLocation
   ] ;
 end method ;
@@ -492,14 +492,14 @@ override method @instruction_DAW buildIPICinstructionList
   ??@dataMap unused inDataMap
   ??@constantMap unused inConstantMap
   ?!@uint unused ioLocalLabelIndex
-  ?!@ipic18_instructionList ioGeneratedInstructionList
+  ?!@pic18_intermediate_instructionList ioGeneratedInstructionList
   ?!@string unused ioListFileContents
   ?!@uint unused ioCurrentBank
   ??@bool unused inShouldPreserveBSR
   ?!@bool unused ioContinuesInSequence
   ??@routineKind unused inRoutineKind
 :
-  ioGeneratedInstructionList += ![@ipic18_instruction_DAW new
+  ioGeneratedInstructionList += ![@pic18_intermediate_instruction_DAW new
     !mInstructionLocation
   ] ;
 end method ;
@@ -513,14 +513,14 @@ override method @instruction_NOP buildIPICinstructionList
   ??@dataMap unused inDataMap
   ??@constantMap unused inConstantMap
   ?!@uint unused ioLocalLabelIndex
-  ?!@ipic18_instructionList ioGeneratedInstructionList
+  ?!@pic18_intermediate_instructionList ioGeneratedInstructionList
   ?!@string unused ioListFileContents
   ?!@uint unused ioCurrentBank
   ??@bool unused inShouldPreserveBSR
   ?!@bool unused ioContinuesInSequence
   ??@routineKind unused inRoutineKind
 :
-  ioGeneratedInstructionList += ![@ipic18_instruction_NOP new
+  ioGeneratedInstructionList += ![@pic18_intermediate_instruction_NOP new
     !mInstructionLocation
   ] ;
 end method ;
@@ -534,14 +534,14 @@ override method @instruction_POP buildIPICinstructionList
   ??@dataMap unused inDataMap
   ??@constantMap unused inConstantMap
   ?!@uint unused ioLocalLabelIndex
-  ?!@ipic18_instructionList ioGeneratedInstructionList
+  ?!@pic18_intermediate_instructionList ioGeneratedInstructionList
   ?!@string unused ioListFileContents
   ?!@uint unused ioCurrentBank
   ??@bool unused inShouldPreserveBSR
   ?!@bool unused ioContinuesInSequence
   ??@routineKind unused inRoutineKind
 :
-  ioGeneratedInstructionList += ![@ipic18_instruction_POP new
+  ioGeneratedInstructionList += ![@pic18_intermediate_instruction_POP new
     !mInstructionLocation
   ] ;
 end method ;
@@ -555,14 +555,14 @@ override method @instruction_PUSH buildIPICinstructionList
   ??@dataMap unused inDataMap
   ??@constantMap unused inConstantMap
   ?!@uint unused ioLocalLabelIndex
-  ?!@ipic18_instructionList ioGeneratedInstructionList
+  ?!@pic18_intermediate_instructionList ioGeneratedInstructionList
   ?!@string unused ioListFileContents
   ?!@uint unused ioCurrentBank
   ??@bool unused inShouldPreserveBSR
   ?!@bool unused ioContinuesInSequence
   ??@routineKind unused inRoutineKind
 :
-  ioGeneratedInstructionList += ![@ipic18_instruction_PUSH new
+  ioGeneratedInstructionList += ![@pic18_intermediate_instruction_PUSH new
     !mInstructionLocation
   ] ;
 end method ;
@@ -576,14 +576,14 @@ override method @instruction_RESET buildIPICinstructionList
   ??@dataMap unused inDataMap
   ??@constantMap unused inConstantMap
   ?!@uint unused ioLocalLabelIndex
-  ?!@ipic18_instructionList ioGeneratedInstructionList
+  ?!@pic18_intermediate_instructionList ioGeneratedInstructionList
   ?!@string unused ioListFileContents
   ?!@uint unused ioCurrentBank
   ??@bool unused inShouldPreserveBSR
   ?!@bool unused ioContinuesInSequence
   ??@routineKind unused inRoutineKind
 :
-  ioGeneratedInstructionList += ![@ipic18_instruction_RESET new
+  ioGeneratedInstructionList += ![@pic18_intermediate_instruction_RESET new
     !mInstructionLocation
   ] ;
 end method ;
@@ -597,14 +597,14 @@ override method @instruction_SLEEP buildIPICinstructionList
   ??@dataMap unused inDataMap
   ??@constantMap unused inConstantMap
   ?!@uint unused ioLocalLabelIndex
-  ?!@ipic18_instructionList ioGeneratedInstructionList
+  ?!@pic18_intermediate_instructionList ioGeneratedInstructionList
   ?!@string unused ioListFileContents
   ?!@uint unused ioCurrentBank
   ??@bool unused inShouldPreserveBSR
   ?!@bool unused ioContinuesInSequence
   ??@routineKind unused inRoutineKind
 :
-  ioGeneratedInstructionList += ![@ipic18_instruction_SLEEP new
+  ioGeneratedInstructionList += ![@pic18_intermediate_instruction_SLEEP new
     !mInstructionLocation
   ] ;
 end method ;
@@ -618,7 +618,7 @@ override method @instruction_literalOperation buildIPICinstructionList
   ??@dataMap unused inDataMap
   ??@constantMap inConstantMap
   ?!@uint unused ioLocalLabelIndex
-  ?!@ipic18_instructionList ioGeneratedInstructionList
+  ?!@pic18_intermediate_instructionList ioGeneratedInstructionList
   ?!@string unused ioListFileContents
   ?!@uint unused ioCurrentBank
   ??@bool unused inShouldPreserveBSR
@@ -631,7 +631,7 @@ override method @instruction_literalOperation buildIPICinstructionList
      error mInstructionLocation:"immediate value is evaluated as " . [result string] . " (should be betwween -128 and 255)" ;
    end if ;
 #---  
-  ioGeneratedInstructionList += ![@ipic18_instruction_literalOperation new
+  ioGeneratedInstructionList += ![@pic18_intermediate_instruction_literalOperation new
     !mInstructionLocation
     !mLiteralInstruction
     ![result & 0x000000FFS uint]
@@ -647,7 +647,7 @@ override method @instruction_LFSR buildIPICinstructionList
   ??@dataMap unused inDataMap
   ??@constantMap inConstantMap
   ?!@uint unused ioLocalLabelIndex
-  ?!@ipic18_instructionList ioGeneratedInstructionList
+  ?!@pic18_intermediate_instructionList ioGeneratedInstructionList
   ?!@string unused ioListFileContents
   ?!@uint unused ioCurrentBank
   ??@bool unused inShouldPreserveBSR
@@ -663,7 +663,7 @@ override method @instruction_LFSR buildIPICinstructionList
    if (result > 0xFFFS) | (result < 0S) then
      error mInstructionLocation:"immediate value is evaluated as " . [result string] . " (should be between 0 and 4095)" ;
    end if ;
-  ioGeneratedInstructionList += ![@ipic18_instruction_LFSR new
+  ioGeneratedInstructionList += ![@pic18_intermediate_instruction_LFSR new
     !mInstructionLocation
     !mFSRindex
     ![result uint]
@@ -679,7 +679,7 @@ override method @instruction_LTBLPTR buildIPICinstructionList
   ??@dataMap unused inDataMap
   ??@constantMap inConstantMap
   ?!@uint unused ioLocalLabelIndex
-  ?!@ipic18_instructionList ioGeneratedInstructionList
+  ?!@pic18_intermediate_instructionList ioGeneratedInstructionList
   ?!@string unused ioListFileContents
   ?!@uint ioCurrentBank
   ??@bool unused inShouldPreserveBSR
@@ -698,29 +698,29 @@ override method @instruction_LTBLPTR buildIPICinstructionList
     !inAccessBankSplitOffset
     !ioCurrentBank
     !inRegisterTable
-    ?@ipic_registerExpression outIPICregisterDescription
+    ?@pic18_intermediate_registerExpression outIPICregisterDescription
     ?*
   ] ;
   const @uint upper := address >> 16 ;
   if upper == 0 then
-    ioGeneratedInstructionList += ![@ipic18_instruction_FA new
+    ioGeneratedInstructionList += ![@pic18_intermediate_instruction_FA new
       !mInstructionLocation
       ![@FA_instruction_base_code CLRF]
       !outIPICregisterDescription
     ] ;  
   elsif upper == 0xFF then
-    ioGeneratedInstructionList += ![@ipic18_instruction_FA new
+    ioGeneratedInstructionList += ![@pic18_intermediate_instruction_FA new
       !mInstructionLocation
       ![@FA_instruction_base_code SETF]
       !outIPICregisterDescription
     ] ;  
   else
-    ioGeneratedInstructionList += ![@ipic18_instruction_literalOperation new
+    ioGeneratedInstructionList += ![@pic18_intermediate_instruction_literalOperation new
       !mInstructionLocation
       ![@literal_instruction_opcode MOVLW]
       !upper
     ] ;
-    ioGeneratedInstructionList += ![@ipic18_instruction_FA new
+    ioGeneratedInstructionList += ![@pic18_intermediate_instruction_FA new
       !mInstructionLocation
       ![@FA_instruction_base_code MOVWF]
       !outIPICregisterDescription
@@ -737,24 +737,24 @@ override method @instruction_LTBLPTR buildIPICinstructionList
   ] ;
   const @uint high := (address >> 8) & 0xFF ;
   if high == 0 then
-    ioGeneratedInstructionList += ![@ipic18_instruction_FA new
+    ioGeneratedInstructionList += ![@pic18_intermediate_instruction_FA new
       !mInstructionLocation
       ![@FA_instruction_base_code CLRF]
       !outIPICregisterDescription
     ] ;  
   elsif high == 0xFF then
-    ioGeneratedInstructionList += ![@ipic18_instruction_FA new
+    ioGeneratedInstructionList += ![@pic18_intermediate_instruction_FA new
       !mInstructionLocation
       ![@FA_instruction_base_code SETF]
       !outIPICregisterDescription
     ] ;  
   else
-    ioGeneratedInstructionList += ![@ipic18_instruction_literalOperation new
+    ioGeneratedInstructionList += ![@pic18_intermediate_instruction_literalOperation new
       !mInstructionLocation
       ![@literal_instruction_opcode MOVLW]
       !high
     ] ;
-    ioGeneratedInstructionList += ![@ipic18_instruction_FA new
+    ioGeneratedInstructionList += ![@pic18_intermediate_instruction_FA new
       !mInstructionLocation
       ![@FA_instruction_base_code MOVWF]
       !outIPICregisterDescription
@@ -771,24 +771,24 @@ override method @instruction_LTBLPTR buildIPICinstructionList
   ] ;
   const @uint low := address & 0xFF ;
   if low == 0 then
-    ioGeneratedInstructionList += ![@ipic18_instruction_FA new
+    ioGeneratedInstructionList += ![@pic18_intermediate_instruction_FA new
       !mInstructionLocation
       ![@FA_instruction_base_code CLRF]
       !outIPICregisterDescription
     ] ;  
   elsif low == 0xFF then
-    ioGeneratedInstructionList += ![@ipic18_instruction_FA new
+    ioGeneratedInstructionList += ![@pic18_intermediate_instruction_FA new
       !mInstructionLocation
       ![@FA_instruction_base_code SETF]
       !outIPICregisterDescription
     ] ;  
   else
-    ioGeneratedInstructionList += ![@ipic18_instruction_literalOperation new
+    ioGeneratedInstructionList += ![@pic18_intermediate_instruction_literalOperation new
       !mInstructionLocation
       ![@literal_instruction_opcode MOVLW]
       !low
     ] ;
-    ioGeneratedInstructionList += ![@ipic18_instruction_FA new
+    ioGeneratedInstructionList += ![@pic18_intermediate_instruction_FA new
       !mInstructionLocation
       ![@FA_instruction_base_code MOVWF]
       !outIPICregisterDescription
@@ -805,7 +805,7 @@ override method @instruction_LDATAPTR buildIPICinstructionList
   ??@dataMap inDataMap
   ??@constantMap unused inConstantMap
   ?!@uint unused ioLocalLabelIndex
-  ?!@ipic18_instructionList ioGeneratedInstructionList
+  ?!@pic18_intermediate_instructionList ioGeneratedInstructionList
   ?!@string unused ioListFileContents
   ?!@uint ioCurrentBank
   ??@bool unused inShouldPreserveBSR
@@ -824,16 +824,16 @@ override method @instruction_LDATAPTR buildIPICinstructionList
     !inAccessBankSplitOffset
     !ioCurrentBank
     !inRegisterTable
-    ?@ipic_registerExpression outIPICregisterDescription
+    ?@pic18_intermediate_registerExpression outIPICregisterDescription
     ?*
   ] ;
-  ioGeneratedInstructionList += ![@ipic_MOV_LABEL_W new
+  ioGeneratedInstructionList += ![@pic18_intermediate_MOV_LABEL_W new
     !mInstructionLocation
     !labelName
     ![mDataIndex uint] * 2
     !16
   ] ;
-  ioGeneratedInstructionList += ![@ipic18_instruction_FA new
+  ioGeneratedInstructionList += ![@pic18_intermediate_instruction_FA new
     !mInstructionLocation
     ![@FA_instruction_base_code MOVWF]
     !outIPICregisterDescription
@@ -847,13 +847,13 @@ override method @instruction_LDATAPTR buildIPICinstructionList
     ?outIPICregisterDescription
     ?*
   ] ;
-  ioGeneratedInstructionList += ![@ipic_MOV_LABEL_W new
+  ioGeneratedInstructionList += ![@pic18_intermediate_MOV_LABEL_W new
     !mInstructionLocation
     !labelName
     ![mDataIndex uint] * 2
     !8
   ] ;
-  ioGeneratedInstructionList += ![@ipic18_instruction_FA new
+  ioGeneratedInstructionList += ![@pic18_intermediate_instruction_FA new
     !mInstructionLocation
     ![@FA_instruction_base_code MOVWF]
     !outIPICregisterDescription
@@ -867,13 +867,13 @@ override method @instruction_LDATAPTR buildIPICinstructionList
     ?outIPICregisterDescription
     ?*
   ] ;
-  ioGeneratedInstructionList += ![@ipic_MOV_LABEL_W new
+  ioGeneratedInstructionList += ![@pic18_intermediate_MOV_LABEL_W new
     !mInstructionLocation
     !labelName
     ![mDataIndex uint] * 2
     !0
   ] ;
-  ioGeneratedInstructionList += ![@ipic18_instruction_FA new
+  ioGeneratedInstructionList += ![@pic18_intermediate_instruction_FA new
     !mInstructionLocation
     ![@FA_instruction_base_code MOVWF]
     !outIPICregisterDescription
@@ -889,14 +889,14 @@ override method @instruction_TBLRD buildIPICinstructionList
   ??@dataMap unused inDataMap
   ??@constantMap unused inConstantMap
   ?!@uint unused ioLocalLabelIndex
-  ?!@ipic18_instructionList ioGeneratedInstructionList
+  ?!@pic18_intermediate_instructionList ioGeneratedInstructionList
   ?!@string unused ioListFileContents
   ?!@uint unused ioCurrentBank
   ??@bool unused inShouldPreserveBSR
   ?!@bool unused ioContinuesInSequence
   ??@routineKind unused inRoutineKind
 :
-  ioGeneratedInstructionList += ![@ipic18_instruction_TBLRD new
+  ioGeneratedInstructionList += ![@pic18_intermediate_instruction_TBLRD new
     !mInstructionLocation
     !mOption
   ] ;
@@ -911,14 +911,14 @@ override method @instruction_TBLWT buildIPICinstructionList
   ??@dataMap unused inDataMap
   ??@constantMap unused inConstantMap
   ?!@uint unused ioLocalLabelIndex
-  ?!@ipic18_instructionList ioGeneratedInstructionList
+  ?!@pic18_intermediate_instructionList ioGeneratedInstructionList
   ?!@string unused ioListFileContents
   ?!@uint unused ioCurrentBank
   ??@bool unused inShouldPreserveBSR
   ?!@bool unused ioContinuesInSequence
   ??@routineKind unused inRoutineKind
 :
-  ioGeneratedInstructionList += ![@ipic18_instruction_TBLWT new
+  ioGeneratedInstructionList += ![@pic18_intermediate_instruction_TBLWT new
     !mInstructionLocation
     !mOption
   ] ;
@@ -933,7 +933,7 @@ override method @instruction_computed_retlw buildIPICinstructionList
   ??@dataMap unused inDataMap
   ??@constantMap inConstantMap
   ?!@uint unused ioLocalLabelIndex
-  ?!@ipic18_instructionList ioGeneratedInstructionList
+  ?!@pic18_intermediate_instructionList ioGeneratedInstructionList
   ?!@string unused ioListFileContents
   ?!@uint unused ioCurrentBank
   ??@bool unused inShouldPreserveBSR
@@ -967,7 +967,7 @@ override method @instruction_computed_retlw buildIPICinstructionList
     literalValues += ![v & 0x000000FFS uint] ;
   end foreach ;
 #---
-  ioGeneratedInstructionList += ![@ipic18_instruction_computed_retlw new
+  ioGeneratedInstructionList += ![@pic18_intermediate_instruction_computed_retlw new
     !mInstructionLocation
     !literalValues
     !mUsesRelativeCall
@@ -983,7 +983,7 @@ override method @instruction_MNOP buildIPICinstructionList
   ??@dataMap unused inDataMap
   ??@constantMap unused inConstantMap
   ?!@uint unused ioLocalLabelIndex
-  ?!@ipic18_instructionList ioGeneratedInstructionList
+  ?!@pic18_intermediate_instructionList ioGeneratedInstructionList
   ?!@string unused ioListFileContents
   ?!@uint unused ioCurrentBank
   ??@bool unused inShouldPreserveBSR
@@ -995,7 +995,7 @@ override method @instruction_MNOP buildIPICinstructionList
     warning mOccurrenceFactor:"occurrence argument is zero: no generated code" ;
   end if ;
 #---
-  ioGeneratedInstructionList += ![@ipic18_instruction_MNOP new
+  ioGeneratedInstructionList += ![@pic18_intermediate_instruction_MNOP new
     !mInstructionLocation
     !mOccurrenceFactor
   ] ;
@@ -1010,7 +1010,7 @@ override method @instruction_computed_bra buildIPICinstructionList
   ??@dataMap unused inDataMap
   ??@constantMap inConstantMap
   ?!@uint unused ioLocalLabelIndex
-  ?!@ipic18_instructionList ioGeneratedInstructionList
+  ?!@pic18_intermediate_instructionList ioGeneratedInstructionList
   ?!@string unused ioListFileContents
   ?!@uint ioCurrentBank
   ??@bool inShouldPreserveBSR
@@ -1080,7 +1080,7 @@ override method @instruction_computed_bra buildIPICinstructionList
     error mInstructionLocation:"the routine name list length (" . [[mTargetLabels length] string] . ") should be equal to the computed range (" . [size string] . ")" ;
   end if ;
 #---
-  ioGeneratedInstructionList += ![@ipic18_instruction_computed_bra new
+  ioGeneratedInstructionList += ![@pic18_intermediate_instruction_computed_bra new
     !mInstructionLocation
     !mTargetLabels
     !mUsesRelativeCall
@@ -1096,7 +1096,7 @@ override method @instruction_computed_goto buildIPICinstructionList
   ??@dataMap unused inDataMap
   ??@constantMap inConstantMap
   ?!@uint unused ioLocalLabelIndex
-  ?!@ipic18_instructionList ioGeneratedInstructionList
+  ?!@pic18_intermediate_instructionList ioGeneratedInstructionList
   ?!@string unused ioListFileContents
   ?!@uint ioCurrentBank
   ??@bool unused inShouldPreserveBSR
@@ -1140,7 +1140,7 @@ override method @instruction_computed_goto buildIPICinstructionList
     error mInstructionLocation:"the routine name list length (" . [[mTargetLabels length] string] . ") should be equal to the computed range (" . [size string] . ")" ;
   end if ;
 #---
-  ioGeneratedInstructionList += ![@ipic18_instruction_computed_goto new
+  ioGeneratedInstructionList += ![@pic18_intermediate_instruction_computed_goto new
     !mInstructionLocation
     !mTargetLabels
     !mUsesRelativeCall
@@ -1156,7 +1156,7 @@ override method @instruction_computed_rcall buildIPICinstructionList
   ??@dataMap unused inDataMap
   ??@constantMap inConstantMap
   ?!@uint ioLocalLabelIndex
-  ?!@ipic18_instructionList ioGeneratedInstructionList
+  ?!@pic18_intermediate_instructionList ioGeneratedInstructionList
   ?!@string unused ioListFileContents
   ?!@uint ioCurrentBank
   ??@bool inShouldPreserveBSR
@@ -1225,7 +1225,7 @@ override method @instruction_computed_rcall buildIPICinstructionList
 #---
   @string label0 := "_label_" . [ioLocalLabelIndex string] ; 
   ioLocalLabelIndex ++ ;
-  ioGeneratedInstructionList += ![@ipic18_instruction_computed_rcall new
+  ioGeneratedInstructionList += ![@pic18_intermediate_instruction_computed_rcall new
     !mInstructionLocation
     !mTargetLabels
     !label0
@@ -1242,7 +1242,7 @@ override method @instruction_FOREVER buildIPICinstructionList
   ??@dataMap inDataMap
   ??@constantMap inConstantMap
   ?!@uint ioLocalLabelIndex
-  ?!@ipic18_instructionList ioGeneratedInstructionList
+  ?!@pic18_intermediate_instructionList ioGeneratedInstructionList
   ?!@string ioListFileContents
   ?!@uint ioCurrentBank
   ??@bool inShouldPreserveBSR
@@ -1260,7 +1260,7 @@ override method @instruction_FOREVER buildIPICinstructionList
   @uint finalBank := ioCurrentBank ;
   @string label0 := "_label_" . [ioLocalLabelIndex string] ; 
   ioLocalLabelIndex ++ ;
-  ioGeneratedInstructionList += ![@ipic_pseudo_LABEL new ![@lstring new !label0 !mInstructionLocation]] ;
+  ioGeneratedInstructionList += ![@pic18_intermediate_pseudo_LABEL new ![@lstring new !label0 !mInstructionLocation]] ;
   handleInstructionList
     !mInstructionList 
     !inAccessBankSplitOffset
@@ -1280,7 +1280,7 @@ override method @instruction_FOREVER buildIPICinstructionList
     error mEndOfInstructionList:"instruction list does not leave BSR value unchanged";
   end if ;
 #--- Generate JUMP to loop start
-  ioGeneratedInstructionList += ![@ipic_JUMP new !mInstructionLocation ![@lstring new !label0 !mInstructionLocation] ![@jumpInstructionKind ipicRelative]] ;
+  ioGeneratedInstructionList += ![@pic18_intermediate_JUMP new !mInstructionLocation ![@lstring new !label0 !mInstructionLocation] ![@jumpInstructionKind ipicRelative]] ;
 #---
   ioContinuesInSequence := false ;
 end method ;
@@ -1294,7 +1294,7 @@ override method @instruction_IF_FA_SEMI_COLON buildIPICinstructionList
   ??@dataMap inDataMap
   ??@constantMap inConstantMap
   ?!@uint ioLocalLabelIndex
-  ?!@ipic18_instructionList ioGeneratedInstructionList
+  ?!@pic18_intermediate_instructionList ioGeneratedInstructionList
   ?!@string ioListFileContents
   ?!@uint ioCurrentBank
   ??@bool inShouldPreserveBSR
@@ -1308,7 +1308,7 @@ override method @instruction_IF_FA_SEMI_COLON buildIPICinstructionList
     when CPFSLT : baseCode := [@FA_instruction_base_code CPFSLT] ;
     when TSTFSZ : baseCode := [@FA_instruction_base_code TSTFSZ] ;
   end switch ;
-  @ipic_registerExpression IPICregisterDescription ;
+  @pic18_intermediate_registerExpression IPICregisterDescription ;
   [mRegisterExpression resolveAccess
     !inAccessBankSplitOffset
     !ioCurrentBank
@@ -1316,7 +1316,7 @@ override method @instruction_IF_FA_SEMI_COLON buildIPICinstructionList
     ?IPICregisterDescription
     ?*
   ] ;
-  ioGeneratedInstructionList += ![@ipic18_instruction_FA new
+  ioGeneratedInstructionList += ![@pic18_intermediate_instruction_FA new
     !mInstructionLocation
     !baseCode
     !IPICregisterDescription
@@ -1348,7 +1348,7 @@ override method @instruction_IF_BitTest buildIPICinstructionList
   ??@dataMap inDataMap
   ??@constantMap inConstantMap
   ?!@uint ioLocalLabelIndex
-  ?!@ipic18_instructionList ioGeneratedInstructionList
+  ?!@pic18_intermediate_instructionList ioGeneratedInstructionList
   ?!@string ioListFileContents
   ?!@uint ioCurrentBank
   ??@bool inShouldPreserveBSR
@@ -1356,7 +1356,7 @@ override method @instruction_IF_BitTest buildIPICinstructionList
   ??@routineKind inRoutineKind
 :
   @bitSliceTable bitSliceTable ;
-  @ipic_registerExpression IPICregisterDescription ;
+  @pic18_intermediate_registerExpression IPICregisterDescription ;
   [mRegisterExpression resolveAccess
     !inAccessBankSplitOffset
     !ioCurrentBank
@@ -1369,7 +1369,7 @@ override method @instruction_IF_BitTest buildIPICinstructionList
     !bitSliceTable
     ?bitNumber
   ] ;
-  ioGeneratedInstructionList += ![@ipic18_instruction_BitTestSkip new
+  ioGeneratedInstructionList += ![@pic18_intermediate_instruction_BitTestSkip new
     !mInstructionLocation
     !mSkipIfSet
     !IPICregisterDescription
@@ -1403,7 +1403,7 @@ abstract method @conditionExpression buildIPICinstructionForCondition
   ??@bool inComplementaryBranch
   ??@location inInstructionLocation
   ??@string inTargetLabel
-  ?!@ipic18_instructionList ioGeneratedInstructionList
+  ?!@pic18_intermediate_instructionList ioGeneratedInstructionList
   ?!@string unused ioListFileContents
 ;
 
@@ -1424,7 +1424,7 @@ override method @bcc_in_structured_if_condition buildIPICinstructionForCondition
   ??@bool inComplementaryBranch
   ??@location inInstructionLocation
   ??@string inTargetLabel
-  ?!@ipic18_instructionList ioGeneratedInstructionList
+  ?!@pic18_intermediate_instructionList ioGeneratedInstructionList
   ?!@string unused ioListFileContents
 :
   @conditional_branch condition ;
@@ -1433,7 +1433,7 @@ override method @bcc_in_structured_if_condition buildIPICinstructionForCondition
   else
     condition := mCondition ;
   end if ;
-  ioGeneratedInstructionList += ![@ipic18_instruction_conditionalBranch new
+  ioGeneratedInstructionList += ![@pic18_intermediate_instruction_conditionalBranch new
     !inInstructionLocation
     ![@condionalBranchMode native]
     !condition
@@ -1452,6 +1452,22 @@ end method ;
 
 #----------------------------------------------------*
 
+routine getRegisterComparisonComplementary
+  ??@registerComparison inComparison
+  !@registerComparison outComparison
+:
+  switch inComparison
+    when notEqual : outComparison := [@registerComparison equal] ;
+    when equal : outComparison := [@registerComparison notEqual] ;
+    when greaterOrEqual : outComparison := [@registerComparison lower] ;
+    when greater : outComparison := [@registerComparison lowerOrEqual] ;
+    when lowerOrEqual : outComparison := [@registerComparison greater] ;
+    when lower : outComparison := [@registerComparison greaterOrEqual] ;
+  end switch ;
+end routine ;
+
+#----------------------------------------------------*
+
 override method @registerComparisonCondition buildIPICinstructionForCondition
   ??@uint inAccessBankSplitOffset
   ??@uint inCurrentBank
@@ -1460,7 +1476,7 @@ override method @registerComparisonCondition buildIPICinstructionForCondition
   ??@bool inComplementaryBranch
   ??@location inInstructionLocation
   ??@string inTargetLabel
-  ?!@ipic18_instructionList ioGeneratedInstructionList
+  ?!@pic18_intermediate_instructionList ioGeneratedInstructionList
   ?!@string unused ioListFileContents
 :
   @registerComparison comparison ;
@@ -1470,7 +1486,7 @@ override method @registerComparisonCondition buildIPICinstructionForCondition
     comparison := mComparison ;
   end if ;
 #---
-  @ipic_registerExpression IPICregisterDescription ;
+  @pic18_intermediate_registerExpression IPICregisterDescription ;
   [mRegisterExpression resolveAccess
     !inAccessBankSplitOffset
     !inCurrentBank
@@ -1479,7 +1495,7 @@ override method @registerComparisonCondition buildIPICinstructionForCondition
     ?*
   ] ;
 #---
-  ioGeneratedInstructionList += ![@ipic_registerComparisonCondition new
+  ioGeneratedInstructionList += ![@pic18_intermediate_registerComparisonCondition new
     !inInstructionLocation
     !IPICregisterDescription
     ![@lstring new !inTargetLabel !here]
@@ -1487,6 +1503,22 @@ override method @registerComparisonCondition buildIPICinstructionForCondition
     !true # By Default, uses BRA
   ] ;
 end method ;
+
+#----------------------------------------------------*
+
+routine getRegisterComparisonInstructionCount
+  ??@registerComparison inComparison
+  !@uint outInstructionCount
+:
+  switch inComparison
+    when notEqual       : outInstructionCount := 2 ;
+    when equal          : outInstructionCount := 3 ;
+    when greaterOrEqual : outInstructionCount := 2 ;
+    when greater        : outInstructionCount := 3 ;
+    when lowerOrEqual   : outInstructionCount := 2 ;
+    when lower          : outInstructionCount := 3 ;
+  end switch ;
+end routine ;
 
 #----------------------------------------------------*
 
@@ -1513,10 +1545,10 @@ override method @incDecRegisterInCondition buildIPICinstructionForCondition
   ??@bool inComplementaryBranch
   ??@location inInstructionLocation
   ??@string inTargetLabel
-  ?!@ipic18_instructionList ioGeneratedInstructionList
+  ?!@pic18_intermediate_instructionList ioGeneratedInstructionList
   ?!@string unused ioListFileContents
 :
-  @ipic_registerExpression IPICregisterDescription ;
+  @pic18_intermediate_registerExpression IPICregisterDescription ;
   [mRegisterExpression resolveAccess
     !inAccessBankSplitOffset
     !inCurrentBank
@@ -1525,7 +1557,7 @@ override method @incDecRegisterInCondition buildIPICinstructionForCondition
     ?*
   ] ;
 #---
-  ioGeneratedInstructionList += ![@ipic_incDecRegisterInCondition new
+  ioGeneratedInstructionList += ![@pic18_intermediate_incDecRegisterInCondition new
     !inInstructionLocation
     !IPICregisterDescription
     ![@lstring new !inTargetLabel !here]
@@ -1555,10 +1587,10 @@ override method @registerTestCondition buildIPICinstructionForCondition
   ??@bool inComplementaryBranch
   ??@location inInstructionLocation
   ??@string inTargetLabel
-  ?!@ipic18_instructionList ioGeneratedInstructionList
+  ?!@pic18_intermediate_instructionList ioGeneratedInstructionList
   ?!@string unused ioListFileContents
 :
-  @ipic_registerExpression IPICregisterDescription ;
+  @pic18_intermediate_registerExpression IPICregisterDescription ;
   [mRegisterExpression resolveAccess
     !inAccessBankSplitOffset
     !inCurrentBank
@@ -1567,7 +1599,7 @@ override method @registerTestCondition buildIPICinstructionForCondition
     ?*
   ] ;
 #---
-  ioGeneratedInstructionList += ![@ipic_jump_test_register new
+  ioGeneratedInstructionList += ![@pic18_intermediate_jump_test_register new
     !inInstructionLocation
     !IPICregisterDescription
     ![@lstring new !inTargetLabel !here]
@@ -1599,7 +1631,7 @@ override method @negateCondition buildIPICinstructionForCondition
   ??@bool inComplementaryBranch
   ??@location inInstructionLocation
   ??@string inTargetLabel
-  ?!@ipic18_instructionList ioGeneratedInstructionList
+  ?!@pic18_intermediate_instructionList ioGeneratedInstructionList
   ?!@string ioListFileContents
 :
   [mCondition buildIPICinstructionForCondition
@@ -1637,7 +1669,7 @@ override method @andCondition buildIPICinstructionForCondition
   ??@bool inComplementaryBranch
   ??@location inInstructionLocation
   ??@string inTargetLabel
-  ?!@ipic18_instructionList ioGeneratedInstructionList
+  ?!@pic18_intermediate_instructionList ioGeneratedInstructionList
   ?!@string ioListFileContents
 :
   if inComplementaryBranch then
@@ -1687,7 +1719,7 @@ override method @andCondition buildIPICinstructionForCondition
       !?ioGeneratedInstructionList
       !?ioListFileContents
     ] ;
-    ioGeneratedInstructionList += ![@ipic_pseudo_LABEL new ![@lstring new !label0 !inInstructionLocation]] ;
+    ioGeneratedInstructionList += ![@pic18_intermediate_pseudo_LABEL new ![@lstring new !label0 !inInstructionLocation]] ;
   end if ;
 end method ;
 
@@ -1720,11 +1752,11 @@ override method @bitTest_in_structured_if_condition buildIPICinstructionForCondi
   ??@bool inComplementaryBranch
   ??@location inInstructionLocation
   ??@string inTargetLabel
-  ?!@ipic18_instructionList ioGeneratedInstructionList
+  ?!@pic18_intermediate_instructionList ioGeneratedInstructionList
   ?!@string unused ioListFileContents
 :
   @bitSliceTable bitSliceTable ;
-  @ipic_registerExpression IPICregisterDescription ;
+  @pic18_intermediate_registerExpression IPICregisterDescription ;
   [mRegisterExpression resolveAccess
     !inAccessBankSplitOffset
     !inCurrentBank
@@ -1737,13 +1769,13 @@ override method @bitTest_in_structured_if_condition buildIPICinstructionForCondi
     !bitSliceTable
     ?bitNumber
   ] ;
-  ioGeneratedInstructionList += ![@ipic18_instruction_BitTestSkip new
+  ioGeneratedInstructionList += ![@pic18_intermediate_instruction_BitTestSkip new
     !inInstructionLocation
     !mBTFSSinstruction ^ inComplementaryBranch
     !IPICregisterDescription
     !bitNumber
   ] ;
-  ioGeneratedInstructionList += ![@ipic_JUMP new !inInstructionLocation ![@lstring new !inTargetLabel !inInstructionLocation] ![@jumpInstructionKind ipicRelative]] ;
+  ioGeneratedInstructionList += ![@pic18_intermediate_JUMP new !inInstructionLocation ![@lstring new !inTargetLabel !inInstructionLocation] ![@jumpInstructionKind ipicRelative]] ;
 end method ;
 
 #----------------------------------------------------*
@@ -1764,7 +1796,7 @@ override method @instruction_structured_if buildIPICinstructionList
   ??@dataMap inDataMap
   ??@constantMap inConstantMap
   ?!@uint ioLocalLabelIndex
-  ?!@ipic18_instructionList ioGeneratedInstructionList
+  ?!@pic18_intermediate_instructionList ioGeneratedInstructionList
   ?!@string ioListFileContents
   ?!@uint ioCurrentBank
   ??@bool inShouldPreserveBSR
@@ -1830,9 +1862,9 @@ override method @instruction_structured_if buildIPICinstructionList
     ;
   #--- 'then' instructions
     if [mThenInstructionList length] > 0 then
-      ioGeneratedInstructionList += ![@ipic_JUMP new !mInstructionLocation ![@lstring new !label_endOfIfinstruction !mInstructionLocation] ![@jumpInstructionKind ipicRelative]] ;
+      ioGeneratedInstructionList += ![@pic18_intermediate_JUMP new !mInstructionLocation ![@lstring new !label_endOfIfinstruction !mInstructionLocation] ![@jumpInstructionKind ipicRelative]] ;
     end if ;
-    ioGeneratedInstructionList += ![@ipic_pseudo_LABEL new ![@lstring new !label_nextCondition !mInstructionLocation]] ;
+    ioGeneratedInstructionList += ![@pic18_intermediate_pseudo_LABEL new ![@lstring new !label_nextCondition !mInstructionLocation]] ;
     handleInstructionList 
       !mThenInstructionList
       !inAccessBankSplitOffset
@@ -1849,7 +1881,7 @@ override method @instruction_structured_if buildIPICinstructionList
       !inRoutineKind
      ;
     if [mThenInstructionList length] > 0 then
-      ioGeneratedInstructionList += ![@ipic_pseudo_LABEL new ![@lstring new !label_endOfIfinstruction !mInstructionLocation]] ;
+      ioGeneratedInstructionList += ![@pic18_intermediate_pseudo_LABEL new ![@lstring new !label_endOfIfinstruction !mInstructionLocation]] ;
     end if ;
   else
   #---
@@ -1885,9 +1917,9 @@ override method @instruction_structured_if buildIPICinstructionList
     ;
   #--- 'else' instructions
     if [mElseInstructionList length] > 0 then
-      ioGeneratedInstructionList += ![@ipic_JUMP new !mInstructionLocation ![@lstring new !label_endOfIfinstruction !mInstructionLocation] ![@jumpInstructionKind ipicRelative]] ;
+      ioGeneratedInstructionList += ![@pic18_intermediate_JUMP new !mInstructionLocation ![@lstring new !label_endOfIfinstruction !mInstructionLocation] ![@jumpInstructionKind ipicRelative]] ;
     end if ;
-    ioGeneratedInstructionList += ![@ipic_pseudo_LABEL new ![@lstring new !label_nextCondition !mInstructionLocation]] ;
+    ioGeneratedInstructionList += ![@pic18_intermediate_pseudo_LABEL new ![@lstring new !label_nextCondition !mInstructionLocation]] ;
     handleInstructionList
       !mElseInstructionList
       !inAccessBankSplitOffset
@@ -1904,7 +1936,7 @@ override method @instruction_structured_if buildIPICinstructionList
       !inRoutineKind
     ;
     if [mElseInstructionList length] > 0 then
-      ioGeneratedInstructionList += ![@ipic_pseudo_LABEL new ![@lstring new !label_endOfIfinstruction !mInstructionLocation]] ;
+      ioGeneratedInstructionList += ![@pic18_intermediate_pseudo_LABEL new ![@lstring new !label_endOfIfinstruction !mInstructionLocation]] ;
     end if ;
   end if ;
   if elseBranchFinalBank == thenBranchFinalBank then
@@ -1926,7 +1958,7 @@ override method @instruction_do_while buildIPICinstructionList
   ??@dataMap inDataMap
   ??@constantMap inConstantMap
   ?!@uint ioLocalLabelIndex
-  ?!@ipic18_instructionList ioGeneratedInstructionList
+  ?!@pic18_intermediate_instructionList ioGeneratedInstructionList
   ?!@string ioListFileContents
   ?!@uint ioCurrentBank
   ??@bool inShouldPreserveBSR
@@ -1936,7 +1968,7 @@ override method @instruction_do_while buildIPICinstructionList
 #--- Generate label
   @string labelInstructionBegin := "_label_" . [ioLocalLabelIndex string] ; ioLocalLabelIndex ++ ;
 #--- Define label
-  ioGeneratedInstructionList += ![@ipic_pseudo_LABEL new ![@lstring new !labelInstructionBegin !mInstructionLocation]] ;
+  ioGeneratedInstructionList += ![@pic18_intermediate_pseudo_LABEL new ![@lstring new !labelInstructionBegin !mInstructionLocation]] ;
 #--- Repeated instructions
   @uint finalBank := ioCurrentBank ;
   handleInstructionList
@@ -2003,8 +2035,8 @@ override method @instruction_do_while buildIPICinstructionList
       if ioCurrentBank != bank then
         error mEndOfPartLocation:"This branch does not leave BSR value unchanged";
       end if ;
-      ioGeneratedInstructionList += ![@ipic_JUMP new !mInstructionLocation ![@lstring new !labelInstructionBegin !mInstructionLocation] ![@jumpInstructionKind ipicRelative]] ;
-      ioGeneratedInstructionList += ![@ipic_pseudo_LABEL new ![@lstring new !nextBranchLabel !mInstructionLocation]] ;
+      ioGeneratedInstructionList += ![@pic18_intermediate_JUMP new !mInstructionLocation ![@lstring new !labelInstructionBegin !mInstructionLocation] ![@jumpInstructionKind ipicRelative]] ;
+      ioGeneratedInstructionList += ![@pic18_intermediate_pseudo_LABEL new ![@lstring new !nextBranchLabel !mInstructionLocation]] ;
     end if ;
   end foreach ;
 end method ;
@@ -2018,7 +2050,7 @@ override method @instruction_IF_IncDec buildIPICinstructionList
   ??@dataMap inDataMap
   ??@constantMap inConstantMap
   ?!@uint ioLocalLabelIndex
-  ?!@ipic18_instructionList ioGeneratedInstructionList
+  ?!@pic18_intermediate_instructionList ioGeneratedInstructionList
   ?!@string ioListFileContents
   ?!@uint ioCurrentBank
   ??@bool inShouldPreserveBSR
@@ -2037,7 +2069,7 @@ override method @instruction_IF_IncDec buildIPICinstructionList
     baseCode := [@instruction_FDA_base_code DCFSNZ] ;
   end if ;
 #---
-  @ipic_registerExpression IPICregisterDescription ;
+  @pic18_intermediate_registerExpression IPICregisterDescription ;
   [mRegisterExpression resolveAccess
     !inAccessBankSplitOffset
     !ioCurrentBank
@@ -2046,7 +2078,7 @@ override method @instruction_IF_IncDec buildIPICinstructionList
     ?*
   ] ;
 #---
-  ioGeneratedInstructionList += ![@ipic18_instruction_FDA new
+  ioGeneratedInstructionList += ![@pic18_intermediate_instruction_FDA new
     !mInstructionLocation
     !baseCode
     !IPICregisterDescription
@@ -2072,7 +2104,7 @@ end method ;
 
 #----------------------------------------------------*
 
-routine build_ipic18_assembly_instruction_list
+routine build_pic18_intermediate_assembly_instruction_list
   ??@programKind inProgramKind
   ??@sint inROMSize
   ??@sint inRAMSize
@@ -2087,9 +2119,9 @@ routine build_ipic18_assembly_instruction_list
   ??@piccoloModel inPiccoloModel
   ??@bool inHasHighInterrupt
   ??@bool inHasLowInterrupt
-  ??@ipic18_instructionList inDataGeneratedInstructionList
+  ??@pic18_intermediate_instructionList inDataGeneratedInstructionList
   ??@constantMap inDataLengthConstantMap
-  !@ipic18_instructionList outGeneratedInstructionList
+  !@pic18_intermediate_instructionList outGeneratedInstructionList
   ?!@string ioListFileContents
 :
   @string generationOptimizationMessages := "" ;
@@ -2185,11 +2217,11 @@ routine build_ipic18_assembly_instruction_list
     end if ;
   end if ;
 #-------------------------------- Generate bootstrap entry points for user program
-  outGeneratedInstructionList := [@ipic18_instructionList emptyList] ;
+  outGeneratedInstructionList := [@pic18_intermediate_instructionList emptyList] ;
   @uint entryPoint := 0x04 ;
   foreach inBootloaderRoutineDeclarationListForUserProgramImplementation do
-    outGeneratedInstructionList += ![@ipic_pseudo_ORG new !entryPoint] ;
-    outGeneratedInstructionList += ![@ipic_pseudo_LABEL new !mRoutineName] ;
+    outGeneratedInstructionList += ![@pic18_intermediate_pseudo_ORG new !entryPoint] ;
+    outGeneratedInstructionList += ![@pic18_intermediate_pseudo_LABEL new !mRoutineName] ;
     entryPoint := entryPoint + 4 ;
     if entryPoint == 0x08 then
       entryPoint := 0x0C ;
@@ -2200,55 +2232,55 @@ routine build_ipic18_assembly_instruction_list
 #-------------------------------- Generate user program entry points for user program
   entryPoint := [inBootloaderReservedROMsize uint] ;
   foreach inUserRoutineDeclarationListForUserProgramImplementation do
-    outGeneratedInstructionList += ![@ipic_pseudo_ORG new !entryPoint] ;
-    outGeneratedInstructionList += ![@ipic_JUMP new !here !mRoutineName ![@jumpInstructionKind ipicRelative]] ;
+    outGeneratedInstructionList += ![@pic18_intermediate_pseudo_ORG new !entryPoint] ;
+    outGeneratedInstructionList += ![@pic18_intermediate_JUMP new !here !mRoutineName ![@jumpInstructionKind ipicRelative]] ;
     entryPoint := entryPoint + 4 ;
   end foreach ;
 #-------------------------------- At zero, generate 'jump main' instruction
   if inProgramKind != [@programKind userProgram] then
-    outGeneratedInstructionList += ![@ipic_pseudo_ORG new !0] ;
-    outGeneratedInstructionList += ![@ipic_JUMP new !here ![@lstring new !"main" !here] ![@jumpInstructionKind ipicRelative]] ;
+    outGeneratedInstructionList += ![@pic18_intermediate_pseudo_ORG new !0] ;
+    outGeneratedInstructionList += ![@pic18_intermediate_JUMP new !here ![@lstring new !"main" !here] ![@jumpInstructionKind ipicRelative]] ;
   end if ;
 #-------------------------------- At 0x04, generate the first bootloader entry point (if any)
   @routineDeclarationList tempBootloaderRoutineDeclarationList := inBootloaderRoutineDeclarationListForBootloaderImplementation ;
   if [tempBootloaderRoutineDeclarationList length] > 0 then
-    outGeneratedInstructionList += ![@ipic_pseudo_ORG new !0x04] ;
+    outGeneratedInstructionList += ![@pic18_intermediate_pseudo_ORG new !0x04] ;
     @lstring routineName ;
     [!?tempBootloaderRoutineDeclarationList popFirst ?routineName ?* ?* ?* ?*] ;
-    outGeneratedInstructionList += ![@ipic_JUMP new !here !routineName ![@jumpInstructionKind ipicRelative]] ;
+    outGeneratedInstructionList += ![@pic18_intermediate_JUMP new !here !routineName ![@jumpInstructionKind ipicRelative]] ;
   end if ;
 #-------------------------------- At 0x08, generate 'bra _high_interrupt' instruction, if fast interrupt is defined
   if inHasHighInterrupt then
-    outGeneratedInstructionList += ![@ipic_pseudo_ORG new !0x8] ;
-    outGeneratedInstructionList += ![@ipic_JUMP new !here ![@lstring new !"_high_interrupt" !here] ![@jumpInstructionKind ipicRelative]] ;
+    outGeneratedInstructionList += ![@pic18_intermediate_pseudo_ORG new !0x8] ;
+    outGeneratedInstructionList += ![@pic18_intermediate_JUMP new !here ![@lstring new !"_high_interrupt" !here] ![@jumpInstructionKind ipicRelative]] ;
   end if ;
 #-------------------------------- At 0x0C, 0x10, 0x14, generate the bootloader entry points (if they exists)
   entryPoint := 0x0C ;
   loop [tempBootloaderRoutineDeclarationList length] :
   while ([tempBootloaderRoutineDeclarationList length] > 0) & (entryPoint < 0x18) 
   do
-    outGeneratedInstructionList += ![@ipic_pseudo_ORG new !entryPoint] ;
+    outGeneratedInstructionList += ![@pic18_intermediate_pseudo_ORG new !entryPoint] ;
     @lstring routineName ;
     [!?tempBootloaderRoutineDeclarationList popFirst ?routineName ?* ?* ?* ?*] ;
-    outGeneratedInstructionList += ![@ipic_JUMP new !here !routineName ![@jumpInstructionKind ipicRelative]] ;
+    outGeneratedInstructionList += ![@pic18_intermediate_JUMP new !here !routineName ![@jumpInstructionKind ipicRelative]] ;
     entryPoint := entryPoint + 0x4 ;
   end loop ;
 #-------------------------------- Generate JUMP to low interrupt (if any)
   if inHasLowInterrupt then
-    outGeneratedInstructionList += ![@ipic_pseudo_ORG new !0x18] ;
-    outGeneratedInstructionList += ![@ipic_JUMP new !here ![@lstring new !"_low_interrupt" !here] ![@jumpInstructionKind ipicRelative]] ;
+    outGeneratedInstructionList += ![@pic18_intermediate_pseudo_ORG new !0x18] ;
+    outGeneratedInstructionList += ![@pic18_intermediate_JUMP new !here ![@lstring new !"_low_interrupt" !here] ![@jumpInstructionKind ipicRelative]] ;
   end if ;
 #-------------------------------- Generate entry points for remaining bootloader routines
   entryPoint := 0x1C ;
   foreach tempBootloaderRoutineDeclarationList do
-    outGeneratedInstructionList += ![@ipic_pseudo_ORG new !entryPoint] ;
-    outGeneratedInstructionList += ![@ipic_JUMP new !here !mRoutineName ![@jumpInstructionKind ipicRelative]] ;
+    outGeneratedInstructionList += ![@pic18_intermediate_pseudo_ORG new !entryPoint] ;
+    outGeneratedInstructionList += ![@pic18_intermediate_JUMP new !here !mRoutineName ![@jumpInstructionKind ipicRelative]] ;
     entryPoint := entryPoint + 0x4 ;
   end foreach ;
 #-------------------------------- Generate low interrupt routine (if any)
   @uint localLabelIndex := 0 ;
   if inHasLowInterrupt then
-    outGeneratedInstructionList += ![@ipic_pseudo_LABEL new ![@lstring new !"_low_interrupt" !here]] ;
+    outGeneratedInstructionList += ![@pic18_intermediate_pseudo_LABEL new ![@lstring new !"_low_interrupt" !here]] ;
     foreach [inPiccoloModel mInterruptDefinitionList] do
       if [mInterruptName string] == "low" then
         @bool continuesInSequence ;
@@ -2272,13 +2304,13 @@ routine build_ipic18_assembly_instruction_list
           error mEndOfInterruptLocation:"execution cannot reach the end of the interrupt routine" ;
         end if ;
       #--- Ajouter l'instruction REFFIE
-        outGeneratedInstructionList += ![@ipic18_instruction_RETFIE new !here !mFastReturn] ;
+        outGeneratedInstructionList += ![@pic18_intermediate_instruction_RETFIE new !here !mFastReturn] ;
       end if ;
     end foreach ;
   end if ;
 #-------------------------------- Generate high interrupt routine (if any)
   if inHasHighInterrupt then
-    outGeneratedInstructionList += ![@ipic_pseudo_LABEL new ![@lstring new !"_high_interrupt" !here]] ;
+    outGeneratedInstructionList += ![@pic18_intermediate_pseudo_LABEL new ![@lstring new !"_high_interrupt" !here]] ;
     foreach [inPiccoloModel mInterruptDefinitionList] do
       if [mInterruptName string] == "high" then
         @bool continuesInSequence ;
@@ -2302,7 +2334,7 @@ routine build_ipic18_assembly_instruction_list
           error mEndOfInterruptLocation:"execution cannot reach the end of the interrupt routine" ;
          end if ;
       #--- Add a REFFIE instruction
-        outGeneratedInstructionList += ![@ipic18_instruction_RETFIE new !here !true] ;
+        outGeneratedInstructionList += ![@pic18_intermediate_instruction_RETFIE new !here !true] ;
       end if ;
     end foreach ;
   end if ;
@@ -2316,7 +2348,7 @@ routine build_ipic18_assembly_instruction_list
     else
       routineKind := [@routineKind regularRoutine] ;
     end if ;
-    outGeneratedInstructionList += ![@ipic_pseudo_LABEL new !mRoutineName] ;
+    outGeneratedInstructionList += ![@pic18_intermediate_pseudo_LABEL new !mRoutineName] ;
     handleInstructionList
       !mInstructionList
       !inAccessBankSplitOffset
@@ -2340,13 +2372,13 @@ routine build_ipic18_assembly_instruction_list
     end if ;
   #--- Add a RETURN instruction (if it is a regular routine)
     if not mIsNoReturn then
-      outGeneratedInstructionList += ![@ipic18_instruction_RETURN new ![mRoutineName location]] ;
+      outGeneratedInstructionList += ![@pic18_intermediate_instruction_RETURN new ![mRoutineName location]] ;
     end if ;
   end foreach ;
 #-------------------------------- Generate _computed_goto_4 and _computed_goto_2 (if needed)
 #--- Description of register WREG
   @registerExpression WREGregister [new ![@lstring new !"WREG" !here] ![@luint new !0 !here]] ;
-  @ipic_registerExpression WREG_IPICregisterDescription ;
+  @pic18_intermediate_registerExpression WREG_IPICregisterDescription ;
   [WREGregister resolveAccess
     !inAccessBankSplitOffset
     !0 # Current bank
@@ -2356,7 +2388,7 @@ routine build_ipic18_assembly_instruction_list
   ] ;
 #--- Description of register TOSL
   @registerExpression TOSLregister [new ![@lstring new !"TOSL" !here] ![@luint new !0 !here]] ;
-  @ipic_registerExpression TOSL_IPICregisterDescription ;
+  @pic18_intermediate_registerExpression TOSL_IPICregisterDescription ;
   [TOSLregister resolveAccess
     !inAccessBankSplitOffset
     !0 # Current bank
@@ -2366,7 +2398,7 @@ routine build_ipic18_assembly_instruction_list
   ] ;
 #--- Description of register TOSH
   @registerExpression TOSHregister [new ![@lstring new !"TOSH" !here] ![@luint new !0 !here]] ;
-  @ipic_registerExpression TOSH_IPICregisterDescription ;
+  @pic18_intermediate_registerExpression TOSH_IPICregisterDescription ;
   [TOSHregister resolveAccess
     !inAccessBankSplitOffset
     !0 # Current bank
@@ -2376,7 +2408,7 @@ routine build_ipic18_assembly_instruction_list
   ] ;
 #--- Description of register TOSU
   @registerExpression TOSUregister [new ![@lstring new !"TOSU" !here] ![@luint new !0 !here]] ;
-  @ipic_registerExpression TOSU_IPICregisterDescription ;
+  @pic18_intermediate_registerExpression TOSU_IPICregisterDescription ;
   [TOSUregister resolveAccess
     !inAccessBankSplitOffset
     !0 # Current bank
@@ -2386,8 +2418,8 @@ routine build_ipic18_assembly_instruction_list
   ] ;
 #--- computed_goto2 routine needed ?
   if [inPiccoloModel mNeedsComputedGoto4] then
-    outGeneratedInstructionList += ![@ipic_pseudo_LABEL new ![@lstring new !"_computed_goto_4" !here]] ;
-    outGeneratedInstructionList += ![@ipic18_instruction_FDA new
+    outGeneratedInstructionList += ![@pic18_intermediate_pseudo_LABEL new ![@lstring new !"_computed_goto_4" !here]] ;
+    outGeneratedInstructionList += ![@pic18_intermediate_instruction_FDA new
       !here
       ![@instruction_FDA_base_code ADDWF]
       !WREG_IPICregisterDescription
@@ -2395,39 +2427,39 @@ routine build_ipic18_assembly_instruction_list
     ] ; # ADDWF WREG, W
   end if ;
   if [inPiccoloModel mNeedsComputedGoto2] then
-    outGeneratedInstructionList += ![@ipic_pseudo_LABEL new ![@lstring new !"_computed_goto_2" !here]] ;
+    outGeneratedInstructionList += ![@pic18_intermediate_pseudo_LABEL new ![@lstring new !"_computed_goto_2" !here]] ;
   end if ;
   if [inPiccoloModel mNeedsComputedGoto2] | [inPiccoloModel mNeedsComputedGoto4] then
-    outGeneratedInstructionList += ![@ipic18_instruction_FDA new
+    outGeneratedInstructionList += ![@pic18_intermediate_instruction_FDA new
       !here
       ![@instruction_FDA_base_code ADDWF]
       !WREG_IPICregisterDescription
       !true
     ] ; # ADDWF WREG, W
-    outGeneratedInstructionList += ![@ipic18_instruction_FDA new
+    outGeneratedInstructionList += ![@pic18_intermediate_instruction_FDA new
       !here
       ![@instruction_FDA_base_code ADDWF]
       !TOSL_IPICregisterDescription
       !false
     ] ; # ADDWF TOSL, F
-    outGeneratedInstructionList += ![@ipic18_instruction_literalOperation new
+    outGeneratedInstructionList += ![@pic18_intermediate_instruction_literalOperation new
       !here
       ![@literal_instruction_opcode MOVLW]
       !0
     ] ; # MOVLW 0
-    outGeneratedInstructionList += ![@ipic18_instruction_FDA new
+    outGeneratedInstructionList += ![@pic18_intermediate_instruction_FDA new
       !here
       ![@instruction_FDA_base_code ADDWFC]
       !TOSH_IPICregisterDescription
       !false
     ] ; # ADDWFC TOSH, F
-    outGeneratedInstructionList += ![@ipic18_instruction_FDA new
+    outGeneratedInstructionList += ![@pic18_intermediate_instruction_FDA new
       !here
       ![@instruction_FDA_base_code ADDWFC]
       !TOSU_IPICregisterDescription
       !false
     ] ; # ADDWFC TOSU, F
-    outGeneratedInstructionList += ![@ipic18_instruction_RETURN new
+    outGeneratedInstructionList += ![@pic18_intermediate_instruction_RETURN new
       !here
     ] ; # RETURN 0
   end if ;
@@ -2438,14 +2470,14 @@ routine build_ipic18_assembly_instruction_list
 #-------------------------------- Generate default user routines
   entryPoint := [inBootloaderReservedROMsize uint] ;
   foreach inUserRoutineDeclarationListForBootloaderImplementation do
-    outGeneratedInstructionList += ![@ipic_pseudo_ORG new !entryPoint] ;
-    outGeneratedInstructionList += ![@ipic_pseudo_LABEL new !mRoutineName] ;
+    outGeneratedInstructionList += ![@pic18_intermediate_pseudo_ORG new !entryPoint] ;
+    outGeneratedInstructionList += ![@pic18_intermediate_pseudo_LABEL new !mRoutineName] ;
     if mIsNoReturn then
-      outGeneratedInstructionList += ![@ipic_JUMP new !here !mRoutineName ![@jumpInstructionKind ipicRelative]] ;
+      outGeneratedInstructionList += ![@pic18_intermediate_JUMP new !here !mRoutineName ![@jumpInstructionKind ipicRelative]] ;
     elsif [mReturnedBank uint] != [@uint max] then
-      outGeneratedInstructionList += ![@ipic18_instruction_MOVLB new !here !mReturnedBank] ;
+      outGeneratedInstructionList += ![@pic18_intermediate_instruction_MOVLB new !here !mReturnedBank] ;
     end if ;
-    outGeneratedInstructionList += ![@ipic18_instruction_RETURN_NOT_OPTIMIZABLE new !here] ;
+    outGeneratedInstructionList += ![@pic18_intermediate_instruction_RETURN_NOT_OPTIMIZABLE new !here] ;
     entryPoint := entryPoint + 4 ;
   end foreach ;
 #--- Output a listing ?

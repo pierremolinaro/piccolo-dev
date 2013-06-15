@@ -1,10 +1,10 @@
-semantics ipic18_build_binary_code :
-import "ipic18_metamodel.gSemantics" ;
-import "ipic18_build_assembly_code.gSemantics" ;
+semantics pic18_build_binary_code :
+import "pic18_intermediate_classes.gSemantics" ;
+import "pic18_build_assembly_code.gSemantics" ;
 
 #----------------------------------------------------------------------------*
 
-map @ipic18_symbolTable {
+map @pic18_intermediate_symbolTable {
   @uint mSymbolAddress ;
   insert insertKey error message "the '%K' label is already declared in %L" ;
   search searchKey error message "the '%K' label is not declared" ;
@@ -16,8 +16,8 @@ map @ipic18_symbolTable {
 #                                                                            *
 #----------------------------------------------------------------------------*
 
-method @ipic18_instruction enterLabelAtAddress
-  ?!@ipic18_symbolTable unused ioRoutineSymbolTable
+method @pic18_intermediate_instruction enterLabelAtAddress
+  ?!@pic18_intermediate_symbolTable unused ioRoutineSymbolTable
   ?!@uint unused ioAddress
 :
 end method ;
@@ -25,8 +25,8 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override
-method @ipic_pseudo_LABEL enterLabelAtAddress
-  ?!@ipic18_symbolTable ioRoutineSymbolTable
+method @pic18_intermediate_pseudo_LABEL enterLabelAtAddress
+  ?!@pic18_intermediate_symbolTable ioRoutineSymbolTable
   ?!@uint ioAddress
 :
   [!?ioRoutineSymbolTable insertKey !mLabel !ioAddress] ;
@@ -35,8 +35,8 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override
-method @ipic_pseudo_ORG enterLabelAtAddress
-  ?!@ipic18_symbolTable unused ioRoutineSymbolTable
+method @pic18_intermediate_pseudo_ORG enterLabelAtAddress
+  ?!@pic18_intermediate_symbolTable unused ioRoutineSymbolTable
   ?!@uint ioAddress
 :
   ioAddress := mOrigin ;
@@ -44,8 +44,8 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @ipic_actualInstruction enterLabelAtAddress
-  ?!@ipic18_symbolTable unused ioRoutineSymbolTable
+override method @pic18_intermediate_actualInstruction enterLabelAtAddress
+  ?!@pic18_intermediate_symbolTable unused ioRoutineSymbolTable
   ?!@uint ioAddress
 :
   ioAddress := ioAddress  + [selfcopy instructionLength] ;
@@ -53,8 +53,8 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @ipic_word enterLabelAtAddress
-  ?!@ipic18_symbolTable unused ioRoutineSymbolTable
+override method @pic18_intermediate_word enterLabelAtAddress
+  ?!@pic18_intermediate_symbolTable unused ioRoutineSymbolTable
   ?!@uint ioAddress
 :
   ioAddress := ioAddress  + [selfcopy instructionLength] ;
@@ -72,16 +72,16 @@ list @emittedCodeList {
 
 #----------------------------------------------------------------------------*
 
-abstract method @ipic18_instruction generateBinaryCodeAtAddress
-  ??@ipic18_symbolTable inRoutineSymbolTable
+abstract method @pic18_intermediate_instruction generateBinaryCodeAtAddress
+  ??@pic18_intermediate_symbolTable inRoutineSymbolTable
   ?!@uint ioAddress
   ?!@emittedCodeList ioCode
 ;
 
 #----------------------------------------------------------------------------*
 
-override method @ipic_NULL generateBinaryCodeAtAddress
-  ??@ipic18_symbolTable unused inRoutineSymbolTable
+override method @pic18_intermediate_NULL generateBinaryCodeAtAddress
+  ??@pic18_intermediate_symbolTable unused inRoutineSymbolTable
   ?!@uint unused ioAddress
   ?!@emittedCodeList unused ioCode
 :
@@ -90,8 +90,8 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override
-method @ipic_pseudo_ORG generateBinaryCodeAtAddress
-  ??@ipic18_symbolTable unused inRoutineSymbolTable
+method @pic18_intermediate_pseudo_ORG generateBinaryCodeAtAddress
+  ??@pic18_intermediate_symbolTable unused inRoutineSymbolTable
   ?!@uint ioAddress
   ?!@emittedCodeList unused ioCode
 :
@@ -100,8 +100,8 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @ipic_word generateBinaryCodeAtAddress
-  ??@ipic18_symbolTable unused inRoutineSymbolTable
+override method @pic18_intermediate_word generateBinaryCodeAtAddress
+  ??@pic18_intermediate_symbolTable unused inRoutineSymbolTable
   ?!@uint unused ioAddress
   ?!@emittedCodeList ioCode
 :
@@ -111,8 +111,8 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @ipic_MOV_LABEL_W generateBinaryCodeAtAddress
-  ??@ipic18_symbolTable inRoutineSymbolTable
+override method @pic18_intermediate_MOV_LABEL_W generateBinaryCodeAtAddress
+  ??@pic18_intermediate_symbolTable inRoutineSymbolTable
   ?!@uint unused ioAddress
   ?!@emittedCodeList ioCode
 :
@@ -125,8 +125,8 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @ipic18_instruction_FDA generateBinaryCodeAtAddress
-  ??@ipic18_symbolTable unused inRoutineSymbolTable
+override method @pic18_intermediate_instruction_FDA generateBinaryCodeAtAddress
+  ??@pic18_intermediate_symbolTable unused inRoutineSymbolTable
   ?!@uint unused ioAddress
   ?!@emittedCodeList ioCode
 :
@@ -144,8 +144,8 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @ipic18_instruction_FA generateBinaryCodeAtAddress
-  ??@ipic18_symbolTable unused inRoutineSymbolTable
+override method @pic18_intermediate_instruction_FA generateBinaryCodeAtAddress
+  ??@pic18_intermediate_symbolTable unused inRoutineSymbolTable
   ?!@uint unused ioAddress
   ?!@emittedCodeList ioCode
 :
@@ -160,8 +160,8 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @ipic18_instruction_MOVFF generateBinaryCodeAtAddress
-  ??@ipic18_symbolTable unused inRoutineSymbolTable
+override method @pic18_intermediate_instruction_MOVFF generateBinaryCodeAtAddress
+  ??@pic18_intermediate_symbolTable unused inRoutineSymbolTable
   ?!@uint unused ioAddress
   ?!@emittedCodeList ioCode
 :
@@ -173,8 +173,8 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @ipic18_instruction_FBA generateBinaryCodeAtAddress
-  ??@ipic18_symbolTable unused inRoutineSymbolTable
+override method @pic18_intermediate_instruction_FBA generateBinaryCodeAtAddress
+  ??@pic18_intermediate_symbolTable unused inRoutineSymbolTable
   ?!@uint unused ioAddress
   ?!@emittedCodeList ioCode
 :
@@ -190,8 +190,8 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @ipic18_instruction_BitTestSkip generateBinaryCodeAtAddress
-  ??@ipic18_symbolTable unused inRoutineSymbolTable
+override method @pic18_intermediate_instruction_BitTestSkip generateBinaryCodeAtAddress
+  ??@pic18_intermediate_symbolTable unused inRoutineSymbolTable
   ?!@uint unused ioAddress
   ?!@emittedCodeList ioCode
 :
@@ -269,8 +269,8 @@ end routine ;
 
 #----------------------------------------------------------------------------*
 
-override method @ipic18_instruction_conditionalBranch generateBinaryCodeAtAddress
-  ??@ipic18_symbolTable inRoutineSymbolTable
+override method @pic18_intermediate_instruction_conditionalBranch generateBinaryCodeAtAddress
+  ??@pic18_intermediate_symbolTable inRoutineSymbolTable
   ?!@uint ioAddress
   ?!@emittedCodeList ioCode
 :
@@ -321,8 +321,8 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @ipic_JUMP generateBinaryCodeAtAddress
-  ??@ipic18_symbolTable inRoutineSymbolTable
+override method @pic18_intermediate_JUMP generateBinaryCodeAtAddress
+  ??@pic18_intermediate_symbolTable inRoutineSymbolTable
   ?!@uint ioAddress
   ?!@emittedCodeList ioCode
 :
@@ -379,8 +379,8 @@ end routine ;
 
 #----------------------------------------------------------------------------*
 
-override method @ipic_JSR generateBinaryCodeAtAddress
-  ??@ipic18_symbolTable inRoutineSymbolTable
+override method @pic18_intermediate_JSR generateBinaryCodeAtAddress
+  ??@pic18_intermediate_symbolTable inRoutineSymbolTable
   ?!@uint ioAddress
   ?!@emittedCodeList ioCode
 :
@@ -408,8 +408,8 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @ipic_jump_test_register generateBinaryCodeAtAddress
-  ??@ipic18_symbolTable inRoutineSymbolTable
+override method @pic18_intermediate_jump_test_register generateBinaryCodeAtAddress
+  ??@pic18_intermediate_symbolTable inRoutineSymbolTable
   ?!@uint ioAddress
   ?!@emittedCodeList ioCode
 :
@@ -453,8 +453,8 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @ipic_incDecRegisterInCondition generateBinaryCodeAtAddress
-  ??@ipic18_symbolTable inRoutineSymbolTable
+override method @pic18_intermediate_incDecRegisterInCondition generateBinaryCodeAtAddress
+  ??@pic18_intermediate_symbolTable inRoutineSymbolTable
   ?!@uint ioAddress
   ?!@emittedCodeList ioCode
 :
@@ -488,8 +488,8 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @ipic_registerComparisonCondition generateBinaryCodeAtAddress
-  ??@ipic18_symbolTable inRoutineSymbolTable
+override method @pic18_intermediate_registerComparisonCondition generateBinaryCodeAtAddress
+  ??@pic18_intermediate_symbolTable inRoutineSymbolTable
   ?!@uint ioAddress
   ?!@emittedCodeList ioCode
 :
@@ -541,8 +541,8 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @ipic18_instruction_CLRWDT generateBinaryCodeAtAddress
-  ??@ipic18_symbolTable unused inRoutineSymbolTable
+override method @pic18_intermediate_instruction_CLRWDT generateBinaryCodeAtAddress
+  ??@pic18_intermediate_symbolTable unused inRoutineSymbolTable
   ?!@uint unused ioAddress
   ?!@emittedCodeList ioCode
 :
@@ -551,8 +551,8 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @ipic18_instruction_DAW generateBinaryCodeAtAddress
-  ??@ipic18_symbolTable unused inRoutineSymbolTable
+override method @pic18_intermediate_instruction_DAW generateBinaryCodeAtAddress
+  ??@pic18_intermediate_symbolTable unused inRoutineSymbolTable
   ?!@uint unused ioAddress
   ?!@emittedCodeList ioCode
 :
@@ -561,8 +561,8 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @ipic18_instruction_NOP generateBinaryCodeAtAddress
-  ??@ipic18_symbolTable unused inRoutineSymbolTable
+override method @pic18_intermediate_instruction_NOP generateBinaryCodeAtAddress
+  ??@pic18_intermediate_symbolTable unused inRoutineSymbolTable
   ?!@uint unused ioAddress
   ?!@emittedCodeList ioCode
 :
@@ -571,8 +571,8 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @ipic18_instruction_POP generateBinaryCodeAtAddress
-  ??@ipic18_symbolTable unused inRoutineSymbolTable
+override method @pic18_intermediate_instruction_POP generateBinaryCodeAtAddress
+  ??@pic18_intermediate_symbolTable unused inRoutineSymbolTable
   ?!@uint unused ioAddress
   ?!@emittedCodeList ioCode
 :
@@ -581,8 +581,8 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @ipic18_instruction_PUSH generateBinaryCodeAtAddress
-  ??@ipic18_symbolTable unused inRoutineSymbolTable
+override method @pic18_intermediate_instruction_PUSH generateBinaryCodeAtAddress
+  ??@pic18_intermediate_symbolTable unused inRoutineSymbolTable
   ?!@uint unused ioAddress
   ?!@emittedCodeList ioCode
 :
@@ -591,8 +591,8 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @ipic18_instruction_RESET generateBinaryCodeAtAddress
-  ??@ipic18_symbolTable unused inRoutineSymbolTable
+override method @pic18_intermediate_instruction_RESET generateBinaryCodeAtAddress
+  ??@pic18_intermediate_symbolTable unused inRoutineSymbolTable
   ?!@uint unused ioAddress
   ?!@emittedCodeList ioCode
 :
@@ -601,8 +601,8 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @ipic18_instruction_RETURN generateBinaryCodeAtAddress
-  ??@ipic18_symbolTable unused inRoutineSymbolTable
+override method @pic18_intermediate_instruction_RETURN generateBinaryCodeAtAddress
+  ??@pic18_intermediate_symbolTable unused inRoutineSymbolTable
   ?!@uint unused ioAddress
   ?!@emittedCodeList ioCode
 :
@@ -611,8 +611,8 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @ipic18_instruction_RETURN_NOT_OPTIMIZABLE generateBinaryCodeAtAddress
-  ??@ipic18_symbolTable unused inRoutineSymbolTable
+override method @pic18_intermediate_instruction_RETURN_NOT_OPTIMIZABLE generateBinaryCodeAtAddress
+  ??@pic18_intermediate_symbolTable unused inRoutineSymbolTable
   ?!@uint unused ioAddress
   ?!@emittedCodeList ioCode
 :
@@ -621,8 +621,8 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @ipic18_instruction_RETFIE generateBinaryCodeAtAddress
-  ??@ipic18_symbolTable unused inRoutineSymbolTable
+override method @pic18_intermediate_instruction_RETFIE generateBinaryCodeAtAddress
+  ??@pic18_intermediate_symbolTable unused inRoutineSymbolTable
   ?!@uint unused ioAddress
   ?!@emittedCodeList ioCode
 :
@@ -638,8 +638,8 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @ipic18_instruction_SLEEP generateBinaryCodeAtAddress
-  ??@ipic18_symbolTable unused inRoutineSymbolTable
+override method @pic18_intermediate_instruction_SLEEP generateBinaryCodeAtAddress
+  ??@pic18_intermediate_symbolTable unused inRoutineSymbolTable
   ?!@uint unused ioAddress
   ?!@emittedCodeList ioCode
 :
@@ -648,8 +648,8 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @ipic18_instruction_literalOperation generateBinaryCodeAtAddress
-  ??@ipic18_symbolTable unused inRoutineSymbolTable
+override method @pic18_intermediate_instruction_literalOperation generateBinaryCodeAtAddress
+  ??@pic18_intermediate_symbolTable unused inRoutineSymbolTable
   ?!@uint unused ioAddress
   ?!@emittedCodeList ioCode
 :
@@ -661,8 +661,8 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @ipic18_instruction_RETLW generateBinaryCodeAtAddress
-  ??@ipic18_symbolTable unused inRoutineSymbolTable
+override method @pic18_intermediate_instruction_RETLW generateBinaryCodeAtAddress
+  ??@pic18_intermediate_symbolTable unused inRoutineSymbolTable
   ?!@uint unused ioAddress
   ?!@emittedCodeList ioCode
 :
@@ -672,8 +672,8 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @ipic18_instruction_LFSR generateBinaryCodeAtAddress
-  ??@ipic18_symbolTable unused inRoutineSymbolTable
+override method @pic18_intermediate_instruction_LFSR generateBinaryCodeAtAddress
+  ??@pic18_intermediate_symbolTable unused inRoutineSymbolTable
   ?!@uint unused ioAddress
   ?!@emittedCodeList ioCode
 :
@@ -685,8 +685,8 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @ipic18_instruction_MOVLB generateBinaryCodeAtAddress
-  ??@ipic18_symbolTable unused inRoutineSymbolTable
+override method @pic18_intermediate_instruction_MOVLB generateBinaryCodeAtAddress
+  ??@pic18_intermediate_symbolTable unused inRoutineSymbolTable
   ?!@uint unused ioAddress
   ?!@emittedCodeList ioCode
 :
@@ -695,8 +695,8 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @ipic_pseudo_LABEL generateBinaryCodeAtAddress
-  ??@ipic18_symbolTable inRoutineSymbolTable
+override method @pic18_intermediate_pseudo_LABEL generateBinaryCodeAtAddress
+  ??@pic18_intermediate_symbolTable inRoutineSymbolTable
   ?!@uint ioAddress
   ?!@emittedCodeList unused ioCode
 :
@@ -711,8 +711,8 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @ipic18_instruction_TBLRD generateBinaryCodeAtAddress
-  ??@ipic18_symbolTable unused inRoutineSymbolTable
+override method @pic18_intermediate_instruction_TBLRD generateBinaryCodeAtAddress
+  ??@pic18_intermediate_symbolTable unused inRoutineSymbolTable
   ?!@uint unused ioAddress
   ?!@emittedCodeList ioCode
 :
@@ -726,8 +726,8 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @ipic18_instruction_TBLWT generateBinaryCodeAtAddress
-  ??@ipic18_symbolTable unused inRoutineSymbolTable
+override method @pic18_intermediate_instruction_TBLWT generateBinaryCodeAtAddress
+  ??@pic18_intermediate_symbolTable unused inRoutineSymbolTable
   ?!@uint unused ioAddress
   ?!@emittedCodeList ioCode
 :
@@ -741,8 +741,8 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @ipic18_instruction_MNOP generateBinaryCodeAtAddress
-  ??@ipic18_symbolTable unused inRoutineSymbolTable
+override method @pic18_intermediate_instruction_MNOP generateBinaryCodeAtAddress
+  ??@pic18_intermediate_symbolTable unused inRoutineSymbolTable
   ?!@uint unused ioAddress
   ?!@emittedCodeList ioCode
 :
@@ -760,8 +760,8 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @ipic18_instruction_computed_retlw generateBinaryCodeAtAddress
-  ??@ipic18_symbolTable inRoutineSymbolTable
+override method @pic18_intermediate_instruction_computed_retlw generateBinaryCodeAtAddress
+  ??@pic18_intermediate_symbolTable inRoutineSymbolTable
   ?!@uint ioAddress
   ?!@emittedCodeList ioCode
 :
@@ -780,8 +780,8 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @ipic18_instruction_computed_bra generateBinaryCodeAtAddress
-  ??@ipic18_symbolTable inRoutineSymbolTable
+override method @pic18_intermediate_instruction_computed_bra generateBinaryCodeAtAddress
+  ??@pic18_intermediate_symbolTable inRoutineSymbolTable
   ?!@uint ioAddress
   ?!@emittedCodeList ioCode
 :
@@ -813,8 +813,8 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @ipic18_instruction_computed_goto generateBinaryCodeAtAddress
-  ??@ipic18_symbolTable inRoutineSymbolTable
+override method @pic18_intermediate_instruction_computed_goto generateBinaryCodeAtAddress
+  ??@pic18_intermediate_symbolTable inRoutineSymbolTable
   ?!@uint ioAddress
   ?!@emittedCodeList ioCode
 :
@@ -837,8 +837,8 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @ipic18_instruction_computed_rcall generateBinaryCodeAtAddress
-  ??@ipic18_symbolTable inRoutineSymbolTable
+override method @pic18_intermediate_instruction_computed_rcall generateBinaryCodeAtAddress
+  ??@pic18_intermediate_symbolTable inRoutineSymbolTable
   ?!@uint ioAddress
   ?!@emittedCodeList ioCode
 :
@@ -873,14 +873,14 @@ end method ;
 #                                                                            *
 #----------------------------------------------------------------------------*
 
-routine build_ipic18_binary_code
-  ??@ipic18_instructionList inGeneratedInstructionList
+routine build_pic18_intermediate_binary_code
+  ??@pic18_intermediate_instructionList inGeneratedInstructionList
   ??@uint inROMsize
   ??@actualConfigurationMap inActualConfigurationMap
   !@uint outUsedROMsize
 :
 #-------------------------------- First pass: build label map
-  @ipic18_symbolTable symbolTable [emptyMap] ;
+  @pic18_intermediate_symbolTable symbolTable [emptyMap] ;
   @uint currentAddress := 0 ;
   foreach inGeneratedInstructionList do
     [mInstruction enterLabelAtAddress !?symbolTable !?currentAddress] ;

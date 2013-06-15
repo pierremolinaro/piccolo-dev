@@ -1,8 +1,8 @@
 semantics pic18_semantics :
-import "ipic18_build_binary_code.gSemantics" ;
+import "pic18_build_binary_code.gSemantics" ;
 import "pic18_checkingAndBuildIPIC.gSemantics" ;
-import "ipc18_convert_relatives.gSemantics" ;
-import "ipic18_optimizations.gSemantics" ;
+import "pic18_convert_relatives.gSemantics" ;
+import "pic18_optimizations.gSemantics" ;
 import "piccolo_config.gSemantics" ;
 import "ram_sections.gSemantics" ;
 import "pic18_grammar.gGrammar" ;
@@ -15,11 +15,11 @@ import "pic18_metrics_analysis.gSemantics" ;
 #----------------------------------------------------------------------------*
 
 routine pic18_build_listing_of_generated_code
-  ??@ipic18_instructionList inInstructionList
+  ??@pic18_intermediate_instructionList inInstructionList
   ?!@string ioListFileContents
 :
 #--- Build symbol table
-  @ipic18_symbolTable symbolTable [emptyMap] ;
+  @pic18_intermediate_symbolTable symbolTable [emptyMap] ;
   @uint currentAddress := 0 ;
   foreach inInstructionList do
     [mInstruction enterLabelAtAddress !?symbolTable !?currentAddress] ;
@@ -67,12 +67,12 @@ end routine ;
 local routine analyze_data_sections
   ??@dataList inDataDefinitionList
   ?!@string ioListFileContents
-  !@ipic18_instructionList outDataGeneratedInstructionList
+  !@pic18_intermediate_instructionList outDataGeneratedInstructionList
   !@dataMap outDataMap
   !@constantMap outConstantMap
 :
   outConstantMap := [@constantMap emptyMap] ;
-  outDataGeneratedInstructionList := [@ipic18_instructionList emptyList] ;
+  outDataGeneratedInstructionList := [@pic18_intermediate_instructionList emptyList] ;
   outDataMap := [@dataMap emptyMap] ;
   foreach inDataDefinitionList
   before
@@ -84,12 +84,12 @@ local routine analyze_data_sections
     [!?outDataMap insertKey !mDataName ![mValueList length]] ;
     [!?outConstantMap insertKey ![@lstring new !mDataName->string . "_BYTE_COUNT" !mDataName->location] ![[mValueList length] * 2 sint]] ;
     const @lstring dataName [new !"_data_" . mDataName !mDataName->location] ;
-    outDataGeneratedInstructionList += ![@ipic_pseudo_LABEL new !dataName] ;
+    outDataGeneratedInstructionList += ![@pic18_intermediate_pseudo_LABEL new !dataName] ;
     foreach mValueList do
       if mValue->uint > 65535 then
         error mValue: "data value is " . [mValue->uint hexString] . " (greater than 0xFFFF)" ;
       else
-        outDataGeneratedInstructionList += ![@ipic_word new !mValue->uint] ;
+        outDataGeneratedInstructionList += ![@pic18_intermediate_word new !mValue->uint] ;
       end if ;
     end foreach ;
   end foreach ;
@@ -223,7 +223,7 @@ routine pic18_analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName 
   analyze_data_sections
     !inPiccoloModel->mDataList
     !?listFileContents
-    ?@ipic18_instructionList dataGeneratedInstructionList
+    ?@pic18_intermediate_instructionList dataGeneratedInstructionList
     ?@dataMap dataMap
     ?@constantMap dataLengthConstantMap
   ;
@@ -255,8 +255,8 @@ routine pic18_analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName 
     end if ;
   end foreach ;
 #-------------------------------- Build IPIC Assembly Instruction List
-  @ipic18_instructionList generatedInstructionList ;
-  build_ipic18_assembly_instruction_list
+  @pic18_intermediate_instructionList generatedInstructionList ;
+  build_pic18_intermediate_assembly_instruction_list
     ![inPiccoloModel mProgramKind]
     ![[[piccoloDeviceModel mRomSize] uint] sint]
     ![RAMsize sint]
@@ -282,13 +282,13 @@ routine pic18_analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName 
   end if ;
 #-------------------------------- Convert relative branchs to absolute, when needed
   if [@uint errorCount] == 0 then
-    ipic18_convertRelativeBranchsToAbsoluteWhenNeeded !?generatedInstructionList !?listFileContents ;
+    pic18_intermediate_convertRelativeBranchsToAbsoluteWhenNeeded !?generatedInstructionList !?listFileContents ;
   end if ;
 #--- If no error, generate object file(s)
   if [@uint errorCount] == 0 then
   #--- Generate hex file
     @uint usedROMsize ;
-    build_ipic18_binary_code
+    build_pic18_intermediate_binary_code
       !generatedInstructionList
       ![[piccoloDeviceModel mRomSize] uint]
       !actualConfigurationMap

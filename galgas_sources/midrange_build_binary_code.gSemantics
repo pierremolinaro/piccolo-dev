@@ -1,5 +1,5 @@
 semantics midrange_build_binary_code :
-import "ipic_generic.gSemantics" ;
+import "intermediate_generic.gSemantics" ;
 import "midrange_intermediate_classes.gSemantics" ;
 import "midrange_display_intermediate_instruction.gSemantics" ;
 

@@ -1,5 +1,5 @@
 semantics baseline_build_assembly_code :
-import "ipic_generic.gSemantics" ;
+import "intermediate_generic.gSemantics" ;
 import "baseline_intermediate_classes.gSemantics" ;
 import "baseline_intermediate_instruction_length.gSemantics" ;
 import "baseline_intermediate_instruction_print.gSemantics" ;

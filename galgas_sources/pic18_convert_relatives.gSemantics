@@ -1,9 +1,9 @@
-semantics ipc18_convert_relatives :
-import "ipic18_metamodel.gSemantics" ;
+semantics pic18_convert_relatives :
+import "pic18_intermediate_classes.gSemantics" ;
 
 #----------------------------------------------------------------------------*
 
-map @ipic18_symbolTableForConvertingRelatives {
+map @pic18_intermediate_symbolTableForConvertingRelatives {
   @uint mRoutineAddress ;
   insert insertKey error message "the '%K' label is already declared in %L" ;
   search searchKey error message "the '%K' label is not declared" ;
@@ -15,16 +15,16 @@ map @ipic18_symbolTableForConvertingRelatives {
 #                                                                            *
 #----------------------------------------------------------------------------*
 
-method @ipic18_instruction defineLabelAtAddress
-  ?!@ipic18_symbolTableForConvertingRelatives unused ioRoutineSymbolTable
+method @pic18_intermediate_instruction defineLabelAtAddress
+  ?!@pic18_intermediate_symbolTableForConvertingRelatives unused ioRoutineSymbolTable
   ?!@uint unused ioAddress
 :
 end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @ipic_pseudo_LABEL defineLabelAtAddress
-  ?!@ipic18_symbolTableForConvertingRelatives ioRoutineSymbolTable
+override method @pic18_intermediate_pseudo_LABEL defineLabelAtAddress
+  ?!@pic18_intermediate_symbolTableForConvertingRelatives ioRoutineSymbolTable
   ?!@uint ioAddress
 :
   [!?ioRoutineSymbolTable insertKey !mLabel !ioAddress] ;
@@ -32,8 +32,8 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @ipic_pseudo_ORG defineLabelAtAddress
-  ?!@ipic18_symbolTableForConvertingRelatives unused ioRoutineSymbolTable
+override method @pic18_intermediate_pseudo_ORG defineLabelAtAddress
+  ?!@pic18_intermediate_symbolTableForConvertingRelatives unused ioRoutineSymbolTable
   ?!@uint ioAddress
 :
   if (ioAddress > mOrigin) then
@@ -45,8 +45,8 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @ipic_actualInstruction defineLabelAtAddress
-  ?!@ipic18_symbolTableForConvertingRelatives unused ioRoutineSymbolTable
+override method @pic18_intermediate_actualInstruction defineLabelAtAddress
+  ?!@pic18_intermediate_symbolTableForConvertingRelatives unused ioRoutineSymbolTable
   ?!@uint ioAddress
 :
   ioAddress := ioAddress  + [selfcopy instructionLength] ;
@@ -54,8 +54,8 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @ipic_word defineLabelAtAddress
-  ?!@ipic18_symbolTableForConvertingRelatives unused ioRoutineSymbolTable
+override method @pic18_intermediate_word defineLabelAtAddress
+  ?!@pic18_intermediate_symbolTableForConvertingRelatives unused ioRoutineSymbolTable
   ?!@uint ioAddress
 :
   ioAddress := ioAddress  + [selfcopy instructionLength] ;
@@ -67,22 +67,22 @@ end method ;
 #                                                                            *
 #----------------------------------------------------------------------------*
 
-abstract method @ipic18_instruction checkRelativeBranch
-  ??@ipic18_symbolTableForConvertingRelatives unused inRoutineSymbolTable
+abstract method @pic18_intermediate_instruction checkRelativeBranch
+  ??@pic18_intermediate_symbolTableForConvertingRelatives unused inRoutineSymbolTable
   ?!@uint unused ioAddress
   ?!@bool unused ioRelativeBranchOverflow
-  ?!@ipic18_instructionList unused ioGeneratedInstructionList
+  ?!@pic18_intermediate_instructionList unused ioGeneratedInstructionList
   ??@uint unused inIndex
   ?!@string unused ioListFileContents
 ;
 
 #----------------------------------------------------------------------------*
 
-override method @ipic_NULL checkRelativeBranch
-  ??@ipic18_symbolTableForConvertingRelatives unused inRoutineSymbolTable
+override method @pic18_intermediate_NULL checkRelativeBranch
+  ??@pic18_intermediate_symbolTableForConvertingRelatives unused inRoutineSymbolTable
   ?!@uint unused ioAddress
   ?!@bool unused ioRelativeBranchOverflow
-  ?!@ipic18_instructionList unused ioGeneratedInstructionList
+  ?!@pic18_intermediate_instructionList unused ioGeneratedInstructionList
   ??@uint unused inIndex
   ?!@string unused ioListFileContents
 :
@@ -90,11 +90,11 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @ipic_MOV_LABEL_W checkRelativeBranch
-  ??@ipic18_symbolTableForConvertingRelatives unused inRoutineSymbolTable
+override method @pic18_intermediate_MOV_LABEL_W checkRelativeBranch
+  ??@pic18_intermediate_symbolTableForConvertingRelatives unused inRoutineSymbolTable
   ?!@uint unused ioAddress
   ?!@bool unused ioRelativeBranchOverflow
-  ?!@ipic18_instructionList unused ioGeneratedInstructionList
+  ?!@pic18_intermediate_instructionList unused ioGeneratedInstructionList
   ??@uint unused inIndex
   ?!@string unused ioListFileContents
 :
@@ -102,11 +102,11 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @ipic_word checkRelativeBranch
-  ??@ipic18_symbolTableForConvertingRelatives unused inRoutineSymbolTable
+override method @pic18_intermediate_word checkRelativeBranch
+  ??@pic18_intermediate_symbolTableForConvertingRelatives unused inRoutineSymbolTable
   ?!@uint unused ioAddress
   ?!@bool unused ioRelativeBranchOverflow
-  ?!@ipic18_instructionList unused ioGeneratedInstructionList
+  ?!@pic18_intermediate_instructionList unused ioGeneratedInstructionList
   ??@uint unused inIndex
   ?!@string unused ioListFileContents
 :
@@ -114,11 +114,11 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @ipic_actualInstruction checkRelativeBranch
-  ??@ipic18_symbolTableForConvertingRelatives unused inRoutineSymbolTable
+override method @pic18_intermediate_actualInstruction checkRelativeBranch
+  ??@pic18_intermediate_symbolTableForConvertingRelatives unused inRoutineSymbolTable
   ?!@uint unused ioAddress
   ?!@bool unused ioRelativeBranchOverflow
-  ?!@ipic18_instructionList unused ioGeneratedInstructionList
+  ?!@pic18_intermediate_instructionList unused ioGeneratedInstructionList
   ??@uint unused inIndex
   ?!@string unused ioListFileContents
 :
@@ -127,11 +127,11 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override
-method @ipic_pseudo_ORG checkRelativeBranch
-  ??@ipic18_symbolTableForConvertingRelatives unused inRoutineSymbolTable
+method @pic18_intermediate_pseudo_ORG checkRelativeBranch
+  ??@pic18_intermediate_symbolTableForConvertingRelatives unused inRoutineSymbolTable
   ?!@uint ioAddress
   ?!@bool unused ioRelativeBranchOverflow
-  ?!@ipic18_instructionList unused ioGeneratedInstructionList
+  ?!@pic18_intermediate_instructionList unused ioGeneratedInstructionList
   ??@uint unused inIndex
   ?!@string unused ioListFileContents
 :
@@ -140,11 +140,11 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @ipic18_instruction_conditionalBranch checkRelativeBranch
-  ??@ipic18_symbolTableForConvertingRelatives inRoutineSymbolTable
+override method @pic18_intermediate_instruction_conditionalBranch checkRelativeBranch
+  ??@pic18_intermediate_symbolTableForConvertingRelatives inRoutineSymbolTable
   ?!@uint ioAddress
   ?!@bool ioRelativeBranchOverflow
-  ?!@ipic18_instructionList ioGeneratedInstructionList
+  ?!@pic18_intermediate_instructionList ioGeneratedInstructionList
   ??@uint inIndex
   ?!@string ioListFileContents
 :
@@ -163,7 +163,7 @@ override method @ipic18_instruction_conditionalBranch checkRelativeBranch
     if (displacement > 127S) | (displacement < - 128S) then
       ioRelativeBranchOverflow := true ;
       ioListFileContents .= "  line " . [inIndex string] . ":  native Bcc overflow, converted to Bcc with BRA\n" ;
-      @ipic_actualInstruction instruction := [@ipic18_instruction_conditionalBranch new
+      @pic18_intermediate_actualInstruction instruction := [@pic18_intermediate_instruction_conditionalBranch new
         !mInstructionLocation
         ![@condionalBranchMode ipicBRA]
         !mConditionalBranch
@@ -178,7 +178,7 @@ override method @ipic18_instruction_conditionalBranch checkRelativeBranch
     if (displacement > 1023S) | (displacement < - 1024S) then
       ioRelativeBranchOverflow := true ;
       ioListFileContents .= "  line " . [inIndex string] . ":  Bcc with BRA overflow, converted to Bcc with GOTO\n" ;
-      @ipic_actualInstruction instruction := [@ipic18_instruction_conditionalBranch new
+      @pic18_intermediate_actualInstruction instruction := [@pic18_intermediate_instruction_conditionalBranch new
         !mInstructionLocation
         ![@condionalBranchMode ipicGOTO]
         !mConditionalBranch
@@ -192,11 +192,11 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @ipic_jump_test_register checkRelativeBranch
-  ??@ipic18_symbolTableForConvertingRelatives inRoutineSymbolTable
+override method @pic18_intermediate_jump_test_register checkRelativeBranch
+  ??@pic18_intermediate_symbolTableForConvertingRelatives inRoutineSymbolTable
   ?!@uint ioAddress
   ?!@bool ioRelativeBranchOverflow
-  ?!@ipic18_instructionList ioGeneratedInstructionList
+  ?!@pic18_intermediate_instructionList ioGeneratedInstructionList
   ??@uint inIndex
   ?!@string ioListFileContents
 :
@@ -211,7 +211,7 @@ override method @ipic_jump_test_register checkRelativeBranch
     if (displacement > 1023S) | (displacement < - 1024S) then
       ioRelativeBranchOverflow := true ;
       ioListFileContents .= "  line " . [inIndex string] . ":  JUMP with BRA overflow, converted to JUMP with GOTO\n" ;
-      @ipic_actualInstruction instruction := [@ipic_jump_test_register new
+      @pic18_intermediate_actualInstruction instruction := [@pic18_intermediate_jump_test_register new
         !mInstructionLocation
         !mRegisterDescription
         !mTargetLabel
@@ -225,11 +225,11 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @ipic_registerComparisonCondition checkRelativeBranch
-  ??@ipic18_symbolTableForConvertingRelatives inRoutineSymbolTable
+override method @pic18_intermediate_registerComparisonCondition checkRelativeBranch
+  ??@pic18_intermediate_symbolTableForConvertingRelatives inRoutineSymbolTable
   ?!@uint ioAddress
   ?!@bool ioRelativeBranchOverflow
-  ?!@ipic18_instructionList ioGeneratedInstructionList
+  ?!@pic18_intermediate_instructionList ioGeneratedInstructionList
   ??@uint inIndex
   ?!@string ioListFileContents
 :
@@ -245,7 +245,7 @@ override method @ipic_registerComparisonCondition checkRelativeBranch
     if (displacement > 1023S) | (displacement < - 1024S) then
       ioRelativeBranchOverflow := true ;
       ioListFileContents .= "  line " . [inIndex string] . ":  JUMP with BRA overflow, converted to JUMP with GOTO\n" ;
-      @ipic_actualInstruction instruction := [@ipic_registerComparisonCondition new
+      @pic18_intermediate_actualInstruction instruction := [@pic18_intermediate_registerComparisonCondition new
         !mInstructionLocation
         !mRegisterDescription
         !mTargetLabel
@@ -259,11 +259,11 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @ipic_incDecRegisterInCondition checkRelativeBranch
-  ??@ipic18_symbolTableForConvertingRelatives inRoutineSymbolTable
+override method @pic18_intermediate_incDecRegisterInCondition checkRelativeBranch
+  ??@pic18_intermediate_symbolTableForConvertingRelatives inRoutineSymbolTable
   ?!@uint ioAddress
   ?!@bool ioRelativeBranchOverflow
-  ?!@ipic18_instructionList ioGeneratedInstructionList
+  ?!@pic18_intermediate_instructionList ioGeneratedInstructionList
   ??@uint inIndex
   ?!@string ioListFileContents
 :
@@ -275,7 +275,7 @@ override method @ipic_incDecRegisterInCondition checkRelativeBranch
     if (displacement > 1023S) | (displacement < - 1024S) then
       ioRelativeBranchOverflow := true ;
       ioListFileContents .= "  line " . [inIndex string] . ":  JUMP with BRA overflow, converted to JUMP with GOTO\n" ;
-      @ipic_actualInstruction instruction := [@ipic_incDecRegisterInCondition new
+      @pic18_intermediate_actualInstruction instruction := [@pic18_intermediate_incDecRegisterInCondition new
         !mInstructionLocation
         !mRegisterDescription
         !mTargetLabel
@@ -291,11 +291,11 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @ipic_JUMP checkRelativeBranch
-  ??@ipic18_symbolTableForConvertingRelatives inRoutineSymbolTable
+override method @pic18_intermediate_JUMP checkRelativeBranch
+  ??@pic18_intermediate_symbolTableForConvertingRelatives inRoutineSymbolTable
   ?!@uint ioAddress
   ?!@bool ioRelativeBranchOverflow
-  ?!@ipic18_instructionList ioGeneratedInstructionList
+  ?!@pic18_intermediate_instructionList ioGeneratedInstructionList
   ??@uint inIndex
   ?!@string ioListFileContents
 :
@@ -307,7 +307,7 @@ override method @ipic_JUMP checkRelativeBranch
     if (displacement > 1023S) | (displacement < - 1024S) then
       ioRelativeBranchOverflow := true ;
       ioListFileContents .= "  line " . [inIndex string] . ":  JUMP with BRA overflow, converted to JUMP with GOTO\n" ;
-      @ipic_actualInstruction instruction := [@ipic_JUMP new
+      @pic18_intermediate_actualInstruction instruction := [@pic18_intermediate_JUMP new
         !mInstructionLocation
         !mTargetLabel
         ![@jumpInstructionKind ipicAbsolute]
@@ -328,11 +328,11 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @ipic_JSR checkRelativeBranch
-  ??@ipic18_symbolTableForConvertingRelatives inRoutineSymbolTable
+override method @pic18_intermediate_JSR checkRelativeBranch
+  ??@pic18_intermediate_symbolTableForConvertingRelatives inRoutineSymbolTable
   ?!@uint ioAddress
   ?!@bool ioRelativeBranchOverflow
-  ?!@ipic18_instructionList ioGeneratedInstructionList
+  ?!@pic18_intermediate_instructionList ioGeneratedInstructionList
   ??@uint inIndex
   ?!@string ioListFileContents
 :
@@ -344,7 +344,7 @@ override method @ipic_JSR checkRelativeBranch
     if (displacement > 1023S) | (displacement < - 1024S) then
       ioListFileContents .= "  line " . [inIndex string] . ":  JSR with RCALL overflow, converted to JSR with CALL\n" ;
       ioRelativeBranchOverflow := true ;
-      @ipic_actualInstruction instruction := [@ipic_JSR new
+      @pic18_intermediate_actualInstruction instruction := [@pic18_intermediate_JSR new
         !mInstructionLocation
         !mTargetLabel
         ![@jumpInstructionKind ipicAbsolute]
@@ -365,11 +365,11 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @ipic_pseudo_LABEL checkRelativeBranch
-  ??@ipic18_symbolTableForConvertingRelatives inRoutineSymbolTable
+override method @pic18_intermediate_pseudo_LABEL checkRelativeBranch
+  ??@pic18_intermediate_symbolTableForConvertingRelatives inRoutineSymbolTable
   ?!@uint ioAddress
   ?!@bool unused ioRelativeBranchOverflow
-  ?!@ipic18_instructionList unused ioGeneratedInstructionList
+  ?!@pic18_intermediate_instructionList unused ioGeneratedInstructionList
   ??@uint unused inIndex
   ?!@string unused ioListFileContents
 :
@@ -384,11 +384,11 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @ipic18_instruction_computed_retlw checkRelativeBranch
-  ??@ipic18_symbolTableForConvertingRelatives inRoutineSymbolTable
+override method @pic18_intermediate_instruction_computed_retlw checkRelativeBranch
+  ??@pic18_intermediate_symbolTableForConvertingRelatives inRoutineSymbolTable
   ?!@uint ioAddress
   ?!@bool ioRelativeBranchOverflow
-  ?!@ipic18_instructionList ioGeneratedInstructionList
+  ?!@pic18_intermediate_instructionList ioGeneratedInstructionList
   ??@uint inIndex
   ?!@string ioListFileContents
 :
@@ -399,7 +399,7 @@ override method @ipic18_instruction_computed_retlw checkRelativeBranch
     if (displacement > 1023S) | (displacement < - 1024S) then
       ioRelativeBranchOverflow := true ;
       ioListFileContents .= "  line " . [inIndex string] . ":  COMPUTED RETLW with RCALL overflow, converted to COMPUTED RETLW with CALL\n" ;
-      @ipic_actualInstruction instruction := [@ipic18_instruction_computed_retlw new
+      @pic18_intermediate_actualInstruction instruction := [@pic18_intermediate_instruction_computed_retlw new
         !mInstructionLocation
         !mLiteralValues
         !false
@@ -411,11 +411,11 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @ipic18_instruction_computed_bra checkRelativeBranch
-  ??@ipic18_symbolTableForConvertingRelatives inRoutineSymbolTable
+override method @pic18_intermediate_instruction_computed_bra checkRelativeBranch
+  ??@pic18_intermediate_symbolTableForConvertingRelatives inRoutineSymbolTable
   ?!@uint ioAddress
   ?!@bool ioRelativeBranchOverflow
-  ?!@ipic18_instructionList ioGeneratedInstructionList
+  ?!@pic18_intermediate_instructionList ioGeneratedInstructionList
   ??@uint inIndex
   ?!@string ioListFileContents
 :
@@ -426,7 +426,7 @@ override method @ipic18_instruction_computed_bra checkRelativeBranch
     if (displacement > 1023S) | (displacement < - 1024S) then
       ioRelativeBranchOverflow := true ;
       ioListFileContents .= "  line " . [inIndex string] . ":  COMPUTED BRA with RCALL overflow, converted to COMPUTED BRA with CALL\n" ;
-      @ipic_actualInstruction instruction := [@ipic18_instruction_computed_bra new
+      @pic18_intermediate_actualInstruction instruction := [@pic18_intermediate_instruction_computed_bra new
         !mInstructionLocation
         !mTargetLabels
         !false
@@ -451,11 +451,11 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @ipic18_instruction_computed_goto checkRelativeBranch
-  ??@ipic18_symbolTableForConvertingRelatives inRoutineSymbolTable
+override method @pic18_intermediate_instruction_computed_goto checkRelativeBranch
+  ??@pic18_intermediate_symbolTableForConvertingRelatives inRoutineSymbolTable
   ?!@uint ioAddress
   ?!@bool ioRelativeBranchOverflow
-  ?!@ipic18_instructionList ioGeneratedInstructionList
+  ?!@pic18_intermediate_instructionList ioGeneratedInstructionList
   ??@uint inIndex
   ?!@string ioListFileContents
 :
@@ -466,7 +466,7 @@ override method @ipic18_instruction_computed_goto checkRelativeBranch
     if (displacement > 1023S) | (displacement < - 1024S) then
       ioRelativeBranchOverflow := true ;
       ioListFileContents .= "  line " . [inIndex string] . ":  COMPUTED GOTO with RCALL overflow, converted to COMPUTED GOTO with CALL\n" ;
-      @ipic_actualInstruction instruction := [@ipic18_instruction_computed_goto new
+      @pic18_intermediate_actualInstruction instruction := [@pic18_intermediate_instruction_computed_goto new
         !mInstructionLocation
         !mTargetLabels
         !false
@@ -481,11 +481,11 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @ipic18_instruction_computed_rcall checkRelativeBranch
-  ??@ipic18_symbolTableForConvertingRelatives inRoutineSymbolTable
+override method @pic18_intermediate_instruction_computed_rcall checkRelativeBranch
+  ??@pic18_intermediate_symbolTableForConvertingRelatives inRoutineSymbolTable
   ?!@uint ioAddress
   ?!@bool ioRelativeBranchOverflow
-  ?!@ipic18_instructionList ioGeneratedInstructionList
+  ?!@pic18_intermediate_instructionList ioGeneratedInstructionList
   ??@uint inIndex
   ?!@string ioListFileContents
 :
@@ -496,7 +496,7 @@ override method @ipic18_instruction_computed_rcall checkRelativeBranch
     if (displacement > 1023S) | (displacement < - 1024S) then
       ioRelativeBranchOverflow := true ;
       ioListFileContents .= "  line " . [inIndex string] . ":  COMPUTED RCALL with RCALL overflow, converted to COMPUTED RCALL with CALL\n" ;
-      @ipic_actualInstruction instruction := [@ipic18_instruction_computed_rcall new
+      @pic18_intermediate_actualInstruction instruction := [@pic18_intermediate_instruction_computed_rcall new
         !mInstructionLocation
         !mTargetLabels
         !mEndOfInstructionLabel
@@ -516,8 +516,8 @@ end method ;
 #                                                                            *
 #----------------------------------------------------------------------------*
 
-routine ipic18_convertRelativeBranchsToAbsoluteWhenNeeded
-  ?!@ipic18_instructionList ioGeneratedInstructionList
+routine pic18_intermediate_convertRelativeBranchsToAbsoluteWhenNeeded
+  ?!@pic18_intermediate_instructionList ioGeneratedInstructionList
   ?!@string ioListFileContents
 :
   ioListFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n" ;
@@ -532,7 +532,7 @@ routine ipic18_convertRelativeBranchsToAbsoluteWhenNeeded
     iteration ++ ;
     ioListFileContents .= "Pass " . [iteration string] . ":\n" ;
   #-------------------------------- First pass: build label map
-    @ipic18_symbolTableForConvertingRelatives symbolTable [emptyMap] ;
+    @pic18_intermediate_symbolTableForConvertingRelatives symbolTable [emptyMap] ;
     @uint currentAddress := 0 ;
     foreach ioGeneratedInstructionList do
       [mInstruction defineLabelAtAddress !?symbolTable !?currentAddress] ;
