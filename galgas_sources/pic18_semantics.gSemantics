@@ -84,7 +84,7 @@ local routine analyze_data_sections
     [!?outDataMap insertKey !mDataName ![mValueList length]] ;
     [!?outConstantMap insertKey ![@lstring new !mDataName->string . "_BYTE_COUNT" !mDataName->location] ![[mValueList length] * 2 sint]] ;
     const @lstring dataName [new !"_data_" . mDataName !mDataName->location] ;
-    outDataGeneratedInstructionList += ![@pic18_intermediate_pseudo_LABEL new !dataName] ;
+    outDataGeneratedInstructionList += ![@pic18_intermediate_pseudo_LABEL new !dataName !true] ;
     foreach mValueList do
       if mValue->uint > 65535 then
         error mValue: "data value is " . [mValue->uint hexString] . " (greater than 0xFFFF)" ;
@@ -350,7 +350,7 @@ routine pic18_analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName 
   end if ;
 #-------------------------------- Compute stack requirements
   if [@uint errorCount] == 0 then
-    pic18_stack_requirements
+    pic18_compute_metrics
       !inPiccoloModel
       !userRoutineDeclarationListForBootloaderImplementation # Empty for regular program
       !bootloaderRoutineDeclarationListForUserProgramImplementation

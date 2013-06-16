@@ -187,6 +187,7 @@ end method ;
 
 class @pic18_intermediate_pseudo_LABEL extends @pic18_intermediate_instruction {
   @lstring mLabel ;
+  @bool mIsDeletable ;
 }
 
 override reader @pic18_intermediate_pseudo_LABEL instructionLength -> @uint outLength :

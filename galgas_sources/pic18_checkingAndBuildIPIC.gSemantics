@@ -1260,7 +1260,7 @@ override method @instruction_FOREVER buildIPICinstructionList
   @uint finalBank := ioCurrentBank ;
   @string label0 := "_label_" . [ioLocalLabelIndex string] ; 
   ioLocalLabelIndex ++ ;
-  ioGeneratedInstructionList += ![@pic18_intermediate_pseudo_LABEL new ![@lstring new !label0 !mInstructionLocation]] ;
+  ioGeneratedInstructionList += ![@pic18_intermediate_pseudo_LABEL new ![@lstring new !label0 !mInstructionLocation] !true] ;
   handleInstructionList
     !mInstructionList 
     !inAccessBankSplitOffset
@@ -1719,7 +1719,7 @@ override method @andCondition buildIPICinstructionForCondition
       !?ioGeneratedInstructionList
       !?ioListFileContents
     ] ;
-    ioGeneratedInstructionList += ![@pic18_intermediate_pseudo_LABEL new ![@lstring new !label0 !inInstructionLocation]] ;
+    ioGeneratedInstructionList += ![@pic18_intermediate_pseudo_LABEL new ![@lstring new !label0 !inInstructionLocation] !true] ;
   end if ;
 end method ;
 
@@ -1864,7 +1864,7 @@ override method @instruction_structured_if buildIPICinstructionList
     if [mThenInstructionList length] > 0 then
       ioGeneratedInstructionList += ![@pic18_intermediate_JUMP new !mInstructionLocation ![@lstring new !label_endOfIfinstruction !mInstructionLocation] ![@jumpInstructionKind ipicRelative]] ;
     end if ;
-    ioGeneratedInstructionList += ![@pic18_intermediate_pseudo_LABEL new ![@lstring new !label_nextCondition !mInstructionLocation]] ;
+    ioGeneratedInstructionList += ![@pic18_intermediate_pseudo_LABEL new ![@lstring new !label_nextCondition !mInstructionLocation] !true] ;
     handleInstructionList 
       !mThenInstructionList
       !inAccessBankSplitOffset
@@ -1881,7 +1881,7 @@ override method @instruction_structured_if buildIPICinstructionList
       !inRoutineKind
      ;
     if [mThenInstructionList length] > 0 then
-      ioGeneratedInstructionList += ![@pic18_intermediate_pseudo_LABEL new ![@lstring new !label_endOfIfinstruction !mInstructionLocation]] ;
+      ioGeneratedInstructionList += ![@pic18_intermediate_pseudo_LABEL new ![@lstring new !label_endOfIfinstruction !mInstructionLocation] !true] ;
     end if ;
   else
   #---
@@ -1919,7 +1919,7 @@ override method @instruction_structured_if buildIPICinstructionList
     if [mElseInstructionList length] > 0 then
       ioGeneratedInstructionList += ![@pic18_intermediate_JUMP new !mInstructionLocation ![@lstring new !label_endOfIfinstruction !mInstructionLocation] ![@jumpInstructionKind ipicRelative]] ;
     end if ;
-    ioGeneratedInstructionList += ![@pic18_intermediate_pseudo_LABEL new ![@lstring new !label_nextCondition !mInstructionLocation]] ;
+    ioGeneratedInstructionList += ![@pic18_intermediate_pseudo_LABEL new ![@lstring new !label_nextCondition !mInstructionLocation] !true] ;
     handleInstructionList
       !mElseInstructionList
       !inAccessBankSplitOffset
@@ -1936,7 +1936,7 @@ override method @instruction_structured_if buildIPICinstructionList
       !inRoutineKind
     ;
     if [mElseInstructionList length] > 0 then
-      ioGeneratedInstructionList += ![@pic18_intermediate_pseudo_LABEL new ![@lstring new !label_endOfIfinstruction !mInstructionLocation]] ;
+      ioGeneratedInstructionList += ![@pic18_intermediate_pseudo_LABEL new ![@lstring new !label_endOfIfinstruction !mInstructionLocation] !true] ;
     end if ;
   end if ;
   if elseBranchFinalBank == thenBranchFinalBank then
@@ -1968,7 +1968,7 @@ override method @instruction_do_while buildIPICinstructionList
 #--- Generate label
   @string labelInstructionBegin := "_label_" . [ioLocalLabelIndex string] ; ioLocalLabelIndex ++ ;
 #--- Define label
-  ioGeneratedInstructionList += ![@pic18_intermediate_pseudo_LABEL new ![@lstring new !labelInstructionBegin !mInstructionLocation]] ;
+  ioGeneratedInstructionList += ![@pic18_intermediate_pseudo_LABEL new ![@lstring new !labelInstructionBegin !mInstructionLocation] !true] ;
 #--- Repeated instructions
   @uint finalBank := ioCurrentBank ;
   handleInstructionList
@@ -2036,7 +2036,7 @@ override method @instruction_do_while buildIPICinstructionList
         error mEndOfPartLocation:"This branch does not leave BSR value unchanged";
       end if ;
       ioGeneratedInstructionList += ![@pic18_intermediate_JUMP new !mInstructionLocation ![@lstring new !labelInstructionBegin !mInstructionLocation] ![@jumpInstructionKind ipicRelative]] ;
-      ioGeneratedInstructionList += ![@pic18_intermediate_pseudo_LABEL new ![@lstring new !nextBranchLabel !mInstructionLocation]] ;
+      ioGeneratedInstructionList += ![@pic18_intermediate_pseudo_LABEL new ![@lstring new !nextBranchLabel !mInstructionLocation] !true] ;
     end if ;
   end foreach ;
 end method ;
@@ -2221,7 +2221,7 @@ routine build_pic18_intermediate_assembly_instruction_list
   @uint entryPoint := 0x04 ;
   foreach inBootloaderRoutineDeclarationListForUserProgramImplementation do
     outGeneratedInstructionList += ![@pic18_intermediate_pseudo_ORG new !entryPoint] ;
-    outGeneratedInstructionList += ![@pic18_intermediate_pseudo_LABEL new !mRoutineName] ;
+    outGeneratedInstructionList += ![@pic18_intermediate_pseudo_LABEL new !mRoutineName !true] ;
     entryPoint := entryPoint + 4 ;
     if entryPoint == 0x08 then
       entryPoint := 0x0C ;
@@ -2252,6 +2252,7 @@ routine build_pic18_intermediate_assembly_instruction_list
 #-------------------------------- At 0x08, generate 'bra _high_interrupt' instruction, if fast interrupt is defined
   if inHasHighInterrupt then
     outGeneratedInstructionList += ![@pic18_intermediate_pseudo_ORG new !0x8] ;
+    outGeneratedInstructionList += ![@pic18_intermediate_pseudo_LABEL new ![@lstring new !"_high_interrupt_routine" !here] !false] ;
     outGeneratedInstructionList += ![@pic18_intermediate_JUMP new !here ![@lstring new !"_high_interrupt" !here] ![@jumpInstructionKind ipicRelative]] ;
   end if ;
 #-------------------------------- At 0x0C, 0x10, 0x14, generate the bootloader entry points (if they exists)
@@ -2268,6 +2269,7 @@ routine build_pic18_intermediate_assembly_instruction_list
 #-------------------------------- Generate JUMP to low interrupt (if any)
   if inHasLowInterrupt then
     outGeneratedInstructionList += ![@pic18_intermediate_pseudo_ORG new !0x18] ;
+    outGeneratedInstructionList += ![@pic18_intermediate_pseudo_LABEL new ![@lstring new !"_low_interrupt_routine" !here] !false] ;
     outGeneratedInstructionList += ![@pic18_intermediate_JUMP new !here ![@lstring new !"_low_interrupt" !here] ![@jumpInstructionKind ipicRelative]] ;
   end if ;
 #-------------------------------- Generate entry points for remaining bootloader routines
@@ -2280,7 +2282,7 @@ routine build_pic18_intermediate_assembly_instruction_list
 #-------------------------------- Generate low interrupt routine (if any)
   @uint localLabelIndex := 0 ;
   if inHasLowInterrupt then
-    outGeneratedInstructionList += ![@pic18_intermediate_pseudo_LABEL new ![@lstring new !"_low_interrupt" !here]] ;
+    outGeneratedInstructionList += ![@pic18_intermediate_pseudo_LABEL new ![@lstring new !"_low_interrupt" !here] !true] ;
     foreach [inPiccoloModel mInterruptDefinitionList] do
       if [mInterruptName string] == "low" then
         @bool continuesInSequence ;
@@ -2310,7 +2312,7 @@ routine build_pic18_intermediate_assembly_instruction_list
   end if ;
 #-------------------------------- Generate high interrupt routine (if any)
   if inHasHighInterrupt then
-    outGeneratedInstructionList += ![@pic18_intermediate_pseudo_LABEL new ![@lstring new !"_high_interrupt" !here]] ;
+    outGeneratedInstructionList += ![@pic18_intermediate_pseudo_LABEL new ![@lstring new !"_high_interrupt" !here] !true] ;
     foreach [inPiccoloModel mInterruptDefinitionList] do
       if [mInterruptName string] == "high" then
         @bool continuesInSequence ;
@@ -2348,7 +2350,7 @@ routine build_pic18_intermediate_assembly_instruction_list
     else
       routineKind := [@routineKind regularRoutine] ;
     end if ;
-    outGeneratedInstructionList += ![@pic18_intermediate_pseudo_LABEL new !mRoutineName] ;
+    outGeneratedInstructionList += ![@pic18_intermediate_pseudo_LABEL new !mRoutineName  !true] ;
     handleInstructionList
       !mInstructionList
       !inAccessBankSplitOffset
@@ -2418,7 +2420,7 @@ routine build_pic18_intermediate_assembly_instruction_list
   ] ;
 #--- computed_goto2 routine needed ?
   if [inPiccoloModel mNeedsComputedGoto4] then
-    outGeneratedInstructionList += ![@pic18_intermediate_pseudo_LABEL new ![@lstring new !"_computed_goto_4" !here]] ;
+    outGeneratedInstructionList += ![@pic18_intermediate_pseudo_LABEL new ![@lstring new !"_computed_goto_4" !here] !true] ;
     outGeneratedInstructionList += ![@pic18_intermediate_instruction_FDA new
       !here
       ![@instruction_FDA_base_code ADDWF]
@@ -2427,7 +2429,7 @@ routine build_pic18_intermediate_assembly_instruction_list
     ] ; # ADDWF WREG, W
   end if ;
   if [inPiccoloModel mNeedsComputedGoto2] then
-    outGeneratedInstructionList += ![@pic18_intermediate_pseudo_LABEL new ![@lstring new !"_computed_goto_2" !here]] ;
+    outGeneratedInstructionList += ![@pic18_intermediate_pseudo_LABEL new ![@lstring new !"_computed_goto_2" !here] !true] ;
   end if ;
   if [inPiccoloModel mNeedsComputedGoto2] | [inPiccoloModel mNeedsComputedGoto4] then
     outGeneratedInstructionList += ![@pic18_intermediate_instruction_FDA new
@@ -2471,7 +2473,7 @@ routine build_pic18_intermediate_assembly_instruction_list
   entryPoint := [inBootloaderReservedROMsize uint] ;
   foreach inUserRoutineDeclarationListForBootloaderImplementation do
     outGeneratedInstructionList += ![@pic18_intermediate_pseudo_ORG new !entryPoint] ;
-    outGeneratedInstructionList += ![@pic18_intermediate_pseudo_LABEL new !mRoutineName] ;
+    outGeneratedInstructionList += ![@pic18_intermediate_pseudo_LABEL new !mRoutineName !true] ;
     if mIsNoReturn then
       outGeneratedInstructionList += ![@pic18_intermediate_JUMP new !here !mRoutineName ![@jumpInstructionKind ipicRelative]] ;
     elsif [mReturnedBank uint] != [@uint max] then

@@ -103,6 +103,7 @@ class @midrange_intermediate_pseudo_ORG extends @midrange_intermediate_instructi
 
 class @midrange_intermediate_pseudo_LABEL extends @midrange_intermediate_instruction {
   @lstring mLabel ;
+  @bool mIsDeletable ;
 }
 
 #----------------------------------------------------*

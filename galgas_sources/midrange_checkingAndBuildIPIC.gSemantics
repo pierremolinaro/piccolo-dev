@@ -745,7 +745,7 @@ override method @midrange_instruction_FOREVER build_midrange_ipic_instructionLis
   @uint finalBank := ioCurrentBank ;
   @string label0 := "_label_" . [ioLocalLabelIndex string] ; 
   ioLocalLabelIndex ++ ;
-  ioGeneratedInstructionList += ![@midrange_intermediate_pseudo_LABEL new ![@lstring new !label0 !mInstructionLocation]] ;
+  ioGeneratedInstructionList += ![@midrange_intermediate_pseudo_LABEL new ![@lstring new !label0 !mInstructionLocation] !true] ;
   handleMidrangeInstructionList
     !mInstructionList 
     !inRoutineMap
@@ -988,7 +988,7 @@ override method @midrange_andCondition buildIPICinstructionForCondition
       !?ioGeneratedInstructionList
       !?ioListFileContents
     ] ;
-    ioGeneratedInstructionList += ![@midrange_intermediate_pseudo_LABEL new ![@lstring new !label0 !inInstructionLocation]] ;
+    ioGeneratedInstructionList += ![@midrange_intermediate_pseudo_LABEL new ![@lstring new !label0 !inInstructionLocation] !true] ;
   end if ;
 end method ;
 
@@ -1137,7 +1137,7 @@ override method @midrange_instruction_structured_if build_midrange_ipic_instruct
     if [mThenInstructionList length] > 0 then
       ioGeneratedInstructionList += ![@midrange_intermediate_GOTO new !mInstructionLocation ![@lstring new !label_endOfIfinstruction !mInstructionLocation]] ;
     end if ;
-    ioGeneratedInstructionList += ![@midrange_intermediate_pseudo_LABEL new ![@lstring new !label_nextCondition !mInstructionLocation]] ;
+    ioGeneratedInstructionList += ![@midrange_intermediate_pseudo_LABEL new ![@lstring new !label_nextCondition !mInstructionLocation] !true] ;
     handleMidrangeInstructionList 
       !mThenInstructionList
       !inRoutineMap
@@ -1153,7 +1153,7 @@ override method @midrange_instruction_structured_if build_midrange_ipic_instruct
       !inRoutineKind
      ;
     if [mThenInstructionList length] > 0 then
-      ioGeneratedInstructionList += ![@midrange_intermediate_pseudo_LABEL new ![@lstring new !label_endOfIfinstruction !mInstructionLocation]] ;
+      ioGeneratedInstructionList += ![@midrange_intermediate_pseudo_LABEL new ![@lstring new !label_endOfIfinstruction !mInstructionLocation] !true] ;
     end if ;
   else
   #---
@@ -1190,7 +1190,7 @@ override method @midrange_instruction_structured_if build_midrange_ipic_instruct
     if [mElseInstructionList length] > 0 then
       ioGeneratedInstructionList += ![@midrange_intermediate_GOTO new !mInstructionLocation ![@lstring new !label_endOfIfinstruction !mInstructionLocation]] ;
     end if ;
-    ioGeneratedInstructionList += ![@midrange_intermediate_pseudo_LABEL new ![@lstring new !label_nextCondition !mInstructionLocation]] ;
+    ioGeneratedInstructionList += ![@midrange_intermediate_pseudo_LABEL new ![@lstring new !label_nextCondition !mInstructionLocation] !true] ;
     handleMidrangeInstructionList
       !mElseInstructionList
       !inRoutineMap
@@ -1206,7 +1206,7 @@ override method @midrange_instruction_structured_if build_midrange_ipic_instruct
       !inRoutineKind
     ;
     if [mElseInstructionList length] > 0 then
-      ioGeneratedInstructionList += ![@midrange_intermediate_pseudo_LABEL new ![@lstring new !label_endOfIfinstruction !mInstructionLocation]] ;
+      ioGeneratedInstructionList += ![@midrange_intermediate_pseudo_LABEL new ![@lstring new !label_endOfIfinstruction !mInstructionLocation] !true] ;
     end if ;
   end if ;
   if elseBranchFinalBank == thenBranchFinalBank then
@@ -1237,7 +1237,7 @@ override method @midrange_instruction_do_while build_midrange_ipic_instructionLi
 #--- Generate label
   @string labelInstructionBegin := "_label_" . [ioLocalLabelIndex string] ; ioLocalLabelIndex ++ ;
 #--- Define label
-  ioGeneratedInstructionList += ![@midrange_intermediate_pseudo_LABEL new ![@lstring new !labelInstructionBegin !mInstructionLocation]] ;
+  ioGeneratedInstructionList += ![@midrange_intermediate_pseudo_LABEL new ![@lstring new !labelInstructionBegin !mInstructionLocation] !true] ;
 #--- Repeated instructions
   @uint finalBank := ioCurrentBank ;
   handleMidrangeInstructionList
@@ -1303,7 +1303,7 @@ override method @midrange_instruction_do_while build_midrange_ipic_instructionLi
         error mEndOfPartLocation:"This branch does not leave bank selection value unchanged";
       end if ;
       ioGeneratedInstructionList += ![@midrange_intermediate_GOTO new !mInstructionLocation ![@lstring new !labelInstructionBegin !mInstructionLocation]] ;
-      ioGeneratedInstructionList += ![@midrange_intermediate_pseudo_LABEL new ![@lstring new !nextBranchLabel !mInstructionLocation]] ;
+      ioGeneratedInstructionList += ![@midrange_intermediate_pseudo_LABEL new ![@lstring new !nextBranchLabel !mInstructionLocation] !true] ;
     end if ;
   end foreach ;
 end method ;
@@ -1456,7 +1456,7 @@ routine build_midrange_assembly_instruction_list
         else
           routineKind := [@routineKind regularRoutine] ;
         end if ;
-        outGeneratedInstructionList += ![@midrange_intermediate_pseudo_LABEL new !mRoutineName] ;
+        outGeneratedInstructionList += ![@midrange_intermediate_pseudo_LABEL new !mRoutineName !true] ;
         handleMidrangeInstructionList
           !mInstructionList
           !routineMap
