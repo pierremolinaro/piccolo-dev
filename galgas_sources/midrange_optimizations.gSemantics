@@ -157,7 +157,7 @@ method @midrange_intermediate_pseudo_LABEL defineLabel
   ?!@symbolTableForOptimizations ioRoutineSymbolTable
   ??@uint inLineIndex
 :
-  [!?ioRoutineSymbolTable insertKey !mLabel !inLineIndex] ;
+  [!?ioRoutineSymbolTable insertKey !mLabel !inLineIndex !mIsDeletable] ;
 end method ;
 
 #----------------------------------------------------------------------------*
@@ -241,7 +241,7 @@ method @midrange_intermediate_JUMP optimizeJUMP
     ioListFileContents .= "  line " . [inLineIndex string] . ": JUMP branching to next instruction deleted\n" ;
   else      
   #--- Find destination label definition line
-    @uint line ; [inSymbolTable searchKey !mTargetLabel ?line] ;
+    [inSymbolTable searchKey !mTargetLabel ?@uint line ?*] ;
   #--- Find first executable instruction
     @midrange_intermediate_instruction firstInstruction ;
     findMidRangeFirstInstructionFromAddress !line + 1 !ioGeneratedInstructionList ?firstInstruction ;
@@ -296,7 +296,7 @@ method @midrange_intermediate_GOTO optimizeGOTO
     ioListFileContents .= "  line " . [inLineIndex string] . ": GOTO branching to next instruction deleted\n" ;
   else      
   #--- Find destination label definition line
-    @uint line ; [inSymbolTable searchKey !mTargetLabel ?line] ;
+    [inSymbolTable searchKey !mTargetLabel ?@uint line ?*] ;
   #--- Find first executable instruction
     @midrange_intermediate_instruction firstInstruction ;
     findMidRangeFirstInstructionFromAddress !line + 1 !ioGeneratedInstructionList ?firstInstruction ;
@@ -403,7 +403,7 @@ method @midrange_intermediate_incDecRegisterInCondition optimizeTestDecInc
 :
 #  message "optimizeTestDecInc " . [inLineIndex string] . "\n" ;
 #--- Find destination label definition line
-  @uint line ; [inSymbolTable searchKey ![@lstring new !mTargetLabel !here] ?line] ;
+  [inSymbolTable searchKey ![@lstring new !mTargetLabel !here] ?@uint line ?*] ;
 #--- Find first executable instruction
   @midrange_intermediate_instruction firstInstruction ;
   findMidRangeFirstInstructionFromAddress !line + 1 !ioGeneratedInstructionList ?firstInstruction ;
@@ -585,10 +585,10 @@ routine perform_midrange_optimizations
     end foreach ;
     foreach symbolTable do
       if not [referencedLabels hasKey ![lkey string]] then
-        @uint definitionLine ; [symbolTable searchKey !lkey ?definitionLine] ;
+        [symbolTable searchKey !lkey ?@uint definitionLine ?*] ;
         ioListFileContents .= "  line " . [definitionLine  string] . ": unreferenced label '" . lkey . "' is deleted\n" ;
         [!?ioGeneratedInstructionList setMInstructionAtIndex ![@midrange_intermediate_NULL new] !definitionLine] ;
-        [!?symbolTable removeKey !lkey ?*] ;
+        [!?symbolTable removeKey !lkey ?* ?*] ;
       end if ;
     end foreach ;
   #--- Dead code elimination

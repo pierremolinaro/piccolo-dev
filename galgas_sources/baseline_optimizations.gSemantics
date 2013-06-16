@@ -594,7 +594,7 @@ routine perform_baseline_optimizations
     end foreach ;
     foreach symbolTable do
       if not [referencedLabels hasKey ![lkey string]] then
-        @uint definitionLine ; [symbolTable searchKey !lkey ?definitionLine] ;
+        [symbolTable searchKey !lkey ?@uint definitionLine] ;
         ioListFileContents .= "  line " . [definitionLine  string] . ": unreferenced label '" . lkey . "' is deleted\n" ;
         [!?ioGeneratedInstructionList setMInstructionAtIndex ![@baseline_intermediate_NULL new] !definitionLine] ;
         [!?symbolTable removeKey !lkey ?*] ;

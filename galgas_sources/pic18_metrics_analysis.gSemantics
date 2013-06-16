@@ -125,65 +125,8 @@ method @pic18_intermediate_instruction exploreStackNeeds
   ??@symbolTableForStackLevels unused inSymbolTableForStackLevels
   ??@uint unused inCurrentLine
   ?!@uint unused ioStackNeeds
-  ?!@bool unused ioExplores
   ?!@stringset unused ioExploredLineSet
 :
-end method ;
-
-#----------------------------------------------------------------------------*
-
-override method @pic18_intermediate_instruction_RETURN exploreStackNeeds
-  ??@pic18_intermediate_instructionList unused inGeneratedInstructionList
-  ??@symbolTableForOptimizations unused inSymbolTable
-  ??@symbolTableForStackLevels unused inSymbolTableForStackLevels
-  ??@uint unused inCurrentLine
-  ?!@uint unused ioStackNeeds
-  ?!@bool ioExplores
-  ?!@stringset unused ioExploredLineSet
-:
-  ioExplores := false ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
-override method @pic18_intermediate_instruction_RETURN_NOT_OPTIMIZABLE exploreStackNeeds
-  ??@pic18_intermediate_instructionList unused inGeneratedInstructionList
-  ??@symbolTableForOptimizations unused inSymbolTable
-  ??@symbolTableForStackLevels unused inSymbolTableForStackLevels
-  ??@uint unused inCurrentLine
-  ?!@uint unused ioStackNeeds
-  ?!@bool ioExplores
-  ?!@stringset unused ioExploredLineSet
-:
-  ioExplores := false ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
-override method @pic18_intermediate_instruction_RETFIE exploreStackNeeds
-  ??@pic18_intermediate_instructionList unused inGeneratedInstructionList
-  ??@symbolTableForOptimizations unused inSymbolTable
-  ??@symbolTableForStackLevels unused inSymbolTableForStackLevels
-  ??@uint unused inCurrentLine
-  ?!@uint unused ioStackNeeds
-  ?!@bool ioExplores
-  ?!@stringset unused ioExploredLineSet
-:
-  ioExplores := false ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
-override method @pic18_intermediate_instruction_RETLW exploreStackNeeds
-  ??@pic18_intermediate_instructionList unused inGeneratedInstructionList
-  ??@symbolTableForOptimizations unused inSymbolTable
-  ??@symbolTableForStackLevels unused inSymbolTableForStackLevels
-  ??@uint unused inCurrentLine
-  ?!@uint unused ioStackNeeds
-  ?!@bool ioExplores
-  ?!@stringset unused ioExploredLineSet
-:
-  ioExplores := false ;
 end method ;
 
 #----------------------------------------------------------------------------*
@@ -194,7 +137,6 @@ override method @pic18_intermediate_JSR exploreStackNeeds
   ??@symbolTableForStackLevels inSymbolTableForStackLevels
   ??@uint unused inCurrentLine
   ?!@uint ioStackNeeds
-  ?!@bool unused ioExplores
   ?!@stringset unused ioExploredLineSet
 :
   [inSymbolTableForStackLevels searchKey !mTargetLabel ?@uint routineNeeds] ;
@@ -211,13 +153,11 @@ override method @pic18_intermediate_instruction_computed_retlw exploreStackNeeds
   ??@symbolTableForStackLevels unused inSymbolTableForStackLevels
   ??@uint unused inCurrentLine
   ?!@uint ioStackNeeds
-  ?!@bool ioExplores
   ?!@stringset unused ioExploredLineSet
 :
   if ioStackNeeds == 0 then
     ioStackNeeds := 1 ;
   end if ;
-  ioExplores := false ;
 end method ;
 
 #----------------------------------------------------------------------------*
@@ -228,7 +168,6 @@ override method @pic18_intermediate_JUMP exploreStackNeeds
   ??@symbolTableForStackLevels inSymbolTableForStackLevels
   ??@uint unused inCurrentLine
   ?!@uint ioStackNeeds
-  ?!@bool ioExplores
   ?!@stringset ioExploredLineSet
 :
   computeStackLevelsFromLabel
@@ -239,7 +178,6 @@ override method @pic18_intermediate_JUMP exploreStackNeeds
     !?ioStackNeeds
     !?ioExploredLineSet
   ;
-  ioExplores := false ;
 end method ;
 
 #----------------------------------------------------------------------------*
@@ -250,7 +188,6 @@ override method @pic18_intermediate_instruction_computed_bra exploreStackNeeds
   ??@symbolTableForStackLevels inSymbolTableForStackLevels
   ??@uint unused inCurrentLine
   ?!@uint ioStackNeeds
-  ?!@bool ioExplores
   ?!@stringset ioExploredLineSet
 :
   if ioStackNeeds == 0 then
@@ -266,7 +203,6 @@ override method @pic18_intermediate_instruction_computed_bra exploreStackNeeds
       !?ioExploredLineSet
     ;
   end foreach ;
-  ioExplores := false ;
 end method ;
 
 #----------------------------------------------------------------------------*
@@ -277,7 +213,6 @@ override method @pic18_intermediate_incDecRegisterInCondition exploreStackNeeds
   ??@symbolTableForStackLevels inSymbolTableForStackLevels
   ??@uint unused inCurrentLine
   ?!@uint ioStackNeeds
-  ?!@bool unused ioExplores
   ?!@stringset ioExploredLineSet
 :
   computeStackLevelsFromLabel
@@ -298,7 +233,6 @@ override method @pic18_intermediate_jump_test_register exploreStackNeeds
   ??@symbolTableForStackLevels inSymbolTableForStackLevels
   ??@uint unused inCurrentLine
   ?!@uint ioStackNeeds
-  ?!@bool unused ioExplores
   ?!@stringset ioExploredLineSet
 :
   computeStackLevelsFromLabel
@@ -319,7 +253,6 @@ override method @pic18_intermediate_registerComparisonCondition exploreStackNeed
   ??@symbolTableForStackLevels inSymbolTableForStackLevels
   ??@uint unused inCurrentLine
   ?!@uint ioStackNeeds
-  ?!@bool unused ioExplores
   ?!@stringset ioExploredLineSet
 :
   computeStackLevelsFromLabel
@@ -340,7 +273,6 @@ override method @pic18_intermediate_instruction_BitTestSkip exploreStackNeeds
   ??@symbolTableForStackLevels inSymbolTableForStackLevels
   ??@uint inCurrentLine
   ?!@uint ioStackNeeds
-  ?!@bool unused ioExplores
   ?!@stringset ioExploredLineSet
 :
   computeStackLevelsFromLine
@@ -361,7 +293,6 @@ override method @pic18_intermediate_instruction_computed_goto exploreStackNeeds
   ??@symbolTableForStackLevels inSymbolTableForStackLevels
   ??@uint unused inCurrentLine
   ?!@uint ioStackNeeds
-  ?!@bool ioExplores
   ?!@stringset ioExploredLineSet
 :
   if ioStackNeeds == 0 then
@@ -377,7 +308,6 @@ override method @pic18_intermediate_instruction_computed_goto exploreStackNeeds
       !?ioExploredLineSet
     ;
   end foreach ;
-  ioExplores := false ;
 end method ;
 
 #----------------------------------------------------------------------------*
@@ -388,7 +318,6 @@ override method @pic18_intermediate_instruction_computed_rcall exploreStackNeeds
   ??@symbolTableForStackLevels inSymbolTableForStackLevels
   ??@uint unused inCurrentLine
   ?!@uint ioStackNeeds
-  ?!@bool unused ioExplores
   ?!@stringset unused ioExploredLineSet
 :
   if ioStackNeeds == 0 then
@@ -410,7 +339,6 @@ override method @pic18_intermediate_instruction_conditionalBranch exploreStackNe
   ??@symbolTableForStackLevels inSymbolTableForStackLevels
   ??@uint unused inCurrentLine
   ?!@uint ioStackNeeds
-  ?!@bool unused ioExplores
   ?!@stringset ioExploredLineSet
 :
   computeStackLevelsFromLabel
@@ -451,9 +379,9 @@ local routine computeStackLevelsFromLine
         !inSymbolTableForStackLevels
         !currentLine
         !?ioStackNeeds
-        !?explores
         !?ioExploredLineSet
       ] ;
+      explores := [instruction nextInstructionIsReachable] ;
       currentLine := currentLine + 1 ;
     end if ;
   end loop ;
@@ -469,7 +397,7 @@ local routine computeStackLevelsFromLabel
   ?!@uint ioStackNeeds
   ?!@stringset ioExploredLineSet
 :
-  [inSymbolTable searchKey !inStartLabel ?@uint currentLine] ;
+  [inSymbolTable searchKey !inStartLabel ?@uint currentLine ?*] ;
   computeStackLevelsFromLine
     !inGeneratedInstructionList
     !currentLine
@@ -493,7 +421,7 @@ local routine computeStackNeeds
     [mInstruction defineLabel !?symbolTable !lineIndex] ;
   end foreach ;
 #-------------------------------- Build Stack needs
-  ioListFileContents .= "------------ Stack needs:\n" ;
+  ioListFileContents .= "\nStack needs:\n" ;
   ioListFileContents .= ["Routine" stringByLeftPadding !70 !' '] . " Levels\n" ;
   @symbolTableForStackLevels stackLevelMap [emptyMap] ;
   foreach inSortedRoutineNames do
@@ -519,11 +447,617 @@ end routine ;
 
 #----------------------------------------------------------------------------*
 #                                                                            *
+#               C O M P U T E    R O U T I N E    L O O P                    *
+#                                                                            *
+#----------------------------------------------------------------------------*
+
+map @routineHasLoopMap {
+  @bool mHasLoop ;
+  insert insertKey error message "the '%K' routine is already declared in %L" ;
+  search searchKey error message "the '%K' routine is not declared" ;
+}
+
+#----------------------------------------------------------------------------*
+
+map @routineMinMaxMap {
+  @uint mMin ;
+  @uint mMax ;
+  insert insertKey error message "the '%K' routine is already declared in %L" ;
+  search searchKey error message "the '%K' routine is not declared" ;
+}
+
+#----------------------------------------------------------------------------*
+
+method @piccolo_instruction searchForLoopInstruction
+  ??@routineHasLoopMap unused inRoutineHasLoopMap
+  ?!@bool unused ioHasLoopInstruction
+:
+end method ;
+
+#---------------------------------------------------------------------------*
+
+override method @instruction_do_while searchForLoopInstruction
+  ??@routineHasLoopMap unused inRoutineHasLoopMap
+  ?!@bool ioHasLoopInstruction
+:
+  ioHasLoopInstruction := true ;
+end method ;
+
+#---------------------------------------------------------------------------*
+
+override method @instruction_FOREVER searchForLoopInstruction
+  ??@routineHasLoopMap unused inRoutineHasLoopMap
+  ?!@bool ioHasLoopInstruction
+:
+  ioHasLoopInstruction := true ;
+end method ;
+
+#---------------------------------------------------------------------------*
+
+override method @instruction_JSR searchForLoopInstruction
+  ??@routineHasLoopMap inRoutineHasLoopMap
+  ?!@bool ioHasLoopInstruction
+:
+  [inRoutineHasLoopMap searchKey !mTargetLabel ?@bool hasLoop] ;
+  if hasLoop then
+    ioHasLoopInstruction := true ;
+  end if ;
+end method ;
+
+#---------------------------------------------------------------------------*
+
+override method @instruction_structured_if searchForLoopInstruction
+  ??@routineHasLoopMap inRoutineHasLoopMap
+  ?!@bool ioHasLoopInstruction
+:
+  searchForLoopInInstructionList !mThenInstructionList !inRoutineHasLoopMap !?ioHasLoopInstruction ;
+  searchForLoopInInstructionList !mElseInstructionList !inRoutineHasLoopMap !?ioHasLoopInstruction ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+local routine searchForLoopInInstructionList
+  ?@instructionList inInstructionList
+  ??@routineHasLoopMap inRoutineHasLoopMap
+  ?!@bool ioHasLoopInstruction
+:
+  foreach inInstructionList do
+    [mInstruction searchForLoopInstruction !inRoutineHasLoopMap !?ioHasLoopInstruction] ;
+  end foreach ;
+end routine ;
+
+#----------------------------------------------------------------------------*
+#                                                                            *
+#               C O M P U T E    R O U T I N E    D U R A T I O N S          *
+#                                                                            *
+#----------------------------------------------------------------------------*
+
+method @pic18_intermediate_instruction duration
+  ??@uint unused inCurrentLine
+  ??@symbolTableForOptimizations unused inSymbolTable
+  ??@routineMinMaxMap unused inRoutineMinMaxMap
+  ??@pic18_intermediate_instructionList unused inGeneratedInstructionList
+  ?!@uintlist unused ioMinArray
+  ?!@uintlist unused ioMaxArray
+  ?!@uint unused ioCurrentMin
+  ?!@uint unused ioCurrentMax
+  ?!@uint unused ioExecutionMin
+  ?!@uint unused ioExecutionMax
+:
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @pic18_intermediate_actualInstruction duration
+  ??@uint unused inCurrentLine
+  ??@symbolTableForOptimizations unused inSymbolTable
+  ??@routineMinMaxMap unused inRoutineMinMaxMap
+  ??@pic18_intermediate_instructionList unused inGeneratedInstructionList
+  ?!@uintlist unused ioMinArray
+  ?!@uintlist unused ioMaxArray
+  ?!@uint ioCurrentMin
+  ?!@uint ioCurrentMax
+  ?!@uint unused ioExecutionMin
+  ?!@uint unused ioExecutionMax
+:
+  ioCurrentMin := ioCurrentMin + 1 ;
+  ioCurrentMax := ioCurrentMax + 1 ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @pic18_intermediate_instruction_MOVFF duration
+  ??@uint unused inCurrentLine
+  ??@symbolTableForOptimizations unused inSymbolTable
+  ??@routineMinMaxMap unused inRoutineMinMaxMap
+  ??@pic18_intermediate_instructionList unused inGeneratedInstructionList
+  ?!@uintlist unused ioMinArray
+  ?!@uintlist unused ioMaxArray
+  ?!@uint ioCurrentMin
+  ?!@uint ioCurrentMax
+  ?!@uint unused ioExecutionMin
+  ?!@uint unused ioExecutionMax
+:
+  ioCurrentMin := ioCurrentMin + 2 ;
+  ioCurrentMax := ioCurrentMax + 2 ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @pic18_intermediate_JSR duration
+  ??@uint unused inCurrentLine
+  ??@symbolTableForOptimizations unused inSymbolTable
+  ??@routineMinMaxMap inRoutineMinMaxMap
+  ??@pic18_intermediate_instructionList unused inGeneratedInstructionList
+  ?!@uintlist unused ioMinArray
+  ?!@uintlist unused ioMaxArray
+  ?!@uint ioCurrentMin
+  ?!@uint ioCurrentMax
+  ?!@uint unused ioExecutionMin
+  ?!@uint unused ioExecutionMax
+:
+  [inRoutineMinMaxMap searchKey !mTargetLabel ?@uint min ?@uint max] ;
+  ioCurrentMin := ioCurrentMin + 2 + min ;
+  ioCurrentMax := ioCurrentMax + 2 + max ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @pic18_intermediate_instruction_LFSR duration
+  ??@uint unused inCurrentLine
+  ??@symbolTableForOptimizations unused inSymbolTable
+  ??@routineMinMaxMap unused inRoutineMinMaxMap
+  ??@pic18_intermediate_instructionList unused inGeneratedInstructionList
+  ?!@uintlist unused ioMinArray
+  ?!@uintlist unused ioMaxArray
+  ?!@uint ioCurrentMin
+  ?!@uint ioCurrentMax
+  ?!@uint unused ioExecutionMin
+  ?!@uint unused ioExecutionMax
+:
+  ioCurrentMin := ioCurrentMin + 2 ;
+  ioCurrentMax := ioCurrentMax + 2 ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @pic18_intermediate_instruction_MNOP duration
+  ??@uint unused inCurrentLine
+  ??@symbolTableForOptimizations unused inSymbolTable
+  ??@routineMinMaxMap unused inRoutineMinMaxMap
+  ??@pic18_intermediate_instructionList unused inGeneratedInstructionList
+  ?!@uintlist unused ioMinArray
+  ?!@uintlist unused ioMaxArray
+  ?!@uint ioCurrentMin
+  ?!@uint ioCurrentMax
+  ?!@uint unused ioExecutionMin
+  ?!@uint unused ioExecutionMax
+:
+  ioCurrentMin := ioCurrentMin + mOccurrenceFactor->uint ;
+  ioCurrentMax := ioCurrentMax + mOccurrenceFactor->uint ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @pic18_intermediate_instruction_RETURN duration
+  ??@uint unused inCurrentLine
+  ??@symbolTableForOptimizations unused inSymbolTable
+  ??@routineMinMaxMap unused inRoutineMinMaxMap
+  ??@pic18_intermediate_instructionList unused inGeneratedInstructionList
+  ?!@uintlist unused ioMinArray
+  ?!@uintlist unused ioMaxArray
+  ?!@uint ioCurrentMin
+  ?!@uint ioCurrentMax
+  ?!@uint ioExecutionMin
+  ?!@uint ioExecutionMax
+:
+  ioCurrentMin := ioCurrentMin + 2 ;
+  ioCurrentMax := ioCurrentMax + 2 ;
+  if ioExecutionMin > ioCurrentMin then
+    ioExecutionMin := ioCurrentMin ;
+  end if ;
+  if ioExecutionMax < ioCurrentMax then
+    ioExecutionMax := ioCurrentMax ;
+  end if ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @pic18_intermediate_instruction_RETURN_NOT_OPTIMIZABLE duration
+  ??@uint unused inCurrentLine
+  ??@symbolTableForOptimizations unused inSymbolTable
+  ??@routineMinMaxMap unused inRoutineMinMaxMap
+  ??@pic18_intermediate_instructionList unused inGeneratedInstructionList
+  ?!@uintlist unused ioMinArray
+  ?!@uintlist unused ioMaxArray
+  ?!@uint ioCurrentMin
+  ?!@uint ioCurrentMax
+  ?!@uint ioExecutionMin
+  ?!@uint ioExecutionMax
+:
+  ioCurrentMin := ioCurrentMin + 2 ;
+  ioCurrentMax := ioCurrentMax + 2 ;
+  if ioExecutionMin > ioCurrentMin then
+    ioExecutionMin := ioCurrentMin ;
+  end if ;
+  if ioExecutionMax < ioCurrentMax then
+    ioExecutionMax := ioCurrentMax ;
+  end if ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @pic18_intermediate_instruction_RETFIE duration
+  ??@uint unused inCurrentLine
+  ??@symbolTableForOptimizations unused inSymbolTable
+  ??@routineMinMaxMap unused inRoutineMinMaxMap
+  ??@pic18_intermediate_instructionList unused inGeneratedInstructionList
+  ?!@uintlist unused ioMinArray
+  ?!@uintlist unused ioMaxArray
+  ?!@uint ioCurrentMin
+  ?!@uint ioCurrentMax
+  ?!@uint ioExecutionMin
+  ?!@uint ioExecutionMax
+:
+  ioCurrentMin := ioCurrentMin + 2 ;
+  ioCurrentMax := ioCurrentMax + 2 ;
+  if ioExecutionMin > ioCurrentMin then
+    ioExecutionMin := ioCurrentMin ;
+  end if ;
+  if ioExecutionMax < ioCurrentMax then
+    ioExecutionMax := ioCurrentMax ;
+  end if ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @pic18_intermediate_instruction_RETLW duration
+  ??@uint unused inCurrentLine
+  ??@symbolTableForOptimizations unused inSymbolTable
+  ??@routineMinMaxMap unused inRoutineMinMaxMap
+  ??@pic18_intermediate_instructionList unused inGeneratedInstructionList
+  ?!@uintlist unused ioMinArray
+  ?!@uintlist unused ioMaxArray
+  ?!@uint ioCurrentMin
+  ?!@uint ioCurrentMax
+  ?!@uint ioExecutionMin
+  ?!@uint ioExecutionMax
+:
+  ioCurrentMin := ioCurrentMin + 2 ;
+  ioCurrentMax := ioCurrentMax + 2 ;
+  if ioExecutionMin > ioCurrentMin then
+    ioExecutionMin := ioCurrentMin ;
+  end if ;
+  if ioExecutionMax < ioCurrentMax then
+    ioExecutionMax := ioCurrentMax ;
+  end if ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @pic18_intermediate_instruction_computed_retlw duration
+  ??@uint unused inCurrentLine
+  ??@symbolTableForOptimizations unused inSymbolTable
+  ??@routineMinMaxMap unused inRoutineMinMaxMap
+  ??@pic18_intermediate_instructionList unused inGeneratedInstructionList
+  ?!@uintlist unused ioMinArray
+  ?!@uintlist unused ioMaxArray
+  ?!@uint ioCurrentMin
+  ?!@uint ioCurrentMax
+  ?!@uint ioExecutionMin
+  ?!@uint ioExecutionMax
+:
+  ioCurrentMin := ioCurrentMin + 2 ;
+  ioCurrentMax := ioCurrentMax + 2 ;
+  if ioExecutionMin > ioCurrentMin then
+    ioExecutionMin := ioCurrentMin ;
+  end if ;
+  if ioExecutionMax < ioCurrentMax then
+    ioExecutionMax := ioCurrentMax ;
+  end if ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @pic18_intermediate_JUMP duration
+  ??@uint unused inCurrentLine
+  ??@symbolTableForOptimizations inSymbolTable
+  ??@routineMinMaxMap inRoutineMinMaxMap
+  ??@pic18_intermediate_instructionList inGeneratedInstructionList
+  ?!@uintlist ioMinArray
+  ?!@uintlist ioMaxArray
+  ?!@uint ioCurrentMin
+  ?!@uint ioCurrentMax
+  ?!@uint ioExecutionMin
+  ?!@uint ioExecutionMax
+:
+  ioCurrentMin := ioCurrentMin + 2 ;
+  ioCurrentMax := ioCurrentMax + 2 ;
+#---
+  computeMinMaxFromLabel
+    !mTargetLabel
+    !inSymbolTable
+    !inRoutineMinMaxMap
+    !inGeneratedInstructionList
+    !?ioMinArray
+    !ioCurrentMin
+    !?ioExecutionMin
+    !?ioMaxArray
+    !ioCurrentMax
+    !?ioExecutionMax
+  ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @pic18_intermediate_instruction_conditionalBranch duration
+  ??@uint unused inCurrentLine
+  ??@symbolTableForOptimizations inSymbolTable
+  ??@routineMinMaxMap inRoutineMinMaxMap
+  ??@pic18_intermediate_instructionList inGeneratedInstructionList
+  ?!@uintlist ioMinArray
+  ?!@uintlist ioMaxArray
+  ?!@uint ioCurrentMin
+  ?!@uint ioCurrentMax
+  ?!@uint ioExecutionMin
+  ?!@uint ioExecutionMax
+:
+  ioCurrentMin := ioCurrentMin + 1 ;
+  ioCurrentMax := ioCurrentMax + 1 ;
+#---
+  computeMinMaxFromLabel
+    !mTargetLabel
+    !inSymbolTable
+    !inRoutineMinMaxMap
+    !inGeneratedInstructionList
+    !?ioMinArray
+    !ioCurrentMin + 1
+    !?ioExecutionMin
+    !?ioMaxArray
+    !ioCurrentMax + 1
+    !?ioExecutionMax
+  ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @pic18_intermediate_jump_test_register duration
+  ??@uint unused inCurrentLine
+  ??@symbolTableForOptimizations inSymbolTable
+  ??@routineMinMaxMap inRoutineMinMaxMap
+  ??@pic18_intermediate_instructionList inGeneratedInstructionList
+  ?!@uintlist ioMinArray
+  ?!@uintlist ioMaxArray
+  ?!@uint ioCurrentMin
+  ?!@uint ioCurrentMax
+  ?!@uint ioExecutionMin
+  ?!@uint ioExecutionMax
+:
+  ioCurrentMin := ioCurrentMin + 1 ;
+  ioCurrentMax := ioCurrentMax + 1 ;
+#---
+  computeMinMaxFromLabel
+    !mTargetLabel
+    !inSymbolTable
+    !inRoutineMinMaxMap
+    !inGeneratedInstructionList
+    !?ioMinArray
+    !ioCurrentMin - 1
+    !?ioExecutionMin
+    !?ioMaxArray
+    !ioCurrentMax - 1
+    !?ioExecutionMax
+  ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @pic18_intermediate_instruction_BitTestSkip duration
+  ??@uint inCurrentLine
+  ??@symbolTableForOptimizations inSymbolTable
+  ??@routineMinMaxMap inRoutineMinMaxMap
+  ??@pic18_intermediate_instructionList inGeneratedInstructionList
+  ?!@uintlist ioMinArray
+  ?!@uintlist ioMaxArray
+  ?!@uint ioCurrentMin
+  ?!@uint ioCurrentMax
+  ?!@uint ioExecutionMin
+  ?!@uint ioExecutionMax
+:
+  ioCurrentMin := ioCurrentMin + 2 ;
+  ioCurrentMax := ioCurrentMax + 2 ;
+#---
+  computeMinMaxFromLine
+    !inCurrentLine + 2
+    !inSymbolTable
+    !inRoutineMinMaxMap
+    !inGeneratedInstructionList
+    !?ioMinArray
+    !ioCurrentMin - 1
+    !?ioExecutionMin
+    !?ioMaxArray
+    !ioCurrentMax - 1
+    !?ioExecutionMax
+  ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @pic18_intermediate_incDecRegisterInCondition duration
+  ??@uint unused inCurrentLine
+  ??@symbolTableForOptimizations inSymbolTable
+  ??@routineMinMaxMap inRoutineMinMaxMap
+  ??@pic18_intermediate_instructionList inGeneratedInstructionList
+  ?!@uintlist ioMinArray
+  ?!@uintlist ioMaxArray
+  ?!@uint ioCurrentMin
+  ?!@uint ioCurrentMax
+  ?!@uint ioExecutionMin
+  ?!@uint ioExecutionMax
+:
+  ioCurrentMin := ioCurrentMin + 2 ;
+  ioCurrentMax := ioCurrentMax + 2 ;
+#---
+  computeMinMaxFromLabel
+    !mTargetLabel
+    !inSymbolTable
+    !inRoutineMinMaxMap
+    !inGeneratedInstructionList
+    !?ioMinArray
+    !ioCurrentMin - 1
+    !?ioExecutionMin
+    !?ioMaxArray
+    !ioCurrentMax - 1
+    !?ioExecutionMax
+  ;
+end method ;
+
+#----------------------------------------------------------------------------*
+#----------------------------------------------------------------------------*
+#----------------------------------------------------------------------------*
+
+override method @pic18_intermediate_instruction_computed_bra duration
+  ??@uint unused inCurrentLine
+  ??@symbolTableForOptimizations unused inSymbolTable
+  ??@routineMinMaxMap unused inRoutineMinMaxMap
+  ??@pic18_intermediate_instructionList unused inGeneratedInstructionList
+  ?!@uintlist unused ioMinArray
+  ?!@uintlist unused ioMaxArray
+  ?!@uint ioCurrentMin
+  ?!@uint ioCurrentMax
+  ?!@uint unused ioExecutionMin
+  ?!@uint unused ioExecutionMax
+:
+  ioCurrentMin := ioCurrentMin + 2 ;
+  ioCurrentMax := ioCurrentMax + 2 ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @pic18_intermediate_instruction_computed_goto duration
+  ??@uint unused inCurrentLine
+  ??@symbolTableForOptimizations unused inSymbolTable
+  ??@routineMinMaxMap unused inRoutineMinMaxMap
+  ??@pic18_intermediate_instructionList unused inGeneratedInstructionList
+  ?!@uintlist unused ioMinArray
+  ?!@uintlist unused ioMaxArray
+  ?!@uint ioCurrentMin
+  ?!@uint ioCurrentMax
+  ?!@uint unused ioExecutionMin
+  ?!@uint unused ioExecutionMax
+:
+  ioCurrentMin := ioCurrentMin + 2 ;
+  ioCurrentMax := ioCurrentMax + 2 ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @pic18_intermediate_instruction_computed_rcall duration
+  ??@uint unused inCurrentLine
+  ??@symbolTableForOptimizations unused inSymbolTable
+  ??@routineMinMaxMap unused inRoutineMinMaxMap
+  ??@pic18_intermediate_instructionList unused inGeneratedInstructionList
+  ?!@uintlist unused ioMinArray
+  ?!@uintlist unused ioMaxArray
+  ?!@uint ioCurrentMin
+  ?!@uint ioCurrentMax
+  ?!@uint unused ioExecutionMin
+  ?!@uint unused ioExecutionMax
+:
+  ioCurrentMin := ioCurrentMin + 2 ;
+  ioCurrentMax := ioCurrentMax + 2 ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @pic18_intermediate_registerComparisonCondition duration
+  ??@uint unused inCurrentLine
+  ??@symbolTableForOptimizations unused inSymbolTable
+  ??@routineMinMaxMap unused inRoutineMinMaxMap
+  ??@pic18_intermediate_instructionList unused inGeneratedInstructionList
+  ?!@uintlist unused ioMinArray
+  ?!@uintlist unused ioMaxArray
+  ?!@uint ioCurrentMin
+  ?!@uint ioCurrentMax
+  ?!@uint unused ioExecutionMin
+  ?!@uint unused ioExecutionMax
+:
+  ioCurrentMin := ioCurrentMin + 2 ;
+  ioCurrentMax := ioCurrentMax + 2 ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+local routine computeMinMaxFromLine
+  ??@uint inStartLine
+  ??@symbolTableForOptimizations inSymbolTable
+  ??@routineMinMaxMap inRoutineMinMaxMap
+  ??@pic18_intermediate_instructionList inGeneratedInstructionList
+  ?!@uintlist ioMinArray
+  ??@uint inCurrentMin
+  ?!@uint ioExecutionMin
+  ?!@uintlist ioMaxArray
+  ??@uint inCurrentMax
+  ?!@uint ioExecutionMax
+:
+  @uint currentLine := inStartLine ;
+  @bool explores := true ;
+  @uint min := inCurrentMin ;
+  @uint max := inCurrentMax ;
+  loop [inGeneratedInstructionList length] : while explores do
+    if (min < [ioMinArray mValueAtIndex !currentLine]) | (max > [ioMaxArray mValueAtIndex !currentLine]) then
+      const @pic18_intermediate_instruction instruction := [inGeneratedInstructionList mInstructionAtIndex !currentLine] ;
+      [instruction duration !currentLine !inSymbolTable !inRoutineMinMaxMap !inGeneratedInstructionList !?ioMinArray !?ioMaxArray !?min !?max !?ioExecutionMin !?ioExecutionMax] ;
+      if min < [ioMinArray mValueAtIndex !currentLine] then
+        [!?ioMinArray setMValueAtIndex !min !currentLine] ;
+      end if ;
+      if max > [ioMaxArray mValueAtIndex !currentLine] then
+        [!?ioMaxArray setMValueAtIndex !max !currentLine] ;
+      end if ;
+      explores := [instruction nextInstructionIsReachable] ;
+      currentLine := currentLine + 1 ;
+    else
+      explores := false ;
+    end if ;
+  end loop ;
+end routine ;
+
+#----------------------------------------------------------------------------*
+
+local routine computeMinMaxFromLabel
+  ??@lstring inLabel
+  ??@symbolTableForOptimizations inSymbolTable
+  ??@routineMinMaxMap inRoutineMinMaxMap
+  ??@pic18_intermediate_instructionList inGeneratedInstructionList
+  ?!@uintlist ioMinArray
+  ??@uint inCurrentMin
+  ?!@uint ioExecutionMin
+  ?!@uintlist ioMaxArray
+  ??@uint inCurrentMax
+  ?!@uint ioExecutionMax
+:
+  [inSymbolTable searchKey !inLabel ?@uint line ?*] ;
+  computeMinMaxFromLine
+    !line
+    !inSymbolTable
+    !inRoutineMinMaxMap
+    !inGeneratedInstructionList
+    !?ioMinArray
+    !inCurrentMin
+    !?ioExecutionMin
+    !?ioMaxArray
+    !inCurrentMax
+    !?ioExecutionMax
+  ;  
+end routine ;
+
+#----------------------------------------------------------------------------*
+#                                                                            *
 #               C O M P U T E    M E T R I C S                               *
 #                                                                            *
 #----------------------------------------------------------------------------*
 
-routine pic18_stack_requirements
+routine pic18_compute_metrics
   ??@piccoloModel inPiccoloModel
   ??@routineDeclarationList inUserRoutineDeclarationListForBootloaderImplementation
   ??@routineDeclarationList inBootloaderRoutineDeclarationListForUserProgramImplementation
@@ -531,11 +1065,15 @@ routine pic18_stack_requirements
   ?!@string ioListFileContents
   ??@string inSourceFileName
 :
+  @lstringlist sortedRoutineNameList ;
+  @stringset routinesInvolvedInRecursion ;
   ioListFileContents .= "*******************************************************************************\n" ;
   ioListFileContents .= "*           S T A C K    R E Q U I R E M E N T S                              *\n" ;
   ioListFileContents .= "*******************************************************************************\n\n" ;
   if [option piccolo_options.doNotComputeStackRequirements value] then
     ioListFileContents .= "option '" . [option piccolo_options.doNotComputeStackRequirements string] . "': stack requirements are not computed.\n" ;
+    routinesInvolvedInRecursion := [@stringset emptySet] ;
+    sortedRoutineNameList := [@lstringlist emptyList] ;
   else
     @routineCallGraph routineCallGraph [emptyGraph] ;
   #--- Enter routine names
@@ -552,7 +1090,7 @@ routine pic18_stack_requirements
     end foreach ;
   #--- Enter interrupts routine name, and populate graph
     foreach inPiccoloModel->mInterruptDefinitionList do
-      @lstring interruptRoutineName [new !"_" . mInterruptName->string . "_interrupt" !mInterruptName->location] ;
+      const @lstring interruptRoutineName [new !"_" . mInterruptName->string . "_interrupt_routine" !mInterruptName->location] ;
       [!?routineCallGraph addNode !interruptRoutineName !interruptRoutineName->string] ;
       exploreInstructionList !mInstructionList !interruptRoutineName !?routineCallGraph ;
     end foreach ;
@@ -563,12 +1101,13 @@ routine pic18_stack_requirements
   #--- Sort routine call graph
     [routineCallGraph topologicalSort
       ?*
-      ?@lstringlist sortedRoutineNameList
+      ?sortedRoutineNameList
       ?*
       ?@lstringlist unsortedNodeKeyList
     ] ;
+    routinesInvolvedInRecursion := [@stringset setWithLStringList !unsortedNodeKeyList] ;
     if [unsortedNodeKeyList length] > 0 then
-      @string s := "Stack needs cannot be computed, the following routines are called recursively:" ;
+      @string s := "stack needs cannot be computed, the following routines are involved in a recursion:" ;
       foreach unsortedNodeKeyList do
         s .= "\n-  " . mValue ;
       end foreach ;
@@ -578,9 +1117,11 @@ routine pic18_stack_requirements
       ioListFileContents .= "No recursive routines.\n" ;
     end if ;
   #--- Output a graphviz file
-    const @string graphvizText := [routineCallGraph graphviz] ;
-    const @string graphvizFile := [inSourceFileName stringByDeletingPathExtension] . ".dot" ;
-    [graphvizText writeToFileWhenDifferentContents !graphvizFile ?*] ;
+    if [option piccolo_options.generateCallGraph value] then
+      const @string graphvizText := [routineCallGraph graphviz] ;
+      const @string graphvizFile := [inSourceFileName stringByDeletingPathExtension] . ".dot" ;
+      [graphvizText writeToFileWhenDifferentContents !graphvizFile ?*] ;
+    end if ;
   #--- Compute stack needs
     if [unsortedNodeKeyList length] == 0 then
       computeStackNeeds 
@@ -589,6 +1130,87 @@ routine pic18_stack_requirements
         !?ioListFileContents
       ;
     end if ;
+  end if ;
+  ioListFileContents .= "\n" ;
+  ioListFileContents .= "*******************************************************************************\n" ;
+  ioListFileContents .= "*           I N T E R R U P T    R O U T I N E    D U R A T I O N S           *\n" ;
+  ioListFileContents .= "*******************************************************************************\n\n" ;
+  if [option piccolo_options.doNotComputeInterruptRoutineDuration value] then
+    ioListFileContents .= "option '" . [option piccolo_options.doNotComputeInterruptRoutineDuration string] . "': interrupt routine durations are not computed.\n" ;
+  elsif [option piccolo_options.doNotComputeStackRequirements value] then
+    ioListFileContents .= "option '" . [option piccolo_options.doNotComputeStackRequirements string] . "': cannot compute interrupt routine durations.\n" ;
+  else
+    @routineHasLoopMap routineHasLoopMap [emptyMap] ;
+  #--- Foreach non recursive routine, establish if it contains loops
+    foreach sortedRoutineNameList do
+      @bool found := false ;
+      foreach inPiccoloModel->mRoutineDefinitionList while not found do
+        found := mValue->string == mRoutineName->string ;
+        if found & not [routinesInvolvedInRecursion hasKey !mRoutineName->string] then
+          @bool hasLoopInstruction := false ;
+          searchForLoopInInstructionList !mInstructionList !routineHasLoopMap !?hasLoopInstruction ;
+          [!?routineHasLoopMap insertKey !mRoutineName !hasLoopInstruction] ;
+        end if ;
+      end foreach ;
+    end foreach ;
+  #--- Foreach interrupt routine, establish if it contains loops
+    foreach inPiccoloModel->mInterruptDefinitionList do
+      const @lstring routineName [new !"_" . mInterruptName->string . "_interrupt_routine" !mInterruptName->location] ;
+      if [routinesInvolvedInRecursion hasKey !routineName->string] then
+        ioListFileContents .= "Cannot compute '" . mInterruptName . "' interrupt routine duration : it is involved in recursive routine calls.\n" ;
+      else
+        @bool hasLoopInstruction := false ;
+        searchForLoopInInstructionList !mInstructionList !routineHasLoopMap !?hasLoopInstruction ;
+        [!?routineHasLoopMap insertKey !routineName !hasLoopInstruction] ;
+        if hasLoopInstruction then
+          ioListFileContents .= "Cannot compute '" . mInterruptName . "' interrupt routine duration : it contains 'do ... while' instruction(s).\n" ;
+          warning mInterruptName : "cannot compute '" . mInterruptName . "' interrupt routine duration : it contains 'do ... while' instruction's).\n" ;
+        end if ;
+      end if ;
+    end foreach ;
+  #-------------------------------- Build label map
+    @symbolTableForOptimizations symbolTable [emptyMap] ;
+    foreach inGeneratedInstructionList index lineIndex do
+      [mInstruction defineLabel !?symbolTable !lineIndex] ;
+    end foreach ;
+    ioListFileContents .= "\nDurations are expressed in instruction clock cycles.\n\n" ;
+    ioListFileContents .= ["Routine" stringByLeftPadding !70 !' '] . " Min-Max\n" ;
+    @routineMinMaxMap routineMinMaxMap [emptyMap] ;
+    foreach sortedRoutineNameList do
+      if [routineHasLoopMap hasKey !mValue->string] then
+        [routineHasLoopMap searchKey !mValue ?@bool hasLoopInstruction] ;
+        if hasLoopInstruction then
+          ioListFileContents .= [mValue stringByLeftPadding !70 !' '] . " loops\n" ;
+        else
+          @uintlist minArray [emptyList] ;
+          @uintlist maxArray [emptyList] ;
+          foreach inGeneratedInstructionList do
+            minArray += ![@uint max] ;
+            maxArray += !0 ;
+          end foreach ;
+          @uint executionMin := [@uint max] ;
+          @uint executionMax := 0 ;
+#          @uint currentMin := 0 ;
+#          @uint currentMax := 0 ;
+          message "---- " . mValue . "\n" ;
+          computeMinMaxFromLabel !mValue !symbolTable !routineMinMaxMap !inGeneratedInstructionList !?minArray !0 !?executionMin !?maxArray !0 !?executionMax ;
+          [!?routineMinMaxMap insertKey !mValue !executionMin !executionMax] ;
+          foreach inGeneratedInstructionList index lineIndex do
+            const @uint imin := [minArray mValueAtIndex !lineIndex] ;
+            const @uint imax := [maxArray mValueAtIndex !lineIndex] ;
+            if imin <= imax then
+              @string s := [lineIndex string] . ":" . imin . "..." . imax . ":" ;
+              [mInstruction displayIPICinstruction !?s] ;
+              message s  . "\n" ;
+            end if ;
+          end foreach ;
+          message "--> " . executionMin . ".." . executionMax . "\n" ;
+          ioListFileContents .= [mValue stringByLeftPadding !70 !' '] . " " . executionMin . "-" . executionMax . "\n" ;        
+        end if ;
+      else
+        ioListFileContents .= [mValue stringByLeftPadding !70 !' '] . " recursive\n" ;
+      end if ;
+    end foreach ;
   end if ;
   ioListFileContents .= "\n" ;
 end routine ;

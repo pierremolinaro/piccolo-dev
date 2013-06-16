@@ -19,7 +19,7 @@ override method @pic18_intermediate_pseudo_LABEL defineLabel
   ?!@symbolTableForOptimizations ioRoutineSymbolTable
   ??@uint inLineIndex
 :
-  [!?ioRoutineSymbolTable insertKey !mLabel !inLineIndex] ;
+  [!?ioRoutineSymbolTable insertKey !mLabel !inLineIndex !mIsDeletable] ;
 end method ;
 
 #----------------------------------------------------------------------------*
@@ -107,7 +107,7 @@ method @pic18_intermediate_JUMP optimizeJUMP
     ioListFileContents .= "  line " . [inLineIndex string] . ": JUMP '" . mTargetLabel . "' branching to next instruction deleted\n" ;
   else      
   #--- Find destination label definition line
-    @uint line ; [inSymbolTable searchKey !mTargetLabel ?line] ;
+    [inSymbolTable searchKey !mTargetLabel ?@uint line ?*] ;
   #--- Find first executable instruction
     @pic18_intermediate_instruction firstInstruction ;
     findFirstInstructionFromAddress !line + 1 !ioGeneratedInstructionList ?firstInstruction ?* ;
@@ -164,7 +164,7 @@ method @pic18_intermediate_JSR optimizeJSR
     ioListFileContents .= "  line " . [inLineIndex string] . ": JSR '" . mTargetLabel . "' followed by RETURN replaced by JUMP\n" ;
   else
     #--- Find destination label definition line
-      @uint line ; [inSymbolTable searchKey !mTargetLabel ?line] ;
+      [inSymbolTable searchKey !mTargetLabel ?@uint line ?*] ;
     #--- Find first executable instruction
       @pic18_intermediate_instruction firstSubroutineInstruction ;
       @uint followingInstructionLineIndex ;
@@ -246,7 +246,7 @@ method @pic18_intermediate_instruction_conditionalBranch optimizeBCC
   ?!@bool ioOptimizationsDone
 :
 #--- Find destination label definition line
-  @uint line ; [inSymbolTable searchKey !mTargetLabel ?line] ;
+  [inSymbolTable searchKey !mTargetLabel ?@uint line ?*] ;
 #--- Find first executable instruction
   @pic18_intermediate_instruction firstInstruction ;
   findFirstInstructionFromAddress !line + 1 !ioGeneratedInstructionList ?firstInstruction ?* ;
@@ -275,7 +275,7 @@ method @pic18_intermediate_jump_test_register optimizeTestReg
   ?!@bool ioOptimizationsDone
 :
 #--- Find destination label definition line
-  [inSymbolTable searchKey !mTargetLabel ?@uint line] ;
+  [inSymbolTable searchKey !mTargetLabel ?@uint line ?*] ;
 #--- Find first executable instruction
   @pic18_intermediate_instruction firstInstruction ;
   findFirstInstructionFromAddress !line + 1 !ioGeneratedInstructionList ?firstInstruction ?* ;
@@ -310,7 +310,7 @@ method @pic18_intermediate_incDecRegisterInCondition optimizeTestDecInc
   ?!@bool ioOptimizationsDone
 :
 #--- Find destination label definition line
-  @uint line ; [inSymbolTable searchKey !mTargetLabel ?line] ;
+  [inSymbolTable searchKey !mTargetLabel ?@uint line ?*] ;
 #--- Find first executable instruction
   @pic18_intermediate_instruction firstInstruction ;
   findFirstInstructionFromAddress !line + 1 !ioGeneratedInstructionList ?firstInstruction ?* ;
@@ -361,7 +361,7 @@ method @pic18_intermediate_registerComparisonCondition optimizeCMP
   ?!@bool ioOptimizationsDone
 :
 #--- Find destination label definition line
-  [inSymbolTable searchKey !mTargetLabel ?@uint line] ;
+  [inSymbolTable searchKey !mTargetLabel ?@uint line ?*] ;
 #--- Find first executable instruction
   @pic18_intermediate_instruction firstInstruction ;
   findFirstInstructionFromAddress !line + 1 !ioGeneratedInstructionList ?firstInstruction ?* ;
@@ -508,10 +508,12 @@ routine performOptimizations
     end foreach ;
     foreach symbolTable do
       if not [referencedLabels hasKey ![lkey string]] then
-        @uint definitionLine ; [symbolTable searchKey !lkey ?definitionLine] ;
-        ioListFileContents .= "  line " . [definitionLine  string] . ": unreferenced label '" . lkey . "' is deleted\n" ;
-        [!?ioGeneratedInstructionList setMInstructionAtIndex ![@pic18_intermediate_NULL new] !definitionLine] ;
-        [!?symbolTable removeKey !lkey ?*] ;
+        [symbolTable searchKey !lkey ?@uint definitionLine ?@bool isDeletable] ;
+        if isDeletable then
+          ioListFileContents .= "  line " . [definitionLine  string] . ": unreferenced label '" . lkey . "' is deleted\n" ;
+          [!?ioGeneratedInstructionList setMInstructionAtIndex ![@pic18_intermediate_NULL new] !definitionLine] ;
+          [!?symbolTable removeKey !lkey ?* ?*] ;
+        end if ;
       end if ;
     end foreach ;
   #--- Dead code elimination
