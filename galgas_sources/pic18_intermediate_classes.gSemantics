@@ -117,10 +117,6 @@ method @pic18_intermediate_instruction isNULL !@bool outIsNULL :
   outIsNULL := false ;
 end method ;
 
-reader @pic18_intermediate_instruction nextInstructionIsReachable -> @bool outIsReachable :
-  outIsReachable := true ;
-end reader ;
-
 reader @pic18_intermediate_instruction isSkippingInstruction -> @bool outIsSkipping :
   outIsSkipping := false ;
 end reader ;
@@ -517,10 +513,6 @@ class @pic18_intermediate_JUMP extends @pic18_intermediate_actualInstruction {
     end switch ;
   end method ;
 
-  override reader @pic18_intermediate_JUMP nextInstructionIsReachable -> @bool outIsReachable :
-    outIsReachable := false ;
-  end reader ;
-
   override method @pic18_intermediate_JUMP enterReferencedLabel ?!@stringset ioReferencedLabelSet :
     ioReferencedLabelSet += ![mTargetLabel string] ;
   end method ;
@@ -628,10 +620,6 @@ method @pic18_intermediate_instruction_RETURN displayIPICinstruction ?!@string i
   ioListFileContents .= "RETURN" ;
 end method ;
 
-override reader @pic18_intermediate_instruction_RETURN nextInstructionIsReachable -> @bool outIsReachable :
-  outIsReachable := false ;
-end reader ;
-
 #----------------------------------------------------*
 
 class @pic18_intermediate_instruction_RETURN_NOT_OPTIMIZABLE extends @pic18_intermediate_actualInstruction {
@@ -641,10 +629,6 @@ override
 method @pic18_intermediate_instruction_RETURN_NOT_OPTIMIZABLE displayIPICinstruction ?!@string ioListFileContents :
   ioListFileContents .= "RETURN NOT OPTIMIZABLE" ;
 end method ;
-
-override reader @pic18_intermediate_instruction_RETURN_NOT_OPTIMIZABLE nextInstructionIsReachable -> @bool outIsReachable :
-  outIsReachable := false ;
-end reader ;
 
 #----------------------------------------------------*
 
@@ -659,11 +643,6 @@ method @pic18_intermediate_instruction_RETFIE displayIPICinstruction ?!@string i
     ioListFileContents .= " FAST" ;
   end if ;
 end method ;
-
-override reader @pic18_intermediate_instruction_RETFIE nextInstructionIsReachable -> @bool outIsReachable :
-  outIsReachable := false ;
-end reader ;
-
 
 #----------------------------------------------------*
 
@@ -705,11 +684,6 @@ method @pic18_intermediate_instruction_literalOperation displayIPICinstruction ?
   ioListFileContents .= [mLiteralInstruction mnemonic] . " " . [mLiteralValue hexString] ;
 end method ;
 
-override reader @pic18_intermediate_instruction_literalOperation nextInstructionIsReachable -> @bool outIsReachable :
-  outIsReachable := true ;
-end reader ;
-
-
 #----------------------------------------------------*
 
 class @pic18_intermediate_instruction_RETLW extends @pic18_intermediate_actualInstruction {
@@ -720,11 +694,6 @@ override
 method @pic18_intermediate_instruction_RETLW displayIPICinstruction ?!@string ioListFileContents :
   ioListFileContents .= "RETLW " . [mLiteralValue hexString] ;
 end method ;
-
-override reader @pic18_intermediate_instruction_RETLW nextInstructionIsReachable -> @bool outIsReachable :
-  outIsReachable := false ;
-end reader ;
-
 
 #----------------------------------------------------*
 
@@ -821,10 +790,6 @@ method @pic18_intermediate_instruction_computed_retlw displayIPICinstruction ?!@
   end foreach ;
 end method ;
 
-override reader @pic18_intermediate_instruction_computed_retlw nextInstructionIsReachable -> @bool outIsReachable :
-  outIsReachable := false ;
-end reader ;
-
 override method @pic18_intermediate_instruction_computed_retlw enterReferencedLabel ?!@stringset ioReferencedLabelSet :
   ioReferencedLabelSet += !"_computed_goto_2" ;
 end method ;
@@ -856,10 +821,6 @@ method @pic18_intermediate_instruction_computed_bra displayIPICinstruction ?!@st
     ioListFileContents .= ", " . mValue ;
   end foreach ;
 end method ;
-
-override reader @pic18_intermediate_instruction_computed_bra nextInstructionIsReachable -> @bool outIsReachable :
-  outIsReachable := false ;
-end reader ;
 
 override method @pic18_intermediate_instruction_computed_bra enterReferencedLabel ?!@stringset ioReferencedLabelSet :
   ioReferencedLabelSet += !"_computed_goto_2" ;
@@ -896,10 +857,6 @@ method @pic18_intermediate_instruction_computed_goto displayIPICinstruction ?!@s
   end foreach ;
 end method ;
 
-override reader @pic18_intermediate_instruction_computed_goto nextInstructionIsReachable -> @bool outIsReachable :
-  outIsReachable := false ;
-end reader ;
-
 override method @pic18_intermediate_instruction_computed_goto enterReferencedLabel ?!@stringset ioReferencedLabelSet :
   ioReferencedLabelSet += !"_computed_goto_4" ;
   foreach mTargetLabels do
@@ -935,11 +892,6 @@ method @pic18_intermediate_instruction_computed_rcall displayIPICinstruction ?!@
     ioListFileContents .= ", " . mValue ;
   end foreach ;
 end method ;
-
-override reader @pic18_intermediate_instruction_computed_rcall nextInstructionIsReachable -> @bool outIsReachable :
-  outIsReachable := true ;
-end reader ;
-
 
 override method @pic18_intermediate_instruction_computed_rcall enterReferencedLabel ?!@stringset ioReferencedLabelSet :
   ioReferencedLabelSet += !"_computed_goto_4" ;

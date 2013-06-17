@@ -69,6 +69,7 @@ SOURCES += pic18_bootloader_syntax.cpp
 SOURCES += pic18_grammar.cpp
 SOURCES += pic18_include_grammar.cpp
 SOURCES += pic18_intermediate_classes.cpp
+SOURCES += pic18_intermediate_next_intruction_is_reachable.cpp
 SOURCES += pic18_checkingAndBuildIPIC.cpp
 SOURCES += pic18_optimizations.cpp
 SOURCES += pic18_convert_relatives.cpp
