@@ -1,5 +1,5 @@
 semantics pic18_optimizations :
-import "pic18_intermediate_classes.gSemantics" ;
+import "pic18_intermediate_next_intruction_is_reachable.gSemantics" ;
 
 #----------------------------------------------------------------------------*
 #                                                                            *

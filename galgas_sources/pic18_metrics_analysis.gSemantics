@@ -1,7 +1,7 @@
 semantics pic18_metrics_analysis :
 import "pic18_metamodel.gSemantics" ;
 import "piccolo_options.gOption" ;
-import "pic18_intermediate_classes.gSemantics" ;
+import "pic18_intermediate_next_intruction_is_reachable.gSemantics" ;
 import "pic18_optimizations.gSemantics" ;
 
 #----------------------------------------------------------------------------*
