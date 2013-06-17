@@ -60,6 +60,7 @@ project all_piccolo (2:0:1) -> "piccolo" :
   grammar   "pic18_include_grammar.gGrammar" ;
   semantics "pic18_intermediate_classes.gSemantics" ;
   semantics "pic18_intermediate_next_intruction_is_reachable.gSemantics" ;
+  semantics "pic18_intermediate_classes_instruction_length.gSemantics" ;
   semantics "pic18_checkingAndBuildIPIC.gSemantics" ;
   semantics "pic18_optimizations.gSemantics" ;
   semantics "pic18_convert_relatives.gSemantics" ;
