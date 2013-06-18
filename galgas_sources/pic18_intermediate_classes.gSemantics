@@ -4,10 +4,6 @@ import "intermediate_generic.gSemantics" ;
 
 #----------------------------------------------------------------------------*
 
-abstract reader @pic18_intermediate_instruction instructionLength -> @uint outLength ;
-
-#----------------------------------------------------------------------------*
-
 struct @pic18_intermediate_registerExpressionWithoutBSRIndication {
   @string mAssemblyString ;
   @uint mRegisterAddress ; # 12 bit full address
@@ -106,11 +102,7 @@ end method ;
 abstract class @pic18_intermediate_instruction {
 }
 
-abstract method @pic18_intermediate_instruction displayIPICinstruction ?!@string ioListFileContents ;
-
-method @pic18_intermediate_instruction setCurrentAddress ?!@uint ioCurrentAddress :
-  ioCurrentAddress := ioCurrentAddress + [selfcopy instructionLength] ;
-end method ;
+abstract method @pic18_intermediate_instruction display ?!@string ioListFileContents ;
 
 method @pic18_intermediate_instruction isLABELorORG !@bool outIsLABELorORG :
   outIsLABELorORG := false ;
@@ -146,7 +138,7 @@ list @pic18_intermediate_instructionList {
 class @pic18_intermediate_NULL extends @pic18_intermediate_instruction {
 }
 override
-method @pic18_intermediate_NULL displayIPICinstruction ?!@string ioListFileContents :
+method @pic18_intermediate_NULL display ?!@string ioListFileContents :
   ioListFileContents .= "-" ;
 end method ;
 
@@ -160,12 +152,9 @@ end method ;
 class @pic18_intermediate_pseudo_ORG extends @pic18_intermediate_instruction {
   @uint mOrigin ;
 }
-override method @pic18_intermediate_pseudo_ORG setCurrentAddress ?!@uint ioCurrentAddress :
-  ioCurrentAddress := mOrigin ;
-end method ;
 
 override
-method @pic18_intermediate_pseudo_ORG displayIPICinstruction ?!@string ioListFileContents :
+method @pic18_intermediate_pseudo_ORG display ?!@string ioListFileContents :
   ioListFileContents .= "ORG " . [mOrigin hexString] ;
 end method ;
 
@@ -181,7 +170,7 @@ class @pic18_intermediate_pseudo_LABEL extends @pic18_intermediate_instruction {
   @bool mIsDeletable ;
 }
 
-override method @pic18_intermediate_pseudo_LABEL displayIPICinstruction ?!@string ioListFileContents :
+override method @pic18_intermediate_pseudo_LABEL display ?!@string ioListFileContents :
   ioListFileContents .= "LABEL " . mLabel ;
 end method ;
 
@@ -196,7 +185,7 @@ class @pic18_intermediate_word extends @pic18_intermediate_instruction {
 }
 
 override
-method @pic18_intermediate_word displayIPICinstruction ?!@string ioListFileContents :
+method @pic18_intermediate_word display ?!@string ioListFileContents :
   ioListFileContents .= "WORD " . [mValue hexString] ;
 end method ;
 
@@ -215,7 +204,7 @@ class @pic18_intermediate_MOV_LABEL_W extends @pic18_intermediate_actualInstruct
 }
 
 override
-method @pic18_intermediate_MOV_LABEL_W displayIPICinstruction ?!@string ioListFileContents :
+method @pic18_intermediate_MOV_LABEL_W display ?!@string ioListFileContents :
   ioListFileContents .= "MOVLW ((" . mLabel . " + " . mOffset . ") >> " . mRightShift . ") & 0xFF"  ;
 end method ;
 
@@ -264,7 +253,7 @@ method @pic18_intermediate_instruction_FDA getBaseCode !@uint outBaseCode :
 end method ;
 
 override
-method @pic18_intermediate_instruction_FDA displayIPICinstruction ?!@string ioListFileContents :
+method @pic18_intermediate_instruction_FDA display ?!@string ioListFileContents :
   ioListFileContents .= [mInstruction_FDA_base_code mnemonic] . " " . [mRegisterDescription mAssemblyString] ;
   if m_W_isDestination then
     ioListFileContents .= ", W" ;
@@ -322,7 +311,7 @@ method @pic18_intermediate_instruction_FA getBaseCode !@uint outBaseCode :
 end method ;
 
 override
-method @pic18_intermediate_instruction_FA displayIPICinstruction ?!@string ioListFileContents :
+method @pic18_intermediate_instruction_FA display ?!@string ioListFileContents :
   ioListFileContents .= [mFAinstruction mnemonic] . " " . [mRegisterDescription mAssemblyString] ;
 end method ;
 
@@ -340,7 +329,7 @@ class @pic18_intermediate_instruction_MOVFF extends @pic18_intermediate_actualIn
 }
   
 override
-method @pic18_intermediate_instruction_MOVFF displayIPICinstruction ?!@string ioListFileContents :
+method @pic18_intermediate_instruction_MOVFF display ?!@string ioListFileContents :
   ioListFileContents .= "MOVFF " . [mSourceRegisterDescription mAssemblyString]  . ", " . [mDestinationRegisterDescription mAssemblyString] ;
 end method ;
 
@@ -369,7 +358,7 @@ method @pic18_intermediate_instruction_FBA getBaseCode !@uint outBaseCode :
 end method ;
 
 override
-method @pic18_intermediate_instruction_FBA displayIPICinstruction ?!@string ioListFileContents :
+method @pic18_intermediate_instruction_FBA display ?!@string ioListFileContents :
   ioListFileContents .= [mBitOrientedOp mnemonic] . " " . [mRegisterDescription mAssemblyString] . ", " . [mBitNumber string] ;
 end method ;
 
@@ -392,7 +381,7 @@ method @pic18_intermediate_instruction_BitTestSkip getBaseCode !@uint outBaseCod
 end method ;
 
 override
-method @pic18_intermediate_instruction_BitTestSkip displayIPICinstruction ?!@string ioListFileContents :
+method @pic18_intermediate_instruction_BitTestSkip display ?!@string ioListFileContents :
   if mSkipIfSet then
     ioListFileContents .= "BTFSS" ;
   else
@@ -436,7 +425,7 @@ end reader ;
 
 
 override
-method @pic18_intermediate_instruction_conditionalBranch displayIPICinstruction ?!@string ioListFileContents :
+method @pic18_intermediate_instruction_conditionalBranch display ?!@string ioListFileContents :
   ioListFileContents .= "JUMP " . [mConditionalBranch condition] . " " . mTargetLabel ;
 #    switch mBranchMode
 #      when native     : ioListFileContents .= " (native)" ;
@@ -459,7 +448,7 @@ class @pic18_intermediate_JUMP extends @pic18_intermediate_actualInstruction {
 }
 
   override
-  method @pic18_intermediate_JUMP displayIPICinstruction ?!@string ioListFileContents :
+  method @pic18_intermediate_JUMP display ?!@string ioListFileContents :
     switch mKind
       when ipicRelative : ioListFileContents .= "JUMP " . mTargetLabel ;
       when ipicAbsolute : ioListFileContents .= "JUMP " . mTargetLabel ;
@@ -480,7 +469,7 @@ class @pic18_intermediate_JSR extends @pic18_intermediate_actualInstruction {
 }
 
 override
-method @pic18_intermediate_JSR displayIPICinstruction ?!@string ioListFileContents :
+method @pic18_intermediate_JSR display ?!@string ioListFileContents :
   switch mKind
     when ipicRelative : ioListFileContents .= "JSR " . mTargetLabel ;
     when ipicAbsolute : ioListFileContents .= "JSR " . mTargetLabel ;
@@ -500,7 +489,7 @@ class @pic18_intermediate_instruction_CLRWDT extends @pic18_intermediate_actualI
 }
 
 override
-method @pic18_intermediate_instruction_CLRWDT displayIPICinstruction ?!@string ioListFileContents :
+method @pic18_intermediate_instruction_CLRWDT display ?!@string ioListFileContents :
   ioListFileContents .= "CLRWDT" ;
 end method ;
 
@@ -510,7 +499,7 @@ class @pic18_intermediate_instruction_DAW extends @pic18_intermediate_actualInst
 }
 
 override
-method @pic18_intermediate_instruction_DAW displayIPICinstruction ?!@string ioListFileContents :
+method @pic18_intermediate_instruction_DAW display ?!@string ioListFileContents :
   ioListFileContents .= "DAW" ;
 end method ;
 
@@ -520,7 +509,7 @@ end method ;
 class @pic18_intermediate_instruction_NOP extends @pic18_intermediate_actualInstruction {
 }
 override
-method @pic18_intermediate_instruction_NOP displayIPICinstruction ?!@string ioListFileContents :
+method @pic18_intermediate_instruction_NOP display ?!@string ioListFileContents :
   ioListFileContents .= "NOP" ;
 end method ;
 
@@ -531,7 +520,7 @@ class @pic18_intermediate_instruction_POP extends @pic18_intermediate_actualInst
 }
 
 override
-method @pic18_intermediate_instruction_POP displayIPICinstruction ?!@string ioListFileContents :
+method @pic18_intermediate_instruction_POP display ?!@string ioListFileContents :
   ioListFileContents .= "POP" ;
 end method ;
 
@@ -541,7 +530,7 @@ class @pic18_intermediate_instruction_PUSH extends @pic18_intermediate_actualIns
 }
 
 override
-method @pic18_intermediate_instruction_PUSH displayIPICinstruction ?!@string ioListFileContents :
+method @pic18_intermediate_instruction_PUSH display ?!@string ioListFileContents :
   ioListFileContents .= "PUSH" ;
 end method ;
 
@@ -551,7 +540,7 @@ class @pic18_intermediate_instruction_RESET extends @pic18_intermediate_actualIn
 }
 
 override
-method @pic18_intermediate_instruction_RESET displayIPICinstruction ?!@string ioListFileContents :
+method @pic18_intermediate_instruction_RESET display ?!@string ioListFileContents :
   ioListFileContents .= "RESET" ;
 end method ;
 
@@ -561,7 +550,7 @@ class @pic18_intermediate_instruction_RETURN extends @pic18_intermediate_actualI
 }
 
 override
-method @pic18_intermediate_instruction_RETURN displayIPICinstruction ?!@string ioListFileContents :
+method @pic18_intermediate_instruction_RETURN display ?!@string ioListFileContents :
   ioListFileContents .= "RETURN" ;
 end method ;
 
@@ -571,7 +560,7 @@ class @pic18_intermediate_instruction_RETURN_NOT_OPTIMIZABLE extends @pic18_inte
 }
 
 override
-method @pic18_intermediate_instruction_RETURN_NOT_OPTIMIZABLE displayIPICinstruction ?!@string ioListFileContents :
+method @pic18_intermediate_instruction_RETURN_NOT_OPTIMIZABLE display ?!@string ioListFileContents :
   ioListFileContents .= "RETURN NOT OPTIMIZABLE" ;
 end method ;
 
@@ -582,7 +571,7 @@ class @pic18_intermediate_instruction_RETFIE extends @pic18_intermediate_actualI
 }
 
 override
-method @pic18_intermediate_instruction_RETFIE displayIPICinstruction ?!@string ioListFileContents :
+method @pic18_intermediate_instruction_RETFIE display ?!@string ioListFileContents :
   ioListFileContents .= "RETFIE" ;
   if mFastReturn then
     ioListFileContents .= " FAST" ;
@@ -594,7 +583,7 @@ end method ;
 class @pic18_intermediate_instruction_SLEEP extends @pic18_intermediate_actualInstruction {
 }
 override
-method @pic18_intermediate_instruction_SLEEP displayIPICinstruction ?!@string ioListFileContents :
+method @pic18_intermediate_instruction_SLEEP display ?!@string ioListFileContents :
   ioListFileContents .= "SLEEP" ;
 end method ;
 
@@ -625,7 +614,7 @@ method @pic18_intermediate_instruction_literalOperation getBaseCode !@uint outBa
 end method ;
 
 override
-method @pic18_intermediate_instruction_literalOperation displayIPICinstruction ?!@string ioListFileContents :
+method @pic18_intermediate_instruction_literalOperation display ?!@string ioListFileContents :
   ioListFileContents .= [mLiteralInstruction mnemonic] . " " . [mLiteralValue hexString] ;
 end method ;
 
@@ -636,7 +625,7 @@ class @pic18_intermediate_instruction_RETLW extends @pic18_intermediate_actualIn
 }
 
 override
-method @pic18_intermediate_instruction_RETLW displayIPICinstruction ?!@string ioListFileContents :
+method @pic18_intermediate_instruction_RETLW display ?!@string ioListFileContents :
   ioListFileContents .= "RETLW " . [mLiteralValue hexString] ;
 end method ;
 
@@ -648,7 +637,7 @@ class @pic18_intermediate_instruction_LFSR extends @pic18_intermediate_actualIns
 }  
 
 override
-method @pic18_intermediate_instruction_LFSR displayIPICinstruction ?!@string ioListFileContents :
+method @pic18_intermediate_instruction_LFSR display ?!@string ioListFileContents :
   ioListFileContents .= "LFSR " . [[mFSRindex uint] string] . ", " . [mValue hexString] ;
 end method ;
 
@@ -660,7 +649,7 @@ class @pic18_intermediate_instruction_MOVLB extends @pic18_intermediate_actualIn
 }
 
 override
-method @pic18_intermediate_instruction_MOVLB displayIPICinstruction ?!@string ioListFileContents :
+method @pic18_intermediate_instruction_MOVLB display ?!@string ioListFileContents :
   ioListFileContents .= "MOVLB " . [[mBankIndex uint] string] ;
 end method ;
 
@@ -672,7 +661,7 @@ class @pic18_intermediate_instruction_TBLRD extends @pic18_intermediate_actualIn
 }
 
 override
-method @pic18_intermediate_instruction_TBLRD displayIPICinstruction ?!@string ioListFileContents :
+method @pic18_intermediate_instruction_TBLRD display ?!@string ioListFileContents :
   ioListFileContents .= "TBLRD " . [mOption mnemonic] ;
 end method ;
 
@@ -683,7 +672,7 @@ class @pic18_intermediate_instruction_TBLWT extends @pic18_intermediate_actualIn
 }
 
 override
-method @pic18_intermediate_instruction_TBLWT displayIPICinstruction ?!@string ioListFileContents :
+method @pic18_intermediate_instruction_TBLWT display ?!@string ioListFileContents :
   ioListFileContents .= "TBLWT " . [mOption mnemonic] ;
 end method ;
 
@@ -694,7 +683,7 @@ class @pic18_intermediate_instruction_MNOP extends @pic18_intermediate_actualIns
 }
 
 override
-method @pic18_intermediate_instruction_MNOP displayIPICinstruction ?!@string ioListFileContents :
+method @pic18_intermediate_instruction_MNOP display ?!@string ioListFileContents :
   ioListFileContents .= "MNOP " . [[mOccurrenceFactor uint] string] ;
 end method ;
 
@@ -706,7 +695,7 @@ class @pic18_intermediate_instruction_computed_retlw extends @pic18_intermediate
 }
 
 override
-method @pic18_intermediate_instruction_computed_retlw displayIPICinstruction ?!@string ioListFileContents :
+method @pic18_intermediate_instruction_computed_retlw display ?!@string ioListFileContents :
   ioListFileContents .= "COMPUTED RETLW " ;
   if mUsesRCALL then
     ioListFileContents .= " (uses RCALL)" ;
@@ -730,7 +719,7 @@ class @pic18_intermediate_instruction_computed_bra extends @pic18_intermediate_a
 }
 
 override
-method @pic18_intermediate_instruction_computed_bra displayIPICinstruction ?!@string ioListFileContents :
+method @pic18_intermediate_instruction_computed_bra display ?!@string ioListFileContents :
   ioListFileContents .= "COMPUTED BRA " ;
   if mUsesRCALL then
     ioListFileContents .= " (uses RCALL)" ;
@@ -757,7 +746,7 @@ class @pic18_intermediate_instruction_computed_goto extends @pic18_intermediate_
 }
 
 override
-method @pic18_intermediate_instruction_computed_goto displayIPICinstruction ?!@string ioListFileContents :
+method @pic18_intermediate_instruction_computed_goto display ?!@string ioListFileContents :
   ioListFileContents .= "COMPUTED GOTO " ;
   if mUsesRCALL then
     ioListFileContents .= " (uses RCALL)" ;
@@ -785,7 +774,7 @@ class @pic18_intermediate_instruction_computed_rcall extends @pic18_intermediate
 }
 
 override
-method @pic18_intermediate_instruction_computed_rcall displayIPICinstruction ?!@string ioListFileContents :
+method @pic18_intermediate_instruction_computed_rcall display ?!@string ioListFileContents :
   ioListFileContents .= "COMPUTED RCALL " ;
   if mUsesRCALL then
     ioListFileContents .= "(uses RCALL)" ;
@@ -814,7 +803,7 @@ class @pic18_intermediate_jump_test_register extends @pic18_intermediate_actualI
 }
 
 override
-method @pic18_intermediate_jump_test_register displayIPICinstruction ?!@string ioListFileContents :
+method @pic18_intermediate_jump_test_register display ?!@string ioListFileContents :
   ioListFileContents .= "JUMP " . [mRegisterDescription mAssemblyString] ;
   if mBranchIfZero then
     ioListFileContents .= " Z" ;
@@ -841,7 +830,7 @@ class @pic18_intermediate_incDecRegisterInCondition extends @pic18_intermediate_
 }
 
 override
-method @pic18_intermediate_incDecRegisterInCondition displayIPICinstruction ?!@string ioListFileContents :
+method @pic18_intermediate_incDecRegisterInCondition display ?!@string ioListFileContents :
   ioListFileContents .= "JUMP " ;
   if mIncrement then
     ioListFileContents .= "INCF " ;
@@ -896,7 +885,7 @@ reader @registerComparison mnemonic -> @string outResult :
 end reader ;
 
 override
-method @pic18_intermediate_registerComparisonCondition displayIPICinstruction ?!@string ioListFileContents :
+method @pic18_intermediate_registerComparisonCondition display ?!@string ioListFileContents :
   ioListFileContents .= "JUMP " ;
   ioListFileContents .= [mRegisterDescription mAssemblyString] ;
   ioListFileContents .= " " . [mComparison mnemonic] ;

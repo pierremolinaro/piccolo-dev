@@ -1,5 +1,5 @@
 semantics pic18_build_binary_code :
-import "pic18_intermediate_classes.gSemantics" ;
+import "pic18_intermediate_classes_instruction_length.gSemantics" ;
 import "pic18_build_assembly_code.gSemantics" ;
 
 #----------------------------------------------------------------------------*

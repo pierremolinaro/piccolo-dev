@@ -3,7 +3,7 @@ import "piccolo_options.gOption" ;
 import "pic18_metamodel.gSemantics" ;
 import "piccoloDevice_semantics.gSemantics" ;
 import "pic18_mnemonics.gSemantics" ;
-import "pic18_intermediate_classes.gSemantics" ;
+import "pic18_intermediate_classes_set_current_address.gSemantics" ;
 
 #----------------------------------------------------------------------------*
 
@@ -2498,7 +2498,7 @@ routine build_pic18_intermediate_assembly_instruction_list
     foreach outGeneratedInstructionList do
       [mInstruction setCurrentAddress !?currentAddress] ;
       ioListFileContents .= [[idx string] stringByLeftPadding !5 !' '] . ": " ;
-      [mInstruction displayIPICinstruction !? ioListFileContents] ;
+      [mInstruction display !? ioListFileContents] ;
       ioListFileContents .= "\n" ;
       idx ++ ;
     end foreach ;

@@ -3,6 +3,10 @@ import "pic18_intermediate_classes.gSemantics" ;
 
 #----------------------------------------------------------------------------*
 
+abstract reader @pic18_intermediate_instruction instructionLength -> @uint outLength ;
+
+#----------------------------------------------------------------------------*
+
 override reader @pic18_intermediate_NULL instructionLength -> @uint outLength :
   outLength := 0 ;
 end reader ;
