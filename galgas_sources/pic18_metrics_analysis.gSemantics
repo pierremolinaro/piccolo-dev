@@ -371,7 +371,7 @@ local routine computeStackLevelsFromLine
       ioExploredLineSet += ![currentLine string] ;
       const @pic18_intermediate_instruction instruction := [inGeneratedInstructionList mInstructionAtIndex !currentLine] ;
 #      @string s := currentLineString . ":" ;
-#      [instruction displayIPICinstruction !?s] ;
+#      [instruction display !?s] ;
 #      message s  . "\n" ;
       [instruction exploreStackNeeds
         !inGeneratedInstructionList
@@ -1200,7 +1200,7 @@ routine pic18_compute_metrics
             const @uint imax := [maxArray mValueAtIndex !lineIndex] ;
             if imin <= imax then
               @string s := [lineIndex string] . ":" . imin . "..." . imax . ":" ;
-              [mInstruction displayIPICinstruction !?s] ;
+              [mInstruction display !?s] ;
               message s  . "\n" ;
             end if ;
           end foreach ;
