@@ -64,7 +64,7 @@ noreturn routine main bank:requires 0 {
   end
 }
 
-#--- Définir les routines en fonction de leur déclaration dans la sépécification
+#--- Définir les routines en fonction de leur déclaration dans la spécification
 routine routineBootloader1 {
 }
 

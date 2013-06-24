@@ -530,58 +530,68 @@ map @routineMinMaxMap {
 
 method @piccolo_instruction searchForLoopInstruction
   ??@routineHasLoopMap unused inRoutineHasLoopMap
-  ?!@bool unused ioHasLoopInstruction
+  !@bool outHasLoopInstruction
 :
+  outHasLoopInstruction := false ;
 end method ;
 
 #---------------------------------------------------------------------------*
 
 override method @instruction_do_while searchForLoopInstruction
   ??@routineHasLoopMap unused inRoutineHasLoopMap
-  ?!@bool ioHasLoopInstruction
+  !@bool outHasLoopInstruction
 :
-  ioHasLoopInstruction := true ;
+  outHasLoopInstruction := true ;
 end method ;
 
 #---------------------------------------------------------------------------*
 
 override method @instruction_FOREVER searchForLoopInstruction
   ??@routineHasLoopMap unused inRoutineHasLoopMap
-  ?!@bool ioHasLoopInstruction
+  !@bool outHasLoopInstruction
 :
-  ioHasLoopInstruction := true ;
+  outHasLoopInstruction := true ;
+end method ;
+
+#---------------------------------------------------------------------------*
+
+override method @instruction_JUMP searchForLoopInstruction
+  ??@routineHasLoopMap inRoutineHasLoopMap
+  !@bool outHasLoopInstruction
+:
+  [inRoutineHasLoopMap searchKey !mTargetLabel ?outHasLoopInstruction] ;
 end method ;
 
 #---------------------------------------------------------------------------*
 
 override method @instruction_JSR searchForLoopInstruction
   ??@routineHasLoopMap inRoutineHasLoopMap
-  ?!@bool ioHasLoopInstruction
+  !@bool outHasLoopInstruction
 :
-  [inRoutineHasLoopMap searchKey !mTargetLabel ?@bool hasLoop] ;
-  if hasLoop then
-    ioHasLoopInstruction := true ;
-  end if ;
+  [inRoutineHasLoopMap searchKey !mTargetLabel ?outHasLoopInstruction] ;
 end method ;
 
 #---------------------------------------------------------------------------*
 
 override method @instruction_structured_if searchForLoopInstruction
   ??@routineHasLoopMap inRoutineHasLoopMap
-  ?!@bool ioHasLoopInstruction
+  !@bool outHasLoopInstruction
 :
-  searchForLoopInInstructionList !mThenInstructionList !inRoutineHasLoopMap !?ioHasLoopInstruction ;
-  searchForLoopInInstructionList !mElseInstructionList !inRoutineHasLoopMap !?ioHasLoopInstruction ;
+  searchForLoopInInstructionList !mThenInstructionList !inRoutineHasLoopMap ?outHasLoopInstruction ;
+  if not outHasLoopInstruction then
+    searchForLoopInInstructionList !mElseInstructionList !inRoutineHasLoopMap ?outHasLoopInstruction ;
+  end if ;
 end method ;
 
 #----------------------------------------------------------------------------*
 
 override method @instruction_computed_bra searchForLoopInstruction
   ??@routineHasLoopMap inRoutineHasLoopMap
-  ?!@bool ioHasLoopInstruction
+  !@bool outHasLoopInstruction
 :
-  foreach mTargetLabels while not ioHasLoopInstruction do
-    [inRoutineHasLoopMap searchKey !mValue ?ioHasLoopInstruction] ;
+  outHasLoopInstruction := false ;
+  foreach mTargetLabels while not outHasLoopInstruction do
+    [inRoutineHasLoopMap searchKey !mValue ?outHasLoopInstruction] ;
   end foreach ;
 end method ;
 
@@ -589,10 +599,11 @@ end method ;
 
 override method @instruction_computed_goto searchForLoopInstruction
   ??@routineHasLoopMap inRoutineHasLoopMap
-  ?!@bool ioHasLoopInstruction
+  !@bool outHasLoopInstruction
 :
-  foreach mTargetLabels while not ioHasLoopInstruction do
-    [inRoutineHasLoopMap searchKey !mValue ?ioHasLoopInstruction] ;
+  outHasLoopInstruction := false ;
+  foreach mTargetLabels while not outHasLoopInstruction do
+    [inRoutineHasLoopMap searchKey !mValue ?outHasLoopInstruction] ;
   end foreach ;
 end method ;
 
@@ -600,10 +611,11 @@ end method ;
 
 override method @instruction_computed_rcall searchForLoopInstruction
   ??@routineHasLoopMap inRoutineHasLoopMap
-  ?!@bool ioHasLoopInstruction
+  !@bool outHasLoopInstruction
 :
-  foreach mTargetLabels while not ioHasLoopInstruction do
-    [inRoutineHasLoopMap searchKey !mValue ?ioHasLoopInstruction] ;
+  outHasLoopInstruction := false ;
+  foreach mTargetLabels while not outHasLoopInstruction do
+    [inRoutineHasLoopMap searchKey !mValue ?outHasLoopInstruction] ;
   end foreach ;
 end method ;
 
@@ -612,10 +624,11 @@ end method ;
 local routine searchForLoopInInstructionList
   ?@instructionList inInstructionList
   ??@routineHasLoopMap inRoutineHasLoopMap
-  ?!@bool ioHasLoopInstruction
+  !@bool outHasLoopInstruction
 :
-  foreach inInstructionList do
-    [mInstruction searchForLoopInstruction !inRoutineHasLoopMap !?ioHasLoopInstruction] ;
+  outHasLoopInstruction := false ;
+  foreach inInstructionList while not outHasLoopInstruction do
+    [mInstruction searchForLoopInstruction !inRoutineHasLoopMap ?outHasLoopInstruction] ;
   end foreach ;
 end routine ;
 
@@ -1305,11 +1318,12 @@ routine pic18_compute_metrics
     @routineHasLoopMap routineHasLoopMap [emptyMap] ;
   #--- Enter applicative routine names (for bootloader)
     foreach inUserRoutineDeclarationListForBootloaderImplementation do
-      [!?routineHasLoopMap insertKey !mRoutineName !false] ;
+      [!?routineHasLoopMap insertKey !mRoutineName !mIsNoReturn] ; # Routine loops if no return
     end foreach ;
   #--- Enter bootloader routine names (for applicative)
     foreach inBootloaderRoutineDeclarationListForUserProgramImplementation do
-      [!?routineHasLoopMap insertKey !mRoutineName !false] ;
+      message "Enter boot " . mRoutineName . "\n" ;
+      [!?routineHasLoopMap insertKey !mRoutineName !mIsNoReturn] ; # Routine loops if no return
     end foreach ;
   #--- Foreach non recursive routine, establish if it contains loops
     foreach sortedRoutineNameList do
@@ -1317,8 +1331,7 @@ routine pic18_compute_metrics
       foreach inPiccoloModel->mRoutineDefinitionList while not found do
         found := mValue->string == mRoutineName->string ;
         if found & not [routinesInvolvedInRecursion hasKey !mRoutineName->string] then
-          @bool hasLoopInstruction := false ;
-          searchForLoopInInstructionList !mInstructionList !routineHasLoopMap !?hasLoopInstruction ;
+          searchForLoopInInstructionList !mInstructionList !routineHasLoopMap ?@bool hasLoopInstruction ;
           [!?routineHasLoopMap insertKey !mRoutineName !hasLoopInstruction] ;
         end if ;
       end foreach ;
@@ -1329,8 +1342,7 @@ routine pic18_compute_metrics
       if [routinesInvolvedInRecursion hasKey !routineName->string] then
         ioListFileContents .= "Cannot compute '" . mInterruptName . "' interrupt routine duration : it is involved in recursive routine calls.\n" ;
       else
-        @bool hasLoopInstruction := false ;
-        searchForLoopInInstructionList !mInstructionList !routineHasLoopMap !?hasLoopInstruction ;
+        searchForLoopInInstructionList !mInstructionList !routineHasLoopMap ?@bool hasLoopInstruction ;
         [!?routineHasLoopMap insertKey !routineName !hasLoopInstruction] ;
         if hasLoopInstruction then
           ioListFileContents .= "Cannot compute '" . mInterruptName . "' interrupt routine duration : it contains 'do ... while' instruction(s).\n" ;
@@ -1347,7 +1359,7 @@ routine pic18_compute_metrics
     ioListFileContents .= ["Routine" stringByLeftPadding !70 !' '] . " Min-Max\n" ;
     @routineMinMaxMap routineMinMaxMap [emptyMap] ;
     foreach sortedRoutineNameList do
-      if [routineHasLoopMap hasKey !mValue->string] then
+      if [symbolTable hasKey !mValue->string] & [routineHasLoopMap hasKey !mValue->string] then
         [routineHasLoopMap searchKey !mValue ?@bool hasLoopInstruction] ;
         if hasLoopInstruction then
           ioListFileContents .= [mValue stringByLeftPadding !70 !' '] . " loops\n" ;
@@ -1364,7 +1376,14 @@ routine pic18_compute_metrics
             ioListFileContents .= [" " . mValue stringByLeftPadding !76 !'-'] . "\n" ;
             ioListFileContents .= " Line:  min-  max:\n" ;
           end if ;
-          computeMinMaxFromLabel !mValue !symbolTable !routineMinMaxMap !inGeneratedInstructionList !?minArray !0 !?executionMin !?maxArray !0 !?executionMax ;
+          computeMinMaxFromLabel
+            !mValue
+            !symbolTable
+            !routineMinMaxMap
+            !inGeneratedInstructionList
+            !?minArray !0 !?executionMin
+            !?maxArray !0 !?executionMax
+          ;
           [!?routineMinMaxMap insertKey !mValue !executionMin !executionMax] ;
           foreach inGeneratedInstructionList index lineIndex do
             const @uint imin := [minArray mValueAtIndex !lineIndex] ;
