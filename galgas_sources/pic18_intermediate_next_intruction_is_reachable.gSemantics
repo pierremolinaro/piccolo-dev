@@ -19,6 +19,11 @@ override reader @pic18_intermediate_instruction_RETURN nextInstructionIsReachabl
   outIsReachable := false ;
 end reader ;
 
+#----------------------------------------------------*
+
+override reader @pic18_intermediate_instruction_RETURN_NOT_OPTIMIZABLE nextInstructionIsReachable -> @bool outIsReachable :
+  outIsReachable := false ;
+end reader ;
 
 #----------------------------------------------------*
 
