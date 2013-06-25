@@ -275,30 +275,30 @@ method @pic18_intermediate_jump_test_register optimizeTestReg
   ?!@string ioListFileContents
   ?!@bool ioOptimizationsDone
 :
-#--- Find destination label definition line
-  [inSymbolTable searchKey !mTargetLabel ?@uint line ?*] ;
-#--- Find first executable instruction
-  @pic18_intermediate_instruction firstInstruction ;
-  findFirstInstructionFromAddress !line + 1 !ioGeneratedInstructionList ?firstInstruction ?* ;
-#--- Optimization from found first instruction
-  cast firstInstruction :
-  when == @pic18_intermediate_JUMP jump do
-    if mTargetLabel->string != [[jump mTargetLabel] string] then
-      [!?ioGeneratedInstructionList setMInstructionAtIndex
-        ![@pic18_intermediate_jump_test_register new !mInstructionLocation !mRegisterDescription ![jump mTargetLabel] !mBranchIfZero !mUsesBra]
-        !inLineIndex
-      ] ;
-      ioOptimizationsDone := true ;
-      ioListFileContents .= "  line " . [inLineIndex string] . ": label of JUMP " . [mRegisterDescription mAssemblyString] ;
-      if mBranchIfZero then
-        ioListFileContents .= "Z" ;
-      else
-        ioListFileContents .= "NZ" ;
-      end if ;
-      ioListFileContents .= " branching to JUMP replaced by second JUMP label\n" ;
-    end if ;
-  else
-  end cast ;
+##--- Find destination label definition line
+#  [inSymbolTable searchKey !mTargetLabel ?@uint line ?*] ;
+##--- Find first executable instruction
+#  @pic18_intermediate_instruction firstInstruction ;
+#  findFirstInstructionFromAddress !line + 1 !ioGeneratedInstructionList ?firstInstruction ?* ;
+##--- Optimization from found first instruction
+#  cast firstInstruction :
+#  when == @pic18_intermediate_JUMP jump do
+#    if mTargetLabel->string != [[jump mTargetLabel] string] then
+#      [!?ioGeneratedInstructionList setMInstructionAtIndex
+#        ![@pic18_intermediate_jump_test_register new !mInstructionLocation !mRegisterDescription ![jump mTargetLabel] !mBranchIfZero !mUsesBra]
+#        !inLineIndex
+#      ] ;
+#      ioOptimizationsDone := true ;
+#      ioListFileContents .= "  line " . [inLineIndex string] . ": label of JUMP " . [mRegisterDescription mAssemblyString] ;
+#      if mBranchIfZero then
+#        ioListFileContents .= "Z" ;
+#      else
+#        ioListFileContents .= "NZ" ;
+#      end if ;
+#      ioListFileContents .= " branching to JUMP replaced by second JUMP label\n" ;
+#    end if ;
+#  else
+#  end cast ;
 end method ;
 
 #----------------------------------------------------------------------------*

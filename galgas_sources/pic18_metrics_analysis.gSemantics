@@ -249,17 +249,18 @@ override method @pic18_intermediate_jump_test_register exploreStackNeeds
   ?!@stringset ioExploredLineSet
   ?!@string ioListFileContents
 :
-  computeStackLevelsFromLabel
+#--- No stack needs for this instruction
+  [!?ioStackNeedsArray setMValueAtIndex !0 !inCurrentLine] ;
+#--- This instruction can skip next one
+  computeStackLevelsFromLine
     !inGeneratedInstructionList
-    !mTargetLabel
+    !inCurrentLine + 2
     !inSymbolTable
     !inSymbolTableForStackLevels
     !?ioStackNeedsArray
-    ?@uint instructionStackNeeds
     !?ioExploredLineSet
     !?ioListFileContents
   ;
-  [!?ioStackNeedsArray setMValueAtIndex !instructionStackNeeds !inCurrentLine] ;
 end method ;
 
 #----------------------------------------------------------------------------*
@@ -928,7 +929,7 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override method @pic18_intermediate_jump_test_register duration
-  ??@uint unused inCurrentLine
+  ??@uint inCurrentLine
   ??@symbolTableForOptimizations inSymbolTable
   ??@routineMinMaxMap inRoutineMinMaxMap
   ??@pic18_intermediate_instructionList inGeneratedInstructionList
@@ -939,23 +940,24 @@ override method @pic18_intermediate_jump_test_register duration
   ?!@uint ioExecutionMin
   ?!@uint ioExecutionMax
 :
-#--- When execute next instruction (a branch or a goto)
-  computeMinMaxFromLabel
-    !mTargetLabel
+#--- When Skip next instruction
+  @pic18_intermediate_instruction nextInstruction := [inGeneratedInstructionList mInstructionAtIndex !inCurrentLine + 1] ;
+  const @uint durationWhenSkip := 1 + [nextInstruction instructionLength] / 2 ;
+  computeMinMaxFromLine
+    !inCurrentLine + 2
     !inSymbolTable
     !inRoutineMinMaxMap
     !inGeneratedInstructionList
     !?ioMinArray
-    !ioCurrentMin + 3
+    !ioCurrentMin + durationWhenSkip
     !?ioExecutionMin
     !?ioMaxArray
-    !ioCurrentMax + 3
+    !ioCurrentMax + durationWhenSkip
     !?ioExecutionMax
   ;
-#--- When skip next instruction
-  const @uint durationWhenSkip := 1 + if mUsesBra then 1 else 2 end ;
-  ioCurrentMin := ioCurrentMin + durationWhenSkip ;
-  ioCurrentMax := ioCurrentMax + durationWhenSkip ;
+#--- When execute next instruction
+  ioCurrentMin := ioCurrentMin + 1 ;
+  ioCurrentMax := ioCurrentMax + 1 ;
 end method ;
 
 #----------------------------------------------------------------------------*

@@ -1583,7 +1583,7 @@ override method @registerTestCondition buildIPICinstructionForCondition
   ??@uint inAccessBankSplitOffset
   ??@uint inCurrentBank
   ??@registerTable inRegisterTable
-  ?!@uint unused ioLocalLabelIndex
+  ?!@uint ioLocalLabelIndex
   ??@bool inComplementaryBranch
   ??@location inInstructionLocation
   ??@string inTargetLabel
@@ -1602,10 +1602,32 @@ override method @registerTestCondition buildIPICinstructionForCondition
   ioGeneratedInstructionList += ![@pic18_intermediate_jump_test_register new
     !inInstructionLocation
     !IPICregisterDescription
-    ![@lstring new !inTargetLabel !here]
-    !mBranchIfZero ^ inComplementaryBranch
-    !true # By Default, uses BRA
   ] ;
+#---
+  const @lstring targetLabel [new !inTargetLabel !inInstructionLocation] ;
+  if inComplementaryBranch ^ mBranchIfZero then
+    const @lstring aLabel [new !"_bcc_label_" . [ioLocalLabelIndex string] !inInstructionLocation] ; ioLocalLabelIndex ++ ;
+    ioGeneratedInstructionList += ![@pic18_intermediate_JUMP new
+      !inInstructionLocation
+      !aLabel
+      ![@jumpInstructionKind ipicRelative]
+    ] ;
+    ioGeneratedInstructionList += ![@pic18_intermediate_JUMP new
+      !inInstructionLocation
+      !targetLabel
+      ![@jumpInstructionKind ipicRelative]
+    ] ;
+    ioGeneratedInstructionList += ![@pic18_intermediate_pseudo_LABEL new
+      !aLabel
+      !true
+    ] ;
+  else
+    ioGeneratedInstructionList += ![@pic18_intermediate_JUMP new
+      !inInstructionLocation
+      !targetLabel
+      ![@jumpInstructionKind ipicRelative]
+    ] ;
+  end if ;
 end method ;
 
 #----------------------------------------------------*
