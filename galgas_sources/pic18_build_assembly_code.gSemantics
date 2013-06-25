@@ -166,29 +166,29 @@ end method ;
 
 override method @pic18_intermediate_jump_test_register buildAssemblyCode
   ?!@stringlist ioStringList
-  ?!@uint ioBccLabelIndex
+  ?!@uint unused ioBccLabelIndex
 :
   @string s := "  TSTFSZ " . [mRegisterDescription mAssemblyString] ;
   if [mRegisterDescription mNeedsBSR] then
     s .= ", BSR_ACCESS" ;
   end if ;
   ioStringList += !s ;
-  if mBranchIfZero then
-    @string aLabel := "_bcc_label_" . [ioBccLabelIndex string] ; ioBccLabelIndex ++ ;
-    ioStringList += !"  BRA " . aLabel ;
-    if mUsesBra then
-      ioStringList += !"  BRA " . mTargetLabel ;
-    else
-      ioStringList += !"  GOTO " . mTargetLabel ;
-    end if ;
-    ioStringList += !aLabel . ":" ;
-  else
-    if mUsesBra then
-      ioStringList += !"  BRA " . mTargetLabel ;
-    else
-      ioStringList += !"  GOTO " . mTargetLabel ;
-    end if ;
-  end if ;
+#  if mBranchIfZero then
+#    @string aLabel := "_bcc_label_" . [ioBccLabelIndex string] ; ioBccLabelIndex ++ ;
+#    ioStringList += !"  BRA " . aLabel ;
+#    if mUsesBra then
+#      ioStringList += !"  BRA " . mTargetLabel ;
+#    else
+#      ioStringList += !"  GOTO " . mTargetLabel ;
+#    end if ;
+#    ioStringList += !aLabel . ":" ;
+#  else
+#    if mUsesBra then
+#      ioStringList += !"  BRA " . mTargetLabel ;
+#    else
+#      ioStringList += !"  GOTO " . mTargetLabel ;
+#    end if ;
+#  end if ;
 end method ;
 
 #----------------------------------------------------*

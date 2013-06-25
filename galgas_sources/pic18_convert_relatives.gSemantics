@@ -192,36 +192,36 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @pic18_intermediate_jump_test_register checkRelativeBranch
-  ??@pic18_intermediate_symbolTableForConvertingRelatives inRoutineSymbolTable
-  ?!@uint ioAddress
-  ?!@bool ioRelativeBranchOverflow
-  ?!@pic18_intermediate_instructionList ioGeneratedInstructionList
-  ??@uint inIndex
-  ?!@string ioListFileContents
-:
-  if mUsesBra then
-    @uint BRAaddress := ioAddress + 2 ;
-    if mBranchIfZero then
-      BRAaddress := BRAaddress + 2 ;
-    end if ;
-    @uint targetAddress ;
-    [inRoutineSymbolTable searchKey !mTargetLabel ?targetAddress] ;
-    @sint displacement := ([targetAddress sint] - 2S - [BRAaddress sint]) >> 1 ;
-    if (displacement > 1023S) | (displacement < - 1024S) then
-      ioRelativeBranchOverflow := true ;
-      ioListFileContents .= "  line " . [inIndex string] . ":  JUMP with BRA overflow, converted to JUMP with GOTO\n" ;
-      @pic18_intermediate_actualInstruction instruction := [@pic18_intermediate_jump_test_register new
-        !mInstructionLocation
-        !mRegisterDescription
-        !mTargetLabel
-        !mBranchIfZero
-        !false
-      ] ;
-      [!?ioGeneratedInstructionList setMInstructionAtIndex !instruction !inIndex] ;
-    end if ;
-  end if ;
-end method ;
+#override method @pic18_intermediate_jump_test_register checkRelativeBranch
+#  ??@pic18_intermediate_symbolTableForConvertingRelatives inRoutineSymbolTable
+#  ?!@uint ioAddress
+#  ?!@bool ioRelativeBranchOverflow
+#  ?!@pic18_intermediate_instructionList ioGeneratedInstructionList
+#  ??@uint inIndex
+#  ?!@string ioListFileContents
+#:
+#  if mUsesBra then
+#    @uint BRAaddress := ioAddress + 2 ;
+#    if mBranchIfZero then
+#      BRAaddress := BRAaddress + 2 ;
+#    end if ;
+#    @uint targetAddress ;
+#    [inRoutineSymbolTable searchKey !mTargetLabel ?targetAddress] ;
+#    @sint displacement := ([targetAddress sint] - 2S - [BRAaddress sint]) >> 1 ;
+#    if (displacement > 1023S) | (displacement < - 1024S) then
+#      ioRelativeBranchOverflow := true ;
+#      ioListFileContents .= "  line " . [inIndex string] . ":  JUMP with BRA overflow, converted to JUMP with GOTO\n" ;
+#      @pic18_intermediate_actualInstruction instruction := [@pic18_intermediate_jump_test_register new
+#        !mInstructionLocation
+#        !mRegisterDescription
+#        !mTargetLabel
+#        !mBranchIfZero
+#        !false
+#      ] ;
+#      [!?ioGeneratedInstructionList setMInstructionAtIndex !instruction !inIndex] ;
+#    end if ;
+#  end if ;
+#end method ;
 
 #----------------------------------------------------------------------------*
 

@@ -409,8 +409,8 @@ end method ;
 #----------------------------------------------------*
 
 override method @pic18_intermediate_jump_test_register generateBinaryCodeAtAddress
-  ??@pic18_intermediate_symbolTable inRoutineSymbolTable
-  ?!@uint ioAddress
+  ??@pic18_intermediate_symbolTable unused inRoutineSymbolTable
+  ?!@uint unused ioAddress
   ?!@emittedCodeList ioCode
 :
 
@@ -421,34 +421,34 @@ override method @pic18_intermediate_jump_test_register generateBinaryCodeAtAddre
   end if ;
   code := code | ([mRegisterDescription mRegisterAddress] & 255) ;
   ioCode += ![@uintlist listWithValue !code] ;
-#--- Generate BRA and / or GOTO instructions
-  @uint targetAddress ;
-  [inRoutineSymbolTable searchKey !mTargetLabel ?targetAddress] ;
-  if mBranchIfZero then
-    @uint intermediateTargetAddress ;
-    if mUsesBra then
-      intermediateTargetAddress := ioAddress + 6 ;
-    else
-      intermediateTargetAddress := ioAddress + 8 ;
-    end if ;
-    emitBRAinstruction
-      !ioAddress + 2
-      !intermediateTargetAddress
-      !mInstructionLocation
-      !?ioCode
-    ;
-    if mUsesBra then
-      emitBRAinstruction !ioAddress + 4 !targetAddress !mInstructionLocation !?ioCode ;
-    else
-      emit_pic18_GOTOinstruction !targetAddress !?ioCode ;
-    end if ;
-  else
-    if mUsesBra then
-      emitBRAinstruction !ioAddress + 2 !targetAddress !mInstructionLocation !?ioCode ;
-    else
-      emit_pic18_GOTOinstruction !targetAddress !?ioCode ;
-    end if ;
-  end if ;
+##--- Generate BRA and / or GOTO instructions
+#  @uint targetAddress ;
+#  [inRoutineSymbolTable searchKey !mTargetLabel ?targetAddress] ;
+#  if mBranchIfZero then
+#    @uint intermediateTargetAddress ;
+#    if mUsesBra then
+#      intermediateTargetAddress := ioAddress + 6 ;
+#    else
+#      intermediateTargetAddress := ioAddress + 8 ;
+#    end if ;
+#    emitBRAinstruction
+#      !ioAddress + 2
+#      !intermediateTargetAddress
+#      !mInstructionLocation
+#      !?ioCode
+#    ;
+#    if mUsesBra then
+#      emitBRAinstruction !ioAddress + 4 !targetAddress !mInstructionLocation !?ioCode ;
+#    else
+#      emit_pic18_GOTOinstruction !targetAddress !?ioCode ;
+#    end if ;
+#  else
+#    if mUsesBra then
+#      emitBRAinstruction !ioAddress + 2 !targetAddress !mInstructionLocation !?ioCode ;
+#    else
+#      emit_pic18_GOTOinstruction !targetAddress !?ioCode ;
+#    end if ;
+#  end if ;
 end method ;
 
 #----------------------------------------------------*

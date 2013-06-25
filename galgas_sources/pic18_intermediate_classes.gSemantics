@@ -750,26 +750,17 @@ end method ;
 
 class @pic18_intermediate_jump_test_register extends @pic18_intermediate_actualInstruction {
   @pic18_intermediate_registerExpression mRegisterDescription ;
-  @lstring mTargetLabel ;
-  @bool mBranchIfZero ;
-  @bool mUsesBra ;
 }
 
 override
 method @pic18_intermediate_jump_test_register display ?!@string ioListFileContents :
-  ioListFileContents .= "JUMP " . [mRegisterDescription mAssemblyString] ;
-  if mBranchIfZero then
-    ioListFileContents .= " Z" ;
-  else
-    ioListFileContents .= " NZ" ;
-  end if ;
-  ioListFileContents .= " " . mTargetLabel ;
+  ioListFileContents .= "TSTFSZ " . [mRegisterDescription mAssemblyString] ;
 end method ;
 
-override method @pic18_intermediate_jump_test_register enterReferencedLabel ?!@stringset ioReferencedLabelSet :
-  ioReferencedLabelSet += !mTargetLabel->string ;
-end method ;
-
+override
+reader @pic18_intermediate_jump_test_register isSkippingInstruction -> @bool outIsSkipping :
+  outIsSkipping := true ;
+end reader ;
 
 #----------------------------------------------------------------------------*
 

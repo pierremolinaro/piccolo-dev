@@ -134,18 +134,18 @@ end reader ;
 
 #----------------------------------------------------------------------------*
 
-override
-reader @pic18_intermediate_jump_test_register instructionLength -> @uint outLength :
-  outLength := 2 ; # TSTFSZ
-  if mBranchIfZero then
-    outLength := outLength + 2 ; # Intermediate BRA
-  end if ;
-  if mUsesBra then
-    outLength := outLength + 2 ; # Final BRA
-  else
-    outLength := outLength + 4 ; # Final GOTO
-  end if ;
-end reader ;
+#override
+#reader @pic18_intermediate_jump_test_register instructionLength -> @uint outLength :
+#  outLength := 2 ; # TSTFSZ
+#  if mBranchIfZero then
+#    outLength := outLength + 2 ; # Intermediate BRA
+#  end if ;
+#  if mUsesBra then
+#    outLength := outLength + 2 ; # Final BRA
+#  else
+#    outLength := outLength + 4 ; # Final GOTO
+#  end if ;
+#end reader ;
 
 #----------------------------------------------------------------------------*
 
