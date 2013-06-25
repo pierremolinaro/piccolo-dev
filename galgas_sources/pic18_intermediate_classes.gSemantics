@@ -218,11 +218,8 @@ class @pic18_intermediate_instruction_FDA extends @pic18_intermediate_actualInst
 
 #----------------------------------------------------------------------------*
 
-routine getFDAinstructionBaseCode
-  ??@instruction_FDA_base_code inInstruction
-  !@uint outBaseCode
-:
-  switch inInstruction
+method @pic18_intermediate_instruction_FDA getBaseCode !@uint outBaseCode :
+  switch mInstruction_FDA_base_code
   when ADDWF : outBaseCode := 0x2400 ;
   when ADDWFC : outBaseCode := 0x2000 ;
   when ANDWF : outBaseCode := 0x1400 ;
@@ -245,11 +242,6 @@ routine getFDAinstructionBaseCode
   when SWAPF : outBaseCode := 0x3800 ;
   when XORWF : outBaseCode := 0x1800 ;
   end switch ;
-end routine ;
-
-
-method @pic18_intermediate_instruction_FDA getBaseCode !@uint outBaseCode :
-  getFDAinstructionBaseCode !mInstruction_FDA_base_code ?outBaseCode ;
 end method ;
 
 override
@@ -260,14 +252,15 @@ method @pic18_intermediate_instruction_FDA display ?!@string ioListFileContents 
   end if ;
 end method ;
 
-
 #----------------------------------------------------------------------------*
 
-routine getFAinstructionBaseCode
-  ??@FA_instruction_base_code inInstruction
-  !@uint outBaseCode
-:
-  switch inInstruction
+class @pic18_intermediate_instruction_FA extends @pic18_intermediate_actualInstruction {
+  @FA_instruction_base_code mFAinstruction ;
+  @pic18_intermediate_registerExpression mRegisterDescription ;
+}
+
+method @pic18_intermediate_instruction_FA getBaseCode !@uint outBaseCode :
+  switch mFAinstruction
   when CLRF   : outBaseCode := 0x6A00 ;
   when CPFSEQ : outBaseCode := 0x6200 ;
   when CPFSGT : outBaseCode := 0x6400 ;
@@ -278,15 +271,16 @@ routine getFAinstructionBaseCode
   when SETF   : outBaseCode := 0x6800 ;
   when TSTFSZ : outBaseCode := 0x6600 ;
   end switch ;
-end routine ;
+end method ;
 
-#----------------------------------------------------------------------------*
+override
+method @pic18_intermediate_instruction_FA display ?!@string ioListFileContents :
+  ioListFileContents .= [mFAinstruction mnemonic] . " " . [mRegisterDescription mAssemblyString] ;
+end method ;
 
-routine FAinstructionIsSkippingInstruction
-  ??@FA_instruction_base_code inInstruction
-  !@bool outIsSkipping
-:
-  switch inInstruction
+override
+reader @pic18_intermediate_instruction_FA isSkippingInstruction -> @bool outIsSkipping :
+  switch mFAinstruction
   when CLRF   : outIsSkipping := false ;
   when CPFSEQ : outIsSkipping := true ;
   when CPFSGT : outIsSkipping := true ;
@@ -297,27 +291,6 @@ routine FAinstructionIsSkippingInstruction
   when SETF   : outIsSkipping := false ;
   when TSTFSZ : outIsSkipping := true ;
   end switch ;
-end routine ;
-
-#----------------------------------------------------------------------------*
-
-class @pic18_intermediate_instruction_FA extends @pic18_intermediate_actualInstruction {
-  @FA_instruction_base_code mFAinstruction ;
-  @pic18_intermediate_registerExpression mRegisterDescription ;
-}
-
-method @pic18_intermediate_instruction_FA getBaseCode !@uint outBaseCode :
-  getFAinstructionBaseCode !mFAinstruction ?outBaseCode ;
-end method ;
-
-override
-method @pic18_intermediate_instruction_FA display ?!@string ioListFileContents :
-  ioListFileContents .= [mFAinstruction mnemonic] . " " . [mRegisterDescription mAssemblyString] ;
-end method ;
-
-override
-reader @pic18_intermediate_instruction_FA isSkippingInstruction -> @bool outIsSkipping :
-  FAinstructionIsSkippingInstruction !mFAinstruction ?outIsSkipping ;
 end reader ;
 
 
@@ -333,18 +306,6 @@ method @pic18_intermediate_instruction_MOVFF display ?!@string ioListFileContent
   ioListFileContents .= "MOVFF " . [mSourceRegisterDescription mAssemblyString]  . ", " . [mDestinationRegisterDescription mAssemblyString] ;
 end method ;
 
-
-#----------------------------------------------------------------------------*
-
-routine getBitOrientedOpBaseCode ??@bit_oriented_op inInstruction !@uint outBaseCode :
-  switch inInstruction
-  when BCF : outBaseCode := 0x9000 ;
-  when BSF : outBaseCode := 0x8000 ;
-  when BTG : outBaseCode := 0x7000 ;
-  end switch ;
-end routine ;
-
-
 #----------------------------------------------------------------------------*
 
 class @pic18_intermediate_instruction_FBA extends @pic18_intermediate_actualInstruction {
@@ -354,7 +315,11 @@ class @pic18_intermediate_instruction_FBA extends @pic18_intermediate_actualInst
 }
 
 method @pic18_intermediate_instruction_FBA getBaseCode !@uint outBaseCode :
-  getBitOrientedOpBaseCode !mBitOrientedOp ?outBaseCode ;
+  switch mBitOrientedOp
+  when BCF : outBaseCode := 0x9000 ;
+  when BSF : outBaseCode := 0x8000 ;
+  when BTG : outBaseCode := 0x7000 ;
+  end switch ;
 end method ;
 
 override
@@ -427,12 +392,6 @@ end reader ;
 override
 method @pic18_intermediate_instruction_conditionalBranch display ?!@string ioListFileContents :
   ioListFileContents .= "JUMP " . [mConditionalBranch condition] . " " . mTargetLabel ;
-#    switch mBranchMode
-#      when native     : ioListFileContents .= " (native)" ;
-#      when ipicNative : ioListFileContents .= " (uses Bcc)" ;
-#      when ipicBRA    : ioListFileContents .= " (uses BRA)" ;
-#      when ipicGOTO   : ioListFileContents .= " (uses GOTO)" ;
-#    end switch ;
 end method ;
 
 override method @pic18_intermediate_instruction_conditionalBranch enterReferencedLabel ?!@stringset ioReferencedLabelSet :
@@ -590,8 +549,13 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-routine getLiteralInstructionBaseCode ??@literal_instruction_opcode inInstruction !@uint outBaseCode :
-  switch inInstruction
+class @pic18_intermediate_instruction_literalOperation extends @pic18_intermediate_actualInstruction {
+  @literal_instruction_opcode mLiteralInstruction ;
+  @uint mLiteralValue ;
+}
+
+method @pic18_intermediate_instruction_literalOperation getBaseCode !@uint outBaseCode :
+  switch mLiteralInstruction
   when ADDLW : outBaseCode := 0x0F00 ;
   when ANDLW : outBaseCode := 0x0B00 ;
   when IORLW : outBaseCode := 0x0900 ;
@@ -600,17 +564,6 @@ routine getLiteralInstructionBaseCode ??@literal_instruction_opcode inInstructio
   when SUBLW : outBaseCode := 0x0800 ;
   when XORLW : outBaseCode := 0x0A00 ;
   end switch ;
-end routine ;
-
-#----------------------------------------------------------------------------*
-
-class @pic18_intermediate_instruction_literalOperation extends @pic18_intermediate_actualInstruction {
-  @literal_instruction_opcode mLiteralInstruction ;
-  @uint mLiteralValue ;
-}
-
-method @pic18_intermediate_instruction_literalOperation getBaseCode !@uint outBaseCode :
-  getLiteralInstructionBaseCode !mLiteralInstruction ?outBaseCode ;
 end method ;
 
 override
