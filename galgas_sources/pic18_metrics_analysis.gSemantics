@@ -854,8 +854,11 @@ override method @pic18_intermediate_instruction_computed_retlw duration
   ?!@uint ioExecutionMin
   ?!@uint ioExecutionMax
 :
-  ioCurrentMin := ioCurrentMin + 2 ;
-  ioCurrentMax := ioCurrentMax + 2 ;
+#--- Duration of calling _computed_goto_2:
+# (r)call _computed_goto_2; ADDWF WREG, W; ADDWFC TOSL; MOVLW 0;ADDWFC TOSH; ADDWFC TOSU;RETURN --> 9
+#  retlw xx --> 2
+  ioCurrentMin := ioCurrentMin + 11 ;
+  ioCurrentMax := ioCurrentMax + 11 ;
   if ioExecutionMin > ioCurrentMin then
     ioExecutionMin := ioCurrentMin ;
   end if ;
@@ -1076,7 +1079,7 @@ override method @pic18_intermediate_instruction_computed_goto duration
   ?!@uint ioExecutionMax
 :
 #--- Duration of calling _computed_goto_4:
-# (r)call _computed_goto_2; ADDWF WREG, W; ADDWF WREG, W; ADDWFC TOSL; MOVLW 0;ADDWFC TOSH; ADDWFC TOSU;RETURN --> 10
+# (r)call _computed_goto_4; ADDWF WREG, W; ADDWF WREG, W; ADDWFC TOSL; MOVLW 0;ADDWFC TOSH; ADDWFC TOSU;RETURN --> 10
 #  bra label --> 2
   const @uint duration := 12 ; 
   foreach mTargetLabels do
@@ -1110,7 +1113,7 @@ override method @pic18_intermediate_instruction_computed_rcall duration
   ?!@uint ioExecutionMax
 :
 #--- Duration of calling _computed_goto_4:
-# (r)call _computed_goto_2; ADDWF WREG, W; ADDWF WREG, W; ADDWFC TOSL; MOVLW 0;ADDWFC TOSH; ADDWFC TOSU;RETURN --> 10
+# (r)call _computed_goto_4; ADDWF WREG, W; ADDWF WREG, W; ADDWFC TOSL; MOVLW 0;ADDWFC TOSH; ADDWFC TOSU;RETURN --> 10
 #  rcall label; BRA next --> 4
 # but last test has no BRA next
   foreach mTargetLabels index idx do
@@ -1324,7 +1327,6 @@ routine pic18_compute_metrics
     end foreach ;
   #--- Enter bootloader routine names (for applicative)
     foreach inBootloaderRoutineDeclarationListForUserProgramImplementation do
-      message "Enter boot " . mRoutineName . "\n" ;
       [!?routineHasLoopMap insertKey !mRoutineName !mIsNoReturn] ; # Routine loops if no return
     end foreach ;
   #--- Foreach non recursive routine, establish if it contains loops
