@@ -268,13 +268,13 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-method @pic18_intermediate_jump_test_register optimizeTestReg
-  ??@symbolTableForOptimizations inSymbolTable
-  ??@uint inLineIndex
-  ?!@pic18_intermediate_instructionList ioGeneratedInstructionList
-  ?!@string ioListFileContents
-  ?!@bool ioOptimizationsDone
-:
+#method @pic18_intermediate_jump_test_register optimizeTestReg
+#  ??@symbolTableForOptimizations inSymbolTable
+#  ??@uint inLineIndex
+#  ?!@pic18_intermediate_instructionList ioGeneratedInstructionList
+#  ?!@string ioListFileContents
+#  ?!@bool ioOptimizationsDone
+#:
 ##--- Find destination label definition line
 #  [inSymbolTable searchKey !mTargetLabel ?@uint line ?*] ;
 ##--- Find first executable instruction
@@ -299,7 +299,7 @@ method @pic18_intermediate_jump_test_register optimizeTestReg
 #    end if ;
 #  else
 #  end cast ;
-end method ;
+#end method ;
 
 #----------------------------------------------------------------------------*
 
@@ -491,8 +491,8 @@ routine performOptimizations
         [pic18_intermediate_literal optimizeMOVLW !idx !?ioGeneratedInstructionList !?ioListFileContents !?optimizationsDone] ;
       when == @pic18_intermediate_instruction_conditionalBranch pic18_intermediate_cc do
         [pic18_intermediate_cc optimizeBCC !symbolTable !idx !?ioGeneratedInstructionList !?ioListFileContents !?optimizationsDone] ;
-      when == @pic18_intermediate_jump_test_register pic18_intermediate_testReg do
-        [pic18_intermediate_testReg optimizeTestReg !symbolTable !idx !?ioGeneratedInstructionList !?ioListFileContents !?optimizationsDone] ;
+#      when == @pic18_intermediate_jump_test_register pic18_intermediate_testReg do
+#        [pic18_intermediate_testReg optimizeTestReg !symbolTable !idx !?ioGeneratedInstructionList !?ioListFileContents !?optimizationsDone] ;
       when == @pic18_intermediate_incDecRegisterInCondition pic18_intermediate_decInc do
         [pic18_intermediate_decInc optimizeTestDecInc !symbolTable !idx !?ioGeneratedInstructionList !?ioListFileContents !?optimizationsDone] ;
       when == @pic18_intermediate_registerComparisonCondition pic18_intermediate_CMP do
