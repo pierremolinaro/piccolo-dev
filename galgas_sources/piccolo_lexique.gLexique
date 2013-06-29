@@ -145,6 +145,7 @@ end rule ;
 $integer$ ! uint32value error message "a 32-bit unsigned number" style integerStyle ;
 
 message hexNumberTooLarge : "hex number too large" ;
+message binNumberTooLarge : "bin number too large" ;
 message decimalNumberTooLarge : "decimal number too large" ;
 message internalError : "internal error" ;
 
@@ -156,6 +157,15 @@ rule "0x" :
     enterHexDigitIntoUInt !* !?uint32value error hexNumberTooLarge, internalError ;
   while 'A'->'F' :
     enterHexDigitIntoUInt !* !?uint32value error hexNumberTooLarge, internalError ;
+  while '_' :
+  end repeat ;
+  send $integer$ ;
+end rule ;
+
+rule "0b" :
+  repeat
+  while '0'->'1' :
+    enterBinDigitIntoUInt !* !?uint32value error binNumberTooLarge, internalError ;
   while '_' :
   end repeat ;
   send $integer$ ;
