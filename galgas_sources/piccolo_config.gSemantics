@@ -65,7 +65,7 @@ routine actualBuildConfig
     end foreach ;
   end foreach ;
 #--- Check if all settings are actually defined
-  const @stringset notDefinedSetting := [configFieldMap allKeys] - actualSettingNameSet ;
+  const @stringset notDefinedSetting := [configFieldMap keySet] - actualSettingNameSet ;
   if [notDefinedSetting count] > 0 then
     @string errorMessage := "the following configuration settings are not defined:" ;
     foreach notDefinedSetting do
