@@ -54,30 +54,25 @@ end routine ;
 
 #----------------------------------------------------------------------------*
 
-routine findFirstInstructionOrLabelFromAddress
+local routine findFirstInstructionOrLabelFromAddress
   ??@uint inLineIndex
   ??@pic18_intermediate_instructionList inGeneratedInstructionList
-  !@pic18_intermediate_instruction outFirstInstruction
   !@stringset outReachedLabelSet
 :
   outReachedLabelSet := [@stringset emptySet] ;
 #--- Line Index
   @uint currentAddress := inLineIndex ;
 #--- Find first executable instruction
-  outFirstInstruction := [@pic18_intermediate_NULL new] ; # By default, no instruction
   @bool found := false ;
   loop [inGeneratedInstructionList length] :
   while (currentAddress < [inGeneratedInstructionList length]) & not found
   do
     cast [inGeneratedInstructionList mInstructionAtIndex !currentAddress]
-    when >= @pic18_intermediate_actualInstruction instr :
-      outFirstInstruction := instr ;
+    when >= @pic18_intermediate_actualInstruction :
       found := true ;
-    when >= @pic18_intermediate_pseudo_ORG instr :
-      outFirstInstruction := instr ;
+    when >= @pic18_intermediate_pseudo_ORG :
       found := true ;
     when == @pic18_intermediate_pseudo_LABEL instr :
-      outFirstInstruction := instr ;
       outReachedLabelSet += ![[instr mLabel] string] ;
       currentAddress ++ ;
     else
@@ -101,7 +96,7 @@ method @pic18_intermediate_JUMP optimizeJUMP
 :
 #--- The JUMP goes to the next instruction ?
   @stringset reachedLabelSet ;
-  findFirstInstructionOrLabelFromAddress !inLineIndex+1 !ioGeneratedInstructionList ?* ?reachedLabelSet ;
+  findFirstInstructionOrLabelFromAddress !inLineIndex+1 !ioGeneratedInstructionList ?reachedLabelSet ;
 #  log reachedLabelSet ; log inLineIndex ;
   if [reachedLabelSet hasKey ![mTargetLabel string]] then
     [!?ioGeneratedInstructionList setMInstructionAtIndex ![@pic18_intermediate_NULL new] !inLineIndex] ;
@@ -137,7 +132,6 @@ method @pic18_intermediate_JUMP optimizeJUMP
         ioOptimizationsDone := true ;
         ioListFileContents .= "  line " . [inLineIndex string] . ": JUMP '" . mTargetLabel . "' branching to JUMP '" . [jump mTargetLabel] . "' replaced by JUMP '" . [jump mTargetLabel] . "'\n" ;
       end if ;
-    else # No Optimization
     end cast ;
   end if ;      
 end method ;
@@ -392,64 +386,62 @@ end method ;
 #----------------------------------------------------------------------------*
 
 method @pic18_intermediate_instruction_BitTestSkip optimizeBitTestSkip
+  ??@symbolTableForOptimizations inSymbolTable
   ??@uint inLineIndex
   ?!@pic18_intermediate_instructionList ioGeneratedInstructionList
   ?!@string ioListFileContents
   ?!@bool ioOptimizationsDone
 :
 #--- First following instruction is a JUMP ?
-  @string jumpLabel := "" ; # No By default
-  @bool ok := false ;
-  cast [ioGeneratedInstructionList mInstructionAtIndex !inLineIndex + 1]
+  const @uint jumpLineIndex := inLineIndex + 1 ;
+  cast [ioGeneratedInstructionList mInstructionAtIndex !jumpLineIndex]
   when == @pic18_intermediate_JUMP jump :
-    jumpLabel := [[jump mTargetLabel] string] ;
-    ok := true ;
-  else
-  end cast ;
-#--- Get second following instruction
-  if (ok) then
-    cast [ioGeneratedInstructionList mInstructionAtIndex !inLineIndex + 2]
-    when >= @pic18_intermediate_actualInstruction instruction :
-      ok := [instruction instructionLength] == 1 ;
-    else
-      ok := false ;
+  #--- Find destination label definition line
+    [inSymbolTable searchKey ![jump mTargetLabel] ?@uint line ?*] ;
+  #--- Find first executable instruction
+    findFirstInstructionFromAddress
+      !line + 1
+      !ioGeneratedInstructionList
+      ?@pic18_intermediate_instruction firstInstruction
+      ?*
+    ;
+  #--- Optimization from found first instruction
+    cast firstInstruction
+    when == @pic18_intermediate_instruction_RETURN :
+      [!?ioGeneratedInstructionList setMInstructionAtIndex
+        ![@pic18_intermediate_instruction_RETURN new !mInstructionLocation]
+        !jumpLineIndex
+      ] ;
+      ioOptimizationsDone := true ;
+      ioListFileContents .= "  line " . [jumpLineIndex string] . ": JUMP '" . [jump mTargetLabel] . "' branching to RETURN replaced by RETURN\n" ;
+    when == @pic18_intermediate_instruction_RETLW retlwInstruction :
+      [!?ioGeneratedInstructionList setMInstructionAtIndex
+        !retlwInstruction
+        !jumpLineIndex
+      ] ;
+      ioOptimizationsDone := true ;
+      ioListFileContents .= "  line " . [jumpLineIndex string] . ": JUMP '" . [jump mTargetLabel]
+       . "'branching to RETLW " . [retlwInstruction mLiteralValue] . "replaced by RETLW " . [retlwInstruction mLiteralValue] . "\n" ;
+    when == @pic18_intermediate_instruction_RETFIE retfieInstruction :
+      [!?ioGeneratedInstructionList setMInstructionAtIndex
+        !retfieInstruction
+        !jumpLineIndex
+      ] ;
+      ioOptimizationsDone := true ;
+      ioListFileContents .= "  line " . [jumpLineIndex string] . ": JUMP '" . [jump mTargetLabel]
+       . "'branching to RETFIE replaced by RETFIE\n" ;
+    when == @pic18_intermediate_JUMP secondJump :
+      if [jump mTargetLabel] != [secondJump mTargetLabel] then
+        [!?ioGeneratedInstructionList setMInstructionAtIndex
+          ![@pic18_intermediate_JUMP new !mInstructionLocation ![secondJump mTargetLabel] ![jump mKind]]
+          !jumpLineIndex
+        ] ;
+        ioOptimizationsDone := true ;
+        ioListFileContents .= "  line " . [jumpLineIndex string] . ": JUMP '" . [jump mTargetLabel]
+        . "' branching to JUMP '" . [secondJump mTargetLabel] . "' replaced by JUMP '" . [secondJump mTargetLabel] . "'\n" ;
+      end if ;
     end cast ;
-  end if ;
-#--- Get third following instruction
-  if (ok) then
-    @pic18_intermediate_instruction thirdInstruction := [@pic18_intermediate_NULL new] ;
-    @stringset reachedLabelSet ;
-    findFirstInstructionOrLabelFromAddress !inLineIndex+3 !ioGeneratedInstructionList ?* ?reachedLabelSet ;
-    ok := [reachedLabelSet hasKey !jumpLabel] ;
-  end if ;
-#--- If Ok, perform optimization
-  if ok then
-  #--- Complement Bit test instruction (at inLineIndex)
-    [!?ioGeneratedInstructionList setMInstructionAtIndex
-      ![@pic18_intermediate_instruction_BitTestSkip new
-        !mInstructionLocation
-        !not mSkipIfSet
-        !mRegisterDescription
-        !mBitNumber
-      ]
-      !inLineIndex
-    ] ;
-  #--- Copy instruction at (inLineIndex + 2) to (inLineIndex + 1)
-    [!?ioGeneratedInstructionList setMInstructionAtIndex
-      ![ioGeneratedInstructionList mInstructionAtIndex !inLineIndex + 2]
-      !inLineIndex + 1
-    ] ;
-  #--- Delete instruction at (inLineIndex + 2)
-    [!?ioGeneratedInstructionList setMInstructionAtIndex
-      ![@pic18_intermediate_NULL new]
-      !inLineIndex + 2
-    ] ;
-  #--- 
-    ioOptimizationsDone := true ;
-  #--- Log
-    ioListFileContents .= "  lines " . [inLineIndex string] . " to " . [inLineIndex + 2 string] ;
-    ioListFileContents .= " bit test skip, following by a JUMP skipping next instruction, is complemented\n" ;
-  end if ;
+  end cast ;
 end method ;
 
 #----------------------------------------------------------------------------*
@@ -497,9 +489,8 @@ routine performOptimizations
         [pic18_intermediate_decInc optimizeTestDecInc !symbolTable !idx !?ioGeneratedInstructionList !?ioListFileContents !?optimizationsDone] ;
       when == @pic18_intermediate_registerComparisonCondition pic18_intermediate_CMP :
         [pic18_intermediate_CMP optimizeCMP !symbolTable !idx !?ioGeneratedInstructionList !?ioListFileContents !?optimizationsDone] ;
-      when == @pic18_intermediate_instruction_BitTestSkip pic18_intermediate_bitTestSkip :
-        [pic18_intermediate_bitTestSkip optimizeBitTestSkip !idx !?ioGeneratedInstructionList !?ioListFileContents !?optimizationsDone] ;
-      else
+      when == @pic18_intermediate_instruction_BitTestSkip instruction :
+        [instruction optimizeBitTestSkip !symbolTable !idx !?ioGeneratedInstructionList !?ioListFileContents !?optimizationsDone] ;
       end cast ;
     end foreach ;
   #--- Delete non referenced labels
