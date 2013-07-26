@@ -1313,7 +1313,7 @@ routine pic18_compute_metrics
   end if ;
   ioListFileContents .= "\n" ;
   ioListFileContents .= "*******************************************************************************\n" ;
-  ioListFileContents .= "*           I N T E R R U P T    R O U T I N E    D U R A T I O N S           *\n" ;
+  ioListFileContents .= "*           R O U T I N E    D U R A T I O N S                                *\n" ;
   ioListFileContents .= "*******************************************************************************\n\n" ;
   if [option piccolo_options.doNotComputeInterruptRoutineDuration value] then
     ioListFileContents .= "option '" . [option piccolo_options.doNotComputeInterruptRoutineDuration string] . "': interrupt routine durations are not computed.\n" ;

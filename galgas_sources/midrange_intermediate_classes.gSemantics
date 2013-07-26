@@ -24,16 +24,24 @@ method @registerExpression resolveMidrangeAccess
     assemblyString .= " + " . [[mOffset uint] hexString] ;
   end if ;
 #--- 
-  @uintlist registerAddressList ;
-  @uint size ;
-  @uint registerAddress := 0 ;
-  [inRegisterTable searchKey !mRegisterName ?registerAddressList ?size ?outBitSliceTable ?*] ;
+  [inRegisterTable searchKey
+    !mRegisterName
+    ?@uintlist registerAddressList
+    ?@uint size
+    ?outBitSliceTable
+    ?*
+  ] ;
+#---
+  if [mOffset uint] >= size then
+    error mOffset: "maximum index value is " . (size - 1) ;
+  end if ;
 #--- Find acceptable bank settings
   @uintlist acceptableBanks [emptyList] ;
   foreach registerAddressList do
     acceptableBanks += !mValue >> 7 ;
   end foreach ;
 #---
+  @uint registerAddress := 0 ;
   if inCurrentBank == [@uint max] then
   #--- No selected bank, register should be mirrored in all banks
     @uint bank := 0 ;

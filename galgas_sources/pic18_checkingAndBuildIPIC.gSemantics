@@ -180,13 +180,44 @@ override method @instruction_banksel buildIPICinstructionList
   if [mBankIndex uint] > 15 then
     error mBankIndex:"selected bank idx should be lower or equal to 15" ;
     ioCurrentBank := [@uint max] ; # No selected bank
-  elsif [mBankIndex uint] == ioCurrentBank then
-    warning mBankIndex:"useless instruction: the bank " . [ioCurrentBank string] . " is already selected" ;
-  else
+  elsif [mBankIndex uint] != ioCurrentBank then
     ioCurrentBank := [mBankIndex uint] ;
+    ioGeneratedInstructionList += ![@pic18_intermediate_instruction_MOVLB new !mInstructionLocation !mBankIndex] ;
+  elsif mWarningOnUselessBanksel then
+    warning mBankIndex:"useless instruction: the bank " . [ioCurrentBank string] . " is already selected" ;
   end if ;
-#---
-  ioGeneratedInstructionList += ![@pic18_intermediate_instruction_MOVLB new !mInstructionLocation !mBankIndex] ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @instruction_banksel_register buildIPICinstructionList
+  ??@uint unused inAccessBankSplitOffset
+  ??@routineMap unused inRoutineMap
+  ??@registerTable inRegisterTable
+  ??@dataMap unused inDataMap
+  ??@constantMap unused inConstantMap
+  ?!@uint unused ioLocalLabelIndex
+  ?!@pic18_intermediate_instructionList ioGeneratedInstructionList
+  ?!@string unused ioListFileContents
+  ?!@uint ioCurrentBank
+  ??@bool inShouldPreserveBSR
+  ?!@bool unused ioContinuesInSequence
+  ??@routineKind unused inRoutineKind
+:
+  if inShouldPreserveBSR then
+    error mInstructionLocation: "cannot use \"banksel\" here: bank selection should be preserved (use \"banksave\" instruction)" ;
+  end if ;
+  const @uint registerAddress := [mRegisterExpression registerAddress !inRegisterTable] ;
+  const @uint newBank := registerAddress >> 8 ;
+  if ioCurrentBank != newBank then
+    ioCurrentBank := newBank ;
+    ioGeneratedInstructionList += ![@pic18_intermediate_instruction_MOVLB new
+      !mInstructionLocation
+      ![@luint new !newBank ![mRegisterExpression mRegisterName]->location]
+    ] ;
+  elsif mWarningOnUselessBanksel then
+    warning [mRegisterExpression mRegisterName]:"useless instruction: the bank " . newBank . " is already selected" ;
+  end if ;
 end method ;
 
 #----------------------------------------------------*
@@ -205,12 +236,11 @@ override method @instruction_FDA buildIPICinstructionList
   ?!@bool unused ioContinuesInSequence
   ??@routineKind unused inRoutineKind
 :
-  @pic18_intermediate_registerExpression IPICregisterDescription ;
   [mRegisterExpression resolveAccess
     !inAccessBankSplitOffset
     !ioCurrentBank
     !inRegisterTable
-    ?IPICregisterDescription
+    ?@pic18_intermediate_registerExpression IPICregisterDescription
     ?*
   ] ;
   ioGeneratedInstructionList += ![@pic18_intermediate_instruction_FDA new

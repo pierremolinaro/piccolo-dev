@@ -23,6 +23,14 @@ class @midrange_instruction_nobanksel extends @midrange_instruction {
 
 class @midrange_instruction_banksel extends @midrange_instruction {
   @luint mBankIndex ;
+  @bool mWarningOnUselessBanksel ;
+}
+
+#----------------------------------------------------*
+
+class @midrange_instruction_banksel_register extends @midrange_instruction {
+  @registerExpression mRegister ;
+  @bool mWarningOnUselessBanksel ;
 }
 
 #----------------------------------------------------*

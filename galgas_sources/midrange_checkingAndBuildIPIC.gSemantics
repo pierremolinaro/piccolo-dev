@@ -259,7 +259,9 @@ override method @midrange_instruction_banksel build_midrange_ipic_instructionLis
   end if ;
 #---
   if [mBankIndex uint] == ioCurrentBank then
-    warning mBankIndex:"useless instruction: the bank " . [ioCurrentBank string] . " is already selected" ;
+    if mWarningOnUselessBanksel then
+      warning mBankIndex:"useless instruction: the bank " . [ioCurrentBank string] . " is already selected" ;
+    end if ;
   elsif [mBankIndex uint] >= inTotalBankCount then
     error mBankIndex:"the bank " . [[mBankIndex uint] string] . " does not exist (the device has " . [inTotalBankCount string] . " bank(s))" ;
   elsif ioCurrentBank == [@uint max] then # No currenly selected bank : set all bits
@@ -317,6 +319,112 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
+override method @midrange_instruction_banksel_register build_midrange_ipic_instructionList
+  ??@routineMap unused inRoutineMap
+  ??@registerTable inRegisterTable
+  ??@constantMap unused inConstantMap
+  ?!@uint unused ioLocalLabelIndex
+  ?!@midrange_intermediate_instructionList ioGeneratedInstructionList
+  ?!@string ioListFileContents
+  ??@uint inTotalBankCount
+  ?!@uint ioCurrentBank
+  ??@bool inShouldPreserveBank
+  ?!@bool unused ioContinuesInSequence
+  ??@routineKind unused inRoutineKind
+:
+  if inShouldPreserveBank then
+    error mInstructionLocation: "cannot use \"banksel\" here: bank selection should be preserved (use \"banksave\" instruction)" ;
+  end if ;
+#---
+  const @registerExpression STATUS_register [new ![@lstring new !"STATUS" !here] ![@luint new !0 !here]] ;
+  [STATUS_register resolveMidrangeAccess
+    !inTotalBankCount
+    !ioCurrentBank
+    !inRegisterTable
+    ??@midrange_intermediate_registerExpression STATUS_IPICregisterDescription
+    ??@bitSliceTable bitSliceTable
+  ] ;
+  const @lstring RP [new !"RP" !mInstructionLocation] ;
+  [bitSliceTable searchKey !RP ?@uint rpIndex ?@uint sliceSize] ;
+  if sliceSize < [inTotalBankCount - 1 significantBitCount] then
+    error mInstructionLocation: "internal error: sliceSize == " . [sliceSize string] . ", total bank count == " . [inTotalBankCount string] ;
+  end if ;
+#--- 
+  [inRegisterTable searchKey
+    ![mRegister mRegisterName]
+    ??@uintlist registerAddressList
+    ??@uint size
+    ?*
+    ?*
+  ] ;
+  [registerAddressList first ??@uint address] ;
+  const @uint newBank := address >> 7 ;
+#---
+  if [[mRegister mOffset] uint] >= size then
+    error [mRegister mOffset] : "maximum index value is " . (size - 1) ;
+  end if ;
+#---
+  if newBank == ioCurrentBank then
+    if mWarningOnUselessBanksel then
+      warning [mRegister mRegisterName]:"useless instruction: the bank " . [ioCurrentBank string] . " is already selected" ;
+    end if ;
+  elsif newBank >= inTotalBankCount then
+    error [mRegister mRegisterName]:"the bank " . [newBank string] . " does not exist (the device has " . [inTotalBankCount string] . " bank(s))" ;
+  elsif ioCurrentBank == [@uint max] then # No currenly selected bank : set all bits
+    @uint n := [inTotalBankCount - 1 significantBitCount] ;
+    @uint shiftedBank := newBank ;
+    @uint idx := 0 ;
+    loop sliceSize : while idx < sliceSize do
+      @midrange_bit_oriented_op op ;
+      if ((shiftedBank & 1) == 0) then
+        op := [@midrange_bit_oriented_op BCF] ;
+      else
+        op := [@midrange_bit_oriented_op BSF] ;
+      end if ;
+      ioGeneratedInstructionList += ![@midrange_intermediate_instruction_FB new
+        !mInstructionLocation
+        !op
+        !STATUS_IPICregisterDescription
+        !rpIndex + idx
+      ] ;
+      idx ++ ;      
+      shiftedBank := shiftedBank >> 1 ;
+    end loop ;
+    ioCurrentBank := newBank ;
+  else
+    @bool optimize := [option piccolo_options.performOptimizations value] ;
+    @uint shiftedBank := newBank ;
+    @uint shiftedXorBank := newBank ^ ioCurrentBank ;
+    @uint idx := 0 ;
+    loop sliceSize : while idx < sliceSize do
+      @midrange_bit_oriented_op op ;
+      if ((shiftedBank & 1) == 0) then
+        op := [@midrange_bit_oriented_op BCF] ;
+      else
+        op := [@midrange_bit_oriented_op BSF] ;
+      end if ;
+      if ((shiftedXorBank & 1) != 0) | not optimize then
+        ioGeneratedInstructionList += ![@midrange_intermediate_instruction_FB new
+          !mInstructionLocation
+          !op
+          !STATUS_IPICregisterDescription
+          !rpIndex + idx
+        ] ;
+      else
+        ioListFileContents .= "  line " . [[ioGeneratedInstructionList length] string] ;
+        ioListFileContents .= ": useless '" . [op mnemonic] . " STATUS, " ;
+        ioListFileContents .= [rpIndex + idx string] . "' not generated\n" ;
+      end if ;
+      idx ++ ;      
+      shiftedBank := shiftedBank >> 1 ;
+      shiftedXorBank := shiftedXorBank >> 1 ;
+    end loop ;
+    ioCurrentBank := newBank ;
+  end if ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
 override method @midrange_instruction_FD build_midrange_ipic_instructionList
   ??@routineMap unused inRoutineMap
   ??@registerTable inRegisterTable
@@ -330,12 +438,11 @@ override method @midrange_instruction_FD build_midrange_ipic_instructionList
   ?!@bool unused ioContinuesInSequence
   ??@routineKind unused inRoutineKind
 :
-  @midrange_intermediate_registerExpression IPICregisterDescription ;
   [mRegisterExpression resolveMidrangeAccess
     !inTotalBankCount
     !ioCurrentBank
     !inRegisterTable
-    ?IPICregisterDescription
+    ?@midrange_intermediate_registerExpression IPICregisterDescription
     ?*
   ] ;
   ioGeneratedInstructionList += ![@midrange_intermediate_instruction_FD new

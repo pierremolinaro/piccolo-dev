@@ -659,13 +659,70 @@ Considérons maintenant l'instruction Piccolo \texttt{clrf var}. Pour un \emph{m
 
 \subsectionLabel{Instruction \texttt{banksel}}{instructionBanksel}
 
+Cette instruction peut prendre quatre formes différentes :
+\begin{itemize}
+  \item \texttt{banksel numero\_de\_banc}
+  \item \texttt{banksel nom\_registre}
+  \item \texttt{banksel numero\_de\_banc, *}
+  \item \texttt{banksel nom\_registre, *}
+\end{itemize}
+
+
+\subsubsection{Instruction \texttt{banksel b}}
 \begin{lstlisting}[language=piccolo]
-banksel b
+banksel numero_de_banc
 \end{lstlisting}
 
-Cette instruction sélectionne le banc $b$. Pour les \emph{mid-range}, le compilateur engendre une à trois instructions \assembleur{BCF} ou \assembleur{BSF} des bits \assembleur{RP} du registre \assembleur{STATUS}. Pour les \emph{pic18}, le compilateur engendre une instruction \assembleur{MOVLB}.
+Cette instruction sélectionne le banc de numéro \texttt{numero\_de\_banc}. Pour les \emph{mid-range}, le compilateur engendre une à trois instructions \assembleur{BCF} ou \assembleur{BSF} des bits \assembleur{RP} du registre \assembleur{STATUS}. Pour les \emph{pic18}, le compilateur engendre une instruction \assembleur{MOVLB}.
 
-Le compilateur Piccolo garde trace de cette instruction, et permet d'assurer que l'accès aux registres du banc $b$ est possible pour les instructions suivantes.
+Le compilateur Piccolo garde trace de cette instruction, et permet d'assurer que l'accès aux registres du banc \texttt{numero\_de\_banc} est possible pour les instructions suivantes.
+
+Un \emph{warning} est affiché si l'instruction est inutile, c'est-à-dire si le banc indiqué est déjà sélectionné. À partir de la version 2.0.2 de Piccolo, les instructions assembleur correspondantes ne sont alors pas engendrées.
+
+
+
+
+
+
+\subsubsection{Instruction \texttt{banksel nom\_registre}}
+À partir de la version 2.0.2 de Piccolo, il est possible de faire figurer un nom de registre à la place du numéro de banc :
+\begin{lstlisting}[language=piccolo]
+banksel nom_registre
+\end{lstlisting}
+
+Cette instruction sélectionne le banc du registre \texttt{nom\_registre}. Pour les \emph{mid-range}, le compilateur engendre une à trois instructions \assembleur{BCF} ou \assembleur{BSF} des bits \assembleur{RP} du registre \assembleur{STATUS}. Pour les \emph{pic18}, le compilateur engendre une instruction \assembleur{MOVLB}.
+
+Le compilateur Piccolo garde trace de cette instruction, et permet d'assurer que l'accès aux registres du banc sélectionné est possible pour les instructions suivantes.
+
+Un \emph{warning} est affiché si l'instruction est inutile, c'est-à-dire si le banc indiqué est déjà sélectionné ; les instructions assembleur correspondantes ne sont alors pas engendrées.
+
+
+
+
+\subsubsection{Instruction \texttt{banksel b, *}}
+\begin{lstlisting}[language=piccolo]
+banksel numero_de_banc, *
+\end{lstlisting}
+
+Seule différence avec l'instruction \texttt{banksel b} : le \emph{warning} n'est pas affiché si l'instruction est inutile.
+
+
+
+
+
+
+\subsubsection{Instruction \texttt{banksel nom\_registre, *}}
+\begin{lstlisting}[language=piccolo]
+banksel nom_registre, *
+\end{lstlisting}
+
+Seule différence avec l'instruction \texttt{banksel nom\_registre} : le \emph{warning} n'est pas affiché si l'instruction est inutile.
+
+
+
+
+
+
 
 \subsectionLabel{Instruction \texttt{nobank}}{instructionNoBank}
 \begin{lstlisting}[language=piccolo]
