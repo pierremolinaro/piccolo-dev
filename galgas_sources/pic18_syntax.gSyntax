@@ -448,15 +448,35 @@ rule <structured_instruction>
     $banksel$ ;
     @location instructionLocation := here ;
     $integer$ ? @luint bank ;
-    outInstruction := [@instruction_banksel new ! instructionLocation !bank] ;
+    @bool warningOnUselessBanksel ;
+    select
+      warningOnUselessBanksel := true ;
+    or
+      $,$ ;
+      $*$ ;
+      warningOnUselessBanksel := false ;
+    end select ;
+    outInstruction := [@instruction_banksel new ! instructionLocation !bank !warningOnUselessBanksel] ;
+  or
+    $banksel$ ;
+    @location instructionLocation := here ;
+    <register_parsing> ?@registerExpression register ;
+    @bool warningOnUselessBanksel ;
+    select
+      warningOnUselessBanksel := true ;
+    or
+      $,$ ;
+      $*$ ;
+      warningOnUselessBanksel := false ;
+    end select ;
+    outInstruction := [@instruction_banksel_register new !instructionLocation !register !warningOnUselessBanksel] ;
   or
     $nobank$ ;
     outInstruction := [@instruction_nobanksel new !here] ;
   or
     $banksave$ ;
     @location instructionLocation := here ;
-    @registerExpression register ;
-    <register_parsing> ?register ;
+    <register_parsing> ?@registerExpression register ;
     @instructionList instructionList ;
     <instruction_list> ?instructionList !?ioNeedsComputedGoto2 !?ioNeedsComputedGoto4 ;
     $end$ ;

@@ -288,13 +288,33 @@ rule <midrange_structured_instruction>
   select
     $banksel$ ;
     @location instructionLocation := here ;
+    <register_parsing> ?@registerExpression register ;
+    @bool warningOnUselessBanksel ;
+    select
+      warningOnUselessBanksel := true ;
+    or
+      $,$ ;
+      $*$ ;
+      warningOnUselessBanksel := false ;
+    end select ;
+    outInstruction := [@midrange_instruction_banksel_register new !instructionLocation !register !warningOnUselessBanksel] ;
+  or
+    $banksel$ ;
+    @location instructionLocation := here ;
     $integer$ ? @luint bank ;
-    outInstruction := [@midrange_instruction_banksel new ! instructionLocation !bank] ;
+    @bool warningOnUselessBanksel ;
+    select
+      warningOnUselessBanksel := true ;
+    or
+      $,$ ;
+      $*$ ;
+      warningOnUselessBanksel := false ;
+    end select ;
+    outInstruction := [@midrange_instruction_banksel new !instructionLocation !bank !warningOnUselessBanksel] ;
   or
     $banksave$ ;
     @location instructionLocation := here ;
-    @registerExpression register ;
-    <register_parsing> ?register ;
+    <register_parsing> ?@registerExpression register ;
     @midrange_instructionList instructionList ;
     <midrange_instruction_list>
       ?instructionList

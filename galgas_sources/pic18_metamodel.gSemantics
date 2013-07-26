@@ -34,6 +34,13 @@ class @instruction_nobanksel extends @piccolo_instruction {
 
 class @instruction_banksel extends @piccolo_instruction {
   @luint mBankIndex ;
+  @bool mWarningOnUselessBanksel ;
+}
+#----------------------------------------------------*
+
+class @instruction_banksel_register extends @piccolo_instruction {
+  @registerExpression mRegisterExpression ;
+  @bool mWarningOnUselessBanksel ;
 }
 
 #----------------------------------------------------*

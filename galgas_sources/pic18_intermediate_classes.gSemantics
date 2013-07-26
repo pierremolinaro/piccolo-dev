@@ -81,11 +81,8 @@ method @registerExpression resolveAccessWithoutCheckingBank
     assemblyString .= " + " . [[mOffset uint] hexString] ;
   end if ;
 #--- 
-  @uintlist registerAddressList ;
-  @uint size ;
-  [inRegisterTable searchKey !mRegisterName ?registerAddressList ?size ?* ?*] ;
-  @uint registerAddress ;
-  [registerAddressList first ?registerAddress] ;
+  [inRegisterTable searchKey !mRegisterName ?@uintlist registerAddressList ?@uint size ?* ?*] ;
+  [registerAddressList first ?@uint registerAddress] ;
 #---
   if [mOffset uint] > size then
     error mOffset: "this offset is too large: should be lower than " . [size string] ;
@@ -96,6 +93,20 @@ method @registerExpression resolveAccessWithoutCheckingBank
     !registerAddress + [mOffset uint]
   ] ;
 end method ;
+
+#----------------------------------------------------------------------------*
+
+reader @registerExpression registerAddress
+  ??@registerTable inRegisterTable
+  -> @uint outRegisterAddress
+:
+  [inRegisterTable searchKey !mRegisterName ?@uintlist registerAddressList ?@uint size ?* ?*] ;
+  [registerAddressList first ?outRegisterAddress] ;
+#---
+  if [mOffset uint] > size then
+    error mOffset: "this offset is too large: should be lower than " . [size string] ;
+  end if ;
+end reader ;
 
 #----------------------------------------------------------------------------*
 
