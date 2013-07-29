@@ -41,6 +41,7 @@ rule <body>
   ?!@ramDefinitionList ramDefinitionList
   ?!@configDefinitionList configDefinitionList
   ?!@constantDefinitionList constantDefinitionList
+  ?!@checkpicList ioCheckpicList
   ?!@dataList dataList
   ?!@bool needsComputedGoto2
   ?!@bool needsComputedGoto4
@@ -48,7 +49,8 @@ rule <body>
   repeat
   while
     $mark$ ;
-    $literal_string$ ?* ;
+    $literal_string$ ?@lstring s ;
+    warning s : "obsolete construct: use a comment beginning by #!" ;
   while
     <configuration_definition> !?configDefinitionList ;
   while
@@ -70,6 +72,8 @@ rule <body>
   while
     <data_definition> !?dataList ;
   while
+    <checkpic_definition> !?ioCheckpicList ;
+  while
     $include$ ;
     $literal_string$ ?@lstring includedFilePath ;
     grammar pic18_include_grammar in includedFilePath
@@ -78,6 +82,7 @@ rule <body>
       !?ramDefinitionList
       !?configDefinitionList
       !?constantDefinitionList
+      !?ioCheckpicList
       !?dataList
       !?needsComputedGoto2
       !?needsComputedGoto4
@@ -85,6 +90,23 @@ rule <body>
     end repeat ;
 end rule ;
 
+#----------------------------------------------------*
+
+rule <checkpic_definition>
+  ?!@checkpicList ioList
+:
+  $checkpic$ ;
+  const @location loc := here ;
+  @lstringlist valueList [emptyList] ;
+  repeat
+    $literal_string$ ?@lstring s ;
+    valueList += !s ;
+  while
+    $,$ ;
+  end repeat ;
+  ioList += !loc !valueList ;
+end rule ;
+    
 #----------------------------------------------------*
 
 rule <data_definition>

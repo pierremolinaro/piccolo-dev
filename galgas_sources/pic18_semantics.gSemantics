@@ -120,8 +120,10 @@ routine pic18_analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName 
   @routineDeclarationList userRoutineDeclarationListForUserProgramImplementation ;
   @luint bootloaderReservedROMsize ; # Used only for bootloader implementation or user program implementation, zero for regular program
   @registerTable registerTable ;
+  @string piccoloDeviceName ;
   switch [inPiccoloModel mProgramKind]
-  when regularProgram : 
+  when regularProgram :
+    piccoloDeviceName := inPiccoloModel->mDeviceNameOrBootLoaderReference->string ;
     parseDeviceDefinition ![inPiccoloModel mDeviceNameOrBootLoaderReference] ?piccoloDeviceModel ;
     switch [piccoloDeviceModel mProcessorType]
       when pic18_60 : accessBankSplitOffset := 0x60 ;
@@ -142,6 +144,7 @@ routine pic18_analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName 
     userRoutineDeclarationListForUserProgramImplementation := [@routineDeclarationList emptyList] ;
     grammar pic18_grammar label importBootloaderSpecification in [inPiccoloModel mDeviceNameOrBootLoaderReference]
       ?piccoloDeviceModel
+      ?piccoloDeviceName
       ?accessBankSplitOffset
       ?ramBank
       ?registerTable
@@ -156,6 +159,7 @@ routine pic18_analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName 
   when userProgram :
     grammar pic18_grammar label importBootloaderSpecification in [inPiccoloModel mDeviceNameOrBootLoaderReference]
       ?piccoloDeviceModel
+      ?piccoloDeviceName
       ?accessBankSplitOffset
       ?ramBank
       ?registerTable
@@ -167,6 +171,16 @@ routine pic18_analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName 
     bootloaderRoutineDeclarationListForBootloaderImplementation := [@routineDeclarationList emptyList] ;
     userRoutineDeclarationListForBootloaderImplementation := [@routineDeclarationList emptyList] ;
   end switch ;
+#-------------------------------- Check 'checkpic' instructions
+  foreach inPiccoloModel->mCheckpicList do
+    @bool found := false ;
+    foreach mValueList while not found do
+      found := mValue->string == piccoloDeviceName ;
+    end foreach ;
+    if not found then
+      error mErrorLocation: "this code is not available for '" . piccoloDeviceName . "'" ;
+    end if ;
+  end foreach ;
 #-------------------------------- Interrupts ?
   @bool hasHighInterrupt := false ;
   @bool highInterruptIsFast := false ;
