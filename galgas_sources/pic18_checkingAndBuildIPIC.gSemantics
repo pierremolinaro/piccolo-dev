@@ -2231,9 +2231,9 @@ routine build_pic18_intermediate_assembly_instruction_list
 #--- Add "ROM_SIZE" and "RAM_SIZE" constants
   [!?constantMap insertKey ![@lstring new !"ROM_SIZE" !here] !inROMSize] ;
   [!?constantMap insertKey ![@lstring new !"RAM_SIZE" !here] !inRAMSize] ;
-#--- Add "BOOTLOADER_SIZE" constant
+#--- Add "BOOTLOADER_RESERVED_SIZE" constant
   if inProgramKind != [@programKind regularProgram] then
-    @lstring bootloaderSizeString [new !"BOOTLOADER_SIZE" !here] ;
+    @lstring bootloaderSizeString [new !"BOOTLOADER_RESERVED_SIZE" !here] ;
     [!?constantMap insertKey !bootloaderSizeString ![[inBootloaderReservedROMsize uint] sint]] ;
   end if ;
 #--- Add declared constants
@@ -2521,6 +2521,10 @@ routine build_pic18_intermediate_assembly_instruction_list
   foreach inDataGeneratedInstructionList do
     outGeneratedInstructionList += !mInstruction ;
   end foreach ;
+#-------------------------------- Generate 'BOOTLOADER_ACTUAL_SIZE' label
+  if inProgramKind == [@programKind bootloaderProgram] then
+    outGeneratedInstructionList += ![@pic18_intermediate_pseudo_LABEL new ![@lstring new !"BOOTLOADER_ACTUAL_SIZE" !here] !false] ;
+  end if ;
 #-------------------------------- Generate default user routines
   entryPoint := [inBootloaderReservedROMsize uint] ;
   foreach inUserRoutineDeclarationListForBootloaderImplementation do
@@ -2534,6 +2538,8 @@ routine build_pic18_intermediate_assembly_instruction_list
     outGeneratedInstructionList += ![@pic18_intermediate_instruction_RETURN_NOT_OPTIMIZABLE new !here] ;
     entryPoint := entryPoint + 4 ;
   end foreach ;
+#-------------------------------- Generate 'PRGM_SIZE' label
+  outGeneratedInstructionList += ![@pic18_intermediate_pseudo_LABEL new ![@lstring new !"PRGM_SIZE" !here] !false] ;
 #--- Output a listing ?
   if [option piccolo_options.ouputListingFile value] then
     ioListFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n" ;

@@ -443,12 +443,20 @@ list @dataList {
 
 #----------------------------------------------------*
 
+list @checkpicList {
+  @location mErrorLocation ;
+  @lstringlist mValueList ;
+}
+
+#----------------------------------------------------*
+
 struct @piccoloModel {
   @lstring mProgramName ;
   @programKind mProgramKind ;
   @lstring mDeviceNameOrBootLoaderReference ;
   @configDefinitionList mConfigDefinitionList ;
   @ramDefinitionList mRamDefinitionList ;
+  @checkpicList mCheckpicList ;
   @dataList mDataList ;
   @interruptDefinitionList mInterruptDefinitionList ;
   @constantDefinitionList mConstantDefinitionList ;

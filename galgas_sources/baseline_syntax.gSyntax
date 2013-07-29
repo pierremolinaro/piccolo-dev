@@ -47,7 +47,8 @@ rule <section_list>
   repeat
   while
     $mark$ ;
-    $literal_string$ ?* ;
+    $literal_string$ ?@lstring s ;
+    warning s : "obsolete construct: use a comment beginning by #!" ;
   while
     <configuration_definition> !?ioConfigDefinitionList ;
   while

@@ -55,7 +55,8 @@ rule <start_symbol> :
   repeat
   while
     $mark$ ;
-    $literal_string$ ?* ;
+    $literal_string$ ?@lstring s ;
+    warning s : "obsolete construct: use a comment beginning by #!" ;
   while
     <configuration_definition> !?configDefinitionList ;
   while
@@ -103,6 +104,7 @@ rule <start_symbol> :
   end if ;
 label importBootloaderSpecification
   !@piccoloDeviceModel outPiccoloDeviceModel
+  !@string outDeviceName
   !@uint outAccessBankSplitOffset
   !@ramBankTable outRamBank
   !@registerTable outRegisterTable
@@ -116,7 +118,7 @@ label importBootloaderSpecification
   error programName: "this file does not define a bootloader specification"
    : outPiccoloDeviceModel, outAccessBankSplitOffset, outRamBank, outRegisterTable,
       outBootloaderReservedRAMmap, outBootloaderRoutineDeclarationList,
-      outUserRoutineDeclarationList,
+      outUserRoutineDeclarationList, outDeviceName,
       outBootloaderReservedROMsize ;
   $literal_string$ ? * ;
   $:$ ;

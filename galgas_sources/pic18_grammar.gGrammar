@@ -10,6 +10,7 @@ with "communs.gSyntax" ;
 root <start_symbol>
 label importBootloaderSpecification
   !@piccoloDeviceModel outPiccoloDeviceModel
+  !@string outDeviceName
   !@uint outAccessBankSplitOffset
   !@ramBankTable outRamBank
   !@registerTable outRegisterTable

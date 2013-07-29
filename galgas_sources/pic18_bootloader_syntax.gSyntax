@@ -12,6 +12,7 @@ nonterminal <ram_definition>
 nonterminal <start_symbol>
 label importBootloaderSpecification
   !@piccoloDeviceModel outPiccoloDeviceModel
+  !@string outDeviceName
   !@uint outAccessBankSplitOffset
   !@ramBankTable outRamBank
   !@registerTable outRegisterTable
@@ -151,6 +152,7 @@ rule <start_symbol> :
   end if ;
 label importBootloaderSpecification
   !@piccoloDeviceModel outPiccoloDeviceModel
+  !@string outDeviceName
   !@uint outAccessBankSplitOffset
   !@ramBankTable outRamBank
   !@registerTable outRegisterTable
@@ -160,12 +162,11 @@ label importBootloaderSpecification
   !@luint outBootloaderReservedROMsize
 :
   @lstring bootloaderName ;
-  @lstring deviceName ;
   @ramDefinitionList sharedRamDefinitionList ;
   @string listFileContents ;
   <parse_bootloader>
     ?bootloaderName
-    ?deviceName
+    ?@lstring deviceName
     ?outBootloaderRoutineDeclarationList
     ?outBootloaderReservedRAMmap
     ?outBootloaderReservedROMsize
@@ -177,6 +178,7 @@ label importBootloaderSpecification
     ?outRamBank
     ?outRegisterTable
   ;
+  outDeviceName := deviceName->string ;
 end rule ;
 
 #----------------------------------------------------*

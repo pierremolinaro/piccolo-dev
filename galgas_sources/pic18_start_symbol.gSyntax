@@ -10,6 +10,7 @@ nonterminal <body>
   ?!@ramDefinitionList ramDefinitionList
   ?!@configDefinitionList configDefinitionList
   ?!@constantDefinitionList constantDefinitionList
+  ?!@checkpicList ioCheckpicList
   ?!@dataList dataList
   ?!@bool needsComputedGoto2
   ?!@bool needsComputedGoto4
@@ -41,6 +42,7 @@ rule <start_symbol> :
   @configDefinitionList configDefinitionList [emptyList] ;
   @constantDefinitionList constantDefinitionList [emptyList] ;
   @dataList dataList [emptyList] ;
+  @checkpicList checkpicList [emptyList] ;
   @bool needsComputedGoto2 := false ;
   @bool needsComputedGoto4 := false ;
   <body>
@@ -49,6 +51,7 @@ rule <start_symbol> :
     !?ramDefinitionList
     !?configDefinitionList
     !?constantDefinitionList
+    !?checkpicList
     !?dataList
     !?needsComputedGoto2
     !?needsComputedGoto4
@@ -62,6 +65,7 @@ rule <start_symbol> :
       !deviceNameOrBootloaderReference
       !configDefinitionList
       !ramDefinitionList
+      !checkpicList
       !dataList
       !interruptDefinitionList
       !constantDefinitionList
@@ -83,6 +87,7 @@ rule <start_symbol> :
   end if ;
 label importBootloaderSpecification
   !@piccoloDeviceModel outPiccoloDeviceModel
+  !@string outDeviceName
   !@uint outAccessBankSplitOffset
   !@ramBankTable outRamBank
   !@registerTable outRegisterTable
@@ -95,7 +100,7 @@ label importBootloaderSpecification
   $identifier$ ? @lstring programName ;
   error programName: "this file does not define a bootloader specification"
    : outPiccoloDeviceModel, outAccessBankSplitOffset, outRamBank, outRegisterTable,
-      outBootloaderReservedRAMmap,
+      outBootloaderReservedRAMmap, outDeviceName,
       outBootloaderRoutineDeclarationList,
       outUserRoutineDeclarationList,
       outBootloaderReservedROMsize ;

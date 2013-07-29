@@ -8,6 +8,7 @@ root <body>
   ?!@ramDefinitionList ramDefinitionList
   ?!@configDefinitionList configDefinitionList
   ?!@constantDefinitionList constantDefinitionList
+  ?!@checkpicList ioCheckpicList
   ?!@dataList dataList
   ?!@bool needsComputedGoto2
   ?!@bool needsComputedGoto4
