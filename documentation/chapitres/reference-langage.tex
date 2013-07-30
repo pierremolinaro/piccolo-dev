@@ -35,7 +35,7 @@ Piccolo définit les délimiteurs suivants :\\
 Tout caractère dont le code ASCII est compris entre \texttt{0x01} et \texttt{0x20} est considéré comme un séparateur (ceci inclut donc la tabulation horizontale \texttt{HT} (\texttt{0x09}), le passage à la ligne \texttt{LF} (\texttt{0x0A}), le retour-chariot \texttt{CR} (\texttt{0x0D}), et l’espace (\texttt{0x20}).
 
 \subsection{Identificateurs}
-Un identificateur commence par une lettre (minuscule ou majuscule), qui est suivie par zéro, un ou plusieurs lettres (minuscules ou majuscules), chiffres décimaux, caractères « \_ ».
+Un identificateur commence par une lettre (minuscule ou majuscule), qui est suivie par zéro, un ou plusieurs lettres (minuscules ou majuscules), chiffres décimaux, caractères « \texttt{\_} ».
 
 La casse est significative pour les identificateurs.
 
@@ -54,19 +54,19 @@ Mots réservés correspondant aux éléments du langage :\\
   \hline
    \keyWordLanguage{bank} & \keyWordLanguage{banksave} & \keyWordLanguage{banksel} & \keyWordLanguage{baseline} & \keyWordLanguage{bootloader} \\
   \hline
-    \keyWordLanguage{byte} & \keyWordLanguage{computed} & \keyWordLanguage{configuration} & \keyWordLanguage{const} & \keyWordLanguage{contextsave} \\
+    \keyWordLanguage{byte} & \keyWordLanguage{computed} & \keyWordLanguage{configuration} & \keyWordLanguage{checkpic} & \keyWordLanguage{const} \\
   \hline
-   \keyWordLanguage{data} & \keyWordLanguage{do} & \keyWordLanguage{end} & \keyWordLanguage{else} & \keyWordLanguage{elsif} \\
+    \keyWordLanguage{contextsave} & \keyWordLanguage{data} & \keyWordLanguage{do} & \keyWordLanguage{end} & \keyWordLanguage{else} \\
   \hline
-   \keyWordLanguage{ensures} & \keyWordLanguage{fast} & \keyWordLanguage{forever} & \keyWordLanguage{if} & \keyWordLanguage{implements}   \\
+   \keyWordLanguage{elsif} & \keyWordLanguage{ensures} & \keyWordLanguage{fast} & \keyWordLanguage{forever} & \keyWordLanguage{if}   \\
   \hline
-    \keyWordLanguage{include} & \keyWordLanguage{interrupt} & \keyWordLanguage{mark} & \keyWordLanguage{midrange} & \keyWordLanguage{nobank} \\
+    \keyWordLanguage{implements} & \keyWordLanguage{include} & \keyWordLanguage{interrupt} & \keyWordLanguage{mark} & \keyWordLanguage{midrange} \\
   \hline
-    \keyWordLanguage{noreturn} & \keyWordLanguage{page} & \keyWordLanguage{pic18} & \keyWordLanguage{preserved} & \keyWordLanguage{ram} \\
+     \keyWordLanguage{nobank} & \keyWordLanguage{noreturn} & \keyWordLanguage{page} & \keyWordLanguage{pic18} & \keyWordLanguage{preserved} \\
   \hline
-    \keyWordLanguage{requires} & \keyWordLanguage{rom} & \keyWordLanguage{routine} & \keyWordLanguage{uses} & \keyWordLanguage{w} \\
+   \keyWordLanguage{ram} & \keyWordLanguage{requires} & \keyWordLanguage{rom} & \keyWordLanguage{routine} & \keyWordLanguage{uses} \\
   \hline
-    \keyWordLanguage{while} & & & & \\
+    \keyWordLanguage{w} & \keyWordLanguage{while} & & & \\
   \hline
 \end{tabular}
 
@@ -117,19 +117,23 @@ Comme en C, les caractères sont délimités par des caractères « \texttt{\tex
 
 Vous pouvez écrire les constantes entières en décimal, en hexadécimal ou en binaire. 
 
-Une constante entière décimale commence par un chiffre décimal, et est suivie par zéro, un ou plusieurs chiffres décimaux, ou caractères « \_ ».
+Une constante entière décimale commence par un chiffre décimal, et est suivie par zéro, un ou plusieurs chiffres décimaux, ou caractères « \texttt{\_} ».
 
-Un chiffre hexadécimal est soit un chiffre décimal, soit une lettre entre « a » et « f », écrite indifféremment en minuscule ou en majuscule. Une constante hexadécimale commence par la séquence « 0x », et est suivie par un ou plusieurs chiffres hexadécimal, ou caractères « \_ ».
+Un chiffre hexadécimal est soit un chiffre décimal, soit une lettre entre « \texttt{a} » et « \texttt{f} », écrite indifféremment en minuscule ou en majuscule. Une constante hexadécimale commence par la séquence « \texttt{0x} », et est suivie par un ou plusieurs chiffres hexadécimal, ou caractères « \texttt{\_} ».
 
-Une constante entière binaire commence par la séquence « 0b » suivie par un ou plusieurs chiffres binaires, « 0 » ou « 1 », ou le caractère « \_ ».
+Une constante entière binaire commence par la séquence « \texttt{0b} » suivie par un ou plusieurs chiffres binaires, « \texttt{0} » ou « \texttt{1} », ou le caractère « \texttt{\_} ».
 
-Dans une constante entière, écrite en décimal ou en hexadécimal, le caractère « \_ » peut servir de séparateur ; on peut ainsi écrire indifféremment : 100, 1\_00, 1\_0\_0, 1\_\_\_00, …
+Dans une constante entière, écrite en binaire, décimal ou en hexadécimal, le caractère « \texttt{\_} » peut servir de séparateur ; on peut ainsi écrire indifféremment : \texttt{100}, \texttt{1\_00}, \texttt{1\_0\_0}, \texttt{1\_\_\_00}, \dots
 
 Attention :
-contrairement au C, un nombre qui commence par un zéro est un nombre écrit en décimal ;
-contrairement à l’assembleur PIC, le préfixe « 0x » est indispensable pour écrire un nombre en hexadécimal.
+\begin{itemize}
+  \item contrairement au C, un nombre qui commence par un zéro est un nombre écrit en décimal ;
+  \item contrairement à l’assembleur PIC, le préfixe « \texttt{0x} » est indispensable pour écrire un nombre en hexadécimal.
+\end{itemize}
 
 \subsection{Format}
 
-Le format est libre, la fin de ligne n’est pas significative (sauf pour les commentaires, qui commencent par un caractère dièse « \# », et s’étendent jusqu’à la fin de la ligne courante). Le compilateur accepte de manière indifférente que les fins de ligne soient codés par un caractère LF (0x0A), un caractère CR (0x0D), ou par la séquence CRLF (0x0D, 0x0A).
+Le format est libre, la fin de ligne n’est pas significative (sauf pour les commentaires, qui commencent par un caractère dièse « \texttt{\#} », et s’étendent jusqu’à la fin de la ligne courante). Le compilateur accepte de manière indifférente que les fins de ligne soient codés par un caractère LF (0x0A), un caractère CR (0x0D), ou par la séquence CRLF (0x0D, 0x0A).
+
+À partir de la version 2.0.2, les commentaires commençant par « \texttt{\#!} » sont capturés par l'application CocoaPiccolo pour être affichés dans le menu \emph{popup} d'accès aux routines.
 

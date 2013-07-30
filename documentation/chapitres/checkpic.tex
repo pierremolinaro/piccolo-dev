@@ -1,0 +1,81 @@
+%!TEX encoding = UTF-8 Unicode
+%!TEX root = ../piccolo.tex
+
+\cleardoublepage
+
+\chapterLabel{Construction \texttt{checkpic}}{checkpic}
+
+%--- Pour supprimer tout en-tête et pied de page sur la 1re page d'un chapitre
+\thispagestyle{empty}
+
+Cette construction n'est définie que pour les \emph{pic18}.
+
+Sa syntaxe est la suivante :
+
+\begin{lstlisting}[language=piccolo]
+checkpic "nom", ...., "nom"
+\end{lstlisting}
+
+C'est-à-dire le mot réservé \texttt{checkpic} suivi de une ou plusieurs chaînes de caractères. Une erreur est déclenchée si le code en cours de compilation n'est pas destiné à l'un des micro-contrôleurs cités.
+
+Par exemple :
+
+\begin{lstlisting}[language=piccolo]
+pic18 "18F2480" ...
+  ...
+checkpic "18F2480", "18F4480"
+  ...
+\end{lstlisting}
+
+Cette écriture sera compilée sans erreur car le type du micro-contrôleur cité dans l'en-tête est le \texttt{18F2480}, et ce nom est l'un de ceux cités dans la construction \texttt{checkpic}.
+
+Autre exemple :
+
+\begin{lstlisting}[language=piccolo]
+pic18 "18F26K80" ...
+  ...
+checkpic "18F2480", "18F4480"
+  ...
+\end{lstlisting}
+
+Cette écriture déclenche une erreur de compilation car le type du micro-contrôleur cité dans l'en-tête est le \texttt{18F26K80}, et ce nom n'est pas cité dans la construction \texttt{checkpic}.
+
+
+
+
+\section{Utilisation combinée avec \texttt{include}}
+L'intérêt de la construction \texttt{checkpic} est son utilisation combinée avec l'inclusion de fichier source (construction \texttt{include}, \refSectionPage{sectionInclude}).
+
+En effet, l'inclusion de fichier source peut être utilisée pour décrire des routines génériques, valables pour plusieurs types de micro-contrôleurs.
+
+Le code source a alors l'allure suivante :
+\begin{lstlisting}[language=piccolo]
+pic18 "18F26K80" ...
+  ...
+include "monCodeGenerique_xxK80.piccolo"
+  ...
+\end{lstlisting}
+
+Mais si le code générique n'est valide que pour les micro-contrôleurs de la même famille \texttt{18F26K80}, \texttt{18F46K80}, \dots\ il n'y a aucune garantie que ce code générique soit utilisé qu'avec ces micro-contrôleurs. Ainsi, si on écrit :
+
+Le code source a alors l'allure suivante :
+\begin{lstlisting}[language=piccolo]
+pic18 "18F4480" ...
+  ...
+include "monCodeGenerique_xxK80.piccolo"
+  ...
+\end{lstlisting}
+
+Il n'y a pas obligatoirement de message d'erreur, et un code invalide pour un \texttt{18F4480} est utilisé.
+
+
+La solution pour déclencher une erreur dans cette dernière situation est d'utiliser la construction \texttt{chekpic} dans le fichier inclus \texttt{monCodeGenerique\_xxK80.piccolo} :
+
+\begin{lstlisting}[language=piccolo]
+  ...
+checkpic "18F26K80", "18F46K80"
+  ...
+\end{lstlisting}
+
+
+ 
