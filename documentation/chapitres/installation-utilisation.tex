@@ -21,7 +21,7 @@ Piccolo est distribué sous la forme d'un \emph{utilitaire en ligne de commande}
 
 \section{Options de la ligne de commande}
 
-\subsectionLabel{Liste des options}{listeOptions}
+\subsectionLabel{Liste des options}{listeOptions}\index{Options de la ligne de commande}
 
 Piccolo accepte un certain nombre d’options, qui sont détaillées dans les pages suivantes.
 
@@ -29,7 +29,7 @@ L’analyse des arguments de la ligne de commandes est simple :
 \begin{itemize}
   \item tout argument qui commence par un « - » est une option ;
   \item tout argument qui ne commence pas par un « - » est considéré comme un fichier source Piccolo ;
-  \item la seule extension acceptable pour un fichier source Piccolo est « .piccolo ».
+  \item la seule extension acceptable pour un fichier source Piccolo est \texttt{.piccolo}.
 \end{itemize}
 
 En conséquence, un argument ne commençant pas par un « - » et n’ayant pas l’extension « .piccolo » déclenche une erreur.
@@ -40,25 +40,120 @@ Si plusieurs fichiers sources apparaissent dans la ligne de commande, ils sont t
 
 {\bf Note pour Windows.} L’outil Piccolo pour Windows propose par défaut un dialogue invitant à entrer les références d’un fichier source si la ligne ne contient aucun fichier source (c’est le cas quand on double-clique sur l’icône de l’application). Une option « \texttt{-{-}no-dialog} », spécifique à cette plate forme, permet d'inhiber l’apparition du dialogue.
 
-La liste des options est :\index{Options de la ligne de commande}
+\subsubsection{Options générales}
+
 \begin{description}
   \item[\texttt{-{-}version}] Affiche le numéro de version.
+
   \item[\texttt{-v}, \texttt{-{-}verbose}] Affiche des messages complémentaires sur le terminal. Par défaut, quand toutes les étapes se déroulent correctement, aucun message n’est affiché.
-  \item[\texttt{-n}, \texttt{-{-}no-file-generation}] Aucune écriture sur fichier n’a lieu : ceci permet de garantir que les fichiers de sortie ne seront pas engendrés. La tentative d’écrire un fichier est signalé par un \emph{warning}.
-  \item[\texttt{-W}, \texttt{-{-}Werror}] Tout \emph{warning} est considéré comme une erreur. Cela peut être important dans un script, l’outil de commande renvoyant un code non nul si une ou plusieurs erreurs ont été détectées.
-  \item[\texttt{-d}, \texttt{-{-}detailled-error-messages}] Imprime de manière détaillée les messages d’erreur et d’alerte. Par défaut, ils sont de la même forme que ceux engendrés par \emph{gcc}.
-  \item[\texttt{-S}, \texttt{-{-}asm}] Si la compilation s’effectue sans erreur, engendre aussi un fichier texte assembleur, dans le même répertoire que le fichier source Piccolo, mais avec l’extension « .asm ».
-  \item[\texttt{-D}, \texttt{-{-}device-list}] Affiche sur le terminal la liste des micro-contrôleurs \emph{baseline}, \emph{mid-range} et \emph{pic18} supportés.
-  \item[\texttt{-{-}baseline}] Affiche sur le terminal la liste des micro-contrôleurs \emph{baseline} supportés (voir \refSubsectionPage{listeBaseline}).
-  \item[\texttt{-{-}midrange}] Affiche sur le terminal la liste des micro-contrôleurs \emph{mid-range} supportés (voir \refSubsectionPage{listeMidrange}).
-  \item[\texttt{-{-}pic18}] Affiche sur le terminal la liste des micro-contrôleurs \emph{pic18} supportés (voir \refSubsectionPage{listePic18}).
-  \item[\texttt{-L}, \texttt{-{-}list}] Produit un fichier listing contenant de nombreux détails concernant la configuration, l’allocation de la RAM, les optimisations réalisées et la transformation des branchement relatifs en absolu. Ce fichier est écrit dans le même répertoire que le fichier source, porte le même nom, mais avec l’extension « .list ».
-  \item[\texttt{-o}, \texttt{-{-}optimize}] Effectue de manière itérative des optimisations du code produit.
-  \item[\texttt{-F=string}, \texttt{-{-}configuration=string}] Affiche sur le terminal le détail des registres de configuration du micro-contrôleur désigné par \texttt{string}. Un exemple se trouve à la \refSubsectionPage{exempleOptionConfiguration}.
-  \item[\texttt{-M=string}, \texttt{-{-}memory=string}] Affiche sur le terminal la composition des bancs de la RAM, la taille de la ROM et de l’EEPROM du micro-contrôleur désigné par \texttt{string}. Un exemple se trouve à la \refSubsectionPage{exempleOptionMemory}.
-  \item[\texttt{-R=string}, \texttt{-{-}registers=string}] Affiche sur le terminal la liste alphabétique des registres spéciaux du micro-contrôleur désigné par \texttt{string}, ainsi que le nom de leurs bits. Un exemple se trouve à la \refSubsectionPage{exempleOptionRegisters}.
+
+  \item[\texttt{-{-}no-color}] Les messages émis sur le terminal sont en texte pur, sans coloration.
+
   \item[\texttt{-{-}no-dialog}] (\emph{uniquement sur Windows}) L’outil Piccolo pour Windows propose par défaut un dialogue invitant à entrer les références d’un fichier source si la ligne ne contient aucun fichier source (c’est le cas quand on double-clique sur l’icône de l’application). Cette option permet d'inhiber l’apparition du dialogue.
 \end{description}
+
+
+
+\subsubsection{Options contrôlant le compilateur}
+
+
+
+
+\begin{description}
+  \item[\texttt{-{-}help}] Affiche la liste des options.
+
+  \item[\texttt{-W}, \texttt{-{-}Werror}] Tout \emph{warning} est considéré comme une erreur. Cela peut être important dans un script, l’outil de commande renvoyant un code non nul si une ou plusieurs erreurs ont été détectées.
+
+  \item[\texttt{-{-}max-errors=\emph{n}}] Stoppe après \emph{n} erreurs.
+
+  \item[\texttt{-{-}max-warnings=\emph{n}}] Stoppe après \emph{n} alertes.
+
+\end{description}
+
+
+
+\subsubsectionLabel{Options contrôlant la génération}{optionsGeneration}
+
+
+\begin{description}
+
+  \item[\texttt{-o}, \texttt{-{-}optimize}] Effectue de manière itérative des optimisations du code produit.
+
+
+  \item[\texttt{-L}, \texttt{-{-}list}] Produit un fichier listing contenant de nombreux détails concernant la configuration, l’allocation de la RAM, les optimisations réalisées et la transformation des branchement relatifs en absolu. Ce fichier est écrit dans le même répertoire que le fichier source, porte le même nom, mais avec l’extension \texttt{.list}.
+
+  \item[\texttt{-S}, \texttt{-{-}asm}] Si la compilation s’effectue sans erreur, engendre aussi un fichier texte assembleur, dans le même répertoire que le fichier source Piccolo, mais avec l’extension « .asm ».
+
+  \item[\texttt{-n}, \texttt{-{-}no-file-generation}] Aucune écriture sur fichier n’a lieu : ceci permet de garantir que les fichiers de sortie ne seront pas engendrés. La tentative d’écrire un fichier est signalé par un \emph{warning}.
+
+  \item[\texttt{-I}, \texttt{-{-}no-routine-duration}] Par défaut, Piccolo tente de calculer la durée d'exécution des routines (\emph{pic18} uniquement, \refChapterPage{pile-et-durees}). Cette option inhibe ce calcul.
+
+  \item[\texttt{-T}, \texttt{-{-}no-stack-computation}] Par défaut, Piccolo tente de calculer les besoins en pile du programme (\emph{pic18} uniquement, \refChapterPage{pile-et-durees}). Cette option inhibe ce calcul.
+
+  \item[\texttt{-d}, \texttt{-{-}detailled-computations}] Insère dans le fichier listing le détail des calculs de pile et de durée d'exécutions du programme (\emph{pic18} uniquement, \refChapterPage{pile-et-durees}.
+
+  \item[\texttt{-G}, \texttt{-{-}generate-grahviz-call-graph}] Engendre un fichier d'extension \texttt{.dot} au format \emph{Graphviz} qui contient le graphe d'appel du programme.
+
+  \item[\texttt{-C}, \texttt{-{-}output-c-files}] Engendre un fichier d'en-tête et un fichier C contenant le code objet résult de la compilation sous la forme de tableaux C.
+
+\end{description}
+
+
+
+\subsubsection{Options d'extraction des caractéristiques des micro-contrôleurs}
+
+Piccolo embarque la description de tous les micro-contrôleurs supportés. Les options suivantes permettent d'extraire tout ou partie de ces informations.
+
+\begin{description}
+
+
+  \item[\texttt{-D}, \texttt{-{-}device-list}] Affiche sur le terminal la liste des micro-contrôleurs \emph{baseline}, \emph{mid-range} et \emph{pic18} supportés.
+
+  \item[\texttt{-{-}baseline}] Affiche sur le terminal la liste des micro-contrôleurs \emph{baseline} supportés (voir \refSubsectionPage{listeBaseline}).
+
+  \item[\texttt{-{-}midrange}] Affiche sur le terminal la liste des micro-contrôleurs \emph{mid-range} supportés (voir \refSubsectionPage{listeMidrange}).
+
+  \item[\texttt{-{-}pic18}] Affiche sur le terminal la liste des micro-contrôleurs \emph{pic18} supportés (voir \refSubsectionPage{listePic18}).
+
+  \item[\texttt{-F=string}, \texttt{-{-}configuration=string}] Affiche sur le terminal le détail des registres de configuration du micro-contrôleur désigné par \texttt{string}. Un exemple se trouve à la \refSubsectionPage{exempleOptionConfiguration}.
+
+  \item[\texttt{-M=string}, \texttt{-{-}memory=string}] Affiche sur le terminal la composition des bancs de la RAM, la taille de la ROM et de l’EEPROM du micro-contrôleur désigné par \texttt{string}. Un exemple se trouve à la \refSubsectionPage{exempleOptionMemory}.
+
+  \item[\texttt{-R=string}, \texttt{-{-}registers=string}] Affiche sur le terminal la liste alphabétique des registres spéciaux du micro-contrôleur désigné par \texttt{string}, ainsi que le nom de leurs bits. Un exemple se trouve à la \refSubsectionPage{exempleOptionRegisters}.
+
+  \item[\texttt{-E=\emph{répertoire}}, \texttt{-{-}export=\emph{répertoire}}] Crée le dossier \emph{répertoire} et y place tous les fichiers de description des micro-contrôleurs \emph{baseline}, \emph{mid-range} et \emph{pic18}.
+
+\end{description}
+
+
+
+\subsubsection{Options contrôlant le débogage du compilateur}
+
+Ces options ne sont pas utilisées lors de l'exploitation de Piccolo : elles permettent de déboguer le compilateur lui-même, et non pas le fichier source compilé.
+
+\begin{description}
+
+  \item[\texttt{-{-}log-file-read}] Affiche sur la console tout accès en lecture à un fichier.
+
+
+  \item[\texttt{-{-}mode=\emph{nom}}] Contrôle l'opération du compilateur : si \emph{nom} est vide, le compilateur opère normalement. Si \emph{nom} est \texttt{lexical-only}, le compilateur affiche le résultat de l'analyse lexicale et s'arrête ; aucun fichier n'est engendré. Si \emph{nom} est \texttt{syntax-only}, le compilateur affiche le résultat de l'analyse syntaxique et s'arrête ; aucun fichier n'est engendré.
+
+
+
+  \item[\texttt{-{-}trace}] Émet un fichier de trace de du compilateur. Format non documenté, utile uniquement pour déboguer le compilateur lui-même.
+
+
+  \item[\texttt{-{-}output-concrete-syntax-tree}] Exporte dans un fichier l'arbre syntaxique concret du code source analysé sous la forme d'un graphe dont le format est compatible avec \emph{Graphviz}. Le nom du fichier de sortie est le nom du fichier source doté de l'extension complémentaire \texttt{.dot}.
+
+\end{description}
+
+
+
+
+
+
+
+
 
 \subsectionLabel{Exemple d'utilisation de l'option \texttt{-{}-memory}}{exempleOptionMemory}
 

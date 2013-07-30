@@ -485,7 +485,7 @@ local routine computeStackNeeds
           maxStackNeeds := mValue ;
         end if ;
       end foreach ;
-      if [option galgas_builtin_options.verbose_output value] then
+      if [option piccolo_options.detailledComputing value] then
         ioListFileContents .= "------------------ " . mValue . "\n" ;
         ioListFileContents .= " Line:level:\n" ;
         foreach inGeneratedInstructionList index lineIndex do
@@ -1315,8 +1315,8 @@ routine pic18_compute_metrics
   ioListFileContents .= "*******************************************************************************\n" ;
   ioListFileContents .= "*           R O U T I N E    D U R A T I O N S                                *\n" ;
   ioListFileContents .= "*******************************************************************************\n\n" ;
-  if [option piccolo_options.doNotComputeInterruptRoutineDuration value] then
-    ioListFileContents .= "option '" . [option piccolo_options.doNotComputeInterruptRoutineDuration string] . "': interrupt routine durations are not computed.\n" ;
+  if [option piccolo_options.doNotComputeRoutineDuration value] then
+    ioListFileContents .= "option '" . [option piccolo_options.doNotComputeRoutineDuration string] . "': routine durations are not computed.\n" ;
   elsif [option piccolo_options.doNotComputeStackRequirements value] then
     ioListFileContents .= "option '" . [option piccolo_options.doNotComputeStackRequirements string] . "': cannot compute interrupt routine durations.\n" ;
   else
@@ -1376,7 +1376,7 @@ routine pic18_compute_metrics
           end foreach ;
           @uint executionMin := [@uint max] ;
           @uint executionMax := 0 ;
-          if [option galgas_builtin_options.verbose_output value] then
+          if [option piccolo_options.detailledComputing value] then
             ioListFileContents .= [" " . mValue stringByLeftPadding !76 !'-'] . "\n" ;
             ioListFileContents .= " Line:  min-  max:\n" ;
           end if ;
@@ -1392,7 +1392,7 @@ routine pic18_compute_metrics
           foreach inGeneratedInstructionList index lineIndex do
             const @uint imin := [minArray mValueAtIndex !lineIndex] ;
             const @uint imax := [maxArray mValueAtIndex !lineIndex] ;
-            if (imin <= imax) & [option galgas_builtin_options.verbose_output value] then
+            if (imin <= imax) & [option piccolo_options.detailledComputing value] then
               ioListFileContents .= [[lineIndex string] stringByLeftPadding !5 !' '] . ":" ;
               ioListFileContents .= [[imin string] stringByLeftPadding !5 !' '] . "-" ;
               ioListFileContents .= [[imax string] stringByLeftPadding !5 !' '] . ":" ;
@@ -1400,7 +1400,7 @@ routine pic18_compute_metrics
               ioListFileContents .= "\n" ;
             end if ;
           end foreach ;
-          if [option galgas_builtin_options.verbose_output value] then
+          if [option piccolo_options.detailledComputing value] then
             ioListFileContents .= mValue->string . " --> " . executionMin . " ... " . executionMax . "\n" ;
           else
             ioListFileContents .= [mValue stringByLeftPadding !70 !' '] . " " . executionMin . "-" . executionMax . "\n" ;

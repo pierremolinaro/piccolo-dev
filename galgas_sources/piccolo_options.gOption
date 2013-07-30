@@ -1,10 +1,11 @@
 option piccolo_options :
 
 @bool generateAssembly : 'S', "asm" -> "Generate also an assembly language text file (with .asm extension)" ;
-@bool output_C_Array : 'C', "c-files" -> "Generate output code in a C header file and C source file" ;
+@bool output_C_Array : 'C', "output-c-files" -> "Generate output code in a C header file and C source file" ;
 @bool ouputListingFile : 'L', "list" -> "Output a list file" ;
 @bool performOptimizations : 'O', "optimize" -> "Perform code optimizations" ;
 @bool doNotComputeStackRequirements : 'T', "no-stack-computations" -> "Do not compute stack requirements" ;
-@bool doNotComputeInterruptRoutineDuration : 'I', "no-interrupt-duration" -> "Do not compute interrupt routine duration" ;
-@bool generateCallGraph : 'G', "generate-grahviz-call-graph" -> "Generate a Graphviz file that contains the call graph" ;
+@bool doNotComputeRoutineDuration : 'I', "no-routine-duration" -> "Do not compute routine duration" ;
+@bool detailledComputing : 'd', "detailled-computations" -> "Display detailled duration routine computations and stack requirements" ;
+@bool generateCallGraph : 'G', "generate-grahviz-call-graph" -> "Generate a Graphviz file that contains the routine call graph" ;
 end option ;

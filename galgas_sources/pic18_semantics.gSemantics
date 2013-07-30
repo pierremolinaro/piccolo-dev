@@ -121,7 +121,7 @@ routine pic18_analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName 
   @luint bootloaderReservedROMsize ; # Used only for bootloader implementation or user program implementation, zero for regular program
   @registerTable registerTable ;
   @string piccoloDeviceName ;
-  switch [inPiccoloModel mProgramKind]
+  switch inPiccoloModel->mProgramKind
   when regularProgram :
     piccoloDeviceName := inPiccoloModel->mDeviceNameOrBootLoaderReference->string ;
     parseDeviceDefinition ![inPiccoloModel mDeviceNameOrBootLoaderReference] ?piccoloDeviceModel ;
@@ -362,8 +362,8 @@ routine pic18_analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName 
       !?listFileContents
     ;
   end if ;
-#-------------------------------- Compute stack requirements
-  if [@uint errorCount] == 0 then
+#-------------------------------- Compute stack requirements abd routine duration
+  if ([@uint errorCount] == 0) & (inPiccoloModel->mProgramKind != [@programKind userProgram]) then
     pic18_compute_metrics
       !inPiccoloModel
       !userRoutineDeclarationListForBootloaderImplementation # Empty for regular program
