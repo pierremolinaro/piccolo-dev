@@ -5,19 +5,11 @@ import "piccoloDevice_semantics.gSemantics" ;
 import "pic18_mnemonics.gSemantics" ;
 import "pic18_intermediate_classes_set_current_address.gSemantics" ;
 
-#----------------------------------------------------------------------------*
-
-map @dataMap {
-  @uint mDataSize ;
-  insert insertKey error message "the '%K' data is already declared" ;
-  search searchKey error message "the '%K' data is not declared" ;
-}
-
 #----------------------------------------------------*
 #           DECOMPOSE STRUCTURED INSTRUCTIONS        *
 #----------------------------------------------------*
 
-abstract method @piccolo_instruction buildIPICinstructionList
+abstract method @pic18PiccoloInstruction buildIPICinstructionList
   ??@uint unused inAccessBankSplitOffset
   ??@routineMap unused inRoutineMap
   ??@registerTable inRegisterTable
@@ -34,7 +26,7 @@ abstract method @piccolo_instruction buildIPICinstructionList
 
 #----------------------------------------------------------------------------*
 
-routine handleInstructionList
+local routine handleInstructionList
   ??@instructionList inInstructionList
   ??@uint inAccessBankSplitOffset
   ??@routineMap inRoutineMap
@@ -494,7 +486,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @instruction_CLRWDT buildIPICinstructionList
+override method @instruction_withNoOperand buildIPICinstructionList
   ??@uint unused inAccessBankSplitOffset
   ??@routineMap unused inRoutineMap
   ??@registerTable unused inRegisterTable
@@ -508,134 +500,9 @@ override method @instruction_CLRWDT buildIPICinstructionList
   ?!@bool unused ioContinuesInSequence
   ??@routineKind unused inRoutineKind
 :
-  ioGeneratedInstructionList += ![@pic18_intermediate_instruction_CLRWDT new
+  ioGeneratedInstructionList += ![@pic18_intermediate_instruction_withNoOperand new
     !mInstructionLocation
-  ] ;
-end method ;
-
-#----------------------------------------------------*
-
-override method @instruction_DAW buildIPICinstructionList
-  ??@uint unused inAccessBankSplitOffset
-  ??@routineMap unused inRoutineMap
-  ??@registerTable unused inRegisterTable
-  ??@dataMap unused inDataMap
-  ??@constantMap unused inConstantMap
-  ?!@uint unused ioLocalLabelIndex
-  ?!@pic18_intermediate_instructionList ioGeneratedInstructionList
-  ?!@string unused ioListFileContents
-  ?!@uint unused ioCurrentBank
-  ??@bool unused inShouldPreserveBSR
-  ?!@bool unused ioContinuesInSequence
-  ??@routineKind unused inRoutineKind
-:
-  ioGeneratedInstructionList += ![@pic18_intermediate_instruction_DAW new
-    !mInstructionLocation
-  ] ;
-end method ;
-
-#----------------------------------------------------*
-
-override method @instruction_NOP buildIPICinstructionList
-  ??@uint unused inAccessBankSplitOffset
-  ??@routineMap unused inRoutineMap
-  ??@registerTable unused inRegisterTable
-  ??@dataMap unused inDataMap
-  ??@constantMap unused inConstantMap
-  ?!@uint unused ioLocalLabelIndex
-  ?!@pic18_intermediate_instructionList ioGeneratedInstructionList
-  ?!@string unused ioListFileContents
-  ?!@uint unused ioCurrentBank
-  ??@bool unused inShouldPreserveBSR
-  ?!@bool unused ioContinuesInSequence
-  ??@routineKind unused inRoutineKind
-:
-  ioGeneratedInstructionList += ![@pic18_intermediate_instruction_NOP new
-    !mInstructionLocation
-  ] ;
-end method ;
-
-#----------------------------------------------------*
-
-override method @instruction_POP buildIPICinstructionList
-  ??@uint unused inAccessBankSplitOffset
-  ??@routineMap unused inRoutineMap
-  ??@registerTable unused inRegisterTable
-  ??@dataMap unused inDataMap
-  ??@constantMap unused inConstantMap
-  ?!@uint unused ioLocalLabelIndex
-  ?!@pic18_intermediate_instructionList ioGeneratedInstructionList
-  ?!@string unused ioListFileContents
-  ?!@uint unused ioCurrentBank
-  ??@bool unused inShouldPreserveBSR
-  ?!@bool unused ioContinuesInSequence
-  ??@routineKind unused inRoutineKind
-:
-  ioGeneratedInstructionList += ![@pic18_intermediate_instruction_POP new
-    !mInstructionLocation
-  ] ;
-end method ;
-
-#----------------------------------------------------*
-
-override method @instruction_PUSH buildIPICinstructionList
-  ??@uint unused inAccessBankSplitOffset
-  ??@routineMap unused inRoutineMap
-  ??@registerTable unused inRegisterTable
-  ??@dataMap unused inDataMap
-  ??@constantMap unused inConstantMap
-  ?!@uint unused ioLocalLabelIndex
-  ?!@pic18_intermediate_instructionList ioGeneratedInstructionList
-  ?!@string unused ioListFileContents
-  ?!@uint unused ioCurrentBank
-  ??@bool unused inShouldPreserveBSR
-  ?!@bool unused ioContinuesInSequence
-  ??@routineKind unused inRoutineKind
-:
-  ioGeneratedInstructionList += ![@pic18_intermediate_instruction_PUSH new
-    !mInstructionLocation
-  ] ;
-end method ;
-
-#----------------------------------------------------*
-
-override method @instruction_RESET buildIPICinstructionList
-  ??@uint unused inAccessBankSplitOffset
-  ??@routineMap unused inRoutineMap
-  ??@registerTable unused inRegisterTable
-  ??@dataMap unused inDataMap
-  ??@constantMap unused inConstantMap
-  ?!@uint unused ioLocalLabelIndex
-  ?!@pic18_intermediate_instructionList ioGeneratedInstructionList
-  ?!@string unused ioListFileContents
-  ?!@uint unused ioCurrentBank
-  ??@bool unused inShouldPreserveBSR
-  ?!@bool unused ioContinuesInSequence
-  ??@routineKind unused inRoutineKind
-:
-  ioGeneratedInstructionList += ![@pic18_intermediate_instruction_RESET new
-    !mInstructionLocation
-  ] ;
-end method ;
-
-#----------------------------------------------------*
-
-override method @instruction_SLEEP buildIPICinstructionList
-  ??@uint unused inAccessBankSplitOffset
-  ??@routineMap unused inRoutineMap
-  ??@registerTable unused inRegisterTable
-  ??@dataMap unused inDataMap
-  ??@constantMap unused inConstantMap
-  ?!@uint unused ioLocalLabelIndex
-  ?!@pic18_intermediate_instructionList ioGeneratedInstructionList
-  ?!@string unused ioListFileContents
-  ?!@uint unused ioCurrentBank
-  ??@bool unused inShouldPreserveBSR
-  ?!@bool unused ioContinuesInSequence
-  ??@routineKind unused inRoutineKind
-:
-  ioGeneratedInstructionList += ![@pic18_intermediate_instruction_SLEEP new
-    !mInstructionLocation
+    !mKind
   ] ;
 end method ;
 
@@ -1353,7 +1220,7 @@ override method @instruction_IF_FA_SEMI_COLON buildIPICinstructionList
   ] ;
 #--- Append Instruction
   @bool unusedContinuesInSequence := true ;
-  [mInstruction buildIPICinstructionList
+  [mEmbeddedInstruction buildIPICinstructionList
     !inAccessBankSplitOffset
     !inRoutineMap
     !inRegisterTable
@@ -1407,7 +1274,7 @@ override method @instruction_IF_BitTest buildIPICinstructionList
   ] ;
 #--- Append Instruction
   @bool unusedContinuesInSequence := true ;
-  [mInstruction buildIPICinstructionList
+  [mEmbeddedInstruction buildIPICinstructionList
     !inAccessBankSplitOffset
     !inRoutineMap
     !inRegisterTable
@@ -1483,16 +1350,16 @@ end method ;
 #----------------------------------------------------*
 
 routine getRegisterComparisonComplementary
-  ??@registerComparison inComparison
-  !@registerComparison outComparison
+  ??@pic18RegisterComparison inComparison
+  !@pic18RegisterComparison outComparison
 :
   switch inComparison
-    when notEqual : outComparison := [@registerComparison equal] ;
-    when equal : outComparison := [@registerComparison notEqual] ;
-    when greaterOrEqual : outComparison := [@registerComparison lower] ;
-    when greater : outComparison := [@registerComparison lowerOrEqual] ;
-    when lowerOrEqual : outComparison := [@registerComparison greater] ;
-    when lower : outComparison := [@registerComparison greaterOrEqual] ;
+    when notEqual : outComparison := [@pic18RegisterComparison equal] ;
+    when equal : outComparison := [@pic18RegisterComparison notEqual] ;
+    when greaterOrEqual : outComparison := [@pic18RegisterComparison lower] ;
+    when greater : outComparison := [@pic18RegisterComparison lowerOrEqual] ;
+    when lowerOrEqual : outComparison := [@pic18RegisterComparison greater] ;
+    when lower : outComparison := [@pic18RegisterComparison greaterOrEqual] ;
   end switch ;
 end routine ;
 
@@ -1509,7 +1376,7 @@ override method @registerComparisonCondition buildIPICinstructionForCondition
   ?!@pic18_intermediate_instructionList ioGeneratedInstructionList
   ?!@string unused ioListFileContents
 :
-  @registerComparison comparison ;
+  @pic18RegisterComparison comparison ;
   if inComplementaryBranch then
     getRegisterComparisonComplementary !mComparison ?comparison ;
   else
@@ -1537,7 +1404,7 @@ end method ;
 #----------------------------------------------------*
 
 routine getRegisterComparisonInstructionCount
-  ??@registerComparison inComparison
+  ??@pic18RegisterComparison inComparison
   !@uint outInstructionCount
 :
   switch inComparison
@@ -1556,7 +1423,7 @@ override method @registerComparisonCondition computeInstructionCountForCondition
   ??@bool inComplementaryBranch
   !@uint outInstructionCount
 :
-  @registerComparison comparison ;
+  @pic18RegisterComparison comparison ;
   if inComplementaryBranch then
     getRegisterComparisonComplementary !mComparison ?comparison ;
   else
@@ -2138,7 +2005,7 @@ override method @instruction_IF_IncDec buildIPICinstructionList
   ] ;
 #--- Embedded instruction
   @bool unusedContinuesInSequence := true ;
-  [mInstruction buildIPICinstructionList
+  [mEmbeddedInstruction buildIPICinstructionList
     !inAccessBankSplitOffset
     !inRoutineMap
     !inRegisterTable
@@ -2157,7 +2024,6 @@ end method ;
 #----------------------------------------------------*
 
 routine build_pic18_intermediate_assembly_instruction_list
-  ??@programKind inProgramKind
   ??@sint inROMSize
   ??@sint inRAMSize
   ??@routineDeclarationList inBootloaderRoutineDeclarationListForBootloaderImplementation
@@ -2232,7 +2098,7 @@ routine build_pic18_intermediate_assembly_instruction_list
   [!?constantMap insertKey ![@lstring new !"ROM_SIZE" !here] !inROMSize] ;
   [!?constantMap insertKey ![@lstring new !"RAM_SIZE" !here] !inRAMSize] ;
 #--- Add "BOOTLOADER_RESERVED_SIZE" constant
-  if inProgramKind != [@programKind regularProgram] then
+  if inPiccoloModel->mProgramKind != [@programKind regularProgram] then
     @lstring bootloaderSizeString [new !"BOOTLOADER_RESERVED_SIZE" !here] ;
     [!?constantMap insertKey !bootloaderSizeString ![[inBootloaderReservedROMsize uint] sint]] ;
   end if ;
@@ -2253,7 +2119,7 @@ routine build_pic18_intermediate_assembly_instruction_list
     ;
   end if ;
 #-------------------------------- Check the "main" routine is declared
-  if inProgramKind != [@programKind userProgram] then
+  if inPiccoloModel->mProgramKind != [@programKind userProgram] then
     if [routineMap hasKey !"main"] then
       @bool isNoReturn ;
       @uint requiredBank ;
@@ -2289,7 +2155,7 @@ routine build_pic18_intermediate_assembly_instruction_list
     entryPoint := entryPoint + 4 ;
   end foreach ;
 #-------------------------------- At zero, generate 'jump main' instruction
-  if inProgramKind != [@programKind userProgram] then
+  if inPiccoloModel->mProgramKind != [@programKind userProgram] then
     outGeneratedInstructionList += ![@pic18_intermediate_pseudo_ORG new !0] ;
     outGeneratedInstructionList += ![@pic18_intermediate_JUMP new !here ![@lstring new !"main" !here] ![@jumpInstructionKind ipicRelative]] ;
   end if ;
@@ -2393,7 +2259,7 @@ routine build_pic18_intermediate_assembly_instruction_list
     end foreach ;
   end if ;
 #-------------------------------- Check and translate routines
-  foreach [inPiccoloModel mRoutineDefinitionList] do
+  foreach inPiccoloModel->mRoutineDefinitionList do
     @bool continuesInSequence ;
     @uint currentBank := [mRequiredBank uint] ;
     @routineKind routineKind ;
@@ -2522,7 +2388,7 @@ routine build_pic18_intermediate_assembly_instruction_list
     outGeneratedInstructionList += !mInstruction ;
   end foreach ;
 #-------------------------------- Generate 'BOOTLOADER_ACTUAL_SIZE' label
-  if inProgramKind == [@programKind bootloaderProgram] then
+  if inPiccoloModel->mProgramKind == [@programKind bootloaderProgram] then
     outGeneratedInstructionList += ![@pic18_intermediate_pseudo_LABEL new ![@lstring new !"BOOTLOADER_ACTUAL_SIZE" !here] !false] ;
   end if ;
 #-------------------------------- Generate default user routines

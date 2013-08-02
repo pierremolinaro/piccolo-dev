@@ -136,11 +136,10 @@ rule <instruction_list>
   outInstructionList := [@instructionList emptyList] ;
   repeat
   while
-    @piccolo_instruction instruction ;
-    <simple_instruction> ?instruction ;
+    <simple_instruction> ??@pic18PiccoloSimpleInstruction instruction ;
     outInstructionList += !instruction ;
   while
-    @piccolo_instruction instruction ;
+    @pic18PiccoloInstruction instruction ;
     <structured_instruction>
       ?instruction
       !?ioNeedsComputedGoto2
@@ -306,19 +305,19 @@ rule <condition_factor>
   or
     @registerExpression registerExpression ;
     <register_parsing> ? registerExpression ;
-    @registerComparison comparison ;
+    @pic18RegisterComparison comparison ;
     select
-      $!=$ ; $w$ ; comparison := [@registerComparison notEqual] ;
+      $!=$ ; $w$ ; comparison := [@pic18RegisterComparison notEqual] ;
     or
-      $==$ ; $w$ ; comparison := [@registerComparison equal] ;
+      $==$ ; $w$ ; comparison := [@pic18RegisterComparison equal] ;
     or
-      $<=$ ; $w$ ; comparison := [@registerComparison lowerOrEqual] ;
+      $<=$ ; $w$ ; comparison := [@pic18RegisterComparison lowerOrEqual] ;
     or
-      $>=$ ; $w$ ; comparison := [@registerComparison greaterOrEqual] ;
+      $>=$ ; $w$ ; comparison := [@pic18RegisterComparison greaterOrEqual] ;
     or
-      $<$  ; $w$ ; comparison := [@registerComparison lower] ;
+      $<$  ; $w$ ; comparison := [@pic18RegisterComparison lower] ;
     or
-      $>$  ; $w$ ; comparison := [@registerComparison greater] ;
+      $>$  ; $w$ ; comparison := [@pic18RegisterComparison greater] ;
     end select ;
     outCondition := [@registerComparisonCondition new
       !registerExpression
@@ -448,7 +447,7 @@ end rule ;
 #----------------------------------------------------*
 
 rule <structured_instruction>
-  !@piccolo_instruction outInstruction
+  !@pic18PiccoloInstruction outInstruction
   ?!@bool ioNeedsComputedGoto2
   ?!@bool ioNeedsComputedGoto4
 :
@@ -613,8 +612,7 @@ rule <structured_instruction>
       opCode := [@if_semi_colon_op TSTFSZ] ;
     end select ;
     $:$ ;
-    @piccolo_instruction instruction ;
-    <simple_instruction> ?instruction ;
+    <simple_instruction> ??@pic18PiccoloSimpleInstruction instruction ;
     outInstruction := [@instruction_IF_FA_SEMI_COLON new
       !instructionLocation
       !instruction
@@ -666,8 +664,7 @@ rule <structured_instruction>
       end select ;
     end select ;
     $:$ ;
-    @piccolo_instruction instruction ;
-    <simple_instruction> ?instruction ;
+    <simple_instruction> ??@pic18PiccoloSimpleInstruction instruction ;
     outInstruction := [@instruction_IF_BitTest new
       !instructionLocation
       !instruction
@@ -703,8 +700,7 @@ rule <structured_instruction>
       error conditionString:"invalid '" . condition . "' condition; it should be 'z' or 'nz'" : skipIfZero ;
     end if ;
     $:$ ;
-    @piccolo_instruction instruction ;
-    <simple_instruction> ?instruction ;
+    <simple_instruction> ??@pic18PiccoloSimpleInstruction instruction ;
     outInstruction := [@instruction_IF_IncDec new
       !instructionLocation
       !instruction
@@ -757,13 +753,102 @@ rule <structured_instruction>
     @location instructionLocation := here ;
     $integer$ ? @luint occurrenceFactor ;
     outInstruction := [@instruction_MNOP new !instructionLocation !occurrenceFactor] ;
+  or
+    @conditional_branch condition ;
+    select
+      $bc$ ; condition := [@conditional_branch bc] ;
+    or
+      $bnc$ ; condition := [@conditional_branch bnc] ;
+    or
+      $bn$ ; condition := [@conditional_branch bn] ;
+    or
+      $bnn$ ; condition := [@conditional_branch bnn] ;
+    or
+      $bov$ ; condition := [@conditional_branch bov] ;
+    or
+      $bnov$ ; condition := [@conditional_branch bnov] ;
+    or
+      $bz$ ; condition := [@conditional_branch bz] ;
+    or
+      $bnz$ ; condition := [@conditional_branch bnz] ;
+    end select ;
+    @location instructionLocation := here ;
+    $identifier$ ? @lstring targetLabelName ;
+    outInstruction := [@instruction_JUMPCC new
+      !instructionLocation
+      !targetLabelName
+      !condition
+      !true
+    ] ;
+  or
+    $jump$ ;
+    @location instructionLocation := here ;
+    @conditional_branch conditional_branch ;
+    $identifier$ ? @lstring conditionString ;
+    @string condition := [[conditionString string] uppercaseString] ;
+    if condition == "Z" then
+      conditional_branch := [@conditional_branch bz] ;
+    elsif condition == "NZ" then
+      conditional_branch := [@conditional_branch bnz] ;
+    elsif condition == "NN" then
+      conditional_branch := [@conditional_branch bnn] ;
+    elsif condition == "N" then
+      conditional_branch := [@conditional_branch bn] ;
+    elsif condition == "C" then
+      conditional_branch := [@conditional_branch bc] ;
+    elsif condition == "NC" then
+      conditional_branch := [@conditional_branch bnc] ;
+    elsif condition == "OV" then
+      conditional_branch := [@conditional_branch bov] ;
+    elsif condition == "NOV" then
+      conditional_branch := [@conditional_branch bnov] ;
+    else
+      error conditionString: "invalid '" . conditionString
+      . "' condition; valid ones are: 'z', 'nz', 'n', 'nn', 'c', 'nc', 'ov' and 'nov'"
+      : conditional_branch
+      ;
+    end if ;
+    $identifier$ ? @lstring targetLabelName ;
+    outInstruction := [@instruction_JUMPCC new
+      !instructionLocation
+      !targetLabelName
+      !conditional_branch
+      !false
+    ] ;
+  or
+    $jump$ ;
+    @location instructionLocation := here ;
+    $identifier$ ? @lstring targetLabelName ;
+    outInstruction := [@instruction_JUMP new
+      !instructionLocation
+      !targetLabelName
+      ![@jumpInstructionKind ipicRelative]
+    ] ;
+  or
+    $goto$ ;
+    @location instructionLocation := here ;
+    $identifier$ ? @lstring targetLabelName ;
+    outInstruction := [@instruction_JUMP new
+      !instructionLocation
+      !targetLabelName
+      ![@jumpInstructionKind absolute]
+    ] ;
+  or
+    $bra$ ;
+    @location instructionLocation := here ;
+    $identifier$ ? @lstring targetLabelName ;
+    outInstruction := [@instruction_JUMP new
+      !instructionLocation
+      !targetLabelName
+      ![@jumpInstructionKind relative]
+    ] ;
   end select ;
 end rule ;
 
 #----------------------------------------------------*
 
 rule <structured_if_instruction>
-  !@piccolo_instruction outInstruction
+  !@pic18PiccoloInstruction outInstruction
   ?!@bool ioNeedsComputedGoto2
   ?!@bool ioNeedsComputedGoto4
 :
@@ -781,7 +866,7 @@ rule <structured_if_instruction>
     elseInstructionList := [@instructionList emptyList] ;
   or
     $elsif$ ;
-    @piccolo_instruction elsifPartInstruction ;
+    @pic18PiccoloInstruction elsifPartInstruction ;
     <structured_if_instruction>
       ?elsifPartInstruction
       !?ioNeedsComputedGoto2
@@ -809,7 +894,7 @@ end rule ;
 
 #----------------------------------------------------*
 
-rule <simple_instruction> !@piccolo_instruction outInstruction :
+rule <simple_instruction> !@pic18PiccoloSimpleInstruction outInstruction :
   select
     @instruction_FDA_base_code baseCode ;
     select
@@ -963,115 +1048,26 @@ rule <simple_instruction> !@piccolo_instruction outInstruction :
       ![@jumpInstructionKind relative]
     ] ;
   or
-    $jump$ ;
-    @location instructionLocation := here ;
-    $identifier$ ? @lstring targetLabelName ;
-    outInstruction := [@instruction_JUMP new
-      !instructionLocation
-      !targetLabelName
-      ![@jumpInstructionKind ipicRelative]
-    ] ;
-  or
-    $goto$ ;
-    @location instructionLocation := here ;
-    $identifier$ ? @lstring targetLabelName ;
-    outInstruction := [@instruction_JUMP new
-      !instructionLocation
-      !targetLabelName
-      ![@jumpInstructionKind absolute]
-    ] ;
-  or
-    $bra$ ;
-    @location instructionLocation := here ;
-    $identifier$ ? @lstring targetLabelName ;
-    outInstruction := [@instruction_JUMP new
-      !instructionLocation
-      !targetLabelName
-      ![@jumpInstructionKind relative]
-    ] ;
-  or
-    @conditional_branch condition ;
-    select
-      $bc$ ; condition := [@conditional_branch bc] ;
-    or
-      $bnc$ ; condition := [@conditional_branch bnc] ;
-    or
-      $bn$ ; condition := [@conditional_branch bn] ;
-    or
-      $bnn$ ; condition := [@conditional_branch bnn] ;
-    or
-      $bov$ ; condition := [@conditional_branch bov] ;
-    or
-      $bnov$ ; condition := [@conditional_branch bnov] ;
-    or
-      $bz$ ; condition := [@conditional_branch bz] ;
-    or
-      $bnz$ ; condition := [@conditional_branch bnz] ;
-    end select ;
-    @location instructionLocation := here ;
-    $identifier$ ? @lstring targetLabelName ;
-    outInstruction := [@instruction_JUMPCC new
-      !instructionLocation
-      !targetLabelName
-      !condition
-      !true
-    ] ;
-  or
-    $jump$ ;
-    @location instructionLocation := here ;
-    @conditional_branch conditional_branch ;
-    $identifier$ ? @lstring conditionString ;
-    @string condition := [[conditionString string] uppercaseString] ;
-    if condition == "Z" then
-      conditional_branch := [@conditional_branch bz] ;
-    elsif condition == "NZ" then
-      conditional_branch := [@conditional_branch bnz] ;
-    elsif condition == "NN" then
-      conditional_branch := [@conditional_branch bnn] ;
-    elsif condition == "N" then
-      conditional_branch := [@conditional_branch bn] ;
-    elsif condition == "C" then
-      conditional_branch := [@conditional_branch bc] ;
-    elsif condition == "NC" then
-      conditional_branch := [@conditional_branch bnc] ;
-    elsif condition == "OV" then
-      conditional_branch := [@conditional_branch bov] ;
-    elsif condition == "NOV" then
-      conditional_branch := [@conditional_branch bnov] ;
-    else
-      error conditionString: "invalid '" . conditionString
-      . "' condition; valid ones are: 'z', 'nz', 'n', 'nn', 'c', 'nc', 'ov' and 'nov'"
-      : conditional_branch
-      ;
-    end if ;
-    $identifier$ ? @lstring targetLabelName ;
-    outInstruction := [@instruction_JUMPCC new
-      !instructionLocation
-      !targetLabelName
-      !conditional_branch
-      !false
-    ] ;
-  or
     $clrwdt$ ;
-    outInstruction := [@instruction_CLRWDT new !here] ;
+    outInstruction := [@instruction_withNoOperand new !here ![@pic18InstructionWithNoOperandKind CLRWDT]] ;
   or
     $daw$ ;
-    outInstruction := [@instruction_DAW new !here] ;
+    outInstruction := [@instruction_withNoOperand new !here ![@pic18InstructionWithNoOperandKind DAW]] ;
   or
     $nop$ ;
-    outInstruction := [@instruction_NOP new !here] ;
+    outInstruction := [@instruction_withNoOperand new !here ![@pic18InstructionWithNoOperandKind NOP]] ;
   or
     $pop$ ;
-    outInstruction := [@instruction_POP new !here] ;
+    outInstruction := [@instruction_withNoOperand new !here ![@pic18InstructionWithNoOperandKind POP]] ;
   or
     $push$ ;
-    outInstruction := [@instruction_PUSH new !here] ;
+    outInstruction := [@instruction_withNoOperand new !here ![@pic18InstructionWithNoOperandKind PUSH]] ;
   or
     $reset$ ;
-    outInstruction := [@instruction_RESET new !here] ;
+    outInstruction := [@instruction_withNoOperand new !here ![@pic18InstructionWithNoOperandKind RESET]] ;
   or
     $sleep$ ;
-    outInstruction := [@instruction_SLEEP new !here] ;
+    outInstruction := [@instruction_withNoOperand new !here ![@pic18InstructionWithNoOperandKind SLEEP]] ;
   or
     @literal_instruction_opcode literalInstruction ;
     select

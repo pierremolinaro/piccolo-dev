@@ -15,37 +15,42 @@ map @bootloaderReservedRAMmap {
 
 #----------------------------------------------------*
 
-abstract class @piccolo_instruction {
+abstract class @pic18PiccoloInstruction {
   @location mInstructionLocation ;
 }
 
 #----------------------------------------------------*
 
 list @instructionList {
-  @piccolo_instruction mInstruction ;
+  @pic18PiccoloInstruction mInstruction ;
 }
 
 #----------------------------------------------------*
 
-class @instruction_nobanksel extends @piccolo_instruction {
+class @instruction_nobanksel extends @pic18PiccoloInstruction {
 }
 
 #----------------------------------------------------*
 
-class @instruction_banksel extends @piccolo_instruction {
+abstract class @pic18PiccoloSimpleInstruction extends @pic18PiccoloInstruction {
+}
+
+#----------------------------------------------------*
+
+class @instruction_banksel extends @pic18PiccoloInstruction {
   @luint mBankIndex ;
   @bool mWarningOnUselessBanksel ;
 }
 #----------------------------------------------------*
 
-class @instruction_banksel_register extends @piccolo_instruction {
+class @instruction_banksel_register extends @pic18PiccoloInstruction {
   @registerExpression mRegisterExpression ;
   @bool mWarningOnUselessBanksel ;
 }
 
 #----------------------------------------------------*
 
-class @instruction_savebank extends @piccolo_instruction {
+class @instruction_savebank extends @pic18PiccoloInstruction {
   @registerExpression mRegister ;
   @instructionList mInstructionList ;
   @location mEndOfSaveBankInstruction ;
@@ -61,7 +66,7 @@ enum @instruction_FDA_base_code {
 
 #----------------------------------------------------*
 
-class @instruction_FDA extends @piccolo_instruction {
+class @instruction_FDA extends @pic18PiccoloSimpleInstruction {
   @instruction_FDA_base_code mInstruction_FDA_base_code ;
   @registerExpression mRegisterExpression ;
   @bool m_W_isDestination ;
@@ -76,14 +81,14 @@ enum @FA_instruction_base_code {
 
 #----------------------------------------------------*
 
-class @instruction_FA extends @piccolo_instruction {
+class @instruction_FA extends @pic18PiccoloSimpleInstruction {
   @FA_instruction_base_code mFAinstruction ;
   @registerExpression mRegisterExpression ;
 }
 
 #----------------------------------------------------*
 
-class @instruction_MOVFF extends @piccolo_instruction {
+class @instruction_MOVFF extends @pic18PiccoloSimpleInstruction {
   @registerExpression mSourceRegisterName ;
   @registerExpression mDestinationRegisterName ;
 }
@@ -97,7 +102,7 @@ enum @bit_oriented_op {
 
 #----------------------------------------------------*
 
-class @instruction_FBA extends @piccolo_instruction {
+class @instruction_FBA extends @pic18PiccoloSimpleInstruction {
   @bit_oriented_op mBitOrientedOp ;
   @registerExpression mRegisterExpression ;
   @bitNumberExpression mBitNumber ;
@@ -119,21 +124,21 @@ enum @jumpInstructionKind {
 
 #----------------------------------------------------*
 
-class @instruction_JSR extends @piccolo_instruction {
+class @instruction_JSR extends @pic18PiccoloSimpleInstruction {
   @lstring mTargetLabel ;
   @jumpInstructionKind mKind ;
 }
 
 #----------------------------------------------------*
 
-class @instruction_JUMP extends @piccolo_instruction {
+class @instruction_JUMP extends @pic18PiccoloInstruction {
   @lstring mTargetLabel ;
   @jumpInstructionKind mKind ;
 }
 
 #----------------------------------------------------*
 
-class @instruction_JUMPCC extends @piccolo_instruction {
+class @instruction_JUMPCC extends @pic18PiccoloInstruction {
   @lstring mTargetLabel ;
   @conditional_branch mConditionalBranch ;
   @bool mIsBcc ;
@@ -141,37 +146,21 @@ class @instruction_JUMPCC extends @piccolo_instruction {
 
 #----------------------------------------------------*
 
-class @instruction_CLRWDT extends @piccolo_instruction {
+enum @pic18InstructionWithNoOperandKind {
+  CLRWDT,
+  DAW,
+  NOP,
+  POP,
+  PUSH,
+  RESET,
+  SLEEP
+}{
 }
 
 #----------------------------------------------------*
 
-class @instruction_DAW extends @piccolo_instruction {
-}
-
-#----------------------------------------------------*
-
-class @instruction_NOP extends @piccolo_instruction {
-}
-
-#----------------------------------------------------*
-
-class @instruction_POP extends @piccolo_instruction {
-}
-
-#----------------------------------------------------*
-
-class @instruction_PUSH extends @piccolo_instruction {
-}
-
-#----------------------------------------------------*
-
-class @instruction_RESET extends @piccolo_instruction {
-}
-
-#----------------------------------------------------*
-
-class @instruction_SLEEP extends @piccolo_instruction {
+class @instruction_withNoOperand extends @pic18PiccoloSimpleInstruction {
+  @pic18InstructionWithNoOperandKind mKind ;
 }
 
 #----------------------------------------------------*
@@ -183,27 +172,27 @@ enum @literal_instruction_opcode {
 
 #----------------------------------------------------*
 
-class @instruction_literalOperation extends @piccolo_instruction {
+class @instruction_literalOperation extends @pic18PiccoloSimpleInstruction {
   @literal_instruction_opcode mLiteralInstruction ;
   @immediatExpression mImmediatExpression ;
 }
 
 #----------------------------------------------------*
 
-class @instruction_LFSR extends @piccolo_instruction {
+class @instruction_LFSR extends @pic18PiccoloSimpleInstruction {
   @luint mFSRindex ;
   @immediatExpression mImmediatExpression ;
 }
 
 #----------------------------------------------------*
 
-class @instruction_LTBLPTR extends @piccolo_instruction {
+class @instruction_LTBLPTR extends @pic18PiccoloInstruction {
   @immediatExpression mImmediatExpression ;
 }
 
 #----------------------------------------------------*
 
-class @instruction_LDATAPTR extends @piccolo_instruction {
+class @instruction_LDATAPTR extends @pic18PiccoloInstruction {
   @lstring mDataName ;
   @luint mDataIndex ;
 }
@@ -217,25 +206,25 @@ enum @tableAccessOption {
 
 #----------------------------------------------------*
 
-class @instruction_TBLRD extends @piccolo_instruction {
+class @instruction_TBLRD extends @pic18PiccoloSimpleInstruction {
   @tableAccessOption mOption ;
 }
 
 #----------------------------------------------------*
 
-class @instruction_TBLWT extends @piccolo_instruction {
+class @instruction_TBLWT extends @pic18PiccoloSimpleInstruction {
   @tableAccessOption mOption ;
 }
 
 #----------------------------------------------------*
 
-class @instruction_MNOP extends @piccolo_instruction {
+class @instruction_MNOP extends @pic18PiccoloInstruction {
   @luint mOccurrenceFactor ;
 }
 
 #----------------------------------------------------*
 
-class @instruction_FOREVER extends @piccolo_instruction {
+class @instruction_FOREVER extends @pic18PiccoloInstruction {
   @instructionList mInstructionList ;
   @location mEndOfInstructionList ;
 }
@@ -249,8 +238,8 @@ enum @if_semi_colon_op {
 
 #----------------------------------------------------*
 
-abstract class @instruction_IF_SEMI_COLON extends @piccolo_instruction {
-  @piccolo_instruction mInstruction ;
+abstract class @instruction_IF_SEMI_COLON extends @pic18PiccoloInstruction {
+  @pic18PiccoloSimpleInstruction mEmbeddedInstruction ;
 }
 
 #----------------------------------------------------*
@@ -279,7 +268,7 @@ class @instruction_IF_IncDec extends @instruction_IF_SEMI_COLON {
 
 #----------------------------------------------------*
 
-class @instruction_computed_retlw extends @piccolo_instruction {
+class @instruction_computed_retlw extends @pic18PiccoloInstruction {
   @immediatExpression mSizeExpression ;
   @immediatExpressionList mImmediateExpressionList ;
   @bool mUsesRelativeCall ;
@@ -287,7 +276,7 @@ class @instruction_computed_retlw extends @piccolo_instruction {
 
 #----------------------------------------------------*
 
-class @instruction_computed_bra extends @piccolo_instruction {
+class @instruction_computed_bra extends @pic18PiccoloInstruction {
   @immediatExpression mSizeExpression ;
   @lstringlist mTargetLabels ;
   @bool mUsesRelativeCall ;
@@ -295,7 +284,7 @@ class @instruction_computed_bra extends @piccolo_instruction {
 
 #----------------------------------------------------*
 
-class @instruction_computed_goto extends @piccolo_instruction {
+class @instruction_computed_goto extends @pic18PiccoloInstruction {
   @immediatExpression mSizeExpression ;
   @lstringlist mTargetLabels ;
   @bool mUsesRelativeCall ;
@@ -303,7 +292,7 @@ class @instruction_computed_goto extends @piccolo_instruction {
 
 #----------------------------------------------------*
 
-class @instruction_computed_rcall extends @piccolo_instruction {
+class @instruction_computed_rcall extends @pic18PiccoloInstruction {
   @immediatExpression mSizeExpression ;
   @lstringlist mTargetLabels ;
   @bool mUsesRelativeCall ;
@@ -323,7 +312,7 @@ class @registerTestCondition extends @conditionExpression {
 
 #----------------------------------------------------*
 
-enum @registerComparison {
+enum @pic18RegisterComparison {
   notEqual, equal, greaterOrEqual, greater, lowerOrEqual, lower
 }{
 }
@@ -332,7 +321,7 @@ enum @registerComparison {
 
 class @registerComparisonCondition extends @conditionExpression {
   @registerExpression mRegisterExpression ;
-  @registerComparison mComparison ;
+  @pic18RegisterComparison mComparison ;
 }
 
 #----------------------------------------------------*
@@ -373,7 +362,7 @@ class @bitTest_in_structured_if_condition extends @conditionExpression {
 
 #----------------------------------------------------*
 
-class @instruction_structured_if extends @piccolo_instruction {
+class @instruction_structured_if extends @pic18PiccoloInstruction {
   @conditionExpression mIfCondition ;
   @instructionList mThenInstructionList ;
   @instructionList mElseInstructionList ;
@@ -390,7 +379,7 @@ list @partList {
 
 #----------------------------------------------------*
 
-class @instruction_do_while extends @piccolo_instruction {
+class @instruction_do_while extends @pic18PiccoloInstruction {
   @instructionList mRepeatedInstructionList ;
   @location mEndOfRepeatedInstructionList ;
   @partList mWhilePartList ;
@@ -446,6 +435,14 @@ list @dataList {
 list @checkpicList {
   @location mErrorLocation ;
   @lstringlist mValueList ;
+}
+
+#----------------------------------------------------------------------------*
+
+map @dataMap {
+  @uint mDataSize ;
+  insert insertKey error message "the '%K' data is already declared" ;
+  search searchKey error message "the '%K' data is not declared" ;
 }
 
 #----------------------------------------------------*

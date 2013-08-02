@@ -3,6 +3,50 @@ import "pic18_metamodel.gSemantics" ;
 
 #----------------------------------------------------*
 
+reader @pic18RegisterComparison mnemonic -> @string outResult :
+  switch selfcopy
+    when notEqual : outResult := "!=" ;
+    when equal    : outResult := "==" ;
+    when greaterOrEqual : outResult := ">=" ;
+    when greater : outResult := ">"  ;
+    when lowerOrEqual : outResult := "<="  ;
+    when lower : outResult := "<" ;
+  end switch ;
+end reader ;
+
+#----------------------------------------------------*
+
+reader @conditional_branch condition -> @string outResult :
+  switch selfcopy
+    when bz   : outResult := "Z" ;
+    when bnz  : outResult := "NZ" ;
+    when bn   : outResult := "N" ;
+    when bnn  : outResult := "NN" ;
+    when bc   : outResult := "C" ;
+    when bnc  : outResult := "NC" ;
+    when bov  : outResult := "OV" ;
+    when bnov : outResult := "NOV" ;
+  end switch ;
+end reader ;
+
+#----------------------------------------------------*
+
+reader @pic18InstructionWithNoOperandKind assemblyCode
+  -> @string outResult
+:
+  switch selfcopy
+  when CLRWDT : outResult := "CLRWDT" ;
+  when DAW : outResult := "DAW" ;
+  when NOP : outResult := "NOP" ;
+  when POP : outResult := "POP" ;
+  when PUSH : outResult := "PUSH" ;
+  when RESET : outResult := "RESET" ;
+  when SLEEP : outResult := "SLEEP" ;
+  end switch ;
+end reader ;
+
+#----------------------------------------------------*
+
 reader @instruction_FDA_base_code mnemonic -> @string outResult :
   switch selfcopy
     when ADDWF : outResult := "ADDWF" ;

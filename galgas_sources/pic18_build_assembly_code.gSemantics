@@ -303,56 +303,11 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @pic18_intermediate_instruction_CLRWDT buildAssemblyCode
+override method @pic18_intermediate_instruction_withNoOperand buildAssemblyCode
   ?!@stringlist ioStringList
   ?!@uint unused ioBccLabelIndex
 :
-  ioStringList += !"  CLRWDT" ;
-end method ;
-
-#----------------------------------------------------*
-
-override method @pic18_intermediate_instruction_DAW buildAssemblyCode
-  ?!@stringlist ioStringList
-  ?!@uint unused ioBccLabelIndex
-:
-  ioStringList += !"  DAW" ;
-end method ;
-
-#----------------------------------------------------*
-
-override method @pic18_intermediate_instruction_NOP buildAssemblyCode
-  ?!@stringlist ioStringList
-  ?!@uint unused ioBccLabelIndex
-:
-  ioStringList += !"  NOP" ;
-end method ;
-
-#----------------------------------------------------*
-
-override method @pic18_intermediate_instruction_POP buildAssemblyCode
-  ?!@stringlist ioStringList
-  ?!@uint unused ioBccLabelIndex
-:
-  ioStringList += !"  POP" ;
-end method ;
-
-#----------------------------------------------------*
-
-override method @pic18_intermediate_instruction_PUSH buildAssemblyCode
-  ?!@stringlist ioStringList
-  ?!@uint unused ioBccLabelIndex
-:
-  ioStringList += !"  PUSH" ;
-end method ;
-
-#----------------------------------------------------*
-
-override method @pic18_intermediate_instruction_RESET buildAssemblyCode
-  ?!@stringlist ioStringList
-  ?!@uint unused ioBccLabelIndex
-:
-  ioStringList += !"  RESET" ;
+  ioStringList += !" " . [mKind assemblyCode] ;
 end method ;
 
 #----------------------------------------------------*
@@ -384,15 +339,6 @@ end method ;
     s .= " 1" ;
   end if ;
   ioStringList += !s ;
-end method ;
-
-#----------------------------------------------------*
-
- override method @pic18_intermediate_instruction_SLEEP buildAssemblyCode
-  ?!@stringlist ioStringList
-  ?!@uint unused ioBccLabelIndex
-:
-  ioStringList += !"  SLEEP" ;
 end method ;
 
 #----------------------------------------------------*

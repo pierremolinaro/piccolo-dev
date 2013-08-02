@@ -270,6 +270,11 @@ class @pic18_intermediate_instruction_FA extends @pic18_intermediate_actualInstr
   @pic18_intermediate_registerExpression mRegisterDescription ;
 }
 
+override
+method @pic18_intermediate_instruction_FA display ?!@string ioListFileContents :
+  ioListFileContents .= [mFAinstruction mnemonic] . " " . [mRegisterDescription mAssemblyString] ;
+end method ;
+
 method @pic18_intermediate_instruction_FA getBaseCode !@uint outBaseCode :
   switch mFAinstruction
   when CLRF   : outBaseCode := 0x6A00 ;
@@ -282,11 +287,6 @@ method @pic18_intermediate_instruction_FA getBaseCode !@uint outBaseCode :
   when SETF   : outBaseCode := 0x6800 ;
   when TSTFSZ : outBaseCode := 0x6600 ;
   end switch ;
-end method ;
-
-override
-method @pic18_intermediate_instruction_FA display ?!@string ioListFileContents :
-  ioListFileContents .= [mFAinstruction mnemonic] . " " . [mRegisterDescription mAssemblyString] ;
 end method ;
 
 override
@@ -386,18 +386,6 @@ class @pic18_intermediate_instruction_conditionalBranch extends @pic18_intermedi
   @lstring mTargetLabel ;
 }
 
-reader @conditional_branch condition -> @string outResult :
-  switch selfcopy
-    when bz   : outResult := "Z" ;
-    when bnz  : outResult := "NZ" ;
-    when bn   : outResult := "N" ;
-    when bnn  : outResult := "NN" ;
-    when bc   : outResult := "C" ;
-    when bnc  : outResult := "NC" ;
-    when bov  : outResult := "OV" ;
-    when bnov : outResult := "NOV" ;
-  end switch ;
-end reader ;
 
 
 override
@@ -455,63 +443,12 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-class @pic18_intermediate_instruction_CLRWDT extends @pic18_intermediate_actualInstruction {
+class @pic18_intermediate_instruction_withNoOperand extends @pic18_intermediate_actualInstruction {
+  @pic18InstructionWithNoOperandKind mKind ;
 }
 
-override
-method @pic18_intermediate_instruction_CLRWDT display ?!@string ioListFileContents :
-  ioListFileContents .= "CLRWDT" ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
-class @pic18_intermediate_instruction_DAW extends @pic18_intermediate_actualInstruction {
-}
-
-override
-method @pic18_intermediate_instruction_DAW display ?!@string ioListFileContents :
-  ioListFileContents .= "DAW" ;
-end method ;
-
-
-#----------------------------------------------------------------------------*
-
-class @pic18_intermediate_instruction_NOP extends @pic18_intermediate_actualInstruction {
-}
-override
-method @pic18_intermediate_instruction_NOP display ?!@string ioListFileContents :
-  ioListFileContents .= "NOP" ;
-end method ;
-
-
-#----------------------------------------------------------------------------*
-
-class @pic18_intermediate_instruction_POP extends @pic18_intermediate_actualInstruction {
-}
-
-override
-method @pic18_intermediate_instruction_POP display ?!@string ioListFileContents :
-  ioListFileContents .= "POP" ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
-class @pic18_intermediate_instruction_PUSH extends @pic18_intermediate_actualInstruction {
-}
-
-override
-method @pic18_intermediate_instruction_PUSH display ?!@string ioListFileContents :
-  ioListFileContents .= "PUSH" ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
-class @pic18_intermediate_instruction_RESET extends @pic18_intermediate_actualInstruction {
-}
-
-override
-method @pic18_intermediate_instruction_RESET display ?!@string ioListFileContents :
-  ioListFileContents .= "RESET" ;
+override method @pic18_intermediate_instruction_withNoOperand display ?!@string ioListFileContents :
+  ioListFileContents .= [mKind assemblyCode] ;
 end method ;
 
 #----------------------------------------------------------------------------*
@@ -547,16 +484,6 @@ method @pic18_intermediate_instruction_RETFIE display ?!@string ioListFileConten
     ioListFileContents .= " FAST" ;
   end if ;
 end method ;
-
-#----------------------------------------------------------------------------*
-
-class @pic18_intermediate_instruction_SLEEP extends @pic18_intermediate_actualInstruction {
-}
-override
-method @pic18_intermediate_instruction_SLEEP display ?!@string ioListFileContents :
-  ioListFileContents .= "SLEEP" ;
-end method ;
-
 
 #----------------------------------------------------------------------------*
 
@@ -813,7 +740,7 @@ end method ;
 class @pic18_intermediate_registerComparisonCondition extends @pic18_intermediate_actualInstruction {
   @pic18_intermediate_registerExpression mRegisterDescription ;
   @lstring mTargetLabel ;
-  @registerComparison mComparison ;
+  @pic18RegisterComparison mComparison ;
   @bool mUsesBra ;
 }
 
@@ -828,16 +755,6 @@ method @pic18_intermediate_registerComparisonCondition usesIntermediateBRA !@boo
   end switch ;
 end method ;
 
-reader @registerComparison mnemonic -> @string outResult :
-  switch selfcopy
-    when notEqual : outResult := "!=" ;
-    when equal    : outResult := "==" ;
-    when greaterOrEqual : outResult := ">=" ;
-    when greater : outResult := ">"  ;
-    when lowerOrEqual : outResult := "<="  ;
-    when lower : outResult := "<" ;
-  end switch ;
-end reader ;
 
 override
 method @pic18_intermediate_registerComparisonCondition display ?!@string ioListFileContents :

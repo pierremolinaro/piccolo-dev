@@ -1,0 +1,295 @@
+semantics ipic18_block_representation :
+import "pic18_metamodel.gSemantics" ;
+
+#----------------------------------------------------------------------------*
+
+abstract class @ipic18SequentialInstruction {
+  @location mInstructionLocation ;
+}
+
+#----------------------------------------------------------------------------*
+
+list @ipic18SequentialInstructionList {
+  @ipic18SequentialInstruction mInstruction ;
+}
+
+#----------------------------------------------------------------------------*
+
+abstract class @ipic18AbstractBlockTerminator {
+}
+
+#----------------------------------------------------------------------------*
+
+struct @ipic18Block {
+  @uint mStartAddress ; # [@uint max] if relocatable
+  @lstring mLabel ;
+  @ipic18SequentialInstructionList mInstructionList ;
+  @ipic18AbstractBlockTerminator mTerminator ;
+}
+
+#----------------------------------------------------------------------------*
+
+list @ipic18BlockList {
+  @ipic18Block mBlock ;
+}
+
+#----------------------------------------------------------------------------*
+
+#!--- Block terminators
+
+#----------------------------------------------------------------------------*
+
+abstract class @ipic18SingleInstructionTerminator extends @ipic18AbstractBlockTerminator {
+}
+
+#----------------------------------------------------------------------------*
+
+class @ipic18ReturnTerminator extends @ipic18SingleInstructionTerminator {
+}
+
+#----------------------------------------------------------------------------*
+
+class @ipic18RetfieTerminator extends @ipic18SingleInstructionTerminator {
+}
+
+#----------------------------------------------------------------------------*
+
+class @ipic18JumpTerminator extends @ipic18SingleInstructionTerminator {
+  @lstring mLabel ;
+}
+
+#----------------------------------------------------------------------------*
+
+class @ipic18ComputedGotoTerminator extends @ipic18AbstractBlockTerminator {
+  @lstringlist mTargetLabels ;
+  @bool mUsesRCALL ;
+}
+
+#----------------------------------------------------------------------------*
+
+class @ipic18ComputedRETLWTerminator extends @ipic18AbstractBlockTerminator {
+  @uintlist mLiteralValues ;
+  @bool mUsesRCALL ;
+}
+
+#----------------------------------------------------------------------------*
+
+enum @conditionalBranchMode {
+  native, ipicNative, ipicBRA, ipicGOTO
+}{
+}
+
+#----------------------------------------------------------------------------*
+
+class @ipic18ConditionalJumpTerminator extends @ipic18AbstractBlockTerminator {
+  @conditionalBranchMode mBranchMode ;
+  @conditional_branch mConditionalBranch ;
+  @ipic18SingleInstructionTerminator mInstructionIfConditionTrue ;
+  @ipic18SingleInstructionTerminator mInstructionIfConditionFalse ;
+}
+
+#----------------------------------------------------------------------------*
+
+class @ipic18ComputedBraTerminator extends @ipic18AbstractBlockTerminator {
+  @lstringlist mTargetLabels ;
+  @bool mUsesRCALL ;
+}
+
+#----------------------------------------------------------------------------*
+
+class @pic18BraCCTerminator extends @ipic18AbstractBlockTerminator {
+  @conditionalBranchMode mBranchMode ;
+  @conditional_branch mConditionalBranch ;
+  @bool mUseBra ;
+  @ipic18SingleInstructionTerminator mInstructionIfConditionTrue ;
+  @ipic18SingleInstructionTerminator mInstructionIfConditionFalse ;
+}
+
+#----------------------------------------------------------------------------*
+
+class @pic18RegisterComparisonTerminator extends @ipic18AbstractBlockTerminator {
+  @ipic18_intermediate_registerExpression mRegisterDescription ;
+  @pic18RegisterComparison mComparison ;
+  @bool mUsesBra ;
+  @ipic18SingleInstructionTerminator mInstructionIfConditionTrue ;
+  @ipic18SingleInstructionTerminator mInstructionIfConditionFalse ;
+}
+
+#----------------------------------------------------------------------------*
+
+class @ipic18IncDecRegisterTerminator extends @ipic18AbstractBlockTerminator {
+  @ipic18_intermediate_registerExpression mRegisterDescription ;
+  @bool mIncrement ;
+  @bool m_W_isDestination ;
+  @bool mBranchIfZero ;
+  @bool mUsesBra ;
+  @ipic18SingleInstructionTerminator mInstructionIfConditionTrue ;
+  @ipic18SingleInstructionTerminator mInstructionIfConditionFalse ;
+}
+
+#----------------------------------------------------------------------------*
+
+class @pic18TestRegisterTerminator extends @ipic18AbstractBlockTerminator {
+  @ipic18_intermediate_registerExpression mRegisterDescription ;
+  @bool mBranchIfZero ;
+  @bool mUsesBra ;
+  @ipic18SingleInstructionTerminator mInstructionIfConditionTrue ;
+  @ipic18SingleInstructionTerminator mInstructionIfConditionFalse ;
+}
+
+#----------------------------------------------------------------------------*
+
+class @pic18BitTestTerminator extends @ipic18AbstractBlockTerminator {
+  @bool mSkipIfSet ;
+  @ipic18_intermediate_registerExpression mRegisterDescription ;
+  @uint mBitNumber ;
+  @ipic18SingleInstructionTerminator mInstructionIfConditionTrue ;
+  @ipic18SingleInstructionTerminator mInstructionIfConditionFalse ;
+}
+
+#----------------------------------------------------------------------------*
+
+#!--- Regular instructions
+
+#----------------------------------------------------------------------------*
+
+class @ipic18InstructionWithNoOperand extends @ipic18SequentialInstruction {
+  @pic18InstructionWithNoOperandKind mKind ;
+}
+
+#----------------------------------------------------------------------------*
+
+struct @ipic18_intermediate_registerExpression {
+  @string mAssemblyString ;
+  @uint mRegisterAddress ; # 12 bit full address
+  @bool mNeedsBSR ;
+}
+
+#----------------------------------------------------------------------------*
+
+class @ipic18_intermediate_instruction_FDA extends @ipic18SequentialInstruction {
+  @instruction_FDA_base_code mInstruction_FDA_base_code ;
+  @ipic18_intermediate_registerExpression mRegisterDescription ;
+  @bool m_W_isDestination ;
+}
+
+#----------------------------------------------------------------------------*
+
+class @ipic18_intermediate_instruction_FA extends @ipic18SequentialInstruction {
+  @FA_instruction_base_code mFAinstruction ;
+  @ipic18_intermediate_registerExpression mRegisterDescription ;
+}
+
+#----------------------------------------------------------------------------*
+
+struct @ipic18_intermediate_registerExpressionWithoutBSRIndication {
+  @string mAssemblyString ;
+  @uint mRegisterAddress ; # 12 bit full address
+}
+
+#----------------------------------------------------------------------------*
+
+class @ipic18_intermediate_instruction_MOVFF extends @ipic18SequentialInstruction {
+  @ipic18_intermediate_registerExpressionWithoutBSRIndication mSourceRegisterDescription ;
+  @ipic18_intermediate_registerExpressionWithoutBSRIndication mDestinationRegisterDescription ;
+}
+
+#----------------------------------------------------------------------------*
+
+class @ipic18_intermediate_instruction_literalOperation extends @ipic18SequentialInstruction {
+  @literal_instruction_opcode mLiteralInstruction ;
+  @uint mLiteralValue ;
+}
+
+#----------------------------------------------------------------------------*
+
+class @ipic18_intermediate_instruction_LFSR extends @ipic18SequentialInstruction {
+  @luint mFSRindex ;
+  @uint mValue ;
+}  
+
+#----------------------------------------------------------------------------*
+
+class @ipic18_intermediate_instruction_FBA extends @ipic18SequentialInstruction {
+  @bit_oriented_op mBitOrientedOp ;
+  @ipic18_intermediate_registerExpression mRegisterDescription ;
+  @uint mBitNumber ;
+}
+
+#----------------------------------------------------------------------------*
+
+class @ipic18_intermediate_JSR extends @ipic18SequentialInstruction {
+  @lstring mTargetLabel ;
+  @jumpInstructionKind mKind ;
+}
+
+#----------------------------------------------------------------------------*
+
+class @ipic18_intermediate_instruction_MOVLB extends @ipic18SequentialInstruction {
+  @luint mBankIndex ;
+}
+
+#----------------------------------------------------------------------------*
+
+class @ipic18_intermediate_instruction_TBLRD extends @ipic18SequentialInstruction {
+  @tableAccessOption mOption ;
+}
+
+#----------------------------------------------------------------------------*
+
+class @ipic18_intermediate_instruction_TBLWT extends @ipic18SequentialInstruction {
+  @tableAccessOption mOption ;
+}
+
+#----------------------------------------------------------------------------*
+
+class @ipic18_intermediate_instruction_MNOP extends @ipic18SequentialInstruction {
+  @luint mOccurrenceFactor ;
+}
+
+#----------------------------------------------------------------------------*
+
+class @ipic18_intermediate_MOV_LABEL_W extends @ipic18SequentialInstruction {
+  @lstring mLabel ;
+  @uint mOffset ;
+  @uint mRightShift ;
+}
+
+#----------------------------------------------------------------------------*
+
+class @ipic18_intermediate_instruction_computed_rcall extends @ipic18SequentialInstruction {
+  @lstringlist mTargetLabels ;
+  @string mEndOfInstructionLabel ;
+  @bool mUsesRCALL ;
+}
+
+#----------------------------------------------------------------------------*
+
+class @ipic18_intermediate_instruction_BitTestSkip extends @ipic18SequentialInstruction {
+  @bool mSkipIfSet ;
+  @ipic18_intermediate_registerExpression mRegisterDescription ;
+  @uint mBitNumber ;
+  @ipic18SequentialInstruction mEmbeddedInstruction ;
+}
+
+#----------------------------------------------------------------------------*
+
+class @ipic18_skip_instruction_FA extends @ipic18SequentialInstruction {
+  @FA_instruction_base_code mFAinstruction ;
+  @ipic18_intermediate_registerExpression mRegisterDescription ;
+  @ipic18SequentialInstruction mEmbeddedInstruction ;
+}
+
+#----------------------------------------------------------------------------*
+
+class @ipic18_skip_instruction_FDA extends @ipic18SequentialInstruction {
+  @instruction_FDA_base_code mInstruction_FDA_base_code ;
+  @ipic18_intermediate_registerExpression mRegisterDescription ;
+  @bool m_W_isDestination ;
+  @ipic18SequentialInstruction mEmbeddedInstruction ;
+}
+
+#----------------------------------------------------------------------------*
+
+end semantics ;
+
