@@ -50,6 +50,7 @@ class @ipic18ReturnTerminator extends @ipic18SingleInstructionTerminator {
 #----------------------------------------------------------------------------*
 
 class @ipic18RetfieTerminator extends @ipic18SingleInstructionTerminator {
+  @bool mFastReturn ;
 }
 
 #----------------------------------------------------------------------------*
@@ -81,11 +82,16 @@ enum @conditionalBranchMode {
 
 #----------------------------------------------------------------------------*
 
-class @ipic18ConditionalJumpTerminator extends @ipic18AbstractBlockTerminator {
-  @conditionalBranchMode mBranchMode ;
-  @conditional_branch mConditionalBranch ;
+abstract class @ipic18AbstractConditionTerminator extends @ipic18AbstractBlockTerminator {
   @ipic18SingleInstructionTerminator mInstructionIfConditionTrue ;
   @ipic18SingleInstructionTerminator mInstructionIfConditionFalse ;
+}
+
+#----------------------------------------------------------------------------*
+
+class @ipic18ConditionalJumpTerminator extends @ipic18AbstractConditionTerminator {
+  @conditionalBranchMode mBranchMode ;
+  @conditional_branch mConditionalBranch ;
 }
 
 #----------------------------------------------------------------------------*
@@ -97,54 +103,44 @@ class @ipic18ComputedBraTerminator extends @ipic18AbstractBlockTerminator {
 
 #----------------------------------------------------------------------------*
 
-class @pic18BraCCTerminator extends @ipic18AbstractBlockTerminator {
+class @pic18BraCCTerminator extends @ipic18AbstractConditionTerminator {
   @conditionalBranchMode mBranchMode ;
   @conditional_branch mConditionalBranch ;
-  @bool mUseBra ;
-  @ipic18SingleInstructionTerminator mInstructionIfConditionTrue ;
-  @ipic18SingleInstructionTerminator mInstructionIfConditionFalse ;
+  @bool mUsesBra ;
 }
 
 #----------------------------------------------------------------------------*
 
-class @pic18RegisterComparisonTerminator extends @ipic18AbstractBlockTerminator {
+class @pic18RegisterComparisonTerminator extends @ipic18AbstractConditionTerminator {
   @ipic18_intermediate_registerExpression mRegisterDescription ;
   @pic18RegisterComparison mComparison ;
   @bool mUsesBra ;
-  @ipic18SingleInstructionTerminator mInstructionIfConditionTrue ;
-  @ipic18SingleInstructionTerminator mInstructionIfConditionFalse ;
 }
 
 #----------------------------------------------------------------------------*
 
-class @ipic18IncDecRegisterTerminator extends @ipic18AbstractBlockTerminator {
+class @ipic18IncDecRegisterTerminator extends @ipic18AbstractConditionTerminator {
   @ipic18_intermediate_registerExpression mRegisterDescription ;
   @bool mIncrement ;
   @bool m_W_isDestination ;
   @bool mBranchIfZero ;
   @bool mUsesBra ;
-  @ipic18SingleInstructionTerminator mInstructionIfConditionTrue ;
-  @ipic18SingleInstructionTerminator mInstructionIfConditionFalse ;
 }
 
 #----------------------------------------------------------------------------*
 
-class @pic18TestRegisterTerminator extends @ipic18AbstractBlockTerminator {
+class @pic18TestRegisterTerminator extends @ipic18AbstractConditionTerminator {
   @ipic18_intermediate_registerExpression mRegisterDescription ;
   @bool mBranchIfZero ;
   @bool mUsesBra ;
-  @ipic18SingleInstructionTerminator mInstructionIfConditionTrue ;
-  @ipic18SingleInstructionTerminator mInstructionIfConditionFalse ;
 }
 
 #----------------------------------------------------------------------------*
 
-class @pic18BitTestTerminator extends @ipic18AbstractBlockTerminator {
+class @pic18BitTestTerminator extends @ipic18AbstractConditionTerminator {
   @bool mSkipIfSet ;
   @ipic18_intermediate_registerExpression mRegisterDescription ;
   @uint mBitNumber ;
-  @ipic18SingleInstructionTerminator mInstructionIfConditionTrue ;
-  @ipic18SingleInstructionTerminator mInstructionIfConditionFalse ;
 }
 
 #----------------------------------------------------------------------------*
@@ -265,28 +261,31 @@ class @ipic18_intermediate_instruction_computed_rcall extends @ipic18SequentialI
 
 #----------------------------------------------------------------------------*
 
-class @ipic18_intermediate_instruction_BitTestSkip extends @ipic18SequentialInstruction {
+abstract class @ipic18_skip_instruction extends @ipic18SequentialInstruction {
+  @ipic18SequentialInstruction mEmbeddedInstruction ;
+}
+
+#----------------------------------------------------------------------------*
+
+class @ipic18_intermediate_instruction_BitTestSkip extends @ipic18_skip_instruction {
   @bool mSkipIfSet ;
   @ipic18_intermediate_registerExpression mRegisterDescription ;
   @uint mBitNumber ;
-  @ipic18SequentialInstruction mEmbeddedInstruction ;
 }
 
 #----------------------------------------------------------------------------*
 
-class @ipic18_skip_instruction_FA extends @ipic18SequentialInstruction {
+class @ipic18_skip_instruction_FA extends @ipic18_skip_instruction {
   @FA_instruction_base_code mFAinstruction ;
   @ipic18_intermediate_registerExpression mRegisterDescription ;
-  @ipic18SequentialInstruction mEmbeddedInstruction ;
 }
 
 #----------------------------------------------------------------------------*
 
-class @ipic18_skip_instruction_FDA extends @ipic18SequentialInstruction {
+class @ipic18_skip_instruction_FDA extends @ipic18_skip_instruction {
   @instruction_FDA_base_code mInstruction_FDA_base_code ;
   @ipic18_intermediate_registerExpression mRegisterDescription ;
   @bool m_W_isDestination ;
-  @ipic18SequentialInstruction mEmbeddedInstruction ;
 }
 
 #----------------------------------------------------------------------------*

@@ -82,6 +82,7 @@ SOURCES += pic18_semantics.cpp
 SOURCES += pic18_bootloader_specification_semantics.cpp
 SOURCES += ipic18_block_representation.cpp
 SOURCES += ipic18_build_block_representation.cpp
+SOURCES += pic18_optimize_block.cpp
 SOURCES += communs.cpp
 SOURCES += ram_sections.cpp
 SOURCES += piccoloDevice_lexique.cpp
