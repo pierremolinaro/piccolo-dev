@@ -541,62 +541,27 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @pic18_intermediate_instruction_CLRWDT generateBinaryCodeAtAddress
+override method @pic18_intermediate_instruction_withNoOperand generateBinaryCodeAtAddress
   ??@pic18_intermediate_symbolTable unused inRoutineSymbolTable
   ?!@uint unused ioAddress
   ?!@emittedCodeList ioCode
 :
-  ioCode += ![@uintlist listWithValue !0x0004] ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
-override method @pic18_intermediate_instruction_DAW generateBinaryCodeAtAddress
-  ??@pic18_intermediate_symbolTable unused inRoutineSymbolTable
-  ?!@uint unused ioAddress
-  ?!@emittedCodeList ioCode
-:
-  ioCode += ![@uintlist listWithValue !0x0007] ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
-override method @pic18_intermediate_instruction_NOP generateBinaryCodeAtAddress
-  ??@pic18_intermediate_symbolTable unused inRoutineSymbolTable
-  ?!@uint unused ioAddress
-  ?!@emittedCodeList ioCode
-:
-  ioCode += ![@uintlist listWithValue !0x0000] ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
-override method @pic18_intermediate_instruction_POP generateBinaryCodeAtAddress
-  ??@pic18_intermediate_symbolTable unused inRoutineSymbolTable
-  ?!@uint unused ioAddress
-  ?!@emittedCodeList ioCode
-:
-  ioCode += ![@uintlist listWithValue !0x0006] ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
-override method @pic18_intermediate_instruction_PUSH generateBinaryCodeAtAddress
-  ??@pic18_intermediate_symbolTable unused inRoutineSymbolTable
-  ?!@uint unused ioAddress
-  ?!@emittedCodeList ioCode
-:
-  ioCode += ![@uintlist listWithValue !0x0005] ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
-override method @pic18_intermediate_instruction_RESET generateBinaryCodeAtAddress
-  ??@pic18_intermediate_symbolTable unused inRoutineSymbolTable
-  ?!@uint unused ioAddress
-  ?!@emittedCodeList ioCode
-:
-  ioCode += ![@uintlist listWithValue !0x00FF] ;
+  switch mKind
+  when CLRWDT :
+    ioCode += ![@uintlist listWithValue !0x0004] ;
+  when DAW :
+    ioCode += ![@uintlist listWithValue !0x0007] ;
+  when NOP :
+    ioCode += ![@uintlist listWithValue !0x0000] ;
+  when POP :
+    ioCode += ![@uintlist listWithValue !0x0006] ;
+  when PUSH :
+    ioCode += ![@uintlist listWithValue !0x0005] ;
+  when RESET :
+    ioCode += ![@uintlist listWithValue !0x00FF] ;
+  when SLEEP :
+    ioCode += ![@uintlist listWithValue !0x0003] ;
+  end switch ;
 end method ;
 
 #----------------------------------------------------------------------------*
@@ -634,16 +599,6 @@ override method @pic18_intermediate_instruction_RETFIE generateBinaryCodeAtAddre
   end if ;
 
   ioCode += ![@uintlist listWithValue !code] ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
-override method @pic18_intermediate_instruction_SLEEP generateBinaryCodeAtAddress
-  ??@pic18_intermediate_symbolTable unused inRoutineSymbolTable
-  ?!@uint unused ioAddress
-  ?!@emittedCodeList ioCode
-:
-  ioCode += ![@uintlist listWithValue !0x0003] ;
 end method ;
 
 #----------------------------------------------------------------------------*

@@ -16,7 +16,7 @@ graph @routineCallGraph (@stringlist) {
 
 #---------------------------------------------------------------------------*
 
-method @piccolo_instruction enterCallInGraph
+method @pic18PiccoloInstruction enterCallInGraph
   ?@lstring unused inRoutineName
   ?!@routineCallGraph unused ioRoutineCallGraph
 :
@@ -90,7 +90,7 @@ override method @instruction_IF_SEMI_COLON enterCallInGraph
   ?@lstring inRoutineName
   ?!@routineCallGraph ioRoutineCallGraph
 :
-  [mInstruction enterCallInGraph !inRoutineName !?ioRoutineCallGraph] ;
+  [mEmbeddedInstruction enterCallInGraph !inRoutineName !?ioRoutineCallGraph] ;
 end method ;
 
 #---------------------------------------------------------------------------*
@@ -529,7 +529,7 @@ map @routineMinMaxMap {
 
 #----------------------------------------------------------------------------*
 
-method @piccolo_instruction searchForLoopInstruction
+method @pic18PiccoloInstruction searchForLoopInstruction
   ??@routineHasLoopMap unused inRoutineHasLoopMap
   !@bool outHasLoopInstruction
 :

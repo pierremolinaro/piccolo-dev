@@ -37,8 +37,8 @@ override method @pic18_intermediate_pseudo_ORG defineLabelAtAddress
   ?!@uint ioAddress
 :
   if (ioAddress > mOrigin) then
-    error here :"internal error: current address ("
-     . [ioAddress hexString] . ") is greater than origin (" . [mOrigin hexString] . ")" ;
+    error here :"internal error on ORG directive: current address ("
+     . [ioAddress hexString] . ") is greater than required value (" . [mOrigin hexString] . ")" ;
   end if ;
   ioAddress := mOrigin ;
 end method ;

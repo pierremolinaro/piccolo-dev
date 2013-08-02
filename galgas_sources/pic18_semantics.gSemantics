@@ -7,6 +7,7 @@ import "piccolo_config.gSemantics" ;
 import "ram_sections.gSemantics" ;
 import "pic18_grammar.gGrammar" ;
 import "pic18_metrics_analysis.gSemantics" ;
+import "ipic18_build_block_representation.gSemantics" ;
 
 #----------------------------------------------------------------------------*
 #                                                                            *
@@ -268,10 +269,28 @@ routine pic18_analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName 
       RAMsize := mLastAddressPlusOne ;
     end if ;
   end foreach ;
+#-------------------------------- Build block representation
+  build_ipic18_block_representation_list
+    ![[[piccoloDeviceModel mRomSize] uint] sint]
+    ![RAMsize sint]
+    !bootloaderRoutineDeclarationListForBootloaderImplementation # Empty for regular program
+    !userRoutineDeclarationListForBootloaderImplementation # Empty for regular program
+    !bootloaderReservedROMsize
+    !bootloaderRoutineDeclarationListForUserProgramImplementation
+    !userRoutineDeclarationListForUserProgramImplementation
+    !accessBankSplitOffset
+    !registerTable
+    !dataMap
+    !inPiccoloModel
+    !hasHighInterrupt
+    !hasLowInterrupt
+    !dataLengthConstantMap
+    ?@ipic18BlockList generatedBlockList
+    !?listFileContents
+;
 #-------------------------------- Build IPIC Assembly Instruction List
   @pic18_intermediate_instructionList generatedInstructionList ;
   build_pic18_intermediate_assembly_instruction_list
-    ![inPiccoloModel mProgramKind]
     ![[[piccoloDeviceModel mRomSize] uint] sint]
     ![RAMsize sint]
     !bootloaderRoutineDeclarationListForBootloaderImplementation # Empty for regular program
