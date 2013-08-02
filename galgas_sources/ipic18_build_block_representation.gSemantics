@@ -1,6 +1,5 @@
 semantics ipic18_build_block_representation :
-import "ipic18_block_representation.gSemantics" ;
-import "pic18_mnemonics.gSemantics" ;
+import "pic18_optimize_block.gSemantics" ;
 import "piccoloDevice_semantics.gSemantics" ;
 import "intermediate_generic.gSemantics" ;
 import "piccolo_options.gOption" ;
@@ -1154,10 +1153,10 @@ override method @instruction_JUMPCC analyze
   const @ipic18AbstractBlockTerminator terminator := ioCurrentBlock->mTerminator ;
 #--- Set terminator of current block
   ioCurrentBlock->mTerminator := [@ipic18ConditionalJumpTerminator new
-    !mode
-    !mConditionalBranch
     ![@ipic18JumpTerminator new !mTargetLabel]
     ![@ipic18JumpTerminator new !label0]
+    !mode
+    !mConditionalBranch
   ] ;
 #--- Create a new block with saved terminator
   ioCurrentBlock := [@ipic18Block new
@@ -1298,10 +1297,10 @@ override method @instruction_IF_BitTest analyze
 #--- Generate instruction
   ioCurrentBlock->mInstructionList += ![@ipic18_intermediate_instruction_BitTestSkip new
     !mInstructionLocation
+    !embeddedInstruction
     !mSkipIfSet
     !IPICregisterDescription
     !bitNumber
-    !embeddedInstruction
   ] ;
 end method ;
 
@@ -1355,9 +1354,9 @@ override method @instruction_IF_FA_SEMI_COLON analyze
 #--- Generate instruction
   ioCurrentBlock->mInstructionList += ![@ipic18_skip_instruction_FA new
     !mInstructionLocation
+    !embeddedInstruction
     !baseCode
     !IPICregisterDescription
-    !embeddedInstruction
   ] ;
 end method ;
 
@@ -1416,10 +1415,10 @@ override method @instruction_IF_IncDec analyze
 #--- Generate instruction
   ioCurrentBlock->mInstructionList += ![@ipic18_skip_instruction_FDA new
     !mInstructionLocation
+    !embeddedInstruction
     !baseCode
     !IPICregisterDescription
     !m_W_isDestination
-    !embeddedInstruction
   ] ;
 end method ;
 
@@ -1535,10 +1534,6 @@ end method ;
 
 #----------------------------------------------------*
 
-#  @instructionList mRepeatedInstructionList ;
-#  @location mEndOfRepeatedInstructionList ;
-#  @partList mWhilePartList ;
-
 override method @instruction_do_while analyze
   ??@uint inAccessBankSplitOffset
   ?!@ipic18BlockList ioGeneratedBlockList
@@ -1565,7 +1560,7 @@ override method @instruction_do_while analyze
   ioCurrentBlock->mTerminator := [@ipic18JumpTerminator new !startLabel] ;
   ioGeneratedBlockList += !ioCurrentBlock ;
 #--- Create an new block, for repeated instruction list
-  @ipic18Block repeatedInstructionBlock [new
+  @ipic18Block branchBlock [new
     ![@uint max] # relocatable
     !startLabel
     ![@ipic18SequentialInstructionList emptyList]
@@ -1581,7 +1576,7 @@ override method @instruction_do_while analyze
     !inDataMap
     !inConstantMap
     !?ioLocalLabelIndex
-    !?repeatedInstructionBlock
+    !?branchBlock
     !?ioListFileContents
     !?repeatedBranchFinalBank
     !inShouldPreserveBSR
@@ -1594,7 +1589,6 @@ override method @instruction_do_while analyze
   if not repeatedInstructionsContinuesInSequence then
     error mEndOfRepeatedInstructionList:"This branch makes the next code unreachable";
   end if ;
-  ioGeneratedBlockList += !repeatedInstructionBlock ;
 #--- While branches
   foreach mWhilePartList do
   #--- Labels
@@ -1615,9 +1609,9 @@ override method @instruction_do_while analyze
       !conditionFalseLabel
       ?@ipic18AbstractBlockTerminator testTerminator
     ] ;
-    ioCurrentBlock->mTerminator := testTerminator ;
-    ioGeneratedBlockList += !ioCurrentBlock ;
-    ioCurrentBlock := [@ipic18Block new
+    branchBlock->mTerminator := testTerminator ;
+    ioGeneratedBlockList += !branchBlock ;
+    branchBlock := [@ipic18Block new
       ![@uint max] # relocatable
       !conditionTrueLabel
       ![@ipic18SequentialInstructionList emptyList]
@@ -1633,7 +1627,7 @@ override method @instruction_do_while analyze
       !inDataMap
       !inConstantMap
       !?ioLocalLabelIndex
-      !?repeatedInstructionBlock
+      !?branchBlock
       !?ioListFileContents
       !?branchFinalBank
       !inShouldPreserveBSR
@@ -1646,8 +1640,8 @@ override method @instruction_do_while analyze
     if not branchInstructionsContinuesInSequence then
       error mEndOfPartLocation:"This branch makes the next code unreachable";
     end if ;
-    ioGeneratedBlockList += !ioCurrentBlock ;
-    ioCurrentBlock := [@ipic18Block new
+    ioGeneratedBlockList += !branchBlock ;
+    branchBlock := [@ipic18Block new
       ![@uint max] # relocatable
       !conditionFalseLabel
       ![@ipic18SequentialInstructionList emptyList]
@@ -1704,11 +1698,11 @@ override method @bcc_in_structured_if_condition analyzeCondition
   end if ;
 #--- Save terminator of current block
   outCurrentBlockTerminator := [@pic18BraCCTerminator new
+    ![@ipic18JumpTerminator new !inConditionTrueLabel]
+    ![@ipic18JumpTerminator new !inConditionFalseLabel]
     ![@conditionalBranchMode native]
     !condition
     !true # By Default, uses BRA
-    ![@ipic18JumpTerminator new !inConditionTrueLabel]
-    ![@ipic18JumpTerminator new !inConditionFalseLabel]
   ] ;
 end method ;
 
@@ -1742,11 +1736,11 @@ override method @registerComparisonCondition analyzeCondition
   ] ;
 #--- Save terminator of current block
   outCurrentBlockTerminator := [@pic18RegisterComparisonTerminator new
+    ![@ipic18JumpTerminator new !inConditionTrueLabel]
+    ![@ipic18JumpTerminator new !inConditionFalseLabel]
     !IPICregisterDescription
     !comparison
     !true # By Default, uses BRA
-    ![@ipic18JumpTerminator new !inConditionTrueLabel]
-    ![@ipic18JumpTerminator new !inConditionFalseLabel]
   ] ;
 end method ;
 
@@ -1773,13 +1767,13 @@ override method @incDecRegisterInCondition analyzeCondition
   ] ;
 #--- Save terminator of current block
   outCurrentBlockTerminator := [@ipic18IncDecRegisterTerminator new
+    ![@ipic18JumpTerminator new !inConditionTrueLabel]
+    ![@ipic18JumpTerminator new !inConditionFalseLabel]
     !IPICregisterDescription
     !mIncrement
     !m_W_isDestination
     !mBranchIfZero ^ inComplementaryBranch
     !true # By Default, uses BRA
-    ![@ipic18JumpTerminator new !inConditionTrueLabel]
-    ![@ipic18JumpTerminator new !inConditionFalseLabel]
   ] ;
 end method ;
 
@@ -1806,11 +1800,11 @@ override method @registerTestCondition analyzeCondition
   ] ;
 #--- Save terminator of current block
   outCurrentBlockTerminator := [@pic18TestRegisterTerminator new
+    ![@ipic18JumpTerminator new !inConditionTrueLabel]
+    ![@ipic18JumpTerminator new !inConditionFalseLabel]
     !IPICregisterDescription
     !mBranchIfZero ^ inComplementaryBranch
     !true # By Default, uses BRA
-    ![@ipic18JumpTerminator new !inConditionTrueLabel]
-    ![@ipic18JumpTerminator new !inConditionFalseLabel]
   ] ;
 end method ;
 
@@ -1841,11 +1835,11 @@ override method @bitTest_in_structured_if_condition analyzeCondition
   ] ;
 #--- Save terminator of current block
   outCurrentBlockTerminator := [@pic18BitTestTerminator new
+    ![@ipic18JumpTerminator new !inConditionTrueLabel]
+    ![@ipic18JumpTerminator new !inConditionFalseLabel]
     !mBTFSSinstruction ^ inComplementaryBranch
     !IPICregisterDescription
     !bitNumber
-    ![@ipic18JumpTerminator new !inConditionTrueLabel]
-    ![@ipic18JumpTerminator new !inConditionFalseLabel]
   ] ;
 #  ioGeneratedInstructionList += ![@pic18_intermediate_instruction_BitTestSkip new
 #    !inInstructionLocation
@@ -2267,160 +2261,6 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-#!--- Terminator display
-
-#----------------------------------------------------------------------------*
-
-abstract method @ipic18AbstractBlockTerminator display
-  ?!@string ioListFileContents
-;
-
-#----------------------------------------------------------------------------*
-
-override method @ipic18ReturnTerminator display
-  ?!@string ioListFileContents
-:
-  ioListFileContents .= "RETURN" ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
-override method @ipic18RetfieTerminator display
-  ?!@string ioListFileContents
-:
-  ioListFileContents .= "RETFIE" ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
-override method @ipic18JumpTerminator display
-  ?!@string ioListFileContents
-:
-  ioListFileContents .= "JUMP " . mLabel ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
-override method @ipic18ComputedGotoTerminator display ?!@string ioListFileContents :
-  ioListFileContents .= "COMPUTED GOTO " ;
-  if mUsesRCALL then
-    ioListFileContents .= " (uses RCALL)" ;
-  else
-    ioListFileContents .= " (uses CALL)" ;
-  end if ;
-  foreach mTargetLabels do
-    ioListFileContents .= "\n    " . mValue ;
-  end foreach ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
-override method @ipic18ComputedRETLWTerminator display ?!@string ioListFileContents :
-  ioListFileContents .= "COMPUTED RETLW " ;
-  if mUsesRCALL then
-    ioListFileContents .= " (uses RCALL)" ;
-  else
-    ioListFileContents .= " (uses CALL)" ;
-  end if ;
-  foreach mLiteralValues do
-    ioListFileContents .= "\n    " . [mValue hexString] ;
-  end foreach ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
-override method @ipic18ConditionalJumpTerminator display ?!@string ioListFileContents :
-  ioListFileContents .= [mConditionalBranch condition] ;
-  ioListFileContents .= " ? " ;
-  [mInstructionIfConditionTrue display !?ioListFileContents] ;
-  ioListFileContents .= " : " ;
-  [mInstructionIfConditionFalse display !?ioListFileContents] ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
-override method @ipic18ComputedBraTerminator display ?!@string ioListFileContents :
-  ioListFileContents .= "COMPUTED BRA " ;
-  if mUsesRCALL then
-    ioListFileContents .= " (uses RCALL)" ;
-  else
-    ioListFileContents .= " (uses CALL)" ;
-  end if ;
-  foreach mTargetLabels do
-    ioListFileContents .= "\n    " . mValue ;
-  end foreach ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
-override method @pic18BraCCTerminator display ?!@string ioListFileContents :
-  ioListFileContents .= [mConditionalBranch condition] . " ? " ;
-  [mInstructionIfConditionTrue display !?ioListFileContents] ;
-  ioListFileContents .= " : " ;
-  [mInstructionIfConditionFalse display !?ioListFileContents] ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
-override method @pic18RegisterComparisonTerminator display ?!@string ioListFileContents :
-  ioListFileContents .= [mRegisterDescription mAssemblyString] . " " . [mComparison mnemonic] . " ? " ;
-  [mInstructionIfConditionTrue display !?ioListFileContents] ;
-  ioListFileContents .= " : " ;
-  [mInstructionIfConditionFalse display !?ioListFileContents] ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
-override method @ipic18IncDecRegisterTerminator display ?!@string ioListFileContents :
-  if mIncrement then
-    ioListFileContents .= "INCF " ;
-  else
-    ioListFileContents .= "DECF " ;
-  end if ;
-  ioListFileContents .= [mRegisterDescription mAssemblyString] ;
-  if m_W_isDestination then
-    ioListFileContents .= ", W " ;
-  end if ;
-  if mBranchIfZero then
-    ioListFileContents .= "Z" ;
-  else
-    ioListFileContents .= "NZ" ;
-  end if ;
-  ioListFileContents .= " ? " ;
-  [mInstructionIfConditionTrue display !?ioListFileContents] ;
-  ioListFileContents .= " : " ;
-  [mInstructionIfConditionFalse display !?ioListFileContents] ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
-override method @pic18TestRegisterTerminator display ?!@string ioListFileContents :
-  ioListFileContents .= [mRegisterDescription mAssemblyString] ;
-  if mBranchIfZero then
-    ioListFileContents .= " Z" ;
-  else
-    ioListFileContents .= " NZ" ;
-  end if ;
-  ioListFileContents .= " ? " ;
-  [mInstructionIfConditionTrue display !?ioListFileContents] ;
-  ioListFileContents .= " : " ;
-  [mInstructionIfConditionFalse display !?ioListFileContents] ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
-override method @pic18BitTestTerminator display ?!@string ioListFileContents :
-  if mSkipIfSet then
-    ioListFileContents .= "!" ;
-  end if ;
-  ioListFileContents .= [mRegisterDescription mAssemblyString] . "." . [mBitNumber string] . " ? " ;
-  [mInstructionIfConditionTrue display !?ioListFileContents] ;
-  ioListFileContents .= " : " ;
-  [mInstructionIfConditionFalse display !?ioListFileContents] ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
 #!--- Routines
 
 #----------------------------------------------------------------------------*
@@ -2687,9 +2527,98 @@ routine build_ipic18_block_representation_list
   drop tempBootloaderRoutineDeclarationList ;
 #-------------------------------- Generate low interrupt routine (if any)
   @uint localLabelIndex := 0 ;
-
+  if inHasLowInterrupt then
+    foreach [inPiccoloModel mInterruptDefinitionList] do
+      if [mInterruptName string] == "low" then
+        @ipic18Block currentBlock [new
+          ![@uint max] # Relocatable
+          ![@lstring new !"_low_interrupt" !mInterruptName->location]
+          ![@ipic18SequentialInstructionList emptyList]
+          ![@ipic18RetfieTerminator new !mFastReturn]
+        ] ;
+        @uint currentBank [max] ; # No bank
+        analyzeInstructionList
+          !mInstructionList
+          !?outGeneratedBlockList
+          !inAccessBankSplitOffset
+          !routineMap
+          !inRegisterTable
+          !inDataMap
+          !constantMap
+          !?localLabelIndex
+          !?currentBlock
+          !?ioListFileContents
+          !?currentBank
+          !not mFastReturn # Preserve BSR if not "fast"
+          ??@bool continuesInSequence
+          ![@routineKind interruptRoutine]
+        ;
+        if not continuesInSequence then
+          error mEndOfInterruptLocation:"execution cannot reach the end of the interrupt routine" ;
+        end if ;
+      #--- Enter last block
+        outGeneratedBlockList += !currentBlock ;
+      end if ;
+    end foreach ;
+  end if ;
 #-------------------------------- Generate high interrupt routine (if any)
-
+  if inHasHighInterrupt then
+    foreach [inPiccoloModel mInterruptDefinitionList] do
+      if [mInterruptName string] == "high" then
+        @ipic18Block currentBlock [new
+          ![@uint max] # Relocatable
+          ![@lstring new !"_high_interrupt" !mInterruptName->location]
+          ![@ipic18SequentialInstructionList emptyList]
+          ![@ipic18RetfieTerminator new !true]
+        ] ;
+        @uint currentBank [max] ; # No bank
+        analyzeInstructionList
+          !mInstructionList
+          !?outGeneratedBlockList
+          !inAccessBankSplitOffset
+          !routineMap
+          !inRegisterTable
+          !inDataMap
+          !constantMap
+          !?localLabelIndex
+          !?currentBlock
+          !?ioListFileContents
+          !?currentBank
+          !not mFastReturn # Preserve BSR if not "fast"
+          ??@bool continuesInSequence
+          ![@routineKind interruptRoutine]
+        ;
+        if not continuesInSequence then
+          error mEndOfInterruptLocation:"execution cannot reach the end of the interrupt routine" ;
+        end if ;
+      #--- Enter last block
+        outGeneratedBlockList += !currentBlock ;
+      end if ;
+#        @bool continuesInSequence ;
+#        @uint currentBank [max] ; # No bank
+#        handleInstructionList
+#          !mInstructionList
+#          !inAccessBankSplitOffset
+#          !routineMap
+#          !inRegisterTable
+#          !inDataMap
+#          !constantMap
+#          !?localLabelIndex
+#          !?outGeneratedInstructionList
+#          !?generationOptimizationMessages
+#          !?currentBank
+#          !not mFastReturn # Preserve BSR if not "fast"
+#          ?continuesInSequence
+#          ![@routineKind interruptRoutine]
+#        ;
+#        if not continuesInSequence then
+#          error mEndOfInterruptLocation:"execution cannot reach the end of the interrupt routine" ;
+#         end if ;
+#      #--- Add a REFFIE instruction
+#        outGeneratedInstructionList += ![@pic18_intermediate_instruction_RETFIE new !here !true] ;
+#      end if ;
+    end foreach ;
+  end if ;
 #-------------------------------- Generate routines
   foreach inPiccoloModel->mRoutineDefinitionList do
     @uint currentBank := [mRequiredBank uint] ;
@@ -2731,9 +2660,12 @@ routine build_ipic18_block_representation_list
       error mRoutineName:"execution should not reach the end of a \"noreturn\" routine" ;
     end if ;
   end foreach ;
-
 #----------------------------------------------------------- Display block list
   displayBlockList !?ioListFileContents !outGeneratedBlockList ;
+#----------------------------------------------------------- Optimize
+  if [@uint errorCount] == 0 then
+    ipic18OptimizeBlocks !?ioListFileContents !?outGeneratedBlockList ;
+  end if ;
 end routine ;
 
 #----------------------------------------------------------------------------*
