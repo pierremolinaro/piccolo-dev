@@ -271,6 +271,7 @@ routine pic18_analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName 
   end foreach ;
 #-------------------------------- Build block representation
   build_ipic18_block_representation_list
+    !inSourceFileName
     ![[[piccoloDeviceModel mRomSize] uint] sint]
     ![RAMsize sint]
     !bootloaderRoutineDeclarationListForBootloaderImplementation # Empty for regular program
