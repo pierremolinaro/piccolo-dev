@@ -107,18 +107,34 @@ class @ipic18ComputedBraTerminator extends @ipic18AbstractBlockTerminator {
   @bool mUsesRCALL ;
 }
 
+#----------------------------------------------------*
+
+enum @ipc18ConditionalBranch {
+  bz, bn, bc, bov
+}{
+}
+
 #----------------------------------------------------------------------------*
 
 class @pic18BraCCTerminator extends @ipic18AbstractConditionTerminator {
   @conditionalBranchMode mBranchMode ;
-  @conditional_branch mConditionalBranch ;
+  @ipc18ConditionalBranch mConditionalBranch ;
+}
+
+#----------------------------------------------------*
+
+enum @ipic18RegisterComparison {
+  registerEqualsToW,
+  registerGreaterThanW,
+  registerLowerThanW
+}{
 }
 
 #----------------------------------------------------------------------------*
 
 class @pic18RegisterComparisonTerminator extends @ipic18AbstractConditionTerminator {
   @ipic18_intermediate_registerExpression mRegisterDescription ;
-  @pic18RegisterComparison mComparison ;
+  @ipic18RegisterComparison mComparison ;
 }
 
 #----------------------------------------------------------------------------*
@@ -285,6 +301,19 @@ class @ipic18_skip_instruction_FDA extends @ipic18_skip_instruction {
   @instruction_FDA_base_code mInstruction_FDA_base_code ;
   @ipic18_intermediate_registerExpression mRegisterDescription ;
   @bool m_W_isDestination ;
+}
+
+#----------------------------------------------------------------------------*
+
+#!--- Optimization Map
+
+#----------------------------------------------------------------------------*
+
+map @symbolTableForBlockOptimization {
+  @uint mDefinitionBlockIndex ;
+  insert insertKey error message "the '%K' label is already declared in %L" ;
+  search searchKey error message "the '%K' label is not declared" ;
+  remove removeKey error message "the '%K' label is not declared" ;
 }
 
 #----------------------------------------------------------------------------*

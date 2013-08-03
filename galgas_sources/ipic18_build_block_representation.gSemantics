@@ -1,7 +1,8 @@
 semantics ipic18_build_block_representation :
-import "pic18_optimize_block.gSemantics" ;
+import "ipic18_optimize_block.gSemantics" ;
 import "piccoloDevice_semantics.gSemantics" ;
 import "intermediate_generic.gSemantics" ;
+import "pic18_optimize_block_ordering.gSemantics" ;
 import "piccolo_options.gOption" ;
 
 #----------------------------------------------------------------------------*
@@ -1452,7 +1453,6 @@ override method @instruction_structured_if analyze
     !ioCurrentBank
     !inRegisterTable
     !?ioLocalLabelIndex
-    !false
     !mInstructionLocation
     !?ioGeneratedBlockList
     !conditionTrueLabel
@@ -1602,7 +1602,6 @@ override method @instruction_do_while analyze
       !ioCurrentBank
       !inRegisterTable
       !?ioLocalLabelIndex
-      !false
       !mInstructionLocation
       !?ioGeneratedBlockList
       !conditionTrueLabel
@@ -1669,7 +1668,6 @@ abstract method @conditionExpression analyzeCondition
   ??@uint unused inCurrentBank
   ??@registerTable unused inRegisterTable
   ?!@uint ioLocalLabelIndex
-  ??@bool inComplementaryBranch
   ??@location inInstructionLocation
   ?!@ipic18BlockList ioGeneratedBlockList
   ??@lstring inConditionTrueLabel
@@ -1684,26 +1682,56 @@ override method @bcc_in_structured_if_condition analyzeCondition
   ??@uint unused inCurrentBank
   ??@registerTable unused inRegisterTable
   ?!@uint unused ioLocalLabelIndex
-  ??@bool inComplementaryBranch
   ??@location unused inInstructionLocation
   ?!@ipic18BlockList unused ioGeneratedBlockList
   ??@lstring inConditionTrueLabel
   ??@lstring inConditionFalseLabel
   !@ipic18AbstractBlockTerminator outCurrentBlockTerminator
 :
-  @conditional_branch condition ;
-  if inComplementaryBranch then
-    getComplementaryBcc !mCondition ?condition ;
-  else
-    condition := mCondition ;
-  end if ;
+  @ipc18ConditionalBranch ipicCondition ;
+  @bool complementaryCondition ;
+  switch mCondition
+  when bz :
+    ipicCondition := [@ipc18ConditionalBranch bz] ;
+    complementaryCondition := false ;
+  when bnz :
+    ipicCondition := [@ipc18ConditionalBranch bz] ;
+    complementaryCondition := true ;
+  when bn :
+    ipicCondition := [@ipc18ConditionalBranch bn] ;
+    complementaryCondition := false ;
+  when bnn :
+    ipicCondition := [@ipc18ConditionalBranch bn] ;
+    complementaryCondition := true ;
+  when bc :
+    ipicCondition := [@ipc18ConditionalBranch bc] ;
+    complementaryCondition := false ;
+  when bnc :
+    ipicCondition := [@ipc18ConditionalBranch bc] ;
+    complementaryCondition := true ;
+  when bov :
+    ipicCondition := [@ipc18ConditionalBranch bov] ;
+    complementaryCondition := false ;
+  when bnov :
+    ipicCondition := [@ipc18ConditionalBranch bov] ;
+    complementaryCondition := true ;
+  end switch ;
 #--- Save terminator of current block
-  outCurrentBlockTerminator := [@pic18BraCCTerminator new
-    ![@ipic18JumpTerminator new !inConditionTrueLabel]
-    ![@ipic18JumpTerminator new !inConditionFalseLabel]
-    ![@conditionalBranchMode native]
-    !condition
-  ] ;
+  if complementaryCondition then
+    outCurrentBlockTerminator := [@pic18BraCCTerminator new
+      ![@ipic18JumpTerminator new !inConditionFalseLabel]
+      ![@ipic18JumpTerminator new !inConditionTrueLabel]
+      ![@conditionalBranchMode native]
+      !ipicCondition
+    ] ;
+  else
+    outCurrentBlockTerminator := [@pic18BraCCTerminator new
+      ![@ipic18JumpTerminator new !inConditionTrueLabel]
+      ![@ipic18JumpTerminator new !inConditionFalseLabel]
+      ![@conditionalBranchMode native]
+      !ipicCondition
+    ] ;
+  end if ;
 end method ;
 
 #----------------------------------------------------*
@@ -1713,20 +1741,12 @@ override method @registerComparisonCondition analyzeCondition
   ??@uint inCurrentBank
   ??@registerTable inRegisterTable
   ?!@uint unused ioLocalLabelIndex
-  ??@bool inComplementaryBranch
   ??@location unused inInstructionLocation
   ?!@ipic18BlockList unused ioGeneratedBlockList
   ??@lstring inConditionTrueLabel
   ??@lstring inConditionFalseLabel
   !@ipic18AbstractBlockTerminator outCurrentBlockTerminator
 :
-  @pic18RegisterComparison comparison ;
-  if inComplementaryBranch then
-    registerComparisonComplementary !mComparison ?comparison ;
-  else
-    comparison := mComparison ;
-  end if ;
-#---
   [mRegisterExpression analyzeRegisterExpression
     !inAccessBankSplitOffset
     !inCurrentBank
@@ -1734,13 +1754,45 @@ override method @registerComparisonCondition analyzeCondition
     ??@ipic18_intermediate_registerExpression IPICregisterDescription
     ?*
   ] ;
+#--- Handle comparison
+  @ipic18RegisterComparison ipicComparison ;
+  @bool complementaryBranch ;
+  switch mComparison
+  when equal :
+    ipicComparison := [@ipic18RegisterComparison registerEqualsToW] ;
+    complementaryBranch := false ;
+  when greater :
+    ipicComparison := [@ipic18RegisterComparison registerGreaterThanW] ;
+    complementaryBranch := false ;
+  when lower :
+    ipicComparison := [@ipic18RegisterComparison registerLowerThanW] ;
+    complementaryBranch := false ;
+  when greaterOrEqual :
+    ipicComparison := [@ipic18RegisterComparison registerLowerThanW] ;
+    complementaryBranch := true ;
+  when lowerOrEqual :
+    ipicComparison := [@ipic18RegisterComparison registerGreaterThanW] ;
+    complementaryBranch := true ;
+  when notEqual :
+    ipicComparison := [@ipic18RegisterComparison registerEqualsToW] ;
+    complementaryBranch := true ;
+  end switch ;
 #--- Save terminator of current block
-  outCurrentBlockTerminator := [@pic18RegisterComparisonTerminator new
-    ![@ipic18JumpTerminator new !inConditionTrueLabel]
-    ![@ipic18JumpTerminator new !inConditionFalseLabel]
-    !IPICregisterDescription
-    !comparison
-  ] ;
+  if complementaryBranch then
+    outCurrentBlockTerminator := [@pic18RegisterComparisonTerminator new
+      ![@ipic18JumpTerminator new !inConditionFalseLabel]
+      ![@ipic18JumpTerminator new !inConditionTrueLabel]
+      !IPICregisterDescription
+      !ipicComparison
+    ] ;
+  else
+    outCurrentBlockTerminator := [@pic18RegisterComparisonTerminator new
+      ![@ipic18JumpTerminator new !inConditionTrueLabel]
+      ![@ipic18JumpTerminator new !inConditionFalseLabel]
+      !IPICregisterDescription
+      !ipicComparison
+    ] ;
+  end if ;
 end method ;
 
 #----------------------------------------------------*
@@ -1750,7 +1802,6 @@ override method @incDecRegisterInCondition analyzeCondition
   ??@uint inCurrentBank
   ??@registerTable inRegisterTable
   ?!@uint unused ioLocalLabelIndex
-  ??@bool inComplementaryBranch
   ??@location unused inInstructionLocation
   ?!@ipic18BlockList unused ioGeneratedBlockList
   ??@lstring inConditionTrueLabel
@@ -1765,7 +1816,7 @@ override method @incDecRegisterInCondition analyzeCondition
     ?*
   ] ;
 #--- Save terminator of current block
-  if mBranchIfZero ^ inComplementaryBranch then
+  if mBranchIfZero then
     outCurrentBlockTerminator := [@ipic18IncDecRegisterTerminator new
       ![@ipic18JumpTerminator new !inConditionTrueLabel]
       ![@ipic18JumpTerminator new !inConditionFalseLabel]
@@ -1791,7 +1842,6 @@ override method @registerTestCondition analyzeCondition
   ??@uint inCurrentBank
   ??@registerTable inRegisterTable
   ?!@uint unused ioLocalLabelIndex
-  ??@bool inComplementaryBranch
   ??@location unused inInstructionLocation
   ?!@ipic18BlockList unused ioGeneratedBlockList
   ??@lstring inConditionTrueLabel
@@ -1806,7 +1856,7 @@ override method @registerTestCondition analyzeCondition
     ?*
   ] ;
 #--- Save terminator of current block
-  if mBranchIfZero ^ inComplementaryBranch then
+  if mBranchIfZero then
     outCurrentBlockTerminator := [@pic18TestRegisterTerminator new
       ![@ipic18JumpTerminator new !inConditionTrueLabel]
       ![@ipic18JumpTerminator new !inConditionFalseLabel]
@@ -1828,7 +1878,6 @@ override method @bitTest_in_structured_if_condition analyzeCondition
   ??@uint inCurrentBank
   ??@registerTable inRegisterTable
   ?!@uint unused ioLocalLabelIndex
-  ??@bool inComplementaryBranch
   ??@location unused inInstructionLocation
   ?!@ipic18BlockList unused ioGeneratedBlockList
   ??@lstring inConditionTrueLabel
@@ -1847,7 +1896,7 @@ override method @bitTest_in_structured_if_condition analyzeCondition
     ??@uint bitNumber
   ] ;
 #--- Save terminator of current block
-  if mBTFSSinstruction ^ inComplementaryBranch then
+  if mBTFSSinstruction then
     outCurrentBlockTerminator := [@pic18BitTestTerminator new
       ![@ipic18JumpTerminator new !inConditionTrueLabel]
       ![@ipic18JumpTerminator new !inConditionFalseLabel]
@@ -1871,7 +1920,6 @@ override method @negateCondition analyzeCondition
   ??@uint inCurrentBank
   ??@registerTable inRegisterTable
   ?!@uint ioLocalLabelIndex
-  ??@bool inComplementaryBranch
   ??@location inInstructionLocation
   ?!@ipic18BlockList ioGeneratedBlockList
   ??@lstring inConditionTrueLabel
@@ -1883,7 +1931,6 @@ override method @negateCondition analyzeCondition
     !inCurrentBank
     !inRegisterTable
     !?ioLocalLabelIndex
-    !inComplementaryBranch
     !inInstructionLocation
     !?ioGeneratedBlockList
     !inConditionFalseLabel
@@ -1899,7 +1946,6 @@ override method @andCondition analyzeCondition
   ??@uint inCurrentBank
   ??@registerTable inRegisterTable
   ?!@uint ioLocalLabelIndex
-  ??@bool inComplementaryBranch
   ??@location inInstructionLocation
   ?!@ipic18BlockList ioGeneratedBlockList
   ??@lstring inConditionTrueLabel
@@ -1915,7 +1961,6 @@ override method @andCondition analyzeCondition
     !inCurrentBank
     !inRegisterTable
     !?ioLocalLabelIndex
-    !inComplementaryBranch
     !inInstructionLocation
     !?ioGeneratedBlockList
     !conditionTrueLabel
@@ -1928,7 +1973,6 @@ override method @andCondition analyzeCondition
     !inCurrentBank
     !inRegisterTable
     !?ioLocalLabelIndex
-    !inComplementaryBranch
     !inInstructionLocation
     !?ioGeneratedBlockList
     !inConditionTrueLabel
@@ -1942,184 +1986,6 @@ override method @andCondition analyzeCondition
     ![@ipic18SequentialInstructionList emptyList]
     !secondTestBlockTerminator
   ] ;
-#  if inComplementaryBranch then
-#    [mLeftExpression analyzeCondition
-#      !inAccessBankSplitOffset
-#      !inCurrentBank
-#      !inRegisterTable
-#      !?ioLocalLabelIndex
-#      !true
-#      !inInstructionLocation
-#      !inTargetLabel
-#      !?ioGeneratedInstructionList
-#      !?ioListFileContents
-#    ] ;
-#    [mRightExpression analyzeCondition
-#      !inAccessBankSplitOffset
-#      !inCurrentBank
-#      !inRegisterTable
-#      !?ioLocalLabelIndex
-#      !true
-#      !inInstructionLocation
-#      !inTargetLabel
-#      !?ioGeneratedInstructionList
-#      !?ioListFileContents
-#    ] ;
-#  else
-#    @string label0 := "_label_" . [ioLocalLabelIndex string] ; ioLocalLabelIndex ++ ;
-#    [mLeftExpression analyzeCondition
-#      !inAccessBankSplitOffset
-#      !inCurrentBank
-#      !inRegisterTable
-#      !?ioLocalLabelIndex
-#      !true
-#      !inInstructionLocation
-#      !label0
-#      !?ioGeneratedInstructionList
-#      !?ioListFileContents
-#    ] ;
-#    [mRightExpression analyzeCondition
-#      !inAccessBankSplitOffset
-#      !inCurrentBank
-#      !inRegisterTable
-#      !?ioLocalLabelIndex
-#      !false
-#      !inInstructionLocation
-#      !inTargetLabel
-#      !?ioGeneratedInstructionList
-#      !?ioListFileContents
-#    ] ;
-#    ioGeneratedInstructionList += ![@pic18_intermediate_pseudo_LABEL new ![@lstring new !label0 !inInstructionLocation] !true] ;
-#  end if ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
-#!--- Instruction count for condition
-
-#----------------------------------------------------*
-
-abstract method @conditionExpression instructionCountForCondition
-  ??@bool inComplementaryBranch
-  !@uint outInstructionCount
-;
-
-#----------------------------------------------------*
-
-override method @bcc_in_structured_if_condition instructionCountForCondition
-  ??@bool unused inComplementaryBranch
-  !@uint outInstructionCount
-:
-  outInstructionCount := 2 ;
-end method ;
-
-#----------------------------------------------------*
-
-local routine registerComparisonComplementary
-  ??@pic18RegisterComparison inComparison
-  !@pic18RegisterComparison outComparison
-:
-  switch inComparison
-    when notEqual : outComparison := [@pic18RegisterComparison equal] ;
-    when equal : outComparison := [@pic18RegisterComparison notEqual] ;
-    when greaterOrEqual : outComparison := [@pic18RegisterComparison lower] ;
-    when greater : outComparison := [@pic18RegisterComparison lowerOrEqual] ;
-    when lowerOrEqual : outComparison := [@pic18RegisterComparison greater] ;
-    when lower : outComparison := [@pic18RegisterComparison greaterOrEqual] ;
-  end switch ;
-end routine ;
-
-#----------------------------------------------------*
-
-local routine registerComparisonInstructionCount
-  ??@pic18RegisterComparison inComparison
-  !@uint outInstructionCount
-:
-  switch inComparison
-    when notEqual       : outInstructionCount := 2 ;
-    when equal          : outInstructionCount := 3 ;
-    when greaterOrEqual : outInstructionCount := 2 ;
-    when greater        : outInstructionCount := 3 ;
-    when lowerOrEqual   : outInstructionCount := 2 ;
-    when lower          : outInstructionCount := 3 ;
-  end switch ;
-end routine ;
-
-#----------------------------------------------------*
-
-override method @registerComparisonCondition instructionCountForCondition
-  ??@bool inComplementaryBranch
-  !@uint outInstructionCount
-:
-  @pic18RegisterComparison comparison ;
-  if inComplementaryBranch then
-    registerComparisonComplementary !mComparison ?comparison ;
-  else
-    comparison := mComparison ;
-  end if ;
-  registerComparisonInstructionCount !comparison ?outInstructionCount ;
-end method ;
-
-#----------------------------------------------------*
-
-override method @incDecRegisterInCondition instructionCountForCondition
-  ??@bool unused inComplementaryBranch
-  !@uint outInstructionCount
-:
-  outInstructionCount := 2 ;
-end method ;
-
-#----------------------------------------------------*
-
-override method @registerTestCondition instructionCountForCondition
-  ??@bool inComplementaryBranch
-  !@uint outInstructionCount
-:
-  if mBranchIfZero ^ inComplementaryBranch then
-    outInstructionCount := 3 ;
-  else
-    outInstructionCount := 2 ;
-  end if ;
-end method ;
-
-#----------------------------------------------------*
-
-override method @negateCondition instructionCountForCondition
-  ??@bool inComplementaryBranch
-  !@uint outInstructionCount
-:
-  [mCondition instructionCountForCondition
-    !not inComplementaryBranch
-    ?outInstructionCount
-  ] ;
-end method ;
-
-#----------------------------------------------------*
-
-override method @andCondition instructionCountForCondition
-  ??@bool inComplementaryBranch
-  !@uint outInstructionCount
-:
-  @uint countLeft ;
-  [mLeftExpression instructionCountForCondition
-    !inComplementaryBranch
-    ?countLeft
-  ] ;
-  @uint countRight ;
-  [mLeftExpression instructionCountForCondition
-    !inComplementaryBranch
-    ?countRight
-  ] ;
-  outInstructionCount := countLeft + countRight ;
-end method ;
-
-#----------------------------------------------------*
-
-override method @bitTest_in_structured_if_condition instructionCountForCondition
-  ??@bool unused inComplementaryBranch
-  !@uint outInstructionCount
-:
-  outInstructionCount := 2 ;
 end method ;
 
 #----------------------------------------------------------------------------*
@@ -2360,6 +2226,7 @@ end routine ;
 #----------------------------------------------------------------------------*
 
 routine build_ipic18_block_representation_list
+  ??@string inSourceFileName
   ??@sint inROMSize
   ??@sint inRAMSize
   ??@routineDeclarationList inBootloaderRoutineDeclarationListForBootloaderImplementation
@@ -2670,6 +2537,15 @@ routine build_ipic18_block_representation_list
   if [@uint errorCount] == 0 then
     ipic18OptimizeBlocks !?ioListFileContents !?outGeneratedBlockList ;
     displayBlockList !"OPTIMIZED INTERMEDIATE BLOCK REPRESENTATION" !?ioListFileContents !outGeneratedBlockList ;
+  end if ;
+#----------------------------------------------------------- Optimize block ordering
+  if [@uint errorCount] == 0 then
+    ipic18OptimizeBlockOrdering
+      !inSourceFileName
+      !?ioListFileContents
+      !?outGeneratedBlockList
+    ;
+    displayBlockList !"ORDERED OPTIMIZED INTERMEDIATE BLOCK REPRESENTATION" !?ioListFileContents !outGeneratedBlockList ;
   end if ;
 end routine ;
 

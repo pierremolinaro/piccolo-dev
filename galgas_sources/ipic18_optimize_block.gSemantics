@@ -1,4 +1,4 @@
-semantics pic18_optimize_block :
+semantics ipic18_optimize_block :
 import "ipic18_block_representation.gSemantics" ;
 import "pic18_mnemonics.gSemantics" ;
 
@@ -102,7 +102,13 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override method @pic18BraCCTerminator display ?!@string ioListFileContents :
-  ioListFileContents .= [mConditionalBranch condition] . " ? " ;
+  switch mConditionalBranch
+  when bz : ioListFileContents .= "BZ" ;
+  when bn : ioListFileContents .= "BN" ;
+  when bc : ioListFileContents .= "BC" ;
+  when bov : ioListFileContents .= "BOV" ;
+  end switch ;
+  ioListFileContents .= " ? " ;
   [mInstructionIfConditionTrue display !?ioListFileContents] ;
   ioListFileContents .= " : " ;
   [mInstructionIfConditionFalse display !?ioListFileContents] ;
@@ -111,7 +117,16 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override method @pic18RegisterComparisonTerminator display ?!@string ioListFileContents :
-  ioListFileContents .= [mRegisterDescription mAssemblyString] . " " . [mComparison mnemonic] . " ? " ;
+  ioListFileContents .= [mRegisterDescription mAssemblyString] . " " ;
+  switch mComparison
+  when registerEqualsToW :
+    ioListFileContents .= "==" ;
+  when registerGreaterThanW :
+    ioListFileContents .= ">" ;
+  when registerLowerThanW :
+    ioListFileContents .= "<" ;
+  end switch ;
+  ioListFileContents .= " W ? " ;
   [mInstructionIfConditionTrue display !?ioListFileContents] ;
   ioListFileContents .= " : " ;
   [mInstructionIfConditionFalse display !?ioListFileContents] ;
@@ -153,19 +168,6 @@ override method @pic18BitTestTerminator display ?!@string ioListFileContents :
   ioListFileContents .= " : " ;
   [mInstructionIfConditionFalse display !?ioListFileContents] ;
 end method ;
-
-#----------------------------------------------------------------------------*
-
-#!--- Optimization Map
-
-#----------------------------------------------------------------------------*
-
-map @symbolTableForBlockOptimization {
-  @uint mDefinitionBlockIndex ;
-  insert insertKey error message "the '%K' label is already declared in %L" ;
-  search searchKey error message "the '%K' label is not declared" ;
-  remove removeKey error message "the '%K' label is not declared" ;
-}
 
 #----------------------------------------------------------------------------*
 
@@ -780,9 +782,7 @@ routine ipic18OptimizeBlocks
   #-------------------------------- Build label map
     @symbolTableForBlockOptimization symbolTable [emptyMap] ;
     foreach ioGeneratedBlockList index blockIndex do
-      if mBlock->mLabel->string != "" then
-        [!?symbolTable insertKey !mBlock->mLabel !blockIndex] ;
-      end if ;
+      [!?symbolTable insertKey !mBlock->mLabel !blockIndex] ;
     end foreach ;
   #-------------------------------- Optimization loop
     @ipic18BlockList optimizedBlockList [emptyList] ;
