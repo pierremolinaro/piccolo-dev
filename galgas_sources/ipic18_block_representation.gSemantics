@@ -49,6 +49,12 @@ class @ipic18ReturnTerminator extends @ipic18SingleInstructionTerminator {
 
 #----------------------------------------------------------------------------*
 
+class @ipic18RetlwTerminator extends @ipic18SingleInstructionTerminator {
+  @uint mLiteralValue ;
+}
+
+#----------------------------------------------------------------------------*
+
 class @ipic18RetfieTerminator extends @ipic18SingleInstructionTerminator {
   @bool mFastReturn ;
 }
@@ -106,7 +112,6 @@ class @ipic18ComputedBraTerminator extends @ipic18AbstractBlockTerminator {
 class @pic18BraCCTerminator extends @ipic18AbstractConditionTerminator {
   @conditionalBranchMode mBranchMode ;
   @conditional_branch mConditionalBranch ;
-  @bool mUsesBra ;
 }
 
 #----------------------------------------------------------------------------*
@@ -114,7 +119,6 @@ class @pic18BraCCTerminator extends @ipic18AbstractConditionTerminator {
 class @pic18RegisterComparisonTerminator extends @ipic18AbstractConditionTerminator {
   @ipic18_intermediate_registerExpression mRegisterDescription ;
   @pic18RegisterComparison mComparison ;
-  @bool mUsesBra ;
 }
 
 #----------------------------------------------------------------------------*
@@ -123,22 +127,17 @@ class @ipic18IncDecRegisterTerminator extends @ipic18AbstractConditionTerminator
   @ipic18_intermediate_registerExpression mRegisterDescription ;
   @bool mIncrement ;
   @bool m_W_isDestination ;
-  @bool mBranchIfZero ;
-  @bool mUsesBra ;
 }
 
 #----------------------------------------------------------------------------*
 
 class @pic18TestRegisterTerminator extends @ipic18AbstractConditionTerminator {
   @ipic18_intermediate_registerExpression mRegisterDescription ;
-  @bool mBranchIfZero ;
-  @bool mUsesBra ;
 }
 
 #----------------------------------------------------------------------------*
 
 class @pic18BitTestTerminator extends @ipic18AbstractConditionTerminator {
-  @bool mSkipIfSet ;
   @ipic18_intermediate_registerExpression mRegisterDescription ;
   @uint mBitNumber ;
 }
