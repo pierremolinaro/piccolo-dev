@@ -6,6 +6,7 @@ import "ipic18_optimize_block_ordering.gSemantics" ;
 import "ipic18_relatives_resolution.gSemantics" ;
 import "ipic18_display_block_list.gSemantics" ;
 import "piccolo_options.gOption" ;
+import "ipic18_code_generation.gSemantics" ;
 
 #----------------------------------------------------------------------------*
 
@@ -1302,7 +1303,7 @@ override method @instruction_IF_BitTest analyze
     error [mEmbeddedInstruction mInstructionLocation] : "this instruction does not preserve bank setting" ;
   end if ;
 #--- Generate instruction
-  ioCurrentBlock->mInstructionList += ![@ipic18_intermediate_instruction_BitTestSkip new
+  ioCurrentBlock->mInstructionList += ![@ipic18_skip_instruction_BitTestSkip new
     !mInstructionLocation
     !embeddedInstruction
     !mSkipIfSet
@@ -2068,7 +2069,6 @@ routine build_ipic18_block_representation_list
   ??@bool inHasHighInterrupt
   ??@bool inHasLowInterrupt
   ??@constantMap inDataLengthConstantMap
-  !@ipic18BlockList outGeneratedBlockList
   ?!@string ioListFileContents
 :
 #-------------------------------- Build routine map
@@ -2129,10 +2129,10 @@ routine build_ipic18_block_representation_list
     end if ;
   end if ;
 #-------------------------------- Generate bootloader entry points for user program
-  outGeneratedBlockList := [@ipic18BlockList emptyList] ;
+  @ipic18BlockList generatedBlockList [emptyList] ;
   @uint entryPoint := 0x04 ;
   foreach inBootloaderRoutineDeclarationListForUserProgramImplementation do
-    outGeneratedBlockList += ![@ipic18Block new
+    generatedBlockList += ![@ipic18Block new
       !entryPoint
       !mRoutineName
       ![@ipic18SequentialInstructionList emptyList]
@@ -2148,7 +2148,7 @@ routine build_ipic18_block_representation_list
 #-------------------------------- Generate user program entry points for user program
   entryPoint := [inBootloaderReservedROMsize uint] ;
   foreach inUserRoutineDeclarationListForUserProgramImplementation do
-    outGeneratedBlockList += ![@ipic18Block new
+    generatedBlockList += ![@ipic18Block new
       !entryPoint
       !["_entry_user_" . [entryPoint xString] nowhere]
       ![@ipic18SequentialInstructionList emptyList]
@@ -2158,7 +2158,7 @@ routine build_ipic18_block_representation_list
   end foreach ;
 #-------------------------------- At zero, generate 'jump main' block
   if inPiccoloModel->mProgramKind != [@programKind userProgram] then
-    outGeneratedBlockList += ![@ipic18Block new
+    generatedBlockList += ![@ipic18Block new
       !0
       !["_entry_main" nowhere]
       ![@ipic18SequentialInstructionList emptyList]
@@ -2169,7 +2169,7 @@ routine build_ipic18_block_representation_list
   @routineDeclarationList tempBootloaderRoutineDeclarationList := inBootloaderRoutineDeclarationListForBootloaderImplementation ;
   if [tempBootloaderRoutineDeclarationList length] > 0 then
     [!?tempBootloaderRoutineDeclarationList popFirst ?@lstring routineName ?* ?* ?* ?*] ;
-    outGeneratedBlockList += ![@ipic18Block new
+    generatedBlockList += ![@ipic18Block new
       !0x04
       !["_entry_bootloader_04" nowhere]
       ![@ipic18SequentialInstructionList emptyList]
@@ -2178,7 +2178,7 @@ routine build_ipic18_block_representation_list
   end if ;
 #-------------------------------- At 0x08, generate 'bra _high_interrupt' instruction, if fast interrupt is defined
   if inHasHighInterrupt then
-    outGeneratedBlockList += ![@ipic18Block new
+    generatedBlockList += ![@ipic18Block new
       !0x08
       !["_entry_high_interrupt" nowhere]
       ![@ipic18SequentialInstructionList emptyList]
@@ -2191,7 +2191,7 @@ routine build_ipic18_block_representation_list
   while ([tempBootloaderRoutineDeclarationList length] > 0) & (entryPoint < 0x18) 
   do
     [!?tempBootloaderRoutineDeclarationList popFirst ?@lstring routineName ?* ?* ?* ?*] ;
-    outGeneratedBlockList += ![@ipic18Block new
+    generatedBlockList += ![@ipic18Block new
       !entryPoint
       !["_entry_bootloader_" . [entryPoint xString] nowhere]
       ![@ipic18SequentialInstructionList emptyList]
@@ -2201,7 +2201,7 @@ routine build_ipic18_block_representation_list
   end loop ;
 #-------------------------------- Generate JUMP to low interrupt (if any)
   if inHasLowInterrupt then
-    outGeneratedBlockList += ![@ipic18Block new
+    generatedBlockList += ![@ipic18Block new
       !0x18
       !["_entry_low_interrupt" nowhere]
       ![@ipic18SequentialInstructionList emptyList]
@@ -2211,7 +2211,7 @@ routine build_ipic18_block_representation_list
 #-------------------------------- Generate entry points for remaining bootloader routines
   entryPoint := 0x1C ;
   foreach tempBootloaderRoutineDeclarationList do
-    outGeneratedBlockList += ![@ipic18Block new
+    generatedBlockList += ![@ipic18Block new
       !entryPoint
       !["_entry_bootloader_" . [entryPoint xString] nowhere]
       ![@ipic18SequentialInstructionList emptyList]
@@ -2234,7 +2234,7 @@ routine build_ipic18_block_representation_list
         @uint currentBank [max] ; # No bank
         analyzeInstructionList
           !mInstructionList
-          !?outGeneratedBlockList
+          !?generatedBlockList
           !inAccessBankSplitOffset
           !routineMap
           !inRegisterTable
@@ -2252,7 +2252,7 @@ routine build_ipic18_block_representation_list
           error mEndOfInterruptLocation:"execution cannot reach the end of the interrupt routine" ;
         end if ;
       #--- Enter last block
-        outGeneratedBlockList += !currentBlock ;
+        generatedBlockList += !currentBlock ;
       end if ;
     end foreach ;
   end if ;
@@ -2269,7 +2269,7 @@ routine build_ipic18_block_representation_list
         @uint currentBank [max] ; # No bank
         analyzeInstructionList
           !mInstructionList
-          !?outGeneratedBlockList
+          !?generatedBlockList
           !inAccessBankSplitOffset
           !routineMap
           !inRegisterTable
@@ -2287,7 +2287,7 @@ routine build_ipic18_block_representation_list
           error mEndOfInterruptLocation:"execution cannot reach the end of the interrupt routine" ;
         end if ;
       #--- Enter last block
-        outGeneratedBlockList += !currentBlock ;
+        generatedBlockList += !currentBlock ;
       end if ;
     end foreach ;
   end if ;
@@ -2308,7 +2308,7 @@ routine build_ipic18_block_representation_list
     ] ;
     analyzeInstructionList
       !mInstructionList
-      !?outGeneratedBlockList
+      !?generatedBlockList
       !inAccessBankSplitOffset
       !routineMap
       !inRegisterTable
@@ -2323,7 +2323,7 @@ routine build_ipic18_block_representation_list
       !routineKind
     ;
   #--- Enter last block
-    outGeneratedBlockList += !currentBlock ;
+    generatedBlockList += !currentBlock ;
   #---
     if (not mIsNoReturn) & ([mReturnedBank uint] != [@uint max]) & (currentBank != [mReturnedBank uint]) then
       error mRoutineName:"execution will not set BSR to " . [[mReturnedBank uint] string] ;
@@ -2385,7 +2385,7 @@ routine build_ipic18_block_representation_list
     ![@ipic18SequentialInstructionList listWithValue !ADDWF_WREG]
     ![@ipic18JumpTerminator new ![@location nowhere] !["_computed_goto_2" nowhere] ![@jumpInstructionKind ipicRelative]]
   ] ;
-  outGeneratedBlockList += !goto4Block ;
+  generatedBlockList += !goto4Block ;
 #--- computed_goto2
   @ipic18SequentialInstructionList goto2InstructionList [emptyList] ;
   goto2InstructionList += !ADDWF_WREG ;
@@ -2420,12 +2420,12 @@ routine build_ipic18_block_representation_list
     !goto2InstructionList
     ![@ipic18ReturnTerminator new ![@location nowhere]]
   ] ;
-  outGeneratedBlockList += !goto2Block ;
+  generatedBlockList += !goto2Block ;
 #-------------------------------- Generate default user routines
   entryPoint := [inBootloaderReservedROMsize uint] ;
   foreach inUserRoutineDeclarationListForBootloaderImplementation do
     if mIsNoReturn then
-      outGeneratedBlockList += ![@ipic18Block new
+      generatedBlockList += ![@ipic18Block new
         !entryPoint
         !mRoutineName
         ![@ipic18SequentialInstructionList emptyList]
@@ -2436,7 +2436,7 @@ routine build_ipic18_block_representation_list
       if [mReturnedBank uint] != [@uint max] then
         instructionList += ![@ipic18_intermediate_instruction_MOVLB new !here !mReturnedBank] ;
       end if ;
-      outGeneratedBlockList += ![@ipic18Block new
+      generatedBlockList += ![@ipic18Block new
         !entryPoint
         !mRoutineName
         !instructionList
@@ -2446,25 +2446,33 @@ routine build_ipic18_block_representation_list
     entryPoint := entryPoint + 4 ;
   end foreach ;
 #----------------------------------------------------------- Display block list
-  displayBlockList !"INTERMEDIATE BLOCK REPRESENTATION" !?ioListFileContents !outGeneratedBlockList ;
+  displayBlockList !"INTERMEDIATE BLOCK REPRESENTATION" !?ioListFileContents !generatedBlockList ;
 #----------------------------------------------------------- Optimize
   if ([@uint errorCount] == 0) & [option piccolo_options.performOptimizations value] then
-    ipic18OptimizeBlocks !?ioListFileContents !?outGeneratedBlockList ;
-    displayBlockList !"OPTIMIZED INTERMEDIATE BLOCK REPRESENTATION" !?ioListFileContents !outGeneratedBlockList ;
+    ipic18OptimizeBlocks !?ioListFileContents !?generatedBlockList ;
+    displayBlockList !"OPTIMIZED INTERMEDIATE BLOCK REPRESENTATION" !?ioListFileContents !generatedBlockList ;
   end if ;
 #----------------------------------------------------------- Optimize block ordering
   if ([@uint errorCount] == 0) & [option piccolo_options.performOptimizations value] then
     ipic18OptimizeBlockOrdering
       !inSourceFileName
       !?ioListFileContents
-      !?outGeneratedBlockList
+      !?generatedBlockList
     ;
   end if ;
 #----------------------------------------------------------- relative branch and jump resolution
   if [@uint errorCount] == 0 then
     ipic18RelativesResolution
       !?ioListFileContents
-      !?outGeneratedBlockList
+      !?generatedBlockList
+    ;
+  end if ;
+#----------------------------------------------------------- Generate code
+  if [@uint errorCount] == 0 then
+    ipic18GenerateCode
+      !inSourceFileName
+      !?ioListFileContents
+      !generatedBlockList
     ;
   end if ;
 end routine ;

@@ -1,156 +1,6 @@
 semantics ipic18_display_block_list :
 import "ipic18_block_representation.gSemantics" ;
-import "pic18_mnemonics.gSemantics" ;
-
-#----------------------------------------------------------------------------*
-
-#!--- Intermediate instruction display
-
-#----------------------------------------------------------------------------*
-
-abstract method @ipic18SequentialInstruction display
-  ?!@string ioListFileContents
-;
-
-#----------------------------------------------------------------------------*
-
-override method @ipic18InstructionWithNoOperand display
-  ?!@string ioListFileContents
-:
-  ioListFileContents .= [mKind assemblyCode] ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
-override method @ipic18_intermediate_instruction_FDA display
-  ?!@string ioListFileContents
-:
-  ioListFileContents .= [mInstruction_FDA_base_code mnemonic] . " " . [mRegisterDescription mAssemblyString] ;
-  if m_W_isDestination & [mRegisterDescription mNeedsBSR] then
-    ioListFileContents .= ", W, BSR_ACCESS" ;
-  elsif [mRegisterDescription mNeedsBSR] then
-    ioListFileContents .= ", F, BSR_ACCESS" ;
-  elsif m_W_isDestination then
-    ioListFileContents .= ", W" ;
-  else
-    ioListFileContents .= ", F" ;
-  end if ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
-override method @ipic18_intermediate_instruction_FA display ?!@string ioListFileContents :
-  ioListFileContents .= [mFAinstruction mnemonic] . " " . [mRegisterDescription mAssemblyString] ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
-override method @ipic18_intermediate_instruction_MOVFF display ?!@string ioListFileContents :
-  ioListFileContents .= "MOVFF " . [mSourceRegisterDescription mAssemblyString]
-  . ", " . [mDestinationRegisterDescription mAssemblyString] ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
-override method @ipic18_intermediate_instruction_literalOperation display ?!@string ioListFileContents :
-  ioListFileContents .= [mLiteralInstruction mnemonic] . " " . [mLiteralValue hexString] ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
-override method @ipic18_intermediate_instruction_LFSR display ?!@string ioListFileContents :
-  ioListFileContents .= "LFSR " . [[mFSRindex uint] string] . ", " . [mValue hexString] ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
-override method @ipic18_intermediate_instruction_FBA display ?!@string ioListFileContents :
-  ioListFileContents .= [mBitOrientedOp mnemonic] . " " . [mRegisterDescription mAssemblyString] . ", " . [mBitNumber string] ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
-override method @ipic18_intermediate_JSR display ?!@string ioListFileContents :
-  switch mKind
-    when ipicRelative : ioListFileContents .= "JSR " . mTargetLabel ;
-    when relative     : ioListFileContents .= "RCALL " . mTargetLabel ;
-    when absolute     : ioListFileContents .= "CALL " . mTargetLabel ;
-  end switch ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
-override method @ipic18_intermediate_instruction_MOVLB display ?!@string ioListFileContents :
-  ioListFileContents .= "MOVLB " . [[mBankIndex uint] string] ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
-override method @ipic18_intermediate_instruction_TBLRD display ?!@string ioListFileContents :
-  ioListFileContents .= "TBLRD " . [mOption mnemonic] ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
-override method @ipic18_intermediate_instruction_TBLWT display ?!@string ioListFileContents :
-  ioListFileContents .= "TBLWT " . [mOption mnemonic] ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
-override method @ipic18_intermediate_instruction_MNOP display ?!@string ioListFileContents :
-  ioListFileContents .= "MNOP " . [mOccurrenceFactor uint] ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
-override method @ipic18_intermediate_MOV_LABEL_W display ?!@string ioListFileContents :
-  ioListFileContents .= "MOVLW ((" . mLabel . " + " . mOffset . ") >> " . mRightShift . ") & 0xFF"  ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
-override method @ipic18_intermediate_instruction_computed_rcall display ?!@string ioListFileContents :
-  ioListFileContents .= "COMPUTED RCALL " ;
-  if mUsesRCALL then
-    ioListFileContents .= "(uses RCALL)" ;
-  else
-    ioListFileContents .= "(uses CALL)" ;
-  end if ;
-  foreach mTargetLabels do
-    ioListFileContents .= "\n    " . mValue ;
-  end foreach ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
-override method @ipic18_intermediate_instruction_BitTestSkip display ?!@string ioListFileContents :
-  if mSkipIfSet then
-    ioListFileContents .= "!" ;
-  end if ;
-  ioListFileContents .= [mRegisterDescription mAssemblyString] . "." . [mBitNumber string]
-  . " ?\n    " ;
-  [mEmbeddedInstruction display !?ioListFileContents] ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
-override method @ipic18_skip_instruction_FA display ?!@string ioListFileContents :
-  ioListFileContents .= [mFAinstruction mnemonic] . " " . [mRegisterDescription mAssemblyString]
-  . " ?\n    " ;
-  [mEmbeddedInstruction display !?ioListFileContents] ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
-override method @ipic18_skip_instruction_FDA display ?!@string ioListFileContents :
-  ioListFileContents .= [mInstruction_FDA_base_code mnemonic] . " " . [mRegisterDescription mAssemblyString] ;
-  if m_W_isDestination then
-    ioListFileContents .= ", W" ;
-  end if ;
-  ioListFileContents .= " ?\n    " ;
-  [mEmbeddedInstruction display !?ioListFileContents] ;
-end method ;
+import "ipic18_regular_instructions.gSemantics" ;
 
 #----------------------------------------------------------------------------*
 
@@ -378,9 +228,10 @@ method @ipic18Block display
   ioListFileContents .= ":\n" ;
 #--- Instruction list
   foreach mInstructionList do
-    ioListFileContents .= "  " ;
-    [mInstruction display !?ioListFileContents] ;
-    ioListFileContents .= "\n" ;
+    const @stringlist d := [mInstruction instructionDisplay] ;
+    foreach d do 
+      ioListFileContents .= "  " . mValue . "\n" ;
+    end foreach ;
   end foreach ;
 #--- Terminator
   ioListFileContents .= "  " ;

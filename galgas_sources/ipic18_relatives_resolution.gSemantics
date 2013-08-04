@@ -1,63 +1,5 @@
 semantics ipic18_relatives_resolution :
-import "ipic18_block_representation.gSemantics" ;
-
-#----------------------------------------------------------------------------*
-
-#!--- @symbolTableForRelativesResolution
-
-#----------------------------------------------------------------------------*
-
-map @symbolTableForRelativesResolution {
-  @uint mLabelAddress ;
-  insert insertKey error message "the '%K' label is already declared in %L" ;
-  search searchKey error message "the '%K' label is not declared" ;
-}
-
-#----------------------------------------------------------------------------*
-
-#!--- Instruction size
-
-#----------------------------------------------------------------------------*
-
-reader @ipic18SequentialInstruction instructionSize
-  -> @uint outSize
-:
-  outSize := 1 ;
-end reader ;
-
-#----------------------------------------------------------------------------*
-
-override reader @ipic18_intermediate_instruction_MOVFF instructionSize
-  -> @uint outSize
-:
-  outSize := 2 ;
-end reader ;
-
-#----------------------------------------------------------------------------*
-
-override reader @ipic18_intermediate_JSR instructionSize
-  -> @uint outSize
-:
-  switch mKind
-  when ipicRelative, relative :
-    outSize := 1 ;
-  when absolute :
-    outSize := 2 ;
-  end switch ;
-end reader ;
-
-#----------------------------------------------------------------------------*
-
-override reader @ipic18_intermediate_instruction_computed_rcall instructionSize
-  -> @uint outSize
-:
-  if mUsesRCALL then
-    outSize := 1 ;
-  else
-    outSize := 2 ;
-  end if ;
-  outSize := outSize + 2 * [mTargetLabels length] - 1 ;
-end reader ;
+import "ipic18_regular_instructions.gSemantics" ;
 
 #----------------------------------------------------------------------------*
 
@@ -174,24 +116,6 @@ override reader @ipic18ComputedRETLWTerminator terminatorSize
   end if ;
   outSize := outSize + [mLiteralValues length] ;
 end reader ;
-
-#----------------------------------------------------------------------------*
-
-#!--- Check displacement
-
-#----------------------------------------------------------------------------*
-
-routine checkBRA_RCALL
-  ??@symbolTableForRelativesResolution inSymbolTable
-  ??@lstring inTargetLabel
-  ??@uint inCurrentAddress
-  !@bool outDisplacementOK
-  !@sint outDisplacement
-:
-  [inSymbolTable searchKey !inTargetLabel ??@uint targetAddress] ;
-  outDisplacement := [targetAddress sint] - 1S - [inCurrentAddress sint] ;
-  outDisplacementOK :=  (outDisplacement < 1024S) & (outDisplacement > - 1024S) ;
-end routine ;
 
 #----------------------------------------------------------------------------*
 
@@ -488,83 +412,6 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-#!--- Check relative resolution : instruction
-
-#----------------------------------------------------------------------------*
-
-method @ipic18SequentialInstruction checkRelativesResolution
-  ??@uint unused inAddress
-  ??@string unused inBlockLabel
-  ??@symbolTableForRelativesResolution unused inSymbolTable
-  ?!@uint unused ioConversionCount
-  ?!@string unused ioListFileContents
-  !@ipic18SequentialInstruction outModifiedInstruction
-:
-  outModifiedInstruction := selfcopy ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
-override method @ipic18_intermediate_JSR checkRelativesResolution
-  ??@uint inAddress
-  ??@string inBlockLabel
-  ??@symbolTableForRelativesResolution inSymbolTable
-  ?!@uint ioConversionCount
-  ?!@string ioListFileContents
-  !@ipic18SequentialInstruction outModifiedInstruction
-:
-  outModifiedInstruction := selfcopy ;
-  switch mKind
-  when ipicRelative :
-    checkBRA_RCALL !inSymbolTable !mTargetLabel !inAddress ??@bool ok ?* ;
-    if not ok then
-      ioConversionCount ++ ;
-      ioListFileContents .= "  " . inBlockLabel . ": JSR " . mTargetLabel . " --> CALL " . mTargetLabel . "\n" ;
-      outModifiedInstruction := [@ipic18_intermediate_JSR new !mInstructionLocation !mTargetLabel ![@jumpInstructionKind absolute]] ;
-    end if ;
-  when relative :
-    checkBRA_RCALL !inSymbolTable !mTargetLabel !inAddress ??@bool ok ??@sint d ;
-    if not ok then
-      error mInstructionLocation: "displacement (" . d . ") too large for RCALL " . mTargetLabel . " instruction (limited to [-1024, 1023])" ;
-    end if ;
-  when absolute : # Allways ok
-  end switch ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
-override method @ipic18_intermediate_instruction_computed_rcall checkRelativesResolution
-  ??@uint inAddress
-  ??@string inBlockLabel
-  ??@symbolTableForRelativesResolution inSymbolTable
-  ?!@uint ioConversionCount
-  ?!@string ioListFileContents
-  !@ipic18SequentialInstruction outModifiedInstruction
-:
-  outModifiedInstruction := selfcopy ;
-  foreach mTargetLabels do
-    checkBRA_RCALL !inSymbolTable !mValue !inAddress ??@bool ok ?@sint d ;
-    if not ok then
-      error mInstructionLocation: "displacement (" . d . ") too large for rcall " . mValue . " instruction (limited to [-1024, 1023])" ;
-    end if ;
-  end foreach ;
-  if mUsesRCALL then
-    checkBRA_RCALL !inSymbolTable !["_computed_goto_2" nowhere] !inAddress ??@bool ok ?* ;
-    if not ok then
-      ioConversionCount ++ ;
-      ioListFileContents .= "  " . inBlockLabel . ": computed rcall needs to use CALL _computed_goto_2\n" ;
-      outModifiedInstruction := [@ipic18_intermediate_instruction_computed_rcall new
-        !mInstructionLocation
-        !mTargetLabels
-        !mEndOfInstructionLabel
-        !false # Uses GOTO
-      ] ;
-    end if ;
-  end if ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
 #!--- Check relative resolution
 
 #----------------------------------------------------------------------------*
@@ -664,7 +511,7 @@ end reader ;
 
 #----------------------------------------------------------------------------*
 
-local routine computeLabelAbsoluteAddressMap
+routine computeLabelAbsoluteAddressMap
   ??@ipic18BlockList inGeneratedBlockList
   !@symbolTableForRelativesResolution outSymbolTable
 :

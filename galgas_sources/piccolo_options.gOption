@@ -8,4 +8,5 @@ option piccolo_options :
 @bool doNotComputeRoutineDuration : 'I', "no-routine-duration" -> "Do not compute routine duration" ;
 @bool detailledComputing : 'd', "detailled-computations" -> "Display detailled duration routine computations and stack requirements" ;
 @bool generateCallGraph : 'G', "generate-grahviz-call-graph" -> "Generate a Graphviz file that contains the routine call graph" ;
+@bool useOldCompiler : 'U', "use-legacy-pic18-compiler" -> "Uses the pic18 compiler, as released in Piccolo 2.0.2" ;
 end option ;
