@@ -177,7 +177,158 @@ end reader ;
 
 #----------------------------------------------------------------------------*
 
-#!--- Routines
+#!--- Check relative resolution : instruction
+
+#----------------------------------------------------------------------------*
+
+method @ipic18SequentialInstruction checkRelativesResolution
+  ??@uint unused inAddress
+  ??@string unused inBlockLabel
+  ??@symbolTableForRelativesResolution unused inSymbolTable
+  ?!@uint unused ioConversionCount
+  ?!@string unused ioListFileContents
+  !@ipic18SequentialInstruction outModifiedInstruction
+:
+  outModifiedInstruction := selfcopy ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+routine checkRCALL
+  ??@symbolTableForRelativesResolution inSymbolTable
+  ??@lstring inTargetLabel
+  ??@uint inCurrentAddress
+  !@bool outDisplacementOK
+  !@sint outDisplacement
+:
+  [inSymbolTable searchKey !inTargetLabel ??@uint targetAddress] ;
+  outDisplacement := [targetAddress sint] - 1S - [inCurrentAddress sint] ;
+  outDisplacementOK :=  (outDisplacement < 1024S) & (outDisplacement > - 1024S) ;
+end routine ;
+
+#----------------------------------------------------------------------------*
+
+override method @ipic18_intermediate_JSR checkRelativesResolution
+  ??@uint inAddress
+  ??@string inBlockLabel
+  ??@symbolTableForRelativesResolution inSymbolTable
+  ?!@uint ioConversionCount
+  ?!@string ioListFileContents
+  !@ipic18SequentialInstruction outModifiedInstruction
+:
+  outModifiedInstruction := selfcopy ;
+  switch mKind
+  when ipicRelative :
+    checkRCALL !inSymbolTable !mTargetLabel !inAddress ??@bool ok ?* ;
+    if not ok then
+      ioConversionCount ++ ;
+      ioListFileContents .= "  " . inBlockLabel . ": JSR " . mTargetLabel . " --> CALL " . mTargetLabel . "\n" ;
+      outModifiedInstruction := [@ipic18_intermediate_JSR new !mInstructionLocation !mTargetLabel ![@jumpInstructionKind absolute]] ;
+    end if ;
+  when relative :
+    checkRCALL !inSymbolTable !mTargetLabel !inAddress ??@bool ok ??@sint d ;
+    if not ok then
+      error mInstructionLocation: "displacement (" . d . ") too large for RCALL " . mTargetLabel . " instruction (limited to [-1024, 1023])" ;
+    end if ;
+  when absolute : # Allways ok
+  end switch ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @ipic18_intermediate_instruction_computed_rcall checkRelativesResolution
+  ??@uint inAddress
+  ??@string unused inBlockLabel
+  ??@symbolTableForRelativesResolution inSymbolTable
+  ?!@uint unused ioConversionCount
+  ?!@string unused ioListFileContents
+  !@ipic18SequentialInstruction outModifiedInstruction
+:
+  outModifiedInstruction := selfcopy ;
+  foreach mTargetLabels do
+    checkRCALL !inSymbolTable !mValue !inAddress ??@bool ok ?@sint d ;
+    if not ok then
+      error mInstructionLocation: "displacement (" . d . ") too large for rcall " . mValue . " instruction (limited to [-1024, 1023])" ;
+    end if ;
+  end foreach ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+#!--- Check relative resolution
+
+#----------------------------------------------------------------------------*
+
+method @ipic18Block checkRelativesResolution
+  ??@symbolTableForRelativesResolution inSymbolTable
+  ??@string inNextBlockLabel
+  ??@uint inBlockStartAddress
+  ?!@uint ioConversionCount
+  ?!@string ioListFileContents
+  !@ipic18Block outModifiedBlock
+:
+#--- Instruction
+  @ipic18SequentialInstructionList modifiedInstructionList [emptyList] ;
+  @uint address := inBlockStartAddress ;
+  foreach mInstructionList do
+    [mInstruction checkRelativesResolution
+      !address
+      !mLabel->string
+      !inSymbolTable
+      !?ioConversionCount
+      !?ioListFileContents
+      ??@ipic18SequentialInstruction modifiedInstruction
+    ] ;
+    modifiedInstructionList += !modifiedInstruction ;
+    address := address + [mInstruction instructionSize] ;
+  end foreach ;
+#---
+  outModifiedBlock := [@ipic18Block new
+    !mStartAddress
+    !mLabel
+    !modifiedInstructionList
+    !mTerminator
+  ] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+local routine checkRelativeResolution
+  ??@symbolTableForRelativesResolution inSymbolTable
+  ?!@ipic18BlockList ioBlockList
+  ?!@uint ioConversionCount
+  ?!@string ioListFileContents
+:
+  @ipic18BlockList modifiedBlockList [emptyList] ;
+  @uint blockStartAddress := 0 ;
+  foreach ioBlockList index blockIndex do
+    @string nextBlockLabel ;
+    if (blockIndex+1) < [ioBlockList length] then
+      nextBlockLabel := [ioBlockList mBlockAtIndex !blockIndex+1]->mLabel->string ;
+    else
+      nextBlockLabel := "" ;
+    end if ;
+    if mBlock->mStartAddress != [@uint max] then # Absolute block
+      blockStartAddress := mBlock->mStartAddress ;
+    end if ;
+    [mBlock checkRelativesResolution
+      !inSymbolTable
+      !nextBlockLabel
+      !blockStartAddress
+      !?ioConversionCount
+      !?ioListFileContents
+      ??@ipic18Block modifiedBlock
+    ] ;
+    modifiedBlockList += !modifiedBlock ;
+    const @uint blockSize := [mBlock blockSize !nextBlockLabel] ;
+    blockStartAddress := blockStartAddress + blockSize ;
+  end foreach ;
+  ioBlockList := modifiedBlockList ;
+end routine ;
+
+#----------------------------------------------------------------------------*
+
+#!--- Block Size and address
 
 #----------------------------------------------------------------------------*
 
@@ -221,19 +372,47 @@ routine ipic18RelativesResolution
   ?!@string ioListFileContents
   ?!@ipic18BlockList ioGeneratedBlockList
 :
+#---
+  if [option.verbose_output value] then
+    message "Branch resolution:\n" ;
+  end if ;
   ioListFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n" ;
   ioListFileContents .= "*" . ["RELATIVES RESOLUTION" stringByLeftAndRightPadding !77 !' '] . "*\n" ;
   ioListFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n\n" ;
 #---
   @bool resolutionDone := false ;
+  @uint pass := 0 ;
   loop [ioGeneratedBlockList length] + 1 :
   while (not resolutionDone) & ([@uint errorCount] == 0) do
+    pass ++ ;
     resolutionDone := true ;
     computeLabelAbsoluteAddressMap
       !ioGeneratedBlockList
-      ?* # ?@symbolTableForRelativesResolution symbolTable
+      ??@symbolTableForRelativesResolution symbolTable
     ;
+    ioListFileContents .= "--- Pass " . pass . ":\n" ;
+    @uint conversionCount := 0 ;
+    checkRelativeResolution
+      !symbolTable
+      !?ioGeneratedBlockList
+      !?conversionCount
+      !?ioListFileContents
+    ;
+    if [option.verbose_output value] then
+      @string s := "--- Pass " . pass . ": " ;
+      if conversionCount == 0 then
+        s .= "ok." ;
+      elsif conversionCount == 1 then
+        s .= "1 conversion" ;
+      else
+        s .= [conversionCount string] . " conversions" ;
+      end if ;
+      message s . "\n" ;
+    end if ;
   end loop ;
+  if [option.verbose_output value] then
+    message "\n" ;
+  end if ;
 end routine ;
 
 #----------------------------------------------------------------------------*

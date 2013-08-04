@@ -589,9 +589,26 @@ end method ;
 override method @ipic18ComputedGotoTerminator buildTerminatorCalledRoutineSet
   ?!@stringset ioReferencedBlockSet
 :
+  ioReferencedBlockSet += !"_computed_goto_4" ;
   foreach mTargetLabels do
     ioReferencedBlockSet += !mValue->string ;
   end foreach ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @ipic18ComputedBraTerminator buildTerminatorCalledRoutineSet
+  ?!@stringset ioReferencedBlockSet
+:
+  ioReferencedBlockSet += !"_computed_goto_2" ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @ipic18ComputedRETLWTerminator buildTerminatorCalledRoutineSet
+  ?!@stringset ioReferencedBlockSet
+:
+  ioReferencedBlockSet += !"_computed_goto_2" ;
 end method ;
 
 #----------------------------------------------------------------------------*
@@ -666,6 +683,7 @@ end method ;
 override method @ipic18_intermediate_instruction_computed_rcall buildInstructionCalledRoutineSet
   ?!@stringset ioReferencedBlockSet
 :
+  ioReferencedBlockSet += !"_computed_goto_4" ;
   foreach mTargetLabels do
     ioReferencedBlockSet += !mValue->string ;
   end foreach ;
@@ -755,7 +773,6 @@ local routine performBlockOrdering
   foreach ioBlockList do
     [mBlock buildCalledRoutineSet !?actualRoutineSet] ;
   end foreach ;
-  log actualRoutineSet ;
 #---
   @ipic18BlockList orderedBlockList [emptyList] ;
   @stringset generatedBlockSet [emptySet] ;
