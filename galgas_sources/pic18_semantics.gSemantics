@@ -269,130 +269,133 @@ routine pic18_analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName 
       RAMsize := mLastAddressPlusOne ;
     end if ;
   end foreach ;
-#-------------------------------- Build block representation
-  build_ipic18_block_representation_list
-    !inSourceFileName
-    ![[[piccoloDeviceModel mRomSize] uint] sint]
-    ![RAMsize sint]
-    !bootloaderRoutineDeclarationListForBootloaderImplementation # Empty for regular program
-    !userRoutineDeclarationListForBootloaderImplementation # Empty for regular program
-    !bootloaderReservedROMsize
-    !bootloaderRoutineDeclarationListForUserProgramImplementation
-    !userRoutineDeclarationListForUserProgramImplementation
-    !accessBankSplitOffset
-    !registerTable
-    !dataMap
-    !inPiccoloModel
-    !hasHighInterrupt
-    !hasLowInterrupt
-    !dataLengthConstantMap
-    ?@ipic18BlockList generatedBlockList
-    !?listFileContents
-;
-#-------------------------------- Build IPIC Assembly Instruction List
-  @pic18_intermediate_instructionList generatedInstructionList ;
-  build_pic18_intermediate_assembly_instruction_list
-    ![[[piccoloDeviceModel mRomSize] uint] sint]
-    ![RAMsize sint]
-    !bootloaderRoutineDeclarationListForBootloaderImplementation # Empty for regular program
-    !userRoutineDeclarationListForBootloaderImplementation # Empty for regular program
-    !bootloaderReservedROMsize
-    !bootloaderRoutineDeclarationListForUserProgramImplementation
-    !userRoutineDeclarationListForUserProgramImplementation
-    !accessBankSplitOffset
-    !registerTable
-    !dataMap
-    !inPiccoloModel
-    !hasHighInterrupt
-    !hasLowInterrupt
-    !dataGeneratedInstructionList
-    !dataLengthConstantMap
-    ?generatedInstructionList
-    !?listFileContents
-  ;
-#-------------------------------- Perform Code Optimization
-  if ([@uint errorCount] == 0) & [option piccolo_options.performOptimizations value] then
-    performOptimizations !?generatedInstructionList !?listFileContents ;
-  end if ;
-#-------------------------------- Convert relative branchs to absolute, when needed
-  if [@uint errorCount] == 0 then
-    pic18_intermediate_convertRelativeBranchsToAbsoluteWhenNeeded !?generatedInstructionList !?listFileContents ;
-  end if ;
-#--- If no error, generate object file(s)
-  if [@uint errorCount] == 0 then
-  #--- Generate hex file
-    @uint usedROMsize ;
-    build_pic18_intermediate_binary_code
-      !generatedInstructionList
-      ![[piccoloDeviceModel mRomSize] uint]
-      !actualConfigurationMap
-      ?usedROMsize
-    ;
-    @string contents ;
-    getGeneratedContents ?contents ;
-    @string destinationFile := [inSourceFileName stringByDeletingPathExtension] . ".hex" ;
-    [contents writeToFileWhenDifferentContents !destinationFile ?*] ;
-    if [option piccolo_options.output_C_Array value] then
-      const @string baseName := [[inSourceFileName lastPathComponent] stringByDeletingPathExtension] ;
-      get_C_ArrayImplementation !baseName ?contents ;
-      destinationFile := [inSourceFileName stringByDeletingPathExtension] . ".c" ;
-      [contents writeToFileWhenDifferentContents !destinationFile ?*] ;
-      get_C_ArrayHeader !baseName ?contents ;
-      destinationFile := [inSourceFileName stringByDeletingPathExtension] . ".h" ;
-      [contents writeToFileWhenDifferentContents !destinationFile ?*] ;
-    end if ;
-  #--- Write infos (if verbose mode)
-    if [option.verbose_output value] then
-      @string verboseMessage := "Resource Usage:\n" ;
-      verboseMessage .= "  ROM size: " . [[[piccoloDeviceModel mRomSize] uint] string] . " bytes;" ;
-      verboseMessage .= " used: " . [usedROMsize string] . " bytes (" ;
-      verboseMessage .= [(usedROMsize * 100) / [[piccoloDeviceModel mRomSize] uint] string] . "%).\n" ;
-      foreach ramBank do
-        @uint bankSize := mLastAddressPlusOne - mFirstAddress ;
-        @uint usedSize := mFirstFreeAddress - mFirstAddress ;
-        verboseMessage .= "  RAM bank '" . lkey . "': " ;
-        verboseMessage .= [bankSize string] . " bytes, used " ;
-        verboseMessage .= [usedSize string] . " bytes (" ;
-        verboseMessage .= [(usedSize * 100) / bankSize string] . "%).\n" ;
-      end foreach ;
-      message verboseMessage ;
-    end if ;
-  #--- Generate asm file, if corresponding option enabled
-    if [option piccolo_options.generateAssembly value] then
-      pic18_build_assembly_code
-        ![[piccoloDeviceModel mDeviceName] string]
-        ![piccoloDeviceModel mRegisterTable]
-        !registerTable
-        !generatedInstructionList
-        !actualConfigurationMap
-        ?@string assemblyCode
-      ;
-      const @string asmDestinationFile := [inSourceFileName stringByDeletingPathExtension] . ".asm" ;
-      [assemblyCode writeToFileWhenDifferentContents !asmDestinationFile ?*] ;
-    end if ;
-  else # There are errors : delete hex and asm files
-    @string hexDestinationFile := [inSourceFileName stringByDeletingPathExtension] . ".hex" ;
-    [@string deleteFileIfExists !hexDestinationFile] ;
-    @string asmDestinationFile := [inSourceFileName stringByDeletingPathExtension] . ".asm" ;
-    [@string deleteFileIfExists !asmDestinationFile] ;
-  end if ;
-#-------------------------------- Write generated code
-  if [@uint errorCount] == 0 then
-    pic18_build_listing_of_generated_code
-      !generatedInstructionList
-      !?listFileContents
-    ;
-  end if ;
-#-------------------------------- Compute stack requirements abd routine duration
-  if ([@uint errorCount] == 0) & (inPiccoloModel->mProgramKind != [@programKind userProgram]) then
-    pic18_compute_metrics
-      !inPiccoloModel
-      !userRoutineDeclarationListForBootloaderImplementation # Empty for regular program
-      !bootloaderRoutineDeclarationListForUserProgramImplementation
-      !generatedInstructionList
-      !?listFileContents
+#-------------------------------- Compile
+  if not [option piccolo_options.useOldCompiler value] then
+  #-------------------------------- Build block representation
+    build_ipic18_block_representation_list
       !inSourceFileName
+      ![[[piccoloDeviceModel mRomSize] uint] sint]
+      ![RAMsize sint]
+      !bootloaderRoutineDeclarationListForBootloaderImplementation # Empty for regular program
+      !userRoutineDeclarationListForBootloaderImplementation # Empty for regular program
+      !bootloaderReservedROMsize
+      !bootloaderRoutineDeclarationListForUserProgramImplementation
+      !userRoutineDeclarationListForUserProgramImplementation
+      !accessBankSplitOffset
+      !registerTable
+      !dataMap
+      !inPiccoloModel
+      !hasHighInterrupt
+      !hasLowInterrupt
+      !dataLengthConstantMap
+      !?listFileContents
     ;
+  else
+  #-------------------------------- Build IPIC Assembly Instruction List
+    @pic18_intermediate_instructionList generatedInstructionList ;
+    build_pic18_intermediate_assembly_instruction_list
+      ![[[piccoloDeviceModel mRomSize] uint] sint]
+      ![RAMsize sint]
+      !bootloaderRoutineDeclarationListForBootloaderImplementation # Empty for regular program
+      !userRoutineDeclarationListForBootloaderImplementation # Empty for regular program
+      !bootloaderReservedROMsize
+      !bootloaderRoutineDeclarationListForUserProgramImplementation
+      !userRoutineDeclarationListForUserProgramImplementation
+      !accessBankSplitOffset
+      !registerTable
+      !dataMap
+      !inPiccoloModel
+      !hasHighInterrupt
+      !hasLowInterrupt
+      !dataGeneratedInstructionList
+      !dataLengthConstantMap
+      ?generatedInstructionList
+      !?listFileContents
+    ;
+  #-------------------------------- Perform Code Optimization
+    if ([@uint errorCount] == 0) & [option piccolo_options.performOptimizations value] then
+      performOptimizations !?generatedInstructionList !?listFileContents ;
+    end if ;
+  #-------------------------------- Convert relative branchs to absolute, when needed
+    if [@uint errorCount] == 0 then
+      pic18_intermediate_convertRelativeBranchsToAbsoluteWhenNeeded !?generatedInstructionList !?listFileContents ;
+    end if ;
+  #--- If no error, generate object file(s)
+    if [@uint errorCount] == 0 then
+    #--- Generate hex file
+      @uint usedROMsize ;
+      build_pic18_intermediate_binary_code
+        !generatedInstructionList
+        ![[piccoloDeviceModel mRomSize] uint]
+        !actualConfigurationMap
+        ?usedROMsize
+      ;
+      @string contents ;
+      getGeneratedContents ?contents ;
+      @string destinationFile := [inSourceFileName stringByDeletingPathExtension] . ".hex" ;
+      [contents writeToFileWhenDifferentContents !destinationFile ?*] ;
+      if [option piccolo_options.output_C_Array value] then
+        const @string baseName := [[inSourceFileName lastPathComponent] stringByDeletingPathExtension] ;
+        get_C_ArrayImplementation !baseName ?contents ;
+        destinationFile := [inSourceFileName stringByDeletingPathExtension] . ".c" ;
+        [contents writeToFileWhenDifferentContents !destinationFile ?*] ;
+        get_C_ArrayHeader !baseName ?contents ;
+        destinationFile := [inSourceFileName stringByDeletingPathExtension] . ".h" ;
+        [contents writeToFileWhenDifferentContents !destinationFile ?*] ;
+      end if ;
+    #--- Write infos (if verbose mode)
+      if [option.verbose_output value] then
+        @string verboseMessage := "Resource Usage:\n" ;
+        verboseMessage .= "  ROM size: " . [[[piccoloDeviceModel mRomSize] uint] string] . " bytes;" ;
+        verboseMessage .= " used: " . [usedROMsize string] . " bytes (" ;
+        verboseMessage .= [(usedROMsize * 100) / [[piccoloDeviceModel mRomSize] uint] string] . "%).\n" ;
+        foreach ramBank do
+          @uint bankSize := mLastAddressPlusOne - mFirstAddress ;
+          @uint usedSize := mFirstFreeAddress - mFirstAddress ;
+          verboseMessage .= "  RAM bank '" . lkey . "': " ;
+          verboseMessage .= [bankSize string] . " bytes, used " ;
+          verboseMessage .= [usedSize string] . " bytes (" ;
+          verboseMessage .= [(usedSize * 100) / bankSize string] . "%).\n" ;
+        end foreach ;
+        message verboseMessage ;
+      end if ;
+    #--- Generate asm file, if corresponding option enabled
+      if [option piccolo_options.generateAssembly value] then
+        pic18_build_assembly_code
+          ![[piccoloDeviceModel mDeviceName] string]
+          ![piccoloDeviceModel mRegisterTable]
+          !registerTable
+          !generatedInstructionList
+          !actualConfigurationMap
+          ?@string assemblyCode
+        ;
+        const @string asmDestinationFile := [inSourceFileName stringByDeletingPathExtension] . ".asm" ;
+        [assemblyCode writeToFileWhenDifferentContents !asmDestinationFile ?*] ;
+      end if ;
+    else # There are errors : delete hex and asm files
+      @string hexDestinationFile := [inSourceFileName stringByDeletingPathExtension] . ".hex" ;
+      [@string deleteFileIfExists !hexDestinationFile] ;
+      @string asmDestinationFile := [inSourceFileName stringByDeletingPathExtension] . ".asm" ;
+      [@string deleteFileIfExists !asmDestinationFile] ;
+    end if ;
+  #-------------------------------- Write generated code
+    if [@uint errorCount] == 0 then
+      pic18_build_listing_of_generated_code
+        !generatedInstructionList
+        !?listFileContents
+      ;
+    end if ;
+  #-------------------------------- Compute stack requirements abd routine duration
+    if ([@uint errorCount] == 0) & (inPiccoloModel->mProgramKind != [@programKind userProgram]) then
+      pic18_compute_metrics
+        !inPiccoloModel
+        !userRoutineDeclarationListForBootloaderImplementation # Empty for regular program
+        !bootloaderRoutineDeclarationListForUserProgramImplementation
+        !generatedInstructionList
+        !?listFileContents
+        !inSourceFileName
+      ;
+    end if ;
   end if ;
 #-------------------------------- Write listing file
   if [option piccolo_options.ouputListingFile value] then

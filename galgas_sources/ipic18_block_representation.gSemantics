@@ -284,7 +284,7 @@ abstract class @ipic18_condition_skip_instruction extends @ipic18SequentialInstr
 
 #----------------------------------------------------------------------------*
 
-class @ipic18_intermediate_instruction_BitTestSkip extends @ipic18_condition_skip_instruction {
+class @ipic18_skip_instruction_BitTestSkip extends @ipic18_condition_skip_instruction {
   @bool mSkipIfSet ;
   @ipic18_intermediate_registerExpression mRegisterDescription ;
   @uint mBitNumber ;
@@ -316,6 +316,54 @@ map @symbolTableForBlockOptimization {
   insert insertKey error message "the '%K' label is already declared in %L" ;
   search searchKey error message "the '%K' label is not declared" ;
 }
+
+#----------------------------------------------------------------------------*
+
+#!--- @symbolTableForRelativesResolution
+
+#----------------------------------------------------------------------------*
+
+map @symbolTableForRelativesResolution {
+  @uint mLabelAddress ;
+  insert insertKey error message "the '%K' label is already declared in %L" ;
+  search searchKey error message "the '%K' label is not declared" ;
+}
+
+#----------------------------------------------------------------------------*
+
+list @codeList {
+  @string mAssemblyCode ;
+  @uintlist mBinaryCode ;
+}
+  
+#----------------------------------------------------------------------------*
+
+method @ipic18SequentialInstruction generateCode
+  ??@uint inAddress
+  ??@symbolTableForRelativesResolution inSymbolTable
+  ??@ipic18BlockList inGeneratedBlockList
+  !@codeList outCode
+:
+  outCode := [@codeList emptyList] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+#!--- Check displacement
+
+#----------------------------------------------------------------------------*
+
+routine checkBRA_RCALL
+  ??@symbolTableForRelativesResolution inSymbolTable
+  ??@lstring inTargetLabel
+  ??@uint inCurrentAddress
+  !@bool outDisplacementOK
+  !@sint outDisplacement
+:
+  [inSymbolTable searchKey !inTargetLabel ??@uint targetAddress] ;
+  outDisplacement := ([targetAddress sint] - 2S - [inCurrentAddress sint]) >> 1 ;
+  outDisplacementOK :=  (outDisplacement < 1024S) & (outDisplacement > - 1024S) ;
+end routine ;
 
 #----------------------------------------------------------------------------*
 

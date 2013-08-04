@@ -1,0 +1,155 @@
+semantics ipic18_code_generation :
+import "ipic18_relatives_resolution.gSemantics" ;
+import "ipic18_display_block_list.gSemantics" ;
+import "ipic18_regular_instructions.gSemantics" ;
+
+#----------------------------------------------------------------------------*
+
+reader @uint x4string ->@string outResult :
+  outResult := [selfcopy / 0x10_00 & 0xF xString] ;
+  outResult .= [selfcopy / 0x10_0 & 0xF xString] ;
+  outResult .= [selfcopy / 0x10_ & 0xF xString] ;
+  outResult .= [selfcopy         & 0xF xString] ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+reader @uint x6string ->@string outResult :
+  outResult := [selfcopy / 0x100_000 xString] ;
+  outResult := [selfcopy / 0x10_000 & 0xF xString] ;
+  outResult .= [selfcopy / 0x10_00 & 0xF xString] ;
+  outResult .= [selfcopy / 0x10_0 & 0xF xString] ;
+  outResult .= [selfcopy / 0x10_ & 0xF xString] ;
+  outResult .= [selfcopy         & 0xF xString] ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+local routine generateLineWithCode
+  ??@uint inAddress
+  ??@codeList inCode
+  ??@stringlist inIpicText
+  ?!@string ioListFileContents
+:
+#--- Complete text with empty lines
+  @stringlist ipicText := inIpicText ;
+  loop [inCode length] + 1 :
+  while [ipicText length] < [inCode length] do
+    ipicText += !"" ;
+  end loop ;
+#---
+  @uint address := inAddress ;
+  foreach ipicText, inCode do
+    ioListFileContents .= [address x6string] ;
+    address := address + 2 * [mBinaryCode length] ;
+    @string s := " " ;
+    foreach mBinaryCode prefixedBy bin_ do
+      s .= " " . [bin_mValue x4string] ;
+    end foreach ;
+    ioListFileContents .= [s stringByRightPadding !13 !' '];
+    ioListFileContents .= [mAssemblyCode stringByRightPadding !40 !' '] ;
+    ioListFileContents .= " " ;
+    ioListFileContents .= mValue ;
+    ioListFileContents .= "\n" ; 
+  end foreach ;
+#--- Display supplementary text
+#  log ipicText, inCode ;
+  foreach [ipicText subListFromIndex ![inCode length]] do
+    ioListFileContents .= [address x6string] ;
+    ioListFileContents .= ["" stringByRightPadding !54 !' '];
+    ioListFileContents .= mValue ;
+    ioListFileContents .= "\n" ; 
+  end foreach ;
+end routine ;
+  
+#----------------------------------------------------------------------------*
+
+method @ipic18Block generateCode
+  ??@symbolTableForRelativesResolution inSymbolTable
+  ??@ipic18BlockList inGeneratedBlockList
+  ??@uint inBlockAddress
+  ??@string inNextBlockLabel
+  ?!@string ioListFileContents
+:
+  ioListFileContents .= "Addr.  Code       Assembly                                 Intermediate Representation\n" ;
+  if mStartAddress == [@uint max] then # Relocatable
+    generateLineWithCode
+      !inBlockAddress
+      ![@codeList listWithValue !mLabel->string . ":" ![@uintlist emptyList]]
+      ![@stringlist listWithValue !"LABEL " . mLabel]
+      !?ioListFileContents
+    ;  
+  else
+    @codeList cd [emptyList] ;
+    cd += !"ORG " . [inBlockAddress hexString] ![@uintlist emptyList] ;
+    cd += !mLabel->string . ":" ![@uintlist emptyList] ;
+    generateLineWithCode
+      !inBlockAddress
+      !cd
+      ![@stringlist listWithValue !"LABEL " . mLabel . ", ORG ". [inBlockAddress hexString]]
+      !?ioListFileContents
+    ;  
+  end if ;
+#--- Generate regular instructions
+  @uint address := inBlockAddress ;
+  foreach mInstructionList do
+    [mInstruction generateCode
+      !address
+      !inSymbolTable
+      !inGeneratedBlockList
+      ??@codeList inCode
+    ] ;
+    const @stringlist ipicText := [mInstruction instructionDisplay] ;
+    generateLineWithCode
+      !address
+      !inCode
+      !ipicText
+      !?ioListFileContents
+    ;  
+    address := address + [mInstruction instructionSize] ;  
+  end foreach ;
+#--- Generate block terminator
+
+
+#---
+  ioListFileContents .= "\n" ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+routine ipic18GenerateCode
+  ??@string inSourceFileName
+  ?!@string ioListFileContents
+  ??@ipic18BlockList inGeneratedBlockList
+:
+  ioListFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n" ;
+  ioListFileContents .= "*" . ["CODE GENERATION" stringByLeftAndRightPadding !77 !' '] . "*\n" ;
+  ioListFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n\n" ;
+#--- Build address map
+  computeLabelAbsoluteAddressMap
+    !inGeneratedBlockList
+    ??@symbolTableForRelativesResolution symbolTable
+  ;
+#--- Generate code
+  @uint blockStartAddress := 0 ;
+  foreach inGeneratedBlockList index blockIndex do
+    @string nextBlockLabel ;
+    if (blockIndex+1) < [inGeneratedBlockList length] then
+      nextBlockLabel := [inGeneratedBlockList mBlockAtIndex !blockIndex+1]->mLabel->string ;
+    else
+      nextBlockLabel := "" ;
+    end if ;
+    if mBlock->mStartAddress != [@uint max] then # Absolute block
+      blockStartAddress := mBlock->mStartAddress ;
+    end if ;
+    [mBlock generateCode !symbolTable !inGeneratedBlockList !blockStartAddress !nextBlockLabel !?ioListFileContents] ;
+    const @uint blockSize := [mBlock blockSize !nextBlockLabel] ;
+    blockStartAddress := blockStartAddress + blockSize ;
+  end foreach ;
+end routine ;
+
+#----------------------------------------------------------------------------*
+
+
+
+end semantics ;
