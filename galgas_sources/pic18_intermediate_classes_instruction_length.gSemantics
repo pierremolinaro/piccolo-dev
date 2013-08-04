@@ -60,7 +60,6 @@ end reader ;
   reader @pic18_intermediate_JUMP instructionLength -> @uint outLength :
     switch mKind
       when ipicRelative : outLength := 2 ;
-      when ipicAbsolute : outLength := 4 ;
       when relative     : outLength := 2 ;
       when absolute     : outLength := 4 ;
     end switch ;
@@ -72,7 +71,6 @@ override
 reader @pic18_intermediate_JSR instructionLength ->@uint outLength :
   switch mKind
     when ipicRelative : outLength := 2 ;
-    when ipicAbsolute : outLength := 4 ;
     when relative     : outLength := 2 ;
     when absolute     : outLength := 4 ;
   end switch ;

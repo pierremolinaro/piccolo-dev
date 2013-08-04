@@ -63,6 +63,7 @@ class @ipic18RetfieTerminator extends @ipic18SingleInstructionTerminator {
 
 class @ipic18JumpTerminator extends @ipic18SingleInstructionTerminator {
   @lstring mLabel ;
+  @jumpInstructionKind mKind ;
 }
 
 #----------------------------------------------------------------------------*
@@ -276,13 +277,13 @@ class @ipic18_intermediate_instruction_computed_rcall extends @ipic18SequentialI
 
 #----------------------------------------------------------------------------*
 
-abstract class @ipic18_skip_instruction extends @ipic18SequentialInstruction {
+abstract class @ipic18_condition_skip_instruction extends @ipic18SequentialInstruction {
   @ipic18SequentialInstruction mEmbeddedInstruction ;
 }
 
 #----------------------------------------------------------------------------*
 
-class @ipic18_intermediate_instruction_BitTestSkip extends @ipic18_skip_instruction {
+class @ipic18_intermediate_instruction_BitTestSkip extends @ipic18_condition_skip_instruction {
   @bool mSkipIfSet ;
   @ipic18_intermediate_registerExpression mRegisterDescription ;
   @uint mBitNumber ;
@@ -290,14 +291,14 @@ class @ipic18_intermediate_instruction_BitTestSkip extends @ipic18_skip_instruct
 
 #----------------------------------------------------------------------------*
 
-class @ipic18_skip_instruction_FA extends @ipic18_skip_instruction {
+class @ipic18_skip_instruction_FA extends @ipic18_condition_skip_instruction {
   @FA_instruction_base_code mFAinstruction ;
   @ipic18_intermediate_registerExpression mRegisterDescription ;
 }
 
 #----------------------------------------------------------------------------*
 
-class @ipic18_skip_instruction_FDA extends @ipic18_skip_instruction {
+class @ipic18_skip_instruction_FDA extends @ipic18_condition_skip_instruction {
   @instruction_FDA_base_code mInstruction_FDA_base_code ;
   @ipic18_intermediate_registerExpression mRegisterDescription ;
   @bool m_W_isDestination ;
@@ -313,7 +314,6 @@ map @symbolTableForBlockOptimization {
   @uint mDefinitionBlockIndex ;
   insert insertKey error message "the '%K' label is already declared in %L" ;
   search searchKey error message "the '%K' label is not declared" ;
-  remove removeKey error message "the '%K' label is not declared" ;
 }
 
 #----------------------------------------------------------------------------*

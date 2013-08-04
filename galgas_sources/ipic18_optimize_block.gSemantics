@@ -1,173 +1,5 @@
 semantics ipic18_optimize_block :
-import "ipic18_block_representation.gSemantics" ;
-import "pic18_mnemonics.gSemantics" ;
-
-#----------------------------------------------------------------------------*
-
-#!--- Terminator display
-
-#----------------------------------------------------------------------------*
-
-abstract method @ipic18AbstractBlockTerminator display
-  ?!@string ioListFileContents
-;
-
-#----------------------------------------------------------------------------*
-
-override method @ipic18ReturnTerminator display
-  ?!@string ioListFileContents
-:
-  ioListFileContents .= "RETURN" ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
-override method @ipic18RetlwTerminator display
-  ?!@string ioListFileContents
-:
-  ioListFileContents .= "RETLW " . [mLiteralValue hexString] ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
-override method @ipic18RetfieTerminator display
-  ?!@string ioListFileContents
-:
-  ioListFileContents .= "RETFIE" ;
-  if mFastReturn then
-    ioListFileContents .= " FAST" ;
-  end if ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
-override method @ipic18JumpTerminator display
-  ?!@string ioListFileContents
-:
-  ioListFileContents .= "JUMP " . mLabel ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
-override method @ipic18ComputedGotoTerminator display ?!@string ioListFileContents :
-  ioListFileContents .= "COMPUTED GOTO " ;
-  if mUsesRCALL then
-    ioListFileContents .= " (uses RCALL)" ;
-  else
-    ioListFileContents .= " (uses CALL)" ;
-  end if ;
-  foreach mTargetLabels do
-    ioListFileContents .= "\n    " . mValue ;
-  end foreach ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
-override method @ipic18ComputedRETLWTerminator display ?!@string ioListFileContents :
-  ioListFileContents .= "COMPUTED RETLW " ;
-  if mUsesRCALL then
-    ioListFileContents .= " (uses RCALL)" ;
-  else
-    ioListFileContents .= " (uses CALL)" ;
-  end if ;
-  foreach mLiteralValues do
-    ioListFileContents .= "\n    " . [mValue hexString] ;
-  end foreach ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
-override method @ipic18ConditionalJumpTerminator display ?!@string ioListFileContents :
-  ioListFileContents .= [mConditionalBranch condition] ;
-  ioListFileContents .= " ? " ;
-  [mInstructionIfConditionTrue display !?ioListFileContents] ;
-  ioListFileContents .= " : " ;
-  [mInstructionIfConditionFalse display !?ioListFileContents] ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
-override method @ipic18ComputedBraTerminator display ?!@string ioListFileContents :
-  ioListFileContents .= "COMPUTED BRA " ;
-  if mUsesRCALL then
-    ioListFileContents .= " (uses RCALL)" ;
-  else
-    ioListFileContents .= " (uses CALL)" ;
-  end if ;
-  foreach mTargetLabels do
-    ioListFileContents .= "\n    " . mValue ;
-  end foreach ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
-override method @pic18BraCCTerminator display ?!@string ioListFileContents :
-  switch mConditionalBranch
-  when bz : ioListFileContents .= "BZ" ;
-  when bn : ioListFileContents .= "BN" ;
-  when bc : ioListFileContents .= "BC" ;
-  when bov : ioListFileContents .= "BOV" ;
-  end switch ;
-  ioListFileContents .= " ? " ;
-  [mInstructionIfConditionTrue display !?ioListFileContents] ;
-  ioListFileContents .= " : " ;
-  [mInstructionIfConditionFalse display !?ioListFileContents] ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
-override method @pic18RegisterComparisonTerminator display ?!@string ioListFileContents :
-  ioListFileContents .= [mRegisterDescription mAssemblyString] . " " ;
-  switch mComparison
-  when registerEqualsToW :
-    ioListFileContents .= "==" ;
-  when registerGreaterThanW :
-    ioListFileContents .= ">" ;
-  when registerLowerThanW :
-    ioListFileContents .= "<" ;
-  end switch ;
-  ioListFileContents .= " W ? " ;
-  [mInstructionIfConditionTrue display !?ioListFileContents] ;
-  ioListFileContents .= " : " ;
-  [mInstructionIfConditionFalse display !?ioListFileContents] ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
-override method @ipic18IncDecRegisterTerminator display ?!@string ioListFileContents :
-  if mIncrement then
-    ioListFileContents .= "INCF " ;
-  else
-    ioListFileContents .= "DECF " ;
-  end if ;
-  ioListFileContents .= [mRegisterDescription mAssemblyString] ;
-  if m_W_isDestination then
-    ioListFileContents .= ", W" ;
-  end if ;
-  ioListFileContents .= " Z ? " ;
-  [mInstructionIfConditionTrue display !?ioListFileContents] ;
-  ioListFileContents .= " : " ;
-  [mInstructionIfConditionFalse display !?ioListFileContents] ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
-override method @pic18TestRegisterTerminator display ?!@string ioListFileContents :
-  ioListFileContents .= [mRegisterDescription mAssemblyString] ;
-  ioListFileContents .= " Z ? " ;
-  [mInstructionIfConditionTrue display !?ioListFileContents] ;
-  ioListFileContents .= " : " ;
-  [mInstructionIfConditionFalse display !?ioListFileContents] ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
-override method @pic18BitTestTerminator display ?!@string ioListFileContents :
-  ioListFileContents .= [mRegisterDescription mAssemblyString] . "." . [mBitNumber string] . " ? " ;
-  [mInstructionIfConditionTrue display !?ioListFileContents] ;
-  ioListFileContents .= " : " ;
-  [mInstructionIfConditionFalse display !?ioListFileContents] ;
-end method ;
+import "ipic18_display_block_list.gSemantics" ;
 
 #----------------------------------------------------------------------------*
 
@@ -485,9 +317,9 @@ override method @ipic18JumpTerminator optimizeTerminator
         outOptimizedTerminator := targetBlock->mTerminator ;
         ioOptimizationDone := true ;
         ioListFileContents .= "  " . inBlockLabel . ": " ;
-        [selfcopy display !?ioListFileContents] ;
+        [selfcopy display !"" !?ioListFileContents] ;
         ioListFileContents .= " -> " ;
-        [outOptimizedTerminator display !?ioListFileContents] ;
+        [outOptimizedTerminator display !"" !?ioListFileContents] ;
         ioListFileContents .= "\n" ;
       end if ;
     end if ;
@@ -553,54 +385,77 @@ end method ;
 #----------------------------------------------------------------------------*
 
 abstract method @ipic18AbstractBlockTerminator enterTerminatorReferencedLabels
+  ??@symbolTableForBlockOptimization inSymbolTable
+  ??@ipic18BlockList inBlockList
   ?!@stringset ioReferencedBlockSet
 ;
 
 #----------------------------------------------------------------------------*
 
 override method @ipic18ComputedBraTerminator enterTerminatorReferencedLabels
+  ??@symbolTableForBlockOptimization inSymbolTable
+  ??@ipic18BlockList inBlockList
   ?!@stringset ioReferencedBlockSet
 :
   foreach mTargetLabels do
-    ioReferencedBlockSet += !mValue->string ;
+    if not [ioReferencedBlockSet hasKey !mValue->string] then
+      ioReferencedBlockSet += !mValue->string ;
+      [inSymbolTable searchKey !mValue ??@uint blockIndex] ;
+      const @ipic18Block b := [inBlockList mBlockAtIndex !blockIndex] ;
+      [b enterReferencedLabels
+        !inSymbolTable
+        !inBlockList
+        !?ioReferencedBlockSet
+      ] ;
+    end if ; 
   end foreach ;
 end method ;
 
 #----------------------------------------------------------------------------*
 
 override method @ipic18ComputedGotoTerminator enterTerminatorReferencedLabels
+  ??@symbolTableForBlockOptimization inSymbolTable
+  ??@ipic18BlockList inBlockList
   ?!@stringset ioReferencedBlockSet
 :
   foreach mTargetLabels do
-    ioReferencedBlockSet += !mValue->string ;
+    if not [ioReferencedBlockSet hasKey !mValue->string] then
+      ioReferencedBlockSet += !mValue->string ;
+      [inSymbolTable searchKey !mValue ??@uint blockIndex] ;
+      const @ipic18Block b := [inBlockList mBlockAtIndex !blockIndex] ;
+      [b enterReferencedLabels
+        !inSymbolTable
+        !inBlockList
+        !?ioReferencedBlockSet
+      ] ;
+    end if ; 
   end foreach ;
 end method ;
 
 #----------------------------------------------------------------------------*
 
 override method @ipic18JumpTerminator enterTerminatorReferencedLabels
+  ??@symbolTableForBlockOptimization inSymbolTable
+  ??@ipic18BlockList inBlockList
   ?!@stringset ioReferencedBlockSet
 :
-  ioReferencedBlockSet += !mLabel->string ;
+  if not [ioReferencedBlockSet hasKey !mLabel->string] then
+    ioReferencedBlockSet += !mLabel->string ;
+    [inSymbolTable searchKey !mLabel ??@uint blockIndex] ;
+    const @ipic18Block b := [inBlockList mBlockAtIndex !blockIndex] ;
+    [b enterReferencedLabels
+      !inSymbolTable
+      !inBlockList
+      !?ioReferencedBlockSet
+    ] ;
+  end if ; 
 end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @ipic18RetfieTerminator enterTerminatorReferencedLabels
-  ?!@stringset unused ioReferencedBlockSet
-:
-end method ;
-
-#----------------------------------------------------------------------------*
-
-override method @ipic18ReturnTerminator enterTerminatorReferencedLabels
-  ?!@stringset unused ioReferencedBlockSet
-:
-end method ;
-
-#----------------------------------------------------------------------------*
-
-override method @ipic18RetlwTerminator enterTerminatorReferencedLabels
+override method @ipic18SingleInstructionTerminator enterTerminatorReferencedLabels
+  ??@symbolTableForBlockOptimization unused inSymbolTable
+  ??@ipic18BlockList unused inBlockList
   ?!@stringset unused ioReferencedBlockSet
 :
 end method ;
@@ -608,17 +463,21 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override method @ipic18ComputedRETLWTerminator enterTerminatorReferencedLabels
-  ?!@stringset unused  ioReferencedBlockSet
+  ??@symbolTableForBlockOptimization unused inSymbolTable
+  ??@ipic18BlockList unused inBlockList
+  ?!@stringset unused ioReferencedBlockSet
 :
 end method ;
 
 #----------------------------------------------------------------------------*
 
 override method @ipic18AbstractConditionTerminator enterTerminatorReferencedLabels
+  ??@symbolTableForBlockOptimization inSymbolTable
+  ??@ipic18BlockList inBlockList
   ?!@stringset ioReferencedBlockSet
 :
-  [mInstructionIfConditionTrue enterTerminatorReferencedLabels !?ioReferencedBlockSet] ;
-  [mInstructionIfConditionFalse enterTerminatorReferencedLabels !?ioReferencedBlockSet] ;
+  [mInstructionIfConditionTrue enterTerminatorReferencedLabels !inSymbolTable !inBlockList !?ioReferencedBlockSet] ;
+  [mInstructionIfConditionFalse enterTerminatorReferencedLabels !inSymbolTable !inBlockList !?ioReferencedBlockSet] ;
 end method ;
 
 #----------------------------------------------------------------------------*
@@ -628,6 +487,8 @@ end method ;
 #----------------------------------------------------------------------------*
 
 method @ipic18SequentialInstruction enterInstructionReferencedLabels
+  ??@symbolTableForBlockOptimization unused inSymbolTable
+  ??@ipic18BlockList unused inBlockList
   ?!@stringset unused ioReferencedBlockSet
 :
 end method ;
@@ -635,27 +496,55 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override method @ipic18_intermediate_JSR enterInstructionReferencedLabels
+  ??@symbolTableForBlockOptimization inSymbolTable
+  ??@ipic18BlockList inBlockList
   ?!@stringset ioReferencedBlockSet
 :
-  ioReferencedBlockSet += !mTargetLabel->string ;
+  if not [ioReferencedBlockSet hasKey !mTargetLabel->string] then
+    ioReferencedBlockSet += !mTargetLabel->string ;
+    [inSymbolTable searchKey !mTargetLabel ??@uint blockIndex] ;
+    const @ipic18Block b := [inBlockList mBlockAtIndex !blockIndex] ;
+    [b enterReferencedLabels
+      !inSymbolTable
+      !inBlockList
+      !?ioReferencedBlockSet
+    ] ;
+  end if ; 
 end method ;
 
 #----------------------------------------------------------------------------*
 
 override method @ipic18_intermediate_instruction_computed_rcall enterInstructionReferencedLabels
+  ??@symbolTableForBlockOptimization inSymbolTable
+  ??@ipic18BlockList inBlockList
   ?!@stringset ioReferencedBlockSet
 :
   foreach mTargetLabels do
-    ioReferencedBlockSet += !mValue->string ;
+    if not [ioReferencedBlockSet hasKey !mValue->string] then
+      ioReferencedBlockSet += !mValue->string ;
+      [inSymbolTable searchKey !mValue ??@uint blockIndex] ;
+      const @ipic18Block b := [inBlockList mBlockAtIndex !blockIndex] ;
+      [b enterReferencedLabels
+        !inSymbolTable
+        !inBlockList
+        !?ioReferencedBlockSet
+      ] ;
+    end if ; 
   end foreach ;
 end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @ipic18_skip_instruction enterInstructionReferencedLabels
+override method @ipic18_condition_skip_instruction  enterInstructionReferencedLabels
+  ??@symbolTableForBlockOptimization inSymbolTable
+  ??@ipic18BlockList inBlockList
   ?!@stringset ioReferencedBlockSet
 :
-  [mEmbeddedInstruction enterInstructionReferencedLabels !?ioReferencedBlockSet] ;
+  [mEmbeddedInstruction enterInstructionReferencedLabels
+    !inSymbolTable
+    !inBlockList
+    !?ioReferencedBlockSet
+  ] ;
 end method ;
 
 #----------------------------------------------------------------------------*
@@ -665,20 +554,36 @@ end method ;
 #----------------------------------------------------------------------------*
 
 method @ipic18SequentialInstructionList enterInstructionReferencedLabels
+  ??@symbolTableForBlockOptimization inSymbolTable
+  ??@ipic18BlockList inBlockList
   ?!@stringset ioReferencedBlockSet
 :
   foreach selfcopy do
-    [mInstruction enterInstructionReferencedLabels !?ioReferencedBlockSet] ;  
+    [mInstruction enterInstructionReferencedLabels
+      !inSymbolTable
+      !inBlockList
+      !?ioReferencedBlockSet
+    ] ;  
   end foreach ;
 end method ;
 
 #----------------------------------------------------------------------------*
 
 method @ipic18Block enterReferencedLabels
+  ??@symbolTableForBlockOptimization inSymbolTable
+  ??@ipic18BlockList inBlockList
   ?!@stringset ioReferencedBlockSet
 :
-  [mInstructionList enterInstructionReferencedLabels !?ioReferencedBlockSet] ;
-  [mTerminator enterTerminatorReferencedLabels !?ioReferencedBlockSet] ;
+  [mInstructionList enterInstructionReferencedLabels
+    !inSymbolTable
+    !inBlockList
+    !?ioReferencedBlockSet
+  ] ;
+  [mTerminator enterTerminatorReferencedLabels
+    !inSymbolTable
+    !inBlockList
+    !?ioReferencedBlockSet
+  ] ;
 end method ;
 
 #----------------------------------------------------------------------------*
@@ -710,9 +615,9 @@ method @ipic18Block optimize
         optimized := true ;
         ioOptimizationDone := true ;
         ioListFileContents .= "  " . mLabel . ": " ;
-        [mTerminator display !?ioListFileContents] ;
+        [mTerminator display !"" !?ioListFileContents] ;
         ioListFileContents .= " -> " ;
-        [newTerminator display !?ioListFileContents] ;
+        [newTerminator display !"" !?ioListFileContents] ;
         ioListFileContents .= "\n" ;
       end if ;
     end if ;
@@ -720,7 +625,7 @@ method @ipic18Block optimize
     if (not optimized) & (lastInstruction is @ipic18_intermediate_JSR) then
       const @ipic18_intermediate_JSR jsr := (cast lastInstruction : @ipic18_intermediate_JSR) ;
       [!?instructionList popLast ?*] ;
-      const @ipic18JumpTerminator newTerminator [new ![jsr mTargetLabel]] ; # ![jsr mKind]] ;
+      const @ipic18JumpTerminator newTerminator [new ![jsr mTargetLabel] ![jsr mKind]] ;
       outOptimizedBlock := [@ipic18Block new
         !mStartAddress
         !mLabel
@@ -730,9 +635,9 @@ method @ipic18Block optimize
       optimized := true ;
       ioOptimizationDone := true ;
       ioListFileContents .= "  " . mLabel . ": " ;
-      [mTerminator display !?ioListFileContents] ;
+      [mTerminator display !"" !?ioListFileContents] ;
       ioListFileContents .= " -> " ;
-      [newTerminator display !?ioListFileContents] ;
+      [newTerminator display !"" !?ioListFileContents] ;
       ioListFileContents .= "\n" ;
     end if ;
   end if ;
@@ -764,7 +669,9 @@ routine ipic18OptimizeBlocks
   ioListFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n" ;
   ioListFileContents .= "*" . ["BLOCK REPRESENTATION OPTIMIZATION" stringByLeftAndRightPadding !77 !' '] . "*\n" ;
   ioListFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n" ;
-  message "Optimizations:\n" ;
+  if [option.verbose_output value] then
+    message "Optimizations:\n" ;
+  end if ;
 #--- Optimizations loops
   @bool optimizationDone := true ;
   @uint optimizationPass := 0 ;
@@ -773,16 +680,24 @@ routine ipic18OptimizeBlocks
     optimizationDone := false ;
     optimizationPass := optimizationPass + 1 ;
     ioListFileContents .= "\n--- Pass " . optimizationPass . " (" . [ioGeneratedBlockList length] . " blocks)\n" ;
-    message "  Pass " . optimizationPass . " (" . [ioGeneratedBlockList length] . " blocks)\n" ;
-  #-------------------------------- Build referenced label set
-    @stringset referencedBlockSet [emptySet] ;
-    foreach ioGeneratedBlockList do
-      [mBlock enterReferencedLabels !?referencedBlockSet] ;
-    end foreach ;
+    if [option.verbose_output value] then
+      message "  Pass " . optimizationPass . " (" . [ioGeneratedBlockList length] . " blocks)\n" ;
+    end if ;
   #-------------------------------- Build label map
     @symbolTableForBlockOptimization symbolTable [emptyMap] ;
     foreach ioGeneratedBlockList index blockIndex do
       [!?symbolTable insertKey !mBlock->mLabel !blockIndex] ;
+    end foreach ;
+  #-------------------------------- Build referenced label set
+    @stringset referencedBlockSet [emptySet] ;
+    foreach ioGeneratedBlockList do
+      if mBlock->mStartAddress != [@uint max] then # Only absolute blocks
+        [mBlock enterReferencedLabels
+          !symbolTable
+          !ioGeneratedBlockList
+          !?referencedBlockSet
+        ] ;
+      end if ;
     end foreach ;
   #-------------------------------- Optimization loop
     @ipic18BlockList optimizedBlockList [emptyList] ;
@@ -804,7 +719,9 @@ routine ipic18OptimizeBlocks
     ioGeneratedBlockList := optimizedBlockList ;
   end loop ;
   ioListFileContents .= "  No optimization.\n\n" ;
-  message "\n" ;
+  if [option.verbose_output value] then
+    message "\n" ;
+  end if ;
 end routine ;
 
 #----------------------------------------------------------------------------*

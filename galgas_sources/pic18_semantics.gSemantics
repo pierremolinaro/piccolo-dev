@@ -343,7 +343,8 @@ routine pic18_analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName 
     end if ;
   #--- Write infos (if verbose mode)
     if [option.verbose_output value] then
-      @string verboseMessage := "  ROM size: " . [[[piccoloDeviceModel mRomSize] uint] string] . " bytes;" ;
+      @string verboseMessage := "Resource Usage:\n" ;
+      verboseMessage .= "  ROM size: " . [[[piccoloDeviceModel mRomSize] uint] string] . " bytes;" ;
       verboseMessage .= " used: " . [usedROMsize string] . " bytes (" ;
       verboseMessage .= [(usedROMsize * 100) / [[piccoloDeviceModel mRomSize] uint] string] . "%).\n" ;
       foreach ramBank do

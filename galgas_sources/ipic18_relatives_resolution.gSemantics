@@ -1,0 +1,241 @@
+semantics ipic18_relatives_resolution :
+import "ipic18_block_representation.gSemantics" ;
+
+#----------------------------------------------------------------------------*
+
+#!--- @symbolTableForRelativesResolution
+
+#----------------------------------------------------------------------------*
+
+map @symbolTableForRelativesResolution {
+  @uint mLabelAddress ;
+  insert insertKey error message "the '%K' label is already declared in %L" ;
+  search searchKey error message "the '%K' label is not declared" ;
+}
+
+#----------------------------------------------------------------------------*
+
+#!--- Instruction size
+
+#----------------------------------------------------------------------------*
+
+reader @ipic18SequentialInstruction instructionSize
+  -> @uint outSize
+:
+  outSize := 1 ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override reader @ipic18_intermediate_instruction_MOVFF instructionSize
+  -> @uint outSize
+:
+  outSize := 2 ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override reader @ipic18_intermediate_JSR instructionSize
+  -> @uint outSize
+:
+  switch mKind
+  when ipicRelative, relative :
+    outSize := 1 ;
+  when absolute :
+    outSize := 2 ;
+  end switch ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override reader @ipic18_intermediate_instruction_computed_rcall instructionSize
+  -> @uint outSize
+:
+  if mUsesRCALL then
+    outSize := 1 ;
+  else
+    outSize := 2 ;
+  end if ;
+  outSize := outSize + 2 * [mTargetLabels length] - 1 ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+#!--- Terminator size
+
+#----------------------------------------------------------------------------*
+
+abstract reader @ipic18AbstractBlockTerminator terminatorSize
+  ??@string inNextBlockLabel
+  -> @uint outSize
+;
+
+#----------------------------------------------------------------------------*
+
+override reader @ipic18SingleInstructionTerminator terminatorSize
+  ??@string unused inNextBlockLabel
+  -> @uint outSize
+:
+  outSize := 1 ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override reader @ipic18JumpTerminator terminatorSize
+  ??@string inNextBlockLabel
+  -> @uint outSize
+:
+  if mLabel->string == inNextBlockLabel then
+    outSize := 0 ;
+  else
+    switch mKind
+    when ipicRelative, relative :
+      outSize := 1 ;
+    when absolute :
+      outSize := 2 ;
+    end switch ;  
+  end if ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override reader @ipic18AbstractConditionTerminator terminatorSize
+  ??@string inNextBlockLabel
+  -> @uint outSize
+:
+  outSize := 1
+    + [mInstructionIfConditionTrue terminatorSize !inNextBlockLabel]
+    + [mInstructionIfConditionFalse terminatorSize !inNextBlockLabel]
+  ;    
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override reader @pic18RegisterComparisonTerminator terminatorSize
+  ??@string inNextBlockLabel
+  -> @uint outSize
+:
+  outSize := 1
+    + [mInstructionIfConditionTrue terminatorSize !inNextBlockLabel]
+    + [mInstructionIfConditionFalse terminatorSize !""]
+  ;    
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override reader @pic18TestRegisterTerminator terminatorSize
+  ??@string inNextBlockLabel
+  -> @uint outSize
+:
+  outSize := 1
+    + [mInstructionIfConditionTrue terminatorSize !inNextBlockLabel]
+    + [mInstructionIfConditionFalse terminatorSize !""]
+  ;    
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override reader @ipic18ComputedGotoTerminator terminatorSize
+  ??@string unused inNextBlockLabel
+  -> @uint outSize
+:
+  if mUsesRCALL then
+    outSize := 1 ;
+  else
+    outSize := 2 ;
+  end if ;
+  outSize := outSize + 2 * [mTargetLabels length] ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override reader @ipic18ComputedBraTerminator terminatorSize
+  ??@string unused inNextBlockLabel
+  -> @uint outSize
+:
+  if mUsesRCALL then
+    outSize := 1 ;
+  else
+    outSize := 2 ;
+  end if ;
+  outSize := outSize + [mTargetLabels length] ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override reader @ipic18ComputedRETLWTerminator terminatorSize
+  ??@string unused inNextBlockLabel
+  -> @uint outSize
+:
+  if mUsesRCALL then
+    outSize := 1 ;
+  else
+    outSize := 2 ;
+  end if ;
+  outSize := outSize + [mLiteralValues length] ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+#!--- Routines
+
+#----------------------------------------------------------------------------*
+
+reader @ipic18Block blockSize
+  ??@string inNextBlockLabel
+  ->@uint outResult
+:
+  outResult := [mTerminator terminatorSize !inNextBlockLabel] ;
+  foreach mInstructionList do
+    outResult := outResult + [mInstruction instructionSize] ;  
+  end foreach ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+local routine computeLabelAbsoluteAddressMap
+  ??@ipic18BlockList inGeneratedBlockList
+  !@symbolTableForRelativesResolution outSymbolTable
+:
+  outSymbolTable := [@symbolTableForRelativesResolution emptyMap] ;
+  @uint blockStartAddress := 0 ;
+  foreach inGeneratedBlockList index blockIndex do
+    @string nextBlockLabel ;
+    if (blockIndex+1) < [inGeneratedBlockList length] then
+      nextBlockLabel := [inGeneratedBlockList mBlockAtIndex !blockIndex+1]->mLabel->string ;
+    else
+      nextBlockLabel := "" ;
+    end if ;
+    if mBlock->mStartAddress != [@uint max] then # Absolute block
+      blockStartAddress := mBlock->mStartAddress ;
+    end if ;
+    [!?outSymbolTable insertKey !mBlock->mLabel !blockStartAddress] ;
+    const @uint blockSize := [mBlock blockSize !nextBlockLabel] ;
+    blockStartAddress := blockStartAddress + blockSize ;
+  end foreach ;
+end routine ;
+
+#----------------------------------------------------------------------------*
+
+routine ipic18RelativesResolution
+  ?!@string ioListFileContents
+  ?!@ipic18BlockList ioGeneratedBlockList
+:
+  ioListFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n" ;
+  ioListFileContents .= "*" . ["RELATIVES RESOLUTION" stringByLeftAndRightPadding !77 !' '] . "*\n" ;
+  ioListFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n\n" ;
+#---
+  @bool resolutionDone := false ;
+  loop [ioGeneratedBlockList length] + 1 :
+  while (not resolutionDone) & ([@uint errorCount] == 0) do
+    resolutionDone := true ;
+    computeLabelAbsoluteAddressMap
+      !ioGeneratedBlockList
+      ?* # ?@symbolTableForRelativesResolution symbolTable
+    ;
+  end loop ;
+end routine ;
+
+#----------------------------------------------------------------------------*
+
+end semantics ;
