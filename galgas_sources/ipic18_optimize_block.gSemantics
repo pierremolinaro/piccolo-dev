@@ -384,6 +384,44 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
+local routine enterGoto2block
+  ??@symbolTableForBlockOptimization inSymbolTable
+  ??@ipic18BlockList inBlockList
+  ?!@stringset ioReferencedBlockSet
+:
+  if not [ioReferencedBlockSet hasKey !"_computed_goto_2"] then
+    ioReferencedBlockSet += !"_computed_goto_2" ;
+    [inSymbolTable searchKey !["_computed_goto_2" nowhere] ??@uint blockIndex] ;
+    const @ipic18Block b := [inBlockList mBlockAtIndex !blockIndex] ;
+    [b enterReferencedLabels
+      !inSymbolTable
+      !inBlockList
+      !?ioReferencedBlockSet
+    ] ;
+  end if ; 
+end routine ;
+
+#----------------------------------------------------------------------------*
+
+local routine enterGoto4block
+  ??@symbolTableForBlockOptimization inSymbolTable
+  ??@ipic18BlockList inBlockList
+  ?!@stringset ioReferencedBlockSet
+:
+  if not [ioReferencedBlockSet hasKey !"_computed_goto_4"] then
+    ioReferencedBlockSet += !"_computed_goto_4" ;
+    [inSymbolTable searchKey !["_computed_goto_4" nowhere] ??@uint blockIndex] ;
+    const @ipic18Block b := [inBlockList mBlockAtIndex !blockIndex] ;
+    [b enterReferencedLabels
+      !inSymbolTable
+      !inBlockList
+      !?ioReferencedBlockSet
+    ] ;
+  end if ; 
+end routine ;
+
+#----------------------------------------------------------------------------*
+
 abstract method @ipic18AbstractBlockTerminator enterTerminatorReferencedLabels
   ??@symbolTableForBlockOptimization inSymbolTable
   ??@ipic18BlockList inBlockList
@@ -392,11 +430,30 @@ abstract method @ipic18AbstractBlockTerminator enterTerminatorReferencedLabels
 
 #----------------------------------------------------------------------------*
 
+override method @ipic18ComputedRETLWTerminator enterTerminatorReferencedLabels
+  ??@symbolTableForBlockOptimization inSymbolTable
+  ??@ipic18BlockList inBlockList
+  ?!@stringset ioReferencedBlockSet
+:
+  enterGoto2block
+    !inSymbolTable
+    !inBlockList
+    !?ioReferencedBlockSet
+  ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
 override method @ipic18ComputedBraTerminator enterTerminatorReferencedLabels
   ??@symbolTableForBlockOptimization inSymbolTable
   ??@ipic18BlockList inBlockList
   ?!@stringset ioReferencedBlockSet
 :
+  enterGoto2block
+    !inSymbolTable
+    !inBlockList
+    !?ioReferencedBlockSet
+  ;
   foreach mTargetLabels do
     if not [ioReferencedBlockSet hasKey !mValue->string] then
       ioReferencedBlockSet += !mValue->string ;
@@ -418,6 +475,11 @@ override method @ipic18ComputedGotoTerminator enterTerminatorReferencedLabels
   ??@ipic18BlockList inBlockList
   ?!@stringset ioReferencedBlockSet
 :
+  enterGoto4block
+    !inSymbolTable
+    !inBlockList
+    !?ioReferencedBlockSet
+  ;
   foreach mTargetLabels do
     if not [ioReferencedBlockSet hasKey !mValue->string] then
       ioReferencedBlockSet += !mValue->string ;
@@ -454,15 +516,6 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override method @ipic18SingleInstructionTerminator enterTerminatorReferencedLabels
-  ??@symbolTableForBlockOptimization unused inSymbolTable
-  ??@ipic18BlockList unused inBlockList
-  ?!@stringset unused ioReferencedBlockSet
-:
-end method ;
-
-#----------------------------------------------------------------------------*
-
-override method @ipic18ComputedRETLWTerminator enterTerminatorReferencedLabels
   ??@symbolTableForBlockOptimization unused inSymbolTable
   ??@ipic18BlockList unused inBlockList
   ?!@stringset unused ioReferencedBlockSet
@@ -519,6 +572,11 @@ override method @ipic18_intermediate_instruction_computed_rcall enterInstruction
   ??@ipic18BlockList inBlockList
   ?!@stringset ioReferencedBlockSet
 :
+  enterGoto4block
+    !inSymbolTable
+    !inBlockList
+    !?ioReferencedBlockSet
+  ;
   foreach mTargetLabels do
     if not [ioReferencedBlockSet hasKey !mValue->string] then
       ioReferencedBlockSet += !mValue->string ;

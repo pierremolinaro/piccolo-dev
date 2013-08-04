@@ -2318,6 +2318,95 @@ routine build_ipic18_block_representation_list
       error mRoutineName:"execution should not reach the end of a \"noreturn\" routine" ;
     end if ;
   end foreach ;
+#-------------------------------- Add computed goto, rcall, ... utility routines
+#  They wil be removed by optimizer if there are useless
+#--- Description of register WREG
+  @registerExpression WREGregister [new ![@lstring new !"WREG" !here] ![@luint new !0 !here]] ;
+  [WREGregister analyzeRegisterExpression
+    !inAccessBankSplitOffset
+    !0 # Current bank
+    !inRegisterTable
+    ??@ipic18_intermediate_registerExpression WREG_IPICregisterDescription
+    ?*
+  ] ;
+#--- Description of register TOSL
+  @registerExpression TOSLregister [new ![@lstring new !"TOSL" !here] ![@luint new !0 !here]] ;
+  [TOSLregister analyzeRegisterExpression
+    !inAccessBankSplitOffset
+    !0 # Current bank
+    !inRegisterTable
+    ??@ipic18_intermediate_registerExpression TOSL_IPICregisterDescription
+    ?*
+  ] ;
+#--- Description of register TOSH
+  @registerExpression TOSHregister [new ![@lstring new !"TOSH" !here] ![@luint new !0 !here]] ;
+  [TOSHregister analyzeRegisterExpression
+    !inAccessBankSplitOffset
+    !0 # Current bank
+    !inRegisterTable
+    ??@ipic18_intermediate_registerExpression TOSH_IPICregisterDescription
+    ?*
+  ] ;
+#--- Description of register TOSU
+  @registerExpression TOSUregister [new ![@lstring new !"TOSU" !here] ![@luint new !0 !here]] ;
+  [TOSUregister analyzeRegisterExpression
+    !inAccessBankSplitOffset
+    !0 # Current bank
+    !inRegisterTable
+    ??@ipic18_intermediate_registerExpression TOSU_IPICregisterDescription
+    ?*
+  ] ;
+#---
+  const @ipic18SequentialInstruction ADDWF_WREG := [@ipic18_intermediate_instruction_FDA new
+    !here
+    ![@instruction_FDA_base_code ADDWF]
+    !WREG_IPICregisterDescription
+    !true
+  ] ; # ADDWF WREG, W
+
+#--- computed_goto4
+  const @ipic18Block goto4Block [new
+    ![@uint max] # Relocatable
+    !["_computed_goto_4" nowhere]
+    ![@ipic18SequentialInstructionList listWithValue !ADDWF_WREG]
+    ![@ipic18JumpTerminator new !["_computed_goto_2" nowhere] ![@jumpInstructionKind ipicRelative]]
+  ] ;
+  outGeneratedBlockList += !goto4Block ;
+#--- computed_goto2
+  @ipic18SequentialInstructionList goto2InstructionList [emptyList] ;
+  goto2InstructionList += !ADDWF_WREG ;
+  goto2InstructionList += !ADDWF_WREG ;
+  goto2InstructionList += ![@ipic18_intermediate_instruction_FDA new
+    !here
+    ![@instruction_FDA_base_code ADDWF]
+    !TOSL_IPICregisterDescription
+    !false
+  ] ; # ADDWF TOSL, F
+  goto2InstructionList += ![@ipic18_intermediate_instruction_literalOperation new
+    !here
+    ![@literal_instruction_opcode MOVLW]
+    !0
+  ] ; # MOVLW 0
+  goto2InstructionList += ![@ipic18_intermediate_instruction_FDA new
+    !here
+    ![@instruction_FDA_base_code ADDWFC]
+    !TOSH_IPICregisterDescription
+    !false
+  ] ; # ADDWFC TOSH, F
+  goto2InstructionList += ![@ipic18_intermediate_instruction_FDA new
+    !here
+    ![@instruction_FDA_base_code ADDWFC]
+    !TOSU_IPICregisterDescription
+    !false
+  ] ; # ADDWFC TOSU, F
+#--- computed_goto2
+  const @ipic18Block goto2Block [new
+    ![@uint max] # Relocatable
+    !["_computed_goto_2" nowhere]
+    !goto2InstructionList
+    ![@ipic18ReturnTerminator new]
+  ] ;
+  outGeneratedBlockList += !goto2Block ;
 #-------------------------------- Generate default user routines
   entryPoint := [inBootloaderReservedROMsize uint] ;
   foreach inUserRoutineDeclarationListForBootloaderImplementation do
