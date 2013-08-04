@@ -16,6 +16,7 @@ list @ipic18SequentialInstructionList {
 #----------------------------------------------------------------------------*
 
 abstract class @ipic18AbstractBlockTerminator {
+  @location mInstructionLocation ;
 }
 
 #----------------------------------------------------------------------------*
