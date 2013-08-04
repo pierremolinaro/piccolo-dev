@@ -177,6 +177,317 @@ end reader ;
 
 #----------------------------------------------------------------------------*
 
+#!--- Check displacement
+
+#----------------------------------------------------------------------------*
+
+routine checkBRA_RCALL
+  ??@symbolTableForRelativesResolution inSymbolTable
+  ??@lstring inTargetLabel
+  ??@uint inCurrentAddress
+  !@bool outDisplacementOK
+  !@sint outDisplacement
+:
+  [inSymbolTable searchKey !inTargetLabel ??@uint targetAddress] ;
+  outDisplacement := [targetAddress sint] - 1S - [inCurrentAddress sint] ;
+  outDisplacementOK :=  (outDisplacement < 1024S) & (outDisplacement > - 1024S) ;
+end routine ;
+
+#----------------------------------------------------------------------------*
+
+#!--- Check relative resolution : terminator
+
+#----------------------------------------------------------------------------*
+
+method @ipic18AbstractBlockTerminator checkRelativesResolution
+  ??@uint unused inAddress
+  ??@string unused inBlockLabel
+  ??@symbolTableForRelativesResolution unused inSymbolTable
+  ??@string unused inNextBlockLabel
+  ?!@uint unused ioConversionCount
+  ?!@string unused ioListFileContents
+  !@ipic18AbstractBlockTerminator outModifiedTerminator
+:
+  outModifiedTerminator := selfcopy ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @ipic18JumpTerminator checkRelativesResolution
+  ??@uint inAddress
+  ??@string inBlockLabel
+  ??@symbolTableForRelativesResolution inSymbolTable
+  ??@string inNextBlockLabel
+  ?!@uint ioConversionCount
+  ?!@string ioListFileContents
+  !@ipic18AbstractBlockTerminator outModifiedTerminator
+:
+  outModifiedTerminator := selfcopy ;
+  if inNextBlockLabel != mLabel->string then
+    switch mKind
+    when ipicRelative :
+      checkBRA_RCALL !inSymbolTable !mLabel !inAddress ??@bool ok ?* ;
+      if not ok then
+        ioConversionCount ++ ;
+        ioListFileContents .= "  " . inBlockLabel . ": JUMP " . mLabel . " --> GOTO " . mLabel . "\n" ;
+        outModifiedTerminator := [@ipic18JumpTerminator new !mInstructionLocation !mLabel ![@jumpInstructionKind absolute]] ;
+      end if ;
+    when relative :
+      checkBRA_RCALL !inSymbolTable !mLabel !inAddress ??@bool ok ??@sint d ;
+      if not ok then
+        error mInstructionLocation: "displacement (" . d . ") too large for BRA " . mLabel . " instruction (limited to [-1024, 1023])" ;
+      end if ;
+    when absolute : # Allways ok
+    end switch ;
+  end if ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @ipic18ComputedRETLWTerminator checkRelativesResolution
+  ??@uint inAddress
+  ??@string inBlockLabel
+  ??@symbolTableForRelativesResolution inSymbolTable
+  ??@string unused inNextBlockLabel
+  ?!@uint ioConversionCount
+  ?!@string ioListFileContents
+  !@ipic18AbstractBlockTerminator outModifiedTerminator
+:
+  outModifiedTerminator := selfcopy ;
+  if mUsesRCALL then
+    checkBRA_RCALL !inSymbolTable !["_computed_goto_2" nowhere] !inAddress ??@bool ok ?* ;
+    if not ok then
+      ioConversionCount ++ ;
+      ioListFileContents .= "  " . inBlockLabel . ": computed RETLW needs CALL _computed_goto_2\n" ;
+      outModifiedTerminator := [@ipic18ComputedRETLWTerminator new !mInstructionLocation !mLiteralValues !false] ;
+    end if ;
+  end if ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @ipic18ComputedBraTerminator checkRelativesResolution
+  ??@uint inAddress
+  ??@string inBlockLabel
+  ??@symbolTableForRelativesResolution inSymbolTable
+  ??@string unused inNextBlockLabel
+  ?!@uint ioConversionCount
+  ?!@string ioListFileContents
+  !@ipic18AbstractBlockTerminator outModifiedTerminator
+:
+  foreach mTargetLabels do
+    checkBRA_RCALL !inSymbolTable !mValue !inAddress ??@bool ok ?@sint d ;
+    if not ok then
+      error mInstructionLocation: "displacement (" . d . ") too large for rcall " . mValue . " instruction (limited to [-1024, 1023])" ;
+    end if ;
+  end foreach ;
+  outModifiedTerminator := selfcopy ;
+  if mUsesRCALL then
+    checkBRA_RCALL !inSymbolTable !["_computed_goto_2" nowhere] !inAddress ??@bool ok ?* ;
+    if not ok then
+      ioConversionCount ++ ;
+      ioListFileContents .= "  " . inBlockLabel . ": computed RETLW needs CALL _computed_goto_2\n" ;
+      outModifiedTerminator := [@ipic18ComputedBraTerminator new !mInstructionLocation !mTargetLabels !false] ;
+    end if ;
+  end if ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @ipic18ComputedGotoTerminator checkRelativesResolution
+  ??@uint inAddress
+  ??@string inBlockLabel
+  ??@symbolTableForRelativesResolution inSymbolTable
+  ??@string unused inNextBlockLabel
+  ?!@uint ioConversionCount
+  ?!@string ioListFileContents
+  !@ipic18AbstractBlockTerminator outModifiedTerminator
+:
+  outModifiedTerminator := selfcopy ;
+  if mUsesRCALL then
+    checkBRA_RCALL !inSymbolTable !["_computed_goto_2" nowhere] !inAddress ??@bool ok ?* ;
+    if not ok then
+      ioConversionCount ++ ;
+      ioListFileContents .= "  " . inBlockLabel . ": computed GOTO needs CALL _computed_goto_4\n" ;
+      outModifiedTerminator := [@ipic18ComputedGotoTerminator new !mInstructionLocation !mTargetLabels !false] ;
+    end if ;
+  end if ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @pic18RegisterComparisonTerminator checkRelativesResolution
+  ??@uint inAddress
+  ??@string inBlockLabel
+  ??@symbolTableForRelativesResolution inSymbolTable
+  ??@string inNextBlockLabel
+  ?!@uint ioConversionCount
+  ?!@string ioListFileContents
+  !@ipic18AbstractBlockTerminator outModifiedTerminator
+:
+  const @uint n := ioConversionCount ;
+  [mInstructionIfConditionTrue checkRelativesResolution
+    !inAddress
+    !inBlockLabel
+    !inSymbolTable
+    !inNextBlockLabel
+    !?ioConversionCount
+    !?ioListFileContents
+    ?@ipic18AbstractBlockTerminator outModifiedTrueTerminator
+  ] ;
+  [mInstructionIfConditionFalse checkRelativesResolution
+    !inAddress
+    !inBlockLabel
+    !inSymbolTable
+    !inNextBlockLabel
+    !?ioConversionCount
+    !?ioListFileContents
+    ?@ipic18AbstractBlockTerminator outModifiedFalseTerminator
+  ] ;
+  if ioConversionCount == n then
+    outModifiedTerminator := selfcopy ;
+  else
+    outModifiedTerminator := [@pic18RegisterComparisonTerminator new
+      !mInstructionLocation
+      !(cast outModifiedTrueTerminator : @ipic18SingleInstructionTerminator)
+      !(cast outModifiedFalseTerminator : @ipic18SingleInstructionTerminator)
+      !mRegisterDescription
+      !mComparison
+    ] ;
+  end if ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @ipic18IncDecRegisterTerminator checkRelativesResolution
+  ??@uint inAddress
+  ??@string inBlockLabel
+  ??@symbolTableForRelativesResolution inSymbolTable
+  ??@string inNextBlockLabel
+  ?!@uint ioConversionCount
+  ?!@string ioListFileContents
+  !@ipic18AbstractBlockTerminator outModifiedTerminator
+:
+  const @uint n := ioConversionCount ;
+  [mInstructionIfConditionTrue checkRelativesResolution
+    !inAddress
+    !inBlockLabel
+    !inSymbolTable
+    !inNextBlockLabel
+    !?ioConversionCount
+    !?ioListFileContents
+    ?@ipic18AbstractBlockTerminator outModifiedTrueTerminator
+  ] ;
+  [mInstructionIfConditionFalse checkRelativesResolution
+    !inAddress
+    !inBlockLabel
+    !inSymbolTable
+    !inNextBlockLabel
+    !?ioConversionCount
+    !?ioListFileContents
+    ?@ipic18AbstractBlockTerminator outModifiedFalseTerminator
+  ] ;
+  if ioConversionCount == n then
+    outModifiedTerminator := selfcopy ;
+  else
+    outModifiedTerminator := [@ipic18IncDecRegisterTerminator new
+      !mInstructionLocation
+      !(cast outModifiedTrueTerminator : @ipic18SingleInstructionTerminator)
+      !(cast outModifiedFalseTerminator : @ipic18SingleInstructionTerminator)
+      !mRegisterDescription
+      !mIncrement
+      !m_W_isDestination
+    ] ;
+  end if ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @pic18TestRegisterTerminator checkRelativesResolution
+  ??@uint inAddress
+  ??@string inBlockLabel
+  ??@symbolTableForRelativesResolution inSymbolTable
+  ??@string inNextBlockLabel
+  ?!@uint ioConversionCount
+  ?!@string ioListFileContents
+  !@ipic18AbstractBlockTerminator outModifiedTerminator
+:
+  const @uint n := ioConversionCount ;
+  [mInstructionIfConditionTrue checkRelativesResolution
+    !inAddress
+    !inBlockLabel
+    !inSymbolTable
+    !inNextBlockLabel
+    !?ioConversionCount
+    !?ioListFileContents
+    ?@ipic18AbstractBlockTerminator outModifiedTrueTerminator
+  ] ;
+  [mInstructionIfConditionFalse checkRelativesResolution
+    !inAddress
+    !inBlockLabel
+    !inSymbolTable
+    !inNextBlockLabel
+    !?ioConversionCount
+    !?ioListFileContents
+    ?@ipic18AbstractBlockTerminator outModifiedFalseTerminator
+  ] ;
+  if ioConversionCount == n then
+    outModifiedTerminator := selfcopy ;
+  else
+    outModifiedTerminator := [@pic18TestRegisterTerminator new
+      !mInstructionLocation
+      !(cast outModifiedTrueTerminator : @ipic18SingleInstructionTerminator)
+      !(cast outModifiedFalseTerminator : @ipic18SingleInstructionTerminator)
+      !mRegisterDescription
+    ] ;
+  end if ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @pic18BitTestTerminator checkRelativesResolution
+  ??@uint inAddress
+  ??@string inBlockLabel
+  ??@symbolTableForRelativesResolution inSymbolTable
+  ??@string inNextBlockLabel
+  ?!@uint ioConversionCount
+  ?!@string ioListFileContents
+  !@ipic18AbstractBlockTerminator outModifiedTerminator
+:
+  const @uint n := ioConversionCount ;
+  [mInstructionIfConditionTrue checkRelativesResolution
+    !inAddress
+    !inBlockLabel
+    !inSymbolTable
+    !inNextBlockLabel
+    !?ioConversionCount
+    !?ioListFileContents
+    ?@ipic18AbstractBlockTerminator outModifiedTrueTerminator
+  ] ;
+  [mInstructionIfConditionFalse checkRelativesResolution
+    !inAddress
+    !inBlockLabel
+    !inSymbolTable
+    !inNextBlockLabel
+    !?ioConversionCount
+    !?ioListFileContents
+    ?@ipic18AbstractBlockTerminator outModifiedFalseTerminator
+  ] ;
+  if ioConversionCount == n then
+    outModifiedTerminator := selfcopy ;
+  else
+    outModifiedTerminator := [@pic18BitTestTerminator new
+      !mInstructionLocation
+      !(cast outModifiedTrueTerminator : @ipic18SingleInstructionTerminator)
+      !(cast outModifiedFalseTerminator : @ipic18SingleInstructionTerminator)
+      !mRegisterDescription
+      !mBitNumber
+    ] ;
+  end if ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
 #!--- Check relative resolution : instruction
 
 #----------------------------------------------------------------------------*
@@ -194,20 +505,6 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-routine checkRCALL
-  ??@symbolTableForRelativesResolution inSymbolTable
-  ??@lstring inTargetLabel
-  ??@uint inCurrentAddress
-  !@bool outDisplacementOK
-  !@sint outDisplacement
-:
-  [inSymbolTable searchKey !inTargetLabel ??@uint targetAddress] ;
-  outDisplacement := [targetAddress sint] - 1S - [inCurrentAddress sint] ;
-  outDisplacementOK :=  (outDisplacement < 1024S) & (outDisplacement > - 1024S) ;
-end routine ;
-
-#----------------------------------------------------------------------------*
-
 override method @ipic18_intermediate_JSR checkRelativesResolution
   ??@uint inAddress
   ??@string inBlockLabel
@@ -219,14 +516,14 @@ override method @ipic18_intermediate_JSR checkRelativesResolution
   outModifiedInstruction := selfcopy ;
   switch mKind
   when ipicRelative :
-    checkRCALL !inSymbolTable !mTargetLabel !inAddress ??@bool ok ?* ;
+    checkBRA_RCALL !inSymbolTable !mTargetLabel !inAddress ??@bool ok ?* ;
     if not ok then
       ioConversionCount ++ ;
       ioListFileContents .= "  " . inBlockLabel . ": JSR " . mTargetLabel . " --> CALL " . mTargetLabel . "\n" ;
       outModifiedInstruction := [@ipic18_intermediate_JSR new !mInstructionLocation !mTargetLabel ![@jumpInstructionKind absolute]] ;
     end if ;
   when relative :
-    checkRCALL !inSymbolTable !mTargetLabel !inAddress ??@bool ok ??@sint d ;
+    checkBRA_RCALL !inSymbolTable !mTargetLabel !inAddress ??@bool ok ??@sint d ;
     if not ok then
       error mInstructionLocation: "displacement (" . d . ") too large for RCALL " . mTargetLabel . " instruction (limited to [-1024, 1023])" ;
     end if ;
@@ -238,19 +535,32 @@ end method ;
 
 override method @ipic18_intermediate_instruction_computed_rcall checkRelativesResolution
   ??@uint inAddress
-  ??@string unused inBlockLabel
+  ??@string inBlockLabel
   ??@symbolTableForRelativesResolution inSymbolTable
-  ?!@uint unused ioConversionCount
-  ?!@string unused ioListFileContents
+  ?!@uint ioConversionCount
+  ?!@string ioListFileContents
   !@ipic18SequentialInstruction outModifiedInstruction
 :
   outModifiedInstruction := selfcopy ;
   foreach mTargetLabels do
-    checkRCALL !inSymbolTable !mValue !inAddress ??@bool ok ?@sint d ;
+    checkBRA_RCALL !inSymbolTable !mValue !inAddress ??@bool ok ?@sint d ;
     if not ok then
       error mInstructionLocation: "displacement (" . d . ") too large for rcall " . mValue . " instruction (limited to [-1024, 1023])" ;
     end if ;
   end foreach ;
+  if mUsesRCALL then
+    checkBRA_RCALL !inSymbolTable !["_computed_goto_2" nowhere] !inAddress ??@bool ok ?* ;
+    if not ok then
+      ioConversionCount ++ ;
+      ioListFileContents .= "  " . inBlockLabel . ": computed rcall needs to use CALL _computed_goto_2\n" ;
+      outModifiedInstruction := [@ipic18_intermediate_instruction_computed_rcall new
+        !mInstructionLocation
+        !mTargetLabels
+        !mEndOfInstructionLabel
+        !false # Uses GOTO
+      ] ;
+    end if ;
+  end if ;
 end method ;
 
 #----------------------------------------------------------------------------*
@@ -282,12 +592,22 @@ method @ipic18Block checkRelativesResolution
     modifiedInstructionList += !modifiedInstruction ;
     address := address + [mInstruction instructionSize] ;
   end foreach ;
+#--- Terminator
+  [mTerminator checkRelativesResolution
+    !address
+    !mLabel->string
+    !inSymbolTable
+    !inNextBlockLabel
+    !?ioConversionCount
+    !?ioListFileContents
+    ??@ipic18AbstractBlockTerminator modifiedTerminator
+  ] ;
 #---
   outModifiedBlock := [@ipic18Block new
     !mStartAddress
     !mLabel
     !modifiedInstructionList
-    !mTerminator
+    !modifiedTerminator
   ] ;
 end method ;
 
@@ -374,7 +694,7 @@ routine ipic18RelativesResolution
 :
 #---
   if [option.verbose_output value] then
-    message "Branch resolution:\n" ;
+    message "Relative branch conversion to absolute:\n" ;
   end if ;
   ioListFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n" ;
   ioListFileContents .= "*" . ["RELATIVES RESOLUTION" stringByLeftAndRightPadding !77 !' '] . "*\n" ;
@@ -385,12 +705,11 @@ routine ipic18RelativesResolution
   loop [ioGeneratedBlockList length] + 1 :
   while (not resolutionDone) & ([@uint errorCount] == 0) do
     pass ++ ;
-    resolutionDone := true ;
     computeLabelAbsoluteAddressMap
       !ioGeneratedBlockList
       ??@symbolTableForRelativesResolution symbolTable
     ;
-    ioListFileContents .= "--- Pass " . pass . ":\n" ;
+    ioListFileContents .= "  Pass " . pass . ":\n" ;
     @uint conversionCount := 0 ;
     checkRelativeResolution
       !symbolTable
@@ -401,7 +720,8 @@ routine ipic18RelativesResolution
     if [option.verbose_output value] then
       @string s := "--- Pass " . pass . ": " ;
       if conversionCount == 0 then
-        s .= "ok." ;
+        resolutionDone := true ; 
+        s .= "none." ;
       elsif conversionCount == 1 then
         s .= "1 conversion" ;
       else
