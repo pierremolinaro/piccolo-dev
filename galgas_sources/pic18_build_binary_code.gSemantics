@@ -340,7 +340,7 @@ override method @pic18_intermediate_JUMP generateBinaryCodeAtAddress
       ![mTargetLabel location]
       !?ioCode
     ;
-  when ipicAbsolute, absolute :
+  when absolute :
     emit_pic18_GOTOinstruction
       !targetAddress
       !?ioCode
@@ -398,7 +398,7 @@ override method @pic18_intermediate_JSR generateBinaryCodeAtAddress
       !mTargetLabel
       !?ioCode
     ;
-  when ipicAbsolute, absolute :
+  when absolute :
     emit_pic18_CALLinstruction
       !targetAddress
       !?ioCode

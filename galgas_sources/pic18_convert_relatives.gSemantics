@@ -310,11 +310,10 @@ override method @pic18_intermediate_JUMP checkRelativeBranch
       @pic18_intermediate_actualInstruction instruction := [@pic18_intermediate_JUMP new
         !mInstructionLocation
         !mTargetLabel
-        ![@jumpInstructionKind ipicAbsolute]
+        ![@jumpInstructionKind absolute]
       ] ;
       [!?ioGeneratedInstructionList setMInstructionAtIndex !instruction !inIndex] ;
     end if ;
-  when ipicAbsolute : # Ok
   when relative :
     @uint targetAddress ;
     [inRoutineSymbolTable searchKey !mTargetLabel ?targetAddress] ;
@@ -347,11 +346,10 @@ override method @pic18_intermediate_JSR checkRelativeBranch
       @pic18_intermediate_actualInstruction instruction := [@pic18_intermediate_JSR new
         !mInstructionLocation
         !mTargetLabel
-        ![@jumpInstructionKind ipicAbsolute]
+        ![@jumpInstructionKind absolute]
       ] ;
       [!?ioGeneratedInstructionList setMInstructionAtIndex !instruction !inIndex] ;
     end if ;
-  when ipicAbsolute : # Ok
   when relative :
     @uint targetAddress ;
     [inRoutineSymbolTable searchKey !mTargetLabel ?targetAddress] ;

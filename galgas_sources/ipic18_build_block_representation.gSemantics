@@ -2,7 +2,9 @@ semantics ipic18_build_block_representation :
 import "ipic18_optimize_block.gSemantics" ;
 import "piccoloDevice_semantics.gSemantics" ;
 import "intermediate_generic.gSemantics" ;
-import "pic18_optimize_block_ordering.gSemantics" ;
+import "ipic18_optimize_block_ordering.gSemantics" ;
+import "ipic18_relatives_resolution.gSemantics" ;
+import "ipic18_display_block_list.gSemantics" ;
 import "piccolo_options.gOption" ;
 
 #----------------------------------------------------------------------------*
@@ -421,7 +423,7 @@ override method @instruction_FOREVER analyze
   const @lstring label0 [new !"_label_" . [ioLocalLabelIndex string] !mInstructionLocation] ; 
   ioLocalLabelIndex ++ ;
 #--- Set a jump terminator to current block
-  ioCurrentBlock->mTerminator := [@ipic18JumpTerminator new !label0] ;
+  ioCurrentBlock->mTerminator := [@ipic18JumpTerminator new !label0 ![@jumpInstructionKind ipicRelative]] ;
 #--- Store current block
   ioGeneratedBlockList += !ioCurrentBlock ;
 #--- Create a new block
@@ -429,7 +431,7 @@ override method @instruction_FOREVER analyze
     ![@uint max] # relocatable
     !label0
     ![@ipic18SequentialInstructionList emptyList]
-    ![@ipic18JumpTerminator new !label0]
+    ![@ipic18JumpTerminator new !label0 ![@jumpInstructionKind ipicRelative]]
   ] ;
   analyzeInstructionList
     !mInstructionList
@@ -915,7 +917,7 @@ override method @instruction_JUMP analyze
   end if ;
   ioContinuesInSequence := false ;
 #--- Set terminator of current block
-  ioCurrentBlock->mTerminator := [@ipic18JumpTerminator new !mTargetLabel] ;
+  ioCurrentBlock->mTerminator := [@ipic18JumpTerminator new !mTargetLabel ![@jumpInstructionKind ipicRelative]] ;
 end method ;
 
 #----------------------------------------------------*
@@ -1154,8 +1156,8 @@ override method @instruction_JUMPCC analyze
   const @ipic18AbstractBlockTerminator terminator := ioCurrentBlock->mTerminator ;
 #--- Set terminator of current block
   ioCurrentBlock->mTerminator := [@ipic18ConditionalJumpTerminator new
-    ![@ipic18JumpTerminator new !mTargetLabel]
-    ![@ipic18JumpTerminator new !label0]
+    ![@ipic18JumpTerminator new !mTargetLabel ![@jumpInstructionKind ipicRelative]]
+    ![@ipic18JumpTerminator new !label0 ![@jumpInstructionKind ipicRelative]]
     !mode
     !mConditionalBranch
   ] ;
@@ -1478,7 +1480,7 @@ override method @instruction_structured_if analyze
     ![@uint max] # relocatable
     !conditionTrueLabel
     ![@ipic18SequentialInstructionList emptyList]
-    ![@ipic18JumpTerminator new !exitLabel]
+    ![@ipic18JumpTerminator new !exitLabel ![@jumpInstructionKind ipicRelative]]
   ] ;
   analyzeInstructionList
     !mThenInstructionList
@@ -1502,7 +1504,7 @@ override method @instruction_structured_if analyze
     ![@uint max] # relocatable
     !conditionFalseLabel
     ![@ipic18SequentialInstructionList emptyList]
-    ![@ipic18JumpTerminator new !exitLabel]
+    ![@ipic18JumpTerminator new !exitLabel ![@jumpInstructionKind ipicRelative]]
   ] ;
   analyzeInstructionList
     !mElseInstructionList
@@ -1557,7 +1559,7 @@ override method @instruction_do_while analyze
 #--- Save terminator of current block
   const @ipic18AbstractBlockTerminator currentBlockTerminator :=  ioCurrentBlock->mTerminator ;
 #--- Close current block
-  ioCurrentBlock->mTerminator := [@ipic18JumpTerminator new !startLabel] ;
+  ioCurrentBlock->mTerminator := [@ipic18JumpTerminator new !startLabel ![@jumpInstructionKind ipicRelative]] ;
   ioGeneratedBlockList += !ioCurrentBlock ;
 #--- Create an new block, for repeated instruction list
   ioCurrentBlock := [@ipic18Block new
@@ -1614,7 +1616,7 @@ override method @instruction_do_while analyze
       ![@uint max] # relocatable
       !conditionTrueLabel
       ![@ipic18SequentialInstructionList emptyList]
-      ![@ipic18JumpTerminator new !startLabel]
+      ![@ipic18JumpTerminator new !startLabel ![@jumpInstructionKind ipicRelative]]
     ] ;
     @uint branchFinalBank := ioCurrentBank ;
     analyzeInstructionList
@@ -1644,7 +1646,7 @@ override method @instruction_do_while analyze
       ![@uint max] # relocatable
       !conditionFalseLabel
       ![@ipic18SequentialInstructionList emptyList]
-      ![@ipic18JumpTerminator new !exitLabel]
+      ![@ipic18JumpTerminator new !exitLabel ![@jumpInstructionKind ipicRelative]]
     ] ;
   end foreach ;
   ioGeneratedBlockList += !ioCurrentBlock ;
@@ -1719,15 +1721,15 @@ override method @bcc_in_structured_if_condition analyzeCondition
 #--- Save terminator of current block
   if complementaryCondition then
     outCurrentBlockTerminator := [@pic18BraCCTerminator new
-      ![@ipic18JumpTerminator new !inConditionFalseLabel]
-      ![@ipic18JumpTerminator new !inConditionTrueLabel]
+      ![@ipic18JumpTerminator new !inConditionFalseLabel ![@jumpInstructionKind ipicRelative]]
+      ![@ipic18JumpTerminator new !inConditionTrueLabel ![@jumpInstructionKind ipicRelative]]
       ![@conditionalBranchMode native]
       !ipicCondition
     ] ;
   else
     outCurrentBlockTerminator := [@pic18BraCCTerminator new
-      ![@ipic18JumpTerminator new !inConditionTrueLabel]
-      ![@ipic18JumpTerminator new !inConditionFalseLabel]
+      ![@ipic18JumpTerminator new !inConditionTrueLabel ![@jumpInstructionKind ipicRelative]]
+      ![@ipic18JumpTerminator new !inConditionFalseLabel ![@jumpInstructionKind ipicRelative]]
       ![@conditionalBranchMode native]
       !ipicCondition
     ] ;
@@ -1780,15 +1782,15 @@ override method @registerComparisonCondition analyzeCondition
 #--- Save terminator of current block
   if complementaryBranch then
     outCurrentBlockTerminator := [@pic18RegisterComparisonTerminator new
-      ![@ipic18JumpTerminator new !inConditionFalseLabel]
-      ![@ipic18JumpTerminator new !inConditionTrueLabel]
+      ![@ipic18JumpTerminator new !inConditionFalseLabel ![@jumpInstructionKind ipicRelative]]
+      ![@ipic18JumpTerminator new !inConditionTrueLabel ![@jumpInstructionKind ipicRelative]]
       !IPICregisterDescription
       !ipicComparison
     ] ;
   else
     outCurrentBlockTerminator := [@pic18RegisterComparisonTerminator new
-      ![@ipic18JumpTerminator new !inConditionTrueLabel]
-      ![@ipic18JumpTerminator new !inConditionFalseLabel]
+      ![@ipic18JumpTerminator new !inConditionTrueLabel ![@jumpInstructionKind ipicRelative]]
+      ![@ipic18JumpTerminator new !inConditionFalseLabel ![@jumpInstructionKind ipicRelative]]
       !IPICregisterDescription
       !ipicComparison
     ] ;
@@ -1818,16 +1820,16 @@ override method @incDecRegisterInCondition analyzeCondition
 #--- Save terminator of current block
   if mBranchIfZero then
     outCurrentBlockTerminator := [@ipic18IncDecRegisterTerminator new
-      ![@ipic18JumpTerminator new !inConditionTrueLabel]
-      ![@ipic18JumpTerminator new !inConditionFalseLabel]
+      ![@ipic18JumpTerminator new !inConditionTrueLabel ![@jumpInstructionKind ipicRelative]]
+      ![@ipic18JumpTerminator new !inConditionFalseLabel ![@jumpInstructionKind ipicRelative]]
       !IPICregisterDescription
       !mIncrement
       !m_W_isDestination
     ] ;
   else
     outCurrentBlockTerminator := [@ipic18IncDecRegisterTerminator new
-      ![@ipic18JumpTerminator new !inConditionFalseLabel]
-      ![@ipic18JumpTerminator new !inConditionTrueLabel]
+      ![@ipic18JumpTerminator new !inConditionFalseLabel ![@jumpInstructionKind ipicRelative]]
+      ![@ipic18JumpTerminator new !inConditionTrueLabel ![@jumpInstructionKind ipicRelative]]
       !IPICregisterDescription
       !mIncrement
       !m_W_isDestination
@@ -1858,14 +1860,14 @@ override method @registerTestCondition analyzeCondition
 #--- Save terminator of current block
   if mBranchIfZero then
     outCurrentBlockTerminator := [@pic18TestRegisterTerminator new
-      ![@ipic18JumpTerminator new !inConditionTrueLabel]
-      ![@ipic18JumpTerminator new !inConditionFalseLabel]
+      ![@ipic18JumpTerminator new !inConditionTrueLabel ![@jumpInstructionKind ipicRelative]]
+      ![@ipic18JumpTerminator new !inConditionFalseLabel ![@jumpInstructionKind ipicRelative]]
       !IPICregisterDescription
     ] ;
   else
     outCurrentBlockTerminator := [@pic18TestRegisterTerminator new
-      ![@ipic18JumpTerminator new !inConditionFalseLabel]
-      ![@ipic18JumpTerminator new !inConditionTrueLabel]
+      ![@ipic18JumpTerminator new !inConditionFalseLabel ![@jumpInstructionKind ipicRelative]]
+      ![@ipic18JumpTerminator new !inConditionTrueLabel ![@jumpInstructionKind ipicRelative]]
       !IPICregisterDescription
     ] ;
   end if ;
@@ -1898,15 +1900,15 @@ override method @bitTest_in_structured_if_condition analyzeCondition
 #--- Save terminator of current block
   if mBTFSSinstruction then
     outCurrentBlockTerminator := [@pic18BitTestTerminator new
-      ![@ipic18JumpTerminator new !inConditionTrueLabel]
-      ![@ipic18JumpTerminator new !inConditionFalseLabel]
+      ![@ipic18JumpTerminator new !inConditionTrueLabel ![@jumpInstructionKind ipicRelative]]
+      ![@ipic18JumpTerminator new !inConditionFalseLabel ![@jumpInstructionKind ipicRelative]]
       !IPICregisterDescription
       !bitNumber
     ] ;
   else
     outCurrentBlockTerminator := [@pic18BitTestTerminator new
-      ![@ipic18JumpTerminator new !inConditionFalseLabel]
-      ![@ipic18JumpTerminator new !inConditionTrueLabel]
+      ![@ipic18JumpTerminator new !inConditionFalseLabel ![@jumpInstructionKind ipicRelative]]
+      ![@ipic18JumpTerminator new !inConditionTrueLabel ![@jumpInstructionKind ipicRelative]]
       !IPICregisterDescription
       !bitNumber
     ] ;
@@ -1990,181 +1992,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-#!--- Intermediate instruction display
-
-#----------------------------------------------------------------------------*
-
-abstract method @ipic18SequentialInstruction display
-  ?!@string ioListFileContents
-;
-
-#----------------------------------------------------------------------------*
-
-override method @ipic18InstructionWithNoOperand display
-  ?!@string ioListFileContents
-:
-  ioListFileContents .= [mKind assemblyCode] ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
-override method @ipic18_intermediate_instruction_FDA display
-  ?!@string ioListFileContents
-:
-  ioListFileContents .= [mInstruction_FDA_base_code mnemonic] . " " . [mRegisterDescription mAssemblyString] ;
-  if m_W_isDestination & [mRegisterDescription mNeedsBSR] then
-    ioListFileContents .= ", W, BSR_ACCESS" ;
-  elsif [mRegisterDescription mNeedsBSR] then
-    ioListFileContents .= ", F, BSR_ACCESS" ;
-  elsif m_W_isDestination then
-    ioListFileContents .= ", W" ;
-  else
-    ioListFileContents .= ", F" ;
-  end if ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
-override method @ipic18_intermediate_instruction_FA display ?!@string ioListFileContents :
-  ioListFileContents .= [mFAinstruction mnemonic] . " " . [mRegisterDescription mAssemblyString] ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
-override method @ipic18_intermediate_instruction_MOVFF display ?!@string ioListFileContents :
-  ioListFileContents .= "MOVFF " . [mSourceRegisterDescription mAssemblyString]
-  . ", " . [mDestinationRegisterDescription mAssemblyString] ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
-override method @ipic18_intermediate_instruction_literalOperation display ?!@string ioListFileContents :
-  ioListFileContents .= [mLiteralInstruction mnemonic] . " " . [mLiteralValue hexString] ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
-override method @ipic18_intermediate_instruction_LFSR display ?!@string ioListFileContents :
-  ioListFileContents .= "LFSR " . [[mFSRindex uint] string] . ", " . [mValue hexString] ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
-override method @ipic18_intermediate_instruction_FBA display ?!@string ioListFileContents :
-  ioListFileContents .= [mBitOrientedOp mnemonic] . " " . [mRegisterDescription mAssemblyString] . ", " . [mBitNumber string] ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
-override method @ipic18_intermediate_JSR display ?!@string ioListFileContents :
-  switch mKind
-    when ipicRelative : ioListFileContents .= "BSR " . mTargetLabel ;
-    when ipicAbsolute : ioListFileContents .= "JSR " . mTargetLabel ;
-    when relative     : ioListFileContents .= "RCALL " . mTargetLabel ;
-    when absolute     : ioListFileContents .= "CALL " . mTargetLabel ;
-  end switch ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
-override method @ipic18_intermediate_instruction_MOVLB display ?!@string ioListFileContents :
-  ioListFileContents .= "MOVLB " . [[mBankIndex uint] string] ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
-override method @ipic18_intermediate_instruction_TBLRD display ?!@string ioListFileContents :
-  ioListFileContents .= "TBLRD " . [mOption mnemonic] ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
-override method @ipic18_intermediate_instruction_TBLWT display ?!@string ioListFileContents :
-  ioListFileContents .= "TBLWT " . [mOption mnemonic] ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
-override method @ipic18_intermediate_instruction_MNOP display ?!@string ioListFileContents :
-  ioListFileContents .= "MNOP " . [mOccurrenceFactor uint] ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
-override method @ipic18_intermediate_MOV_LABEL_W display ?!@string ioListFileContents :
-  ioListFileContents .= "MOVLW ((" . mLabel . " + " . mOffset . ") >> " . mRightShift . ") & 0xFF"  ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
-override method @ipic18_intermediate_instruction_computed_rcall display ?!@string ioListFileContents :
-  ioListFileContents .= "COMPUTED RCALL " ;
-  if mUsesRCALL then
-    ioListFileContents .= "(uses RCALL)" ;
-  else
-    ioListFileContents .= "(uses CALL)" ;
-  end if ;
-  foreach mTargetLabels do
-    ioListFileContents .= "\n    " . mValue ;
-  end foreach ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
-override method @ipic18_intermediate_instruction_BitTestSkip display ?!@string ioListFileContents :
-  if mSkipIfSet then
-    ioListFileContents .= "!" ;
-  end if ;
-  ioListFileContents .= [mRegisterDescription mAssemblyString] . "." . [mBitNumber string]
-  . " ?\n    " ;
-  [mEmbeddedInstruction display !?ioListFileContents] ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
-override method @ipic18_skip_instruction_FA display ?!@string ioListFileContents :
-  ioListFileContents .= [mFAinstruction mnemonic] . " " . [mRegisterDescription mAssemblyString]
-  . " ?\n    " ;
-  [mEmbeddedInstruction display !?ioListFileContents] ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
-override method @ipic18_skip_instruction_FDA display ?!@string ioListFileContents :
-  ioListFileContents .= [mInstruction_FDA_base_code mnemonic] . " " . [mRegisterDescription mAssemblyString] ;
-  if m_W_isDestination then
-    ioListFileContents .= ", W" ;
-  end if ;
-  ioListFileContents .= " ?\n    " ;
-  [mEmbeddedInstruction display !?ioListFileContents] ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
 #!--- Routines
-
-#----------------------------------------------------------------------------*
-
-method @ipic18Block display
-  ?!@string ioListFileContents
-:
-  ioListFileContents .= "LABEL " . mLabel ;
-  if mStartAddress != [@uint max] then
-    ioListFileContents .= ", ORG " . [mStartAddress hexString] ;
-  end if ;
-  ioListFileContents .= ":\n" ;
-#--- Instruction list
-  foreach mInstructionList do
-    ioListFileContents .= "  " ;
-    [mInstruction display !?ioListFileContents] ;
-    ioListFileContents .= "\n" ;
-  end foreach ;
-#--- Terminator
-  ioListFileContents .= "  " ;
-  [mTerminator display !?ioListFileContents] ;
-  ioListFileContents .= "\n\n" ;
-end method ;
-
 
 #----------------------------------------------------------------------------*
 
@@ -2205,21 +2033,6 @@ local routine analyzeInstructionList
       !?outContinuesInSequence
       !inRoutineKind
     ] ;
-  end foreach ;
-end routine ;
-
-#----------------------------------------------------------------------------*
-
-local routine displayBlockList
-  ??@string inTitle
-  ?!@string ioListFileContents
-  ??@ipic18BlockList inGeneratedBlockList
-:
-  ioListFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n" ;
-  ioListFileContents .= "*" . [inTitle stringByLeftAndRightPadding !77 !' '] . "*\n" ;
-  ioListFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n\n" ;
-  foreach inGeneratedBlockList do
-    [mBlock display !?ioListFileContents] ;
   end foreach ;
 end routine ;
 
@@ -2281,12 +2094,10 @@ routine build_ipic18_block_representation_list
     end if ;
   end foreach ;
 #-------------------------------- Print constant map
-  if [option piccolo_options.ouputListingFile value] then
-    print_constant_definition
-      !constantMap
-      !?ioListFileContents
-    ;
-  end if ;
+  print_constant_definition
+    !constantMap
+    !?ioListFileContents
+  ;
 #-------------------------------- Check the "main" routine is declared
   if inPiccoloModel->mProgramKind != [@programKind userProgram] then
     if [routineMap hasKey !"main"] then
@@ -2327,7 +2138,7 @@ routine build_ipic18_block_representation_list
       !entryPoint
       !["_entry_user_" . [entryPoint xString] nowhere]
       ![@ipic18SequentialInstructionList emptyList]
-      ![@ipic18JumpTerminator new !mRoutineName]
+      ![@ipic18JumpTerminator new !mRoutineName ![@jumpInstructionKind ipicRelative]]
     ] ;
     entryPoint := entryPoint + 4 ;
   end foreach ;
@@ -2337,7 +2148,7 @@ routine build_ipic18_block_representation_list
       !0
       !["_entry_main" nowhere]
       ![@ipic18SequentialInstructionList emptyList]
-      ![@ipic18JumpTerminator new !["main" nowhere]]
+      ![@ipic18JumpTerminator new !["main" nowhere] ![@jumpInstructionKind ipicRelative]]
     ] ;
   end if ;
 #-------------------------------- At 0x04, generate the first bootloader entry point (if any)
@@ -2348,7 +2159,7 @@ routine build_ipic18_block_representation_list
       !0x04
       !["_entry_bootloader_04" nowhere]
       ![@ipic18SequentialInstructionList emptyList]
-      ![@ipic18JumpTerminator new !routineName]
+      ![@ipic18JumpTerminator new !routineName ![@jumpInstructionKind ipicRelative]]
     ] ;
   end if ;
 #-------------------------------- At 0x08, generate 'bra _high_interrupt' instruction, if fast interrupt is defined
@@ -2357,7 +2168,7 @@ routine build_ipic18_block_representation_list
       !0x08
       !["_entry_high_interrupt" nowhere]
       ![@ipic18SequentialInstructionList emptyList]
-      ![@ipic18JumpTerminator new !["_high_interrupt" nowhere]]
+      ![@ipic18JumpTerminator new !["_high_interrupt" nowhere] ![@jumpInstructionKind ipicRelative]]
     ] ;
   end if ;
 #-------------------------------- At 0x0C, 0x10, 0x14, generate the bootloader entry points (if they exists)
@@ -2370,7 +2181,7 @@ routine build_ipic18_block_representation_list
       !entryPoint
       !["_entry_bootloader_" . [entryPoint xString] nowhere]
       ![@ipic18SequentialInstructionList emptyList]
-      ![@ipic18JumpTerminator new !routineName]
+      ![@ipic18JumpTerminator new !routineName ![@jumpInstructionKind ipicRelative]]
     ] ;
     entryPoint := entryPoint + 0x4 ;
   end loop ;
@@ -2380,7 +2191,7 @@ routine build_ipic18_block_representation_list
       !0x18
       !["_entry_low_interrupt" nowhere]
       ![@ipic18SequentialInstructionList emptyList]
-      ![@ipic18JumpTerminator new !["_low_interrupt" nowhere]]
+      ![@ipic18JumpTerminator new !["_low_interrupt" nowhere] ![@jumpInstructionKind ipicRelative]]
     ] ;
   end if ;
 #-------------------------------- Generate entry points for remaining bootloader routines
@@ -2390,7 +2201,7 @@ routine build_ipic18_block_representation_list
       !entryPoint
       !["_entry_bootloader_" . [entryPoint xString] nowhere]
       ![@ipic18SequentialInstructionList emptyList]
-      ![@ipic18JumpTerminator new !mRoutineName]
+      ![@ipic18JumpTerminator new !mRoutineName ![@jumpInstructionKind ipicRelative]]
     ] ;
     entryPoint := entryPoint + 0x4 ;
   end foreach ;
@@ -2515,7 +2326,7 @@ routine build_ipic18_block_representation_list
         !entryPoint
         !mRoutineName
         ![@ipic18SequentialInstructionList emptyList]
-        ![@ipic18JumpTerminator new !mRoutineName]
+        ![@ipic18JumpTerminator new !mRoutineName ![@jumpInstructionKind ipicRelative]]
       ] ;
     else
       @ipic18SequentialInstructionList instructionList [emptyList] ;
@@ -2534,18 +2345,24 @@ routine build_ipic18_block_representation_list
 #----------------------------------------------------------- Display block list
   displayBlockList !"INTERMEDIATE BLOCK REPRESENTATION" !?ioListFileContents !outGeneratedBlockList ;
 #----------------------------------------------------------- Optimize
-  if [@uint errorCount] == 0 then
+  if ([@uint errorCount] == 0) & [option piccolo_options.performOptimizations value] then
     ipic18OptimizeBlocks !?ioListFileContents !?outGeneratedBlockList ;
     displayBlockList !"OPTIMIZED INTERMEDIATE BLOCK REPRESENTATION" !?ioListFileContents !outGeneratedBlockList ;
   end if ;
 #----------------------------------------------------------- Optimize block ordering
-  if [@uint errorCount] == 0 then
+  if ([@uint errorCount] == 0) & [option piccolo_options.performOptimizations value] then
     ipic18OptimizeBlockOrdering
       !inSourceFileName
       !?ioListFileContents
       !?outGeneratedBlockList
     ;
-    displayBlockList !"ORDERED OPTIMIZED INTERMEDIATE BLOCK REPRESENTATION" !?ioListFileContents !outGeneratedBlockList ;
+  end if ;
+#----------------------------------------------------------- relative branch and jump resolution
+  if [@uint errorCount] == 0 then
+    ipic18RelativesResolution
+      !?ioListFileContents
+      !?outGeneratedBlockList
+    ;
   end if ;
 end routine ;
 

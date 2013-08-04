@@ -118,7 +118,7 @@ enum @conditional_branch {
 #----------------------------------------------------*
 
 enum @jumpInstructionKind {
-  ipicRelative, ipicAbsolute, relative, absolute
+  ipicRelative, relative, absolute
 }{
 }
 

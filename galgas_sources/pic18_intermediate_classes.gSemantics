@@ -408,8 +408,7 @@ class @pic18_intermediate_JUMP extends @pic18_intermediate_actualInstruction {
   override
   method @pic18_intermediate_JUMP display ?!@string ioListFileContents :
     switch mKind
-      when ipicRelative : ioListFileContents .= "BRA " . mTargetLabel ;
-      when ipicAbsolute : ioListFileContents .= "GOTO " . mTargetLabel ;
+      when ipicRelative : ioListFileContents .= "JUMP " . mTargetLabel ;
       when relative     : ioListFileContents .= "BRA " . mTargetLabel ;
       when absolute     : ioListFileContents .= "GOTO " . mTargetLabel ;
     end switch ;
@@ -429,8 +428,7 @@ class @pic18_intermediate_JSR extends @pic18_intermediate_actualInstruction {
 override
 method @pic18_intermediate_JSR display ?!@string ioListFileContents :
   switch mKind
-    when ipicRelative : ioListFileContents .= "RCALL " . mTargetLabel ;
-    when ipicAbsolute : ioListFileContents .= "CALL " . mTargetLabel ;
+    when ipicRelative : ioListFileContents .= "JSR " . mTargetLabel ;
     when relative     : ioListFileContents .= "RCALL " . mTargetLabel ;
     when absolute     : ioListFileContents .= "CALL " . mTargetLabel ;
   end switch ;

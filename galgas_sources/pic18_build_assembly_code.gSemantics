@@ -271,10 +271,9 @@ override method @pic18_intermediate_JUMP buildAssemblyCode
   ?!@uint unused ioBccLabelIndex
 :
   switch mKind
-    when ipicRelative : ioStringList += !"  BRA   " . [mTargetLabel string] ;
-    when ipicAbsolute : ioStringList += !"  GOTO  " . [mTargetLabel string] ;
-    when relative     : ioStringList += !"  BRA   " . [mTargetLabel string] ;
-    when absolute     : ioStringList += !"  GOTO  " . [mTargetLabel string] ;
+    when ipicRelative : ioStringList += !"  BRA " . [mTargetLabel string] ;
+    when relative     : ioStringList += !"  BRA " . [mTargetLabel string] ;
+    when absolute     : ioStringList += !"  GOTO " . [mTargetLabel string] ;
   end switch ;
 end method ;
 
@@ -286,9 +285,8 @@ override method @pic18_intermediate_JSR buildAssemblyCode
 :
   switch mKind
     when ipicRelative : ioStringList += !"  RCALL " . [mTargetLabel string] ;
-    when ipicAbsolute : ioStringList += !"  CALL  " . [mTargetLabel string] ;
     when relative     : ioStringList += !"  RCALL " . [mTargetLabel string] ;
-    when absolute     : ioStringList += !"  CALL  " . [mTargetLabel string] ;
+    when absolute     : ioStringList += !"  CALL " . [mTargetLabel string] ;
   end switch ;
 end method ;
 
