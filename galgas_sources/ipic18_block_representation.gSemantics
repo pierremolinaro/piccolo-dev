@@ -363,9 +363,9 @@ abstract method @ipic18SequentialInstruction generateCode
 #----------------------------------------------------------------------------*
 
 method @ipic18AbstractBlockTerminator generateCode
-  ??@uint inAddress
-  ??@symbolTableForRelativesResolution inSymbolTable
-  ??@string inNextBlockLabel
+  ??@uint unused inAddress
+  ??@symbolTableForRelativesResolution unused inSymbolTable
+  ??@string unused inNextBlockLabel
   !@codeList outCode
 :  outCode := [@codeList emptyList] ;
 end method ;
@@ -385,7 +385,7 @@ routine checkBRA_RCALL
 :
   [inSymbolTable searchKey !inTargetLabel ??@uint targetAddress] ;
   outDisplacement := ([targetAddress sint] - 2S - [inCurrentAddress sint]) >> 1 ;
-  outDisplacementOK :=  (outDisplacement < 1024S) & (outDisplacement > - 1024S) ;
+  outDisplacementOK :=  (outDisplacement < 1024S) & (outDisplacement >= - 1024S) ;
 end routine ;
 
 #----------------------------------------------------------------------------*

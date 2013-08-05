@@ -252,7 +252,7 @@ override method @pic18RegisterComparisonTerminator generateCode
   binCode := binCode | ([mRegisterDescription mRegisterAddress] & 255) ;
   if [mRegisterDescription mNeedsBSR] then
     binCode := binCode | 0x0100 ;
-    assemblyCode .= ", BSR" ;
+    assemblyCode .= ", BSR_ACCESS" ;
   end if ;
   outCode := [@codeList listWithValue
     !assemblyCode
@@ -316,7 +316,7 @@ override method @pic18TestRegisterTerminator generateCode
   binCode := binCode | ([mRegisterDescription mRegisterAddress] & 255) ;
   if [mRegisterDescription mNeedsBSR] then
     binCode := binCode | 0x0100 ;
-    assemblyCode .= ", BSR" ;
+    assemblyCode .= ", BSR_ACCESS" ;
   end if ;
   outCode := [@codeList listWithValue
     !assemblyCode
@@ -371,7 +371,7 @@ override method @pic18BitTestTerminator generateCode
     binCode := binCode | (mBitNumber << 9) ;
     if [mRegisterDescription mNeedsBSR] then
       binCode := binCode | 0x0100 ;
-      assemblyCode .= ", BSR" ;
+      assemblyCode .= ", BSR_ACCESS" ;
     end if ;
     outCode := [@codeList listWithValue
       !assemblyCode
@@ -392,7 +392,7 @@ override method @pic18BitTestTerminator generateCode
     binCode := binCode | (mBitNumber << 9) ;
     if [mRegisterDescription mNeedsBSR] then
       binCode := binCode | 0x0100 ;
-      assemblyCode .= ", BSR" ;
+      assemblyCode .= ", BSR_ACCESS" ;
     end if ;
     outCode := [@codeList listWithValue
       !assemblyCode
@@ -460,7 +460,7 @@ override method @ipic18IncDecRegisterTerminator generateCode
     binCode := binCode | ([mRegisterDescription mRegisterAddress] & 255) ;
     if [mRegisterDescription mNeedsBSR] then
       binCode := binCode | 0x0100 ;
-      assemblyCode .= ", BSR" ;
+      assemblyCode .= ", BSR_ACCESS" ;
     end if ;
     outCode := [@codeList listWithValue
       !assemblyCode
@@ -481,7 +481,7 @@ override method @ipic18IncDecRegisterTerminator generateCode
     binCode := binCode | ([mRegisterDescription mRegisterAddress] & 255) ;
     if [mRegisterDescription mNeedsBSR] then
       binCode := binCode | 0x0100 ;
-      assemblyCode .= ", BSR" ;
+      assemblyCode .= ", BSR_ACCESS" ;
     end if ;
     outCode := [@codeList listWithValue
       !assemblyCode
@@ -694,11 +694,11 @@ override reader @ipic18ConditionalJumpTerminator terminatorDisplay
   ??@string inNextBlockLabel
   ->@string outResult
 :
-  switch mBranchMode
-  when native : outSize := 2 ; # Use Bcc instruction only
-  when ipicBRA : outSize := 4 ; # Use BRA (Bcc + BRA)
-  when ipicGOTO : outSize := 6 ; # use GOTO (Bcc + GOTO)
-  end switch ;
+#  switch mBranchMode
+#  when native : outSize := 2 ; # Use Bcc instruction only
+#  when ipicBRA : outSize := 4 ; # Use BRA (Bcc + BRA)
+#  when ipicGOTO : outSize := 6 ; # use GOTO (Bcc + GOTO)
+#  end switch ;
 #  switch mBranchMode
 #  when native   : outResult := "JUMP" ;
 #  when ipicBRA  : outResult := "BRA" ;
@@ -716,6 +716,31 @@ override reader @ipic18ConditionalJumpTerminator terminatorDisplay
   outResult .= " : " ;
   outResult .= [mInstructionIfConditionFalse terminatorDisplay !inNextBlockLabel] ;
 end reader ;
+
+#----------------------------------------------------------------------------*
+
+override method @ipic18ConditionalJumpTerminator generateCode
+  ??@uint unused inAddress
+  ??@symbolTableForRelativesResolution unused inSymbolTable
+  ??@string unused inNextBlockLabel
+  !@codeList outCode
+:
+  outCode := [@codeList emptyList] ;
+#  const @lstring goto2label := ["_computed_goto_2" nowhere] ;
+#  [inSymbolTable searchKey !goto2label ??@uint targetAddress] ;
+#  @uint address ;
+#  if mUsesRCALL then
+#    outCode := pic18_RCALL_instruction_code [!inAddress !targetAddress !goto2label] ;
+#    address := inAddress + 2 ;
+#  else
+#    outCode := pic18_CALL_instruction_code [!targetAddress !goto2label] ;
+#    address := inAddress + 4 ;
+#  end if ;
+#  foreach mTargetLabels do
+#    outCode .= pic18_BRA_instruction_code [!address !targetAddress !mValue] ;
+#    address := address + 2 ;
+#  end foreach ;
+end method ;
 
 #----------------------------------------------------------------------------*
 
