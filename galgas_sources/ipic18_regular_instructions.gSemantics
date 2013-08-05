@@ -42,6 +42,14 @@ end reader ;
 
 #----------------------------------------------------------------------------*
 
+override reader @ipic18_condition_skip_instruction instructionSize
+  -> @uint outSize
+:
+  outSize := 2 + [mEmbeddedInstruction instructionSize] ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
 #!--- Check relative resolution : instruction
 
 #----------------------------------------------------------------------------*
@@ -201,7 +209,16 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override reader @ipic18_intermediate_instruction_FA instructionDisplay ->@stringlist outResult :
-  @string s := [mFAinstruction mnemonic] . " " . [mRegisterDescription mAssemblyString] ;
+  @string s ;
+  switch mFAinstruction
+  when CLRF   : s := "CLRF" ;
+  when MOVWF  : s := "MOVWF" ;
+  when MULWF  : s := "MULWF" ;
+  when NEGF   : s := "NEGF" ;
+  when SETF   : s := "SETF" ;
+  end switch ;
+
+  s .= " " . [mRegisterDescription mAssemblyString] ;
   outResult := [@stringlist listWithValue !s] ;
 end reader ;
 
@@ -216,14 +233,10 @@ override method @ipic18_intermediate_instruction_FA generateCode
   @uint code ;
   switch mFAinstruction
   when CLRF   : code := 0x6A00 ;
-  when CPFSEQ : code := 0x6200 ;
-  when CPFSGT : code := 0x6400 ;
-  when CPFSLT : code := 0x6000 ;
   when MOVWF  : code := 0x6E00 ;
   when MULWF  : code := 0x0200 ;
   when NEGF   : code := 0x6C00 ;
   when SETF   : code := 0x6800 ;
-  when TSTFSZ : code := 0x6600 ;
   end switch ;
 
   if [mRegisterDescription mNeedsBSR] then
@@ -543,15 +556,219 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-#!--- Intermediate @ipic18_skip_instruction_FA
+#!--- Intermediate @ipic18_skip_instruction_compare_register
 
 #----------------------------------------------------------------------------*
 
-override reader @ipic18_skip_instruction_FA instructionDisplay ->@stringlist outResult :
-  @string s := [mFAinstruction mnemonic] . " " . [mRegisterDescription mAssemblyString] . " ?" ;
+override reader @ipic18_skip_instruction_compare_register instructionDisplay ->@stringlist outResult :
+  @string s := [mRegisterDescription mAssemblyString] . " " ;
+  switch mCompareInstruction
+  when CPFSEQ : s .= "!= W" ;
+  when CPFSGT : s .= "<= W" ;
+  when CPFSLT : s .= ">= W" ;
+  when TSTFSZ : s .= "!= 0" ;
+  end switch ;
+  s .= " ? " . [[mEmbeddedInstruction instructionDisplay] mValueAtIndex !0] ;
   outResult := [@stringlist listWithValue !s] ;
-  outResult .= [mEmbeddedInstruction instructionDisplay] ;
 end reader ;
+
+#----------------------------------------------------------------------------*
+
+override method @ipic18_skip_instruction_compare_register generateCode
+  ??@uint inAddress
+  ??@symbolTableForRelativesResolution inSymbolTable
+  ??@ipic18BlockList inGeneratedBlockList
+  !@codeList outCode
+:
+  @uint code ;
+  switch mCompareInstruction
+  when CPFSEQ : code := 0x6200 ;
+  when CPFSGT : code := 0x6400 ;
+  when CPFSLT : code := 0x6000 ;
+  when TSTFSZ : code := 0x6600 ;
+  end switch ;
+
+  if [mRegisterDescription mNeedsBSR] then
+    code := code | 0x0100 ;
+  end if ;
+  code := code | ([mRegisterDescription mRegisterAddress] & 255) ;
+#--- Assembly string
+  @string s ;
+  switch mCompareInstruction
+  when CPFSEQ : s := "CPFSEQ" ;
+  when CPFSGT : s := "CPFSGT" ;
+  when CPFSLT : s := "CPFSLT" ;
+  when TSTFSZ : s := "TSTFSZ" ;
+  end switch ;
+  s .= " " . [mRegisterDescription mAssemblyString] ;
+  if [mRegisterDescription mNeedsBSR] then
+    s .= ", BSR_ACCESS" ;
+  end if ;
+#---
+  outCode := [@codeList listWithValue
+    !s
+    ![@uintlist listWithValue !code]
+  ] ;
+  [mEmbeddedInstruction generateCode
+    !inAddress + 2
+    !inSymbolTable
+    !inGeneratedBlockList
+    ??@codeList c
+  ] ;
+  outCode .= c ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+#!--- Intermediate @ipic18_skip_instruction_BitTestSkip
+
+#----------------------------------------------------------------------------*
+
+override reader @ipic18_skip_instruction_BitTestSkip instructionDisplay ->@stringlist outResult :
+  @string s := "" ;
+  if mSkipIfSet then
+    s .= "!" ;
+  end if ;
+  s .= [mRegisterDescription mAssemblyString] . "." . [mBitNumber string]
+  . " ? " ;
+  const @stringlist x := [mEmbeddedInstruction instructionDisplay] ;
+  s .= [x mValueAtIndex !0] ;
+  outResult := [@stringlist listWithValue !s] ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override method @ipic18_skip_instruction_BitTestSkip generateCode
+  ??@uint inAddress
+  ??@symbolTableForRelativesResolution inSymbolTable
+  ??@ipic18BlockList inGeneratedBlockList
+  !@codeList outCode
+:
+  @uint code ;
+  if mSkipIfSet then
+    code := 0xA000 ; # BTFSS
+  else
+    code := 0xB000 ; # BTFSC
+  end if ;
+  if [mRegisterDescription mNeedsBSR] then
+    code := code | 0x0100 ;
+  end if ;
+  code := code | ([mRegisterDescription mRegisterAddress] & 255) ;
+  code := code | (mBitNumber << 9) ;
+#--- Assembly string
+  @string s := "" ;
+  if mSkipIfSet then
+    s .= "BTFSS" ;
+  else
+    s .= "BTFSC" ;
+  end if ;
+  s .= " " . [mRegisterDescription mAssemblyString] . ", " . [mBitNumber string] ;
+#---
+  outCode := [@codeList listWithValue
+    !s
+    ![@uintlist listWithValue !code]
+  ] ;
+  [mEmbeddedInstruction generateCode
+    !inAddress + 2
+    !inSymbolTable
+    !inGeneratedBlockList
+    ??@codeList c
+  ] ;
+  outCode .= c ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+#!--- Intermediate @ipic18_skip_instruction_FDA
+
+#----------------------------------------------------------------------------*
+
+override reader @ipic18_skip_instruction_FDA instructionDisplay ->@stringlist outResult :
+  @string s := [mInstruction_FDA_base_code mnemonic] . " " . [mRegisterDescription mAssemblyString] ;
+  if m_W_isDestination then
+    s .= ", W" ;
+  end if ;
+  s .= " ? " ;
+  const @stringlist x := [mEmbeddedInstruction instructionDisplay] ;
+  s .= [x mValueAtIndex !0] ;
+  outResult := [@stringlist listWithValue !s] ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override method @ipic18_skip_instruction_FDA generateCode
+  ??@uint inAddress
+  ??@symbolTableForRelativesResolution inSymbolTable
+  ??@ipic18BlockList inGeneratedBlockList
+  !@codeList outCode
+:
+  @uint code ;
+  switch mInstruction_FDA_base_code
+  when ADDWF : code := 0x2400 ;
+  when ADDWFC : code := 0x2000 ;
+  when ANDWF : code := 0x1400 ;
+  when COMF : code := 0x1C00 ;
+  when DECF : code := 0x0400 ;
+  when DECFSZ : code := 0x2C00 ;
+  when DCFSNZ : code := 0x4C00 ;
+  when INCF : code := 0x2800 ;
+  when INCFSZ : code := 0x3C00 ;
+  when INFSNZ : code := 0x4800 ;
+  when IORWF : code := 0x1000 ;
+  when MOVF : code := 0x5000 ;
+  when RLCF : code := 0x3400 ;
+  when RLNCF : code := 0x4400 ;
+  when RRCF : code := 0x3000 ;
+  when RRNCF : code := 0x4000 ;
+  when SUBFWB : code := 0x5400 ;
+  when SUBWF : code := 0x5C00 ;
+  when SUBWFB :  code := 0x5800 ;
+  when SWAPF : code := 0x3800 ;
+  when XORWF : code := 0x1800 ;
+  end switch ;
+  if [mRegisterDescription mNeedsBSR] then
+    code := code | 0x0100 ;
+  end if ;
+  code := code | ([mRegisterDescription mRegisterAddress] & 255) ;
+#--- Assembly string
+  @string s ;
+  switch mInstruction_FDA_base_code
+  when ADDWF : s := "ADDWF" ;
+  when ADDWFC : s := "ADDWFC" ;
+  when ANDWF : s := "ANDWF" ;
+  when COMF : s := "COMF" ;
+  when DECF : s := "DECF" ;
+  when DECFSZ : s := "DECFSZ" ;
+  when DCFSNZ : s := "DCFSNZ" ;
+  when INCF : s := "INCF" ;
+  when INCFSZ : s := "INCFSZ" ;
+  when INFSNZ : s := "INFSNZ" ;
+  when IORWF : s := "IORWF" ;
+  when MOVF : s := "MOVF" ;
+  when RLCF : s := "RLCF" ;
+  when RLNCF : s := "RLNCF" ;
+  when RRCF : s := "RRCF" ;
+  when RRNCF : s := "RRNCF" ;
+  when SUBFWB : s := "SUBFWB" ;
+  when SUBWF : s := "SUBWF" ;
+  when SUBWFB : s := "SUBWFB" ;
+  when SWAPF : s := "SWAPF" ;
+  when XORWF : s := "XORWF" ;
+  end switch ;
+  s .= " " . [mRegisterDescription mAssemblyString] ;
+#---
+  outCode := [@codeList listWithValue
+    !s
+    ![@uintlist listWithValue !code]
+  ] ;
+  [mEmbeddedInstruction generateCode
+    !inAddress + 2
+    !inSymbolTable
+    !inGeneratedBlockList
+    ??@codeList c
+  ] ;
+  outCode .= c ;
+end method ;
 
 #----------------------------------------------------------------------------*
 
@@ -570,33 +787,6 @@ override reader @ipic18_intermediate_instruction_computed_rcall instructionDispl
   foreach mTargetLabels do
     outResult += !"  " . mValue ;
   end foreach ;
-end reader ;
-
-#----------------------------------------------------------------------------*
-
-override reader @ipic18_skip_instruction_BitTestSkip instructionDisplay ->@stringlist outResult :
-  @string s := "" ;
-  if mSkipIfSet then
-    s .= "!" ;
-  end if ;
-  s .= [mRegisterDescription mAssemblyString] . "." . [mBitNumber string]
-  . " ? " ;
-  const @stringlist x := [mEmbeddedInstruction instructionDisplay] ;
-  s .= [x mValueAtIndex !0] ;
-  outResult := [@stringlist listWithValue !s] ;
-end reader ;
-
-#----------------------------------------------------------------------------*
-
-override reader @ipic18_skip_instruction_FDA instructionDisplay ->@stringlist outResult :
-  @string s := [mInstruction_FDA_base_code mnemonic] . " " . [mRegisterDescription mAssemblyString] ;
-  if m_W_isDestination then
-    s .= ", W" ;
-  end if ;
-  s .= " ? " ;
-  const @stringlist x := [mEmbeddedInstruction instructionDisplay] ;
-  s .= [x mValueAtIndex !0] ;
-  outResult := [@stringlist listWithValue !s] ;
 end reader ;
 
 #----------------------------------------------------------------------------*
