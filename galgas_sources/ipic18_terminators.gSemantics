@@ -1,0 +1,722 @@
+semantics ipic18_terminators :
+import "ipic18_block_representation.gSemantics" ;
+
+#----------------------------------------------------------------------------*
+
+#!--- Abstract readers
+
+#----------------------------------------------------------------------------*
+
+abstract reader @ipic18AbstractBlockTerminator terminatorDisplay
+  ??@string inNextBlockLabel
+  ->@string outResult
+;
+
+#----------------------------------------------------------------------------*
+
+abstract reader @ipic18AbstractBlockTerminator terminatorSize
+  ??@string inNextBlockLabel
+  -> @uint outSize
+;
+
+#----------------------------------------------------------------------------*
+
+override reader @ipic18SingleInstructionTerminator terminatorSize
+  ??@string unused inNextBlockLabel
+  -> @uint outSize
+:
+  outSize := 2 ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+#!--- Terminator @ipic18ReturnTerminator
+
+#----------------------------------------------------------------------------*
+
+override reader @ipic18ReturnTerminator terminatorDisplay
+  ??@string unused inNextBlockLabel
+  ->@string outResult
+:
+  outResult := "RETURN" ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override method @ipic18ReturnTerminator generateCode
+  ??@uint unused inAddress
+  ??@symbolTableForRelativesResolution unused inSymbolTable
+  ??@string unused inNextBlockLabel
+  !@codeList outCode
+:
+  outCode := [@codeList listWithValue
+    !"RETURN"
+    ![@uintlist listWithValue !0x0012]
+  ] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+#!--- Terminator @ipic18RetfieTerminator
+
+#----------------------------------------------------------------------------*
+
+override reader @ipic18RetfieTerminator terminatorDisplay
+  ??@string unused inNextBlockLabel
+  ->@string outResult
+:
+  outResult := "RETFIE" ;
+  if mFastReturn then
+    outResult .= " FAST" ;
+  end if ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override method @ipic18RetfieTerminator generateCode
+  ??@uint unused inAddress
+  ??@symbolTableForRelativesResolution unused inSymbolTable
+  ??@string inNextBlockLabel
+  !@codeList outCode
+:
+  outCode := [@codeList listWithValue
+    ![selfcopy terminatorDisplay !inNextBlockLabel]
+    ![@uintlist listWithValue !if mFastReturn then 0x0009 else 0x0008 end]
+  ] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+#!--- Terminator @ipic18RetfieTerminator
+
+#----------------------------------------------------------------------------*
+
+override reader @ipic18RetlwTerminator terminatorDisplay
+  ??@string unused inNextBlockLabel
+  ->@string outResult
+:
+  outResult := "RETLW " . [mLiteralValue hexString] ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override method @ipic18RetlwTerminator generateCode
+  ??@uint unused inAddress
+  ??@symbolTableForRelativesResolution unused inSymbolTable
+  ??@string inNextBlockLabel
+  !@codeList outCode
+:
+  outCode := [@codeList listWithValue
+    ![selfcopy terminatorDisplay !inNextBlockLabel]
+    ![@uintlist listWithValue !0x0C00 | mLiteralValue]
+  ] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+#!--- Terminator size
+
+#----------------------------------------------------------------------------*
+
+override reader @ipic18JumpTerminator terminatorSize
+  ??@string inNextBlockLabel
+  -> @uint outSize
+:
+  if mLabel->string == inNextBlockLabel then
+    outSize := 0 ;
+  else
+    switch mKind
+    when ipicRelative, relative :
+      outSize := 2 ;
+    when absolute :
+      outSize := 4 ;
+    end switch ;  
+  end if ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override reader @ipic18JumpTerminator terminatorDisplay
+  ??@string inNextBlockLabel
+  ->@string outResult
+:
+  @string name ;
+  switch mKind
+    when ipicRelative : name := "JUMP "  ;
+    when relative     : name := "BRA " ;
+    when absolute     : name := "GOTO " ;
+  end switch ;
+  if inNextBlockLabel == mLabel->string then
+    outResult := "(" . name . mLabel . ")" ;
+  else
+    outResult := name . mLabel ;
+  end if ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override method @ipic18JumpTerminator generateCode
+  ??@uint inAddress
+  ??@symbolTableForRelativesResolution inSymbolTable
+  ??@string inNextBlockLabel
+  !@codeList outCode
+:
+  if mLabel->string == inNextBlockLabel then
+    outCode := [@codeList emptyList] ;
+  else
+    [inSymbolTable searchKey !mLabel ??@uint targetAddress] ;
+    switch mKind
+    when ipicRelative, relative :
+      outCode := pic18_BRA_instruction_code [!inAddress !targetAddress !mLabel] ;
+    when absolute :
+      outCode := pic18_GOTO_instruction_code [!targetAddress !mLabel] ;
+    end switch ;  
+  end if ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+#!--- Terminator size
+
+#----------------------------------------------------------------------------*
+
+override reader @ipic18AbstractConditionTerminator terminatorSize
+  ??@string inNextBlockLabel
+  -> @uint outSize
+:
+  outSize := 2
+    + [mInstructionIfConditionTrue terminatorSize !inNextBlockLabel]
+    + [mInstructionIfConditionFalse terminatorSize !inNextBlockLabel]
+  ;    
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+#!--- Terminator @pic18RegisterComparisonTerminator
+
+#----------------------------------------------------------------------------*
+
+override reader @pic18RegisterComparisonTerminator terminatorSize
+  ??@string inNextBlockLabel
+  -> @uint outSize
+:
+  outSize := 2
+    + [mInstructionIfConditionTrue terminatorSize !inNextBlockLabel]
+    + [mInstructionIfConditionFalse terminatorSize !""]
+  ;    
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override reader @pic18RegisterComparisonTerminator terminatorDisplay
+  ??@string inNextBlockLabel
+  ->@string outResult
+:
+  outResult := [mRegisterDescription mAssemblyString] . " " ;
+  switch mComparison
+  when registerEqualsToW :
+    outResult .= "==" ;
+  when registerGreaterThanW :
+    outResult .= ">" ;
+  when registerLowerThanW :
+    outResult .= "<" ;
+  end switch ;
+  outResult .= " W ? " ;
+  outResult .= [mInstructionIfConditionTrue terminatorDisplay !inNextBlockLabel] ;
+  outResult .= " : " ;
+  outResult .= [mInstructionIfConditionFalse terminatorDisplay !""] ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override method @pic18RegisterComparisonTerminator generateCode
+  ??@uint inAddress
+  ??@symbolTableForRelativesResolution inSymbolTable
+  ??@string inNextBlockLabel
+  !@codeList outCode
+:
+  @uint binCode ;
+  @string assemblyCode ;
+  switch mComparison
+  when registerEqualsToW :
+    binCode := 0x6200 ;
+    assemblyCode := "CPFSEQ" ;
+  when registerGreaterThanW :
+    binCode := 0x6400 ;
+    assemblyCode := "CPFSGT" ;
+  when registerLowerThanW :
+    binCode := 0x6000 ;
+    assemblyCode := "CPFSLT" ;
+  end switch ;
+  assemblyCode .= " " . [mRegisterDescription mAssemblyString] ;
+  binCode := binCode | ([mRegisterDescription mRegisterAddress] & 255) ;
+  if [mRegisterDescription mNeedsBSR] then
+    binCode := binCode | 0x0100 ;
+    assemblyCode .= ", BSR" ;
+  end if ;
+  outCode := [@codeList listWithValue
+    !assemblyCode
+    ![@uintlist listWithValue !binCode]
+  ] ;
+  [mInstructionIfConditionFalse generateCode
+    !inAddress + 2
+    !inSymbolTable
+    !""
+    ??@codeList falseTerminatorCode
+   ] ;
+   outCode .= falseTerminatorCode ;
+  [mInstructionIfConditionTrue generateCode
+    !inAddress + 2 + [mInstructionIfConditionFalse terminatorSize !inNextBlockLabel]
+    !inSymbolTable
+    !inNextBlockLabel
+    ??@codeList trueTerminatorCode
+   ] ;
+   outCode .= trueTerminatorCode ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+#!--- Terminator @pic18TestRegisterTerminator
+
+#----------------------------------------------------------------------------*
+
+override reader @pic18TestRegisterTerminator terminatorSize
+  ??@string inNextBlockLabel
+  -> @uint outSize
+:
+  outSize := 2
+    + [mInstructionIfConditionTrue terminatorSize !inNextBlockLabel]
+    + [mInstructionIfConditionFalse terminatorSize !""] # False cannot be ommitted
+  ;    
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override reader @pic18TestRegisterTerminator terminatorDisplay
+  ??@string inNextBlockLabel
+  ->@string outResult
+:
+  outResult := [mRegisterDescription mAssemblyString] ;
+  outResult .= " Z ? " ;
+  outResult .= [mInstructionIfConditionTrue terminatorDisplay !inNextBlockLabel] ;
+  outResult .= " : " ;
+  outResult .= [mInstructionIfConditionFalse terminatorDisplay !""] ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override method @pic18TestRegisterTerminator generateCode
+  ??@uint inAddress
+  ??@symbolTableForRelativesResolution inSymbolTable
+  ??@string inNextBlockLabel
+  !@codeList outCode
+:
+  @uint binCode := 0x6600 ;
+  @string assemblyCode := "TSTFZ " . [mRegisterDescription mAssemblyString] ;
+  binCode := binCode | ([mRegisterDescription mRegisterAddress] & 255) ;
+  if [mRegisterDescription mNeedsBSR] then
+    binCode := binCode | 0x0100 ;
+    assemblyCode .= ", BSR" ;
+  end if ;
+  outCode := [@codeList listWithValue
+    !assemblyCode
+    ![@uintlist listWithValue !binCode]
+  ] ;
+#--- Generate complementary code (true terminator first terminator)
+  [mInstructionIfConditionFalse generateCode
+    !inAddress + 2
+    !inSymbolTable
+    !""
+    ??@codeList falseTerminatorCode
+   ] ;
+   outCode .= falseTerminatorCode ;
+  [mInstructionIfConditionTrue generateCode
+    !inAddress + 2 + [mInstructionIfConditionFalse terminatorSize !inNextBlockLabel]
+    !inSymbolTable
+    !inNextBlockLabel
+    ??@codeList trueTerminatorCode
+   ] ;
+   outCode .= trueTerminatorCode ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+#!--- Terminator @pic18BitTestTerminator
+
+#----------------------------------------------------------------------------*
+
+override reader @pic18BitTestTerminator terminatorDisplay
+  ??@string inNextBlockLabel
+  ->@string outResult
+:
+  outResult := [mRegisterDescription mAssemblyString] . "." . [mBitNumber string] . " ? " ;
+  outResult .= [mInstructionIfConditionTrue terminatorDisplay !inNextBlockLabel] ;
+  outResult .= " : " ;
+  outResult .= [mInstructionIfConditionFalse terminatorDisplay !inNextBlockLabel] ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override method @pic18BitTestTerminator generateCode
+  ??@uint inAddress
+  ??@symbolTableForRelativesResolution inSymbolTable
+  ??@string inNextBlockLabel
+  !@codeList outCode
+:
+  if [mInstructionIfConditionTrue terminatorSize !inNextBlockLabel] == 0 then
+  #--- Generate direct code (no code for true terminator)
+    @uint binCode := 0x6600 ;
+    @string assemblyCode := "BTFSS " . [mRegisterDescription mAssemblyString] . ", " . mBitNumber ;
+    binCode := binCode | ([mRegisterDescription mRegisterAddress] & 255) ;
+    binCode := binCode | (mBitNumber << 9) ;
+    if [mRegisterDescription mNeedsBSR] then
+      binCode := binCode | 0x0100 ;
+      assemblyCode .= ", BSR" ;
+    end if ;
+    outCode := [@codeList listWithValue
+      !assemblyCode
+      ![@uintlist listWithValue !binCode]
+    ] ;
+    [mInstructionIfConditionFalse generateCode
+      !inAddress + 2
+      !inSymbolTable
+      !inNextBlockLabel
+      ??@codeList falseTerminatorCode
+     ] ;
+     outCode .= falseTerminatorCode ;
+  else
+  #--- Generate complementary code (true terminator first terminator)
+    @uint binCode := 0x6600 ;
+    @string assemblyCode := "BTFSS " . [mRegisterDescription mAssemblyString] . ", " . mBitNumber ;
+    binCode := binCode | ([mRegisterDescription mRegisterAddress] & 255) ;
+    binCode := binCode | (mBitNumber << 9) ;
+    if [mRegisterDescription mNeedsBSR] then
+      binCode := binCode | 0x0100 ;
+      assemblyCode .= ", BSR" ;
+    end if ;
+    outCode := [@codeList listWithValue
+      !assemblyCode
+      ![@uintlist listWithValue !binCode]
+    ] ;
+    [mInstructionIfConditionTrue generateCode
+      !inAddress + 2
+      !inSymbolTable
+      !""
+      ??@codeList trueTerminatorCode
+     ] ;
+     outCode .= trueTerminatorCode ;
+    [mInstructionIfConditionFalse generateCode
+      !inAddress + 2 + [mInstructionIfConditionTrue terminatorSize !inNextBlockLabel]
+      !inSymbolTable
+      !inNextBlockLabel
+      ??@codeList falseTerminatorCode
+     ] ;
+     outCode .= falseTerminatorCode ;
+  end if ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+#!--- Terminator @ipic18IncDecRegisterTerminator
+
+#----------------------------------------------------------------------------*
+
+override reader @ipic18IncDecRegisterTerminator terminatorDisplay
+  ??@string inNextBlockLabel
+  ->@string outResult
+:
+  if mIncrement then
+    outResult := "INCF " ;
+  else
+    outResult := "DECF " ;
+  end if ;
+  outResult .= [mRegisterDescription mAssemblyString] ;
+  if m_W_isDestination then
+    outResult .= ", W" ;
+  end if ;
+  outResult .= " Z ? " ;
+  outResult .= [mInstructionIfConditionTrue terminatorDisplay !inNextBlockLabel] ;
+  outResult .= " : " ;
+  outResult .= [mInstructionIfConditionFalse terminatorDisplay !inNextBlockLabel] ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+#  @ipic18_intermediate_registerExpression mRegisterDescription ;
+#  @bool mIncrement ;
+#  @bool m_W_isDestination ;
+
+override method @ipic18IncDecRegisterTerminator generateCode
+  ??@uint inAddress
+  ??@symbolTableForRelativesResolution inSymbolTable
+  ??@string inNextBlockLabel
+  !@codeList outCode
+:
+  if [mInstructionIfConditionTrue terminatorSize !inNextBlockLabel] == 0 then
+  #--- Generate direct code (no code for true terminator)
+    @uint binCode :=        if mIncrement then 0x3C00   else 0x2C00 end ;
+    @string assemblyCode := if mIncrement then "INCFSZ" else "DECFSZ" end ;
+    assemblyCode .= " " . [mRegisterDescription mAssemblyString] ;
+    binCode := binCode | ([mRegisterDescription mRegisterAddress] & 255) ;
+    if [mRegisterDescription mNeedsBSR] then
+      binCode := binCode | 0x0100 ;
+      assemblyCode .= ", BSR" ;
+    end if ;
+    outCode := [@codeList listWithValue
+      !assemblyCode
+      ![@uintlist listWithValue !binCode]
+    ] ;
+    [mInstructionIfConditionFalse generateCode
+      !inAddress + 2
+      !inSymbolTable
+      !inNextBlockLabel
+      ??@codeList falseTerminatorCode
+     ] ;
+     outCode .= falseTerminatorCode ;
+  else
+  #--- Generate complementary code (true terminator first terminator)
+    @uint binCode :=        if mIncrement then 0x4800   else 0x4C00 end ;
+    @string assemblyCode := if mIncrement then "INFSNZ" else "DCFSNZ" end ;
+    assemblyCode .= " " . [mRegisterDescription mAssemblyString] ;
+    binCode := binCode | ([mRegisterDescription mRegisterAddress] & 255) ;
+    if [mRegisterDescription mNeedsBSR] then
+      binCode := binCode | 0x0100 ;
+      assemblyCode .= ", BSR" ;
+    end if ;
+    outCode := [@codeList listWithValue
+      !assemblyCode
+      ![@uintlist listWithValue !binCode]
+    ] ;
+    [mInstructionIfConditionTrue generateCode
+      !inAddress + 2
+      !inSymbolTable
+      !""
+      ??@codeList trueTerminatorCode
+     ] ;
+     outCode .= trueTerminatorCode ;
+    [mInstructionIfConditionFalse generateCode
+      !inAddress + 2 + [mInstructionIfConditionTrue terminatorSize !inNextBlockLabel]
+      !inSymbolTable
+      !inNextBlockLabel
+      ??@codeList falseTerminatorCode
+     ] ;
+     outCode .= falseTerminatorCode ;
+  end if ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+#!--- Terminator @ipic18ComputedRETLWTerminator
+
+#----------------------------------------------------------------------------*
+
+override reader @ipic18ComputedRETLWTerminator terminatorSize
+  ??@string unused inNextBlockLabel
+  -> @uint outSize
+:
+  if mUsesRCALL then
+    outSize := 2 ;
+  else
+    outSize := 4 ;
+  end if ;
+  outSize := outSize + 2 * [mLiteralValues length] ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override reader @ipic18ComputedRETLWTerminator terminatorDisplay
+  ??@string unused inNextBlockLabel
+  ->@string outResult
+:
+  outResult := "COMPUTED RETLW" ;
+  foreach mLiteralValues do
+    outResult .= " " . [mValue hexString] ;
+  end foreach ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override method @ipic18ComputedRETLWTerminator generateCode
+  ??@uint inAddress
+  ??@symbolTableForRelativesResolution inSymbolTable
+  ??@string unused inNextBlockLabel
+  !@codeList outCode
+:
+  const @lstring goto2label := ["_computed_goto_2" nowhere] ;
+  [inSymbolTable searchKey !goto2label ??@uint targetAddress] ;
+  if mUsesRCALL then
+    outCode := pic18_RCALL_instruction_code [!inAddress !targetAddress !goto2label] ;
+  else
+    outCode := pic18_CALL_instruction_code [!targetAddress !goto2label] ;
+  end if ;
+  foreach mLiteralValues do
+    outCode +=
+      !"RETLW " . [mValue hexString]
+      ![@uintlist listWithValue !0x0C00 | mValue]
+    ;
+  end foreach ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+#!--- Terminator @ipic18ComputedGotoTerminator
+
+#----------------------------------------------------------------------------*
+
+override reader @ipic18ComputedGotoTerminator terminatorDisplay
+  ??@string unused inNextBlockLabel
+  ->@string outResult
+:
+  outResult := "COMPUTED GOTO " ;
+  if mUsesRCALL then
+    outResult .= " (uses RCALL)" ;
+  else
+    outResult .= " (uses CALL)" ;
+  end if ;
+  foreach mTargetLabels do
+    outResult .= "\n    " . mValue ;
+  end foreach ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override reader @ipic18ComputedGotoTerminator terminatorSize
+  ??@string unused inNextBlockLabel
+  -> @uint outSize
+:
+  if mUsesRCALL then
+    outSize := 2 ;
+  else
+    outSize := 4 ;
+  end if ;
+  outSize := outSize + 4 * [mTargetLabels length] ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override method @ipic18ComputedGotoTerminator generateCode
+  ??@uint inAddress
+  ??@symbolTableForRelativesResolution inSymbolTable
+  ??@string unused inNextBlockLabel
+  !@codeList outCode
+:
+  const @lstring goto4label := ["_computed_goto_4" nowhere] ;
+  [inSymbolTable searchKey !goto4label ??@uint targetAddress] ;
+  if mUsesRCALL then
+    outCode := pic18_RCALL_instruction_code [!inAddress !targetAddress !goto4label] ;
+  else
+    outCode := pic18_CALL_instruction_code [!targetAddress !goto4label] ;
+  end if ;
+  foreach mTargetLabels do
+    outCode .= pic18_GOTO_instruction_code [!targetAddress !mValue] ;
+  end foreach ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+#!--- Terminator @ipic18ComputedBraTerminator
+
+#----------------------------------------------------------------------------*
+
+override reader @ipic18ComputedBraTerminator terminatorSize
+  ??@string unused inNextBlockLabel
+  -> @uint outSize
+:
+  if mUsesRCALL then
+    outSize := 2 ;
+  else
+    outSize := 4 ;
+  end if ;
+  outSize := outSize + 2 * [mTargetLabels length] ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override reader @ipic18ComputedBraTerminator terminatorDisplay
+  ??@string unused inNextBlockLabel
+  ->@string outResult
+:
+  outResult := "COMPUTED BRA" ;
+#  if mUsesRCALL then
+#    outResult .= " (uses RCALL)" ;
+#  else
+#    outResult .= " (uses CALL)" ;
+#  end if ;
+  foreach mTargetLabels do
+    outResult .= " " . mValue ;
+  end foreach ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override method @ipic18ComputedBraTerminator generateCode
+  ??@uint inAddress
+  ??@symbolTableForRelativesResolution inSymbolTable
+  ??@string unused inNextBlockLabel
+  !@codeList outCode
+:
+  const @lstring goto2label := ["_computed_goto_2" nowhere] ;
+  [inSymbolTable searchKey !goto2label ??@uint targetAddress] ;
+  @uint address ;
+  if mUsesRCALL then
+    outCode := pic18_RCALL_instruction_code [!inAddress !targetAddress !goto2label] ;
+    address := inAddress + 2 ;
+  else
+    outCode := pic18_CALL_instruction_code [!targetAddress !goto2label] ;
+    address := inAddress + 4 ;
+  end if ;
+  foreach mTargetLabels do
+    outCode .= pic18_BRA_instruction_code [!address !targetAddress !mValue] ;
+    address := address + 2 ;
+  end foreach ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+#!--- Terminator @ipic18ConditionalJumpTerminator
+
+#----------------------------------------------------------------------------*
+
+override reader @ipic18ConditionalJumpTerminator terminatorSize
+  ??@string unused inNextBlockLabel
+  -> @uint outSize
+:
+  switch mBranchMode
+  when native : outSize := 2 ; # Use Bcc instruction only
+  when ipicBRA : outSize := 4 ; # Use BRA (Bcc + BRA)
+  when ipicGOTO : outSize := 6 ; # use GOTO (Bcc + GOTO)
+  end switch ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override reader @ipic18ConditionalJumpTerminator terminatorDisplay
+  ??@string inNextBlockLabel
+  ->@string outResult
+:
+  switch mBranchMode
+  when native : outSize := 2 ; # Use Bcc instruction only
+  when ipicBRA : outSize := 4 ; # Use BRA (Bcc + BRA)
+  when ipicGOTO : outSize := 6 ; # use GOTO (Bcc + GOTO)
+  end switch ;
+#  switch mBranchMode
+#  when native   : outResult := "JUMP" ;
+#  when ipicBRA  : outResult := "BRA" ;
+#  when ipicGOTO :  outResult := "GOTO" ;
+#  end switch ;
+#  outResult .= " " ;
+  switch mConditionalBranch
+  when bz : outResult := "Z" ;
+  when bn  : outResult := "N" ;
+  when bc :  outResult := "C" ;
+  when bov :  outResult := "OV" ;
+  end switch ;
+  outResult .= " ? " ;
+  outResult .= [mInstructionIfConditionTrue terminatorDisplay !inNextBlockLabel] ;
+  outResult .= " : " ;
+  outResult .= [mInstructionIfConditionFalse terminatorDisplay !inNextBlockLabel] ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+end semantics ;

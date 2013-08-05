@@ -83,13 +83,6 @@ class @ipic18ComputedRETLWTerminator extends @ipic18AbstractBlockTerminator {
 
 #----------------------------------------------------------------------------*
 
-enum @conditionalBranchMode {
-  native, ipicNative, ipicBRA, ipicGOTO
-}{
-}
-
-#----------------------------------------------------------------------------*
-
 abstract class @ipic18AbstractConditionTerminator extends @ipic18AbstractBlockTerminator {
   @ipic18SingleInstructionTerminator mInstructionIfConditionTrue ;
   @ipic18SingleInstructionTerminator mInstructionIfConditionFalse ;
@@ -97,9 +90,25 @@ abstract class @ipic18AbstractConditionTerminator extends @ipic18AbstractBlockTe
 
 #----------------------------------------------------------------------------*
 
+enum @conditionalBranchMode {
+  native, # Use Bcc instruction only
+  ipicBRA, # Use BRA if possible (Bcc + BRA)
+  ipicGOTO # use GOTO (Bcc + GOTO)
+}{
+}
+
+#----------------------------------------------------*
+
+enum @ipic18ConditionalBranch {
+  bz, bn, bc, bov
+}{
+}
+
+#----------------------------------------------------------------------------*
+
 class @ipic18ConditionalJumpTerminator extends @ipic18AbstractConditionTerminator {
   @conditionalBranchMode mBranchMode ;
-  @conditional_branch mConditionalBranch ;
+  @ipic18ConditionalBranch mConditionalBranch ;
 }
 
 #----------------------------------------------------------------------------*
@@ -107,20 +116,6 @@ class @ipic18ConditionalJumpTerminator extends @ipic18AbstractConditionTerminato
 class @ipic18ComputedBraTerminator extends @ipic18AbstractBlockTerminator {
   @lstringlist mTargetLabels ;
   @bool mUsesRCALL ;
-}
-
-#----------------------------------------------------*
-
-enum @ipc18ConditionalBranch {
-  bz, bn, bc, bov
-}{
-}
-
-#----------------------------------------------------------------------------*
-
-class @pic18BraCCTerminator extends @ipic18AbstractConditionTerminator {
-  @conditionalBranchMode mBranchMode ;
-  @ipc18ConditionalBranch mConditionalBranch ;
 }
 
 #----------------------------------------------------*
@@ -367,6 +362,16 @@ abstract method @ipic18SequentialInstruction generateCode
 
 #----------------------------------------------------------------------------*
 
+method @ipic18AbstractBlockTerminator generateCode
+  ??@uint inAddress
+  ??@symbolTableForRelativesResolution inSymbolTable
+  ??@string inNextBlockLabel
+  !@codeList outCode
+:  outCode := [@codeList emptyList] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
 #!--- Check displacement
 
 #----------------------------------------------------------------------------*
@@ -382,6 +387,80 @@ routine checkBRA_RCALL
   outDisplacement := ([targetAddress sint] - 2S - [inCurrentAddress sint]) >> 1 ;
   outDisplacementOK :=  (outDisplacement < 1024S) & (outDisplacement > - 1024S) ;
 end routine ;
+
+#----------------------------------------------------------------------------*
+
+#!--- Generate branch instructions
+
+#----------------------------------------------------------------------------*
+
+function pic18_RCALL_instruction_code
+  ??@uint inRCALLinstructionAddress
+  ??@uint inTargetAddress
+  ??@lstring inTargetLabel
+  ->@codeList outCode
+:
+  const @sint displacement := ([inTargetAddress sint] - 2S - [inRCALLinstructionAddress sint]) >> 1 ;
+  if (displacement > 1023S) | (displacement < - 1024S) then
+    error inTargetLabel: "** INTERNAL ERROR ** displacement too large (". [displacement  string]
+    . ") for RCALL instruction to '" . inTargetLabel . "' (should be between -1024 and 1023)" ;
+  end if ;
+  outCode := [@codeList listWithValue
+    !"RCALL " . inTargetLabel
+    ![@uintlist listWithValue !0xD800 | [displacement & 0x07FFS uint]]
+  ] ;
+end function ;
+
+#----------------------------------------------------------------------------*
+
+function pic18_BRA_instruction_code
+  ??@uint inRCALLinstructionAddress
+  ??@uint inTargetAddress
+  ??@lstring inTargetLabel
+  ->@codeList outCode
+:
+  const @sint displacement := ([inTargetAddress sint] - 2S - [inRCALLinstructionAddress sint]) >> 1 ;
+  if (displacement > 1023S) | (displacement < - 1024S) then
+    error inTargetLabel: "** INTERNAL ERROR ** displacement too large (". [displacement  string]
+    . ") for BRA instruction to '" . inTargetLabel . "' (should be between -1024 and 1023)" ;
+  end if ;
+  outCode := [@codeList listWithValue
+    !"BRA " . inTargetLabel
+    ![@uintlist listWithValue !0xD000 | [displacement & 0x07FFS uint]]
+  ] ;
+end function ;
+
+#----------------------------------------------------------------------------*
+
+function pic18_CALL_instruction_code
+  ??@uint inTargetAddress
+  ??@lstring inTargetLabel
+  ->@codeList outCode
+:
+  @uintlist binaryCode [emptyList] ;
+  binaryCode += !0xEC00 | ((inTargetAddress >> 1) & 255) ;
+  binaryCode += !0xF000 | (inTargetAddress >> 9) ;
+  outCode := [@codeList listWithValue
+    !"CALL " . inTargetLabel
+    !binaryCode
+  ] ;
+end function ;
+
+#----------------------------------------------------------------------------*
+
+function pic18_GOTO_instruction_code
+  ??@uint inTargetAddress
+  ??@lstring inTargetLabel
+  ->@codeList outCode
+:
+  @uintlist binaryCode [emptyList] ;
+  binaryCode += !0xEF00 | ((inTargetAddress >> 1) & 255) ;
+  binaryCode += !0xF000 | (inTargetAddress >> 9) ;
+  outCode := [@codeList listWithValue
+    !"GOTO " . inTargetLabel
+    !binaryCode
+  ] ;
+end function ;
 
 #----------------------------------------------------------------------------*
 

@@ -138,9 +138,9 @@ override reader @ipic18_intermediate_instruction_FDA instructionDisplay
   end switch ;
   s .= " " . [mRegisterDescription mAssemblyString] ;
   if m_W_isDestination & [mRegisterDescription mNeedsBSR] then
-    s .= ", W, BSR_ACCESS" ;
+    s .= ", W, BSR" ;
   elsif [mRegisterDescription mNeedsBSR] then
-    s .= ", F, BSR_ACCESS" ;
+    s .= ", F, BSR" ;
   elsif m_W_isDestination then
     s .= ", W" ;
   else
@@ -579,7 +579,7 @@ override method @ipic18_skip_instruction_compare_register generateCode
   end switch ;
   s .= " " . [mRegisterDescription mAssemblyString] ;
   if [mRegisterDescription mNeedsBSR] then
-    s .= ", BSR_ACCESS" ;
+    s .= ", BSR" ;
   end if ;
 #---
   outCode := [@codeList listWithValue
@@ -592,6 +592,36 @@ override method @ipic18_skip_instruction_compare_register generateCode
     ??@codeList c
   ] ;
   outCode .= c ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @ipic18_skip_instruction_compare_register checkRelativesResolution
+  ??@uint inAddress
+  ??@string inBlockLabel
+  ??@symbolTableForRelativesResolution inSymbolTable
+  ?!@uint ioConversionCount
+  ?!@string ioListFileContents
+  !@ipic18SequentialInstruction outModifiedInstruction
+:
+  outModifiedInstruction := selfcopy ;
+  const @uint n := ioConversionCount ;
+  [mEmbeddedInstruction checkRelativesResolution
+    !inAddress + 2
+    !inBlockLabel
+    !inSymbolTable
+    !?ioConversionCount
+    !?ioListFileContents
+    ??@ipic18SequentialInstruction outModifiedEmbeddedInstruction
+  ] ;
+  if n != ioConversionCount then
+    outModifiedInstruction := [@ipic18_skip_instruction_compare_register new 
+      !mInstructionLocation
+      !outModifiedEmbeddedInstruction
+      !mCompareInstruction
+      !mRegisterDescription
+    ] ;  
+  end if ;
 end method ;
 
 #----------------------------------------------------------------------------*
@@ -649,6 +679,37 @@ override method @ipic18_skip_instruction_BitTestSkip generateCode
     ??@codeList c
   ] ;
   outCode .= c ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @ipic18_skip_instruction_BitTestSkip checkRelativesResolution
+  ??@uint inAddress
+  ??@string inBlockLabel
+  ??@symbolTableForRelativesResolution inSymbolTable
+  ?!@uint ioConversionCount
+  ?!@string ioListFileContents
+  !@ipic18SequentialInstruction outModifiedInstruction
+:
+  outModifiedInstruction := selfcopy ;
+  const @uint n := ioConversionCount ;
+  [mEmbeddedInstruction checkRelativesResolution
+    !inAddress + 2
+    !inBlockLabel
+    !inSymbolTable
+    !?ioConversionCount
+    !?ioListFileContents
+    ??@ipic18SequentialInstruction outModifiedEmbeddedInstruction
+  ] ;
+  if n != ioConversionCount then
+    outModifiedInstruction := [@ipic18_skip_instruction_BitTestSkip new 
+      !mInstructionLocation
+      !outModifiedEmbeddedInstruction
+      !mSkipIfSet
+      !mRegisterDescription
+      !mBitNumber
+    ] ;  
+  end if ;
 end method ;
 
 #----------------------------------------------------------------------------*
@@ -717,6 +778,37 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
+override method @ipic18_skip_instruction_FDA checkRelativesResolution
+  ??@uint inAddress
+  ??@string inBlockLabel
+  ??@symbolTableForRelativesResolution inSymbolTable
+  ?!@uint ioConversionCount
+  ?!@string ioListFileContents
+  !@ipic18SequentialInstruction outModifiedInstruction
+:
+  outModifiedInstruction := selfcopy ;
+  const @uint n := ioConversionCount ;
+  [mEmbeddedInstruction checkRelativesResolution
+    !inAddress + 2
+    !inBlockLabel
+    !inSymbolTable
+    !?ioConversionCount
+    !?ioListFileContents
+    ??@ipic18SequentialInstruction outModifiedEmbeddedInstruction
+  ] ;
+  if n != ioConversionCount then
+    outModifiedInstruction := [@ipic18_skip_instruction_FDA new 
+      !mInstructionLocation
+      !outModifiedEmbeddedInstruction
+      !mInstruction_FDA_base_code
+      !mRegisterDescription
+      !m_W_isDestination
+    ] ;  
+  end if ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
 #!--- Intermediate @ipic18_intermediate_JSR
 
 #----------------------------------------------------------------------------*
@@ -771,41 +863,6 @@ override reader @ipic18_intermediate_JSR instructionDisplay ->@stringlist outRes
   end switch ;
   outResult := [@stringlist listWithValue !s] ;
 end reader ;
-
-#----------------------------------------------------------------------------*
-
-function pic18_RCALL_instruction_code
-  ??@uint inRCALLinstructionAddress
-  ??@uint inTargetAddress
-  ??@lstring inTargetLabel
-  ->@codeList outCode
-:
-  const @sint displacement := ([inTargetAddress sint] - 2S - [inRCALLinstructionAddress sint]) >> 1 ;
-  if (displacement > 1023S) | (displacement < - 1024S) then
-    error inTargetLabel: "** INTERNAL ERROR ** displacement too large (". [displacement  string]
-    . ") for RCALL instruction to '" . inTargetLabel . "' (should be between -1024 and 1023)" ;
-  end if ;
-  outCode := [@codeList listWithValue
-    !"RCALL " . inTargetLabel
-    ![@uintlist listWithValue !0xD800 | [displacement & 0x07FFS uint]]
-  ] ;
-end function ;
-
-#----------------------------------------------------------------------------*
-
-function pic18_CALL_instruction_code
-  ??@uint inTargetAddress
-  ??@lstring inTargetLabel
-  ->@codeList outCode
-:
-  @uintlist binaryCode [emptyList] ;
-  binaryCode += !0xEC00 | ((inTargetAddress >> 1) & 255) ;
-  binaryCode += !0xF000 | (inTargetAddress >> 9) ;
-  outCode := [@codeList listWithValue
-    !"CALL " . inTargetLabel
-    !binaryCode
-  ] ;
-end function ;
 
 #----------------------------------------------------------------------------*
 
@@ -884,24 +941,6 @@ override method @ipic18_intermediate_instruction_computed_rcall checkRelativesRe
     end if ;
   end if ;
 end method ;
-
-#----------------------------------------------------------------------------*
-
-function pic18_BRA_instruction_code
-  ??@uint inInstructionAddress
-  ??@uint inTargetAddress
-  ??@lstring inTargetLabel
-  ->@codeList outCode
-:
-  @sint displacement := ([inTargetAddress sint] - 2S - [inInstructionAddress sint]) >> 1 ;
-  if (displacement > 1023S) | (displacement < - 1024S) then
-    error inTargetLabel: "** INTERNAL ERROR ** displacement too large for BRA instruction" ;
-  end if ;
-  outCode := [@codeList listWithValue
-    !"BRA " . inTargetLabel
-    ![@uintlist listWithValue !0xD000 | [displacement & 0x07FFS uint]]
-  ] ;
-end function ;
 
 #----------------------------------------------------------------------------*
 
