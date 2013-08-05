@@ -1164,21 +1164,59 @@ override method @instruction_JUMPCC analyze
   if mIsBcc then
     mode := [@conditionalBranchMode native] ;
   else
-    mode := [@conditionalBranchMode native] ;
+    mode := [@conditionalBranchMode ipicBRA] ;
   end if ;
 #--- Create the continuation label
   const @lstring label0 [new !"_label_" . [ioLocalLabelIndex string] !mInstructionLocation] ; 
   ioLocalLabelIndex ++ ;
 #--- Save terminator of current block
   const @ipic18AbstractBlockTerminator terminator := ioCurrentBlock->mTerminator ;
-#--- Set terminator of current block
-  ioCurrentBlock->mTerminator := [@ipic18ConditionalJumpTerminator new
-    !mInstructionLocation
-    ![@ipic18JumpTerminator new !mInstructionLocation !mTargetLabel ![@jumpInstructionKind ipicRelative]]
-    ![@ipic18JumpTerminator new !mInstructionLocation !label0 ![@jumpInstructionKind ipicRelative]]
-    !mode
-    !mConditionalBranch
-  ] ;
+  @ipic18ConditionalBranch ipicCondition ;
+  @bool complementaryCondition ;
+  switch mConditionalBranch
+  when bz :
+    ipicCondition := [@ipic18ConditionalBranch bz] ;
+    complementaryCondition := false ;
+  when bnz :
+    ipicCondition := [@ipic18ConditionalBranch bz] ;
+    complementaryCondition := true ;
+  when bn :
+    ipicCondition := [@ipic18ConditionalBranch bn] ;
+    complementaryCondition := false ;
+  when bnn :
+    ipicCondition := [@ipic18ConditionalBranch bn] ;
+    complementaryCondition := true ;
+  when bc :
+    ipicCondition := [@ipic18ConditionalBranch bc] ;
+    complementaryCondition := false ;
+  when bnc :
+    ipicCondition := [@ipic18ConditionalBranch bc] ;
+    complementaryCondition := true ;
+  when bov :
+    ipicCondition := [@ipic18ConditionalBranch bov] ;
+    complementaryCondition := false ;
+  when bnov :
+    ipicCondition := [@ipic18ConditionalBranch bov] ;
+    complementaryCondition := true ;
+  end switch ;
+#--- Save terminator of current block
+  if complementaryCondition then
+    ioCurrentBlock->mTerminator := [@ipic18ConditionalJumpTerminator new
+      !mInstructionLocation
+      ![@ipic18JumpTerminator new !mInstructionLocation !mTargetLabel ![@jumpInstructionKind ipicRelative]]
+      ![@ipic18JumpTerminator new !mInstructionLocation !label0 ![@jumpInstructionKind ipicRelative]]
+      !mode
+      !ipicCondition
+    ] ;
+  else
+    ioCurrentBlock->mTerminator := [@ipic18ConditionalJumpTerminator new
+      !mInstructionLocation
+      ![@ipic18JumpTerminator new !mInstructionLocation !label0 ![@jumpInstructionKind ipicRelative]]
+      ![@ipic18JumpTerminator new !mInstructionLocation !mTargetLabel ![@jumpInstructionKind ipicRelative]]
+      !mode
+      !ipicCondition
+    ] ;
+  end if ;
 #--- Create a new block with saved terminator
   ioCurrentBlock := [@ipic18Block new
     ![@uint max] # relocatable
@@ -1709,37 +1747,37 @@ override method @bcc_in_structured_if_condition analyzeCondition
   ??@lstring inConditionFalseLabel
   !@ipic18AbstractBlockTerminator outCurrentBlockTerminator
 :
-  @ipc18ConditionalBranch ipicCondition ;
+  @ipic18ConditionalBranch ipicCondition ;
   @bool complementaryCondition ;
   switch mCondition
   when bz :
-    ipicCondition := [@ipc18ConditionalBranch bz] ;
+    ipicCondition := [@ipic18ConditionalBranch bz] ;
     complementaryCondition := false ;
   when bnz :
-    ipicCondition := [@ipc18ConditionalBranch bz] ;
+    ipicCondition := [@ipic18ConditionalBranch bz] ;
     complementaryCondition := true ;
   when bn :
-    ipicCondition := [@ipc18ConditionalBranch bn] ;
+    ipicCondition := [@ipic18ConditionalBranch bn] ;
     complementaryCondition := false ;
   when bnn :
-    ipicCondition := [@ipc18ConditionalBranch bn] ;
+    ipicCondition := [@ipic18ConditionalBranch bn] ;
     complementaryCondition := true ;
   when bc :
-    ipicCondition := [@ipc18ConditionalBranch bc] ;
+    ipicCondition := [@ipic18ConditionalBranch bc] ;
     complementaryCondition := false ;
   when bnc :
-    ipicCondition := [@ipc18ConditionalBranch bc] ;
+    ipicCondition := [@ipic18ConditionalBranch bc] ;
     complementaryCondition := true ;
   when bov :
-    ipicCondition := [@ipc18ConditionalBranch bov] ;
+    ipicCondition := [@ipic18ConditionalBranch bov] ;
     complementaryCondition := false ;
   when bnov :
-    ipicCondition := [@ipc18ConditionalBranch bov] ;
+    ipicCondition := [@ipic18ConditionalBranch bov] ;
     complementaryCondition := true ;
   end switch ;
 #--- Save terminator of current block
   if complementaryCondition then
-    outCurrentBlockTerminator := [@pic18BraCCTerminator new
+    outCurrentBlockTerminator := [@ipic18ConditionalJumpTerminator new
       !inInstructionLocation
       ![@ipic18JumpTerminator new !inInstructionLocation !inConditionFalseLabel ![@jumpInstructionKind ipicRelative]]
       ![@ipic18JumpTerminator new !inInstructionLocation !inConditionTrueLabel ![@jumpInstructionKind ipicRelative]]
@@ -1747,7 +1785,7 @@ override method @bcc_in_structured_if_condition analyzeCondition
       !ipicCondition
     ] ;
   else
-    outCurrentBlockTerminator := [@pic18BraCCTerminator new
+    outCurrentBlockTerminator := [@ipic18ConditionalJumpTerminator new
       !inInstructionLocation
       ![@ipic18JumpTerminator new !inInstructionLocation !inConditionTrueLabel ![@jumpInstructionKind ipicRelative]]
       ![@ipic18JumpTerminator new !inInstructionLocation !inConditionFalseLabel ![@jumpInstructionKind ipicRelative]]

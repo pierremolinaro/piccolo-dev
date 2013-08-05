@@ -2,6 +2,7 @@ semantics ipic18_code_generation :
 import "ipic18_relatives_resolution.gSemantics" ;
 import "ipic18_display_block_list.gSemantics" ;
 import "ipic18_regular_instructions.gSemantics" ;
+import "ipic18_terminators.gSemantics" ;
 
 #----------------------------------------------------------------------------*
 
@@ -66,7 +67,6 @@ end routine ;
 
 method @ipic18Block generateCode
   ??@symbolTableForRelativesResolution inSymbolTable
-  ??@ipic18BlockList inGeneratedBlockList
   ??@uint inBlockAddress
   ??@string inNextBlockLabel
   ?!@string ioListFileContents
@@ -96,20 +96,40 @@ method @ipic18Block generateCode
     [mInstruction generateCode
       !address
       !inSymbolTable
-      ??@codeList inCode
+      ??@codeList code
     ] ;
-    const @stringlist ipicText := [mInstruction instructionDisplay] ;
     generateLineWithCode
       !address
-      !inCode
-      !ipicText
+      !code
+      ![mInstruction instructionDisplay]
       !?ioListFileContents
-    ;  
-    address := address + [mInstruction instructionSize] ;  
+    ;
+    address := address + [mInstruction instructionSize] ;
+  #--- Check instruction size corresponds generated code size
+    @uint generatedCodeSize := 0 ;
+    foreach code do
+      generatedCodeSize := generatedCodeSize + 2 * [mBinaryCode length] ;
+    end foreach ;
+    if generatedCodeSize != [mInstruction instructionSize] then
+      @string s := "*** INTERNAL ERROR ** generated code size ("
+      . generatedCodeSize . ") != instruction size (" . [mInstruction instructionSize] . ")" ;
+      error [@location nowhere] : s ;
+      ioListFileContents .= s . "\n" ;
+    end if ;
   end foreach ;
 #--- Generate block terminator
-
-
+  [mTerminator generateCode
+    !address
+    !inSymbolTable
+    !inNextBlockLabel
+    ??@codeList code
+  ] ;
+  generateLineWithCode
+    !address
+    !code
+    ![@stringlist listWithValue ![mTerminator terminatorDisplay !inNextBlockLabel]]
+    !?ioListFileContents
+  ;
 #---
   ioListFileContents .= "\n" ;
 end method ;
@@ -124,6 +144,9 @@ routine ipic18GenerateCode
   ioListFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n" ;
   ioListFileContents .= "*" . ["CODE GENERATION" stringByLeftAndRightPadding !77 !' '] . "*\n" ;
   ioListFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n\n" ;
+  if [option.verbose_output value] then
+    message "Code generation:\n" ;
+  end if ;
 #--- Build address map
   computeLabelAbsoluteAddressMap
     !inGeneratedBlockList
@@ -141,7 +164,7 @@ routine ipic18GenerateCode
     if mBlock->mStartAddress != [@uint max] then # Absolute block
       blockStartAddress := mBlock->mStartAddress ;
     end if ;
-    [mBlock generateCode !symbolTable !inGeneratedBlockList !blockStartAddress !nextBlockLabel !?ioListFileContents] ;
+    [mBlock generateCode !symbolTable !blockStartAddress !nextBlockLabel !?ioListFileContents] ;
     const @uint blockSize := [mBlock blockSize !nextBlockLabel] ;
     blockStartAddress := blockStartAddress + blockSize ;
   end foreach ;

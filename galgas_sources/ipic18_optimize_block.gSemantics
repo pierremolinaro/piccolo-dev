@@ -196,40 +196,6 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @pic18BraCCTerminator optimizeTerminator
-  ??@symbolTableForBlockOptimization inSymbolTable
-  ??@ipic18BlockList inBlockList
-  ??@string inBlockLabel
-  ?!@bool ioOptimizationDone
-  ?!@string ioListFileContents
-  !@ipic18AbstractBlockTerminator outOptimizedTerminator
-:
-  @bool optimization := false ;
-  [selfcopy getOptimizedTerminators
-    !inSymbolTable
-    !inBlockList
-    !inBlockLabel
-    !?optimization
-    !?ioListFileContents
-    ?@ipic18SingleInstructionTerminator optimizedTrueTerminator
-    ?@ipic18SingleInstructionTerminator optimizedFalseTerminator
-  ] ;
-  if optimization then
-    outOptimizedTerminator := [@pic18BraCCTerminator new
-      !mInstructionLocation
-      !optimizedTrueTerminator
-      !optimizedFalseTerminator 
-      !mBranchMode
-      !mConditionalBranch
-    ] ;
-    ioOptimizationDone := true ;
-  else
-    outOptimizedTerminator := selfcopy ;
-  end if ;
-end method ;
-
-#----------------------------------------------------------------------------*
-
 override method @pic18RegisterComparisonTerminator optimizeTerminator
   ??@symbolTableForBlockOptimization inSymbolTable
   ??@ipic18BlockList inBlockList
@@ -323,9 +289,9 @@ override method @ipic18JumpTerminator optimizeTerminator
         outOptimizedTerminator := targetBlock->mTerminator ;
         ioOptimizationDone := true ;
         ioListFileContents .= "  " . inBlockLabel . ": " ;
-        [selfcopy display !"" !?ioListFileContents] ;
+        ioListFileContents .= [selfcopy terminatorDisplay !""] ;
         ioListFileContents .= " -> " ;
-        [outOptimizedTerminator display !"" !?ioListFileContents] ;
+        ioListFileContents .= [outOptimizedTerminator terminatorDisplay !""] ;
         ioListFileContents .= "\n" ;
       end if ;
     end if ;
@@ -679,9 +645,9 @@ method @ipic18Block optimize
         optimized := true ;
         ioOptimizationDone := true ;
         ioListFileContents .= "  " . mLabel . ": " ;
-        [mTerminator display !"" !?ioListFileContents] ;
+        ioListFileContents .= [mTerminator terminatorDisplay !""] ;
         ioListFileContents .= " -> " ;
-        [newTerminator display !"" !?ioListFileContents] ;
+        ioListFileContents .= [newTerminator terminatorDisplay !""] ;
         ioListFileContents .= "\n" ;
       end if ;
     end if ;
@@ -699,9 +665,9 @@ method @ipic18Block optimize
       optimized := true ;
       ioOptimizationDone := true ;
       ioListFileContents .= "  " . mLabel . ": " ;
-      [mTerminator display !"" !?ioListFileContents] ;
+      ioListFileContents .= [mTerminator terminatorDisplay !""] ;
       ioListFileContents .= " -> " ;
-      [newTerminator display !"" !?ioListFileContents] ;
+      ioListFileContents .= [newTerminator terminatorDisplay !""] ;
       ioListFileContents .= "\n" ;
     end if ;
   end if ;
