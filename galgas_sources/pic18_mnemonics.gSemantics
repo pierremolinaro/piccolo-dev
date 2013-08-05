@@ -47,34 +47,6 @@ end reader ;
 
 #----------------------------------------------------*
 
-reader @instruction_FDA_base_code mnemonic -> @string outResult :
-  switch selfcopy
-    when ADDWF : outResult := "ADDWF" ;
-    when ADDWFC : outResult := "ADDWFC" ;
-    when ANDWF : outResult := "ANDWF" ;
-    when COMF : outResult := "COMF" ;
-    when DECF : outResult := "DECF" ;
-    when DECFSZ : outResult := "DECFSZ" ;
-    when DCFSNZ : outResult := "DCFSNZ" ;
-    when INCF : outResult := "INCF" ;
-    when INCFSZ : outResult := "INCFSZ" ;
-    when INFSNZ : outResult := "INFSNZ" ;
-    when IORWF : outResult := "IORWF" ;
-    when MOVF : outResult := "MOVF" ;
-    when RLCF : outResult := "RLCF" ;
-    when RLNCF : outResult := "RLNCF" ;
-    when RRCF : outResult := "RRCF" ;
-    when RRNCF : outResult := "RRNCF" ;
-    when SUBFWB : outResult := "SUBFWB" ;
-    when SUBWF : outResult := "SUBWF" ;
-    when SUBWFB : outResult := "SUBWFB" ;
-    when SWAPF : outResult := "SWAPF" ;
-    when XORWF : outResult := "XORWF" ;
-  end switch ;
-end reader ;
-
-#----------------------------------------------------*
-
 reader @FA_instruction_base_code mnemonic -> @string outResult :
   switch selfcopy
     when CLRF    : outResult := "CLRF" ;

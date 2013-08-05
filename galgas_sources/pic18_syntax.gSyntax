@@ -896,58 +896,58 @@ end rule ;
 
 rule <simple_instruction> !@pic18PiccoloSimpleInstruction outInstruction :
   select
-    @instruction_FDA_base_code baseCode ;
+    @instruction_FDA_base_code_AST baseCode ;
     select
       $addwf$ ;
-      baseCode := [@instruction_FDA_base_code ADDWF] ;
+      baseCode := [@instruction_FDA_base_code_AST ADDWF] ;
     or
       $addwfc$ ;
-      baseCode := [@instruction_FDA_base_code ADDWFC] ;
+      baseCode := [@instruction_FDA_base_code_AST ADDWFC] ;
     or
       $andwf$ ;
-      baseCode := [@instruction_FDA_base_code ANDWF] ;
+      baseCode := [@instruction_FDA_base_code_AST ANDWF] ;
     or
       $comf$ ;
-      baseCode := [@instruction_FDA_base_code COMF] ;
+      baseCode := [@instruction_FDA_base_code_AST COMF] ;
     or
       $decf$ ;
-      baseCode := [@instruction_FDA_base_code DECF] ;
+      baseCode := [@instruction_FDA_base_code_AST DECF] ;
     or
       $incf$ ;
-      baseCode := [@instruction_FDA_base_code INCF] ;
+      baseCode := [@instruction_FDA_base_code_AST INCF] ;
     or
       $iorwf$ ;
-      baseCode := [@instruction_FDA_base_code IORWF] ;
+      baseCode := [@instruction_FDA_base_code_AST IORWF] ;
     or
       $movf$ ;
-      baseCode := [@instruction_FDA_base_code MOVF] ;
+      baseCode := [@instruction_FDA_base_code_AST MOVF] ;
     or
       $rlcf$ ;
-      baseCode := [@instruction_FDA_base_code RLCF] ;
+      baseCode := [@instruction_FDA_base_code_AST RLCF] ;
     or
       $rlncf$ ;
-      baseCode := [@instruction_FDA_base_code RLNCF] ;
+      baseCode := [@instruction_FDA_base_code_AST RLNCF] ;
     or
       $rrcf$ ;
-      baseCode := [@instruction_FDA_base_code RRCF] ;
+      baseCode := [@instruction_FDA_base_code_AST RRCF] ;
     or
       $rrncf$ ;
-      baseCode := [@instruction_FDA_base_code RRNCF] ;
+      baseCode := [@instruction_FDA_base_code_AST RRNCF] ;
     or
       $subfwb$ ;
-      baseCode := [@instruction_FDA_base_code SUBFWB] ;
+      baseCode := [@instruction_FDA_base_code_AST SUBFWB] ;
     or
       $subwf$ ;
-      baseCode := [@instruction_FDA_base_code SUBWF] ;
+      baseCode := [@instruction_FDA_base_code_AST SUBWF] ;
     or
       $subwfb$ ;
-      baseCode := [@instruction_FDA_base_code SUBWFB] ;
+      baseCode := [@instruction_FDA_base_code_AST SUBWFB] ;
     or
       $swapf$ ;
-      baseCode := [@instruction_FDA_base_code SWAPF] ;
+      baseCode := [@instruction_FDA_base_code_AST SWAPF] ;
     or
       $xorwf$ ;
-      baseCode := [@instruction_FDA_base_code XORWF] ;
+      baseCode := [@instruction_FDA_base_code_AST XORWF] ;
     end select ;
     @location instructionLocation := here ;
     @registerExpression registerName ;

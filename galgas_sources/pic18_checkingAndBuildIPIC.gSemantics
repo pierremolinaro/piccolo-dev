@@ -235,9 +235,29 @@ override method @instruction_FDA buildIPICinstructionList
     ?@pic18_intermediate_registerExpression IPICregisterDescription
     ?*
   ] ;
+  @instruction_FDA_base_code code ;
+  switch mInstruction_FDA_base_code
+    when ADDWF : code := [@instruction_FDA_base_code ADDWF] ;
+    when ADDWFC : code := [@instruction_FDA_base_code ADDWFC] ;
+    when ANDWF : code := [@instruction_FDA_base_code ANDWF] ;
+    when COMF : code := [@instruction_FDA_base_code COMF] ;
+    when DECF : code := [@instruction_FDA_base_code DECF] ;
+    when INCF : code := [@instruction_FDA_base_code INCF] ;
+    when IORWF : code := [@instruction_FDA_base_code IORWF] ;
+    when MOVF : code := [@instruction_FDA_base_code MOVF] ;
+    when RLCF : code := [@instruction_FDA_base_code RLCF] ;
+    when RLNCF : code := [@instruction_FDA_base_code RLNCF] ;
+    when RRCF : code := [@instruction_FDA_base_code RRCF] ;
+    when RRNCF : code := [@instruction_FDA_base_code RRNCF] ;
+    when SUBFWB : code := [@instruction_FDA_base_code SUBFWB] ;
+    when SUBWF : code := [@instruction_FDA_base_code SUBWF] ;
+    when SUBWFB : code := [@instruction_FDA_base_code SUBWFB] ;
+    when SWAPF : code := [@instruction_FDA_base_code SWAPF] ;
+    when XORWF : code := [@instruction_FDA_base_code XORWF] ;
+  end switch ;
   ioGeneratedInstructionList += ![@pic18_intermediate_instruction_FDA new
     !mInstructionLocation
-    !mInstruction_FDA_base_code
+    !code
     !IPICregisterDescription
     !m_W_isDestination
   ] ;
