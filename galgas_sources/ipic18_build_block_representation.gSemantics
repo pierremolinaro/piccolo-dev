@@ -184,9 +184,23 @@ override method @instruction_FA analyzeSimpleInstruction
     ?@ipic18_intermediate_registerExpression IPICregisterDescription
     ?*
   ] ;
+  @FA_sequential_instruction_base_code code ;
+  switch mFAinstruction
+  when CLRF : code := [@FA_sequential_instruction_base_code CLRF] ;
+  when MOVWF : code := [@FA_sequential_instruction_base_code MOVWF] ;
+  when MULWF : code := [@FA_sequential_instruction_base_code MULWF] ;
+  when NEGF : code := [@FA_sequential_instruction_base_code NEGF] ;
+  when SETF : code := [@FA_sequential_instruction_base_code SETF] ;
+  when CPFSEQ, CPFSGT, CPFSLT, TSTFSZ :
+    error [@location nowhere] : "*** INTERNAL ERROR ***" : code ;
+  end switch ;
+#enum @FA_sequential_instruction_base_code {
+#  , , , , 
+#}{
+#}
   outInstruction := [@ipic18_intermediate_instruction_FA new
     !mInstructionLocation
-    !mFAinstruction
+    !code
     !IPICregisterDescription
   ] ;
 end method ;
@@ -708,13 +722,13 @@ override method @instruction_LTBLPTR analyze
   if upper == 0 then
     ioCurrentBlock->mInstructionList += ![@ipic18_intermediate_instruction_FA new
       !mInstructionLocation
-      ![@FA_instruction_base_code CLRF]
+      ![@FA_sequential_instruction_base_code CLRF]
       !outIPICregisterDescription
     ] ;  
   elsif upper == 0xFF then
     ioCurrentBlock->mInstructionList += ![@ipic18_intermediate_instruction_FA new
       !mInstructionLocation
-      ![@FA_instruction_base_code SETF]
+      ![@FA_sequential_instruction_base_code SETF]
       !outIPICregisterDescription
     ] ;  
   else
@@ -725,7 +739,7 @@ override method @instruction_LTBLPTR analyze
     ] ;
     ioCurrentBlock->mInstructionList += ![@ipic18_intermediate_instruction_FA new
       !mInstructionLocation
-      ![@FA_instruction_base_code MOVWF]
+      ![@FA_sequential_instruction_base_code MOVWF]
       !outIPICregisterDescription
     ] ;  
   end if ;
@@ -742,13 +756,13 @@ override method @instruction_LTBLPTR analyze
   if high == 0 then
     ioCurrentBlock->mInstructionList += ![@ipic18_intermediate_instruction_FA new
       !mInstructionLocation
-      ![@FA_instruction_base_code CLRF]
+      ![@FA_sequential_instruction_base_code CLRF]
       !outIPICregisterDescription
     ] ;  
   elsif high == 0xFF then
     ioCurrentBlock->mInstructionList += ![@ipic18_intermediate_instruction_FA new
       !mInstructionLocation
-      ![@FA_instruction_base_code SETF]
+      ![@FA_sequential_instruction_base_code SETF]
       !outIPICregisterDescription
     ] ;  
   else
@@ -759,7 +773,7 @@ override method @instruction_LTBLPTR analyze
     ] ;
     ioCurrentBlock->mInstructionList += ![@ipic18_intermediate_instruction_FA new
       !mInstructionLocation
-      ![@FA_instruction_base_code MOVWF]
+      ![@FA_sequential_instruction_base_code MOVWF]
       !outIPICregisterDescription
     ] ;  
   end if ;
@@ -776,13 +790,13 @@ override method @instruction_LTBLPTR analyze
   if low == 0 then
     ioCurrentBlock->mInstructionList += ![@ipic18_intermediate_instruction_FA new
       !mInstructionLocation
-      ![@FA_instruction_base_code CLRF]
+      ![@FA_sequential_instruction_base_code CLRF]
       !outIPICregisterDescription
     ] ;  
   elsif low == 0xFF then
     ioCurrentBlock->mInstructionList += ![@ipic18_intermediate_instruction_FA new
       !mInstructionLocation
-      ![@FA_instruction_base_code SETF]
+      ![@FA_sequential_instruction_base_code SETF]
       !outIPICregisterDescription
     ] ;  
   else
@@ -793,7 +807,7 @@ override method @instruction_LTBLPTR analyze
     ] ;
     ioCurrentBlock->mInstructionList += ![@ipic18_intermediate_instruction_FA new
       !mInstructionLocation
-      ![@FA_instruction_base_code MOVWF]
+      ![@FA_sequential_instruction_base_code MOVWF]
       !outIPICregisterDescription
     ] ;  
   end if ;
@@ -839,7 +853,7 @@ override method @instruction_LDATAPTR analyze
   ] ;
   ioCurrentBlock->mInstructionList += ![@ipic18_intermediate_instruction_FA new
     !mInstructionLocation
-    ![@FA_instruction_base_code MOVWF]
+    ![@FA_sequential_instruction_base_code MOVWF]
     !outIPICregisterDescription
   ] ;  
 #--- High byte
@@ -859,7 +873,7 @@ override method @instruction_LDATAPTR analyze
   ] ;
   ioCurrentBlock->mInstructionList += ![@ipic18_intermediate_instruction_FA new
     !mInstructionLocation
-    ![@FA_instruction_base_code MOVWF]
+    ![@FA_sequential_instruction_base_code MOVWF]
     !outIPICregisterDescription
   ] ;  
 #--- Low byte
@@ -879,7 +893,7 @@ override method @instruction_LDATAPTR analyze
   ] ;
   ioCurrentBlock->mInstructionList += ![@ipic18_intermediate_instruction_FA new
     !mInstructionLocation
-    ![@FA_instruction_base_code MOVWF]
+    ![@FA_sequential_instruction_base_code MOVWF]
     !outIPICregisterDescription
   ] ;  
 end method ;
@@ -1329,12 +1343,12 @@ override method @instruction_IF_FA_SEMI_COLON analyze
   ?!@bool unused ioContinuesInSequence
   ??@routineKind unused inRoutineKind
 :
-  @FA_instruction_base_code baseCode ;
+  @ipic18_compare_register_instruction_base_code baseCode ;
   switch mOpCode
-    when CPFSEQ : baseCode := [@FA_instruction_base_code CPFSEQ] ;
-    when CPFSGT : baseCode := [@FA_instruction_base_code CPFSGT] ;
-    when CPFSLT : baseCode := [@FA_instruction_base_code CPFSLT] ;
-    when TSTFSZ : baseCode := [@FA_instruction_base_code TSTFSZ] ;
+    when CPFSEQ : baseCode := [@ipic18_compare_register_instruction_base_code CPFSEQ] ;
+    when CPFSGT : baseCode := [@ipic18_compare_register_instruction_base_code CPFSGT] ;
+    when CPFSLT : baseCode := [@ipic18_compare_register_instruction_base_code CPFSLT] ;
+    when TSTFSZ : baseCode := [@ipic18_compare_register_instruction_base_code TSTFSZ] ;
   end switch ;
   [mRegisterExpression analyzeRegisterExpression
     !inAccessBankSplitOffset
@@ -1360,7 +1374,7 @@ override method @instruction_IF_FA_SEMI_COLON analyze
     error [mEmbeddedInstruction mInstructionLocation] : "this instruction does not preserve bank setting" ;
   end if ;
 #--- Generate instruction
-  ioCurrentBlock->mInstructionList += ![@ipic18_skip_instruction_FA new
+  ioCurrentBlock->mInstructionList += ![@ipic18_skip_instruction_compare_register new
     !mInstructionLocation
     !embeddedInstruction
     !baseCode

@@ -186,10 +186,17 @@ class @ipic18_intermediate_instruction_FDA extends @ipic18SequentialInstruction 
   @bool m_W_isDestination ;
 }
 
+#----------------------------------------------------*
+
+enum @FA_sequential_instruction_base_code {
+  CLRF, MOVWF, MULWF, NEGF, SETF
+}{
+}
+
 #----------------------------------------------------------------------------*
 
 class @ipic18_intermediate_instruction_FA extends @ipic18SequentialInstruction {
-  @FA_instruction_base_code mFAinstruction ;
+  @FA_sequential_instruction_base_code mFAinstruction ;
   @ipic18_intermediate_registerExpression mRegisterDescription ;
 }
 
@@ -290,10 +297,17 @@ class @ipic18_skip_instruction_BitTestSkip extends @ipic18_condition_skip_instru
   @uint mBitNumber ;
 }
 
+#----------------------------------------------------*
+
+enum @ipic18_compare_register_instruction_base_code {
+  CPFSEQ, CPFSGT, CPFSLT, TSTFSZ
+}{
+}
+
 #----------------------------------------------------------------------------*
 
-class @ipic18_skip_instruction_FA extends @ipic18_condition_skip_instruction {
-  @FA_instruction_base_code mFAinstruction ;
+class @ipic18_skip_instruction_compare_register extends @ipic18_condition_skip_instruction {
+  @ipic18_compare_register_instruction_base_code mCompareInstruction ;
   @ipic18_intermediate_registerExpression mRegisterDescription ;
 }
 
