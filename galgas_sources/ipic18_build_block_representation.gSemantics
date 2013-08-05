@@ -2121,6 +2121,9 @@ routine build_ipic18_block_representation_list
   ??@bool inHasHighInterrupt
   ??@bool inHasLowInterrupt
   ??@constantMap inDataLengthConstantMap
+  ??@string inProcessorName
+  ??@registerTable inPredefinedRegisters
+  ??@actualConfigurationMap inActualConfigurationMap
   ?!@string ioListFileContents
 :
 #-------------------------------- Build routine map
@@ -2523,6 +2526,10 @@ routine build_ipic18_block_representation_list
   if [@uint errorCount] == 0 then
     ipic18GenerateCode
       !inSourceFileName
+      !inProcessorName
+      !inPredefinedRegisters
+      !inRegisterTable
+      !inActualConfigurationMap
       !?ioListFileContents
       !generatedBlockList
     ;

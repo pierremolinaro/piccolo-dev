@@ -3,6 +3,8 @@ import "ipic18_relatives_resolution.gSemantics" ;
 import "ipic18_display_block_list.gSemantics" ;
 import "ipic18_regular_instructions.gSemantics" ;
 import "ipic18_terminators.gSemantics" ;
+import "piccoloDevice_semantics.gSemantics" ;
+import "piccolo_options.gOption" ;
 
 #----------------------------------------------------------------------------*
 
@@ -70,6 +72,7 @@ method @ipic18Block generateCode
   ??@uint inBlockAddress
   ??@string inNextBlockLabel
   ?!@string ioListFileContents
+  ?!@string ioAssemblyString
 :
   ioListFileContents .= "Addr.  Code       Assembly                                 Intermediate Representation\n" ;
   if mStartAddress == [@uint max] then # Relocatable
@@ -78,7 +81,8 @@ method @ipic18Block generateCode
       ![@codeList listWithValue !mLabel->string . ":" ![@uintlist emptyList]]
       ![@stringlist listWithValue !"LABEL " . mLabel]
       !?ioListFileContents
-    ;  
+    ;
+    ioAssemblyString .= mLabel->string . ":\n" ;
   else
     @codeList cd [emptyList] ;
     cd += !"ORG " . [inBlockAddress hexString] ![@uintlist emptyList] ;
@@ -89,6 +93,8 @@ method @ipic18Block generateCode
       ![@stringlist listWithValue !"LABEL " . mLabel . ", ORG ". [inBlockAddress hexString]]
       !?ioListFileContents
     ;  
+    ioAssemblyString .= "    ORG ". [inBlockAddress hexString] . "\n" ;
+    ioAssemblyString .= mLabel->string . ":\n" ;
   end if ;
 #--- Generate regular instructions
   @uint address := inBlockAddress ;
@@ -104,6 +110,9 @@ method @ipic18Block generateCode
       ![mInstruction instructionDisplay]
       !?ioListFileContents
     ;
+    foreach code do
+      ioAssemblyString .= "    " . mAssemblyCode . "\n" ;
+    end foreach ;
     address := address + [mInstruction instructionSize] ;
   #--- Check instruction size corresponds generated code size
     @uint generatedCodeSize := 0 ;
@@ -130,14 +139,36 @@ method @ipic18Block generateCode
     ![@stringlist listWithValue ![mTerminator terminatorDisplay !inNextBlockLabel]]
     !?ioListFileContents
   ;
+  foreach code do
+    ioAssemblyString .= "    " . mAssemblyCode . "\n" ;
+  end foreach ;
+  #--- Check terminator size corresponds generated code size
+    @uint generatedCodeSize := 0 ;
+    foreach code do
+      generatedCodeSize := generatedCodeSize + 2 * [mBinaryCode length] ;
+    end foreach ;
+    if generatedCodeSize != [mTerminator terminatorSize !inNextBlockLabel] then
+      @string s := "*** INTERNAL ERROR ** generated code size ("
+      . generatedCodeSize . ") != instruction size (" . [mTerminator terminatorSize !inNextBlockLabel] . ")" ;
+      error [@location nowhere] : s ;
+      ioListFileContents .= s . "\n" ;
+    end if ;
 #---
   ioListFileContents .= "\n" ;
 end method ;
 
 #----------------------------------------------------------------------------*
+#                                                                            *
+#        C O D E    G E N E R A T I O N                                      *
+#                                                                            *
+#----------------------------------------------------------------------------*
 
 routine ipic18GenerateCode
   ??@string inSourceFileName
+  ??@string inProcessorName
+  ??@registerTable inPredefinedRegisters
+  ??@registerTable inAllRegisters
+  ??@actualConfigurationMap inActualConfigurationMap
   ?!@string ioListFileContents
   ??@ipic18BlockList inGeneratedBlockList
 :
@@ -153,6 +184,7 @@ routine ipic18GenerateCode
     ??@symbolTableForRelativesResolution symbolTable
   ;
 #--- Generate code
+  @string assemblyString := "" ;
   @uint blockStartAddress := 0 ;
   foreach inGeneratedBlockList index blockIndex do
     @string nextBlockLabel ;
@@ -164,10 +196,75 @@ routine ipic18GenerateCode
     if mBlock->mStartAddress != [@uint max] then # Absolute block
       blockStartAddress := mBlock->mStartAddress ;
     end if ;
-    [mBlock generateCode !symbolTable !blockStartAddress !nextBlockLabel !?ioListFileContents] ;
+    [mBlock generateCode !symbolTable !blockStartAddress !nextBlockLabel !?ioListFileContents !?assemblyString] ;
     const @uint blockSize := [mBlock blockSize !nextBlockLabel] ;
     blockStartAddress := blockStartAddress + blockSize ;
   end foreach ;
+#--- Generate assembly file ?
+  if [option piccolo_options.generateAssembly value] & ([@uint errorCount] == 0) then
+    pic18GenerateAssemblyFile
+      !inSourceFileName
+      !inProcessorName
+      !inPredefinedRegisters
+      !inAllRegisters
+      !inActualConfigurationMap
+      !assemblyString
+    ;
+  end if ;
+end routine ;
+
+#----------------------------------------------------------------------------*
+#                                                                            *
+#        C O D E    G E N E R A T I O N                                      *
+#                                                                            *
+#----------------------------------------------------------------------------*
+
+local routine pic18GenerateAssemblyFile
+  ??@string inSourceFileName
+  ??@string inProcessorName
+  ??@registerTable inPredefinedRegisters
+  ??@registerTable inAllRegisters
+  ??@actualConfigurationMap inActualConfigurationMap
+  ??@string inAssemblyCode
+:
+  @string assemblyString := "  PROCESSOR " . inProcessorName . "\n" ;
+#--- Code
+  assemblyString .= ";--- Code\n" ;
+  assemblyString .= "  ORG 0\n" ;
+  assemblyString .= inAssemblyCode ;
+#--- Prefined registers
+  assemblyString .= ";--- Prefefined registers\n" ;
+  foreach inPredefinedRegisters do
+    [mRegisterAddressList first ??@uint firstRegister] ;
+    assemblyString .= [lkey string] . " EQU " . [firstRegister hexString] . "\n" ;
+  end foreach ;
+  assemblyString .= "\n" ;
+#--- User defined registers in ram
+  assemblyString .= ";--- User defined registers (in RAM)\n" ;
+  foreach inAllRegisters do
+    if not [inPredefinedRegisters hasKey ![lkey string]] then
+      [mRegisterAddressList first ??@uint firstRegister] ;
+      assemblyString .= [lkey string] . " EQU " . [firstRegister hexString] . "\n" ;
+    end if ;
+  end foreach ;
+  assemblyString .= "\n" ;
+#--- PICCOLO defined symbols
+  assemblyString .= ";--- Piccolo defined symbols\n" ;
+  assemblyString .= "W EQU 1\n" ;
+  assemblyString .= "BSR_ACCESS EQU 1\n\n" ;
+#-------------------------------- Add Configuration
+  if [inActualConfigurationMap count] > 0 then
+    assemblyString .= ";--- Configuration\n\n" ;
+    foreach inActualConfigurationMap do
+      assemblyString .= "  __config " . [mRegisterAddress hexString] . ", " . [mRegisterValue & 255 hexString] . "\n" ;
+    end foreach ;
+  end if ;
+#-------------------------------- End
+  assemblyString .= ";---\n\n" ;
+  assemblyString .= "  END\n\n" ;
+#-------------------------------- Generate file
+  const @string asmDestinationFile := [inSourceFileName stringByDeletingPathExtension] . ".asm" ;
+ [assemblyString writeToFileWhenDifferentContents !asmDestinationFile ?*] ;
 end routine ;
 
 #----------------------------------------------------------------------------*

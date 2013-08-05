@@ -11,9 +11,11 @@ routine rcall_back_call {
 noreturn routine main bank:requires 0 {
   rcall rcall_back_call
   rcall rcall_forward_call
-  mnop 1022 # Adding 1 leads to overflow
-  forever
-  end
+  mnop 1015 # Adding 1 leads to overflow
+  call aRoutine
+  call BccOverflow1
+  call BccOverflow2
+  GOTO foreverLoop
 }
 
 routine rcall_forward_call {
@@ -34,6 +36,7 @@ routine aRoutine {
 }
 
 routine bcc_forward {
+  NOP
 }
 
 noreturn routine foreverLoop {

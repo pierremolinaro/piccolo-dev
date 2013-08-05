@@ -138,9 +138,9 @@ override reader @ipic18_intermediate_instruction_FDA instructionDisplay
   end switch ;
   s .= " " . [mRegisterDescription mAssemblyString] ;
   if m_W_isDestination & [mRegisterDescription mNeedsBSR] then
-    s .= ", W, BSR" ;
+    s .= ", W, BSR_ACCESS" ;
   elsif [mRegisterDescription mNeedsBSR] then
-    s .= ", F, BSR" ;
+    s .= ", F, BSR_ACCESS" ;
   elsif m_W_isDestination then
     s .= ", W" ;
   else
@@ -491,18 +491,13 @@ override method @ipic18_intermediate_instruction_MNOP generateCode
   !@codeList outCode
 :
   outCode := [@codeList emptyList] ;
-  if mOccurrenceFactor->uint == 0 then
-    outCode += !"MNOP 0" ![@uintlist emptyList] ;
-  else
-    outCode += !"MNOP " . mOccurrenceFactor->uint ![@uintlist listWithValue !0x0000] ;
-    @uint idx := 1 ;
-    loop [mOccurrenceFactor uint] :
-    while idx < [mOccurrenceFactor uint]
-    do
-      outCode += !"" ![@uintlist listWithValue !0x0000] ;
-      idx ++ ;
-    end loop ;
-  end if ;
+  @uint idx := 0 ;
+  loop [mOccurrenceFactor uint] :
+  while idx < [mOccurrenceFactor uint]
+  do
+    outCode += !"NOP" ![@uintlist listWithValue !0x0000] ;
+    idx ++ ;
+  end loop ;
 end method ;
 
 #----------------------------------------------------------------------------*
@@ -579,7 +574,7 @@ override method @ipic18_skip_instruction_compare_register generateCode
   end switch ;
   s .= " " . [mRegisterDescription mAssemblyString] ;
   if [mRegisterDescription mNeedsBSR] then
-    s .= ", BSR" ;
+    s .= ", BSR_ACCESS" ;
   end if ;
 #---
   outCode := [@codeList listWithValue

@@ -288,6 +288,9 @@ routine pic18_analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName 
       !hasHighInterrupt
       !hasLowInterrupt
       !dataLengthConstantMap
+      ![[piccoloDeviceModel mDeviceName] string]
+      ![piccoloDeviceModel mRegisterTable]
+      !actualConfigurationMap
       !?listFileContents
     ;
   else
