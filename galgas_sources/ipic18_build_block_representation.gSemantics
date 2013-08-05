@@ -1400,15 +1400,15 @@ override method @instruction_IF_IncDec analyze
   ??@routineKind unused inRoutineKind
 :
 #---
-  @instruction_FDA_base_code baseCode ;
+  @skip_instruction_FDA_base_code baseCode ;
   if mIncrement & mSkipIfZero then
-    baseCode := [@instruction_FDA_base_code INCFSZ] ;
+    baseCode := [@skip_instruction_FDA_base_code INCFSZ] ;
   elsif mIncrement & not mSkipIfZero then
-    baseCode := [@instruction_FDA_base_code INFSNZ] ;
+    baseCode := [@skip_instruction_FDA_base_code INFSNZ] ;
   elsif (not mIncrement) & mSkipIfZero then
-    baseCode := [@instruction_FDA_base_code DECFSZ] ;
+    baseCode := [@skip_instruction_FDA_base_code DECFSZ] ;
   else
-    baseCode := [@instruction_FDA_base_code DCFSNZ] ;
+    baseCode := [@skip_instruction_FDA_base_code DCFSNZ] ;
   end if ;
 #---
   [mRegisterExpression analyzeRegisterExpression
@@ -2387,7 +2387,7 @@ routine build_ipic18_block_representation_list
 #---
   const @ipic18SequentialInstruction ADDWF_WREG := [@ipic18_intermediate_instruction_FDA new
     !here
-    ![@instruction_FDA_base_code ADDWF]
+    ![@instruction_FDA_base_code_AST ADDWF]
     !WREG_IPICregisterDescription
     !true
   ] ; # ADDWF WREG, W
@@ -2406,7 +2406,7 @@ routine build_ipic18_block_representation_list
   goto2InstructionList += !ADDWF_WREG ;
   goto2InstructionList += ![@ipic18_intermediate_instruction_FDA new
     !here
-    ![@instruction_FDA_base_code ADDWF]
+    ![@instruction_FDA_base_code_AST ADDWF]
     !TOSL_IPICregisterDescription
     !false
   ] ; # ADDWF TOSL, F
@@ -2417,13 +2417,13 @@ routine build_ipic18_block_representation_list
   ] ; # MOVLW 0
   goto2InstructionList += ![@ipic18_intermediate_instruction_FDA new
     !here
-    ![@instruction_FDA_base_code ADDWFC]
+    ![@instruction_FDA_base_code_AST ADDWFC]
     !TOSH_IPICregisterDescription
     !false
   ] ; # ADDWFC TOSH, F
   goto2InstructionList += ![@ipic18_intermediate_instruction_FDA new
     !here
-    ![@instruction_FDA_base_code ADDWFC]
+    ![@instruction_FDA_base_code_AST ADDWFC]
     !TOSU_IPICregisterDescription
     !false
   ] ; # ADDWFC TOSU, F

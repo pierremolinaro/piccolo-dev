@@ -58,8 +58,8 @@ class @instruction_savebank extends @pic18PiccoloInstruction {
 
 #----------------------------------------------------*
 
-enum @instruction_FDA_base_code {
-  ADDWF, ADDWFC, ANDWF, COMF, DECF, DECFSZ, DCFSNZ, INCF, INCFSZ, INFSNZ,
+enum @instruction_FDA_base_code_AST {
+  ADDWF, ADDWFC, ANDWF, COMF, DECF, INCF,
   IORWF, MOVF, RLCF, RLNCF, RRCF, RRNCF, SUBFWB, SUBWF, SUBWFB, SWAPF, XORWF
 }{
 }
@@ -67,7 +67,7 @@ enum @instruction_FDA_base_code {
 #----------------------------------------------------*
 
 class @instruction_FDA extends @pic18PiccoloSimpleInstruction {
-  @instruction_FDA_base_code mInstruction_FDA_base_code ;
+  @instruction_FDA_base_code_AST mInstruction_FDA_base_code ;
   @registerExpression mRegisterExpression ;
   @bool m_W_isDestination ;
 }

@@ -181,7 +181,7 @@ struct @ipic18_intermediate_registerExpression {
 #----------------------------------------------------------------------------*
 
 class @ipic18_intermediate_instruction_FDA extends @ipic18SequentialInstruction {
-  @instruction_FDA_base_code mInstruction_FDA_base_code ;
+  @instruction_FDA_base_code_AST mInstruction_FDA_base_code ;
   @ipic18_intermediate_registerExpression mRegisterDescription ;
   @bool m_W_isDestination ;
 }
@@ -311,10 +311,17 @@ class @ipic18_skip_instruction_compare_register extends @ipic18_condition_skip_i
   @ipic18_intermediate_registerExpression mRegisterDescription ;
 }
 
+#----------------------------------------------------*
+
+enum @skip_instruction_FDA_base_code {
+  DECFSZ, DCFSNZ, INCFSZ, INFSNZ
+}{
+}
+
 #----------------------------------------------------------------------------*
 
 class @ipic18_skip_instruction_FDA extends @ipic18_condition_skip_instruction {
-  @instruction_FDA_base_code mInstruction_FDA_base_code ;
+  @skip_instruction_FDA_base_code mInstruction_FDA_base_code ;
   @ipic18_intermediate_registerExpression mRegisterDescription ;
   @bool m_W_isDestination ;
 }
@@ -352,14 +359,11 @@ list @codeList {
   
 #----------------------------------------------------------------------------*
 
-method @ipic18SequentialInstruction generateCode
+abstract method @ipic18SequentialInstruction generateCode
   ??@uint inAddress
   ??@symbolTableForRelativesResolution inSymbolTable
-  ??@ipic18BlockList inGeneratedBlockList
   !@codeList outCode
-:
-  outCode := [@codeList emptyList] ;
-end method ;
+;
 
 #----------------------------------------------------------------------------*
 

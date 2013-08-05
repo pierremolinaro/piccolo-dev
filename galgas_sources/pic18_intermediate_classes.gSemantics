@@ -219,6 +219,42 @@ method @pic18_intermediate_MOV_LABEL_W display ?!@string ioListFileContents :
   ioListFileContents .= "MOVLW ((" . mLabel . " + " . mOffset . ") >> " . mRightShift . ") & 0xFF"  ;
 end method ;
 
+#----------------------------------------------------*
+
+enum @instruction_FDA_base_code {
+  ADDWF, ADDWFC, ANDWF, COMF, DECF, DECFSZ, DCFSNZ, INCF, INCFSZ, INFSNZ,
+  IORWF, MOVF, RLCF, RLNCF, RRCF, RRNCF, SUBFWB, SUBWF, SUBWFB, SWAPF, XORWF
+}{
+}
+
+#----------------------------------------------------*
+
+reader @instruction_FDA_base_code mnemonic -> @string outResult :
+  switch selfcopy
+    when ADDWF : outResult := "ADDWF" ;
+    when ADDWFC : outResult := "ADDWFC" ;
+    when ANDWF : outResult := "ANDWF" ;
+    when COMF : outResult := "COMF" ;
+    when DECF : outResult := "DECF" ;
+    when DECFSZ : outResult := "DECFSZ" ;
+    when DCFSNZ : outResult := "DCFSNZ" ;
+    when INCF : outResult := "INCF" ;
+    when INCFSZ : outResult := "INCFSZ" ;
+    when INFSNZ : outResult := "INFSNZ" ;
+    when IORWF : outResult := "IORWF" ;
+    when MOVF : outResult := "MOVF" ;
+    when RLCF : outResult := "RLCF" ;
+    when RLNCF : outResult := "RLNCF" ;
+    when RRCF : outResult := "RRCF" ;
+    when RRNCF : outResult := "RRNCF" ;
+    when SUBFWB : outResult := "SUBFWB" ;
+    when SUBWF : outResult := "SUBWF" ;
+    when SUBWFB : outResult := "SUBWFB" ;
+    when SWAPF : outResult := "SWAPF" ;
+    when XORWF : outResult := "XORWF" ;
+  end switch ;
+end reader ;
+
 #----------------------------------------------------------------------------*
 
 class @pic18_intermediate_instruction_FDA extends @pic18_intermediate_actualInstruction {

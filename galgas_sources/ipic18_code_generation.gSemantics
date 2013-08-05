@@ -96,7 +96,6 @@ method @ipic18Block generateCode
     [mInstruction generateCode
       !address
       !inSymbolTable
-      !inGeneratedBlockList
       ??@codeList inCode
     ] ;
     const @stringlist ipicText := [mInstruction instructionDisplay] ;
