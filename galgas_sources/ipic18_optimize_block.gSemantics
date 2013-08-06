@@ -651,9 +651,37 @@ method @ipic18Block optimize
 :
   outOptimizedBlock := selfcopy ;
   @bool optimized := false ;
+  @ipic18SequentialInstructionList instructionList [emptyList] ;
+#--- Remove empty routine calls
+  foreach mInstructionList do
+    @bool retainInstruction := true ;
+    if (mInstruction is @ipic18_intermediate_JSR) then
+      const @ipic18_intermediate_JSR jsr := (cast mInstruction : @ipic18_intermediate_JSR) ;
+      [inSymbolTable searchKey ![jsr mTargetLabel] ??@uint targetBlockIndex] ; 
+      const @ipic18Block targetBloc := [inBlockList mBlockAtIndex !targetBlockIndex] ;  
+      if ([targetBloc->mInstructionList length] == 0) & (targetBloc->mTerminator is @ipic18ReturnTerminator) then
+        retainInstruction := false ;
+        optimized := true ;
+        ioOptimizationDone := true ;
+        ioListFileContents .= "  " . mLabel . ": " ;
+        ioListFileContents .= "call to empty " . [jsr mTargetLabel] . " routine deleted" ;
+        ioListFileContents .= "\n" ;
+      end if ;    
+    end if ;
+    if retainInstruction then
+      instructionList += !mInstruction ;
+    end if ;
+  end foreach ;
+  if optimized then
+    outOptimizedBlock := [@ipic18Block new
+      !mStartAddress
+      !mLabel
+      !instructionList
+      !mTerminator
+    ] ;
+  end if ;
 #--- Transform MOVLW k ; RETURN to RETLW
-  @ipic18SequentialInstructionList instructionList := mInstructionList ;
-  if ([mInstructionList length] > 0) & (mTerminator is @ipic18ReturnTerminator) then
+  if (not optimized) & ([instructionList length] > 0) & (mTerminator is @ipic18ReturnTerminator) then
     [instructionList last ??@ipic18SequentialInstruction lastInstruction] ;
     if (lastInstruction is @ipic18_intermediate_instruction_literalOperation) then
       const @ipic18_intermediate_instruction_literalOperation op := (cast lastInstruction : @ipic18_intermediate_instruction_literalOperation) ;
@@ -708,7 +736,7 @@ method @ipic18Block optimize
     outOptimizedBlock := [@ipic18Block new
       !mStartAddress
       !mLabel
-      !mInstructionList
+      !instructionList
       !optimizedTerminator 
     ] ;
   end if ;
