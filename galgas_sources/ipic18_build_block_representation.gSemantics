@@ -1171,52 +1171,14 @@ override method @instruction_JUMPCC analyze
   ioLocalLabelIndex ++ ;
 #--- Save terminator of current block
   const @ipic18AbstractBlockTerminator terminator := ioCurrentBlock->mTerminator ;
-  @ipic18ConditionalBranch ipicCondition ;
-  @bool complementaryCondition ;
-  switch mConditionalBranch
-  when bz :
-    ipicCondition := [@ipic18ConditionalBranch bz] ;
-    complementaryCondition := false ;
-  when bnz :
-    ipicCondition := [@ipic18ConditionalBranch bz] ;
-    complementaryCondition := true ;
-  when bn :
-    ipicCondition := [@ipic18ConditionalBranch bn] ;
-    complementaryCondition := false ;
-  when bnn :
-    ipicCondition := [@ipic18ConditionalBranch bn] ;
-    complementaryCondition := true ;
-  when bc :
-    ipicCondition := [@ipic18ConditionalBranch bc] ;
-    complementaryCondition := false ;
-  when bnc :
-    ipicCondition := [@ipic18ConditionalBranch bc] ;
-    complementaryCondition := true ;
-  when bov :
-    ipicCondition := [@ipic18ConditionalBranch bov] ;
-    complementaryCondition := false ;
-  when bnov :
-    ipicCondition := [@ipic18ConditionalBranch bov] ;
-    complementaryCondition := true ;
-  end switch ;
 #--- Save terminator of current block
-  if complementaryCondition then
-    ioCurrentBlock->mTerminator := [@ipic18ConditionalJumpTerminator new
-      !mInstructionLocation
-      ![@ipic18JumpTerminator new !mInstructionLocation !mTargetLabel ![@jumpInstructionKind ipicRelative]]
-      ![@ipic18JumpTerminator new !mInstructionLocation !label0 ![@jumpInstructionKind ipicRelative]]
-      !mode
-      !ipicCondition
-    ] ;
-  else
-    ioCurrentBlock->mTerminator := [@ipic18ConditionalJumpTerminator new
-      !mInstructionLocation
-      ![@ipic18JumpTerminator new !mInstructionLocation !label0 ![@jumpInstructionKind ipicRelative]]
-      ![@ipic18JumpTerminator new !mInstructionLocation !mTargetLabel ![@jumpInstructionKind ipicRelative]]
-      !mode
-      !ipicCondition
-    ] ;
-  end if ;
+  ioCurrentBlock->mTerminator := [@ipic18ConditionalJumpTerminator new
+    !mInstructionLocation
+    !mode
+    !mConditionalBranch
+    !mTargetLabel
+    ![@ipic18JumpTerminator new !mInstructionLocation !label0 ![@jumpInstructionKind ipicRelative]]
+  ] ;
 #--- Create a new block with saved terminator
   ioCurrentBlock := [@ipic18Block new
     ![@uint max] # relocatable
@@ -1747,52 +1709,14 @@ override method @bcc_in_structured_if_condition analyzeCondition
   ??@lstring inConditionFalseLabel
   !@ipic18AbstractBlockTerminator outCurrentBlockTerminator
 :
-  @ipic18ConditionalBranch ipicCondition ;
-  @bool complementaryCondition ;
-  switch mCondition
-  when bz :
-    ipicCondition := [@ipic18ConditionalBranch bz] ;
-    complementaryCondition := false ;
-  when bnz :
-    ipicCondition := [@ipic18ConditionalBranch bz] ;
-    complementaryCondition := true ;
-  when bn :
-    ipicCondition := [@ipic18ConditionalBranch bn] ;
-    complementaryCondition := false ;
-  when bnn :
-    ipicCondition := [@ipic18ConditionalBranch bn] ;
-    complementaryCondition := true ;
-  when bc :
-    ipicCondition := [@ipic18ConditionalBranch bc] ;
-    complementaryCondition := false ;
-  when bnc :
-    ipicCondition := [@ipic18ConditionalBranch bc] ;
-    complementaryCondition := true ;
-  when bov :
-    ipicCondition := [@ipic18ConditionalBranch bov] ;
-    complementaryCondition := false ;
-  when bnov :
-    ipicCondition := [@ipic18ConditionalBranch bov] ;
-    complementaryCondition := true ;
-  end switch ;
 #--- Save terminator of current block
-  if complementaryCondition then
-    outCurrentBlockTerminator := [@ipic18ConditionalJumpTerminator new
-      !inInstructionLocation
-      ![@ipic18JumpTerminator new !inInstructionLocation !inConditionFalseLabel ![@jumpInstructionKind ipicRelative]]
-      ![@ipic18JumpTerminator new !inInstructionLocation !inConditionTrueLabel ![@jumpInstructionKind ipicRelative]]
-      ![@conditionalBranchMode native]
-      !ipicCondition
-    ] ;
-  else
-    outCurrentBlockTerminator := [@ipic18ConditionalJumpTerminator new
-      !inInstructionLocation
-      ![@ipic18JumpTerminator new !inInstructionLocation !inConditionTrueLabel ![@jumpInstructionKind ipicRelative]]
-      ![@ipic18JumpTerminator new !inInstructionLocation !inConditionFalseLabel ![@jumpInstructionKind ipicRelative]]
-      ![@conditionalBranchMode native]
-      !ipicCondition
-    ] ;
-  end if ;
+  outCurrentBlockTerminator := [@ipic18ConditionalJumpTerminator new
+    !inInstructionLocation
+    ![@conditionalBranchMode native]
+    !mCondition
+    !inConditionFalseLabel
+    ![@ipic18JumpTerminator new !inInstructionLocation !inConditionTrueLabel ![@jumpInstructionKind ipicRelative]]
+  ] ;
 end method ;
 
 #----------------------------------------------------*

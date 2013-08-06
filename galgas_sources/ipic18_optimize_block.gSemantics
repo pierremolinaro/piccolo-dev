@@ -100,22 +100,22 @@ override method @ipic18ConditionalJumpTerminator optimizeTerminator
 :
   @bool optimization := false ;
 #---
-  [selfcopy getOptimizedTerminators
+  [mOptimizableInstructionIfConditionFalse optimizeTerminator
     !inSymbolTable
     !inBlockList
     !inBlockLabel
     !?optimization
     !?ioListFileContents
-    ?@ipic18SingleInstructionTerminator optimizedTrueTerminator
-    ?@ipic18SingleInstructionTerminator optimizedFalseTerminator
+    ?@ipic18AbstractBlockTerminator optimizedFalseTerminator
   ] ;
+#---
   if optimization then
     outOptimizedTerminator := [@ipic18ConditionalJumpTerminator new
       !mInstructionLocation
-      !optimizedTrueTerminator
-      !optimizedFalseTerminator 
       !mBranchMode
       !mConditionalBranch
+      !mTargetLabelWhenTrue
+      !(cast optimizedFalseTerminator : @ipic18SingleInstructionTerminator)  
     ] ;
     ioOptimizationDone := true ;
   else
@@ -483,6 +483,30 @@ override method @ipic18JumpTerminator enterTerminatorReferencedLabels
       !?ioReferencedBlockSet
     ] ;
   end if ; 
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @ipic18ConditionalJumpTerminator enterTerminatorReferencedLabels
+  ??@symbolTableForBlockOptimization inSymbolTable
+  ??@ipic18BlockList inBlockList
+  ?!@stringset ioReferencedBlockSet
+:
+  if not [ioReferencedBlockSet hasKey !mTargetLabelWhenTrue->string] then
+    ioReferencedBlockSet += !mTargetLabelWhenTrue->string ;
+    [inSymbolTable searchKey !mTargetLabelWhenTrue ??@uint blockIndex] ;
+    const @ipic18Block b := [inBlockList mBlockAtIndex !blockIndex] ;
+    [b enterReferencedLabels
+      !inSymbolTable
+      !inBlockList
+      !?ioReferencedBlockSet
+    ] ;
+  end if ;
+  [mOptimizableInstructionIfConditionFalse enterTerminatorReferencedLabels
+    !inSymbolTable
+    !inBlockList
+    !?ioReferencedBlockSet
+  ] ;
 end method ;
 
 #----------------------------------------------------------------------------*

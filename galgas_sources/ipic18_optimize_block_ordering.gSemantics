@@ -120,6 +120,38 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
+override method @ipic18ConditionalJumpTerminator buildOrderedBlocks
+  ?!@blockInvocationGraph ioGraph
+  ?!@stringset ioVisitedBlockSet
+  ??@ipic18BlockList inBlockList
+  ??@symbolTableForBlockOptimization inSymbolTable
+  ??@lstring inLabelBlock
+:
+  if not [ioVisitedBlockSet hasKey !mTargetLabelWhenTrue->string] then
+    [!?ioGraph addArc !inLabelBlock !mTargetLabelWhenTrue] ;
+    ioVisitedBlockSet += !mTargetLabelWhenTrue->string ;
+    [inSymbolTable searchKey !mTargetLabelWhenTrue ??@uint targetBlockIndex] ;
+    const @ipic18Block targetBlock := [inBlockList mBlockAtIndex !targetBlockIndex] ;
+    [!?ioGraph addNode !targetBlock->mLabel !targetBlock->mLabel->string] ;
+    [targetBlock->mTerminator buildOrderedBlocks
+      !?ioGraph
+      !?ioVisitedBlockSet
+      !inBlockList
+      !inSymbolTable
+      !targetBlock->mLabel
+    ] ;
+  end if ;
+  [mOptimizableInstructionIfConditionFalse buildOrderedBlocks
+    !?ioGraph
+    !?ioVisitedBlockSet
+    !inBlockList
+    !inSymbolTable
+    !inLabelBlock
+  ] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
 override method @ipic18AbstractConditionTerminator buildOrderedBlocks
   ?!@blockInvocationGraph ioGraph
   ?!@stringset ioVisitedBlockSet
@@ -294,6 +326,21 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
+override method @ipic18ConditionalJumpTerminator buildInvocationGraph
+  ??@lstring inBlockLabel
+  ?!@string ioGraphVizString
+  ??@bool inDottedArrow
+:
+  ioGraphVizString .= "  \"" . inBlockLabel . "\" -> \"" . mTargetLabelWhenTrue . "\"" ;
+  if inDottedArrow then
+    ioGraphVizString .= " [style=dotted]" ;
+  end if ;
+  ioGraphVizString .= " ;\n" ;
+  [mOptimizableInstructionIfConditionFalse buildInvocationGraph !inBlockLabel !?ioGraphVizString !false] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
 #!--- Block build ordering constraint
 
 #----------------------------------------------------------------------------*
@@ -337,6 +384,45 @@ override method @ipic18JumpTerminator buildOrderingConstraintGraph
       !?ioVisitedBlockSet
     ] ;
   end if ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @ipic18ConditionalJumpTerminator buildOrderingConstraintGraph
+  ??@ipic18BlockList inBlockList
+  ??@symbolTableForBlockOptimization inSymbolTable
+  ??@lstring inBlockLabel
+  ??@lstring inDominatorLabel
+  ?!@blockInvocationGraph ioGraph
+  ?!@stringset ioVisitedBlockSet
+:
+  if not [ioVisitedBlockSet hasKey !mTargetLabelWhenTrue->string] then
+    [!?ioGraph addArc !inBlockLabel !mTargetLabelWhenTrue] ;
+    if inDominatorLabel->string != "" then
+      [!?ioGraph addArc !inDominatorLabel !mTargetLabelWhenTrue] ;
+    end if ;
+  #--- Explore next block
+    [!?ioGraph addNode !mTargetLabelWhenTrue !mTargetLabelWhenTrue->string] ;
+    ioVisitedBlockSet += !mTargetLabelWhenTrue->string ;
+    [inSymbolTable searchKey !mTargetLabelWhenTrue ??@uint blockIndex] ;
+    const @ipic18Block nextBlock := [inBlockList mBlockAtIndex !blockIndex] ;
+    [nextBlock->mTerminator buildOrderingConstraintGraph
+      !inBlockList
+      !inSymbolTable
+      !mTargetLabelWhenTrue
+      !inDominatorLabel
+      !?ioGraph
+      !?ioVisitedBlockSet
+    ] ;
+  end if ;
+  [mOptimizableInstructionIfConditionFalse buildOrderingConstraintGraph
+    !inBlockList
+    !inSymbolTable
+    !inBlockLabel
+    !["" nowhere]
+    !?ioGraph
+    !?ioVisitedBlockSet
+  ] ;
 end method ;
 
 #----------------------------------------------------------------------------*
@@ -522,11 +608,7 @@ override reader @ipic18ConditionalJumpTerminator needToInsertJumpInstruction
   ??@string inNextBlockLabel
   ->@bool outResult
 :
-  outResult :=
-    [mInstructionIfConditionTrue needToInsertJumpInstruction !inNextBlockLabel]
-    &
-    [mInstructionIfConditionFalse needToInsertJumpInstruction !inNextBlockLabel]
-  ;
+  outResult := [mOptimizableInstructionIfConditionFalse needToInsertJumpInstruction !inNextBlockLabel] ;
 end reader ;
 
 #----------------------------------------------------------------------------*
