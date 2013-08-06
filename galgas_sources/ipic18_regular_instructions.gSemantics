@@ -954,7 +954,7 @@ override method @ipic18_intermediate_instruction_computed_rcall generateCode
     outCode := pic18_CALL_instruction_code [!computetedGoto4Address !target] ;
   end if ;
   const @uint nextInstructionAddress := inAddress + [mTargetLabels length] * 4 - 2 ;
-  const @lstring nexInstructionLabel [new !"_computed_" . inAddress !mInstructionLocation] ;
+  const @lstring nextInstructionLabel [new !"_computed_" . [inAddress xString] !mInstructionLocation] ;
   @uint currentInstructionAddress := inAddress ;
   @uint idx := 0 ;
   foreach mTargetLabels do
@@ -963,12 +963,12 @@ override method @ipic18_intermediate_instruction_computed_rcall generateCode
     outCode .= pic18_RCALL_instruction_code [!currentInstructionAddress !targetAddress !mValue] ;
     currentInstructionAddress := currentInstructionAddress + 2 ;
     if idx < [mTargetLabels length] then
-      outCode .= pic18_BRA_instruction_code [!currentInstructionAddress !nextInstructionAddress !nexInstructionLabel] ;
+      outCode .= pic18_BRA_instruction_code [!currentInstructionAddress !nextInstructionAddress !nextInstructionLabel] ;
       currentInstructionAddress := currentInstructionAddress + 2 ;
     end if ;
   end foreach ;
 #--- Emit label instruction
-  outCode += !nexInstructionLabel->string . ":" ![@uintlist emptyList] ;
+  outCode .= pic18_definition_label [!nextInstructionLabel] ;
 end method ;
 
 #----------------------------------------------------------------------------*

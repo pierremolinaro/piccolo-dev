@@ -637,11 +637,6 @@ override reader @ipic18ComputedBraTerminator terminatorDisplay
   ->@string outResult
 :
   outResult := "COMPUTED BRA" ;
-#  if mUsesRCALL then
-#    outResult .= " (uses RCALL)" ;
-#  else
-#    outResult .= " (uses CALL)" ;
-#  end if ;
   foreach mTargetLabels do
     outResult .= " " . mValue ;
   end foreach ;
@@ -677,43 +672,73 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override reader @ipic18ConditionalJumpTerminator terminatorSize
-  ??@string inNextBlockLabel
-  -> @uint outSize
-:
-  switch mBranchMode
-  when native : outSize := 2 ; # Use Bcc instruction only
-  when ipicBRA : outSize := 4 ; # Use BRA (Bcc + BRA)
-  when ipicGOTO : outSize := 6 ; # use GOTO (Bcc + GOTO)
-  end switch ;
-  outSize := outSize + [mOptimizableInstructionIfConditionFalse terminatorSize !inNextBlockLabel] ;
-end reader ;
-
-#----------------------------------------------------------------------------*
-
 override reader @ipic18ConditionalJumpTerminator terminatorDisplay
   ??@string inNextBlockLabel
   ->@string outResult
 :
-  switch mBranchMode
-  when native   : outResult := "Bcc " ;
-  when ipicBRA  : outResult := "Bcc BRA " ;
-  when ipicGOTO :  outResult := "Bcc GOTO " ;
-  end switch ;
   switch mConditionalBranch
-  when bz : outResult .= "Z" ;
-  when bn  : outResult .= "N" ;
-  when bc :  outResult .= "C" ;
-  when bov :  outResult .= "OV" ;
-  when bnz : outResult .= "NZ" ;
-  when bnn  : outResult .= "NN" ;
-  when bnc :  outResult .= "NC" ;
-  when bnov :  outResult .= "NOV" ;
+  when bz : outResult := "Z" ;
+  when bn  : outResult := "N" ;
+  when bc :  outResult := "C" ;
+  when bov :  outResult := "OV" ;
+  when bnz : outResult := "NZ" ;
+  when bnn  : outResult := "NN" ;
+  when bnc :  outResult := "NC" ;
+  when bnov :  outResult := "NOV" ;
   end switch ;
   outResult .= " ? " ;
-  outResult .= mTargetLabelWhenTrue->string ;
+  if mTargetLabelWhenTrue->string == inNextBlockLabel then
+    outResult .= "(" . mTargetLabelWhenTrue->string . ")" ;
+  else
+    outResult .= mTargetLabelWhenTrue->string ;
+  end if ;
   outResult .= " : " ;
-  outResult .= [mOptimizableInstructionIfConditionFalse terminatorDisplay !inNextBlockLabel] ;
+  if mTargetLabelWhenFalse->string == inNextBlockLabel then
+    outResult .= "(" . mTargetLabelWhenFalse->string . ")" ;
+  else
+    outResult .= mTargetLabelWhenFalse->string ;
+  end if ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override reader @ipic18ConditionalJumpTerminator terminatorSize
+  ??@string inNextBlockLabel
+  -> @uint outSize
+:
+  if mTargetLabelWhenTrue->string == inNextBlockLabel then
+    switch mBranchModeOnFalseLabel
+    when native  : outSize := 2 ;  # !Bcc F
+    when ipicBRA  : outSize := 4 ; # Bcc Z ; BRA F ; Z:
+    when ipicGOTO : outSize := 6 ; # Bcc Z ; GOTO F ; Z:
+    end switch ;
+  elsif mTargetLabelWhenFalse->string == inNextBlockLabel then
+    switch mBranchModeOnTrueLabel
+    when native   : outSize := 2 ; # Bcc T
+    when ipicBRA  : outSize := 4 ; # !Bcc Z ; BRA T ; Z:
+    when ipicGOTO : outSize := 6 ; # !Bcc Z ; GOTO T ; Z:
+    end switch ;
+  else
+    switch mBranchModeOnFalseLabel
+    when native :
+      switch mBranchModeOnTrueLabel
+      when native, ipicBRA : outSize := 4 ; # !Bcc F ; BRA T
+      when ipicGOTO : outSize := 6 ; # !Bcc F ; GOTO T
+      end switch ;
+    when ipicBRA :
+      switch mBranchModeOnTrueLabel
+      when native   : outSize := 4 ; # Bcc T ; BRA F
+      when ipicBRA  : outSize := 6 ; # Bcc Z ; BRA F ; Z: BRA T
+      when ipicGOTO : outSize := 8 ; # Bcc Z ; BRA F ; Z: GOTO T
+      end switch ;
+    when ipicGOTO :
+      switch mBranchModeOnTrueLabel
+      when native   : outSize := 6 ; # Bcc T ; GOTO F
+      when ipicBRA  : outSize := 8 ; # Bcc Z ; GOTO F ; Z: BRA T
+      when ipicGOTO : outSize := 10 ; # Bcc Z ; GOTO F ; Z: GOTO T
+      end switch ;
+    end switch ;
+  end if ;
 end reader ;
 
 #----------------------------------------------------------------------------*
@@ -724,42 +749,80 @@ override method @ipic18ConditionalJumpTerminator generateCode
   ??@string inNextBlockLabel
   !@codeList outCode
 :
-  [inSymbolTable searchKey !mTargetLabelWhenTrue ??@uint targetAddress] ;
-  switch mBranchMode
-  when native   : # Bcc only
-    outCode := pic18_Bcc_instruction_code [!inAddress !targetAddress !mTargetLabelWhenTrue !mConditionalBranch !false] ;
-    [mOptimizableInstructionIfConditionFalse generateCode
-      !inAddress + 2
-      !inSymbolTable
-      !inNextBlockLabel
-      ??@codeList t
-     ] ;
-     outCode .= t ;
-  when ipicBRA  : # complementary Bcc + BRA
-    const @lstring auxiliaryLabel [new !"_BCC_" . [inAddress xString] !mInstructionLocation] ;
-    outCode := pic18_Bcc_instruction_code [!inAddress !inAddress + 2 !auxiliaryLabel !mConditionalBranch !true] ;
-    outCode .= pic18_BRA_instruction_code [!inAddress + 2 !targetAddress !mTargetLabelWhenTrue] ;
-    outCode += !auxiliaryLabel->string . ":" ![@uintlist emptyList] ;
-    [mOptimizableInstructionIfConditionFalse generateCode
-      !inAddress + 4
-      !inSymbolTable
-      !inNextBlockLabel
-      ??@codeList t
-     ] ;
-     outCode .= t ;
-  when ipicGOTO : # complementary Bcc + GOTO
-    const @lstring auxiliaryLabel [new !"_BCC_" . [inAddress xString] !mInstructionLocation] ;
-    outCode := pic18_Bcc_instruction_code [!inAddress !inAddress + 4 !auxiliaryLabel !mConditionalBranch !true] ;
-    outCode .= pic18_GOTO_instruction_code [!targetAddress !mTargetLabelWhenTrue] ;
-    outCode += !auxiliaryLabel->string . ":" ![@uintlist emptyList] ;
-    [mOptimizableInstructionIfConditionFalse generateCode
-      !inAddress + 6
-      !inSymbolTable
-      !inNextBlockLabel
-      ??@codeList t
-     ] ;
-     outCode .= t ;
-  end switch ;
+  [inSymbolTable searchKey !mTargetLabelWhenTrue  ??@uint trueTargetAddress] ;
+  [inSymbolTable searchKey !mTargetLabelWhenFalse ??@uint falseTargetAddress] ;
+  const @lstring Zlabel [new !"_Bcc_" . [inAddress xString] !mInstructionLocation] ;
+  if mTargetLabelWhenTrue->string == inNextBlockLabel then
+    switch mBranchModeOnFalseLabel
+    when native : # !Bcc F
+      outCode := pic18_Bcc_instruction_code [!inAddress !falseTargetAddress !mTargetLabelWhenFalse !mConditionalBranch !true] ;
+    when ipicBRA : # Bcc Z ; BRA F ; Z:
+      outCode := pic18_Bcc_instruction_code [!inAddress !inAddress + 2 !Zlabel !mConditionalBranch !false] ;
+      outCode .= pic18_BRA_instruction_code [!inAddress !falseTargetAddress !mTargetLabelWhenFalse] ;
+      outCode .= pic18_definition_label [!Zlabel] ;
+    when ipicGOTO : # Bcc Z ; GOTO F ; Z:
+      outCode := pic18_Bcc_instruction_code [!inAddress !inAddress + 4 !Zlabel !mConditionalBranch !false] ;
+      outCode .= pic18_GOTO_instruction_code [!falseTargetAddress !mTargetLabelWhenFalse] ;
+      outCode .= pic18_definition_label [!Zlabel] ;
+    end switch ;
+  elsif mTargetLabelWhenFalse->string == inNextBlockLabel then
+    switch mBranchModeOnTrueLabel
+    when native : # Bcc T
+      outCode := pic18_Bcc_instruction_code [!inAddress !trueTargetAddress !mTargetLabelWhenTrue !mConditionalBranch !false] ;
+    when ipicBRA : # !Bcc Z ; BRA T ; Z:
+      outCode := pic18_Bcc_instruction_code [!inAddress !inAddress + 2 !Zlabel !mConditionalBranch !true] ;
+      outCode .= pic18_BRA_instruction_code [!inAddress !trueTargetAddress !mTargetLabelWhenTrue] ;
+      outCode .= pic18_definition_label [!Zlabel] ;
+    when ipicGOTO : # !Bcc Z ; GOTO T ; Z:
+      outCode := pic18_Bcc_instruction_code [!inAddress !inAddress + 4 !Zlabel !mConditionalBranch !true] ;
+      outCode .= pic18_GOTO_instruction_code [!trueTargetAddress !mTargetLabelWhenTrue] ;
+      outCode .= pic18_definition_label [!Zlabel] ;
+    end switch ;
+  else
+    switch mBranchModeOnFalseLabel
+    when native :
+      switch mBranchModeOnTrueLabel
+      when native, ipicBRA : # !Bcc F ; BRA T
+        outCode := pic18_Bcc_instruction_code [!inAddress !falseTargetAddress !mTargetLabelWhenFalse !mConditionalBranch !true] ;
+        outCode .= pic18_BRA_instruction_code [!inAddress !trueTargetAddress !mTargetLabelWhenTrue] ;
+      when ipicGOTO : # !Bcc F ; GOTO T
+        outCode := pic18_Bcc_instruction_code [!inAddress !falseTargetAddress !mTargetLabelWhenFalse !mConditionalBranch !true] ;
+        outCode .= pic18_GOTO_instruction_code [!trueTargetAddress !mTargetLabelWhenTrue] ;
+      end switch ;
+    when ipicBRA :
+      switch mBranchModeOnTrueLabel
+      when native   : # Bcc T ; BRA F
+        outCode := pic18_Bcc_instruction_code [!inAddress !trueTargetAddress !mTargetLabelWhenTrue !mConditionalBranch !true] ;
+        outCode .= pic18_BRA_instruction_code [!inAddress !falseTargetAddress !mTargetLabelWhenFalse] ;
+      when ipicBRA  : # Bcc Z ; BRA F ; Z: BRA T
+        outCode := pic18_Bcc_instruction_code [!inAddress !inAddress + 2 !Zlabel !mConditionalBranch !true] ;
+        outCode .= pic18_BRA_instruction_code [!inAddress !falseTargetAddress !mTargetLabelWhenFalse] ;
+        outCode .= pic18_definition_label [!Zlabel] ;
+        outCode .= pic18_BRA_instruction_code [!inAddress !trueTargetAddress !mTargetLabelWhenTrue] ;
+      when ipicGOTO : # Bcc Z ; BRA F ; Z: GOTO T
+        outCode := pic18_Bcc_instruction_code [!inAddress !inAddress + 2 !Zlabel !mConditionalBranch !true] ;
+        outCode .= pic18_BRA_instruction_code [!inAddress !falseTargetAddress !mTargetLabelWhenFalse] ;
+        outCode .= pic18_definition_label [!Zlabel] ;
+        outCode .= pic18_GOTO_instruction_code [!trueTargetAddress !mTargetLabelWhenTrue] ;
+      end switch ;
+    when ipicGOTO :
+      switch mBranchModeOnTrueLabel
+      when native   : # Bcc T ; GOTO F
+        outCode := pic18_Bcc_instruction_code [!inAddress !trueTargetAddress !mTargetLabelWhenTrue !mConditionalBranch !true] ;
+        outCode .= pic18_GOTO_instruction_code [!falseTargetAddress !mTargetLabelWhenFalse] ;
+      when ipicBRA  : # Bcc Z ; GOTO F ; Z: BRA T
+        outCode := pic18_Bcc_instruction_code [!inAddress !inAddress + 4 !Zlabel !mConditionalBranch !true] ;
+        outCode .= pic18_GOTO_instruction_code [!falseTargetAddress !mTargetLabelWhenFalse] ;
+        outCode .= pic18_definition_label [!Zlabel] ;
+        outCode .= pic18_BRA_instruction_code [!inAddress !trueTargetAddress !mTargetLabelWhenTrue] ;
+      when ipicGOTO : # Bcc Z ; GOTO F ; Z: GOTO T
+        outCode := pic18_Bcc_instruction_code [!inAddress !inAddress + 4 !Zlabel !mConditionalBranch !true] ;
+        outCode .= pic18_GOTO_instruction_code [!falseTargetAddress !mTargetLabelWhenFalse] ;
+        outCode .= pic18_definition_label [!Zlabel] ;
+        outCode .= pic18_GOTO_instruction_code [!trueTargetAddress !mTargetLabelWhenTrue] ;
+      end switch ;
+    end switch ;
+  end if ;
 end method ;
 
 #----------------------------------------------------------------------------*

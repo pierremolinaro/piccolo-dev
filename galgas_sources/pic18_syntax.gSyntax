@@ -406,7 +406,7 @@ rule <condition_factor>
       : conditional_branch
       ;
     end if ;
-    outCondition := [@bcc_in_structured_if_condition new !conditional_branch] ;
+    outCondition := [@bcc_in_structured_if_condition new !conditionString->location !conditional_branch] ;
   end select ;
 end rule ;
 

@@ -1174,10 +1174,11 @@ override method @instruction_JUMPCC analyze
 #--- Save terminator of current block
   ioCurrentBlock->mTerminator := [@ipic18ConditionalJumpTerminator new
     !mInstructionLocation
-    !mode
     !mConditionalBranch
     !mTargetLabel
-    ![@ipic18JumpTerminator new !mInstructionLocation !label0 ![@jumpInstructionKind ipicRelative]]
+    !mode
+    !label0
+    !mode
   ] ;
 #--- Create a new block with saved terminator
   ioCurrentBlock := [@ipic18Block new
@@ -1474,7 +1475,6 @@ override method @instruction_structured_if analyze
     !ioCurrentBank
     !inRegisterTable
     !?ioLocalLabelIndex
-    !mInstructionLocation
     !?ioGeneratedBlockList
     !conditionTrueLabel
     !conditionFalseLabel
@@ -1623,7 +1623,6 @@ override method @instruction_do_while analyze
       !ioCurrentBank
       !inRegisterTable
       !?ioLocalLabelIndex
-      !mInstructionLocation
       !?ioGeneratedBlockList
       !conditionTrueLabel
       !conditionFalseLabel
@@ -1689,7 +1688,6 @@ abstract method @conditionExpression analyzeCondition
   ??@uint unused inCurrentBank
   ??@registerTable unused inRegisterTable
   ?!@uint ioLocalLabelIndex
-  ??@location inInstructionLocation
   ?!@ipic18BlockList ioGeneratedBlockList
   ??@lstring inConditionTrueLabel
   ??@lstring inConditionFalseLabel
@@ -1703,7 +1701,6 @@ override method @bcc_in_structured_if_condition analyzeCondition
   ??@uint unused inCurrentBank
   ??@registerTable unused inRegisterTable
   ?!@uint unused ioLocalLabelIndex
-  ??@location inInstructionLocation
   ?!@ipic18BlockList unused ioGeneratedBlockList
   ??@lstring inConditionTrueLabel
   ??@lstring inConditionFalseLabel
@@ -1711,11 +1708,12 @@ override method @bcc_in_structured_if_condition analyzeCondition
 :
 #--- Save terminator of current block
   outCurrentBlockTerminator := [@ipic18ConditionalJumpTerminator new
-    !inInstructionLocation
-    ![@conditionalBranchMode native]
+    !mConditionLocation
     !mCondition
+    !inConditionTrueLabel
+    ![@conditionalBranchMode native]
     !inConditionFalseLabel
-    ![@ipic18JumpTerminator new !inInstructionLocation !inConditionTrueLabel ![@jumpInstructionKind ipicRelative]]
+    ![@conditionalBranchMode native]
   ] ;
 end method ;
 
@@ -1726,7 +1724,6 @@ override method @registerComparisonCondition analyzeCondition
   ??@uint inCurrentBank
   ??@registerTable inRegisterTable
   ?!@uint unused ioLocalLabelIndex
-  ??@location inInstructionLocation
   ?!@ipic18BlockList unused ioGeneratedBlockList
   ??@lstring inConditionTrueLabel
   ??@lstring inConditionFalseLabel
@@ -1763,19 +1760,20 @@ override method @registerComparisonCondition analyzeCondition
     complementaryBranch := true ;
   end switch ;
 #--- Save terminator of current block
+  const @location location := [mRegisterExpression mRegisterName]->location ;
   if complementaryBranch then
     outCurrentBlockTerminator := [@pic18RegisterComparisonTerminator new
-      !inInstructionLocation
-      ![@ipic18JumpTerminator new !inInstructionLocation !inConditionFalseLabel ![@jumpInstructionKind ipicRelative]]
-      ![@ipic18JumpTerminator new !inInstructionLocation !inConditionTrueLabel ![@jumpInstructionKind ipicRelative]]
+      !location
+      ![@ipic18JumpTerminator new !location !inConditionFalseLabel ![@jumpInstructionKind ipicRelative]]
+      ![@ipic18JumpTerminator new !location !inConditionTrueLabel ![@jumpInstructionKind ipicRelative]]
       !IPICregisterDescription
       !ipicComparison
     ] ;
   else
     outCurrentBlockTerminator := [@pic18RegisterComparisonTerminator new
-      !inInstructionLocation
-      ![@ipic18JumpTerminator new !inInstructionLocation !inConditionTrueLabel ![@jumpInstructionKind ipicRelative]]
-      ![@ipic18JumpTerminator new !inInstructionLocation !inConditionFalseLabel ![@jumpInstructionKind ipicRelative]]
+      !location
+      ![@ipic18JumpTerminator new !location !inConditionTrueLabel ![@jumpInstructionKind ipicRelative]]
+      ![@ipic18JumpTerminator new !location !inConditionFalseLabel ![@jumpInstructionKind ipicRelative]]
       !IPICregisterDescription
       !ipicComparison
     ] ;
@@ -1789,7 +1787,6 @@ override method @incDecRegisterInCondition analyzeCondition
   ??@uint inCurrentBank
   ??@registerTable inRegisterTable
   ?!@uint unused ioLocalLabelIndex
-  ??@location inInstructionLocation
   ?!@ipic18BlockList unused ioGeneratedBlockList
   ??@lstring inConditionTrueLabel
   ??@lstring inConditionFalseLabel
@@ -1803,20 +1800,21 @@ override method @incDecRegisterInCondition analyzeCondition
     ?*
   ] ;
 #--- Save terminator of current block
+  const @location location := [mRegisterExpression mRegisterName]->location ;
   if mBranchIfZero then
     outCurrentBlockTerminator := [@ipic18IncDecRegisterTerminator new
-      !inInstructionLocation
-      ![@ipic18JumpTerminator new !inInstructionLocation !inConditionTrueLabel ![@jumpInstructionKind ipicRelative]]
-      ![@ipic18JumpTerminator new !inInstructionLocation !inConditionFalseLabel ![@jumpInstructionKind ipicRelative]]
+      !location
+      ![@ipic18JumpTerminator new !location !inConditionTrueLabel ![@jumpInstructionKind ipicRelative]]
+      ![@ipic18JumpTerminator new !location !inConditionFalseLabel ![@jumpInstructionKind ipicRelative]]
       !IPICregisterDescription
       !mIncrement
       !m_W_isDestination
     ] ;
   else
     outCurrentBlockTerminator := [@ipic18IncDecRegisterTerminator new
-      !inInstructionLocation
-      ![@ipic18JumpTerminator new !inInstructionLocation !inConditionFalseLabel ![@jumpInstructionKind ipicRelative]]
-      ![@ipic18JumpTerminator new !inInstructionLocation !inConditionTrueLabel ![@jumpInstructionKind ipicRelative]]
+      !location
+      ![@ipic18JumpTerminator new !location !inConditionFalseLabel ![@jumpInstructionKind ipicRelative]]
+      ![@ipic18JumpTerminator new !location !inConditionTrueLabel ![@jumpInstructionKind ipicRelative]]
       !IPICregisterDescription
       !mIncrement
       !m_W_isDestination
@@ -1831,7 +1829,6 @@ override method @registerTestCondition analyzeCondition
   ??@uint inCurrentBank
   ??@registerTable inRegisterTable
   ?!@uint unused ioLocalLabelIndex
-  ??@location inInstructionLocation
   ?!@ipic18BlockList unused ioGeneratedBlockList
   ??@lstring inConditionTrueLabel
   ??@lstring inConditionFalseLabel
@@ -1845,18 +1842,19 @@ override method @registerTestCondition analyzeCondition
     ?*
   ] ;
 #--- Save terminator of current block
+  const @location location := [mRegisterExpression mRegisterName]->location ;
   if mBranchIfZero then
     outCurrentBlockTerminator := [@pic18TestRegisterTerminator new
-      !inInstructionLocation
-      ![@ipic18JumpTerminator new !inInstructionLocation !inConditionTrueLabel ![@jumpInstructionKind ipicRelative]]
-      ![@ipic18JumpTerminator new !inInstructionLocation !inConditionFalseLabel ![@jumpInstructionKind ipicRelative]]
+      !location
+      ![@ipic18JumpTerminator new !location !inConditionTrueLabel ![@jumpInstructionKind ipicRelative]]
+      ![@ipic18JumpTerminator new !location !inConditionFalseLabel ![@jumpInstructionKind ipicRelative]]
       !IPICregisterDescription
     ] ;
   else
     outCurrentBlockTerminator := [@pic18TestRegisterTerminator new
-      !inInstructionLocation
-      ![@ipic18JumpTerminator new !inInstructionLocation !inConditionFalseLabel ![@jumpInstructionKind ipicRelative]]
-      ![@ipic18JumpTerminator new !inInstructionLocation !inConditionTrueLabel ![@jumpInstructionKind ipicRelative]]
+      !location
+      ![@ipic18JumpTerminator new !location !inConditionFalseLabel ![@jumpInstructionKind ipicRelative]]
+      ![@ipic18JumpTerminator new !location !inConditionTrueLabel ![@jumpInstructionKind ipicRelative]]
       !IPICregisterDescription
     ] ;
   end if ;
@@ -1869,7 +1867,6 @@ override method @bitTest_in_structured_if_condition analyzeCondition
   ??@uint inCurrentBank
   ??@registerTable inRegisterTable
   ?!@uint unused ioLocalLabelIndex
-  ??@location inInstructionLocation
   ?!@ipic18BlockList unused ioGeneratedBlockList
   ??@lstring inConditionTrueLabel
   ??@lstring inConditionFalseLabel
@@ -1887,19 +1884,20 @@ override method @bitTest_in_structured_if_condition analyzeCondition
     ??@uint bitNumber
   ] ;
 #--- Save terminator of current block
+  const @location location := [mRegisterExpression mRegisterName]->location ;
   if mBTFSSinstruction then
     outCurrentBlockTerminator := [@pic18BitTestTerminator new
-      !inInstructionLocation
-      ![@ipic18JumpTerminator new !inInstructionLocation !inConditionTrueLabel ![@jumpInstructionKind ipicRelative]]
-      ![@ipic18JumpTerminator new !inInstructionLocation !inConditionFalseLabel ![@jumpInstructionKind ipicRelative]]
+      !location
+      ![@ipic18JumpTerminator new !location !inConditionTrueLabel ![@jumpInstructionKind ipicRelative]]
+      ![@ipic18JumpTerminator new !location !inConditionFalseLabel ![@jumpInstructionKind ipicRelative]]
       !IPICregisterDescription
       !bitNumber
     ] ;
   else
     outCurrentBlockTerminator := [@pic18BitTestTerminator new
-      !inInstructionLocation
-      ![@ipic18JumpTerminator new !inInstructionLocation !inConditionFalseLabel ![@jumpInstructionKind ipicRelative]]
-      ![@ipic18JumpTerminator new !inInstructionLocation !inConditionTrueLabel ![@jumpInstructionKind ipicRelative]]
+      !location
+      ![@ipic18JumpTerminator new !location !inConditionFalseLabel ![@jumpInstructionKind ipicRelative]]
+      ![@ipic18JumpTerminator new !location !inConditionTrueLabel ![@jumpInstructionKind ipicRelative]]
       !IPICregisterDescription
       !bitNumber
     ] ;
@@ -1913,7 +1911,6 @@ override method @negateCondition analyzeCondition
   ??@uint inCurrentBank
   ??@registerTable inRegisterTable
   ?!@uint ioLocalLabelIndex
-  ??@location inInstructionLocation
   ?!@ipic18BlockList ioGeneratedBlockList
   ??@lstring inConditionTrueLabel
   ??@lstring inConditionFalseLabel
@@ -1924,7 +1921,6 @@ override method @negateCondition analyzeCondition
     !inCurrentBank
     !inRegisterTable
     !?ioLocalLabelIndex
-    !inInstructionLocation
     !?ioGeneratedBlockList
     !inConditionFalseLabel
     !inConditionTrueLabel
@@ -1939,14 +1935,13 @@ override method @andCondition analyzeCondition
   ??@uint inCurrentBank
   ??@registerTable inRegisterTable
   ?!@uint ioLocalLabelIndex
-  ??@location inInstructionLocation
   ?!@ipic18BlockList ioGeneratedBlockList
   ??@lstring inConditionTrueLabel
   ??@lstring inConditionFalseLabel
   !@ipic18AbstractBlockTerminator outCurrentBlockTerminator
 :
 #--- Create an intermédiate label for handling true condition of left expression
-  const @lstring conditionTrueLabel [new !"_label_" . [ioLocalLabelIndex string] !inInstructionLocation] ; 
+  const @lstring conditionTrueLabel [new !"_label_" . [ioLocalLabelIndex string] !inConditionTrueLabel->location] ; 
   ioLocalLabelIndex ++ ;
 #--- Left expression
   [mLeftExpression analyzeCondition
@@ -1954,7 +1949,6 @@ override method @andCondition analyzeCondition
     !inCurrentBank
     !inRegisterTable
     !?ioLocalLabelIndex
-    !inInstructionLocation
     !?ioGeneratedBlockList
     !conditionTrueLabel
     !inConditionFalseLabel
@@ -1966,7 +1960,6 @@ override method @andCondition analyzeCondition
     !inCurrentBank
     !inRegisterTable
     !?ioLocalLabelIndex
-    !inInstructionLocation
     !?ioGeneratedBlockList
     !inConditionTrueLabel
     !inConditionFalseLabel
