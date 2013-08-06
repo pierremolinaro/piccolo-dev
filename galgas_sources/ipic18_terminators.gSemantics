@@ -312,7 +312,7 @@ override method @pic18TestRegisterTerminator generateCode
   !@codeList outCode
 :
   @uint binCode := 0x6600 ;
-  @string assemblyCode := "TSTFZ " . [mRegisterDescription mAssemblyString] ;
+  @string assemblyCode := "TSTFSZ " . [mRegisterDescription mAssemblyString] ;
   binCode := binCode | ([mRegisterDescription mRegisterAddress] & 255) ;
   if [mRegisterDescription mNeedsBSR] then
     binCode := binCode | 0x0100 ;
@@ -771,7 +771,7 @@ override method @ipic18ConditionalJumpTerminator generateCode
       outCode := pic18_Bcc_instruction_code [!inAddress !trueTargetAddress !mTargetLabelWhenTrue !mConditionalBranch !false] ;
     when ipicBRA : # !Bcc Z ; BRA T ; Z:
       outCode := pic18_Bcc_instruction_code [!inAddress !inAddress + 2 !Zlabel !mConditionalBranch !true] ;
-      outCode .= pic18_BRA_instruction_code [!inAddress !trueTargetAddress !mTargetLabelWhenTrue] ;
+      outCode .= pic18_BRA_instruction_code [!inAddress+2 !trueTargetAddress !mTargetLabelWhenTrue] ;
       outCode .= pic18_definition_label [!Zlabel] ;
     when ipicGOTO : # !Bcc Z ; GOTO T ; Z:
       outCode := pic18_Bcc_instruction_code [!inAddress !inAddress + 4 !Zlabel !mConditionalBranch !true] ;
@@ -784,7 +784,7 @@ override method @ipic18ConditionalJumpTerminator generateCode
       switch mBranchModeOnTrueLabel
       when native, ipicBRA : # !Bcc F ; BRA T
         outCode := pic18_Bcc_instruction_code [!inAddress !falseTargetAddress !mTargetLabelWhenFalse !mConditionalBranch !true] ;
-        outCode .= pic18_BRA_instruction_code [!inAddress !trueTargetAddress !mTargetLabelWhenTrue] ;
+        outCode .= pic18_BRA_instruction_code [!inAddress+2 !trueTargetAddress !mTargetLabelWhenTrue] ;
       when ipicGOTO : # !Bcc F ; GOTO T
         outCode := pic18_Bcc_instruction_code [!inAddress !falseTargetAddress !mTargetLabelWhenFalse !mConditionalBranch !true] ;
         outCode .= pic18_GOTO_instruction_code [!trueTargetAddress !mTargetLabelWhenTrue] ;
@@ -793,15 +793,15 @@ override method @ipic18ConditionalJumpTerminator generateCode
       switch mBranchModeOnTrueLabel
       when native   : # Bcc T ; BRA F
         outCode := pic18_Bcc_instruction_code [!inAddress !trueTargetAddress !mTargetLabelWhenTrue !mConditionalBranch !true] ;
-        outCode .= pic18_BRA_instruction_code [!inAddress !falseTargetAddress !mTargetLabelWhenFalse] ;
+        outCode .= pic18_BRA_instruction_code [!inAddress+2 !falseTargetAddress !mTargetLabelWhenFalse] ;
       when ipicBRA  : # Bcc Z ; BRA F ; Z: BRA T
         outCode := pic18_Bcc_instruction_code [!inAddress !inAddress + 2 !Zlabel !mConditionalBranch !true] ;
-        outCode .= pic18_BRA_instruction_code [!inAddress !falseTargetAddress !mTargetLabelWhenFalse] ;
+        outCode .= pic18_BRA_instruction_code [!inAddress+2 !falseTargetAddress !mTargetLabelWhenFalse] ;
         outCode .= pic18_definition_label [!Zlabel] ;
         outCode .= pic18_BRA_instruction_code [!inAddress !trueTargetAddress !mTargetLabelWhenTrue] ;
       when ipicGOTO : # Bcc Z ; BRA F ; Z: GOTO T
         outCode := pic18_Bcc_instruction_code [!inAddress !inAddress + 2 !Zlabel !mConditionalBranch !true] ;
-        outCode .= pic18_BRA_instruction_code [!inAddress !falseTargetAddress !mTargetLabelWhenFalse] ;
+        outCode .= pic18_BRA_instruction_code [!inAddress+2 !falseTargetAddress !mTargetLabelWhenFalse] ;
         outCode .= pic18_definition_label [!Zlabel] ;
         outCode .= pic18_GOTO_instruction_code [!trueTargetAddress !mTargetLabelWhenTrue] ;
       end switch ;
@@ -814,7 +814,7 @@ override method @ipic18ConditionalJumpTerminator generateCode
         outCode := pic18_Bcc_instruction_code [!inAddress !inAddress + 4 !Zlabel !mConditionalBranch !true] ;
         outCode .= pic18_GOTO_instruction_code [!falseTargetAddress !mTargetLabelWhenFalse] ;
         outCode .= pic18_definition_label [!Zlabel] ;
-        outCode .= pic18_BRA_instruction_code [!inAddress !trueTargetAddress !mTargetLabelWhenTrue] ;
+        outCode .= pic18_BRA_instruction_code [!inAddress+6 !trueTargetAddress !mTargetLabelWhenTrue] ;
       when ipicGOTO : # Bcc Z ; GOTO F ; Z: GOTO T
         outCode := pic18_Bcc_instruction_code [!inAddress !inAddress + 4 !Zlabel !mConditionalBranch !true] ;
         outCode .= pic18_GOTO_instruction_code [!falseTargetAddress !mTargetLabelWhenFalse] ;

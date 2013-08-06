@@ -832,16 +832,16 @@ override method @ipic18_intermediate_JSR checkRelativesResolution
   outModifiedInstruction := selfcopy ;
   switch mKind
   when ipicRelative :
-    checkBRA_RCALL !inSymbolTable !mTargetLabel !inAddress ??@bool ok ?* ;
-    if not ok then
+    if not pic18_checkBRA_RCALL [!inSymbolTable !mTargetLabel !inAddress] then
       ioConversionCount ++ ;
       ioListFileContents .= "  " . inBlockLabel . ": JSR " . mTargetLabel . " --> CALL " . mTargetLabel . "\n" ;
       outModifiedInstruction := [@ipic18_intermediate_JSR new !mInstructionLocation !mTargetLabel ![@jumpInstructionKind absolute]] ;
     end if ;
   when relative :
-    checkBRA_RCALL !inSymbolTable !mTargetLabel !inAddress ??@bool ok ??@sint d ;
-    if not ok then
-      error mInstructionLocation: "displacement (" . d . ") too large for RCALL " . mTargetLabel . " instruction (limited to [-1024, 1023])" ;
+    if not pic18_checkBRA_RCALL [!inSymbolTable !mTargetLabel !inAddress] then
+      error mInstructionLocation: "displacement ("
+      . pic18_BRA_RCALL_displacement [!inSymbolTable !mTargetLabel !inAddress]
+      . ") too large for RCALL " . mTargetLabel . " instruction (limited to [-1024, 1023])" ;
     end if ;
   when absolute : # Allways ok
   end switch ;
@@ -917,14 +917,14 @@ override method @ipic18_intermediate_instruction_computed_rcall checkRelativesRe
 :
   outModifiedInstruction := selfcopy ;
   foreach mTargetLabels do
-    checkBRA_RCALL !inSymbolTable !mValue !inAddress ??@bool ok ?@sint d ;
-    if not ok then
-      error mInstructionLocation: "displacement (" . d . ") too large for rcall " . mValue . " instruction (limited to [-1024, 1023])" ;
+    if not pic18_checkBRA_RCALL [!inSymbolTable !mValue !inAddress] then
+      error mInstructionLocation: "displacement ("
+      . pic18_BRA_RCALL_displacement [!inSymbolTable !mValue !inAddress] . ") too large for rcall "
+      . mValue . " instruction (limited to [-1024, 1023])" ;
     end if ;
   end foreach ;
   if mUsesRCALL then
-    checkBRA_RCALL !inSymbolTable !["_computed_goto_2" nowhere] !inAddress ??@bool ok ?* ;
-    if not ok then
+    if not pic18_checkBRA_RCALL [!inSymbolTable !["_computed_goto_2" nowhere] !inAddress] then
       ioConversionCount ++ ;
       ioListFileContents .= "  " . inBlockLabel . ": computed rcall needs to use CALL _computed_goto_2\n" ;
       outModifiedInstruction := [@ipic18_intermediate_instruction_computed_rcall new
