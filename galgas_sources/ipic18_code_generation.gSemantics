@@ -4,6 +4,7 @@ import "ipic18_display_block_list.gSemantics" ;
 import "ipic18_regular_instructions.gSemantics" ;
 import "ipic18_terminators.gSemantics" ;
 import "piccoloDevice_semantics.gSemantics" ;
+import "intermediate_generic.gSemantics" ;
 import "piccolo_options.gOption" ;
 
 #----------------------------------------------------------------------------*
@@ -111,6 +112,9 @@ method @ipic18Block generateCode
       !?ioListFileContents
     ;
     foreach code do
+      foreach mBinaryCode do
+        emitCode !mValue ;
+      end foreach ;
       ioAssemblyString .= "    " . mAssemblyCode . "\n" ;
     end foreach ;
     address := address + [mInstruction instructionSize] ;
@@ -140,6 +144,9 @@ method @ipic18Block generateCode
     !?ioListFileContents
   ;
   foreach code do
+    foreach mBinaryCode do
+      emitCode !mValue ;
+    end foreach ;
     ioAssemblyString .= "    " . mAssemblyCode . "\n" ;
   end foreach ;
   #--- Check terminator size corresponds generated code size
@@ -195,12 +202,33 @@ routine ipic18GenerateCode
     end if ;
     if mBlock->mStartAddress != [@uint max] then # Absolute block
       blockStartAddress := mBlock->mStartAddress ;
+      setEmitAddress !blockStartAddress ;
     end if ;
     [mBlock generateCode !symbolTable !blockStartAddress !nextBlockLabel !?ioListFileContents !?assemblyString] ;
     const @uint blockSize := [mBlock blockSize !nextBlockLabel] ;
     blockStartAddress := blockStartAddress + blockSize ;
   end foreach ;
-#--- Generate assembly file ?
+#----------------------------- Generate HEX file
+#--- Add Configuration
+  foreach inActualConfigurationMap do
+    setEmitAddress !mRegisterAddress ;
+    emitByte !mRegisterValue ;
+  end foreach ;
+#--- Generate file
+  getGeneratedContents ??@string contents ;
+  @string destinationFile := [inSourceFileName stringByDeletingPathExtension] . ".hex" ;
+  [contents writeToFileWhenDifferentContents !destinationFile ?*] ;
+#--- Generate contents in C file ?
+  if [option piccolo_options.output_C_Array value] then
+    const @string baseName := [[inSourceFileName lastPathComponent] stringByDeletingPathExtension] ;
+    get_C_ArrayImplementation !baseName ??@string cContents ;
+    destinationFile := [inSourceFileName stringByDeletingPathExtension] . ".c" ;
+    [cContents writeToFileWhenDifferentContents !destinationFile ?*] ;
+    get_C_ArrayHeader !baseName ??@string hContents ;
+    destinationFile := [inSourceFileName stringByDeletingPathExtension] . ".h" ;
+    [hContents writeToFileWhenDifferentContents !destinationFile ?*] ;
+  end if ;
+#----------------------------- Generate assembly file ?
   if [option piccolo_options.generateAssembly value] & ([@uint errorCount] == 0) then
     pic18GenerateAssemblyFile
       !inSourceFileName
@@ -230,7 +258,6 @@ local routine pic18GenerateAssemblyFile
   @string assemblyString := "  PROCESSOR " . inProcessorName . "\n" ;
 #--- Code
   assemblyString .= ";--- Code\n" ;
-  assemblyString .= "  ORG 0\n" ;
   assemblyString .= inAssemblyCode ;
 #--- Prefined registers
   assemblyString .= ";--- Prefefined registers\n" ;
