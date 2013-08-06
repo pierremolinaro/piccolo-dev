@@ -336,6 +336,7 @@ class @incDecRegisterInCondition extends @conditionExpression {
 #----------------------------------------------------*
 
 class @bcc_in_structured_if_condition extends @conditionExpression {
+  @location mConditionLocation ;
   @conditional_branch mCondition ;
 }
 

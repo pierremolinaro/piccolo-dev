@@ -100,10 +100,11 @@ enum @conditionalBranchMode {
 #----------------------------------------------------------------------------*
 
 class @ipic18ConditionalJumpTerminator extends @ipic18AbstractBlockTerminator {
-  @conditionalBranchMode mBranchMode ;
   @conditional_branch mConditionalBranch ;
   @lstring mTargetLabelWhenTrue ;
-  @ipic18SingleInstructionTerminator mOptimizableInstructionIfConditionFalse ;
+  @conditionalBranchMode mBranchModeOnTrueLabel ;
+  @lstring mTargetLabelWhenFalse ;
+  @conditionalBranchMode mBranchModeOnFalseLabel ;
 }
 
 #----------------------------------------------------------------------------*
@@ -503,6 +504,18 @@ function pic18_GOTO_instruction_code
   outCode := [@codeList listWithValue
     !"GOTO " . inTargetLabel
     !binaryCode
+  ] ;
+end function ;
+
+#----------------------------------------------------------------------------*
+
+function pic18_definition_label
+  ??@lstring inTargetLabel
+  ->@codeList outCode
+:
+  outCode := [@codeList listWithValue
+    !inTargetLabel->string . ":"
+    ![@uintlist emptyList]
   ] ;
 end function ;
 
