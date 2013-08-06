@@ -97,18 +97,13 @@ enum @conditionalBranchMode {
 }{
 }
 
-#----------------------------------------------------*
-
-enum @ipic18ConditionalBranch {
-  bz, bn, bc, bov
-}{
-}
-
 #----------------------------------------------------------------------------*
 
-class @ipic18ConditionalJumpTerminator extends @ipic18AbstractConditionTerminator {
+class @ipic18ConditionalJumpTerminator extends @ipic18AbstractBlockTerminator {
   @conditionalBranchMode mBranchMode ;
-  @ipic18ConditionalBranch mConditionalBranch ;
+  @conditional_branch mConditionalBranch ;
+  @lstring mTargetLabelWhenTrue ;
+  @ipic18SingleInstructionTerminator mOptimizableInstructionIfConditionFalse ;
 }
 
 #----------------------------------------------------------------------------*
@@ -391,6 +386,55 @@ end routine ;
 #----------------------------------------------------------------------------*
 
 #!--- Generate branch instructions
+
+#----------------------------------------------------------------------------*
+
+function pic18_Bcc_instruction_code
+  ??@uint inConditionalBranchInstructionAddress
+  ??@uint inTargetAddress
+  ??@lstring inTargetLabel
+  ??@conditional_branch inConditionalBranch
+  ??@bool inComplemented
+  ->@codeList outCode
+:  
+  const @sint displacement := ([inTargetAddress sint] - 2S - [inConditionalBranchInstructionAddress sint]) >> 1 ;
+  if (displacement > 127S) | (displacement < - 128S) then
+    error inTargetLabel: "** INTERNAL ERROR ** displacement too large for conditional branch instruction" ;
+  end if ;
+
+  @conditional_branch conditionalBranch ;
+  if inComplemented then
+    switch inConditionalBranch
+    when bz   : conditionalBranch := [@conditional_branch bnz] ;
+    when bnz  : conditionalBranch := [@conditional_branch bz] ;
+    when bn   : conditionalBranch := [@conditional_branch bnn] ;
+    when bnn  : conditionalBranch := [@conditional_branch bn] ;
+    when bc   : conditionalBranch := [@conditional_branch bnc] ;
+    when bnc  : conditionalBranch := [@conditional_branch bc] ;
+    when bov  : conditionalBranch := [@conditional_branch bnov] ;
+    when bnov : conditionalBranch := [@conditional_branch bov] ;
+  end switch ;
+  else
+    conditionalBranch := inConditionalBranch ;
+  end if ;
+  
+  @uint baseCode ;
+  @string mnemonic ;
+  switch conditionalBranch
+  when bz   : baseCode := 0xE000 ; mnemonic := "BZ" ;
+  when bnz  : baseCode := 0xE100 ; mnemonic := "BNZ" ;
+  when bn   : baseCode := 0xE600 ; mnemonic := "BN" ;
+  when bnn  : baseCode := 0xE700 ; mnemonic := "BNN" ;
+  when bc   : baseCode := 0xE200 ; mnemonic := "BC" ;
+  when bnc  : baseCode := 0xE300 ; mnemonic := "BNC" ;
+  when bov  : baseCode := 0xE400 ; mnemonic := "BOV" ;
+  when bnov : baseCode := 0xE500 ; mnemonic := "BNOV" ;
+  end switch ;
+  outCode := [@codeList listWithValue
+    !mnemonic . " " . inTargetLabel
+    ![@uintlist listWithValue !baseCode | [displacement & 0x0FFS uint]]
+  ] ;
+end function ;
 
 #----------------------------------------------------------------------------*
 
