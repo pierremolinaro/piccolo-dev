@@ -372,17 +372,41 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-routine checkBRA_RCALL
+function pic18_checkBCC
   ??@symbolTableForRelativesResolution inSymbolTable
   ??@lstring inTargetLabel
   ??@uint inCurrentAddress
-  !@bool outDisplacementOK
-  !@sint outDisplacement
+  ->@bool outDisplacementOK
+:
+  [inSymbolTable searchKey !inTargetLabel ??@uint targetAddress] ;
+  const @sint displacement := ([targetAddress sint] - 2S - [inCurrentAddress sint]) >> 1 ;
+  outDisplacementOK :=  (displacement <= 127S) & (displacement >= - 128S) ;
+end function ;
+
+#----------------------------------------------------------------------------*
+
+function pic18_checkBRA_RCALL
+  ??@symbolTableForRelativesResolution inSymbolTable
+  ??@lstring inTargetLabel
+  ??@uint inCurrentAddress
+  ->@bool outDisplacementOK
+:
+  [inSymbolTable searchKey !inTargetLabel ??@uint targetAddress] ;
+  const @sint displacement := ([targetAddress sint] - 2S - [inCurrentAddress sint]) >> 1 ;
+  outDisplacementOK :=  (displacement <= 1023S) & (displacement >= - 1024S) ;
+end function ;
+
+#----------------------------------------------------------------------------*
+
+function pic18_BRA_RCALL_displacement
+  ??@symbolTableForRelativesResolution inSymbolTable
+  ??@lstring inTargetLabel
+  ??@uint inCurrentAddress
+  ->@sint outDisplacement
 :
   [inSymbolTable searchKey !inTargetLabel ??@uint targetAddress] ;
   outDisplacement := ([targetAddress sint] - 2S - [inCurrentAddress sint]) >> 1 ;
-  outDisplacementOK :=  (outDisplacement < 1024S) & (outDisplacement >= - 1024S) ;
-end routine ;
+end function ;
 
 #----------------------------------------------------------------------------*
 

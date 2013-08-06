@@ -35,19 +35,132 @@ override method @ipic18JumpTerminator checkRelativesResolution
   if inNextBlockLabel != mLabel->string then
     switch mKind
     when ipicRelative :
-      checkBRA_RCALL !inSymbolTable !mLabel !inAddress ??@bool ok ?* ;
-      if not ok then
+      if not pic18_checkBRA_RCALL [!inSymbolTable !mLabel !inAddress] then
         ioConversionCount ++ ;
         ioListFileContents .= "  " . inBlockLabel . ": JUMP " . mLabel . " --> GOTO " . mLabel . "\n" ;
         outModifiedTerminator := [@ipic18JumpTerminator new !mInstructionLocation !mLabel ![@jumpInstructionKind absolute]] ;
       end if ;
     when relative :
-      checkBRA_RCALL !inSymbolTable !mLabel !inAddress ??@bool ok ??@sint d ;
-      if not ok then
-        error mInstructionLocation: "displacement (" . d . ") too large for BRA " . mLabel . " instruction (limited to [-1024, 1023])" ;
+      if not pic18_checkBRA_RCALL [!inSymbolTable !mLabel !inAddress] then
+        error mInstructionLocation: "displacement ("
+        . pic18_BRA_RCALL_displacement [!inSymbolTable !mLabel !inAddress] . ") too large for BRA "
+        . mLabel . " instruction (limited to [-1024, 1023])" ;
       end if ;
     when absolute : # Allways ok
     end switch ;
+  end if ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @ipic18ConditionalJumpTerminator checkRelativesResolution
+  ??@uint inAddress
+  ??@string inBlockLabel
+  ??@symbolTableForRelativesResolution inSymbolTable
+  ??@string inNextBlockLabel
+  ?!@uint ioConversionCount
+  ?!@string ioListFileContents
+  !@ipic18AbstractBlockTerminator outModifiedTerminator
+:
+  @conditionalBranchMode branchModeOnFalseLabel := mBranchModeOnFalseLabel ;
+  @conditionalBranchMode branchModeOnTrueLabel := mBranchModeOnTrueLabel ;
+  if mTargetLabelWhenTrue->string == inNextBlockLabel then
+    switch mBranchModeOnFalseLabel
+    when native : # !Bcc F
+      if not pic18_checkBCC [!inSymbolTable !mTargetLabelWhenFalse !inAddress] then
+        branchModeOnFalseLabel := [@conditionalBranchMode ipicBRA] ;
+        ioListFileContents .= "  " . inBlockLabel . ", terminator will use BRA " . mTargetLabelWhenFalse . "\n" ;
+      end if ;
+    when ipicBRA : # Bcc Z ; BRA F ; Z:
+      if not pic18_checkBRA_RCALL [!inSymbolTable !mTargetLabelWhenFalse !inAddress + 2] then
+        branchModeOnFalseLabel := [@conditionalBranchMode ipicGOTO] ;
+        ioListFileContents .= "  " . inBlockLabel . ", terminator will use GOTO " . mTargetLabelWhenFalse . "\n" ;
+      end if ;
+    when ipicGOTO : # Bcc Z ; GOTO F ; Z:
+    end switch ;
+  elsif mTargetLabelWhenFalse->string == inNextBlockLabel then
+    switch mBranchModeOnTrueLabel
+    when native : # Bcc T
+      if not pic18_checkBCC [!inSymbolTable !mTargetLabelWhenTrue !inAddress] then
+        branchModeOnTrueLabel := [@conditionalBranchMode ipicBRA] ;
+        ioListFileContents .= "  " . inBlockLabel . ", terminator will use BRA " . mTargetLabelWhenFalse . "\n" ;
+      end if ;
+    when ipicBRA : # !Bcc Z ; BRA T ; Z:
+      if not pic18_checkBRA_RCALL [!inSymbolTable !mTargetLabelWhenTrue !inAddress + 2] then
+        branchModeOnTrueLabel := [@conditionalBranchMode ipicGOTO] ;
+        ioListFileContents .= "  " . inBlockLabel . ", terminator will use GOTO " . mTargetLabelWhenTrue . "\n" ;
+      end if ;
+    when ipicGOTO : # !Bcc Z ; GOTO T ; Z:
+    end switch ;
+  else
+    switch mBranchModeOnFalseLabel
+    when native :
+      switch mBranchModeOnTrueLabel
+      when native, ipicBRA : # !Bcc F ; BRA T
+        if not pic18_checkBCC [!inSymbolTable !mTargetLabelWhenFalse !inAddress] then
+          branchModeOnFalseLabel := [@conditionalBranchMode ipicBRA] ;
+          ioListFileContents .= "  " . inBlockLabel . ", terminator will use BRA " . mTargetLabelWhenFalse . "\n" ;
+        end if ;
+        if not pic18_checkBRA_RCALL [!inSymbolTable !mTargetLabelWhenTrue !inAddress+2] then
+          branchModeOnTrueLabel := [@conditionalBranchMode ipicBRA] ;
+          ioListFileContents .= "  " . inBlockLabel . ", terminator will use BRA " . mTargetLabelWhenTrue . "\n" ;
+        end if ;
+      when ipicGOTO : # !Bcc F ; GOTO T
+      end switch ;
+    when ipicBRA :
+      switch mBranchModeOnTrueLabel
+      when native   : # Bcc T ; BRA F
+        if not pic18_checkBCC [!inSymbolTable !mTargetLabelWhenTrue !inAddress] then
+          branchModeOnTrueLabel := [@conditionalBranchMode ipicBRA] ;
+          ioListFileContents .= "  " . inBlockLabel . ", terminator will use BRA " . mTargetLabelWhenTrue . "\n" ;
+        end if ;
+        if not pic18_checkBRA_RCALL [!inSymbolTable !mTargetLabelWhenFalse!inAddress+2] then
+          branchModeOnFalseLabel := [@conditionalBranchMode ipicBRA] ;
+          ioListFileContents .= "  " . inBlockLabel . ", terminator will use BRA " . mTargetLabelWhenFalse . "\n" ;
+        end if ;
+      when ipicBRA  : # Bcc Z ; BRA F ; Z: BRA T
+        if not pic18_checkBRA_RCALL [!inSymbolTable !mTargetLabelWhenFalse!inAddress+2] then
+          branchModeOnFalseLabel := [@conditionalBranchMode ipicBRA] ;
+          ioListFileContents .= "  " . inBlockLabel . ", terminator will use BRA " . mTargetLabelWhenFalse . "\n" ;
+        end if ;
+        if not pic18_checkBRA_RCALL [!inSymbolTable !mTargetLabelWhenTrue !inAddress+4] then
+          branchModeOnTrueLabel := [@conditionalBranchMode ipicBRA] ;
+          ioListFileContents .= "  " . inBlockLabel . ", terminator will use BRA " . mTargetLabelWhenTrue . "\n" ;
+        end if ;
+      when ipicGOTO : # Bcc Z ; BRA F ; Z: GOTO T
+        if not pic18_checkBRA_RCALL [!inSymbolTable !mTargetLabelWhenFalse!inAddress+2] then
+          branchModeOnFalseLabel := [@conditionalBranchMode ipicBRA] ;
+          ioListFileContents .= "  " . inBlockLabel . ", terminator will use BRA " . mTargetLabelWhenFalse . "\n" ;
+        end if ;
+      end switch ;
+    when ipicGOTO :
+      switch mBranchModeOnTrueLabel
+      when native   : # Bcc T ; GOTO F
+        if not pic18_checkBCC [!inSymbolTable !mTargetLabelWhenTrue !inAddress] then
+          branchModeOnTrueLabel := [@conditionalBranchMode ipicBRA] ;
+          ioListFileContents .= "  " . inBlockLabel . ", terminator will use BRA " . mTargetLabelWhenTrue . "\n" ;
+        end if ;
+      when ipicBRA  : # Bcc Z ; GOTO F ; Z: BRA T
+        if not pic18_checkBRA_RCALL [!inSymbolTable !mTargetLabelWhenTrue !inAddress+6] then
+          branchModeOnTrueLabel := [@conditionalBranchMode ipicBRA] ;
+          ioListFileContents .= "  " . inBlockLabel . ", terminator will use BRA " . mTargetLabelWhenTrue . "\n" ;
+        end if ;
+      when ipicGOTO : # Bcc Z ; GOTO F ; Z: GOTO T
+      end switch ;
+    end switch ;
+  end if ;
+  if (branchModeOnFalseLabel == mBranchModeOnFalseLabel) & (branchModeOnTrueLabel == mBranchModeOnTrueLabel) then
+    outModifiedTerminator := selfcopy ;
+  else
+    outModifiedTerminator := [@ipic18ConditionalJumpTerminator new
+      !mInstructionLocation
+      !mConditionalBranch
+      !mTargetLabelWhenTrue
+      !branchModeOnTrueLabel
+      !mTargetLabelWhenFalse
+      !branchModeOnFalseLabel
+    ] ;
+    ioConversionCount ++ ;
   end if ;
 end method ;
 
@@ -64,8 +177,7 @@ override method @ipic18ComputedRETLWTerminator checkRelativesResolution
 :
   outModifiedTerminator := selfcopy ;
   if mUsesRCALL then
-    checkBRA_RCALL !inSymbolTable !["_computed_goto_2" nowhere] !inAddress ??@bool ok ?* ;
-    if not ok then
+    if not pic18_checkBRA_RCALL [!inSymbolTable !["_computed_goto_2" nowhere] !inAddress] then
       ioConversionCount ++ ;
       ioListFileContents .= "  " . inBlockLabel . ": computed RETLW needs CALL _computed_goto_2\n" ;
       outModifiedTerminator := [@ipic18ComputedRETLWTerminator new !mInstructionLocation !mLiteralValues !false] ;
@@ -85,15 +197,15 @@ override method @ipic18ComputedBraTerminator checkRelativesResolution
   !@ipic18AbstractBlockTerminator outModifiedTerminator
 :
   foreach mTargetLabels do
-    checkBRA_RCALL !inSymbolTable !mValue !inAddress ??@bool ok ?@sint d ;
-    if not ok then
-      error mInstructionLocation: "displacement (" . d . ") too large for rcall " . mValue . " instruction (limited to [-1024, 1023])" ;
+    if not pic18_checkBRA_RCALL [!inSymbolTable !mValue !inAddress] then
+      error mInstructionLocation: "displacement ("
+      . pic18_BRA_RCALL_displacement [!inSymbolTable !mValue !inAddress] . ") too large for rcall "
+      . mValue . " instruction (limited to [-1024, 1023])" ;
     end if ;
   end foreach ;
   outModifiedTerminator := selfcopy ;
   if mUsesRCALL then
-    checkBRA_RCALL !inSymbolTable !["_computed_goto_2" nowhere] !inAddress ??@bool ok ?* ;
-    if not ok then
+    if not pic18_checkBRA_RCALL [!inSymbolTable !["_computed_goto_2" nowhere] !inAddress ] then
       ioConversionCount ++ ;
       ioListFileContents .= "  " . inBlockLabel . ": computed RETLW needs CALL _computed_goto_2\n" ;
       outModifiedTerminator := [@ipic18ComputedBraTerminator new !mInstructionLocation !mTargetLabels !false] ;
@@ -114,8 +226,7 @@ override method @ipic18ComputedGotoTerminator checkRelativesResolution
 :
   outModifiedTerminator := selfcopy ;
   if mUsesRCALL then
-    checkBRA_RCALL !inSymbolTable !["_computed_goto_2" nowhere] !inAddress ??@bool ok ?* ;
-    if not ok then
+    if not pic18_checkBRA_RCALL [!inSymbolTable !["_computed_goto_2" nowhere] !inAddress] then
       ioConversionCount ++ ;
       ioListFileContents .= "  " . inBlockLabel . ": computed GOTO needs CALL _computed_goto_4\n" ;
       outModifiedTerminator := [@ipic18ComputedGotoTerminator new !mInstructionLocation !mTargetLabels !false] ;
