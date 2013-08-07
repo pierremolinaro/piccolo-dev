@@ -945,7 +945,7 @@ override method @instruction_computed_rcall analyze
   ??@registerTable inRegisterTable
   ??@dataMap unused inDataMap
   ??@constantMap inConstantMap
-  ?!@uint ioLocalLabelIndex
+  ?!@uint unused ioLocalLabelIndex
   ?!@ipic18Block ioCurrentBlock
   ?!@string unused ioListFileContents
   ?!@uint ioCurrentBank
@@ -1009,12 +1009,14 @@ override method @instruction_computed_rcall analyze
     error mInstructionLocation:"the routine name list length (" . [[mTargetLabels length] string] . ") should be equal to the computed range (" . [size string] . ")" ;
   end if ;
 #---
-  const @string label0 := "_label_" . [ioLocalLabelIndex string] ; 
-  ioLocalLabelIndex ++ ;
+  @ipic18SequentialInstructionList targetInstructionList [emptyList] ;
+  foreach mTargetLabels do
+    targetInstructionList += ![@ipic18_intermediate_JSR new !mInstructionLocation !mValue ![@jumpInstructionKind relative]] ;
+  end foreach ;
+#---
   ioCurrentBlock->mInstructionList += ![@ipic18_intermediate_instruction_computed_rcall new
     !mInstructionLocation
-    !mTargetLabels
-    !label0
+    !targetInstructionList
     !mUsesRelativeCall
   ] ;
 end method ;

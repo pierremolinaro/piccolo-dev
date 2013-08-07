@@ -889,19 +889,21 @@ override reader @ipic18_intermediate_instruction_computed_rcall instructionSize
   else
     outSize := 4 ;
   end if ;
-  outSize := outSize + 4 * [mTargetLabels length] - 2 ;
+  outSize := outSize + 4 * [mTargetInstructions length] - 2 ;
 end reader ;
 
 #----------------------------------------------------------------------------*
 
 override reader @ipic18_intermediate_instruction_computed_rcall instructionDisplay ->@stringlist outResult :
-  @string s := "COMPUTED RCALL " ;
+  @string s := "COMPUTED " ;
   if not mUsesRCALL then
     s .= "(uses CALL)" ;
   end if ;
   outResult := [@stringlist listWithValue !s] ;
-  foreach mTargetLabels do
-    outResult += !"  " . mValue ;
+  foreach mTargetInstructions do
+    foreach [mInstruction instructionDisplay] do
+      outResult += !"   " . mValue ;
+    end foreach ;
   end foreach ;
 end reader ;
 
@@ -916,12 +918,18 @@ override method @ipic18_intermediate_instruction_computed_rcall checkRelativesRe
   !@ipic18SequentialInstruction outModifiedInstruction
 :
   outModifiedInstruction := selfcopy ;
-  foreach mTargetLabels do
-    if not pic18_checkBRA_RCALL [!inSymbolTable !mValue !inAddress] then
-      error mInstructionLocation: "displacement ("
-      . pic18_BRA_RCALL_displacement [!inSymbolTable !mValue !inAddress] . ") too large for rcall "
-      . mValue . " instruction (limited to [-1024, 1023])" ;
-    end if ;
+  @uint unusedConversionCount := 0 ;
+  @string unusedListing := "" ;
+  foreach mTargetInstructions do
+    #--- NEVER CONVERT: ONLY PERFORM CHECKING
+    [mInstruction checkRelativesResolution
+      !inAddress
+      !inBlockLabel
+      !inSymbolTable
+      !?unusedConversionCount
+      !?unusedListing
+      ?* # ?@ipic18SequentialInstruction outModifiedInstruction
+    ] ;
   end foreach ;
   if mUsesRCALL then
     if not pic18_checkBRA_RCALL [!inSymbolTable !["_computed_goto_2" nowhere] !inAddress] then
@@ -929,8 +937,7 @@ override method @ipic18_intermediate_instruction_computed_rcall checkRelativesRe
       ioListFileContents .= "  " . inBlockLabel . ": computed rcall needs to use CALL _computed_goto_2\n" ;
       outModifiedInstruction := [@ipic18_intermediate_instruction_computed_rcall new
         !mInstructionLocation
-        !mTargetLabels
-        !mEndOfInstructionLabel
+        !mTargetInstructions
         !false # Uses GOTO
       ] ;
     end if ;
@@ -953,16 +960,20 @@ override method @ipic18_intermediate_instruction_computed_rcall generateCode
   else
     outCode := pic18_CALL_instruction_code [!computetedGoto4Address !target] ;
   end if ;
-  const @uint nextInstructionAddress := inAddress + [mTargetLabels length] * 4 - 2 ;
+  const @uint nextInstructionAddress := inAddress + [mTargetInstructions length] * 4 - 2 ;
   const @lstring nextInstructionLabel [new !"_computed_" . [inAddress xString] !mInstructionLocation] ;
   @uint currentInstructionAddress := inAddress ;
   @uint idx := 0 ;
-  foreach mTargetLabels do
+  foreach mTargetInstructions do
     idx ++ ;
-    [inSymbolTable searchKey !mValue ??@uint targetAddress] ;
-    outCode .= pic18_RCALL_instruction_code [!currentInstructionAddress !targetAddress !mValue] ;
+    [mInstruction generateCode
+      !inAddress
+      !inSymbolTable
+      ??@codeList instructionCode
+    ] ;
+    outCode .= instructionCode ;
     currentInstructionAddress := currentInstructionAddress + 2 ;
-    if idx < [mTargetLabels length] then
+    if idx < [mTargetInstructions length] then
       outCode .= pic18_BRA_instruction_code [!currentInstructionAddress !nextInstructionAddress !nextInstructionLabel] ;
       currentInstructionAddress := currentInstructionAddress + 2 ;
     end if ;

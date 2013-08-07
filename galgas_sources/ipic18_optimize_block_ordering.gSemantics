@@ -246,8 +246,11 @@ override method @ipic18_intermediate_instruction_computed_rcall buildInstruction
   ?!@string ioGraphVizString
 :
   ioGraphVizString .= "  \"" . inBlockLabel . "\" -> \"_computed_goto_4\" [color=red] ;\n" ;
-  foreach mTargetLabels do
-    ioGraphVizString .= "  \"" . inBlockLabel . "\" -> \"" . mValue . "\" [color=red] ;\n" ;
+  foreach mTargetInstructions do
+    [mInstruction buildInstructionInvocationGraph
+      !inBlockLabel
+      !?ioGraphVizString
+    ] ;
   end foreach ;
 end method ;
 
@@ -836,8 +839,8 @@ override method @ipic18_intermediate_instruction_computed_rcall buildInstruction
   ?!@stringset ioReferencedBlockSet
 :
   ioReferencedBlockSet += !"_computed_goto_4" ;
-  foreach mTargetLabels do
-    ioReferencedBlockSet += !mValue->string ;
+  foreach mTargetInstructions do
+    [mInstruction buildInstructionCalledRoutineSet !?ioReferencedBlockSet] ;
   end foreach ;
 end method ;
 
