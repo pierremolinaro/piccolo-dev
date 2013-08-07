@@ -807,6 +807,110 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
+override method @ipic18_skip_instruction_BitTestSkip optimizeInstruction
+  ??@symbolTableForBlockOptimization inSymbolTable
+  ??@ipic18BlockList inBlockList
+  ??@lstring inBlockLabel
+  !@bool outOptimizationDone
+  ?!@string ioListFileContents
+  !@ipic18SequentialInstruction outOptimizedInstruction
+  !@bool outNOPsubstitution
+:
+  outNOPsubstitution := false ;
+#---
+  [mEmbeddedInstruction optimizeInstruction
+    !inSymbolTable
+    !inBlockList
+    !inBlockLabel
+    ?outOptimizationDone
+    !?ioListFileContents
+    ?@ipic18SequentialInstruction optimizedEmbeddedInstruction
+    ?*
+  ] ;
+  if outOptimizationDone then
+    outOptimizedInstruction := [@ipic18_skip_instruction_BitTestSkip new
+      !mInstructionLocation
+      !optimizedEmbeddedInstruction
+      !mSkipIfSet
+      !mRegisterDescription
+      !mBitNumber
+    ] ;
+  else
+    outOptimizedInstruction := selfcopy ;
+  end if ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @ipic18_skip_instruction_compare_register optimizeInstruction
+  ??@symbolTableForBlockOptimization inSymbolTable
+  ??@ipic18BlockList inBlockList
+  ??@lstring inBlockLabel
+  !@bool outOptimizationDone
+  ?!@string ioListFileContents
+  !@ipic18SequentialInstruction outOptimizedInstruction
+  !@bool outNOPsubstitution
+:
+  outNOPsubstitution := false ;
+#---
+  [mEmbeddedInstruction optimizeInstruction
+    !inSymbolTable
+    !inBlockList
+    !inBlockLabel
+    ?outOptimizationDone
+    !?ioListFileContents
+    ?@ipic18SequentialInstruction optimizedEmbeddedInstruction
+    ?*
+  ] ;
+  if outOptimizationDone then
+    outOptimizedInstruction := [@ipic18_skip_instruction_compare_register new
+      !mInstructionLocation
+      !optimizedEmbeddedInstruction
+      !mCompareInstruction
+      !mRegisterDescription
+    ] ;
+  else
+    outOptimizedInstruction := selfcopy ;
+  end if ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @ipic18_skip_instruction_FDA optimizeInstruction
+  ??@symbolTableForBlockOptimization inSymbolTable
+  ??@ipic18BlockList inBlockList
+  ??@lstring inBlockLabel
+  !@bool outOptimizationDone
+  ?!@string ioListFileContents
+  !@ipic18SequentialInstruction outOptimizedInstruction
+  !@bool outNOPsubstitution
+:
+  outNOPsubstitution := false ;
+#---
+  [mEmbeddedInstruction optimizeInstruction
+    !inSymbolTable
+    !inBlockList
+    !inBlockLabel
+    ?outOptimizationDone
+    !?ioListFileContents
+    ?@ipic18SequentialInstruction optimizedEmbeddedInstruction
+    ?*
+  ] ;
+  if outOptimizationDone then
+    outOptimizedInstruction := [@ipic18_skip_instruction_FDA new
+      !mInstructionLocation
+      !optimizedEmbeddedInstruction
+      !mInstruction_FDA_base_code
+      !mRegisterDescription
+      !m_W_isDestination
+    ] ;
+  else
+    outOptimizedInstruction := selfcopy ;
+  end if ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
 #!--- Instruction list optimization
 
 #----------------------------------------------------------------------------*
