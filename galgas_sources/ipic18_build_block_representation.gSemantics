@@ -2428,13 +2428,13 @@ routine build_ipic18_block_representation_list
     displayBlockList !"OPTIMIZED INTERMEDIATE BLOCK REPRESENTATION" !?ioListFileContents !generatedBlockList ;
   end if ;
 #----------------------------------------------------------- Optimize block ordering
-  if ([@uint errorCount] == 0) & [option piccolo_options.performOptimizations value] then
-    ipic18OptimizeBlockOrderingEX
-      !inSourceFileName
-      !?ioListFileContents
-      !?generatedBlockList
-    ;
-  end if ;
+#  if ([@uint errorCount] == 0) & [option piccolo_options.performOptimizations value] then
+#    ipic18OptimizeBlockOrderingEX
+#      !inSourceFileName
+#      !?ioListFileContents
+#      !?generatedBlockList
+#    ;
+#  end if ;
   if ([@uint errorCount] == 0) & [option piccolo_options.performOptimizations value] then
     ipic18OptimizeBlockOrdering
       !inSourceFileName

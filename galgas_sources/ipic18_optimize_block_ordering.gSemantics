@@ -975,22 +975,98 @@ end method ;
 #----------------------------------------------------------------------------*
 
 local routine buildOrderedGraph
-  ??@ipic18BlockList inBlockList
-  !@blockInvocationGraph outGraph
+  ?!@ipic18BlockList ioBlockList
+  ??@string inSourceFileName
+  ?!@string ioListFileContents
 :
-  outGraph := [@blockInvocationGraph emptyGraph] ;
-  foreach inBlockList do
+  ioListFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n" ;
+  ioListFileContents .= "*" . ["BLOCK REPRESENTATION ORDERING OPTIMIZATION" stringByLeftAndRightPadding !77 !' '] . "*\n" ;
+  ioListFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n\n" ;
+  ioListFileContents .= "Block ordering optimization:\n" ;
+  const @uint n := blockDiscontinuityCount [!ioBlockList] ;
+  ioListFileContents .= "  discontinuity count before optimization: " . n . "\n" ;
+#---
+  if [option.verbose_output value] then
+    message "Block ordering optimization:\n" ;
+    message "  discontinuity count before optimization: " . n . "\n" ;
+  end if ;
+#-------------------------------- Build label map
+  @symbolTableForBlockOptimization symbolTable [emptyMap] ;
+  foreach ioBlockList index blockIndex do
+    [!?symbolTable insertKey !mBlock->mLabel !blockIndex] ;
+  end foreach ;
+#---
+  @blockInvocationGraph g [emptyGraph] ;
+  foreach ioBlockList do
     if mBlock->mStartAddress == [@uint max] then # Only relocatable block
-      [!?outGraph addNode !mBlock->mLabel !mBlock->mLabel->string] ;
-      [mBlock->mTerminator buildTerminatorOrderedGraph !mBlock->mLabel !?outGraph] ;
+      [!?g addNode !mBlock->mLabel !mBlock->mLabel->string] ;
+      [mBlock->mTerminator buildTerminatorOrderedGraph !mBlock->mLabel !?g] ;
     end if ;
   end foreach ;
-  [!?outGraph removeEdgesToDominators] ;
-  [outGraph topologicalSort
-    ?2*
-    ??@stringlist unorderedNodeList
-    ?*
+  [!?g removeCircularities] ;
+#--- Topological sort
+  [g depthFirstTopologicalSort
+    ??@stringlist orderedLabelList
+    ?3*
   ] ;
+#----------------------- Build sorted block list
+  @ipic18BlockList orderedBlockList [emptyList] ;
+#--- First insert absolute blocks from 0
+  @bool continue := true ;
+  foreach ioBlockList while continue do
+    continue := mBlock->mStartAddress != [@uint max] ;
+    if continue then
+      orderedBlockList += !mBlock ;
+    end if ;
+  end foreach ; 
+#--- Insert sorted blocks 
+  foreach \down orderedLabelList do
+    [symbolTable searchKey ![mValue nowhere] ??@uint blockIndex] ;
+    const @ipic18Block b := [ioBlockList mBlockAtIndex !blockIndex] ;
+    orderedBlockList += !b ;
+  end foreach ;
+#--- First insert absolute blocks from the end
+  const @uint insertionIndex := [orderedBlockList length] ;
+  continue := true ;
+  foreach \down ioBlockList while continue do
+    continue := mBlock->mStartAddress != [@uint max] ;
+    if continue then
+      [!?orderedBlockList insertAtIndex !mBlock !insertionIndex] ;
+    end if ;
+  end foreach ; 
+#------------------------ Messaging
+  const @uint p := blockDiscontinuityCount [!orderedBlockList] ;
+  ioListFileContents .= "  discontinuity count after optimization: " . p . "\n\n" ;
+  if [option.verbose_output value] then
+    message "  discontinuity count after optimization: " . p . "\n\n" ;
+  end if ;
+#--- Check block definition
+  @stringset newSymbolSet [emptySet] ;
+  @bool ok := true ;
+  foreach orderedBlockList do
+    if [newSymbolSet hasKey !mBlock->mLabel->string] then
+      const @string s := "BLOCK REORDERING INTERNAL ERROR: block \""
+      . mBlock->mLabel . "\" is duplicated"
+      ;
+      warning [@location nowhere]: s ;
+      ioListFileContents .= s . ".\n\n" ;
+      ok := false ;
+    else
+      newSymbolSet += !mBlock->mLabel->string ;
+    end if ;
+  end foreach ;
+  foreach symbolTable do
+    if not [newSymbolSet hasKey !lkey->string] then
+      const @string s := "BLOCK REORDERING INTERNAL ERROR: block \""
+      . lkey . "\" is missing"
+      ;
+      warning [@location nowhere]: s ;
+      ioListFileContents .= s . ".\n\n" ;
+      ok := false ;
+    end if ;
+  end foreach ;
+#--- Write Graphviz file
+  [[g graphviz] writeToFile !inSourceFileName. ".orderedBlocks.dot"] ;
 end routine ;
 
 #----------------------------------------------------------------------------*
@@ -1063,7 +1139,7 @@ local routine performBlockOrdering
         !?g
         !?visitedBlockSet
       ] ;
-      [g topologicalSort
+      [g breathFirstTopologicalSort
         ??@stringlist orderedLabelList
         ?3*
       ] ;
@@ -1163,10 +1239,9 @@ routine ipic18OptimizeBlockOrdering
   buildInvocationGraph !ioGeneratedBlockList ??@string invocationGraph ;
   [invocationGraph writeToFileWhenDifferentContents !inSourceFileName. ".blockInvocation.dot" ?*] ;
 #---
-  buildOrderedGraph !ioGeneratedBlockList ??@blockInvocationGraph directInvocationGraph ;
-  [[directInvocationGraph graphviz] writeToFile !inSourceFileName. ".orderedBlocks.dot"] ;
+  buildOrderedGraph !?ioGeneratedBlockList !inSourceFileName !?ioListFileContents ;
 #---
-  performBlockOrdering !inSourceFileName !?ioListFileContents !?ioGeneratedBlockList ;
+#  performBlockOrdering !inSourceFileName !?ioListFileContents !?ioGeneratedBlockList ;
 end routine ;
 
 #----------------------------------------------------------------------------*
