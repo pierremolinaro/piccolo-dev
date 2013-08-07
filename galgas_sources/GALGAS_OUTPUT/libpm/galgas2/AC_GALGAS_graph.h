@@ -89,7 +89,7 @@ class AC_GALGAS_graph : public AC_GALGAS_root {
                                                    const GALGAS_lstring & inTargetNodeKey
                                                    COMMA_LOCATION_ARGS) ;
 
-  public : VIRTUAL_IN_DEBUG void modifier_removeEdgesToDominators (LOCATION_ARGS) ;
+  public : VIRTUAL_IN_DEBUG void modifier_removeCircularities (LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public : typeComparisonResult objectCompare (const AC_GALGAS_graph & inOperand) const ;
@@ -115,16 +115,23 @@ class AC_GALGAS_graph : public AC_GALGAS_root {
 
   public : VIRTUAL_IN_DEBUG GALGAS_lstringlist reader_undefinedNodeReferenceList (LOCATION_ARGS) const ;
 
-  protected : VIRTUAL_IN_DEBUG void internalTopologicalSort (cSharedList * & outSortedList,
-                                                             GALGAS_lstringlist & outSortedNodeKeyList,
-                                                             cSharedList * & outUnsortedList,
-                                                             GALGAS_lstringlist & outUnsortedNodeKeyList,
-                                                             C_Compiler * inCompiler
-                                                             COMMA_LOCATION_ARGS) const ;
+  protected : VIRTUAL_IN_DEBUG void internalBreathFirstTopologicalSort (cSharedList * & outSortedList,
+                                                                        GALGAS_lstringlist & outSortedNodeKeyList,
+                                                                        cSharedList * & outUnsortedList,
+                                                                        GALGAS_lstringlist & outUnsortedNodeKeyList,
+                                                                        C_Compiler * inCompiler
+                                                                        COMMA_LOCATION_ARGS) const ;
+
+  protected : VIRTUAL_IN_DEBUG void internalDepthFirstTopologicalSort (cSharedList * & outSortedList,
+                                                                       GALGAS_lstringlist & outSortedNodeKeyList,
+                                                                       cSharedList * & outUnsortedList,
+                                                                       GALGAS_lstringlist & outUnsortedNodeKeyList,
+                                                                       C_Compiler * inCompiler
+                                                                       COMMA_LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG GALGAS_string reader_graphviz (UNUSED_LOCATION_ARGS) const ;
 
-  public : VIRTUAL_IN_DEBUG GALGAS__32_stringlist reader_arcs (UNUSED_LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS__32_stringlist reader_edges (UNUSED_LOCATION_ARGS) const ;
 } ;
 
 //---------------------------------------------------------------------------*

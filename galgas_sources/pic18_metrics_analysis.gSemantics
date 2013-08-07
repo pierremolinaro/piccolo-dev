@@ -1279,7 +1279,7 @@ routine pic18_compute_metrics
       exploreInstructionList !mInstructionList !mRoutineName !?routineCallGraph ;
     end foreach ;
   #--- Sort routine call graph
-    [routineCallGraph topologicalSort
+    [routineCallGraph breathFirstTopologicalSort
       ?*
       ?sortedRoutineNameList
       ?*

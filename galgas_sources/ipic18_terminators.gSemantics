@@ -266,7 +266,7 @@ override method @pic18RegisterComparisonTerminator generateCode
    ] ;
    outCode .= falseTerminatorCode ;
   [mInstructionIfConditionTrue generateCode
-    !inAddress + 2 + [mInstructionIfConditionFalse terminatorSize !inNextBlockLabel]
+    !inAddress + 2 + [mInstructionIfConditionFalse terminatorSize !""]
     !inSymbolTable
     !inNextBlockLabel
     ??@codeList trueTerminatorCode
@@ -331,7 +331,7 @@ override method @pic18TestRegisterTerminator generateCode
    ] ;
    outCode .= falseTerminatorCode ;
   [mInstructionIfConditionTrue generateCode
-    !inAddress + 2 + [mInstructionIfConditionFalse terminatorSize !inNextBlockLabel]
+    !inAddress + 2 + [mInstructionIfConditionFalse terminatorSize !""]
     !inSymbolTable
     !inNextBlockLabel
     ??@codeList trueTerminatorCode
@@ -772,7 +772,7 @@ override method @ipic18ConditionalJumpTerminator generateCode
       outCode := pic18_Bcc_instruction_code [!inAddress !falseTargetAddress !mTargetLabelWhenFalse !mConditionalBranch !true] ;
     when ipicBRA : # Bcc Z ; BRA F ; Z:
       outCode := pic18_Bcc_instruction_code [!inAddress !inAddress + 4 !Zlabel !mConditionalBranch !false] ;
-      outCode .= pic18_BRA_instruction_code [!inAddress !falseTargetAddress !mTargetLabelWhenFalse] ;
+      outCode .= pic18_BRA_instruction_code [!inAddress+2 !falseTargetAddress !mTargetLabelWhenFalse] ;
       outCode .= pic18_definition_label [!Zlabel] ;
     when ipicGOTO : # Bcc Z ; GOTO F ; Z:
       outCode := pic18_Bcc_instruction_code [!inAddress !inAddress + 6 !Zlabel !mConditionalBranch !false] ;
