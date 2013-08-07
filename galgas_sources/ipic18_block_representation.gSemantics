@@ -269,8 +269,7 @@ class @ipic18_intermediate_MOV_LABEL_W extends @ipic18SequentialInstruction {
 #----------------------------------------------------------------------------*
 
 class @ipic18_intermediate_instruction_computed_rcall extends @ipic18SequentialInstruction {
-  @lstringlist mTargetLabels ;
-  @string mEndOfInstructionLabel ;
+  @ipic18SequentialInstructionList mTargetInstructions ;
   @bool mUsesRCALL ;
 }
 
