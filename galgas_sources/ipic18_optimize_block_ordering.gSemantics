@@ -985,12 +985,12 @@ local routine buildOrderedGraph
       [mBlock->mTerminator buildTerminatorOrderedGraph !mBlock->mLabel !?outGraph] ;
     end if ;
   end foreach ;
+  [!?outGraph removeEdgesToDominators] ;
   [outGraph topologicalSort
     ?2*
     ??@stringlist unorderedNodeList
     ?*
   ] ;
-  log unorderedNodeList;
 end routine ;
 
 #----------------------------------------------------------------------------*
