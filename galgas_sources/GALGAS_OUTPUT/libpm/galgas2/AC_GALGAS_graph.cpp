@@ -158,9 +158,9 @@ class cSharedGraph : public C_SharedObject {
                                  C_Compiler * inCompiler
                                  COMMA_LOCATION_ARGS) ;
 
-  public : void addArc (const C_String & inSourceNodeKey,
-                        const C_String & inTargetNodeKey,
-                        const GALGAS_location & inTargetNodeLocation) ;
+  public : void addEdge (const C_String & inSourceNodeKey,
+                         const C_String & inTargetNodeKey,
+                         const GALGAS_location & inTargetNodeLocation) ;
 
   public : void internalTopologicalSort (cSharedList * & outSortedList,
                                          GALGAS_lstringlist & outSortedNodeKeyList,
@@ -562,14 +562,33 @@ void AC_GALGAS_graph::modifier_noteNode (const GALGAS_lstring & inKey
 //---------------------------------------------------------------------------*
 
 #ifdef PRAGMA_MARK_ALLOWED
-  #pragma mark Modifier addArc
+  #pragma mark Modifier removeEdgesToDominators
 #endif
 
 //---------------------------------------------------------------------------*
 
-void cSharedGraph::addArc (const C_String & inSourceNodeKey,
-                           const C_String & inTargetNodeKey,
-                           const GALGAS_location & inTargetNodeLocation) {
+void AC_GALGAS_graph::modifier_removeEdgesToDominators (UNUSED_LOCATION_ARGS) {
+  if (isValid ()) {
+    insulateGraph (HERE) ;
+    if (NULL != mSharedGraph) {
+/*      mSharedGraph->addEdge (inSourceNodeKey.mAttribute_string.stringValue (),
+                             inTargetNodeKey.mAttribute_string.stringValue (),
+                             inTargetNodeKey.mAttribute_location) ;*/
+    }
+  }
+}
+
+//---------------------------------------------------------------------------*
+
+#ifdef PRAGMA_MARK_ALLOWED
+  #pragma mark Modifier addEdge
+#endif
+
+//---------------------------------------------------------------------------*
+
+void cSharedGraph::addEdge (const C_String & inSourceNodeKey,
+                            const C_String & inTargetNodeKey,
+                            const GALGAS_location & inTargetNodeLocation) {
   cGraphNode * sourceNode = findOrAddNodeForKey (inSourceNodeKey) ;
   cGraphNode * targetNode = findOrAddNodeForKey (inTargetNodeKey) ;
   targetNode->mReferenceLocationArray.addObject (inTargetNodeLocation) ;
@@ -580,15 +599,15 @@ void cSharedGraph::addArc (const C_String & inSourceNodeKey,
 
 //---------------------------------------------------------------------------*
 
-void AC_GALGAS_graph::modifier_addArc (const GALGAS_lstring & inSourceNodeKey,
-                                       const GALGAS_lstring & inTargetNodeKey
-                                       COMMA_UNUSED_LOCATION_ARGS) {
+void AC_GALGAS_graph::modifier_addEdge (const GALGAS_lstring & inSourceNodeKey,
+                                        const GALGAS_lstring & inTargetNodeKey
+                                        COMMA_UNUSED_LOCATION_ARGS) {
   if (isValid () && inSourceNodeKey.isValid () && inTargetNodeKey.isValid ()) {
     insulateGraph (HERE) ;
     if (NULL != mSharedGraph) {
-      mSharedGraph->addArc (inSourceNodeKey.mAttribute_string.stringValue (),
-                            inTargetNodeKey.mAttribute_string.stringValue (),
-                            inTargetNodeKey.mAttribute_location) ;
+      mSharedGraph->addEdge (inSourceNodeKey.mAttribute_string.stringValue (),
+                             inTargetNodeKey.mAttribute_string.stringValue (),
+                             inTargetNodeKey.mAttribute_location) ;
     }
   }
 }

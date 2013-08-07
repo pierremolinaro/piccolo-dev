@@ -3,6 +3,7 @@ import "ipic18_optimize_block.gSemantics" ;
 import "piccoloDevice_semantics.gSemantics" ;
 import "intermediate_generic.gSemantics" ;
 import "ipic18_optimize_block_ordering.gSemantics" ;
+import "ipic18_optimize_block_orderingEX.gSemantics" ;
 import "ipic18_relatives_resolution.gSemantics" ;
 import "ipic18_display_block_list.gSemantics" ;
 import "piccolo_options.gOption" ;
@@ -2425,6 +2426,13 @@ routine build_ipic18_block_representation_list
     displayBlockList !"OPTIMIZED INTERMEDIATE BLOCK REPRESENTATION" !?ioListFileContents !generatedBlockList ;
   end if ;
 #----------------------------------------------------------- Optimize block ordering
+  if ([@uint errorCount] == 0) & [option piccolo_options.performOptimizations value] then
+    ipic18OptimizeBlockOrderingEX
+      !inSourceFileName
+      !?ioListFileContents
+      !?generatedBlockList
+    ;
+  end if ;
   if ([@uint errorCount] == 0) & [option piccolo_options.performOptimizations value] then
     ipic18OptimizeBlockOrdering
       !inSourceFileName

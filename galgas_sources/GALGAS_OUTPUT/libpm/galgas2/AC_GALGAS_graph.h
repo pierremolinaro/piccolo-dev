@@ -85,9 +85,11 @@ class AC_GALGAS_graph : public AC_GALGAS_root {
   public : VIRTUAL_IN_DEBUG GALGAS_stringlist reader_undefinedNodeKeyList (LOCATION_ARGS) const ;
 
 //--------------------------------- Modifiers
-  public : VIRTUAL_IN_DEBUG void modifier_addArc (const GALGAS_lstring & inSourceNodeKey,
-                                                  const GALGAS_lstring & inTargetNodeKey
-                                                  COMMA_LOCATION_ARGS) ;
+  public : VIRTUAL_IN_DEBUG void modifier_addEdge (const GALGAS_lstring & inSourceNodeKey,
+                                                   const GALGAS_lstring & inTargetNodeKey
+                                                   COMMA_LOCATION_ARGS) ;
+
+  public : VIRTUAL_IN_DEBUG void modifier_removeEdgesToDominators (LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public : typeComparisonResult objectCompare (const AC_GALGAS_graph & inOperand) const ;

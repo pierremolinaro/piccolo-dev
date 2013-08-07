@@ -28,7 +28,7 @@ override method @instruction_JSR enterCallInGraph
   ?@lstring inRoutineName
   ?!@routineCallGraph ioRoutineCallGraph
 :
-  [!?ioRoutineCallGraph addArc !inRoutineName !mTargetLabel] ;
+  [!?ioRoutineCallGraph addEdge !inRoutineName !mTargetLabel] ;
 end method ;
 
 #---------------------------------------------------------------------------*
@@ -38,7 +38,7 @@ override method @instruction_computed_rcall enterCallInGraph
   ?!@routineCallGraph ioRoutineCallGraph
 :
   foreach mTargetLabels do
-    [!?ioRoutineCallGraph addArc !inRoutineName !mValue] ;
+    [!?ioRoutineCallGraph addEdge !inRoutineName !mValue] ;
   end foreach ;
 end method ;
 
@@ -49,7 +49,7 @@ override method @instruction_computed_goto enterCallInGraph
   ?!@routineCallGraph ioRoutineCallGraph
 :
   foreach mTargetLabels do
-    [!?ioRoutineCallGraph addArc !inRoutineName !mValue] ;
+    [!?ioRoutineCallGraph addEdge !inRoutineName !mValue] ;
   end foreach ;
 end method ;
 

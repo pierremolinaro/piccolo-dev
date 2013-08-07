@@ -102,7 +102,7 @@ override method @ipic18InstructionWithNoOperand generateCode
     c := 0x0003 ;
   end switch ;
   outCode := [@codeList listWithValue
-    ![mKind mnemonic]
+    !"    " . [mKind mnemonic]
     ![@uintlist listWithValue !c]
   ] ;
 end method ;
@@ -185,7 +185,7 @@ override method @ipic18_intermediate_instruction_FDA generateCode
   end if ;
   code := code | ([mRegisterDescription mRegisterAddress] & 255) ;
   outCode := [@codeList listWithValue
-    ![[selfcopy instructionDisplay] mValueAtIndex !0]
+    !"    " . [[selfcopy instructionDisplay] mValueAtIndex !0]
     ![@uintlist listWithValue !code]
   ] ;
 end method ;
@@ -231,7 +231,7 @@ override method @ipic18_intermediate_instruction_FA generateCode
   end if ;
   code := code | ([mRegisterDescription mRegisterAddress] & 255) ;
   outCode := [@codeList listWithValue
-    ![[selfcopy instructionDisplay] mValueAtIndex !0]
+    !"    " . [[selfcopy instructionDisplay] mValueAtIndex !0]
     ![@uintlist listWithValue !code]
   ] ;
 end method ;
@@ -267,7 +267,7 @@ override method @ipic18_intermediate_instruction_MOVFF generateCode
   code += !0xC000 | [mSourceRegisterDescription mRegisterAddress] ;
   code += !0xF000 | [mDestinationRegisterDescription mRegisterAddress] ;
   outCode := [@codeList listWithValue
-    ![[selfcopy instructionDisplay] mValueAtIndex !0]
+    !"    " . [[selfcopy instructionDisplay] mValueAtIndex !0]
     !code
   ] ;
 end method ;
@@ -302,7 +302,7 @@ override method @ipic18_intermediate_instruction_literalOperation generateCode
   end switch ;
   code := code | mLiteralValue ;
   outCode := [@codeList listWithValue
-    ![[selfcopy instructionDisplay] mValueAtIndex !0]
+    !"    " . [[selfcopy instructionDisplay] mValueAtIndex !0]
     ![@uintlist listWithValue !code]
   ] ;
 end method ;
@@ -337,7 +337,7 @@ override method @ipic18_intermediate_instruction_LFSR generateCode
   code += !0xEE00 | ([mFSRindex uint] << 4) | (mValue >> 8) ;
   code += !0xF000 | (mValue & 255) ;
   outCode := [@codeList listWithValue
-    ![[selfcopy instructionDisplay] mValueAtIndex !0]
+    !"    " . [[selfcopy instructionDisplay] mValueAtIndex !0]
     !code
   ] ;
 end method ;
@@ -372,7 +372,7 @@ override method @ipic18_intermediate_instruction_FBA generateCode
   code := code | ([mRegisterDescription mRegisterAddress] & 255) ;
   code := code | (mBitNumber << 9) ;
   outCode := [@codeList listWithValue
-    ![[selfcopy instructionDisplay] mValueAtIndex !0]
+    !"    " . [[selfcopy instructionDisplay] mValueAtIndex !0]
     ![@uintlist listWithValue !code]
   ] ;
 end method ;
@@ -397,7 +397,7 @@ override method @ipic18_intermediate_instruction_MOVLB generateCode
 :
   const @uint code := 0x0100 | [mBankIndex uint] ;
   outCode := [@codeList listWithValue
-    ![[selfcopy instructionDisplay] mValueAtIndex !0]
+    !"    " . [[selfcopy instructionDisplay] mValueAtIndex !0]
     ![@uintlist listWithValue !code]
   ] ;
 end method ;
@@ -428,7 +428,7 @@ override method @ipic18_intermediate_instruction_TBLRD generateCode
   when preIncrement  : code := 0x000B ;
   end switch ;
   outCode := [@codeList listWithValue
-    ![[selfcopy instructionDisplay] mValueAtIndex !0]
+    !"    " . [[selfcopy instructionDisplay] mValueAtIndex !0]
     ![@uintlist listWithValue !code]
   ] ;
 end method ;
@@ -459,7 +459,7 @@ override method @ipic18_intermediate_instruction_TBLWT generateCode
   when preIncrement  : code := 0x000F ;
   end switch ;
   outCode := [@codeList listWithValue
-    ![[selfcopy instructionDisplay] mValueAtIndex !0]
+    !"    " . [[selfcopy instructionDisplay] mValueAtIndex !0]
     ![@uintlist listWithValue !code]
   ] ;
 end method ;
@@ -495,7 +495,7 @@ override method @ipic18_intermediate_instruction_MNOP generateCode
   loop [mOccurrenceFactor uint] :
   while idx < [mOccurrenceFactor uint]
   do
-    outCode += !"NOP" ![@uintlist listWithValue !0x0000] ;
+    outCode += !"    NOP" ![@uintlist listWithValue !0x0000] ;
     idx ++ ;
   end loop ;
 end method ;
@@ -522,7 +522,7 @@ override method @ipic18_intermediate_MOV_LABEL_W generateCode
   const @uint code := ((address + mOffset) >> mRightShift) & 0xFF ;
   const @uint code_MOVLW := 0x0E00 ;
   outCode := [@codeList listWithValue
-    ![[selfcopy instructionDisplay] mValueAtIndex !0]
+    !"    " . [[selfcopy instructionDisplay] mValueAtIndex !0]
     ![@uintlist listWithValue !code | code_MOVLW]
   ] ;
 end method ;
@@ -565,12 +565,12 @@ override method @ipic18_skip_instruction_compare_register generateCode
   end if ;
   code := code | ([mRegisterDescription mRegisterAddress] & 255) ;
 #--- Assembly string
-  @string s ;
+  @string s := "    " ;
   switch mCompareInstruction
-  when CPFSEQ : s := "CPFSEQ" ;
-  when CPFSGT : s := "CPFSGT" ;
-  when CPFSLT : s := "CPFSLT" ;
-  when TSTFSZ : s := "TSTFSZ" ;
+  when CPFSEQ : s .= "CPFSEQ" ;
+  when CPFSGT : s .= "CPFSGT" ;
+  when CPFSLT : s .= "CPFSLT" ;
+  when TSTFSZ : s .= "TSTFSZ" ;
   end switch ;
   s .= " " . [mRegisterDescription mAssemblyString] ;
   if [mRegisterDescription mNeedsBSR] then
@@ -656,7 +656,7 @@ override method @ipic18_skip_instruction_BitTestSkip generateCode
   code := code | ([mRegisterDescription mRegisterAddress] & 255) ;
   code := code | (mBitNumber << 9) ;
 #--- Assembly string
-  @string s := "" ;
+  @string s := "    " ;
   if mSkipIfSet then
     s .= "BTFSS" ;
   else
@@ -750,12 +750,12 @@ override method @ipic18_skip_instruction_FDA generateCode
   end if ;
   code := code | ([mRegisterDescription mRegisterAddress] & 255) ;
 #--- Assembly string
-  @string s ;
+  @string s := "    " ;
   switch mInstruction_FDA_base_code
-  when DECFSZ : s := "DECFSZ" ;
-  when DCFSNZ : s := "DCFSNZ" ;
-  when INCFSZ : s := "INCFSZ" ;
-  when INFSNZ : s := "INFSNZ" ;
+  when DECFSZ : s .= "DECFSZ" ;
+  when DCFSNZ : s .= "DCFSNZ" ;
+  when INCFSZ : s .= "INCFSZ" ;
+  when INFSNZ : s .= "INFSNZ" ;
   end switch ;
   s .= " " . [mRegisterDescription mAssemblyString] ;
 #---

@@ -51,7 +51,7 @@ local routine generateLineWithCode
       s .= " " . [bin_mValue x4string] ;
     end foreach ;
     ioListFileContents .= [s stringByRightPadding !13 !' '];
-    ioListFileContents .= [mAssemblyCode stringByRightPadding !40 !' '] ;
+    ioListFileContents .= [mAssemblyCode stringByRightPadding !50 !' '] ;
     ioListFileContents .= " " ;
     ioListFileContents .= mValue ;
     ioListFileContents .= "\n" ; 
@@ -60,7 +60,7 @@ local routine generateLineWithCode
 #  log ipicText, inCode ;
   foreach [ipicText subListFromIndex ![inCode length]] do
     ioListFileContents .= [address x6string] ;
-    ioListFileContents .= ["" stringByRightPadding !54 !' '];
+    ioListFileContents .= ["" stringByRightPadding !64 !' '];
     ioListFileContents .= mValue ;
     ioListFileContents .= "\n" ; 
   end foreach ;
@@ -75,7 +75,7 @@ method @ipic18Block generateCode
   ?!@string ioListFileContents
   ?!@string ioAssemblyString
 :
-  ioListFileContents .= "Addr.  Code       Assembly                                 Intermediate Representation\n" ;
+  ioListFileContents .= "Addr.  Code       Assembly                                           Intermediate Representation\n" ;
   if mStartAddress == [@uint max] then # Relocatable
     generateLineWithCode
       !inBlockAddress
@@ -115,7 +115,7 @@ method @ipic18Block generateCode
       foreach mBinaryCode do
         emitCode !mValue ;
       end foreach ;
-      ioAssemblyString .= "    " . mAssemblyCode . "\n" ;
+      ioAssemblyString .= mAssemblyCode . "\n" ;
     end foreach ;
     address := address + [mInstruction instructionSize] ;
   #--- Check instruction size corresponds generated code size
@@ -147,7 +147,7 @@ method @ipic18Block generateCode
     foreach mBinaryCode do
       emitCode !mValue ;
     end foreach ;
-    ioAssemblyString .= "    " . mAssemblyCode . "\n" ;
+    ioAssemblyString .= mAssemblyCode . "\n" ;
   end foreach ;
   #--- Check terminator size corresponds generated code size
     @uint generatedCodeSize := 0 ;
