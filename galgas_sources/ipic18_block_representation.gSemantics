@@ -83,13 +83,6 @@ class @ipic18ComputedRETLWTerminator extends @ipic18AbstractBlockTerminator {
 
 #----------------------------------------------------------------------------*
 
-abstract class @ipic18AbstractConditionTerminator extends @ipic18AbstractBlockTerminator {
-  @ipic18SingleInstructionTerminator mInstructionIfConditionTrue ;
-  @ipic18SingleInstructionTerminator mInstructionIfConditionFalse ;
-}
-
-#----------------------------------------------------------------------------*
-
 enum @conditionalBranchMode {
   native, # Use Bcc instruction only
   ipicBRA, # Use BRA if possible (Bcc + BRA)
@@ -121,6 +114,13 @@ enum @ipic18RegisterComparison {
   registerGreaterThanW,
   registerLowerThanW
 }{
+}
+
+#----------------------------------------------------------------------------*
+
+abstract class @ipic18AbstractConditionTerminator extends @ipic18AbstractBlockTerminator {
+  @ipic18SingleInstructionTerminator mInstructionIfConditionTrue ;
+  @ipic18SingleInstructionTerminator mInstructionIfConditionFalse ;
 }
 
 #----------------------------------------------------------------------------*
@@ -456,7 +456,7 @@ function pic18_Bcc_instruction_code
   when bnov : baseCode := 0xE500 ; mnemonic := "BNOV" ;
   end switch ;
   outCode := [@codeList listWithValue
-    !mnemonic . " " . inTargetLabel
+    !"    " . mnemonic . " " . inTargetLabel
     ![@uintlist listWithValue !baseCode | [displacement & 0x0FFS uint]]
   ] ;
 end function ;
@@ -475,7 +475,7 @@ function pic18_RCALL_instruction_code
     . ") for RCALL instruction to '" . inTargetLabel . "' (should be between -1024 and 1023)" ;
   end if ;
   outCode := [@codeList listWithValue
-    !"RCALL " . inTargetLabel
+    !"    RCALL " . inTargetLabel
     ![@uintlist listWithValue !0xD800 | [displacement & 0x07FFS uint]]
   ] ;
 end function ;
@@ -494,7 +494,7 @@ function pic18_BRA_instruction_code
     . ") for BRA instruction to '" . inTargetLabel . "' (should be between -1024 and 1023)" ;
   end if ;
   outCode := [@codeList listWithValue
-    !"BRA " . inTargetLabel
+    !"    BRA " . inTargetLabel
     ![@uintlist listWithValue !0xD000 | [displacement & 0x07FFS uint]]
   ] ;
 end function ;
@@ -510,7 +510,7 @@ function pic18_CALL_instruction_code
   binaryCode += !0xEC00 | ((inTargetAddress >> 1) & 255) ;
   binaryCode += !0xF000 | (inTargetAddress >> 9) ;
   outCode := [@codeList listWithValue
-    !"CALL " . inTargetLabel
+    !"    CALL " . inTargetLabel
     !binaryCode
   ] ;
 end function ;
@@ -526,7 +526,7 @@ function pic18_GOTO_instruction_code
   binaryCode += !0xEF00 | ((inTargetAddress >> 1) & 255) ;
   binaryCode += !0xF000 | (inTargetAddress >> 9) ;
   outCode := [@codeList listWithValue
-    !"GOTO " . inTargetLabel
+    !"    GOTO " . inTargetLabel
     !binaryCode
   ] ;
 end function ;

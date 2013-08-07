@@ -702,7 +702,7 @@ local routine instructionListOptimization
 :
   outOptimizationDone := false ;
   outOptimizedInstructionList := [@ipic18SequentialInstructionList emptyList] ;
-  foreach inInstructionList do
+  foreach inInstructionList index blockIndex do
     @bool retainInstruction := true ;
     if (mInstruction is @ipic18_intermediate_JSR) then
       const @ipic18_intermediate_JSR jsr := (cast mInstruction : @ipic18_intermediate_JSR) ;
@@ -715,9 +715,8 @@ local routine instructionListOptimization
         ioListFileContents .= "  " . inBlockLabel . ": " ;
         ioListFileContents .= "call to empty " . [jsr mTargetLabel] . " routine deleted" ;
         ioListFileContents .= "\n" ;
-      end if ;    
     #--- Replace call to a RETLW routine with a MOVLW instruction
-      if ([targetBloc->mInstructionList length] == 0) & (targetBloc->mTerminator is @ipic18RetlwTerminator) then
+      elsif ([targetBloc->mInstructionList length] == 0) & (targetBloc->mTerminator is @ipic18RetlwTerminator) then
         const @ipic18RetlwTerminator t := (cast targetBloc->mTerminator : @ipic18RetlwTerminator) ;
         retainInstruction := false ;
         outOptimizationDone := true ;
@@ -729,6 +728,17 @@ local routine instructionListOptimization
           ![@literal_instruction_opcode MOVLW]
           ![t mLiteralValue]
         ] ;
+    #--- Replace call to a sigle instruction routine with the routine instruction
+      elsif ((blockIndex + 1) < [inInstructionList length])
+          & ([targetBloc->mInstructionList length] == 1)
+          & (targetBloc->mTerminator is @ipic18ReturnTerminator) then
+        @ipic18SequentialInstruction instruction := [targetBloc->mInstructionList mInstructionAtIndex !0] ;
+        outOptimizedInstructionList += !instruction ;
+        retainInstruction := false ;
+        outOptimizationDone := true ;
+        ioListFileContents .= "  " . inBlockLabel . ", " ;
+        ioListFileContents .= "call to single instruction routine " . [jsr mTargetLabel] . " replaced by this single instruction" ;
+        ioListFileContents .= "\n" ;
       end if ;    
     end if ;
     if retainInstruction then

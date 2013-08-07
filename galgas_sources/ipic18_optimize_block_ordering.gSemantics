@@ -103,7 +103,7 @@ override method @ipic18JumpTerminator buildOrderedBlocks
   ??@lstring inLabelBlock
 :
   if not [ioVisitedBlockSet hasKey !mLabel->string] then
-    [!?ioGraph addArc !inLabelBlock !mLabel] ;
+    [!?ioGraph addEdge !inLabelBlock !mLabel] ;
     ioVisitedBlockSet += !mLabel->string ;
     [inSymbolTable searchKey !mLabel ??@uint targetBlockIndex] ;
     const @ipic18Block targetBlock := [inBlockList mBlockAtIndex !targetBlockIndex] ;
@@ -128,7 +128,7 @@ override method @ipic18ConditionalJumpTerminator buildOrderedBlocks
   ??@lstring inLabelBlock
 :
   if not [ioVisitedBlockSet hasKey !mTargetLabelWhenTrue->string] then
-    [!?ioGraph addArc !inLabelBlock !mTargetLabelWhenTrue] ;
+    [!?ioGraph addEdge !inLabelBlock !mTargetLabelWhenTrue] ;
     ioVisitedBlockSet += !mTargetLabelWhenTrue->string ;
     [inSymbolTable searchKey !mTargetLabelWhenTrue ??@uint targetBlockIndex] ;
     const @ipic18Block targetBlock := [inBlockList mBlockAtIndex !targetBlockIndex] ;
@@ -142,7 +142,7 @@ override method @ipic18ConditionalJumpTerminator buildOrderedBlocks
     ] ;
   end if ;
   if not [ioVisitedBlockSet hasKey !mTargetLabelWhenFalse->string] then
-    [!?ioGraph addArc !inLabelBlock !mTargetLabelWhenFalse] ;
+    [!?ioGraph addEdge !inLabelBlock !mTargetLabelWhenFalse] ;
     ioVisitedBlockSet += !mTargetLabelWhenFalse->string ;
     [inSymbolTable searchKey !mTargetLabelWhenFalse ??@uint targetBlockIndex] ;
     const @ipic18Block targetBlock := [inBlockList mBlockAtIndex !targetBlockIndex] ;
@@ -220,11 +220,56 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-#!--- buildInvocationGraph
+#!--- buildInstructionInvocationGraph
 
 #----------------------------------------------------------------------------*
 
-abstract method @ipic18AbstractBlockTerminator buildInvocationGraph
+method @ipic18SequentialInstruction buildInstructionInvocationGraph
+  ??@lstring unused inBlockLabel
+  ?!@string unused ioGraphVizString
+:
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @ipic18_intermediate_JSR buildInstructionInvocationGraph
+  ??@lstring inBlockLabel
+  ?!@string ioGraphVizString
+:
+  ioGraphVizString .= "  \"" . inBlockLabel . "\" -> \"" . mTargetLabel . "\" [color=red] ;\n" ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @ipic18_intermediate_instruction_computed_rcall buildInstructionInvocationGraph
+  ??@lstring inBlockLabel
+  ?!@string ioGraphVizString
+:
+  ioGraphVizString .= "  \"" . inBlockLabel . "\" -> \"_computed_goto_4\" [color=red] ;\n" ;
+  foreach mTargetLabels do
+    ioGraphVizString .= "  \"" . inBlockLabel . "\" -> \"" . mValue . "\" [color=red] ;\n" ;
+  end foreach ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @ipic18_condition_skip_instruction buildInstructionInvocationGraph
+  ??@lstring inBlockLabel
+  ?!@string ioGraphVizString
+:
+  [mEmbeddedInstruction buildInstructionInvocationGraph
+    !inBlockLabel
+    !?ioGraphVizString
+  ] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+#!--- buildTerminatorInvocationGraph
+
+#----------------------------------------------------------------------------*
+
+abstract method @ipic18AbstractBlockTerminator buildTerminatorInvocationGraph
   ??@lstring inBlockLabel
   ?!@string ioGraphVizString
   ??@bool inDottedArrow
@@ -232,7 +277,7 @@ abstract method @ipic18AbstractBlockTerminator buildInvocationGraph
 
 #----------------------------------------------------------------------------*
 
-override method @ipic18ReturnTerminator buildInvocationGraph
+override method @ipic18ReturnTerminator buildTerminatorInvocationGraph
   ??@lstring unused inBlockLabel
   ?!@string unused ioGraphVizString
   ??@bool unused inDottedArrow
@@ -241,7 +286,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @ipic18RetlwTerminator buildInvocationGraph
+override method @ipic18RetlwTerminator buildTerminatorInvocationGraph
   ??@lstring unused inBlockLabel
   ?!@string unused ioGraphVizString
   ??@bool unused inDottedArrow
@@ -250,7 +295,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @ipic18RetfieTerminator buildInvocationGraph
+override method @ipic18RetfieTerminator buildTerminatorInvocationGraph
   ??@lstring unused inBlockLabel
   ?!@string unused ioGraphVizString
   ??@bool unused inDottedArrow
@@ -259,67 +304,70 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @ipic18ComputedGotoTerminator buildInvocationGraph
-  ??@lstring unused inBlockLabel
-  ?!@string unused ioGraphVizString
-  ??@bool unused inDottedArrow
-:
-end method ;
-
-#----------------------------------------------------------------------------*
-
-override method @ipic18ComputedRETLWTerminator buildInvocationGraph
-  ??@lstring unused inBlockLabel
-  ?!@string unused ioGraphVizString
-  ??@bool unused inDottedArrow
-:
-end method ;
-
-#----------------------------------------------------------------------------*
-
-override method @ipic18ComputedBraTerminator buildInvocationGraph
-  ??@lstring unused inBlockLabel
-  ?!@string unused ioGraphVizString
-  ??@bool unused inDottedArrow
-:
-end method ;
-
-#----------------------------------------------------------------------------*
-
-override method @ipic18AbstractConditionTerminator buildInvocationGraph
+override method @ipic18ComputedGotoTerminator buildTerminatorInvocationGraph
   ??@lstring inBlockLabel
   ?!@string ioGraphVizString
   ??@bool unused inDottedArrow
 :
-  [mInstructionIfConditionTrue buildInvocationGraph !inBlockLabel !?ioGraphVizString !false] ;
-  [mInstructionIfConditionFalse buildInvocationGraph !inBlockLabel !?ioGraphVizString !false] ;
+  ioGraphVizString .= "  \"" . inBlockLabel . "\" -> \"_computed_goto_4\" [color=red] ;\n" ;
 end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @pic18RegisterComparisonTerminator buildInvocationGraph
+override method @ipic18ComputedRETLWTerminator buildTerminatorInvocationGraph
   ??@lstring inBlockLabel
   ?!@string ioGraphVizString
   ??@bool unused inDottedArrow
 :
-  [mInstructionIfConditionTrue buildInvocationGraph !inBlockLabel !?ioGraphVizString !false] ;
-  [mInstructionIfConditionFalse buildInvocationGraph !inBlockLabel !?ioGraphVizString !true] ;
+  ioGraphVizString .= "  \"" . inBlockLabel . "\" -> \"_computed_goto_2\" [color=red] ;\n" ;
 end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @pic18TestRegisterTerminator buildInvocationGraph
+override method @ipic18ComputedBraTerminator buildTerminatorInvocationGraph
   ??@lstring inBlockLabel
   ?!@string ioGraphVizString
   ??@bool unused inDottedArrow
 :
-  [mInstructionIfConditionTrue buildInvocationGraph !inBlockLabel !?ioGraphVizString !false] ;
-  [mInstructionIfConditionFalse buildInvocationGraph !inBlockLabel !?ioGraphVizString !true] ;
+  ioGraphVizString .= "  \"" . inBlockLabel . "\" -> \"_computed_goto_2\" [color=red] ;\n" ;
 end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @ipic18JumpTerminator buildInvocationGraph
+override method @ipic18AbstractConditionTerminator buildTerminatorInvocationGraph
+  ??@lstring inBlockLabel
+  ?!@string ioGraphVizString
+  ??@bool unused inDottedArrow
+:
+  [mInstructionIfConditionTrue buildTerminatorInvocationGraph !inBlockLabel !?ioGraphVizString !false] ;
+  [mInstructionIfConditionFalse buildTerminatorInvocationGraph !inBlockLabel !?ioGraphVizString !false] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @pic18RegisterComparisonTerminator buildTerminatorInvocationGraph
+  ??@lstring inBlockLabel
+  ?!@string ioGraphVizString
+  ??@bool unused inDottedArrow
+:
+  [mInstructionIfConditionTrue buildTerminatorInvocationGraph !inBlockLabel !?ioGraphVizString !false] ;
+  [mInstructionIfConditionFalse buildTerminatorInvocationGraph !inBlockLabel !?ioGraphVizString !true] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @pic18TestRegisterTerminator buildTerminatorInvocationGraph
+  ??@lstring inBlockLabel
+  ?!@string ioGraphVizString
+  ??@bool unused inDottedArrow
+:
+  [mInstructionIfConditionTrue buildTerminatorInvocationGraph !inBlockLabel !?ioGraphVizString !false] ;
+  [mInstructionIfConditionFalse buildTerminatorInvocationGraph !inBlockLabel !?ioGraphVizString !true] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @ipic18JumpTerminator buildTerminatorInvocationGraph
   ??@lstring inBlockLabel
   ?!@string ioGraphVizString
   ??@bool inDottedArrow
@@ -333,7 +381,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @ipic18ConditionalJumpTerminator buildInvocationGraph
+override method @ipic18ConditionalJumpTerminator buildTerminatorInvocationGraph
   ??@lstring inBlockLabel
   ?!@string ioGraphVizString
   ??@bool inDottedArrow
@@ -377,9 +425,9 @@ override method @ipic18JumpTerminator buildOrderingConstraintGraph
   ?!@stringset ioVisitedBlockSet
 :
   if not [ioVisitedBlockSet hasKey !mLabel->string] then
-    [!?ioGraph addArc !inBlockLabel !mLabel] ;
+    [!?ioGraph addEdge !inBlockLabel !mLabel] ;
     if inDominatorLabel->string != "" then
-      [!?ioGraph addArc !inDominatorLabel !mLabel] ;
+      [!?ioGraph addEdge !inDominatorLabel !mLabel] ;
     end if ;
   #--- Explore next block
     [!?ioGraph addNode !mLabel !mLabel->string] ;
@@ -408,9 +456,9 @@ override method @ipic18ConditionalJumpTerminator buildOrderingConstraintGraph
   ?!@stringset ioVisitedBlockSet
 :
   if not [ioVisitedBlockSet hasKey !mTargetLabelWhenTrue->string] then
-    [!?ioGraph addArc !inBlockLabel !mTargetLabelWhenTrue] ;
+    [!?ioGraph addEdge !inBlockLabel !mTargetLabelWhenTrue] ;
     if inDominatorLabel->string != "" then
-      [!?ioGraph addArc !inDominatorLabel !mTargetLabelWhenTrue] ;
+      [!?ioGraph addEdge !inDominatorLabel !mTargetLabelWhenTrue] ;
     end if ;
   #--- Explore next block
     [!?ioGraph addNode !mTargetLabelWhenTrue !mTargetLabelWhenTrue->string] ;
@@ -427,9 +475,9 @@ override method @ipic18ConditionalJumpTerminator buildOrderingConstraintGraph
     ] ;
   end if ;
   if not [ioVisitedBlockSet hasKey !mTargetLabelWhenFalse->string] then
-    [!?ioGraph addArc !inBlockLabel !mTargetLabelWhenFalse] ;
+    [!?ioGraph addEdge !inBlockLabel !mTargetLabelWhenFalse] ;
     if inDominatorLabel->string != "" then
-      [!?ioGraph addArc !inDominatorLabel !mTargetLabelWhenFalse] ;
+      [!?ioGraph addEdge !inDominatorLabel !mTargetLabelWhenFalse] ;
     end if ;
   #--- Explore next block
     [!?ioGraph addNode !mTargetLabelWhenFalse !mTargetLabelWhenFalse->string] ;
@@ -826,7 +874,121 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
+#!--- buildTerminatorInvocationGraph
+
+#----------------------------------------------------------------------------*
+
+method @ipic18AbstractBlockTerminator buildTerminatorOrderedGraph
+  ??@lstring unused inBlockLabel
+  ?!@blockInvocationGraph unused ioGraph
+:
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @ipic18JumpTerminator buildTerminatorOrderedGraph
+  ??@lstring inBlockLabel
+  ?!@blockInvocationGraph ioGraph
+:
+  if inBlockLabel->string != mLabel->string then
+    [!?ioGraph addEdge !inBlockLabel !mLabel] ;
+  end if ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @ipic18ConditionalJumpTerminator buildTerminatorOrderedGraph
+  ??@lstring inBlockLabel
+  ?!@blockInvocationGraph ioGraph
+:
+  if inBlockLabel->string != mTargetLabelWhenTrue->string then
+    [!?ioGraph addEdge !inBlockLabel !mTargetLabelWhenTrue] ;
+  end if ;
+  if inBlockLabel->string != mTargetLabelWhenFalse->string then
+    [!?ioGraph addEdge !inBlockLabel !mTargetLabelWhenFalse] ;
+  end if ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @pic18RegisterComparisonTerminator buildTerminatorOrderedGraph
+  ??@lstring inBlockLabel
+  ?!@blockInvocationGraph ioGraph
+:
+  [mInstructionIfConditionTrue buildTerminatorOrderedGraph
+    !inBlockLabel
+    !?ioGraph
+  ] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @pic18TestRegisterTerminator buildTerminatorOrderedGraph
+  ??@lstring inBlockLabel
+  ?!@blockInvocationGraph ioGraph
+:
+  [mInstructionIfConditionTrue buildTerminatorOrderedGraph
+    !inBlockLabel
+    !?ioGraph
+  ] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @ipic18IncDecRegisterTerminator buildTerminatorOrderedGraph
+  ??@lstring inBlockLabel
+  ?!@blockInvocationGraph ioGraph
+:
+  [mInstructionIfConditionTrue buildTerminatorOrderedGraph
+    !inBlockLabel
+    !?ioGraph
+  ] ;
+  [mInstructionIfConditionFalse buildTerminatorOrderedGraph
+    !inBlockLabel
+    !?ioGraph
+  ] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @pic18BitTestTerminator buildTerminatorOrderedGraph
+  ??@lstring inBlockLabel
+  ?!@blockInvocationGraph ioGraph
+:
+  [mInstructionIfConditionTrue buildTerminatorOrderedGraph
+    !inBlockLabel
+    !?ioGraph
+  ] ;
+  [mInstructionIfConditionFalse buildTerminatorOrderedGraph
+    !inBlockLabel
+    !?ioGraph
+  ] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
 #!--- Routines
+
+#----------------------------------------------------------------------------*
+
+local routine buildOrderedGraph
+  ??@ipic18BlockList inBlockList
+  !@blockInvocationGraph outGraph
+:
+  outGraph := [@blockInvocationGraph emptyGraph] ;
+  foreach inBlockList do
+    if mBlock->mStartAddress == [@uint max] then # Only relocatable block
+      [!?outGraph addNode !mBlock->mLabel !mBlock->mLabel->string] ;
+      [mBlock->mTerminator buildTerminatorOrderedGraph !mBlock->mLabel !?outGraph] ;
+    end if ;
+  end foreach ;
+  [outGraph topologicalSort
+    ?2*
+    ??@stringlist unorderedNodeList
+    ?*
+  ] ;
+  log unorderedNodeList;
+end routine ;
 
 #----------------------------------------------------------------------------*
 
@@ -837,7 +999,10 @@ local routine buildInvocationGraph
   outGraphVizString := "digraph G{\n" ;
   foreach inBlockList do
     if mBlock->mStartAddress == [@uint max] then # Only relocatable block
-      [mBlock->mTerminator buildInvocationGraph !mBlock->mLabel !?outGraphVizString !false] ;
+      foreach mBlock->mInstructionList do
+        [mInstruction buildInstructionInvocationGraph !mBlock->mLabel !?outGraphVizString] ;
+      end foreach ;
+      [mBlock->mTerminator buildTerminatorInvocationGraph !mBlock->mLabel !?outGraphVizString !false] ;
     end if ;
   end foreach ;
   outGraphVizString .= "}\n" ;
@@ -978,7 +1143,7 @@ local function blockDiscontinuityCount
         nextBlockLabel := "" ;
       end if ;
       if [mBlock->mTerminator needToInsertJumpInstruction !nextBlockLabel] then
-        outResult := outResult + 1 ;
+        outResult ++ ;
       end if ;
     end if ;
   end foreach ;
@@ -994,9 +1159,9 @@ routine ipic18OptimizeBlockOrdering
 #---
   buildInvocationGraph !ioGeneratedBlockList ??@string invocationGraph ;
   [invocationGraph writeToFileWhenDifferentContents !inSourceFileName. ".blockInvocation.dot" ?*] ;
-##---
-#  buildDirectInvocationGraph !ioGeneratedBlockList ??@blockInvocationGraph directInvocationGraph ;
-#  [[directInvocationGraph graphviz] writeToFile !inSourceFileName. ".orderedBlocks.dot"] ;
+#---
+  buildOrderedGraph !ioGeneratedBlockList ??@blockInvocationGraph directInvocationGraph ;
+  [[directInvocationGraph graphviz] writeToFile !inSourceFileName. ".orderedBlocks.dot"] ;
 #---
   performBlockOrdering !inSourceFileName !?ioListFileContents !?ioGeneratedBlockList ;
 end routine ;

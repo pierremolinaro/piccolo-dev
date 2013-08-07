@@ -50,7 +50,7 @@ override method @ipic18ReturnTerminator generateCode
   !@codeList outCode
 :
   outCode := [@codeList listWithValue
-    !"RETURN"
+    !"    RETURN"
     ![@uintlist listWithValue !0x0012]
   ] ;
 end method ;
@@ -80,7 +80,7 @@ override method @ipic18RetfieTerminator generateCode
   !@codeList outCode
 :
   outCode := [@codeList listWithValue
-    ![selfcopy terminatorDisplay !inNextBlockLabel]
+    !"    " . [selfcopy terminatorDisplay !inNextBlockLabel]
     ![@uintlist listWithValue !if mFastReturn then 0x0009 else 0x0008 end]
   ] ;
 end method ;
@@ -107,7 +107,7 @@ override method @ipic18RetlwTerminator generateCode
   !@codeList outCode
 :
   outCode := [@codeList listWithValue
-    ![selfcopy terminatorDisplay !inNextBlockLabel]
+    !"    " .[selfcopy terminatorDisplay !inNextBlockLabel]
     ![@uintlist listWithValue !0x0C00 | mLiteralValue]
   ] ;
 end method ;
@@ -240,13 +240,13 @@ override method @pic18RegisterComparisonTerminator generateCode
   switch mComparison
   when registerEqualsToW :
     binCode := 0x6200 ;
-    assemblyCode := "CPFSEQ" ;
+    assemblyCode := "    CPFSEQ" ;
   when registerGreaterThanW :
     binCode := 0x6400 ;
-    assemblyCode := "CPFSGT" ;
+    assemblyCode := "    CPFSGT" ;
   when registerLowerThanW :
     binCode := 0x6000 ;
-    assemblyCode := "CPFSLT" ;
+    assemblyCode := "    CPFSLT" ;
   end switch ;
   assemblyCode .= " " . [mRegisterDescription mAssemblyString] ;
   binCode := binCode | ([mRegisterDescription mRegisterAddress] & 255) ;
@@ -312,7 +312,7 @@ override method @pic18TestRegisterTerminator generateCode
   !@codeList outCode
 :
   @uint binCode := 0x6600 ;
-  @string assemblyCode := "TSTFSZ " . [mRegisterDescription mAssemblyString] ;
+  @string assemblyCode := "    TSTFSZ " . [mRegisterDescription mAssemblyString] ;
   binCode := binCode | ([mRegisterDescription mRegisterAddress] & 255) ;
   if [mRegisterDescription mNeedsBSR] then
     binCode := binCode | 0x0100 ;
@@ -366,7 +366,7 @@ override method @pic18BitTestTerminator generateCode
   if [mInstructionIfConditionTrue terminatorSize !inNextBlockLabel] == 0 then
   #--- Generate direct code (no code for true terminator)
     @uint binCode := 0x6600 ;
-    @string assemblyCode := "BTFSS " . [mRegisterDescription mAssemblyString] . ", " . mBitNumber ;
+    @string assemblyCode := "    BTFSS " . [mRegisterDescription mAssemblyString] . ", " . mBitNumber ;
     binCode := binCode | ([mRegisterDescription mRegisterAddress] & 255) ;
     binCode := binCode | (mBitNumber << 9) ;
     if [mRegisterDescription mNeedsBSR] then
@@ -387,7 +387,7 @@ override method @pic18BitTestTerminator generateCode
   else
   #--- Generate complementary code (true terminator first terminator)
     @uint binCode := 0x6600 ;
-    @string assemblyCode := "BTFSS " . [mRegisterDescription mAssemblyString] . ", " . mBitNumber ;
+    @string assemblyCode := "    BTFSS " . [mRegisterDescription mAssemblyString] . ", " . mBitNumber ;
     binCode := binCode | ([mRegisterDescription mRegisterAddress] & 255) ;
     binCode := binCode | (mBitNumber << 9) ;
     if [mRegisterDescription mNeedsBSR] then
@@ -433,6 +433,8 @@ override reader @ipic18IncDecRegisterTerminator terminatorDisplay
   outResult .= [mRegisterDescription mAssemblyString] ;
   if m_W_isDestination then
     outResult .= ", W" ;
+  else
+    outResult .= ", F" ;
   end if ;
   outResult .= " Z ? " ;
   outResult .= [mInstructionIfConditionTrue terminatorDisplay !inNextBlockLabel] ;
@@ -455,9 +457,15 @@ override method @ipic18IncDecRegisterTerminator generateCode
   if [mInstructionIfConditionTrue terminatorSize !inNextBlockLabel] == 0 then
   #--- Generate direct code (no code for true terminator)
     @uint binCode :=        if mIncrement then 0x3C00   else 0x2C00 end ;
-    @string assemblyCode := if mIncrement then "INCFSZ" else "DECFSZ" end ;
+    @string assemblyCode := if mIncrement then "    INCFSZ" else "    DECFSZ" end ;
     assemblyCode .= " " . [mRegisterDescription mAssemblyString] ;
     binCode := binCode | ([mRegisterDescription mRegisterAddress] & 255) ;
+    if m_W_isDestination then
+      assemblyCode .= ", W" ;
+    else
+      binCode := binCode | 0x0200 ;
+      assemblyCode .= ", F" ;
+    end if ;
     if [mRegisterDescription mNeedsBSR] then
       binCode := binCode | 0x0100 ;
       assemblyCode .= ", BSR_ACCESS" ;
@@ -476,9 +484,15 @@ override method @ipic18IncDecRegisterTerminator generateCode
   else
   #--- Generate complementary code (true terminator first terminator)
     @uint binCode :=        if mIncrement then 0x4800   else 0x4C00 end ;
-    @string assemblyCode := if mIncrement then "INFSNZ" else "DCFSNZ" end ;
+    @string assemblyCode := if mIncrement then "    INFSNZ" else "    DCFSNZ" end ;
     assemblyCode .= " " . [mRegisterDescription mAssemblyString] ;
     binCode := binCode | ([mRegisterDescription mRegisterAddress] & 255) ;
+    if m_W_isDestination then
+      assemblyCode .= ", W" ;
+    else
+      binCode := binCode | 0x0200 ;
+      assemblyCode .= ", F" ;
+    end if ;
     if [mRegisterDescription mNeedsBSR] then
       binCode := binCode | 0x0100 ;
       assemblyCode .= ", BSR_ACCESS" ;
@@ -551,7 +565,7 @@ override method @ipic18ComputedRETLWTerminator generateCode
   end if ;
   foreach mLiteralValues do
     outCode +=
-      !"RETLW " . [mValue hexString]
+      !"    RETLW " . [mValue hexString]
       ![@uintlist listWithValue !0x0C00 | mValue]
     ;
   end foreach ;
@@ -757,11 +771,11 @@ override method @ipic18ConditionalJumpTerminator generateCode
     when native : # !Bcc F
       outCode := pic18_Bcc_instruction_code [!inAddress !falseTargetAddress !mTargetLabelWhenFalse !mConditionalBranch !true] ;
     when ipicBRA : # Bcc Z ; BRA F ; Z:
-      outCode := pic18_Bcc_instruction_code [!inAddress !inAddress + 2 !Zlabel !mConditionalBranch !false] ;
+      outCode := pic18_Bcc_instruction_code [!inAddress !inAddress + 4 !Zlabel !mConditionalBranch !false] ;
       outCode .= pic18_BRA_instruction_code [!inAddress !falseTargetAddress !mTargetLabelWhenFalse] ;
       outCode .= pic18_definition_label [!Zlabel] ;
     when ipicGOTO : # Bcc Z ; GOTO F ; Z:
-      outCode := pic18_Bcc_instruction_code [!inAddress !inAddress + 4 !Zlabel !mConditionalBranch !false] ;
+      outCode := pic18_Bcc_instruction_code [!inAddress !inAddress + 6 !Zlabel !mConditionalBranch !false] ;
       outCode .= pic18_GOTO_instruction_code [!falseTargetAddress !mTargetLabelWhenFalse] ;
       outCode .= pic18_definition_label [!Zlabel] ;
     end switch ;
@@ -770,11 +784,11 @@ override method @ipic18ConditionalJumpTerminator generateCode
     when native : # Bcc T
       outCode := pic18_Bcc_instruction_code [!inAddress !trueTargetAddress !mTargetLabelWhenTrue !mConditionalBranch !false] ;
     when ipicBRA : # !Bcc Z ; BRA T ; Z:
-      outCode := pic18_Bcc_instruction_code [!inAddress !inAddress + 2 !Zlabel !mConditionalBranch !true] ;
+      outCode := pic18_Bcc_instruction_code [!inAddress !inAddress + 4 !Zlabel !mConditionalBranch !true] ;
       outCode .= pic18_BRA_instruction_code [!inAddress+2 !trueTargetAddress !mTargetLabelWhenTrue] ;
       outCode .= pic18_definition_label [!Zlabel] ;
     when ipicGOTO : # !Bcc Z ; GOTO T ; Z:
-      outCode := pic18_Bcc_instruction_code [!inAddress !inAddress + 4 !Zlabel !mConditionalBranch !true] ;
+      outCode := pic18_Bcc_instruction_code [!inAddress !inAddress + 6 !Zlabel !mConditionalBranch !true] ;
       outCode .= pic18_GOTO_instruction_code [!trueTargetAddress !mTargetLabelWhenTrue] ;
       outCode .= pic18_definition_label [!Zlabel] ;
     end switch ;
@@ -795,12 +809,12 @@ override method @ipic18ConditionalJumpTerminator generateCode
         outCode := pic18_Bcc_instruction_code [!inAddress !trueTargetAddress !mTargetLabelWhenTrue !mConditionalBranch !true] ;
         outCode .= pic18_BRA_instruction_code [!inAddress+2 !falseTargetAddress !mTargetLabelWhenFalse] ;
       when ipicBRA  : # Bcc Z ; BRA F ; Z: BRA T
-        outCode := pic18_Bcc_instruction_code [!inAddress !inAddress + 2 !Zlabel !mConditionalBranch !true] ;
+        outCode := pic18_Bcc_instruction_code [!inAddress !inAddress + 4 !Zlabel !mConditionalBranch !true] ;
         outCode .= pic18_BRA_instruction_code [!inAddress+2 !falseTargetAddress !mTargetLabelWhenFalse] ;
         outCode .= pic18_definition_label [!Zlabel] ;
         outCode .= pic18_BRA_instruction_code [!inAddress !trueTargetAddress !mTargetLabelWhenTrue] ;
       when ipicGOTO : # Bcc Z ; BRA F ; Z: GOTO T
-        outCode := pic18_Bcc_instruction_code [!inAddress !inAddress + 2 !Zlabel !mConditionalBranch !true] ;
+        outCode := pic18_Bcc_instruction_code [!inAddress !inAddress + 4 !Zlabel !mConditionalBranch !true] ;
         outCode .= pic18_BRA_instruction_code [!inAddress+2 !falseTargetAddress !mTargetLabelWhenFalse] ;
         outCode .= pic18_definition_label [!Zlabel] ;
         outCode .= pic18_GOTO_instruction_code [!trueTargetAddress !mTargetLabelWhenTrue] ;
@@ -811,12 +825,12 @@ override method @ipic18ConditionalJumpTerminator generateCode
         outCode := pic18_Bcc_instruction_code [!inAddress !trueTargetAddress !mTargetLabelWhenTrue !mConditionalBranch !true] ;
         outCode .= pic18_GOTO_instruction_code [!falseTargetAddress !mTargetLabelWhenFalse] ;
       when ipicBRA  : # Bcc Z ; GOTO F ; Z: BRA T
-        outCode := pic18_Bcc_instruction_code [!inAddress !inAddress + 4 !Zlabel !mConditionalBranch !true] ;
+        outCode := pic18_Bcc_instruction_code [!inAddress !inAddress + 6 !Zlabel !mConditionalBranch !true] ;
         outCode .= pic18_GOTO_instruction_code [!falseTargetAddress !mTargetLabelWhenFalse] ;
         outCode .= pic18_definition_label [!Zlabel] ;
         outCode .= pic18_BRA_instruction_code [!inAddress+6 !trueTargetAddress !mTargetLabelWhenTrue] ;
       when ipicGOTO : # Bcc Z ; GOTO F ; Z: GOTO T
-        outCode := pic18_Bcc_instruction_code [!inAddress !inAddress + 4 !Zlabel !mConditionalBranch !true] ;
+        outCode := pic18_Bcc_instruction_code [!inAddress !inAddress + 6 !Zlabel !mConditionalBranch !true] ;
         outCode .= pic18_GOTO_instruction_code [!falseTargetAddress !mTargetLabelWhenFalse] ;
         outCode .= pic18_definition_label [!Zlabel] ;
         outCode .= pic18_GOTO_instruction_code [!trueTargetAddress !mTargetLabelWhenTrue] ;

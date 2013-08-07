@@ -87,6 +87,7 @@ SOURCES += ipic18_display_block_list.cpp
 SOURCES += ipic18_build_block_representation.cpp
 SOURCES += ipic18_optimize_block.cpp
 SOURCES += ipic18_optimize_block_ordering.cpp
+SOURCES += ipic18_optimize_block_orderingEX.cpp
 SOURCES += ipic18_relatives_resolution.cpp
 SOURCES += ipic18_code_generation.cpp
 SOURCES += communs.cpp
