@@ -81,7 +81,7 @@ override method @ipic18RetfieTerminator generateCode
 :
   outCode := [@codeList listWithValue
     !"    " . [selfcopy terminatorDisplay !inNextBlockLabel]
-    ![@uintlist listWithValue !if mFastReturn then 0x0009 else 0x0008 end]
+    ![@uintlist listWithValue !if mFastReturn then 0x0011 else 0x0010 end]
   ] ;
 end method ;
 
@@ -365,7 +365,7 @@ override method @pic18BitTestTerminator generateCode
 :
   if [mInstructionIfConditionTrue terminatorSize !inNextBlockLabel] == 0 then
   #--- Generate direct code (no code for true terminator)
-    @uint binCode := 0x6600 ;
+    @uint binCode := 0xA000 ;
     @string assemblyCode := "    BTFSS " . [mRegisterDescription mAssemblyString] . ", " . mBitNumber ;
     binCode := binCode | ([mRegisterDescription mRegisterAddress] & 255) ;
     binCode := binCode | (mBitNumber << 9) ;
@@ -386,8 +386,8 @@ override method @pic18BitTestTerminator generateCode
      outCode .= falseTerminatorCode ;
   else
   #--- Generate complementary code (true terminator first terminator)
-    @uint binCode := 0x6600 ;
-    @string assemblyCode := "    BTFSS " . [mRegisterDescription mAssemblyString] . ", " . mBitNumber ;
+    @uint binCode := 0xB000 ;
+    @string assemblyCode := "    BTFSC " . [mRegisterDescription mAssemblyString] . ", " . mBitNumber ;
     binCode := binCode | ([mRegisterDescription mRegisterAddress] & 255) ;
     binCode := binCode | (mBitNumber << 9) ;
     if [mRegisterDescription mNeedsBSR] then

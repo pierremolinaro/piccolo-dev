@@ -384,7 +384,7 @@ end method ;
 #----------------------------------------------------------------------------*
 
 override reader @ipic18_intermediate_instruction_MOVLB instructionDisplay ->@stringlist outResult :
-  @string s := "MOVLB " . [[mBankIndex uint] string] ;
+  @string s := "MOVLB " . [[mBankIndex uint] hexString] ;
   outResult := [@stringlist listWithValue !s] ;
 end reader ;
 
