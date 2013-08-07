@@ -265,7 +265,7 @@ local routine pic18GenerateAssemblyFile
     [mRegisterAddressList first ??@uint firstRegister] ;
     assemblyString .= [lkey string] . " EQU " . [firstRegister hexString] . "\n" ;
   end foreach ;
-  assemblyString .= "\n" ;
+  assemblyString .= "\n\n" ;
 #--- User defined registers in ram
   assemblyString .= ";--- User defined registers (in RAM)\n" ;
   foreach inAllRegisters do
@@ -274,10 +274,11 @@ local routine pic18GenerateAssemblyFile
       assemblyString .= [lkey string] . " EQU " . [firstRegister hexString] . "\n" ;
     end if ;
   end foreach ;
-  assemblyString .= "\n" ;
+  assemblyString .= "\n\n" ;
 #--- PICCOLO defined symbols
   assemblyString .= ";--- Piccolo defined symbols\n" ;
   assemblyString .= "W EQU 1\n" ;
+  assemblyString .= "FAST EQU 1\n" ;
   assemblyString .= "BSR_ACCESS EQU 1\n\n" ;
 #-------------------------------- Add Configuration
   if [inActualConfigurationMap count] > 0 then

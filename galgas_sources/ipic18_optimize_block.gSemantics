@@ -682,6 +682,131 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
+#!--- Instruction optimization
+
+#----------------------------------------------------------------------------*
+
+method @ipic18SequentialInstruction optimizeInstruction
+  ??@symbolTableForBlockOptimization unused inSymbolTable
+  ??@ipic18BlockList unused inBlockList
+  ??@lstring unused inBlockLabel
+  !@bool outOptimizationDone
+  ?!@string unused ioListFileContents
+  !@ipic18SequentialInstruction outOptimizedInstruction
+  !@bool outNOPsubstitution
+:
+  outOptimizedInstruction := selfcopy ;
+  outOptimizationDone := false ;
+  outNOPsubstitution := false ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @ipic18_intermediate_JSR optimizeInstruction
+  ??@symbolTableForBlockOptimization inSymbolTable
+  ??@ipic18BlockList inBlockList
+  ??@lstring inBlockLabel
+  !@bool outOptimizationDone
+  ?!@string ioListFileContents
+  !@ipic18SequentialInstruction outOptimizedInstruction
+  !@bool outNOPsubstitution
+:
+  outOptimizedInstruction := selfcopy ;
+  outOptimizationDone := false ;
+  outNOPsubstitution := false ;
+#---
+  [inSymbolTable searchKey !mTargetLabel ??@uint targetBlockIndex] ; 
+  const @ipic18Block targetBloc := [inBlockList mBlockAtIndex !targetBlockIndex] ;  
+#--- Remove empty routine calls
+  if ([targetBloc->mInstructionList length] == 0) & (targetBloc->mTerminator is @ipic18ReturnTerminator) then
+    outOptimizationDone := true ;
+    ioListFileContents .= "  " . inBlockLabel . ": " ;
+    ioListFileContents .= "call to empty " . mTargetLabel . " routine deleted" ;
+    ioListFileContents .= "\n" ;
+    outOptimizedInstruction := [@ipic18InstructionWithNoOperand new !mInstructionLocation ![@pic18InstructionWithNoOperandKind NOP]] ;
+    outNOPsubstitution := true ;
+#--- Replace call to a RETLW routine with a MOVLW instruction
+  elsif ([targetBloc->mInstructionList length] == 0) & (targetBloc->mTerminator is @ipic18RetlwTerminator) then
+    const @ipic18RetlwTerminator t := (cast targetBloc->mTerminator : @ipic18RetlwTerminator) ;
+    outOptimizationDone := true ;
+    ioListFileContents .= "  " . inBlockLabel . ": " ;
+    ioListFileContents .= "call to RETLW " . mTargetLabel . " routine transformed to MOVLW" ;
+    ioListFileContents .= "\n" ;
+    outOptimizedInstruction := [@ipic18_intermediate_instruction_literalOperation new
+      !mInstructionLocation
+      ![@literal_instruction_opcode MOVLW]
+      ![t mLiteralValue]
+    ] ;
+#--- Replace call to a single instruction routine with the routine instruction
+  elsif ([targetBloc->mInstructionList length] == 1)
+      & (targetBloc->mTerminator is @ipic18ReturnTerminator) then
+    outOptimizedInstruction := [targetBloc->mInstructionList mInstructionAtIndex !0] ;
+    outOptimizationDone := true ;
+    ioListFileContents .= "  " . inBlockLabel . ", " ;
+    ioListFileContents .= "call to single instruction routine " . mTargetLabel . " replaced by this single instruction" ;
+    ioListFileContents .= "\n" ;
+  end if ;    
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @ipic18_intermediate_instruction_computed_rcall optimizeInstruction
+  ??@symbolTableForBlockOptimization inSymbolTable
+  ??@ipic18BlockList inBlockList
+  ??@lstring inBlockLabel
+  !@bool outOptimizationDone
+  ?!@string ioListFileContents
+  !@ipic18SequentialInstruction outOptimizedInstruction
+  !@bool outNOPsubstitution
+:
+  outOptimizationDone := false ;
+  outNOPsubstitution := false ;
+#---
+  @ipic18SequentialInstructionList optimizedInstructionList [emptyList] ;
+  foreach mTargetInstructions do
+    @bool opt := false ;
+    if (mInstruction is @ipic18_intermediate_JSR) then
+      const @ipic18_intermediate_JSR jsr := (cast mInstruction : @ipic18_intermediate_JSR) ;
+      [inSymbolTable searchKey ![jsr mTargetLabel] ??@uint targetBlockIndex] ; 
+      const @ipic18Block targetBloc := [inBlockList mBlockAtIndex !targetBlockIndex] ;  
+      if (targetBloc->mTerminator is @ipic18ReturnTerminator) then
+        if [targetBloc->mInstructionList length] == 0 then # Empty block, replace by NOP
+          opt := true ;
+          outOptimizationDone := true ;
+          optimizedInstructionList += ![@ipic18InstructionWithNoOperand new ![jsr mInstructionLocation] ![@pic18InstructionWithNoOperandKind NOP]] ;
+          ioListFileContents .= "  " . inBlockLabel . ", " ;
+          ioListFileContents .= "COMPUTED JSR " . [jsr mTargetLabel] . " to empty routine replaced by NOP" ;
+          ioListFileContents .= "\n" ;
+        elsif [targetBloc->mInstructionList length] == 1 then # One instruction block
+          const @ipic18SequentialInstruction inst := [targetBloc->mInstructionList mInstructionAtIndex !0] ;
+          if [inst instructionSize] == 2 then # Instruction size == 2, perform replacement
+            opt := true ;
+            outOptimizationDone := true ;
+            optimizedInstructionList += !inst ;
+            ioListFileContents .= "  " . inBlockLabel . ", " ;
+            ioListFileContents .= "COMPUTED JSR " . [jsr mTargetLabel] . " to one instruction routine replaced by routine instruction" ;
+            ioListFileContents .= "\n" ;
+          end if ;
+        end if ;
+      end if ;
+    end if ;
+    if not opt then
+      optimizedInstructionList += !mInstruction ;
+    end if ;
+  end foreach ;
+  if outOptimizationDone then
+    outOptimizedInstruction := [@ipic18_intermediate_instruction_computed_rcall new
+      !mInstructionLocation
+      !optimizedInstructionList
+      !mUsesRCALL
+    ] ;
+  else
+    outOptimizedInstruction := selfcopy ;
+  end if ;  
+end method ;
+
+#----------------------------------------------------------------------------*
+
 #!--- Instruction list optimization
 
 #----------------------------------------------------------------------------*
@@ -697,96 +822,131 @@ local routine instructionListOptimization
 :
   outOptimizationDone := false ;
   outOptimizedInstructionList := [@ipic18SequentialInstructionList emptyList] ;
-  foreach inInstructionList index blockIndex do
-    @bool retainInstruction := true ;
-    cast mInstruction
-    when == @ipic18_intermediate_JSR jsr :
-      [inSymbolTable searchKey ![jsr mTargetLabel] ??@uint targetBlockIndex] ; 
-      const @ipic18Block targetBloc := [inBlockList mBlockAtIndex !targetBlockIndex] ;  
-    #--- Remove empty routine calls
-      if ([targetBloc->mInstructionList length] == 0) & (targetBloc->mTerminator is @ipic18ReturnTerminator) then
-        retainInstruction := false ;
-        outOptimizationDone := true ;
-        ioListFileContents .= "  " . inBlockLabel . ": " ;
-        ioListFileContents .= "call to empty " . [jsr mTargetLabel] . " routine deleted" ;
-        ioListFileContents .= "\n" ;
-    #--- Replace call to a RETLW routine with a MOVLW instruction
-      elsif ([targetBloc->mInstructionList length] == 0) & (targetBloc->mTerminator is @ipic18RetlwTerminator) then
-        const @ipic18RetlwTerminator t := (cast targetBloc->mTerminator : @ipic18RetlwTerminator) ;
-        retainInstruction := false ;
-        outOptimizationDone := true ;
-        ioListFileContents .= "  " . inBlockLabel . ": " ;
-        ioListFileContents .= "call to RETLW " . [jsr mTargetLabel] . " routine transformed to MOVLW" ;
-        ioListFileContents .= "\n" ;
-        outOptimizedInstructionList += ![@ipic18_intermediate_instruction_literalOperation new
-          ![jsr mInstructionLocation]
-          ![@literal_instruction_opcode MOVLW]
-          ![t mLiteralValue]
-        ] ;
-    #--- Replace call to a single instruction routine with the routine instruction
-      elsif ((blockIndex + 1) < [inInstructionList length])
-          & ([targetBloc->mInstructionList length] == 1)
-          & (targetBloc->mTerminator is @ipic18ReturnTerminator) then
-        @ipic18SequentialInstruction instruction := [targetBloc->mInstructionList mInstructionAtIndex !0] ;
-        outOptimizedInstructionList += !instruction ;
-        retainInstruction := false ;
-        outOptimizationDone := true ;
-        ioListFileContents .= "  " . inBlockLabel . ", " ;
-        ioListFileContents .= "call to single instruction routine " . [jsr mTargetLabel] . " replaced by this single instruction" ;
-        ioListFileContents .= "\n" ;
-      end if ;    
-  #--- Optimize COMPUTED RCALL instruction (only if not last block instruction)
-    when == @ipic18_intermediate_instruction_computed_rcall crc :
-      if (blockIndex + 1) < [inInstructionList length] then
-        @bool crcOptimization := false ;
-        @ipic18SequentialInstructionList optimizedInstructionList [emptyList] ;
-        foreach [crc mTargetInstructions] do
-          @bool opt := false ;
-          if (mInstruction is @ipic18_intermediate_JSR) then
-            const @ipic18_intermediate_JSR jsr := (cast mInstruction : @ipic18_intermediate_JSR) ;
-            [inSymbolTable searchKey ![jsr mTargetLabel] ??@uint targetBlockIndex] ; 
-            const @ipic18Block targetBloc := [inBlockList mBlockAtIndex !targetBlockIndex] ;  
-            if (targetBloc->mTerminator is @ipic18ReturnTerminator) then
-              if [targetBloc->mInstructionList length] == 0 then # Empty block, replace by NOP
-                opt := true ;
-                crcOptimization := true ;
-                optimizedInstructionList += ![@ipic18InstructionWithNoOperand new ![jsr mInstructionLocation] ![@pic18InstructionWithNoOperandKind NOP]] ;
-                ioListFileContents .= "  " . inBlockLabel . ", " ;
-                ioListFileContents .= "COMPUTED JSR " . [jsr mTargetLabel] . " to empty routine replaced by NOP" ;
-                ioListFileContents .= "\n" ;
-              elsif [targetBloc->mInstructionList length] == 1 then # One instruction block
-                const @ipic18SequentialInstruction inst := [targetBloc->mInstructionList mInstructionAtIndex !0] ;
-                if [inst instructionSize] == 2 then # Instruction size == 2, perform replacement
-                  opt := true ;
-                  crcOptimization := true ;
-                  optimizedInstructionList += !inst ;
-                  ioListFileContents .= "  " . inBlockLabel . ", " ;
-                  ioListFileContents .= "COMPUTED JSR " . [jsr mTargetLabel] . " to one instruction routine replaced by routine instruction" ;
-                  ioListFileContents .= "\n" ;
-                end if ;
-              end if ;
-            end if ;
-          end if ;
-          if not opt then
-            optimizedInstructionList += !mInstruction ;
-          end if ;
-        end foreach ;
-        if crcOptimization then
-          retainInstruction := false ;
-          outOptimizationDone := true ;
-          outOptimizedInstructionList += ![@ipic18_intermediate_instruction_computed_rcall new
-            ![crc mInstructionLocation]
-            !optimizedInstructionList
-            ![crc mUsesRCALL]
-          ] ;
-        end if ;  
-      end if ;
-    end cast ;
-    if retainInstruction then
-      outOptimizedInstructionList += !mInstruction ;
+  foreach inInstructionList do
+    [mInstruction optimizeInstruction
+      !inSymbolTable
+      !inBlockList
+      !inBlockLabel
+      ??@bool optimizationDone
+      !?ioListFileContents
+      ??@ipic18SequentialInstruction optimizedInstruction
+      ??@bool NOPsubstitution
+    ] ;
+    if optimizationDone then
+      outOptimizationDone := true ;
+    end if ;
+    if not NOPsubstitution then
+      outOptimizedInstructionList += !optimizedInstruction ;
     end if ;
   end foreach ;
 end routine ;
+
+#----------------------------------------------------------------------------*
+
+#local routine instructionListOptimization
+#  ??@symbolTableForBlockOptimization inSymbolTable
+#  ??@ipic18BlockList inBlockList
+#  ??@ipic18SequentialInstructionList inInstructionList
+#  ??@lstring inBlockLabel
+#  !@bool outOptimizationDone
+#  ?!@string ioListFileContents
+#  !@ipic18SequentialInstructionList outOptimizedInstructionList
+#:
+#  outOptimizationDone := false ;
+#  outOptimizedInstructionList := [@ipic18SequentialInstructionList emptyList] ;
+#  foreach inInstructionList index blockIndex do
+#    @bool retainInstruction := true ;
+#    cast mInstruction
+#    when == @ipic18_condition_skip_instruction si :
+#      const @ipic18SequentialInstruction eb := [si mEmbeddedInstruction] ;
+#
+#    when == @ipic18_intermediate_JSR jsr :
+#      [inSymbolTable searchKey ![jsr mTargetLabel] ??@uint targetBlockIndex] ; 
+#      const @ipic18Block targetBloc := [inBlockList mBlockAtIndex !targetBlockIndex] ;  
+#    #--- Remove empty routine calls
+#      if ([targetBloc->mInstructionList length] == 0) & (targetBloc->mTerminator is @ipic18ReturnTerminator) then
+#        retainInstruction := false ;
+#        outOptimizationDone := true ;
+#        ioListFileContents .= "  " . inBlockLabel . ": " ;
+#        ioListFileContents .= "call to empty " . [jsr mTargetLabel] . " routine deleted" ;
+#        ioListFileContents .= "\n" ;
+#    #--- Replace call to a RETLW routine with a MOVLW instruction
+#      elsif ([targetBloc->mInstructionList length] == 0) & (targetBloc->mTerminator is @ipic18RetlwTerminator) then
+#        const @ipic18RetlwTerminator t := (cast targetBloc->mTerminator : @ipic18RetlwTerminator) ;
+#        retainInstruction := false ;
+#        outOptimizationDone := true ;
+#        ioListFileContents .= "  " . inBlockLabel . ": " ;
+#        ioListFileContents .= "call to RETLW " . [jsr mTargetLabel] . " routine transformed to MOVLW" ;
+#        ioListFileContents .= "\n" ;
+#        outOptimizedInstructionList += ![@ipic18_intermediate_instruction_literalOperation new
+#          ![jsr mInstructionLocation]
+#          ![@literal_instruction_opcode MOVLW]
+#          ![t mLiteralValue]
+#        ] ;
+#    #--- Replace call to a single instruction routine with the routine instruction
+#      elsif ((blockIndex + 1) < [inInstructionList length])
+#          & ([targetBloc->mInstructionList length] == 1)
+#          & (targetBloc->mTerminator is @ipic18ReturnTerminator) then
+#        @ipic18SequentialInstruction instruction := [targetBloc->mInstructionList mInstructionAtIndex !0] ;
+#        outOptimizedInstructionList += !instruction ;
+#        retainInstruction := false ;
+#        outOptimizationDone := true ;
+#        ioListFileContents .= "  " . inBlockLabel . ", " ;
+#        ioListFileContents .= "call to single instruction routine " . [jsr mTargetLabel] . " replaced by this single instruction" ;
+#        ioListFileContents .= "\n" ;
+#      end if ;    
+#  #--- Optimize COMPUTED RCALL instruction (only if not last block instruction)
+#    when == @ipic18_intermediate_instruction_computed_rcall crc :
+#      if (blockIndex + 1) < [inInstructionList length] then
+#        @bool crcOptimization := false ;
+#        @ipic18SequentialInstructionList optimizedInstructionList [emptyList] ;
+#        foreach [crc mTargetInstructions] do
+#          @bool opt := false ;
+#          if (mInstruction is @ipic18_intermediate_JSR) then
+#            const @ipic18_intermediate_JSR jsr := (cast mInstruction : @ipic18_intermediate_JSR) ;
+#            [inSymbolTable searchKey ![jsr mTargetLabel] ??@uint targetBlockIndex] ; 
+#            const @ipic18Block targetBloc := [inBlockList mBlockAtIndex !targetBlockIndex] ;  
+#            if (targetBloc->mTerminator is @ipic18ReturnTerminator) then
+#              if [targetBloc->mInstructionList length] == 0 then # Empty block, replace by NOP
+#                opt := true ;
+#                crcOptimization := true ;
+#                optimizedInstructionList += ![@ipic18InstructionWithNoOperand new ![jsr mInstructionLocation] ![@pic18InstructionWithNoOperandKind NOP]] ;
+#                ioListFileContents .= "  " . inBlockLabel . ", " ;
+#                ioListFileContents .= "COMPUTED JSR " . [jsr mTargetLabel] . " to empty routine replaced by NOP" ;
+#                ioListFileContents .= "\n" ;
+#              elsif [targetBloc->mInstructionList length] == 1 then # One instruction block
+#                const @ipic18SequentialInstruction inst := [targetBloc->mInstructionList mInstructionAtIndex !0] ;
+#                if [inst instructionSize] == 2 then # Instruction size == 2, perform replacement
+#                  opt := true ;
+#                  crcOptimization := true ;
+#                  optimizedInstructionList += !inst ;
+#                  ioListFileContents .= "  " . inBlockLabel . ", " ;
+#                  ioListFileContents .= "COMPUTED JSR " . [jsr mTargetLabel] . " to one instruction routine replaced by routine instruction" ;
+#                  ioListFileContents .= "\n" ;
+#                end if ;
+#              end if ;
+#            end if ;
+#          end if ;
+#          if not opt then
+#            optimizedInstructionList += !mInstruction ;
+#          end if ;
+#        end foreach ;
+#        if crcOptimization then
+#          retainInstruction := false ;
+#          outOptimizationDone := true ;
+#          outOptimizedInstructionList += ![@ipic18_intermediate_instruction_computed_rcall new
+#            ![crc mInstructionLocation]
+#            !optimizedInstructionList
+#            ![crc mUsesRCALL]
+#          ] ;
+#        end if ;  
+#      end if ;
+#    end cast ;
+#    if retainInstruction then
+#      outOptimizedInstructionList += !mInstruction ;
+#    end if ;
+#  end foreach ;
+#end routine ;
 
 #----------------------------------------------------------------------------*
 
