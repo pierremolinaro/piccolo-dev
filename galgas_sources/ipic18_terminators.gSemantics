@@ -365,8 +365,8 @@ override method @pic18BitTestTerminator generateCode
 :
   if [mInstructionIfConditionTrue terminatorSize !inNextBlockLabel] == 0 then
   #--- Generate direct code (no code for true terminator)
-    @uint binCode := 0xA000 ;
-    @string assemblyCode := "    BTFSS " . [mRegisterDescription mAssemblyString] . ", " . mBitNumber ;
+    @uint binCode := 0xB000 ;
+    @string assemblyCode := "    BTFSC " . [mRegisterDescription mAssemblyString] . ", " . mBitNumber ;
     binCode := binCode | ([mRegisterDescription mRegisterAddress] & 255) ;
     binCode := binCode | (mBitNumber << 9) ;
     if [mRegisterDescription mNeedsBSR] then
@@ -386,8 +386,8 @@ override method @pic18BitTestTerminator generateCode
      outCode .= falseTerminatorCode ;
   else
   #--- Generate complementary code (true terminator first terminator)
-    @uint binCode := 0xB000 ;
-    @string assemblyCode := "    BTFSC " . [mRegisterDescription mAssemblyString] . ", " . mBitNumber ;
+    @uint binCode := 0xA000 ;
+    @string assemblyCode := "    BTFSS " . [mRegisterDescription mAssemblyString] . ", " . mBitNumber ;
     binCode := binCode | ([mRegisterDescription mRegisterAddress] & 255) ;
     binCode := binCode | (mBitNumber << 9) ;
     if [mRegisterDescription mNeedsBSR] then
