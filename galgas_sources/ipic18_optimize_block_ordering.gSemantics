@@ -443,14 +443,33 @@ local routine buildOrderedGraph
     end if ;
   end foreach ;
 #--- Write Graphviz file
-  [[g graphviz] writeToFileWhenDifferentContents !inSourceFileName. ".orderedBlocks1.dot" ?*] ;
+  [[g graphviz] writeToFileWhenDifferentContents !inSourceFileName. ".blockOrderingConstraints.dot" ?*] ;
   [!?g removeEdgesToDominators] ;
-  [[g graphviz] writeToFileWhenDifferentContents !inSourceFileName. ".orderedBlocks2.dot" ?*] ;
+  [[g graphviz] writeToFileWhenDifferentContents !inSourceFileName. ".blockOrderingConstraintsWoCycle.dot" ?*] ;
+#----
+  [g nodesWithNoPredecessor ?* ??@lstringlist nodeList] ;
+  @stringlist newOrderedLabelList [emptyList] ;
+  @stringset visitedNodeSet [emptySet] ;
+  foreach nodeList do
+    @blockInvocationGraph gg := [g subgraphFromNodes
+      ![@lstringlist listWithValue !mValue]
+      !visitedNodeSet
+    ] ;
+    foreach [gg keyList] do
+      visitedNodeSet += ! mValue ;
+    end foreach ;    
+    [!?gg removeEdgesToDominators] ;
+    [[gg reversedGraph] depthFirstTopologicalSort
+      ??@stringlist partialOrderedLabelList
+      ?3*
+    ] ;
+    newOrderedLabelList .= partialOrderedLabelList ;
+  end foreach ;
 #--- Topological sort
-  [[g reversedGraph] depthFirstTopologicalSort
-    ??@stringlist orderedLabelList
-    ?3*
-  ] ;
+#  [[g reversedGraph] depthFirstTopologicalSort
+#    ??@stringlist orderedLabelList
+#    ?3*
+#  ] ;
 #----------------------- Build sorted block list
   @ipic18BlockList orderedBlockList [emptyList] ;
 #--- First insert absolute blocks from 0
@@ -462,7 +481,7 @@ local routine buildOrderedGraph
     end if ;
   end foreach ; 
 #--- Insert sorted blocks 
-  foreach orderedLabelList do
+  foreach newOrderedLabelList do
     [symbolTable searchKey ![mValue nowhere] ??@uint blockIndex] ;
     const @ipic18Block b := [ioBlockList mBlockAtIndex !blockIndex] ;
     orderedBlockList += !b ;
