@@ -3,6 +3,14 @@ import "pic18_metamodel.gSemantics" ;
 
 #----------------------------------------------------------------------------*
 
+map @pic18_dataMap {
+  @uintlist mData ;
+  insert insertKey error message "the '%K' data is already declared" ;
+  search searchKey error message "the '%K' data is not declared" ;
+}
+
+#----------------------------------------------------------------------------*
+
 abstract class @ipic18SequentialInstruction {
   @location mInstructionLocation ;
 }
@@ -349,9 +357,18 @@ list @codeList {
   
 #----------------------------------------------------------------------------*
 
+map @pic18_dataAddressMap {
+  @uint mDataAddress ;
+  insert insertKey error message "the '%K' data is already declared" ;
+  search searchKey error message "the '%K' data is not declared" ;
+}
+
+#----------------------------------------------------------------------------*
+
 abstract method @ipic18SequentialInstruction generateCode
   ??@uint inAddress
   ??@symbolTableForRelativesResolution inSymbolTable
+  ??@pic18_dataAddressMap inDataMap
   !@codeList outCode
 ;
 

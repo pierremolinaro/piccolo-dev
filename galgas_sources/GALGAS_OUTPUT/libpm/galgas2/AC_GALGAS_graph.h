@@ -89,7 +89,7 @@ class AC_GALGAS_graph : public AC_GALGAS_root {
                                                    const GALGAS_lstring & inTargetNodeKey
                                                    COMMA_LOCATION_ARGS) ;
 
-  public : VIRTUAL_IN_DEBUG void modifier_removeCircularities (LOCATION_ARGS) ;
+  public : VIRTUAL_IN_DEBUG void modifier_removeEdgesToDominators (LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public : typeComparisonResult objectCompare (const AC_GALGAS_graph & inOperand) const ;
@@ -102,6 +102,9 @@ class AC_GALGAS_graph : public AC_GALGAS_root {
                                                  const PMSInt32 inIndentation) const ;
 
 //--- Internal methods for handling graph
+  protected : VIRTUAL_IN_DEBUG void reversedGraphFromGraph (const AC_GALGAS_graph & inGraph
+                                                            COMMA_LOCATION_ARGS) ;
+
   private : VIRTUAL_IN_DEBUG void insulateGraph (LOCATION_ARGS) ;
 
   protected : VIRTUAL_IN_DEBUG void internalAddNode (const GALGAS_lstring & inKey,
@@ -115,12 +118,12 @@ class AC_GALGAS_graph : public AC_GALGAS_root {
 
   public : VIRTUAL_IN_DEBUG GALGAS_lstringlist reader_undefinedNodeReferenceList (LOCATION_ARGS) const ;
 
-  protected : VIRTUAL_IN_DEBUG void internalBreathFirstTopologicalSort (cSharedList * & outSortedList,
-                                                                        GALGAS_lstringlist & outSortedNodeKeyList,
-                                                                        cSharedList * & outUnsortedList,
-                                                                        GALGAS_lstringlist & outUnsortedNodeKeyList,
-                                                                        C_Compiler * inCompiler
-                                                                        COMMA_LOCATION_ARGS) const ;
+  protected : VIRTUAL_IN_DEBUG void internalTopologicalSort (cSharedList * & outSortedList,
+                                                             GALGAS_lstringlist & outSortedNodeKeyList,
+                                                             cSharedList * & outUnsortedList,
+                                                             GALGAS_lstringlist & outUnsortedNodeKeyList,
+                                                             C_Compiler * inCompiler
+                                                             COMMA_LOCATION_ARGS) const ;
 
   protected : VIRTUAL_IN_DEBUG void internalDepthFirstTopologicalSort (cSharedList * & outSortedList,
                                                                        GALGAS_lstringlist & outSortedNodeKeyList,
