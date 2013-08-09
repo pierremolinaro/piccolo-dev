@@ -156,7 +156,7 @@
 		E9D31EA2830A5E73CE3ED328 /* C_Timer.cpp */ = {isa = PBXBuildFile; fileRef = 6595B338AFBAB333C555292A ; settings = {ATTRIBUTES = (); }; };
 		3A0739141292A5429B952FE6 /* C_SharedObject.cpp */ = {isa = PBXBuildFile; fileRef = 5462084C5F4E7E85A093E6D7 ; settings = {ATTRIBUTES = (); }; };
 		48976138166DE32772B1BF40 /* C_Data.cpp */ = {isa = PBXBuildFile; fileRef = C737782DEACEFA532D9ADD4C ; settings = {ATTRIBUTES = (); }; };
-		25EDED36F486BC85FEB3F0AB /* C_BigUInt.cpp */ = {isa = PBXBuildFile; fileRef = B70C9DCD35E62896010CD9FF ; settings = {ATTRIBUTES = (); }; };
+		25EDED36F486BC85FEB3F0AB /* PMUInt128.cpp */ = {isa = PBXBuildFile; fileRef = B70C9DCD35E62896010CD9FF ; settings = {ATTRIBUTES = (); }; };
 		BB602B6D35BEA8460AA8F8E5 /* C_UIntSet.cpp */ = {isa = PBXBuildFile; fileRef = ECE5E7EFEB46DB8F10A74059 ; settings = {ATTRIBUTES = (); }; };
 		5990E441F0FB6F3FAD709E21 /* C_DirectedGraph.cpp */ = {isa = PBXBuildFile; fileRef = 682D36F5C4359F4AE7BD7BA1 ; settings = {ATTRIBUTES = (); }; };
 		A81692282BA642AAFD57BE3A /* C_PrologueEpilogue.cpp */ = {isa = PBXBuildFile; fileRef = 467CCD3AA5AF24DB320235DD ; settings = {ATTRIBUTES = (); }; };
@@ -319,7 +319,7 @@
 		72E08B4C5312DCDAFDF6EF36 /* C_Timer.cpp */ = {isa = PBXBuildFile; fileRef = 6595B338AFBAB333C555292A ; settings = {ATTRIBUTES = (); }; };
 		E6D743BF1E848C206E16A1D7 /* C_SharedObject.cpp */ = {isa = PBXBuildFile; fileRef = 5462084C5F4E7E85A093E6D7 ; settings = {ATTRIBUTES = (); }; };
 		297FE25A71D030B67EB83BFC /* C_Data.cpp */ = {isa = PBXBuildFile; fileRef = C737782DEACEFA532D9ADD4C ; settings = {ATTRIBUTES = (); }; };
-		9A4FEAB575962E78E006250D /* C_BigUInt.cpp */ = {isa = PBXBuildFile; fileRef = B70C9DCD35E62896010CD9FF ; settings = {ATTRIBUTES = (); }; };
+		9A4FEAB575962E78E006250D /* PMUInt128.cpp */ = {isa = PBXBuildFile; fileRef = B70C9DCD35E62896010CD9FF ; settings = {ATTRIBUTES = (); }; };
 		4F5350C12C322B5B664544C1 /* C_UIntSet.cpp */ = {isa = PBXBuildFile; fileRef = ECE5E7EFEB46DB8F10A74059 ; settings = {ATTRIBUTES = (); }; };
 		884A62116BE975A9BB8257E3 /* C_DirectedGraph.cpp */ = {isa = PBXBuildFile; fileRef = 682D36F5C4359F4AE7BD7BA1 ; settings = {ATTRIBUTES = (); }; };
 		0C3540F67C1E9575E213BE0A /* C_PrologueEpilogue.cpp */ = {isa = PBXBuildFile; fileRef = 467CCD3AA5AF24DB320235DD ; settings = {ATTRIBUTES = (); }; };
@@ -413,8 +413,6 @@
 		08E46495A8DA1E5352D03CAE /* C_BDD_Set2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "C_BDD_Set2.h"; path = "C_BDD_Set2.h"; sourceTree = "<group>"; };
 		C77E35A4A3F3CBD1E429B5DC /* C_BDD_Set3.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "C_BDD_Set3.cpp"; path = "C_BDD_Set3.cpp"; sourceTree = "<group>"; };
 		18FCB43975065399B0D1E48E /* C_BDD_Set3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "C_BDD_Set3.h"; path = "C_BDD_Set3.h"; sourceTree = "<group>"; };
-		B70C9DCD35E62896010CD9FF /* C_BigUInt.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "C_BigUInt.cpp"; path = "C_BigUInt.cpp"; sourceTree = "<group>"; };
-		D4B7B94528899DE0A43B9FB3 /* C_BigUInt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "C_BigUInt.h"; path = "C_BigUInt.h"; sourceTree = "<group>"; };
 		E1833F3FDB077CA70BBD5D66 /* C_BinaryFileWrite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "C_BinaryFileWrite.cpp"; path = "C_BinaryFileWrite.cpp"; sourceTree = "<group>"; };
 		5FC9A3002CE38BBE070EC3F5 /* C_BinaryFileWrite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "C_BinaryFileWrite.h"; path = "C_BinaryFileWrite.h"; sourceTree = "<group>"; };
 		59E3BB12D203F45A912EEAF2 /* C_BoolCommandLineOption.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "C_BoolCommandLineOption.cpp"; path = "C_BoolCommandLineOption.cpp"; sourceTree = "<group>"; };
@@ -562,6 +560,8 @@
 		A0B923820DCC509A6F75849B /*  */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xib; name = ""; path = "./PMPiccoloCocoa.xib"; sourceTree = "<group>"; };
 		0AD8981CA2C8286F79F59954 /* PMTabBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "PMTabBarView.h"; path = "PMTabBarView.h"; sourceTree = "<group>"; };
 		10729ED4DA8C3D3F5A3AE7C9 /* PMTabBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.obj; name = "PMTabBarView.m"; path = "PMTabBarView.m"; sourceTree = "<group>"; };
+		B70C9DCD35E62896010CD9FF /* PMUInt128.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "PMUInt128.cpp"; path = "PMUInt128.cpp"; sourceTree = "<group>"; };
+		D4B7B94528899DE0A43B9FB3 /* PMUInt128.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "PMUInt128.h"; path = "PMUInt128.h"; sourceTree = "<group>"; };
 		84804B9F647BC185A877A8B5 /* PMUndoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "PMUndoManager.h"; path = "PMUndoManager.h"; sourceTree = "<group>"; };
 		325A8F591B52D302E7181331 /* PMUndoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.obj; name = "PMUndoManager.m"; path = "PMUndoManager.m"; sourceTree = "<group>"; };
 		E05EBD93369CE542E8F2322D /* PP_CocoaGalgasPrefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.pch; name = "PP_CocoaGalgasPrefix.pch"; path = "PP_CocoaGalgasPrefix.pch"; sourceTree = "<group>"; };
@@ -1236,8 +1236,8 @@
 				E0800B49D76FED33A21F6698 /* MF_MemoryControl.h */,
 				467CCD3AA5AF24DB320235DD /* C_PrologueEpilogue.cpp */,
 				56EA8AE0BE8B5306971900A4 /* C_PrologueEpilogue.h */,
-				B70C9DCD35E62896010CD9FF /* C_BigUInt.cpp */,
-				D4B7B94528899DE0A43B9FB3 /* C_BigUInt.h */,
+				B70C9DCD35E62896010CD9FF /* PMUInt128.cpp */,
+				D4B7B94528899DE0A43B9FB3 /* PMUInt128.h */,
 				ECE5E7EFEB46DB8F10A74059 /* C_UIntSet.cpp */,
 				EE7B0833588399B1FCD177C7 /* C_UIntSet.h */,
 				682D36F5C4359F4AE7BD7BA1 /* C_DirectedGraph.cpp */,
