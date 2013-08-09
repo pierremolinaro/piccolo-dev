@@ -510,6 +510,7 @@ end reader ;
 routine computeLabelAbsoluteAddressMap
   ??@ipic18BlockList inGeneratedBlockList
   !@symbolTableForRelativesResolution outSymbolTable
+  !@uint outFreeAddress
 :
   outSymbolTable := [@symbolTableForRelativesResolution emptyMap] ;
   @uint blockStartAddress := 0 ;
@@ -527,6 +528,7 @@ routine computeLabelAbsoluteAddressMap
     const @uint blockSize := [mBlock blockSize !nextBlockLabel] ;
     blockStartAddress := blockStartAddress + blockSize ;
   end foreach ;
+  outFreeAddress := blockStartAddress ;
 end routine ;
 
 #----------------------------------------------------------------------------*
@@ -551,6 +553,7 @@ routine ipic18RelativesResolution
     computeLabelAbsoluteAddressMap
       !ioGeneratedBlockList
       ??@symbolTableForRelativesResolution symbolTable
+      ?*
     ;
     ioListFileContents .= "  Pass " . pass . ":\n" ;
     @uint conversionCount := 0 ;
@@ -560,10 +563,10 @@ routine ipic18RelativesResolution
       !?conversionCount
       !?ioListFileContents
     ;
+    resolutionDone := conversionCount == 0 ;
     if [option.verbose_output value] then
       @string s := "--- Pass " . pass . ": " ;
       if conversionCount == 0 then
-        resolutionDone := true ; 
         s .= "none." ;
       elsif conversionCount == 1 then
         s .= "1 conversion" ;

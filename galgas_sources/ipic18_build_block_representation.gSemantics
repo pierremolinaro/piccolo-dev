@@ -3,7 +3,6 @@ import "ipic18_optimize_block.gSemantics" ;
 import "piccoloDevice_semantics.gSemantics" ;
 import "intermediate_generic.gSemantics" ;
 import "ipic18_optimize_block_ordering.gSemantics" ;
-import "ipic18_optimize_block_orderingEX.gSemantics" ;
 import "ipic18_relatives_resolution.gSemantics" ;
 import "ipic18_display_block_list.gSemantics" ;
 import "piccolo_options.gOption" ;
@@ -114,7 +113,7 @@ abstract method @pic18PiccoloSimpleInstruction analyzeSimpleInstruction
   ??@uint unused inAccessBankSplitOffset
   ??@routineMap unused inRoutineMap
   ??@registerTable unused inRegisterTable
-  ??@dataMap unused inDataMap
+  ??@pic18_dataMap unused inDataMap
   ??@constantMap unused inConstantMap
   ?!@uint unused ioCurrentBank
   ??@bool unused inShouldPreserveBSR
@@ -127,7 +126,7 @@ override method @instruction_withNoOperand analyzeSimpleInstruction
   ??@uint unused inAccessBankSplitOffset
   ??@routineMap unused inRoutineMap
   ??@registerTable unused inRegisterTable
-  ??@dataMap unused inDataMap
+  ??@pic18_dataMap unused inDataMap
   ??@constantMap unused inConstantMap
   ?!@uint unused ioCurrentBank
   ??@bool unused inShouldPreserveBSR
@@ -145,7 +144,7 @@ override method @instruction_FDA analyzeSimpleInstruction
   ??@uint inAccessBankSplitOffset
   ??@routineMap unused inRoutineMap
   ??@registerTable inRegisterTable
-  ??@dataMap unused inDataMap
+  ??@pic18_dataMap unused inDataMap
   ??@constantMap unused inConstantMap
   ?!@uint ioCurrentBank
   ??@bool unused inShouldPreserveBSR
@@ -172,7 +171,7 @@ override method @instruction_FA analyzeSimpleInstruction
   ??@uint inAccessBankSplitOffset
   ??@routineMap unused inRoutineMap
   ??@registerTable inRegisterTable
-  ??@dataMap unused inDataMap
+  ??@pic18_dataMap unused inDataMap
   ??@constantMap unused inConstantMap
   ?!@uint ioCurrentBank
   ??@bool unused inShouldPreserveBSR
@@ -212,7 +211,7 @@ override method @instruction_MOVFF analyzeSimpleInstruction
   ??@uint unused inAccessBankSplitOffset
   ??@routineMap unused inRoutineMap
   ??@registerTable inRegisterTable
-  ??@dataMap unused inDataMap
+  ??@pic18_dataMap unused inDataMap
   ??@constantMap unused inConstantMap
   ?!@uint unused ioCurrentBank
   ??@bool unused inShouldPreserveBSR
@@ -239,7 +238,7 @@ override method @instruction_FBA analyzeSimpleInstruction
   ??@uint inAccessBankSplitOffset
   ??@routineMap unused inRoutineMap
   ??@registerTable inRegisterTable
-  ??@dataMap unused inDataMap
+  ??@pic18_dataMap unused inDataMap
   ??@constantMap unused inConstantMap
   ?!@uint ioCurrentBank
   ??@bool unused inShouldPreserveBSR
@@ -270,7 +269,7 @@ override method @instruction_literalOperation analyzeSimpleInstruction
   ??@uint unused inAccessBankSplitOffset
   ??@routineMap unused inRoutineMap
   ??@registerTable inRegisterTable
-  ??@dataMap unused inDataMap
+  ??@pic18_dataMap unused inDataMap
   ??@constantMap inConstantMap
   ?!@uint unused ioCurrentBank
   ??@bool unused inShouldPreserveBSR
@@ -295,7 +294,7 @@ override method @instruction_LFSR analyzeSimpleInstruction
   ??@uint unused inAccessBankSplitOffset
   ??@routineMap unused inRoutineMap
   ??@registerTable inRegisterTable
-  ??@dataMap unused inDataMap
+  ??@pic18_dataMap unused inDataMap
   ??@constantMap inConstantMap
   ?!@uint unused ioCurrentBank
   ??@bool unused inShouldPreserveBSR
@@ -323,7 +322,7 @@ override method @instruction_JSR analyzeSimpleInstruction
   ??@uint unused inAccessBankSplitOffset
   ??@routineMap inRoutineMap
   ??@registerTable unused inRegisterTable
-  ??@dataMap unused inDataMap
+  ??@pic18_dataMap unused inDataMap
   ??@constantMap unused inConstantMap
   ?!@uint ioCurrentBank
   ??@bool inShouldPreserveBSR
@@ -369,7 +368,7 @@ abstract method @pic18PiccoloInstruction analyze
   ?!@ipic18BlockList ioGeneratedBlockList
   ??@routineMap unused inRoutineMap
   ??@registerTable unused inRegisterTable
-  ??@dataMap unused inDataMap
+  ??@pic18_dataMap unused inDataMap
   ??@constantMap unused inConstantMap
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic18Block unused ioCurrentBlock
@@ -387,7 +386,7 @@ override method @pic18PiccoloSimpleInstruction analyze
   ?!@ipic18BlockList unused ioGeneratedBlockList
   ??@routineMap inRoutineMap
   ??@registerTable inRegisterTable
-  ??@dataMap inDataMap
+  ??@pic18_dataMap inDataMap
   ??@constantMap inConstantMap
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic18Block ioCurrentBlock
@@ -417,7 +416,7 @@ override method @instruction_FOREVER analyze
   ?!@ipic18BlockList ioGeneratedBlockList
   ??@routineMap inRoutineMap
   ??@registerTable inRegisterTable
-  ??@dataMap inDataMap
+  ??@pic18_dataMap inDataMap
   ??@constantMap inConstantMap
   ?!@uint ioLocalLabelIndex
   ?!@ipic18Block ioCurrentBlock
@@ -480,7 +479,7 @@ override method @instruction_nobanksel analyze
   ?!@ipic18BlockList unused ioGeneratedBlockList
   ??@routineMap unused inRoutineMap
   ??@registerTable unused inRegisterTable
-  ??@dataMap unused inDataMap
+  ??@pic18_dataMap unused inDataMap
   ??@constantMap unused inConstantMap
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic18Block unused ioCurrentBlock
@@ -503,7 +502,7 @@ override method @instruction_savebank analyze
   ?!@ipic18BlockList ioGeneratedBlockList
   ??@routineMap inRoutineMap
   ??@registerTable inRegisterTable
-  ??@dataMap inDataMap
+  ??@pic18_dataMap inDataMap
   ??@constantMap inConstantMap
   ?!@uint ioLocalLabelIndex
   ?!@ipic18Block ioCurrentBlock
@@ -566,7 +565,7 @@ override method @instruction_banksel analyze
   ?!@ipic18BlockList unused ioGeneratedBlockList
   ??@routineMap unused inRoutineMap
   ??@registerTable unused inRegisterTable
-  ??@dataMap unused inDataMap
+  ??@pic18_dataMap unused inDataMap
   ??@constantMap unused inConstantMap
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic18Block ioCurrentBlock
@@ -597,7 +596,7 @@ override method @instruction_banksel_register analyze
   ?!@ipic18BlockList unused ioGeneratedBlockList
   ??@routineMap unused inRoutineMap
   ??@registerTable inRegisterTable
-  ??@dataMap unused inDataMap
+  ??@pic18_dataMap unused inDataMap
   ??@constantMap unused inConstantMap
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic18Block ioCurrentBlock
@@ -629,7 +628,7 @@ override method @instruction_TBLRD analyzeSimpleInstruction
   ??@uint unused inAccessBankSplitOffset
   ??@routineMap unused inRoutineMap
   ??@registerTable unused inRegisterTable
-  ??@dataMap unused inDataMap
+  ??@pic18_dataMap unused inDataMap
   ??@constantMap unused inConstantMap
   ?!@uint unused ioCurrentBank
   ??@bool unused inShouldPreserveBSR
@@ -647,7 +646,7 @@ override method @instruction_TBLWT analyzeSimpleInstruction
   ??@uint unused inAccessBankSplitOffset
   ??@routineMap unused inRoutineMap
   ??@registerTable unused inRegisterTable
-  ??@dataMap unused inDataMap
+  ??@pic18_dataMap unused inDataMap
   ??@constantMap unused inConstantMap
   ?!@uint unused ioCurrentBank
   ??@bool unused inShouldPreserveBSR
@@ -666,7 +665,7 @@ override method @instruction_MNOP analyze
   ?!@ipic18BlockList unused ioGeneratedBlockList
   ??@routineMap unused inRoutineMap
   ??@registerTable unused inRegisterTable
-  ??@dataMap unused inDataMap
+  ??@pic18_dataMap unused inDataMap
   ??@constantMap unused inConstantMap
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic18Block ioCurrentBlock
@@ -694,7 +693,7 @@ override method @instruction_LTBLPTR analyze
   ?!@ipic18BlockList unused ioGeneratedBlockList
   ??@routineMap unused inRoutineMap
   ??@registerTable inRegisterTable
-  ??@dataMap unused inDataMap
+  ??@pic18_dataMap unused inDataMap
   ??@constantMap inConstantMap
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic18Block ioCurrentBlock
@@ -821,7 +820,7 @@ override method @instruction_LDATAPTR analyze
   ?!@ipic18BlockList unused ioGeneratedBlockList
   ??@routineMap unused inRoutineMap
   ??@registerTable inRegisterTable
-  ??@dataMap inDataMap
+  ??@pic18_dataMap inDataMap
   ??@constantMap unused inConstantMap
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic18Block ioCurrentBlock
@@ -831,11 +830,10 @@ override method @instruction_LDATAPTR analyze
   ?!@bool unused ioContinuesInSequence
   ??@routineKind unused inRoutineKind
 :
-  [inDataMap searchKey !mDataName ?@uint dataSize] ;
-  const @lstring labelName [new !"_data_" . mDataName !mDataName->location] ;
+  [inDataMap searchKey !mDataName ??@uintlist data] ;
 #--- Check index
-  if [mDataIndex uint] >= dataSize then
-    error mDataIndex: "index should be < " . dataSize ;
+  if [mDataIndex uint] >= [data length] then
+    error mDataIndex: "index should be < " . [data length] ;
   end if ;
 #--- Upper byte
   const @registerExpression TBLPTRU [new ![@lstring new !"TBLPTRU" !mInstructionLocation] ![@luint new !0 !mInstructionLocation]] ;
@@ -848,7 +846,7 @@ override method @instruction_LDATAPTR analyze
   ] ;
   ioCurrentBlock->mInstructionList += ![@ipic18_intermediate_MOV_LABEL_W new
     !mInstructionLocation
-    !labelName
+    !mDataName
     ![mDataIndex uint] * 2
     !16
   ] ;
@@ -868,7 +866,7 @@ override method @instruction_LDATAPTR analyze
   ] ;
   ioCurrentBlock->mInstructionList += ![@ipic18_intermediate_MOV_LABEL_W new
     !mInstructionLocation
-    !labelName
+    !mDataName
     ![mDataIndex uint] * 2
     !8
   ] ;
@@ -888,7 +886,7 @@ override method @instruction_LDATAPTR analyze
   ] ;
   ioCurrentBlock->mInstructionList += ![@ipic18_intermediate_MOV_LABEL_W new
     !mInstructionLocation
-    !labelName
+    !mDataName
     ![mDataIndex uint] * 2
     !0
   ] ;
@@ -906,7 +904,7 @@ override method @instruction_JUMP analyze
   ?!@ipic18BlockList unused ioGeneratedBlockList
   ??@routineMap inRoutineMap
   ??@registerTable unused inRegisterTable
-  ??@dataMap unused inDataMap
+  ??@pic18_dataMap unused inDataMap
   ??@constantMap unused inConstantMap
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic18Block ioCurrentBlock
@@ -943,7 +941,7 @@ override method @instruction_computed_rcall analyze
   ?!@ipic18BlockList unused ioGeneratedBlockList
   ??@routineMap inRoutineMap
   ??@registerTable inRegisterTable
-  ??@dataMap unused inDataMap
+  ??@pic18_dataMap unused inDataMap
   ??@constantMap inConstantMap
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic18Block ioCurrentBlock
@@ -1028,7 +1026,7 @@ override method @instruction_computed_goto analyze
   ?!@ipic18BlockList unused ioGeneratedBlockList
   ??@routineMap inRoutineMap
   ??@registerTable inRegisterTable
-  ??@dataMap unused inDataMap
+  ??@pic18_dataMap unused inDataMap
   ??@constantMap inConstantMap
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic18Block ioCurrentBlock
@@ -1087,7 +1085,7 @@ override method @instruction_computed_retlw analyze
   ?!@ipic18BlockList unused ioGeneratedBlockList
   ??@routineMap unused inRoutineMap
   ??@registerTable inRegisterTable
-  ??@dataMap unused inDataMap
+  ??@pic18_dataMap unused inDataMap
   ??@constantMap inConstantMap
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic18Block ioCurrentBlock
@@ -1138,7 +1136,7 @@ override method @instruction_JUMPCC analyze
   ?!@ipic18BlockList unused ioGeneratedBlockList
   ??@routineMap inRoutineMap
   ??@registerTable unused inRegisterTable
-  ??@dataMap unused inDataMap
+  ??@pic18_dataMap unused inDataMap
   ??@constantMap unused  inConstantMap
   ?!@uint ioLocalLabelIndex
   ?!@ipic18Block ioCurrentBlock
@@ -1199,7 +1197,7 @@ override method @instruction_computed_bra analyze
   ?!@ipic18BlockList unused ioGeneratedBlockList
   ??@routineMap inRoutineMap
   ??@registerTable inRegisterTable
-  ??@dataMap unused inDataMap
+  ??@pic18_dataMap unused inDataMap
   ??@constantMap inConstantMap
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic18Block ioCurrentBlock
@@ -1282,7 +1280,7 @@ override method @instruction_IF_BitTest analyze
   ?!@ipic18BlockList unused ioGeneratedBlockList
   ??@routineMap inRoutineMap
   ??@registerTable inRegisterTable
-  ??@dataMap inDataMap
+  ??@pic18_dataMap inDataMap
   ??@constantMap inConstantMap
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic18Block ioCurrentBlock
@@ -1337,7 +1335,7 @@ override method @instruction_IF_FA_SEMI_COLON analyze
   ?!@ipic18BlockList unused ioGeneratedBlockList
   ??@routineMap inRoutineMap
   ??@registerTable inRegisterTable
-  ??@dataMap inDataMap
+  ??@pic18_dataMap inDataMap
   ??@constantMap inConstantMap
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic18Block ioCurrentBlock
@@ -1393,7 +1391,7 @@ override method @instruction_IF_IncDec analyze
   ?!@ipic18BlockList unused ioGeneratedBlockList
   ??@routineMap inRoutineMap
   ??@registerTable inRegisterTable
-  ??@dataMap inDataMap
+  ??@pic18_dataMap inDataMap
   ??@constantMap inConstantMap
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic18Block ioCurrentBlock
@@ -1455,7 +1453,7 @@ override method @instruction_structured_if analyze
   ?!@ipic18BlockList ioGeneratedBlockList
   ??@routineMap inRoutineMap
   ??@registerTable inRegisterTable
-  ??@dataMap inDataMap
+  ??@pic18_dataMap inDataMap
   ??@constantMap inConstantMap
   ?!@uint ioLocalLabelIndex
   ?!@ipic18Block ioCurrentBlock
@@ -1563,7 +1561,7 @@ override method @instruction_do_while analyze
   ?!@ipic18BlockList ioGeneratedBlockList
   ??@routineMap inRoutineMap
   ??@registerTable inRegisterTable
-  ??@dataMap inDataMap
+  ??@pic18_dataMap inDataMap
   ??@constantMap inConstantMap
   ?!@uint ioLocalLabelIndex
   ?!@ipic18Block ioCurrentBlock
@@ -1989,7 +1987,7 @@ local routine analyzeInstructionList
   ??@uint inAccessBankSplitOffset
   ??@routineMap inRoutineMap
   ??@registerTable inRegisterTable
-  ??@dataMap inDataMap
+  ??@pic18_dataMap inDataMap
   ??@constantMap inConstantMap
   ?!@uint ioLocalLabelIndex
   ?!@ipic18Block ioCurrentBlock
@@ -2024,6 +2022,39 @@ local routine analyzeInstructionList
 end routine ;
 
 #----------------------------------------------------------------------------*
+#                                                                            *
+#               A N A L Y Z E    D A T A    S E C T I O N                    *
+#                                                                            *
+#----------------------------------------------------------------------------*
+
+local routine pic18_analyze_data_sections
+  ??@dataList inDataDefinitionList
+  ?!@string ioListFileContents
+  !@pic18_dataMap outDataMap
+  ?!@constantMap ioConstantMap
+:
+  outDataMap := [@pic18_dataMap emptyMap] ;
+  foreach inDataDefinitionList
+  before
+    ioListFileContents .= "*******************************************************************************\n" ;
+    ioListFileContents .= "*                    D A T A    D E C L A R A T I O N                         *\n" ;
+    ioListFileContents .= "*******************************************************************************\n\n" ;
+  do
+    ioListFileContents .= "Data '" . mDataName . "', " . [mValueList length] . " words (" . [mValueList length] * 2 . " bytes).\n" ; 
+    [!?ioConstantMap insertKey ![@lstring new !mDataName->string . "_BYTE_COUNT" !mDataName->location] ![[mValueList length] * 2 sint]] ;
+    @uintlist data [emptyList] ;
+    foreach mValueList do
+      if mValue->uint > 65535 then
+        error mValue: "data value is " . [mValue->uint hexString] . " (greater than 0xFFFF)" ;
+      else
+        data += !mValue->uint ;
+      end if ;
+    end foreach ;
+    [!?outDataMap insertKey !mDataName !data] ;
+  end foreach ;
+end routine ;
+
+#----------------------------------------------------------------------------*
 
 routine build_ipic18_block_representation_list
   ??@string inSourceFileName
@@ -2036,11 +2067,9 @@ routine build_ipic18_block_representation_list
   ??@routineDeclarationList inUserRoutineDeclarationListForUserProgramImplementation
   ??@uint inAccessBankSplitOffset
   ??@registerTable inRegisterTable
-  ??@dataMap inDataMap
   ??@piccoloModel inPiccoloModel
   ??@bool inHasHighInterrupt
   ??@bool inHasLowInterrupt
-  ??@constantMap inDataLengthConstantMap
   ??@string inProcessorName
   ??@registerTable inPredefinedRegisters
   ??@actualConfigurationMap inActualConfigurationMap
@@ -2064,7 +2093,7 @@ routine build_ipic18_block_representation_list
     [!?routineMap insertKey !mRoutineName !mIsNoReturn ![mRequiredBank uint] ![mReturnedBank uint] !mPreservesBank] ;
   end foreach ;
 #-------------------------------- Build constant map
-  @constantMap constantMap := inDataLengthConstantMap ;
+  @constantMap constantMap [emptyMap] ;
 #--- Add "ROM_SIZE" and "RAM_SIZE" constants
   [!?constantMap insertKey ![@lstring new !"ROM_SIZE" !here] !inROMSize] ;
   [!?constantMap insertKey ![@lstring new !"RAM_SIZE" !here] !inRAMSize] ;
@@ -2082,6 +2111,13 @@ routine build_ipic18_block_representation_list
       [!?constantMap insertKey !mConstantName !result] ;
     end if ;
   end foreach ;
+#-------------------------------- Analyze Data
+  pic18_analyze_data_sections
+    !inPiccoloModel->mDataList
+    !?ioListFileContents
+    ??@pic18_dataMap dataMap
+    !?constantMap
+  ;
 #-------------------------------- Print constant map
   print_constant_definition
     !constantMap
@@ -2213,7 +2249,7 @@ routine build_ipic18_block_representation_list
           !inAccessBankSplitOffset
           !routineMap
           !inRegisterTable
-          !inDataMap
+          !dataMap
           !constantMap
           !?localLabelIndex
           !?currentBlock
@@ -2248,7 +2284,7 @@ routine build_ipic18_block_representation_list
           !inAccessBankSplitOffset
           !routineMap
           !inRegisterTable
-          !inDataMap
+          !dataMap
           !constantMap
           !?localLabelIndex
           !?currentBlock
@@ -2287,7 +2323,7 @@ routine build_ipic18_block_representation_list
       !inAccessBankSplitOffset
       !routineMap
       !inRegisterTable
-      !inDataMap
+      !dataMap
       !constantMap
       !?localLabelIndex
       !?currentBlock
@@ -2428,13 +2464,6 @@ routine build_ipic18_block_representation_list
     displayBlockList !"OPTIMIZED INTERMEDIATE BLOCK REPRESENTATION" !?ioListFileContents !generatedBlockList ;
   end if ;
 #----------------------------------------------------------- Optimize block ordering
-#  if ([@uint errorCount] == 0) & [option piccolo_options.performOptimizations value] then
-#    ipic18OptimizeBlockOrderingEX
-#      !inSourceFileName
-#      !?ioListFileContents
-#      !?generatedBlockList
-#    ;
-#  end if ;
   if ([@uint errorCount] == 0) & [option piccolo_options.performOptimizations value] then
     ipic18OptimizeBlockOrdering
       !inSourceFileName
@@ -2456,6 +2485,7 @@ routine build_ipic18_block_representation_list
       !inProcessorName
       !inPredefinedRegisters
       !inRegisterTable
+      !dataMap
       !inActualConfigurationMap
       !?ioListFileContents
       !generatedBlockList

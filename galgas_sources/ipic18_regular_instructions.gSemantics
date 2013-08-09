@@ -82,6 +82,7 @@ end reader ;
 override method @ipic18InstructionWithNoOperand generateCode
   ??@uint unused inAddress
   ??@symbolTableForRelativesResolution unused inSymbolTable
+  ??@pic18_dataAddressMap unused inDataAddressMap
   !@codeList outCode
 :
   @uint c ;
@@ -154,6 +155,7 @@ end reader ;
 override method @ipic18_intermediate_instruction_FDA generateCode
   ??@uint unused inAddress
   ??@symbolTableForRelativesResolution unused inSymbolTable
+  ??@pic18_dataAddressMap unused inDataAddressMap
   !@codeList outCode
 :
   @uint code ;
@@ -215,6 +217,7 @@ end reader ;
 override method @ipic18_intermediate_instruction_FA generateCode
   ??@uint unused inAddress
   ??@symbolTableForRelativesResolution unused inSymbolTable
+  ??@pic18_dataAddressMap unused inDataAddressMap
   !@codeList outCode
 :
   @uint code ;
@@ -261,6 +264,7 @@ end reader ;
 override method @ipic18_intermediate_instruction_MOVFF generateCode
   ??@uint unused inAddress
   ??@symbolTableForRelativesResolution unused inSymbolTable
+  ??@pic18_dataAddressMap unused inDataAddressMap
   !@codeList outCode
 :
   @uintlist code [emptyList] ;
@@ -288,6 +292,7 @@ end reader ;
 override method @ipic18_intermediate_instruction_literalOperation generateCode
   ??@uint unused inAddress
   ??@symbolTableForRelativesResolution unused inSymbolTable
+  ??@pic18_dataAddressMap unused inDataAddressMap
   !@codeList outCode
 :
   @uint code ;
@@ -331,6 +336,7 @@ end reader ;
 override method @ipic18_intermediate_instruction_LFSR generateCode
   ??@uint unused inAddress
   ??@symbolTableForRelativesResolution unused inSymbolTable
+  ??@pic18_dataAddressMap unused inDataAddressMap
   !@codeList outCode
 :
   @uintlist code [emptyList] ;
@@ -358,6 +364,7 @@ end reader ;
 override method @ipic18_intermediate_instruction_FBA generateCode
   ??@uint unused inAddress
   ??@symbolTableForRelativesResolution unused inSymbolTable
+  ??@pic18_dataAddressMap unused inDataAddressMap
   !@codeList outCode
 :
   @uint code ;
@@ -393,6 +400,7 @@ end reader ;
 override method @ipic18_intermediate_instruction_MOVLB generateCode
   ??@uint unused inAddress
   ??@symbolTableForRelativesResolution unused inSymbolTable
+  ??@pic18_dataAddressMap unused inDataAddressMap
   !@codeList outCode
 :
   const @uint code := 0x0100 | [mBankIndex uint] ;
@@ -418,6 +426,7 @@ end reader ;
 override method @ipic18_intermediate_instruction_TBLRD generateCode
   ??@uint unused inAddress
   ??@symbolTableForRelativesResolution unused inSymbolTable
+  ??@pic18_dataAddressMap unused inDataAddressMap
   !@codeList outCode
 :
   @uint code ;
@@ -449,6 +458,7 @@ end reader ;
 override method @ipic18_intermediate_instruction_TBLWT generateCode
   ??@uint unused inAddress
   ??@symbolTableForRelativesResolution unused inSymbolTable
+  ??@pic18_dataAddressMap unused inDataAddressMap
   !@codeList outCode
 :
   @uint code ;
@@ -488,6 +498,7 @@ end reader ;
 override method @ipic18_intermediate_instruction_MNOP generateCode
   ??@uint unused inAddress
   ??@symbolTableForRelativesResolution unused inSymbolTable
+  ??@pic18_dataAddressMap unused inDataAddressMap
   !@codeList outCode
 :
   outCode := [@codeList emptyList] ;
@@ -515,10 +526,11 @@ end reader ;
 
 override method @ipic18_intermediate_MOV_LABEL_W generateCode
   ??@uint unused inAddress
-  ??@symbolTableForRelativesResolution inSymbolTable
+  ??@symbolTableForRelativesResolution unused inSymbolTable
+  ??@pic18_dataAddressMap inDataAddressMap
   !@codeList outCode
 :
-  [inSymbolTable searchKey !mLabel ??@uint address] ;
+  [inDataAddressMap searchKey !mLabel ??@uint address] ;
   const @uint code := ((address + mOffset) >> mRightShift) & 0xFF ;
   const @uint code_MOVLW := 0x0E00 ;
   outCode := [@codeList listWithValue
@@ -550,6 +562,7 @@ end reader ;
 override method @ipic18_skip_instruction_compare_register generateCode
   ??@uint inAddress
   ??@symbolTableForRelativesResolution inSymbolTable
+  ??@pic18_dataAddressMap inDataAddressMap
   !@codeList outCode
 :
   @uint code ;
@@ -584,6 +597,7 @@ override method @ipic18_skip_instruction_compare_register generateCode
   [mEmbeddedInstruction generateCode
     !inAddress + 2
     !inSymbolTable
+    !inDataAddressMap
     ??@codeList c
   ] ;
   outCode .= c ;
@@ -642,6 +656,7 @@ end reader ;
 override method @ipic18_skip_instruction_BitTestSkip generateCode
   ??@uint inAddress
   ??@symbolTableForRelativesResolution inSymbolTable
+  ??@pic18_dataAddressMap inDataAddressMap
   !@codeList outCode
 :
   @uint code ;
@@ -671,6 +686,7 @@ override method @ipic18_skip_instruction_BitTestSkip generateCode
   [mEmbeddedInstruction generateCode
     !inAddress + 2
     !inSymbolTable
+    !inDataAddressMap
     ??@codeList c
   ] ;
   outCode .= c ;
@@ -736,6 +752,7 @@ end reader ;
 override method @ipic18_skip_instruction_FDA generateCode
   ??@uint inAddress
   ??@symbolTableForRelativesResolution inSymbolTable
+  ??@pic18_dataAddressMap inDataAddressMap
   !@codeList outCode
 :
   @uint code ;
@@ -766,6 +783,7 @@ override method @ipic18_skip_instruction_FDA generateCode
   [mEmbeddedInstruction generateCode
     !inAddress + 2
     !inSymbolTable
+    !inDataAddressMap
     ??@codeList c
   ] ;
   outCode .= c ;
@@ -864,6 +882,7 @@ end reader ;
 override method @ipic18_intermediate_JSR generateCode
   ??@uint inAddress
   ??@symbolTableForRelativesResolution inSymbolTable
+  ??@pic18_dataAddressMap unused inDataAddressMap
   !@codeList outCode
 :
   [inSymbolTable searchKey !mTargetLabel ??@uint targetAddress] ;
@@ -949,6 +968,7 @@ end method ;
 override method @ipic18_intermediate_instruction_computed_rcall generateCode
   ??@uint inAddress
   ??@symbolTableForRelativesResolution inSymbolTable
+  ??@pic18_dataAddressMap inDataAddressMap
   !@codeList outCode
 :
   const @lstring target [new !"_computed_goto_4" !mInstructionLocation] ;
@@ -969,6 +989,7 @@ override method @ipic18_intermediate_instruction_computed_rcall generateCode
     [mInstruction generateCode
       !inAddress
       !inSymbolTable
+      !inDataAddressMap
       ??@codeList instructionCode
     ] ;
     outCode .= instructionCode ;

@@ -70,6 +70,7 @@ end routine ;
 
 method @ipic18Block generateCode
   ??@symbolTableForRelativesResolution inSymbolTable
+  ??@pic18_dataAddressMap inDataMap
   ??@uint inBlockAddress
   ??@string inNextBlockLabel
   ?!@string ioListFileContents
@@ -103,6 +104,7 @@ method @ipic18Block generateCode
     [mInstruction generateCode
       !address
       !inSymbolTable
+      !inDataMap
       ??@codeList code
     ] ;
     generateLineWithCode
@@ -175,6 +177,7 @@ routine ipic18GenerateCode
   ??@string inProcessorName
   ??@registerTable inPredefinedRegisters
   ??@registerTable inAllRegisters
+  ??@pic18_dataMap inDataMap
   ??@actualConfigurationMap inActualConfigurationMap
   ?!@string ioListFileContents
   ??@ipic18BlockList inGeneratedBlockList
@@ -189,11 +192,19 @@ routine ipic18GenerateCode
   computeLabelAbsoluteAddressMap
     !inGeneratedBlockList
     ??@symbolTableForRelativesResolution symbolTable
+    ?@uint freeAddress
   ;
-#--- Generate code
+#--------------------------------- Build Data Address Map
+  @pic18_dataAddressMap dataAddressMap [emptyMap] ;
+  foreach inDataMap do
+    [!?dataAddressMap insertKey !lkey !freeAddress] ;
+    freeAddress := freeAddress + [mData length] * 2 ;
+  end foreach ; 
+#---------------------------------- Generate code
   @string assemblyString := "" ;
   @uint blockStartAddress := 0 ;
   foreach inGeneratedBlockList index blockIndex do
+    #message mBlock->mLabel->string . "\n" ;
     @string nextBlockLabel ;
     if (blockIndex+1) < [inGeneratedBlockList length] then
       nextBlockLabel := [inGeneratedBlockList mBlockAtIndex !blockIndex+1]->mLabel->string ;
@@ -204,10 +215,18 @@ routine ipic18GenerateCode
       blockStartAddress := mBlock->mStartAddress ;
       setEmitAddress !blockStartAddress ;
     end if ;
-    [mBlock generateCode !symbolTable !blockStartAddress !nextBlockLabel !?ioListFileContents !?assemblyString] ;
+    [mBlock generateCode !symbolTable !dataAddressMap !blockStartAddress !nextBlockLabel !?ioListFileContents !?assemblyString] ;
     const @uint blockSize := [mBlock blockSize !nextBlockLabel] ;
     blockStartAddress := blockStartAddress + blockSize ;
   end foreach ;
+#--- Data
+  foreach inDataMap do
+    assemblyString .= "_data_" . lkey . ":\n" ;
+    foreach mData do
+      assemblyString .= "    WORD " . [mValue hexString] . "\n" ;
+      emitCode !mValue ;
+    end foreach ;
+  end foreach ; 
 #----------------------------- Generate HEX file
 #--- Add Configuration
   foreach inActualConfigurationMap do
