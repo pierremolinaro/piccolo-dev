@@ -543,7 +543,7 @@ routine ipic18RelativesResolution
   end if ;
   ioListFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n" ;
   ioListFileContents .= "*" . ["RELATIVES RESOLUTION" stringByLeftAndRightPadding !77 !' '] . "*\n" ;
-  ioListFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n\n" ;
+  ioListFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n" ;
 #---
   @bool resolutionDone := false ;
   @uint pass := 0 ;
@@ -555,7 +555,7 @@ routine ipic18RelativesResolution
       ??@symbolTableForRelativesResolution symbolTable
       ?*
     ;
-    ioListFileContents .= "  Pass " . pass . ":\n" ;
+    ioListFileContents .= "\nPass " . pass . ":\n" ;
     @uint conversionCount := 0 ;
     checkRelativeResolution
       !symbolTable
@@ -577,7 +577,7 @@ routine ipic18RelativesResolution
     end if ;
   end loop ;
   if [option.verbose_output value] then
-    message "\n" ;
+    ioListFileContents .= "  No conversion.\n\n" ;
   end if ;
 end routine ;
 
