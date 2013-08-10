@@ -1,7 +1,8 @@
-semantics ipic18_optimize_block_ordering :
+semantics ipic18_block_ordering :
 import "ipic18_block_representation.gSemantics" ;
 import "pic18_mnemonics.gSemantics" ;
 import "ipic18_display_block_list.gSemantics" ;
+import "ipic18_cluster_ordering.gSemantics" ;
 
 #----------------------------------------------------------------------------*
 
@@ -419,14 +420,14 @@ local routine buildOrderedGraph
   ?!@string ioListFileContents
 :
   ioListFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n" ;
-  ioListFileContents .= "*" . ["BLOCK REPRESENTATION ORDERING OPTIMIZATION" stringByLeftAndRightPadding !77 !' '] . "*\n" ;
+  ioListFileContents .= "*" . ["BLOCK INTER JUMP OPTIMIZATION" stringByLeftAndRightPadding !77 !' '] . "*\n" ;
   ioListFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n\n" ;
-  ioListFileContents .= "Block ordering optimization:\n" ;
+  ioListFileContents .= "Block inter jump optimization:\n" ;
   const @uint n := blockDiscontinuityCount [!ioBlockList] ;
-  ioListFileContents .= "  inter block jump count before optimization: " . n . "\n" ;
+  ioListFileContents .= "  count before optimization: " . n . "\n" ;
 #---
   if [option.verbose_output value] then
-    message "Block ordering optimization:\n" ;
+    message "Block inter jump optimization... " ;
   end if ;
 #-------------------------------- Build label map
   @symbolTableForBlockOptimization symbolTable [emptyMap] ;
@@ -441,14 +442,11 @@ local routine buildOrderedGraph
       [mBlock->mTerminator buildTerminatorOrderedGraph !mBlock->mLabel !?g] ;
     end if ;
   end foreach ;
-#--- Write Graphviz file
-  [[g graphviz] writeToFileWhenDifferentContents !inSourceFileName. ".blockOrderingConstraints.dot" ?*] ;
-  [!?g removeEdgesToDominators] ;
-  [[g graphviz] writeToFileWhenDifferentContents !inSourceFileName. ".blockOrderingConstraintsWoCycle.dot" ?*] ;
 #----
   [g nodesWithNoPredecessor ?* ??@lstringlist nodeList] ;
   @stringlist newOrderedLabelList [emptyList] ;
   @stringset visitedNodeSet [emptySet] ;
+  @clusterList clusterList [emptyList] ;
   foreach nodeList do
     @blockInvocationGraph gg := [g subgraphFromNodes
       ![@lstringlist listWithValue !mValue]
@@ -463,6 +461,13 @@ local routine buildOrderedGraph
       ?3*
     ] ;
     newOrderedLabelList .= partialOrderedLabelList ;
+    @ipic18BlockList cluster [emptyList] ;
+    foreach partialOrderedLabelList do
+      [symbolTable searchKey ![mValue nowhere] ??@uint blockIndex] ;
+      const @ipic18Block b := [ioBlockList mBlockAtIndex !blockIndex] ;
+      cluster += !b ;
+    end foreach ;
+    clusterList += !cluster ;
   end foreach ;
 #--- Topological sort
 #  [[g reversedGraph] depthFirstTopologicalSort
@@ -496,10 +501,14 @@ local routine buildOrderedGraph
   end foreach ; 
 #------------------------ Messaging
   const @uint p := blockDiscontinuityCount [!orderedBlockList] ;
-  ioListFileContents .= "  inter block jump count after optimization: " . p . "\n\n" ;
+  ioListFileContents .= "  count after optimization: " . p . "\n\n" ;
   if [option.verbose_output value] then
-    message "  inter block jump count: " . n . " -> " . p . ".\n\n" ;
+    message [n string] . " -> " . p . ".\n\n" ;
   end if ;
+#--- Write Graphviz file
+  [[g graphviz] writeToFileWhenDifferentContents !inSourceFileName. ".blockOrderingConstraints.dot" ?*] ;
+  [!?g removeEdgesToDominators] ;
+  [[g graphviz] writeToFileWhenDifferentContents !inSourceFileName. ".blockOrderingConstraintsWoCycle.dot" ?*] ;
 #--- Check block definition
   @stringset newSymbolSet [emptySet] ;
   @bool ok := true ;
@@ -534,6 +543,14 @@ local routine buildOrderedGraph
     warning [@location nowhere]: s ;
     ioListFileContents .= s . ".\n\n" ;
     displayBlockList !"INCONSISTENT ORDERED OPTIMIZED INTERMEDIATE BLOCK REPRESENTATION (not used)" !?ioListFileContents !orderedBlockList ;
+  end if ;
+#--- if ok, perform cluster ordering
+  if ok then
+    perform_cluster_ordering
+      !clusterList
+      !?ioBlockList
+      !?ioListFileContents
+    ;
   end if ;
 end routine ;
 

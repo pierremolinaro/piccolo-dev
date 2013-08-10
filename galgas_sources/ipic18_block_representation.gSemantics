@@ -326,7 +326,7 @@ class @ipic18_skip_instruction_FDA extends @ipic18_condition_skip_instruction {
 
 #----------------------------------------------------------------------------*
 
-#!--- Optimization Map
+#!--- Optimization
 
 #----------------------------------------------------------------------------*
 
@@ -338,7 +338,58 @@ map @symbolTableForBlockOptimization {
 
 #----------------------------------------------------------------------------*
 
+#!--- Cluster ordering optimization
+
+#----------------------------------------------------------------------------*
+
+map @symbolTableForClusterOrdering {
+  @uint mCluster ;
+  insert insertKey error message "the '%K' label is already declared in %L" ;
+  search searchKey error message "the '%K' label is not declared" ;
+}
+
+#----------------------------------------------------------------------------*
+
+listmap @branchOverflowMap (@stringlist) ;
+
+#----------------------------------------------------------------------------*
+
+method @ipic18SequentialInstruction instructionRelativeBranchOverflow
+  ??@uint unused inAddress
+  ??@string unused inBlockLabel
+  ??@symbolTableForRelativesResolution unused inSymbolTable
+  ?!@branchOverflowMap unused ioOverflowMap
+:
+end method ;
+
+#----------------------------------------------------------------------------*
+
+method @ipic18AbstractBlockTerminator terminatorRelativeBranchOverflow
+  ??@uint unused inAddress
+  ??@string unused inBlockLabel
+  ??@symbolTableForRelativesResolution unused inSymbolTable
+  ??@string unused inNextBlockLabel
+  ?!@branchOverflowMap unused ioOverflowMap
+:
+end method ;
+
+#----------------------------------------------------------------------------*
+
 #!--- @symbolTableForRelativesResolution
+
+#----------------------------------------------------------------------------*
+
+method @ipic18AbstractBlockTerminator performTerminatorRelativeBranchResolution
+  ??@uint unused inAddress
+  ??@string unused inBlockLabel
+  ??@symbolTableForRelativesResolution unused inSymbolTable
+  ??@string unused inNextBlockLabel
+  ?!@uint unused ioConversionCount
+  ?!@string unused ioListFileContents
+  !@ipic18AbstractBlockTerminator outModifiedTerminator
+:
+  outModifiedTerminator := selfcopy ;
+end method ;
 
 #----------------------------------------------------------------------------*
 

@@ -191,12 +191,13 @@ routine baseline_analysis
   @baseline_routineDefinitionList sortedRoutineDefinitionList [emptyList] ;
   foreach inPiccoloModel->mRoutineDefinitionList do
     if mRoutineName->string == "main" then
-      [!?sortedRoutineDefinitionList prependValue 
+      [!?sortedRoutineDefinitionList insertAtIndex 
         !mRoutineName
         !mPage
         !mIsNoReturn
         !mInstructionList
         !mEndOfRoutineLocation
+        !0
       ] ;
     else
       sortedRoutineDefinitionList += 

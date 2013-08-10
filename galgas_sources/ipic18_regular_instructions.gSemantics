@@ -28,7 +28,7 @@ end reader ;
 
 #----------------------------------------------------------------------------*
 
-method @ipic18SequentialInstruction checkRelativesResolution
+method @ipic18SequentialInstruction performInstructionRelativeBranchResolution
   ??@uint unused inAddress
   ??@string unused inBlockLabel
   ??@symbolTableForRelativesResolution unused inSymbolTable
@@ -605,7 +605,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @ipic18_skip_instruction_compare_register checkRelativesResolution
+override method @ipic18_skip_instruction_compare_register performInstructionRelativeBranchResolution
   ??@uint inAddress
   ??@string inBlockLabel
   ??@symbolTableForRelativesResolution inSymbolTable
@@ -615,7 +615,7 @@ override method @ipic18_skip_instruction_compare_register checkRelativesResoluti
 :
   outModifiedInstruction := selfcopy ;
   const @uint n := ioConversionCount ;
-  [mEmbeddedInstruction checkRelativesResolution
+  [mEmbeddedInstruction performInstructionRelativeBranchResolution
     !inAddress + 2
     !inBlockLabel
     !inSymbolTable
@@ -694,7 +694,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @ipic18_skip_instruction_BitTestSkip checkRelativesResolution
+override method @ipic18_skip_instruction_BitTestSkip performInstructionRelativeBranchResolution
   ??@uint inAddress
   ??@string inBlockLabel
   ??@symbolTableForRelativesResolution inSymbolTable
@@ -704,7 +704,7 @@ override method @ipic18_skip_instruction_BitTestSkip checkRelativesResolution
 :
   outModifiedInstruction := selfcopy ;
   const @uint n := ioConversionCount ;
-  [mEmbeddedInstruction checkRelativesResolution
+  [mEmbeddedInstruction performInstructionRelativeBranchResolution
     !inAddress + 2
     !inBlockLabel
     !inSymbolTable
@@ -791,7 +791,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @ipic18_skip_instruction_FDA checkRelativesResolution
+override method @ipic18_skip_instruction_FDA performInstructionRelativeBranchResolution
   ??@uint inAddress
   ??@string inBlockLabel
   ??@symbolTableForRelativesResolution inSymbolTable
@@ -801,7 +801,7 @@ override method @ipic18_skip_instruction_FDA checkRelativesResolution
 :
   outModifiedInstruction := selfcopy ;
   const @uint n := ioConversionCount ;
-  [mEmbeddedInstruction checkRelativesResolution
+  [mEmbeddedInstruction performInstructionRelativeBranchResolution
     !inAddress + 2
     !inBlockLabel
     !inSymbolTable
@@ -839,7 +839,24 @@ end reader ;
 
 #----------------------------------------------------------------------------*
 
-override method @ipic18_intermediate_JSR checkRelativesResolution
+override method @ipic18_intermediate_JSR instructionRelativeBranchOverflow
+  ??@uint inAddress
+  ??@string inBlockLabel
+  ??@symbolTableForRelativesResolution inSymbolTable
+  ?!@branchOverflowMap ioOverflowMap
+:
+  switch mKind
+  when ipicRelative, relative :
+    if not pic18_checkBRA_RCALL [!inSymbolTable !mTargetLabel !inAddress] then
+      ioOverflowMap += !inBlockLabel !mTargetLabel->string ;
+    end if ;
+  when absolute : # Allways ok
+  end switch ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @ipic18_intermediate_JSR performInstructionRelativeBranchResolution
   ??@uint inAddress
   ??@string inBlockLabel
   ??@symbolTableForRelativesResolution inSymbolTable
@@ -928,7 +945,32 @@ end reader ;
 
 #----------------------------------------------------------------------------*
 
-override method @ipic18_intermediate_instruction_computed_rcall checkRelativesResolution
+override method @ipic18_intermediate_instruction_computed_rcall instructionRelativeBranchOverflow
+  ??@uint inAddress
+  ??@string inBlockLabel
+  ??@symbolTableForRelativesResolution inSymbolTable
+  ?!@branchOverflowMap ioOverflowMap
+:
+  @uint address := inAddress + if mUsesRCALL then 2 else 4 end ;
+  foreach mTargetInstructions do
+    [mInstruction instructionRelativeBranchOverflow
+      !address
+      !inBlockLabel
+      !inSymbolTable
+      !?ioOverflowMap
+    ] ;
+    address := address + 4 ;
+  end foreach ;
+  if mUsesRCALL then
+    if not pic18_checkBRA_RCALL [!inSymbolTable !["_computed_goto_4" nowhere] !inAddress] then
+      ioOverflowMap += !inBlockLabel !"_computed_goto_4" ;
+    end if ;
+  end if ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @ipic18_intermediate_instruction_computed_rcall performInstructionRelativeBranchResolution
   ??@uint inAddress
   ??@string inBlockLabel
   ??@symbolTableForRelativesResolution inSymbolTable
@@ -939,21 +981,23 @@ override method @ipic18_intermediate_instruction_computed_rcall checkRelativesRe
   outModifiedInstruction := selfcopy ;
   @uint unusedConversionCount := 0 ;
   @string unusedListing := "" ;
+  @uint address := inAddress + if mUsesRCALL then 2 else 4 end ;
   foreach mTargetInstructions do
     #--- NEVER CONVERT: ONLY PERFORM CHECKING
-    [mInstruction checkRelativesResolution
-      !inAddress
+    [mInstruction performInstructionRelativeBranchResolution
+      !address
       !inBlockLabel
       !inSymbolTable
       !?unusedConversionCount
       !?unusedListing
       ?* # ?@ipic18SequentialInstruction outModifiedInstruction
     ] ;
+    address := address + 4 ;
   end foreach ;
   if mUsesRCALL then
-    if not pic18_checkBRA_RCALL [!inSymbolTable !["_computed_goto_2" nowhere] !inAddress] then
+    if not pic18_checkBRA_RCALL [!inSymbolTable !["_computed_goto_4" nowhere] !inAddress] then
       ioConversionCount ++ ;
-      ioListFileContents .= "  " . inBlockLabel . ": computed rcall needs to use CALL _computed_goto_2\n" ;
+      ioListFileContents .= "  " . inBlockLabel . ": computed rcall needs to use CALL _computed_goto_4\n" ;
       outModifiedInstruction := [@ipic18_intermediate_instruction_computed_rcall new
         !mInstructionLocation
         !mTargetInstructions
