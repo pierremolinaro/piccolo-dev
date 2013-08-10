@@ -22,80 +22,90 @@
 
 int main (int inArgumentCount, char * inArgumentString []) {
 	int error = 0 ;	
-	if ((inArgumentCount < 3) || (inArgumentCount > 5)) {
-		printf ("Usage : %s file_a.hex file_b.hex [--dump] [-v] \n", inArgumentString [0]) ;
+	if (inArgumentCount < 3) {
+		printf ("Usage: %s file1.hex file2.hex [-v] [--dump] [-L] (-H] \n", inArgumentString [0]) ;
+    printf ("  -v: verbose output.\n") ;
+    printf ("  --dump: dump hex files.\n") ;
+    printf ("  -L: check also from low interrupt entry point (at 0x18).\n") ;
+    printf ("  -H: check also from high interrupt entry point (at 0x8).\n") ;
 		error = 1 ;
-  	} else {
-		printf ("*************************************************\n") ;
-		printf ("this is lecture_sequentielle_code_binaire output file\n") ;
-		printf ("comparing the following binary .hex files:\n") ;
-		printf ("- ") ;
+  }else{
+		printf ("Comparing:\n") ;
+		printf ("  - ") ;
 		printf ("%s", inArgumentString [1]) ;
 		printf ("\n") ;
-		printf ("- ") ;
+		printf ("  - ") ;
 		printf ("%s", inArgumentString [2]) ;
 		printf ("\n") ;
-		printf ("result of comparison is shown at the bottom of this file") ;
-		printf ("\n") ;
-		printf ("\n") ;
 
-		bool v = false ;
+		bool verbose = false ;
 		bool dump = false ;
-		if (inArgumentCount == 4) { 
-			dump = strcmp (inArgumentString [3], "--dump") == 0 ;
-			v = strcmp (inArgumentString [3], "-v") == 0 ; 
-		}
-		if (inArgumentCount == 5) { 
-			dump = strcmp (inArgumentString [3], "--dump") == 0 ;
-			v = strcmp (inArgumentString [4], "-v") == 0 ; 
-		}
-
-		// treat first file
-		printf ("************ ") ;
-		printf ("%s", inArgumentString [1]) ;
-		printf (" ************\n") ;
-		printf ("\n") ;
-		if (v) {
-			printf ("************") ;
-			printf (" VERBOSE (option -v) ") ;
-			printf ("************\n") ;
-		}
-		PMCompteur compteur1 (inArgumentString [1], v) ;
-		compteur1.checkPMCodeImage () ;
-		printf ("\n") ;
-		if (dump) {
-			printf ("************ DUMP INPUT FILE (option --dump) ************\n") ;
-			compteur1.dumpFile () ;
-		}
-
-		printf ("\n") ;
-		printf ("\n") ;
-		printf ("\n") ;
-		// treat second file
-		printf ("************ ") ;
-		printf ("%s", inArgumentString [2]) ;
-		printf (" ************\n") ;
-		printf ("\n") ;
-		if (v) {
-			printf ("************") ;
-			printf (" VERBOSE (option -v) ") ;
-			printf ("************\n") ;
-		}
-		PMCompteur compteur2 (inArgumentString [2], v) ;
-		compteur2.checkPMCodeImage () ;
-		printf ("\n") ;
-		if (dump) {
-			printf ("************ DUMP INPUT FILE (option --dump) ************\n") ;
-			compteur2.dumpFile () ;
-		}
-
-		// result
-		printf ("\n") ;
-		printf ("\n") ;
-		printf ("\n") ;
-		printf ("results of comparison: the two files are ") ;
-		bool b = compteur1.compareInstructionList (compteur2) ;
-		if (b) {printf ("EQUIVALENT\n") ; } else {printf ("NOT EQUIVALENT\n") ; }
+		bool checkLowInterrupt = false ;
+		bool checkHighInterrupt = false ;
+    for (int i=3 ; i<inArgumentCount ; i++) {
+		  if (strcmp (inArgumentString [i], "-v") == 0) {
+        verbose = true ;
+		  }else if (strcmp (inArgumentString [i], "--dump") == 0) {
+        dump = true ;
+		  }else if (strcmp (inArgumentString [i], "-L") == 0) {
+        checkLowInterrupt = true ;
+		  }else if (strcmp (inArgumentString [i], "-H") == 0) {
+        checkHighInterrupt = true ;
+   		}
+    }
+  //--- Dump files
+    if (dump) {
+      PMCompteur compteur1 (inArgumentString [1], false) ;
+      printf ("*** %s (--dump option) ***\n", inArgumentString [1]) ;
+      compteur1.dumpFile () ;
+      PMCompteur compteur2 (inArgumentString [2], false) ;
+      printf ("*** %s (--dump option) ***\n", inArgumentString [2]) ;
+      compteur2.dumpFile () ;
+    }
+  //--- Check from boot (address 0)
+		{ PMCompteur compteur1 (inArgumentString [1], verbose) ;
+      compteur1.checkPMCodeImage (0) ;
+      PMCompteur compteur2 (inArgumentString [2], verbose) ;
+      compteur2.checkPMCodeImage (0) ;
+      const bool equivalent = compteur1.compareInstructionList (compteur2) ;
+      printf ("The two main routines are ") ;
+      if (equivalent) {
+        printf ("equivalent.\n") ;
+      }else{
+        printf ("NOT EQUIVALENT.\n") ;
+        error = 1 ;
+      }
+    }
+  //--- Check from high interrupt entry point (address 0x8)
+		if (checkHighInterrupt) {
+      PMCompteur compteur1 (inArgumentString [1], verbose) ;
+      compteur1.checkPMCodeImage (0x8) ;
+      PMCompteur compteur2 (inArgumentString [2], verbose) ;
+      compteur2.checkPMCodeImage (0x8) ;
+      const bool equivalent = compteur1.compareInstructionList (compteur2) ;
+      printf ("The two high interrupt routines are ") ;
+      if (equivalent) {
+        printf ("equivalent.\n") ;
+      }else{
+        printf ("NOT EQUIVALENT.\n") ;
+        error = 1 ;
+      }
+    }
+  //--- Check from low interrupt (address 0x18)
+		if (checkLowInterrupt){
+      PMCompteur compteur1 (inArgumentString [1], verbose) ;
+      compteur1.checkPMCodeImage (0x18) ;
+      PMCompteur compteur2 (inArgumentString [2], verbose) ;
+      compteur2.checkPMCodeImage (0x18) ;
+      const bool equivalent = compteur1.compareInstructionList (compteur2) ;
+      printf ("The two low interrupt routines are ") ;
+      if (equivalent) {
+        printf ("equivalent.\n") ;
+      }else{
+        printf ("NOT EQUIVALENT.\n") ;
+        error = 1 ;
+      }
+    }
 	}
 	return error ;
 }

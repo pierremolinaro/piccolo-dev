@@ -32,7 +32,7 @@ class PMCompteur {
 	private : void operator = (PMCompteur &) ;
 
 // -- Public Methods
-	public : void checkPMCodeImage (void) ; // check main programm
+	public : void checkPMCodeImage (unsigned long pcstart) ; // check programm from pcstart
 	public : inline bool getV (void) const { return v ; } // get verbose boolean
 	public : inline unsigned short * getInstructionList (void) const { return instructionList ; } // get instructionList
 	public : inline unsigned short getPos (void) const { return pos ; } // get position in instructionList
