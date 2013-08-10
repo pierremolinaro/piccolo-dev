@@ -114,7 +114,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-#!--- Terminator size
+#!--- @ipic18JumpTerminator
 
 #----------------------------------------------------------------------------*
 
@@ -133,6 +133,57 @@ override reader @ipic18JumpTerminator terminatorSize
     end switch ;  
   end if ;
 end reader ;
+
+#----------------------------------------------------------------------------*
+
+override method @ipic18JumpTerminator terminatorRelativeBranchOverflow
+  ??@uint inAddress
+  ??@string inBlockLabel
+  ??@symbolTableForRelativesResolution inSymbolTable
+  ??@string inNextBlockLabel
+  ?!@branchOverflowMap ioOverflowMap
+:
+  if mLabel->string != inNextBlockLabel then
+    switch mKind
+    when ipicRelative, relative :
+      if not pic18_checkBRA_RCALL [!inSymbolTable !mLabel !inAddress] then
+        ioOverflowMap += !inBlockLabel !mLabel->string ;
+      end if ;
+    when absolute :
+    end switch ;  
+  end if ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @ipic18JumpTerminator performTerminatorRelativeBranchResolution
+  ??@uint inAddress
+  ??@string inBlockLabel
+  ??@symbolTableForRelativesResolution inSymbolTable
+  ??@string inNextBlockLabel
+  ?!@uint ioConversionCount
+  ?!@string ioListFileContents
+  !@ipic18AbstractBlockTerminator outModifiedTerminator
+:
+  outModifiedTerminator := selfcopy ;
+  if inNextBlockLabel != mLabel->string then
+    switch mKind
+    when ipicRelative :
+      if not pic18_checkBRA_RCALL [!inSymbolTable !mLabel !inAddress] then
+        ioConversionCount ++ ;
+        ioListFileContents .= "  " . inBlockLabel . ": JUMP " . mLabel . " --> GOTO " . mLabel . "\n" ;
+        outModifiedTerminator := [@ipic18JumpTerminator new !mInstructionLocation !mLabel ![@jumpInstructionKind absolute]] ;
+      end if ;
+    when relative :
+      if not pic18_checkBRA_RCALL [!inSymbolTable !mLabel !inAddress] then
+        error mInstructionLocation: "displacement ("
+        . pic18_BRA_RCALL_displacement [!inSymbolTable !mLabel !inAddress] . ") too large for BRA "
+        . mLabel . " instruction (limited to [-1024, 1023])" ;
+      end if ;
+    when absolute : # Allways ok
+    end switch ;
+  end if ;
+end method ;
 
 #----------------------------------------------------------------------------*
 
@@ -192,6 +243,31 @@ end reader ;
 
 #----------------------------------------------------------------------------*
 
+override method @ipic18AbstractConditionTerminator terminatorRelativeBranchOverflow
+  ??@uint inAddress
+  ??@string inBlockLabel
+  ??@symbolTableForRelativesResolution inSymbolTable
+  ??@string inNextBlockLabel
+  ?!@branchOverflowMap ioOverflowMap
+:
+  [mInstructionIfConditionTrue terminatorRelativeBranchOverflow
+    !inAddress
+    !inBlockLabel
+    !inSymbolTable
+    !inNextBlockLabel
+    !?ioOverflowMap
+  ] ;
+  [mInstructionIfConditionFalse terminatorRelativeBranchOverflow
+    !inAddress
+    !inBlockLabel
+    !inSymbolTable
+    !inNextBlockLabel
+    !?ioOverflowMap
+  ] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
 #!--- Terminator @pic18RegisterComparisonTerminator
 
 #----------------------------------------------------------------------------*
@@ -226,6 +302,49 @@ override reader @pic18RegisterComparisonTerminator terminatorDisplay
   outResult .= " : " ;
   outResult .= [mInstructionIfConditionFalse terminatorDisplay !""] ;
 end reader ;
+
+#----------------------------------------------------------------------------*
+
+override method @pic18RegisterComparisonTerminator performTerminatorRelativeBranchResolution
+  ??@uint inAddress
+  ??@string inBlockLabel
+  ??@symbolTableForRelativesResolution inSymbolTable
+  ??@string inNextBlockLabel
+  ?!@uint ioConversionCount
+  ?!@string ioListFileContents
+  !@ipic18AbstractBlockTerminator outModifiedTerminator
+:
+  const @uint n := ioConversionCount ;
+  [mInstructionIfConditionTrue performTerminatorRelativeBranchResolution
+    !inAddress
+    !inBlockLabel
+    !inSymbolTable
+    !inNextBlockLabel
+    !?ioConversionCount
+    !?ioListFileContents
+    ?@ipic18AbstractBlockTerminator outModifiedTrueTerminator
+  ] ;
+  [mInstructionIfConditionFalse performTerminatorRelativeBranchResolution
+    !inAddress
+    !inBlockLabel
+    !inSymbolTable
+    !inNextBlockLabel
+    !?ioConversionCount
+    !?ioListFileContents
+    ?@ipic18AbstractBlockTerminator outModifiedFalseTerminator
+  ] ;
+  if ioConversionCount == n then
+    outModifiedTerminator := selfcopy ;
+  else
+    outModifiedTerminator := [@pic18RegisterComparisonTerminator new
+      !mInstructionLocation
+      !(cast outModifiedTrueTerminator : @ipic18SingleInstructionTerminator)
+      !(cast outModifiedFalseTerminator : @ipic18SingleInstructionTerminator)
+      !mRegisterDescription
+      !mComparison
+    ] ;
+  end if ;
+end method ;
 
 #----------------------------------------------------------------------------*
 
@@ -305,6 +424,48 @@ end reader ;
 
 #----------------------------------------------------------------------------*
 
+override method @pic18TestRegisterTerminator performTerminatorRelativeBranchResolution
+  ??@uint inAddress
+  ??@string inBlockLabel
+  ??@symbolTableForRelativesResolution inSymbolTable
+  ??@string inNextBlockLabel
+  ?!@uint ioConversionCount
+  ?!@string ioListFileContents
+  !@ipic18AbstractBlockTerminator outModifiedTerminator
+:
+  const @uint n := ioConversionCount ;
+  [mInstructionIfConditionTrue performTerminatorRelativeBranchResolution
+    !inAddress
+    !inBlockLabel
+    !inSymbolTable
+    !inNextBlockLabel
+    !?ioConversionCount
+    !?ioListFileContents
+    ?@ipic18AbstractBlockTerminator outModifiedTrueTerminator
+  ] ;
+  [mInstructionIfConditionFalse performTerminatorRelativeBranchResolution
+    !inAddress
+    !inBlockLabel
+    !inSymbolTable
+    !inNextBlockLabel
+    !?ioConversionCount
+    !?ioListFileContents
+    ?@ipic18AbstractBlockTerminator outModifiedFalseTerminator
+  ] ;
+  if ioConversionCount == n then
+    outModifiedTerminator := selfcopy ;
+  else
+    outModifiedTerminator := [@pic18TestRegisterTerminator new
+      !mInstructionLocation
+      !(cast outModifiedTrueTerminator : @ipic18SingleInstructionTerminator)
+      !(cast outModifiedFalseTerminator : @ipic18SingleInstructionTerminator)
+      !mRegisterDescription
+    ] ;
+  end if ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
 override method @pic18TestRegisterTerminator generateCode
   ??@uint inAddress
   ??@symbolTableForRelativesResolution inSymbolTable
@@ -354,6 +515,49 @@ override reader @pic18BitTestTerminator terminatorDisplay
   outResult .= " : " ;
   outResult .= [mInstructionIfConditionFalse terminatorDisplay !inNextBlockLabel] ;
 end reader ;
+
+#----------------------------------------------------------------------------*
+
+override method @pic18BitTestTerminator performTerminatorRelativeBranchResolution
+  ??@uint inAddress
+  ??@string inBlockLabel
+  ??@symbolTableForRelativesResolution inSymbolTable
+  ??@string inNextBlockLabel
+  ?!@uint ioConversionCount
+  ?!@string ioListFileContents
+  !@ipic18AbstractBlockTerminator outModifiedTerminator
+:
+  const @uint n := ioConversionCount ;
+  [mInstructionIfConditionTrue performTerminatorRelativeBranchResolution
+    !inAddress
+    !inBlockLabel
+    !inSymbolTable
+    !inNextBlockLabel
+    !?ioConversionCount
+    !?ioListFileContents
+    ?@ipic18AbstractBlockTerminator outModifiedTrueTerminator
+  ] ;
+  [mInstructionIfConditionFalse performTerminatorRelativeBranchResolution
+    !inAddress
+    !inBlockLabel
+    !inSymbolTable
+    !inNextBlockLabel
+    !?ioConversionCount
+    !?ioListFileContents
+    ?@ipic18AbstractBlockTerminator outModifiedFalseTerminator
+  ] ;
+  if ioConversionCount == n then
+    outModifiedTerminator := selfcopy ;
+  else
+    outModifiedTerminator := [@pic18BitTestTerminator new
+      !mInstructionLocation
+      !(cast outModifiedTrueTerminator : @ipic18SingleInstructionTerminator)
+      !(cast outModifiedFalseTerminator : @ipic18SingleInstructionTerminator)
+      !mRegisterDescription
+      !mBitNumber
+    ] ;
+  end if ;
+end method ;
 
 #----------------------------------------------------------------------------*
 
@@ -444,9 +648,49 @@ end reader ;
 
 #----------------------------------------------------------------------------*
 
-#  @ipic18_intermediate_registerExpression mRegisterDescription ;
-#  @bool mIncrement ;
-#  @bool m_W_isDestination ;
+override method @ipic18IncDecRegisterTerminator performTerminatorRelativeBranchResolution
+  ??@uint inAddress
+  ??@string inBlockLabel
+  ??@symbolTableForRelativesResolution inSymbolTable
+  ??@string inNextBlockLabel
+  ?!@uint ioConversionCount
+  ?!@string ioListFileContents
+  !@ipic18AbstractBlockTerminator outModifiedTerminator
+:
+  const @uint n := ioConversionCount ;
+  [mInstructionIfConditionTrue performTerminatorRelativeBranchResolution
+    !inAddress
+    !inBlockLabel
+    !inSymbolTable
+    !inNextBlockLabel
+    !?ioConversionCount
+    !?ioListFileContents
+    ?@ipic18AbstractBlockTerminator outModifiedTrueTerminator
+  ] ;
+  [mInstructionIfConditionFalse performTerminatorRelativeBranchResolution
+    !inAddress
+    !inBlockLabel
+    !inSymbolTable
+    !inNextBlockLabel
+    !?ioConversionCount
+    !?ioListFileContents
+    ?@ipic18AbstractBlockTerminator outModifiedFalseTerminator
+  ] ;
+  if ioConversionCount == n then
+    outModifiedTerminator := selfcopy ;
+  else
+    outModifiedTerminator := [@ipic18IncDecRegisterTerminator new
+      !mInstructionLocation
+      !(cast outModifiedTrueTerminator : @ipic18SingleInstructionTerminator)
+      !(cast outModifiedFalseTerminator : @ipic18SingleInstructionTerminator)
+      !mRegisterDescription
+      !mIncrement
+      !m_W_isDestination
+    ] ;
+  end if ;
+end method ;
+
+#----------------------------------------------------------------------------*
 
 override method @ipic18IncDecRegisterTerminator generateCode
   ??@uint inAddress
@@ -550,6 +794,43 @@ end reader ;
 
 #----------------------------------------------------------------------------*
 
+override method @ipic18ComputedRETLWTerminator performTerminatorRelativeBranchResolution
+  ??@uint inAddress
+  ??@string inBlockLabel
+  ??@symbolTableForRelativesResolution inSymbolTable
+  ??@string unused inNextBlockLabel
+  ?!@uint ioConversionCount
+  ?!@string ioListFileContents
+  !@ipic18AbstractBlockTerminator outModifiedTerminator
+:
+  outModifiedTerminator := selfcopy ;
+  if mUsesRCALL then
+    if not pic18_checkBRA_RCALL [!inSymbolTable !["_computed_goto_2" nowhere] !inAddress] then
+      ioConversionCount ++ ;
+      ioListFileContents .= "  " . inBlockLabel . ": computed RETLW needs CALL _computed_goto_2\n" ;
+      outModifiedTerminator := [@ipic18ComputedRETLWTerminator new !mInstructionLocation !mLiteralValues !false] ;
+    end if ;
+  end if ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @ipic18ComputedRETLWTerminator terminatorRelativeBranchOverflow
+  ??@uint inAddress
+  ??@string inBlockLabel
+  ??@symbolTableForRelativesResolution inSymbolTable
+  ??@string unused inNextBlockLabel
+  ?!@branchOverflowMap ioOverflowMap
+:
+  if mUsesRCALL then  
+    if not pic18_checkBRA_RCALL [!inSymbolTable !["_computed_goto_2" nowhere] !inAddress] then
+      ioOverflowMap += !inBlockLabel !"_computed_goto_2" ;
+    end if ;
+  end if ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
 override method @ipic18ComputedRETLWTerminator generateCode
   ??@uint inAddress
   ??@symbolTableForRelativesResolution inSymbolTable
@@ -608,6 +889,43 @@ end reader ;
 
 #----------------------------------------------------------------------------*
 
+override method @ipic18ComputedGotoTerminator performTerminatorRelativeBranchResolution
+  ??@uint inAddress
+  ??@string inBlockLabel
+  ??@symbolTableForRelativesResolution inSymbolTable
+  ??@string unused inNextBlockLabel
+  ?!@uint ioConversionCount
+  ?!@string ioListFileContents
+  !@ipic18AbstractBlockTerminator outModifiedTerminator
+:
+  outModifiedTerminator := selfcopy ;
+  if mUsesRCALL then
+    if not pic18_checkBRA_RCALL [!inSymbolTable !["_computed_goto_2" nowhere] !inAddress] then
+      ioConversionCount ++ ;
+      ioListFileContents .= "  " . inBlockLabel . ": computed GOTO needs CALL _computed_goto_4\n" ;
+      outModifiedTerminator := [@ipic18ComputedGotoTerminator new !mInstructionLocation !mTargetLabels !false] ;
+    end if ;
+  end if ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @ipic18ComputedGotoTerminator terminatorRelativeBranchOverflow
+  ??@uint inAddress
+  ??@string inBlockLabel
+  ??@symbolTableForRelativesResolution inSymbolTable
+  ??@string unused inNextBlockLabel
+  ?!@branchOverflowMap ioOverflowMap
+:
+  if mUsesRCALL then  
+    if not pic18_checkBRA_RCALL [!inSymbolTable !["_computed_goto_4" nowhere] !inAddress] then
+      ioOverflowMap += !inBlockLabel !"_computed_goto_4" ;
+    end if ;
+  end if ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
 override method @ipic18ComputedGotoTerminator generateCode
   ??@uint inAddress
   ??@symbolTableForRelativesResolution inSymbolTable
@@ -655,6 +973,60 @@ override reader @ipic18ComputedBraTerminator terminatorDisplay
     outResult .= " " . mValue ;
   end foreach ;
 end reader ;
+
+#----------------------------------------------------------------------------*
+
+override method @ipic18ComputedBraTerminator performTerminatorRelativeBranchResolution
+  ??@uint inAddress
+  ??@string inBlockLabel
+  ??@symbolTableForRelativesResolution inSymbolTable
+  ??@string unused inNextBlockLabel
+  ?!@uint ioConversionCount
+  ?!@string ioListFileContents
+  !@ipic18AbstractBlockTerminator outModifiedTerminator
+:
+  foreach mTargetLabels do
+    if not pic18_checkBRA_RCALL [!inSymbolTable !mValue !inAddress] then
+      error mInstructionLocation: "displacement ("
+      . pic18_BRA_RCALL_displacement [!inSymbolTable !mValue !inAddress] . ") too large for rcall "
+      . mValue . " instruction (limited to [-1024, 1023])" ;
+    end if ;
+  end foreach ;
+  outModifiedTerminator := selfcopy ;
+  if mUsesRCALL then
+    if not pic18_checkBRA_RCALL [!inSymbolTable !["_computed_goto_2" nowhere] !inAddress ] then
+      ioConversionCount ++ ;
+      ioListFileContents .= "  " . inBlockLabel . ": computed RETLW needs CALL _computed_goto_2\n" ;
+      outModifiedTerminator := [@ipic18ComputedBraTerminator new !mInstructionLocation !mTargetLabels !false] ;
+    end if ;
+  end if ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @ipic18ComputedBraTerminator terminatorRelativeBranchOverflow
+  ??@uint inAddress
+  ??@string inBlockLabel
+  ??@symbolTableForRelativesResolution inSymbolTable
+  ??@string unused inNextBlockLabel
+  ?!@branchOverflowMap ioOverflowMap
+:
+  @uint address ;
+  if mUsesRCALL then  
+    if not pic18_checkBRA_RCALL [!inSymbolTable !["_computed_goto_2" nowhere] !inAddress] then
+      ioOverflowMap += !inBlockLabel !"_computed_goto_2" ;
+    end if ;
+    address := inAddress + 2 ;
+  else
+    address := inAddress + 4 ;
+  end if ;
+  foreach mTargetLabels do
+    if not pic18_checkBRA_RCALL [!inSymbolTable !mValue !address] then
+      ioOverflowMap += !inBlockLabel !mValue->string ;
+    end if ;
+    address := address + 2 ;
+  end foreach ;
+end method ;
 
 #----------------------------------------------------------------------------*
 
@@ -713,6 +1085,202 @@ override reader @ipic18ConditionalJumpTerminator terminatorDisplay
     outResult .= mTargetLabelWhenFalse->string ;
   end if ;
 end reader ;
+
+#----------------------------------------------------------------------------*
+
+override method @ipic18ConditionalJumpTerminator performTerminatorRelativeBranchResolution
+  ??@uint inAddress
+  ??@string inBlockLabel
+  ??@symbolTableForRelativesResolution inSymbolTable
+  ??@string inNextBlockLabel
+  ?!@uint ioConversionCount
+  ?!@string ioListFileContents
+  !@ipic18AbstractBlockTerminator outModifiedTerminator
+:
+  @conditionalBranchMode branchModeOnFalseLabel := mBranchModeOnFalseLabel ;
+  @conditionalBranchMode branchModeOnTrueLabel := mBranchModeOnTrueLabel ;
+  if mTargetLabelWhenTrue->string == inNextBlockLabel then
+    switch mBranchModeOnFalseLabel
+    when native : # !Bcc F
+      if not pic18_checkBCC [!inSymbolTable !mTargetLabelWhenFalse !inAddress] then
+        branchModeOnFalseLabel := [@conditionalBranchMode ipicBRA] ;
+        ioListFileContents .= "  " . inBlockLabel . ", terminator will use BRA " . mTargetLabelWhenFalse . "\n" ;
+      end if ;
+    when ipicBRA : # Bcc Z ; BRA F ; Z:
+      if not pic18_checkBRA_RCALL [!inSymbolTable !mTargetLabelWhenFalse !inAddress + 2] then
+        branchModeOnFalseLabel := [@conditionalBranchMode ipicGOTO] ;
+        ioListFileContents .= "  " . inBlockLabel . ", terminator will use GOTO " . mTargetLabelWhenFalse . "\n" ;
+      end if ;
+    when ipicGOTO : # Bcc Z ; GOTO F ; Z:
+    end switch ;
+  elsif mTargetLabelWhenFalse->string == inNextBlockLabel then
+    switch mBranchModeOnTrueLabel
+    when native : # Bcc T
+      if not pic18_checkBCC [!inSymbolTable !mTargetLabelWhenTrue !inAddress] then
+        branchModeOnTrueLabel := [@conditionalBranchMode ipicBRA] ;
+        ioListFileContents .= "  " . inBlockLabel . ", terminator will use BRA " . mTargetLabelWhenFalse . "\n" ;
+      end if ;
+    when ipicBRA : # !Bcc Z ; BRA T ; Z:
+      if not pic18_checkBRA_RCALL [!inSymbolTable !mTargetLabelWhenTrue !inAddress + 2] then
+        branchModeOnTrueLabel := [@conditionalBranchMode ipicGOTO] ;
+        ioListFileContents .= "  " . inBlockLabel . ", terminator will use GOTO " . mTargetLabelWhenTrue . "\n" ;
+      end if ;
+    when ipicGOTO : # !Bcc Z ; GOTO T ; Z:
+    end switch ;
+  else
+    switch mBranchModeOnFalseLabel
+    when native :
+      switch mBranchModeOnTrueLabel
+      when native, ipicBRA : # !Bcc F ; BRA T
+        if not pic18_checkBCC [!inSymbolTable !mTargetLabelWhenFalse !inAddress] then
+          branchModeOnFalseLabel := [@conditionalBranchMode ipicBRA] ;
+          ioListFileContents .= "  " . inBlockLabel . ", terminator will use BRA " . mTargetLabelWhenFalse . "\n" ;
+        end if ;
+        if not pic18_checkBRA_RCALL [!inSymbolTable !mTargetLabelWhenTrue !inAddress+2] then
+          branchModeOnTrueLabel := [@conditionalBranchMode ipicBRA] ;
+          ioListFileContents .= "  " . inBlockLabel . ", terminator will use BRA " . mTargetLabelWhenTrue . "\n" ;
+        end if ;
+      when ipicGOTO : # !Bcc F ; GOTO T
+      end switch ;
+    when ipicBRA :
+      switch mBranchModeOnTrueLabel
+      when native   : # Bcc T ; BRA F
+        if not pic18_checkBCC [!inSymbolTable !mTargetLabelWhenTrue !inAddress] then
+          branchModeOnTrueLabel := [@conditionalBranchMode ipicBRA] ;
+          ioListFileContents .= "  " . inBlockLabel . ", terminator will use BRA " . mTargetLabelWhenTrue . "\n" ;
+        end if ;
+        if not pic18_checkBRA_RCALL [!inSymbolTable !mTargetLabelWhenFalse!inAddress+2] then
+          branchModeOnFalseLabel := [@conditionalBranchMode ipicBRA] ;
+          ioListFileContents .= "  " . inBlockLabel . ", terminator will use BRA " . mTargetLabelWhenFalse . "\n" ;
+        end if ;
+      when ipicBRA  : # Bcc Z ; BRA F ; Z: BRA T
+        if not pic18_checkBRA_RCALL [!inSymbolTable !mTargetLabelWhenFalse!inAddress+2] then
+          branchModeOnFalseLabel := [@conditionalBranchMode ipicBRA] ;
+          ioListFileContents .= "  " . inBlockLabel . ", terminator will use BRA " . mTargetLabelWhenFalse . "\n" ;
+        end if ;
+        if not pic18_checkBRA_RCALL [!inSymbolTable !mTargetLabelWhenTrue !inAddress+4] then
+          branchModeOnTrueLabel := [@conditionalBranchMode ipicBRA] ;
+          ioListFileContents .= "  " . inBlockLabel . ", terminator will use BRA " . mTargetLabelWhenTrue . "\n" ;
+        end if ;
+      when ipicGOTO : # Bcc Z ; BRA F ; Z: GOTO T
+        if not pic18_checkBRA_RCALL [!inSymbolTable !mTargetLabelWhenFalse!inAddress+2] then
+          branchModeOnFalseLabel := [@conditionalBranchMode ipicBRA] ;
+          ioListFileContents .= "  " . inBlockLabel . ", terminator will use BRA " . mTargetLabelWhenFalse . "\n" ;
+        end if ;
+      end switch ;
+    when ipicGOTO :
+      switch mBranchModeOnTrueLabel
+      when native   : # Bcc T ; GOTO F
+        if not pic18_checkBCC [!inSymbolTable !mTargetLabelWhenTrue !inAddress] then
+          branchModeOnTrueLabel := [@conditionalBranchMode ipicBRA] ;
+          ioListFileContents .= "  " . inBlockLabel . ", terminator will use BRA " . mTargetLabelWhenTrue . "\n" ;
+        end if ;
+      when ipicBRA  : # Bcc Z ; GOTO F ; Z: BRA T
+        if not pic18_checkBRA_RCALL [!inSymbolTable !mTargetLabelWhenTrue !inAddress+6] then
+          branchModeOnTrueLabel := [@conditionalBranchMode ipicBRA] ;
+          ioListFileContents .= "  " . inBlockLabel . ", terminator will use BRA " . mTargetLabelWhenTrue . "\n" ;
+        end if ;
+      when ipicGOTO : # Bcc Z ; GOTO F ; Z: GOTO T
+      end switch ;
+    end switch ;
+  end if ;
+  if (branchModeOnFalseLabel == mBranchModeOnFalseLabel) & (branchModeOnTrueLabel == mBranchModeOnTrueLabel) then
+    outModifiedTerminator := selfcopy ;
+  else
+    outModifiedTerminator := [@ipic18ConditionalJumpTerminator new
+      !mInstructionLocation
+      !mConditionalBranch
+      !mTargetLabelWhenTrue
+      !branchModeOnTrueLabel
+      !mTargetLabelWhenFalse
+      !branchModeOnFalseLabel
+    ] ;
+    ioConversionCount ++ ;
+  end if ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
+override method @ipic18ConditionalJumpTerminator terminatorRelativeBranchOverflow
+  ??@uint inAddress
+  ??@string inBlockLabel
+  ??@symbolTableForRelativesResolution inSymbolTable
+  ??@string inNextBlockLabel
+  ?!@branchOverflowMap ioOverflowMap
+:
+  if mTargetLabelWhenTrue->string == inNextBlockLabel then
+    switch mBranchModeOnFalseLabel
+    when native : # !Bcc F
+      if not pic18_checkBCC [!inSymbolTable !mTargetLabelWhenFalse !inAddress] then
+        ioOverflowMap += !inBlockLabel !mTargetLabelWhenFalse->string ;
+      end if ;
+    when ipicBRA : # Bcc Z ; BRA F ; Z:
+      if not pic18_checkBRA_RCALL [!inSymbolTable !mTargetLabelWhenFalse !inAddress + 2] then
+        ioOverflowMap += !inBlockLabel !mTargetLabelWhenFalse->string ;
+      end if ;
+    when ipicGOTO : # Bcc Z ; GOTO F ; Z:
+    end switch ;
+  elsif mTargetLabelWhenFalse->string == inNextBlockLabel then
+    switch mBranchModeOnTrueLabel
+    when native : # Bcc T
+      if not pic18_checkBCC [!inSymbolTable !mTargetLabelWhenTrue !inAddress] then
+        ioOverflowMap += !inBlockLabel !mTargetLabelWhenTrue->string ;
+      end if ;
+    when ipicBRA : # !Bcc Z ; BRA T ; Z:
+      if not pic18_checkBRA_RCALL [!inSymbolTable !mTargetLabelWhenTrue !inAddress + 2] then
+        ioOverflowMap += !inBlockLabel !mTargetLabelWhenTrue->string ;
+      end if ;
+    when ipicGOTO : # !Bcc Z ; GOTO T ; Z:
+    end switch ;
+  else
+    switch mBranchModeOnFalseLabel
+    when native :
+      switch mBranchModeOnTrueLabel
+      when native, ipicBRA : # !Bcc F ; BRA T
+        if not pic18_checkBCC [!inSymbolTable !mTargetLabelWhenFalse !inAddress] then
+          ioOverflowMap += !inBlockLabel !mTargetLabelWhenFalse->string ;
+        end if ;
+        if not pic18_checkBRA_RCALL [!inSymbolTable !mTargetLabelWhenTrue !inAddress+2] then
+          ioOverflowMap += !inBlockLabel !mTargetLabelWhenTrue->string ;
+        end if ;
+      when ipicGOTO : # !Bcc F ; GOTO T
+      end switch ;
+    when ipicBRA :
+      switch mBranchModeOnTrueLabel
+      when native   : # Bcc T ; BRA F
+        if not pic18_checkBCC [!inSymbolTable !mTargetLabelWhenTrue !inAddress] then
+          ioOverflowMap += !inBlockLabel !mTargetLabelWhenTrue->string ;
+        end if ;
+        if not pic18_checkBRA_RCALL [!inSymbolTable !mTargetLabelWhenFalse!inAddress+2] then
+          ioOverflowMap += !inBlockLabel !mTargetLabelWhenFalse->string ;
+        end if ;
+      when ipicBRA  : # Bcc Z ; BRA F ; Z: BRA T
+        if not pic18_checkBRA_RCALL [!inSymbolTable !mTargetLabelWhenFalse!inAddress+2] then
+          ioOverflowMap += !inBlockLabel !mTargetLabelWhenFalse->string ;
+        end if ;
+        if not pic18_checkBRA_RCALL [!inSymbolTable !mTargetLabelWhenTrue !inAddress+4] then
+          ioOverflowMap += !inBlockLabel !mTargetLabelWhenTrue->string ;
+        end if ;
+      when ipicGOTO : # Bcc Z ; BRA F ; Z: GOTO T
+        if not pic18_checkBRA_RCALL [!inSymbolTable !mTargetLabelWhenFalse!inAddress+2] then
+          ioOverflowMap += !inBlockLabel !mTargetLabelWhenFalse->string ;
+        end if ;
+      end switch ;
+    when ipicGOTO :
+      switch mBranchModeOnTrueLabel
+      when native   : # Bcc T ; GOTO F
+        if not pic18_checkBCC [!inSymbolTable !mTargetLabelWhenTrue !inAddress] then
+          ioOverflowMap += !inBlockLabel !mTargetLabelWhenTrue->string ;
+        end if ;
+      when ipicBRA  : # Bcc Z ; GOTO F ; Z: BRA T
+        if not pic18_checkBRA_RCALL [!inSymbolTable !mTargetLabelWhenTrue !inAddress+6] then
+          ioOverflowMap += !inBlockLabel !mTargetLabelWhenTrue->string ;
+        end if ;
+      when ipicGOTO : # Bcc Z ; GOTO F ; Z: GOTO T
+      end switch ;
+    end switch ;
+  end if ;
+end method ;
 
 #----------------------------------------------------------------------------*
 
