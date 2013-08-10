@@ -43,9 +43,9 @@ PMCompteur::~PMCompteur (void) {
 
 // method checkPMCodeImage
 // check main program of binary code
-void PMCompteur::checkPMCodeImage (void) {
+void PMCompteur::checkPMCodeImage (unsigned long pcstart) {
 	// initialize PC
-	unsigned long pcstart = codeImage->firstAddress () ;
+//	unsigned long pcstart = codeImage->firstAddress () ;
 	this->checkProgram (pcstart) ;
 }
 
@@ -173,7 +173,6 @@ unsigned long PMCompteur::evalInstructionStep (unsigned short instruction, unsig
 			newAddress <<= 12 ;
 			newAddress += nextInstruction & 2047 ;
 			step2 = newAddress - localPC ;
-			step2 = newAddress - localPC ;
 			// add localPC + 4 ro the TOS
 			unsigned long newLocalPC = localPC + 4 ;
 			if (v) { 
@@ -194,6 +193,21 @@ unsigned long PMCompteur::evalInstructionStep (unsigned short instruction, unsig
 		step2 = localPC - goToStart ;
 		if (v) { 
 			strcpy (instructionName,"RETURN") ;
+			this->verbose (localPC, instruction, instructionName, goToStart, 0) ; 
+		}		
+		return step2 ;
+	}
+
+  //--- Added by PM
+	// evaluate if RETFIE
+	// instruction = 0000.0000.0001.000s
+	shortInstruction = instruction ;
+	shortInstruction >>= 1 ;
+	if(shortInstruction == 8) {
+		// break program checking by returning to first address of program checking
+		step2 = localPC - goToStart ;
+		if (v) { 
+			strcpy (instructionName,"RETFIE") ;
 			this->verbose (localPC, instruction, instructionName, goToStart, 0) ; 
 		}		
 		return step2 ;
