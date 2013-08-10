@@ -266,7 +266,7 @@ routine pic18_analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName 
   #-------------------------------- Build block representation
     build_ipic18_block_representation_list
       !inSourceFileName
-      ![[[piccoloDeviceModel mRomSize] uint] sint]
+      !piccoloDeviceModel
       ![RAMsize sint]
       !bootloaderRoutineDeclarationListForBootloaderImplementation # Empty for regular program
       !userRoutineDeclarationListForBootloaderImplementation # Empty for regular program
@@ -276,6 +276,7 @@ routine pic18_analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName 
       !accessBankSplitOffset
       !registerTable
       !inPiccoloModel
+      !ramBank
       !hasHighInterrupt
       !hasLowInterrupt
       ![[piccoloDeviceModel mDeviceName] string]

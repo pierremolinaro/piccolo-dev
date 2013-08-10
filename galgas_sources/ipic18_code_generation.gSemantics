@@ -181,6 +181,7 @@ routine ipic18GenerateCode
   ??@actualConfigurationMap inActualConfigurationMap
   ?!@string ioListFileContents
   ??@ipic18BlockList inGeneratedBlockList
+  !@uint outUsedROMsize
 :
   ioListFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n" ;
   ioListFileContents .= "*" . ["CODE GENERATION" stringByLeftAndRightPadding !77 !' '] . "*\n" ;
@@ -202,6 +203,7 @@ routine ipic18GenerateCode
   end foreach ; 
 #---------------------------------- Generate code
   @string assemblyString := "" ;
+  @uint relocatableCodeSize := 0 ;
   @uint blockStartAddress := 0 ;
   foreach inGeneratedBlockList index blockIndex do
     #message mBlock->mLabel->string . "\n" ;
@@ -218,7 +220,11 @@ routine ipic18GenerateCode
     [mBlock generateCode !symbolTable !dataAddressMap !blockStartAddress !nextBlockLabel !?ioListFileContents !?assemblyString] ;
     const @uint blockSize := [mBlock blockSize !nextBlockLabel] ;
     blockStartAddress := blockStartAddress + blockSize ;
+    if mBlock->mStartAddress == [@uint max] then
+      relocatableCodeSize := relocatableCodeSize + blockSize ;
+    end if ;
   end foreach ;
+  outUsedROMsize := blockStartAddress ;
 #--- Data
   foreach inDataMap do
     assemblyString .= "_data_" . lkey . ":\n" ;
@@ -227,6 +233,9 @@ routine ipic18GenerateCode
       emitCode !mValue ;
     end foreach ;
   end foreach ; 
+  if [option.verbose_output value] then
+    message "  Relocatable code size: " . relocatableCodeSize . " bytes.\n\n" ;
+  end if ;
 #----------------------------- Generate HEX file
 #--- Add Configuration
   foreach inActualConfigurationMap do

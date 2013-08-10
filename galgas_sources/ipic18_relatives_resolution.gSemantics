@@ -565,7 +565,7 @@ routine ipic18RelativesResolution
     ;
     resolutionDone := conversionCount == 0 ;
     if [option.verbose_output value] then
-      @string s := "--- Pass " . pass . ": " ;
+      @string s := "  Pass " . pass . ": " ;
       if conversionCount == 0 then
         s .= "none." ;
       elsif conversionCount == 1 then
@@ -578,6 +578,7 @@ routine ipic18RelativesResolution
   end loop ;
   if [option.verbose_output value] then
     ioListFileContents .= "  No conversion.\n\n" ;
+    message "\n" ;
   end if ;
 end routine ;
 

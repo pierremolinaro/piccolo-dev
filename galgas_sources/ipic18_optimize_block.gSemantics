@@ -1179,8 +1179,9 @@ routine ipic18OptimizeBlocks
     optimizationDone := false ;
     optimizationPass := optimizationPass + 1 ;
     ioListFileContents .= "\n--- Pass " . optimizationPass . " (" . [ioGeneratedBlockList length] . " blocks)\n" ;
+    const @uint blockCountBeforeOptimization := [ioGeneratedBlockList length] ;
     if [option.verbose_output value] then
-      message "  Pass " . optimizationPass . " (" . [ioGeneratedBlockList length] . " blocks)\n" ;
+      message "  Pass " . optimizationPass . " : " . blockCountBeforeOptimization . " blocks.\n" ;
     end if ;
   #-------------------------------- Build label map
     @symbolTableForBlockOptimization symbolTable [emptyMap] ;

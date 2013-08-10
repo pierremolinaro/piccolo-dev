@@ -2058,7 +2058,7 @@ end routine ;
 
 routine build_ipic18_block_representation_list
   ??@string inSourceFileName
-  ??@sint inROMSize
+  ??@piccoloDeviceModel inPiccoloDeviceModel
   ??@sint inRAMSize
   ??@routineDeclarationList inBootloaderRoutineDeclarationListForBootloaderImplementation
   ??@routineDeclarationList inUserRoutineDeclarationListForBootloaderImplementation
@@ -2068,6 +2068,7 @@ routine build_ipic18_block_representation_list
   ??@uint inAccessBankSplitOffset
   ??@registerTable inRegisterTable
   ??@piccoloModel inPiccoloModel
+  ??@ramBankTable inRamBank
   ??@bool inHasHighInterrupt
   ??@bool inHasLowInterrupt
   ??@string inProcessorName
@@ -2095,7 +2096,7 @@ routine build_ipic18_block_representation_list
 #-------------------------------- Build constant map
   @constantMap constantMap [emptyMap] ;
 #--- Add "ROM_SIZE" and "RAM_SIZE" constants
-  [!?constantMap insertKey ![@lstring new !"ROM_SIZE" !here] !inROMSize] ;
+  [!?constantMap insertKey ![@lstring new !"ROM_SIZE" !here] ![[[inPiccoloDeviceModel mRomSize] uint] sint]] ;
   [!?constantMap insertKey ![@lstring new !"RAM_SIZE" !here] !inRAMSize] ;
 #--- Add "BOOTLOADER_RESERVED_SIZE" constant
   if inPiccoloModel->mProgramKind != [@programKind regularProgram] then
@@ -2303,6 +2304,8 @@ routine build_ipic18_block_representation_list
     end foreach ;
   end if ;
 #-------------------------------- Generate routines
+  const @lstring commonReturnTerminatorLabel [new !"_return_" ![@location nowhere]] ;
+  const @ipic18JumpTerminator commonReturnTerminator [new ![@location nowhere] !commonReturnTerminatorLabel ![@jumpInstructionKind ipicRelative]] ;
   foreach inPiccoloModel->mRoutineDefinitionList do
     @uint currentBank := [mRequiredBank uint] ;
     @routineKind routineKind ;
@@ -2315,7 +2318,8 @@ routine build_ipic18_block_representation_list
       ![@uint max] # Relocatable
       !mRoutineName
       ![@ipic18SequentialInstructionList emptyList]
-      ![@ipic18ReturnTerminator new !mRoutineName->location]
+      !commonReturnTerminator
+#      ![@ipic18ReturnTerminator new !mRoutineName->location]
     ] ;
     analyzeInstructionList
       !mInstructionList
@@ -2343,6 +2347,13 @@ routine build_ipic18_block_representation_list
       error mRoutineName:"execution should not reach the end of a \"noreturn\" routine" ;
     end if ;
   end foreach ;
+#-------------------------------- Add common return block
+  generatedBlockList += ![@ipic18Block new
+    ![@uint max] # Relocatable
+    !commonReturnTerminatorLabel
+    ![@ipic18SequentialInstructionList emptyList]
+    ![@ipic18ReturnTerminator new ![@location nowhere]]
+  ] ;
 #-------------------------------- Add computed goto, rcall, ... utility routines
 #  They wil be removed by optimizer if there are useless
 #--- Description of register WREG
@@ -2489,7 +2500,24 @@ routine build_ipic18_block_representation_list
       !inActualConfigurationMap
       !?ioListFileContents
       !generatedBlockList
+      ??@uint usedROMsize
     ;
+  #----------------------------------------------------------- Print usage
+    if [option.verbose_output value] then
+      @string verboseMessage := "Resource usage:\n" ;
+      verboseMessage .= "  ROM size: " . [[[inPiccoloDeviceModel mRomSize] uint] string] . " bytes;" ;
+      verboseMessage .= " used: " . [usedROMsize string] . " bytes (" ;
+      verboseMessage .= [(usedROMsize * 100) / [[inPiccoloDeviceModel mRomSize] uint] string] . "%).\n" ;
+      foreach inRamBank do
+        @uint bankSize := mLastAddressPlusOne - mFirstAddress ;
+        @uint usedSize := mFirstFreeAddress - mFirstAddress ;
+        verboseMessage .= "  RAM bank '" . lkey . "': " ;
+        verboseMessage .= [bankSize string] . " bytes, used " ;
+        verboseMessage .= [usedSize string] . " bytes (" ;
+        verboseMessage .= [(usedSize * 100) / bankSize string] . "%).\n" ;
+      end foreach ;
+      message verboseMessage ;
+    end if ;
   end if ;
 end routine ;
 
