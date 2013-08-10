@@ -423,11 +423,10 @@ local routine buildOrderedGraph
   ioListFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n\n" ;
   ioListFileContents .= "Block ordering optimization:\n" ;
   const @uint n := blockDiscontinuityCount [!ioBlockList] ;
-  ioListFileContents .= "  discontinuity count before optimization: " . n . "\n" ;
+  ioListFileContents .= "  inter block jump count before optimization: " . n . "\n" ;
 #---
   if [option.verbose_output value] then
     message "Block ordering optimization:\n" ;
-    message "  discontinuity count before optimization: " . n . "\n" ;
   end if ;
 #-------------------------------- Build label map
   @symbolTableForBlockOptimization symbolTable [emptyMap] ;
@@ -497,9 +496,9 @@ local routine buildOrderedGraph
   end foreach ; 
 #------------------------ Messaging
   const @uint p := blockDiscontinuityCount [!orderedBlockList] ;
-  ioListFileContents .= "  discontinuity count after optimization: " . p . "\n\n" ;
+  ioListFileContents .= "  inter block jump count after optimization: " . p . "\n\n" ;
   if [option.verbose_output value] then
-    message "  discontinuity count after optimization: " . p . "\n\n" ;
+    message "  inter block jump count: " . n . " -> " . p . ".\n\n" ;
   end if ;
 #--- Check block definition
   @stringset newSymbolSet [emptySet] ;

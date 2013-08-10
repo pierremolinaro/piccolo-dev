@@ -4,7 +4,7 @@
 //                                                                           *
 //  This file is part of libpm library                                       *
 //                                                                           *
-//  Copyright (C) 2012, ..., 2013 Pierre Molinaro.                           *
+//  Copyright (C) 2012, ..., 2012 Pierre Molinaro.                           *
 //                                                                           *
 //  e-mail : molinaro@irccyn.ec-nantes.fr                                    *
 //                                                                           *
@@ -56,9 +56,22 @@ class C_Data {
   public : void appendData (const C_Data & inData) ;
   
 //---
-  public : PMUInt8 operator () (const PMSInt32 inIndex
-                                COMMA_LOCATION_ARGS) const ;
+  #ifndef DO_NOT_GENERATE_CHECKINGS
+    public : PMUInt8 & operator () (const PMSInt32 inIndex
+                                    COMMA_LOCATION_ARGS) ;
+    public : PMUInt8 & operator () (const PMSInt32 inIndex
+                                    COMMA_LOCATION_ARGS) const ;
+  #endif
 
+//--- Array access (without index checking)
+  #ifdef DO_NOT_GENERATE_CHECKINGS
+    public : inline PMUInt8 & operator () (const PMSInt32 inIndex) {
+      return mBinaryData (inIndex) ;
+    }
+    public : inline PMUInt8 & operator () (const PMSInt32 inIndex) const {
+      return mBinaryData (inIndex) ;
+    }
+  #endif
 
 //--- Data from pointer
   public : void setDataFromPointer (PMUInt8 * & ioDataPtr,
