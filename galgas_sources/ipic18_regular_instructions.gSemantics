@@ -41,6 +41,22 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
+override method @ipic18_condition_skip_instruction instructionRelativeBranchOverflow
+  ??@uint inAddress
+  ??@string inBlockLabel
+  ??@symbolTableForRelativesResolution inSymbolTable
+  ?!@branchOverflowMap ioOverflowMap
+:
+  [mEmbeddedInstruction instructionRelativeBranchOverflow
+    !inAddress + 2
+    !inBlockLabel
+    !inSymbolTable
+    !?ioOverflowMap
+  ] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
 #!--- Intermediate instruction display
 
 #----------------------------------------------------------------------------*
