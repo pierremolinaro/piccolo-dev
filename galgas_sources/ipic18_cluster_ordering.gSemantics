@@ -75,7 +75,27 @@ routine perform_cluster_ordering
       foreach mList while correctionLoop do
         [symbolTable searchKey ![key nowhere] ??@uint sourceCluster] ;
         [symbolTable searchKey ![mValue nowhere] ??@uint targetCluster] ;
-        if sourceCluster < targetCluster then
+        if (sourceCluster + 1) == targetCluster then
+          correctionLoop := false ;
+          continue := true ;
+          [!?clusterList removeAtIndex ??@ipic18BlockList last !targetCluster ] ;
+          [!?clusterList removeAtIndex ??@ipic18BlockList first !sourceCluster ] ;
+          [!?clusterList insertAtIndex !first . last !sourceCluster] ;
+          ioListFileContents .= "  --> cluster #" . targetCluster . " merged into #" . sourceCluster . "\n" ;
+          if [option.verbose_output value] then
+            message " -> #" . targetCluster . " merged into #" . sourceCluster ;
+          end if ;
+        elsif sourceCluster == (targetCluster + 1) then
+          correctionLoop := false ;
+          continue := true ;
+          [!?clusterList removeAtIndex ??@ipic18BlockList last !sourceCluster ] ;
+          [!?clusterList removeAtIndex ??@ipic18BlockList first !targetCluster ] ;
+          [!?clusterList insertAtIndex !first . last !targetCluster] ;
+          ioListFileContents .= "  --> cluster #" . sourceCluster . " merged into #" . targetCluster . "\n" ;
+          if [option.verbose_output value] then
+            message " -> #" . sourceCluster . " merged into #" . targetCluster  ;
+          end if ;
+        elsif sourceCluster < targetCluster then
           correctionLoop := false ;
           continue := true ;
           [!?clusterList removeAtIndex ??@ipic18BlockList b !targetCluster ] ;

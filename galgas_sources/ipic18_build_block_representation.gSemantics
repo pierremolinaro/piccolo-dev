@@ -2304,8 +2304,8 @@ routine build_ipic18_block_representation_list
     end foreach ;
   end if ;
 #-------------------------------- Generate routines
-  const @lstring commonReturnTerminatorLabel [new !"_return_" ![@location nowhere]] ;
-  const @ipic18JumpTerminator commonReturnTerminator [new ![@location nowhere] !commonReturnTerminatorLabel ![@jumpInstructionKind ipicRelative]] ;
+#  const @lstring commonReturnTerminatorLabel [new !"_return_" ![@location nowhere]] ;
+#  const @ipic18JumpTerminator commonReturnTerminator [new ![@location nowhere] !commonReturnTerminatorLabel ![@jumpInstructionKind ipicRelative]] ;
   foreach inPiccoloModel->mRoutineDefinitionList do
     @uint currentBank := [mRequiredBank uint] ;
     @routineKind routineKind ;
@@ -2318,8 +2318,8 @@ routine build_ipic18_block_representation_list
       ![@uint max] # Relocatable
       !mRoutineName
       ![@ipic18SequentialInstructionList emptyList]
-      !commonReturnTerminator
-#      ![@ipic18ReturnTerminator new !mRoutineName->location]
+#      !commonReturnTerminator
+      ![@ipic18ReturnTerminator new !mRoutineName->location]
     ] ;
     analyzeInstructionList
       !mInstructionList
@@ -2348,12 +2348,12 @@ routine build_ipic18_block_representation_list
     end if ;
   end foreach ;
 #-------------------------------- Add common return block
-  generatedBlockList += ![@ipic18Block new
-    ![@uint max] # Relocatable
-    !commonReturnTerminatorLabel
-    ![@ipic18SequentialInstructionList emptyList]
-    ![@ipic18ReturnTerminator new ![@location nowhere]]
-  ] ;
+#  generatedBlockList += ![@ipic18Block new
+#    ![@uint max] # Relocatable
+#    !commonReturnTerminatorLabel
+#    ![@ipic18SequentialInstructionList emptyList]
+#    ![@ipic18ReturnTerminator new ![@location nowhere]]
+#  ] ;
 #-------------------------------- Add computed goto, rcall, ... utility routines
 #  They wil be removed by optimizer if there are useless
 #--- Description of register WREG
