@@ -229,7 +229,7 @@ routine ipic18GenerateCode
   foreach inDataMap do
     assemblyString .= "_data_" . lkey . ":\n" ;
     foreach mData do
-      assemblyString .= "    WORD " . [mValue hexString] . "\n" ;
+      assemblyString .= "    DW " . [mValue hexString] . "\n" ;
       emitCode !mValue ;
     end foreach ;
   end foreach ; 

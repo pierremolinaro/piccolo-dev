@@ -969,30 +969,30 @@ override method @instruction_computed_rcall analyze
     end if ;
     if isNoReturn then
       error mValue:"for being named in a computed rcall, the '" . mValue . "' routine should be declared without the \"noreturn\" qualifier" ;
-  end if ;
-     if inShouldPreserveBSR & not preservesBank then
-       error mValue:"the '" . mValue . "' routine should preserved bank selection" ;
-     elsif (not inShouldPreserveBSR) & not preservesBank then
-       if not someReturnsBank then
-         returnedBankSelection := returnedBank ;
-         someReturnsBank := true ;
-       elsif returnedBankSelection != returnedBank then 
-         @string errorMessage := "the '" . mValue . "' routine returns " ;
-         if returnedBank == [@uint max] then
-           errorMessage .= "no bank selection" ;
-         else
-           errorMessage .= "bank selection set to  ". [returnedBank string] ;
-         end if ;
-         errorMessage .= ", but previous routine(s) return(s) " ;
-         if returnedBankSelection == [@uint max] then
-           errorMessage .= "no bank selection" ;
-         else
-           errorMessage .= "bank selection set to  ". [returnedBankSelection string] ;
-         end if ;
-         error mValue: errorMessage ;
-       end if ;
-     elsif (not inShouldPreserveBSR) & preservesBank then
-     end if ;
+    end if ;
+    if inShouldPreserveBSR & not preservesBank then
+      error mValue:"the '" . mValue . "' routine should preserved bank selection" ;
+    elsif (not inShouldPreserveBSR) & not preservesBank then
+      if not someReturnsBank then
+        returnedBankSelection := returnedBank ;
+        someReturnsBank := true ;
+      elsif returnedBankSelection != returnedBank then 
+        @string errorMessage := "the '" . mValue . "' routine returns " ;
+        if returnedBank == [@uint max] then
+          errorMessage .= "no bank selection" ;
+        else
+          errorMessage .= "bank selection set to  ". [returnedBank string] ;
+        end if ;
+        errorMessage .= ", but previous routine(s) return(s) " ;
+        if returnedBankSelection == [@uint max] then
+          errorMessage .= "no bank selection" ;
+        else
+          errorMessage .= "bank selection set to  ". [returnedBankSelection string] ;
+        end if ;
+        error mValue: errorMessage ;
+      end if ;
+    elsif (not inShouldPreserveBSR) & preservesBank then
+    end if ;
   end foreach ;
 #---
   ioContinuesInSequence := true ;
@@ -1009,7 +1009,7 @@ override method @instruction_computed_rcall analyze
 #---
   @ipic18SequentialInstructionList targetInstructionList [emptyList] ;
   foreach mTargetLabels do
-    targetInstructionList += ![@ipic18_intermediate_JSR new !mInstructionLocation !mValue ![@jumpInstructionKind relative]] ;
+    targetInstructionList += ![@ipic18_intermediate_JSR new !mValue->location !mValue ![@jumpInstructionKind relative]] ;
   end foreach ;
 #---
   ioCurrentBlock->mInstructionList += ![@ipic18_intermediate_instruction_computed_rcall new
@@ -2304,8 +2304,6 @@ routine build_ipic18_block_representation_list
     end foreach ;
   end if ;
 #-------------------------------- Generate routines
-#  const @lstring commonReturnTerminatorLabel [new !"_return_" ![@location nowhere]] ;
-#  const @ipic18JumpTerminator commonReturnTerminator [new ![@location nowhere] !commonReturnTerminatorLabel ![@jumpInstructionKind ipicRelative]] ;
   foreach inPiccoloModel->mRoutineDefinitionList do
     @uint currentBank := [mRequiredBank uint] ;
     @routineKind routineKind ;
@@ -2318,7 +2316,6 @@ routine build_ipic18_block_representation_list
       ![@uint max] # Relocatable
       !mRoutineName
       ![@ipic18SequentialInstructionList emptyList]
-#      !commonReturnTerminator
       ![@ipic18ReturnTerminator new !mRoutineName->location]
     ] ;
     analyzeInstructionList
@@ -2347,13 +2344,6 @@ routine build_ipic18_block_representation_list
       error mRoutineName:"execution should not reach the end of a \"noreturn\" routine" ;
     end if ;
   end foreach ;
-#-------------------------------- Add common return block
-#  generatedBlockList += ![@ipic18Block new
-#    ![@uint max] # Relocatable
-#    !commonReturnTerminatorLabel
-#    ![@ipic18SequentialInstructionList emptyList]
-#    ![@ipic18ReturnTerminator new ![@location nowhere]]
-#  ] ;
 #-------------------------------- Add computed goto, rcall, ... utility routines
 #  They wil be removed by optimizer if there are useless
 #--- Description of register WREG
@@ -2410,7 +2400,6 @@ routine build_ipic18_block_representation_list
   generatedBlockList += !goto4Block ;
 #--- computed_goto2
   @ipic18SequentialInstructionList goto2InstructionList [emptyList] ;
-  goto2InstructionList += !ADDWF_WREG ;
   goto2InstructionList += !ADDWF_WREG ;
   goto2InstructionList += ![@ipic18_intermediate_instruction_FDA new
     !here

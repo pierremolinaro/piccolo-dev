@@ -25,14 +25,13 @@ routine perform_cluster_ordering
   if [option.verbose_output value] then
     message s ;
   end if ;
-#----
+#------------------- Optimization loop
   @clusterList clusterList := inInitialClusterList ;
   @bool continue := true ;
   @uint pass := 0 ;
   loop [clusterList length] + 1 :
   while continue do
     pass ++ ;
-    continue := false ;
     ioListFileContents .= "Pass " . pass . ":\n" ;
   #--- Build working block list and symbol table
     @ipic18BlockList workingBlockList [emptyList] ;
@@ -40,10 +39,18 @@ routine perform_cluster_ordering
     foreach clusterList index clusterIndex do
       workingBlockList .= mBlockList ;
       foreach mBlockList do
-#        message "   --  #" . clusterIndex . ": " . mBlock->mLabel . "\n" ;
         [!?symbolTable insertKey !mBlock->mLabel !clusterIndex] ;
       end foreach ;
     end foreach ;
+  #--- Add symbols from last relocatable blocks
+    const @uint insertionIdx := [workingBlockList length] ;
+    foreach \down ioBlockList while continue do
+      continue := mBlock->mStartAddress != [@uint max] ;
+      if continue then
+        [!?symbolTable insertKey !mBlock->mLabel ![@uint max]] ;
+        [!?workingBlockList insertAtIndex !mBlock !insertionIdx] ;
+      end if ;
+    end foreach ; 
   #--- Check for overflows
     ipic18RelativeBranchOverflow
       !workingBlockList
@@ -65,7 +72,7 @@ routine perform_cluster_ordering
       elsif overflowCount == 1 then
         s .= "1 branch overflow" ;
       else
-        s .= [overflowCount string] . " branch overflow" ;
+        s .= [overflowCount string] . " branch overflows" ;
       end if ;
       message s ;
     end if ;
@@ -73,45 +80,51 @@ routine perform_cluster_ordering
     @bool correctionLoop := true ;
     foreach overflowMap while correctionLoop do
       foreach mList while correctionLoop do
-        [symbolTable searchKey ![key nowhere] ??@uint sourceCluster] ;
         [symbolTable searchKey ![mValue nowhere] ??@uint targetCluster] ;
-        if (sourceCluster + 1) == targetCluster then
-          correctionLoop := false ;
-          continue := true ;
-          [!?clusterList removeAtIndex ??@ipic18BlockList last !targetCluster ] ;
-          [!?clusterList removeAtIndex ??@ipic18BlockList first !sourceCluster ] ;
-          [!?clusterList insertAtIndex !first . last !sourceCluster] ;
-          ioListFileContents .= "  --> cluster #" . targetCluster . " merged into #" . sourceCluster . "\n" ;
-          if [option.verbose_output value] then
-            message " -> #" . targetCluster . " merged into #" . sourceCluster ;
-          end if ;
-        elsif sourceCluster == (targetCluster + 1) then
-          correctionLoop := false ;
-          continue := true ;
-          [!?clusterList removeAtIndex ??@ipic18BlockList last !sourceCluster ] ;
-          [!?clusterList removeAtIndex ??@ipic18BlockList first !targetCluster ] ;
-          [!?clusterList insertAtIndex !first . last !targetCluster] ;
-          ioListFileContents .= "  --> cluster #" . sourceCluster . " merged into #" . targetCluster . "\n" ;
-          if [option.verbose_output value] then
-            message " -> #" . sourceCluster . " merged into #" . targetCluster  ;
-          end if ;
-        elsif sourceCluster < targetCluster then
-          correctionLoop := false ;
-          continue := true ;
-          [!?clusterList removeAtIndex ??@ipic18BlockList b !targetCluster ] ;
-          [!?clusterList insertAtIndex !b !(targetCluster + sourceCluster) / 2 ] ;
-          ioListFileContents .= "  --> cluster #" . targetCluster . " rolls downs to #" . ((targetCluster + sourceCluster) / 2) . "\n" ;
-          if [option.verbose_output value] then
-            message " -> #" . targetCluster . " rolls down to #" . ((targetCluster + sourceCluster) / 2) ;
-          end if ;
-        elsif sourceCluster > targetCluster then
-          correctionLoop := false ;
-          continue := true ;
-          [!?clusterList removeAtIndex ??@ipic18BlockList b !sourceCluster ] ;
-          [!?clusterList insertAtIndex !b !(targetCluster + sourceCluster) / 2 ] ;
-          ioListFileContents .= "  --> cluster #" . sourceCluster . " rolls downs to #" . ((targetCluster + sourceCluster) / 2) . "\n" ;
-          if [option.verbose_output value] then
-            message " -> #" . sourceCluster . " rolls downs to #" . ((targetCluster + sourceCluster) / 2) ;
+        if targetCluster != [@uint max] then
+          [symbolTable searchKey ![key nowhere] ??@uint sourceCluster] ;
+          if (sourceCluster + 1) == targetCluster then
+            correctionLoop := false ;
+            continue := true ;
+            [!?clusterList removeAtIndex ??@ipic18BlockList last !targetCluster ] ;
+            [!?clusterList removeAtIndex ??@ipic18BlockList first !sourceCluster ] ;
+            [!?clusterList insertAtIndex !first . last !sourceCluster] ;
+            const @string m := "merge #" . targetCluster . " into #" . sourceCluster . "]" ;
+            ioListFileContents .= "  --> " . m . "\n" ;
+            if [option.verbose_output value] then
+              message " -> " . m ;
+            end if ;
+          elsif sourceCluster == (targetCluster + 1) then
+            correctionLoop := false ;
+            continue := true ;
+            [!?clusterList removeAtIndex ??@ipic18BlockList last !sourceCluster ] ;
+            [!?clusterList removeAtIndex ??@ipic18BlockList first !targetCluster ] ;
+            [!?clusterList insertAtIndex !first . last !targetCluster] ;
+            const @string m := "merge #" . sourceCluster . " into #" . targetCluster . "]" ;
+            ioListFileContents .= "  --> " . m . "\n" ;
+            if [option.verbose_output value] then
+              message " -> " . m ;
+            end if ;
+          elsif sourceCluster < targetCluster then
+            correctionLoop := false ;
+            continue := true ;
+            [!?clusterList removeAtIndex ??@ipic18BlockList b !targetCluster ] ;
+            [!?clusterList insertAtIndex !b !(targetCluster + sourceCluster) / 2 ] ;
+            const @string m := "roll up [#" . ((targetCluster + sourceCluster) / 2) . ", #" . targetCluster . "]" ;
+            ioListFileContents .= "  --> " . m . "\n" ;
+            if [option.verbose_output value] then
+              message " -> " . m ;
+            end if ;
+          elsif sourceCluster > targetCluster then
+            correctionLoop := false ;
+            continue := true ;
+            [!?clusterList removeAtIndex ??@ipic18BlockList b !sourceCluster ] ;
+            [!?clusterList insertAtIndex !b !(targetCluster + sourceCluster) / 2 ] ;
+            const @string m := "roll up [#" . targetCluster. ", #" . ((targetCluster + sourceCluster) / 2) . "]" ;
+            ioListFileContents .= "  --> " . m . "\n" ;
+            if [option.verbose_output value] then
+              message " -> " . m ;
+            end if ;
           end if ;
         end if ;
       end foreach ;
@@ -138,7 +151,7 @@ routine perform_cluster_ordering
   foreach clusterList do
     newBlockList .= mBlockList ;
   end foreach ;
-#--- First insert absolute blocks from the end
+#--- Insert absolute blocks from the end
   const @uint insertionIndex := [newBlockList length] ;
   continue := true ;
   foreach \down ioBlockList while continue do
