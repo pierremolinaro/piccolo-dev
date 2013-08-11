@@ -550,7 +550,7 @@ override method @ipic18_intermediate_MOV_LABEL_W generateCode
   const @uint code := ((address + mOffset) >> mRightShift) & 0xFF ;
   const @uint code_MOVLW := 0x0E00 ;
   outCode := [@codeList listWithValue
-    !"    " . [[selfcopy instructionDisplay] mValueAtIndex !0]
+    !"    MOVLW ((_data_" . mLabel . " + " . mOffset . ") >> " . mRightShift . ") & 0xFF"
     ![@uintlist listWithValue !code | code_MOVLW]
   ] ;
 end method ;
@@ -771,30 +771,40 @@ override method @ipic18_skip_instruction_FDA generateCode
   ??@pic18_dataAddressMap inDataAddressMap
   !@codeList outCode
 :
-  @uint code ;
+  @uint binCode ;
   switch mInstruction_FDA_base_code
-  when DECFSZ : code := 0x2C00 ;
-  when DCFSNZ : code := 0x4C00 ;
-  when INCFSZ : code := 0x3C00 ;
-  when INFSNZ : code := 0x4800 ;
+  when DECFSZ : binCode := 0x2C00 ;
+  when DCFSNZ : binCode := 0x4C00 ;
+  when INCFSZ : binCode := 0x3C00 ;
+  when INFSNZ : binCode := 0x4800 ;
   end switch ;
   if [mRegisterDescription mNeedsBSR] then
-    code := code | 0x0100 ;
+    binCode := binCode | 0x0100 ;
   end if ;
-  code := code | ([mRegisterDescription mRegisterAddress] & 255) ;
+  binCode := binCode | ([mRegisterDescription mRegisterAddress] & 255) ;
 #--- Assembly string
-  @string s := "    " ;
+  @string assemblyCode := "    " ;
   switch mInstruction_FDA_base_code
-  when DECFSZ : s .= "DECFSZ" ;
-  when DCFSNZ : s .= "DCFSNZ" ;
-  when INCFSZ : s .= "INCFSZ" ;
-  when INFSNZ : s .= "INFSNZ" ;
+  when DECFSZ : assemblyCode .= "DECFSZ" ;
+  when DCFSNZ : assemblyCode .= "DCFSNZ" ;
+  when INCFSZ : assemblyCode .= "INCFSZ" ;
+  when INFSNZ : assemblyCode .= "INFSNZ" ;
   end switch ;
-  s .= " " . [mRegisterDescription mAssemblyString] ;
+  assemblyCode .= " " . [mRegisterDescription mAssemblyString] ;
+  if m_W_isDestination then
+    assemblyCode .= ", W" ;
+  else
+    binCode := binCode | 0x0200 ;
+    assemblyCode .= ", F" ;
+  end if ;
+  if [mRegisterDescription mNeedsBSR] then
+    binCode := binCode | 0x0100 ;
+    assemblyCode .= ", BSR_ACCESS" ;
+  end if ;
 #---
   outCode := [@codeList listWithValue
-    !s
-    ![@uintlist listWithValue !code]
+    !assemblyCode
+    ![@uintlist listWithValue !binCode]
   ] ;
   [mEmbeddedInstruction generateCode
     !inAddress + 2
@@ -1035,19 +1045,21 @@ override method @ipic18_intermediate_instruction_computed_rcall generateCode
 
   [inSymbolTable searchKey !target ??@uint computetedGoto4Address] ;
 
+  @uint currentInstructionAddress ;
   if mUsesRCALL then
+    currentInstructionAddress := inAddress + 2 ;
     outCode := pic18_RCALL_instruction_code [!inAddress !computetedGoto4Address !target] ;
   else
+    currentInstructionAddress := inAddress + 4 ;
     outCode := pic18_CALL_instruction_code [!computetedGoto4Address !target] ;
   end if ;
-  const @uint nextInstructionAddress := inAddress + [mTargetInstructions length] * 4 - 2 ;
+  const @uint instructionFollowingComputedRcallAddress := currentInstructionAddress + [mTargetInstructions length] * 4 - 1 ;
   const @lstring nextInstructionLabel [new !"_computed_" . [inAddress xString] !mInstructionLocation] ;
-  @uint currentInstructionAddress := inAddress ;
   @uint idx := 0 ;
   foreach mTargetInstructions do
     idx ++ ;
     [mInstruction generateCode
-      !inAddress
+      !currentInstructionAddress
       !inSymbolTable
       !inDataAddressMap
       ??@codeList instructionCode
@@ -1055,7 +1067,7 @@ override method @ipic18_intermediate_instruction_computed_rcall generateCode
     outCode .= instructionCode ;
     currentInstructionAddress := currentInstructionAddress + 2 ;
     if idx < [mTargetInstructions length] then
-      outCode .= pic18_BRA_instruction_code [!currentInstructionAddress !nextInstructionAddress !nextInstructionLabel] ;
+      outCode .= pic18_BRA_instruction_code [!currentInstructionAddress !instructionFollowingComputedRcallAddress !nextInstructionLabel] ;
       currentInstructionAddress := currentInstructionAddress + 2 ;
     end if ;
   end foreach ;
