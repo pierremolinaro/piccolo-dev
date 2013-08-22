@@ -333,9 +333,7 @@ override method @ipic18JumpTerminator buildTerminatorOrderedGraph
   ??@lstring inBlockLabel
   ?!@blockInvocationGraph ioGraph
 :
-  if inBlockLabel->string != mLabel->string then
-    [!?ioGraph addEdge !inBlockLabel !mLabel] ;
-  end if ;
+  [!?ioGraph addEdge !inBlockLabel !mLabel] ;
 end method ;
 
 #----------------------------------------------------------------------------*
@@ -344,12 +342,8 @@ override method @ipic18ConditionalJumpTerminator buildTerminatorOrderedGraph
   ??@lstring inBlockLabel
   ?!@blockInvocationGraph ioGraph
 :
-  if inBlockLabel->string != mTargetLabelWhenTrue->string then
-    [!?ioGraph addEdge !inBlockLabel !mTargetLabelWhenTrue] ;
-  end if ;
-  if inBlockLabel->string != mTargetLabelWhenFalse->string then
-    [!?ioGraph addEdge !inBlockLabel !mTargetLabelWhenFalse] ;
-  end if ;
+  [!?ioGraph addEdge !inBlockLabel !mTargetLabelWhenTrue] ;
+  [!?ioGraph addEdge !inBlockLabel !mTargetLabelWhenFalse] ;
 end method ;
 
 #----------------------------------------------------------------------------*
@@ -469,11 +463,6 @@ local routine buildOrderedGraph
     end foreach ;
     clusterList += !cluster ;
   end foreach ;
-#--- Topological sort
-#  [[g reversedGraph] depthFirstTopologicalSort
-#    ??@stringlist orderedLabelList
-#    ?3*
-#  ] ;
 #----------------------- Build sorted block list
   @ipic18BlockList orderedBlockList [emptyList] ;
 #--- First insert absolute blocks from 0
