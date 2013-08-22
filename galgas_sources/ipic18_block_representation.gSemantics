@@ -30,7 +30,7 @@ abstract class @ipic18AbstractBlockTerminator {
 #----------------------------------------------------------------------------*
 
 struct @ipic18Block {
-  @uint mStartAddress ; # [@uint max] if relocatable
+  @uint mAddress ; # [@uint max] if relocatable
   @lstring mLabel ;
   @ipic18SequentialInstructionList mInstructionList ;
   @ipic18AbstractBlockTerminator mTerminator ;
@@ -464,6 +464,7 @@ function pic18_checkBRA_RCALL
   ??@uint inCurrentAddress
   ->@bool outDisplacementOK
 :
+#--- The target label is not defined if 
   [inSymbolTable searchKey !inTargetLabel ??@uint targetAddress] ;
   const @sint displacement := ([targetAddress sint] - 2S - [inCurrentAddress sint]) >> 1 ;
   outDisplacementOK :=  (displacement <= 1023S) & (displacement >= - 1024S) ;

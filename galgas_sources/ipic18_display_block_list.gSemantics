@@ -14,8 +14,8 @@ method @ipic18Block display
   ?!@string ioListFileContents
 :
   ioListFileContents .= "LABEL " . mLabel ;
-  if mStartAddress != [@uint max] then
-    ioListFileContents .= ", ORG " . [mStartAddress hexString] ;
+  if mAddress != [@uint max] then
+    ioListFileContents .= ", ORG " . [mAddress hexString] ;
   end if ;
   ioListFileContents .= ":\n" ;
 #--- Instruction list

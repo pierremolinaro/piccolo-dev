@@ -432,7 +432,7 @@ local routine buildOrderedGraph
 #---
   @blockInvocationGraph g [emptyGraph] ;
   foreach ioBlockList do
-    if mBlock->mStartAddress == [@uint max] then # Only relocatable block
+    if mBlock->mAddress == [@uint max] then # Only relocatable block
       [!?g addNode !mBlock->mLabel !mBlock->mLabel->string] ;
       [mBlock->mTerminator buildTerminatorOrderedGraph !mBlock->mLabel !?g] ;
     end if ;
@@ -464,12 +464,39 @@ local routine buildOrderedGraph
     end foreach ;
     clusterList += !cluster ;
   end foreach ;
+#----------------------- Add nodes that are involved in a circular dependance
+  foreach ioBlockList do
+    if (mBlock->mAddress == [@uint max]) # Only relocatable block
+     & not [visitedNodeSet hasKey !mBlock->mLabel->string] then
+      @blockInvocationGraph gg := [g subgraphFromNodes
+        ![@lstringlist listWithValue !mBlock->mLabel]
+        !visitedNodeSet
+      ] ;
+      foreach [gg keyList] do
+        visitedNodeSet += ! mValue ;
+      end foreach ;
+      [!?gg removeEdgesToNode !mBlock->mLabel->string] ;
+      [!?gg removeEdgesToDominators] ;
+      [[gg reversedGraph] depthFirstTopologicalSort
+        ??@stringlist partialOrderedLabelList
+        ?3*
+      ] ;
+      newOrderedLabelList .= partialOrderedLabelList ;
+      @ipic18BlockList cluster [emptyList] ;
+      foreach partialOrderedLabelList do
+        [symbolTable searchKey ![mValue nowhere] ??@uint blockIndex] ;
+        const @ipic18Block b := [ioBlockList mBlockAtIndex !blockIndex] ;
+        cluster += !b ;
+      end foreach ;
+      clusterList += !cluster ;
+    end if ;
+  end foreach ;
 #----------------------- Build sorted block list
   @ipic18BlockList orderedBlockList [emptyList] ;
 #--- First insert absolute blocks from 0
   @bool continue := true ;
   foreach ioBlockList while continue do
-    continue := mBlock->mStartAddress != [@uint max] ;
+    continue := mBlock->mAddress != [@uint max] ;
     if continue then
       orderedBlockList += !mBlock ;
     end if ;
@@ -484,7 +511,7 @@ local routine buildOrderedGraph
   const @uint insertionIndex := [orderedBlockList length] ;
   continue := true ;
   foreach \down ioBlockList while continue do
-    continue := mBlock->mStartAddress != [@uint max] ;
+    continue := mBlock->mAddress != [@uint max] ;
     if continue then
       [!?orderedBlockList insertAtIndex !mBlock !insertionIndex] ;
     end if ;
@@ -498,10 +525,6 @@ local routine buildOrderedGraph
 #--- Write Graphviz file
   if [option piccolo_options.generateGraphvizFiles value] then
     [[g graphviz] writeToFileWhenDifferentContents !inSourceFileName. ".blockOrderingConstraints.dot" ?*] ;
-  end if ;
-  [!?g removeEdgesToDominators] ;
-  if [option piccolo_options.generateGraphvizFiles value] then
-    [[g graphviz] writeToFileWhenDifferentContents !inSourceFileName. ".blockOrderingConstraintsWoCycle.dot" ?*] ;
   end if ;
 #--- Check block definition
   @stringset newSymbolSet [emptySet] ;
@@ -556,7 +579,7 @@ local routine buildInvocationGraph
 :
   outGraphVizString := "digraph G{\n" ;
   foreach inBlockList do
-    if mBlock->mStartAddress == [@uint max] then # Only relocatable block
+    if mBlock->mAddress == [@uint max] then # Only relocatable block
       foreach mBlock->mInstructionList do
         [mInstruction buildInstructionInvocationGraph !mBlock->mLabel !?outGraphVizString] ;
       end foreach ;
@@ -574,7 +597,7 @@ local function blockDiscontinuityCount
 :
   outResult := 0 ;
   foreach inBlockList index blockIndex do
-    if mBlock->mStartAddress == [@uint max] then # Only relocatable block
+    if mBlock->mAddress == [@uint max] then # Only relocatable block
       @string nextBlockLabel ;
       if (blockIndex+1) < [inBlockList length] then
         nextBlockLabel := [inBlockList mBlockAtIndex !blockIndex+1]->mLabel->string ;
