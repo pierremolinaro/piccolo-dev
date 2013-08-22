@@ -1297,7 +1297,7 @@ routine pic18_compute_metrics
       ioListFileContents .= "No recursive routines.\n" ;
     end if ;
   #--- Output a graphviz file
-    if [option piccolo_options.generateCallGraph value] then
+    if [option piccolo_options.generateGraphvizFiles value] then
       const @string graphvizText := [routineCallGraph graphviz] ;
       const @string graphvizFile := [inSourceFileName stringByDeletingPathExtension] . ".dot" ;
       [graphvizText writeToFileWhenDifferentContents !graphvizFile ?*] ;

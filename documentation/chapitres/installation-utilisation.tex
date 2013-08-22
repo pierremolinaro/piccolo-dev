@@ -77,7 +77,26 @@ Si plusieurs fichiers sources apparaissent dans la ligne de commande, ils sont t
 
 \begin{description}
 
+  \item[\texttt{-U}, \texttt{-{-}use-legacy-pic18-compiler}] Utilise l'ancien compilateur pour \emph{pic18} des versions 2.x.
+
+
+
   \item[\texttt{-o}, \texttt{-{-}optimize}] Effectue de manière itérative des optimisations du code produit.
+
+
+  \item[\texttt{-F}, \texttt{-{-}optimization-flags}] Cette option concerne uniquement le compilateur pour \emph{pic18} des versions 3.x, elle n'a aucune impluence sur les compilateurs des \emph{baseline}, \emph{mid-range}, et sur l'ancien compilateur pour \emph{pic18} des versions 2.x. Cette option permet d'activer finement chacune des optimisations, l'option \texttt{-o} ci-dessus les activant toutes à la fois. À moins que vous soyez intéressé par le fonctionnement de l'optimiseur, vous n'avez pas à utiliser cette option. Elle s'utilise comme suit : par exemple, \texttt{-F=DER} active les optimisations \texttt{D}, \texttt{E} et \texttt{R} décrites ci-dessous. L'ordre d'apparition n'a aucune importance, il ne faut pas d'espace entre les lettres, plusieurs occurrences d'une même lettre sont ignorées. Les optimisations que vous pouvez ainsi activer sont :
+\begin{itemize}
+  \item \texttt{B} : les blocs sont ordonnés de façon à diminuer le nombre de sauts d'un bloc à l'autre ;
+  \item \texttt{C} : les blocs sont regroupés en \emph{clusters} qui sont ensuite ordonnés de façon à diminuer le nombre de branchements relatifs à transformer en branchements absolu ; cette option n'est active que si l'option précédente \texttt{-B} l'est aussi ;
+  \item \texttt{E} : l'appel à une routine constituée d'une instruction \assembleur{RETURN} est supprimé ;
+  \item \texttt{e} : dans une instruction \texttt{computed rcall}, l'appel à une routine constituée d'une instruction \assembleur{RETURN} est supprimé une instruction \texttt{BLANK} (c'est à dire un \assembleur{NOP} dont le code est 0xF000) ;
+  \item \texttt{I} : l'appel à une routine constituée d'une seule instruction avant le \assembleur{RETURN} est remplacé par cette instruction ;
+  \item \texttt{i} : dans une instruction \texttt{computed rcall}, l'appel à une routine constituée d'une seule instruction avant le \assembleur{RETURN} est remplacé par cette instruction ;
+  \item \texttt{J} : une instruction \assembleur{RCALL}, \assembleur{CALL} ou \assembleur{JSR} suivie d'une instruction \assembleur{RETURN} est remplacée par une instruction \assembleur{BRA}, \assembleur{GOTO} ou \assembleur{JUMP} ;
+  \item \texttt{M} : une instruction \assembleur{MOVLW k} suivie d'une instruction \assembleur{RETURN} est remplacée par une instruction \assembleur{RETLW k} ;
+  \item \texttt{R} : l'appel à une routine constituée d'une instruction \assembleur{RETLW k} est remplacé par une instruction \assembleur{MOVLW k} ;
+\end{itemize}
+
 
 
   \item[\texttt{-L}, \texttt{-{-}list}] Produit un fichier listing contenant de nombreux détails concernant la configuration, l’allocation de la RAM, les optimisations réalisées et la transformation des branchement relatifs en absolu. Ce fichier est écrit dans le même répertoire que le fichier source, porte le même nom, mais avec l’extension \texttt{.list}.
@@ -92,7 +111,12 @@ Si plusieurs fichiers sources apparaissent dans la ligne de commande, ils sont t
 
   \item[\texttt{-d}, \texttt{-{-}detailled-computations}] Insère dans le fichier listing le détail des calculs de pile et de durée d'exécutions du programme (\emph{pic18} uniquement, \refChapterPage{pile-et-durees}.
 
-  \item[\texttt{-G}, \texttt{-{-}generate-grahviz-call-graph}] Engendre un fichier d'extension \texttt{.dot} au format \emph{Graphviz} qui contient le graphe d'appel du programme.
+  \item[\texttt{-G}, \texttt{-{-}generate-grahviz-files}] Engendre plusieurs fichiers d'extension \texttt{.dot} au format \emph{Graphviz} :
+\begin{itemize}
+\item \texttt{\emph{fichier-source}.blockInvocation.dot} : graphe d'appel entre les blocs ; les flèches en noires en trait plein sont les sauts qui peuvent être omis si les blocs sont consécutifs, en pointillé les sauts qui ne peuvent pas être omis, et les flèches rouges sont les appels par les instructions \piccolo{rcall} ou \piccolo{call} ; 
+\item \texttt{\emph{fichier-source}.blockOrderingConstraints.dot} : contraintes d'ordre entre les blocs ; les flèches sont les sauts qui peuvent être omis si les blocs sont consécutifs ; 
+\item \texttt{\emph{fichier-source}.blockOrderingConstraintsWoCycle.dot} : le graphe précédent dans lequel les circularités ont été élimininées, plus précisément les sauts d'un bloc vers un de ses dominateurs. 
+\end{itemize}
 
   \item[\texttt{-C}, \texttt{-{-}output-c-files}] Engendre un fichier d'en-tête et un fichier C contenant le code objet résult de la compilation sous la forme de tableaux C.
 

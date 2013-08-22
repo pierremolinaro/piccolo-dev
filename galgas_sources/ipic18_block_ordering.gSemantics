@@ -3,6 +3,7 @@ import "ipic18_block_representation.gSemantics" ;
 import "pic18_mnemonics.gSemantics" ;
 import "ipic18_display_block_list.gSemantics" ;
 import "ipic18_cluster_ordering.gSemantics" ;
+import "piccolo_options.gOption" ;
 
 #----------------------------------------------------------------------------*
 
@@ -495,9 +496,13 @@ local routine buildOrderedGraph
     message [n string] . " -> " . p . ".\n\n" ;
   end if ;
 #--- Write Graphviz file
-  [[g graphviz] writeToFileWhenDifferentContents !inSourceFileName. ".blockOrderingConstraints.dot" ?*] ;
+  if [option piccolo_options.generateGraphvizFiles value] then
+    [[g graphviz] writeToFileWhenDifferentContents !inSourceFileName. ".blockOrderingConstraints.dot" ?*] ;
+  end if ;
   [!?g removeEdgesToDominators] ;
-  [[g graphviz] writeToFileWhenDifferentContents !inSourceFileName. ".blockOrderingConstraintsWoCycle.dot" ?*] ;
+  if [option piccolo_options.generateGraphvizFiles value] then
+    [[g graphviz] writeToFileWhenDifferentContents !inSourceFileName. ".blockOrderingConstraintsWoCycle.dot" ?*] ;
+  end if ;
 #--- Check block definition
   @stringset newSymbolSet [emptySet] ;
   @bool ok := true ;
@@ -590,11 +595,16 @@ routine ipic18OptimizeBlockOrdering
   ?!@string ioListFileContents
   ?!@ipic18BlockList ioGeneratedBlockList
 :
+  if [option piccolo_options.generateGraphvizFiles value] then
+    buildInvocationGraph !ioGeneratedBlockList ??@string invocationGraph ;
+    [invocationGraph writeToFileWhenDifferentContents !inSourceFileName. ".blockInvocation.dot" ?*] ;
+  end if ;
 #---
-  buildInvocationGraph !ioGeneratedBlockList ??@string invocationGraph ;
-  [invocationGraph writeToFileWhenDifferentContents !inSourceFileName. ".blockInvocation.dot" ?*] ;
-#---
-  buildOrderedGraph !?ioGeneratedBlockList !inSourceFileName !?ioListFileContents ;
+  const @bool optimize := [option piccolo_options.performOptimizations value]
+    | [[option piccolo_options.optimizationFlags value] containsCharacter !'B'] ;
+  if optimize then
+    buildOrderedGraph !?ioGeneratedBlockList !inSourceFileName !?ioListFileContents ;
+  end if ;
 end routine ;
 
 #----------------------------------------------------------------------------*
