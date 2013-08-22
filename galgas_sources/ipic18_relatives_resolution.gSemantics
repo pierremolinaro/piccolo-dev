@@ -39,7 +39,7 @@ method @ipic18Block performRelativesResolution
   ] ;
 #---
   outModifiedBlock := [@ipic18Block new
-    !mStartAddress
+    !mAddress
     !mLabel
     !modifiedInstructionList
     !modifiedTerminator
@@ -63,8 +63,8 @@ local routine performRelativesResolution
     else
       nextBlockLabel := "" ;
     end if ;
-    if mBlock->mStartAddress != [@uint max] then # Absolute block
-      blockStartAddress := mBlock->mStartAddress ;
+    if mBlock->mAddress != [@uint max] then # Absolute block
+      blockStartAddress := mBlock->mAddress ;
     end if ;
     [mBlock performRelativesResolution
       !inSymbolTable
@@ -101,10 +101,12 @@ end reader ;
 
 routine computeLabelAbsoluteAddressMap
   ??@ipic18BlockList inGeneratedBlockList
+  ??@ipic18BlockList inInitialBlockList # for entering absolute labels
   !@symbolTableForRelativesResolution outSymbolTable
   !@uint outFreeAddress
 :
   outSymbolTable := [@symbolTableForRelativesResolution emptyMap] ;
+#---
   @uint blockStartAddress := 0 ;
   foreach inGeneratedBlockList index blockIndex do
     @string nextBlockLabel ;
@@ -113,14 +115,22 @@ routine computeLabelAbsoluteAddressMap
     else
       nextBlockLabel := "" ;
     end if ;
-    if mBlock->mStartAddress != [@uint max] then # Absolute block
-      blockStartAddress := mBlock->mStartAddress ;
+    if mBlock->mAddress != [@uint max] then # Absolute block
+      blockStartAddress := mBlock->mAddress ;
     end if ;
     [!?outSymbolTable insertKey !mBlock->mLabel !blockStartAddress] ;
     const @uint blockSize := [mBlock blockSize !nextBlockLabel] ;
     blockStartAddress := blockStartAddress + blockSize ;
   end foreach ;
   outFreeAddress := blockStartAddress ;
+#---
+  foreach inInitialBlockList do
+    if mBlock->mAddress != [@uint max] then # Absolute block
+      if not [outSymbolTable hasKey !mBlock->mLabel->string] then
+        [!?outSymbolTable insertKey !mBlock->mLabel !mBlock->mAddress] ;
+      end if ;
+    end if ;  
+  end foreach ;
 end routine ;
 
 #----------------------------------------------------------------------------*
@@ -144,6 +154,7 @@ routine ipic18RelativesResolution
     pass ++ ;
     computeLabelAbsoluteAddressMap
       !ioGeneratedBlockList
+      ![@ipic18BlockList emptyList]
       ??@symbolTableForRelativesResolution symbolTable
       ?*
     ;
@@ -211,11 +222,13 @@ end method ;
 
 routine ipic18RelativeBranchOverflow
   ??@ipic18BlockList inBlockList
+  ??@ipic18BlockList inInitialBlockList # for entering absolute labels
   !@branchOverflowMap outOverflowMap
 :
 #--- Compute label map
   computeLabelAbsoluteAddressMap
     !inBlockList
+    !inInitialBlockList # for entering absolute labels
     ??@symbolTableForRelativesResolution symbolTable
     ?*
   ;
@@ -229,8 +242,8 @@ routine ipic18RelativeBranchOverflow
     else
       nextBlockLabel := "" ;
     end if ;
-    if mBlock->mStartAddress != [@uint max] then # Absolute block
-      blockStartAddress := mBlock->mStartAddress ;
+    if mBlock->mAddress != [@uint max] then # Absolute block
+      blockStartAddress := mBlock->mAddress ;
     end if ;
     [mBlock relativeBranchOverflow
       !symbolTable

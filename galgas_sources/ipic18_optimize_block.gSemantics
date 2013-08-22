@@ -61,7 +61,7 @@ override method @ipic18JumpTerminator optimizeTerminator
   if inBlockLabel != mLabel->string then
     [inSymbolTable searchKey !mLabel ??@uint targetBlockIndex] ;
     const @ipic18Block targetBlock := [inBlockList mBlockAtIndex !targetBlockIndex] ;
-    if (targetBlock->mStartAddress == [@uint max]) # Relocatable
+    if (targetBlock->mAddress == [@uint max]) # Relocatable
      & ([targetBlock->mInstructionList length] == 0) # Empty block
      & (targetBlock->mTerminator is @ipic18SingleInstructionTerminator) then
       @bool optimize ;
@@ -112,7 +112,7 @@ override method @ipic18ConditionalJumpTerminator optimizeTerminator
     if inBlockLabel != mTargetLabelWhenTrue->string then
       [inSymbolTable searchKey !mTargetLabelWhenTrue ??@uint targetBlockIndex] ;
       const @ipic18Block targetBlock := [inBlockList mBlockAtIndex !targetBlockIndex] ;
-      if (targetBlock->mStartAddress == [@uint max]) # Relocatable
+      if (targetBlock->mAddress == [@uint max]) # Relocatable
        & ([targetBlock->mInstructionList length] == 0) # Empty block
        & (targetBlock->mTerminator is @ipic18JumpTerminator) then
         const @ipic18JumpTerminator jp := (cast targetBlock->mTerminator : @ipic18JumpTerminator) ;
@@ -130,7 +130,7 @@ override method @ipic18ConditionalJumpTerminator optimizeTerminator
     if inBlockLabel != mTargetLabelWhenFalse->string then
       [inSymbolTable searchKey !mTargetLabelWhenFalse ??@uint targetBlockIndex] ;
       const @ipic18Block targetBlock := [inBlockList mBlockAtIndex !targetBlockIndex] ;
-      if (targetBlock->mStartAddress == [@uint max]) # Relocatable
+      if (targetBlock->mAddress == [@uint max]) # Relocatable
        & ([targetBlock->mInstructionList length] == 0) # Empty block
        & (targetBlock->mTerminator is @ipic18JumpTerminator) then
         const @ipic18JumpTerminator jp := (cast targetBlock->mTerminator : @ipic18JumpTerminator) ;
@@ -730,7 +730,7 @@ override method @ipic18_intermediate_JSR optimizeInstruction
 #--- Remove empty routine calls
   if inOptimizeFlagStruct->mRemoveEmptyRoutine
    & ([targetBloc->mInstructionList length] == 0) # Empty block
-   & (targetBloc->mStartAddress == [@uint max]) # Relocatable
+   & (targetBloc->mAddress == [@uint max]) # Relocatable
    & (targetBloc->mTerminator is @ipic18ReturnTerminator) then # Ends with RETURN
     outOptimizationDone := true ;
     ioListFileContents .= "  [E] " . inBlockLabel . ": " ;
@@ -741,7 +741,7 @@ override method @ipic18_intermediate_JSR optimizeInstruction
 #--- Replace call to a RETLW routine with a MOVLW instruction
   elsif inOptimizeFlagStruct->mJSRtoRETLWreplacedByMOVLW
        & ([targetBloc->mInstructionList length] == 0) # Empty Block
-       & (targetBloc->mStartAddress == [@uint max]) # Relocatable
+       & (targetBloc->mAddress == [@uint max]) # Relocatable
        & (targetBloc->mTerminator is @ipic18RetlwTerminator) then # Ends with RETLW
     const @ipic18RetlwTerminator t := (cast targetBloc->mTerminator : @ipic18RetlwTerminator) ;
     outOptimizationDone := true ;
@@ -756,7 +756,7 @@ override method @ipic18_intermediate_JSR optimizeInstruction
 #--- Replace call to a single instruction routine with the routine instruction
   elsif inOptimizeFlagStruct->mJSRtoOneInstructionRoutineReplacedByInstruction
       & ([targetBloc->mInstructionList length] == 1) # One instruction bloc
-      & (targetBloc->mStartAddress == [@uint max]) # Relocatable
+      & (targetBloc->mAddress == [@uint max]) # Relocatable
       & (targetBloc->mTerminator is @ipic18ReturnTerminator) then # Ends with Return
     outOptimizedInstruction := [targetBloc->mInstructionList mInstructionAtIndex !0] ;
     outOptimizationDone := true ;
@@ -789,7 +789,7 @@ override method @ipic18_intermediate_instruction_computed_rcall optimizeInstruct
       [inSymbolTable searchKey ![jsr mTargetLabel] ??@uint targetBlockIndex] ; 
       const @ipic18Block targetBloc := [inBlockList mBlockAtIndex !targetBlockIndex] ;  
       if (targetBloc->mTerminator is @ipic18ReturnTerminator) # One instruction bloc
-       & (targetBloc->mStartAddress == [@uint max]) then # Relocatable bloc
+       & (targetBloc->mAddress == [@uint max]) then # Relocatable bloc
         if inOptimizeFlagStruct->mJSRtoEmptyRoutineInComputedRCALLreplacedByBlank
          & [targetBloc->mInstructionList length] == 0 then # Empty block, replace by NOP
           opt := true ;
@@ -1075,7 +1075,7 @@ method @ipic18Block optimize
   if optimized then
     ioOptimizationDone := true ;
     outOptimizedBlock := [@ipic18Block new
-      !mStartAddress
+      !mAddress
       !mLabel
       !optimizedInstructionList
       !optimizedTerminator 
@@ -1161,7 +1161,7 @@ routine ipic18OptimizeBlocks
   #-------------------------------- Build referenced label set
     @stringset referencedBlockSet [emptySet] ;
     foreach ioGeneratedBlockList do
-      if mBlock->mStartAddress != [@uint max] then # Only absolute blocks
+      if mBlock->mAddress != [@uint max] then # Only absolute blocks
         [mBlock enterReferencedLabels
           !symbolTable
           !ioGeneratedBlockList
@@ -1172,7 +1172,7 @@ routine ipic18OptimizeBlocks
   #-------------------------------- Optimization loop
     @ipic18BlockList optimizedBlockList [emptyList] ;
     foreach ioGeneratedBlockList do
-      if [referencedBlockSet hasKey !mBlock->mLabel->string] | (mBlock->mStartAddress != [@uint max]) then
+      if [referencedBlockSet hasKey !mBlock->mLabel->string] | (mBlock->mAddress != [@uint max]) then
         [mBlock optimize
           !symbolTable
           !optimizeFlagStruct

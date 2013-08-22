@@ -10,6 +10,27 @@ list @clusterList {
 
 #----------------------------------------------------------------------------*
 
+map @neededConversionForClusterOrder {
+  @uint mConversions ;
+  insert insertKey error message "the '%K' key is already declared in %L" ;
+  search searchKey error message "the '%K' key is not declared" ;
+}
+
+
+#----------------------------------------------------------------------------*
+
+local function sortKey ??@clusterList inClusterList -> @string outKey :
+  outKey := "" ;
+  foreach inClusterList
+  do
+    outKey .= [mBlockList mBlockAtIndex !0]->mLabel->string ;
+  between 
+    outKey .= "." ;
+  end foreach ;
+end function ;
+
+#----------------------------------------------------------------------------*
+
 routine perform_cluster_ordering
   ??@clusterList inInitialClusterList
   ?!@ipic18BlockList ioBlockList
@@ -30,9 +51,10 @@ routine perform_cluster_ordering
     end if ;
   #------------------- Optimization loop
     @clusterList clusterList := inInitialClusterList ;
+    @neededConversionForClusterOrder neededConversionForClusterOrder [emptyMap] ;
     @bool continue := true ;
     @uint pass := 0 ;
-    loop [clusterList length] + 1 :
+    loop [clusterList length] * [clusterList length] :
     while continue do
       pass ++ ;
       ioListFileContents .= "Pass " . pass . ":\n" ;
@@ -48,7 +70,7 @@ routine perform_cluster_ordering
     #--- Add symbols from last relocatable blocks
       const @uint insertionIdx := [workingBlockList length] ;
       foreach \down ioBlockList while continue do
-        continue := mBlock->mStartAddress != [@uint max] ;
+        continue := mBlock->mAddress != [@uint max] ;
         if continue then
           [!?symbolTable insertKey !mBlock->mLabel ![@uint max]] ;
           [!?workingBlockList insertAtIndex !mBlock !insertionIdx] ;
@@ -57,6 +79,7 @@ routine perform_cluster_ordering
     #--- Check for overflows
       ipic18RelativeBranchOverflow
         !workingBlockList
+        !ioBlockList # For entering absolute labels
         ??@branchOverflowMap overflowMap
       ;
       @uint overflowCount := 0 ;
@@ -68,6 +91,10 @@ routine perform_cluster_ordering
           ioListFileContents .= "  " . key . " (cluster #" . sourceCluster . ") --> " . mValue . " (cluster #" . targetCluster . ")\n" ;
         end foreach ;
       end foreach ;
+      [!?neededConversionForClusterOrder insertKey
+        ![sortKey [!clusterList] nowhere]
+        !overflowCount
+      ] ;
       if [option.verbose_output value] then
         @string s := "  Pass " . pass . ": " ;
         if overflowCount == 0 then
@@ -109,24 +136,32 @@ routine perform_cluster_ordering
                 message " -> " . m ;
               end if ;
             elsif sourceCluster < targetCluster then
-              correctionLoop := false ;
-              continue := true ;
-              [!?clusterList removeAtIndex ??@ipic18BlockList b !targetCluster ] ;
-              [!?clusterList insertAtIndex !b !(targetCluster + sourceCluster) / 2 ] ;
-              const @string m := "roll up [#" . ((targetCluster + sourceCluster) / 2) . ", #" . targetCluster . "]" ;
-              ioListFileContents .= "  --> " . m . "\n" ;
-              if [option.verbose_output value] then
-                message " -> " . m ;
+              @clusterList candidate := clusterList ;
+              [!?candidate removeAtIndex ??@ipic18BlockList b !targetCluster ] ;
+              [!?candidate insertAtIndex !b !(targetCluster + sourceCluster) / 2 ] ;
+              if not [neededConversionForClusterOrder hasKey !sortKey [!candidate]] then
+                clusterList := candidate ;
+                correctionLoop := false ;
+                continue := true ;
+                const @string m := "roll up [#" . ((targetCluster + sourceCluster) / 2) . ", #" . targetCluster . "]" ;
+                ioListFileContents .= "  --> " . m . "\n" ;
+                if [option.verbose_output value] then
+                  message " -> " . m ;
+                end if ;
               end if ;
             elsif sourceCluster > targetCluster then
-              correctionLoop := false ;
-              continue := true ;
-              [!?clusterList removeAtIndex ??@ipic18BlockList b !sourceCluster ] ;
-              [!?clusterList insertAtIndex !b !(targetCluster + sourceCluster) / 2 ] ;
-              const @string m := "roll up [#" . targetCluster. ", #" . ((targetCluster + sourceCluster) / 2) . "]" ;
-              ioListFileContents .= "  --> " . m . "\n" ;
-              if [option.verbose_output value] then
-                message " -> " . m ;
+              @clusterList candidate := clusterList ;
+              [!?candidate removeAtIndex ??@ipic18BlockList b !sourceCluster ] ;
+              [!?candidate insertAtIndex !b !(targetCluster + sourceCluster) / 2 ] ;
+              if not [neededConversionForClusterOrder hasKey !sortKey [!candidate]] then
+                clusterList := candidate ;
+                correctionLoop := false ;
+                continue := true ;
+                const @string m := "roll up [#" . targetCluster. ", #" . ((targetCluster + sourceCluster) / 2) . "]" ;
+                ioListFileContents .= "  --> " . m . "\n" ;
+                if [option.verbose_output value] then
+                  message " -> " . m ;
+                end if ;
               end if ;
             end if ;
           end if ;
@@ -145,7 +180,7 @@ routine perform_cluster_ordering
   #--- First insert absolute blocks from 0
     continue := true ;
     foreach ioBlockList while continue do
-      continue := mBlock->mStartAddress != [@uint max] ;
+      continue := mBlock->mAddress != [@uint max] ;
       if continue then
         newBlockList += !mBlock ;
       end if ;
@@ -158,7 +193,7 @@ routine perform_cluster_ordering
     const @uint insertionIndex := [newBlockList length] ;
     continue := true ;
     foreach \down ioBlockList while continue do
-      continue := mBlock->mStartAddress != [@uint max] ;
+      continue := mBlock->mAddress != [@uint max] ;
       if continue then
         [!?newBlockList insertAtIndex !mBlock !insertionIndex] ;
       end if ;
