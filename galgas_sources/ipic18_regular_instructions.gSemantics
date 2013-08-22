@@ -557,6 +557,32 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
+#!--- Intermediate @ipic18_intermediate_BLANK
+
+#----------------------------------------------------------------------------*
+
+override reader @ipic18_intermediate_instruction_BLANK instructionDisplay ->@stringlist outResult :
+  @string s := "BLANK " . [mBlankValue hexString]  ;
+  outResult := [@stringlist listWithValue !s] ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override method @ipic18_intermediate_instruction_BLANK generateCode
+  ??@uint unused inAddress
+  ??@symbolTableForRelativesResolution unused inSymbolTable
+  ??@pic18_dataAddressMap unused inDataAddressMap
+  !@codeList outCode
+:
+  const @uint code := 0xF000 | mBlankValue ;
+  outCode := [@codeList listWithValue
+    !"DW " . [code hexString]
+    ![@uintlist listWithValue !code]
+  ] ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
 #!--- Intermediate @ipic18_skip_instruction_compare_register
 
 #----------------------------------------------------------------------------*

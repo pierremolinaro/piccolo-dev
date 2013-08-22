@@ -4,9 +4,10 @@ option piccolo_options :
 @bool output_C_Array : 'C', "output-c-files" -> "Generate output code in a C header file and C source file" ;
 @bool ouputListingFile : 'L', "list" -> "Output a list file" ;
 @bool performOptimizations : 'O', "optimize" -> "Perform code optimizations" ;
+@string optimizationFlags : 'F', "optimization-flags" -> "Fine tuning of optimizations (new PIC18 compiler only)" ;
 @bool doNotComputeStackRequirements : 'T', "no-stack-computations" -> "Do not compute stack requirements" ;
 @bool doNotComputeRoutineDuration : 'I', "no-routine-duration" -> "Do not compute routine duration" ;
 @bool detailledComputing : 'd', "detailled-computations" -> "Display detailled duration routine computations and stack requirements" ;
 @bool generateCallGraph : 'G', "generate-grahviz-call-graph" -> "Generate a Graphviz file that contains the routine call graph" ;
-@bool useOldCompiler : 'U', "use-legacy-pic18-compiler" -> "Uses the pic18 compiler, as released in Piccolo 2.0.2" ;
+@bool useOldCompiler : 'U', "use-legacy-pic18-compiler" -> "Uses the legacy pic18 compiler, as released in Piccolo 2.0.2" ;
 end option ;

@@ -1,5 +1,6 @@
 semantics ipic18_optimize_block :
 import "ipic18_display_block_list.gSemantics" ;
+import "piccolo_options.gOption" ;
 
 #----------------------------------------------------------------------------*
 
@@ -9,6 +10,7 @@ import "ipic18_display_block_list.gSemantics" ;
 
 abstract method @ipic18AbstractBlockTerminator optimizeTerminator
   ??@symbolTableForBlockOptimization inSymbolTable
+  ??@optimizeFlagStruct inOptimizeFlagStruct
   ??@ipic18BlockList inBlockList
   ??@string unused inBlockLabel
   ?!@bool ioOptimizationDone
@@ -20,6 +22,7 @@ abstract method @ipic18AbstractBlockTerminator optimizeTerminator
 
 override method @ipic18ComputedBraTerminator optimizeTerminator
   ??@symbolTableForBlockOptimization unused inSymbolTable
+  ??@optimizeFlagStruct unused inOptimizeFlagStruct
   ??@ipic18BlockList unused inBlockList
   ??@string unused inBlockLabel
   ?!@bool unused ioOptimizationDone
@@ -33,6 +36,7 @@ end method ;
 
 override method @ipic18ComputedGotoTerminator optimizeTerminator
   ??@symbolTableForBlockOptimization unused inSymbolTable
+  ??@optimizeFlagStruct unused inOptimizeFlagStruct
   ??@ipic18BlockList unused inBlockList
   ??@string unused inBlockLabel
   ?!@bool unused ioOptimizationDone
@@ -46,6 +50,7 @@ end method ;
 
 override method @ipic18JumpTerminator optimizeTerminator
   ??@symbolTableForBlockOptimization inSymbolTable
+  ??@optimizeFlagStruct unused inOptimizeFlagStruct
   ??@ipic18BlockList inBlockList
   ??@string inBlockLabel
   ?!@bool ioOptimizationDone
@@ -59,7 +64,6 @@ override method @ipic18JumpTerminator optimizeTerminator
     if (targetBlock->mStartAddress == [@uint max]) # Relocatable
      & ([targetBlock->mInstructionList length] == 0) # Empty block
      & (targetBlock->mTerminator is @ipic18SingleInstructionTerminator) then
-#     & not (targetBlock->mTerminator is @ipic18ReturnTerminator) then
       @bool optimize ;
       if (targetBlock->mTerminator is @ipic18JumpTerminator) then
         const @ipic18JumpTerminator candidate := (cast targetBlock->mTerminator : @ipic18JumpTerminator) ;
@@ -70,7 +74,7 @@ override method @ipic18JumpTerminator optimizeTerminator
       if optimize then 
         outOptimizedTerminator := targetBlock->mTerminator ;
         ioOptimizationDone := true ;
-        ioListFileContents .= "  " . inBlockLabel . ": " ;
+        ioListFileContents .= "  [P] " . inBlockLabel . ": " ;
         ioListFileContents .= [selfcopy terminatorDisplay !""] ;
         ioListFileContents .= " -> " ;
         ioListFileContents .= [outOptimizedTerminator terminatorDisplay !""] ;
@@ -84,6 +88,7 @@ end method ;
 
 override method @ipic18ConditionalJumpTerminator optimizeTerminator
   ??@symbolTableForBlockOptimization inSymbolTable
+  ??@optimizeFlagStruct unused inOptimizeFlagStruct
   ??@ipic18BlockList inBlockList
   ??@string inBlockLabel
   ?!@bool ioOptimizationDone
@@ -98,7 +103,7 @@ override method @ipic18ConditionalJumpTerminator optimizeTerminator
       ![@jumpInstructionKind ipicRelative]
     ] ;
     ioOptimizationDone := true ;
-    ioListFileContents .= "  " . inBlockLabel . ", useless terminator condition: replaced by JUMP " . mTargetLabelWhenFalse . "\n" ;
+    ioListFileContents .= "  [U] " . inBlockLabel . ", useless terminator condition: replaced by JUMP " . mTargetLabelWhenFalse . "\n" ;
     warning mInstructionLocation : "useless condition deleted" ;
   else
     @bool optimized := false ;
@@ -113,7 +118,7 @@ override method @ipic18ConditionalJumpTerminator optimizeTerminator
         const @ipic18JumpTerminator jp := (cast targetBlock->mTerminator : @ipic18JumpTerminator) ;
         targetLabelWhenTrue := [jp mLabel] ;
         optimized := true ;
-        ioListFileContents .= "  " . inBlockLabel . ", jump optimization: " ;
+        ioListFileContents .= "  [P] " . inBlockLabel . ", jump optimization: " ;
         ioListFileContents .= mTargetLabelWhenTrue->string ;
         ioListFileContents .= " -> " ;
         ioListFileContents .= targetLabelWhenTrue->string ;
@@ -131,7 +136,7 @@ override method @ipic18ConditionalJumpTerminator optimizeTerminator
         const @ipic18JumpTerminator jp := (cast targetBlock->mTerminator : @ipic18JumpTerminator) ;
         targetLabelWhenFalse := [jp mLabel] ;
         optimized := true ;
-        ioListFileContents .= "  " . inBlockLabel . ", jump optimization: " ;
+        ioListFileContents .= "  [P] " . inBlockLabel . ", jump optimization: " ;
         ioListFileContents .= mTargetLabelWhenFalse->string ;
         ioListFileContents .= " -> " ;
         ioListFileContents .= targetLabelWhenFalse->string ;
@@ -159,6 +164,7 @@ end method ;
 
 method @ipic18AbstractConditionTerminator getOptimizedTerminators
   ??@symbolTableForBlockOptimization inSymbolTable
+  ??@optimizeFlagStruct inOptimizeFlagStruct
   ??@ipic18BlockList inBlockList
   ??@string inBlockLabel
   ?!@bool ioOptimizationDone
@@ -170,6 +176,7 @@ method @ipic18AbstractConditionTerminator getOptimizedTerminators
 #---
   [mInstructionIfConditionTrue optimizeTerminator
     !inSymbolTable
+    !inOptimizeFlagStruct
     !inBlockList
     !inBlockLabel
     !?ioOptimizationDone
@@ -180,6 +187,7 @@ method @ipic18AbstractConditionTerminator getOptimizedTerminators
 #---
   [mInstructionIfConditionFalse optimizeTerminator
     !inSymbolTable
+    !inOptimizeFlagStruct
     !inBlockList
     !inBlockLabel
     !?ioOptimizationDone
@@ -207,6 +215,7 @@ end method ;
 
 override method @ipic18IncDecRegisterTerminator optimizeTerminator
   ??@symbolTableForBlockOptimization inSymbolTable
+  ??@optimizeFlagStruct inOptimizeFlagStruct
   ??@ipic18BlockList inBlockList
   ??@string inBlockLabel
   ?!@bool ioOptimizationDone
@@ -217,6 +226,7 @@ override method @ipic18IncDecRegisterTerminator optimizeTerminator
 #---
   [selfcopy getOptimizedTerminators
     !inSymbolTable
+    !inOptimizeFlagStruct
     !inBlockList
     !inBlockLabel
     !?optimization
@@ -228,7 +238,7 @@ override method @ipic18IncDecRegisterTerminator optimizeTerminator
   if identicalTerminators then
     outOptimizedTerminator := optimizedTrueTerminator ;
     ioOptimizationDone := true ;
-    ioListFileContents .= "  " . inBlockLabel . ", useless terminator condition: replaced by " . [optimizedTrueTerminator terminatorDisplay !""] . "\n" ;
+    ioListFileContents .= "  [U] " . inBlockLabel . ", useless terminator condition: replaced by " . [optimizedTrueTerminator terminatorDisplay !""] . "\n" ;
     warning mInstructionLocation : "useless condition deleted" ;
   elsif optimization then
     outOptimizedTerminator := [@ipic18IncDecRegisterTerminator new
@@ -249,6 +259,7 @@ end method ;
 
 override method @pic18BitTestTerminator optimizeTerminator
   ??@symbolTableForBlockOptimization inSymbolTable
+  ??@optimizeFlagStruct inOptimizeFlagStruct
   ??@ipic18BlockList inBlockList
   ??@string inBlockLabel
   ?!@bool ioOptimizationDone
@@ -259,6 +270,7 @@ override method @pic18BitTestTerminator optimizeTerminator
 #---
   [selfcopy getOptimizedTerminators
     !inSymbolTable
+    !inOptimizeFlagStruct
     !inBlockList
     !inBlockLabel
     !?optimization
@@ -270,7 +282,7 @@ override method @pic18BitTestTerminator optimizeTerminator
   if identicalTerminators then
     outOptimizedTerminator := optimizedTrueTerminator ;
     ioOptimizationDone := true ;
-    ioListFileContents .= "  " . inBlockLabel . ", useless terminator condition: replaced by " . [optimizedTrueTerminator terminatorDisplay !""] . "\n" ;
+    ioListFileContents .= "  [U] " . inBlockLabel . ", useless terminator condition: replaced by " . [optimizedTrueTerminator terminatorDisplay !""] . "\n" ;
     warning mInstructionLocation : "useless condition deleted" ;
   elsif optimization then
     outOptimizedTerminator := [@pic18BitTestTerminator new
@@ -290,6 +302,7 @@ end method ;
 
 override method @pic18RegisterComparisonTerminator optimizeTerminator
   ??@symbolTableForBlockOptimization inSymbolTable
+  ??@optimizeFlagStruct inOptimizeFlagStruct
   ??@ipic18BlockList inBlockList
   ??@string inBlockLabel
   ?!@bool ioOptimizationDone
@@ -299,6 +312,7 @@ override method @pic18RegisterComparisonTerminator optimizeTerminator
   @bool optimization := false ;
   [selfcopy getOptimizedTerminators
     !inSymbolTable
+    !inOptimizeFlagStruct
     !inBlockList
     !inBlockLabel
     !?optimization
@@ -310,7 +324,7 @@ override method @pic18RegisterComparisonTerminator optimizeTerminator
   if identicalTerminators then
     outOptimizedTerminator := optimizedTrueTerminator ;
     ioOptimizationDone := true ;
-    ioListFileContents .= "  " . inBlockLabel . ", useless terminator condition: replaced by " . [optimizedTrueTerminator terminatorDisplay !""] . "\n" ;
+    ioListFileContents .= "  [U] " . inBlockLabel . ", useless terminator condition: replaced by " . [optimizedTrueTerminator terminatorDisplay !""] . "\n" ;
     warning mInstructionLocation : "useless condition deleted" ;
   elsif optimization then
     outOptimizedTerminator := [@pic18RegisterComparisonTerminator new
@@ -330,6 +344,7 @@ end method ;
 
 override method @pic18TestRegisterTerminator optimizeTerminator
   ??@symbolTableForBlockOptimization inSymbolTable
+  ??@optimizeFlagStruct inOptimizeFlagStruct
   ??@ipic18BlockList inBlockList
   ??@string inBlockLabel
   ?!@bool ioOptimizationDone
@@ -339,6 +354,7 @@ override method @pic18TestRegisterTerminator optimizeTerminator
   @bool optimization := false ;
   [selfcopy getOptimizedTerminators
     !inSymbolTable
+    !inOptimizeFlagStruct
     !inBlockList
     !inBlockLabel
     !?optimization
@@ -350,7 +366,7 @@ override method @pic18TestRegisterTerminator optimizeTerminator
   if identicalTerminators then
     outOptimizedTerminator := optimizedTrueTerminator ;
     ioOptimizationDone := true ;
-    ioListFileContents .= "  " . inBlockLabel . ", useless terminator condition: replaced by " . [optimizedTrueTerminator terminatorDisplay !""] . "\n" ;
+    ioListFileContents .= "  [U] " . inBlockLabel . ", useless terminator condition: replaced by " . [optimizedTrueTerminator terminatorDisplay !""] . "\n" ;
     warning mInstructionLocation : "useless condition deleted" ;
   elsif optimization then
     outOptimizedTerminator := [@pic18TestRegisterTerminator new
@@ -369,6 +385,7 @@ end method ;
 
 override method @ipic18RetfieTerminator optimizeTerminator
   ??@symbolTableForBlockOptimization unused inSymbolTable
+  ??@optimizeFlagStruct unused inOptimizeFlagStruct
   ??@ipic18BlockList unused inBlockList
   ??@string unused inBlockLabel
   ?!@bool unused ioOptimizationDone
@@ -382,6 +399,7 @@ end method ;
 
 override method @ipic18RetlwTerminator optimizeTerminator
   ??@symbolTableForBlockOptimization unused inSymbolTable
+  ??@optimizeFlagStruct unused inOptimizeFlagStruct
   ??@ipic18BlockList unused inBlockList
   ??@string unused inBlockLabel
   ?!@bool unused ioOptimizationDone
@@ -395,6 +413,7 @@ end method ;
 
 override method @ipic18ReturnTerminator optimizeTerminator
   ??@symbolTableForBlockOptimization unused inSymbolTable
+  ??@optimizeFlagStruct unused inOptimizeFlagStruct
   ??@ipic18BlockList unused inBlockList
   ??@string unused inBlockLabel
   ?!@bool unused ioOptimizationDone
@@ -408,6 +427,7 @@ end method ;
 
 override method @ipic18ComputedRETLWTerminator optimizeTerminator
   ??@symbolTableForBlockOptimization unused inSymbolTable
+  ??@optimizeFlagStruct unused inOptimizeFlagStruct
   ??@ipic18BlockList unused inBlockList
   ??@string unused inBlockLabel
   ?!@bool unused ioOptimizationDone
@@ -676,6 +696,7 @@ end method ;
 
 method @ipic18SequentialInstruction optimizeInstruction
   ??@symbolTableForBlockOptimization unused inSymbolTable
+  ??@optimizeFlagStruct unused inOptimizeFlagStruct
   ??@ipic18BlockList unused inBlockList
   ??@lstring unused inBlockLabel
   !@bool outOptimizationDone
@@ -692,6 +713,7 @@ end method ;
 
 override method @ipic18_intermediate_JSR optimizeInstruction
   ??@symbolTableForBlockOptimization inSymbolTable
+  ??@optimizeFlagStruct inOptimizeFlagStruct
   ??@ipic18BlockList inBlockList
   ??@lstring inBlockLabel
   !@bool outOptimizationDone
@@ -706,22 +728,24 @@ override method @ipic18_intermediate_JSR optimizeInstruction
   [inSymbolTable searchKey !mTargetLabel ??@uint targetBlockIndex] ; 
   const @ipic18Block targetBloc := [inBlockList mBlockAtIndex !targetBlockIndex] ;  
 #--- Remove empty routine calls
-  if ([targetBloc->mInstructionList length] == 0) # Empty block
+  if inOptimizeFlagStruct->mRemoveEmptyRoutine
+   & ([targetBloc->mInstructionList length] == 0) # Empty block
    & (targetBloc->mStartAddress == [@uint max]) # Relocatable
    & (targetBloc->mTerminator is @ipic18ReturnTerminator) then # Ends with RETURN
     outOptimizationDone := true ;
-    ioListFileContents .= "  " . inBlockLabel . ": " ;
+    ioListFileContents .= "  [E] " . inBlockLabel . ": " ;
     ioListFileContents .= "call to empty " . mTargetLabel . " routine deleted" ;
     ioListFileContents .= "\n" ;
     outOptimizedInstruction := [@ipic18InstructionWithNoOperand new !mInstructionLocation ![@pic18InstructionWithNoOperandKind NOP]] ;
     outNOPsubstitution := true ;
 #--- Replace call to a RETLW routine with a MOVLW instruction
-  elsif ([targetBloc->mInstructionList length] == 0) # Empty Block
+  elsif inOptimizeFlagStruct->mJSRtoRETLWreplacedByMOVLW
+       & ([targetBloc->mInstructionList length] == 0) # Empty Block
        & (targetBloc->mStartAddress == [@uint max]) # Relocatable
        & (targetBloc->mTerminator is @ipic18RetlwTerminator) then # Ends with RETLW
     const @ipic18RetlwTerminator t := (cast targetBloc->mTerminator : @ipic18RetlwTerminator) ;
     outOptimizationDone := true ;
-    ioListFileContents .= "  " . inBlockLabel . ": " ;
+    ioListFileContents .= "  [R] " . inBlockLabel . ": " ;
     ioListFileContents .= "call to RETLW " . mTargetLabel . " routine transformed to MOVLW" ;
     ioListFileContents .= "\n" ;
     outOptimizedInstruction := [@ipic18_intermediate_instruction_literalOperation new
@@ -730,12 +754,13 @@ override method @ipic18_intermediate_JSR optimizeInstruction
       ![t mLiteralValue]
     ] ;
 #--- Replace call to a single instruction routine with the routine instruction
-  elsif ([targetBloc->mInstructionList length] == 1) # One instruction bloc
+  elsif inOptimizeFlagStruct->mJSRtoOneInstructionRoutineReplacedByInstruction
+      & ([targetBloc->mInstructionList length] == 1) # One instruction bloc
       & (targetBloc->mStartAddress == [@uint max]) # Relocatable
       & (targetBloc->mTerminator is @ipic18ReturnTerminator) then # Ends with Return
     outOptimizedInstruction := [targetBloc->mInstructionList mInstructionAtIndex !0] ;
     outOptimizationDone := true ;
-    ioListFileContents .= "  " . inBlockLabel . ", " ;
+    ioListFileContents .= "  [I] " . inBlockLabel . ", " ;
     ioListFileContents .= "call to single instruction routine " . mTargetLabel . " replaced by this single instruction" ;
     ioListFileContents .= "\n" ;
   end if ;    
@@ -745,6 +770,7 @@ end method ;
 
 override method @ipic18_intermediate_instruction_computed_rcall optimizeInstruction
   ??@symbolTableForBlockOptimization inSymbolTable
+  ??@optimizeFlagStruct inOptimizeFlagStruct
   ??@ipic18BlockList inBlockList
   ??@lstring inBlockLabel
   !@bool outOptimizationDone
@@ -764,21 +790,23 @@ override method @ipic18_intermediate_instruction_computed_rcall optimizeInstruct
       const @ipic18Block targetBloc := [inBlockList mBlockAtIndex !targetBlockIndex] ;  
       if (targetBloc->mTerminator is @ipic18ReturnTerminator) # One instruction bloc
        & (targetBloc->mStartAddress == [@uint max]) then # Relocatable bloc
-        if [targetBloc->mInstructionList length] == 0 then # Empty block, replace by NOP
+        if inOptimizeFlagStruct->mJSRtoEmptyRoutineInComputedRCALLreplacedByBlank
+         & [targetBloc->mInstructionList length] == 0 then # Empty block, replace by NOP
           opt := true ;
           outOptimizationDone := true ;
-          optimizedInstructionList += ![@ipic18InstructionWithNoOperand new ![jsr mInstructionLocation] ![@pic18InstructionWithNoOperandKind NOP]] ;
-          ioListFileContents .= "  " . inBlockLabel . ", " ;
-          ioListFileContents .= "COMPUTED JSR " . [jsr mTargetLabel] . " to empty routine replaced by NOP" ;
+          optimizedInstructionList += ![@ipic18_intermediate_instruction_BLANK new ![jsr mInstructionLocation] !0] ;
+          ioListFileContents .= "  [e] " . inBlockLabel . ", " ;
+          ioListFileContents .= "JSR " . [jsr mTargetLabel] . " to empty routine replaced by BLANK 0" ;
           ioListFileContents .= "\n" ;
-        elsif [targetBloc->mInstructionList length] == 1 then # One instruction block
+        elsif inOptimizeFlagStruct->mJSRtoOneInstructionRoutineInComputedRCALLreplacedByInstruction
+         & ([targetBloc->mInstructionList length] == 1) then # One instruction block
           const @ipic18SequentialInstruction inst := [targetBloc->mInstructionList mInstructionAtIndex !0] ;
           if [inst instructionSize] == 2 then # Instruction size == 2, perform replacement
             opt := true ;
             outOptimizationDone := true ;
             optimizedInstructionList += !inst ;
-            ioListFileContents .= "  " . inBlockLabel . ", " ;
-            ioListFileContents .= "COMPUTED JSR " . [jsr mTargetLabel] . " to one instruction routine replaced by routine instruction" ;
+            ioListFileContents .= "  [i] " . inBlockLabel . ", " ;
+            ioListFileContents .= "JSR " . [jsr mTargetLabel] . " to one instruction routine replaced by routine instruction" ;
             ioListFileContents .= "\n" ;
           end if ;
         end if ;
@@ -803,6 +831,7 @@ end method ;
 
 override method @ipic18_skip_instruction_BitTestSkip optimizeInstruction
   ??@symbolTableForBlockOptimization inSymbolTable
+  ??@optimizeFlagStruct inOptimizeFlagStruct
   ??@ipic18BlockList inBlockList
   ??@lstring inBlockLabel
   !@bool outOptimizationDone
@@ -814,6 +843,7 @@ override method @ipic18_skip_instruction_BitTestSkip optimizeInstruction
 #---
   [mEmbeddedInstruction optimizeInstruction
     !inSymbolTable
+    !inOptimizeFlagStruct
     !inBlockList
     !inBlockLabel
     ?outOptimizationDone
@@ -838,6 +868,7 @@ end method ;
 
 override method @ipic18_skip_instruction_compare_register optimizeInstruction
   ??@symbolTableForBlockOptimization inSymbolTable
+  ??@optimizeFlagStruct inOptimizeFlagStruct
   ??@ipic18BlockList inBlockList
   ??@lstring inBlockLabel
   !@bool outOptimizationDone
@@ -849,6 +880,7 @@ override method @ipic18_skip_instruction_compare_register optimizeInstruction
 #---
   [mEmbeddedInstruction optimizeInstruction
     !inSymbolTable
+    !inOptimizeFlagStruct
     !inBlockList
     !inBlockLabel
     ?outOptimizationDone
@@ -872,6 +904,7 @@ end method ;
 
 override method @ipic18_skip_instruction_FDA optimizeInstruction
   ??@symbolTableForBlockOptimization inSymbolTable
+  ??@optimizeFlagStruct inOptimizeFlagStruct
   ??@ipic18BlockList inBlockList
   ??@lstring inBlockLabel
   !@bool outOptimizationDone
@@ -883,6 +916,7 @@ override method @ipic18_skip_instruction_FDA optimizeInstruction
 #---
   [mEmbeddedInstruction optimizeInstruction
     !inSymbolTable
+    !inOptimizeFlagStruct
     !inBlockList
     !inBlockLabel
     ?outOptimizationDone
@@ -911,6 +945,7 @@ end method ;
 
 local routine instructionListOptimization
   ??@symbolTableForBlockOptimization inSymbolTable
+  ??@optimizeFlagStruct inOptimizeFlagStruct
   ??@ipic18BlockList inBlockList
   ??@ipic18SequentialInstructionList inInstructionList
   ??@lstring inBlockLabel
@@ -923,6 +958,7 @@ local routine instructionListOptimization
   foreach inInstructionList do
     [mInstruction optimizeInstruction
       !inSymbolTable
+      !inOptimizeFlagStruct
       !inBlockList
       !inBlockLabel
       ??@bool optimizationDone
@@ -982,6 +1018,7 @@ end method ;
 
 method @ipic18Block optimize
   ??@symbolTableForBlockOptimization inSymbolTable
+  ??@optimizeFlagStruct inOptimizeFlagStruct
   ??@ipic18BlockList inBlockList
   ?!@bool ioOptimizationDone
   ?!@string ioListFileContents
@@ -990,6 +1027,7 @@ method @ipic18Block optimize
 #----- Optimize instruction list
   instructionListOptimization
     !inSymbolTable
+    !inOptimizeFlagStruct
     !inBlockList
     !mInstructionList
     !mLabel
@@ -997,26 +1035,26 @@ method @ipic18Block optimize
     !?ioListFileContents
     ?@ipic18SequentialInstructionList optimizedInstructionList
   ;
-#  @bool optimized := false ;
-#  @ipic18SequentialInstructionList optimizedInstructionList := mInstructionList ;
 #--- Transform MOVLW k ; RETURN to RETLW
   @ipic18AbstractBlockTerminator optimizedTerminator := mTerminator ;
   if ([optimizedInstructionList length] > 0) & (mTerminator is @ipic18ReturnTerminator) then
     [optimizedInstructionList last ??@ipic18SequentialInstruction lastInstruction] ;
     cast lastInstruction
     when == @ipic18_intermediate_instruction_literalOperation op :
-      if [op mLiteralInstruction] == [@literal_instruction_opcode MOVLW] then
+      if inOptimizeFlagStruct->mMOVLWfollowedByRETreplacedByRETLW & ([op mLiteralInstruction] == [@literal_instruction_opcode MOVLW]) then
         [!?optimizedInstructionList popLast ?*] ;
         optimizedTerminator := [@ipic18RetlwTerminator new ![op mInstructionLocation] ![op mLiteralValue]] ;
         optimized := true ;
-        ioListFileContents .= "  " . mLabel . ": MOVLW k ; RETURN --> RETLW k\n" ;
+        ioListFileContents .= "  [M] " . mLabel . ": MOVLW k ; RETURN --> RETLW k\n" ;
       end if ;
   #--- Transform JSR label ; RETURN to JUMP label
     when == @ipic18_intermediate_JSR jsr :
-      [!?optimizedInstructionList popLast ?*] ;
-      optimizedTerminator := [@ipic18JumpTerminator new ![jsr mInstructionLocation] ![jsr mTargetLabel] ![jsr mKind]] ;
-      optimized := true ;
-      ioListFileContents .= "  " . mLabel . ": JSR " . [jsr mTargetLabel] . " ; RETURN --> JUMP " . [jsr mTargetLabel] . "\n" ;
+      if inOptimizeFlagStruct->mJSRfollowedByRETreplacedByJUMP then
+        [!?optimizedInstructionList popLast ?*] ;
+        optimizedTerminator := [@ipic18JumpTerminator new ![jsr mInstructionLocation] ![jsr mTargetLabel] ![jsr mKind]] ;
+        optimized := true ;
+        ioListFileContents .= "  [J] " . mLabel . ": JSR " . [jsr mTargetLabel] . " ; RETURN --> JUMP " . [jsr mTargetLabel] . "\n" ;
+      end if ;
     else
     end cast ;
   end if ;
@@ -1025,6 +1063,7 @@ method @ipic18Block optimize
   if not optimized then
     [mTerminator optimizeTerminator
       !inSymbolTable
+      !inOptimizeFlagStruct
       !inBlockList
       !mLabel->string
       !?optimized
@@ -1048,13 +1087,57 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
+#!--- optimizeFlagStruct
+
+#----------------------------------------------------------------------------*
+
+struct @optimizeFlagStruct {
+ @bool mRemoveEmptyRoutine ; # [E]
+ @bool mJSRtoRETLWreplacedByMOVLW ; # [R]
+ @bool mJSRfollowedByRETreplacedByJUMP ; # [J]
+ @bool mMOVLWfollowedByRETreplacedByRETLW ; # [M]
+ @bool mJSRtoOneInstructionRoutineReplacedByInstruction ; # [I]
+ @bool mJSRtoOneInstructionRoutineInComputedRCALLreplacedByInstruction ; # [i]
+ @bool mJSRtoEmptyRoutineInComputedRCALLreplacedByBlank ; # [e]
+}
+
+#----------------------------------------------------------------------------*
+
+reader @bool flagValue ->@string outResult :
+  outResult := if selfcopy then "enabled" else "disabled" end ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
 routine ipic18OptimizeBlocks
   ?!@string ioListFileContents
   ?!@ipic18BlockList ioGeneratedBlockList
 :
+#--- Optimization flags
+  const @optimizeFlagStruct optimizeFlagStruct [new
+    ![option piccolo_options.performOptimizations value] | [[option piccolo_options.optimizationFlags value] containsCharacter !'E'] # [E]
+    ![option piccolo_options.performOptimizations value] | [[option piccolo_options.optimizationFlags value] containsCharacter !'R'] # [R]
+    ![option piccolo_options.performOptimizations value] | [[option piccolo_options.optimizationFlags value] containsCharacter !'J'] # [J]
+    ![option piccolo_options.performOptimizations value] | [[option piccolo_options.optimizationFlags value] containsCharacter !'M'] # [M]
+    ![option piccolo_options.performOptimizations value] | [[option piccolo_options.optimizationFlags value] containsCharacter !'I'] # [I]
+    ![option piccolo_options.performOptimizations value] | [[option piccolo_options.optimizationFlags value] containsCharacter !'i'] # [i]
+    ![option piccolo_options.performOptimizations value] | [[option piccolo_options.optimizationFlags value] containsCharacter !'e'] # [e]
+  ] ;
+#---
   ioListFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n" ;
   ioListFileContents .= "*" . ["BLOCK REPRESENTATION OPTIMIZATION" stringByLeftAndRightPadding !77 !' '] . "*\n" ;
-  ioListFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n" ;
+  ioListFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n\n" ;
+  ioListFileContents .= "Optimization flags:\n" ;
+  ioListFileContents .= "  [D] Dead code elimination: always enabled\n" ;
+  ioListFileContents .= "  [E] Empty routine elimination: " . [optimizeFlagStruct->mRemoveEmptyRoutine flagValue] . "\n" ;
+  ioListFileContents .= "  [e] In Computed RCALL, empty routine call replaced by BLANK: " . [optimizeFlagStruct->mJSRtoEmptyRoutineInComputedRCALLreplacedByBlank flagValue] . "\n" ;
+  ioListFileContents .= "  [I] Call to one instruction routine replaced by instruction: " . [optimizeFlagStruct->mJSRtoOneInstructionRoutineReplacedByInstruction flagValue] . "\n" ;
+  ioListFileContents .= "  [i] In Computed RCALL, rcall to one instruction routine replaced by instruction: " . [optimizeFlagStruct->mJSRtoOneInstructionRoutineInComputedRCALLreplacedByInstruction flagValue] . "\n" ;
+  ioListFileContents .= "  [J] JSR followed by RETURN replaced by JUMP: " . [optimizeFlagStruct->mJSRfollowedByRETreplacedByJUMP flagValue] . "\n" ;
+  ioListFileContents .= "  [M] MOVLW followed by RETURN replaced by RETLW: " . [optimizeFlagStruct->mMOVLWfollowedByRETreplacedByRETLW flagValue] . "\n" ;
+  ioListFileContents .= "  [P] JUMP propagation: always enabled\n" ;
+  ioListFileContents .= "  [R] Call to RETLW replaced by MOVLW: " . [optimizeFlagStruct->mJSRtoRETLWreplacedByMOVLW flagValue] . "\n" ;
+  ioListFileContents .= "  [U] Useless test elimination: always enabled\n" ;
   if [option.verbose_output value] then
     message "Optimizations:\n" ;
   end if ;
@@ -1092,6 +1175,7 @@ routine ipic18OptimizeBlocks
       if [referencedBlockSet hasKey !mBlock->mLabel->string] | (mBlock->mStartAddress != [@uint max]) then
         [mBlock optimize
           !symbolTable
+          !optimizeFlagStruct
           !ioGeneratedBlockList
           !?optimizationDone
           !?ioListFileContents
@@ -1099,7 +1183,7 @@ routine ipic18OptimizeBlocks
         ] ;
         optimizedBlockList += !optimizedBlock ;
       else
-        ioListFileContents .= "  " . mBlock->mLabel . ": not referenced, deleted\n" ;
+        ioListFileContents .= "  [D] " . mBlock->mLabel . ": not referenced, deleted\n" ;
         optimizationDone := true ;
       end if ;
     end foreach ;
