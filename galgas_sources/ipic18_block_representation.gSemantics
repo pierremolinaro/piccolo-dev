@@ -95,7 +95,6 @@ enum @conditionalBranchMode {
   native, # Use Bcc instruction only
   ipicBRA, # Use BRA if possible (Bcc + BRA)
   ipicGOTO # use GOTO (Bcc + GOTO)
-}{
 }
 
 #----------------------------------------------------------------------------*
@@ -121,7 +120,6 @@ enum @ipic18RegisterComparison {
   registerEqualsToW,
   registerGreaterThanW,
   registerLowerThanW
-}{
 }
 
 #----------------------------------------------------------------------------*
@@ -189,7 +187,6 @@ class @ipic18_intermediate_instruction_FDA extends @ipic18SequentialInstruction 
 
 enum @FA_sequential_instruction_base_code {
   CLRF, MOVWF, MULWF, NEGF, SETF
-}{
 }
 
 #----------------------------------------------------------------------------*
@@ -305,7 +302,6 @@ class @ipic18_skip_instruction_BitTestSkip extends @ipic18_condition_skip_instru
 
 enum @ipic18_compare_register_instruction_base_code {
   CPFSEQ, CPFSGT, CPFSLT, TSTFSZ
-}{
 }
 
 #----------------------------------------------------------------------------*
@@ -319,7 +315,6 @@ class @ipic18_skip_instruction_compare_register extends @ipic18_condition_skip_i
 
 enum @skip_instruction_FDA_base_code {
   DECFSZ, DCFSNZ, INCFSZ, INFSNZ
-}{
 }
 
 #----------------------------------------------------------------------------*

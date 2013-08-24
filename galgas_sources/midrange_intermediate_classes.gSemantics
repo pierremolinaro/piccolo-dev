@@ -155,8 +155,6 @@ class @midrange_intermediate_instruction_BitTestSkip extends @midrange_intermedi
 
 enum @midrange_call_goto_bit {
   set, clear, noChange
-}{
-
 }
 
 #----------------------------------------------------*

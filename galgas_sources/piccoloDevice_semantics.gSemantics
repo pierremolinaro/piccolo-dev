@@ -27,7 +27,6 @@ map @ramBankTable {
 
 enum @processorType {
   pic18_60, pic18_80, midrange, baseline
-}{
 }
 
 #----------------------------------------------------*

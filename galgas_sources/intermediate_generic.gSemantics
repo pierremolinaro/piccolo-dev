@@ -71,7 +71,6 @@ map @routineMap {
 
 enum @routineKind {
   regularRoutine, noReturnRoutine, interruptRoutine
-}{
 }
 
 #----------------------------------------------------------------------------*

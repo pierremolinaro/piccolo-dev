@@ -61,7 +61,6 @@ class @instruction_savebank extends @pic18PiccoloInstruction {
 enum @instruction_FDA_base_code_AST {
   ADDWF, ADDWFC, ANDWF, COMF, DECF, INCF,
   IORWF, MOVF, RLCF, RLNCF, RRCF, RRNCF, SUBFWB, SUBWF, SUBWFB, SWAPF, XORWF
-}{
 }
 
 #----------------------------------------------------*
@@ -76,7 +75,6 @@ class @instruction_FDA extends @pic18PiccoloSimpleInstruction {
 
 enum @FA_instruction_base_code {
   CLRF, CPFSEQ, CPFSGT, CPFSLT, MOVWF, MULWF, NEGF, SETF, TSTFSZ
-}{
 }
 
 #----------------------------------------------------*
@@ -97,7 +95,6 @@ class @instruction_MOVFF extends @pic18PiccoloSimpleInstruction {
 
 enum @bit_oriented_op {
   BCF, BSF, BTG
-}{
 }
 
 #----------------------------------------------------*
@@ -112,14 +109,12 @@ class @instruction_FBA extends @pic18PiccoloSimpleInstruction {
 
 enum @conditional_branch {
   bz, bnz, bn, bnn, bc, bnc, bov, bnov
-}{
 }
 
 #----------------------------------------------------*
 
 enum @jumpInstructionKind {
   ipicRelative, relative, absolute
-}{
 }
 
 #----------------------------------------------------*
@@ -154,7 +149,6 @@ enum @pic18InstructionWithNoOperandKind {
   PUSH,
   RESET,
   SLEEP
-}{
 }
 
 #----------------------------------------------------*
@@ -167,7 +161,6 @@ class @instruction_withNoOperand extends @pic18PiccoloSimpleInstruction {
 
 enum @literal_instruction_opcode {
   ADDLW, ANDLW, IORLW, MOVLW, MULLW, SUBLW, XORLW
-}{
 }
 
 #----------------------------------------------------*
@@ -201,7 +194,6 @@ class @instruction_LDATAPTR extends @pic18PiccoloInstruction {
 
 enum @tableAccessOption {
   simpleAccess, postIncrement, postDecrement, preIncrement
-}{
 }
 
 #----------------------------------------------------*
@@ -233,7 +225,6 @@ class @instruction_FOREVER extends @pic18PiccoloInstruction {
 
 enum @if_semi_colon_op {
   CPFSEQ, CPFSGT, CPFSLT, TSTFSZ
-}{
 }
 
 #----------------------------------------------------*
@@ -314,7 +305,6 @@ class @registerTestCondition extends @conditionExpression {
 
 enum @pic18RegisterComparison {
   notEqual, equal, greaterOrEqual, greater, lowerOrEqual, lower
-}{
 }
 
 #----------------------------------------------------*
@@ -421,7 +411,6 @@ list @routineDeclarationList {
 
 enum @programKind {
   regularProgram, bootloaderProgram, userProgram
-}{
 }
 
 #----------------------------------------------------*
