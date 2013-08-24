@@ -224,7 +224,6 @@ end method ;
 enum @instruction_FDA_base_code {
   ADDWF, ADDWFC, ANDWF, COMF, DECF, DECFSZ, DCFSNZ, INCF, INCFSZ, INFSNZ,
   IORWF, MOVF, RLCF, RLNCF, RRCF, RRNCF, SUBFWB, SUBWF, SUBWFB, SWAPF, XORWF
-}{
 }
 
 #----------------------------------------------------*
@@ -411,7 +410,6 @@ end reader ;
 
 enum @condionalBranchMode {
   native, ipicNative, ipicBRA, ipicGOTO
-}{
 }
 
 #----------------------------------------------------------------------------*
