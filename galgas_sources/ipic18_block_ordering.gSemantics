@@ -510,7 +510,7 @@ local routine buildOrderedGraph
 #--- First insert absolute blocks from the end
   const @uint insertionIndex := [orderedBlockList length] ;
   continue := true ;
-  foreach \down ioBlockList while continue do
+  foreach > ioBlockList while continue do
     continue := mBlock->mAddress != [@uint max] ;
     if continue then
       [!?orderedBlockList insertAtIndex !mBlock !insertionIndex] ;

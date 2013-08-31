@@ -29,7 +29,7 @@ routine actualBuildConfig
     @uint defaultValue := (1 << [mRegisterWidth uint]) - 1 ;
     [!? outActualConfigurationMap insertKey !lkey ![mRegisterAddress uint] !defaultValue] ;
     @lstring registerName := lkey ;
-    foreach mConfigRegisterMaskMap prefixedby other_ do
+    foreach mConfigRegisterMaskMap : other_ do
       [!?configFieldMap insertKey !other_lkey !registerName !other_mMaskValue !other_mDescription !other_mFieldSettingMap] ;
     end foreach ;
   end foreach ;
@@ -78,9 +78,9 @@ routine actualBuildConfig
     ioListFileContents .= "Register '" . lkey . "' at " . [mRegisterAddress hexString] . " set to " . [mRegisterValue hexString] . "\n" ;
     @configRegisterMaskMap configRegisterMaskMap ;
     [inConfigRegisterMap searchKey !lkey ?* ?* ?configRegisterMaskMap ?*] ;
-    foreach configRegisterMaskMap prefixedby others_ do
+    foreach configRegisterMaskMap : others_ do
       @lstring settingName := others_lkey ;
-      foreach others_mFieldSettingMap prefixedby second_ do
+      foreach others_mFieldSettingMap : second_ do
         if (mRegisterValue & [others_mMaskValue uint]) == second_mValue then
           ioListFileContents .= "  setting '" . settingName . "' set to " . [second_mValue hexString] . " (\"" . second_lkey . "\")\n" ;
         end if ;

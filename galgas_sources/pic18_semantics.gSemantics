@@ -46,7 +46,7 @@ routine pic18_build_listing_of_generated_code
     end if ;
     foreach lineList, code do
       @string codeString := "" ;
-      foreach mCode prefixedby code_ do
+      foreach mCode : code_ do
         codeString .= [[code_mValue xString] stringByLeftPadding !4 !'0'] . " " ;
       end foreach ;
       ioListFileContents .= [[idx string] stringByLeftPadding !5 !' '] . "  "

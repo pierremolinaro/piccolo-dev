@@ -47,7 +47,7 @@ local routine generateLineWithCode
     ioListFileContents .= [address x6string] ;
     address := address + 2 * [mBinaryCode length] ;
     @string s := " " ;
-    foreach mBinaryCode prefixedBy bin_ do
+    foreach mBinaryCode : bin_ do
       s .= " " . [bin_mValue x4string] ;
     end foreach ;
     ioListFileContents .= [s stringByRightPadding !13 !' '];
