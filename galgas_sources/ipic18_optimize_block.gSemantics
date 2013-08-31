@@ -1144,7 +1144,7 @@ routine ipic18OptimizeBlocks
 #--- Optimizations loops
   @bool optimizationDone := true ;
   @uint optimizationPass := 0 ;
-  loop [ioGeneratedBlockList length] + 1
+  loop [ioGeneratedBlockList length] + 1 :
   while optimizationDone & ([@uint errorCount] == 0) do
     optimizationDone := false ;
     optimizationPass := optimizationPass + 1 ;

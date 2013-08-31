@@ -69,7 +69,7 @@ routine perform_cluster_ordering
       end foreach ;
     #--- Add symbols from last relocatable blocks
       const @uint insertionIdx := [workingBlockList length] ;
-      foreach \down ioBlockList while continue do
+      foreach > ioBlockList while continue do
         continue := mBlock->mAddress != [@uint max] ;
         if continue then
           [!?symbolTable insertKey !mBlock->mLabel ![@uint max]] ;
@@ -192,7 +192,7 @@ routine perform_cluster_ordering
   #--- Insert absolute blocks from the end
     const @uint insertionIndex := [newBlockList length] ;
     continue := true ;
-    foreach \down ioBlockList while continue do
+    foreach > ioBlockList while continue do
       continue := mBlock->mAddress != [@uint max] ;
       if continue then
         [!?newBlockList insertAtIndex !mBlock !insertionIndex] ;

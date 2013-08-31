@@ -214,7 +214,7 @@ override method @baseline_intermediate_JUMP generateAssemblyCode
   @uint pageChangeFlags := mCurrentPage ^ mTargetPage ;
   @uint targetPageFlags := mTargetPage ;
   @uint idx := 0 ;
-  loop 8 while pageChangeFlags != 0 do
+  loop 8 : while pageChangeFlags != 0 do
     if (pageChangeFlags & 1) != 0 then
       @uint bitIndex ;
       if [inStatusRegisterBitSliceTable hasKey !"PA"] then
@@ -282,7 +282,7 @@ override method @baseline_intermediate_JSR generateAssemblyCode
   @uint targetPageFlags := mTargetPage ;
   @uint idx := 0 ;
   @baseline_assembly_instructionList pageRestoreInstructions [emptyList] ;
-  loop 8 while pageChangeFlags != 0 do
+  loop 8 : while pageChangeFlags != 0 do
     if (pageChangeFlags & 1) != 0 then
       @uint bitIndex ;
       if [inStatusRegisterBitSliceTable hasKey !"PA"] then
