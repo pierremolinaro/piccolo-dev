@@ -63,9 +63,9 @@ override method @ipic18JumpTerminator optimizeTerminator
     const @ipic18Block targetBlock := [inBlockList mBlockAtIndex !targetBlockIndex] ;
     if (targetBlock->mAddress == [@uint max]) # Relocatable
      & ([targetBlock->mInstructionList length] == 0) # Empty block
-     & (targetBlock->mTerminator is @ipic18SingleInstructionTerminator) then
+     & (targetBlock->mTerminator is >= @ipic18SingleInstructionTerminator) then
       @bool optimize ;
-      if (targetBlock->mTerminator is @ipic18JumpTerminator) then
+      if (targetBlock->mTerminator is >= @ipic18JumpTerminator) then
         const @ipic18JumpTerminator candidate := (cast targetBlock->mTerminator : @ipic18JumpTerminator) ;
         optimize := mLabel->string != [candidate mLabel]->string ;
       else
@@ -114,7 +114,7 @@ override method @ipic18ConditionalJumpTerminator optimizeTerminator
       const @ipic18Block targetBlock := [inBlockList mBlockAtIndex !targetBlockIndex] ;
       if (targetBlock->mAddress == [@uint max]) # Relocatable
        & ([targetBlock->mInstructionList length] == 0) # Empty block
-       & (targetBlock->mTerminator is @ipic18JumpTerminator) then
+       & (targetBlock->mTerminator is >= @ipic18JumpTerminator) then
         const @ipic18JumpTerminator jp := (cast targetBlock->mTerminator : @ipic18JumpTerminator) ;
         targetLabelWhenTrue := [jp mLabel] ;
         optimized := true ;
@@ -132,7 +132,7 @@ override method @ipic18ConditionalJumpTerminator optimizeTerminator
       const @ipic18Block targetBlock := [inBlockList mBlockAtIndex !targetBlockIndex] ;
       if (targetBlock->mAddress == [@uint max]) # Relocatable
        & ([targetBlock->mInstructionList length] == 0) # Empty block
-       & (targetBlock->mTerminator is @ipic18JumpTerminator) then
+       & (targetBlock->mTerminator is >= @ipic18JumpTerminator) then
         const @ipic18JumpTerminator jp := (cast targetBlock->mTerminator : @ipic18JumpTerminator) ;
         targetLabelWhenFalse := [jp mLabel] ;
         optimized := true ;
@@ -196,13 +196,13 @@ method @ipic18AbstractConditionTerminator getOptimizedTerminators
   ] ;
   outOptimizedFalseTerminator := (cast optimizedFalseTerminator : @ipic18SingleInstructionTerminator) ;
 #---- Useless condition ?
-  if (outOptimizedTrueTerminator is @ipic18ReturnTerminator) & (outOptimizedFalseTerminator is @ipic18ReturnTerminator) then
+  if (outOptimizedTrueTerminator is >= @ipic18ReturnTerminator) & (outOptimizedFalseTerminator is >= @ipic18ReturnTerminator) then
     outIdenticalTerminators := true ;
-  elsif (outOptimizedTrueTerminator is @ipic18RetlwTerminator) & (outOptimizedFalseTerminator is @ipic18RetlwTerminator) then
+  elsif (outOptimizedTrueTerminator is >= @ipic18RetlwTerminator) & (outOptimizedFalseTerminator is >= @ipic18RetlwTerminator) then
     const @ipic18RetlwTerminator t := (cast outOptimizedTrueTerminator : @ipic18RetlwTerminator) ;
     const @ipic18RetlwTerminator f := (cast outOptimizedFalseTerminator : @ipic18RetlwTerminator) ;
     outIdenticalTerminators := [t mLiteralValue] == [f mLiteralValue] ;
-  elsif (outOptimizedTrueTerminator is @ipic18JumpTerminator) & (outOptimizedFalseTerminator is @ipic18JumpTerminator) then
+  elsif (outOptimizedTrueTerminator is >= @ipic18JumpTerminator) & (outOptimizedFalseTerminator is >= @ipic18JumpTerminator) then
     const @ipic18JumpTerminator t := (cast outOptimizedTrueTerminator : @ipic18JumpTerminator) ;
     const @ipic18JumpTerminator f := (cast outOptimizedFalseTerminator : @ipic18JumpTerminator) ;
     outIdenticalTerminators := [t mLabel] == [f mLabel] ;
@@ -731,7 +731,7 @@ override method @ipic18_intermediate_JSR optimizeInstruction
   if inOptimizeFlagStruct->mRemoveEmptyRoutine
    & ([targetBloc->mInstructionList length] == 0) # Empty block
    & (targetBloc->mAddress == [@uint max]) # Relocatable
-   & (targetBloc->mTerminator is @ipic18ReturnTerminator) then # Ends with RETURN
+   & (targetBloc->mTerminator is >= @ipic18ReturnTerminator) then # Ends with RETURN
     outOptimizationDone := true ;
     ioListFileContents .= "  [E] " . inBlockLabel . ": " ;
     ioListFileContents .= "call to empty " . mTargetLabel . " routine deleted" ;
@@ -742,7 +742,7 @@ override method @ipic18_intermediate_JSR optimizeInstruction
   elsif inOptimizeFlagStruct->mJSRtoRETLWreplacedByMOVLW
        & ([targetBloc->mInstructionList length] == 0) # Empty Block
        & (targetBloc->mAddress == [@uint max]) # Relocatable
-       & (targetBloc->mTerminator is @ipic18RetlwTerminator) then # Ends with RETLW
+       & (targetBloc->mTerminator is >= @ipic18RetlwTerminator) then # Ends with RETLW
     const @ipic18RetlwTerminator t := (cast targetBloc->mTerminator : @ipic18RetlwTerminator) ;
     outOptimizationDone := true ;
     ioListFileContents .= "  [R] " . inBlockLabel . ": " ;
@@ -757,7 +757,7 @@ override method @ipic18_intermediate_JSR optimizeInstruction
   elsif inOptimizeFlagStruct->mJSRtoOneInstructionRoutineReplacedByInstruction
       & ([targetBloc->mInstructionList length] == 1) # One instruction bloc
       & (targetBloc->mAddress == [@uint max]) # Relocatable
-      & (targetBloc->mTerminator is @ipic18ReturnTerminator) then # Ends with Return
+      & (targetBloc->mTerminator is >= @ipic18ReturnTerminator) then # Ends with Return
     outOptimizedInstruction := [targetBloc->mInstructionList mInstructionAtIndex !0] ;
     outOptimizationDone := true ;
     ioListFileContents .= "  [I] " . inBlockLabel . ", " ;
@@ -784,11 +784,11 @@ override method @ipic18_intermediate_instruction_computed_rcall optimizeInstruct
   @ipic18SequentialInstructionList optimizedInstructionList [emptyList] ;
   foreach mTargetInstructions do
     @bool opt := false ;
-    if (mInstruction is @ipic18_intermediate_JSR) then
+    if (mInstruction is >= @ipic18_intermediate_JSR) then
       const @ipic18_intermediate_JSR jsr := (cast mInstruction : @ipic18_intermediate_JSR) ;
       [inSymbolTable searchKey ![jsr mTargetLabel] ??@uint targetBlockIndex] ; 
       const @ipic18Block targetBloc := [inBlockList mBlockAtIndex !targetBlockIndex] ;  
-      if (targetBloc->mTerminator is @ipic18ReturnTerminator) # One instruction bloc
+      if (targetBloc->mTerminator is >= @ipic18ReturnTerminator) # One instruction bloc
        & (targetBloc->mAddress == [@uint max]) then # Relocatable bloc
         if inOptimizeFlagStruct->mJSRtoEmptyRoutineInComputedRCALLreplacedByBlank
          & [targetBloc->mInstructionList length] == 0 then # Empty block, replace by NOP
@@ -1037,7 +1037,7 @@ method @ipic18Block optimize
   ;
 #--- Transform MOVLW k ; RETURN to RETLW
   @ipic18AbstractBlockTerminator optimizedTerminator := mTerminator ;
-  if ([optimizedInstructionList length] > 0) & (mTerminator is @ipic18ReturnTerminator) then
+  if ([optimizedInstructionList length] > 0) & (mTerminator is >= @ipic18ReturnTerminator) then
     [optimizedInstructionList last ??@ipic18SequentialInstruction lastInstruction] ;
     cast lastInstruction
     when == @ipic18_intermediate_instruction_literalOperation op :
