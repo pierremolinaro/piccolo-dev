@@ -236,10 +236,8 @@ override method @ipic18IncDecRegisterTerminator optimizeTerminator
     ??@bool identicalTerminators
   ] ;
   if identicalTerminators then
-    outOptimizedTerminator := optimizedTrueTerminator ;
-    ioOptimizationDone := true ;
-    ioListFileContents .= "  [U] " . inBlockLabel . ", useless terminator condition: replaced by " . [optimizedTrueTerminator terminatorDisplay !""] . "\n" ;
-    warning mInstructionLocation : "useless condition deleted" ;
+    outOptimizedTerminator := selfcopy ;
+    error mInstructionLocation : "useless decf/incf condition should be replaced by decf/incf instruction" ;
   elsif optimization then
     outOptimizedTerminator := [@ipic18IncDecRegisterTerminator new
       !mInstructionLocation
