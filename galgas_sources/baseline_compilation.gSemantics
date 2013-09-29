@@ -150,7 +150,7 @@ routine baseline_analysis
 #  [!?constantMap insertKey !romSizeString ![piccoloDeviceModel->mRomSize sint]] ;
 #--- Add declared constants
   foreach [inPiccoloModel mConstantDefinitionList] do
-    @sint result ; [mExpression eval !registerTable !constantMap ?result] ;
+    [mExpression eval !registerTable !constantMap ??@sint64 result] ;
     if [registerTable hasKey ![mConstantName string]] then
       error mConstantName: "'" . mConstantName . "' is already declared as ram register or special register" ;
     else

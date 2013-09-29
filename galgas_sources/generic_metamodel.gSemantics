@@ -66,6 +66,7 @@ abstract class @immediatExpression {
 
 list @immediatExpressionList {
   @immediatExpression mExpression ;
+  @location mErrorLocation ;
 }
 
 #----------------------------------------------------*

@@ -194,20 +194,20 @@ routine ipic18GenerateCode
     !inGeneratedBlockList
     ![@ipic18BlockList emptyList]
     ??@symbolTableForRelativesResolution symbolTable
-    ?@uint freeAddress
+    ??@uint firstDataAddress
   ;
 #--------------------------------- Build Data Address Map
+  @uint dataAddress := firstDataAddress ;
   @pic18_dataAddressMap dataAddressMap [emptyMap] ;
   foreach inDataMap do
-    [!?dataAddressMap insertKey !lkey !freeAddress] ;
-    freeAddress := freeAddress + [mData length] * 2 ;
+    [!?dataAddressMap insertKey !lkey !dataAddress] ;
+    dataAddress := dataAddress + [mData length] * 2 ;
   end foreach ; 
 #---------------------------------- Generate code
   @string assemblyString := "" ;
   @uint relocatableCodeSize := 0 ;
   @uint blockStartAddress := 0 ;
   foreach inGeneratedBlockList index blockIndex do
-    #message mBlock->mLabel->string . "\n" ;
     @string nextBlockLabel ;
     if (blockIndex+1) < [inGeneratedBlockList length] then
       nextBlockLabel := [inGeneratedBlockList mBlockAtIndex !blockIndex+1]->mLabel->string ;
@@ -225,18 +225,43 @@ routine ipic18GenerateCode
       relocatableCodeSize := relocatableCodeSize + blockSize ;
     end if ;
   end foreach ;
-  outUsedROMsize := blockStartAddress ;
 #--- Data
-  foreach inDataMap do
+  dataAddress := firstDataAddress ;
+  foreach inDataMap
+  before
+    setEmitAddress !dataAddress ;
+    generateLineWithCode
+      !dataAddress
+      ![@codeList listWithValue !"    ORG " . [dataAddress hexString] ![@uintlist emptyList]]
+      ![@stringlist listWithValue !"    ORG " . [dataAddress hexString]]
+      !?ioListFileContents
+    ;
+    assemblyString .= "    ORG " . [dataAddress hexString] . "\n" ;
+  do
+    generateLineWithCode
+      !dataAddress
+      ![@codeList listWithValue !"_data_" . lkey . ":" ![@uintlist emptyList]]
+      ![@stringlist listWithValue !"_data_" . lkey . ":"]
+      !?ioListFileContents
+    ;
     assemblyString .= "_data_" . lkey . ":\n" ;
     foreach mData do
       assemblyString .= "    DW " . [mValue hexString] . "\n" ;
       emitCode !mValue ;
+      generateLineWithCode
+        !dataAddress
+        ![@codeList listWithValue !"    DW " . [mValue hexString] ![@uintlist listWithValue !mValue]]
+        ![@stringlist listWithValue !"    DW " . [mValue hexString]]
+        !?ioListFileContents
+      ;
+      dataAddress := dataAddress + 2 ; 
     end foreach ;
+    ioListFileContents .= "\n" ;
   end foreach ; 
   if [option.verbose_output value] then
     message "  Relocatable code size: " . relocatableCodeSize . " bytes.\n\n" ;
   end if ;
+  outUsedROMsize := blockStartAddress ;
 #----------------------------- Generate HEX file
 #--- Add Configuration
   foreach inActualConfigurationMap do
