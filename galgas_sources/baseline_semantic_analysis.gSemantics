@@ -208,9 +208,9 @@ override method @baseline_instruction_literalOperation build_baseline_intermedia
   if inLastInstructionShouldReturn & (mLiteralInstruction != [@baseline_literal_instruction_opcode MOVLW]) then
     error mInstructionLocation : "this instruction is the last routine instruction and should be MOVLW" ;
   end if ;
-  [mImmediatExpression eval !inRegisterTable !inConstantMap ?@sint immediatValue] ;
+  [mImmediatExpression eval !inRegisterTable !inConstantMap ?@sint64 immediatValue] ;
 #---
-   if (immediatValue > 255S) | (immediatValue < -128S) then
+   if (immediatValue > 255LS) | (immediatValue < -128LS) then
      error mInstructionLocation:"immediate value is evaluated as " . immediatValue . " (should be betwween -128 and 255)" ;
    end if ;
 #---  

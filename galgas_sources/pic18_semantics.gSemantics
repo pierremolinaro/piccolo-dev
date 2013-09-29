@@ -67,6 +67,8 @@ end routine ;
 
 local routine analyze_data_sections
   ??@dataList inDataDefinitionList
+  ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
   ?!@string ioListFileContents
   !@pic18_intermediate_instructionList outDataGeneratedInstructionList
   !@dataMap outDataMap
@@ -83,14 +85,17 @@ local routine analyze_data_sections
   do
     ioListFileContents .= "Data '" . mDataName . "', " . [mValueList length] . " words (" . [mValueList length] * 2 . " bytes).\n" ; 
     [!?outDataMap insertKey !mDataName ![mValueList length]] ;
-    [!?outConstantMap insertKey ![@lstring new !mDataName->string . "_BYTE_COUNT" !mDataName->location] ![[mValueList length] * 2 sint]] ;
+    [!?outConstantMap insertKey ![@lstring new !mDataName->string . "_BYTE_COUNT" !mDataName->location] ![[mValueList length] * 2 sint64]] ;
     const @lstring dataName [new !"_data_" . mDataName !mDataName->location] ;
     outDataGeneratedInstructionList += ![@pic18_intermediate_pseudo_LABEL new !dataName !true] ;
     foreach mValueList do
-      if mValue->uint > 65535 then
-        error mValue: "data value is " . [mValue->uint hexString] . " (greater than 0xFFFF)" ;
+      [mExpression eval !inRegisterTable !inConstantMap ??@sint64 value] ;
+      if value < 0LS then
+        error mErrorLocation: "data value is " . value . " (negative)" ;
+      elsif value > 65535LS then
+        error mErrorLocation: "data value is " . value . " (greater than 2**16-1)" ;
       else
-        outDataGeneratedInstructionList += ![@pic18_intermediate_word new !mValue->uint] ;
+        outDataGeneratedInstructionList += ![@pic18_intermediate_word new ![value uint]] ;
       end if ;
     end foreach ;
   end foreach ;
@@ -288,6 +293,8 @@ routine pic18_analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName 
   #-------------------------------- Data definition
     analyze_data_sections
       !inPiccoloModel->mDataList
+      !registerTable
+      ![@constantMap emptyMap]
       !?listFileContents
       ?@pic18_intermediate_instructionList dataGeneratedInstructionList
       ?@dataMap dataMap

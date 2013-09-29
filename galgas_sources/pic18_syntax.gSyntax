@@ -115,10 +115,11 @@ rule <data_definition>
   $data$ ;
   $identifier$ ? @lstring dataName ;
   ${$ ;
-  @luintlist valueList [emptyList] ;
+  @immediatExpressionList valueList [emptyList] ;
   repeat
-    $integer$ ?@luint value ;
-    valueList += !value ;
+    @immediatExpression expression ;
+    <immediate_expression> ?expression ;
+    valueList += !expression !here ;
   while
     $,$ ;
   end repeat ;
@@ -520,7 +521,7 @@ rule <structured_instruction>
       repeat
         @immediatExpression expression ;
         <immediate_expression> ?expression ;
-        argumentList += !expression ;
+        argumentList += !expression !here ;
       while
         $,$ ;
       end repeat ;

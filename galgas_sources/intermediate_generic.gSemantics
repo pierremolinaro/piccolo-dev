@@ -49,7 +49,7 @@ end routine ;
 #----------------------------------------------------------------------------*
 
 map @constantMap {
-  @sint mValue ;
+  @sint64 mValue ;
   insert insertKey error message "the '%K' constant is already declared in %L" ;
   search searchKey error message "the '%K' constant is not declared" ;
 }
@@ -82,7 +82,7 @@ enum @routineKind {
 abstract method @immediatExpression eval
   ??@registerTable inRegisterTable
   ??@constantMap inConstantMap
-  !@sint outResult
+  !@sint64 outResult
 ;
 
 #----------------------------------------------------------------------------*
@@ -90,9 +90,9 @@ abstract method @immediatExpression eval
 override method @immediatInteger eval
   ??@registerTable unused inRegisterTable
   ??@constantMap unused inConstantMap
-  !@sint outResult
+  !@sint64 outResult
 :
-  outResult := [[mValue uint] sint] ;
+  outResult := [[mValue uint] sint64] ;
 end method ;
 
 #----------------------------------------------------------------------------*
@@ -100,7 +100,7 @@ end method ;
 override method @immediatRegister eval
   ??@registerTable inRegisterTable
   ??@constantMap inConstantMap
-  !@sint outResult
+  !@sint64 outResult
 :
   if [inRegisterTable hasKey ![[mRegister mRegisterName] string]] then
     @uintlist registerAddressList ;
@@ -110,7 +110,7 @@ override method @immediatRegister eval
     if [[mRegister mOffset] uint] >= size then
       error [mRegister mOffset]:"index (" . [[[mRegister mOffset] uint] string] . ") should be lower than size (" . [size string] . ")" ;
     end if ;
-    outResult := [registerAddress + [[mRegister mOffset] uint] sint] ;
+    outResult := [registerAddress + [[mRegister mOffset] uint] sint64] ;
   elsif [inConstantMap hasKey ![[mRegister mRegisterName] string]] then
     [inConstantMap searchKey ![mRegister mRegisterName] ?outResult] ;
     if [[mRegister mOffset] uint] > 0 then
@@ -126,10 +126,10 @@ end method ;
 override method @immediatAdd eval
   ??@registerTable inRegisterTable
   ??@constantMap inConstantMap
-  !@sint outResult
+  !@sint64 outResult
 :
-  @sint leftResult ; [mLeftExpression eval !inRegisterTable !inConstantMap ?leftResult] ;
-  @sint rightResult ; [mRightExpression eval !inRegisterTable !inConstantMap ?rightResult] ;
+  [mLeftExpression eval !inRegisterTable !inConstantMap ??@sint64 leftResult] ;
+  [mRightExpression eval !inRegisterTable !inConstantMap ??@sint64 rightResult] ;
   outResult := leftResult + rightResult ;
 end method ;
 
@@ -138,10 +138,10 @@ end method ;
 override method @immediatSub eval
   ??@registerTable inRegisterTable
   ??@constantMap inConstantMap
-  !@sint outResult
+  !@sint64 outResult
 :
-  @sint leftResult ; [mLeftExpression eval !inRegisterTable !inConstantMap ?leftResult] ;
-  @sint rightResult ; [mRightExpression eval !inRegisterTable !inConstantMap ?rightResult] ;
+  [mLeftExpression eval !inRegisterTable !inConstantMap ??@sint64 leftResult] ;
+  [mRightExpression eval !inRegisterTable !inConstantMap ??@sint64 rightResult] ;
   outResult := leftResult - rightResult ;
 end method ;
 
@@ -150,10 +150,10 @@ end method ;
 override method @immediatMul eval
   ??@registerTable inRegisterTable
   ??@constantMap inConstantMap
-  !@sint outResult
+  !@sint64 outResult
 :
-  @sint leftResult ; [mLeftExpression eval !inRegisterTable !inConstantMap ?leftResult] ;
-  @sint rightResult ; [mRightExpression eval !inRegisterTable !inConstantMap ?rightResult] ;
+  [mLeftExpression eval !inRegisterTable !inConstantMap ??@sint64 leftResult] ;
+  [mRightExpression eval !inRegisterTable !inConstantMap ??@sint64 rightResult] ;
   outResult := leftResult * rightResult ;
 end method ;
 
@@ -162,10 +162,10 @@ end method ;
 override method @immediatDiv eval
   ??@registerTable inRegisterTable
   ??@constantMap inConstantMap
-  !@sint outResult
+  !@sint64 outResult
 :
-  @sint leftResult ; [mLeftExpression eval !inRegisterTable !inConstantMap ?leftResult] ;
-  @sint rightResult ; [mRightExpression eval !inRegisterTable !inConstantMap ?rightResult] ;
+  [mLeftExpression eval !inRegisterTable !inConstantMap ??@sint64 leftResult] ;
+  [mRightExpression eval !inRegisterTable !inConstantMap ??@sint64 rightResult] ;
   outResult := leftResult / rightResult ;
 end method ;
 
@@ -174,10 +174,10 @@ end method ;
 override method @immediatMod eval
   ??@registerTable inRegisterTable
   ??@constantMap inConstantMap
-  !@sint outResult
+  !@sint64 outResult
 :
-  @sint leftResult ; [mLeftExpression eval !inRegisterTable !inConstantMap ?leftResult] ;
-  @sint rightResult ; [mRightExpression eval !inRegisterTable !inConstantMap ?rightResult] ;
+  [mLeftExpression eval !inRegisterTable !inConstantMap ??@sint64 leftResult] ;
+  [mRightExpression eval !inRegisterTable !inConstantMap ??@sint64 rightResult] ;
   outResult := leftResult mod rightResult ;
 end method ;
 
@@ -186,10 +186,10 @@ end method ;
 override method @immediatAnd eval
   ??@registerTable inRegisterTable
   ??@constantMap inConstantMap
-  !@sint outResult
+  !@sint64 outResult
 :
-  @sint leftResult ; [mLeftExpression eval !inRegisterTable !inConstantMap ?leftResult] ;
-  @sint rightResult ; [mRightExpression eval !inRegisterTable !inConstantMap ?rightResult] ;
+  [mLeftExpression eval !inRegisterTable !inConstantMap ??@sint64 leftResult] ;
+  [mRightExpression eval !inRegisterTable !inConstantMap ??@sint64 rightResult] ;
   outResult := leftResult & rightResult ;
 end method ;
 
@@ -198,10 +198,10 @@ end method ;
 override method @immediatOr eval
   ??@registerTable inRegisterTable
   ??@constantMap inConstantMap
-  !@sint outResult
+  !@sint64 outResult
 :
-  @sint leftResult ; [mLeftExpression eval !inRegisterTable !inConstantMap ?leftResult] ;
-  @sint rightResult ; [mRightExpression eval !inRegisterTable !inConstantMap ?rightResult] ;
+  [mLeftExpression eval !inRegisterTable !inConstantMap ??@sint64 leftResult] ;
+  [mRightExpression eval !inRegisterTable !inConstantMap ??@sint64 rightResult] ;
   outResult := leftResult | rightResult ;
 end method ;
 
@@ -210,10 +210,10 @@ end method ;
 override method @immediatXor eval
   ??@registerTable inRegisterTable
   ??@constantMap inConstantMap
-  !@sint outResult
+  !@sint64 outResult
 :
-  @sint leftResult ; [mLeftExpression eval !inRegisterTable !inConstantMap ?leftResult] ;
-  @sint rightResult ; [mRightExpression eval !inRegisterTable !inConstantMap ?rightResult] ;
+  [mLeftExpression eval !inRegisterTable !inConstantMap ??@sint64 leftResult] ;
+  [mRightExpression eval !inRegisterTable !inConstantMap ??@sint64 rightResult] ;
   outResult := leftResult ^ rightResult ;
 end method ;
 
@@ -222,10 +222,10 @@ end method ;
 override method @immediatLeftShift eval
   ??@registerTable inRegisterTable
   ??@constantMap inConstantMap
-  !@sint outResult
+  !@sint64 outResult
 :
-  @sint leftResult ; [mLeftExpression eval !inRegisterTable !inConstantMap ?leftResult] ;
-  @sint rightResult ; [mRightExpression eval !inRegisterTable !inConstantMap ?rightResult] ;
+  [mLeftExpression eval !inRegisterTable !inConstantMap ??@sint64 leftResult] ;
+  [mRightExpression eval !inRegisterTable !inConstantMap ??@sint64 rightResult] ;
   outResult := leftResult << [rightResult uint] ;
 end method ;
 
@@ -234,10 +234,10 @@ end method ;
 override method @immediatRightShift eval
   ??@registerTable inRegisterTable
   ??@constantMap inConstantMap
-  !@sint outResult
+  !@sint64 outResult
 :
-  @sint leftResult ; [mLeftExpression eval !inRegisterTable !inConstantMap ?leftResult] ;
-  @sint rightResult ; [mRightExpression eval !inRegisterTable !inConstantMap ?rightResult] ;
+  [mLeftExpression eval !inRegisterTable !inConstantMap ??@sint64 leftResult] ;
+  [mRightExpression eval !inRegisterTable !inConstantMap ??@sint64 rightResult] ;
   outResult := leftResult >> [rightResult uint] ;
 end method ;
 
@@ -246,14 +246,14 @@ end method ;
 override method @immediatEqualTest eval
   ??@registerTable inRegisterTable
   ??@constantMap inConstantMap
-  !@sint outResult
+  !@sint64 outResult
 :
-  @sint leftResult ; [mLeftExpression eval !inRegisterTable !inConstantMap ?leftResult] ;
-  @sint rightResult ; [mRightExpression eval !inRegisterTable !inConstantMap ?rightResult] ;
+  [mLeftExpression eval !inRegisterTable !inConstantMap ??@sint64 leftResult] ;
+  [mRightExpression eval !inRegisterTable !inConstantMap ??@sint64 rightResult] ;
   if leftResult == rightResult then
-    outResult := 1S ;
+    outResult := 1LS ;
   else
-    outResult := 0S ;
+    outResult := 0LS ;
   end if ;
 end method ;
 
@@ -262,14 +262,14 @@ end method ;
 override method @immediatNotEqualTest eval
   ??@registerTable inRegisterTable
   ??@constantMap inConstantMap
-  !@sint outResult
+  !@sint64 outResult
 :
-  @sint leftResult ; [mLeftExpression eval !inRegisterTable !inConstantMap ?leftResult] ;
-  @sint rightResult ; [mRightExpression eval !inRegisterTable !inConstantMap ?rightResult] ;
+  [mLeftExpression eval !inRegisterTable !inConstantMap ??@sint64 leftResult] ;
+  [mRightExpression eval !inRegisterTable !inConstantMap ??@sint64 rightResult] ;
   if leftResult != rightResult then
-    outResult := 1S ;
+    outResult := 1LS ;
   else
-    outResult := 0S ;
+    outResult := 0LS ;
   end if ;
 end method ;
 
@@ -278,14 +278,14 @@ end method ;
 override method @immediatGreaterOrEqualTest eval
   ??@registerTable inRegisterTable
   ??@constantMap inConstantMap
-  !@sint outResult
+  !@sint64 outResult
 :
-  @sint leftResult ; [mLeftExpression eval !inRegisterTable !inConstantMap ?leftResult] ;
-  @sint rightResult ; [mRightExpression eval !inRegisterTable !inConstantMap ?rightResult] ;
+  [mLeftExpression eval !inRegisterTable !inConstantMap ??@sint64 leftResult] ;
+  [mRightExpression eval !inRegisterTable !inConstantMap ??@sint64 rightResult] ;
   if leftResult >= rightResult then
-    outResult := 1S ;
+    outResult := 1LS ;
   else
-    outResult := 0S ;
+    outResult := 0LS ;
   end if ;
 end method ;
 
@@ -294,14 +294,14 @@ end method ;
 override method @immediatLowerOrEqualTest eval
   ??@registerTable inRegisterTable
   ??@constantMap inConstantMap
-  !@sint outResult
+  !@sint64 outResult
 :
-  @sint leftResult ; [mLeftExpression eval !inRegisterTable !inConstantMap ?leftResult] ;
-  @sint rightResult ; [mRightExpression eval !inRegisterTable !inConstantMap ?rightResult] ;
+  [mLeftExpression eval !inRegisterTable !inConstantMap ??@sint64 leftResult] ;
+  [mRightExpression eval !inRegisterTable !inConstantMap ??@sint64 rightResult] ;
   if leftResult <= rightResult then
-    outResult := 1S ;
+    outResult := 1LS ;
   else
-    outResult := 0S ;
+    outResult := 0LS ;
   end if ;
 end method ;
 
@@ -310,14 +310,14 @@ end method ;
 override method @immediatGreaterTest eval
   ??@registerTable inRegisterTable
   ??@constantMap inConstantMap
-  !@sint outResult
+  !@sint64 outResult
 :
-  @sint leftResult ; [mLeftExpression eval !inRegisterTable !inConstantMap ?leftResult] ;
-  @sint rightResult ; [mRightExpression eval !inRegisterTable !inConstantMap ?rightResult] ;
+  [mLeftExpression eval !inRegisterTable !inConstantMap ??@sint64 leftResult] ;
+  [mRightExpression eval !inRegisterTable !inConstantMap ??@sint64 rightResult] ;
   if leftResult > rightResult then
-    outResult := 1S ;
+    outResult := 1LS ;
   else
-    outResult := 0S ;
+    outResult := 0LS ;
   end if ;
 end method ;
 
@@ -326,14 +326,14 @@ end method ;
 override method @immediatLowerTest eval
   ??@registerTable inRegisterTable
   ??@constantMap inConstantMap
-  !@sint outResult
+  !@sint64 outResult
 :
-  @sint leftResult ; [mLeftExpression eval !inRegisterTable !inConstantMap ?leftResult] ;
-  @sint rightResult ; [mRightExpression eval !inRegisterTable !inConstantMap ?rightResult] ;
+  [mLeftExpression eval !inRegisterTable !inConstantMap ??@sint64 leftResult] ;
+  [mRightExpression eval !inRegisterTable !inConstantMap ??@sint64 rightResult] ;
   if leftResult < rightResult then
-    outResult := 1S ;
+    outResult := 1LS ;
   else
-    outResult := 0S ;
+    outResult := 0LS ;
   end if ;
 end method ;
 
@@ -342,9 +342,9 @@ end method ;
 override method @immediatNegate eval
   ??@registerTable inRegisterTable
   ??@constantMap inConstantMap
-  !@sint outResult
+  !@sint64 outResult
 :
-  @sint result ; [mExpression eval !inRegisterTable !inConstantMap ?result] ;
+  [mExpression eval !inRegisterTable !inConstantMap ??@sint64 result] ;
   outResult := - result ;
 end method ;
 
@@ -353,9 +353,9 @@ end method ;
 override method @immediatComplement eval
   ??@registerTable inRegisterTable
   ??@constantMap inConstantMap
-  !@sint outResult
+  !@sint64 outResult
 :
-  @sint result ; [mExpression eval !inRegisterTable !inConstantMap ?result] ;
+  [mExpression eval !inRegisterTable !inConstantMap ??@sint64 result] ;
   outResult := ~ result ;
 end method ;
 
@@ -364,10 +364,10 @@ end method ;
 override method @immediatSlice eval
   ??@registerTable inRegisterTable
   ??@constantMap inConstantMap
-  !@sint outResult
+  !@sint64 outResult
 :
   @bitSliceTable bitSliceTable ;
-  outResult := 0S ;
+  outResult := 0LS ;
   [inRegisterTable searchKey !mRegisterName ?* ?* ? bitSliceTable ?*] ;
   @stringset sliceNameSet [emptySet] ;
   foreach mSliceExpressionList do
@@ -378,8 +378,8 @@ override method @immediatSlice eval
       @uint sliceIndex ;
       @uint sliceSize ;
       [bitSliceTable searchKey !mSliceName ?sliceIndex ?sliceSize] ;
-      @sint result ; [mExpression eval !inRegisterTable !inConstantMap ?result] ;
-      if (result < 0S) | (result > ((1S << sliceSize) - 1S)) then
+      [mExpression eval !inRegisterTable !inConstantMap ??@sint64 result] ;
+      if (result < 0LS) | (result > ((1LS << sliceSize) - 1LS)) then
         error mSliceName:"invalid immediat value associated to the '" . mSliceName . "' bit field, evaluated as " . [result string]
         . " (should be between 0 and " . [(1 << sliceSize) - 1 string] . ")" ;
       end if ;

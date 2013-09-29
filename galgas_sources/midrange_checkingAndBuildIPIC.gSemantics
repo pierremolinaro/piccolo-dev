@@ -787,9 +787,9 @@ override method @midrange_instruction_literalOperation build_midrange_ipic_instr
   ?!@bool unused ioContinuesInSequence
   ??@routineKind unused inRoutineKind
 :
-  @sint result ; [mImmediatExpression eval !inRegisterTable !inConstantMap ?result] ;
+  [mImmediatExpression eval !inRegisterTable !inConstantMap ??@sint64 result] ;
 #---
-   if (result > 255S) | (result < -128S) then
+   if (result > 255LS) | (result < -128LS) then
      error mInstructionLocation:"immediate value is evaluated as " . [result string] . " (should be betwween -128 and 255)" ;
    end if ;
 #---  
@@ -1499,10 +1499,10 @@ routine build_midrange_assembly_instruction_list
   @constantMap constantMap [emptyMap] ;
 #--- Add "ROM_SIZE" constant
   @lstring romSizeString [new !"ROM_SIZE" !here] ;
-  [!?constantMap insertKey !romSizeString !inROMSize] ;
+  [!?constantMap insertKey !romSizeString ![inROMSize sint64]] ;
 #--- Add declared constants
   foreach [inPiccoloModel mConstantDefinitionList] do
-    @sint result ; [mExpression eval !inRegisterTable !constantMap ?result] ;
+    [mExpression eval !inRegisterTable !constantMap ??@sint64 result] ;
     if [inRegisterTable hasKey ![mConstantName string]] then
       error mConstantName: "'" . mConstantName . "' is already declared as ram register or special register" ;
     else

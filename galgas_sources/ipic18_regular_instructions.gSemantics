@@ -576,7 +576,7 @@ override method @ipic18_intermediate_instruction_BLANK generateCode
 :
   const @uint code := 0xF000 | mBlankValue ;
   outCode := [@codeList listWithValue
-    !"DW " . [code hexString]
+    !"    DW " . [code hexString]
     ![@uintlist listWithValue !code]
   ] ;
 end method ;

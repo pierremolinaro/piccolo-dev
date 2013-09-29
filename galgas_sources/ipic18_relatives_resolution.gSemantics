@@ -106,7 +106,8 @@ routine computeLabelAbsoluteAddressMap
   !@uint outFreeAddress
 :
   outSymbolTable := [@symbolTableForRelativesResolution emptyMap] ;
-#---
+  outFreeAddress := [@uint max] ;
+#--- Pass first absolute blocks
   @uint blockStartAddress := 0 ;
   foreach inGeneratedBlockList index blockIndex do
     @string nextBlockLabel ;
@@ -121,8 +122,10 @@ routine computeLabelAbsoluteAddressMap
     [!?outSymbolTable insertKey !mBlock->mLabel !blockStartAddress] ;
     const @uint blockSize := [mBlock blockSize !nextBlockLabel] ;
     blockStartAddress := blockStartAddress + blockSize ;
+    if mBlock->mAddress == [@uint max] then # Relocatable block
+      outFreeAddress := blockStartAddress ;
+    end if ;
   end foreach ;
-  outFreeAddress := blockStartAddress ;
 #---
   foreach inInitialBlockList do
     if mBlock->mAddress != [@uint max] then # Absolute block

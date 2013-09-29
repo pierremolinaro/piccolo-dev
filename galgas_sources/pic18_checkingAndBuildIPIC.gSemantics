@@ -542,9 +542,9 @@ override method @instruction_literalOperation buildIPICinstructionList
   ?!@bool unused ioContinuesInSequence
   ??@routineKind unused inRoutineKind
 :
-  @sint result ; [mImmediatExpression eval !inRegisterTable !inConstantMap ?result] ;
+  [mImmediatExpression eval !inRegisterTable !inConstantMap ??@sint64 result] ;
 #---
-   if (result > 255S) | (result < -128S) then
+   if (result > 255LS) | (result < -128LS) then
      error mInstructionLocation:"immediate value is evaluated as " . [result string] . " (should be betwween -128 and 255)" ;
    end if ;
 #---  
@@ -575,9 +575,9 @@ override method @instruction_LFSR buildIPICinstructionList
     error mFSRindex:"the LFSR register idx (" . [[mFSRindex uint] string] . ") should be lower or equal to 2" ;
   end if ;
 #---
-  @sint result ; [mImmediatExpression eval !inRegisterTable !inConstantMap ?result] ;
+  [mImmediatExpression eval !inRegisterTable !inConstantMap ??@sint64 result] ;
 #---
-   if (result > 0xFFFS) | (result < 0S) then
+   if (result > 0xFFFLS) | (result < 0LS) then
      error mInstructionLocation:"immediate value is evaluated as " . [result string] . " (should be between 0 and 4095)" ;
    end if ;
   ioGeneratedInstructionList += ![@pic18_intermediate_instruction_LFSR new
@@ -603,9 +603,9 @@ override method @instruction_LTBLPTR buildIPICinstructionList
   ?!@bool unused ioContinuesInSequence
   ??@routineKind unused inRoutineKind
 :
-  [mImmediatExpression eval !inRegisterTable !inConstantMap ?@sint result] ;
+  [mImmediatExpression eval !inRegisterTable !inConstantMap ?@sint64 result] ;
 #---
-  if (result > 0xFF_FFFF_S) | (result < 0S) then
+  if (result > 0xFF_FFFF_LS) | (result < 0LS) then
     error mInstructionLocation:"immediate value is evaluated as " . [result string] . " (should be between 0 and 0xFF_FFFF)" ;
   end if ;
   const @uint address := [result uint] ;
@@ -866,10 +866,10 @@ override method @instruction_computed_retlw buildIPICinstructionList
     error mInstructionLocation:"an interrupt routine does not accept computed retlw instruction" ;
   end switch ;
 #---
-  @sint size ; [mSizeExpression eval !inRegisterTable !inConstantMap ?size] ;
-  if size < 2S then
+  [mSizeExpression eval !inRegisterTable !inConstantMap ??@sint64 size] ;
+  if size < 2LS then
     error mInstructionLocation:"the computed range (" . [size string] . ") should be greater or equal to 2" ;
-  elsif size > 128S then
+  elsif size > 128LS then
     error mInstructionLocation:"the computed range (" . [size string] . ") should be lower or equal to 128" ;
   elsif [size uint] != [mImmediateExpressionList length] then
     error mInstructionLocation:"the constant list length (" . [[mImmediateExpressionList length] string] . ") should be equal to the computed range (" . [size string] . ")" ;
@@ -877,8 +877,8 @@ override method @instruction_computed_retlw buildIPICinstructionList
 #--- 
   @uintlist literalValues [emptyList] ;
   foreach mImmediateExpressionList index idx do
-    @sint v ; [mExpression eval !inRegisterTable !inConstantMap ?v] ;
-    if (v > 255S) | (v < -128S) then
+    [mExpression eval !inRegisterTable !inConstantMap ??@sint64 v] ;
+    if (v > 255LS) | (v < -128LS) then
       error mInstructionLocation:"immediate value with idx " . [idx string] . " is evaluated as " . [v string] . " (should be <= 255)" ;
     end if ;
     literalValues += ![v & 0x000000FFS uint] ;
@@ -988,10 +988,10 @@ override method @instruction_computed_bra buildIPICinstructionList
     error mInstructionLocation:"an interrupt routine does not accept computed bra instruction" ;
   end switch ;
 #---
-  @sint size ; [mSizeExpression eval !inRegisterTable !inConstantMap ?size] ;
-  if size < 2S then
+  [mSizeExpression eval !inRegisterTable !inConstantMap ??@sint64 size] ;
+  if size < 2LS then
     error mInstructionLocation:"the computed range (" . [size string] . ") should be greater or equal to 2" ;
-  elsif size > 128S then
+  elsif size > 128LS then
     error mInstructionLocation:"the computed range (" . [size string] . ") should be lower or equal to 128" ;
   elsif [size uint] != [mTargetLabels length] then
     error mInstructionLocation:"the routine name list length (" . [[mTargetLabels length] string] . ") should be equal to the computed range (" . [size string] . ")" ;
@@ -1048,10 +1048,10 @@ override method @instruction_computed_goto buildIPICinstructionList
     error mInstructionLocation:"an interrupt routine does not accept computed goto instruction" ;
   end switch ;
 #---
-  @sint size ; [mSizeExpression eval !inRegisterTable !inConstantMap ?size] ;
-  if size < 2S then
+  [mSizeExpression eval !inRegisterTable !inConstantMap ??@sint64 size] ;
+  if size < 2LS then
     error mInstructionLocation:"the computed range (" . [size string] . ") should be greater or equal to 2" ;
-  elsif size > 64S then
+  elsif size > 64LS then
     error mInstructionLocation:"the computed range (" . [size string] . ") should be lower or equal to 64" ;
   elsif [size uint] != [mTargetLabels length] then
     error mInstructionLocation:"the routine name list length (" . [[mTargetLabels length] string] . ") should be equal to the computed range (" . [size string] . ")" ;
@@ -1131,10 +1131,10 @@ override method @instruction_computed_rcall buildIPICinstructionList
   ioContinuesInSequence := true ;
   ioCurrentBank := returnedBankSelection ;
 #---
-  @sint size ; [mSizeExpression eval !inRegisterTable !inConstantMap ?size] ;
-  if size < 2S then
+  [mSizeExpression eval !inRegisterTable !inConstantMap ??@sint64 size] ;
+  if size < 2LS then
     error mInstructionLocation:"the computed range (" . [size string] . ") should be greater or equal to 2" ;
-  elsif size > 64S then
+  elsif size > 64LS then
     error mInstructionLocation:"the computed range (" . [size string] . ") should be lower or equal to 64" ;
   elsif [size uint] != [mTargetLabels length] then
     error mInstructionLocation:"the routine name list length (" . [[mTargetLabels length] string] . ") should be equal to the computed range (" . [size string] . ")" ;
@@ -2115,16 +2115,16 @@ routine build_pic18_intermediate_assembly_instruction_list
 #-------------------------------- Build constant map
   @constantMap constantMap := inDataLengthConstantMap ;
 #--- Add "ROM_SIZE" and "RAM_SIZE" constants
-  [!?constantMap insertKey ![@lstring new !"ROM_SIZE" !here] !inROMSize] ;
-  [!?constantMap insertKey ![@lstring new !"RAM_SIZE" !here] !inRAMSize] ;
+  [!?constantMap insertKey ![@lstring new !"ROM_SIZE" !here] ![inROMSize sint64]] ;
+  [!?constantMap insertKey ![@lstring new !"RAM_SIZE" !here] ![inRAMSize sint64]] ;
 #--- Add "BOOTLOADER_RESERVED_SIZE" constant
   if inPiccoloModel->mProgramKind != [@programKind regularProgram] then
     @lstring bootloaderSizeString [new !"BOOTLOADER_RESERVED_SIZE" !here] ;
-    [!?constantMap insertKey !bootloaderSizeString ![[inBootloaderReservedROMsize uint] sint]] ;
+    [!?constantMap insertKey !bootloaderSizeString ![[inBootloaderReservedROMsize uint] sint64]] ;
   end if ;
 #--- Add declared constants
   foreach [inPiccoloModel mConstantDefinitionList] do
-    @sint result ; [mExpression eval !inRegisterTable !constantMap ?result] ;
+    [mExpression eval !inRegisterTable !constantMap ??@sint64 result] ;
     if [inRegisterTable hasKey ![mConstantName string]] then
       error mConstantName: "'" . mConstantName . "' is already declared as ram register or special register" ;
     else

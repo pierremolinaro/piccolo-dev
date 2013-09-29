@@ -417,7 +417,7 @@ enum @programKind {
 
 list @dataList {
   @lstring mDataName ;
-  @luintlist mValueList ;
+  @immediatExpressionList mValueList ;
 }
 
 #----------------------------------------------------*
