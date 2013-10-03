@@ -99,5 +99,9 @@ project all_piccolo (3:0:1) -> "piccolo" :
   
   extern    "PMPiccoloCocoa.m" ;
   extern    "PMPiccoloCocoa.xib" ;  
+  
+  extern    "installCLITools.m" ;
+  extern    "installCLITools.xib" ;  
+  extern    "Security.framework" ;  
 end project ;
 

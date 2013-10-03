@@ -2,6 +2,7 @@ gui piccolo_cocoa "cocoa" :
 with option "piccolo_options.gOption" ;
 
 nibAndMainClass : "PMPiccoloCocoa" ;
+nibAndMainClass : "installCLITools" ;
 
 with lexique "piccolo_lexique.gLexique" {
   blockComment : "#" ;
