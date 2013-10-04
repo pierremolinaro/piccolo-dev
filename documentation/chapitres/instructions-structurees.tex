@@ -68,7 +68,7 @@ Noter aussi la différence suivante : l'instruction assembleur indique la condit
 
 Pour les \emph{pic18}, seules trois comparaisons d'un registre avec \texttt{W} existent pour l'instruction conditionnelle simple : elles correspondent aux instructions assembleur \assembleur{CPFSEQ}, \assembleur{CPFSGT} et \assembleur{CPFSLT}. L'instruction conditionnelle structurée implémente les six comparaisons.
 
-Pour le test individuel d'un bit, la notation \texttt{registre.bit} est utilisée : celle-ci est présentée §.
+Pour le test individuel d'un bit, la notation \texttt{registre.bit} est utilisée : celle-ci est présentée \refSubsectionPage{opBaselineAffectationBit} (\emph{baseline}), \refSubsectionPage{opMidRangeAffectationBit} (\emph{mid-range}) et \refSubsectionPage{opPic18AffectationBit} (\emph{pic18}).
 
 Le \refTableau{instructionsConditionnellesSimplesBaseline} donne la liste de toutes les instructions conditionnelles simples pour les \emph{baseline} et \emph{mid-range}, et le \refTableau{instructionsConditionnellesSimplesPic18} pour celles des \emph{pic18}.
 
@@ -192,7 +192,7 @@ Implémentation : la répétition infinie est simplement réalisée par une inst
 L'instruction répétitive a une structure moins répandue car elle accepte un ou plusieurs blocs \texttt{while} ; voici plusieurs exemples, \texttt{cca}, \texttt{ccb} et \texttt{ccc} étant des expressions conditionnelles (voir \refSectionPage{formeGeneraleConditions}).
 
 
-Voici un premier exemple, qui a une exécution équivalente à l'instruction \texttt{while (cca) do \{ instructions \}} du langage C :
+Voici un premier exemple, qui a une exécution équivalente à l'instruction \texttt{while (cca) do \{ instructions \}} du langage C (\refFigure{}{organigrammeDoWhile1}) :
 \begin{lstlisting}[language=piccolo]
 do
 while (cca)
@@ -200,7 +200,30 @@ while (cca)
 end
 \end{lstlisting}
 
-La construction suivante a une exécution équivalente à l'instruction \texttt{do \{ instructions \} while (cca) ;} du langage C :
+\begin{figure}[!ht]
+  \centering
+  \small
+  \begin{tikzpicture}[
+      cloud/.style ={draw=red, thick, ellipse,fill=red!20, minimum height=2em},
+      block/.style ={rectangle, draw=blue, thick, fill=green!20, align=center},
+      decision/.style={chamfered rectangle, draw=blue, thick, fill=green!20},
+      node distance=10mm
+    ]
+    \node [cloud] (start) {\textsc{début}} ;
+    \node [decision] (cca) [below=of start] {\tt cca ?} ;
+    \node [block] (instr) [right=of cca] {\tt instructions} ;
+    \node [cloud] (end) [below=of cca] {\textsc{fin}} ;
+    
+    \draw [          thick] (start) -- (cca) ;
+    \draw [-stealth, thick] (cca) to node[right] {\bf faux} (end) ;
+    \draw [-stealth, thick] (cca.east) to node[above] {\bf vrai} (instr) ;
+    \draw [-stealth, thick] (instr.east) -- +(1, 0) -- +(1, 1) -| (cca.north) ;
+  \end{tikzpicture}
+  \caption{Organigramme d'exécution d'une instruction équivalente au  \texttt{while} \texttt{do} du langage C}
+  \labelFigure{organigrammeDoWhile1}
+\end{figure}
+
+La construction suivante a une exécution équivalente à l'instruction \texttt{do \{ instructions \} while (cca) ;} du langage C (\refFigure{}{organigrammeDoWhile2}) :
 \begin{lstlisting}[language=piccolo]
 do
   instructions
@@ -208,7 +231,30 @@ while (cca)
 end
 \end{lstlisting}
 
-Enfin, voici un exemple avec deux branches \texttt{while} :
+\begin{figure}[!ht]
+  \centering
+  \small
+  \begin{tikzpicture}[
+      cloud/.style ={draw=red, thick, ellipse,fill=red!20, minimum height=2em},
+      block/.style ={rectangle, draw=blue, thick, fill=green!20, align=center},
+      decision/.style={chamfered rectangle, draw=blue, thick, fill=green!20},
+      node distance=10mm
+    ]
+    \node [cloud] (start) {\textsc{début}} ;
+    \node [block] (init) [below=of start] {\tt instructions} ;
+    \node [decision] (cca) [below=of init] {\tt cca ?} ;
+    \node [cloud] (end) [below=of cca] {\textsc{fin}} ;
+    
+    \draw [          thick] (start) -- (init) ;
+    \draw [-stealth, thick] (init) -- (cca) ;
+    \draw [-stealth, thick] (cca) to node[right] {\bf faux} (end) ;
+    \draw [-stealth, thick] (cca.east) to node[above] {\bf vrai} +(1.5, 0) -- +(1.5, 2.3) -| (init.north) ;
+  \end{tikzpicture}
+  \caption{Organigramme d'exécution d'une instruction équivalente au \texttt{do} \texttt{while} du langage C}
+  \labelFigure{organigrammeDoWhile2}
+\end{figure}
+
+Enfin, voici un exemple avec deux branches \texttt{while} (\refFigure{}{organigrammeDoWhile3}) :
 \begin{lstlisting}[language=piccolo]
 do
   instructions 1
@@ -219,8 +265,35 @@ while (ccb)
 end
 \end{lstlisting}
 
-Ce type d'instruction n'est pas classique, c'est pourquoi son organigramme est donné.
-
+\begin{figure}[!ht]
+  \centering
+  \small
+  \begin{tikzpicture}[
+      cloud/.style ={draw=red, thick, ellipse,fill=red!20, minimum height=2em},
+      block/.style ={rectangle, draw=blue, thick, fill=green!20, align=center},
+      decision/.style={chamfered rectangle, draw=blue, thick, fill=green!20},
+      node distance=10mm
+    ]
+    \node [cloud] (start) {\textsc{début}} ;
+    \node [block] (init) [below=of start] {\tt instructions 1} ;
+    \node [decision] (premierTest) [below=of init] {\tt cca ?} ;
+    \node [block] (instr2) [right=of premierTest] {\tt instructions 2} ;
+    \node [decision] (test2) [below=of premierTest] {\tt ccb ?} ;
+    \node [block] (instr3) [right=of test2] {\tt instructions 3} ;
+    \node [cloud] (end) [below=of test2] {\textsc{fin}} ;
+    
+    \draw [          thick] (start) -- (init) ;
+    \draw [-stealth, thick] (init) -- (premierTest) ;
+    \draw [-stealth, thick] (premierTest) to node[above] {\bf vrai} (instr2) ;
+    \draw [-stealth, thick] (premierTest) to node[right] {\bf faux} (test2) ;
+    \draw [-stealth, thick] (test2) to node[above] {\bf vrai} (instr3) ;
+    \draw [-stealth, thick] (test2) to node[right] {\bf faux} (end) ;
+    \draw [-stealth, thick] (instr3.east) -- +(1, 0) -- +(1, 4) -| (init.north) ;
+    \draw [-stealth, thick] (instr2.east) -- +(1, 0) ;
+  \end{tikzpicture}
+  \caption{Organigramme d'exécution d'une instruction \texttt{do} avec deux branches \texttt{while}}
+  \labelFigure{organigrammeDoWhile3}
+\end{figure}
 
 
 
@@ -230,7 +303,7 @@ Ce type d'instruction n'est pas classique, c'est pourquoi son organigramme est d
 
 Les instructions conditionnelles structurées (\refSectionPage{instructionConditionnelleStructuree}) et les instructions répétitives (\refSectionPage{instructionRepetitive}) acceptent les mêmes formes de conditions, qui sont des expressions :\begin{itemize}
   \item dont les conditions élémentaires sont données à la \refSubsectionPage{conditionsElementairesPic18} (\emph{pic18}) ;
-  \item dont les opérateurs sont la négation « \texttt{!} », le \emph{et logique} « \texttt{\&} », et le \emph{ou logique} « \texttt{|} » ;
+  \item dont les opérateurs sont la négation « \texttt{!} », le \emph{et logique} « \texttt{\&} », le \emph{ou logique} « \texttt{|} » ;
   \item utilisant les parenthèses « \texttt{(} » et « \texttt{)} » pour forcer le groupement.
 \end{itemize}
 
@@ -1040,8 +1113,6 @@ end
   \item la sélection initiale de banc sera utilisée pour l’évaluation des conditions \texttt{cca} et \texttt{ccb}, et sera la valeur au début de l'exécution de chaque branche ;
   \item toutes les branches doivent laisser la sélection de banc dans le même état : soit avec la même valeur connue, soit avec une valeur considérée comme invalide.
 \end{itemize}
-
-L’exemple à cette page §§ illustre comment les instructions « banksel » et « nobank » peuvent être utilisées pour vérifier cette règle. 
 
 
 \subsectionLabel{Sélection de banc et instruction de répétition infinie}{selectionBancInstructionRepetitionInfinie}
