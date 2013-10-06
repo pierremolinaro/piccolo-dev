@@ -166,9 +166,9 @@ cEmbeddedString::~cEmbeddedString (void) {
       if (mEncodedCString != NULL) {
         macroValidPointer (mEncodedCString) ;
         for (PMUInt32 i=0 ; i<=mLength ; i++) {
-          MF_AssertThere (UNICODE_VALUE (mString [i]) == (PMUInt32) mEncodedCString [i],
+          MF_AssertThere (UNICODE_VALUE (mString [i]) == (unsigned) mEncodedCString [i],
                           "mString [i] (%ld) != mEncodedCString [i] (%ld)",
-                          UNICODE_VALUE (mString [i]), (PMUInt32) mEncodedCString [i]) ;
+                          UNICODE_VALUE (mString [i]), (unsigned) mEncodedCString [i]) ;
         }
       }
     }
@@ -1375,8 +1375,8 @@ C_String C_String::lastPathComponentWithoutExtension (void) const {
 
 C_String C_String::md5 (void) const {
   C_String result ;
-  PMUInt8 digest [16] ;
-  ::md5 ((PMUInt8 *) cString (HERE), (PMUInt32) length (), digest);
+  unsigned char digest [16] ;
+  ::md5 ((unsigned char *) cString (HERE), (PMUInt32) length (), digest);
   char s [10] ;
   for (PMUInt32 i=0 ; i<16 ; i++) {
     sprintf (s, "%02X", digest [i]) ;

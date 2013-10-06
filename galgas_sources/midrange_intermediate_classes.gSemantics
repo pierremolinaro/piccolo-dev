@@ -17,9 +17,11 @@ method @registerExpression resolveMidrangeAccess
   ??@registerTable inRegisterTable
   !@midrange_intermediate_registerExpression outIPICregisterDescription
   !@bitSliceTable outBitSliceTable
+  ?!@stringset ioUsedRegisters
 :
+  ioUsedRegisters += !mRegisterName->string ;
 #--- Build assembly string
-  @string assemblyString := [mRegisterName string] ;
+  @string assemblyString := mRegisterName->string ;
   if [mOffset uint] > 0 then
     assemblyString .= " + " . [[mOffset uint] hexString] ;
   end if ;

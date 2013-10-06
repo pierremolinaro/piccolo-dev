@@ -8,6 +8,7 @@ nonterminal <body>
   ?!@interruptDefinitionList interruptDefinitionList
   ?!@routineDefinitionList routineDefinitionList
   ?!@ramDefinitionList ramDefinitionList
+  ?!@lstringlist unusedRegisterList
   ?!@configDefinitionList configDefinitionList
   ?!@constantDefinitionList constantDefinitionList
   ?!@checkpicList ioCheckpicList
@@ -39,6 +40,7 @@ rule <start_symbol> :
   @interruptDefinitionList interruptDefinitionList [emptyList] ;
   @routineDefinitionList routineDefinitionList [emptyList] ;
   @ramDefinitionList ramDefinitionList [emptyList] ;
+  @lstringlist unusedRegisterList [emptyList] ;
   @configDefinitionList configDefinitionList [emptyList] ;
   @constantDefinitionList constantDefinitionList [emptyList] ;
   @dataList dataList [emptyList] ;
@@ -49,6 +51,7 @@ rule <start_symbol> :
     !?interruptDefinitionList
     !?routineDefinitionList
     !?ramDefinitionList
+    !?unusedRegisterList
     !?configDefinitionList
     !?constantDefinitionList
     !?checkpicList
@@ -65,6 +68,7 @@ rule <start_symbol> :
       !deviceNameOrBootloaderReference
       !configDefinitionList
       !ramDefinitionList
+      !unusedRegisterList
       !checkpicList
       !dataList
       !interruptDefinitionList

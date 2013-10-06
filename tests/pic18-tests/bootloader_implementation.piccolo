@@ -50,6 +50,10 @@ ram gpr2 {
   byte bootloaderVar2
 }
 
+unused byte bootloaderVar, bootloaderVar0
+
+unused byte bootloaderVar1, bootloaderVar2
+
 #--- Les routines d'interruption
 interrupt low {
   jsr userRoutine2

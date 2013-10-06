@@ -10,7 +10,6 @@ ram gpr1 {
 
 ram gpr2 {
   byte varBank2 # At address 0x200
-  byte save_bsr
 }
 
 noreturn routine main bank:requires 0 {

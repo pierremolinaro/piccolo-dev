@@ -137,6 +137,7 @@ routine baseline_analysis
     ![piccoloDeviceModel mRegisterTable]
     !?listFileContents
     !?registerTable
+    ??@declaredByteMap declaredByteMap
   ;
 #-------------------------------- Build routine map
   @baselineRoutineMap routineMap [emptyMap] ;
@@ -149,8 +150,9 @@ routine baseline_analysis
 #  @lstring romSizeString [new !"ROM_SIZE" !here] ;
 #  [!?constantMap insertKey !romSizeString ![piccoloDeviceModel->mRomSize sint]] ;
 #--- Add declared constants
+  @stringset usedRegisters [emptySet] ;
   foreach [inPiccoloModel mConstantDefinitionList] do
-    [mExpression eval !registerTable !constantMap ??@sint64 result] ;
+    [mExpression eval !registerTable !constantMap ??@sint64 result !?usedRegisters] ;
     if [registerTable hasKey ![mConstantName string]] then
       error mConstantName: "'" . mConstantName . "' is already declared as ram register or special register" ;
     else
@@ -261,6 +263,7 @@ routine baseline_analysis
             ?@bool continuesInSequence
             !routineKind
             !not mIsNoReturn # Last instruction should be RETLW ?
+            !?usedRegisters
           ;
           intermediateInstructionList += ![@baseline_intermediate_pseudo_END_ROUTINE new !mRoutineName !currentPage] ;
           if mIsNoReturn & continuesInSequence then
@@ -271,6 +274,23 @@ routine baseline_analysis
       currentPage ++ ;
     end loop ;
   end if ;
+#----------------------------------------------------------- Check declared bytes are used
+  @stringset unusedDeclarationUnicity [emptySet] ;
+  foreach inPiccoloModel->mUnusedRegisterList do
+    if not [registerTable hasKey !mValue->string] then
+      error mValue : "the '" . mValue . "' byte is not declared" ;
+    elsif [unusedDeclarationUnicity hasKey !mValue->string] then
+      warning mValue : "the '" . mValue . "' byte is already declared as unused" ;
+    elsif [usedRegisters hasKey !mValue->string] then
+      warning mValue : "the '" . mValue . "' byte is declared as unused, but is used" ;
+    end if ;
+    unusedDeclarationUnicity += !mValue->string ;
+  end foreach ;
+  foreach declaredByteMap do
+    if (not [usedRegisters hasKey !lkey->string]) & (not [unusedDeclarationUnicity hasKey !lkey->string]) then
+      warning lkey : "the '" . lkey . "' byte is unused" ;
+    end if ;
+  end foreach ;
 #-------------------------------- Print intermediate Instruction List
   if ([@uint errorCount] == 0) & [option piccolo_options.ouputListingFile value] then
     listFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n" ;
@@ -299,6 +319,7 @@ routine baseline_analysis
     !registerTable
     ?@baseline_intermediate_registerExpression statusRegister
     ?@bitSliceTable statusRegisterBitSliceTable
+    !?usedRegisters
   ] ;
   @baseline_assembly_instructionList assemblyInstructionList [emptyList] ;
   if [@uint errorCount] == 0 then

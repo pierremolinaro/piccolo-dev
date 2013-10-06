@@ -88,8 +88,9 @@ local routine analyze_data_sections
     [!?outConstantMap insertKey ![@lstring new !mDataName->string . "_BYTE_COUNT" !mDataName->location] ![[mValueList length] * 2 sint64]] ;
     const @lstring dataName [new !"_data_" . mDataName !mDataName->location] ;
     outDataGeneratedInstructionList += ![@pic18_intermediate_pseudo_LABEL new !dataName !true] ;
+    @stringset usedRegisters [emptySet] ;
     foreach mValueList do
-      [mExpression eval !inRegisterTable !inConstantMap ??@sint64 value] ;
+      [mExpression eval !inRegisterTable !inConstantMap ??@sint64 value !?usedRegisters] ;
       if value < 0LS then
         error mErrorLocation: "data value is " . value . " (negative)" ;
       elsif value > 65535LS then
@@ -238,6 +239,7 @@ routine pic18_analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName 
     ![piccoloDeviceModel mRegisterTable]
     !?listFileContents
     !?registerTable
+    ??@declaredByteMap declaredByteMap
   ;
 #--- For bootloader implementation, check declared var footprint does not span beyond values declared in specification
   if [inPiccoloModel mProgramKind] == [@programKind bootloaderProgram] then
@@ -280,6 +282,7 @@ routine pic18_analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName 
       !userRoutineDeclarationListForUserProgramImplementation
       !accessBankSplitOffset
       !registerTable
+      !declaredByteMap
       !inPiccoloModel
       !ramBank
       !hasHighInterrupt

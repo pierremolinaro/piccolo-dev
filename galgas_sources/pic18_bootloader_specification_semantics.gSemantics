@@ -107,6 +107,7 @@ routine pic18BootloaderSpecificationAnalysis
     ![outPiccoloDeviceModel mRegisterTable]
     !?outListFileContents
     !?outRegisterTable
+    ?*
   ;
   outListFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n\n" ;
 end routine ;

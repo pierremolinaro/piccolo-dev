@@ -209,6 +209,7 @@ struct @baseline_model {
   @lstring mDeviceName ;
   @configDefinitionList mConfigDefinitionList ;
   @ramDefinitionList mRamDefinitionList ;
+  @lstringlist mUnusedRegisterList ;
   @constantDefinitionList mConstantDefinitionList ;
   @baseline_routineDefinitionList mRoutineDefinitionList ;
   @location mEndOfProgram ;
