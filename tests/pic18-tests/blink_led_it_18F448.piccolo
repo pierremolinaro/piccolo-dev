@@ -5,7 +5,7 @@
 # Ce simple programme fait clignoter a 4 Hz une led connectee au port RE0    *
 # Il programme donc RE0 (broche 8) en sortie.                                *
 #                                                                            *
-# La configuration suppose qu'il est connecte a une horloge externe a 40MHz  *
+# La configuration suppose qu'il est connecte à une horloge externe à 40MHz  *
 # sur la broche 13.                                                          *
 #                                                                            *
 # Un sous-programme d'interruption est déclenché toutes les 0,1 ms par le    *
@@ -15,11 +15,11 @@
 # variables sont placées dans le banc 2.                                     *
 #                                                                            *
 # Supprimez ou déplacez les instructions "banksel", pour mettre en évidence  *
-# les vérifications faites par le compilateur.                               * 
+# les vérifications faites par le compilateur.                               *
 #                                                                            *
 #----------------------------------------------------------------------------*
 
-pic18 blink_led_it "18F448" :
+pic18 blink_led_it_18F448 "18F448" :
 
 #----------------------------------------------------------------------------*
 #                                                                            *
@@ -28,7 +28,7 @@ pic18 blink_led_it "18F448" :
 #----------------------------------------------------------------------------*
 
 configuration {
-  OSC : "RC oscillator w/ OSC2 configured as RA6"
+  OSC : "EC oscillator w/ OSC2 configured as RA6"
   OSCS : Disabled
   WDT : Disabled
   WDTPS : "1:128"
@@ -62,9 +62,9 @@ configuration {
 #----------------------------------------------------------------------------*
 
 # Une section ram décrit l’attribution de la RAM du micro-contrôleur.
-# Le nom gpr2 est le nom du banc qui commence à l’adresse 0x100. Les adresses
-# sont allouées séquentiellement : compteurL a pour adresse 0x100,
-# et compteurH a pour adresse 0x101.
+# Le nom gpr2 est le nom du banc qui commence à l’adresse 0x200. Les adresses
+# sont allouées séquentiellement : compteurL a pour adresse 0x200,
+# et compteurH a pour adresse 0x201.
 # Ces deux registres ne seront donc accessibles que via le registre BSR.
 
 ram gpr2 {
@@ -137,20 +137,21 @@ noreturn routine main bank:requires 0 {
   CLRF compteurL
   CLRF compteurH
 #--- Initialiser le Timer 2
-#  Horloge de base : 10 MHz
-#  Le Prescaler est fixe a 4 -> 2 500 kHz
-#  PR2 est fixé à 250 -> 10 kHz
+#  On veut des interruptions à la fréquence de 10 kHz
+#  Horloge de base : Fosc = 40 MHz / 4 = 10 MHz
+#  Fréquence des instruuptions : Focs / (prescaler * (PR2 + 1))
+#  Le Prescaler est fixe à 4 -> 2 500 kHz
+#  PR2 est fixé à 250-1 -> 10 kHz
   MOVLW  250 - 1 # La periode est PR2 + 1
   MOVWF  PR2
   MOVLW  @T2CON (TOUTPS:0, TMR2ON:1, T2CKPS:1)
   MOVWF  T2CON  
 #--- Autoriser les priorites d'interruption
   BSF  RCON.IPEN
-#--- Autoriser l'interruption en provenance du Timer 0
+#--- Autoriser l'interruption en provenance du Timer 2
   BSF  PIE1.TMR2IE
 #--- Valider les its
   BSF  INTCON.GIEH
-  BSF  INTCON.GIEL
 #--- Boucle infinie
   forever
   end
