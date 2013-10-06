@@ -5,7 +5,7 @@
 # Ce simple programme fait clignoter a 1 Hz une led connectee au port RE0    *
 # Il programme donc RE0 (broche 8) en sortie.                                *
 #                                                                            *
-# La configuration suppose qu'il est connecte a une horloge externe a 40MHz  *
+# La configuration suppose qu'il est connecte à une horloge externe de 40MHz *
 # sur la broche 13.                                                          *
 #                                                                            *
 # La boucle infinie compte le temps en decrementant un mot de 24 bits,       *
@@ -25,7 +25,7 @@
 # Pour connaître la liste des micro-contrôleurs pic18 pris en charge :
 #      piccolo --pic18
 
-pic18 blink_led "18F448" :
+pic18 blink_led_18F448 "18F448" :
 
 #----------------------------------------------------------------------------*
 #                                                                            *
@@ -46,7 +46,7 @@ pic18 blink_led "18F448" :
 # description la chaîne de caractères qui décrit la valeur choisie.
 
 configuration {
-  OSC : "RC oscillator w/ OSC2 configured as RA6"
+  OSC : "EC oscillator w/ OSC2 configured as RA6"
   OSCS : Disabled
   WDT : Disabled
   WDTPS : "1:128"

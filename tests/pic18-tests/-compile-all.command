@@ -17,16 +17,21 @@ echo "-------------- code_bigger_than_64k" &&
 ../../makefile_macosx/piccolo -v -S -O -L --Werror code_bigger_than_64k.piccolo &&
 $GPUTILS_PATH/gpasm code_bigger_than_64k.asm -o code_bigger_than_64k-2.hex &&
 hexcmp code_bigger_than_64k.hex code_bigger_than_64k-2.hex &&
-#--- Blink led
-echo "-------------- blink_led" &&
-../../makefile_macosx/piccolo -v -S -O -L --Werror blink_led.piccolo &&
-$GPUTILS_PATH/gpasm blink_led.asm -o blink_led-2.hex &&
-hexcmp blink_led.hex blink_led-2.hex &&
-#--- Blink led sous interruoption
-echo "-------------- blink_led_it" &&
-../../makefile_macosx/piccolo -v -S -O -L --Werror blink_led_it.piccolo &&
-$GPUTILS_PATH/gpasm blink_led_it.asm -o blink_led_it-2.hex &&
-hexcmp blink_led_it.hex blink_led_it-2.hex &&
+#--- Blink led 18F448
+echo "-------------- blink_led_18F448" &&
+../../makefile_macosx/piccolo -v -S -O -L --Werror blink_led_18F448.piccolo &&
+$GPUTILS_PATH/gpasm blink_led_18F448.asm -o blink_led_18F448-2.hex &&
+hexcmp blink_led_18F448.hex blink_led_18F448-2.hex &&
+#--- Blink led 18F4480
+echo "-------------- blink_led_18F4480" &&
+../../makefile_macosx/piccolo -v -S -O -L --Werror blink_led_18F4480.piccolo &&
+$GPUTILS_PATH/gpasm blink_led_18F4480.asm -o blink_led_18F4480-2.hex &&
+hexcmp blink_led_18F4480.hex blink_led_18F4480-2.hex &&
+#--- Blink led sous interruption 18F448
+echo "-------------- blink_led_it_18F448" &&
+../../makefile_macosx/piccolo -v -S -O -L --Werror blink_led_it_18F448.piccolo &&
+$GPUTILS_PATH/gpasm blink_led_it_18F448.asm -o blink_led_it_18F448-2.hex &&
+hexcmp blink_led_it_18F448.hex blink_led_it_18F448-2.hex &&
 #--- Exemples BSR
 echo "-------------- exemples_bsr" &&
 ../../makefile_macosx/piccolo -v -S -O -L --Werror exemples_bsr.piccolo &&
