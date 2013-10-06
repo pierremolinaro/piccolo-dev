@@ -1,6 +1,7 @@
 syntax midrange_syntax ("piccolo_lexique.gLexique") :
 import "generic_metamodel.gSemantics" ;
 import "midrange_metamodel.gSemantics" ;
+import "pic18_metamodel.gSemantics" ;
 import "midrange_semantics.gSemantics" ;
 
 #----------------------------------------------------*

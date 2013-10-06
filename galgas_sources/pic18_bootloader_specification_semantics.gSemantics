@@ -1,5 +1,6 @@
 semantics pic18_bootloader_specification_semantics :
 import "pic18_semantics.gSemantics" ;
+import "piccolo_embedded_devices.gSemantics" ;
 
 #----------------------------------------------------------------------------*
 

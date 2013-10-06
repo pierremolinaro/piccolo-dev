@@ -1,6 +1,5 @@
 semantics ram_sections :
 import "piccoloDevice_semantics.gSemantics" ;
-import "pic18_intermediate_classes.gSemantics" ;
 import "piccolo_options.gOption" ;
 
 #----------------------------------------------------------------------------*
