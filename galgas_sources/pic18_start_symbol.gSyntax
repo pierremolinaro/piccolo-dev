@@ -7,6 +7,7 @@ import "pic18_semantics.gSemantics" ;
 nonterminal <body>
   ?!@interruptDefinitionList interruptDefinitionList
   ?!@routineDefinitionList routineDefinitionList
+  ?!@lstringlist unusedRoutineList
   ?!@ramDefinitionList ramDefinitionList
   ?!@lstringlist unusedRegisterList
   ?!@configDefinitionList configDefinitionList
@@ -39,6 +40,7 @@ rule <start_symbol> :
   $:$ ;
   @interruptDefinitionList interruptDefinitionList [emptyList] ;
   @routineDefinitionList routineDefinitionList [emptyList] ;
+  @lstringlist unusedRoutineList [emptyList] ;
   @ramDefinitionList ramDefinitionList [emptyList] ;
   @lstringlist unusedRegisterList [emptyList] ;
   @configDefinitionList configDefinitionList [emptyList] ;
@@ -50,6 +52,7 @@ rule <start_symbol> :
   <body>
     !?interruptDefinitionList
     !?routineDefinitionList
+    !?unusedRoutineList
     !?ramDefinitionList
     !?unusedRegisterList
     !?configDefinitionList
@@ -74,6 +77,7 @@ rule <start_symbol> :
       !interruptDefinitionList
       !constantDefinitionList
       !routineDefinitionList
+      !unusedRoutineList
       !needsComputedGoto2
       !needsComputedGoto4
       !here

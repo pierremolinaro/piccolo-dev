@@ -5,6 +5,7 @@ with "communs.gSyntax" ;
 root <body>
   ?!@interruptDefinitionList interruptDefinitionList
   ?!@routineDefinitionList routineDefinitionList
+  ?!@lstringlist unusedRoutineList
   ?!@ramDefinitionList ramDefinitionList
   ?!@lstringlist unusedRegisterList
   ?!@configDefinitionList configDefinitionList

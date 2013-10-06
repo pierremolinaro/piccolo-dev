@@ -38,6 +38,7 @@ nonterminal <bit_number_parsing>
 rule <body>
   ?!@interruptDefinitionList interruptDefinitionList
   ?!@routineDefinitionList routineDefinitionList
+  ?!@lstringlist unusedRoutineList
   ?!@ramDefinitionList ramDefinitionList
   ?!@lstringlist unusedRegisterList
   ?!@configDefinitionList configDefinitionList
@@ -58,6 +59,15 @@ rule <body>
     repeat
       $identifier$ ?@lstring unusedRegister ;
       unusedRegisterList += !unusedRegister ;
+    while 
+      $,$ ;
+    end repeat ;
+  while
+    $unused$ ;
+    $routine$ ;
+    repeat
+      $identifier$ ?@lstring unusedRoutine ;
+      unusedRoutineList += !unusedRoutine ;
     while 
       $,$ ;
     end repeat ;
@@ -89,6 +99,7 @@ rule <body>
     grammar pic18_include_grammar in includedFilePath
       !?interruptDefinitionList
       !?routineDefinitionList
+      !?unusedRoutineList
       !?ramDefinitionList
       !?unusedRegisterList
       !?configDefinitionList
