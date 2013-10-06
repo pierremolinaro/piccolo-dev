@@ -32,6 +32,8 @@ ram gpr2 {
   byte userVar2
 }
 
+unused byte userVar, userVar0, userVar1, userVar2
+
 #--- Implémentation des routines déclarées dans la spécification
 routine userRoutine1 {
   nop

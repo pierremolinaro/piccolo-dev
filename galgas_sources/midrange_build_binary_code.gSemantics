@@ -311,6 +311,7 @@ override method @midrange_intermediate_JUMP generateBinaryCodeAtAddress
   ?!@uint ioAddress
 :
 #---
+  @stringset usedRegisters [emptySet] ;
   @uint targetAddress ;
   [inRoutineSymbolTable searchKey !mTargetLabel ?targetAddress] ;
 #--- Get values for PCLATH register
@@ -322,6 +323,7 @@ override method @midrange_intermediate_JUMP generateBinaryCodeAtAddress
     !inRegisterTable
     ?PCLATH_IPICregisterDescription
     ?*
+    !?usedRegisters
   ] ;
 #---
   switch mBit11 
@@ -387,6 +389,7 @@ override method @midrange_intermediate_JSR generateBinaryCodeAtAddress
   ?!@string ioListFileContents
   ?!@uint ioAddress
 :
+  @stringset usedRegisters [emptySet] ;
 #---
   @uint targetAddress ;
   [inRoutineSymbolTable searchKey !mTargetLabel ?targetAddress] ;
@@ -399,6 +402,7 @@ override method @midrange_intermediate_JSR generateBinaryCodeAtAddress
     !inRegisterTable
     ?PCLATH_IPICregisterDescription
     ?*
+    !?usedRegisters
   ] ;
 #---
   switch mBit11 

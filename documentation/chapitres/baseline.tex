@@ -34,13 +34,14 @@ Le corps du programme est constitué d’une liste non ordonnée de sections. Le
   \centering
   \rowcolors{2}{\fondTableau}{}
   \begin{tabular}{p{5cm}lll}
-    \textbf{Type de section} & \textbf{Mot-clé introductif} & \textbf{Référence}\\
+    \textbf{Type de section} & \textbf{Mot-clés introductifs} & \textbf{Référence}\\
     \hline
     Configuration & \texttt{configuration}\index{Mot réservé!configuration} & \refChapterPage{configuration}\\
     Définition de variable & \texttt{ram}\index{Mot réservé!ram} & \refChapterPage{ram}\\
+    Déclaration de variable inutilisée & \texttt{unused byte}\index{Mot réservé!unused} & \refSectionPage{sectionUnusedByte} \\
     Définition de constante & \texttt{const}\index{Mot réservé!const} & \refChapterPage{constante}\\
     Définition de routine régulière & \texttt{routine}\index{Mot réservé!routine} & \refSectionPage{routineBaseline}\\
-    Définition de routine sans retour & \texttt{noreturn}\index{Mot réservé!noreturn} & \refSectionPage{routineBaseline}\\
+    Définition de routine sans retour & \texttt{noreturn routine}\index{Mot réservé!noreturn} & \refSectionPage{routineBaseline}\\
     Inclusion  & \texttt{include}\index{Mot réservé!include} & \refSectionPage{sectionIncludeBaseline} \\
   \end{tabular}
   \caption{Les sections d'un programme pour \emph{baseline}}

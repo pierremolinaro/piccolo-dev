@@ -326,6 +326,7 @@ struct @midrange_model {
   @lstring mDeviceName ;
   @configDefinitionList mConfigDefinitionList ;
   @ramDefinitionList mRamDefinitionList ;
+  @lstringlist mUnusedRegisterList ;
   @midrange_interruptDefinitionList mInterruptDefinitionList ;
   @constantDefinitionList mConstantDefinitionList ;
   @midrange_routineDefinitionList mRoutineDefinitionList ;

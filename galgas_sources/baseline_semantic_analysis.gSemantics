@@ -22,7 +22,9 @@ method @registerExpression resolveBaselineAccess
   ??@registerTable inRegisterTable
   !@baseline_intermediate_registerExpression outIntermediateRegisterDescription
   !@bitSliceTable outBitSliceTable
+  ?!@stringset ioUsedRegisters
 :
+  ioUsedRegisters += !mRegisterName->string ;
 #--- Build assembly string
   @string assemblyString := [mRegisterName string] ;
   if [mOffset uint] > 0 then
@@ -69,6 +71,7 @@ routine handleBaselineInstructionList
   !@bool outContinuesInSequence
   ??@routineKind inRoutineKind
   ??@bool inLastInstructionShouldReturn
+  ?!@stringset ioUsedRegisters
 :
   outContinuesInSequence := true ;
   foreach inInstructionList index idx do
@@ -87,6 +90,7 @@ routine handleBaselineInstructionList
       !?outContinuesInSequence
       !inRoutineKind
       !if (idx + 1) == [inInstructionList length] then inLastInstructionShouldReturn else false end
+      !?ioUsedRegisters
     ] ;
   end foreach ;
 end routine ;
@@ -104,6 +108,7 @@ abstract method @baseline_instruction build_baseline_intermediate_instructionLis
   ?!@bool ioContinuesInSequence
   ??@routineKind unused inRoutineKind
   ??@bool inLastInstructionShouldReturn
+  ?!@stringset ioUsedRegisters
 ;
 
 #----------------------------------------------------------------------------*
@@ -119,6 +124,7 @@ override method @baseline_instruction_WO_OPERAND build_baseline_intermediate_ins
   ?!@bool unused ioContinuesInSequence
   ??@routineKind unused inRoutineKind
   ??@bool inLastInstructionShouldReturn
+  ?!@stringset unused ioUsedRegisters
 :
   if inLastInstructionShouldReturn then
     error mInstructionLocation : "the last routine instruction should be MOVLW" ;
@@ -151,6 +157,7 @@ override method @baseline_instruction_TRIS build_baseline_intermediate_instructi
   ?!@bool unused ioContinuesInSequence
   ??@routineKind unused inRoutineKind
   ??@bool inLastInstructionShouldReturn
+  ?!@stringset unused ioUsedRegisters
 :
   if inLastInstructionShouldReturn then
     error mInstructionLocation : "this instruction is the last routine instruction but should be MOVLW" ;
@@ -184,6 +191,7 @@ override method @baseline_instruction_MNOP build_baseline_intermediate_instructi
   ?!@bool unused ioContinuesInSequence
   ??@routineKind unused inRoutineKind
   ??@bool inLastInstructionShouldReturn
+  ?!@stringset unused ioUsedRegisters
 :
   if inLastInstructionShouldReturn then
     error mInstructionLocation : "this instruction is the last routine instruction and should be MOVLW" ;
@@ -204,11 +212,12 @@ override method @baseline_instruction_literalOperation build_baseline_intermedia
   ?!@bool unused ioContinuesInSequence
   ??@routineKind unused inRoutineKind
   ??@bool inLastInstructionShouldReturn
+  ?!@stringset ioUsedRegisters
 :
   if inLastInstructionShouldReturn & (mLiteralInstruction != [@baseline_literal_instruction_opcode MOVLW]) then
     error mInstructionLocation : "this instruction is the last routine instruction and should be MOVLW" ;
   end if ;
-  [mImmediatExpression eval !inRegisterTable !inConstantMap ?@sint64 immediatValue] ;
+  [mImmediatExpression eval !inRegisterTable !inConstantMap ?@sint64 immediatValue !?ioUsedRegisters] ;
 #---
    if (immediatValue > 255LS) | (immediatValue < -128LS) then
      error mInstructionLocation:"immediate value is evaluated as " . immediatValue . " (should be betwween -128 and 255)" ;
@@ -243,6 +252,7 @@ override method @baseline_instruction_FD build_baseline_intermediate_instruction
   ?!@bool unused ioContinuesInSequence
   ??@routineKind unused inRoutineKind
   ??@bool inLastInstructionShouldReturn
+  ?!@stringset ioUsedRegisters
 :
   if inLastInstructionShouldReturn then
     error mInstructionLocation : "this instruction is the last routine instruction and should be MOVLW" ;
@@ -251,6 +261,7 @@ override method @baseline_instruction_FD build_baseline_intermediate_instruction
     !inRegisterTable
     ?@baseline_intermediate_registerExpression intermediateRegisterDescription
     ?@bitSliceTable bitSliceTable
+    !?ioUsedRegisters
   ] ;
   ioGeneratedInstructionList += ![@baseline_intermediate_instruction_FD new
     !mInstructionLocation
@@ -273,6 +284,7 @@ override method @baseline_instruction_CALL build_baseline_intermediate_instructi
   ?!@bool unused ioContinuesInSequence
   ??@routineKind unused inRoutineKind
   ??@bool inLastInstructionShouldReturn
+  ?!@stringset unused ioUsedRegisters
 :
 #--- Check instruction
   [inRoutineMap searchKey !mTargetLabel ?@bool isNoReturn ?@luint targetPage] ;
@@ -309,6 +321,7 @@ override method @baseline_instruction_JSR build_baseline_intermediate_instructio
   ?!@bool unused ioContinuesInSequence
   ??@routineKind unused inRoutineKind
   ??@bool inLastInstructionShouldReturn
+  ?!@stringset unused ioUsedRegisters
 :
 #--- Check instruction
   [inRoutineMap searchKey !mTargetLabel ?@bool isNoReturn ?@luint targetPage] ;
@@ -346,6 +359,7 @@ override method @baseline_instruction_F build_baseline_intermediate_instructionL
   ?!@bool unused ioContinuesInSequence
   ??@routineKind unused inRoutineKind
   ??@bool inLastInstructionShouldReturn
+  ?!@stringset ioUsedRegisters
 :
   if inLastInstructionShouldReturn then
     error mInstructionLocation : "this instruction is the last routine instruction and should be MOVLW" ;
@@ -354,6 +368,7 @@ override method @baseline_instruction_F build_baseline_intermediate_instructionL
     !inRegisterTable
     ?@baseline_intermediate_registerExpression intermediateRegisterDescription
     ?*
+    !?ioUsedRegisters
   ] ;
   ioGeneratedInstructionList += ![@baseline_intermediate_instruction_F new
     !mInstructionLocation
@@ -375,6 +390,7 @@ override method @baseline_instruction_FB build_baseline_intermediate_instruction
   ?!@bool unused ioContinuesInSequence
   ??@routineKind unused inRoutineKind
   ??@bool inLastInstructionShouldReturn
+  ?!@stringset ioUsedRegisters
 :
   if inLastInstructionShouldReturn then
     error mInstructionLocation : "this instruction is the last routine instruction and should be MOVLW" ;
@@ -383,6 +399,7 @@ override method @baseline_instruction_FB build_baseline_intermediate_instruction
     !inRegisterTable
     ?@baseline_intermediate_registerExpression intermediateRegisterDescription
     ?@bitSliceTable bitSliceTable
+    !?ioUsedRegisters
   ] ;
   [mBitNumber getBitNumber
     !bitSliceTable
@@ -409,6 +426,7 @@ override method @baseline_instruction_GOTO build_baseline_intermediate_instructi
   ?!@bool ioContinuesInSequence
   ??@routineKind unused inRoutineKind
   ??@bool inLastInstructionShouldReturn
+  ?!@stringset unused ioUsedRegisters
 :
   if inLastInstructionShouldReturn then
     error mInstructionLocation : "this instruction is the last routine instruction and should be MOVLW" ;
@@ -441,6 +459,7 @@ override method @baseline_instruction_JUMP build_baseline_intermediate_instructi
   ?!@bool ioContinuesInSequence
   ??@routineKind unused inRoutineKind
   ??@bool inLastInstructionShouldReturn
+  ?!@stringset unused ioUsedRegisters
 :
   if inLastInstructionShouldReturn then
     error mInstructionLocation : "this instruction is the last routine instruction and should be MOVLW" ;
@@ -472,11 +491,13 @@ override method @baseline_instruction_IF_BitTest build_baseline_intermediate_ins
   ?!@bool unused ioContinuesInSequence
   ??@routineKind inRoutineKind
   ??@bool inLastInstructionShouldReturn
+  ?!@stringset ioUsedRegisters
 :
   [mRegisterExpression resolveBaselineAccess
     !inRegisterTable
     ?@baseline_intermediate_registerExpression intermediateRegisterDescription
     ?@bitSliceTable bitSliceTable
+    !?ioUsedRegisters
   ] ;
   @uint bitNumber ;
   [mBitNumber getBitNumber
@@ -502,6 +523,7 @@ override method @baseline_instruction_IF_BitTest build_baseline_intermediate_ins
     !?unusedContinuesInSequence
     !inRoutineKind
     !inLastInstructionShouldReturn
+    !?ioUsedRegisters
   ] ;
 end method ;
 
@@ -518,6 +540,7 @@ override method @baseline_instruction_IF_IncDec build_baseline_intermediate_inst
   ?!@bool unused ioContinuesInSequence
   ??@routineKind inRoutineKind
   ??@bool inLastInstructionShouldReturn
+  ?!@stringset ioUsedRegisters
 :
 #---
   @baseline_instruction_FD_base_code baseCode ;
@@ -531,6 +554,7 @@ override method @baseline_instruction_IF_IncDec build_baseline_intermediate_inst
     !inRegisterTable
     ?@baseline_intermediate_registerExpression intermediateRegisterDescription
     ?@bitSliceTable bitSliceTable
+    !?ioUsedRegisters
   ] ;
 #---
   ioGeneratedInstructionList += ![@baseline_intermediate_instruction_FD new
@@ -552,6 +576,7 @@ override method @baseline_instruction_IF_IncDec build_baseline_intermediate_inst
     !?unusedContinuesInSequence
     !inRoutineKind
     !inLastInstructionShouldReturn
+    !?ioUsedRegisters
   ] ;
 end method ;
 
@@ -568,6 +593,7 @@ override method @baseline_instruction_FOREVER build_baseline_intermediate_instru
   ?!@bool ioContinuesInSequence
   ??@routineKind inRoutineKind
   ??@bool unused inLastInstructionShouldReturn
+  ?!@stringset ioUsedRegisters
 :
   switch inRoutineKind
   when regularRoutine :
@@ -592,6 +618,7 @@ override method @baseline_instruction_FOREVER build_baseline_intermediate_instru
     ?ioContinuesInSequence
     !inRoutineKind
     !false # Instruction list does not need to end with MOVLW
+    !?ioUsedRegisters
   ;
 #--- Generate GOTO to the beginning of the loop
   ioGeneratedInstructionList += ![@baseline_intermediate_GOTO new
@@ -615,6 +642,7 @@ override method @baseline_instruction_do_while build_baseline_intermediate_instr
   ?!@bool ioContinuesInSequence
   ??@routineKind inRoutineKind
   ??@bool inLastInstructionShouldReturn
+  ?!@stringset ioUsedRegisters
 :
 #--- Generate label
   @string labelInstructionBegin := "_label_" . [ioLocalLabelIndex string] ; ioLocalLabelIndex ++ ;
@@ -633,6 +661,7 @@ override method @baseline_instruction_do_while build_baseline_intermediate_instr
     ?ioContinuesInSequence
     !inRoutineKind
     !inLastInstructionShouldReturn
+    !?ioUsedRegisters
   ;
 #--- while parts
   foreach mWhilePartList do
@@ -645,6 +674,7 @@ override method @baseline_instruction_do_while build_baseline_intermediate_instr
         !mInstructionLocation
         !labelInstructionBegin
         !?ioGeneratedInstructionList
+        !?ioUsedRegisters
       ] ;
     else
       @string nextBranchLabel := "_label_" . [ioLocalLabelIndex string] ; ioLocalLabelIndex ++ ;
@@ -656,6 +686,7 @@ override method @baseline_instruction_do_while build_baseline_intermediate_instr
         !mInstructionLocation
         !nextBranchLabel
         !?ioGeneratedInstructionList
+        !?ioUsedRegisters
       ] ;
       handleBaselineInstructionList
         !inCurrentPage
@@ -669,6 +700,7 @@ override method @baseline_instruction_do_while build_baseline_intermediate_instr
         ?ioContinuesInSequence
         !inRoutineKind
         !inLastInstructionShouldReturn
+        !?ioUsedRegisters
       ;
       ioGeneratedInstructionList += ![@baseline_intermediate_GOTO new
         !mInstructionLocation
@@ -692,6 +724,7 @@ override method @baseline_instruction_structured_if build_baseline_intermediate_
   ?!@bool ioContinuesInSequence
   ??@routineKind inRoutineKind
   ??@bool inLastInstructionShouldReturn
+  ?!@stringset ioUsedRegisters
 :
 #---
   @string label_nextCondition := "_label_" . [ioLocalLabelIndex string] ; ioLocalLabelIndex ++ ;
@@ -705,6 +738,7 @@ override method @baseline_instruction_structured_if build_baseline_intermediate_
     !mInstructionLocation
     !label_nextCondition
     !?ioGeneratedInstructionList
+    !?ioUsedRegisters
   ] ;
 #--- 'then' instructions
   handleBaselineInstructionList
@@ -719,6 +753,7 @@ override method @baseline_instruction_structured_if build_baseline_intermediate_
     ?@bool thenContinuesInSequence
     !inRoutineKind
     !inLastInstructionShouldReturn
+    !?ioUsedRegisters
   ;
 #--- 'else' instructions
   if ([mElseInstructionList length] > 0) & not inLastInstructionShouldReturn then
@@ -740,6 +775,7 @@ override method @baseline_instruction_structured_if build_baseline_intermediate_
     ?@bool elseContinuesInSequence
     !inRoutineKind
     !inLastInstructionShouldReturn
+    !?ioUsedRegisters
   ;
   if ([mElseInstructionList length] > 0) & not inLastInstructionShouldReturn then
     ioGeneratedInstructionList += ![@baseline_intermediate_pseudo_LABEL new ![@lstring new !label_endOfIfinstruction !mInstructionLocation]] ;
@@ -762,6 +798,7 @@ abstract method @baseline_conditionExpression build_intermediate_condition_instr
   ??@location inInstructionLocation
   ??@string inTargetLabel
   ?!@baseline_intermediate_instructionList ioGeneratedInstructionList
+  ?!@stringset ioUsedRegisters
 ;
 
 #----------------------------------------------------*
@@ -774,11 +811,13 @@ override method @baseline_incDecRegisterInCondition build_intermediate_condition
   ??@location inInstructionLocation
   ??@string inTargetLabel
   ?!@baseline_intermediate_instructionList ioGeneratedInstructionList
+  ?!@stringset ioUsedRegisters
 :
   [mRegisterExpression resolveBaselineAccess
     !inRegisterTable
     ?@baseline_intermediate_registerExpression intermediateRegisterDescription
     ?@bitSliceTable bitSliceTable
+    !?ioUsedRegisters
   ] ;
 #---
   ioGeneratedInstructionList += ![@baseline_intermediate_incDecRegisterInCondition new
@@ -801,6 +840,7 @@ override method @baseline_negateCondition build_intermediate_condition_instructi
   ??@location inInstructionLocation
   ??@string inTargetLabel
   ?!@baseline_intermediate_instructionList ioGeneratedInstructionList
+  ?!@stringset ioUsedRegisters
 :
   [mCondition build_intermediate_condition_instructions
     !inCurrentPage
@@ -810,6 +850,7 @@ override method @baseline_negateCondition build_intermediate_condition_instructi
     !inInstructionLocation
     !inTargetLabel
     !?ioGeneratedInstructionList
+    !?ioUsedRegisters
   ] ;
 end method ;
 
@@ -823,6 +864,7 @@ override method @baseline_andCondition build_intermediate_condition_instructions
   ??@location inInstructionLocation
   ??@string inTargetLabel
   ?!@baseline_intermediate_instructionList ioGeneratedInstructionList
+  ?!@stringset ioUsedRegisters
 :
   if inComplementaryBranch then
     [mLeftExpression build_intermediate_condition_instructions
@@ -833,6 +875,7 @@ override method @baseline_andCondition build_intermediate_condition_instructions
       !inInstructionLocation
       !inTargetLabel
       !?ioGeneratedInstructionList
+      !?ioUsedRegisters
     ] ;
     [mRightExpression build_intermediate_condition_instructions
       !inCurrentPage
@@ -842,6 +885,7 @@ override method @baseline_andCondition build_intermediate_condition_instructions
       !inInstructionLocation
       !inTargetLabel
       !?ioGeneratedInstructionList
+      !?ioUsedRegisters
     ] ;
   else
     @string label0 := "_label_" . [ioLocalLabelIndex string] ; ioLocalLabelIndex ++ ;
@@ -853,6 +897,7 @@ override method @baseline_andCondition build_intermediate_condition_instructions
       !inInstructionLocation
       !label0
       !?ioGeneratedInstructionList
+      !?ioUsedRegisters
     ] ;
     [mRightExpression build_intermediate_condition_instructions
       !inCurrentPage
@@ -862,6 +907,7 @@ override method @baseline_andCondition build_intermediate_condition_instructions
       !inInstructionLocation
       !inTargetLabel
       !?ioGeneratedInstructionList
+      !?ioUsedRegisters
     ] ;
     ioGeneratedInstructionList += ![@baseline_intermediate_pseudo_LABEL new ![@lstring new !label0 !inInstructionLocation]] ;
   end if ;
@@ -877,11 +923,13 @@ override method @baseline_bitTest_in_structured_if_condition build_intermediate_
   ??@location inInstructionLocation
   ??@string inTargetLabel
   ?!@baseline_intermediate_instructionList ioGeneratedInstructionList
+  ?!@stringset ioUsedRegisters
 :
   [mRegisterExpression resolveBaselineAccess
     !inRegisterTable
     ?@baseline_intermediate_registerExpression intermediateRegisterDescription
     ?@bitSliceTable bitSliceTable
+    !?ioUsedRegisters
   ] ;
   @uint bitNumber ;
   [mBitNumber getBitNumber

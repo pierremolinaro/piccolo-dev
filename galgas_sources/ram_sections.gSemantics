@@ -3,7 +3,6 @@ import "piccoloDevice_semantics.gSemantics" ;
 import "pic18_intermediate_classes.gSemantics" ;
 import "piccolo_options.gOption" ;
 
-
 #----------------------------------------------------------------------------*
 #                                                                            *
 #           R A M    D E C L A R A T I O N    A N A L Y S I S                *
@@ -14,6 +13,7 @@ abstract method @declarationInRam handleDeclaration
   ?!@ramBankTable ioRamBank
   ?!@registerTable ioRegisterTable
   ??@lstring inCurrentRamBank
+  ?!@declaredByteMap ioDeclaredByteMap
 ;
 
 #----------------------------------------------------------------------------*
@@ -22,6 +22,7 @@ override method @byteDeclarationInRam handleDeclaration
   ?!@ramBankTable ioRamBank
   ?!@registerTable ioRegisterTable
   ??@lstring inCurrentRamBank
+  ?!@declaredByteMap ioDeclaredByteMap
 :
   @uint lastAddressPlusOne ;
   @uint firstFreeAddress ;
@@ -34,6 +35,9 @@ override method @byteDeclarationInRam handleDeclaration
   foreach mirrorOffsetList do
     addressList += !firstFreeAddress + mValue ;
   end foreach ;
+  if not [ioDeclaredByteMap hasKey !mName->string] then
+    [!?ioDeclaredByteMap insertKey !mName] ;
+  end if ;
   [!?ioRegisterTable insertKey !mName !addressList ![mSize uint] !mBitSliceTable !mBitDefinitionString] ;
   firstFreeAddress := firstFreeAddress + [mSize uint] ;
   [!?ioRamBank setMFirstFreeAddressForKey !firstFreeAddress ![inCurrentRamBank string]] ;
@@ -55,10 +59,12 @@ routine analyze_ram_sections
   ??@registerTable inSpecialRegisterTable
   ?!@string ioListFileContents
   ?!@registerTable ioAllRegisters
+  !@declaredByteMap outDeclaredByteMap
 :
+  outDeclaredByteMap := [@declaredByteMap emptyMap] ;
   foreach inRamDefinitionList do
     foreach mDeclaration do
-      [mDeclarationInRAM handleDeclaration !?ioRamBankTable !?ioAllRegisters !mBankName] ;
+      [mDeclarationInRAM handleDeclaration !?ioRamBankTable !?ioAllRegisters !mBankName !?outDeclaredByteMap] ;
     end foreach ;
   end foreach ;
   if [option piccolo_options.ouputListingFile value] then

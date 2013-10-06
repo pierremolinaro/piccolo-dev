@@ -1,6 +1,13 @@
 semantics piccoloDevice_semantics :
 import "generic_metamodel.gSemantics" ;
 
+#----------------------------------------------------------------------------*
+
+map @declaredByteMap {
+  insert insertKey error message "the '%K' byte is already declared in %L" ;
+  search searchKey error message "the '%K' byte is not declared" ;
+}
+
 #----------------------------------------------------*
 
 map @registerTable {

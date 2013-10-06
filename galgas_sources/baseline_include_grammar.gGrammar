@@ -5,6 +5,7 @@ with "communs.gSyntax" ;
 root <section_list>
   ?!@baseline_routineDefinitionList ioRoutineDefinitionList
   ?!@ramDefinitionList ioRamDefinitionList
+  ?!@lstringlist unusedRegisterList
   ?!@configDefinitionList ioConfigDefinitionList
   ?!@constantDefinitionList ioConstantDefinitionList
 ;

@@ -48,6 +48,7 @@ rule <start_symbol> :
   @midrange_interruptDefinitionList interruptDefinitionList [emptyList] ;
   @midrange_routineDefinitionList routineDefinitionList [emptyList] ;
   @ramDefinitionList ramDefinitionList [emptyList] ;
+  @lstringlist unusedRegisterList [emptyList] ;
   @configDefinitionList configDefinitionList [emptyList] ;
   @constantDefinitionList constantDefinitionList [emptyList] ;
   @bool needsComputedGoto2 := false ;
@@ -57,6 +58,15 @@ rule <start_symbol> :
     $mark$ ;
     $literal_string$ ?@lstring s ;
     warning s : "obsolete construct: use a comment beginning by #!" ;
+  while
+    $unused$ ;
+    $byte$ ;
+    repeat
+      $identifier$ ?@lstring unusedRegister ;
+      unusedRegisterList += !unusedRegister ;
+    while 
+      $,$ ;
+    end repeat ;
   while
     <configuration_definition> !?configDefinitionList ;
   while
@@ -84,6 +94,7 @@ rule <start_symbol> :
       !deviceName
       !configDefinitionList
       !ramDefinitionList
+      !unusedRegisterList
       !interruptDefinitionList
       !constantDefinitionList
       !routineDefinitionList
@@ -126,6 +137,14 @@ label importBootloaderSpecification
   while
     $mark$ ;
     $literal_string$ ?* ;
+  while
+    $unused$ ;
+    $byte$ ;
+    repeat
+      $identifier$ ?* ;
+    while 
+      $,$ ;
+    end repeat ;
   while
     <configuration_definition> parse ;
   while

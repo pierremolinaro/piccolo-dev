@@ -57,9 +57,10 @@ routine midrange_analyze ??@midrange_model inPiccoloModel ??@string inSourceFile
     ![piccoloDeviceModel mRegisterTable]
     !?listFileContents
     !?registerTable
+    ??@declaredByteMap declaredByteMap
   ;
 #-------------------------------- Build IPIC Assembly Instruction List
-  @midrange_intermediate_instructionList generatedInstructionList ;
+  @stringset usedRegisters [emptySet] ;
   build_midrange_assembly_instruction_list
     !([[piccoloDeviceModel mRomSize] uint] + 2047) / 2048
     ![[piccoloDeviceModel mBankCount] uint]
@@ -68,9 +69,27 @@ routine midrange_analyze ??@midrange_model inPiccoloModel ??@string inSourceFile
     !registerTable
     !inPiccoloModel
     !hasInterrupt
-    ?generatedInstructionList
+    ?@midrange_intermediate_instructionList generatedInstructionList
     !?listFileContents
+    !?usedRegisters
   ;
+#----------------------------------------------------------- Check declared bytes are used
+  @stringset unusedDeclarationUnicity [emptySet] ;
+  foreach inPiccoloModel->mUnusedRegisterList do
+    if not [registerTable hasKey !mValue->string] then
+      error mValue : "the '" . mValue . "' byte is not declared" ;
+    elsif [unusedDeclarationUnicity hasKey !mValue->string] then
+      warning mValue : "the '" . mValue . "' byte is already declared as unused" ;
+    elsif [usedRegisters hasKey !mValue->string] then
+      warning mValue : "the '" . mValue . "' byte is declared as unused, but is used" ;
+    end if ;
+    unusedDeclarationUnicity += !mValue->string ;
+  end foreach ;
+  foreach declaredByteMap do
+    if (not [usedRegisters hasKey !lkey->string]) & (not [unusedDeclarationUnicity hasKey !lkey->string]) then
+      warning lkey : "the '" . lkey . "' byte is unused" ;
+    end if ;
+  end foreach ;
 #-------------------------------- Perform Code Optimization
   if ([@uint errorCount] == 0) & [option piccolo_options.performOptimizations value] then
     perform_midrange_optimizations !?generatedInstructionList !?listFileContents ;

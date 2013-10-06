@@ -35,12 +35,14 @@ Le corps du programme est constitué d’une liste non ordonnée de sections. Le
   \centering
   \rowcolors{2}{\fondTableau}{}
   \begin{tabular}{p{5cm}lll}
-    \textbf{Type de section} & \textbf{Mot-clé introductif} & \textbf{Référence}\\
+    \textbf{Type de section} & \textbf{Mot-clés introductifs} & \textbf{Référence}\\
     \hline
     Configuration & \texttt{configuration} & \refChapterPage{configuration}\\
     Définition de variable & \texttt{ram} & \refChapterPage{ram}\\
+    Déclaration de variable inutilisée & \texttt{unused byte}\index{Mot réservé!unused} & \refSectionPage{sectionUnusedByte} \\
     Définition de constante & \texttt{const} & \refChapterPage{constante}\\
     Définition de routine mid-range & \texttt{routine} & \refSectionPage{routineMidrange}\\
+    Définition de routine sans retour & \texttt{noreturn routine}\index{Mot réservé!noreturn} & \refSectionPage{routineMidrange}\\
     Définition de routine d'interruption mid-range & \texttt{interrupt} & \refSectionPage{routineInterruptionMidrange}\\
   \hline
   \end{tabular}

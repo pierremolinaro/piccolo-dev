@@ -443,6 +443,7 @@ struct @piccoloModel {
   @lstring mDeviceNameOrBootLoaderReference ;
   @configDefinitionList mConfigDefinitionList ;
   @ramDefinitionList mRamDefinitionList ;
+  @lstringlist mUnusedRegisterList ;
   @checkpicList mCheckpicList ;
   @dataList mDataList ;
   @interruptDefinitionList mInterruptDefinitionList ;

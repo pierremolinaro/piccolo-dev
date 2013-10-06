@@ -20,7 +20,9 @@ method @registerExpression analyzeRegisterExpression
   ??@registerTable inRegisterTable
   !@ipic18_intermediate_registerExpression outIPICregisterDescription
   !@bitSliceTable outBitSliceTable
+  ?!@stringset ioUsedRegisters
 :
+  ioUsedRegisters += !mRegisterName->string ;
 #--- Build assembly string
   @string assemblyString := [mRegisterName string] ;
   if [mOffset uint] > 0 then
@@ -69,7 +71,9 @@ end method ;
 method @registerExpression analyzeRegisterExpressionWithoutCheckingBank
   ??@registerTable inRegisterTable
   !@ipic18_intermediate_registerExpressionWithoutBSRIndication outIPICregisterDescription
+  ?!@stringset ioUsedRegisters
 :
+  ioUsedRegisters += !mRegisterName->string ;
 #--- Build assembly string
   @string assemblyString := [mRegisterName string] ;
   if [mOffset uint] > 0 then
@@ -117,6 +121,7 @@ abstract method @pic18PiccoloSimpleInstruction analyzeSimpleInstruction
   ??@constantMap unused inConstantMap
   ?!@uint unused ioCurrentBank
   ??@bool unused inShouldPreserveBSR
+  ?!@stringset ioUsedRegisters
   !@ipic18SequentialInstruction outInstruction
 ;
 
@@ -130,6 +135,7 @@ override method @instruction_withNoOperand analyzeSimpleInstruction
   ??@constantMap unused inConstantMap
   ?!@uint unused ioCurrentBank
   ??@bool unused inShouldPreserveBSR
+  ?!@stringset unused ioUsedRegisters
   !@ipic18SequentialInstruction outInstruction
 :
   outInstruction := [@ipic18InstructionWithNoOperand new
@@ -148,6 +154,7 @@ override method @instruction_FDA analyzeSimpleInstruction
   ??@constantMap unused inConstantMap
   ?!@uint ioCurrentBank
   ??@bool unused inShouldPreserveBSR
+  ?!@stringset ioUsedRegisters
   !@ipic18SequentialInstruction outInstruction
 :
   [mRegisterExpression analyzeRegisterExpression
@@ -156,6 +163,7 @@ override method @instruction_FDA analyzeSimpleInstruction
     !inRegisterTable
     ?@ipic18_intermediate_registerExpression IPICregisterDescription
     ?*
+    !?ioUsedRegisters
   ] ;
   outInstruction := [@ipic18_intermediate_instruction_FDA new
     !mInstructionLocation
@@ -175,6 +183,7 @@ override method @instruction_FA analyzeSimpleInstruction
   ??@constantMap unused inConstantMap
   ?!@uint ioCurrentBank
   ??@bool unused inShouldPreserveBSR
+  ?!@stringset ioUsedRegisters
   !@ipic18SequentialInstruction outInstruction
 :
   [mRegisterExpression analyzeRegisterExpression
@@ -183,6 +192,7 @@ override method @instruction_FA analyzeSimpleInstruction
     !inRegisterTable
     ?@ipic18_intermediate_registerExpression IPICregisterDescription
     ?*
+    !?ioUsedRegisters
   ] ;
   @FA_sequential_instruction_base_code code ;
   switch mFAinstruction
@@ -194,10 +204,6 @@ override method @instruction_FA analyzeSimpleInstruction
   when CPFSEQ, CPFSGT, CPFSLT, TSTFSZ :
     error [@location nowhere] : "*** INTERNAL ERROR ***" : code ;
   end switch ;
-#enum @FA_sequential_instruction_base_code {
-#  , , , , 
-#}{
-#}
   outInstruction := [@ipic18_intermediate_instruction_FA new
     !mInstructionLocation
     !code
@@ -215,15 +221,18 @@ override method @instruction_MOVFF analyzeSimpleInstruction
   ??@constantMap unused inConstantMap
   ?!@uint unused ioCurrentBank
   ??@bool unused inShouldPreserveBSR
+  ?!@stringset ioUsedRegisters
   !@ipic18SequentialInstruction outInstruction
 :
   [mSourceRegisterName analyzeRegisterExpressionWithoutCheckingBank
     !inRegisterTable
     ?@ipic18_intermediate_registerExpressionWithoutBSRIndication sourceIPICregisterDescription
+    !?ioUsedRegisters
   ] ;
   [mDestinationRegisterName analyzeRegisterExpressionWithoutCheckingBank
     !inRegisterTable
     ?@ipic18_intermediate_registerExpressionWithoutBSRIndication destinationIPICregisterDescription
+    !?ioUsedRegisters
   ] ;
   outInstruction := [@ipic18_intermediate_instruction_MOVFF new
     !mInstructionLocation
@@ -242,6 +251,7 @@ override method @instruction_FBA analyzeSimpleInstruction
   ??@constantMap unused inConstantMap
   ?!@uint ioCurrentBank
   ??@bool unused inShouldPreserveBSR
+  ?!@stringset ioUsedRegisters
   !@ipic18SequentialInstruction outInstruction
 :
   [mRegisterExpression analyzeRegisterExpression
@@ -250,6 +260,7 @@ override method @instruction_FBA analyzeSimpleInstruction
     !inRegisterTable
     ?@ipic18_intermediate_registerExpression IPICregisterDescription
     ?@bitSliceTable bitSliceTable
+    !?ioUsedRegisters
   ] ;
   [mBitNumber getBitNumber
     !bitSliceTable
@@ -273,9 +284,10 @@ override method @instruction_literalOperation analyzeSimpleInstruction
   ??@constantMap inConstantMap
   ?!@uint unused ioCurrentBank
   ??@bool unused inShouldPreserveBSR
+  ?!@stringset ioUsedRegisters
   !@ipic18SequentialInstruction outInstruction
 :
-  [mImmediatExpression eval !inRegisterTable !inConstantMap ??@sint64 result] ;
+  [mImmediatExpression eval !inRegisterTable !inConstantMap ??@sint64 result !?ioUsedRegisters] ;
 #---
    if (result > 255LS) | (result < -128LS) then
      error mInstructionLocation:"immediate value is evaluated as " . [result string] . " (should be betwween -128 and 255)" ;
@@ -298,13 +310,14 @@ override method @instruction_LFSR analyzeSimpleInstruction
   ??@constantMap inConstantMap
   ?!@uint unused ioCurrentBank
   ??@bool unused inShouldPreserveBSR
+  ?!@stringset ioUsedRegisters
   !@ipic18SequentialInstruction outInstruction
 :
   if [mFSRindex uint] > 2 then
     error mFSRindex:"the LFSR register idx (" . [[mFSRindex uint] string] . ") should be lower or equal to 2" ;
   end if ;
 #---
-  [mImmediatExpression eval !inRegisterTable !inConstantMap ??@sint64 result] ;
+  [mImmediatExpression eval !inRegisterTable !inConstantMap ??@sint64 result !?ioUsedRegisters] ;
 #---
   if (result > 0xFFFLS) | (result < 0LS) then
     error mInstructionLocation:"immediate value is evaluated as " . [result string] . " (should be between 0 and 4095)" ;
@@ -326,6 +339,7 @@ override method @instruction_JSR analyzeSimpleInstruction
   ??@constantMap unused inConstantMap
   ?!@uint ioCurrentBank
   ??@bool inShouldPreserveBSR
+  ?!@stringset unused ioUsedRegisters
   !@ipic18SequentialInstruction outInstruction
 :
 #--- Check instruction
@@ -377,6 +391,7 @@ abstract method @pic18PiccoloInstruction analyze
   ??@bool unused inShouldPreserveBSR
   ?!@bool unused ioContinuesInSequence
   ??@routineKind unused inRoutineKind
+  ?!@stringset ioUsedRegisters
 ;
 
 #----------------------------------------------------------------------------*
@@ -395,6 +410,7 @@ override method @pic18PiccoloSimpleInstruction analyze
   ??@bool inShouldPreserveBSR
   ?!@bool unused ioContinuesInSequence
   ??@routineKind unused inRoutineKind
+  ?!@stringset ioUsedRegisters
 :
   [selfcopy analyzeSimpleInstruction
     !inAccessBankSplitOffset
@@ -404,6 +420,7 @@ override method @pic18PiccoloSimpleInstruction analyze
     !inConstantMap
     !?ioCurrentBank
     !inShouldPreserveBSR
+    !?ioUsedRegisters
     ??@ipic18SequentialInstruction instruction
   ] ;
   ioCurrentBlock->mInstructionList += !instruction ;
@@ -425,6 +442,7 @@ override method @instruction_FOREVER analyze
   ??@bool inShouldPreserveBSR
   ?!@bool ioContinuesInSequence
   ??@routineKind inRoutineKind
+  ?!@stringset ioUsedRegisters
 :
   switch inRoutineKind
   when regularRoutine :
@@ -463,6 +481,7 @@ override method @instruction_FOREVER analyze
     !inShouldPreserveBSR
     ?ioContinuesInSequence
     !inRoutineKind 
+    !?ioUsedRegisters
   ;
 #--- Check instruction list does not change bank
   if ioCurrentBank != finalBank then
@@ -487,7 +506,9 @@ override method @instruction_nobanksel analyze
   ?!@uint ioCurrentBank
   ??@bool inShouldPreserveBSR
   ?!@bool unused ioContinuesInSequence
-  ??@routineKind unused inRoutineKind:
+  ??@routineKind unused inRoutineKind
+  ?!@stringset unused ioUsedRegisters
+:
   if inShouldPreserveBSR then
     error mInstructionLocation: "cannot use \"nobank\" here: BSR should be preserved (use it in a \"banksave\" construct)" ;
   end if ;
@@ -511,17 +532,20 @@ override method @instruction_savebank analyze
   ??@bool unused inShouldPreserveBSR
   ?!@bool ioContinuesInSequence
   ??@routineKind inRoutineKind
+  ?!@stringset ioUsedRegisters
 :
 #--- Get values for BSR register
   const @registerExpression BSRregister [new ![@lstring new !"BSR" !here] ![@luint new !0 !here]] ;
   [BSRregister analyzeRegisterExpressionWithoutCheckingBank
     !inRegisterTable
     ?@ipic18_intermediate_registerExpressionWithoutBSRIndication BSR_IPICregisterDescription
+    !?ioUsedRegisters
   ] ;
 #--- Get values for register used for saving
   [mRegister analyzeRegisterExpressionWithoutCheckingBank
     !inRegisterTable
     ?@ipic18_intermediate_registerExpressionWithoutBSRIndication save_IPICregisterDescription
+    !?ioUsedRegisters
   ] ;
 #--- Generate "MOVFF BSR, save_register" instruction
   ioCurrentBlock->mInstructionList += ![@ipic18_intermediate_instruction_MOVFF new
@@ -546,6 +570,7 @@ override method @instruction_savebank analyze
     !false # Do not preserve bank now
     ?ioContinuesInSequence
     !inRoutineKind 
+    !?ioUsedRegisters
   ;
   if not ioContinuesInSequence then
     error mEndOfSaveBankInstruction:"useless saving: execution does reach the end of \"savebank\" instruction list" ;
@@ -574,6 +599,7 @@ override method @instruction_banksel analyze
   ??@bool inShouldPreserveBSR
   ?!@bool unused ioContinuesInSequence
   ??@routineKind unused inRoutineKind
+  ?!@stringset unused ioUsedRegisters
 :
   if inShouldPreserveBSR then
     error mInstructionLocation: "cannot use \"banksel\" here: bank selection should be preserved (use \"banksave\" instruction)" ;
@@ -605,6 +631,7 @@ override method @instruction_banksel_register analyze
   ??@bool inShouldPreserveBSR
   ?!@bool unused ioContinuesInSequence
   ??@routineKind unused inRoutineKind
+  ?!@stringset unused ioUsedRegisters
 :
   if inShouldPreserveBSR then
     error mInstructionLocation: "cannot use \"banksel\" here: bank selection should be preserved (use \"banksave\" instruction)" ;
@@ -632,6 +659,7 @@ override method @instruction_TBLRD analyzeSimpleInstruction
   ??@constantMap unused inConstantMap
   ?!@uint unused ioCurrentBank
   ??@bool unused inShouldPreserveBSR
+  ?!@stringset unused ioUsedRegisters
   !@ipic18SequentialInstruction outInstruction
 :
   outInstruction := [@ipic18_intermediate_instruction_TBLRD new
@@ -650,6 +678,7 @@ override method @instruction_TBLWT analyzeSimpleInstruction
   ??@constantMap unused inConstantMap
   ?!@uint unused ioCurrentBank
   ??@bool unused inShouldPreserveBSR
+  ?!@stringset unused ioUsedRegisters
   !@ipic18SequentialInstruction outInstruction
 :
   outInstruction := [@ipic18_intermediate_instruction_TBLWT new
@@ -674,6 +703,7 @@ override method @instruction_MNOP analyze
   ??@bool unused inShouldPreserveBSR
   ?!@bool unused ioContinuesInSequence
   ??@routineKind unused inRoutineKind
+  ?!@stringset unused ioUsedRegisters
 :
 #---
   if [mOccurrenceFactor uint] == 0 then
@@ -702,8 +732,9 @@ override method @instruction_LTBLPTR analyze
   ??@bool unused inShouldPreserveBSR
   ?!@bool unused ioContinuesInSequence
   ??@routineKind unused inRoutineKind
+  ?!@stringset ioUsedRegisters
 :
-  [mImmediatExpression eval !inRegisterTable !inConstantMap ??@sint64 result] ;
+  [mImmediatExpression eval !inRegisterTable !inConstantMap ??@sint64 result !?ioUsedRegisters] ;
 #---
   if (result > 0xFF_FFFF_LS) | (result < 0LS) then
     error mInstructionLocation:"immediate value is evaluated as " . [result string] . " (should be between 0 and 0xFF_FFFF)" ;
@@ -717,6 +748,7 @@ override method @instruction_LTBLPTR analyze
     !inRegisterTable
     ?@ipic18_intermediate_registerExpression outIPICregisterDescription
     ?*
+    !?ioUsedRegisters
   ] ;
   const @uint upper := address >> 16 ;
   if upper == 0 then
@@ -751,6 +783,7 @@ override method @instruction_LTBLPTR analyze
     !inRegisterTable
     ?outIPICregisterDescription
     ?*
+    !?ioUsedRegisters
   ] ;
   const @uint high := (address >> 8) & 0xFF ;
   if high == 0 then
@@ -785,6 +818,7 @@ override method @instruction_LTBLPTR analyze
     !inRegisterTable
     ?outIPICregisterDescription
     ?*
+    !?ioUsedRegisters
   ] ;
   const @uint low := address & 0xFF ;
   if low == 0 then
@@ -829,6 +863,7 @@ override method @instruction_LDATAPTR analyze
   ??@bool unused inShouldPreserveBSR
   ?!@bool unused ioContinuesInSequence
   ??@routineKind unused inRoutineKind
+  ?!@stringset ioUsedRegisters
 :
   [inDataMap searchKey !mDataName ??@uintlist data] ;
 #--- Check index
@@ -843,6 +878,7 @@ override method @instruction_LDATAPTR analyze
     !inRegisterTable
     ?@ipic18_intermediate_registerExpression outIPICregisterDescription
     ?*
+    !?ioUsedRegisters
   ] ;
   ioCurrentBlock->mInstructionList += ![@ipic18_intermediate_MOV_LABEL_W new
     !mInstructionLocation
@@ -863,6 +899,7 @@ override method @instruction_LDATAPTR analyze
     !inRegisterTable
     ?outIPICregisterDescription
     ?*
+    !?ioUsedRegisters
   ] ;
   ioCurrentBlock->mInstructionList += ![@ipic18_intermediate_MOV_LABEL_W new
     !mInstructionLocation
@@ -883,6 +920,7 @@ override method @instruction_LDATAPTR analyze
     !inRegisterTable
     ?outIPICregisterDescription
     ?*
+    !?ioUsedRegisters
   ] ;
   ioCurrentBlock->mInstructionList += ![@ipic18_intermediate_MOV_LABEL_W new
     !mInstructionLocation
@@ -913,6 +951,7 @@ override method @instruction_JUMP analyze
   ??@bool unused inShouldPreserveBSR
   ?!@bool ioContinuesInSequence
   ??@routineKind unused inRoutineKind
+  ?!@stringset unused ioUsedRegisters
 :
 #--- Check instruction
   [inRoutineMap searchKey !mTargetLabel ??@bool isNoReturn ??@uint requiredBank ?* ?*] ;
@@ -950,6 +989,7 @@ override method @instruction_computed_rcall analyze
   ??@bool inShouldPreserveBSR
   ?!@bool ioContinuesInSequence
   ??@routineKind unused inRoutineKind
+  ?!@stringset ioUsedRegisters
 :
 #---
   @bool allPreserveBank := true ;
@@ -998,7 +1038,7 @@ override method @instruction_computed_rcall analyze
   ioContinuesInSequence := true ;
   ioCurrentBank := returnedBankSelection ;
 #---
-  [mSizeExpression eval !inRegisterTable !inConstantMap ??@sint64 size] ;
+  [mSizeExpression eval !inRegisterTable !inConstantMap ??@sint64 size !?ioUsedRegisters] ;
   if size < 2LS then
     error mInstructionLocation:"the computed range (" . [size string] . ") should be greater or equal to 2" ;
   elsif size > 64LS then
@@ -1035,6 +1075,7 @@ override method @instruction_computed_goto analyze
   ??@bool unused inShouldPreserveBSR
   ?!@bool ioContinuesInSequence
   ??@routineKind inRoutineKind
+  ?!@stringset ioUsedRegisters
 :
 #---
   foreach mTargetLabels do
@@ -1062,7 +1103,7 @@ override method @instruction_computed_goto analyze
     error mInstructionLocation:"an interrupt routine does not accept computed goto instruction" ;
   end switch ;
 #---
-  [mSizeExpression eval !inRegisterTable !inConstantMap ??@sint64 size] ;
+  [mSizeExpression eval !inRegisterTable !inConstantMap ??@sint64 size !?ioUsedRegisters] ;
   if size < 2LS then
     error mInstructionLocation:"the computed range (" . [size string] . ") should be greater or equal to 2" ;
   elsif size > 64LS then
@@ -1094,6 +1135,7 @@ override method @instruction_computed_retlw analyze
   ??@bool unused inShouldPreserveBSR
   ?!@bool ioContinuesInSequence
   ??@routineKind inRoutineKind
+  ?!@stringset ioUsedRegisters
 :
   ioContinuesInSequence := false ;
   switch inRoutineKind
@@ -1104,7 +1146,7 @@ override method @instruction_computed_retlw analyze
     error mInstructionLocation:"an interrupt routine does not accept computed retlw instruction" ;
   end switch ;
 #---
-  [mSizeExpression eval !inRegisterTable !inConstantMap ??@sint64 size] ;
+  [mSizeExpression eval !inRegisterTable !inConstantMap ??@sint64 size !?ioUsedRegisters] ;
   if size < 2LS then
     error mInstructionLocation:"the computed range (" . [size string] . ") should be greater or equal to 2" ;
   elsif size > 128LS then
@@ -1115,7 +1157,7 @@ override method @instruction_computed_retlw analyze
 #--- 
   @uintlist literalValues [emptyList] ;
   foreach mImmediateExpressionList index idx do
-    [mExpression eval !inRegisterTable !inConstantMap ??@sint64 v] ;
+    [mExpression eval !inRegisterTable !inConstantMap ??@sint64 v !?ioUsedRegisters] ;
     if (v > 255LS) | (v < -128LS) then
       error mInstructionLocation:"immediate value with idx " . [idx string] . " is evaluated as " . [v string] . " (should be <= 255)" ;
     end if ;
@@ -1145,6 +1187,7 @@ override method @instruction_JUMPCC analyze
   ??@bool unused inShouldPreserveBSR
   ?!@bool unused ioContinuesInSequence
   ??@routineKind unused inRoutineKind
+  ?!@stringset unused ioUsedRegisters
 :
   [inRoutineMap searchKey !mTargetLabel ??@bool isNoReturn ??@uint requiredBank ?* ?*] ;
   if (requiredBank != [@uint max]) & (requiredBank != ioCurrentBank) then
@@ -1206,6 +1249,7 @@ override method @instruction_computed_bra analyze
   ??@bool inShouldPreserveBSR
   ?!@bool ioContinuesInSequence
   ??@routineKind inRoutineKind
+  ?!@stringset ioUsedRegisters
 :
 #---
   @bool allPreserveBankSetting := true ;
@@ -1257,7 +1301,7 @@ override method @instruction_computed_bra analyze
     error mInstructionLocation:"an interrupt routine does not accept computed bra instruction" ;
   end switch ;
 #---
-  [mSizeExpression eval !inRegisterTable !inConstantMap ??@sint64 size] ;
+  [mSizeExpression eval !inRegisterTable !inConstantMap ??@sint64 size !?ioUsedRegisters] ;
   if size < 2LS then
     error mInstructionLocation:"the computed range (" . [size string] . ") should be greater or equal to 2" ;
   elsif size > 128LS then
@@ -1289,6 +1333,7 @@ override method @instruction_IF_BitTest analyze
   ??@bool inShouldPreserveBSR
   ?!@bool unused ioContinuesInSequence
   ??@routineKind unused inRoutineKind
+  ?!@stringset ioUsedRegisters
 :
 #--- Analyze condition
   [mRegisterExpression analyzeRegisterExpression
@@ -1297,6 +1342,7 @@ override method @instruction_IF_BitTest analyze
     !inRegisterTable
     ??@ipic18_intermediate_registerExpression IPICregisterDescription
     ??@bitSliceTable bitSliceTable
+    !?ioUsedRegisters
   ] ;
   [mBitNumber getBitNumber
     !bitSliceTable
@@ -1312,6 +1358,7 @@ override method @instruction_IF_BitTest analyze
     !inConstantMap
     !?currentBank
     !inShouldPreserveBSR
+    !?ioUsedRegisters
     ??@ipic18SequentialInstruction embeddedInstruction
   ] ;
 #--- Embedded instruction changes bank ?
@@ -1344,6 +1391,7 @@ override method @instruction_IF_FA_SEMI_COLON analyze
   ??@bool inShouldPreserveBSR
   ?!@bool unused ioContinuesInSequence
   ??@routineKind unused inRoutineKind
+  ?!@stringset ioUsedRegisters
 :
   @ipic18_compare_register_instruction_base_code baseCode ;
   switch mOpCode
@@ -1358,6 +1406,7 @@ override method @instruction_IF_FA_SEMI_COLON analyze
     !inRegisterTable
     ??@ipic18_intermediate_registerExpression IPICregisterDescription
     ?*
+    !?ioUsedRegisters
   ] ;
 #--- Analyze embedded instruction
   @uint currentBank := ioCurrentBank ;
@@ -1369,6 +1418,7 @@ override method @instruction_IF_FA_SEMI_COLON analyze
     !inConstantMap
     !?currentBank
     !inShouldPreserveBSR
+    !?ioUsedRegisters
     ??@ipic18SequentialInstruction embeddedInstruction
   ] ;
 #--- Embedded instruction changes bank ?
@@ -1400,6 +1450,7 @@ override method @instruction_IF_IncDec analyze
   ??@bool inShouldPreserveBSR
   ?!@bool unused ioContinuesInSequence
   ??@routineKind unused inRoutineKind
+  ?!@stringset ioUsedRegisters
 :
 #---
   @skip_instruction_FDA_base_code baseCode ;
@@ -1419,6 +1470,7 @@ override method @instruction_IF_IncDec analyze
     !inRegisterTable
     ??@ipic18_intermediate_registerExpression IPICregisterDescription
     ?*
+    !?ioUsedRegisters
   ] ;
 #--- Analyze embedded instruction
   @uint currentBank := ioCurrentBank ;
@@ -1430,6 +1482,7 @@ override method @instruction_IF_IncDec analyze
     !inConstantMap
     !?currentBank
     !inShouldPreserveBSR
+    !?ioUsedRegisters
     ??@ipic18SequentialInstruction embeddedInstruction
   ] ;
 #--- Embedded instruction changes bank ?
@@ -1462,6 +1515,7 @@ override method @instruction_structured_if analyze
   ??@bool inShouldPreserveBSR
   ?!@bool ioContinuesInSequence
   ??@routineKind inRoutineKind
+  ?!@stringset ioUsedRegisters
 :
 #--- Labels
   const @lstring conditionTrueLabel [new !"_label_" . [ioLocalLabelIndex string] !mInstructionLocation] ; 
@@ -1479,6 +1533,7 @@ override method @instruction_structured_if analyze
     !?ioGeneratedBlockList
     !conditionTrueLabel
     !conditionFalseLabel
+    !?ioUsedRegisters
     ?@ipic18AbstractBlockTerminator testTerminator
   ] ;
 #--- Save terminator of current block
@@ -1517,6 +1572,7 @@ override method @instruction_structured_if analyze
     !inShouldPreserveBSR
     ??@bool thenContinuesInSequence
     !inRoutineKind
+    !?ioUsedRegisters
   ;
   ioGeneratedBlockList += !thenBlock ;
 #--- Analyze 'else' instruction list
@@ -1541,6 +1597,7 @@ override method @instruction_structured_if analyze
     !inShouldPreserveBSR
     ??@bool elseContinuesInSequence
     !inRoutineKind
+    !?ioUsedRegisters
   ;
   ioGeneratedBlockList += !elseBlock ;
 #---
@@ -1570,6 +1627,7 @@ override method @instruction_do_while analyze
   ??@bool inShouldPreserveBSR
   ?!@bool unused ioContinuesInSequence
   ??@routineKind inRoutineKind
+  ?!@stringset ioUsedRegisters
 :
 #--- Labels
   const @lstring startLabel [new !"_label_" . [ioLocalLabelIndex string] !mInstructionLocation] ; 
@@ -1604,6 +1662,7 @@ override method @instruction_do_while analyze
     !inShouldPreserveBSR
     ??@bool repeatedInstructionsContinuesInSequence
     !inRoutineKind
+    !?ioUsedRegisters
   ;
   if ioCurrentBank != repeatedBranchFinalBank then
     error mEndOfRepeatedInstructionList:"This branch does not leave BSR value unchanged";
@@ -1627,6 +1686,7 @@ override method @instruction_do_while analyze
       !?ioGeneratedBlockList
       !conditionTrueLabel
       !conditionFalseLabel
+      !?ioUsedRegisters
       ?@ipic18AbstractBlockTerminator testTerminator
     ] ;
     ioCurrentBlock->mTerminator := testTerminator ;
@@ -1653,6 +1713,7 @@ override method @instruction_do_while analyze
       !inShouldPreserveBSR
       ??@bool branchInstructionsContinuesInSequence
       !inRoutineKind
+      !?ioUsedRegisters
     ;
     if ioCurrentBank != branchFinalBank then
       error mEndOfPartLocation:"This branch does not leave BSR value unchanged";
@@ -1692,6 +1753,7 @@ abstract method @conditionExpression analyzeCondition
   ?!@ipic18BlockList ioGeneratedBlockList
   ??@lstring inConditionTrueLabel
   ??@lstring inConditionFalseLabel
+  ?!@stringset ioUsedRegisters
   !@ipic18AbstractBlockTerminator outCurrentBlockTerminator
 ;
 
@@ -1705,6 +1767,7 @@ override method @bcc_in_structured_if_condition analyzeCondition
   ?!@ipic18BlockList unused ioGeneratedBlockList
   ??@lstring inConditionTrueLabel
   ??@lstring inConditionFalseLabel
+  ?!@stringset unused ioUsedRegisters
   !@ipic18AbstractBlockTerminator outCurrentBlockTerminator
 :
 #--- Save terminator of current block
@@ -1728,6 +1791,7 @@ override method @registerComparisonCondition analyzeCondition
   ?!@ipic18BlockList unused ioGeneratedBlockList
   ??@lstring inConditionTrueLabel
   ??@lstring inConditionFalseLabel
+  ?!@stringset ioUsedRegisters
   !@ipic18AbstractBlockTerminator outCurrentBlockTerminator
 :
   [mRegisterExpression analyzeRegisterExpression
@@ -1736,6 +1800,7 @@ override method @registerComparisonCondition analyzeCondition
     !inRegisterTable
     ??@ipic18_intermediate_registerExpression IPICregisterDescription
     ?*
+    !?ioUsedRegisters
   ] ;
 #--- Handle comparison
   @ipic18RegisterComparison ipicComparison ;
@@ -1791,6 +1856,7 @@ override method @incDecRegisterInCondition analyzeCondition
   ?!@ipic18BlockList unused ioGeneratedBlockList
   ??@lstring inConditionTrueLabel
   ??@lstring inConditionFalseLabel
+  ?!@stringset ioUsedRegisters
   !@ipic18AbstractBlockTerminator outCurrentBlockTerminator
 :
   [mRegisterExpression analyzeRegisterExpression
@@ -1799,6 +1865,7 @@ override method @incDecRegisterInCondition analyzeCondition
     !inRegisterTable
     ??@ipic18_intermediate_registerExpression IPICregisterDescription
     ?*
+    !?ioUsedRegisters
   ] ;
 #--- Save terminator of current block
   const @location location := [mRegisterExpression mRegisterName]->location ;
@@ -1833,6 +1900,7 @@ override method @registerTestCondition analyzeCondition
   ?!@ipic18BlockList unused ioGeneratedBlockList
   ??@lstring inConditionTrueLabel
   ??@lstring inConditionFalseLabel
+  ?!@stringset ioUsedRegisters
   !@ipic18AbstractBlockTerminator outCurrentBlockTerminator
 :
   [mRegisterExpression analyzeRegisterExpression
@@ -1841,6 +1909,7 @@ override method @registerTestCondition analyzeCondition
     !inRegisterTable
     ??@ipic18_intermediate_registerExpression IPICregisterDescription
     ?*
+    !?ioUsedRegisters
   ] ;
 #--- Save terminator of current block
   const @location location := [mRegisterExpression mRegisterName]->location ;
@@ -1871,6 +1940,7 @@ override method @bitTest_in_structured_if_condition analyzeCondition
   ?!@ipic18BlockList unused ioGeneratedBlockList
   ??@lstring inConditionTrueLabel
   ??@lstring inConditionFalseLabel
+  ?!@stringset ioUsedRegisters
   !@ipic18AbstractBlockTerminator outCurrentBlockTerminator
 :
   [mRegisterExpression analyzeRegisterExpression
@@ -1879,6 +1949,7 @@ override method @bitTest_in_structured_if_condition analyzeCondition
     !inRegisterTable
     ??@ipic18_intermediate_registerExpression IPICregisterDescription
     ??@bitSliceTable bitSliceTable
+    !?ioUsedRegisters
   ] ;
   [mBitNumber getBitNumber
     !bitSliceTable
@@ -1915,6 +1986,7 @@ override method @negateCondition analyzeCondition
   ?!@ipic18BlockList ioGeneratedBlockList
   ??@lstring inConditionTrueLabel
   ??@lstring inConditionFalseLabel
+  ?!@stringset ioUsedRegisters
   !@ipic18AbstractBlockTerminator outCurrentBlockTerminator
 :
   [mCondition analyzeCondition
@@ -1925,6 +1997,7 @@ override method @negateCondition analyzeCondition
     !?ioGeneratedBlockList
     !inConditionFalseLabel
     !inConditionTrueLabel
+    !?ioUsedRegisters
     ?outCurrentBlockTerminator
   ] ;
 end method ;
@@ -1939,6 +2012,7 @@ override method @andCondition analyzeCondition
   ?!@ipic18BlockList ioGeneratedBlockList
   ??@lstring inConditionTrueLabel
   ??@lstring inConditionFalseLabel
+  ?!@stringset ioUsedRegisters
   !@ipic18AbstractBlockTerminator outCurrentBlockTerminator
 :
 #--- Create an intermédiate label for handling true condition of left expression
@@ -1953,6 +2027,7 @@ override method @andCondition analyzeCondition
     !?ioGeneratedBlockList
     !conditionTrueLabel
     !inConditionFalseLabel
+    !?ioUsedRegisters
     ?outCurrentBlockTerminator
   ] ;
 #--- Right expression
@@ -1964,6 +2039,7 @@ override method @andCondition analyzeCondition
     !?ioGeneratedBlockList
     !inConditionTrueLabel
     !inConditionFalseLabel
+    !?ioUsedRegisters
     ?@ipic18AbstractBlockTerminator secondTestBlockTerminator
   ] ;
 #--- Create a new block
@@ -1996,6 +2072,7 @@ local routine analyzeInstructionList
   ??@bool inShouldPreserveBSR
   !@bool outContinuesInSequence
   ??@routineKind inRoutineKind
+  ?!@stringset ioUsedRegisters
 :
   outContinuesInSequence := true ;
   foreach inInstructionList do
@@ -2017,6 +2094,7 @@ local routine analyzeInstructionList
       !inShouldPreserveBSR
       !?outContinuesInSequence
       !inRoutineKind
+      !?ioUsedRegisters
     ] ;
   end foreach ;
 end routine ;
@@ -2034,6 +2112,7 @@ local routine pic18_analyze_data_sections
   ?!@string ioListFileContents
   !@pic18_dataMap outDataMap
   ?!@constantMap ioConstantMap
+  ?!@stringset ioUsedRegisters
 :
   outDataMap := [@pic18_dataMap emptyMap] ;
   foreach inDataDefinitionList
@@ -2046,7 +2125,7 @@ local routine pic18_analyze_data_sections
     [!?ioConstantMap insertKey ![@lstring new !mDataName->string . "_BYTE_COUNT" !mDataName->location] ![[mValueList length] * 2 sint64]] ;
     @uintlist data [emptyList] ;
     foreach mValueList do
-      [mExpression eval !inRegisterTable !inConstantMap ??@sint64 value] ;
+      [mExpression eval !inRegisterTable !inConstantMap ??@sint64 value !?ioUsedRegisters] ;
       if value < 0LS then
         error mErrorLocation: "data value is " . value . " (negative)" ;
       elsif value > 65535LS then
@@ -2072,6 +2151,7 @@ routine build_ipic18_block_representation_list
   ??@routineDeclarationList inUserRoutineDeclarationListForUserProgramImplementation
   ??@uint inAccessBankSplitOffset
   ??@registerTable inRegisterTable
+  ??@declaredByteMap inDeclaredByteMap
   ??@piccoloModel inPiccoloModel
   ??@ramBankTable inRamBank
   ??@bool inHasHighInterrupt
@@ -2109,8 +2189,9 @@ routine build_ipic18_block_representation_list
     [!?constantMap insertKey !bootloaderSizeString ![[inBootloaderReservedROMsize uint] sint64]] ;
   end if ;
 #--- Add declared constants
+  @stringset usedRegisters [emptySet] ;
   foreach [inPiccoloModel mConstantDefinitionList] do
-    [mExpression eval !inRegisterTable !constantMap ??@sint64 result] ;
+    [mExpression eval !inRegisterTable !constantMap ??@sint64 result !?usedRegisters] ;
     if [inRegisterTable hasKey ![mConstantName string]] then
       error mConstantName: "'" . mConstantName . "' is already declared as ram register or special register" ;
     else
@@ -2125,6 +2206,7 @@ routine build_ipic18_block_representation_list
     !?ioListFileContents
     ??@pic18_dataMap dataMap
     !?constantMap
+    !?usedRegisters
   ;
 #-------------------------------- Print constant map
   print_constant_definition
@@ -2266,6 +2348,7 @@ routine build_ipic18_block_representation_list
           !not mFastReturn # Preserve BSR if not "fast"
           ??@bool continuesInSequence
           ![@routineKind interruptRoutine]
+          !?usedRegisters
         ;
         if not continuesInSequence then
           error mEndOfInterruptLocation:"execution cannot reach the end of the interrupt routine" ;
@@ -2301,6 +2384,7 @@ routine build_ipic18_block_representation_list
           !not mFastReturn # Preserve BSR if not "fast"
           ??@bool continuesInSequence
           ![@routineKind interruptRoutine]
+          !?usedRegisters
         ;
         if not continuesInSequence then
           error mEndOfInterruptLocation:"execution cannot reach the end of the interrupt routine" ;
@@ -2340,6 +2424,7 @@ routine build_ipic18_block_representation_list
       !mPreservesBank
       ??@bool continuesInSequence
       !routineKind
+      !?usedRegisters
     ;
   #--- Enter last block
     generatedBlockList += !currentBlock ;
@@ -2361,6 +2446,7 @@ routine build_ipic18_block_representation_list
     !inRegisterTable
     ??@ipic18_intermediate_registerExpression WREG_IPICregisterDescription
     ?*
+    !?usedRegisters
   ] ;
 #--- Description of register TOSL
   @registerExpression TOSLregister [new ![@lstring new !"TOSL" !here] ![@luint new !0 !here]] ;
@@ -2370,6 +2456,7 @@ routine build_ipic18_block_representation_list
     !inRegisterTable
     ??@ipic18_intermediate_registerExpression TOSL_IPICregisterDescription
     ?*
+    !?usedRegisters
   ] ;
 #--- Description of register TOSH
   @registerExpression TOSHregister [new ![@lstring new !"TOSH" !here] ![@luint new !0 !here]] ;
@@ -2379,6 +2466,7 @@ routine build_ipic18_block_representation_list
     !inRegisterTable
     ??@ipic18_intermediate_registerExpression TOSH_IPICregisterDescription
     ?*
+    !?usedRegisters
   ] ;
 #--- Description of register TOSU
   @registerExpression TOSUregister [new ![@lstring new !"TOSU" !here] ![@luint new !0 !here]] ;
@@ -2388,6 +2476,7 @@ routine build_ipic18_block_representation_list
     !inRegisterTable
     ??@ipic18_intermediate_registerExpression TOSU_IPICregisterDescription
     ?*
+    !?usedRegisters
   ] ;
 #---
   const @ipic18SequentialInstruction ADDWF_WREG := [@ipic18_intermediate_instruction_FDA new
@@ -2462,6 +2551,23 @@ routine build_ipic18_block_representation_list
       ] ;
       end if ;
     entryPoint := entryPoint + 4 ;
+  end foreach ;
+#----------------------------------------------------------- Check declared bytes are used
+  @stringset unusedDeclarationUnicity [emptySet] ;
+  foreach inPiccoloModel->mUnusedRegisterList do
+    if not [inRegisterTable hasKey !mValue->string] then
+      error mValue : "the '" . mValue . "' byte is not declared" ;
+    elsif [unusedDeclarationUnicity hasKey !mValue->string] then
+      warning mValue : "the '" . mValue . "' byte is already declared as unused" ;
+    elsif [usedRegisters hasKey !mValue->string] then
+      warning mValue : "the '" . mValue . "' byte is declared as unused, but is used" ;
+    end if ;
+    unusedDeclarationUnicity += !mValue->string ;
+  end foreach ;
+  foreach inDeclaredByteMap do
+    if (not [usedRegisters hasKey !lkey->string]) & (not [unusedDeclarationUnicity hasKey !lkey->string]) then
+      warning lkey : "the '" . lkey . "' byte is unused" ;
+    end if ;
   end foreach ;
 #----------------------------------------------------------- Display block list
   displayBlockList !"INTERMEDIATE BLOCK REPRESENTATION" !?ioListFileContents !generatedBlockList ;

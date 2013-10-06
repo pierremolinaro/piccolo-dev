@@ -1,4 +1,4 @@
-45 baseline devices supported by Piccolo version 2.0.2:
+45 baseline devices supported by Piccolo version 3.0.1:
 10F200         10F202         10F204         10F206         10F220         
 10F222         12C508         12C508A        12C509         12C509A        
 12CE518        12CE519        12CR509A       12F508         12F509         

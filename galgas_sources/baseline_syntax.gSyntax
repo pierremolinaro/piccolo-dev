@@ -41,6 +41,7 @@ nonterminal <immediate_expression>
 rule <section_list>
   ?!@baseline_routineDefinitionList ioRoutineDefinitionList
   ?!@ramDefinitionList ioRamDefinitionList
+  ?!@lstringlist unusedRegisterList
   ?!@configDefinitionList ioConfigDefinitionList
   ?!@constantDefinitionList ioConstantDefinitionList
 :
@@ -49,6 +50,15 @@ rule <section_list>
     $mark$ ;
     $literal_string$ ?@lstring s ;
     warning s : "obsolete construct: use a comment beginning by #!" ;
+  while
+    $unused$ ;
+    $byte$ ;
+    repeat
+      $identifier$ ?@lstring unusedRegister ;
+      unusedRegisterList += !unusedRegister ;
+    while 
+      $,$ ;
+    end repeat ;
   while
     <configuration_definition> !?ioConfigDefinitionList ;
   while

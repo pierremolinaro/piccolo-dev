@@ -16,7 +16,6 @@ map @neededConversionForClusterOrder {
   search searchKey error message "the '%K' key is not declared" ;
 }
 
-
 #----------------------------------------------------------------------------*
 
 local function sortKey ??@clusterList inClusterList -> @string outKey :

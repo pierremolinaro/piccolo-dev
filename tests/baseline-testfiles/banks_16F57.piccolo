@@ -12,14 +12,16 @@ ram gpr0 {
 
 ram gpr1 {
   byte var1
+  byte var2
 }
+
+unused byte var2
 
 noreturn routine main page 0 {
   movf var
   movwf PORTB
   movlw var1
   movwf FSR
-#  movf var1
   forever
   end
 }

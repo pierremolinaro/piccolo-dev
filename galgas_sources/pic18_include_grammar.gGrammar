@@ -6,6 +6,7 @@ root <body>
   ?!@interruptDefinitionList interruptDefinitionList
   ?!@routineDefinitionList routineDefinitionList
   ?!@ramDefinitionList ramDefinitionList
+  ?!@lstringlist unusedRegisterList
   ?!@configDefinitionList configDefinitionList
   ?!@constantDefinitionList constantDefinitionList
   ?!@checkpicList ioCheckpicList

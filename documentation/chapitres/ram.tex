@@ -201,3 +201,71 @@ On peut ainsi écrire :
 \end{lstlisting}
 
 
+
+
+
+
+
+
+
+
+
+\sectionLabel{Déclaration \texttt{unused byte}}{sectionUnusedByte}
+
+À partir de la version 3.0.2, Piccolo détecte les variables déclarées (par une déclaration \piccolo{byte}), et qui sont inutilisées. Un \emph{warning} est alors déclenché pour toute variable détectée inutilisée.
+
+Par exemple :
+
+\begin{lstlisting}[language=piccolo]
+midrange exemple "12F683" :
+
+ram gprnobnk {
+  byte var # Cette variable est inutilisee
+}
+
+noreturn routine main bank:requires 0 {
+  forever
+  end
+}
+\end{lstlisting}
+
+
+Pour inhiber ce \emph{warning}, il suffit d'indiquer explicitement que la variable \piccolo{var} est inutilisée, par la déclaration \piccolo{unused byte var} :
+
+\begin{lstlisting}[language=piccolo]
+midrange exemple "12F683" :
+
+ram gprnobnk {
+  byte var # Cette variable est inutilisee
+}
+
+unused byte var
+
+noreturn routine main bank:requires 0 {
+  forever
+  end
+}
+\end{lstlisting}
+
+Cette déclaration peut apparaître avant ou après la déclaration de la variable nommée. Si plusieurs variables sont concernées, on peut écrire plusieurs déclarations \piccolo{unused byte}, ou bien nommer plusieurs variables dans une même déclaration, en les séparant par des virgules :
+
+\begin{lstlisting}[language=piccolo]
+midrange exemple "12F683" :
+
+unused byte var1
+
+ram gprnobnk {
+  byte var # Cette variable est inutilisee
+  byte var1 # Cette variable est inutilisee
+  byte var2 # Cette variable est inutilisee
+}
+
+unused byte var, var2
+
+noreturn routine main bank:requires 0 {
+  forever
+  end
+}
+\end{lstlisting}
+
+

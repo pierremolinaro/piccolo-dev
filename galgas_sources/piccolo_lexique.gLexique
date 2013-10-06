@@ -54,6 +54,7 @@ list controlKeyWordList error message "the '%K' keyword" style keywordStyle :
   "rom",
   "ensures",
   "routine",
+  "unused",
   "uses",
   "w",
   "while"
