@@ -1,0 +1,288 @@
+semantics pic18_used_routines :
+import "pic18_metamodel.gSemantics" ;
+
+#---------------------------------------------------------------------------*
+
+abstract method @pic18PiccoloInstruction addUsedRoutines
+  ?!@stringset ioUsedRoutines
+;
+
+#---------------------------------------------------------------------------*
+
+override method @instruction_IF_BitTest addUsedRoutines
+  ?!@stringset ioUsedRoutines
+:
+  [mEmbeddedInstruction addUsedRoutines !?ioUsedRoutines] ;
+end method ;
+
+#---------------------------------------------------------------------------*
+
+override method @instruction_IF_FA_SEMI_COLON addUsedRoutines
+  ?!@stringset ioUsedRoutines
+:
+  [mEmbeddedInstruction addUsedRoutines !?ioUsedRoutines] ;
+end method ;
+
+#---------------------------------------------------------------------------*
+
+override method @instruction_IF_IncDec addUsedRoutines
+  ?!@stringset ioUsedRoutines
+:
+  [mEmbeddedInstruction addUsedRoutines !?ioUsedRoutines] ;
+end method ;
+
+#---------------------------------------------------------------------------*
+
+override method @instruction_JUMP addUsedRoutines
+  ?!@stringset ioUsedRoutines
+:
+  ioUsedRoutines += !mTargetLabel->string ;
+end method ;
+
+#---------------------------------------------------------------------------*
+
+override method @instruction_JUMPCC addUsedRoutines
+  ?!@stringset ioUsedRoutines
+:
+  ioUsedRoutines += !mTargetLabel->string ;
+end method ;
+
+#---------------------------------------------------------------------------*
+
+override method @instruction_FOREVER addUsedRoutines
+  ?!@stringset ioUsedRoutines
+:
+  addUsedRoutinesFromInstructionList !mInstructionList !?ioUsedRoutines ;
+end method ;
+
+#---------------------------------------------------------------------------*
+
+override method @instruction_LDATAPTR addUsedRoutines
+  ?!@stringset unused ioUsedRoutines
+:
+end method ;
+
+#---------------------------------------------------------------------------*
+
+override method @instruction_LTBLPTR addUsedRoutines
+  ?!@stringset unused ioUsedRoutines
+:
+end method ;
+
+#---------------------------------------------------------------------------*
+
+override method @instruction_MNOP addUsedRoutines
+  ?!@stringset unused ioUsedRoutines
+:
+end method ;
+
+#---------------------------------------------------------------------------*
+
+override method @instruction_banksel addUsedRoutines
+  ?!@stringset unused ioUsedRoutines
+:
+end method ;
+
+#---------------------------------------------------------------------------*
+
+override method @instruction_banksel_register addUsedRoutines
+  ?!@stringset unused ioUsedRoutines
+:
+end method ;
+
+#---------------------------------------------------------------------------*
+
+override method @instruction_computed_bra addUsedRoutines
+  ?!@stringset ioUsedRoutines
+:
+  foreach mTargetLabels do
+    ioUsedRoutines += !mValue->string ;
+  end foreach ;
+end method ;
+
+#---------------------------------------------------------------------------*
+
+override method @instruction_computed_goto addUsedRoutines
+  ?!@stringset ioUsedRoutines
+:
+  foreach mTargetLabels do
+    ioUsedRoutines += !mValue->string ;
+  end foreach ;
+end method ;
+
+#---------------------------------------------------------------------------*
+
+override method @instruction_computed_rcall addUsedRoutines
+  ?!@stringset ioUsedRoutines
+:
+  foreach mTargetLabels do
+    ioUsedRoutines += !mValue->string ;
+  end foreach ;
+end method ;
+
+#---------------------------------------------------------------------------*
+
+override method @instruction_computed_retlw addUsedRoutines
+  ?!@stringset unused ioUsedRoutines
+:
+end method ;
+
+#---------------------------------------------------------------------------*
+
+override method @instruction_do_while addUsedRoutines
+  ?!@stringset ioUsedRoutines
+:
+  addUsedRoutinesFromInstructionList !mRepeatedInstructionList !?ioUsedRoutines ;
+  foreach mWhilePartList do
+    addUsedRoutinesFromInstructionList !mInstructionList !?ioUsedRoutines ;
+  end foreach ;
+end method ;
+
+#---------------------------------------------------------------------------*
+
+override method @instruction_nobanksel addUsedRoutines
+  ?!@stringset unused ioUsedRoutines
+:
+end method ;
+
+#---------------------------------------------------------------------------*
+
+override method @instruction_savebank addUsedRoutines
+  ?!@stringset ioUsedRoutines
+:
+  addUsedRoutinesFromInstructionList !mInstructionList !?ioUsedRoutines ;
+end method ;
+
+#---------------------------------------------------------------------------*
+
+override method @instruction_structured_if addUsedRoutines
+  ?!@stringset ioUsedRoutines
+:
+  addUsedRoutinesFromInstructionList !mThenInstructionList !?ioUsedRoutines ;
+  addUsedRoutinesFromInstructionList !mElseInstructionList !?ioUsedRoutines ;
+end method ;
+
+#---------------------------------------------------------------------------*
+
+override method @instruction_FA addUsedRoutines
+  ?!@stringset unused ioUsedRoutines
+:
+end method ;
+
+#---------------------------------------------------------------------------*
+
+override method @instruction_FBA addUsedRoutines
+  ?!@stringset unused ioUsedRoutines
+:
+end method ;
+
+#---------------------------------------------------------------------------*
+
+override method @instruction_FDA addUsedRoutines
+  ?!@stringset unused ioUsedRoutines
+:
+end method ;
+
+#---------------------------------------------------------------------------*
+
+override method @instruction_JSR addUsedRoutines
+  ?!@stringset ioUsedRoutines
+:
+  ioUsedRoutines += !mTargetLabel->string ;
+end method ;
+
+#---------------------------------------------------------------------------*
+
+override method @instruction_LFSR addUsedRoutines
+  ?!@stringset unused ioUsedRoutines
+:
+end method ;
+
+#---------------------------------------------------------------------------*
+
+override method @instruction_MOVFF addUsedRoutines
+  ?!@stringset unused ioUsedRoutines
+:
+end method ;
+
+#---------------------------------------------------------------------------*
+
+override method @instruction_TBLWT addUsedRoutines
+  ?!@stringset unused ioUsedRoutines
+:
+end method ;
+
+#---------------------------------------------------------------------------*
+
+override method @instruction_TBLRD addUsedRoutines
+  ?!@stringset unused ioUsedRoutines
+:
+end method ;
+
+#---------------------------------------------------------------------------*
+
+override method @instruction_literalOperation addUsedRoutines
+  ?!@stringset unused ioUsedRoutines
+:
+end method ;
+
+#---------------------------------------------------------------------------*
+
+override method @instruction_withNoOperand addUsedRoutines
+  ?!@stringset unused ioUsedRoutines
+:
+end method ;
+
+#---------------------------------------------------------------------------*
+
+local routine addUsedRoutinesFromInstructionList
+  ??@instructionList inInstructionList
+  ?!@stringset ioUsedRoutines
+:
+  foreach inInstructionList do
+    [mInstruction addUsedRoutines !?ioUsedRoutines] ;
+  end foreach ;
+end routine ;
+
+#---------------------------------------------------------------------------*
+
+function computeUsedRoutines
+  ??@interruptDefinitionList inInterruptDefinitionList
+  ??@routineDefinitionList inRoutineDefinitionList
+  ??@routineDeclarationList inBootloaderRoutineDeclarationListForBootloaderImplementation
+  ??@routineDeclarationList inUserRoutineDeclarationListForUserProgramImplementation
+  -> @stringset outUsedRoutineSet
+:
+#--- Main routine is used
+  outUsedRoutineSet := [@stringset setWithString !"main"] ;
+#--- Routines called by interrupt routines are used
+  foreach inInterruptDefinitionList do
+    addUsedRoutinesFromInstructionList
+      !mInstructionList
+      !?outUsedRoutineSet
+    ;  
+  end foreach ;
+#--- bootloader routines are used
+  foreach inBootloaderRoutineDeclarationListForBootloaderImplementation do
+    outUsedRoutineSet += !mRoutineName->string ;
+  end foreach ;
+#--- user routines are used
+  foreach inUserRoutineDeclarationListForUserProgramImplementation do
+    outUsedRoutineSet += !mRoutineName->string ;
+  end foreach ;
+#--- Loop for accumulating used routines
+  @stringset s [emptySet] ;
+  loop [inRoutineDefinitionList length] :
+  while s != outUsedRoutineSet do
+    s := outUsedRoutineSet ;
+    foreach inRoutineDefinitionList do
+      if [outUsedRoutineSet hasKey !mRoutineName->string] then
+        addUsedRoutinesFromInstructionList !mInstructionList !?outUsedRoutineSet ;
+      end if ;
+    end foreach ;
+  end loop ;
+end function ;
+
+#---------------------------------------------------------------------------*
+
+end semantics ;

@@ -8,6 +8,7 @@ import "ram_sections.gSemantics" ;
 import "pic18_grammar.gGrammar" ;
 import "pic18_metrics_analysis.gSemantics" ;
 import "ipic18_build_block_representation.gSemantics" ;
+import "pic18_used_routines.gSemantics" ;
 
 #----------------------------------------------------------------------------*
 #                                                                            *
@@ -108,6 +109,13 @@ end routine ;
 #                                                                            *
 #----------------------------------------------------------------------------*
 
+map @declaredRoutineMap {
+  insert insertKey error message "the '%K' routine is already declared" ;
+  search searchKey error message "the '%K' routine is not declared" ;
+}
+
+#----------------------------------------------------------------------------*
+
 routine pic18_analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName :
 #-------------------------------- Check source file name
   @string sourceFileBaseName := [[inSourceFileName lastPathComponent] stringByDeletingPathExtension] ;
@@ -178,6 +186,34 @@ routine pic18_analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName 
     bootloaderRoutineDeclarationListForBootloaderImplementation := [@routineDeclarationList emptyList] ;
     userRoutineDeclarationListForBootloaderImplementation := [@routineDeclarationList emptyList] ;
   end switch ;
+#-------------------------------- Compute used routine set
+  const @stringset usedRoutineSet := computeUsedRoutines [
+    !inPiccoloModel->mInterruptDefinitionList
+    !inPiccoloModel->mRoutineDefinitionList
+    !bootloaderRoutineDeclarationListForBootloaderImplementation
+    !userRoutineDeclarationListForUserProgramImplementation
+  ] ;
+  @declaredRoutineMap declaredRoutineMap [emptyMap] ;
+  foreach inPiccoloModel->mRoutineDefinitionList do
+    [!?declaredRoutineMap insertKey !mRoutineName] ;
+  end foreach ;
+#-------------------------------- Check used routines
+  @stringset unusedDeclarationUnicity [emptySet] ;
+  foreach inPiccoloModel->mUnusedRoutineList do
+    if not [declaredRoutineMap hasKey !mValue->string] then
+      error mValue : "the '" . mValue . "' routine is not declared" ;
+    elsif [unusedDeclarationUnicity hasKey !mValue->string] then
+      warning mValue : "the '" . mValue . "' routine is already declared as unused" ;
+    elsif [usedRoutineSet hasKey !mValue->string] then
+      warning mValue : "the '" . mValue . "' routine is declared as unused, but is used" ;
+    end if ;
+    unusedDeclarationUnicity += !mValue->string ;
+  end foreach ;
+  foreach declaredRoutineMap do
+    if (not [usedRoutineSet hasKey !lkey->string]) & (not [unusedDeclarationUnicity hasKey !lkey->string]) then
+      warning lkey : "the '" . lkey . "' routine is unused" ;
+    end if ;
+  end foreach ;
 #-------------------------------- Check 'checkpic' instructions
   foreach inPiccoloModel->mCheckpicList do
     @bool found := false ;

@@ -449,6 +449,7 @@ struct @piccoloModel {
   @interruptDefinitionList mInterruptDefinitionList ;
   @constantDefinitionList mConstantDefinitionList ;
   @routineDefinitionList mRoutineDefinitionList ;
+  @lstringlist mUnusedRoutineList ;
   @bool mNeedsComputedGoto2 ;
   @bool mNeedsComputedGoto4 ;
   @location mEndOfProgram ;
