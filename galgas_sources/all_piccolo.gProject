@@ -24,6 +24,7 @@ project all_piccolo (3:0:2) -> "piccolo" :
   syntax    "baseline_program.gSyntax" ;
   syntax    "baseline_syntax.gSyntax" ;
   grammar   "baseline_include_grammar.gGrammar" ;
+  semantics "baseline_used_routines.gSemantics" ;
   semantics "baseline_compilation.gSemantics" ;
   semantics "baseline_intermediate_classes.gSemantics" ;
   semantics "baseline_semantic_analysis.gSemantics" ;
@@ -39,6 +40,7 @@ project all_piccolo (3:0:2) -> "piccolo" :
 #--- Mid-range
   semantics "midrange_metamodel.gSemantics" ;
   semantics "midrange_intermediate_classes.gSemantics" ;
+  semantics "midrange_used_routines.gSemantics" ;
   syntax    "midrange_syntax.gSyntax" ;
   semantics "midrange_intermediate_instruction_length.gSemantics" ;
   semantics "midrange_display_intermediate_instruction.gSemantics" ;

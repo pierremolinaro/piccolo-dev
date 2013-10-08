@@ -16,7 +16,7 @@ ram gpr1 {
 }
 
 unused byte var2
-
+ 
 noreturn routine main page 0 {
   movf var
   movwf PORTB

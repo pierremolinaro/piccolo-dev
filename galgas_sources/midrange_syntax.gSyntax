@@ -50,6 +50,7 @@ rule <start_symbol> :
   @midrange_routineDefinitionList routineDefinitionList [emptyList] ;
   @ramDefinitionList ramDefinitionList [emptyList] ;
   @lstringlist unusedRegisterList [emptyList] ;
+  @lstringlist unusedRoutineList [emptyList] ;
   @configDefinitionList configDefinitionList [emptyList] ;
   @constantDefinitionList constantDefinitionList [emptyList] ;
   @bool needsComputedGoto2 := false ;
@@ -65,6 +66,15 @@ rule <start_symbol> :
     repeat
       $identifier$ ?@lstring unusedRegister ;
       unusedRegisterList += !unusedRegister ;
+    while 
+      $,$ ;
+    end repeat ;
+  while
+    $unused$ ;
+    $routine$ ;
+    repeat
+      $identifier$ ?@lstring unusedRoutine ;
+      unusedRoutineList += !unusedRoutine ;
     while 
       $,$ ;
     end repeat ;
@@ -99,6 +109,7 @@ rule <start_symbol> :
       !interruptDefinitionList
       !constantDefinitionList
       !routineDefinitionList
+      !unusedRoutineList
       !needsComputedGoto2
       !needsComputedGoto4
       !here
@@ -141,6 +152,14 @@ label importBootloaderSpecification
   while
     $unused$ ;
     $byte$ ;
+    repeat
+      $identifier$ ?* ;
+    while 
+      $,$ ;
+    end repeat ;
+  while
+    $unused$ ;
+    $routine$ ;
     repeat
       $identifier$ ?* ;
     while 

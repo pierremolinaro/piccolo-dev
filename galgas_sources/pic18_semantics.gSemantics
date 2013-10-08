@@ -7,16 +7,16 @@ import "pic18_used_routines.gSemantics" ;
 import "piccolo_embedded_devices.gSemantics" ;
 
 #----------------------------------------------------------------------------*
-#                                                                            *
-#               S E M A N T I C    A N A L Y S I S                           *
-#                                                                            *
-#----------------------------------------------------------------------------*
 
 map @declaredRoutineMap {
   insert insertKey error message "the '%K' routine is already declared" ;
   search searchKey error message "the '%K' routine is not declared" ;
 }
 
+#----------------------------------------------------------------------------*
+#                                                                            *
+#               S E M A N T I C    A N A L Y S I S                           *
+#                                                                            *
 #----------------------------------------------------------------------------*
 
 routine pic18_analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName :
@@ -90,7 +90,7 @@ routine pic18_analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName 
     userRoutineDeclarationListForBootloaderImplementation := [@routineDeclarationList emptyList] ;
   end switch ;
 #-------------------------------- Compute used routine set
-  const @stringset usedRoutineSet := computeUsedRoutines [
+  const @stringset usedRoutineSet := pic18_computeUsedRoutines [
     !inPiccoloModel->mInterruptDefinitionList
     !inPiccoloModel->mRoutineDefinitionList
     !bootloaderRoutineDeclarationListForBootloaderImplementation

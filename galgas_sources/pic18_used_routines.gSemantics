@@ -52,7 +52,7 @@ end method ;
 override method @instruction_FOREVER addUsedRoutines
   ?!@stringset ioUsedRoutines
 :
-  addUsedRoutinesFromInstructionList !mInstructionList !?ioUsedRoutines ;
+  addPic18UsedRoutinesFromInstructionList !mInstructionList !?ioUsedRoutines ;
 end method ;
 
 #---------------------------------------------------------------------------*
@@ -132,9 +132,9 @@ end method ;
 override method @instruction_do_while addUsedRoutines
   ?!@stringset ioUsedRoutines
 :
-  addUsedRoutinesFromInstructionList !mRepeatedInstructionList !?ioUsedRoutines ;
+  addPic18UsedRoutinesFromInstructionList !mRepeatedInstructionList !?ioUsedRoutines ;
   foreach mWhilePartList do
-    addUsedRoutinesFromInstructionList !mInstructionList !?ioUsedRoutines ;
+    addPic18UsedRoutinesFromInstructionList !mInstructionList !?ioUsedRoutines ;
   end foreach ;
 end method ;
 
@@ -150,7 +150,7 @@ end method ;
 override method @instruction_savebank addUsedRoutines
   ?!@stringset ioUsedRoutines
 :
-  addUsedRoutinesFromInstructionList !mInstructionList !?ioUsedRoutines ;
+  addPic18UsedRoutinesFromInstructionList !mInstructionList !?ioUsedRoutines ;
 end method ;
 
 #---------------------------------------------------------------------------*
@@ -158,8 +158,8 @@ end method ;
 override method @instruction_structured_if addUsedRoutines
   ?!@stringset ioUsedRoutines
 :
-  addUsedRoutinesFromInstructionList !mThenInstructionList !?ioUsedRoutines ;
-  addUsedRoutinesFromInstructionList !mElseInstructionList !?ioUsedRoutines ;
+  addPic18UsedRoutinesFromInstructionList !mThenInstructionList !?ioUsedRoutines ;
+  addPic18UsedRoutinesFromInstructionList !mElseInstructionList !?ioUsedRoutines ;
 end method ;
 
 #---------------------------------------------------------------------------*
@@ -235,7 +235,7 @@ end method ;
 
 #---------------------------------------------------------------------------*
 
-local routine addUsedRoutinesFromInstructionList
+local routine addPic18UsedRoutinesFromInstructionList
   ??@instructionList inInstructionList
   ?!@stringset ioUsedRoutines
 :
@@ -246,7 +246,7 @@ end routine ;
 
 #---------------------------------------------------------------------------*
 
-function computeUsedRoutines
+function pic18_computeUsedRoutines
   ??@interruptDefinitionList inInterruptDefinitionList
   ??@routineDefinitionList inRoutineDefinitionList
   ??@routineDeclarationList inBootloaderRoutineDeclarationListForBootloaderImplementation
@@ -257,7 +257,7 @@ function computeUsedRoutines
   outUsedRoutineSet := [@stringset setWithString !"main"] ;
 #--- Routines called by interrupt routines are used
   foreach inInterruptDefinitionList do
-    addUsedRoutinesFromInstructionList
+    addPic18UsedRoutinesFromInstructionList
       !mInstructionList
       !?outUsedRoutineSet
     ;  
@@ -277,7 +277,7 @@ function computeUsedRoutines
     s := outUsedRoutineSet ;
     foreach inRoutineDefinitionList do
       if [outUsedRoutineSet hasKey !mRoutineName->string] then
-        addUsedRoutinesFromInstructionList !mInstructionList !?outUsedRoutineSet ;
+        addPic18UsedRoutinesFromInstructionList !mInstructionList !?outUsedRoutineSet ;
       end if ;
     end foreach ;
   end loop ;

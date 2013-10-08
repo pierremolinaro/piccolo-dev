@@ -10,6 +10,7 @@ import "pic18_metamodel.gSemantics" ;
 
 nonterminal <section_list>
   ?!@baseline_routineDefinitionList ioRoutineDefinitionList
+  ?!@lstringlist ioUnusedRoutineList
   ?!@ramDefinitionList ioRamDefinitionList
   ?!@lstringlist unusedRegisterList
   ?!@configDefinitionList ioConfigDefinitionList
@@ -26,10 +27,12 @@ rule <start_symbol> :
   @baseline_routineDefinitionList routineDefinitionList [emptyList] ;
   @ramDefinitionList ramDefinitionList [emptyList] ;
   @lstringlist unusedRegisterList [emptyList] ;
+  @lstringlist unusedRoutineList [emptyList] ;
   @configDefinitionList configDefinitionList [emptyList] ;
   @constantDefinitionList constantDefinitionList [emptyList] ;
   <section_list>
     !?routineDefinitionList
+    !?unusedRoutineList
     !?ramDefinitionList
     !?unusedRegisterList
     !?configDefinitionList
@@ -46,6 +49,7 @@ rule <start_symbol> :
       !unusedRegisterList
       !constantDefinitionList
       !routineDefinitionList
+      !unusedRoutineList
       !here
     ] ;
     baseline_analysis !piccoloModel ![@string stringWithSourceFilePath] ;

@@ -335,14 +335,18 @@
 \usepackage{array}
 \usepackage[table]{xcolor}
 
+\usepackage{arydshln} % Pour faire des séparateurs de ligne en pointillés (\hdashline)
+\renewcommand\dashlinedash{1pt}
+\renewcommand\dashlinegap{8pt}
+
 \renewcommand{\arraystretch}{1.2}
 
 %--- Couleur de fond alternée des tableaux
-\ifthenelse{\equal{\sortieEnCouleur}{true}}{
-  \newcommand\fondTableau{yellow!25}
-}{
-  \newcommand\fondTableau{gray!25}
-}
+%\ifthenelse{\equal{\sortieEnCouleur}{true}}{
+%  \newcommand\fondTableau{yellow!25}
+%}{
+%  \newcommand\fondTableau{gray!25}
+%}
 
 %--- Ce paquetage permet d'utiliser les environnements wrapfigure et wraptable pour insérer les figures et
 % les tableaux dans le texte.
@@ -522,11 +526,13 @@
   comment=[l]{\#},
 }
 
+\newcommand\couleurCodePICCOLO{green!20}
+
 \ifthenelse{\equal{\sortieEnCouleur}{true}}{
   \lstdefinestyle{piccolo}{
     basicstyle=\ttfamily\small,
     frame=l,
-    backgroundcolor=\color{yellow!10},
+    backgroundcolor=\color{\couleurCodePICCOLO},
     numberstyle=\ttfamily\small,
     xleftmargin=20pt
   }
@@ -539,7 +545,7 @@
   }
 }
 
-\newcommand\piccolo[1]{{\ttfamily\small #1}}
+\newcommand\piccolo[1]{\colorbox{\couleurCodePICCOLO}{\lstinline[language=piccolo]{#1}}}
 
 %-----------------------------------------------------------------------------------------------------------------------*
 
@@ -547,9 +553,13 @@
   style=assembleur,
   comment=[l]{\%},
 }
+
+\newcommand\couleurCodeASSEMBLEUR{black!5}
+
 \ifthenelse{\equal{\sortieEnCouleur}{true}}{
   \lstdefinestyle{assembleur}{
     basicstyle=\ttfamily\small,
+    backgroundcolor=\color{\couleurCodeASSEMBLEUR},
     numberstyle=\ttfamily\small,
     xleftmargin=20pt
   }
@@ -560,6 +570,11 @@
     xleftmargin=20pt
   }
 }
+
+
+\newcommand\assembleur[1]{\colorbox{\couleurCodeASSEMBLEUR}{\lstinline[language=assembleur]{#1}}}
+%\newcommand\assembleur[1]{\texttt{\small#1}}
+
 
 %-----------------------------------------------------------------------------------------------------------------------*
 
@@ -673,14 +688,6 @@
 \date{\today} 
 
 \maketitle
-
-%-----------------------------------------------------------------------------------------------------------------------*
-%                                                                                                                       *
-%   A S S E M B L E U R                                                                                                 *
-%                                                                                                                       *
-%-----------------------------------------------------------------------------------------------------------------------*
-
-\newcommand\assembleur[1]{\texttt{\small#1}}
 
 %-----------------------------------------------------------------------------------------------------------------------*
 %                                                                                                                       *

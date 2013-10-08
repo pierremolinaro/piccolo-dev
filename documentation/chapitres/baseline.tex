@@ -32,17 +32,25 @@ Dans l’en-tête :
 Le corps du programme est constitué d’une liste non ordonnée de sections. Les sections disponibles sont listées dans le \refTableau{sectionsBaseline}.
 \begin{table}[ht]
   \centering
-  \rowcolors{2}{\fondTableau}{}
+%  \rowcolors{2}{\fondTableau}{}
   \begin{tabular}{p{5cm}lll}
     \textbf{Type de section} & \textbf{Mot-clés introductifs} & \textbf{Référence}\\
     \hline
-    Configuration & \texttt{configuration}\index{Mot réservé!configuration} & \refChapterPage{configuration}\\
-    Définition de variable & \texttt{ram}\index{Mot réservé!ram} & \refChapterPage{ram}\\
-    Déclaration de variable inutilisée & \texttt{unused byte}\index{Mot réservé!unused} & \refSectionPage{sectionUnusedByte} \\
-    Définition de constante & \texttt{const}\index{Mot réservé!const} & \refChapterPage{constante}\\
-    Définition de routine régulière & \texttt{routine}\index{Mot réservé!routine} & \refSectionPage{routineBaseline}\\
-    Définition de routine sans retour & \texttt{noreturn routine}\index{Mot réservé!noreturn} & \refSectionPage{routineBaseline}\\
-    Inclusion  & \texttt{include}\index{Mot réservé!include} & \refSectionPage{sectionIncludeBaseline} \\
+    Configuration & \piccolo{configuration}\index{Mot réservé!configuration} & \refChapterPage{configuration}\\
+    \hdashline
+    Définition de variable & \piccolo{ram}\index{Mot réservé!ram} & \refChapterPage{ram}\\
+    \hdashline
+    Déclaration de variable inutilisée & \piccolo{unused byte}\index{Mot réservé!unused} & \refSectionPage{sectionUnusedByte} \\
+    \hdashline
+    Définition de constante & \piccolo{const}\index{Mot réservé!const} & \refChapterPage{constante}\\
+    \hdashline
+    Définition de routine régulière & \piccolo{routine}\index{Mot réservé!routine} & \refSectionPage{routineBaseline}\\
+    \hdashline
+    Définition de routine sans retour & \piccolo{noreturn routine}\index{Mot réservé!noreturn} & \refSectionPage{routineBaseline}\\
+    \hdashline
+    Routine inutilisée & \piccolo{unused routine}\index{Mot réservé!unused} & \refSubsectionPage{routineInutiliseeBaseline} \\
+    \hdashline
+    Inclusion  & \piccolo{include}\index{Mot réservé!include} & \refSectionPage{sectionIncludeBaseline} \\
   \end{tabular}
   \caption{Les sections d'un programme pour \emph{baseline}}
   \labelTableau{sectionsBaseline}
@@ -53,7 +61,7 @@ Le corps du programme est constitué d’une liste non ordonnée de sections. Le
 
 \sectionLabel{Routines baseline}{routineBaseline}
 
-Les routines définissent le code exécutable de votre programme. L’une d’entre elles doit s’appeler \texttt{main} : c’est la routine qui s’exécute au démarrage. Il y a deux types de routine, les routines \emph{régulières} et les routines \emph{sans retour}.
+Les routines définissent le code exécutable de votre programme. L’une d’entre elles doit s’appeler \piccolo{main} : c’est la routine qui s’exécute au démarrage. Il y a deux types de routine, les routines \emph{régulières} et les routines \emph{sans retour}.
 
 
 L’ordre des déclarations des routines est quelconque, il est possible d’appeler une routine qui est déclarée après l’instruction d’appel. Simplement Piccolo engendrera leur code dans leur ordre d’apparition. 
@@ -62,32 +70,33 @@ L’ordre des déclarations des routines est quelconque, il est possible d’app
 \textbf{Routine et pages de la mémoire programme.} Un problème important en Piccolo \emph{baseline} est la gestion des pages de la mémoire programme (voir \refSectionPage{gestionPagesBaseline}).
 
 ~\\
-\textbf{Liste d’instructions d’une routine.} Elle est structurée : Piccolo définit des instructions de sélection et de répétition : cela signifie que vous ne pouvez pas déclarer d’étiquette, ni utiliser de \texttt{goto} pour effectuer des branchements à l’intérieur d’une routine.
+\textbf{Liste d’instructions d’une routine.} Elle est structurée : Piccolo définit des instructions de sélection et de répétition : cela signifie que vous ne pouvez pas déclarer d’étiquette, ni utiliser de \piccolo{goto} pour effectuer des branchements à l’intérieur d’une routine.
 
 
 \subsectionLabel{Routine régulière}{routineReguliereBaseline}
 \index{Routine régulière!baseline}
 
-C'est un sous-programme. Une routine régulière peut ne comporter aucune instruction Piccolo, l'instruction \texttt{retlw} est implicitement ajoutée. Une routine régulière est déclarée par :
+C'est un sous-programme. Comme l'assembleur \emph{baseline} ne définit pas d'instruction \assembleur{RETURN} mais uniquement une instruction \assembleur{RETLW}, une routine régulière doit se terminer par une instruction \piccolo{movlw} (voir ci-après). Une routine régulière est déclarée par :
 \begin{lstlisting}[language=piccolo]
 routine maRoutine ... {
   ...
+  movlw ...
 }
 \end{lstlisting}
 
-\texttt{maRoutine} est le nom de la routine, celui qui sera nommé dans un instruction d’appel de routine. Entre les accolades « \texttt{\{} » et « \texttt{\}} », apparaît la liste des instructions.
+\piccolo{maRoutine} est le nom de la routine, celui qui sera nommé dans un instruction d’appel de routine. Entre les accolades \piccolo{\{} et \piccolo{\}}, apparaît la liste des instructions.
 
 ~\\
-\textbf{Appel d’une routine régulière.} Utiliser l'instruction \texttt{call} ou l'instruction \texttt{jsr} (\refSectionPage{gestionPagesBaseline}).
+\textbf{Appel d’une routine régulière.} Utiliser l'instruction \piccolo{call} ou l'instruction \piccolo{jsr} (\refSectionPage{gestionPagesBaseline}).
 
 ~\\
-\textbf{Dernière instruction d’une routine régulière.} Une particularité du jeu d'instructions des \emph{baseline} est qu'il ne possède pas d'instruction \texttt{RETURN}, mais une instruction \texttt{RETLW} qui combine retour de sous-programme et chargement immédiat de \texttt{W}. Piccolo ne définit pas l'instruction \texttt{RETLW}, mais définit \texttt{movlw} : c'est le compilateur Piccolo qui repère une instruction \texttt{movlw} comme dernière instruction d'une routine, et qui la transforme en \texttt{RETLW}.
+\textbf{Dernière instruction d’une routine régulière.} Une particularité du jeu d'instructions des \emph{baseline} est qu'il ne possède pas d'instruction \assembleur{RETURN}, mais une instruction \assembleur{RETLW} qui combine retour de sous-programme et chargement immédiat de \piccolo{W}. Piccolo ne définit pas l'instruction \assembleur{RETLW}, mais définit \piccolo{movlw} : c'est le compilateur Piccolo qui repère une instruction \assembleur{MOVLW} comme dernière instruction d'une routine, et qui la transforme en \assembleur{RETLW}.
 
 En conséquence, la liste des instructions d'une routine régulière ne peut pas être vide. Elle doit comprendre au moins une instruction. D'une manière générale, la dernière instruction d'une routine régulière peut être :
 \begin{itemize}
-  \item une instruction \texttt{movlw} ; le compilateur Piccolo la transformera en \texttt{RETLW} ;
-  \item une instruction \texttt{call} ou une instruction \texttt{jsr} vers une routine régulière ; le compilateur Piccolo la transformera en \texttt{GOTO} ;
-  \item une instruction \texttt{if} structurée dont toutes les branches se terminent soit par une instruction \texttt{movlw}, soit par une instruction \texttt{call} vers une routine régulière, soit une autre instruction \texttt{if} structurée.
+  \item une instruction \piccolo{movlw} ; le compilateur Piccolo la transformera en \assembleur{RETLW} ;
+  \item une instruction \piccolo{call} ou une instruction \piccolo{jsr} vers une routine régulière ; le compilateur Piccolo la transformera en \assembleur{GOTO} ;
+  \item une instruction \piccolo{if} structurée dont toutes les branches se terminent soit par une instruction \piccolo{movlw}, soit par une instruction \piccolo{call} vers une routine régulière, soit une autre instruction \piccolo{if} structurée.
 \end{itemize}
 
 Voici quelques exemples de routines régulières Piccolo et leur traduction en assembleur. Noter qu'il s'agit du code engendré sans aucune optimisation.
@@ -149,9 +158,9 @@ _label_0:
 \subsection{Routine sans retour}
 \index{Routine sans retour!baseline}
 
-L’exécution ne revient pas jamais à l’appelant. Ce type de routine doit donc se terminer par des constructions particulières qui assurent le non-retour : une boucle infinie, un branchement \texttt{goto} ou \texttt{jump} vers une autre routine sans retour.
+L’exécution ne revient pas jamais à l’appelant. Ce type de routine doit donc se terminer par des constructions particulières qui assurent le non-retour : une boucle infinie, un branchement \piccolo{goto} ou \piccolo{jump} vers une autre routine sans retour.
 
-Une routine sans retour doit être déclarée avec qualificatif \texttt{noreturn} :
+Une routine sans retour doit être déclarée avec qualificatif \piccolo{noreturn} :
 \begin{lstlisting}[language=piccolo]
 noreturn routine maRoutine ... {
   ...
@@ -159,11 +168,11 @@ noreturn routine maRoutine ... {
 \end{lstlisting}
 
 ~\\
-\textbf{Appel d’une routine sans retour.} Utiliser \texttt{goto} ou l'instruction \texttt{jump} (\refSectionPage{gestionPagesBaseline}).
+\textbf{Appel d’une routine sans retour.} Utiliser \piccolo{goto} ou l'instruction \piccolo{jump} (\refSectionPage{gestionPagesBaseline}).
 
 
 ~\\
-\textbf{Déclaration de la routine \texttt{main}.} Dans un programme, il doit exister une et une seule routine \texttt{main}, qui doit être déclarée comme suit :
+\textbf{Déclaration de la routine \piccolo{main}.} Dans un programme, il doit exister une et une seule routine \piccolo{main}, qui doit être déclarée comme suit :
 
 \begin{lstlisting}[language=piccolo]
 noreturn routine main {
@@ -179,7 +188,7 @@ Le compilateur Piccolo place cette routine au début de la ROM, de façon qu'ell
 \textbf{Comment terminer une routine sans retour.} La dernière instruction de la liste des instructions d’une routine sans retour doit être :
 \begin{itemize}
   \item une instruction de répétition infinie (\refSectionPage{repetitionInfinie}) ;
-  \item un appel vers une autre routine sans retour, au moyen d’un \texttt{goto} ou d'un \texttt{jump} ;
+  \item un appel vers une autre routine sans retour, au moyen d’un \piccolo{goto} ou d'un \piccolo{jump} ;
   \item une instruction conditionnelle structurée, dont toutes les branches présentent comme dernière instruction les instructions d’appel d’un routine sans retour, un branchement calculé (comme évoqué ci-dessus), ou encore une instruction conditionnelle structurée, dont toutes les branches, etc.
 
 \end{itemize}
@@ -203,7 +212,7 @@ noreturn routine maRoutine {
 \end{lstlisting}
 
 
-La dernière instruction est un \texttt{if} dont aucune des branches ne se termine (\texttt{r1} est une routine sans retour) :
+La dernière instruction est un \piccolo{if} dont aucune des branches ne se termine (\piccolo{r1} est une routine sans retour) :
 \begin{lstlisting}[language=piccolo]
 noreturn routine maRoutine {
   if (...)
@@ -220,7 +229,7 @@ noreturn routine maRoutine {
 \end{lstlisting}
 
 
-La dernière instruction est un \texttt{if} dont la première branche se termine elle même par un \texttt{if} dont les deux branches se terminent par des branchements vers des routines sans retour :
+La dernière instruction est un \piccolo{if} dont la première branche se termine elle même par un \piccolo{if} dont les deux branches se terminent par des branchements vers des routines sans retour :
 \begin{lstlisting}[language=piccolo]
 noreturn routine maRoutine {
   if (...)
@@ -242,8 +251,32 @@ noreturn routine maRoutine {
 
 
 
+\subsectionLabel{Routine inutilisée}{routineInutiliseeBaseline}
 
+Par défaut à partir de la version 3.0.2, Piccolo détecte les routines inutilisées. Un \emph{warning} est déclenché pour chaque routine inutilisée.
 
+Pour inhiber ce \emph{warning}, on utilise la déclaration \piccolo{unused routine} :
+
+\begin{lstlisting}[language=piccolo]
+baseline exemple "16F57" :
+routine uneRoutine page 0 {
+  movlw 0
+}
+
+unused routine uneRoutine
+ 
+noreturn routine main page 0 {
+  forever
+  end
+}
+
+end
+\end{lstlisting}
+
+La déclaration \piccolo{unused routine} peut apparaître avant ou après la déclaration des routines qu'elle nomme ; plusieurs routines peuvent être nommées, en séparant leurs noms par une virgule :
+\begin{lstlisting}[language=piccolo]
+unused routine routine1, routine2
+\end{lstlisting}
 
 
 
@@ -267,42 +300,73 @@ Le \refTableau{instructionsAssembleurBaseline} donnent la liste des instructions
 \begin{table}[!ht]
   \centering
   \small
-  \rowcolors{2}{\fondTableau}{}
+%  \rowcolors{2}{\fondTableau}{}
   \begin{tabular}{lll}
     \textbf{Instruction} & \textbf{Description} & \textbf{Référence en Piccolo}\\
     \hline
-    \texttt{ADDWF f, d} & Add W and f & \refSubsectionPage{instructionsBaselineNommantRegistreEtW} \\
-    \texttt{ANDLW k} & And Literal with W & \refSubsectionPage{opBaselineImmediate}\\
-    \texttt{ANDWF f, d} & And W with f & \refSubsectionPage{instructionsBaselineNommantRegistreEtW}\\
-    \texttt{BCF f, b} & Bit Clear f & \refSubsectionPage{opBaselineAffectationBit} \\
-    \texttt{BSF f, b} & Bit Set f & \refSubsectionPage{opBaselineAffectationBit} \\
-    \texttt{BTFSC f, b} & Bit Test f, Skip if Clear & \refSubsectionPage{instructionsBaselineIntrouvables}\\
-    \texttt{BTFSS f, b} & Bit Test f, Skip if Set & \refSubsectionPage{instructionsBaselineIntrouvables}\\
-    \texttt{CALL k} & Call Subroutine &  \refSubsectionPage{appelRoutineReguliereBaseline} \\
-    \texttt{CLRF f} & Clear f & \refSubsectionPage{instructionsBaseLineNommantRegistre} \\
-    \texttt{CLRW} & Clear W & \refSubsectionPage{operationsBaselineIdentiquesAssembleur}\\
-    \texttt{CLRWDT} & Clear Watchdog Timer & \refSubsectionPage{operationsBaselineIdentiquesAssembleur}\\
-    \texttt{COMF f, d} & Complement f & \refSubsectionPage{instructionsBaselineNommantRegistreEtW}\\
-    \texttt{DECF f, d} & Decrement f & \refSubsectionPage{instructionsBaselineNommantRegistreEtW}\\
-    \texttt{DECFSZ f, d} & Decrement f, Skip if 0 & \refSubsectionPage{instructionsBaselineIntrouvables}\\
-    \texttt{GOTO k} & Go to Address & \refSubsectionPage{appelRoutineSansRetourBaseline} \\
-    \texttt{INCF f, d} & Decrement f & \refSubsectionPage{instructionsBaselineNommantRegistreEtW}\\
-    \texttt{INCFSZ f, d} & Increment f, Skip if 0 & \refSubsectionPage{instructionsBaselineIntrouvables}\\
-    \texttt{IORLW k} & Inclusive OR Literal with W & \refSubsectionPage{opBaselineImmediate}\\
-    \texttt{IORWF f, d} & Inclusive OR W with f & \refSubsectionPage{instructionsBaselineNommantRegistreEtW}\\
-    \texttt{MOVF f, d} & Move f & \refSubsectionPage{instructionsBaselineNommantRegistreEtW}\\
-    \texttt{MOVLW k} & Move Literal to W & \refSubsectionPage{opBaselineImmediate}\\
-    \texttt{MOVWF f} & Move W to f & \refSubsectionPage{instructionsBaseLineNommantRegistre} \\
-    \texttt{NOP} & No Operation & \refSubsectionPage{operationsBaselineIdentiquesAssembleur}\\
-    \texttt{RETLW k} & Return with Literal in W & \refSubsectionPage{instructionsBaselineIntrouvables}\\
-    \texttt{RLF f, d} & Rotate Left f through Carry & \refSubsectionPage{instructionsBaselineNommantRegistreEtW}\\
-    \texttt{RRF f, d} & Rotate Right f through Carry & \refSubsectionPage{instructionsBaselineNommantRegistreEtW}\\
-    \texttt{SLEEP} & Go into Standby Mode & \refSubsectionPage{operationsBaselineIdentiquesAssembleur}\\
-    \texttt{SUBWF f, d} & Substract W from f & \refSubsectionPage{instructionsBaselineNommantRegistreEtW}\\
-    \texttt{SWAPF f, d} & Swap Nibbles in f & \refSubsectionPage{instructionsBaselineNommantRegistreEtW}\\
-    \texttt{TRIS f} & Load TRIS register & \refSubsectionPage{instructionTRIS}\\
-    \texttt{XORLW k} & Exclusive OR Literal with W & \refSubsectionPage{opBaselineImmediate}\\
-    \texttt{XORWF f, d} & Exclusive OR W with f & \refSubsectionPage{instructionsBaselineNommantRegistreEtW}\\
+    \assembleur{ADDWF f, d} & Add W and f & \refSubsectionPage{instructionsBaselineNommantRegistreEtW} \\
+    \hdashline
+    \assembleur{ANDLW k} & And Literal with W & \refSubsectionPage{opBaselineImmediate}\\
+    \hdashline
+    \assembleur{ANDWF f, d} & And W with f & \refSubsectionPage{instructionsBaselineNommantRegistreEtW}\\
+    \hdashline
+    \assembleur{BCF f, b} & Bit Clear f & \refSubsectionPage{opBaselineAffectationBit} \\
+    \hdashline
+    \assembleur{BSF f, b} & Bit Set f & \refSubsectionPage{opBaselineAffectationBit} \\
+    \hdashline
+    \assembleur{BTFSC f, b} & Bit Test f, Skip if Clear & \refSubsectionPage{instructionsBaselineIntrouvables}\\
+    \hdashline
+    \assembleur{BTFSS f, b} & Bit Test f, Skip if Set & \refSubsectionPage{instructionsBaselineIntrouvables}\\
+    \hdashline
+    \assembleur{CALL k} & Call Subroutine &  \refSubsectionPage{appelRoutineReguliereBaseline} \\
+    \hdashline
+    \assembleur{CLRF f} & Clear f & \refSubsectionPage{instructionsBaseLineNommantRegistre} \\
+    \hdashline
+    \assembleur{CLRW} & Clear W & \refSubsectionPage{operationsBaselineIdentiquesAssembleur}\\
+    \hdashline
+    \assembleur{CLRWDT} & Clear Watchdog Timer & \refSubsectionPage{operationsBaselineIdentiquesAssembleur}\\
+    \hdashline
+    \assembleur{COMF f, d} & Complement f & \refSubsectionPage{instructionsBaselineNommantRegistreEtW}\\
+    \hdashline
+    \assembleur{DECF f, d} & Decrement f & \refSubsectionPage{instructionsBaselineNommantRegistreEtW}\\
+    \hdashline
+    \assembleur{DECFSZ f, d} & Decrement f, Skip if 0 & \refSubsectionPage{instructionsBaselineIntrouvables}\\
+    \hdashline
+    \assembleur{GOTO k} & Go to Address & \refSubsectionPage{appelRoutineSansRetourBaseline} \\
+    \hdashline
+    \assembleur{INCF f, d} & Decrement f & \refSubsectionPage{instructionsBaselineNommantRegistreEtW}\\
+    \hdashline
+    \assembleur{INCFSZ f, d} & Increment f, Skip if 0 & \refSubsectionPage{instructionsBaselineIntrouvables}\\
+    \hdashline
+    \assembleur{IORLW k} & Inclusive OR Literal with W & \refSubsectionPage{opBaselineImmediate}\\
+    \hdashline
+    \assembleur{IORWF f, d} & Inclusive OR W with f & \refSubsectionPage{instructionsBaselineNommantRegistreEtW}\\
+    \hdashline
+    \assembleur{MOVF f, d} & Move f & \refSubsectionPage{instructionsBaselineNommantRegistreEtW}\\
+    \hdashline
+    \assembleur{MOVLW k} & Move Literal to W & \refSubsectionPage{opBaselineImmediate}\\
+    \hdashline
+    \assembleur{MOVWF f} & Move W to f & \refSubsectionPage{instructionsBaseLineNommantRegistre} \\
+    \hdashline
+    \assembleur{NOP} & No Operation & \refSubsectionPage{operationsBaselineIdentiquesAssembleur}\\
+    \hdashline
+    \assembleur{RETLW k} & Return with Literal in W & \refSubsectionPage{instructionsBaselineIntrouvables}\\
+    \hdashline
+    \assembleur{RLF f, d} & Rotate Left f through Carry & \refSubsectionPage{instructionsBaselineNommantRegistreEtW}\\
+    \hdashline
+    \assembleur{RRF f, d} & Rotate Right f through Carry & \refSubsectionPage{instructionsBaselineNommantRegistreEtW}\\
+    \hdashline
+    \assembleur{SLEEP} & Go into Standby Mode & \refSubsectionPage{operationsBaselineIdentiquesAssembleur}\\
+    \hdashline
+    \assembleur{SUBWF f, d} & Substract W from f & \refSubsectionPage{instructionsBaselineNommantRegistreEtW}\\
+    \hdashline
+    \assembleur{SWAPF f, d} & Swap Nibbles in f & \refSubsectionPage{instructionsBaselineNommantRegistreEtW}\\
+    \hdashline
+    \assembleur{TRIS f} & Load TRIS register & \refSubsectionPage{instructionTRIS}\\
+    \hdashline
+    \assembleur{XORLW k} & Exclusive OR Literal with W & \refSubsectionPage{opBaselineImmediate}\\
+    \hdashline
+    \assembleur{XORWF f, d} & Exclusive OR W with f & \refSubsectionPage{instructionsBaselineNommantRegistreEtW}\\
   \hline
   \end{tabular}
   \caption{Instructions machine des \emph{baseline}}
@@ -317,13 +381,13 @@ Le \refTableau{instructionsAssembleurBaseline} donnent la liste des instructions
 ~\\
 \textbf{Les instructions composées.} Piccolo définit les instructions suivantes :
 \begin{itemize}
-  \item l'instruction \texttt{mnop} (\refSectionPage{instructionMNOP}) ;
+  \item l'instruction \piccolo{mnop} (\refSectionPage{instructionMNOP}) ;
   \item l'instruction conditionnelle simple (\refSectionPage{instructionConditionnelleSimple}) ;
   \item l'instruction conditionnelle structurée (\refSectionPage{instructionConditionnelleStructuree}) ;
   \item l'instruction répétitive (\refSectionPage{instructionRepetitive}) ;
   \item l'instruction de répétition infinie (\refSectionPage{repetitionInfinie}) ;
-  \item l'instruction d'appel de routine régulière \texttt{jsr} (\refSectionPage{gestionPagesBaseline}) ;
-  \item l'instruction d'appel de routine sans retour \texttt{jump} (\refSectionPage{gestionPagesBaseline}) ;
+  \item l'instruction d'appel de routine régulière \piccolo{jsr} (\refSectionPage{gestionPagesBaseline}) ;
+  \item l'instruction d'appel de routine sans retour \piccolo{jump} (\refSectionPage{gestionPagesBaseline}) ;
 \end{itemize}
 
 
@@ -334,8 +398,8 @@ Le \refTableau{instructionsAssembleurBaseline} donnent la liste des instructions
 Elles n’existent pas en Piccolo parce qu’elles sont remplacées par des constructions structurées, ou bien engendrées automatiquement lors de la compilation.
 
 Voici leur liste avec les liens vers les sections appropriées :\begin{itemize}
-  \item \texttt{BTFSC}, \texttt{BTFSS}, \texttt{DECFSZ} et \texttt{INCFSZ} : ces instructions sont engendrées par l’instruction conditionnelle simple, l’instruction conditionnelle structurée et l’instruction répétitive (\refSubsectionPage{conditionsElementairesBaselineMidRange}) ;
-  \item \texttt{RETLW} : utiliser une instruction \texttt{MOVLW}, et c’est le compilateur Piccolo qui la remplacera par une instruction \texttt{RETLW k} (\refSubsectionPage{routineReguliereBaseline}).
+  \item \assembleur{BTFSC}, \assembleur{BTFSS}, \assembleur{DECFSZ} et \assembleur{INCFSZ} : ces instructions sont engendrées par l’instruction conditionnelle simple, l’instruction conditionnelle structurée et l’instruction répétitive (\refSubsectionPage{conditionsElementairesBaselineMidRange}) ;
+  \item \assembleur{RETLW} : utiliser une instruction \assembleur{MOVLW}, et c’est le compilateur Piccolo qui la remplacera par une instruction \assembleur{RETLW k} (\refSubsectionPage{routineReguliereBaseline}).
 
 \end{itemize}
 
@@ -355,12 +419,13 @@ Ce sont les instructions listées dans le \refTableau{operationsBaselineNommantU
 \begin{table}[!ht]
   \centering
   \small
-  \rowcolors{2}{\fondTableau}{}
+%  \rowcolors{2}{\fondTableau}{}
   \begin{tabular}{lll}
     \textbf{Assembleur} & \textbf{Description} & \textbf{Écriture en Piccolo}\\
     \hline
-    \texttt{CLRF f} & Clear f & \texttt{clrf f} \\
-    \texttt{MOVWF f} & Move f & \texttt{movwf f} \\
+    \assembleur{CLRF f} & Clear f & \piccolo{clrf f} \\
+    \hdashline
+    \assembleur{MOVWF f} & Move f & \piccolo{movwf f} \\
   \hline
   \end{tabular}
   \caption{Opérations \emph{baseline} nommant un registre}
@@ -378,31 +443,42 @@ Ce sont les instructions listées dans le \refTableau{operationsBaselineNommantU
 
 Ces instructions, ainsi que le traduction en Piccolo, sont listées dans le \refTableau{instructionsBaselineRegistreEtW}. En assembleur, elles nomment deux opérandes :
 \begin{itemize}
-  \item \texttt{f} : désigne le registre, il en est de même en Piccolo ;
-  \item \texttt{d} : optionnel en Piccolo ; si absent, le registre \texttt{f} est destination de l'opération, si égal à \texttt{W}, c'est le registre \texttt{W} qui est destinaire.
+  \item \assembleur{f} : désigne le registre, il en est de même en Piccolo ;
+  \item \assembleur{d} : optionnel en Piccolo ; si absent, le registre \assembleur{f} est destination de l'opération, si égal à \piccolo{W}, c'est le registre \piccolo{W} qui est destinaire.
 \end{itemize}
 
 
 \begin{table}[!ht]
   \centering
   \small
-  \rowcolors{2}{\fondTableau}{}
+%  \rowcolors{2}{\fondTableau}{}
   \begin{tabular}{llll}
      &  & \multicolumn{2}{l}{\textbf{En Piccolo, destination :}} \\
     \textbf{Assembleur} & \textbf{Description} & \textbf{f} & \textbf{W}\\
     \hline
-    \texttt{ADDWF f, d} & Add W and f & \texttt{addwf f}  & \texttt{addwf f, W} \\
-    \texttt{ANDWF f, d} & And W with f & \texttt{andwf f} & \texttt{andwf f, W}\\
-    \texttt{COMF f, d} & Complement f & \texttt{comf f} & \texttt{comf f, W}\\
-    \texttt{DECF f, d} & Decrement f & \texttt{decf f} & \texttt{decf f, W}\\
-    \texttt{INCF f, d} & Increment f & \texttt{incf f}& \texttt{incf f, W}\\
-    \texttt{IORWF f, d} & Inclusive OR W with f & \texttt{iorwf f} & \texttt{iorwf f, W}\\
-    \texttt{MOVF f, d} & Move f & \texttt{movf f} & \texttt{movf f, W}\\
-    \texttt{RLF f, d} & Rotate Left f through Carry & \texttt{rlf f} & \texttt{rlf f, W}\\
-    \texttt{RRF f, d} & Rotate Right f through Carry & \texttt{rrf f} & \texttt{rrf f, W}\\
-    \texttt{SUBWF f, d} & Substract W from f & \texttt{subwf f} & \texttt{subwf f, W}\\
-    \texttt{SWAPF f, d} & Swap Nibbles in f & \texttt{swapf f} & \texttt{swapf f, W}\\
-    \texttt{XORWF f, d} & Exclusive OR W with f & \texttt{xorwf f} & \texttt{xorwf f, W}\\
+    \assembleur{ADDWF f, d} & Add W and f & \piccolo{addwf f}  & \piccolo{addwf f, W} \\
+    \hdashline
+    \assembleur{ANDWF f, d} & And W with f & \piccolo{andwf f} & \piccolo{andwf f, W}\\
+    \hdashline
+    \assembleur{COMF f, d} & Complement f & \piccolo{comf f} & \piccolo{comf f, W}\\
+    \hdashline
+    \assembleur{DECF f, d} & Decrement f & \piccolo{decf f} & \piccolo{decf f, W}\\
+    \hdashline
+    \assembleur{INCF f, d} & Increment f & \piccolo{incf f}& \piccolo{incf f, W}\\
+    \hdashline
+    \assembleur{IORWF f, d} & Inclusive OR W with f & \piccolo{iorwf f} & \piccolo{iorwf f, W}\\
+    \hdashline
+    \assembleur{MOVF f, d} & Move f & \piccolo{movf f} & \piccolo{movf f, W}\\
+    \hdashline
+    \assembleur{RLF f, d} & Rotate Left f through Carry & \piccolo{rlf f} & \piccolo{rlf f, W}\\
+    \hdashline
+    \assembleur{RRF f, d} & Rotate Right f through Carry & \piccolo{rrf f} & \piccolo{rrf f, W}\\
+    \hdashline
+    \assembleur{SUBWF f, d} & Substract W from f & \piccolo{subwf f} & \piccolo{subwf f, W}\\
+    \hdashline
+    \assembleur{SWAPF f, d} & Swap Nibbles in f & \piccolo{swapf f} & \piccolo{swapf f, W}\\
+    \hdashline
+    \assembleur{XORWF f, d} & Exclusive OR W with f & \piccolo{xorwf f} & \piccolo{xorwf f, W}\\
   \hline
   \end{tabular}
   \caption{Instructions \emph{baseline} nommant un registre, et optionnellement \texttt{W}}
@@ -412,17 +488,18 @@ Ces instructions, ainsi que le traduction en Piccolo, sont listées dans le \ref
 
 \subsectionLabel{Opérations d'affectation de bit}{opBaselineAffectationBit}
 
-Ces instructions Piccolo correspondent aux instructions machine \texttt{BCF} et \texttt{BSF} (\refTableau{operationsBaselineAffectationBit}).
+Ces instructions Piccolo correspondent aux instructions machine \assembleur{BCF} et \assembleur{BSF} (\refTableau{operationsBaselineAffectationBit}).
 
 \begin{table}[!ht]
   \centering
   \small
-  \rowcolors{2}{\fondTableau}{}
+%  \rowcolors{2}{\fondTableau}{}
   \begin{tabular}{lll}
     \textbf{Assembleur} & \textbf{Description} & \textbf{Écriture en Piccolo}\\
     \hline
-    \texttt{BCF f, b} & Bit Clear f & \texttt{bcf f.b} \\
-    \texttt{BSF f, b} & Bit Set f & \texttt{bsf f.b} \\
+    \assembleur{BCF f, b} & Bit Clear f & \piccolo{bcf f.b} \\
+    \hdashline
+    \assembleur{BSF f, b} & Bit Set f & \piccolo{bsf f.b} \\
   \hline
   \end{tabular}
   \caption{Opérations \emph{baseline} sur un bit d'un registre}
@@ -461,30 +538,33 @@ Vous pouvez de cette façon accéder aux bits des registres spéciaux. Pour conn
 
 \subsectionLabel{Opérations littérales avec \texttt{W}}{opBaselineImmediate}
 
-Ces opérations sont listées dans le \refTableau{operationsLiteralesBaselineAvecW}. L’instruction \texttt{RETLW k} n’existe pas en Piccolo, l’optimiseur repérera une instruction \texttt{MOVLW k} en fin de routine et la transformera en \texttt{RETLW k}.
+Ces opérations sont listées dans le \refTableau{operationsLiteralesBaselineAvecW}. L’instruction \assembleur{RETLW k} n’existe pas en Piccolo, l’optimiseur repérera une instruction \assembleur{MOVLW k} en fin de routine et la transformera en \assembleur{RETLW k}.
 
-En Piccolo, \texttt{k} est une \emph{expression statique}. Une expression statique est une expression dont la valeur est calculée à la compilation. Sa forme générale est présentée à la \refSectionPage{expressionImmediate}. Le compilateur effectue tous les calculs d'une expression statique avec des nombres entiers 32 bits signés.
+En Piccolo, \piccolo{k} est une \emph{expression statique}. Une expression statique est une expression dont la valeur est calculée à la compilation. Sa forme générale est présentée à la \refSectionPage{expressionImmediate}. Le compilateur effectue tous les calculs d'une expression statique avec des nombres entiers 32 bits signés.
 
-Pour être valide dans les opérations statiques avec \texttt{W}, le résultat devra être :
+Pour être valide dans les opérations statiques avec \piccolo{W}, le résultat devra être :
 \begin{itemize}
   \item soit un nombre positif inférieur ou égal à 255 ;
   \item soit un nombre négatif supérieur ou égal à -128.
 \end{itemize}
 
-Par exemple : \texttt{movlw -14} engendre l’instruction assembleur : \texttt{MOVLW 0xf2}.
+Par exemple : \piccolo{movlw -14} engendre l’instruction assembleur : \assembleur{MOVLW 0xf2}.
 
 
 \begin{table}[!ht]
   \centering
   \small
-  \rowcolors{2}{\fondTableau}{}
+%  \rowcolors{2}{\fondTableau}{}
   \begin{tabular}{lll}
     \textbf{Assembleur} & \textbf{Description} & \textbf{Écriture en Piccolo}\\
     \hline
-    \texttt{ANDLW k} & And Literal with W & \texttt{andlw k}\\
-    \texttt{IORLW k} & Inclusive OR Literal with W & \texttt{iorlw k}\\
-    \texttt{MOVLW k} & Move Literal to W & \texttt{movlw k}\\
-    \texttt{XORLW k} & Exclusive OR Literal with W & \texttt{xorlw k}\\
+    \assembleur{ANDLW k} & And Literal with W & \piccolo{andlw k}\\
+    \hdashline
+    \assembleur{IORLW k} & Inclusive OR Literal with W & \piccolo{iorlw k}\\
+    \hdashline
+    \assembleur{MOVLW k} & Move Literal to W & \piccolo{movlw k}\\
+    \hdashline
+    \assembleur{XORLW k} & Exclusive OR Literal with W & \piccolo{xorlw k}\\
     \hline
   \end{tabular}
   \caption{Opérations litérales avec \texttt{W} pour \emph{baseline}}
@@ -499,15 +579,19 @@ Ces instructions sont listées dans le \refTableau{operationsBaselineIdentiquesA
 \begin{table}[!ht]
   \centering
   \small
-  \rowcolors{2}{\fondTableau}{}
+%  \rowcolors{2}{\fondTableau}{}
   \begin{tabular}{lll}
     \textbf{Assembleur} & \textbf{Description} & \textbf{Écriture en Piccolo}\\
     \hline
-    \texttt{CLRWDT} & Clear Watchdog Timer & \texttt{clrwdt}\\
-    \texttt{CLRW} & Clear W & \texttt{clrw}\\
-    \texttt{NOP} & No Operation & \texttt{nop}\\
-    \texttt{OPTION} & Load OPTION register & \texttt{option}\\
-    \texttt{SLEEP} & Go into Standby Mode & \texttt{sleep}\\
+    \assembleur{CLRWDT} & Clear Watchdog Timer & \piccolo{clrwdt}\\
+    \hdashline
+    \assembleur{CLRW} & Clear W & \piccolo{clrw}\\
+    \hdashline
+    \assembleur{NOP} & No Operation & \piccolo{nop}\\
+    \hdashline
+    \assembleur{OPTION} & Load OPTION register & \piccolo{option}\\
+    \hdashline
+    \assembleur{SLEEP} & Go into Standby Mode & \piccolo{sleep}\\
     \hline
   \end{tabular}
   \caption{Instructions \emph{baseline} identiques en assembleur et en Piccolo}
@@ -528,27 +612,36 @@ Ces instructions sont listées dans le \refTableau{operationsBaselineIdentiquesA
 
 
 
-\subsectionLabel{Instruction \texttt{TRIS}}{instructionTRIS}
+\subsectionLabel{Instruction \texttt{tris}}{instructionTRIS}
 
-En Piccolo, l'instruction \texttt{TRIS} a un opérande qui peut être: \texttt{GPIO}, \texttt{PORTA}, \texttt{PORTB}, \texttt{PORTC}, \texttt{PORTD} ou \texttt{PORTE}. Pour un composant donné, uniquement un sous-ensemble de ces valeurs est acceptable (\refTableau{TRISoperands}). D'une manière générale, pour que l'un des noms cités puisse être utilisé pour un composant donnée, il faut qu'il apparaisse parmi ses registres spéciaux (pour connaître la liste des registres de contrôle, utilisez l’option \texttt{-{}-registers} ou sa version courte \texttt{-R}, comme décrite à la \refSubsectionPage{exempleOptionRegisters} ; par exemple : \texttt{piccolo -R=10F220}).
+En Piccolo, l'instruction \piccolo{tris} a un opérande qui peut être: \piccolo{GPIO}, \piccolo{PORTA}, \piccolo{PORTB}, \piccolo{PORTC}, \piccolo{PORTD} ou \piccolo{PORTE}. Pour un composant donné, uniquement un sous-ensemble de ces valeurs est acceptable (\refTableau{TRISoperands}). D'une manière générale, pour que l'un des noms cités puisse être utilisé pour un composant donnée, il faut qu'il apparaisse parmi ses registres spéciaux (pour connaître la liste des registres de contrôle, utilisez l’option \texttt{-{}-registers} ou sa version courte \texttt{-R}, comme décrite à la \refSubsectionPage{exempleOptionRegisters} ; par exemple : \texttt{piccolo -R=10F220}).
 
 \begin{table}[!ht]
   \centering
   \small
-  \rowcolors{2}{\fondTableau}{}
+%  \rowcolors{2}{\fondTableau}{}
   \begin{tabular}{ll}
-    \textbf{Composant} & \textbf{Instructions \texttt{TRIS} en Piccolo}\\
+    \textbf{Composant} & \textbf{Instructions \piccolo{tris} en Piccolo}\\
     \hline
-    10F200, 10F202  & \texttt{tris GPIO}\\
-    10F204, 10F206  & \texttt{tris GPIO}\\
-    10F220  & \texttt{tris GPIO}\\
-    12F508, 12F509  & \texttt{tris GPIO}\\
-    12F510, 12F519  & \texttt{tris GPIO}\\
-    16F505, 16F506  & \texttt{tris PORTB}, \texttt{tris PORTC}\\
-    16F526  & \texttt{tris PORTB}, \texttt{tris PORTC}\\
-    16F54  & \texttt{tris PORTA}, \texttt{tris PORTB}\\
-    16F57  & \texttt{tris PORTA}, \texttt{tris PORTB}, \texttt{tris PORTC}\\
-    16F59  & \texttt{tris PORTA}, \texttt{tris PORTB}, \texttt{tris PORTC}, \texttt{tris PORTD}, \texttt{tris PORTE}\\
+    10F200, 10F202  & \piccolo{tris GPIO}\\
+    \hdashline
+    10F204, 10F206  & \piccolo{tris GPIO}\\
+    \hdashline
+    10F220  & \piccolo{tris GPIO}\\
+    \hdashline
+    12F508, 12F509  & \piccolo{tris GPIO}\\
+    \hdashline
+    12F510, 12F519  & \piccolo{tris GPIO}\\
+    \hdashline
+    16F505, 16F506  & \piccolo{tris PORTB}, \piccolo{tris PORTC}\\
+    \hdashline
+    16F526  & \piccolo{tris PORTB}, \piccolo{tris PORTC}\\
+    \hdashline
+    16F54  & \piccolo{tris PORTA}, \piccolo{tris PORTB}\\
+    \hdashline
+    16F57  & \piccolo{tris PORTA}, \piccolo{tris PORTB}, \piccolo{tris PORTC}\\
+    \hdashline
+    16F59  & \piccolo{tris PORTA}, \piccolo{tris PORTB}, \piccolo{tris PORTC}, \piccolo{tris PORTD}, \piccolo{tris PORTE}\\
     \hline
   \end{tabular}
   \caption{Instructions \texttt{tris} en Piccolo}
@@ -568,7 +661,7 @@ En Piccolo, l'instruction \texttt{TRIS} a un opérande qui peut être: \texttt{G
 
 \subsectionLabel{Appeler une routine régulière}{appelRoutineReguliereBaseline}
 
-Une routine régulière est une routine déclarée sans le qualificatif \texttt{noreturn}. L'appel s’effectue au moyen de l'instruction \texttt{CALL}.
+Une routine régulière est une routine déclarée sans le qualificatif \piccolo{noreturn}. L'appel s’effectue au moyen de l'instruction \piccolo{call}.
 
 Syntaxiquement, il faut simplement nommer la routine appelée après le nom de l’instruction d’appel :
 
@@ -581,7 +674,7 @@ call nom_routine
 
 \subsectionLabel{Appeler une routine sans retour}{appelRoutineSansRetourBaseline}
 
-Appeler une routine sans retour (c'est-à-dire déclarée avec le qualificatif \texttt{noreturn}) s'effectue par une instruction \texttt{goto}. L'appel s'écrit :
+Appeler une routine sans retour (c'est-à-dire déclarée avec le qualificatif \piccolo{noreturn}) s'effectue par une instruction \piccolo{goto}. L'appel s'écrit :
 \begin{lstlisting}[language=piccolo]
 goto nom_routine
 \end{lstlisting}
@@ -591,15 +684,15 @@ goto nom_routine
 
 \sectionLabel{Section \texttt{include}}{sectionIncludeBaseline}
 
-Une section \texttt{include} permet d'inclure un fichier contenant lui-même des sections telles que définies dans le \refTableauPage{sectionsBaseline}.  Son format est le suivant :
+Une section \piccolo{include} permet d'inclure un fichier contenant lui-même des sections telles que définies dans le \refTableauPage{sectionsBaseline}.  Son format est le suivant :
 
 \begin{lstlisting}[language=piccolo]
   include "chemin"
 \end{lstlisting}
 
-\texttt{chemin} est le chemin vers le fichier inclus, et est :
+\piccolo{chemin} est le chemin vers le fichier inclus, et est :
 \begin{itemize}
-  \item soit un chemin absolu (il commence par « \texttt{/} ») ;
+  \item soit un chemin absolu (il commence par \piccolo{/}) ;
   \item soit un chemin relatif par rapport au fichier source.
 \end{itemize}
 
@@ -610,19 +703,28 @@ La mémoire programme d'un \emph{baseline} est constituée d'une ou plusieurs pa
 \begin{table}[!ht]
   \centering
   \small
-  \rowcolors{2}{\fondTableau}{}
+%  \rowcolors{2}{\fondTableau}{}
   \begin{tabular}{lll}
     \textbf{Composant} & \textbf{Mémoire programme} & \textbf{Nombre de pages}\\
     \hline
     10F200, 10F204  & 256 instructions & 1\\
+    \hdashline
     10F202, 10F206  & 512 instructions & 1\\
+    \hdashline
     10F220  & 256 instructions & 1\\
+    \hdashline
     12F508  & 512 instructions & 1\\
+    \hdashline
     12F509  & 1024 instructions & 2\\
+    \hdashline
     12F510, 12F519  & 1024 instructions & 2\\
+    \hdashline
     16F505, 16F506  & 1024 instructions & 2\\
+    \hdashline
     16F526 & 1024 instructions & 2\\
+    \hdashline
     16F54  & 512 instructions & 1\\
+    \hdashline
     16F57, 16F59  & 2048 instructions & 4\\
     \hline
   \end{tabular}
@@ -630,56 +732,57 @@ La mémoire programme d'un \emph{baseline} est constituée d'une ou plusieurs pa
   \labelTableau{nombrePagesBaseline}
 \end{table}
 
-Les deux instructions de branchement que le jeu d'instructions des \emph{baseline} définit sont \texttt{CALL} et \texttt{GOTO} (\refTableau{callGotoBaseline}).
+Les deux instructions de branchement que le jeu d'instructions des \emph{baseline} définit sont \assembleur{CALL} et \assembleur{GOTO} (\refTableau{callGotoBaseline}).
 
 \begin{table}[!ht]
   \centering
   \small
-  \rowcolors{3}{}{\fondTableau}
+%  \rowcolors{3}{}{\fondTableau}
   \begin{tabular}{llllllllllllll}
     \textbf{Instruction} & \textbf{Description} & \multicolumn{12}{l}{\bf Code binaire}\\
                          &                      & 11 & 10 & 9 & 8 & 7 & 6 & 5 & 4 & 3 & 2 & 1 & 0\\
     \hline
-    \texttt{CALL k}  & Call subroutine & 1 & 0 & 0 & 1 & k & k & k & k & k & k & k & k\\
-    \texttt{GOTO k}  & Go to Address   & 1 & 0 & 1 & k & k & k & k & k & k & k & k & k\\
+    \assembleur{CALL k}  & Call subroutine & 1 & 0 & 0 & 1 & k & k & k & k & k & k & k & k\\
+    \hdashline
+    \assembleur{GOTO k}  & Go to Address   & 1 & 0 & 1 & k & k & k & k & k & k & k & k & k\\
     \hline
   \end{tabular}
-  \caption{Instructions \texttt{CALL} et \texttt{GOTO} des \emph{baseline}}
+  \caption{Instructions assembleur \texttt{CALL} et \texttt{GOTO} des \emph{baseline}}
   \labelTableau{callGotoBaseline}
 \end{table}
 
 En résumé, ces instructions ne permettent pas d'effectuer par elles mêmes un branchement à tout position de la mémoire programme :
 \begin{itemize}
-  \item un \texttt{CALL} utilisé seul exige que la routine appelée soit dans les 256 premiers octets de la page courante ;
-  \item un \texttt{GOTO} utilisé seul permet d'effectuer un branchement à toute position de la page courante.
+  \item un \assembleur{CALL} utilisé seul exige que la routine appelée soit dans les 256 premiers octets de la page courante ;
+  \item un \assembleur{GOTO} utilisé seul permet d'effectuer un branchement à toute position de la page courante.
 \end{itemize}
 
-Pour changer de page, il faut modifier les bits \texttt{PA} du registre \texttt{STATUS} avant d'appeler l'instruction \texttt{CALL} ou \texttt{GOTO}.
+Pour changer de page, il faut modifier les bits \assembleur{PA} du registre \assembleur{STATUS} avant d'appeler l'instruction \assembleur{CALL} ou \assembleur{GOTO}.
 
 Voici comment ces contraintes sont prises en compte en Piccolo :
 \begin{itemize}
   \item une routine doit complètement résider à l'intérieur d'une page ;
   \item lors de la déclaration d'une routine, la page dans laquelle elle réside est précisée (\refSubsectionPage{declarationRoutineBaselineEtPage}) ;
-  \item les instructions Piccolo \texttt{call} et \texttt{goto} effectuent des branchements à l'intérieur de la page courante ;
-  \item pour appeler des routines placées dans une autre page, utiliser les instructions Piccolo \texttt{jsr} (\refSubsectionPage{instructionJsrBaseline}) et \texttt{jump} (\refSubsectionPage{instructionJumpBaseline}).
+  \item les instructions Piccolo \piccolo{call} et \piccolo{goto} effectuent des branchements à l'intérieur de la page courante ;
+  \item pour appeler des routines placées dans une autre page, utiliser les instructions Piccolo \piccolo{jsr} (\refSubsectionPage{instructionJsrBaseline}) et \piccolo{jump} (\refSubsectionPage{instructionJumpBaseline}).
 \end{itemize}
 
 
 
 \subsectionLabel{Instruction \texttt{jump}}{instructionJumpBaseline}
 
-L'instruction Piccolo  \texttt{jump} engendre des instructions machine \texttt{BCF} ou \texttt{BSF} pour modifier les bits \texttt{PA} du registre \texttt{STATUS}, puis l'instruction machine \texttt{GOTO}.
+L'instruction Piccolo  \piccolo{jump} engendre des instructions machine \assembleur{BCF} ou \assembleur{BSF} pour modifier les bits \assembleur{PA} du registre \assembleur{STATUS}, puis l'instruction machine \assembleur{GOTO}.
 
-Elle occupe donc $n+1$ mots de la mémoire programme, $n$ étant le nombre de bits \texttt{PA} du registre \texttt{STATUS} à changer.
+Elle occupe donc $n+1$ mots de la mémoire programme, $n$ étant le nombre de bits \assembleur{PA} du registre \assembleur{STATUS} à changer.
 
 
 
 
 \subsectionLabel{Instruction \texttt{jsr}}{instructionJsrBaseline}
 
-L'instruction Piccolo  \texttt{jsr} engendre des instructions machine \texttt{BCF} ou \texttt{BSF} pour modifier les bits \texttt{PA} du registre \texttt{STATUS}, puis l'instruction machine \texttt{CALL}, puis de nouveau des instructions machine \texttt{BCF} ou \texttt{BSF} pour rétablir les bits \texttt{PA} du registre \texttt{STATUS}.
+L'instruction Piccolo  \piccolo{jsr} engendre des instructions machine \assembleur{BCF} ou \assembleur{BSF} pour modifier les bits \assembleur{PA} du registre \assembleur{STATUS}, puis l'instruction machine \assembleur{CALL}, puis de nouveau des instructions machine \assembleur{BCF} ou \assembleur{BSF} pour rétablir les bits \assembleur{PA} du registre \assembleur{STATUS}.
 
-Elle occupe donc $2n+1$ mots de la mémoire programme, $n$ étant le nombre de bits \texttt{PA} du registre \texttt{STATUS} à changer pour effectuer l'appel.
+Elle occupe donc $2n+1$ mots de la mémoire programme, $n$ étant le nombre de bits \assembleur{PA} du registre \assembleur{STATUS} à changer pour effectuer l'appel.
 
 \subsectionLabel{Déclaration de routine et page}{declarationRoutineBaselineEtPage}
 
@@ -690,7 +793,7 @@ Pour spécifier dans quelle page de la mémoire programme une routine régulièr
   }
 \end{lstlisting}
 
-Où \texttt{numero\_page} est un entier positif ou nul strictement inférieur au nombre de pages.
+Où \piccolo{numero\_page} est un entier positif ou nul strictement inférieur au nombre de pages.
 
 Pour une routine régulière sans retour :
 \begin{lstlisting}[language=piccolo]
@@ -780,18 +883,25 @@ Pour optimiser, Piccolo applique les remplacements indiqués par le \refTableau{
 \begin{table}[!ht]
   \centering
   \small
-  \rowcolors{2}{\fondTableau}{}
+%  \rowcolors{2}{\fondTableau}{}
   \begin{tabular}{ll}
     \textbf{Situation} & \textbf{Optimisation} \\
     \hline
-    \texttt{CALL} vers \texttt{RETLW k}  & Remplacement par \texttt{MOVLW k}\\
-    \texttt{GOTO} vers \texttt{RETLW k}  & Remplacement par \texttt{RETLW k}\\
-    \texttt{GOTO a} vers \texttt{GOTO b}  & Remplacement par \texttt{GOTO b}\\
-    \texttt{GOTO} vers l'instruction qui suit  & Suppression\\
-    \texttt{JSR} vers \texttt{RETLW k}  & Remplacement par \texttt{MOVLW k}\\
-    \texttt{JUMP} vers \texttt{RETLW k}  & Remplacement par \texttt{RETLW k}\\
-    \texttt{JUMP a} vers \texttt{JUMP b}  & Remplacement par \texttt{JUMP b}\\
-    \texttt{JUMP a} vers \texttt{GOTO b}  & Remplacement par \texttt{JUMP b}\\
+    \assembleur{CALL} vers \assembleur{RETLW k}  & Remplacement par \assembleur{MOVLW k}\\
+    \hdashline
+    \assembleur{GOTO} vers \assembleur{RETLW k}  & Remplacement par \assembleur{RETLW k}\\
+    \hdashline
+    \assembleur{GOTO a} vers \assembleur{GOTO b}  & Remplacement par \assembleur{GOTO b}\\
+    \hdashline
+    \assembleur{GOTO} vers l'instruction qui suit  & Suppression\\
+    \hdashline
+    \assembleur{JSR} vers \assembleur{RETLW k}  & Remplacement par \assembleur{MOVLW k}\\
+    \hdashline
+    \assembleur{JUMP} vers \assembleur{RETLW k}  & Remplacement par \assembleur{RETLW k}\\
+    \hdashline
+    \assembleur{JUMP a} vers \assembleur{JUMP b}  & Remplacement par \assembleur{JUMP b}\\
+    \hdashline
+    \assembleur{JUMP a} vers \assembleur{GOTO b}  & Remplacement par \assembleur{JUMP b}\\
     \hline
   \end{tabular}
   \caption{Optimisation du code \emph{baseline}}

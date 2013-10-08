@@ -26,7 +26,7 @@ Pour chaque routine, Piccolo essaie de calculer le nombre de niveaux pile dont e
 
 Évidemment, ce calcul statique est impossible pour une routine récursive, et pour toute routine appelant une routine récursive. Piccolo détecte ces situations et affiche « \emph{recursive} » à la place du nombre de niveaux. 
 
-Si un programme n'a pas de routine d'interruption, le nombre total de niveaux de pile nécessaire est celui de la routine \texttt{main}.
+Si un programme n'a pas de routine d'interruption, le nombre total de niveaux de pile nécessaire est celui de la routine \piccolo{main}.
 
 
 Si un programme a des routines d'interruption, en supposant que celles-ci ne sont pas interruptibles et donc ne s'imbriquent pas, le nombre total de niveaux de pile nécessaire est :
@@ -40,9 +40,9 @@ Si un programme a des routines d'interruption, en supposant que celles-ci ne son
 
 Pour toutes les routines non récursives, Piccolo tente de calculer les bornes de leur durée d'exécution. Il y a une condition supplémentaire, l'absence d'instruction entraînant un bouclage, à savoir l'\emph{instruction de répétition infinie} (\refSectionPage{repetitionInfinie}), et l'\emph{instruction répétitive} (\refSectionPage{instructionRepetitive}). En fonction des instructions conditionnelles, Piccolo calcule le \emph{meilleur} et le \emph{pire} temps d'exécution.
 
-Ces durées sont exprimées en nombre de cycles de l'horloge des instructions : la plupart des instructions s'exécute en un cycle, et quelques instructions comme \texttt{CALL}, \texttt{RETURN}, \texttt{MOVFF}, \dots\ en deux cycles.
+Ces durées sont exprimées en nombre de cycles de l'horloge des instructions : la plupart des instructions s'exécute en un cycle, et quelques instructions comme \assembleur{CALL}, \assembleur{RETURN}, \assembleur{MOVFF}, \dots\ en deux cycles.
 
-Évidemment, aucune durée ne peut être établie pour la routine \texttt{main}, celle-ci se terminant obligatoirement par une boucle infinie. Cependant, ce calcul peut être utile pour les routines d'interruption, à condition qu'elle ne comportent pas de boucle, ce qui est souvent le cas.
+Évidemment, aucune durée ne peut être établie pour la routine \piccolo{main}, celle-ci se terminant obligatoirement par une boucle infinie. Cependant, ce calcul peut être utile pour les routines d'interruption, à condition qu'elle ne comportent pas de boucle, ce qui est souvent le cas.
 
 \section{Exemple}
 
@@ -89,7 +89,7 @@ Ce programme est juste pris pour exemple de calcul de niveau de pile et de duré
 
 Sans l'option « \texttt{-O} », le code engendré est le suivant, extrait du fichier listing engendré grâce à l'option « \texttt{-L} ».
 
-La routine \texttt{optimize1} :
+La routine \assembleur{optimize1} :
 
 \begin{lstlisting}[language=assembleur, frame=l]
     2  000002 :           optimize1:
@@ -109,7 +109,7 @@ La routine \texttt{optimize1} :
    16  000014 : 0012        RETURN
 \end{lstlisting}
 
-La routine \texttt{optimize2} :
+La routine \assembleur{optimize2} :
 
 \begin{lstlisting}[language=assembleur, frame=l]
    17  000016 :           optimize2:
@@ -130,7 +130,7 @@ La routine \texttt{optimize2} :
    32  00002A :           main:
 \end{lstlisting}
 
-Les besoins en pile sont faciles à calculer, ces routines n'appelant pas d'autres routines et étant appelées par \texttt{main}. Le résultat calculé par Piccolo apparaît dans le fichier listing sous la forme suivante :
+Les besoins en pile sont faciles à calculer, ces routines n'appelant pas d'autres routines et étant appelées par \piccolo{main}. Le résultat calculé par Piccolo apparaît dans le fichier listing sous la forme suivante :
 \begin{lstlisting}[language=assembleur, frame=l]
 Stack needs:
                                         Routine Levels
@@ -139,7 +139,7 @@ Stack needs:
                                            main 1
 \end{lstlisting}
 
-L'option « \texttt{-d} » permet d'insérer dans le fichier listing le détail des calculs des durées minimum et maximum de chaque routine, exprimés en nombre de cycles de l'horloge des instructions (la plupart des instructions s'exécute en un cycle, et quelques instructions comme \texttt{CALL}, \texttt{RETURN}, \texttt{MOVFF}, \dots\ en deux cycles). Pour la routine \texttt{optimize1}, on obtient :
+L'option « \texttt{-d} » permet d'insérer dans le fichier listing le détail des calculs des durées minimum et maximum de chaque routine, exprimés en nombre de cycles de l'horloge des instructions (la plupart des instructions s'exécute en un cycle, et quelques instructions comme \assembleur{CALL}, \assembleur{RETURN}, \assembleur{MOVFF}, \dots\ en deux cycles). Pour la routine \assembleur{optimize1}, on obtient :
 
 \begin{lstlisting}[language=assembleur, frame=l]
  Line:  min-  max:
@@ -161,9 +161,9 @@ L'option « \texttt{-d} » permet d'insérer dans le fichier listing le détail 
 optimize1 --> 7 ... 10
 \end{lstlisting}
 
-Pour chaque ligne, sont affichés les instants \emph{minimum} et \emph{maximum} auxquels se termine l'exécution de l'instruction citée. La dernière ligne récapitule résultat : la routine \texttt{optimize1} s'exécute au mieux en 7 cycles de l'horloge des instructions, au pire en 10.
+Pour chaque ligne, sont affichés les instants \emph{minimum} et \emph{maximum} auxquels se termine l'exécution de l'instruction citée. La dernière ligne récapitule résultat : la routine \assembleur{optimize1} s'exécute au mieux en 7 cycles de l'horloge des instructions, au pire en 10.
 
-Et pour la routine \texttt{optimize2}, on obtient :
+Et pour la routine \assembleur{optimize2}, on obtient :
 
 \begin{lstlisting}[language=assembleur, frame=l]
    17:    0-    0:LABEL optimize2
@@ -184,11 +184,11 @@ Et pour la routine \texttt{optimize2}, on obtient :
 optimize2 --> 6 ... 11
 \end{lstlisting}
 
-On n'obtient aucun résultat pour la routine \texttt{main}, car celle-ci boucle.
+On n'obtient aucun résultat pour la routine \assembleur{main}, car celle-ci boucle.
 
 \subsection{Résultats avec optimisation}
 
-L'optimisation (option « \texttt{-O} ») transforme la séquence \texttt{MOVLW k - RETURN} en \texttt{RETLW k}, et un branchement vers une instruction \texttt{RETURN} en \texttt{RETURN}. La routine \texttt{optimize1} devient donc :
+L'optimisation (option « \texttt{-O} ») transforme la séquence \assembleur{MOVLW k - RETURN} en \assembleur{RETLW k}, et un branchement vers une instruction \assembleur{RETURN} en \assembleur{RETURN}. La routine \assembleur{optimize1} devient donc :
 
 \begin{lstlisting}[language=assembleur, frame=l]
  Line:  min-  max:
@@ -204,7 +204,7 @@ optimize1 --> 4 ... 7
 \end{lstlisting}
 
 
-Et la routine \texttt{optimize2} :
+Et la routine \assembleur{optimize2} :
 
 \begin{lstlisting}[language=assembleur, frame=l]
  Line:  min-  max:

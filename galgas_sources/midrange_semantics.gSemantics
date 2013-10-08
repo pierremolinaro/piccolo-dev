@@ -8,7 +8,15 @@ import "ram_sections.gSemantics" ;
 import "midrange_optimizations.gSemantics" ;
 import "midrange_build_binary_code.gSemantics" ;
 import "midrange_compute_JSR_JUMP.gSemantics" ;
+import "midrange_used_routines.gSemantics" ;
 import "piccolo_options.gOption" ;
+
+#----------------------------------------------------------------------------*
+
+map @midrange_declaredRoutineMap {
+  insert insertKey error message "the '%K' routine is already declared" ;
+  search searchKey error message "the '%K' routine is not declared" ;
+}
 
 #----------------------------------------------------------------------------*
 #                                                                            *
@@ -73,20 +81,46 @@ routine midrange_analyze ??@midrange_model inPiccoloModel ??@string inSourceFile
     !?listFileContents
     !?usedRegisters
   ;
+#-------------------------------- Compute used routine set
+  const @stringset usedRoutineSet := midrange_computeUsedRoutines [
+    !inPiccoloModel->mInterruptDefinitionList
+    !inPiccoloModel->mRoutineDefinitionList
+  ] ;
+  @midrange_declaredRoutineMap declaredRoutineMap [emptyMap] ;
+  foreach inPiccoloModel->mRoutineDefinitionList do
+    [!?declaredRoutineMap insertKey !mRoutineName] ;
+  end foreach ;
+#-------------------------------- Check used routines
+  @stringset unusedRoutineDeclarationUnicity [emptySet] ;
+  foreach inPiccoloModel->mUnusedRoutineList do
+    if not [declaredRoutineMap hasKey !mValue->string] then
+      error mValue : "the '" . mValue . "' routine is not declared" ;
+    elsif [unusedRoutineDeclarationUnicity hasKey !mValue->string] then
+      warning mValue : "the '" . mValue . "' routine is already declared as unused" ;
+    elsif [usedRoutineSet hasKey !mValue->string] then
+      warning mValue : "the '" . mValue . "' routine is declared as unused, but is used" ;
+    end if ;
+    unusedRoutineDeclarationUnicity += !mValue->string ;
+  end foreach ;
+  foreach declaredRoutineMap do
+    if (not [usedRoutineSet hasKey !lkey->string]) & (not [unusedRoutineDeclarationUnicity hasKey !lkey->string]) then
+      warning lkey : "the '" . lkey . "' routine is unused" ;
+    end if ;
+  end foreach ;
 #----------------------------------------------------------- Check declared bytes are used
-  @stringset unusedDeclarationUnicity [emptySet] ;
+  @stringset unusedByteDeclarationUnicity [emptySet] ;
   foreach inPiccoloModel->mUnusedRegisterList do
     if not [registerTable hasKey !mValue->string] then
       error mValue : "the '" . mValue . "' byte is not declared" ;
-    elsif [unusedDeclarationUnicity hasKey !mValue->string] then
+    elsif [unusedByteDeclarationUnicity hasKey !mValue->string] then
       warning mValue : "the '" . mValue . "' byte is already declared as unused" ;
     elsif [usedRegisters hasKey !mValue->string] then
       warning mValue : "the '" . mValue . "' byte is declared as unused, but is used" ;
     end if ;
-    unusedDeclarationUnicity += !mValue->string ;
+    unusedByteDeclarationUnicity += !mValue->string ;
   end foreach ;
   foreach declaredByteMap do
-    if (not [usedRegisters hasKey !lkey->string]) & (not [unusedDeclarationUnicity hasKey !lkey->string]) then
+    if (not [usedRegisters hasKey !lkey->string]) & (not [unusedByteDeclarationUnicity hasKey !lkey->string]) then
       warning lkey : "the '" . lkey . "' byte is unused" ;
     end if ;
   end foreach ;

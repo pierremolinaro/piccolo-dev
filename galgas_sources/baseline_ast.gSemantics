@@ -212,6 +212,7 @@ struct @baseline_model {
   @lstringlist mUnusedRegisterList ;
   @constantDefinitionList mConstantDefinitionList ;
   @baseline_routineDefinitionList mRoutineDefinitionList ;
+  @lstringlist mUnusedRoutineList ;
   @location mEndOfProgram ;
 }
 
