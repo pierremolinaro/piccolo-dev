@@ -13,6 +13,8 @@ with lexique "piccolo_lexique.gLexique" {
   label $ram$, $identifier$ ;
   label $interrupt$, $identifier$ ;
   label $include$, $literal_string$ ;
+  label $unused$, $byte$ ;
+  label $unused$, $routine$ ;
   label* $commentMark$ (2, 0) ;
 }
 
