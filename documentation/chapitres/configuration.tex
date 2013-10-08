@@ -8,18 +8,18 @@
 %--- Pour supprimer tout en-tête et pied de page sur la 1re page d'un chapitre
 \thispagestyle{empty}
 
-Dans un fichier source Piccolo, une section \texttt{configuration} vous permet de définir le contenu des registres de configuration. Les valeurs ainsi définies sont contenues dans le fichier hex et le fichier asm engendré.
+Dans un fichier source Piccolo, une section \piccolo{configuration} vous permet de définir le contenu des registres de configuration. Les valeurs ainsi définies sont contenues dans le fichier hex et le fichier asm engendré.
 
 
 Les règles d'utilisation sont les suivantes :
 \begin{itemize}
-  \item en l’absence de section \texttt{configuration}, aucun code de configuration n’est défini ;
-  \item si une ou plusieurs sections \texttt{configuration} existent, le code de configuration est engendré.
+  \item en l’absence de section \piccolo{configuration}, aucun code de configuration n’est défini ;
+  \item si une ou plusieurs sections \piccolo{configuration} existent, le code de configuration est engendré.
 \end{itemize}
 
-Plusieurs sections \texttt{configuration} peuvent exister, leur effet est le même que si tous leurs contenus étaient rassemblés dans une seule. L’ordre des sections \texttt{configuration}, et leurs positions parmi les autres sections sont quelconques.
+Plusieurs sections \piccolo{configuration} peuvent exister, leur effet est le même que si tous leurs contenus étaient rassemblés dans une seule. L’ordre des sections \piccolo{configuration}, et leurs positions parmi les autres sections sont quelconques.
 
-La description définie par les sections \texttt{configuration} doit être exhaustive, c’est à dire que tous les champs de tous les registres de configuration doivent être définis explicitement.
+La description définie par les sections \piccolo{configuration} doit être exhaustive, c’est à dire que tous les champs de tous les registres de configuration doivent être définis explicitement.
 
 Le fichier listing (obtenu par l’option \texttt{-L} ou \texttt{-{}-list}) contient le détail de la configuration et les éventuels messages d’erreur de configuration.
 
@@ -36,19 +36,19 @@ Pour connaître les possibilités de configurations d’un micro-contrôleur par
 Cette commande affiche :
 \lstinputlisting[language=sortie]{files-from-piccolo/configuration-10F220.txt}
 
-Le texte obtenu indique qu'il y a cinq champs à définir : \texttt{CP}, \texttt{IOSCFS}, \texttt{MCLRE}, \texttt{MCPU} et \texttt{WDTE}. Le champ \texttt{IOSCFS} peut prendre deux valeurs différentes : \texttt{"4 MHz"} et \texttt{"8 MHz"}. Les autres informations telles que le nom des registres, la chaîne d'information, la valeur des masques, … ne sont pas utiles ici.
+Le texte obtenu indique qu'il y a cinq champs à définir : \piccolo{CP}, \piccolo{IOSCFS}, \piccolo{MCLRE}, \piccolo{MCPU} et \piccolo{WDTE}. Le champ \piccolo{IOSCFS} peut prendre deux valeurs différentes : \piccolo{"4 MHz"} et \piccolo{"8 MHz"}. Les autres informations telles que le nom des registres, la chaîne d'information, la valeur des masques, … ne sont pas utiles ici.
 
 Il est indispensable d'effectuer cette opération pour chaque micro-contrôleur, les noms des champs et des valeurs associées peuvent être différents entre le \emph{data sheet} du micro-contrôleur et Piccolo.
 
 \section{Écrire une configuration}
 
-Le principe est simple, il suffit d’écrire dans une ou plusieurs sections \texttt{configuration} une liste d’affectations du type :
+Le principe est simple, il suffit d’écrire dans une ou plusieurs sections \piccolo{configuration} une liste d’affectations du type :
 
 \begin{lstlisting}[language=piccolo]
 setting : description
 \end{lstlisting}
 
-où \texttt{setting} est le nom d’un champ d’un registre de configuration, et \texttt{description} la chaîne descriptive de la valeur souhaitée (voir section précédente).
+où \piccolo{setting} est le nom d’un champ d’un registre de configuration, et \piccolo{description} la chaîne descriptive de la valeur souhaitée (voir section précédente).
 
 Par exemple, pour le 10F220 :
 
@@ -60,7 +60,7 @@ configuration {
 }
 \end{lstlisting}
 
-Si la valeur descriptive est un identificateur (comme pour \texttt{CP}), alors on peut simplifier l’écriture en :
+Si la valeur descriptive est un identificateur (comme pour \piccolo{CP}), alors on peut simplifier l’écriture en :
 
 \begin{lstlisting}[language=piccolo]
   CP : Enabled
@@ -76,7 +76,7 @@ Un champ ne peut être affecté qu’une seule fois. Plusieurs affectations du m
 
 Pour certains micro-contrôleurs, certaines affectations particulières sont incompatibles. Ces interdictions sont contenues dans les fichiers de description des micro-contrôleurs, et par conséquent sont vérifiées par Piccolo. 
 
-C’est par exemple le cas du 18F4431 : le champ \texttt{BOREN} ne doit pas prendre la valeur \texttt{Disabled} quand le champ \texttt{BORV} prend la valeur \texttt{Reserved}. Cette incompabilité peut être mise en évidence en affichant la description de la configuration du 18F4431 (\texttt{piccolo -F=18F4431}), dont voici l'extrait qui nous intéresse :
+C’est par exemple le cas du 18F4431 : le champ \piccolo{BOREN} ne doit pas prendre la valeur \piccolo{Disabled} quand le champ \piccolo{BORV} prend la valeur \piccolo{Reserved}. Cette incompabilité peut être mise en évidence en affichant la description de la configuration du 18F4431 (\texttt{piccolo -F=18F4431}), dont voici l'extrait qui nous intéresse :
 {\small
 \begin{lstlisting}[frame=l]
 ...

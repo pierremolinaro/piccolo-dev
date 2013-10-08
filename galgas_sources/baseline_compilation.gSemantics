@@ -10,6 +10,14 @@ import "baseline_intermediate_instruction_print.gSemantics" ;
 import "baseline_build_assembly_code.gSemantics" ;
 import "baseline_build_binary_code.gSemantics" ;
 import "baseline_optimizations.gSemantics" ;
+import "baseline_used_routines.gSemantics" ;
+
+#----------------------------------------------------------------------------*
+
+map @baseline_declaredRoutineMap {
+  insert insertKey error message "the '%K' routine is already declared" ;
+  search searchKey error message "the '%K' routine is not declared" ;
+}
 
 #----------------------------------------------------------------------------*
 #                                                                            *
@@ -274,6 +282,31 @@ routine baseline_analysis
       currentPage ++ ;
     end loop ;
   end if ;
+#-------------------------------- Compute used routine set
+  const @stringset usedRoutineSet := baseline_computeUsedRoutines [
+    !inPiccoloModel->mRoutineDefinitionList
+  ] ;
+  @baseline_declaredRoutineMap declaredRoutineMap [emptyMap] ;
+  foreach inPiccoloModel->mRoutineDefinitionList do
+    [!?declaredRoutineMap insertKey !mRoutineName] ;
+  end foreach ;
+#-------------------------------- Check used routines
+  @stringset unusedRoutineDeclarationUnicity [emptySet] ;
+  foreach inPiccoloModel->mUnusedRoutineList do
+    if not [declaredRoutineMap hasKey !mValue->string] then
+      error mValue : "the '" . mValue . "' routine is not declared" ;
+    elsif [unusedRoutineDeclarationUnicity hasKey !mValue->string] then
+      warning mValue : "the '" . mValue . "' routine is already declared as unused" ;
+    elsif [usedRoutineSet hasKey !mValue->string] then
+      warning mValue : "the '" . mValue . "' routine is declared as unused, but is used" ;
+    end if ;
+    unusedRoutineDeclarationUnicity += !mValue->string ;
+  end foreach ;
+  foreach declaredRoutineMap do
+    if (not [usedRoutineSet hasKey !lkey->string]) & (not [unusedRoutineDeclarationUnicity hasKey !lkey->string]) then
+      warning lkey : "the '" . lkey . "' routine is unused" ;
+    end if ;
+  end foreach ;
 #----------------------------------------------------------- Check declared bytes are used
   @stringset unusedDeclarationUnicity [emptySet] ;
   foreach inPiccoloModel->mUnusedRegisterList do
