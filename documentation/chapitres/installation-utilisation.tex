@@ -104,19 +104,15 @@ Si plusieurs fichiers sources apparaissent dans la ligne de commande, ils sont t
 
 \begin{description}
 
-  \item[\texttt{-U}, \texttt{-{-}use-legacy-pic18-compiler}] Utilise l'ancien compilateur pour \emph{pic18} des versions 2.x.
-
-
-
   \item[\texttt{-o}, \texttt{-{-}optimize}] Effectue de manière itérative des optimisations du code produit.
 
 
-  \item[\texttt{-F}, \texttt{-{-}optimization-flags}] Cette option concerne uniquement le compilateur pour \emph{pic18} des versions 3.x, elle n'a aucune impluence sur les compilateurs des \emph{baseline}, \emph{mid-range}, et sur l'ancien compilateur pour \emph{pic18} des versions 2.x. Cette option permet d'activer finement chacune des optimisations, l'option \texttt{-o} ci-dessus les activant toutes à la fois. À moins que vous soyez intéressé par le fonctionnement de l'optimiseur, vous n'avez pas à utiliser cette option. Elle s'utilise comme suit : par exemple, \texttt{-F=DER} active les optimisations \texttt{D}, \texttt{E} et \texttt{R} décrites ci-dessous. L'ordre d'apparition n'a aucune importance, il ne faut pas d'espace entre les lettres, plusieurs occurrences d'une même lettre sont ignorées. Les optimisations que vous pouvez ainsi activer sont :
+  \item[\texttt{-F}, \texttt{-{-}optimization-flags}] Cette option concerne uniquement le compilateur pour \emph{pic18} des versions 3.x, elle n'a aucune impluence sur les compilateurs des \emph{baseline}, \emph{mid-range}. Cette option permet d'activer finement chacune des optimisations, l'option \texttt{-o} ci-dessus les activant toutes à la fois. À moins que vous soyez intéressé par le fonctionnement de l'optimiseur, vous n'avez pas à utiliser cette option. Elle s'utilise comme suit : par exemple, \texttt{-F=DER} active les optimisations \texttt{D}, \texttt{E} et \texttt{R} décrites ci-dessous. L'ordre d'apparition n'a aucune importance, il ne faut pas d'espace entre les lettres, plusieurs occurrences d'une même lettre ont le même effet qu'une seule occurrence. Les optimisations que vous pouvez ainsi activer sont :
 \begin{itemize}
   \item \texttt{B} : les blocs sont ordonnés de façon à diminuer le nombre de sauts d'un bloc à l'autre ;
   \item \texttt{C} : les blocs sont regroupés en \emph{clusters} qui sont ensuite ordonnés de façon à diminuer le nombre de branchements relatifs à transformer en branchements absolu ; cette option n'est active que si l'option précédente \texttt{-B} l'est aussi ;
   \item \texttt{E} : l'appel à une routine constituée d'une instruction \assembleur{RETURN} est supprimé ;
-  \item \texttt{e} : dans une instruction \texttt{computed rcall}, l'appel à une routine constituée d'une instruction \assembleur{RETURN} est supprimé une instruction \texttt{BLANK} (c'est à dire un \assembleur{NOP} dont le code est 0xF000) ;
+  \item \texttt{e} : dans une instruction \texttt{computed rcall}, l'appel à une routine constituée d'une instruction \assembleur{RETURN} est remplacé par une instruction \texttt{BLANK} (c'est à dire un \assembleur{NOP} dont le code est \assembleur{0xF000}) ;
   \item \texttt{I} : l'appel à une routine constituée d'une seule instruction avant le \assembleur{RETURN} est remplacé par cette instruction ;
   \item \texttt{i} : dans une instruction \texttt{computed rcall}, l'appel à une routine constituée d'une seule instruction avant le \assembleur{RETURN} est remplacé par cette instruction ;
   \item \texttt{J} : une instruction \assembleur{RCALL}, \assembleur{CALL} ou \assembleur{JSR} suivie d'une instruction \assembleur{RETURN} est remplacée par une instruction \assembleur{BRA}, \assembleur{GOTO} ou \assembleur{JUMP} ;
@@ -128,7 +124,7 @@ Si plusieurs fichiers sources apparaissent dans la ligne de commande, ils sont t
 
   \item[\texttt{-L}, \texttt{-{-}list}] Produit un fichier listing contenant de nombreux détails concernant la configuration, l’allocation de la RAM, les optimisations réalisées et la transformation des branchement relatifs en absolu. Ce fichier est écrit dans le même répertoire que le fichier source, porte le même nom, mais avec l’extension \texttt{.list}.
 
-  \item[\texttt{-S}, \texttt{-{-}asm}] Si la compilation s’effectue sans erreur, engendre aussi un fichier texte assembleur, dans le même répertoire que le fichier source Piccolo, mais avec l’extension « .asm ».
+  \item[\texttt{-S}, \texttt{-{-}asm}] Si la compilation s’effectue sans erreur, engendre aussi un fichier texte assembleur, dans le même répertoire que le fichier source Piccolo, mais avec l’extension \texttt{.asm}.
 
   \item[\texttt{-n}, \texttt{-{-}no-file-generation}] Aucune écriture sur fichier n’a lieu : ceci permet de garantir que les fichiers de sortie ne seront pas engendrés. La tentative d’écrire un fichier est signalé par un \emph{warning}.
 

@@ -570,7 +570,7 @@ unused routine routine1, routine2
 
 \subsectionLabel{Routine \texttt{inline}}{routineInline}
 
-À partir de la version 3.0.3, il est possible de demander la \emph{mise en ligne} de routines. Cette opération consiste à remplacer une instruction \piccolo{rcall}, \piccolo{call} ou \piccolo{jsr} par les instructions de la routine appelée. Ainsi, si la routine n'est appelée qu'une seule fois et en fonction de l'endroit où est appelée la routine, on peut gagner à la génération de code deux instructions (l'instruction d'appel et l'instruction \assembleur{RETURN}) et à l'exécution un niveau d'appel de sous-programme, 
+À partir de la version 3.0.3, il est possible de demander la \emph{mise en ligne} de routines. Cette opération consiste à remplacer une instruction \piccolo{rcall}, \piccolo{call} ou \piccolo{jsr} par les instructions de la routine appelée. Ainsi, si la routine n'est appelée qu'une seule fois et en fonction de l'endroit où est appelée la routine, on peut gagner à la génération de code deux instructions assembleur (l'instruction d'appel et l'instruction \assembleur{RETURN}) et à l'exécution un niveau d'appel de sous-programme, 
 
 La syntaxe pour demander la \emph{mise en ligne} de routine est :
 \begin{lstlisting}[language=piccolo]
