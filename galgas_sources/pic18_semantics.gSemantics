@@ -5,13 +5,7 @@ import "pic18_grammar.gGrammar" ;
 import "ipic18_build_block_representation.gSemantics" ;
 import "pic18_used_routines.gSemantics" ;
 import "piccolo_embedded_devices.gSemantics" ;
-
-#----------------------------------------------------------------------------*
-
-map @declaredRoutineMap {
-  insert insertKey error message "the '%K' routine is already declared" ;
-  search searchKey error message "the '%K' routine is not declared" ;
-}
+import "pic18_routine_inlining.gSemantics" ;
 
 #----------------------------------------------------------------------------*
 #                                                                            *
@@ -98,7 +92,7 @@ routine pic18_analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName 
   ] ;
   @declaredRoutineMap declaredRoutineMap [emptyMap] ;
   foreach inPiccoloModel->mRoutineDefinitionList do
-    [!?declaredRoutineMap insertKey !mRoutineName] ;
+    [!?declaredRoutineMap insertKey !mRoutineName !mInstructionList] ;
   end foreach ;
 #-------------------------------- Check used routines
   @stringset unusedDeclarationUnicity [emptySet] ;
@@ -117,6 +111,25 @@ routine pic18_analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName 
       warning lkey : "the '" . lkey . "' routine is unused" ;
     end if ;
   end foreach ;
+#-------------------------------- inline routines
+  @stringset inlinedRoutineSet [emptySet] ;
+  foreach inPiccoloModel->mInlinedRoutineList do
+    if not [declaredRoutineMap hasKey !mValue->string] then
+      error mValue : "the '" . mValue . "' routine is not declared" ;
+    elsif not [usedRoutineSet hasKey !mValue->string] then
+      warning mValue : "useless declaration, the '" . mValue . "' routine is unused" ;
+    else
+      inlinedRoutineSet += !mValue->string ;
+    end if ;
+  end foreach ;
+  @pic18InterruptDefinitionList interruptDefinitionList := inPiccoloModel->mInterruptDefinitionList ;
+  @pic18RoutineDefinitionList routineDefinitionList := inPiccoloModel->mRoutineDefinitionList ;
+  pic18PerformRoutineInline
+    !inlinedRoutineSet
+    !declaredRoutineMap
+    !?interruptDefinitionList
+    !?routineDefinitionList
+  ;
 #-------------------------------- Check 'checkpic' instructions
   foreach inPiccoloModel->mCheckpicList do
     @bool found := false ;
@@ -132,7 +145,7 @@ routine pic18_analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName 
   @bool highInterruptIsFast := false ;
   @bool hasLowInterrupt := false ;
   @bool lowInterruptIsFast := false ;
-  foreach inPiccoloModel->mInterruptDefinitionList do
+  foreach interruptDefinitionList do
     if [inPiccoloModel mProgramKind] == [@programKind userProgram] then
       error mInterruptName: "interrupt routine is not allowed for a bootloader user program" ;
     end if ;
@@ -210,8 +223,8 @@ routine pic18_analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName 
 #-------------------------------- Build block representation
   build_ipic18_block_representation_list
     !inSourceFileName
-    !piccoloDeviceModel
-    ![RAMsize sint]
+    ![piccoloDeviceModel->mRomSize->uint sint64]
+    ![RAMsize sint64]
     !bootloaderRoutineDeclarationListForBootloaderImplementation # Empty for regular program
     !userRoutineDeclarationListForBootloaderImplementation # Empty for regular program
     !bootloaderReservedROMsize
@@ -220,13 +233,19 @@ routine pic18_analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName 
     !accessBankSplitOffset
     !registerTable
     !declaredByteMap
-    !inPiccoloModel
+    !routineDefinitionList
+    !inPiccoloModel->mProgramKind
+    !inPiccoloModel->mConstantDefinitionList
+    !inPiccoloModel->mDataList
+    !interruptDefinitionList
+    !inPiccoloModel->mUnusedRegisterList
     !ramBank
     !hasHighInterrupt
     !hasLowInterrupt
-    ![[piccoloDeviceModel mDeviceName] string]
-    ![piccoloDeviceModel mRegisterTable]
+    !piccoloDeviceModel->mDeviceName->string
+    !piccoloDeviceModel->mRegisterTable
     !actualConfigurationMap
+    !inPiccoloModel->mEndOfProgram
     !?listFileContents
   ;
 #-------------------------------- Write listing file

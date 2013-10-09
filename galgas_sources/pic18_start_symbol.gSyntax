@@ -8,6 +8,7 @@ nonterminal <body>
   ?!@pic18InterruptDefinitionList interruptDefinitionList
   ?!@pic18RoutineDefinitionList routineDefinitionList
   ?!@lstringlist unusedRoutineList
+  ?!@lstringlist inlinedRoutineList
   ?!@ramDefinitionList ramDefinitionList
   ?!@lstringlist unusedRegisterList
   ?!@configDefinitionList configDefinitionList
@@ -47,12 +48,14 @@ rule <start_symbol> :
   @constantDefinitionList constantDefinitionList [emptyList] ;
   @dataList dataList [emptyList] ;
   @checkpicList checkpicList [emptyList] ;
+  @lstringlist inlinedRoutineList [emptyList] ;
   @bool needsComputedGoto2 := false ;
   @bool needsComputedGoto4 := false ;
   <body>
     !?interruptDefinitionList
     !?routineDefinitionList
     !?unusedRoutineList
+    !?inlinedRoutineList
     !?ramDefinitionList
     !?unusedRegisterList
     !?configDefinitionList
@@ -78,6 +81,7 @@ rule <start_symbol> :
       !constantDefinitionList
       !routineDefinitionList
       !unusedRoutineList
+      !inlinedRoutineList
       !needsComputedGoto2
       !needsComputedGoto4
       !here

@@ -77,12 +77,13 @@ Un champ ne peut être affecté qu’une seule fois. Plusieurs affectations du m
 Pour certains micro-contrôleurs, certaines affectations particulières sont incompatibles. Ces interdictions sont contenues dans les fichiers de description des micro-contrôleurs, et par conséquent sont vérifiées par Piccolo. 
 
 C’est par exemple le cas du 18F4431 : le champ \piccolo{BOREN} ne doit pas prendre la valeur \piccolo{Disabled} quand le champ \piccolo{BORV} prend la valeur \piccolo{Reserved}. Cette incompabilité peut être mise en évidence en affichant la description de la configuration du 18F4431 (\texttt{piccolo -F=18F4431}), dont voici l'extrait qui nous intéresse :
-{\small
-\begin{lstlisting}[frame=l]
+%\texttt{\small
+\begin{lstlisting}[frame=l, language=assembleur]
 ...
 REGISTER 'CONFIG2L' at 0x300002, width 4
   illegal value 0xC mask 0xC
-     description "Brown out voltage cannot be set to an undefined valued if Brown Out Detect is enabled"
+     description "Brown out voltage cannot be set to an undefined 
+                                value if Brown Out Detect is enabled"
   setting 'BOREN': mask 0x2 description "Brown-out Reset Enable bits"
     value 0x0 description "Disabled"
     value 0x2 description "Enabled"
@@ -93,7 +94,7 @@ REGISTER 'CONFIG2L' at 0x300002, width 4
     value 0x0 description "VBOR set to 4.5V"
 ...
 \end{lstlisting}
-}
+%}
 
 
 La ligne qui commence par \texttt{illegal} décrit cette incompabilité. Si on tente de définir cette combinaison interdite :

@@ -450,6 +450,7 @@ struct @piccoloModel {
   @constantDefinitionList mConstantDefinitionList ;
   @pic18RoutineDefinitionList mRoutineDefinitionList ;
   @lstringlist mUnusedRoutineList ;
+  @lstringlist mInlinedRoutineList ;
   @bool mNeedsComputedGoto2 ;
   @bool mNeedsComputedGoto4 ;
   @location mEndOfProgram ;

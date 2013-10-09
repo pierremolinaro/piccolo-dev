@@ -39,6 +39,7 @@ rule <body>
   ?!@pic18InterruptDefinitionList interruptDefinitionList
   ?!@pic18RoutineDefinitionList routineDefinitionList
   ?!@lstringlist unusedRoutineList
+  ?!@lstringlist inlinedRoutineList
   ?!@ramDefinitionList ramDefinitionList
   ?!@lstringlist unusedRegisterList
   ?!@configDefinitionList configDefinitionList
@@ -72,6 +73,14 @@ rule <body>
       $,$ ;
     end repeat ;
   while
+    $inline$ ;
+    repeat
+      $identifier$ ?@lstring inlinedRoutine ;
+      inlinedRoutineList += !inlinedRoutine ;
+    while 
+      $,$ ;
+    end repeat ;
+  while
     <configuration_definition> !?configDefinitionList ;
   while
     <ram_definition> !?ramDefinitionList ;
@@ -100,6 +109,7 @@ rule <body>
       !?interruptDefinitionList
       !?routineDefinitionList
       !?unusedRoutineList
+      !?inlinedRoutineList
       !?ramDefinitionList
       !?unusedRegisterList
       !?configDefinitionList
