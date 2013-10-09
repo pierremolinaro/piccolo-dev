@@ -76,6 +76,7 @@ SOURCES += ipic18_block_representation.cpp
 SOURCES += ipic18_terminators.cpp
 SOURCES += ipic18_regular_instructions.cpp
 SOURCES += pic18_used_routines.cpp
+SOURCES += pic18_routine_inlining.cpp
 SOURCES += ipic18_display_block_list.cpp
 SOURCES += ipic18_build_block_representation.cpp
 SOURCES += ipic18_optimize_block.cpp

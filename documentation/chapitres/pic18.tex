@@ -383,6 +383,8 @@ Le corps du programme est constitué d’une liste non ordonnée de sections. Le
     \hdashline
     Routine inutilisée & \piccolo{unused routine}\index{Mot réservé!unused} & \refSubsectionPage{routineInutiliseePic18} \\
     \hdashline
+    Routine en ligne & \piccolo{inline}\index{Mot réservé!inline} & \refSubsectionPage{routineInline} \\
+    \hdashline
     Définition de routine d'interruption pic18 & \piccolo{interrupt} & \refSectionPage{routineInterruptionPic18}\\
     \hdashline
     Data & \piccolo{data} & \refSectionPage{sectionData} \\
@@ -562,6 +564,111 @@ unused routine routine1, routine2
 \end{lstlisting}
 
 
+
+
+
+
+\subsectionLabel{Routine \texttt{inline}}{routineInline}
+
+À partir de la version 3.0.3, il est possible de demander la \emph{mise en ligne} de routines. Cette opération consiste à remplacer une instruction \piccolo{rcall}, \piccolo{call} ou \piccolo{jsr} par les instructions de la routine appelée. Ainsi, si la routine n'est appelée qu'une seule fois et en fonction de l'endroit où est appelée la routine, on peut gagner à la génération de code deux instructions (l'instruction d'appel et l'instruction \assembleur{RETURN}) et à l'exécution un niveau d'appel de sous-programme, 
+
+La syntaxe pour demander la \emph{mise en ligne} de routine est :
+\begin{lstlisting}[language=piccolo]
+inline routine1, routine2, ...
+\end{lstlisting}
+
+Cette déclaration peut apparaître après ou avant la déclaration des routines qu'elle nomme.
+
+\textbf{Exemple.} Par exemple, considérons le fragment suivant :
+\begin{lstlisting}[language=piccolo]
+routine r1 {
+  bsf var1.0
+  bcf var2.0
+}
+routine r2 {
+  clrf var3
+  rcall r1
+  clrf var4
+}
+\end{lstlisting}
+
+Le code assembleur engendré est :
+\begin{lstlisting}[language=assembleur]
+r1:
+  BSF var1.0
+  BSF var2.0
+  RETURN
+r2:
+  CLRF var3
+  RCALL r1
+  CLRF var4
+  RETURN
+\end{lstlisting}
+
+
+Si on demande la mise en ligne de la routine \piccolo{r1} :
+\begin{lstlisting}[language=piccolo]
+routine r1 {
+  bsf var1.0
+  bcf var2.0
+}
+inline r1
+routine r2 {
+  clrf var3
+  rcall r1
+  clrf var4
+}
+\end{lstlisting}
+
+Le code assembleur engendré est alors :
+\begin{lstlisting}[language=assembleur]
+r2:
+  CLRF var3
+  BSF var1.0
+  BSF var2.0
+  CLRF var4
+  RETURN
+\end{lstlisting}
+
+C'est-à-dire que l'instruction \assembleur{RCALL r1} a été remplacée par les instructions de la routine \piccolo{r1}.
+
+\textbf{Autre exemple.} Dans certains cas, la mise en ligne peut ne réaliser aucun gain, car l'optimiseur a de lui-même déjà effectué la mise en ligne. C'est notamment le cas où la routine appelée apparaît en dernière instruction. Considérons l'exemple suivant, où \piccolo{rcall r1} est la dernière instruction de la routine \piccolo{r2} :
+\begin{lstlisting}[language=piccolo]
+routine r1 {
+  bsf var1.0
+  bcf var2.0
+}
+routine r2 {
+  clrf var3
+  rcall r1
+}
+\end{lstlisting}
+
+Avant optimisation, le code assembleur engendré pour \piccolo{r2} est :
+\begin{lstlisting}[language=assembleur]
+r2:
+  CLRF var3
+  RCALL r1
+  RETURN
+\end{lstlisting}
+
+L'optimiseur va d'abord remplacer un \assembleur{RCALL} suivi d'un \assembleur{RETURN} par un \assembleur{BRA} :
+\begin{lstlisting}[language=assembleur]
+r2:
+  CLRF var3
+  BRA r1
+\end{lstlisting}
+
+Ensuite, pour économiser le branchement, l'optimiseur va placer le code engendré pour \piccolo{r1} juste après le code engendré pour \piccolo{r2} :
+\begin{lstlisting}[language=assembleur]
+r2:
+  CLRF var3
+  BSF var1.0
+  BSF var2.0
+  RETURN
+\end{lstlisting}
+
+Dans cette situation, demander la mise en ligne de \piccolo{r1} est inutile.
 
 
 

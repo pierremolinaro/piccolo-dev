@@ -2142,8 +2142,8 @@ end routine ;
 
 routine build_ipic18_block_representation_list
   ??@string inSourceFileName
-  ??@piccoloDeviceModel inPiccoloDeviceModel
-  ??@sint inRAMSize
+  ??@sint64 inROMSize
+  ??@sint64 inRAMSize
   ??@routineDeclarationList inBootloaderRoutineDeclarationListForBootloaderImplementation
   ??@routineDeclarationList inUserRoutineDeclarationListForBootloaderImplementation
   ??@luint inBootloaderReservedROMsize
@@ -2152,13 +2152,19 @@ routine build_ipic18_block_representation_list
   ??@uint inAccessBankSplitOffset
   ??@registerTable inRegisterTable
   ??@declaredByteMap inDeclaredByteMap
-  ??@piccoloModel inPiccoloModel
+  ??@pic18RoutineDefinitionList inRoutineDefinitionList
+  ??@programKind inProgramKind
+  ??@constantDefinitionList inConstantDefinitionList
+  ??@dataList inDataList
+  ??@pic18InterruptDefinitionList inInterruptDefinitionList
+  ??@lstringlist inUnusedRegisterList
   ??@ramBankTable inRamBank
   ??@bool inHasHighInterrupt
   ??@bool inHasLowInterrupt
   ??@string inProcessorName
   ??@registerTable inPredefinedRegisters
   ??@actualConfigurationMap inActualConfigurationMap
+  ??@location inEndOfProgram
   ?!@string ioListFileContents
 :
 #-------------------------------- Build routine map
@@ -2169,7 +2175,7 @@ routine build_ipic18_block_representation_list
   foreach inBootloaderRoutineDeclarationListForUserProgramImplementation do
     [!?routineMap insertKey !mRoutineName !mIsNoReturn ![mRequiredBank uint] ![mReturnedBank uint] !mPreservesBank] ;
   end foreach ;
-  foreach [inPiccoloModel mRoutineDefinitionList] do
+  foreach inRoutineDefinitionList do
     if ([mRequiredBank uint] != [@uint max]) & ([mRequiredBank uint] > 15) then
       error mRequiredBank:"the required bank value should be lower or equal to 15" ;
     end if ;
@@ -2181,16 +2187,16 @@ routine build_ipic18_block_representation_list
 #-------------------------------- Build constant map
   @constantMap constantMap [emptyMap] ;
 #--- Add "ROM_SIZE" and "RAM_SIZE" constants
-  [!?constantMap insertKey ![@lstring new !"ROM_SIZE" !here] ![[[inPiccoloDeviceModel mRomSize] uint] sint64]] ;
-  [!?constantMap insertKey ![@lstring new !"RAM_SIZE" !here] ![inRAMSize sint64]] ;
+  [!?constantMap insertKey ![@lstring new !"ROM_SIZE" !here] !inROMSize] ;
+  [!?constantMap insertKey ![@lstring new !"RAM_SIZE" !here] !inRAMSize] ;
 #--- Add "BOOTLOADER_RESERVED_SIZE" constant
-  if inPiccoloModel->mProgramKind != [@programKind regularProgram] then
+  if inProgramKind != [@programKind regularProgram] then
     @lstring bootloaderSizeString [new !"BOOTLOADER_RESERVED_SIZE" !here] ;
     [!?constantMap insertKey !bootloaderSizeString ![[inBootloaderReservedROMsize uint] sint64]] ;
   end if ;
 #--- Add declared constants
   @stringset usedRegisters [emptySet] ;
-  foreach [inPiccoloModel mConstantDefinitionList] do
+  foreach inConstantDefinitionList do
     [mExpression eval !inRegisterTable !constantMap ??@sint64 result !?usedRegisters] ;
     if [inRegisterTable hasKey ![mConstantName string]] then
       error mConstantName: "'" . mConstantName . "' is already declared as ram register or special register" ;
@@ -2200,7 +2206,7 @@ routine build_ipic18_block_representation_list
   end foreach ;
 #-------------------------------- Analyze Data
   pic18_analyze_data_sections
-    !inPiccoloModel->mDataList
+    !inDataList
     !inRegisterTable
     !constantMap
     !?ioListFileContents
@@ -2214,7 +2220,7 @@ routine build_ipic18_block_representation_list
     !?ioListFileContents
   ;
 #-------------------------------- Check the "main" routine is declared
-  if inPiccoloModel->mProgramKind != [@programKind userProgram] then
+  if inProgramKind != [@programKind userProgram] then
     if [routineMap hasKey !"main"] then
       @bool isNoReturn ;
       @uint requiredBank ;
@@ -2226,7 +2232,7 @@ routine build_ipic18_block_representation_list
         error here :"the \"main\" should be declared with \"requiresbank 0\" qualifier: \"noreturn main requiresbank 0\"" ;
       end if ;
     else
-      error [inPiccoloModel mEndOfProgram]: "the program should declare the \"main\" routine" ;
+      error inEndOfProgram : "the program should declare the \"main\" routine" ;
     end if ;
   end if ;
 #-------------------------------- Generate bootloader entry points for user program
@@ -2258,7 +2264,7 @@ routine build_ipic18_block_representation_list
     entryPoint := entryPoint + 4 ;
   end foreach ;
 #-------------------------------- At zero, generate 'jump main' block
-  if inPiccoloModel->mProgramKind != [@programKind userProgram] then
+  if inProgramKind != [@programKind userProgram] then
     generatedBlockList += ![@ipic18Block new
       !0
       !["_entry_main" nowhere]
@@ -2324,7 +2330,7 @@ routine build_ipic18_block_representation_list
 #-------------------------------- Generate low interrupt routine (if any)
   @uint localLabelIndex := 0 ;
   if inHasLowInterrupt then
-    foreach [inPiccoloModel mInterruptDefinitionList] do
+    foreach inInterruptDefinitionList do
       if [mInterruptName string] == "low" then
         @ipic18Block currentBlock [new
           ![@uint max] # Relocatable
@@ -2360,7 +2366,7 @@ routine build_ipic18_block_representation_list
   end if ;
 #-------------------------------- Generate high interrupt routine (if any)
   if inHasHighInterrupt then
-    foreach [inPiccoloModel mInterruptDefinitionList] do
+    foreach inInterruptDefinitionList do
       if [mInterruptName string] == "high" then
         @ipic18Block currentBlock [new
           ![@uint max] # Relocatable
@@ -2395,7 +2401,7 @@ routine build_ipic18_block_representation_list
     end foreach ;
   end if ;
 #-------------------------------- Generate routines
-  foreach inPiccoloModel->mRoutineDefinitionList do
+  foreach inRoutineDefinitionList do
     @uint currentBank := [mRequiredBank uint] ;
     @routineKind routineKind ;
     if mIsNoReturn then
@@ -2554,7 +2560,7 @@ routine build_ipic18_block_representation_list
   end foreach ;
 #----------------------------------------------------------- Check declared bytes are used
   @stringset unusedDeclarationUnicity [emptySet] ;
-  foreach inPiccoloModel->mUnusedRegisterList do
+  foreach inUnusedRegisterList do
     if not [inRegisterTable hasKey !mValue->string] then
       error mValue : "the '" . mValue . "' byte is not declared" ;
     elsif [unusedDeclarationUnicity hasKey !mValue->string] then
@@ -2607,9 +2613,9 @@ routine build_ipic18_block_representation_list
   #----------------------------------------------------------- Print usage
     if [option.verbose_output value] then
       @string verboseMessage := "Resource usage:\n" ;
-      verboseMessage .= "  ROM size: " . [[[inPiccoloDeviceModel mRomSize] uint] string] . " bytes;" ;
+      verboseMessage .= "  ROM size: " . inROMSize . " bytes;" ;
       verboseMessage .= " used: " . [usedROMsize string] . " bytes (" ;
-      verboseMessage .= [(usedROMsize * 100) / [[inPiccoloDeviceModel mRomSize] uint] string] . "%).\n" ;
+      verboseMessage .= [(usedROMsize * 100) / inROMSize string] . "%).\n" ;
       foreach inRamBank do
         @uint bankSize := mLastAddressPlusOne - mFirstAddress ;
         @uint usedSize := mFirstFreeAddress - mFirstAddress ;
