@@ -13,7 +13,7 @@
 
 \subsection{Commentaires}
 
-Un commentaire commence par un caractère dièse « \texttt{\#} », et s’étend jusqu’à la fin de la ligne courante.
+Un commentaire commence par un caractère dièse \piccolo{\#}, et s’étend jusqu’à la fin de la ligne courante.
 
 \subsection{Délimiteurs}
 
@@ -98,7 +98,7 @@ Mots réservés correspondant à des instructions exécutables :\\
   \hline
     \keyWordInstruction{subfwb} & \keyWordInstruction{sublw} & \keyWordInstruction{subwf} & \keyWordInstruction{subwfb} & \keyWordInstruction{swapf} & \keyWordInstruction{tblrd} & \keyWordInstruction{tblwt}\\
   \hline
-    \keyWordInstruction{tris}\keyWordInstruction{xorlw} & \keyWordInstruction{xorwf} & & & & & \\
+    \keyWordInstruction{tris} & \keyWordInstruction{xorlw} & \keyWordInstruction{xorwf} & & & & \\
   \hline
 \end{tabular}
 
@@ -107,11 +107,11 @@ Dans tout ce document, ces mots réservés sont écrits en minuscule, gras et en
 
 \subsection{Constante chaîne de caractères}
 
-Comme en C, les chaînes de caractères sont délimitées par des caractères « \texttt{\textquotedbl} ».  Les séquences d’échappement suivantes sont acceptées : « \texttt{\textbackslash f} », « \texttt{\textbackslash n} », « \texttt{\textbackslash r} », « \texttt{\textbackslash v} », « \texttt{\textbackslash\textbackslash} », « \texttt{\textbackslash"} », « \texttt{\textbackslash\textquotesingle} », « \texttt{\textbackslash 0} ».
+Comme en C, les chaînes de caractères sont délimitées par des caractères \piccolo{"}. Les séquences d’échappement suivantes sont acceptées : \piccolo{\\f}, \piccolo{\\n}, \piccolo{\\r}, \piccolo{\\v}, \piccolo{\\\\}, \piccolo{\\"}, \piccolo{\\'}, \piccolo{\\0}.
 
 \subsection{Constante caractère}
 
-Comme en C, les caractères sont délimités par des caractères « \texttt{\textquotesingle} ».  Les séquences d’échappement suivantes sont acceptées : « \texttt{\textbackslash f} », « \texttt{\textbackslash n} », « \texttt{\textbackslash r} », « \texttt{\textbackslash v} », « \texttt{\textbackslash\textbackslash} », « \texttt{\textbackslash\textquotesingle} », « \texttt{\textbackslash 0} ».
+Comme en C, les caractères sont délimités par des caractères \piccolo{'}.  Les séquences d’échappement suivantes sont acceptées : \piccolo{\\f}, \piccolo{\\n}, \piccolo{\\r}, \piccolo{\\v}, \piccolo{\\\\}, \piccolo{\\'}, \piccolo{\\0}.
 
 \subsection{Constante entière}
 
@@ -133,7 +133,7 @@ Attention :
 
 \subsection{Format}
 
-Le format est libre, la fin de ligne n’est pas significative (sauf pour les commentaires, qui commencent par un caractère dièse \piccolo{\#}, et s’étendent jusqu’à la fin de la ligne courante). Le compilateur accepte de manière indifférente que les fins de ligne soient codés par un caractère LF (0x0A), un caractère CR (0x0D), ou par la séquence CRLF (0x0D, 0x0A).
+Le format est libre, la fin de ligne n’est pas significative (sauf pour les commentaires, qui commencent par un caractère dièse \piccolo{\#}, et s’étendent jusqu’à la fin de la ligne courante). Le compilateur accepte de manière indifférente que les fins de ligne soient codés par un caractère LF (\texttt{0x0A}), un caractère CR (\texttt{0x0D}), ou par la séquence CRLF (\texttt{0x0D}, \texttt{0x0A}).
 
 À partir de la version 2.0.2, les commentaires commençant par \piccolo{\#!} sont capturés par l'application CocoaPiccolo pour être affichés dans le menu \emph{popup} d'accès aux routines.
 
