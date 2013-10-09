@@ -5,8 +5,8 @@ import "pic18_semantics.gSemantics" ;
 #----------------------------------------------------*
 
 nonterminal <body>
-  ?!@interruptDefinitionList interruptDefinitionList
-  ?!@routineDefinitionList routineDefinitionList
+  ?!@pic18InterruptDefinitionList interruptDefinitionList
+  ?!@pic18RoutineDefinitionList routineDefinitionList
   ?!@lstringlist unusedRoutineList
   ?!@ramDefinitionList ramDefinitionList
   ?!@lstringlist unusedRegisterList
@@ -38,8 +38,8 @@ rule <start_symbol> :
   end select ;
   $literal_string$ ? deviceNameOrBootloaderReference ;
   $:$ ;
-  @interruptDefinitionList interruptDefinitionList [emptyList] ;
-  @routineDefinitionList routineDefinitionList [emptyList] ;
+  @pic18InterruptDefinitionList interruptDefinitionList [emptyList] ;
+  @pic18RoutineDefinitionList routineDefinitionList [emptyList] ;
   @lstringlist unusedRoutineList [emptyList] ;
   @ramDefinitionList ramDefinitionList [emptyList] ;
   @lstringlist unusedRegisterList [emptyList] ;

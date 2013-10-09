@@ -178,7 +178,7 @@ struct @ipic18_intermediate_registerExpression {
 #----------------------------------------------------------------------------*
 
 class @ipic18_intermediate_instruction_FDA extends @ipic18SequentialInstruction {
-  @instruction_FDA_base_code_AST mInstruction_FDA_base_code ;
+  @pic18Instruction_FDA_base_code_AST mInstruction_FDA_base_code ;
   @ipic18_intermediate_registerExpression mRegisterDescription ;
   @bool m_W_isDestination ;
 }

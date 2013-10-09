@@ -127,7 +127,7 @@ abstract method @pic18PiccoloSimpleInstruction analyzeSimpleInstruction
 
 #----------------------------------------------------------------------------*
 
-override method @instruction_withNoOperand analyzeSimpleInstruction
+override method @pic18Instruction_withNoOperand analyzeSimpleInstruction
   ??@uint unused inAccessBankSplitOffset
   ??@routineMap unused inRoutineMap
   ??@registerTable unused inRegisterTable
@@ -146,7 +146,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @instruction_FDA analyzeSimpleInstruction
+override method @pic18Instruction_FDA analyzeSimpleInstruction
   ??@uint inAccessBankSplitOffset
   ??@routineMap unused inRoutineMap
   ??@registerTable inRegisterTable
@@ -175,7 +175,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @instruction_FA analyzeSimpleInstruction
+override method @pic18Instruction_FA analyzeSimpleInstruction
   ??@uint inAccessBankSplitOffset
   ??@routineMap unused inRoutineMap
   ??@registerTable inRegisterTable
@@ -213,7 +213,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @instruction_MOVFF analyzeSimpleInstruction
+override method @pic18Instruction_MOVFF analyzeSimpleInstruction
   ??@uint unused inAccessBankSplitOffset
   ??@routineMap unused inRoutineMap
   ??@registerTable inRegisterTable
@@ -243,7 +243,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @instruction_FBA analyzeSimpleInstruction
+override method @pic18Instruction_FBA analyzeSimpleInstruction
   ??@uint inAccessBankSplitOffset
   ??@routineMap unused inRoutineMap
   ??@registerTable inRegisterTable
@@ -276,7 +276,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @instruction_literalOperation analyzeSimpleInstruction
+override method @pic18Instruction_literalOperation analyzeSimpleInstruction
   ??@uint unused inAccessBankSplitOffset
   ??@routineMap unused inRoutineMap
   ??@registerTable inRegisterTable
@@ -302,7 +302,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @instruction_LFSR analyzeSimpleInstruction
+override method @pic18Instruction_LFSR analyzeSimpleInstruction
   ??@uint unused inAccessBankSplitOffset
   ??@routineMap unused inRoutineMap
   ??@registerTable inRegisterTable
@@ -331,7 +331,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @instruction_JSR analyzeSimpleInstruction
+override method @pic18Instruction_JSR analyzeSimpleInstruction
   ??@uint unused inAccessBankSplitOffset
   ??@routineMap inRoutineMap
   ??@registerTable unused inRegisterTable
@@ -428,7 +428,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @instruction_FOREVER analyze
+override method @pic18Instruction_FOREVER analyze
   ??@uint inAccessBankSplitOffset
   ?!@ipic18BlockList ioGeneratedBlockList
   ??@routineMap inRoutineMap
@@ -493,7 +493,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @instruction_nobanksel analyze
+override method @pic18Instruction_nobanksel analyze
   ??@uint unused inAccessBankSplitOffset
   ?!@ipic18BlockList unused ioGeneratedBlockList
   ??@routineMap unused inRoutineMap
@@ -518,7 +518,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @instruction_savebank analyze
+override method @pic18Instruction_savebank analyze
   ??@uint inAccessBankSplitOffset
   ?!@ipic18BlockList ioGeneratedBlockList
   ??@routineMap inRoutineMap
@@ -585,7 +585,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @instruction_banksel analyze
+override method @pic18Instruction_banksel analyze
   ??@uint unused inAccessBankSplitOffset
   ?!@ipic18BlockList unused ioGeneratedBlockList
   ??@routineMap unused inRoutineMap
@@ -617,7 +617,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @instruction_banksel_register analyze
+override method @pic18Instruction_banksel_register analyze
   ??@uint unused inAccessBankSplitOffset
   ?!@ipic18BlockList unused ioGeneratedBlockList
   ??@routineMap unused inRoutineMap
@@ -651,7 +651,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @instruction_TBLRD analyzeSimpleInstruction
+override method @pic18Instruction_TBLRD analyzeSimpleInstruction
   ??@uint unused inAccessBankSplitOffset
   ??@routineMap unused inRoutineMap
   ??@registerTable unused inRegisterTable
@@ -670,7 +670,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @instruction_TBLWT analyzeSimpleInstruction
+override method @pic18Instruction_TBLWT analyzeSimpleInstruction
   ??@uint unused inAccessBankSplitOffset
   ??@routineMap unused inRoutineMap
   ??@registerTable unused inRegisterTable
@@ -689,7 +689,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @instruction_MNOP analyze
+override method @pic18Instruction_MNOP analyze
   ??@uint unused inAccessBankSplitOffset
   ?!@ipic18BlockList unused ioGeneratedBlockList
   ??@routineMap unused inRoutineMap
@@ -718,7 +718,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @instruction_LTBLPTR analyze
+override method @pic18Instruction_LTBLPTR analyze
   ??@uint inAccessBankSplitOffset
   ?!@ipic18BlockList unused ioGeneratedBlockList
   ??@routineMap unused inRoutineMap
@@ -849,7 +849,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @instruction_LDATAPTR analyze
+override method @pic18Instruction_LDATAPTR analyze
   ??@uint inAccessBankSplitOffset
   ?!@ipic18BlockList unused ioGeneratedBlockList
   ??@routineMap unused inRoutineMap
@@ -937,7 +937,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @instruction_JUMP analyze
+override method @pic18Instruction_JUMP analyze
   ??@uint unused inAccessBankSplitOffset
   ?!@ipic18BlockList unused ioGeneratedBlockList
   ??@routineMap inRoutineMap
@@ -975,7 +975,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @instruction_computed_rcall analyze
+override method @pic18Instruction_computed_rcall analyze
   ??@uint unused inAccessBankSplitOffset
   ?!@ipic18BlockList unused ioGeneratedBlockList
   ??@routineMap inRoutineMap
@@ -1061,7 +1061,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @instruction_computed_goto analyze
+override method @pic18Instruction_computed_goto analyze
   ??@uint unused inAccessBankSplitOffset
   ?!@ipic18BlockList unused ioGeneratedBlockList
   ??@routineMap inRoutineMap
@@ -1121,7 +1121,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @instruction_computed_retlw analyze
+override method @pic18Instruction_computed_retlw analyze
   ??@uint unused inAccessBankSplitOffset
   ?!@ipic18BlockList unused ioGeneratedBlockList
   ??@routineMap unused inRoutineMap
@@ -1173,7 +1173,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @instruction_JUMPCC analyze
+override method @pic18Instruction_JUMPCC analyze
   ??@uint unused inAccessBankSplitOffset
   ?!@ipic18BlockList unused ioGeneratedBlockList
   ??@routineMap inRoutineMap
@@ -1235,7 +1235,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @instruction_computed_bra analyze
+override method @pic18Instruction_computed_bra analyze
   ??@uint unused inAccessBankSplitOffset
   ?!@ipic18BlockList unused ioGeneratedBlockList
   ??@routineMap inRoutineMap
@@ -1319,7 +1319,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @instruction_IF_BitTest analyze
+override method @pic18Instruction_IF_BitTest analyze
   ??@uint inAccessBankSplitOffset
   ?!@ipic18BlockList unused ioGeneratedBlockList
   ??@routineMap inRoutineMap
@@ -1377,7 +1377,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @instruction_IF_FA_SEMI_COLON analyze
+override method @pic18Instruction_IF_FA_SEMI_COLON analyze
   ??@uint inAccessBankSplitOffset
   ?!@ipic18BlockList unused ioGeneratedBlockList
   ??@routineMap inRoutineMap
@@ -1436,7 +1436,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @instruction_IF_IncDec analyze
+override method @pic18Instruction_IF_IncDec analyze
   ??@uint inAccessBankSplitOffset
   ?!@ipic18BlockList unused ioGeneratedBlockList
   ??@routineMap inRoutineMap
@@ -1501,7 +1501,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @instruction_structured_if analyze
+override method @pic18Instruction_structured_if analyze
   ??@uint inAccessBankSplitOffset
   ?!@ipic18BlockList ioGeneratedBlockList
   ??@routineMap inRoutineMap
@@ -1613,7 +1613,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @instruction_do_while analyze
+override method @pic18Instruction_do_while analyze
   ??@uint inAccessBankSplitOffset
   ?!@ipic18BlockList ioGeneratedBlockList
   ??@routineMap inRoutineMap
@@ -1745,7 +1745,7 @@ end method ;
 
 #----------------------------------------------------*
 
-abstract method @conditionExpression analyzeCondition
+abstract method @pic18ConditionExpression analyzeCondition
   ??@uint unused inAccessBankSplitOffset
   ??@uint unused inCurrentBank
   ??@registerTable unused inRegisterTable
@@ -1759,7 +1759,7 @@ abstract method @conditionExpression analyzeCondition
 
 #----------------------------------------------------*
 
-override method @bcc_in_structured_if_condition analyzeCondition
+override method @pic18BccInStructuredCondition analyzeCondition
   ??@uint unused inAccessBankSplitOffset
   ??@uint unused inCurrentBank
   ??@registerTable unused inRegisterTable
@@ -1783,7 +1783,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @registerComparisonCondition analyzeCondition
+override method @pic18RegisterComparisonCondition analyzeCondition
   ??@uint inAccessBankSplitOffset
   ??@uint inCurrentBank
   ??@registerTable inRegisterTable
@@ -1848,7 +1848,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @incDecRegisterInCondition analyzeCondition
+override method @pic18IncDecRegisterInCondition analyzeCondition
   ??@uint inAccessBankSplitOffset
   ??@uint inCurrentBank
   ??@registerTable inRegisterTable
@@ -1892,7 +1892,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @registerTestCondition analyzeCondition
+override method @pic18RegisterTestCondition analyzeCondition
   ??@uint inAccessBankSplitOffset
   ??@uint inCurrentBank
   ??@registerTable inRegisterTable
@@ -1932,7 +1932,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @bitTest_in_structured_if_condition analyzeCondition
+override method @pic18BitTestInStructuredCondition analyzeCondition
   ??@uint inAccessBankSplitOffset
   ??@uint inCurrentBank
   ??@registerTable inRegisterTable
@@ -1978,7 +1978,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @negateCondition analyzeCondition
+override method @pic18NegateCondition analyzeCondition
   ??@uint inAccessBankSplitOffset
   ??@uint inCurrentBank
   ??@registerTable inRegisterTable
@@ -2004,7 +2004,7 @@ end method ;
 
 #----------------------------------------------------*
 
-override method @andCondition analyzeCondition
+override method @pic18AndCondition analyzeCondition
   ??@uint inAccessBankSplitOffset
   ??@uint inCurrentBank
   ??@registerTable inRegisterTable
@@ -2058,7 +2058,7 @@ end method ;
 #----------------------------------------------------------------------------*
 
 local routine analyzeInstructionList
-  ??@instructionList inInstructionList
+  ??@pic18InstructionList inInstructionList
   ?!@ipic18BlockList ioGeneratedBlockList
   ??@uint inAccessBankSplitOffset
   ??@routineMap inRoutineMap
@@ -2481,7 +2481,7 @@ routine build_ipic18_block_representation_list
 #---
   const @ipic18SequentialInstruction ADDWF_WREG := [@ipic18_intermediate_instruction_FDA new
     !here
-    ![@instruction_FDA_base_code_AST ADDWF]
+    ![@pic18Instruction_FDA_base_code_AST ADDWF]
     !WREG_IPICregisterDescription
     !true
   ] ; # ADDWF WREG, W
@@ -2499,7 +2499,7 @@ routine build_ipic18_block_representation_list
   goto2InstructionList += !ADDWF_WREG ;
   goto2InstructionList += ![@ipic18_intermediate_instruction_FDA new
     !here
-    ![@instruction_FDA_base_code_AST ADDWF]
+    ![@pic18Instruction_FDA_base_code_AST ADDWF]
     !TOSL_IPICregisterDescription
     !false
   ] ; # ADDWF TOSL, F
@@ -2510,13 +2510,13 @@ routine build_ipic18_block_representation_list
   ] ; # MOVLW 0
   goto2InstructionList += ![@ipic18_intermediate_instruction_FDA new
     !here
-    ![@instruction_FDA_base_code_AST ADDWFC]
+    ![@pic18Instruction_FDA_base_code_AST ADDWFC]
     !TOSH_IPICregisterDescription
     !false
   ] ; # ADDWFC TOSH, F
   goto2InstructionList += ![@ipic18_intermediate_instruction_FDA new
     !here
-    ![@instruction_FDA_base_code_AST ADDWFC]
+    ![@pic18Instruction_FDA_base_code_AST ADDWFC]
     !TOSU_IPICregisterDescription
     !false
   ] ; # ADDWFC TOSU, F

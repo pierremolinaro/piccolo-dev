@@ -21,13 +21,13 @@ abstract class @pic18PiccoloInstruction {
 
 #----------------------------------------------------*
 
-list @instructionList {
+list @pic18InstructionList {
   @pic18PiccoloInstruction mInstruction ;
 }
 
 #----------------------------------------------------*
 
-class @instruction_nobanksel extends @pic18PiccoloInstruction {
+class @pic18Instruction_nobanksel extends @pic18PiccoloInstruction {
 }
 
 #----------------------------------------------------*
@@ -37,36 +37,36 @@ abstract class @pic18PiccoloSimpleInstruction extends @pic18PiccoloInstruction {
 
 #----------------------------------------------------*
 
-class @instruction_banksel extends @pic18PiccoloInstruction {
+class @pic18Instruction_banksel extends @pic18PiccoloInstruction {
   @luint mBankIndex ;
   @bool mWarningOnUselessBanksel ;
 }
 #----------------------------------------------------*
 
-class @instruction_banksel_register extends @pic18PiccoloInstruction {
+class @pic18Instruction_banksel_register extends @pic18PiccoloInstruction {
   @registerExpression mRegisterExpression ;
   @bool mWarningOnUselessBanksel ;
 }
 
 #----------------------------------------------------*
 
-class @instruction_savebank extends @pic18PiccoloInstruction {
+class @pic18Instruction_savebank extends @pic18PiccoloInstruction {
   @registerExpression mRegister ;
-  @instructionList mInstructionList ;
+  @pic18InstructionList mInstructionList ;
   @location mEndOfSaveBankInstruction ;
 }
 
 #----------------------------------------------------*
 
-enum @instruction_FDA_base_code_AST {
+enum @pic18Instruction_FDA_base_code_AST {
   ADDWF, ADDWFC, ANDWF, COMF, DECF, INCF,
   IORWF, MOVF, RLCF, RLNCF, RRCF, RRNCF, SUBFWB, SUBWF, SUBWFB, SWAPF, XORWF
 }
 
 #----------------------------------------------------*
 
-class @instruction_FDA extends @pic18PiccoloSimpleInstruction {
-  @instruction_FDA_base_code_AST mInstruction_FDA_base_code ;
+class @pic18Instruction_FDA extends @pic18PiccoloSimpleInstruction {
+  @pic18Instruction_FDA_base_code_AST mInstruction_FDA_base_code ;
   @registerExpression mRegisterExpression ;
   @bool m_W_isDestination ;
 }
@@ -79,14 +79,14 @@ enum @FA_instruction_base_code {
 
 #----------------------------------------------------*
 
-class @instruction_FA extends @pic18PiccoloSimpleInstruction {
+class @pic18Instruction_FA extends @pic18PiccoloSimpleInstruction {
   @FA_instruction_base_code mFAinstruction ;
   @registerExpression mRegisterExpression ;
 }
 
 #----------------------------------------------------*
 
-class @instruction_MOVFF extends @pic18PiccoloSimpleInstruction {
+class @pic18Instruction_MOVFF extends @pic18PiccoloSimpleInstruction {
   @registerExpression mSourceRegisterName ;
   @registerExpression mDestinationRegisterName ;
 }
@@ -99,7 +99,7 @@ enum @bit_oriented_op {
 
 #----------------------------------------------------*
 
-class @instruction_FBA extends @pic18PiccoloSimpleInstruction {
+class @pic18Instruction_FBA extends @pic18PiccoloSimpleInstruction {
   @bit_oriented_op mBitOrientedOp ;
   @registerExpression mRegisterExpression ;
   @bitNumberExpression mBitNumber ;
@@ -119,21 +119,21 @@ enum @jumpInstructionKind {
 
 #----------------------------------------------------*
 
-class @instruction_JSR extends @pic18PiccoloSimpleInstruction {
+class @pic18Instruction_JSR extends @pic18PiccoloSimpleInstruction {
   @lstring mTargetLabel ;
   @jumpInstructionKind mKind ;
 }
 
 #----------------------------------------------------*
 
-class @instruction_JUMP extends @pic18PiccoloInstruction {
+class @pic18Instruction_JUMP extends @pic18PiccoloInstruction {
   @lstring mTargetLabel ;
   @jumpInstructionKind mKind ;
 }
 
 #----------------------------------------------------*
 
-class @instruction_JUMPCC extends @pic18PiccoloInstruction {
+class @pic18Instruction_JUMPCC extends @pic18PiccoloInstruction {
   @lstring mTargetLabel ;
   @conditional_branch mConditionalBranch ;
   @bool mIsBcc ;
@@ -153,7 +153,7 @@ enum @pic18InstructionWithNoOperandKind {
 
 #----------------------------------------------------*
 
-class @instruction_withNoOperand extends @pic18PiccoloSimpleInstruction {
+class @pic18Instruction_withNoOperand extends @pic18PiccoloSimpleInstruction {
   @pic18InstructionWithNoOperandKind mKind ;
 }
 
@@ -165,27 +165,27 @@ enum @literal_instruction_opcode {
 
 #----------------------------------------------------*
 
-class @instruction_literalOperation extends @pic18PiccoloSimpleInstruction {
+class @pic18Instruction_literalOperation extends @pic18PiccoloSimpleInstruction {
   @literal_instruction_opcode mLiteralInstruction ;
   @immediatExpression mImmediatExpression ;
 }
 
 #----------------------------------------------------*
 
-class @instruction_LFSR extends @pic18PiccoloSimpleInstruction {
+class @pic18Instruction_LFSR extends @pic18PiccoloSimpleInstruction {
   @luint mFSRindex ;
   @immediatExpression mImmediatExpression ;
 }
 
 #----------------------------------------------------*
 
-class @instruction_LTBLPTR extends @pic18PiccoloInstruction {
+class @pic18Instruction_LTBLPTR extends @pic18PiccoloInstruction {
   @immediatExpression mImmediatExpression ;
 }
 
 #----------------------------------------------------*
 
-class @instruction_LDATAPTR extends @pic18PiccoloInstruction {
+class @pic18Instruction_LDATAPTR extends @pic18PiccoloInstruction {
   @lstring mDataName ;
   @luint mDataIndex ;
 }
@@ -198,26 +198,26 @@ enum @tableAccessOption {
 
 #----------------------------------------------------*
 
-class @instruction_TBLRD extends @pic18PiccoloSimpleInstruction {
+class @pic18Instruction_TBLRD extends @pic18PiccoloSimpleInstruction {
   @tableAccessOption mOption ;
 }
 
 #----------------------------------------------------*
 
-class @instruction_TBLWT extends @pic18PiccoloSimpleInstruction {
+class @pic18Instruction_TBLWT extends @pic18PiccoloSimpleInstruction {
   @tableAccessOption mOption ;
 }
 
 #----------------------------------------------------*
 
-class @instruction_MNOP extends @pic18PiccoloInstruction {
+class @pic18Instruction_MNOP extends @pic18PiccoloInstruction {
   @luint mOccurrenceFactor ;
 }
 
 #----------------------------------------------------*
 
-class @instruction_FOREVER extends @pic18PiccoloInstruction {
-  @instructionList mInstructionList ;
+class @pic18Instruction_FOREVER extends @pic18PiccoloInstruction {
+  @pic18InstructionList mInstructionList ;
   @location mEndOfInstructionList ;
 }
 
@@ -229,20 +229,20 @@ enum @if_semi_colon_op {
 
 #----------------------------------------------------*
 
-abstract class @instruction_IF_SEMI_COLON extends @pic18PiccoloInstruction {
+abstract class @pic18Instruction_IF_SEMI_COLON extends @pic18PiccoloInstruction {
   @pic18PiccoloSimpleInstruction mEmbeddedInstruction ;
 }
 
 #----------------------------------------------------*
 
-class @instruction_IF_FA_SEMI_COLON extends @instruction_IF_SEMI_COLON {
+class @pic18Instruction_IF_FA_SEMI_COLON extends @pic18Instruction_IF_SEMI_COLON {
   @if_semi_colon_op mOpCode ;
   @registerExpression mRegisterExpression ;
 }
 
 #----------------------------------------------------*
 
-class @instruction_IF_BitTest extends @instruction_IF_SEMI_COLON {
+class @pic18Instruction_IF_BitTest extends @pic18Instruction_IF_SEMI_COLON {
   @bool mSkipIfSet ;
   @registerExpression mRegisterExpression ;
   @bitNumberExpression mBitNumber ;
@@ -250,7 +250,7 @@ class @instruction_IF_BitTest extends @instruction_IF_SEMI_COLON {
 
 #----------------------------------------------------*
 
-class @instruction_IF_IncDec extends @instruction_IF_SEMI_COLON {
+class @pic18Instruction_IF_IncDec extends @pic18Instruction_IF_SEMI_COLON {
   @bool mIncrement ;
   @bool mSkipIfZero ;
   @registerExpression mRegisterExpression ;
@@ -259,7 +259,7 @@ class @instruction_IF_IncDec extends @instruction_IF_SEMI_COLON {
 
 #----------------------------------------------------*
 
-class @instruction_computed_retlw extends @pic18PiccoloInstruction {
+class @pic18Instruction_computed_retlw extends @pic18PiccoloInstruction {
   @immediatExpression mSizeExpression ;
   @immediatExpressionList mImmediateExpressionList ;
   @bool mUsesRelativeCall ;
@@ -267,7 +267,7 @@ class @instruction_computed_retlw extends @pic18PiccoloInstruction {
 
 #----------------------------------------------------*
 
-class @instruction_computed_bra extends @pic18PiccoloInstruction {
+class @pic18Instruction_computed_bra extends @pic18PiccoloInstruction {
   @immediatExpression mSizeExpression ;
   @lstringlist mTargetLabels ;
   @bool mUsesRelativeCall ;
@@ -275,7 +275,7 @@ class @instruction_computed_bra extends @pic18PiccoloInstruction {
 
 #----------------------------------------------------*
 
-class @instruction_computed_goto extends @pic18PiccoloInstruction {
+class @pic18Instruction_computed_goto extends @pic18PiccoloInstruction {
   @immediatExpression mSizeExpression ;
   @lstringlist mTargetLabels ;
   @bool mUsesRelativeCall ;
@@ -283,7 +283,7 @@ class @instruction_computed_goto extends @pic18PiccoloInstruction {
 
 #----------------------------------------------------*
 
-class @instruction_computed_rcall extends @pic18PiccoloInstruction {
+class @pic18Instruction_computed_rcall extends @pic18PiccoloInstruction {
   @immediatExpression mSizeExpression ;
   @lstringlist mTargetLabels ;
   @bool mUsesRelativeCall ;
@@ -291,12 +291,12 @@ class @instruction_computed_rcall extends @pic18PiccoloInstruction {
 
 #----------------------------------------------------*
 
-abstract class @conditionExpression {
+abstract class @pic18ConditionExpression {
 }
 
 #----------------------------------------------------*
 
-class @registerTestCondition extends @conditionExpression {
+class @pic18RegisterTestCondition extends @pic18ConditionExpression {
   @registerExpression mRegisterExpression ;
   @bool mBranchIfZero ;
 }
@@ -309,14 +309,14 @@ enum @pic18RegisterComparison {
 
 #----------------------------------------------------*
 
-class @registerComparisonCondition extends @conditionExpression {
+class @pic18RegisterComparisonCondition extends @pic18ConditionExpression {
   @registerExpression mRegisterExpression ;
   @pic18RegisterComparison mComparison ;
 }
 
 #----------------------------------------------------*
 
-class @incDecRegisterInCondition extends @conditionExpression {
+class @pic18IncDecRegisterInCondition extends @pic18ConditionExpression {
   @registerExpression mRegisterExpression ;
   @bool mIncrement ;
   @bool m_W_isDestination ;
@@ -325,27 +325,27 @@ class @incDecRegisterInCondition extends @conditionExpression {
 
 #----------------------------------------------------*
 
-class @bcc_in_structured_if_condition extends @conditionExpression {
+class @pic18BccInStructuredCondition extends @pic18ConditionExpression {
   @location mConditionLocation ;
   @conditional_branch mCondition ;
 }
 
 #----------------------------------------------------*
 
-class @negateCondition extends @conditionExpression {
-  @conditionExpression mCondition ;
+class @pic18NegateCondition extends @pic18ConditionExpression {
+  @pic18ConditionExpression mCondition ;
 }
 
 #----------------------------------------------------*
 
-class @andCondition extends @conditionExpression {
-  @conditionExpression mLeftExpression ;
-  @conditionExpression mRightExpression ;
+class @pic18AndCondition extends @pic18ConditionExpression {
+  @pic18ConditionExpression mLeftExpression ;
+  @pic18ConditionExpression mRightExpression ;
 }
 
 #----------------------------------------------------*
 
-class @bitTest_in_structured_if_condition extends @conditionExpression {
+class @pic18BitTestInStructuredCondition extends @pic18ConditionExpression {
   @registerExpression mRegisterExpression ;
   @bitNumberExpression mBitNumber ;
   @bool mBTFSSinstruction ;
@@ -353,47 +353,47 @@ class @bitTest_in_structured_if_condition extends @conditionExpression {
 
 #----------------------------------------------------*
 
-class @instruction_structured_if extends @pic18PiccoloInstruction {
-  @conditionExpression mIfCondition ;
-  @instructionList mThenInstructionList ;
-  @instructionList mElseInstructionList ;
+class @pic18Instruction_structured_if extends @pic18PiccoloInstruction {
+  @pic18ConditionExpression mIfCondition ;
+  @pic18InstructionList mThenInstructionList ;
+  @pic18InstructionList mElseInstructionList ;
   @location mEndOfElsePartLocation ;
 }
 
 #----------------------------------------------------*
 
-list @partList {
-  @conditionExpression mCondition ;
-  @instructionList mInstructionList ;
+list @pic18DoWhilePartList {
+  @pic18ConditionExpression mCondition ;
+  @pic18InstructionList mInstructionList ;
   @location mEndOfPartLocation ;
 }
 
 #----------------------------------------------------*
 
-class @instruction_do_while extends @pic18PiccoloInstruction {
-  @instructionList mRepeatedInstructionList ;
+class @pic18Instruction_do_while extends @pic18PiccoloInstruction {
+  @pic18InstructionList mRepeatedInstructionList ;
   @location mEndOfRepeatedInstructionList ;
-  @partList mWhilePartList ;
+  @pic18DoWhilePartList mWhilePartList ;
 }
 
 #----------------------------------------------------*
 
-list @interruptDefinitionList {
+list @pic18InterruptDefinitionList {
   @lstring mInterruptName ;
   @bool mFastReturn ;
-  @instructionList mInstructionList ;
+  @pic18InstructionList mInstructionList ;
   @location mEndOfInterruptLocation ;
 }
 
 #----------------------------------------------------*
 
-list @routineDefinitionList {
+list @pic18RoutineDefinitionList {
   @lstring mRoutineName ;
   @luint mRequiredBank ;
   @luint mReturnedBank ;
   @bool mPreservesBank ;
   @bool mIsNoReturn ;
-  @instructionList mInstructionList ;
+  @pic18InstructionList mInstructionList ;
   @location mEndOfRoutineLocation ;
 }
 
@@ -446,9 +446,9 @@ struct @piccoloModel {
   @lstringlist mUnusedRegisterList ;
   @checkpicList mCheckpicList ;
   @dataList mDataList ;
-  @interruptDefinitionList mInterruptDefinitionList ;
+  @pic18InterruptDefinitionList mInterruptDefinitionList ;
   @constantDefinitionList mConstantDefinitionList ;
-  @routineDefinitionList mRoutineDefinitionList ;
+  @pic18RoutineDefinitionList mRoutineDefinitionList ;
   @lstringlist mUnusedRoutineList ;
   @bool mNeedsComputedGoto2 ;
   @bool mNeedsComputedGoto4 ;

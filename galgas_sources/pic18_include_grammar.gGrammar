@@ -3,8 +3,8 @@ with "pic18_syntax.gSyntax" ;
 with "communs.gSyntax" ;
 
 root <body>
-  ?!@interruptDefinitionList interruptDefinitionList
-  ?!@routineDefinitionList routineDefinitionList
+  ?!@pic18InterruptDefinitionList interruptDefinitionList
+  ?!@pic18RoutineDefinitionList routineDefinitionList
   ?!@lstringlist unusedRoutineList
   ?!@ramDefinitionList ramDefinitionList
   ?!@lstringlist unusedRegisterList

@@ -720,9 +720,19 @@ Elles sont de deux types (la distinction est importante pour l’instruction \em
     \assembleur{DCFSNZ f, d, a} & Decrement f, Skip if Not 0 & \refSubsectionPage{instructionsPic18Introuvables}\\
     \hdashline
     \assembleur{GOTO n} & Go to Address & \refSubsectionPage{appelRoutineSansRetourPic18} \\
+    \hdashline
+    \assembleur{INCF f, d, a} & Decrement f & \refSubsectionPage{instructionsNommantRegistreEtW}\\
+    \hdashline
+    \assembleur{INCFSZ f, d, a} & Increment f, Skip if 0 & \refSubsectionPage{instructionsPic18Introuvables}\\
+    \hdashline
+    \assembleur{INFSNZ f, d, a} & Increment f, Skip if Not 0 & \refSubsectionPage{instructionsPic18Introuvables}\\
+    \hdashline
+    \assembleur{IORLW k} & Inclusive OR Literal with WREG & \refSubsectionPage{opPic18Immediate}\\
+    \hdashline
+    \assembleur{IORWF f, d, a} & Inclusive OR WREG with f & \refSubsectionPage{instructionsNommantRegistreEtW}\\
   \hline
   \end{tabular}
-  \caption{Instructions assembleur \emph{pic18} [A-G]}
+  \caption{Instructions assembleur \emph{pic18} [A-I]}
   \labelTableau{instructionsPic18Assembleur1}
 \end{table}
 
@@ -733,16 +743,6 @@ Elles sont de deux types (la distinction est importante pour l’instruction \em
   \begin{tabular}{lll}
     \textbf{Assembleur} & \textbf{Description} & \textbf{Référence en Piccolo}\\
     \hline
-    \assembleur{INCF f, d, a} & Decrement f & \refSubsectionPage{instructionsNommantRegistreEtW}\\
-    \hdashline
-    \assembleur{INCFSZ f, d, a} & Increment f, Skip if 0 & \refSubsectionPage{instructionsPic18Introuvables}\\
-    \hdashline
-    \assembleur{INFSNZ f, d, a} & Increment f, Skip if Not 0 & \refSubsectionPage{instructionsPic18Introuvables}\\
-    \hdashline
-    \assembleur{IORLW k} & Inclusive OR Literal with WREG & \refSubsectionPage{opPic18Immediate}\\
-    \hdashline
-    \assembleur{IORWF f, d, a} & Inclusive OR WREG with f & \refSubsectionPage{instructionsNommantRegistreEtW}\\
-    \hdashline
     \assembleur{LFSR f, k} & Move Literal to FSR(f) & \refSubsectionPage{instructionLFSR} \\
     \hdashline
     \assembleur{MOVF f, d, a} & Move f & \refSubsectionPage{instructionsNommantRegistreEtW}\\
@@ -782,19 +782,7 @@ Elles sont de deux types (la distinction est importante pour l’instruction \em
     \assembleur{RRCF f, d, a} & Rotate Right f through Carry & \refSubsectionPage{instructionsNommantRegistreEtW}\\
     \hdashline
     \assembleur{RRNCF f, d, a} & Rotate Right f (No Carry) & \refSubsectionPage{instructionsNommantRegistreEtW}\\
-  \hline
-  \end{tabular}
-  \caption{Instructions assembleur \emph{pic18} [I-S]}
-  \labelTableau{instructionsPic18Assembleur2}
-\end{table}
-
-\begin{table}[!ht]
-  \centering
-  \small
-%  \rowcolors{2}{\fondTableau}{}
-  \begin{tabular}{lll}
-    \textbf{Assembleur} & \textbf{Description} & \textbf{Référence en Piccolo}\\
-    \hline
+    \hdashline
     \assembleur{SETF f, a} & Set f & \refSubsectionPage{instructionsNommantRegistre}\\
     \hdashline
     \assembleur{SLEEP} & Go into Standby Mode & \refSubsectionPage{OperationsPic18IdentiquesAssembleur}\\
@@ -826,13 +814,25 @@ Elles sont de deux types (la distinction est importante pour l’instruction \em
     \assembleur{TBLWT+*} & Table Write with Pre-Increment & \refSubsectionPage{OperationsPic18IdentiquesAssembleur} \\
     \hdashline
     \assembleur{TSTFSZ f, a} & Test f, Skip if 0 & \refSubsectionPage{instructionsPic18Introuvables}\\
-    \hdashline
+  \hline
+  \end{tabular}
+  \caption{Instructions assembleur \emph{pic18} [L-T]}
+  \labelTableau{instructionsPic18Assembleur2}
+\end{table}
+
+\begin{table}[!ht]
+  \centering
+  \small
+%  \rowcolors{2}{\fondTableau}{}
+  \begin{tabular}{lll}
+    \hline
+    \textbf{Assembleur} & \textbf{Description} & \textbf{Référence en Piccolo}\\
     \assembleur{XORLW k} & Exclusive OR Literal with WREG & \refSubsectionPage{opPic18Immediate}\\
     \hdashline
     \assembleur{XORWF f, d, a} & Exclusive OR WREG with f & \refSubsectionPage{instructionsNommantRegistreEtW}\\
-  \hline
+    \hline
   \end{tabular}
-  \caption{Instructions assembleur \emph{pic18} [T-X]}
+  \caption{Instructions assembleur \emph{pic18} [X-X]}
   \labelTableau{instructionsPic18Assembleur3}
 \end{table}
 
