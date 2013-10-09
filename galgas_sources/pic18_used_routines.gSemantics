@@ -9,7 +9,7 @@ abstract method @pic18PiccoloInstruction addUsedRoutines
 
 #---------------------------------------------------------------------------*
 
-override method @instruction_IF_BitTest addUsedRoutines
+override method @pic18Instruction_IF_BitTest addUsedRoutines
   ?!@stringset ioUsedRoutines
 :
   [mEmbeddedInstruction addUsedRoutines !?ioUsedRoutines] ;
@@ -17,7 +17,7 @@ end method ;
 
 #---------------------------------------------------------------------------*
 
-override method @instruction_IF_FA_SEMI_COLON addUsedRoutines
+override method @pic18Instruction_IF_FA_SEMI_COLON addUsedRoutines
   ?!@stringset ioUsedRoutines
 :
   [mEmbeddedInstruction addUsedRoutines !?ioUsedRoutines] ;
@@ -25,7 +25,7 @@ end method ;
 
 #---------------------------------------------------------------------------*
 
-override method @instruction_IF_IncDec addUsedRoutines
+override method @pic18Instruction_IF_IncDec addUsedRoutines
   ?!@stringset ioUsedRoutines
 :
   [mEmbeddedInstruction addUsedRoutines !?ioUsedRoutines] ;
@@ -33,7 +33,7 @@ end method ;
 
 #---------------------------------------------------------------------------*
 
-override method @instruction_JUMP addUsedRoutines
+override method @pic18Instruction_JUMP addUsedRoutines
   ?!@stringset ioUsedRoutines
 :
   ioUsedRoutines += !mTargetLabel->string ;
@@ -41,7 +41,7 @@ end method ;
 
 #---------------------------------------------------------------------------*
 
-override method @instruction_JUMPCC addUsedRoutines
+override method @pic18Instruction_JUMPCC addUsedRoutines
   ?!@stringset ioUsedRoutines
 :
   ioUsedRoutines += !mTargetLabel->string ;
@@ -49,7 +49,7 @@ end method ;
 
 #---------------------------------------------------------------------------*
 
-override method @instruction_FOREVER addUsedRoutines
+override method @pic18Instruction_FOREVER addUsedRoutines
   ?!@stringset ioUsedRoutines
 :
   addPic18UsedRoutinesFromInstructionList !mInstructionList !?ioUsedRoutines ;
@@ -57,42 +57,42 @@ end method ;
 
 #---------------------------------------------------------------------------*
 
-override method @instruction_LDATAPTR addUsedRoutines
+override method @pic18Instruction_LDATAPTR addUsedRoutines
   ?!@stringset unused ioUsedRoutines
 :
 end method ;
 
 #---------------------------------------------------------------------------*
 
-override method @instruction_LTBLPTR addUsedRoutines
+override method @pic18Instruction_LTBLPTR addUsedRoutines
   ?!@stringset unused ioUsedRoutines
 :
 end method ;
 
 #---------------------------------------------------------------------------*
 
-override method @instruction_MNOP addUsedRoutines
+override method @pic18Instruction_MNOP addUsedRoutines
   ?!@stringset unused ioUsedRoutines
 :
 end method ;
 
 #---------------------------------------------------------------------------*
 
-override method @instruction_banksel addUsedRoutines
+override method @pic18Instruction_banksel addUsedRoutines
   ?!@stringset unused ioUsedRoutines
 :
 end method ;
 
 #---------------------------------------------------------------------------*
 
-override method @instruction_banksel_register addUsedRoutines
+override method @pic18Instruction_banksel_register addUsedRoutines
   ?!@stringset unused ioUsedRoutines
 :
 end method ;
 
 #---------------------------------------------------------------------------*
 
-override method @instruction_computed_bra addUsedRoutines
+override method @pic18Instruction_computed_bra addUsedRoutines
   ?!@stringset ioUsedRoutines
 :
   foreach mTargetLabels do
@@ -102,7 +102,7 @@ end method ;
 
 #---------------------------------------------------------------------------*
 
-override method @instruction_computed_goto addUsedRoutines
+override method @pic18Instruction_computed_goto addUsedRoutines
   ?!@stringset ioUsedRoutines
 :
   foreach mTargetLabels do
@@ -112,7 +112,7 @@ end method ;
 
 #---------------------------------------------------------------------------*
 
-override method @instruction_computed_rcall addUsedRoutines
+override method @pic18Instruction_computed_rcall addUsedRoutines
   ?!@stringset ioUsedRoutines
 :
   foreach mTargetLabels do
@@ -122,14 +122,14 @@ end method ;
 
 #---------------------------------------------------------------------------*
 
-override method @instruction_computed_retlw addUsedRoutines
+override method @pic18Instruction_computed_retlw addUsedRoutines
   ?!@stringset unused ioUsedRoutines
 :
 end method ;
 
 #---------------------------------------------------------------------------*
 
-override method @instruction_do_while addUsedRoutines
+override method @pic18Instruction_do_while addUsedRoutines
   ?!@stringset ioUsedRoutines
 :
   addPic18UsedRoutinesFromInstructionList !mRepeatedInstructionList !?ioUsedRoutines ;
@@ -140,14 +140,14 @@ end method ;
 
 #---------------------------------------------------------------------------*
 
-override method @instruction_nobanksel addUsedRoutines
+override method @pic18Instruction_nobanksel addUsedRoutines
   ?!@stringset unused ioUsedRoutines
 :
 end method ;
 
 #---------------------------------------------------------------------------*
 
-override method @instruction_savebank addUsedRoutines
+override method @pic18Instruction_savebank addUsedRoutines
   ?!@stringset ioUsedRoutines
 :
   addPic18UsedRoutinesFromInstructionList !mInstructionList !?ioUsedRoutines ;
@@ -155,7 +155,7 @@ end method ;
 
 #---------------------------------------------------------------------------*
 
-override method @instruction_structured_if addUsedRoutines
+override method @pic18Instruction_structured_if addUsedRoutines
   ?!@stringset ioUsedRoutines
 :
   addPic18UsedRoutinesFromInstructionList !mThenInstructionList !?ioUsedRoutines ;
@@ -164,28 +164,28 @@ end method ;
 
 #---------------------------------------------------------------------------*
 
-override method @instruction_FA addUsedRoutines
+override method @pic18Instruction_FA addUsedRoutines
   ?!@stringset unused ioUsedRoutines
 :
 end method ;
 
 #---------------------------------------------------------------------------*
 
-override method @instruction_FBA addUsedRoutines
+override method @pic18Instruction_FBA addUsedRoutines
   ?!@stringset unused ioUsedRoutines
 :
 end method ;
 
 #---------------------------------------------------------------------------*
 
-override method @instruction_FDA addUsedRoutines
+override method @pic18Instruction_FDA addUsedRoutines
   ?!@stringset unused ioUsedRoutines
 :
 end method ;
 
 #---------------------------------------------------------------------------*
 
-override method @instruction_JSR addUsedRoutines
+override method @pic18Instruction_JSR addUsedRoutines
   ?!@stringset ioUsedRoutines
 :
   ioUsedRoutines += !mTargetLabel->string ;
@@ -193,42 +193,42 @@ end method ;
 
 #---------------------------------------------------------------------------*
 
-override method @instruction_LFSR addUsedRoutines
+override method @pic18Instruction_LFSR addUsedRoutines
   ?!@stringset unused ioUsedRoutines
 :
 end method ;
 
 #---------------------------------------------------------------------------*
 
-override method @instruction_MOVFF addUsedRoutines
+override method @pic18Instruction_MOVFF addUsedRoutines
   ?!@stringset unused ioUsedRoutines
 :
 end method ;
 
 #---------------------------------------------------------------------------*
 
-override method @instruction_TBLWT addUsedRoutines
+override method @pic18Instruction_TBLWT addUsedRoutines
   ?!@stringset unused ioUsedRoutines
 :
 end method ;
 
 #---------------------------------------------------------------------------*
 
-override method @instruction_TBLRD addUsedRoutines
+override method @pic18Instruction_TBLRD addUsedRoutines
   ?!@stringset unused ioUsedRoutines
 :
 end method ;
 
 #---------------------------------------------------------------------------*
 
-override method @instruction_literalOperation addUsedRoutines
+override method @pic18Instruction_literalOperation addUsedRoutines
   ?!@stringset unused ioUsedRoutines
 :
 end method ;
 
 #---------------------------------------------------------------------------*
 
-override method @instruction_withNoOperand addUsedRoutines
+override method @pic18Instruction_withNoOperand addUsedRoutines
   ?!@stringset unused ioUsedRoutines
 :
 end method ;
@@ -236,7 +236,7 @@ end method ;
 #---------------------------------------------------------------------------*
 
 local routine addPic18UsedRoutinesFromInstructionList
-  ??@instructionList inInstructionList
+  ??@pic18InstructionList inInstructionList
   ?!@stringset ioUsedRoutines
 :
   foreach inInstructionList do
@@ -247,8 +247,8 @@ end routine ;
 #---------------------------------------------------------------------------*
 
 function pic18_computeUsedRoutines
-  ??@interruptDefinitionList inInterruptDefinitionList
-  ??@routineDefinitionList inRoutineDefinitionList
+  ??@pic18InterruptDefinitionList inInterruptDefinitionList
+  ??@pic18RoutineDefinitionList inRoutineDefinitionList
   ??@routineDeclarationList inBootloaderRoutineDeclarationListForBootloaderImplementation
   ??@routineDeclarationList inUserRoutineDeclarationListForUserProgramImplementation
   -> @stringset outUsedRoutineSet
