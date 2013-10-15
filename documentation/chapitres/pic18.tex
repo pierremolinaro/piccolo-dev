@@ -411,10 +411,8 @@ Les routines définissent le code exécutable de votre programme. L’une d’en
 
 L’ordre des déclarations des routines est quelconque, il est possible d’appeler une routine qui est déclarée après l’instruction d’appel. Simplement Piccolo engendrera leur code dans leur ordre d’apparition. 
 
-~\\
 \textbf{Routine et BSR.} Un problème important en assembleur est la gestion du registre de sélection de banc \assembleur{BSR} : son utilisation correcte en assembleur est complètement à la charge du programmeur. Piccolo propose des instructions pour sécuriser son emploi : voir la \refSectionPage{instructionsGestionBancsMemoire}.
 
-~\\
 \textbf{Liste d’instructions d’une routine.} Elle est structurée : Piccolo définit des instructions de sélection et de répétition : cela signifie que vous ne pouvez pas déclarer d’étiquette, ni utiliser des \piccolo{bra} ni des \piccolo{goto} pour effectuer des branchements à l’intérieur d’une routine.
 
 
@@ -429,7 +427,6 @@ routine maRoutine ... {
 
 \piccolo{maRoutine} est le nom de la routine, celui qui sera nommé dans un instruction d’appel de routine. Entre les accolades \piccolo{\{} et \piccolo{\}}, apparaît la liste des instructions.
 
-~\\
 \textbf{Appel d’une routine régulière.} Utiliser \piccolo{rcall}, \piccolo{call} ou \piccolo{jsr}, comme indiqué à la \refSubsectionPage{appelRoutineRegulierePic18}.
 
 \subsection{Routine sans retour}
@@ -443,11 +440,9 @@ noreturn routine maRoutine ... {
 }
 \end{lstlisting}
 
-~\\
 \textbf{Appel d’une routine sans retour.} Utiliser \piccolo{bra}, \piccolo{goto}, Bcc ou \piccolo{jump}.
 
 
-~\\
 \textbf{Déclaration de la routine \piccolo{main}.} Dans un programme, il doit exister une et une seule routine \piccolo{main}, qui doit être déclarée comme suit :
 
 \begin{lstlisting}[language=piccolo]
@@ -460,7 +455,6 @@ noreturn routine main bank:requires 0 {
 Le compilateur Piccolo insère à l’adresse zéro une instruction \piccolo{bra} (ou \piccolo{goto}) vers cette routine, de façon que la routine \piccolo{main} soit exécutée au démarrage du micro-contrôleur. Le qualificatif \piccolo{bank:requires 0} est exigé par le compilateur Piccolo car \assembleur{BSR} est initialisé à zéro au démarrage du micro-contrôleur.
 
 
-~\\
 \textbf{Comment terminer une routine sans retour.} La dernière instruction de la liste des instructions d’une routine sans retour doit être :
 \begin{itemize}
   \item une instruction de répétition infinie (\refSectionPage{repetitionInfinie}) ;
@@ -677,10 +671,12 @@ Dans cette situation, demander la mise en ligne de \piccolo{r1} est inutile.
 \sectionLabel{Routines d'interruption}{routineInterruptionPic18}
 
 Les \emph{pic18} acceptent deux niveaux d’interruption, le niveau haut (\piccolo{high}), et le niveau faible (\piccolo{low}) :
-l’occurrence d’une interruption de niveau haut provoque un branchement à l’adresse 0x08 ;
-l’occurrence d’une interruption de niveau faible provoque un branchement à l’adresse 0x18.
+\begin{itemize}
+  \item l’occurrence d’une interruption de niveau haut provoque un branchement à l’adresse \texttt{0x08} ;
+  \item l’occurrence d’une interruption de niveau faible provoque un branchement à l’adresse \texttt{0x18}.
+\end{itemize}
 
-Durant la réponse à une interruption, PC est sauvé dans la pile, et les registres \assembleur{WREG}, \assembleur{STATUS} et \assembleur{BSR} sont sauvés dans des registres cachés. Le retour d’interruption s’effectue par une instruction \assembleur{RETFIE} ; si l’opérande 1 (pour \assembleur{FAST}) est précisée (\assembleur{RETIE 1}), alors \assembleur{WREG}, \assembleur{STATUS} et \assembleur{BSR} sont restitués à partir des registres cachés.
+Durant la réponse à une interruption, PC est sauvé dans la pile, et les registres \assembleur{WREG}, \assembleur{STATUS} et \assembleur{BSR} sont sauvés dans des registres cachés. Le retour d’interruption s’effectue par une instruction \assembleur{RETFIE} ; si l’opérande 1 (pour \assembleur{FAST}) est précisée (\assembleur{RETFIE 1}), alors \assembleur{WREG}, \assembleur{STATUS} et \assembleur{BSR} sont restitués à partir des registres cachés.
 
 Si les deux interruptions sont activées (\emph{enabled}), Microchip précise que le retour par \assembleur{RETFIE 1} ne peut pas être utilisée fiablement pour l’interruption de faible priorité : « \emph{If both low and high priority interrupts are enabled, the stack registers cannot be used reliably for low priority interrupts. If a high priority interrupt occurs while servicing a low priority interrupt, the stack register values stored by the low priority interrupt will be overwritten} ».
 
@@ -694,7 +690,7 @@ interrupt nom ... {
 }
 \end{lstlisting}
 
-Seuls deux noms sont possibles : \piccolo{low} pour l’interruption de faible priorité, et \piccolo{high} pour l’interruption de haute priorité. Bien entendu, un nom ne peut apparaître qu’une seule fois, aussi un programme ne peut comporter qu'au plus deux routines d'interruption, qui peuvent apparaître dans un ordre quelconque.
+Seuls deux noms sont possibles : \piccolo{low} pour l’interruption de faible priorité, et \piccolo{high} pour l’interruption de haute priorité. Bien entendu, un nom ne peut apparaître qu’une seule fois, aussi un programme ne peut comporter qu'au plus deux routines d'interruption, qui peuvent d'ailleurs apparaître dans un ordre quelconque dans le texte source.
 
 Dans une routine d'interruption, toutes les instructions décrites sont disponibles, sauf les instructions qui sont sans retour : boucle infinie, \piccolo{bra} (branchement vers une routine sans retour), etc.
 
@@ -732,8 +728,7 @@ interrupt nom fast {
 }
 \end{lstlisting}
 
-~\\
-\textbf{Routine déclarée sans \piccolo{fast}.} Le contenu initial de \assembleur{BSR}, au début de la routine d’interruption est inconnu. Si il doit être utilisé, et comme le retour d’interruption ne restituera pas son contenu initial, il est indispensable de le préserver par une construction \piccolo{banksave}, nommant une variable \piccolo{sauve\_bsr} déclarée dans le banc \piccolo{accessram}. Il faut ensuite fixer sa valeur par une instruction \piccolo{banksel}. 
+\textbf{Routine déclarée sans \piccolo{fast}.} Le contenu initial de \assembleur{BSR}, au début de la routine d’interruption est inconnu. Si il doit être utilisé, et comme le retour d’interruption ne restituera pas son contenu initial, il est indispensable de le préserver par une construction \piccolo{banksave}, nommant une variable \piccolo{sauve\_bsr} déclarée dans le banc \piccolo{accessram} (de façon que son accès puisse être effectué quelque soit la valeur de \assembleur{BSR}). Il faut ensuite fixer sa valeur par une instruction \piccolo{banksel}. 
 
 \begin{lstlisting}[language=piccolo]
 interrupt nom {
@@ -975,6 +970,7 @@ Elles sont de deux types (la distinction est importante pour l’instruction \em
   \item l'instruction \piccolo{computed bra} (\refSubsectionPage{instructionComputedBra}) ;
   \item l'instruction \piccolo{computed goto} (\refSubsectionPage{instructionComputedGoto}) ;
   \item l'instruction \piccolo{banksel} (\refSubsectionPage{instructionBanksel}) ;
+  \item l'instruction \piccolo{checkbank} (\refSubsectionPage{instructionCheckBank}) ;
   \item l'instruction \piccolo{nobank} (\refSubsectionPage{instructionNoBank}) ;
   \item l'instruction \piccolo{banksave} (\refSubsectionPage{instructionBanksave}).
 \end{itemize}
@@ -1306,7 +1302,6 @@ Appeler une routine sans retour (c'est-à-dire déclarée avec le qualificatif \
 
 
 
-~\\
 \piccolo{bra} correspond à l’instruction assembleur \assembleur{BRA} : elle occupe deux octets, mais sa compilation entraîne une erreur si le déplacement est trop important pour être codé. L'appel s'écrit :
 \begin{lstlisting}[language=piccolo]
 bra nom_routine
@@ -1314,27 +1309,23 @@ bra nom_routine
 
 
 
-~\\
 \piccolo{goto} correspond à l’instruction assembleur \assembleur{GOTO} : elle peut coder tout branchement inconditionnel, mais occupe quatre octets. L'appel s'écrit :
 \begin{lstlisting}[language=piccolo]
 goto nom_routine
 \end{lstlisting}
 
 
-~\\
 \piccolo{jump} est un ajout propre à Piccolo. Dans sa forme incondionnelle, il engendre par défaut une instruction \assembleur{BRA}, ou, si le déplacement est trop important, une instruction \assembleur{GOTO}. L'appel s'écrit :
 \begin{lstlisting}[language=piccolo]
 jump nom_routine
 \end{lstlisting}
 
-~\\
 $B_{CC}$ correspond à l’une des huit instructions assembleur citées ci dessus : elle occupe deux octets, mais sa compilation entraîne une erreur si le déplacement est trop important pour être codé. L'appel s'écrit par exemple :
 \begin{lstlisting}[language=piccolo]
 bz nom_routine
 \end{lstlisting}
 
 
-~\\
 La forme conditionnelle de l'instruction \piccolo{jump} nomme une des huit conditions \piccolo{cc} (voir ci-dessus). L'appel s'écrit par exemple :
 \begin{lstlisting}[language=piccolo]
 jump z nom_routine
@@ -1352,21 +1343,29 @@ Le code engendré par une instruction \piccolo{jump cc} peut occuper deux, quatr
       & \multicolumn{3}{c}{\bf Code engendré}\\
     \textbf{Instruction Piccolo} & \textbf{2 octets} & \textbf{4 octets} & \textbf{6 octets}\\
     \hline
-    \piccolo{jump c routine} & \assembleur{BC routine} & \assembleur{BNC \$ + 4 BRA routine} & \assembleur{BNC \$ + 6 GOTO routine}\\
+    \piccolo{jump c routine} & \assembleur{BC routine} & \assembleur{BNC \$ + 4} & \assembleur{BNC \$ + 6}\\
+                             &                         & \assembleur{BRA routine} & \assembleur{GOTO routine}\\
     \hdashline
-    \piccolo{jump nc routine} & \assembleur{BNC routine} & \assembleur{BC ~\$ + 4 BRA routine} & \assembleur{BC ~\$ + 6 GOTO routine}\\
+    \piccolo{jump nc routine} & \assembleur{BNC routine} & \assembleur{BC \$ + 4} & \assembleur{BC \$ + 6}\\
+                              &                          & \assembleur{BRA routine} & \assembleur{GOTO routine}\\
     \hdashline
-    \piccolo{jump z routine} & \assembleur{BZ routine} & \assembleur{BNZ \$ + 4 BRA routine} & \assembleur{BNZ \$ + 6 GOTO routine}\\
+    \piccolo{jump z routine} & \assembleur{BZ routine} & \assembleur{BNZ \$ + 4} & \assembleur{BNZ \$ + 6}\\
+                              &                          & \assembleur{BRA routine} & \assembleur{GOTO routine}\\
     \hdashline
-    \piccolo{jump nz routine} & \assembleur{BNZ routine} & \assembleur{BZ ~\$ + 4 BRA routine} & \assembleur{BZ ~\$ + 6 GOTO routine}\\
+    \piccolo{jump nz routine} & \assembleur{BNZ routine} & \assembleur{BZ \$ + 4} & \assembleur{BZ \$ + 6}\\
+                              &                          & \assembleur{BRA routine} & \assembleur{GOTO routine}\\
     \hdashline
-    \piccolo{jump n routine} & \assembleur{BN routine} & \assembleur{BNN \$ + 4 BRA routine} & \assembleur{BNN \$ + 6 GOTO routine}\\
+    \piccolo{jump n routine} & \assembleur{BN routine} & \assembleur{BNN \$ + 4} & \assembleur{BNN \$ + 6}\\
+                              &                          & \assembleur{BRA routine} & \assembleur{GOTO routine}\\
     \hdashline
-    \piccolo{jump nn routine} & \assembleur{BNN routine} & \assembleur{BN ~\$ + 4 BRA routine} & \assembleur{BN ~\$ + 6 GOTO routine}\\
+    \piccolo{jump nn routine} & \assembleur{BNN routine} & \assembleur{BN \$ + 4} & \assembleur{BN \$ + 6}\\
+                              &                          & \assembleur{BRA routine} & \assembleur{GOTO routine}\\
     \hdashline
-    \piccolo{jump ov routine} & \assembleur{BOV routine} & \assembleur{BNOV \$ + 4 BRA routine} & \assembleur{BNOV \$ + 6 GOTO routine}\\
+    \piccolo{jump ov routine} & \assembleur{BOV routine} & \assembleur{BNOV \$ + 4} & \assembleur{BNOV \$ + 6}\\
+                              &                          & \assembleur{BRA routine} & \assembleur{GOTO routine}\\
     \hdashline
-    \piccolo{jump nov routine} & \assembleur{BNOV routine} & \assembleur{BOV ~\$ + 4 BRA routine} & \assembleur{BOV ~\$ + 6 GOTO routine}\\
+    \piccolo{jump nov routine} & \assembleur{BNOV routine} & \assembleur{BOV \$ + 4} & \assembleur{BOV \$ + 6}\\
+                              &                          & \assembleur{BRA routine} & \assembleur{GOTO routine}\\
     \hline
   \end{tabular}
   \caption{Codages possibles de l'instruction \texttt{jump cc}}
@@ -1413,7 +1412,6 @@ Pour accéder au tableau :
 
 
 
-~\\
 \textbf{Exemple.} Si on déclare :
 \begin{lstlisting}[language=piccolo]
   data monTableau {0x1234, 0x5678}
@@ -1458,7 +1456,6 @@ Le code engendré pour l'instruction est le suivant :
 
 Le registre \assembleur{WREG} est donc modifié par cette opération.
 
-~\\
 \textbf{Optimisation.} Si une valeur immédiate est 0, l'opération \assembleur{CLRF} est utilisée ; si une valeur immédiate est 0xFF, l'opération \assembleur{SETF} est utilisée. Par exemple, 
 \begin{lstlisting}[language=piccolo]
   ltblptr 0x3FFF
@@ -1473,7 +1470,6 @@ Engendre le code :
 \end{lstlisting}
 
 
-~\\
 \textbf{Exemple d'utilisation.} Associée à la constante \emph{ROM\_SIZE}, elle permet d'écrire une routine générique, valable pour tous les types de \emph{pic18}, qui renvoie dans \emph{WREG}, la somme des octets de la flash (\refSubsectionPage{exempleLTBLPTR-ROMSIZE}).
 
 
@@ -1483,7 +1479,6 @@ Cette instruction permet de charger les registres \assembleur{TBLPTRU}, \assembl
 
 Elle peut prendre deux formes.
 
-~\\
 \textbf{Première forme.}
 
 \begin{lstlisting}[language=piccolo]
@@ -1504,7 +1499,6 @@ Le code engendré est le suivant :
 
 Cette séquence n'est jamais optimisée, et \assembleur{WREG} est toujours modifié.
 
-~\\
 \textbf{Seconde forme.}
 
 \begin{lstlisting}[language=piccolo]

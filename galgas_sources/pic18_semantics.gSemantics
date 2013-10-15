@@ -92,7 +92,14 @@ routine pic18_analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName 
   ] ;
   @declaredRoutineMap declaredRoutineMap [emptyMap] ;
   foreach inPiccoloModel->mRoutineDefinitionList do
-    [!?declaredRoutineMap insertKey !mRoutineName !mInstructionList] ;
+    [!?declaredRoutineMap insertKey
+      !mRoutineName
+      !mRequiredBank
+      !mReturnedBank
+      !mPreservesBank
+      !mIsNoReturn
+      !mInstructionList
+    ] ;
   end foreach ;
 #-------------------------------- Check used routines
   @stringset unusedDeclarationUnicity [emptySet] ;

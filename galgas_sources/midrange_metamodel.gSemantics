@@ -28,6 +28,11 @@ class @midrange_instruction_banksel extends @midrange_instruction {
 
 #----------------------------------------------------*
 
+class @midrangeInstruction_checkbank extends @midrange_instruction {
+  @uint mBankIndex ;
+}
+
+#----------------------------------------------------*
 class @midrange_instruction_banksel_register extends @midrange_instruction {
   @registerExpression mRegister ;
   @bool mWarningOnUselessBanksel ;

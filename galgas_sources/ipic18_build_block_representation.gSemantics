@@ -371,6 +371,36 @@ override method @pic18Instruction_JSR analyzeSimpleInstruction
   ] ;
 end method ;
 
+#----------------------------------------------------*
+
+override method @pic18Instruction_checkbank analyze
+  ??@uint unused inAccessBankSplitOffset
+  ?!@ipic18BlockList unused ioGeneratedBlockList
+  ??@routineMap unused inRoutineMap
+  ??@registerTable unused inRegisterTable
+  ??@pic18_dataMap unused inDataMap
+  ??@constantMap unused inConstantMap
+  ?!@uint unused ioLocalLabelIndex
+  ?!@ipic18Block unused ioCurrentBlock
+  ?!@string unused ioListFileContents
+  ?!@uint ioCurrentBank
+  ??@bool unused inShouldPreserveBSR
+  ?!@bool unused ioContinuesInSequence
+  ??@routineKind unused inRoutineKind
+  ?!@stringset unused ioUsedRegisters
+:
+#--- Check instruction
+  if mBankIndex > 15 then
+    error mInstructionLocation:"Bank index should be <= 15" ;
+  elsif ioCurrentBank == [@uint max] then
+    error mInstructionLocation:"checkbank fail: there is no selected bank" ;
+    ioCurrentBank := mBankIndex ;
+  elsif ioCurrentBank != mBankIndex then
+    error mInstructionLocation:"checkbank fail: the selected bank is " . ioCurrentBank . ", required bank is " . mBankIndex ;
+  end if ;
+    ioCurrentBank := mBankIndex ;
+end method ;
+
 #----------------------------------------------------------------------------*
 
 #!--- Instruction analysis

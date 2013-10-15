@@ -4,6 +4,10 @@ import "pic18_metamodel.gSemantics" ;
 #----------------------------------------------------------------------------*
 
 map @declaredRoutineMap {
+  @luint mRequiredBank ;
+  @luint mReturnedBank ;
+  @bool mPreservesBank ;
+  @bool mIsNoReturn ;
   @pic18InstructionList mInstructionList ;
   insert insertKey error message "the '%K' routine is already declared" ;
   search searchKey error message "the '%K' routine is not declared" ;
@@ -126,10 +130,32 @@ override method @pic18Instruction_JSR performInlining
   ??@declaredRoutineMap inDeclaredRoutineMap
   ?!@pic18InstructionList ioInstructionList
 :
+  @bool inlineDone ;
   if [inDeclaredRoutineMap hasKey !mTargetLabel->string] & [inInlinedRoutineSet hasKey !mTargetLabel->string] then
-    [inDeclaredRoutineMap searchKey !mTargetLabel ??@pic18InstructionList instructionList] ;
-    ioInstructionList .= instructionList ;
-  else
+    [inDeclaredRoutineMap searchKey
+      !mTargetLabel
+      ??@luint requiredBank
+      ??@luint returnedBank
+      ??@bool preservesBank
+      ??@bool isNoReturn
+      ??@pic18InstructionList instructionList
+    ] ;
+    if isNoReturn then
+      error mTargetLabel: "a \"noreturn\" routine cannot be inlined" : inlineDone ;
+    else
+      if requiredBank->uint != [@uint max] then
+        ioInstructionList += ![@pic18Instruction_checkbank new !mInstructionLocation !requiredBank->uint] ;
+      end if ;
+      ioInstructionList .= instructionList ;
+      if returnedBank->uint != [@uint max] then
+        ioInstructionList += ![@pic18Instruction_checkbank new !mInstructionLocation !returnedBank->uint] ;
+      end if ;
+      inlineDone := true ;
+    end if ;
+  else 
+    inlineDone := false ;
+  end if ;
+  if not inlineDone then
     ioInstructionList += !selfcopy ;
   end if ;
 end method ;

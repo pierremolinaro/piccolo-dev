@@ -32,6 +32,12 @@ class @pic18Instruction_nobanksel extends @pic18PiccoloInstruction {
 
 #----------------------------------------------------*
 
+class @pic18Instruction_checkbank extends @pic18PiccoloInstruction {
+  @uint mBankIndex ;
+}
+
+#----------------------------------------------------*
+
 abstract class @pic18PiccoloSimpleInstruction extends @pic18PiccoloInstruction {
 }
 
@@ -41,6 +47,7 @@ class @pic18Instruction_banksel extends @pic18PiccoloInstruction {
   @luint mBankIndex ;
   @bool mWarningOnUselessBanksel ;
 }
+
 #----------------------------------------------------*
 
 class @pic18Instruction_banksel_register extends @pic18PiccoloInstruction {

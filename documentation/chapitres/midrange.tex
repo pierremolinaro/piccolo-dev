@@ -68,13 +68,10 @@ Les routines définissent le code exécutable de votre programme. L’une d’en
 
 L’ordre des déclarations des routines est quelconque, il est possible d’appeler une routine qui est déclarée après l’instruction d’appel. Simplement Piccolo engendrera leur code dans leur ordre d’apparition. 
 
-~\\
 \textbf{Routine et sélection de banc.} Un problème important en assembleur est la gestion de la sélection de banc par l’intermédiaire des bits \assembleur{RP} du registre \assembleur{STATUS} : son utilisation correcte en assembleur est complètement à la charge du programmeur. Piccolo propose des instructions pour sécuriser son emploi : voir la \refSectionPage{instructionsGestionBancsMemoire}.
 
-~\\
 \textbf{Liste d’instructions d’une routine.} Elle est structurée : Piccolo définit des instructions de sélection et de répétition : cela signifie que vous ne pouvez pas déclarer d’étiquette, ni utiliser des \piccolo{goto} pour effectuer des branchements à l’intérieur d’une routine.
 
-~\\
 \textbf{Routine et pages de la mémoire programme.} La mémoire programme d’un midrange est divisé en blocs de 2048 instructions, et franchir ces frontières posent des problèmes particuliers. Piccolo impose les contraintes suivantes :\begin{itemize}
   \item une routine doit être complètement contenue dans une page (son code ne peut franchir une frontière) ;
   \item les sauts inter-pages ne peuvent être effectués qu’avec les instructions \piccolo{jump} ou \piccolo{jsr} (\refSectionPage{gestionPagesMidRange}).
@@ -91,7 +88,6 @@ routine maRoutine ... {
 
 \piccolo{maRoutine} est le nom de la routine, celui qui sera nommé dans un instruction d’appel de routine. Entre les accolades « \piccolo{\{} » et « \piccolo{\}} », apparaît la liste des instructions.
 
-~\\
 \textbf{Appel d’une routine régulière.} Utiliser \piccolo{call} ou \piccolo{jsr}.
 
 \subsection{Routine sans retour}
@@ -105,11 +101,9 @@ noreturn routine maRoutine ... {
 }
 \end{lstlisting}
 
-~\\
 \textbf{Appel d’une routine sans retour.} Utiliser \piccolo{goto} ou \piccolo{jump}.
 
 
-~\\
 \textbf{Déclaration de la routine \piccolo{main}.} Dans un programme, il doit exister une et une seule routine \piccolo{main}, qui doit être déclarée comme suit :
 
 \begin{lstlisting}[language=piccolo]
@@ -122,7 +116,6 @@ noreturn routine main bank:requires 0 {
 Le compilateur Piccolo insère à l’adresse zéro une instruction \piccolo{goto} vers cette routine, de façon que la routine \piccolo{main} soit exécutée au démarrage du micro-contrôleur. Le qualificatif \piccolo{bank:requires 0} est exigé par le compilateur Piccolo car les bits \assembleur{RP} du registre \assembleur{STATUS} sont initialisés à zéro au démarrage du micro-contrôleur.
 
 
-~\\
 \textbf{Comment terminer une routine sans retour.} La dernière instruction de la liste des instructions d’une routine sans retour doit être :
 \begin{itemize}
   \item un appel vers une autre routine sans retour, au moyen d’un \piccolo{goto} ou d'un \piccolo{jump} ;
@@ -240,7 +233,6 @@ Elles sont de deux types (la distinction est importante pour l’instruction \em
 \end{itemize}
 
 
-~\\
 \textbf{Les instructions simples.} Elles correspondent à une partie des instructions machine. Attention, pour certaines, la syntaxe n'est pas exactement la même que celle de l'instruction assembleur correspondante.
 
 Le \refTableau{instructionsAssembleurMidRange} donnent la liste des instructions machine \emph{mid-range} et les liens vers les sections précisant leur prise en charge en Piccolo.
@@ -333,7 +325,6 @@ Le \refTableau{instructionsAssembleurMidRange} donnent la liste des instructions
 
 
 
-~\\
 \textbf{Les instructions composées.} Piccolo définit les instructions suivantes :
 \begin{itemize}
   \item l'instruction \piccolo{mnop} (\refSectionPage{instructionMNOP}) ;
@@ -343,6 +334,10 @@ Le \refTableau{instructionsAssembleurMidRange} donnent la liste des instructions
   \item l'instruction de répétition infinie (\refSectionPage{repetitionInfinie}) ;
   \item l'instruction d'appel de routine régulière \piccolo{jsr} (\refSectionPage{gestionPagesMidRange}) ;
   \item l'instruction d'appel de routine sans retour \piccolo{jump} (\refSectionPage{gestionPagesMidRange}) ;
+  \item l'instruction \piccolo{banksel} (\refSubsectionPage{instructionBanksel}) ;
+  \item l'instruction \piccolo{checkbank} (\refSubsectionPage{instructionCheckBank}) ;
+  \item l'instruction \piccolo{nobank} (\refSubsectionPage{instructionNoBank}) ;
+  \item l'instruction \piccolo{banksave} (\refSubsectionPage{instructionBanksave}).
 \end{itemize}
 
 
@@ -904,7 +899,7 @@ interrupt contextsave ... {
 }
 \end{lstlisting}
 
-La section \piccolo{interrupt} peut apparaître n’importe où dans le programme, Piccolo rangera toujours le code engendré à l’adresse 0x04. Le qualificatif \piccolo{page} d’une routine ne peut pas être utilisée pour une routine d’interruption. Le qualificatif \piccolo{contextsave} permet de préciser les zones mémoire utilisées pour la sauvegarde du contexte (voir à partir de la page suivante).
+La section \piccolo{interrupt} peut apparaître n’importe où dans le programme, Piccolo rangera toujours le code engendré à l’adresse 0x04. Le qualificatif \piccolo{page} d’une routine ne peut pas être utilisée pour une routine d’interruption. Le qualificatif \piccolo{contextsave} permet de préciser les zones mémoire utilisées pour la sauvegarde du contexte (voir dans la suite de cette section).
 
 Dans un programme, au plus une routine d’interruption peut être définie : une erreur est signalée si plusieurs le sont.
 
@@ -930,7 +925,6 @@ interrupt contextsave sauveA, sauveB {
 
 L'instruction assembleur \assembleur{RETFIE} n'existe pas en Piccolo, le compilateur l'ajoute automatiquement. Le sauvegarde du contexte engendré par Piccolo assure que le banc 0 est sélectionné pour l'exécution de \piccolo{instructions}.
 
-~\\
 \textbf{Situation (1) : le micro-contrôleur possède une zone mémoire commune à tous les bancs, le code n'utilise que la page 0 de la mémoire programme ou le sous-programme d'interruption n'invoque ni \assembleur{CALL} ni \assembleur{GOTO}.} Il faut dans ce cas sauver \assembleur{W} et \assembleur{STATUS}. Les deux variables sont donc déclarées de dimension 1 :
 \begin{itemize}
   \item \assembleur{W\_TEMP} pour sauver \assembleur{W} ; cette variable doit être déclarée dans la zone commune à tous les bancs ; celle-ci s'appelle générallement \assembleur{gprnobnk} ; 
@@ -972,7 +966,6 @@ Et le code engendré pour la routine d'interruption est :
 
 
 
-~\\
 \textbf{Situation (2) : le micro-contrôleur possède une zone mémoire commune à tous les bancs, le code occupe plusieurs pages de la mémoire programme, et le sous-programme d'interruption invoque \assembleur{CALL} ou \assembleur{GOTO}.} Il faut dans ce cas donc sauver \assembleur{W}, \assembleur{STATUS} et \assembleur{PCLATH}. Les deux variables sont donc déclarées :
 \begin{itemize}
   \item \assembleur{W\_TEMP}, de dimension 1, pour sauver \assembleur{W} ; cette variable doit être déclarée dans la zone commune à tous les bancs ; celle-ci s'appelle générallement \piccolo{gprnobnk} ; 
@@ -1023,7 +1016,6 @@ Et le code engendré pour la routine d'interruption est :
 
 
 
-~\\
 \textbf{Situation (3) : le micro-contrôleur ne possède pas de zone mémoire commune à tous les bancs, le code n'utilise que la page 0 de la mémoire programme ou le sous-programme d'interruption n'invoque ni \assembleur{CALL} ni \assembleur{GOTO}.} Il faut dans ce cas sauver \assembleur{W} et \assembleur{STATUS}.
 
 Cette situation est celle du 16F873. Ce micro-contrôleur possède 4 bancs mémoire, la zone RAM du banc 2 étant un miroir de la zone RAM du banc 0, et la zone RAM du banc 3 étant un miroir de la zone RAM du banc 1. Au moment où l'interruption survient, la sélection courante des bancs est imprévisible, aussi la sauvegarde effectif de \assembleur{W} est effectuée soit dans le banc 0, soit dans le banc 1. \textbf{Il est donc indispensable que les deux variables soient déclarées de façon qu'elles présentent le même \emph{offset} à partir de l'adresse de début de leur banc.}
@@ -1072,7 +1064,6 @@ Et le code engendré pour la routine d'interruption est :
 
 
 
-~\\
 \textbf{Situation (4) : le micro-contrôleur ne possède pas de zone mémoire commune à tous les bancs, le code occupe plusieurs pages de la mémoire programme, et le sous-programme d'interruption invoque \assembleur{CALL} ou \assembleur{GOTO}.} Il faut dans ce cas donc sauver \assembleur{W}, \assembleur{STATUS} et \assembleur{PCLATH}.
 
 Cette situation est celle du 16F873. Ce micro-contrôleur possède 4 bancs mémoire, la zone RAM du banc 2 étant un miroir de la zone RAM du banc 0, et la zone RAM du banc 3 étant un miroir de la zone RAM du banc 1. Au moment où l'interruption survient, la sélection courante des bancs est imprévisible, aussi la sauvegarde effectif de \assembleur{W} est effectuée soit dans le banc 0, soit dans le banc 1. \textbf{Il est donc indispensable que les deux variables soient déclarées de façon qu'elles présentent le même \emph{offset} à partir de l'adresse de début de leur banc.}

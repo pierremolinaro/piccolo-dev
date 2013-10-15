@@ -3,81 +3,86 @@
 
 \cleardoublepage
 
-\chapter{Description du langage Piccolo}
+\chapter{Éléments lexicaux du langage Piccolo}
 
 %--- Pour supprimer tout en-tête et pied de page sur la 1re page d'un chapitre
 \thispagestyle{empty}
 
 
-\section{Éléments lexicaux}
-
-\subsection{Commentaires}
+\section{Commentaires}
 
 Un commentaire commence par un caractère dièse \piccolo{\#}, et s’étend jusqu’à la fin de la ligne courante.
 
-\subsection{Délimiteurs}
+\section{Délimiteurs}
 
-Piccolo définit les délimiteurs suivants :\\
+Piccolo définit les délimiteurs listés dans le \refTableau{delimiteursLangage}.
 
-
-\texttt{
+\begin{table}[ht]
+  \centering
   \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
     \hline
-    *  & *+ & ,  & != & <= & >= & *- & +* & ; & :  & == & < & > & [ & ] & . & ! \\
+    \texttt{*}  & \texttt{*+} & \texttt{,}  & \texttt{!=} & \texttt{<=} & \texttt{>=} & \texttt{*-} & \texttt{+*} & \texttt{;} & \texttt{:} & \texttt{==} & \texttt{<} & \texttt{>} & \texttt{[} & \texttt{]} & \texttt{.} & \texttt{!} \\
     \hline
-    \& & |  & \{ & \} & (  & )  & /  & - & + & \^{} & <{}< & >{}> & \~{} & @ & \% & = & \\
+    \texttt{\&} & \texttt{|}  & \texttt{\}} & \texttt{\}} & \texttt{(}  & \texttt{)}  & \texttt{/}  & \texttt{-} & \texttt{+} & \texttt{\textasciicircum} & \texttt{<{}<} & \texttt{>{}>} & \texttt{\textasciitilde} & \texttt{@} & \texttt{\%} & \texttt{=} & \\
     \hline
   \end{tabular}
-}
+  \caption{Délimiteurs du langage Piccolo}
+  \labelTableau{delimiteursLangage}
+\end{table}
 
-\subsection{Séparateurs}
+\section{Séparateurs}
 
 Tout caractère dont le code ASCII est compris entre \texttt{0x01} et \texttt{0x20} est considéré comme un séparateur (ceci inclut donc la tabulation horizontale \texttt{HT} (\texttt{0x09}), le passage à la ligne \texttt{LF} (\texttt{0x0A}), le retour-chariot \texttt{CR} (\texttt{0x0D}), et l’espace (\texttt{0x20}).
 
-\subsection{Identificateurs}
+\section{Identificateurs}
 Un identificateur commence par une lettre (minuscule ou majuscule), qui est suivie par zéro, un ou plusieurs lettres (minuscules ou majuscules), chiffres décimaux, caractères \piccolo{\_}.
 
 La casse est significative pour les identificateurs.
 
-\subsection{Mots réservés}
+\section{Mots réservés}
 \index{Mots réservés}
 
 Certains identificateurs sont réservés. La casse n’est pas significative pour les mots réservés, c’est à dire que les mots réservés peuvent être écrits indifféremment avec des lettres minuscules ou majuscules.
 
 
-~\\
-Mots réservés correspondant aux éléments du langage :\\
+Les mots réservés correspondant aux éléments du langage sont listés dans le \refTableau{motReservesLangage}. Dans tout ce document, ces mots réservés sont écrits en minuscule, gras et en bleu.
+
 
 \newcommand\keyWordLanguage[1]{\textcolor{blue}{\bf#1}}
 
+\begin{table}[ht]
+  \centering
 \begin{tabular}{|l|l|l|l|l|l|}
   \hline
    \keyWordLanguage{bank} & \keyWordLanguage{banksave} & \keyWordLanguage{banksel} & \keyWordLanguage{baseline} & \keyWordLanguage{bootloader} \\
   \hline
-    \keyWordLanguage{byte} & \keyWordLanguage{computed} & \keyWordLanguage{configuration} & \keyWordLanguage{checkpic} & \keyWordLanguage{const} \\
+    \keyWordLanguage{byte} & \keyWordLanguage{computed} & \keyWordLanguage{configuration} & \keyWordLanguage{checkbank} & \keyWordLanguage{checkpic} \\
   \hline
-    \keyWordLanguage{contextsave} & \keyWordLanguage{data} & \keyWordLanguage{do} & \keyWordLanguage{end} & \keyWordLanguage{else} \\
+     \keyWordLanguage{const} & \keyWordLanguage{contextsave} & \keyWordLanguage{data} & \keyWordLanguage{do} & \keyWordLanguage{end} \\
   \hline
-   \keyWordLanguage{elsif} & \keyWordLanguage{ensures} & \keyWordLanguage{fast} & \keyWordLanguage{forever} & \keyWordLanguage{if}   \\
+   \keyWordLanguage{else} & \keyWordLanguage{elsif} & \keyWordLanguage{ensures} & \keyWordLanguage{fast} & \keyWordLanguage{forever}  \\
   \hline
-    \keyWordLanguage{implements} & \keyWordLanguage{include} & \keyWordLanguage{inline} & \keyWordLanguage{interrupt} & \keyWordLanguage{mark} \\
+    \keyWordLanguage{if}  & \keyWordLanguage{implements} & \keyWordLanguage{include} & \keyWordLanguage{inline} & \keyWordLanguage{interrupt} \\
   \hline
-     \keyWordLanguage{midrange} & \keyWordLanguage{nobank} & \keyWordLanguage{noreturn} & \keyWordLanguage{page} & \keyWordLanguage{pic18}  \\
+     \keyWordLanguage{mark} & \keyWordLanguage{midrange} & \keyWordLanguage{nobank} & \keyWordLanguage{noreturn} & \keyWordLanguage{page}  \\
   \hline
-   \keyWordLanguage{preserved} & \keyWordLanguage{ram} & \keyWordLanguage{requires} & \keyWordLanguage{rom} & \keyWordLanguage{routine} \\
+   \keyWordLanguage{pic18} & \keyWordLanguage{preserved} & \keyWordLanguage{ram} & \keyWordLanguage{requires} & \keyWordLanguage{rom} \\
   \hline
-      \keyWordLanguage{unused} & \keyWordLanguage{uses}& \keyWordLanguage{w} & \keyWordLanguage{while} & \\
+      \keyWordLanguage{routine} & \keyWordLanguage{unused} & \keyWordLanguage{uses}& \keyWordLanguage{w} & \keyWordLanguage{while} \\
   \hline
 \end{tabular}
+  \caption{Mots réservés correspondant aux éléments du langage Piccolo}
+  \labelTableau{motReservesLangage}
+\end{table}
 
-~\\
-Dans tout ce document, ces mots réservés sont écrits en minuscule, gras et en bleu.
 
-~\\
-Mots réservés correspondant à des instructions exécutables :\\
+Les mots réservés correspondant à des instructions exécutables sont listés dans le \refTableau{motReservesInstructions}. Dans tout ce document, ces mots réservés sont écrits en minuscule, gras et en marron. Pour les différencier, les instructions assembleur correspondantes sont écrites en majuscules.
+
 
 \newcommand\keyWordInstruction[1]{\textcolor{brown}{\bf#1}}
 
+\begin{table}[ht]
+  \centering
 \begin{tabular}{|l|l|l|l|l|l|l|}
   \hline
     \keyWordInstruction{addlw} & \keyWordInstruction{addwf} & \keyWordInstruction{addwfc} & \keyWordInstruction{andlw} & \keyWordInstruction{andwf} & \keyWordInstruction{bc} & \keyWordInstruction{bcf} \\
@@ -101,19 +106,21 @@ Mots réservés correspondant à des instructions exécutables :\\
     \keyWordInstruction{tris} & \keyWordInstruction{xorlw} & \keyWordInstruction{xorwf} & & & & \\
   \hline
 \end{tabular}
+  \caption{Mots réservés correspondant aux instructions exécutables}
+  \labelTableau{motReservesInstructions}
+\end{table}
 
-Dans tout ce document, ces mots réservés sont écrits en minuscule, gras et en marron. Les instructions assembleur correspondantes sont écrites en majuscules.
 
 
-\subsection{Constante chaîne de caractères}
+\section{Constante chaîne de caractères}
 
 Comme en C, les chaînes de caractères sont délimitées par des caractères \piccolo{"}. Les séquences d’échappement suivantes sont acceptées : \piccolo{\\f}, \piccolo{\\n}, \piccolo{\\r}, \piccolo{\\v}, \piccolo{\\\\}, \piccolo{\\"}, \piccolo{\\'}, \piccolo{\\0}.
 
-\subsection{Constante caractère}
+\section{Constante caractère}
 
 Comme en C, les caractères sont délimités par des caractères \piccolo{'}.  Les séquences d’échappement suivantes sont acceptées : \piccolo{\\f}, \piccolo{\\n}, \piccolo{\\r}, \piccolo{\\v}, \piccolo{\\\\}, \piccolo{\\'}, \piccolo{\\0}.
 
-\subsection{Constante entière}
+\section{Constante entière}
 
 Vous pouvez écrire les constantes entières en décimal, en hexadécimal ou en binaire. 
 
@@ -131,7 +138,7 @@ Attention :
   \item contrairement à l’assembleur PIC, le préfixe \piccolo{0x} est indispensable pour écrire un nombre en hexadécimal.
 \end{itemize}
 
-\subsection{Format}
+\section{Format}
 
 Le format est libre, la fin de ligne n’est pas significative (sauf pour les commentaires, qui commencent par un caractère dièse \piccolo{\#}, et s’étendent jusqu’à la fin de la ligne courante). Le compilateur accepte de manière indifférente que les fins de ligne soient codés par un caractère LF (\texttt{0x0A}), un caractère CR (\texttt{0x0D}), ou par la séquence CRLF (\texttt{0x0D}, \texttt{0x0A}).
 
