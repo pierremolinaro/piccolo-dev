@@ -485,6 +485,10 @@ rule <structured_instruction>
   ?!@bool ioNeedsComputedGoto4
 :
   select
+    $checkbank$ ;
+    $integer$ ? @luint bankIndex ;
+    outInstruction := [@pic18Instruction_checkbank new !bankIndex->location !bankIndex->uint] ;
+  or
     $ldataptr$ ;
     @location instructionLocation := here ;
     $identifier$ ?@lstring dataName ;

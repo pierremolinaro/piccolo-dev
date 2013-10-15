@@ -76,7 +76,7 @@ La constante \piccolo{RAM\_SIZE} permet d'écrire un code générique pour \emph
 
 \subsectionLabel{Exemple d'utilisation de \texttt{ROM\_SIZE}}{exempleLTBLPTR-ROMSIZE}
 
-La constante \piccolo{ROM\_SIZE} est définie pour un \emph{pic18}. Associée avec l'instruction \piccolo{ltblptr}, elle permet d'écrire une routine générique, valable pour tous les types de \emph{pic18}, qui renvoie dans \emph{WREG}, la somme des octets de la flash.
+La constante \piccolo{ROM\_SIZE} est définie pour un \emph{pic18}. Associée avec l'instruction \piccolo{ltblptr}, elle permet d'écrire une routine générique, valable pour tous les types de \emph{pic18}, qui renvoie dans \piccolo{WREG}, la somme des octets de la flash.
 
 
 \begin{lstlisting}[language=piccolo]
@@ -122,10 +122,8 @@ La constante \piccolo{RAM\_SIZE} est définie pour un \emph{pic18}. Elle permet 
   \item une valeur descriptive de registre (\refSectionPage{exprLiteraleDescriptiveDeRegistre}).
 \end{itemize}
 
-~\\
 \textbf{Parenthèses.} Vous pouvez utiliser des parenthèses pour exprimer le groupement.
 
-~\\
 \textbf{Opérateurs.} Les opérateurs définis pour une expression littérale sont donnés par le \refTableau{operateursExpressionImmediate} (par ordre de priorité croissante).
 
 \begin{table}[!ht]
@@ -191,7 +189,7 @@ movwf   T2CON
 
 La seconde solution est d'utiliser la construction que nous allons décrire. Pour cela, il faut d'abord s’assurer que Piccolo connaît la description des champs de bits de \assembleur{T2CON}. On lance donc la commande \texttt{piccolo -R=18F448} dans le terminal, et on recherche la définition du registre \assembleur{T2CON} dans le listing obtenu ; on obtient :
 \begin{quote}
-\texttt{\textquotesingle T2CON\textquotesingle at 0xFCA <-, TOUTPS[4], TMR2ON, T2CKPS[2]>}
+\texttt{\textquotesingle T2CON\textquotesingle~at 0xFCA <-, TOUTPS[4], TMR2ON, T2CKPS[2]>}
 \end{quote}
 
 Les noms correspondent bien. En utilisant ces noms, nous pouvons écrire :
@@ -201,9 +199,9 @@ movwf   T2CON
 \end{lstlisting}
 
 L'expression litérale présente la syntaxe suivante : elle est introduite par le délimiteur \piccolo{@}, suivi d’un nom de registre, puis, entre parenthèses, une séquence de couples formés d’un nom de champ et d’une valeur immédiate :
-\begin{quote}
-\texttt{@ nom\_registre (nom\_champ:expression\_literale, ...)}
-\end{quote}
+\begin{lstlisting}[language=piccolo]
+  @ nom\_registre (nom_champ:expression_literale, ...)
+\end{lstlisting}
 
 Tout registre spécial, toute variable déclarée (dans une section \piccolo{ram}) ayant des champs définis peut être utilisée.
 

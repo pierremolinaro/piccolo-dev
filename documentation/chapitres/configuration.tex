@@ -82,12 +82,12 @@ C’est par exemple le cas du 18F4431 : le champ \piccolo{BOREN} ne doit pas pre
 ...
 REGISTER 'CONFIG2L' at 0x300002, width 4
   illegal value 0xC mask 0xC
-     description "Brown out voltage cannot be set to an undefined 
-                                value if Brown Out Detect is enabled"
-  setting 'BOREN': mask 0x2 description "Brown-out Reset Enable bits"
+    description "Brown out voltage cannot be set to an undefined 
+                               value if Brown Out Detect is enabled"
+  setting 'BOREN':mask 0x2 description "Brown-out Reset Enable bits"
     value 0x0 description "Disabled"
     value 0x2 description "Enabled"
-  setting 'BORV': mask 0xC description "Brown Out Reset Voltage bits"
+  setting 'BORV':mask 0xC description "Brown Out Reset Voltage bits"
     value 0xC description "Reserved"
     value 0x8 description "VBOR set to 2.7V"
     value 0x4 description "VBOR set to 4.2V"

@@ -14,13 +14,15 @@ En Piccolo, il existe deux types d'instructions :
   \item les instructions composées.
 \end{itemize}
 
-Les instructions simples sont propres à type de micro-contrôleur (\emph{baseline}, \emph{mid-range} et \emph{pic18}) : elles sont donc présentées dans des sections disctinctes :
+\textbf{Instructions simples.} Les instructions simples sont propres à type de micro-contrôleur (\emph{baseline}, \emph{mid-range} et \emph{pic18}) : elles sont donc présentées dans des sections disctinctes :
 \begin{itemize}
+  \item \emph{baseline} : \refSectionPage{instructionsSimplesBaseline} ;
+  \item \emph{midrange} : \refSectionPage{instructionsSimplesMidRange} ;
   \item \emph{pic18} : \refSectionPage{instructionsSimplesPic18}.
 \end{itemize}
 
 
-Les instructions structurées sont en grande partie communes aux \emph{baseline}, \emph{mid-range} et \emph{pic18} : aussi elles sont présentées dans ce chapitre commun.
+\textbf{Instructions structurées.} Les instructions structurées sont en grande partie communes aux \emph{baseline}, \emph{mid-range} et \emph{pic18} : aussi elles sont présentées dans ce chapitre commun.
 
 Piccolo définit les instructions structurées suivantes :
 \begin{itemize}
@@ -55,7 +57,6 @@ Ces instructions permettent d'exploiter directement les instructions assembleur 
 \item pour les \emph{pic18} : \assembleur{CPFSEQ}, \assembleur{CPFSGT}, \assembleur{CPFSLT}, \assembleur{DECFSZ}, \assembleur{DCFSNZ}, \assembleur{INCFSZ}, \assembleur{INFSNZ}, \assembleur{TSTFSZ}, \assembleur{BTFSC} et \assembleur{BTFSS}.
 \end{itemize}
 
-~\\
 La syntaxe de l'instruction conditionnelle simple est la suivante :
 
 \begin{lstlisting}[language=piccolo]
@@ -325,20 +326,15 @@ Les instructions conditionnelles structurées (\refSectionPage{instructionCondit
   \item utilisant les parenthèses \piccolo{(} et \piccolo{)} pour forcer le groupement.
 \end{itemize}
 
-~\\
 \textbf{La négation \piccolo{\!}.} C'est un opérateur unaire préfixé : si \piccolo{cc} est une condition, \piccolo{\!cc} exprime la condition complémentaire. % Noter que la négation est résolue lors de la compilation, ainsi par exemple les conditions (registre z) et (! registre nz) engendrent exactement le même code.
 
 
-~\\
 \textbf{Le \emph{et logique} \piccolo{\&}.} C'est un opérateur infixe : si \piccolo{cc1} et \piccolo{cc2} sont deux conditions, \piccolo{cc1 \& cc2} exprime le \emph{et logique} de ces deux conditions. Son fonctionnement est du type court-circuit : \piccolo{cc1} est toujours évaluée la première et, si elle est évaluée fausse, \piccolo{cc2} n'est pas évaluée. Ce point est important si l'évaluation de la seconde condition a un effet de bord (c'est le cas des conditions nommant \piccolo{decf} ou \piccolo{incf}).
 
-~\\
 \textbf{Le \emph{ou logique} \piccolo{|}.} De même, c'est un opérateur infixe : \piccolo{cc1 | cc2} exprime le \emph{ou logique} de ces deux conditions. Son fonctionnement est aussi du type court-circuit : \piccolo{cc1} est toujours évaluée la première et, si elle est évaluée vraie, \piccolo{cc2} n'est pas évaluée.
 
-~\\
 \textbf{Priorité des opérateurs.} La négation \piccolo{\!} est l'opérateur le plus prioritaire, le \emph{ou logique} \piccolo{|} le moins prioritaire. Par exemple, \piccolo{\!cc1\&cc2} est équivalent à \piccolo{(\!cc1)\&cc2} et \piccolo{cc1|cc2\&cc3} est équivalent à \piccolo{cc1|(cc2\&cc3)}.
 
-~\\
 \textbf{Associativité des opérateurs.} Le \emph{et logique} \piccolo{\&} et le \emph{ou logique} \piccolo{|} sont associatifs à gauche. Par exemple, \piccolo{cc1\&cc2\&cc3} est équivalent à \piccolo{(cc1\&cc2)\&cc3}.
 
 
@@ -379,33 +375,33 @@ Le \refTableau{conditionsElementairesBaseLineIncDecRegistre} liste les condition
   \begin{tabular}{lllll}
     \textbf{Condition} & \textbf{Signification} & \textbf{Code engendré}\\
     \hline
-    \piccolo{decf reg z}   & reg := reg - 1    &\assembleur{DECFSZ reg}\\
-                          & reg = 0 ?              &\assembleur{GOTO \$ + 2}      \\
-                          &                             &\assembleur{GOTO label}      \\
+    \piccolo{decf reg z}   & reg := reg - 1 ; reg = 0 ?  & \assembleur{DECFSZ reg}  \\
+                           &                             & \assembleur{GOTO \$ + 2} \\
+                           &                             & \assembleur{GOTO label}  \\
     \hdashline
-    \piccolo{decf reg, W z}& WREG := reg - 1 &\assembleur{DECFSZ reg, W}  \\
-                               & WREG = 0 ?           &\assembleur{GOTO \$ + 2}          \\
-                               &                      &\assembleur{GOTO label}          \\
+    \piccolo{decf reg, W z} & WREG := reg - 1 ; WREG = 0 ? & \assembleur{DECFSZ reg, W} \\
+                            &                              & \assembleur{GOTO \$ + 2}   \\
+                            &                              & \assembleur{GOTO label}    \\
     \hdashline
-    \piccolo{decf reg nz}  & reg := reg - 1    &\assembleur{DECFSZ reg} \\
-                          & reg $\ne$ 0 ?              &\assembleur{GOTO label}   \\
+    \piccolo{decf reg nz}  & reg := reg - 1 ; reg $\ne$ 0 ?   &\assembleur{DECFSZ reg} \\
+                           &                                  &\assembleur{GOTO label}   \\
     \hdashline
-    \piccolo{decf reg, W nz}& WREG := reg - 1 &\assembleur{DECFSZ reg, W}  \\
-                           & WREG $\ne$ 0 ?           &\assembleur{GOTO label}        \\
+    \piccolo{decf reg, W nz} & WREG := reg - 1 ; WREG $\ne$ 0 ?  &\assembleur{DECFSZ reg, W}  \\
+                             &                                   &\assembleur{GOTO label}        \\
     \hdashline
-                           \piccolo{incf reg z}   & reg := reg + 1    &\assembleur{INCFSZ reg} \\
-                                                      & reg = 0 ?              &\assembleur{GOTO \$ + 2}      \\
-                                                      &                             &\assembleur{GOTO label}      \\
+    \piccolo{incf reg z} & reg := reg + 1 ; reg = 0 ? &\assembleur{INCFSZ reg} \\
+                         &                            &\assembleur{GOTO \$ + 2} \\
+                         &                            &\assembleur{GOTO label} \\
     \hdashline
-    \piccolo{incf reg, W z}& WREG := reg + 1 &\assembleur{INCFSZ reg, W} \\
-                          & WREG = 0 ?           &\assembleur{GOTO \$ + 2}          \\
-                          &                      &\assembleur{GOTO label}          \\
+    \piccolo{incf reg, W z} & WREG := reg + 1 ; WREG = 0 ? &\assembleur{INCFSZ reg, W} \\
+                            &                              &\assembleur{GOTO \$ + 2}          \\
+                            &                              &\assembleur{GOTO label}          \\
     \hdashline
-    \piccolo{incf reg nz}  & reg := reg + 1    &\assembleur{INCFSZ reg}\\
-                          & reg $\ne$ 0 ?              &\assembleur{BRA label}   \\
+    \piccolo{incf reg nz} & reg := reg + 1 ; reg $\ne$ 0 ? &\assembleur{INCFSZ reg}\\
+                          &                                &\assembleur{BRA label}   \\
     \hdashline
-    \piccolo{incf reg, W nz}& WREG := reg + 1 &\assembleur{INCFSZ reg, W}  \\
-                               & WREG $\ne$ 0 ?           &\assembleur{GOTO label}         \\
+    \piccolo{incf reg, W nz} & WREG := reg + 1 ; WREG $\ne$ 0 ? & \assembleur{INCFSZ reg, W}  \\
+                             &                                  & \assembleur{GOTO label}         \\
     \hline
   \end{tabular}
   \caption{Conditions pour \emph{baseline} et \emph{mid-range} basées sur la décrémentation et l'incrémentation d'un registre}
@@ -437,21 +433,29 @@ Les instructions de saut conditionnel permettent d'exploiter directement la vale
     \textbf{Condition} & \textbf{Signification} & \multicolumn{3}{l}{\bf Code engendré}\\
                        &                        & \textbf{2 octets} & \textbf{4 octets} & \textbf{6 octets}\\
     \hline
-    \piccolo{c} & Le bit \assembleur{C} de \assembleur{STATUS} est-il non nul ? &\assembleur{BC label}  & \assembleur{BNC \$ + 4 BRA label}  & \assembleur{BNC \$ + 6 GOTO label} \\
+    \piccolo{c} & \assembleur{STATUS.C} $\ne$ 0 ? &\assembleur{BC label}  & \assembleur{BNC \$ + 4} & \assembleur{BNC \$ + 6} \\
+                &                                 &                       & \assembleur{BRA label}  & \assembleur{GOTO label} \\
     \hdashline
-    \piccolo{nc} & Le bit \assembleur{C} de \assembleur{STATUS} est-il nul ? &\assembleur{BNC label}  & \assembleur{BC \$ + 4 BRA label}  & \assembleur{BC \$ + 6 GOTO label} \\
+    \piccolo{nc} & \assembleur{STATUS.C} = 0 ? &\assembleur{BNC label}  & \assembleur{BC \$ + 4}  & \assembleur{BC \$ + 6} \\
+                &                              &                       & \assembleur{BRA label}  & \assembleur{GOTO label} \\
     \hdashline
-    \piccolo{z} & Le bit \assembleur{Z} de \assembleur{STATUS} est-il non nul ? &\assembleur{BZ label}  & \assembleur{BNZ \$ + 4 BRA label}  & \assembleur{BNZ \$ + 6 GOTO label} \\
+    \piccolo{z} & \assembleur{STATUS.Z} $\ne$ 0 ? &\assembleur{BZ label}  & \assembleur{BNZ \$ + 4}  & \assembleur{BNZ \$ + 6} \\
+                &                                 &                       & \assembleur{BRA label}  & \assembleur{GOTO label} \\
     \hdashline
-    \piccolo{nz} & Le bit \assembleur{Z} de \assembleur{STATUS} est-il nul ? &\assembleur{BNZ label}  & \assembleur{BZ \$ + 4 BRA label}  & \assembleur{BZ \$ + 6 GOTO label} \\
+    \piccolo{nz} & \assembleur{STATUS.Z} = 0 ? &\assembleur{BNZ label}  & \assembleur{BZ \$ + 4}  & \assembleur{BZ \$ + 6} \\
+                &                              &                       & \assembleur{BRA label}  & \assembleur{GOTO label} \\
     \hdashline
-    \piccolo{n} & Le bit \assembleur{N} de \assembleur{STATUS} est-il non nul ? &\assembleur{BN label}  & \assembleur{BNN \$ + 4 BRA label}  & \assembleur{BNN \$ + 6 GOTO label} \\
+    \piccolo{n} & \assembleur{STATUS.N} $\ne$ 0 ? &\assembleur{BN label}  & \assembleur{BNN \$ + 4}  & \assembleur{BNN \$ + 6} \\
+                &                                 &                       & \assembleur{BRA label}  & \assembleur{GOTO label} \\
     \hdashline
-    \piccolo{nn} & Le bit \assembleur{N} de \assembleur{STATUS} est-il nul ? &\assembleur{BNN label}  & \assembleur{BN \$ + 4 BRA label}  & \assembleur{BN \$ + 6 GOTO label} \\
+    \piccolo{nn} & \assembleur{STATUS.N} = 0 ? &\assembleur{BNN label}  & \assembleur{BN \$ + 4}  & \assembleur{BN \$ + 6} \\
+                &                              &                       & \assembleur{BRA label}  & \assembleur{GOTO label} \\
     \hdashline
-    \piccolo{ov} & Le bit \assembleur{OV} de \assembleur{STATUS} est-il non nul ? &\assembleur{BOV label}  & \assembleur{BNOV \$ + 4 BRA label}  & \assembleur{BNOV \$ + 6 GOTO label} \\
+    \piccolo{ov} & \assembleur{STATUS.OV} $\ne$ 0 ? &\assembleur{BOV label}  & \assembleur{BNOV \$ + 4}  & \assembleur{BNOV \$ + 6} \\
+                &                                   &                       & \assembleur{BRA label}  & \assembleur{GOTO label} \\
     \hdashline
-    \piccolo{nov} & Le bit \assembleur{OV} de \assembleur{STATUS} est-il nul ? &\assembleur{BNOV label}  & \assembleur{BOV \$ + 4 BRA label}  & \assembleur{BOV \$ + 6 GOTO label} \\
+    \piccolo{nov} & \assembleur{STATUS.OV} = 0 ? &\assembleur{BNOV label}  & \assembleur{BOV \$ + 4}  & \assembleur{BOV \$ + 6} \\
+                &                                &                         & \assembleur{BRA label}  & \assembleur{GOTO label} \\
     \hline
   \end{tabular}
   \caption{Conditions pour \emph{pic18} basées sur les instructions de saut conditionnel}
@@ -531,28 +535,29 @@ Enfin, le \refTableau{conditionsElementairesPic18IncDecRegistre} liste les condi
     \textbf{Condition} & \textbf{Signification} & \multicolumn{2}{l}{\bf Code engendré}\\
                        &                        & \textbf{Court} & \textbf{Long}\\
     \hline
-                           \piccolo{decf reg z}   & reg := reg - 1    &\assembleur{DCFSNZ reg}  & \assembleur{DCFSNZ reg}\\
-                                                      & reg = 0 ?              &\assembleur{BRA label}        & \assembleur{GOTO label}\\
+                           \piccolo{decf reg z}   & reg := reg - 1 ; reg = 0 ?   &\assembleur{DCFSNZ reg}  & \assembleur{DCFSNZ reg}\\
+                                                      &               &\assembleur{BRA label}        & \assembleur{GOTO label}\\
     \hdashline
-    \piccolo{decf reg, W z}& WREG := reg - 1 &\assembleur{DCFSNZ reg, W}  & \assembleur{DCFSNZ reg, W}\\
-                               & WREG = 0 ?           &\assembleur{BRA label}           & \assembleur{GOTO label}\\
+    \piccolo{decf reg, W z}& WREG := reg - 1 ; WREG = 0 ? &\assembleur{DCFSNZ reg, W}  & \assembleur{DCFSNZ reg, W}\\
+                               &            &\assembleur{BRA label}           & \assembleur{GOTO label}\\
     \hdashline
-                           \piccolo{decf reg nz}  & reg := reg - 1    &\assembleur{DECFSZ reg}  & \assembleur{DECFSZ reg}\\
-                                                      & reg $\ne$ 0 ?              &\assembleur{BRA label}        & \assembleur{GOTO label}\\
+                           \piccolo{decf reg nz}  & reg := reg - 1 ; reg $\ne$ 0 ?   &\assembleur{DECFSZ reg}  & \assembleur{DECFSZ reg}\\
+                                                      &               &\assembleur{BRA label}        & \assembleur{GOTO label}\\
     \hdashline
-    \piccolo{decf reg, W nz}& WREG := reg - 1 &\assembleur{DECFSZ reg, W}  & \assembleur{DECFSZ reg, W}\\
-                               & WREG $\ne$ 0 ?           &\assembleur{BRA label}           & \assembleur{GOTO label}\\
-                           \piccolo{incf reg z}   & reg := reg + 1    &\assembleur{INFSNZ reg}  & \assembleur{INFSNZ reg}\\
-                                                      & reg = 0 ?              &\assembleur{BRA label}        & \assembleur{GOTO label}\\
+    \piccolo{decf reg, W nz}& WREG := reg - 1 ; WREG $\ne$ 0 ? &\assembleur{DECFSZ reg, W}  & \assembleur{DECFSZ reg, W}\\
+                               &            &\assembleur{BRA label}           & \assembleur{GOTO label}\\
     \hdashline
-    \piccolo{incf reg, W z}& WREG := reg + 1 &\assembleur{INFSNZ reg, W}  & \assembleur{INFSNZ reg, W}\\
-                          & WREG = 0 ?           &\assembleur{BRA label}           & \assembleur{GOTO label}\\
+                           \piccolo{incf reg z}   & reg := reg + 1 ; reg = 0 ?   &\assembleur{INFSNZ reg}  & \assembleur{INFSNZ reg}\\
+                                                      &               &\assembleur{BRA label}        & \assembleur{GOTO label}\\
     \hdashline
-                           \piccolo{incf reg nz}  & reg := reg + 1    &\assembleur{INCFSZ reg}  & \assembleur{INCFSZ reg}\\
-                                                      & reg $\ne$ 0 ?              &\assembleur{BRA label}        & \assembleur{GOTO label}\\
+    \piccolo{incf reg, W z}& WREG := reg + 1 ; WREG = 0 ? &\assembleur{INFSNZ reg, W}  & \assembleur{INFSNZ reg, W}\\
+                          &            &\assembleur{BRA label}           & \assembleur{GOTO label}\\
     \hdashline
-    \piccolo{incf reg, W nz}& WREG := reg + 1 &\assembleur{INCFSZ reg, W}  & \assembleur{INCFSZ reg, W}\\
-                           & WREG $\ne$ 0 ?           &\assembleur{BRA label}           & \assembleur{GOTO label}\\
+                           \piccolo{incf reg nz}  & reg := reg + 1 ; reg $\ne$ 0 ?   &\assembleur{INCFSZ reg}  & \assembleur{INCFSZ reg}\\
+                                                      &               &\assembleur{BRA label}        & \assembleur{GOTO label}\\
+    \hdashline
+    \piccolo{incf reg, W nz}& WREG := reg + 1 ; WREG $\ne$ 0 ? &\assembleur{INCFSZ reg, W}  & \assembleur{INCFSZ reg, W}\\
+                           &            &\assembleur{BRA label}           & \assembleur{GOTO label}\\
     \hline
   \end{tabular}
   \caption{Conditions pour \emph{pic18} basées sur la décrémentation et l'incrémentation d'un registre}
@@ -571,7 +576,6 @@ Enfin, le \refTableau{conditionsElementairesPic18IncDecRegistre} liste les condi
 
 \textcolor{red}{\bf Cette instruction n'est valide que pour les \emph{pic18}.}
 
-~\\
 \textbf{Description.} L'instruction \piccolo{computed retlw} est la suivante :
 \begin{lstlisting}[language=piccolo]
 computed [n] retlw cst0, cst1, cst2, ...
@@ -581,14 +585,11 @@ $n$ est une \emph{expression statique} et doit être égale au nombre des consta
 
 L'implémentation limite à 128 la valeur de $n$.
 
-~\\
 \textbf{Fonctionnement.} Cette instruction remplace la valeur de \assembleur{WREG} par la constante qui lui correspond : \piccolo{cst0} pour $0$, \piccolo{cst1} pour $1$, …, \piccolo{cst$_{n-1}$} pour $n-1$. 
 
-~\\
 \textbf{Limitation.} À l'exécution, il est nécessaire que la valeur non signée de \assembleur{WREG} soit strictement inférieur au nombre de constantes. \textcolor{red}{\bf Le code engendré par Piccolo n'effectue aucune vérification.} Il est donc probable que ne pas respecter cette règle entraîne un plantage du programme.
 
 
-~\\
 \textbf{Exemple.} Voici comment un chiffre hexadécimal peut être transformé en le caractère ASCII le représentant :
 \begin{lstlisting}[language=piccolo]
 routine CONVERSION_HEX_ASCII {
@@ -630,7 +631,6 @@ Ce code fait appel à la routine \assembleur{\_computed\_goto\_2} qui est ajout�
 
 \textcolor{red}{\bf Cette instruction n'est valide que pour les \emph{pic18}.}
 
-~\\
 \textbf{Description.} Celle-ci est :
 \begin{lstlisting}[language=piccolo]
 computed [n] bra routine0, routine1, routine2, ...
@@ -640,10 +640,8 @@ $n$ est une \emph{expression statique} doit être égal au nombre de routines ci
 
 L'implémentation limite à 128 la valeur de $n$.
 
-~\\
 \textbf{Fonctionnement.} Cette instruction agit comme une instruction de branchement en fonction de la valeur de \assembleur{WREG} : branchement vers \piccolo{routine0} pour 0, vers \piccolo{routine1} pour 1, ..., vers \piccolo{routine$_{n-1}$} pour $n-1$. 
 
-~\\
 \textbf{Limitation.} À l'exécution, il est nécessaire que la valeur non signée de \assembleur{WREG} soit strictement inférieur au nombre de routines. \textcolor{red}{\bf Le code engendré par Piccolo n'effectue aucune vérification.} Il est donc probable que ne pas respecter cette règle entraîne un plantage du programme.
 
 Ce code fait appel à la routine \assembleur{\_computed\_goto\_2} qui est ajoutée automatiquement si nécessaire, à la fin du code (\refSubsectionPage{implementationComputedGoto}). 
@@ -654,7 +652,6 @@ Ce code fait appel à la routine \assembleur{\_computed\_goto\_2} qui est ajout�
 
 \textcolor{red}{\bf Cette instruction n'est valide que pour les \emph{pic18}.}
 
-~\\
 \textbf{Description.} Celle-ci est :
 \begin{lstlisting}[language=piccolo]
 computed [n] goto routine0, routine1, routine2, ...
@@ -664,10 +661,8 @@ $n$ est une \emph{expression statique} doit être égal au nombre de routines ci
 
 L'implémentation limite à 64 la valeur de $n$.
 
-~\\
 \textbf{Fonctionnement.} Cette instruction agit comme une instruction de branchement en fonction de la valeur de \assembleur{WREG} : branchement vers \piccolo{routine0} pour 0, vers \piccolo{routine1} pour 1, \dots 
 
-~\\
 \textbf{Limitation.} À l'exécution, il est nécessaire que la valeur non signée de \assembleur{WREG} soit strictement inférieur au nombre de routines. \textcolor{red}{\bf Le code engendré par Piccolo n'effectue aucune vérification.} Il est donc probable que ne pas respecter cette règle entraîne un plantage du programme.
 
 
@@ -757,24 +752,22 @@ Le second point a aussi des implications importantes dans les attributs associé
 
 Piccolo définit précisément pour chaque instruction son comportement vis à vis de la sélection courante de banc. Cela permet au compilateur de signaler toute erreur.
 
-~\\
 \textbf{En entrée.} Une instruction peut :
 \begin{itemize}
-  \item accepter n'importe quelle sélection de banc ;
-  \item exiger qu'un certain banc soit sélectionné.
+  \item soit accepter n'importe quelle sélection de banc ;
+  \item soit exiger qu'un certain banc soit sélectionné.
 \end{itemize}
 
-Par exemple, considérons l'instruction Piccolo \piccolo{bsf STATUS.C}. Pour un \emph{mid-range}, le registre \assembleur{STATUS} est présent dans tous les bancs, cette instruction est donc indifférente vis à vis de la sélection de banc. Pour un \emph{pic18}, le registre \assembleur{STATUS} est situé dans l'\piccolo{accessbank}, cette instruction est aussi indifférente vis à vis de la sélection de banc. 
+Par exemple, considérons l'instruction Piccolo \piccolo{bsf STATUS.C}. Pour un \emph{mid-range}, le registre \assembleur{STATUS} est présent dans tous les bancs, cette instruction est donc indifférente vis à vis de la sélection de banc. Pour un \emph{pic18}, le registre \assembleur{STATUS} est situé dans l'\emph{accessbank}, cette instruction est aussi indifférente vis à vis de la sélection de banc. 
 
-Considérons maintenant l'instruction Piccolo \piccolo{clrf var}. Pour un \emph{mid-range}, si la variable \piccolo{var} est déclarée dans \piccolo{gprnobank} qui apparaît en miroir dans tous les bancs, cette instruction est donc indifférente vis à vis de la sélection de banc. Sinon, l'instruction exige que le banc correspondant soit sélectionné. Pour un \emph{pic18}, si la variable \piccolo{var} est situés dans l'\emph{accessbank}, cette instruction est aussi indifférente vis à vis de la sélection de banc.  Sinon, l'instruction exige que le banc correspondant soit sélectionné. 
+Considérons maintenant l'instruction Piccolo \piccolo{clrf var}. Pour un \emph{mid-range}, si la variable \piccolo{var} est déclarée dans \emph{gprnobank} qui apparaît en miroir dans tous les bancs, cette instruction est donc indifférente vis à vis de la sélection de banc. Sinon, l'instruction exige que le banc correspondant soit sélectionné. Pour un \emph{pic18}, si la variable \piccolo{var} est situés dans l'\emph{accessbank}, cette instruction est aussi indifférente vis à vis de la sélection de banc.  Sinon, l'instruction exige que le banc correspondant soit sélectionné. 
 
 
-~\\
 \textbf{En sortie.} L'exécution d'une instruction peut :
 \begin{itemize}
-  \item préserver la sélection courante de banc ;
-  \item sélectionner un banc particulier ;
-  \item rendre inconnue la sélection courante de banc.
+  \item soit préserver la sélection courante de banc ;
+  \item soit sélectionner un banc particulier ;
+  \item soit rendre inconnue la sélection courante de banc.
 \end{itemize}
 
 \subsectionLabel{Instruction \texttt{banksel}}{instructionBanksel}
@@ -837,6 +830,28 @@ banksel nom_registre, *
 \end{lstlisting}
 
 Seule différence avec l'instruction \piccolo{banksel nom\_registre} : le \emph{warning} n'est pas affiché si l'instruction est inutile.
+
+
+
+
+
+
+
+
+
+\subsectionLabel{Instruction \texttt{checkbank}}{instructionCheckBank}
+
+\begin{lstlisting}[language=piccolo]
+checkbank numero
+\end{lstlisting}
+
+Cette instruction vérifie que le banc mémoire sélectionné est \piccolo{numero}. Aucun code n'est engendré, la vérification est faite statiquement par le compilateur.
+
+\piccolo{numero} doit être un numéro valide de banc, c'est-à-dire un entier compris entre $0$ et $15$.
+
+
+
+
 
 
 
@@ -914,7 +929,6 @@ Le contrat est le suivant :
 \item pour la routine appelée, cela signifie que la sélection de banc est inconnue au début de la routine : seul un registre accessible à partir de n'importe quel banc pourra être accédé directement ; pour les autres, il faudra utiliser une instruction \piccolo{banksel} pour fixer la sélection d'un banc ; la valeur de sélection de banc à la fin de l'exécution de la routine est quelconque.
 \end{itemize}
 
-~\\
 \textbf{Exemple 1.} \piccolo{varAnyBank} est accessible quel soit la sélection de banc, \piccolo{varBank1} est déclaré dans le banc 1, \piccolo{varBank2} dans le banc 2 :
 \begin{lstlisting}[language=piccolo]
 routine maRoutine {
@@ -929,7 +943,6 @@ routine maRoutine {
 Cette routine est compilée sans erreur.
 
 
-~\\
 \textbf{Exemple 2.} \piccolo{varAnyBank} est accessible quel soit la sélection de banc, \piccolo{varBank1} est déclaré dans le banc 1, \piccolo{varBank2} dans le banc 2 :
 \begin{lstlisting}[language=piccolo]
 routine maRoutine {
@@ -954,7 +967,6 @@ La compilation de cette routine provoque deux erreurs (utiliser l’option \text
 
 
 
-~\\
 \textbf{Exemple 3.} \piccolo{varAnyBank} est accessible quel soit la sélection de banc, \piccolo{varBank1} est déclaré dans le banc 1, \piccolo{varBank2} dans le banc 2 :
 \begin{lstlisting}[language=piccolo]
 routine maRoutine {
@@ -995,7 +1007,6 @@ Le contrat est le suivant :
 
 Si utiliser une instruction \piccolo{banksel} dans la routine est indispensable, la seule façon de préserver la sélection de banc est d'utiliser l'instruction \piccolo{banksave}. 
 
-~\\
 \textbf{Exemple 1.} \piccolo{varAnyBank} est accessible quel soit la sélection de banc, \piccolo{varBank1} est déclaré dans le banc 1, \piccolo{varBank2} dans le banc 2 :
 \begin{lstlisting}[language=piccolo]
 routine maRoutine bank:preserved {
@@ -1012,7 +1023,6 @@ routine maRoutine bank:preserved {
 Cette routine est compilée sans erreur.
 
 
-~\\
 \textbf{Exemple 2.} \piccolo{varAnyBank} est accessible quel soit la sélection de banc, \piccolo{varBank1} est déclaré dans le banc 1, \piccolo{varBank2} dans le banc 2 :
 \begin{lstlisting}[language=piccolo]
 routine maRoutine bank:preserved {
@@ -1157,7 +1167,6 @@ else
 end
 \end{lstlisting}
 
-~\\
 \textbf{Règles :}
 \begin{itemize}
   \item la sélection initiale de banc sera utilisée pour l’évaluation des conditions \piccolo{cca} et \piccolo{ccb}, et sera la valeur au début de l'exécution de chaque branche ;
@@ -1175,7 +1184,6 @@ forever
 end
 \end{lstlisting}
 
-~\\
 \textbf{Règle :}
 \begin{itemize}
   \item la liste d'instructions \piccolo{instructions\_repetees} doit préserver la sélection de banc.
@@ -1197,7 +1205,6 @@ while (ccb)
 end
 \end{lstlisting}
 
-~\\
 \textbf{Règles :}
 \begin{itemize}
   \item chaque liste d'instructions (\piccolo{instructions 1}, \piccolo{instructions 2}, \piccolo{instructions 3}) doit préserver la sélection de banc ;

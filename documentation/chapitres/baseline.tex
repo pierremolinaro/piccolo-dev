@@ -51,6 +51,7 @@ Le corps du programme est constitué d’une liste non ordonnée de sections. Le
     Routine inutilisée & \piccolo{unused routine}\index{Mot réservé!unused} & \refSubsectionPage{routineInutiliseeBaseline} \\
     \hdashline
     Inclusion  & \piccolo{include}\index{Mot réservé!include} & \refSectionPage{sectionIncludeBaseline} \\
+    \hline
   \end{tabular}
   \caption{Les sections d'un programme pour \emph{baseline}}
   \labelTableau{sectionsBaseline}
@@ -66,10 +67,8 @@ Les routines définissent le code exécutable de votre programme. L’une d’en
 
 L’ordre des déclarations des routines est quelconque, il est possible d’appeler une routine qui est déclarée après l’instruction d’appel. Simplement Piccolo engendrera leur code dans leur ordre d’apparition. 
 
-~\\
 \textbf{Routine et pages de la mémoire programme.} Un problème important en Piccolo \emph{baseline} est la gestion des pages de la mémoire programme (voir \refSectionPage{gestionPagesBaseline}).
 
-~\\
 \textbf{Liste d’instructions d’une routine.} Elle est structurée : Piccolo définit des instructions de sélection et de répétition : cela signifie que vous ne pouvez pas déclarer d’étiquette, ni utiliser de \piccolo{goto} pour effectuer des branchements à l’intérieur d’une routine.
 
 
@@ -86,10 +85,8 @@ routine maRoutine ... {
 
 \piccolo{maRoutine} est le nom de la routine, celui qui sera nommé dans un instruction d’appel de routine. Entre les accolades \piccolo{\{} et \piccolo{\}}, apparaît la liste des instructions.
 
-~\\
 \textbf{Appel d’une routine régulière.} Utiliser l'instruction \piccolo{call} ou l'instruction \piccolo{jsr} (\refSectionPage{gestionPagesBaseline}).
 
-~\\
 \textbf{Dernière instruction d’une routine régulière.} Une particularité du jeu d'instructions des \emph{baseline} est qu'il ne possède pas d'instruction \assembleur{RETURN}, mais une instruction \assembleur{RETLW} qui combine retour de sous-programme et chargement immédiat de \piccolo{W}. Piccolo ne définit pas l'instruction \assembleur{RETLW}, mais définit \piccolo{movlw} : c'est le compilateur Piccolo qui repère une instruction \assembleur{MOVLW} comme dernière instruction d'une routine, et qui la transforme en \assembleur{RETLW}.
 
 En conséquence, la liste des instructions d'une routine régulière ne peut pas être vide. Elle doit comprendre au moins une instruction. D'une manière générale, la dernière instruction d'une routine régulière peut être :
@@ -167,11 +164,9 @@ noreturn routine maRoutine ... {
 }
 \end{lstlisting}
 
-~\\
 \textbf{Appel d’une routine sans retour.} Utiliser \piccolo{goto} ou l'instruction \piccolo{jump} (\refSectionPage{gestionPagesBaseline}).
 
 
-~\\
 \textbf{Déclaration de la routine \piccolo{main}.} Dans un programme, il doit exister une et une seule routine \piccolo{main}, qui doit être déclarée comme suit :
 
 \begin{lstlisting}[language=piccolo]
@@ -184,7 +179,6 @@ noreturn routine main {
 Le compilateur Piccolo place cette routine au début de la ROM, de façon qu'elle soit exécutée au démarrage du micro-contrôleur.
 
 
-~\\
 \textbf{Comment terminer une routine sans retour.} La dernière instruction de la liste des instructions d’une routine sans retour doit être :
 \begin{itemize}
   \item une instruction de répétition infinie (\refSectionPage{repetitionInfinie}) ;
@@ -291,7 +285,6 @@ Elles sont de deux types (la distinction est importante pour l’instruction \em
 \end{itemize}
 
 
-~\\
 \textbf{Les instructions simples.} Elles correspondent à une partie des instructions machine. Attention, pour certaines, la syntaxe n'est pas exactement la même que celle de l'instruction assembleur correspondante.
 
 Le \refTableau{instructionsAssembleurBaseline} donnent la liste des instructions machine \emph{baseline} et les liens vers les sections précisant leur prise en charge en Piccolo.
@@ -378,7 +371,6 @@ Le \refTableau{instructionsAssembleurBaseline} donnent la liste des instructions
 
 
 
-~\\
 \textbf{Les instructions composées.} Piccolo définit les instructions suivantes :
 \begin{itemize}
   \item l'instruction \piccolo{mnop} (\refSectionPage{instructionMNOP}) ;

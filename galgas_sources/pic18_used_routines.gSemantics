@@ -57,6 +57,13 @@ end method ;
 
 #---------------------------------------------------------------------------*
 
+override method @pic18Instruction_checkbank addUsedRoutines
+  ?!@stringset unused ioUsedRoutines
+:
+end method ;
+
+#---------------------------------------------------------------------------*
+
 override method @pic18Instruction_LDATAPTR addUsedRoutines
   ?!@stringset unused ioUsedRoutines
 :

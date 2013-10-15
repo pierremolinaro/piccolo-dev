@@ -327,6 +327,10 @@ rule <midrange_structured_instruction>
   ?!@bool ioNeedsComputedGoto4
 :
   select
+    $checkbank$ ;
+    $integer$ ? @luint bankIndex ;
+    outInstruction := [@midrangeInstruction_checkbank new !bankIndex->location !bankIndex->uint] ;
+  or
     $banksel$ ;
     @location instructionLocation := here ;
     <register_parsing> ?@registerExpression register ;

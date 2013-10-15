@@ -585,6 +585,34 @@ override method @midrange_instruction_JSR build_midrange_ipic_instructionList
   ] ;
 end method ;
 
+#----------------------------------------------------*
+
+override method @midrangeInstruction_checkbank build_midrange_ipic_instructionList
+  ??@routineMap unused inRoutineMap
+  ??@registerTable unused inRegisterTable
+  ??@constantMap unused inConstantMap
+  ?!@uint unused ioLocalLabelIndex
+  ?!@midrange_intermediate_instructionList unused ioGeneratedInstructionList
+  ?!@string unused ioListFileContents
+  ??@uint unused inTotalBankCount
+  ?!@uint ioCurrentBank
+  ??@bool unused inShouldPreserveBank
+  ?!@bool unused ioContinuesInSequence
+  ??@routineKind unused inRoutineKind
+  ?!@stringset unused ioUsedRegisters
+:
+#--- Check instruction
+  if mBankIndex > 15 then
+    error mInstructionLocation:"Bank index should be <= 15" ;
+  elsif ioCurrentBank == [@uint max] then
+    error mInstructionLocation:"checkbank fail: there is no selected bank" ;
+    ioCurrentBank := mBankIndex ;
+  elsif ioCurrentBank != mBankIndex then
+    error mInstructionLocation:"checkbank fail: the selected bank is " . ioCurrentBank . ", required bank is " . mBankIndex ;
+  end if ;
+    ioCurrentBank := mBankIndex ;
+end method ;
+
 #----------------------------------------------------------------------------*
 
 override method @midrange_instruction_CALL build_midrange_ipic_instructionList

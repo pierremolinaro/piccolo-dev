@@ -29,28 +29,38 @@
 
 %-----------------------------------------------------------------------------------------------------------------------*
 %                                                                                                                       *
-%   R É G L A G E S    « F R A N Ç A I S »                                                                              *
-%                                                                                                                       *
-%-----------------------------------------------------------------------------------------------------------------------*
-
-%--- Paquetage pour imposer les réglages français
-\usepackage[francais]{babel}
-
-%-----------------------------------------------------------------------------------------------------------------------*
-%                                                                                                                       *
 %   E N C O D A G E    D E S    S O U R C E S     :     U T F 8                                                         *
 %                                                                                                                       *
 %-----------------------------------------------------------------------------------------------------------------------*
 
-%--- Paquetage pour le codage des sources en UTF8
+%--- Paquetage pour le codage des sources en UTF-8
 \usepackage[utf8]{inputenc}
 
-%--- Latex demande ce paquetage pour mieux afficher le caractère "°"
+%--- Latex demande ce paquetage pour mieux afficher le caractère "°" et \textquotesingle "'"
 \usepackage{textcomp}
 
 %--- Ce paquetage permet d'effectuer certaines césures, et ainsi d'éviter les messages "Overfull \hbox"
 \usepackage[T1]{fontenc}
 
+\usepackage{lmodern} % for French
+
+%-----------------------------------------------------------------------------------------------------------------------*
+%                                                                                                                       *
+%   R É G L A G E S    « F R A N Ç A I S »                                                                              *
+%                                                                                                                       *
+%-----------------------------------------------------------------------------------------------------------------------*
+
+%--- Paquetage pour imposer les réglages français
+%\usepackage[francais]{babel}
+\usepackage[frenchb]{babel}
+
+%--- Contrôle de l'indentation et de la séparation des paragraphes
+\setlength{\parindent}{0pt} 
+%\setlength{\parskip}{1.2ex} % Reporté avant les chapitres
+
+%--- Ajouter une séparation à la fin des itemize
+\let\EndItemize\enditemize
+\def\enditemize{\EndItemize\vspace{1.2ex}}
 
 %-----------------------------------------------------------------------------------------------------------------------*
 %                                                                                                                       *
@@ -511,7 +521,7 @@
 
 \lstdefinelanguage{piccolo}{
   style=piccolo,
-  keywords={bank, banksave, banksel, baseline, bootloader, byte, checkpic, computed, configuration, const,
+  keywords={bank, banksave, banksel, baseline, bootloader, byte, checkbank, checkpic, computed, configuration, const,
      contextsave, data, default, do, end, else, elsif, fast, forever, if, implements,
      include, inline, interrupt, mark, midrange, nobank, noreturn, page, pic18, preserved,
      ram, requires, rom, ensures, routine, unused, uses, w, while},
@@ -746,6 +756,11 @@
 %   L E S    C H A P I T R E S                                                                                          *
 %                                                                                                                       *
 %-----------------------------------------------------------------------------------------------------------------------*
+
+%--- Contrôle de la séparation des paragraphes
+%    On met cette définition ici, sinon elle affecte la table des matières, la liste des tableaux, ...
+\setlength{\parskip}{1.2ex}
+
 
 \input{chapitres/pourquoi-piccolo.tex}
 \input{chapitres/installation-utilisation.tex}
