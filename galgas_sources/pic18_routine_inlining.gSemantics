@@ -135,8 +135,8 @@ override method @pic18Instruction_JSR performInlining
     [inDeclaredRoutineMap searchKey
       !mTargetLabel
       ??@luint requiredBank
-      ??@luint returnedBank
-      ??@bool preservesBank
+      ?* #??@luint returnedBank
+      ?* #??@bool preservesBank
       ??@bool isNoReturn
       ??@pic18InstructionList instructionList
     ] ;
@@ -147,9 +147,9 @@ override method @pic18Instruction_JSR performInlining
         ioInstructionList += ![@pic18Instruction_checkbank new !mInstructionLocation !requiredBank->uint] ;
       end if ;
       ioInstructionList .= instructionList ;
-      if returnedBank->uint != [@uint max] then
-        ioInstructionList += ![@pic18Instruction_checkbank new !mInstructionLocation !returnedBank->uint] ;
-      end if ;
+#      if returnedBank->uint != [@uint max] then
+#        ioInstructionList += ![@pic18Instruction_checkbank new !mInstructionLocation !returnedBank->uint] ;
+#      end if ;
       inlineDone := true ;
     end if ;
   else 

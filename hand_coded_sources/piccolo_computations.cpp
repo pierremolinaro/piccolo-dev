@@ -127,14 +127,14 @@ generate_C_ArrayImplementationFileFromSpareArray (const C_String & inSourceName,
       currentStreamEntryCount ++ ;
     }
     implementationCode << "\n"
-                          "static unsigned char gArray_" << cStringWithUnsigned (blockLengthArray.count ()) << " [" << cStringWithUnsigned (currentStreamEntryCount) << "] = {"
+                          "static unsigned char gArray_" << cStringWithSigned (blockLengthArray.count ()) << " [" << cStringWithUnsigned (currentStreamEntryCount) << "] = {"
                        << currentStream << "\n} ;\n\n" ;
     implementationCode.append_C_HyphenLineComment () ;
     blockLengthArray.addObject (currentStreamEntryCount) ;
   }
 //--- Start address array
   implementationCode << "\n"
-                        "static unsigned long gBlockStartAddressArray [" << cStringWithUnsigned (startAddressArray.count ()) << "] = {" ;
+                        "static unsigned long gBlockStartAddressArray [" << cStringWithSigned (startAddressArray.count ()) << "] = {" ;
   for (PMSInt32 i=0 ; i<startAddressArray.count () ; i++) {
     if (i > 0) {
       implementationCode << "," ;
@@ -146,7 +146,7 @@ generate_C_ArrayImplementationFileFromSpareArray (const C_String & inSourceName,
   implementationCode.append_C_HyphenLineComment () ;
 //--- block length array
   implementationCode << "\n"
-                        "static unsigned long gBlockLengthArray [" << cStringWithUnsigned (blockLengthArray.count ()) << "] = {" ;
+                        "static unsigned long gBlockLengthArray [" << cStringWithSigned (blockLengthArray.count ()) << "] = {" ;
   for (PMSInt32 i=0 ; i<blockLengthArray.count () ; i++) {
     if (i > 0) {
       implementationCode << "," ;
@@ -158,20 +158,20 @@ generate_C_ArrayImplementationFileFromSpareArray (const C_String & inSourceName,
   implementationCode.append_C_HyphenLineComment () ;
 //--- block data array
   implementationCode << "\n"
-                        "static unsigned char * gBlockDataArray [" << cStringWithUnsigned (blockLengthArray.count ()) << "] = {" ;
+                        "static unsigned char * gBlockDataArray [" << cStringWithSigned (blockLengthArray.count ()) << "] = {" ;
   for (PMSInt32 i=0 ; i<blockLengthArray.count () ; i++) {
     if (i > 0) {
       implementationCode << "," ;
     }
     implementationCode << "\n  gArray_" ;
-    implementationCode.appendUnsigned (i) ;
+    implementationCode.appendSigned (i) ;
   }
   implementationCode << "\n} ;\n\n" ;
   implementationCode.append_C_HyphenLineComment () ;
 //--- routines
   implementationCode << "\n"
                         "unsigned long " << inSourceName << "_blockCount (void) {\n"
-                        "  return " << cStringWithUnsigned (blockLengthArray.count ()) << " ;\n"
+                        "  return " << cStringWithSigned (blockLengthArray.count ()) << " ;\n"
                         "}\n\n" ;
   implementationCode.append_C_HyphenLineComment () ;
   implementationCode << "\n"
