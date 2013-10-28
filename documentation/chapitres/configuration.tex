@@ -50,7 +50,7 @@ setting : description
 
 où \piccolo{setting} est le nom d’un champ d’un registre de configuration, et \piccolo{description} la chaîne descriptive de la valeur souhaitée (voir section précédente).
 
-Par exemple, pour le 10F220 :
+Par exemple, pour le 10F220\index{10F220} :
 
 \begin{lstlisting}[language=piccolo]
 configuration {
@@ -66,7 +66,7 @@ Si la valeur descriptive est un identificateur (comme pour \piccolo{CP}), alors 
   CP : Enabled
 \end{lstlisting}
 
-La règle est simple : il faut que tous les champs soient explicitement affectés. L’ordre des affectations est sans importance. Piccolo vérifie et considère comme une erreur tout manque.
+La règle est simple : il faut que tous les champs soient explicitement affectés. L’ordre des affectations est sans importance. Piccolo vérifie et considère comme une erreur tout oubli de définition de champ.
 
 Un champ ne peut être affecté qu’une seule fois. Plusieurs affectations du même champ déclenchent une erreur.
 
@@ -76,8 +76,8 @@ Un champ ne peut être affecté qu’une seule fois. Plusieurs affectations du m
 
 Pour certains micro-contrôleurs, certaines affectations particulières sont incompatibles. Ces interdictions sont contenues dans les fichiers de description des micro-contrôleurs, et par conséquent sont vérifiées par Piccolo. 
 
-C’est par exemple le cas du 18F4431 : le champ \piccolo{BOREN} ne doit pas prendre la valeur \piccolo{Disabled} quand le champ \piccolo{BORV} prend la valeur \piccolo{Reserved}. Cette incompabilité peut être mise en évidence en affichant la description de la configuration du 18F4431 (\texttt{piccolo -F=18F4431}), dont voici l'extrait qui nous intéresse :
-%\texttt{\small
+C’est par exemple le cas du 18F4431\index{18F4431} : le champ \piccolo{BOREN} ne doit pas prendre la valeur \piccolo{Disabled} quand le champ \piccolo{BORV} prend la valeur \piccolo{Reserved}. Cette incompabilité peut être mise en évidence en affichant la description de la configuration du 18F4431 (\texttt{piccolo -F=18F4431}), dont voici l'extrait qui nous intéresse :
+
 \begin{lstlisting}[frame=l, language=assembleur]
 ...
 REGISTER 'CONFIG2L' at 0x300002, width 4
@@ -107,10 +107,10 @@ configuration {
 }
 \end{lstlisting}
 
-La compilation Piccolo de ce programme avec Piccolo provoque un message d’erreur qui cite la chaîne de description de l'incompabilité :
+La compilation de ce programme provoque un message d’erreur qui cite la chaîne de description de l'incompabilité :
 
 
-\textcolor{red}{\tt error: illegal setting for 'CONFIG2L' register: Brown out voltage cannot be set to an undefined valued if Brown Out Detect is enabled}
+\textcolor{red}{error: illegal setting for 'CONFIG2L' register: Brown out voltage cannot be set to an undefined valued if Brown Out Detect is enabled}
 
 Le fichier listing (obtenu par l’option \texttt{-L} ou \texttt{-{}-list}) contient le détail de la configuration et ce message d’erreur.
 

@@ -4,6 +4,7 @@
 \cleardoublepage
 
 \chapterLabel{Construction \texttt{checkpic}}{checkpic}
+\index{Mot réservé!checkpic}
 
 %--- Pour supprimer tout en-tête et pied de page sur la 1re page d'un chapitre
 \thispagestyle{empty}
@@ -13,10 +14,10 @@
 Sa syntaxe est la suivante :
 
 \begin{lstlisting}[language=piccolo]
-checkpic "nom", ...., "nom"
+checkpic "nom", ..., "nom"
 \end{lstlisting}
 
-C'est-à-dire le mot réservé \piccolo{checkpic} suivi de une ou plusieurs chaînes de caractères. Une erreur est déclenchée si le code en cours de compilation n'est pas destiné à l'un des micro-contrôleurs cités.
+C'est-à-dire le mot réservé \piccolo{checkpic} suivi de une ou plusieurs chaînes de caractères, chacune d'elle désignant un type de micro-contrôleur. Une erreur est déclenchée si le code en cours de compilation n'est pas destiné à l'un des micro-contrôleurs cités.
 
 Par exemple :
 
