@@ -202,6 +202,49 @@ Implémentation : la répétition infinie est simplement réalisée par une inst
 
 
 
+\sectionLabel{Instruction de répétition statique}{repetitionStatique}
+
+\textbf{À partir de Piccolo 3.0.3.}
+
+
+Cette instruction a la syntaxe suivante :
+\begin{lstlisting}[language=piccolo]
+do (expression)
+  liste d'instructions simples ou structurees
+end
+\end{lstlisting}
+
+L'\piccolo{expression} est une expression statique, c'est-à-dire calculée à la compilation, qui doit être strictement positive. Cette expression spécifie le nombre de fois que le corps de la boucle est répété. La répétition est organisée par le compilateur, le code engendré est \piccolo{expression} fois le corps de la boucle.
+
+Par exemple, le code suivant :
+\begin{lstlisting}[language=piccolo]
+do (3)
+  bcf PORTA.0
+  nop
+  bsf PORTA.0
+end
+\end{lstlisting}
+
+Est équivalent à :
+\begin{lstlisting}[language=piccolo]
+bcf PORTA.0
+nop
+bsf PORTA.0
+bcf PORTA.0
+nop
+bsf PORTA.0
+bcf PORTA.0
+nop
+bsf PORTA.0
+\end{lstlisting}
+
+
+Pour les \emph{pic18} et les \emph{mid-range}, le corps de la boucle ne doit pas changer la sélection de banc.
+
+
+
+
+
 
 
 
