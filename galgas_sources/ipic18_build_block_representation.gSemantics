@@ -603,7 +603,7 @@ override method @pic18Instruction_savebank analyze
     !?ioUsedRegisters
   ;
   if not ioContinuesInSequence then
-    error mEndOfSaveBankInstruction:"useless saving: execution does reach the end of \"savebank\" instruction list" ;
+    error mEndOfSaveBankInstruction:"useless saving: execution does not reach the end of \"savebank\" instruction list" ;
   end if ;
 #--- Generate "MOVFF save_register, BSR" instruction
   ioCurrentBlock->mInstructionList += ![@ipic18_intermediate_instruction_MOVFF new
@@ -611,6 +611,76 @@ override method @pic18Instruction_savebank analyze
     !save_IPICregisterDescription
     !BSR_IPICregisterDescription
   ] ;
+end method ;
+#----------------------------------------------------*
+
+override method @pic18Instruction_repetitionStatique analyze
+  ??@uint inAccessBankSplitOffset
+  ?!@ipic18BlockList ioGeneratedBlockList
+  ??@routineMap inRoutineMap
+  ??@registerTable inRegisterTable
+  ??@pic18_dataMap inDataMap
+  ??@constantMap inConstantMap
+  ?!@uint ioLocalLabelIndex
+  ?!@ipic18Block ioCurrentBlock
+  ?!@string ioListFileContents
+  ?!@uint ioCurrentBank
+  ??@bool unused inShouldPreserveBSR
+  ?!@bool ioContinuesInSequence
+  ??@routineKind inRoutineKind
+  ?!@stringset ioUsedRegisters
+:
+#--- Solve immediat expression
+  [mRepeatExpression eval !inRegisterTable !inConstantMap ??@sint64 repeatCount !?ioUsedRegisters] ;
+#---
+  if (repeatCount > 0xFF_FFFF_LS) | (repeatCount <= 0LS) then
+    error mInstructionLocation:"immediate value is evaluated as " . repeatCount . " (should be > 0 and <= 0xFF_FFFF)" ;
+  end if ;
+#--- Generate instruction list (first pass)
+  @uint finalBank := ioCurrentBank ;
+  analyzeInstructionList
+    !mInstructionList
+    !?ioGeneratedBlockList
+    !inAccessBankSplitOffset
+    !inRoutineMap
+    !inRegisterTable
+    !inDataMap
+    !inConstantMap
+    !?ioLocalLabelIndex
+    !?ioCurrentBlock
+    !?ioListFileContents
+    !?finalBank
+    !true # Preserve bank now
+    ?ioContinuesInSequence
+    !inRoutineKind 
+    !?ioUsedRegisters
+  ;
+  if not ioContinuesInSequence then
+    error mEndOfInstruction:"useless do: execution does not reach the end of enclosed instruction list" ;
+  end if ;
+  if finalBank != ioCurrentBank then
+    error mEndOfInstruction:"enclosed instruction list should not modify bank selection" ;
+  end if ;
+#--- Generate instruction list (other passes)
+  for idx in [@range new !0 ![repeatCount-1S uint]] while [@uint errorCount] == 0 do
+    analyzeInstructionList
+      !mInstructionList
+      !?ioGeneratedBlockList
+      !inAccessBankSplitOffset
+      !inRoutineMap
+      !inRegisterTable
+      !inDataMap
+      !inConstantMap
+      !?ioLocalLabelIndex
+      !?ioCurrentBlock
+      !?ioListFileContents
+      !?ioCurrentBank
+      !true # Preserve bank now
+      ?ioContinuesInSequence
+      !inRoutineKind 
+      !?ioUsedRegisters
+    ;
+  end for ;
 end method ;
 
 #----------------------------------------------------*

@@ -65,6 +65,15 @@ class @pic18Instruction_savebank extends @pic18PiccoloInstruction {
 
 #----------------------------------------------------*
 
+class @pic18Instruction_repetitionStatique extends @pic18PiccoloInstruction {
+  @immediatExpression mRepeatExpression ;
+  @pic18InstructionList mInstructionList ;
+  @location mEndOfInstruction ;
+}
+
+
+#----------------------------------------------------*
+
 enum @pic18Instruction_FDA_base_code_AST {
   ADDWF, ADDWFC, ANDWF, COMF, DECF, INCF,
   IORWF, MOVF, RLCF, RLNCF, RRCF, RRNCF, SUBFWB, SUBWF, SUBWFB, SWAPF, XORWF

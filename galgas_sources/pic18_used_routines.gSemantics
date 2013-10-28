@@ -57,6 +57,14 @@ end method ;
 
 #---------------------------------------------------------------------------*
 
+override method @pic18Instruction_repetitionStatique addUsedRoutines
+  ?!@stringset ioUsedRoutines
+:
+  addPic18UsedRoutinesFromInstructionList !mInstructionList !?ioUsedRoutines ;
+end method ;
+
+#---------------------------------------------------------------------------*
+
 override method @pic18Instruction_checkbank addUsedRoutines
   ?!@stringset unused ioUsedRoutines
 :
