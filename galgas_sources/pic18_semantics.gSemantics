@@ -13,7 +13,7 @@ import "pic18_routine_inlining.gSemantics" ;
 #                                                                            *
 #----------------------------------------------------------------------------*
 
-routine pic18_analyze ??@piccoloModel inPiccoloModel ??@string inSourceFileName :
+routine pic18_analyze ??@pic18AST inPiccoloModel ??@string inSourceFileName :
 #-------------------------------- Check source file name
   @string sourceFileBaseName := [[inSourceFileName lastPathComponent] stringByDeletingPathExtension] ;
   if sourceFileBaseName != [[inPiccoloModel mProgramName] string] then

@@ -327,6 +327,20 @@ rule <midrange_structured_instruction>
   ?!@bool ioNeedsComputedGoto4
 :
   select
+    $do$ ;
+    const @location instructionLocation := here ;
+    $($ ;
+    <immediate_expression> ??@immediatExpression repeatExpression ;
+    $)$ ;
+    <midrange_instruction_list> ??@midrange_instructionList instructionList !?ioNeedsComputedGoto2 !?ioNeedsComputedGoto4 ;
+    outInstruction := [@midrange_instruction_STATIC_REPEAT new
+      !instructionLocation
+      !repeatExpression
+      !instructionList
+      !here
+    ] ;
+    $end$ ;
+  or
     $checkbank$ ;
     $integer$ ? @luint bankIndex ;
     outInstruction := [@midrangeInstruction_checkbank new !bankIndex->location !bankIndex->uint] ;

@@ -42,6 +42,11 @@ echo "-------------- optimizations" &&
 ../../makefile_macosx/piccolo -v -S -O -L --Werror optimizations.piccolo &&
 $GPUTILS_PATH/gpasm optimizations.asm -o optimizations-2.hex &&
 hexcmp optimizations.hex optimizations-2.hex &&
+#--- repetition_statique_pic18
+echo "-------------- repetition_statique_pic18" &&
+../../makefile_macosx/piccolo -v -S -O -L --Werror repetition_statique_pic18.piccolo &&
+$GPUTILS_PATH/gpasm repetition_statique_pic18.asm -o repetition_statique_pic18-2.hex &&
+hexcmp repetition_statique_pic18.hex repetition_statique_pic18-2.hex &&
 #--- Computed RCALL
 echo "-------------- Computed RCALL" &&
 ../../makefile_macosx/piccolo -v -S -O -L --Werror computed_rcall_samples.piccolo &&

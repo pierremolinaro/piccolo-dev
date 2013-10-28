@@ -939,6 +939,70 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
+override method @midrange_instruction_STATIC_REPEAT build_midrange_ipic_instructionList
+  ??@routineMap inRoutineMap
+  ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
+  ?!@uint ioLocalLabelIndex
+  ?!@midrange_intermediate_instructionList ioGeneratedInstructionList
+  ?!@string ioListFileContents
+  ??@uint inTotalBankCount
+  ?!@uint ioCurrentBank
+  ??@bool inShouldPreserveBank
+  ?!@bool ioContinuesInSequence
+  ??@routineKind inRoutineKind
+  ?!@stringset ioUsedRegisters
+:
+  [mRepeatExpression eval !inRegisterTable !inConstantMap ??@sint64 repeatCount !?ioUsedRegisters] ;
+#---
+  if (repeatCount > 0xFFFFLS) | (repeatCount <= 0LS) then
+    error mInstructionLocation:"immediate value is evaluated as " . repeatCount . " (should be > 0 and < 0xFFFF)" ;
+  end if ;
+#--- First pass
+  @uint finalBank := ioCurrentBank ;
+  handleMidrangeInstructionList
+    !mInstructionList 
+    !inRoutineMap
+    !inRegisterTable
+    !inConstantMap
+    !?ioLocalLabelIndex
+    !?ioGeneratedInstructionList
+    !?ioListFileContents
+    !inTotalBankCount
+    !?finalBank
+    !inShouldPreserveBank
+    ?ioContinuesInSequence
+    !inRoutineKind
+    !?ioUsedRegisters
+  ;
+  if ioCurrentBank != finalBank then
+    error mEndOfInstruction:"enclosed instruction list does not leave bank selection unchanged";
+  end if ;
+  if not ioContinuesInSequence then
+    error mEndOfInstruction:"enclosed instruction list contains an endless loop";
+  end if ;
+#--- Other passes
+  for idx in [@range new !0 ![repeatCount-1LS uint]] while [@uint errorCount] == 0 do
+    handleMidrangeInstructionList
+      !mInstructionList 
+      !inRoutineMap
+      !inRegisterTable
+      !inConstantMap
+      !?ioLocalLabelIndex
+      !?ioGeneratedInstructionList
+      !?ioListFileContents
+      !inTotalBankCount
+      !?ioCurrentBank
+      !inShouldPreserveBank
+      ?ioContinuesInSequence
+      !inRoutineKind
+      !?ioUsedRegisters
+    ;
+  end for ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
 override method @midrange_instruction_IF_BitTest build_midrange_ipic_instructionList
   ??@routineMap inRoutineMap
   ??@registerTable inRegisterTable
