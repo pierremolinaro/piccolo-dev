@@ -144,6 +144,20 @@ rule <baseline_structured_instruction>
   !@baseline_instruction outInstruction
 :
   select
+    $do$ ;
+    const @location instructionLocation := here ;
+    $($ ;
+    <immediate_expression> ??@immediatExpression repeatExpression ;
+    $)$ ;
+    <baseline_instruction_list> ??@baseline_instructionList instructionList ;
+    outInstruction := [@baseline_instruction_STATIC_REPEAT new
+      !instructionLocation
+      !repeatExpression
+      !instructionList
+      !here
+    ] ;
+    $end$ ;
+  or
     $jump$ ;
     @location instructionLocation := here ;
     $identifier$ ? @lstring targetLabelName ;

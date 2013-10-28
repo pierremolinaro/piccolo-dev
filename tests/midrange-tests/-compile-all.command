@@ -54,5 +54,9 @@ echo "-------------- routine4" &&
 ../../makefile_macosx/piccolo -v -S -O -L --Werror routine4.piccolo &&
 $GPUTILS_PATH/gpasm routine4.asm -o routine4-2.hex &&
 hexcmp routine4.hex routine4-2.hex &&
+echo "-------------- repetition_statique_midrange" &&
+../../makefile_macosx/piccolo -v -S -O -L --Werror repetition_statique_midrange.piccolo &&
+$GPUTILS_PATH/gpasm repetition_statique_midrange.asm -o repetition_statique_midrange-2.hex &&
+hexcmp repetition_statique_midrange.hex repetition_statique_midrange-2.hex &&
 #----
 echo "-------------- SUCCES ---------------"

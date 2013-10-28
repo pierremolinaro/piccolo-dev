@@ -68,7 +68,7 @@ rule <start_symbol> :
   $end$ ;
 #--- Semantic analysis
   if [@uint errorCount] == 0 then
-    @piccoloModel piccoloModel [new
+    @pic18AST piccoloModel [new
       !programName
       !programKind
       !deviceNameOrBootloaderReference

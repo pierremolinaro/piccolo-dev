@@ -65,6 +65,14 @@ end method ;
 
 #---------------------------------------------------------------------------*
 
+override method @midrange_instruction_STATIC_REPEAT addUsedRoutines
+  ?!@stringset ioUsedRoutines
+:
+  addMidRangeUsedRoutinesFromInstructionList !mInstructionList !?ioUsedRoutines ;
+end method ;
+
+#---------------------------------------------------------------------------*
+
 override method @midrange_instruction_MNOP addUsedRoutines
   ?!@stringset unused ioUsedRoutines
 :

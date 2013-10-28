@@ -95,6 +95,14 @@ class @baseline_instruction_FOREVER extends @baseline_instruction {
 
 #----------------------------------------------------*
 
+class @baseline_instruction_STATIC_REPEAT extends @baseline_instruction {
+  @immediatExpression mRepeatExpression ;
+  @baseline_instructionList mInstructionList ;
+  @location mEndOfInstruction ;
+}
+
+#----------------------------------------------------*
+
 abstract class @baseline_instruction_IF_SEMI_COLON extends @baseline_instruction {
   @baseline_instruction mInstruction ;
 }

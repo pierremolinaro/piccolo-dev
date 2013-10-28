@@ -71,7 +71,6 @@ class @pic18Instruction_repetitionStatique extends @pic18PiccoloInstruction {
   @location mEndOfInstruction ;
 }
 
-
 #----------------------------------------------------*
 
 enum @pic18Instruction_FDA_base_code_AST {
@@ -453,7 +452,7 @@ map @dataMap {
 
 #----------------------------------------------------*
 
-struct @piccoloModel {
+struct @pic18AST {
   @lstring mProgramName ;
   @programKind mProgramKind ;
   @lstring mDeviceNameOrBootLoaderReference ;

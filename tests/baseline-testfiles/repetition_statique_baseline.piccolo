@@ -1,0 +1,14 @@
+baseline repetition_statique_baseline "16F59" :
+
+
+noreturn routine main {
+  do (5)
+    nop
+    movlw 3
+  end
+  forever
+  end
+}
+
+
+end

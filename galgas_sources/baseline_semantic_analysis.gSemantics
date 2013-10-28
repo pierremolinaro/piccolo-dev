@@ -631,6 +631,63 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
+override method @baseline_instruction_STATIC_REPEAT build_baseline_intermediate_instructionList
+  ??@uint inCurrentPage
+  ??@baselineRoutineMap inRoutineMap
+  ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
+  ?!@uint  ioLocalLabelIndex
+  ?!@baseline_intermediate_instructionList ioGeneratedInstructionList
+  ?!@string ioListFileContents
+  ?!@bool ioContinuesInSequence
+  ??@routineKind inRoutineKind
+  ??@bool unused inLastInstructionShouldReturn
+  ?!@stringset ioUsedRegisters
+:
+  [mRepeatExpression eval !inRegisterTable !inConstantMap ??@sint64 repeatCount !?ioUsedRegisters] ;
+#---
+  if (repeatCount > 0xFFFFLS) | (repeatCount <= 0LS) then
+    error mInstructionLocation:"immediate value is evaluated as " . repeatCount . " (should be > 0 and < 0xFFFF)" ;
+  end if ;
+#--- First pass
+  handleBaselineInstructionList
+    !inCurrentPage
+    !mInstructionList 
+    !inRoutineMap
+    !inRegisterTable
+    !inConstantMap
+    !?ioLocalLabelIndex
+    !?ioGeneratedInstructionList
+    !?ioListFileContents
+    ?ioContinuesInSequence
+    !inRoutineKind
+    !false # Instruction list does not need to end with MOVLW
+    !?ioUsedRegisters
+  ;
+  if not ioContinuesInSequence then
+    error mEndOfInstruction:"enclosed instruction list contains an endless loop";
+  end if ;
+#--- Other passes
+  for idx in [@range new !0 ![repeatCount-1LS uint]] while [@uint errorCount] == 0 do
+    handleBaselineInstructionList
+      !inCurrentPage
+      !mInstructionList 
+      !inRoutineMap
+      !inRegisterTable
+      !inConstantMap
+      !?ioLocalLabelIndex
+      !?ioGeneratedInstructionList
+      !?ioListFileContents
+      ?ioContinuesInSequence
+      !inRoutineKind
+      !false # Instruction list does not need to end with MOVLW
+      !?ioUsedRegisters
+    ;
+  end for ;
+end method ;
+
+#----------------------------------------------------------------------------*
+
 override method @baseline_instruction_do_while build_baseline_intermediate_instructionList
   ??@uint inCurrentPage
   ??@baselineRoutineMap inRoutineMap

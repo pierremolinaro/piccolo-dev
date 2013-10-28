@@ -65,6 +65,14 @@ end method ;
 
 #---------------------------------------------------------------------------*
 
+override method @baseline_instruction_STATIC_REPEAT addUsedRoutines
+  ?!@stringset ioUsedRoutines
+:
+  addBaselineUsedRoutinesFromInstructionList !mInstructionList !?ioUsedRoutines ;
+end method ;
+
+#---------------------------------------------------------------------------*
+
 override method @baseline_instruction_MNOP addUsedRoutines
   ?!@stringset unused ioUsedRoutines
 :
