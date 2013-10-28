@@ -485,6 +485,20 @@ rule <structured_instruction>
   ?!@bool ioNeedsComputedGoto4
 :
   select
+    $do$ ;
+    const @location instructionLocation := here ;
+    $($ ;
+    <immediate_expression> ??@immediatExpression repeatExpression ;
+    $)$ ;
+    <instruction_list> ??@pic18InstructionList instructionList !?ioNeedsComputedGoto2 !?ioNeedsComputedGoto4 ;
+    outInstruction := [@pic18Instruction_repetitionStatique new
+      !instructionLocation
+      !repeatExpression
+      !instructionList
+      !here
+    ] ;
+    $end$ ;
+  or
     $checkbank$ ;
     $integer$ ? @luint bankIndex ;
     outInstruction := [@pic18Instruction_checkbank new !bankIndex->location !bankIndex->uint] ;
@@ -499,8 +513,7 @@ rule <structured_instruction>
   or
     $ltblptr$ ;
     @location instructionLocation := here ;
-    @immediatExpression expression ;
-    <immediate_expression> ?expression ;
+    <immediate_expression> ??@immediatExpression expression ;
     outInstruction := [@pic18Instruction_LTBLPTR new !instructionLocation !expression] ;
   or
     $banksel$ ;
@@ -535,8 +548,7 @@ rule <structured_instruction>
     $banksave$ ;
     @location instructionLocation := here ;
     <register_parsing> ?@registerExpression register ;
-    @pic18InstructionList instructionList ;
-    <instruction_list> ?instructionList !?ioNeedsComputedGoto2 !?ioNeedsComputedGoto4 ;
+    <instruction_list> ??@pic18InstructionList instructionList !?ioNeedsComputedGoto2 !?ioNeedsComputedGoto4 ;
     $end$ ;
     outInstruction := [@pic18Instruction_savebank new
       !instructionLocation
