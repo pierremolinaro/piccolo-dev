@@ -31,6 +31,8 @@ Piccolo définit les instructions structurées suivantes :
   \item l'instruction conditionnelle structurée (\refSectionPage{instructionConditionnelleStructuree}) ;
   \item l'instruction répétitive (\refSectionPage{instructionRepetitive}) ;
   \item l'instruction de répétition infinie (\refSectionPage{repetitionInfinie}) ;
+  \item l'instruction de répétition statique (\refSectionPage{repetitionStatique}) ;
+  \item l'instruction \piccolo{block} (\refSectionPage{instructionBloc}) ;
   \item l'instruction \piccolo{computed retlw} (\refSubsectionPage{instructionComputedRetlw}) ;
   \item l'instruction \piccolo{computed bra} (\refSubsectionPage{instructionComputedBra}) ;
   \item l'instruction \piccolo{computed goto} (\refSubsectionPage{instructionComputedGoto}) ;
@@ -578,29 +580,29 @@ Enfin, le \refTableau{conditionsElementairesPic18IncDecRegistre} liste les condi
     \textbf{Condition} & \textbf{Signification} & \multicolumn{2}{l}{\bf Code engendré}\\
                        &                        & \textbf{Court} & \textbf{Long}\\
     \hline
-                           \piccolo{decf reg z}   & reg := reg - 1 ; reg = 0 ?   &\assembleur{DCFSNZ reg}  & \assembleur{DCFSNZ reg}\\
-                                                      &               &\assembleur{BRA label}        & \assembleur{GOTO label}\\
+      \piccolo{decf reg z}   & reg := reg - 1 ;   &\assembleur{DCFSNZ reg}  & \assembleur{DCFSNZ reg}\\
+                             &  reg = 0 ?         &\assembleur{BRA label}   & \assembleur{GOTO label}\\
     \hdashline
-    \piccolo{decf reg, W z}& WREG := reg - 1 ; WREG = 0 ? &\assembleur{DCFSNZ reg, W}  & \assembleur{DCFSNZ reg, W}\\
-                               &            &\assembleur{BRA label}           & \assembleur{GOTO label}\\
+      \piccolo{decf reg, W z} & WREG := reg - 1 ;  &\assembleur{DCFSNZ reg, W}  & \assembleur{DCFSNZ reg, W}\\
+                              & WREG = 0 ?         &\assembleur{BRA label}      & \assembleur{GOTO label}\\
     \hdashline
-                           \piccolo{decf reg nz}  & reg := reg - 1 ; reg $\ne$ 0 ?   &\assembleur{DECFSZ reg}  & \assembleur{DECFSZ reg}\\
-                                                      &               &\assembleur{BRA label}        & \assembleur{GOTO label}\\
+      \piccolo{decf reg nz}  & reg := reg - 1 ; &\assembleur{DECFSZ reg}  & \assembleur{DECFSZ reg}\\
+                             & reg $\ne$ 0 ?    &\assembleur{BRA label}   & \assembleur{GOTO label}\\
     \hdashline
-    \piccolo{decf reg, W nz}& WREG := reg - 1 ; WREG $\ne$ 0 ? &\assembleur{DECFSZ reg, W}  & \assembleur{DECFSZ reg, W}\\
-                               &            &\assembleur{BRA label}           & \assembleur{GOTO label}\\
+      \piccolo{decf reg, W nz} & WREG := reg - 1 ; &\assembleur{DECFSZ reg, W}  & \assembleur{DECFSZ reg, W}\\
+                               & WREG $\ne$ 0 ?    &\assembleur{BRA label}      & \assembleur{GOTO label}\\
     \hdashline
-                           \piccolo{incf reg z}   & reg := reg + 1 ; reg = 0 ?   &\assembleur{INFSNZ reg}  & \assembleur{INFSNZ reg}\\
-                                                      &               &\assembleur{BRA label}        & \assembleur{GOTO label}\\
+      \piccolo{incf reg z}   & reg := reg + 1 ; &\assembleur{INFSNZ reg}  & \assembleur{INFSNZ reg}\\
+                             & reg = 0 ?        &\assembleur{BRA label}        & \assembleur{GOTO label}\\
     \hdashline
-    \piccolo{incf reg, W z}& WREG := reg + 1 ; WREG = 0 ? &\assembleur{INFSNZ reg, W}  & \assembleur{INFSNZ reg, W}\\
-                          &            &\assembleur{BRA label}           & \assembleur{GOTO label}\\
+      \piccolo{incf reg, W z} & WREG := reg + 1 ; &\assembleur{INFSNZ reg, W}  & \assembleur{INFSNZ reg, W}\\
+                              & WREG = 0 ?        &\assembleur{BRA label}           & \assembleur{GOTO label}\\
     \hdashline
-                           \piccolo{incf reg nz}  & reg := reg + 1 ; reg $\ne$ 0 ?   &\assembleur{INCFSZ reg}  & \assembleur{INCFSZ reg}\\
-                                                      &               &\assembleur{BRA label}        & \assembleur{GOTO label}\\
+      \piccolo{incf reg nz}  & reg := reg + 1 ; &\assembleur{INCFSZ reg}  & \assembleur{INCFSZ reg}\\
+                             & reg $\ne$ 0 ?    &\assembleur{BRA label}        & \assembleur{GOTO label}\\
     \hdashline
-    \piccolo{incf reg, W nz}& WREG := reg + 1 ; WREG $\ne$ 0 ? &\assembleur{INCFSZ reg, W}  & \assembleur{INCFSZ reg, W}\\
-                           &            &\assembleur{BRA label}           & \assembleur{GOTO label}\\
+      \piccolo{incf reg, W nz} & WREG := reg + 1 ; &\assembleur{INCFSZ reg, W}  & \assembleur{INCFSZ reg, W}\\
+                               & WREG $\ne$ 0 ?    &\assembleur{BRA label}           & \assembleur{GOTO label}\\
     \hline
   \end{tabular}
   \caption{Conditions pour \emph{pic18} basées sur la décrémentation et l'incrémentation d'un registre}
@@ -683,7 +685,7 @@ $n$ est une \emph{expression statique} doit être égal au nombre de routines ci
 
 L'implémentation limite à 128 la valeur de $n$.
 
-\textbf{Fonctionnement.} Cette instruction agit comme une instruction de branchement en fonction de la valeur de \assembleur{WREG} : branchement vers \piccolo{routine0} pour 0, vers \piccolo{routine1} pour 1, ..., vers \piccolo{routine$_{n-1}$} pour $n-1$. 
+\textbf{Fonctionnement.} Cette instruction agit comme une instruction de branchement en fonction de la valeur de \assembleur{WREG} : branchement vers \piccolo{routine0} pour 0, vers \piccolo{routine1} pour 1, ..., vers \texttt{routine}$_{n-1}$ pour $n-1$. 
 
 \textbf{Limitation.} À l'exécution, il est nécessaire que la valeur non signée de \assembleur{WREG} soit strictement inférieur au nombre de routines. \textcolor{red}{\bf Le code engendré par Piccolo n'effectue aucune vérification.} Il est donc probable que ne pas respecter cette règle entraîne un plantage du programme.
 
@@ -763,6 +765,118 @@ _computed_goto_2:
 
 
 
+\sectionLabel{Instruction \texttt{block}}{instructionBloc}
+
+\textbf{À partir de Piccolo 3.0.4.} \textcolor{red}{\bf L'instruction \piccolo{block} n'est définie que pour les \emph{pic18}.}
+
+En Piccolo, un \emph{bloc} est une séquence d'instructions terminée par une instruction de débranchement. L'instruction \piccolo{block} permet de définir un ensemble de blocs s'appelant les uns les autres. Ceci permet d'exprimer des structures d'exécution non structurées, qu'il serait très difficile d'exprimer avec les instructions structurées classiques. 
+
+\subsection{Syntaxe}
+
+Sa syntaxe est la suivante :
+
+\lstset{emph={definitions_de_blocs, nom_du_block, liste_instructions_structurees, branchement, nom_bloc_entree}, emphstyle=\emph}
+
+\begin{lstlisting}[language=piccolo]
+block nom_bloc_entree :
+  definitions_de_blocs
+end
+\end{lstlisting}
+
+\piccolo{definitions_de_blocs} est une liste non ordonnée de blocs ; \piccolo{nom_bloc_entree} est le nom de l'un de ces blocs, et c'est celui qui sera exécuté lorsque l'exécution atteindra l'instruction \piccolo{block}.
+
+Une définition de bloc a l'allure suivante :
+
+\begin{lstlisting}[language=piccolo]
+nom_du_block { liste_instructions_structurees } branchement
+\end{lstlisting}
+
+Le \piccolo{nom_du_block} est le nom donné au bloc ; ce nom est interne à l'instruction \piccolo{block} qui le contient. \piccolo{liste_instructions_structurees} est une liste d'instructions structurées quelconques, qui peut être vide. \piccolo{branchement} est une expression particulière, qui définit où l'exécution se poursuit à l'issue de l'exécution des instructions structurées ; cette expression peut prendre plusieurs formes, indiquées dans le \refTableau{terminaisonBloc}.
+
+\begin{table}[!ht]
+  \centering
+  \small
+  \begin{tabular}{lp{9cm}}
+    \textbf{Syntaxe} & \textbf{Signification} \\
+    \hline
+      \piccolo{-} & L'exécution de l'instruction \piccolo{block} est terminée : l'exécution se poursuit par celle qui suit le \piccolo{end} de l'instruction\piccolo{block}. \\
+    \hdashline
+      \piccolo{nom} & L'exécution se poursuit par l'exécution du bloc nommé \piccolo{nom}. \\
+    \hdashline
+      \piccolo{cc ? br1 : br2} & \piccolo{cc} est une condition (voir \refSectionPage{formeGeneraleConditions}), \piccolo{br1} et \piccolo{br2} des expressions de branchement ; si \piccolo{cc} estvrai, alors le branchement \piccolo{br1} est effectué, sinon c'est le branchement \piccolo{br2}. \\
+    \hdashline
+      \piccolo{[br0, br1, br2, ...]} & Cette expression utilise la valeur courante du registre \assembleur{WREG} (c'est-à-dire celle obtenue à l'issue de l'exécution des instructions structurées) : si \assembleur{WREG} est nul, alors le branchement \piccolo{br0} est effectué, si il vaut 1, c'est \piccolo{br1} … \textcolor{red}{Si \assembleur{WREG} a une valeur supérieure ou égal au nombre de branchements, le comportement est indéfini.}\\
+    \hline
+  \end{tabular}
+  \caption{Expressions de branchement d'un bloc de l'instruction \texttt{block}}
+  \labelTableau{terminaisonBloc}
+\end{table}
+
+\subsection{Blocs utiles}
+
+Le compilateur Piccolo analyse l'instruction \piccolo{block} en partant du premier bloc appelé et en examinant de proche en proche tous les blocs atteints via les expressions de branchement. Il détecte ainsi facilement les blocs inutiles, qui ne sont jamais appelés. Par exemple :
+
+\begin{lstlisting}[language=piccolo]
+  block start :
+    start { ... } STATUS.Z ? next : -
+    next { ...  } -
+    other { ...  } STATUS.Z ? - : another
+    another { ...  } -
+  end
+\end{lstlisting}
+
+Les blocs qui sont accessibles sont \piccolo{start} et \piccolo{next}. Les blocs \piccolo{other} et \piccolo{another} sont inaccessibles et leur présence déclenche des \emph{warnings} signalant leur inutilité.
+
+
+
+
+
+
+
+
+\subsection{Instruction \texttt{block} et gestion des bancs}
+
+Dans l'instruction \piccolo{block}, la gestion des bancs est réalisée grâce aux instructions régulières de Piccolo : celles qui contrôlent directement les bancs : \piccolo{banksel} (\refSubsectionPage{instructionBanksel}), \piccolo{nobank} (\refSubsectionPage{instructionNoBank}), et celles qui les contrôlent d'une manière indirecte : appel de routine, instruction structurée. Toutes ces instructions peuvent apparaître parmi les instructions de \piccolo{liste_instructions_structurees}.
+
+Ainsi, chaque bloc hérite de la sélection de banc du bloc qui s'est exécuté avant lui, et impose la sélection de banc au bloc qui exécuté ensuite.
+
+Considérons l'exemple suivant :
+
+\begin{lstlisting}[language=piccolo]
+  banksel 1
+  block start :
+    start {
+      # bank 1 is selected
+      banksel 2
+    } STATUS.Z ? next : other
+    next {
+      # bank 2 is selected
+      banksel 3
+    } -
+    other {
+      # bank 2 is selected
+      banksel 3
+    } -
+  end
+  # bank 3 is selected
+\end{lstlisting}
+
+Le premier bloc qui est exécuté est \piccolo{start}. Comme l'instruction qui précède l'instruction \piccolo{block} a sélectionné le banc 1, le banc 1 demeure sélectionné au début des instructions du bloc \piccolo{start}. Leur exécution sélectionne le banc 2, et l'expression de branchement dirige vers le bloc \piccolo{next} ou \piccolo{other}. Ainsi, on peut affirmer que le banc 2 sera sélectionné lors de l'invocation de ces blocs. Ceux-ci sélectionnent le banc 3, et leur expression de branchement est \piccolo{-}, signifiant que l'exécution est déroutée vers l'instruction qui suit l'instruction \piccolo{block} où la sélection du banc 3 est assurée. Si ces deux blocs ne sélectionnaient pas le même banc, une erreur serait détectée par le compilateur Piccolo.
+
+D'une manière générale, le compilateur Piccolo commence par examiner le premier bloc exécuté (\piccolo{start} dans l'exemple précédent), et calcule de proche en proche pour chaque bloc la sélection héritée du bloc qui le précède et la sélection qu'il impose au bloc exécuté ensuite. Il détecte et signale une erreur si plusieurs blocs essaient d'imposer des sélections de blocs différentes à un même bloc.
+
+
+
+
+
+
+
+
+
+
+
+
+
 \sectionLabel{Instructions de gestion des bancs mémoire}{instructionsGestionBancsMemoire}
 
 Les \emph{baseline} ne possèdent pas de mécanisme pour fixer l'adressage d'un banc : l'accès direct est toujours dans le banc 0 (les adresses comprises entre 0x0 et 0x1F). Les autres bancs doivent être accédés via l'adressage indirect.
@@ -780,7 +894,7 @@ Le but des instructions de gestion des bancs mémoire de Piccolo est multiple :
   \item effectuer à la compilation la vérification de la bonne gestion des bancs.
 \end{itemize}
 
-Le second point est primordial lors que l'on ré-utilise un code écrit auparavant pour un autre micro-contrôleur : il peut y a entre les différents micro-contrôleurs de la même famille des différences de localisation de bancs pour des registres spéciaux de même nom ; Piccolo repérera toutes les erreurs d'adressage de banc.
+Le second point est primordial lors que l'on ré-utilise un code écrit auparavant pour un autre micro-contrôleur : différents micro-contrôleurs de la même famille peuvent présenter des différences de localisation de bancs pour des registres spéciaux de même nom ; Piccolo repérera toutes les erreurs d'adressage de banc.
 
 Le second point a aussi des implications importantes dans les attributs associés aux routines : ceci est discuté dans les sections suivantes.
 
