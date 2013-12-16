@@ -1842,20 +1842,20 @@ end method ;
 #----------------------------------------------------*
 
 override method @pic18Instruction_block analyze
-  ??@uint inAccessBankSplitOffset
-  ?!@ipic18BlockList ioGeneratedBlockList
-  ??@routineMap inRoutineMap
-  ??@registerTable inRegisterTable
-  ??@pic18_dataMap inDataMap
-  ??@constantMap inConstantMap
-  ?!@uint ioLocalLabelIndex
-  ?!@ipic18Block ioCurrentBlock
-  ?!@string ioListFileContents
-  ?!@uint ioCurrentBank
-  ??@bool inShouldPreserveBSR
+  ??@uint unused inAccessBankSplitOffset
+  ?!@ipic18BlockList unused ioGeneratedBlockList
+  ??@routineMap unused inRoutineMap
+  ??@registerTable unused inRegisterTable
+  ??@pic18_dataMap unused inDataMap
+  ??@constantMap unused inConstantMap
+  ?!@uint unused ioLocalLabelIndex
+  ?!@ipic18Block unused ioCurrentBlock
+  ?!@string unused ioListFileContents
+  ?!@uint unused ioCurrentBank
+  ??@bool unused inShouldPreserveBSR
   ?!@bool unused ioContinuesInSequence
-  ??@routineKind inRoutineKind
-  ?!@stringset ioUsedRegisters
+  ??@routineKind unused inRoutineKind
+  ?!@stringset unused ioUsedRegisters
 :
 end method ;
 
