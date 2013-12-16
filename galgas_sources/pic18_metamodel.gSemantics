@@ -73,6 +73,21 @@ class @pic18Instruction_repetitionStatique extends @pic18PiccoloInstruction {
 
 #----------------------------------------------------*
 
+list @pic18BlockInstructionBlockList {
+  @lstring mBlockName ;
+  @pic18InstructionList mInstructionList ;
+}
+
+#----------------------------------------------------*
+
+class @pic18Instruction_block extends @pic18PiccoloInstruction {
+  @lstring mStartBlockName ;
+  @pic18BlockInstructionBlockList mBlockList ;
+  @location mEndOfInstruction ;
+}
+
+#----------------------------------------------------*
+
 enum @pic18Instruction_FDA_base_code_AST {
   ADDWF, ADDWFC, ANDWF, COMF, DECF, INCF,
   IORWF, MOVF, RLCF, RLNCF, RRCF, RRNCF, SUBFWB, SUBWF, SUBWFB, SWAPF, XORWF

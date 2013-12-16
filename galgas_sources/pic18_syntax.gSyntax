@@ -485,6 +485,27 @@ rule <structured_instruction>
   ?!@bool ioNeedsComputedGoto4
 :
   select
+    $block$ ;
+    const @location instructionLocation := here ;
+    $identifier$ ?@lstring startBlockName ;
+    $:$ ;
+    @pic18BlockInstructionBlockList blockList [emptyList] ;
+    repeat
+      $identifier$ ?@lstring blockName ;
+      ${$ ;
+      <instruction_list> ??@pic18InstructionList instructionList !?ioNeedsComputedGoto2 !?ioNeedsComputedGoto4 ;
+      $}$ ;
+      blockList += !blockName !instructionList ;
+    while
+    end repeat ;    
+    outInstruction := [@pic18Instruction_block new
+      !instructionLocation
+      !startBlockName
+      !blockList
+      !here
+    ] ;
+    $end$ ;
+  or
     $do$ ;
     const @location instructionLocation := here ;
     $($ ;
