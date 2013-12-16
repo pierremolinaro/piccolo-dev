@@ -250,6 +250,16 @@ end method ;
 
 #---------------------------------------------------------------------------*
 
+override method @pic18Instruction_block addUsedRoutines
+  ?!@stringset ioUsedRoutines
+:
+  foreach mBlockList do
+    addPic18UsedRoutinesFromInstructionList !mInstructionList !?ioUsedRoutines ;
+  end foreach ;
+end method ;
+
+#---------------------------------------------------------------------------*
+
 local routine addPic18UsedRoutinesFromInstructionList
   ??@pic18InstructionList inInstructionList
   ?!@stringset ioUsedRoutines

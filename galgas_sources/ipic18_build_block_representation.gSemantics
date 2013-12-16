@@ -1839,6 +1839,26 @@ override method @pic18Instruction_do_while analyze
   ] ;
 end method ;
 
+#----------------------------------------------------*
+
+override method @pic18Instruction_block analyze
+  ??@uint inAccessBankSplitOffset
+  ?!@ipic18BlockList ioGeneratedBlockList
+  ??@routineMap inRoutineMap
+  ??@registerTable inRegisterTable
+  ??@pic18_dataMap inDataMap
+  ??@constantMap inConstantMap
+  ?!@uint ioLocalLabelIndex
+  ?!@ipic18Block ioCurrentBlock
+  ?!@string ioListFileContents
+  ?!@uint ioCurrentBank
+  ??@bool inShouldPreserveBSR
+  ?!@bool unused ioContinuesInSequence
+  ??@routineKind inRoutineKind
+  ?!@stringset ioUsedRegisters
+:
+end method ;
+
 #----------------------------------------------------------------------------*
 
 #!--- analyze condition

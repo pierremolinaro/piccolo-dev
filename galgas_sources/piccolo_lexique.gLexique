@@ -24,6 +24,7 @@ list controlKeyWordList error message "the '%K' keyword" style keywordStyle :
   "banksave",
   "banksel",
   "baseline",
+  "block",
   "bootloader",
   "byte",
   "checkbank",
