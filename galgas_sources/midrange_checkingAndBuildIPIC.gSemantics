@@ -2043,9 +2043,9 @@ local routine generateInterruptRoutineForControllerWithSharedRAM
     end if ;
   #--- Restore context
     ioGeneratedInstructionList += ![@midrange_intermediate_instruction_FD new !here ![@midrange_instruction_FD_base_code SWAPF] !second_IPICregisterDescription !true] ;
-    ioGeneratedInstructionList += ![@midrange_intermediate_instruction_F new !here ![@midrange_F_instruction_base_code MOVWF] ! STATUS_IPICregisterDescription] ;
+    ioGeneratedInstructionList += ![@midrange_intermediate_instruction_F new !here ![@midrange_F_instruction_base_code MOVWF] !STATUS_IPICregisterDescription] ;
     ioGeneratedInstructionList += ![@midrange_intermediate_instruction_FD new !here ![@midrange_instruction_FD_base_code SWAPF] !first_IPICregisterDescription !false] ;
-    ioGeneratedInstructionList += ![@midrange_intermediate_instruction_FD new !here ![@midrange_instruction_FD_base_code SWAPF] !second_IPICregisterDescription !true] ;
+    ioGeneratedInstructionList += ![@midrange_intermediate_instruction_FD new !here ![@midrange_instruction_FD_base_code SWAPF] !first_IPICregisterDescription !true] ;
   #--- Add REFFIE
     ioGeneratedInstructionList += ![@midrange_intermediate_instruction_RETFIE new !here] ;
   end if ;

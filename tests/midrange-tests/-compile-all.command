@@ -1,7 +1,11 @@
 #!/bin/sh
 cd `dirname $0` &&
 ../../makefile_macosx/build.command &&
-export GPUTILS_PATH=/usr/local/gputils-1.1.0/bin &&
+export GPUTILS_PATH=/usr/local/gputils-1.2.0/bin &&
+echo "-------------- firmware_16F690" &&
+../../makefile_macosx/piccolo -v -S -O -L --Werror firmware_16F690.piccolo &&
+$GPUTILS_PATH/gpasm firmware_16F690.asm -o firmware_16F690-2.hex &&
+hexcmp firmware_16F690.hex firmware_16F690-2.hex &&
 echo "-------------- blink_led_12F683" &&
 ../../makefile_macosx/piccolo -v -S -O -L --Werror blink_led_12F683.piccolo &&
 $GPUTILS_PATH/gpasm blink_led_12F683.asm -o blink_led_12F683-2.hex &&
