@@ -73,9 +73,20 @@ class @pic18Instruction_repetitionStatique extends @pic18PiccoloInstruction {
 
 #----------------------------------------------------*
 
+abstract class @abstractBlockTerminaisonForBlockInstruction {
+}
+
+#----------------------------------------------------*
+
+class @exitBlockTerminaisonForBlockInstruction extends @abstractBlockTerminaisonForBlockInstruction {
+}
+
+#----------------------------------------------------*
+
 list @pic18BlockInstructionBlockList {
   @lstring mBlockName ;
   @pic18InstructionList mInstructionList ;
+  @abstractBlockTerminaisonForBlockInstruction mBlockTerminaisonForBlockInstruction ;
 }
 
 #----------------------------------------------------*

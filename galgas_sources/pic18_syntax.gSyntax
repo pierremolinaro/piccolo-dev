@@ -479,6 +479,15 @@ end rule ;
 
 #----------------------------------------------------*
 
+rule <block_termination>
+  !@abstractBlockTerminaisonForBlockInstruction outBlockTermination
+:
+  $-$ ;
+  outBlockTermination := [@exitBlockTerminaisonForBlockInstruction new] ;
+end rule ;
+
+#----------------------------------------------------*
+
 rule <structured_instruction>
   !@pic18PiccoloInstruction outInstruction
   ?!@bool ioNeedsComputedGoto2
@@ -495,7 +504,8 @@ rule <structured_instruction>
       ${$ ;
       <instruction_list> ??@pic18InstructionList instructionList !?ioNeedsComputedGoto2 !?ioNeedsComputedGoto4 ;
       $}$ ;
-      blockList += !blockName !instructionList ;
+      <block_termination> ?@abstractBlockTerminaisonForBlockInstruction blockTermination ;
+      blockList += !blockName !instructionList !blockTermination ;
     while
     end repeat ;    
     outInstruction := [@pic18Instruction_block new

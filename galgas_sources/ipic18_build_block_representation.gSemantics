@@ -1841,6 +1841,14 @@ end method ;
 
 #----------------------------------------------------*
 
+map @blockInstructionBlockMap {
+  @abstractBlockTerminaisonForBlockInstruction mBlockTerminaisonForBlockInstruction ;
+  insert insertKey error message "the '%K' block is already declared" ;
+  search searchKey error message "the '%K' block is not declared" ;
+}
+
+#----------------------------------------------------*
+
 override method @pic18Instruction_block analyze
   ??@uint unused inAccessBankSplitOffset
   ?!@ipic18BlockList unused ioGeneratedBlockList
@@ -1857,6 +1865,14 @@ override method @pic18Instruction_block analyze
   ??@routineKind unused inRoutineKind
   ?!@stringset unused ioUsedRegisters
 :
+#--- Compute block map
+  @blockInstructionBlockMap blockMap [emptyMap] ;
+  foreach mBlockList do
+    [!?blockMap insertKey !mBlockName !mBlockTerminaisonForBlockInstruction] ;
+  end foreach ;
+#--- Compute block accessiblity
+  [blockMap searchKey !mStartBlockName ??@abstractBlockTerminaisonForBlockInstruction blockTermination] ;
+  @stringset accessibleBlockSet [setWithString !mStartBlockName->string] ;
 end method ;
 
 #----------------------------------------------------------------------------*
