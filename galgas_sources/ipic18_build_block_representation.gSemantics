@@ -1841,38 +1841,282 @@ end method ;
 
 #----------------------------------------------------*
 
+#!--- Block instruction
+
+#----------------------------------------------------*
+
 map @blockInstructionBlockMap {
-  @abstractBlockTerminaisonForBlockInstruction mBlockTerminaisonForBlockInstruction ;
+  @abstractBlockTerminationForBlockInstruction mBlockTerminaisonForBlockInstruction ;
   insert insertKey error message "the '%K' block is already declared" ;
   search searchKey error message "the '%K' block is not declared" ;
 }
 
 #----------------------------------------------------*
 
-override method @pic18Instruction_block analyze
-  ??@uint unused inAccessBankSplitOffset
-  ?!@ipic18BlockList unused ioGeneratedBlockList
-  ??@routineMap unused inRoutineMap
-  ??@registerTable unused inRegisterTable
-  ??@pic18_dataMap unused inDataMap
-  ??@constantMap unused inConstantMap
-  ?!@uint unused ioLocalLabelIndex
-  ?!@ipic18Block unused ioCurrentBlock
-  ?!@string unused ioListFileContents
-  ?!@uint unused ioCurrentBank
-  ??@bool unused inShouldPreserveBSR
-  ?!@bool unused ioContinuesInSequence
-  ??@routineKind unused inRoutineKind
-  ?!@stringset unused ioUsedRegisters
+abstract method @abstractBlockTerminationForBlockInstruction addVisitedBlocks
+  ?!@stringset ioVisitedBlockSet
+  ??@blockInstructionBlockMap inBlockMap
+  ?!@bool ioContinuesInSequence
+;
+
+#----------------------------------------------------*
+
+override method @exitBlockTerminationForBlockInstruction addVisitedBlocks
+  ?!@stringset unused ioVisitedBlockSet
+  ??@blockInstructionBlockMap unused inBlockMap
+  ?!@bool ioContinuesInSequence
 :
+  ioContinuesInSequence := true ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @gotoTerminationForBlockInstruction addVisitedBlocks
+  ?!@stringset ioVisitedBlockSet
+  ??@blockInstructionBlockMap inBlockMap
+  ?!@bool unused ioContinuesInSequence
+:
+  if not [ioVisitedBlockSet hasKey !mNextBlock->string] then
+    [inBlockMap searchKey !mNextBlock ?*] ;
+    if [inBlockMap hasKey !mNextBlock->string] then
+      ioVisitedBlockSet += !mNextBlock->string ;
+    end if ;
+  end if ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @testTerminationForBlockInstruction addVisitedBlocks
+  ?!@stringset ioVisitedBlockSet
+  ??@blockInstructionBlockMap inBlockMap
+  ?!@bool ioContinuesInSequence
+:
+  [mTrueTermination addVisitedBlocks !?ioVisitedBlockSet !inBlockMap !?ioContinuesInSequence] ;
+  [mFalseTermination addVisitedBlocks !?ioVisitedBlockSet !inBlockMap !?ioContinuesInSequence] ;
+end method ;
+
+#----------------------------------------------------*
+
+abstract method @abstractBlockTerminationForBlockInstruction generateBlock
+  ??@uint inAccessBankSplitOffset
+  ??@uint inCurrentBank
+  ??@registerTable inRegisterTable
+  ?!@uint ioLocalLabelIndex
+  ?!@ipic18BlockList ioGeneratedBlockList
+  ?!@stringset ioUsedRegisters
+  ??@string inLabelForBlock
+  !@ipic18AbstractBlockTerminator outTerminator
+;
+
+#----------------------------------------------------*
+
+override method @gotoTerminationForBlockInstruction generateBlock
+  ??@uint unused inAccessBankSplitOffset
+  ??@uint unused inCurrentBank
+  ??@registerTable unused inRegisterTable
+  ?!@uint unused ioLocalLabelIndex
+  ?!@ipic18BlockList unused ioGeneratedBlockList
+  ?!@stringset unused ioUsedRegisters
+  ??@string inLabelForBlock
+  !@ipic18AbstractBlockTerminator outTerminator
+:
+  outTerminator := [@ipic18JumpTerminator new
+    !mNextBlock->location
+    ![@lstring new !inLabelForBlock . mNextBlock !mNextBlock->location]
+    ![@jumpInstructionKind ipicRelative]
+  ] ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @exitBlockTerminationForBlockInstruction generateBlock
+  ??@uint unused inAccessBankSplitOffset
+  ??@uint unused inCurrentBank
+  ??@registerTable unused inRegisterTable
+  ?!@uint unused ioLocalLabelIndex
+  ?!@ipic18BlockList unused ioGeneratedBlockList
+  ?!@stringset unused ioUsedRegisters
+  ??@string inLabelForBlock
+  !@ipic18AbstractBlockTerminator outTerminator
+:
+  outTerminator := [@ipic18JumpTerminator new
+    !mLocation
+    ![@lstring new !inLabelForBlock . "_exit" !mLocation]
+    ![@jumpInstructionKind ipicRelative]
+  ] ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @testTerminationForBlockInstruction generateBlock
+  ??@uint inAccessBankSplitOffset
+  ??@uint inCurrentBank
+  ??@registerTable inRegisterTable
+  ?!@uint ioLocalLabelIndex
+  ?!@ipic18BlockList ioGeneratedBlockList
+  ?!@stringset ioUsedRegisters
+  ??@string inLabelForBlock
+  !@ipic18AbstractBlockTerminator outTerminator
+:
+  const @lstring conditionTrueLabel [new !"_label_" . [ioLocalLabelIndex string] !mLocation] ; 
+  ioLocalLabelIndex ++ ;
+  const @lstring conditionFalseLabel [new !"_label_" . [ioLocalLabelIndex string] !mLocation] ; 
+  ioLocalLabelIndex ++ ;
+#--- Generate condition
+  [mCondition analyzeCondition
+    !inAccessBankSplitOffset
+    !inCurrentBank
+    !inRegisterTable
+    !?ioLocalLabelIndex
+    !?ioGeneratedBlockList
+    !conditionTrueLabel
+    !conditionFalseLabel
+    !?ioUsedRegisters
+    ?outTerminator
+  ] ;
+#--- Generation true condition block
+  [mTrueTermination generateBlock
+    !inAccessBankSplitOffset
+    !inCurrentBank
+    !inRegisterTable
+    !?ioLocalLabelIndex
+    !?ioGeneratedBlockList
+    !?ioUsedRegisters
+    !inLabelForBlock
+    ??@ipic18AbstractBlockTerminator trueTerminator
+  ] ;
+  ioGeneratedBlockList += ![@ipic18Block new
+    ![@uint max] # relocatable
+    !conditionTrueLabel
+    ![@ipic18SequentialInstructionList emptyList]
+    !trueTerminator
+  ] ;
+#--- Generation false condition block
+  [mFalseTermination generateBlock
+    !inAccessBankSplitOffset
+    !inCurrentBank
+    !inRegisterTable
+    !?ioLocalLabelIndex
+    !?ioGeneratedBlockList
+    !?ioUsedRegisters
+    !inLabelForBlock
+    ??@ipic18AbstractBlockTerminator falseTerminator
+  ] ;
+  ioGeneratedBlockList += ![@ipic18Block new
+    ![@uint max] # relocatable
+    !conditionFalseLabel
+    ![@ipic18SequentialInstructionList emptyList]
+    !falseTerminator
+  ] ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @pic18Instruction_block analyze
+  ??@uint inAccessBankSplitOffset
+  ?!@ipic18BlockList ioGeneratedBlockList
+  ??@routineMap inRoutineMap
+  ??@registerTable inRegisterTable
+  ??@pic18_dataMap inDataMap
+  ??@constantMap inConstantMap
+  ?!@uint ioLocalLabelIndex
+  ?!@ipic18Block ioCurrentBlock
+  ?!@string ioListFileContents
+  ?!@uint ioCurrentBank
+  ??@bool inShouldPreserveBSR
+  ?!@bool ioContinuesInSequence
+  ??@routineKind inRoutineKind
+  ?!@stringset ioUsedRegisters
+:
+  ioContinuesInSequence := false ;
 #--- Compute block map
   @blockInstructionBlockMap blockMap [emptyMap] ;
   foreach mBlockList do
     [!?blockMap insertKey !mBlockName !mBlockTerminaisonForBlockInstruction] ;
   end foreach ;
+#--- Check start block is declared
+  [blockMap searchKey !mStartBlockName ?*] ;
 #--- Compute block accessiblity
-  [blockMap searchKey !mStartBlockName ??@abstractBlockTerminaisonForBlockInstruction blockTermination] ;
   @stringset accessibleBlockSet [setWithString !mStartBlockName->string] ;
+  @stringset handledBlockSet [emptySet] ;
+  @bool continue := true ;
+  loop [mBlockList length] + 1 : while continue do
+    continue := false ;
+    for s in accessibleBlockSet - handledBlockSet do
+      handledBlockSet += !s ;
+      [blockMap searchKey ![s nowhere] ??@abstractBlockTerminationForBlockInstruction blockTermination] ;
+      [blockTermination addVisitedBlocks !?accessibleBlockSet !blockMap !?ioContinuesInSequence] ;
+    end for ;
+  end loop ;
+  foreach mBlockList do
+    if not [accessibleBlockSet hasKey !mBlockName->string] then
+      warning mBlockName:"this block is not accessible from '" . mStartBlockName . "' block" ;
+    end if ;
+  end foreach ;
+#----------------- Generate code
+  const @string labelForBlock := "_label_" . [ioLocalLabelIndex string] . "_" ; 
+  ioLocalLabelIndex ++ ;
+#--- Save terminator of current block
+  const @ipic18AbstractBlockTerminator currentBlockTerminator :=  ioCurrentBlock->mTerminator ;
+#--- Close current block with a goto to first block
+  ioCurrentBlock->mTerminator := [@ipic18JumpTerminator new
+    !mStartBlockName->location
+    ![@lstring new !labelForBlock . mStartBlockName !mStartBlockName->location]
+    ![@jumpInstructionKind ipicRelative]
+  ] ;
+  ioGeneratedBlockList += !ioCurrentBlock ;
+#--- Create an new block, for block instruction exit
+  const @lstring continueInSequenceLabel [new !labelForBlock . "_exit" !mStartBlockName->location] ;
+  ioCurrentBlock := [@ipic18Block new
+    ![@uint max] # relocatable
+    !continueInSequenceLabel
+    ![@ipic18SequentialInstructionList emptyList]
+    !currentBlockTerminator
+  ] ;
+#--- Generate blocks
+  foreach mBlockList do
+    [mBlockTerminaisonForBlockInstruction generateBlock
+      !inAccessBankSplitOffset
+      !ioCurrentBank
+      !inRegisterTable
+      !?ioLocalLabelIndex
+      !?ioGeneratedBlockList
+      !?ioUsedRegisters
+      !labelForBlock
+      ??@ipic18AbstractBlockTerminator terminator
+    ] ;
+    @ipic18Block currentBlock [new
+      ![@uint max] # relocatable
+      ![@lstring new !labelForBlock . mBlockName !mBlockName->location]
+      ![@ipic18SequentialInstructionList emptyList]
+      !terminator
+    ] ;
+    @uint finalBank := ioCurrentBank ;
+    analyzeInstructionList
+      !mInstructionList
+      !?ioGeneratedBlockList
+      !inAccessBankSplitOffset
+      !inRoutineMap
+      !inRegisterTable
+      !inDataMap
+      !inConstantMap
+      !?ioLocalLabelIndex
+      !?currentBlock
+      !?ioListFileContents
+      !?finalBank
+      !inShouldPreserveBSR
+      ??@bool continuesInSequence
+      !inRoutineKind
+      !?ioUsedRegisters
+    ;
+    if finalBank != ioCurrentBank then
+      error mEndOfBlock : "a block cannot change bank selection" ;
+    end if ;
+    if not continuesInSequence then
+      error mEndOfBlock : "this block is endless: execution will not reach the end of the block" ;
+    end if ;
+    ioGeneratedBlockList += !currentBlock ;
+  end foreach ;
 end method ;
 
 #----------------------------------------------------------------------------*
