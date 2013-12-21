@@ -471,8 +471,7 @@ rule <condition_term>
   repeat
   while
     $&$ ;
-    @pic18ConditionExpression c ;
-    <condition_factor> ? c ;
+    <condition_factor> ??@pic18ConditionExpression c ;
     outCondition := [@pic18AndCondition new !outCondition !c] ;
   end repeat ;
 end rule ;
@@ -480,10 +479,33 @@ end rule ;
 #----------------------------------------------------*
 
 rule <block_termination>
-  !@abstractBlockTerminaisonForBlockInstruction outBlockTermination
+  !@abstractBlockTerminationForBlockInstruction outBlockTermination
 :
   $-$ ;
-  outBlockTermination := [@exitBlockTerminaisonForBlockInstruction new] ;
+  outBlockTermination := [@exitBlockTerminationForBlockInstruction new !here] ;
+end rule ;
+
+#----------------------------------------------------*
+
+rule <block_termination>
+  !@abstractBlockTerminationForBlockInstruction outBlockTermination
+:
+  $identifier$ ?@lstring nextBlockName ;
+  outBlockTermination := [@gotoTerminationForBlockInstruction new !nextBlockName] ;
+end rule ;
+
+#----------------------------------------------------*
+
+rule <block_termination>
+  !@abstractBlockTerminationForBlockInstruction outBlockTermination
+:
+  const @location location := here ;
+   <condition_expression> ??@pic18ConditionExpression condition ;
+   $?$ ;
+   <block_termination> ??@abstractBlockTerminationForBlockInstruction terminationIfTrue ;
+   $:$ ;
+   <block_termination> ??@abstractBlockTerminationForBlockInstruction terminationIfFalse ;
+   outBlockTermination := [@testTerminationForBlockInstruction new !condition !terminationIfTrue !terminationIfFalse !location] ;
 end rule ;
 
 #----------------------------------------------------*
@@ -504,8 +526,9 @@ rule <structured_instruction>
       ${$ ;
       <instruction_list> ??@pic18InstructionList instructionList !?ioNeedsComputedGoto2 !?ioNeedsComputedGoto4 ;
       $}$ ;
-      <block_termination> ?@abstractBlockTerminaisonForBlockInstruction blockTermination ;
-      blockList += !blockName !instructionList !blockTermination ;
+      const @location endOfBlock := here ;
+      <block_termination> ?@abstractBlockTerminationForBlockInstruction blockTermination ;
+      blockList += !blockName !instructionList !blockTermination !endOfBlock ;
     while
     end repeat ;    
     outInstruction := [@pic18Instruction_block new

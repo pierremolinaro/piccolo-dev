@@ -73,12 +73,32 @@ class @pic18Instruction_repetitionStatique extends @pic18PiccoloInstruction {
 
 #----------------------------------------------------*
 
-abstract class @abstractBlockTerminaisonForBlockInstruction {
+#! Block Instruction
+
+#----------------------------------------------------*
+
+abstract class @abstractBlockTerminationForBlockInstruction {
 }
 
 #----------------------------------------------------*
 
-class @exitBlockTerminaisonForBlockInstruction extends @abstractBlockTerminaisonForBlockInstruction {
+class @exitBlockTerminationForBlockInstruction extends @abstractBlockTerminationForBlockInstruction {
+  @location mLocation ;
+}
+
+#----------------------------------------------------*
+
+class @gotoTerminationForBlockInstruction extends @abstractBlockTerminationForBlockInstruction {
+  @lstring mNextBlock ;
+}
+
+#----------------------------------------------------*
+
+class @testTerminationForBlockInstruction extends @abstractBlockTerminationForBlockInstruction {
+  @pic18ConditionExpression mCondition ;
+  @abstractBlockTerminationForBlockInstruction mTrueTermination ;
+  @abstractBlockTerminationForBlockInstruction mFalseTermination ;
+  @location mLocation ;
 }
 
 #----------------------------------------------------*
@@ -86,7 +106,8 @@ class @exitBlockTerminaisonForBlockInstruction extends @abstractBlockTerminaison
 list @pic18BlockInstructionBlockList {
   @lstring mBlockName ;
   @pic18InstructionList mInstructionList ;
-  @abstractBlockTerminaisonForBlockInstruction mBlockTerminaisonForBlockInstruction ;
+  @abstractBlockTerminationForBlockInstruction mBlockTerminaisonForBlockInstruction ;
+  @location mEndOfBlock ;
 }
 
 #----------------------------------------------------*
