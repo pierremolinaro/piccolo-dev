@@ -16,13 +16,13 @@ end reader ;
 override reader @baseline_assembly_pseudo_BEGINOFROUTINE length -> @uint outLength :
   outLength := 0 ;
 end reader ;
-
+ 
 #-------------------------------------------------------------------------------*
 
 override reader @baseline_assembly_pseudo_ENDOFROUTINE length -> @uint outLength :
   outLength := 0 ;
 end reader ;
-
+ 
 #-------------------------------------------------------------------------------*
 
 override reader @baseline_assembly_pseudo_LABEL length -> @uint outLength :

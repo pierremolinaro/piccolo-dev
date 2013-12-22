@@ -78,4 +78,25 @@
 
 //---------------------------------------------------------------------------*
 
+- (void) updateSearchResultForFile: (NSString *) inFilePath
+         previousRange: (NSRange) inPreviousRange
+         changeInLength: (NSInteger) inChangeInLength {
+  // NSLog (@"mFilePath %@, inFilePath %@", mFilePath, inFilePath) ;
+  if (nil == mFilePath) {
+    for (PMSearchResultDescriptor * d in mEntryArray) {
+      [d
+        updateSearchResultForFile:inFilePath
+        previousRange:inPreviousRange
+        changeInLength:inChangeInLength
+      ] ;
+    }
+  }else if ([mFilePath isEqualToString:inFilePath]) {
+    if ((inPreviousRange.location + inPreviousRange.length) <= mRange.location) { // Change before
+      mRange.location += (NSUInteger) inChangeInLength ;
+    }
+  }
+}
+
+//---------------------------------------------------------------------------*
+
 @end
