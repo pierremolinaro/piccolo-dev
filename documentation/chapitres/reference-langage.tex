@@ -23,7 +23,7 @@ Piccolo définit les délimiteurs listés dans le \refTableau{delimiteursLangage
     \hline
     \texttt{*}  & \texttt{*+} & \texttt{,}  & \texttt{!=} & \texttt{<=} & \texttt{>=} & \texttt{*-} & \texttt{+*} & \texttt{;} & \texttt{:} & \texttt{==} & \texttt{<} & \texttt{>} & \texttt{[} & \texttt{]} & \texttt{.} & \texttt{!} \\
     \hline
-    \texttt{\&} & \texttt{|}  & \texttt{\}} & \texttt{\}} & \texttt{(}  & \texttt{)}  & \texttt{/}  & \texttt{-} & \texttt{+} & \texttt{\textasciicircum} & \texttt{<{}<} & \texttt{>{}>} & \texttt{\textasciitilde} & \texttt{@} & \texttt{\%} & \texttt{=} & \\
+    \texttt{\&} & \texttt{|}  & \texttt{\}} & \texttt{\}} & \texttt{(}  & \texttt{)}  & \texttt{/}  & \texttt{-} & \texttt{+} & \texttt{\textasciicircum} & \texttt{<{}<} & \texttt{>{}>} & \texttt{\textasciitilde} & \texttt{@} & \texttt{\%} & \texttt{=} & \texttt{?} \\
     \hline
   \end{tabular}
   \caption{Délimiteurs du langage Piccolo}
@@ -42,8 +42,13 @@ La casse est significative pour les identificateurs.
 \section{Mots réservés}
 \index{Mots réservés}
 
-Certains identificateurs sont réservés. La casse n’est pas significative pour les mots réservés, c’est à dire que les mots réservés peuvent être écrits indifféremment avec des lettres minuscules ou majuscules.
+Certains identificateurs sont réservés. La casse n’est pas significative pour les mots réservés, c’est à dire que les mots réservés peuvent être écrits indifféremment avec des lettres minuscules ou majuscules. Il y a deux classes de mots réservés :
+\begin{itemize}
+  \item ceux correspondants aux éléments du langage (\refSubsectionPage{motsReservesLangage}) ;
+  \item ceux correspondants aux instructions exécutables (\refSubsectionPage{motsReservesInstruction}).
+\end{itemize}
 
+\subsectionLabel{Mots réservés correspondants aux éléments du langage}{motsReservesLangage}
 
 Les mots réservés correspondant aux éléments du langage sont listés dans le \refTableau{motReservesLangage}. Dans tout ce document, ces mots réservés sont écrits en minuscule, gras et en bleu.
 
@@ -78,6 +83,12 @@ Les mots réservés correspondant aux éléments du langage sont listés dans le
 \end{table}
 
 
+
+
+
+\subsectionLabel{Mots réservés correspondants aux instructions}{motsReservesInstruction}
+
+
 Les mots réservés correspondant à des instructions exécutables sont listés dans le \refTableau{motReservesInstructions}. Dans tout ce document, ces mots réservés sont écrits en minuscule, gras et en marron. Pour les différencier, les instructions assembleur correspondantes sont écrites en majuscules.
 
 
@@ -108,7 +119,7 @@ Les mots réservés correspondant à des instructions exécutables sont listés 
     \keyWordInstruction{tris} & \keyWordInstruction{xorlw} & \keyWordInstruction{xorwf} & & & & \\
   \hline
 \end{tabular}
-  \caption{Mots réservés correspondant aux instructions exécutables}
+  \caption{Mots réservés correspondant aux instructions exécutables Piccolo}
   \labelTableau{motReservesInstructions}
 \end{table}
 
