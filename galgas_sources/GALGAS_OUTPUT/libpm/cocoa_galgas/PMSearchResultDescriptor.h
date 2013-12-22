@@ -37,6 +37,10 @@
 
 - (NSArray *) children ;
 
+- (void) updateSearchResultForFile: (NSString *) inFilePath
+         previousRange: (NSRange) inPreviousRange
+         changeInLength: (NSInteger) inChangeInLength ;
+
 @end
 
 //---------------------------------------------------------------------------*
