@@ -1,0 +1,158 @@
+#----------------------------------------------------------------------------*
+#                                                                            *
+#            PROGRAMME D'EXEMPLE "BLINK_LED" (POUR 18F4480)                  *
+#                                                                            *
+# Ce simple programme fait clignoter a 1 Hz une led connectee au port RE0    *
+# Il programme donc RE0 (broche 8) en sortie.                                *
+#                                                                            *
+# La configuration utilise l'oscillateur interne, qui est par défaut à 1 MHz.*
+#                                                                            *
+# La boucle infinie compte le temps en decrementant un mot de 16 bits,       *
+# contenu dans compteurL (poids faible) et compteurH (poids fort).           *
+# Quand le compteur atteint zero, il est recharge a 25 000, ce qui permet    *
+# d'avoir une periode de clignotement de 1 Hz environ.                       *
+#                                                                            *
+#----------------------------------------------------------------------------*
+
+# L’en-tête du programme contient le nom du fichier contenant le texte source,
+# puis, dans une chaîne de caractères, la référence au micro-contrôleur.
+
+# Cette référence définit complètement le micro-contrôleur : ses registres
+# spéciaux, ses registres de configuration, les bancs de mémoire vive,
+# la taille de sa rom, …
+
+# Pour connaître la liste des micro-contrôleurs pic18 pris en charge :
+#      piccolo --pic18
+
+pic18 blink_led_18F4480_with_blocks "18F4480" :
+
+#----------------------------------------------------------------------------*
+#                                                                            *
+#                  CONFIGURATION DU MICRO-CONTROLEUR                         *
+#                                                                            *
+#----------------------------------------------------------------------------*
+
+# Une section 'configuration' définit les valeurs associées aux registres de
+# configuration. Les valeurs ainsi définies sont intégrées dans le fichier
+# hex et le fichier assembleur engendrés.
+
+# Pour connaître la liste des registres de configuration d’un micro-contrôleur :
+# piccolo -F=18F4480
+
+# La définition de la configuration est une liste d’affectations du type :
+# setting : description
+# où setting est le nom d’un champ d’un registre de configuration, et
+# description la chaîne de caractères qui décrit la valeur choisie.
+
+configuration {
+  OSC : "Internal oscillator block, port function on RA6 and RA7"
+  WDT : "Disabled"
+  WDTPS : "1:1"
+  BOREN : "Disabled"
+  BORV : "VBOR set to 4.6V"
+  PWRT : Disabled
+  DEBUG : Disabled
+  LVP : Disabled
+  STVREN : Disabled
+  CPB : Disabled
+  CPD : Disabled
+  CP0 : Disabled
+  CP1 : Disabled
+  WRTB : Disabled
+  WRTC : Disabled
+  WRTD : Disabled
+  WRT0 : Disabled
+  WRT1 : Disabled
+  EBTRB : Disabled
+  EBTR0 : Disabled
+  EBTR1 : Disabled
+  BBSIZ : "1K words (2K bytes) boot block"
+  FCMEN : Disabled
+  IESO : Disabled
+  LPT1OSC : Disabled
+  MCLRE : Disabled
+  PBADEN : "Disabled"
+  RESERVED : "Maintain bits as 1s."
+  RESERVED_CONFIG6L : "Maintain bits as 1s."
+  RESERVED_CONFIG7L : "Maintain bits as 1s."
+  XINST : Disabled
+}
+
+#----------------------------------------------------------------------------*
+#                                                                            *
+#                                  RAM                                       *
+#                                                                            *
+#----------------------------------------------------------------------------*
+
+# Une section ram décrit l’attribution de la RAM du micro-contrôleur.
+
+# Le nom accesram est le nom de l’un des bancs définis par le micro-contrôleur,
+# qui commence à l’adresse zéro. Les adresses sont allouées séquentiellement :
+# compteurL a pour adresse 0, compteurH a pour adresse 1.
+
+# Pour connaître la configuration mémoire d’un micro-contrôleur,
+# utilisez l’option « -M » :
+#       piccolo -M=18F4480
+
+ram accessram {
+  byte compteurL
+  byte compteurH
+}
+
+#----------------------------------------------------------------------------*
+#                                                                            *
+#                                MAIN                                        *
+#                                                                            *
+#----------------------------------------------------------------------------*
+
+# Une section routine définit du code exécutable. Dans un programme, il y a
+# au moins une routine qui s’appelle obligatoirement le nom « main ».
+# Celle-ci est exécutée au démarrage du micro-contrôleur. 
+# Elle porte le qualificatif « noreturn » parce que son exécution ne doit 
+# jamais terminer, ce que le compilateur Piccolo vérifie 
+# (sa dernière instruction est une boucle infinie).
+
+# L’en-tête de la routine « main » contient aussi obligatoirement la
+# déclaration « bank:requires 0 » qui traduit le fait qu’au démarrage,
+# le registre BSR est initialisé à zéro (BSR est sans importance dans ce
+# programme d’exemple, tous les accès se font via l’acces bank).
+
+# À côté des instructions assembleur, on trouve une instruction « if »
+# structurée, dont les conditions cachent une utilisation de
+# l’instruction TSTFSZ.
+noreturn routine main bank:requires 0 {
+#--- Aucune entree analogique
+  MOVLW 0x0F
+  MOVWF ADCON1
+#--- Inhiber les comparateurs
+  MOVLW 7
+  MOVWF CMCON
+#--- Programmer RE0 en sortie
+  BCF  TRISE.0
+#--- Initialiser les compteurs
+  CLRF compteurL
+  CLRF compteurH
+#--- Boucle infinie
+  forever
+    block loop :
+    loop { } (compteurL NZ) ? dec : (compteurH NZ) ? dec2 : reinit
+    dec { DECF compteurL } -
+    dec2 { DECF compteurH SETF compteurL } -
+    reinit {
+    #--- Réinitialiser les compteurs
+      MOVLW  25000 >> 8
+      MOVWF  compteurH
+      MOVLW  25000 & 0xFF
+      MOVWF  compteurL
+    #--- Clignoter
+      BTG  PORTE.0
+    } -
+    end
+  end
+}
+
+#----------------------------------------------------------------------------*
+
+# Le « end » final termine le programme.
+
+end

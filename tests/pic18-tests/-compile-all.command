@@ -1,7 +1,7 @@
 #!/bin/sh
 cd `dirname $0` &&
 ../../makefile_macosx/build.command &&
-export GPUTILS_PATH=/usr/local/gputils-1.1.0/bin &&
+export GPUTILS_PATH=/usr/local/gputils-1.2.0/bin &&
 #--- Relative branch limits
 echo "-------------- relative_branch_limits" &&
 ../../makefile_macosx/piccolo -v -S -O -L --Werror relative_branch_limits.piccolo &&
