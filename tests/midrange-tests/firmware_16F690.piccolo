@@ -1,0 +1,858 @@
+#-----------------------------------------------------------------------------*
+#                                                                             *
+#                                                                             *
+#           P R O G R A M M E    P O U R   C O M M A N D E                    *
+#                                                                             *
+#       D U    P I C    1 6 F 6 9 0    D E    L A    C A R T E                *
+#                                                                             *
+#                           T P    M I C R O                                  *
+#                                                                             *
+#-----------------------------------------------------------------------------*
+#                                                                             *
+# RA0 : entrée logique, interrupteur S8:1                                     *
+# RA1 : entrée logique, interrupteur S8:2                                     *
+# RA2 : sortie logique, LCD Enable                                            *
+# RA3 : entrée RESET, conduit par le RESET général de la carte (ignoré)       *
+# RA4 : sortie logique, BACKLIGHT afficheur LCD (actif haut)                  *
+# RA5 : entrée multiplexeur d'acquisition des poussoirs et des interrupteurs  *
+#                                                                             *
+# RB4 : sortie logique, LCD RS                                                *
+# RB5 : entrée série asynchrone, en provenance du LPC2294                     *
+# RB6 : sortie logique, LCD RW                                                *
+# RB7 : sortie série asynchrone, vers le LPC2294                              *
+#                                                                             *
+# RC0-7 : Data bus afficheur LCD                                              *
+#                                                                             *
+#-----------------------------------------------------------------------------*
+
+midrange firmware_16F690 "16F690" :
+
+#-----------------------------------------------------------------------------*
+#                                                                             *
+#     C O N F I G U R A T I O N                                               *
+#                                                                             *
+#-----------------------------------------------------------------------------*
+
+configuration {
+  BOREN : Disabled
+  CP : Disabled
+  CPD : Disabled
+  FCMEN : Disabled
+  IESO : Disabled
+  MCLRE : Disabled
+  OSC : "INTOSCIO oscillator: I/O function on RA4/OSC2/CLKOUT pin, I/O function on RA5/OSC1/CLKIN"
+  PWRTE : Enabled
+  WDTE : Disabled
+}
+
+#-----------------------------------------------------------------------------*
+#                                                                             *
+#     R A M                                                                   *
+#                                                                             *
+#-----------------------------------------------------------------------------*
+
+ram gpr0 {
+  byte TEMP_REGISTER
+  byte sauve_w
+  byte delai_attente_lcd_pret
+#--- Compteurs pour effectuer une attente de 4 ms
+  byte compteur_1_pour_delai_4ms
+  byte compteur_2_pour_delai_4ms
+#--- Réception série : gestion du buffer de réception (80 octets en page 1
+  byte nombre_dans_buffer_reception
+  byte pointeur_ecriture # Utilise par le sp d'interruption
+  byte pointeur_lecture # Utilise par le programme principal
+#---
+  byte tempo1
+  byte tempo2
+#--- 
+  byte commande_recue_affichage
+#--- E0:E1:E2:E3:F0:F1:F2:F3
+  byte INTERS_ET_POUSSOIRS
+  byte INDICATEURS <-, -, -, -, -, -, -, changementIntersEtPoussoirs>
+}
+
+#-----------------------------------------------------------------------------*
+
+ram gprnobnk {
+#--- Pour sauvegarder le contexte lors d'une interruption
+  byte saveIT1
+  byte saveIT2
+}
+
+#-----------------------------------------------------------------------------*
+
+const TAILLE_BUFFER_RECEPTION = 80
+
+ram gpr1 { # de 0xA0 à 0xEF
+#--- Contient le buffer de réception des caractères à afficher
+  byte bufferReception [80]
+}
+
+#-----------------------------------------------------------------------------*
+#                                                                             *
+#     I N T E R R U P T                                                       *
+#                                                                             *
+#-----------------------------------------------------------------------------*
+
+interrupt contextsave saveIT1, saveIT2 {
+#--- Ecrire le pointeur d'écriture dans FSR
+  movf  pointeur_ecriture, W
+  movwf FSR
+#--- Effectuer le transfert
+  movf  RCREG, W
+  movwf INDF
+#--- Incrémenter le pointeur d'écriture
+  incf pointeur_ecriture
+#--- Si le pointeur d'écriture atteint 0xF0, le ramener à 0xA0
+  movf  pointeur_ecriture, W
+  sublw bufferReception + TAILLE_BUFFER_RECEPTION
+  if (STATUS.Z)
+    movlw bufferReception
+    movwf pointeur_ecriture
+  end
+#--- Incrémenter le nombre de caractères dans le buffer
+  incf  nombre_dans_buffer_reception
+}
+
+#-----------------------------------------------------------------------------*
+#                                                                             *
+#     E N T R E R   W   D A N S   B U F F E R    R E C E P T I O N            *
+#                                                                             *
+#-----------------------------------------------------------------------------*
+
+routine ENTRER_W_DANS_BUFFER_AFFICHAGE_LCD bank:requires 0 ensures 0 {
+  movwf  TEMP_REGISTER
+#--- Masquer les interruptions
+  bcf    INTCON.GIE
+  nop
+  #--- Ecrire le pointeur d'écriture dans FSR
+    movf  pointeur_ecriture, W
+    movwf FSR
+  #--- Effectuer le transfert
+    movf  TEMP_REGISTER, W
+    movwf INDF
+  #--- Incrémenter le pointeur d'écriture
+    incf pointeur_ecriture
+  #--- Si le pointeur d'écriture atteint 0xF0, le ramener à 0xA0
+    movf  pointeur_ecriture, W
+    sublw bufferReception + TAILLE_BUFFER_RECEPTION
+    if (STATUS.Z)
+      movlw bufferReception
+      movwf pointeur_ecriture
+    end
+  #--- Incrémenter le nombre de caractères dans le buffer
+    incf  nombre_dans_buffer_reception
+#--- Démasquer les interruptions
+  bsf    INTCON.GIE
+}
+
+#-----------------------------------------------------------------------------*
+#                                                                             *
+#     Programmation de la liaison série                                       *
+#                                                                             *
+#-----------------------------------------------------------------------------*
+#
+# On veut : une vitesse de transmission de BR = 250 kbit/s
+#
+# Différents modes de programmation existent, dont le mode "Asynchrone, 
+# compteur 8 bits" (voir page 235). Dans ce mode :
+#    BR = FOSC / (16 * (SPBRG + 1)), avec FOSC = 16 MHz
+# Soit : SPBRG = FOSC / (16 * BR) - 1 = 3
+# 
+# Un octet
+# est alors transmis en 10 bit / 250 kbit/s = 40 µs
+#
+# Note : la programmation de la liaison série du 18F2480 est analogue.
+#
+#-----------------------------------------------------------------------------*
+#                                                                             *
+#     M A I N                                                                 *
+#                                                                             *
+#-----------------------------------------------------------------------------*
+
+noreturn routine main bank:requires 0 {
+#--- Effacer les données
+  clrf    tempo1
+  clrf    tempo2
+  clrf    compteur_1_pour_delai_4ms
+  clrf    compteur_2_pour_delai_4ms
+  clrf    nombre_dans_buffer_reception
+  movlw   bufferReception # Adresse début du buffer de réception
+  movwf   pointeur_ecriture
+  movwf   pointeur_lecture
+  clrf    INTERS_ET_POUSSOIRS
+  bsf     INDICATEURS.changementIntersEtPoussoirs
+#--- Effacer les ports de sortie
+  clrf    PORTA
+  clrf    PORTB
+  clrf    PORTC
+#--- Aucune entrée analogique
+  banksel 2
+  clrf    ANSEL    # Page 61
+  clrf    ANSELH   # Page 61
+#--- Programmer le port A : RA2 et RA4 en sortie (x x 1 0  x 0 1 1)
+  banksel 1
+  movlw   0x23
+  movwf   TRISA
+#--- Activer les pull-up sur RA0 et RA1
+  movlw   3
+  movwf   WPUA
+#--- Par défaut, l'oscillateur interne est à 4 MHz
+  bsf     OSCCON.IOSCF[0] # Passage à 8 MHz
+#--- Programmer le port B : seul RB6 est en entrée (0 0 1 0  x x x x)
+  movlw   0x20
+  movwf   TRISB
+#----------- Programmer la liaison série (19200 bauds)
+#--- 1. Fixer la vitesse de transmission (page 164)
+  movlw  25 # En fait 19231 bauds
+  movwf SPBRG
+  bsf   TXSTA.BRGH # BRGH = 1, SYNC et BRG16 à 0 par défaut
+#--- 2. Activer le mode asynchrone
+  banksel 0
+  bsf   RCSTA.SPEN # SPEN à 1, SYNC à 0 par défaut
+  bsf   RCSTA.CREN
+#--- 3. Activer la réception
+  bsf   RCSTA.CREN
+#--- 4. Activer la transmission et la réception
+  banksel 1
+  bsf   TXSTA.TXEN
+  banksel 0
+#----------- Initialisation de l'afficheur LCD
+#--- Activer le retro eclairage
+  bsf    PORTA.4
+#--- Étape 1 : attendre 15 ms (en fait 16 ms)
+  CALL   ATTENDRE_4ms
+  CALL   ATTENDRE_4ms
+  CALL   ATTENDRE_4ms
+  CALL   ATTENDRE_4ms
+#--- Étape 2 : écrire la commande 0x30
+  MOVLW  0x30
+  CALL   COMMANDE_DIRECTE_LCD
+#--- Étape 3 : attendre 4,1 ms (en fait 8 ms)
+  CALL   ATTENDRE_4ms
+  CALL   ATTENDRE_4ms
+#--- Étape 4 : écrire la commande 0x30 une 2e fois
+  MOVLW  0x30
+  CALL   COMMANDE_DIRECTE_LCD
+#--- Étape 5 : attendre 100 µs (en fait 4 ms)
+  CALL   ATTENDRE_4ms
+#--- Étape 6 : écrire la commande 0x30 une 3e fois
+  MOVLW  0x30
+  CALL   COMMANDE_LCD
+#--- Étape 7 : écrire la commande 'Set Interface Length' : 0 0 1 DL N F * *
+#    DL : Data interface length : 1 (8 bits)
+#    N : Number of Display lines : 1 (2 lignes)
+#    F : Character Font : 0 (5x7)
+  MOVLW  0x38
+  CALL   COMMANDE_LCD
+#--- Étape 8 : écrire la commande 'Display Off'
+  MOVLW  0x08
+  CALL   COMMANDE_LCD
+#--- Étape 9 : écrire la commande 'Clear Display'
+  MOVLW  0x01
+  CALL   COMMANDE_LCD
+#--- Étape 10 : écrire la commande 'Set Cursor Move Direction' : 0 0 0 0 0 1 ID S
+#    ID : Increment Cursor after Each Byte Written to Display : 1 (oui)
+#    S : Shift Display When Byte Written : 0 (non)
+  MOVLW  0x06
+  CALL   COMMANDE_LCD
+#--- Étape 11 : écrire la commande 'Move Cursor / Shift Display' : 0 0 0 1 SC RL * *
+#    SC : Display Shift On : 1 (oui)
+#    RL : Direction of Shift : 1 (vers la droite)
+  MOVLW  0x1C
+  CALL   COMMANDE_LCD
+#--- Étape 12 : écrire la commande 'Return Cursor and LCD to Home Position'
+  MOVLW  0x02
+  CALL   COMMANDE_LCD
+#--- Étape 13 : écrire la commande 'Enable Display / Cursor' : 0 0 0 0 1 D C B
+#    D : Turn Display On : 1 (oui)
+#    C : Turn Cursor On : 0 (non)
+#    B : Cursor Blink On : 0 (non)
+  MOVLW  0x0C
+  CALL   COMMANDE_LCD
+#--- Ecrire la chaîne : 'Auto test LCD'
+  MOVLW  'A'  
+  CALL   ENTRER_W_DANS_BUFFER_AFFICHAGE_LCD
+  MOVLW  'u'  
+  CALL   ENTRER_W_DANS_BUFFER_AFFICHAGE_LCD
+  MOVLW  't'  
+  CALL   ENTRER_W_DANS_BUFFER_AFFICHAGE_LCD
+  MOVLW  'o'  
+  CALL   ENTRER_W_DANS_BUFFER_AFFICHAGE_LCD
+  MOVLW  ' '  
+  CALL   ENTRER_W_DANS_BUFFER_AFFICHAGE_LCD
+  MOVLW  't'  
+  CALL   ENTRER_W_DANS_BUFFER_AFFICHAGE_LCD
+  MOVLW  'e'  
+  CALL   ENTRER_W_DANS_BUFFER_AFFICHAGE_LCD
+  MOVLW  's'  
+  CALL   ENTRER_W_DANS_BUFFER_AFFICHAGE_LCD
+  MOVLW  't'  
+  CALL   ENTRER_W_DANS_BUFFER_AFFICHAGE_LCD
+  MOVLW  ' '  
+  CALL   ENTRER_W_DANS_BUFFER_AFFICHAGE_LCD
+  MOVLW  'L'  
+  CALL   ENTRER_W_DANS_BUFFER_AFFICHAGE_LCD
+  MOVLW  'C'  
+  CALL   ENTRER_W_DANS_BUFFER_AFFICHAGE_LCD
+  MOVLW  'D'
+  CALL   ENTRER_W_DANS_BUFFER_AFFICHAGE_LCD
+  MOVLW  ' '
+  CALL   ENTRER_W_DANS_BUFFER_AFFICHAGE_LCD
+  MOVLW  'V'
+  CALL   ENTRER_W_DANS_BUFFER_AFFICHAGE_LCD
+  MOVLW  '3'
+  CALL   ENTRER_W_DANS_BUFFER_AFFICHAGE_LCD
+  MOVLW  '.'
+  CALL   ENTRER_W_DANS_BUFFER_AFFICHAGE_LCD
+  MOVLW  '0'
+  CALL   ENTRER_W_DANS_BUFFER_AFFICHAGE_LCD
+#--- Activer l'interruption de réception série (page 39)
+  banksel 1
+  bsf     PIE1.RCIE
+  banksel 0
+#--- Autoriser les interruptions (pages 38 et 205)
+  bsf    INTCON.PEIE 
+  bsf    INTCON.GIE 
+#---- 
+ # if (PORTA.0) # 0X : Mode Normal
+  #--- Mode normal : activer la réception série
+    banksel 1
+    bsf   TXSTA.TXEN
+    banksel 0
+    forever
+      call ACQUISITION_INTERS_ET_POUSSOIRS
+      call ENVOYER_INTERS_ET_POUSSOIRS_SUR_LIAISON_SERIE
+      call TRANSFERER_BUFFER_DATA_VERS_LCD
+    end
+#  elsif (PORTA.1) # 10 : Mode affichage interrupteurs et poussoirs
+#    call  ENTREE_MODE_AFFICHAGE_INTERS_ET_POUSSOIRS
+#    forever
+#      call ACQUISITION_INTERS_ET_POUSSOIRS
+#      call MODE_AFFICHER_INTERS_POUSSOIRS
+#      call TRANSFERER_BUFFER_DATA_VERS_LCD
+#    end
+#  else # 11 : Mode clignotement backlight
+#    forever
+#    #--- Boucle d'attente
+#      do
+#        do
+#        while (decf tempo2 NZ)
+#        end
+#      while (decf tempo1 NZ)
+#      end
+#    #--- Eteindre le retro eclairage
+#      bcf    PORTA.4
+#    #--- Boucle d'attente
+#      do
+#        do
+#        while (decf tempo2 NZ)
+#        end
+#      while (decf tempo1 NZ)
+#      end
+#    #--- Activer le retro eclairage
+#      bsf    PORTA.4
+#    end
+#  end
+}
+
+#----------------------------------------------------------------------------*
+
+routine ENVOYER_INTERS_ET_POUSSOIRS_SUR_LIAISON_SERIE bank:requires 0 ensures 0 {
+  if (INDICATEURS.changementIntersEtPoussoirs & PIR1.TXIF)
+    bcf   INDICATEURS.changementIntersEtPoussoirs
+    movf  INTERS_ET_POUSSOIRS, W
+    movwf TXREG
+  end
+}
+
+#----------------------------------------------------------------------------*
+
+routine ACQUISITION_INTERS_ET_POUSSOIRS bank:requires 0 ensures 0 {
+#--- Programmer le port C en sortie
+  banksel 1
+  clrf  TRISC
+  banksel 0
+#--- W contiendra la nouvelle valeur
+  movlw 0 # E0:E1:E2:E3:F0:F1:F2:F3
+#--- F3
+  clrf PORTC
+  nop
+#  if PORTA.5 : iorlw 1
+#--- F2
+  incf PORTC
+  nop
+#  if PORTA.5 : iorlw 2
+#--- F1
+  incf PORTC
+  nop
+#  if PORTA.5 : iorlw 4
+#--- F0
+  incf PORTC
+  nop
+#  if PORTA.5 : iorlw 8
+#--- E3
+  incf PORTC
+  nop
+#  if PORTA.5 : iorlw 16
+#--- E2
+  incf PORTC
+  nop
+#  if PORTA.5 : iorlw 32
+#--- E1
+  incf PORTC
+  nop
+#  if PORTA.5 : iorlw 64
+#--- E0
+  incf PORTC
+  nop
+#  if PORTA.5 : iorlw 128
+#---
+  xorwf INTERS_ET_POUSSOIRS, W # W <- ANCIEN ^ NOUVEAU
+  if (! STATUS.Z) # Changement
+    xorwf INTERS_ET_POUSSOIRS # INTERS_ET_POUSSOIRS <- ANCIEN ^ (ANCIEN ^ NOUVEAU) = NOUVEAU
+    bsf   INDICATEURS.changementIntersEtPoussoirs
+  end
+#--- Programmer le port C en entrée
+  banksel 1
+  movlw 0xFF
+  movwf TRISC
+  banksel 0
+}
+
+#----------------------------------------------------------------------------*
+
+#routine ENTREE_MODE_AFFICHAGE_INTERS_ET_POUSSOIRS bank:requires 0 ensures 0 {
+##--- Désactiver la liaison série
+#  banksel 1
+#  bcf   TXSTA.TXEN
+#  banksel 0
+# movlw  0xD2 # Clear display
+# call   ENTRER_W_DANS_BUFFER_AFFICHAGE_LCD
+# MOVLW  ' '  
+# CALL   ENTRER_W_DANS_BUFFER_AFFICHAGE_LCD
+# MOVLW  'I'  
+# CALL   ENTRER_W_DANS_BUFFER_AFFICHAGE_LCD
+# MOVLW  'N'  
+# CALL   ENTRER_W_DANS_BUFFER_AFFICHAGE_LCD
+# MOVLW  'T'  
+# CALL   ENTRER_W_DANS_BUFFER_AFFICHAGE_LCD
+# MOVLW  'E'  
+# CALL   ENTRER_W_DANS_BUFFER_AFFICHAGE_LCD
+# MOVLW  'R'  
+# CALL   ENTRER_W_DANS_BUFFER_AFFICHAGE_LCD
+# MOVLW  'S'  
+# CALL   ENTRER_W_DANS_BUFFER_AFFICHAGE_LCD
+# MOVLW  ' '  
+# CALL   ENTRER_W_DANS_BUFFER_AFFICHAGE_LCD
+# MOVLW  ' '  
+# CALL   ENTRER_W_DANS_BUFFER_AFFICHAGE_LCD
+# MOVLW  ' '  
+# CALL   ENTRER_W_DANS_BUFFER_AFFICHAGE_LCD
+# MOVLW  ' '  
+# CALL   ENTRER_W_DANS_BUFFER_AFFICHAGE_LCD
+# MOVLW  'P'  
+# CALL   ENTRER_W_DANS_BUFFER_AFFICHAGE_LCD
+# MOVLW  'O'  
+# CALL   ENTRER_W_DANS_BUFFER_AFFICHAGE_LCD
+# MOVLW  'U'  
+# CALL   ENTRER_W_DANS_BUFFER_AFFICHAGE_LCD
+# MOVLW  'S'  
+# CALL   ENTRER_W_DANS_BUFFER_AFFICHAGE_LCD
+# MOVLW  'S'  
+# CALL   ENTRER_W_DANS_BUFFER_AFFICHAGE_LCD
+# MOVLW  'O'  
+# CALL   ENTRER_W_DANS_BUFFER_AFFICHAGE_LCD
+# MOVLW  'I'  
+# CALL   ENTRER_W_DANS_BUFFER_AFFICHAGE_LCD
+# MOVLW  'R'  
+# CALL   ENTRER_W_DANS_BUFFER_AFFICHAGE_LCD
+# MOVLW  'S'  
+# CALL   ENTRER_W_DANS_BUFFER_AFFICHAGE_LCD
+# bsf    INDICATEURS.changementIntersEtPoussoirs
+#}
+
+#----------------------------------------------------------------------------*
+
+#routine MODE_AFFICHER_INTERS_POUSSOIRS bank:requires 0 ensures 0 {
+# if (INDICATEURS.changementIntersEtPoussoirs)
+#   bcf    INDICATEURS.changementIntersEtPoussoirs
+#   CALL   AFFICHER_INTERS_ET_POUSSOIRS
+# end
+#}
+
+#----------------------------------------------------------------------------*
+
+#routine AFFICHER_INTERS_ET_POUSSOIRS bank:requires 0 ensures 0 {
+##--- Aller au début de la 2e ligne
+#  movlw  0x94
+#  call   ENTRER_W_DANS_BUFFER_AFFICHAGE_LCD
+##--- E0
+#  movlw '0'
+#  if INTERS_ET_POUSSOIRS.7 : movlw '1'
+#  CALL   ENTRER_W_DANS_BUFFER_AFFICHAGE_LCD
+#  MOVLW  ' '  
+#  CALL   ENTRER_W_DANS_BUFFER_AFFICHAGE_LCD
+##--- E1
+#  movlw '0'
+#  if INTERS_ET_POUSSOIRS.6 : movlw '1'
+#  CALL   ENTRER_W_DANS_BUFFER_AFFICHAGE_LCD
+#  MOVLW  ' '  
+#  CALL   ENTRER_W_DANS_BUFFER_AFFICHAGE_LCD
+##--- E2
+#  movlw '0'
+#  if INTERS_ET_POUSSOIRS.5 : movlw '1'
+#  CALL   ENTRER_W_DANS_BUFFER_AFFICHAGE_LCD
+#  MOVLW  ' '  
+#  CALL   ENTRER_W_DANS_BUFFER_AFFICHAGE_LCD
+##--- E3
+#  movlw '0'
+#  if INTERS_ET_POUSSOIRS.4 : movlw '1'
+#  CALL   ENTRER_W_DANS_BUFFER_AFFICHAGE_LCD
+##--- Espaces
+#  MOVLW  ' '  
+#  CALL   ENTRER_W_DANS_BUFFER_AFFICHAGE_LCD
+#  MOVLW  ' '  
+#  CALL   ENTRER_W_DANS_BUFFER_AFFICHAGE_LCD
+#  MOVLW  ' '  
+#  CALL   ENTRER_W_DANS_BUFFER_AFFICHAGE_LCD
+#  MOVLW  ' '  
+#  CALL   ENTRER_W_DANS_BUFFER_AFFICHAGE_LCD
+#  MOVLW  ' '  
+#  CALL   ENTRER_W_DANS_BUFFER_AFFICHAGE_LCD
+##--- F0
+#  movlw '0'
+#  if INTERS_ET_POUSSOIRS.3 : movlw '1'
+#  CALL   ENTRER_W_DANS_BUFFER_AFFICHAGE_LCD
+#  MOVLW  ' '  
+#  CALL   ENTRER_W_DANS_BUFFER_AFFICHAGE_LCD
+##--- F1
+#  movlw '0'
+#  if INTERS_ET_POUSSOIRS.2 : movlw '1'
+#  CALL   ENTRER_W_DANS_BUFFER_AFFICHAGE_LCD
+#  MOVLW  ' '  
+#  CALL   ENTRER_W_DANS_BUFFER_AFFICHAGE_LCD
+##--- F2
+#  movlw '0'
+#  if INTERS_ET_POUSSOIRS.1 : movlw '1'
+#  CALL   ENTRER_W_DANS_BUFFER_AFFICHAGE_LCD
+#  MOVLW  ' '  
+#  CALL   ENTRER_W_DANS_BUFFER_AFFICHAGE_LCD
+##--- F3
+#  movlw '0'
+#  if INTERS_ET_POUSSOIRS.0 : movlw '1'
+#  CALL   ENTRER_W_DANS_BUFFER_AFFICHAGE_LCD
+#}
+
+#----------------------------------------------------------------------------*
+
+routine TRANSFERER_BUFFER_DATA_VERS_LCD bank:requires 0 ensures 0 {
+#---- tester si il y a un caractère dans le buffer
+  movf nombre_dans_buffer_reception # Pour modifier Z
+  if (! STATUS.Z)
+  #--- Masquer les interruptions
+    bcf    INTCON.GIE
+    nop
+    #--- Ecrire le pointeur d'écriture dans FSR
+      movf  pointeur_lecture, W
+      movwf FSR
+    #--- Donnée du buffer -> W
+      movf  INDF, W
+  #--- Démasquer les interruptions
+    bsf    INTCON.GIE
+  #--- Traiter la donnée reçue
+    CALL   TRAITER_COMMANDE_AFFICHEUR
+  #--- Incrémenter le pointeur de lecture
+    incf pointeur_lecture
+  #--- Si le pointeur de lecture atteint 0xF0, le ramener à 0xA0
+    movf  pointeur_lecture, W
+    sublw bufferReception + TAILLE_BUFFER_RECEPTION
+    if (STATUS.Z)
+      movlw bufferReception
+      movwf pointeur_lecture
+    end
+  #--- Decrémenter le nombre de caractères dans le buffer
+    decf  nombre_dans_buffer_reception
+  end
+}
+
+#----------------------------------------------------------------------------*
+#                                                                            *
+#       TRAITER COMMANDE AFFICHEUR                                           *
+#                                                                            *
+# 0x00 à 0x7F : caractère à afficher                                         *
+# 0x80 à 0x93 : aller à la 1re ligne, colonne 0 à 19                         *
+# 0x94 à 0xA7 : aller à la 2e ligne, colonne 0 à 19                          *
+# 0xA8 à 0xBB : aller à la 3e ligne, colonne 0 à 19                          *
+# 0xBC à 0xCF : aller à la 4e ligne, colonne 0 à 19                          *
+# 0xD0 : éteindre backlight                                                  *
+# 0xD1 : allumer backlight                                                   *
+# 0xD2 : initialiser afficheur                                               *
+# 0xD3 à 0xFF : caractère à afficher                                         *
+#                                                                            *
+#----------------------------------------------------------------------------*
+
+routine TRAITER_COMMANDE_AFFICHEUR bank:requires 0 ensures 0 {
+#--- Sauver la valeur recue
+  movwf   commande_recue_affichage
+#--- Est-ce un caractere à afficher ?
+  if (! commande_recue_affichage.7)
+    CALL DATA_LCD # Oui, l'afficher
+  else
+  #--- Aller sur la 1re ligne ?
+    movlw 0x94
+    subwf commande_recue_affichage,W
+    if (! STATUS.C)
+      call ALLER_PREMIERE_LIGNE
+    else
+    #--- Aller sur la 2e ligne ?
+      movlw 0xA8
+      subwf commande_recue_affichage, W
+      if (! STATUS.C)
+        call ALLER_DEUXIEME_LIGNE
+      else
+      #--- Aller sur la 3e ligne ?
+        movlw 0xBC
+        subwf commande_recue_affichage, W
+        if (! STATUS.C)
+          call ALLER_TROISIEME_LIGNE
+        else
+        #--- Aller sur la 4e ligne ?
+          movlw 0xD0
+          subwf commande_recue_affichage, W
+          if (! STATUS.C)
+            call ALLER_QUATRIEME_LIGNE
+          #--- Éteindre "backlight" ?
+          elsif (STATUS.Z)
+            bcf  PORTA.4 # Eteindre
+          else 
+          #--- Allumer backlight ?
+            movlw 0xD1
+            subwf commande_recue_affichage, W
+            if (STATUS.Z)
+              bsf  PORTA.4 # Allumer
+            else
+            #--- ré-initialiser l'afficheur ?
+              movlw 0xD2
+              subwf commande_recue_affichage, W
+              if (STATUS.Z)
+                movlw 0x01 # Clear display
+                call  COMMANDE_LCD
+                call  ATTENDRE_4ms
+              else
+              #--- Par défaut : afficher le caractère
+                movf commande_recue_affichage, W
+                call DATA_LCD
+              end
+            end
+          end
+        end
+      end
+    end
+  end
+}
+
+#----------------------------------------------------------------------------*
+#                                                                            *
+#                      ALLER PREMIERE LIGNE                                  *
+#                                                                            *
+#----------------------------------------------------------------------------*
+
+routine ALLER_PREMIERE_LIGNE bank:requires 0 ensures 0 {
+  movlw 0x80
+  subwf commande_recue_affichage, W
+  iorlw 0x80
+  call  COMMANDE_LCD
+}
+
+#----------------------------------------------------------------------------*
+#                                                                            *
+#                      ALLER DEUXIEME LIGNE                                  *
+#                                                                            *
+#----------------------------------------------------------------------------*
+
+routine ALLER_DEUXIEME_LIGNE bank:requires 0 ensures 0 {
+  movlw 0x94 - 0x40
+  subwf commande_recue_affichage, W
+  iorlw 0x80
+  call  COMMANDE_LCD
+}
+
+#----------------------------------------------------------------------------*
+#                                                                            *
+#                      ALLER TROISIEME LIGNE                                 *
+#                                                                            *
+#----------------------------------------------------------------------------*
+
+routine ALLER_TROISIEME_LIGNE bank:requires 0 ensures 0 {
+  movlw 0xA8 - 0x14
+  subwf commande_recue_affichage, W
+  iorlw 0x80
+  call  COMMANDE_LCD
+}
+
+#----------------------------------------------------------------------------*
+#                                                                            *
+#                      ALLER QUATRIEME LIGNE                                 *
+#                                                                            *
+#----------------------------------------------------------------------------*
+
+routine ALLER_QUATRIEME_LIGNE bank:requires 0 ensures 0 {
+  movlw 0xBC - 0x54
+  subwf commande_recue_affichage, W
+  iorlw 0x80
+  call  COMMANDE_LCD
+}
+
+#----------------------------------------------------------------------------*
+#                                                                            *
+#                      ATTENDRE 4 ms                                         *
+#                                                                            *
+# La boucle interne est exécutée 256 fois -> 256 µs. Il faut donc exécuter   *
+# externe 16 fois.                                                           *
+#----------------------------------------------------------------------------*
+
+routine ATTENDRE_4ms bank:requires 0 ensures 0 {
+  bsf compteur_2_pour_delai_4ms.4 # compteur_2_pour_delai_4ms <- 16
+  do
+    do
+    while (decf compteur_1_pour_delai_4ms nz)
+    end
+  while (decf compteur_2_pour_delai_4ms nz)
+  end
+}
+
+#----------------------------------------------------------------------------*
+#                                                                            *
+#                   GESTION AFFICHEUR LCD                                    *
+#                                                                            *
+#----------------------------------------------------------------------------*
+
+#! "--- Gestion afficheur LCD"
+
+#----------------------------------------------------------------------------*
+#                   ATTENDRE QUE L'AFFICHEUR LCD SOIT PRÊT                   *
+# Ce sp ne modifie pas W                                                     *
+#                                                                            *
+# Ce sous-programme teste et boucle tant que le LCD n'est pas prêt. Le délai *
+# d'attente maximum est de 160 µs. Cependant, en l'absence d'afficheur, le   *
+# délai peut être infini. La variable 'delai_attente_lcd_pret' est utilisée  *
+# borner à 256 le nombre d'exécutions de la boucle d'attente. Comme une      *
+# itération fait plus de 10 instructions (soit plus que 1 µs), normalement   *
+# la borne de 256 n'est jamais atteinte en présence d'un afficheur.          *
+#----------------------------------------------------------------------------*
+
+routine ATTENDRE_LCD_PRET bank:requires 0 ensures 0 {
+#--- Sauver W
+  MOVWF   sauve_w
+#--- Mettre à 256 le délai d'attente (en fait 0)
+  CLRF    delai_attente_lcd_pret
+#--- Mettre RW à 1 (lecture)
+  BSF   PORTB.6
+#--- Mettre RS à 0 (commande)
+  BCF   PORTB.4
+#--- Début de la boucle d'attente
+  do
+  #--- Attendre 450 ns minimum (en fait, 5 nop -> 500 ns)
+    MNOP  5
+  #--- Activer E (début du cycle d'accès)
+    BSF   PORTA.2
+  #--- Attendre 450 ns minimum (en fait, 5 nop -> 500 ns)
+    MNOP  5
+  #--- Lire la donnée -> W
+    MOVF   PORTC, W
+  #--- Inactiver E (fin du cycle d'accès)
+    BCF    PORTA.2
+  #--- Le LCD est prêt si le bit 7 de W est à 0
+    movwf  TEMP_REGISTER
+  while (TEMP_REGISTER.7 & DECF delai_attente_lcd_pret NZ)
+  end
+#--- Restaurer W
+  MOVF   sauve_w, W
+#--- Retour
+}
+
+#----------------------------------------------------------------------------*
+#                   ENVOYER UNE COMMANDE A L'AFFICHEUR LCD                   *
+#                                                                            *
+# Lors de l'appel, W contient la commande                                    *
+#                                                                            *
+# COMMANDE_LCD : l'envoi de la commande est précédée par l'attente que le    *
+#                soit prêt                                                   *
+# COMMANDE_DIRECTE_LCD : envoi de la commande sans attente                   *
+#----------------------------------------------------------------------------*
+
+routine COMMANDE_LCD bank:requires 0 ensures 0 {
+#--- Attendre que le LCD soit prêt
+  CALL   ATTENDRE_LCD_PRET
+#--- Envoyer la commande
+  CALL COMMANDE_DIRECTE_LCD
+#---
+}
+
+#----------------------------------------------------------------------------*
+
+routine COMMANDE_DIRECTE_LCD bank:requires 0 ensures 0 {
+#--- Attendre 500 ns (pour avoir un temps de cycle > 1 µs)
+  MNOP  5
+#--- Programmer le port D en sortie
+  banksel 1
+  CLRF  TRISC
+  banksel 0
+#--- Ecrire la commande sur le data bus de l'afficheur
+  MOVWF PORTC
+#--- Mettre RS à 0 (commande)
+  BCF   PORTB.4
+#--- Mettre RW à 0 (écriture)
+  BCF   PORTB.6
+#--- Activer E (début du cycle d'accès)
+  BSF   PORTA.2
+#--- Attendre 450 ns minimum (en fait, 5 nop -> 500 ns)
+  MNOP  5
+#--- Inactiver E (fin du cycle d'accès)
+  BCF   PORTA.2
+#--- Programmer le port D en entrée (par sécurité)
+  banksel 1
+  COMF  TRISC
+  banksel 0
+#--- Terminé
+}
+
+#----------------------------------------------------------------------------*
+#              ENVOYER UNE DONNÉE (CODE ASCII) A L'AFFICHEUR LCD             *
+#                                                                            *
+# Lors de l'appel, W contient le code ASCII du caractère à afficher          *
+# Ne modifie pas W                                                           *
+#----------------------------------------------------------------------------*
+
+routine DATA_LCD bank:requires 0 ensures 0 {
+#--- Attendre que le LCD soit prêt
+  CALL ATTENDRE_LCD_PRET
+#--- Attendre 500 ns (pour avoir un temps de cycle > 1 µs)
+  MNOP  5
+#--- Programmer le port C en sortie
+  banksel 1
+  CLRF  TRISC
+  banksel 0
+#--- Ecrire la commande sur le data bus de l'afficheur
+  MOVWF PORTC
+#--- Mettre RS à 1 (donnée)
+  BSF   PORTB.4
+#--- Mettre RW à 0 (écriture)
+  BCF   PORTB.6
+#--- Activer E (début du cycle d'accès)
+  BSF   PORTA.2
+#--- Attendre 450 ns minimum (en fait, 5 nop -> 500 ns)
+  MNOP  5
+#--- Inactiver E (fin du cycle d'accès)
+  BCF   PORTA.2
+#--- Programmer le port D en entrée (par sécurité)
+  banksel 1
+  COMF  TRISC
+  banksel 0
+#--- Terminé
+}
+#-----------------------------------------------------------------------------*
+
+end
