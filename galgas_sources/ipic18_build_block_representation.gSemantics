@@ -514,8 +514,12 @@ override method @pic18Instruction_FOREVER analyze
     !?ioUsedRegisters
   ;
 #--- Check instruction list does not change bank
+  if not ioContinuesInSequence then
+    error mEndOfInstructionList:"\"forever\" instruction list execution is endless";
+  end if ;
+#--- Check instruction list does not change bank
   if ioCurrentBank != finalBank then
-    error mEndOfInstructionList:"instruction list does not leave BSR value unchanged";
+    error mEndOfInstructionList:"\"forever\" instruction list does not leave BSR value unchanged";
   end if ;
 #---
   ioContinuesInSequence := false ;
@@ -1857,6 +1861,7 @@ abstract method @abstractBlockTerminationForBlockInstruction addVisitedBlocks
   ?!@stringset ioVisitedBlockSet
   ??@blockInstructionBlockMap inBlockMap
   ?!@bool ioContinuesInSequence
+  ?!@bool ioContinueAccessibilityExploration
 ;
 
 #----------------------------------------------------*
@@ -1865,6 +1870,7 @@ override method @exitBlockTerminationForBlockInstruction addVisitedBlocks
   ?!@stringset unused ioVisitedBlockSet
   ??@blockInstructionBlockMap unused inBlockMap
   ?!@bool ioContinuesInSequence
+  ?!@bool unused ioContinueAccessibilityExploration
 :
   ioContinuesInSequence := true ;
 end method ;
@@ -1875,8 +1881,10 @@ override method @gotoTerminationForBlockInstruction addVisitedBlocks
   ?!@stringset ioVisitedBlockSet
   ??@blockInstructionBlockMap inBlockMap
   ?!@bool unused ioContinuesInSequence
+  ?!@bool ioContinueAccessibilityExploration
 :
   if not [ioVisitedBlockSet hasKey !mNextBlock->string] then
+    ioContinueAccessibilityExploration := true ;
     [inBlockMap searchKey !mNextBlock ?*] ;
     if [inBlockMap hasKey !mNextBlock->string] then
       ioVisitedBlockSet += !mNextBlock->string ;
@@ -1890,9 +1898,10 @@ override method @testTerminationForBlockInstruction addVisitedBlocks
   ?!@stringset ioVisitedBlockSet
   ??@blockInstructionBlockMap inBlockMap
   ?!@bool ioContinuesInSequence
+  ?!@bool ioContinueAccessibilityExploration
 :
-  [mTrueTermination addVisitedBlocks !?ioVisitedBlockSet !inBlockMap !?ioContinuesInSequence] ;
-  [mFalseTermination addVisitedBlocks !?ioVisitedBlockSet !inBlockMap !?ioContinuesInSequence] ;
+  [mTrueTermination addVisitedBlocks !?ioVisitedBlockSet !inBlockMap !?ioContinuesInSequence !?ioContinueAccessibilityExploration] ;
+  [mFalseTermination addVisitedBlocks !?ioVisitedBlockSet !inBlockMap !?ioContinuesInSequence !?ioContinueAccessibilityExploration] ;
 end method ;
 
 #----------------------------------------------------*
@@ -2039,13 +2048,13 @@ override method @pic18Instruction_block analyze
 #--- Compute block accessiblity
   @stringset accessibleBlockSet [setWithString !mStartBlockName->string] ;
   @stringset handledBlockSet [emptySet] ;
-  @bool continue := true ;
-  loop [mBlockList length] + 1 : while continue do
-    continue := false ;
+  @bool continueAccessibilityExploration := true ;
+  loop [mBlockList length] + 1 : while continueAccessibilityExploration do
+    continueAccessibilityExploration := false ;
     for s in accessibleBlockSet - handledBlockSet do
       handledBlockSet += !s ;
       [blockMap searchKey ![s nowhere] ??@abstractBlockTerminationForBlockInstruction blockTermination] ;
-      [blockTermination addVisitedBlocks !?accessibleBlockSet !blockMap !?ioContinuesInSequence] ;
+      [blockTermination addVisitedBlocks !?accessibleBlockSet !blockMap !?ioContinuesInSequence !?continueAccessibilityExploration] ;
     end for ;
   end loop ;
   foreach mBlockList do
@@ -2113,7 +2122,7 @@ override method @pic18Instruction_block analyze
       error mEndOfBlock : "a block cannot change bank selection" ;
     end if ;
     if not continuesInSequence then
-      error mEndOfBlock : "this block is endless: execution will not reach the end of the block" ;
+      error mEndOfBlock : "execution will not reach the end of the block, but endless block is not allowed" ;
     end if ;
     ioGeneratedBlockList += !currentBlock ;
   end foreach ;
