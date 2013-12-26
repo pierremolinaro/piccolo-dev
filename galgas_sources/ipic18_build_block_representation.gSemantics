@@ -371,6 +371,29 @@ override method @pic18Instruction_JSR analyzeSimpleInstruction
   ] ;
 end method ;
 
+#----------------------------------------------------------------------------*
+
+#!--- Instruction analysis
+
+#----------------------------------------------------------------------------*
+
+abstract method @pic18PiccoloInstruction analyze
+  ??@uint inAccessBankSplitOffset
+  ?!@ipic18BlockList ioGeneratedBlockList
+  ??@routineMap inRoutineMap
+  ??@registerTable inRegisterTable
+  ??@pic18_dataMap inDataMap
+  ??@constantMap inConstantMap
+  ?!@uint ioLocalLabelIndex
+  ?!@ipic18SequentialInstructionList ioGeneratedInstructionList
+  ?!@lstring ioBlockLabel
+  ?!@string ioListFileContents
+  ?!@uint ioCurrentBank
+  ??@bool inShouldPreserveBSR
+  ??@routineKind inRoutineKind
+  ?!@stringset ioUsedRegisters
+;
+
 #----------------------------------------------------*
 
 override method @pic18Instruction_checkbank analyze
@@ -381,11 +404,11 @@ override method @pic18Instruction_checkbank analyze
   ??@pic18_dataMap unused inDataMap
   ??@constantMap unused inConstantMap
   ?!@uint unused ioLocalLabelIndex
-  ?!@ipic18Block unused ioCurrentBlock
+  ?!@ipic18SequentialInstructionList unused ioGeneratedInstructionList
+  ?!@lstring unused ioBlockLabel
   ?!@string unused ioListFileContents
   ?!@uint ioCurrentBank
   ??@bool unused inShouldPreserveBSR
-  ?!@bool unused ioContinuesInSequence
   ??@routineKind unused inRoutineKind
   ?!@stringset unused ioUsedRegisters
 :
@@ -403,29 +426,6 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-#!--- Instruction analysis
-
-#----------------------------------------------------------------------------*
-
-abstract method @pic18PiccoloInstruction analyze
-  ??@uint unused inAccessBankSplitOffset
-  ?!@ipic18BlockList ioGeneratedBlockList
-  ??@routineMap unused inRoutineMap
-  ??@registerTable unused inRegisterTable
-  ??@pic18_dataMap unused inDataMap
-  ??@constantMap unused inConstantMap
-  ?!@uint unused ioLocalLabelIndex
-  ?!@ipic18Block unused ioCurrentBlock
-  ?!@string unused ioListFileContents
-  ?!@uint unused ioCurrentBank
-  ??@bool unused inShouldPreserveBSR
-  ?!@bool unused ioContinuesInSequence
-  ??@routineKind unused inRoutineKind
-  ?!@stringset ioUsedRegisters
-;
-
-#----------------------------------------------------------------------------*
-
 override method @pic18PiccoloSimpleInstruction analyze
   ??@uint inAccessBankSplitOffset
   ?!@ipic18BlockList unused ioGeneratedBlockList
@@ -434,11 +434,11 @@ override method @pic18PiccoloSimpleInstruction analyze
   ??@pic18_dataMap inDataMap
   ??@constantMap inConstantMap
   ?!@uint unused ioLocalLabelIndex
-  ?!@ipic18Block ioCurrentBlock
+  ?!@ipic18SequentialInstructionList ioGeneratedInstructionList
+  ?!@lstring unused ioBlockLabel
   ?!@string unused ioListFileContents
   ?!@uint ioCurrentBank
   ??@bool inShouldPreserveBSR
-  ?!@bool unused ioContinuesInSequence
   ??@routineKind unused inRoutineKind
   ?!@stringset ioUsedRegisters
 :
@@ -453,7 +453,7 @@ override method @pic18PiccoloSimpleInstruction analyze
     !?ioUsedRegisters
     ??@ipic18SequentialInstruction instruction
   ] ;
-  ioCurrentBlock->mInstructionList += !instruction ;
+  ioGeneratedInstructionList += !instruction ;
 end method ;
 
 #----------------------------------------------------*
@@ -466,11 +466,11 @@ override method @pic18Instruction_FOREVER analyze
   ??@pic18_dataMap inDataMap
   ??@constantMap inConstantMap
   ?!@uint ioLocalLabelIndex
-  ?!@ipic18Block ioCurrentBlock
+  ?!@ipic18SequentialInstructionList ioGeneratedInstructionList
+  ?!@lstring ioBlockLabel
   ?!@string ioListFileContents
   ?!@uint ioCurrentBank
   ??@bool inShouldPreserveBSR
-  ?!@bool ioContinuesInSequence
   ??@routineKind inRoutineKind
   ?!@stringset ioUsedRegisters
 :
@@ -483,19 +483,18 @@ override method @pic18Instruction_FOREVER analyze
   end switch ;
   const @uint finalBank := ioCurrentBank ;
 #--- Get loop label
-  const @lstring label0 [new !"_label_" . [ioLocalLabelIndex string] !mInstructionLocation] ; 
+  const @lstring loopLabel [new !"_label_" . ioLocalLabelIndex !mInstructionLocation] ; 
   ioLocalLabelIndex ++ ;
-#--- Set a jump terminator to current block
-  ioCurrentBlock->mTerminator := [@ipic18JumpTerminator new !mInstructionLocation !label0 ![@jumpInstructionKind ipicRelative]] ;
 #--- Store current block
-  ioGeneratedBlockList += !ioCurrentBlock ;
-#--- Create a new block
-  ioCurrentBlock := [@ipic18Block new
+  ioGeneratedBlockList += ![@ipic18Block new
     ![@uint max] # relocatable
-    !label0
-    ![@ipic18SequentialInstructionList emptyList]
-    ![@ipic18JumpTerminator new !mInstructionLocation !label0 ![@jumpInstructionKind ipicRelative]]
+    !ioBlockLabel
+    !ioGeneratedInstructionList
+    ![@ipic18JumpTerminator new !mInstructionLocation !loopLabel ![@jumpInstructionKind ipicRelative]]
   ] ;
+#--- Analyze instruction list
+  ioGeneratedInstructionList := [@ipic18SequentialInstructionList emptyList] ;
+  ioBlockLabel := loopLabel ;
   analyzeInstructionList
     !mInstructionList
     !?ioGeneratedBlockList
@@ -505,24 +504,31 @@ override method @pic18Instruction_FOREVER analyze
     !inDataMap
     !inConstantMap
     !?ioLocalLabelIndex
-    !?ioCurrentBlock
+    !?ioGeneratedInstructionList
+    !?ioBlockLabel
     !?ioListFileContents
     !?ioCurrentBank
     !inShouldPreserveBSR
-    ?ioContinuesInSequence
-    !inRoutineKind 
+    !inRoutineKind
     !?ioUsedRegisters
   ;
 #--- Check instruction list does not change bank
-  if not ioContinuesInSequence then
+  if ioBlockLabel->string == "" then
     error mEndOfInstructionList:"\"forever\" instruction list execution is endless";
+  else
+    ioGeneratedBlockList += ![@ipic18Block new
+      ![@uint max] # relocatable
+      !ioBlockLabel
+      !ioGeneratedInstructionList
+      ![@ipic18JumpTerminator new !mInstructionLocation !loopLabel ![@jumpInstructionKind ipicRelative]]
+    ] ;
   end if ;
 #--- Check instruction list does not change bank
   if ioCurrentBank != finalBank then
     error mEndOfInstructionList:"\"forever\" instruction list does not leave BSR value unchanged";
   end if ;
-#---
-  ioContinuesInSequence := false ;
+#--- Indicate next code is not reacheable
+  ioBlockLabel := ["" nowhere] ;
 end method ;
 
 #----------------------------------------------------*
@@ -535,11 +541,11 @@ override method @pic18Instruction_nobanksel analyze
   ??@pic18_dataMap unused inDataMap
   ??@constantMap unused inConstantMap
   ?!@uint unused ioLocalLabelIndex
-  ?!@ipic18Block unused ioCurrentBlock
+  ?!@ipic18SequentialInstructionList unused ioGeneratedInstructionList
+  ?!@lstring unused ioBlockLabel
   ?!@string unused ioListFileContents
   ?!@uint ioCurrentBank
   ??@bool inShouldPreserveBSR
-  ?!@bool unused ioContinuesInSequence
   ??@routineKind unused inRoutineKind
   ?!@stringset unused ioUsedRegisters
 :
@@ -560,11 +566,11 @@ override method @pic18Instruction_savebank analyze
   ??@pic18_dataMap inDataMap
   ??@constantMap inConstantMap
   ?!@uint ioLocalLabelIndex
-  ?!@ipic18Block ioCurrentBlock
+  ?!@ipic18SequentialInstructionList ioGeneratedInstructionList
+  ?!@lstring ioBlockLabel
   ?!@string ioListFileContents
   ?!@uint ioCurrentBank
   ??@bool unused inShouldPreserveBSR
-  ?!@bool ioContinuesInSequence
   ??@routineKind inRoutineKind
   ?!@stringset ioUsedRegisters
 :
@@ -582,7 +588,7 @@ override method @pic18Instruction_savebank analyze
     !?ioUsedRegisters
   ] ;
 #--- Generate "MOVFF BSR, save_register" instruction
-  ioCurrentBlock->mInstructionList += ![@ipic18_intermediate_instruction_MOVFF new
+  ioGeneratedInstructionList += ![@ipic18_intermediate_instruction_MOVFF new
     !mInstructionLocation
     !BSR_IPICregisterDescription
     !save_IPICregisterDescription
@@ -598,19 +604,19 @@ override method @pic18Instruction_savebank analyze
     !inDataMap
     !inConstantMap
     !?ioLocalLabelIndex
-    !?ioCurrentBlock
+    !?ioGeneratedInstructionList
+    !?ioBlockLabel
     !?ioListFileContents
     !?finalBank
     !false # Do not preserve bank now
-    ?ioContinuesInSequence
     !inRoutineKind 
     !?ioUsedRegisters
   ;
-  if not ioContinuesInSequence then
+  if ioBlockLabel->string == "" then
     error mEndOfSaveBankInstruction:"useless saving: execution does not reach the end of \"savebank\" instruction list" ;
   end if ;
 #--- Generate "MOVFF save_register, BSR" instruction
-  ioCurrentBlock->mInstructionList += ![@ipic18_intermediate_instruction_MOVFF new
+  ioGeneratedInstructionList += ![@ipic18_intermediate_instruction_MOVFF new
     !mInstructionLocation
     !save_IPICregisterDescription
     !BSR_IPICregisterDescription
@@ -626,11 +632,11 @@ override method @pic18Instruction_repetitionStatique analyze
   ??@pic18_dataMap inDataMap
   ??@constantMap inConstantMap
   ?!@uint ioLocalLabelIndex
-  ?!@ipic18Block ioCurrentBlock
+  ?!@ipic18SequentialInstructionList ioGeneratedInstructionList
+  ?!@lstring ioBlockLabel
   ?!@string ioListFileContents
   ?!@uint ioCurrentBank
   ??@bool unused inShouldPreserveBSR
-  ?!@bool ioContinuesInSequence
   ??@routineKind inRoutineKind
   ?!@stringset ioUsedRegisters
 :
@@ -651,15 +657,15 @@ override method @pic18Instruction_repetitionStatique analyze
     !inDataMap
     !inConstantMap
     !?ioLocalLabelIndex
-    !?ioCurrentBlock
+    !?ioGeneratedInstructionList
+    !?ioBlockLabel
     !?ioListFileContents
     !?finalBank
     !true # Preserve bank now
-    ?ioContinuesInSequence
     !inRoutineKind 
     !?ioUsedRegisters
   ;
-  if not ioContinuesInSequence then
+  if ioBlockLabel->string == "" then
     error mEndOfInstruction:"useless do: execution does not reach the end of enclosed instruction list" ;
   end if ;
   if finalBank != ioCurrentBank then
@@ -676,11 +682,11 @@ override method @pic18Instruction_repetitionStatique analyze
       !inDataMap
       !inConstantMap
       !?ioLocalLabelIndex
-      !?ioCurrentBlock
+      !?ioGeneratedInstructionList
+      !?ioBlockLabel
       !?ioListFileContents
       !?ioCurrentBank
       !true # Preserve bank now
-      ?ioContinuesInSequence
       !inRoutineKind 
       !?ioUsedRegisters
     ;
@@ -697,11 +703,11 @@ override method @pic18Instruction_banksel analyze
   ??@pic18_dataMap unused inDataMap
   ??@constantMap unused inConstantMap
   ?!@uint unused ioLocalLabelIndex
-  ?!@ipic18Block ioCurrentBlock
+  ?!@ipic18SequentialInstructionList ioGeneratedInstructionList
+  ?!@lstring unused ioBlockLabel
   ?!@string unused ioListFileContents
   ?!@uint ioCurrentBank
   ??@bool inShouldPreserveBSR
-  ?!@bool unused ioContinuesInSequence
   ??@routineKind unused inRoutineKind
   ?!@stringset unused ioUsedRegisters
 :
@@ -713,7 +719,7 @@ override method @pic18Instruction_banksel analyze
     ioCurrentBank := [@uint max] ; # No selected bank
   elsif [mBankIndex uint] != ioCurrentBank then
     ioCurrentBank := [mBankIndex uint] ;
-    ioCurrentBlock->mInstructionList += ![@ipic18_intermediate_instruction_MOVLB new !mInstructionLocation !mBankIndex] ;
+    ioGeneratedInstructionList += ![@ipic18_intermediate_instruction_MOVLB new !mInstructionLocation !mBankIndex] ;
   elsif mWarningOnUselessBanksel then
     warning mBankIndex:"useless instruction: the bank " . [ioCurrentBank string] . " is already selected" ;
   end if ;
@@ -729,11 +735,11 @@ override method @pic18Instruction_banksel_register analyze
   ??@pic18_dataMap unused inDataMap
   ??@constantMap unused inConstantMap
   ?!@uint unused ioLocalLabelIndex
-  ?!@ipic18Block ioCurrentBlock
+  ?!@ipic18SequentialInstructionList ioGeneratedInstructionList
+  ?!@lstring unused ioBlockLabel
   ?!@string unused ioListFileContents
   ?!@uint ioCurrentBank
   ??@bool inShouldPreserveBSR
-  ?!@bool unused ioContinuesInSequence
   ??@routineKind unused inRoutineKind
   ?!@stringset unused ioUsedRegisters
 :
@@ -744,7 +750,7 @@ override method @pic18Instruction_banksel_register analyze
   const @uint newBank := registerAddress >> 8 ;
   if ioCurrentBank != newBank then
     ioCurrentBank := newBank ;
-    ioCurrentBlock->mInstructionList += ![@ipic18_intermediate_instruction_MOVLB new
+    ioGeneratedInstructionList += ![@ipic18_intermediate_instruction_MOVLB new
       !mInstructionLocation
       ![@luint new !newBank ![mRegisterExpression mRegisterName]->location]
     ] ;
@@ -801,11 +807,11 @@ override method @pic18Instruction_MNOP analyze
   ??@pic18_dataMap unused inDataMap
   ??@constantMap unused inConstantMap
   ?!@uint unused ioLocalLabelIndex
-  ?!@ipic18Block ioCurrentBlock
+  ?!@ipic18SequentialInstructionList ioGeneratedInstructionList
+  ?!@lstring unused ioBlockLabel
   ?!@string unused ioListFileContents
   ?!@uint unused ioCurrentBank
   ??@bool unused inShouldPreserveBSR
-  ?!@bool unused ioContinuesInSequence
   ??@routineKind unused inRoutineKind
   ?!@stringset unused ioUsedRegisters
 :
@@ -814,7 +820,7 @@ override method @pic18Instruction_MNOP analyze
     warning mOccurrenceFactor:"occurrence argument is zero: no generated code" ;
   end if ;
 #---
-  ioCurrentBlock->mInstructionList += ![@ipic18_intermediate_instruction_MNOP new
+  ioGeneratedInstructionList += ![@ipic18_intermediate_instruction_MNOP new
     !mInstructionLocation
     !mOccurrenceFactor
   ] ;
@@ -830,11 +836,11 @@ override method @pic18Instruction_LTBLPTR analyze
   ??@pic18_dataMap unused inDataMap
   ??@constantMap inConstantMap
   ?!@uint unused ioLocalLabelIndex
-  ?!@ipic18Block ioCurrentBlock
+  ?!@ipic18SequentialInstructionList ioGeneratedInstructionList
+  ?!@lstring unused ioBlockLabel
   ?!@string unused ioListFileContents
   ?!@uint ioCurrentBank
   ??@bool unused inShouldPreserveBSR
-  ?!@bool unused ioContinuesInSequence
   ??@routineKind unused inRoutineKind
   ?!@stringset ioUsedRegisters
 :
@@ -856,24 +862,24 @@ override method @pic18Instruction_LTBLPTR analyze
   ] ;
   const @uint upper := address >> 16 ;
   if upper == 0 then
-    ioCurrentBlock->mInstructionList += ![@ipic18_intermediate_instruction_FA new
+    ioGeneratedInstructionList += ![@ipic18_intermediate_instruction_FA new
       !mInstructionLocation
       ![@FA_sequential_instruction_base_code CLRF]
       !outIPICregisterDescription
     ] ;  
   elsif upper == 0xFF then
-    ioCurrentBlock->mInstructionList += ![@ipic18_intermediate_instruction_FA new
+    ioGeneratedInstructionList += ![@ipic18_intermediate_instruction_FA new
       !mInstructionLocation
       ![@FA_sequential_instruction_base_code SETF]
       !outIPICregisterDescription
     ] ;  
   else
-    ioCurrentBlock->mInstructionList += ![@ipic18_intermediate_instruction_literalOperation new
+    ioGeneratedInstructionList += ![@ipic18_intermediate_instruction_literalOperation new
       !mInstructionLocation
       ![@literal_instruction_opcode MOVLW]
       !upper
     ] ;
-    ioCurrentBlock->mInstructionList += ![@ipic18_intermediate_instruction_FA new
+    ioGeneratedInstructionList += ![@ipic18_intermediate_instruction_FA new
       !mInstructionLocation
       ![@FA_sequential_instruction_base_code MOVWF]
       !outIPICregisterDescription
@@ -891,24 +897,24 @@ override method @pic18Instruction_LTBLPTR analyze
   ] ;
   const @uint high := (address >> 8) & 0xFF ;
   if high == 0 then
-    ioCurrentBlock->mInstructionList += ![@ipic18_intermediate_instruction_FA new
+    ioGeneratedInstructionList += ![@ipic18_intermediate_instruction_FA new
       !mInstructionLocation
       ![@FA_sequential_instruction_base_code CLRF]
       !outIPICregisterDescription
     ] ;  
   elsif high == 0xFF then
-    ioCurrentBlock->mInstructionList += ![@ipic18_intermediate_instruction_FA new
+    ioGeneratedInstructionList += ![@ipic18_intermediate_instruction_FA new
       !mInstructionLocation
       ![@FA_sequential_instruction_base_code SETF]
       !outIPICregisterDescription
     ] ;  
   else
-    ioCurrentBlock->mInstructionList += ![@ipic18_intermediate_instruction_literalOperation new
+    ioGeneratedInstructionList += ![@ipic18_intermediate_instruction_literalOperation new
       !mInstructionLocation
       ![@literal_instruction_opcode MOVLW]
       !high
     ] ;
-    ioCurrentBlock->mInstructionList += ![@ipic18_intermediate_instruction_FA new
+    ioGeneratedInstructionList += ![@ipic18_intermediate_instruction_FA new
       !mInstructionLocation
       ![@FA_sequential_instruction_base_code MOVWF]
       !outIPICregisterDescription
@@ -926,24 +932,24 @@ override method @pic18Instruction_LTBLPTR analyze
   ] ;
   const @uint low := address & 0xFF ;
   if low == 0 then
-    ioCurrentBlock->mInstructionList += ![@ipic18_intermediate_instruction_FA new
+    ioGeneratedInstructionList += ![@ipic18_intermediate_instruction_FA new
       !mInstructionLocation
       ![@FA_sequential_instruction_base_code CLRF]
       !outIPICregisterDescription
     ] ;  
   elsif low == 0xFF then
-    ioCurrentBlock->mInstructionList += ![@ipic18_intermediate_instruction_FA new
+    ioGeneratedInstructionList += ![@ipic18_intermediate_instruction_FA new
       !mInstructionLocation
       ![@FA_sequential_instruction_base_code SETF]
       !outIPICregisterDescription
     ] ;  
   else
-    ioCurrentBlock->mInstructionList += ![@ipic18_intermediate_instruction_literalOperation new
+    ioGeneratedInstructionList += ![@ipic18_intermediate_instruction_literalOperation new
       !mInstructionLocation
       ![@literal_instruction_opcode MOVLW]
       !low
     ] ;
-    ioCurrentBlock->mInstructionList += ![@ipic18_intermediate_instruction_FA new
+    ioGeneratedInstructionList += ![@ipic18_intermediate_instruction_FA new
       !mInstructionLocation
       ![@FA_sequential_instruction_base_code MOVWF]
       !outIPICregisterDescription
@@ -961,11 +967,11 @@ override method @pic18Instruction_LDATAPTR analyze
   ??@pic18_dataMap inDataMap
   ??@constantMap unused inConstantMap
   ?!@uint unused ioLocalLabelIndex
-  ?!@ipic18Block ioCurrentBlock
+  ?!@ipic18SequentialInstructionList ioGeneratedInstructionList
+  ?!@lstring unused ioBlockLabel
   ?!@string unused ioListFileContents
   ?!@uint ioCurrentBank
   ??@bool unused inShouldPreserveBSR
-  ?!@bool unused ioContinuesInSequence
   ??@routineKind unused inRoutineKind
   ?!@stringset ioUsedRegisters
 :
@@ -984,13 +990,13 @@ override method @pic18Instruction_LDATAPTR analyze
     ?*
     !?ioUsedRegisters
   ] ;
-  ioCurrentBlock->mInstructionList += ![@ipic18_intermediate_MOV_LABEL_W new
+  ioGeneratedInstructionList += ![@ipic18_intermediate_MOV_LABEL_W new
     !mInstructionLocation
     !mDataName
     ![mDataIndex uint] * 2
     !16
   ] ;
-  ioCurrentBlock->mInstructionList += ![@ipic18_intermediate_instruction_FA new
+  ioGeneratedInstructionList += ![@ipic18_intermediate_instruction_FA new
     !mInstructionLocation
     ![@FA_sequential_instruction_base_code MOVWF]
     !outIPICregisterDescription
@@ -1005,13 +1011,13 @@ override method @pic18Instruction_LDATAPTR analyze
     ?*
     !?ioUsedRegisters
   ] ;
-  ioCurrentBlock->mInstructionList += ![@ipic18_intermediate_MOV_LABEL_W new
+  ioGeneratedInstructionList += ![@ipic18_intermediate_MOV_LABEL_W new
     !mInstructionLocation
     !mDataName
     ![mDataIndex uint] * 2
     !8
   ] ;
-  ioCurrentBlock->mInstructionList += ![@ipic18_intermediate_instruction_FA new
+  ioGeneratedInstructionList += ![@ipic18_intermediate_instruction_FA new
     !mInstructionLocation
     ![@FA_sequential_instruction_base_code MOVWF]
     !outIPICregisterDescription
@@ -1026,13 +1032,13 @@ override method @pic18Instruction_LDATAPTR analyze
     ?*
     !?ioUsedRegisters
   ] ;
-  ioCurrentBlock->mInstructionList += ![@ipic18_intermediate_MOV_LABEL_W new
+  ioGeneratedInstructionList += ![@ipic18_intermediate_MOV_LABEL_W new
     !mInstructionLocation
     !mDataName
     ![mDataIndex uint] * 2
     !0
   ] ;
-  ioCurrentBlock->mInstructionList += ![@ipic18_intermediate_instruction_FA new
+  ioGeneratedInstructionList += ![@ipic18_intermediate_instruction_FA new
     !mInstructionLocation
     ![@FA_sequential_instruction_base_code MOVWF]
     !outIPICregisterDescription
@@ -1043,17 +1049,17 @@ end method ;
 
 override method @pic18Instruction_JUMP analyze
   ??@uint unused inAccessBankSplitOffset
-  ?!@ipic18BlockList unused ioGeneratedBlockList
+  ?!@ipic18BlockList ioGeneratedBlockList
   ??@routineMap inRoutineMap
   ??@registerTable unused inRegisterTable
   ??@pic18_dataMap unused inDataMap
   ??@constantMap unused inConstantMap
   ?!@uint unused ioLocalLabelIndex
-  ?!@ipic18Block ioCurrentBlock
+  ?!@ipic18SequentialInstructionList ioGeneratedInstructionList
+  ?!@lstring ioBlockLabel
   ?!@string unused ioListFileContents
   ?!@uint ioCurrentBank
   ??@bool unused inShouldPreserveBSR
-  ?!@bool ioContinuesInSequence
   ??@routineKind unused inRoutineKind
   ?!@stringset unused ioUsedRegisters
 :
@@ -1072,9 +1078,16 @@ override method @pic18Instruction_JUMP analyze
   if not isNoReturn then
     error mTargetLabel:"a regular routine should be called with a RCALL, CALL or JSR instruction" ;
   end if ;
-  ioContinuesInSequence := false ;
-#--- Set terminator of current block
-  ioCurrentBlock->mTerminator := [@ipic18JumpTerminator new !mInstructionLocation !mTargetLabel ![@jumpInstructionKind ipicRelative]] ;
+#--- Build block
+  ioGeneratedBlockList += ![@ipic18Block new
+    ![@uint max] # relocatable
+    !ioBlockLabel
+    !ioGeneratedInstructionList
+    ![@ipic18JumpTerminator new !mInstructionLocation !mTargetLabel ![@jumpInstructionKind ipicRelative]]
+  ] ;
+  ioGeneratedInstructionList := [@ipic18SequentialInstructionList emptyList] ;
+#--- No following code
+  ioBlockLabel := ["" nowhere] ;
 end method ;
 
 #----------------------------------------------------*
@@ -1087,11 +1100,11 @@ override method @pic18Instruction_computed_rcall analyze
   ??@pic18_dataMap unused inDataMap
   ??@constantMap inConstantMap
   ?!@uint unused ioLocalLabelIndex
-  ?!@ipic18Block ioCurrentBlock
+  ?!@ipic18SequentialInstructionList ioGeneratedInstructionList
+  ?!@lstring unused ioBlockLabel
   ?!@string unused ioListFileContents
   ?!@uint ioCurrentBank
   ??@bool inShouldPreserveBSR
-  ?!@bool ioContinuesInSequence
   ??@routineKind unused inRoutineKind
   ?!@stringset ioUsedRegisters
 :
@@ -1139,7 +1152,6 @@ override method @pic18Instruction_computed_rcall analyze
     end if ;
   end foreach ;
 #---
-  ioContinuesInSequence := true ;
   ioCurrentBank := returnedBankSelection ;
 #---
   [mSizeExpression eval !inRegisterTable !inConstantMap ??@sint64 size !?ioUsedRegisters] ;
@@ -1156,7 +1168,7 @@ override method @pic18Instruction_computed_rcall analyze
     targetInstructionList += ![@ipic18_intermediate_JSR new !mValue->location !mValue ![@jumpInstructionKind relative]] ;
   end foreach ;
 #---
-  ioCurrentBlock->mInstructionList += ![@ipic18_intermediate_instruction_computed_rcall new
+  ioGeneratedInstructionList += ![@ipic18_intermediate_instruction_computed_rcall new
     !mInstructionLocation
     !targetInstructionList
     !mUsesRelativeCall
@@ -1167,17 +1179,17 @@ end method ;
 
 override method @pic18Instruction_computed_goto analyze
   ??@uint unused inAccessBankSplitOffset
-  ?!@ipic18BlockList unused ioGeneratedBlockList
+  ?!@ipic18BlockList ioGeneratedBlockList
   ??@routineMap inRoutineMap
   ??@registerTable inRegisterTable
   ??@pic18_dataMap unused inDataMap
   ??@constantMap inConstantMap
   ?!@uint unused ioLocalLabelIndex
-  ?!@ipic18Block ioCurrentBlock
+  ?!@ipic18SequentialInstructionList ioGeneratedInstructionList
+  ?!@lstring ioBlockLabel
   ?!@string unused ioListFileContents
   ?!@uint ioCurrentBank
   ??@bool unused inShouldPreserveBSR
-  ?!@bool ioContinuesInSequence
   ??@routineKind inRoutineKind
   ?!@stringset ioUsedRegisters
 :
@@ -1198,7 +1210,6 @@ override method @pic18Instruction_computed_goto analyze
       error mValue:"for being named in a computed goto, the '" . mValue . "' routine should be declared with the \"noreturn\" qualifier" ;
   end if ;
   end foreach ;
-  ioContinuesInSequence := false ;
   switch inRoutineKind
   when regularRoutine :
     error mInstructionLocation:"a regular routine does not accept computed goto instruction" ;
@@ -1215,33 +1226,40 @@ override method @pic18Instruction_computed_goto analyze
   elsif [size uint] != [mTargetLabels length] then
     error mInstructionLocation:"the routine name list length (" . [[mTargetLabels length] string] . ") should be equal to the computed range (" . [size string] . ")" ;
   end if ;
-#--- Set terminator of current block
-  ioCurrentBlock->mTerminator := [@ipic18ComputedGotoTerminator new
-    !mInstructionLocation
-    !mTargetLabels
-    !mUsesRelativeCall
+#--- Build block
+  ioGeneratedBlockList += ![@ipic18Block new
+    ![@uint max] # relocatable
+    !ioBlockLabel
+    !ioGeneratedInstructionList
+    ![@ipic18ComputedGotoTerminator new
+      !mInstructionLocation
+      !mTargetLabels
+      !mUsesRelativeCall
+    ]
   ] ;
+  ioGeneratedInstructionList := [@ipic18SequentialInstructionList emptyList] ;
+#--- No following code
+  ioBlockLabel := ["" nowhere] ;
 end method ;
 
 #----------------------------------------------------*
 
 override method @pic18Instruction_computed_retlw analyze
   ??@uint unused inAccessBankSplitOffset
-  ?!@ipic18BlockList unused ioGeneratedBlockList
+  ?!@ipic18BlockList ioGeneratedBlockList
   ??@routineMap unused inRoutineMap
   ??@registerTable inRegisterTable
   ??@pic18_dataMap unused inDataMap
   ??@constantMap inConstantMap
   ?!@uint unused ioLocalLabelIndex
-  ?!@ipic18Block ioCurrentBlock
+  ?!@ipic18SequentialInstructionList ioGeneratedInstructionList
+  ?!@lstring ioBlockLabel
   ?!@string unused ioListFileContents
   ?!@uint unused ioCurrentBank
   ??@bool unused inShouldPreserveBSR
-  ?!@bool ioContinuesInSequence
   ??@routineKind inRoutineKind
   ?!@stringset ioUsedRegisters
 :
-  ioContinuesInSequence := false ;
   switch inRoutineKind
   when regularRoutine : # ok
   when noReturnRoutine :
@@ -1267,29 +1285,37 @@ override method @pic18Instruction_computed_retlw analyze
     end if ;
     literalValues += ![v & 0x000000FFS uint] ;
   end foreach ;
-#--- Set terminator of current block
-  ioCurrentBlock->mTerminator := [@ipic18ComputedRETLWTerminator new
-    !mInstructionLocation
-    !literalValues
-    !mUsesRelativeCall
+#--- Build block
+  ioGeneratedBlockList += ![@ipic18Block new
+    ![@uint max] # relocatable
+    !ioBlockLabel
+    !ioGeneratedInstructionList
+    ![@ipic18ComputedRETLWTerminator new
+      !mInstructionLocation
+      !literalValues
+      !mUsesRelativeCall
+    ]
   ] ;
+  ioGeneratedInstructionList := [@ipic18SequentialInstructionList emptyList] ;
+#--- No following code
+  ioBlockLabel := ["" nowhere] ;
 end method ;
 
 #----------------------------------------------------*
 
 override method @pic18Instruction_JUMPCC analyze
   ??@uint unused inAccessBankSplitOffset
-  ?!@ipic18BlockList unused ioGeneratedBlockList
+  ?!@ipic18BlockList ioGeneratedBlockList
   ??@routineMap inRoutineMap
   ??@registerTable unused inRegisterTable
   ??@pic18_dataMap unused inDataMap
   ??@constantMap unused  inConstantMap
   ?!@uint ioLocalLabelIndex
-  ?!@ipic18Block ioCurrentBlock
+  ?!@ipic18SequentialInstructionList ioGeneratedInstructionList
+  ?!@lstring ioBlockLabel
   ?!@string unused ioListFileContents
   ?!@uint ioCurrentBank
   ??@bool unused inShouldPreserveBSR
-  ?!@bool unused ioContinuesInSequence
   ??@routineKind unused inRoutineKind
   ?!@stringset unused ioUsedRegisters
 :
@@ -1317,41 +1343,60 @@ override method @pic18Instruction_JUMPCC analyze
 #--- Create the continuation label
   const @lstring label0 [new !"_label_" . [ioLocalLabelIndex string] !mInstructionLocation] ; 
   ioLocalLabelIndex ++ ;
-#--- Save terminator of current block
-  const @ipic18AbstractBlockTerminator terminator := ioCurrentBlock->mTerminator ;
-#--- Save terminator of current block
-  ioCurrentBlock->mTerminator := [@ipic18ConditionalJumpTerminator new
-    !mInstructionLocation
-    !mConditionalBranch
-    !mTargetLabel
-    !mode
-    !label0
-    !mode
-  ] ;
-#--- Create a new block with saved terminator
-  ioCurrentBlock := [@ipic18Block new
+#--- Build block
+  ioGeneratedBlockList += ![@ipic18Block new
     ![@uint max] # relocatable
-    !label0
-    ![@ipic18SequentialInstructionList emptyList]
-    !terminator
+    !ioBlockLabel
+    !ioGeneratedInstructionList
+    ![@ipic18ConditionalJumpTerminator new
+      !mInstructionLocation
+      !mConditionalBranch
+      !mTargetLabel
+      !mode
+      !label0
+      !mode
+    ]
   ] ;
+  ioGeneratedInstructionList := [@ipic18SequentialInstructionList emptyList] ;
+#--- Set label for following block
+  ioBlockLabel := label0 ;
+#
+#
+##--- Save terminator of current block
+#  const @ipic18AbstractBlockTerminator terminator := ioCurrentBlock->mTerminator ;
+##--- Save terminator of current block
+#  ioCurrentBlock->mTerminator := [@ipic18ConditionalJumpTerminator new
+#    !mInstructionLocation
+#    !mConditionalBranch
+#    !mTargetLabel
+#    !mode
+#    !label0
+#    !mode
+#  ] ;
+##--- Create a new block with saved terminator
+#  ioCurrentBlock := [@ipic18Block new
+#    ![@uint max] # relocatable
+#    !label0
+#    ![@ipic18SequentialInstructionList emptyList]
+#    !terminator
+#  ] ;
 end method ;
 
 #----------------------------------------------------*
 
 override method @pic18Instruction_computed_bra analyze
   ??@uint unused inAccessBankSplitOffset
-  ?!@ipic18BlockList unused ioGeneratedBlockList
+  ?!@ipic18BlockList ioGeneratedBlockList
   ??@routineMap inRoutineMap
   ??@registerTable inRegisterTable
   ??@pic18_dataMap unused inDataMap
   ??@constantMap inConstantMap
   ?!@uint unused ioLocalLabelIndex
-  ?!@ipic18Block ioCurrentBlock
+  ?!@ipic18SequentialInstructionList ioGeneratedInstructionList
+  ?!@lstring ioBlockLabel
   ?!@string unused ioListFileContents
   ?!@uint ioCurrentBank
   ??@bool inShouldPreserveBSR
-  ?!@bool ioContinuesInSequence
   ??@routineKind inRoutineKind
   ?!@stringset ioUsedRegisters
 :
@@ -1396,10 +1441,8 @@ override method @pic18Instruction_computed_bra analyze
     error mInstructionLocation:"invoked routine(s) do(es) not preserve bank selection" ;
   end if ;
 #---
-  ioContinuesInSequence := false ;
   switch inRoutineKind
   when regularRoutine :
-#    error mInstructionLocation:"a regular routine does not accept computed bra instruction" ;
   when noReturnRoutine : # ok
   when interruptRoutine :
     error mInstructionLocation:"an interrupt routine does not accept computed bra instruction" ;
@@ -1413,12 +1456,26 @@ override method @pic18Instruction_computed_bra analyze
   elsif [size uint] != [mTargetLabels length] then
     error mInstructionLocation:"the routine name list length (" . [[mTargetLabels length] string] . ") should be equal to the computed range (" . [size string] . ")" ;
   end if ;
-#--- Set terminator of current block
-  ioCurrentBlock->mTerminator := [@ipic18ComputedBraTerminator new
-    !mInstructionLocation
-    !mTargetLabels
-    !mUsesRelativeCall
+#--- Build block
+  ioGeneratedBlockList += ![@ipic18Block new
+    ![@uint max] # relocatable
+    !ioBlockLabel
+    !ioGeneratedInstructionList
+    ![@ipic18ComputedBraTerminator new
+      !mInstructionLocation
+      !mTargetLabels
+      !mUsesRelativeCall
+    ] 
   ] ;
+  ioGeneratedInstructionList := [@ipic18SequentialInstructionList emptyList] ;
+#--- No following code
+  ioBlockLabel := ["" nowhere] ;
+##--- Set terminator of current block
+#  ioCurrentBlock->mTerminator := [@ipic18ComputedBraTerminator new
+#    !mInstructionLocation
+#    !mTargetLabels
+#    !mUsesRelativeCall
+#  ] ;
 end method ;
 
 #----------------------------------------------------*
@@ -1431,11 +1488,11 @@ override method @pic18Instruction_IF_BitTest analyze
   ??@pic18_dataMap inDataMap
   ??@constantMap inConstantMap
   ?!@uint unused ioLocalLabelIndex
-  ?!@ipic18Block ioCurrentBlock
+  ?!@ipic18SequentialInstructionList ioGeneratedInstructionList
+  ?!@lstring unused ioBlockLabel
   ?!@string unused ioListFileContents
   ?!@uint ioCurrentBank
   ??@bool inShouldPreserveBSR
-  ?!@bool unused ioContinuesInSequence
   ??@routineKind unused inRoutineKind
   ?!@stringset ioUsedRegisters
 :
@@ -1470,7 +1527,7 @@ override method @pic18Instruction_IF_BitTest analyze
     error [mEmbeddedInstruction mInstructionLocation] : "this instruction does not preserve bank setting" ;
   end if ;
 #--- Generate instruction
-  ioCurrentBlock->mInstructionList += ![@ipic18_skip_instruction_BitTestSkip new
+  ioGeneratedInstructionList += ![@ipic18_skip_instruction_BitTestSkip new
     !mInstructionLocation
     !embeddedInstruction
     !mSkipIfSet
@@ -1489,11 +1546,11 @@ override method @pic18Instruction_IF_FA_SEMI_COLON analyze
   ??@pic18_dataMap inDataMap
   ??@constantMap inConstantMap
   ?!@uint unused ioLocalLabelIndex
-  ?!@ipic18Block ioCurrentBlock
+  ?!@ipic18SequentialInstructionList ioGeneratedInstructionList
+  ?!@lstring unused ioBlockLabel
   ?!@string unused ioListFileContents
   ?!@uint ioCurrentBank
   ??@bool inShouldPreserveBSR
-  ?!@bool unused ioContinuesInSequence
   ??@routineKind unused inRoutineKind
   ?!@stringset ioUsedRegisters
 :
@@ -1530,7 +1587,7 @@ override method @pic18Instruction_IF_FA_SEMI_COLON analyze
     error [mEmbeddedInstruction mInstructionLocation] : "this instruction does not preserve bank setting" ;
   end if ;
 #--- Generate instruction
-  ioCurrentBlock->mInstructionList += ![@ipic18_skip_instruction_compare_register new
+  ioGeneratedInstructionList += ![@ipic18_skip_instruction_compare_register new
     !mInstructionLocation
     !embeddedInstruction
     !baseCode
@@ -1548,11 +1605,11 @@ override method @pic18Instruction_IF_IncDec analyze
   ??@pic18_dataMap inDataMap
   ??@constantMap inConstantMap
   ?!@uint unused ioLocalLabelIndex
-  ?!@ipic18Block ioCurrentBlock
+  ?!@ipic18SequentialInstructionList ioGeneratedInstructionList
+  ?!@lstring unused ioBlockLabel
   ?!@string unused ioListFileContents
   ?!@uint ioCurrentBank
   ??@bool inShouldPreserveBSR
-  ?!@bool unused ioContinuesInSequence
   ??@routineKind unused inRoutineKind
   ?!@stringset ioUsedRegisters
 :
@@ -1594,7 +1651,7 @@ override method @pic18Instruction_IF_IncDec analyze
     error [mEmbeddedInstruction mInstructionLocation] : "this instruction does not preserve bank setting" ;
   end if ;
 #--- Generate instruction
-  ioCurrentBlock->mInstructionList += ![@ipic18_skip_instruction_FDA new
+  ioGeneratedInstructionList += ![@ipic18_skip_instruction_FDA new
     !mInstructionLocation
     !embeddedInstruction
     !baseCode
@@ -1613,14 +1670,17 @@ override method @pic18Instruction_structured_if analyze
   ??@pic18_dataMap inDataMap
   ??@constantMap inConstantMap
   ?!@uint ioLocalLabelIndex
-  ?!@ipic18Block ioCurrentBlock
+  ?!@ipic18SequentialInstructionList ioGeneratedInstructionList
+  ?!@lstring ioBlockLabel
   ?!@string ioListFileContents
   ?!@uint ioCurrentBank
   ??@bool inShouldPreserveBSR
-  ?!@bool ioContinuesInSequence
   ??@routineKind inRoutineKind
   ?!@stringset ioUsedRegisters
 :
+#--- Save bank settings
+  @uint elseBranchFinalBank := ioCurrentBank ;
+  @uint thenBranchFinalBank := ioCurrentBank ;
 #--- Labels
   const @lstring conditionTrueLabel [new !"_label_" . [ioLocalLabelIndex string] !mInstructionLocation] ; 
   ioLocalLabelIndex ++ ;
@@ -1640,27 +1700,16 @@ override method @pic18Instruction_structured_if analyze
     !?ioUsedRegisters
     ?@ipic18AbstractBlockTerminator testTerminator
   ] ;
-#--- Save terminator of current block
-  @ipic18AbstractBlockTerminator currentBlockTerminator :=  ioCurrentBlock->mTerminator ;
-#--- Close current block
-  ioCurrentBlock->mTerminator := testTerminator ;
-  ioGeneratedBlockList += !ioCurrentBlock ;
-#--- Create an new block, for instruction exit
-  ioCurrentBlock := [@ipic18Block new
+#--- Save current block block
+  ioGeneratedBlockList += ![@ipic18Block new
     ![@uint max] # relocatable
-    !exitLabel
-    ![@ipic18SequentialInstructionList emptyList]
-    !currentBlockTerminator
+    !ioBlockLabel
+    !ioGeneratedInstructionList
+    !testTerminator
   ] ;
-  @uint elseBranchFinalBank := ioCurrentBank ;
-  @uint thenBranchFinalBank := ioCurrentBank ;
+  ioGeneratedInstructionList := [@ipic18SequentialInstructionList emptyList] ;
 #--- Analyze 'then' instruction list
-  @ipic18Block thenBlock [new
-    ![@uint max] # relocatable
-    !conditionTrueLabel
-    ![@ipic18SequentialInstructionList emptyList]
-    ![@ipic18JumpTerminator new !mInstructionLocation !exitLabel ![@jumpInstructionKind ipicRelative]]
-  ] ;
+  ioBlockLabel := conditionTrueLabel ;
   analyzeInstructionList
     !mThenInstructionList
     !?ioGeneratedBlockList
@@ -1670,22 +1719,26 @@ override method @pic18Instruction_structured_if analyze
     !inDataMap
     !inConstantMap
     !?ioLocalLabelIndex
-    !?thenBlock
+    !?ioGeneratedInstructionList
+    !?ioBlockLabel
     !?ioListFileContents
     !?thenBranchFinalBank
     !inShouldPreserveBSR
-    ??@bool thenContinuesInSequence
     !inRoutineKind
     !?ioUsedRegisters
   ;
-  ioGeneratedBlockList += !thenBlock ;
-#--- Analyze 'else' instruction list
-  @ipic18Block elseBlock [new
-    ![@uint max] # relocatable
-    !conditionFalseLabel
-    ![@ipic18SequentialInstructionList emptyList]
-    ![@ipic18JumpTerminator new !mInstructionLocation !exitLabel ![@jumpInstructionKind ipicRelative]]
-  ] ;
+  const @bool thenContinuesInSequence := ioBlockLabel->string != "" ;
+  if thenContinuesInSequence then
+    ioGeneratedBlockList += ![@ipic18Block new
+      ![@uint max] # relocatable
+      !ioBlockLabel
+      !ioGeneratedInstructionList
+      ![@ipic18JumpTerminator new !mInstructionLocation !exitLabel ![@jumpInstructionKind ipicRelative]]
+    ] ;
+  end if ;
+  ioGeneratedInstructionList := [@ipic18SequentialInstructionList emptyList] ;
+#--- Build block
+  ioBlockLabel := conditionFalseLabel ;
   analyzeInstructionList
     !mElseInstructionList
     !?ioGeneratedBlockList
@@ -1695,15 +1748,24 @@ override method @pic18Instruction_structured_if analyze
     !inDataMap
     !inConstantMap
     !?ioLocalLabelIndex
-    !?elseBlock
+    !?ioGeneratedInstructionList
+    !?ioBlockLabel
     !?ioListFileContents
     !?elseBranchFinalBank
     !inShouldPreserveBSR
-    ??@bool elseContinuesInSequence
     !inRoutineKind
     !?ioUsedRegisters
   ;
-  ioGeneratedBlockList += !elseBlock ;
+  const @bool elseContinuesInSequence := ioBlockLabel->string != "" ;
+  if elseContinuesInSequence then
+    ioGeneratedBlockList += ![@ipic18Block new
+      ![@uint max] # relocatable
+      !ioBlockLabel
+      !ioGeneratedInstructionList
+      ![@ipic18JumpTerminator new !mInstructionLocation !exitLabel ![@jumpInstructionKind ipicRelative]]
+    ] ;
+  end if ;
+  ioGeneratedInstructionList := [@ipic18SequentialInstructionList emptyList] ;
 #---
   if elseBranchFinalBank == thenBranchFinalBank then
     ioCurrentBank := elseBranchFinalBank ;
@@ -1712,7 +1774,11 @@ override method @pic18Instruction_structured_if analyze
     elseBranchFinalBank := [@uint max] ; # No available value for BSR
   end if ;
 #---
-  ioContinuesInSequence := thenContinuesInSequence | elseContinuesInSequence ;
+  if thenContinuesInSequence | elseContinuesInSequence then
+    ioBlockLabel := exitLabel ;
+  else
+    ioBlockLabel := ["" nowhere] ;
+  end if ;
 end method ;
 
 #----------------------------------------------------*
@@ -1725,31 +1791,43 @@ override method @pic18Instruction_do_while analyze
   ??@pic18_dataMap inDataMap
   ??@constantMap inConstantMap
   ?!@uint ioLocalLabelIndex
-  ?!@ipic18Block ioCurrentBlock
+  ?!@ipic18SequentialInstructionList ioGeneratedInstructionList
+  ?!@lstring ioBlockLabel
   ?!@string ioListFileContents
   ?!@uint ioCurrentBank
   ??@bool inShouldPreserveBSR
-  ?!@bool unused ioContinuesInSequence
   ??@routineKind inRoutineKind
   ?!@stringset ioUsedRegisters
 :
 #--- Labels
   const @lstring startLabel [new !"_label_" . [ioLocalLabelIndex string] !mInstructionLocation] ; 
   ioLocalLabelIndex ++ ;
-  const @lstring exitLabel [new !"_label_" . [ioLocalLabelIndex string] !mInstructionLocation] ; 
-  ioLocalLabelIndex ++ ;
-#--- Save terminator of current block
-  const @ipic18AbstractBlockTerminator currentBlockTerminator :=  ioCurrentBlock->mTerminator ;
-#--- Close current block
-  ioCurrentBlock->mTerminator := [@ipic18JumpTerminator new !mInstructionLocation !startLabel ![@jumpInstructionKind ipicRelative]] ;
-  ioGeneratedBlockList += !ioCurrentBlock ;
-#--- Create an new block, for repeated instruction list
-  ioCurrentBlock := [@ipic18Block new
+#  const @lstring exitLabel [new !"_label_" . [ioLocalLabelIndex string] !mInstructionLocation] ; 
+#  ioLocalLabelIndex ++ ;
+#--- Save current block
+  ioGeneratedBlockList += ![@ipic18Block new
     ![@uint max] # relocatable
-    !startLabel
-    ![@ipic18SequentialInstructionList emptyList]
-    !currentBlockTerminator
+    !ioBlockLabel
+    !ioGeneratedInstructionList
+    ![@ipic18JumpTerminator new !mInstructionLocation !startLabel ![@jumpInstructionKind ipicRelative]]
   ] ;
+  ioGeneratedInstructionList := [@ipic18SequentialInstructionList emptyList] ;
+
+
+
+#  const @ipic18AbstractBlockTerminator currentBlockTerminator :=  ioCurrentBlock->mTerminator ;
+##--- Close current block
+#  ioCurrentBlock->mTerminator := [@ipic18JumpTerminator new !mInstructionLocation !startLabel ![@jumpInstructionKind ipicRelative]] ;
+#  ioGeneratedBlockList += !ioCurrentBlock ;
+#--- Create an new block, for repeated instruction list
+#  ioCurrentBlock := [@ipic18Block new
+#    ![@uint max] # relocatable
+#    !startLabel
+#    ![@ipic18SequentialInstructionList emptyList]
+#    !currentBlockTerminator
+#  ] ;
+#--- Repeated instruction list
+  ioBlockLabel := startLabel ;
   @uint repeatedBranchFinalBank := ioCurrentBank ;
   analyzeInstructionList
     !mRepeatedInstructionList
@@ -1760,14 +1838,15 @@ override method @pic18Instruction_do_while analyze
     !inDataMap
     !inConstantMap
     !?ioLocalLabelIndex
-    !?ioCurrentBlock
+    !?ioGeneratedInstructionList
+    !?ioBlockLabel
     !?ioListFileContents
     !?repeatedBranchFinalBank
     !inShouldPreserveBSR
-    ??@bool repeatedInstructionsContinuesInSequence
     !inRoutineKind
     !?ioUsedRegisters
   ;
+  const @bool repeatedInstructionsContinuesInSequence := ioBlockLabel->string != "" ;
   if ioCurrentBank != repeatedBranchFinalBank then
     error mEndOfRepeatedInstructionList:"This branch does not leave BSR value unchanged";
   end if ;
@@ -1779,8 +1858,8 @@ override method @pic18Instruction_do_while analyze
   #--- Labels
     const @lstring conditionTrueLabel [new !"_label_" . [ioLocalLabelIndex string] !mInstructionLocation] ; 
     ioLocalLabelIndex ++ ;
-    const @lstring conditionFalseLabel [new !"_label_" . [ioLocalLabelIndex string] !mInstructionLocation] ; 
-    ioLocalLabelIndex ++ ;
+   const @lstring conditionFalseLabel [new !"_label_" . [ioLocalLabelIndex string] !mInstructionLocation] ; 
+   ioLocalLabelIndex ++ ;
   #---- Analyze condition
     [mCondition analyzeCondition
       !inAccessBankSplitOffset
@@ -1793,14 +1872,25 @@ override method @pic18Instruction_do_while analyze
       !?ioUsedRegisters
       ?@ipic18AbstractBlockTerminator testTerminator
     ] ;
-    ioCurrentBlock->mTerminator := testTerminator ;
-    ioGeneratedBlockList += !ioCurrentBlock ;
-    ioCurrentBlock := [@ipic18Block new
+    ioGeneratedBlockList += ![@ipic18Block new
       ![@uint max] # relocatable
-      !conditionTrueLabel
-      ![@ipic18SequentialInstructionList emptyList]
-      ![@ipic18JumpTerminator new !mInstructionLocation !startLabel ![@jumpInstructionKind ipicRelative]]
+      !ioBlockLabel
+      !ioGeneratedInstructionList
+      !testTerminator
     ] ;
+    ioGeneratedInstructionList := [@ipic18SequentialInstructionList emptyList] ;
+    ioBlockLabel := conditionTrueLabel ;
+#
+#
+#
+#    ioCurrentBlock->mTerminator := testTerminator ;
+#    ioGeneratedBlockList += !ioCurrentBlock ;
+#    ioCurrentBlock := [@ipic18Block new
+#      ![@uint max] # relocatable
+#      !conditionTrueLabel
+#      ![@ipic18SequentialInstructionList emptyList]
+#      ![@ipic18JumpTerminator new !mInstructionLocation !startLabel ![@jumpInstructionKind ipicRelative]]
+#    ] ;
     @uint branchFinalBank := ioCurrentBank ;
     analyzeInstructionList
       !mInstructionList
@@ -1811,36 +1901,46 @@ override method @pic18Instruction_do_while analyze
       !inDataMap
       !inConstantMap
       !?ioLocalLabelIndex
-      !?ioCurrentBlock
+      !?ioGeneratedInstructionList
+      !?ioBlockLabel
       !?ioListFileContents
       !?branchFinalBank
       !inShouldPreserveBSR
-      ??@bool branchInstructionsContinuesInSequence
       !inRoutineKind
       !?ioUsedRegisters
     ;
     if ioCurrentBank != branchFinalBank then
       error mEndOfPartLocation:"This branch does not leave BSR value unchanged";
     end if ;
-    if not branchInstructionsContinuesInSequence then
+    if ioBlockLabel->string == "" then
       error mEndOfPartLocation:"This branch makes the next code unreachable";
     end if ;
-    ioGeneratedBlockList += !ioCurrentBlock ;
-    ioCurrentBlock := [@ipic18Block new
+    ioGeneratedBlockList += ![@ipic18Block new
       ![@uint max] # relocatable
-      !conditionFalseLabel
-      ![@ipic18SequentialInstructionList emptyList]
-      ![@ipic18JumpTerminator new !mInstructionLocation !exitLabel ![@jumpInstructionKind ipicRelative]]
+      !ioBlockLabel
+      !ioGeneratedInstructionList
+      ![@ipic18JumpTerminator new !mInstructionLocation !startLabel ![@jumpInstructionKind ipicRelative]]
     ] ;
+    ioGeneratedInstructionList := [@ipic18SequentialInstructionList emptyList] ;
+    ioBlockLabel := conditionFalseLabel ;
+
+
+#    ioGeneratedBlockList += !ioCurrentBlock ;
+#    ioCurrentBlock := [@ipic18Block new
+#      ![@uint max] # relocatable
+#      !conditionFalseLabel
+#      ![@ipic18SequentialInstructionList emptyList]
+#      ![@ipic18JumpTerminator new !mInstructionLocation !exitLabel ![@jumpInstructionKind ipicRelative]]
+#    ] ;
   end foreach ;
-  ioGeneratedBlockList += !ioCurrentBlock ;
-#--- Create an new block, for instruction exit
-  ioCurrentBlock := [@ipic18Block new
-    ![@uint max] # relocatable
-    !exitLabel
-    ![@ipic18SequentialInstructionList emptyList]
-    !currentBlockTerminator
-  ] ;
+#  ioGeneratedBlockList += !ioCurrentBlock ;
+##--- Create an new block, for instruction exit
+#  ioCurrentBlock := [@ipic18Block new
+#    ![@uint max] # relocatable
+#    !exitLabel
+#    ![@ipic18SequentialInstructionList emptyList]
+#    !currentBlockTerminator
+#  ] ;
 end method ;
 
 #----------------------------------------------------*
@@ -2029,15 +2129,15 @@ override method @pic18Instruction_block analyze
   ??@pic18_dataMap inDataMap
   ??@constantMap inConstantMap
   ?!@uint ioLocalLabelIndex
-  ?!@ipic18Block ioCurrentBlock
+  ?!@ipic18SequentialInstructionList ioGeneratedInstructionList
+  ?!@lstring ioBlockLabel
   ?!@string ioListFileContents
   ?!@uint ioCurrentBank
   ??@bool inShouldPreserveBSR
-  ?!@bool ioContinuesInSequence
   ??@routineKind inRoutineKind
   ?!@stringset ioUsedRegisters
 :
-  ioContinuesInSequence := false ;
+  @bool continuesInSequence := false ;
 #--- Compute block map
   @blockInstructionBlockMap blockMap [emptyMap] ;
   foreach mBlockList do
@@ -2054,7 +2154,7 @@ override method @pic18Instruction_block analyze
     for s in accessibleBlockSet - handledBlockSet do
       handledBlockSet += !s ;
       [blockMap searchKey ![s nowhere] ??@abstractBlockTerminationForBlockInstruction blockTermination] ;
-      [blockTermination addVisitedBlocks !?accessibleBlockSet !blockMap !?ioContinuesInSequence !?continueAccessibilityExploration] ;
+      [blockTermination addVisitedBlocks !?accessibleBlockSet !blockMap !?continuesInSequence !?continueAccessibilityExploration] ;
     end for ;
   end loop ;
   foreach mBlockList do
@@ -2062,45 +2162,25 @@ override method @pic18Instruction_block analyze
       warning mBlockName:"this block is not accessible from '" . mStartBlockName . "' block" ;
     end if ;
   end foreach ;
-#----------------- Generate code
+#----------------- Block labels prefix
   const @string labelForBlock := "_label_" . [ioLocalLabelIndex string] . "_" ; 
   ioLocalLabelIndex ++ ;
-#--- Save terminator of current block
-  const @ipic18AbstractBlockTerminator currentBlockTerminator :=  ioCurrentBlock->mTerminator ;
-#--- Close current block with a goto to first block
-  ioCurrentBlock->mTerminator := [@ipic18JumpTerminator new
-    !mStartBlockName->location
-    ![@lstring new !labelForBlock . mStartBlockName !mStartBlockName->location]
-    ![@jumpInstructionKind ipicRelative]
-  ] ;
-  ioGeneratedBlockList += !ioCurrentBlock ;
-#--- Create an new block, for block instruction exit
-  const @lstring continueInSequenceLabel [new !labelForBlock . "_exit" !mStartBlockName->location] ;
-  ioCurrentBlock := [@ipic18Block new
+#---------------- Save current block
+  ioGeneratedBlockList += ![@ipic18Block new
     ![@uint max] # relocatable
-    !continueInSequenceLabel
-    ![@ipic18SequentialInstructionList emptyList]
-    !currentBlockTerminator
+    !ioBlockLabel
+    !ioGeneratedInstructionList
+    ![@ipic18JumpTerminator new
+      !mStartBlockName->location
+      ![@lstring new !labelForBlock . mStartBlockName !mStartBlockName->location]
+      ![@jumpInstructionKind ipicRelative]
+    ]
   ] ;
+  ioGeneratedInstructionList := [@ipic18SequentialInstructionList emptyList] ;
 #--- Generate blocks
   foreach mBlockList do
-    [mBlockTerminaisonForBlockInstruction generateBlock
-      !inAccessBankSplitOffset
-      !ioCurrentBank
-      !inRegisterTable
-      !?ioLocalLabelIndex
-      !?ioGeneratedBlockList
-      !?ioUsedRegisters
-      !labelForBlock
-      ??@ipic18AbstractBlockTerminator terminator
-    ] ;
-    @ipic18Block currentBlock [new
-      ![@uint max] # relocatable
-      ![@lstring new !labelForBlock . mBlockName !mBlockName->location]
-      ![@ipic18SequentialInstructionList emptyList]
-      !terminator
-    ] ;
-    @uint finalBank := ioCurrentBank ;
+    @uint currentBank := ioCurrentBank ;
+    ioBlockLabel := [@lstring new !labelForBlock . mBlockName !mBlockName->location] ;
     analyzeInstructionList
       !mInstructionList
       !?ioGeneratedBlockList
@@ -2110,22 +2190,39 @@ override method @pic18Instruction_block analyze
       !inDataMap
       !inConstantMap
       !?ioLocalLabelIndex
-      !?currentBlock
+      !?ioGeneratedInstructionList
+      !?ioBlockLabel
       !?ioListFileContents
-      !?finalBank
+      !?currentBank
       !inShouldPreserveBSR
-      ??@bool continuesInSequence
       !inRoutineKind
       !?ioUsedRegisters
     ;
-    if finalBank != ioCurrentBank then
+    [mBlockTerminaisonForBlockInstruction generateBlock
+      !inAccessBankSplitOffset
+      !currentBank
+      !inRegisterTable
+      !?ioLocalLabelIndex
+      !?ioGeneratedBlockList
+      !?ioUsedRegisters
+      !labelForBlock
+      ??@ipic18AbstractBlockTerminator terminator
+    ] ;
+    if currentBank != ioCurrentBank then
       error mEndOfBlock : "a block cannot change bank selection" ;
     end if ;
-    if not continuesInSequence then
+    if ioBlockLabel->string == "" then
       error mEndOfBlock : "execution will not reach the end of the block, but endless block is not allowed" ;
     end if ;
-    ioGeneratedBlockList += !currentBlock ;
+    ioGeneratedBlockList += ![@ipic18Block new
+      ![@uint max] # relocatable
+      !ioBlockLabel
+      !ioGeneratedInstructionList
+      !terminator
+    ] ;
+    ioGeneratedInstructionList := [@ipic18SequentialInstructionList emptyList] ;
   end foreach ;
+  ioBlockLabel := [@lstring new !labelForBlock . "_exit" !mStartBlockName->location] ;
 end method ;
 
 #----------------------------------------------------------------------------*
@@ -2455,19 +2552,18 @@ local routine analyzeInstructionList
   ??@pic18_dataMap inDataMap
   ??@constantMap inConstantMap
   ?!@uint ioLocalLabelIndex
-  ?!@ipic18Block ioCurrentBlock
+  ?!@ipic18SequentialInstructionList ioGeneratedInstructionList
+  ?!@lstring ioBlockLabel
   ?!@string ioListFileContents
   ?!@uint ioCurrentBank
   ??@bool inShouldPreserveBSR
-  !@bool outContinuesInSequence
   ??@routineKind inRoutineKind
   ?!@stringset ioUsedRegisters
 :
-  outContinuesInSequence := true ;
   foreach inInstructionList do
-    if not outContinuesInSequence then
+    if ioBlockLabel->string == "" then
       error [mInstruction mInstructionLocation] : "Unreachable code" ;
-      outContinuesInSequence := true ;
+      ioBlockLabel := ["?" nowhere] ;
     end if ;
     [mInstruction analyze
       !inAccessBankSplitOffset
@@ -2477,11 +2573,11 @@ local routine analyzeInstructionList
       !inDataMap
       !inConstantMap
       !?ioLocalLabelIndex
-      !?ioCurrentBlock
+      !?ioGeneratedInstructionList
+      !?ioBlockLabel
       !?ioListFileContents
       !?ioCurrentBank
       !inShouldPreserveBSR
-      !?outContinuesInSequence
       !inRoutineKind
       !?ioUsedRegisters
     ] ;
@@ -2721,13 +2817,15 @@ routine build_ipic18_block_representation_list
   if inHasLowInterrupt then
     foreach inInterruptDefinitionList do
       if [mInterruptName string] == "low" then
-        @ipic18Block currentBlock [new
-          ![@uint max] # Relocatable
-          ![@lstring new !"_low_interrupt" !mInterruptName->location]
-          ![@ipic18SequentialInstructionList emptyList]
-          ![@ipic18RetfieTerminator new !mInterruptName->location !mFastReturn]
-        ] ;
+#        @ipic18Block currentBlock [new
+#          ![@uint max] # Relocatable
+#          ![@lstring new !"_low_interrupt" !mInterruptName->location]
+#          ![@ipic18SequentialInstructionList emptyList]
+#          ![@ipic18RetfieTerminator new !mInterruptName->location !mFastReturn]
+#        ] ;
         @uint currentBank [max] ; # No bank
+        @ipic18SequentialInstructionList generatedInstructionList[ emptyList] ;
+        @lstring currentBlockLabel [new !"_low_interrupt" !mInterruptName->location] ;
         analyzeInstructionList
           !mInstructionList
           !?generatedBlockList
@@ -2737,19 +2835,24 @@ routine build_ipic18_block_representation_list
           !dataMap
           !constantMap
           !?localLabelIndex
-          !?currentBlock
+          !?generatedInstructionList
+          !?currentBlockLabel
           !?ioListFileContents
           !?currentBank
           !not mFastReturn # Preserve BSR if not "fast"
-          ??@bool continuesInSequence
           ![@routineKind interruptRoutine]
           !?usedRegisters
         ;
-        if not continuesInSequence then
+        if currentBlockLabel->string == "" then
           error mEndOfInterruptLocation:"execution cannot reach the end of the interrupt routine" ;
         end if ;
       #--- Enter last block
-        generatedBlockList += !currentBlock ;
+        generatedBlockList += ![@ipic18Block new
+          ![@uint max] # relocatable
+          !currentBlockLabel
+          !generatedInstructionList
+          ![@ipic18RetfieTerminator new !mInterruptName->location !mFastReturn]
+        ] ;
       end if ;
     end foreach ;
   end if ;
@@ -2757,13 +2860,15 @@ routine build_ipic18_block_representation_list
   if inHasHighInterrupt then
     foreach inInterruptDefinitionList do
       if [mInterruptName string] == "high" then
-        @ipic18Block currentBlock [new
-          ![@uint max] # Relocatable
-          ![@lstring new !"_high_interrupt" !mInterruptName->location]
-          ![@ipic18SequentialInstructionList emptyList]
-          ![@ipic18RetfieTerminator new !mInterruptName->location !true]
-        ] ;
+#        @ipic18Block currentBlock [new
+#          ![@uint max] # Relocatable
+#          ![@lstring new !"_high_interrupt" !mInterruptName->location]
+#          ![@ipic18SequentialInstructionList emptyList]
+#          ![@ipic18RetfieTerminator new !mInterruptName->location !true]
+#        ] ;
         @uint currentBank [max] ; # No bank
+        @ipic18SequentialInstructionList generatedInstructionList[ emptyList] ;
+        @lstring currentBlockLabel [new !"_high_interrupt" !mInterruptName->location] ;
         analyzeInstructionList
           !mInstructionList
           !?generatedBlockList
@@ -2773,19 +2878,24 @@ routine build_ipic18_block_representation_list
           !dataMap
           !constantMap
           !?localLabelIndex
-          !?currentBlock
+          !?generatedInstructionList
+          !?currentBlockLabel
           !?ioListFileContents
           !?currentBank
           !not mFastReturn # Preserve BSR if not "fast"
-          ??@bool continuesInSequence
           ![@routineKind interruptRoutine]
           !?usedRegisters
         ;
-        if not continuesInSequence then
+        if currentBlockLabel->string == "" then
           error mEndOfInterruptLocation:"execution cannot reach the end of the interrupt routine" ;
         end if ;
       #--- Enter last block
-        generatedBlockList += !currentBlock ;
+        generatedBlockList += ![@ipic18Block new
+          ![@uint max] # relocatable
+          !currentBlockLabel
+          !generatedInstructionList
+          ![@ipic18RetfieTerminator new !mInterruptName->location !true]
+        ] ;
       end if ;
     end foreach ;
   end if ;
@@ -2798,12 +2908,8 @@ routine build_ipic18_block_representation_list
     else
       routineKind := [@routineKind regularRoutine] ;
     end if ;
-    @ipic18Block currentBlock [new
-      ![@uint max] # Relocatable
-      !mRoutineName
-      ![@ipic18SequentialInstructionList emptyList]
-      ![@ipic18ReturnTerminator new !mRoutineName->location]
-    ] ;
+    @ipic18SequentialInstructionList generatedInstructionList[ emptyList] ;
+    @lstring currentBlockLabel := mRoutineName ;
     analyzeInstructionList
       !mInstructionList
       !?generatedBlockList
@@ -2813,16 +2919,24 @@ routine build_ipic18_block_representation_list
       !dataMap
       !constantMap
       !?localLabelIndex
-      !?currentBlock
+      !?generatedInstructionList
+      !?currentBlockLabel
       !?ioListFileContents
       !?currentBank
       !mPreservesBank
-      ??@bool continuesInSequence
       !routineKind
       !?usedRegisters
     ;
-  #--- Enter last block
-    generatedBlockList += !currentBlock ;
+    const @bool continuesInSequence := currentBlockLabel->string != "" ;
+    #--- Enter last block
+    if continuesInSequence then
+      generatedBlockList += ![@ipic18Block new
+        ![@uint max] # relocatable
+        !currentBlockLabel
+        !generatedInstructionList
+        ![@ipic18ReturnTerminator new !mRoutineName->location]
+      ] ;
+    end if ;
   #---
     if (not mIsNoReturn) & ([mReturnedBank uint] != [@uint max]) & (currentBank != [mReturnedBank uint]) then
       error mRoutineName:"execution will not set BSR to " . [[mReturnedBank uint] string] ;

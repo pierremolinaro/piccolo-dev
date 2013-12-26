@@ -415,14 +415,14 @@ local routine buildOrderedGraph
   ?!@string ioListFileContents
 :
   ioListFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n" ;
-  ioListFileContents .= "*" . ["BLOCK INTER JUMP OPTIMIZATION" stringByLeftAndRightPadding !77 !' '] . "*\n" ;
+  ioListFileContents .= "*" . ["BLOCK ORDERING OPTIMIZATION" stringByLeftAndRightPadding !77 !' '] . "*\n" ;
   ioListFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n\n" ;
-  ioListFileContents .= "Block inter jump optimization:\n" ;
+  ioListFileContents .= "Block ordering optimization:\n" ;
   const @uint n := blockDiscontinuityCount [!ioBlockList] ;
   ioListFileContents .= "  count before optimization: " . n . "\n" ;
 #---
   if [option.verbose_output value] then
-    message "Block inter jump optimization... " ;
+    message "Block ordering optimization... " ;
   end if ;
 #-------------------------------- Build label map
   @symbolTableForBlockOptimization symbolTable [emptyMap] ;

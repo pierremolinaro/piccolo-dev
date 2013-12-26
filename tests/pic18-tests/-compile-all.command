@@ -27,6 +27,10 @@ echo "-------------- blink_led_18F4480" &&
 ../../makefile_macosx/piccolo -v -S -O -L --Werror blink_led_18F4480.piccolo &&
 $GPUTILS_PATH/gpasm blink_led_18F4480.asm -o blink_led_18F4480-2.hex &&
 hexcmp blink_led_18F4480.hex blink_led_18F4480-2.hex &&
+echo "-------------- blink_led_18F4480_with_blocks" &&
+../../makefile_macosx/piccolo -v -S -O -L --Werror blink_led_18F4480_with_blocks.piccolo &&
+$GPUTILS_PATH/gpasm blink_led_18F4480_with_blocks.asm -o blink_led_18F4480_with_blocks-2.hex &&
+hexcmp blink_led_18F4480_with_blocks.hex blink_led_18F4480_with_blocks-2.hex &&
 #--- Blink led sous interruption 18F448
 echo "-------------- blink_led_it_18F448" &&
 ../../makefile_macosx/piccolo -v -S -O -L --Werror blink_led_it_18F448.piccolo &&
