@@ -606,11 +606,33 @@ override method @midrangeInstruction_checkbank build_midrange_ipic_instructionLi
     error mInstructionLocation:"Bank index should be <= 15" ;
   elsif ioCurrentBank == [@uint max] then
     error mInstructionLocation:"checkbank fail: there is no selected bank" ;
-    ioCurrentBank := mBankIndex ;
   elsif ioCurrentBank != mBankIndex then
     error mInstructionLocation:"checkbank fail: the selected bank is " . ioCurrentBank . ", required bank is " . mBankIndex ;
   end if ;
-    ioCurrentBank := mBankIndex ;
+  ioCurrentBank := mBankIndex ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @midrangeInstruction_checknobank build_midrange_ipic_instructionList
+  ??@routineMap unused inRoutineMap
+  ??@registerTable unused inRegisterTable
+  ??@constantMap unused inConstantMap
+  ?!@uint unused ioLocalLabelIndex
+  ?!@midrange_intermediate_instructionList unused ioGeneratedInstructionList
+  ?!@string unused ioListFileContents
+  ??@uint unused inTotalBankCount
+  ?!@uint ioCurrentBank
+  ??@bool unused inShouldPreserveBank
+  ?!@bool unused ioContinuesInSequence
+  ??@routineKind unused inRoutineKind
+  ?!@stringset unused ioUsedRegisters
+:
+#--- Check instruction
+  if ioCurrentBank != [@uint max] then
+    error mInstructionLocation:"checknobank fail: the " . ioCurrentBank . " bank is selected" ;
+    ioCurrentBank := [@uint max] ;
+  end if ;
 end method ;
 
 #----------------------------------------------------------------------------*

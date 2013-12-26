@@ -557,6 +557,9 @@ rule <structured_instruction>
     $integer$ ? @luint bankIndex ;
     outInstruction := [@pic18Instruction_checkbank new !bankIndex->location !bankIndex->uint] ;
   or
+    $checknobank$ ;
+    outInstruction := [@pic18Instruction_checknobank new !here] ;
+  or
     $ldataptr$ ;
     @location instructionLocation := here ;
     $identifier$ ?@lstring dataName ;

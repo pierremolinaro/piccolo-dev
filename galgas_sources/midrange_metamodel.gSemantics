@@ -34,6 +34,11 @@ class @midrangeInstruction_checkbank extends @midrange_instruction {
 
 #----------------------------------------------------*
 
+class @midrangeInstruction_checknobank extends @midrange_instruction {
+}
+
+#----------------------------------------------------*
+
 class @midrange_instruction_banksel_register extends @midrange_instruction {
   @registerExpression mRegister ;
   @bool mWarningOnUselessBanksel ;
