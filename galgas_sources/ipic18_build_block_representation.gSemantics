@@ -345,10 +345,10 @@ override method @pic18Instruction_JSR analyzeSimpleInstruction
 #--- Check instruction
   [inRoutineMap searchKey !mTargetLabel ??@bool isNoReturn ??@uint requiredBank ??@uint returnedBank ??@bool preservesBank] ;
   if (requiredBank != [@uint max]) & (requiredBank != ioCurrentBank) then
-    @string errorMessage := "the routine '" . mTargetLabel . "' requires BSR to be set to " . [requiredBank string] ;
-    errorMessage .= ", but BSR " ;
+    @string errorMessage := "the routine '" . mTargetLabel . "' requires bank selection to be set to " . [requiredBank string] ;
+    errorMessage .= ", but bank selection " ;
     if ioCurrentBank == [@uint max] then
-      errorMessage .= "does contain any reliable value" ;
+      errorMessage .= "is not defined" ;
     else
       errorMessage .= "is set to " . [ioCurrentBank string] ;
     end if ;
@@ -417,11 +417,35 @@ override method @pic18Instruction_checkbank analyze
     error mInstructionLocation:"Bank index should be <= 15" ;
   elsif ioCurrentBank == [@uint max] then
     error mInstructionLocation:"checkbank fail: there is no selected bank" ;
-    ioCurrentBank := mBankIndex ;
   elsif ioCurrentBank != mBankIndex then
     error mInstructionLocation:"checkbank fail: the selected bank is " . ioCurrentBank . ", required bank is " . mBankIndex ;
   end if ;
-    ioCurrentBank := mBankIndex ;
+  ioCurrentBank := mBankIndex ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @pic18Instruction_checknobank analyze
+  ??@uint unused inAccessBankSplitOffset
+  ?!@ipic18BlockList unused ioGeneratedBlockList
+  ??@routineMap unused inRoutineMap
+  ??@registerTable unused inRegisterTable
+  ??@pic18_dataMap unused inDataMap
+  ??@constantMap unused inConstantMap
+  ?!@uint unused ioLocalLabelIndex
+  ?!@ipic18SequentialInstructionList unused ioGeneratedInstructionList
+  ?!@lstring unused ioBlockLabel
+  ?!@string unused ioListFileContents
+  ?!@uint ioCurrentBank
+  ??@bool unused inShouldPreserveBSR
+  ??@routineKind unused inRoutineKind
+  ?!@stringset unused ioUsedRegisters
+:
+#--- Check instruction
+  if ioCurrentBank != [@uint max] then
+    error mInstructionLocation:"checknobank fail: the " . ioCurrentBank . " bank is selected" ;
+    ioCurrentBank := [@uint max] ;
+  end if ;
 end method ;
 
 #----------------------------------------------------------------------------*
@@ -525,7 +549,7 @@ override method @pic18Instruction_FOREVER analyze
   end if ;
 #--- Check instruction list does not change bank
   if ioCurrentBank != finalBank then
-    error mEndOfInstructionList:"\"forever\" instruction list does not leave BSR value unchanged";
+    error mEndOfInstructionList:"\"forever\" instruction list does not leave bank selection unchanged";
   end if ;
 #--- Indicate next code is not reacheable
   ioBlockLabel := ["" nowhere] ;
@@ -550,7 +574,7 @@ override method @pic18Instruction_nobanksel analyze
   ?!@stringset unused ioUsedRegisters
 :
   if inShouldPreserveBSR then
-    error mInstructionLocation: "cannot use \"nobank\" here: BSR should be preserved (use it in a \"banksave\" construct)" ;
+    error mInstructionLocation: "cannot use \"nobank\" here: bank selection should be preserved (use it in a \"banksave\" construct)" ;
   end if ;
   ioCurrentBank := [@uint max] ;
 #--- Generates no code
@@ -1066,10 +1090,10 @@ override method @pic18Instruction_JUMP analyze
 #--- Check instruction
   [inRoutineMap searchKey !mTargetLabel ??@bool isNoReturn ??@uint requiredBank ?* ?*] ;
   if (requiredBank != [@uint max]) & (requiredBank != ioCurrentBank) then
-    @string errorMessage := "the routine '" . mTargetLabel . "' requires BSR to be set to " . [requiredBank string] ;
-    errorMessage .= ", but BSR " ;
+    @string errorMessage := "the routine '" . mTargetLabel . "' requires bank selection to be set to " . [requiredBank string] ;
+    errorMessage .= ", but bank selection " ;
     if ioCurrentBank == [@uint max] then
-      errorMessage .= "does contain any reliable value" ;
+      errorMessage .= "is not defined" ;
     else
       errorMessage .= "is set to " . [ioCurrentBank string] ;
     end if ;
@@ -1115,10 +1139,10 @@ override method @pic18Instruction_computed_rcall analyze
   foreach mTargetLabels do
     [inRoutineMap searchKey !mValue ??@bool isNoReturn ??@uint requiredBank ??@uint returnedBank ??@bool preservesBank] ;
     if (requiredBank != [@uint max]) & (requiredBank != ioCurrentBank) then
-      @string errorMessage := "the routine '" . mValue . "' requires BSR to be set to " . [requiredBank string] ;
-      errorMessage .= ", but BSR " ;
+      @string errorMessage := "the routine '" . mValue . "' requires bank selection to be set to " . [requiredBank string] ;
+      errorMessage .= ", but bank selection " ;
       if ioCurrentBank == [@uint max] then
-        errorMessage .= "does contain any reliable value" ;
+        errorMessage .= "is not defined" ;
       else
         errorMessage .= "is set to " . [ioCurrentBank string] ;
       end if ;
@@ -1197,10 +1221,10 @@ override method @pic18Instruction_computed_goto analyze
   foreach mTargetLabels do
     [inRoutineMap searchKey !mValue ??@bool isNoReturn ??@uint requiredBank ?* ?*] ;
     if (requiredBank != [@uint max]) & (requiredBank != ioCurrentBank) then
-      @string errorMessage := "the routine '" . mValue . "' requires BSR to be set to " . [requiredBank string] ;
-      errorMessage .= ", but BSR " ;
+      @string errorMessage := "the routine '" . mValue . "' requires bank selection to be set to " . [requiredBank string] ;
+      errorMessage .= ", but bank selection " ;
       if ioCurrentBank == [@uint max] then
-        errorMessage .= "does contain any reliable value" ;
+        errorMessage .= "is not defined" ;
       else
         errorMessage .= "is set to " . [ioCurrentBank string] ;
       end if ;
@@ -1321,10 +1345,10 @@ override method @pic18Instruction_JUMPCC analyze
 :
   [inRoutineMap searchKey !mTargetLabel ??@bool isNoReturn ??@uint requiredBank ?* ?*] ;
   if (requiredBank != [@uint max]) & (requiredBank != ioCurrentBank) then
-    @string errorMessage := "the routine '" . mTargetLabel . "' requires BSR to be set to " . [requiredBank string] ;
-    errorMessage .= ", but BSR " ;
+    @string errorMessage := "the routine '" . mTargetLabel . "' requires bank selection to be set to " . [requiredBank string] ;
+    errorMessage .= ", but bank selection " ;
     if ioCurrentBank == [@uint max] then
-      errorMessage .= "does contain any reliable value" ;
+      errorMessage .= "is not defined" ;
     else
       errorMessage .= "is set to " . [ioCurrentBank string] ;
     end if ;
@@ -1408,10 +1432,10 @@ override method @pic18Instruction_computed_bra analyze
     [inRoutineMap searchKey !mValue ??@bool isNoReturn ??@uint requiredBank ??@uint returnedBank ??@bool preservesBank] ;
   #--- Check bank "requires"
     if (requiredBank != [@uint max]) & (requiredBank != ioCurrentBank) then
-      @string errorMessage := "the routine '" . mValue . "' requires BSR to be set to " . [requiredBank string] ;
-      errorMessage .= ", but BSR " ;
+      @string errorMessage := "the routine '" . mValue . "' requires bank selection to be set to " . [requiredBank string] ;
+      errorMessage .= ", but bank selection " ;
       if ioCurrentBank == [@uint max] then
-        errorMessage .= "does contain any reliable value" ;
+        errorMessage .= "is not defined" ;
       else
         errorMessage .= "is set to " . [ioCurrentBank string] ;
       end if ;
@@ -1770,7 +1794,7 @@ override method @pic18Instruction_structured_if analyze
   if elseBranchFinalBank == thenBranchFinalBank then
     ioCurrentBank := elseBranchFinalBank ;
   else
-    error mEndOfElsePartLocation:"This branch does not leave BSR value as the first one does";
+    error mEndOfElsePartLocation:"This branch does not leave bank selection value as the first one does";
     elseBranchFinalBank := [@uint max] ; # No available value for BSR
   end if ;
 #---
@@ -1848,7 +1872,7 @@ override method @pic18Instruction_do_while analyze
   ;
   const @bool repeatedInstructionsContinuesInSequence := ioBlockLabel->string != "" ;
   if ioCurrentBank != repeatedBranchFinalBank then
-    error mEndOfRepeatedInstructionList:"This branch does not leave BSR value unchanged";
+    error mEndOfRepeatedInstructionList:"This branch does not leave bank selection value unchanged";
   end if ;
   if not repeatedInstructionsContinuesInSequence then
     error mEndOfRepeatedInstructionList:"This branch makes the next code unreachable";
@@ -1910,7 +1934,7 @@ override method @pic18Instruction_do_while analyze
       !?ioUsedRegisters
     ;
     if ioCurrentBank != branchFinalBank then
-      error mEndOfPartLocation:"This branch does not leave BSR value unchanged";
+      error mEndOfPartLocation:"This branch does not leave bank selection value unchanged";
     end if ;
     if ioBlockLabel->string == "" then
       error mEndOfPartLocation:"This branch makes the next code unreachable";
@@ -1923,24 +1947,7 @@ override method @pic18Instruction_do_while analyze
     ] ;
     ioGeneratedInstructionList := [@ipic18SequentialInstructionList emptyList] ;
     ioBlockLabel := conditionFalseLabel ;
-
-
-#    ioGeneratedBlockList += !ioCurrentBlock ;
-#    ioCurrentBlock := [@ipic18Block new
-#      ![@uint max] # relocatable
-#      !conditionFalseLabel
-#      ![@ipic18SequentialInstructionList emptyList]
-#      ![@ipic18JumpTerminator new !mInstructionLocation !exitLabel ![@jumpInstructionKind ipicRelative]]
-#    ] ;
   end foreach ;
-#  ioGeneratedBlockList += !ioCurrentBlock ;
-##--- Create an new block, for instruction exit
-#  ioCurrentBlock := [@ipic18Block new
-#    ![@uint max] # relocatable
-#    !exitLabel
-#    ![@ipic18SequentialInstructionList emptyList]
-#    !currentBlockTerminator
-#  ] ;
 end method ;
 
 #----------------------------------------------------*
@@ -1950,9 +1957,20 @@ end method ;
 #----------------------------------------------------*
 
 map @blockInstructionBlockMap {
+  @pic18InstructionList mInstructionList ;
   @abstractBlockTerminationForBlockInstruction mBlockTerminaisonForBlockInstruction ;
+  @location mEndOfBlock ;
   insert insertKey error message "the '%K' block is already declared" ;
   search searchKey error message "the '%K' block is not declared" ;
+}
+
+#----------------------------------------------------*
+
+map @blockInitialBankSelectionMap {
+  @uint mInitialBankSelection ;
+  @string mSourceBlock ;
+  insert insertKey error message "the '%K' block is already declared (internal error)" ;
+  search searchKey error message "the '%K' block is not declared (internal error)" ;
 }
 
 #----------------------------------------------------*
@@ -1960,6 +1978,9 @@ map @blockInstructionBlockMap {
 abstract method @abstractBlockTerminationForBlockInstruction addVisitedBlocks
   ?!@stringset ioVisitedBlockSet
   ??@blockInstructionBlockMap inBlockMap
+  ??@string inCurrentBlockName
+  ??@uint inInitialBlockSetting
+  ?!@blockInitialBankSelectionMap ioBlockInitialBankSelectionMap
   ?!@bool ioContinuesInSequence
   ?!@bool ioContinueAccessibilityExploration
 ;
@@ -1969,10 +1990,26 @@ abstract method @abstractBlockTerminationForBlockInstruction addVisitedBlocks
 override method @exitBlockTerminationForBlockInstruction addVisitedBlocks
   ?!@stringset unused ioVisitedBlockSet
   ??@blockInstructionBlockMap unused inBlockMap
+  ??@string inCurrentBlockName
+  ??@uint inInitialBlockSetting
+  ?!@blockInitialBankSelectionMap ioBlockInitialBankSelectionMap
   ?!@bool ioContinuesInSequence
   ?!@bool unused ioContinueAccessibilityExploration
 :
   ioContinuesInSequence := true ;
+  if [ioBlockInitialBankSelectionMap hasKey !"-"] then
+    [ioBlockInitialBankSelectionMap searchKey !["-" nowhere] ??@uint otherInitialBlockSetting ??@string otherBlockName] ;
+    if otherInitialBlockSetting != inInitialBlockSetting then
+      error mLocation: "this block exits from block instruction and sets bank selection to "
+      . if inInitialBlockSetting == [@uint max] then "no bank" else [inInitialBlockSetting string] end
+      . ", '" . otherBlockName . "' block also exits, but sets bank selection to "
+      . if otherInitialBlockSetting == [@uint max] then "no bank" else [otherInitialBlockSetting string] end
+      . "; theses two settings should be the same"
+      ;
+    end if ;
+  else
+    [!?ioBlockInitialBankSelectionMap insertKey !["-" nowhere] !inInitialBlockSetting !inCurrentBlockName] ;
+  end if ;
 end method ;
 
 #----------------------------------------------------*
@@ -1980,14 +2017,28 @@ end method ;
 override method @gotoTerminationForBlockInstruction addVisitedBlocks
   ?!@stringset ioVisitedBlockSet
   ??@blockInstructionBlockMap inBlockMap
+  ??@string inCurrentBlockName
+  ??@uint inInitialBlockSetting
+  ?!@blockInitialBankSelectionMap ioBlockInitialBankSelectionMap
   ?!@bool unused ioContinuesInSequence
   ?!@bool ioContinueAccessibilityExploration
 :
   if not [ioVisitedBlockSet hasKey !mNextBlock->string] then
+    ioVisitedBlockSet += !mNextBlock->string ;
     ioContinueAccessibilityExploration := true ;
-    [inBlockMap searchKey !mNextBlock ?*] ;
-    if [inBlockMap hasKey !mNextBlock->string] then
-      ioVisitedBlockSet += !mNextBlock->string ;
+    [inBlockMap searchKey !mNextBlock ?* ?* ?*] ;
+    if [ioBlockInitialBankSelectionMap hasKey !mNextBlock->string] then
+      [ioBlockInitialBankSelectionMap searchKey !mNextBlock ??@uint otherInitialBlockSetting ??@string otherBlockName] ;
+      if otherInitialBlockSetting != inInitialBlockSetting then
+        error mNextBlock: "this block goes to '" . mNextBlock . "' block and sets bank selection to "
+        . if inInitialBlockSetting == [@uint max] then "no bank" else [inInitialBlockSetting string] end
+        . ", '" . otherBlockName . "' block goes to the same block, but sets bank selection to "
+        . if otherInitialBlockSetting == [@uint max] then "no bank" else [otherInitialBlockSetting string] end
+        . "; theses two settings should be the same"
+        ;
+      end if ;
+    else
+      [!?ioBlockInitialBankSelectionMap insertKey !mNextBlock !inInitialBlockSetting !inCurrentBlockName] ;
     end if ;
   end if ;
 end method ;
@@ -1997,11 +2048,30 @@ end method ;
 override method @testTerminationForBlockInstruction addVisitedBlocks
   ?!@stringset ioVisitedBlockSet
   ??@blockInstructionBlockMap inBlockMap
+  ??@string inCurrentBlockName
+  ??@uint inInitialBlockSetting
+  ?!@blockInitialBankSelectionMap ioBlockInitialBankSelectionMap
   ?!@bool ioContinuesInSequence
   ?!@bool ioContinueAccessibilityExploration
 :
-  [mTrueTermination addVisitedBlocks !?ioVisitedBlockSet !inBlockMap !?ioContinuesInSequence !?ioContinueAccessibilityExploration] ;
-  [mFalseTermination addVisitedBlocks !?ioVisitedBlockSet !inBlockMap !?ioContinuesInSequence !?ioContinueAccessibilityExploration] ;
+  [mTrueTermination addVisitedBlocks
+    !?ioVisitedBlockSet 
+    !inBlockMap 
+    !inCurrentBlockName 
+    !inInitialBlockSetting 
+    !?ioBlockInitialBankSelectionMap 
+    !?ioContinuesInSequence 
+    !?ioContinueAccessibilityExploration
+  ] ;
+  [mFalseTermination addVisitedBlocks
+    !?ioVisitedBlockSet
+    !inBlockMap
+    !inCurrentBlockName
+    !inInitialBlockSetting
+    !?ioBlockInitialBankSelectionMap
+    !?ioContinuesInSequence
+    !?ioContinueAccessibilityExploration
+  ] ;
 end method ;
 
 #----------------------------------------------------*
@@ -2137,31 +2207,6 @@ override method @pic18Instruction_block analyze
   ??@routineKind inRoutineKind
   ?!@stringset ioUsedRegisters
 :
-  @bool continuesInSequence := false ;
-#--- Compute block map
-  @blockInstructionBlockMap blockMap [emptyMap] ;
-  foreach mBlockList do
-    [!?blockMap insertKey !mBlockName !mBlockTerminaisonForBlockInstruction] ;
-  end foreach ;
-#--- Check start block is declared
-  [blockMap searchKey !mStartBlockName ?*] ;
-#--- Compute block accessiblity
-  @stringset accessibleBlockSet [setWithString !mStartBlockName->string] ;
-  @stringset handledBlockSet [emptySet] ;
-  @bool continueAccessibilityExploration := true ;
-  loop [mBlockList length] + 1 : while continueAccessibilityExploration do
-    continueAccessibilityExploration := false ;
-    for s in accessibleBlockSet - handledBlockSet do
-      handledBlockSet += !s ;
-      [blockMap searchKey ![s nowhere] ??@abstractBlockTerminationForBlockInstruction blockTermination] ;
-      [blockTermination addVisitedBlocks !?accessibleBlockSet !blockMap !?continuesInSequence !?continueAccessibilityExploration] ;
-    end for ;
-  end loop ;
-  foreach mBlockList do
-    if not [accessibleBlockSet hasKey !mBlockName->string] then
-      warning mBlockName:"this block is not accessible from '" . mStartBlockName . "' block" ;
-    end if ;
-  end foreach ;
 #----------------- Block labels prefix
   const @string labelForBlock := "_label_" . [ioLocalLabelIndex string] . "_" ; 
   ioLocalLabelIndex ++ ;
@@ -2177,52 +2222,87 @@ override method @pic18Instruction_block analyze
     ]
   ] ;
   ioGeneratedInstructionList := [@ipic18SequentialInstructionList emptyList] ;
-#--- Generate blocks
+#--- Compute block map
+  @blockInstructionBlockMap blockMap [emptyMap] ;
   foreach mBlockList do
-    @uint currentBank := ioCurrentBank ;
-    ioBlockLabel := [@lstring new !labelForBlock . mBlockName !mBlockName->location] ;
-    analyzeInstructionList
-      !mInstructionList
-      !?ioGeneratedBlockList
-      !inAccessBankSplitOffset
-      !inRoutineMap
-      !inRegisterTable
-      !inDataMap
-      !inConstantMap
-      !?ioLocalLabelIndex
-      !?ioGeneratedInstructionList
-      !?ioBlockLabel
-      !?ioListFileContents
-      !?currentBank
-      !inShouldPreserveBSR
-      !inRoutineKind
-      !?ioUsedRegisters
-    ;
-    [mBlockTerminaisonForBlockInstruction generateBlock
-      !inAccessBankSplitOffset
-      !currentBank
-      !inRegisterTable
-      !?ioLocalLabelIndex
-      !?ioGeneratedBlockList
-      !?ioUsedRegisters
-      !labelForBlock
-      ??@ipic18AbstractBlockTerminator terminator
-    ] ;
-    if currentBank != ioCurrentBank then
-      error mEndOfBlock : "a block cannot change bank selection" ;
-    end if ;
-    if ioBlockLabel->string == "" then
-      error mEndOfBlock : "execution will not reach the end of the block, but endless block is not allowed" ;
-    end if ;
-    ioGeneratedBlockList += ![@ipic18Block new
-      ![@uint max] # relocatable
-      !ioBlockLabel
-      !ioGeneratedInstructionList
-      !terminator
-    ] ;
-    ioGeneratedInstructionList := [@ipic18SequentialInstructionList emptyList] ;
+    [!?blockMap insertKey !mBlockName !mInstructionList !mBlockTerminaisonForBlockInstruction !mEndOfBlock] ;
   end foreach ;
-  ioBlockLabel := [@lstring new !labelForBlock . "_exit" !mStartBlockName->location] ;
+#--- Check start block is declared
+  [blockMap searchKey !mStartBlockName ?* ?* ?*] ;
+  @blockInitialBankSelectionMap blockInitialBankSelectionMap [emptyMap] ;
+  [!?blockInitialBankSelectionMap insertKey !mStartBlockName !ioCurrentBank !""] ;
+#--- Compute block accessiblity
+  @stringset accessibleBlockSet [setWithString !mStartBlockName->string] ;
+  @stringset handledBlockSet [emptySet] ;
+  @bool continueAccessibilityExploration := true ;
+  @bool continuesInSequence := false ;
+  loop [mBlockList length] + 1 : while continueAccessibilityExploration do
+    continueAccessibilityExploration := false ;
+    for currentBlockName in accessibleBlockSet - handledBlockSet do
+      handledBlockSet += !currentBlockName ;
+      [blockMap searchKey
+        ![currentBlockName nowhere]
+        ??@pic18InstructionList instructionList
+        ??@abstractBlockTerminationForBlockInstruction blockTermination
+        ??@location endOfBlock
+      ] ;
+    #--- Generate code
+      [blockInitialBankSelectionMap searchKey ![currentBlockName nowhere] ?@uint currentBank ?*] ;
+      ioBlockLabel := [@lstring new !labelForBlock . currentBlockName ![blockMap locationForKey !currentBlockName]] ;
+      analyzeInstructionList
+        !instructionList
+        !?ioGeneratedBlockList
+        !inAccessBankSplitOffset
+        !inRoutineMap
+        !inRegisterTable
+        !inDataMap
+        !inConstantMap
+        !?ioLocalLabelIndex
+        !?ioGeneratedInstructionList
+        !?ioBlockLabel
+        !?ioListFileContents
+        !?currentBank
+        !inShouldPreserveBSR
+        !inRoutineKind
+        !?ioUsedRegisters
+      ;
+      [blockTermination generateBlock
+        !inAccessBankSplitOffset
+        !currentBank
+        !inRegisterTable
+        !?ioLocalLabelIndex
+        !?ioGeneratedBlockList
+        !?ioUsedRegisters
+        !labelForBlock
+        ??@ipic18AbstractBlockTerminator terminator
+      ] ;
+      if ioBlockLabel->string == "" then
+        error endOfBlock : "execution will not reach the end of the block, but endless block is not allowed" ;
+      end if ;
+      ioGeneratedBlockList += ![@ipic18Block new
+        ![@uint max] # relocatable
+        !ioBlockLabel
+        !ioGeneratedInstructionList
+        !terminator
+      ] ;
+      ioGeneratedInstructionList := [@ipic18SequentialInstructionList emptyList] ;
+    #---
+      [blockTermination addVisitedBlocks !?accessibleBlockSet !blockMap !currentBlockName !currentBank !?blockInitialBankSelectionMap !?continuesInSequence !?continueAccessibilityExploration] ;
+    end for ;
+  end loop ;
+#--- Useless blocks ?
+  foreach mBlockList do
+    if not [accessibleBlockSet hasKey !mBlockName->string] then
+      warning mBlockName:"this block is not accessible from '" . mStartBlockName . "' block" ;
+    end if ;
+  end foreach ;
+#---
+  if continuesInSequence then
+    ioBlockLabel := [@lstring new !labelForBlock . "_exit" !mStartBlockName->location] ;
+    [blockInitialBankSelectionMap searchKey !["-" nowhere] ?ioCurrentBank ?*] ;
+  else
+    ioBlockLabel := ["" nowhere] ;
+  end if ;
 end method ;
 
 #----------------------------------------------------------------------------*
@@ -2939,7 +3019,7 @@ routine build_ipic18_block_representation_list
     end if ;
   #---
     if (not mIsNoReturn) & ([mReturnedBank uint] != [@uint max]) & (currentBank != [mReturnedBank uint]) then
-      error mRoutineName:"execution will not set BSR to " . [[mReturnedBank uint] string] ;
+      error mRoutineName:"execution will not set bank selection to " . [mReturnedBank uint] ;
     end if ;
     if mIsNoReturn & continuesInSequence then
       error mRoutineName:"execution should not reach the end of a \"noreturn\" routine" ;

@@ -32,6 +32,11 @@ class @pic18Instruction_nobanksel extends @pic18PiccoloInstruction {
 
 #----------------------------------------------------*
 
+class @pic18Instruction_checknobank extends @pic18PiccoloInstruction {
+}
+
+#----------------------------------------------------*
+
 class @pic18Instruction_checkbank extends @pic18PiccoloInstruction {
   @uint mBankIndex ;
 }

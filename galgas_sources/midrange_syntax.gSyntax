@@ -22,7 +22,6 @@ nonterminal <constant_definition>
   ?!@constantDefinitionList ioConstantDefinitionList
 ;
 
-
 nonterminal <register_parsing>
   !@registerExpression outRegisterExpression
 ;
@@ -344,6 +343,9 @@ rule <midrange_structured_instruction>
     $checkbank$ ;
     $integer$ ? @luint bankIndex ;
     outInstruction := [@midrangeInstruction_checkbank new !bankIndex->location !bankIndex->uint] ;
+  or
+    $checknobank$ ;
+    outInstruction := [@midrangeInstruction_checknobank new !here] ;
   or
     $banksel$ ;
     @location instructionLocation := here ;

@@ -28,6 +28,7 @@ list controlKeyWordList error message "the '%K' keyword" style keywordStyle :
   "bootloader",
   "byte",
   "checkbank",
+  "checknobank",
   "checkpic",
   "computed",
   "configuration",
