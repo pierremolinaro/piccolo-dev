@@ -1047,7 +1047,8 @@ override method @ipic18ComputedBraTerminator generateCode
     address := inAddress + 4 ;
   end if ;
   foreach mTargetLabels do
-    outCode .= pic18_BRA_instruction_code [!address !targetAddress !mValue] ;
+    [inSymbolTable searchKey !mValue ??@uint labelAddress] ;
+    outCode .= pic18_BRA_instruction_code [!address !labelAddress !mValue] ;
     address := address + 2 ;
   end foreach ;
 end method ;
