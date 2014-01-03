@@ -1,4 +1,4 @@
-lexique piccolo_lexique :
+lexique piccolo_lexique indexing in "PICCOLO_INDEXES" :
 
 @string identifierString ;
 @uint uint32value ;
@@ -12,6 +12,12 @@ style integerStyle -> "Integer Constants:" ;
 style characterStyle -> "Character Constants:" ;
 style stringStyle -> "String Constants:" ;
 style commentStyle -> "Comments:" ;
+
+#--- Indexing keys
+indexing routineDefinition : "Routine Definition" ;
+indexing routineCall : "Routine Call" ;
+indexing variableDeclaration : "Variable Declaration" ;
+indexing variableUse : "Variable Use" ;
 
 # -------------------------- identifier or key word --------------------
 # keywords can be written in lower or upper case

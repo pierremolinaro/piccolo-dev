@@ -199,6 +199,7 @@ before {
 
 when . "piccolo"
 message "a source text file with the .piccolo extension"
+indexing with pic18_grammar
 ??@lstring inSourceFile {
   grammar pic18_grammar in inSourceFile ;
 }
