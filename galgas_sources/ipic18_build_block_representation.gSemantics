@@ -302,6 +302,31 @@ end method ;
 
 #----------------------------------------------------*
 
+override method @pic18Instruction_fnop analyzeSimpleInstruction
+  ??@uint unused inAccessBankSplitOffset
+  ??@routineMap unused inRoutineMap
+  ??@registerTable inRegisterTable
+  ??@pic18_dataMap unused inDataMap
+  ??@constantMap inConstantMap
+  ?!@uint unused ioCurrentBank
+  ??@bool unused inShouldPreserveBSR
+  ?!@stringset ioUsedRegisters
+  !@ipic18SequentialInstruction outInstruction
+:
+  [mImmediatExpression eval !inRegisterTable !inConstantMap ??@sint64 result !?ioUsedRegisters] ;
+#---
+   if (result > 0xFFFLS) | (result < 0LS) then
+     error mInstructionLocation:"immediate value is evaluated as " . [result string] . " (should be betwween 0 and 4095)" ;
+   end if ;
+#---  
+  outInstruction := [@ipic18_intermediate_instruction_FNOP new
+    !mInstructionLocation
+    ![result uint]
+  ] ;
+end method ;
+
+#----------------------------------------------------*
+
 override method @pic18Instruction_LFSR analyzeSimpleInstruction
   ??@uint unused inAccessBankSplitOffset
   ??@routineMap unused inRoutineMap
@@ -2897,12 +2922,6 @@ routine build_ipic18_block_representation_list
   if inHasLowInterrupt then
     foreach inInterruptDefinitionList do
       if [mInterruptName string] == "low" then
-#        @ipic18Block currentBlock [new
-#          ![@uint max] # Relocatable
-#          ![@lstring new !"_low_interrupt" !mInterruptName->location]
-#          ![@ipic18SequentialInstructionList emptyList]
-#          ![@ipic18RetfieTerminator new !mInterruptName->location !mFastReturn]
-#        ] ;
         @uint currentBank [max] ; # No bank
         @ipic18SequentialInstructionList generatedInstructionList[ emptyList] ;
         @lstring currentBlockLabel [new !"_low_interrupt" !mInterruptName->location] ;
@@ -2940,12 +2959,6 @@ routine build_ipic18_block_representation_list
   if inHasHighInterrupt then
     foreach inInterruptDefinitionList do
       if [mInterruptName string] == "high" then
-#        @ipic18Block currentBlock [new
-#          ![@uint max] # Relocatable
-#          ![@lstring new !"_high_interrupt" !mInterruptName->location]
-#          ![@ipic18SequentialInstructionList emptyList]
-#          ![@ipic18RetfieTerminator new !mInterruptName->location !true]
-#        ] ;
         @uint currentBank [max] ; # No bank
         @ipic18SequentialInstructionList generatedInstructionList[ emptyList] ;
         @lstring currentBlockLabel [new !"_high_interrupt" !mInterruptName->location] ;
@@ -3184,6 +3197,9 @@ routine build_ipic18_block_representation_list
   if [@uint errorCount] == 0 then
     ipic18GenerateCode
       !inSourceFileName
+      !inProgramKind
+      ![inBootloaderReservedROMsize uint]
+      ![inROMSize uint]
       !inProcessorName
       !inPredefinedRegisters
       !inRegisterTable

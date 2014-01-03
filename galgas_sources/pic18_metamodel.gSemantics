@@ -239,6 +239,12 @@ class @pic18Instruction_literalOperation extends @pic18PiccoloSimpleInstruction 
 
 #----------------------------------------------------*
 
+class @pic18Instruction_fnop extends @pic18PiccoloSimpleInstruction {
+  @immediatExpression mImmediatExpression ;
+}
+
+#----------------------------------------------------*
+
 class @pic18Instruction_LFSR extends @pic18PiccoloSimpleInstruction {
   @luint mFSRindex ;
   @immediatExpression mImmediatExpression ;
