@@ -32,7 +32,7 @@ rule <declaration_in_ram>
   !@declarationInRam outDeclaration
 :
   $byte$ ;
-  $identifier$ ? @lstring name ;
+  $identifier$ ? @lstring name indexing variableDeclaration ;
   @luint size ;
   select
     size := [@luint new !1 !here] ;
@@ -276,7 +276,7 @@ rule <immediate_primary> !@immediatExpression outExpression :
     $literal_char$ ? @lchar literalCharValue ;
     outExpression := [@immediatInteger new ![@luint new ![[literalCharValue char] uint] ![literalCharValue location]]] ;
   or
-    $identifier$ ?@lstring registerName ;
+    $identifier$ ?@lstring registerName indexing variableUse ;
     @luint offset ;
     select
       offset := [@luint new !0 !here] ;
@@ -316,7 +316,7 @@ end rule ;
 #----------------------------------------------------*
 
 rule <register_parsing> !@registerExpression outRegisterExpression :
-  $identifier$ ?@lstring registerName ;
+  $identifier$ ?@lstring registerName indexing variableUse ;
   @luint offset ;
   select
     offset := [@luint new !0 !here] ;

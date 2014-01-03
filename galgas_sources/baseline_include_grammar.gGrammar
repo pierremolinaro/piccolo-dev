@@ -1,4 +1,4 @@
-grammar baseline_include_grammar "SLR":
+indexing grammar baseline_include_grammar "SLR":
 with "baseline_syntax.gSyntax" ;
 with "communs.gSyntax" ;
 

@@ -224,7 +224,7 @@ rule <routine_definition>
     noreturn := true ;
   end select ;
   $routine$ ;
-  $identifier$ ? @lstring routineName ;
+  $identifier$ ? @lstring routineName indexing routineDefinition ;
   @luint requiredBank ;
   @luint returnedBank ;
   @bool preservesBank ;
@@ -561,7 +561,7 @@ rule <structured_instruction>
     outInstruction := [@pic18Instruction_checknobank new !here] ;
   or
     $ldataptr$ ;
-    @location instructionLocation := here ;
+    const @location instructionLocation := here ;
     $identifier$ ?@lstring dataName ;
     $[$ ;
     $integer$ ? @luint dataIndex ;
@@ -569,12 +569,12 @@ rule <structured_instruction>
     outInstruction := [@pic18Instruction_LDATAPTR new !instructionLocation !dataName !dataIndex] ;
   or
     $ltblptr$ ;
-    @location instructionLocation := here ;
+    const @location instructionLocation := here ;
     <immediate_expression> ??@immediatExpression expression ;
     outInstruction := [@pic18Instruction_LTBLPTR new !instructionLocation !expression] ;
   or
     $banksel$ ;
-    @location instructionLocation := here ;
+    const @location instructionLocation := here ;
     $integer$ ? @luint bank ;
     @bool warningOnUselessBanksel ;
     select
@@ -587,7 +587,7 @@ rule <structured_instruction>
     outInstruction := [@pic18Instruction_banksel new ! instructionLocation !bank !warningOnUselessBanksel] ;
   or
     $banksel$ ;
-    @location instructionLocation := here ;
+    const @location instructionLocation := here ;
     <register_parsing> ?@registerExpression register ;
     @bool warningOnUselessBanksel ;
     select
@@ -603,7 +603,7 @@ rule <structured_instruction>
     outInstruction := [@pic18Instruction_nobanksel new !here] ;
   or
     $banksave$ ;
-    @location instructionLocation := here ;
+    const @location instructionLocation := here ;
     <register_parsing> ?@registerExpression register ;
     <instruction_list> ??@pic18InstructionList instructionList !?ioNeedsComputedGoto2 !?ioNeedsComputedGoto4 ;
     $end$ ;
@@ -615,7 +615,7 @@ rule <structured_instruction>
     ] ;
   or
     $computed$ ;
-    @location instructionLocation := here ;
+    const @location instructionLocation := here ;
     $[$ ;
     @immediatExpression sizeExpression ;
     <immediate_expression> ?sizeExpression ;
@@ -641,7 +641,7 @@ rule <structured_instruction>
       $bra$ ;
       @lstringlist argumentList [emptyList] ;
       repeat
-        $identifier$ ? @lstring targetRoutine ;
+        $identifier$ ? @lstring targetRoutine indexing routineCall ;
         argumentList += ! targetRoutine ;
       while
         $,$ ;
@@ -657,7 +657,7 @@ rule <structured_instruction>
       $goto$ ;
       @lstringlist argumentList [emptyList] ;
       repeat
-        $identifier$ ? @lstring targetRoutine ;
+        $identifier$ ? @lstring targetRoutine indexing routineCall ;
         argumentList += ! targetRoutine ;
       while
         $,$ ;
@@ -673,7 +673,7 @@ rule <structured_instruction>
       $rcall$ ;
       @lstringlist argumentList [emptyList] ;
       repeat
-        $identifier$ ? @lstring targetRoutine ;
+        $identifier$ ? @lstring targetRoutine indexing routineCall ;
         argumentList += ! targetRoutine ;
       while
         $,$ ;
@@ -688,7 +688,7 @@ rule <structured_instruction>
     end select ;
   or
     $forever$ ;
-    @location instructionLocation := here ;
+    const @location instructionLocation := here ;
     @pic18InstructionList instructionList ;
     <instruction_list> ?instructionList !?ioNeedsComputedGoto2 !?ioNeedsComputedGoto4 ;
     $end$ ;
@@ -699,7 +699,7 @@ rule <structured_instruction>
     ] ;
   or
     $if$ ;
-    @location instructionLocation := here ;
+    const @location instructionLocation := here ;
     @registerExpression registerName ;
     <register_parsing> ?registerName ;
     @if_semi_colon_op opCode ;
@@ -727,7 +727,7 @@ rule <structured_instruction>
     ] ;
   or
     $if$ ;
-    @location instructionLocation := here ;
+    const @location instructionLocation := here ;
     @registerExpression registerName ;
     @bitNumberExpression bitNumber ;
     @bool skipIfSet ;
@@ -780,7 +780,7 @@ rule <structured_instruction>
     ] ;
   or
     $if$ ;
-    @location instructionLocation := here ;
+    const @location instructionLocation := here ;
     @bool increment ;
     select
       $decf$ ; increment := false ;
@@ -825,7 +825,7 @@ rule <structured_instruction>
     $end$ ;
   or
     $do$ ;
-    @location instructionLocation := here ;
+    const @location instructionLocation := here ;
     @pic18InstructionList repeatedInstructionList ;
     <instruction_list>
       ?repeatedInstructionList
@@ -856,7 +856,7 @@ rule <structured_instruction>
     ] ;
   or
     $mnop$ ;
-    @location instructionLocation := here ;
+    const @location instructionLocation := here ;
     $integer$ ? @luint occurrenceFactor ;
     outInstruction := [@pic18Instruction_MNOP new !instructionLocation !occurrenceFactor] ;
   or
@@ -878,8 +878,8 @@ rule <structured_instruction>
     or
       $bnz$ ; condition := [@conditional_branch bnz] ;
     end select ;
-    @location instructionLocation := here ;
-    $identifier$ ? @lstring targetLabelName ;
+    const @location instructionLocation := here ;
+    $identifier$ ? @lstring targetLabelName indexing routineCall ;
     outInstruction := [@pic18Instruction_JUMPCC new
       !instructionLocation
       !targetLabelName
@@ -888,9 +888,9 @@ rule <structured_instruction>
     ] ;
   or
     $jump$ ;
-    @location instructionLocation := here ;
+    const @location instructionLocation := here ;
     @conditional_branch conditional_branch ;
-    $identifier$ ? @lstring conditionString ;
+    $identifier$ ?@lstring conditionString ;
     @string condition := [[conditionString string] uppercaseString] ;
     if condition == "Z" then
       conditional_branch := [@conditional_branch bz] ;
@@ -914,7 +914,7 @@ rule <structured_instruction>
       : conditional_branch
       ;
     end if ;
-    $identifier$ ? @lstring targetLabelName ;
+    $identifier$ ? @lstring targetLabelName indexing routineCall ;
     outInstruction := [@pic18Instruction_JUMPCC new
       !instructionLocation
       !targetLabelName
@@ -923,8 +923,8 @@ rule <structured_instruction>
     ] ;
   or
     $jump$ ;
-    @location instructionLocation := here ;
-    $identifier$ ? @lstring targetLabelName ;
+    const @location instructionLocation := here ;
+    $identifier$ ? @lstring targetLabelName indexing routineCall ;
     outInstruction := [@pic18Instruction_JUMP new
       !instructionLocation
       !targetLabelName
@@ -932,8 +932,8 @@ rule <structured_instruction>
     ] ;
   or
     $goto$ ;
-    @location instructionLocation := here ;
-    $identifier$ ? @lstring targetLabelName ;
+    const @location instructionLocation := here ;
+    $identifier$ ? @lstring targetLabelName indexing routineCall ;
     outInstruction := [@pic18Instruction_JUMP new
       !instructionLocation
       !targetLabelName
@@ -941,8 +941,8 @@ rule <structured_instruction>
     ] ;
   or
     $bra$ ;
-    @location instructionLocation := here ;
-    $identifier$ ? @lstring targetLabelName ;
+    const @location instructionLocation := here ;
+    $identifier$ ? @lstring targetLabelName indexing routineCall ;
     outInstruction := [@pic18Instruction_JUMP new
       !instructionLocation
       !targetLabelName
@@ -1055,7 +1055,7 @@ rule <simple_instruction> !@pic18PiccoloSimpleInstruction outInstruction :
       $xorwf$ ;
       baseCode := [@pic18Instruction_FDA_base_code_AST XORWF] ;
     end select ;
-    @location instructionLocation := here ;
+    const @location instructionLocation := here ;
     @registerExpression registerName ;
     <register_parsing> ?registerName ;
     @bool W_isDestination ;
@@ -1084,7 +1084,7 @@ rule <simple_instruction> !@pic18PiccoloSimpleInstruction outInstruction :
       $setf$ ;
       FAinstruction := [@FA_instruction_base_code SETF] ;
     end select ;
-    @location instructionLocation := here ;
+    const @location instructionLocation := here ;
     @registerExpression registerName ;
     <register_parsing> ?registerName ;
     outInstruction := [@pic18Instruction_FA new
@@ -1094,7 +1094,7 @@ rule <simple_instruction> !@pic18PiccoloSimpleInstruction outInstruction :
     ] ;
   or
     $movff$ ;
-    @location instructionLocation := here ;
+    const @location instructionLocation := here ;
     @registerExpression sourceRegisterName ;
     <register_parsing> ?sourceRegisterName ;
     $,$ ;
@@ -1114,12 +1114,10 @@ rule <simple_instruction> !@pic18PiccoloSimpleInstruction outInstruction :
     or
       $btg$ ; bitOrientedOp := [@bit_oriented_op BTG] ;
     end select ;
-    @location instructionLocation := here ;
-    @registerExpression registerName ;
-    <register_parsing> ?registerName ;
+    const @location instructionLocation := here ;
+    <register_parsing> ??@registerExpression registerName ;
     $.$ ;
-    @bitNumberExpression bitNumber ;
-    <bit_number_parsing> ?bitNumber ;
+    <bit_number_parsing> ??@bitNumberExpression bitNumber ;
     outInstruction := [@pic18Instruction_FBA new
       !instructionLocation
       !bitOrientedOp
@@ -1128,8 +1126,8 @@ rule <simple_instruction> !@pic18PiccoloSimpleInstruction outInstruction :
     ] ;
   or
     $jsr$ ;
-    @location instructionLocation := here ;
-    $identifier$ ? @lstring targetLabelName ;
+    const @location instructionLocation := here ;
+    $identifier$ ? @lstring targetLabelName indexing routineCall ;
     outInstruction := [@pic18Instruction_JSR new
       !instructionLocation
       !targetLabelName
@@ -1137,8 +1135,8 @@ rule <simple_instruction> !@pic18PiccoloSimpleInstruction outInstruction :
     ] ;
   or
     $call$ ;
-    @location instructionLocation := here ;
-    $identifier$ ? @lstring targetLabelName ;
+    const @location instructionLocation := here ;
+    $identifier$ ? @lstring targetLabelName indexing routineCall ;
     outInstruction := [@pic18Instruction_JSR new
       !instructionLocation
       !targetLabelName
@@ -1146,8 +1144,8 @@ rule <simple_instruction> !@pic18PiccoloSimpleInstruction outInstruction :
     ] ;
   or
     $rcall$ ;
-    @location instructionLocation := here ;
-    $identifier$ ? @lstring targetLabelName ;
+    const @location instructionLocation := here ;
+    $identifier$ ? @lstring targetLabelName indexing routineCall ;
     outInstruction := [@pic18Instruction_JSR new
       !instructionLocation
       !targetLabelName
@@ -1208,7 +1206,7 @@ rule <simple_instruction> !@pic18PiccoloSimpleInstruction outInstruction :
     ] ;
   or
     $lfsr$ ;
-    @location instructionLocation := here ;
+    const @location instructionLocation := here ;
     $integer$ ? @luint FSRindex ;
     $,$ ;
     @immediatExpression expression ;
@@ -1216,7 +1214,7 @@ rule <simple_instruction> !@pic18PiccoloSimpleInstruction outInstruction :
     outInstruction := [@pic18Instruction_LFSR new !instructionLocation !FSRindex !expression] ;
   or
     $tblrd$ ;
-    @location instructionLocation := here ;
+    const @location instructionLocation := here ;
     @tableAccessOption accessOption ;
     select
       $*$ ;
@@ -1234,7 +1232,7 @@ rule <simple_instruction> !@pic18PiccoloSimpleInstruction outInstruction :
     outInstruction := [@pic18Instruction_TBLRD new !instructionLocation !accessOption] ;
   or
     $tblwt$ ;
-    @location instructionLocation := here ;
+    const @location instructionLocation := here ;
     @tableAccessOption accessOption ;
     select
       $*$ ;

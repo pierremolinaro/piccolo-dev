@@ -1,4 +1,4 @@
-grammar pic18_grammar "SLR":
+indexing grammar pic18_grammar "SLR":
 with "pic18_syntax.gSyntax" ;
 with "pic18_start_symbol.gSyntax" ;
 with "midrange_syntax.gSyntax" ;
