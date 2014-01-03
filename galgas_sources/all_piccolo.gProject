@@ -1,4 +1,4 @@
-project all_piccolo (3:0:5) -> "piccolo" :
+project all_piccolo (3:0:6) -> "piccolo" :
 #--- Targets
   feature "makefile_macosx" ;
   feature "makefile_unix" ;

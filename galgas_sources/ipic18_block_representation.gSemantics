@@ -247,6 +247,12 @@ class @ipic18_intermediate_instruction_MOVLB extends @ipic18SequentialInstructio
 
 #----------------------------------------------------------------------------*
 
+class @ipic18_intermediate_instruction_FNOP extends @ipic18SequentialInstruction {
+  @uint mBlankValue ;
+}
+
+#----------------------------------------------------------------------------*
+
 class @ipic18_intermediate_instruction_BLANK extends @ipic18SequentialInstruction {
   @uint mBlankValue ;
 }

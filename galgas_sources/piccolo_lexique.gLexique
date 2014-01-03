@@ -92,6 +92,7 @@ list instructionKeyWordList error message "the '%K' instruction" style instructi
   "incf",
   "iorlw",
   "iorwf",
+  "fnop",
   "goto",
   "jsr",
   "jump",

@@ -1175,6 +1175,14 @@ rule <simple_instruction> !@pic18PiccoloSimpleInstruction outInstruction :
     $sleep$ ;
     outInstruction := [@pic18Instruction_withNoOperand new !here ![@pic18InstructionWithNoOperandKind SLEEP]] ;
   or
+    $fnop$ ;
+    const @location instructionLocation := here ;
+    <immediate_expression> ??@immediatExpression expression ;
+    outInstruction := [@pic18Instruction_fnop new
+      !instructionLocation
+      !expression
+    ] ;
+  or
     @literal_instruction_opcode literalInstruction ;
     select
       $addlw$ ; literalInstruction := [@literal_instruction_opcode ADDLW] ;
@@ -1191,9 +1199,8 @@ rule <simple_instruction> !@pic18PiccoloSimpleInstruction outInstruction :
     or
       $xorlw$ ; literalInstruction := [@literal_instruction_opcode XORLW] ;
     end select ;
-    @location instructionLocation := here ;
-    @immediatExpression expression ;
-    <immediate_expression> ?expression ;
+    const @location instructionLocation := here ;
+    <immediate_expression> ??@immediatExpression expression ;
     outInstruction := [@pic18Instruction_literalOperation new
       !instructionLocation
       !literalInstruction

@@ -746,13 +746,15 @@ Le compilateur Piccolo détectera l’oubli de la sauvegarde par \piccolo{banksa
 
 Elles sont de deux types (la distinction est importante pour l’instruction \emph{conditionnelle simple}) :
 \begin{itemize}
-  \item les instructions simples ;
-  \item les instructions composées.
+  \item les instructions simples (\refSubsectionPage{instructionsSimplesPic18}) ;
+  \item les instructions composées (\refSubsectionPage{instructionsComposeesPic18}).
 
 \end{itemize}
 
 
-\textbf{Les instructions simples.} Elles correspondent à une partie des instructions assembleur. Attention, pour certaines, la syntaxe n'est pas exactement la même que celle de l'instruction assembleur correspondante. \textcolor{red}{\bf Dans sa version actuelle, Piccolo ne prend pas en charge le jeu d'instruction étendu.} Les \refTableau{instructionsPic18Assembleur1},  \refTableau{instructionsPic18Assembleur2} et \refTableau{instructionsPic18Assembleur3} donnent la liste des instructions assembleur \emph{pic18} et les liens vers les sections précisant leur prise en charge en Piccolo. Le \refTableau{pic18InstructionsPropresPiccolo} liste les instructions complémentaires disponibles en Piccolo.
+\subsectionLabel{Liste des instructions simples}{instructionsSimplesPic18}
+
+Elles correspondent à une partie des instructions assembleur. Attention, pour certaines, la syntaxe n'est pas exactement la même que celle de l'instruction assembleur correspondante. \textcolor{red}{\bf Dans sa version actuelle, Piccolo ne prend pas en charge le jeu d'instruction étendu.} Les \refTableau{instructionsPic18Assembleur1},  \refTableau{instructionsPic18Assembleur2} et \refTableau{instructionsPic18Assembleur3} donnent la liste des instructions assembleur \emph{pic18} et les liens vers les sections précisant leur prise en charge en Piccolo. Le \refTableau{pic18InstructionsPropresPiccolo} liste les instructions complémentaires disponibles en Piccolo.
  
 \begin{table}[!ht]
   \centering
@@ -948,6 +950,8 @@ Elles sont de deux types (la distinction est importante pour l’instruction \em
   \begin{tabular}{lll}
     \textbf{Piccolo} & \textbf{Description} & \textbf{Référence}\\
     \hline
+    \piccolo{fnop} & Instruction NOP & \refSubsectionPage{instructionFNOP} \\
+    \hline
     \piccolo{jump} & Appel de routine sans retour & \refSubsectionPage{appelRoutineSansRetourPic18} \\
     \hdashline
     \piccolo{jsr} & Appel de routine régulière &  \refSubsectionPage{appelRoutineRegulierePic18} \\
@@ -957,7 +961,11 @@ Elles sont de deux types (la distinction est importante pour l’instruction \em
   \labelTableau{pic18InstructionsPropresPiccolo}
 \end{table}
 
-\textbf{Les instructions composées.} Piccolo définit les instructions suivantes :
+
+
+\subsectionLabel{Liste des instructions composées}{instructionsComposeesPic18}
+
+Piccolo définit les instructions composées suivantes :
 \begin{itemize}
   \item l'instruction \piccolo{mnop} (\refSectionPage{instructionMNOP}) ;
   \item l'instruction \piccolo{ldataptr} (\refSubsectionPage{instructionLDATAPTR}) ;
@@ -1232,6 +1240,23 @@ Ces instructions sont listées dans le \refTableau{operationsPic18IdentiquesAsse
   \labelTableau{operationsPic18IdentiquesAssembleur}
 \end{table}
 
+
+
+
+
+
+
+
+
+
+
+
+\subsectionLabel{Instruction \texttt{fnop}}{instructionFNOP}\index{Instruction!fnop}
+
+
+\textbf{À partir de Piccolo 3.0.6.}
+
+L'instruction Piccolo \piccolo{fnop k}, où \piccolo{k} est une valeur immédiate comprise entre 0 et 4095 permet d'engendrer une instruction NOP dont le code est de la forme \texttt{0xFxxx}. Par exemple, \piccolo{fnop 0x123} engendre l'instruction dont le code est \texttt{0xF123}.
 
 \subsectionLabel{Instruction \texttt{lfsr}}{instructionLFSR}
 

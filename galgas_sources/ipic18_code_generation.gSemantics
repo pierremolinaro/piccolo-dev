@@ -174,6 +174,9 @@ end method ;
 
 routine ipic18GenerateCode
   ??@string inSourceFileName
+  ??@programKind inProgramKind
+  ??@uint inBootloaderReservedROMsize
+  ??@uint inROMsize
   ??@string inProcessorName
   ??@registerTable inPredefinedRegisters
   ??@registerTable inAllRegisters
@@ -261,7 +264,19 @@ routine ipic18GenerateCode
   if [option.verbose_output value] then
     message "  Relocatable code size: " . relocatableCodeSize . " bytes.\n\n" ;
   end if ;
-  outUsedROMsize := blockStartAddress ;
+#  outUsedROMsize := blockStartAddress ;
+  outUsedROMsize := dataAddress ;
+#----------------------------- Code too large ?
+  switch inProgramKind
+  when regularProgram, userProgram :
+    if outUsedROMsize > inROMsize then
+      error here : "the program uses " . outUsedROMsize . " bytes, greater than reserved size (" . inROMsize . " bytes)" ;
+    end if ;
+  when bootloaderProgram :
+    if outUsedROMsize > inBootloaderReservedROMsize then
+      error here : "the bootloader uses " . outUsedROMsize . " bytes, greater than reserved size (" . inBootloaderReservedROMsize . " bytes)" ;
+    end if ;
+  end switch ;
 #----------------------------- Generate HEX file
 #--- Add Configuration
   foreach inActualConfigurationMap do
