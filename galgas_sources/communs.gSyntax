@@ -114,8 +114,7 @@ rule <ram_definition>
   @declarationInRamList declarationInRamList [emptyList] ;
   repeat
   while
-    @declarationInRam declaration ;
-    <declaration_in_ram> ?declaration ;
+    <declaration_in_ram> ?@declarationInRam declaration ;
     declarationInRamList += !declaration ;
   end repeat ;
   ioRamDefinitionList += !bankName !declarationInRamList ;
@@ -128,10 +127,9 @@ rule <constant_definition>
   ?!@constantDefinitionList ioConstantDefinitionList
 :
   $const$ ;
-  $identifier$ ? @lstring constantName ;
+  $identifier$ ? @lstring constantName indexing constantDeclaration ;
   $=$ ;
-  @immediatExpression expression ;
-  <immediate_expression> ?expression ;
+  <immediate_expression> ?@immediatExpression expression ;
   ioConstantDefinitionList += !constantName !expression ;
 end rule ;
 
@@ -142,13 +140,11 @@ rule <immediate_expression> !@immediatExpression outExpression :
   repeat
   while
     $|$ ;
-    @immediatExpression rightExpression ;
-    <immediate_bitwise_term> ?rightExpression ;
+    <immediate_bitwise_term> ?@immediatExpression rightExpression ;
     outExpression := [@immediatOr new !outExpression! rightExpression] ;
   while
     $^$ ;
-    @immediatExpression rightExpression ;
-    <immediate_bitwise_term> ?rightExpression ;
+    <immediate_bitwise_term> ?@immediatExpression rightExpression ;
     outExpression := [@immediatXor new !outExpression! rightExpression] ;
   end repeat ;
 end rule ;

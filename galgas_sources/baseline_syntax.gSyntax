@@ -113,7 +113,7 @@ rule <baseline_routine_definition>
     noreturn := true ;
   end select ;
   $routine$ ;
-  $identifier$ ? @lstring routineName ;
+  $identifier$ ? @lstring routineName indexing routineDefinition ;
 #--- Page
   @luint page ;
   select
@@ -416,15 +416,15 @@ rule <baseline_simple_instruction> !@baseline_instruction outInstruction :
   or
     $goto$ ;
     @location instructionLocation := here ;
-    $identifier$ ? @lstring targetLabelName ;
+    $identifier$ ? @lstring targetLabelName indexing routineCall ;
     outInstruction := [@baseline_instruction_GOTO new
       !instructionLocation
       !targetLabelName
     ] ;
   or
     $call$ ;
-    @location instructionLocation := here ;
-    $identifier$ ? @lstring targetLabelName ;
+    const @location instructionLocation := here ;
+    $identifier$ ? @lstring targetLabelName indexing routineCall ;
     outInstruction := [@baseline_instruction_CALL new
       !instructionLocation
       !targetLabelName
