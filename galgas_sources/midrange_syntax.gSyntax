@@ -247,7 +247,7 @@ rule <midrange_routine_definition>
     noreturn := true ;
   end select ;
   $routine$ ;
-  $identifier$ ? @lstring routineName ;
+  $identifier$ ? @lstring routineName indexing routineDefinition ;
 #--- Page
   @luint page ;
   select
@@ -392,45 +392,6 @@ rule <midrange_structured_instruction>
   or
     $nobank$ ;
     outInstruction := [@midrange_instruction_nobanksel new !here] ;
-#  or
-#    $computed$ ;
-#    @location instructionLocation := here ;
-#    $[$ ;
-#    @immediatExpression sizeExpression ;
-#    <immediate_expression> ?sizeExpression ;
-#    $]$ ;
-#    select
-#      $retlw$ ;
-#      @immediatExpressionList argumentList [emptyList] ;
-#      repeat
-#        @immediatExpression expression ;
-#        <immediate_expression> ?expression ;
-#        argumentList += !expression ;
-#      while
-#        $,$ ;
-#      end repeat ;
-#      outInstruction := [@midrange_instruction_computed_retlw new
-#        !instructionLocation
-#        !sizeExpression
-#        !argumentList
-#      ] ;
-#      ioNeedsComputedGoto2 := true ;
-#    or
-#      $goto$ ;
-#      @lstringlist argumentList [emptyList] ;
-#      repeat
-#        $identifier$ ? @lstring targetRoutine ;
-#        argumentList += ! targetRoutine ;
-#      while
-#        $,$ ;
-#      end repeat ;
-#      outInstruction := [@midrange_instruction_computed_goto new
-#        !instructionLocation
-#        !sizeExpression
-#        !argumentList
-#      ] ;
-#      ioNeedsComputedGoto4 := true ;
-#    end select ;
   or
     $forever$ ;
     @location instructionLocation := here ;
@@ -704,15 +665,15 @@ rule <midrange_simple_instruction> !@midrange_instruction outInstruction :
   or
     $goto$ ;
     @location instructionLocation := here ;
-    $identifier$ ? @lstring targetLabelName ;
+    $identifier$ ? @lstring targetLabelName indexing routineCall ;
     outInstruction := [@midrange_instruction_GOTO new
       !instructionLocation
       !targetLabelName
     ] ;
   or
     $call$ ;
-    @location instructionLocation := here ;
-    $identifier$ ? @lstring targetLabelName ;
+    const @location instructionLocation := here ;
+    $identifier$ ? @lstring targetLabelName indexing routineCall ;
     outInstruction := [@midrange_instruction_CALL new
       !instructionLocation
       !targetLabelName

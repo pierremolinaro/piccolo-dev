@@ -18,6 +18,7 @@ indexing routineDefinition : "Routine Definition" ;
 indexing routineCall : "Routine Call" ;
 indexing variableDeclaration : "Variable Declaration" ;
 indexing variableUse : "Variable Use" ;
+indexing constantDeclaration : "Constant Declaration" ;
 
 # -------------------------- identifier or key word --------------------
 # keywords can be written in lower or upper case
