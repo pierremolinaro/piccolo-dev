@@ -29,6 +29,7 @@ Piccolo définit les instructions structurées suivantes :
   \item l'instruction \piccolo{mnop} (\refSectionPage{instructionMNOP}) ;
   \item l'instruction conditionnelle simple (\refSectionPage{instructionConditionnelleSimple}) ;
   \item l'instruction conditionnelle structurée (\refSectionPage{instructionConditionnelleStructuree}) ;
+  \item l'instruction \piccolo{switch} (\refSectionPage{instructionSwitch}, pour \emph{pic18} uniquement) ;
   \item l'instruction répétitive (\refSectionPage{instructionRepetitive}) ;
   \item l'instruction de répétition infinie (\refSectionPage{repetitionInfinie}) ;
   \item l'instruction de répétition statique (\refSectionPage{repetitionStatique}) ;
@@ -189,6 +190,68 @@ end
 
 
 
+\sectionLabel{Instruction \texttt{switch}}{instructionSwitch}
+
+\textbf{À partir de Piccolo 3.0.6, uniquement pour \emph{pic18}.}
+
+\lstset{emph={cst1, instructions1, cst2, instructions2, instructionsElse}, emphstyle=\emph}
+
+\begin{lstlisting}[language=piccolo]
+switch w
+case cst1 :
+  instructions1
+case cst2 :
+  instructions2
+else
+  instructionsElse
+end
+\end{lstlisting}
+
+Syntaxiquement, cette instruction accepte une ou plusieurs branches \piccolo{case}, et zéro ou une branche \piccolo{else}. L'absence de branche \piccolo{else} est équivalent à une branche \piccolo{else} vide.
+
+Cette instruction compare successivement le contenu de \piccolo{W} à différentes expressions constantes (ici \piccolo{cst1} et \piccolo{cst2}). Ces expressions constantes doivent être comprises entre $0$ et $255$. Dès qu'une comparaison avec \piccolo{W} détecte une égalité, la liste d'instructions correspondante est exécutée. Si aucune comparaison ne détecte d'égalité, la liste d'instructions qui suit le \piccolo{else} est exécutée. L'organigramme correspondant à l'exécution de l'instruction \piccolo{switch} ci-dessus est donné par la \refFigure{}{organigrammeSwitchW}.
+
+\begin{figure}[!ht]
+  \centering
+  \small
+  \begin{tikzpicture}[
+      cloud/.style ={draw=red, thick, ellipse,fill=red!20, minimum height=2em},
+      block/.style ={rectangle, draw=blue, thick, fill=green!20, align=center, minimum height=2em},
+      decision/.style={chamfered rectangle, draw=blue, thick, fill=green!20, minimum height=2em},
+      node distance=7mm
+    ]
+    \node [cloud] (start) {\textsc{début}} ;
+    \node [decision] (cca) [below=of start] {\tt W == cst1 ?} ;
+    \node [block] (instr) [right=of cca] {\tt instructions1} ;
+    \node [decision] (ccb) [below=of cca] {\tt W == cst2 ?} ;
+    \node [block] (instr2) [right=of ccb] {\tt instructions2} ;
+    \node [block] (else) [below=of ccb] {\tt instructionsElse} ;
+    \node [cloud] (end) [below=of else] {\textsc{fin}} ;
+    
+    \draw [-stealth, thick] (start) -- (cca) ;
+    \draw [o-stealth, thick] (cca) to node[right] {} (ccb) ;
+    \draw [-stealth, thick] (cca.east) to node[above] {} (instr) ;
+    \draw [o-stealth, thick] (ccb) to node[right] {} (else) ;
+    \draw [-stealth, thick] (ccb.east) to node[above] {} (instr2) ;
+    \draw [-stealth, thick] (else) to node[above] {} (end) ;
+    \draw [-stealth, thick] (instr.east) -- +(1, 0) |- (end.east) ;
+    \draw [-stealth, thick] (instr2.east) -- +(1, 0) ;
+  \end{tikzpicture}
+  \caption{Organigramme d'exécution d'une instruction \texttt{switch}}
+  \labelFigure{organigrammeSwitchW}
+\end{figure}
+
+
+\textbf{Notes :}
+\begin{itemize}
+  \item les comparaisons successives sont réalisées à l'aide d'instructions \piccolo{xorlw}, aussi la valeur de \piccolo{W} est modifiée durant les tests successifs; on ne peut donc pas l'utiliser de manière fiable au début des branches \piccolo{case} et de la branche \piccolo{else} ;
+  \item contrairement au langage C, l'exécution d'une branche ne se poursuit pas par l'exécution de la branche qui suit.
+\end{itemize}
+
+
+
+
+
 \sectionLabel{Instruction de répétition infinie}{repetitionInfinie}
 
 Cette instruction exprime la répétition infinie des instructions qu'elle contient.
@@ -269,9 +332,9 @@ end
   \small
   \begin{tikzpicture}[
       cloud/.style ={draw=red, thick, ellipse,fill=red!20, minimum height=2em},
-      block/.style ={rectangle, draw=blue, thick, fill=green!20, align=center},
-      decision/.style={chamfered rectangle, draw=blue, thick, fill=green!20},
-      node distance=10mm
+      block/.style ={rectangle, draw=blue, thick, fill=green!20, align=center, minimum height=2em},
+      decision/.style={chamfered rectangle, draw=blue, thick, fill=green!20, minimum height=2em},
+      node distance=7mm
     ]
     \node [cloud] (start) {\textsc{début}} ;
     \node [decision] (cca) [below=of start] {\tt cca ?} ;
@@ -279,9 +342,9 @@ end
     \node [cloud] (end) [below=of cca] {\textsc{fin}} ;
     
     \draw [          thick] (start) -- (cca) ;
-    \draw [-stealth, thick] (cca) to node[right] {\bf faux} (end) ;
-    \draw [-stealth, thick] (cca.east) to node[above] {\bf vrai} (instr) ;
-    \draw [-stealth, thick] (instr.east) -- +(1, 0) -- +(1, 1) -| (cca.north) ;
+    \draw [o-stealth, thick] (cca) to node[right] { } (end) ;
+    \draw [-stealth, thick] (cca.east) to node[above] { } (instr) ;
+    \draw [-stealth, thick] (instr.east) -- +(1, 0) -- +(1, 0.7) -| (cca.north) ;
   \end{tikzpicture}
   \caption{Organigramme d'exécution d'une instruction équivalente au  \texttt{while} \texttt{do} du langage C}
   \labelFigure{organigrammeDoWhile1}
@@ -300,9 +363,9 @@ end
   \small
   \begin{tikzpicture}[
       cloud/.style ={draw=red, thick, ellipse,fill=red!20, minimum height=2em},
-      block/.style ={rectangle, draw=blue, thick, fill=green!20, align=center},
-      decision/.style={chamfered rectangle, draw=blue, thick, fill=green!20},
-      node distance=10mm
+      block/.style ={rectangle, draw=blue, thick, fill=green!20, align=center, minimum height=2em},
+      decision/.style={chamfered rectangle, draw=blue, thick, fill=green!20, minimum height=2em},
+      node distance=7mm
     ]
     \node [cloud] (start) {\textsc{début}} ;
     \node [block] (init) [below=of start] {\tt instructions} ;
@@ -311,8 +374,8 @@ end
     
     \draw [          thick] (start) -- (init) ;
     \draw [-stealth, thick] (init) -- (cca) ;
-    \draw [-stealth, thick] (cca) to node[right] {\bf faux} (end) ;
-    \draw [-stealth, thick] (cca.east) to node[above] {\bf vrai} +(1.5, 0) -- +(1.5, 2.3) -| (init.north) ;
+    \draw [o-stealth, thick] (cca) to node[right] { } (end) ;
+    \draw [-stealth, thick] (cca.east) to node[above] { } +(1.5, 0) -- +(1.5, 2.3) -| (init.north) ;
   \end{tikzpicture}
   \caption{Organigramme d'exécution d'une instruction équivalente au \texttt{do} \texttt{while} du langage C}
   \labelFigure{organigrammeDoWhile2}
@@ -334,9 +397,9 @@ end
   \small
   \begin{tikzpicture}[
       cloud/.style ={draw=red, thick, ellipse,fill=red!20, minimum height=2em},
-      block/.style ={rectangle, draw=blue, thick, fill=green!20, align=center},
-      decision/.style={chamfered rectangle, draw=blue, thick, fill=green!20},
-      node distance=10mm
+      block/.style ={rectangle, draw=blue, thick, fill=green!20, align=center, minimum height=2em},
+      decision/.style={chamfered rectangle, draw=blue, thick, fill=green!20, minimum height=2em},
+      node distance=7mm
     ]
     \node [cloud] (start) {\textsc{début}} ;
     \node [block] (init) [below=of start] {\tt instructions 1} ;
@@ -348,11 +411,11 @@ end
     
     \draw [          thick] (start) -- (init) ;
     \draw [-stealth, thick] (init) -- (premierTest) ;
-    \draw [-stealth, thick] (premierTest) to node[above] {\bf vrai} (instr2) ;
-    \draw [-stealth, thick] (premierTest) to node[right] {\bf faux} (test2) ;
-    \draw [-stealth, thick] (test2) to node[above] {\bf vrai} (instr3) ;
-    \draw [-stealth, thick] (test2) to node[right] {\bf faux} (end) ;
-    \draw [-stealth, thick] (instr3.east) -- +(1, 0) -- +(1, 4) -| (init.north) ;
+    \draw [-stealth, thick] (premierTest) to node[above] { } (instr2) ;
+    \draw [o-stealth, thick] (premierTest) to node[right] { } (test2) ;
+    \draw [-stealth, thick] (test2) to node[above] { } (instr3) ;
+    \draw [o-stealth, thick] (test2) to node[right] { } (end) ;
+    \draw [-stealth, thick] (instr3.east) -- +(1, 0) -- +(1, 3.5) -| (init.north) ;
     \draw [-stealth, thick] (instr2.east) -- +(1, 0) ;
   \end{tikzpicture}
   \caption{Organigramme d'exécution d'une instruction \texttt{do} avec deux branches \texttt{while}}
