@@ -516,6 +516,37 @@ rule <structured_instruction>
   ?!@bool ioNeedsComputedGoto4
 :
   select
+    $switch$ ;
+    const @location instructionLocation := here ;
+    $w$ ;
+    @pic18SwitchInstructionCaseList caseList [emptyList] ;
+    repeat
+      $case$ ;
+      const @location caseLocation := here ;
+      <immediate_expression> ??@immediatExpression caseExpression ;
+      $:$ ;
+      <instruction_list> ??@pic18InstructionList instructionList !?ioNeedsComputedGoto2 !?ioNeedsComputedGoto4 ;
+      caseList += !caseLocation !caseExpression !instructionList ;
+    while
+    end repeat ;
+    @pic18InstructionList elseInstructionList ;
+    @location elseLocation ;
+    select
+      elseLocation := here ;
+      elseInstructionList := [@pic18InstructionList emptyList] ;
+    or
+      $else$ ;
+      elseLocation := here ;
+      <instruction_list> ?elseInstructionList !?ioNeedsComputedGoto2 !?ioNeedsComputedGoto4 ;
+    end select ;
+    outInstruction := [@pic18Instruction_switch new
+      !instructionLocation
+      !caseList
+      !elseLocation
+      !elseInstructionList
+    ] ;
+    $end$ ;
+  or
     $block$ ;
     const @location instructionLocation := here ;
     $identifier$ ?@lstring startBlockName ;
