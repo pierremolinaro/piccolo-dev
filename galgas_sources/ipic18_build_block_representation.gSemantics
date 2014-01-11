@@ -1852,7 +1852,7 @@ override method @pic18Instruction_switch analyze
   const @lstring exitLabel [new !"_label_" . [ioLocalLabelIndex string] !mInstructionLocation] ; 
   ioLocalLabelIndex ++ ;
 #--- Comparison value
-  @uint comparisonValue := 0 ;
+  @uint lastComparisonValue := 0 ;
 #--- By default, do not continue in sequence
   @bool continuesInSequence := false ;
 #---
@@ -1866,14 +1866,14 @@ override method @pic18Instruction_switch analyze
     if (result > 255LS) | (result < 0LS) then
       error mInstructionLocation:"case value is evaluated as " . [result string] . " (should be between 0 and 255)" ;
     end if ;
-  #--- Update comparison value
-    comparisonValue := comparisonValue ^ [result uint] ;
   #--- Generate xorlw instruction  
     ioGeneratedInstructionList += ![@ipic18_intermediate_instruction_literalOperation new
       !mInstructionLocation
       ![@literal_instruction_opcode XORLW]
-      !comparisonValue
+      !lastComparisonValue ^ [result uint]
     ] ;
+  #--- Update comparison value
+    lastComparisonValue := [result uint] ;
   #--- Labels
     const @lstring conditionTrueLabel [new !"_label_" . [ioLocalLabelIndex string] !mInstructionLocation] ; 
     ioLocalLabelIndex ++ ;
