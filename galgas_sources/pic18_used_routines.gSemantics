@@ -186,6 +186,17 @@ end method ;
 
 #---------------------------------------------------------------------------*
 
+override method @pic18Instruction_switch addUsedRoutines
+  ?!@stringset ioUsedRoutines
+:
+  foreach mCaseList do
+    addPic18UsedRoutinesFromInstructionList !mInstructionList !?ioUsedRoutines ;
+  end foreach ;
+  addPic18UsedRoutinesFromInstructionList !mElseInstructionList !?ioUsedRoutines ;
+end method ;
+
+#---------------------------------------------------------------------------*
+
 override method @pic18Instruction_FA addUsedRoutines
   ?!@stringset unused ioUsedRoutines
 :
