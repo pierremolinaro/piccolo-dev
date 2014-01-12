@@ -1832,6 +1832,12 @@ end method ;
 
 #----------------------------------------------------*
 
+map @caseConstantMap {
+  insert insertKey error message "the '%K' constant is already declared in %L" ;
+}
+
+#----------------------------------------------------*
+
 override method @pic18Instruction_switch analyze
   ??@uint inAccessBankSplitOffset
   ?!@ipic18BlockList ioGeneratedBlockList
@@ -1848,6 +1854,7 @@ override method @pic18Instruction_switch analyze
   ??@routineKind inRoutineKind
   ?!@stringset ioUsedRegisters
 :
+  @caseConstantMap caseConstantMap [emptyMap] ;
 #--- Labels
   const @lstring exitLabel [new !"_label_" . [ioLocalLabelIndex string] !mInstructionLocation] ; 
   ioLocalLabelIndex ++ ;
@@ -1869,7 +1876,14 @@ override method @pic18Instruction_switch analyze
       [mCaseExpression eval !inRegisterTable !inConstantMap ??@sint64 result !?ioUsedRegisters] ;
     #---
       if (result > 255LS) | (result < 0LS) then
-        error mInstructionLocation:"case value is evaluated as " . [result string] . " (should be between 0 and 255)" ;
+        error mInstructionLocation:"case value is evaluated as " . result . " (should be between 0 and 255)" ;
+      end if ;
+    #--- Check constant is unique
+      if [caseConstantMap hasKey ![result string]] then
+        error mCaseExpressionLocation : "the '" . result . "' constant is already used in switch instruction" ;
+        error [caseConstantMap locationForKey ![result string]] : "the '" . result . "' constant is used here" ;
+      else
+        [!?caseConstantMap insertKey ![@lstring new ![result string] !mCaseExpressionLocation]] ;
       end if ;
     #--- Generate xorlw instruction  
       ioGeneratedInstructionList += ![@ipic18_intermediate_instruction_literalOperation new
