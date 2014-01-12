@@ -78,7 +78,7 @@ class @pic18Instruction_repetitionStatique extends @pic18PiccoloInstruction {
 
 #----------------------------------------------------*
 
-#! Block Instruction
+#!--- Block Instruction
 
 #----------------------------------------------------*
 
@@ -125,11 +125,33 @@ class @pic18Instruction_block extends @pic18PiccoloInstruction {
 
 #----------------------------------------------------*
 
-list @pic18CaseExpressionList {
+#!--- Switch instruction
+
+#----------------------------------------------------*
+
+abstract class @pic18AbstractCaseItem {
+}
+
+#----------------------------------------------------*
+
+class @pic18SimpleConstantCaseItem extends @pic18AbstractCaseItem {
   @immediatExpression mCaseExpression ;
   @location mCaseExpressionLocation ;
 }
 
+#----------------------------------------------------*
+
+class @pic18IntervalCaseItem extends @pic18AbstractCaseItem {
+  @immediatExpression mMinExpression ;
+  @immediatExpression mMaxExpression ;
+  @location mCaseExpressionLocation ;
+}
+
+#----------------------------------------------------*
+
+list @pic18CaseExpressionList {
+  @pic18AbstractCaseItem mCaseItem ;
+}
 
 #----------------------------------------------------*
 

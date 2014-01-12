@@ -1830,13 +1830,187 @@ override method @pic18Instruction_structured_if analyze
   end if ;
 end method ;
 
-#----------------------------------------------------*
+#------------------------------------------------------------------------------*
+
+#!--- Switch instruction
+
+#------------------------------------------------------------------------------*
 
 map @caseConstantMap {
   insert insertKey error message "the '%K' constant is already declared in %L" ;
 }
 
-#----------------------------------------------------*
+#------------------------------------------------------------------------------*
+
+abstract method @pic18AbstractCaseItem analyzeCaseItem
+  ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
+  ??@lstring inConditionTrueLabel
+  ?!@stringset ioUsedRegisters
+  ?!@caseConstantMap ioCaseConstantMap
+  ?!@uint ioLocalLabelIndex
+  ?!@ipic18SequentialInstructionList ioGeneratedInstructionList
+  ?!@ipic18BlockList ioGeneratedBlockList
+  ?!@lstring ioBlockLabel
+  ?!@sint64 ioLastComparisonValue
+;
+
+#------------------------------------------------------------------------------*
+
+override method @pic18SimpleConstantCaseItem analyzeCaseItem
+  ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
+  ??@lstring inConditionTrueLabel
+  ?!@stringset ioUsedRegisters
+  ?!@caseConstantMap ioCaseConstantMap
+  ?!@uint ioLocalLabelIndex
+  ?!@ipic18SequentialInstructionList ioGeneratedInstructionList
+  ?!@ipic18BlockList ioGeneratedBlockList
+  ?!@lstring ioBlockLabel
+  ?!@sint64 ioLastComparisonValue
+:
+    [mCaseExpression eval !inRegisterTable !inConstantMap ??@sint64 result !?ioUsedRegisters] ;
+  #---
+    if (result > 255LS) | (result < 0LS) then
+      error mCaseExpressionLocation:"case value is evaluated as " . result . " (should be between 0 and 255)" ;
+    end if ;
+  #--- Check constant is unique
+    if [ioCaseConstantMap hasKey ![result string]] then
+      error mCaseExpressionLocation : "the '" . result . "' constant is already used in switch instruction" ;
+      error [ioCaseConstantMap locationForKey ![result string]] : "the '" . result . "' constant is used here" ;
+    else
+      [!?ioCaseConstantMap insertKey ![@lstring new ![result string] !mCaseExpressionLocation]] ;
+    end if ;
+  #--- Generate xorlw instruction  
+    ioGeneratedInstructionList += ![@ipic18_intermediate_instruction_literalOperation new
+      !mCaseExpressionLocation
+      ![@literal_instruction_opcode ADDLW]
+      ![(ioLastComparisonValue - result) & 0xFFLS uint]
+    ] ;
+  #--- Update comparison value
+    ioLastComparisonValue := result ;
+  #--- Condition false label
+    const @lstring conditionFalseLabel [new !"_label_" . [ioLocalLabelIndex string] !mCaseExpressionLocation] ; 
+    ioLocalLabelIndex ++ ;
+  #--- Terminate current block with a BZ instruction
+    const @ipic18AbstractBlockTerminator t := [@ipic18ConditionalJumpTerminator new
+      !mCaseExpressionLocation
+      ![@conditional_branch bz]
+      !inConditionTrueLabel
+      ![@conditionalBranchMode native]
+      !conditionFalseLabel
+      ![@conditionalBranchMode native]
+    ] ;
+  #--- Save current block block
+    ioGeneratedBlockList += ![@ipic18Block new
+      ![@uint max] # relocatable
+      !ioBlockLabel
+      !ioGeneratedInstructionList
+      !t
+    ] ;
+    ioGeneratedInstructionList := [@ipic18SequentialInstructionList emptyList] ;
+    ioBlockLabel := conditionFalseLabel ;
+ end method ;
+
+#------------------------------------------------------------------------------*
+
+override method @pic18IntervalCaseItem analyzeCaseItem
+  ??@registerTable inRegisterTable
+  ??@constantMap inConstantMap
+  ??@lstring inConditionTrueLabel
+  ?!@stringset ioUsedRegisters
+  ?!@caseConstantMap ioCaseConstantMap
+  ?!@uint ioLocalLabelIndex
+  ?!@ipic18SequentialInstructionList ioGeneratedInstructionList
+  ?!@ipic18BlockList ioGeneratedBlockList
+  ?!@lstring ioBlockLabel
+  ?!@sint64 ioLastComparisonValue
+:
+    [mMinExpression eval !inRegisterTable !inConstantMap ??@sint64 minBound !?ioUsedRegisters] ;
+    [mMaxExpression eval !inRegisterTable !inConstantMap ??@sint64 maxBound !?ioUsedRegisters] ;
+  #---
+    @bool ok := true ;
+    if (minBound > 255LS) | (minBound < 0LS) then
+      error mCaseExpressionLocation:"min bound is evaluated as " . minBound . " (should be between 0 and 255)" ;
+      ok := false ;
+    end if ;
+    if (maxBound > 255LS) | (maxBound < 0LS) then
+      error mCaseExpressionLocation:"max bound is evaluated as " . maxBound . " (should be between 0 and 255)" ;
+      ok := false ;
+    end if ;
+    if maxBound <= minBound then
+      error mCaseExpressionLocation:"max bound (" . maxBound . ") should be greater than low bound (" . minBound . ")" ;
+      ok := false ;
+    end if ;
+    if ok then
+    #--- Check constant is unique
+      for n in [@range new ![minBound uint] ![maxBound - minBound + 1LS uint]] do
+        if [ioCaseConstantMap hasKey ![n string]] then
+          error mCaseExpressionLocation : "the '" . n . "' constant is already used in switch instruction" ;
+          error [ioCaseConstantMap locationForKey ![n string]] : "the '" . n . "' constant is used here" ;
+        else
+          [!?ioCaseConstantMap insertKey ![@lstring new ![n string] !mCaseExpressionLocation]] ;
+        end if ;
+      end for ;
+    #--- Generate first addlw instruction  
+      ioGeneratedInstructionList += ![@ipic18_intermediate_instruction_literalOperation new
+        !mCaseExpressionLocation
+        ![@literal_instruction_opcode ADDLW]
+        ! [(ioLastComparisonValue - minBound) & 0xFFLS uint]
+      ] ;
+    #--- Labels
+      const @lstring greaterThanLowBoundLabel [new !"_label_" . [ioLocalLabelIndex string] !mCaseExpressionLocation] ; 
+      ioLocalLabelIndex ++ ;
+      const @lstring conditionFalseLabel [new !"_label_" . [ioLocalLabelIndex string] !mCaseExpressionLocation] ; 
+      ioLocalLabelIndex ++ ;
+    #--- Terminate current block with a BC instruction
+      const @ipic18AbstractBlockTerminator t := [@ipic18ConditionalJumpTerminator new
+        !mCaseExpressionLocation
+        ![@conditional_branch bc]
+        !greaterThanLowBoundLabel
+        ![@conditionalBranchMode native]
+        !conditionFalseLabel
+        ![@conditionalBranchMode native]
+      ] ;
+    #--- Save current block
+      ioGeneratedBlockList += ![@ipic18Block new
+        ![@uint max] # relocatable
+        !ioBlockLabel
+        !ioGeneratedInstructionList
+        !t
+      ] ;
+      ioGeneratedInstructionList := [@ipic18SequentialInstructionList emptyList] ;
+      ioBlockLabel := conditionFalseLabel ;
+    #--- Generate second addlw instruction  
+      ioGeneratedInstructionList += ![@ipic18_intermediate_instruction_literalOperation new
+        !mCaseExpressionLocation
+        ![@literal_instruction_opcode ADDLW]
+        ! [(- (maxBound - minBound + 1LS)) & 0xFFLS uint]
+      ] ;
+    #--- Terminate current block with a BC instruction
+      const @ipic18AbstractBlockTerminator t2 := [@ipic18ConditionalJumpTerminator new
+        !mCaseExpressionLocation
+        ![@conditional_branch bc]
+        !conditionFalseLabel
+        ![@conditionalBranchMode native]
+        !inConditionTrueLabel
+        ![@conditionalBranchMode native]
+      ] ;
+    #--- Save current block
+      ioGeneratedBlockList += ![@ipic18Block new
+        ![@uint max] # relocatable
+        !greaterThanLowBoundLabel
+        !ioGeneratedInstructionList
+        !t2
+      ] ;
+      ioGeneratedInstructionList := [@ipic18SequentialInstructionList emptyList] ;
+      ioBlockLabel := conditionFalseLabel ;
+    #--- Update comparison value
+      ioLastComparisonValue := maxBound + 1 ;
+    end if ;
+ end method ;
+
+#------------------------------------------------------------------------------*
 
 override method @pic18Instruction_switch analyze
   ??@uint inAccessBankSplitOffset
@@ -1859,7 +2033,7 @@ override method @pic18Instruction_switch analyze
   const @lstring exitLabel [new !"_label_" . [ioLocalLabelIndex string] !mInstructionLocation] ; 
   ioLocalLabelIndex ++ ;
 #--- Comparison value
-  @uint lastComparisonValue := 0 ;
+  @sint64 lastComparisonValue := 0LS ;
 #--- By default, do not continue in sequence
   @bool continuesInSequence := false ;
 #---
@@ -1873,47 +2047,59 @@ override method @pic18Instruction_switch analyze
     ioLocalLabelIndex ++ ;
   #--- Generate test blocks
     foreach mCaseExpressionList do
-      [mCaseExpression eval !inRegisterTable !inConstantMap ??@sint64 result !?ioUsedRegisters] ;
-    #---
-      if (result > 255LS) | (result < 0LS) then
-        error mInstructionLocation:"case value is evaluated as " . result . " (should be between 0 and 255)" ;
-      end if ;
-    #--- Check constant is unique
-      if [caseConstantMap hasKey ![result string]] then
-        error mCaseExpressionLocation : "the '" . result . "' constant is already used in switch instruction" ;
-        error [caseConstantMap locationForKey ![result string]] : "the '" . result . "' constant is used here" ;
-      else
-        [!?caseConstantMap insertKey ![@lstring new ![result string] !mCaseExpressionLocation]] ;
-      end if ;
-    #--- Generate xorlw instruction  
-      ioGeneratedInstructionList += ![@ipic18_intermediate_instruction_literalOperation new
-        !mInstructionLocation
-        ![@literal_instruction_opcode XORLW]
-        !lastComparisonValue ^ [result uint]
-      ] ;
-    #--- Update comparison value
-      lastComparisonValue := [result uint] ;
-    #--- Condition false label
-      const @lstring conditionFalseLabel [new !"_label_" . [ioLocalLabelIndex string] !mInstructionLocation] ; 
-      ioLocalLabelIndex ++ ;
-    #--- Terminate current block with a BZ instruction
-      const @ipic18AbstractBlockTerminator t := [@ipic18ConditionalJumpTerminator new
-        !mInstructionLocation
-        ![@conditional_branch bz]
+      [mCaseItem analyzeCaseItem
+        !inRegisterTable
+        !inConstantMap
         !conditionTrueLabel
-        ![@conditionalBranchMode native]
-        !conditionFalseLabel
-        ![@conditionalBranchMode native]
+        !?ioUsedRegisters
+        !?caseConstantMap
+        !?ioLocalLabelIndex
+        !?ioGeneratedInstructionList
+        !?ioGeneratedBlockList
+        !?ioBlockLabel
+        !?lastComparisonValue
       ] ;
-    #--- Save current block block
-      ioGeneratedBlockList += ![@ipic18Block new
-        ![@uint max] # relocatable
-        !ioBlockLabel
-        !ioGeneratedInstructionList
-        !t
-      ] ;
-      ioGeneratedInstructionList := [@ipic18SequentialInstructionList emptyList] ;
-      ioBlockLabel := conditionFalseLabel ;
+#      [mCaseExpression eval !inRegisterTable !inConstantMap ??@sint64 result !?ioUsedRegisters] ;
+#    #---
+#      if (result > 255LS) | (result < 0LS) then
+#        error mInstructionLocation:"case value is evaluated as " . result . " (should be between 0 and 255)" ;
+#      end if ;
+#    #--- Check constant is unique
+#      if [caseConstantMap hasKey ![result string]] then
+#        error mCaseExpressionLocation : "the '" . result . "' constant is already used in switch instruction" ;
+#        error [caseConstantMap locationForKey ![result string]] : "the '" . result . "' constant is used here" ;
+#      else
+#        [!?caseConstantMap insertKey ![@lstring new ![result string] !mCaseExpressionLocation]] ;
+#      end if ;
+#    #--- Generate xorlw instruction  
+#      ioGeneratedInstructionList += ![@ipic18_intermediate_instruction_literalOperation new
+#        !mInstructionLocation
+#        ![@literal_instruction_opcode XORLW]
+#        !lastComparisonValue ^ [result uint]
+#      ] ;
+#    #--- Update comparison value
+#      lastComparisonValue := [result uint] ;
+#    #--- Condition false label
+#      const @lstring conditionFalseLabel [new !"_label_" . [ioLocalLabelIndex string] !mInstructionLocation] ; 
+#      ioLocalLabelIndex ++ ;
+#    #--- Terminate current block with a BZ instruction
+#      const @ipic18AbstractBlockTerminator t := [@ipic18ConditionalJumpTerminator new
+#        !mInstructionLocation
+#        ![@conditional_branch bz]
+#        !conditionTrueLabel
+#        ![@conditionalBranchMode native]
+#        !conditionFalseLabel
+#        ![@conditionalBranchMode native]
+#      ] ;
+#    #--- Save current block block
+#      ioGeneratedBlockList += ![@ipic18Block new
+#        ![@uint max] # relocatable
+#        !ioBlockLabel
+#        !ioGeneratedInstructionList
+#        !t
+#      ] ;
+#      ioGeneratedInstructionList := [@ipic18SequentialInstructionList emptyList] ;
+#      ioBlockLabel := conditionFalseLabel ;
     end foreach ;
   #--- Analyze instruction list
     const @lstring conditionFalseLabel := ioBlockLabel ;
