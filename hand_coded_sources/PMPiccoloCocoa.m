@@ -82,7 +82,13 @@
  //--- Create task
     mTask = [NSTask new] ;
     [mTask setLaunchPath:[commandLineArray objectAtIndex:0]] ;
-    [mTask setArguments:[NSArray arrayWithObject:inOption]] ;
+    [mTask
+      setArguments:[NSArray arrayWithObjects:
+        @"--no-color",
+        inOption,
+        nil
+      ]
+    ] ;
     // NSLog (@"'%@' %@", [mTask launchPath], arguments) ;
   //--- Set standard output notification
     mPipe = [NSPipe pipe] ;
