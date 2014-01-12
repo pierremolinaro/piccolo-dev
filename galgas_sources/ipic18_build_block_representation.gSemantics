@@ -1861,42 +1861,48 @@ override method @pic18Instruction_switch analyze
   @bool finalBankSettingDefined := false ;
 #---
   foreach mCaseList do
-    [mCaseExpression eval !inRegisterTable !inConstantMap ??@sint64 result !?ioUsedRegisters] ;
-  #---
-    if (result > 255LS) | (result < 0LS) then
-      error mInstructionLocation:"case value is evaluated as " . [result string] . " (should be between 0 and 255)" ;
-    end if ;
-  #--- Generate xorlw instruction  
-    ioGeneratedInstructionList += ![@ipic18_intermediate_instruction_literalOperation new
-      !mInstructionLocation
-      ![@literal_instruction_opcode XORLW]
-      !lastComparisonValue ^ [result uint]
-    ] ;
-  #--- Update comparison value
-    lastComparisonValue := [result uint] ;
-  #--- Labels
+  #--- Label
     const @lstring conditionTrueLabel [new !"_label_" . [ioLocalLabelIndex string] !mInstructionLocation] ; 
     ioLocalLabelIndex ++ ;
-    const @lstring conditionFalseLabel [new !"_label_" . [ioLocalLabelIndex string] !mInstructionLocation] ; 
-    ioLocalLabelIndex ++ ;
-  #--- Terminate current block with a BZ instruction
-    const @ipic18AbstractBlockTerminator t := [@ipic18ConditionalJumpTerminator new
-      !mInstructionLocation
-      ![@conditional_branch bz]
-      !conditionTrueLabel
-      ![@conditionalBranchMode native]
-      !conditionFalseLabel
-      ![@conditionalBranchMode native]
-    ] ;
-  #--- Save current block block
-    ioGeneratedBlockList += ![@ipic18Block new
-      ![@uint max] # relocatable
-      !ioBlockLabel
-      !ioGeneratedInstructionList
-      !t
-    ] ;
-    ioGeneratedInstructionList := [@ipic18SequentialInstructionList emptyList] ;
+  #--- Generate test blocks
+    foreach mCaseExpressionList do
+      [mCaseExpression eval !inRegisterTable !inConstantMap ??@sint64 result !?ioUsedRegisters] ;
+    #---
+      if (result > 255LS) | (result < 0LS) then
+        error mInstructionLocation:"case value is evaluated as " . [result string] . " (should be between 0 and 255)" ;
+      end if ;
+    #--- Generate xorlw instruction  
+      ioGeneratedInstructionList += ![@ipic18_intermediate_instruction_literalOperation new
+        !mInstructionLocation
+        ![@literal_instruction_opcode XORLW]
+        !lastComparisonValue ^ [result uint]
+      ] ;
+    #--- Update comparison value
+      lastComparisonValue := [result uint] ;
+    #--- Condition false label
+      const @lstring conditionFalseLabel [new !"_label_" . [ioLocalLabelIndex string] !mInstructionLocation] ; 
+      ioLocalLabelIndex ++ ;
+    #--- Terminate current block with a BZ instruction
+      const @ipic18AbstractBlockTerminator t := [@ipic18ConditionalJumpTerminator new
+        !mInstructionLocation
+        ![@conditional_branch bz]
+        !conditionTrueLabel
+        ![@conditionalBranchMode native]
+        !conditionFalseLabel
+        ![@conditionalBranchMode native]
+      ] ;
+    #--- Save current block block
+      ioGeneratedBlockList += ![@ipic18Block new
+        ![@uint max] # relocatable
+        !ioBlockLabel
+        !ioGeneratedInstructionList
+        !t
+      ] ;
+      ioGeneratedInstructionList := [@ipic18SequentialInstructionList emptyList] ;
+      ioBlockLabel := conditionFalseLabel ;
+    end foreach ;
   #--- Analyze instruction list
+    const @lstring conditionFalseLabel := ioBlockLabel ;
     ioBlockLabel := conditionTrueLabel ;
     @uint branchFinalBank := initialBankSetting ;
     analyzeInstructionList

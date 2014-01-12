@@ -125,9 +125,16 @@ class @pic18Instruction_block extends @pic18PiccoloInstruction {
 
 #----------------------------------------------------*
 
+list @pic18CaseExpressionList {
+  @immediatExpression mCaseExpression ;
+}
+
+
+#----------------------------------------------------*
+
 list @pic18SwitchInstructionCaseList {
   @location mStartOfCase ;
-  @immediatExpression mCaseExpression ;
+  @pic18CaseExpressionList mCaseExpressionList ;
   @pic18InstructionList mInstructionList ;
 }
 
