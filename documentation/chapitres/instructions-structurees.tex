@@ -245,7 +245,8 @@ Cette instruction compare successivement le contenu de \piccolo{W} à différent
 
 \textbf{Notes :}
 \begin{itemize}
-  \item les comparaisons successives sont réalisées à l'aide d'instructions \piccolo{xorlw}, aussi la valeur de \piccolo{W} est modifiée durant les tests successifs; on ne peut donc pas prévoir sa valeur de manière fiable au début des branches \piccolo{case} et de la branche \piccolo{else} ;
+  \item les comparaisons successives sont réalisées à l'aide d'instructions \assembleur{ADDLW}, aussi la valeur de \piccolo{W} est modifiée durant les tests successifs; on ne peut donc pas prévoir sa valeur de manière fiable au début des branches \piccolo{case} et de la branche \piccolo{else} ;
+  \item le coût d'une comparaison est deux instructions assembleur : une instruction \assembleur{ADDLW}, et une instruction \assembleur{BZ} ou  \assembleur{BNZ} ;
   \item contrairement au langage C, l'exécution d'une branche ne se poursuit pas par l'exécution de la branche qui suit ;
   \item le compilateur vérifie qu'une constante n'est pas nommée plusieurs fois : un message d'erreur est engendré si cette règle n'est pas respectée.
 \end{itemize}
@@ -265,7 +266,30 @@ else
 end
 \end{lstlisting}
 
-Les instructions associées à une branche \piccolo{case} sont exécutées si \piccolo{W} est égal à l'une des constantes citées.
+Les instructions associées à une branche \piccolo{case} sont exécutées si \piccolo{W} est égal à l'une des constantes citées. Le coût est deux instructions assembleur par constante citée.
+
+
+\subsection{Citer un intervalle dans une branche \texttt{case}}
+
+Il est possible de citer un intervalle dans une branche \piccolo{case} :
+\begin{lstlisting}[language=piccolo]
+switch w
+case [cst1, cst2] :
+  instructions1 # Executees si W >= cst1 et W <= cst2
+case cst3 :
+  instructions2 # Executees si W == cst3
+else
+  instructionsElse
+end
+\end{lstlisting}
+
+L'intervalle doit être valide, c'est à dire \piccolo{cst1 < cst2}. Les instructions associées à cette branche \piccolo{case} sont exécutées si \piccolo{W} est dans l'intervalle cité. Le coût est quatre instructions assembleur : deux instructions \assembleur{ADDLW}, et deux instructions \assembleur{BC} ou  \assembleur{BNC}. Il est donc plus rentable de citer un intervalle plutôt que les constantes une par une.
+
+Il est possible de panacher intervalles et constantes ; il est valide d'écrire par exemple :
+\begin{lstlisting}[language=piccolo]
+case [4, 8], 10, [23, 35], 44 : ...
+\end{lstlisting}
+
 
 
 

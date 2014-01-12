@@ -525,8 +525,17 @@ rule <structured_instruction>
       const @location caseLocation := here ;
       @pic18CaseExpressionList caseExpressionList [emptyList] ;
       repeat
-        <immediate_expression> ??@immediatExpression caseExpression ;
-        caseExpressionList += !caseExpression !here ;
+        select
+          <immediate_expression> ??@immediatExpression caseExpression ;
+          caseExpressionList += ![@pic18SimpleConstantCaseItem new !caseExpression !here] ;
+        or
+          $[$ ;
+          <immediate_expression> ??@immediatExpression minExpression ;
+          $,$ ;
+          <immediate_expression> ??@immediatExpression maxExpression ;
+          $]$ ;
+          caseExpressionList += ![@pic18IntervalCaseItem new !minExpression !maxExpression !here] ;
+        end select ;
       while
         $,$ ;
       end repeat ;
