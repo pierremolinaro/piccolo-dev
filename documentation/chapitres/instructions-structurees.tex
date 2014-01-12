@@ -239,13 +239,15 @@ Cette instruction compare successivement le contenu de \piccolo{W} à différent
   \end{tikzpicture}
   \caption{Organigramme d'exécution d'une instruction \texttt{switch}}
   \labelFigure{organigrammeSwitchW}
+  \dotfill
 \end{figure}
 
 
 \textbf{Notes :}
 \begin{itemize}
   \item les comparaisons successives sont réalisées à l'aide d'instructions \piccolo{xorlw}, aussi la valeur de \piccolo{W} est modifiée durant les tests successifs; on ne peut donc pas prévoir sa valeur de manière fiable au début des branches \piccolo{case} et de la branche \piccolo{else} ;
-  \item contrairement au langage C, l'exécution d'une branche ne se poursuit pas par l'exécution de la branche qui suit.
+  \item contrairement au langage C, l'exécution d'une branche ne se poursuit pas par l'exécution de la branche qui suit ;
+  \item le compilateur vérifie qu'une constante n'est pas nommée plusieurs fois : un message d'erreur est engendré si cette règle n'est pas respectée.
 \end{itemize}
 
 
@@ -366,6 +368,7 @@ end
   \end{tikzpicture}
   \caption{Organigramme d'exécution d'une instruction équivalente au  \texttt{while} \texttt{do} du langage C}
   \labelFigure{organigrammeDoWhile1}
+  \dotfill
 \end{figure}
 
 La construction suivante a une exécution équivalente à l'instruction \texttt{do \{ instructions \} while (cca) ;} du langage C (\refFigure{}{organigrammeDoWhile2}) :
@@ -397,6 +400,7 @@ end
   \end{tikzpicture}
   \caption{Organigramme d'exécution d'une instruction équivalente au \texttt{do} \texttt{while} du langage C}
   \labelFigure{organigrammeDoWhile2}
+  \dotfill
 \end{figure}
 
 Enfin, voici un exemple avec deux branches \piccolo{while} (\refFigure{}{organigrammeDoWhile3}) :
@@ -438,6 +442,7 @@ end
   \end{tikzpicture}
   \caption{Organigramme d'exécution d'une instruction \texttt{do} avec deux branches \texttt{while}}
   \labelFigure{organigrammeDoWhile3}
+  \dotfill
 \end{figure}
 
 
