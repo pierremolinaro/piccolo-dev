@@ -194,22 +194,22 @@ end
 
 \textbf{À partir de Piccolo 3.0.6, uniquement pour \emph{pic18}.}
 
-\lstset{emph={cst1, instructions1, cst2, instructions2, instructionsElse}, emphstyle=\emph}
+\lstset{emph={cst1, instructions1, cst2, instructions2, instructionsElse, cst3}, emphstyle=\emph}
 
 \begin{lstlisting}[language=piccolo]
 switch w
 case cst1 :
-  instructions1
+  instructions1 # Executees si W == cst1
 case cst2 :
-  instructions2
+  instructions2 # Executees si W == cst2
 else
-  instructionsElse
+  instructionsElse # Executees si W != cst1 et W != cst2
 end
 \end{lstlisting}
 
 Syntaxiquement, cette instruction accepte une ou plusieurs branches \piccolo{case}, et zéro ou une branche \piccolo{else}. L'absence de branche \piccolo{else} est équivalent à une branche \piccolo{else} vide.
 
-Cette instruction compare successivement le contenu de \piccolo{W} à différentes expressions constantes (ici \piccolo{cst1} et \piccolo{cst2}). Ces expressions constantes doivent être comprises entre $0$ et $255$. Dès qu'une comparaison avec \piccolo{W} détecte une égalité, la liste d'instructions correspondante est exécutée. Si aucune comparaison ne détecte d'égalité, la liste d'instructions qui suit le \piccolo{else} est exécutée. L'organigramme correspondant à l'exécution de l'instruction \piccolo{switch} ci-dessus est donné par la \refFigure{}{organigrammeSwitchW}.
+Cette instruction compare successivement le contenu de \piccolo{W} à différentes expressions constantes (ici \piccolo{cst1} puis \piccolo{cst2}). Ces expressions constantes doivent être comprises entre $0$ et $255$. Dès qu'une comparaison avec \piccolo{W} détecte une égalité, la liste d'instructions correspondante est exécutée. Si aucune comparaison ne détecte d'égalité, la liste d'instructions qui suit le \piccolo{else} est exécutée. L'organigramme correspondant à l'exécution de l'instruction \piccolo{switch} ci-dessus est donné par la \refFigure{}{organigrammeSwitchW}.
 
 \begin{figure}[!ht]
   \centering
@@ -244,9 +244,27 @@ Cette instruction compare successivement le contenu de \piccolo{W} à différent
 
 \textbf{Notes :}
 \begin{itemize}
-  \item les comparaisons successives sont réalisées à l'aide d'instructions \piccolo{xorlw}, aussi la valeur de \piccolo{W} est modifiée durant les tests successifs; on ne peut donc pas l'utiliser de manière fiable au début des branches \piccolo{case} et de la branche \piccolo{else} ;
+  \item les comparaisons successives sont réalisées à l'aide d'instructions \piccolo{xorlw}, aussi la valeur de \piccolo{W} est modifiée durant les tests successifs; on ne peut donc pas prévoir sa valeur de manière fiable au début des branches \piccolo{case} et de la branche \piccolo{else} ;
   \item contrairement au langage C, l'exécution d'une branche ne se poursuit pas par l'exécution de la branche qui suit.
 \end{itemize}
+
+
+\subsection{Citer plusieurs constantes dans une branche \texttt{case}}
+
+Il est possible de citer plusieurs constantes dans une branche \piccolo{case} :
+\begin{lstlisting}[language=piccolo]
+switch w
+case cst1 :
+  instructions1 # Executees si W == cst1
+case cst2, cst3 :
+  instructions2 # Executees si W == cst2 ou W == cst3
+else
+  instructionsElse # Executees si W != cst1 et W != cst2 et W != cst3
+end
+\end{lstlisting}
+
+Les instructions associées à une branche \piccolo{case} sont exécutées si \piccolo{W} est égal à l'une des constantes citées.
+
 
 
 
