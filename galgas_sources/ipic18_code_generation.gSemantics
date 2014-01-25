@@ -207,6 +207,7 @@ routine ipic18GenerateCode
     dataAddress := dataAddress + [mData length] * 2 ;
   end foreach ; 
 #---------------------------------- Generate code
+  initCodeGenerator ;
   @string assemblyString := "" ;
   @uint relocatableCodeSize := 0 ;
   @uint blockStartAddress := 0 ;

@@ -347,6 +347,7 @@ routine baseline_analysis
     perform_baseline_optimizations !?intermediateInstructionList !?listFileContents ;
   end if ;
 #-------------------------------- Build assembly instruction list
+  initCodeGenerator ;
   const @registerExpression sr [new ![@lstring new !"STATUS" !here] ![@luint new !0 !here]] ;
   [sr resolveBaselineAccess
     !registerTable

@@ -692,6 +692,7 @@ routine build_midrange_ipic_binary_code
   ioListFileContents .= "*" . ["GENERATED CODE" stringByLeftAndRightPadding !77 !' '] . "*\n" ;
   ioListFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n\n" ;
   ioListFileContents .= "Address Code Mnemonic\n" ;
+  initCodeGenerator ;
   currentAddress := 0 ;
   setEmitAddress !0 ;
   foreach inGeneratedInstructionList do
