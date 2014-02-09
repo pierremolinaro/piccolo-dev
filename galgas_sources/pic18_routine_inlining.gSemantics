@@ -18,6 +18,7 @@ map @declaredRoutineMap {
 method @pic18PiccoloInstruction performInlining
   ??@stringset unused inInlinedRoutineSet
   ??@declaredRoutineMap unused inDeclaredRoutineMap
+  ??@stringset unused inCurrentlyInlinedRoutineSet
   ?!@pic18InstructionList ioInstructionList
 :
   ioInstructionList += !selfcopy ;
@@ -28,12 +29,14 @@ end method ;
 override method @pic18Instruction_FOREVER performInlining
   ??@stringset inInlinedRoutineSet
   ??@declaredRoutineMap inDeclaredRoutineMap
+  ??@stringset inCurrentlyInlinedRoutineSet
   ?!@pic18InstructionList ioInstructionList
 :
   performInlineFromInstructionList
     !mInstructionList
     !inInlinedRoutineSet
     !inDeclaredRoutineMap
+    !inCurrentlyInlinedRoutineSet
     ??@pic18InstructionList instructionList
   ;
   ioInstructionList += ![@pic18Instruction_FOREVER new
@@ -48,12 +51,14 @@ end method ;
 override method @pic18Instruction_do_while performInlining
   ??@stringset inInlinedRoutineSet
   ??@declaredRoutineMap inDeclaredRoutineMap
+  ??@stringset inCurrentlyInlinedRoutineSet
   ?!@pic18InstructionList ioInstructionList
 :
   performInlineFromInstructionList
     !mRepeatedInstructionList
     !inInlinedRoutineSet
     !inDeclaredRoutineMap
+    !inCurrentlyInlinedRoutineSet
     ??@pic18InstructionList repeatedInstructionList
   ;
   @pic18DoWhilePartList whilePartList [emptyList] ;
@@ -62,6 +67,7 @@ override method @pic18Instruction_do_while performInlining
       !mInstructionList
       !inInlinedRoutineSet
       !inDeclaredRoutineMap
+      !inCurrentlyInlinedRoutineSet
       ??@pic18InstructionList instructionList
     ;
     whilePartList += !mCondition !instructionList !mEndOfPartLocation ;
@@ -79,12 +85,14 @@ end method ;
 override method @pic18Instruction_savebank performInlining
   ??@stringset inInlinedRoutineSet
   ??@declaredRoutineMap inDeclaredRoutineMap
+  ??@stringset inCurrentlyInlinedRoutineSet
   ?!@pic18InstructionList ioInstructionList
 :
   performInlineFromInstructionList
     !mInstructionList
     !inInlinedRoutineSet
     !inDeclaredRoutineMap
+    !inCurrentlyInlinedRoutineSet
     ??@pic18InstructionList instructionList
   ;
   ioInstructionList += ![@pic18Instruction_savebank new
@@ -100,18 +108,21 @@ end method ;
 override method @pic18Instruction_structured_if performInlining
   ??@stringset inInlinedRoutineSet
   ??@declaredRoutineMap inDeclaredRoutineMap
+  ??@stringset inCurrentlyInlinedRoutineSet
   ?!@pic18InstructionList ioInstructionList
 :
   performInlineFromInstructionList
     !mThenInstructionList
     !inInlinedRoutineSet
     !inDeclaredRoutineMap
+    !inCurrentlyInlinedRoutineSet
     ??@pic18InstructionList thenInstructionList
   ;
   performInlineFromInstructionList
     !mElseInstructionList
     !inInlinedRoutineSet
     !inDeclaredRoutineMap
+    !inCurrentlyInlinedRoutineSet
     ??@pic18InstructionList elseInstructionList
   ;
   ioInstructionList += ![@pic18Instruction_structured_if new
@@ -128,10 +139,13 @@ end method ;
 override method @pic18Instruction_JSR performInlining
   ??@stringset inInlinedRoutineSet
   ??@declaredRoutineMap inDeclaredRoutineMap
+  ??@stringset inCurrentlyInlinedRoutineSet
   ?!@pic18InstructionList ioInstructionList
 :
   @bool inlineDone ;
-  if [inDeclaredRoutineMap hasKey !mTargetLabel->string] & [inInlinedRoutineSet hasKey !mTargetLabel->string] then
+  if [inDeclaredRoutineMap hasKey !mTargetLabel->string]
+   & [inInlinedRoutineSet hasKey !mTargetLabel->string]
+   & not [inCurrentlyInlinedRoutineSet hasKey !mTargetLabel->string] then
     [inDeclaredRoutineMap searchKey
       !mTargetLabel
       ??@luint requiredBank
@@ -146,10 +160,17 @@ override method @pic18Instruction_JSR performInlining
       if requiredBank->uint != [@uint max] then
         ioInstructionList += ![@pic18Instruction_checkbank new !mInstructionLocation !requiredBank->uint] ;
       end if ;
-      ioInstructionList .= instructionList ;
-#      if returnedBank->uint != [@uint max] then
-#        ioInstructionList += ![@pic18Instruction_checkbank new !mInstructionLocation !returnedBank->uint] ;
-#      end if ;
+      @stringset currentlyInlinedRoutineSet := inCurrentlyInlinedRoutineSet ;
+      currentlyInlinedRoutineSet += !mTargetLabel->string ;
+      #ioInstructionList .= instructionList ;
+      foreach instructionList do
+        [mInstruction performInlining
+          !inInlinedRoutineSet
+          !inDeclaredRoutineMap
+          !currentlyInlinedRoutineSet
+          !?ioInstructionList
+        ] ;
+      end foreach ;
       inlineDone := true ;
     end if ;
   else 
@@ -166,6 +187,7 @@ local routine performInlineFromInstructionList
   ??@pic18InstructionList inInstructionList
   ??@stringset inInlinedRoutineSet
   ??@declaredRoutineMap inDeclaredRoutineMap
+  ??@stringset inCurrentlyInlinedRoutineSet
   !@pic18InstructionList outInstructionList
 :
   outInstructionList := [@pic18InstructionList emptyList] ;
@@ -173,6 +195,7 @@ local routine performInlineFromInstructionList
     [mInstruction performInlining
       !inInlinedRoutineSet
       !inDeclaredRoutineMap
+      !inCurrentlyInlinedRoutineSet
       !?outInstructionList
    ] ;
   end foreach ;
@@ -193,6 +216,7 @@ routine pic18PerformRoutineInline
       !mInstructionList
       !inInlinedRoutineSet
       !inDeclaredRoutineMap
+      ![@stringset emptySet]
       ??@pic18InstructionList instructionList
     ;
     interruptDefinitionList +=
@@ -210,6 +234,7 @@ routine pic18PerformRoutineInline
       !mInstructionList
       !inInlinedRoutineSet
       !inDeclaredRoutineMap
+      ![@stringset emptySet]
       ??@pic18InstructionList instructionList
     ;
     routineDefinitionList +=
