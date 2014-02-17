@@ -110,7 +110,7 @@ override method @midrange_intermediate_incDecRegisterInCondition buildAssemblyCo
   end if ;
   ioString .= "\n" ;
   if mBranchIfZero then
-    @string localLabel := "_local_label_" . [ioLocalLabelIndex string] ; ioLocalLabelIndex ++ ;
+    const @string localLabel := ".LL" . [ioLocalLabelIndex string] ; ioLocalLabelIndex ++ ;
     ioString .= "  GOTO " . localLabel . "\n" ;
     ioString .= "  GOTO " . mTargetLabel . "\n" ;
     ioString .= localLabel . ":\n" ;

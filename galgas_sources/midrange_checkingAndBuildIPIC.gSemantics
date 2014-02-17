@@ -929,7 +929,7 @@ override method @midrange_instruction_FOREVER build_midrange_ipic_instructionLis
   end switch ;
 #--- Check instruction list does not change bank
   @uint finalBank := ioCurrentBank ;
-  @string label0 := "_label_" . [ioLocalLabelIndex string] ; 
+  @string label0 := ".L" . [ioLocalLabelIndex string] ; 
   ioLocalLabelIndex ++ ;
   ioGeneratedInstructionList += ![@midrange_intermediate_pseudo_LABEL new ![@lstring new !label0 !mInstructionLocation] !true] ;
   handleMidrangeInstructionList
@@ -1227,7 +1227,7 @@ override method @midrange_andCondition buildIPICinstructionForCondition
       !?ioUsedRegisters
     ] ;
   else
-    @string label0 := "_label_" . [ioLocalLabelIndex string] ; ioLocalLabelIndex ++ ;
+    @string label0 := ".L" . [ioLocalLabelIndex string] ; ioLocalLabelIndex ++ ;
     [mLeftExpression buildIPICinstructionForCondition
       !inTotalBankCount
       !inCurrentBank
@@ -1371,8 +1371,8 @@ override method @midrange_instruction_structured_if build_midrange_ipic_instruct
   @bool thenContinuesInSequence ;
   if generateComplementaryCondition then
   #---
-    @string label_nextCondition := "_label_" . [ioLocalLabelIndex string] ; ioLocalLabelIndex ++ ;
-    @string label_endOfIfinstruction := "_label_" . [ioLocalLabelIndex string] ; ioLocalLabelIndex ++ ;
+    @string label_nextCondition := ".L" . [ioLocalLabelIndex string] ; ioLocalLabelIndex ++ ;
+    @string label_endOfIfinstruction := ".L" . [ioLocalLabelIndex string] ; ioLocalLabelIndex ++ ;
   #--- Translate condition
     [mIfCondition buildIPICinstructionForCondition
       !inTotalBankCount
@@ -1427,8 +1427,8 @@ override method @midrange_instruction_structured_if build_midrange_ipic_instruct
     end if ;
   else
   #---
-    @string label_nextCondition := "_label_" . [ioLocalLabelIndex string] ; ioLocalLabelIndex ++ ;
-    @string label_endOfIfinstruction := "_label_" . [ioLocalLabelIndex string] ; ioLocalLabelIndex ++ ;
+    @string label_nextCondition := ".L" . [ioLocalLabelIndex string] ; ioLocalLabelIndex ++ ;
+    @string label_endOfIfinstruction := ".L" . [ioLocalLabelIndex string] ; ioLocalLabelIndex ++ ;
   #--- Translate condition
     [mIfCondition buildIPICinstructionForCondition
       !inTotalBankCount
@@ -1509,7 +1509,7 @@ override method @midrange_instruction_do_while build_midrange_ipic_instructionLi
   ?!@stringset ioUsedRegisters
 :
 #--- Generate label
-  @string labelInstructionBegin := "_label_" . [ioLocalLabelIndex string] ; ioLocalLabelIndex ++ ;
+  @string labelInstructionBegin := ".L" . [ioLocalLabelIndex string] ; ioLocalLabelIndex ++ ;
 #--- Define label
   ioGeneratedInstructionList += ![@midrange_intermediate_pseudo_LABEL new ![@lstring new !labelInstructionBegin !mInstructionLocation] !true] ;
 #--- Repeated instructions
@@ -1548,7 +1548,7 @@ override method @midrange_instruction_do_while build_midrange_ipic_instructionLi
         !?ioUsedRegisters
       ] ;
     else
-      @string nextBranchLabel := "_label_" . [ioLocalLabelIndex string] ; ioLocalLabelIndex ++ ;
+      @string nextBranchLabel := ".L" . [ioLocalLabelIndex string] ; ioLocalLabelIndex ++ ;
       [mCondition buildIPICinstructionForCondition
         !inTotalBankCount
         !ioCurrentBank
