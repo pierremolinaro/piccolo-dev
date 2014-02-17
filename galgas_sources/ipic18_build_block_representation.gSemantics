@@ -533,7 +533,7 @@ override method @pic18Instruction_FOREVER analyze
   end switch ;
   const @uint finalBank := ioCurrentBank ;
 #--- Get loop label
-  const @lstring loopLabel [new !"_label_" . ioLocalLabelIndex !mInstructionLocation] ; 
+  const @lstring loopLabel [new !".L" . ioLocalLabelIndex !mInstructionLocation] ; 
   ioLocalLabelIndex ++ ;
 #--- Store current block
   ioGeneratedBlockList += ![@ipic18Block new
@@ -1391,7 +1391,7 @@ override method @pic18Instruction_JUMPCC analyze
     mode := [@conditionalBranchMode ipicBRA] ;
   end if ;
 #--- Create the continuation label
-  const @lstring label0 [new !"_label_" . [ioLocalLabelIndex string] !mInstructionLocation] ; 
+  const @lstring label0 [new !".L" . [ioLocalLabelIndex string] !mInstructionLocation] ; 
   ioLocalLabelIndex ++ ;
 #--- Build block
   ioGeneratedBlockList += ![@ipic18Block new
@@ -1732,11 +1732,11 @@ override method @pic18Instruction_structured_if analyze
   @uint elseBranchFinalBank := ioCurrentBank ;
   @uint thenBranchFinalBank := ioCurrentBank ;
 #--- Labels
-  const @lstring conditionTrueLabel [new !"_label_" . [ioLocalLabelIndex string] !mInstructionLocation] ; 
+  const @lstring conditionTrueLabel [new !".L" . [ioLocalLabelIndex string] !mInstructionLocation] ; 
   ioLocalLabelIndex ++ ;
-  const @lstring conditionFalseLabel [new !"_label_" . [ioLocalLabelIndex string] !mInstructionLocation] ; 
+  const @lstring conditionFalseLabel [new !".L" . [ioLocalLabelIndex string] !mInstructionLocation] ; 
   ioLocalLabelIndex ++ ;
-  const @lstring exitLabel [new !"_label_" . [ioLocalLabelIndex string] !mInstructionLocation] ; 
+  const @lstring exitLabel [new !".L" . [ioLocalLabelIndex string] !mInstructionLocation] ; 
   ioLocalLabelIndex ++ ;
 #---- Analyze condition
   [mIfCondition analyzeCondition
@@ -1891,7 +1891,7 @@ override method @pic18SimpleConstantCaseItem analyzeCaseItem
   #--- Update comparison value
     ioLastComparisonValue := result ;
   #--- Condition false label
-    const @lstring conditionFalseLabel [new !"_label_" . [ioLocalLabelIndex string] !mCaseExpressionLocation] ; 
+    const @lstring conditionFalseLabel [new !".L" . [ioLocalLabelIndex string] !mCaseExpressionLocation] ; 
     ioLocalLabelIndex ++ ;
   #--- Terminate current block with a BZ instruction
     const @ipic18AbstractBlockTerminator t := [@ipic18ConditionalJumpTerminator new
@@ -1960,9 +1960,9 @@ override method @pic18IntervalCaseItem analyzeCaseItem
         ! [(ioLastComparisonValue - minBound) & 0xFFLS uint]
       ] ;
     #--- Labels
-      const @lstring greaterThanLowBoundLabel [new !"_label_" . [ioLocalLabelIndex string] !mCaseExpressionLocation] ; 
+      const @lstring greaterThanLowBoundLabel [new !".L" . [ioLocalLabelIndex string] !mCaseExpressionLocation] ; 
       ioLocalLabelIndex ++ ;
-      const @lstring conditionFalseLabel [new !"_label_" . [ioLocalLabelIndex string] !mCaseExpressionLocation] ; 
+      const @lstring conditionFalseLabel [new !".L" . [ioLocalLabelIndex string] !mCaseExpressionLocation] ; 
       ioLocalLabelIndex ++ ;
     #--- Terminate current block with a BC instruction
       const @ipic18AbstractBlockTerminator t := [@ipic18ConditionalJumpTerminator new
@@ -2031,7 +2031,7 @@ override method @pic18Instruction_switch analyze
 :
   @caseConstantMap caseConstantMap [emptyMap] ;
 #--- Labels
-  const @lstring exitLabel [new !"_label_" . [ioLocalLabelIndex string] !mInstructionLocation] ; 
+  const @lstring exitLabel [new !".L" . [ioLocalLabelIndex string] !mInstructionLocation] ; 
   ioLocalLabelIndex ++ ;
 #--- Comparison value
   @sint64 lastComparisonValue := 0LS ;
@@ -2044,7 +2044,7 @@ override method @pic18Instruction_switch analyze
 #---
   foreach mCaseList do
   #--- Label
-    const @lstring conditionTrueLabel [new !"_label_" . [ioLocalLabelIndex string] !mInstructionLocation] ; 
+    const @lstring conditionTrueLabel [new !".L" . [ioLocalLabelIndex string] !mInstructionLocation] ; 
     ioLocalLabelIndex ++ ;
   #--- Generate test blocks
     foreach mCaseExpressionList do
@@ -2081,7 +2081,7 @@ override method @pic18Instruction_switch analyze
 #    #--- Update comparison value
 #      lastComparisonValue := [result uint] ;
 #    #--- Condition false label
-#      const @lstring conditionFalseLabel [new !"_label_" . [ioLocalLabelIndex string] !mInstructionLocation] ; 
+#      const @lstring conditionFalseLabel [new !".L" . [ioLocalLabelIndex string] !mInstructionLocation] ; 
 #      ioLocalLabelIndex ++ ;
 #    #--- Terminate current block with a BZ instruction
 #      const @ipic18AbstractBlockTerminator t := [@ipic18ConditionalJumpTerminator new
@@ -2197,7 +2197,7 @@ override method @pic18Instruction_switch analyze
 ##--- Save bank settings
 #  @uint elseBranchFinalBank := ioCurrentBank ;
 #  @uint thenBranchFinalBank := ioCurrentBank ;
-#  const @lstring exitLabel [new !"_label_" . [ioLocalLabelIndex string] !mInstructionLocation] ; 
+#  const @lstring exitLabel [new !".L" . [ioLocalLabelIndex string] !mInstructionLocation] ; 
 #  ioLocalLabelIndex ++ ;
 ##---- Analyze condition
 #  [mIfCondition analyzeCondition
@@ -2305,9 +2305,9 @@ override method @pic18Instruction_do_while analyze
   ?!@stringset ioUsedRegisters
 :
 #--- Labels
-  const @lstring startLabel [new !"_label_" . [ioLocalLabelIndex string] !mInstructionLocation] ; 
+  const @lstring startLabel [new !".L" . [ioLocalLabelIndex string] !mInstructionLocation] ; 
   ioLocalLabelIndex ++ ;
-#  const @lstring exitLabel [new !"_label_" . [ioLocalLabelIndex string] !mInstructionLocation] ; 
+#  const @lstring exitLabel [new !".L" . [ioLocalLabelIndex string] !mInstructionLocation] ; 
 #  ioLocalLabelIndex ++ ;
 #--- Save current block
   ioGeneratedBlockList += ![@ipic18Block new
@@ -2361,9 +2361,9 @@ override method @pic18Instruction_do_while analyze
 #--- While branches
   foreach mWhilePartList do
   #--- Labels
-    const @lstring conditionTrueLabel [new !"_label_" . [ioLocalLabelIndex string] !mInstructionLocation] ; 
+    const @lstring conditionTrueLabel [new !".L" . [ioLocalLabelIndex string] !mInstructionLocation] ; 
     ioLocalLabelIndex ++ ;
-   const @lstring conditionFalseLabel [new !"_label_" . [ioLocalLabelIndex string] !mInstructionLocation] ; 
+   const @lstring conditionFalseLabel [new !".L" . [ioLocalLabelIndex string] !mInstructionLocation] ; 
    ioLocalLabelIndex ++ ;
   #---- Analyze condition
     [mCondition analyzeCondition
@@ -2618,9 +2618,9 @@ override method @testTerminationForBlockInstruction generateBlock
   ??@string inLabelForBlock
   !@ipic18AbstractBlockTerminator outTerminator
 :
-  const @lstring conditionTrueLabel [new !"_label_" . [ioLocalLabelIndex string] !mLocation] ; 
+  const @lstring conditionTrueLabel [new !".L" . [ioLocalLabelIndex string] !mLocation] ; 
   ioLocalLabelIndex ++ ;
-  const @lstring conditionFalseLabel [new !"_label_" . [ioLocalLabelIndex string] !mLocation] ; 
+  const @lstring conditionFalseLabel [new !".L" . [ioLocalLabelIndex string] !mLocation] ; 
   ioLocalLabelIndex ++ ;
 #--- Generate condition
   [mCondition analyzeCondition
@@ -2689,7 +2689,7 @@ override method @pic18Instruction_block analyze
   ?!@stringset ioUsedRegisters
 :
 #----------------- Block labels prefix
-  const @string labelForBlock := "_label_" . [ioLocalLabelIndex string] . "_" ; 
+  const @string labelForBlock := ".L" . [ioLocalLabelIndex string] . "_" ; 
   ioLocalLabelIndex ++ ;
 #---------------- Save current block
   ioGeneratedBlockList += ![@ipic18Block new
@@ -3063,7 +3063,7 @@ override method @pic18AndCondition analyzeCondition
   !@ipic18AbstractBlockTerminator outCurrentBlockTerminator
 :
 #--- Create an intermédiate label for handling true condition of left expression
-  const @lstring conditionTrueLabel [new !"_label_" . [ioLocalLabelIndex string] !inConditionTrueLabel->location] ; 
+  const @lstring conditionTrueLabel [new !".L" . [ioLocalLabelIndex string] !inConditionTrueLabel->location] ; 
   ioLocalLabelIndex ++ ;
 #--- Left expression
   [mLeftExpression analyzeCondition
@@ -3313,7 +3313,7 @@ routine build_ipic18_block_representation_list
   if inProgramKind != [@programKind userProgram] then
     generatedBlockList += ![@ipic18Block new
       !0
-      !["_entry_main" nowhere]
+      ![".START" nowhere]
       ![@ipic18SequentialInstructionList emptyList]
       ![@ipic18JumpTerminator new ![@location nowhere] !["main" nowhere] ![@jumpInstructionKind ipicRelative]]
     ] ;

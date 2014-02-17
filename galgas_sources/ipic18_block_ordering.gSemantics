@@ -174,7 +174,7 @@ override method @ipic18JumpTerminator buildTerminatorInvocationGraph
 :
   ioGraphVizString .= "  \"" . inBlockLabel . "\" -> \"" . mLabel . "\"" ;
   if inDottedArrow then
-    ioGraphVizString .= " [style=dotted]" ;
+    ioGraphVizString .= " [style=dashed]" ;
   end if ;
   ioGraphVizString .= " ;\n" ;
 end method ;
@@ -188,12 +188,12 @@ override method @ipic18ConditionalJumpTerminator buildTerminatorInvocationGraph
 :
   ioGraphVizString .= "  \"" . inBlockLabel . "\" -> \"" . mTargetLabelWhenTrue . "\"" ;
   if inDottedArrow then
-    ioGraphVizString .= " [style=dotted]" ;
+    ioGraphVizString .= " [style=dashed]" ;
   end if ;
   ioGraphVizString .= " ;\n" ;
   ioGraphVizString .= "  \"" . inBlockLabel . "\" -> \"" . mTargetLabelWhenFalse . "\"" ;
   if inDottedArrow then
-    ioGraphVizString .= " [style=dotted]" ;
+    ioGraphVizString .= " [style=dashed]" ;
   end if ;
   ioGraphVizString .= " ;\n" ;
 end method ;
@@ -577,10 +577,11 @@ local routine buildInvocationGraph
   ??@ipic18BlockList inBlockList
   !@string outGraphVizString
 :
-  outGraphVizString := "digraph G{\n" ;
+  outGraphVizString := "digraph G {\n" ;
+  outGraphVizString .= "  node [fontname=courier]\n" ;
   foreach inBlockList do
     if mBlock->mAddress != [@uint max] then # Absolute bloc
-      outGraphVizString .= "  \"" . mBlock->mLabel . "\" [shape=octagon]\n" ;
+      outGraphVizString .= "  \"" . mBlock->mLabel . "\" [shape=rectangle]\n" ;
     end if ;
     foreach mBlock->mInstructionList do
       [mInstruction buildInstructionInvocationGraph !mBlock->mLabel !?outGraphVizString] ;

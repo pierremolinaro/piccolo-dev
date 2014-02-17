@@ -603,7 +603,7 @@ override method @baseline_instruction_FOREVER build_baseline_intermediate_instru
     error mInstructionLocation:"an interrupt routine does not accept the \"forever\" instruction" ;
   end switch ;
 #--- Check instruction list does not change bank
-  @string label0 := "_label_" . [ioLocalLabelIndex string] ; 
+  @string label0 := ".L" . [ioLocalLabelIndex string] ; 
   ioLocalLabelIndex ++ ;
   ioGeneratedInstructionList += ![@baseline_intermediate_pseudo_LABEL new ![@lstring new !label0 !mInstructionLocation]] ;
   handleBaselineInstructionList
@@ -702,7 +702,7 @@ override method @baseline_instruction_do_while build_baseline_intermediate_instr
   ?!@stringset ioUsedRegisters
 :
 #--- Generate label
-  @string labelInstructionBegin := "_label_" . [ioLocalLabelIndex string] ; ioLocalLabelIndex ++ ;
+  @string labelInstructionBegin := ".L" . [ioLocalLabelIndex string] ; ioLocalLabelIndex ++ ;
 #--- Define label
   ioGeneratedInstructionList += ![@baseline_intermediate_pseudo_LABEL new ![@lstring new !labelInstructionBegin !mInstructionLocation]] ;
 #--- Repeated instructions
@@ -734,7 +734,7 @@ override method @baseline_instruction_do_while build_baseline_intermediate_instr
         !?ioUsedRegisters
       ] ;
     else
-      @string nextBranchLabel := "_label_" . [ioLocalLabelIndex string] ; ioLocalLabelIndex ++ ;
+      @string nextBranchLabel := ".L" . [ioLocalLabelIndex string] ; ioLocalLabelIndex ++ ;
       [mCondition build_intermediate_condition_instructions
         !inCurrentPage
         !inRegisterTable
@@ -784,8 +784,8 @@ override method @baseline_instruction_structured_if build_baseline_intermediate_
   ?!@stringset ioUsedRegisters
 :
 #---
-  @string label_nextCondition := "_label_" . [ioLocalLabelIndex string] ; ioLocalLabelIndex ++ ;
-  @string label_endOfIfinstruction := "_label_" . [ioLocalLabelIndex string] ; ioLocalLabelIndex ++ ;
+  @string label_nextCondition := ".L" . [ioLocalLabelIndex string] ; ioLocalLabelIndex ++ ;
+  @string label_endOfIfinstruction := ".L" . [ioLocalLabelIndex string] ; ioLocalLabelIndex ++ ;
 #--- Translate condition
   [mIfCondition build_intermediate_condition_instructions
     !inCurrentPage
@@ -945,7 +945,7 @@ override method @baseline_andCondition build_intermediate_condition_instructions
       !?ioUsedRegisters
     ] ;
   else
-    @string label0 := "_label_" . [ioLocalLabelIndex string] ; ioLocalLabelIndex ++ ;
+    const @string label0 := ".L" . [ioLocalLabelIndex string] ; ioLocalLabelIndex ++ ;
     [mLeftExpression build_intermediate_condition_instructions
       !inCurrentPage
       !inRegisterTable
