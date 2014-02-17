@@ -1,0 +1,16 @@
+semantics ipic18_stack_computations :
+import "piccolo_options.gOption" ;
+import "ipic18_relatives_resolution.gSemantics" ;
+
+#----------------------------------------------------------------------------*
+
+routine ipic18StackComputations
+  ?!@string ioListFileContents
+  ??@ipic18BlockList inBlockList
+:
+end routine ;      
+
+#----------------------------------------------------------------------------*
+
+
+end semantics ;
