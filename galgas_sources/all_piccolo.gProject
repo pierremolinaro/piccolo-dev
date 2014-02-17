@@ -75,6 +75,7 @@ project all_piccolo (3:0:6) -> "piccolo" :
   semantics "ipic18_cluster_ordering.gSemantics" ;
   semantics "ipic18_relatives_resolution.gSemantics" ;
   semantics "ipic18_code_generation.gSemantics" ;
+  semantics "ipic18_stack_computations.gSemantics" ;
 
   syntax    "communs.gSyntax" ;
   semantics "ram_sections.gSemantics" ;

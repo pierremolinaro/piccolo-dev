@@ -265,7 +265,6 @@ routine ipic18GenerateCode
   if [option.verbose_output value] then
     message "  Relocatable code size: " . relocatableCodeSize . " bytes.\n\n" ;
   end if ;
-#  outUsedROMsize := blockStartAddress ;
   outUsedROMsize := dataAddress ;
 #----------------------------- Code too large ?
   switch inProgramKind

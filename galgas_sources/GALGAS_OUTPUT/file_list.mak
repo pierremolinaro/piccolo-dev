@@ -84,6 +84,7 @@ SOURCES += ipic18_block_ordering.cpp
 SOURCES += ipic18_cluster_ordering.cpp
 SOURCES += ipic18_relatives_resolution.cpp
 SOURCES += ipic18_code_generation.cpp
+SOURCES += ipic18_stack_computations.cpp
 SOURCES += communs.cpp
 SOURCES += ram_sections.cpp
 SOURCES += piccoloDevice_lexique.cpp
