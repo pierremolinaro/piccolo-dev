@@ -7,29 +7,6 @@ import "piccoloDevice_semantics.gSemantics" ;
 #                                                                            *
 #----------------------------------------------------------------------------*
 
-#extern @binaryCode {
-#  "const PMUInt32 kBinaryCodeSize = 65536 ;\n"
-#}{
-#  "  private : bool mIsValid ;\n"
-#  "  private : bool mByteDefined [kBinaryCodeSize] ;\n"
-#  "  private : PMUInt8 mDataByte [kBinaryCodeSize] ;\n"
-#  "  private : PMUInt32 mEmitAddress ;\n"
-#  "  private : void internalEmitByte (const PMUInt8 inValue,\n"
-#  "                                   C_Compiler * inCompiler\n"
-#  "                                   COMMA_LOCATION_ARGS) ;\n"
-#
-#}{
-#  constructor new -> @binaryCode ;
-#  modifier setEmitAddress ??@uint inAddress ;
-#  reader currentEmitAddress -> @uint ;
-#  modifier emitCode ??@uint inCode ;
-#  modifier emitByte ??@uint inCode ;
-#  
-#  reader getGeneratedContents -> @string ;
-#}
-
-#----------------------------------------------------------------------------*
-
 extern routine initCodeGenerator ;
 
 extern routine setEmitAddress ??@uint inAddress ;

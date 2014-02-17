@@ -7,6 +7,7 @@ import "ipic18_relatives_resolution.gSemantics" ;
 import "ipic18_display_block_list.gSemantics" ;
 import "piccolo_options.gOption" ;
 import "ipic18_code_generation.gSemantics" ;
+import "ipic18_stack_computations.gSemantics" ;
 
 #----------------------------------------------------------------------------*
 
@@ -3646,6 +3647,13 @@ routine build_ipic18_block_representation_list
     ipic18RelativesResolution
       !?ioListFileContents
       !?generatedBlockList
+    ;
+  end if ;
+#----------------------------------------------------------- Check and compute stack requirements
+  if [@uint errorCount] == 0 then
+    ipic18StackComputations
+      !?ioListFileContents
+      !generatedBlockList
     ;
   end if ;
 #----------------------------------------------------------- Generate code

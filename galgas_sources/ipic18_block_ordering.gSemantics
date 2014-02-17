@@ -579,12 +579,13 @@ local routine buildInvocationGraph
 :
   outGraphVizString := "digraph G{\n" ;
   foreach inBlockList do
-    if mBlock->mAddress == [@uint max] then # Only relocatable block
-      foreach mBlock->mInstructionList do
-        [mInstruction buildInstructionInvocationGraph !mBlock->mLabel !?outGraphVizString] ;
-      end foreach ;
-      [mBlock->mTerminator buildTerminatorInvocationGraph !mBlock->mLabel !?outGraphVizString !false] ;
+    if mBlock->mAddress != [@uint max] then # Absolute bloc
+      outGraphVizString .= "  \"" . mBlock->mLabel . "\" [shape=octagon]\n" ;
     end if ;
+    foreach mBlock->mInstructionList do
+      [mInstruction buildInstructionInvocationGraph !mBlock->mLabel !?outGraphVizString] ;
+    end foreach ;
+    [mBlock->mTerminator buildTerminatorInvocationGraph !mBlock->mLabel !?outGraphVizString !false] ;
   end foreach ;
   outGraphVizString .= "}\n" ;
 end routine ;
