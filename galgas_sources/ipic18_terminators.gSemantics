@@ -869,7 +869,7 @@ override reader @ipic18ComputedGotoTerminator terminatorDisplay
     outResult .= " (uses CALL)" ;
   end if ;
   foreach mTargetLabels do
-    outResult .= "\n    " . mValue ;
+    outResult .= "\n                                                                       " . mValue ;
   end foreach ;
 end reader ;
 
@@ -940,7 +940,8 @@ override method @ipic18ComputedGotoTerminator generateCode
     outCode := pic18_CALL_instruction_code [!targetAddress !goto4label] ;
   end if ;
   foreach mTargetLabels do
-    outCode .= pic18_GOTO_instruction_code [!targetAddress !mValue] ;
+    [inSymbolTable searchKey !mValue ??@uint targetLabelAddress] ;
+    outCode .= pic18_GOTO_instruction_code [!targetLabelAddress !mValue] ;
   end foreach ;
 end method ;
 

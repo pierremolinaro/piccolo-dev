@@ -1256,13 +1256,12 @@ override method @pic18Instruction_computed_goto analyze
       end if ;
       error mValue: errorMessage ;
     end if ;
-    if not isNoReturn then
+    if ([@routineKind regularRoutine] != inRoutineKind) & not isNoReturn then
       error mValue:"for being named in a computed goto, the '" . mValue . "' routine should be declared with the \"noreturn\" qualifier" ;
   end if ;
   end foreach ;
   switch inRoutineKind
-  when regularRoutine :
-    error mInstructionLocation:"a regular routine does not accept computed goto instruction" ;
+  when regularRoutine : #ok
   when noReturnRoutine : # ok
   when interruptRoutine :
     error mInstructionLocation:"an interrupt routine does not accept computed goto instruction" ;
@@ -1286,6 +1285,96 @@ override method @pic18Instruction_computed_goto analyze
       !mTargetLabels
       !mUsesRelativeCall
     ]
+  ] ;
+  ioGeneratedInstructionList := [@ipic18SequentialInstructionList emptyList] ;
+#--- No following code
+  ioBlockLabel := ["" nowhere] ;
+end method ;
+
+#----------------------------------------------------*
+
+override method @pic18Instruction_computed_bra analyze
+  ??@uint unused inAccessBankSplitOffset
+  ?!@ipic18BlockList ioGeneratedBlockList
+  ??@routineMap inRoutineMap
+  ??@registerTable inRegisterTable
+  ??@pic18_dataMap unused inDataMap
+  ??@constantMap inConstantMap
+  ?!@uint unused ioLocalLabelIndex
+  ?!@ipic18SequentialInstructionList ioGeneratedInstructionList
+  ?!@lstring ioBlockLabel
+  ?!@string unused ioListFileContents
+  ?!@uint ioCurrentBank
+  ??@bool inShouldPreserveBSR
+  ??@routineKind inRoutineKind
+  ?!@stringset ioUsedRegisters
+:
+#---
+  @bool allPreserveBankSetting := true ;
+  @bool allReturnBank := true ;
+  @uint returnedBankValue [max] ;
+  foreach mTargetLabels do
+    [inRoutineMap searchKey !mValue ??@bool isNoReturn ??@uint requiredBank ??@uint returnedBank ??@bool preservesBank] ;
+  #--- Check bank "requires"
+    if (requiredBank != [@uint max]) & (requiredBank != ioCurrentBank) then
+      @string errorMessage := "the routine '" . mValue . "' requires bank selection to be set to " . [requiredBank string] ;
+      errorMessage .= ", but bank selection " ;
+      if ioCurrentBank == [@uint max] then
+        errorMessage .= "is not defined" ;
+      else
+        errorMessage .= "is set to " . [ioCurrentBank string] ;
+      end if ;
+      error mValue: errorMessage ;
+    end if ;    
+  #--- Check bank "preserved", "ensures"
+    if preservesBank then
+      allReturnBank := false ;
+    elsif (returnedBankValue != [@uint max]) & (returnedBankValue != returnedBank) then
+      error mValue:"this routine ensures setting of bank '" . [returnedBank string] . "', but "
+      . "previous routine(s) ensure setting of bank '" . [returnedBankValue string] . "'." ;
+    else
+      allPreserveBankSetting := false ;
+      returnedBankValue := returnedBank ;
+    end if ;
+    if ([@routineKind regularRoutine] != inRoutineKind) & not isNoReturn then
+      error mValue:"for being named in a computed bra from a regular routine, the '" . mValue . "' routine should be declared without any \"noreturn\" qualifier" ;
+  end if ;
+  end foreach ;
+#---
+  if allReturnBank & not allPreserveBankSetting then
+    ioCurrentBank := returnedBankValue ;
+  elsif (not allReturnBank) & not allPreserveBankSetting then
+    error mInstructionLocation:"invoked routine should either all preserve bank, eihter return the same selected bank" ;
+  end if ;
+  if inShouldPreserveBSR & not allPreserveBankSetting then
+    error mInstructionLocation:"invoked routine(s) do(es) not preserve bank selection" ;
+  end if ;
+#---
+  switch inRoutineKind
+  when regularRoutine :
+  when noReturnRoutine : # ok
+  when interruptRoutine :
+    error mInstructionLocation:"an interrupt routine does not accept computed bra instruction" ;
+  end switch ;
+#---
+  [mSizeExpression eval !inRegisterTable !inConstantMap ??@sint64 size !?ioUsedRegisters] ;
+  if size < 2LS then
+    error mInstructionLocation:"the computed range (" . [size string] . ") should be greater or equal to 2" ;
+  elsif size > 128LS then
+    error mInstructionLocation:"the computed range (" . [size string] . ") should be lower or equal to 128" ;
+  elsif [size uint] != [mTargetLabels length] then
+    error mInstructionLocation:"the routine name list length (" . [[mTargetLabels length] string] . ") should be equal to the computed range (" . [size string] . ")" ;
+  end if ;
+#--- Build block
+  ioGeneratedBlockList += ![@ipic18Block new
+    ![@uint max] # relocatable
+    !ioBlockLabel
+    !ioGeneratedInstructionList
+    ![@ipic18ComputedBraTerminator new
+      !mInstructionLocation
+      !mTargetLabels
+      !mUsesRelativeCall
+    ] 
   ] ;
   ioGeneratedInstructionList := [@ipic18SequentialInstructionList emptyList] ;
 #--- No following code
@@ -1410,122 +1499,6 @@ override method @pic18Instruction_JUMPCC analyze
   ioGeneratedInstructionList := [@ipic18SequentialInstructionList emptyList] ;
 #--- Set label for following block
   ioBlockLabel := label0 ;
-#
-#
-##--- Save terminator of current block
-#  const @ipic18AbstractBlockTerminator terminator := ioCurrentBlock->mTerminator ;
-##--- Save terminator of current block
-#  ioCurrentBlock->mTerminator := [@ipic18ConditionalJumpTerminator new
-#    !mInstructionLocation
-#    !mConditionalBranch
-#    !mTargetLabel
-#    !mode
-#    !label0
-#    !mode
-#  ] ;
-##--- Create a new block with saved terminator
-#  ioCurrentBlock := [@ipic18Block new
-#    ![@uint max] # relocatable
-#    !label0
-#    ![@ipic18SequentialInstructionList emptyList]
-#    !terminator
-#  ] ;
-end method ;
-
-#----------------------------------------------------*
-
-override method @pic18Instruction_computed_bra analyze
-  ??@uint unused inAccessBankSplitOffset
-  ?!@ipic18BlockList ioGeneratedBlockList
-  ??@routineMap inRoutineMap
-  ??@registerTable inRegisterTable
-  ??@pic18_dataMap unused inDataMap
-  ??@constantMap inConstantMap
-  ?!@uint unused ioLocalLabelIndex
-  ?!@ipic18SequentialInstructionList ioGeneratedInstructionList
-  ?!@lstring ioBlockLabel
-  ?!@string unused ioListFileContents
-  ?!@uint ioCurrentBank
-  ??@bool inShouldPreserveBSR
-  ??@routineKind inRoutineKind
-  ?!@stringset ioUsedRegisters
-:
-#---
-  @bool allPreserveBankSetting := true ;
-  @bool allReturnBank := true ;
-  @uint returnedBankValue [max] ;
-  foreach mTargetLabels do
-    [inRoutineMap searchKey !mValue ??@bool isNoReturn ??@uint requiredBank ??@uint returnedBank ??@bool preservesBank] ;
-  #--- Check bank "requires"
-    if (requiredBank != [@uint max]) & (requiredBank != ioCurrentBank) then
-      @string errorMessage := "the routine '" . mValue . "' requires bank selection to be set to " . [requiredBank string] ;
-      errorMessage .= ", but bank selection " ;
-      if ioCurrentBank == [@uint max] then
-        errorMessage .= "is not defined" ;
-      else
-        errorMessage .= "is set to " . [ioCurrentBank string] ;
-      end if ;
-      error mValue: errorMessage ;
-    end if ;    
-  #--- Check bank "preserved", "ensures"
-    if preservesBank then
-      allReturnBank := false ;
-    elsif (returnedBankValue != [@uint max]) & (returnedBankValue != returnedBank) then
-      error mValue:"this routine ensures setting of bank '" . [returnedBank string] . "', but "
-      . "previous routine(s) ensure setting of bank '" . [returnedBankValue string] . "'." ;
-    else
-      allPreserveBankSetting := false ;
-      returnedBankValue := returnedBank ;
-    end if ;
-    if ([@routineKind regularRoutine ] != inRoutineKind) & not isNoReturn then
-      error mValue:"for being named in a computed bra from a regular routine, the '" . mValue . "' routine should be declared without any \"noreturn\" qualifier" ;
-  end if ;
-  end foreach ;
-#---
-  if allReturnBank & not allPreserveBankSetting then
-    ioCurrentBank := returnedBankValue ;
-  elsif (not allReturnBank) & not allPreserveBankSetting then
-    error mInstructionLocation:"invoked routine should either all preserve bank, eihter return the same selected bank" ;
-  end if ;
-  if inShouldPreserveBSR & not allPreserveBankSetting then
-    error mInstructionLocation:"invoked routine(s) do(es) not preserve bank selection" ;
-  end if ;
-#---
-  switch inRoutineKind
-  when regularRoutine :
-  when noReturnRoutine : # ok
-  when interruptRoutine :
-    error mInstructionLocation:"an interrupt routine does not accept computed bra instruction" ;
-  end switch ;
-#---
-  [mSizeExpression eval !inRegisterTable !inConstantMap ??@sint64 size !?ioUsedRegisters] ;
-  if size < 2LS then
-    error mInstructionLocation:"the computed range (" . [size string] . ") should be greater or equal to 2" ;
-  elsif size > 128LS then
-    error mInstructionLocation:"the computed range (" . [size string] . ") should be lower or equal to 128" ;
-  elsif [size uint] != [mTargetLabels length] then
-    error mInstructionLocation:"the routine name list length (" . [[mTargetLabels length] string] . ") should be equal to the computed range (" . [size string] . ")" ;
-  end if ;
-#--- Build block
-  ioGeneratedBlockList += ![@ipic18Block new
-    ![@uint max] # relocatable
-    !ioBlockLabel
-    !ioGeneratedInstructionList
-    ![@ipic18ComputedBraTerminator new
-      !mInstructionLocation
-      !mTargetLabels
-      !mUsesRelativeCall
-    ] 
-  ] ;
-  ioGeneratedInstructionList := [@ipic18SequentialInstructionList emptyList] ;
-#--- No following code
-  ioBlockLabel := ["" nowhere] ;
-##--- Set terminator of current block
-#  ioCurrentBlock->mTerminator := [@ipic18ComputedBraTerminator new
-#    !mInstructionLocation
-#    !mTargetLabels
-#    !mUsesRelativeCall
-#  ] ;
 end method ;
 
 #----------------------------------------------------*
@@ -3333,7 +3306,7 @@ routine build_ipic18_block_representation_list
   if inHasHighInterrupt then
     generatedBlockList += ![@ipic18Block new
       !0x08
-      !["_entry_high_interrupt" nowhere]
+      ![".HIGH_INTERRUPT" nowhere]
       ![@ipic18SequentialInstructionList emptyList]
       ![@ipic18JumpTerminator new ![@location nowhere] !["_high_interrupt" nowhere] ![@jumpInstructionKind ipicRelative]]
     ] ;
@@ -3356,7 +3329,7 @@ routine build_ipic18_block_representation_list
   if inHasLowInterrupt then
     generatedBlockList += ![@ipic18Block new
       !0x18
-      !["_entry_low_interrupt" nowhere]
+      ![".LOW_INTERRUPT" nowhere]
       ![@ipic18SequentialInstructionList emptyList]
       ![@ipic18JumpTerminator new ![@location nowhere] !["_low_interrupt" nowhere] ![@jumpInstructionKind ipicRelative]]
     ] ;
@@ -3650,7 +3623,7 @@ routine build_ipic18_block_representation_list
     ;
   end if ;
 #----------------------------------------------------------- Check and compute stack requirements
-  if [@uint errorCount] == 0 then
+  if ([@uint errorCount] == 0) & (inProgramKind != [@programKind userProgram]) then
     ipic18StackComputations
       !?ioListFileContents
       !generatedBlockList

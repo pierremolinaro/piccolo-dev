@@ -5,8 +5,7 @@ option piccolo_options :
 @bool ouputListingFile : 'L', "list" -> "Output a list file" ;
 @bool performOptimizations : 'O', "optimize" -> "Perform code optimizations" ;
 @string optimizationFlags : '\0', "optimization-flags" -> "Fine tuning of optimizations (PIC18 compiler only)" ;
-@bool doNotComputeStackRequirements : 'T', "no-stack-computations" -> "Do not compute stack requirements" ;
-@bool doNotComputeRoutineDuration : 'I', "no-routine-duration" -> "Do not compute routine duration" ;
-@bool detailledComputing : 'd', "detailled-computations" -> "Display detailled duration routine computations and stack requirements" ;
 @bool generateGraphvizFiles : 'G', "generate-graphviz-files" -> "Generate Graphviz files  containing block invocation, block sorting constraints, ..." ;
+@bool doNotWarnRecursive : 'R', "no-warning-on-recursive-routines" -> "Do not warn when there are recursive routines (PIC18 compiler only)" ;
+@bool doNotReorderCluster : 'N', "no-relative-resolution" -> "Do not try to re order blocks for using relatives branches (PIC18 compiler only)" ;
 end option ;

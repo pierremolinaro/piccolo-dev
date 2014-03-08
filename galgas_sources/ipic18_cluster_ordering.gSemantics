@@ -36,8 +36,11 @@ routine perform_cluster_ordering
   ?!@string ioListFileContents
 :
   const @bool optimize := [option piccolo_options.performOptimizations value]
-    | [[option piccolo_options.optimizationFlags value] containsCharacter !'C'] ;
-  if optimize then
+    & ([option piccolo_options.performOptimizations value] | [[option piccolo_options.optimizationFlags value] containsCharacter !'B'])
+    & not [option piccolo_options.doNotReorderCluster value] ;
+  if not optimize then
+    ioListFileContents .= "Option '--" . [option piccolo_options.doNotReorderCluster string] . "': this optimization is not performed.n\n" ;
+  else
     const @uint clusterCount := [inInitialClusterList length] ;
     ioListFileContents .= ["" stringByLeftAndRightPadding !79 !'*'] . "\n" ;
     ioListFileContents .= "*" . ["CLUSTER ORDERING OPTIMIZATION" stringByLeftAndRightPadding !77 !' '] . "*\n" ;
