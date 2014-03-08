@@ -174,7 +174,7 @@ method @ipic18AbstractConditionTerminator getOptimizedTerminators
   !@bool outIdenticalTerminators
 :
 #---
-  [mInstructionIfConditionTrue optimizeTerminator
+  [mSingleInstructionTerminatorIfConditionTrue optimizeTerminator
     !inSymbolTable
     !inOptimizeFlagStruct
     !inBlockList
@@ -185,7 +185,7 @@ method @ipic18AbstractConditionTerminator getOptimizedTerminators
   ] ;
   outOptimizedTrueTerminator := (cast optimizedTrueTerminator : @ipic18SingleInstructionTerminator) ;
 #---
-  [mInstructionIfConditionFalse optimizeTerminator
+  [mSingleInstructionTerminatorIfConditionFalse optimizeTerminator
     !inSymbolTable
     !inOptimizeFlagStruct
     !inBlockList
@@ -615,8 +615,8 @@ override method @ipic18AbstractConditionTerminator enterTerminatorReferencedLabe
   ??@ipic18BlockList inBlockList
   ?!@stringset ioReferencedBlockSet
 :
-  [mInstructionIfConditionTrue enterTerminatorReferencedLabels !inSymbolTable !inBlockList !?ioReferencedBlockSet] ;
-  [mInstructionIfConditionFalse enterTerminatorReferencedLabels !inSymbolTable !inBlockList !?ioReferencedBlockSet] ;
+  [mSingleInstructionTerminatorIfConditionTrue enterTerminatorReferencedLabels !inSymbolTable !inBlockList !?ioReferencedBlockSet] ;
+  [mSingleInstructionTerminatorIfConditionFalse enterTerminatorReferencedLabels !inSymbolTable !inBlockList !?ioReferencedBlockSet] ;
 end method ;
 
 #----------------------------------------------------------------------------*

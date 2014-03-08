@@ -42,8 +42,8 @@ override method @ipic18AbstractConditionTerminator exploreAccessibleBlocks
   ?!@stringset ioBlockToExploreSet
   ?!@stringset ioExploredBlockSet
 :
-  [mInstructionIfConditionTrue exploreAccessibleBlocks !?ioBlockToExploreSet !?ioExploredBlockSet] ;
-  [mInstructionIfConditionFalse exploreAccessibleBlocks !?ioBlockToExploreSet !?ioExploredBlockSet] ;
+  [mSingleInstructionTerminatorIfConditionTrue exploreAccessibleBlocks !?ioBlockToExploreSet !?ioExploredBlockSet] ;
+  [mSingleInstructionTerminatorIfConditionFalse exploreAccessibleBlocks !?ioBlockToExploreSet !?ioExploredBlockSet] ;
 end method ;
 
 #----------------------------------------------------------------------------*

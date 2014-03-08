@@ -21,15 +21,6 @@ abstract reader @ipic18AbstractBlockTerminator terminatorSize
 
 #----------------------------------------------------------------------------*
 
-override reader @ipic18SingleInstructionTerminator terminatorSize
-  ??@string unused inNextBlockLabel
-  -> @uint outSize
-:
-  outSize := 2 ;
-end reader ;
-
-#----------------------------------------------------------------------------*
-
 #!--- Terminator @ipic18ReturnTerminator
 
 #----------------------------------------------------------------------------*
@@ -39,6 +30,15 @@ override reader @ipic18ReturnTerminator terminatorDisplay
   ->@string outResult
 :
   outResult := "RETURN" ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override reader @ipic18ReturnTerminator terminatorSize
+  ??@string unused inNextBlockLabel
+  -> @uint outSize
+:
+  outSize := 2 ;
 end reader ;
 
 #----------------------------------------------------------------------------*
@@ -54,6 +54,15 @@ override method @ipic18ReturnTerminator generateTerminatorCode
     ![@uintlist listWithValue !0x0012]
   ] ;
 end method ;
+
+#----------------------------------------------------------------------------*
+
+override reader @ipic18ReturnTerminator isEqualToTerminator
+  ??@ipic18AbstractBlockTerminator inTerminator
+  -> @bool outResult
+:
+  outResult := (inTerminator is == @ipic18ReturnTerminator) ;
+end reader ;
 
 #----------------------------------------------------------------------------*
 
@@ -73,6 +82,15 @@ end reader ;
 
 #----------------------------------------------------------------------------*
 
+override reader @ipic18RetfieTerminator terminatorSize
+  ??@string unused inNextBlockLabel
+  -> @uint outSize
+:
+  outSize := 2 ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
 override method @ipic18RetfieTerminator generateTerminatorCode
   ??@uint unused inAddress
   ??@symbolTableForRelativesResolution unused inSymbolTable
@@ -87,7 +105,16 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-#!--- Terminator @ipic18RetfieTerminator
+override reader @ipic18RetfieTerminator isEqualToTerminator
+  ??@ipic18AbstractBlockTerminator inTerminator
+  -> @bool outResult
+:
+  outResult := (inTerminator is == @ipic18RetfieTerminator) ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+#!--- Terminator @ipic18RetlwTerminator
 
 #----------------------------------------------------------------------------*
 
@@ -96,6 +123,15 @@ override reader @ipic18RetlwTerminator terminatorDisplay
   ->@string outResult
 :
   outResult := "RETLW " . [mLiteralValue hexString] ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+override reader @ipic18RetlwTerminator terminatorSize
+  ??@string unused inNextBlockLabel
+  -> @uint outSize
+:
+  outSize := 2 ;
 end reader ;
 
 #----------------------------------------------------------------------------*
@@ -111,6 +147,19 @@ override method @ipic18RetlwTerminator generateTerminatorCode
     ![@uintlist listWithValue !0x0C00 | mLiteralValue]
   ] ;
 end method ;
+
+#----------------------------------------------------------------------------*
+
+override reader @ipic18RetlwTerminator isEqualToTerminator
+  ??@ipic18AbstractBlockTerminator inTerminator
+  -> @bool outResult
+:
+  outResult := (inTerminator is == @ipic18RetlwTerminator) ;
+  if outResult then
+    const @ipic18RetlwTerminator t := (cast inTerminator : @ipic18RetlwTerminator) ;
+    outResult := mLiteralValue == [t mLiteralValue] ;
+  end if ;
+end reader ;
 
 #----------------------------------------------------------------------------*
 
@@ -227,7 +276,20 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-#!--- Terminator size
+override reader @ipic18JumpTerminator isEqualToTerminator
+  ??@ipic18AbstractBlockTerminator inTerminator
+  -> @bool outResult
+:
+  outResult := (inTerminator is == @ipic18JumpTerminator) ;
+  if outResult then
+    const @ipic18JumpTerminator t := (cast inTerminator : @ipic18JumpTerminator) ;
+    outResult := (mLabel->string == [t mLabel]->string) & (mKind == [t mKind]) ;
+  end if ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
+#!--- @ipic18AbstractConditionTerminator
 
 #----------------------------------------------------------------------------*
 
@@ -236,8 +298,8 @@ override reader @ipic18AbstractConditionTerminator terminatorSize
   -> @uint outSize
 :
   outSize := 2
-    + [mInstructionIfConditionTrue terminatorSize !inNextBlockLabel]
-    + [mInstructionIfConditionFalse terminatorSize !inNextBlockLabel]
+    + [mSingleInstructionTerminatorIfConditionTrue terminatorSize !inNextBlockLabel]
+    + [mSingleInstructionTerminatorIfConditionFalse terminatorSize !inNextBlockLabel]
   ;    
 end reader ;
 
@@ -250,14 +312,14 @@ override method @ipic18AbstractConditionTerminator terminatorRelativeBranchOverf
   ??@string inNextBlockLabel
   ?!@branchOverflowMap ioOverflowMap
 :
-  [mInstructionIfConditionTrue terminatorRelativeBranchOverflow
+  [mSingleInstructionTerminatorIfConditionTrue terminatorRelativeBranchOverflow
     !inAddress
     !inBlockLabel
     !inSymbolTable
     !inNextBlockLabel
     !?ioOverflowMap
   ] ;
-  [mInstructionIfConditionFalse terminatorRelativeBranchOverflow
+  [mSingleInstructionTerminatorIfConditionFalse terminatorRelativeBranchOverflow
     !inAddress
     !inBlockLabel
     !inSymbolTable
@@ -277,8 +339,8 @@ override reader @pic18RegisterComparisonTerminator terminatorSize
   -> @uint outSize
 :
   outSize := 2
-    + [mInstructionIfConditionTrue terminatorSize !inNextBlockLabel]
-    + [mInstructionIfConditionFalse terminatorSize !""]
+    + [mSingleInstructionTerminatorIfConditionTrue terminatorSize !inNextBlockLabel]
+    + [mSingleInstructionTerminatorIfConditionFalse terminatorSize !""]
   ;    
 end reader ;
 
@@ -298,9 +360,9 @@ override reader @pic18RegisterComparisonTerminator terminatorDisplay
     outResult .= "<" ;
   end switch ;
   outResult .= " W ? " ;
-  outResult .= [mInstructionIfConditionTrue terminatorDisplay !inNextBlockLabel] ;
+  outResult .= [mSingleInstructionTerminatorIfConditionTrue terminatorDisplay !inNextBlockLabel] ;
   outResult .= " : " ;
-  outResult .= [mInstructionIfConditionFalse terminatorDisplay !""] ;
+  outResult .= [mSingleInstructionTerminatorIfConditionFalse terminatorDisplay !""] ;
 end reader ;
 
 #----------------------------------------------------------------------------*
@@ -315,7 +377,7 @@ override method @pic18RegisterComparisonTerminator performTerminatorRelativeBran
   !@ipic18AbstractBlockTerminator outModifiedTerminator
 :
   const @uint n := ioConversionCount ;
-  [mInstructionIfConditionTrue performTerminatorRelativeBranchResolution
+  [mSingleInstructionTerminatorIfConditionTrue performTerminatorRelativeBranchResolution
     !inAddress
     !inBlockLabel
     !inSymbolTable
@@ -324,7 +386,7 @@ override method @pic18RegisterComparisonTerminator performTerminatorRelativeBran
     !?ioListFileContents
     ?@ipic18AbstractBlockTerminator outModifiedTrueTerminator
   ] ;
-  [mInstructionIfConditionFalse performTerminatorRelativeBranchResolution
+  [mSingleInstructionTerminatorIfConditionFalse performTerminatorRelativeBranchResolution
     !inAddress
     !inBlockLabel
     !inSymbolTable
@@ -377,21 +439,43 @@ override method @pic18RegisterComparisonTerminator generateTerminatorCode
     !assemblyCode
     ![@uintlist listWithValue !binCode]
   ] ;
-  [mInstructionIfConditionFalse generateTerminatorCode
+  [mSingleInstructionTerminatorIfConditionFalse generateTerminatorCode
     !inAddress + 2
     !inSymbolTable
     !""
     ??@codeList falseTerminatorCode
    ] ;
    outCode .= falseTerminatorCode ;
-  [mInstructionIfConditionTrue generateTerminatorCode
-    !inAddress + 2 + [mInstructionIfConditionFalse terminatorSize !""]
+  [mSingleInstructionTerminatorIfConditionTrue generateTerminatorCode
+    !inAddress + 2 + [mSingleInstructionTerminatorIfConditionFalse terminatorSize !""]
     !inSymbolTable
     !inNextBlockLabel
     ??@codeList trueTerminatorCode
    ] ;
    outCode .= trueTerminatorCode ;
 end method ;
+
+#----------------------------------------------------------------------------*
+
+override reader @pic18RegisterComparisonTerminator isEqualToTerminator
+  ??@ipic18AbstractBlockTerminator inTerminator
+  -> @bool outResult
+:
+  outResult := (inTerminator is == @pic18RegisterComparisonTerminator) ;
+  if outResult then
+    const @pic18RegisterComparisonTerminator t := (cast inTerminator : @pic18RegisterComparisonTerminator) ;
+    outResult := [mSingleInstructionTerminatorIfConditionTrue isEqualToTerminator ![t mSingleInstructionTerminatorIfConditionTrue]] ;
+    if outResult then
+      outResult := [mSingleInstructionTerminatorIfConditionFalse isEqualToTerminator ![t mSingleInstructionTerminatorIfConditionFalse]] ;
+    end if ;
+    if outResult then
+      outResult := mComparison == [t mComparison] ;
+    end if ;
+    if outResult then
+      outResult := [mRegisterDescription isEqualToRegister ![t mRegisterDescription]] ;
+    end if ;
+  end if ;
+end reader ;
 
 #----------------------------------------------------------------------------*
 
@@ -404,8 +488,8 @@ override reader @pic18TestRegisterTerminator terminatorSize
   -> @uint outSize
 :
   outSize := 2
-    + [mInstructionIfConditionTrue terminatorSize !inNextBlockLabel]
-    + [mInstructionIfConditionFalse terminatorSize !""] # False cannot be ommitted
+    + [mSingleInstructionTerminatorIfConditionTrue terminatorSize !inNextBlockLabel]
+    + [mSingleInstructionTerminatorIfConditionFalse terminatorSize !""] # False cannot be ommitted
   ;    
 end reader ;
 
@@ -417,9 +501,9 @@ override reader @pic18TestRegisterTerminator terminatorDisplay
 :
   outResult := [mRegisterDescription mAssemblyString] ;
   outResult .= " Z ? " ;
-  outResult .= [mInstructionIfConditionTrue terminatorDisplay !inNextBlockLabel] ;
+  outResult .= [mSingleInstructionTerminatorIfConditionTrue terminatorDisplay !inNextBlockLabel] ;
   outResult .= " : " ;
-  outResult .= [mInstructionIfConditionFalse terminatorDisplay !""] ;
+  outResult .= [mSingleInstructionTerminatorIfConditionFalse terminatorDisplay !""] ;
 end reader ;
 
 #----------------------------------------------------------------------------*
@@ -434,7 +518,7 @@ override method @pic18TestRegisterTerminator performTerminatorRelativeBranchReso
   !@ipic18AbstractBlockTerminator outModifiedTerminator
 :
   const @uint n := ioConversionCount ;
-  [mInstructionIfConditionTrue performTerminatorRelativeBranchResolution
+  [mSingleInstructionTerminatorIfConditionTrue performTerminatorRelativeBranchResolution
     !inAddress
     !inBlockLabel
     !inSymbolTable
@@ -443,7 +527,7 @@ override method @pic18TestRegisterTerminator performTerminatorRelativeBranchReso
     !?ioListFileContents
     ?@ipic18AbstractBlockTerminator outModifiedTrueTerminator
   ] ;
-  [mInstructionIfConditionFalse performTerminatorRelativeBranchResolution
+  [mSingleInstructionTerminatorIfConditionFalse performTerminatorRelativeBranchResolution
     !inAddress
     !inBlockLabel
     !inSymbolTable
@@ -484,21 +568,40 @@ override method @pic18TestRegisterTerminator generateTerminatorCode
     ![@uintlist listWithValue !binCode]
   ] ;
 #--- Generate complementary code (true terminator first terminator)
-  [mInstructionIfConditionFalse generateTerminatorCode
+  [mSingleInstructionTerminatorIfConditionFalse generateTerminatorCode
     !inAddress + 2
     !inSymbolTable
     !""
     ??@codeList falseTerminatorCode
    ] ;
    outCode .= falseTerminatorCode ;
-  [mInstructionIfConditionTrue generateTerminatorCode
-    !inAddress + 2 + [mInstructionIfConditionFalse terminatorSize !""]
+  [mSingleInstructionTerminatorIfConditionTrue generateTerminatorCode
+    !inAddress + 2 + [mSingleInstructionTerminatorIfConditionFalse terminatorSize !""]
     !inSymbolTable
     !inNextBlockLabel
     ??@codeList trueTerminatorCode
    ] ;
    outCode .= trueTerminatorCode ;
 end method ;
+
+#----------------------------------------------------------------------------*
+
+override reader @pic18TestRegisterTerminator isEqualToTerminator
+  ??@ipic18AbstractBlockTerminator inTerminator
+  -> @bool outResult
+:
+  outResult := (inTerminator is == @pic18TestRegisterTerminator) ;
+  if outResult then
+    const @pic18TestRegisterTerminator t := (cast inTerminator : @pic18TestRegisterTerminator) ;
+    outResult := [mSingleInstructionTerminatorIfConditionTrue isEqualToTerminator ![t mSingleInstructionTerminatorIfConditionTrue]] ;
+    if outResult then
+      outResult := [mSingleInstructionTerminatorIfConditionFalse isEqualToTerminator ![t mSingleInstructionTerminatorIfConditionFalse]] ;
+    end if ;
+    if outResult then
+      outResult := [mRegisterDescription isEqualToRegister ![t mRegisterDescription]] ;
+    end if ;
+  end if ;
+end reader ;
 
 #----------------------------------------------------------------------------*
 
@@ -511,9 +614,9 @@ override reader @pic18BitTestTerminator terminatorDisplay
   ->@string outResult
 :
   outResult := [mRegisterDescription mAssemblyString] . "." . [mBitNumber string] . " ? " ;
-  outResult .= [mInstructionIfConditionTrue terminatorDisplay !inNextBlockLabel] ;
+  outResult .= [mSingleInstructionTerminatorIfConditionTrue terminatorDisplay !inNextBlockLabel] ;
   outResult .= " : " ;
-  outResult .= [mInstructionIfConditionFalse terminatorDisplay !inNextBlockLabel] ;
+  outResult .= [mSingleInstructionTerminatorIfConditionFalse terminatorDisplay !inNextBlockLabel] ;
 end reader ;
 
 #----------------------------------------------------------------------------*
@@ -528,7 +631,7 @@ override method @pic18BitTestTerminator performTerminatorRelativeBranchResolutio
   !@ipic18AbstractBlockTerminator outModifiedTerminator
 :
   const @uint n := ioConversionCount ;
-  [mInstructionIfConditionTrue performTerminatorRelativeBranchResolution
+  [mSingleInstructionTerminatorIfConditionTrue performTerminatorRelativeBranchResolution
     !inAddress
     !inBlockLabel
     !inSymbolTable
@@ -537,7 +640,7 @@ override method @pic18BitTestTerminator performTerminatorRelativeBranchResolutio
     !?ioListFileContents
     ?@ipic18AbstractBlockTerminator outModifiedTrueTerminator
   ] ;
-  [mInstructionIfConditionFalse performTerminatorRelativeBranchResolution
+  [mSingleInstructionTerminatorIfConditionFalse performTerminatorRelativeBranchResolution
     !inAddress
     !inBlockLabel
     !inSymbolTable
@@ -567,7 +670,7 @@ override method @pic18BitTestTerminator generateTerminatorCode
   ??@string inNextBlockLabel
   !@codeList outCode
 :
-  if [mInstructionIfConditionTrue terminatorSize !inNextBlockLabel] == 0 then
+  if [mSingleInstructionTerminatorIfConditionTrue terminatorSize !inNextBlockLabel] == 0 then
   #--- Generate direct code (no code for true terminator)
     @uint binCode := 0xB000 ;
     @string assemblyCode := "    BTFSC " . [mRegisterDescription mAssemblyString] . ", " . mBitNumber ;
@@ -581,7 +684,7 @@ override method @pic18BitTestTerminator generateTerminatorCode
       !assemblyCode
       ![@uintlist listWithValue !binCode]
     ] ;
-    [mInstructionIfConditionFalse generateTerminatorCode
+    [mSingleInstructionTerminatorIfConditionFalse generateTerminatorCode
       !inAddress + 2
       !inSymbolTable
       !inNextBlockLabel
@@ -602,15 +705,15 @@ override method @pic18BitTestTerminator generateTerminatorCode
       !assemblyCode
       ![@uintlist listWithValue !binCode]
     ] ;
-    [mInstructionIfConditionTrue generateTerminatorCode
+    [mSingleInstructionTerminatorIfConditionTrue generateTerminatorCode
       !inAddress + 2
       !inSymbolTable
       !""
       ??@codeList trueTerminatorCode
      ] ;
      outCode .= trueTerminatorCode ;
-    [mInstructionIfConditionFalse generateTerminatorCode
-      !inAddress + 2 + [mInstructionIfConditionTrue terminatorSize !inNextBlockLabel]
+    [mSingleInstructionTerminatorIfConditionFalse generateTerminatorCode
+      !inAddress + 2 + [mSingleInstructionTerminatorIfConditionTrue terminatorSize !inNextBlockLabel]
       !inSymbolTable
       !inNextBlockLabel
       ??@codeList falseTerminatorCode
@@ -618,6 +721,28 @@ override method @pic18BitTestTerminator generateTerminatorCode
      outCode .= falseTerminatorCode ;
   end if ;
 end method ;
+
+#----------------------------------------------------------------------------*
+
+override reader @pic18BitTestTerminator isEqualToTerminator
+  ??@ipic18AbstractBlockTerminator inTerminator
+  -> @bool outResult
+:
+  outResult := (inTerminator is == @pic18BitTestTerminator) ;
+  if outResult then
+    const @pic18BitTestTerminator t := (cast inTerminator : @pic18BitTestTerminator) ;
+    outResult := [mSingleInstructionTerminatorIfConditionTrue isEqualToTerminator ![t mSingleInstructionTerminatorIfConditionTrue]] ;
+    if outResult then
+      outResult := [mSingleInstructionTerminatorIfConditionFalse isEqualToTerminator ![t mSingleInstructionTerminatorIfConditionFalse]] ;
+    end if ;
+    if outResult then
+      outResult := mBitNumber == [t mBitNumber] ;
+    end if ;
+    if outResult then
+      outResult := [mRegisterDescription isEqualToRegister ![t mRegisterDescription]] ;
+    end if ;
+  end if ;
+end reader ;
 
 #----------------------------------------------------------------------------*
 
@@ -641,9 +766,9 @@ override reader @ipic18IncDecRegisterTerminator terminatorDisplay
     outResult .= ", F" ;
   end if ;
   outResult .= " Z ? " ;
-  outResult .= [mInstructionIfConditionTrue terminatorDisplay !inNextBlockLabel] ;
+  outResult .= [mSingleInstructionTerminatorIfConditionTrue terminatorDisplay !inNextBlockLabel] ;
   outResult .= " : " ;
-  outResult .= [mInstructionIfConditionFalse terminatorDisplay !inNextBlockLabel] ;
+  outResult .= [mSingleInstructionTerminatorIfConditionFalse terminatorDisplay !inNextBlockLabel] ;
 end reader ;
 
 #----------------------------------------------------------------------------*
@@ -658,7 +783,7 @@ override method @ipic18IncDecRegisterTerminator performTerminatorRelativeBranchR
   !@ipic18AbstractBlockTerminator outModifiedTerminator
 :
   const @uint n := ioConversionCount ;
-  [mInstructionIfConditionTrue performTerminatorRelativeBranchResolution
+  [mSingleInstructionTerminatorIfConditionTrue performTerminatorRelativeBranchResolution
     !inAddress
     !inBlockLabel
     !inSymbolTable
@@ -667,7 +792,7 @@ override method @ipic18IncDecRegisterTerminator performTerminatorRelativeBranchR
     !?ioListFileContents
     ?@ipic18AbstractBlockTerminator outModifiedTrueTerminator
   ] ;
-  [mInstructionIfConditionFalse performTerminatorRelativeBranchResolution
+  [mSingleInstructionTerminatorIfConditionFalse performTerminatorRelativeBranchResolution
     !inAddress
     !inBlockLabel
     !inSymbolTable
@@ -698,7 +823,7 @@ override method @ipic18IncDecRegisterTerminator generateTerminatorCode
   ??@string inNextBlockLabel
   !@codeList outCode
 :
-  if [mInstructionIfConditionTrue terminatorSize !inNextBlockLabel] == 0 then
+  if [mSingleInstructionTerminatorIfConditionTrue terminatorSize !inNextBlockLabel] == 0 then
   #--- Generate direct code (no code for true terminator)
     @uint binCode :=        if mIncrement then 0x3C00   else 0x2C00 end ;
     @string assemblyCode := if mIncrement then "    INCFSZ" else "    DECFSZ" end ;
@@ -718,7 +843,7 @@ override method @ipic18IncDecRegisterTerminator generateTerminatorCode
       !assemblyCode
       ![@uintlist listWithValue !binCode]
     ] ;
-    [mInstructionIfConditionFalse generateTerminatorCode
+    [mSingleInstructionTerminatorIfConditionFalse generateTerminatorCode
       !inAddress + 2
       !inSymbolTable
       !inNextBlockLabel
@@ -745,15 +870,15 @@ override method @ipic18IncDecRegisterTerminator generateTerminatorCode
       !assemblyCode
       ![@uintlist listWithValue !binCode]
     ] ;
-    [mInstructionIfConditionTrue generateTerminatorCode
+    [mSingleInstructionTerminatorIfConditionTrue generateTerminatorCode
       !inAddress + 2
       !inSymbolTable
       !""
       ??@codeList trueTerminatorCode
      ] ;
      outCode .= trueTerminatorCode ;
-    [mInstructionIfConditionFalse generateTerminatorCode
-      !inAddress + 2 + [mInstructionIfConditionTrue terminatorSize !inNextBlockLabel]
+    [mSingleInstructionTerminatorIfConditionFalse generateTerminatorCode
+      !inAddress + 2 + [mSingleInstructionTerminatorIfConditionTrue terminatorSize !inNextBlockLabel]
       !inSymbolTable
       !inNextBlockLabel
       ??@codeList falseTerminatorCode
@@ -761,6 +886,31 @@ override method @ipic18IncDecRegisterTerminator generateTerminatorCode
      outCode .= falseTerminatorCode ;
   end if ;
 end method ;
+
+#----------------------------------------------------------------------------*
+
+override reader @ipic18IncDecRegisterTerminator isEqualToTerminator
+  ??@ipic18AbstractBlockTerminator inTerminator
+  -> @bool outResult
+:
+  outResult := (inTerminator is == @ipic18IncDecRegisterTerminator) ;
+  if outResult then
+    const @ipic18IncDecRegisterTerminator t := (cast inTerminator : @ipic18IncDecRegisterTerminator) ;
+    outResult := [mSingleInstructionTerminatorIfConditionTrue isEqualToTerminator ![t mSingleInstructionTerminatorIfConditionTrue]] ;
+    if outResult then
+      outResult := [mSingleInstructionTerminatorIfConditionFalse isEqualToTerminator ![t mSingleInstructionTerminatorIfConditionFalse]] ;
+    end if ;
+    if outResult then
+      outResult := mIncrement == [t mIncrement] ;
+    end if ;
+    if outResult then
+      outResult := m_W_isDestination == [t m_W_isDestination] ;
+    end if ;
+    if outResult then
+      outResult := [mRegisterDescription isEqualToRegister ![t mRegisterDescription]] ;
+    end if ;
+  end if ;
+end reader ;
 
 #----------------------------------------------------------------------------*
 
@@ -854,6 +1004,22 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
+override reader @ipic18ComputedRETLWTerminator isEqualToTerminator
+  ??@ipic18AbstractBlockTerminator inTerminator
+  -> @bool outResult
+:
+  outResult := (inTerminator is == @ipic18ComputedRETLWTerminator) ;
+  if outResult then
+    const @ipic18ComputedRETLWTerminator t := (cast inTerminator : @ipic18ComputedRETLWTerminator) ;
+    outResult := [mLiteralValues length] == [[t mLiteralValues] length] ;
+    foreach mLiteralValues, [t mLiteralValues] : t_ while outResult do
+      outResult := mValue == t_mValue ;
+    end foreach ;
+  end if ;
+end reader ;
+
+#----------------------------------------------------------------------------*
+
 #!--- Terminator @ipic18ComputedGotoTerminator
 
 #----------------------------------------------------------------------------*
@@ -944,6 +1110,22 @@ override method @ipic18ComputedGotoTerminator generateTerminatorCode
     outCode .= pic18_GOTO_instruction_code [!targetLabelAddress !mValue] ;
   end foreach ;
 end method ;
+
+#----------------------------------------------------------------------------*
+
+override reader @ipic18ComputedGotoTerminator isEqualToTerminator
+  ??@ipic18AbstractBlockTerminator inTerminator
+  -> @bool outResult
+:
+  outResult := (inTerminator is == @ipic18ComputedGotoTerminator) ;
+  if outResult then
+    const @ipic18ComputedGotoTerminator t := (cast inTerminator : @ipic18ComputedGotoTerminator) ;
+    outResult := [mTargetLabels length] == [[t mTargetLabels] length] ;
+    foreach mTargetLabels, [t mTargetLabels] : t_ while outResult do
+      outResult := mValue->string == t_mValue->string ;
+    end foreach ;
+  end if ;
+end reader ;
 
 #----------------------------------------------------------------------------*
 
@@ -1053,6 +1235,108 @@ override method @ipic18ComputedBraTerminator generateTerminatorCode
     address := address + 2 ;
   end foreach ;
 end method ;
+
+#----------------------------------------------------------------------------*
+
+override reader @ipic18ComputedBraTerminator isEqualToTerminator
+  ??@ipic18AbstractBlockTerminator inTerminator
+  -> @bool outResult
+:
+  outResult := (inTerminator is == @ipic18ComputedBraTerminator) ;
+  if outResult then
+    const @ipic18ComputedBraTerminator t := (cast inTerminator : @ipic18ComputedBraTerminator) ;
+    outResult := [mTargetLabels length] == [[t mTargetLabels] length] ;
+    foreach mTargetLabels, [t mTargetLabels] : t_ while outResult do
+      outResult := mValue->string == t_mValue->string ;
+    end foreach ;
+  end if ;
+end reader ;
+
+
+#----------------------------------------------------------------------------*
+
+#!--- Terminator @ipic18ConditionalBranchTerminator
+
+#----------------------------------------------------------------------------*
+
+#override reader @ipic18ConditionalBranchTerminator terminatorDisplay
+#  ??@string inNextBlockLabel
+#  ->@string outResult
+#:
+#  switch mConditionalBranch
+#  when bz : outResult := "Z" ;
+#  when bn  : outResult := "N" ;
+#  when bc :  outResult := "C" ;
+#  when bov :  outResult := "OV" ;
+#  when bnz : outResult := "NZ" ;
+#  when bnn  : outResult := "NN" ;
+#  when bnc :  outResult := "NC" ;
+#  when bnov :  outResult := "NOV" ;
+#  end switch ;
+#  outResult .= " ? " ;
+#  outResult .= [mSingleInstructionTerminatorIfConditionTrue terminatorDisplay !inNextBlockLabel] ;
+#  outResult .= " : " ;
+#  outResult .= [mSingleInstructionTerminatorIfConditionFalse terminatorDisplay !inNextBlockLabel] ;
+#end reader ;
+
+#----------------------------------------------------------------------------*
+
+#override method @ipic18ConditionalBranchTerminator generateTerminatorCode
+#  ??@uint inAddress
+#  ??@symbolTableForRelativesResolution inSymbolTable
+#  ??@string inNextBlockLabel
+#  !@codeList outCode
+#:
+#  if [mSingleInstructionTerminatorIfConditionTrue terminatorSize !inNextBlockLabel] == 0 then
+#    if (mSingleInstructionTerminatorIfConditionFalse is == @ipic18JumpTerminator) then
+#      const @ipic18JumpTerminator t := (cast mSingleInstructionTerminatorIfConditionFalse : @ipic18JumpTerminator) ;
+#      [inSymbolTable searchKey ![t mLabel]  ??@uint targetAddress] ;
+#    #--- Code : !Bcc F
+#      outCode := pic18_Bcc_instruction_code [!inAddress !targetAddress ![t mLabel] !mConditionalBranch !false] ;
+#    else # False terminator is not a jump : just skip it : Bcc T ; <<false terminator >>
+#      const @ipic18JumpTerminator t := (cast mSingleInstructionTerminatorIfConditionTrue : @ipic18JumpTerminator) ;
+#      [inSymbolTable searchKey ![t mLabel]  ??@uint targetAddress] ;
+#      outCode := pic18_Bcc_instruction_code [!inAddress !targetAddress ![t mLabel] !mConditionalBranch !true] ;
+#      [mSingleInstructionTerminatorIfConditionFalse generateTerminatorCode !inAddress + 2 !inSymbolTable !"" ??@codeList code] ;
+#      outCode .= code ;
+#    end if ;
+#  elsif [mSingleInstructionTerminatorIfConditionFalse terminatorSize !inNextBlockLabel] == 0 then
+#    if (mSingleInstructionTerminatorIfConditionTrue is == @ipic18JumpTerminator) then
+#      const @ipic18JumpTerminator t := (cast mSingleInstructionTerminatorIfConditionTrue : @ipic18JumpTerminator) ;
+#      [inSymbolTable searchKey ![t mLabel]  ??@uint targetAddress] ;
+#    #--- Code : Bcc T
+#      outCode := pic18_Bcc_instruction_code [!inAddress !targetAddress ![t mLabel] !mConditionalBranch !true] ;
+#    else # True terminator is not a jump : just skip it : !Bcc f ; <<true terminator >>
+#      const @ipic18JumpTerminator t := (cast mSingleInstructionTerminatorIfConditionFalse : @ipic18JumpTerminator) ;
+#      [inSymbolTable searchKey ![t mLabel]  ??@uint targetAddress] ;
+#      outCode := pic18_Bcc_instruction_code [!inAddress !targetAddress ![t mLabel] !mConditionalBranch !false] ;
+#      [mSingleInstructionTerminatorIfConditionTrue generateTerminatorCode !inAddress + 2 !inSymbolTable !"" ??@codeList code] ;
+#      outCode .= code ;
+#    end if ;
+#  else
+#  
+#  end if ;
+#end method ;
+
+#----------------------------------------------------------------------------*
+
+#override reader @ipic18ConditionalBranchTerminator isEqualToTerminator
+#  ??@ipic18AbstractBlockTerminator inTerminator
+#  -> @bool outResult
+#:
+#  outResult := (inTerminator is == @ipic18ConditionalBranchTerminator) ;
+#  if outResult then
+#    const @ipic18ConditionalBranchTerminator t := (cast inTerminator : @ipic18ConditionalBranchTerminator) ;
+#    outResult := mConditionalBranch == [t mConditionalBranch] ;
+#    if outResult then
+#      outResult := [mSingleInstructionTerminatorIfConditionTrue isEqualToTerminator ![t mSingleInstructionTerminatorIfConditionTrue]] ;
+#    end if ;
+#    if outResult then
+#      outResult := [mSingleInstructionTerminatorIfConditionFalse isEqualToTerminator ![t mSingleInstructionTerminatorIfConditionFalse]] ;
+#    end if ;
+#  end if ;
+#end reader ;
+
 
 #----------------------------------------------------------------------------*
 
@@ -1408,6 +1692,31 @@ override method @ipic18ConditionalJumpTerminator generateTerminatorCode
     end switch ;
   end if ;
 end method ;
+
+#----------------------------------------------------------------------------*
+
+override reader @ipic18ConditionalJumpTerminator isEqualToTerminator
+  ??@ipic18AbstractBlockTerminator inTerminator
+  -> @bool outResult
+:
+  outResult := (inTerminator is == @ipic18ConditionalJumpTerminator) ;
+  if outResult then
+    const @ipic18ConditionalJumpTerminator t := (cast inTerminator : @ipic18ConditionalJumpTerminator) ;
+    outResult := mConditionalBranch == [t mConditionalBranch] ;
+    if outResult then
+      outResult := mTargetLabelWhenTrue->string == [t mTargetLabelWhenTrue]->string ;
+    end if ;
+    if outResult then
+      outResult := mBranchModeOnTrueLabel == [t mBranchModeOnTrueLabel] ;
+    end if ;
+    if outResult then
+      outResult := mTargetLabelWhenFalse->string == [t mTargetLabelWhenFalse]->string ;
+    end if ;
+    if outResult then
+      outResult := mBranchModeOnFalseLabel == [t mBranchModeOnFalseLabel] ;
+    end if ;
+  end if ;
+end reader ;
 
 #----------------------------------------------------------------------------*
 

@@ -125,9 +125,15 @@ enum @ipic18RegisterComparison {
 #----------------------------------------------------------------------------*
 
 abstract class @ipic18AbstractConditionTerminator extends @ipic18AbstractBlockTerminator {
-  @ipic18SingleInstructionTerminator mInstructionIfConditionTrue ;
-  @ipic18SingleInstructionTerminator mInstructionIfConditionFalse ;
+  @ipic18SingleInstructionTerminator mSingleInstructionTerminatorIfConditionTrue ;
+  @ipic18SingleInstructionTerminator mSingleInstructionTerminatorIfConditionFalse ;
 }
+
+#----------------------------------------------------------------------------*
+
+#class @ipic18ConditionalBranchTerminator extends @ipic18AbstractConditionTerminator {
+#  @conditional_branch mConditionalBranch ;
+#}
 
 #----------------------------------------------------------------------------*
 
@@ -174,6 +180,21 @@ struct @ipic18_intermediate_registerExpression {
   @uint mRegisterAddress ; # 12 bit full address
   @bool mNeedsBSR ;
 }
+
+#----------------------------------------------------------------------------*
+
+reader @ipic18_intermediate_registerExpression isEqualToRegister
+  ??@ipic18_intermediate_registerExpression inRegister
+  -> @bool outResult
+:
+  outResult := mAssemblyString == inRegister->mAssemblyString ;
+  if outResult then
+    outResult := mRegisterAddress == inRegister->mRegisterAddress ;
+  end if ;
+  if outResult then
+    outResult := mNeedsBSR == inRegister->mNeedsBSR ;
+  end if ;
+end reader ;
 
 #----------------------------------------------------------------------------*
 
@@ -433,10 +454,17 @@ abstract method @ipic18SequentialInstruction generateCode
 #----------------------------------------------------------------------------*
 
 abstract method @ipic18AbstractBlockTerminator generateTerminatorCode
-  ??@uint unused inAddress
-  ??@symbolTableForRelativesResolution unused inSymbolTable
-  ??@string unused inNextBlockLabel
+  ??@uint inAddress
+  ??@symbolTableForRelativesResolution inSymbolTable
+  ??@string inNextBlockLabel
   !@codeList outCode
+;
+
+#----------------------------------------------------------------------------*
+
+abstract reader @ipic18AbstractBlockTerminator isEqualToTerminator
+  ??@ipic18AbstractBlockTerminator inTerminator
+  -> @bool outResult
 ;
 
 #----------------------------------------------------------------------------*
