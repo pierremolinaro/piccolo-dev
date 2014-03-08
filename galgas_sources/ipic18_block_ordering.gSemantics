@@ -139,8 +139,8 @@ override method @ipic18AbstractConditionTerminator buildTerminatorInvocationGrap
   ?!@string ioGraphVizString
   ??@bool unused inDottedArrow
 :
-  [mInstructionIfConditionTrue buildTerminatorInvocationGraph !inBlockLabel !?ioGraphVizString !false] ;
-  [mInstructionIfConditionFalse buildTerminatorInvocationGraph !inBlockLabel !?ioGraphVizString !false] ;
+  [mSingleInstructionTerminatorIfConditionTrue buildTerminatorInvocationGraph !inBlockLabel !?ioGraphVizString !false] ;
+  [mSingleInstructionTerminatorIfConditionFalse buildTerminatorInvocationGraph !inBlockLabel !?ioGraphVizString !false] ;
 end method ;
 
 #----------------------------------------------------------------------------*
@@ -150,8 +150,8 @@ override method @pic18RegisterComparisonTerminator buildTerminatorInvocationGrap
   ?!@string ioGraphVizString
   ??@bool unused inDottedArrow
 :
-  [mInstructionIfConditionTrue buildTerminatorInvocationGraph !inBlockLabel !?ioGraphVizString !false] ;
-  [mInstructionIfConditionFalse buildTerminatorInvocationGraph !inBlockLabel !?ioGraphVizString !true] ;
+  [mSingleInstructionTerminatorIfConditionTrue buildTerminatorInvocationGraph !inBlockLabel !?ioGraphVizString !false] ;
+  [mSingleInstructionTerminatorIfConditionFalse buildTerminatorInvocationGraph !inBlockLabel !?ioGraphVizString !true] ;
 end method ;
 
 #----------------------------------------------------------------------------*
@@ -161,8 +161,8 @@ override method @pic18TestRegisterTerminator buildTerminatorInvocationGraph
   ?!@string ioGraphVizString
   ??@bool unused inDottedArrow
 :
-  [mInstructionIfConditionTrue buildTerminatorInvocationGraph !inBlockLabel !?ioGraphVizString !false] ;
-  [mInstructionIfConditionFalse buildTerminatorInvocationGraph !inBlockLabel !?ioGraphVizString !true] ;
+  [mSingleInstructionTerminatorIfConditionTrue buildTerminatorInvocationGraph !inBlockLabel !?ioGraphVizString !false] ;
+  [mSingleInstructionTerminatorIfConditionFalse buildTerminatorInvocationGraph !inBlockLabel !?ioGraphVizString !true] ;
 end method ;
 
 #----------------------------------------------------------------------------*
@@ -288,9 +288,9 @@ override reader @ipic18AbstractConditionTerminator needToInsertJumpInstruction
   ->@bool outResult
 :
   outResult :=
-    [mInstructionIfConditionTrue needToInsertJumpInstruction !inNextBlockLabel]
+    [mSingleInstructionTerminatorIfConditionTrue needToInsertJumpInstruction !inNextBlockLabel]
     &
-    [mInstructionIfConditionFalse needToInsertJumpInstruction !inNextBlockLabel]
+    [mSingleInstructionTerminatorIfConditionFalse needToInsertJumpInstruction !inNextBlockLabel]
   ;
 end reader ;
 
@@ -301,7 +301,7 @@ override reader @pic18RegisterComparisonTerminator needToInsertJumpInstruction
   ->@bool outResult
 :
   outResult :=
-    [mInstructionIfConditionTrue needToInsertJumpInstruction !inNextBlockLabel]
+    [mSingleInstructionTerminatorIfConditionTrue needToInsertJumpInstruction !inNextBlockLabel]
   ;
 end reader ;
 
@@ -312,7 +312,7 @@ override reader @pic18TestRegisterTerminator needToInsertJumpInstruction
   ->@bool outResult
 :
   outResult :=
-    [mInstructionIfConditionTrue needToInsertJumpInstruction !inNextBlockLabel]
+    [mSingleInstructionTerminatorIfConditionTrue needToInsertJumpInstruction !inNextBlockLabel]
   ;
 end reader ;
 
@@ -353,7 +353,7 @@ override method @pic18RegisterComparisonTerminator buildTerminatorOrderedGraph
   ??@lstring inBlockLabel
   ?!@blockInvocationGraph ioGraph
 :
-  [mInstructionIfConditionTrue buildTerminatorOrderedGraph
+  [mSingleInstructionTerminatorIfConditionTrue buildTerminatorOrderedGraph
     !inBlockLabel
     !?ioGraph
   ] ;
@@ -365,7 +365,7 @@ override method @pic18TestRegisterTerminator buildTerminatorOrderedGraph
   ??@lstring inBlockLabel
   ?!@blockInvocationGraph ioGraph
 :
-  [mInstructionIfConditionTrue buildTerminatorOrderedGraph
+  [mSingleInstructionTerminatorIfConditionTrue buildTerminatorOrderedGraph
     !inBlockLabel
     !?ioGraph
   ] ;
@@ -377,11 +377,11 @@ override method @ipic18IncDecRegisterTerminator buildTerminatorOrderedGraph
   ??@lstring inBlockLabel
   ?!@blockInvocationGraph ioGraph
 :
-  [mInstructionIfConditionTrue buildTerminatorOrderedGraph
+  [mSingleInstructionTerminatorIfConditionTrue buildTerminatorOrderedGraph
     !inBlockLabel
     !?ioGraph
   ] ;
-  [mInstructionIfConditionFalse buildTerminatorOrderedGraph
+  [mSingleInstructionTerminatorIfConditionFalse buildTerminatorOrderedGraph
     !inBlockLabel
     !?ioGraph
   ] ;
@@ -393,11 +393,11 @@ override method @pic18BitTestTerminator buildTerminatorOrderedGraph
   ??@lstring inBlockLabel
   ?!@blockInvocationGraph ioGraph
 :
-  [mInstructionIfConditionTrue buildTerminatorOrderedGraph
+  [mSingleInstructionTerminatorIfConditionTrue buildTerminatorOrderedGraph
     !inBlockLabel
     !?ioGraph
   ] ;
-  [mInstructionIfConditionFalse buildTerminatorOrderedGraph
+  [mSingleInstructionTerminatorIfConditionFalse buildTerminatorOrderedGraph
     !inBlockLabel
     !?ioGraph
   ] ;
