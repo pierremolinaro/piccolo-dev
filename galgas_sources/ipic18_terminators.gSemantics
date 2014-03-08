@@ -43,7 +43,7 @@ end reader ;
 
 #----------------------------------------------------------------------------*
 
-override method @ipic18ReturnTerminator generateCode
+override method @ipic18ReturnTerminator generateTerminatorCode
   ??@uint unused inAddress
   ??@symbolTableForRelativesResolution unused inSymbolTable
   ??@string unused inNextBlockLabel
@@ -73,7 +73,7 @@ end reader ;
 
 #----------------------------------------------------------------------------*
 
-override method @ipic18RetfieTerminator generateCode
+override method @ipic18RetfieTerminator generateTerminatorCode
   ??@uint unused inAddress
   ??@symbolTableForRelativesResolution unused inSymbolTable
   ??@string inNextBlockLabel
@@ -100,7 +100,7 @@ end reader ;
 
 #----------------------------------------------------------------------------*
 
-override method @ipic18RetlwTerminator generateCode
+override method @ipic18RetlwTerminator generateTerminatorCode
   ??@uint unused inAddress
   ??@symbolTableForRelativesResolution unused inSymbolTable
   ??@string inNextBlockLabel
@@ -206,7 +206,7 @@ end reader ;
 
 #----------------------------------------------------------------------------*
 
-override method @ipic18JumpTerminator generateCode
+override method @ipic18JumpTerminator generateTerminatorCode
   ??@uint inAddress
   ??@symbolTableForRelativesResolution inSymbolTable
   ??@string inNextBlockLabel
@@ -348,7 +348,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @pic18RegisterComparisonTerminator generateCode
+override method @pic18RegisterComparisonTerminator generateTerminatorCode
   ??@uint inAddress
   ??@symbolTableForRelativesResolution inSymbolTable
   ??@string inNextBlockLabel
@@ -377,14 +377,14 @@ override method @pic18RegisterComparisonTerminator generateCode
     !assemblyCode
     ![@uintlist listWithValue !binCode]
   ] ;
-  [mInstructionIfConditionFalse generateCode
+  [mInstructionIfConditionFalse generateTerminatorCode
     !inAddress + 2
     !inSymbolTable
     !""
     ??@codeList falseTerminatorCode
    ] ;
    outCode .= falseTerminatorCode ;
-  [mInstructionIfConditionTrue generateCode
+  [mInstructionIfConditionTrue generateTerminatorCode
     !inAddress + 2 + [mInstructionIfConditionFalse terminatorSize !""]
     !inSymbolTable
     !inNextBlockLabel
@@ -466,7 +466,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @pic18TestRegisterTerminator generateCode
+override method @pic18TestRegisterTerminator generateTerminatorCode
   ??@uint inAddress
   ??@symbolTableForRelativesResolution inSymbolTable
   ??@string inNextBlockLabel
@@ -484,14 +484,14 @@ override method @pic18TestRegisterTerminator generateCode
     ![@uintlist listWithValue !binCode]
   ] ;
 #--- Generate complementary code (true terminator first terminator)
-  [mInstructionIfConditionFalse generateCode
+  [mInstructionIfConditionFalse generateTerminatorCode
     !inAddress + 2
     !inSymbolTable
     !""
     ??@codeList falseTerminatorCode
    ] ;
    outCode .= falseTerminatorCode ;
-  [mInstructionIfConditionTrue generateCode
+  [mInstructionIfConditionTrue generateTerminatorCode
     !inAddress + 2 + [mInstructionIfConditionFalse terminatorSize !""]
     !inSymbolTable
     !inNextBlockLabel
@@ -561,7 +561,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @pic18BitTestTerminator generateCode
+override method @pic18BitTestTerminator generateTerminatorCode
   ??@uint inAddress
   ??@symbolTableForRelativesResolution inSymbolTable
   ??@string inNextBlockLabel
@@ -581,7 +581,7 @@ override method @pic18BitTestTerminator generateCode
       !assemblyCode
       ![@uintlist listWithValue !binCode]
     ] ;
-    [mInstructionIfConditionFalse generateCode
+    [mInstructionIfConditionFalse generateTerminatorCode
       !inAddress + 2
       !inSymbolTable
       !inNextBlockLabel
@@ -602,14 +602,14 @@ override method @pic18BitTestTerminator generateCode
       !assemblyCode
       ![@uintlist listWithValue !binCode]
     ] ;
-    [mInstructionIfConditionTrue generateCode
+    [mInstructionIfConditionTrue generateTerminatorCode
       !inAddress + 2
       !inSymbolTable
       !""
       ??@codeList trueTerminatorCode
      ] ;
      outCode .= trueTerminatorCode ;
-    [mInstructionIfConditionFalse generateCode
+    [mInstructionIfConditionFalse generateTerminatorCode
       !inAddress + 2 + [mInstructionIfConditionTrue terminatorSize !inNextBlockLabel]
       !inSymbolTable
       !inNextBlockLabel
@@ -692,7 +692,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @ipic18IncDecRegisterTerminator generateCode
+override method @ipic18IncDecRegisterTerminator generateTerminatorCode
   ??@uint inAddress
   ??@symbolTableForRelativesResolution inSymbolTable
   ??@string inNextBlockLabel
@@ -718,7 +718,7 @@ override method @ipic18IncDecRegisterTerminator generateCode
       !assemblyCode
       ![@uintlist listWithValue !binCode]
     ] ;
-    [mInstructionIfConditionFalse generateCode
+    [mInstructionIfConditionFalse generateTerminatorCode
       !inAddress + 2
       !inSymbolTable
       !inNextBlockLabel
@@ -745,14 +745,14 @@ override method @ipic18IncDecRegisterTerminator generateCode
       !assemblyCode
       ![@uintlist listWithValue !binCode]
     ] ;
-    [mInstructionIfConditionTrue generateCode
+    [mInstructionIfConditionTrue generateTerminatorCode
       !inAddress + 2
       !inSymbolTable
       !""
       ??@codeList trueTerminatorCode
      ] ;
      outCode .= trueTerminatorCode ;
-    [mInstructionIfConditionFalse generateCode
+    [mInstructionIfConditionFalse generateTerminatorCode
       !inAddress + 2 + [mInstructionIfConditionTrue terminatorSize !inNextBlockLabel]
       !inSymbolTable
       !inNextBlockLabel
@@ -831,7 +831,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @ipic18ComputedRETLWTerminator generateCode
+override method @ipic18ComputedRETLWTerminator generateTerminatorCode
   ??@uint inAddress
   ??@symbolTableForRelativesResolution inSymbolTable
   ??@string unused inNextBlockLabel
@@ -926,7 +926,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @ipic18ComputedGotoTerminator generateCode
+override method @ipic18ComputedGotoTerminator generateTerminatorCode
   ??@uint inAddress
   ??@symbolTableForRelativesResolution inSymbolTable
   ??@string unused inNextBlockLabel
@@ -1031,7 +1031,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-override method @ipic18ComputedBraTerminator generateCode
+override method @ipic18ComputedBraTerminator generateTerminatorCode
   ??@uint inAddress
   ??@symbolTableForRelativesResolution inSymbolTable
   ??@string unused inNextBlockLabel
@@ -1327,7 +1327,7 @@ end reader ;
 
 #----------------------------------------------------------------------------*
 
-override method @ipic18ConditionalJumpTerminator generateCode
+override method @ipic18ConditionalJumpTerminator generateTerminatorCode
   ??@uint inAddress
   ??@symbolTableForRelativesResolution inSymbolTable
   ??@string inNextBlockLabel
