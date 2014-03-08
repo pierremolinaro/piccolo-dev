@@ -1167,7 +1167,7 @@ routine ipic18OptimizeBlocks
         ] ;
       end if ;
     end foreach ;
-  #-------------------------------- Optimization loop
+  #-------------------------------- Optimize blocks
     @ipic18BlockList optimizedBlockList [emptyList] ;
     foreach ioGeneratedBlockList do
       if [referencedBlockSet hasKey !mBlock->mLabel->string] | (mBlock->mAddress != [@uint max]) then

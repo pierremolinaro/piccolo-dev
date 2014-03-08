@@ -104,13 +104,12 @@ Si plusieurs fichiers sources apparaissent dans la ligne de commande, ils sont t
 
 \begin{description}
 
-  \item[\texttt{-o}, \texttt{-{-}optimize}] Effectue de manière itérative des optimisations du code produit.
+  \item[\texttt{-O}, \texttt{-{-}optimize}] Effectue de manière itérative des optimisations du code produit.
 
 
   \item[\texttt{-F}, \texttt{-{-}optimization-flags}] Cette option concerne uniquement le compilateur pour \emph{pic18} des versions 3.x, elle n'a aucune impluence sur les compilateurs des \emph{baseline}, \emph{mid-range}. Cette option permet d'activer finement chacune des optimisations, l'option \texttt{-o} ci-dessus les activant toutes à la fois. À moins que vous soyez intéressé par le fonctionnement de l'optimiseur, vous n'avez pas à utiliser cette option. Elle s'utilise comme suit : par exemple, \texttt{-F=DER} active les optimisations \texttt{D}, \texttt{E} et \texttt{R} décrites ci-dessous. L'ordre d'apparition n'a aucune importance, il ne faut pas d'espace entre les lettres, plusieurs occurrences d'une même lettre ont le même effet qu'une seule occurrence. Les optimisations que vous pouvez ainsi activer sont :
 \begin{itemize}
   \item \texttt{B} : les blocs sont ordonnés de façon à diminuer le nombre de sauts d'un bloc à l'autre ;
-  \item \texttt{C} : les blocs sont regroupés en \emph{clusters} qui sont ensuite ordonnés de façon à diminuer le nombre de branchements relatifs à transformer en branchements absolu ; cette option n'est active que si l'option précédente \texttt{-B} l'est aussi ;
   \item \texttt{E} : l'appel à une routine constituée d'une instruction \assembleur{RETURN} est supprimé ;
   \item \texttt{e} : dans une instruction \texttt{computed rcall}, l'appel à une routine constituée d'une instruction \assembleur{RETURN} est remplacé par une instruction \texttt{BLANK} (c'est à dire un \assembleur{NOP} dont le code est \assembleur{0xF000}) ;
   \item \texttt{I} : l'appel à une routine constituée d'une seule instruction avant le \assembleur{RETURN} est remplacé par cette instruction ;
@@ -142,6 +141,11 @@ Si plusieurs fichiers sources apparaissent dans la ligne de commande, ils sont t
 \end{itemize}
 
   \item[\texttt{-C}, \texttt{-{-}output-c-files}] Engendre un fichier d'en-tête et un fichier C contenant le code objet résult de la compilation sous la forme de tableaux C.
+
+
+  \item[\texttt{-R}, \texttt{-{-}no-warning-on-recursive-routines}] (Uniquement pour PIC18) Par défaut, un \emph{warning} est émis si des routines récursives sont détectées. Cette option permet de supprimer ce \emph{warning} ;
+
+  \item \texttt{-N}, \texttt{-{-}no-relative-resolution} (Uniquement pour PIC18) Par défaut, si l'option \texttt{-O} ou l'option \texttt{-F=B} est présente, les blocs sont regroupés en \emph{clusters} qui sont ensuite ordonnés de façon à diminuer le nombre de branchements relatifs à transformer en branchements absolus ; cette option inhibe la ré organisation des clusters.
 
 \end{description}
 

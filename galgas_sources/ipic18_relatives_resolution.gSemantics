@@ -1,6 +1,7 @@
 semantics ipic18_relatives_resolution :
 import "ipic18_regular_instructions.gSemantics" ;
 import "ipic18_terminators.gSemantics" ;
+import "piccolo_options.gOption" ;
 
 #----------------------------------------------------------------------------*
 
