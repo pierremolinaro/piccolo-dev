@@ -432,13 +432,12 @@ abstract method @ipic18SequentialInstruction generateCode
 
 #----------------------------------------------------------------------------*
 
-method @ipic18AbstractBlockTerminator generateCode
+abstract method @ipic18AbstractBlockTerminator generateTerminatorCode
   ??@uint unused inAddress
   ??@symbolTableForRelativesResolution unused inSymbolTable
   ??@string unused inNextBlockLabel
   !@codeList outCode
-:  outCode := [@codeList emptyList] ;
-end method ;
+;
 
 #----------------------------------------------------------------------------*
 

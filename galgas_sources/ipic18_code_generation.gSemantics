@@ -133,7 +133,7 @@ method @ipic18Block generateCode
     end if ;
   end foreach ;
 #--- Generate block terminator
-  [mTerminator generateCode
+  [mTerminator generateTerminatorCode
     !address
     !inSymbolTable
     !inNextBlockLabel
