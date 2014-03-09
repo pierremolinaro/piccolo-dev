@@ -1412,8 +1412,6 @@ controller PIC18F26K80 {
     MSSPMSK mask 0x8 description "MSSP address masking"
       setting 0x8 mask 0x8 description "7 Bit address masking mode"
       setting 0x0 mask 0x8 description "5 bit address masking mode"
-    RESERVED mask 0x4 description "RESERVED"
-      setting 0x0 mask 0x4 description "Maintain bit as 0"
     CANMX mask 0x1 description "ECAN Mux bit"
       setting 0x1 mask 0x1 description "ECAN TX and RX pins are located on RB2 and RB3, respectively"
       setting 0x0 mask 0x1 description "ECAN TX and RX pins are located on RC6 and RC7, respectively"
