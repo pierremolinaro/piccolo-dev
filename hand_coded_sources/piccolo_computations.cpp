@@ -75,11 +75,11 @@
 //---------------------------------------------------------------------------*
 
 //void GALGAS_binaryCode::description (C_String & ioString,
-//                                     const PMSInt32 /* inIndentation */) const {
+//                                     const int32_t /* inIndentation */) const {
 //  ioString << "<@binaryCode:" ;
 //  if (mIsValid) {
-//    PMUInt32 definedByteCount = 0 ;
-//    for (PMUInt32 i=0 ; i<kBinaryCodeSize ; i++) {
+//    uint32_t definedByteCount = 0 ;
+//    for (uint32_t i=0 ; i<kBinaryCodeSize ; i++) {
 //      definedByteCount += mByteDefined [i] ;
 //    }
 //    ioString << cStringWithUnsigned (definedByteCount)
@@ -102,7 +102,7 @@
 //      result = kFirstOperandGreaterThanSecond ;
 //    }else{
 //      result = kOperandEqual ;
-//      for (PMUInt32 i=0 ; (i<kBinaryCodeSize) && (result==kOperandEqual) ; i++) {
+//      for (uint32_t i=0 ; (i<kBinaryCodeSize) && (result==kOperandEqual) ; i++) {
 //        if (mByteDefined [i] < inOperand.mByteDefined [i]) {
 //          result = kFirstOperandLowerThanSecond ;
 //        }else if (mByteDefined [i] > inOperand.mByteDefined [i]) {
@@ -172,7 +172,7 @@
 //      message << " (should be <= 0xFFFE)" ;
 //      inCompiler->onTheFlyRunTimeError (message COMMA_THERE) ;
 //    }else{
-//      const PMUInt32 v = inValue.uintValue () ;
+//      const uint32_t v = inValue.uintValue () ;
 //      if (v > 0xFFFF) {
 //        C_String message ;
 //        message << "Modifier @binaryCode emitCode: for emit address 0x" ;
@@ -182,8 +182,8 @@
 //        message << " (should be <= 0xFFFF)" ;
 //        inCompiler->onTheFlyRunTimeError (message COMMA_THERE) ;
 //      }else{
-//        internalEmitByte ((PMUInt8) (v >> 8), inCompiler COMMA_THERE) ;
-//        internalEmitByte ((PMUInt8) (v & 0xFF), inCompiler COMMA_THERE) ;
+//        internalEmitByte ((uint8_t) (v >> 8), inCompiler COMMA_THERE) ;
+//        internalEmitByte ((uint8_t) (v & 0xFF), inCompiler COMMA_THERE) ;
 //      }
 //    
 //    }
@@ -203,7 +203,7 @@
 //      message << " (should be <= 0xFFFF)" ;
 //      inCompiler->onTheFlyRunTimeError (message COMMA_THERE) ;
 //    }else{
-//      const PMUInt32 v = inValue.uintValue () ;
+//      const uint32_t v = inValue.uintValue () ;
 //      if (v > 0xFF) {
 //        C_String message ;
 //        message << "Modifier @binaryCode emitByte: for emit address 0x" ;
@@ -213,7 +213,7 @@
 //        message << " (should be <= 0xFF)" ;
 //        inCompiler->onTheFlyRunTimeError (message COMMA_THERE) ;
 //      }else{
-//        internalEmitByte ((PMUInt8) (v), inCompiler COMMA_THERE) ;
+//        internalEmitByte ((uint8_t) (v), inCompiler COMMA_THERE) ;
 //      }
 //    }
 //  }
@@ -221,7 +221,7 @@
 
 //---------------------------------------------------------------------------*
 
-//void GALGAS_binaryCode::internalEmitByte (const PMUInt8 inValue,
+//void GALGAS_binaryCode::internalEmitByte (const uint8_t inValue,
 //                                          C_Compiler * inCompiler
 //                                          COMMA_LOCATION_ARGS) {
 //  if (mByteDefined [mEmitAddress]) {
@@ -254,14 +254,14 @@
 
 static void
 emit_04_record (C_String & ioGeneratedCode,
-                PMUInt32 & ioBufferHighAddress,
-                const PMUInt32 inStartAddress) {
+                uint32_t & ioBufferHighAddress,
+                const uint32_t inStartAddress) {
   if (ioBufferHighAddress != (inStartAddress & 0xFFFF0000)) {
     char s [20] ; sprintf (s, ":02000004%04X", inStartAddress >> 16) ;
     ioGeneratedCode << s ;
-    PMUInt8 somme = 2 + 4 ;
-    somme = (PMUInt8) (somme + ((inStartAddress >> 24) & 255 )) ;
-    somme = (PMUInt8) (somme + ((inStartAddress >> 16) & 255 )) ;
+    uint8_t somme = 2 + 4 ;
+    somme = (uint8_t) (somme + ((inStartAddress >> 24) & 255 )) ;
+    somme = (uint8_t) (somme + ((inStartAddress >> 16) & 255 )) ;
     sprintf (s, "%02X", (- somme) & 255) ;
     ioGeneratedCode << s << "\n" ;
     ioBufferHighAddress = (inStartAddress & 0xFFFF0000) ;
@@ -272,25 +272,25 @@ emit_04_record (C_String & ioGeneratedCode,
 
 static void
 emit_data_record (C_String & ioGeneratedCode,
-                  PMUInt32 & ioBufferHighAddress,
-                  const PMUInt8 inBuffer [16],
-                  PMUInt32 & ioBufferEntryCount,
-                  const PMUInt32 inCurrentAddress) {
+                  uint32_t & ioBufferHighAddress,
+                  const uint8_t inBuffer [16],
+                  uint32_t & ioBufferEntryCount,
+                  const uint32_t inCurrentAddress) {
   if (ioBufferEntryCount != 0) {
-    const PMUInt32 startAddress = inCurrentAddress - ioBufferEntryCount ;
+    const uint32_t startAddress = inCurrentAddress - ioBufferEntryCount ;
   //--- Emit 04 record (if needed)
     emit_04_record (ioGeneratedCode, ioBufferHighAddress, startAddress) ;
   //---
-    const PMUInt32 startAddressMod16 = startAddress & 0x0000FFFF ;
+    const uint32_t startAddressMod16 = startAddress & 0x0000FFFF ;
     char s [20] ; sprintf (s, ":%02X%04X00", ioBufferEntryCount, startAddressMod16) ;
     ioGeneratedCode << s ;
-    PMUInt8 somme = (PMUInt8) (ioBufferEntryCount & 255) ;
-    somme = (PMUInt8) (somme + ((startAddressMod16 >> 8) & 255)) ;
-    somme = (PMUInt8) (somme + (startAddressMod16 & 255)) ;
-    for (PMUInt32 i=0 ; i<ioBufferEntryCount ; i++) {
+    uint8_t somme = (uint8_t) (ioBufferEntryCount & 255) ;
+    somme = (uint8_t) (somme + ((startAddressMod16 >> 8) & 255)) ;
+    somme = (uint8_t) (somme + (startAddressMod16 & 255)) ;
+    for (uint32_t i=0 ; i<ioBufferEntryCount ; i++) {
       const unsigned char c = inBuffer [i] ;
       sprintf (s, "%02X", c) ; ioGeneratedCode << s ;
-      somme = (PMUInt8) (somme + c) ;
+      somme = (uint8_t) (somme + c) ;
     }
     sprintf (s, "%02X", (- somme) & 255) ; ioGeneratedCode << s << "\n" ;
     ioBufferEntryCount = 0 ;
@@ -301,17 +301,17 @@ emit_data_record (C_String & ioGeneratedCode,
 
 static C_String
 generate_C_ArrayImplementationFileFromSpareArray (const C_String & inSourceName,
-                                                  const TC_UniqueSparseArray <PMUInt8> & inSpareArray) {
+                                                  const TC_UniqueSparseArray <uint8_t> & inSpareArray) {
   C_String implementationCode ;
   implementationCode << "#include \"" << inSourceName << ".h\"\n\n" ;
   implementationCode.append_C_HyphenLineComment () ;
-  TC_UniqueArray <PMUInt32> startAddressArray ;
-  TC_UniqueArray <PMUInt32> blockLengthArray ;
+  TC_UniqueArray <uint32_t> startAddressArray ;
+  TC_UniqueArray <uint32_t> blockLengthArray ;
 //--- Loop
-  PMUInt32 currentAddress = 0 ;
+  uint32_t currentAddress = 0 ;
   while (inSpareArray.findFirstEntryWithIndex (currentAddress)) {
     C_String currentStream ;
-    PMUInt32 currentStreamEntryCount = 0 ;
+    uint32_t currentStreamEntryCount = 0 ;
     startAddressArray.addObject (currentAddress) ;
     while (! inSpareArray.isDefaultObjectAtIndex (currentAddress)) {
       if (currentStreamEntryCount > 0) {
@@ -334,7 +334,7 @@ generate_C_ArrayImplementationFileFromSpareArray (const C_String & inSourceName,
 //--- Start address array
   implementationCode << "\n"
                         "static unsigned long gBlockStartAddressArray [" << cStringWithSigned (startAddressArray.count ()) << "] = {" ;
-  for (PMSInt32 i=0 ; i<startAddressArray.count () ; i++) {
+  for (int32_t i=0 ; i<startAddressArray.count () ; i++) {
     if (i > 0) {
       implementationCode << "," ;
     }
@@ -346,7 +346,7 @@ generate_C_ArrayImplementationFileFromSpareArray (const C_String & inSourceName,
 //--- block length array
   implementationCode << "\n"
                         "static unsigned long gBlockLengthArray [" << cStringWithSigned (blockLengthArray.count ()) << "] = {" ;
-  for (PMSInt32 i=0 ; i<blockLengthArray.count () ; i++) {
+  for (int32_t i=0 ; i<blockLengthArray.count () ; i++) {
     if (i > 0) {
       implementationCode << "," ;
     }
@@ -358,7 +358,7 @@ generate_C_ArrayImplementationFileFromSpareArray (const C_String & inSourceName,
 //--- block data array
   implementationCode << "\n"
                         "static unsigned char * gBlockDataArray [" << cStringWithSigned (blockLengthArray.count ()) << "] = {" ;
-  for (PMSInt32 i=0 ; i<blockLengthArray.count () ; i++) {
+  for (int32_t i=0 ; i<blockLengthArray.count () ; i++) {
     if (i > 0) {
       implementationCode << "," ;
     }
@@ -397,7 +397,7 @@ generate_C_ArrayImplementationFileFromSpareArray (const C_String & inSourceName,
 
 static C_String
 generate_C_ArrayHeaderFileFromSpareArray (const C_String & inSourceName,
-                                          const TC_UniqueSparseArray <PMUInt8> & /* inSpareArray */) {
+                                          const TC_UniqueSparseArray <uint8_t> & /* inSpareArray */) {
   C_String headerCode ;
   headerCode << "#ifdef __cplusplus\n"
                 "  extern \"C\" {\n"
@@ -428,19 +428,19 @@ generate_C_ArrayHeaderFileFromSpareArray (const C_String & inSourceName,
 //---------------------------------------------------------------------------*
 
 static C_String
-generateHexCodeFromSpareArray (const TC_UniqueSparseArray <PMUInt8> & inSpareArray) {
+generateHexCodeFromSpareArray (const TC_UniqueSparseArray <uint8_t> & inSpareArray) {
   C_String hexCode ;
 //--- Header
   hexCode << ":020000040000FA\n" ;
 //--- Loop
-  PMUInt32 bufferHighAddress = 0 ;
-  PMUInt32 address = 0 ;
+  uint32_t bufferHighAddress = 0 ;
+  uint32_t address = 0 ;
   bool loop = true ;
   while (loop && inSpareArray.findFirstEntryWithIndex (address)) {
-    // const PMUInt32 startAddress = address ;
+    // const uint32_t startAddress = address ;
   //--- Emit data
-    PMUInt8 buffer [16] ;
-    PMUInt32 bufferEntryCount = 0 ;
+    uint8_t buffer [16] ;
+    uint32_t bufferEntryCount = 0 ;
     do{
       buffer [bufferEntryCount] = inSpareArray.objectAtIndex (address) ;
       bufferEntryCount ++ ;
@@ -461,8 +461,8 @@ generateHexCodeFromSpareArray (const TC_UniqueSparseArray <PMUInt8> & inSpareArr
 
 //---------------------------------------------------------------------------*
 
-static TC_UniqueSparseArray <PMUInt8> gSparseArray (0) ;
-static PMUInt32 gCurrentAddress = 0 ;
+static TC_UniqueSparseArray <uint8_t> gSparseArray (0) ;
+static uint32_t gCurrentAddress = 0 ;
 
 //---------------------------------------------------------------------------*
 
