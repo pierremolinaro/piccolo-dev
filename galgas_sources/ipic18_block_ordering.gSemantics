@@ -409,7 +409,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-local routine buildOrderedGraph
+routine buildOrderedGraph
   ?!@ipic18BlockList ioBlockList
   ??@string inSourceFileName
   ?!@string ioListFileContents
@@ -573,7 +573,7 @@ end routine ;
 
 #----------------------------------------------------------------------------*
 
-local routine buildInvocationGraph
+routine buildInvocationGraph
   ??@ipic18BlockList inBlockList
   !@string outGraphVizString
 :
@@ -593,7 +593,7 @@ end routine ;
 
 #----------------------------------------------------------------------------*
 
-local function blockDiscontinuityCount
+function blockDiscontinuityCount
   ?@ipic18BlockList inBlockList
   ->@uint outResult
 :

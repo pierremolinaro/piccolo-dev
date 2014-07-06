@@ -183,7 +183,7 @@ end method ;
 
 #---------------------------------------------------------------------------*
 
-local routine performInlineFromInstructionList
+routine performInlineFromInstructionList
   ??@pic18InstructionList inInstructionList
   ??@stringset inInlinedRoutineSet
   ??@declaredRoutineMap inDeclaredRoutineMap

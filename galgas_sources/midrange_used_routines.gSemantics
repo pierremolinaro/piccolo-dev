@@ -207,7 +207,7 @@ end method ;
 
 #---------------------------------------------------------------------------*
 
-local routine addMidRangeUsedRoutinesFromInstructionList
+routine addMidRangeUsedRoutinesFromInstructionList
   ??@midrange_instructionList inInstructionList
   ?!@stringset ioUsedRoutines
 :

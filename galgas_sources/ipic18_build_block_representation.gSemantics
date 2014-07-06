@@ -3077,7 +3077,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-local routine analyzeInstructionList
+routine analyzeInstructionList
   ??@pic18InstructionList inInstructionList
   ?!@ipic18BlockList ioGeneratedBlockList
   ??@uint inAccessBankSplitOffset
@@ -3124,7 +3124,7 @@ end routine ;
 #                                                                            *
 #----------------------------------------------------------------------------*
 
-local routine pic18_analyze_data_sections
+routine pic18_analyze_data_sections
   ??@dataList inDataDefinitionList
   ??@registerTable inRegisterTable
   ??@constantMap inConstantMap

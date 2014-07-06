@@ -18,7 +18,7 @@ map @neededConversionForClusterOrder {
 
 #----------------------------------------------------------------------------*
 
-local function sortKey ??@clusterList inClusterList -> @string outKey :
+function sortKey ??@clusterList inClusterList -> @string outKey :
   outKey := "" ;
   foreach inClusterList
   do

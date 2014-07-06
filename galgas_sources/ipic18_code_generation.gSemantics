@@ -29,7 +29,7 @@ end reader ;
 
 #----------------------------------------------------------------------------*
 
-local routine generateLineWithCode
+routine generateLineWithCode
   ??@uint inAddress
   ??@codeList inCode
   ??@stringlist inIpicText
@@ -316,7 +316,7 @@ end routine ;
 #                                                                            *
 #----------------------------------------------------------------------------*
 
-local routine pic18GenerateAssemblyFile
+routine pic18GenerateAssemblyFile
   ??@string inSourceFileName
   ??@string inProcessorName
   ??@registerTable inPredefinedRegisters

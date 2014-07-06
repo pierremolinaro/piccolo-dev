@@ -5,7 +5,7 @@ import "midrange_display_intermediate_instruction.gSemantics" ;
 
 #----------------------------------------------------------------------------*
 
-local routine emitMidrangeCodeAtWordAddress
+routine emitMidrangeCodeAtWordAddress
   ??@uint inCode
   ?!@uint ioWordAddress
   ??@midrange_intermediate_instruction inInstruction
@@ -21,7 +21,7 @@ end routine ;
 
 #----------------------------------------------------------------------------*
 
-local routine emitMidrangeDirectCodeAtWordAddress
+routine emitMidrangeDirectCodeAtWordAddress
   ??@uint inCode
   ?!@uint ioWordAddress
   ??@string inInstructionDescriptionString
@@ -36,7 +36,7 @@ end routine ;
 
 #----------------------------------------------------------------------------*
 
-local routine emitNoMidrangeCodeAtWordAddress
+routine emitNoMidrangeCodeAtWordAddress
   ??@uint inWordAddress
   ??@midrange_intermediate_instruction inInstruction
   ?!@string ioListFileContents

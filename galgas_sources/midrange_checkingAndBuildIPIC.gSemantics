@@ -1796,7 +1796,7 @@ end routine ;
 
 #----------------------------------------------------------------------------*
 
-local routine interruptRoutineShouldSavePCLATH
+routine interruptRoutineShouldSavePCLATH
   ??@midrange_model inPiccoloModel
   ??@uint inTotalPageCount
   ?!@string ioListFileContents
@@ -1839,7 +1839,7 @@ end routine ;
 #                                                                            *
 #----------------------------------------------------------------------------*
 
-local routine handleInterruptRoutine
+routine handleInterruptRoutine
   ??@midrange_model inPiccoloModel
   ??@bool inHasInterrupt
   ??@registerTable inRegisterTable
@@ -1917,7 +1917,7 @@ end routine ;
 
 #----------------------------------------------------------------------------*
 
-local routine generateInterruptRoutineForControllerWithSharedRAM
+routine generateInterruptRoutineForControllerWithSharedRAM
   ??@uint inTotalBankCount
   ??@registerTable inRegisterTable
   ??@lstring inFirstSaveRegister
@@ -2075,7 +2075,7 @@ end routine ;
 
 #----------------------------------------------------------------------------*
 
-local routine generateInterruptRoutineForControllerWithoutSharedRAM
+routine generateInterruptRoutineForControllerWithoutSharedRAM
   ??@uint inTotalBankCount
   ??@registerTable inRegisterTable
   ??@lstring inFirstSaveRegister
