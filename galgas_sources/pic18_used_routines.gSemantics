@@ -285,7 +285,7 @@ end method ;
 
 #---------------------------------------------------------------------------*
 
-local routine addPic18UsedRoutinesFromInstructionList
+routine addPic18UsedRoutinesFromInstructionList
   ??@pic18InstructionList inInstructionList
   ?!@stringset ioUsedRoutines
 :

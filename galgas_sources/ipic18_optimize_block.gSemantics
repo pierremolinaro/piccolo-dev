@@ -441,7 +441,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-local routine enterGoto2block
+routine enterGoto2block
   ??@symbolTableForBlockOptimization inSymbolTable
   ??@ipic18BlockList inBlockList
   ?!@stringset ioReferencedBlockSet
@@ -460,7 +460,7 @@ end routine ;
 
 #----------------------------------------------------------------------------*
 
-local routine enterGoto4block
+routine enterGoto4block
   ??@symbolTableForBlockOptimization inSymbolTable
   ??@ipic18BlockList inBlockList
   ?!@stringset ioReferencedBlockSet
@@ -941,7 +941,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-local routine instructionListOptimization
+routine instructionListOptimization
   ??@symbolTableForBlockOptimization inSymbolTable
   ??@optimizeFlagStruct inOptimizeFlagStruct
   ??@ipic18BlockList inBlockList

@@ -6,7 +6,7 @@ import "intermediate_generic.gSemantics" ;
 
 #----------------------------------------------------------------------------*
 
-local routine emitBaselineCodeAtWordAddress
+routine emitBaselineCodeAtWordAddress
   ??@uint inCode
   ?!@uint ioWordAddress
   ??@baseline_assembly_instruction inInstruction
@@ -22,7 +22,7 @@ end routine ;
 
 #----------------------------------------------------------------------------*
 
-local routine emitNoBaselineCodeAtWordAddress
+routine emitNoBaselineCodeAtWordAddress
   ??@uint inWordAddress
   ??@baseline_assembly_instruction inInstruction
   ?!@string ioListFileContents

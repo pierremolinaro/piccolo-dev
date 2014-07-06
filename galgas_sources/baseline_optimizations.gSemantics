@@ -210,7 +210,7 @@ end method ;
 
 #----------------------------------------------------------------------------*
 
-local routine findBaselineFirstInstructionFromAddress
+routine findBaselineFirstInstructionFromAddress
   ??@uint inLineIndex
   ??@baseline_intermediate_instructionList inGeneratedInstructionList
   !@baseline_intermediate_instruction outFirstInstruction
@@ -235,7 +235,7 @@ end routine ;
 
 #----------------------------------------------------------------------------*
 
-local routine findBaselineFirstInstructionOrLabelFromAddress
+routine findBaselineFirstInstructionOrLabelFromAddress
   ??@uint inLineIndex
   ??@baseline_intermediate_instructionList inGeneratedInstructionList
   !@baseline_intermediate_instruction outFirstInstruction
