@@ -361,12 +361,11 @@ Dans l’en-tête :
 
 
 Le corps du programme est constitué d’une liste non ordonnée de sections. Les sections disponibles sont listées dans le \refTableau{sectionsPic18}.
-\begin{table}[!ht]
+\begin{table}[!t]
   \centering
 %  \rowcolors{2}{\fondTableau}{}
   \begin{tabular}{p{5cm}lll}
     \textbf{Type de section} & \textbf{Mot-clés introductifs} & \textbf{Référence}\\
-    \hline
     Vérification du type du micro-contrôleur & \piccolo{checkpic} & \refChapterPage{checkpic}\\
     \hdashline
     Configuration & \piccolo{configuration} & \refChapterPage{configuration}\\
@@ -390,10 +389,11 @@ Le corps du programme est constitué d’une liste non ordonnée de sections. Le
     Data & \piccolo{data} & \refSectionPage{sectionData} \\
     \hdashline
     Include & \piccolo{include} & \refSectionPage{sectionInclude} \\
-  \hline
   \end{tabular}
   \caption{Les sections d'un programme pour \emph{pic18}}
   \labelTableau{sectionsPic18}
+  \ligne
+  \ligne
 \end{table}
 
 
@@ -755,14 +755,13 @@ Elles sont de deux types (la distinction est importante pour l’instruction \em
 \subsectionLabel{Liste des instructions simples}{instructionsSimplesPic18}
 
 Elles correspondent à une partie des instructions assembleur. Attention, pour certaines, la syntaxe n'est pas exactement la même que celle de l'instruction assembleur correspondante. \textcolor{red}{\bf Dans sa version actuelle, Piccolo ne prend pas en charge le jeu d'instruction étendu.} Les \refTableau{instructionsPic18Assembleur1},  \refTableau{instructionsPic18Assembleur2} et \refTableau{instructionsPic18Assembleur3} donnent la liste des instructions assembleur \emph{pic18} et les liens vers les sections précisant leur prise en charge en Piccolo. Le \refTableau{pic18InstructionsPropresPiccolo} liste les instructions complémentaires disponibles en Piccolo.
- 
-\begin{table}[!ht]
+
+\begin{table}[!t]
   \centering
   \small
 %  \rowcolors{2}{\fondTableau}{}
   \begin{tabular}{lll}
     \textbf{Assembleur} & \textbf{Description} & \textbf{Référence en Piccolo}\\
-    \hline
     \assembleur{ADDLW k} & Add Literal and WREG & \refSubsectionPage{opPic18Immediate}\\
     \hdashline
     \assembleur{ADDWF f, d, a} & Add WREG and f & \refSubsectionPage{instructionsNommantRegistreEtW} \\
@@ -814,7 +813,17 @@ Elles correspondent à une partie des instructions assembleur. Attention, pour c
     \assembleur{CPFSGT f, a} & Compare f with WREG, Skip > & \refSubsectionPage{instructionsPic18Introuvables}\\
     \hdashline
     \assembleur{CPFSLT f, a} & Compare f with WREG, Skip < & \refSubsectionPage{instructionsPic18Introuvables}\\
-    \hdashline
+  \end{tabular}
+  \caption{Instructions assembleur \emph{pic18} [A-C]}
+  \labelTableau{instructionsPic18Assembleur1}
+  \ligne
+\end{table}\nopagebreak
+
+\begin{table}[!t]
+  \centering
+  \small
+  \begin{tabular}{lll}
+    \textbf{Assembleur} & \textbf{Description} & \textbf{Référence en Piccolo}\\
     \assembleur{DAW} & Decimal Adjust WREG & \refSubsectionPage{OperationsPic18IdentiquesAssembleur}\\
     \hdashline
     \assembleur{DECF f, d, a} & Decrement f & \refSubsectionPage{instructionsNommantRegistreEtW}\\
@@ -830,23 +839,11 @@ Elles correspondent à une partie des instructions assembleur. Attention, pour c
     \assembleur{INCFSZ f, d, a} & Increment f, Skip if 0 & \refSubsectionPage{instructionsPic18Introuvables}\\
     \hdashline
     \assembleur{INFSNZ f, d, a} & Increment f, Skip if Not 0 & \refSubsectionPage{instructionsPic18Introuvables}\\
-    \hdashline
+    \hdashline 
     \assembleur{IORLW k} & Inclusive OR Literal with WREG & \refSubsectionPage{opPic18Immediate}\\
     \hdashline
     \assembleur{IORWF f, d, a} & Inclusive OR WREG with f & \refSubsectionPage{instructionsNommantRegistreEtW}\\
-  \hline
-  \end{tabular}
-  \caption{Instructions assembleur \emph{pic18} [A-I]}
-  \labelTableau{instructionsPic18Assembleur1}
-\end{table}
-
-\begin{table}[!ht]
-  \centering
-  \small
-%  \rowcolors{2}{\fondTableau}{}
-  \begin{tabular}{lll}
-    \textbf{Assembleur} & \textbf{Description} & \textbf{Référence en Piccolo}\\
-    \hline
+    \hdashline
     \assembleur{LFSR f, k} & Move Literal to FSR(f) & \refSubsectionPage{instructionLFSR} \\
     \hdashline
     \assembleur{MOVF f, d, a} & Move f & \refSubsectionPage{instructionsNommantRegistreEtW}\\
@@ -868,7 +865,17 @@ Elles correspondent à une partie des instructions assembleur. Attention, pour c
     \assembleur{POP} & Pop Top of Return Stack & \refSubsectionPage{OperationsPic18IdentiquesAssembleur} \\
     \hdashline
     \assembleur{PUSH} & Push Top of Return Stack & \refSubsectionPage{OperationsPic18IdentiquesAssembleur}\\
-    \hdashline
+  \end{tabular}
+  \caption{Instructions assembleur \emph{pic18} [D-P]}
+  \labelTableau{instructionsPic18Assembleur2}
+  \ligne
+\end{table}\nopagebreak
+
+\begin{table}[!t]
+  \centering
+  \small
+  \begin{tabular}{lll}
+    \textbf{Assembleur} & \textbf{Description} & \textbf{Référence en Piccolo}\\
     \assembleur{RCALL n} & Relative Call & \refSubsectionPage{appelRoutineRegulierePic18} \\
     \hdashline
     \assembleur{RESET} & Software Device Reset & \refSubsectionPage{OperationsPic18IdentiquesAssembleur} \\
@@ -918,47 +925,33 @@ Elles correspondent à une partie des instructions assembleur. Attention, pour c
     \assembleur{TBLWT+*} & Table Write with Pre-Increment & \refSubsectionPage{OperationsPic18IdentiquesAssembleur} \\
     \hdashline
     \assembleur{TSTFSZ f, a} & Test f, Skip if 0 & \refSubsectionPage{instructionsPic18Introuvables}\\
-  \hline
-  \end{tabular}
-  \caption{Instructions assembleur \emph{pic18} [L-T]}
-  \labelTableau{instructionsPic18Assembleur2}
-\end{table}
-
-\begin{table}[!ht]
-  \centering
-  \small
-%  \rowcolors{2}{\fondTableau}{}
-  \begin{tabular}{lll}
-    \hline
-    \textbf{Assembleur} & \textbf{Description} & \textbf{Référence en Piccolo}\\
+    \hdashline
     \assembleur{XORLW k} & Exclusive OR Literal with WREG & \refSubsectionPage{opPic18Immediate}\\
     \hdashline
     \assembleur{XORWF f, d, a} & Exclusive OR WREG with f & \refSubsectionPage{instructionsNommantRegistreEtW}\\
-    \hline
   \end{tabular}
-  \caption{Instructions assembleur \emph{pic18} [X-X]}
+  \caption{Instructions assembleur \emph{pic18} [R-X]}
   \labelTableau{instructionsPic18Assembleur3}
+  \ligne
 \end{table}
 
 
 
 
-\begin{table}[!ht]
+\begin{table}[!t]
   \centering
   \small
-%  \rowcolors{2}{\fondTableau}{}
   \begin{tabular}{lll}
     \textbf{Piccolo} & \textbf{Description} & \textbf{Référence}\\
-    \hline
     \piccolo{fnop} & Instruction NOP & \refSubsectionPage{instructionFNOP} \\
-    \hline
+    \hdashline
     \piccolo{jump} & Appel de routine sans retour & \refSubsectionPage{appelRoutineSansRetourPic18} \\
     \hdashline
     \piccolo{jsr} & Appel de routine régulière &  \refSubsectionPage{appelRoutineRegulierePic18} \\
-    \hline
   \end{tabular}
   \caption{Instructions propres à Piccolo pour \emph{pic18}}
   \labelTableau{pic18InstructionsPropresPiccolo}
+  \ligne
 \end{table}
 
 
@@ -1014,13 +1007,12 @@ Ce sont les instructions listées dans le \refTableau{operationsPic18NommantUnRe
 
 
 
-\begin{table}[!ht]
+\begin{table}[!t]
   \centering
   \small
 %  \rowcolors{2}{\fondTableau}{}
   \begin{tabular}{lll}
     \textbf{Assembleur} & \textbf{Description} & \textbf{Écriture en Piccolo}\\
-    \hline
     \assembleur{CLRF f, a} & Clear f & \piccolo{clrf f} \\
     \hdashline
     \assembleur{MULWF f, a} & Multiply WREG with f & \piccolo{mulwf f} \\
@@ -1028,10 +1020,10 @@ Ce sont les instructions listées dans le \refTableau{operationsPic18NommantUnRe
     \assembleur{NEGF f, a} & Negate f & \piccolo{negf f} \\
     \hdashline
     \assembleur{SETF f, a} & Set f & \piccolo{setf f}\\
-  \hline
   \end{tabular}
   \caption{Opérations nommant un registre}
   \labelTableau{operationsPic18NommantUnRegistre}
+  \ligne
 \end{table}
 
 
@@ -1051,14 +1043,13 @@ Ces instructions, ainsi que le traduction en Piccolo, sont listées dans le \ref
 \end{itemize}
 
 
-\begin{table}[!ht]
+\begin{table}[!t]
   \centering
   \small
 %  \rowcolors{2}{\fondTableau}{}
   \begin{tabular}{llll}
      &  & \multicolumn{2}{l}{\textbf{En Piccolo, destination :}} \\
     \textbf{Assembleur} & \textbf{Description} & \textbf{f} & \textbf{WREG}\\
-    \hline
     \assembleur{ADDWF f, d, a} & Add WREG and f & \piccolo{addwf f}  & \piccolo{addwf f, W} \\
     \hdashline
     \assembleur{ADDWFC f, d, a} & Add WREG and Carry bit to f & \piccolo{addwfc f} & \piccolo{addwfc f, W}\\
@@ -1092,10 +1083,10 @@ Ces instructions, ainsi que le traduction en Piccolo, sont listées dans le \ref
     \assembleur{SWAPF f, d, a} & Swap Nibbles in f & \piccolo{swapf f} & \piccolo{swapf f, W}\\
     \hdashline
     \assembleur{XORWF f, d, a} & Exclusive OR WREG with f & \piccolo{xorwf f} & \piccolo{xorwf f, W}\\
-  \hline
   \end{tabular}
   \caption{Instructions \emph{pic18} nommant un registre, et optionnellement \assembleur{W}}
   \labelTableau{instructionsPic18RegistreEtW}
+  \ligne
 \end{table}
 
 
@@ -1103,22 +1094,21 @@ Ces instructions, ainsi que le traduction en Piccolo, sont listées dans le \ref
 
 Ces instructions Piccolo correspondent aux instructions assembleur \assembleur{BCF}, \assembleur{BSF} et \assembleur{BTG} (\refTableau{operationsPic18AffectationBit}).
 
-\begin{table}[!ht]
+\begin{table}[!t]
   \centering
   \small
 %  \rowcolors{2}{\fondTableau}{}
   \begin{tabular}{llll}
     \textbf{Assembleur} & \textbf{Description} & \textbf{En Piccolo}\\
-    \hline
     \assembleur{BCF f, b, a} & Bit Clear f & \piccolo{bcf f.b} \\
     \hdashline
     \assembleur{BSF f, b, a} & Bit Set f & \piccolo{bsf f.b} \\
     \hdashline
     \assembleur{BTG f, b, a} & Bit Toggle f & \piccolo{btg f.b} \\
-  \hline
   \end{tabular}
   \caption{Opérations \emph{pic18} d'affectation de bit}
   \labelTableau{operationsPic18AffectationBit}
+  \ligne
 \end{table}
 
 En Piccolo, ces instructions ont toujours deux arguments séparés par un point :
@@ -1168,13 +1158,12 @@ Pour être valide dans les opérations statiques avec \assembleur{WREG}, le rés
 Par exemple : \piccolo{movlw -14} engendre l’instruction assembleur : \piccolo{MOVLW 0xf2}.
 
 
-\begin{table}[!ht]
+\begin{table}[!t]
   \centering
   \small
 %  \rowcolors{2}{\fondTableau}{}
   \begin{tabular}{lll}
     \textbf{Assembleur} & \textbf{Description} & \textbf{Écriture en Piccolo}\\
-    \hline
     \assembleur{ADDLW k} & Add Literal and WREG & \piccolo{addlw k}\\
     \hdashline
     \assembleur{ANDLW k} & And Literal with WREG & \piccolo{andlw k}\\
@@ -1188,10 +1177,10 @@ Par exemple : \piccolo{movlw -14} engendre l’instruction assembleur : \piccolo
     \assembleur{SUBLW k} & Substract WREG from Literal & \piccolo{sublw k}\\
     \hdashline
     \assembleur{XORLW k} & Exclusive OR Literal with WREG & \piccolo{xorlw k}\\
-    \hline
   \end{tabular}
   \caption{Opérations statiques avec \texttt{WREG} pour \emph{pic18}}
   \labelTableau{operationsLiteralesPic18AvecW}
+  \ligne
 \end{table}
 
 
@@ -1199,13 +1188,12 @@ Par exemple : \piccolo{movlw -14} engendre l’instruction assembleur : \piccolo
 
 Ces instructions sont listées dans le \refTableau{operationsPic18IdentiquesAssembleur}.
 
-\begin{table}[!ht]
+\begin{table}[!t]
   \centering
   \small
 %  \rowcolors{2}{\fondTableau}{}
   \begin{tabular}{lll}
     \textbf{Assembleur} & \textbf{Description} & \textbf{Écriture en Piccolo}\\
-    \hline
     \assembleur{CLRWDT} & Clear Watchdog Timer & \piccolo{clrwdt}\\
     \hdashline
     \assembleur{DAW} & Decimal Adjust WREG & \piccolo{daw}\\
@@ -1235,10 +1223,10 @@ Ces instructions sont listées dans le \refTableau{operationsPic18IdentiquesAsse
     \assembleur{TBLWT*-} & Table Write with Post-Decrement & \piccolo{tblwt *-} \\
     \hdashline
     \assembleur{TBLWT+*} & Table Write with Pre-Increment & \piccolo{tblwt +*} \\
-    \hline
   \end{tabular}
   \caption{Instructions \emph{pic18} identiques en assembleur et en Piccolo}
   \labelTableau{operationsPic18IdentiquesAssembleur}
+  \ligne
 \end{table}
 
 
@@ -1362,14 +1350,13 @@ Le code engendré par une instruction \piccolo{jump cc} peut occuper deux, quatr
 
 
 
-\begin{table}[!ht]
+\begin{table}[!t]
   \centering
   \small
 %  \rowcolors{3}{}{\fondTableau}
   \begin{tabular}{llp{2.5cm}p{2.5cm}}
       & \multicolumn{3}{c}{\bf Code engendré}\\
     \textbf{Instruction Piccolo} & \textbf{2 octets} & \textbf{4 octets} & \textbf{6 octets}\\
-    \hline
     \piccolo{jump c routine} & \assembleur{BC routine} & \assembleur{BNC \$ + 4} & \assembleur{BNC \$ + 6}\\
                              &                         & \assembleur{BRA routine} & \assembleur{GOTO routine}\\
     \hdashline
@@ -1393,10 +1380,10 @@ Le code engendré par une instruction \piccolo{jump cc} peut occuper deux, quatr
     \hdashline
     \piccolo{jump nov routine} & \assembleur{BNOV routine} & \assembleur{BOV \$ + 4} & \assembleur{BOV \$ + 6}\\
                               &                          & \assembleur{BRA routine} & \assembleur{GOTO routine}\\
-    \hline
   \end{tabular}
   \caption{Codages possibles de l'instruction \texttt{jump cc}}
   \labelTableau{codageInstructionJumpCC}
+  \ligne
 \end{table}
 
 

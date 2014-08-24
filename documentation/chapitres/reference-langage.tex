@@ -17,17 +17,15 @@ Un commentaire commence par un caractère dièse \piccolo{\#}, et s’étend jus
 
 Piccolo définit les délimiteurs listés dans le \refTableau{delimiteursLangage}.
 
-\begin{table}[ht]
+\begin{table}[!t]
   \centering
   \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
-    \hline
     \texttt{*}  & \texttt{*+} & \texttt{,}  & \texttt{!=} & \texttt{<=} & \texttt{>=} & \texttt{*-} & \texttt{+*} & \texttt{;} & \texttt{:} & \texttt{==} & \texttt{<} & \texttt{>} & \texttt{[} & \texttt{]} & \texttt{.} & \texttt{!} \\
-    \hline
     \texttt{\&} & \texttt{|}  & \texttt{\}} & \texttt{\}} & \texttt{(}  & \texttt{)}  & \texttt{/}  & \texttt{-} & \texttt{+} & \texttt{\textasciicircum} & \texttt{<{}<} & \texttt{>{}>} & \texttt{\textasciitilde} & \texttt{@} & \texttt{\%} & \texttt{=} & \texttt{?} \\
-    \hline
   \end{tabular}
   \caption{Délimiteurs du langage Piccolo}
   \labelTableau{delimiteursLangage}
+  \ligne
 \end{table}
 
 \section{Séparateurs}
@@ -55,9 +53,9 @@ Les mots réservés correspondant aux éléments du langage sont listés dans le
 
 \newcommand\keyWordLanguage[1]{\textcolor{blue}{\bf#1}}
 
-\begin{table}[ht]
+\begin{table}[!t]
   \centering
-\begin{tabular}{|l|l|l|l|l|l|}
+  \begin{tabular}{|l|l|l|l|l|l|}
   \hline
    \keyWordLanguage{bank} & \keyWordLanguage{banksave} & \keyWordLanguage{banksel} & \keyWordLanguage{baseline} & \keyWordLanguage{block} \\
   \hline
@@ -77,9 +75,10 @@ Les mots réservés correspondant aux éléments du langage sont listés dans le
   \hline
     \keyWordLanguage{switch} & \keyWordLanguage{uses} & \keyWordLanguage{w} & \keyWordLanguage{while} &\\
   \hline
-\end{tabular}
+  \end{tabular}
   \caption{Mots réservés correspondant aux éléments du langage Piccolo}
   \labelTableau{motReservesLangage}
+  \ligne
 \end{table}
 
 
@@ -94,7 +93,7 @@ Les mots réservés correspondant à des instructions exécutables sont listés 
 
 \newcommand\keyWordInstruction[1]{\textcolor{brown}{\bf#1}}
 
-\begin{table}[ht]
+\begin{table}[!t]
   \centering
 \begin{tabular}{|l|l|l|l|l|l|l|}
   \hline
@@ -121,6 +120,7 @@ Les mots réservés correspondant à des instructions exécutables sont listés 
 \end{tabular}
   \caption{Mots réservés correspondant aux instructions exécutables Piccolo}
   \labelTableau{motReservesInstructions}
+  \ligne
 \end{table}
 
 

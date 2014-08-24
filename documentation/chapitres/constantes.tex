@@ -49,21 +49,20 @@ end
 
 Piccolo prédéfinit les constantes listées dans le \refTableau{tableauConstantesPredefinies}, en fonction du type du micro-contrôleur. Le fichier listing (obtenu par l'option « \texttt{-L} », voir \refSubsectionPage{listeOptions}) contient la liste des constantes prédéfinies et leur valeur.
 
-\begin{table}[ht]
+\begin{table}[!t]
   \centering
 %  \rowcolors{2}{\fondTableau}{}
   \begin{tabular}{llccc}
     \textbf{Nom} & \textbf{Signification} & \textbf{Baseline} & \textbf{Mid-range} & \textbf{Pic18}\\
-    \hline
     \piccolo{ROM\_SIZE} & Taille de la ROM & & \checkmark & \checkmark \\
     \hdashline
     \piccolo{BOOTLOADER\_SIZE} & Taille du \emph{bootloader} & & & \checkmark \\
     \hdashline
     \piccolo{RAM\_SIZE} & Taille de la RAM & & & \checkmark \\
-  \hline
   \end{tabular}
   \caption{Constantes prédéfinies}
   \labelTableau{tableauConstantesPredefinies}
+  \ligne
 \end{table}
 
 \textbf{Attention !} La valeur de \piccolo{ROM\_SIZE} est le nombre d'octets pour un \emph{pic18} (une instruction occupe 2 ou 4 octets), et le nombre d'instructions de 14 bits pour un \emph{mid-range}.
@@ -126,12 +125,11 @@ La constante \piccolo{RAM\_SIZE} est définie pour un \emph{pic18}. Elle permet 
 
 \textbf{Opérateurs.} Les opérateurs définis pour une expression littérale sont donnés par le \refTableau{operateursExpressionImmediate} (par ordre de priorité croissante).
 
-\begin{table}[!ht]
+\begin{table}[!t]
   \centering
 %  \rowcolors{2}{\fondTableau}{}
   \begin{tabular}{lll}
     \textbf{Assembleur} & \textbf{Priorité} & \textbf{Description}\\
-    \hline
     \piccolo{|} & 0 & Ou inclusif bit à bit \\
     \hdashline
     \piccolo{\^} & 0 & Ou exclusif bit à bit \\
@@ -165,10 +163,10 @@ La constante \piccolo{RAM\_SIZE} est définie pour un \emph{pic18}. Elle permet 
     \piccolo{-} & 5 & Opérateur unaire : négation \\
     \hdashline
     \piccolo{\~} & 5 & Opérateur unaire : complémentation logique \\
-    \hline
   \end{tabular}
   \caption{Opérateurs d'une expression littérale, par ordre de priorité croissante}
   \labelTableau{operateursExpressionImmediate}
+  \ligne
 \end{table}
 
 
