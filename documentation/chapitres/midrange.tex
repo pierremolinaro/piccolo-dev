@@ -31,12 +31,11 @@ Dans l’en-tête :
 
 Le corps du programme est constitué d’une liste non ordonnée de sections. Les sections disponibles sont listées dans le \refTableau{sectionsMidrange}.
 
-\begin{table}[ht]
+\begin{table}[!t]
   \centering
 %  \rowcolors{2}{\fondTableau}{}
   \begin{tabular}{p{5cm}lll}
     \textbf{Type de section} & \textbf{Mot-clés introductifs} & \textbf{Référence}\\
-    \hline
     Configuration & \piccolo{configuration} & \refChapterPage{configuration}\\
     \hdashline
     Définition de variable & \piccolo{ram} & \refChapterPage{ram}\\
@@ -52,10 +51,10 @@ Le corps du programme est constitué d’une liste non ordonnée de sections. Le
     Routine inutilisée & \piccolo{unused routine}\index{Mot réservé!unused} & \refSubsectionPage{routineInutiliseeMidrange} \\
     \hdashline
     Définition de routine d'interruption mid-range & \piccolo{interrupt} & \refSectionPage{routineInterruptionMidrange}\\
-  \hline
   \end{tabular}
   \caption{Les sections d'un programme pour \emph{mid-range}}
   \labelTableau{sectionsMidrange}
+  \ligne
 \end{table}
 
 
@@ -238,13 +237,12 @@ Elles sont de deux types (la distinction est importante pour l’instruction \em
 Le \refTableau{instructionsAssembleurMidRange} donnent la liste des instructions machine \emph{mid-range} et les liens vers les sections précisant leur prise en charge en Piccolo.
 
  
-\begin{table}[!ht]
+\begin{table}[!t]
   \centering
   \small
 %  \rowcolors{2}{\fondTableau}{}
   \begin{tabular}{lll}
     \textbf{Instruction} & \textbf{Description} & \textbf{Référence en Piccolo}\\
-    \hline
     \assembleur{ADDLW k} & Add Literal and W & \refSubsectionPage{opMidRangeImmediate}\\
     \hdashline
     \assembleur{ADDWF f, d} & Add W and f & \refSubsectionPage{instructionsMidRangeNommantRegistreEtW} \\
@@ -314,10 +312,10 @@ Le \refTableau{instructionsAssembleurMidRange} donnent la liste des instructions
     \assembleur{XORLW k} & Exclusive OR Literal with W & \refSubsectionPage{opMidRangeImmediate}\\
     \hdashline
     \assembleur{XORWF f, d} & Exclusive OR W with f & \refSubsectionPage{instructionsMidRangeNommantRegistreEtW}\\
-  \hline
   \end{tabular}
   \caption{Instructions machine des \emph{mid-range}}
   \labelTableau{instructionsAssembleurMidRange}
+  \ligne
 \end{table}
 
 
@@ -369,20 +367,19 @@ Ce sont les instructions listées dans le \refTableau{operationsMidRangeNommantU
 
 
 
-\begin{table}[!ht]
+\begin{table}[!t]
   \centering
   \small
 %  \rowcolors{2}{\fondTableau}{}
   \begin{tabular}{lll}
     \textbf{Assembleur} & \textbf{Description} & \textbf{Écriture en Piccolo}\\
-    \hline
     \assembleur{CLRF f} & Clear f & \piccolo{clrf f} \\
     \hdashline
     \assembleur{MOVWF f} & Move f & \piccolo{movwf f} \\
-  \hline
   \end{tabular}
   \caption{Opérations \emph{mid-range} nommant un registre}
   \labelTableau{operationsMidRangeNommantUnRegistre}
+  \ligne
 \end{table}
 
 
@@ -401,14 +398,13 @@ Ces instructions, ainsi que le traduction en Piccolo, sont listées dans le \ref
 \end{itemize}
 
 
-\begin{table}[!ht]
+\begin{table}[!t]
   \centering
   \small
 %  \rowcolors{3}{}{\fondTableau}
   \begin{tabular}{llll}
      &  & \multicolumn{2}{l}{\textbf{En Piccolo, destination :}} \\
     \textbf{Assembleur} & \textbf{Description} & \textbf{f} & \textbf{W}\\
-    \hline
     \assembleur{ADDWF f, d} & Add W and f & \piccolo{addwf f}  & \piccolo{addwf f, W} \\
     \hdashline
     \assembleur{ANDWF f, d} & And W with f & \piccolo{andwf f} & \piccolo{andwf f, W}\\
@@ -432,10 +428,10 @@ Ces instructions, ainsi que le traduction en Piccolo, sont listées dans le \ref
     \assembleur{SWAPF f, d} & Swap Nibbles in f & \piccolo{swapf f} & \piccolo{swapf f, W}\\
     \hdashline
     \assembleur{XORWF f, d} & Exclusive OR W with f & \piccolo{xorwf f} & \piccolo{xorwf f, W}\\
-  \hline
   \end{tabular}
   \caption{Instructions \emph{mid-range} nommant un registre, et optionnellement \texttt{W}}
   \labelTableau{instructionsMidRangeRegistreEtW}
+  \ligne
 \end{table}
 
 
@@ -443,20 +439,19 @@ Ces instructions, ainsi que le traduction en Piccolo, sont listées dans le \ref
 
 Ces instructions Piccolo correspondent aux instructions machine \assembleur{BCF} et \assembleur{BSF} (\refTableau{operationsMidRangeAffectationBit}).
 
-\begin{table}[!ht]
+\begin{table}[!t]
   \centering
   \small
 %  \rowcolors{2}{\fondTableau}{}
   \begin{tabular}{lll}
     \textbf{Assembleur} & \textbf{Description} & \textbf{Écriture en Piccolo}\\
-    \hline
     \assembleur{BCF f, b} & Bit Clear f & \piccolo{bcf f.b} \\
     \hdashline
     \assembleur{BSF f, b} & Bit Set f & \piccolo{bsf f.b} \\
-  \hline
   \end{tabular}
   \caption{Opérations \emph{mid-range} sur un bit d'un registre}
   \labelTableau{operationsMidRangeAffectationBit}
+  \ligne
 \end{table}
 
 En Piccolo, ces instructions ont toujours deux arguments :
@@ -504,13 +499,12 @@ Pour être valide dans les opérations statiques avec \piccolo{W}, le résultat 
 Par exemple : \piccolo{movlw -14} engendre l’instruction assembleur : \assembleur{MOVLW 0xf2}.
 
 
-\begin{table}[!ht]
+\begin{table}[!t]
   \centering
   \small
 %  \rowcolors{2}{\fondTableau}{}
   \begin{tabular}{lll}
     \textbf{Assembleur} & \textbf{Description} & \textbf{Écriture en Piccolo}\\
-    \hline
     \assembleur{ADDLW k} & Add Literal and W & \piccolo{addlw k}\\
     \hdashline
     \assembleur{ANDLW k} & And Literal with W & \piccolo{andlw k}\\
@@ -522,10 +516,10 @@ Par exemple : \piccolo{movlw -14} engendre l’instruction assembleur : \assembl
     \assembleur{SUBLW k} & Substract W frol literal & \piccolo{sublw k}\\
     \hdashline
     \assembleur{XORLW k} & Exclusive OR Literal with W & \piccolo{xorlw k}\\
-    \hline
   \end{tabular}
   \caption{Opérations litérales avec \texttt{W} pour \emph{mid-range}}
   \labelTableau{operationsLiteralesMidRangeAvecW}
+  \ligne
 \end{table}
 
 
@@ -533,13 +527,12 @@ Par exemple : \piccolo{movlw -14} engendre l’instruction assembleur : \assembl
 
 Ces instructions sont listées dans le \refTableau{operationsMidRangeIdentiquesAssembleur}.
 
-\begin{table}[!ht]
+\begin{table}[!t]
   \centering
   \small
 %  \rowcolors{2}{\fondTableau}{}
   \begin{tabular}{lll}
     \textbf{Assembleur} & \textbf{Description} & \textbf{Écriture en Piccolo}\\
-    \hline
     \assembleur{CLRWDT} & Clear Watchdog Timer & \piccolo{clrwdt}\\
     \hdashline
     \assembleur{CLRW} & Clear W & \piccolo{clrw}\\
@@ -549,10 +542,10 @@ Ces instructions sont listées dans le \refTableau{operationsMidRangeIdentiquesA
     \assembleur{OPTION} & Load OPTION register & \piccolo{option}\\
     \hdashline
     \assembleur{SLEEP} & Go into Standby Mode & \piccolo{sleep}\\
-    \hline
   \end{tabular}
   \caption{Instructions \emph{mid-range} identiques en assembleur et en Piccolo}
   \labelTableau{operationsMidRangeIdentiquesAssembleur}
+  \ligne
 \end{table}
 
 
@@ -634,13 +627,12 @@ Une section \piccolo{include} permet d'inclure un fichier contenant lui-même de
 
 La mémoire programme d'un \emph{mid-range} est constituée d'une ou plusieurs pages de 2048 instructions chacune. Le \refTableau{nombrePagesMidRange} cite quelques micro-contrôleurs \emph{mid-range} et le nombre de pages de leur mémoire programme.
 
-\begin{table}[!ht]
+\begin{table}[!t]
   \centering
   \small
 %  \rowcolors{2}{\fondTableau}{}
   \begin{tabular}{lll}
     \textbf{Composant} & \textbf{Mémoire programme} & \textbf{Nombre de pages}\\
-    \hline
     16F631  & 1024 instructions & 1\\
     \hdashline
     16F677  & 2048 instructions & 1\\
@@ -652,29 +644,28 @@ La mémoire programme d'un \emph{mid-range} est constituée d'une ou plusieurs p
     16F723, 16F724  & 4096 instructions & 2\\
     \hdashline
     16F727  & 8192 instructions & 4\\
-    \hline
   \end{tabular}
   \caption{Mémoire programme de quelques micro-contrôleurs \emph{mid-range}}
   \labelTableau{nombrePagesMidRange}
+  \ligne
 \end{table}
 
 Les deux instructions machine de branchement que le jeu d'instructions des \emph{mid-range} définit sont \assembleur{CALL} et \assembleur{GOTO} (\refTableau{callGotoMidRange}). En résumé, ces instructions ne permettent pas d'effectuer par elles mêmes un branchement à tout position de la mémoire programme, mais uniquement un branchement à toute position de la page courante.
 
-\begin{table}[!ht]
+\begin{table}[!t]
   \centering
   \small
 %  \rowcolors{3}{}{\fondTableau}
   \begin{tabular}{llcccc}
     \textbf{Instruction} & \textbf{Description} & \multicolumn{4}{l}{\bf Code binaire}\\
                          &                      & 13 & 12 & 11 & 10 à 0\\
-    \hline
     \piccolo{call k}  & Call subroutine & 1 & 0 & 0 & k \\
     \hdashline
     \piccolo{goto k}  & Go to Address   & 1 & 0 & 1 & k \\
-    \hline
   \end{tabular}
   \caption{Instructions assembleur \texttt{call} et \texttt{goto} des \emph{mid-range}}
   \labelTableau{callGotoMidRange}
+  \ligne
 \end{table}
 
 
@@ -1128,13 +1119,12 @@ Cette section indique les différentes optimisations d'un code \emph{mid-range}.
 
 Pour optimiser, Piccolo applique les remplacements indiqués par le \refTableau{optimisationsMidRange}, et élimine le code mort. Le code est balayé de manière répétitive, tant que des optimisations sont effectuées.
 
-\begin{table}[!ht]
+\begin{table}[!t]
   \centering
   \small
 %  \rowcolors{2}{\fondTableau}{}
   \begin{tabular}{ll}
     \textbf{Situation} & \textbf{Optimisation} \\
-    \hline
     \assembleur{CALL} vers \assembleur{RETLW k}  & Remplacement par \assembleur{MOVLW k}\\
     \hdashline
     \assembleur{GOTO} vers \assembleur{RETLW k}  & Remplacement par \assembleur{RETLW k}\\
@@ -1150,10 +1140,10 @@ Pour optimiser, Piccolo applique les remplacements indiqués par le \refTableau{
     \assembleur{JUMP a} vers \assembleur{JUMP b}  & Remplacement par \assembleur{JUMP b}\\
     \hdashline
     \assembleur{JUMP a} vers \assembleur{GOTO b}  & Remplacement par \assembleur{JUMP b}\\
-    \hline
   \end{tabular}
   \caption{Optimisation du code \emph{mid-range}}
   \labelTableau{optimisationsMidRange}
+  \ligne
 \end{table}
 
 

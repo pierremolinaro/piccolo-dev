@@ -30,12 +30,11 @@ Dans l’en-tête :
 
 
 Le corps du programme est constitué d’une liste non ordonnée de sections. Les sections disponibles sont listées dans le \refTableau{sectionsBaseline}.
-\begin{table}[ht]
+\begin{table}[!t]
   \centering
 %  \rowcolors{2}{\fondTableau}{}
   \begin{tabular}{p{5cm}lll}
     \textbf{Type de section} & \textbf{Mot-clés introductifs} & \textbf{Référence}\\
-    \hline
     Configuration & \piccolo{configuration}\index{Mot réservé!configuration} & \refChapterPage{configuration}\\
     \hdashline
     Définition de variable & \piccolo{ram}\index{Mot réservé!ram} & \refChapterPage{ram}\\
@@ -51,10 +50,10 @@ Le corps du programme est constitué d’une liste non ordonnée de sections. Le
     Routine inutilisée & \piccolo{unused routine}\index{Mot réservé!unused} & \refSubsectionPage{routineInutiliseeBaseline} \\
     \hdashline
     Inclusion  & \piccolo{include}\index{Mot réservé!include} & \refSectionPage{sectionIncludeBaseline} \\
-    \hline
   \end{tabular}
   \caption{Les sections d'un programme pour \emph{baseline}}
   \labelTableau{sectionsBaseline}
+  \ligne
 \end{table}
 
 
@@ -290,13 +289,12 @@ Elles sont de deux types (la distinction est importante pour l’instruction \em
 Le \refTableau{instructionsAssembleurBaseline} donnent la liste des instructions machine \emph{baseline} et les liens vers les sections précisant leur prise en charge en Piccolo.
 
  
-\begin{table}[!ht]
+\begin{table}[!t]
   \centering
   \small
 %  \rowcolors{2}{\fondTableau}{}
   \begin{tabular}{lll}
     \textbf{Instruction} & \textbf{Description} & \textbf{Référence en Piccolo}\\
-    \hline
     \assembleur{ADDWF f, d} & Add W and f & \refSubsectionPage{instructionsBaselineNommantRegistreEtW} \\
     \hdashline
     \assembleur{ANDLW k} & And Literal with W & \refSubsectionPage{opBaselineImmediate}\\
@@ -360,10 +358,10 @@ Le \refTableau{instructionsAssembleurBaseline} donnent la liste des instructions
     \assembleur{XORLW k} & Exclusive OR Literal with W & \refSubsectionPage{opBaselineImmediate}\\
     \hdashline
     \assembleur{XORWF f, d} & Exclusive OR W with f & \refSubsectionPage{instructionsBaselineNommantRegistreEtW}\\
-  \hline
   \end{tabular}
   \caption{Instructions machine des \emph{baseline}}
   \labelTableau{instructionsAssembleurBaseline}
+  \ligne
 \end{table}
 
 
@@ -409,20 +407,19 @@ Ce sont les instructions listées dans le \refTableau{operationsBaselineNommantU
 
 
 
-\begin{table}[!ht]
+\begin{table}[!t]
   \centering
   \small
 %  \rowcolors{2}{\fondTableau}{}
   \begin{tabular}{lll}
     \textbf{Assembleur} & \textbf{Description} & \textbf{Écriture en Piccolo}\\
-    \hline
     \assembleur{CLRF f} & Clear f & \piccolo{clrf f} \\
     \hdashline
     \assembleur{MOVWF f} & Move f & \piccolo{movwf f} \\
-  \hline
   \end{tabular}
   \caption{Opérations \emph{baseline} nommant un registre}
   \labelTableau{operationsBaselineNommantUnRegistre}
+  \ligne
 \end{table}
 
 
@@ -441,14 +438,13 @@ Ces instructions, ainsi que le traduction en Piccolo, sont listées dans le \ref
 \end{itemize}
 
 
-\begin{table}[!ht]
+\begin{table}[!t]
   \centering
   \small
 %  \rowcolors{2}{\fondTableau}{}
   \begin{tabular}{llll}
      &  & \multicolumn{2}{l}{\textbf{En Piccolo, destination :}} \\
     \textbf{Assembleur} & \textbf{Description} & \textbf{f} & \textbf{W}\\
-    \hline
     \assembleur{ADDWF f, d} & Add W and f & \piccolo{addwf f}  & \piccolo{addwf f, W} \\
     \hdashline
     \assembleur{ANDWF f, d} & And W with f & \piccolo{andwf f} & \piccolo{andwf f, W}\\
@@ -472,10 +468,10 @@ Ces instructions, ainsi que le traduction en Piccolo, sont listées dans le \ref
     \assembleur{SWAPF f, d} & Swap Nibbles in f & \piccolo{swapf f} & \piccolo{swapf f, W}\\
     \hdashline
     \assembleur{XORWF f, d} & Exclusive OR W with f & \piccolo{xorwf f} & \piccolo{xorwf f, W}\\
-  \hline
   \end{tabular}
   \caption{Instructions \emph{baseline} nommant un registre, et optionnellement \texttt{W}}
   \labelTableau{instructionsBaselineRegistreEtW}
+  \ligne
 \end{table}
 
 
@@ -483,20 +479,19 @@ Ces instructions, ainsi que le traduction en Piccolo, sont listées dans le \ref
 
 Ces instructions Piccolo correspondent aux instructions machine \assembleur{BCF} et \assembleur{BSF} (\refTableau{operationsBaselineAffectationBit}).
 
-\begin{table}[!ht]
+\begin{table}[!t]
   \centering
   \small
 %  \rowcolors{2}{\fondTableau}{}
   \begin{tabular}{lll}
     \textbf{Assembleur} & \textbf{Description} & \textbf{Écriture en Piccolo}\\
-    \hline
     \assembleur{BCF f, b} & Bit Clear f & \piccolo{bcf f.b} \\
     \hdashline
     \assembleur{BSF f, b} & Bit Set f & \piccolo{bsf f.b} \\
-  \hline
   \end{tabular}
   \caption{Opérations \emph{baseline} sur un bit d'un registre}
   \labelTableau{operationsBaselineAffectationBit}
+  \ligne
 \end{table}
 
 En Piccolo, ces instructions ont toujours deux arguments :
@@ -544,13 +539,12 @@ Pour être valide dans les opérations statiques avec \piccolo{W}, le résultat 
 Par exemple : \piccolo{movlw -14} engendre l’instruction assembleur : \assembleur{MOVLW 0xf2}.
 
 
-\begin{table}[!ht]
+\begin{table}[!t]
   \centering
   \small
 %  \rowcolors{2}{\fondTableau}{}
   \begin{tabular}{lll}
     \textbf{Assembleur} & \textbf{Description} & \textbf{Écriture en Piccolo}\\
-    \hline
     \assembleur{ANDLW k} & And Literal with W & \piccolo{andlw k}\\
     \hdashline
     \assembleur{IORLW k} & Inclusive OR Literal with W & \piccolo{iorlw k}\\
@@ -558,10 +552,10 @@ Par exemple : \piccolo{movlw -14} engendre l’instruction assembleur : \assembl
     \assembleur{MOVLW k} & Move Literal to W & \piccolo{movlw k}\\
     \hdashline
     \assembleur{XORLW k} & Exclusive OR Literal with W & \piccolo{xorlw k}\\
-    \hline
   \end{tabular}
   \caption{Opérations litérales avec \texttt{W} pour \emph{baseline}}
   \labelTableau{operationsLiteralesBaselineAvecW}
+  \ligne
 \end{table}
 
 
@@ -569,13 +563,12 @@ Par exemple : \piccolo{movlw -14} engendre l’instruction assembleur : \assembl
 
 Ces instructions sont listées dans le \refTableau{operationsBaselineIdentiquesAssembleur}.
 
-\begin{table}[!ht]
+\begin{table}[!t]
   \centering
   \small
 %  \rowcolors{2}{\fondTableau}{}
   \begin{tabular}{lll}
     \textbf{Assembleur} & \textbf{Description} & \textbf{Écriture en Piccolo}\\
-    \hline
     \assembleur{CLRWDT} & Clear Watchdog Timer & \piccolo{clrwdt}\\
     \hdashline
     \assembleur{CLRW} & Clear W & \piccolo{clrw}\\
@@ -585,10 +578,10 @@ Ces instructions sont listées dans le \refTableau{operationsBaselineIdentiquesA
     \assembleur{OPTION} & Load OPTION register & \piccolo{option}\\
     \hdashline
     \assembleur{SLEEP} & Go into Standby Mode & \piccolo{sleep}\\
-    \hline
   \end{tabular}
   \caption{Instructions \emph{baseline} identiques en assembleur et en Piccolo}
   \labelTableau{operationsBaselineIdentiquesAssembleur}
+  \ligne
 \end{table}
 
 
@@ -609,13 +602,12 @@ Ces instructions sont listées dans le \refTableau{operationsBaselineIdentiquesA
 
 En Piccolo, l'instruction \piccolo{tris} a un opérande qui peut être: \piccolo{GPIO}, \piccolo{PORTA}, \piccolo{PORTB}, \piccolo{PORTC}, \piccolo{PORTD} ou \piccolo{PORTE}. Pour un composant donné, uniquement un sous-ensemble de ces valeurs est acceptable (\refTableau{TRISoperands}). D'une manière générale, pour que l'un des noms cités puisse être utilisé pour un composant donnée, il faut qu'il apparaisse parmi ses registres spéciaux (pour connaître la liste des registres de contrôle, utilisez l’option \texttt{-{}-registers} ou sa version courte \texttt{-R}, comme décrite à la \refSubsectionPage{exempleOptionRegisters} ; par exemple : \texttt{piccolo -R=10F220}).
 
-\begin{table}[!ht]
+\begin{table}[!t]
   \centering
   \small
 %  \rowcolors{2}{\fondTableau}{}
   \begin{tabular}{ll}
     \textbf{Composant} & \textbf{Instructions \piccolo{tris} en Piccolo}\\
-    \hline
     10F200, 10F202  & \piccolo{tris GPIO}\\
     \hdashline
     10F204, 10F206  & \piccolo{tris GPIO}\\
@@ -635,10 +627,10 @@ En Piccolo, l'instruction \piccolo{tris} a un opérande qui peut être: \piccolo
     16F57  & \piccolo{tris PORTA}, \piccolo{tris PORTB}, \piccolo{tris PORTC}\\
     \hdashline
     16F59  & \piccolo{tris PORTA}, \piccolo{tris PORTB}, \piccolo{tris PORTC}, \piccolo{tris PORTD}, \piccolo{tris PORTE}\\
-    \hline
   \end{tabular}
   \caption{Instructions \texttt{tris} en Piccolo}
   \labelTableau{TRISoperands}
+  \ligne
 \end{table}
 
 
@@ -693,13 +685,12 @@ Une section \piccolo{include} permet d'inclure un fichier contenant lui-même de
 
 La mémoire programme d'un \emph{baseline} est constituée d'une ou plusieurs pages de 512 instructions chacune. Le \refTableau{nombrePagesBaseline} cite quelques micro-contrôleurs \emph{baseline} et le nombre de pages de leur mémoire programme.
 
-\begin{table}[!ht]
+\begin{table}[!t]
   \centering
   \small
 %  \rowcolors{2}{\fondTableau}{}
   \begin{tabular}{lll}
     \textbf{Composant} & \textbf{Mémoire programme} & \textbf{Nombre de pages}\\
-    \hline
     10F200, 10F204  & 256 instructions & 1\\
     \hdashline
     10F202, 10F206  & 512 instructions & 1\\
@@ -719,29 +710,28 @@ La mémoire programme d'un \emph{baseline} est constituée d'une ou plusieurs pa
     16F54  & 512 instructions & 1\\
     \hdashline
     16F57, 16F59  & 2048 instructions & 4\\
-    \hline
   \end{tabular}
   \caption{Mémoire programme de quelques micro-contrôleurs \emph{baseline}}
   \labelTableau{nombrePagesBaseline}
+  \ligne
 \end{table}
 
 Les deux instructions de branchement que le jeu d'instructions des \emph{baseline} définit sont \assembleur{CALL} et \assembleur{GOTO} (\refTableau{callGotoBaseline}).
 
-\begin{table}[!ht]
+\begin{table}[!t]
   \centering
   \small
 %  \rowcolors{3}{}{\fondTableau}
   \begin{tabular}{llllllllllllll}
     \textbf{Instruction} & \textbf{Description} & \multicolumn{12}{l}{\bf Code binaire}\\
                          &                      & 11 & 10 & 9 & 8 & 7 & 6 & 5 & 4 & 3 & 2 & 1 & 0\\
-    \hline
     \assembleur{CALL k}  & Call subroutine & 1 & 0 & 0 & 1 & k & k & k & k & k & k & k & k\\
     \hdashline
     \assembleur{GOTO k}  & Go to Address   & 1 & 0 & 1 & k & k & k & k & k & k & k & k & k\\
-    \hline
   \end{tabular}
   \caption{Instructions assembleur \texttt{CALL} et \texttt{GOTO} des \emph{baseline}}
   \labelTableau{callGotoBaseline}
+  \ligne
 \end{table}
 
 En résumé, ces instructions ne permettent pas d'effectuer par elles mêmes un branchement à tout position de la mémoire programme :
@@ -873,13 +863,12 @@ Cette section indique les différentes optimisations d'un code \emph{baseline}. 
 
 Pour optimiser, Piccolo applique les remplacements indiqués par le \refTableau{optimisationsBaseline}, et élimine le code mort. Le code est balayé de manière répétitive, tant que des optimisations sont effectuées.
 
-\begin{table}[!ht]
+\begin{table}[!t]
   \centering
   \small
 %  \rowcolors{2}{\fondTableau}{}
   \begin{tabular}{ll}
     \textbf{Situation} & \textbf{Optimisation} \\
-    \hline
     \assembleur{CALL} vers \assembleur{RETLW k}  & Remplacement par \assembleur{MOVLW k}\\
     \hdashline
     \assembleur{GOTO} vers \assembleur{RETLW k}  & Remplacement par \assembleur{RETLW k}\\
@@ -894,10 +883,9 @@ Pour optimiser, Piccolo applique les remplacements indiqués par le \refTableau{
     \hdashline
     \assembleur{JUMP a} vers \assembleur{JUMP b}  & Remplacement par \assembleur{JUMP b}\\
     \hdashline
-    \assembleur{JUMP a} vers \assembleur{GOTO b}  & Remplacement par \assembleur{JUMP b}\\
-    \hline
   \end{tabular}
   \caption{Optimisation du code \emph{baseline}}
   \labelTableau{optimisationsBaseline}
+  \ligne
 \end{table}
 

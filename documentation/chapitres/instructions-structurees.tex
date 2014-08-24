@@ -76,13 +76,12 @@ Pour le test individuel d'un bit, la notation \piccolo{registre.bit} est utilis�
 
 Le \refTableau{instructionsConditionnellesSimplesBaseline} donne la liste de toutes les instructions conditionnelles simples pour les \emph{baseline} et \emph{mid-range}, et le \refTableau{instructionsConditionnellesSimplesPic18} pour celles des \emph{pic18}.
 
-\begin{table}[!ht]
+\begin{table}[!t]
   \centering
   \small
 %  \rowcolors{2}{\fondTableau}{}
   \begin{tabular}{lp{4cm}lll}
     \textbf{Instruction} & \textbf{Code engendré}\\
-    \hline
     \piccolo{if reg.bit : instruction} & \assembleur{BTFSC reg, bit instruction} \\
     \hdashline
     \piccolo{if ! reg.bit : instruction} & \assembleur{BTFSS reg, bit instruction} \\
@@ -94,19 +93,18 @@ Le \refTableau{instructionsConditionnellesSimplesBaseline} donne la liste de tou
     \piccolo{if incf reg nz : instruction} & \assembleur{INCFSZ reg instruction} \\
     \hdashline
     \piccolo{if incf reg, W nz : instruction} & \assembleur{INCFSZ reg, W instruction} \\
-    \hline
   \end{tabular}
   \caption{Instructions conditionnelles simples pour \emph{baseline} et \emph{mid-range}}
   \labelTableau{instructionsConditionnellesSimplesBaseline}
+  \ligne
 \end{table}
 
-\begin{table}[!ht]
+\begin{table}[!t]
   \centering
   \small
 %  \rowcolors{2}{\fondTableau}{}
   \begin{tabular}{lp{4cm}lll}
     \textbf{Instruction} & \textbf{Code engendré}\\
-    \hline
     \piccolo{if reg != W : instruction} & \assembleur{CPFSEQ reg instruction} \\
     \hdashline
     \piccolo{if reg >= W : instruction} & \assembleur{CPFSLT reg instruction} \\
@@ -134,10 +132,10 @@ Le \refTableau{instructionsConditionnellesSimplesBaseline} donne la liste de tou
     \piccolo{if incf reg nz : instruction} & \assembleur{INCFSZ reg instruction} \\
     \hdashline
     \piccolo{if incf reg, W nz : instruction} & \assembleur{INCFSZ reg, W instruction} \\
-    \hline
   \end{tabular}
   \caption{Instructions conditionnelles simples pour \emph{pic18}}
   \labelTableau{instructionsConditionnellesSimplesPic18}
+  \ligne
 \end{table}
 
 
@@ -211,7 +209,7 @@ Syntaxiquement, cette instruction accepte une ou plusieurs branches \piccolo{cas
 
 Cette instruction compare successivement le contenu de \piccolo{W} à différentes expressions constantes (ici \piccolo{cst1} puis \piccolo{cst2}). Ces expressions constantes doivent être comprises entre $0$ et $255$. Dès qu'une comparaison avec \piccolo{W} détecte une égalité, la liste d'instructions correspondante est exécutée. Si aucune comparaison ne détecte d'égalité, la liste d'instructions qui suit le \piccolo{else} est exécutée. L'organigramme correspondant à l'exécution de l'instruction \piccolo{switch} ci-dessus est donné par la \refFigure{}{organigrammeSwitchW}.
 
-\begin{figure}[!ht]
+\begin{figure}[t]
   \centering
   \small
   \begin{tikzpicture}[
@@ -239,7 +237,7 @@ Cette instruction compare successivement le contenu de \piccolo{W} à différent
   \end{tikzpicture}
   \caption{Organigramme d'exécution d'une instruction \texttt{switch}}
   \labelFigure{organigrammeSwitchW}
-  \dotfill
+  \ligne
 \end{figure}
 
 
@@ -371,7 +369,7 @@ while (cca)
 end
 \end{lstlisting}
 
-\begin{figure}[!ht]
+\begin{figure}[t]
   \centering
   \small
   \begin{tikzpicture}[
@@ -392,7 +390,7 @@ end
   \end{tikzpicture}
   \caption{Organigramme d'exécution d'une instruction équivalente au  \texttt{while} \texttt{do} du langage C}
   \labelFigure{organigrammeDoWhile1}
-  \dotfill
+  \ligne
 \end{figure}
 
 La construction suivante a une exécution équivalente à l'instruction \texttt{do \{ instructions \} while (cca) ;} du langage C (\refFigure{}{organigrammeDoWhile2}) :
@@ -403,7 +401,7 @@ while (cca)
 end
 \end{lstlisting}
 
-\begin{figure}[!ht]
+\begin{figure}[t]
   \centering
   \small
   \begin{tikzpicture}[
@@ -424,7 +422,7 @@ end
   \end{tikzpicture}
   \caption{Organigramme d'exécution d'une instruction équivalente au \texttt{do} \texttt{while} du langage C}
   \labelFigure{organigrammeDoWhile2}
-  \dotfill
+  \ligne
 \end{figure}
 
 Enfin, voici un exemple avec deux branches \piccolo{while} (\refFigure{}{organigrammeDoWhile3}) :
@@ -438,7 +436,7 @@ while (ccb)
 end
 \end{lstlisting}
 
-\begin{figure}[!ht]
+\begin{figure}[t]
   \centering
   \small
   \begin{tikzpicture}[
@@ -466,7 +464,7 @@ end
   \end{tikzpicture}
   \caption{Organigramme d'exécution d'une instruction \texttt{do} avec deux branches \texttt{while}}
   \labelFigure{organigrammeDoWhile3}
-  \dotfill
+  \ligne
 \end{figure}
 
 
@@ -504,32 +502,30 @@ Les conditions élémentaires exploitent les quatre instructions conditionnelles
 
 Les conditions basées sur le test d'un bit d'un registre sont listées dans le \refTableau{conditionsElementairesBaselineTestRegistre}.
 
-\begin{table}[!ht]
+\begin{table}[!t]
   \centering
   \small
   \begin{tabular}{lll}
     \textbf{Condition} & \textbf{Signification} & \textbf{Code engendré}\\
-    \hline
                            \piccolo{reg.bit}  & reg.bit $\ne$ 0 ? &\assembleur{BTFSS reg,bit}\\
                                         &                        & \assembleur{GOTO label}\\
     \hdashline
     \piccolo{\! reg.bit}  & reg.bit = 0 ? & \assembleur{BTFSC reg,bit} \\
                         &                    & \assembleur{GOTO label}\\
-    \hline
   \end{tabular}
   \caption{Conditions pour \emph{baseline} et \emph{mid-range} basées sur le test d'un bit d'un registre}
   \labelTableau{conditionsElementairesBaselineTestRegistre}
+  \ligne
 \end{table}
 
 
 Le \refTableau{conditionsElementairesBaseLineIncDecRegistre} liste les conditions basées sur les instructions \assembleur{DECFSZ} et \assembleur{INCFSZ}. La non symétrie du jeu d'instructions provoquent des codes engendrés de tailles différentes selon les conditions exprimées. 
 
-\begin{table}[!ht]
+\begin{table}[t]
   \centering
   \small
   \begin{tabular}{lllll}
     \textbf{Condition} & \textbf{Signification} & \textbf{Code engendré}\\
-    \hline
     \piccolo{decf reg z}   & reg := reg - 1 ; reg = 0 ?  & \assembleur{DECFSZ reg}  \\
                            &                             & \assembleur{GOTO \$ + 2} \\
                            &                             & \assembleur{GOTO label}  \\
@@ -557,10 +553,10 @@ Le \refTableau{conditionsElementairesBaseLineIncDecRegistre} liste les condition
     \hdashline
     \piccolo{incf reg, W nz} & WREG := reg + 1 ; WREG $\ne$ 0 ? & \assembleur{INCFSZ reg, W}  \\
                              &                                  & \assembleur{GOTO label}         \\
-    \hline
   \end{tabular}
   \caption{Conditions pour \emph{baseline} et \emph{mid-range} basées sur la décrémentation et l'incrémentation d'un registre}
   \labelTableau{conditionsElementairesBaseLineIncDecRegistre}
+  \ligne
 \end{table}
 
 
@@ -580,14 +576,13 @@ Les conditions élémentaires exploitent les différentes instructions condition
 
 Les instructions de saut conditionnel permettent d'exploiter directement la valeur des bits du registre \assembleur{STATUS}. Les conditions correspondantes sont listées dans le \refTableau{conditionsElementairesPic18SautConditionnel}. Leur compilation engendre un code de 2, 4 ou 6 octets, selon l'amplitude du branchement. Piccolo engendre toujours le code le plus petit possible.
 
-\begin{table}[!ht]
+\begin{table}[!t]
   \centering
   \small
 %  \rowcolors{2}{\fondTableau}{}
   \begin{tabular}{lp{3.5cm}lp{2.2cm}p{2.5cm}}
     \textbf{Condition} & \textbf{Signification} & \multicolumn{3}{l}{\bf Code engendré}\\
                        &                        & \textbf{2 octets} & \textbf{4 octets} & \textbf{6 octets}\\
-    \hline
     \piccolo{c} & \assembleur{STATUS.C} $\ne$ 0 ? &\assembleur{BC label}  & \assembleur{BNC \$ + 4} & \assembleur{BNC \$ + 6} \\
                 &                                 &                       & \assembleur{BRA label}  & \assembleur{GOTO label} \\
     \hdashline
@@ -611,22 +606,21 @@ Les instructions de saut conditionnel permettent d'exploiter directement la vale
     \hdashline
     \piccolo{nov} & \assembleur{STATUS.OV} = 0 ? &\assembleur{BNOV label}  & \assembleur{BOV \$ + 4}  & \assembleur{BOV \$ + 6} \\
                 &                                &                         & \assembleur{BRA label}  & \assembleur{GOTO label} \\
-    \hline
   \end{tabular}
   \caption{Conditions pour \emph{pic18} basées sur les instructions de saut conditionnel}
   \labelTableau{conditionsElementairesPic18SautConditionnel}
+  \ligne
 \end{table}
 
 
 La comparaison du contenu d'un registre avec la valeur de \assembleur{WREG} est effectuée par les instructions assembleur \assembleur{CPFSEQ}, \assembleur{CPFSLT} et \assembleur{CPFSGT}. En Piccolo, les 6 comparaisons sont possibles, et la non symétrie des instructions assembleur provoque la génération d'un code pouvant atteindre 8 octets. Piccolo engendre toujours le code le plus petit possible. Le \refTableau{conditionsElementairesPic18ComparaisonsW} liste ces conditions.
 
-\begin{table}[!ht]
+\begin{table}[!t]
   \centering
   \small
   \begin{tabular}{llll}
     \textbf{Condition} & \multicolumn{3}{l}{\bf Code engendré}\\
                        & \textbf{4 octets} & \textbf{6 octets} & \textbf{8 octets}\\
-    \hline
     \piccolo{reg != W} &\assembleur{CPFSEQ reg}  & \assembleur{CPFSEQ reg}  &  \\
                       &\assembleur{BRA label}        & \assembleur{GOTO label}  &  \\
     \hdashline
@@ -647,21 +641,20 @@ La comparaison du contenu d'un registre avec la valeur de \assembleur{WREG} est 
     \piccolo{reg > W}  & &\assembleur{CPFSLT reg}  & \assembleur{CPFSLT reg}  \\
                       & &\assembleur{BRA \$ + 4}       & \assembleur{BRA \$ + 6}  \\
                       & &\assembleur{BRA label}        & \assembleur{GOTO label}  \\
-    \hline
   \end{tabular}
   \caption{Conditions pour \emph{pic18} basées sur les comparaisons avec \texttt{WREG}}
   \labelTableau{conditionsElementairesPic18ComparaisonsW}
+  \ligne
 \end{table}
 
 Les conditions basées sur le test d'un registre sont listées dans le \refTableau{conditionsElementairesPic18TestRegistre}. Remarquer que les conditions listées ne sont pas toutes élémentaires. Ainsi, la condition \piccolo{\!registre nz} est équivalente à \piccolo{registre z}, et \piccolo{\!registre z} équivalente à \piccolo{registre nz}. Remarquer aussi que l'absence d'instruction complémentaire à \assembleur{TSTFSZ} entraîne un code plus long pour la condition \piccolo{registre z}.
 
-\begin{table}[!ht]
+\begin{table}[!t]
   \centering
   \small
   \begin{tabular}{lllll}
     \textbf{Condition} & \textbf{Signification} & \multicolumn{2}{l}{\bf Code engendré}\\
                        &                        & \textbf{Court} & \textbf{Long}\\
-    \hline
                            \piccolo{reg nz}   & reg $\ne$ 0 ? &\assembleur{TSTFSZ reg}  & \assembleur{TSTFSZ reg}\\
                                                   &                 &\assembleur{BRA label}        & \assembleur{GOTO label}\\
     \hdashline
@@ -674,22 +667,21 @@ Les conditions basées sur le test d'un registre sont listées dans le \refTable
     \hdashline
     \piccolo{\! reg.bit}  & reg.bit = 0 ? &\assembleur{BTFSC reg,bit}  & \assembleur{BTFSC reg,bit}\\
                              &                     &\assembleur{BRA label}        & \assembleur{GOTO label}\\
-    \hline
   \end{tabular}
   \caption{Conditions pour \emph{pic18} basées sur le test d'un registre}
   \labelTableau{conditionsElementairesPic18TestRegistre}
+  \ligne
 \end{table}
 
 
 Enfin, le \refTableau{conditionsElementairesPic18IncDecRegistre} liste les conditions basées sur les instructions \assembleur{DECFSZ}, \assembleur{DECFSZ}, \assembleur{INCFSZ} et \assembleur{INFSNZ}. Là encore, elles ne sont pas toutes élementaires : par exemple, \piccolo{decf registre nz} est équivalente à \piccolo{\! decf registre z}. 
 
-\begin{table}[!ht]
+\begin{table}[!t]
   \centering
   \small
   \begin{tabular}{lllll}
     \textbf{Condition} & \textbf{Signification} & \multicolumn{2}{l}{\bf Code engendré}\\
                        &                        & \textbf{Court} & \textbf{Long}\\
-    \hline
       \piccolo{decf reg z}   & reg := reg - 1 ;   &\assembleur{DCFSNZ reg}  & \assembleur{DCFSNZ reg}\\
                              &  reg = 0 ?         &\assembleur{BRA label}   & \assembleur{GOTO label}\\
     \hdashline
@@ -713,10 +705,10 @@ Enfin, le \refTableau{conditionsElementairesPic18IncDecRegistre} liste les condi
     \hdashline
       \piccolo{incf reg, W nz} & WREG := reg + 1 ; &\assembleur{INCFSZ reg, W}  & \assembleur{INCFSZ reg, W}\\
                                & WREG $\ne$ 0 ?    &\assembleur{BRA label}           & \assembleur{GOTO label}\\
-    \hline
   \end{tabular}
   \caption{Conditions pour \emph{pic18} basées sur la décrémentation et l'incrémentation d'un registre}
   \labelTableau{conditionsElementairesPic18IncDecRegistre}
+  \ligne
 \end{table}
 
 
@@ -903,12 +895,11 @@ nom_du_block { liste_instructions_structurees } branchement
 
 Le \piccolo{nom_du_block} est le nom donné au bloc ; ce nom est interne à l'instruction \piccolo{block} qui le contient. \piccolo{liste_instructions_structurees} est une liste d'instructions structurées quelconques, qui peut être vide. \piccolo{branchement} est une expression particulière, qui définit où l'exécution se poursuit à l'issue de l'exécution des instructions structurées ; cette expression peut prendre plusieurs formes, indiquées dans le \refTableau{terminaisonBloc}.
 
-\begin{table}[!ht]
+\begin{table}[!t]
   \centering
   \small
   \begin{tabular}{lp{9cm}}
     \textbf{Syntaxe} & \textbf{Signification} \\
-    \hline
       \piccolo{-} & L'exécution de l'instruction \piccolo{block} est terminée : l'exécution se poursuit par celle qui suit le \piccolo{end} de l'instruction\piccolo{block}. \\
     \hdashline
       \piccolo{nom} & L'exécution se poursuit par l'exécution du bloc nommé \piccolo{nom}. \\
@@ -916,10 +907,10 @@ Le \piccolo{nom_du_block} est le nom donné au bloc ; ce nom est interne à l'in
       \piccolo{cc ? br1 : br2} & \piccolo{cc} est une condition (voir \refSectionPage{formeGeneraleConditions}), \piccolo{br1} et \piccolo{br2} des expressions de branchement ; si \piccolo{cc} estvrai, alors le branchement \piccolo{br1} est effectué, sinon c'est le branchement \piccolo{br2}. \\
     \hdashline
       \piccolo{[br0, br1, br2, ...]} & Cette expression utilise la valeur courante du registre \assembleur{WREG} (c'est-à-dire celle obtenue à l'issue de l'exécution des instructions structurées) : si \assembleur{WREG} est nul, alors le branchement \piccolo{br0} est effectué, si il vaut 1, c'est \piccolo{br1} … \textcolor{red}{Si \assembleur{WREG} a une valeur supérieure ou égal au nombre de branchements, le comportement est indéfini.}\\
-    \hline
   \end{tabular}
   \caption{Expressions de branchement d'un bloc de l'instruction \texttt{block}}
   \labelTableau{terminaisonBloc}
+  \ligne
 \end{table}
 
 \subsection{Blocs utiles}
@@ -1171,27 +1162,25 @@ Le comportement des routines vis à vis de la sélection courante de banc doit �
 
 
 
-\begin{table}[!ht]
+\begin{table}[!t]
   \centering
 %  \rowcolors{2}{\fondTableau}{}
   \begin{tabular}{ll}
     \textbf{Qualificatif} & \textbf{Sélection de banc lors de l'appel} \\
-    \hline
     \emph{aucun} & ?\\ 
     \piccolo{bank:requires be} & Banc $be$\\ 
-    \hline
   \end{tabular}
   \caption{Routine sans retour et qualificatifs associés aux bancs}
   \labelTableau{routineSansRetourEtBanc}
+  \ligne
 \end{table}
 
-\begin{table}[!ht]
+\begin{table}[!t]
   \centering
 %  \rowcolors{2}{\fondTableau}{}
   \begin{tabular}{lll}
     \textbf{Qualificatif} & \multicolumn{2}{l}{\bf Sélection de banc} \\
                           & \textbf{Lors de l'appel}  & \textbf{Lors du retour} \\
-    \hline
     \emph{aucun} & ? & ?\\ 
     \piccolo{bank:preserved} & ? & Sélection préservée\\ 
     \hdashline
@@ -1200,10 +1189,10 @@ Le comportement des routines vis à vis de la sélection courante de banc doit �
     \piccolo{bank:ensures bs} & ? & Banc $bs$\\ 
     \hdashline
     \piccolo{bank:requires be ensures bs} & Banc $be$ & Banc $bs$\\ 
-    \hline
   \end{tabular}
   \caption{Routine régulière et qualificatifs associés aux bancs}
   \labelTableau{routineReguliereEtBanc}
+  \ligne
 \end{table}
 
 \subsectionLabel{Déclaration de routine sans qualificatif de banc}{declarationRoutineSansBanc}
