@@ -70,7 +70,7 @@ controller PIC12F629 {
     <EEIF, ADIF, -, -, CMIF, -, -, TMR1IF> ;
 
   register STATUS at 0x3, 0x83
-    <IRP, RP [2], nTO, nPD, Z, DC, C> ;
+    <-, -, RP, nTO, nPD, Z, DC, C> ;
 
   register T1CON at 0x10
     <-, TMR1GE, T1CKPS [2], T1OSCEN, nT1SYNC, TMR1CS, TMR1ON> ;
@@ -105,7 +105,7 @@ controller PIC12F629 {
     CP mask 0x80 description "Code Protection bit"
       setting 0x80 mask 0x80 description "Disabled"
       setting 0x0 mask 0x80 description "Enabled"
-    BOREN mask 0x40 description "Brown-out Detect Enable bit"
+    BODEN mask 0x40 description "Brown-out Detect Enable bit"
       setting 0x40 mask 0x40 description "Enabled"
       setting 0x0 mask 0x40 description "Disabled"
     MCLRE mask 0x20 description "GP3/MCLR pin function select"
