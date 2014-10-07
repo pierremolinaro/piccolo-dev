@@ -23,8 +23,6 @@ class GALGAS_ipic_31__38_SequentialInstruction : public AC_GALGAS_class {
 //--------------------------------- Constructor from pointer
   public : GALGAS_ipic_31__38_SequentialInstruction (const cPtr_ipic_31__38_SequentialInstruction * inSourcePtr) ;
 
-
-
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning

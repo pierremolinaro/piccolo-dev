@@ -24,8 +24,6 @@ class GALGAS_baseline_5F_assembly_5F_actualInstruction : public GALGAS_baseline_
 //--------------------------------- Constructor from pointer
   public : GALGAS_baseline_5F_assembly_5F_actualInstruction (const cPtr_baseline_5F_assembly_5F_actualInstruction * inSourcePtr) ;
 
-
-
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning

@@ -24,10 +24,6 @@ class GALGAS_baseline_5F_assembly_5F_instruction_5F_literalOperation : public GA
 //--------------------------------- Constructor from pointer
   public : GALGAS_baseline_5F_assembly_5F_instruction_5F_literalOperation (const cPtr_baseline_5F_assembly_5F_instruction_5F_literalOperation * inSourcePtr) ;
 
-//--- Insulate
-  public : VIRTUAL_IN_DEBUG void insulate (LOCATION_ARGS) ;
-
-
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
