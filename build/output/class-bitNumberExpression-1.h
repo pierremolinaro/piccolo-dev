@@ -23,8 +23,6 @@ class GALGAS_bitNumberExpression : public AC_GALGAS_class {
 //--------------------------------- Constructor from pointer
   public : GALGAS_bitNumberExpression (const cPtr_bitNumberExpression * inSourcePtr) ;
 
-
-
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning

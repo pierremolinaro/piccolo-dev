@@ -23,8 +23,6 @@ class GALGAS_pic_31__38_PiccoloInstruction : public AC_GALGAS_class {
 //--------------------------------- Constructor from pointer
   public : GALGAS_pic_31__38_PiccoloInstruction (const cPtr_pic_31__38_PiccoloInstruction * inSourcePtr) ;
 
-
-
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning

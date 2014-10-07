@@ -42,23 +42,6 @@ SOURCES += all-declarations-3.cpp
 SOURCES += all-declarations-2.cpp
 SOURCES += all-declarations-1.cpp
 SOURCES += all-declarations-0.cpp
-SOURCES += program.cpp
-SOURCES += grammar-baseline_include_grammar.cpp
-SOURCES += grammar-pic18_grammar.cpp
-SOURCES += grammar-pic18_include_grammar.cpp
-SOURCES += grammar-piccoloDevice_grammar.cpp
-SOURCES += lexique-piccolo_lexique.cpp
-SOURCES += lexique-piccoloDevice_lexique.cpp
-SOURCES += option-piccolo_options.cpp
-SOURCES += option-piccolo_options_not_in_cocoa.cpp
-SOURCES += syntax-baseline_program.cpp
-SOURCES += syntax-baseline_syntax.cpp
-SOURCES += syntax-communs.cpp
-SOURCES += syntax-midrange_syntax.cpp
-SOURCES += syntax-pic18_bootloader_syntax.cpp
-SOURCES += syntax-pic18_start_symbol.cpp
-SOURCES += syntax-pic18_syntax.cpp
-SOURCES += syntax-piccoloDevice_syntax.cpp
 
 #--- Hand-coded files ---------------------------------------------------------*
 SOURCES += piccolo_computations.cpp

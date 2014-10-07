@@ -27,10 +27,6 @@ class GALGAS_midrange_5F_instruction_5F_savebank : public GALGAS_midrange_5F_ins
 //--------------------------------- Constructor from pointer
   public : GALGAS_midrange_5F_instruction_5F_savebank (const cPtr_midrange_5F_instruction_5F_savebank * inSourcePtr) ;
 
-//--- Insulate
-  public : VIRTUAL_IN_DEBUG void insulate (LOCATION_ARGS) ;
-
-
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning

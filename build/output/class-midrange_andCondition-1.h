@@ -24,10 +24,6 @@ class GALGAS_midrange_5F_andCondition : public GALGAS_midrange_5F_conditionExpre
 //--------------------------------- Constructor from pointer
   public : GALGAS_midrange_5F_andCondition (const cPtr_midrange_5F_andCondition * inSourcePtr) ;
 
-//--- Insulate
-  public : VIRTUAL_IN_DEBUG void insulate (LOCATION_ARGS) ;
-
-
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning

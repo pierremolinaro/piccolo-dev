@@ -23,8 +23,6 @@ class GALGAS_baseline_5F_conditionExpression : public AC_GALGAS_class {
 //--------------------------------- Constructor from pointer
   public : GALGAS_baseline_5F_conditionExpression (const cPtr_baseline_5F_conditionExpression * inSourcePtr) ;
 
-
-
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning

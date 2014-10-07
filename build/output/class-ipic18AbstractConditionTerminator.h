@@ -26,8 +26,8 @@ class cPtr_ipic_31__38_AbstractConditionTerminator : public cPtr_ipic_31__38_Abs
                                                          COMMA_LOCATION_ARGS) ;
 
 //--- Attribute accessors
-  public : VIRTUAL_IN_DEBUG GALGAS_ipic_31__38_SingleInstructionTerminator reader_mSingleInstructionTerminatorIfConditionTrue (UNUSED_LOCATION_ARGS) const ;
-  public : VIRTUAL_IN_DEBUG GALGAS_ipic_31__38_SingleInstructionTerminator reader_mSingleInstructionTerminatorIfConditionFalse (UNUSED_LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_ipic_31__38_SingleInstructionTerminator reader_mSingleInstructionTerminatorIfConditionTrue (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_ipic_31__38_SingleInstructionTerminator reader_mSingleInstructionTerminatorIfConditionFalse (LOCATION_ARGS) const ;
 //--- Description
   public : virtual void description (C_String & ioString,
                                      const int32_t inIndentation) const = 0 ;

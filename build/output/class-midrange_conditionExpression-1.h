@@ -23,8 +23,6 @@ class GALGAS_midrange_5F_conditionExpression : public AC_GALGAS_class {
 //--------------------------------- Constructor from pointer
   public : GALGAS_midrange_5F_conditionExpression (const cPtr_midrange_5F_conditionExpression * inSourcePtr) ;
 
-
-
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning

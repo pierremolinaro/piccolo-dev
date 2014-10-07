@@ -24,10 +24,6 @@ class GALGAS_immediatMul : public GALGAS_immediatExpression {
 //--------------------------------- Constructor from pointer
   public : GALGAS_immediatMul (const cPtr_immediatMul * inSourcePtr) ;
 
-//--- Insulate
-  public : VIRTUAL_IN_DEBUG void insulate (LOCATION_ARGS) ;
-
-
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning

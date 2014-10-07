@@ -23,8 +23,6 @@ class GALGAS_ipic_31__38_AbstractBlockTerminator : public AC_GALGAS_class {
 //--------------------------------- Constructor from pointer
   public : GALGAS_ipic_31__38_AbstractBlockTerminator (const cPtr_ipic_31__38_AbstractBlockTerminator * inSourcePtr) ;
 
-
-
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning

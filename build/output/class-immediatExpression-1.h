@@ -23,8 +23,6 @@ class GALGAS_immediatExpression : public AC_GALGAS_class {
 //--------------------------------- Constructor from pointer
   public : GALGAS_immediatExpression (const cPtr_immediatExpression * inSourcePtr) ;
 
-
-
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning

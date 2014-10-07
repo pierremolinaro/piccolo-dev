@@ -23,8 +23,6 @@ class GALGAS_baseline_5F_instruction : public AC_GALGAS_class {
 //--------------------------------- Constructor from pointer
   public : GALGAS_baseline_5F_instruction (const cPtr_baseline_5F_instruction * inSourcePtr) ;
 
-
-
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning

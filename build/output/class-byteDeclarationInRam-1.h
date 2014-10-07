@@ -27,10 +27,6 @@ class GALGAS_byteDeclarationInRam : public GALGAS_declarationInRam {
 //--------------------------------- Constructor from pointer
   public : GALGAS_byteDeclarationInRam (const cPtr_byteDeclarationInRam * inSourcePtr) ;
 
-//--- Insulate
-  public : VIRTUAL_IN_DEBUG void insulate (LOCATION_ARGS) ;
-
-
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning

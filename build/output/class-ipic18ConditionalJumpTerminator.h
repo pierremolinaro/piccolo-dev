@@ -32,12 +32,15 @@ class cPtr_ipic_31__38_ConditionalJumpTerminator : public cPtr_ipic_31__38_Abstr
                                                        const GALGAS_conditionalBranchMode & in_mBranchModeOnFalseLabel
                                                        COMMA_LOCATION_ARGS) ;
 
+//--- Duplication
+  public : virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+
 //--- Attribute accessors
-  public : VIRTUAL_IN_DEBUG GALGAS_conditional_5F_branch reader_mConditionalBranch (UNUSED_LOCATION_ARGS) const ;
-  public : VIRTUAL_IN_DEBUG GALGAS_lstring reader_mTargetLabelWhenTrue (UNUSED_LOCATION_ARGS) const ;
-  public : VIRTUAL_IN_DEBUG GALGAS_conditionalBranchMode reader_mBranchModeOnTrueLabel (UNUSED_LOCATION_ARGS) const ;
-  public : VIRTUAL_IN_DEBUG GALGAS_lstring reader_mTargetLabelWhenFalse (UNUSED_LOCATION_ARGS) const ;
-  public : VIRTUAL_IN_DEBUG GALGAS_conditionalBranchMode reader_mBranchModeOnFalseLabel (UNUSED_LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_conditional_5F_branch reader_mConditionalBranch (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_lstring reader_mTargetLabelWhenTrue (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_conditionalBranchMode reader_mBranchModeOnTrueLabel (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_lstring reader_mTargetLabelWhenFalse (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_conditionalBranchMode reader_mBranchModeOnFalseLabel (LOCATION_ARGS) const ;
 //--- Description
   public : virtual void description (C_String & ioString,
                                      const int32_t inIndentation) const ;

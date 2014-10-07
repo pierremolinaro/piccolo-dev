@@ -27,10 +27,6 @@ class GALGAS_immediatRegister : public GALGAS_immediatExpression {
 //--------------------------------- Constructor from pointer
   public : GALGAS_immediatRegister (const cPtr_immediatRegister * inSourcePtr) ;
 
-//--- Insulate
-  public : VIRTUAL_IN_DEBUG void insulate (LOCATION_ARGS) ;
-
-
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning

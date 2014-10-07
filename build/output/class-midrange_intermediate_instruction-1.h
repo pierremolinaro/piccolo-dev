@@ -23,8 +23,6 @@ class GALGAS_midrange_5F_intermediate_5F_instruction : public AC_GALGAS_class {
 //--------------------------------- Constructor from pointer
   public : GALGAS_midrange_5F_intermediate_5F_instruction (const cPtr_midrange_5F_intermediate_5F_instruction * inSourcePtr) ;
 
-
-
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning

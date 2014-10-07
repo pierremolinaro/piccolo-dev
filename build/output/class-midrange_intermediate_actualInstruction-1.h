@@ -24,8 +24,6 @@ class GALGAS_midrange_5F_intermediate_5F_actualInstruction : public GALGAS_midra
 //--------------------------------- Constructor from pointer
   public : GALGAS_midrange_5F_intermediate_5F_actualInstruction (const cPtr_midrange_5F_intermediate_5F_actualInstruction * inSourcePtr) ;
 
-
-
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning

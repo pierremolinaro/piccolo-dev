@@ -23,8 +23,6 @@ class GALGAS_abstractBlockTerminationForBlockInstruction : public AC_GALGAS_clas
 //--------------------------------- Constructor from pointer
   public : GALGAS_abstractBlockTerminationForBlockInstruction (const cPtr_abstractBlockTerminationForBlockInstruction * inSourcePtr) ;
 
-
-
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
