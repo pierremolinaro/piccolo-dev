@@ -1,0 +1,298 @@
+
+
+#---------------------------------------------------------------------------*
+
+abstract method @pic18PiccoloInstruction addUsedRoutines
+  ?!@stringset ioUsedRoutines
+
+#---------------------------------------------------------------------------*
+
+override method @pic18Instruction_IF_BitTest addUsedRoutines
+  ?!@stringset ioUsedRoutines {
+  [mEmbeddedInstruction addUsedRoutines !?ioUsedRoutines]
+}
+
+#---------------------------------------------------------------------------*
+
+override method @pic18Instruction_IF_FA_SEMI_COLON addUsedRoutines
+  ?!@stringset ioUsedRoutines {
+  [mEmbeddedInstruction addUsedRoutines !?ioUsedRoutines]
+}
+
+#---------------------------------------------------------------------------*
+
+override method @pic18Instruction_IF_IncDec addUsedRoutines
+  ?!@stringset ioUsedRoutines {
+  [mEmbeddedInstruction addUsedRoutines !?ioUsedRoutines]
+}
+
+#---------------------------------------------------------------------------*
+
+override method @pic18Instruction_JUMP addUsedRoutines
+  ?!@stringset ioUsedRoutines {
+  ioUsedRoutines += !mTargetLabel.string
+}
+
+#---------------------------------------------------------------------------*
+
+override method @pic18Instruction_JUMPCC addUsedRoutines
+  ?!@stringset ioUsedRoutines {
+  ioUsedRoutines += !mTargetLabel.string
+}
+
+#---------------------------------------------------------------------------*
+
+override method @pic18Instruction_FOREVER addUsedRoutines
+  ?!@stringset ioUsedRoutines {
+  addPic18UsedRoutinesFromInstructionList ( !mInstructionList !?ioUsedRoutines )
+}
+
+#---------------------------------------------------------------------------*
+
+override method @pic18Instruction_repetitionStatique addUsedRoutines
+  ?!@stringset ioUsedRoutines {
+  addPic18UsedRoutinesFromInstructionList ( !mInstructionList !?ioUsedRoutines )
+}
+
+#---------------------------------------------------------------------------*
+
+override method @pic18Instruction_checkbank addUsedRoutines
+  ?!@stringset unused ioUsedRoutines {
+}
+
+#---------------------------------------------------------------------------*
+
+override method @pic18Instruction_LDATAPTR addUsedRoutines
+  ?!@stringset unused ioUsedRoutines {
+}
+
+#---------------------------------------------------------------------------*
+
+override method @pic18Instruction_LTBLPTR addUsedRoutines
+  ?!@stringset unused ioUsedRoutines {
+}
+
+#---------------------------------------------------------------------------*
+
+override method @pic18Instruction_MNOP addUsedRoutines
+  ?!@stringset unused ioUsedRoutines {
+}
+
+#---------------------------------------------------------------------------*
+
+override method @pic18Instruction_banksel addUsedRoutines
+  ?!@stringset unused ioUsedRoutines {
+}
+
+#---------------------------------------------------------------------------*
+
+override method @pic18Instruction_checknobank addUsedRoutines
+  ?!@stringset unused ioUsedRoutines {
+}
+
+#---------------------------------------------------------------------------*
+
+override method @pic18Instruction_banksel_register addUsedRoutines
+  ?!@stringset unused ioUsedRoutines {
+}
+
+#---------------------------------------------------------------------------*
+
+override method @pic18Instruction_computed_bra addUsedRoutines
+  ?!@stringset ioUsedRoutines {
+  for () in  mTargetLabels do
+    ioUsedRoutines += !mValue.string
+  end
+}
+
+#---------------------------------------------------------------------------*
+
+override method @pic18Instruction_computed_goto addUsedRoutines
+  ?!@stringset ioUsedRoutines {
+  for () in  mTargetLabels do
+    ioUsedRoutines += !mValue.string
+  end
+}
+
+#---------------------------------------------------------------------------*
+
+override method @pic18Instruction_computed_rcall addUsedRoutines
+  ?!@stringset ioUsedRoutines {
+  for () in  mTargetLabels do
+    ioUsedRoutines += !mValue.string
+  end
+}
+
+#---------------------------------------------------------------------------*
+
+override method @pic18Instruction_computed_retlw addUsedRoutines
+  ?!@stringset unused ioUsedRoutines {
+}
+
+#---------------------------------------------------------------------------*
+
+override method @pic18Instruction_do_while addUsedRoutines
+  ?!@stringset ioUsedRoutines {
+  addPic18UsedRoutinesFromInstructionList ( !mRepeatedInstructionList !?ioUsedRoutines )
+  for () in  mWhilePartList do
+    addPic18UsedRoutinesFromInstructionList ( !mInstructionList !?ioUsedRoutines )
+  end
+}
+
+#---------------------------------------------------------------------------*
+
+override method @pic18Instruction_nobanksel addUsedRoutines
+  ?!@stringset unused ioUsedRoutines {
+}
+
+#---------------------------------------------------------------------------*
+
+override method @pic18Instruction_savebank addUsedRoutines
+  ?!@stringset ioUsedRoutines {
+  addPic18UsedRoutinesFromInstructionList ( !mInstructionList !?ioUsedRoutines )
+}
+
+#---------------------------------------------------------------------------*
+
+override method @pic18Instruction_structured_if addUsedRoutines
+  ?!@stringset ioUsedRoutines {
+  addPic18UsedRoutinesFromInstructionList ( !mThenInstructionList !?ioUsedRoutines )
+  addPic18UsedRoutinesFromInstructionList ( !mElseInstructionList !?ioUsedRoutines )
+}
+
+#---------------------------------------------------------------------------*
+
+override method @pic18Instruction_switch addUsedRoutines
+  ?!@stringset ioUsedRoutines {
+  for () in  mCaseList do
+    addPic18UsedRoutinesFromInstructionList ( !mInstructionList !?ioUsedRoutines )
+  end
+  addPic18UsedRoutinesFromInstructionList ( !mElseInstructionList !?ioUsedRoutines )
+}
+
+#---------------------------------------------------------------------------*
+
+override method @pic18Instruction_FA addUsedRoutines
+  ?!@stringset unused ioUsedRoutines {
+}
+
+#---------------------------------------------------------------------------*
+
+override method @pic18Instruction_FBA addUsedRoutines
+  ?!@stringset unused ioUsedRoutines {
+}
+
+#---------------------------------------------------------------------------*
+
+override method @pic18Instruction_FDA addUsedRoutines
+  ?!@stringset unused ioUsedRoutines {
+}
+
+#---------------------------------------------------------------------------*
+
+override method @pic18Instruction_JSR addUsedRoutines
+  ?!@stringset ioUsedRoutines {
+  ioUsedRoutines += !mTargetLabel.string
+}
+
+#---------------------------------------------------------------------------*
+
+override method @pic18Instruction_LFSR addUsedRoutines
+  ?!@stringset unused ioUsedRoutines {
+}
+
+#---------------------------------------------------------------------------*
+
+override method @pic18Instruction_MOVFF addUsedRoutines
+  ?!@stringset unused ioUsedRoutines {
+}
+
+#---------------------------------------------------------------------------*
+
+override method @pic18Instruction_TBLWT addUsedRoutines
+  ?!@stringset unused ioUsedRoutines {
+}
+
+#---------------------------------------------------------------------------*
+
+override method @pic18Instruction_TBLRD addUsedRoutines
+  ?!@stringset unused ioUsedRoutines {
+}
+
+#---------------------------------------------------------------------------*
+
+override method @pic18Instruction_literalOperation addUsedRoutines
+  ?!@stringset unused ioUsedRoutines {
+}
+
+#---------------------------------------------------------------------------*
+
+override method @pic18Instruction_fnop addUsedRoutines
+  ?!@stringset unused ioUsedRoutines {
+}
+
+#---------------------------------------------------------------------------*
+
+override method @pic18Instruction_withNoOperand addUsedRoutines
+  ?!@stringset unused ioUsedRoutines {
+}
+
+#---------------------------------------------------------------------------*
+
+override method @pic18Instruction_block addUsedRoutines
+  ?!@stringset ioUsedRoutines {
+  for () in  mBlockList do
+    addPic18UsedRoutinesFromInstructionList ( !mInstructionList !?ioUsedRoutines )
+  end
+}
+
+#---------------------------------------------------------------------------*
+
+proc addPic18UsedRoutinesFromInstructionList
+  ?let @pic18InstructionList inInstructionList
+  ?!@stringset ioUsedRoutines {
+  for () in  inInstructionList do
+    [mInstruction addUsedRoutines !?ioUsedRoutines]
+  end
+}
+
+#---------------------------------------------------------------------------*
+
+func pic18_computeUsedRoutines
+  ?let @pic18InterruptDefinitionList inInterruptDefinitionList
+  ?let @pic18RoutineDefinitionList inRoutineDefinitionList
+  ?let @routineDeclarationList inBootloaderRoutineDeclarationListForBootloaderImplementation
+  ?let @routineDeclarationList inUserRoutineDeclarationListForUserProgramImplementation
+  -> @stringset outUsedRoutineSet {
+#--- Main routine is used
+  outUsedRoutineSet = @stringset. setWithString { !"main"}
+#--- Routines called by interrupt routines are used
+  for () in  inInterruptDefinitionList do
+    addPic18UsedRoutinesFromInstructionList (
+      !mInstructionList
+      !?outUsedRoutineSet
+    )  
+  end
+#--- bootloader routines are used
+  for () in  inBootloaderRoutineDeclarationListForBootloaderImplementation do
+    outUsedRoutineSet += !mRoutineName.string
+  end
+#--- user routines are used
+  for () in  inUserRoutineDeclarationListForUserProgramImplementation do
+    outUsedRoutineSet += !mRoutineName.string
+  end
+#--- Loop for accumulating used routines
+  var s =@stringset.emptySet{}
+  loop( [inRoutineDefinitionList length])
+  while s != outUsedRoutineSet do
+    s = outUsedRoutineSet
+    for () in  inRoutineDefinitionList do
+      if [outUsedRoutineSet hasKey !mRoutineName.string] then
+        addPic18UsedRoutinesFromInstructionList ( !mInstructionList !?outUsedRoutineSet )
+      end
+    end
+  end
+}
+
+#---------------------------------------------------------------------------*
+

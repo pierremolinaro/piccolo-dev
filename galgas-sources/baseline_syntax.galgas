@@ -1,0 +1,560 @@
+syntax baseline_syntax (piccolo_lexique) {
+
+#----------------------------------------------------*
+
+rule <configuration_definition>
+  ?!@configDefinitionList ioConfigDefinitionList
+
+rule <ram_definition>
+  ?!@ramDefinitionList ioRamDefinitionList
+
+rule <constant_definition>
+  ?!@constantDefinitionList ioConstantDefinitionList
+
+rule <register_parsing>
+  !@registerExpression outRegisterExpression
+
+rule <optional_w_as_dest>
+  !@bool out_W_isDestination
+
+rule <bit_number_parsing>
+  !@bitNumberExpression outBitNumber
+
+rule <immediate_expression>
+  !@immediatExpression outExpression
+
+#----------------------------------------------------*
+
+rule <section_list>
+  ?!@baseline_routineDefinitionList ioRoutineDefinitionList
+  ?!@lstringlist ioUnusedRoutineList
+  ?!@ramDefinitionList ioRamDefinitionList
+  ?!@lstringlist unusedRegisterList
+  ?!@configDefinitionList ioConfigDefinitionList
+  ?!@constantDefinitionList ioConstantDefinitionList {
+  repeat
+  while
+    $mark$
+    $literal_string$ ?var @lstring s
+    warning s : "obsolete construct: use a comment beginning by #!"
+  while
+    $unused$
+    $byte$
+    repeat
+      $identifier$ ?var @lstring unusedRegister
+      unusedRegisterList += !unusedRegister
+    while 
+      $,$
+    end
+  while
+    $unused$
+    $routine$
+    repeat
+      $identifier$ ?var @lstring unusedRoutine
+      ioUnusedRoutineList += !unusedRoutine
+    while 
+      $,$
+    end
+  while
+    <configuration_definition> !?ioConfigDefinitionList
+  while
+    <ram_definition> !?ioRamDefinitionList
+  while
+    <constant_definition> !?ioConstantDefinitionList
+  while
+    <baseline_routine_definition> !?ioRoutineDefinitionList
+  end
+}
+
+#----------------------------------------------------*
+
+rule <baseline_instruction_list>
+  !@baseline_instructionList outInstructionList {
+  outInstructionList = @baseline_instructionList. emptyList
+  repeat
+  while
+    @baseline_instruction instruction
+    <baseline_simple_instruction> ?instruction
+    outInstructionList += !instruction
+  while
+    @baseline_instruction instruction
+    <baseline_structured_instruction>
+      ?instruction
+    outInstructionList += !instruction
+  end
+}
+
+#----------------------------------------------------*
+
+rule <baseline_routine_definition>
+  ?!@baseline_routineDefinitionList ioRoutineDefinitionList {
+  @bool noreturn
+  select
+    noreturn = false
+  or
+    $noreturn$
+    noreturn = true
+  end
+  $routine$
+  $identifier$ ?var  @lstring routineName indexing routineDefinition
+#--- Page
+  @luint page
+  select
+    page = @luint. new { !0 !@location.here}
+  or
+    $page$
+    $integer$ ? page
+  end
+#---
+  ${$
+  @baseline_instructionList instructionList
+  <baseline_instruction_list>
+    ?instructionList
+  $}$
+  ioRoutineDefinitionList +=
+    !routineName
+    !page
+    !noreturn
+    !instructionList
+    !@location.here
+}
+
+#----------------------------------------------------*
+
+rule <baseline_structured_instruction>
+  !@baseline_instruction outInstruction {
+  select
+    $do$
+    let @location instructionLocation = @location.here
+    $($
+    <immediate_expression> ?let @immediatExpression repeatExpression
+    $)$
+    <baseline_instruction_list> ?let @baseline_instructionList instructionList
+    outInstruction = @baseline_instruction_STATIC_REPEAT. new {
+      !instructionLocation
+      !repeatExpression
+      !instructionList
+      !@location.here}
+    $end$
+  or
+    $jump$
+    @location instructionLocation = @location.here
+    $identifier$ ?var  @lstring targetLabelName
+    outInstruction = @baseline_instruction_JUMP. new {
+      !instructionLocation
+      !targetLabelName}
+  or
+    $jsr$
+    @location instructionLocation = @location.here
+    $identifier$ ?var  @lstring targetLabelName
+    outInstruction = @baseline_instruction_JSR. new {
+      !instructionLocation
+      !targetLabelName}
+  or
+    $forever$
+    @location instructionLocation = @location.here
+    @baseline_instructionList instructionList
+    <baseline_instruction_list> ?instructionList
+    $end$
+    outInstruction = @baseline_instruction_FOREVER. new {
+      !instructionLocation
+      !instructionList
+      !@location.here}
+  or
+    $if$
+    @location instructionLocation = @location.here
+    @registerExpression registerExpression
+    @bitNumberExpression bitNumberExpression
+    @bool skipIfSet
+    select
+      $!$
+      <register_parsing> ? registerExpression
+      $.$
+      <bit_number_parsing> ? bitNumberExpression
+      skipIfSet = true
+    or
+      <register_parsing> ? registerExpression
+      $.$
+      <bit_number_parsing> ? bitNumberExpression
+      skipIfSet = false
+    end
+    $:$
+    @baseline_instruction instruction
+    <baseline_simple_instruction> ?instruction
+    outInstruction = @baseline_instruction_IF_BitTest. new {
+      !instructionLocation
+      !instruction
+      !skipIfSet
+      !registerExpression
+      !bitNumberExpression}
+  or
+    $if$
+    @location instructionLocation = @location.here
+    @bool increment
+    select
+      $decf$ increment = false
+    or
+      $incf$ increment = true
+    end
+    @registerExpression registerExpression
+    <register_parsing> ? registerExpression
+    @bool w_isTarget
+    select
+      w_isTarget = false
+    or
+      $,$ $w$ w_isTarget = true
+    end
+    $identifier$ ?var  @lstring conditionString
+    @string condition = [[conditionString string] uppercaseString]
+    if condition != "NZ" then
+      error conditionString:"invalid '" + condition + "' condition; it should be 'nz'"
+    end
+    $:$
+    @baseline_instruction instruction
+    <baseline_simple_instruction> ?instruction
+    outInstruction = @baseline_instruction_IF_IncDec. new {
+      !instructionLocation
+      !instruction
+      !increment
+      !registerExpression
+      !w_isTarget}
+  or
+    $if$
+    <baseline_structured_if_instruction>
+      ?outInstruction
+    $end$
+  or
+    $do$
+    @location instructionLocation = @location.here
+    @baseline_instructionList repeatedInstructionList
+    <baseline_instruction_list>
+      ?repeatedInstructionList
+    @location endOfRepeatedInstructionList = @location.here
+    var whilePartList =@baseline_partList.emptyList{}
+    repeat
+      $while$
+      @baseline_conditionExpression whileCondition
+      <baseline_condition_expression> ?whileCondition
+      @baseline_instructionList instructionList
+      <baseline_instruction_list>
+        ?instructionList
+      whilePartList += !whileCondition !instructionList !@location.here
+    while
+    end
+    $end$
+    outInstruction = @baseline_instruction_do_while. new {
+      !instructionLocation
+      !repeatedInstructionList
+      !endOfRepeatedInstructionList
+      !whilePartList}
+  or
+    $mnop$
+    @location instructionLocation = @location.here
+    $integer$ ?var  @luint occurrenceFactor
+    outInstruction = @baseline_instruction_MNOP. new { !instructionLocation !occurrenceFactor}
+  end
+}
+
+#----------------------------------------------------*
+
+rule <baseline_structured_if_instruction>
+  !@baseline_instruction outInstruction {
+  @location instructionLocation = @location.here
+  @baseline_conditionExpression structured_if_condition
+  <baseline_condition_expression> ?structured_if_condition
+  @baseline_instructionList thenInstructionList
+  <baseline_instruction_list>
+    ?thenInstructionList
+  @baseline_instructionList elseInstructionList
+  select
+    elseInstructionList = @baseline_instructionList. emptyList
+  or
+    $elsif$
+    @baseline_instruction elsifPartInstruction
+    <baseline_structured_if_instruction>
+      ?elsifPartInstruction
+    elseInstructionList = @baseline_instructionList. emptyList
+    elseInstructionList += !elsifPartInstruction
+  or
+    $else$
+    <baseline_instruction_list>
+      ?elseInstructionList
+  end
+  @location endOfElsePartLocation = @location.here
+  outInstruction = @baseline_instruction_structured_if. new {
+    !instructionLocation
+    !structured_if_condition
+    !thenInstructionList
+    !elseInstructionList
+    !endOfElsePartLocation}
+}
+
+#----------------------------------------------------*
+
+rule <baseline_simple_instruction> !@baseline_instruction outInstruction {
+  select
+    @baseline_instruction_FD_base_code baseCode
+    select
+      $addwf$
+      baseCode = @baseline_instruction_FD_base_code. ADDWF
+    or
+      $andwf$
+      baseCode = @baseline_instruction_FD_base_code. ANDWF
+    or
+      $comf$
+      baseCode = @baseline_instruction_FD_base_code. COMF
+    or
+      $decf$
+      baseCode = @baseline_instruction_FD_base_code. DECF
+    or
+      $incf$
+      baseCode = @baseline_instruction_FD_base_code. INCF
+    or
+      $iorwf$
+      baseCode = @baseline_instruction_FD_base_code. IORWF
+    or
+      $movf$
+      baseCode = @baseline_instruction_FD_base_code. MOVF
+    or
+      $rlf$
+      baseCode = @baseline_instruction_FD_base_code. RLF
+    or
+      $rrf$
+      baseCode = @baseline_instruction_FD_base_code. RRF
+    or
+      $subwf$
+      baseCode = @baseline_instruction_FD_base_code. SUBWF
+    or
+      $swapf$
+      baseCode = @baseline_instruction_FD_base_code. SWAPF
+    or
+      $xorwf$
+      baseCode = @baseline_instruction_FD_base_code. XORWF
+    end
+    @location instructionLocation = @location.here
+    @registerExpression registerExpression
+    <register_parsing> ? registerExpression
+    @bool W_isDestination
+    <optional_w_as_dest> ?W_isDestination
+    outInstruction = @baseline_instruction_FD. new {
+      !instructionLocation
+      !baseCode
+      !registerExpression
+      !W_isDestination}
+  or
+    @baseline_F_instruction_base_code FAinstruction
+    select
+      $clrf$
+      FAinstruction = @baseline_F_instruction_base_code. CLRF
+    or
+      $movwf$
+      FAinstruction = @baseline_F_instruction_base_code. MOVWF
+    end
+    @location instructionLocation = @location.here
+    @registerExpression registerExpression
+    <register_parsing> ? registerExpression
+    outInstruction = @baseline_instruction_F. new {
+      !instructionLocation
+      !FAinstruction
+      !registerExpression}
+  or
+    @baseline_bit_oriented_op bitOrientedOp
+    select
+      $bcf$ bitOrientedOp = @baseline_bit_oriented_op. BCF
+    or
+      $bsf$ bitOrientedOp = @baseline_bit_oriented_op. BSF
+    end
+    @location instructionLocation = @location.here
+    @registerExpression registerExpression
+    <register_parsing> ? registerExpression
+    $.$
+    @bitNumberExpression bitNumberExpression
+    <bit_number_parsing> ? bitNumberExpression
+    outInstruction = @baseline_instruction_FB. new {
+      !instructionLocation
+      !bitOrientedOp
+      !registerExpression
+      !bitNumberExpression}
+  or
+    $goto$
+    @location instructionLocation = @location.here
+    $identifier$ ?var  @lstring targetLabelName indexing routineCall
+    outInstruction = @baseline_instruction_GOTO. new {
+      !instructionLocation
+      !targetLabelName}
+  or
+    $call$
+    let @location instructionLocation = @location.here
+    $identifier$ ?var  @lstring targetLabelName indexing routineCall
+    outInstruction = @baseline_instruction_CALL. new {
+      !instructionLocation
+      !targetLabelName}
+  or
+    $clrw$
+    outInstruction = @baseline_instruction_WO_OPERAND. new { !@location.here !@baseline_WO_OPERAND_group. CLRW}
+  or
+    $clrwdt$
+    outInstruction = @baseline_instruction_WO_OPERAND. new { !@location.here !@baseline_WO_OPERAND_group. CLRWDT}
+  or
+    $nop$
+    outInstruction = @baseline_instruction_WO_OPERAND. new { !@location.here !@baseline_WO_OPERAND_group. NOP}
+  or
+    $option$
+    outInstruction = @baseline_instruction_WO_OPERAND. new { !@location.here !@baseline_WO_OPERAND_group. OPTION_}
+  or
+    $sleep$
+    outInstruction = @baseline_instruction_WO_OPERAND. new { !@location.here !@baseline_WO_OPERAND_group. SLEEP}
+  or
+    $tris$
+    $identifier$ ?var  @lstring operand
+    outInstruction = @baseline_instruction_TRIS. new { !@location.here !operand}
+  or
+    @baseline_literal_instruction_opcode literalInstruction
+    select
+      $andlw$ literalInstruction = @baseline_literal_instruction_opcode. ANDLW
+    or
+      $iorlw$ literalInstruction = @baseline_literal_instruction_opcode. IORLW
+    or
+      $movlw$ literalInstruction = @baseline_literal_instruction_opcode. MOVLW
+    or
+      $xorlw$ literalInstruction = @baseline_literal_instruction_opcode. XORLW
+    end
+    @location instructionLocation = @location.here
+    @immediatExpression expression
+    <immediate_expression> ?expression
+    outInstruction = @baseline_instruction_literalOperation. new {
+      !instructionLocation
+      !literalInstruction
+      !expression}
+  end
+}
+
+#----------------------------------------------------*
+
+rule <baseline_condition_factor>
+  !@baseline_conditionExpression outCondition {
+  $!$
+  @baseline_conditionExpression condition
+  <baseline_condition_factor> ? condition
+  outCondition = @baseline_negateCondition. new { !condition}
+}
+
+#----------------------------------------------------*
+
+rule <baseline_condition_factor>
+  !@baseline_conditionExpression outCondition {
+  <baseline_condition_expression> ? outCondition
+}
+
+#----------------------------------------------------*
+
+rule <baseline_condition_factor>
+  !@baseline_conditionExpression outCondition {
+  select
+    @bool isIncrement
+    select
+      $incf$ isIncrement = true
+    or
+      $decf$ isIncrement = false
+    end
+    @registerExpression registerExpression
+    <register_parsing> ? registerExpression
+    @bool W_isDestination
+    select
+      W_isDestination = false
+    or
+      $,$ $w$ W_isDestination = true
+    end
+    $identifier$ ?var  @lstring conditionString
+    @string condition = [[conditionString string] uppercaseString]
+    @bool branchIfZero
+    if condition == "Z" then
+      branchIfZero = true
+    elsif condition == "NZ" then
+      branchIfZero = false
+    else
+      error conditionString: "invalid '" + conditionString
+      + "' condition; valid ones are: 'z' and 'nz'"
+      : branchIfZero
+    end
+    outCondition = @baseline_incDecRegisterInCondition. new {
+      !registerExpression
+      !isIncrement
+      !W_isDestination
+      !branchIfZero}
+  or
+    @registerExpression registerExpression
+    @bitNumberExpression bitNumberExpression
+    @bool BTFSSinstruction
+    <register_parsing> ? registerExpression
+    $.$
+    <bit_number_parsing> ?bitNumberExpression
+    select
+      BTFSSinstruction = false
+    or
+      $identifier$ ?var  @lstring conditionString
+      @string condition = [[conditionString string] uppercaseString]
+      if condition == "Z" then
+        BTFSSinstruction = true
+        @string s = "! " + [[registerExpression mRegisterName] string]
+        if [[registerExpression mOffset] uint] > 0 then
+          s += " [" + [[[registerExpression mOffset] uint] string] + "]"
+        end
+        s += "." [bitNumberExpression display !?s]
+        warning conditionString: "In Piccolo 1.2.0 and later, this construction is deprecated; use '" + s + "' instead" 
+      elsif condition == "NZ" then
+        BTFSSinstruction = false
+        @string s = [[registerExpression mRegisterName] string]
+        if [[registerExpression mOffset] uint] > 0 then
+          s += " [" + [[[registerExpression mOffset] uint] string] + "]"
+        end
+        s += "." [bitNumberExpression display !?s]
+        warning conditionString: "In Piccolo 1.2.0 and later, this construction is deprecated; use '" + s + "' instead" 
+      else
+        error conditionString: "invalid '" + conditionString
+        + "' condition; valid ones are: 'z' and 'nz'"
+        : BTFSSinstruction
+      end
+    end
+    outCondition = @baseline_bitTest_in_structured_if_condition. new {
+      !registerExpression
+      !bitNumberExpression
+      !BTFSSinstruction}
+  end
+}
+
+#----------------------------------------------------*
+
+rule <baseline_condition_expression>
+  !@baseline_conditionExpression outCondition {
+  $($
+  <baseline_condition_term> ? outCondition
+  repeat
+  while
+    $|$
+    @baseline_conditionExpression c
+    <baseline_condition_term> ? c
+    @baseline_conditionExpression rc = @baseline_negateCondition. new { !c}
+    @baseline_conditionExpression lc = @baseline_negateCondition. new { !outCondition}
+    outCondition = @baseline_negateCondition. new { !@baseline_andCondition. new { !lc !rc}}
+  end
+  $)$
+}
+
+#----------------------------------------------------*
+
+rule <baseline_condition_term>
+  !@baseline_conditionExpression outCondition {
+  <baseline_condition_factor> ? outCondition
+  repeat
+  while
+    $&$
+    @baseline_conditionExpression c
+    <baseline_condition_factor> ? c
+    outCondition = @baseline_andCondition. new { !outCondition !c}
+  end
+}
+
+#----------------------------------------------------*
+
+}

@@ -1,0 +1,957 @@
+
+
+#----------------------------------------------------------------------------*
+
+map @baselineRoutineMap {
+  @bool mIsNoReturn
+  @luint mPage
+  insert insertKey error message "the '%K' routine is already declared in %L"
+  search searchKey error message "the '%K' routine is not declared"
+}
+
+#----------------------------------------------------*
+
+method @registerExpression resolveBaselineAccess
+  ?let @registerTable inRegisterTable
+  !@baseline_intermediate_registerExpression outIntermediateRegisterDescription
+  !@bitSliceTable outBitSliceTable
+  ?!@stringset ioUsedRegisters {
+  ioUsedRegisters += !mRegisterName.string
+#--- Build assembly string
+  @string assemblyString = [mRegisterName string]
+  if [mOffset uint] > 0 then
+    assemblyString += " + " + [[mOffset uint] hexString]
+  end
+#--- Find register
+  [inRegisterTable searchKey
+    !mRegisterName
+    ?var @uintlist registerAddressList
+    ?var @uint size
+    ?outBitSliceTable
+    ?*
+  ]
+#--- Accept if one address is <= 0x1F
+  @uint registerAddress = 0
+  if [registerAddressList length] > 0 then
+    @bool found = false
+    for () in  registerAddressList while not found do
+      registerAddress = mValue
+      found = mValue <= 0x1F
+    end
+    if not found then
+      error mRegisterName : "the register cannot be accessed directly; use indirect addressing throught FSR register"
+    end
+  end
+#---
+  outIntermediateRegisterDescription = @baseline_intermediate_registerExpression. new {
+    !assemblyString
+    !registerAddress + [mOffset uint]}
+}
+
+#----------------------------------------------------------------------------*
+
+proc handleBaselineInstructionList
+  ?let @uint inCurrentPage
+  ?let @baseline_instructionList inInstructionList
+  ?let @baselineRoutineMap inRoutineMap
+  ?let @registerTable inRegisterTable
+  ?let @constantMap inConstantMap
+  ?!@uint ioLocalLabelIndex
+  ?!@baseline_intermediate_instructionList ioGeneratedInstructionList
+  ?!@string ioListFileContents
+  !@bool outContinuesInSequence
+  ?let @routineKind inRoutineKind
+  ?let @bool inLastInstructionShouldReturn
+  ?!@stringset ioUsedRegisters {
+  outContinuesInSequence = true
+  for () in  inInstructionList do(idx)
+    if not outContinuesInSequence then
+      error [mInstruction mInstructionLocation] : "Unreachable code"
+      outContinuesInSequence = true
+    end
+    [mInstruction build_baseline_intermediate_instructionList
+      !inCurrentPage
+      !inRoutineMap
+      !inRegisterTable
+      !inConstantMap
+      !?ioLocalLabelIndex
+      !?ioGeneratedInstructionList
+      !?ioListFileContents
+      !?outContinuesInSequence
+      !inRoutineKind
+      !if (idx + 1) == [inInstructionList length] then inLastInstructionShouldReturn else false end
+      !?ioUsedRegisters
+    ]
+  end
+}
+
+#----------------------------------------------------------------------------*
+
+abstract method @baseline_instruction build_baseline_intermediate_instructionList
+  ?let @uint unused inCurrentPage
+  ?let @baselineRoutineMap unused inRoutineMap
+  ?let @registerTable inRegisterTable
+  ?let @constantMap unused inConstantMap
+  ?!@uint unused ioLocalLabelIndex
+  ?!@baseline_intermediate_instructionList ioGeneratedInstructionList
+  ?!@string ioListFileContents
+  ?!@bool ioContinuesInSequence
+  ?let @routineKind unused inRoutineKind
+  ?let @bool inLastInstructionShouldReturn
+  ?!@stringset ioUsedRegisters
+
+#----------------------------------------------------------------------------*
+
+override method @baseline_instruction_WO_OPERAND build_baseline_intermediate_instructionList
+  ?let @uint unused inCurrentPage
+  ?let @baselineRoutineMap unused inRoutineMap
+  ?let @registerTable unused inRegisterTable
+  ?let @constantMap unused inConstantMap
+  ?!@uint unused ioLocalLabelIndex
+  ?!@baseline_intermediate_instructionList ioGeneratedInstructionList
+  ?!@string unused ioListFileContents
+  ?!@bool unused ioContinuesInSequence
+  ?let @routineKind unused inRoutineKind
+  ?let @bool inLastInstructionShouldReturn
+  ?!@stringset unused ioUsedRegisters {
+  if inLastInstructionShouldReturn then
+    error mInstructionLocation : "the last routine instruction should be MOVLW"
+  end
+  ioGeneratedInstructionList += !@baseline_intermediate_WO_OPERAND. new { !mInstructionLocation !mInstruction}
+}
+
+#----------------------------------------------------------------------------*
+
+func %once acceptableTRISoperand -> @stringset set {
+  set = @stringset. emptySet
+  set += !"GPIO"
+  set += !"PORTA"
+  set += !"PORTB"
+  set += !"PORTC"
+  set += !"PORTD"
+  set += !"PORTE"
+}
+
+#----------------------------------------------------------------------------*
+
+override method @baseline_instruction_TRIS build_baseline_intermediate_instructionList
+  ?let @uint unused inCurrentPage
+  ?let @baselineRoutineMap unused inRoutineMap
+  ?let @registerTable inRegisterTable
+  ?let @constantMap unused inConstantMap
+  ?!@uint unused ioLocalLabelIndex
+  ?!@baseline_intermediate_instructionList ioGeneratedInstructionList
+  ?!@string unused ioListFileContents
+  ?!@bool unused ioContinuesInSequence
+  ?let @routineKind unused inRoutineKind
+  ?let @bool inLastInstructionShouldReturn
+  ?!@stringset unused ioUsedRegisters {
+  if inLastInstructionShouldReturn then
+    error mInstructionLocation : "this instruction is the last routine instruction but should be MOVLW"
+  end
+#---
+  if not [acceptableTRISoperand () hasKey !mOperand.string] then
+    @string s = ""
+    for () in  acceptableTRISoperand ()
+    do s += key
+    between s += ", "    
+    end
+    error mInstructionLocation : "invalid TRIS operand; accepted operand are: " + s
+  end
+#---
+  [inRegisterTable searchKey !mOperand ?var @uintlist registerAddressList ?3*]
+  [registerAddressList first ?var @uint opcode]
+#---
+  ioGeneratedInstructionList += !@baseline_intermediate_TRIS. new { !mInstructionLocation !mOperand !opcode}
+}
+
+#----------------------------------------------------------------------------*
+
+override method @baseline_instruction_MNOP build_baseline_intermediate_instructionList
+  ?let @uint unused inCurrentPage
+  ?let @baselineRoutineMap unused inRoutineMap
+  ?let @registerTable unused inRegisterTable
+  ?let @constantMap unused inConstantMap
+  ?!@uint unused ioLocalLabelIndex
+  ?!@baseline_intermediate_instructionList ioGeneratedInstructionList
+  ?!@string unused ioListFileContents
+  ?!@bool unused ioContinuesInSequence
+  ?let @routineKind unused inRoutineKind
+  ?let @bool inLastInstructionShouldReturn
+  ?!@stringset unused ioUsedRegisters {
+  if inLastInstructionShouldReturn then
+    error mInstructionLocation : "this instruction is the last routine instruction and should be MOVLW"
+  end
+  ioGeneratedInstructionList += !@baseline_intermediate_instruction_MNOP. new { !mInstructionLocation !mOccurrenceFactor}
+}
+
+#----------------------------------------------------------------------------*
+
+override method @baseline_instruction_literalOperation build_baseline_intermediate_instructionList
+  ?let @uint unused inCurrentPage
+  ?let @baselineRoutineMap unused inRoutineMap
+  ?let @registerTable inRegisterTable
+  ?let @constantMap inConstantMap
+  ?!@uint unused ioLocalLabelIndex
+  ?!@baseline_intermediate_instructionList ioGeneratedInstructionList
+  ?!@string unused ioListFileContents
+  ?!@bool unused ioContinuesInSequence
+  ?let @routineKind unused inRoutineKind
+  ?let @bool inLastInstructionShouldReturn
+  ?!@stringset ioUsedRegisters {
+  if inLastInstructionShouldReturn & (mLiteralInstruction != @baseline_literal_instruction_opcode. MOVLW) then
+    error mInstructionLocation : "this instruction is the last routine instruction and should be MOVLW"
+  end
+  [mImmediatExpression eval !inRegisterTable !inConstantMap ?var @sint64 immediatValue !?ioUsedRegisters]
+#---
+   if (immediatValue > 255LS) | (immediatValue < -128LS) then
+     error mInstructionLocation:"immediate value is evaluated as " + immediatValue + " (should be betwween -128 and 255)"
+   end
+#---  
+  if inLastInstructionShouldReturn then
+    ioGeneratedInstructionList += !@baseline_intermediate_instruction_literalOperation. new {
+      !mInstructionLocation
+      !@baseline_literal_instruction_opcode. RETLW
+      ![immediatValue & 0x000000FFS uint]}
+  else
+    ioGeneratedInstructionList += !@baseline_intermediate_instruction_literalOperation. new {
+      !mInstructionLocation
+      !mLiteralInstruction
+      ![immediatValue & 0x000000FFS uint]}
+  end
+}
+
+
+#----------------------------------------------------------------------------*
+
+override method @baseline_instruction_FD build_baseline_intermediate_instructionList
+  ?let @uint unused inCurrentPage
+  ?let @baselineRoutineMap unused inRoutineMap
+  ?let @registerTable inRegisterTable
+  ?let @constantMap unused inConstantMap
+  ?!@uint unused ioLocalLabelIndex
+  ?!@baseline_intermediate_instructionList ioGeneratedInstructionList
+  ?!@string unused ioListFileContents
+  ?!@bool unused ioContinuesInSequence
+  ?let @routineKind unused inRoutineKind
+  ?let @bool inLastInstructionShouldReturn
+  ?!@stringset ioUsedRegisters {
+  if inLastInstructionShouldReturn then
+    error mInstructionLocation : "this instruction is the last routine instruction and should be MOVLW"
+  end
+  [mRegisterExpression resolveBaselineAccess
+    !inRegisterTable
+    ?var @baseline_intermediate_registerExpression intermediateRegisterDescription
+    ?var @bitSliceTable bitSliceTable
+    !?ioUsedRegisters
+  ]
+  ioGeneratedInstructionList += !@baseline_intermediate_instruction_FD. new {
+    !mInstructionLocation
+    !mInstruction_FD_base_code
+    !intermediateRegisterDescription
+    !m_W_isDestination}
+}
+
+#----------------------------------------------------------------------------*
+
+override method @baseline_instruction_CALL build_baseline_intermediate_instructionList
+  ?let @uint inCurrentPage
+  ?let @baselineRoutineMap inRoutineMap
+  ?let @registerTable unused inRegisterTable
+  ?let @constantMap unused inConstantMap
+  ?!@uint unused ioLocalLabelIndex
+  ?!@baseline_intermediate_instructionList ioGeneratedInstructionList
+  ?!@string unused ioListFileContents
+  ?!@bool unused ioContinuesInSequence
+  ?let @routineKind unused inRoutineKind
+  ?let @bool inLastInstructionShouldReturn
+  ?!@stringset unused ioUsedRegisters {
+#--- Check instruction
+  [inRoutineMap searchKey !mTargetLabel ?var @bool isNoReturn ?var @luint targetPage]
+  if isNoReturn then
+    error mTargetLabel:"a \"noreturn\" routine should be called with a GOTO or a JUMP instruction"
+  end
+  if inCurrentPage != targetPage.uint then
+    error mTargetLabel:"for an inter-page regular routine call, use a JSR instruction"
+  end
+#---
+  if inLastInstructionShouldReturn then
+    ioGeneratedInstructionList += !@baseline_intermediate_GOTO. new {
+      !mInstructionLocation
+      !mTargetLabel}
+  else
+    ioGeneratedInstructionList += !@baseline_intermediate_CALL. new {
+      !mInstructionLocation
+      !mTargetLabel}
+  end
+}
+
+#----------------------------------------------------------------------------*
+
+override method @baseline_instruction_JSR build_baseline_intermediate_instructionList
+  ?let @uint inCurrentPage
+  ?let @baselineRoutineMap inRoutineMap
+  ?let @registerTable unused inRegisterTable
+  ?let @constantMap unused inConstantMap
+  ?!@uint unused ioLocalLabelIndex
+  ?!@baseline_intermediate_instructionList ioGeneratedInstructionList
+  ?!@string unused ioListFileContents
+  ?!@bool unused ioContinuesInSequence
+  ?let @routineKind unused inRoutineKind
+  ?let @bool inLastInstructionShouldReturn
+  ?!@stringset unused ioUsedRegisters {
+#--- Check instruction
+  [inRoutineMap searchKey !mTargetLabel ?var @bool isNoReturn ?var @luint targetPage]
+  if isNoReturn then
+    error mTargetLabel:"a \"noreturn\" routine should be called with a GOTO or a JUMP instruction"
+  end
+#---
+  if inLastInstructionShouldReturn then
+    ioGeneratedInstructionList += !@baseline_intermediate_JUMP. new {
+      !mInstructionLocation
+      !mTargetLabel
+      !inCurrentPage
+      !targetPage.uint}
+  else
+    ioGeneratedInstructionList += !@baseline_intermediate_JSR. new {
+      !mInstructionLocation
+      !mTargetLabel
+      !inCurrentPage
+      !targetPage.uint}
+  end
+}
+
+#----------------------------------------------------------------------------*
+
+override method @baseline_instruction_F build_baseline_intermediate_instructionList
+  ?let @uint unused inCurrentPage
+  ?let @baselineRoutineMap unused inRoutineMap
+  ?let @registerTable inRegisterTable
+  ?let @constantMap unused inConstantMap
+  ?!@uint unused ioLocalLabelIndex
+  ?!@baseline_intermediate_instructionList ioGeneratedInstructionList
+  ?!@string unused ioListFileContents
+  ?!@bool unused ioContinuesInSequence
+  ?let @routineKind unused inRoutineKind
+  ?let @bool inLastInstructionShouldReturn
+  ?!@stringset ioUsedRegisters {
+  if inLastInstructionShouldReturn then
+    error mInstructionLocation : "this instruction is the last routine instruction and should be MOVLW"
+  end
+  [mRegisterExpression resolveBaselineAccess
+    !inRegisterTable
+    ?var @baseline_intermediate_registerExpression intermediateRegisterDescription
+    ?*
+    !?ioUsedRegisters
+  ]
+  ioGeneratedInstructionList += !@baseline_intermediate_instruction_F. new {
+    !mInstructionLocation
+    !mFAinstruction
+    !intermediateRegisterDescription}
+}
+
+#----------------------------------------------------------------------------*
+
+override method @baseline_instruction_FB build_baseline_intermediate_instructionList
+  ?let @uint unused inCurrentPage
+  ?let @baselineRoutineMap unused inRoutineMap
+  ?let @registerTable inRegisterTable
+  ?let @constantMap unused inConstantMap
+  ?!@uint unused ioLocalLabelIndex
+  ?!@baseline_intermediate_instructionList ioGeneratedInstructionList
+  ?!@string unused ioListFileContents
+  ?!@bool unused ioContinuesInSequence
+  ?let @routineKind unused inRoutineKind
+  ?let @bool inLastInstructionShouldReturn
+  ?!@stringset ioUsedRegisters {
+  if inLastInstructionShouldReturn then
+    error mInstructionLocation : "this instruction is the last routine instruction and should be MOVLW"
+  end
+  [mRegisterExpression resolveBaselineAccess
+    !inRegisterTable
+    ?var @baseline_intermediate_registerExpression intermediateRegisterDescription
+    ?var @bitSliceTable bitSliceTable
+    !?ioUsedRegisters
+  ]
+  [mBitNumber getBitNumber
+    !bitSliceTable
+    ?var @uint bitNumber
+  ]
+  ioGeneratedInstructionList += !@baseline_intermediate_instruction_FB. new {
+    !mInstructionLocation
+    !mBitOrientedOp
+    !intermediateRegisterDescription
+    !bitNumber}
+}
+
+#----------------------------------------------------------------------------*
+
+override method @baseline_instruction_GOTO build_baseline_intermediate_instructionList
+  ?let @uint inCurrentPage
+  ?let @baselineRoutineMap inRoutineMap
+  ?let @registerTable unused inRegisterTable
+  ?let @constantMap unused inConstantMap
+  ?!@uint unused ioLocalLabelIndex
+  ?!@baseline_intermediate_instructionList ioGeneratedInstructionList
+  ?!@string unused ioListFileContents
+  ?!@bool ioContinuesInSequence
+  ?let @routineKind unused inRoutineKind
+  ?let @bool inLastInstructionShouldReturn
+  ?!@stringset unused ioUsedRegisters {
+  if inLastInstructionShouldReturn then
+    error mInstructionLocation : "this instruction is the last routine instruction and should be MOVLW"
+  end
+  [inRoutineMap searchKey !mTargetLabel ?var @bool isNoReturn ?var @luint targetPage]
+  if not isNoReturn then
+    error mTargetLabel:"a regular routine should be called with a CALL or a JSR instruction"
+  end
+  if inCurrentPage != targetPage.uint then
+    error mTargetLabel:"for an inter-page noreturn routine call, use a JUMP instruction"
+  end
+  ioContinuesInSequence = false
+#---
+  ioGeneratedInstructionList += !@baseline_intermediate_GOTO. new {
+    !mInstructionLocation
+    !mTargetLabel}
+}
+
+#----------------------------------------------------------------------------*
+
+override method @baseline_instruction_JUMP build_baseline_intermediate_instructionList
+  ?let @uint inCurrentPage
+  ?let @baselineRoutineMap inRoutineMap
+  ?let @registerTable unused inRegisterTable
+  ?let @constantMap unused inConstantMap
+  ?!@uint unused ioLocalLabelIndex
+  ?!@baseline_intermediate_instructionList ioGeneratedInstructionList
+  ?!@string unused ioListFileContents
+  ?!@bool ioContinuesInSequence
+  ?let @routineKind unused inRoutineKind
+  ?let @bool inLastInstructionShouldReturn
+  ?!@stringset unused ioUsedRegisters {
+  if inLastInstructionShouldReturn then
+    error mInstructionLocation : "this instruction is the last routine instruction and should be MOVLW"
+  end
+  [inRoutineMap searchKey !mTargetLabel ?var @bool isNoReturn ?var @luint targetPage]
+  if not isNoReturn then
+    error mTargetLabel:"a regular routine should be called with a CALL or a JSR instruction"
+  end
+  ioContinuesInSequence = false
+#---
+  ioGeneratedInstructionList += !@baseline_intermediate_JUMP. new {
+    !mInstructionLocation
+    !mTargetLabel
+    !inCurrentPage
+    !targetPage.uint}
+}
+
+#----------------------------------------------------------------------------*
+
+override method @baseline_instruction_IF_BitTest build_baseline_intermediate_instructionList
+  ?let @uint inCurrentPage
+  ?let @baselineRoutineMap inRoutineMap
+  ?let @registerTable inRegisterTable
+  ?let @constantMap inConstantMap
+  ?!@uint ioLocalLabelIndex
+  ?!@baseline_intermediate_instructionList ioGeneratedInstructionList
+  ?!@string ioListFileContents
+  ?!@bool unused ioContinuesInSequence
+  ?let @routineKind inRoutineKind
+  ?let @bool inLastInstructionShouldReturn
+  ?!@stringset ioUsedRegisters {
+  [mRegisterExpression resolveBaselineAccess
+    !inRegisterTable
+    ?var @baseline_intermediate_registerExpression intermediateRegisterDescription
+    ?var @bitSliceTable bitSliceTable
+    !?ioUsedRegisters
+  ]
+  @uint bitNumber
+  [mBitNumber getBitNumber
+    !bitSliceTable
+    ?bitNumber
+  ]
+  ioGeneratedInstructionList += !@baseline_intermediate_instruction_BitTestSkip. new {
+    !mInstructionLocation
+    !mSkipIfSet
+    !intermediateRegisterDescription
+    !bitNumber}
+#--- Append Instruction
+  @bool unusedContinuesInSequence = true
+  [mInstruction build_baseline_intermediate_instructionList
+    !inCurrentPage
+    !inRoutineMap
+    !inRegisterTable
+    !inConstantMap
+    !?ioLocalLabelIndex
+    !?ioGeneratedInstructionList
+    !?ioListFileContents
+    !?unusedContinuesInSequence
+    !inRoutineKind
+    !inLastInstructionShouldReturn
+    !?ioUsedRegisters
+  ]
+}
+
+#----------------------------------------------------------------------------*
+
+override method @baseline_instruction_IF_IncDec build_baseline_intermediate_instructionList
+  ?let @uint inCurrentPage
+  ?let @baselineRoutineMap inRoutineMap
+  ?let @registerTable inRegisterTable
+  ?let @constantMap inConstantMap
+  ?!@uint ioLocalLabelIndex
+  ?!@baseline_intermediate_instructionList ioGeneratedInstructionList
+  ?!@string ioListFileContents
+  ?!@bool unused ioContinuesInSequence
+  ?let @routineKind inRoutineKind
+  ?let @bool inLastInstructionShouldReturn
+  ?!@stringset ioUsedRegisters {
+#---
+  @baseline_instruction_FD_base_code baseCode
+  if mIncrement then
+    baseCode = @baseline_instruction_FD_base_code. INCFSZ
+  else
+    baseCode = @baseline_instruction_FD_base_code. DECFSZ
+  end
+#---
+  [mRegisterExpression resolveBaselineAccess
+    !inRegisterTable
+    ?var @baseline_intermediate_registerExpression intermediateRegisterDescription
+    ?var @bitSliceTable bitSliceTable
+    !?ioUsedRegisters
+  ]
+#---
+  ioGeneratedInstructionList += !@baseline_intermediate_instruction_FD. new {
+    !mInstructionLocation
+    !baseCode
+    !intermediateRegisterDescription
+    !m_W_isDestination}
+#---
+  @bool unusedContinuesInSequence = true
+  [mInstruction build_baseline_intermediate_instructionList
+    !inCurrentPage
+    !inRoutineMap
+    !inRegisterTable
+    !inConstantMap
+    !?ioLocalLabelIndex
+    !?ioGeneratedInstructionList
+    !?ioListFileContents
+    !?unusedContinuesInSequence
+    !inRoutineKind
+    !inLastInstructionShouldReturn
+    !?ioUsedRegisters
+  ]
+}
+
+#----------------------------------------------------------------------------*
+
+override method @baseline_instruction_FOREVER build_baseline_intermediate_instructionList
+  ?let @uint inCurrentPage
+  ?let @baselineRoutineMap inRoutineMap
+  ?let @registerTable inRegisterTable
+  ?let @constantMap inConstantMap
+  ?!@uint  ioLocalLabelIndex
+  ?!@baseline_intermediate_instructionList ioGeneratedInstructionList
+  ?!@string ioListFileContents
+  ?!@bool ioContinuesInSequence
+  ?let @routineKind inRoutineKind
+  ?let @bool unused inLastInstructionShouldReturn
+  ?!@stringset ioUsedRegisters {
+  switch inRoutineKind
+  case regularRoutine :
+    error mInstructionLocation:"a regular routine does not accept the \"forever\" instruction"
+  case noReturnRoutine : # ok
+  case interruptRoutine :
+    error mInstructionLocation:"an interrupt routine does not accept the \"forever\" instruction"
+  end
+#--- Check instruction list does not change bank
+  @string label0 = ".L" + [ioLocalLabelIndex string] 
+  ioLocalLabelIndex ++
+  ioGeneratedInstructionList += !@baseline_intermediate_pseudo_LABEL. new { !@lstring. new { !label0 !mInstructionLocation}}
+  handleBaselineInstructionList (
+    !inCurrentPage
+    !mInstructionList 
+    !inRoutineMap
+    !inRegisterTable
+    !inConstantMap
+    !?ioLocalLabelIndex
+    !?ioGeneratedInstructionList
+    !?ioListFileContents
+    ?ioContinuesInSequence
+    !inRoutineKind
+    !false # Instruction list does not need to end with MOVLW
+    !?ioUsedRegisters
+  )
+#--- Generate GOTO to the beginning of the loop
+  ioGeneratedInstructionList += !@baseline_intermediate_GOTO. new {
+    !mInstructionLocation
+    !@lstring. new { !label0 !mInstructionLocation}}
+#---
+  ioContinuesInSequence = false
+}
+
+#----------------------------------------------------------------------------*
+
+override method @baseline_instruction_STATIC_REPEAT build_baseline_intermediate_instructionList
+  ?let @uint inCurrentPage
+  ?let @baselineRoutineMap inRoutineMap
+  ?let @registerTable inRegisterTable
+  ?let @constantMap inConstantMap
+  ?!@uint  ioLocalLabelIndex
+  ?!@baseline_intermediate_instructionList ioGeneratedInstructionList
+  ?!@string ioListFileContents
+  ?!@bool ioContinuesInSequence
+  ?let @routineKind inRoutineKind
+  ?let @bool unused inLastInstructionShouldReturn
+  ?!@stringset ioUsedRegisters {
+  [mRepeatExpression eval !inRegisterTable !inConstantMap ?let @sint64 repeatCount !?ioUsedRegisters]
+#---
+  if (repeatCount > 0xFFFFLS) | (repeatCount <= 0LS) then
+    error mInstructionLocation:"immediate value is evaluated as " + repeatCount + " (should be > 0 and < 0xFFFF)"
+  end
+#--- First pass
+  handleBaselineInstructionList (
+    !inCurrentPage
+    !mInstructionList 
+    !inRoutineMap
+    !inRegisterTable
+    !inConstantMap
+    !?ioLocalLabelIndex
+    !?ioGeneratedInstructionList
+    !?ioListFileContents
+    ?ioContinuesInSequence
+    !inRoutineKind
+    !false # Instruction list does not need to end with MOVLW
+    !?ioUsedRegisters
+  )
+  if not ioContinuesInSequence then
+    error mEndOfInstruction:"enclosed instruction list contains an endless loop"
+  end
+#--- Other passes
+  for idx in @range. new { !0 ![repeatCount-1LS uint]} while @uint. errorCount == 0 do
+    handleBaselineInstructionList (
+      !inCurrentPage
+      !mInstructionList 
+      !inRoutineMap
+      !inRegisterTable
+      !inConstantMap
+      !?ioLocalLabelIndex
+      !?ioGeneratedInstructionList
+      !?ioListFileContents
+      ?ioContinuesInSequence
+      !inRoutineKind
+      !false # Instruction list does not need to end with MOVLW
+      !?ioUsedRegisters
+    )
+  end
+}
+
+#----------------------------------------------------------------------------*
+
+override method @baseline_instruction_do_while build_baseline_intermediate_instructionList
+  ?let @uint inCurrentPage
+  ?let @baselineRoutineMap inRoutineMap
+  ?let @registerTable inRegisterTable
+  ?let @constantMap inConstantMap
+  ?!@uint ioLocalLabelIndex
+  ?!@baseline_intermediate_instructionList ioGeneratedInstructionList
+  ?!@string ioListFileContents
+  ?!@bool ioContinuesInSequence
+  ?let @routineKind inRoutineKind
+  ?let @bool inLastInstructionShouldReturn
+  ?!@stringset ioUsedRegisters {
+#--- Generate label
+  @string labelInstructionBegin = ".L" + [ioLocalLabelIndex string] ioLocalLabelIndex ++
+#--- Define label
+  ioGeneratedInstructionList += !@baseline_intermediate_pseudo_LABEL. new { !@lstring. new { !labelInstructionBegin !mInstructionLocation}}
+#--- Repeated instructions
+  handleBaselineInstructionList (
+    !inCurrentPage
+    !mRepeatedInstructionList
+    !inRoutineMap
+    !inRegisterTable
+    !inConstantMap
+    !?ioLocalLabelIndex
+    !?ioGeneratedInstructionList
+    !?ioListFileContents
+    ?ioContinuesInSequence
+    !inRoutineKind
+    !inLastInstructionShouldReturn
+    !?ioUsedRegisters
+  )
+#--- while parts
+  for () in  mWhilePartList do
+    if [mInstructionList length] == 0 then
+      [mCondition build_intermediate_condition_instructions
+        !inCurrentPage
+        !inRegisterTable
+        !?ioLocalLabelIndex
+        !false
+        !mInstructionLocation
+        !labelInstructionBegin
+        !?ioGeneratedInstructionList
+        !?ioUsedRegisters
+      ]
+    else
+      @string nextBranchLabel = ".L" + [ioLocalLabelIndex string] ioLocalLabelIndex ++
+      [mCondition build_intermediate_condition_instructions
+        !inCurrentPage
+        !inRegisterTable
+        !?ioLocalLabelIndex
+        !true
+        !mInstructionLocation
+        !nextBranchLabel
+        !?ioGeneratedInstructionList
+        !?ioUsedRegisters
+      ]
+      handleBaselineInstructionList (
+        !inCurrentPage
+        !mInstructionList
+        !inRoutineMap
+        !inRegisterTable
+        !inConstantMap
+        !?ioLocalLabelIndex
+        !?ioGeneratedInstructionList
+        !?ioListFileContents
+        ?ioContinuesInSequence
+        !inRoutineKind
+        !inLastInstructionShouldReturn
+        !?ioUsedRegisters
+      )
+      ioGeneratedInstructionList += !@baseline_intermediate_GOTO. new {
+        !mInstructionLocation
+        !@lstring. new { !labelInstructionBegin !mInstructionLocation}}
+      ioGeneratedInstructionList += !@baseline_intermediate_pseudo_LABEL. new { !@lstring. new { !nextBranchLabel !mInstructionLocation}}
+    end
+  end
+}
+
+#-------------------------------------------------------------------------------*
+
+override method @baseline_instruction_structured_if build_baseline_intermediate_instructionList
+  ?let @uint inCurrentPage
+  ?let @baselineRoutineMap inRoutineMap
+  ?let @registerTable inRegisterTable
+  ?let @constantMap inConstantMap
+  ?!@uint ioLocalLabelIndex
+  ?!@baseline_intermediate_instructionList ioGeneratedInstructionList
+  ?!@string ioListFileContents
+  ?!@bool ioContinuesInSequence
+  ?let @routineKind inRoutineKind
+  ?let @bool inLastInstructionShouldReturn
+  ?!@stringset ioUsedRegisters {
+#---
+  @string label_nextCondition = ".L" + [ioLocalLabelIndex string] ioLocalLabelIndex ++
+  @string label_endOfIfinstruction = ".L" + [ioLocalLabelIndex string] ioLocalLabelIndex ++
+#--- Translate condition
+  [mIfCondition build_intermediate_condition_instructions
+    !inCurrentPage
+    !inRegisterTable
+    !?ioLocalLabelIndex
+    !true
+    !mInstructionLocation
+    !label_nextCondition
+    !?ioGeneratedInstructionList
+    !?ioUsedRegisters
+  ]
+#--- 'then' instructions
+  handleBaselineInstructionList (
+    !inCurrentPage
+    !mThenInstructionList
+    !inRoutineMap
+    !inRegisterTable
+    !inConstantMap
+    !?ioLocalLabelIndex
+    !?ioGeneratedInstructionList
+    !?ioListFileContents
+    ?var @bool thenContinuesInSequence
+    !inRoutineKind
+    !inLastInstructionShouldReturn
+    !?ioUsedRegisters
+  )
+#--- 'else' instructions
+  if ([mElseInstructionList length] > 0) & not inLastInstructionShouldReturn then
+    ioGeneratedInstructionList += !@baseline_intermediate_GOTO. new {
+      !mInstructionLocation
+      !@lstring. new { !label_endOfIfinstruction !mInstructionLocation}}
+  end
+  ioGeneratedInstructionList += !@baseline_intermediate_pseudo_LABEL. new { !@lstring. new { !label_nextCondition !mInstructionLocation}}
+  handleBaselineInstructionList (
+    !inCurrentPage
+    !mElseInstructionList
+    !inRoutineMap
+    !inRegisterTable
+    !inConstantMap
+    !?ioLocalLabelIndex
+    !?ioGeneratedInstructionList
+    !?ioListFileContents
+    ?var @bool elseContinuesInSequence
+    !inRoutineKind
+    !inLastInstructionShouldReturn
+    !?ioUsedRegisters
+  )
+  if ([mElseInstructionList length] > 0) & not inLastInstructionShouldReturn then
+    ioGeneratedInstructionList += !@baseline_intermediate_pseudo_LABEL. new { !@lstring. new { !label_endOfIfinstruction !mInstructionLocation}}
+  end
+#---
+  ioContinuesInSequence = thenContinuesInSequence | elseContinuesInSequence
+}
+
+#-------------------------------------------------------------------------------*
+#                                                                               *
+#   B U I L D    I P I C    C O N D I T I O N    I N S T R U C T I O N S        *
+#                                                                               *
+#-------------------------------------------------------------------------------*
+
+abstract method @baseline_conditionExpression build_intermediate_condition_instructions
+  ?let @uint inCurrentPage
+  ?let @registerTable inRegisterTable
+  ?!@uint ioLocalLabelIndex
+  ?let @bool inComplementaryBranch
+  ?let @location inInstructionLocation
+  ?let @string inTargetLabel
+  ?!@baseline_intermediate_instructionList ioGeneratedInstructionList
+  ?!@stringset ioUsedRegisters
+
+#----------------------------------------------------*
+
+override method @baseline_incDecRegisterInCondition build_intermediate_condition_instructions
+  ?let @uint unused inCurrentPage
+  ?let @registerTable inRegisterTable
+  ?!@uint unused ioLocalLabelIndex
+  ?let @bool inComplementaryBranch
+  ?let @location inInstructionLocation
+  ?let @string inTargetLabel
+  ?!@baseline_intermediate_instructionList ioGeneratedInstructionList
+  ?!@stringset ioUsedRegisters {
+  [mRegisterExpression resolveBaselineAccess
+    !inRegisterTable
+    ?var @baseline_intermediate_registerExpression intermediateRegisterDescription
+    ?var @bitSliceTable bitSliceTable
+    !?ioUsedRegisters
+  ]
+#---
+  ioGeneratedInstructionList += !@baseline_intermediate_incDecRegisterInCondition. new {
+    !inInstructionLocation
+    !intermediateRegisterDescription
+    !inTargetLabel
+    !mIncrement
+    !m_W_isDestination
+    !mBranchIfZero ^ inComplementaryBranch}
+}
+
+#----------------------------------------------------*
+
+override method @baseline_negateCondition build_intermediate_condition_instructions
+  ?let @uint inCurrentPage
+  ?let @registerTable inRegisterTable
+  ?!@uint ioLocalLabelIndex
+  ?let @bool inComplementaryBranch
+  ?let @location inInstructionLocation
+  ?let @string inTargetLabel
+  ?!@baseline_intermediate_instructionList ioGeneratedInstructionList
+  ?!@stringset ioUsedRegisters {
+  [mCondition build_intermediate_condition_instructions
+    !inCurrentPage
+    !inRegisterTable
+    !?ioLocalLabelIndex
+    !not inComplementaryBranch
+    !inInstructionLocation
+    !inTargetLabel
+    !?ioGeneratedInstructionList
+    !?ioUsedRegisters
+  ]
+}
+
+#----------------------------------------------------*
+
+override method @baseline_andCondition build_intermediate_condition_instructions
+  ?let @uint inCurrentPage
+  ?let @registerTable inRegisterTable
+  ?!@uint ioLocalLabelIndex
+  ?let @bool inComplementaryBranch
+  ?let @location inInstructionLocation
+  ?let @string inTargetLabel
+  ?!@baseline_intermediate_instructionList ioGeneratedInstructionList
+  ?!@stringset ioUsedRegisters {
+  if inComplementaryBranch then
+    [mLeftExpression build_intermediate_condition_instructions
+      !inCurrentPage
+      !inRegisterTable
+      !?ioLocalLabelIndex
+      !true
+      !inInstructionLocation
+      !inTargetLabel
+      !?ioGeneratedInstructionList
+      !?ioUsedRegisters
+    ]
+    [mRightExpression build_intermediate_condition_instructions
+      !inCurrentPage
+      !inRegisterTable
+      !?ioLocalLabelIndex
+      !true
+      !inInstructionLocation
+      !inTargetLabel
+      !?ioGeneratedInstructionList
+      !?ioUsedRegisters
+    ]
+  else
+    let @string label0 = ".L" + [ioLocalLabelIndex string] ioLocalLabelIndex ++
+    [mLeftExpression build_intermediate_condition_instructions
+      !inCurrentPage
+      !inRegisterTable
+      !?ioLocalLabelIndex
+      !true
+      !inInstructionLocation
+      !label0
+      !?ioGeneratedInstructionList
+      !?ioUsedRegisters
+    ]
+    [mRightExpression build_intermediate_condition_instructions
+      !inCurrentPage
+      !inRegisterTable
+      !?ioLocalLabelIndex
+      !false
+      !inInstructionLocation
+      !inTargetLabel
+      !?ioGeneratedInstructionList
+      !?ioUsedRegisters
+    ]
+    ioGeneratedInstructionList += !@baseline_intermediate_pseudo_LABEL. new { !@lstring. new { !label0 !inInstructionLocation}}
+  end
+}
+
+#----------------------------------------------------*
+
+override method @baseline_bitTest_in_structured_if_condition build_intermediate_condition_instructions
+  ?let @uint unused inCurrentPage
+  ?let @registerTable inRegisterTable
+  ?!@uint unused ioLocalLabelIndex
+  ?let @bool inComplementaryBranch
+  ?let @location inInstructionLocation
+  ?let @string inTargetLabel
+  ?!@baseline_intermediate_instructionList ioGeneratedInstructionList
+  ?!@stringset ioUsedRegisters {
+  [mRegisterExpression resolveBaselineAccess
+    !inRegisterTable
+    ?var @baseline_intermediate_registerExpression intermediateRegisterDescription
+    ?var @bitSliceTable bitSliceTable
+    !?ioUsedRegisters
+  ]
+  @uint bitNumber
+  [mBitNumber getBitNumber
+    !bitSliceTable
+    ?bitNumber
+  ]
+  ioGeneratedInstructionList += !@baseline_intermediate_instruction_BitTestSkip. new {
+    !inInstructionLocation
+    !mBTFSSinstruction ^ inComplementaryBranch
+    !intermediateRegisterDescription
+    !bitNumber}
+  ioGeneratedInstructionList += !@baseline_intermediate_GOTO. new {
+    !inInstructionLocation
+    !@lstring. new { !inTargetLabel !inInstructionLocation}}
+}
+
+#-------------------------------------------------------------------------------*
+

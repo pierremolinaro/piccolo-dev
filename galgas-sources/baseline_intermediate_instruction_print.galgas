@@ -1,0 +1,141 @@
+
+
+#-------------------------------------------------------------------------------*
+
+abstract method @baseline_intermediate_instruction print ?!@string ioListFileContents
+
+#-------------------------------------------------------------------------------*
+
+override method @baseline_intermediate_NULL print ?!@string ioListFileContents {
+  ioListFileContents += "-"
+}
+
+#-------------------------------------------------------------------------------*
+
+override method @baseline_intermediate_pseudo_PAGE print ?!@string ioListFileContents {
+  ioListFileContents += "ORG " + [mPage * 512 hexString]
+}
+
+#-------------------------------------------------------------------------------*
+
+override method @baseline_intermediate_pseudo_BEGIN_ROUTINE print ?!@string ioListFileContents {
+  ioListFileContents += "BEGIN OF ROUTINE " + mRoutineName
+}
+
+#-------------------------------------------------------------------------------*
+
+override method @baseline_intermediate_pseudo_END_ROUTINE print ?!@string ioListFileContents {
+  ioListFileContents += "END OF ROUTINE " + mRoutineName + " IN PAGE " + mPage
+}
+
+#-------------------------------------------------------------------------------*
+
+override method @baseline_intermediate_pseudo_LABEL print ?!@string ioListFileContents {
+  ioListFileContents += "LABEL " + mLabel
+}
+
+#-------------------------------------------------------------------------------*
+
+override method @baseline_intermediate_instruction_FD print ?!@string ioListFileContents {
+  ioListFileContents += [mInstruction mnemonic] + " " + [mRegisterDescription mAssemblyString]
+  if m_W_isDestination then
+    ioListFileContents += ", W"
+  end
+}
+
+#-------------------------------------------------------------------------------*
+
+override method @baseline_intermediate_instruction_F print ?!@string ioListFileContents {
+  ioListFileContents += [mInstruction mnemonic] + " " + [mRegisterDescription mAssemblyString]
+}
+
+#-------------------------------------------------------------------------------*
+
+override method @baseline_intermediate_instruction_FB print ?!@string ioListFileContents {
+  ioListFileContents += [mInstruction mnemonic] + " " + [mRegisterDescription mAssemblyString] + ", " + [mBitNumber string]
+}
+
+#-------------------------------------------------------------------------------*
+
+override method @baseline_intermediate_instruction_BitTestSkip print ?!@string ioListFileContents {
+  if mSkipIfSet then
+    ioListFileContents += "BTFSS"
+  else
+    ioListFileContents += "BTFSC"
+  end
+  ioListFileContents += " " + [mRegisterDescription mAssemblyString] + ", " + [mBitNumber string]
+}
+
+#-------------------------------------------------------------------------------*
+
+override method @baseline_intermediate_GOTO print ?!@string ioListFileContents {
+  ioListFileContents += "GOTO " + mTargetLabel
+}
+
+#-------------------------------------------------------------------------------*
+
+override method @baseline_intermediate_JUMP print ?!@string ioListFileContents {
+  ioListFileContents += "JUMP " + mTargetLabel
+}
+
+#-------------------------------------------------------------------------------*
+
+
+override method @baseline_intermediate_CALL print ?!@string ioListFileContents {
+  ioListFileContents += "CALL " + mTargetLabel
+}
+
+#-------------------------------------------------------------------------------*
+
+
+override method @baseline_intermediate_JSR print ?!@string ioListFileContents {
+  ioListFileContents += "JSR " + mTargetLabel
+}
+
+#-------------------------------------------------------------------------------*
+
+override method @baseline_intermediate_instruction_literalOperation print ?!@string ioListFileContents {
+  ioListFileContents += [mInstruction mnemonic] + " " + [mLiteralValue hexString]
+}
+
+#-------------------------------------------------------------------------------*
+
+override method @baseline_intermediate_instruction_MNOP print ?!@string ioListFileContents {
+  ioListFileContents += "MNOP " + [[mOccurrenceFactor uint] string]
+}
+
+#-------------------------------------------------------------------------------*
+
+override method @baseline_intermediate_incDecRegisterInCondition print ?!@string ioListFileContents {
+  ioListFileContents += "JUMP "
+  if mIncrement then
+    ioListFileContents += "INCF "
+  else
+    ioListFileContents += "DECF "
+  end
+  ioListFileContents += [mRegisterDescription mAssemblyString]
+  if m_W_isDestination then
+    ioListFileContents += ", W"
+  end
+  if mBranchIfZero then
+    ioListFileContents += " Z"
+  else
+    ioListFileContents += " NZ"
+  end
+  ioListFileContents += " " + mTargetLabel
+}
+
+#-------------------------------------------------------------------------------*
+
+override method @baseline_intermediate_WO_OPERAND print ?!@string ioListFileContents {
+  ioListFileContents += [mInstruction mnemonic]
+}
+
+#-------------------------------------------------------------------------------*
+
+override method @baseline_intermediate_TRIS print ?!@string ioListFileContents {
+  ioListFileContents += "TRIS " + mOperand
+}
+
+#-------------------------------------------------------------------------------*
+

@@ -1,0 +1,198 @@
+
+
+#----------------------------------------------------------------------------*
+
+map @midrange_declaredRoutineMap {
+  insert insertKey error message "the '%K' routine is already declared"
+  search searchKey error message "the '%K' routine is not declared"
+}
+
+#----------------------------------------------------------------------------*
+#                                                                            *
+#               S E M A N T I C    A N A L Y S I S                           *
+#                                                                            *
+#----------------------------------------------------------------------------*
+
+proc midrange_analyze ?let @midrange_model inPiccoloModel ?let @string inSourceFileName {
+  @string sourceFileBaseName = [[inSourceFileName lastPathComponent] stringByDeletingPathExtension]
+  if sourceFileBaseName != [[inPiccoloModel mProgramName] string] then
+    error [inPiccoloModel mProgramName]: "the program name ('" + [inPiccoloModel mProgramName]
+    + "') should be identical to the file base name '" + sourceFileBaseName + "'"
+  end
+  @string listFileContents = ""
+#-------------------------------- Analyze Device
+  @piccoloDeviceModel piccoloDeviceModel
+  parseDeviceDefinition ( ![inPiccoloModel mDeviceName] ?piccoloDeviceModel )
+  switch [piccoloDeviceModel mProcessorType]
+    case midrange :
+    case pic18_60, pic18_80 : error [inPiccoloModel mDeviceName]: "a pic18 device is not accepted here : only a mid-range device"
+    case baseline : error [inPiccoloModel mDeviceName]: "a baseline device is not accepted here : only a mid-range device"
+  end
+#-------------------------------- Interrupts ?
+  @bool hasInterrupt = false
+  for () in  [inPiccoloModel mInterruptDefinitionList] do
+    if hasInterrupt then
+      error mInterruptLocation:"only one interrupt routine can be defined"
+    end
+    hasInterrupt = true
+  end
+#-------------------------------- Config definition
+  @actualConfigurationMap actualConfigurationMap
+  buildConfig (
+    ![piccoloDeviceModel mConfigRegisterMap]
+    ![inPiccoloModel mConfigDefinitionList]
+    !?listFileContents
+    ?actualConfigurationMap
+  )
+#-------------------------------- Ram definition
+  @ramBankTable ramBank = [piccoloDeviceModel mRamBankTable]
+  @registerTable registerTable = [piccoloDeviceModel mRegisterTable]
+  analyze_ram_sections (
+    !"DECLARED VARIABLES"
+    ![inPiccoloModel mRamDefinitionList]
+    !?ramBank
+    ![piccoloDeviceModel mRegisterTable]
+    !?listFileContents
+    !?registerTable
+    ?let @declaredByteMap declaredByteMap
+  )
+#-------------------------------- Build IPIC Assembly Instruction List
+  var usedRegisters =@stringset.emptySet{}
+  build_midrange_assembly_instruction_list (
+    !([[piccoloDeviceModel mRomSize] uint] + 2047) / 2048
+    ![[piccoloDeviceModel mBankCount] uint]
+    ![[[piccoloDeviceModel mRomSize] uint] sint]
+    !piccoloDeviceModel.mSharedBankName
+    !registerTable
+    !inPiccoloModel
+    !hasInterrupt
+    ?var @midrange_intermediate_instructionList generatedInstructionList
+    !?listFileContents
+    !?usedRegisters
+  )
+#-------------------------------- Compute used routine set
+  let @stringset usedRoutineSet = midrange_computeUsedRoutines (
+    !inPiccoloModel.mInterruptDefinitionList
+    !inPiccoloModel.mRoutineDefinitionList
+  )
+  var declaredRoutineMap =@midrange_declaredRoutineMap.emptyMap{}
+  for () in  inPiccoloModel.mRoutineDefinitionList do
+    [!?declaredRoutineMap insertKey !mRoutineName]
+  end
+#-------------------------------- Check used routines
+  var unusedRoutineDeclarationUnicity =@stringset.emptySet{}
+  for () in  inPiccoloModel.mUnusedRoutineList do
+    if not [declaredRoutineMap hasKey !mValue.string] then
+      error mValue : "the '" + mValue + "' routine is not declared"
+    elsif [unusedRoutineDeclarationUnicity hasKey !mValue.string] then
+      warning mValue : "the '" + mValue + "' routine is already declared as unused"
+    elsif [usedRoutineSet hasKey !mValue.string] then
+      warning mValue : "the '" + mValue + "' routine is declared as unused, but is used"
+    end
+    unusedRoutineDeclarationUnicity += !mValue.string
+  end
+  for () in  declaredRoutineMap do
+    if (not [usedRoutineSet hasKey !lkey.string]) & (not [unusedRoutineDeclarationUnicity hasKey !lkey.string]) then
+      warning lkey : "the '" + lkey + "' routine is unused"
+    end
+  end
+#----------------------------------------------------------- Check declared bytes are used
+  var unusedByteDeclarationUnicity =@stringset.emptySet{}
+  for () in  inPiccoloModel.mUnusedRegisterList do
+    if not [registerTable hasKey !mValue.string] then
+      error mValue : "the '" + mValue + "' byte is not declared"
+    elsif [unusedByteDeclarationUnicity hasKey !mValue.string] then
+      warning mValue : "the '" + mValue + "' byte is already declared as unused"
+    elsif [usedRegisters hasKey !mValue.string] then
+      warning mValue : "the '" + mValue + "' byte is declared as unused, but is used"
+    end
+    unusedByteDeclarationUnicity += !mValue.string
+  end
+  for () in  declaredByteMap do
+    if (not [usedRegisters hasKey !lkey.string]) & (not [unusedByteDeclarationUnicity hasKey !lkey.string]) then
+      warning lkey : "the '" + lkey + "' byte is unused"
+    end
+  end
+#-------------------------------- Perform Code Optimization
+  if (@uint. errorCount == 0) & [option piccolo_options.performOptimizations value] then
+    perform_midrange_optimizations ( !?generatedInstructionList !?listFileContents )
+  end
+#-------------------------------- Compute inter-pages JUMP and JSR
+  if @uint. errorCount == 0 then
+    midrange_compute_JSR_JUMP ( !?generatedInstructionList !?listFileContents )
+  end
+#-------------------------------- Code generation
+#--- If no error, generate object file(s)
+  if @uint. errorCount == 0 then
+  #--- Generate hex file
+    @uint usedROMsize
+    build_midrange_ipic_binary_code (
+      !registerTable
+      ![[piccoloDeviceModel mBankCount] uint]
+      !generatedInstructionList
+      ![[piccoloDeviceModel mRomSize] uint]
+      !actualConfigurationMap
+      !?listFileContents
+      ?usedROMsize
+    )
+    @string contents
+    getGeneratedContents ( ?contents )
+    @string destinationFile = [inSourceFileName stringByDeletingPathExtension] + ".hex"
+    [contents writeToFileWhenDifferentContents !destinationFile ?*]
+    if [option piccolo_options.output_C_Array value] then
+      let @string baseName = [[inSourceFileName lastPathComponent] stringByDeletingPathExtension]
+      get_C_ArrayImplementation ( !baseName ?contents )
+      destinationFile = [inSourceFileName stringByDeletingPathExtension] + ".c"
+      [contents writeToFileWhenDifferentContents !destinationFile ?*]
+      get_C_ArrayHeader ( !baseName ?contents )
+      destinationFile = [inSourceFileName stringByDeletingPathExtension] + ".h"
+      [contents writeToFileWhenDifferentContents !destinationFile ?*]
+    end
+  #--- Write infos (if verbose mode)
+    if [option.verbose_output value] then
+      @string verboseMessage = "  ROM size: " + [[[piccoloDeviceModel mRomSize] uint] string] + " words;"
+      verboseMessage += " used: " + [usedROMsize string] + " words ("
+      verboseMessage += [(usedROMsize * 100) / [[piccoloDeviceModel mRomSize] uint] string] + "%).\n"
+      for () in  ramBank do
+        @uint bankSize = mLastAddressPlusOne - mFirstAddress
+        @uint usedSize = mFirstFreeAddress - mFirstAddress
+        verboseMessage += "  RAM bank '" + lkey + "': "
+        verboseMessage += [bankSize string] + " bytes, used "
+        verboseMessage += [usedSize string] + " bytes ("
+        verboseMessage += [(usedSize * 100) / bankSize string] + "%).\n"
+      end
+      message verboseMessage
+    end
+  #--- Generate asm file, if corresponding option enabled
+    if [option piccolo_options.generateAssembly value] then
+      @string assemblyCode
+      midrange_build_assembly_code (
+        ![[piccoloDeviceModel mDeviceName] string]
+        ![piccoloDeviceModel mRegisterTable]
+        !registerTable
+        !generatedInstructionList
+        !actualConfigurationMap
+        ?assemblyCode
+      )
+      @string asmDestinationFile = [inSourceFileName stringByDeletingPathExtension] + ".asm"
+      [assemblyCode writeToFileWhenDifferentContents !asmDestinationFile ?*]
+    end
+  else # There are errors : delete hex and asm files
+    @string hexDestinationFile = [inSourceFileName stringByDeletingPathExtension] + ".hex"
+    if [hexDestinationFile fileExists] then
+      [@string deleteFile !hexDestinationFile]
+    end
+    @string asmDestinationFile = [inSourceFileName stringByDeletingPathExtension] + ".asm"
+    if [asmDestinationFile fileExists] then
+      [@string deleteFile !asmDestinationFile]
+    end
+  end
+#-------------------------------- Listing file
+  if [option piccolo_options.ouputListingFile value] then
+    @string listFile = [inSourceFileName stringByDeletingPathExtension] + ".list"
+    [listFileContents writeToFileWhenDifferentContents !listFile ?*]
+  end
+}
+
+#----------------------------------------------------*
+

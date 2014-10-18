@@ -1,0 +1,129 @@
+
+
+#----------------------------------------------------------------------------*
+
+map @configFieldMap {
+  @lstring mRegisterName
+  @luint mMaskValue
+  @lstring mDescription
+  @fieldSettingMap mFieldSettingMap
+  insert insertKey error message "the '%K' configuration field is already declared in %L"
+  search searchKey error message "the '%K' configuration field is not declared"
+}
+
+#----------------------------------------------------*
+
+proc actualBuildConfig
+ ?let @configRegisterMap inConfigRegisterMap
+ ?let @configDefinitionList inConfigDefinitionList
+ ?!@string ioListFileContents
+ !@actualConfigurationMap outActualConfigurationMap {
+#--- From config description of device, build dictionary of all settings
+# This should succeed, since absence of potentiel setting name conflict has been
+# checked when parsing device definition string.
+  outActualConfigurationMap = @actualConfigurationMap. emptyMap
+  var configFieldMap =@configFieldMap.emptyMap{}
+  for () in  inConfigRegisterMap do
+    @uint defaultValue = (1 << [mRegisterWidth uint]) - 1
+    [!? outActualConfigurationMap insertKey !lkey ![mRegisterAddress uint] !defaultValue]
+    @lstring registerName = lkey
+    for () other_ in  mConfigRegisterMaskMap do
+      [!?configFieldMap insertKey !other_lkey !registerName !other_mMaskValue !other_mDescription !other_mFieldSettingMap]
+    end
+  end
+#--- Analyze config parts
+  var actualSettingNameSet =@stringset.emptySet{}
+  for () in  inConfigDefinitionList do
+    for () in  mSettingList do
+      if [actualSettingNameSet hasKey ![mSettingName string]] then
+        error mSettingName: "the '" + mSettingName + "' setting is already defined"
+      end
+      actualSettingNameSet += ![mSettingName string]
+      @lstring registerName
+      @luint maskValue
+      @lstring settingDescription
+      @fieldSettingMap fieldSettingMap
+      [configFieldMap searchKey !mSettingName ?registerName ?maskValue ?settingDescription ?fieldSettingMap]
+      if [fieldSettingMap hasKey ![mSettingValue string]] then
+        @uint settingValue
+        @uint settingMask
+        [fieldSettingMap searchKey !mSettingValue ?settingValue ?settingMask]
+        @uint registerValue
+        [outActualConfigurationMap searchKey !registerName ?* ?registerValue]
+        registerValue = (registerValue & ~ settingMask) | settingValue
+        [!?outActualConfigurationMap setMRegisterValueForKey !registerValue ![registerName string]]
+      elsif [fieldSettingMap count] > 0 then
+        @string errorMessage = "the '" + mSettingValue + "' value is not defined for configuration setting '"
+        + mSettingName + "'; possible values are:"
+        for () in  fieldSettingMap do
+          errorMessage += "\n-  \"" + lkey + "\""
+        end
+        error mSettingValue: errorMessage
+      end
+    end
+  end
+#--- Check if all settings are actually defined
+  let @stringset notDefinedSetting = [configFieldMap keySet] - actualSettingNameSet
+  if [notDefinedSetting count] > 0 then
+    @string errorMessage = "the following configuration settings are not defined:"
+    for () in  notDefinedSetting do
+      errorMessage += "\n-  " + key
+    end
+    error @location.here : errorMessage
+  end
+#--- Display conguration information in log file
+  for () in  outActualConfigurationMap do
+    ioListFileContents += "Register '" + lkey + "' at " + [mRegisterAddress hexString] + " set to " + [mRegisterValue hexString] + "\n"
+    @configRegisterMaskMap configRegisterMaskMap
+    [inConfigRegisterMap searchKey !lkey ?* ?* ?configRegisterMaskMap ?*]
+    for () others_ in  configRegisterMaskMap do
+      @lstring settingName = others_lkey
+      for () second_ in  others_mFieldSettingMap do
+        if (mRegisterValue & [others_mMaskValue uint]) == second_mValue then
+          ioListFileContents += "  setting '" + settingName + "' set to " + [second_mValue hexString] + " (\"" + second_lkey + "\")\n"
+        end
+      end
+    end
+    ioListFileContents += "\n"
+  end
+#--- Detect illegal configurations
+  for () in  outActualConfigurationMap do
+    @illegalMaskList illegalMaskList
+    [inConfigRegisterMap searchKey !lkey ?* ?* ?* ?illegalMaskList]
+     for () in  illegalMaskList do
+      if (mRegisterValue & [mIllegalMask uint]) == [mIllegalValue uint] then
+        error @location.here:"illegal setting for '" + lkey + "' register: " + mDescription
+        ioListFileContents += "*** ILLEGAL SETTING for register '" + lkey + "' ***\n"
+        ioListFileContents += "  message: " + mDescription + "\n\n"
+      end
+    end
+  end
+}
+
+#----------------------------------------------------*
+
+proc buildConfig
+ ?let @configRegisterMap inConfigRegisterMap
+ ?let @configDefinitionList inConfigDefinitionList
+ ?!@string ioListFileContents
+ !@actualConfigurationMap outActualConfigurationMap {
+#--- Log
+  ioListFileContents += ["" stringByLeftAndRightPadding !79 !'*'] + "\n"
+  ioListFileContents += "*" + ["MICROCONTROLLER CONFIGURATION" stringByLeftAndRightPadding !77 !' '] + "*\n"
+  ioListFileContents += ["" stringByLeftAndRightPadding !79 !'*'] + "\n\n"
+#--- 
+  if [inConfigDefinitionList length] > 0 then
+    actualBuildConfig (
+      !inConfigRegisterMap
+      !inConfigDefinitionList
+      !?ioListFileContents
+      ?outActualConfigurationMap
+    )
+  else
+    outActualConfigurationMap = @actualConfigurationMap. emptyMap
+    ioListFileContents += "No configuration.\n\n"
+  end
+}
+
+#----------------------------------------------------*
+

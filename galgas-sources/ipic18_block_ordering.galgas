@@ -1,0 +1,587 @@
+
+
+#----------------------------------------------------------------------------*
+
+#!--- Block invocation graph
+
+#----------------------------------------------------------------------------*
+
+graph @blockInvocationGraph (@stringlist) {
+  insert addNode error message "the '%K' label is already declared at %L"
+}
+
+#----------------------------------------------------------------------------*
+
+#!--- buildInstructionInvocationGraph
+
+#----------------------------------------------------------------------------*
+
+method @ipic18SequentialInstruction buildInstructionInvocationGraph
+  ?let @lstring unused inBlockLabel
+  ?!@string unused ioGraphVizString {
+}
+
+#----------------------------------------------------------------------------*
+
+override method @ipic18_intermediate_JSR buildInstructionInvocationGraph
+  ?let @lstring inBlockLabel
+  ?!@string ioGraphVizString {
+  ioGraphVizString += "  \"" + inBlockLabel + "\" -> \"" + mTargetLabel + "\" [color=red] ;\n"
+}
+
+#----------------------------------------------------------------------------*
+
+override method @ipic18_intermediate_instruction_computed_rcall buildInstructionInvocationGraph
+  ?let @lstring inBlockLabel
+  ?!@string ioGraphVizString {
+  ioGraphVizString += "  \"" + inBlockLabel + "\" -> \"_computed_goto_4\" [color=red] ;\n"
+  for () in  mTargetInstructions do
+    [mInstruction buildInstructionInvocationGraph
+      !inBlockLabel
+      !?ioGraphVizString
+    ]
+  end
+}
+
+#----------------------------------------------------------------------------*
+
+override method @ipic18_condition_skip_instruction buildInstructionInvocationGraph
+  ?let @lstring inBlockLabel
+  ?!@string ioGraphVizString {
+  [mEmbeddedInstruction buildInstructionInvocationGraph
+    !inBlockLabel
+    !?ioGraphVizString
+  ]
+}
+
+#----------------------------------------------------------------------------*
+
+#!--- buildTerminatorInvocationGraph
+
+#----------------------------------------------------------------------------*
+
+abstract method @ipic18AbstractBlockTerminator buildTerminatorInvocationGraph
+  ?let @lstring inBlockLabel
+  ?!@string ioGraphVizString
+  ?let @bool inDottedArrow
+
+#----------------------------------------------------------------------------*
+
+override method @ipic18ReturnTerminator buildTerminatorInvocationGraph
+  ?let @lstring unused inBlockLabel
+  ?!@string unused ioGraphVizString
+  ?let @bool unused inDottedArrow {
+}
+
+#----------------------------------------------------------------------------*
+
+override method @ipic18RetlwTerminator buildTerminatorInvocationGraph
+  ?let @lstring unused inBlockLabel
+  ?!@string unused ioGraphVizString
+  ?let @bool unused inDottedArrow {
+}
+
+#----------------------------------------------------------------------------*
+
+override method @ipic18RetfieTerminator buildTerminatorInvocationGraph
+  ?let @lstring unused inBlockLabel
+  ?!@string unused ioGraphVizString
+  ?let @bool unused inDottedArrow {
+}
+
+#----------------------------------------------------------------------------*
+
+override method @ipic18ComputedGotoTerminator buildTerminatorInvocationGraph
+  ?let @lstring inBlockLabel
+  ?!@string ioGraphVizString
+  ?let @bool unused inDottedArrow {
+  ioGraphVizString += "  \"" + inBlockLabel + "\" -> \"_computed_goto_4\" [color=red] ;\n"
+}
+
+#----------------------------------------------------------------------------*
+
+override method @ipic18ComputedRETLWTerminator buildTerminatorInvocationGraph
+  ?let @lstring inBlockLabel
+  ?!@string ioGraphVizString
+  ?let @bool unused inDottedArrow {
+  ioGraphVizString += "  \"" + inBlockLabel + "\" -> \"_computed_goto_2\" [color=red] ;\n"
+}
+
+#----------------------------------------------------------------------------*
+
+override method @ipic18ComputedBraTerminator buildTerminatorInvocationGraph
+  ?let @lstring inBlockLabel
+  ?!@string ioGraphVizString
+  ?let @bool unused inDottedArrow {
+  ioGraphVizString += "  \"" + inBlockLabel + "\" -> \"_computed_goto_2\" [color=red] ;\n"
+}
+
+#----------------------------------------------------------------------------*
+
+override method @ipic18AbstractConditionTerminator buildTerminatorInvocationGraph
+  ?let @lstring inBlockLabel
+  ?!@string ioGraphVizString
+  ?let @bool unused inDottedArrow {
+  [mSingleInstructionTerminatorIfConditionTrue buildTerminatorInvocationGraph !inBlockLabel !?ioGraphVizString !false]
+  [mSingleInstructionTerminatorIfConditionFalse buildTerminatorInvocationGraph !inBlockLabel !?ioGraphVizString !false]
+}
+
+#----------------------------------------------------------------------------*
+
+override method @pic18RegisterComparisonTerminator buildTerminatorInvocationGraph
+  ?let @lstring inBlockLabel
+  ?!@string ioGraphVizString
+  ?let @bool unused inDottedArrow {
+  [mSingleInstructionTerminatorIfConditionTrue buildTerminatorInvocationGraph !inBlockLabel !?ioGraphVizString !false]
+  [mSingleInstructionTerminatorIfConditionFalse buildTerminatorInvocationGraph !inBlockLabel !?ioGraphVizString !true]
+}
+
+#----------------------------------------------------------------------------*
+
+override method @pic18TestRegisterTerminator buildTerminatorInvocationGraph
+  ?let @lstring inBlockLabel
+  ?!@string ioGraphVizString
+  ?let @bool unused inDottedArrow {
+  [mSingleInstructionTerminatorIfConditionTrue buildTerminatorInvocationGraph !inBlockLabel !?ioGraphVizString !false]
+  [mSingleInstructionTerminatorIfConditionFalse buildTerminatorInvocationGraph !inBlockLabel !?ioGraphVizString !true]
+}
+
+#----------------------------------------------------------------------------*
+
+override method @ipic18JumpTerminator buildTerminatorInvocationGraph
+  ?let @lstring inBlockLabel
+  ?!@string ioGraphVizString
+  ?let @bool inDottedArrow {
+  ioGraphVizString += "  \"" + inBlockLabel + "\" -> \"" + mLabel + "\""
+  if inDottedArrow then
+    ioGraphVizString += " [style=dashed]"
+  end
+  ioGraphVizString += " ;\n"
+}
+
+#----------------------------------------------------------------------------*
+
+override method @ipic18ConditionalJumpTerminator buildTerminatorInvocationGraph
+  ?let @lstring inBlockLabel
+  ?!@string ioGraphVizString
+  ?let @bool inDottedArrow {
+  ioGraphVizString += "  \"" + inBlockLabel + "\" -> \"" + mTargetLabelWhenTrue + "\""
+  if inDottedArrow then
+    ioGraphVizString += " [style=dashed]"
+  end
+  ioGraphVizString += " ;\n"
+  ioGraphVizString += "  \"" + inBlockLabel + "\" -> \"" + mTargetLabelWhenFalse + "\""
+  if inDottedArrow then
+    ioGraphVizString += " [style=dashed]"
+  end
+  ioGraphVizString += " ;\n"
+}
+
+#----------------------------------------------------------------------------*
+
+#!--- Terminator noNeedToInsertJumpInstruction
+
+#----------------------------------------------------------------------------*
+
+abstract getter @ipic18AbstractBlockTerminator needToInsertJumpInstruction
+  ?let @string inNextBlockLabel
+  ->@bool outResult
+
+#----------------------------------------------------------------------------*
+
+override getter @ipic18ReturnTerminator needToInsertJumpInstruction
+  ?let @string unused inNextBlockLabel
+  ->@bool outResult {
+  outResult = false
+}
+
+#----------------------------------------------------------------------------*
+
+override getter @ipic18RetlwTerminator needToInsertJumpInstruction
+  ?let @string unused inNextBlockLabel
+  ->@bool outResult {
+  outResult = false
+}
+
+#----------------------------------------------------------------------------*
+
+override getter @ipic18RetfieTerminator needToInsertJumpInstruction
+  ?let @string unused inNextBlockLabel
+  ->@bool outResult {
+  outResult = false
+}
+
+#----------------------------------------------------------------------------*
+
+override getter @ipic18JumpTerminator needToInsertJumpInstruction
+  ?let @string inNextBlockLabel
+  ->@bool outResult {
+  outResult = mLabel.string != inNextBlockLabel
+}
+
+#----------------------------------------------------------------------------*
+
+override getter @ipic18ComputedGotoTerminator needToInsertJumpInstruction
+  ?let @string unused inNextBlockLabel
+  ->@bool outResult {
+  outResult = false
+}
+
+#----------------------------------------------------------------------------*
+
+override getter @ipic18ComputedRETLWTerminator needToInsertJumpInstruction
+  ?let @string unused inNextBlockLabel
+  ->@bool outResult {
+  outResult = false
+}
+
+#----------------------------------------------------------------------------*
+
+override getter @ipic18ConditionalJumpTerminator needToInsertJumpInstruction
+  ?let @string unused inNextBlockLabel
+  ->@bool outResult {
+  outResult = false
+}
+
+#----------------------------------------------------------------------------*
+
+override getter @ipic18ComputedBraTerminator needToInsertJumpInstruction
+  ?let @string unused inNextBlockLabel
+  ->@bool outResult {
+  outResult = false
+}
+
+#----------------------------------------------------------------------------*
+
+override getter @ipic18AbstractConditionTerminator needToInsertJumpInstruction
+  ?let @string inNextBlockLabel
+  ->@bool outResult {
+  outResult =
+    [mSingleInstructionTerminatorIfConditionTrue needToInsertJumpInstruction !inNextBlockLabel]
+    &
+    [mSingleInstructionTerminatorIfConditionFalse needToInsertJumpInstruction !inNextBlockLabel]
+}
+
+#----------------------------------------------------------------------------*
+
+override getter @pic18RegisterComparisonTerminator needToInsertJumpInstruction
+  ?let @string inNextBlockLabel
+  ->@bool outResult {
+  outResult =
+    [mSingleInstructionTerminatorIfConditionTrue needToInsertJumpInstruction !inNextBlockLabel]
+}
+
+#----------------------------------------------------------------------------*
+
+override getter @pic18TestRegisterTerminator needToInsertJumpInstruction
+  ?let @string inNextBlockLabel
+  ->@bool outResult {
+  outResult =
+    [mSingleInstructionTerminatorIfConditionTrue needToInsertJumpInstruction !inNextBlockLabel]
+}
+
+#----------------------------------------------------------------------------*
+
+#!--- buildTerminatorInvocationGraph
+
+#----------------------------------------------------------------------------*
+
+method @ipic18AbstractBlockTerminator buildTerminatorOrderedGraph
+  ?let @lstring unused inBlockLabel
+  ?!@blockInvocationGraph unused ioGraph {
+}
+
+#----------------------------------------------------------------------------*
+
+override method @ipic18JumpTerminator buildTerminatorOrderedGraph
+  ?let @lstring inBlockLabel
+  ?!@blockInvocationGraph ioGraph {
+  [!?ioGraph addEdge !inBlockLabel !mLabel]
+}
+
+#----------------------------------------------------------------------------*
+
+override method @ipic18ConditionalJumpTerminator buildTerminatorOrderedGraph
+  ?let @lstring inBlockLabel
+  ?!@blockInvocationGraph ioGraph {
+  [!?ioGraph addEdge !inBlockLabel !mTargetLabelWhenTrue]
+  [!?ioGraph addEdge !inBlockLabel !mTargetLabelWhenFalse]
+}
+
+#----------------------------------------------------------------------------*
+
+override method @pic18RegisterComparisonTerminator buildTerminatorOrderedGraph
+  ?let @lstring inBlockLabel
+  ?!@blockInvocationGraph ioGraph {
+  [mSingleInstructionTerminatorIfConditionTrue buildTerminatorOrderedGraph
+    !inBlockLabel
+    !?ioGraph
+  ]
+}
+
+#----------------------------------------------------------------------------*
+
+override method @pic18TestRegisterTerminator buildTerminatorOrderedGraph
+  ?let @lstring inBlockLabel
+  ?!@blockInvocationGraph ioGraph {
+  [mSingleInstructionTerminatorIfConditionTrue buildTerminatorOrderedGraph
+    !inBlockLabel
+    !?ioGraph
+  ]
+}
+
+#----------------------------------------------------------------------------*
+
+override method @ipic18IncDecRegisterTerminator buildTerminatorOrderedGraph
+  ?let @lstring inBlockLabel
+  ?!@blockInvocationGraph ioGraph {
+  [mSingleInstructionTerminatorIfConditionTrue buildTerminatorOrderedGraph
+    !inBlockLabel
+    !?ioGraph
+  ]
+  [mSingleInstructionTerminatorIfConditionFalse buildTerminatorOrderedGraph
+    !inBlockLabel
+    !?ioGraph
+  ]
+}
+
+#----------------------------------------------------------------------------*
+
+override method @pic18BitTestTerminator buildTerminatorOrderedGraph
+  ?let @lstring inBlockLabel
+  ?!@blockInvocationGraph ioGraph {
+  [mSingleInstructionTerminatorIfConditionTrue buildTerminatorOrderedGraph
+    !inBlockLabel
+    !?ioGraph
+  ]
+  [mSingleInstructionTerminatorIfConditionFalse buildTerminatorOrderedGraph
+    !inBlockLabel
+    !?ioGraph
+  ]
+}
+
+#----------------------------------------------------------------------------*
+
+#!--- Routines
+
+#----------------------------------------------------------------------------*
+
+proc buildOrderedGraph
+  ?!@ipic18BlockList ioBlockList
+  ?let @string inSourceFileName
+  ?!@string ioListFileContents {
+  ioListFileContents += ["" stringByLeftAndRightPadding !79 !'*'] + "\n"
+  ioListFileContents += "*" + ["BLOCK ORDERING OPTIMIZATION" stringByLeftAndRightPadding !77 !' '] + "*\n"
+  ioListFileContents += ["" stringByLeftAndRightPadding !79 !'*'] + "\n\n"
+  ioListFileContents += "Block ordering optimization:\n"
+  let @uint n = blockDiscontinuityCount (!ioBlockList)
+  ioListFileContents += "  count before optimization: " + n + "\n"
+#---
+  if [option.verbose_output value] then
+    message "Block ordering optimization... "
+  end
+#-------------------------------- Build label map
+  var symbolTable =@symbolTableForBlockOptimization.emptyMap{}
+  for () in  ioBlockList do(blockIndex)
+    [!?symbolTable insertKey !mBlock.mLabel !blockIndex]
+  end
+#---
+  var g =@blockInvocationGraph.emptyGraph{}
+  for () in  ioBlockList do
+    if mBlock.mAddress == @uint. max then # Only relocatable block
+      [!?g addNode !mBlock.mLabel !mBlock.mLabel.string]
+      [mBlock.mTerminator buildTerminatorOrderedGraph !mBlock.mLabel !?g]
+    end
+  end
+#----
+  [g nodesWithNoPredecessor ?* ?let @lstringlist nodeList]
+  var newOrderedLabelList =@stringlist.emptyList{}
+  var visitedNodeSet =@stringset.emptySet{}
+  var clusterList =@clusterList.emptyList{}
+  for () in  nodeList do
+    @blockInvocationGraph gg = [g subgraphFromNodes
+      !@lstringlist. listWithValue { !mValue}
+      !visitedNodeSet
+    ]
+    for () in  [gg keyList] do
+      visitedNodeSet += ! mValue
+    end    
+    [!?gg removeEdgesToDominators]
+    [[gg reversedGraph] depthFirstTopologicalSort
+      ?let @stringlist partialOrderedLabelList
+      ?3*
+    ]
+    newOrderedLabelList += partialOrderedLabelList
+    var cluster =@ipic18BlockList.emptyList{}
+    for () in  partialOrderedLabelList do
+      [symbolTable searchKey ![mValue nowhere] ?let @uint blockIndex]
+      let @ipic18Block b = [ioBlockList mBlockAtIndex !blockIndex]
+      cluster += !b
+    end
+    clusterList += !cluster
+  end
+#----------------------- Add nodes that are involved in a circular dependance
+  for () in  ioBlockList do
+    if (mBlock.mAddress == @uint. max) # Only relocatable block
+     & not [visitedNodeSet hasKey !mBlock.mLabel.string] then
+      @blockInvocationGraph gg = [g subgraphFromNodes
+        !@lstringlist. listWithValue { !mBlock.mLabel}
+        !visitedNodeSet
+      ]
+      for () in  [gg keyList] do
+        visitedNodeSet += ! mValue
+      end
+      [!?gg removeEdgesToNode !mBlock.mLabel.string]
+      [!?gg removeEdgesToDominators]
+      [[gg reversedGraph] depthFirstTopologicalSort
+        ?let @stringlist partialOrderedLabelList
+        ?3*
+      ]
+      newOrderedLabelList += partialOrderedLabelList
+      var cluster =@ipic18BlockList.emptyList{}
+      for () in  partialOrderedLabelList do
+        [symbolTable searchKey ![mValue nowhere] ?let @uint blockIndex]
+        let @ipic18Block b = [ioBlockList mBlockAtIndex !blockIndex]
+        cluster += !b
+      end
+      clusterList += !cluster
+    end
+  end
+#----------------------- Build sorted block list
+  var orderedBlockList =@ipic18BlockList.emptyList{}
+#--- First insert absolute blocks from 0
+  @bool continue = true
+  for () in  ioBlockList while continue do
+    continue = mBlock.mAddress != @uint. max
+    if continue then
+      orderedBlockList += !mBlock
+    end
+  end 
+#--- Insert sorted blocks 
+  for () in  newOrderedLabelList do
+    [symbolTable searchKey ![mValue nowhere] ?let @uint blockIndex]
+    let @ipic18Block b = [ioBlockList mBlockAtIndex !blockIndex]
+    orderedBlockList += !b
+  end
+#--- First insert absolute blocks from the end
+  let @uint insertionIndex = [orderedBlockList length]
+  continue = true
+  for > () in  ioBlockList while continue do
+    continue = mBlock.mAddress != @uint. max
+    if continue then
+      [!?orderedBlockList insertAtIndex !mBlock !insertionIndex]
+    end
+  end 
+#------------------------ Messaging
+  let @uint p = blockDiscontinuityCount (!orderedBlockList)
+  ioListFileContents += "  count after optimization: " + p + "\n\n"
+  if [option.verbose_output value] then
+    message [n string] + " -> " + p + ".\n\n"
+  end
+#--- Write Graphviz file
+  if [option piccolo_options.generateGraphvizFiles value] then
+    [[g graphviz] writeToFileWhenDifferentContents !inSourceFileName+ ".blockOrderingConstraints.dot" ?*]
+  end
+#--- Check block definition
+  var newSymbolSet =@stringset.emptySet{}
+  @bool ok = true
+  for () in  orderedBlockList do
+    if [newSymbolSet hasKey !mBlock.mLabel.string] then
+      let @string s = "BLOCK REORDERING INTERNAL ERROR: block \""
+      + mBlock.mLabel + "\" is duplicated"
+      warning @location. nowhere: s
+      ioListFileContents += s + ".\n\n"
+      ok = false
+    else
+      newSymbolSet += !mBlock.mLabel.string
+    end
+  end
+  for () in  symbolTable do
+    if not [newSymbolSet hasKey !lkey.string] then
+      let @string s = "BLOCK REORDERING INTERNAL ERROR: block \""
+      + lkey + "\" is missing"
+      warning @location. nowhere: s
+      ioListFileContents += s + ".\n\n"
+      ok = false
+    end
+  end
+#--- Perform list remplacement if no detected error
+  if ok then
+    ioBlockList = orderedBlockList
+    displayBlockList ( !"ORDERED OPTIMIZED INTERMEDIATE BLOCK REPRESENTATION" !?ioListFileContents !orderedBlockList )
+  else
+    let @string s = "BLOCK REORDERING INTERNAL ERROR: reordered block list is inconsistent, it is not used anymore"
+    warning @location. nowhere: s
+    ioListFileContents += s + ".\n\n"
+    displayBlockList ( !"INCONSISTENT ORDERED OPTIMIZED INTERMEDIATE BLOCK REPRESENTATION (not used)" !?ioListFileContents !orderedBlockList )
+  end
+#--- if ok, perform cluster ordering
+  if ok then
+    perform_cluster_ordering (
+      !clusterList
+      !?ioBlockList
+      !?ioListFileContents
+    )
+  end
+}
+
+#----------------------------------------------------------------------------*
+
+proc buildInvocationGraph
+  ?let @ipic18BlockList inBlockList
+  !@string outGraphVizString {
+  outGraphVizString = "digraph G {\n"
+  outGraphVizString += "  node [fontname=courier]\n"
+  for () in  inBlockList do
+    if mBlock.mAddress != @uint. max then # Absolute bloc
+      outGraphVizString += "  \"" + mBlock.mLabel + "\" [shape=rectangle]\n"
+    end
+    for () in  mBlock.mInstructionList do
+      [mInstruction buildInstructionInvocationGraph !mBlock.mLabel !?outGraphVizString]
+    end
+    [mBlock.mTerminator buildTerminatorInvocationGraph !mBlock.mLabel !?outGraphVizString !false]
+  end
+  outGraphVizString += "}\n"
+}
+
+#----------------------------------------------------------------------------*
+
+func blockDiscontinuityCount
+  ?@ipic18BlockList inBlockList
+  ->@uint outResult {
+  outResult = 0
+  for () in  inBlockList do(blockIndex)
+    if mBlock.mAddress == @uint. max then # Only relocatable block
+      @string nextBlockLabel
+      if (blockIndex+1) < [inBlockList length] then
+        nextBlockLabel = [inBlockList mBlockAtIndex !blockIndex+1].mLabel.string
+      else
+        nextBlockLabel = ""
+      end
+      if [mBlock.mTerminator needToInsertJumpInstruction !nextBlockLabel] then
+        outResult ++
+      end
+    end
+  end
+}
+
+#----------------------------------------------------------------------------*
+
+proc ipic18OptimizeBlockOrdering
+  ?let @string inSourceFileName
+  ?!@string ioListFileContents
+  ?!@ipic18BlockList ioGeneratedBlockList {
+  if [option piccolo_options.generateGraphvizFiles value] then
+    buildInvocationGraph ( !ioGeneratedBlockList ?let @string invocationGraph )
+    [invocationGraph writeToFileWhenDifferentContents !inSourceFileName+ ".blockInvocation.dot" ?*]
+  end
+#---
+  let @bool optimize = [option piccolo_options.performOptimizations value]
+    | [[option piccolo_options.optimizationFlags value] containsCharacter !'B']
+  if optimize then
+    buildOrderedGraph ( !?ioGeneratedBlockList !inSourceFileName !?ioListFileContents )
+  end
+}
+
+#----------------------------------------------------------------------------*
+

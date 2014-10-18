@@ -7178,8 +7178,8 @@ static void categoryMethod_midrange_5F_intermediate_5F_incDecRegisterInCondition
   const cPtr_midrange_5F_intermediate_5F_incDecRegisterInCondition * object = inObject ;
   macroValidSharedObject (object, cPtr_midrange_5F_intermediate_5F_incDecRegisterInCondition) ;
   GALGAS_uint var_line ;
-  GALGAS_bool joker_17257_0 ; // Joker input parameter
-  constinArgument_inSymbolTable.method_searchKey (GALGAS_lstring::constructor_new (object->mAttribute_mTargetLabel, GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 395))  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 395)), var_line, joker_17257_0, inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 395)) ;
+  GALGAS_bool joker_17257 ; // Joker input parameter
+  constinArgument_inSymbolTable.method_searchKey (GALGAS_lstring::constructor_new (object->mAttribute_mTargetLabel, GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 395))  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 395)), var_line, joker_17257, inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 395)) ;
   GALGAS_midrange_5F_intermediate_5F_instruction var_firstInstruction ;
   {
   routine_findMidRangeFirstInstructionFromAddress (var_line.add_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 398)), ioArgument_ioGeneratedInstructionList, var_firstInstruction, inCompiler  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 398)) ;
@@ -7344,8 +7344,8 @@ static void categoryMethod_midrange_5F_intermediate_5F_instruction_5F_BitTestSki
     GALGAS_midrange_5F_intermediate_5F_instruction var_thirdInstruction = GALGAS_midrange_5F_intermediate_5F_NULL::constructor_new (SOURCE_FILE ("midrange_optimizations.galgas", 491)) ;
     GALGAS_stringset var_reachedLabelSet ;
     {
-    GALGAS_midrange_5F_intermediate_5F_instruction joker_20604_0 ; // Joker input parameter
-    routine_findMidRangeFirstInstructionOrLabelFromAddress (constinArgument_inLineIndex.add_operation (GALGAS_uint ((uint32_t) 3U), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 493)), ioArgument_ioGeneratedInstructionList, joker_20604_0, var_reachedLabelSet, inCompiler  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 493)) ;
+    GALGAS_midrange_5F_intermediate_5F_instruction joker_20604 ; // Joker input parameter
+    routine_findMidRangeFirstInstructionOrLabelFromAddress (constinArgument_inLineIndex.add_operation (GALGAS_uint ((uint32_t) 3U), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 493)), ioArgument_ioGeneratedInstructionList, joker_20604, var_reachedLabelSet, inCompiler  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 493)) ;
     }
     var_ok = var_reachedLabelSet.reader_hasKey (var_jumpLabel COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 494)) ;
   }
@@ -13934,8 +13934,8 @@ static void categoryMethod_baseline_5F_intermediate_5F_GOTO_optimizeGOTO (const 
   macroValidSharedObject (object, cPtr_baseline_5F_intermediate_5F_GOTO) ;
   GALGAS_stringset var_reachedLabelSet ;
   {
-  GALGAS_baseline_5F_intermediate_5F_instruction joker_10117_0 ; // Joker input parameter
-  routine_findBaselineFirstInstructionOrLabelFromAddress (constinArgument_inLineIndex.add_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 261)), ioArgument_ioGeneratedInstructionList, joker_10117_0, var_reachedLabelSet, inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 261)) ;
+  GALGAS_baseline_5F_intermediate_5F_instruction joker_10117 ; // Joker input parameter
+  routine_findBaselineFirstInstructionOrLabelFromAddress (constinArgument_inLineIndex.add_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 261)), ioArgument_ioGeneratedInstructionList, joker_10117, var_reachedLabelSet, inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 261)) ;
   }
   const enumGalgasBool test_0 = var_reachedLabelSet.reader_hasKey (object->mAttribute_mTargetLabel.reader_string (SOURCE_FILE ("baseline_optimizations.galgas", 262)) COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 262)).boolEnum () ;
   if (kBoolTrue == test_0) {
@@ -14781,8 +14781,8 @@ static void categoryMethod_midrange_5F_intermediate_5F_JUMP_optimizeJUMP (const 
   macroValidSharedObject (object, cPtr_midrange_5F_intermediate_5F_JUMP) ;
   GALGAS_stringset var_reachedLabelSet ;
   {
-  GALGAS_midrange_5F_intermediate_5F_instruction joker_9354_0 ; // Joker input parameter
-  routine_findMidRangeFirstInstructionOrLabelFromAddress (constinArgument_inLineIndex.add_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 229)), ioArgument_ioGeneratedInstructionList, joker_9354_0, var_reachedLabelSet, inCompiler  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 229)) ;
+  GALGAS_midrange_5F_intermediate_5F_instruction joker_9354 ; // Joker input parameter
+  routine_findMidRangeFirstInstructionOrLabelFromAddress (constinArgument_inLineIndex.add_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 229)), ioArgument_ioGeneratedInstructionList, joker_9354, var_reachedLabelSet, inCompiler  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 229)) ;
   }
   const enumGalgasBool test_0 = var_reachedLabelSet.reader_hasKey (object->mAttribute_mTargetLabel.reader_string (SOURCE_FILE ("midrange_optimizations.galgas", 231)) COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 231)).boolEnum () ;
   if (kBoolTrue == test_0) {
@@ -14792,8 +14792,8 @@ static void categoryMethod_midrange_5F_intermediate_5F_JUMP_optimizeJUMP (const 
     ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string ("  line ").add_operation (constinArgument_inLineIndex.reader_string (SOURCE_FILE ("midrange_optimizations.galgas", 233)), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 233)).add_operation (GALGAS_string (": JUMP branching to next instruction deleted\n"), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 233))  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 233)) ;
   }else if (kBoolFalse == test_0) {
     GALGAS_uint var_line ;
-    GALGAS_bool joker_9810_0 ; // Joker input parameter
-    constinArgument_inSymbolTable.method_searchKey (object->mAttribute_mTargetLabel, var_line, joker_9810_0, inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 236)) ;
+    GALGAS_bool joker_9810 ; // Joker input parameter
+    constinArgument_inSymbolTable.method_searchKey (object->mAttribute_mTargetLabel, var_line, joker_9810, inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 236)) ;
     GALGAS_midrange_5F_intermediate_5F_instruction var_firstInstruction ;
     {
     routine_findMidRangeFirstInstructionFromAddress (var_line.add_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 239)), ioArgument_ioGeneratedInstructionList, var_firstInstruction, inCompiler  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 239)) ;
@@ -14912,8 +14912,8 @@ static void categoryMethod_midrange_5F_intermediate_5F_GOTO_optimizeGOTO (const 
   macroValidSharedObject (object, cPtr_midrange_5F_intermediate_5F_GOTO) ;
   GALGAS_stringset var_reachedLabelSet ;
   {
-  GALGAS_midrange_5F_intermediate_5F_instruction joker_12022_0 ; // Joker input parameter
-  routine_findMidRangeFirstInstructionOrLabelFromAddress (constinArgument_inLineIndex.add_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 283)), ioArgument_ioGeneratedInstructionList, joker_12022_0, var_reachedLabelSet, inCompiler  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 283)) ;
+  GALGAS_midrange_5F_intermediate_5F_instruction joker_12022 ; // Joker input parameter
+  routine_findMidRangeFirstInstructionOrLabelFromAddress (constinArgument_inLineIndex.add_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 283)), ioArgument_ioGeneratedInstructionList, joker_12022, var_reachedLabelSet, inCompiler  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 283)) ;
   }
   const enumGalgasBool test_0 = var_reachedLabelSet.reader_hasKey (object->mAttribute_mTargetLabel.reader_string (SOURCE_FILE ("midrange_optimizations.galgas", 285)) COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 285)).boolEnum () ;
   if (kBoolTrue == test_0) {
@@ -14923,8 +14923,8 @@ static void categoryMethod_midrange_5F_intermediate_5F_GOTO_optimizeGOTO (const 
     ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string ("  line ").add_operation (constinArgument_inLineIndex.reader_string (SOURCE_FILE ("midrange_optimizations.galgas", 287)), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 287)).add_operation (GALGAS_string (": GOTO branching to next instruction deleted\n"), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 287))  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 287)) ;
   }else if (kBoolFalse == test_0) {
     GALGAS_uint var_line ;
-    GALGAS_bool joker_12478_0 ; // Joker input parameter
-    constinArgument_inSymbolTable.method_searchKey (object->mAttribute_mTargetLabel, var_line, joker_12478_0, inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 290)) ;
+    GALGAS_bool joker_12478 ; // Joker input parameter
+    constinArgument_inSymbolTable.method_searchKey (object->mAttribute_mTargetLabel, var_line, joker_12478, inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 290)) ;
     GALGAS_midrange_5F_intermediate_5F_instruction var_firstInstruction ;
     {
     routine_findMidRangeFirstInstructionFromAddress (var_line.add_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 293)), ioArgument_ioGeneratedInstructionList, var_firstInstruction, inCompiler  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 293)) ;
@@ -15587,8 +15587,8 @@ void categoryMethod_optimize (const GALGAS_ipic_31__38_Block inObject,
         const enumGalgasBool test_1 = constinArgument_inOptimizeFlagStruct.mAttribute_mMOVLWfollowedByRETreplacedByRETLW.operator_and (GALGAS_bool (kIsEqual, cast_37053_op.reader_mLiteralInstruction (SOURCE_FILE ("ipic18_optimize_block.galgas", 991)).objectCompare (GALGAS_literal_5F_instruction_5F_opcode::constructor_MOVLW (SOURCE_FILE ("ipic18_optimize_block.galgas", 991)))) COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 991)).boolEnum () ;
         if (kBoolTrue == test_1) {
           {
-          GALGAS_ipic_31__38_SequentialInstruction joker_37238_0 ; // Joker input parameter
-          var_optimizedInstructionList.modifier_popLast (joker_37238_0, inCompiler COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 992)) ;
+          GALGAS_ipic_31__38_SequentialInstruction joker_37238 ; // Joker input parameter
+          var_optimizedInstructionList.modifier_popLast (joker_37238, inCompiler COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 992)) ;
           }
           var_optimizedTerminator = GALGAS_ipic_31__38_RetlwTerminator::constructor_new (cast_37053_op.reader_mInstructionLocation (SOURCE_FILE ("ipic18_optimize_block.galgas", 993)), cast_37053_op.reader_mLiteralValue (SOURCE_FILE ("ipic18_optimize_block.galgas", 993))  COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 993)) ;
           var_optimized = GALGAS_bool (true) ;
@@ -15599,8 +15599,8 @@ void categoryMethod_optimize (const GALGAS_ipic_31__38_Block inObject,
         const enumGalgasBool test_2 = constinArgument_inOptimizeFlagStruct.mAttribute_mJSRfollowedByRETreplacedByJUMP.boolEnum () ;
         if (kBoolTrue == test_2) {
           {
-          GALGAS_ipic_31__38_SequentialInstruction joker_37674_0 ; // Joker input parameter
-          var_optimizedInstructionList.modifier_popLast (joker_37674_0, inCompiler COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 1000)) ;
+          GALGAS_ipic_31__38_SequentialInstruction joker_37674 ; // Joker input parameter
+          var_optimizedInstructionList.modifier_popLast (joker_37674, inCompiler COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 1000)) ;
           }
           var_optimizedTerminator = GALGAS_ipic_31__38_JumpTerminator::constructor_new (cast_37559_jsr.reader_mInstructionLocation (SOURCE_FILE ("ipic18_optimize_block.galgas", 1001)), cast_37559_jsr.reader_mTargetLabel (SOURCE_FILE ("ipic18_optimize_block.galgas", 1001)), cast_37559_jsr.reader_mKind (SOURCE_FILE ("ipic18_optimize_block.galgas", 1001))  COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 1001)) ;
           var_optimized = GALGAS_bool (true) ;

@@ -1,0 +1,30 @@
+
+
+#----------------------------------------------------*
+
+filewrapper embeddedDevices in "../deviceDefinitions" {
+  "piccoloDevice"
+}{
+}{
+}
+
+#----------------------------------------------------*
+
+proc parseDeviceDefinition
+  ?let @lstring inDeviceName
+  !@piccoloDeviceModel outPiccoloDeviceModel {
+  @filewrapper fw = [filewrapper embeddedDevices]
+  @string deviceFullName = [inDeviceName string] + ".piccoloDevice"
+  if [fw fileExistsAtPath !deviceFullName] then
+    @string definitionString = [fw textFileContentsAtPath !deviceFullName]
+    grammar piccoloDevice_grammar on definitionString ?outPiccoloDeviceModel
+  else
+    error
+      inDeviceName:
+      "The '" + inDeviceName + "' definition file is not defined"
+      : outPiccoloDeviceModel
+  end
+}
+
+#----------------------------------------------------*
+

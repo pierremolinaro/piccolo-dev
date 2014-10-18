@@ -1,0 +1,131 @@
+syntax pic18_start_symbol (piccolo_lexique) {
+
+#----------------------------------------------------*
+
+rule <body>
+  ?!@pic18InterruptDefinitionList interruptDefinitionList
+  ?!@pic18RoutineDefinitionList routineDefinitionList
+  ?!@lstringlist unusedRoutineList
+  ?!@lstringlist inlinedRoutineList
+  ?!@ramDefinitionList ramDefinitionList
+  ?!@lstringlist unusedRegisterList
+  ?!@configDefinitionList configDefinitionList
+  ?!@constantDefinitionList constantDefinitionList
+  ?!@checkpicList ioCheckpicList
+  ?!@dataList dataList
+  ?!@bool needsComputedGoto2
+  ?!@bool needsComputedGoto4
+
+#----------------------------------------------------*
+
+rule <start_symbol> {
+  $pic18$
+  $identifier$ ?var  @lstring programName
+  @lstring deviceNameOrBootloaderReference
+  @programKind programKind
+  select
+    programKind = @programKind. regularProgram
+  or
+    $implements$
+    $bootloader$
+    programKind = @programKind. bootloaderProgram
+  or
+    $uses$
+    $bootloader$
+    programKind = @programKind. userProgram
+  end
+  $literal_string$ ? deviceNameOrBootloaderReference
+  $:$
+  var interruptDefinitionList =@pic18InterruptDefinitionList.emptyList{}
+  var routineDefinitionList =@pic18RoutineDefinitionList.emptyList{}
+  var unusedRoutineList =@lstringlist.emptyList{}
+  var ramDefinitionList =@ramDefinitionList.emptyList{}
+  var unusedRegisterList =@lstringlist.emptyList{}
+  var configDefinitionList =@configDefinitionList.emptyList{}
+  var constantDefinitionList =@constantDefinitionList.emptyList{}
+  var dataList =@dataList.emptyList{}
+  var checkpicList =@checkpicList.emptyList{}
+  var inlinedRoutineList =@lstringlist.emptyList{}
+  @bool needsComputedGoto2 = false
+  @bool needsComputedGoto4 = false
+  <body>
+    !?interruptDefinitionList
+    !?routineDefinitionList
+    !?unusedRoutineList
+    !?inlinedRoutineList
+    !?ramDefinitionList
+    !?unusedRegisterList
+    !?configDefinitionList
+    !?constantDefinitionList
+    !?checkpicList
+    !?dataList
+    !?needsComputedGoto2
+    !?needsComputedGoto4
+  $end$
+#--- Semantic analysis
+  if @uint. errorCount == 0 then
+    var piccoloModel =@pic18AST.new{
+      !programName
+      !programKind
+      !deviceNameOrBootloaderReference
+      !configDefinitionList
+      !ramDefinitionList
+      !unusedRegisterList
+      !checkpicList
+      !dataList
+      !interruptDefinitionList
+      !constantDefinitionList
+      !routineDefinitionList
+      !unusedRoutineList
+      !inlinedRoutineList
+      !needsComputedGoto2
+      !needsComputedGoto4
+      !@location.here
+    }
+    pic18_analyze ( !piccoloModel !@string. stringWithSourceFilePath )
+  else
+    @string hexDestinationFile = [@string. stringWithSourceFilePath stringByDeletingPathExtension] + ".hex"
+    if [hexDestinationFile fileExists] then
+      [@string deleteFile !hexDestinationFile]
+    end
+    @string asmDestinationFile = [@string. stringWithSourceFilePath stringByDeletingPathExtension] + ".asm"
+    if [asmDestinationFile fileExists] then
+      [@string deleteFile !asmDestinationFile]
+    end
+  end
+}
+label importBootloaderSpecification
+  !@piccoloDeviceModel outPiccoloDeviceModel
+  !@string outDeviceName
+  !@uint outAccessBankSplitOffset
+  !@ramBankTable outRamBank
+  !@registerTable outRegisterTable
+  !@bootloaderReservedRAMmap outBootloaderReservedRAMmap
+  !@routineDeclarationList outBootloaderRoutineDeclarationList
+  !@routineDeclarationList outUserRoutineDeclarationList
+  !@luint outBootloaderReservedROMsize {
+  $pic18$
+  $identifier$ ?var  @lstring programName
+  error programName: "this file does not define a bootloader specification"
+   : outPiccoloDeviceModel, outAccessBankSplitOffset, outRamBank, outRegisterTable,
+      outBootloaderReservedRAMmap, outDeviceName,
+      outBootloaderRoutineDeclarationList,
+      outUserRoutineDeclarationList,
+      outBootloaderReservedROMsize
+  select
+  or
+    $implements$
+    $bootloader$
+  or
+    $uses$
+    $bootloader$
+  end
+  $literal_string$ ? *
+  $:$
+   parse<body>
+  $end$
+}
+
+#----------------------------------------------------*
+
+}

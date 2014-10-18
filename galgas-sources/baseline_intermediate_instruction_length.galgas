@@ -1,0 +1,74 @@
+
+
+#-------------------------------------------------------------------------------*
+
+abstract getter @baseline_intermediate_instruction length -> @uint outLength
+
+#-------------------------------------------------------------------------------*
+
+override getter @baseline_intermediate_NULL length -> @uint outLength {
+  outLength = 0
+}
+
+#-------------------------------------------------------------------------------*
+
+override getter @baseline_intermediate_pseudo_PAGE length -> @uint outLength {
+  outLength = 0
+}
+
+#-------------------------------------------------------------------------------*
+
+override getter @baseline_intermediate_pseudo_BEGIN_ROUTINE length -> @uint outLength {
+  outLength = 0
+}
+
+#-------------------------------------------------------------------------------*
+
+override getter @baseline_intermediate_pseudo_END_ROUTINE length -> @uint outLength {
+  outLength = 0
+}
+
+#-------------------------------------------------------------------------------*
+
+override getter @baseline_intermediate_pseudo_LABEL length -> @uint outLength {
+  outLength = 0
+}
+
+#-------------------------------------------------------------------------------*
+
+override getter @baseline_intermediate_actualInstruction length -> @uint outLength {
+  outLength = 1
+}
+
+#-------------------------------------------------------------------------------*
+
+override getter @baseline_intermediate_JUMP length -> @uint outLength {
+  outLength = 1 + [mCurrentPage ^ mTargetPage oneBitCount]
+}
+
+#-------------------------------------------------------------------------------*
+
+override getter @baseline_intermediate_JSR length -> @uint outLength {
+  outLength = 1 + 2 * [mCurrentPage ^ mTargetPage oneBitCount]
+}
+
+#-------------------------------------------------------------------------------*
+
+override
+getter @baseline_intermediate_instruction_MNOP length -> @uint outLength {
+  outLength = [mOccurrenceFactor uint]
+}
+
+#-------------------------------------------------------------------------------*
+
+
+override getter @baseline_intermediate_incDecRegisterInCondition length -> @uint outLength {
+  if mBranchIfZero then
+    outLength = 3
+  else
+    outLength = 2
+  end 
+}
+
+#-------------------------------------------------------------------------------*
+

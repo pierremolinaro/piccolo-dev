@@ -1,0 +1,84 @@
+syntax baseline_program (piccolo_lexique) {
+
+#----------------------------------------------------*
+
+rule <section_list>
+  ?!@baseline_routineDefinitionList ioRoutineDefinitionList
+  ?!@lstringlist ioUnusedRoutineList
+  ?!@ramDefinitionList ioRamDefinitionList
+  ?!@lstringlist unusedRegisterList
+  ?!@configDefinitionList ioConfigDefinitionList
+  ?!@constantDefinitionList ioConstantDefinitionList
+
+#----------------------------------------------------*
+
+rule <start_symbol> {
+  $baseline$
+  $identifier$ ?var  @lstring programName
+  $literal_string$ ?var  @lstring deviceName
+  $:$
+  var routineDefinitionList =@baseline_routineDefinitionList.emptyList{}
+  var ramDefinitionList =@ramDefinitionList.emptyList{}
+  var unusedRegisterList =@lstringlist.emptyList{}
+  var unusedRoutineList =@lstringlist.emptyList{}
+  var configDefinitionList =@configDefinitionList.emptyList{}
+  var constantDefinitionList =@constantDefinitionList.emptyList{}
+  <section_list>
+    !?routineDefinitionList
+    !?unusedRoutineList
+    !?ramDefinitionList
+    !?unusedRegisterList
+    !?configDefinitionList
+    !?constantDefinitionList
+  $end$
+#--- Semantic analysis
+  if @uint. errorCount == 0 then
+    var piccoloModel =@baseline_model.new{
+      !programName
+      !deviceName
+      !configDefinitionList
+      !ramDefinitionList
+      !unusedRegisterList
+      !constantDefinitionList
+      !routineDefinitionList
+      !unusedRoutineList
+      !@location.here
+    }
+    baseline_analysis ( !piccoloModel !@string. stringWithSourceFilePath )
+  else
+    @string hexDestinationFile = [@string. stringWithSourceFilePath stringByDeletingPathExtension] + ".hex"
+    if [hexDestinationFile fileExists] then
+      [@string deleteFile !hexDestinationFile]
+    end
+    @string asmDestinationFile = [@string. stringWithSourceFilePath stringByDeletingPathExtension] + ".asm"
+    if [asmDestinationFile fileExists] then
+      [@string deleteFile !asmDestinationFile]
+    end
+  end
+}
+label importBootloaderSpecification
+  !@piccoloDeviceModel outPiccoloDeviceModel
+  !@string outDeviceName
+  !@uint outAccessBankSplitOffset
+  !@ramBankTable outRamBank
+  !@registerTable outRegisterTable
+  !@bootloaderReservedRAMmap outBootloaderReservedRAMmap
+  !@routineDeclarationList outBootloaderRoutineDeclarationList
+  !@routineDeclarationList outUserRoutineDeclarationList
+  !@luint outBootloaderReservedROMsize {
+  $baseline$
+  $identifier$ ?var  @lstring programName
+  error programName: "this file does not define a bootloader specification"
+   : outPiccoloDeviceModel, outAccessBankSplitOffset, outRamBank, outRegisterTable,
+      outBootloaderReservedRAMmap, outBootloaderRoutineDeclarationList,
+      outUserRoutineDeclarationList, outDeviceName,
+      outBootloaderReservedROMsize
+  $literal_string$ ? *
+  $:$
+   parse<section_list>
+  $end$
+}
+
+#----------------------------------------------------*
+
+}

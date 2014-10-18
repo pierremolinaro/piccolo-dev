@@ -3159,6 +3159,10 @@ class GALGAS_blockInvocationGraph : public AC_GALGAS_graph {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
+  public : VIRTUAL_IN_DEBUG class GALGAS_lstringlist reader_accessibleNodesFromNodes (const class GALGAS_lstringlist & constinOperand0,
+                                                                                      C_Compiler * inCompiler
+                                                                                      COMMA_LOCATION_ARGS) const ;
+
   public : VIRTUAL_IN_DEBUG class GALGAS_blockInvocationGraph reader_reversedGraph (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_blockInvocationGraph reader_subgraphFromNodes (const class GALGAS_lstringlist & constinOperand0,

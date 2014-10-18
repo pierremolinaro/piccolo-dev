@@ -1,0 +1,76 @@
+
+
+#----------------------------------------------------*
+
+abstract getter @midrange_intermediate_instruction instructionLength -> @uint outLength
+
+#----------------------------------------------------*
+
+override getter @midrange_intermediate_NULL instructionLength -> @uint outLength {
+  outLength = 0
+}
+
+#----------------------------------------------------*
+
+override getter @midrange_intermediate_pseudo_ORG instructionLength -> @uint outLength {
+  outLength = 0
+}
+
+#----------------------------------------------------*
+
+override getter @midrange_intermediate_pseudo_LABEL instructionLength -> @uint outLength {
+  outLength = 0
+}
+
+#----------------------------------------------------*
+
+override getter @midrange_intermediate_actualInstruction instructionLength -> @uint outLength {
+  outLength = 1
+}
+
+#----------------------------------------------------*
+
+override
+getter @midrange_intermediate_JUMP instructionLength -> @uint outLength {
+  outLength = 1
+  if mBit11 != @midrange_call_goto_bit. noChange then
+    outLength ++
+  end
+  if mBit12 != @midrange_call_goto_bit. noChange then
+    outLength ++
+  end
+}
+
+#----------------------------------------------------*
+
+override
+getter @midrange_intermediate_JSR instructionLength -> @uint outLength {
+  outLength = 1
+  if mBit11 != @midrange_call_goto_bit. noChange then
+    outLength = outLength  + 2
+  end
+  if mBit12 != @midrange_call_goto_bit. noChange then
+    outLength = outLength  + 2
+  end
+}
+
+#----------------------------------------------------*
+
+override
+getter @midrange_intermediate_instruction_MNOP instructionLength -> @uint outLength {
+  outLength = [mOccurrenceFactor uint]
+}
+
+#----------------------------------------------------*
+
+override
+getter @midrange_intermediate_incDecRegisterInCondition instructionLength -> @uint outLength {
+  if mBranchIfZero then
+    outLength = 3
+  else
+    outLength = 2
+  end 
+}
+
+#----------------------------------------------------*
+

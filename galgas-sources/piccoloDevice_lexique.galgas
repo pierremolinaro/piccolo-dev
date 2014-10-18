@@ -1,0 +1,155 @@
+lexique piccoloDevice_lexique {
+
+@string identifierString
+@uint uint32value
+@char charValue
+@string tokenString
+
+style keywordStyle -> "Keywords:"
+style instructionStyle -> "Instructions:"
+style delimitersStyle -> "Delimiters:"
+style integerStyle -> "Integer Constants:"
+style stringStyle -> "String Constants:"
+style commentStyle -> "Comments:"
+
+# -------------------------- identifier or key word --------------------
+# keywords can be written in lower or upper case
+# for identifiers, case is significant
+
+$identifier$ ! tokenString error message "an identifier"
+
+list controlKeyWordList style keywordStyle error message "the '%K' keyword"{
+  "controller",
+  "processor",
+  "romsize",
+  "eepromsize",
+  "bank",
+  "unusedregister",
+  "mirrorat",
+  "ram",
+  "register",
+  "at",
+  "to",
+  "configuration",
+  "width",
+  "description",
+  "mask",
+  "illegal",
+  "message",
+  "setting" }
+
+rule 'a'->'z' |  'A'->'Z' {
+  repeat
+    enterCharacterIntoString ( !?identifierString !toLower (!*) )
+    enterCharacterIntoString ( !?tokenString !* )
+  while 'a'->'z' | 'A'->'Z' | '_' | '0'->'9' :
+  end
+  send
+    search identifierString in controlKeyWordList
+    default $identifier$
+}
+
+#------------------------------- Integer Point Constant ------------------
+$integer$ ! uint32value  style integerStyle error message "a 32-bit unsigned number"
+
+message hexNumberTooLarge : "hex number too large"
+message decimalNumberTooLarge : "decimal number too large"
+message internalError : "internal error"
+
+rule "0x" {
+  repeat
+  while '0'->'9' :
+    enterHexDigitIntoUInt ( !* !?uint32value error hexNumberTooLarge, internalError )
+  while 'a'->'f' :
+    enterHexDigitIntoUInt ( !* !?uint32value error hexNumberTooLarge, internalError )
+  while 'A'->'F' :
+    enterHexDigitIntoUInt ( !* !?uint32value error hexNumberTooLarge, internalError )
+  while '_' :
+  end
+  send $integer$
+}
+
+rule '0'->'9' {
+  enterDigitIntoUInt ( !* !?uint32value error decimalNumberTooLarge, internalError )
+  repeat
+  while '0'->'9' :
+    enterDigitIntoUInt ( !* !?uint32value error decimalNumberTooLarge, internalError )
+  while '_' :
+  end
+  send $integer$
+}
+
+# ----------------------------- Delimitors ---------------------------------------
+list delimitorsList style delimitersStyle error message "the '%K' delimitor"{
+  "<",     ">",   ",",
+  "-",    "/",   ";",      ":",
+  "[",     "]",
+  "{",     "}" }
+
+rule list delimitorsList
+
+# -------------------- Characters string --------------------------------------
+$string$ ! tokenString  style stringStyle error message "a character string constant \"...\""
+
+message incorrectCharConstant : "incorrect literal character"
+message ASCIIcodeTooLargeError : "ASCII code > 255"
+message incorrectStringEnd : "string does not end with '\"'"
+
+rule '"' {
+  repeat
+  while '\\' :
+    select
+    case 'f' :
+      enterCharacterIntoString ( !?tokenString !'\f' )
+    case 'n' :
+      enterCharacterIntoString ( !?tokenString !'\n' )
+    case 'r' :
+      enterCharacterIntoString ( !?tokenString !'\r' )
+    case 't' :
+      enterCharacterIntoString ( !?tokenString !'\t' )
+    case 'v' :
+      enterCharacterIntoString ( !?tokenString !'\v' )
+    case '\\' :
+      enterCharacterIntoString ( !?tokenString !'\\' )
+    case '0' :
+      enterCharacterIntoString ( !?tokenString !'\0' )
+    case '"' :
+      enterCharacterIntoString ( !?tokenString !'"' )
+    case '\'' :
+      enterCharacterIntoString ( !?tokenString !'\'' )
+    case '0' -> '9' :
+      repeat
+        enterHexDigitIntoASCIIcharacter ( !?charValue !* error ASCIIcodeTooLargeError, internalError )
+      while '0' -> '9' :
+      end
+      enterCharacterIntoString ( !?tokenString !charValue )
+    default
+      error incorrectCharConstant
+    end
+   while ' ' | '!' | '#'-> '\u007E' :
+    enterCharacterIntoString ( !?tokenString !* )
+  end
+  select
+  case '"' :
+    send $string$
+  default
+    error incorrectStringEnd
+  end
+}
+
+# ------------------------------------ Comment ----------------------------
+$comment$  style commentStyle error message "a comment"
+rule '#' {
+  repeat
+  while '\u0001' -> '\u0009' | '\u000B' | '\u000C' | '\u000E' -> '\uFFFD' :
+  end
+  drop $comment$
+}
+
+# --------------------- separators -----------------------------------------
+rule '\u0001' -> ' ' {
+}
+
+#------------------------------------------------------------------------------------
+
+}

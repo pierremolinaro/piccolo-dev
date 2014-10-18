@@ -1,0 +1,346 @@
+
+
+#----------------------------------------------------*
+#                BUILD ASSEMBLY CODE                 *
+#----------------------------------------------------*
+
+abstract method @midrange_intermediate_instruction buildAssemblyCode
+  ?!@string unused ioString 
+  ?!@uint unused ioLocalLabelIndex
+
+#----------------------------------------------------*
+
+override method @midrange_intermediate_NULL buildAssemblyCode
+  ?!@string unused ioString 
+  ?!@uint unused ioLocalLabelIndex {
+}
+
+#----------------------------------------------------*
+
+override method @midrange_intermediate_pseudo_ORG buildAssemblyCode
+  ?!@string ioString
+  ?!@uint unused ioLocalLabelIndex {
+  ioString += "  ORG " + [mOrigin hexString] + "\n"
+}
+
+#----------------------------------------------------*
+
+override method @midrange_intermediate_pseudo_LABEL buildAssemblyCode
+  ?!@string ioString
+  ?!@uint unused ioLocalLabelIndex {
+  ioString += [mLabel string] + ":\n"
+}
+
+#----------------------------------------------------*
+
+override method @midrange_intermediate_instruction_FD buildAssemblyCode
+  ?!@string ioString
+  ?!@uint unused ioLocalLabelIndex {
+  ioString += "  " + [mInstruction_FD_base_code mnemonic] + " " + [mRegisterDescription mAssemblyString]
+  if m_W_isDestination then
+    ioString += ", W"
+  else
+    ioString += ", F"
+  end
+  ioString += "\n"
+}
+
+#----------------------------------------------------*
+
+override method @midrange_intermediate_instruction_FB buildAssemblyCode
+  ?!@string ioString
+  ?!@uint unused ioLocalLabelIndex {
+  ioString += "  " + [mBitOrientedOp mnemonic]
+  ioString += "  " + [mRegisterDescription mAssemblyString]
+  ioString += ", " + [mBitNumber string]
+  ioString += "\n"
+}
+
+#----------------------------------------------------*
+
+override method @midrange_intermediate_instruction_BitTestSkip buildAssemblyCode
+  ?!@string ioString
+  ?!@uint unused ioLocalLabelIndex {
+  ioString += "  "
+  if mSkipIfSet then
+    ioString += "BTFSS"
+  else
+    ioString += "BTFSC"
+  end
+  ioString += "  " + [mRegisterDescription mAssemblyString]
+  ioString += ", " + [mBitNumber string]
+  ioString += "\n"
+}
+
+#----------------------------------------------------*
+
+override method @midrange_intermediate_instruction_F buildAssemblyCode
+  ?!@string ioString
+  ?!@uint unused ioLocalLabelIndex {
+  ioString += "  " + [mFinstruction mnemonic] + " " + [mRegisterDescription mAssemblyString]
+  ioString += "\n"
+}
+
+#----------------------------------------------------*
+
+override method @midrange_intermediate_incDecRegisterInCondition buildAssemblyCode
+  ?!@string ioString
+  ?!@uint ioLocalLabelIndex {
+  if mIncrement then
+    ioString += "  " + "INCFSZ "
+  else
+    ioString += "  " + "DECFSZ "
+  end
+  ioString += [mRegisterDescription mAssemblyString]
+  if m_W_isDestination then
+    ioString += ", W"
+  else
+    ioString += ", F"
+  end
+  ioString += "\n"
+  if mBranchIfZero then
+    let @string localLabel = ".LL" + [ioLocalLabelIndex string] ioLocalLabelIndex ++
+    ioString += "  GOTO " + localLabel + "\n"
+    ioString += "  GOTO " + mTargetLabel + "\n"
+    ioString += localLabel + ":\n"
+  else
+    ioString += "  GOTO " + mTargetLabel + "\n"
+  end
+}
+
+#----------------------------------------------------*
+
+override method @midrange_intermediate_JUMP buildAssemblyCode
+  ?!@string ioString
+  ?!@uint unused ioLocalLabelIndex {
+  switch mBit11 
+  case set   : ioString += "  BSF PCLATH, 3\n"
+  case clear : ioString += "  BCF PCLATH, 3\n"
+  case noChange :
+  end
+  switch mBit12 
+  case set   : ioString += "  BSF PCLATH, 4\n"
+  case clear : ioString += "  BCF PCLATH, 4\n"
+  case noChange :
+  end
+  ioString += "  GOTO   " + [mTargetLabel string] + "\n"
+}
+
+#----------------------------------------------------*
+
+override method @midrange_intermediate_GOTO buildAssemblyCode
+  ?!@string ioString
+  ?!@uint unused ioLocalLabelIndex {
+  ioString += "  GOTO   " + [mTargetLabel string] + "\n"
+}
+
+#----------------------------------------------------*
+
+override method @midrange_intermediate_JSR buildAssemblyCode
+  ?!@string ioString
+  ?!@uint unused ioLocalLabelIndex {
+  switch mBit11 
+  case set   : ioString += "  BSF PCLATH, 3\n"
+  case clear : ioString += "  BCF PCLATH, 3\n"
+  case noChange :
+  end
+  switch mBit12 
+  case set   : ioString += "  BSF PCLATH, 4\n"
+  case clear : ioString += "  BCF PCLATH, 4\n"
+  case noChange :
+  end
+  ioString += "  CALL  " + [mTargetLabel string] + "\n"
+  switch mBit11 
+  case set   : ioString += "  BCF PCLATH, 3\n"
+  case clear : ioString += "  BSF PCLATH, 3\n"
+  case noChange :
+  end
+  switch mBit12 
+  case set   : ioString += "  BCF PCLATH, 4\n"
+  case clear : ioString += "  BSF PCLATH, 4\n"
+  case noChange :
+  end
+}
+
+#----------------------------------------------------*
+
+override method @midrange_intermediate_CALL buildAssemblyCode
+  ?!@string ioString
+  ?!@uint unused ioLocalLabelIndex {
+  ioString += "  CALL  " + [mTargetLabel string] + "\n"
+}
+
+#----------------------------------------------------*
+
+override method @midrange_intermediate_instruction_CLRWDT buildAssemblyCode
+  ?!@string ioString
+  ?!@uint unused ioLocalLabelIndex {
+  ioString += "  CLRWDT\n"
+}
+
+#----------------------------------------------------*
+
+override method @midrange_intermediate_instruction_CLRW buildAssemblyCode
+  ?!@string ioString
+  ?!@uint unused ioLocalLabelIndex {
+  ioString += "  CLRW\n"
+}
+
+#----------------------------------------------------*
+
+override method @midrange_intermediate_instruction_NOP buildAssemblyCode
+  ?!@string ioString
+  ?!@uint unused ioLocalLabelIndex {
+  ioString += "  NOP\n"
+}
+
+#----------------------------------------------------*
+
+override method @midrange_intermediate_instruction_RETURN buildAssemblyCode
+  ?!@string ioString
+  ?!@uint unused ioLocalLabelIndex {
+  ioString += "  RETURN\n"
+}
+
+#----------------------------------------------------*
+
+ override method @midrange_intermediate_instruction_RETFIE buildAssemblyCode
+  ?!@string ioString
+  ?!@uint unused ioLocalLabelIndex {
+  ioString += "  RETFIE\n"
+}
+
+#----------------------------------------------------*
+
+ override method @midrange_intermediate_instruction_SLEEP buildAssemblyCode
+  ?!@string ioString
+  ?!@uint unused ioLocalLabelIndex {
+  ioString += "  SLEEP\n"
+}
+
+#----------------------------------------------------*
+
+override method @midrange_intermediate_instruction_literalOperation buildAssemblyCode
+  ?!@string ioString
+  ?!@uint unused ioLocalLabelIndex {
+  ioString += "  " + [mLiteralInstruction mnemonic] + " " + [mLiteralValue hexString] + "\n"
+}
+
+#----------------------------------------------------*
+
+override method @midrange_intermediate_instruction_MNOP buildAssemblyCode
+  ?!@string ioString
+  ?!@uint unused ioLocalLabelIndex {
+  if [mOccurrenceFactor uint] == 0 then
+    warning mOccurrenceFactor: "No generated code"
+  end
+  @uint idx = 0
+  loop( [mOccurrenceFactor uint])
+  while idx < [mOccurrenceFactor uint]
+  do
+    ioString += "  NOP\n"
+    idx ++
+  end
+}
+
+#----------------------------------------------------*
+
+#override method @midrange_intermediate_instruction_computed_retlw buildAssemblyCode
+#  ?!@string ioString
+#  ?!@uint unused ioLocalLabelIndex
+#:
+#  if mUsesRCALL then
+#    ioString .= "  RCALL _computed_goto_2\n" ;
+#  else
+#    ioString .= "  CALL _computed_goto_2\n" ;
+#  end if ;
+#  foreach mLiteralValues do
+#    ioString .= "  RETLW " . [mValue hexString] . "\n" ;
+#  end foreach ;
+#end method ;
+
+#----------------------------------------------------*
+
+#override method @midrange_intermediate_instruction_computed_bra buildAssemblyCode
+#  ?!@string ioString
+#  ?!@uint unused ioLocalLabelIndex
+#:
+#  if mUsesRCALL then
+#    ioString .= "  RCALL _computed_goto_2\n" ;
+#  else
+#    ioString .= "  CALL _computed_goto_2\n" ;
+#  end if ;
+#  foreach mTargetLabels do
+#    ioString .= "  BRA " . [mValue string] . "\n" ;
+#  end foreach ;
+#end method ;
+
+#----------------------------------------------------*
+
+#override method @midrange_intermediate_instruction_computed_goto buildAssemblyCode
+#  ?!@string ioString
+#  ?!@uint unused ioLocalLabelIndex
+#:
+#  if mUsesRCALL then
+#    ioString .= "  RCALL _computed_goto_4\n" ;
+#  else
+#    ioString .= "  CALL _computed_goto_4\n" ;
+#  end if ;
+#  foreach mTargetLabels do
+#    ioString .= "  GOTO " . [mValue string] . "\n" ;
+#  end foreach ;
+#end method ;
+
+#----------------------------------------------------*
+
+proc midrange_build_assembly_code
+  ?let @string inProcessorName
+  ?let @registerTable inPredefinedRegisters
+  ?let @registerTable inAllRegisters
+  ?let @midrange_intermediate_instructionList inInstructionList
+  ?let @actualConfigurationMap inActualConfigurationMap
+  !@string outAssemblyCode {
+  outAssemblyCode = "  errorlevel -302 ; No Warning on registers not in bank 0\n" 
+  outAssemblyCode += "  errorlevel -306 ; No Warning on crossing page boundary\n\n" 
+  outAssemblyCode += "  PROCESSOR " + inProcessorName + "\n\n"
+#--- Code
+  outAssemblyCode += ";--- Code\n"
+  outAssemblyCode += "  ORG 0\n"
+  @uint bccLabelIndex = 0
+  for () in  inInstructionList do
+    [mInstruction buildAssemblyCode !?outAssemblyCode !?bccLabelIndex]
+  end
+  outAssemblyCode += "\n"
+#--- Prefined registers
+  outAssemblyCode += ";--- Prefefined registers\n"
+  for () in  inPredefinedRegisters do
+    @uint firstRegister [mRegisterAddressList first ?firstRegister]
+    outAssemblyCode += [lkey string] + " EQU " + [firstRegister hexString] + "\n"
+  end
+  outAssemblyCode += "\n"
+#--- User defined registers in ram
+  outAssemblyCode += ";--- User defined registers (in RAM)\n"
+  for () in  inAllRegisters do
+    if not [inPredefinedRegisters hasKey ![lkey string]] then
+      @uint firstRegister [mRegisterAddressList first ?firstRegister]
+      outAssemblyCode += [lkey string] + " EQU " + [firstRegister hexString] + "\n"
+    end
+  end
+  outAssemblyCode += "\n"
+#--- PICCOLO defined symbols
+  outAssemblyCode += ";--- Piccolo defined symbol\n"
+  outAssemblyCode += "W EQU 1\n\n"
+#-------------------------------- Add Configuration
+  if [inActualConfigurationMap count] > 0 then
+    outAssemblyCode += ";--- Configuration\n\n"
+    for () in  inActualConfigurationMap do
+      outAssemblyCode += "  __config " + [mRegisterAddress hexString] + ", " + [mRegisterValue & 255 hexString] + "\n"
+    end
+  end
+#-------------------------------- End
+  outAssemblyCode += ";---\n\n"
+  outAssemblyCode += "  END\n\n"
+}
+
+#----------------------------------------------------*
+

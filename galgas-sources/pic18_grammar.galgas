@@ -1,0 +1,22 @@
+indexing grammar pic18_grammar "SLR" {
+syntax pic18_syntax
+syntax pic18_start_symbol
+syntax midrange_syntax
+syntax baseline_syntax
+syntax baseline_program
+syntax pic18_bootloader_syntax
+syntax communs
+
+ <start_symbol>
+label importBootloaderSpecification
+  !@piccoloDeviceModel outPiccoloDeviceModel
+  !@string outDeviceName
+  !@uint outAccessBankSplitOffset
+  !@ramBankTable outRamBank
+  !@registerTable outRegisterTable
+  !@bootloaderReservedRAMmap outBootloaderReservedRAMmap
+  !@routineDeclarationList outBootloaderRoutineDeclarationList
+  !@routineDeclarationList outUserRoutineDeclarationList
+  !@luint outBootloaderReservedROMsize
+
+}

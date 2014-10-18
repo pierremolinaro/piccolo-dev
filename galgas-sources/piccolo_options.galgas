@@ -1,0 +1,11 @@
+option piccolo_options {
+
+@bool generateAssembly : 'S', "asm" -> "Generate also an assembly language text file (with .asm extension)"
+@bool output_C_Array : 'C', "output-c-files" -> "Generate output code in a C header file and C source file"
+@bool ouputListingFile : 'L', "list" -> "Output a list file"
+@bool performOptimizations : 'O', "optimize" -> "Perform code optimizations"
+@string optimizationFlags : '\0', "optimization-flags" -> "Fine tuning of optimizations (PIC18 compiler only)"
+@bool generateGraphvizFiles : 'G', "generate-graphviz-files" -> "Generate Graphviz files  containing block invocation, block sorting constraints, ..."
+@bool doNotWarnRecursive : 'R', "no-warning-on-recursive-routines" -> "Do not warn when there are recursive routines (PIC18 compiler only)"
+@bool doNotReorderCluster : 'N', "no-relative-resolution" -> "Do not try to re order blocks for using relatives branches (PIC18 compiler only)"
+}

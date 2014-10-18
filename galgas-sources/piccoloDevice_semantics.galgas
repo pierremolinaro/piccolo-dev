@@ -1,0 +1,92 @@
+
+
+#----------------------------------------------------------------------------*
+
+map @declaredByteMap {
+  insert insertKey error message "the '%K' byte is already declared in %L"
+  search searchKey error message "the '%K' byte is not declared"
+}
+
+#----------------------------------------------------*
+
+map @registerTable {
+  @uintlist mRegisterAddressList
+  @uint mSize
+  @bitSliceTable mBitSliceTable
+  @string mBitDefinitionString
+  insert insertKey error message "the '%K' register is already declared in %L"
+  search searchKey error message "the '%K' register is not declared"
+}
+
+#----------------------------------------------------*
+
+map @ramBankTable {
+  @uint mFirstAddress
+  @uint mFirstFreeAddress
+  @uint mLastAddressPlusOne
+  @uintlist mMirrorOffsetList
+  insert insertKey error message "the '%K' bank ram is already declared in %L"
+  search searchKey error message "the '%K' bank ram is not declared"
+}
+
+#----------------------------------------------------*
+
+enum @processorType {
+  case pic18_60  case pic18_80  case midrange  case baseline
+}
+
+#----------------------------------------------------*
+
+list @illegalMaskList {
+  @luint mIllegalValue
+  @luint mIllegalMask
+  @lstring mDescription
+}
+
+#----------------------------------------------------*
+
+map @fieldSettingMap {
+  @uint mValue
+  @uint mMask
+  insert insertKey error message "the '%K' configuration register setting is already declared in %L"
+  search searchKey error message "the '%K' configuration register setting is not declared"
+}
+
+#----------------------------------------------------*
+
+map @configRegisterMaskMap {
+  @luint mMaskValue
+  @lstring mDescription
+  @fieldSettingMap mFieldSettingMap
+  insert insertKey error message "the '%K' configuration register mask is already declared in %L"
+  search searchKey error message "the '%K' configuration register mask is not declared"
+}
+
+#----------------------------------------------------*
+
+map @configRegisterMap {
+  @luint mRegisterAddress
+  @luint mRegisterWidth
+  @configRegisterMaskMap mConfigRegisterMaskMap
+  @illegalMaskList mIllegalMaskList
+  insert insertKey error message "the '%K' configuration register is already declared in %L"
+  search searchKey error message "the '%K' configuration register is not declared"
+}
+
+#----------------------------------------------------*
+
+struct @piccoloDeviceModel {
+  @lstring mDeviceName
+  @processorType mProcessorType
+  @luint mRomSize
+  @luint mBankCount
+  @registerTable mRegisterTable
+  @ramBankTable mRamBankTable
+  @uint mEepromSize # 0 if no EEPROM
+  @uint mEepromAddress # 0 if no EEPROM
+  @configRegisterMap mConfigRegisterMap
+  @string mSharedBankName
+}
+
+#----------------------------------------------------*
+

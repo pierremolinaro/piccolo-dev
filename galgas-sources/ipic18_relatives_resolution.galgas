@@ -1,0 +1,253 @@
+
+
+#----------------------------------------------------------------------------*
+
+method @ipic18Block performRelativesResolution
+  ?let @symbolTableForRelativesResolution inSymbolTable
+  ?let @string inNextBlockLabel
+  ?let @uint inBlockStartAddress
+  ?!@uint ioConversionCount
+  ?!@string ioListFileContents
+  !@ipic18Block outModifiedBlock {
+#--- Instruction
+  var modifiedInstructionList =@ipic18SequentialInstructionList.emptyList{}
+  @uint address = inBlockStartAddress
+  for () in  mInstructionList do
+    [mInstruction performInstructionRelativeBranchResolution
+      !address
+      !mLabel.string
+      !inSymbolTable
+      !?ioConversionCount
+      !?ioListFileContents
+      ?let @ipic18SequentialInstruction modifiedInstruction
+    ]
+    modifiedInstructionList += !modifiedInstruction
+    address = address + [mInstruction instructionSize]
+  end
+#--- Terminator
+  [mTerminator performTerminatorRelativeBranchResolution
+    !address
+    !mLabel.string
+    !inSymbolTable
+    !inNextBlockLabel
+    !?ioConversionCount
+    !?ioListFileContents
+    ?let @ipic18AbstractBlockTerminator modifiedTerminator
+  ]
+#---
+  outModifiedBlock = @ipic18Block. new {
+    !mAddress
+    !mLabel
+    !modifiedInstructionList
+    !modifiedTerminator}
+}
+
+#----------------------------------------------------------------------------*
+
+proc performRelativesResolution
+  ?let @symbolTableForRelativesResolution inSymbolTable
+  ?!@ipic18BlockList ioBlockList
+  ?!@uint ioConversionCount
+  ?!@string ioListFileContents {
+  var modifiedBlockList =@ipic18BlockList.emptyList{}
+  @uint blockStartAddress = 0
+  for () in  ioBlockList do(blockIndex)
+    @string nextBlockLabel
+    if (blockIndex+1) < [ioBlockList length] then
+      nextBlockLabel = [ioBlockList mBlockAtIndex !blockIndex+1].mLabel.string
+    else
+      nextBlockLabel = ""
+    end
+    if mBlock.mAddress != @uint. max then # Absolute block
+      blockStartAddress = mBlock.mAddress
+    end
+    [mBlock performRelativesResolution
+      !inSymbolTable
+      !nextBlockLabel
+      !blockStartAddress
+      !?ioConversionCount
+      !?ioListFileContents
+      ?let @ipic18Block modifiedBlock
+    ]
+    modifiedBlockList += !modifiedBlock
+    let @uint blockSize = [mBlock blockSize !nextBlockLabel]
+    blockStartAddress = blockStartAddress + blockSize
+  end
+  ioBlockList = modifiedBlockList
+}
+
+#----------------------------------------------------------------------------*
+
+#!--- Block Size and address
+
+#----------------------------------------------------------------------------*
+
+getter @ipic18Block blockSize
+  ?let @string inNextBlockLabel
+  ->@uint outResult {
+  outResult = [mTerminator terminatorSize !inNextBlockLabel]
+  for () in  mInstructionList do
+    outResult = outResult + [mInstruction instructionSize]  
+  end
+}
+
+#----------------------------------------------------------------------------*
+
+proc computeLabelAbsoluteAddressMap
+  ?let @ipic18BlockList inGeneratedBlockList
+  ?let @ipic18BlockList inInitialBlockList # for entering absolute labels
+  !@symbolTableForRelativesResolution outSymbolTable
+  !@uint outFreeAddress {
+  outSymbolTable = @symbolTableForRelativesResolution. emptyMap
+  outFreeAddress = @uint. max
+#--- Pass first absolute blocks
+  @uint blockStartAddress = 0
+  for () in  inGeneratedBlockList do(blockIndex)
+    @string nextBlockLabel
+    if (blockIndex+1) < [inGeneratedBlockList length] then
+      nextBlockLabel = [inGeneratedBlockList mBlockAtIndex !blockIndex+1].mLabel.string
+    else
+      nextBlockLabel = ""
+    end
+    if mBlock.mAddress != @uint. max then # Absolute block
+      blockStartAddress = mBlock.mAddress
+    end
+    [!?outSymbolTable insertKey !mBlock.mLabel !blockStartAddress]
+    let @uint blockSize = [mBlock blockSize !nextBlockLabel]
+    blockStartAddress = blockStartAddress + blockSize
+    if mBlock.mAddress == @uint. max then # Relocatable block
+      outFreeAddress = blockStartAddress
+    end
+  end
+#---
+  for () in  inInitialBlockList do
+    if mBlock.mAddress != @uint. max then # Absolute block
+      if not [outSymbolTable hasKey !mBlock.mLabel.string] then
+        [!?outSymbolTable insertKey !mBlock.mLabel !mBlock.mAddress]
+      end
+    end  
+  end
+}
+
+#----------------------------------------------------------------------------*
+
+proc ipic18RelativesResolution
+  ?!@string ioListFileContents
+  ?!@ipic18BlockList ioGeneratedBlockList {
+#---
+  if [option.verbose_output value] then
+    message "Relative branch conversion to absolute:\n"
+  end
+  ioListFileContents += ["" stringByLeftAndRightPadding !79 !'*'] + "\n"
+  ioListFileContents += "*" + ["RELATIVES RESOLUTION" stringByLeftAndRightPadding !77 !' '] + "*\n"
+  ioListFileContents += ["" stringByLeftAndRightPadding !79 !'*'] + "\n"
+#---
+  @bool resolutionDone = false
+  @uint pass = 0
+  loop( [ioGeneratedBlockList length] + 1)
+  while (not resolutionDone) & (@uint. errorCount == 0) do
+    pass ++
+    computeLabelAbsoluteAddressMap (
+      !ioGeneratedBlockList
+      !@ipic18BlockList. emptyList
+      ?let @symbolTableForRelativesResolution symbolTable
+      ?*
+    )
+    ioListFileContents += "\nPass " + pass + ":\n"
+    @uint conversionCount = 0
+    performRelativesResolution (
+      !symbolTable
+      !?ioGeneratedBlockList
+      !?conversionCount
+      !?ioListFileContents
+    )
+    resolutionDone = conversionCount == 0
+    if [option.verbose_output value] then
+      @string s = "  Pass " + pass + ": "
+      if conversionCount == 0 then
+        s += "none."
+      elsif conversionCount == 1 then
+        s += "1 conversion"
+      else
+        s += [conversionCount string] + " conversions"
+      end
+      message s + "\n"
+    end
+  end
+  if [option.verbose_output value] then
+    ioListFileContents += "  No conversion.\n\n"
+    message "\n"
+  end
+}
+
+#----------------------------------------------------------------------------*
+
+#! Relative Branch overflow
+
+#----------------------------------------------------------------------------*
+
+method @ipic18Block relativeBranchOverflow
+  ?let @symbolTableForRelativesResolution inSymbolTable
+  ?let @string inNextBlockLabel
+  ?let @uint inBlockStartAddress
+  ?!@branchOverflowMap ioOverflowMap {
+#--- Instruction
+  @uint address = inBlockStartAddress
+  for () in  mInstructionList do
+    [mInstruction instructionRelativeBranchOverflow
+      !address
+      !mLabel.string
+      !inSymbolTable
+      !?ioOverflowMap
+    ]
+    address = address + [mInstruction instructionSize]
+  end
+#--- Terminator
+  [mTerminator terminatorRelativeBranchOverflow
+    !address
+    !mLabel.string
+    !inSymbolTable
+    !inNextBlockLabel
+    !?ioOverflowMap
+  ]
+}
+
+#----------------------------------------------------------------------------*
+
+proc ipic18RelativeBranchOverflow
+  ?let @ipic18BlockList inBlockList
+  ?let @ipic18BlockList inInitialBlockList # for entering absolute labels
+  !@branchOverflowMap outOverflowMap {
+#--- Compute label map
+  computeLabelAbsoluteAddressMap (
+    !inBlockList
+    !inInitialBlockList # for entering absolute labels
+    ?let @symbolTableForRelativesResolution symbolTable
+    ?*
+  )
+#---
+  outOverflowMap = @branchOverflowMap. emptyMap
+  @uint blockStartAddress = 0
+  for () in  inBlockList do(blockIndex)
+    @string nextBlockLabel
+    if (blockIndex+1) < [inBlockList length] then
+      nextBlockLabel = [inBlockList mBlockAtIndex !blockIndex+1].mLabel.string
+    else
+      nextBlockLabel = ""
+    end
+    if mBlock.mAddress != @uint. max then # Absolute block
+      blockStartAddress = mBlock.mAddress
+    end
+    [mBlock relativeBranchOverflow
+      !symbolTable
+      !nextBlockLabel
+      !blockStartAddress
+      !?outOverflowMap
+    ]
+    let @uint blockSize = [mBlock blockSize !nextBlockLabel]
+    blockStartAddress = blockStartAddress + blockSize
+  end
+}
+
+#----------------------------------------------------------------------------*
+

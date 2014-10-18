@@ -1,0 +1,240 @@
+
+
+#----------------------------------------------------*
+
+struct @midrange_intermediate_registerExpression {
+  @string mAssemblyString
+  @uint mRegisterAddress # xxx bit full address
+}
+
+#----------------------------------------------------*
+
+method @registerExpression resolveMidrangeAccess
+  ?let @uint inTotalBankCount
+  ?let @uint inCurrentBank
+  ?let @registerTable inRegisterTable
+  !@midrange_intermediate_registerExpression outIPICregisterDescription
+  !@bitSliceTable outBitSliceTable
+  ?!@stringset ioUsedRegisters {
+  ioUsedRegisters += !mRegisterName.string
+#--- Build assembly string
+  @string assemblyString = mRegisterName.string
+  if [mOffset uint] > 0 then
+    assemblyString += " + " + [[mOffset uint] hexString]
+  end
+#--- 
+  [inRegisterTable searchKey
+    !mRegisterName
+    ?var @uintlist registerAddressList
+    ?var @uint size
+    ?outBitSliceTable
+    ?*
+  ]
+#---
+  if [mOffset uint] >= size then
+    error mOffset: "maximum index value is " + (size - 1)
+  end
+#--- Find acceptable bank settings
+  var acceptableBanks =@uintlist.emptyList{}
+  for () in  registerAddressList do
+    acceptableBanks += !mValue >> 7
+  end
+#---
+  @uint registerAddress = 0
+  if inCurrentBank == @uint. max then
+  #--- No selected bank, register should be mirrored in all banks
+    @uint bank = 0
+    @bool ok = true
+    loop( inTotalBankCount) while (bank < inTotalBankCount) & ok do
+      ok = false
+      for () in  registerAddressList while not ok do
+        ok = (mValue >= (bank * 128)) & (mValue < (bank * 128 + 128))
+        registerAddress = mValue & 0x7F
+      end
+      bank ++
+    end
+    if not ok then
+      @string acceptableBankMessage = ""
+      for () in  registerAddressList
+      do acceptableBankMessage += [mValue >> 7 string]
+      between acceptableBankMessage += ", "
+      end
+      error mRegisterName:"as no bank is currently known, the '" + mRegisterName + "' register accessible from bank "+ acceptableBankMessage  + ", but should be able to be accessed from any bank setting"
+    end
+  else
+    @bool found = false
+    for () in  registerAddressList while not found do
+      found = (mValue >= (inCurrentBank * 128)) & (mValue < (inCurrentBank * 128 + 128))
+      registerAddress = mValue & 0x7F
+    end
+    if not found then
+      @string acceptableBankMessage = ""
+      for () in  registerAddressList
+      do acceptableBankMessage += [mValue >> 7 string]
+      between acceptableBankMessage += ", "
+      end
+      error mRegisterName:"the '" + mRegisterName + "' register cannot be accessed from bank " + [inCurrentBank string] + " (valid bank setting: " + acceptableBankMessage + ")"
+    end
+  end
+#---
+  outIPICregisterDescription = @midrange_intermediate_registerExpression. new {
+    !assemblyString
+    !registerAddress + [mOffset uint]}
+}
+
+#----------------------------------------------------*
+
+abstract class @midrange_intermediate_instruction {
+}
+
+#----------------------------------------------------*
+
+list @midrange_intermediate_instructionList {
+  @midrange_intermediate_instruction mInstruction %setter
+}
+
+#----------------------------------------------------*
+
+class @midrange_intermediate_NULL : @midrange_intermediate_instruction {
+}
+
+
+#----------------------------------------------------*
+
+class @midrange_intermediate_pseudo_ORG : @midrange_intermediate_instruction {
+  @uint mOrigin
+}
+
+#----------------------------------------------------*
+
+class @midrange_intermediate_pseudo_LABEL : @midrange_intermediate_instruction {
+  @lstring mLabel
+  @bool mIsDeletable
+}
+
+#----------------------------------------------------*
+
+abstract class @midrange_intermediate_actualInstruction : @midrange_intermediate_instruction {
+  @location mInstructionLocation
+}
+
+#----------------------------------------------------*
+
+class @midrange_intermediate_instruction_FD : @midrange_intermediate_actualInstruction {
+  @midrange_instruction_FD_base_code mInstruction_FD_base_code
+  @midrange_intermediate_registerExpression mRegisterDescription
+  @bool m_W_isDestination
+}
+
+#----------------------------------------------------*
+
+class @midrange_intermediate_instruction_F : @midrange_intermediate_actualInstruction {
+  @midrange_F_instruction_base_code mFinstruction
+  @midrange_intermediate_registerExpression mRegisterDescription
+}
+
+#----------------------------------------------------*
+
+class @midrange_intermediate_instruction_FB : @midrange_intermediate_actualInstruction {
+  @midrange_bit_oriented_op mBitOrientedOp
+  @midrange_intermediate_registerExpression mRegisterDescription
+  @uint mBitNumber
+}
+
+#----------------------------------------------------*
+
+class @midrange_intermediate_instruction_BitTestSkip : @midrange_intermediate_actualInstruction {
+  @bool mSkipIfSet
+  @midrange_intermediate_registerExpression mRegisterDescription
+  @uint mBitNumber
+}
+
+#----------------------------------------------------*
+
+enum @midrange_call_goto_bit {
+  case set  case clear  case noChange
+}
+
+#----------------------------------------------------*
+
+class @midrange_intermediate_JUMP : @midrange_intermediate_actualInstruction {
+  @lstring mTargetLabel
+  @midrange_call_goto_bit mBit11
+  @midrange_call_goto_bit mBit12
+}
+
+#----------------------------------------------------*
+
+class @midrange_intermediate_GOTO : @midrange_intermediate_actualInstruction {
+  @lstring mTargetLabel
+}
+
+#----------------------------------------------------*
+
+class @midrange_intermediate_CALL : @midrange_intermediate_actualInstruction {
+  @lstring mTargetLabel
+}
+
+#----------------------------------------------------*
+
+class @midrange_intermediate_JSR : @midrange_intermediate_actualInstruction {
+  @lstring mTargetLabel
+  @midrange_call_goto_bit mBit11
+  @midrange_call_goto_bit mBit12
+}
+
+#----------------------------------------------------*
+
+class @midrange_intermediate_instruction_CLRWDT : @midrange_intermediate_actualInstruction {
+}
+
+#----------------------------------------------------*
+
+class @midrange_intermediate_instruction_CLRW : @midrange_intermediate_actualInstruction {
+}
+
+#----------------------------------------------------*
+
+class @midrange_intermediate_instruction_NOP : @midrange_intermediate_actualInstruction {
+}
+
+#----------------------------------------------------*
+
+class @midrange_intermediate_instruction_RETURN : @midrange_intermediate_actualInstruction {
+}
+
+#----------------------------------------------------*
+
+class @midrange_intermediate_instruction_RETFIE : @midrange_intermediate_actualInstruction {
+}
+
+#----------------------------------------------------*
+
+class @midrange_intermediate_instruction_SLEEP : @midrange_intermediate_actualInstruction {
+}
+
+#----------------------------------------------------*
+
+class @midrange_intermediate_instruction_literalOperation : @midrange_intermediate_actualInstruction {
+  @midrange_literal_instruction_opcode mLiteralInstruction
+  @uint mLiteralValue
+}
+
+#----------------------------------------------------*
+
+class @midrange_intermediate_instruction_MNOP : @midrange_intermediate_actualInstruction {
+  @luint mOccurrenceFactor
+}
+
+#----------------------------------------------------*
+
+class @midrange_intermediate_incDecRegisterInCondition : @midrange_intermediate_actualInstruction {
+  @midrange_intermediate_registerExpression mRegisterDescription
+  @string mTargetLabel
+  @bool mIncrement
+  @bool m_W_isDestination
+  @bool mBranchIfZero
+}
+
+#----------------------------------------------------*
+

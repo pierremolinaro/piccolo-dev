@@ -1,0 +1,119 @@
+
+
+#-------------------------------------------------------------------------------*
+
+abstract method @baseline_assembly_instruction print ?!@string ioListFileContents
+
+#-------------------------------------------------------------------------------*
+
+override method @baseline_assembly_pseudo_ORG print ?!@string ioListFileContents {
+  ioListFileContents += "  ORG " + [mOrigin hexString]
+}
+
+#-------------------------------------------------------------------------------*
+
+override method @baseline_assembly_pseudo_BEGINOFROUTINE print ?!@string ioListFileContents {
+  ioListFileContents += ";  BEGIN OF ROUTINE " + mRoutineName
+}
+
+#-------------------------------------------------------------------------------*
+
+override method @baseline_assembly_pseudo_ENDOFROUTINE print ?!@string ioListFileContents {
+  ioListFileContents += ";  END OF ROUTINE " + mRoutineName + " IN PAGE " + mPage
+}
+
+#-------------------------------------------------------------------------------*
+
+override method @baseline_assembly_pseudo_LABEL print ?!@string ioListFileContents {
+  ioListFileContents += mLabel.string + ":"
+}
+
+#-------------------------------------------------------------------------------*
+
+override method @baseline_assembly_instruction_FD print ?!@string ioListFileContents {
+  ioListFileContents += "  " + [mInstruction mnemonic] + " " + [mRegisterDescription mAssemblyString]
+  if m_W_isDestination then
+    ioListFileContents += ", W"
+  else
+    ioListFileContents += ", 1"
+  end
+}
+
+#-------------------------------------------------------------------------------*
+
+override method @baseline_assembly_instruction_F print ?!@string ioListFileContents {
+  ioListFileContents += "  " + [mInstruction mnemonic] + " " + [mRegisterDescription mAssemblyString]
+}
+
+#-------------------------------------------------------------------------------*
+
+override method @baseline_assembly_instruction_FB print ?!@string ioListFileContents {
+  ioListFileContents += "  " + [mInstruction mnemonic] + " " + [mRegisterDescription mAssemblyString] + ", " + [mBitNumber string]
+}
+
+#-------------------------------------------------------------------------------*
+
+override method @baseline_assembly_instruction_BitTestSkip print ?!@string ioListFileContents {
+  if mSkipIfSet then
+    ioListFileContents += "  BTFSS "
+  else
+    ioListFileContents += "  BTFSC "
+  end
+  ioListFileContents += [mRegisterDescription mAssemblyString] + ", " + [mBitNumber string]
+}
+
+#-------------------------------------------------------------------------------*
+
+override method @baseline_assembly_GOTO print ?!@string ioListFileContents {
+  ioListFileContents += "  GOTO " + mTargetLabel
+}
+
+#-------------------------------------------------------------------------------*
+
+override method @baseline_assembly_SKIP print ?!@string ioListFileContents {
+  ioListFileContents += "  GOTO * + 2"
+}
+
+#-------------------------------------------------------------------------------*
+
+
+override method @baseline_assembly_CALL print ?!@string ioListFileContents {
+  ioListFileContents += "  CALL " + mTargetLabel
+}
+
+#-------------------------------------------------------------------------------*
+
+override method @baseline_assembly_instruction_literalOperation print ?!@string ioListFileContents {
+  ioListFileContents += "  " + [mInstruction mnemonic] + " " + [mLiteralValue hexString]
+}
+
+#-------------------------------------------------------------------------------*
+
+override method @baseline_assembly_incDecRegisterInCondition print ?!@string ioListFileContents {
+  if mIncrement then
+    ioListFileContents += "  INCFSZ "
+  else
+    ioListFileContents += "  DECFSZ "
+  end
+  ioListFileContents += [mRegisterDescription mAssemblyString]
+  if m_W_isDestination then
+    ioListFileContents += ", W"
+  else
+    ioListFileContents += ", 1"
+  end
+}
+
+#-------------------------------------------------------------------------------*
+
+override method @baseline_assembly_WO_OPERAND print ?!@string ioListFileContents {
+  ioListFileContents += "  " + [mInstruction mnemonic]
+}
+
+#-------------------------------------------------------------------------------*
+
+override method @baseline_assembly_TRIS print ?!@string ioListFileContents {
+  ioListFileContents += "  TRIS " + mOperand
+}
+
+#-------------------------------------------------------------------------------*
+

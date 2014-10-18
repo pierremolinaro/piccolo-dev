@@ -1,0 +1,689 @@
+
+
+#----------------------------------------------------------------------------*
+
+proc emitMidrangeCodeAtWordAddress
+  ?let @uint inCode
+  ?!@uint ioWordAddress
+  ?let @midrange_intermediate_instruction inInstruction
+  ?!@string ioListFileContents {
+  ioListFileContents += "   " + [ioWordAddress * 2 x4String]
+  ioListFileContents += " " + [inCode x4String] + " "
+  [inInstruction print !?ioListFileContents]
+  ioListFileContents += "\n"
+  emitCode ( !inCode )
+  ioWordAddress = ioWordAddress + 1
+}
+
+#----------------------------------------------------------------------------*
+
+proc emitMidrangeDirectCodeAtWordAddress
+  ?let @uint inCode
+  ?!@uint ioWordAddress
+  ?let @string inInstructionDescriptionString
+  ?!@string ioListFileContents {
+  ioListFileContents += "   " + [ioWordAddress * 2 x4String]
+  ioListFileContents += " " + [inCode x4String]
+  ioListFileContents += " " + inInstructionDescriptionString + "\n"
+  emitCode ( !inCode )
+  ioWordAddress = ioWordAddress + 1
+}
+
+#----------------------------------------------------------------------------*
+
+proc emitNoMidrangeCodeAtWordAddress
+  ?let @uint inWordAddress
+  ?let @midrange_intermediate_instruction inInstruction
+  ?!@string ioListFileContents {
+  ioListFileContents += "   " + [inWordAddress * 2 x4String]
+  ioListFileContents += "      "
+  [inInstruction print !?ioListFileContents]
+  ioListFileContents += "\n"
+}
+
+#----------------------------------------------------------------------------*
+
+map @midrange_symbolTable {
+  @uint mRoutineAddress
+  insert insertKey error message "the '%K' label is already declared in %L"
+  search searchKey error message "the '%K' label is not declared"
+}
+
+#----------------------------------------------------------------------------*
+#                                                                            *
+#                          enterLabelAtAddress                               *
+#                                                                            *
+#----------------------------------------------------------------------------*
+
+method @midrange_intermediate_instruction enterLabelAtAddress
+  ?!@midrange_symbolTable unused ioRoutineSymbolTable
+  ?!@uint unused ioAddress {
+}
+
+#----------------------------------------------------------------------------*
+
+override method @midrange_intermediate_pseudo_LABEL enterLabelAtAddress
+  ?!@midrange_symbolTable ioRoutineSymbolTable
+  ?!@uint ioAddress {
+  [!?ioRoutineSymbolTable insertKey !mLabel !ioAddress]
+}
+
+#----------------------------------------------------------------------------*
+
+override
+method @midrange_intermediate_pseudo_ORG enterLabelAtAddress
+  ?!@midrange_symbolTable unused ioRoutineSymbolTable
+  ?!@uint ioAddress {
+  ioAddress = mOrigin
+}
+
+#----------------------------------------------------------------------------*
+
+override
+method @midrange_intermediate_actualInstruction enterLabelAtAddress
+  ?!@midrange_symbolTable unused ioRoutineSymbolTable
+  ?!@uint ioAddress {
+  ioAddress = ioAddress  + [self instructionLength]
+}
+
+#----------------------------------------------------------------------------*
+#                                                                            *
+#               C O D E    G E N E R A T I O N                               *
+#                                                                            *
+#----------------------------------------------------------------------------*
+
+abstract method @midrange_intermediate_instruction generateBinaryCodeAtAddress
+  ?let @registerTable inRegisterTable
+  ?let @uint inTotalBankCount
+  ?let @midrange_symbolTable unused inRoutineSymbolTable
+  ?!@string ioListFileContents
+  ?!@uint unused ioAddress
+
+#----------------------------------------------------------------------------*
+
+override method @midrange_intermediate_NULL generateBinaryCodeAtAddress
+  ?let @registerTable unused inRegisterTable
+  ?let @uint unused inTotalBankCount
+  ?let @midrange_symbolTable unused inRoutineSymbolTable
+  ?!@string unused ioListFileContents
+  ?!@uint unused ioAddress {
+}
+
+#----------------------------------------------------------------------------*
+
+override
+method @midrange_intermediate_pseudo_ORG generateBinaryCodeAtAddress
+  ?let @registerTable unused inRegisterTable
+  ?let @uint unused inTotalBankCount
+  ?let @midrange_symbolTable unused inRoutineSymbolTable
+  ?!@string ioListFileContents
+  ?!@uint ioAddress {
+  ioAddress = mOrigin
+  setEmitAddress ( ! mOrigin + mOrigin )
+  emitNoMidrangeCodeAtWordAddress ( !ioAddress !self !?ioListFileContents )
+}
+
+#----------------------------------------------------*
+
+getter @midrange_instruction_FD_base_code basecode -> @uint outBaseCode {
+  switch self
+  case ADDWF : outBaseCode = 0x0700
+  case ANDWF : outBaseCode = 0x0500
+  case COMF : outBaseCode = 0x0900
+  case DECF : outBaseCode = 0x0300
+  case DECFSZ : outBaseCode = 0x0B00
+  case INCF : outBaseCode = 0x0A00
+  case INCFSZ : outBaseCode = 0x0F00
+  case IORWF : outBaseCode = 0x0400
+  case MOVF : outBaseCode = 0x0800
+  case RLF : outBaseCode = 0x0D00
+  case RRF : outBaseCode = 0x0C00
+  case SUBWF : outBaseCode = 0x0200
+  case SWAPF : outBaseCode = 0x0E00
+  case XORWF : outBaseCode = 0x0600
+  end
+}
+
+#----------------------------------------------------------------------------*
+
+override method @midrange_intermediate_instruction_FD generateBinaryCodeAtAddress
+  ?let @registerTable unused inRegisterTable
+  ?let @uint unused inTotalBankCount
+  ?let @midrange_symbolTable unused inRoutineSymbolTable
+  ?!@string ioListFileContents
+  ?!@uint ioAddress {
+#--- Emit Code
+  @uint code = [mInstruction_FD_base_code basecode]
+  if not m_W_isDestination then
+    code = code | 0x80
+  end
+  code = code | ([mRegisterDescription mRegisterAddress] & 127)
+  emitMidrangeCodeAtWordAddress ( !code !?ioAddress !self !?ioListFileContents )
+}
+
+#----------------------------------------------------*
+
+getter @midrange_F_instruction_base_code baseCode -> @uint outBaseCode {
+  switch self
+  case CLRF   : outBaseCode = 0x0180
+  case MOVWF  : outBaseCode = 0x0080
+  end
+}
+
+#----------------------------------------------------------------------------*
+
+override method @midrange_intermediate_instruction_F generateBinaryCodeAtAddress
+  ?let @registerTable unused inRegisterTable
+  ?let @uint unused inTotalBankCount
+  ?let @midrange_symbolTable unused inRoutineSymbolTable
+  ?!@string ioListFileContents
+  ?!@uint ioAddress {
+#--- Emit Code
+  @uint code = [mFinstruction baseCode]
+  code = code | ([mRegisterDescription mRegisterAddress] & 127)
+  emitMidrangeCodeAtWordAddress ( !code !?ioAddress !self !?ioListFileContents )
+}
+
+#----------------------------------------------------*
+
+getter @midrange_bit_oriented_op baseCode -> @uint outBaseCode {
+  switch self
+  case BCF : outBaseCode = 0x1000
+  case BSF : outBaseCode = 0x1400
+  end
+}
+
+
+#----------------------------------------------------------------------------*
+
+override method @midrange_intermediate_instruction_FB generateBinaryCodeAtAddress
+  ?let @registerTable unused inRegisterTable
+  ?let @uint unused inTotalBankCount
+  ?let @midrange_symbolTable unused inRoutineSymbolTable
+  ?!@string ioListFileContents
+  ?!@uint ioAddress {
+#--- Emit Code
+  @uint code = [mBitOrientedOp baseCode]
+  code = code | ([mRegisterDescription mRegisterAddress] & 127)
+  code = code | (mBitNumber << 7)
+  emitMidrangeCodeAtWordAddress ( !code !?ioAddress !self !?ioListFileContents )
+}
+
+#----------------------------------------------------------------------------*
+
+override method @midrange_intermediate_instruction_BitTestSkip generateBinaryCodeAtAddress
+  ?let @registerTable unused inRegisterTable
+  ?let @uint unused inTotalBankCount
+  ?let @midrange_symbolTable unused inRoutineSymbolTable
+  ?!@string ioListFileContents
+  ?!@uint ioAddress {
+#--- Emit Code
+  @uint code
+  if mSkipIfSet then
+    code = 0x1C00 # BTFSS
+  else
+    code = 0x1800 # BTFSC
+  end
+  code = code | ([mRegisterDescription mRegisterAddress] & 127)
+  code = code | (mBitNumber << 7)
+  emitMidrangeCodeAtWordAddress ( !code !?ioAddress !self !?ioListFileContents )
+}
+
+#----------------------------------------------------------------------------*
+
+proc emit_midrange_GOTOinstruction_nocheck
+  ?let @string inTargetLabel
+  ?let @uint inTargetAddress
+  ?!@uint ioAddress
+  ?!@string ioListFileContents {
+  let @uint code = 0x2800 | (inTargetAddress & 0x7FF)
+  emitMidrangeDirectCodeAtWordAddress ( !code !?ioAddress !"GOTO " + inTargetLabel !?ioListFileContents )
+}
+
+#----------------------------------------------------------------------------*
+
+proc emit_midrange_GOTOinstruction
+  ?let @location inIntructionLocation
+  ?!@uint ioAddress
+  ?let @string inTargetLabel
+  ?let @uint inTargetAddress
+  ?!@string ioListFileContents {
+  if ((ioAddress ^ inTargetAddress) & 0xF800) != 0 then
+    error inIntructionLocation : "GOTO (from " + [ioAddress hexString] + " to " + [inTargetAddress hexString] + ") crosses page boundary"
+  end
+  emit_midrange_GOTOinstruction_nocheck ( !inTargetLabel !inTargetAddress !?ioAddress !?ioListFileContents )
+}
+
+#----------------------------------------------------------------------------*
+
+proc emit_midrange_CALLinstruction_nocheck
+  ?let @string inTargetLabel
+  ?let @uint inTargetAddress
+  ?!@uint ioAddress
+  ?!@string ioListFileContents {
+  let @uint code = 0x2000 | (inTargetAddress & 0x7FF)
+  emitMidrangeDirectCodeAtWordAddress ( !code !?ioAddress !"CALL " + inTargetLabel !?ioListFileContents )
+}
+
+#----------------------------------------------------------------------------*
+
+proc emit_midrange_CALLinstruction
+  ?let @location inIntructionLocation
+  ?!@uint ioAddress
+  ?let @string inTargetLabel
+  ?let @uint inTargetAddress
+  ?!@string ioListFileContents {
+  if ((ioAddress ^ inTargetAddress) & 0xF800) != 0 then
+    error inIntructionLocation : "CALL (from " + [ioAddress hexString] + " to " + [inTargetAddress hexString] + ") crosses page boundary"
+  end
+  emit_midrange_CALLinstruction_nocheck ( !inTargetLabel !inTargetAddress !?ioAddress !?ioListFileContents )
+}
+
+#----------------------------------------------------------------------------*
+
+override method @midrange_intermediate_JUMP generateBinaryCodeAtAddress
+  ?let @registerTable inRegisterTable
+  ?let @uint inTotalBankCount
+  ?let @midrange_symbolTable inRoutineSymbolTable
+  ?!@string ioListFileContents
+  ?!@uint ioAddress {
+#---
+  var usedRegisters =@stringset.emptySet{}
+  @uint targetAddress
+  [inRoutineSymbolTable searchKey !mTargetLabel ?targetAddress]
+#--- Get values for PCLATH register
+  var PCLATH_register =@registerExpression.new{ !@lstring. new { !"PCLATH" !@location.here} !@luint. new { !0 !@location.here}}
+  @midrange_intermediate_registerExpression PCLATH_IPICregisterDescription
+  [PCLATH_register resolveMidrangeAccess
+    !inTotalBankCount
+    !@uint. max # Means unknown bank
+    !inRegisterTable
+    ?PCLATH_IPICregisterDescription
+    ?*
+    !?usedRegisters
+  ]
+#---
+  switch mBit11 
+  case set   :
+    emitMidrangeDirectCodeAtWordAddress (
+      ! 0x1400 | (3 << 7) | ([PCLATH_IPICregisterDescription mRegisterAddress] & 0x7F)
+      !?ioAddress
+      !"BSF PCLATH, 3"
+      !?ioListFileContents
+     )
+  case clear :
+    emitMidrangeDirectCodeAtWordAddress (
+      ! 0x1000 | (3 << 7) | ([PCLATH_IPICregisterDescription mRegisterAddress] & 0x7F)
+      !?ioAddress
+      !"BCF PCLATH, 3"
+      !?ioListFileContents
+     )
+  case noChange :
+  end
+  switch mBit12 
+  case set   :
+    emitMidrangeDirectCodeAtWordAddress (
+      ! 0x1400 | (4 << 7) | ([PCLATH_IPICregisterDescription mRegisterAddress] & 0x7F)
+      !?ioAddress
+      !"BSF PCLATH, 4"
+      !?ioListFileContents
+     )
+  case clear :
+    emitMidrangeDirectCodeAtWordAddress (
+      ! 0x1000 | (4 << 7) | ([PCLATH_IPICregisterDescription mRegisterAddress] & 0x7F)
+      !?ioAddress
+      !"BCF PCLATH, 4"
+      !?ioListFileContents
+     )
+  case noChange :
+  end
+#---
+  emit_midrange_GOTOinstruction_nocheck ( !mTargetLabel.string !targetAddress !?ioAddress !?ioListFileContents )
+}
+
+#----------------------------------------------------------------------------*
+
+override method @midrange_intermediate_GOTO generateBinaryCodeAtAddress
+  ?let @registerTable unused inRegisterTable
+  ?let @uint unused inTotalBankCount
+  ?let @midrange_symbolTable inRoutineSymbolTable
+  ?!@string ioListFileContents
+  ?!@uint ioAddress {
+#---
+  @uint targetAddress
+  [inRoutineSymbolTable searchKey !mTargetLabel ?targetAddress]
+#---
+  emit_midrange_GOTOinstruction ( !mInstructionLocation !?ioAddress !mTargetLabel.string !targetAddress !?ioListFileContents )
+}
+
+#----------------------------------------------------------------------------*
+
+override method @midrange_intermediate_JSR generateBinaryCodeAtAddress
+  ?let @registerTable inRegisterTable
+  ?let @uint inTotalBankCount
+  ?let @midrange_symbolTable inRoutineSymbolTable
+  ?!@string ioListFileContents
+  ?!@uint ioAddress {
+  var usedRegisters =@stringset.emptySet{}
+#---
+  @uint targetAddress
+  [inRoutineSymbolTable searchKey !mTargetLabel ?targetAddress]
+#--- Get values for PCLATH register
+  var PCLATH_register =@registerExpression.new{ !@lstring. new { !"PCLATH" !@location.here} !@luint. new { !0 !@location.here}}
+  @midrange_intermediate_registerExpression PCLATH_IPICregisterDescription
+  [PCLATH_register resolveMidrangeAccess
+    !inTotalBankCount
+    !@uint. max # Means unknown bank
+    !inRegisterTable
+    ?PCLATH_IPICregisterDescription
+    ?*
+    !?usedRegisters
+  ]
+#---
+  switch mBit11 
+  case set :
+    emitMidrangeDirectCodeAtWordAddress (
+      ! 0x1400 | (3 << 7) | ([PCLATH_IPICregisterDescription mRegisterAddress] & 0x7F)
+      !?ioAddress
+      !"BSF PCLATH, 3"
+      !?ioListFileContents
+     )
+  case clear :
+    emitMidrangeDirectCodeAtWordAddress (
+      ! 0x1000 | (3 << 7) | ([PCLATH_IPICregisterDescription mRegisterAddress] & 0x7F)
+      !?ioAddress
+      !"BCF PCLATH, 3"
+      !?ioListFileContents
+     )
+  case noChange :
+  end
+  switch mBit12 
+  case set :
+    emitMidrangeDirectCodeAtWordAddress (
+      ! 0x1400 | (4 << 7) | ([PCLATH_IPICregisterDescription mRegisterAddress] & 0x7F)
+      !?ioAddress
+      !"BSF PCLATH, 4"
+      !?ioListFileContents
+     )
+  case clear :
+    emitMidrangeDirectCodeAtWordAddress (
+      ! 0x1000 | (4 << 7) | ([PCLATH_IPICregisterDescription mRegisterAddress] & 0x7F)
+      !?ioAddress
+      !"BCF PCLATH, 4"
+      !?ioListFileContents
+     )
+  case noChange :
+  end
+  emit_midrange_CALLinstruction_nocheck ( !mTargetLabel.string !targetAddress !?ioAddress !?ioListFileContents )
+  switch mBit11 
+  case set :
+    emitMidrangeDirectCodeAtWordAddress (
+      ! 0x1000 | (3 << 7) | ([PCLATH_IPICregisterDescription mRegisterAddress] & 0x7F)
+      !?ioAddress
+      !"BCF PCLATH, 3"
+      !?ioListFileContents
+     )
+  case clear :
+    emitMidrangeDirectCodeAtWordAddress (
+      ! 0x1400 | (3 << 7) | ([PCLATH_IPICregisterDescription mRegisterAddress] & 0x7F)
+      !?ioAddress
+      !"BSF PCLATH, 3"
+      !?ioListFileContents
+     )
+  case noChange :
+  end
+  switch mBit12 
+  case set :
+    emitMidrangeDirectCodeAtWordAddress (
+      ! 0x1000 | (4 << 7) | ([PCLATH_IPICregisterDescription mRegisterAddress] & 0x7F)
+      !?ioAddress
+      !"BCF PCLATH, 4"
+      !?ioListFileContents
+     )
+  case clear :
+    emitMidrangeDirectCodeAtWordAddress (
+      ! 0x1400 | (4 << 7) | ([PCLATH_IPICregisterDescription mRegisterAddress] & 0x7F)
+      !?ioAddress
+      !"BSF PCLATH, 4"
+      !?ioListFileContents
+     )
+  case noChange :
+  end
+}
+
+#----------------------------------------------------------------------------*
+
+override method @midrange_intermediate_CALL generateBinaryCodeAtAddress
+  ?let @registerTable unused inRegisterTable
+  ?let @uint unused inTotalBankCount
+  ?let @midrange_symbolTable inRoutineSymbolTable
+  ?!@string ioListFileContents
+  ?!@uint ioAddress {
+#---
+  @uint targetAddress
+  [inRoutineSymbolTable searchKey !mTargetLabel ?targetAddress]
+#---
+  emit_midrange_CALLinstruction ( !mInstructionLocation !?ioAddress !mTargetLabel.string !targetAddress !?ioListFileContents )
+}
+
+#----------------------------------------------------*
+
+override method @midrange_intermediate_incDecRegisterInCondition generateBinaryCodeAtAddress
+  ?let @registerTable unused inRegisterTable
+  ?let @uint unused inTotalBankCount
+  ?let @midrange_symbolTable inRoutineSymbolTable
+  ?!@string ioListFileContents
+  ?!@uint ioAddress {
+  @uint code
+  @string s
+  if mIncrement then
+    code = 0x0F00 s = "INCFSZ"
+  else
+    code = 0x0B00 s = "DECFSZ"
+  end
+  if not m_W_isDestination then
+    code = code | 0x0080
+  end
+  code = code | ([mRegisterDescription mRegisterAddress] & 127)
+  s += " " + [mRegisterDescription mAssemblyString]
+  emitMidrangeDirectCodeAtWordAddress ( !code !?ioAddress !s !?ioListFileContents )
+#---
+  if mBranchIfZero then
+    emit_midrange_GOTOinstruction ( !mInstructionLocation !?ioAddress !"$ + 2" !ioAddress + 2 !?ioListFileContents )
+  end
+#--- Generate GOTO instruction
+  @uint targetAddress
+  [inRoutineSymbolTable searchKey !@lstring. new { !mTargetLabel !@location.here} ?targetAddress]
+  emit_midrange_GOTOinstruction ( !mInstructionLocation !?ioAddress !mTargetLabel !targetAddress !?ioListFileContents )
+}
+
+#----------------------------------------------------------------------------*
+
+override method @midrange_intermediate_instruction_CLRWDT generateBinaryCodeAtAddress
+  ?let @registerTable unused inRegisterTable
+  ?let @uint unused inTotalBankCount
+  ?let @midrange_symbolTable unused inRoutineSymbolTable
+  ?!@string ioListFileContents
+  ?!@uint ioAddress {
+  emitMidrangeCodeAtWordAddress ( !0x0064 !?ioAddress !self !?ioListFileContents )
+}
+
+#----------------------------------------------------------------------------*
+
+override method @midrange_intermediate_instruction_CLRW generateBinaryCodeAtAddress
+  ?let @registerTable unused inRegisterTable
+  ?let @uint unused inTotalBankCount
+  ?let @midrange_symbolTable unused inRoutineSymbolTable
+  ?!@string ioListFileContents
+  ?!@uint ioAddress {
+  emitMidrangeCodeAtWordAddress ( !0x0100 !?ioAddress !self !?ioListFileContents )
+}
+
+#----------------------------------------------------------------------------*
+
+override method @midrange_intermediate_instruction_NOP generateBinaryCodeAtAddress
+  ?let @registerTable unused inRegisterTable
+  ?let @uint unused inTotalBankCount
+  ?let @midrange_symbolTable unused inRoutineSymbolTable
+  ?!@string ioListFileContents
+  ?!@uint ioAddress {
+  emitMidrangeCodeAtWordAddress ( !0x0000 !?ioAddress !self !?ioListFileContents )
+}
+
+#----------------------------------------------------------------------------*
+
+override method @midrange_intermediate_instruction_RETURN generateBinaryCodeAtAddress
+  ?let @registerTable unused inRegisterTable
+  ?let @uint unused inTotalBankCount
+  ?let @midrange_symbolTable unused inRoutineSymbolTable
+  ?!@string ioListFileContents
+  ?!@uint ioAddress {
+  emitMidrangeCodeAtWordAddress ( !0x0008 !?ioAddress !self !?ioListFileContents )
+}
+
+#----------------------------------------------------------------------------*
+
+override method @midrange_intermediate_instruction_RETFIE generateBinaryCodeAtAddress
+  ?let @registerTable unused inRegisterTable
+  ?let @uint unused inTotalBankCount
+  ?let @midrange_symbolTable unused inRoutineSymbolTable
+  ?!@string ioListFileContents
+  ?!@uint ioAddress {
+  emitMidrangeCodeAtWordAddress ( !0x0009 !?ioAddress !self !?ioListFileContents )
+}
+
+#----------------------------------------------------------------------------*
+
+override method @midrange_intermediate_instruction_SLEEP generateBinaryCodeAtAddress
+  ?let @registerTable unused inRegisterTable
+  ?let @uint unused inTotalBankCount
+  ?let @midrange_symbolTable unused inRoutineSymbolTable
+  ?!@string ioListFileContents
+  ?!@uint ioAddress {
+  emitMidrangeCodeAtWordAddress ( !0x0063 !?ioAddress !self !?ioListFileContents )
+}
+
+#----------------------------------------------------*
+
+getter @midrange_literal_instruction_opcode baseCode -> @uint outBaseCode {
+  switch self
+  case ADDLW : outBaseCode = 0x3E00
+  case ANDLW : outBaseCode = 0x3900
+  case IORLW : outBaseCode = 0x3800
+  case MOVLW : outBaseCode = 0x3000
+  case RETLW : outBaseCode = 0x3400
+  case SUBLW : outBaseCode = 0x3C00
+  case XORLW : outBaseCode = 0x3A00
+  end
+}
+
+#----------------------------------------------------------------------------*
+
+override method @midrange_intermediate_instruction_literalOperation generateBinaryCodeAtAddress
+  ?let @registerTable unused inRegisterTable
+  ?let @uint unused inTotalBankCount
+  ?let @midrange_symbolTable unused inRoutineSymbolTable
+  ?!@string ioListFileContents
+  ?!@uint ioAddress {
+#--- Emit Code
+  @uint code = [mLiteralInstruction baseCode]
+  code = code | mLiteralValue
+  emitMidrangeCodeAtWordAddress ( !code !?ioAddress !self !?ioListFileContents )
+}
+
+#----------------------------------------------------------------------------*
+
+override method @midrange_intermediate_pseudo_LABEL generateBinaryCodeAtAddress
+  ?let @registerTable unused inRegisterTable
+  ?let @uint unused inTotalBankCount
+  ?let @midrange_symbolTable inRoutineSymbolTable
+  ?!@string ioListFileContents
+  ?!@uint ioAddress {
+  [inRoutineSymbolTable searchKey !mLabel ?var @uint targetAddress]
+  if (targetAddress != ioAddress) then
+    error mLabel: "Internal second pass error: the '" + mLabel
+    + "' label gets " + [ioAddress hexString] + " value in second pass, while it gets "
+    + [targetAddress hexString] + " in first pass"
+  end
+  emitNoMidrangeCodeAtWordAddress ( !ioAddress !self !?ioListFileContents )
+}
+
+#----------------------------------------------------------------------------*
+
+override method @midrange_intermediate_instruction_MNOP generateBinaryCodeAtAddress
+  ?let @registerTable unused inRegisterTable
+  ?let @uint unused inTotalBankCount
+  ?let @midrange_symbolTable unused inRoutineSymbolTable
+  ?!@string ioListFileContents
+  ?!@uint ioAddress {
+  if [mOccurrenceFactor uint] == 0 then
+    warning mOccurrenceFactor: "No generated code"
+  end
+  @uint idx = 0
+  loop( [mOccurrenceFactor uint])
+  while idx < [mOccurrenceFactor uint]
+  do
+    emitMidrangeDirectCodeAtWordAddress ( !0x0000 !?ioAddress !"NOP" !?ioListFileContents )
+    idx ++
+  end
+}
+
+#----------------------------------------------------------------------------*
+#                                                                            *
+#               S E M A N T I C    A N A L Y S I S                           *
+#                                                                            *
+#----------------------------------------------------------------------------*
+
+proc build_midrange_ipic_binary_code
+  ?let @registerTable inRegisterTable
+  ?let @uint inTotalBankCount
+  ?let @midrange_intermediate_instructionList inGeneratedInstructionList
+  ?let @uint inROMsize
+  ?let @actualConfigurationMap inActualConfigurationMap
+  ?!@string ioListFileContents
+  !@uint outUsedROMsize {
+#-------------------------------- First pass: build label map
+  var symbolTable =@midrange_symbolTable.emptyMap{}
+  @uint currentAddress = 0
+  for () in  inGeneratedInstructionList do
+    [mInstruction enterLabelAtAddress !?symbolTable !?currentAddress]
+  end
+  @uint lastAddressForFirstPass = currentAddress
+  outUsedROMsize = currentAddress
+#-------------------------------- Second pass: generate code
+  ioListFileContents += ["" stringByLeftAndRightPadding !79 !'*'] + "\n"
+  ioListFileContents += "*" + ["GENERATED CODE" stringByLeftAndRightPadding !77 !' '] + "*\n"
+  ioListFileContents += ["" stringByLeftAndRightPadding !79 !'*'] + "\n\n"
+  ioListFileContents += "Address Code Mnemonic\n"
+  initCodeGenerator ( )
+  currentAddress = 0
+  setEmitAddress ( !0 )
+  for () in  inGeneratedInstructionList do
+    [mInstruction generateBinaryCodeAtAddress
+      !inRegisterTable
+      !inTotalBankCount
+      !symbolTable
+      !?ioListFileContents
+      !?currentAddress
+    ]
+   # currentAddress := currentAddress  + [mInstruction instructionLength] ;
+    checkCurrentEmitAddress ( !currentAddress * 2 )
+  end
+  if lastAddressForFirstPass != currentAddress then
+    error @location.here: "Internal second pass error: the last address gets " + [currentAddress hexString]
+    + " value in second pass, while it gets "
+    + [lastAddressForFirstPass hexString] + " value in first pass"
+  elsif lastAddressForFirstPass > inROMsize then
+    error @location.here: "Program too large: " + [lastAddressForFirstPass string]
+    + " bytes (rom size is "
+    + [inROMsize string] + " bytes)"
+  end
+#-------------------------------- Add Configuration
+  for () in  inActualConfigurationMap do
+    setEmitAddress ( ! mRegisterAddress + mRegisterAddress )
+    emitCode ( !mRegisterValue )
+  end
+}
+
+#----------------------------------------------------------------------------*
+

@@ -1,0 +1,246 @@
+syntax piccoloDevice_syntax (piccoloDevice_lexique) {
+
+#----------------------------------------------------*
+
+rule <start_symbol>
+  !@piccoloDeviceModel outPiccoloModel
+
+#----------------------------------------------------*
+
+rule <start_symbol>
+  !@piccoloDeviceModel outPiccoloDeviceModel {
+  $controller$
+  $identifier$ ?var  @lstring deviceName
+  ${$
+  $processor$
+  @processorType processorType
+  $string$ ?var  @lstring processorName
+  if [processorName string] == "pic18_60" then
+    processorType = @processorType. pic18_60
+  elsif [processorName string] == "pic18_80" then
+    processorType = @processorType. pic18_80
+  elsif [processorName string] == "mid-range" then
+    processorType = @processorType. midrange
+  elsif [processorName string] == "baseline" then
+    processorType = @processorType. baseline
+  else
+    error @location.here : "The '" + processorName + "' processor is not handled" : processorType
+  end
+  $;$
+  $romsize$
+  $integer$ ?var  @luint romSize
+  $;$
+  @uint eepromSize
+  @uint eepromAddress
+  select
+    eepromSize = 0
+    eepromAddress = 0
+  or
+    $eepromsize$
+    $integer$ ?var  @luint l_eepromSize
+    eepromSize = [l_eepromSize uint]
+    $at$
+    $integer$ ?var  @luint l_eepromAddress
+    eepromAddress = [l_eepromAddress uint]
+    $;$
+  end
+  $bank$
+  $integer$ ?var  @luint bankCount
+  $;$
+  repeat
+  while
+    $unusedregister$
+    $integer$ ?var  @luint unusedRegisterStart
+    select
+    or
+     $to$
+     $integer$ ?var  @luint unusedRegisterEnd
+    end
+    $;$
+  end
+  var ramBankTable =@ramBankTable.emptyMap{}
+  repeat
+  while
+    $ram$
+    $identifier$ ?var  @lstring ramName
+    $:$
+    $integer$ ?var  @luint ramStart
+    $to$
+    $integer$ ?var  @luint ramEnd
+    var mirrorOffsetList =@uintlist.emptyList{}
+    select
+    or
+      $mirrorat$
+      repeat
+        $integer$ ?var  @luint mirrorStartAddress
+        mirrorOffsetList += ![mirrorStartAddress uint] - [ramStart uint]
+      while
+        $,$
+      end
+    end
+    $;$
+    [!?ramBankTable insertKey
+      !ramName
+      ![ramStart uint] # Start
+      ![ramStart uint] # First free address (mutable)
+      ![ramEnd uint] + 1
+      !mirrorOffsetList
+    ]
+  end
+  var registerTable =@registerTable.emptyMap{}
+  repeat
+  while
+    $register$
+    $identifier$ ?var  @lstring registerName
+    $at$
+    var registerAddressList =@uintlist.emptyList{}
+    repeat
+      $integer$ ?var  @luint registerAddress
+      registerAddressList += ![registerAddress uint]
+    while
+      $,$
+    end
+    $<$
+    @uint sliceIndex = 8
+    var bitSliceTable =@bitSliceTable.emptyMap{}
+    @string bitDefinitionString = " <"
+    repeat
+      select
+        @uint sliceWidth = 0 # Means undefined
+        repeat
+          @uint sliceBase = sliceIndex
+          $identifier$ ?var  @lstring sliceName
+          select
+            if (sliceWidth != 0) & (sliceWidth != 1) then
+              error sliceName:"a slice of 1 bit is expected for '" + sliceName + "'" 
+            end
+            sliceWidth = 1
+            bitDefinitionString += [sliceName string] 
+          or
+            $[$
+            $integer$ ?var  @luint sliceSize
+            if (sliceWidth != 0) & (sliceWidth != [sliceSize uint]) then
+              error sliceName:"a slice of " + [sliceWidth string] + " bits is expected for '" + sliceName + "'" 
+            end
+            sliceWidth = [sliceSize uint]
+            sliceBase = sliceBase + 1 - [sliceSize uint]
+            $]$
+            bitDefinitionString += [sliceName string] + "[" + [[sliceSize uint] string] + "]" 
+          end
+          [!?bitSliceTable insertKey !sliceName !sliceIndex-sliceWidth !sliceWidth]
+        while
+          $/$
+          bitDefinitionString += "/"
+        end
+        sliceIndex = sliceIndex - sliceWidth
+      or
+        $-$
+        bitDefinitionString += "-"
+        sliceIndex --
+      end
+    while
+      $,$
+      bitDefinitionString += ", " 
+    end
+    if sliceIndex != 0 then
+      error registerName:"Incorrect bit definition for register '" + registerName + "'"
+    end
+    bitDefinitionString += ">"
+    $>$
+    [!?registerTable insertKey !registerName !registerAddressList !1 !bitSliceTable !bitDefinitionString]
+    $;$
+  end
+  var configRegisterMap =@configRegisterMap.emptyMap{}
+  repeat
+  while
+    $configuration$
+    $identifier$ ?var  @lstring configRegisterName
+    $at$
+    $integer$ ?var  @luint configRegisterAddress
+    $width$
+    $integer$ ?var  @luint configRegisterWidth
+    var illegalMaskList =@illegalMaskList.emptyList{}
+    repeat
+    while
+      $illegal$
+      $integer$ ?var  @luint illegalValue
+      $mask$
+      $integer$ ?var  @luint illegalMask
+      $message$
+      $string$ ?var  @lstring illegalDescriptionString
+      illegalMaskList += !illegalValue !illegalMask !illegalDescriptionString
+    end
+    ${$
+    var configRegisterMaskMap =@configRegisterMaskMap.emptyMap{}
+    var settingNameSet =@stringset.emptySet{}
+    repeat
+    while
+      $identifier$ ?var  @lstring maskName
+      if [settingNameSet hasKey ![maskName string]] then
+        error maskName:"The '" + maskName + "' setting is already defined"
+      end
+      settingNameSet += ![maskName string]
+      $mask$
+      $integer$ ?var  @luint maskValue
+      $description$
+      $string$ ?var  @lstring maskDescriptionString
+      var fieldSettingMap =@fieldSettingMap.emptyMap{}
+      repeat
+        $setting$
+        $integer$ ?var  @luint value
+        $mask$
+        $integer$ ?var  @luint mask
+        $description$
+        $string$ ?var  @lstring descriptionString
+        [!?fieldSettingMap insertKey !descriptionString ![value uint] ![mask uint]]
+      while
+      end
+      [!?configRegisterMaskMap insertKey !maskName !maskValue !maskDescriptionString !fieldSettingMap]
+    end
+    $}$
+    [!?configRegisterMap insertKey
+      !configRegisterName
+      !configRegisterAddress
+      !configRegisterWidth
+      !configRegisterMaskMap
+      !illegalMaskList
+    ]
+  end
+  $}$
+#--- Check some registers are actual defined
+  if ([processorName string] == "pic18_60") | ([processorName string] == "pic18_80") then
+    [registerTable searchKey !@lstring. new { !"BSR" !@location.here} ?4*]
+    [registerTable searchKey !@lstring. new { !"TOSL" !@location.here} ?4*]
+    [registerTable searchKey !@lstring. new { !"TOSH" !@location.here} ?4*]
+    [registerTable searchKey !@lstring. new { !"TOSU" !@location.here} ?4*]
+  end
+#--- Check if controller has a shared bank
+  @string sharedBankName = "" # No shared bank by default
+  if [processorName string] == "mid-range" then
+    for () in  ramBankTable while sharedBankName  == "" do
+      @uint bankAccessibility = 1 << (mFirstFreeAddress >> 7)
+      for () in  mMirrorOffsetList do
+        bankAccessibility = bankAccessibility  | (1 << ((mFirstFreeAddress + mValue) >> 7))
+      end
+      if (1 << [bankCount uint]) == (bankAccessibility + 1) then
+        sharedBankName = [lkey string]
+      end
+    end
+  end
+#---
+  outPiccoloDeviceModel = @piccoloDeviceModel. new {
+    !deviceName
+    !processorType
+    !romSize
+    !bankCount
+    !registerTable
+    !ramBankTable
+    !eepromSize
+    !eepromAddress
+    !configRegisterMap
+    !sharedBankName}
+}
+
+#----------------------------------------------------*
+
+}
