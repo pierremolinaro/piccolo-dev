@@ -1,0 +1,55 @@
+
+
+#----------------------------------------------------------------------------*
+
+#! Block display
+
+#----------------------------------------------------------------------------*
+
+method @ipic18Block display
+  ?let @string inNextBlockLabel
+  ?!@string ioListFileContents {
+  ioListFileContents += "LABEL " + mLabel
+  if mAddress != @uint. max then
+    ioListFileContents += ", ORG " + [mAddress hexString]
+  end
+  ioListFileContents += ":\n"
+#--- Instruction list
+  for () in  mInstructionList do
+    let @stringlist d = [mInstruction instructionDisplay]
+    for () in  d do 
+      ioListFileContents += "  " + mValue + "\n"
+    end
+  end
+#--- Terminator
+  ioListFileContents += "  "
+  ioListFileContents += [mTerminator terminatorDisplay !inNextBlockLabel]
+  ioListFileContents += "\n\n"
+}
+
+#----------------------------------------------------------------------------*
+
+#! Block list display
+
+#----------------------------------------------------------------------------*
+
+proc displayBlockList
+  ?let @string inTitle
+  ?!@string ioListFileContents
+  ?let @ipic18BlockList inGeneratedBlockList {
+  ioListFileContents += ["" stringByLeftAndRightPadding !79 !'*'] + "\n"
+  ioListFileContents += "*" + [inTitle stringByLeftAndRightPadding !77 !' '] + "*\n"
+  ioListFileContents += ["" stringByLeftAndRightPadding !79 !'*'] + "\n\n"
+  for () in  inGeneratedBlockList do(blockIndex)
+    @string nextBlockLabel
+    if (blockIndex+1) < [inGeneratedBlockList length] then
+      nextBlockLabel = [inGeneratedBlockList mBlockAtIndex !blockIndex+1].mLabel.string
+    else
+      nextBlockLabel = ""
+    end
+    [mBlock display !nextBlockLabel !?ioListFileContents]
+  end
+}
+
+#----------------------------------------------------------------------------*
+

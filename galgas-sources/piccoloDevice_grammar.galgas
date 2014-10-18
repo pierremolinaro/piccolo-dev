@@ -1,0 +1,6 @@
+grammar piccoloDevice_grammar "LL1" {
+syntax piccoloDevice_syntax
+ <start_symbol>
+  !@piccoloDeviceModel outPiccoloDeviceModel
+
+}

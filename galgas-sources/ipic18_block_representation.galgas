@@ -1,0 +1,626 @@
+
+
+#----------------------------------------------------------------------------*
+
+map @pic18_dataMap {
+  @uintlist mData
+  insert insertKey error message "the '%K' data is already declared"
+  search searchKey error message "the '%K' data is not declared"
+}
+
+#----------------------------------------------------------------------------*
+
+abstract class @ipic18SequentialInstruction {
+  @location mInstructionLocation
+}
+
+#----------------------------------------------------------------------------*
+
+list @ipic18SequentialInstructionList {
+  @ipic18SequentialInstruction mInstruction
+}
+
+#----------------------------------------------------------------------------*
+
+abstract class @ipic18AbstractBlockTerminator {
+  @location mInstructionLocation
+}
+
+#----------------------------------------------------------------------------*
+
+struct @ipic18Block {
+  @uint mAddress # [@uint max] if relocatable
+  @lstring mLabel
+  @ipic18SequentialInstructionList mInstructionList
+  @ipic18AbstractBlockTerminator mTerminator
+}
+
+#----------------------------------------------------------------------------*
+
+list @ipic18BlockList {
+  @ipic18Block mBlock
+}
+
+#----------------------------------------------------------------------------*
+
+#!--- Block terminators
+
+#----------------------------------------------------------------------------*
+
+abstract class @ipic18SingleInstructionTerminator : @ipic18AbstractBlockTerminator {
+}
+
+#----------------------------------------------------------------------------*
+
+class @ipic18ReturnTerminator : @ipic18SingleInstructionTerminator {
+}
+
+#----------------------------------------------------------------------------*
+
+class @ipic18RetlwTerminator : @ipic18SingleInstructionTerminator {
+  @uint mLiteralValue
+}
+
+#----------------------------------------------------------------------------*
+
+class @ipic18RetfieTerminator : @ipic18SingleInstructionTerminator {
+  @bool mFastReturn
+}
+
+#----------------------------------------------------------------------------*
+
+class @ipic18JumpTerminator : @ipic18SingleInstructionTerminator {
+  @lstring mLabel
+  @jumpInstructionKind mKind
+}
+
+#----------------------------------------------------------------------------*
+
+class @ipic18ComputedGotoTerminator : @ipic18AbstractBlockTerminator {
+  @lstringlist mTargetLabels
+  @bool mUsesRCALL
+}
+
+#----------------------------------------------------------------------------*
+
+class @ipic18ComputedRETLWTerminator : @ipic18AbstractBlockTerminator {
+  @uintlist mLiteralValues
+  @bool mUsesRCALL
+}
+
+#----------------------------------------------------------------------------*
+
+enum @conditionalBranchMode {
+  case native  # Use Bcc instruction only
+  case ipicBRA  # Use BRA if possible (Bcc + BRA)
+  case ipicGOTO # use GOTO (Bcc + GOTO)
+}
+
+#----------------------------------------------------------------------------*
+
+class @ipic18ConditionalJumpTerminator : @ipic18AbstractBlockTerminator {
+  @conditional_branch mConditionalBranch
+  @lstring mTargetLabelWhenTrue
+  @conditionalBranchMode mBranchModeOnTrueLabel
+  @lstring mTargetLabelWhenFalse
+  @conditionalBranchMode mBranchModeOnFalseLabel
+}
+
+#----------------------------------------------------------------------------*
+
+class @ipic18ComputedBraTerminator : @ipic18AbstractBlockTerminator {
+  @lstringlist mTargetLabels
+  @bool mUsesRCALL
+}
+
+#----------------------------------------------------*
+
+enum @ipic18RegisterComparison {
+  case registerEqualsToW 
+  case registerGreaterThanW 
+  case registerLowerThanW
+}
+
+#----------------------------------------------------------------------------*
+
+abstract class @ipic18AbstractConditionTerminator : @ipic18AbstractBlockTerminator {
+  @ipic18SingleInstructionTerminator mSingleInstructionTerminatorIfConditionTrue
+  @ipic18SingleInstructionTerminator mSingleInstructionTerminatorIfConditionFalse
+}
+
+#----------------------------------------------------------------------------*
+
+#class @ipic18ConditionalBranchTerminator extends @ipic18AbstractConditionTerminator {
+#  @conditional_branch mConditionalBranch ;
+#}
+
+#----------------------------------------------------------------------------*
+
+class @pic18RegisterComparisonTerminator : @ipic18AbstractConditionTerminator {
+  @ipic18_intermediate_registerExpression mRegisterDescription
+  @ipic18RegisterComparison mComparison
+}
+
+#----------------------------------------------------------------------------*
+
+class @ipic18IncDecRegisterTerminator : @ipic18AbstractConditionTerminator {
+  @ipic18_intermediate_registerExpression mRegisterDescription
+  @bool mIncrement
+  @bool m_W_isDestination
+}
+
+#----------------------------------------------------------------------------*
+
+class @pic18TestRegisterTerminator : @ipic18AbstractConditionTerminator {
+  @ipic18_intermediate_registerExpression mRegisterDescription
+}
+
+#----------------------------------------------------------------------------*
+
+class @pic18BitTestTerminator : @ipic18AbstractConditionTerminator {
+  @ipic18_intermediate_registerExpression mRegisterDescription
+  @uint mBitNumber
+}
+
+#----------------------------------------------------------------------------*
+
+#!--- Regular instructions
+
+#----------------------------------------------------------------------------*
+
+class @ipic18InstructionWithNoOperand : @ipic18SequentialInstruction {
+  @pic18InstructionWithNoOperandKind mKind
+}
+
+#----------------------------------------------------------------------------*
+
+struct @ipic18_intermediate_registerExpression {
+  @string mAssemblyString
+  @uint mRegisterAddress # 12 bit full address
+  @bool mNeedsBSR
+}
+
+#----------------------------------------------------------------------------*
+
+getter @ipic18_intermediate_registerExpression isEqualToRegister
+  ?let @ipic18_intermediate_registerExpression inRegister
+  -> @bool outResult {
+  outResult = mAssemblyString == inRegister.mAssemblyString
+  if outResult then
+    outResult = mRegisterAddress == inRegister.mRegisterAddress
+  end
+  if outResult then
+    outResult = mNeedsBSR == inRegister.mNeedsBSR
+  end
+}
+
+#----------------------------------------------------------------------------*
+
+class @ipic18_intermediate_instruction_FDA : @ipic18SequentialInstruction {
+  @pic18Instruction_FDA_base_code_AST mInstruction_FDA_base_code
+  @ipic18_intermediate_registerExpression mRegisterDescription
+  @bool m_W_isDestination
+}
+
+#----------------------------------------------------*
+
+enum @FA_sequential_instruction_base_code {
+  case CLRF  case MOVWF  case MULWF  case NEGF  case SETF
+}
+
+#----------------------------------------------------------------------------*
+
+class @ipic18_intermediate_instruction_FA : @ipic18SequentialInstruction {
+  @FA_sequential_instruction_base_code mFAinstruction
+  @ipic18_intermediate_registerExpression mRegisterDescription
+}
+
+#----------------------------------------------------------------------------*
+
+struct @ipic18_intermediate_registerExpressionWithoutBSRIndication {
+  @string mAssemblyString
+  @uint mRegisterAddress # 12 bit full address
+}
+
+#----------------------------------------------------------------------------*
+
+class @ipic18_intermediate_instruction_MOVFF : @ipic18SequentialInstruction {
+  @ipic18_intermediate_registerExpressionWithoutBSRIndication mSourceRegisterDescription
+  @ipic18_intermediate_registerExpressionWithoutBSRIndication mDestinationRegisterDescription
+}
+
+#----------------------------------------------------------------------------*
+
+class @ipic18_intermediate_instruction_literalOperation : @ipic18SequentialInstruction {
+  @literal_instruction_opcode mLiteralInstruction
+  @uint mLiteralValue
+}
+
+#----------------------------------------------------------------------------*
+
+class @ipic18_intermediate_instruction_LFSR : @ipic18SequentialInstruction {
+  @luint mFSRindex
+  @uint mValue
+}  
+
+#----------------------------------------------------------------------------*
+
+class @ipic18_intermediate_instruction_FBA : @ipic18SequentialInstruction {
+  @bit_oriented_op mBitOrientedOp
+  @ipic18_intermediate_registerExpression mRegisterDescription
+  @uint mBitNumber
+}
+
+#----------------------------------------------------------------------------*
+
+class @ipic18_intermediate_JSR : @ipic18SequentialInstruction {
+  @lstring mTargetLabel
+  @jumpInstructionKind mKind
+}
+
+#----------------------------------------------------------------------------*
+
+class @ipic18_intermediate_instruction_MOVLB : @ipic18SequentialInstruction {
+  @luint mBankIndex
+}
+
+#----------------------------------------------------------------------------*
+
+class @ipic18_intermediate_instruction_FNOP : @ipic18SequentialInstruction {
+  @uint mBlankValue
+}
+
+#----------------------------------------------------------------------------*
+
+class @ipic18_intermediate_instruction_BLANK : @ipic18SequentialInstruction {
+  @uint mBlankValue
+}
+
+#----------------------------------------------------------------------------*
+
+class @ipic18_intermediate_instruction_TBLRD : @ipic18SequentialInstruction {
+  @tableAccessOption mOption
+}
+
+#----------------------------------------------------------------------------*
+
+class @ipic18_intermediate_instruction_TBLWT : @ipic18SequentialInstruction {
+  @tableAccessOption mOption
+}
+
+#----------------------------------------------------------------------------*
+
+class @ipic18_intermediate_instruction_MNOP : @ipic18SequentialInstruction {
+  @luint mOccurrenceFactor
+}
+
+#----------------------------------------------------------------------------*
+
+class @ipic18_intermediate_MOV_LABEL_W : @ipic18SequentialInstruction {
+  @lstring mLabel
+  @uint mOffset
+  @uint mRightShift
+}
+
+#----------------------------------------------------------------------------*
+
+class @ipic18_intermediate_instruction_computed_rcall : @ipic18SequentialInstruction {
+  @ipic18SequentialInstructionList mTargetInstructions
+  @bool mUsesRCALL
+}
+
+#----------------------------------------------------------------------------*
+
+abstract class @ipic18_condition_skip_instruction : @ipic18SequentialInstruction {
+  @ipic18SequentialInstruction mEmbeddedInstruction
+}
+
+#----------------------------------------------------------------------------*
+
+class @ipic18_skip_instruction_BitTestSkip : @ipic18_condition_skip_instruction {
+  @bool mSkipIfSet
+  @ipic18_intermediate_registerExpression mRegisterDescription
+  @uint mBitNumber
+}
+
+#----------------------------------------------------*
+
+enum @ipic18_compare_register_instruction_base_code {
+  case CPFSEQ  case CPFSGT  case CPFSLT  case TSTFSZ
+}
+
+#----------------------------------------------------------------------------*
+
+class @ipic18_skip_instruction_compare_register : @ipic18_condition_skip_instruction {
+  @ipic18_compare_register_instruction_base_code mCompareInstruction
+  @ipic18_intermediate_registerExpression mRegisterDescription
+}
+
+#----------------------------------------------------*
+
+enum @skip_instruction_FDA_base_code {
+  case DECFSZ  case DCFSNZ  case INCFSZ  case INFSNZ
+}
+
+#----------------------------------------------------------------------------*
+
+class @ipic18_skip_instruction_FDA : @ipic18_condition_skip_instruction {
+  @skip_instruction_FDA_base_code mInstruction_FDA_base_code
+  @ipic18_intermediate_registerExpression mRegisterDescription
+  @bool m_W_isDestination
+}
+
+#----------------------------------------------------------------------------*
+
+#!--- Optimization
+
+#----------------------------------------------------------------------------*
+
+map @symbolTableForBlockOptimization {
+  @uint mDefinitionBlockIndex
+  insert insertKey error message "the '%K' label is already declared in %L"
+  search searchKey error message "the '%K' label is not declared"
+}
+
+#----------------------------------------------------------------------------*
+
+#!--- Cluster ordering optimization
+
+#----------------------------------------------------------------------------*
+
+map @symbolTableForClusterOrdering {
+  @uint mCluster
+  insert insertKey error message "the '%K' label is already declared in %L"
+  search searchKey error message "the '%K' label is not declared"
+}
+
+#----------------------------------------------------------------------------*
+
+listmap @branchOverflowMap (@stringlist)
+
+#----------------------------------------------------------------------------*
+
+method @ipic18SequentialInstruction instructionRelativeBranchOverflow
+  ?let @uint unused inAddress
+  ?let @string unused inBlockLabel
+  ?let @symbolTableForRelativesResolution unused inSymbolTable
+  ?!@branchOverflowMap unused ioOverflowMap {
+}
+
+#----------------------------------------------------------------------------*
+
+method @ipic18AbstractBlockTerminator terminatorRelativeBranchOverflow
+  ?let @uint unused inAddress
+  ?let @string unused inBlockLabel
+  ?let @symbolTableForRelativesResolution unused inSymbolTable
+  ?let @string unused inNextBlockLabel
+  ?!@branchOverflowMap unused ioOverflowMap {
+}
+
+#----------------------------------------------------------------------------*
+
+#!--- @symbolTableForRelativesResolution
+
+#----------------------------------------------------------------------------*
+
+method @ipic18AbstractBlockTerminator performTerminatorRelativeBranchResolution
+  ?let @uint unused inAddress
+  ?let @string unused inBlockLabel
+  ?let @symbolTableForRelativesResolution unused inSymbolTable
+  ?let @string unused inNextBlockLabel
+  ?!@uint unused ioConversionCount
+  ?!@string unused ioListFileContents
+  !@ipic18AbstractBlockTerminator outModifiedTerminator {
+  outModifiedTerminator = self
+}
+
+#----------------------------------------------------------------------------*
+
+map @symbolTableForRelativesResolution {
+  @uint mLabelAddress
+  insert insertKey error message "the '%K' label is already declared in %L"
+  search searchKey error message "the '%K' label is not declared"
+}
+
+#----------------------------------------------------------------------------*
+
+list @codeList {
+  @string mAssemblyCode
+  @uintlist mBinaryCode
+}
+  
+#----------------------------------------------------------------------------*
+
+map @pic18_dataAddressMap {
+  @uint mDataAddress
+  insert insertKey error message "the '%K' data is already declared"
+  search searchKey error message "the '%K' data is not declared"
+}
+
+#----------------------------------------------------------------------------*
+
+abstract method @ipic18SequentialInstruction generateCode
+  ?let @uint inAddress
+  ?let @symbolTableForRelativesResolution inSymbolTable
+  ?let @pic18_dataAddressMap inDataMap
+  !@codeList outCode
+
+#----------------------------------------------------------------------------*
+
+abstract method @ipic18AbstractBlockTerminator generateTerminatorCode
+  ?let @uint inAddress
+  ?let @symbolTableForRelativesResolution inSymbolTable
+  ?let @string inNextBlockLabel
+  !@codeList outCode
+
+#----------------------------------------------------------------------------*
+
+abstract getter @ipic18AbstractBlockTerminator isEqualToTerminator
+  ?let @ipic18AbstractBlockTerminator inTerminator
+  -> @bool outResult
+
+#----------------------------------------------------------------------------*
+
+#!--- Check displacement
+
+#----------------------------------------------------------------------------*
+
+func pic18_checkBCC
+  ?let @symbolTableForRelativesResolution inSymbolTable
+  ?let @lstring inTargetLabel
+  ?let @uint inCurrentAddress
+  ->@bool outDisplacementOK {
+  [inSymbolTable searchKey !inTargetLabel ?let @uint targetAddress]
+  let @sint displacement = ([targetAddress sint] - 2S - [inCurrentAddress sint]) >> 1
+  outDisplacementOK =  (displacement <= 127S) & (displacement >= - 128S)
+}
+
+#----------------------------------------------------------------------------*
+
+func pic18_checkBRA_RCALL
+  ?let @symbolTableForRelativesResolution inSymbolTable
+  ?let @lstring inTargetLabel
+  ?let @uint inCurrentAddress
+  ->@bool outDisplacementOK {
+#--- The target label is not defined if 
+  [inSymbolTable searchKey !inTargetLabel ?let @uint targetAddress]
+  let @sint displacement = ([targetAddress sint] - 2S - [inCurrentAddress sint]) >> 1
+  outDisplacementOK =  (displacement <= 1023S) & (displacement >= - 1024S)
+}
+
+#----------------------------------------------------------------------------*
+
+func pic18_BRA_RCALL_displacement
+  ?let @symbolTableForRelativesResolution inSymbolTable
+  ?let @lstring inTargetLabel
+  ?let @uint inCurrentAddress
+  ->@sint outDisplacement {
+  [inSymbolTable searchKey !inTargetLabel ?let @uint targetAddress]
+  outDisplacement = ([targetAddress sint] - 2S - [inCurrentAddress sint]) >> 1
+}
+
+#----------------------------------------------------------------------------*
+
+#!--- Generate branch instructions
+
+#----------------------------------------------------------------------------*
+
+func pic18_Bcc_instruction_code
+  ?let @uint inConditionalBranchInstructionAddress
+  ?let @uint inTargetAddress
+  ?let @lstring inTargetLabel
+  ?let @conditional_branch inConditionalBranch
+  ?let @bool inComplemented
+  ->@codeList outCode {  
+  let @sint displacement = ([inTargetAddress sint] - 2S - [inConditionalBranchInstructionAddress sint]) >> 1
+  if (displacement > 127S) | (displacement < - 128S) then
+    error inTargetLabel: "** INTERNAL ERROR ** displacement too large for conditional branch instruction"
+  end
+
+  @conditional_branch conditionalBranch
+  if inComplemented then
+    switch inConditionalBranch
+    case bz   : conditionalBranch = @conditional_branch. bnz
+    case bnz  : conditionalBranch = @conditional_branch. bz
+    case bn   : conditionalBranch = @conditional_branch. bnn
+    case bnn  : conditionalBranch = @conditional_branch. bn
+    case bc   : conditionalBranch = @conditional_branch. bnc
+    case bnc  : conditionalBranch = @conditional_branch. bc
+    case bov  : conditionalBranch = @conditional_branch. bnov
+    case bnov : conditionalBranch = @conditional_branch. bov
+  end
+  else
+    conditionalBranch = inConditionalBranch
+  end
+  
+  @uint baseCode
+  @string mnemonic
+  switch conditionalBranch
+  case bz   : baseCode = 0xE000 mnemonic = "BZ"
+  case bnz  : baseCode = 0xE100 mnemonic = "BNZ"
+  case bn   : baseCode = 0xE600 mnemonic = "BN"
+  case bnn  : baseCode = 0xE700 mnemonic = "BNN"
+  case bc   : baseCode = 0xE200 mnemonic = "BC"
+  case bnc  : baseCode = 0xE300 mnemonic = "BNC"
+  case bov  : baseCode = 0xE400 mnemonic = "BOV"
+  case bnov : baseCode = 0xE500 mnemonic = "BNOV"
+  end
+  outCode = @codeList. listWithValue {
+    !"    " + mnemonic + " " + inTargetLabel
+    !@uintlist. listWithValue { !baseCode | [displacement & 0x0FFS uint]}}
+}
+
+#----------------------------------------------------------------------------*
+
+func pic18_RCALL_instruction_code
+  ?let @uint inRCALLinstructionAddress
+  ?let @uint inTargetAddress
+  ?let @lstring inTargetLabel
+  ->@codeList outCode {
+  let @sint displacement = ([inTargetAddress sint] - 2S - [inRCALLinstructionAddress sint]) >> 1
+  if (displacement > 1023S) | (displacement < - 1024S) then
+    error inTargetLabel: "** INTERNAL ERROR ** displacement too large ("+ [displacement  string]
+    + ") for RCALL instruction to '" + inTargetLabel + "' (should be between -1024 and 1023)"
+  end
+  outCode = @codeList. listWithValue {
+    !"    RCALL " + inTargetLabel
+    !@uintlist. listWithValue { !0xD800 | [displacement & 0x07FFS uint]}}
+}
+
+#----------------------------------------------------------------------------*
+
+func pic18_BRA_instruction_code
+  ?let @uint inRCALLinstructionAddress
+  ?let @uint inTargetAddress
+  ?let @lstring inTargetLabel
+  ->@codeList outCode {
+  let @sint displacement = ([inTargetAddress sint] - 2S - [inRCALLinstructionAddress sint]) >> 1
+  if (displacement > 1023S) | (displacement < - 1024S) then
+    error inTargetLabel: "** INTERNAL ERROR ** displacement too large ("+ [displacement  string]
+    + ") for BRA instruction to '" + inTargetLabel + "' (should be between -1024 and 1023)"
+  end
+  outCode = @codeList. listWithValue {
+    !"    BRA " + inTargetLabel
+    !@uintlist. listWithValue { !0xD000 | [displacement & 0x07FFS uint]}}
+}
+
+#----------------------------------------------------------------------------*
+
+func pic18_CALL_instruction_code
+  ?let @uint inTargetAddress
+  ?let @lstring inTargetLabel
+  ->@codeList outCode {
+  var binaryCode =@uintlist.emptyList{}
+  binaryCode += !0xEC00 | ((inTargetAddress >> 1) & 255)
+  binaryCode += !0xF000 | (inTargetAddress >> 9)
+  outCode = @codeList. listWithValue {
+    !"    CALL " + inTargetLabel
+    !binaryCode}
+}
+
+#----------------------------------------------------------------------------*
+
+func pic18_GOTO_instruction_code
+  ?let @uint inTargetAddress
+  ?let @lstring inTargetLabel
+  ->@codeList outCode {
+  var binaryCode =@uintlist.emptyList{}
+  binaryCode += !0xEF00 | ((inTargetAddress >> 1) & 255)
+  binaryCode += !0xF000 | (inTargetAddress >> 9)
+  outCode = @codeList. listWithValue {
+    !"    GOTO " + inTargetLabel
+    !binaryCode}
+}
+
+#----------------------------------------------------------------------------*
+
+func pic18_definition_label
+  ?let @lstring inTargetLabel
+  ->@codeList outCode {
+  outCode = @codeList. listWithValue {
+    !inTargetLabel.string + ":"
+    !@uintlist. emptyList}
+}
+
+#----------------------------------------------------------------------------*
+

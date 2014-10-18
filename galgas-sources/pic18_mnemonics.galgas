@@ -1,0 +1,128 @@
+
+
+#----------------------------------------------------*
+
+getter @pic18RegisterComparison mnemonic -> @string outResult {
+  switch self
+    case notEqual : outResult = "!="
+    case equal    : outResult = "=="
+    case greaterOrEqual : outResult = ">="
+    case greater : outResult = ">"
+    case lowerOrEqual : outResult = "<="
+    case lower : outResult = "<"
+  end
+}
+
+#----------------------------------------------------*
+
+getter @conditional_branch condition -> @string outResult {
+  switch self
+    case bz   : outResult = "Z"
+    case bnz  : outResult = "NZ"
+    case bn   : outResult = "N"
+    case bnn  : outResult = "NN"
+    case bc   : outResult = "C"
+    case bnc  : outResult = "NC"
+    case bov  : outResult = "OV"
+    case bnov : outResult = "NOV"
+  end
+}
+
+#----------------------------------------------------*
+
+getter @pic18InstructionWithNoOperandKind assemblyCode
+  -> @string outResult {
+  switch self
+  case CLRWDT : outResult = "CLRWDT"
+  case DAW : outResult = "DAW"
+  case NOP : outResult = "NOP"
+  case POP : outResult = "POP"
+  case PUSH : outResult = "PUSH"
+  case RESET : outResult = "RESET"
+  case SLEEP : outResult = "SLEEP"
+  end
+}
+
+#----------------------------------------------------*
+
+getter @FA_instruction_base_code mnemonic -> @string outResult {
+  switch self
+    case CLRF    : outResult = "CLRF"
+    case CPFSEQ : outResult = "CPFSEQ"
+    case CPFSGT : outResult = "CPFSGT"
+    case CPFSLT : outResult = "CPFSLT"
+    case MOVWF  : outResult = "MOVWF"
+    case MULWF  : outResult = "MULWF"
+    case NEGF   : outResult = "NEGF"
+    case SETF   : outResult = "SETF"
+    case TSTFSZ : outResult = "TSTFSZ"
+  end
+}
+
+#----------------------------------------------------*
+
+getter @bit_oriented_op mnemonic  -> @string outResult {
+  switch self
+    case BCF : outResult = "BCF"
+    case BSF : outResult = "BSF"
+    case BTG : outResult = "BTG"
+  end
+}
+
+#----------------------------------------------------*
+
+getter @conditional_branch mnemonic  -> @string outResult {
+  switch self
+    case bz   : outResult = "BZ"
+    case bnz  : outResult = "BNZ"
+    case bn   : outResult = "BN"
+    case bnn  : outResult = "BNN"
+    case bc   : outResult = "BC"
+    case bnc  : outResult = "BNC"
+    case bov  : outResult = "BOV"
+    case bnov : outResult = "BNOV"
+  end
+}
+
+#----------------------------------------------------*
+
+proc getComplementaryBcc ?let @conditional_branch inConditionalBranch !@conditional_branch outComplementary {
+  switch inConditionalBranch
+  case bz   : outComplementary = @conditional_branch. bnz
+  case bnz  : outComplementary = @conditional_branch. bz
+  case bn   : outComplementary = @conditional_branch. bnn
+  case bnn  : outComplementary = @conditional_branch. bn
+  case bc   : outComplementary = @conditional_branch. bnc
+  case bnc  : outComplementary = @conditional_branch. bc
+  case bov  : outComplementary = @conditional_branch. bnov
+  case bnov : outComplementary = @conditional_branch. bov
+  end
+}
+
+#----------------------------------------------------*
+
+getter @literal_instruction_opcode mnemonic -> @string outResult {
+  switch self
+    case ADDLW : outResult = "ADDLW"
+    case ANDLW : outResult = "ANDLW"
+    case IORLW : outResult = "IORLW"
+    case MOVLW : outResult = "MOVLW"
+    case MULLW : outResult = "MULLW"
+    case SUBLW : outResult = "SUBLW"
+    case XORLW : outResult = "XORLW"
+  end
+}
+
+#----------------------------------------------------*
+
+getter @tableAccessOption mnemonic  -> @string outResult {
+  switch self
+    case simpleAccess  : outResult = "*"
+    case postIncrement : outResult = "*+"
+    case postDecrement : outResult = "*-"
+    case preIncrement  : outResult = "+*"
+  end
+}
+
+#----------------------------------------------------*
+

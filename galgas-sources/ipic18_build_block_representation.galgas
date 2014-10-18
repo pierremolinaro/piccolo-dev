@@ -1,0 +1,3490 @@
+
+
+#----------------------------------------------------------------------------*
+
+#!--- Register analysis
+
+#----------------------------------------------------------------------------*
+
+method @registerExpression analyzeRegisterExpression
+  ?let @uint inAccessBankSplitOffset
+  ?let @uint inCurrentBank
+  ?let @registerTable inRegisterTable
+  !@ipic18_intermediate_registerExpression outIPICregisterDescription
+  !@bitSliceTable outBitSliceTable
+  ?!@stringset ioUsedRegisters {
+  ioUsedRegisters += !mRegisterName.string
+#--- Build assembly string
+  @string assemblyString = [mRegisterName string]
+  if [mOffset uint] > 0 then
+    assemblyString += " + " + [[mOffset uint] hexString]
+  end
+#--- 
+  @uintlist registerAddressList
+  @uint size
+  @uint registerAddress = 0
+  [inRegisterTable searchKey !mRegisterName ?registerAddressList ?size ?outBitSliceTable ?*]
+#---
+  if [mOffset uint] > size then
+    error mOffset: "this offset is too large: should be lower than " + [size string]
+  end
+#---
+  @bool found = false
+  for () in  registerAddressList while not found do
+    found = (mValue < inAccessBankSplitOffset) | (mValue >= (0x0F00 + inAccessBankSplitOffset))
+    registerAddress = mValue
+  end
+  @bool needsBSRaccess = false
+  if not found then
+    needsBSRaccess = true
+    [registerAddressList first ?registerAddress]
+    @uint neededBank = registerAddress >> 8
+    if (neededBank != inCurrentBank) then
+      @string errorMessage = "Accessing the '" + mRegisterName + "' needs the bank selection set to " + [neededBank string]
+      if inCurrentBank == @uint. max then
+        errorMessage += ", but current bank selection cannot be known"
+      else
+        errorMessage += ", but current bank selection is set to " + [inCurrentBank string]
+      end
+      error mRegisterName: errorMessage
+    end
+  end
+#---
+  outIPICregisterDescription = @ipic18_intermediate_registerExpression. new {
+    !assemblyString
+    !registerAddress + [mOffset uint]
+    !needsBSRaccess}
+}
+
+#----------------------------------------------------------------------------*
+
+method @registerExpression analyzeRegisterExpressionWithoutCheckingBank
+  ?let @registerTable inRegisterTable
+  !@ipic18_intermediate_registerExpressionWithoutBSRIndication outIPICregisterDescription
+  ?!@stringset ioUsedRegisters {
+  ioUsedRegisters += !mRegisterName.string
+#--- Build assembly string
+  @string assemblyString = [mRegisterName string]
+  if [mOffset uint] > 0 then
+    assemblyString += " + " + [[mOffset uint] hexString]
+  end
+#--- 
+  [inRegisterTable searchKey !mRegisterName ?var @uintlist registerAddressList ?var @uint size ?* ?*]
+  [registerAddressList first ?var @uint registerAddress]
+#---
+  if [mOffset uint] > size then
+    error mOffset: "this offset is too large: should be lower than " + [size string]
+  end
+#---
+  outIPICregisterDescription = @ipic18_intermediate_registerExpressionWithoutBSRIndication. new {
+    !assemblyString
+    !registerAddress + [mOffset uint]}
+}
+
+#----------------------------------------------------------------------------*
+
+getter @registerExpression getRegisterAddress
+  ?let @registerTable inRegisterTable
+  -> @uint outRegisterAddress {
+  [inRegisterTable searchKey !mRegisterName ?var @uintlist registerAddressList ?var @uint size ?* ?*]
+  [registerAddressList first ?outRegisterAddress]
+#---
+  if [mOffset uint] > size then
+    error mOffset: "this offset is too large: should be lower than " + [size string]
+  end
+}
+
+#----------------------------------------------------------------------------*
+
+#!--- Simple Instruction analysis
+
+#----------------------------------------------------------------------------*
+
+abstract method @pic18PiccoloSimpleInstruction analyzeSimpleInstruction
+  ?let @uint unused inAccessBankSplitOffset
+  ?let @routineMap unused inRoutineMap
+  ?let @registerTable unused inRegisterTable
+  ?let @pic18_dataMap unused inDataMap
+  ?let @constantMap unused inConstantMap
+  ?!@uint unused ioCurrentBank
+  ?let @bool unused inShouldPreserveBSR
+  ?!@stringset ioUsedRegisters
+  !@ipic18SequentialInstruction outInstruction
+
+#----------------------------------------------------------------------------*
+
+override method @pic18Instruction_withNoOperand analyzeSimpleInstruction
+  ?let @uint unused inAccessBankSplitOffset
+  ?let @routineMap unused inRoutineMap
+  ?let @registerTable unused inRegisterTable
+  ?let @pic18_dataMap unused inDataMap
+  ?let @constantMap unused inConstantMap
+  ?!@uint unused ioCurrentBank
+  ?let @bool unused inShouldPreserveBSR
+  ?!@stringset unused ioUsedRegisters
+  !@ipic18SequentialInstruction outInstruction {
+  outInstruction = @ipic18InstructionWithNoOperand. new {
+    !mInstructionLocation
+    !mKind}
+}
+
+#----------------------------------------------------------------------------*
+
+override method @pic18Instruction_FDA analyzeSimpleInstruction
+  ?let @uint inAccessBankSplitOffset
+  ?let @routineMap unused inRoutineMap
+  ?let @registerTable inRegisterTable
+  ?let @pic18_dataMap unused inDataMap
+  ?let @constantMap unused inConstantMap
+  ?!@uint ioCurrentBank
+  ?let @bool unused inShouldPreserveBSR
+  ?!@stringset ioUsedRegisters
+  !@ipic18SequentialInstruction outInstruction {
+  [mRegisterExpression analyzeRegisterExpression
+    !inAccessBankSplitOffset
+    !ioCurrentBank
+    !inRegisterTable
+    ?var @ipic18_intermediate_registerExpression IPICregisterDescription
+    ?*
+    !?ioUsedRegisters
+  ]
+  outInstruction = @ipic18_intermediate_instruction_FDA. new {
+    !mInstructionLocation
+    !mInstruction_FDA_base_code
+    !IPICregisterDescription
+    !m_W_isDestination}
+}
+
+#----------------------------------------------------------------------------*
+
+override method @pic18Instruction_FA analyzeSimpleInstruction
+  ?let @uint inAccessBankSplitOffset
+  ?let @routineMap unused inRoutineMap
+  ?let @registerTable inRegisterTable
+  ?let @pic18_dataMap unused inDataMap
+  ?let @constantMap unused inConstantMap
+  ?!@uint ioCurrentBank
+  ?let @bool unused inShouldPreserveBSR
+  ?!@stringset ioUsedRegisters
+  !@ipic18SequentialInstruction outInstruction {
+  [mRegisterExpression analyzeRegisterExpression
+    !inAccessBankSplitOffset
+    !ioCurrentBank
+    !inRegisterTable
+    ?var @ipic18_intermediate_registerExpression IPICregisterDescription
+    ?*
+    !?ioUsedRegisters
+  ]
+  @FA_sequential_instruction_base_code code
+  switch mFAinstruction
+  case CLRF : code = @FA_sequential_instruction_base_code. CLRF
+  case MOVWF : code = @FA_sequential_instruction_base_code. MOVWF
+  case MULWF : code = @FA_sequential_instruction_base_code. MULWF
+  case NEGF : code = @FA_sequential_instruction_base_code. NEGF
+  case SETF : code = @FA_sequential_instruction_base_code. SETF
+  case CPFSEQ, CPFSGT, CPFSLT, TSTFSZ :
+    error @location. nowhere : "*** INTERNAL ERROR ***" : code
+  end
+  outInstruction = @ipic18_intermediate_instruction_FA. new {
+    !mInstructionLocation
+    !code
+    !IPICregisterDescription}
+}
+
+#----------------------------------------------------------------------------*
+
+override method @pic18Instruction_MOVFF analyzeSimpleInstruction
+  ?let @uint unused inAccessBankSplitOffset
+  ?let @routineMap unused inRoutineMap
+  ?let @registerTable inRegisterTable
+  ?let @pic18_dataMap unused inDataMap
+  ?let @constantMap unused inConstantMap
+  ?!@uint unused ioCurrentBank
+  ?let @bool unused inShouldPreserveBSR
+  ?!@stringset ioUsedRegisters
+  !@ipic18SequentialInstruction outInstruction {
+  [mSourceRegisterName analyzeRegisterExpressionWithoutCheckingBank
+    !inRegisterTable
+    ?var @ipic18_intermediate_registerExpressionWithoutBSRIndication sourceIPICregisterDescription
+    !?ioUsedRegisters
+  ]
+  [mDestinationRegisterName analyzeRegisterExpressionWithoutCheckingBank
+    !inRegisterTable
+    ?var @ipic18_intermediate_registerExpressionWithoutBSRIndication destinationIPICregisterDescription
+    !?ioUsedRegisters
+  ]
+  outInstruction = @ipic18_intermediate_instruction_MOVFF. new {
+    !mInstructionLocation
+    !sourceIPICregisterDescription
+    !destinationIPICregisterDescription}
+}
+
+#----------------------------------------------------*
+
+override method @pic18Instruction_FBA analyzeSimpleInstruction
+  ?let @uint inAccessBankSplitOffset
+  ?let @routineMap unused inRoutineMap
+  ?let @registerTable inRegisterTable
+  ?let @pic18_dataMap unused inDataMap
+  ?let @constantMap unused inConstantMap
+  ?!@uint ioCurrentBank
+  ?let @bool unused inShouldPreserveBSR
+  ?!@stringset ioUsedRegisters
+  !@ipic18SequentialInstruction outInstruction {
+  [mRegisterExpression analyzeRegisterExpression
+    !inAccessBankSplitOffset
+    !ioCurrentBank
+    !inRegisterTable
+    ?var @ipic18_intermediate_registerExpression IPICregisterDescription
+    ?var @bitSliceTable bitSliceTable
+    !?ioUsedRegisters
+  ]
+  [mBitNumber getBitNumber
+    !bitSliceTable
+    ?var @uint bitNumber
+  ]
+  outInstruction = @ipic18_intermediate_instruction_FBA. new {
+    !mInstructionLocation
+    !mBitOrientedOp
+    !IPICregisterDescription
+    !bitNumber}
+}
+
+#----------------------------------------------------*
+
+override method @pic18Instruction_literalOperation analyzeSimpleInstruction
+  ?let @uint unused inAccessBankSplitOffset
+  ?let @routineMap unused inRoutineMap
+  ?let @registerTable inRegisterTable
+  ?let @pic18_dataMap unused inDataMap
+  ?let @constantMap inConstantMap
+  ?!@uint unused ioCurrentBank
+  ?let @bool unused inShouldPreserveBSR
+  ?!@stringset ioUsedRegisters
+  !@ipic18SequentialInstruction outInstruction {
+  [mImmediatExpression eval !inRegisterTable !inConstantMap ?let @sint64 result !?ioUsedRegisters]
+#---
+   if (result > 255LS) | (result < -128LS) then
+     error mInstructionLocation:"immediate value is evaluated as " + [result string] + " (should be between -128 and 255)"
+   end
+#---  
+  outInstruction = @ipic18_intermediate_instruction_literalOperation. new {
+    !mInstructionLocation
+    !mLiteralInstruction
+    ![result & 0x000000FFS uint]}
+}
+
+#----------------------------------------------------*
+
+override method @pic18Instruction_fnop analyzeSimpleInstruction
+  ?let @uint unused inAccessBankSplitOffset
+  ?let @routineMap unused inRoutineMap
+  ?let @registerTable inRegisterTable
+  ?let @pic18_dataMap unused inDataMap
+  ?let @constantMap inConstantMap
+  ?!@uint unused ioCurrentBank
+  ?let @bool unused inShouldPreserveBSR
+  ?!@stringset ioUsedRegisters
+  !@ipic18SequentialInstruction outInstruction {
+  [mImmediatExpression eval !inRegisterTable !inConstantMap ?let @sint64 result !?ioUsedRegisters]
+#---
+   if (result > 0xFFFLS) | (result < 0LS) then
+     error mInstructionLocation:"immediate value is evaluated as " + [result string] + " (should be between 0 and 4095)"
+   end
+#---  
+  outInstruction = @ipic18_intermediate_instruction_FNOP. new {
+    !mInstructionLocation
+    ![result uint]}
+}
+
+#----------------------------------------------------*
+
+override method @pic18Instruction_LFSR analyzeSimpleInstruction
+  ?let @uint unused inAccessBankSplitOffset
+  ?let @routineMap unused inRoutineMap
+  ?let @registerTable inRegisterTable
+  ?let @pic18_dataMap unused inDataMap
+  ?let @constantMap inConstantMap
+  ?!@uint unused ioCurrentBank
+  ?let @bool unused inShouldPreserveBSR
+  ?!@stringset ioUsedRegisters
+  !@ipic18SequentialInstruction outInstruction {
+  if [mFSRindex uint] > 2 then
+    error mFSRindex:"the LFSR register idx (" + [[mFSRindex uint] string] + ") should be lower or equal to 2"
+  end
+#---
+  [mImmediatExpression eval !inRegisterTable !inConstantMap ?let @sint64 result !?ioUsedRegisters]
+#---
+  if (result > 0xFFFLS) | (result < 0LS) then
+    error mInstructionLocation:"immediate value is evaluated as " + [result string] + " (should be between 0 and 4095)"
+  end
+  outInstruction = @ipic18_intermediate_instruction_LFSR. new {
+    !mInstructionLocation
+    !mFSRindex
+    ![result uint]}
+}
+
+#----------------------------------------------------*
+
+override method @pic18Instruction_JSR analyzeSimpleInstruction
+  ?let @uint unused inAccessBankSplitOffset
+  ?let @routineMap inRoutineMap
+  ?let @registerTable unused inRegisterTable
+  ?let @pic18_dataMap unused inDataMap
+  ?let @constantMap unused inConstantMap
+  ?!@uint ioCurrentBank
+  ?let @bool inShouldPreserveBSR
+  ?!@stringset unused ioUsedRegisters
+  !@ipic18SequentialInstruction outInstruction {
+#--- Check instruction
+  [inRoutineMap searchKey !mTargetLabel ?let @bool isNoReturn ?let @uint requiredBank ?let @uint returnedBank ?let @bool preservesBank]
+  if (requiredBank != @uint. max) & (requiredBank != ioCurrentBank) then
+    @string errorMessage = "the routine '" + mTargetLabel + "' requires bank selection to be set to " + [requiredBank string]
+    errorMessage += ", but bank selection "
+    if ioCurrentBank == @uint. max then
+      errorMessage += "is not defined"
+    else
+      errorMessage += "is set to " + [ioCurrentBank string]
+    end
+    error mTargetLabel:errorMessage
+  end
+  if isNoReturn then
+    error mTargetLabel:"a \"noreturn\" routine should be called with a BRA, GOTO, Bcc or JUMP instruction"
+  end
+  if not preservesBank then
+    ioCurrentBank = returnedBank
+    if inShouldPreserveBSR then
+      error mTargetLabel:"the routine call should preserve bank selection"
+    end
+  end
+#---
+  outInstruction = @ipic18_intermediate_JSR. new {
+    !mInstructionLocation
+    !mTargetLabel
+    !mKind}
+}
+
+#----------------------------------------------------------------------------*
+
+#!--- Instruction analysis
+
+#----------------------------------------------------------------------------*
+
+abstract method @pic18PiccoloInstruction analyze
+  ?let @uint inAccessBankSplitOffset
+  ?!@ipic18BlockList ioGeneratedBlockList
+  ?let @routineMap inRoutineMap
+  ?let @registerTable inRegisterTable
+  ?let @pic18_dataMap inDataMap
+  ?let @constantMap inConstantMap
+  ?!@uint ioLocalLabelIndex
+  ?!@ipic18SequentialInstructionList ioGeneratedInstructionList
+  ?!@lstring ioBlockLabel
+  ?!@string ioListFileContents
+  ?!@uint ioCurrentBank
+  ?let @bool inShouldPreserveBSR
+  ?let @routineKind inRoutineKind
+  ?!@stringset ioUsedRegisters
+
+#----------------------------------------------------*
+
+override method @pic18Instruction_checkbank analyze
+  ?let @uint unused inAccessBankSplitOffset
+  ?!@ipic18BlockList unused ioGeneratedBlockList
+  ?let @routineMap unused inRoutineMap
+  ?let @registerTable unused inRegisterTable
+  ?let @pic18_dataMap unused inDataMap
+  ?let @constantMap unused inConstantMap
+  ?!@uint unused ioLocalLabelIndex
+  ?!@ipic18SequentialInstructionList unused ioGeneratedInstructionList
+  ?!@lstring unused ioBlockLabel
+  ?!@string unused ioListFileContents
+  ?!@uint ioCurrentBank
+  ?let @bool unused inShouldPreserveBSR
+  ?let @routineKind unused inRoutineKind
+  ?!@stringset unused ioUsedRegisters {
+#--- Check instruction
+  if mBankIndex > 15 then
+    error mInstructionLocation:"Bank index should be <= 15"
+  elsif ioCurrentBank == @uint. max then
+    error mInstructionLocation:"checkbank fail: there is no selected bank"
+  elsif ioCurrentBank != mBankIndex then
+    error mInstructionLocation:"checkbank fail: the selected bank is " + ioCurrentBank + ", required bank is " + mBankIndex
+  end
+  ioCurrentBank = mBankIndex
+}
+
+#----------------------------------------------------*
+
+override method @pic18Instruction_checknobank analyze
+  ?let @uint unused inAccessBankSplitOffset
+  ?!@ipic18BlockList unused ioGeneratedBlockList
+  ?let @routineMap unused inRoutineMap
+  ?let @registerTable unused inRegisterTable
+  ?let @pic18_dataMap unused inDataMap
+  ?let @constantMap unused inConstantMap
+  ?!@uint unused ioLocalLabelIndex
+  ?!@ipic18SequentialInstructionList unused ioGeneratedInstructionList
+  ?!@lstring unused ioBlockLabel
+  ?!@string unused ioListFileContents
+  ?!@uint ioCurrentBank
+  ?let @bool unused inShouldPreserveBSR
+  ?let @routineKind unused inRoutineKind
+  ?!@stringset unused ioUsedRegisters {
+#--- Check instruction
+  if ioCurrentBank != @uint. max then
+    error mInstructionLocation:"checknobank fail: the " + ioCurrentBank + " bank is selected"
+    ioCurrentBank = @uint. max
+  end
+}
+
+#----------------------------------------------------------------------------*
+
+override method @pic18PiccoloSimpleInstruction analyze
+  ?let @uint inAccessBankSplitOffset
+  ?!@ipic18BlockList unused ioGeneratedBlockList
+  ?let @routineMap inRoutineMap
+  ?let @registerTable inRegisterTable
+  ?let @pic18_dataMap inDataMap
+  ?let @constantMap inConstantMap
+  ?!@uint unused ioLocalLabelIndex
+  ?!@ipic18SequentialInstructionList ioGeneratedInstructionList
+  ?!@lstring unused ioBlockLabel
+  ?!@string unused ioListFileContents
+  ?!@uint ioCurrentBank
+  ?let @bool inShouldPreserveBSR
+  ?let @routineKind unused inRoutineKind
+  ?!@stringset ioUsedRegisters {
+  [self analyzeSimpleInstruction
+    !inAccessBankSplitOffset
+    !inRoutineMap
+    !inRegisterTable
+    !inDataMap
+    !inConstantMap
+    !?ioCurrentBank
+    !inShouldPreserveBSR
+    !?ioUsedRegisters
+    ?let @ipic18SequentialInstruction instruction
+  ]
+  ioGeneratedInstructionList += !instruction
+}
+
+#----------------------------------------------------*
+
+override method @pic18Instruction_FOREVER analyze
+  ?let @uint inAccessBankSplitOffset
+  ?!@ipic18BlockList ioGeneratedBlockList
+  ?let @routineMap inRoutineMap
+  ?let @registerTable inRegisterTable
+  ?let @pic18_dataMap inDataMap
+  ?let @constantMap inConstantMap
+  ?!@uint ioLocalLabelIndex
+  ?!@ipic18SequentialInstructionList ioGeneratedInstructionList
+  ?!@lstring ioBlockLabel
+  ?!@string ioListFileContents
+  ?!@uint ioCurrentBank
+  ?let @bool inShouldPreserveBSR
+  ?let @routineKind inRoutineKind
+  ?!@stringset ioUsedRegisters {
+  switch inRoutineKind
+  case regularRoutine :
+    error mInstructionLocation:"a regular routine does not accept the \"forever\" instruction"
+  case noReturnRoutine : # ok
+  case interruptRoutine :
+    error mInstructionLocation:"an interrupt routine does not accept the \"forever\" instruction"
+  end
+  let @uint finalBank = ioCurrentBank
+#--- Get loop label
+  let loopLabel = @lstring.new { !".L" + ioLocalLabelIndex !mInstructionLocation} 
+  ioLocalLabelIndex ++
+#--- Store current block
+  ioGeneratedBlockList += !@ipic18Block. new {
+    !@uint. max # relocatable
+    !ioBlockLabel
+    !ioGeneratedInstructionList
+    !@ipic18JumpTerminator. new { !mInstructionLocation !loopLabel !@jumpInstructionKind. ipicRelative}}
+#--- Analyze instruction list
+  ioGeneratedInstructionList = @ipic18SequentialInstructionList. emptyList
+  ioBlockLabel = loopLabel
+  analyzeInstructionList (
+    !mInstructionList
+    !?ioGeneratedBlockList
+    !inAccessBankSplitOffset
+    !inRoutineMap
+    !inRegisterTable
+    !inDataMap
+    !inConstantMap
+    !?ioLocalLabelIndex
+    !?ioGeneratedInstructionList
+    !?ioBlockLabel
+    !?ioListFileContents
+    !?ioCurrentBank
+    !inShouldPreserveBSR
+    !inRoutineKind
+    !?ioUsedRegisters
+  )
+#--- Check instruction list does not change bank
+  if ioBlockLabel.string == "" then
+    error mEndOfInstructionList:"\"forever\" instruction list execution is endless"
+  else
+    ioGeneratedBlockList += !@ipic18Block. new {
+      !@uint. max # relocatable
+      !ioBlockLabel
+      !ioGeneratedInstructionList
+      !@ipic18JumpTerminator. new { !mInstructionLocation !loopLabel !@jumpInstructionKind. ipicRelative}}
+  end
+#--- Check instruction list does not change bank
+  if ioCurrentBank != finalBank then
+    error mEndOfInstructionList:"\"forever\" instruction list does not leave bank selection unchanged"
+  end
+#--- Indicate next code is not reacheable
+  ioBlockLabel = ["" nowhere]
+}
+
+#----------------------------------------------------*
+
+override method @pic18Instruction_nobanksel analyze
+  ?let @uint unused inAccessBankSplitOffset
+  ?!@ipic18BlockList unused ioGeneratedBlockList
+  ?let @routineMap unused inRoutineMap
+  ?let @registerTable unused inRegisterTable
+  ?let @pic18_dataMap unused inDataMap
+  ?let @constantMap unused inConstantMap
+  ?!@uint unused ioLocalLabelIndex
+  ?!@ipic18SequentialInstructionList unused ioGeneratedInstructionList
+  ?!@lstring unused ioBlockLabel
+  ?!@string unused ioListFileContents
+  ?!@uint ioCurrentBank
+  ?let @bool inShouldPreserveBSR
+  ?let @routineKind unused inRoutineKind
+  ?!@stringset unused ioUsedRegisters {
+  if inShouldPreserveBSR then
+    error mInstructionLocation: "cannot use \"nobank\" here: bank selection should be preserved (use it in a \"banksave\" construct)"
+  end
+  ioCurrentBank = @uint. max
+#--- Generates no code
+}
+
+#----------------------------------------------------*
+
+override method @pic18Instruction_savebank analyze
+  ?let @uint inAccessBankSplitOffset
+  ?!@ipic18BlockList ioGeneratedBlockList
+  ?let @routineMap inRoutineMap
+  ?let @registerTable inRegisterTable
+  ?let @pic18_dataMap inDataMap
+  ?let @constantMap inConstantMap
+  ?!@uint ioLocalLabelIndex
+  ?!@ipic18SequentialInstructionList ioGeneratedInstructionList
+  ?!@lstring ioBlockLabel
+  ?!@string ioListFileContents
+  ?!@uint ioCurrentBank
+  ?let @bool unused inShouldPreserveBSR
+  ?let @routineKind inRoutineKind
+  ?!@stringset ioUsedRegisters {
+#--- Get values for BSR register
+  let BSRregister = @registerExpression.new { !@lstring. new { !"BSR" !@location.here} !@luint. new { !0 !@location.here}}
+  [BSRregister analyzeRegisterExpressionWithoutCheckingBank
+    !inRegisterTable
+    ?var @ipic18_intermediate_registerExpressionWithoutBSRIndication BSR_IPICregisterDescription
+    !?ioUsedRegisters
+  ]
+#--- Get values for register used for saving
+  [mRegister analyzeRegisterExpressionWithoutCheckingBank
+    !inRegisterTable
+    ?var @ipic18_intermediate_registerExpressionWithoutBSRIndication save_IPICregisterDescription
+    !?ioUsedRegisters
+  ]
+#--- Generate "MOVFF BSR, save_register" instruction
+  ioGeneratedInstructionList += !@ipic18_intermediate_instruction_MOVFF. new {
+    !mInstructionLocation
+    !BSR_IPICregisterDescription
+    !save_IPICregisterDescription}
+#--- Generate instruction list
+  @uint finalBank = ioCurrentBank
+  analyzeInstructionList (
+    !mInstructionList
+    !?ioGeneratedBlockList
+    !inAccessBankSplitOffset
+    !inRoutineMap
+    !inRegisterTable
+    !inDataMap
+    !inConstantMap
+    !?ioLocalLabelIndex
+    !?ioGeneratedInstructionList
+    !?ioBlockLabel
+    !?ioListFileContents
+    !?finalBank
+    !false # Do not preserve bank now
+    !inRoutineKind 
+    !?ioUsedRegisters
+  )
+  if ioBlockLabel.string == "" then
+    error mEndOfSaveBankInstruction:"useless saving: execution does not reach the end of \"savebank\" instruction list"
+  end
+#--- Generate "MOVFF save_register, BSR" instruction
+  ioGeneratedInstructionList += !@ipic18_intermediate_instruction_MOVFF. new {
+    !mInstructionLocation
+    !save_IPICregisterDescription
+    !BSR_IPICregisterDescription}
+}
+#----------------------------------------------------*
+
+override method @pic18Instruction_repetitionStatique analyze
+  ?let @uint inAccessBankSplitOffset
+  ?!@ipic18BlockList ioGeneratedBlockList
+  ?let @routineMap inRoutineMap
+  ?let @registerTable inRegisterTable
+  ?let @pic18_dataMap inDataMap
+  ?let @constantMap inConstantMap
+  ?!@uint ioLocalLabelIndex
+  ?!@ipic18SequentialInstructionList ioGeneratedInstructionList
+  ?!@lstring ioBlockLabel
+  ?!@string ioListFileContents
+  ?!@uint ioCurrentBank
+  ?let @bool unused inShouldPreserveBSR
+  ?let @routineKind inRoutineKind
+  ?!@stringset ioUsedRegisters {
+#--- Solve immediat expression
+  [mRepeatExpression eval !inRegisterTable !inConstantMap ?let @sint64 repeatCount !?ioUsedRegisters]
+#---
+  if (repeatCount > 0xFF_FFFF_LS) | (repeatCount <= 0LS) then
+    error mInstructionLocation:"immediate value is evaluated as " + repeatCount + " (should be > 0 and <= 0xFF_FFFF)"
+  end
+#--- Generate instruction list (first pass)
+  @uint finalBank = ioCurrentBank
+  analyzeInstructionList (
+    !mInstructionList
+    !?ioGeneratedBlockList
+    !inAccessBankSplitOffset
+    !inRoutineMap
+    !inRegisterTable
+    !inDataMap
+    !inConstantMap
+    !?ioLocalLabelIndex
+    !?ioGeneratedInstructionList
+    !?ioBlockLabel
+    !?ioListFileContents
+    !?finalBank
+    !true # Preserve bank now
+    !inRoutineKind 
+    !?ioUsedRegisters
+  )
+  if ioBlockLabel.string == "" then
+    error mEndOfInstruction:"useless do: execution does not reach the end of enclosed instruction list"
+  end
+  if finalBank != ioCurrentBank then
+    error mEndOfInstruction:"enclosed instruction list should not modify bank selection"
+  end
+#--- Generate instruction list (other passes)
+  for idx in @range. new { !0 ![repeatCount-1S uint]} while @uint. errorCount == 0 do
+    analyzeInstructionList (
+      !mInstructionList
+      !?ioGeneratedBlockList
+      !inAccessBankSplitOffset
+      !inRoutineMap
+      !inRegisterTable
+      !inDataMap
+      !inConstantMap
+      !?ioLocalLabelIndex
+      !?ioGeneratedInstructionList
+      !?ioBlockLabel
+      !?ioListFileContents
+      !?ioCurrentBank
+      !true # Preserve bank now
+      !inRoutineKind 
+      !?ioUsedRegisters
+    )
+  end
+}
+
+#----------------------------------------------------*
+
+override method @pic18Instruction_banksel analyze
+  ?let @uint unused inAccessBankSplitOffset
+  ?!@ipic18BlockList unused ioGeneratedBlockList
+  ?let @routineMap unused inRoutineMap
+  ?let @registerTable unused inRegisterTable
+  ?let @pic18_dataMap unused inDataMap
+  ?let @constantMap unused inConstantMap
+  ?!@uint unused ioLocalLabelIndex
+  ?!@ipic18SequentialInstructionList ioGeneratedInstructionList
+  ?!@lstring unused ioBlockLabel
+  ?!@string unused ioListFileContents
+  ?!@uint ioCurrentBank
+  ?let @bool inShouldPreserveBSR
+  ?let @routineKind unused inRoutineKind
+  ?!@stringset unused ioUsedRegisters {
+  if inShouldPreserveBSR then
+    error mInstructionLocation: "cannot use \"banksel\" here: bank selection should be preserved (use \"banksave\" instruction)"
+  end
+  if [mBankIndex uint] > 15 then
+    error mBankIndex:"selected bank idx should be lower or equal to 15"
+    ioCurrentBank = @uint. max # No selected bank
+  elsif [mBankIndex uint] != ioCurrentBank then
+    ioCurrentBank = [mBankIndex uint]
+    ioGeneratedInstructionList += !@ipic18_intermediate_instruction_MOVLB. new { !mInstructionLocation !mBankIndex}
+  elsif mWarningOnUselessBanksel then
+    warning mBankIndex:"useless instruction: the bank " + [ioCurrentBank string] + " is already selected"
+  end
+}
+
+#----------------------------------------------------*
+
+override method @pic18Instruction_banksel_register analyze
+  ?let @uint unused inAccessBankSplitOffset
+  ?!@ipic18BlockList unused ioGeneratedBlockList
+  ?let @routineMap unused inRoutineMap
+  ?let @registerTable inRegisterTable
+  ?let @pic18_dataMap unused inDataMap
+  ?let @constantMap unused inConstantMap
+  ?!@uint unused ioLocalLabelIndex
+  ?!@ipic18SequentialInstructionList ioGeneratedInstructionList
+  ?!@lstring unused ioBlockLabel
+  ?!@string unused ioListFileContents
+  ?!@uint ioCurrentBank
+  ?let @bool inShouldPreserveBSR
+  ?let @routineKind unused inRoutineKind
+  ?!@stringset unused ioUsedRegisters {
+  if inShouldPreserveBSR then
+    error mInstructionLocation: "cannot use \"banksel\" here: bank selection should be preserved (use \"banksave\" instruction)"
+  end
+  let @uint registerAddress = [mRegisterExpression getRegisterAddress !inRegisterTable]
+  let @uint newBank = registerAddress >> 8
+  if ioCurrentBank != newBank then
+    ioCurrentBank = newBank
+    ioGeneratedInstructionList += !@ipic18_intermediate_instruction_MOVLB. new {
+      !mInstructionLocation
+      !@luint. new { !newBank ![mRegisterExpression mRegisterName].location}}
+  elsif mWarningOnUselessBanksel then
+    warning [mRegisterExpression mRegisterName]:"useless instruction: the bank " + newBank + " is already selected"
+  end
+}
+
+#----------------------------------------------------*
+
+override method @pic18Instruction_TBLRD analyzeSimpleInstruction
+  ?let @uint unused inAccessBankSplitOffset
+  ?let @routineMap unused inRoutineMap
+  ?let @registerTable unused inRegisterTable
+  ?let @pic18_dataMap unused inDataMap
+  ?let @constantMap unused inConstantMap
+  ?!@uint unused ioCurrentBank
+  ?let @bool unused inShouldPreserveBSR
+  ?!@stringset unused ioUsedRegisters
+  !@ipic18SequentialInstruction outInstruction {
+  outInstruction = @ipic18_intermediate_instruction_TBLRD. new {
+    !mInstructionLocation
+    !mOption}
+}
+
+#----------------------------------------------------*
+
+override method @pic18Instruction_TBLWT analyzeSimpleInstruction
+  ?let @uint unused inAccessBankSplitOffset
+  ?let @routineMap unused inRoutineMap
+  ?let @registerTable unused inRegisterTable
+  ?let @pic18_dataMap unused inDataMap
+  ?let @constantMap unused inConstantMap
+  ?!@uint unused ioCurrentBank
+  ?let @bool unused inShouldPreserveBSR
+  ?!@stringset unused ioUsedRegisters
+  !@ipic18SequentialInstruction outInstruction {
+  outInstruction = @ipic18_intermediate_instruction_TBLWT. new {
+    !mInstructionLocation
+    !mOption}
+}
+
+#----------------------------------------------------*
+
+override method @pic18Instruction_MNOP analyze
+  ?let @uint unused inAccessBankSplitOffset
+  ?!@ipic18BlockList unused ioGeneratedBlockList
+  ?let @routineMap unused inRoutineMap
+  ?let @registerTable unused inRegisterTable
+  ?let @pic18_dataMap unused inDataMap
+  ?let @constantMap unused inConstantMap
+  ?!@uint unused ioLocalLabelIndex
+  ?!@ipic18SequentialInstructionList ioGeneratedInstructionList
+  ?!@lstring unused ioBlockLabel
+  ?!@string unused ioListFileContents
+  ?!@uint unused ioCurrentBank
+  ?let @bool unused inShouldPreserveBSR
+  ?let @routineKind unused inRoutineKind
+  ?!@stringset unused ioUsedRegisters {
+#---
+  if [mOccurrenceFactor uint] == 0 then
+    warning mOccurrenceFactor:"occurrence argument is zero: no generated code"
+  end
+#---
+  ioGeneratedInstructionList += !@ipic18_intermediate_instruction_MNOP. new {
+    !mInstructionLocation
+    !mOccurrenceFactor}
+}
+
+#----------------------------------------------------*
+
+override method @pic18Instruction_LTBLPTR analyze
+  ?let @uint inAccessBankSplitOffset
+  ?!@ipic18BlockList unused ioGeneratedBlockList
+  ?let @routineMap unused inRoutineMap
+  ?let @registerTable inRegisterTable
+  ?let @pic18_dataMap unused inDataMap
+  ?let @constantMap inConstantMap
+  ?!@uint unused ioLocalLabelIndex
+  ?!@ipic18SequentialInstructionList ioGeneratedInstructionList
+  ?!@lstring unused ioBlockLabel
+  ?!@string unused ioListFileContents
+  ?!@uint ioCurrentBank
+  ?let @bool unused inShouldPreserveBSR
+  ?let @routineKind unused inRoutineKind
+  ?!@stringset ioUsedRegisters {
+  [mImmediatExpression eval !inRegisterTable !inConstantMap ?let @sint64 result !?ioUsedRegisters]
+#---
+  if (result > 0xFF_FFFF_LS) | (result < 0LS) then
+    error mInstructionLocation:"immediate value is evaluated as " + [result string] + " (should be between 0 and 0xFF_FFFF)"
+  end
+  let @uint address = [result uint]
+#--- Upper byte
+  let TBLPTRU = @registerExpression.new { !@lstring. new { !"TBLPTRU" !mInstructionLocation} !@luint. new { !0 !mInstructionLocation}}
+  [TBLPTRU analyzeRegisterExpression
+    !inAccessBankSplitOffset
+    !ioCurrentBank
+    !inRegisterTable
+    ?var @ipic18_intermediate_registerExpression outIPICregisterDescription
+    ?*
+    !?ioUsedRegisters
+  ]
+  let @uint upper = address >> 16
+  if upper == 0 then
+    ioGeneratedInstructionList += !@ipic18_intermediate_instruction_FA. new {
+      !mInstructionLocation
+      !@FA_sequential_instruction_base_code. CLRF
+      !outIPICregisterDescription}  
+  elsif upper == 0xFF then
+    ioGeneratedInstructionList += !@ipic18_intermediate_instruction_FA. new {
+      !mInstructionLocation
+      !@FA_sequential_instruction_base_code. SETF
+      !outIPICregisterDescription}  
+  else
+    ioGeneratedInstructionList += !@ipic18_intermediate_instruction_literalOperation. new {
+      !mInstructionLocation
+      !@literal_instruction_opcode. MOVLW
+      !upper}
+    ioGeneratedInstructionList += !@ipic18_intermediate_instruction_FA. new {
+      !mInstructionLocation
+      !@FA_sequential_instruction_base_code. MOVWF
+      !outIPICregisterDescription}  
+  end
+#--- High byte
+  let TBLPTRH = @registerExpression.new { !@lstring. new { !"TBLPTRH" !mInstructionLocation} !@luint. new { !0 !mInstructionLocation}}
+  [TBLPTRH analyzeRegisterExpression
+    !inAccessBankSplitOffset
+    !ioCurrentBank
+    !inRegisterTable
+    ?outIPICregisterDescription
+    ?*
+    !?ioUsedRegisters
+  ]
+  let @uint high = (address >> 8) & 0xFF
+  if high == 0 then
+    ioGeneratedInstructionList += !@ipic18_intermediate_instruction_FA. new {
+      !mInstructionLocation
+      !@FA_sequential_instruction_base_code. CLRF
+      !outIPICregisterDescription}  
+  elsif high == 0xFF then
+    ioGeneratedInstructionList += !@ipic18_intermediate_instruction_FA. new {
+      !mInstructionLocation
+      !@FA_sequential_instruction_base_code. SETF
+      !outIPICregisterDescription}  
+  else
+    ioGeneratedInstructionList += !@ipic18_intermediate_instruction_literalOperation. new {
+      !mInstructionLocation
+      !@literal_instruction_opcode. MOVLW
+      !high}
+    ioGeneratedInstructionList += !@ipic18_intermediate_instruction_FA. new {
+      !mInstructionLocation
+      !@FA_sequential_instruction_base_code. MOVWF
+      !outIPICregisterDescription}  
+  end
+#--- Low byte
+  let TBLPTRL = @registerExpression.new { !@lstring. new { !"TBLPTRL" !mInstructionLocation} !@luint. new { !0 !mInstructionLocation}}
+  [TBLPTRL analyzeRegisterExpression
+    !inAccessBankSplitOffset
+    !ioCurrentBank
+    !inRegisterTable
+    ?outIPICregisterDescription
+    ?*
+    !?ioUsedRegisters
+  ]
+  let @uint low = address & 0xFF
+  if low == 0 then
+    ioGeneratedInstructionList += !@ipic18_intermediate_instruction_FA. new {
+      !mInstructionLocation
+      !@FA_sequential_instruction_base_code. CLRF
+      !outIPICregisterDescription}  
+  elsif low == 0xFF then
+    ioGeneratedInstructionList += !@ipic18_intermediate_instruction_FA. new {
+      !mInstructionLocation
+      !@FA_sequential_instruction_base_code. SETF
+      !outIPICregisterDescription}  
+  else
+    ioGeneratedInstructionList += !@ipic18_intermediate_instruction_literalOperation. new {
+      !mInstructionLocation
+      !@literal_instruction_opcode. MOVLW
+      !low}
+    ioGeneratedInstructionList += !@ipic18_intermediate_instruction_FA. new {
+      !mInstructionLocation
+      !@FA_sequential_instruction_base_code. MOVWF
+      !outIPICregisterDescription}  
+  end
+}
+
+#----------------------------------------------------*
+
+override method @pic18Instruction_LDATAPTR analyze
+  ?let @uint inAccessBankSplitOffset
+  ?!@ipic18BlockList unused ioGeneratedBlockList
+  ?let @routineMap unused inRoutineMap
+  ?let @registerTable inRegisterTable
+  ?let @pic18_dataMap inDataMap
+  ?let @constantMap unused inConstantMap
+  ?!@uint unused ioLocalLabelIndex
+  ?!@ipic18SequentialInstructionList ioGeneratedInstructionList
+  ?!@lstring unused ioBlockLabel
+  ?!@string unused ioListFileContents
+  ?!@uint ioCurrentBank
+  ?let @bool unused inShouldPreserveBSR
+  ?let @routineKind unused inRoutineKind
+  ?!@stringset ioUsedRegisters {
+  [inDataMap searchKey !mDataName ?let @uintlist data]
+#--- Check index
+  if [mDataIndex uint] >= [data length] then
+    error mDataIndex: "index should be < " + [data length]
+  end
+#--- Upper byte
+  let TBLPTRU = @registerExpression.new { !@lstring. new { !"TBLPTRU" !mInstructionLocation} !@luint. new { !0 !mInstructionLocation}}
+  [TBLPTRU analyzeRegisterExpression
+    !inAccessBankSplitOffset
+    !ioCurrentBank
+    !inRegisterTable
+    ?var @ipic18_intermediate_registerExpression outIPICregisterDescription
+    ?*
+    !?ioUsedRegisters
+  ]
+  ioGeneratedInstructionList += !@ipic18_intermediate_MOV_LABEL_W. new {
+    !mInstructionLocation
+    !mDataName
+    ![mDataIndex uint] * 2
+    !16}
+  ioGeneratedInstructionList += !@ipic18_intermediate_instruction_FA. new {
+    !mInstructionLocation
+    !@FA_sequential_instruction_base_code. MOVWF
+    !outIPICregisterDescription}  
+#--- High byte
+  let TBLPTRH = @registerExpression.new { !@lstring. new { !"TBLPTRH" !mInstructionLocation} !@luint. new { !0 !mInstructionLocation}}
+  [TBLPTRH analyzeRegisterExpression
+    !inAccessBankSplitOffset
+    !ioCurrentBank
+    !inRegisterTable
+    ?outIPICregisterDescription
+    ?*
+    !?ioUsedRegisters
+  ]
+  ioGeneratedInstructionList += !@ipic18_intermediate_MOV_LABEL_W. new {
+    !mInstructionLocation
+    !mDataName
+    ![mDataIndex uint] * 2
+    !8}
+  ioGeneratedInstructionList += !@ipic18_intermediate_instruction_FA. new {
+    !mInstructionLocation
+    !@FA_sequential_instruction_base_code. MOVWF
+    !outIPICregisterDescription}  
+#--- Low byte
+  let TBLPTRL = @registerExpression.new { !@lstring. new { !"TBLPTRL" !mInstructionLocation} !@luint. new { !0 !mInstructionLocation}}
+  [TBLPTRL analyzeRegisterExpression
+    !inAccessBankSplitOffset
+    !ioCurrentBank
+    !inRegisterTable
+    ?outIPICregisterDescription
+    ?*
+    !?ioUsedRegisters
+  ]
+  ioGeneratedInstructionList += !@ipic18_intermediate_MOV_LABEL_W. new {
+    !mInstructionLocation
+    !mDataName
+    ![mDataIndex uint] * 2
+    !0}
+  ioGeneratedInstructionList += !@ipic18_intermediate_instruction_FA. new {
+    !mInstructionLocation
+    !@FA_sequential_instruction_base_code. MOVWF
+    !outIPICregisterDescription}  
+}
+
+#----------------------------------------------------*
+
+override method @pic18Instruction_JUMP analyze
+  ?let @uint unused inAccessBankSplitOffset
+  ?!@ipic18BlockList ioGeneratedBlockList
+  ?let @routineMap inRoutineMap
+  ?let @registerTable unused inRegisterTable
+  ?let @pic18_dataMap unused inDataMap
+  ?let @constantMap unused inConstantMap
+  ?!@uint unused ioLocalLabelIndex
+  ?!@ipic18SequentialInstructionList ioGeneratedInstructionList
+  ?!@lstring ioBlockLabel
+  ?!@string unused ioListFileContents
+  ?!@uint ioCurrentBank
+  ?let @bool unused inShouldPreserveBSR
+  ?let @routineKind unused inRoutineKind
+  ?!@stringset unused ioUsedRegisters {
+#--- Check instruction
+  [inRoutineMap searchKey !mTargetLabel ?let @bool isNoReturn ?let @uint requiredBank ?* ?*]
+  if (requiredBank != @uint. max) & (requiredBank != ioCurrentBank) then
+    @string errorMessage = "the routine '" + mTargetLabel + "' requires bank selection to be set to " + [requiredBank string]
+    errorMessage += ", but bank selection "
+    if ioCurrentBank == @uint. max then
+      errorMessage += "is not defined"
+    else
+      errorMessage += "is set to " + [ioCurrentBank string]
+    end
+    error mTargetLabel:errorMessage
+  end
+  if not isNoReturn then
+    error mTargetLabel:"a regular routine should be called with a RCALL, CALL or JSR instruction"
+  end
+#--- Build block
+  ioGeneratedBlockList += !@ipic18Block. new {
+    !@uint. max # relocatable
+    !ioBlockLabel
+    !ioGeneratedInstructionList
+    !@ipic18JumpTerminator. new { !mInstructionLocation !mTargetLabel !@jumpInstructionKind. ipicRelative}}
+  ioGeneratedInstructionList = @ipic18SequentialInstructionList. emptyList
+#--- No following code
+  ioBlockLabel = ["" nowhere]
+}
+
+#----------------------------------------------------*
+
+override method @pic18Instruction_computed_rcall analyze
+  ?let @uint unused inAccessBankSplitOffset
+  ?!@ipic18BlockList unused ioGeneratedBlockList
+  ?let @routineMap inRoutineMap
+  ?let @registerTable inRegisterTable
+  ?let @pic18_dataMap unused inDataMap
+  ?let @constantMap inConstantMap
+  ?!@uint unused ioLocalLabelIndex
+  ?!@ipic18SequentialInstructionList ioGeneratedInstructionList
+  ?!@lstring unused ioBlockLabel
+  ?!@string unused ioListFileContents
+  ?!@uint ioCurrentBank
+  ?let @bool inShouldPreserveBSR
+  ?let @routineKind unused inRoutineKind
+  ?!@stringset ioUsedRegisters {
+#---
+  @bool allPreserveBank = true
+  @bool someReturnsBank = false
+  @uint returnedBankSelection = ioCurrentBank
+  for () in  mTargetLabels do
+    [inRoutineMap searchKey !mValue ?let @bool isNoReturn ?let @uint requiredBank ?let @uint returnedBank ?let @bool preservesBank]
+    if (requiredBank != @uint. max) & (requiredBank != ioCurrentBank) then
+      @string errorMessage = "the routine '" + mValue + "' requires bank selection to be set to " + [requiredBank string]
+      errorMessage += ", but bank selection "
+      if ioCurrentBank == @uint. max then
+        errorMessage += "is not defined"
+      else
+        errorMessage += "is set to " + [ioCurrentBank string]
+      end
+      error mValue: errorMessage
+    end
+    if isNoReturn then
+      error mValue:"for being named in a computed rcall, the '" + mValue + "' routine should be declared without the \"noreturn\" qualifier"
+    end
+    if inShouldPreserveBSR & not preservesBank then
+      error mValue:"the '" + mValue + "' routine should preserved bank selection"
+    elsif (not inShouldPreserveBSR) & not preservesBank then
+      if not someReturnsBank then
+        returnedBankSelection = returnedBank
+        someReturnsBank = true
+      elsif returnedBankSelection != returnedBank then 
+        @string errorMessage = "the '" + mValue + "' routine returns "
+        if returnedBank == @uint. max then
+          errorMessage += "no bank selection"
+        else
+          errorMessage += "bank selection set to  "+ [returnedBank string]
+        end
+        errorMessage += ", but previous routine(s) return(s) "
+        if returnedBankSelection == @uint. max then
+          errorMessage += "no bank selection"
+        else
+          errorMessage += "bank selection set to  "+ [returnedBankSelection string]
+        end
+        error mValue: errorMessage
+      end
+    elsif (not inShouldPreserveBSR) & preservesBank then
+    end
+  end
+#---
+  ioCurrentBank = returnedBankSelection
+#---
+  [mSizeExpression eval !inRegisterTable !inConstantMap ?let @sint64 size !?ioUsedRegisters]
+  if size < 2LS then
+    error mInstructionLocation:"the computed range (" + [size string] + ") should be greater or equal to 2"
+  elsif size > 64LS then
+    error mInstructionLocation:"the computed range (" + [size string] + ") should be lower or equal to 64"
+  elsif [size uint] != [mTargetLabels length] then
+    error mInstructionLocation:"the routine name list length (" + [[mTargetLabels length] string] + ") should be equal to the computed range (" + [size string] + ")"
+  end
+#---
+  var targetInstructionList =@ipic18SequentialInstructionList.emptyList{}
+  for () in  mTargetLabels do
+    targetInstructionList += !@ipic18_intermediate_JSR. new { !mValue.location !mValue !@jumpInstructionKind. relative}
+  end
+#---
+  ioGeneratedInstructionList += !@ipic18_intermediate_instruction_computed_rcall. new {
+    !mInstructionLocation
+    !targetInstructionList
+    !mUsesRelativeCall}
+}
+
+#----------------------------------------------------*
+
+override method @pic18Instruction_computed_goto analyze
+  ?let @uint unused inAccessBankSplitOffset
+  ?!@ipic18BlockList ioGeneratedBlockList
+  ?let @routineMap inRoutineMap
+  ?let @registerTable inRegisterTable
+  ?let @pic18_dataMap unused inDataMap
+  ?let @constantMap inConstantMap
+  ?!@uint unused ioLocalLabelIndex
+  ?!@ipic18SequentialInstructionList ioGeneratedInstructionList
+  ?!@lstring ioBlockLabel
+  ?!@string unused ioListFileContents
+  ?!@uint ioCurrentBank
+  ?let @bool unused inShouldPreserveBSR
+  ?let @routineKind inRoutineKind
+  ?!@stringset ioUsedRegisters {
+#---
+  for () in  mTargetLabels do
+    [inRoutineMap searchKey !mValue ?let @bool isNoReturn ?let @uint requiredBank ?* ?*]
+    if (requiredBank != @uint. max) & (requiredBank != ioCurrentBank) then
+      @string errorMessage = "the routine '" + mValue + "' requires bank selection to be set to " + [requiredBank string]
+      errorMessage += ", but bank selection "
+      if ioCurrentBank == @uint. max then
+        errorMessage += "is not defined"
+      else
+        errorMessage += "is set to " + [ioCurrentBank string]
+      end
+      error mValue: errorMessage
+    end
+    if (@routineKind. regularRoutine != inRoutineKind) & not isNoReturn then
+      error mValue:"for being named in a computed goto, the '" + mValue + "' routine should be declared with the \"noreturn\" qualifier"
+  end
+  end
+  switch inRoutineKind
+  case regularRoutine : #ok
+  case noReturnRoutine : # ok
+  case interruptRoutine :
+    error mInstructionLocation:"an interrupt routine does not accept computed goto instruction"
+  end
+#---
+  [mSizeExpression eval !inRegisterTable !inConstantMap ?let @sint64 size !?ioUsedRegisters]
+  if size < 2LS then
+    error mInstructionLocation:"the computed range (" + [size string] + ") should be greater or equal to 2"
+  elsif size > 64LS then
+    error mInstructionLocation:"the computed range (" + [size string] + ") should be lower or equal to 64"
+  elsif [size uint] != [mTargetLabels length] then
+    error mInstructionLocation:"the routine name list length (" + [[mTargetLabels length] string] + ") should be equal to the computed range (" + [size string] + ")"
+  end
+#--- Build block
+  ioGeneratedBlockList += !@ipic18Block. new {
+    !@uint. max # relocatable
+    !ioBlockLabel
+    !ioGeneratedInstructionList
+    !@ipic18ComputedGotoTerminator. new {
+      !mInstructionLocation
+      !mTargetLabels
+      !mUsesRelativeCall}}
+  ioGeneratedInstructionList = @ipic18SequentialInstructionList. emptyList
+#--- No following code
+  ioBlockLabel = ["" nowhere]
+}
+
+#----------------------------------------------------*
+
+override method @pic18Instruction_computed_bra analyze
+  ?let @uint unused inAccessBankSplitOffset
+  ?!@ipic18BlockList ioGeneratedBlockList
+  ?let @routineMap inRoutineMap
+  ?let @registerTable inRegisterTable
+  ?let @pic18_dataMap unused inDataMap
+  ?let @constantMap inConstantMap
+  ?!@uint unused ioLocalLabelIndex
+  ?!@ipic18SequentialInstructionList ioGeneratedInstructionList
+  ?!@lstring ioBlockLabel
+  ?!@string unused ioListFileContents
+  ?!@uint ioCurrentBank
+  ?let @bool inShouldPreserveBSR
+  ?let @routineKind inRoutineKind
+  ?!@stringset ioUsedRegisters {
+#---
+  @bool allPreserveBankSetting = true
+  @bool allReturnBank = true
+  var returnedBankValue =@uint.max{}
+  for () in  mTargetLabels do
+    [inRoutineMap searchKey !mValue ?let @bool isNoReturn ?let @uint requiredBank ?let @uint returnedBank ?let @bool preservesBank]
+  #--- Check bank "requires"
+    if (requiredBank != @uint. max) & (requiredBank != ioCurrentBank) then
+      @string errorMessage = "the routine '" + mValue + "' requires bank selection to be set to " + [requiredBank string]
+      errorMessage += ", but bank selection "
+      if ioCurrentBank == @uint. max then
+        errorMessage += "is not defined"
+      else
+        errorMessage += "is set to " + [ioCurrentBank string]
+      end
+      error mValue: errorMessage
+    end    
+  #--- Check bank "preserved", "ensures"
+    if preservesBank then
+      allReturnBank = false
+    elsif (returnedBankValue != @uint. max) & (returnedBankValue != returnedBank) then
+      error mValue:"this routine ensures setting of bank '" + [returnedBank string] + "', but "
+      + "previous routine(s) ensure setting of bank '" + [returnedBankValue string] + "'."
+    else
+      allPreserveBankSetting = false
+      returnedBankValue = returnedBank
+    end
+    if (@routineKind. regularRoutine != inRoutineKind) & not isNoReturn then
+      error mValue:"for being named in a computed bra from a regular routine, the '" + mValue + "' routine should be declared without any \"noreturn\" qualifier"
+  end
+  end
+#---
+  if allReturnBank & not allPreserveBankSetting then
+    ioCurrentBank = returnedBankValue
+  elsif (not allReturnBank) & not allPreserveBankSetting then
+    error mInstructionLocation:"invoked routine should either all preserve bank, eihter return the same selected bank"
+  end
+  if inShouldPreserveBSR & not allPreserveBankSetting then
+    error mInstructionLocation:"invoked routine(s) do(es) not preserve bank selection"
+  end
+#---
+  switch inRoutineKind
+  case regularRoutine :
+  case noReturnRoutine : # ok
+  case interruptRoutine :
+    error mInstructionLocation:"an interrupt routine does not accept computed bra instruction"
+  end
+#---
+  [mSizeExpression eval !inRegisterTable !inConstantMap ?let @sint64 size !?ioUsedRegisters]
+  if size < 2LS then
+    error mInstructionLocation:"the computed range (" + [size string] + ") should be greater or equal to 2"
+  elsif size > 128LS then
+    error mInstructionLocation:"the computed range (" + [size string] + ") should be lower or equal to 128"
+  elsif [size uint] != [mTargetLabels length] then
+    error mInstructionLocation:"the routine name list length (" + [[mTargetLabels length] string] + ") should be equal to the computed range (" + [size string] + ")"
+  end
+#--- Build block
+  ioGeneratedBlockList += !@ipic18Block. new {
+    !@uint. max # relocatable
+    !ioBlockLabel
+    !ioGeneratedInstructionList
+    !@ipic18ComputedBraTerminator. new {
+      !mInstructionLocation
+      !mTargetLabels
+      !mUsesRelativeCall}}
+  ioGeneratedInstructionList = @ipic18SequentialInstructionList. emptyList
+#--- No following code
+  ioBlockLabel = ["" nowhere]
+}
+
+#----------------------------------------------------*
+
+override method @pic18Instruction_computed_retlw analyze
+  ?let @uint unused inAccessBankSplitOffset
+  ?!@ipic18BlockList ioGeneratedBlockList
+  ?let @routineMap unused inRoutineMap
+  ?let @registerTable inRegisterTable
+  ?let @pic18_dataMap unused inDataMap
+  ?let @constantMap inConstantMap
+  ?!@uint unused ioLocalLabelIndex
+  ?!@ipic18SequentialInstructionList ioGeneratedInstructionList
+  ?!@lstring ioBlockLabel
+  ?!@string unused ioListFileContents
+  ?!@uint unused ioCurrentBank
+  ?let @bool unused inShouldPreserveBSR
+  ?let @routineKind inRoutineKind
+  ?!@stringset ioUsedRegisters {
+  switch inRoutineKind
+  case regularRoutine : # ok
+  case noReturnRoutine :
+    error mInstructionLocation:"a \"noreturn\" routine does not accept computed retlw instruction"
+  case interruptRoutine :
+    error mInstructionLocation:"an interrupt routine does not accept computed retlw instruction"
+  end
+#---
+  [mSizeExpression eval !inRegisterTable !inConstantMap ?let @sint64 size !?ioUsedRegisters]
+  if size < 2LS then
+    error mInstructionLocation:"the computed range (" + [size string] + ") should be greater or equal to 2"
+  elsif size > 128LS then
+    error mInstructionLocation:"the computed range (" + [size string] + ") should be lower or equal to 128"
+  elsif [size uint] != [mImmediateExpressionList length] then
+    error mInstructionLocation:"the constant list length (" + [[mImmediateExpressionList length] string] + ") should be equal to the computed range (" + [size string] + ")"
+  end
+#--- 
+  var literalValues =@uintlist.emptyList{}
+  for () in  mImmediateExpressionList do(idx)
+    [mExpression eval !inRegisterTable !inConstantMap ?let @sint64 v !?ioUsedRegisters]
+    if (v > 255LS) | (v < -128LS) then
+      error mInstructionLocation:"immediate value with idx " + [idx string] + " is evaluated as " + [v string] + " (should be <= 255)"
+    end
+    literalValues += ![v & 0x000000FFS uint]
+  end
+#--- Build block
+  ioGeneratedBlockList += !@ipic18Block. new {
+    !@uint. max # relocatable
+    !ioBlockLabel
+    !ioGeneratedInstructionList
+    !@ipic18ComputedRETLWTerminator. new {
+      !mInstructionLocation
+      !literalValues
+      !mUsesRelativeCall}}
+  ioGeneratedInstructionList = @ipic18SequentialInstructionList. emptyList
+#--- No following code
+  ioBlockLabel = ["" nowhere]
+}
+
+#----------------------------------------------------*
+
+override method @pic18Instruction_JUMPCC analyze
+  ?let @uint unused inAccessBankSplitOffset
+  ?!@ipic18BlockList ioGeneratedBlockList
+  ?let @routineMap inRoutineMap
+  ?let @registerTable unused inRegisterTable
+  ?let @pic18_dataMap unused inDataMap
+  ?let @constantMap unused  inConstantMap
+  ?!@uint ioLocalLabelIndex
+  ?!@ipic18SequentialInstructionList ioGeneratedInstructionList
+  ?!@lstring ioBlockLabel
+  ?!@string unused ioListFileContents
+  ?!@uint ioCurrentBank
+  ?let @bool unused inShouldPreserveBSR
+  ?let @routineKind unused inRoutineKind
+  ?!@stringset unused ioUsedRegisters {
+  [inRoutineMap searchKey !mTargetLabel ?let @bool isNoReturn ?let @uint requiredBank ?* ?*]
+  if (requiredBank != @uint. max) & (requiredBank != ioCurrentBank) then
+    @string errorMessage = "the routine '" + mTargetLabel + "' requires bank selection to be set to " + [requiredBank string]
+    errorMessage += ", but bank selection "
+    if ioCurrentBank == @uint. max then
+      errorMessage += "is not defined"
+    else
+      errorMessage += "is set to " + [ioCurrentBank string]
+    end
+    error mTargetLabel:errorMessage
+  end
+  if not isNoReturn then
+    error mTargetLabel:"a regular routine should be called with a RCALL, CALL or JSR instruction"
+  end
+#---
+  @conditionalBranchMode mode
+  if mIsBcc then
+    mode = @conditionalBranchMode. native
+  else
+    mode = @conditionalBranchMode. ipicBRA
+  end
+#--- Create the continuation label
+  let label0 = @lstring.new { !".L" + [ioLocalLabelIndex string] !mInstructionLocation} 
+  ioLocalLabelIndex ++
+#--- Build block
+  ioGeneratedBlockList += !@ipic18Block. new {
+    !@uint. max # relocatable
+    !ioBlockLabel
+    !ioGeneratedInstructionList
+    !@ipic18ConditionalJumpTerminator. new {
+      !mInstructionLocation
+      !mConditionalBranch
+      !mTargetLabel
+      !mode
+      !label0
+      !mode}}
+  ioGeneratedInstructionList = @ipic18SequentialInstructionList. emptyList
+#--- Set label for following block
+  ioBlockLabel = label0
+}
+
+#----------------------------------------------------*
+
+override method @pic18Instruction_IF_BitTest analyze
+  ?let @uint inAccessBankSplitOffset
+  ?!@ipic18BlockList unused ioGeneratedBlockList
+  ?let @routineMap inRoutineMap
+  ?let @registerTable inRegisterTable
+  ?let @pic18_dataMap inDataMap
+  ?let @constantMap inConstantMap
+  ?!@uint unused ioLocalLabelIndex
+  ?!@ipic18SequentialInstructionList ioGeneratedInstructionList
+  ?!@lstring unused ioBlockLabel
+  ?!@string unused ioListFileContents
+  ?!@uint ioCurrentBank
+  ?let @bool inShouldPreserveBSR
+  ?let @routineKind unused inRoutineKind
+  ?!@stringset ioUsedRegisters {
+#--- Analyze condition
+  [mRegisterExpression analyzeRegisterExpression
+    !inAccessBankSplitOffset
+    !ioCurrentBank
+    !inRegisterTable
+    ?let @ipic18_intermediate_registerExpression IPICregisterDescription
+    ?let @bitSliceTable bitSliceTable
+    !?ioUsedRegisters
+  ]
+  [mBitNumber getBitNumber
+    !bitSliceTable
+    ?let @uint bitNumber
+  ]
+#--- Analyze embedded instruction
+  @uint currentBank = ioCurrentBank
+  [mEmbeddedInstruction analyzeSimpleInstruction
+    !inAccessBankSplitOffset
+    !inRoutineMap
+    !inRegisterTable
+    !inDataMap
+    !inConstantMap
+    !?currentBank
+    !inShouldPreserveBSR
+    !?ioUsedRegisters
+    ?let @ipic18SequentialInstruction embeddedInstruction
+  ]
+#--- Embedded instruction changes bank ?
+  if currentBank != currentBank then
+    error [mEmbeddedInstruction mInstructionLocation] : "this instruction does not preserve bank setting"
+  end
+#--- Generate instruction
+  ioGeneratedInstructionList += !@ipic18_skip_instruction_BitTestSkip. new {
+    !mInstructionLocation
+    !embeddedInstruction
+    !mSkipIfSet
+    !IPICregisterDescription
+    !bitNumber}
+}
+
+#----------------------------------------------------*
+
+override method @pic18Instruction_IF_FA_SEMI_COLON analyze
+  ?let @uint inAccessBankSplitOffset
+  ?!@ipic18BlockList unused ioGeneratedBlockList
+  ?let @routineMap inRoutineMap
+  ?let @registerTable inRegisterTable
+  ?let @pic18_dataMap inDataMap
+  ?let @constantMap inConstantMap
+  ?!@uint unused ioLocalLabelIndex
+  ?!@ipic18SequentialInstructionList ioGeneratedInstructionList
+  ?!@lstring unused ioBlockLabel
+  ?!@string unused ioListFileContents
+  ?!@uint ioCurrentBank
+  ?let @bool inShouldPreserveBSR
+  ?let @routineKind unused inRoutineKind
+  ?!@stringset ioUsedRegisters {
+  @ipic18_compare_register_instruction_base_code baseCode
+  switch mOpCode
+    case CPFSEQ : baseCode = @ipic18_compare_register_instruction_base_code. CPFSEQ
+    case CPFSGT : baseCode = @ipic18_compare_register_instruction_base_code. CPFSGT
+    case CPFSLT : baseCode = @ipic18_compare_register_instruction_base_code. CPFSLT
+    case TSTFSZ : baseCode = @ipic18_compare_register_instruction_base_code. TSTFSZ
+  end
+  [mRegisterExpression analyzeRegisterExpression
+    !inAccessBankSplitOffset
+    !ioCurrentBank
+    !inRegisterTable
+    ?let @ipic18_intermediate_registerExpression IPICregisterDescription
+    ?*
+    !?ioUsedRegisters
+  ]
+#--- Analyze embedded instruction
+  @uint currentBank = ioCurrentBank
+  [mEmbeddedInstruction analyzeSimpleInstruction
+    !inAccessBankSplitOffset
+    !inRoutineMap
+    !inRegisterTable
+    !inDataMap
+    !inConstantMap
+    !?currentBank
+    !inShouldPreserveBSR
+    !?ioUsedRegisters
+    ?let @ipic18SequentialInstruction embeddedInstruction
+  ]
+#--- Embedded instruction changes bank ?
+  if currentBank != currentBank then
+    error [mEmbeddedInstruction mInstructionLocation] : "this instruction does not preserve bank setting"
+  end
+#--- Generate instruction
+  ioGeneratedInstructionList += !@ipic18_skip_instruction_compare_register. new {
+    !mInstructionLocation
+    !embeddedInstruction
+    !baseCode
+    !IPICregisterDescription}
+}
+
+#----------------------------------------------------*
+
+override method @pic18Instruction_IF_IncDec analyze
+  ?let @uint inAccessBankSplitOffset
+  ?!@ipic18BlockList unused ioGeneratedBlockList
+  ?let @routineMap inRoutineMap
+  ?let @registerTable inRegisterTable
+  ?let @pic18_dataMap inDataMap
+  ?let @constantMap inConstantMap
+  ?!@uint unused ioLocalLabelIndex
+  ?!@ipic18SequentialInstructionList ioGeneratedInstructionList
+  ?!@lstring unused ioBlockLabel
+  ?!@string unused ioListFileContents
+  ?!@uint ioCurrentBank
+  ?let @bool inShouldPreserveBSR
+  ?let @routineKind unused inRoutineKind
+  ?!@stringset ioUsedRegisters {
+#---
+  @skip_instruction_FDA_base_code baseCode
+  if mIncrement & mSkipIfZero then
+    baseCode = @skip_instruction_FDA_base_code. INCFSZ
+  elsif mIncrement & not mSkipIfZero then
+    baseCode = @skip_instruction_FDA_base_code. INFSNZ
+  elsif (not mIncrement) & mSkipIfZero then
+    baseCode = @skip_instruction_FDA_base_code. DECFSZ
+  else
+    baseCode = @skip_instruction_FDA_base_code. DCFSNZ
+  end
+#---
+  [mRegisterExpression analyzeRegisterExpression
+    !inAccessBankSplitOffset
+    !ioCurrentBank
+    !inRegisterTable
+    ?let @ipic18_intermediate_registerExpression IPICregisterDescription
+    ?*
+    !?ioUsedRegisters
+  ]
+#--- Analyze embedded instruction
+  @uint currentBank = ioCurrentBank
+  [mEmbeddedInstruction analyzeSimpleInstruction
+    !inAccessBankSplitOffset
+    !inRoutineMap
+    !inRegisterTable
+    !inDataMap
+    !inConstantMap
+    !?currentBank
+    !inShouldPreserveBSR
+    !?ioUsedRegisters
+    ?let @ipic18SequentialInstruction embeddedInstruction
+  ]
+#--- Embedded instruction changes bank ?
+  if currentBank != currentBank then
+    error [mEmbeddedInstruction mInstructionLocation] : "this instruction does not preserve bank setting"
+  end
+#--- Generate instruction
+  ioGeneratedInstructionList += !@ipic18_skip_instruction_FDA. new {
+    !mInstructionLocation
+    !embeddedInstruction
+    !baseCode
+    !IPICregisterDescription
+    !m_W_isDestination}
+}
+
+#----------------------------------------------------*
+
+override method @pic18Instruction_structured_if analyze
+  ?let @uint inAccessBankSplitOffset
+  ?!@ipic18BlockList ioGeneratedBlockList
+  ?let @routineMap inRoutineMap
+  ?let @registerTable inRegisterTable
+  ?let @pic18_dataMap inDataMap
+  ?let @constantMap inConstantMap
+  ?!@uint ioLocalLabelIndex
+  ?!@ipic18SequentialInstructionList ioGeneratedInstructionList
+  ?!@lstring ioBlockLabel
+  ?!@string ioListFileContents
+  ?!@uint ioCurrentBank
+  ?let @bool inShouldPreserveBSR
+  ?let @routineKind inRoutineKind
+  ?!@stringset ioUsedRegisters {
+#--- Save bank settings
+  @uint elseBranchFinalBank = ioCurrentBank
+  @uint thenBranchFinalBank = ioCurrentBank
+#--- Labels
+  let conditionTrueLabel = @lstring.new { !".L" + [ioLocalLabelIndex string] !mInstructionLocation} 
+  ioLocalLabelIndex ++
+  let conditionFalseLabel = @lstring.new { !".L" + [ioLocalLabelIndex string] !mInstructionLocation} 
+  ioLocalLabelIndex ++
+  let exitLabel = @lstring.new { !".L" + [ioLocalLabelIndex string] !mInstructionLocation} 
+  ioLocalLabelIndex ++
+#---- Analyze condition
+  [mIfCondition analyzeCondition
+    !inAccessBankSplitOffset
+    !ioCurrentBank
+    !inRegisterTable
+    !?ioLocalLabelIndex
+    !?ioGeneratedBlockList
+    !conditionTrueLabel
+    !conditionFalseLabel
+    !?ioUsedRegisters
+    ?var @ipic18AbstractBlockTerminator testTerminator
+  ]
+#--- Save current block block
+  ioGeneratedBlockList += !@ipic18Block. new {
+    !@uint. max # relocatable
+    !ioBlockLabel
+    !ioGeneratedInstructionList
+    !testTerminator}
+  ioGeneratedInstructionList = @ipic18SequentialInstructionList. emptyList
+#--- Analyze 'then' instruction list
+  ioBlockLabel = conditionTrueLabel
+  analyzeInstructionList (
+    !mThenInstructionList
+    !?ioGeneratedBlockList
+    !inAccessBankSplitOffset
+    !inRoutineMap
+    !inRegisterTable
+    !inDataMap
+    !inConstantMap
+    !?ioLocalLabelIndex
+    !?ioGeneratedInstructionList
+    !?ioBlockLabel
+    !?ioListFileContents
+    !?thenBranchFinalBank
+    !inShouldPreserveBSR
+    !inRoutineKind
+    !?ioUsedRegisters
+  )
+  let @bool thenContinuesInSequence = ioBlockLabel.string != ""
+  if thenContinuesInSequence then
+    ioGeneratedBlockList += !@ipic18Block. new {
+      !@uint. max # relocatable
+      !ioBlockLabel
+      !ioGeneratedInstructionList
+      !@ipic18JumpTerminator. new { !mInstructionLocation !exitLabel !@jumpInstructionKind. ipicRelative}}
+  end
+  ioGeneratedInstructionList = @ipic18SequentialInstructionList. emptyList
+#--- Build block
+  ioBlockLabel = conditionFalseLabel
+  analyzeInstructionList (
+    !mElseInstructionList
+    !?ioGeneratedBlockList
+    !inAccessBankSplitOffset
+    !inRoutineMap
+    !inRegisterTable
+    !inDataMap
+    !inConstantMap
+    !?ioLocalLabelIndex
+    !?ioGeneratedInstructionList
+    !?ioBlockLabel
+    !?ioListFileContents
+    !?elseBranchFinalBank
+    !inShouldPreserveBSR
+    !inRoutineKind
+    !?ioUsedRegisters
+  )
+  let @bool elseContinuesInSequence = ioBlockLabel.string != ""
+  if elseContinuesInSequence then
+    ioGeneratedBlockList += !@ipic18Block. new {
+      !@uint. max # relocatable
+      !ioBlockLabel
+      !ioGeneratedInstructionList
+      !@ipic18JumpTerminator. new { !mInstructionLocation !exitLabel !@jumpInstructionKind. ipicRelative}}
+  end
+  ioGeneratedInstructionList = @ipic18SequentialInstructionList. emptyList
+#---
+  if elseBranchFinalBank == thenBranchFinalBank then
+    ioCurrentBank = elseBranchFinalBank
+  else
+    error mEndOfElsePartLocation:"This branch does not leave bank selection value as the first one does"
+    elseBranchFinalBank = @uint. max # No available value for BSR
+  end
+#---
+  if thenContinuesInSequence | elseContinuesInSequence then
+    ioBlockLabel = exitLabel
+  else
+    ioBlockLabel = ["" nowhere]
+  end
+}
+
+#------------------------------------------------------------------------------*
+
+#!--- Switch instruction
+
+#------------------------------------------------------------------------------*
+
+map @caseConstantMap {
+  insert insertKey error message "the '%K' constant is already declared in %L"
+}
+
+#------------------------------------------------------------------------------*
+
+abstract method @pic18AbstractCaseItem analyzeCaseItem
+  ?let @registerTable inRegisterTable
+  ?let @constantMap inConstantMap
+  ?let @lstring inConditionTrueLabel
+  ?!@stringset ioUsedRegisters
+  ?!@caseConstantMap ioCaseConstantMap
+  ?!@uint ioLocalLabelIndex
+  ?!@ipic18SequentialInstructionList ioGeneratedInstructionList
+  ?!@ipic18BlockList ioGeneratedBlockList
+  ?!@lstring ioBlockLabel
+  ?!@sint64 ioLastComparisonValue
+
+#------------------------------------------------------------------------------*
+
+override method @pic18SimpleConstantCaseItem analyzeCaseItem
+  ?let @registerTable inRegisterTable
+  ?let @constantMap inConstantMap
+  ?let @lstring inConditionTrueLabel
+  ?!@stringset ioUsedRegisters
+  ?!@caseConstantMap ioCaseConstantMap
+  ?!@uint ioLocalLabelIndex
+  ?!@ipic18SequentialInstructionList ioGeneratedInstructionList
+  ?!@ipic18BlockList ioGeneratedBlockList
+  ?!@lstring ioBlockLabel
+  ?!@sint64 ioLastComparisonValue {
+    [mCaseExpression eval !inRegisterTable !inConstantMap ?let @sint64 result !?ioUsedRegisters]
+  #---
+    if (result > 255LS) | (result < 0LS) then
+      error mCaseExpressionLocation:"case value is evaluated as " + result + " (should be between 0 and 255)"
+    end
+  #--- Check constant is unique
+    if [ioCaseConstantMap hasKey ![result string]] then
+      error mCaseExpressionLocation : "the '" + result + "' constant is already used in switch instruction"
+      error [ioCaseConstantMap locationForKey ![result string]] : "the '" + result + "' constant is used here"
+    else
+      [!?ioCaseConstantMap insertKey !@lstring. new { ![result string] !mCaseExpressionLocation}]
+    end
+  #--- Generate xorlw instruction  
+    ioGeneratedInstructionList += !@ipic18_intermediate_instruction_literalOperation. new {
+      !mCaseExpressionLocation
+      !@literal_instruction_opcode. ADDLW
+      ![(ioLastComparisonValue - result) & 0xFFLS uint]}
+  #--- Update comparison value
+    ioLastComparisonValue = result
+  #--- Condition false label
+    let conditionFalseLabel = @lstring.new { !".L" + [ioLocalLabelIndex string] !mCaseExpressionLocation} 
+    ioLocalLabelIndex ++
+  #--- Terminate current block with a BZ instruction
+    let @ipic18AbstractBlockTerminator t = @ipic18ConditionalJumpTerminator. new {
+      !mCaseExpressionLocation
+      !@conditional_branch. bz
+      !inConditionTrueLabel
+      !@conditionalBranchMode. native
+      !conditionFalseLabel
+      !@conditionalBranchMode. native}
+  #--- Save current block block
+    ioGeneratedBlockList += !@ipic18Block. new {
+      !@uint. max # relocatable
+      !ioBlockLabel
+      !ioGeneratedInstructionList
+      !t}
+    ioGeneratedInstructionList = @ipic18SequentialInstructionList. emptyList
+    ioBlockLabel = conditionFalseLabel
+ }
+
+#------------------------------------------------------------------------------*
+
+override method @pic18IntervalCaseItem analyzeCaseItem
+  ?let @registerTable inRegisterTable
+  ?let @constantMap inConstantMap
+  ?let @lstring inConditionTrueLabel
+  ?!@stringset ioUsedRegisters
+  ?!@caseConstantMap ioCaseConstantMap
+  ?!@uint ioLocalLabelIndex
+  ?!@ipic18SequentialInstructionList ioGeneratedInstructionList
+  ?!@ipic18BlockList ioGeneratedBlockList
+  ?!@lstring ioBlockLabel
+  ?!@sint64 ioLastComparisonValue {
+    [mMinExpression eval !inRegisterTable !inConstantMap ?let @sint64 minBound !?ioUsedRegisters]
+    [mMaxExpression eval !inRegisterTable !inConstantMap ?let @sint64 maxBound !?ioUsedRegisters]
+  #---
+    @bool ok = true
+    if (minBound > 255LS) | (minBound < 0LS) then
+      error mCaseExpressionLocation:"min bound is evaluated as " + minBound + " (should be between 0 and 255)"
+      ok = false
+    end
+    if (maxBound > 255LS) | (maxBound < 0LS) then
+      error mCaseExpressionLocation:"max bound is evaluated as " + maxBound + " (should be between 0 and 255)"
+      ok = false
+    end
+    if maxBound <= minBound then
+      error mCaseExpressionLocation:"max bound (" + maxBound + ") should be greater than low bound (" + minBound + ")"
+      ok = false
+    end
+    if ok then
+    #--- Check constant is unique
+      for n in @range. new { ![minBound uint] ![maxBound - minBound + 1LS uint]} do
+        if [ioCaseConstantMap hasKey ![n string]] then
+          error mCaseExpressionLocation : "the '" + n + "' constant is already used in switch instruction"
+          error [ioCaseConstantMap locationForKey ![n string]] : "the '" + n + "' constant is used here"
+        else
+          [!?ioCaseConstantMap insertKey !@lstring. new { ![n string] !mCaseExpressionLocation}]
+        end
+      end
+    #--- Generate first addlw instruction  
+      ioGeneratedInstructionList += !@ipic18_intermediate_instruction_literalOperation. new {
+        !mCaseExpressionLocation
+        !@literal_instruction_opcode. ADDLW
+        ! [(ioLastComparisonValue - minBound) & 0xFFLS uint]}
+    #--- Labels
+      let greaterThanLowBoundLabel = @lstring.new { !".L" + [ioLocalLabelIndex string] !mCaseExpressionLocation} 
+      ioLocalLabelIndex ++
+      let conditionFalseLabel = @lstring.new { !".L" + [ioLocalLabelIndex string] !mCaseExpressionLocation} 
+      ioLocalLabelIndex ++
+    #--- Terminate current block with a BC instruction
+      let @ipic18AbstractBlockTerminator t = @ipic18ConditionalJumpTerminator. new {
+        !mCaseExpressionLocation
+        !@conditional_branch. bc
+        !greaterThanLowBoundLabel
+        !@conditionalBranchMode. native
+        !conditionFalseLabel
+        !@conditionalBranchMode. native}
+    #--- Save current block
+      ioGeneratedBlockList += !@ipic18Block. new {
+        !@uint. max # relocatable
+        !ioBlockLabel
+        !ioGeneratedInstructionList
+        !t}
+      ioGeneratedInstructionList = @ipic18SequentialInstructionList. emptyList
+      ioBlockLabel = conditionFalseLabel
+    #--- Generate second addlw instruction  
+      ioGeneratedInstructionList += !@ipic18_intermediate_instruction_literalOperation. new {
+        !mCaseExpressionLocation
+        !@literal_instruction_opcode. ADDLW
+        ! [(- (maxBound - minBound + 1LS)) & 0xFFLS uint]}
+    #--- Terminate current block with a BC instruction
+      let @ipic18AbstractBlockTerminator t2 = @ipic18ConditionalJumpTerminator. new {
+        !mCaseExpressionLocation
+        !@conditional_branch. bc
+        !conditionFalseLabel
+        !@conditionalBranchMode. native
+        !inConditionTrueLabel
+        !@conditionalBranchMode. native}
+    #--- Save current block
+      ioGeneratedBlockList += !@ipic18Block. new {
+        !@uint. max # relocatable
+        !greaterThanLowBoundLabel
+        !ioGeneratedInstructionList
+        !t2}
+      ioGeneratedInstructionList = @ipic18SequentialInstructionList. emptyList
+      ioBlockLabel = conditionFalseLabel
+    #--- Update comparison value
+      ioLastComparisonValue = maxBound + 1
+    end
+ }
+
+#------------------------------------------------------------------------------*
+
+override method @pic18Instruction_switch analyze
+  ?let @uint inAccessBankSplitOffset
+  ?!@ipic18BlockList ioGeneratedBlockList
+  ?let @routineMap inRoutineMap
+  ?let @registerTable inRegisterTable
+  ?let @pic18_dataMap inDataMap
+  ?let @constantMap inConstantMap
+  ?!@uint ioLocalLabelIndex
+  ?!@ipic18SequentialInstructionList ioGeneratedInstructionList
+  ?!@lstring ioBlockLabel
+  ?!@string ioListFileContents
+  ?!@uint ioCurrentBank
+  ?let @bool inShouldPreserveBSR
+  ?let @routineKind inRoutineKind
+  ?!@stringset ioUsedRegisters {
+  var caseConstantMap =@caseConstantMap.emptyMap{}
+#--- Labels
+  let exitLabel = @lstring.new { !".L" + [ioLocalLabelIndex string] !mInstructionLocation} 
+  ioLocalLabelIndex ++
+#--- Comparison value
+  @sint64 lastComparisonValue = 0LS
+#--- By default, do not continue in sequence
+  @bool continuesInSequence = false
+#---
+  let @uint initialBankSetting = ioCurrentBank
+  var finalBankSetting =@uint.max{} # Any value
+  @bool finalBankSettingDefined = false
+#---
+  for () in  mCaseList do
+  #--- Label
+    let conditionTrueLabel = @lstring.new { !".L" + [ioLocalLabelIndex string] !mInstructionLocation} 
+    ioLocalLabelIndex ++
+  #--- Generate test blocks
+    for () in  mCaseExpressionList do
+      [mCaseItem analyzeCaseItem
+        !inRegisterTable
+        !inConstantMap
+        !conditionTrueLabel
+        !?ioUsedRegisters
+        !?caseConstantMap
+        !?ioLocalLabelIndex
+        !?ioGeneratedInstructionList
+        !?ioGeneratedBlockList
+        !?ioBlockLabel
+        !?lastComparisonValue
+      ]
+#      [mCaseExpression eval !inRegisterTable !inConstantMap ??@sint64 result !?ioUsedRegisters] ;
+#    #---
+#      if (result > 255LS) | (result < 0LS) then
+#        error mInstructionLocation:"case value is evaluated as " . result . " (should be between 0 and 255)" ;
+#      end if ;
+#    #--- Check constant is unique
+#      if [caseConstantMap hasKey ![result string]] then
+#        error mCaseExpressionLocation : "the '" . result . "' constant is already used in switch instruction" ;
+#        error [caseConstantMap locationForKey ![result string]] : "the '" . result . "' constant is used here" ;
+#      else
+#        [!?caseConstantMap insertKey ![@lstring new ![result string] !mCaseExpressionLocation]] ;
+#      end if ;
+#    #--- Generate xorlw instruction  
+#      ioGeneratedInstructionList += ![@ipic18_intermediate_instruction_literalOperation new
+#        !mInstructionLocation
+#        ![@literal_instruction_opcode XORLW]
+#        !lastComparisonValue ^ [result uint]
+#      ] ;
+#    #--- Update comparison value
+#      lastComparisonValue := [result uint] ;
+#    #--- Condition false label
+#      const @lstring conditionFalseLabel [new !".L" . [ioLocalLabelIndex string] !mInstructionLocation] ; 
+#      ioLocalLabelIndex ++ ;
+#    #--- Terminate current block with a BZ instruction
+#      const @ipic18AbstractBlockTerminator t := [@ipic18ConditionalJumpTerminator new
+#        !mInstructionLocation
+#        ![@conditional_branch bz]
+#        !conditionTrueLabel
+#        ![@conditionalBranchMode native]
+#        !conditionFalseLabel
+#        ![@conditionalBranchMode native]
+#      ] ;
+#    #--- Save current block block
+#      ioGeneratedBlockList += ![@ipic18Block new
+#        ![@uint max] # relocatable
+#        !ioBlockLabel
+#        !ioGeneratedInstructionList
+#        !t
+#      ] ;
+#      ioGeneratedInstructionList := [@ipic18SequentialInstructionList emptyList] ;
+#      ioBlockLabel := conditionFalseLabel ;
+    end
+  #--- Analyze instruction list
+    let @lstring conditionFalseLabel = ioBlockLabel
+    ioBlockLabel = conditionTrueLabel
+    @uint branchFinalBank = initialBankSetting
+    analyzeInstructionList (
+      !mInstructionList
+      !?ioGeneratedBlockList
+      !inAccessBankSplitOffset
+      !inRoutineMap
+      !inRegisterTable
+      !inDataMap
+      !inConstantMap
+      !?ioLocalLabelIndex
+      !?ioGeneratedInstructionList
+      !?ioBlockLabel
+      !?ioListFileContents
+      !?branchFinalBank
+      !inShouldPreserveBSR
+      !inRoutineKind
+      !?ioUsedRegisters
+    )
+    if ioBlockLabel.string != "" then
+      continuesInSequence = true
+      ioGeneratedBlockList += !@ipic18Block. new {
+        !@uint. max # relocatable
+        !ioBlockLabel
+        !ioGeneratedInstructionList
+        !@ipic18JumpTerminator. new { !mInstructionLocation !exitLabel !@jumpInstructionKind. ipicRelative}}
+    end
+    if finalBankSettingDefined then
+      if finalBankSetting != branchFinalBank then
+        error mStartOfCase: "this branch leaves bank setting to "
+        + if branchFinalBank == @uint. max then "'no selection'" else [branchFinalBank string] end
+        + ", but first branch leaves bank setting to "
+        + if finalBankSetting == @uint. max then "'no selection'" else [finalBankSetting string] end
+        + " (should be the same setting)"
+      end
+    else
+      finalBankSettingDefined = true
+      finalBankSetting = branchFinalBank
+    end
+    ioGeneratedInstructionList = @ipic18SequentialInstructionList. emptyList
+    ioBlockLabel = conditionFalseLabel
+  end
+#--- "else" instruction list
+  @uint branchFinalBank = initialBankSetting
+  analyzeInstructionList (
+    !mElseInstructionList
+    !?ioGeneratedBlockList
+    !inAccessBankSplitOffset
+    !inRoutineMap
+    !inRegisterTable
+    !inDataMap
+    !inConstantMap
+    !?ioLocalLabelIndex
+    !?ioGeneratedInstructionList
+    !?ioBlockLabel
+    !?ioListFileContents
+    !?branchFinalBank
+    !inShouldPreserveBSR
+    !inRoutineKind
+    !?ioUsedRegisters
+  )
+  let @bool thenContinuesInSequence = ioBlockLabel.string != ""
+  if thenContinuesInSequence then
+    ioGeneratedBlockList += !@ipic18Block. new {
+      !@uint. max # relocatable
+      !ioBlockLabel
+      !ioGeneratedInstructionList
+      !@ipic18JumpTerminator. new { !mInstructionLocation !exitLabel !@jumpInstructionKind. ipicRelative}}
+  end
+  ioGeneratedInstructionList = @ipic18SequentialInstructionList. emptyList
+#--- Bank setting
+  if finalBankSetting != branchFinalBank then
+    error mElseBranchStartLocation: "the 'else' branch leaves bank setting to "
+    + if branchFinalBank == @uint. max then "'no selection'" else [branchFinalBank string] end
+    + ", but first branch leaves bank setting to "
+    + if finalBankSetting == @uint. max then "'no selection'" else [finalBankSetting string] end
+    + " (should be the same setting)"
+  end
+#---
+  ioCurrentBank = finalBankSetting
+  if continuesInSequence then
+    ioBlockLabel = exitLabel
+  else
+    ioBlockLabel = ["" nowhere]
+  end
+
+##--- Save bank settings
+#  @uint elseBranchFinalBank := ioCurrentBank ;
+#  @uint thenBranchFinalBank := ioCurrentBank ;
+#  const @lstring exitLabel [new !".L" . [ioLocalLabelIndex string] !mInstructionLocation] ; 
+#  ioLocalLabelIndex ++ ;
+##---- Analyze condition
+#  [mIfCondition analyzeCondition
+#    !inAccessBankSplitOffset
+#    !ioCurrentBank
+#    !inRegisterTable
+#    !?ioLocalLabelIndex
+#    !?ioGeneratedBlockList
+#    !conditionTrueLabel
+#    !conditionFalseLabel
+#    !?ioUsedRegisters
+#    ?@ipic18AbstractBlockTerminator testTerminator
+#  ] ;
+##--- Save current block block
+#  ioGeneratedBlockList += ![@ipic18Block new
+#    ![@uint max] # relocatable
+#    !ioBlockLabel
+#    !ioGeneratedInstructionList
+#    !testTerminator
+#  ] ;
+#  ioGeneratedInstructionList := [@ipic18SequentialInstructionList emptyList] ;
+##--- Analyze 'then' instruction list
+#  ioBlockLabel := conditionTrueLabel ;
+#  analyzeInstructionList
+#    !mThenInstructionList
+#    !?ioGeneratedBlockList
+#    !inAccessBankSplitOffset
+#    !inRoutineMap
+#    !inRegisterTable
+#    !inDataMap
+#    !inConstantMap
+#    !?ioLocalLabelIndex
+#    !?ioGeneratedInstructionList
+#    !?ioBlockLabel
+#    !?ioListFileContents
+#    !?thenBranchFinalBank
+#    !inShouldPreserveBSR
+#    !inRoutineKind
+#    !?ioUsedRegisters
+#  ;
+#  const @bool thenContinuesInSequence := ioBlockLabel->string != "" ;
+#  if thenContinuesInSequence then
+#    ioGeneratedBlockList += ![@ipic18Block new
+#      ![@uint max] # relocatable
+#      !ioBlockLabel
+#      !ioGeneratedInstructionList
+#      ![@ipic18JumpTerminator new !mInstructionLocation !exitLabel ![@jumpInstructionKind ipicRelative]]
+#    ] ;
+#  end if ;
+#  ioGeneratedInstructionList := [@ipic18SequentialInstructionList emptyList] ;
+##--- Build block
+#  ioBlockLabel := conditionFalseLabel ;
+#  analyzeInstructionList
+#    !mElseInstructionList
+#    !?ioGeneratedBlockList
+#    !inAccessBankSplitOffset
+#    !inRoutineMap
+#    !inRegisterTable
+#    !inDataMap
+#    !inConstantMap
+#    !?ioLocalLabelIndex
+#    !?ioGeneratedInstructionList
+#    !?ioBlockLabel
+#    !?ioListFileContents
+#    !?elseBranchFinalBank
+#    !inShouldPreserveBSR
+#    !inRoutineKind
+#    !?ioUsedRegisters
+#  ;
+#  const @bool elseContinuesInSequence := ioBlockLabel->string != "" ;
+#  if elseContinuesInSequence then
+#    ioGeneratedBlockList += ![@ipic18Block new
+#      ![@uint max] # relocatable
+#      !ioBlockLabel
+#      !ioGeneratedInstructionList
+#      ![@ipic18JumpTerminator new !mInstructionLocation !exitLabel ![@jumpInstructionKind ipicRelative]]
+#    ] ;
+#  end if ;
+#  ioGeneratedInstructionList := [@ipic18SequentialInstructionList emptyList] ;
+##---
+#  if elseBranchFinalBank == thenBranchFinalBank then
+#    ioCurrentBank := elseBranchFinalBank ;
+#  else
+#    error mEndOfElsePartLocation:"This branch does not leave bank selection value as the first one does";
+#    elseBranchFinalBank := [@uint max] ; # No available value for BSR
+#  end if ;
+}
+
+#----------------------------------------------------*
+
+override method @pic18Instruction_do_while analyze
+  ?let @uint inAccessBankSplitOffset
+  ?!@ipic18BlockList ioGeneratedBlockList
+  ?let @routineMap inRoutineMap
+  ?let @registerTable inRegisterTable
+  ?let @pic18_dataMap inDataMap
+  ?let @constantMap inConstantMap
+  ?!@uint ioLocalLabelIndex
+  ?!@ipic18SequentialInstructionList ioGeneratedInstructionList
+  ?!@lstring ioBlockLabel
+  ?!@string ioListFileContents
+  ?!@uint ioCurrentBank
+  ?let @bool inShouldPreserveBSR
+  ?let @routineKind inRoutineKind
+  ?!@stringset ioUsedRegisters {
+#--- Labels
+  let startLabel = @lstring.new { !".L" + [ioLocalLabelIndex string] !mInstructionLocation} 
+  ioLocalLabelIndex ++
+#  const @lstring exitLabel [new !".L" . [ioLocalLabelIndex string] !mInstructionLocation] ; 
+#  ioLocalLabelIndex ++ ;
+#--- Save current block
+  ioGeneratedBlockList += !@ipic18Block. new {
+    !@uint. max # relocatable
+    !ioBlockLabel
+    !ioGeneratedInstructionList
+    !@ipic18JumpTerminator. new { !mInstructionLocation !startLabel !@jumpInstructionKind. ipicRelative}}
+  ioGeneratedInstructionList = @ipic18SequentialInstructionList. emptyList
+
+
+
+#  const @ipic18AbstractBlockTerminator currentBlockTerminator :=  ioCurrentBlock->mTerminator ;
+##--- Close current block
+#  ioCurrentBlock->mTerminator := [@ipic18JumpTerminator new !mInstructionLocation !startLabel ![@jumpInstructionKind ipicRelative]] ;
+#  ioGeneratedBlockList += !ioCurrentBlock ;
+#--- Create an new block, for repeated instruction list
+#  ioCurrentBlock := [@ipic18Block new
+#    ![@uint max] # relocatable
+#    !startLabel
+#    ![@ipic18SequentialInstructionList emptyList]
+#    !currentBlockTerminator
+#  ] ;
+#--- Repeated instruction list
+  ioBlockLabel = startLabel
+  @uint repeatedBranchFinalBank = ioCurrentBank
+  analyzeInstructionList (
+    !mRepeatedInstructionList
+    !?ioGeneratedBlockList
+    !inAccessBankSplitOffset
+    !inRoutineMap
+    !inRegisterTable
+    !inDataMap
+    !inConstantMap
+    !?ioLocalLabelIndex
+    !?ioGeneratedInstructionList
+    !?ioBlockLabel
+    !?ioListFileContents
+    !?repeatedBranchFinalBank
+    !inShouldPreserveBSR
+    !inRoutineKind
+    !?ioUsedRegisters
+  )
+  let @bool repeatedInstructionsContinuesInSequence = ioBlockLabel.string != ""
+  if ioCurrentBank != repeatedBranchFinalBank then
+    error mEndOfRepeatedInstructionList:"This branch does not leave bank selection value unchanged"
+  end
+  if not repeatedInstructionsContinuesInSequence then
+    error mEndOfRepeatedInstructionList:"This branch makes the next code unreachable"
+  end
+#--- While branches
+  for () in  mWhilePartList do
+  #--- Labels
+    let conditionTrueLabel = @lstring.new { !".L" + [ioLocalLabelIndex string] !mInstructionLocation} 
+    ioLocalLabelIndex ++
+   let conditionFalseLabel = @lstring.new { !".L" + [ioLocalLabelIndex string] !mInstructionLocation} 
+   ioLocalLabelIndex ++
+  #---- Analyze condition
+    [mCondition analyzeCondition
+      !inAccessBankSplitOffset
+      !ioCurrentBank
+      !inRegisterTable
+      !?ioLocalLabelIndex
+      !?ioGeneratedBlockList
+      !conditionTrueLabel
+      !conditionFalseLabel
+      !?ioUsedRegisters
+      ?var @ipic18AbstractBlockTerminator testTerminator
+    ]
+    ioGeneratedBlockList += !@ipic18Block. new {
+      !@uint. max # relocatable
+      !ioBlockLabel
+      !ioGeneratedInstructionList
+      !testTerminator}
+    ioGeneratedInstructionList = @ipic18SequentialInstructionList. emptyList
+    ioBlockLabel = conditionTrueLabel
+#
+#
+#
+#    ioCurrentBlock->mTerminator := testTerminator ;
+#    ioGeneratedBlockList += !ioCurrentBlock ;
+#    ioCurrentBlock := [@ipic18Block new
+#      ![@uint max] # relocatable
+#      !conditionTrueLabel
+#      ![@ipic18SequentialInstructionList emptyList]
+#      ![@ipic18JumpTerminator new !mInstructionLocation !startLabel ![@jumpInstructionKind ipicRelative]]
+#    ] ;
+    @uint branchFinalBank = ioCurrentBank
+    analyzeInstructionList (
+      !mInstructionList
+      !?ioGeneratedBlockList
+      !inAccessBankSplitOffset
+      !inRoutineMap
+      !inRegisterTable
+      !inDataMap
+      !inConstantMap
+      !?ioLocalLabelIndex
+      !?ioGeneratedInstructionList
+      !?ioBlockLabel
+      !?ioListFileContents
+      !?branchFinalBank
+      !inShouldPreserveBSR
+      !inRoutineKind
+      !?ioUsedRegisters
+    )
+    if ioCurrentBank != branchFinalBank then
+      error mEndOfPartLocation:"This branch does not leave bank selection value unchanged"
+    end
+    if ioBlockLabel.string == "" then
+      error mEndOfPartLocation:"This branch makes the next code unreachable"
+    end
+    ioGeneratedBlockList += !@ipic18Block. new {
+      !@uint. max # relocatable
+      !ioBlockLabel
+      !ioGeneratedInstructionList
+      !@ipic18JumpTerminator. new { !mInstructionLocation !startLabel !@jumpInstructionKind. ipicRelative}}
+    ioGeneratedInstructionList = @ipic18SequentialInstructionList. emptyList
+    ioBlockLabel = conditionFalseLabel
+  end
+}
+
+#----------------------------------------------------*
+
+#!--- Block instruction
+
+#----------------------------------------------------*
+
+map @blockInstructionBlockMap {
+  @pic18InstructionList mInstructionList
+  @abstractBlockTerminationForBlockInstruction mBlockTerminaisonForBlockInstruction
+  @location mEndOfBlock
+  insert insertKey error message "the '%K' block is already declared"
+  search searchKey error message "the '%K' block is not declared"
+}
+
+#----------------------------------------------------*
+
+map @blockInitialBankSelectionMap {
+  @uint mInitialBankSelection
+  @string mSourceBlock
+  insert insertKey error message "the '%K' block is already declared (internal error)"
+  search searchKey error message "the '%K' block is not declared (internal error)"
+}
+
+#----------------------------------------------------*
+
+abstract method @abstractBlockTerminationForBlockInstruction addVisitedBlocks
+  ?!@stringset ioVisitedBlockSet
+  ?let @blockInstructionBlockMap inBlockMap
+  ?let @string inCurrentBlockName
+  ?let @uint inInitialBlockSetting
+  ?!@blockInitialBankSelectionMap ioBlockInitialBankSelectionMap
+  ?!@bool ioContinuesInSequence
+  ?!@bool ioContinueAccessibilityExploration
+
+#----------------------------------------------------*
+
+override method @exitBlockTerminationForBlockInstruction addVisitedBlocks
+  ?!@stringset unused ioVisitedBlockSet
+  ?let @blockInstructionBlockMap unused inBlockMap
+  ?let @string inCurrentBlockName
+  ?let @uint inInitialBlockSetting
+  ?!@blockInitialBankSelectionMap ioBlockInitialBankSelectionMap
+  ?!@bool ioContinuesInSequence
+  ?!@bool unused ioContinueAccessibilityExploration {
+  ioContinuesInSequence = true
+  if [ioBlockInitialBankSelectionMap hasKey !"-"] then
+    [ioBlockInitialBankSelectionMap searchKey !["-" nowhere] ?let @uint otherInitialBlockSetting ?let @string otherBlockName]
+    if otherInitialBlockSetting != inInitialBlockSetting then
+      error mLocation: "this block exits from block instruction and sets bank selection to "
+      + if inInitialBlockSetting == @uint. max then "no bank" else [inInitialBlockSetting string] end
+      + ", '" + otherBlockName + "' block also exits, but sets bank selection to "
+      + if otherInitialBlockSetting == @uint. max then "no bank" else [otherInitialBlockSetting string] end
+      + "; theses two settings should be the same"
+    end
+  else
+    [!?ioBlockInitialBankSelectionMap insertKey !["-" nowhere] !inInitialBlockSetting !inCurrentBlockName]
+  end
+}
+
+#----------------------------------------------------*
+
+override method @gotoTerminationForBlockInstruction addVisitedBlocks
+  ?!@stringset ioVisitedBlockSet
+  ?let @blockInstructionBlockMap inBlockMap
+  ?let @string inCurrentBlockName
+  ?let @uint inInitialBlockSetting
+  ?!@blockInitialBankSelectionMap ioBlockInitialBankSelectionMap
+  ?!@bool unused ioContinuesInSequence
+  ?!@bool ioContinueAccessibilityExploration {
+  if not [ioVisitedBlockSet hasKey !mNextBlock.string] then
+    ioVisitedBlockSet += !mNextBlock.string
+    ioContinueAccessibilityExploration = true
+    [inBlockMap searchKey !mNextBlock ?* ?* ?*]
+    if [ioBlockInitialBankSelectionMap hasKey !mNextBlock.string] then
+      [ioBlockInitialBankSelectionMap searchKey !mNextBlock ?let @uint otherInitialBlockSetting ?let @string otherBlockName]
+      if otherInitialBlockSetting != inInitialBlockSetting then
+        error mNextBlock: "this block goes to '" + mNextBlock + "' block and sets bank selection to "
+        + if inInitialBlockSetting == @uint. max then "no bank" else [inInitialBlockSetting string] end
+        + ", '" + otherBlockName + "' block goes to the same block, but sets bank selection to "
+        + if otherInitialBlockSetting == @uint. max then "no bank" else [otherInitialBlockSetting string] end
+        + "; theses two settings should be the same"
+      end
+    else
+      [!?ioBlockInitialBankSelectionMap insertKey !mNextBlock !inInitialBlockSetting !inCurrentBlockName]
+    end
+  end
+}
+
+#----------------------------------------------------*
+
+override method @testTerminationForBlockInstruction addVisitedBlocks
+  ?!@stringset ioVisitedBlockSet
+  ?let @blockInstructionBlockMap inBlockMap
+  ?let @string inCurrentBlockName
+  ?let @uint inInitialBlockSetting
+  ?!@blockInitialBankSelectionMap ioBlockInitialBankSelectionMap
+  ?!@bool ioContinuesInSequence
+  ?!@bool ioContinueAccessibilityExploration {
+  [mTrueTermination addVisitedBlocks
+    !?ioVisitedBlockSet 
+    !inBlockMap 
+    !inCurrentBlockName 
+    !inInitialBlockSetting 
+    !?ioBlockInitialBankSelectionMap 
+    !?ioContinuesInSequence 
+    !?ioContinueAccessibilityExploration
+  ]
+  [mFalseTermination addVisitedBlocks
+    !?ioVisitedBlockSet
+    !inBlockMap
+    !inCurrentBlockName
+    !inInitialBlockSetting
+    !?ioBlockInitialBankSelectionMap
+    !?ioContinuesInSequence
+    !?ioContinueAccessibilityExploration
+  ]
+}
+
+#----------------------------------------------------*
+
+abstract method @abstractBlockTerminationForBlockInstruction generateBlock
+  ?let @uint inAccessBankSplitOffset
+  ?let @uint inCurrentBank
+  ?let @registerTable inRegisterTable
+  ?!@uint ioLocalLabelIndex
+  ?!@ipic18BlockList ioGeneratedBlockList
+  ?!@stringset ioUsedRegisters
+  ?let @string inLabelForBlock
+  !@ipic18AbstractBlockTerminator outTerminator
+
+#----------------------------------------------------*
+
+override method @gotoTerminationForBlockInstruction generateBlock
+  ?let @uint unused inAccessBankSplitOffset
+  ?let @uint unused inCurrentBank
+  ?let @registerTable unused inRegisterTable
+  ?!@uint unused ioLocalLabelIndex
+  ?!@ipic18BlockList unused ioGeneratedBlockList
+  ?!@stringset unused ioUsedRegisters
+  ?let @string inLabelForBlock
+  !@ipic18AbstractBlockTerminator outTerminator {
+  outTerminator = @ipic18JumpTerminator. new {
+    !mNextBlock.location
+    !@lstring. new { !inLabelForBlock + mNextBlock !mNextBlock.location}
+    !@jumpInstructionKind. ipicRelative}
+}
+
+#----------------------------------------------------*
+
+override method @exitBlockTerminationForBlockInstruction generateBlock
+  ?let @uint unused inAccessBankSplitOffset
+  ?let @uint unused inCurrentBank
+  ?let @registerTable unused inRegisterTable
+  ?!@uint unused ioLocalLabelIndex
+  ?!@ipic18BlockList unused ioGeneratedBlockList
+  ?!@stringset unused ioUsedRegisters
+  ?let @string inLabelForBlock
+  !@ipic18AbstractBlockTerminator outTerminator {
+  outTerminator = @ipic18JumpTerminator. new {
+    !mLocation
+    !@lstring. new { !inLabelForBlock + "_exit" !mLocation}
+    !@jumpInstructionKind. ipicRelative}
+}
+
+#----------------------------------------------------*
+
+override method @testTerminationForBlockInstruction generateBlock
+  ?let @uint inAccessBankSplitOffset
+  ?let @uint inCurrentBank
+  ?let @registerTable inRegisterTable
+  ?!@uint ioLocalLabelIndex
+  ?!@ipic18BlockList ioGeneratedBlockList
+  ?!@stringset ioUsedRegisters
+  ?let @string inLabelForBlock
+  !@ipic18AbstractBlockTerminator outTerminator {
+  let conditionTrueLabel = @lstring.new { !".L" + [ioLocalLabelIndex string] !mLocation} 
+  ioLocalLabelIndex ++
+  let conditionFalseLabel = @lstring.new { !".L" + [ioLocalLabelIndex string] !mLocation} 
+  ioLocalLabelIndex ++
+#--- Generate condition
+  [mCondition analyzeCondition
+    !inAccessBankSplitOffset
+    !inCurrentBank
+    !inRegisterTable
+    !?ioLocalLabelIndex
+    !?ioGeneratedBlockList
+    !conditionTrueLabel
+    !conditionFalseLabel
+    !?ioUsedRegisters
+    ?outTerminator
+  ]
+#--- Generation true condition block
+  [mTrueTermination generateBlock
+    !inAccessBankSplitOffset
+    !inCurrentBank
+    !inRegisterTable
+    !?ioLocalLabelIndex
+    !?ioGeneratedBlockList
+    !?ioUsedRegisters
+    !inLabelForBlock
+    ?let @ipic18AbstractBlockTerminator trueTerminator
+  ]
+  ioGeneratedBlockList += !@ipic18Block. new {
+    !@uint. max # relocatable
+    !conditionTrueLabel
+    !@ipic18SequentialInstructionList. emptyList
+    !trueTerminator}
+#--- Generation false condition block
+  [mFalseTermination generateBlock
+    !inAccessBankSplitOffset
+    !inCurrentBank
+    !inRegisterTable
+    !?ioLocalLabelIndex
+    !?ioGeneratedBlockList
+    !?ioUsedRegisters
+    !inLabelForBlock
+    ?let @ipic18AbstractBlockTerminator falseTerminator
+  ]
+  ioGeneratedBlockList += !@ipic18Block. new {
+    !@uint. max # relocatable
+    !conditionFalseLabel
+    !@ipic18SequentialInstructionList. emptyList
+    !falseTerminator}
+}
+
+#----------------------------------------------------*
+
+override method @pic18Instruction_block analyze
+  ?let @uint inAccessBankSplitOffset
+  ?!@ipic18BlockList ioGeneratedBlockList
+  ?let @routineMap inRoutineMap
+  ?let @registerTable inRegisterTable
+  ?let @pic18_dataMap inDataMap
+  ?let @constantMap inConstantMap
+  ?!@uint ioLocalLabelIndex
+  ?!@ipic18SequentialInstructionList ioGeneratedInstructionList
+  ?!@lstring ioBlockLabel
+  ?!@string ioListFileContents
+  ?!@uint ioCurrentBank
+  ?let @bool inShouldPreserveBSR
+  ?let @routineKind inRoutineKind
+  ?!@stringset ioUsedRegisters {
+#----------------- Block labels prefix
+  let @string labelForBlock = ".L" + [ioLocalLabelIndex string] + "_" 
+  ioLocalLabelIndex ++
+#---------------- Save current block
+  ioGeneratedBlockList += !@ipic18Block. new {
+    !@uint. max # relocatable
+    !ioBlockLabel
+    !ioGeneratedInstructionList
+    !@ipic18JumpTerminator. new {
+      !mStartBlockName.location
+      !@lstring. new { !labelForBlock + mStartBlockName !mStartBlockName.location}
+      !@jumpInstructionKind. ipicRelative}}
+  ioGeneratedInstructionList = @ipic18SequentialInstructionList. emptyList
+#--- Compute block map
+  var blockMap =@blockInstructionBlockMap.emptyMap{}
+  for () in  mBlockList do
+    [!?blockMap insertKey !mBlockName !mInstructionList !mBlockTerminaisonForBlockInstruction !mEndOfBlock]
+  end
+#--- Check start block is declared
+  [blockMap searchKey !mStartBlockName ?* ?* ?*]
+  var blockInitialBankSelectionMap =@blockInitialBankSelectionMap.emptyMap{}
+  [!?blockInitialBankSelectionMap insertKey !mStartBlockName !ioCurrentBank !""]
+#--- Compute block accessiblity
+  var accessibleBlockSet =@stringset.setWithString{ !mStartBlockName.string}
+  var handledBlockSet =@stringset.emptySet{}
+  @bool continueAccessibilityExploration = true
+  @bool continuesInSequence = false
+  loop( [mBlockList length] + 1) while continueAccessibilityExploration do
+    continueAccessibilityExploration = false
+    for currentBlockName in accessibleBlockSet - handledBlockSet do
+      handledBlockSet += !currentBlockName
+      [blockMap searchKey
+        ![currentBlockName nowhere]
+        ?let @pic18InstructionList instructionList
+        ?let @abstractBlockTerminationForBlockInstruction blockTermination
+        ?let @location endOfBlock
+      ]
+    #--- Generate code
+      [blockInitialBankSelectionMap searchKey ![currentBlockName nowhere] ?var @uint currentBank ?*]
+      ioBlockLabel = @lstring. new { !labelForBlock + currentBlockName ![blockMap locationForKey !currentBlockName]}
+      analyzeInstructionList (
+        !instructionList
+        !?ioGeneratedBlockList
+        !inAccessBankSplitOffset
+        !inRoutineMap
+        !inRegisterTable
+        !inDataMap
+        !inConstantMap
+        !?ioLocalLabelIndex
+        !?ioGeneratedInstructionList
+        !?ioBlockLabel
+        !?ioListFileContents
+        !?currentBank
+        !inShouldPreserveBSR
+        !inRoutineKind
+        !?ioUsedRegisters
+      )
+      [blockTermination generateBlock
+        !inAccessBankSplitOffset
+        !currentBank
+        !inRegisterTable
+        !?ioLocalLabelIndex
+        !?ioGeneratedBlockList
+        !?ioUsedRegisters
+        !labelForBlock
+        ?let @ipic18AbstractBlockTerminator terminator
+      ]
+      if ioBlockLabel.string == "" then
+        error endOfBlock : "execution will not reach the end of the block, but endless block is not allowed"
+      end
+      ioGeneratedBlockList += !@ipic18Block. new {
+        !@uint. max # relocatable
+        !ioBlockLabel
+        !ioGeneratedInstructionList
+        !terminator}
+      ioGeneratedInstructionList = @ipic18SequentialInstructionList. emptyList
+    #---
+      [blockTermination addVisitedBlocks !?accessibleBlockSet !blockMap !currentBlockName !currentBank !?blockInitialBankSelectionMap !?continuesInSequence !?continueAccessibilityExploration]
+    end
+  end
+#--- Useless blocks ?
+  for () in  mBlockList do
+    if not [accessibleBlockSet hasKey !mBlockName.string] then
+      warning mBlockName:"this block is not accessible from '" + mStartBlockName + "' block"
+    end
+  end
+#---
+  if continuesInSequence then
+    ioBlockLabel = @lstring. new { !labelForBlock + "_exit" !mStartBlockName.location}
+    [blockInitialBankSelectionMap searchKey !["-" nowhere] ?ioCurrentBank ?*]
+  else
+    ioBlockLabel = ["" nowhere]
+  end
+}
+
+#----------------------------------------------------------------------------*
+
+#!--- analyze condition
+
+#----------------------------------------------------*
+
+abstract method @pic18ConditionExpression analyzeCondition
+  ?let @uint unused inAccessBankSplitOffset
+  ?let @uint unused inCurrentBank
+  ?let @registerTable unused inRegisterTable
+  ?!@uint ioLocalLabelIndex
+  ?!@ipic18BlockList ioGeneratedBlockList
+  ?let @lstring inConditionTrueLabel
+  ?let @lstring inConditionFalseLabel
+  ?!@stringset ioUsedRegisters
+  !@ipic18AbstractBlockTerminator outCurrentBlockTerminator
+
+#----------------------------------------------------*
+
+override method @pic18BccInStructuredCondition analyzeCondition
+  ?let @uint unused inAccessBankSplitOffset
+  ?let @uint unused inCurrentBank
+  ?let @registerTable unused inRegisterTable
+  ?!@uint unused ioLocalLabelIndex
+  ?!@ipic18BlockList unused ioGeneratedBlockList
+  ?let @lstring inConditionTrueLabel
+  ?let @lstring inConditionFalseLabel
+  ?!@stringset unused ioUsedRegisters
+  !@ipic18AbstractBlockTerminator outCurrentBlockTerminator {
+#--- Save terminator of current block
+  outCurrentBlockTerminator = @ipic18ConditionalJumpTerminator. new {
+    !mConditionLocation
+    !mCondition
+    !inConditionTrueLabel
+    !@conditionalBranchMode. native
+    !inConditionFalseLabel
+    !@conditionalBranchMode. native}
+}
+
+#----------------------------------------------------*
+
+override method @pic18RegisterComparisonCondition analyzeCondition
+  ?let @uint inAccessBankSplitOffset
+  ?let @uint inCurrentBank
+  ?let @registerTable inRegisterTable
+  ?!@uint unused ioLocalLabelIndex
+  ?!@ipic18BlockList unused ioGeneratedBlockList
+  ?let @lstring inConditionTrueLabel
+  ?let @lstring inConditionFalseLabel
+  ?!@stringset ioUsedRegisters
+  !@ipic18AbstractBlockTerminator outCurrentBlockTerminator {
+  [mRegisterExpression analyzeRegisterExpression
+    !inAccessBankSplitOffset
+    !inCurrentBank
+    !inRegisterTable
+    ?let @ipic18_intermediate_registerExpression IPICregisterDescription
+    ?*
+    !?ioUsedRegisters
+  ]
+#--- Handle comparison
+  @ipic18RegisterComparison ipicComparison
+  @bool complementaryBranch
+  switch mComparison
+  case equal :
+    ipicComparison = @ipic18RegisterComparison. registerEqualsToW
+    complementaryBranch = false
+  case greater :
+    ipicComparison = @ipic18RegisterComparison. registerGreaterThanW
+    complementaryBranch = false
+  case lower :
+    ipicComparison = @ipic18RegisterComparison. registerLowerThanW
+    complementaryBranch = false
+  case greaterOrEqual :
+    ipicComparison = @ipic18RegisterComparison. registerLowerThanW
+    complementaryBranch = true
+  case lowerOrEqual :
+    ipicComparison = @ipic18RegisterComparison. registerGreaterThanW
+    complementaryBranch = true
+  case notEqual :
+    ipicComparison = @ipic18RegisterComparison. registerEqualsToW
+    complementaryBranch = true
+  end
+#--- Save terminator of current block
+  let @location location = [mRegisterExpression mRegisterName].location
+  if complementaryBranch then
+    outCurrentBlockTerminator = @pic18RegisterComparisonTerminator. new {
+      !location
+      !@ipic18JumpTerminator. new { !location !inConditionFalseLabel !@jumpInstructionKind. ipicRelative}
+      !@ipic18JumpTerminator. new { !location !inConditionTrueLabel !@jumpInstructionKind. ipicRelative}
+      !IPICregisterDescription
+      !ipicComparison}
+  else
+    outCurrentBlockTerminator = @pic18RegisterComparisonTerminator. new {
+      !location
+      !@ipic18JumpTerminator. new { !location !inConditionTrueLabel !@jumpInstructionKind. ipicRelative}
+      !@ipic18JumpTerminator. new { !location !inConditionFalseLabel !@jumpInstructionKind. ipicRelative}
+      !IPICregisterDescription
+      !ipicComparison}
+  end
+}
+
+#----------------------------------------------------*
+
+override method @pic18IncDecRegisterInCondition analyzeCondition
+  ?let @uint inAccessBankSplitOffset
+  ?let @uint inCurrentBank
+  ?let @registerTable inRegisterTable
+  ?!@uint unused ioLocalLabelIndex
+  ?!@ipic18BlockList unused ioGeneratedBlockList
+  ?let @lstring inConditionTrueLabel
+  ?let @lstring inConditionFalseLabel
+  ?!@stringset ioUsedRegisters
+  !@ipic18AbstractBlockTerminator outCurrentBlockTerminator {
+  [mRegisterExpression analyzeRegisterExpression
+    !inAccessBankSplitOffset
+    !inCurrentBank
+    !inRegisterTable
+    ?let @ipic18_intermediate_registerExpression IPICregisterDescription
+    ?*
+    !?ioUsedRegisters
+  ]
+#--- Save terminator of current block
+  let @location location = [mRegisterExpression mRegisterName].location
+  if mBranchIfZero then
+    outCurrentBlockTerminator = @ipic18IncDecRegisterTerminator. new {
+      !location
+      !@ipic18JumpTerminator. new { !location !inConditionTrueLabel !@jumpInstructionKind. ipicRelative}
+      !@ipic18JumpTerminator. new { !location !inConditionFalseLabel !@jumpInstructionKind. ipicRelative}
+      !IPICregisterDescription
+      !mIncrement
+      !m_W_isDestination}
+  else
+    outCurrentBlockTerminator = @ipic18IncDecRegisterTerminator. new {
+      !location
+      !@ipic18JumpTerminator. new { !location !inConditionFalseLabel !@jumpInstructionKind. ipicRelative}
+      !@ipic18JumpTerminator. new { !location !inConditionTrueLabel !@jumpInstructionKind. ipicRelative}
+      !IPICregisterDescription
+      !mIncrement
+      !m_W_isDestination}
+  end
+}
+
+#----------------------------------------------------*
+
+override method @pic18RegisterTestCondition analyzeCondition
+  ?let @uint inAccessBankSplitOffset
+  ?let @uint inCurrentBank
+  ?let @registerTable inRegisterTable
+  ?!@uint unused ioLocalLabelIndex
+  ?!@ipic18BlockList unused ioGeneratedBlockList
+  ?let @lstring inConditionTrueLabel
+  ?let @lstring inConditionFalseLabel
+  ?!@stringset ioUsedRegisters
+  !@ipic18AbstractBlockTerminator outCurrentBlockTerminator {
+  [mRegisterExpression analyzeRegisterExpression
+    !inAccessBankSplitOffset
+    !inCurrentBank
+    !inRegisterTable
+    ?let @ipic18_intermediate_registerExpression IPICregisterDescription
+    ?*
+    !?ioUsedRegisters
+  ]
+#--- Save terminator of current block
+  let @location location = [mRegisterExpression mRegisterName].location
+  if mBranchIfZero then
+    outCurrentBlockTerminator = @pic18TestRegisterTerminator. new {
+      !location
+      !@ipic18JumpTerminator. new { !location !inConditionTrueLabel !@jumpInstructionKind. ipicRelative}
+      !@ipic18JumpTerminator. new { !location !inConditionFalseLabel !@jumpInstructionKind. ipicRelative}
+      !IPICregisterDescription}
+  else
+    outCurrentBlockTerminator = @pic18TestRegisterTerminator. new {
+      !location
+      !@ipic18JumpTerminator. new { !location !inConditionFalseLabel !@jumpInstructionKind. ipicRelative}
+      !@ipic18JumpTerminator. new { !location !inConditionTrueLabel !@jumpInstructionKind. ipicRelative}
+      !IPICregisterDescription}
+  end
+}
+
+#----------------------------------------------------*
+
+override method @pic18BitTestInStructuredCondition analyzeCondition
+  ?let @uint inAccessBankSplitOffset
+  ?let @uint inCurrentBank
+  ?let @registerTable inRegisterTable
+  ?!@uint unused ioLocalLabelIndex
+  ?!@ipic18BlockList unused ioGeneratedBlockList
+  ?let @lstring inConditionTrueLabel
+  ?let @lstring inConditionFalseLabel
+  ?!@stringset ioUsedRegisters
+  !@ipic18AbstractBlockTerminator outCurrentBlockTerminator {
+  [mRegisterExpression analyzeRegisterExpression
+    !inAccessBankSplitOffset
+    !inCurrentBank
+    !inRegisterTable
+    ?let @ipic18_intermediate_registerExpression IPICregisterDescription
+    ?let @bitSliceTable bitSliceTable
+    !?ioUsedRegisters
+  ]
+  [mBitNumber getBitNumber
+    !bitSliceTable
+    ?let @uint bitNumber
+  ]
+#--- Save terminator of current block
+  let @location location = [mRegisterExpression mRegisterName].location
+  if mBTFSSinstruction then
+    outCurrentBlockTerminator = @pic18BitTestTerminator. new {
+      !location
+      !@ipic18JumpTerminator. new { !location !inConditionTrueLabel !@jumpInstructionKind. ipicRelative}
+      !@ipic18JumpTerminator. new { !location !inConditionFalseLabel !@jumpInstructionKind. ipicRelative}
+      !IPICregisterDescription
+      !bitNumber}
+  else
+    outCurrentBlockTerminator = @pic18BitTestTerminator. new {
+      !location
+      !@ipic18JumpTerminator. new { !location !inConditionFalseLabel !@jumpInstructionKind. ipicRelative}
+      !@ipic18JumpTerminator. new { !location !inConditionTrueLabel !@jumpInstructionKind. ipicRelative}
+      !IPICregisterDescription
+      !bitNumber}
+  end
+}
+
+#----------------------------------------------------*
+
+override method @pic18NegateCondition analyzeCondition
+  ?let @uint inAccessBankSplitOffset
+  ?let @uint inCurrentBank
+  ?let @registerTable inRegisterTable
+  ?!@uint ioLocalLabelIndex
+  ?!@ipic18BlockList ioGeneratedBlockList
+  ?let @lstring inConditionTrueLabel
+  ?let @lstring inConditionFalseLabel
+  ?!@stringset ioUsedRegisters
+  !@ipic18AbstractBlockTerminator outCurrentBlockTerminator {
+  [mCondition analyzeCondition
+    !inAccessBankSplitOffset
+    !inCurrentBank
+    !inRegisterTable
+    !?ioLocalLabelIndex
+    !?ioGeneratedBlockList
+    !inConditionFalseLabel
+    !inConditionTrueLabel
+    !?ioUsedRegisters
+    ?outCurrentBlockTerminator
+  ]
+}
+
+#----------------------------------------------------*
+
+override method @pic18AndCondition analyzeCondition
+  ?let @uint inAccessBankSplitOffset
+  ?let @uint inCurrentBank
+  ?let @registerTable inRegisterTable
+  ?!@uint ioLocalLabelIndex
+  ?!@ipic18BlockList ioGeneratedBlockList
+  ?let @lstring inConditionTrueLabel
+  ?let @lstring inConditionFalseLabel
+  ?!@stringset ioUsedRegisters
+  !@ipic18AbstractBlockTerminator outCurrentBlockTerminator {
+#--- Create an intermédiate label for handling true condition of left expression
+  let conditionTrueLabel = @lstring.new { !".L" + [ioLocalLabelIndex string] !inConditionTrueLabel.location} 
+  ioLocalLabelIndex ++
+#--- Left expression
+  [mLeftExpression analyzeCondition
+    !inAccessBankSplitOffset
+    !inCurrentBank
+    !inRegisterTable
+    !?ioLocalLabelIndex
+    !?ioGeneratedBlockList
+    !conditionTrueLabel
+    !inConditionFalseLabel
+    !?ioUsedRegisters
+    ?outCurrentBlockTerminator
+  ]
+#--- Right expression
+  [mRightExpression analyzeCondition
+    !inAccessBankSplitOffset
+    !inCurrentBank
+    !inRegisterTable
+    !?ioLocalLabelIndex
+    !?ioGeneratedBlockList
+    !inConditionTrueLabel
+    !inConditionFalseLabel
+    !?ioUsedRegisters
+    ?var @ipic18AbstractBlockTerminator secondTestBlockTerminator
+  ]
+#--- Create a new block
+  ioGeneratedBlockList += !@ipic18Block. new {
+    !@uint. max # relocatable
+    !conditionTrueLabel
+    !@ipic18SequentialInstructionList. emptyList
+    !secondTestBlockTerminator}
+}
+
+#----------------------------------------------------------------------------*
+
+#!--- Routines
+
+#----------------------------------------------------------------------------*
+
+proc analyzeInstructionList
+  ?let @pic18InstructionList inInstructionList
+  ?!@ipic18BlockList ioGeneratedBlockList
+  ?let @uint inAccessBankSplitOffset
+  ?let @routineMap inRoutineMap
+  ?let @registerTable inRegisterTable
+  ?let @pic18_dataMap inDataMap
+  ?let @constantMap inConstantMap
+  ?!@uint ioLocalLabelIndex
+  ?!@ipic18SequentialInstructionList ioGeneratedInstructionList
+  ?!@lstring ioBlockLabel
+  ?!@string ioListFileContents
+  ?!@uint ioCurrentBank
+  ?let @bool inShouldPreserveBSR
+  ?let @routineKind inRoutineKind
+  ?!@stringset ioUsedRegisters {
+  for () in  inInstructionList do
+    if ioBlockLabel.string == "" then
+      error [mInstruction mInstructionLocation] : "Unreachable code"
+      ioBlockLabel = ["?" nowhere]
+    end
+    [mInstruction analyze
+      !inAccessBankSplitOffset
+      !?ioGeneratedBlockList
+      !inRoutineMap
+      !inRegisterTable
+      !inDataMap
+      !inConstantMap
+      !?ioLocalLabelIndex
+      !?ioGeneratedInstructionList
+      !?ioBlockLabel
+      !?ioListFileContents
+      !?ioCurrentBank
+      !inShouldPreserveBSR
+      !inRoutineKind
+      !?ioUsedRegisters
+    ]
+  end
+}
+
+#----------------------------------------------------------------------------*
+#                                                                            *
+#               A N A L Y Z E    D A T A    S E C T I O N                    *
+#                                                                            *
+#----------------------------------------------------------------------------*
+
+proc pic18_analyze_data_sections
+  ?let @dataList inDataDefinitionList
+  ?let @registerTable inRegisterTable
+  ?let @constantMap inConstantMap
+  ?!@string ioListFileContents
+  !@pic18_dataMap outDataMap
+  ?!@constantMap ioConstantMap
+  ?!@stringset ioUsedRegisters {
+  outDataMap = @pic18_dataMap. emptyMap
+  for () in  inDataDefinitionList
+  before
+    ioListFileContents += "*******************************************************************************\n"
+    ioListFileContents += "*                    D A T A    D E C L A R A T I O N                         *\n"
+    ioListFileContents += "*******************************************************************************\n\n"
+  do
+    ioListFileContents += "Data '" + mDataName + "', " + [mValueList length] + " words (" + [mValueList length] * 2 + " bytes).\n" 
+    [!?ioConstantMap insertKey !@lstring. new { !mDataName.string + "_BYTE_COUNT" !mDataName.location} ![[mValueList length] * 2 sint64]]
+    var data =@uintlist.emptyList{}
+    for () in  mValueList do
+      [mExpression eval !inRegisterTable !inConstantMap ?let @sint64 value !?ioUsedRegisters]
+      if value < 0LS then
+        error mErrorLocation: "data value is " + value + " (negative)"
+      elsif value > 65535LS then
+        error mErrorLocation: "data value is " + value + " (greater than 2**16-1)"
+      else
+        data += ![value uint]
+      end
+    end
+    [!?outDataMap insertKey !mDataName !data]
+  end
+}
+
+#----------------------------------------------------------------------------*
+
+proc build_ipic18_block_representation_list
+  ?let @string inSourceFileName
+  ?let @sint64 inROMSize
+  ?let @sint64 inRAMSize
+  ?let @routineDeclarationList inBootloaderRoutineDeclarationListForBootloaderImplementation
+  ?let @routineDeclarationList inUserRoutineDeclarationListForBootloaderImplementation
+  ?let @luint inBootloaderReservedROMsize
+  ?let @routineDeclarationList inBootloaderRoutineDeclarationListForUserProgramImplementation
+  ?let @routineDeclarationList inUserRoutineDeclarationListForUserProgramImplementation
+  ?let @uint inAccessBankSplitOffset
+  ?let @registerTable inRegisterTable
+  ?let @declaredByteMap inDeclaredByteMap
+  ?let @pic18RoutineDefinitionList inRoutineDefinitionList
+  ?let @programKind inProgramKind
+  ?let @constantDefinitionList inConstantDefinitionList
+  ?let @dataList inDataList
+  ?let @pic18InterruptDefinitionList inInterruptDefinitionList
+  ?let @lstringlist inUnusedRegisterList
+  ?let @ramBankTable inRamBank
+  ?let @bool inHasHighInterrupt
+  ?let @bool inHasLowInterrupt
+  ?let @string inProcessorName
+  ?let @registerTable inPredefinedRegisters
+  ?let @actualConfigurationMap inActualConfigurationMap
+  ?let @location inEndOfProgram
+  ?!@string ioListFileContents {
+#-------------------------------- Build routine map
+  var routineMap =@routineMap.emptyMap{}
+  for () in  inUserRoutineDeclarationListForBootloaderImplementation do
+    [!?routineMap insertKey !mRoutineName !mIsNoReturn ![mRequiredBank uint] ![mReturnedBank uint] !mPreservesBank]
+  end
+  for () in  inBootloaderRoutineDeclarationListForUserProgramImplementation do
+    [!?routineMap insertKey !mRoutineName !mIsNoReturn ![mRequiredBank uint] ![mReturnedBank uint] !mPreservesBank]
+  end
+  for () in  inRoutineDefinitionList do
+    if ([mRequiredBank uint] != @uint. max) & ([mRequiredBank uint] > 15) then
+      error mRequiredBank:"the required bank value should be lower or equal to 15"
+    end
+    if ([mReturnedBank uint] != @uint. max) & ([mReturnedBank uint] > 15) then
+      error mReturnedBank:"the returned bank value should be lower or equal to 15"
+    end
+    [!?routineMap insertKey !mRoutineName !mIsNoReturn ![mRequiredBank uint] ![mReturnedBank uint] !mPreservesBank]
+  end
+#-------------------------------- Build constant map
+  var constantMap =@constantMap.emptyMap{}
+#--- Add "ROM_SIZE" and "RAM_SIZE" constants
+  [!?constantMap insertKey !@lstring. new { !"ROM_SIZE" !@location.here} !inROMSize]
+  [!?constantMap insertKey !@lstring. new { !"RAM_SIZE" !@location.here} !inRAMSize]
+#--- Add "BOOTLOADER_RESERVED_SIZE" constant
+  if inProgramKind != @programKind. regularProgram then
+    var bootloaderSizeString =@lstring.new{ !"BOOTLOADER_RESERVED_SIZE" !@location.here}
+    [!?constantMap insertKey !bootloaderSizeString ![[inBootloaderReservedROMsize uint] sint64]]
+  end
+#--- Add declared constants
+  var usedRegisters =@stringset.emptySet{}
+  for () in  inConstantDefinitionList do
+    [mExpression eval !inRegisterTable !constantMap ?let @sint64 result !?usedRegisters]
+    if [inRegisterTable hasKey ![mConstantName string]] then
+      error mConstantName: "'" + mConstantName + "' is already declared as ram register or special register"
+    else
+      [!?constantMap insertKey !mConstantName !result]
+    end
+  end
+#-------------------------------- Analyze Data
+  pic18_analyze_data_sections (
+    !inDataList
+    !inRegisterTable
+    !constantMap
+    !?ioListFileContents
+    ?let @pic18_dataMap dataMap
+    !?constantMap
+    !?usedRegisters
+  )
+#-------------------------------- Print constant map
+  print_constant_definition (
+    !constantMap
+    !?ioListFileContents
+  )
+#-------------------------------- Check the "main" routine is declared
+  if inProgramKind != @programKind. userProgram then
+    if [routineMap hasKey !"main"] then
+      @bool isNoReturn
+      @uint requiredBank
+      [routineMap searchKey !@lstring. new { !"main" !@location.here} ?isNoReturn ?requiredBank ?* ?*]
+      if not isNoReturn then
+        error @location.here :"the \"main\" should be declared with \"noreturn\" qualifier: \"noreturn main requiresbank 0\""
+      end
+      if requiredBank != 0 then
+        error @location.here :"the \"main\" should be declared with \"requiresbank 0\" qualifier: \"noreturn main requiresbank 0\""
+      end
+    else
+      error inEndOfProgram : "the program should declare the \"main\" routine"
+    end
+  end
+#-------------------------------- Generate bootloader entry points for user program
+  var generatedBlockList =@ipic18BlockList.emptyList{}
+  @uint entryPoint = 0x04
+  for () in  inBootloaderRoutineDeclarationListForUserProgramImplementation do
+    generatedBlockList += !@ipic18Block. new {
+      !entryPoint
+      !mRoutineName
+      !@ipic18SequentialInstructionList. emptyList
+      !@ipic18ReturnTerminator. new { !@location. nowhere}}
+    entryPoint = entryPoint + 4
+    if entryPoint == 0x08 then
+      entryPoint = 0x0C
+    elsif entryPoint == 0x18 then
+      entryPoint = 0x1C
+    end
+  end
+#-------------------------------- Generate user program entry points for user program
+  entryPoint = [inBootloaderReservedROMsize uint]
+  for () in  inUserRoutineDeclarationListForUserProgramImplementation do
+    generatedBlockList += !@ipic18Block. new {
+      !entryPoint
+      !["_entry_user_" + [entryPoint xString] nowhere]
+      !@ipic18SequentialInstructionList. emptyList
+      !@ipic18JumpTerminator. new { !mRoutineName.location !mRoutineName !@jumpInstructionKind. ipicRelative}}
+    entryPoint = entryPoint + 4
+  end
+#-------------------------------- At zero, generate 'jump main' block
+  if inProgramKind != @programKind. userProgram then
+    generatedBlockList += !@ipic18Block. new {
+      !0
+      ![".START" nowhere]
+      !@ipic18SequentialInstructionList. emptyList
+      !@ipic18JumpTerminator. new { !@location. nowhere !["main" nowhere] !@jumpInstructionKind. ipicRelative}}
+  end
+#-------------------------------- At 0x04, generate the first bootloader entry point (if any)
+  @routineDeclarationList tempBootloaderRoutineDeclarationList = inBootloaderRoutineDeclarationListForBootloaderImplementation
+  if [tempBootloaderRoutineDeclarationList length] > 0 then
+    [!?tempBootloaderRoutineDeclarationList popFirst ?var @lstring routineName ?* ?* ?* ?*]
+    generatedBlockList += !@ipic18Block. new {
+      !0x04
+      !["_entry_bootloader_04" nowhere]
+      !@ipic18SequentialInstructionList. emptyList
+      !@ipic18JumpTerminator. new { !routineName.location !routineName !@jumpInstructionKind. ipicRelative}}
+  end
+#-------------------------------- At 0x08, generate 'bra _high_interrupt' instruction, if fast interrupt is defined
+  if inHasHighInterrupt then
+    generatedBlockList += !@ipic18Block. new {
+      !0x08
+      ![".HIGH_INTERRUPT" nowhere]
+      !@ipic18SequentialInstructionList. emptyList
+      !@ipic18JumpTerminator. new { !@location. nowhere !["_high_interrupt" nowhere] !@jumpInstructionKind. ipicRelative}}
+  end
+#-------------------------------- At 0x0C, 0x10, 0x14, generate the bootloader entry points (if they exists)
+  entryPoint = 0x0C
+  loop( [tempBootloaderRoutineDeclarationList length])
+  while ([tempBootloaderRoutineDeclarationList length] > 0) & (entryPoint < 0x18) 
+  do
+    [!?tempBootloaderRoutineDeclarationList popFirst ?var @lstring routineName ?* ?* ?* ?*]
+    generatedBlockList += !@ipic18Block. new {
+      !entryPoint
+      !["_entry_bootloader_" + [entryPoint xString] nowhere]
+      !@ipic18SequentialInstructionList. emptyList
+      !@ipic18JumpTerminator. new { !routineName.location !routineName !@jumpInstructionKind. ipicRelative}}
+    entryPoint = entryPoint + 0x4
+  end
+#-------------------------------- Generate JUMP to low interrupt (if any)
+  if inHasLowInterrupt then
+    generatedBlockList += !@ipic18Block. new {
+      !0x18
+      ![".LOW_INTERRUPT" nowhere]
+      !@ipic18SequentialInstructionList. emptyList
+      !@ipic18JumpTerminator. new { !@location. nowhere !["_low_interrupt" nowhere] !@jumpInstructionKind. ipicRelative}}
+  end
+#-------------------------------- Generate entry points for remaining bootloader routines
+  entryPoint = 0x1C
+  for () in  tempBootloaderRoutineDeclarationList do
+    generatedBlockList += !@ipic18Block. new {
+      !entryPoint
+      !["_entry_bootloader_" + [entryPoint xString] nowhere]
+      !@ipic18SequentialInstructionList. emptyList
+      !@ipic18JumpTerminator. new { !mRoutineName.location !mRoutineName !@jumpInstructionKind. ipicRelative}}
+    entryPoint = entryPoint + 0x4
+  end
+  drop tempBootloaderRoutineDeclarationList
+#-------------------------------- Generate low interrupt routine (if any)
+  @uint localLabelIndex = 0
+  if inHasLowInterrupt then
+    for () in  inInterruptDefinitionList do
+      if [mInterruptName string] == "low" then
+        var currentBank =@uint.max{} # No bank
+        var generatedInstructionList =@ipic18SequentialInstructionList. emptyList{}
+        var currentBlockLabel =@lstring.new{ !"_low_interrupt" !mInterruptName.location}
+        analyzeInstructionList (
+          !mInstructionList
+          !?generatedBlockList
+          !inAccessBankSplitOffset
+          !routineMap
+          !inRegisterTable
+          !dataMap
+          !constantMap
+          !?localLabelIndex
+          !?generatedInstructionList
+          !?currentBlockLabel
+          !?ioListFileContents
+          !?currentBank
+          !not mFastReturn # Preserve BSR if not "fast"
+          !@routineKind. interruptRoutine
+          !?usedRegisters
+        )
+        if currentBlockLabel.string == "" then
+          error mEndOfInterruptLocation:"execution cannot reach the end of the interrupt routine"
+        end
+      #--- Enter last block
+        generatedBlockList += !@ipic18Block. new {
+          !@uint. max # relocatable
+          !currentBlockLabel
+          !generatedInstructionList
+          !@ipic18RetfieTerminator. new { !mInterruptName.location !mFastReturn}}
+      end
+    end
+  end
+#-------------------------------- Generate high interrupt routine (if any)
+  if inHasHighInterrupt then
+    for () in  inInterruptDefinitionList do
+      if [mInterruptName string] == "high" then
+        var currentBank =@uint.max{} # No bank
+        var generatedInstructionList =@ipic18SequentialInstructionList. emptyList{}
+        var currentBlockLabel =@lstring.new{ !"_high_interrupt" !mInterruptName.location}
+        analyzeInstructionList (
+          !mInstructionList
+          !?generatedBlockList
+          !inAccessBankSplitOffset
+          !routineMap
+          !inRegisterTable
+          !dataMap
+          !constantMap
+          !?localLabelIndex
+          !?generatedInstructionList
+          !?currentBlockLabel
+          !?ioListFileContents
+          !?currentBank
+          !not mFastReturn # Preserve BSR if not "fast"
+          !@routineKind. interruptRoutine
+          !?usedRegisters
+        )
+        if currentBlockLabel.string == "" then
+          error mEndOfInterruptLocation:"execution cannot reach the end of the interrupt routine"
+        end
+      #--- Enter last block
+        generatedBlockList += !@ipic18Block. new {
+          !@uint. max # relocatable
+          !currentBlockLabel
+          !generatedInstructionList
+          !@ipic18RetfieTerminator. new { !mInterruptName.location !true}}
+      end
+    end
+  end
+#-------------------------------- Generate routines
+  for () in  inRoutineDefinitionList do
+    @uint currentBank = [mRequiredBank uint]
+    @routineKind routineKind
+    if mIsNoReturn then
+      routineKind = @routineKind. noReturnRoutine
+    else
+      routineKind = @routineKind. regularRoutine
+    end
+    var generatedInstructionList =@ipic18SequentialInstructionList. emptyList{}
+    @lstring currentBlockLabel = mRoutineName
+    analyzeInstructionList (
+      !mInstructionList
+      !?generatedBlockList
+      !inAccessBankSplitOffset
+      !routineMap
+      !inRegisterTable
+      !dataMap
+      !constantMap
+      !?localLabelIndex
+      !?generatedInstructionList
+      !?currentBlockLabel
+      !?ioListFileContents
+      !?currentBank
+      !mPreservesBank
+      !routineKind
+      !?usedRegisters
+    )
+    let @bool continuesInSequence = currentBlockLabel.string != ""
+    #--- Enter last block
+    if continuesInSequence then
+      generatedBlockList += !@ipic18Block. new {
+        !@uint. max # relocatable
+        !currentBlockLabel
+        !generatedInstructionList
+        !@ipic18ReturnTerminator. new { !mRoutineName.location}}
+    end
+  #---
+    if (not mIsNoReturn) & ([mReturnedBank uint] != @uint. max) & (currentBank != [mReturnedBank uint]) then
+      error mRoutineName:"execution will not set bank selection to " + [mReturnedBank uint]
+    end
+    if mIsNoReturn & continuesInSequence then
+      error mRoutineName:"execution should not reach the end of a \"noreturn\" routine"
+    end
+  end
+#-------------------------------- Add computed goto, rcall, ... utility routines
+#  They wil be removed by optimizer if there are useless
+#--- Description of register WREG
+  var WREGregister =@registerExpression.new{ !@lstring. new { !"WREG" !@location.here} !@luint. new { !0 !@location.here}}
+  [WREGregister analyzeRegisterExpression
+    !inAccessBankSplitOffset
+    !0 # Current bank
+    !inRegisterTable
+    ?let @ipic18_intermediate_registerExpression WREG_IPICregisterDescription
+    ?*
+    !?usedRegisters
+  ]
+#--- Description of register TOSL
+  var TOSLregister =@registerExpression.new{ !@lstring. new { !"TOSL" !@location.here} !@luint. new { !0 !@location.here}}
+  [TOSLregister analyzeRegisterExpression
+    !inAccessBankSplitOffset
+    !0 # Current bank
+    !inRegisterTable
+    ?let @ipic18_intermediate_registerExpression TOSL_IPICregisterDescription
+    ?*
+    !?usedRegisters
+  ]
+#--- Description of register TOSH
+  var TOSHregister =@registerExpression.new{ !@lstring. new { !"TOSH" !@location.here} !@luint. new { !0 !@location.here}}
+  [TOSHregister analyzeRegisterExpression
+    !inAccessBankSplitOffset
+    !0 # Current bank
+    !inRegisterTable
+    ?let @ipic18_intermediate_registerExpression TOSH_IPICregisterDescription
+    ?*
+    !?usedRegisters
+  ]
+#--- Description of register TOSU
+  var TOSUregister =@registerExpression.new{ !@lstring. new { !"TOSU" !@location.here} !@luint. new { !0 !@location.here}}
+  [TOSUregister analyzeRegisterExpression
+    !inAccessBankSplitOffset
+    !0 # Current bank
+    !inRegisterTable
+    ?let @ipic18_intermediate_registerExpression TOSU_IPICregisterDescription
+    ?*
+    !?usedRegisters
+  ]
+#---
+  let @ipic18SequentialInstruction ADDWF_WREG = @ipic18_intermediate_instruction_FDA. new {
+    !@location.here
+    !@pic18Instruction_FDA_base_code_AST. ADDWF
+    !WREG_IPICregisterDescription
+    !true} # ADDWF WREG, W
+
+#--- computed_goto4
+  let goto4Block = @ipic18Block.new {
+    !@uint. max # Relocatable
+    !["_computed_goto_4" nowhere]
+    !@ipic18SequentialInstructionList. listWithValue { !ADDWF_WREG}
+    !@ipic18JumpTerminator. new { !@location. nowhere !["_computed_goto_2" nowhere] !@jumpInstructionKind. ipicRelative}
+  }
+  generatedBlockList += !goto4Block
+#--- computed_goto2
+  var goto2InstructionList =@ipic18SequentialInstructionList.emptyList{}
+  goto2InstructionList += !ADDWF_WREG
+  goto2InstructionList += !@ipic18_intermediate_instruction_FDA. new {
+    !@location.here
+    !@pic18Instruction_FDA_base_code_AST. ADDWF
+    !TOSL_IPICregisterDescription
+    !false} # ADDWF TOSL, F
+  goto2InstructionList += !@ipic18_intermediate_instruction_literalOperation. new {
+    !@location.here
+    !@literal_instruction_opcode. MOVLW
+    !0} # MOVLW 0
+  goto2InstructionList += !@ipic18_intermediate_instruction_FDA. new {
+    !@location.here
+    !@pic18Instruction_FDA_base_code_AST. ADDWFC
+    !TOSH_IPICregisterDescription
+    !false} # ADDWFC TOSH, F
+  goto2InstructionList += !@ipic18_intermediate_instruction_FDA. new {
+    !@location.here
+    !@pic18Instruction_FDA_base_code_AST. ADDWFC
+    !TOSU_IPICregisterDescription
+    !false} # ADDWFC TOSU, F
+#--- computed_goto2
+  let goto2Block = @ipic18Block.new {
+    !@uint. max # Relocatable
+    !["_computed_goto_2" nowhere]
+    !goto2InstructionList
+    !@ipic18ReturnTerminator. new { !@location. nowhere}
+  }
+  generatedBlockList += !goto2Block
+#-------------------------------- Generate default user routines
+  entryPoint = [inBootloaderReservedROMsize uint]
+  for () in  inUserRoutineDeclarationListForBootloaderImplementation do
+    if mIsNoReturn then
+      generatedBlockList += !@ipic18Block. new {
+        !entryPoint
+        !mRoutineName
+        !@ipic18SequentialInstructionList. emptyList
+        !@ipic18JumpTerminator. new { !mRoutineName.location !mRoutineName !@jumpInstructionKind. ipicRelative}}
+    else
+      var instructionList =@ipic18SequentialInstructionList.emptyList{}
+      if [mReturnedBank uint] != @uint. max then
+        instructionList += !@ipic18_intermediate_instruction_MOVLB. new { !@location.here !mReturnedBank}
+      end
+      generatedBlockList += !@ipic18Block. new {
+        !entryPoint
+        !mRoutineName
+        !instructionList
+        !@ipic18ReturnTerminator. new { !@location. nowhere}}
+      end
+    entryPoint = entryPoint + 4
+  end
+#----------------------------------------------------------- Check declared bytes are used
+  var unusedDeclarationUnicity =@stringset.emptySet{}
+  for () in  inUnusedRegisterList do
+    if not [inRegisterTable hasKey !mValue.string] then
+      error mValue : "the '" + mValue + "' byte is not declared"
+    elsif [unusedDeclarationUnicity hasKey !mValue.string] then
+      warning mValue : "the '" + mValue + "' byte is already declared as unused"
+    elsif [usedRegisters hasKey !mValue.string] then
+      warning mValue : "the '" + mValue + "' byte is declared as unused, but is used"
+    end
+    unusedDeclarationUnicity += !mValue.string
+  end
+  for () in  inDeclaredByteMap do
+    if (not [usedRegisters hasKey !lkey.string]) & (not [unusedDeclarationUnicity hasKey !lkey.string]) then
+      warning lkey : "the '" + lkey + "' byte is unused"
+    end
+  end
+#----------------------------------------------------------- Display block list
+  displayBlockList ( !"INTERMEDIATE BLOCK REPRESENTATION" !?ioListFileContents !generatedBlockList )
+#----------------------------------------------------------- Optimize
+  if @uint. errorCount == 0 then
+    ipic18OptimizeBlocks ( !?ioListFileContents !?generatedBlockList )
+    displayBlockList ( !"OPTIMIZED INTERMEDIATE BLOCK REPRESENTATION" !?ioListFileContents !generatedBlockList )
+  end
+#----------------------------------------------------------- Optimize block ordering
+  if @uint. errorCount == 0 then
+    ipic18OptimizeBlockOrdering (
+      !inSourceFileName
+      !?ioListFileContents
+      !?generatedBlockList
+    )
+  end
+#----------------------------------------------------------- relative branch and jump resolution
+  if @uint. errorCount == 0 then
+    ipic18RelativesResolution (
+      !?ioListFileContents
+      !?generatedBlockList
+    )
+  end
+#----------------------------------------------------------- Check and compute stack requirements
+  if (@uint. errorCount == 0) & (inProgramKind != @programKind. userProgram) then
+    ipic18StackComputations (
+      !?ioListFileContents
+      !generatedBlockList
+    )
+  end
+#----------------------------------------------------------- Generate code
+  if @uint. errorCount == 0 then
+    ipic18GenerateCode (
+      !inSourceFileName
+      !inProgramKind
+      ![inBootloaderReservedROMsize uint]
+      ![inROMSize uint]
+      !inProcessorName
+      !inPredefinedRegisters
+      !inRegisterTable
+      !dataMap
+      !inActualConfigurationMap
+      !?ioListFileContents
+      !generatedBlockList
+      ?let @uint usedROMsize
+    )
+  #----------------------------------------------------------- Print usage
+    if [option.verbose_output value] then
+      @string verboseMessage = "Resource usage:\n"
+      verboseMessage += "  ROM size: " + inROMSize + " bytes;"
+      verboseMessage += " used: " + [usedROMsize string] + " bytes ("
+      verboseMessage += [(usedROMsize * 100) / inROMSize string] + "%).\n"
+      for () in  inRamBank do
+        @uint bankSize = mLastAddressPlusOne - mFirstAddress
+        @uint usedSize = mFirstFreeAddress - mFirstAddress
+        verboseMessage += "  RAM bank '" + lkey + "': "
+        verboseMessage += [bankSize string] + " bytes, used "
+        verboseMessage += [usedSize string] + " bytes ("
+        verboseMessage += [(usedSize * 100) / bankSize string] + "%).\n"
+      end
+      message verboseMessage
+    end
+  end
+}
+
+#----------------------------------------------------------------------------*
+

@@ -1,0 +1,38 @@
+
+
+#-------------------------------------------------------------------------------*
+
+abstract getter @baseline_assembly_instruction length -> @uint outLength
+
+#-------------------------------------------------------------------------------*
+
+override getter @baseline_assembly_pseudo_ORG length -> @uint outLength {
+  outLength = 0
+}
+
+#-------------------------------------------------------------------------------*
+
+override getter @baseline_assembly_pseudo_BEGINOFROUTINE length -> @uint outLength {
+  outLength = 0
+}
+ 
+#-------------------------------------------------------------------------------*
+
+override getter @baseline_assembly_pseudo_ENDOFROUTINE length -> @uint outLength {
+  outLength = 0
+}
+ 
+#-------------------------------------------------------------------------------*
+
+override getter @baseline_assembly_pseudo_LABEL length -> @uint outLength {
+  outLength = 0
+}
+
+#-------------------------------------------------------------------------------*
+
+override getter @baseline_assembly_actualInstruction length -> @uint outLength {
+  outLength = 1
+}
+
+#-------------------------------------------------------------------------------*
+

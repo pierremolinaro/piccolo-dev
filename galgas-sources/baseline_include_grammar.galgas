@@ -1,0 +1,13 @@
+indexing grammar baseline_include_grammar "SLR" {
+syntax baseline_syntax
+syntax communs
+
+ <section_list>
+  ?!@baseline_routineDefinitionList ioRoutineDefinitionList
+  ?!@lstringlist ioUnusedRoutineList
+  ?!@ramDefinitionList ioRamDefinitionList
+  ?!@lstringlist unusedRegisterList
+  ?!@configDefinitionList ioConfigDefinitionList
+  ?!@constantDefinitionList ioConstantDefinitionList
+
+}

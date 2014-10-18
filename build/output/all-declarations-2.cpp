@@ -4552,6 +4552,24 @@ GALGAS_blockInvocationGraph GALGAS_blockInvocationGraph::reader_subgraphFromNode
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_lstringlist GALGAS_blockInvocationGraph::reader_accessibleNodesFromNodes (const GALGAS_lstringlist & inStartKeyList,
+                                                                                 C_Compiler * inCompiler
+                                                                                 COMMA_LOCATION_ARGS) const {
+  GALGAS_lstringlist result ;
+  GALGAS_blockInvocationGraph resultingGraph ;
+  subGraph (resultingGraph,
+            inStartKeyList,
+            GALGAS_stringset::constructor_emptySet (HERE),
+            inCompiler
+            COMMA_THERE) ;
+  if (resultingGraph.isValid ()) {
+    result = resultingGraph.reader_lkeyList (THERE) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                                             @blockInvocationGraph type                                              *
 //                                                                                                                     *

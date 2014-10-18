@@ -1,0 +1,360 @@
+syntax communs (piccolo_lexique) {
+
+#----------------------------------------------------*
+
+rule <configuration_definition>
+  ?!@configDefinitionList ioConfigDefinitionList {
+  $configuration$
+  @location defLocation = @location.here
+  var settingList =@configSettingList.emptyList{}
+  ${$
+  repeat
+  while
+    $identifier$ ?var  @lstring settingName
+    $:$
+    @lstring settingValue
+    select
+      $identifier$ ? settingValue
+    or
+      $literal_string$ ? settingValue
+    end
+    settingList += !settingName !settingValue
+  end
+  $}$
+  ioConfigDefinitionList += !defLocation !settingList
+}
+
+#----------------------------------------------------*
+
+rule <declaration_in_ram>
+  !@declarationInRam outDeclaration {
+  $byte$
+  $identifier$ ?var  @lstring name indexing variableDeclaration
+  @luint size
+  select
+    size = @luint. new { !1 !@location.here}
+  or
+    $[$
+    $integer$ ?size
+    $]$
+  end
+  var bitSliceTable =@bitSliceTable.emptyMap{}
+  @string bitDefinitionString
+  select
+    bitDefinitionString = ""
+  or
+    $<$
+    bitDefinitionString = " <"
+    @sint sliceIndex = 8S
+    repeat
+     select
+        @uint sliceWidth = 0 # Means undefined
+        repeat
+          @uint sliceBase = 0
+          if sliceIndex >= 0S then
+            sliceBase = [sliceIndex uint]
+          end
+          $identifier$ ?var  @lstring sliceName
+          select
+            if (sliceWidth != 0) & (sliceWidth != 1) then
+              error sliceName:"a slice of 1 bit is expected for '" + sliceName + "'" 
+            end
+            sliceWidth = 1
+            bitDefinitionString += [sliceName string] 
+          or
+            $[$
+            $integer$ ?var  @luint sliceSize
+            if (sliceWidth != 0) & (sliceWidth != [sliceSize uint]) then
+              error sliceName:"a slice of " + [sliceWidth string] + " bits is expected for '" + sliceName + "'" 
+            end
+            sliceWidth = [sliceSize uint]
+            sliceBase = sliceBase + 1 - [sliceSize uint]
+            bitDefinitionString += [sliceName string] + "[" + [[sliceSize uint] string] + "]" 
+            $]$
+          end
+          @uint base = 0
+          if sliceIndex >= [sliceWidth sint] then
+            base = [sliceIndex uint] - sliceWidth
+          end
+          [!?bitSliceTable insertKey !sliceName !base !sliceWidth]
+        while
+          $/$
+          bitDefinitionString += "/"
+        end
+        sliceIndex = sliceIndex - [sliceWidth sint]
+      or
+        $-$
+        bitDefinitionString += "-"
+        sliceIndex --
+      end
+    while
+      $,$
+      bitDefinitionString += ", " 
+    end
+    if sliceIndex != 0S then
+      error name:"Incorrect bit definition for register '" + name + "': " + [8S - sliceIndex string] + " bits (s) are defined, instead of 8"
+    end
+    $>$
+    bitDefinitionString += ">"
+  end
+  outDeclaration = @byteDeclarationInRam. new { !name !size !bitSliceTable !bitDefinitionString}
+}
+
+#----------------------------------------------------*
+
+rule <ram_definition>
+  ?!@ramDefinitionList ioRamDefinitionList {
+  $ram$
+  $identifier$ ?var  @lstring bankName
+  ${$
+  var declarationInRamList =@declarationInRamList.emptyList{}
+  repeat
+  while
+    <declaration_in_ram> ?var @declarationInRam declaration
+    declarationInRamList += !declaration
+  end
+  ioRamDefinitionList += !bankName !declarationInRamList
+  $}$
+}
+
+#----------------------------------------------------*
+
+rule <constant_definition>
+  ?!@constantDefinitionList ioConstantDefinitionList {
+  $const$
+  $identifier$ ?var  @lstring constantName indexing constantDeclaration
+  $=$
+  <immediate_expression> ?var @immediatExpression expression
+  ioConstantDefinitionList += !constantName !expression
+}
+
+#----------------------------------------------------*
+
+rule <immediate_expression> !@immediatExpression outExpression {
+  <immediate_bitwise_term> ?outExpression
+  repeat
+  while
+    $|$
+    <immediate_bitwise_term> ?var @immediatExpression rightExpression
+    outExpression = @immediatOr. new { !outExpression! rightExpression}
+  while
+    $^$
+    <immediate_bitwise_term> ?var @immediatExpression rightExpression
+    outExpression = @immediatXor. new { !outExpression! rightExpression}
+  end
+}
+
+#----------------------------------------------------*
+
+rule  <immediate_bitwise_term> !@immediatExpression outExpression {
+  <immediate_bitwise_factor> ?outExpression
+  repeat
+  while
+    $&$
+    @immediatExpression rightExpression
+    <immediate_bitwise_factor> ?rightExpression
+    outExpression = @immediatAnd. new { !outExpression! rightExpression}
+  end
+}
+
+#----------------------------------------------------*
+
+rule <immediate_bitwise_factor> !@immediatExpression outExpression {
+  <immediate_term> ?outExpression
+  select
+  or
+    $==$ 
+    @immediatExpression rightExpression
+    <immediate_term> ?rightExpression
+    outExpression = @immediatEqualTest. new { !outExpression! rightExpression}
+  or
+    $!=$ 
+    @immediatExpression rightExpression
+    <immediate_term> ?rightExpression
+    outExpression = @immediatNotEqualTest. new { !outExpression! rightExpression}
+  or
+    $>=$ 
+    @immediatExpression rightExpression
+    <immediate_term> ?rightExpression
+    outExpression = @immediatGreaterOrEqualTest. new { !outExpression! rightExpression}
+  or
+    $<=$ 
+    @immediatExpression rightExpression
+    <immediate_term> ?rightExpression
+    outExpression = @immediatLowerOrEqualTest. new { !outExpression! rightExpression}
+  or
+    $>$ 
+    @immediatExpression rightExpression
+    <immediate_term> ?rightExpression
+    outExpression = @immediatGreaterTest. new { !outExpression! rightExpression}
+  or
+    $<$ 
+    @immediatExpression rightExpression
+    <immediate_term> ?rightExpression
+    outExpression = @immediatLowerTest. new { !outExpression! rightExpression}
+  end
+}
+
+#----------------------------------------------------*
+
+rule <immediate_term> !@immediatExpression outExpression {
+  <immediate_factor> ?outExpression
+  repeat
+  while
+    $+$
+    @immediatExpression rightExpression
+    <immediate_factor> ?rightExpression
+    outExpression = @immediatAdd. new { !outExpression! rightExpression}
+  while
+    $-$
+    @immediatExpression rightExpression
+    <immediate_factor> ?rightExpression
+    outExpression = @immediatSub. new { !outExpression! rightExpression}
+  while
+    $<<$
+    @immediatExpression rightExpression
+    <immediate_factor> ?rightExpression
+    outExpression = @immediatLeftShift. new { !outExpression! rightExpression}
+  while
+    $>>$
+    @immediatExpression rightExpression
+    <immediate_factor> ?rightExpression
+    outExpression = @immediatRightShift. new { !outExpression! rightExpression}
+  end
+}
+
+#----------------------------------------------------*
+
+rule <immediate_factor> !@immediatExpression outExpression {
+  <immediate_primary> ?outExpression
+  repeat
+  while
+    $*$
+    @immediatExpression rightExpression
+    <immediate_primary> ?rightExpression
+    outExpression = @immediatMul. new { !outExpression! rightExpression}
+  while
+    $%$
+    @immediatExpression rightExpression
+    <immediate_primary> ?rightExpression
+    outExpression = @immediatMod. new { !outExpression! rightExpression}
+  while
+    $/$
+    @immediatExpression rightExpression
+    <immediate_primary> ?rightExpression
+    outExpression = @immediatDiv. new { !outExpression! rightExpression}
+  end
+}
+
+
+#----------------------------------------------------*
+
+rule <immediate_primary> !@immediatExpression outExpression {
+  select
+    $-$
+    @immediatExpression expression
+    <immediate_primary> ?expression
+    outExpression = @immediatNegate. new { !expression}
+  or
+    $~$
+    @immediatExpression expression
+    <immediate_primary> ?expression
+    outExpression = @immediatComplement. new { !expression}
+  or
+    $integer$ ?var  @luint constant
+    outExpression = @immediatInteger. new { !constant}
+  or
+    $literal_char$ ?var  @lchar literalCharValue
+    outExpression = @immediatInteger. new { !@luint. new { ![[literalCharValue char] uint] ![literalCharValue location]}}
+  or
+    $identifier$ ?var @lstring registerName indexing variableUse
+    @luint offset
+    select
+      offset = @luint. new { !0 !@location.here}
+    or
+      $[$
+      $integer$ ? offset
+      $]$
+    end
+    var registerExpression =@registerExpression.new{
+      !registerName
+      !offset
+    }
+    outExpression = @immediatRegister. new { !registerExpression}
+  or
+    $($
+    <immediate_expression> ?outExpression
+    $)$
+  or
+    $@$
+    $identifier$ ?var  @lstring registerName
+    $($
+    var sliceExpressionList =@immediatSliceExpressionList.emptyList{}
+    repeat
+      $identifier$ ?var  @lstring sliceName
+      $:$
+      @immediatExpression expression
+      <immediate_expression> ?expression
+      sliceExpressionList += !sliceName !expression
+    while
+      $,$
+    end
+    $)$
+    outExpression = @immediatSlice. new { !registerName !sliceExpressionList}
+  end
+}
+
+#----------------------------------------------------*
+
+rule <register_parsing> !@registerExpression outRegisterExpression {
+  $identifier$ ?var @lstring registerName indexing variableUse
+  @luint offset
+  select
+    offset = @luint. new { !0 !@location.here}
+  or
+    $[$
+    $integer$ ? offset
+    $]$
+  end
+  outRegisterExpression = @registerExpression. new {
+    !registerName
+    !offset}
+}
+
+#----------------------------------------------------*
+
+rule <bit_number_parsing> !@bitNumberExpression outBitNumber {
+  $identifier$ ?var @lstring bitNumberLabel
+  @luint bitIndex
+  select
+    bitIndex = @luint. new { !0 !@location.here}
+  or
+    $[$
+    $integer$ ? bitIndex
+    $]$
+  end
+  outBitNumber = @bitNumberLabelValue. new { !bitNumberLabel !bitIndex}
+}
+
+#----------------------------------------------------*
+
+rule <bit_number_parsing> !@bitNumberExpression outBitNumber {
+  $integer$ ?var @luint bitNumberLiteral
+  outBitNumber = @bitNumberLiteralValue. new { !bitNumberLiteral}
+}
+
+#----------------------------------------------------*
+
+rule <optional_w_as_dest> !@bool out_W_isDestination {
+  select
+    out_W_isDestination = false
+  or
+    $,$
+    $w$
+    out_W_isDestination = true
+  end
+}
+
+#----------------------------------------------------*
+
+}

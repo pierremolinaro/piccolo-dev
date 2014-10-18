@@ -598,11 +598,11 @@ static void categoryMethod_midrange_5F_instruction_5F_savebank_build_5F_midrange
   macroValidSharedObject (object, cPtr_midrange_5F_instruction_5F_savebank) ;
   GALGAS_registerExpression var_STATUS_5F_register = GALGAS_registerExpression::constructor_new (GALGAS_lstring::constructor_new (GALGAS_string ("STATUS"), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 148))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 148)), GALGAS_luint::constructor_new (GALGAS_uint ((uint32_t) 0U), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 148))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 148))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 148)) ;
   GALGAS_midrange_5F_intermediate_5F_registerExpression var_STATUS_5F_IPICregisterDescription ;
-  GALGAS_bitSliceTable joker_5344_0 ; // Joker input parameter
-  callCategoryMethod_resolveMidrangeAccess ((const cPtr_registerExpression *) var_STATUS_5F_register.ptr (), constinArgument_inTotalBankCount, GALGAS_uint::constructor_max (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 152)), constinArgument_inRegisterTable, var_STATUS_5F_IPICregisterDescription, joker_5344_0, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 150)) ;
+  GALGAS_bitSliceTable joker_5344 ; // Joker input parameter
+  callCategoryMethod_resolveMidrangeAccess ((const cPtr_registerExpression *) var_STATUS_5F_register.ptr (), constinArgument_inTotalBankCount, GALGAS_uint::constructor_max (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 152)), constinArgument_inRegisterTable, var_STATUS_5F_IPICregisterDescription, joker_5344, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 150)) ;
   GALGAS_midrange_5F_intermediate_5F_registerExpression var_save_5F_IPICregisterDescription ;
-  GALGAS_bitSliceTable joker_5642_0 ; // Joker input parameter
-  callCategoryMethod_resolveMidrangeAccess ((const cPtr_registerExpression *) object->mAttribute_mRegister.ptr (), constinArgument_inTotalBankCount, GALGAS_uint::constructor_max (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 162)), constinArgument_inRegisterTable, var_save_5F_IPICregisterDescription, joker_5642_0, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 160)) ;
+  GALGAS_bitSliceTable joker_5642 ; // Joker input parameter
+  callCategoryMethod_resolveMidrangeAccess ((const cPtr_registerExpression *) object->mAttribute_mRegister.ptr (), constinArgument_inTotalBankCount, GALGAS_uint::constructor_max (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 162)), constinArgument_inRegisterTable, var_save_5F_IPICregisterDescription, joker_5642, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 160)) ;
   ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_midrange_5F_intermediate_5F_instruction_5F_FD::constructor_new (object->mAttribute_mInstructionLocation, GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::constructor_SWAPF (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 171)), var_STATUS_5F_IPICregisterDescription, GALGAS_bool (true)  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 169))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 169)) ;
   ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_midrange_5F_intermediate_5F_instruction_5F_F::constructor_new (object->mAttribute_mInstructionLocation, GALGAS_midrange_5F_F_5F_instruction_5F_base_5F_code::constructor_MOVWF (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 177)), var_save_5F_IPICregisterDescription  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 175))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 175)) ;
   GALGAS_uint var_finalBank = ioArgument_ioCurrentBank ;
@@ -809,9 +809,9 @@ static void categoryMethod_midrange_5F_instruction_5F_banksel_5F_register_build_
   }
   GALGAS_uintlist var_registerAddressList ;
   GALGAS_uint var_size ;
-  GALGAS_bitSliceTable joker_12577_0 ; // Joker input parameter
-  GALGAS_string joker_12584_0 ; // Joker input parameter
-  constinArgument_inRegisterTable.method_searchKey (object->mAttribute_mRegister.reader_mRegisterName (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 340)), var_registerAddressList, var_size, joker_12577_0, joker_12584_0, inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 339)) ;
+  GALGAS_bitSliceTable joker_12577 ; // Joker input parameter
+  GALGAS_string joker_12584 ; // Joker input parameter
+  constinArgument_inRegisterTable.method_searchKey (object->mAttribute_mRegister.reader_mRegisterName (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 340)), var_registerAddressList, var_size, joker_12577, joker_12584, inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 339)) ;
   GALGAS_uint var_address ;
   var_registerAddressList.method_first (var_address, inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 346)) ;
   GALGAS_uint var_newBank = var_address.right_shift_operation (GALGAS_uint ((uint32_t) 7U) COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 347)) ;
@@ -946,8 +946,8 @@ static void categoryMethod_midrange_5F_instruction_5F_FD_build_5F_midrange_5F_ip
   const cPtr_midrange_5F_instruction_5F_FD * object = (const cPtr_midrange_5F_instruction_5F_FD *) inObject ;
   macroValidSharedObject (object, cPtr_midrange_5F_instruction_5F_FD) ;
   GALGAS_midrange_5F_intermediate_5F_registerExpression var_IPICregisterDescription ;
-  GALGAS_bitSliceTable joker_15775_0 ; // Joker input parameter
-  callCategoryMethod_resolveMidrangeAccess ((const cPtr_registerExpression *) object->mAttribute_mRegisterExpression.ptr (), constinArgument_inTotalBankCount, ioArgument_ioCurrentBank, constinArgument_inRegisterTable, var_IPICregisterDescription, joker_15775_0, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 425)) ;
+  GALGAS_bitSliceTable joker_15775 ; // Joker input parameter
+  callCategoryMethod_resolveMidrangeAccess ((const cPtr_registerExpression *) object->mAttribute_mRegisterExpression.ptr (), constinArgument_inTotalBankCount, ioArgument_ioCurrentBank, constinArgument_inRegisterTable, var_IPICregisterDescription, joker_15775, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 425)) ;
   ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_midrange_5F_intermediate_5F_instruction_5F_FD::constructor_new (object->mAttribute_mInstructionLocation, object->mAttribute_mInstruction_5F_FD_5F_base_5F_code, var_IPICregisterDescription, object->mAttribute_m_5F_W_5F_isDestination  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 433))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 433)) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
@@ -985,8 +985,8 @@ static void categoryMethod_midrange_5F_instruction_5F_F_build_5F_midrange_5F_ipi
   const cPtr_midrange_5F_instruction_5F_F * object = (const cPtr_midrange_5F_instruction_5F_F *) inObject ;
   macroValidSharedObject (object, cPtr_midrange_5F_instruction_5F_F) ;
   GALGAS_midrange_5F_intermediate_5F_registerExpression var_IPICregisterDescription ;
-  GALGAS_bitSliceTable joker_16828_0 ; // Joker input parameter
-  callCategoryMethod_resolveMidrangeAccess ((const cPtr_registerExpression *) object->mAttribute_mRegisterExpression.ptr (), constinArgument_inTotalBankCount, ioArgument_ioCurrentBank, constinArgument_inRegisterTable, var_IPICregisterDescription, joker_16828_0, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 456)) ;
+  GALGAS_bitSliceTable joker_16828 ; // Joker input parameter
+  callCategoryMethod_resolveMidrangeAccess ((const cPtr_registerExpression *) object->mAttribute_mRegisterExpression.ptr (), constinArgument_inTotalBankCount, ioArgument_ioCurrentBank, constinArgument_inRegisterTable, var_IPICregisterDescription, joker_16828, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 456)) ;
   ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_midrange_5F_intermediate_5F_instruction_5F_F::constructor_new (object->mAttribute_mInstructionLocation, object->mAttribute_mFAinstruction, var_IPICregisterDescription  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 464))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 464)) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
@@ -1282,9 +1282,9 @@ static void categoryMethod_midrange_5F_instruction_5F_JUMP_build_5F_midrange_5F_
   macroValidSharedObject (object, cPtr_midrange_5F_instruction_5F_JUMP) ;
   GALGAS_bool var_isNoReturn ;
   GALGAS_uint var_requiredBank ;
-  GALGAS_uint joker_24139_0 ; // Joker input parameter
-  GALGAS_bool joker_24142_0 ; // Joker input parameter
-  constinArgument_inRoutineMap.method_searchKey (object->mAttribute_mTargetLabel, var_isNoReturn, var_requiredBank, joker_24139_0, joker_24142_0, inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 661)) ;
+  GALGAS_uint joker_24139 ; // Joker input parameter
+  GALGAS_bool joker_24142 ; // Joker input parameter
+  constinArgument_inRoutineMap.method_searchKey (object->mAttribute_mTargetLabel, var_isNoReturn, var_requiredBank, joker_24139, joker_24142, inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 661)) ;
   const enumGalgasBool test_0 = GALGAS_bool (kIsNotEqual, var_requiredBank.objectCompare (GALGAS_uint::constructor_max (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 662)))).operator_and (GALGAS_bool (kIsNotEqual, var_requiredBank.objectCompare (ioArgument_ioCurrentBank)) COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 662)).boolEnum () ;
   if (kBoolTrue == test_0) {
     GALGAS_string var_errorMessage = GALGAS_string ("the routine '").add_operation (object->mAttribute_mTargetLabel.reader_string (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 663)), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 663)).add_operation (GALGAS_string ("' requires bank selection to be set to "), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 663)).add_operation (var_requiredBank.reader_string (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 663)), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 663)) ;
@@ -1342,9 +1342,9 @@ static void categoryMethod_midrange_5F_instruction_5F_GOTO_build_5F_midrange_5F_
   macroValidSharedObject (object, cPtr_midrange_5F_instruction_5F_GOTO) ;
   GALGAS_bool var_isNoReturn ;
   GALGAS_uint var_requiredBank ;
-  GALGAS_uint joker_25721_0 ; // Joker input parameter
-  GALGAS_bool joker_25724_0 ; // Joker input parameter
-  constinArgument_inRoutineMap.method_searchKey (object->mAttribute_mTargetLabel, var_isNoReturn, var_requiredBank, joker_25721_0, joker_25724_0, inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 702)) ;
+  GALGAS_uint joker_25721 ; // Joker input parameter
+  GALGAS_bool joker_25724 ; // Joker input parameter
+  constinArgument_inRoutineMap.method_searchKey (object->mAttribute_mTargetLabel, var_isNoReturn, var_requiredBank, joker_25721, joker_25724, inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 702)) ;
   const enumGalgasBool test_0 = GALGAS_bool (kIsNotEqual, var_requiredBank.objectCompare (GALGAS_uint::constructor_max (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 703)))).operator_and (GALGAS_bool (kIsNotEqual, var_requiredBank.objectCompare (ioArgument_ioCurrentBank)) COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 703)).boolEnum () ;
   if (kBoolTrue == test_0) {
     GALGAS_string var_errorMessage = GALGAS_string ("the routine '").add_operation (object->mAttribute_mTargetLabel.reader_string (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 704)), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 704)).add_operation (GALGAS_string ("' requires bank selection to be set to "), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 704)).add_operation (var_requiredBank.reader_string (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 704)), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 704)) ;
@@ -1797,8 +1797,8 @@ static void categoryMethod_midrange_5F_incDecRegisterInCondition_buildIPICinstru
   const cPtr_midrange_5F_incDecRegisterInCondition * object = (const cPtr_midrange_5F_incDecRegisterInCondition *) inObject ;
   macroValidSharedObject (object, cPtr_midrange_5F_incDecRegisterInCondition) ;
   GALGAS_midrange_5F_intermediate_5F_registerExpression var_IPICregisterDescription ;
-  GALGAS_bitSliceTable joker_38464_0 ; // Joker input parameter
-  callCategoryMethod_resolveMidrangeAccess ((const cPtr_registerExpression *) object->mAttribute_mRegisterExpression.ptr (), constinArgument_inTotalBankCount, constinArgument_inCurrentBank, constinArgument_inRegisterTable, var_IPICregisterDescription, joker_38464_0, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1054)) ;
+  GALGAS_bitSliceTable joker_38464 ; // Joker input parameter
+  callCategoryMethod_resolveMidrangeAccess ((const cPtr_registerExpression *) object->mAttribute_mRegisterExpression.ptr (), constinArgument_inTotalBankCount, constinArgument_inCurrentBank, constinArgument_inRegisterTable, var_IPICregisterDescription, joker_38464, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1054)) ;
   ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_midrange_5F_intermediate_5F_incDecRegisterInCondition::constructor_new (constinArgument_inInstructionLocation, var_IPICregisterDescription, constinArgument_inTargetLabel, object->mAttribute_mIncrement, object->mAttribute_m_5F_W_5F_isDestination, object->mAttribute_mBranchIfZero.operator_xor (constinArgument_inComplementaryBranch COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1069))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1063))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1063)) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
@@ -2257,8 +2257,8 @@ static void categoryMethod_midrange_5F_instruction_5F_IF_5F_IncDec_build_5F_midr
     var_baseCode = GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::constructor_DECFSZ (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1533)) ;
   }
   GALGAS_midrange_5F_intermediate_5F_registerExpression var_IPICregisterDescription ;
-  GALGAS_bitSliceTable joker_54392_0 ; // Joker input parameter
-  callCategoryMethod_resolveMidrangeAccess ((const cPtr_registerExpression *) object->mAttribute_mRegisterExpression.ptr (), constinArgument_inTotalBankCount, ioArgument_ioCurrentBank, constinArgument_inRegisterTable, var_IPICregisterDescription, joker_54392_0, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1537)) ;
+  GALGAS_bitSliceTable joker_54392 ; // Joker input parameter
+  callCategoryMethod_resolveMidrangeAccess ((const cPtr_registerExpression *) object->mAttribute_mRegisterExpression.ptr (), constinArgument_inTotalBankCount, ioArgument_ioCurrentBank, constinArgument_inRegisterTable, var_IPICregisterDescription, joker_54392, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1537)) ;
   ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_midrange_5F_intermediate_5F_instruction_5F_FD::constructor_new (object->mAttribute_mInstructionLocation, var_baseCode, var_IPICregisterDescription, object->mAttribute_m_5F_W_5F_isDestination  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1546))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1546)) ;
   GALGAS_bool var_unusedContinuesInSequence = GALGAS_bool (true) ;
   callCategoryMethod_build_5F_midrange_5F_ipic_5F_instructionList ((const cPtr_midrange_5F_instruction *) object->mAttribute_mInstruction.ptr (), constinArgument_inRoutineMap, constinArgument_inRegisterTable, constinArgument_inConstantMap, ioArgument_ioLocalLabelIndex, ioArgument_ioGeneratedInstructionList, ioArgument_ioListFileContents, constinArgument_inTotalBankCount, ioArgument_ioCurrentBank, constinArgument_inShouldPreserveBank, var_unusedContinuesInSequence, constinArgument_inRoutineKind, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1553)) ;
@@ -3980,8 +3980,8 @@ static void categoryMethod_midrange_5F_intermediate_5F_JUMP_generateBinaryCodeAt
   constinArgument_inRoutineSymbolTable.method_searchKey (object->mAttribute_mTargetLabel, var_targetAddress, inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 293)) ;
   GALGAS_registerExpression var_PCLATH_5F_register = GALGAS_registerExpression::constructor_new (GALGAS_lstring::constructor_new (GALGAS_string ("PCLATH"), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 295))  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 295)), GALGAS_luint::constructor_new (GALGAS_uint ((uint32_t) 0U), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 295))  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 295))  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 295)) ;
   GALGAS_midrange_5F_intermediate_5F_registerExpression var_PCLATH_5F_IPICregisterDescription ;
-  GALGAS_bitSliceTable joker_10870_0 ; // Joker input parameter
-  callCategoryMethod_resolveMidrangeAccess ((const cPtr_registerExpression *) var_PCLATH_5F_register.ptr (), constinArgument_inTotalBankCount, GALGAS_uint::constructor_max (SOURCE_FILE ("midrange_build_binary_code.galgas", 299)), constinArgument_inRegisterTable, var_PCLATH_5F_IPICregisterDescription, joker_10870_0, var_usedRegisters, inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 297)) ;
+  GALGAS_bitSliceTable joker_10870 ; // Joker input parameter
+  callCategoryMethod_resolveMidrangeAccess ((const cPtr_registerExpression *) var_PCLATH_5F_register.ptr (), constinArgument_inTotalBankCount, GALGAS_uint::constructor_max (SOURCE_FILE ("midrange_build_binary_code.galgas", 299)), constinArgument_inRegisterTable, var_PCLATH_5F_IPICregisterDescription, joker_10870, var_usedRegisters, inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 297)) ;
   if (object->mAttribute_mBit_31__31_.isValid ()) {
     switch (object->mAttribute_mBit_31__31_.enumValue ()) {
     case GALGAS_midrange_5F_call_5F_goto_5F_bit::kNotBuilt:
@@ -4087,8 +4087,8 @@ static void categoryMethod_midrange_5F_intermediate_5F_JSR_generateBinaryCodeAtA
   constinArgument_inRoutineSymbolTable.method_searchKey (object->mAttribute_mTargetLabel, var_targetAddress, inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 370)) ;
   GALGAS_registerExpression var_PCLATH_5F_register = GALGAS_registerExpression::constructor_new (GALGAS_lstring::constructor_new (GALGAS_string ("PCLATH"), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 372))  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 372)), GALGAS_luint::constructor_new (GALGAS_uint ((uint32_t) 0U), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 372))  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 372))  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 372)) ;
   GALGAS_midrange_5F_intermediate_5F_registerExpression var_PCLATH_5F_IPICregisterDescription ;
-  GALGAS_bitSliceTable joker_13400_0 ; // Joker input parameter
-  callCategoryMethod_resolveMidrangeAccess ((const cPtr_registerExpression *) var_PCLATH_5F_register.ptr (), constinArgument_inTotalBankCount, GALGAS_uint::constructor_max (SOURCE_FILE ("midrange_build_binary_code.galgas", 376)), constinArgument_inRegisterTable, var_PCLATH_5F_IPICregisterDescription, joker_13400_0, var_usedRegisters, inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 374)) ;
+  GALGAS_bitSliceTable joker_13400 ; // Joker input parameter
+  callCategoryMethod_resolveMidrangeAccess ((const cPtr_registerExpression *) var_PCLATH_5F_register.ptr (), constinArgument_inTotalBankCount, GALGAS_uint::constructor_max (SOURCE_FILE ("midrange_build_binary_code.galgas", 376)), constinArgument_inRegisterTable, var_PCLATH_5F_IPICregisterDescription, joker_13400, var_usedRegisters, inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 374)) ;
   if (object->mAttribute_mBit_31__31_.isValid ()) {
     switch (object->mAttribute_mBit_31__31_.enumValue ()) {
     case GALGAS_midrange_5F_call_5F_goto_5F_bit::kNotBuilt:
@@ -9901,8 +9901,8 @@ static void categoryMethod_ipic_31__38__5F_intermediate_5F_instruction_5F_comput
   GALGAS_uint var_address = constinArgument_inAddress.add_operation (temp_1, inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 1003)) ;
   cEnumerator_ipic_31__38_SequentialInstructionList enumerator_32855 (object->mAttribute_mTargetInstructions, kEnumeration_up) ;
   while (enumerator_32855.hasCurrentObject ()) {
-    GALGAS_ipic_31__38_SequentialInstruction joker_33081_0 ; // Joker input parameter
-    callCategoryMethod_performInstructionRelativeBranchResolution ((const cPtr_ipic_31__38_SequentialInstruction *) enumerator_32855.current_mInstruction (HERE).ptr (), var_address, constinArgument_inBlockLabel, constinArgument_inSymbolTable, var_unusedConversionCount, var_unusedListing, joker_33081_0, inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 1006)) ;
+    GALGAS_ipic_31__38_SequentialInstruction joker_33081 ; // Joker input parameter
+    callCategoryMethod_performInstructionRelativeBranchResolution ((const cPtr_ipic_31__38_SequentialInstruction *) enumerator_32855.current_mInstruction (HERE).ptr (), var_address, constinArgument_inBlockLabel, constinArgument_inSymbolTable, var_unusedConversionCount, var_unusedListing, joker_33081, inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 1006)) ;
     var_address = var_address.add_operation (GALGAS_uint ((uint32_t) 4U), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 1014)) ;
     enumerator_32855.gotoNextObject () ;
   }

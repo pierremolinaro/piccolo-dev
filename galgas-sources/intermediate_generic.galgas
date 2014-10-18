@@ -1,0 +1,460 @@
+
+
+#----------------------------------------------------------------------------*
+#                                                                            *
+#                 EXTERN ROUTINES FOR EMITING HEX CODE                       *
+#                                                                            *
+#----------------------------------------------------------------------------*
+
+extern proc initCodeGenerator
+
+extern proc setEmitAddress ?let @uint inAddress
+
+extern proc currentEmitAddress !@uint outAddress
+
+extern proc emitCode ?let @uint inCode
+
+extern proc emitByte ?let @uint inCode
+
+extern proc getGeneratedContents !@string outContents
+
+extern proc get_C_ArrayImplementation ?let @string inSourceName !@string outContents
+
+extern proc get_C_ArrayHeader ?let @string inSourceName !@string outContents
+
+#----------------------------------------------------------------------------*
+
+getter @uint x4String ->@string outResult {
+  if self > 0xFFFF then
+    outResult = "****"
+  else
+    outResult = [self >> 12 xString]
+    outResult += [(self >> 8) & 0xF xString]
+    outResult += [(self >> 4) & 0xF xString]
+    outResult += [self & 0xF xString]
+  end
+}
+
+#----------------------------------------------------------------------------*
+
+proc checkCurrentEmitAddress ?let @uint inCurrentAddress {
+  @uint addr currentEmitAddress ( ? addr )
+  if (@uint. errorCount == 0) & (addr != inCurrentAddress) then
+    error @location.here:"internal error: current emit address is " + [addr hexString]
+    + "; it should be " + [inCurrentAddress hexString]
+  end
+}
+
+#----------------------------------------------------------------------------*
+#                          CONSTANT MAP                                      *
+#----------------------------------------------------------------------------*
+
+map @constantMap {
+  @sint64 mValue
+  insert insertKey error message "the '%K' constant is already declared in %L"
+  search searchKey error message "the '%K' constant is not declared"
+}
+
+#----------------------------------------------------------------------------*
+#                          ROUTINE MAP                                       *
+#----------------------------------------------------------------------------*
+
+map @routineMap {
+  @bool mIsNoReturn
+  @uint mRequiredBank
+  @uint mReturnedBank
+  @bool mPreservesBank
+  insert insertKey error message "the '%K' routine is already declared in %L"
+  search searchKey error message "the '%K' routine is not declared"
+}
+
+#----------------------------------------------------------------------------*
+
+enum @routineKind {
+  case regularRoutine  case noReturnRoutine  case interruptRoutine
+}
+
+#----------------------------------------------------------------------------*
+#                                                                            *
+#                    IMMEDIAT EXPRESSION EVALUATION                          *
+#                                                                            *
+#----------------------------------------------------------------------------*
+
+abstract method @immediatExpression eval
+  ?let @registerTable inRegisterTable
+  ?let @constantMap inConstantMap
+  !@sint64 outResult
+  ?!@stringset ioUsedRegisters
+
+#----------------------------------------------------------------------------*
+
+override method @immediatInteger eval
+  ?let @registerTable unused inRegisterTable
+  ?let @constantMap unused inConstantMap
+  !@sint64 outResult
+  ?!@stringset unused ioUsedRegisters {
+  outResult = [[mValue uint] sint64]
+}
+
+#----------------------------------------------------------------------------*
+
+override method @immediatRegister eval
+  ?let @registerTable inRegisterTable
+  ?let @constantMap inConstantMap
+  !@sint64 outResult
+  ?!@stringset ioUsedRegisters {
+  if [inRegisterTable hasKey ![[mRegister mRegisterName] string]] then
+    ioUsedRegisters += ![mRegister mRegisterName].string
+    [inRegisterTable searchKey ![mRegister mRegisterName] ?let @uintlist registerAddressList ?let @uint size ?* ?*]
+    @uint registerAddress [registerAddressList first ?registerAddress]
+    if [[mRegister mOffset] uint] >= size then
+      error [mRegister mOffset]:"index (" + [[[mRegister mOffset] uint] string] + ") should be lower than size (" + [size string] + ")"
+    end
+    outResult = [registerAddress + [[mRegister mOffset] uint] sint64]
+  elsif [inConstantMap hasKey ![[mRegister mRegisterName] string]] then
+    [inConstantMap searchKey ![mRegister mRegisterName] ?outResult]
+    if [[mRegister mOffset] uint] > 0 then
+      error [mRegister mOffset]:"index notation (" + [[[mRegister mOffset] uint] string] + ") cannot be used with a constant"
+    end
+  else
+    error [mRegister mRegisterName]: "'" + [mRegister mRegisterName] + "' should be declared as ram register or as constant" : outResult
+  end
+}
+
+#----------------------------------------------------------------------------*
+
+override method @immediatAdd eval
+  ?let @registerTable inRegisterTable
+  ?let @constantMap inConstantMap
+  !@sint64 outResult
+  ?!@stringset ioUsedRegisters {
+  [mLeftExpression eval !inRegisterTable !inConstantMap ?let @sint64 leftResult !?ioUsedRegisters]
+  [mRightExpression eval !inRegisterTable !inConstantMap ?let @sint64 rightResult !?ioUsedRegisters]
+  outResult = leftResult + rightResult
+}
+
+#----------------------------------------------------------------------------*
+
+override method @immediatSub eval
+  ?let @registerTable inRegisterTable
+  ?let @constantMap inConstantMap
+  !@sint64 outResult
+  ?!@stringset ioUsedRegisters {
+  [mLeftExpression eval !inRegisterTable !inConstantMap ?let @sint64 leftResult !?ioUsedRegisters]
+  [mRightExpression eval !inRegisterTable !inConstantMap ?let @sint64 rightResult !?ioUsedRegisters]
+  outResult = leftResult - rightResult
+}
+
+#----------------------------------------------------------------------------*
+
+override method @immediatMul eval
+  ?let @registerTable inRegisterTable
+  ?let @constantMap inConstantMap
+  !@sint64 outResult
+  ?!@stringset ioUsedRegisters {
+  [mLeftExpression eval !inRegisterTable !inConstantMap ?let @sint64 leftResult !?ioUsedRegisters]
+  [mRightExpression eval !inRegisterTable !inConstantMap ?let @sint64 rightResult !?ioUsedRegisters]
+  outResult = leftResult * rightResult
+}
+
+#----------------------------------------------------------------------------*
+
+override method @immediatDiv eval
+  ?let @registerTable inRegisterTable
+  ?let @constantMap inConstantMap
+  !@sint64 outResult
+  ?!@stringset ioUsedRegisters {
+  [mLeftExpression eval !inRegisterTable !inConstantMap ?let @sint64 leftResult !?ioUsedRegisters]
+  [mRightExpression eval !inRegisterTable !inConstantMap ?let @sint64 rightResult !?ioUsedRegisters]
+  outResult = leftResult / rightResult
+}
+
+#----------------------------------------------------------------------------*
+
+override method @immediatMod eval
+  ?let @registerTable inRegisterTable
+  ?let @constantMap inConstantMap
+  !@sint64 outResult
+  ?!@stringset ioUsedRegisters {
+  [mLeftExpression eval !inRegisterTable !inConstantMap ?let @sint64 leftResult !?ioUsedRegisters]
+  [mRightExpression eval !inRegisterTable !inConstantMap ?let @sint64 rightResult !?ioUsedRegisters]
+  outResult = leftResult mod rightResult
+}
+
+#----------------------------------------------------------------------------*
+
+override method @immediatAnd eval
+  ?let @registerTable inRegisterTable
+  ?let @constantMap inConstantMap
+  !@sint64 outResult
+  ?!@stringset ioUsedRegisters {
+  [mLeftExpression eval !inRegisterTable !inConstantMap ?let @sint64 leftResult !?ioUsedRegisters]
+  [mRightExpression eval !inRegisterTable !inConstantMap ?let @sint64 rightResult !?ioUsedRegisters]
+  outResult = leftResult & rightResult
+}
+
+#----------------------------------------------------------------------------*
+
+override method @immediatOr eval
+  ?let @registerTable inRegisterTable
+  ?let @constantMap inConstantMap
+  !@sint64 outResult
+  ?!@stringset ioUsedRegisters {
+  [mLeftExpression eval !inRegisterTable !inConstantMap ?let @sint64 leftResult !?ioUsedRegisters]
+  [mRightExpression eval !inRegisterTable !inConstantMap ?let @sint64 rightResult !?ioUsedRegisters]
+  outResult = leftResult | rightResult
+}
+
+#----------------------------------------------------------------------------*
+
+override method @immediatXor eval
+  ?let @registerTable inRegisterTable
+  ?let @constantMap inConstantMap
+  !@sint64 outResult
+  ?!@stringset ioUsedRegisters {
+  [mLeftExpression eval !inRegisterTable !inConstantMap ?let @sint64 leftResult !?ioUsedRegisters]
+  [mRightExpression eval !inRegisterTable !inConstantMap ?let @sint64 rightResult !?ioUsedRegisters]
+  outResult = leftResult ^ rightResult
+}
+
+#----------------------------------------------------------------------------*
+
+override method @immediatLeftShift eval
+  ?let @registerTable inRegisterTable
+  ?let @constantMap inConstantMap
+  !@sint64 outResult
+  ?!@stringset ioUsedRegisters {
+  [mLeftExpression eval !inRegisterTable !inConstantMap ?let @sint64 leftResult !?ioUsedRegisters]
+  [mRightExpression eval !inRegisterTable !inConstantMap ?let @sint64 rightResult !?ioUsedRegisters]
+  outResult = leftResult << [rightResult uint]
+}
+
+#----------------------------------------------------------------------------*
+
+override method @immediatRightShift eval
+  ?let @registerTable inRegisterTable
+  ?let @constantMap inConstantMap
+  !@sint64 outResult
+  ?!@stringset ioUsedRegisters {
+  [mLeftExpression eval !inRegisterTable !inConstantMap ?let @sint64 leftResult !?ioUsedRegisters]
+  [mRightExpression eval !inRegisterTable !inConstantMap ?let @sint64 rightResult !?ioUsedRegisters]
+  outResult = leftResult >> [rightResult uint]
+}
+
+#----------------------------------------------------------------------------*
+
+override method @immediatEqualTest eval
+  ?let @registerTable inRegisterTable
+  ?let @constantMap inConstantMap
+  !@sint64 outResult
+  ?!@stringset ioUsedRegisters {
+  [mLeftExpression eval !inRegisterTable !inConstantMap ?let @sint64 leftResult !?ioUsedRegisters]
+  [mRightExpression eval !inRegisterTable !inConstantMap ?let @sint64 rightResult !?ioUsedRegisters]
+  if leftResult == rightResult then
+    outResult = 1LS
+  else
+    outResult = 0LS
+  end
+}
+
+#----------------------------------------------------------------------------*
+
+override method @immediatNotEqualTest eval
+  ?let @registerTable inRegisterTable
+  ?let @constantMap inConstantMap
+  !@sint64 outResult
+  ?!@stringset ioUsedRegisters {
+  [mLeftExpression eval !inRegisterTable !inConstantMap ?let @sint64 leftResult !?ioUsedRegisters]
+  [mRightExpression eval !inRegisterTable !inConstantMap ?let @sint64 rightResult !?ioUsedRegisters]
+  if leftResult != rightResult then
+    outResult = 1LS
+  else
+    outResult = 0LS
+  end
+}
+
+#----------------------------------------------------------------------------*
+
+override method @immediatGreaterOrEqualTest eval
+  ?let @registerTable inRegisterTable
+  ?let @constantMap inConstantMap
+  !@sint64 outResult
+  ?!@stringset ioUsedRegisters {
+  [mLeftExpression eval !inRegisterTable !inConstantMap ?let @sint64 leftResult !?ioUsedRegisters]
+  [mRightExpression eval !inRegisterTable !inConstantMap ?let @sint64 rightResult !?ioUsedRegisters]
+  if leftResult >= rightResult then
+    outResult = 1LS
+  else
+    outResult = 0LS
+  end
+}
+
+#----------------------------------------------------------------------------*
+
+override method @immediatLowerOrEqualTest eval
+  ?let @registerTable inRegisterTable
+  ?let @constantMap inConstantMap
+  !@sint64 outResult
+  ?!@stringset ioUsedRegisters {
+  [mLeftExpression eval !inRegisterTable !inConstantMap ?let @sint64 leftResult !?ioUsedRegisters]
+  [mRightExpression eval !inRegisterTable !inConstantMap ?let @sint64 rightResult !?ioUsedRegisters]
+  if leftResult <= rightResult then
+    outResult = 1LS
+  else
+    outResult = 0LS
+  end
+}
+
+#----------------------------------------------------------------------------*
+
+override method @immediatGreaterTest eval
+  ?let @registerTable inRegisterTable
+  ?let @constantMap inConstantMap
+  !@sint64 outResult
+  ?!@stringset ioUsedRegisters {
+  [mLeftExpression eval !inRegisterTable !inConstantMap ?let @sint64 leftResult !?ioUsedRegisters]
+  [mRightExpression eval !inRegisterTable !inConstantMap ?let @sint64 rightResult !?ioUsedRegisters]
+  if leftResult > rightResult then
+    outResult = 1LS
+  else
+    outResult = 0LS
+  end
+}
+
+#----------------------------------------------------------------------------*
+
+override method @immediatLowerTest eval
+  ?let @registerTable inRegisterTable
+  ?let @constantMap inConstantMap
+  !@sint64 outResult
+  ?!@stringset ioUsedRegisters {
+  [mLeftExpression eval !inRegisterTable !inConstantMap ?let @sint64 leftResult !?ioUsedRegisters]
+  [mRightExpression eval !inRegisterTable !inConstantMap ?let @sint64 rightResult !?ioUsedRegisters]
+  if leftResult < rightResult then
+    outResult = 1LS
+  else
+    outResult = 0LS
+  end
+}
+
+#----------------------------------------------------------------------------*
+
+override method @immediatNegate eval
+  ?let @registerTable inRegisterTable
+  ?let @constantMap inConstantMap
+  !@sint64 outResult
+  ?!@stringset ioUsedRegisters {
+  [mExpression eval !inRegisterTable !inConstantMap ?let @sint64 result !?ioUsedRegisters]
+  outResult = - result
+}
+
+#----------------------------------------------------------------------------*
+
+override method @immediatComplement eval
+  ?let @registerTable inRegisterTable
+  ?let @constantMap inConstantMap
+  !@sint64 outResult
+  ?!@stringset ioUsedRegisters {
+  [mExpression eval !inRegisterTable !inConstantMap ?let @sint64 result !?ioUsedRegisters]
+  outResult = ~ result
+}
+
+#----------------------------------------------------------------------------*
+
+override method @immediatSlice eval
+  ?let @registerTable inRegisterTable
+  ?let @constantMap inConstantMap
+  !@sint64 outResult
+  ?!@stringset ioUsedRegisters {
+  @bitSliceTable bitSliceTable
+  outResult = 0LS
+  ioUsedRegisters += !mRegisterName.string
+  [inRegisterTable searchKey !mRegisterName ?* ?* ? bitSliceTable ?*]
+  var sliceNameSet =@stringset.emptySet{}
+  for () in  mSliceExpressionList do
+    if [sliceNameSet hasKey ![mSliceName string]] then
+      error mSliceName:"the '" + mSliceName + "' bit field has been already defined"
+    else
+      sliceNameSet += ![mSliceName string]
+      @uint sliceIndex
+      @uint sliceSize
+      [bitSliceTable searchKey !mSliceName ?sliceIndex ?sliceSize]
+      [mExpression eval !inRegisterTable !inConstantMap ?let @sint64 result !?ioUsedRegisters]
+      if (result < 0LS) | (result > ((1LS << sliceSize) - 1LS)) then
+        error mSliceName:"invalid immediat value associated to the '" + mSliceName + "' bit field, evaluated as " + [result string]
+        + " (should be between 0 and " + [(1 << sliceSize) - 1 string] + ")"
+      end
+      outResult = outResult | (result << sliceIndex)
+      end
+  end
+}
+
+#----------------------------------------------------------------------------*
+#                                                                            *
+#                        BIT NUMBER EXPRESSION                               *
+#                                                                            *
+#----------------------------------------------------------------------------*
+
+abstract method @bitNumberExpression getBitNumber
+  ?let @bitSliceTable inBitSliceTable
+  !@uint outBitNumber
+
+#----------------------------------------------------------------------------*
+
+override method @bitNumberLiteralValue getBitNumber
+  ?let @bitSliceTable unused inBitSliceTable
+  !@uint outBitNumber {
+  if [mBitNumberLiteralValue uint] > 7 then
+    error mBitNumberLiteralValue:"The bit number is " + [[mBitNumberLiteralValue uint] string] + " (should be <= 7)"
+  end
+  outBitNumber = [mBitNumberLiteralValue uint]
+}
+
+#----------------------------------------------------------------------------*
+
+override method @bitNumberLabelValue getBitNumber
+  ?let @bitSliceTable inBitSliceTable
+  !@uint outBitNumber {
+  @uint sliceIndex
+  @uint sliceSize
+  [inBitSliceTable searchKey !mBitNumberLabelValue ?sliceIndex ? sliceSize]
+  if [mBitNumberIndexValue uint] > sliceSize then
+    error mBitNumberIndexValue: "The " + [[mBitNumberIndexValue uint] string]
+    + " index is too large (should be < " + [sliceSize string] + ")"
+  end
+  outBitNumber = sliceIndex + [mBitNumberIndexValue uint]
+}
+
+#----------------------------------------------------------------------------*
+
+map @symbolTableForOptimizations {
+  @uint mDefinitionLineIndex
+  @bool mIsDeletable
+  insert insertKey error message "the '%K' label is already declared in %L"
+  search searchKey error message "the '%K' label is not declared"
+  remove removeKey error message "the '%K' label is not declared"
+}
+
+#----------------------------------------------------------------------------*
+#                                                                            *
+#               P R I N T    C O N S T A N T    M A P                        *
+#                                                                            *
+#----------------------------------------------------------------------------*
+
+proc print_constant_definition
+  ?let @constantMap inConstantMap
+  ?!@string ioListFileContents {
+  if [inConstantMap count] > 0 then
+    ioListFileContents += ["" stringByLeftAndRightPadding !79 !'*'] + "\n"
+    ioListFileContents += "*" + ["CONSTANTS" stringByLeftAndRightPadding !77 !' '] + "*\n"
+    ioListFileContents += ["" stringByLeftAndRightPadding !79 !'*'] + "\n\n"
+    ioListFileContents += ["Constant" stringByLeftPadding !40 !' '] + " Value\n"
+    for () in  inConstantMap do
+      ioListFileContents += [[lkey string] stringByLeftPadding !40 !' '] + " " + [mValue string] + "\n"
+    end
+    ioListFileContents += "\n"
+  end
+}
+
+#----------------------------------------------------*
+

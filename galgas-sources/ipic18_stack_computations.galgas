@@ -1,0 +1,273 @@
+
+
+#------------------------------------------------------------------------------*
+
+map @blockMapForStackComputation {
+  @ipic18Block mBlock
+  insert insertKey error message "the '%K' block is already declared in %L"
+  search searchKey error message "the '%K' block is not declared"
+}
+
+#------------------------------------------------------------------------------*
+
+map @routineCallMap {
+  @stringset mCalledRoutineSet
+  insert insertKey error message "the '%K' entry is already declared in %L"
+}
+
+#------------------------------------------------------------------------------*
+
+map @routineStackRequirementMap {
+  @uint mLevels
+  insert insertKey error message "the '%K' entry is already declared in %L"
+  search searchKey error message "the '%K' entry is not declared"
+}
+
+#----------------------------------------------------------------------------*
+
+#!--- exploreAccessibleBlocks
+
+#----------------------------------------------------------------------------*
+
+abstract method @ipic18AbstractBlockTerminator exploreAccessibleBlocks
+  ?!@stringset unused ioBlockToExploreSet
+  ?!@stringset unused ioExploredBlockSet
+
+#----------------------------------------------------------------------------*
+
+override method @ipic18AbstractConditionTerminator exploreAccessibleBlocks
+  ?!@stringset ioBlockToExploreSet
+  ?!@stringset ioExploredBlockSet {
+  [mSingleInstructionTerminatorIfConditionTrue exploreAccessibleBlocks !?ioBlockToExploreSet !?ioExploredBlockSet]
+  [mSingleInstructionTerminatorIfConditionFalse exploreAccessibleBlocks !?ioBlockToExploreSet !?ioExploredBlockSet]
+}
+
+#----------------------------------------------------------------------------*
+
+override method @ipic18ComputedBraTerminator exploreAccessibleBlocks
+  ?!@stringset ioBlockToExploreSet
+  ?!@stringset ioExploredBlockSet {
+  for () in  mTargetLabels do
+    if not [ioExploredBlockSet hasKey !mValue.string] then
+      ioBlockToExploreSet += !mValue.string
+    end
+  end
+}
+
+#----------------------------------------------------------------------------*
+
+override method @ipic18ComputedGotoTerminator exploreAccessibleBlocks
+  ?!@stringset ioBlockToExploreSet
+  ?!@stringset ioExploredBlockSet {
+  for () in  mTargetLabels do
+    if not [ioExploredBlockSet hasKey !mValue.string] then
+      ioBlockToExploreSet += !mValue.string
+    end
+  end
+}
+
+#----------------------------------------------------------------------------*
+
+override method @ipic18JumpTerminator exploreAccessibleBlocks
+  ?!@stringset ioBlockToExploreSet
+  ?!@stringset ioExploredBlockSet {
+  if not [ioExploredBlockSet hasKey !mLabel.string] then
+    ioBlockToExploreSet += !mLabel.string
+  end
+}
+
+#----------------------------------------------------------------------------*
+
+override method @ipic18ConditionalJumpTerminator exploreAccessibleBlocks
+  ?!@stringset ioBlockToExploreSet
+  ?!@stringset ioExploredBlockSet {
+  if not [ioExploredBlockSet hasKey !mTargetLabelWhenTrue.string] then
+    ioBlockToExploreSet += !mTargetLabelWhenTrue.string
+  end
+  if not [ioExploredBlockSet hasKey !mTargetLabelWhenFalse.string] then
+    ioBlockToExploreSet += !mTargetLabelWhenFalse.string
+  end
+}
+
+#----------------------------------------------------------------------------*
+
+override method @ipic18ComputedRETLWTerminator exploreAccessibleBlocks
+  ?!@stringset unused ioBlockToExploreSet
+  ?!@stringset unused ioExploredBlockSet {
+}
+
+#----------------------------------------------------------------------------*
+
+override method @ipic18ReturnTerminator exploreAccessibleBlocks
+  ?!@stringset unused ioBlockToExploreSet
+  ?!@stringset unused ioExploredBlockSet {
+}
+
+#----------------------------------------------------------------------------*
+
+override method @ipic18RetlwTerminator exploreAccessibleBlocks
+  ?!@stringset unused ioBlockToExploreSet
+  ?!@stringset unused ioExploredBlockSet {
+}
+
+#----------------------------------------------------------------------------*
+
+override method @ipic18RetfieTerminator exploreAccessibleBlocks
+  ?!@stringset unused ioBlockToExploreSet
+  ?!@stringset unused ioExploredBlockSet {
+}
+
+#----------------------------------------------------------------------------*
+
+#!--- buildCalledRoutineSet
+
+#----------------------------------------------------------------------------*
+
+method @ipic18SequentialInstruction buildCalledRoutineSet
+  ?!@stringset unused ioRoutineCalledSet {
+}
+
+#----------------------------------------------------------------------------*
+
+override method @ipic18_intermediate_JSR buildCalledRoutineSet
+  ?!@stringset ioRoutineCalledSet {
+  ioRoutineCalledSet += !mTargetLabel.string
+}
+
+#----------------------------------------------------------------------------*
+
+override method @ipic18_intermediate_instruction_computed_rcall buildCalledRoutineSet
+  ?!@stringset ioRoutineCalledSet {
+  for () in  mTargetInstructions do
+    [mInstruction buildCalledRoutineSet !?ioRoutineCalledSet]
+  end
+}
+
+#----------------------------------------------------------------------------*
+
+override method @ipic18_condition_skip_instruction buildCalledRoutineSet
+  ?!@stringset ioRoutineCalledSet {
+  [mEmbeddedInstruction buildCalledRoutineSet !?ioRoutineCalledSet]
+}
+
+#----------------------------------------------------------------------------*
+
+#!--- Routine ipic18StackComputations
+
+#----------------------------------------------------------------------------*
+
+proc ipic18StackComputations
+  ?!@string ioListFileContents
+  ?let @ipic18BlockList inBlockList {
+  ioListFileContents += ["" stringByLeftAndRightPadding !79 !'*'] + "\n"
+  ioListFileContents += "*" + ["STACK COMPUTATIONS" stringByLeftAndRightPadding !77 !' '] + "*\n"
+  ioListFileContents += ["" stringByLeftAndRightPadding !79 !'*'] + "\n\n"
+#--- Find all absolute blocks
+  var startLabelsToExplore =@stringset.emptySet{}
+  var blockMapForStackComputation =@blockMapForStackComputation.emptyMap{}
+  for () in  inBlockList do
+    if mBlock.mAddress != @uint. max then # Absolute block
+      startLabelsToExplore += !mBlock.mLabel.string    
+    end  
+    [!?blockMapForStackComputation insertKey !mBlock.mLabel !mBlock]
+  end
+#--- Explore all blokcs to find called routines
+  var routineCallMap =@routineCallMap.emptyMap{}
+  loop( [inBlockList length] + 1)
+  while [startLabelsToExplore count] > 0
+  do
+    let @string startLabel = [startLabelsToExplore anyString]
+    [!?startLabelsToExplore removeKey !startLabel]
+  #--- Explore accessible blocks
+    var blockToExploreSet =@stringset.emptySet{}
+    blockToExploreSet += !startLabel
+    var exploredBlockSet =@stringset.emptySet{}
+    var calledRoutineSet =@stringset.emptySet{}
+    loop( [inBlockList length] + 1)
+    while [blockToExploreSet count] > 0
+    do
+      let @string b = [blockToExploreSet anyString]
+      [!?blockToExploreSet removeKey !b]
+      exploredBlockSet += !b
+      [blockMapForStackComputation searchKey ![b nowhere] ?let @ipic18Block aBlock]
+      [aBlock.mTerminator exploreAccessibleBlocks !?blockToExploreSet !?exploredBlockSet]
+      for () in  aBlock.mInstructionList do
+        [mInstruction buildCalledRoutineSet !?calledRoutineSet]
+      end
+    end
+    [!?routineCallMap insertKey ![startLabel nowhere] !calledRoutineSet]
+    for () in  calledRoutineSet do
+      if not [routineCallMap hasKey !key] then
+        startLabelsToExplore += !key
+      end
+    end
+  end
+#  log routineCallMap ;
+#--- Compute stack requirement of every routine
+  var routineStackRequirementMap =@routineStackRequirementMap.emptyMap{}
+  @bool progress = true
+  loop( [routineCallMap count] + 1)
+  while progress
+  do
+    progress = false
+    @routineCallMap tempRoutineCallMap = routineCallMap
+    routineCallMap = @routineCallMap. emptyMap
+    for () in  tempRoutineCallMap do
+      @uint levels = 0
+      @bool solved = true
+      for () in  mCalledRoutineSet while solved do
+        solved = [routineStackRequirementMap hasKey !key]
+        if solved then
+          [routineStackRequirementMap searchKey ![key nowhere] ?let @uint rLevel]
+          if levels <= rLevel then
+            levels = rLevel + 1
+          end
+        end
+      end
+      if solved then
+        [!?routineStackRequirementMap insertKey !lkey !levels]
+        progress = true
+      else
+        [!?routineCallMap insertKey !lkey !mCalledRoutineSet]
+      end
+    end
+  end
+  ioListFileContents += "Levels Routine\n"
+  for () in  routineStackRequirementMap do
+    ioListFileContents += [[mLevels string]stringByLeftPadding !6 !' '] + " " + lkey + "\n"
+  end
+  ioListFileContents += "\n"
+#--- Recursive routines
+  let @bool noRecursiveRoutine = [routineCallMap count] == 0
+  if not noRecursiveRoutine then
+    if not [option piccolo_options.doNotWarnRecursive value] then
+      warning @location. nowhere: "There are recursive routines"
+    end
+    ioListFileContents += "The following routines are recursive:\n"
+    for () in  routineCallMap do
+      ioListFileContents += "  - " + lkey + "\n"
+    end  
+    ioListFileContents += "\n"
+  end
+#--- Total stack requirements
+  if noRecursiveRoutine then
+    [routineStackRequirementMap searchKey ![".START" nowhere] ?let @uint mainLevels]
+    @uint totalLevels = mainLevels
+    if [routineStackRequirementMap hasKey !".HIGH_INTERRUPT"] then
+      [routineStackRequirementMap searchKey ![".HIGH_INTERRUPT" nowhere] ?let @uint highIntLevels]
+      totalLevels = totalLevels + highIntLevels + 1
+    end
+    if [routineStackRequirementMap hasKey !".LOW_INTERRUPT"] then
+      [routineStackRequirementMap searchKey ![".LOW_INTERRUPT" nowhere] ?let @uint lowIntLevels]
+      totalLevels = totalLevels + lowIntLevels + 1
+    end
+    message "Max stack depth: " + totalLevels + "\n\n"
+    if totalLevels > 31 then
+      error @location. nowhere: "Max stack depth is greater than 31"
+    end
+  end
+}      
+
+#----------------------------------------------------------------------------*
+
+

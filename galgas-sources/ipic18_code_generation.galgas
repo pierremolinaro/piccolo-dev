@@ -1,0 +1,359 @@
+
+
+#----------------------------------------------------------------------------*
+
+getter @uint x4string ->@string outResult {
+  outResult = [self / 0x10_00 & 0xF xString]
+  outResult += [self / 0x10_0 & 0xF xString]
+  outResult += [self / 0x10_ & 0xF xString]
+  outResult += [self         & 0xF xString]
+}
+
+#----------------------------------------------------------------------------*
+
+getter @uint x6string ->@string outResult {
+  outResult = [self / 0x100_000 xString]
+  outResult = [self / 0x10_000 & 0xF xString]
+  outResult += [self / 0x10_00 & 0xF xString]
+  outResult += [self / 0x10_0 & 0xF xString]
+  outResult += [self / 0x10_ & 0xF xString]
+  outResult += [self         & 0xF xString]
+}
+
+#----------------------------------------------------------------------------*
+
+proc generateLineWithCode
+  ?let @uint inAddress
+  ?let @codeList inCode
+  ?let @stringlist inIpicText
+  ?!@string ioListFileContents {
+#--- Complete text with empty lines
+  @stringlist ipicText = inIpicText
+  loop( [inCode length] + 1)
+  while [ipicText length] < [inCode length] do
+    ipicText += !""
+  end
+#---
+  @uint address = inAddress
+  for () in  ipicText, () in  inCode do
+    ioListFileContents += [address x6string]
+    address = address + 2 * [mBinaryCode length]
+    @string s = " "
+    for () bin_ in  mBinaryCode do
+      s += " " + [bin_mValue x4string]
+    end
+    ioListFileContents += [s stringByRightPadding !13 !' ']
+    ioListFileContents += [mAssemblyCode stringByRightPadding !50 !' ']
+    ioListFileContents += " "
+    ioListFileContents += mValue
+    ioListFileContents += "\n" 
+  end
+#--- Display supplementary text
+#  log ipicText, inCode ;
+  for () in  [ipicText subListFromIndex ![inCode length]] do
+    ioListFileContents += [address x6string]
+    ioListFileContents += ["" stringByRightPadding !64 !' ']
+    ioListFileContents += mValue
+    ioListFileContents += "\n" 
+  end
+}
+  
+#----------------------------------------------------------------------------*
+
+method @ipic18Block generateCode
+  ?let @symbolTableForRelativesResolution inSymbolTable
+  ?let @pic18_dataAddressMap inDataMap
+  ?let @uint inBlockAddress
+  ?let @string inNextBlockLabel
+  ?!@string ioListFileContents
+  ?!@string ioAssemblyString {
+  ioListFileContents += "Addr.  Code       Assembly                                           Intermediate Representation\n"
+  if mAddress == @uint. max then # Relocatable
+    generateLineWithCode (
+      !inBlockAddress
+      !@codeList. listWithValue { !mLabel.string + ":" !@uintlist. emptyList}
+      !@stringlist. listWithValue { !"LABEL " + mLabel}
+      !?ioListFileContents
+    )
+    ioAssemblyString += mLabel.string + ":\n"
+  else
+    var cd =@codeList.emptyList{}
+    cd += !"ORG " + [inBlockAddress hexString] !@uintlist. emptyList
+    cd += !mLabel.string + ":" !@uintlist. emptyList
+    generateLineWithCode (
+      !inBlockAddress
+      !cd
+      !@stringlist. listWithValue { !"LABEL " + mLabel + ", ORG "+ [inBlockAddress hexString]}
+      !?ioListFileContents
+    )  
+    ioAssemblyString += "    ORG "+ [inBlockAddress hexString] + "\n"
+    ioAssemblyString += mLabel.string + ":\n"
+  end
+#--- Generate regular instructions
+  @uint address = inBlockAddress
+  for () in  mInstructionList do
+    [mInstruction generateCode
+      !address
+      !inSymbolTable
+      !inDataMap
+      ?let @codeList code
+    ]
+    generateLineWithCode (
+      !address
+      !code
+      ![mInstruction instructionDisplay]
+      !?ioListFileContents
+    )
+    for () in  code do
+      for () in  mBinaryCode do
+        emitCode ( !mValue )
+      end
+      ioAssemblyString += mAssemblyCode + "\n"
+    end
+    address = address + [mInstruction instructionSize]
+  #--- Check instruction size corresponds generated code size
+    @uint generatedCodeSize = 0
+    for () in  code do
+      generatedCodeSize = generatedCodeSize + 2 * [mBinaryCode length]
+    end
+    if generatedCodeSize != [mInstruction instructionSize] then
+      @string s = "*** INTERNAL ERROR ** generated code size ("
+      + generatedCodeSize + ") != instruction size (" + [mInstruction instructionSize] + ")"
+      error @location. nowhere : s
+      ioListFileContents += s + "\n"
+    end
+  end
+#--- Generate block terminator
+  [mTerminator generateTerminatorCode
+    !address
+    !inSymbolTable
+    !inNextBlockLabel
+    ?let @codeList code
+  ]
+  generateLineWithCode (
+    !address
+    !code
+    !@stringlist. listWithValue { ![mTerminator terminatorDisplay !inNextBlockLabel]}
+    !?ioListFileContents
+  )
+  for () in  code do
+    for () in  mBinaryCode do
+      emitCode ( !mValue )
+    end
+    ioAssemblyString += mAssemblyCode + "\n"
+  end
+  #--- Check terminator size corresponds generated code size
+    @uint generatedCodeSize = 0
+    for () in  code do
+      generatedCodeSize = generatedCodeSize + 2 * [mBinaryCode length]
+    end
+    if generatedCodeSize != [mTerminator terminatorSize !inNextBlockLabel] then
+      @string s = "*** INTERNAL ERROR ** generated code size ("
+      + generatedCodeSize + ") != instruction size (" + [mTerminator terminatorSize !inNextBlockLabel] + ")"
+      error @location. nowhere : s
+      ioListFileContents += s + "\n"
+    end
+#---
+  ioListFileContents += "\n"
+}
+
+#----------------------------------------------------------------------------*
+#                                                                            *
+#        C O D E    G E N E R A T I O N                                      *
+#                                                                            *
+#----------------------------------------------------------------------------*
+
+proc ipic18GenerateCode
+  ?let @string inSourceFileName
+  ?let @programKind inProgramKind
+  ?let @uint inBootloaderReservedROMsize
+  ?let @uint inROMsize
+  ?let @string inProcessorName
+  ?let @registerTable inPredefinedRegisters
+  ?let @registerTable inAllRegisters
+  ?let @pic18_dataMap inDataMap
+  ?let @actualConfigurationMap inActualConfigurationMap
+  ?!@string ioListFileContents
+  ?let @ipic18BlockList inGeneratedBlockList
+  !@uint outUsedROMsize {
+  ioListFileContents += ["" stringByLeftAndRightPadding !79 !'*'] + "\n"
+  ioListFileContents += "*" + ["CODE GENERATION" stringByLeftAndRightPadding !77 !' '] + "*\n"
+  ioListFileContents += ["" stringByLeftAndRightPadding !79 !'*'] + "\n\n"
+  if [option.verbose_output value] then
+    message "Code generation:\n"
+  end
+#--- Build address map
+  computeLabelAbsoluteAddressMap (
+    !inGeneratedBlockList
+    !@ipic18BlockList. emptyList
+    ?let @symbolTableForRelativesResolution symbolTable
+    ?let @uint firstDataAddress
+  )
+#--------------------------------- Build Data Address Map
+  @uint dataAddress = firstDataAddress
+  var dataAddressMap =@pic18_dataAddressMap.emptyMap{}
+  for () in  inDataMap do
+    [!?dataAddressMap insertKey !lkey !dataAddress]
+    dataAddress = dataAddress + [mData length] * 2
+  end 
+#---------------------------------- Generate code
+  initCodeGenerator ( )
+  @string assemblyString = ""
+  @uint relocatableCodeSize = 0
+  @uint blockStartAddress = 0
+  for () in  inGeneratedBlockList do(blockIndex)
+    @string nextBlockLabel
+    if (blockIndex+1) < [inGeneratedBlockList length] then
+      nextBlockLabel = [inGeneratedBlockList mBlockAtIndex !blockIndex+1].mLabel.string
+    else
+      nextBlockLabel = ""
+    end
+    if mBlock.mAddress != @uint. max then # Absolute block
+      blockStartAddress = mBlock.mAddress
+      setEmitAddress ( !blockStartAddress )
+    end
+    [mBlock generateCode !symbolTable !dataAddressMap !blockStartAddress !nextBlockLabel !?ioListFileContents !?assemblyString]
+    let @uint blockSize = [mBlock blockSize !nextBlockLabel]
+    blockStartAddress = blockStartAddress + blockSize
+    if mBlock.mAddress == @uint. max then
+      relocatableCodeSize = relocatableCodeSize + blockSize
+    end
+  end
+#--- Data
+  dataAddress = firstDataAddress
+  for () in  inDataMap
+  before
+    setEmitAddress ( !dataAddress )
+    generateLineWithCode (
+      !dataAddress
+      !@codeList. listWithValue { !"    ORG " + [dataAddress hexString] !@uintlist. emptyList}
+      !@stringlist. listWithValue { !"    ORG " + [dataAddress hexString]}
+      !?ioListFileContents
+    )
+    assemblyString += "    ORG " + [dataAddress hexString] + "\n"
+  do
+    generateLineWithCode (
+      !dataAddress
+      !@codeList. listWithValue { !"_data_" + lkey + ":" !@uintlist. emptyList}
+      !@stringlist. listWithValue { !"_data_" + lkey + ":"}
+      !?ioListFileContents
+    )
+    assemblyString += "_data_" + lkey + ":\n"
+    for () in  mData do
+      assemblyString += "    DW " + [mValue hexString] + "\n"
+      emitCode ( !mValue )
+      generateLineWithCode (
+        !dataAddress
+        !@codeList. listWithValue { !"    DW " + [mValue hexString] !@uintlist. listWithValue { !mValue}}
+        !@stringlist. listWithValue { !"    DW " + [mValue hexString]}
+        !?ioListFileContents
+      )
+      dataAddress = dataAddress + 2 
+    end
+    ioListFileContents += "\n"
+  end 
+  if [option.verbose_output value] then
+    message "  Relocatable code size: " + relocatableCodeSize + " bytes.\n\n"
+  end
+  outUsedROMsize = dataAddress
+#----------------------------- Code too large ?
+  switch inProgramKind
+  case regularProgram, userProgram :
+    if outUsedROMsize > inROMsize then
+      error @location.here : "the program uses " + outUsedROMsize + " bytes, greater than reserved size (" + inROMsize + " bytes)"
+    end
+  case bootloaderProgram :
+    if outUsedROMsize > inBootloaderReservedROMsize then
+      error @location.here : "the bootloader uses " + outUsedROMsize + " bytes, greater than reserved size (" + inBootloaderReservedROMsize + " bytes)"
+    end
+  end
+#----------------------------- Generate HEX file
+#--- Add Configuration
+  for () in  inActualConfigurationMap do
+    setEmitAddress ( !mRegisterAddress )
+    emitByte ( !mRegisterValue )
+  end
+#--- Generate file
+  getGeneratedContents ( ?let @string contents )
+  @string destinationFile = [inSourceFileName stringByDeletingPathExtension] + ".hex"
+  [contents writeToFileWhenDifferentContents !destinationFile ?*]
+#--- Generate contents in C file ?
+  if [option piccolo_options.output_C_Array value] then
+    let @string baseName = [[inSourceFileName lastPathComponent] stringByDeletingPathExtension]
+    get_C_ArrayImplementation ( !baseName ?let @string cContents )
+    destinationFile = [inSourceFileName stringByDeletingPathExtension] + ".c"
+    [cContents writeToFileWhenDifferentContents !destinationFile ?*]
+    get_C_ArrayHeader ( !baseName ?let @string hContents )
+    destinationFile = [inSourceFileName stringByDeletingPathExtension] + ".h"
+    [hContents writeToFileWhenDifferentContents !destinationFile ?*]
+  end
+#----------------------------- Generate assembly file ?
+  if [option piccolo_options.generateAssembly value] & (@uint. errorCount == 0) then
+    pic18GenerateAssemblyFile (
+      !inSourceFileName
+      !inProcessorName
+      !inPredefinedRegisters
+      !inAllRegisters
+      !inActualConfigurationMap
+      !assemblyString
+    )
+  end
+}
+
+#----------------------------------------------------------------------------*
+#                                                                            *
+#        C O D E    G E N E R A T I O N                                      *
+#                                                                            *
+#----------------------------------------------------------------------------*
+
+proc pic18GenerateAssemblyFile
+  ?let @string inSourceFileName
+  ?let @string inProcessorName
+  ?let @registerTable inPredefinedRegisters
+  ?let @registerTable inAllRegisters
+  ?let @actualConfigurationMap inActualConfigurationMap
+  ?let @string inAssemblyCode {
+  @string assemblyString = "  PROCESSOR " + inProcessorName + "\n"
+#--- Code
+  assemblyString += ";--- Code\n"
+  assemblyString += inAssemblyCode
+#--- Prefined registers
+  assemblyString += ";--- Prefefined registers\n"
+  for () in  inPredefinedRegisters do
+    [mRegisterAddressList first ?let @uint firstRegister]
+    assemblyString += [lkey string] + " EQU " + [firstRegister hexString] + "\n"
+  end
+  assemblyString += "\n\n"
+#--- User defined registers in ram
+  assemblyString += ";--- User defined registers (in RAM)\n"
+  for () in  inAllRegisters do
+    if not [inPredefinedRegisters hasKey ![lkey string]] then
+      [mRegisterAddressList first ?let @uint firstRegister]
+      assemblyString += [lkey string] + " EQU " + [firstRegister hexString] + "\n"
+    end
+  end
+  assemblyString += "\n\n"
+#--- PICCOLO defined symbols
+  assemblyString += ";--- Piccolo defined symbols\n"
+  assemblyString += "W EQU 1\n"
+  assemblyString += "FAST EQU 1\n"
+  assemblyString += "BSR_ACCESS EQU 1\n\n"
+#-------------------------------- Add Configuration
+  if [inActualConfigurationMap count] > 0 then
+    assemblyString += ";--- Configuration\n\n"
+    for () in  inActualConfigurationMap do
+      assemblyString += "  __config " + [mRegisterAddress hexString] + ", " + [mRegisterValue & 255 hexString] + "\n"
+    end
+  end
+#-------------------------------- End
+  assemblyString += ";---\n\n"
+  assemblyString += "  END\n\n"
+#-------------------------------- Generate file
+  let @string asmDestinationFile = [inSourceFileName stringByDeletingPathExtension] + ".asm"
+ [assemblyString writeToFileWhenDifferentContents !asmDestinationFile ?*]
+}
+
+#----------------------------------------------------------------------------*
+
+
+

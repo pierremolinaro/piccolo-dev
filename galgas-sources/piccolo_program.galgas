@@ -1,0 +1,207 @@
+
+
+#--- Prologue routine
+before {
+#------------------------------------------------ Print supported device list
+  if [option piccolo_options_not_in_cocoa.outputDeviceList value]
+   | [option piccolo_options_not_in_cocoa.outputPic18DeviceList value]
+   | [option piccolo_options_not_in_cocoa.outputBaselineDeviceList value]
+   | [option piccolo_options_not_in_cocoa.outputMidrangeDeviceList value] then
+  #--- Enumerate devices
+    @stringlist allDevices = [[filewrapper embeddedDevices] allTextFilePathes]
+    var pic18_devices =@stringlist.emptyList{}
+    var midrange_devices =@stringlist.emptyList{}
+    var baseline_devices =@stringlist.emptyList{}
+  #--- Parse them
+    for () in  allDevices do
+      let @string name = [[mValue lastPathComponent] stringByDeletingPathExtension]
+      parseDeviceDefinition ( !@lstring. new { !name !@location.here} ?var @piccoloDeviceModel piccoloDeviceModel )
+      switch [piccoloDeviceModel mProcessorType]
+      case pic18_60, pic18_80 :
+        pic18_devices += !name
+      case midrange :
+        midrange_devices += !name
+#        if not [piccoloDeviceModel->mRamBankTable hasKey !"gprnobnk"] then
+#          message name . " has no common bank\n" ;
+#        end if ;
+#      if [[piccoloDeviceModel mBankCount] uint] > 4 then
+#        message name . " has " . [[[piccoloDeviceModel mBankCount] uint] string] . " banks\n" ;
+#      end if ;
+      case baseline :
+        baseline_devices += !name
+      end
+    end
+  #--- Print baseline device list
+    if [option piccolo_options_not_in_cocoa.outputDeviceList value] | [option piccolo_options_not_in_cocoa.outputBaselineDeviceList value] then
+      message [[baseline_devices length] string] + " baseline devices supported by Piccolo " + @string. stringWithVersionString + ":\n"
+      @uint idx = 0
+      for () in  baseline_devices do
+        message [mValue stringByRightPadding !15 !' ']
+        idx ++
+        if idx == 5 then
+          idx = 0
+          message "\n"
+        end
+      end
+      if idx != 0 then
+        message "\n"
+      end
+    end
+  #--- Print mid-range device list
+    if [option piccolo_options_not_in_cocoa.outputDeviceList value] | [option piccolo_options_not_in_cocoa.outputMidrangeDeviceList value] then
+      message [[midrange_devices length] string] + " mid-range devices supported by Piccolo " + @string. stringWithVersionString + ":\n"
+      @uint idx = 0
+      for () in  midrange_devices do
+        message [mValue stringByRightPadding !15 !' ']
+        idx ++
+        if idx == 5 then
+          idx = 0
+          message "\n"
+        end
+      end
+      if idx != 0 then
+        message "\n"
+      end
+    end
+  #--- Print pic18 device list
+    if [option piccolo_options_not_in_cocoa.outputDeviceList value] | [option piccolo_options_not_in_cocoa.outputPic18DeviceList value] then
+      message [[pic18_devices length] string] + " pic18 devices supported by Piccolo " + @string. stringWithVersionString + ":\n"
+      @uint idx = 0
+      for () in  pic18_devices do
+        message [mValue stringByRightPadding !15 !' ']
+        idx ++
+        if idx == 5 then
+          idx = 0
+          message "\n"
+        end
+      end
+      if idx != 0 then
+        message "\n"
+      end
+    end
+  #---
+  end
+#------------------------------------------------ Export Device definition files
+  if [[option piccolo_options_not_in_cocoa.exportDeviceFiles value] length] > 0 then
+    @string dir = [option piccolo_options_not_in_cocoa.exportDeviceFiles value]
+    if not [dir directoryExists] then
+      [dir makeDirectory]
+    end
+    @filewrapper fw = [filewrapper embeddedDevices]
+    @stringlist allDevices = [[filewrapper embeddedDevices] allTextFilePathes]
+    for () in  allDevices do
+      @string definitionString = [fw textFileContentsAtPath !mValue]
+      [definitionString writeToFile !dir + mValue]
+    end
+    message [[allDevices length] string] + " devices copied in '" + dir + "' directory\n"
+  end
+#------------------------------------------------ Print RAM description
+  @string deviceForMemoryDescription = [option piccolo_options_not_in_cocoa.memoryDescription value]
+  if [deviceForMemoryDescription length] > 0 then
+    @string devicePath = "/" + deviceForMemoryDescription + ".piccoloDevice"
+    if [[filewrapper embeddedDevices] fileExistsAtPath !devicePath] then
+      @piccoloDeviceModel piccoloDeviceModel
+      parseDeviceDefinition ( !@lstring. new { !deviceForMemoryDescription !@location.here} ?piccoloDeviceModel )
+      @uint totalRam = 0
+      for () in  [piccoloDeviceModel mRamBankTable] do
+        totalRam  = totalRam  + mLastAddressPlusOne - mFirstFreeAddress
+      end
+      message deviceForMemoryDescription + " device:\n"
+      message "  " + [[[piccoloDeviceModel mRamBankTable] count] string] + " RAM banks (total " + [totalRam string] + " bytes):\n"
+      for () in  [piccoloDeviceModel mRamBankTable] do
+        message "    bank \"" + lkey + "\" from " + [mFirstFreeAddress hexString]
+        + " to " + [mLastAddressPlusOne-1 hexString]
+        + " (" + [mLastAddressPlusOne-mFirstFreeAddress string] + " bytes)"
+        for () in  mMirrorOffsetList
+        before  message ", mirror at "
+        do message [mFirstFreeAddress  + mValue hexString]
+        between message ", "
+        end
+        message "\n"
+      end
+      switch [piccoloDeviceModel mProcessorType]
+      case pic18_60, pic18_80 :
+        message "  ROM size: " + [[[piccoloDeviceModel mRomSize] uint] string] + " bytes\n"
+      case midrange :
+        @uint pageCount = ([[piccoloDeviceModel mRomSize] uint] + 2047) / 2048
+        @string s = "" 
+        if pageCount > 1 then
+          s = "s"
+        end
+        message "  ROM size: " + [[[piccoloDeviceModel mRomSize] uint] string] + " instructions ("
+        + [pageCount string] + " page" + s + ")\n"
+      case baseline : 
+        message "  ROM size: " + [[[piccoloDeviceModel mRomSize] uint] string] + " instructions\n"
+      end
+      if [piccoloDeviceModel mEepromSize] == 0 then
+        message "  No EEPROM\n"
+      else
+        message "  EEPROM size: " + [[piccoloDeviceModel mEepromSize] string] + " bytes (at "
+        + [[piccoloDeviceModel mEepromAddress] hexString] + ")\n"
+      end
+    else
+      error @location.here:"The " + deviceForMemoryDescription + " device is not supported or does not exist"
+    end
+  end
+#------------------------------------------------ Print REGISTERS description
+  @string deviceForRegistersDescription = [option piccolo_options_not_in_cocoa.registerDescription value]
+  if [deviceForRegistersDescription length] > 0 then
+    @string devicePath = "/" + deviceForRegistersDescription + ".piccoloDevice"
+    if [[filewrapper embeddedDevices] fileExistsAtPath !devicePath] then
+      @piccoloDeviceModel piccoloDeviceModel
+      parseDeviceDefinition ( !@lstring. new { ! deviceForRegistersDescription !@location.here} ?piccoloDeviceModel )
+      message deviceForRegistersDescription + " has " + [[[piccoloDeviceModel mRegisterTable] count] string] + " special registers:\n"
+      for () in  [piccoloDeviceModel mRegisterTable] do
+        @string s = "  '" + lkey + "' at "
+        for () in  mRegisterAddressList
+        do s += [mValue hexString]
+        between s += ", "
+        end
+        s += mBitDefinitionString + "\n"
+        message s
+      end
+    else
+      error @location.here:"The " + deviceForRegistersDescription + " device is not supported or does not exist"
+    end
+  end
+#------------------------------------------------ Print CONFIGURATION description
+  @string deviceForConfigDescription = [option piccolo_options_not_in_cocoa.configDescription value]
+  if [deviceForConfigDescription length] > 0 then
+    @string devicePath = "/" + deviceForConfigDescription + ".piccoloDevice"
+    if [[filewrapper embeddedDevices] fileExistsAtPath !devicePath] then
+      @piccoloDeviceModel piccoloDeviceModel
+      parseDeviceDefinition ( !@lstring. new { ! deviceForConfigDescription !@location.here} ?piccoloDeviceModel )
+      message deviceForConfigDescription + " has " + [[[piccoloDeviceModel mConfigRegisterMap] count] string] + " configuration registers:\n"
+      for () in  [piccoloDeviceModel mConfigRegisterMap] do
+        @string s = "REGISTER '" + lkey + "' at " + [[mRegisterAddress uint] hexString] + ", width " + [[mRegisterWidth uint] string] + "\n"
+        for () in  mIllegalMaskList do
+          s += "  illegal value " + [[mIllegalValue uint] hexString] + " mask " + [[mIllegalMask uint] hexString] + " description \"" + mDescription + "\"\n"
+        end
+        for () others_ in  mConfigRegisterMaskMap do
+          s += "  setting '" + others_lkey + "': mask " + [[others_mMaskValue uint] hexString] + " description \"" + others_mDescription + "\"\n"
+          for () second_ in  others_mFieldSettingMap do
+            s += "    value " + [second_mValue hexString] + " description \"" + second_lkey + "\"\n"
+          end
+        end
+        message s
+      end
+    else
+      error @location.here:"The " + deviceForConfigDescription + " device is not supported or does not exist"
+    end
+  end
+}
+
+#----------------------------------------------------------------------------*
+
+case . "piccolo"
+message "a source text file with the .piccolo extension"
+indexing with pic18_grammar
+?sourceFilePath:@lstring inSourceFile {
+  grammar pic18_grammar in inSourceFile
+}
+
+#----------------------------------------------------------------------------*
+
+#--- Epilogue routine
+after {
+}

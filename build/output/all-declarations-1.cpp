@@ -14755,8 +14755,8 @@ void cParser_pic_31__38__5F_bootloader_5F_syntax::rule_pic_31__38__5F_bootloader
   GALGAS_string var_listingFile = GALGAS_string::constructor_stringWithSourceFilePath (inCompiler  COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 139)).reader_stringByDeletingPathExtension (SOURCE_FILE ("pic18_bootloader_syntax.galgas", 139)).add_operation (GALGAS_string (".list"), inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 139)) ;
   const enumGalgasBool test_0 = GALGAS_bool (kIsEqual, GALGAS_uint::constructor_errorCount (SOURCE_FILE ("pic18_bootloader_syntax.galgas", 140)).objectCompare (GALGAS_uint ((uint32_t) 0U))).operator_and (GALGAS_bool (gOption_piccolo_5F_options_ouputListingFile.reader_value ()) COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 140)).boolEnum () ;
   if (kBoolTrue == test_0) {
-    GALGAS_bool joker_4289_0 ; // Joker input parameter
-    var_listFileContents.method_writeToFileWhenDifferentContents (var_listingFile, joker_4289_0, inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 141)) ;
+    GALGAS_bool joker_4289 ; // Joker input parameter
+    var_listFileContents.method_writeToFileWhenDifferentContents (var_listingFile, joker_4289, inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 141)) ;
   }
   const enumGalgasBool test_1 = GALGAS_bool (kIsStrictSup, GALGAS_uint::constructor_errorCount (SOURCE_FILE ("pic18_bootloader_syntax.galgas", 143)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
   if (kBoolTrue == test_1) {

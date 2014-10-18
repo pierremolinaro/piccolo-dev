@@ -1,0 +1,159 @@
+
+
+#-------------------------------------------------------------------------------*
+
+struct @baseline_intermediate_registerExpression {
+  @string mAssemblyString
+  @uint mRegisterAddress # xxx bit full address
+}
+
+#-------------------------------------------------------------------------------*
+
+abstract class @baseline_intermediate_instruction {
+}
+
+#-------------------------------------------------------------------------------*
+
+list @baseline_intermediate_instructionList {
+  @baseline_intermediate_instruction mInstruction %setter
+}
+
+#-------------------------------------------------------------------------------*
+
+class @baseline_intermediate_NULL : @baseline_intermediate_instruction {
+}
+
+#-------------------------------------------------------------------------------*
+
+abstract class @baseline_intermediate_pseudo : @baseline_intermediate_instruction {
+}
+
+#-------------------------------------------------------------------------------*
+
+class @baseline_intermediate_pseudo_PAGE : @baseline_intermediate_pseudo {
+  @uint mPage
+}
+
+#-------------------------------------------------------------------------------*
+
+class @baseline_intermediate_pseudo_LABEL : @baseline_intermediate_pseudo {
+  @lstring mLabel
+}
+
+#-------------------------------------------------------------------------------*
+
+class @baseline_intermediate_pseudo_BEGIN_ROUTINE : @baseline_intermediate_pseudo {
+  @lstring mRoutineName
+  @bool mIsRegular
+}
+
+#-------------------------------------------------------------------------------*
+
+class @baseline_intermediate_pseudo_END_ROUTINE : @baseline_intermediate_pseudo {
+  @lstring mRoutineName
+  @uint mPage
+}
+
+#-------------------------------------------------------------------------------*
+
+abstract class @baseline_intermediate_actualInstruction : @baseline_intermediate_instruction {
+  @location mInstructionLocation
+}
+
+#-------------------------------------------------------------------------------*
+
+class @baseline_intermediate_instruction_FD : @baseline_intermediate_actualInstruction {
+  @baseline_instruction_FD_base_code mInstruction
+  @baseline_intermediate_registerExpression mRegisterDescription
+  @bool m_W_isDestination
+}
+
+#-------------------------------------------------------------------------------*
+
+class @baseline_intermediate_instruction_F : @baseline_intermediate_actualInstruction {
+  @baseline_F_instruction_base_code mInstruction
+  @baseline_intermediate_registerExpression mRegisterDescription
+}
+
+#-------------------------------------------------------------------------------*
+
+class @baseline_intermediate_instruction_FB : @baseline_intermediate_actualInstruction {
+  @baseline_bit_oriented_op mInstruction
+  @baseline_intermediate_registerExpression mRegisterDescription
+  @uint mBitNumber
+}
+
+#-------------------------------------------------------------------------------*
+
+class @baseline_intermediate_instruction_BitTestSkip : @baseline_intermediate_actualInstruction {
+  @bool mSkipIfSet
+  @baseline_intermediate_registerExpression mRegisterDescription
+  @uint mBitNumber
+}
+
+#-------------------------------------------------------------------------------*
+
+class @baseline_intermediate_GOTO : @baseline_intermediate_actualInstruction {
+  @lstring mTargetLabel
+}
+
+#-------------------------------------------------------------------------------*
+
+class @baseline_intermediate_JUMP : @baseline_intermediate_actualInstruction {
+  @lstring mTargetLabel
+  @uint mCurrentPage
+  @uint mTargetPage
+}
+
+#-------------------------------------------------------------------------------*
+
+class @baseline_intermediate_CALL : @baseline_intermediate_actualInstruction {
+  @lstring mTargetLabel
+}
+
+#-------------------------------------------------------------------------------*
+
+class @baseline_intermediate_JSR : @baseline_intermediate_actualInstruction {
+  @lstring mTargetLabel
+  @uint mCurrentPage
+  @uint mTargetPage
+}
+
+#----------------------------------------------------*
+
+class @baseline_intermediate_WO_OPERAND : @baseline_intermediate_actualInstruction {
+  @baseline_WO_OPERAND_group mInstruction
+}
+
+#----------------------------------------------------*
+
+class @baseline_intermediate_TRIS : @baseline_intermediate_actualInstruction {
+  @lstring mOperand
+  @uint mOpcode
+}
+
+#-------------------------------------------------------------------------------*
+
+class @baseline_intermediate_instruction_literalOperation : @baseline_intermediate_actualInstruction {
+  @baseline_literal_instruction_opcode mInstruction
+  @uint mLiteralValue
+}
+
+#-------------------------------------------------------------------------------*
+
+class @baseline_intermediate_instruction_MNOP : @baseline_intermediate_actualInstruction {
+  @luint mOccurrenceFactor
+}
+
+#-------------------------------------------------------------------------------*
+
+class @baseline_intermediate_incDecRegisterInCondition : @baseline_intermediate_actualInstruction {
+  @baseline_intermediate_registerExpression mRegisterDescription
+  @string mTargetLabel
+  @bool mIncrement
+  @bool m_W_isDestination
+  @bool mBranchIfZero
+}
+
+#-------------------------------------------------------------------------------*
+

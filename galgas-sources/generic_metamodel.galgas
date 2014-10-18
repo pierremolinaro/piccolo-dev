@@ -1,0 +1,273 @@
+
+
+#----------------------------------------------------*
+
+map @bitSliceTable {
+  @uint mSliceIndex
+  @uint mSliceSize
+  insert insertKey error message "the '%K' slice is already declared in %L"
+  search searchKey error message "the '%K' slice is not declared"
+}
+
+#----------------------------------------------------*
+
+class @registerExpression {
+  @lstring mRegisterName
+  @luint mOffset
+}
+
+#----------------------------------------------------*
+
+abstract class @declarationInRam {
+}
+
+#----------------------------------------------------*
+
+class @byteDeclarationInRam : @declarationInRam {
+  @lstring mName
+  @luint mSize
+  @bitSliceTable mBitSliceTable
+  @string mBitDefinitionString
+}
+
+#----------------------------------------------------*
+
+list @declarationInRamList {
+  @declarationInRam mDeclarationInRAM
+}
+
+#----------------------------------------------------*
+
+list @ramDefinitionList {
+  @lstring mBankName
+  @declarationInRamList mDeclaration
+}
+
+#----------------------------------------------------*
+
+list @configSettingList {
+  @lstring mSettingName
+  @lstring mSettingValue
+}
+
+#----------------------------------------------------*
+
+list @configDefinitionList {
+  @location mDefinitionLocation
+  @configSettingList mSettingList
+}
+
+#----------------------------------------------------*
+
+abstract class @immediatExpression {
+}
+
+#----------------------------------------------------*
+
+list @immediatExpressionList {
+  @immediatExpression mExpression
+  @location mErrorLocation
+}
+
+#----------------------------------------------------*
+
+class @immediatInteger : @immediatExpression {
+  @luint mValue
+}
+
+#----------------------------------------------------*
+
+class @immediatRegister : @immediatExpression {
+  @registerExpression mRegister
+}
+
+#----------------------------------------------------*
+
+class @immediatAdd : @immediatExpression {
+  @immediatExpression mLeftExpression
+  @immediatExpression mRightExpression
+}
+
+#----------------------------------------------------*
+
+class @immediatSub : @immediatExpression {
+  @immediatExpression mLeftExpression
+  @immediatExpression mRightExpression
+}
+
+#----------------------------------------------------*
+
+class @immediatMul : @immediatExpression {
+  @immediatExpression mLeftExpression
+  @immediatExpression mRightExpression
+}
+
+#----------------------------------------------------*
+
+class @immediatDiv : @immediatExpression {
+  @immediatExpression mLeftExpression
+  @immediatExpression mRightExpression
+}
+
+#----------------------------------------------------*
+
+class @immediatMod : @immediatExpression {
+  @immediatExpression mLeftExpression
+  @immediatExpression mRightExpression
+}
+
+#----------------------------------------------------*
+
+class @immediatOr : @immediatExpression {
+  @immediatExpression mLeftExpression
+  @immediatExpression mRightExpression
+}
+
+#----------------------------------------------------*
+
+class @immediatAnd : @immediatExpression {
+  @immediatExpression mLeftExpression
+  @immediatExpression mRightExpression
+}
+
+#----------------------------------------------------*
+
+class @immediatXor : @immediatExpression {
+  @immediatExpression mLeftExpression
+  @immediatExpression mRightExpression
+}
+
+#----------------------------------------------------*
+
+class @immediatLeftShift : @immediatExpression {
+  @immediatExpression mLeftExpression
+  @immediatExpression mRightExpression
+}
+
+#----------------------------------------------------*
+
+class @immediatRightShift : @immediatExpression {
+  @immediatExpression mLeftExpression
+  @immediatExpression mRightExpression
+}
+
+#----------------------------------------------------*
+
+class @immediatEqualTest : @immediatExpression {
+  @immediatExpression mLeftExpression
+  @immediatExpression mRightExpression
+}
+
+#----------------------------------------------------*
+
+class @immediatNotEqualTest : @immediatExpression {
+  @immediatExpression mLeftExpression
+  @immediatExpression mRightExpression
+}
+
+#----------------------------------------------------*
+
+class @immediatGreaterTest : @immediatExpression {
+  @immediatExpression mLeftExpression
+  @immediatExpression mRightExpression
+}
+
+#----------------------------------------------------*
+
+class @immediatGreaterOrEqualTest : @immediatExpression {
+  @immediatExpression mLeftExpression
+  @immediatExpression mRightExpression
+}
+
+#----------------------------------------------------*
+
+class @immediatLowerTest : @immediatExpression {
+  @immediatExpression mLeftExpression
+  @immediatExpression mRightExpression
+}
+
+#----------------------------------------------------*
+
+class @immediatLowerOrEqualTest : @immediatExpression {
+  @immediatExpression mLeftExpression
+  @immediatExpression mRightExpression
+}
+
+#----------------------------------------------------*
+
+class @immediatNegate : @immediatExpression {
+  @immediatExpression mExpression
+}
+
+#----------------------------------------------------*
+
+class @immediatComplement : @immediatExpression {
+  @immediatExpression mExpression
+}
+
+#----------------------------------------------------*
+
+list @immediatSliceExpressionList {
+  @lstring mSliceName
+  @immediatExpression mExpression
+}
+
+#----------------------------------------------------*
+
+class @immediatSlice : @immediatExpression {
+  @lstring mRegisterName
+  @immediatSliceExpressionList mSliceExpressionList
+}
+
+#----------------------------------------------------*
+
+list @constantDefinitionList {
+  @lstring mConstantName
+  @immediatExpression mExpression
+}
+
+#----------------------------------------------------------------------------*
+
+map @actualConfigurationMap {
+  @uint mRegisterAddress
+  @uint mRegisterValue
+  insert insertKey error message "the '%K' configuration register is already declared in %L"
+  search searchKey error message "the '%K' configuration register is not declared"
+}
+
+#----------------------------------------------------*
+
+abstract class @bitNumberExpression {
+}
+
+#----------------------------------------------------*
+
+abstract method @bitNumberExpression display ?!@string ioString
+
+#----------------------------------------------------*
+
+class @bitNumberLiteralValue : @bitNumberExpression {
+  @luint mBitNumberLiteralValue
+}
+
+#----------------------------------------------------*
+
+override method @bitNumberLiteralValue display ?!@string ioString {
+  ioString += [[mBitNumberLiteralValue uint] string]
+}
+
+#----------------------------------------------------*
+
+class @bitNumberLabelValue : @bitNumberExpression {
+  @lstring mBitNumberLabelValue
+  @luint mBitNumberIndexValue
+}
+
+#----------------------------------------------------*
+
+override method @bitNumberLabelValue display ?!@string ioString {
+  ioString += [mBitNumberLabelValue string] + " [" + [[mBitNumberIndexValue uint] string] + "]"
+}
+
+#----------------------------------------------------*
+

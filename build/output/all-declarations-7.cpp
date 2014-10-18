@@ -7047,8 +7047,8 @@ static void categoryMethod_registerExpression_resolveBaselineAccess (const cPtr_
   }
   GALGAS_uintlist var_registerAddressList ;
   GALGAS_uint var_size ;
-  GALGAS_string joker_947_0 ; // Joker input parameter
-  constinArgument_inRegisterTable.method_searchKey (object->mAttribute_mRegisterName, var_registerAddressList, var_size, outArgument_outBitSliceTable, joker_947_0, inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 26)) ;
+  GALGAS_string joker_947 ; // Joker input parameter
+  constinArgument_inRegisterTable.method_searchKey (object->mAttribute_mRegisterName, var_registerAddressList, var_size, outArgument_outBitSliceTable, joker_947, inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 26)) ;
   GALGAS_uint var_registerAddress = GALGAS_uint ((uint32_t) 0U) ;
   const enumGalgasBool test_1 = GALGAS_bool (kIsStrictSup, var_registerAddressList.reader_length (SOURCE_FILE ("baseline_semantic_analysis.galgas", 35)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
   if (kBoolTrue == test_1) {
@@ -7328,8 +7328,8 @@ static void categoryMethod_registerExpression_resolveMidrangeAccess (const cPtr_
   }
   GALGAS_uintlist var_registerAddressList ;
   GALGAS_uint var_size ;
-  GALGAS_string joker_875_0 ; // Joker input parameter
-  constinArgument_inRegisterTable.method_searchKey (object->mAttribute_mRegisterName, var_registerAddressList, var_size, outArgument_outBitSliceTable, joker_875_0, inCompiler COMMA_SOURCE_FILE ("midrange_intermediate_classes.galgas", 26)) ;
+  GALGAS_string joker_875 ; // Joker input parameter
+  constinArgument_inRegisterTable.method_searchKey (object->mAttribute_mRegisterName, var_registerAddressList, var_size, outArgument_outBitSliceTable, joker_875, inCompiler COMMA_SOURCE_FILE ("midrange_intermediate_classes.galgas", 26)) ;
   const enumGalgasBool test_1 = GALGAS_bool (kIsSupOrEqual, object->mAttribute_mOffset.reader_uint (SOURCE_FILE ("midrange_intermediate_classes.galgas", 34)).objectCompare (var_size)).boolEnum () ;
   if (kBoolTrue == test_1) {
     GALGAS_location location_2 (object->mAttribute_mOffset.reader_location (HERE)) ; // Implicit use of 'location' reader
@@ -7516,8 +7516,8 @@ static void categoryMethod_registerExpression_analyzeRegisterExpression (const c
   GALGAS_uintlist var_registerAddressList ;
   GALGAS_uint var_size ;
   GALGAS_uint var_registerAddress = GALGAS_uint ((uint32_t) 0U) ;
-  GALGAS_string joker_860_0 ; // Joker input parameter
-  constinArgument_inRegisterTable.method_searchKey (object->mAttribute_mRegisterName, var_registerAddressList, var_size, outArgument_outBitSliceTable, joker_860_0, inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 26)) ;
+  GALGAS_string joker_860 ; // Joker input parameter
+  constinArgument_inRegisterTable.method_searchKey (object->mAttribute_mRegisterName, var_registerAddressList, var_size, outArgument_outBitSliceTable, joker_860, inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 26)) ;
   const enumGalgasBool test_1 = GALGAS_bool (kIsStrictSup, object->mAttribute_mOffset.reader_uint (SOURCE_FILE ("ipic18_build_block_representation.galgas", 28)).objectCompare (var_size)).boolEnum () ;
   if (kBoolTrue == test_1) {
     GALGAS_location location_2 (object->mAttribute_mOffset.reader_location (HERE)) ; // Implicit use of 'location' reader
@@ -7643,9 +7643,9 @@ static void categoryMethod_registerExpression_analyzeRegisterExpressionWithoutCh
   }
   GALGAS_uintlist var_registerAddressList ;
   GALGAS_uint var_size ;
-  GALGAS_bitSliceTable joker_2608_0 ; // Joker input parameter
-  GALGAS_string joker_2611_0 ; // Joker input parameter
-  constinArgument_inRegisterTable.method_searchKey (object->mAttribute_mRegisterName, var_registerAddressList, var_size, joker_2608_0, joker_2611_0, inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 72)) ;
+  GALGAS_bitSliceTable joker_2608 ; // Joker input parameter
+  GALGAS_string joker_2611 ; // Joker input parameter
+  constinArgument_inRegisterTable.method_searchKey (object->mAttribute_mRegisterName, var_registerAddressList, var_size, joker_2608, joker_2611, inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 72)) ;
   GALGAS_uint var_registerAddress ;
   var_registerAddressList.method_first (var_registerAddress, inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 73)) ;
   const enumGalgasBool test_1 = GALGAS_bool (kIsStrictSup, object->mAttribute_mOffset.reader_uint (SOURCE_FILE ("ipic18_build_block_representation.galgas", 75)).objectCompare (var_size)).boolEnum () ;
@@ -7734,9 +7734,9 @@ static GALGAS_uint categoryReader_registerExpression_getRegisterAddress (const c
   macroValidSharedObject (object, cPtr_registerExpression) ;
   GALGAS_uintlist var_registerAddressList ;
   GALGAS_uint var_size ;
-  GALGAS_bitSliceTable joker_3256_0 ; // Joker input parameter
-  GALGAS_string joker_3259_0 ; // Joker input parameter
-  constinArgument_inRegisterTable.method_searchKey (object->mAttribute_mRegisterName, var_registerAddressList, var_size, joker_3256_0, joker_3259_0, inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 89)) ;
+  GALGAS_bitSliceTable joker_3256 ; // Joker input parameter
+  GALGAS_string joker_3259 ; // Joker input parameter
+  constinArgument_inRegisterTable.method_searchKey (object->mAttribute_mRegisterName, var_registerAddressList, var_size, joker_3256, joker_3259, inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 89)) ;
   var_registerAddressList.method_first (result_outRegisterAddress, inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 90)) ;
   const enumGalgasBool test_0 = GALGAS_bool (kIsStrictSup, object->mAttribute_mOffset.reader_uint (SOURCE_FILE ("ipic18_build_block_representation.galgas", 92)).objectCompare (var_size)).boolEnum () ;
   if (kBoolTrue == test_0) {
@@ -7864,9 +7864,9 @@ static void categoryMethod_immediatRegister_eval (const cPtr_immediatExpression 
     ioArgument_ioUsedRegisters.addAssign_operation (object->mAttribute_mRegister.reader_mRegisterName (SOURCE_FILE ("intermediate_generic.galgas", 107)).mAttribute_string  COMMA_SOURCE_FILE ("intermediate_generic.galgas", 107)) ;
     GALGAS_uintlist var_registerAddressList ;
     GALGAS_uint var_size ;
-    GALGAS_bitSliceTable joker_4012_0 ; // Joker input parameter
-    GALGAS_string joker_4015_0 ; // Joker input parameter
-    constinArgument_inRegisterTable.method_searchKey (object->mAttribute_mRegister.reader_mRegisterName (SOURCE_FILE ("intermediate_generic.galgas", 108)), var_registerAddressList, var_size, joker_4012_0, joker_4015_0, inCompiler COMMA_SOURCE_FILE ("intermediate_generic.galgas", 108)) ;
+    GALGAS_bitSliceTable joker_4012 ; // Joker input parameter
+    GALGAS_string joker_4015 ; // Joker input parameter
+    constinArgument_inRegisterTable.method_searchKey (object->mAttribute_mRegister.reader_mRegisterName (SOURCE_FILE ("intermediate_generic.galgas", 108)), var_registerAddressList, var_size, joker_4012, joker_4015, inCompiler COMMA_SOURCE_FILE ("intermediate_generic.galgas", 108)) ;
     GALGAS_uint var_registerAddress ;
     var_registerAddressList.method_first (var_registerAddress, inCompiler COMMA_SOURCE_FILE ("intermediate_generic.galgas", 109)) ;
     const enumGalgasBool test_1 = GALGAS_bool (kIsSupOrEqual, object->mAttribute_mRegister.reader_mOffset (SOURCE_FILE ("intermediate_generic.galgas", 110)).reader_uint (SOURCE_FILE ("intermediate_generic.galgas", 110)).objectCompare (var_size)).boolEnum () ;
@@ -8522,10 +8522,10 @@ static void categoryMethod_immediatSlice_eval (const cPtr_immediatExpression * i
   GALGAS_bitSliceTable var_bitSliceTable ;
   outArgument_outResult = GALGAS_sint_36__34_ ((int64_t) 0LL) ;
   ioArgument_ioUsedRegisters.addAssign_operation (object->mAttribute_mRegisterName.mAttribute_string  COMMA_SOURCE_FILE ("intermediate_generic.galgas", 371)) ;
-  GALGAS_uintlist joker_14020_0 ; // Joker input parameter
-  GALGAS_uint joker_14023_0 ; // Joker input parameter
-  GALGAS_string joker_14042_0 ; // Joker input parameter
-  constinArgument_inRegisterTable.method_searchKey (object->mAttribute_mRegisterName, joker_14020_0, joker_14023_0, var_bitSliceTable, joker_14042_0, inCompiler COMMA_SOURCE_FILE ("intermediate_generic.galgas", 372)) ;
+  GALGAS_uintlist joker_14020 ; // Joker input parameter
+  GALGAS_uint joker_14023 ; // Joker input parameter
+  GALGAS_string joker_14042 ; // Joker input parameter
+  constinArgument_inRegisterTable.method_searchKey (object->mAttribute_mRegisterName, joker_14020, joker_14023, var_bitSliceTable, joker_14042, inCompiler COMMA_SOURCE_FILE ("intermediate_generic.galgas", 372)) ;
   GALGAS_stringset var_sliceNameSet = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("intermediate_generic.galgas", 373)) ;
   cEnumerator_immediatSliceExpressionList enumerator_14120 (object->mAttribute_mSliceExpressionList, kEnumeration_up) ;
   while (enumerator_14120.hasCurrentObject ()) {
@@ -9586,8 +9586,8 @@ static void categoryMethod_baseline_5F_instruction_5F_F_build_5F_baseline_5F_int
     inCompiler->emitSemanticError (object->mAttribute_mInstructionLocation, GALGAS_string ("this instruction is the last routine instruction and should be MOVLW")  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 339)) ;
   }
   GALGAS_baseline_5F_intermediate_5F_registerExpression var_intermediateRegisterDescription ;
-  GALGAS_bitSliceTable joker_13003_0 ; // Joker input parameter
-  callCategoryMethod_resolveBaselineAccess ((const cPtr_registerExpression *) object->mAttribute_mRegisterExpression.ptr (), constinArgument_inRegisterTable, var_intermediateRegisterDescription, joker_13003_0, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 341)) ;
+  GALGAS_bitSliceTable joker_13003 ; // Joker input parameter
+  callCategoryMethod_resolveBaselineAccess ((const cPtr_registerExpression *) object->mAttribute_mRegisterExpression.ptr (), constinArgument_inRegisterTable, var_intermediateRegisterDescription, joker_13003, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 341)) ;
   ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_instruction_5F_F::constructor_new (object->mAttribute_mInstructionLocation, object->mAttribute_mFAinstruction, var_intermediateRegisterDescription  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 347))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 347)) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*

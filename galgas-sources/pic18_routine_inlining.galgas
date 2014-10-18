@@ -1,0 +1,239 @@
+
+
+#----------------------------------------------------------------------------*
+
+map @declaredRoutineMap {
+  @luint mRequiredBank
+  @luint mReturnedBank
+  @bool mPreservesBank
+  @bool mIsNoReturn
+  @pic18InstructionList mInstructionList
+  insert insertKey error message "the '%K' routine is already declared"
+  search searchKey error message "the '%K' routine is not declared"
+}
+
+#---------------------------------------------------------------------------*
+
+method @pic18PiccoloInstruction performInlining
+  ?let @stringset unused inInlinedRoutineSet
+  ?let @declaredRoutineMap unused inDeclaredRoutineMap
+  ?let @stringset unused inCurrentlyInlinedRoutineSet
+  ?!@pic18InstructionList ioInstructionList {
+  ioInstructionList += !self
+}
+
+#---------------------------------------------------------------------------*
+
+override method @pic18Instruction_FOREVER performInlining
+  ?let @stringset inInlinedRoutineSet
+  ?let @declaredRoutineMap inDeclaredRoutineMap
+  ?let @stringset inCurrentlyInlinedRoutineSet
+  ?!@pic18InstructionList ioInstructionList {
+  performInlineFromInstructionList (
+    !mInstructionList
+    !inInlinedRoutineSet
+    !inDeclaredRoutineMap
+    !inCurrentlyInlinedRoutineSet
+    ?let @pic18InstructionList instructionList
+  )
+  ioInstructionList += !@pic18Instruction_FOREVER. new {
+    !mInstructionLocation
+    !instructionList
+    !mEndOfInstructionList}
+}
+
+#---------------------------------------------------------------------------*
+
+override method @pic18Instruction_do_while performInlining
+  ?let @stringset inInlinedRoutineSet
+  ?let @declaredRoutineMap inDeclaredRoutineMap
+  ?let @stringset inCurrentlyInlinedRoutineSet
+  ?!@pic18InstructionList ioInstructionList {
+  performInlineFromInstructionList (
+    !mRepeatedInstructionList
+    !inInlinedRoutineSet
+    !inDeclaredRoutineMap
+    !inCurrentlyInlinedRoutineSet
+    ?let @pic18InstructionList repeatedInstructionList
+  )
+  var whilePartList =@pic18DoWhilePartList.emptyList{}
+  for () in  mWhilePartList do
+    performInlineFromInstructionList (
+      !mInstructionList
+      !inInlinedRoutineSet
+      !inDeclaredRoutineMap
+      !inCurrentlyInlinedRoutineSet
+      ?let @pic18InstructionList instructionList
+    )
+    whilePartList += !mCondition !instructionList !mEndOfPartLocation
+  end
+  ioInstructionList += !@pic18Instruction_do_while. new {
+    !mInstructionLocation
+    !repeatedInstructionList
+    !mEndOfRepeatedInstructionList
+    !whilePartList}
+}
+
+#---------------------------------------------------------------------------*
+
+override method @pic18Instruction_savebank performInlining
+  ?let @stringset inInlinedRoutineSet
+  ?let @declaredRoutineMap inDeclaredRoutineMap
+  ?let @stringset inCurrentlyInlinedRoutineSet
+  ?!@pic18InstructionList ioInstructionList {
+  performInlineFromInstructionList (
+    !mInstructionList
+    !inInlinedRoutineSet
+    !inDeclaredRoutineMap
+    !inCurrentlyInlinedRoutineSet
+    ?let @pic18InstructionList instructionList
+  )
+  ioInstructionList += !@pic18Instruction_savebank. new {
+    !mInstructionLocation
+    !mRegister
+    !instructionList
+    !mEndOfSaveBankInstruction}
+}
+
+#---------------------------------------------------------------------------*
+
+override method @pic18Instruction_structured_if performInlining
+  ?let @stringset inInlinedRoutineSet
+  ?let @declaredRoutineMap inDeclaredRoutineMap
+  ?let @stringset inCurrentlyInlinedRoutineSet
+  ?!@pic18InstructionList ioInstructionList {
+  performInlineFromInstructionList (
+    !mThenInstructionList
+    !inInlinedRoutineSet
+    !inDeclaredRoutineMap
+    !inCurrentlyInlinedRoutineSet
+    ?let @pic18InstructionList thenInstructionList
+  )
+  performInlineFromInstructionList (
+    !mElseInstructionList
+    !inInlinedRoutineSet
+    !inDeclaredRoutineMap
+    !inCurrentlyInlinedRoutineSet
+    ?let @pic18InstructionList elseInstructionList
+  )
+  ioInstructionList += !@pic18Instruction_structured_if. new {
+    !mInstructionLocation
+    !mIfCondition
+    !thenInstructionList
+    !elseInstructionList
+    !mEndOfElsePartLocation}
+}
+
+#---------------------------------------------------------------------------*
+
+override method @pic18Instruction_JSR performInlining
+  ?let @stringset inInlinedRoutineSet
+  ?let @declaredRoutineMap inDeclaredRoutineMap
+  ?let @stringset inCurrentlyInlinedRoutineSet
+  ?!@pic18InstructionList ioInstructionList {
+  @bool inlineDone
+  if [inDeclaredRoutineMap hasKey !mTargetLabel.string]
+   & [inInlinedRoutineSet hasKey !mTargetLabel.string]
+   & not [inCurrentlyInlinedRoutineSet hasKey !mTargetLabel.string] then
+    [inDeclaredRoutineMap searchKey
+      !mTargetLabel
+      ?let @luint requiredBank
+      ?* #??@luint returnedBank
+      ?* #??@bool preservesBank
+      ?let @bool isNoReturn
+      ?let @pic18InstructionList instructionList
+    ]
+    if isNoReturn then
+      error mTargetLabel: "a \"noreturn\" routine cannot be inlined" : inlineDone
+    else
+      if requiredBank.uint != @uint. max then
+        ioInstructionList += !@pic18Instruction_checkbank. new { !mInstructionLocation !requiredBank.uint}
+      end
+      @stringset currentlyInlinedRoutineSet = inCurrentlyInlinedRoutineSet
+      currentlyInlinedRoutineSet += !mTargetLabel.string
+      #ioInstructionList .= instructionList ;
+      for () in  instructionList do
+        [mInstruction performInlining
+          !inInlinedRoutineSet
+          !inDeclaredRoutineMap
+          !currentlyInlinedRoutineSet
+          !?ioInstructionList
+        ]
+      end
+      inlineDone = true
+    end
+  else 
+    inlineDone = false
+  end
+  if not inlineDone then
+    ioInstructionList += !self
+  end
+}
+
+#---------------------------------------------------------------------------*
+
+proc performInlineFromInstructionList
+  ?let @pic18InstructionList inInstructionList
+  ?let @stringset inInlinedRoutineSet
+  ?let @declaredRoutineMap inDeclaredRoutineMap
+  ?let @stringset inCurrentlyInlinedRoutineSet
+  !@pic18InstructionList outInstructionList {
+  outInstructionList = @pic18InstructionList. emptyList
+  for () in  inInstructionList do
+    [mInstruction performInlining
+      !inInlinedRoutineSet
+      !inDeclaredRoutineMap
+      !inCurrentlyInlinedRoutineSet
+      !?outInstructionList
+   ]
+  end
+}
+
+#---------------------------------------------------------------------------*
+
+proc pic18PerformRoutineInline
+  ?let @stringset inInlinedRoutineSet
+  ?let @declaredRoutineMap inDeclaredRoutineMap
+  ?!@pic18InterruptDefinitionList ioInterruptDefinitionList
+  ?!@pic18RoutineDefinitionList ioRoutineDefinitionList {
+#--- Interrupt routines
+  var interruptDefinitionList =@pic18InterruptDefinitionList.emptyList{}
+  for () in  ioInterruptDefinitionList do
+    performInlineFromInstructionList (
+      !mInstructionList
+      !inInlinedRoutineSet
+      !inDeclaredRoutineMap
+      !@stringset. emptySet
+      ?let @pic18InstructionList instructionList
+    )
+    interruptDefinitionList +=
+      !mInterruptName
+      !mFastReturn
+      !instructionList
+      !mEndOfInterruptLocation
+  end
+  ioInterruptDefinitionList = interruptDefinitionList
+#--- Regular routines
+  var routineDefinitionList =@pic18RoutineDefinitionList.emptyList{}
+  for () in  ioRoutineDefinitionList do
+    performInlineFromInstructionList (
+      !mInstructionList
+      !inInlinedRoutineSet
+      !inDeclaredRoutineMap
+      !@stringset. emptySet
+      ?let @pic18InstructionList instructionList
+    )
+    routineDefinitionList +=
+      !mRoutineName
+      !mRequiredBank
+      !mReturnedBank
+      !mPreservesBank
+      !mIsNoReturn
+      !instructionList
+      !mEndOfRoutineLocation
+  end
+  ioRoutineDefinitionList = routineDefinitionList
+}
+
+#---------------------------------------------------------------------------*
+

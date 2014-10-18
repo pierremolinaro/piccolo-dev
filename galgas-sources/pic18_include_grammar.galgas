@@ -1,0 +1,19 @@
+indexing grammar pic18_include_grammar "SLR" {
+syntax pic18_syntax
+syntax communs
+
+ <body>
+  ?!@pic18InterruptDefinitionList interruptDefinitionList
+  ?!@pic18RoutineDefinitionList routineDefinitionList
+  ?!@lstringlist unusedRoutineList
+  ?!@lstringlist inlinedRoutineList
+  ?!@ramDefinitionList ramDefinitionList
+  ?!@lstringlist unusedRegisterList
+  ?!@configDefinitionList configDefinitionList
+  ?!@constantDefinitionList constantDefinitionList
+  ?!@checkpicList ioCheckpicList
+  ?!@dataList dataList
+  ?!@bool needsComputedGoto2
+  ?!@bool needsComputedGoto4
+
+}

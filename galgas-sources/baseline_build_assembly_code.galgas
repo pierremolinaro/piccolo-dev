@@ -1,0 +1,343 @@
+
+
+#----------------------------------------------------------------------------*
+#                                                                            *
+#               C O D E    G E N E R A T I O N                               *
+#                                                                            *
+#----------------------------------------------------------------------------*
+
+abstract method @baseline_intermediate_instruction generateAssemblyCode
+  ?let @baseline_intermediate_registerExpression inSTATUSregister
+  ?let @bitSliceTable inStatusRegisterBitSliceTable
+  ?!@baseline_assembly_instructionList ioAssemblyInstructionList
+
+#----------------------------------------------------------------------------*
+
+override method @baseline_intermediate_NULL generateAssemblyCode
+  ?let @baseline_intermediate_registerExpression unused inSTATUSregister
+  ?let @bitSliceTable unused inStatusRegisterBitSliceTable
+  ?!@baseline_assembly_instructionList unused ioAssemblyInstructionList {
+}
+
+#----------------------------------------------------------------------------*
+
+override method @baseline_intermediate_pseudo_PAGE generateAssemblyCode
+  ?let @baseline_intermediate_registerExpression unused inSTATUSregister
+  ?let @bitSliceTable unused inStatusRegisterBitSliceTable
+  ?!@baseline_assembly_instructionList ioAssemblyInstructionList {
+  ioAssemblyInstructionList += !@baseline_assembly_pseudo_ORG. new { !mPage * 512}
+}
+
+#----------------------------------------------------------------------------*
+
+override method @baseline_intermediate_pseudo_BEGIN_ROUTINE generateAssemblyCode
+  ?let @baseline_intermediate_registerExpression unused inSTATUSregister
+  ?let @bitSliceTable unused inStatusRegisterBitSliceTable
+  ?!@baseline_assembly_instructionList ioAssemblyInstructionList {
+  ioAssemblyInstructionList += !@baseline_assembly_pseudo_BEGINOFROUTINE. new { !mRoutineName !mIsRegular}
+}
+
+#----------------------------------------------------------------------------*
+
+override method @baseline_intermediate_pseudo_END_ROUTINE generateAssemblyCode
+  ?let @baseline_intermediate_registerExpression unused inSTATUSregister
+  ?let @bitSliceTable unused inStatusRegisterBitSliceTable
+  ?!@baseline_assembly_instructionList ioAssemblyInstructionList {
+  ioAssemblyInstructionList += !@baseline_assembly_pseudo_ENDOFROUTINE. new { !mRoutineName !mPage}
+}
+
+#----------------------------------------------------------------------------*
+
+override method @baseline_intermediate_instruction_FD generateAssemblyCode
+  ?let @baseline_intermediate_registerExpression unused inSTATUSregister
+  ?let @bitSliceTable unused inStatusRegisterBitSliceTable
+  ?!@baseline_assembly_instructionList ioAssemblyInstructionList {
+  ioAssemblyInstructionList += !@baseline_assembly_instruction_FD. new {
+    !mInstructionLocation
+    !mInstruction
+    !mRegisterDescription
+    !m_W_isDestination}
+}
+
+#----------------------------------------------------------------------------*
+
+override method @baseline_intermediate_instruction_F generateAssemblyCode
+  ?let @baseline_intermediate_registerExpression unused inSTATUSregister
+  ?let @bitSliceTable unused inStatusRegisterBitSliceTable
+  ?!@baseline_assembly_instructionList ioAssemblyInstructionList {
+  ioAssemblyInstructionList += !@baseline_assembly_instruction_F. new {
+    !mInstructionLocation
+    !mInstruction
+    !mRegisterDescription}
+}
+
+#----------------------------------------------------------------------------*
+
+override method @baseline_intermediate_instruction_FB generateAssemblyCode
+  ?let @baseline_intermediate_registerExpression unused inSTATUSregister
+  ?let @bitSliceTable unused inStatusRegisterBitSliceTable
+  ?!@baseline_assembly_instructionList ioAssemblyInstructionList {
+  ioAssemblyInstructionList += !@baseline_assembly_instruction_FB. new {
+    !mInstructionLocation
+    !mInstruction
+    !mRegisterDescription
+    !mBitNumber}
+}
+
+#----------------------------------------------------------------------------*
+
+override method @baseline_intermediate_instruction_BitTestSkip generateAssemblyCode
+  ?let @baseline_intermediate_registerExpression unused inSTATUSregister
+  ?let @bitSliceTable unused inStatusRegisterBitSliceTable
+  ?!@baseline_assembly_instructionList ioAssemblyInstructionList {
+  ioAssemblyInstructionList += !@baseline_assembly_instruction_BitTestSkip. new {
+    !mInstructionLocation
+    !mSkipIfSet
+    !mRegisterDescription
+    !mBitNumber}
+}
+
+#----------------------------------------------------------------------------*
+
+override method @baseline_intermediate_WO_OPERAND generateAssemblyCode
+  ?let @baseline_intermediate_registerExpression unused inSTATUSregister
+  ?let @bitSliceTable unused inStatusRegisterBitSliceTable
+  ?!@baseline_assembly_instructionList ioAssemblyInstructionList {
+  ioAssemblyInstructionList += !@baseline_assembly_WO_OPERAND. new {
+    !mInstructionLocation
+    !mInstruction}
+}
+
+#----------------------------------------------------------------------------*
+
+override method @baseline_intermediate_TRIS generateAssemblyCode
+  ?let @baseline_intermediate_registerExpression unused inSTATUSregister
+  ?let @bitSliceTable unused inStatusRegisterBitSliceTable
+  ?!@baseline_assembly_instructionList ioAssemblyInstructionList {
+  ioAssemblyInstructionList += !@baseline_assembly_TRIS. new {
+    !mInstructionLocation
+    !mOperand
+    !mOpcode}
+}
+
+#----------------------------------------------------------------------------*
+
+override method @baseline_intermediate_instruction_literalOperation generateAssemblyCode
+  ?let @baseline_intermediate_registerExpression unused inSTATUSregister
+  ?let @bitSliceTable unused inStatusRegisterBitSliceTable
+  ?!@baseline_assembly_instructionList ioAssemblyInstructionList {
+  ioAssemblyInstructionList += !@baseline_assembly_instruction_literalOperation. new {
+    !mInstructionLocation
+    !mInstruction
+    !mLiteralValue}
+}
+
+#----------------------------------------------------------------------------*
+
+override method @baseline_intermediate_pseudo_LABEL generateAssemblyCode
+  ?let @baseline_intermediate_registerExpression unused inSTATUSregister
+  ?let @bitSliceTable unused inStatusRegisterBitSliceTable
+  ?!@baseline_assembly_instructionList ioAssemblyInstructionList {
+  ioAssemblyInstructionList += !@baseline_assembly_pseudo_LABEL. new {
+    !mLabel}
+}
+
+#----------------------------------------------------------------------------*
+
+override method @baseline_intermediate_instruction_MNOP generateAssemblyCode
+  ?let @baseline_intermediate_registerExpression unused inSTATUSregister
+  ?let @bitSliceTable unused inStatusRegisterBitSliceTable
+  ?!@baseline_assembly_instructionList ioAssemblyInstructionList {
+  if [mOccurrenceFactor uint] == 0 then
+    warning mOccurrenceFactor: "No generated code"
+  end
+  @uint idx = 0
+  loop( [mOccurrenceFactor uint])
+  while idx < [mOccurrenceFactor uint]
+  do
+    ioAssemblyInstructionList += !@baseline_assembly_WO_OPERAND. new {
+      !mInstructionLocation
+      !@baseline_WO_OPERAND_group. NOP}
+    idx ++
+  end
+}
+
+#----------------------------------------------------------------------------*
+
+override method @baseline_intermediate_GOTO generateAssemblyCode
+  ?let @baseline_intermediate_registerExpression unused inSTATUSregister
+  ?let @bitSliceTable unused inStatusRegisterBitSliceTable
+  ?!@baseline_assembly_instructionList ioAssemblyInstructionList {
+  ioAssemblyInstructionList += !@baseline_assembly_GOTO. new {
+    !mInstructionLocation
+    !mTargetLabel}
+}
+
+#----------------------------------------------------------------------------*
+
+override method @baseline_intermediate_JUMP generateAssemblyCode
+  ?let @baseline_intermediate_registerExpression inSTATUSregister
+  ?let @bitSliceTable inStatusRegisterBitSliceTable
+  ?!@baseline_assembly_instructionList ioAssemblyInstructionList {
+#---
+  @uint pageChangeFlags = mCurrentPage ^ mTargetPage
+  @uint targetPageFlags = mTargetPage
+  @uint idx = 0
+  loop( 8) while pageChangeFlags != 0 do
+    if (pageChangeFlags & 1) != 0 then
+      @uint bitIndex
+      if [inStatusRegisterBitSliceTable hasKey !"PA"] then
+        [inStatusRegisterBitSliceTable searchKey 
+          !@lstring. new { !"PA" !mInstructionLocation}
+          ?var @uint sliceIndex
+          ?var @uint sliceSize
+        ]
+        if idx >= sliceSize then
+          error mInstructionLocation : "internal error, idx (" + idx + ") >= sliceSize (" + sliceSize + ")"
+        end
+        bitIndex = sliceIndex + idx
+      elsif [inStatusRegisterBitSliceTable hasKey !"PA"+ idx] then
+        [inStatusRegisterBitSliceTable searchKey 
+          !@lstring. new { !"PA"+ idx !mInstructionLocation}
+          ?var @uint sliceIndex
+          ?var @uint sliceSize
+        ]
+        if sliceSize != 1 then
+          error mInstructionLocation : "internal error: sliceSize (" + sliceSize + ") != 1"
+        end
+        bitIndex = sliceIndex
+      else
+        error mInstructionLocation : "internal error, cannot solve page bit addressing" : bitIndex
+      end
+      ioAssemblyInstructionList += !@baseline_assembly_instruction_FB. new {
+        !mInstructionLocation
+        !if (targetPageFlags & 1) != 0 then @baseline_bit_oriented_op. BSF else @baseline_bit_oriented_op. BCF end
+        !inSTATUSregister
+        !bitIndex}
+    end
+    pageChangeFlags = pageChangeFlags / 2
+    targetPageFlags = targetPageFlags / 2
+    idx = idx + 1
+  end
+  ioAssemblyInstructionList += !@baseline_assembly_GOTO. new {
+    !mInstructionLocation
+    !mTargetLabel}
+}
+
+#----------------------------------------------------------------------------*
+
+override method @baseline_intermediate_CALL generateAssemblyCode
+  ?let @baseline_intermediate_registerExpression unused inSTATUSregister
+  ?let @bitSliceTable unused inStatusRegisterBitSliceTable
+  ?!@baseline_assembly_instructionList ioAssemblyInstructionList {
+  ioAssemblyInstructionList += !@baseline_assembly_CALL. new {
+    !mInstructionLocation
+    !mTargetLabel}
+}
+
+#----------------------------------------------------------------------------*
+
+override method @baseline_intermediate_JSR generateAssemblyCode
+  ?let @baseline_intermediate_registerExpression inSTATUSregister
+  ?let @bitSliceTable inStatusRegisterBitSliceTable
+  ?!@baseline_assembly_instructionList ioAssemblyInstructionList {
+#---
+  @uint pageChangeFlags = mCurrentPage ^ mTargetPage
+  @uint targetPageFlags = mTargetPage
+  @uint idx = 0
+  var pageRestoreInstructions =@baseline_assembly_instructionList.emptyList{}
+  loop( 8) while pageChangeFlags != 0 do
+    if (pageChangeFlags & 1) != 0 then
+      @uint bitIndex
+      if [inStatusRegisterBitSliceTable hasKey !"PA"] then
+        [inStatusRegisterBitSliceTable searchKey 
+          !@lstring. new { !"PA" !mInstructionLocation}
+          ?var @uint sliceIndex
+          ?var @uint sliceSize
+        ]
+        if idx >= sliceSize then
+          error mInstructionLocation : "internal error, idx (" + idx + ") >= sliceSize (" + sliceSize + ")"
+        end
+        bitIndex = sliceIndex + idx
+      elsif [inStatusRegisterBitSliceTable hasKey !"PA"+ idx] then
+        [inStatusRegisterBitSliceTable searchKey 
+          !@lstring. new { !"PA"+ idx !mInstructionLocation}
+          ?var @uint sliceIndex
+          ?var @uint sliceSize
+        ]
+        if sliceSize != 1 then
+          error mInstructionLocation : "internal error: sliceSize (" + sliceSize + ") != 1"
+        end
+        bitIndex = sliceIndex
+      else
+        error mInstructionLocation : "internal error, cannot solve page bit addressing" : bitIndex
+      end
+      ioAssemblyInstructionList += !@baseline_assembly_instruction_FB. new {
+        !mInstructionLocation
+        !if (targetPageFlags & 1) != 0 then @baseline_bit_oriented_op. BSF else @baseline_bit_oriented_op. BCF end
+        !inSTATUSregister
+        !bitIndex}
+      pageRestoreInstructions += !@baseline_assembly_instruction_FB. new {
+        !mInstructionLocation
+        !if (targetPageFlags & 1) == 0 then @baseline_bit_oriented_op. BSF else @baseline_bit_oriented_op. BCF end
+        !inSTATUSregister
+        !bitIndex}
+    end
+    pageChangeFlags = pageChangeFlags / 2
+    targetPageFlags = targetPageFlags / 2
+    idx = idx + 1
+  end
+  ioAssemblyInstructionList += !@baseline_assembly_CALL. new {
+    !mInstructionLocation
+    !mTargetLabel}
+  for () in  pageRestoreInstructions do
+    ioAssemblyInstructionList += !mInstruction
+  end
+}
+
+#----------------------------------------------------*
+
+override method @baseline_intermediate_incDecRegisterInCondition generateAssemblyCode
+  ?let @baseline_intermediate_registerExpression unused inSTATUSregister
+  ?let @bitSliceTable unused inStatusRegisterBitSliceTable
+  ?!@baseline_assembly_instructionList ioAssemblyInstructionList {
+  ioAssemblyInstructionList += !@baseline_assembly_incDecRegisterInCondition. new {
+    !mInstructionLocation
+    !mRegisterDescription
+    !mIncrement
+    !m_W_isDestination}
+#---
+  if mBranchIfZero then
+    ioAssemblyInstructionList += !@baseline_assembly_SKIP. new {
+      !mInstructionLocation}
+  end
+#--- Generate GOTO instruction
+  ioAssemblyInstructionList += !@baseline_assembly_GOTO. new {
+    !mInstructionLocation
+    !@lstring. new { !mTargetLabel !mInstructionLocation}}
+}
+
+#----------------------------------------------------------------------------*
+#                                                                            *
+#                                                                            *
+#----------------------------------------------------------------------------*
+
+proc build_baseline_assembly_code
+  ?let @baseline_intermediate_instructionList inGeneratedInstructionList
+  ?let @actualConfigurationMap inActualConfigurationMap
+  ?let @baseline_intermediate_registerExpression inSTATUSregister
+  ?let @bitSliceTable inStatusRegisterBitSliceTable
+  ?!@baseline_assembly_instructionList ioAssemblyInstructionList {
+#-------------------------------- Build assembly code
+  for () in  inGeneratedInstructionList do
+    [mInstruction generateAssemblyCode !inSTATUSregister !inStatusRegisterBitSliceTable !?ioAssemblyInstructionList]
+  end
+#-------------------------------- Add Configuration
+  for () in  inActualConfigurationMap do
+    setEmitAddress ( ! mRegisterAddress + mRegisterAddress )
+    emitCode ( !mRegisterValue )
+  end
+}
+
+#----------------------------------------------------------------------------*
+
