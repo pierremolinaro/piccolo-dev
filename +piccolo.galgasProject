@@ -93,9 +93,11 @@ project (3:0:7) -> "piccolo" {
   %tool-source : "hand_coded_sources/piccolo_computations.cpp"
   
   %app-source : "hand_coded_sources/PMPiccoloCocoa.m"
+  %app-source : "hand_coded_sources/PMPiccoloCocoa.h"
   %app-source : "hand_coded_sources/PMPiccoloCocoa.xib"  
   
   %app-source : "hand_coded_sources/installCLITools.m"
+  %app-source : "hand_coded_sources/installCLITools.h"
   %app-source : "hand_coded_sources/installCLITools.xib"  
   %app-link : "Security.framework"  
 }
