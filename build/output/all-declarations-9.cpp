@@ -10,28 +10,6 @@
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                          Overriding category method '@pic18Instruction_FA addUsedRoutines'                          *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void categoryMethod_pic_31__38_Instruction_5F_FA_addUsedRoutines (const cPtr_pic_31__38_PiccoloInstruction * /* inObject */,
-                                                                         GALGAS_stringset & /* ioArgument_ioUsedRoutines */,
-                                                                         C_Compiler * /* inCompiler */
-                                                                         COMMA_UNUSED_LOCATION_ARGS) {
-}
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void defineCategoryMethod_pic_31__38_Instruction_5F_FA_addUsedRoutines (void) {
-  enterCategoryMethod_addUsedRoutines (kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_FA.mSlotID,
-                                       categoryMethod_pic_31__38_Instruction_5F_FA_addUsedRoutines) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-C_PrologueEpilogue gMethod_pic_31__38_Instruction_5F_FA_addUsedRoutines (defineCategoryMethod_pic_31__38_Instruction_5F_FA_addUsedRoutines, NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
 //                         Overriding category method '@pic18Instruction_FBA addUsedRoutines'                          *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
@@ -582,30 +560,43 @@ static void categoryMethod_pic_31__38_Instruction_5F_FA_analyzeSimpleInstruction
   GALGAS_bitSliceTable joker_6244 ; // Joker input parameter
   callCategoryMethod_analyzeRegisterExpression ((const cPtr_registerExpression *) object->mAttribute_mRegisterExpression.ptr (), constinArgument_inAccessBankSplitOffset, ioArgument_ioCurrentBank, constinArgument_inRegisterTable, var_IPICregisterDescription, joker_6244, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 170)) ;
   GALGAS_FA_5F_sequential_5F_instruction_5F_base_5F_code var_code ;
-  if (object->mAttribute_mFAinstruction.isValid ()) {
-    switch (object->mAttribute_mFAinstruction.enumValue ()) {
-    case GALGAS_FA_5F_instruction_5F_base_5F_code::kNotBuilt:
-      break ;
-    case GALGAS_FA_5F_instruction_5F_base_5F_code::kEnum_CLRF: {
+  switch (object->mAttribute_mFAinstruction.enumValue ()) {
+  case GALGAS_FA_5F_instruction_5F_base_5F_code::kNotBuilt:
+    break ;
+  case GALGAS_FA_5F_instruction_5F_base_5F_code::kEnum_CLRF:
+    {
       var_code = GALGAS_FA_5F_sequential_5F_instruction_5F_base_5F_code::constructor_CLRF (SOURCE_FILE ("ipic18_build_block_representation.galgas", 180)) ;
-      } break ;
-    case GALGAS_FA_5F_instruction_5F_base_5F_code::kEnum_MOVWF: {
+    }
+    break ;
+  case GALGAS_FA_5F_instruction_5F_base_5F_code::kEnum_MOVWF:
+    {
       var_code = GALGAS_FA_5F_sequential_5F_instruction_5F_base_5F_code::constructor_MOVWF (SOURCE_FILE ("ipic18_build_block_representation.galgas", 181)) ;
-      } break ;
-    case GALGAS_FA_5F_instruction_5F_base_5F_code::kEnum_MULWF: {
+    }
+    break ;
+  case GALGAS_FA_5F_instruction_5F_base_5F_code::kEnum_MULWF:
+    {
       var_code = GALGAS_FA_5F_sequential_5F_instruction_5F_base_5F_code::constructor_MULWF (SOURCE_FILE ("ipic18_build_block_representation.galgas", 182)) ;
-      } break ;
-    case GALGAS_FA_5F_instruction_5F_base_5F_code::kEnum_NEGF: {
+    }
+    break ;
+  case GALGAS_FA_5F_instruction_5F_base_5F_code::kEnum_NEGF:
+    {
       var_code = GALGAS_FA_5F_sequential_5F_instruction_5F_base_5F_code::constructor_NEGF (SOURCE_FILE ("ipic18_build_block_representation.galgas", 183)) ;
-      } break ;
-    case GALGAS_FA_5F_instruction_5F_base_5F_code::kEnum_SETF: {
+    }
+    break ;
+  case GALGAS_FA_5F_instruction_5F_base_5F_code::kEnum_SETF:
+    {
       var_code = GALGAS_FA_5F_sequential_5F_instruction_5F_base_5F_code::constructor_SETF (SOURCE_FILE ("ipic18_build_block_representation.galgas", 184)) ;
-      } break ;
-    case GALGAS_FA_5F_instruction_5F_base_5F_code::kEnum_CPFSEQ: case GALGAS_FA_5F_instruction_5F_base_5F_code::kEnum_CPFSGT: case GALGAS_FA_5F_instruction_5F_base_5F_code::kEnum_CPFSLT: case GALGAS_FA_5F_instruction_5F_base_5F_code::kEnum_TSTFSZ: {
+    }
+    break ;
+  case GALGAS_FA_5F_instruction_5F_base_5F_code::kEnum_CPFSEQ:
+  case GALGAS_FA_5F_instruction_5F_base_5F_code::kEnum_CPFSGT:
+  case GALGAS_FA_5F_instruction_5F_base_5F_code::kEnum_CPFSLT:
+  case GALGAS_FA_5F_instruction_5F_base_5F_code::kEnum_TSTFSZ:
+    {
       inCompiler->emitSemanticError (GALGAS_location::constructor_nowhere (SOURCE_FILE ("ipic18_build_block_representation.galgas", 186)), GALGAS_string ("*** INTERNAL ERROR ***")  COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 186)) ;
       var_code.drop () ; // Release error dropped variable
-      } break ;
     }
+    break ;
   }
   outArgument_outInstruction = GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FA::constructor_new (object->mAttribute_mInstructionLocation, var_code, var_IPICregisterDescription  COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 188)) ;
 }
@@ -1042,19 +1033,23 @@ static void categoryMethod_pic_31__38_Instruction_5F_FOREVER_analyze (const cPtr
                                                                       COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_pic_31__38_Instruction_5F_FOREVER * object = (const cPtr_pic_31__38_Instruction_5F_FOREVER *) inObject ;
   macroValidSharedObject (object, cPtr_pic_31__38_Instruction_5F_FOREVER) ;
-  if (constinArgument_inRoutineKind.isValid ()) {
-    switch (constinArgument_inRoutineKind.enumValue ()) {
-    case GALGAS_routineKind::kNotBuilt:
-      break ;
-    case GALGAS_routineKind::kEnum_regularRoutine: {
+  switch (constinArgument_inRoutineKind.enumValue ()) {
+  case GALGAS_routineKind::kNotBuilt:
+    break ;
+  case GALGAS_routineKind::kEnum_regularRoutine:
+    {
       inCompiler->emitSemanticError (object->mAttribute_mInstructionLocation, GALGAS_string ("a regular routine does not accept the \"forever\" instruction")  COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 491)) ;
-      } break ;
-    case GALGAS_routineKind::kEnum_noReturnRoutine: {
-      } break ;
-    case GALGAS_routineKind::kEnum_interruptRoutine: {
-      inCompiler->emitSemanticError (object->mAttribute_mInstructionLocation, GALGAS_string ("an interrupt routine does not accept the \"forever\" instruction")  COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 494)) ;
-      } break ;
     }
+    break ;
+  case GALGAS_routineKind::kEnum_noReturnRoutine:
+    {
+    }
+    break ;
+  case GALGAS_routineKind::kEnum_interruptRoutine:
+    {
+      inCompiler->emitSemanticError (object->mAttribute_mInstructionLocation, GALGAS_string ("an interrupt routine does not accept the \"forever\" instruction")  COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 494)) ;
+    }
+    break ;
   }
   GALGAS_uint var_finalBank = ioArgument_ioCurrentBank ;
   GALGAS_lstring var_loopLabel = GALGAS_lstring::constructor_new (GALGAS_string (".L").add_operation (ioArgument_ioLocalLabelIndex.reader_string (SOURCE_FILE ("ipic18_build_block_representation.galgas", 498)), inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 498)), object->mAttribute_mInstructionLocation  COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 498)) ;
@@ -1869,18 +1864,22 @@ static void categoryMethod_pic_31__38_Instruction_5F_computed_5F_goto_analyze (c
     }
     enumerator_43074.gotoNextObject () ;
   }
-  if (constinArgument_inRoutineKind.isValid ()) {
-    switch (constinArgument_inRoutineKind.enumValue ()) {
-    case GALGAS_routineKind::kNotBuilt:
-      break ;
-    case GALGAS_routineKind::kEnum_regularRoutine: {
-      } break ;
-    case GALGAS_routineKind::kEnum_noReturnRoutine: {
-      } break ;
-    case GALGAS_routineKind::kEnum_interruptRoutine: {
-      inCompiler->emitSemanticError (object->mAttribute_mInstructionLocation, GALGAS_string ("an interrupt routine does not accept computed goto instruction")  COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 1188)) ;
-      } break ;
+  switch (constinArgument_inRoutineKind.enumValue ()) {
+  case GALGAS_routineKind::kNotBuilt:
+    break ;
+  case GALGAS_routineKind::kEnum_regularRoutine:
+    {
     }
+    break ;
+  case GALGAS_routineKind::kEnum_noReturnRoutine:
+    {
+    }
+    break ;
+  case GALGAS_routineKind::kEnum_interruptRoutine:
+    {
+      inCompiler->emitSemanticError (object->mAttribute_mInstructionLocation, GALGAS_string ("an interrupt routine does not accept computed goto instruction")  COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 1188)) ;
+    }
+    break ;
   }
   GALGAS_sint_36__34_ var_size ;
   callCategoryMethod_eval ((const cPtr_immediatExpression *) object->mAttribute_mSizeExpression.ptr (), constinArgument_inRegisterTable, constinArgument_inConstantMap, var_size, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 1191)) ;
@@ -1994,18 +1993,22 @@ static void categoryMethod_pic_31__38_Instruction_5F_computed_5F_bra_analyze (co
   if (kBoolTrue == test_10) {
     inCompiler->emitSemanticError (object->mAttribute_mInstructionLocation, GALGAS_string ("invoked routine(s) do(es) not preserve bank selection")  COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 1268)) ;
   }
-  if (constinArgument_inRoutineKind.isValid ()) {
-    switch (constinArgument_inRoutineKind.enumValue ()) {
-    case GALGAS_routineKind::kNotBuilt:
-      break ;
-    case GALGAS_routineKind::kEnum_regularRoutine: {
-      } break ;
-    case GALGAS_routineKind::kEnum_noReturnRoutine: {
-      } break ;
-    case GALGAS_routineKind::kEnum_interruptRoutine: {
-      inCompiler->emitSemanticError (object->mAttribute_mInstructionLocation, GALGAS_string ("an interrupt routine does not accept computed bra instruction")  COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 1275)) ;
-      } break ;
+  switch (constinArgument_inRoutineKind.enumValue ()) {
+  case GALGAS_routineKind::kNotBuilt:
+    break ;
+  case GALGAS_routineKind::kEnum_regularRoutine:
+    {
     }
+    break ;
+  case GALGAS_routineKind::kEnum_noReturnRoutine:
+    {
+    }
+    break ;
+  case GALGAS_routineKind::kEnum_interruptRoutine:
+    {
+      inCompiler->emitSemanticError (object->mAttribute_mInstructionLocation, GALGAS_string ("an interrupt routine does not accept computed bra instruction")  COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 1275)) ;
+    }
+    break ;
   }
   GALGAS_sint_36__34_ var_size ;
   callCategoryMethod_eval ((const cPtr_immediatExpression *) object->mAttribute_mSizeExpression.ptr (), constinArgument_inRegisterTable, constinArgument_inConstantMap, var_size, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 1278)) ;
@@ -2063,19 +2066,23 @@ static void categoryMethod_pic_31__38_Instruction_5F_computed_5F_retlw_analyze (
                                                                                 COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_pic_31__38_Instruction_5F_computed_5F_retlw * object = (const cPtr_pic_31__38_Instruction_5F_computed_5F_retlw *) inObject ;
   macroValidSharedObject (object, cPtr_pic_31__38_Instruction_5F_computed_5F_retlw) ;
-  if (constinArgument_inRoutineKind.isValid ()) {
-    switch (constinArgument_inRoutineKind.enumValue ()) {
-    case GALGAS_routineKind::kNotBuilt:
-      break ;
-    case GALGAS_routineKind::kEnum_regularRoutine: {
-      } break ;
-    case GALGAS_routineKind::kEnum_noReturnRoutine: {
-      inCompiler->emitSemanticError (object->mAttribute_mInstructionLocation, GALGAS_string ("a \"noreturn\" routine does not accept computed retlw instruction")  COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 1320)) ;
-      } break ;
-    case GALGAS_routineKind::kEnum_interruptRoutine: {
-      inCompiler->emitSemanticError (object->mAttribute_mInstructionLocation, GALGAS_string ("an interrupt routine does not accept computed retlw instruction")  COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 1322)) ;
-      } break ;
+  switch (constinArgument_inRoutineKind.enumValue ()) {
+  case GALGAS_routineKind::kNotBuilt:
+    break ;
+  case GALGAS_routineKind::kEnum_regularRoutine:
+    {
     }
+    break ;
+  case GALGAS_routineKind::kEnum_noReturnRoutine:
+    {
+      inCompiler->emitSemanticError (object->mAttribute_mInstructionLocation, GALGAS_string ("a \"noreturn\" routine does not accept computed retlw instruction")  COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 1320)) ;
+    }
+    break ;
+  case GALGAS_routineKind::kEnum_interruptRoutine:
+    {
+      inCompiler->emitSemanticError (object->mAttribute_mInstructionLocation, GALGAS_string ("an interrupt routine does not accept computed retlw instruction")  COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 1322)) ;
+    }
+    break ;
   }
   GALGAS_sint_36__34_ var_size ;
   callCategoryMethod_eval ((const cPtr_immediatExpression *) object->mAttribute_mSizeExpression.ptr (), constinArgument_inRegisterTable, constinArgument_inConstantMap, var_size, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 1325)) ;
@@ -2270,23 +2277,29 @@ static void categoryMethod_pic_31__38_Instruction_5F_IF_5F_FA_5F_SEMI_5F_COLON_a
   const cPtr_pic_31__38_Instruction_5F_IF_5F_FA_5F_SEMI_5F_COLON * object = (const cPtr_pic_31__38_Instruction_5F_IF_5F_FA_5F_SEMI_5F_COLON *) inObject ;
   macroValidSharedObject (object, cPtr_pic_31__38_Instruction_5F_IF_5F_FA_5F_SEMI_5F_COLON) ;
   GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code var_baseCode ;
-  if (object->mAttribute_mOpCode.isValid ()) {
-    switch (object->mAttribute_mOpCode.enumValue ()) {
-    case GALGAS_if_5F_semi_5F_colon_5F_op::kNotBuilt:
-      break ;
-    case GALGAS_if_5F_semi_5F_colon_5F_op::kEnum_CPFSEQ: {
+  switch (object->mAttribute_mOpCode.enumValue ()) {
+  case GALGAS_if_5F_semi_5F_colon_5F_op::kNotBuilt:
+    break ;
+  case GALGAS_if_5F_semi_5F_colon_5F_op::kEnum_CPFSEQ:
+    {
       var_baseCode = GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code::constructor_CPFSEQ (SOURCE_FILE ("ipic18_build_block_representation.galgas", 1489)) ;
-      } break ;
-    case GALGAS_if_5F_semi_5F_colon_5F_op::kEnum_CPFSGT: {
-      var_baseCode = GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code::constructor_CPFSGT (SOURCE_FILE ("ipic18_build_block_representation.galgas", 1490)) ;
-      } break ;
-    case GALGAS_if_5F_semi_5F_colon_5F_op::kEnum_CPFSLT: {
-      var_baseCode = GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code::constructor_CPFSLT (SOURCE_FILE ("ipic18_build_block_representation.galgas", 1491)) ;
-      } break ;
-    case GALGAS_if_5F_semi_5F_colon_5F_op::kEnum_TSTFSZ: {
-      var_baseCode = GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code::constructor_TSTFSZ (SOURCE_FILE ("ipic18_build_block_representation.galgas", 1492)) ;
-      } break ;
     }
+    break ;
+  case GALGAS_if_5F_semi_5F_colon_5F_op::kEnum_CPFSGT:
+    {
+      var_baseCode = GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code::constructor_CPFSGT (SOURCE_FILE ("ipic18_build_block_representation.galgas", 1490)) ;
+    }
+    break ;
+  case GALGAS_if_5F_semi_5F_colon_5F_op::kEnum_CPFSLT:
+    {
+      var_baseCode = GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code::constructor_CPFSLT (SOURCE_FILE ("ipic18_build_block_representation.galgas", 1491)) ;
+    }
+    break ;
+  case GALGAS_if_5F_semi_5F_colon_5F_op::kEnum_TSTFSZ:
+    {
+      var_baseCode = GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code::constructor_TSTFSZ (SOURCE_FILE ("ipic18_build_block_representation.galgas", 1492)) ;
+    }
+    break ;
   }
   GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression var_IPICregisterDescription ;
   GALGAS_bitSliceTable joker_56150 ; // Joker input parameter
@@ -3253,35 +3266,45 @@ static void categoryMethod_pic_31__38_RegisterComparisonCondition_analyzeConditi
   callCategoryMethod_analyzeRegisterExpression ((const cPtr_registerExpression *) object->mAttribute_mRegisterExpression.ptr (), constinArgument_inAccessBankSplitOffset, constinArgument_inCurrentBank, constinArgument_inRegisterTable, var_IPICregisterDescription, joker_99240, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 2674)) ;
   GALGAS_ipic_31__38_RegisterComparison var_ipicComparison ;
   GALGAS_bool var_complementaryBranch ;
-  if (object->mAttribute_mComparison.isValid ()) {
-    switch (object->mAttribute_mComparison.enumValue ()) {
-    case GALGAS_pic_31__38_RegisterComparison::kNotBuilt:
-      break ;
-    case GALGAS_pic_31__38_RegisterComparison::kEnum_equal: {
+  switch (object->mAttribute_mComparison.enumValue ()) {
+  case GALGAS_pic_31__38_RegisterComparison::kNotBuilt:
+    break ;
+  case GALGAS_pic_31__38_RegisterComparison::kEnum_equal:
+    {
       var_ipicComparison = GALGAS_ipic_31__38_RegisterComparison::constructor_registerEqualsToW (SOURCE_FILE ("ipic18_build_block_representation.galgas", 2687)) ;
       var_complementaryBranch = GALGAS_bool (false) ;
-      } break ;
-    case GALGAS_pic_31__38_RegisterComparison::kEnum_greater: {
+    }
+    break ;
+  case GALGAS_pic_31__38_RegisterComparison::kEnum_greater:
+    {
       var_ipicComparison = GALGAS_ipic_31__38_RegisterComparison::constructor_registerGreaterThanW (SOURCE_FILE ("ipic18_build_block_representation.galgas", 2690)) ;
       var_complementaryBranch = GALGAS_bool (false) ;
-      } break ;
-    case GALGAS_pic_31__38_RegisterComparison::kEnum_lower: {
+    }
+    break ;
+  case GALGAS_pic_31__38_RegisterComparison::kEnum_lower:
+    {
       var_ipicComparison = GALGAS_ipic_31__38_RegisterComparison::constructor_registerLowerThanW (SOURCE_FILE ("ipic18_build_block_representation.galgas", 2693)) ;
       var_complementaryBranch = GALGAS_bool (false) ;
-      } break ;
-    case GALGAS_pic_31__38_RegisterComparison::kEnum_greaterOrEqual: {
+    }
+    break ;
+  case GALGAS_pic_31__38_RegisterComparison::kEnum_greaterOrEqual:
+    {
       var_ipicComparison = GALGAS_ipic_31__38_RegisterComparison::constructor_registerLowerThanW (SOURCE_FILE ("ipic18_build_block_representation.galgas", 2696)) ;
       var_complementaryBranch = GALGAS_bool (true) ;
-      } break ;
-    case GALGAS_pic_31__38_RegisterComparison::kEnum_lowerOrEqual: {
+    }
+    break ;
+  case GALGAS_pic_31__38_RegisterComparison::kEnum_lowerOrEqual:
+    {
       var_ipicComparison = GALGAS_ipic_31__38_RegisterComparison::constructor_registerGreaterThanW (SOURCE_FILE ("ipic18_build_block_representation.galgas", 2699)) ;
       var_complementaryBranch = GALGAS_bool (true) ;
-      } break ;
-    case GALGAS_pic_31__38_RegisterComparison::kEnum_notEqual: {
+    }
+    break ;
+  case GALGAS_pic_31__38_RegisterComparison::kEnum_notEqual:
+    {
       var_ipicComparison = GALGAS_ipic_31__38_RegisterComparison::constructor_registerEqualsToW (SOURCE_FILE ("ipic18_build_block_representation.galgas", 2702)) ;
       var_complementaryBranch = GALGAS_bool (true) ;
-      } break ;
     }
+    break ;
   }
   GALGAS_location var_location = object->mAttribute_mRegisterExpression.reader_mRegisterName (SOURCE_FILE ("ipic18_build_block_representation.galgas", 2706)).mAttribute_location ;
   const enumGalgasBool test_0 = var_complementaryBranch.boolEnum () ;

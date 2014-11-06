@@ -3330,20 +3330,25 @@ static void routine_before (C_Compiler * inCompiler
         {
         routine_parseDeviceDefinition (GALGAS_lstring::constructor_new (var_name, GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 18))  COMMA_SOURCE_FILE ("piccolo_program.galgas", 18)), var_piccoloDeviceModel, inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 18)) ;
         }
-        if (var_piccoloDeviceModel.reader_mProcessorType (SOURCE_FILE ("piccolo_program.galgas", 19)).isValid ()) {
-          switch (var_piccoloDeviceModel.reader_mProcessorType (SOURCE_FILE ("piccolo_program.galgas", 19)).enumValue ()) {
-          case GALGAS_processorType::kNotBuilt:
-            break ;
-          case GALGAS_processorType::kEnum_pic_31__38__5F__36__30_: case GALGAS_processorType::kEnum_pic_31__38__5F__38__30_: {
+        switch (var_piccoloDeviceModel.reader_mProcessorType (SOURCE_FILE ("piccolo_program.galgas", 19)).enumValue ()) {
+        case GALGAS_processorType::kNotBuilt:
+          break ;
+        case GALGAS_processorType::kEnum_pic_31__38__5F__36__30_:
+        case GALGAS_processorType::kEnum_pic_31__38__5F__38__30_:
+          {
             var_pic_31__38__5F_devices.addAssign_operation (var_name  COMMA_SOURCE_FILE ("piccolo_program.galgas", 21)) ;
-            } break ;
-          case GALGAS_processorType::kEnum_midrange: {
-            var_midrange_5F_devices.addAssign_operation (var_name  COMMA_SOURCE_FILE ("piccolo_program.galgas", 23)) ;
-            } break ;
-          case GALGAS_processorType::kEnum_baseline: {
-            var_baseline_5F_devices.addAssign_operation (var_name  COMMA_SOURCE_FILE ("piccolo_program.galgas", 31)) ;
-            } break ;
           }
+          break ;
+        case GALGAS_processorType::kEnum_midrange:
+          {
+            var_midrange_5F_devices.addAssign_operation (var_name  COMMA_SOURCE_FILE ("piccolo_program.galgas", 23)) ;
+          }
+          break ;
+        case GALGAS_processorType::kEnum_baseline:
+          {
+            var_baseline_5F_devices.addAssign_operation (var_name  COMMA_SOURCE_FILE ("piccolo_program.galgas", 31)) ;
+          }
+          break ;
         }
         enumerator_694.gotoNextObject () ;
       }
@@ -3461,14 +3466,17 @@ static void routine_before (C_Compiler * inCompiler
           inCompiler->printMessage (GALGAS_string ("\n")  COMMA_SOURCE_FILE ("piccolo_program.galgas", 120)) ;
           enumerator_4864.gotoNextObject () ;
         }
-        if (var_piccoloDeviceModel.reader_mProcessorType (SOURCE_FILE ("piccolo_program.galgas", 122)).isValid ()) {
-          switch (var_piccoloDeviceModel.reader_mProcessorType (SOURCE_FILE ("piccolo_program.galgas", 122)).enumValue ()) {
-          case GALGAS_processorType::kNotBuilt:
-            break ;
-          case GALGAS_processorType::kEnum_pic_31__38__5F__36__30_: case GALGAS_processorType::kEnum_pic_31__38__5F__38__30_: {
+        switch (var_piccoloDeviceModel.reader_mProcessorType (SOURCE_FILE ("piccolo_program.galgas", 122)).enumValue ()) {
+        case GALGAS_processorType::kNotBuilt:
+          break ;
+        case GALGAS_processorType::kEnum_pic_31__38__5F__36__30_:
+        case GALGAS_processorType::kEnum_pic_31__38__5F__38__30_:
+          {
             inCompiler->printMessage (GALGAS_string ("  ROM size: ").add_operation (var_piccoloDeviceModel.reader_mRomSize (SOURCE_FILE ("piccolo_program.galgas", 124)).reader_uint (SOURCE_FILE ("piccolo_program.galgas", 124)).reader_string (SOURCE_FILE ("piccolo_program.galgas", 124)), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 124)).add_operation (GALGAS_string (" bytes\n"), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 124))  COMMA_SOURCE_FILE ("piccolo_program.galgas", 124)) ;
-            } break ;
-          case GALGAS_processorType::kEnum_midrange: {
+          }
+          break ;
+        case GALGAS_processorType::kEnum_midrange:
+          {
             GALGAS_uint var_pageCount = var_piccoloDeviceModel.reader_mRomSize (SOURCE_FILE ("piccolo_program.galgas", 126)).reader_uint (SOURCE_FILE ("piccolo_program.galgas", 126)).add_operation (GALGAS_uint ((uint32_t) 2047U), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 126)).divide_operation (GALGAS_uint ((uint32_t) 2048U), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 126)) ;
             GALGAS_string var_s = GALGAS_string::makeEmptyString () ;
             const enumGalgasBool test_15 = GALGAS_bool (kIsStrictSup, var_pageCount.objectCompare (GALGAS_uint ((uint32_t) 1U))).boolEnum () ;
@@ -3476,11 +3484,13 @@ static void routine_before (C_Compiler * inCompiler
               var_s = GALGAS_string ("s") ;
             }
             inCompiler->printMessage (GALGAS_string ("  ROM size: ").add_operation (var_piccoloDeviceModel.reader_mRomSize (SOURCE_FILE ("piccolo_program.galgas", 131)).reader_uint (SOURCE_FILE ("piccolo_program.galgas", 131)).reader_string (SOURCE_FILE ("piccolo_program.galgas", 131)), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 131)).add_operation (GALGAS_string (" instructions ("), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 131)).add_operation (var_pageCount.reader_string (SOURCE_FILE ("piccolo_program.galgas", 132)), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 131)).add_operation (GALGAS_string (" page"), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 132)).add_operation (var_s, inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 132)).add_operation (GALGAS_string (")\n"), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 132))  COMMA_SOURCE_FILE ("piccolo_program.galgas", 131)) ;
-            } break ;
-          case GALGAS_processorType::kEnum_baseline: {
-            inCompiler->printMessage (GALGAS_string ("  ROM size: ").add_operation (var_piccoloDeviceModel.reader_mRomSize (SOURCE_FILE ("piccolo_program.galgas", 134)).reader_uint (SOURCE_FILE ("piccolo_program.galgas", 134)).reader_string (SOURCE_FILE ("piccolo_program.galgas", 134)), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 134)).add_operation (GALGAS_string (" instructions\n"), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 134))  COMMA_SOURCE_FILE ("piccolo_program.galgas", 134)) ;
-            } break ;
           }
+          break ;
+        case GALGAS_processorType::kEnum_baseline:
+          {
+            inCompiler->printMessage (GALGAS_string ("  ROM size: ").add_operation (var_piccoloDeviceModel.reader_mRomSize (SOURCE_FILE ("piccolo_program.galgas", 134)).reader_uint (SOURCE_FILE ("piccolo_program.galgas", 134)).reader_string (SOURCE_FILE ("piccolo_program.galgas", 134)), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 134)).add_operation (GALGAS_string (" instructions\n"), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 134))  COMMA_SOURCE_FILE ("piccolo_program.galgas", 134)) ;
+          }
+          break ;
         }
         const enumGalgasBool test_16 = GALGAS_bool (kIsEqual, var_piccoloDeviceModel.reader_mEepromSize (SOURCE_FILE ("piccolo_program.galgas", 136)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
         if (kBoolTrue == test_16) {
@@ -3918,53 +3928,79 @@ GALGAS_string categoryReader_mnemonic (const GALGAS_baseline_5F_instruction_5F_F
                                        COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_string result_outResult ; // Returned variable
   const GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code temp_0 = inObject ;
-  if (temp_0.isValid ()) {
-    switch (temp_0.enumValue ()) {
-    case GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::kNotBuilt:
-      break ;
-    case GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::kEnum_ADDWF: {
+  switch (temp_0.enumValue ()) {
+  case GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::kNotBuilt:
+    break ;
+  case GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::kEnum_ADDWF:
+    {
       result_outResult = GALGAS_string ("ADDWF") ;
-      } break ;
-    case GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::kEnum_ANDWF: {
-      result_outResult = GALGAS_string ("ANDWF") ;
-      } break ;
-    case GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::kEnum_COMF: {
-      result_outResult = GALGAS_string ("COMF") ;
-      } break ;
-    case GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::kEnum_DECF: {
-      result_outResult = GALGAS_string ("DECF") ;
-      } break ;
-    case GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::kEnum_DECFSZ: {
-      result_outResult = GALGAS_string ("DECFSZ") ;
-      } break ;
-    case GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::kEnum_INCF: {
-      result_outResult = GALGAS_string ("INCF") ;
-      } break ;
-    case GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::kEnum_INCFSZ: {
-      result_outResult = GALGAS_string ("INCFSZ") ;
-      } break ;
-    case GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::kEnum_IORWF: {
-      result_outResult = GALGAS_string ("IORWF") ;
-      } break ;
-    case GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::kEnum_MOVF: {
-      result_outResult = GALGAS_string ("MOVF") ;
-      } break ;
-    case GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::kEnum_RLF: {
-      result_outResult = GALGAS_string ("RLF") ;
-      } break ;
-    case GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::kEnum_RRF: {
-      result_outResult = GALGAS_string ("RRF") ;
-      } break ;
-    case GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::kEnum_SUBWF: {
-      result_outResult = GALGAS_string ("SUBWF") ;
-      } break ;
-    case GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::kEnum_SWAPF: {
-      result_outResult = GALGAS_string ("SWAPF") ;
-      } break ;
-    case GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::kEnum_XORWF: {
-      result_outResult = GALGAS_string ("XORWF") ;
-      } break ;
     }
+    break ;
+  case GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::kEnum_ANDWF:
+    {
+      result_outResult = GALGAS_string ("ANDWF") ;
+    }
+    break ;
+  case GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::kEnum_COMF:
+    {
+      result_outResult = GALGAS_string ("COMF") ;
+    }
+    break ;
+  case GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::kEnum_DECF:
+    {
+      result_outResult = GALGAS_string ("DECF") ;
+    }
+    break ;
+  case GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::kEnum_DECFSZ:
+    {
+      result_outResult = GALGAS_string ("DECFSZ") ;
+    }
+    break ;
+  case GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::kEnum_INCF:
+    {
+      result_outResult = GALGAS_string ("INCF") ;
+    }
+    break ;
+  case GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::kEnum_INCFSZ:
+    {
+      result_outResult = GALGAS_string ("INCFSZ") ;
+    }
+    break ;
+  case GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::kEnum_IORWF:
+    {
+      result_outResult = GALGAS_string ("IORWF") ;
+    }
+    break ;
+  case GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::kEnum_MOVF:
+    {
+      result_outResult = GALGAS_string ("MOVF") ;
+    }
+    break ;
+  case GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::kEnum_RLF:
+    {
+      result_outResult = GALGAS_string ("RLF") ;
+    }
+    break ;
+  case GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::kEnum_RRF:
+    {
+      result_outResult = GALGAS_string ("RRF") ;
+    }
+    break ;
+  case GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::kEnum_SUBWF:
+    {
+      result_outResult = GALGAS_string ("SUBWF") ;
+    }
+    break ;
+  case GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::kEnum_SWAPF:
+    {
+      result_outResult = GALGAS_string ("SWAPF") ;
+    }
+    break ;
+  case GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::kEnum_XORWF:
+    {
+      result_outResult = GALGAS_string ("XORWF") ;
+    }
+    break ;
   }
 //---
   return result_outResult ;
@@ -3984,17 +4020,19 @@ GALGAS_string categoryReader_mnemonic (const GALGAS_baseline_5F_F_5F_instruction
                                        COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_string result_outResult ; // Returned variable
   const GALGAS_baseline_5F_F_5F_instruction_5F_base_5F_code temp_0 = inObject ;
-  if (temp_0.isValid ()) {
-    switch (temp_0.enumValue ()) {
-    case GALGAS_baseline_5F_F_5F_instruction_5F_base_5F_code::kNotBuilt:
-      break ;
-    case GALGAS_baseline_5F_F_5F_instruction_5F_base_5F_code::kEnum_CLRF: {
+  switch (temp_0.enumValue ()) {
+  case GALGAS_baseline_5F_F_5F_instruction_5F_base_5F_code::kNotBuilt:
+    break ;
+  case GALGAS_baseline_5F_F_5F_instruction_5F_base_5F_code::kEnum_CLRF:
+    {
       result_outResult = GALGAS_string ("CLRF") ;
-      } break ;
-    case GALGAS_baseline_5F_F_5F_instruction_5F_base_5F_code::kEnum_MOVWF: {
-      result_outResult = GALGAS_string ("MOVWF") ;
-      } break ;
     }
+    break ;
+  case GALGAS_baseline_5F_F_5F_instruction_5F_base_5F_code::kEnum_MOVWF:
+    {
+      result_outResult = GALGAS_string ("MOVWF") ;
+    }
+    break ;
   }
 //---
   return result_outResult ;
@@ -4014,17 +4052,19 @@ GALGAS_string categoryReader_mnemonic (const GALGAS_baseline_5F_bit_5F_oriented_
                                        COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_string result_outResult ; // Returned variable
   const GALGAS_baseline_5F_bit_5F_oriented_5F_op temp_0 = inObject ;
-  if (temp_0.isValid ()) {
-    switch (temp_0.enumValue ()) {
-    case GALGAS_baseline_5F_bit_5F_oriented_5F_op::kNotBuilt:
-      break ;
-    case GALGAS_baseline_5F_bit_5F_oriented_5F_op::kEnum_BCF: {
+  switch (temp_0.enumValue ()) {
+  case GALGAS_baseline_5F_bit_5F_oriented_5F_op::kNotBuilt:
+    break ;
+  case GALGAS_baseline_5F_bit_5F_oriented_5F_op::kEnum_BCF:
+    {
       result_outResult = GALGAS_string ("BCF") ;
-      } break ;
-    case GALGAS_baseline_5F_bit_5F_oriented_5F_op::kEnum_BSF: {
-      result_outResult = GALGAS_string ("BSF") ;
-      } break ;
     }
+    break ;
+  case GALGAS_baseline_5F_bit_5F_oriented_5F_op::kEnum_BSF:
+    {
+      result_outResult = GALGAS_string ("BSF") ;
+    }
+    break ;
   }
 //---
   return result_outResult ;
@@ -4044,26 +4084,34 @@ GALGAS_string categoryReader_mnemonic (const GALGAS_baseline_5F_literal_5F_instr
                                        COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_string result_outResult ; // Returned variable
   const GALGAS_baseline_5F_literal_5F_instruction_5F_opcode temp_0 = inObject ;
-  if (temp_0.isValid ()) {
-    switch (temp_0.enumValue ()) {
-    case GALGAS_baseline_5F_literal_5F_instruction_5F_opcode::kNotBuilt:
-      break ;
-    case GALGAS_baseline_5F_literal_5F_instruction_5F_opcode::kEnum_ANDLW: {
+  switch (temp_0.enumValue ()) {
+  case GALGAS_baseline_5F_literal_5F_instruction_5F_opcode::kNotBuilt:
+    break ;
+  case GALGAS_baseline_5F_literal_5F_instruction_5F_opcode::kEnum_ANDLW:
+    {
       result_outResult = GALGAS_string ("ANDLW") ;
-      } break ;
-    case GALGAS_baseline_5F_literal_5F_instruction_5F_opcode::kEnum_IORLW: {
-      result_outResult = GALGAS_string ("IORLW") ;
-      } break ;
-    case GALGAS_baseline_5F_literal_5F_instruction_5F_opcode::kEnum_MOVLW: {
-      result_outResult = GALGAS_string ("MOVLW") ;
-      } break ;
-    case GALGAS_baseline_5F_literal_5F_instruction_5F_opcode::kEnum_RETLW: {
-      result_outResult = GALGAS_string ("RETLW") ;
-      } break ;
-    case GALGAS_baseline_5F_literal_5F_instruction_5F_opcode::kEnum_XORLW: {
-      result_outResult = GALGAS_string ("XORLW") ;
-      } break ;
     }
+    break ;
+  case GALGAS_baseline_5F_literal_5F_instruction_5F_opcode::kEnum_IORLW:
+    {
+      result_outResult = GALGAS_string ("IORLW") ;
+    }
+    break ;
+  case GALGAS_baseline_5F_literal_5F_instruction_5F_opcode::kEnum_MOVLW:
+    {
+      result_outResult = GALGAS_string ("MOVLW") ;
+    }
+    break ;
+  case GALGAS_baseline_5F_literal_5F_instruction_5F_opcode::kEnum_RETLW:
+    {
+      result_outResult = GALGAS_string ("RETLW") ;
+    }
+    break ;
+  case GALGAS_baseline_5F_literal_5F_instruction_5F_opcode::kEnum_XORLW:
+    {
+      result_outResult = GALGAS_string ("XORLW") ;
+    }
+    break ;
   }
 //---
   return result_outResult ;
@@ -4083,17 +4131,19 @@ GALGAS_string categoryReader_mnemonic (const GALGAS_baseline_5F_IF_5F_BitTest_5F
                                        COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_string result_outResult ; // Returned variable
   const GALGAS_baseline_5F_IF_5F_BitTest_5F_opcode temp_0 = inObject ;
-  if (temp_0.isValid ()) {
-    switch (temp_0.enumValue ()) {
-    case GALGAS_baseline_5F_IF_5F_BitTest_5F_opcode::kNotBuilt:
-      break ;
-    case GALGAS_baseline_5F_IF_5F_BitTest_5F_opcode::kEnum_BTFSS: {
+  switch (temp_0.enumValue ()) {
+  case GALGAS_baseline_5F_IF_5F_BitTest_5F_opcode::kNotBuilt:
+    break ;
+  case GALGAS_baseline_5F_IF_5F_BitTest_5F_opcode::kEnum_BTFSS:
+    {
       result_outResult = GALGAS_string ("BTFSS") ;
-      } break ;
-    case GALGAS_baseline_5F_IF_5F_BitTest_5F_opcode::kEnum_BTFSC: {
-      result_outResult = GALGAS_string ("BTFSC") ;
-      } break ;
     }
+    break ;
+  case GALGAS_baseline_5F_IF_5F_BitTest_5F_opcode::kEnum_BTFSC:
+    {
+      result_outResult = GALGAS_string ("BTFSC") ;
+    }
+    break ;
   }
 //---
   return result_outResult ;
@@ -4113,26 +4163,34 @@ GALGAS_string categoryReader_mnemonic (const GALGAS_baseline_5F_WO_5F_OPERAND_5F
                                        COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_string result_outResult ; // Returned variable
   const GALGAS_baseline_5F_WO_5F_OPERAND_5F_group temp_0 = inObject ;
-  if (temp_0.isValid ()) {
-    switch (temp_0.enumValue ()) {
-    case GALGAS_baseline_5F_WO_5F_OPERAND_5F_group::kNotBuilt:
-      break ;
-    case GALGAS_baseline_5F_WO_5F_OPERAND_5F_group::kEnum_NOP: {
+  switch (temp_0.enumValue ()) {
+  case GALGAS_baseline_5F_WO_5F_OPERAND_5F_group::kNotBuilt:
+    break ;
+  case GALGAS_baseline_5F_WO_5F_OPERAND_5F_group::kEnum_NOP:
+    {
       result_outResult = GALGAS_string ("NOP") ;
-      } break ;
-    case GALGAS_baseline_5F_WO_5F_OPERAND_5F_group::kEnum_CLRW: {
-      result_outResult = GALGAS_string ("CLRW") ;
-      } break ;
-    case GALGAS_baseline_5F_WO_5F_OPERAND_5F_group::kEnum_CLRWDT: {
-      result_outResult = GALGAS_string ("CLRWDT") ;
-      } break ;
-    case GALGAS_baseline_5F_WO_5F_OPERAND_5F_group::kEnum_OPTION_5F_: {
-      result_outResult = GALGAS_string ("OPTION") ;
-      } break ;
-    case GALGAS_baseline_5F_WO_5F_OPERAND_5F_group::kEnum_SLEEP: {
-      result_outResult = GALGAS_string ("SLEEP") ;
-      } break ;
     }
+    break ;
+  case GALGAS_baseline_5F_WO_5F_OPERAND_5F_group::kEnum_CLRW:
+    {
+      result_outResult = GALGAS_string ("CLRW") ;
+    }
+    break ;
+  case GALGAS_baseline_5F_WO_5F_OPERAND_5F_group::kEnum_CLRWDT:
+    {
+      result_outResult = GALGAS_string ("CLRWDT") ;
+    }
+    break ;
+  case GALGAS_baseline_5F_WO_5F_OPERAND_5F_group::kEnum_OPTION_5F_:
+    {
+      result_outResult = GALGAS_string ("OPTION") ;
+    }
+    break ;
+  case GALGAS_baseline_5F_WO_5F_OPERAND_5F_group::kEnum_SLEEP:
+    {
+      result_outResult = GALGAS_string ("SLEEP") ;
+    }
+    break ;
   }
 //---
   return result_outResult ;
@@ -5729,53 +5787,79 @@ GALGAS_string categoryReader_mnemonic (const GALGAS_midrange_5F_instruction_5F_F
                                        COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_string result_outResult ; // Returned variable
   const GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code temp_0 = inObject ;
-  if (temp_0.isValid ()) {
-    switch (temp_0.enumValue ()) {
-    case GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::kNotBuilt:
-      break ;
-    case GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::kEnum_ADDWF: {
+  switch (temp_0.enumValue ()) {
+  case GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::kNotBuilt:
+    break ;
+  case GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::kEnum_ADDWF:
+    {
       result_outResult = GALGAS_string ("ADDWF") ;
-      } break ;
-    case GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::kEnum_ANDWF: {
-      result_outResult = GALGAS_string ("ANDWF") ;
-      } break ;
-    case GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::kEnum_COMF: {
-      result_outResult = GALGAS_string ("COMF") ;
-      } break ;
-    case GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::kEnum_DECF: {
-      result_outResult = GALGAS_string ("DECF") ;
-      } break ;
-    case GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::kEnum_DECFSZ: {
-      result_outResult = GALGAS_string ("DECFSZ") ;
-      } break ;
-    case GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::kEnum_INCF: {
-      result_outResult = GALGAS_string ("INCF") ;
-      } break ;
-    case GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::kEnum_INCFSZ: {
-      result_outResult = GALGAS_string ("INCFSZ") ;
-      } break ;
-    case GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::kEnum_IORWF: {
-      result_outResult = GALGAS_string ("IORWF") ;
-      } break ;
-    case GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::kEnum_MOVF: {
-      result_outResult = GALGAS_string ("MOVF") ;
-      } break ;
-    case GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::kEnum_RLF: {
-      result_outResult = GALGAS_string ("RLF") ;
-      } break ;
-    case GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::kEnum_RRF: {
-      result_outResult = GALGAS_string ("RRF") ;
-      } break ;
-    case GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::kEnum_SUBWF: {
-      result_outResult = GALGAS_string ("SUBWF") ;
-      } break ;
-    case GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::kEnum_SWAPF: {
-      result_outResult = GALGAS_string ("SWAPF") ;
-      } break ;
-    case GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::kEnum_XORWF: {
-      result_outResult = GALGAS_string ("XORWF") ;
-      } break ;
     }
+    break ;
+  case GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::kEnum_ANDWF:
+    {
+      result_outResult = GALGAS_string ("ANDWF") ;
+    }
+    break ;
+  case GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::kEnum_COMF:
+    {
+      result_outResult = GALGAS_string ("COMF") ;
+    }
+    break ;
+  case GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::kEnum_DECF:
+    {
+      result_outResult = GALGAS_string ("DECF") ;
+    }
+    break ;
+  case GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::kEnum_DECFSZ:
+    {
+      result_outResult = GALGAS_string ("DECFSZ") ;
+    }
+    break ;
+  case GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::kEnum_INCF:
+    {
+      result_outResult = GALGAS_string ("INCF") ;
+    }
+    break ;
+  case GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::kEnum_INCFSZ:
+    {
+      result_outResult = GALGAS_string ("INCFSZ") ;
+    }
+    break ;
+  case GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::kEnum_IORWF:
+    {
+      result_outResult = GALGAS_string ("IORWF") ;
+    }
+    break ;
+  case GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::kEnum_MOVF:
+    {
+      result_outResult = GALGAS_string ("MOVF") ;
+    }
+    break ;
+  case GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::kEnum_RLF:
+    {
+      result_outResult = GALGAS_string ("RLF") ;
+    }
+    break ;
+  case GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::kEnum_RRF:
+    {
+      result_outResult = GALGAS_string ("RRF") ;
+    }
+    break ;
+  case GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::kEnum_SUBWF:
+    {
+      result_outResult = GALGAS_string ("SUBWF") ;
+    }
+    break ;
+  case GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::kEnum_SWAPF:
+    {
+      result_outResult = GALGAS_string ("SWAPF") ;
+    }
+    break ;
+  case GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::kEnum_XORWF:
+    {
+      result_outResult = GALGAS_string ("XORWF") ;
+    }
+    break ;
   }
 //---
   return result_outResult ;
@@ -5795,17 +5879,19 @@ GALGAS_string categoryReader_mnemonic (const GALGAS_midrange_5F_F_5F_instruction
                                        COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_string result_outResult ; // Returned variable
   const GALGAS_midrange_5F_F_5F_instruction_5F_base_5F_code temp_0 = inObject ;
-  if (temp_0.isValid ()) {
-    switch (temp_0.enumValue ()) {
-    case GALGAS_midrange_5F_F_5F_instruction_5F_base_5F_code::kNotBuilt:
-      break ;
-    case GALGAS_midrange_5F_F_5F_instruction_5F_base_5F_code::kEnum_CLRF: {
+  switch (temp_0.enumValue ()) {
+  case GALGAS_midrange_5F_F_5F_instruction_5F_base_5F_code::kNotBuilt:
+    break ;
+  case GALGAS_midrange_5F_F_5F_instruction_5F_base_5F_code::kEnum_CLRF:
+    {
       result_outResult = GALGAS_string ("CLRF") ;
-      } break ;
-    case GALGAS_midrange_5F_F_5F_instruction_5F_base_5F_code::kEnum_MOVWF: {
-      result_outResult = GALGAS_string ("MOVWF") ;
-      } break ;
     }
+    break ;
+  case GALGAS_midrange_5F_F_5F_instruction_5F_base_5F_code::kEnum_MOVWF:
+    {
+      result_outResult = GALGAS_string ("MOVWF") ;
+    }
+    break ;
   }
 //---
   return result_outResult ;
@@ -5825,17 +5911,19 @@ GALGAS_string categoryReader_mnemonic (const GALGAS_midrange_5F_bit_5F_oriented_
                                        COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_string result_outResult ; // Returned variable
   const GALGAS_midrange_5F_bit_5F_oriented_5F_op temp_0 = inObject ;
-  if (temp_0.isValid ()) {
-    switch (temp_0.enumValue ()) {
-    case GALGAS_midrange_5F_bit_5F_oriented_5F_op::kNotBuilt:
-      break ;
-    case GALGAS_midrange_5F_bit_5F_oriented_5F_op::kEnum_BCF: {
+  switch (temp_0.enumValue ()) {
+  case GALGAS_midrange_5F_bit_5F_oriented_5F_op::kNotBuilt:
+    break ;
+  case GALGAS_midrange_5F_bit_5F_oriented_5F_op::kEnum_BCF:
+    {
       result_outResult = GALGAS_string ("BCF") ;
-      } break ;
-    case GALGAS_midrange_5F_bit_5F_oriented_5F_op::kEnum_BSF: {
-      result_outResult = GALGAS_string ("BSF") ;
-      } break ;
     }
+    break ;
+  case GALGAS_midrange_5F_bit_5F_oriented_5F_op::kEnum_BSF:
+    {
+      result_outResult = GALGAS_string ("BSF") ;
+    }
+    break ;
   }
 //---
   return result_outResult ;
@@ -5855,32 +5943,44 @@ GALGAS_string categoryReader_mnemonic (const GALGAS_midrange_5F_literal_5F_instr
                                        COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_string result_outResult ; // Returned variable
   const GALGAS_midrange_5F_literal_5F_instruction_5F_opcode temp_0 = inObject ;
-  if (temp_0.isValid ()) {
-    switch (temp_0.enumValue ()) {
-    case GALGAS_midrange_5F_literal_5F_instruction_5F_opcode::kNotBuilt:
-      break ;
-    case GALGAS_midrange_5F_literal_5F_instruction_5F_opcode::kEnum_ADDLW: {
+  switch (temp_0.enumValue ()) {
+  case GALGAS_midrange_5F_literal_5F_instruction_5F_opcode::kNotBuilt:
+    break ;
+  case GALGAS_midrange_5F_literal_5F_instruction_5F_opcode::kEnum_ADDLW:
+    {
       result_outResult = GALGAS_string ("ADDLW") ;
-      } break ;
-    case GALGAS_midrange_5F_literal_5F_instruction_5F_opcode::kEnum_ANDLW: {
-      result_outResult = GALGAS_string ("ANDLW") ;
-      } break ;
-    case GALGAS_midrange_5F_literal_5F_instruction_5F_opcode::kEnum_IORLW: {
-      result_outResult = GALGAS_string ("IORLW") ;
-      } break ;
-    case GALGAS_midrange_5F_literal_5F_instruction_5F_opcode::kEnum_MOVLW: {
-      result_outResult = GALGAS_string ("MOVLW") ;
-      } break ;
-    case GALGAS_midrange_5F_literal_5F_instruction_5F_opcode::kEnum_RETLW: {
-      result_outResult = GALGAS_string ("RETLW") ;
-      } break ;
-    case GALGAS_midrange_5F_literal_5F_instruction_5F_opcode::kEnum_SUBLW: {
-      result_outResult = GALGAS_string ("SUBLW") ;
-      } break ;
-    case GALGAS_midrange_5F_literal_5F_instruction_5F_opcode::kEnum_XORLW: {
-      result_outResult = GALGAS_string ("XORLW") ;
-      } break ;
     }
+    break ;
+  case GALGAS_midrange_5F_literal_5F_instruction_5F_opcode::kEnum_ANDLW:
+    {
+      result_outResult = GALGAS_string ("ANDLW") ;
+    }
+    break ;
+  case GALGAS_midrange_5F_literal_5F_instruction_5F_opcode::kEnum_IORLW:
+    {
+      result_outResult = GALGAS_string ("IORLW") ;
+    }
+    break ;
+  case GALGAS_midrange_5F_literal_5F_instruction_5F_opcode::kEnum_MOVLW:
+    {
+      result_outResult = GALGAS_string ("MOVLW") ;
+    }
+    break ;
+  case GALGAS_midrange_5F_literal_5F_instruction_5F_opcode::kEnum_RETLW:
+    {
+      result_outResult = GALGAS_string ("RETLW") ;
+    }
+    break ;
+  case GALGAS_midrange_5F_literal_5F_instruction_5F_opcode::kEnum_SUBLW:
+    {
+      result_outResult = GALGAS_string ("SUBLW") ;
+    }
+    break ;
+  case GALGAS_midrange_5F_literal_5F_instruction_5F_opcode::kEnum_XORLW:
+    {
+      result_outResult = GALGAS_string ("XORLW") ;
+    }
+    break ;
   }
 //---
   return result_outResult ;
@@ -7729,53 +7829,79 @@ GALGAS_uint categoryReader_basecode (const GALGAS_midrange_5F_instruction_5F_FD_
                                      COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_uint result_outBaseCode ; // Returned variable
   const GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code temp_0 = inObject ;
-  if (temp_0.isValid ()) {
-    switch (temp_0.enumValue ()) {
-    case GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::kNotBuilt:
-      break ;
-    case GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::kEnum_ADDWF: {
+  switch (temp_0.enumValue ()) {
+  case GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::kNotBuilt:
+    break ;
+  case GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::kEnum_ADDWF:
+    {
       result_outBaseCode = GALGAS_uint ((uint32_t) 1792U) ;
-      } break ;
-    case GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::kEnum_ANDWF: {
-      result_outBaseCode = GALGAS_uint ((uint32_t) 1280U) ;
-      } break ;
-    case GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::kEnum_COMF: {
-      result_outBaseCode = GALGAS_uint ((uint32_t) 2304U) ;
-      } break ;
-    case GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::kEnum_DECF: {
-      result_outBaseCode = GALGAS_uint ((uint32_t) 768U) ;
-      } break ;
-    case GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::kEnum_DECFSZ: {
-      result_outBaseCode = GALGAS_uint ((uint32_t) 2816U) ;
-      } break ;
-    case GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::kEnum_INCF: {
-      result_outBaseCode = GALGAS_uint ((uint32_t) 2560U) ;
-      } break ;
-    case GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::kEnum_INCFSZ: {
-      result_outBaseCode = GALGAS_uint ((uint32_t) 3840U) ;
-      } break ;
-    case GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::kEnum_IORWF: {
-      result_outBaseCode = GALGAS_uint ((uint32_t) 1024U) ;
-      } break ;
-    case GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::kEnum_MOVF: {
-      result_outBaseCode = GALGAS_uint ((uint32_t) 2048U) ;
-      } break ;
-    case GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::kEnum_RLF: {
-      result_outBaseCode = GALGAS_uint ((uint32_t) 3328U) ;
-      } break ;
-    case GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::kEnum_RRF: {
-      result_outBaseCode = GALGAS_uint ((uint32_t) 3072U) ;
-      } break ;
-    case GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::kEnum_SUBWF: {
-      result_outBaseCode = GALGAS_uint ((uint32_t) 512U) ;
-      } break ;
-    case GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::kEnum_SWAPF: {
-      result_outBaseCode = GALGAS_uint ((uint32_t) 3584U) ;
-      } break ;
-    case GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::kEnum_XORWF: {
-      result_outBaseCode = GALGAS_uint ((uint32_t) 1536U) ;
-      } break ;
     }
+    break ;
+  case GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::kEnum_ANDWF:
+    {
+      result_outBaseCode = GALGAS_uint ((uint32_t) 1280U) ;
+    }
+    break ;
+  case GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::kEnum_COMF:
+    {
+      result_outBaseCode = GALGAS_uint ((uint32_t) 2304U) ;
+    }
+    break ;
+  case GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::kEnum_DECF:
+    {
+      result_outBaseCode = GALGAS_uint ((uint32_t) 768U) ;
+    }
+    break ;
+  case GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::kEnum_DECFSZ:
+    {
+      result_outBaseCode = GALGAS_uint ((uint32_t) 2816U) ;
+    }
+    break ;
+  case GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::kEnum_INCF:
+    {
+      result_outBaseCode = GALGAS_uint ((uint32_t) 2560U) ;
+    }
+    break ;
+  case GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::kEnum_INCFSZ:
+    {
+      result_outBaseCode = GALGAS_uint ((uint32_t) 3840U) ;
+    }
+    break ;
+  case GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::kEnum_IORWF:
+    {
+      result_outBaseCode = GALGAS_uint ((uint32_t) 1024U) ;
+    }
+    break ;
+  case GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::kEnum_MOVF:
+    {
+      result_outBaseCode = GALGAS_uint ((uint32_t) 2048U) ;
+    }
+    break ;
+  case GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::kEnum_RLF:
+    {
+      result_outBaseCode = GALGAS_uint ((uint32_t) 3328U) ;
+    }
+    break ;
+  case GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::kEnum_RRF:
+    {
+      result_outBaseCode = GALGAS_uint ((uint32_t) 3072U) ;
+    }
+    break ;
+  case GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::kEnum_SUBWF:
+    {
+      result_outBaseCode = GALGAS_uint ((uint32_t) 512U) ;
+    }
+    break ;
+  case GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::kEnum_SWAPF:
+    {
+      result_outBaseCode = GALGAS_uint ((uint32_t) 3584U) ;
+    }
+    break ;
+  case GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::kEnum_XORWF:
+    {
+      result_outBaseCode = GALGAS_uint ((uint32_t) 1536U) ;
+    }
+    break ;
   }
 //---
   return result_outBaseCode ;
@@ -7795,17 +7921,19 @@ GALGAS_uint categoryReader_baseCode (const GALGAS_midrange_5F_F_5F_instruction_5
                                      COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_uint result_outBaseCode ; // Returned variable
   const GALGAS_midrange_5F_F_5F_instruction_5F_base_5F_code temp_0 = inObject ;
-  if (temp_0.isValid ()) {
-    switch (temp_0.enumValue ()) {
-    case GALGAS_midrange_5F_F_5F_instruction_5F_base_5F_code::kNotBuilt:
-      break ;
-    case GALGAS_midrange_5F_F_5F_instruction_5F_base_5F_code::kEnum_CLRF: {
+  switch (temp_0.enumValue ()) {
+  case GALGAS_midrange_5F_F_5F_instruction_5F_base_5F_code::kNotBuilt:
+    break ;
+  case GALGAS_midrange_5F_F_5F_instruction_5F_base_5F_code::kEnum_CLRF:
+    {
       result_outBaseCode = GALGAS_uint ((uint32_t) 384U) ;
-      } break ;
-    case GALGAS_midrange_5F_F_5F_instruction_5F_base_5F_code::kEnum_MOVWF: {
-      result_outBaseCode = GALGAS_uint ((uint32_t) 128U) ;
-      } break ;
     }
+    break ;
+  case GALGAS_midrange_5F_F_5F_instruction_5F_base_5F_code::kEnum_MOVWF:
+    {
+      result_outBaseCode = GALGAS_uint ((uint32_t) 128U) ;
+    }
+    break ;
   }
 //---
   return result_outBaseCode ;
@@ -7825,17 +7953,19 @@ GALGAS_uint categoryReader_baseCode (const GALGAS_midrange_5F_bit_5F_oriented_5F
                                      COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_uint result_outBaseCode ; // Returned variable
   const GALGAS_midrange_5F_bit_5F_oriented_5F_op temp_0 = inObject ;
-  if (temp_0.isValid ()) {
-    switch (temp_0.enumValue ()) {
-    case GALGAS_midrange_5F_bit_5F_oriented_5F_op::kNotBuilt:
-      break ;
-    case GALGAS_midrange_5F_bit_5F_oriented_5F_op::kEnum_BCF: {
+  switch (temp_0.enumValue ()) {
+  case GALGAS_midrange_5F_bit_5F_oriented_5F_op::kNotBuilt:
+    break ;
+  case GALGAS_midrange_5F_bit_5F_oriented_5F_op::kEnum_BCF:
+    {
       result_outBaseCode = GALGAS_uint ((uint32_t) 4096U) ;
-      } break ;
-    case GALGAS_midrange_5F_bit_5F_oriented_5F_op::kEnum_BSF: {
-      result_outBaseCode = GALGAS_uint ((uint32_t) 5120U) ;
-      } break ;
     }
+    break ;
+  case GALGAS_midrange_5F_bit_5F_oriented_5F_op::kEnum_BSF:
+    {
+      result_outBaseCode = GALGAS_uint ((uint32_t) 5120U) ;
+    }
+    break ;
   }
 //---
   return result_outBaseCode ;
@@ -7855,32 +7985,44 @@ GALGAS_uint categoryReader_baseCode (const GALGAS_midrange_5F_literal_5F_instruc
                                      COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_uint result_outBaseCode ; // Returned variable
   const GALGAS_midrange_5F_literal_5F_instruction_5F_opcode temp_0 = inObject ;
-  if (temp_0.isValid ()) {
-    switch (temp_0.enumValue ()) {
-    case GALGAS_midrange_5F_literal_5F_instruction_5F_opcode::kNotBuilt:
-      break ;
-    case GALGAS_midrange_5F_literal_5F_instruction_5F_opcode::kEnum_ADDLW: {
+  switch (temp_0.enumValue ()) {
+  case GALGAS_midrange_5F_literal_5F_instruction_5F_opcode::kNotBuilt:
+    break ;
+  case GALGAS_midrange_5F_literal_5F_instruction_5F_opcode::kEnum_ADDLW:
+    {
       result_outBaseCode = GALGAS_uint ((uint32_t) 15872U) ;
-      } break ;
-    case GALGAS_midrange_5F_literal_5F_instruction_5F_opcode::kEnum_ANDLW: {
-      result_outBaseCode = GALGAS_uint ((uint32_t) 14592U) ;
-      } break ;
-    case GALGAS_midrange_5F_literal_5F_instruction_5F_opcode::kEnum_IORLW: {
-      result_outBaseCode = GALGAS_uint ((uint32_t) 14336U) ;
-      } break ;
-    case GALGAS_midrange_5F_literal_5F_instruction_5F_opcode::kEnum_MOVLW: {
-      result_outBaseCode = GALGAS_uint ((uint32_t) 12288U) ;
-      } break ;
-    case GALGAS_midrange_5F_literal_5F_instruction_5F_opcode::kEnum_RETLW: {
-      result_outBaseCode = GALGAS_uint ((uint32_t) 13312U) ;
-      } break ;
-    case GALGAS_midrange_5F_literal_5F_instruction_5F_opcode::kEnum_SUBLW: {
-      result_outBaseCode = GALGAS_uint ((uint32_t) 15360U) ;
-      } break ;
-    case GALGAS_midrange_5F_literal_5F_instruction_5F_opcode::kEnum_XORLW: {
-      result_outBaseCode = GALGAS_uint ((uint32_t) 14848U) ;
-      } break ;
     }
+    break ;
+  case GALGAS_midrange_5F_literal_5F_instruction_5F_opcode::kEnum_ANDLW:
+    {
+      result_outBaseCode = GALGAS_uint ((uint32_t) 14592U) ;
+    }
+    break ;
+  case GALGAS_midrange_5F_literal_5F_instruction_5F_opcode::kEnum_IORLW:
+    {
+      result_outBaseCode = GALGAS_uint ((uint32_t) 14336U) ;
+    }
+    break ;
+  case GALGAS_midrange_5F_literal_5F_instruction_5F_opcode::kEnum_MOVLW:
+    {
+      result_outBaseCode = GALGAS_uint ((uint32_t) 12288U) ;
+    }
+    break ;
+  case GALGAS_midrange_5F_literal_5F_instruction_5F_opcode::kEnum_RETLW:
+    {
+      result_outBaseCode = GALGAS_uint ((uint32_t) 13312U) ;
+    }
+    break ;
+  case GALGAS_midrange_5F_literal_5F_instruction_5F_opcode::kEnum_SUBLW:
+    {
+      result_outBaseCode = GALGAS_uint ((uint32_t) 15360U) ;
+    }
+    break ;
+  case GALGAS_midrange_5F_literal_5F_instruction_5F_opcode::kEnum_XORLW:
+    {
+      result_outBaseCode = GALGAS_uint ((uint32_t) 14848U) ;
+    }
+    break ;
   }
 //---
   return result_outBaseCode ;
@@ -7900,29 +8042,39 @@ GALGAS_string categoryReader_mnemonic (const GALGAS_pic_31__38_RegisterCompariso
                                        COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_string result_outResult ; // Returned variable
   const GALGAS_pic_31__38_RegisterComparison temp_0 = inObject ;
-  if (temp_0.isValid ()) {
-    switch (temp_0.enumValue ()) {
-    case GALGAS_pic_31__38_RegisterComparison::kNotBuilt:
-      break ;
-    case GALGAS_pic_31__38_RegisterComparison::kEnum_notEqual: {
+  switch (temp_0.enumValue ()) {
+  case GALGAS_pic_31__38_RegisterComparison::kNotBuilt:
+    break ;
+  case GALGAS_pic_31__38_RegisterComparison::kEnum_notEqual:
+    {
       result_outResult = GALGAS_string ("!=") ;
-      } break ;
-    case GALGAS_pic_31__38_RegisterComparison::kEnum_equal: {
-      result_outResult = GALGAS_string ("==") ;
-      } break ;
-    case GALGAS_pic_31__38_RegisterComparison::kEnum_greaterOrEqual: {
-      result_outResult = GALGAS_string (">=") ;
-      } break ;
-    case GALGAS_pic_31__38_RegisterComparison::kEnum_greater: {
-      result_outResult = GALGAS_string (">") ;
-      } break ;
-    case GALGAS_pic_31__38_RegisterComparison::kEnum_lowerOrEqual: {
-      result_outResult = GALGAS_string ("<=") ;
-      } break ;
-    case GALGAS_pic_31__38_RegisterComparison::kEnum_lower: {
-      result_outResult = GALGAS_string ("<") ;
-      } break ;
     }
+    break ;
+  case GALGAS_pic_31__38_RegisterComparison::kEnum_equal:
+    {
+      result_outResult = GALGAS_string ("==") ;
+    }
+    break ;
+  case GALGAS_pic_31__38_RegisterComparison::kEnum_greaterOrEqual:
+    {
+      result_outResult = GALGAS_string (">=") ;
+    }
+    break ;
+  case GALGAS_pic_31__38_RegisterComparison::kEnum_greater:
+    {
+      result_outResult = GALGAS_string (">") ;
+    }
+    break ;
+  case GALGAS_pic_31__38_RegisterComparison::kEnum_lowerOrEqual:
+    {
+      result_outResult = GALGAS_string ("<=") ;
+    }
+    break ;
+  case GALGAS_pic_31__38_RegisterComparison::kEnum_lower:
+    {
+      result_outResult = GALGAS_string ("<") ;
+    }
+    break ;
   }
 //---
   return result_outResult ;
@@ -7942,35 +8094,49 @@ GALGAS_string categoryReader_condition (const GALGAS_conditional_5F_branch & inO
                                         COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_string result_outResult ; // Returned variable
   const GALGAS_conditional_5F_branch temp_0 = inObject ;
-  if (temp_0.isValid ()) {
-    switch (temp_0.enumValue ()) {
-    case GALGAS_conditional_5F_branch::kNotBuilt:
-      break ;
-    case GALGAS_conditional_5F_branch::kEnum_bz: {
+  switch (temp_0.enumValue ()) {
+  case GALGAS_conditional_5F_branch::kNotBuilt:
+    break ;
+  case GALGAS_conditional_5F_branch::kEnum_bz:
+    {
       result_outResult = GALGAS_string ("Z") ;
-      } break ;
-    case GALGAS_conditional_5F_branch::kEnum_bnz: {
-      result_outResult = GALGAS_string ("NZ") ;
-      } break ;
-    case GALGAS_conditional_5F_branch::kEnum_bn: {
-      result_outResult = GALGAS_string ("N") ;
-      } break ;
-    case GALGAS_conditional_5F_branch::kEnum_bnn: {
-      result_outResult = GALGAS_string ("NN") ;
-      } break ;
-    case GALGAS_conditional_5F_branch::kEnum_bc: {
-      result_outResult = GALGAS_string ("C") ;
-      } break ;
-    case GALGAS_conditional_5F_branch::kEnum_bnc: {
-      result_outResult = GALGAS_string ("NC") ;
-      } break ;
-    case GALGAS_conditional_5F_branch::kEnum_bov: {
-      result_outResult = GALGAS_string ("OV") ;
-      } break ;
-    case GALGAS_conditional_5F_branch::kEnum_bnov: {
-      result_outResult = GALGAS_string ("NOV") ;
-      } break ;
     }
+    break ;
+  case GALGAS_conditional_5F_branch::kEnum_bnz:
+    {
+      result_outResult = GALGAS_string ("NZ") ;
+    }
+    break ;
+  case GALGAS_conditional_5F_branch::kEnum_bn:
+    {
+      result_outResult = GALGAS_string ("N") ;
+    }
+    break ;
+  case GALGAS_conditional_5F_branch::kEnum_bnn:
+    {
+      result_outResult = GALGAS_string ("NN") ;
+    }
+    break ;
+  case GALGAS_conditional_5F_branch::kEnum_bc:
+    {
+      result_outResult = GALGAS_string ("C") ;
+    }
+    break ;
+  case GALGAS_conditional_5F_branch::kEnum_bnc:
+    {
+      result_outResult = GALGAS_string ("NC") ;
+    }
+    break ;
+  case GALGAS_conditional_5F_branch::kEnum_bov:
+    {
+      result_outResult = GALGAS_string ("OV") ;
+    }
+    break ;
+  case GALGAS_conditional_5F_branch::kEnum_bnov:
+    {
+      result_outResult = GALGAS_string ("NOV") ;
+    }
+    break ;
   }
 //---
   return result_outResult ;
@@ -7990,32 +8156,44 @@ GALGAS_string categoryReader_assemblyCode (const GALGAS_pic_31__38_InstructionWi
                                            COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_string result_outResult ; // Returned variable
   const GALGAS_pic_31__38_InstructionWithNoOperandKind temp_0 = inObject ;
-  if (temp_0.isValid ()) {
-    switch (temp_0.enumValue ()) {
-    case GALGAS_pic_31__38_InstructionWithNoOperandKind::kNotBuilt:
-      break ;
-    case GALGAS_pic_31__38_InstructionWithNoOperandKind::kEnum_CLRWDT: {
+  switch (temp_0.enumValue ()) {
+  case GALGAS_pic_31__38_InstructionWithNoOperandKind::kNotBuilt:
+    break ;
+  case GALGAS_pic_31__38_InstructionWithNoOperandKind::kEnum_CLRWDT:
+    {
       result_outResult = GALGAS_string ("CLRWDT") ;
-      } break ;
-    case GALGAS_pic_31__38_InstructionWithNoOperandKind::kEnum_DAW: {
-      result_outResult = GALGAS_string ("DAW") ;
-      } break ;
-    case GALGAS_pic_31__38_InstructionWithNoOperandKind::kEnum_NOP: {
-      result_outResult = GALGAS_string ("NOP") ;
-      } break ;
-    case GALGAS_pic_31__38_InstructionWithNoOperandKind::kEnum_POP: {
-      result_outResult = GALGAS_string ("POP") ;
-      } break ;
-    case GALGAS_pic_31__38_InstructionWithNoOperandKind::kEnum_PUSH: {
-      result_outResult = GALGAS_string ("PUSH") ;
-      } break ;
-    case GALGAS_pic_31__38_InstructionWithNoOperandKind::kEnum_RESET: {
-      result_outResult = GALGAS_string ("RESET") ;
-      } break ;
-    case GALGAS_pic_31__38_InstructionWithNoOperandKind::kEnum_SLEEP: {
-      result_outResult = GALGAS_string ("SLEEP") ;
-      } break ;
     }
+    break ;
+  case GALGAS_pic_31__38_InstructionWithNoOperandKind::kEnum_DAW:
+    {
+      result_outResult = GALGAS_string ("DAW") ;
+    }
+    break ;
+  case GALGAS_pic_31__38_InstructionWithNoOperandKind::kEnum_NOP:
+    {
+      result_outResult = GALGAS_string ("NOP") ;
+    }
+    break ;
+  case GALGAS_pic_31__38_InstructionWithNoOperandKind::kEnum_POP:
+    {
+      result_outResult = GALGAS_string ("POP") ;
+    }
+    break ;
+  case GALGAS_pic_31__38_InstructionWithNoOperandKind::kEnum_PUSH:
+    {
+      result_outResult = GALGAS_string ("PUSH") ;
+    }
+    break ;
+  case GALGAS_pic_31__38_InstructionWithNoOperandKind::kEnum_RESET:
+    {
+      result_outResult = GALGAS_string ("RESET") ;
+    }
+    break ;
+  case GALGAS_pic_31__38_InstructionWithNoOperandKind::kEnum_SLEEP:
+    {
+      result_outResult = GALGAS_string ("SLEEP") ;
+    }
+    break ;
   }
 //---
   return result_outResult ;
@@ -8035,38 +8213,54 @@ GALGAS_string categoryReader_mnemonic (const GALGAS_FA_5F_instruction_5F_base_5F
                                        COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_string result_outResult ; // Returned variable
   const GALGAS_FA_5F_instruction_5F_base_5F_code temp_0 = inObject ;
-  if (temp_0.isValid ()) {
-    switch (temp_0.enumValue ()) {
-    case GALGAS_FA_5F_instruction_5F_base_5F_code::kNotBuilt:
-      break ;
-    case GALGAS_FA_5F_instruction_5F_base_5F_code::kEnum_CLRF: {
+  switch (temp_0.enumValue ()) {
+  case GALGAS_FA_5F_instruction_5F_base_5F_code::kNotBuilt:
+    break ;
+  case GALGAS_FA_5F_instruction_5F_base_5F_code::kEnum_CLRF:
+    {
       result_outResult = GALGAS_string ("CLRF") ;
-      } break ;
-    case GALGAS_FA_5F_instruction_5F_base_5F_code::kEnum_CPFSEQ: {
-      result_outResult = GALGAS_string ("CPFSEQ") ;
-      } break ;
-    case GALGAS_FA_5F_instruction_5F_base_5F_code::kEnum_CPFSGT: {
-      result_outResult = GALGAS_string ("CPFSGT") ;
-      } break ;
-    case GALGAS_FA_5F_instruction_5F_base_5F_code::kEnum_CPFSLT: {
-      result_outResult = GALGAS_string ("CPFSLT") ;
-      } break ;
-    case GALGAS_FA_5F_instruction_5F_base_5F_code::kEnum_MOVWF: {
-      result_outResult = GALGAS_string ("MOVWF") ;
-      } break ;
-    case GALGAS_FA_5F_instruction_5F_base_5F_code::kEnum_MULWF: {
-      result_outResult = GALGAS_string ("MULWF") ;
-      } break ;
-    case GALGAS_FA_5F_instruction_5F_base_5F_code::kEnum_NEGF: {
-      result_outResult = GALGAS_string ("NEGF") ;
-      } break ;
-    case GALGAS_FA_5F_instruction_5F_base_5F_code::kEnum_SETF: {
-      result_outResult = GALGAS_string ("SETF") ;
-      } break ;
-    case GALGAS_FA_5F_instruction_5F_base_5F_code::kEnum_TSTFSZ: {
-      result_outResult = GALGAS_string ("TSTFSZ") ;
-      } break ;
     }
+    break ;
+  case GALGAS_FA_5F_instruction_5F_base_5F_code::kEnum_CPFSEQ:
+    {
+      result_outResult = GALGAS_string ("CPFSEQ") ;
+    }
+    break ;
+  case GALGAS_FA_5F_instruction_5F_base_5F_code::kEnum_CPFSGT:
+    {
+      result_outResult = GALGAS_string ("CPFSGT") ;
+    }
+    break ;
+  case GALGAS_FA_5F_instruction_5F_base_5F_code::kEnum_CPFSLT:
+    {
+      result_outResult = GALGAS_string ("CPFSLT") ;
+    }
+    break ;
+  case GALGAS_FA_5F_instruction_5F_base_5F_code::kEnum_MOVWF:
+    {
+      result_outResult = GALGAS_string ("MOVWF") ;
+    }
+    break ;
+  case GALGAS_FA_5F_instruction_5F_base_5F_code::kEnum_MULWF:
+    {
+      result_outResult = GALGAS_string ("MULWF") ;
+    }
+    break ;
+  case GALGAS_FA_5F_instruction_5F_base_5F_code::kEnum_NEGF:
+    {
+      result_outResult = GALGAS_string ("NEGF") ;
+    }
+    break ;
+  case GALGAS_FA_5F_instruction_5F_base_5F_code::kEnum_SETF:
+    {
+      result_outResult = GALGAS_string ("SETF") ;
+    }
+    break ;
+  case GALGAS_FA_5F_instruction_5F_base_5F_code::kEnum_TSTFSZ:
+    {
+      result_outResult = GALGAS_string ("TSTFSZ") ;
+    }
+    break ;
   }
 //---
   return result_outResult ;
@@ -8086,20 +8280,24 @@ GALGAS_string categoryReader_mnemonic (const GALGAS_bit_5F_oriented_5F_op & inOb
                                        COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_string result_outResult ; // Returned variable
   const GALGAS_bit_5F_oriented_5F_op temp_0 = inObject ;
-  if (temp_0.isValid ()) {
-    switch (temp_0.enumValue ()) {
-    case GALGAS_bit_5F_oriented_5F_op::kNotBuilt:
-      break ;
-    case GALGAS_bit_5F_oriented_5F_op::kEnum_BCF: {
+  switch (temp_0.enumValue ()) {
+  case GALGAS_bit_5F_oriented_5F_op::kNotBuilt:
+    break ;
+  case GALGAS_bit_5F_oriented_5F_op::kEnum_BCF:
+    {
       result_outResult = GALGAS_string ("BCF") ;
-      } break ;
-    case GALGAS_bit_5F_oriented_5F_op::kEnum_BSF: {
-      result_outResult = GALGAS_string ("BSF") ;
-      } break ;
-    case GALGAS_bit_5F_oriented_5F_op::kEnum_BTG: {
-      result_outResult = GALGAS_string ("BTG") ;
-      } break ;
     }
+    break ;
+  case GALGAS_bit_5F_oriented_5F_op::kEnum_BSF:
+    {
+      result_outResult = GALGAS_string ("BSF") ;
+    }
+    break ;
+  case GALGAS_bit_5F_oriented_5F_op::kEnum_BTG:
+    {
+      result_outResult = GALGAS_string ("BTG") ;
+    }
+    break ;
   }
 //---
   return result_outResult ;
@@ -8119,35 +8317,49 @@ GALGAS_string categoryReader_mnemonic (const GALGAS_conditional_5F_branch & inOb
                                        COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_string result_outResult ; // Returned variable
   const GALGAS_conditional_5F_branch temp_0 = inObject ;
-  if (temp_0.isValid ()) {
-    switch (temp_0.enumValue ()) {
-    case GALGAS_conditional_5F_branch::kNotBuilt:
-      break ;
-    case GALGAS_conditional_5F_branch::kEnum_bz: {
+  switch (temp_0.enumValue ()) {
+  case GALGAS_conditional_5F_branch::kNotBuilt:
+    break ;
+  case GALGAS_conditional_5F_branch::kEnum_bz:
+    {
       result_outResult = GALGAS_string ("BZ") ;
-      } break ;
-    case GALGAS_conditional_5F_branch::kEnum_bnz: {
-      result_outResult = GALGAS_string ("BNZ") ;
-      } break ;
-    case GALGAS_conditional_5F_branch::kEnum_bn: {
-      result_outResult = GALGAS_string ("BN") ;
-      } break ;
-    case GALGAS_conditional_5F_branch::kEnum_bnn: {
-      result_outResult = GALGAS_string ("BNN") ;
-      } break ;
-    case GALGAS_conditional_5F_branch::kEnum_bc: {
-      result_outResult = GALGAS_string ("BC") ;
-      } break ;
-    case GALGAS_conditional_5F_branch::kEnum_bnc: {
-      result_outResult = GALGAS_string ("BNC") ;
-      } break ;
-    case GALGAS_conditional_5F_branch::kEnum_bov: {
-      result_outResult = GALGAS_string ("BOV") ;
-      } break ;
-    case GALGAS_conditional_5F_branch::kEnum_bnov: {
-      result_outResult = GALGAS_string ("BNOV") ;
-      } break ;
     }
+    break ;
+  case GALGAS_conditional_5F_branch::kEnum_bnz:
+    {
+      result_outResult = GALGAS_string ("BNZ") ;
+    }
+    break ;
+  case GALGAS_conditional_5F_branch::kEnum_bn:
+    {
+      result_outResult = GALGAS_string ("BN") ;
+    }
+    break ;
+  case GALGAS_conditional_5F_branch::kEnum_bnn:
+    {
+      result_outResult = GALGAS_string ("BNN") ;
+    }
+    break ;
+  case GALGAS_conditional_5F_branch::kEnum_bc:
+    {
+      result_outResult = GALGAS_string ("BC") ;
+    }
+    break ;
+  case GALGAS_conditional_5F_branch::kEnum_bnc:
+    {
+      result_outResult = GALGAS_string ("BNC") ;
+    }
+    break ;
+  case GALGAS_conditional_5F_branch::kEnum_bov:
+    {
+      result_outResult = GALGAS_string ("BOV") ;
+    }
+    break ;
+  case GALGAS_conditional_5F_branch::kEnum_bnov:
+    {
+      result_outResult = GALGAS_string ("BNOV") ;
+    }
+    break ;
   }
 //---
   return result_outResult ;
@@ -8167,32 +8379,44 @@ GALGAS_string categoryReader_mnemonic (const GALGAS_literal_5F_instruction_5F_op
                                        COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_string result_outResult ; // Returned variable
   const GALGAS_literal_5F_instruction_5F_opcode temp_0 = inObject ;
-  if (temp_0.isValid ()) {
-    switch (temp_0.enumValue ()) {
-    case GALGAS_literal_5F_instruction_5F_opcode::kNotBuilt:
-      break ;
-    case GALGAS_literal_5F_instruction_5F_opcode::kEnum_ADDLW: {
+  switch (temp_0.enumValue ()) {
+  case GALGAS_literal_5F_instruction_5F_opcode::kNotBuilt:
+    break ;
+  case GALGAS_literal_5F_instruction_5F_opcode::kEnum_ADDLW:
+    {
       result_outResult = GALGAS_string ("ADDLW") ;
-      } break ;
-    case GALGAS_literal_5F_instruction_5F_opcode::kEnum_ANDLW: {
-      result_outResult = GALGAS_string ("ANDLW") ;
-      } break ;
-    case GALGAS_literal_5F_instruction_5F_opcode::kEnum_IORLW: {
-      result_outResult = GALGAS_string ("IORLW") ;
-      } break ;
-    case GALGAS_literal_5F_instruction_5F_opcode::kEnum_MOVLW: {
-      result_outResult = GALGAS_string ("MOVLW") ;
-      } break ;
-    case GALGAS_literal_5F_instruction_5F_opcode::kEnum_MULLW: {
-      result_outResult = GALGAS_string ("MULLW") ;
-      } break ;
-    case GALGAS_literal_5F_instruction_5F_opcode::kEnum_SUBLW: {
-      result_outResult = GALGAS_string ("SUBLW") ;
-      } break ;
-    case GALGAS_literal_5F_instruction_5F_opcode::kEnum_XORLW: {
-      result_outResult = GALGAS_string ("XORLW") ;
-      } break ;
     }
+    break ;
+  case GALGAS_literal_5F_instruction_5F_opcode::kEnum_ANDLW:
+    {
+      result_outResult = GALGAS_string ("ANDLW") ;
+    }
+    break ;
+  case GALGAS_literal_5F_instruction_5F_opcode::kEnum_IORLW:
+    {
+      result_outResult = GALGAS_string ("IORLW") ;
+    }
+    break ;
+  case GALGAS_literal_5F_instruction_5F_opcode::kEnum_MOVLW:
+    {
+      result_outResult = GALGAS_string ("MOVLW") ;
+    }
+    break ;
+  case GALGAS_literal_5F_instruction_5F_opcode::kEnum_MULLW:
+    {
+      result_outResult = GALGAS_string ("MULLW") ;
+    }
+    break ;
+  case GALGAS_literal_5F_instruction_5F_opcode::kEnum_SUBLW:
+    {
+      result_outResult = GALGAS_string ("SUBLW") ;
+    }
+    break ;
+  case GALGAS_literal_5F_instruction_5F_opcode::kEnum_XORLW:
+    {
+      result_outResult = GALGAS_string ("XORLW") ;
+    }
+    break ;
   }
 //---
   return result_outResult ;
@@ -8212,23 +8436,29 @@ GALGAS_string categoryReader_mnemonic (const GALGAS_tableAccessOption & inObject
                                        COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_string result_outResult ; // Returned variable
   const GALGAS_tableAccessOption temp_0 = inObject ;
-  if (temp_0.isValid ()) {
-    switch (temp_0.enumValue ()) {
-    case GALGAS_tableAccessOption::kNotBuilt:
-      break ;
-    case GALGAS_tableAccessOption::kEnum_simpleAccess: {
+  switch (temp_0.enumValue ()) {
+  case GALGAS_tableAccessOption::kNotBuilt:
+    break ;
+  case GALGAS_tableAccessOption::kEnum_simpleAccess:
+    {
       result_outResult = GALGAS_string ("*") ;
-      } break ;
-    case GALGAS_tableAccessOption::kEnum_postIncrement: {
-      result_outResult = GALGAS_string ("*+") ;
-      } break ;
-    case GALGAS_tableAccessOption::kEnum_postDecrement: {
-      result_outResult = GALGAS_string ("*-") ;
-      } break ;
-    case GALGAS_tableAccessOption::kEnum_preIncrement: {
-      result_outResult = GALGAS_string ("+*") ;
-      } break ;
     }
+    break ;
+  case GALGAS_tableAccessOption::kEnum_postIncrement:
+    {
+      result_outResult = GALGAS_string ("*+") ;
+    }
+    break ;
+  case GALGAS_tableAccessOption::kEnum_postDecrement:
+    {
+      result_outResult = GALGAS_string ("*-") ;
+    }
+    break ;
+  case GALGAS_tableAccessOption::kEnum_preIncrement:
+    {
+      result_outResult = GALGAS_string ("+*") ;
+    }
+    break ;
   }
 //---
   return result_outResult ;
@@ -9350,32 +9580,44 @@ GALGAS_string categoryReader_mnemonic (const GALGAS_pic_31__38_InstructionWithNo
                                        COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_string result_outResult ; // Returned variable
   const GALGAS_pic_31__38_InstructionWithNoOperandKind temp_0 = inObject ;
-  if (temp_0.isValid ()) {
-    switch (temp_0.enumValue ()) {
-    case GALGAS_pic_31__38_InstructionWithNoOperandKind::kNotBuilt:
-      break ;
-    case GALGAS_pic_31__38_InstructionWithNoOperandKind::kEnum_CLRWDT: {
+  switch (temp_0.enumValue ()) {
+  case GALGAS_pic_31__38_InstructionWithNoOperandKind::kNotBuilt:
+    break ;
+  case GALGAS_pic_31__38_InstructionWithNoOperandKind::kEnum_CLRWDT:
+    {
       result_outResult = GALGAS_string ("CLRWDT") ;
-      } break ;
-    case GALGAS_pic_31__38_InstructionWithNoOperandKind::kEnum_DAW: {
-      result_outResult = GALGAS_string ("DAW") ;
-      } break ;
-    case GALGAS_pic_31__38_InstructionWithNoOperandKind::kEnum_NOP: {
-      result_outResult = GALGAS_string ("NOP") ;
-      } break ;
-    case GALGAS_pic_31__38_InstructionWithNoOperandKind::kEnum_POP: {
-      result_outResult = GALGAS_string ("POP") ;
-      } break ;
-    case GALGAS_pic_31__38_InstructionWithNoOperandKind::kEnum_PUSH: {
-      result_outResult = GALGAS_string ("PUSH") ;
-      } break ;
-    case GALGAS_pic_31__38_InstructionWithNoOperandKind::kEnum_RESET: {
-      result_outResult = GALGAS_string ("RESET") ;
-      } break ;
-    case GALGAS_pic_31__38_InstructionWithNoOperandKind::kEnum_SLEEP: {
-      result_outResult = GALGAS_string ("SLEEP") ;
-      } break ;
     }
+    break ;
+  case GALGAS_pic_31__38_InstructionWithNoOperandKind::kEnum_DAW:
+    {
+      result_outResult = GALGAS_string ("DAW") ;
+    }
+    break ;
+  case GALGAS_pic_31__38_InstructionWithNoOperandKind::kEnum_NOP:
+    {
+      result_outResult = GALGAS_string ("NOP") ;
+    }
+    break ;
+  case GALGAS_pic_31__38_InstructionWithNoOperandKind::kEnum_POP:
+    {
+      result_outResult = GALGAS_string ("POP") ;
+    }
+    break ;
+  case GALGAS_pic_31__38_InstructionWithNoOperandKind::kEnum_PUSH:
+    {
+      result_outResult = GALGAS_string ("PUSH") ;
+    }
+    break ;
+  case GALGAS_pic_31__38_InstructionWithNoOperandKind::kEnum_RESET:
+    {
+      result_outResult = GALGAS_string ("RESET") ;
+    }
+    break ;
+  case GALGAS_pic_31__38_InstructionWithNoOperandKind::kEnum_SLEEP:
+    {
+      result_outResult = GALGAS_string ("SLEEP") ;
+    }
+    break ;
   }
 //---
   return result_outResult ;
