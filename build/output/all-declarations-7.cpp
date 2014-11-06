@@ -9857,19 +9857,23 @@ static void categoryMethod_baseline_5F_instruction_5F_FOREVER_build_5F_baseline_
                                                                                                                     COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_baseline_5F_instruction_5F_FOREVER * object = (const cPtr_baseline_5F_instruction_5F_FOREVER *) inObject ;
   macroValidSharedObject (object, cPtr_baseline_5F_instruction_5F_FOREVER) ;
-  if (constinArgument_inRoutineKind.isValid ()) {
-    switch (constinArgument_inRoutineKind.enumValue ()) {
-    case GALGAS_routineKind::kNotBuilt:
-      break ;
-    case GALGAS_routineKind::kEnum_regularRoutine: {
+  switch (constinArgument_inRoutineKind.enumValue ()) {
+  case GALGAS_routineKind::kNotBuilt:
+    break ;
+  case GALGAS_routineKind::kEnum_regularRoutine:
+    {
       inCompiler->emitSemanticError (object->mAttribute_mInstructionLocation, GALGAS_string ("a regular routine does not accept the \"forever\" instruction")  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 562)) ;
-      } break ;
-    case GALGAS_routineKind::kEnum_noReturnRoutine: {
-      } break ;
-    case GALGAS_routineKind::kEnum_interruptRoutine: {
-      inCompiler->emitSemanticError (object->mAttribute_mInstructionLocation, GALGAS_string ("an interrupt routine does not accept the \"forever\" instruction")  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 565)) ;
-      } break ;
     }
+    break ;
+  case GALGAS_routineKind::kEnum_noReturnRoutine:
+    {
+    }
+    break ;
+  case GALGAS_routineKind::kEnum_interruptRoutine:
+    {
+      inCompiler->emitSemanticError (object->mAttribute_mInstructionLocation, GALGAS_string ("an interrupt routine does not accept the \"forever\" instruction")  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 565)) ;
+    }
+    break ;
   }
   GALGAS_string var_label_30_ = GALGAS_string (".L").add_operation (ioArgument_ioLocalLabelIndex.reader_string (SOURCE_FILE ("baseline_semantic_analysis.galgas", 568)), inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 568)) ;
   ioArgument_ioLocalLabelIndex.increment_operation (inCompiler  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 569)) ;
@@ -12774,53 +12778,79 @@ static void categoryMethod_baseline_5F_assembly_5F_instruction_5F_FD_generateBin
   const cPtr_baseline_5F_assembly_5F_instruction_5F_FD * object = (const cPtr_baseline_5F_assembly_5F_instruction_5F_FD *) inObject ;
   macroValidSharedObject (object, cPtr_baseline_5F_assembly_5F_instruction_5F_FD) ;
   GALGAS_uint var_code ;
-  if (object->mAttribute_mInstruction.isValid ()) {
-    switch (object->mAttribute_mInstruction.enumValue ()) {
-    case GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::kNotBuilt:
-      break ;
-    case GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::kEnum_ADDWF: {
+  switch (object->mAttribute_mInstruction.enumValue ()) {
+  case GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::kNotBuilt:
+    break ;
+  case GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::kEnum_ADDWF:
+    {
       var_code = GALGAS_uint ((uint32_t) 448U) ;
-      } break ;
-    case GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::kEnum_ANDWF: {
-      var_code = GALGAS_uint ((uint32_t) 320U) ;
-      } break ;
-    case GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::kEnum_COMF: {
-      var_code = GALGAS_uint ((uint32_t) 576U) ;
-      } break ;
-    case GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::kEnum_DECF: {
-      var_code = GALGAS_uint ((uint32_t) 192U) ;
-      } break ;
-    case GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::kEnum_DECFSZ: {
-      var_code = GALGAS_uint ((uint32_t) 704U) ;
-      } break ;
-    case GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::kEnum_INCF: {
-      var_code = GALGAS_uint ((uint32_t) 640U) ;
-      } break ;
-    case GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::kEnum_INCFSZ: {
-      var_code = GALGAS_uint ((uint32_t) 15360U) ;
-      } break ;
-    case GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::kEnum_IORWF: {
-      var_code = GALGAS_uint ((uint32_t) 256U) ;
-      } break ;
-    case GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::kEnum_MOVF: {
-      var_code = GALGAS_uint ((uint32_t) 512U) ;
-      } break ;
-    case GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::kEnum_RLF: {
-      var_code = GALGAS_uint ((uint32_t) 832U) ;
-      } break ;
-    case GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::kEnum_RRF: {
-      var_code = GALGAS_uint ((uint32_t) 768U) ;
-      } break ;
-    case GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::kEnum_SUBWF: {
-      var_code = GALGAS_uint ((uint32_t) 128U) ;
-      } break ;
-    case GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::kEnum_SWAPF: {
-      var_code = GALGAS_uint ((uint32_t) 896U) ;
-      } break ;
-    case GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::kEnum_XORWF: {
-      var_code = GALGAS_uint ((uint32_t) 384U) ;
-      } break ;
     }
+    break ;
+  case GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::kEnum_ANDWF:
+    {
+      var_code = GALGAS_uint ((uint32_t) 320U) ;
+    }
+    break ;
+  case GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::kEnum_COMF:
+    {
+      var_code = GALGAS_uint ((uint32_t) 576U) ;
+    }
+    break ;
+  case GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::kEnum_DECF:
+    {
+      var_code = GALGAS_uint ((uint32_t) 192U) ;
+    }
+    break ;
+  case GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::kEnum_DECFSZ:
+    {
+      var_code = GALGAS_uint ((uint32_t) 704U) ;
+    }
+    break ;
+  case GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::kEnum_INCF:
+    {
+      var_code = GALGAS_uint ((uint32_t) 640U) ;
+    }
+    break ;
+  case GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::kEnum_INCFSZ:
+    {
+      var_code = GALGAS_uint ((uint32_t) 15360U) ;
+    }
+    break ;
+  case GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::kEnum_IORWF:
+    {
+      var_code = GALGAS_uint ((uint32_t) 256U) ;
+    }
+    break ;
+  case GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::kEnum_MOVF:
+    {
+      var_code = GALGAS_uint ((uint32_t) 512U) ;
+    }
+    break ;
+  case GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::kEnum_RLF:
+    {
+      var_code = GALGAS_uint ((uint32_t) 832U) ;
+    }
+    break ;
+  case GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::kEnum_RRF:
+    {
+      var_code = GALGAS_uint ((uint32_t) 768U) ;
+    }
+    break ;
+  case GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::kEnum_SUBWF:
+    {
+      var_code = GALGAS_uint ((uint32_t) 128U) ;
+    }
+    break ;
+  case GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::kEnum_SWAPF:
+    {
+      var_code = GALGAS_uint ((uint32_t) 896U) ;
+    }
+    break ;
+  case GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::kEnum_XORWF:
+    {
+      var_code = GALGAS_uint ((uint32_t) 384U) ;
+    }
+    break ;
   }
   const enumGalgasBool test_0 = object->mAttribute_m_5F_W_5F_isDestination.operator_not (SOURCE_FILE ("baseline_build_binary_code.galgas", 143)).boolEnum () ;
   if (kBoolTrue == test_0) {
@@ -12858,17 +12888,19 @@ static void categoryMethod_baseline_5F_assembly_5F_instruction_5F_F_generateBina
   const cPtr_baseline_5F_assembly_5F_instruction_5F_F * object = (const cPtr_baseline_5F_assembly_5F_instruction_5F_F *) inObject ;
   macroValidSharedObject (object, cPtr_baseline_5F_assembly_5F_instruction_5F_F) ;
   GALGAS_uint var_code ;
-  if (object->mAttribute_mInstruction.isValid ()) {
-    switch (object->mAttribute_mInstruction.enumValue ()) {
-    case GALGAS_baseline_5F_F_5F_instruction_5F_base_5F_code::kNotBuilt:
-      break ;
-    case GALGAS_baseline_5F_F_5F_instruction_5F_base_5F_code::kEnum_CLRF: {
+  switch (object->mAttribute_mInstruction.enumValue ()) {
+  case GALGAS_baseline_5F_F_5F_instruction_5F_base_5F_code::kNotBuilt:
+    break ;
+  case GALGAS_baseline_5F_F_5F_instruction_5F_base_5F_code::kEnum_CLRF:
+    {
       var_code = GALGAS_uint ((uint32_t) 96U) ;
-      } break ;
-    case GALGAS_baseline_5F_F_5F_instruction_5F_base_5F_code::kEnum_MOVWF: {
-      var_code = GALGAS_uint ((uint32_t) 32U) ;
-      } break ;
     }
+    break ;
+  case GALGAS_baseline_5F_F_5F_instruction_5F_base_5F_code::kEnum_MOVWF:
+    {
+      var_code = GALGAS_uint ((uint32_t) 32U) ;
+    }
+    break ;
   }
   var_code = var_code.operator_or (object->mAttribute_mRegisterDescription.reader_mRegisterAddress (SOURCE_FILE ("baseline_build_binary_code.galgas", 161)).operator_and (GALGAS_uint ((uint32_t) 31U) COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 161)) COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 161)) ;
   {
@@ -12902,17 +12934,19 @@ static void categoryMethod_baseline_5F_assembly_5F_instruction_5F_FB_generateBin
   const cPtr_baseline_5F_assembly_5F_instruction_5F_FB * object = (const cPtr_baseline_5F_assembly_5F_instruction_5F_FB *) inObject ;
   macroValidSharedObject (object, cPtr_baseline_5F_assembly_5F_instruction_5F_FB) ;
   GALGAS_uint var_code ;
-  if (object->mAttribute_mInstruction.isValid ()) {
-    switch (object->mAttribute_mInstruction.enumValue ()) {
-    case GALGAS_baseline_5F_bit_5F_oriented_5F_op::kNotBuilt:
-      break ;
-    case GALGAS_baseline_5F_bit_5F_oriented_5F_op::kEnum_BCF: {
+  switch (object->mAttribute_mInstruction.enumValue ()) {
+  case GALGAS_baseline_5F_bit_5F_oriented_5F_op::kNotBuilt:
+    break ;
+  case GALGAS_baseline_5F_bit_5F_oriented_5F_op::kEnum_BCF:
+    {
       var_code = GALGAS_uint ((uint32_t) 1024U) ;
-      } break ;
-    case GALGAS_baseline_5F_bit_5F_oriented_5F_op::kEnum_BSF: {
-      var_code = GALGAS_uint ((uint32_t) 1280U) ;
-      } break ;
     }
+    break ;
+  case GALGAS_baseline_5F_bit_5F_oriented_5F_op::kEnum_BSF:
+    {
+      var_code = GALGAS_uint ((uint32_t) 1280U) ;
+    }
+    break ;
   }
   var_code = var_code.operator_or (object->mAttribute_mRegisterDescription.reader_mRegisterAddress (SOURCE_FILE ("baseline_build_binary_code.galgas", 176)).operator_and (GALGAS_uint ((uint32_t) 31U) COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 176)) COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 176)) ;
   var_code = var_code.operator_or (object->mAttribute_mBitNumber.left_shift_operation (GALGAS_uint ((uint32_t) 5U) COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 177)) COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 177)) ;
@@ -13122,26 +13156,34 @@ static void categoryMethod_baseline_5F_assembly_5F_WO_5F_OPERAND_generateBinaryC
   const cPtr_baseline_5F_assembly_5F_WO_5F_OPERAND * object = (const cPtr_baseline_5F_assembly_5F_WO_5F_OPERAND *) inObject ;
   macroValidSharedObject (object, cPtr_baseline_5F_assembly_5F_WO_5F_OPERAND) ;
   GALGAS_uint var_code ;
-  if (object->mAttribute_mInstruction.isValid ()) {
-    switch (object->mAttribute_mInstruction.enumValue ()) {
-    case GALGAS_baseline_5F_WO_5F_OPERAND_5F_group::kNotBuilt:
-      break ;
-    case GALGAS_baseline_5F_WO_5F_OPERAND_5F_group::kEnum_CLRW: {
+  switch (object->mAttribute_mInstruction.enumValue ()) {
+  case GALGAS_baseline_5F_WO_5F_OPERAND_5F_group::kNotBuilt:
+    break ;
+  case GALGAS_baseline_5F_WO_5F_OPERAND_5F_group::kEnum_CLRW:
+    {
       var_code = GALGAS_uint ((uint32_t) 64U) ;
-      } break ;
-    case GALGAS_baseline_5F_WO_5F_OPERAND_5F_group::kEnum_NOP: {
-      var_code = GALGAS_uint ((uint32_t) 0U) ;
-      } break ;
-    case GALGAS_baseline_5F_WO_5F_OPERAND_5F_group::kEnum_CLRWDT: {
-      var_code = GALGAS_uint ((uint32_t) 4U) ;
-      } break ;
-    case GALGAS_baseline_5F_WO_5F_OPERAND_5F_group::kEnum_OPTION_5F_: {
-      var_code = GALGAS_uint ((uint32_t) 2U) ;
-      } break ;
-    case GALGAS_baseline_5F_WO_5F_OPERAND_5F_group::kEnum_SLEEP: {
-      var_code = GALGAS_uint ((uint32_t) 3U) ;
-      } break ;
     }
+    break ;
+  case GALGAS_baseline_5F_WO_5F_OPERAND_5F_group::kEnum_NOP:
+    {
+      var_code = GALGAS_uint ((uint32_t) 0U) ;
+    }
+    break ;
+  case GALGAS_baseline_5F_WO_5F_OPERAND_5F_group::kEnum_CLRWDT:
+    {
+      var_code = GALGAS_uint ((uint32_t) 4U) ;
+    }
+    break ;
+  case GALGAS_baseline_5F_WO_5F_OPERAND_5F_group::kEnum_OPTION_5F_:
+    {
+      var_code = GALGAS_uint ((uint32_t) 2U) ;
+    }
+    break ;
+  case GALGAS_baseline_5F_WO_5F_OPERAND_5F_group::kEnum_SLEEP:
+    {
+      var_code = GALGAS_uint ((uint32_t) 3U) ;
+    }
+    break ;
   }
   {
   const GALGAS_baseline_5F_assembly_5F_WO_5F_OPERAND temp_0 = object ;
@@ -13204,26 +13246,34 @@ static void categoryMethod_baseline_5F_assembly_5F_instruction_5F_literalOperati
   const cPtr_baseline_5F_assembly_5F_instruction_5F_literalOperation * object = (const cPtr_baseline_5F_assembly_5F_instruction_5F_literalOperation *) inObject ;
   macroValidSharedObject (object, cPtr_baseline_5F_assembly_5F_instruction_5F_literalOperation) ;
   GALGAS_uint var_code ;
-  if (object->mAttribute_mInstruction.isValid ()) {
-    switch (object->mAttribute_mInstruction.enumValue ()) {
-    case GALGAS_baseline_5F_literal_5F_instruction_5F_opcode::kNotBuilt:
-      break ;
-    case GALGAS_baseline_5F_literal_5F_instruction_5F_opcode::kEnum_ANDLW: {
+  switch (object->mAttribute_mInstruction.enumValue ()) {
+  case GALGAS_baseline_5F_literal_5F_instruction_5F_opcode::kNotBuilt:
+    break ;
+  case GALGAS_baseline_5F_literal_5F_instruction_5F_opcode::kEnum_ANDLW:
+    {
       var_code = GALGAS_uint ((uint32_t) 3584U) ;
-      } break ;
-    case GALGAS_baseline_5F_literal_5F_instruction_5F_opcode::kEnum_IORLW: {
-      var_code = GALGAS_uint ((uint32_t) 3328U) ;
-      } break ;
-    case GALGAS_baseline_5F_literal_5F_instruction_5F_opcode::kEnum_MOVLW: {
-      var_code = GALGAS_uint ((uint32_t) 3072U) ;
-      } break ;
-    case GALGAS_baseline_5F_literal_5F_instruction_5F_opcode::kEnum_RETLW: {
-      var_code = GALGAS_uint ((uint32_t) 2048U) ;
-      } break ;
-    case GALGAS_baseline_5F_literal_5F_instruction_5F_opcode::kEnum_XORLW: {
-      var_code = GALGAS_uint ((uint32_t) 3840U) ;
-      } break ;
     }
+    break ;
+  case GALGAS_baseline_5F_literal_5F_instruction_5F_opcode::kEnum_IORLW:
+    {
+      var_code = GALGAS_uint ((uint32_t) 3328U) ;
+    }
+    break ;
+  case GALGAS_baseline_5F_literal_5F_instruction_5F_opcode::kEnum_MOVLW:
+    {
+      var_code = GALGAS_uint ((uint32_t) 3072U) ;
+    }
+    break ;
+  case GALGAS_baseline_5F_literal_5F_instruction_5F_opcode::kEnum_RETLW:
+    {
+      var_code = GALGAS_uint ((uint32_t) 2048U) ;
+    }
+    break ;
+  case GALGAS_baseline_5F_literal_5F_instruction_5F_opcode::kEnum_XORLW:
+    {
+      var_code = GALGAS_uint ((uint32_t) 3840U) ;
+    }
+    break ;
   }
   var_code = var_code.operator_or (object->mAttribute_mLiteralValue COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 292)) ;
   {
