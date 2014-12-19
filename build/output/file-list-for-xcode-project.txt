@@ -4396,7 +4396,7 @@
       isa = XCBuildConfiguration;
       buildSettings = {
       GCC_OPTIMIZATION_LEVEL = 2 ;
-      GCC_PREPROCESSOR_DEFINITIONS = ("LIBPM_MULTI_THREADING=0", DO_NOT_GENERATE_CHECKINGS) ;
+      GCC_PREPROCESSOR_DEFINITIONS = (DO_NOT_GENERATE_CHECKINGS) ;
       GCC_WARN_UNUSED_PARAMETER = YES ;
       PRODUCT_NAME = "piccolo" ;
     };
@@ -4408,7 +4408,7 @@
       buildSettings = {
       GCC_OPTIMIZATION_LEVEL = 0 ;
       GCC_GENERATE_DEBUGGING_SYMBOLS = YES ;
-      GCC_PREPROCESSOR_DEFINITIONS = ("LIBPM_MULTI_THREADING=0") ;
+      GCC_PREPROCESSOR_DEFINITIONS = () ;
       GCC_WARN_UNUSED_PARAMETER = YES ;
       PRODUCT_NAME = "piccolo-debug" ;
     };
@@ -4419,7 +4419,7 @@
       isa = XCBuildConfiguration;
       buildSettings = {
       GCC_OPTIMIZATION_LEVEL = 0 ;
-      GCC_PREPROCESSOR_DEFINITIONS = ("LIBPM_MULTI_THREADING=0") ;
+      GCC_PREPROCESSOR_DEFINITIONS = () ;
       INFOPLIST_FILE = "Info.plist";
       PRODUCT_NAME = "CocoaPiccolo" ;
     };
