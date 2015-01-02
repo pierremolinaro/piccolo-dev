@@ -7761,6 +7761,7 @@ bool C_Lexique_piccoloDevice_5F_lexique::parseLexicalToken (void) {
           }
         }while (mLoop) ;
         mLoop = true ;
+        enterDroppedTerminal (kToken_comment) ;
       }else if (testForInputUTF32CharRange (TO_UNICODE (1), TO_UNICODE (' '))) {
       }else if (testForInputUTF32Char (TO_UNICODE ('\0'))) { // End of source text ? 
         token.mTokenCode = kToken_ ; // Empty string code
@@ -7799,28 +7800,28 @@ void C_Lexique_piccoloDevice_5F_lexique::enterToken (const cTokenFor_piccoloDevi
 
 //---------------------------------------------------------------------------------------------------------------------*
 //               A T T R I B U T E   A C C E S S                                                                       *
-//-----------------------------------------------------------------------------*
+//---------------------------------------------------------------------------------------------------------------------*
 
 utf32 C_Lexique_piccoloDevice_5F_lexique::attributeValue_charValue (void) const {
   cTokenFor_piccoloDevice_5F_lexique * ptr = (cTokenFor_piccoloDevice_5F_lexique *) mCurrentTokenPtr ;
   return ptr->mLexicalAttribute_charValue ;
 }
 
-//-----------------------------------------------------------------------------*
+//---------------------------------------------------------------------------------------------------------------------*
 
 C_String C_Lexique_piccoloDevice_5F_lexique::attributeValue_identifierString (void) const {
   cTokenFor_piccoloDevice_5F_lexique * ptr = (cTokenFor_piccoloDevice_5F_lexique *) mCurrentTokenPtr ;
   return ptr->mLexicalAttribute_identifierString ;
 }
 
-//-----------------------------------------------------------------------------*
+//---------------------------------------------------------------------------------------------------------------------*
 
 C_String C_Lexique_piccoloDevice_5F_lexique::attributeValue_tokenString (void) const {
   cTokenFor_piccoloDevice_5F_lexique * ptr = (cTokenFor_piccoloDevice_5F_lexique *) mCurrentTokenPtr ;
   return ptr->mLexicalAttribute_tokenString ;
 }
 
-//-----------------------------------------------------------------------------*
+//---------------------------------------------------------------------------------------------------------------------*
 
 uint32_t C_Lexique_piccoloDevice_5F_lexique::attributeValue_uint_33__32_value (void) const {
   cTokenFor_piccoloDevice_5F_lexique * ptr = (cTokenFor_piccoloDevice_5F_lexique *) mCurrentTokenPtr ;
@@ -7829,7 +7830,7 @@ uint32_t C_Lexique_piccoloDevice_5F_lexique::attributeValue_uint_33__32_value (v
 
 //---------------------------------------------------------------------------------------------------------------------*
 //         A S S I G N    F R O M    A T T R I B U T E                                                                 *
-//-----------------------------------------------------------------------------*
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_lchar C_Lexique_piccoloDevice_5F_lexique::synthetizedAttribute_charValue (void) const {
   cTokenFor_piccoloDevice_5F_lexique * ptr = (cTokenFor_piccoloDevice_5F_lexique *) mCurrentTokenPtr ;
@@ -7840,7 +7841,7 @@ GALGAS_lchar C_Lexique_piccoloDevice_5F_lexique::synthetizedAttribute_charValue 
   return result ;
 }
 
-//-----------------------------------------------------------------------------*
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_lstring C_Lexique_piccoloDevice_5F_lexique::synthetizedAttribute_identifierString (void) const {
   cTokenFor_piccoloDevice_5F_lexique * ptr = (cTokenFor_piccoloDevice_5F_lexique *) mCurrentTokenPtr ;
@@ -7851,7 +7852,7 @@ GALGAS_lstring C_Lexique_piccoloDevice_5F_lexique::synthetizedAttribute_identifi
   return result ;
 }
 
-//-----------------------------------------------------------------------------*
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_lstring C_Lexique_piccoloDevice_5F_lexique::synthetizedAttribute_tokenString (void) const {
   cTokenFor_piccoloDevice_5F_lexique * ptr = (cTokenFor_piccoloDevice_5F_lexique *) mCurrentTokenPtr ;
@@ -7862,7 +7863,7 @@ GALGAS_lstring C_Lexique_piccoloDevice_5F_lexique::synthetizedAttribute_tokenStr
   return result ;
 }
 
-//-----------------------------------------------------------------------------*
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_luint C_Lexique_piccoloDevice_5F_lexique::synthetizedAttribute_uint_33__32_value (void) const {
   cTokenFor_piccoloDevice_5F_lexique * ptr = (cTokenFor_piccoloDevice_5F_lexique *) mCurrentTokenPtr ;
@@ -7912,6 +7913,70 @@ GALGAS_stringlist C_Lexique_piccoloDevice_5F_lexique::symbols (LOCATION_ARGS) {
   result.addAssign_operation (GALGAS_string ("]") COMMA_THERE) ;
   result.addAssign_operation (GALGAS_string ("{") COMMA_THERE) ;
   result.addAssign_operation (GALGAS_string ("}") COMMA_THERE) ;
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+//   S T Y L E   I N D E X    F O R    T E R M I N A L                                                                 *
+//---------------------------------------------------------------------------------------------------------------------*
+
+uint32_t C_Lexique_piccoloDevice_5F_lexique::styleIndexForTerminal (const int32_t inTerminalIndex) const {
+  static const uint32_t kTerminalSymbolStyles [34] = {0,
+    0 /* piccoloDevice_lexique_1_identifier */,
+    4 /* piccoloDevice_lexique_1_integer */,
+    5 /* piccoloDevice_lexique_1_string */,
+    6 /* piccoloDevice_lexique_1_comment */,
+    1 /* piccoloDevice_lexique_1_controller */,
+    1 /* piccoloDevice_lexique_1_processor */,
+    1 /* piccoloDevice_lexique_1_romsize */,
+    1 /* piccoloDevice_lexique_1_eepromsize */,
+    1 /* piccoloDevice_lexique_1_bank */,
+    1 /* piccoloDevice_lexique_1_unusedregister */,
+    1 /* piccoloDevice_lexique_1_mirrorat */,
+    1 /* piccoloDevice_lexique_1_ram */,
+    1 /* piccoloDevice_lexique_1_register */,
+    1 /* piccoloDevice_lexique_1_at */,
+    1 /* piccoloDevice_lexique_1_to */,
+    1 /* piccoloDevice_lexique_1_configuration */,
+    1 /* piccoloDevice_lexique_1_width */,
+    1 /* piccoloDevice_lexique_1_description */,
+    1 /* piccoloDevice_lexique_1_mask */,
+    1 /* piccoloDevice_lexique_1_illegal */,
+    1 /* piccoloDevice_lexique_1_message */,
+    1 /* piccoloDevice_lexique_1_setting */,
+    3 /* piccoloDevice_lexique_1__3C_ */,
+    3 /* piccoloDevice_lexique_1__3E_ */,
+    3 /* piccoloDevice_lexique_1__2C_ */,
+    3 /* piccoloDevice_lexique_1__2D_ */,
+    3 /* piccoloDevice_lexique_1__2F_ */,
+    3 /* piccoloDevice_lexique_1__3B_ */,
+    3 /* piccoloDevice_lexique_1__3A_ */,
+    3 /* piccoloDevice_lexique_1__5B_ */,
+    3 /* piccoloDevice_lexique_1__5D_ */,
+    3 /* piccoloDevice_lexique_1__7B_ */,
+    3 /* piccoloDevice_lexique_1__7D_ */
+  } ;
+  return (inTerminalIndex >= 0) ? kTerminalSymbolStyles [inTerminalIndex] : 0 ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+//   S T Y L E   N A M E    F O R    S T Y L E    I N D E X                                                            *
+//---------------------------------------------------------------------------------------------------------------------*
+
+C_String C_Lexique_piccoloDevice_5F_lexique::styleNameForIndex (const uint32_t inStyleIndex) const {
+  C_String result ;
+  if (inStyleIndex < 7) {
+    static const char * kStyleArray [7] = {
+      "",
+      "keywordStyle",
+      "instructionStyle",
+      "delimitersStyle",
+      "integerStyle",
+      "stringStyle",
+      "commentStyle"
+    } ;
+    result = kStyleArray [inStyleIndex] ;
+  }
   return result ;
 }
 
@@ -18186,6 +18251,28 @@ void cGrammar_baseline_5F_include_5F_grammar::performIndexing (C_Compiler * inCo
       grammar.nt_section_5F_list_indexing (scanner) ;
     }
     scanner->generateIndexFile () ;
+  }
+  macroDetachSharedObject (scanner) ;
+}
+
+void cGrammar_baseline_5F_include_5F_grammar::performOnlyLexicalAnalysis (C_Compiler * inCompiler,
+             const C_String & inSourceFilePath) {
+  C_Lexique_piccolo_5F_lexique * scanner = NULL ;
+  macroMyNew (scanner, C_Lexique_piccolo_5F_lexique (inCompiler, "", "", inSourceFilePath COMMA_HERE)) ;
+  if (scanner->sourceText () != NULL) {
+    scanner->performLexicalAnalysis () ;
+  }
+  macroDetachSharedObject (scanner) ;
+}
+
+void cGrammar_baseline_5F_include_5F_grammar::performOnlySyntaxAnalysis (C_Compiler * inCompiler,
+             const C_String & inSourceFilePath) {
+  C_Lexique_piccolo_5F_lexique * scanner = NULL ;
+  macroMyNew (scanner, C_Lexique_piccolo_5F_lexique (inCompiler, "", "", inSourceFilePath COMMA_HERE)) ;
+  if (scanner->sourceText () != NULL) {
+    scanner->performBottomUpParsing (gActionTable_baseline_include_grammar, gNonTerminalNames_baseline_include_grammar,
+                                     gActionTableIndex_baseline_include_grammar, gSuccessorTable_baseline_include_grammar,
+                                     gProductionsTable_baseline_include_grammar) ;
   }
   macroDetachSharedObject (scanner) ;
 }
@@ -44589,6 +44676,28 @@ void cGrammar_pic_31__38__5F_grammar::performIndexing (C_Compiler * inCompiler,
       grammar.nt_start_5F_symbol_indexing (scanner) ;
     }
     scanner->generateIndexFile () ;
+  }
+  macroDetachSharedObject (scanner) ;
+}
+
+void cGrammar_pic_31__38__5F_grammar::performOnlyLexicalAnalysis (C_Compiler * inCompiler,
+             const C_String & inSourceFilePath) {
+  C_Lexique_piccolo_5F_lexique * scanner = NULL ;
+  macroMyNew (scanner, C_Lexique_piccolo_5F_lexique (inCompiler, "", "", inSourceFilePath COMMA_HERE)) ;
+  if (scanner->sourceText () != NULL) {
+    scanner->performLexicalAnalysis () ;
+  }
+  macroDetachSharedObject (scanner) ;
+}
+
+void cGrammar_pic_31__38__5F_grammar::performOnlySyntaxAnalysis (C_Compiler * inCompiler,
+             const C_String & inSourceFilePath) {
+  C_Lexique_piccolo_5F_lexique * scanner = NULL ;
+  macroMyNew (scanner, C_Lexique_piccolo_5F_lexique (inCompiler, "", "", inSourceFilePath COMMA_HERE)) ;
+  if (scanner->sourceText () != NULL) {
+    scanner->performBottomUpParsing (gActionTable_pic18_grammar, gNonTerminalNames_pic18_grammar,
+                                     gActionTableIndex_pic18_grammar, gSuccessorTable_pic18_grammar,
+                                     gProductionsTable_pic18_grammar) ;
   }
   macroDetachSharedObject (scanner) ;
 }

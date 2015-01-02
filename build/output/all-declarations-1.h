@@ -9714,11 +9714,7 @@ class cPtr_testTerminationForBlockInstruction : public cPtr_abstractBlockTermina
 } ;
 
 //---------------------------------------------------------------------------------------------------------------------*
-
-//class C_Compiler ;
-//class GALGAS_lstring ;
-//class GALGAS_string ;
-
+//  GRAMMAR pic18_include_grammar
 //---------------------------------------------------------------------------------------------------------------------*
 
 class cGrammar_pic_31__38__5F_include_5F_grammar : public cParser_pic_31__38__5F_syntax,
@@ -9800,9 +9796,17 @@ class cGrammar_pic_31__38__5F_include_5F_grammar : public cParser_pic_31__38__5F
                                                      GALGAS_bool & ioArgument11
                                                      COMMA_LOCATION_ARGS) ;
 
-//--- Start symbol indexing
+//--- Indexing
   public : static void performIndexing (C_Compiler * inCompiler,
                                         const C_String & inSourceFilePath) ;
+
+//--- Only lexical analysis
+  public : static void performOnlyLexicalAnalysis (C_Compiler * inCompiler,
+                                                   const C_String & inSourceFilePath) ;
+
+//--- Only syntax analysis
+  public : static void performOnlySyntaxAnalysis (C_Compiler * inCompiler,
+                                                  const C_String & inSourceFilePath) ;
 
 //------------------------------------- 'checkpic_definition' non terminal
 //--- 'parse' label

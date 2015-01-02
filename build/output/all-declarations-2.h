@@ -4312,6 +4312,10 @@ class C_Lexique_piccoloDevice_5F_lexique : public C_Lexique {
 
 //--- Enter Token
   protected : void enterToken (const cTokenFor_piccoloDevice_5F_lexique & inToken) ;
+
+//--- Style name for Latex
+  protected : virtual C_String styleNameForIndex (const uint32_t inStyleIndex) const ;
+  protected : virtual uint32_t styleIndexForTerminal (const int32_t inTerminalIndex) const ;
 } ;
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -5323,11 +5327,7 @@ class cParser_piccoloDevice_5F_syntax {
 } ;
 
 //---------------------------------------------------------------------------------------------------------------------*
-
-//class C_Compiler ;
-//class GALGAS_lstring ;
-//class GALGAS_string ;
-
+//  GRAMMAR baseline_include_grammar
 //---------------------------------------------------------------------------------------------------------------------*
 
 class cGrammar_baseline_5F_include_5F_grammar : public cParser_baseline_5F_syntax,
@@ -5600,9 +5600,17 @@ class cGrammar_baseline_5F_include_5F_grammar : public cParser_baseline_5F_synta
                                                      GALGAS_constantDefinitionList & ioArgument5
                                                      COMMA_LOCATION_ARGS) ;
 
-//--- Start symbol indexing
+//--- Indexing
   public : static void performIndexing (C_Compiler * inCompiler,
                                         const C_String & inSourceFilePath) ;
+
+//--- Only lexical analysis
+  public : static void performOnlyLexicalAnalysis (C_Compiler * inCompiler,
+                                                   const C_String & inSourceFilePath) ;
+
+//--- Only syntax analysis
+  public : static void performOnlySyntaxAnalysis (C_Compiler * inCompiler,
+                                                  const C_String & inSourceFilePath) ;
 
   public : virtual int32_t select_baseline_5F_syntax_0 (C_Lexique_piccolo_5F_lexique *) ;
 
@@ -5693,11 +5701,7 @@ class cGrammar_baseline_5F_include_5F_grammar : public cParser_baseline_5F_synta
 
 //---------------------------------------------------------------------------------------------------------------------*
 //---------------------------------------------------------------------------------------------------------------------*
-
-//class C_Compiler ;
-//class GALGAS_lstring ;
-//class GALGAS_string ;
-
+//  GRAMMAR pic18_grammar
 //---------------------------------------------------------------------------------------------------------------------*
 
 class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
@@ -6292,9 +6296,17 @@ class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
                                                                                   GALGAS_luint & outArgument8
                                                                                   COMMA_LOCATION_ARGS) ;
 
-//--- Start symbol indexing
+//--- Indexing
   public : static void performIndexing (C_Compiler * inCompiler,
                                         const C_String & inSourceFilePath) ;
+
+//--- Only lexical analysis
+  public : static void performOnlyLexicalAnalysis (C_Compiler * inCompiler,
+                                                   const C_String & inSourceFilePath) ;
+
+//--- Only syntax analysis
+  public : static void performOnlySyntaxAnalysis (C_Compiler * inCompiler,
+                                                  const C_String & inSourceFilePath) ;
 
 //------------------------------------- 'structured_if_instruction' non terminal
 //--- 'parse' label

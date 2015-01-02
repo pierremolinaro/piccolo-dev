@@ -1,5 +1,6 @@
 project (3:0:7) -> "piccolo" {
 #--- Targets
+  %codeblocks-linux-mac
   %makefile-macosx
   %makefile-unix
   %makefile-x86linux32-on-macosx
