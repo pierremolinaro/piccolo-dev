@@ -32572,6 +32572,28 @@ void cGrammar_pic_31__38__5F_include_5F_grammar::performIndexing (C_Compiler * i
   macroDetachSharedObject (scanner) ;
 }
 
+void cGrammar_pic_31__38__5F_include_5F_grammar::performOnlyLexicalAnalysis (C_Compiler * inCompiler,
+             const C_String & inSourceFilePath) {
+  C_Lexique_piccolo_5F_lexique * scanner = NULL ;
+  macroMyNew (scanner, C_Lexique_piccolo_5F_lexique (inCompiler, "", "", inSourceFilePath COMMA_HERE)) ;
+  if (scanner->sourceText () != NULL) {
+    scanner->performLexicalAnalysis () ;
+  }
+  macroDetachSharedObject (scanner) ;
+}
+
+void cGrammar_pic_31__38__5F_include_5F_grammar::performOnlySyntaxAnalysis (C_Compiler * inCompiler,
+             const C_String & inSourceFilePath) {
+  C_Lexique_piccolo_5F_lexique * scanner = NULL ;
+  macroMyNew (scanner, C_Lexique_piccolo_5F_lexique (inCompiler, "", "", inSourceFilePath COMMA_HERE)) ;
+  if (scanner->sourceText () != NULL) {
+    scanner->performBottomUpParsing (gActionTable_pic18_include_grammar, gNonTerminalNames_pic18_include_grammar,
+                                     gActionTableIndex_pic18_include_grammar, gSuccessorTable_pic18_include_grammar,
+                                     gProductionsTable_pic18_include_grammar) ;
+  }
+  macroDetachSharedObject (scanner) ;
+}
+
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                                        Grammar start symbol implementation                                          *

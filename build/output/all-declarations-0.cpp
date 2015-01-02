@@ -6842,6 +6842,7 @@ bool C_Lexique_piccolo_5F_lexique::parseLexicalToken (void) {
             }
           }while (mLoop) ;
           mLoop = true ;
+          enterDroppedTerminal (kToken_commentMark) ;
         }else{
           do {
             if (testForInputUTF32CharRange (TO_UNICODE (1), TO_UNICODE ('\t')) || testForInputUTF32Char (TO_UNICODE ('\v')) || testForInputUTF32Char (TO_UNICODE ('\f')) || testForInputUTF32CharRange (TO_UNICODE (14), TO_UNICODE (65533))) {
@@ -6850,6 +6851,7 @@ bool C_Lexique_piccolo_5F_lexique::parseLexicalToken (void) {
             }
           }while (mLoop) ;
           mLoop = true ;
+          enterDroppedTerminal (kToken_comment) ;
         }
       }else if (testForInputUTF32CharRange (TO_UNICODE (1), TO_UNICODE (' '))) {
       }else if (testForInputUTF32Char (TO_UNICODE ('\0'))) { // End of source text ? 
@@ -6889,28 +6891,28 @@ void C_Lexique_piccolo_5F_lexique::enterToken (const cTokenFor_piccolo_5F_lexiqu
 
 //---------------------------------------------------------------------------------------------------------------------*
 //               A T T R I B U T E   A C C E S S                                                                       *
-//-----------------------------------------------------------------------------*
+//---------------------------------------------------------------------------------------------------------------------*
 
 utf32 C_Lexique_piccolo_5F_lexique::attributeValue_charValue (void) const {
   cTokenFor_piccolo_5F_lexique * ptr = (cTokenFor_piccolo_5F_lexique *) mCurrentTokenPtr ;
   return ptr->mLexicalAttribute_charValue ;
 }
 
-//-----------------------------------------------------------------------------*
+//---------------------------------------------------------------------------------------------------------------------*
 
 C_String C_Lexique_piccolo_5F_lexique::attributeValue_identifierString (void) const {
   cTokenFor_piccolo_5F_lexique * ptr = (cTokenFor_piccolo_5F_lexique *) mCurrentTokenPtr ;
   return ptr->mLexicalAttribute_identifierString ;
 }
 
-//-----------------------------------------------------------------------------*
+//---------------------------------------------------------------------------------------------------------------------*
 
 C_String C_Lexique_piccolo_5F_lexique::attributeValue_tokenString (void) const {
   cTokenFor_piccolo_5F_lexique * ptr = (cTokenFor_piccolo_5F_lexique *) mCurrentTokenPtr ;
   return ptr->mLexicalAttribute_tokenString ;
 }
 
-//-----------------------------------------------------------------------------*
+//---------------------------------------------------------------------------------------------------------------------*
 
 uint32_t C_Lexique_piccolo_5F_lexique::attributeValue_uint_33__32_value (void) const {
   cTokenFor_piccolo_5F_lexique * ptr = (cTokenFor_piccolo_5F_lexique *) mCurrentTokenPtr ;
@@ -6919,7 +6921,7 @@ uint32_t C_Lexique_piccolo_5F_lexique::attributeValue_uint_33__32_value (void) c
 
 //---------------------------------------------------------------------------------------------------------------------*
 //         A S S I G N    F R O M    A T T R I B U T E                                                                 *
-//-----------------------------------------------------------------------------*
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_lchar C_Lexique_piccolo_5F_lexique::synthetizedAttribute_charValue (void) const {
   cTokenFor_piccolo_5F_lexique * ptr = (cTokenFor_piccolo_5F_lexique *) mCurrentTokenPtr ;
@@ -6930,7 +6932,7 @@ GALGAS_lchar C_Lexique_piccolo_5F_lexique::synthetizedAttribute_charValue (void)
   return result ;
 }
 
-//-----------------------------------------------------------------------------*
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_lstring C_Lexique_piccolo_5F_lexique::synthetizedAttribute_identifierString (void) const {
   cTokenFor_piccolo_5F_lexique * ptr = (cTokenFor_piccolo_5F_lexique *) mCurrentTokenPtr ;
@@ -6941,7 +6943,7 @@ GALGAS_lstring C_Lexique_piccolo_5F_lexique::synthetizedAttribute_identifierStri
   return result ;
 }
 
-//-----------------------------------------------------------------------------*
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_lstring C_Lexique_piccolo_5F_lexique::synthetizedAttribute_tokenString (void) const {
   cTokenFor_piccolo_5F_lexique * ptr = (cTokenFor_piccolo_5F_lexique *) mCurrentTokenPtr ;
@@ -6952,7 +6954,7 @@ GALGAS_lstring C_Lexique_piccolo_5F_lexique::synthetizedAttribute_tokenString (v
   return result ;
 }
 
-//-----------------------------------------------------------------------------*
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_luint C_Lexique_piccolo_5F_lexique::synthetizedAttribute_uint_33__32_value (void) const {
   cTokenFor_piccolo_5F_lexique * ptr = (cTokenFor_piccolo_5F_lexique *) mCurrentTokenPtr ;
@@ -7120,6 +7122,189 @@ GALGAS_stringlist C_Lexique_piccolo_5F_lexique::symbols (LOCATION_ARGS) {
   result.addAssign_operation (GALGAS_string ("~") COMMA_THERE) ;
   result.addAssign_operation (GALGAS_string ("%") COMMA_THERE) ;
   result.addAssign_operation (GALGAS_string ("@") COMMA_THERE) ;
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+//   S T Y L E   I N D E X    F O R    T E R M I N A L                                                                 *
+//---------------------------------------------------------------------------------------------------------------------*
+
+uint32_t C_Lexique_piccolo_5F_lexique::styleIndexForTerminal (const int32_t inTerminalIndex) const {
+  static const uint32_t kTerminalSymbolStyles [152] = {0,
+    0 /* piccolo_lexique_1_identifier */,
+    4 /* piccolo_lexique_1_integer */,
+    5 /* piccolo_lexique_1_literal_5F_char */,
+    6 /* piccolo_lexique_1_literal_5F_string */,
+    7 /* piccolo_lexique_1_comment */,
+    7 /* piccolo_lexique_1_commentMark */,
+    1 /* piccolo_lexique_1_bank */,
+    1 /* piccolo_lexique_1_banksave */,
+    1 /* piccolo_lexique_1_banksel */,
+    1 /* piccolo_lexique_1_baseline */,
+    1 /* piccolo_lexique_1_block */,
+    1 /* piccolo_lexique_1_bootloader */,
+    1 /* piccolo_lexique_1_byte */,
+    1 /* piccolo_lexique_1_case */,
+    1 /* piccolo_lexique_1_checkbank */,
+    1 /* piccolo_lexique_1_checknobank */,
+    1 /* piccolo_lexique_1_checkpic */,
+    1 /* piccolo_lexique_1_computed */,
+    1 /* piccolo_lexique_1_configuration */,
+    1 /* piccolo_lexique_1_const */,
+    1 /* piccolo_lexique_1_contextsave */,
+    1 /* piccolo_lexique_1_data */,
+    1 /* piccolo_lexique_1_do */,
+    1 /* piccolo_lexique_1_end */,
+    1 /* piccolo_lexique_1_else */,
+    1 /* piccolo_lexique_1_elsif */,
+    1 /* piccolo_lexique_1_ensures */,
+    1 /* piccolo_lexique_1_fast */,
+    1 /* piccolo_lexique_1_forever */,
+    1 /* piccolo_lexique_1_if */,
+    1 /* piccolo_lexique_1_implements */,
+    1 /* piccolo_lexique_1_include */,
+    1 /* piccolo_lexique_1_inline */,
+    1 /* piccolo_lexique_1_interrupt */,
+    1 /* piccolo_lexique_1_mark */,
+    1 /* piccolo_lexique_1_midrange */,
+    1 /* piccolo_lexique_1_nobank */,
+    1 /* piccolo_lexique_1_noreturn */,
+    1 /* piccolo_lexique_1_page */,
+    1 /* piccolo_lexique_1_pic_31__38_ */,
+    1 /* piccolo_lexique_1_preserved */,
+    1 /* piccolo_lexique_1_ram */,
+    1 /* piccolo_lexique_1_requires */,
+    1 /* piccolo_lexique_1_rom */,
+    1 /* piccolo_lexique_1_routine */,
+    1 /* piccolo_lexique_1_switch */,
+    1 /* piccolo_lexique_1_unused */,
+    1 /* piccolo_lexique_1_uses */,
+    1 /* piccolo_lexique_1_w */,
+    1 /* piccolo_lexique_1_while */,
+    2 /* piccolo_lexique_1_addlw */,
+    2 /* piccolo_lexique_1_addwf */,
+    2 /* piccolo_lexique_1_addwfc */,
+    2 /* piccolo_lexique_1_andlw */,
+    2 /* piccolo_lexique_1_andwf */,
+    2 /* piccolo_lexique_1_bc */,
+    2 /* piccolo_lexique_1_bcf */,
+    2 /* piccolo_lexique_1_bn */,
+    2 /* piccolo_lexique_1_bnc */,
+    2 /* piccolo_lexique_1_bnn */,
+    2 /* piccolo_lexique_1_bov */,
+    2 /* piccolo_lexique_1_bnov */,
+    2 /* piccolo_lexique_1_bnz */,
+    2 /* piccolo_lexique_1_bsf */,
+    2 /* piccolo_lexique_1_bra */,
+    2 /* piccolo_lexique_1_btg */,
+    2 /* piccolo_lexique_1_bz */,
+    2 /* piccolo_lexique_1_call */,
+    2 /* piccolo_lexique_1_clrf */,
+    2 /* piccolo_lexique_1_clrw */,
+    2 /* piccolo_lexique_1_clrwdt */,
+    2 /* piccolo_lexique_1_comf */,
+    2 /* piccolo_lexique_1_daw */,
+    2 /* piccolo_lexique_1_decf */,
+    2 /* piccolo_lexique_1_incf */,
+    2 /* piccolo_lexique_1_iorlw */,
+    2 /* piccolo_lexique_1_iorwf */,
+    2 /* piccolo_lexique_1_fnop */,
+    2 /* piccolo_lexique_1_goto */,
+    2 /* piccolo_lexique_1_jsr */,
+    2 /* piccolo_lexique_1_jump */,
+    2 /* piccolo_lexique_1_lfsr */,
+    2 /* piccolo_lexique_1_ldataptr */,
+    2 /* piccolo_lexique_1_ltblptr */,
+    2 /* piccolo_lexique_1_mnop */,
+    2 /* piccolo_lexique_1_movf */,
+    2 /* piccolo_lexique_1_movff */,
+    2 /* piccolo_lexique_1_movlw */,
+    2 /* piccolo_lexique_1_movwf */,
+    2 /* piccolo_lexique_1_mullw */,
+    2 /* piccolo_lexique_1_mulwf */,
+    2 /* piccolo_lexique_1_negf */,
+    2 /* piccolo_lexique_1_nop */,
+    2 /* piccolo_lexique_1_pop */,
+    2 /* piccolo_lexique_1_option */,
+    2 /* piccolo_lexique_1_push */,
+    2 /* piccolo_lexique_1_rcall */,
+    2 /* piccolo_lexique_1_reset */,
+    2 /* piccolo_lexique_1_retlw */,
+    2 /* piccolo_lexique_1_rlcf */,
+    2 /* piccolo_lexique_1_rlf */,
+    2 /* piccolo_lexique_1_rlncf */,
+    2 /* piccolo_lexique_1_rrcf */,
+    2 /* piccolo_lexique_1_rrf */,
+    2 /* piccolo_lexique_1_rrncf */,
+    2 /* piccolo_lexique_1_setf */,
+    2 /* piccolo_lexique_1_sleep */,
+    2 /* piccolo_lexique_1_subfwb */,
+    2 /* piccolo_lexique_1_sublw */,
+    2 /* piccolo_lexique_1_subwf */,
+    2 /* piccolo_lexique_1_subwfb */,
+    2 /* piccolo_lexique_1_swapf */,
+    2 /* piccolo_lexique_1_tblrd */,
+    2 /* piccolo_lexique_1_tblwt */,
+    2 /* piccolo_lexique_1_tris */,
+    2 /* piccolo_lexique_1_xorlw */,
+    2 /* piccolo_lexique_1_xorwf */,
+    3 /* piccolo_lexique_1__2A_ */,
+    3 /* piccolo_lexique_1__2A__2B_ */,
+    3 /* piccolo_lexique_1__2C_ */,
+    3 /* piccolo_lexique_1__21__3D_ */,
+    3 /* piccolo_lexique_1__3C__3D_ */,
+    3 /* piccolo_lexique_1__3E__3D_ */,
+    3 /* piccolo_lexique_1__2A__2D_ */,
+    3 /* piccolo_lexique_1__2B__2A_ */,
+    3 /* piccolo_lexique_1__3B_ */,
+    3 /* piccolo_lexique_1__3A_ */,
+    3 /* piccolo_lexique_1__3D__3D_ */,
+    3 /* piccolo_lexique_1__3C_ */,
+    3 /* piccolo_lexique_1__3E_ */,
+    3 /* piccolo_lexique_1__5B_ */,
+    3 /* piccolo_lexique_1__5D_ */,
+    3 /* piccolo_lexique_1__2E_ */,
+    3 /* piccolo_lexique_1__21_ */,
+    3 /* piccolo_lexique_1__26_ */,
+    3 /* piccolo_lexique_1__7C_ */,
+    3 /* piccolo_lexique_1__3D_ */,
+    3 /* piccolo_lexique_1__7B_ */,
+    3 /* piccolo_lexique_1__7D_ */,
+    3 /* piccolo_lexique_1__28_ */,
+    3 /* piccolo_lexique_1__29_ */,
+    3 /* piccolo_lexique_1__2F_ */,
+    3 /* piccolo_lexique_1__2D_ */,
+    3 /* piccolo_lexique_1__2B_ */,
+    3 /* piccolo_lexique_1__3F_ */,
+    3 /* piccolo_lexique_1__5E_ */,
+    3 /* piccolo_lexique_1__3C__3C_ */,
+    3 /* piccolo_lexique_1__3E__3E_ */,
+    3 /* piccolo_lexique_1__7E_ */,
+    3 /* piccolo_lexique_1__25_ */,
+    3 /* piccolo_lexique_1__40_ */
+  } ;
+  return (inTerminalIndex >= 0) ? kTerminalSymbolStyles [inTerminalIndex] : 0 ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+//   S T Y L E   N A M E    F O R    S T Y L E    I N D E X                                                            *
+//---------------------------------------------------------------------------------------------------------------------*
+
+C_String C_Lexique_piccolo_5F_lexique::styleNameForIndex (const uint32_t inStyleIndex) const {
+  C_String result ;
+  if (inStyleIndex < 8) {
+    static const char * kStyleArray [8] = {
+      "",
+      "keywordStyle",
+      "instructionStyle",
+      "delimitersStyle",
+      "integerStyle",
+      "characterStyle",
+      "stringStyle",
+      "commentStyle"
+    } ;
+    result = kStyleArray [inStyleIndex] ;
+  }
   return result ;
 }
 
