@@ -137,7 +137,7 @@ Si plusieurs fichiers sources apparaissent dans la ligne de commande, ils sont t
 
   \item[\texttt{-G}, \texttt{-{-}generate-grahviz-files}] Engendre plusieurs fichiers d'extension \texttt{.dot} au format \emph{Graphviz} :
 \begin{itemize}
-\item \texttt{\emph{fichier-source}.blockInvocation.dot} : graphe d'appel entre les blocs ; les flèches en noires en trait plein sont les sauts qui peuvent être omis si les blocs sont consécutifs, en pointillé les sauts qui ne peuvent pas être omis, et les flèches rouges sont les appels par les instructions \piccolo{rcall} ou \piccolo{call} ; 
+\item \texttt{\emph{fichier-source}.blockInvocation.dot} : graphe d'appel entre les blocs ; les flèches en noires en trait plein sont les sauts qui peuvent être omis si les blocs sont consécutifs, en pointillé les sauts qui ne peuvent pas être omis, et les flèches rouges sont les appels par les instructions \pic!rcall! ou \pic!call! ; 
 \item \texttt{\emph{fichier-source}.blockOrderingConstraints.dot} : contraintes d'ordre entre les blocs ; les flèches sont les sauts qui peuvent être omis si les blocs sont consécutifs ; 
 \item \texttt{\emph{fichier-source}.blockOrderingConstraintsWoCycle.dot} : le graphe précédent dans lequel les circularités ont été élimininées, plus précisément les sauts d'un bloc vers un de ses dominateurs. 
 \end{itemize}

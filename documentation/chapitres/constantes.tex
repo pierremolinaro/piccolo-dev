@@ -12,29 +12,29 @@ Des constantes peuvent être définies pour les trois types de programme (\emph{
 
 Une constante est définie par la construction :
 
-\begin{lstlisting}[language=piccolo]
+\begin{piccolo}
 const nom_constante = expression_immediate
-\end{lstlisting}
+\end{piccolo}
 
 
 La forme générale d’une \emph{expression immédiate} est décrite à la \refSectionPage{expressionImmediate}. Voici des exemples de définition de constantes :
 
-\begin{lstlisting}[language=piccolo]
+\begin{piccolo}
 const multiplicateur = 249
 const v1 = 128 - (2500 / multiplicateur)
 const v2 = 128 + (2500 / multiplicateur)
-\end{lstlisting}
+\end{piccolo}
 
 L’évaluation des expressions s’effectue en 32 bits signé, et doit pouvoir être calculée à la compilation ; elle peut faire référence à d’autres constantes, du moment qu’elles sont définies auparavant dans le programme. Par exemple, l’écriture suivante déclenche une erreur à la compilation :
 
-\begin{lstlisting}[language=piccolo]
+\begin{piccolo}
 const valeur = mult * 11 # Erreur : mult non defini
 const mult = 23 
-\end{lstlisting}
+\end{piccolo}
 
 Vous pouvez utiliser une constante dans toute expression immédiate. Par exemple :
 
-\begin{lstlisting}[language=piccolo]
+\begin{piccolo}
 if (! PORTB.7)
   if (! PORTB.6)
      movlw butSensTrigo
@@ -42,7 +42,7 @@ if (! PORTB.7)
      movlw butSensHoraire
   end
 end
-\end{lstlisting}
+\end{piccolo}
 
 
 \sectionLabel{Constantes prédéfinies}{constantesPredefinies}
@@ -54,31 +54,31 @@ Piccolo prédéfinit les constantes listées dans le \refTableau{tableauConstant
 %  \rowcolors{2}{\fondTableau}{}
   \begin{tabular}{llccc}
     \textbf{Nom} & \textbf{Signification} & \textbf{Baseline} & \textbf{Mid-range} & \textbf{Pic18}\\
-    \piccolo{ROM\_SIZE} & Taille de la ROM & & \checkmark & \checkmark \\
+    \pic!ROM_SIZE! & Taille de la ROM & & \checkmark & \checkmark \\
     \hdashline
-    \piccolo{BOOTLOADER\_SIZE} & Taille du \emph{bootloader} & & & \checkmark \\
+    \pic!BOOTLOADER_SIZE! & Taille du \emph{bootloader} & & & \checkmark \\
     \hdashline
-    \piccolo{RAM\_SIZE} & Taille de la RAM & & & \checkmark \\
+    \pic!RAM_SIZE! & Taille de la RAM & & & \checkmark \\
   \end{tabular}
   \caption{Constantes prédéfinies}
   \labelTableau{tableauConstantesPredefinies}
   \ligne
 \end{table}
 
-\textbf{Attention !} La valeur de \piccolo{ROM\_SIZE} est le nombre d'octets pour un \emph{pic18} (une instruction occupe 2 ou 4 octets), et le nombre d'instructions de 14 bits pour un \emph{mid-range}.
+\textbf{Attention !} La valeur de \pic!ROM_SIZE! est le nombre d'octets pour un \emph{pic18} (une instruction occupe 2 ou 4 octets), et le nombre d'instructions de 14 bits pour un \emph{mid-range}.
 
-La constante \piccolo{BOOTLOADER\_SIZE} n’est prédéfinie que pour l’implémentation d’un bootloader ou d’un programme applicatif d'un \emph{pic18}. Elle n’est pas définie pour un programme monolithique. Elle a pour valeur la taille en octets réservée pour l’implémentation du bootloader.
+La constante \pic!BOOTLOADER_SIZE! n’est prédéfinie que pour l’implémentation d’un bootloader ou d’un programme applicatif d'un \emph{pic18}. Elle n’est pas définie pour un programme monolithique. Elle a pour valeur la taille en octets réservée pour l’implémentation du bootloader.
 
-La constante \piccolo{RAM\_SIZE} permet d'écrire un code générique pour \emph{pic18} réalisant l'initialisation à zéro de la RAM.
+La constante \pic!RAM_SIZE! permet d'écrire un code générique pour \emph{pic18} réalisant l'initialisation à zéro de la RAM.
 
 
 
 \subsectionLabel{Exemple d'utilisation de \texttt{ROM\_SIZE}}{exempleLTBLPTR-ROMSIZE}
 
-La constante \piccolo{ROM\_SIZE} est définie pour un \emph{pic18}. Associée avec l'instruction \piccolo{ltblptr}, elle permet d'écrire une routine générique, valable pour tous les types de \emph{pic18}, qui renvoie dans \piccolo{WREG}, la somme des octets de la flash.
+La constante \pic!ROM_SIZE! est définie pour un \emph{pic18}. Associée avec l'instruction \pic!ltblptr!, elle permet d'écrire une routine générique, valable pour tous les types de \emph{pic18}, qui renvoie dans \pic!WREG!, la somme des octets de la flash.
 
 
-\begin{lstlisting}[language=piccolo]
+\begin{piccolo}
 routine CALCULER_SOMME_CONTROLE_FLASH {
 #--- Entrer l'adresse du dernier mot de la flash
   ltblptr ROM_SIZE - 1
@@ -91,23 +91,23 @@ routine CALCULER_SOMME_CONTROLE_FLASH {
   while (TBLPTRL NZ | TBLPTRH NZ | TBLPTRU NZ)
   end
 }
-\end{lstlisting}
+\end{piccolo}
 
 
 
 \subsection{Exemple d'utilisation de \texttt{RAM\_SIZE}}
 
-La constante \piccolo{RAM\_SIZE} est définie pour un \emph{pic18}. Elle permet l'écriture d'une séquence générique mettant à zéro toute la RAM d'un micro-contrôleur. On peut faire figurer cette séquence au début de la routine \emph{main}.
+La constante \pic!RAM_SIZE! est définie pour un \emph{pic18}. Elle permet l'écriture d'une séquence générique mettant à zéro toute la RAM d'un micro-contrôleur. On peut faire figurer cette séquence au début de la routine \emph{main}.
 
 
-\begin{lstlisting}[language=piccolo]
+\begin{piccolo}
   lfsr 0, RAM_SIZE - 1
   do
     clrf POSTDEC0
   while (FSR0L NZ | FSR0H NZ)
   end
   clrf INDF0
-\end{lstlisting}
+\end{piccolo}
 
 
 \sectionLabel{Forme générale d'une expression littérale}{expressionImmediate}
@@ -130,39 +130,39 @@ La constante \piccolo{RAM\_SIZE} est définie pour un \emph{pic18}. Elle permet 
 %  \rowcolors{2}{\fondTableau}{}
   \begin{tabular}{lll}
     \textbf{Assembleur} & \textbf{Priorité} & \textbf{Description}\\
-    \piccolo{|} & 0 & Ou inclusif bit à bit \\
+    \pic!|! & 0 & Ou inclusif bit à bit \\
     \hdashline
-    \piccolo{\^} & 0 & Ou exclusif bit à bit \\
+    \pic!^! & 0 & Ou exclusif bit à bit \\
     \hdashline
-    \piccolo{\&} & 1 & Et bit à bit \\
+    \pic!&}! & 1 & Et bit à bit \\
     \hdashline
-    \piccolo{==} & 2 & Test d'égalité \\
+    \pic!==! & 2 & Test d'égalité \\
     \hdashline
-    \piccolo{\!=} & 2 & Test d'inégalité \\
+    \pic+!=+ & 2 & Test d'inégalité \\
     \hdashline
-    \piccolo{>=} & 2 & Test supérieur ou égal \\
+    \pic!>=! & 2 & Test supérieur ou égal \\
     \hdashline
-    \piccolo{>} & 2 & Test strictement supérieur \\
+    \pic!>! & 2 & Test strictement supérieur \\
     \hdashline
-    \piccolo{<=} & 2 & Test inférieur ou égal \\
+    \pic!<=! & 2 & Test inférieur ou égal \\
     \hdashline
-    \piccolo{<} & 2 & Test strictement inférieur \\
+    \pic!<! & 2 & Test strictement inférieur \\
     \hdashline
-    \piccolo{+} & 3 & Addition \\
+    \pic!+! & 3 & Addition \\
     \hdashline
-    \piccolo{<<} & 3 & Décalage à gauche \\
+    \pic!<<! & 3 & Décalage à gauche \\
     \hdashline
-    \piccolo{>>} & 3 & Décalage arithmétique à gauche \\
+    \pic!>>! & 3 & Décalage arithmétique à gauche \\
     \hdashline
-    \piccolo{*} & 4 & Multiplication \\
+    \pic!*! & 4 & Multiplication \\
     \hdashline
-    \piccolo{/} & 4 & Division \\
+    \pic!/! & 4 & Division \\
     \hdashline
-    \piccolo{\%} & 4 & Modulo \\
+    \pic!%! & 4 & Modulo \\
     \hdashline
-    \piccolo{-} & 5 & Opérateur unaire : négation \\
+    \pic!-! & 5 & Opérateur unaire : négation \\
     \hdashline
-    \piccolo{\~} & 5 & Opérateur unaire : complémentation logique \\
+    \pic!~! & 5 & Opérateur unaire : complémentation logique \\
   \end{tabular}
   \caption{Opérateurs d'une expression littérale, par ordre de priorité croissante}
   \labelTableau{operateursExpressionImmediate}
@@ -180,10 +180,10 @@ Pour illustrer cette construction, nous prenons un exemple. Nous voulons initial
 \end{itemize}
 
 Une première solution est de calculer à la main la valeur à affecter à \assembleur{T2CON}. Cela donne :
-\begin{lstlisting}[language=piccolo]
+\begin{piccolo}
 movlw   0x2D
 movwf   T2CON
-\end{lstlisting}
+\end{piccolo}
 
 La seconde solution est d'utiliser la construction que nous allons décrire. Pour cela, il faut d'abord s’assurer que Piccolo connaît la description des champs de bits de \assembleur{T2CON}. On lance donc la commande \texttt{piccolo -R=18F448} dans le terminal, et on recherche la définition du registre \assembleur{T2CON} dans le listing obtenu ; on obtient :
 \begin{quote}
@@ -191,21 +191,21 @@ La seconde solution est d'utiliser la construction que nous allons décrire. Pou
 \end{quote}
 
 Les noms correspondent bien. En utilisant ces noms, nous pouvons écrire :
-\begin{lstlisting}[language=piccolo]
+\begin{piccolo}
 movlw   @ T2CON (TOUTPS:5, TMR2ON:1, T2CKPS:1)
 movwf   T2CON
-\end{lstlisting}
+\end{piccolo}
 
-L'expression litérale présente la syntaxe suivante : elle est introduite par le délimiteur \piccolo{@}, suivi d’un nom de registre, puis, entre parenthèses, une séquence de couples formés d’un nom de champ et d’une valeur immédiate :
-\begin{lstlisting}[language=piccolo]
+L'expression litérale présente la syntaxe suivante : elle est introduite par le délimiteur \texttt{@}, suivi d’un nom de registre, puis, entre parenthèses, une séquence de couples formés d’un nom de champ et d’une valeur immédiate :
+\begin{piccolo}
   @ nom\_registre (nom_champ:expression_literale, ...)
-\end{lstlisting}
+\end{piccolo}
 
-Tout registre spécial, toute variable déclarée (dans une section \piccolo{ram}) ayant des champs définis peut être utilisée.
+Tout registre spécial, toute variable déclarée (dans une section \pic!ram!) ayant des champs définis peut être utilisée.
 
-Le nom de champ (\piccolo{nom\_champ}) est l’un des champs définis par ce registre ou par cette variable. On ne peut utiliser des noms de champ d’un autre registre ou d’une autre variable.
+Le nom de champ (\pic!nom_champ!) est l’un des champs définis par ce registre ou par cette variable. On ne peut utiliser des noms de champ d’un autre registre ou d’une autre variable.
 
-L’\piccolo{expression\_literale} associée obéit à la syntaxe générale des expressions litérales. La valeur obtenue doit être positive ou nulle, et inférieure ou égal à la valeur maximum que peut contenir le champ (c’est à dire, pour un champ de \piccolo{n} bits, $2^n-1$).
+L’\pic!expression_literale! associée obéit à la syntaxe générale des expressions litérales. La valeur obtenue doit être positive ou nulle, et inférieure ou égal à la valeur maximum que peut contenir le champ (c’est à dire, pour un champ de $n$ bits, $2^n-1$).
 
 Un nom de champ ne peut apparaître qu’une fois. L’ordre d’apparition des champs dans cette construction n’a pas d’importance. Tout champ non mentionné a implicitement tous les bits correspondants à zéro.
 

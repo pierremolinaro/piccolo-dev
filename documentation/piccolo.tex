@@ -1,6 +1,7 @@
 %!TEX encoding = UTF-8 Unicode
 
 \documentclass[a4paper,11pt,obeyspaces,openany]{book}
+\usepackage{verbatim}
 % L'option 'openany' permet de démarrer un chapitre sur une page paire
 
 % L'option 'obeyspaces' indique au paquetage hyperref de respecter les espaces dans les chemins \path ou \url.
@@ -67,6 +68,10 @@
 %   M I S E    E N    P A G E S    D E M A N D É E     P A R     E L L I P S E S                                        *
 %                                                                                                                       *
 %-----------------------------------------------------------------------------------------------------------------------*
+
+%--- Interligne 1,5 ligne
+\usepackage{setspace}
+\onehalfspacing
 
 %---------------------------------------------------- Mise en page
 % Voir "Une courte introduction à Latex2e", § 6.4
@@ -499,45 +504,45 @@
 
 %-----------------------------------------------------------------------------------------------------------------------*
 
-\lstdefinelanguage{piccolo}{
-  style=piccolo,
-  keywords={bank, banksave, banksel, baseline, block, bootloader, byte, case, checkbank, checknobank, checkpic, computed, configuration, const,
-     contextsave, data, default, do, end, else, elsif, fast, forever, if, implements,
-     include, inline, interrupt, mark, midrange, nobank, noreturn, page, pic18, preserved,
-     ram, requires, rom, ensures, routine, switch, unused, uses, w, while},
-  keywordstyle=\bf\color{blue},
-  sensitive=false,
-  keywords=[2]{addlw, addwf, addwfc, andlw, andwf, bc, bcf, bn, bnc, bnn, bov, bnov, bnz, bsf,
-    bra, btg, bz, call, clrf, clrw, clrwdt, comf, daw, decf, fnop, goto, incf, iorlw, iorwf, jsr, jump,
-    lfsr, ldataptr, ltblptr, mnop, movf, movff, movlw, movwf, mullw, mulwf, negf, nop, pop, option,
-    push, rcall, reset, retlw, rlcf, rlf, rlncf, rrcf, rrf, rrncf, setf, sleep, subfwb, sublw, subwf,
-    subwfb, swapf, tblrd, tblwt, tris, xorlw, xorwf},
-  keywordstyle=[2]\bf\color{brown},
-  comment=[l]{\#},
-  showstringspaces=false  % do not underline spaces within strings
-}
+%\lstdefinelanguage{piccolo}{
+%  style=piccolo,
+%  keywords={bank, banksave, banksel, baseline, block, bootloader, byte, case, checkbank, checknobank, checkpic, computed, configuration, const,
+%     contextsave, data, default, do, end, else, elsif, fast, forever, if, implements,
+%     include, inline, interrupt, mark, midrange, nobank, noreturn, page, pic18, preserved,
+%     ram, requires, rom, ensures, routine, switch, unused, uses, w, while},
+%  keywordstyle=\bf\color{blue},
+%  sensitive=false,
+%  keywords=[2]{addlw, addwf, addwfc, andlw, andwf, bc, bcf, bn, bnc, bnn, bov, bnov, bnz, bsf,
+%    bra, btg, bz, call, clrf, clrw, clrwdt, comf, daw, decf, fnop, goto, incf, iorlw, iorwf, jsr, jump,
+%    lfsr, ldataptr, ltblptr, mnop, movf, movff, movlw, movwf, mullw, mulwf, negf, nop, pop, option,
+%    push, rcall, reset, retlw, rlcf, rlf, rlncf, rrcf, rrf, rrncf, setf, sleep, subfwb, sublw, subwf,
+%    subwfb, swapf, tblrd, tblwt, tris, xorlw, xorwf},
+%  keywordstyle=[2]\bf\color{brown},
+%  comment=[l]{\#},
+%  showstringspaces=false  % do not underline spaces within strings
+%}
 
-\newcommand\couleurCodePICCOLO{green!20}
+%\newcommand\couleurCodePICCOLO{green!20}
 
-\ifthenelse{\equal{\sortieEnCouleur}{true}}{
-  \lstdefinestyle{piccolo}{
-    basicstyle=\ttfamily\small,
-    frame=l,
-    backgroundcolor=\color{\couleurCodePICCOLO},
-    numberstyle=\ttfamily\small,
-    xleftmargin=20pt,
-    commentstyle=\color{red},
-  }
-}{
-  \lstdefinestyle{piccolo}{
-    basicstyle=\ttfamily\small,
-    frame=l,
-    numberstyle=\ttfamily\small,
-    xleftmargin=20pt
-  }
-}
+%\ifthenelse{\equal{\sortieEnCouleur}{true}}{
+%  \lstdefinestyle{piccolo}{
+%    basicstyle=\ttfamily\small,
+%    frame=l,
+%    backgroundcolor=\color{\couleurCodePICCOLO},
+%    numberstyle=\ttfamily\small,
+%    xleftmargin=20pt,
+%    commentstyle=\color{red},
+%  }
+%}{
+%  \lstdefinestyle{piccolo}{
+%    basicstyle=\ttfamily\small,
+%    frame=l,
+%    numberstyle=\ttfamily\small,
+%    xleftmargin=20pt
+%  }
+%}
 
-\newcommand\piccolo[1]{\colorbox{\couleurCodePICCOLO}{\lstinline[language=piccolo]@#1@}}
+%\newcommand\piccolo[1]{\colorbox{\couleurCodePICCOLO}{\lstinline[language=piccolo]@#1@}}
 
 %-----------------------------------------------------------------------------------------------------------------------*
 
@@ -564,7 +569,6 @@
 }
 
 
-%\newcommand\assembleur[1]{\colorbox{\couleurCodeASSEMBLEUR}{\lstinline[language=assembleur]{#1}}}
 \newcommand\assembleur[1]{\colorbox{\couleurCodeASSEMBLEUR}{\lstinline[language=assembleur]@#1@}}
 
 
@@ -579,6 +583,109 @@
   frame=l,
 %  numberstyle=\ttfamily\small,
 }
+
+%-----------------------------------------------------------------------------------------------------------------------*
+%   A F F I C H A G E    D U    C O D E    P I C C O L O                                                                *
+%-----------------------------------------------------------------------------------------------------------------------*
+
+\usepackage{mdframed}
+\usepackage{lineno}
+
+%-----------------------------------------------------------------------------------------------------------------------*
+
+\newcommand\keywordStylePiccolo[1]{\textcolor{blue}{\textbf{#1}}}
+\newcommand\instructionStylePiccolo[1]{\textcolor{brown}{\textbf{#1}}}
+\newcommand\delimitersStylePiccolo[1]{\textcolor{orange}{#1}}
+\newcommand\integerStylePiccolo[1]{\textcolor{orange}{#1}}
+\newcommand\characterStylePiccolo[1]{\textcolor{orange}{#1}}
+\newcommand\stringStylePiccolo[1]{\textcolor{gray}{#1}}
+\newcommand\commentStylePiccolo[1]{\textcolor{red}{#1}}
+
+\newmdenv[
+  topline=false,
+  bottomline=false,
+  rightline=false,
+  linecolor=blue!25,
+  linewidth=2pt
+]{siderules}
+
+\newwrite\tempfile
+
+\makeatletter
+\newenvironment{piccolo}{%
+  \begingroup
+  \@bsphack
+  \immediate\openout\tempfile=temp.piccolo%
+  \let\do\@makeother\dospecials
+  \catcode`\^^M\active
+  \verbatim@startline
+  \verbatim@addtoline
+  \verbatim@finish
+  \def\verbatim@processline{\immediate\write\tempfile{\the\verbatim@line}}%
+  \verbatim@start
+}{
+  \immediate\closeout\tempfile
+  \@esphack
+  \endgroup
+  \immediate\write18{piccolo --mode=latex:Piccolo temp.piccolo}
+  {\singlespacing\begin{siderules}\ttfamily\input{temp.piccolo.tex}\end{siderules}}
+}
+\makeatother
+
+%-----------------------------------------------------------------------------------------------------------------------*
+% COMMANDE \ggs : affichage de code en ligne galgas                                                                     *
+%-----------------------------------------------------------------------------------------------------------------------*
+
+\newcommand\keywordStylepiccolo[1]{\textcolor{blue}{\textbf{#1}}}
+\newcommand\instructionStylepiccolo[1]{\textcolor{brown}{\textbf{#1}}}
+\newcommand\delimitersStylepiccolo[1]{\textcolor{orange}{#1}}
+\newcommand\integerStylepiccolo[1]{\textcolor{orange}{#1}}
+\newcommand\characterStylepiccolo[1]{\textcolor{orange}{#1}}
+\newcommand\stringStylepiccolo[1]{\textcolor{gray}{#1}}
+\newcommand\commentStylepiccolo[1]{\textcolor{red}{#1}}
+
+
+\makeatletter
+\newcommand*\pic{%
+  \@bsphack%
+  \begingroup%
+  \let\do\@makeother\dospecials%
+  \let\do\do@noligs\verbatim@nolig@list%
+  \catcode`\^^M=15\relax%
+  \@vobeyspaces%
+  \@pic{\temporary}%
+}%
+\newcommand\@pic[2]{%
+  \catcode`-=12\relax%
+  \catcode`<=12\relax%
+  \catcode`>=12\relax%
+  \catcode`,=12\relax%
+  \catcode`'=12\relax%
+  \catcode``=12\relax%
+  \catcode`#2\active%
+  \catcode`~\active%
+  \lccode`\~`#2\relax%
+  \begingroup%
+  \lowercase{%
+    \def\@tempa##1~{%
+      \expandafter\endgroup%
+      \expandafter\DeclareRobustCommand%
+      \expandafter*%
+      \expandafter#1%
+      \expandafter{\@tempa}%
+      \@esphack%
+      \immediate\openout\tempfile=temp.piccolo%
+      \immediate\write\tempfile{##1}%
+      \immediate\closeout\tempfile%
+      \immediate\write18{piccolo --mode=latex:Piccolo temp.piccolo}%
+      \colorbox{gray!6}{\ttfamily\input{temp.piccolo.tex}\unskip}%
+    }%
+  }%
+  \ifnum`#2=`\~\else\@makeother\~\fi%
+  \expandafter\endgroup%
+  \@tempa%
+}%
+\makeatother
 
 %-----------------------------------------------------------------------------------------------------------------------*
 %                                                                                                                       *

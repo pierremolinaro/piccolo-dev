@@ -55,15 +55,15 @@ Maintenant, voyons comment cette même situation est appréhendée en Piccolo.
 Piccolo reprend la plupart des instructions assembleur, aussi la séquence des trois instructions précédentes peut être écrite en Piccolo.
 
 En Piccolo, le code est exécutable est structuré en \emph{routines}, aussi on écrira :
-\begin{lstlisting}[language=piccolo]
+\begin{piccolo}
 routine maRoutine {
   clrf  var0
   clrf  var1  # Erreur
   clrf  var2  # Erreur
 }
-\end{lstlisting}
+\end{piccolo}
 
-Quelques remarques de détail : « \piccolo{routine} » et « \piccolo{clrf} » sont des mots réservés de Piccolo, et l’instruction « \assembleur{RETURN} » est automatiquement ajoutée à la fin des instructions de la routine par la génération de code.
+Quelques remarques de détail : « \pic!routine! » et « \pic!clrf! » sont des mots réservés de Piccolo, et l’instruction « \assembleur{RETURN} » est automatiquement ajoutée à la fin des instructions de la routine par la génération de code.
 
 Que se passe-t'il si on compile un programme contenant cette routine ? En Piccolo, la sémantique de la référence à un registre est la suivante :\begin{itemize}
 \item d'abord, l'analyseur sémantique regarde si le registre peut être accédé par l'\emph{access bank} ; si oui, l'instruction est correcte ;
@@ -73,7 +73,7 @@ Que se passe-t'il si on compile un programme contenant cette routine ? En Piccol
 Or ici, aucune indication n'est fournie sur la valeur de \assembleur{BSR} : deux erreurs apparaissent pour les 2\up{e} et 3\up{e} instructions.
 
 On corrige ces erreurs au moyen de l’instruction « \assembleur{banksel} » (comme \assembleur{MOVLB}, elle affecte une valeur à \assembleur{BSR}, mais comme sa sémantique est différente, j’ai préféré utiliser un autre nom). La routine corrigée est :
-\begin{lstlisting}[language=piccolo]
+\begin{piccolo}
 routine maRoutine {
   clrf  var0
   banksel 1
@@ -81,20 +81,20 @@ routine maRoutine {
   banksel 2
   clrf  var2
 }
-\end{lstlisting}
+\end{piccolo}
 
 
 Mais on peut aller plus loin : l’en-tête de la routine ne dit rien au sujet de \assembleur{BSR}, ce qui signifie que la valeur de \assembleur{BSR} peut être quelconque au moment de l’appel, et que la routine peut modifier \assembleur{BSR} à sa guise.
 
 Si maintenant, je change l’en-tête en écrivant :
-\begin{lstlisting}[language=piccolo]
+\begin{piccolo}
 routine maRoutine bank:requires 1 {
   clrf  var0
   clrf  var1
   banksel 2
   clrf  var2
 }
-\end{lstlisting}
+\end{piccolo}
 
 Cet en-tête signifie que le compilateur Piccolo vérifie que la routine ne soit appelée que lorsque \assembleur{BSR} vaut 1. En contre partie, l’instruction « \assembleur{banksel 1} » est inutile et est enlevée (d’ailleurs sa présence provoquerait l’émission un warning signalant son inutilité).
 

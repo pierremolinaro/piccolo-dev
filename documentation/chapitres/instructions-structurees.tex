@@ -26,27 +26,27 @@ En Piccolo, il existe deux types d'instructions :
 
 Piccolo définit les instructions structurées suivantes :
 \begin{itemize}
-  \item l'instruction \piccolo{mnop} (\refSectionPage{instructionMNOP}) ;
+  \item l'instruction \pic!mnop! (\refSectionPage{instructionMNOP}) ;
   \item l'instruction conditionnelle simple (\refSectionPage{instructionConditionnelleSimple}) ;
   \item l'instruction conditionnelle structurée (\refSectionPage{instructionConditionnelleStructuree}) ;
-  \item l'instruction \piccolo{switch} (\refSectionPage{instructionSwitch}, pour \emph{pic18} uniquement) ;
+  \item l'instruction \pic!switch! (\refSectionPage{instructionSwitch}, pour \emph{pic18} uniquement) ;
   \item l'instruction répétitive (\refSectionPage{instructionRepetitive}) ;
   \item l'instruction de répétition infinie (\refSectionPage{repetitionInfinie}) ;
   \item l'instruction de répétition statique (\refSectionPage{repetitionStatique}) ;
-  \item l'instruction \piccolo{block} (\refSectionPage{instructionBloc}) ;
-  \item l'instruction \piccolo{computed retlw} (\refSubsectionPage{instructionComputedRetlw}) ;
-  \item l'instruction \piccolo{computed bra} (\refSubsectionPage{instructionComputedBra}) ;
-  \item l'instruction \piccolo{computed goto} (\refSubsectionPage{instructionComputedGoto}) ;
-  \item l'instruction \piccolo{banksel} (\refSubsectionPage{instructionBanksel}) ;
-  \item l'instruction \piccolo{nobank} (\refSubsectionPage{instructionNoBank}) ;
-  \item l'instruction \piccolo{banksave} (\refSubsectionPage{instructionBanksave}).
+  \item l'instruction \pic!block! (\refSectionPage{instructionBloc}) ;
+  \item l'instruction \pic!computed retlw! (\refSubsectionPage{instructionComputedRetlw}) ;
+  \item l'instruction \pic!computed bra! (\refSubsectionPage{instructionComputedBra}) ;
+  \item l'instruction \pic!computed goto! (\refSubsectionPage{instructionComputedGoto}) ;
+  \item l'instruction \pic!banksel! (\refSubsectionPage{instructionBanksel}) ;
+  \item l'instruction \pic!nobank! (\refSubsectionPage{instructionNoBank}) ;
+  \item l'instruction \pic!banksave! (\refSubsectionPage{instructionBanksave}).
 \end{itemize}
 
 \sectionLabel{Instruction \texttt{mnop}}{instructionMNOP}
 
-Cette instruction n'existe pas en assembleur. En Piccolo, \piccolo{mnop k} engendre une séquence de \piccolo{k} instructions \assembleur{NOP}.
+Cette instruction n'existe pas en assembleur. En Piccolo, \pic!mnop k! engendre une séquence de \pic!k! instructions \assembleur{NOP}.
 
-\piccolo{k} est une expression statique. La forme générale des expressions statiques est donnée à la \refSectionPage{expressionImmediate}. Une expression statique est évaluée à la compilation. Le compilateur effectue tous les calculs avec des nombres entiers 32 bits signés.
+\pic!k! est une expression statique. La forme générale des expressions statiques est donnée à la \refSectionPage{expressionImmediate}. Une expression statique est évaluée à la compilation. Le compilateur effectue tous les calculs avec des nombres entiers 32 bits signés.
 
 
 
@@ -62,17 +62,17 @@ Ces instructions permettent d'exploiter directement les instructions assembleur 
 
 La syntaxe de l'instruction conditionnelle simple est la suivante :
 
-\begin{lstlisting}[language=piccolo]
+\begin{piccolo}
 if condition_simple : instruction_simple
-\end{lstlisting}
+\end{piccolo}
 
 Noter que l'instruction exécutée conditionnellement ne peut être qu'une instruction simple.
 
 Noter aussi la différence suivante : l'instruction assembleur indique la condition de saut de l'instruction suivante, tandis que le conditionnelle simple nomme sa condition d'exécution, c'est à dire son complémentaire.
 
-Pour les \emph{pic18}, seules trois comparaisons d'un registre avec \piccolo{W} existent pour l'instruction conditionnelle simple : elles correspondent aux instructions assembleur \assembleur{CPFSEQ}, \assembleur{CPFSGT} et \assembleur{CPFSLT}. L'instruction conditionnelle structurée implémente les six comparaisons.
+Pour les \emph{pic18}, seules trois comparaisons d'un registre avec \pic!W! existent pour l'instruction conditionnelle simple : elles correspondent aux instructions assembleur \assembleur{CPFSEQ}, \assembleur{CPFSGT} et \assembleur{CPFSLT}. L'instruction conditionnelle structurée implémente les six comparaisons.
 
-Pour le test individuel d'un bit, la notation \piccolo{registre.bit} est utilisée : celle-ci est présentée \refSubsectionPage{opBaselineAffectationBit} (\emph{baseline}), \refSubsectionPage{opMidRangeAffectationBit} (\emph{mid-range}) et \refSubsectionPage{opPic18AffectationBit} (\emph{pic18}).
+Pour le test individuel d'un bit, la notation \pic!registre.bit! est utilisée : celle-ci est présentée \refSubsectionPage{opBaselineAffectationBit} (\emph{baseline}), \refSubsectionPage{opMidRangeAffectationBit} (\emph{mid-range}) et \refSubsectionPage{opPic18AffectationBit} (\emph{pic18}).
 
 Le \refTableau{instructionsConditionnellesSimplesBaseline} donne la liste de toutes les instructions conditionnelles simples pour les \emph{baseline} et \emph{mid-range}, et le \refTableau{instructionsConditionnellesSimplesPic18} pour celles des \emph{pic18}.
 
@@ -82,17 +82,17 @@ Le \refTableau{instructionsConditionnellesSimplesBaseline} donne la liste de tou
 %  \rowcolors{2}{\fondTableau}{}
   \begin{tabular}{lp{4cm}lll}
     \textbf{Instruction} & \textbf{Code engendré}\\
-    \piccolo{if reg.bit : instruction} & \assembleur{BTFSC reg, bit instruction} \\
+    \pic!if reg.bit : instruction! & \assembleur{BTFSC reg, bit instruction} \\
     \hdashline
-    \piccolo{if ! reg.bit : instruction} & \assembleur{BTFSS reg, bit instruction} \\
+    \pic!if ! reg.bit : instruction! & \assembleur{BTFSS reg, bit instruction} \\
     \hdashline
-    \piccolo{if decf reg nz : instruction} & \assembleur{DECFSZ reg instruction} \\
+    \pic!if decf reg nz : instruction! & \assembleur{DECFSZ reg instruction} \\
     \hdashline
-    \piccolo{if decf reg, W nz : instruction} & \assembleur{DECFSZ reg, W instruction} \\
+    \pic!if decf reg, W nz : instruction! & \assembleur{DECFSZ reg, W instruction} \\
     \hdashline
-    \piccolo{if incf reg nz : instruction} & \assembleur{INCFSZ reg instruction} \\
+    \pic!if incf reg nz : instruction! & \assembleur{INCFSZ reg instruction} \\
     \hdashline
-    \piccolo{if incf reg, W nz : instruction} & \assembleur{INCFSZ reg, W instruction} \\
+    \pic!if incf reg, W nz : instruction! & \assembleur{INCFSZ reg, W instruction} \\
   \end{tabular}
   \caption{Instructions conditionnelles simples pour \emph{baseline} et \emph{mid-range}}
   \labelTableau{instructionsConditionnellesSimplesBaseline}
@@ -105,33 +105,33 @@ Le \refTableau{instructionsConditionnellesSimplesBaseline} donne la liste de tou
 %  \rowcolors{2}{\fondTableau}{}
   \begin{tabular}{lp{4cm}lll}
     \textbf{Instruction} & \textbf{Code engendré}\\
-    \piccolo{if reg != W : instruction} & \assembleur{CPFSEQ reg instruction} \\
+    \pic!if reg != W : instruction! & \assembleur{CPFSEQ reg instruction} \\
     \hdashline
-    \piccolo{if reg >= W : instruction} & \assembleur{CPFSLT reg instruction} \\
+    \pic!if reg >= W : instruction! & \assembleur{CPFSLT reg instruction} \\
     \hdashline
-    \piccolo{if reg <= W : instruction} & \assembleur{CPFSGT reg instruction} \\
+    \pic!if reg <= W : instruction! & \assembleur{CPFSGT reg instruction} \\
     \hdashline
-    \piccolo{if reg nz : instruction} & \assembleur{TSTFSZ reg instruction} \\
+    \pic!if reg nz : instruction! & \assembleur{TSTFSZ reg instruction} \\
     \hdashline
-    \piccolo{if reg.bit : instruction} & \assembleur{BTFSC reg, bit instruction} \\
+    \pic!if reg.bit : instruction! & \assembleur{BTFSC reg, bit instruction} \\
     \hdashline
-    \piccolo{if ! reg.bit : instruction} & \assembleur{BTFSS reg, bit instruction} \\
+    \pic!if ! reg.bit : instruction! & \assembleur{BTFSS reg, bit instruction} \\
     \hdashline
-    \piccolo{if decf reg z : instruction} & \assembleur{DCFSNZ reg instruction} \\
+    \pic!if decf reg z : instruction! & \assembleur{DCFSNZ reg instruction} \\
     \hdashline
-    \piccolo{if decf reg, W z : instruction} & \assembleur{DCFSNZ reg, W instruction} \\
+    \pic!if decf reg, W z : instruction! & \assembleur{DCFSNZ reg, W instruction} \\
     \hdashline
-    \piccolo{if decf reg nz : instruction} & \assembleur{DECFSZ reg instruction} \\
+    \pic!if decf reg nz : instruction! & \assembleur{DECFSZ reg instruction} \\
     \hdashline
-    \piccolo{if decf reg, W nz : instruction} & \assembleur{DECFSZ reg, W instruction} \\
+    \pic!if decf reg, W nz : instruction! & \assembleur{DECFSZ reg, W instruction} \\
     \hdashline
-    \piccolo{if incf reg z : instruction} & \assembleur{INFSNZ reg instruction} \\
+    \pic!if incf reg z : instruction! & \assembleur{INFSNZ reg instruction} \\
     \hdashline
-    \piccolo{if incf reg, W z : instruction} & \assembleur{INFSNZ reg, W instruction} \\
+    \pic!if incf reg, W z : instruction! & \assembleur{INFSNZ reg, W instruction} \\
     \hdashline
-    \piccolo{if incf reg nz : instruction} & \assembleur{INCFSZ reg instruction} \\
+    \pic!if incf reg nz : instruction! & \assembleur{INCFSZ reg instruction} \\
     \hdashline
-    \piccolo{if incf reg, W nz : instruction} & \assembleur{INCFSZ reg, W instruction} \\
+    \pic!if incf reg, W nz : instruction! & \assembleur{INCFSZ reg, W instruction} \\
   \end{tabular}
   \caption{Instructions conditionnelles simples pour \emph{pic18}}
   \labelTableau{instructionsConditionnellesSimplesPic18}
@@ -143,27 +143,27 @@ Le \refTableau{instructionsConditionnellesSimplesBaseline} donne la liste de tou
 
 \sectionLabel{Instruction conditionnelle structurée}{instructionConditionnelleStructuree}
 
-L'instruction conditionnelle est une construction classique des langages de programmation et accepte zéro, un ou plusieurs blocs \piccolo{elsif}, et zéro ou un bloc \piccolo{else} ; voici différents exemples, \piccolo{cca}, \piccolo{ccb} et \piccolo{ccc} étant des expressions conditionnelles (voir \refSectionPage{formeGeneraleConditions}).
+L'instruction conditionnelle est une construction classique des langages de programmation et accepte zéro, un ou plusieurs blocs \pic!elsif!, et zéro ou un bloc \pic!else! ; voici différents exemples, \pic!cca!, \pic!ccb! et \pic!ccc! étant des expressions conditionnelles (voir \refSectionPage{formeGeneraleConditions}).
 
 
-Pas de branche \piccolo{elsif} ni \piccolo{else} :
-\begin{lstlisting}[language=piccolo]
+Pas de branche \pic!elsif! ni \pic!else! :
+\begin{piccolo}
 if (cca)
   instructions 1
 end
-\end{lstlisting}
+\end{piccolo}
 
-Pas de branche \piccolo{elsif} et une branche \piccolo{else} :
-\begin{lstlisting}[language=piccolo]
+Pas de branche \pic!elsif! et une branche \pic!else! :
+\begin{piccolo}
 if (cca)
   instructions 1
 else
   instructions 3
 end
-\end{lstlisting}
+\end{piccolo}
 
-Une branche \piccolo{elsif} et une branche \piccolo{else} :
-\begin{lstlisting}[language=piccolo]
+Une branche \pic!elsif! et une branche \pic!else! :
+\begin{piccolo}
 if (cca)
   instructions 1
 elsif (ccb)
@@ -171,10 +171,10 @@ elsif (ccb)
 else
   instructions 3
 end
-\end{lstlisting}
+\end{piccolo}
 
-Plusieurs branches \piccolo{elsif}, pas de branche \piccolo{else} :
-\begin{lstlisting}[language=piccolo]
+Plusieurs branches \pic!elsif!, pas de branche \pic!else! :
+\begin{piccolo}
 if (cca)
   instructions 1
 elsif (ccb)
@@ -182,7 +182,7 @@ elsif (ccb)
 elsif (ccc)
   instructions 3
 end
-\end{lstlisting}
+\end{piccolo}
 
 
 
@@ -194,7 +194,7 @@ end
 
 \lstset{emph={cst1, instructions1, cst2, instructions2, instructionsElse, cst3}, emphstyle=\emph}
 
-\begin{lstlisting}[language=piccolo]
+\begin{piccolo}
 switch w
 case cst1 :
   instructions1 # Executees si W == cst1
@@ -203,11 +203,11 @@ case cst2 :
 else
   instructionsElse # Executees si W != cst1 et W != cst2
 end
-\end{lstlisting}
+\end{piccolo}
 
-Syntaxiquement, cette instruction accepte une ou plusieurs branches \piccolo{case}, et zéro ou une branche \piccolo{else}. L'absence de branche \piccolo{else} est équivalent à une branche \piccolo{else} vide.
+Syntaxiquement, cette instruction accepte une ou plusieurs branches \pic!case!, et zéro ou une branche \pic!else!. L'absence de branche \pic!else! est équivalent à une branche \pic!else! vide.
 
-Cette instruction compare successivement le contenu de \piccolo{W} à différentes expressions constantes (ici \piccolo{cst1} puis \piccolo{cst2}). Ces expressions constantes doivent être comprises entre $0$ et $255$. Dès qu'une comparaison avec \piccolo{W} détecte une égalité, la liste d'instructions correspondante est exécutée. Si aucune comparaison ne détecte d'égalité, la liste d'instructions qui suit le \piccolo{else} est exécutée. L'organigramme correspondant à l'exécution de l'instruction \piccolo{switch} ci-dessus est donné par la \refFigure{}{organigrammeSwitchW}.
+Cette instruction compare successivement le contenu de \pic!W! à différentes expressions constantes (ici \pic!cst1! puis \pic!cst2!). Ces expressions constantes doivent être comprises entre $0$ et $255$. Dès qu'une comparaison avec \pic!W! détecte une égalité, la liste d'instructions correspondante est exécutée. Si aucune comparaison ne détecte d'égalité, la liste d'instructions qui suit le \pic!else! est exécutée. L'organigramme correspondant à l'exécution de l'instruction \pic!switch}! ci-dessus est donné par la \refFigure{}{organigrammeSwitchW}.
 
 \begin{figure}[t]
   \centering
@@ -243,7 +243,7 @@ Cette instruction compare successivement le contenu de \piccolo{W} à différent
 
 \textbf{Notes :}
 \begin{itemize}
-  \item les comparaisons successives sont réalisées à l'aide d'instructions \assembleur{ADDLW}, aussi la valeur de \piccolo{W} est modifiée durant les tests successifs; on ne peut donc pas prévoir sa valeur de manière fiable au début des branches \piccolo{case} et de la branche \piccolo{else} ;
+  \item les comparaisons successives sont réalisées à l'aide d'instructions \assembleur{ADDLW}, aussi la valeur de \pic!W! est modifiée durant les tests successifs; on ne peut donc pas prévoir sa valeur de manière fiable au début des branches \pic!case! et de la branche \pic!else! ;
   \item le coût d'une comparaison est deux instructions assembleur : une instruction \assembleur{ADDLW}, et une instruction \assembleur{BZ} ou  \assembleur{BNZ} ;
   \item contrairement au langage C, l'exécution d'une branche ne se poursuit pas par l'exécution de la branche qui suit ;
   \item le compilateur vérifie qu'une constante n'est pas nommée plusieurs fois : un message d'erreur est engendré si cette règle n'est pas respectée.
@@ -252,8 +252,8 @@ Cette instruction compare successivement le contenu de \piccolo{W} à différent
 
 \subsection{Citer plusieurs constantes dans une branche \texttt{case}}
 
-Il est possible de citer plusieurs constantes dans une branche \piccolo{case} :
-\begin{lstlisting}[language=piccolo]
+Il est possible de citer plusieurs constantes dans une branche \pic!case! :
+\begin{piccolo}
 switch w
 case cst1 :
   instructions1 # Executees si W == cst1
@@ -262,15 +262,15 @@ case cst2, cst3 :
 else
   instructionsElse # Executees si W != cst1 et W != cst2 et W != cst3
 end
-\end{lstlisting}
+\end{piccolo}
 
-Les instructions associées à une branche \piccolo{case} sont exécutées si \piccolo{W} est égal à l'une des constantes citées. Le coût est deux instructions assembleur par constante citée.
+Les instructions associées à une branche \pic!case! sont exécutées si \pic!W! est égal à l'une des constantes citées. Le coût est deux instructions assembleur par constante citée.
 
 
 \subsection{Citer un intervalle dans une branche \texttt{case}}
 
-Il est possible de citer un intervalle dans une branche \piccolo{case} :
-\begin{lstlisting}[language=piccolo]
+Il est possible de citer un intervalle dans une branche \pic!case! :
+\begin{piccolo}
 switch w
 case [cst1, cst2] :
   instructions1 # Executees si W >= cst1 et W <= cst2
@@ -279,14 +279,14 @@ case cst3 :
 else
   instructionsElse
 end
-\end{lstlisting}
+\end{piccolo}
 
-L'intervalle doit être valide, c'est à dire \piccolo{cst1 < cst2}. Les instructions associées à cette branche \piccolo{case} sont exécutées si \piccolo{W} est dans l'intervalle cité. Le coût est quatre instructions assembleur : deux instructions \assembleur{ADDLW}, et deux instructions \assembleur{BC} ou  \assembleur{BNC}. Il est donc plus rentable de citer un intervalle plutôt que les constantes une par une.
+L'intervalle doit être valide, c'est à dire \pic!cst1 < cst2!. Les instructions associées à cette branche \pic!case! sont exécutées si \pic!W! est dans l'intervalle cité. Le coût est quatre instructions assembleur : deux instructions \assembleur{ADDLW}, et deux instructions \assembleur{BC} ou  \assembleur{BNC}. Il est donc plus rentable de citer un intervalle plutôt que les constantes une par une.
 
 Il est possible de panacher intervalles et constantes ; il est valide d'écrire par exemple :
-\begin{lstlisting}[language=piccolo]
+\begin{piccolo}
 case [4, 8], 10, [23, 35], 44 : ...
-\end{lstlisting}
+\end{piccolo}
 
 
 
@@ -297,13 +297,13 @@ case [4, 8], 10, [23, 35], 44 : ...
 \sectionLabel{Instruction de répétition infinie}{repetitionInfinie}
 
 Cette instruction exprime la répétition infinie des instructions qu'elle contient.
-\begin{lstlisting}[language=piccolo]
+\begin{piccolo}
 forever
   liste d'instructions simples ou structurees
 end
-\end{lstlisting}
+\end{piccolo}
 
-Implémentation : la répétition infinie est simplement réalisée par une instruction de \piccolo{jump} (pour les \emph{pic18}) ou \piccolo{goto} (pour les \emph{baseline} et \emph{mid-range}), placée à la fin de la séquence d'instructions, qui renvoie l'exécution au début de la séquence.
+Implémentation : la répétition infinie est simplement réalisée par une instruction de \pic!jump! (pour les \emph{pic18}) ou \pic!goto! (pour les \emph{baseline} et \emph{mid-range}), placée à la fin de la séquence d'instructions, qui renvoie l'exécution au début de la séquence.
 
 
 
@@ -315,25 +315,25 @@ Implémentation : la répétition infinie est simplement réalisée par une inst
 
 
 Cette instruction a la syntaxe suivante :
-\begin{lstlisting}[language=piccolo]
+\begin{piccolo}
 do (expression)
   liste d'instructions simples ou structurees
 end
-\end{lstlisting}
+\end{piccolo}
 
-L'\piccolo{expression} est une expression statique, c'est-à-dire calculée à la compilation, qui doit être strictement positive. Cette expression spécifie le nombre de fois que le corps de la boucle est répété. La répétition est organisée par le compilateur, le code engendré est \piccolo{expression} fois le corps de la boucle.
+L'\pic!expression! est une expression statique, c'est-à-dire calculée à la compilation, qui doit être strictement positive. Cette expression spécifie le nombre de fois que le corps de la boucle est répété. La répétition est organisée par le compilateur, le code engendré est \pic!expression! fois le corps de la boucle.
 
 Par exemple, le code suivant :
-\begin{lstlisting}[language=piccolo]
+\begin{piccolo}
 do (3)
   bcf PORTA.0
   nop
   bsf PORTA.0
 end
-\end{lstlisting}
+\end{piccolo}
 
 Est équivalent à :
-\begin{lstlisting}[language=piccolo]
+\begin{piccolo}
 bcf PORTA.0
 nop
 bsf PORTA.0
@@ -343,7 +343,7 @@ bsf PORTA.0
 bcf PORTA.0
 nop
 bsf PORTA.0
-\end{lstlisting}
+\end{piccolo}
 
 
 Pour les \emph{pic18} et les \emph{mid-range}, le corps de la boucle ne doit pas changer la sélection de banc.
@@ -358,16 +358,16 @@ Pour les \emph{pic18} et les \emph{mid-range}, le corps de la boucle ne doit pas
 \sectionLabel{Instruction répétitive}{instructionRepetitive}
 
 
-L'instruction répétitive a une structure moins répandue car elle accepte un ou plusieurs blocs \piccolo{while} ; voici plusieurs exemples, \piccolo{cca}, \piccolo{ccb} et \piccolo{ccc} étant des expressions conditionnelles (voir \refSectionPage{formeGeneraleConditions}).
+L'instruction répétitive a une structure moins répandue car elle accepte un ou plusieurs blocs \pic!while! ; voici plusieurs exemples, \pic!cca!, \pic!ccb! et \pic!ccc! étant des expressions conditionnelles (voir \refSectionPage{formeGeneraleConditions}).
 
 
 Voici un premier exemple, qui a une exécution équivalente à l'instruction \texttt{while (cca) do \{ instructions \}} du langage C (\refFigure{}{organigrammeDoWhile1}) :
-\begin{lstlisting}[language=piccolo]
+\begin{piccolo}
 do
 while (cca)
   instructions
 end
-\end{lstlisting}
+\end{piccolo}
 
 \begin{figure}[t]
   \centering
@@ -394,12 +394,12 @@ end
 \end{figure}
 
 La construction suivante a une exécution équivalente à l'instruction \texttt{do \{ instructions \} while (cca) ;} du langage C (\refFigure{}{organigrammeDoWhile2}) :
-\begin{lstlisting}[language=piccolo]
+\begin{piccolo}
 do
   instructions
 while (cca)
 end
-\end{lstlisting}
+\end{piccolo}
 
 \begin{figure}[t]
   \centering
@@ -425,8 +425,8 @@ end
   \ligne
 \end{figure}
 
-Enfin, voici un exemple avec deux branches \piccolo{while} (\refFigure{}{organigrammeDoWhile3}) :
-\begin{lstlisting}[language=piccolo]
+Enfin, voici un exemple avec deux branches \pic!while! (\refFigure{}{organigrammeDoWhile3}) :
+\begin{piccolo}
 do
   instructions 1
 while (cca)
@@ -434,7 +434,7 @@ while (cca)
 while (ccb)
   instructions 3
 end
-\end{lstlisting}
+\end{piccolo}
 
 \begin{figure}[t]
   \centering
@@ -475,20 +475,20 @@ end
 
 Les instructions conditionnelles structurées (\refSectionPage{instructionConditionnelleStructuree}) et les instructions répétitives (\refSectionPage{instructionRepetitive}) acceptent les mêmes formes de conditions, qui sont des expressions :\begin{itemize}
   \item dont les conditions élémentaires sont données à la \refSubsectionPage{conditionsElementairesPic18} (\emph{pic18}) ;
-  \item dont les opérateurs sont la négation \piccolo{\!}, le \emph{et logique} \piccolo{&}, le \emph{ou logique} \piccolo{|} ;
-  \item utilisant les parenthèses \piccolo{(} et \piccolo{)} pour forcer le groupement.
+  \item dont les opérateurs sont la négation \pic+!+, le \emph{et logique} \pic!&!, le \emph{ou logique} \pic!|! ;
+  \item utilisant les parenthèses \pic!(! et \pic!)! pour forcer le groupement.
 \end{itemize}
 
-\textbf{La négation \piccolo{\!}.} C'est un opérateur unaire préfixé : si \piccolo{cc} est une condition, \piccolo{\!cc} exprime la condition complémentaire. % Noter que la négation est résolue lors de la compilation, ainsi par exemple les conditions (registre z) et (! registre nz) engendrent exactement le même code.
+\textbf{La négation \texttt{\!}.} C'est un opérateur unaire préfixé : si \pic!cc! est une condition, \pic+!cc+ exprime la condition complémentaire. % Noter que la négation est résolue lors de la compilation, ainsi par exemple les conditions (registre z) et (! registre nz) engendrent exactement le même code.
 
 
-\textbf{Le \emph{et logique} \piccolo{\&}.} C'est un opérateur infixe : si \piccolo{cc1} et \piccolo{cc2} sont deux conditions, \piccolo{cc1 \& cc2} exprime le \emph{et logique} de ces deux conditions. Son fonctionnement est du type court-circuit : \piccolo{cc1} est toujours évaluée la première et, si elle est évaluée fausse, \piccolo{cc2} n'est pas évaluée. Ce point est important si l'évaluation de la seconde condition a un effet de bord (c'est le cas des conditions nommant \piccolo{decf} ou \piccolo{incf}).
+\textbf{Le \emph{et logique} \pic!&!.} C'est un opérateur infixe : si \pic!cc1! et \pic!cc2! sont deux conditions, \pic!cc1 & cc2! exprime le \emph{et logique} de ces deux conditions. Son fonctionnement est du type court-circuit : \pic!cc1! est toujours évaluée la première et, si elle est évaluée fausse, \pic!cc2! n'est pas évaluée. Ce point est important si l'évaluation de la seconde condition a un effet de bord (c'est le cas des conditions nommant \pic!decf! ou \pic!incf!).
 
-\textbf{Le \emph{ou logique} \piccolo{|}.} De même, c'est un opérateur infixe : \piccolo{cc1 | cc2} exprime le \emph{ou logique} de ces deux conditions. Son fonctionnement est aussi du type court-circuit : \piccolo{cc1} est toujours évaluée la première et, si elle est évaluée vraie, \piccolo{cc2} n'est pas évaluée.
+\textbf{Le \emph{ou logique} \pic!|!.} De même, c'est un opérateur infixe : \pic!cc1 | cc2! exprime le \emph{ou logique} de ces deux conditions. Son fonctionnement est aussi du type court-circuit : \pic!cc1! est toujours évaluée la première et, si elle est évaluée vraie, \pic!cc2! n'est pas évaluée.
 
-\textbf{Priorité des opérateurs.} La négation \piccolo{\!} est l'opérateur le plus prioritaire, le \emph{ou logique} \piccolo{|} le moins prioritaire. Par exemple, \piccolo{\!cc1\&cc2} est équivalent à \piccolo{(\!cc1)\&cc2} et \piccolo{cc1|cc2\&cc3} est équivalent à \piccolo{cc1|(cc2\&cc3)}.
+\textbf{Priorité des opérateurs.} La négation \pic+!+ est l'opérateur le plus prioritaire, le \emph{ou logique} \pic!|! le moins prioritaire. Par exemple, \pic+!cc1&cc2+ est équivalent à \pic+(!cc1)&cc2+ et \pic!cc1|cc2&cc3! est équivalent à \pic!cc1|(cc2&cc3)!.
 
-\textbf{Associativité des opérateurs.} Le \emph{et logique} \piccolo{\&} et le \emph{ou logique} \piccolo{|} sont associatifs à gauche. Par exemple, \piccolo{cc1\&cc2\&cc3} est équivalent à \piccolo{(cc1\&cc2)\&cc3}.
+\textbf{Associativité des opérateurs.} Le \emph{et logique} \pic!&! et le \emph{ou logique} \pic!|! sont associatifs à gauche. Par exemple, \pic!cc1\&cc2&cc3! est équivalent à \pic!(cc1\&cc2)&cc3!.
 
 
 \subsectionLabel{Conditions élémentaires pour \emph{baseline} et \emph{mid-range}}{conditionsElementairesBaselineMidRange}
@@ -507,10 +507,10 @@ Les conditions basées sur le test d'un bit d'un registre sont listées dans le 
   \small
   \begin{tabular}{lll}
     \textbf{Condition} & \textbf{Signification} & \textbf{Code engendré}\\
-                           \piccolo{reg.bit}  & reg.bit $\ne$ 0 ? &\assembleur{BTFSS reg,bit}\\
+                           \pic!reg.bit!  & reg.bit $\ne$ 0 ? &\assembleur{BTFSS reg,bit}\\
                                         &                        & \assembleur{GOTO label}\\
     \hdashline
-    \piccolo{\! reg.bit}  & reg.bit = 0 ? & \assembleur{BTFSC reg,bit} \\
+    \pic!\! reg.bit!  & reg.bit = 0 ? & \assembleur{BTFSC reg,bit} \\
                         &                    & \assembleur{GOTO label}\\
   \end{tabular}
   \caption{Conditions pour \emph{baseline} et \emph{mid-range} basées sur le test d'un bit d'un registre}
@@ -526,32 +526,32 @@ Le \refTableau{conditionsElementairesBaseLineIncDecRegistre} liste les condition
   \small
   \begin{tabular}{lllll}
     \textbf{Condition} & \textbf{Signification} & \textbf{Code engendré}\\
-    \piccolo{decf reg z}   & reg := reg - 1 ; reg = 0 ?  & \assembleur{DECFSZ reg}  \\
+    \pic!decf reg z!   & reg := reg - 1 ; reg = 0 ?  & \assembleur{DECFSZ reg}  \\
                            &                             & \assembleur{GOTO \$ + 2} \\
                            &                             & \assembleur{GOTO label}  \\
     \hdashline
-    \piccolo{decf reg, W z} & WREG := reg - 1 ; WREG = 0 ? & \assembleur{DECFSZ reg, W} \\
+    \pic!decf reg, W z! & WREG := reg - 1 ; WREG = 0 ? & \assembleur{DECFSZ reg, W} \\
                             &                              & \assembleur{GOTO \$ + 2}   \\
                             &                              & \assembleur{GOTO label}    \\
     \hdashline
-    \piccolo{decf reg nz}  & reg := reg - 1 ; reg $\ne$ 0 ?   &\assembleur{DECFSZ reg} \\
+    \pic!decf reg nz!  & reg := reg - 1 ; reg $\ne$ 0 ?   &\assembleur{DECFSZ reg} \\
                            &                                  &\assembleur{GOTO label}   \\
     \hdashline
-    \piccolo{decf reg, W nz} & WREG := reg - 1 ; WREG $\ne$ 0 ?  &\assembleur{DECFSZ reg, W}  \\
+    \pic!decf reg, W nz! & WREG := reg - 1 ; WREG $\ne$ 0 ?  &\assembleur{DECFSZ reg, W}  \\
                              &                                   &\assembleur{GOTO label}        \\
     \hdashline
-    \piccolo{incf reg z} & reg := reg + 1 ; reg = 0 ? &\assembleur{INCFSZ reg} \\
+    \pic!incf reg z! & reg := reg + 1 ; reg = 0 ? &\assembleur{INCFSZ reg} \\
                          &                            &\assembleur{GOTO \$ + 2} \\
                          &                            &\assembleur{GOTO label} \\
     \hdashline
-    \piccolo{incf reg, W z} & WREG := reg + 1 ; WREG = 0 ? &\assembleur{INCFSZ reg, W} \\
+    \pic!incf reg, W z! & WREG := reg + 1 ; WREG = 0 ? &\assembleur{INCFSZ reg, W} \\
                             &                              &\assembleur{GOTO \$ + 2}          \\
                             &                              &\assembleur{GOTO label}          \\
     \hdashline
-    \piccolo{incf reg nz} & reg := reg + 1 ; reg $\ne$ 0 ? &\assembleur{INCFSZ reg}\\
+    \pic!incf reg nz! & reg := reg + 1 ; reg $\ne$ 0 ? &\assembleur{INCFSZ reg}\\
                           &                                &\assembleur{BRA label}   \\
     \hdashline
-    \piccolo{incf reg, W nz} & WREG := reg + 1 ; WREG $\ne$ 0 ? & \assembleur{INCFSZ reg, W}  \\
+    \pic!incf reg, W nz! & WREG := reg + 1 ; WREG $\ne$ 0 ? & \assembleur{INCFSZ reg, W}  \\
                              &                                  & \assembleur{GOTO label}         \\
   \end{tabular}
   \caption{Conditions pour \emph{baseline} et \emph{mid-range} basées sur la décrémentation et l'incrémentation d'un registre}
@@ -583,28 +583,28 @@ Les instructions de saut conditionnel permettent d'exploiter directement la vale
   \begin{tabular}{lp{3.5cm}lp{2.2cm}p{2.5cm}}
     \textbf{Condition} & \textbf{Signification} & \multicolumn{3}{l}{\bf Code engendré}\\
                        &                        & \textbf{2 octets} & \textbf{4 octets} & \textbf{6 octets}\\
-    \piccolo{c} & \assembleur{STATUS.C} $\ne$ 0 ? &\assembleur{BC label}  & \assembleur{BNC \$ + 4} & \assembleur{BNC \$ + 6} \\
+    \pic!c! & \assembleur{STATUS.C} $\ne$ 0 ? &\assembleur{BC label}  & \assembleur{BNC \$ + 4} & \assembleur{BNC \$ + 6} \\
                 &                                 &                       & \assembleur{BRA label}  & \assembleur{GOTO label} \\
     \hdashline
-    \piccolo{nc} & \assembleur{STATUS.C} = 0 ? &\assembleur{BNC label}  & \assembleur{BC \$ + 4}  & \assembleur{BC \$ + 6} \\
+    \pic!nc! & \assembleur{STATUS.C} = 0 ? &\assembleur{BNC label}  & \assembleur{BC \$ + 4}  & \assembleur{BC \$ + 6} \\
                 &                              &                       & \assembleur{BRA label}  & \assembleur{GOTO label} \\
     \hdashline
-    \piccolo{z} & \assembleur{STATUS.Z} $\ne$ 0 ? &\assembleur{BZ label}  & \assembleur{BNZ \$ + 4}  & \assembleur{BNZ \$ + 6} \\
+    \pic!z! & \assembleur{STATUS.Z} $\ne$ 0 ? &\assembleur{BZ label}  & \assembleur{BNZ \$ + 4}  & \assembleur{BNZ \$ + 6} \\
                 &                                 &                       & \assembleur{BRA label}  & \assembleur{GOTO label} \\
     \hdashline
-    \piccolo{nz} & \assembleur{STATUS.Z} = 0 ? &\assembleur{BNZ label}  & \assembleur{BZ \$ + 4}  & \assembleur{BZ \$ + 6} \\
+    \pic!nz! & \assembleur{STATUS.Z} = 0 ? &\assembleur{BNZ label}  & \assembleur{BZ \$ + 4}  & \assembleur{BZ \$ + 6} \\
                 &                              &                       & \assembleur{BRA label}  & \assembleur{GOTO label} \\
     \hdashline
-    \piccolo{n} & \assembleur{STATUS.N} $\ne$ 0 ? &\assembleur{BN label}  & \assembleur{BNN \$ + 4}  & \assembleur{BNN \$ + 6} \\
+    \pic!n! & \assembleur{STATUS.N} $\ne$ 0 ? &\assembleur{BN label}  & \assembleur{BNN \$ + 4}  & \assembleur{BNN \$ + 6} \\
                 &                                 &                       & \assembleur{BRA label}  & \assembleur{GOTO label} \\
     \hdashline
-    \piccolo{nn} & \assembleur{STATUS.N} = 0 ? &\assembleur{BNN label}  & \assembleur{BN \$ + 4}  & \assembleur{BN \$ + 6} \\
+    \pic!nn! & \assembleur{STATUS.N} = 0 ? &\assembleur{BNN label}  & \assembleur{BN \$ + 4}  & \assembleur{BN \$ + 6} \\
                 &                              &                       & \assembleur{BRA label}  & \assembleur{GOTO label} \\
     \hdashline
-    \piccolo{ov} & \assembleur{STATUS.OV} $\ne$ 0 ? &\assembleur{BOV label}  & \assembleur{BNOV \$ + 4}  & \assembleur{BNOV \$ + 6} \\
+    \pic!ov! & \assembleur{STATUS.OV} $\ne$ 0 ? &\assembleur{BOV label}  & \assembleur{BNOV \$ + 4}  & \assembleur{BNOV \$ + 6} \\
                 &                                   &                       & \assembleur{BRA label}  & \assembleur{GOTO label} \\
     \hdashline
-    \piccolo{nov} & \assembleur{STATUS.OV} = 0 ? &\assembleur{BNOV label}  & \assembleur{BOV \$ + 4}  & \assembleur{BOV \$ + 6} \\
+    \pic!nov! & \assembleur{STATUS.OV} = 0 ? &\assembleur{BNOV label}  & \assembleur{BOV \$ + 4}  & \assembleur{BOV \$ + 6} \\
                 &                                &                         & \assembleur{BRA label}  & \assembleur{GOTO label} \\
   \end{tabular}
   \caption{Conditions pour \emph{pic18} basées sur les instructions de saut conditionnel}
@@ -621,24 +621,24 @@ La comparaison du contenu d'un registre avec la valeur de \assembleur{WREG} est 
   \begin{tabular}{llll}
     \textbf{Condition} & \multicolumn{3}{l}{\bf Code engendré}\\
                        & \textbf{4 octets} & \textbf{6 octets} & \textbf{8 octets}\\
-    \piccolo{reg != W} &\assembleur{CPFSEQ reg}  & \assembleur{CPFSEQ reg}  &  \\
+    \pic!reg != W! &\assembleur{CPFSEQ reg}  & \assembleur{CPFSEQ reg}  &  \\
                       &\assembleur{BRA label}        & \assembleur{GOTO label}  &  \\
     \hdashline
-    \piccolo{reg >= W} &\assembleur{CPFSLT reg}  & \assembleur{CPFSLT reg}  &  \\
+    \pic!reg >= W! &\assembleur{CPFSLT reg}  & \assembleur{CPFSLT reg}  &  \\
                       &\assembleur{BRA label}        & \assembleur{GOTO label}  &  \\
     \hdashline
-    \piccolo{reg <= W} &\assembleur{CPFSGT reg}  & \assembleur{CPFSGT reg}  &  \\
-    \piccolo{reg <= W} &\assembleur{BRA label}        & \assembleur{GOTO label}  &  \\
+    \pic!reg <= W! &\assembleur{CPFSGT reg}  & \assembleur{CPFSGT reg}  &  \\
+    \pic!reg <= W! &\assembleur{BRA label}        & \assembleur{GOTO label}  &  \\
     \hdashline
-    \piccolo{reg == W} & &\assembleur{CPFSEQ reg}  & \assembleur{CPFSEQ reg}  \\
+    \pic!reg == W! & &\assembleur{CPFSEQ reg}  & \assembleur{CPFSEQ reg}  \\
                       & &\assembleur{BRA \$ + 4}       & \assembleur{BRA \$ + 6}  \\
                       & &\assembleur{BRA label}        & \assembleur{GOTO label}  \\
     \hdashline
-    \piccolo{reg > W}  & &\assembleur{CPFSGT reg}  & \assembleur{CPFSGT reg}  \\
+    \pic!reg > W!  & &\assembleur{CPFSGT reg}  & \assembleur{CPFSGT reg}  \\
                       & &\assembleur{BRA \$ + 4}       & \assembleur{BRA \$ + 6}  \\
                       & &\assembleur{BRA label}        & \assembleur{GOTO label}  \\
     \hdashline
-    \piccolo{reg > W}  & &\assembleur{CPFSLT reg}  & \assembleur{CPFSLT reg}  \\
+    \pic!reg > W!  & &\assembleur{CPFSLT reg}  & \assembleur{CPFSLT reg}  \\
                       & &\assembleur{BRA \$ + 4}       & \assembleur{BRA \$ + 6}  \\
                       & &\assembleur{BRA label}        & \assembleur{GOTO label}  \\
   \end{tabular}
@@ -647,7 +647,7 @@ La comparaison du contenu d'un registre avec la valeur de \assembleur{WREG} est 
   \ligne
 \end{table}
 
-Les conditions basées sur le test d'un registre sont listées dans le \refTableau{conditionsElementairesPic18TestRegistre}. Remarquer que les conditions listées ne sont pas toutes élémentaires. Ainsi, la condition \piccolo{\!registre nz} est équivalente à \piccolo{registre z}, et \piccolo{\!registre z} équivalente à \piccolo{registre nz}. Remarquer aussi que l'absence d'instruction complémentaire à \assembleur{TSTFSZ} entraîne un code plus long pour la condition \piccolo{registre z}.
+Les conditions basées sur le test d'un registre sont listées dans le \refTableau{conditionsElementairesPic18TestRegistre}. Remarquer que les conditions listées ne sont pas toutes élémentaires. Ainsi, la condition \pic+!registre nz+ est équivalente à \pic!registre z!, et \pic+!registre z+ équivalente à \pic!registre nz!. Remarquer aussi que l'absence d'instruction complémentaire à \assembleur{TSTFSZ} entraîne un code plus long pour la condition \pic!registre z!.
 
 \begin{table}[!t]
   \centering
@@ -655,17 +655,17 @@ Les conditions basées sur le test d'un registre sont listées dans le \refTable
   \begin{tabular}{lllll}
     \textbf{Condition} & \textbf{Signification} & \multicolumn{2}{l}{\bf Code engendré}\\
                        &                        & \textbf{Court} & \textbf{Long}\\
-                           \piccolo{reg nz}   & reg $\ne$ 0 ? &\assembleur{TSTFSZ reg}  & \assembleur{TSTFSZ reg}\\
+                           \pic!reg nz!   & reg $\ne$ 0 ? &\assembleur{TSTFSZ reg}  & \assembleur{TSTFSZ reg}\\
                                                   &                 &\assembleur{BRA label}        & \assembleur{GOTO label}\\
     \hdashline
-    \piccolo{reg z}    & reg = 0 ? &\assembleur{TSTFSZ reg}  & \assembleur{TSTFSZ reg}\\
+    \pic!reg z!    & reg = 0 ? &\assembleur{TSTFSZ reg}  & \assembleur{TSTFSZ reg}\\
                            &                &\assembleur{BRA \$ + 4}       & \assembleur{BRA \$ + 6}  \\
                            &                 &\assembleur{BRA label}        & \assembleur{GOTO label}\\
     \hdashline
-                           \piccolo{reg.bit}  & reg.bit $\ne$ 0 ? &\assembleur{BTFSS reg,bit}  & \assembleur{BTFSS reg,bit}\\
+                           \pic!reg.bit!  & reg.bit $\ne$ 0 ? &\assembleur{BTFSS reg,bit}  & \assembleur{BTFSS reg,bit}\\
                                                   &                     &\assembleur{BRA label}        & \assembleur{GOTO label}\\
     \hdashline
-    \piccolo{\! reg.bit}  & reg.bit = 0 ? &\assembleur{BTFSC reg,bit}  & \assembleur{BTFSC reg,bit}\\
+    \pic+! reg.bit+  & reg.bit = 0 ? &\assembleur{BTFSC reg,bit}  & \assembleur{BTFSC reg,bit}\\
                              &                     &\assembleur{BRA label}        & \assembleur{GOTO label}\\
   \end{tabular}
   \caption{Conditions pour \emph{pic18} basées sur le test d'un registre}
@@ -674,7 +674,7 @@ Les conditions basées sur le test d'un registre sont listées dans le \refTable
 \end{table}
 
 
-Enfin, le \refTableau{conditionsElementairesPic18IncDecRegistre} liste les conditions basées sur les instructions \assembleur{DECFSZ}, \assembleur{DECFSZ}, \assembleur{INCFSZ} et \assembleur{INFSNZ}. Là encore, elles ne sont pas toutes élementaires : par exemple, \piccolo{decf registre nz} est équivalente à \piccolo{\! decf registre z}. 
+Enfin, le \refTableau{conditionsElementairesPic18IncDecRegistre} liste les conditions basées sur les instructions \assembleur{DECFSZ}, \assembleur{DECFSZ}, \assembleur{INCFSZ} et \assembleur{INFSNZ}. Là encore, elles ne sont pas toutes élementaires : par exemple, \pic!decf registre nz! est équivalente à \pic+! decf registre z+. 
 
 \begin{table}[!t]
   \centering
@@ -682,28 +682,28 @@ Enfin, le \refTableau{conditionsElementairesPic18IncDecRegistre} liste les condi
   \begin{tabular}{lllll}
     \textbf{Condition} & \textbf{Signification} & \multicolumn{2}{l}{\bf Code engendré}\\
                        &                        & \textbf{Court} & \textbf{Long}\\
-      \piccolo{decf reg z}   & reg := reg - 1 ;   &\assembleur{DCFSNZ reg}  & \assembleur{DCFSNZ reg}\\
+      \pic!decf reg z!   & reg := reg - 1 ;   &\assembleur{DCFSNZ reg}  & \assembleur{DCFSNZ reg}\\
                              &  reg = 0 ?         &\assembleur{BRA label}   & \assembleur{GOTO label}\\
     \hdashline
-      \piccolo{decf reg, W z} & WREG := reg - 1 ;  &\assembleur{DCFSNZ reg, W}  & \assembleur{DCFSNZ reg, W}\\
+      \pic!decf reg, W z! & WREG := reg - 1 ;  &\assembleur{DCFSNZ reg, W}  & \assembleur{DCFSNZ reg, W}\\
                               & WREG = 0 ?         &\assembleur{BRA label}      & \assembleur{GOTO label}\\
     \hdashline
-      \piccolo{decf reg nz}  & reg := reg - 1 ; &\assembleur{DECFSZ reg}  & \assembleur{DECFSZ reg}\\
+      \pic!decf reg nz!  & reg := reg - 1 ; &\assembleur{DECFSZ reg}  & \assembleur{DECFSZ reg}\\
                              & reg $\ne$ 0 ?    &\assembleur{BRA label}   & \assembleur{GOTO label}\\
     \hdashline
-      \piccolo{decf reg, W nz} & WREG := reg - 1 ; &\assembleur{DECFSZ reg, W}  & \assembleur{DECFSZ reg, W}\\
+      \pic!decf reg, W nz! & WREG := reg - 1 ; &\assembleur{DECFSZ reg, W}  & \assembleur{DECFSZ reg, W}\\
                                & WREG $\ne$ 0 ?    &\assembleur{BRA label}      & \assembleur{GOTO label}\\
     \hdashline
-      \piccolo{incf reg z}   & reg := reg + 1 ; &\assembleur{INFSNZ reg}  & \assembleur{INFSNZ reg}\\
+      \pic!incf reg z!   & reg := reg + 1 ; &\assembleur{INFSNZ reg}  & \assembleur{INFSNZ reg}\\
                              & reg = 0 ?        &\assembleur{BRA label}        & \assembleur{GOTO label}\\
     \hdashline
-      \piccolo{incf reg, W z} & WREG := reg + 1 ; &\assembleur{INFSNZ reg, W}  & \assembleur{INFSNZ reg, W}\\
+      \pic!incf reg, W z! & WREG := reg + 1 ; &\assembleur{INFSNZ reg, W}  & \assembleur{INFSNZ reg, W}\\
                               & WREG = 0 ?        &\assembleur{BRA label}           & \assembleur{GOTO label}\\
     \hdashline
-      \piccolo{incf reg nz}  & reg := reg + 1 ; &\assembleur{INCFSZ reg}  & \assembleur{INCFSZ reg}\\
+      \pic!incf reg nz!  & reg := reg + 1 ; &\assembleur{INCFSZ reg}  & \assembleur{INCFSZ reg}\\
                              & reg $\ne$ 0 ?    &\assembleur{BRA label}        & \assembleur{GOTO label}\\
     \hdashline
-      \piccolo{incf reg, W nz} & WREG := reg + 1 ; &\assembleur{INCFSZ reg, W}  & \assembleur{INCFSZ reg, W}\\
+      \pic!incf reg, W nz! & WREG := reg + 1 ; &\assembleur{INCFSZ reg, W}  & \assembleur{INCFSZ reg, W}\\
                                & WREG $\ne$ 0 ?    &\assembleur{BRA label}           & \assembleur{GOTO label}\\
   \end{tabular}
   \caption{Conditions pour \emph{pic18} basées sur la décrémentation et l'incrémentation d'un registre}
@@ -723,29 +723,29 @@ Enfin, le \refTableau{conditionsElementairesPic18IncDecRegistre} liste les condi
 
 \textcolor{red}{\bf Cette instruction n'est valide que pour les \emph{pic18}.}
 
-\textbf{Description.} L'instruction \piccolo{computed retlw} est la suivante :
-\begin{lstlisting}[language=piccolo]
+\textbf{Description.} L'instruction \pic!computed retlw! est la suivante :
+\begin{piccolo}
 computed [n] retlw cst0, cst1, cst2, ...
-\end{lstlisting}
+\end{piccolo}
 
-$n$ est une \emph{expression statique} et doit être égale au nombre des constantes citées après \piccolo{retlw}. Ce codage redondant permet de s'assurer que la liste des constantes présente une longueur correcte. Chaque \piccolo{cst_...} doit avoir une valeur comprise entre -128 et 255.
+$n$ est une \emph{expression statique} et doit être égale au nombre des constantes citées après \pic!retlw!. Ce codage redondant permet de s'assurer que la liste des constantes présente une longueur correcte. Chaque \pic!cst_...! doit avoir une valeur comprise entre -128 et 255.
 
 L'implémentation limite à 128 la valeur de $n$.
 
-\textbf{Fonctionnement.} Cette instruction remplace la valeur de \assembleur{WREG} par la constante qui lui correspond : \piccolo{cst0} pour $0$, \piccolo{cst1} pour $1$, …, \piccolo{cst$_{n-1}$} pour $n-1$. 
+\textbf{Fonctionnement.} Cette instruction remplace la valeur de \assembleur{WREG} par la constante qui lui correspond : \pic!cst0! pour $0$, \pic!cst1! pour $1$, …, \texttt{cst$_{n-1}$} pour $n-1$. 
 
 \textbf{Limitation.} À l'exécution, il est nécessaire que la valeur non signée de \assembleur{WREG} soit strictement inférieur au nombre de constantes. \textcolor{red}{\bf Le code engendré par Piccolo n'effectue aucune vérification.} Il est donc probable que ne pas respecter cette règle entraîne un plantage du programme.
 
 
 \textbf{Exemple.} Voici comment un chiffre hexadécimal peut être transformé en le caractère ASCII le représentant :
-\begin{lstlisting}[language=piccolo]
+\begin{piccolo}
 routine CONVERSION_HEX_ASCII {
   andlw   0x0F
   computed [16] retlw
    '0', '1', '2', '3', '4', '5', '6', '7',
    '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'
 }
-\end{lstlisting}
+\end{piccolo}
 
 Le code assembleur engendré est le suivant :
 \begin{lstlisting}[language=assembleur]
@@ -779,15 +779,15 @@ Ce code fait appel à la routine \assembleur{\_computed\_goto\_2} qui est ajout�
 \textcolor{red}{\bf Cette instruction n'est valide que pour les \emph{pic18}.}
 
 \textbf{Description.} Celle-ci est :
-\begin{lstlisting}[language=piccolo]
+\begin{piccolo}
 computed [n] bra routine0, routine1, routine2, ...
-\end{lstlisting}
+\end{piccolo}
 
-$n$ est une \emph{expression statique} doit être égal au nombre de routines citées après \piccolo{bra}. Ce codage redondant permet de s'assurer que la liste des routines présente une longueur correcte. Les routines citées doivent toutes être sans retour (c'est-à-dire déclarées avec le qualificatif \piccolo{noreturn}), et pouvoir être atteintes par une instruction \piccolo{bra} (si ce n'est pas possible, utiliser le \piccolo{computed goto} décrite à la \refSubsectionPage{instructionComputedGoto}).
+$n$ est une \emph{expression statique} doit être égal au nombre de routines citées après \pic!bra!. Ce codage redondant permet de s'assurer que la liste des routines présente une longueur correcte. Les routines citées doivent toutes être sans retour (c'est-à-dire déclarées avec le qualificatif \pic!noreturn!), et pouvoir être atteintes par une instruction \pic!bra! (si ce n'est pas possible, utiliser le \pic!computed goto! décrite à la \refSubsectionPage{instructionComputedGoto}).
 
 L'implémentation limite à 128 la valeur de $n$.
 
-\textbf{Fonctionnement.} Cette instruction agit comme une instruction de branchement en fonction de la valeur de \assembleur{WREG} : branchement vers \piccolo{routine0} pour 0, vers \piccolo{routine1} pour 1, ..., vers \texttt{routine}$_{n-1}$ pour $n-1$. 
+\textbf{Fonctionnement.} Cette instruction agit comme une instruction de branchement en fonction de la valeur de \assembleur{WREG} : branchement vers \pic!routine0! pour 0, vers \pic!routine1! pour 1, ..., vers \texttt{routine}$_{n-1}$ pour $n-1$. 
 
 \textbf{Limitation.} À l'exécution, il est nécessaire que la valeur non signée de \assembleur{WREG} soit strictement inférieur au nombre de routines. \textcolor{red}{\bf Le code engendré par Piccolo n'effectue aucune vérification.} Il est donc probable que ne pas respecter cette règle entraîne un plantage du programme.
 
@@ -800,15 +800,15 @@ Ce code fait appel à la routine \assembleur{\_computed\_goto\_2} qui est ajout�
 \textcolor{red}{\bf Cette instruction n'est valide que pour les \emph{pic18}.}
 
 \textbf{Description.} Celle-ci est :
-\begin{lstlisting}[language=piccolo]
+\begin{piccolo}
 computed [n] goto routine0, routine1, routine2, ...
-\end{lstlisting}
+\end{piccolo}
 
-$n$ est une \emph{expression statique} doit être égal au nombre de routines citées après \piccolo{goto}. Ce codage redondant permet de s'assurer que la liste des routines présente une longueur correcte. Les routines citées doivent toutes être sans retour (c'est-à-dire déclarées avec le qualificatif \piccolo{noreturn}).
+$n$ est une \emph{expression statique} doit être égal au nombre de routines citées après \pic!goto!. Ce codage redondant permet de s'assurer que la liste des routines présente une longueur correcte. Les routines citées doivent toutes être sans retour (c'est-à-dire déclarées avec le qualificatif \pic!noreturn!).
 
 L'implémentation limite à 64 la valeur de $n$.
 
-\textbf{Fonctionnement.} Cette instruction agit comme une instruction de branchement en fonction de la valeur de \assembleur{WREG} : branchement vers \piccolo{routine0} pour 0, vers \piccolo{routine1} pour 1, \dots 
+\textbf{Fonctionnement.} Cette instruction agit comme une instruction de branchement en fonction de la valeur de \assembleur{WREG} : branchement vers \pic!routine0! pour 0, vers \pic!routine1! pour 1, \dots 
 
 \textbf{Limitation.} À l'exécution, il est nécessaire que la valeur non signée de \assembleur{WREG} soit strictement inférieur au nombre de routines. \textcolor{red}{\bf Le code engendré par Piccolo n'effectue aucune vérification.} Il est donc probable que ne pas respecter cette règle entraîne un plantage du programme.
 
@@ -869,9 +869,9 @@ _computed_goto_2:
 
 \sectionLabel{Instruction \texttt{block}}{instructionBloc}
 
-\textbf{À partir de Piccolo 3.0.4.} \textcolor{red}{\bf L'instruction \piccolo{block} n'est définie que pour les \emph{pic18}.}
+\textbf{À partir de Piccolo 3.0.4.} \textcolor{red}{\bf L'instruction \pic!block! n'est définie que pour les \emph{pic18}.}
 
-En Piccolo, un \emph{bloc} est une séquence d'instructions terminée par une instruction de débranchement. L'instruction \piccolo{block} permet de définir un ensemble de blocs s'appelant les uns les autres. Ceci permet d'exprimer des graphes d'exécution non structurées, qu'il serait très difficile d'exprimer avec les instructions structurées classiques. 
+En Piccolo, un \emph{bloc} est une séquence d'instructions terminée par une instruction de débranchement. L'instruction \pic!block! permet de définir un ensemble de blocs s'appelant les uns les autres. Ceci permet d'exprimer des graphes d'exécution non structurées, qu'il serait très difficile d'exprimer avec les instructions structurées classiques. 
 
 \subsection{Syntaxe}
 
@@ -879,34 +879,34 @@ Sa syntaxe est la suivante :
 
 \lstset{emph={definitions_de_blocs, nom_du_block, liste_instructions_structurees, branchement, nom_bloc_entree}, emphstyle=\emph}
 
-\begin{lstlisting}[language=piccolo]
+\begin{piccolo}
 block nom_bloc_entree :
   definitions_de_blocs
 end
-\end{lstlisting}
+\end{piccolo}
 
-\piccolo{definitions_de_blocs} est une liste non ordonnée de blocs ; \piccolo{nom_bloc_entree} est le nom de l'un de ces blocs, et c'est celui qui sera exécuté lorsque l'exécution atteindra l'instruction \piccolo{block}.
+\pic!definitions_de_blocs! est une liste non ordonnée de blocs ; \pic!nom_bloc_entree! est le nom de l'un de ces blocs, et c'est celui qui sera exécuté lorsque l'exécution atteindra l'instruction \pic!block!.
 
 Une définition de bloc a l'allure suivante :
 
-\begin{lstlisting}[language=piccolo]
+\begin{piccolo}
 nom_du_block { liste_instructions_structurees } branchement
-\end{lstlisting}
+\end{piccolo}
 
-Le \piccolo{nom_du_block} est le nom donné au bloc ; ce nom est interne à l'instruction \piccolo{block} qui le contient. \piccolo{liste_instructions_structurees} est une liste d'instructions structurées quelconques, qui peut être vide. \piccolo{branchement} est une expression particulière, qui définit où l'exécution se poursuit à l'issue de l'exécution des instructions structurées ; cette expression peut prendre plusieurs formes, indiquées dans le \refTableau{terminaisonBloc}.
+Le \pic!nom_du_block! est le nom donné au bloc ; ce nom est interne à l'instruction \pic!block! qui le contient. \pic!liste_instructions_structurees! est une liste d'instructions structurées quelconques, qui peut être vide. \pic!branchement! est une expression particulière, qui définit où l'exécution se poursuit à l'issue de l'exécution des instructions structurées ; cette expression peut prendre plusieurs formes, indiquées dans le \refTableau{terminaisonBloc}.
 
 \begin{table}[!t]
   \centering
   \small
   \begin{tabular}{lp{9cm}}
     \textbf{Syntaxe} & \textbf{Signification} \\
-      \piccolo{-} & L'exécution de l'instruction \piccolo{block} est terminée : l'exécution se poursuit par celle qui suit le \piccolo{end} de l'instruction\piccolo{block}. \\
+      \pic!-! & L'exécution de l'instruction \pic!block! est terminée : l'exécution se poursuit par celle qui suit le \pic!end! de l'instruction\pic!block!. \\
     \hdashline
-      \piccolo{nom} & L'exécution se poursuit par l'exécution du bloc nommé \piccolo{nom}. \\
+      \pic!nom! & L'exécution se poursuit par l'exécution du bloc nommé \pic!nom!. \\
     \hdashline
-      \piccolo{cc ? br1 : br2} & \piccolo{cc} est une condition (voir \refSectionPage{formeGeneraleConditions}), \piccolo{br1} et \piccolo{br2} des expressions de branchement ; si \piccolo{cc} estvrai, alors le branchement \piccolo{br1} est effectué, sinon c'est le branchement \piccolo{br2}. \\
+      \pic!cc ? br1 : br2! & \pic!cc! est une condition (voir \refSectionPage{formeGeneraleConditions}), \pic!br1! et \pic!br2! des expressions de branchement ; si \pic!cc! estvrai, alors le branchement \pic!br1! est effectué, sinon c'est le branchement \pic!br2!. \\
     \hdashline
-      \piccolo{[br0, br1, br2, ...]} & Cette expression utilise la valeur courante du registre \assembleur{WREG} (c'est-à-dire celle obtenue à l'issue de l'exécution des instructions structurées) : si \assembleur{WREG} est nul, alors le branchement \piccolo{br0} est effectué, si il vaut 1, c'est \piccolo{br1} … \textcolor{red}{Si \assembleur{WREG} a une valeur supérieure ou égal au nombre de branchements, le comportement est indéfini.}\\
+      \pic![br0, br1, br2, ...]! & Cette expression utilise la valeur courante du registre \assembleur{WREG} (c'est-à-dire celle obtenue à l'issue de l'exécution des instructions structurées) : si \assembleur{WREG} est nul, alors le branchement \pic!br0! est effectué, si il vaut 1, c'est \pic!br1! … \textcolor{red}{Si \assembleur{WREG} a une valeur supérieure ou égal au nombre de branchements, le comportement est indéfini.}\\
   \end{tabular}
   \caption{Expressions de branchement d'un bloc de l'instruction \texttt{block}}
   \labelTableau{terminaisonBloc}
@@ -915,18 +915,18 @@ Le \piccolo{nom_du_block} est le nom donné au bloc ; ce nom est interne à l'in
 
 \subsection{Blocs utiles}
 
-Le compilateur Piccolo analyse l'instruction \piccolo{block} en partant du premier bloc appelé et en examinant de proche en proche tous les blocs atteints via les expressions de branchement. Il détecte ainsi facilement les blocs inutiles, qui ne sont jamais appelés. Par exemple :
+Le compilateur Piccolo analyse l'instruction \pic!block! en partant du premier bloc appelé et en examinant de proche en proche tous les blocs atteints via les expressions de branchement. Il détecte ainsi facilement les blocs inutiles, qui ne sont jamais appelés. Par exemple :
 
-\begin{lstlisting}[language=piccolo]
+\begin{piccolo}
   block start :
     start { ... } STATUS.Z ? next : -
     next { ...  } -
     other { ...  } STATUS.Z ? - : another
     another { ...  } -
   end
-\end{lstlisting}
+\end{piccolo}
 
-Les blocs qui sont accessibles sont \piccolo{start} et \piccolo{next}. Les blocs \piccolo{other} et \piccolo{another} sont inaccessibles et leur présence déclenche des \emph{warnings} signalant leur inutilité.
+Les blocs qui sont accessibles sont \pic!start! et \pic!next!. Les blocs \pic!other! et \pic!another! sont inaccessibles et leur présence déclenche des \emph{warnings} signalant leur inutilité.
 
 
 
@@ -937,13 +937,13 @@ Les blocs qui sont accessibles sont \piccolo{start} et \piccolo{next}. Les blocs
 
 \subsection{Instruction \texttt{block} et gestion des bancs}
 
-Dans l'instruction \piccolo{block}, la gestion des bancs est réalisée grâce aux instructions régulières de Piccolo : celles qui contrôlent directement les bancs : \piccolo{banksel} (\refSubsectionPage{instructionBanksel}), \piccolo{nobank} (\refSubsectionPage{instructionNoBank}), et celles qui les contrôlent d'une manière indirecte : appel de routine, instruction structurée. Toutes ces instructions peuvent apparaître parmi les instructions de \piccolo{liste_instructions_structurees}.
+Dans l'instruction \pic!block!, la gestion des bancs est réalisée grâce aux instructions régulières de Piccolo : celles qui contrôlent directement les bancs : \pic!banksel! (\refSubsectionPage{instructionBanksel}), \pic!nobank! (\refSubsectionPage{instructionNoBank}), et celles qui les contrôlent d'une manière indirecte : appel de routine, instruction structurée. Toutes ces instructions peuvent apparaître parmi les instructions de \pic!liste_instructions_structurees!.
 
 Ainsi, chaque bloc hérite de la sélection de banc du bloc qui s'est exécuté avant lui, et impose la sélection de banc au bloc qui exécuté ensuite.
 
 Considérons l'exemple suivant :
 
-\begin{lstlisting}[language=piccolo]
+\begin{piccolo}
   banksel 1
   block start :
     start {
@@ -960,11 +960,11 @@ Considérons l'exemple suivant :
     } -
   end
   # bank 3 is selected
-\end{lstlisting}
+\end{piccolo}
 
-Le premier bloc qui est exécuté est \piccolo{start}. Comme l'instruction qui précède l'instruction \piccolo{block} a sélectionné le banc 1, le banc 1 demeure sélectionné au début des instructions du bloc \piccolo{start}. Leur exécution sélectionne le banc 2, et l'expression de branchement dirige vers le bloc \piccolo{next} ou \piccolo{other}. Ainsi, on peut affirmer que le banc 2 sera sélectionné lors de l'invocation de ces blocs. Ceux-ci sélectionnent le banc 3, et leur expression de branchement est \piccolo{-}, signifiant que l'exécution est déroutée vers l'instruction qui suit l'instruction \piccolo{block} où la sélection du banc 3 est assurée. Si ces deux blocs ne sélectionnaient pas le même banc, une erreur serait détectée par le compilateur Piccolo.
+Le premier bloc qui est exécuté est \pic!start!. Comme l'instruction qui précède l'instruction \pic!block! a sélectionné le banc 1, le banc 1 demeure sélectionné au début des instructions du bloc \pic!start!. Leur exécution sélectionne le banc 2, et l'expression de branchement dirige vers le bloc \pic!next! ou \pic!other!. Ainsi, on peut affirmer que le banc 2 sera sélectionné lors de l'invocation de ces blocs. Ceux-ci sélectionnent le banc 3, et leur expression de branchement est \pic!-!, signifiant que l'exécution est déroutée vers l'instruction qui suit l'instruction \pic!block! où la sélection du banc 3 est assurée. Si ces deux blocs ne sélectionnaient pas le même banc, une erreur serait détectée par le compilateur Piccolo.
 
-D'une manière générale, le compilateur Piccolo commence par examiner le premier bloc exécuté (\piccolo{start} dans l'exemple précédent), et calcule de proche en proche pour chaque bloc la sélection héritée du bloc qui le précède et la sélection qu'il impose au bloc exécuté ensuite. Il détecte et signale une erreur si plusieurs blocs essaient d'imposer des sélections de blocs différentes à un même bloc.
+D'une manière générale, le compilateur Piccolo commence par examiner le premier bloc exécuté (\pic!start! dans l'exemple précédent), et calcule de proche en proche pour chaque bloc la sélection héritée du bloc qui le précède et la sélection qu'il impose au bloc exécuté ensuite. Il détecte et signale une erreur si plusieurs blocs essaient d'imposer des sélections de blocs différentes à un même bloc.
 
 
 
@@ -1016,9 +1016,9 @@ Piccolo définit précisément pour chaque instruction son comportement vis à v
   \item soit exiger qu'un certain banc soit sélectionné.
 \end{itemize}
 
-Par exemple, considérons l'instruction Piccolo \piccolo{bsf STATUS.C}. Pour un \emph{mid-range}, le registre \assembleur{STATUS} est présent dans tous les bancs, cette instruction est donc indifférente vis à vis de la sélection de banc. Pour un \emph{pic18}, le registre \assembleur{STATUS} est situé dans l'\emph{accessbank}, cette instruction est aussi indifférente vis à vis de la sélection de banc. 
+Par exemple, considérons l'instruction Piccolo \pic!bsf STATUS.C!. Pour un \emph{mid-range}, le registre \assembleur{STATUS} est présent dans tous les bancs, cette instruction est donc indifférente vis à vis de la sélection de banc. Pour un \emph{pic18}, le registre \assembleur{STATUS} est situé dans l'\emph{accessbank}, cette instruction est aussi indifférente vis à vis de la sélection de banc. 
 
-Considérons maintenant l'instruction Piccolo \piccolo{clrf var}. Pour un \emph{mid-range}, si la variable \piccolo{var} est déclarée dans \emph{gprnobank} qui apparaît en miroir dans tous les bancs, cette instruction est donc indifférente vis à vis de la sélection de banc. Sinon, l'instruction exige que le banc correspondant soit sélectionné. Pour un \emph{pic18}, si la variable \piccolo{var} est situés dans l'\emph{accessbank}, cette instruction est aussi indifférente vis à vis de la sélection de banc.  Sinon, l'instruction exige que le banc correspondant soit sélectionné. 
+Considérons maintenant l'instruction Piccolo \pic!clrf var!. Pour un \emph{mid-range}, si la variable \pic!var! est déclarée dans \emph{gprnobank} qui apparaît en miroir dans tous les bancs, cette instruction est donc indifférente vis à vis de la sélection de banc. Sinon, l'instruction exige que le banc correspondant soit sélectionné. Pour un \emph{pic18}, si la variable \pic!var! est situés dans l'\emph{accessbank}, cette instruction est aussi indifférente vis à vis de la sélection de banc.  Sinon, l'instruction exige que le banc correspondant soit sélectionné. 
 
 
 \textbf{En sortie.} L'exécution d'une instruction peut :
@@ -1032,21 +1032,21 @@ Considérons maintenant l'instruction Piccolo \piccolo{clrf var}. Pour un \emph{
 
 Cette instruction peut prendre quatre formes différentes :
 \begin{itemize}
-  \item \piccolo{banksel numero\_de\_banc}
-  \item \piccolo{banksel nom\_registre}
-  \item \piccolo{banksel numero\_de\_banc, *}
-  \item \piccolo{banksel nom\_registre, *}
+  \item \pic!banksel numero_de_banc!
+  \item \pic!banksel nom_registre!
+  \item \pic!banksel numero_de_banc, *!
+  \item \pic!banksel nom_registre, *!
 \end{itemize}
 
 
-\subsubsection{Instruction \piccolo{banksel b}}
-\begin{lstlisting}[language=piccolo]
+\subsubsection{Instruction \texttt{banksel b}}
+\begin{piccolo}
 banksel numero_de_banc
-\end{lstlisting}
+\end{piccolo}
 
-Cette instruction sélectionne le banc de numéro \piccolo{numero\_de\_banc}. Pour les \emph{mid-range}, le compilateur engendre une à trois instructions \assembleur{BCF} ou \assembleur{BSF} des bits \assembleur{RP} du registre \assembleur{STATUS}. Pour les \emph{pic18}, le compilateur engendre une instruction \assembleur{MOVLB}.
+Cette instruction sélectionne le banc de numéro \pic!numero_de_banc!. Pour les \emph{mid-range}, le compilateur engendre une à trois instructions \assembleur{BCF} ou \assembleur{BSF} des bits \assembleur{RP} du registre \assembleur{STATUS}. Pour les \emph{pic18}, le compilateur engendre une instruction \assembleur{MOVLB}.
 
-Le compilateur Piccolo garde trace de cette instruction, et permet d'assurer que l'accès aux registres du banc \piccolo{numero\_de\_banc} est possible pour les instructions suivantes.
+Le compilateur Piccolo garde trace de cette instruction, et permet d'assurer que l'accès aux registres du banc \pic!numero_de_banc! est possible pour les instructions suivantes.
 
 Un \emph{warning} est affiché si l'instruction est inutile, c'est-à-dire si le banc indiqué est déjà sélectionné. À partir de la version 2.0.2 de Piccolo, les instructions assembleur correspondantes ne sont alors pas engendrées.
 
@@ -1055,13 +1055,13 @@ Un \emph{warning} est affiché si l'instruction est inutile, c'est-à-dire si le
 
 
 
-\subsubsection{Instruction \piccolo{banksel nom\_registre}}
+\subsubsection{Instruction \texttt{banksel nom\_registre}}
 À partir de la version 2.0.2 de Piccolo, il est possible de faire figurer un nom de registre à la place du numéro de banc :
-\begin{lstlisting}[language=piccolo]
+\begin{piccolo}
 banksel nom_registre
-\end{lstlisting}
+\end{piccolo}
 
-Cette instruction sélectionne le banc du registre \piccolo{nom\_registre}. Pour les \emph{mid-range}, le compilateur engendre une à trois instructions \assembleur{BCF} ou \assembleur{BSF} des bits \assembleur{RP} du registre \assembleur{STATUS}. Pour les \emph{pic18}, le compilateur engendre une instruction \assembleur{MOVLB}.
+Cette instruction sélectionne le banc du registre \pic!nom_registre!. Pour les \emph{mid-range}, le compilateur engendre une à trois instructions \assembleur{BCF} ou \assembleur{BSF} des bits \assembleur{RP} du registre \assembleur{STATUS}. Pour les \emph{pic18}, le compilateur engendre une instruction \assembleur{MOVLB}.
 
 Le compilateur Piccolo garde trace de cette instruction, et permet d'assurer que l'accès aux registres du banc sélectionné est possible pour les instructions suivantes.
 
@@ -1070,24 +1070,24 @@ Un \emph{warning} est affiché si l'instruction est inutile, c'est-à-dire si le
 
 
 
-\subsubsection{Instruction \piccolo{banksel b, *}}
-\begin{lstlisting}[language=piccolo]
+\subsubsection{Instruction \texttt{banksel b, *}}
+\begin{piccolo}
 banksel numero_de_banc, *
-\end{lstlisting}
+\end{piccolo}
 
-Seule différence avec l'instruction \piccolo{banksel b} : le \emph{warning} n'est pas affiché si l'instruction est inutile.
-
-
+Seule différence avec l'instruction \pic!banksel b! : le \emph{warning} n'est pas affiché si l'instruction est inutile.
 
 
 
 
-\subsubsection{Instruction \piccolo{banksel nom\_registre, *}}
-\begin{lstlisting}[language=piccolo]
+
+
+\subsubsection{Instruction \texttt{banksel nom\_registre, *}}
+\begin{piccolo}
 banksel nom_registre, *
-\end{lstlisting}
+\end{piccolo}
 
-Seule différence avec l'instruction \piccolo{banksel nom\_registre} : le \emph{warning} n'est pas affiché si l'instruction est inutile.
+Seule différence avec l'instruction \pic!banksel nom_registre! : le \emph{warning} n'est pas affiché si l'instruction est inutile.
 
 
 
@@ -1099,13 +1099,13 @@ Seule différence avec l'instruction \piccolo{banksel nom\_registre} : le \emph{
 
 \subsectionLabel{Instruction \texttt{checkbank}}{instructionCheckBank}
 
-\begin{lstlisting}[language=piccolo]
+\begin{piccolo}
 checkbank numero
-\end{lstlisting}
+\end{piccolo}
 
-Cette instruction vérifie que le banc mémoire sélectionné est \piccolo{numero}. Aucun code n'est engendré, la vérification est faite statiquement par le compilateur.
+Cette instruction vérifie que le banc mémoire sélectionné est \pic!numero!. Aucun code n'est engendré, la vérification est faite statiquement par le compilateur.
 
-\piccolo{numero} doit être un numéro valide de banc, c'est-à-dire un entier compris entre $0$ et $15$.
+\pic!numero! doit être un numéro valide de banc, c'est-à-dire un entier compris entre $0$ et $15$.
 
 
 
@@ -1118,9 +1118,9 @@ Cette instruction vérifie que le banc mémoire sélectionné est \piccolo{numer
 
 
 \subsectionLabel{Instruction \texttt{nobank}}{instructionNoBank}
-\begin{lstlisting}[language=piccolo]
+\begin{piccolo}
 nobank
-\end{lstlisting}
+\end{piccolo}
 
 Cette instruction signifie qu'à partir de ce point, on considère que la sélection courante de banc est inconnue. Elle n'engendre aucun code, c'est juste une information destinée au compilateur.
 
@@ -1132,9 +1132,9 @@ Cette instruction signifie qu'à partir de ce point, on considère que la sélec
 
 \textbf{À partir de Piccolo 3.0.4.}
 
-\begin{lstlisting}[language=piccolo]
+\begin{piccolo}
 checknobank
-\end{lstlisting}
+\end{piccolo}
 
 Cette instruction vérifie que la sélection courante de banc est inconnue. Elle n'engendre aucun code, c'est juste une vérification statique.
 
@@ -1144,15 +1144,15 @@ Cette instruction vérifie que la sélection courante de banc est inconnue. Elle
 
 \subsectionLabel{Instruction \texttt{banksave}}{instructionBanksave}
 
-\begin{lstlisting}[language=piccolo]
+\begin{piccolo}
 banksave var
   liste_instructions
 end
-\end{lstlisting}
+\end{piccolo}
 
-Pour les \emph{mid-range}, cette instruction sauve le registre \assembleur{STATUS} dans la variable \piccolo{var} avant l'exécution de \piccolo{liste\_instructions}, et restitue le registre \assembleur{STATUS} quand le \piccolo{end} est atteint. La variable \piccolo{var} doit être accessible à partir de n'importe quel banc, c'est-à-dire déclaré dans la zone commune \emph{grpnobnk}. L'accumulateur \assembleur{W} est utilisé à chaque fois, aussi bien pour la sauvegarde que pour la restitution.
+Pour les \emph{mid-range}, cette instruction sauve le registre \assembleur{STATUS} dans la variable \pic!var! avant l'exécution de \pic!liste_instructions!, et restitue le registre \assembleur{STATUS} quand le \pic!end! est atteint. La variable \pic!var! doit être accessible à partir de n'importe quel banc, c'est-à-dire déclaré dans la zone commune \emph{grpnobnk}. L'accumulateur \assembleur{W} est utilisé à chaque fois, aussi bien pour la sauvegarde que pour la restitution.
 
-Pour les \emph{pic18}, cette instruction sauve le registre \assembleur{BSR} dans la variable \piccolo{var} avant l'exécution de \piccolo{liste\_instructions}, et restitue le registre \assembleur{BSR} quand le \piccolo{end} est atteint. Comme les deux transferts sont réalisés au moyen de l'instruction \assembleur{MOVFF}, la variable \piccolo{var} peut être déclarée dans n'importe quel banc.
+Pour les \emph{pic18}, cette instruction sauve le registre \assembleur{BSR} dans la variable \pic!var! avant l'exécution de \pic!liste_instructions!, et restitue le registre \assembleur{BSR} quand le \pic!end! est atteint. Comme les deux transferts sont réalisés au moyen de l'instruction \assembleur{MOVFF}, la variable \pic!var! peut être déclarée dans n'importe quel banc.
 
 
 
@@ -1168,7 +1168,7 @@ Le comportement des routines vis à vis de la sélection courante de banc doit �
   \begin{tabular}{ll}
     \textbf{Qualificatif} & \textbf{Sélection de banc lors de l'appel} \\
     \emph{aucun} & ?\\ 
-    \piccolo{bank:requires be} & Banc $be$\\ 
+    \pic!bank:requires be! & Banc $be$\\ 
   \end{tabular}
   \caption{Routine sans retour et qualificatifs associés aux bancs}
   \labelTableau{routineSansRetourEtBanc}
@@ -1182,13 +1182,13 @@ Le comportement des routines vis à vis de la sélection courante de banc doit �
     \textbf{Qualificatif} & \multicolumn{2}{l}{\bf Sélection de banc} \\
                           & \textbf{Lors de l'appel}  & \textbf{Lors du retour} \\
     \emph{aucun} & ? & ?\\ 
-    \piccolo{bank:preserved} & ? & Sélection préservée\\ 
+    \pic!bank:preserved! & ? & Sélection préservée\\ 
     \hdashline
-    \piccolo{bank:requires be} & Banc $be$ & ?\\ 
+    \pic!bank:requires be! & Banc $be$ & ?\\ 
     \hdashline
-    \piccolo{bank:ensures bs} & ? & Banc $bs$\\ 
+    \pic!bank:ensures bs! & ? & Banc $bs$\\ 
     \hdashline
-    \piccolo{bank:requires be ensures bs} & Banc $be$ & Banc $bs$\\ 
+    \pic!bank:requires be ensures bs! & Banc $be$ & Banc $bs$\\ 
   \end{tabular}
   \caption{Routine régulière et qualificatifs associés aux bancs}
   \labelTableau{routineReguliereEtBanc}
@@ -1200,11 +1200,11 @@ Le comportement des routines vis à vis de la sélection courante de banc doit �
 Le contrat est le suivant :
 \begin{itemize}
 \item pour l'appelant, aucune contrainte sur la sélection de banc au moment de l'appel, aucune garantie sur la sélection de banc après l'exécution de la routine ; 
-\item pour la routine appelée, cela signifie que la sélection de banc est inconnue au début de la routine : seul un registre accessible à partir de n'importe quel banc pourra être accédé directement ; pour les autres, il faudra utiliser une instruction \piccolo{banksel} pour fixer la sélection d'un banc ; la valeur de sélection de banc à la fin de l'exécution de la routine est quelconque.
+\item pour la routine appelée, cela signifie que la sélection de banc est inconnue au début de la routine : seul un registre accessible à partir de n'importe quel banc pourra être accédé directement ; pour les autres, il faudra utiliser une instruction \pic!banksel! pour fixer la sélection d'un banc ; la valeur de sélection de banc à la fin de l'exécution de la routine est quelconque.
 \end{itemize}
 
-\textbf{Exemple 1.} \piccolo{varAnyBank} est accessible quel soit la sélection de banc, \piccolo{varBank1} est déclaré dans le banc 1, \piccolo{varBank2} dans le banc 2 :
-\begin{lstlisting}[language=piccolo]
+\textbf{Exemple 1.} \pic!varAnyBank! est accessible quel soit la sélection de banc, \pic!varBank1! est déclaré dans le banc 1, \pic!varBank2! dans le banc 2 :
+\begin{piccolo}
 routine maRoutine {
   clrf varAnyBank
   banksel 1
@@ -1212,19 +1212,19 @@ routine maRoutine {
   banksel 2
   clrf varBank2
 }
-\end{lstlisting}
+\end{piccolo}
 
 Cette routine est compilée sans erreur.
 
 
-\textbf{Exemple 2.} \piccolo{varAnyBank} est accessible quel soit la sélection de banc, \piccolo{varBank1} est déclaré dans le banc 1, \piccolo{varBank2} dans le banc 2 :
-\begin{lstlisting}[language=piccolo]
+\textbf{Exemple 2.} \pic!varAnyBank! est accessible quel soit la sélection de banc, \pic!varBank1! est déclaré dans le banc 1, \pic!varBank2! dans le banc 2 :
+\begin{piccolo}
 routine maRoutine {
   clrf varAnyBank
   clrf varBank1
   clrf varBank2
 }
-\end{lstlisting}
+\end{piccolo}
 
 La compilation de cette routine provoque deux erreurs (utiliser l’option \texttt{-d} pour obtenir des messages détaillés) :
 
@@ -1241,15 +1241,15 @@ La compilation de cette routine provoque deux erreurs (utiliser l’option \text
 
 
 
-\textbf{Exemple 3.} \piccolo{varAnyBank} est accessible quel soit la sélection de banc, \piccolo{varBank1} est déclaré dans le banc 1, \piccolo{varBank2} dans le banc 2 :
-\begin{lstlisting}[language=piccolo]
+\textbf{Exemple 3.} \pic!varAnyBank! est accessible quel soit la sélection de banc, \pic!varBank1! est déclaré dans le banc 1, \pic!varBank2! dans le banc 2 :
+\begin{piccolo}
 routine maRoutine {
   clrf varAnyBank
   banksel 1
   clrf varBank1
   clrf varBank2
 }
-\end{lstlisting}
+\end{piccolo}
 
 La compilation de cette routine provoque une erreur (utiliser l’option \texttt{-d} pour obtenir des messages détaillés) :
 
@@ -1276,13 +1276,13 @@ La compilation de cette routine provoque une erreur (utiliser l’option \texttt
 Le contrat est le suivant :
 \begin{itemize}
   \item pour l'appelant, aucune contrainte sur la sélection de banc au moment de l'appel, garantie que l'exécution de la routine ne modifiera pas la sélection de banc ; 
-\item pour la routine appelée, cela signifie que la sélection de banc est inconnue au début de la routine : seul un registre accessible à partir de n'importe quel banc pourra être accédé directement ; pour les autres, il faudra utiliser une instruction \piccolo{banksel} pour fixer la sélection d'un banc ; la valeur de sélection de banc à la fin de l'exécution doit être préservée.
+\item pour la routine appelée, cela signifie que la sélection de banc est inconnue au début de la routine : seul un registre accessible à partir de n'importe quel banc pourra être accédé directement ; pour les autres, il faudra utiliser une instruction \pic!banksel! pour fixer la sélection d'un banc ; la valeur de sélection de banc à la fin de l'exécution doit être préservée.
 \end{itemize}
 
-Si utiliser une instruction \piccolo{banksel} dans la routine est indispensable, la seule façon de préserver la sélection de banc est d'utiliser l'instruction \piccolo{banksave}. 
+Si utiliser une instruction \pic!banksel! dans la routine est indispensable, la seule façon de préserver la sélection de banc est d'utiliser l'instruction \pic!banksave!. 
 
-\textbf{Exemple 1.} \piccolo{varAnyBank} est accessible quel soit la sélection de banc, \piccolo{varBank1} est déclaré dans le banc 1, \piccolo{varBank2} dans le banc 2 :
-\begin{lstlisting}[language=piccolo]
+\textbf{Exemple 1.} \pic!varAnyBank! est accessible quel soit la sélection de banc, \pic!varBank1! est déclaré dans le banc 1, \pic!varBank2! dans le banc 2 :
+\begin{piccolo}
 routine maRoutine bank:preserved {
   clrf varAnyBank
   banksave save_bank
@@ -1292,13 +1292,13 @@ routine maRoutine bank:preserved {
     clrf varBank2
   end
 }
-\end{lstlisting}
+\end{piccolo}
 
 Cette routine est compilée sans erreur.
 
 
-\textbf{Exemple 2.} \piccolo{varAnyBank} est accessible quel soit la sélection de banc, \piccolo{varBank1} est déclaré dans le banc 1, \piccolo{varBank2} dans le banc 2 :
-\begin{lstlisting}[language=piccolo]
+\textbf{Exemple 2.} \pic!varAnyBank! est accessible quel soit la sélection de banc, \pic!varBank1! est déclaré dans le banc 1, \pic!varBank2! dans le banc 2 :
+\begin{piccolo}
 routine maRoutine bank:preserved {
   clrf varAnyBank
   banksel 1
@@ -1306,7 +1306,7 @@ routine maRoutine bank:preserved {
   banksel 2
   clrf varBank2
 }
-\end{lstlisting}
+\end{piccolo}
 
 La compilation de cette routine provoque deux erreurs (utiliser l’option \texttt{-d} pour obtenir des messages détaillés) :
 
@@ -1336,19 +1336,19 @@ La compilation de cette routine provoque deux erreurs (utiliser l’option \text
 
 Le contrat est le suivant :
 \begin{itemize}
-  \item pour l'appelant, le banc \piccolo{be} doit être sélectionné au moment de l'appel, aucune garantie sur la sélection de banc après l'exécution de la routine ; 
-  \item pour la routine appelée, garantie que le banc \piccolo{be} banc est sélectionné au début de la routine : ainsi les registres accessibles à partir de n'importe quel banc et du banc $be$ peuvent être accédés directement ; pour les autres, il faudra utiliser une instruction \piccolo{banksel} pour fixer la sélection ; la valeur de sélection de banc à la fin de l'exécution de la routine est quelconque.
+  \item pour l'appelant, le banc \pic!be! doit être sélectionné au moment de l'appel, aucune garantie sur la sélection de banc après l'exécution de la routine ; 
+  \item pour la routine appelée, garantie que le banc \pic!be! banc est sélectionné au début de la routine : ainsi les registres accessibles à partir de n'importe quel banc et du banc $be$ peuvent être accédés directement ; pour les autres, il faudra utiliser une instruction \pic!banksel! pour fixer la sélection ; la valeur de sélection de banc à la fin de l'exécution de la routine est quelconque.
 \end{itemize}
 
-Par exemple (\piccolo{varAnyBank} est accessible quel soit la sélection de banc, \piccolo{varBank1} est déclaré dans le banc 1, \piccolo{varBank2} dans le banc 2) :
-\begin{lstlisting}[language=piccolo]
+Par exemple (\pic!varAnyBank! est accessible quel soit la sélection de banc, \pic!varBank1! est déclaré dans le banc 1, \pic!varBank2! dans le banc 2) :
+\begin{piccolo}
 routine maRoutine bank:requires 1 {
   clrf varAnyBank
   clrf varBank1
   banksel 2
   clrf varBank2
 }
-\end{lstlisting}
+\end{piccolo}
 
 
 
@@ -1360,12 +1360,12 @@ routine maRoutine bank:requires 1 {
 
 Le contrat est le suivant :
 \begin{itemize}
-  \item pour l'appelant, aucune contrainte sur la sélection de banc au moment de l'appel, garantie que le banc \piccolo{bs} est sélectionné après l'exécution de la routine ; 
-  \item cela signifie que la sélection de banc est inconnue au début de la routine : seul un registre accessible à partir de n'importe quel banc pourra être accédé directement ; pour les autres, il faudra utiliser une instruction \piccolo{banksel} pour fixer la sélection d'un banc ; le banc \piccolo{bs} doit être sélectionné à la fin de l'exécution.
+  \item pour l'appelant, aucune contrainte sur la sélection de banc au moment de l'appel, garantie que le banc \pic!bs! est sélectionné après l'exécution de la routine ; 
+  \item cela signifie que la sélection de banc est inconnue au début de la routine : seul un registre accessible à partir de n'importe quel banc pourra être accédé directement ; pour les autres, il faudra utiliser une instruction \pic!banksel! pour fixer la sélection d'un banc ; le banc \pic!bs! doit être sélectionné à la fin de l'exécution.
 \end{itemize}
 
-Par exemple (\piccolo{varAnyBank} est accessible quel soit la sélection de banc, \piccolo{varBank1} est déclaré dans le banc 1, \piccolo{varBank2} dans le banc 2) :
-\begin{lstlisting}[language=piccolo]
+Par exemple (\pic!varAnyBank! est accessible quel soit la sélection de banc, \pic!varBank1! est déclaré dans le banc 1, \pic!varBank2! dans le banc 2) :
+\begin{piccolo}
 routine maRoutine bank:ensures 1 {
   clrf varAnyBank
   banksel 1
@@ -1374,13 +1374,13 @@ routine maRoutine bank:ensures 1 {
   clrf varBank2
   banksel 1
 }
-\end{lstlisting}
+\end{piccolo}
 
-La dernière instruction \piccolo{banksel 1} est indipensable pour garantir que le banc 1 est sélectionné à la fin de l'exécution de la routine.
+La dernière instruction \pic!banksel 1! est indispensable pour garantir que le banc 1 est sélectionné à la fin de l'exécution de la routine.
 
 
 Par contre, dans le cas suivant, on n'a pas besoin de fixer la sélection de banc à la fin de la routine :
-\begin{lstlisting}[language=piccolo]
+\begin{piccolo}
 routine maRoutine bank:ensures 2 {
   clrf varAnyBank
   banksel 1
@@ -1388,7 +1388,7 @@ routine maRoutine bank:ensures 2 {
   banksel 2
   clrf varBank2
 }
-\end{lstlisting}
+\end{piccolo}
 
 
 
@@ -1405,19 +1405,19 @@ routine maRoutine bank:ensures 2 {
 
 Le contrat est le suivant :
 \begin{itemize}
-  \item pour l'appelant, le banc \piccolo{be} doit être sélectionné au moment de l'appel, garantie que le banc \piccolo{bs} est sélectionné après l'exécution de la routine ; 
-  \item cela signifie que le banc \piccolo{be} est sélectionné au début de la routine : seul un registre accessible à partir de n'importe quel banc pourra être accédé directement ; pour les autres, il faudra utiliser une instruction \piccolo{banksel} pour fixer la sélection d'un banc ; le banc \piccolo{bs} doit être sélectionné à la fin de l'exécution.
+  \item pour l'appelant, le banc \pic!be! doit être sélectionné au moment de l'appel, garantie que le banc \pic!bs! est sélectionné après l'exécution de la routine ; 
+  \item cela signifie que le banc \pic!be! est sélectionné au début de la routine : seul un registre accessible à partir de n'importe quel banc pourra être accédé directement ; pour les autres, il faudra utiliser une instruction \pic!banksel! pour fixer la sélection d'un banc ; le banc \pic!bs! doit être sélectionné à la fin de l'exécution.
 \end{itemize}
 
-Par exemple (\piccolo{varAnyBank} est accessible quel soit la sélection de banc, \piccolo{varBank1} est déclaré dans le banc 1, \piccolo{varBank2} dans le banc 2) :
-\begin{lstlisting}[language=piccolo]
+Par exemple (\pic!varAnyBank! est accessible quel soit la sélection de banc, \pic!varBank1! est déclaré dans le banc 1, \pic!varBank2! dans le banc 2) :
+\begin{piccolo}
 routine maRoutine bank:requires 1 ensures 2 {
   clrf varAnyBank
   clrf varBank1
   banksel 2
   clrf varBank2
 }
-\end{lstlisting}
+\end{piccolo}
 
 
 
@@ -1431,7 +1431,7 @@ routine maRoutine bank:requires 1 ensures 2 {
 
 L'instruction conditionnelle structurée est présentée à la \refSectionPage{instructionConditionnelleStructuree} et a la forme générale suivante :
 
-\begin{lstlisting}[language=piccolo]
+\begin{piccolo}
 if (cca)
   instructions 1
 elsif (ccb)
@@ -1439,11 +1439,11 @@ elsif (ccb)
 else
   instructions 3
 end
-\end{lstlisting}
+\end{piccolo}
 
 \textbf{Règles :}
 \begin{itemize}
-  \item la sélection initiale de banc sera utilisée pour l’évaluation des conditions \piccolo{cca} et \piccolo{ccb}, et sera la valeur au début de l'exécution de chaque branche ;
+  \item la sélection initiale de banc sera utilisée pour l’évaluation des conditions \pic!cca! et \pic!ccb!, et sera la valeur au début de l'exécution de chaque branche ;
   \item toutes les branches doivent laisser la sélection de banc dans le même état : soit avec la même valeur connue, soit avec une valeur considérée comme invalide.
 \end{itemize}
 
@@ -1452,15 +1452,15 @@ end
 
 L'instruction de répétition infinie est présentée à la \refSectionPage{repetitionInfinie} et a la forme générale suivante :
 
-\begin{lstlisting}[language=piccolo]
+\begin{piccolo}
 forever
   instructions_repetees
 end
-\end{lstlisting}
+\end{piccolo}
 
 \textbf{Règle :}
 \begin{itemize}
-  \item la liste d'instructions \piccolo{instructions\_repetees} doit préserver la sélection de banc.
+  \item la liste d'instructions \pic!instructions_repetees! doit préserver la sélection de banc.
 \end{itemize}
 
 
@@ -1469,18 +1469,18 @@ end
 
 L'instruction de répétition infinie est présentée à la \refSectionPage{instructionRepetitive} et a la forme générale suivante :
 
-\begin{lstlisting}[language=piccolo]
+\begin{piccolo}
 do
-  instructions 1
+  instructions_1
 while (cca)
-  instructions 2
+  instructions_2
 while (ccb)
-  instructions 3
+  instructions_3
 end
-\end{lstlisting}
+\end{piccolo}
 
 \textbf{Règles :}
 \begin{itemize}
-  \item chaque liste d'instructions (\piccolo{instructions 1}, \piccolo{instructions 2}, \piccolo{instructions 3}) doit préserver la sélection de banc ;
-  \item l'évaluation des conditions \piccolo{cca} et \piccolo{ccb} s'effectue avec cette sélection de banc.
+  \item chaque liste d'instructions (\pic!instructions_1!, \pic!instructions_2!, \pic!instructions_3!) doit préserver la sélection de banc ;
+  \item l'évaluation des conditions \pic!cca! et \pic!ccb! s'effectue avec cette sélection de banc.
 \end{itemize}
