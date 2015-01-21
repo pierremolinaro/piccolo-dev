@@ -15,11 +15,11 @@
 
 Un programme Piccolo pour \emph{mid-range} a la structure suivante :
 
-\begin{lstlisting}[language=piccolo]
+\begin{piccolo}
 midrange nom "nom_composant" :
   liste_de_sections
 end
-\end{lstlisting}
+\end{piccolo}
 
 
 Dans l’en-tête :
@@ -36,21 +36,21 @@ Le corps du programme est constitué d’une liste non ordonnée de sections. Le
 %  \rowcolors{2}{\fondTableau}{}
   \begin{tabular}{p{5cm}lll}
     \textbf{Type de section} & \textbf{Mot-clés introductifs} & \textbf{Référence}\\
-    Configuration & \piccolo{configuration} & \refChapterPage{configuration}\\
+    Configuration & \pic!configuration! & \refChapterPage{configuration}\\
     \hdashline
-    Définition de variable & \piccolo{ram} & \refChapterPage{ram}\\
+    Définition de variable & \pic!ram! & \refChapterPage{ram}\\
     \hdashline
-    Déclaration de variable inutilisée & \piccolo{unused byte}\index{Mot réservé!unused} & \refSectionPage{sectionUnusedByte} \\
+    Déclaration de variable inutilisée & \pic!unused byte!\index{Mot réservé!unused} & \refSectionPage{sectionUnusedByte} \\
     \hdashline
-    Définition de constante & \piccolo{const} & \refChapterPage{constante}\\
+    Définition de constante & \pic!const! & \refChapterPage{constante}\\
     \hdashline
-    Définition de routine mid-range & \piccolo{routine} & \refSectionPage{routineMidrange}\\
+    Définition de routine mid-range & \pic!routine! & \refSectionPage{routineMidrange}\\
     \hdashline
-    Définition de routine sans retour & \piccolo{noreturn routine}\index{Mot réservé!noreturn} & \refSectionPage{routineMidrange}\\
+    Définition de routine sans retour & \pic!noreturn routine!\index{Mot réservé!noreturn} & \refSectionPage{routineMidrange}\\
     \hdashline
-    Routine inutilisée & \piccolo{unused routine}\index{Mot réservé!unused} & \refSubsectionPage{routineInutiliseeMidrange} \\
+    Routine inutilisée & \pic!unused routine!\index{Mot réservé!unused} & \refSubsectionPage{routineInutiliseeMidrange} \\
     \hdashline
-    Définition de routine d'interruption mid-range & \piccolo{interrupt} & \refSectionPage{routineInterruptionMidrange}\\
+    Définition de routine d'interruption mid-range & \pic!interrupt! & \refSectionPage{routineInterruptionMidrange}\\
   \end{tabular}
   \caption{Les sections d'un programme pour \emph{mid-range}}
   \labelTableau{sectionsMidrange}
@@ -62,95 +62,95 @@ Le corps du programme est constitué d’une liste non ordonnée de sections. Le
 
 \sectionLabel{Routines mid-range}{routineMidrange}
 
-Les routines définissent le code exécutable de votre programme. L’une d’entre elles doit s’appeler \piccolo{main} : c’est la routine qui s’exécute au démarrage. Il y a deux types de routine, les routines \emph{régulières} et les routines \emph{sans retour}.
+Les routines définissent le code exécutable de votre programme. L’une d’entre elles doit s’appeler \pic!main! : c’est la routine qui s’exécute au démarrage. Il y a deux types de routine, les routines \emph{régulières} et les routines \emph{sans retour}.
 
 
 L’ordre des déclarations des routines est quelconque, il est possible d’appeler une routine qui est déclarée après l’instruction d’appel. Simplement Piccolo engendrera leur code dans leur ordre d’apparition. 
 
 \textbf{Routine et sélection de banc.} Un problème important en assembleur est la gestion de la sélection de banc par l’intermédiaire des bits \assembleur{RP} du registre \assembleur{STATUS} : son utilisation correcte en assembleur est complètement à la charge du programmeur. Piccolo propose des instructions pour sécuriser son emploi : voir la \refSectionPage{instructionsGestionBancsMemoire}.
 
-\textbf{Liste d’instructions d’une routine.} Elle est structurée : Piccolo définit des instructions de sélection et de répétition : cela signifie que vous ne pouvez pas déclarer d’étiquette, ni utiliser des \piccolo{goto} pour effectuer des branchements à l’intérieur d’une routine.
+\textbf{Liste d’instructions d’une routine.} Elle est structurée : Piccolo définit des instructions de sélection et de répétition : cela signifie que vous ne pouvez pas déclarer d’étiquette, ni utiliser des \pic!goto! pour effectuer des branchements à l’intérieur d’une routine.
 
 \textbf{Routine et pages de la mémoire programme.} La mémoire programme d’un midrange est divisé en blocs de 2048 instructions, et franchir ces frontières posent des problèmes particuliers. Piccolo impose les contraintes suivantes :\begin{itemize}
   \item une routine doit être complètement contenue dans une page (son code ne peut franchir une frontière) ;
-  \item les sauts inter-pages ne peuvent être effectués qu’avec les instructions \piccolo{jump} ou \piccolo{jsr} (\refSectionPage{gestionPagesMidRange}).
+  \item les sauts inter-pages ne peuvent être effectués qu’avec les instructions \pic!jump! ou \pic!jsr! (\refSectionPage{gestionPagesMidRange}).
 \end{itemize}
 
 \subsectionLabel{Routine régulière}{routineReguliereMidRange}
 
 C'est un sous-programme. Une routine régulière peut ne comporter aucune instruction Piccolo, l'instruction \assembleur{RETURN} est implicitement ajoutée. Une routine régulière est déclarée par :
-\begin{lstlisting}[language=piccolo]
+\begin{piccolo}
 routine maRoutine ... {
   ...
 }
-\end{lstlisting}
+\end{piccolo}
 
-\piccolo{maRoutine} est le nom de la routine, celui qui sera nommé dans un instruction d’appel de routine. Entre les accolades « \piccolo{\{} » et « \piccolo{\}} », apparaît la liste des instructions.
+\pic!maRoutine! est le nom de la routine, celui qui sera nommé dans un instruction d’appel de routine. Entre les accolades « \texttt{\{} » et « \texttt{\}} », apparaît la liste des instructions.
 
-\textbf{Appel d’une routine régulière.} Utiliser \piccolo{call} ou \piccolo{jsr}.
+\textbf{Appel d’une routine régulière.} Utiliser \pic!call! ou \pic!jsr!.
 
 \subsection{Routine sans retour}
 
-L’exécution ne revient pas jamais à l’appelant. Ce type de routine doit donc se terminer par des constructions particulières qui assurent le non-retour : une boucle infinie, un branchement (\piccolo{goto} ou \piccolo{jump}) vers une autre routine sans retour, un \piccolo{goto} calculé vers d’autres routines sans retour.
+L’exécution ne revient pas jamais à l’appelant. Ce type de routine doit donc se terminer par des constructions particulières qui assurent le non-retour : une boucle infinie, un branchement (\pic!goto! ou \pic!jump!) vers une autre routine sans retour, un \pic!goto! calculé vers d’autres routines sans retour.
 
-Une routine sans retour doit être déclarée avec qualificatif \piccolo{noreturn} :
-\begin{lstlisting}[language=piccolo]
+Une routine sans retour doit être déclarée avec qualificatif \pic!noreturn! :
+\begin{piccolo}
 noreturn routine maRoutine ... {
   ...
 }
-\end{lstlisting}
+\end{piccolo}
 
-\textbf{Appel d’une routine sans retour.} Utiliser \piccolo{goto} ou \piccolo{jump}.
+\textbf{Appel d’une routine sans retour.} Utiliser \pic!goto! ou \pic!jump!.
 
 
-\textbf{Déclaration de la routine \piccolo{main}.} Dans un programme, il doit exister une et une seule routine \piccolo{main}, qui doit être déclarée comme suit :
+\textbf{Déclaration de la routine \pic!main!.} Dans un programme, il doit exister une et une seule routine \pic!main!, qui doit être déclarée comme suit :
 
-\begin{lstlisting}[language=piccolo]
+\begin{piccolo}
 noreturn routine main bank:requires 0 {
    liste d'instructions
 }
 
-\end{lstlisting}
+\end{piccolo}
 
-Le compilateur Piccolo insère à l’adresse zéro une instruction \piccolo{goto} vers cette routine, de façon que la routine \piccolo{main} soit exécutée au démarrage du micro-contrôleur. Le qualificatif \piccolo{bank:requires 0} est exigé par le compilateur Piccolo car les bits \assembleur{RP} du registre \assembleur{STATUS} sont initialisés à zéro au démarrage du micro-contrôleur.
+Le compilateur Piccolo insère à l’adresse zéro une instruction \pic!goto! vers cette routine, de façon que la routine \pic!main! soit exécutée au démarrage du micro-contrôleur. Le qualificatif \pic!bank:requires 0! est exigé par le compilateur Piccolo car les bits \assembleur{RP} du registre \assembleur{STATUS} sont initialisés à zéro au démarrage du micro-contrôleur.
 
 
 \textbf{Comment terminer une routine sans retour.} La dernière instruction de la liste des instructions d’une routine sans retour doit être :
 \begin{itemize}
-  \item un appel vers une autre routine sans retour, au moyen d’un \piccolo{goto} ou d'un \piccolo{jump} ;
-  \item un branchement calculé vers une routine parmi plusieurs, au moyen d’un \piccolo{computed goto} ;
+  \item un appel vers une autre routine sans retour, au moyen d’un \pic!goto! ou d'un \pic!jump! ;
+  \item un branchement calculé vers une routine parmi plusieurs, au moyen d’un \pic!computed goto! ;
   \item une instruction conditionnelle structurée, dont toutes les branches présentent comme dernière instruction les instructions d’appel d’un routine sans retour, un branchement calculé (comme évoqué ci-dessus), ou encore une instruction conditionnelle structurée, dont toutes les branches, etc.
 
 \end{itemize}
 
 Exemple simple : la dernière instruction est une boucle infinie :
-\begin{lstlisting}[language=piccolo]
+\begin{piccolo}
 noreturn routine maRoutine {
   ...
   forever
     ...
   end
 }
-\end{lstlisting}
+\end{piccolo}
 
 Exemple simple : la dernière instruction est un branchement vers une routine sans retour :
-\begin{lstlisting}[language=piccolo]
+\begin{piccolo}
 noreturn routine maRoutine {
   ...
   goto autreRoutineSansRetour
 }
-\end{lstlisting}
+\end{piccolo}
 
-La dernière instruction est un \piccolo{computed goto} nommant les routines \piccolo{r1}, \piccolo{r2}, \piccolo{r3} qui doivent être toutes les trois des routines sans retour :
-\begin{lstlisting}[language=piccolo]
+La dernière instruction est un \pic!computed goto! nommant les routines \pic!r1!, \pic!r2!, \pic!r3! qui doivent être toutes les trois des routines sans retour :
+\begin{piccolo}
 noreturn routine maRoutine {
   ...
   computed [3] goto r1, r2, r3
 }
-\end{lstlisting}
+\end{piccolo}
 
-La dernière instruction est un \piccolo{if} dont aucune des branches ne se termine (\piccolo{r1} est une routine sans retour) :
-\begin{lstlisting}[language=piccolo]
+La dernière instruction est un \pic!if! dont aucune des branches ne se termine (\pic!r1! est une routine sans retour) :
+\begin{piccolo}
 noreturn routine maRoutine {
   if (...)
     ...
@@ -163,11 +163,11 @@ noreturn routine maRoutine {
   end
 }
 
-\end{lstlisting}
+\end{piccolo}
 
 
-La dernière instruction est un \piccolo{if} dont la première branche se termine elle même par un \piccolo{if} dont les deux branches se terminent par des branchements vers des routines sans retour :
-\begin{lstlisting}[language=piccolo]
+La dernière instruction est un \pic!if! dont la première branche se termine elle même par un \pic!if! dont les deux branches se terminent par des branchements vers des routines sans retour :
+\begin{piccolo}
 noreturn routine maRoutine {
   if (...)
     ...
@@ -183,7 +183,7 @@ noreturn routine maRoutine {
     goto r3
   end
 }
-\end{lstlisting}
+\end{piccolo}
 
 
 
@@ -193,9 +193,9 @@ noreturn routine maRoutine {
 
 Par défaut à partir de la version 3.0.2, Piccolo détecte les routines inutilisées. Un \emph{warning} est déclenché pour chaque routine inutilisée.
 
-Pour inhiber ce \emph{warning}, on utilise la déclaration \piccolo{unused routine} :
+Pour inhiber ce \emph{warning}, on utilise la déclaration \pic!unused routine! :
 
-\begin{lstlisting}[language=piccolo]
+\begin{piccolo}
 baseline exemple "12F683" :
 routine uneRoutine {
 }
@@ -208,12 +208,12 @@ noreturn routine main bank:requires 0 {
 }
 
 end
-\end{lstlisting}
+\end{piccolo}
 
-La déclaration \piccolo{unused routine} peut apparaître avant ou après la déclaration des routines qu'elle nomme ; plusieurs routines peuvent être nommées, en séparant leurs noms par une virgule :
-\begin{lstlisting}[language=piccolo]
+La déclaration \pic!unused routine! peut apparaître avant ou après la déclaration des routines qu'elle nomme ; plusieurs routines peuvent être nommées, en séparant leurs noms par une virgule :
+\begin{piccolo}
 unused routine routine1, routine2
-\end{lstlisting}
+\end{piccolo}
 
 
 
@@ -325,18 +325,18 @@ Le \refTableau{instructionsAssembleurMidRange} donnent la liste des instructions
 
 \textbf{Les instructions composées.} Piccolo définit les instructions suivantes :
 \begin{itemize}
-  \item l'instruction \piccolo{mnop} (\refSectionPage{instructionMNOP}) ;
+  \item l'instruction \pic!mnop! (\refSectionPage{instructionMNOP}) ;
   \item l'instruction conditionnelle simple (\refSectionPage{instructionConditionnelleSimple}) ;
   \item l'instruction conditionnelle structurée (\refSectionPage{instructionConditionnelleStructuree}) ;
   \item l'instruction répétitive (\refSectionPage{instructionRepetitive}) ;
   \item l'instruction de répétition infinie (\refSectionPage{repetitionInfinie}) ;
   \item l'instruction de répétition statique (\refSectionPage{repetitionStatique}) ;
-  \item l'instruction d'appel de routine régulière \piccolo{jsr} (\refSectionPage{gestionPagesMidRange}) ;
-  \item l'instruction d'appel de routine sans retour \piccolo{jump} (\refSectionPage{gestionPagesMidRange}) ;
-  \item l'instruction \piccolo{banksel} (\refSubsectionPage{instructionBanksel}) ;
-  \item l'instruction \piccolo{checkbank} (\refSubsectionPage{instructionCheckBank}) ;
-  \item l'instruction \piccolo{nobank} (\refSubsectionPage{instructionNoBank}) ;
-  \item l'instruction \piccolo{banksave} (\refSubsectionPage{instructionBanksave}).
+  \item l'instruction d'appel de routine régulière \pic!jsr! (\refSectionPage{gestionPagesMidRange}) ;
+  \item l'instruction d'appel de routine sans retour \pic!jump! (\refSectionPage{gestionPagesMidRange}) ;
+  \item l'instruction \pic!banksel! (\refSubsectionPage{instructionBanksel}) ;
+  \item l'instruction \pic!checkbank! (\refSubsectionPage{instructionCheckBank}) ;
+  \item l'instruction \pic!nobank! (\refSubsectionPage{instructionNoBank}) ;
+  \item l'instruction \pic!banksave! (\refSubsectionPage{instructionBanksave}).
 \end{itemize}
 
 
@@ -373,9 +373,9 @@ Ce sont les instructions listées dans le \refTableau{operationsMidRangeNommantU
 %  \rowcolors{2}{\fondTableau}{}
   \begin{tabular}{lll}
     \textbf{Assembleur} & \textbf{Description} & \textbf{Écriture en Piccolo}\\
-    \assembleur{CLRF f} & Clear f & \piccolo{clrf f} \\
+    \assembleur{CLRF f} & Clear f & \pic!clrf f! \\
     \hdashline
-    \assembleur{MOVWF f} & Move f & \piccolo{movwf f} \\
+    \assembleur{MOVWF f} & Move f & \pic!movwf f! \\
   \end{tabular}
   \caption{Opérations \emph{mid-range} nommant un registre}
   \labelTableau{operationsMidRangeNommantUnRegistre}
@@ -394,7 +394,7 @@ Ce sont les instructions listées dans le \refTableau{operationsMidRangeNommantU
 Ces instructions, ainsi que le traduction en Piccolo, sont listées dans le \refTableau{instructionsMidRangeRegistreEtW}. En assembleur, elles nomment deux opérandes :
 \begin{itemize}
   \item \assembleur{f} : désigne le registre, il en est de même en Piccolo ;
-  \item \assembleur{d} : optionnel en Piccolo ; si absent, le registre \piccolo{f} est destination de l'opération, si égal à \piccolo{W}, c'est le registre \piccolo{W} qui est destinaire.
+  \item \assembleur{d} : optionnel en Piccolo ; si absent, le registre \pic!f! est destination de l'opération, si égal à \pic!W!, c'est le registre \pic!W! qui est destinaire.
 \end{itemize}
 
 
@@ -405,29 +405,29 @@ Ces instructions, ainsi que le traduction en Piccolo, sont listées dans le \ref
   \begin{tabular}{llll}
      &  & \multicolumn{2}{l}{\textbf{En Piccolo, destination :}} \\
     \textbf{Assembleur} & \textbf{Description} & \textbf{f} & \textbf{W}\\
-    \assembleur{ADDWF f, d} & Add W and f & \piccolo{addwf f}  & \piccolo{addwf f, W} \\
+    \assembleur{ADDWF f, d} & Add W and f & \pic!addwf f!  & \pic!addwf f, W! \\
     \hdashline
-    \assembleur{ANDWF f, d} & And W with f & \piccolo{andwf f} & \piccolo{andwf f, W}\\
+    \assembleur{ANDWF f, d} & And W with f & \pic!andwf f! & \pic!andwf f, W!\\
     \hdashline
-    \assembleur{COMF f, d} & Complement f & \piccolo{comf f} & \piccolo{comf f, W}\\
+    \assembleur{COMF f, d} & Complement f & \pic!comf f! & \pic!comf f, W!\\
     \hdashline
-    \assembleur{DECF f, d} & Decrement f & \piccolo{decf f} & \piccolo{decf f, W}\\
+    \assembleur{DECF f, d} & Decrement f & \pic!decf f! & \pic!decf f, W!\\
     \hdashline
-    \assembleur{INCF f, d} & Increment f & \piccolo{incf f}& \piccolo{incf f, W}\\
+    \assembleur{INCF f, d} & Increment f & \pic!incf f!& \pic!incf f, W!\\
     \hdashline
-    \assembleur{IORWF f, d} & Inclusive OR W with f & \piccolo{iorwf f} & \piccolo{iorwf f, W}\\
+    \assembleur{IORWF f, d} & Inclusive OR W with f & \pic!iorwf f! & \pic!iorwf f, W!\\
     \hdashline
-    \assembleur{MOVF f, d} & Move f & \piccolo{movf f} & \piccolo{movf f, W}\\
+    \assembleur{MOVF f, d} & Move f & \pic!movf f! & \pic!movf f, W!\\
     \hdashline
-    \assembleur{RLF f, d} & Rotate Left f through Carry & \piccolo{rlf f} & \piccolo{rlf f, W}\\
+    \assembleur{RLF f, d} & Rotate Left f through Carry & \pic!rlf f! & \pic!rlf f, W!\\
     \hdashline
-    \assembleur{RRF f, d} & Rotate Right f through Carry & \piccolo{rrf f} & \piccolo{rrf f, W}\\
+    \assembleur{RRF f, d} & Rotate Right f through Carry & \pic!rrf f! & \pic!rrf f, W!\\
     \hdashline
-    \assembleur{SUBWF f, d} & Substract W from f & \piccolo{subwf f} & \piccolo{subwf f, W}\\
+    \assembleur{SUBWF f, d} & Substract W from f & \pic!subwf f! & \pic!subwf f, W!\\
     \hdashline
-    \assembleur{SWAPF f, d} & Swap Nibbles in f & \piccolo{swapf f} & \piccolo{swapf f, W}\\
+    \assembleur{SWAPF f, d} & Swap Nibbles in f & \pic!swapf f! & \pic!swapf f, W!\\
     \hdashline
-    \assembleur{XORWF f, d} & Exclusive OR W with f & \piccolo{xorwf f} & \piccolo{xorwf f, W}\\
+    \assembleur{XORWF f, d} & Exclusive OR W with f & \pic!xorwf f! & \pic!xorwf f, W!\\
   \end{tabular}
   \caption{Instructions \emph{mid-range} nommant un registre, et optionnellement \texttt{W}}
   \labelTableau{instructionsMidRangeRegistreEtW}
@@ -445,9 +445,9 @@ Ces instructions Piccolo correspondent aux instructions machine \assembleur{BCF}
 %  \rowcolors{2}{\fondTableau}{}
   \begin{tabular}{lll}
     \textbf{Assembleur} & \textbf{Description} & \textbf{Écriture en Piccolo}\\
-    \assembleur{BCF f, b} & Bit Clear f & \piccolo{bcf f.b} \\
+    \assembleur{BCF f, b} & Bit Clear f & \pic!bcf f.b! \\
     \hdashline
-    \assembleur{BSF f, b} & Bit Set f & \piccolo{bsf f.b} \\
+    \assembleur{BSF f, b} & Bit Set f & \pic!bsf f.b! \\
   \end{tabular}
   \caption{Opérations \emph{mid-range} sur un bit d'un registre}
   \labelTableau{operationsMidRangeAffectationBit}
@@ -461,25 +461,25 @@ En Piccolo, ces instructions ont toujours deux arguments :
 \end{itemize}
 
 Pour désigner le bit concerné, vous pouvez utiliser un nombre compris entre 0 et 7. Par exemple :
-\begin{lstlisting}[language=piccolo]
+\begin{piccolo}
 bcf maVariable.3
-\end{lstlisting}
+\end{piccolo}
 
 Si le registre a été défini en déclarant des noms de bit :
-\begin{lstlisting}[language=piccolo]
+\begin{piccolo}
 ram ... {
   byte maVariable <a, -, b [3], -, -, ->
 }
-\end{lstlisting}
+\end{piccolo}
 
 Vous pouvez utiliser l’un de ces noms comme second argument :
-\begin{lstlisting}[language=piccolo]
+\begin{piccolo}
 bcf maVariable.a # a designe le bit 7
-\end{lstlisting}
+\end{piccolo}
 ou encore
-\begin{lstlisting}[language=piccolo]
+\begin{piccolo}
 bcf maVariable.b [1] # b[1] designe le bit 4
-\end{lstlisting}
+\end{piccolo}
 
 Vous pouvez de cette façon accéder aux bits des registres spéciaux. Pour connaître la liste des registres de contrôle, utilisez l’option \texttt{-{}-registers} (ou sa version courte \texttt{-R}), comme décrite à la \refSubsectionPage{exempleOptionRegisters} ; par exemple : \texttt{piccolo -R=16F690}.
 
@@ -488,15 +488,15 @@ Vous pouvez de cette façon accéder aux bits des registres spéciaux. Pour conn
 
 Ces opérations sont listées dans le \refTableau{operationsLiteralesMidRangeAvecW}. L’instruction \assembleur{RETLW k} n’existe pas en Piccolo, l’optimiseur repérera une instruction \assembleur{MOVLW k} en fin de routine et la transformera en \assembleur{RETLW k}.
 
-En Piccolo, \piccolo{k} est une \emph{expression statique}. Une expression statique est une expression dont la valeur est calculée à la compilation. Sa forme générale est présentée à la \refSectionPage{expressionImmediate}. Le compilateur effectue tous les calculs d'une expression statique avec des nombres entiers 32 bits signés.
+En Piccolo, \pic!k! est une \emph{expression statique}. Une expression statique est une expression dont la valeur est calculée à la compilation. Sa forme générale est présentée à la \refSectionPage{expressionImmediate}. Le compilateur effectue tous les calculs d'une expression statique avec des nombres entiers 32 bits signés.
 
-Pour être valide dans les opérations statiques avec \piccolo{W}, le résultat devra être :
+Pour être valide dans les opérations statiques avec \pic!W!, le résultat devra être :
 \begin{itemize}
   \item soit un nombre positif inférieur ou égal à 255 ;
   \item soit un nombre négatif supérieur ou égal à -128.
 \end{itemize}
 
-Par exemple : \piccolo{movlw -14} engendre l’instruction assembleur : \assembleur{MOVLW 0xf2}.
+Par exemple : \pic!movlw -14! engendre l’instruction assembleur : \assembleur{MOVLW 0xf2}.
 
 
 \begin{table}[!t]
@@ -505,17 +505,17 @@ Par exemple : \piccolo{movlw -14} engendre l’instruction assembleur : \assembl
 %  \rowcolors{2}{\fondTableau}{}
   \begin{tabular}{lll}
     \textbf{Assembleur} & \textbf{Description} & \textbf{Écriture en Piccolo}\\
-    \assembleur{ADDLW k} & Add Literal and W & \piccolo{addlw k}\\
+    \assembleur{ADDLW k} & Add Literal and W & \pic!addlw k!\\
     \hdashline
-    \assembleur{ANDLW k} & And Literal with W & \piccolo{andlw k}\\
+    \assembleur{ANDLW k} & And Literal with W & \pic!andlw k!\\
     \hdashline
-    \assembleur{IORLW k} & Inclusive OR Literal with W & \piccolo{iorlw k}\\
+    \assembleur{IORLW k} & Inclusive OR Literal with W & \pic!iorlw k!\\
     \hdashline
-    \assembleur{MOVLW k} & Move Literal to W & \piccolo{movlw k}\\
+    \assembleur{MOVLW k} & Move Literal to W & \pic!movlw k!\\
     \hdashline
-    \assembleur{SUBLW k} & Substract W frol literal & \piccolo{sublw k}\\
+    \assembleur{SUBLW k} & Substract W frol literal & \pic!sublw k!\\
     \hdashline
-    \assembleur{XORLW k} & Exclusive OR Literal with W & \piccolo{xorlw k}\\
+    \assembleur{XORLW k} & Exclusive OR Literal with W & \pic!xorlw k!\\
   \end{tabular}
   \caption{Opérations litérales avec \texttt{W} pour \emph{mid-range}}
   \labelTableau{operationsLiteralesMidRangeAvecW}
@@ -533,15 +533,15 @@ Ces instructions sont listées dans le \refTableau{operationsMidRangeIdentiquesA
 %  \rowcolors{2}{\fondTableau}{}
   \begin{tabular}{lll}
     \textbf{Assembleur} & \textbf{Description} & \textbf{Écriture en Piccolo}\\
-    \assembleur{CLRWDT} & Clear Watchdog Timer & \piccolo{clrwdt}\\
+    \assembleur{CLRWDT} & Clear Watchdog Timer & \pic!clrwdt!\\
     \hdashline
-    \assembleur{CLRW} & Clear W & \piccolo{clrw}\\
+    \assembleur{CLRW} & Clear W & \pic!clrw!\\
     \hdashline
-    \assembleur{NOP} & No Operation & \piccolo{nop}\\
+    \assembleur{NOP} & No Operation & \pic!nop!\\
     \hdashline
-    \assembleur{OPTION} & Load OPTION register & \piccolo{option}\\
+    \assembleur{OPTION} & Load OPTION register & \pic!option!\\
     \hdashline
-    \assembleur{SLEEP} & Go into Standby Mode & \piccolo{sleep}\\
+    \assembleur{SLEEP} & Go into Standby Mode & \pic!sleep!\\
   \end{tabular}
   \caption{Instructions \emph{mid-range} identiques en assembleur et en Piccolo}
   \labelTableau{operationsMidRangeIdentiquesAssembleur}
@@ -576,50 +576,50 @@ Ces instructions sont listées dans le \refTableau{operationsMidRangeIdentiquesA
 
 \subsectionLabel{Appeler une routine régulière}{appelRoutineReguliereMidRange}
 
-Une routine régulière est une routine déclarée sans le qualificatif \piccolo{noreturn}. L'appel s’effectue avec l'instruction \piccolo{call}, si la routine se trouve dans la même page de la mémoire programme que l'instruction d'appel, ou avec l'instruction \piccolo{jsr} (\refSubsectionPage{instructionJsrMidRange}).
+Une routine régulière est une routine déclarée sans le qualificatif \pic!noreturn!. L'appel s’effectue avec l'instruction \pic!call!, si la routine se trouve dans la même page de la mémoire programme que l'instruction d'appel, ou avec l'instruction \pic!jsr! (\refSubsectionPage{instructionJsrMidRange}).
 
 Syntaxiquement, il faut simplement nommer la routine appelée après l’instruction d’appel :
 
-\begin{lstlisting}[language=piccolo]
+\begin{piccolo}
 call nom_routine
-\end{lstlisting}
+\end{piccolo}
 
 Ou :
 
-\begin{lstlisting}[language=piccolo]
+\begin{piccolo}
 jsr nom_routine
-\end{lstlisting}
+\end{piccolo}
 
 
 
 
 \subsectionLabel{Appeler une routine sans retour}{appelRoutineSansRetourMidRange}
 
-Appeler une routine sans retour (c'est-à-dire déclarée avec le qualificatif \piccolo{noreturn}) s'effectue par une instruction \piccolo{goto}, si la routine se trouve dans la même page de la mémoire programme que l'instruction d'appel, ou avec l'instruction \piccolo{jump} (\refSubsectionPage{instructionJumpMidRange}). L'appel s'écrit :
-\begin{lstlisting}[language=piccolo]
+Appeler une routine sans retour (c'est-à-dire déclarée avec le qualificatif \pic!noreturn!) s'effectue par une instruction \pic!goto!, si la routine se trouve dans la même page de la mémoire programme que l'instruction d'appel, ou avec l'instruction \pic!jump! (\refSubsectionPage{instructionJumpMidRange}). L'appel s'écrit :
+\begin{piccolo}
 goto nom_routine
-\end{lstlisting}
+\end{piccolo}
 
 Ou :
 
-\begin{lstlisting}[language=piccolo]
+\begin{piccolo}
 jump nom_routine
-\end{lstlisting}
+\end{piccolo}
 
 
 
 
 \sectionLabel{Section \texttt{include}}{sectionIncludeMidRange}
 
-Une section \piccolo{include} permet d'inclure un fichier contenant lui-même des sections telles que définies dans le \refTableauPage{sectionsMidrange}.  Son format est le suivant :
+Une section \pic!include! permet d'inclure un fichier contenant lui-même des sections telles que définies dans le \refTableauPage{sectionsMidrange}.  Son format est le suivant :
 
-\begin{lstlisting}[language=piccolo]
+\begin{piccolo}
   include "chemin"
-\end{lstlisting}
+\end{piccolo}
 
-\piccolo{chemin} est le chemin vers le fichier inclus, et est :
+\pic!chemin! est le chemin vers le fichier inclus, et est :
 \begin{itemize}
-  \item soit un chemin absolu (il commence par « \piccolo{/} ») ;
+  \item soit un chemin absolu (il commence par « \texttt{/} ») ;
   \item soit un chemin relatif par rapport au fichier source.
 \end{itemize}
 
@@ -659,9 +659,9 @@ Les deux instructions machine de branchement que le jeu d'instructions des \emph
   \begin{tabular}{llcccc}
     \textbf{Instruction} & \textbf{Description} & \multicolumn{4}{l}{\bf Code binaire}\\
                          &                      & 13 & 12 & 11 & 10 à 0\\
-    \piccolo{call k}  & Call subroutine & 1 & 0 & 0 & k \\
+    \pic!call k!  & Call subroutine & 1 & 0 & 0 & k \\
     \hdashline
-    \piccolo{goto k}  & Go to Address   & 1 & 0 & 1 & k \\
+    \pic!goto k!  & Go to Address   & 1 & 0 & 1 & k \\
   \end{tabular}
   \caption{Instructions assembleur \texttt{call} et \texttt{goto} des \emph{mid-range}}
   \labelTableau{callGotoMidRange}
@@ -672,19 +672,19 @@ Les deux instructions machine de branchement que le jeu d'instructions des \emph
 
 Pour changer de page en assembleur, il faut modifier les bits 3 et 4 du registre \assembleur{PCLATH} avant d'appeler l'instruction \assembleur{CALL} ou \assembleur{GOTO}.
 
-En Piccolo, il est déconseillé d'accéder directement à \assembleur{PCLATH}. Les instructions \piccolo{jsr} et \piccolo{jump} prennent en charge les branchements vers une autre page. En résumé :
+En Piccolo, il est déconseillé d'accéder directement à \assembleur{PCLATH}. Les instructions \pic!jsr! et \pic!jump! prennent en charge les branchements vers une autre page. En résumé :
 \begin{itemize}
   \item une routine doit complètement résider à l'intérieur d'une page ;
   \item lors de la déclaration d'une routine, la page dans laquelle elle réside est précisée (\refSubsectionPage{declarationRoutineMidRangeEtPage}) ;
-  \item les instructions Piccolo \piccolo{call} et \piccolo{goto} effectuent des branchements à l'intérieur de la page courante ;
-  \item pour appeler des routines placées dans une autre page, utiliser les instructions Piccolo \piccolo{jsr} (\refSubsectionPage{instructionJsrMidRange}) et \piccolo{jump} (\refSubsectionPage{instructionJumpMidRange}).
+  \item les instructions Piccolo \pic!call! et \pic!goto! effectuent des branchements à l'intérieur de la page courante ;
+  \item pour appeler des routines placées dans une autre page, utiliser les instructions Piccolo \pic!jsr! (\refSubsectionPage{instructionJsrMidRange}) et \pic!jump! (\refSubsectionPage{instructionJumpMidRange}).
 \end{itemize}
 
 
 
 \subsectionLabel{Instruction \texttt{jump}}{instructionJumpMidRange}
 
-L'instruction Piccolo \piccolo{jump} engendre des instructions machine \assembleur{BCF} ou \assembleur{BSF} pour modifier les bits 3 et 4 du registre \assembleur{PCLATH}, puis l'instruction machine \assembleur{GOTO}.
+L'instruction Piccolo \pic!jump! engendre des instructions machine \assembleur{BCF} ou \assembleur{BSF} pour modifier les bits 3 et 4 du registre \assembleur{PCLATH}, puis l'instruction machine \assembleur{GOTO}.
 
 Elle occupe donc $n+1$ mots de la mémoire programme, $n$ étant le nombre de bits du registre \assembleur{PCLATH} à changer.
 
@@ -693,27 +693,27 @@ Elle occupe donc $n+1$ mots de la mémoire programme, $n$ étant le nombre de bi
 
 \subsectionLabel{Instruction \texttt{jsr}}{instructionJsrMidRange}
 
-L'instruction Piccolo  \piccolo{jsr} engendre des instructions machine \assembleur{BCF} ou \assembleur{BSF} pour modifier les bits 3 et 4 du registre \assembleur{PCLATH}, puis l'instruction machine \assembleur{CALL}, puis de nouveau des instructions machine \assembleur{BCF} ou \assembleur{BSF} pour rétablir les bits 3 et 4 du registre \assembleur{PCLATH}.
+L'instruction Piccolo  \pic!jsr! engendre des instructions machine \assembleur{BCF} ou \assembleur{BSF} pour modifier les bits 3 et 4 du registre \assembleur{PCLATH}, puis l'instruction machine \assembleur{CALL}, puis de nouveau des instructions machine \assembleur{BCF} ou \assembleur{BSF} pour rétablir les bits 3 et 4 du registre \assembleur{PCLATH}.
 
 Elle occupe donc $2n+1$ mots de la mémoire programme, $n$ étant le nombre de bits du registre \assembleur{PCLATH} à changer pour effectuer l'appel.
 
 \subsectionLabel{Déclaration de routine et page}{declarationRoutineMidRangeEtPage}
 
 Pour spécifier dans quelle page de la mémoire programme une routine régulière doit résider, il suffit de la déclarer comme suit :
-\begin{lstlisting}[language=piccolo]
+\begin{piccolo}
   routine nom page numero_page bank:... {
     ...
   }
-\end{lstlisting}
+\end{piccolo}
 
-Où \piccolo{numero\_page} est un entier positif ou nul strictement inférieur au nombre de pages. Par défaut, si la page n'est pas déclarée, la routine est placée dans la page zéro. La déclaration de la page doit précéder la déclaration de banc \piccolo{bank}.
+Où \pic!numero_page! est un entier positif ou nul strictement inférieur au nombre de pages. Par défaut, si la page n'est pas déclarée, la routine est placée dans la page zéro. La déclaration de la page doit précéder la déclaration de banc \pic!bank!.
 
 Pour une routine régulière sans retour :
-\begin{lstlisting}[language=piccolo]
+\begin{piccolo}
   noreturn routine nom page numero_page bank:... {
     ...
   }
-\end{lstlisting}
+\end{piccolo}
 
 \subsection{Exemple}
 
@@ -721,7 +721,7 @@ Différents exemples sont donnés sur la page \url{http://piccolo.rts-software.o
 
 Le 16F690 a une mémoire programme de deux pages. 
 
-\begin{lstlisting}[language=piccolo]
+\begin{piccolo}
 midrange multiple_pages "16F690" :
 
 noreturn routine main page 1 bank:requires 0 {
@@ -742,7 +742,7 @@ routine routinePage1 page 1 {
 }
 
 end
-\end{lstlisting}
+\end{piccolo}
 
 
 
@@ -883,19 +883,19 @@ La routine d'interruption d'un \emph{mid-range} a l'allure suivante en assembleu
 \subsectionLabel{Routine d'interruption en Piccolo}{routineItMidRangeEnPiccolo}
 
 
-En Piccolo, la routine d’interruption \emph{midrange} est décrite dans une section \piccolo{interrupt} :
+En Piccolo, la routine d’interruption \emph{midrange} est décrite dans une section \pic!interrupt! :
 
-\begin{lstlisting}[language=piccolo]
+\begin{piccolo}
 interrupt contextsave ... {
  instructions
 }
-\end{lstlisting}
+\end{piccolo}
 
-La section \piccolo{interrupt} peut apparaître n’importe où dans le programme, Piccolo rangera toujours le code engendré à l’adresse 0x04. Le qualificatif \piccolo{page} d’une routine ne peut pas être utilisée pour une routine d’interruption. Le qualificatif \piccolo{contextsave} permet de préciser les zones mémoire utilisées pour la sauvegarde du contexte (voir dans la suite de cette section).
+La section \pic!interrupt! peut apparaître n’importe où dans le programme, Piccolo rangera toujours le code engendré à l’adresse 0x04. Le qualificatif \pic!page! d’une routine ne peut pas être utilisée pour une routine d’interruption. Le qualificatif \pic!contextsave! permet de préciser les zones mémoire utilisées pour la sauvegarde du contexte (voir dans la suite de cette section).
 
 Dans un programme, au plus une routine d’interruption peut être définie : une erreur est signalée si plusieurs le sont.
 
-Toutes les instructions décrites sont autorisées, sauf les instructions qui ne terminent jamais telles que la boucle infinie et les instructions de branchement vers une routine sans retour \piccolo{goto} et \piccolo{jump}.
+Toutes les instructions décrites sont autorisées, sauf les instructions qui ne terminent jamais telles que la boucle infinie et les instructions de branchement vers une routine sans retour \pic!goto! et \pic!jump!.
 
 L’instruction assembleur \assembleur{RETFIE} n’existe pas en Piccolo : le compilateur l’insère automatiquement à la fin de la routine d’interruption.
 
@@ -909,24 +909,24 @@ En conséquence de l'étude qui précède, il y a donc quatre cas à considérer
 
 
 Piccolo détecte automatiquement les différents cas, et propose une écriture unique :
-\begin{lstlisting}[language=piccolo]
+\begin{piccolo}
 interrupt contextsave sauveA, sauveB {
   instructions
 }
 \end{lstlisting}
 
-L'instruction assembleur \assembleur{RETFIE} n'existe pas en Piccolo, le compilateur l'ajoute automatiquement. Le sauvegarde du contexte engendré par Piccolo assure que le banc 0 est sélectionné pour l'exécution de \piccolo{instructions}.
+L'instruction assembleur \assembleur{RETFIE} n'existe pas en Piccolo, le compilateur l'ajoute automatiquement. Le sauvegarde du contexte engendré par Piccolo assure que le banc 0 est sélectionné pour l'exécution de \pic!instructions!.
 
 \textbf{Situation (1) : le micro-contrôleur possède une zone mémoire commune à tous les bancs, le code n'utilise que la page 0 de la mémoire programme ou le sous-programme d'interruption n'invoque ni \assembleur{CALL} ni \assembleur{GOTO}.} Il faut dans ce cas sauver \assembleur{W} et \assembleur{STATUS}. Les deux variables sont donc déclarées de dimension 1 :
 \begin{itemize}
   \item \assembleur{W\_TEMP} pour sauver \assembleur{W} ; cette variable doit être déclarée dans la zone commune à tous les bancs ; celle-ci s'appelle générallement \assembleur{gprnobnk} ; 
-  \item \assembleur{STATUS\_TEMP} pour sauver \assembleur{STATUS} ; cette variable doit être déclarée dans le banc 0, qui s'appelle générallement \piccolo{gpr0}. 
+  \item \assembleur{STATUS\_TEMP} pour sauver \assembleur{STATUS} ; cette variable doit être déclarée dans le banc 0, qui s'appelle générallement \pic!gpr0!. 
 \end{itemize}
 
 
 Le code Piccolo est le suivant :
 
-\begin{lstlisting}[language=piccolo]
+\begin{piccolo}
 midrange interrupt1 "16F690" :
 ram gprnobnk {
   byte W_TEMP
@@ -939,7 +939,7 @@ interrupt contextsave W_TEMP, STATUS_TEMP {
 }
 ...
 end
-\end{lstlisting}
+\end{piccolo}
 
 Et le code engendré pour la routine d'interruption est :
 \begin{lstlisting}[language=assembleur]
@@ -960,14 +960,14 @@ Et le code engendré pour la routine d'interruption est :
 
 \textbf{Situation (2) : le micro-contrôleur possède une zone mémoire commune à tous les bancs, le code occupe plusieurs pages de la mémoire programme, et le sous-programme d'interruption invoque \assembleur{CALL} ou \assembleur{GOTO}.} Il faut dans ce cas donc sauver \assembleur{W}, \assembleur{STATUS} et \assembleur{PCLATH}. Les deux variables sont donc déclarées :
 \begin{itemize}
-  \item \assembleur{W\_TEMP}, de dimension 1, pour sauver \assembleur{W} ; cette variable doit être déclarée dans la zone commune à tous les bancs ; celle-ci s'appelle générallement \piccolo{gprnobnk} ; 
-  \item \assembleur{STATUS\_PCLATH\_TEMP}, de dimension 2, pour sauver \assembleur{STATUS} et  \assembleur{PCLATH} ; cette variable doit être déclarée dans le banc 0, qui s'appelle générallement \piccolo{gpr0}. 
+  \item \assembleur{W\_TEMP}, de dimension 1, pour sauver \assembleur{W} ; cette variable doit être déclarée dans la zone commune à tous les bancs ; celle-ci s'appelle générallement \pic!gprnobnk! ; 
+  \item \assembleur{STATUS\_PCLATH\_TEMP}, de dimension 2, pour sauver \assembleur{STATUS} et  \assembleur{PCLATH} ; cette variable doit être déclarée dans le banc 0, qui s'appelle générallement \pic!gpr0!. 
 \end{itemize}
 
 
 
 Le code Piccolo est le suivant :
-\begin{lstlisting}[language=piccolo]
+\begin{piccolo}
 midrange interrupt2 "16F690" :
 ram gprnobnk {
   byte W_TEMP
@@ -980,7 +980,7 @@ interrupt contextsave W_TEMP, STATUS_PCLATH_TEMP {
 }
 ...
 end
-\end{lstlisting}
+\end{piccolo}
 
 Et le code engendré pour la routine d'interruption est :
 \begin{lstlisting}[language=assembleur]
@@ -1014,15 +1014,15 @@ Cette situation est celle du 16F873. Ce micro-contrôleur possède 4 bancs mémo
 
 On déclare donc deux variables :
 \begin{itemize}
-  \item la première \assembleur{W\_STATUS\_TEMP}, de dimension 2, pour sauver \assembleur{W} et \assembleur{STATUS} ; cette variable doit être déclarée doit être déclarée dans le banc 0, qui s'appelle générallement \piccolo{gpr0} ; 
-  \item \assembleur{W\_TEMP\_1} pour sauver \assembleur{W}, de dimension 1 ; cette variable doit être déclarée dans le banc 1, qui s'appelle générallement \piccolo{gpr1}.
+  \item la première \assembleur{W\_STATUS\_TEMP}, de dimension 2, pour sauver \assembleur{W} et \assembleur{STATUS} ; cette variable doit être déclarée doit être déclarée dans le banc 0, qui s'appelle générallement \pic!gpr0! ; 
+  \item \assembleur{W\_TEMP\_1} pour sauver \assembleur{W}, de dimension 1 ; cette variable doit être déclarée dans le banc 1, qui s'appelle générallement \pic!gpr1!.
 
 \end{itemize}
 
 Rappelons que ces deux variables doivent présenter le même \emph{offset} à partir de l'adresse de début de leur banc : par exemple si \assembleur{W\_STATUS\_TEMP} est à l'adresse 0x20, alors \assembleur{W\_TEMP\_1} doit résider à l'adresse 0xA0.
 
 Le code Piccolo est le suivant :
-\begin{lstlisting}[language=piccolo]
+\begin{piccolo}
 midrange interrupt3 "16F873" :
 ram gpr0 {
   byte W_STATUS_TEMP [2]
@@ -1035,7 +1035,7 @@ interrupt contextsave W_STATUS_TEMP, W_TEMP_1 {
 }
 ...
 end
-\end{lstlisting}
+\end{piccolo}
 
 Et le code engendré pour la routine d'interruption est :
 \begin{lstlisting}[language=assembleur]
@@ -1062,15 +1062,15 @@ Cette situation est celle du 16F873. Ce micro-contrôleur possède 4 bancs mémo
 
 On déclare donc deux variables :
 \begin{itemize}
-  \item la première \assembleur{W\_STATUS\_PCLATH\_TEMP}, de dimension 3, pour sauver \assembleur{W}, \assembleur{STATUS} et \assembleur{PCLATH} ; cette variable doit être déclarée doit être déclarée dans le banc 0, qui s'appelle générallement \piccolo{gpr0} ; 
-  \item \assembleur{W\_TEMP\_1} pour sauver \assembleur{W}, de dimension 1 ; cette variable doit être déclarée dans le banc 1, qui s'appelle générallement \piccolo{gpr1}.
+  \item la première \assembleur{W\_STATUS\_PCLATH\_TEMP}, de dimension 3, pour sauver \assembleur{W}, \assembleur{STATUS} et \assembleur{PCLATH} ; cette variable doit être déclarée doit être déclarée dans le banc 0, qui s'appelle générallement \pic!gpr0! ; 
+  \item \assembleur{W\_TEMP\_1} pour sauver \assembleur{W}, de dimension 1 ; cette variable doit être déclarée dans le banc 1, qui s'appelle générallement \pic!gpr1!.
 
 \end{itemize}
 
 Rappelons que ces deux variables doivent présenter le même \emph{offset} à partir de l'adresse de début de leur banc : par exemple si \assembleur{W\_STATUS\_TEMP} est à l'adresse 0x20, alors \assembleur{W\_TEMP\_1} doit résider à l'adresse 0xA0.
 
 Le code Piccolo est le suivant :
-\begin{lstlisting}[language=piccolo]
+\begin{piccolo}
 midrange interrupt3 "16F873" :
 ram gpr0 {
   byte W_STATUS_PCLATH_TEMP [3]
@@ -1083,7 +1083,7 @@ interrupt contextsave W_STATUS_PCLATH_TEMP, W_TEMP_1 {
 }
 ...
 end
-\end{lstlisting}
+\end{piccolo}
 
 Et le code engendré pour la routine d'interruption est :
 \begin{lstlisting}[language=assembleur]

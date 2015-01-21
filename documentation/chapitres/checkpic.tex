@@ -13,70 +13,70 @@
 
 Sa syntaxe est la suivante :
 
-\begin{lstlisting}[language=piccolo]
+\begin{piccolo}
 checkpic "nom", ..., "nom"
-\end{lstlisting}
+\end{piccolo}
 
-C'est-à-dire le mot réservé \piccolo{checkpic} suivi de une ou plusieurs chaînes de caractères, chacune d'elle désignant un type de micro-contrôleur. Une erreur est déclenchée si le code en cours de compilation n'est pas destiné à l'un des micro-contrôleurs cités.
+C'est-à-dire le mot réservé \pic!checkpic! suivi de une ou plusieurs chaînes de caractères, chacune d'elle désignant un type de micro-contrôleur. Une erreur est déclenchée si le code en cours de compilation n'est pas destiné à l'un des micro-contrôleurs cités.
 
 Par exemple :
 
-\begin{lstlisting}[language=piccolo]
+\begin{piccolo}
 pic18 "18F2480" ...
   ...
 checkpic "18F2480", "18F4480"
   ...
-\end{lstlisting}
+\end{piccolo}
 
-Cette écriture sera compilée sans erreur car le type du micro-contrôleur cité dans l'en-tête est le \texttt{18F2480}, et ce nom est l'un de ceux cités dans la construction \piccolo{checkpic}.
+Cette écriture sera compilée sans erreur car le type du micro-contrôleur cité dans l'en-tête est le \texttt{18F2480}, et ce nom est l'un de ceux cités dans la construction \pic!checkpic!.
 
 Autre exemple :
 
-\begin{lstlisting}[language=piccolo]
+\begin{piccolo}
 pic18 "18F26K80" ...
   ...
 checkpic "18F2480", "18F4480"
   ...
-\end{lstlisting}
+\end{piccolo}
 
-Cette écriture déclenche une erreur de compilation car le type du micro-contrôleur cité dans l'en-tête est le \texttt{18F26K80}, et ce nom n'est pas cité dans la construction \piccolo{checkpic}.
+Cette écriture déclenche une erreur de compilation car le type du micro-contrôleur cité dans l'en-tête est le \texttt{18F26K80}, et ce nom n'est pas cité dans la construction \pic!checkpic!.
 
 
 
 
 \section{Utilisation combinée avec \texttt{include}}
-L'intérêt de la construction \piccolo{checkpic} est son utilisation combinée avec l'inclusion de fichier source (construction \piccolo{include}, \refSectionPage{sectionInclude}).
+L'intérêt de la construction \pic!checkpic! est son utilisation combinée avec l'inclusion de fichier source (construction \pic!include!, \refSectionPage{sectionInclude}).
 
 En effet, l'inclusion de fichier source peut être utilisée pour décrire des routines génériques, valables pour plusieurs types de micro-contrôleurs.
 
 Le code source a alors l'allure suivante :
-\begin{lstlisting}[language=piccolo]
+\begin{piccolo}
 pic18 "18F26K80" ...
   ...
 include "monCodeGenerique_xxK80.piccolo"
   ...
-\end{lstlisting}
+\end{piccolo}
 
 Mais si le code générique n'est valide que pour les micro-contrôleurs de la même famille \texttt{18F26K80}, \texttt{18F46K80}, \dots\ il n'y a aucune garantie que ce code générique soit utilisé qu'avec ces micro-contrôleurs. Ainsi, si on écrit :
 
 Le code source a alors l'allure suivante :
-\begin{lstlisting}[language=piccolo]
+\begin{piccolo}
 pic18 "18F4480" ...
   ...
 include "monCodeGenerique_xxK80.piccolo"
   ...
-\end{lstlisting}
+\end{piccolo}
 
 Il n'y a pas obligatoirement de message d'erreur, et un code invalide pour un \texttt{18F4480} est utilisé.
 
 
-La solution pour déclencher une erreur dans cette dernière situation est d'utiliser la construction \piccolo{chekpic} dans le fichier inclus \piccolo{monCodeGenerique\_xxK80.piccolo} :
+La solution pour déclencher une erreur dans cette dernière situation est d'utiliser la construction \pic!chekpic! dans le fichier inclus \pic!monCodeGenerique_xxK80.piccolo! :
 
-\begin{lstlisting}[language=piccolo]
+\begin{piccolo}
   ...
 checkpic "18F26K80", "18F46K80"
   ...
-\end{lstlisting}
+\end{piccolo}
 
 
  

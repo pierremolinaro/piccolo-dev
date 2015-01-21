@@ -11,7 +11,7 @@
 
 \section{Commentaires}
 
-Un commentaire commence par un caractère dièse \piccolo{\#}, et s’étend jusqu’à la fin de la ligne courante.
+Un commentaire commence par un caractère dièse \pic+#+, et s’étend jusqu’à la fin de la ligne courante.
 
 \section{Délimiteurs}
 
@@ -33,7 +33,7 @@ Piccolo définit les délimiteurs listés dans le \refTableau{delimiteursLangage
 Tout caractère dont le code ASCII est compris entre \texttt{0x01} et \texttt{0x20} est considéré comme un séparateur (ceci inclut donc la tabulation horizontale \texttt{HT} (\texttt{0x09}), le passage à la ligne \texttt{LF} (\texttt{0x0A}), le retour-chariot \texttt{CR} (\texttt{0x0D}), et l’espace (\texttt{0x20}).
 
 \section{Identificateurs}
-Un identificateur commence par une lettre (minuscule ou majuscule), qui est suivie par zéro, un ou plusieurs lettres (minuscules ou majuscules), chiffres décimaux, caractères \piccolo{\_}.
+Un identificateur commence par une lettre (minuscule ou majuscule), qui est suivie par zéro, un ou plusieurs lettres (minuscules ou majuscules), chiffres décimaux, caractères \texttt{\_}.
 
 La casse est significative pour les identificateurs.
 
@@ -127,33 +127,33 @@ Les mots réservés correspondant à des instructions exécutables sont listés 
 
 \section{Constante chaîne de caractères}
 
-Comme en C, les chaînes de caractères sont délimitées par des caractères \piccolo{"}. Les séquences d’échappement suivantes sont acceptées : \piccolo{\\f}, \piccolo{\\n}, \piccolo{\\r}, \piccolo{\\v}, \piccolo{\\\\}, \piccolo{\\"}, \piccolo{\\'}, \piccolo{\\0}.
+Comme en C, les chaînes de caractères sont délimitées par des caractères \texttt{"}. Les séquences d’échappement suivantes sont acceptées : \texttt{\\f}, \texttt{\\n}, \texttt{\\r}, \texttt{\\v}, \texttt{\\\\}, \texttt{\\"}, \texttt{\\'}, \texttt{\\0}.
 
 \section{Constante caractère}
 
-Comme en C, les caractères sont délimités par des caractères \piccolo{'}.  Les séquences d’échappement suivantes sont acceptées : \piccolo{\\f}, \piccolo{\\n}, \piccolo{\\r}, \piccolo{\\v}, \piccolo{\\\\}, \piccolo{\\'}, \piccolo{\\0}.
+Comme en C, les caractères sont délimités par des caractères \texttt{'}.  Les séquences d’échappement suivantes sont acceptées : \texttt{\\f}, \texttt{\\n}, \texttt{\\r}, \texttt{\\v}, \texttt{\\\\}, \texttt{\\'}, \texttt{\\0}.
 
 \section{Constante entière}
 
 Vous pouvez écrire les constantes entières en décimal, en hexadécimal ou en binaire. 
 
-\textbf{Décimal.} Une constante entière décimale commence par un chiffre décimal, et est suivie par zéro, un ou plusieurs chiffres décimaux, ou caractères \piccolo{\_}.
+\textbf{Décimal.} Une constante entière décimale commence par un chiffre décimal, et est suivie par zéro, un ou plusieurs chiffres décimaux, ou caractères \texttt{\_}.
 
-\textbf{Hexadécimal.} Un chiffre hexadécimal est soit un chiffre décimal, soit une lettre entre \piccolo{a} et \piccolo{f}, écrite indifféremment en minuscule ou en majuscule. Une constante hexadécimale commence par la séquence \piccolo{0x} », et est suivie par un ou plusieurs chiffres hexadécimal, ou caractères \piccolo{\_}.
+\textbf{Hexadécimal.} Un chiffre hexadécimal est soit un chiffre décimal, soit une lettre entre \texttt{a} et \texttt{f}, écrite indifféremment en minuscule ou en majuscule. Une constante hexadécimale commence par la séquence \texttt{0x} », et est suivie par un ou plusieurs chiffres hexadécimal, ou caractères \texttt{\_}.
 
-\textbf{Binaire.} Une constante entière binaire commence par la séquence \piccolo{0b} suivie par un ou plusieurs chiffres binaires, \piccolo{0} ou \piccolo{1}, ou le caractère \piccolo{\_}.
+\textbf{Binaire.} Une constante entière binaire commence par la séquence \texttt{0b} suivie par un ou plusieurs chiffres binaires, \texttt{0} ou \texttt{1}, ou le caractère \texttt{\_}.
 
-Dans une constante entière, écrite en binaire, décimal ou en hexadécimal, le caractère \piccolo{\_} peut servir de séparateur ; on peut ainsi écrire indifféremment : \piccolo{123}, \piccolo{1\_23}, \piccolo{1\_2\_3}, \piccolo{1\_\_\_23}, \dots
+Dans une constante entière, écrite en binaire, décimal ou en hexadécimal, le caractère \texttt{\_} peut servir de séparateur ; on peut ainsi écrire indifféremment : \texttt{123}, \texttt{1\_23}, \texttt{1\_2\_3}, \texttt{1\_\_\_23}, \dots
 
 Attention :
 \begin{itemize}
   \item contrairement au C, un nombre qui commence par un zéro est un nombre écrit en décimal ;
-  \item contrairement à l’assembleur PIC, le préfixe \piccolo{0x} est indispensable pour écrire un nombre en hexadécimal.
+  \item contrairement à l’assembleur PIC, le préfixe \texttt{0x} est indispensable pour écrire un nombre en hexadécimal.
 \end{itemize}
 
 \section{Format}
 
-Le format est libre, la fin de ligne n’est pas significative (sauf pour les commentaires, qui commencent par un caractère dièse \piccolo{\#}, et s’étendent jusqu’à la fin de la ligne courante). Le compilateur accepte de manière indifférente que les fins de ligne soient codés par un caractère LF (\texttt{0x0A}), un caractère CR (\texttt{0x0D}), ou par la séquence CRLF (\texttt{0x0D}, \texttt{0x0A}).
+Le format est libre, la fin de ligne n’est pas significative (sauf pour les commentaires, qui commencent par un caractère dièse \texttt{\#}, et s’étendent jusqu’à la fin de la ligne courante). Le compilateur accepte de manière indifférente que les fins de ligne soient codés par un caractère LF (\texttt{0x0A}), un caractère CR (\texttt{0x0D}), ou par la séquence CRLF (\texttt{0x0D}, \texttt{0x0A}).
 
-À partir de la version 2.0.2, les commentaires commençant par \piccolo{\#!} sont capturés par l'application CocoaPiccolo pour être affichés dans le menu \emph{popup} d'accès aux routines.
+À partir de la version 2.0.2, les commentaires commençant par \texttt{\#!} sont capturés par l'application CocoaPiccolo pour être affichés dans le menu \emph{popup} d'accès aux routines.
 

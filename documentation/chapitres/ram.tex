@@ -29,9 +29,9 @@ Par exemple, pour le 16F57, entrez la ligne de commande \texttt{piccolo -M=16F57
 
 \lstinputlisting[language=sortie]{files-from-piccolo/memory-16F57.txt}
 
-Pour les micro-contrôleurs \emph{baseline}, l'accès direct est possible pour les registres dont l'adresse est comprise entre 0x0 et 0x1F : pour le 16F57, ceci comprend les registres spéciaux (non décrits ici, entre 0x0 et 0x07), le banc \piccolo{gprnobank}, et le banc \piccolo{gpr0}. Les trois deux autres bancs, \piccolo{gpr1}, \piccolo{gpr2} et \piccolo{gpr3}, ne sont accessibles que par adressage indirect via \assembleur{FSR}.
+Pour les micro-contrôleurs \emph{baseline}, l'accès direct est possible pour les registres dont l'adresse est comprise entre 0x0 et 0x1F : pour le 16F57, ceci comprend les registres spéciaux (non décrits ici, entre 0x0 et 0x07), le banc \pic!gprnobank!\pic!, et le banc \pic!gpr0!. Les trois deux autres bancs, \pic!gpr1!, \pic!gpr2! et \pic!gpr3!, ne sont accessibles que par adressage indirect via \assembleur{FSR}.
 
-L'instruction \piccolo{banksel} n'est donc pas valide pour les \emph{baseline}.
+L'instruction \pic!banksel! n'est donc pas valide pour les \emph{baseline}.
 
 \subsection{Micro-contrôleur \emph{mid-range}}
 
@@ -39,9 +39,9 @@ Par exemple, pour le 16F690, entrez la ligne de commande \texttt{piccolo -M=16F6
 
 \lstinputlisting[language=sortie]{files-from-piccolo/memory-16F690.txt}
 
-Pour les micro-contrôleurs \emph{mid-range}, l'accès aux différents bancs est régi par les bits \assembleur{RP} du registre \assembleur{STATUS} : c'est le cas des trois premiers bancs \piccolo{gpr0} à \piccolo{gpr2}. Le dernier banc, \piccolo{gprnobnk}, est toujours accessible quelque soient les bits \assembleur{RP} du registre \assembleur{STATUS} car il apparaît en miroir dans tous les bancs.
+Pour les micro-contrôleurs \emph{mid-range}, l'accès aux différents bancs est régi par les bits \assembleur{RP} du registre \assembleur{STATUS} : c'est le cas des trois premiers bancs \pic!gpr0! à \pic!gpr2!. Le dernier banc, \pic!gprnobnk!, est toujours accessible quelque soient les bits \assembleur{RP} du registre \assembleur{STATUS} car il apparaît en miroir dans tous les bancs.
 
-En Piccolo, on ne manipule jamais directement les \assembleur{RP} du registre \assembleur{STATUS} : on utilise l'instruction \piccolo{banksel}. L'avantage est que celle-ci permet une vérification statique, à la compilation, de la sélection correcte des bancs.
+En Piccolo, on ne manipule jamais directement les \assembleur{RP} du registre \assembleur{STATUS} : on utilise l'instruction \pic!banksel!. L'avantage est que celle-ci permet une vérification statique, à la compilation, de la sélection correcte des bancs.
 
 
 \subsection{Micro-contrôleur \emph{pic18}}
@@ -50,11 +50,11 @@ Par exemple, pour le 18F448, entrez la ligne de commande \texttt{piccolo -M=18F4
 
 \lstinputlisting[language=sortie]{files-from-piccolo/memory-18F448.txt}
 
-Le premier banc, \piccolo{accessram}, est toujours accessible directement sans utiliser la valeur du registre \assembleur{BSR}. Suivant le micro-contrôleur, ce banc occupe les 96 ou les 128 premiers octets de la RAM.
+Le premier banc, \pic!accessram!, est toujours accessible directement sans utiliser la valeur du registre \assembleur{BSR}. Suivant le micro-contrôleur, ce banc occupe les 96 ou les 128 premiers octets de la RAM.
 
-Ensuite, l'accès aux bancs \piccolo{gprX} imposent la valeur \texttt{X} au registre \assembleur{BSR}. Voir à ce sujet la \refSectionPage{instructionsGestionBancsMemoire} qui explique comment le registre \assembleur{BSR} est géré en Piccolo.
+Ensuite, l'accès aux bancs \pic!gprX! imposent la valeur \texttt{X} au registre \assembleur{BSR}. Voir à ce sujet la \refSectionPage{instructionsGestionBancsMemoire} qui explique comment le registre \assembleur{BSR} est géré en Piccolo.
 
-En Piccolo, on ne manipule jamais directement le registre \assembleur{BSR} : on utilise l'instruction \piccolo{banksel}. L'avantage est que celle-ci permet une vérification statique, à la compilation, de la sélection correcte des bancs.
+En Piccolo, on ne manipule jamais directement le registre \assembleur{BSR} : on utilise l'instruction \pic!banksel!. L'avantage est que celle-ci permet une vérification statique, à la compilation, de la sélection correcte des bancs.
 
 
 
@@ -64,30 +64,30 @@ En Piccolo, on ne manipule jamais directement le registre \assembleur{BSR} : on 
 
 \section{Les sections \texttt{ram}}
 
-En Piccolo, les sections \piccolo{ram} décrivent l'attribution de la RAM. Leur syntaxe est la même pour les \emph{baseline}, les \emph{mid-range} et les \emph{pic18}. Dans un programme vous pouvez utiliser autant de sections \piccolo{ram} que vous voulez.
+En Piccolo, les sections \pic!ram! décrivent l'attribution de la RAM. Leur syntaxe est la même pour les \emph{baseline}, les \emph{mid-range} et les \emph{pic18}. Dans un programme vous pouvez utiliser autant de sections \pic!ram! que vous voulez.
 
 Voici un exemple :
 
-\begin{lstlisting}[language=piccolo]
+\begin{piccolo}
 ram accessram {
   byte premiere ;
   byte deuxieme ;
   byte troisieme [5] ;
   byte quatrieme ;
 }
-\end{lstlisting}
+\end{piccolo}
 
-Le mot clé \piccolo{ram} est suivi du nom du banc utilisé pour l'attribution. Ce nom doit être l'un des noms de bancs affichés par l'option \texttt{-{}-memory} (voir section précédente).
+Le mot clé \pic!ram! est suivi du nom du banc utilisé pour l'attribution. Ce nom doit être l'un des noms de bancs affichés par l'option \texttt{-{}-memory} (voir section précédente).
 
 Ensuite, les variables déclarées sont servies dans leur ordre d'apparition.
 
-Si la section ci-dessus est la première qui nomme \piccolo{accessram} (pour un \emph{pic18}, le banc \piccolo{accessram} commençe à l'adresse 0), la variable \piccolo{premiere} reçoit l'adresse 0, \piccolo{deuxieme} l'adresse 1, \piccolo{troisieme} l'adresse 2, et \piccolo{quatrieme} l'adresse 7 (\piccolo{troisieme} occupe 5 octets).
+Si la section ci-dessus est la première qui nomme \pic!accessram! (pour un \emph{pic18}, le banc \pic!accessram! commençe à l'adresse 0), la variable \pic!premiere! reçoit l'adresse 0, \pic!deuxieme! l'adresse 1, \pic!troisieme! l'adresse 2, et \pic!quatrieme! l'adresse 7 (\pic!troisieme! occupe 5 octets).
 
 Vous pouvez déclarer autant de variables que vous voulez, à condition de ne pas dépasser la capacité du banc : le compilateur Piccolo émet alors un message d'erreur.
 
-Les sections \piccolo{ram} ont un effet cumulatif : si vous déclarez plusieurs sections pour le même banc, Piccolo attribue les adresses dans l'ordre d'apparition des déclarations. Par exemple, les déclarations suivantes :
+Les sections \pic!ram! ont un effet cumulatif : si vous déclarez plusieurs sections pour le même banc, Piccolo attribue les adresses dans l'ordre d'apparition des déclarations. Par exemple, les déclarations suivantes :
 
-\begin{lstlisting}[language=piccolo]
+\begin{piccolo}
 ram accessram {
   byte premiere
   byte deuxieme
@@ -97,7 +97,7 @@ ram accessram {
   byte troisieme [5]
   byte quatrieme
 }
-\end{lstlisting}
+\end{piccolo}
 
 ont le même effet que la déclaration précédente.
 
@@ -109,17 +109,17 @@ Dans cette situation aussi, le compilateur Piccolo émet un message d'erreur qua
 
 Comme vous l'avez sûrement deviné à partir des exemples de la section précédente, la déclaration
 
-\begin{lstlisting}[language=piccolo]
+\begin{piccolo}
 byte var 
-\end{lstlisting}
+\end{piccolo}
 
-déclare une variable \piccolo{var} occupant un octet. Vous pouvez aussi déclarer une variable occupant \piccolo{n} octets consécutifs en indiquant la dimension entre crochets :
+déclare une variable \pic!var! occupant un octet. Vous pouvez aussi déclarer une variable occupant \pic!n! octets consécutifs en indiquant la dimension entre crochets :
 
-\begin{lstlisting}[language=piccolo]
+\begin{piccolo}
 byte var [n]
-\end{lstlisting}
+\end{piccolo}
 
-\piccolo{n} doit être une constante littérale. Évidemment, \piccolo{n} doit être strictement positif. Si \piccolo{n} vaut 1, la déclaration est sémantiquement équivalente à la première forme.
+\pic!n! doit être une constante littérale. Évidemment, \pic!n! doit être strictement positif. Si \pic!n! vaut 1, la déclaration est sémantiquement équivalente à la première forme.
 
 
 
@@ -130,29 +130,29 @@ byte var [n]
 
 Vous pouvez nommer les bits individuels lors de la déclaration d'une variable, comme par exemple :
 
-\begin{lstlisting}[language=piccolo]
+\begin{piccolo}
 byte var <-, A, b, -, d, e [2], ->
-\end{lstlisting}
+\end{piccolo}
 
-La déclaration est effectuée entre les délimiteurs \piccolo{<} et \piccolo{>}, et séparés par une virgule. Le premier bit déclaré est le bit de poids fort (7), le dernier le bit de poids faible (0).
+La déclaration est effectuée entre les délimiteurs \pic!<! et \pic!>!, et séparés par une virgule. Le premier bit déclaré est le bit de poids fort (7), le dernier le bit de poids faible (0).
 
-Si vous ne voulez pas nommer un bit particulier, mettez le délimiteur \piccolo{-} : c'est le cas des bits 7, 4 et 0 dans l'exemple ci-dessus.
+Si vous ne voulez pas nommer un bit particulier, mettez le délimiteur \pic!-! : c'est le cas des bits 7, 4 et 0 dans l'exemple ci-dessus.
 
-À un nom est associé le numéro du bit correspondant : ainsi \piccolo{A} est associé à 6, \piccolo{b} à 5, et \piccolo{d} à 3. \piccolo{e} est complété par une dimension, ce qui signifie que \piccolo{e[1]} prend la valeur 2, et \piccolo{e[0]} la valeur 1.
+À un nom est associé le numéro du bit correspondant : ainsi \pic!A! est associé à 6, \pic!b! à 5, et \pic!d! à 3. \pic!e! est complété par une dimension, ce qui signifie que \pic!e[1]! prend la valeur 2, et \pic!e[0]! la valeur 1.
 
-La déclaration doit toujours comprendre la définition des 8 bits, autrement dit à la dernière définition, juste avant le \piccolo{>}, est associé le numéro 0.
+La déclaration doit toujours comprendre la définition des 8 bits, autrement dit à la dernière définition, juste avant le \pic!>!, est associé le numéro 0.
 
-Les noms de bits sont locaux, c'est à dire que vous pouvez utiliser les mêmes noms dans des déclarations \piccolo{byte} différentes.
+Les noms de bits sont locaux, c'est à dire que vous pouvez utiliser les mêmes noms dans des déclarations \pic!byte! différentes.
 
 Enfin, vous pouvez combiner la présence d'une dimension explicite avec le nommage de bits :
 
-\begin{lstlisting}[language=piccolo]
+\begin{piccolo}
 byte var [2] <-, A, b, -, d, e [2], ->
-\end{lstlisting}
+\end{piccolo}
 
 Dans ce cas, tous les octets du tableaux ont leurs bits nommés de la même façon.
 
-Comment utiliser ces noms de bits ? Dans les conditions de l'instruction conditionnelle simple, les conditions élémentaires des instructions conditionnelles structurées et répétitive, dans les instructions \piccolo{bcf}, \piccolo{bsf} et \piccolo{btg} (voir la \refSubsectionPage{opBaselineAffectationBit} pour les \emph{baseline}, la \refSubsectionPage{opMidRangeAffectationBit} pour les \emph{mid-range} et la \refSubsectionPage{opPic18AffectationBit} pour les \emph{pic18}). 
+Comment utiliser ces noms de bits ? Dans les conditions de l'instruction conditionnelle simple, les conditions élémentaires des instructions conditionnelles structurées et répétitive, dans les instructions \pic!bcf!, \pic!bsf! et \pic!btg! (voir la \refSubsectionPage{opBaselineAffectationBit} pour les \emph{baseline}, la \refSubsectionPage{opMidRangeAffectationBit} pour les \emph{mid-range} et la \refSubsectionPage{opPic18AffectationBit} pour les \emph{pic18}). 
 
 
 \sectionLabel{Référence à un registre}{referenceRegistre}
@@ -160,45 +160,45 @@ Comment utiliser ces noms de bits ? Dans les conditions de l'instruction conditi
 De nombreuses instructions nomment un registre, qui peut être :
 \begin{itemize}
   \item un registre spécial (dont vous pouvez avoir la liste grâce à l'option « \texttt{-{}-registers} ») ;
-  \item une variable déclarée dans une section \piccolo{ram}.
+  \item une variable déclarée dans une section \pic!ram!.
 \end{itemize}
 
 En Piccolo, il suffit de nommer simplement le registre avec l'instruction, par exemple :
-\begin{lstlisting}[language=piccolo]
+\begin{piccolo}
 clrf registre
-\end{lstlisting}
+\end{piccolo}
 
 Cette écriture ressemble à l'assembleur, mais il y a une différence fondamentale : le bit indiquant si l'adressage devra être fait via l'\emph{access bank} ou via le registre \assembleur{BSR} n'apparaît jamais dans l'instruction Piccolo. Lors de la génération de code, Piccolo fixera automatiquement la valeur de ce bit.
 
-Par exemple, en supposant que \piccolo{varAccesBank} est accessible via l'\emph{access bank}, que \piccolo{varBank1} est dans le banc 1 et \piccolo{varBank2} dans le banc 2, on écrira en Piccolo :
+Par exemple, en supposant que \pic!varAccesBank! est accessible via l'\emph{access bank}, que \pic!varBank1! est dans le banc 1 et \pic!varBank2! dans le banc 2, on écrira en Piccolo :
 
-\begin{lstlisting}[language=piccolo]
+\begin{piccolo}
 clrf varAccesBank
 banksel 1
 clrf varBank1
 banksel 2
 clrf varBank2
-\end{lstlisting}
+\end{piccolo}
 
-Contrairement à l'assembleur, l'oubli d'une instruction \piccolo{banksel} est détectée par le compilateur Piccolo.
+Contrairement à l'assembleur, l'oubli d'une instruction \pic!banksel! est détectée par le compilateur Piccolo.
 
 Pour plus de précision sur le contrôle de \assembleur{BSR}, voir les pages consacrées au contrôle de \assembleur{BSR} en Piccolo.
 
 Si une variable est déclarée avec une dimension, par exemple :
-\begin{lstlisting}[language=piccolo]
+\begin{piccolo}
 ram ... { 
   byte maVariable [4]
 }
-\end{lstlisting}
+\end{piccolo}
 
-Le premier élément du tableau est \piccolo{maVariable [0]}, et le dernier  \piccolo{maVariable [3]}.
+Le premier élément du tableau est \pic!maVariable [0]!, et le dernier  \pic!maVariable [3]!.
 
 On peut ainsi écrire :
-\begin{lstlisting}[language=piccolo]
+\begin{piccolo}
   clrf maVariable # Equivalent a clrf maVariable [0]
   clrf maVariable [3]
   clrf maVariable [4] # Erreur detectee par Piccolo
-\end{lstlisting}
+\end{piccolo}
 
 
 
@@ -212,11 +212,11 @@ On peut ainsi écrire :
 
 \sectionLabel{Déclaration \texttt{unused byte}}{sectionUnusedByte}
 
-À partir de la version 3.0.2, Piccolo détecte les variables déclarées (par une déclaration \piccolo{byte}), et qui sont inutilisées. Un \emph{warning} est alors déclenché pour toute variable détectée inutilisée.
+À partir de la version 3.0.2, Piccolo détecte les variables déclarées (par une déclaration \pic!byte!), et qui sont inutilisées. Un \emph{warning} est alors déclenché pour toute variable détectée inutilisée.
 
 Par exemple :
 
-\begin{lstlisting}[language=piccolo]
+\begin{piccolo}
 midrange exemple "12F683" :
 
 ram gprnobnk {
@@ -227,12 +227,12 @@ noreturn routine main bank:requires 0 {
   forever
   end
 }
-\end{lstlisting}
+\end{piccolo}
 
 
-Pour inhiber ce \emph{warning}, il suffit d'indiquer explicitement que la variable \piccolo{var} est inutilisée, par la déclaration \piccolo{unused byte var} :
+Pour inhiber ce \emph{warning}, il suffit d'indiquer explicitement que la variable \pic!var! est inutilisée, par la déclaration \pic!unused byte var! :
 
-\begin{lstlisting}[language=piccolo]
+\begin{piccolo}
 midrange exemple "12F683" :
 
 ram gprnobnk {
@@ -245,11 +245,11 @@ noreturn routine main bank:requires 0 {
   forever
   end
 }
-\end{lstlisting}
+\end{piccolo}
 
-Cette déclaration peut apparaître avant ou après la déclaration de la variable nommée. Si plusieurs variables sont concernées, on peut écrire plusieurs déclarations \piccolo{unused byte}, ou bien nommer plusieurs variables dans une même déclaration, en les séparant par des virgules :
+Cette déclaration peut apparaître avant ou après la déclaration de la variable nommée. Si plusieurs variables sont concernées, on peut écrire plusieurs déclarations \pic!unused byte!, ou bien nommer plusieurs variables dans une même déclaration, en les séparant par des virgules :
 
-\begin{lstlisting}[language=piccolo]
+\begin{piccolo}
 midrange exemple "12F683" :
 
 unused byte var1
@@ -266,6 +266,6 @@ noreturn routine main bank:requires 0 {
   forever
   end
 }
-\end{lstlisting}
+\end{piccolo}
 
 

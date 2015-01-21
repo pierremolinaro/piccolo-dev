@@ -8,18 +8,18 @@
 %--- Pour supprimer tout en-tête et pied de page sur la 1re page d'un chapitre
 \thispagestyle{empty}
 
-Dans un fichier source Piccolo, une section \piccolo{configuration} vous permet de définir le contenu des registres de configuration. Les valeurs ainsi définies sont contenues dans le fichier hex et le fichier asm engendré.
+Dans un fichier source Piccolo, une section \pic!configuration! vous permet de définir le contenu des registres de configuration. Les valeurs ainsi définies sont contenues dans le fichier hex et le fichier asm engendré.
 
 
 Les règles d'utilisation sont les suivantes :
 \begin{itemize}
-  \item en l’absence de section \piccolo{configuration}, aucun code de configuration n’est défini ;
-  \item si une ou plusieurs sections \piccolo{configuration} existent, le code de configuration est engendré.
+  \item en l’absence de section \pic!configuration!, aucun code de configuration n’est défini ;
+  \item si une ou plusieurs sections \pic!configuration! existent, le code de configuration est engendré.
 \end{itemize}
 
-Plusieurs sections \piccolo{configuration} peuvent exister, leur effet est le même que si tous leurs contenus étaient rassemblés dans une seule. L’ordre des sections \piccolo{configuration}, et leurs positions parmi les autres sections sont quelconques.
+Plusieurs sections \pic!configuration! peuvent exister, leur effet est le même que si tous leurs contenus étaient rassemblés dans une seule. L’ordre des sections \pic!configuration!, et leurs positions parmi les autres sections sont quelconques.
 
-La description définie par les sections \piccolo{configuration} doit être exhaustive, c’est à dire que tous les champs de tous les registres de configuration doivent être définis explicitement.
+La description définie par les sections \pic!configuration! doit être exhaustive, c’est à dire que tous les champs de tous les registres de configuration doivent être définis explicitement.
 
 Le fichier listing (obtenu par l’option \texttt{-L} ou \texttt{-{}-list}) contient le détail de la configuration et les éventuels messages d’erreur de configuration.
 
@@ -36,35 +36,35 @@ Pour connaître les possibilités de configurations d’un micro-contrôleur par
 Cette commande affiche :
 \lstinputlisting[language=sortie]{files-from-piccolo/configuration-10F220.txt}
 
-Le texte obtenu indique qu'il y a cinq champs à définir : \piccolo{CP}, \piccolo{IOSCFS}, \piccolo{MCLRE}, \piccolo{MCPU} et \piccolo{WDTE}. Le champ \piccolo{IOSCFS} peut prendre deux valeurs différentes : \piccolo{"4 MHz"} et \piccolo{"8 MHz"}. Les autres informations telles que le nom des registres, la chaîne d'information, la valeur des masques, … ne sont pas utiles ici.
+Le texte obtenu indique qu'il y a cinq champs à définir : \pic!CP!, \pic!IOSCFS!, \pic!MCLRE!, \pic!MCPU! et \pic!WDTE!. Le champ \pic!IOSCFS! peut prendre deux valeurs différentes : \pic!"4 MHz"! et \pic!"8 MHz"!. Les autres informations telles que le nom des registres, la chaîne d'information, la valeur des masques, … ne sont pas utiles ici.
 
 Il est indispensable d'effectuer cette opération pour chaque micro-contrôleur, les noms des champs et des valeurs associées peuvent être différents entre le \emph{data sheet} du micro-contrôleur et Piccolo.
 
 \section{Écrire une configuration}
 
-Le principe est simple, il suffit d’écrire dans une ou plusieurs sections \piccolo{configuration} une liste d’affectations du type :
+Le principe est simple, il suffit d’écrire dans une ou plusieurs sections \pic!configuration! une liste d’affectations du type :
 
-\begin{lstlisting}[language=piccolo]
+\begin{piccolo}
 setting : description
-\end{lstlisting}
+\end{piccolo}
 
-où \piccolo{setting} est le nom d’un champ d’un registre de configuration, et \piccolo{description} la chaîne descriptive de la valeur souhaitée (voir section précédente).
+où \pic!setting! est le nom d’un champ d’un registre de configuration, et \pic!description! la chaîne descriptive de la valeur souhaitée (voir section précédente).
 
 Par exemple, pour le 10F220\index{10F220} :
 
-\begin{lstlisting}[language=piccolo]
+\begin{piccolo}
 configuration {
   IOSCFS : "4 MHz"
   CP : "Enabled"
   ...
 }
-\end{lstlisting}
+\end{piccolo}
 
-Si la valeur descriptive est un identificateur (comme pour \piccolo{CP}), alors on peut simplifier l’écriture en :
+Si la valeur descriptive est un identificateur (comme pour \pic!CP!), alors on peut simplifier l’écriture en :
 
-\begin{lstlisting}[language=piccolo]
+\begin{piccolo}
   CP : Enabled
-\end{lstlisting}
+\end{piccolo}
 
 La règle est simple : il faut que tous les champs soient explicitement affectés. L’ordre des affectations est sans importance. Piccolo vérifie et considère comme une erreur tout oubli de définition de champ.
 
@@ -76,7 +76,7 @@ Un champ ne peut être affecté qu’une seule fois. Plusieurs affectations du m
 
 Pour certains micro-contrôleurs, certaines affectations particulières sont incompatibles. Ces interdictions sont contenues dans les fichiers de description des micro-contrôleurs, et par conséquent sont vérifiées par Piccolo. 
 
-C’est par exemple le cas du 18F4431\index{18F4431} : le champ \piccolo{BOREN} ne doit pas prendre la valeur \piccolo{Disabled} quand le champ \piccolo{BORV} prend la valeur \piccolo{Reserved}. Cette incompabilité peut être mise en évidence en affichant la description de la configuration du 18F4431 (\texttt{piccolo -F=18F4431}), dont voici l'extrait qui nous intéresse :
+C’est par exemple le cas du 18F4431\index{18F4431} : le champ \pic!BOREN! ne doit pas prendre la valeur \pic!Disabled! quand le champ \pic!BORV! prend la valeur \pic!Reserved!. Cette incompabilité peut être mise en évidence en affichant la description de la configuration du 18F4431 (\texttt{piccolo -F=18F4431}), dont voici l'extrait qui nous intéresse :
 
 \begin{lstlisting}[frame=l, language=assembleur]
 ...
@@ -98,14 +98,14 @@ REGISTER 'CONFIG2L' at 0x300002, width 4
 
 
 La ligne qui commence par \texttt{illegal} décrit cette incompabilité. Si on tente de définir cette combinaison interdite :
-\begin{lstlisting}[language=piccolo]
+\begin{piccolo}
 pic18 illegal_configuration "18F4431" :
 configuration {
   BOREN : Disabled
   BORV : Reserved
   ...
 }
-\end{lstlisting}
+\end{piccolo}
 
 La compilation de ce programme provoque un message d’erreur qui cite la chaîne de description de l'incompabilité :
 

@@ -26,7 +26,7 @@ Pour chaque routine, Piccolo essaie de calculer le nombre de niveaux pile dont e
 
 Évidemment, ce calcul statique est impossible pour une routine récursive, et pour toute routine appelant une routine récursive. Piccolo détecte ces situations et affiche « \emph{recursive} » à la place du nombre de niveaux. 
 
-Si un programme n'a pas de routine d'interruption, le nombre total de niveaux de pile nécessaire est celui de la routine \piccolo{main}.
+Si un programme n'a pas de routine d'interruption, le nombre total de niveaux de pile nécessaire est celui de la routine \pic!main!.
 
 
 Si un programme a des routines d'interruption, en supposant que celles-ci ne sont pas interruptibles et donc ne s'imbriquent pas, le nombre total de niveaux de pile nécessaire est :
@@ -42,13 +42,13 @@ Pour toutes les routines non récursives, Piccolo tente de calculer les bornes d
 
 Ces durées sont exprimées en nombre de cycles de l'horloge des instructions : la plupart des instructions s'exécute en un cycle, et quelques instructions comme \assembleur{CALL}, \assembleur{RETURN}, \assembleur{MOVFF}, \dots\ en deux cycles.
 
-Évidemment, aucune durée ne peut être établie pour la routine \piccolo{main}, celle-ci se terminant obligatoirement par une boucle infinie. Cependant, ce calcul peut être utile pour les routines d'interruption, à condition qu'elle ne comportent pas de boucle, ce qui est souvent le cas.
+Évidemment, aucune durée ne peut être établie pour la routine \pic!main!, celle-ci se terminant obligatoirement par une boucle infinie. Cependant, ce calcul peut être utile pour les routines d'interruption, à condition qu'elle ne comportent pas de boucle, ce qui est souvent le cas.
 
 \section{Exemple}
 
 Considérons le programme suivant :
 
-\begin{lstlisting}[language=piccolo]
+\begin{piccolo}
 pic18 optimizations "18F2580" :
 
 routine optimize1 {
@@ -81,7 +81,7 @@ noreturn routine main bank:requires 0 {
 }
 
 end
-\end{lstlisting}
+\end{piccolo}
 
 Ce programme est juste pris pour exemple de calcul de niveau de pile et de durée d'exécution, le faire tourner n'aurait pas grand intérêt.
 
@@ -130,7 +130,7 @@ La routine \assembleur{optimize2} :
    32  00002A :           main:
 \end{lstlisting}
 
-Les besoins en pile sont faciles à calculer, ces routines n'appelant pas d'autres routines et étant appelées par \piccolo{main}. Le résultat calculé par Piccolo apparaît dans le fichier listing sous la forme suivante :
+Les besoins en pile sont faciles à calculer, ces routines n'appelant pas d'autres routines et étant appelées par \pic!main!. Le résultat calculé par Piccolo apparaît dans le fichier listing sous la forme suivante :
 \begin{lstlisting}[language=assembleur, frame=l]
 Stack needs:
                                         Routine Levels
