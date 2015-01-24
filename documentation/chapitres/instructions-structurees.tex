@@ -1,7 +1,6 @@
 %!TEX encoding = UTF-8 Unicode
 %!TEX root = ../piccolo.tex
 
-\cleardoublepage
 
 \chapterLabel{Instructions structurées}{instructionsStructurees}
 
@@ -149,38 +148,38 @@ L'instruction conditionnelle est une construction classique des langages de prog
 Pas de branche \pic!elsif! ni \pic!else! :
 \begin{piccolo}
 if (cca)
-  instructions 1
+  instructions_1
 end
 \end{piccolo}
 
 Pas de branche \pic!elsif! et une branche \pic!else! :
 \begin{piccolo}
 if (cca)
-  instructions 1
+  instructions_1
 else
-  instructions 3
+  instructions_3
 end
 \end{piccolo}
 
 Une branche \pic!elsif! et une branche \pic!else! :
 \begin{piccolo}
 if (cca)
-  instructions 1
+  instructions_1
 elsif (ccb)
-  instructions 2
+  instructions_2
 else
-  instructions 3
+  instructions_3
 end
 \end{piccolo}
 
 Plusieurs branches \pic!elsif!, pas de branche \pic!else! :
 \begin{piccolo}
 if (cca)
-  instructions 1
+  instructions_1
 elsif (ccb)
-  instructions 2
+  instructions_2
 elsif (ccc)
-  instructions 3
+  instructions_3
 end
 \end{piccolo}
 
@@ -191,8 +190,6 @@ end
 \sectionLabel{Instruction \texttt{switch}}{instructionSwitch}
 
 \textbf{À partir de Piccolo 3.0.6, uniquement pour \emph{pic18}.}
-
-\lstset{emph={cst1, instructions1, cst2, instructions2, instructionsElse, cst3}, emphstyle=\emph}
 
 \begin{piccolo}
 switch w
@@ -207,7 +204,7 @@ end
 
 Syntaxiquement, cette instruction accepte une ou plusieurs branches \pic!case!, et zéro ou une branche \pic!else!. L'absence de branche \pic!else! est équivalent à une branche \pic!else! vide.
 
-Cette instruction compare successivement le contenu de \pic!W! à différentes expressions constantes (ici \pic!cst1! puis \pic!cst2!). Ces expressions constantes doivent être comprises entre $0$ et $255$. Dès qu'une comparaison avec \pic!W! détecte une égalité, la liste d'instructions correspondante est exécutée. Si aucune comparaison ne détecte d'égalité, la liste d'instructions qui suit le \pic!else! est exécutée. L'organigramme correspondant à l'exécution de l'instruction \pic!switch}! ci-dessus est donné par la \refFigure{}{organigrammeSwitchW}.
+Cette instruction compare successivement le contenu de \pic!W! à différentes expressions constantes (ici \pic!cst1! puis \pic!cst2!). Ces expressions constantes doivent être comprises entre $0$ et $255$. Dès qu'une comparaison avec \pic!W! détecte une égalité, la liste d'instructions correspondante est exécutée. Si aucune comparaison ne détecte d'égalité, la liste d'instructions qui suit le \pic!else! est exécutée. L'organigramme correspondant à l'exécution de l'instruction \pic!switch! ci-dessus est donné par la \refFigure{}{organigrammeSwitchW}.
 
 \begin{figure}[t]
   \centering
@@ -299,7 +296,7 @@ case [4, 8], 10, [23, 35], 44 : ...
 Cette instruction exprime la répétition infinie des instructions qu'elle contient.
 \begin{piccolo}
 forever
-  liste d'instructions simples ou structurees
+  liste_instructions_simples_ou_structurees
 end
 \end{piccolo}
 
@@ -317,7 +314,7 @@ Implémentation : la répétition infinie est simplement réalisée par une inst
 Cette instruction a la syntaxe suivante :
 \begin{piccolo}
 do (expression)
-  liste d'instructions simples ou structurees
+  liste_instructions_simples_ou_structurees
 end
 \end{piccolo}
 
@@ -361,7 +358,7 @@ Pour les \emph{pic18} et les \emph{mid-range}, le corps de la boucle ne doit pas
 L'instruction répétitive a une structure moins répandue car elle accepte un ou plusieurs blocs \pic!while! ; voici plusieurs exemples, \pic!cca!, \pic!ccb! et \pic!ccc! étant des expressions conditionnelles (voir \refSectionPage{formeGeneraleConditions}).
 
 
-Voici un premier exemple, qui a une exécution équivalente à l'instruction \texttt{while (cca) do \{ instructions \}} du langage C (\refFigure{}{organigrammeDoWhile1}) :
+Voici un premier exemple, qui a une exécution équivalente à l'instruction \pic!while (cca) do { instructions }! du langage C (\refFigure{}{organigrammeDoWhile1}) :
 \begin{piccolo}
 do
 while (cca)
@@ -393,7 +390,7 @@ end
   \ligne
 \end{figure}
 
-La construction suivante a une exécution équivalente à l'instruction \texttt{do \{ instructions \} while (cca) ;} du langage C (\refFigure{}{organigrammeDoWhile2}) :
+La construction suivante a une exécution équivalente à l'instruction \pic!do { instructions } while (cca) ;! du langage C (\refFigure{}{organigrammeDoWhile2}) :
 \begin{piccolo}
 do
   instructions
@@ -428,11 +425,11 @@ end
 Enfin, voici un exemple avec deux branches \pic!while! (\refFigure{}{organigrammeDoWhile3}) :
 \begin{piccolo}
 do
-  instructions 1
+  instructions_1
 while (cca)
-  instructions 2
+  instructions_2
 while (ccb)
-  instructions 3
+  instructions_3
 end
 \end{piccolo}
 
@@ -446,11 +443,11 @@ end
       node distance=7mm
     ]
     \node [cloud] (start) {\textsc{début}} ;
-    \node [block] (init) [below=of start] {\tt instructions 1} ;
+    \node [block] (init) [below=of start] {\tt instructions\_1} ;
     \node [decision] (premierTest) [below=of init] {\tt cca ?} ;
-    \node [block] (instr2) [right=of premierTest] {\tt instructions 2} ;
+    \node [block] (instr2) [right=of premierTest] {\tt instructions\_2} ;
     \node [decision] (test2) [below=of premierTest] {\tt ccb ?} ;
-    \node [block] (instr3) [right=of test2] {\tt instructions 3} ;
+    \node [block] (instr3) [right=of test2] {\tt instructions\_3} ;
     \node [cloud] (end) [below=of test2] {\textsc{fin}} ;
     
     \draw [          thick] (start) -- (init) ;
@@ -479,7 +476,7 @@ Les instructions conditionnelles structurées (\refSectionPage{instructionCondit
   \item utilisant les parenthèses \pic!(! et \pic!)! pour forcer le groupement.
 \end{itemize}
 
-\textbf{La négation \texttt{\!}.} C'est un opérateur unaire préfixé : si \pic!cc! est une condition, \pic+!cc+ exprime la condition complémentaire. % Noter que la négation est résolue lors de la compilation, ainsi par exemple les conditions (registre z) et (! registre nz) engendrent exactement le même code.
+\textbf{La négation }\pic+!+\textbf{.} C'est un opérateur unaire préfixé : si \pic!cc! est une condition, \pic+!cc+ exprime la condition complémentaire. % Noter que la négation est résolue lors de la compilation, ainsi par exemple les conditions (registre z) et (! registre nz) engendrent exactement le même code.
 
 
 \textbf{Le \emph{et logique} \pic!&!.} C'est un opérateur infixe : si \pic!cc1! et \pic!cc2! sont deux conditions, \pic!cc1 & cc2! exprime le \emph{et logique} de ces deux conditions. Son fonctionnement est du type court-circuit : \pic!cc1! est toujours évaluée la première et, si elle est évaluée fausse, \pic!cc2! n'est pas évaluée. Ce point est important si l'évaluation de la seconde condition a un effet de bord (c'est le cas des conditions nommant \pic!decf! ou \pic!incf!).
@@ -488,7 +485,7 @@ Les instructions conditionnelles structurées (\refSectionPage{instructionCondit
 
 \textbf{Priorité des opérateurs.} La négation \pic+!+ est l'opérateur le plus prioritaire, le \emph{ou logique} \pic!|! le moins prioritaire. Par exemple, \pic+!cc1&cc2+ est équivalent à \pic+(!cc1)&cc2+ et \pic!cc1|cc2&cc3! est équivalent à \pic!cc1|(cc2&cc3)!.
 
-\textbf{Associativité des opérateurs.} Le \emph{et logique} \pic!&! et le \emph{ou logique} \pic!|! sont associatifs à gauche. Par exemple, \pic!cc1\&cc2&cc3! est équivalent à \pic!(cc1\&cc2)&cc3!.
+\textbf{Associativité des opérateurs.} Le \emph{et logique} \pic!&! et le \emph{ou logique} \pic!|! sont associatifs à gauche. Par exemple, \pic!cc1&cc2&cc3! est équivalent à \pic!(cc1&cc2)&cc3!.
 
 
 \subsectionLabel{Conditions élémentaires pour \emph{baseline} et \emph{mid-range}}{conditionsElementairesBaselineMidRange}
@@ -510,7 +507,7 @@ Les conditions basées sur le test d'un bit d'un registre sont listées dans le 
                            \pic!reg.bit!  & reg.bit $\ne$ 0 ? &\assembleur{BTFSS reg,bit}\\
                                         &                        & \assembleur{GOTO label}\\
     \hdashline
-    \pic!\! reg.bit!  & reg.bit = 0 ? & \assembleur{BTFSC reg,bit} \\
+    \pic!reg.bit!  & reg.bit = 0 ? & \assembleur{BTFSC reg,bit} \\
                         &                    & \assembleur{GOTO label}\\
   \end{tabular}
   \caption{Conditions pour \emph{baseline} et \emph{mid-range} basées sur le test d'un bit d'un registre}
@@ -737,7 +734,7 @@ L'implémentation limite à 128 la valeur de $n$.
 \textbf{Limitation.} À l'exécution, il est nécessaire que la valeur non signée de \assembleur{WREG} soit strictement inférieur au nombre de constantes. \textcolor{red}{\bf Le code engendré par Piccolo n'effectue aucune vérification.} Il est donc probable que ne pas respecter cette règle entraîne un plantage du programme.
 
 
-\textbf{Exemple.} Voici comment un chiffre hexadécimal peut être transformé en le caractère ASCII le représentant :
+\textbf{Exemple.} Voici comment un chiffre hexadécimal peut être transformé en un caractère ASCII le représentant :
 \begin{piccolo}
 routine CONVERSION_HEX_ASCII {
   andlw   0x0F
@@ -1130,8 +1127,6 @@ Cette instruction signifie qu'à partir de ce point, on considère que la sélec
 
 \subsectionLabel{Instruction \texttt{checknobank}}{instructionCheckNoBank}
 
-\textbf{À partir de Piccolo 3.0.4.}
-
 \begin{piccolo}
 checknobank
 \end{piccolo}
@@ -1433,11 +1428,11 @@ L'instruction conditionnelle structurée est présentée à la \refSectionPage{i
 
 \begin{piccolo}
 if (cca)
-  instructions 1
+  instructions_1
 elsif (ccb)
-  instructions 2
+  instructions_2
 else
-  instructions 3
+  instructions_3
 end
 \end{piccolo}
 

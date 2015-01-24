@@ -1,7 +1,6 @@
 %!TEX encoding = UTF-8 Unicode
 %!TEX root = ../piccolo.tex
 
-\cleardoublepage
 
 \chapter{Pourquoi j’ai écrit Piccolo}
 
@@ -63,7 +62,7 @@ routine maRoutine {
 }
 \end{piccolo}
 
-Quelques remarques de détail : « \pic!routine! » et « \pic!clrf! » sont des mots réservés de Piccolo, et l’instruction « \assembleur{RETURN} » est automatiquement ajoutée à la fin des instructions de la routine par la génération de code.
+Quelques remarques de détail : \pic!routine! et \pic!clrf! sont des mots réservés de Piccolo, et l’instruction assembleur \assembleur{RETURN} est automatiquement ajoutée à la fin des instructions de la routine par la génération de code.
 
 Que se passe-t'il si on compile un programme contenant cette routine ? En Piccolo, la sémantique de la référence à un registre est la suivante :\begin{itemize}
 \item d'abord, l'analyseur sémantique regarde si le registre peut être accédé par l'\emph{access bank} ; si oui, l'instruction est correcte ;
@@ -109,9 +108,9 @@ Il y a d’autres possibilités d’écriture de l’en-tête vis à vis de \ass
 Le compilateur Piccolo simule l’évolution de l’exécution du programme vis à vis de \assembleur{BSR}. Ceci a apporté des contraintes dans le design de Piccolo, notamment l’abandon de l’utilisation des instructions de saut et de saut conditionnel pour diriger le flot d’exécution à l’intérieur d’une routine. Piccolo propose à leur place quatre instructions structurées :
 \begin{itemize}
   \item l’instruction conditionnelle simple (exploitation directe des instructions sautant conditionnellement l’instruction qui les suit) ;
-  \item l’instruction conditionnelle structurée (if … elsif … else … end) ;
-  \item l’instruction répétitive (do … while … while … end) ;
-  \item l’instruction répétitive infinie (forever … end).
+  \item l’instruction conditionnelle structurée (\pic!if ... elsif ... else ... end!) ;
+  \item l’instruction répétitive (\pic!do ... while ... while ... end!) ;
+  \item l’instruction répétitive infinie (\pic!forever ... end!).
 \end{itemize}
 
 Une conséquence de l’emploi des ces instructions structurées est une augmentation de volume du code engendré : c’est pourquoi un optimiseur est incorporé et permet d’atteindre des résultats très proches d’un code assembleur optimisé écrit à la main.

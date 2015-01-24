@@ -1,7 +1,6 @@
 %!TEX encoding = UTF-8 Unicode
 %!TEX root = ../piccolo.tex
 
-\cleardoublepage
 
 \chapter{Programmes pour mid-range}
 
@@ -107,7 +106,7 @@ noreturn routine maRoutine ... {
 
 \begin{piccolo}
 noreturn routine main bank:requires 0 {
-   liste d'instructions
+   liste_instructions
 }
 
 \end{piccolo}
@@ -913,7 +912,7 @@ Piccolo détecte automatiquement les différents cas, et propose une écriture u
 interrupt contextsave sauveA, sauveB {
   instructions
 }
-\end{lstlisting}
+\end{piccolo}
 
 L'instruction assembleur \assembleur{RETFIE} n'existe pas en Piccolo, le compilateur l'ajoute automatiquement. Le sauvegarde du contexte engendré par Piccolo assure que le banc 0 est sélectionné pour l'exécution de \pic!instructions!.
 

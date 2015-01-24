@@ -1,6 +1,6 @@
 %!TEX encoding = UTF-8 Unicode
 
-\documentclass[a4paper,11pt,obeyspaces,openany]{book}
+\documentclass[a4paper,10pt,obeyspaces,openany]{book}
 \usepackage{verbatim}
 % L'option 'openany' permet de démarrer un chapitre sur une page paire
 
@@ -504,48 +504,6 @@
 
 %-----------------------------------------------------------------------------------------------------------------------*
 
-%\lstdefinelanguage{piccolo}{
-%  style=piccolo,
-%  keywords={bank, banksave, banksel, baseline, block, bootloader, byte, case, checkbank, checknobank, checkpic, computed, configuration, const,
-%     contextsave, data, default, do, end, else, elsif, fast, forever, if, implements,
-%     include, inline, interrupt, mark, midrange, nobank, noreturn, page, pic18, preserved,
-%     ram, requires, rom, ensures, routine, switch, unused, uses, w, while},
-%  keywordstyle=\bf\color{blue},
-%  sensitive=false,
-%  keywords=[2]{addlw, addwf, addwfc, andlw, andwf, bc, bcf, bn, bnc, bnn, bov, bnov, bnz, bsf,
-%    bra, btg, bz, call, clrf, clrw, clrwdt, comf, daw, decf, fnop, goto, incf, iorlw, iorwf, jsr, jump,
-%    lfsr, ldataptr, ltblptr, mnop, movf, movff, movlw, movwf, mullw, mulwf, negf, nop, pop, option,
-%    push, rcall, reset, retlw, rlcf, rlf, rlncf, rrcf, rrf, rrncf, setf, sleep, subfwb, sublw, subwf,
-%    subwfb, swapf, tblrd, tblwt, tris, xorlw, xorwf},
-%  keywordstyle=[2]\bf\color{brown},
-%  comment=[l]{\#},
-%  showstringspaces=false  % do not underline spaces within strings
-%}
-
-%\newcommand\couleurCodePICCOLO{green!20}
-
-%\ifthenelse{\equal{\sortieEnCouleur}{true}}{
-%  \lstdefinestyle{piccolo}{
-%    basicstyle=\ttfamily\small,
-%    frame=l,
-%    backgroundcolor=\color{\couleurCodePICCOLO},
-%    numberstyle=\ttfamily\small,
-%    xleftmargin=20pt,
-%    commentstyle=\color{red},
-%  }
-%}{
-%  \lstdefinestyle{piccolo}{
-%    basicstyle=\ttfamily\small,
-%    frame=l,
-%    numberstyle=\ttfamily\small,
-%    xleftmargin=20pt
-%  }
-%}
-
-%\newcommand\piccolo[1]{\colorbox{\couleurCodePICCOLO}{\lstinline[language=piccolo]@#1@}}
-
-%-----------------------------------------------------------------------------------------------------------------------*
-
 \lstdefinelanguage{assembleur}{
   style=assembleur,
   comment=[l]{\%},
@@ -601,6 +559,8 @@
 \newcommand\stringStylePiccolo[1]{\textcolor{gray}{#1}}
 \newcommand\commentStylePiccolo[1]{\textcolor{red}{#1}}
 
+\newcommand\lexicalErrorPiccolo{\textcolor{red}{\textbullet ERRLEX\textbullet}}
+
 \newmdenv[
   topline=false,
   bottomline=false,
@@ -643,6 +603,8 @@
 \newcommand\characterStylepiccolo[1]{\textcolor{orange}{#1}}
 \newcommand\stringStylepiccolo[1]{\textcolor{gray}{#1}}
 \newcommand\commentStylepiccolo[1]{\textcolor{red}{#1}}
+
+\newcommand\lexicalErrorpiccolo{\textcolor{red}{\textbullet ERRLEX\textbullet}}
 
 
 \makeatletter
