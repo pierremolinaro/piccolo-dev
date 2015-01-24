@@ -1,7 +1,6 @@
 %!TEX encoding = UTF-8 Unicode
 %!TEX root = ../piccolo.tex
 
-\cleardoublepage
 
 \chapterLabel{Définition de variable}{ram}
 
@@ -29,7 +28,7 @@ Par exemple, pour le 16F57, entrez la ligne de commande \texttt{piccolo -M=16F57
 
 \lstinputlisting[language=sortie]{files-from-piccolo/memory-16F57.txt}
 
-Pour les micro-contrôleurs \emph{baseline}, l'accès direct est possible pour les registres dont l'adresse est comprise entre 0x0 et 0x1F : pour le 16F57, ceci comprend les registres spéciaux (non décrits ici, entre 0x0 et 0x07), le banc \pic!gprnobank!\pic!, et le banc \pic!gpr0!. Les trois deux autres bancs, \pic!gpr1!, \pic!gpr2! et \pic!gpr3!, ne sont accessibles que par adressage indirect via \assembleur{FSR}.
+Pour les micro-contrôleurs \emph{baseline}, l'accès direct est possible pour les registres dont l'adresse est comprise entre 0x0 et 0x1F : pour le 16F57, ceci comprend les registres spéciaux (non décrits ici, entre 0x0 et 0x07), le banc \pic!gprnobank!, et le banc \pic!gpr0!. Les trois deux autres bancs, \pic!gpr1!, \pic!gpr2! et \pic!gpr3!, ne sont accessibles que par adressage indirect via \assembleur{FSR}.
 
 L'instruction \pic!banksel! n'est donc pas valide pour les \emph{baseline}.
 

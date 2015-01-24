@@ -1,7 +1,6 @@
 %!TEX encoding = UTF-8 Unicode
 %!TEX root = ../piccolo.tex
 
-\cleardoublepage
 
 \chapter{Programmes pour pic18}
 
@@ -446,7 +445,7 @@ noreturn routine maRoutine ... {
 
 \begin{piccolo}
 noreturn routine main bank:requires 0 {
-   liste d'instructions
+   liste_instructions
 }
 
 \end{piccolo}
@@ -687,7 +686,7 @@ En Piccolo, une routine d’interruption PIC 18 est décrite dans une section \p
 interrupt nom ... {
  instructions
 }
-\end{lstlisting}
+\end{piccolo}
 
 Seuls deux noms sont possibles : \pic!low! pour l’interruption de faible priorité, et \pic!high! pour l’interruption de haute priorité. Bien entendu, un nom ne peut apparaître qu’une seule fois, aussi un programme ne peut comporter qu'au plus deux routines d'interruption, qui peuvent d'ailleurs apparaître dans un ordre quelconque dans le texte source.
 
@@ -705,7 +704,7 @@ En Piccolo, vous pouvez ajouter le qualificatif \pic!fast! à l’en-tête d’u
 interrupt nom fast {
  instructions
 }
-\end{lstlisting}
+\end{piccolo}
 
 Avec ce qualificatif, l’instruction de retour engendrée par Piccolo est \assembleur{RETFIE 1} (sans ce qualificatif, c’est \texttt{RETFIE 0}).
 

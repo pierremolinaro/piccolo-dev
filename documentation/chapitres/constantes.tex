@@ -1,8 +1,6 @@
 %!TEX encoding = UTF-8 Unicode
 %!TEX root = ../piccolo.tex
 
-\cleardoublepage
-
 \chapterLabel{Définition de constante}{constante}
 
 %--- Pour supprimer tout en-tête et pied de page sur la 1re page d'un chapitre
@@ -198,7 +196,7 @@ movwf   T2CON
 
 L'expression litérale présente la syntaxe suivante : elle est introduite par le délimiteur \texttt{@}, suivi d’un nom de registre, puis, entre parenthèses, une séquence de couples formés d’un nom de champ et d’une valeur immédiate :
 \begin{piccolo}
-  @ nom\_registre (nom_champ:expression_literale, ...)
+  @ nom_registre (nom_champ:expression_literale, ...)
 \end{piccolo}
 
 Tout registre spécial, toute variable déclarée (dans une section \pic!ram!) ayant des champs définis peut être utilisée.
