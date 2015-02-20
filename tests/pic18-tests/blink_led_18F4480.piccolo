@@ -53,7 +53,6 @@ configuration {
   PWRT : Disabled
   DEBUG : Disabled
   LVP : Disabled
-  STVREN : Disabled
   CPB : Disabled
   CPD : Disabled
   CP0 : Disabled
@@ -76,6 +75,7 @@ configuration {
   RESERVED_CONFIG6L : "Maintain bits as 1s."
   RESERVED_CONFIG7L : "Maintain bits as 1s."
   XINST : Disabled
+  STVREN : Disabled
 }
 
 #----------------------------------------------------------------------------*
