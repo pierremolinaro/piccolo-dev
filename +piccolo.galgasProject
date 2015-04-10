@@ -77,6 +77,7 @@ project (3:0:7) -> "piccolo" {
   "galgas-sources/ipic18_relatives_resolution.galgas"
   "galgas-sources/ipic18_code_generation.galgas"
   "galgas-sources/ipic18_stack_computations.galgas"
+  "galgas-sources/ipic18_duration_computations.galgas"
 
   "galgas-sources/communs.galgas"
   "galgas-sources/ram_sections.galgas"

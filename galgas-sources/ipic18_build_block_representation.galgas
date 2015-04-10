@@ -1920,47 +1920,6 @@ override method @pic18Instruction_switch analyze
         !?ioBlockLabel
         !?lastComparisonValue
       ]
-#      [mCaseExpression eval !inRegisterTable !inConstantMap ??@sint64 result !?ioUsedRegisters] ;
-#    #---
-#      if (result > 255LS) | (result < 0LS) then
-#        error mInstructionLocation:"case value is evaluated as " . result . " (should be between 0 and 255)" ;
-#      end if ;
-#    #--- Check constant is unique
-#      if [caseConstantMap hasKey ![result string]] then
-#        error mCaseExpressionLocation : "the '" . result . "' constant is already used in switch instruction" ;
-#        error [caseConstantMap locationForKey ![result string]] : "the '" . result . "' constant is used here" ;
-#      else
-#        [!?caseConstantMap insertKey ![@lstring new ![result string] !mCaseExpressionLocation]] ;
-#      end if ;
-#    #--- Generate xorlw instruction  
-#      ioGeneratedInstructionList += ![@ipic18_intermediate_instruction_literalOperation new
-#        !mInstructionLocation
-#        ![@literal_instruction_opcode XORLW]
-#        !lastComparisonValue ^ [result uint]
-#      ] ;
-#    #--- Update comparison value
-#      lastComparisonValue := [result uint] ;
-#    #--- Condition false label
-#      const @lstring conditionFalseLabel [new !".L" . [ioLocalLabelIndex string] !mInstructionLocation] ; 
-#      ioLocalLabelIndex ++ ;
-#    #--- Terminate current block with a BZ instruction
-#      const @ipic18AbstractBlockTerminator t := [@ipic18ConditionalJumpTerminator new
-#        !mInstructionLocation
-#        ![@conditional_branch bz]
-#        !conditionTrueLabel
-#        ![@conditionalBranchMode native]
-#        !conditionFalseLabel
-#        ![@conditionalBranchMode native]
-#      ] ;
-#    #--- Save current block block
-#      ioGeneratedBlockList += ![@ipic18Block new
-#        ![@uint max] # relocatable
-#        !ioBlockLabel
-#        !ioGeneratedInstructionList
-#        !t
-#      ] ;
-#      ioGeneratedInstructionList := [@ipic18SequentialInstructionList emptyList] ;
-#      ioBlockLabel := conditionFalseLabel ;
     end
   #--- Analyze instruction list
     let @lstring conditionFalseLabel = ioBlockLabel
@@ -3423,7 +3382,7 @@ proc build_ipic18_block_representation_list
     end
   end
 #----------------------------------------------------------- Display block list
-  displayBlockList ( !"INTERMEDIATE BLOCK REPRESENTATION" !?ioListFileContents !generatedBlockList )
+  displayBlockList (!"INTERMEDIATE BLOCK REPRESENTATION" !?ioListFileContents !generatedBlockList)
 #----------------------------------------------------------- Optimize
   if @uint. errorCount == 0 then
     ipic18OptimizeBlocks ( !?ioListFileContents !?generatedBlockList )
@@ -3438,21 +3397,25 @@ proc build_ipic18_block_representation_list
     )
   end
 #----------------------------------------------------------- relative branch and jump resolution
-  if @uint. errorCount == 0 then
+  if @uint.errorCount == 0 then
     ipic18RelativesResolution (
       !?ioListFileContents
       !?generatedBlockList
     )
   end
 #----------------------------------------------------------- Check and compute stack requirements
-  if (@uint. errorCount == 0) & (inProgramKind != @programKind. userProgram) then
+  if (@uint.errorCount == 0) & (inProgramKind != .userProgram) then
     ipic18StackComputations (
+      !?ioListFileContents
+      !generatedBlockList
+    )
+    ipic18DurationComputations (
       !?ioListFileContents
       !generatedBlockList
     )
   end
 #----------------------------------------------------------- Generate code
-  if @uint. errorCount == 0 then
+  if @uint.errorCount == 0 then
     ipic18GenerateCode (
       !inSourceFileName
       !inProgramKind

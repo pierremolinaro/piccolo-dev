@@ -10,6 +10,273 @@
 
 //---------------------------------------------------------------------------------------------------------------------*
 
+GALGAS_configSettingList_2D_element::GALGAS_configSettingList_2D_element (void) :
+mAttribute_mSettingName (),
+mAttribute_mSettingValue () {
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_configSettingList_2D_element::~ GALGAS_configSettingList_2D_element (void) {
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_configSettingList_2D_element::GALGAS_configSettingList_2D_element (const GALGAS_lstring & inOperand0,
+                                                                          const GALGAS_lstring & inOperand1) :
+mAttribute_mSettingName (inOperand0),
+mAttribute_mSettingValue (inOperand1) {
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_configSettingList_2D_element GALGAS_configSettingList_2D_element::constructor_default (UNUSED_LOCATION_ARGS) {
+  return GALGAS_configSettingList_2D_element (GALGAS_lstring::constructor_default (HERE),
+                                              GALGAS_lstring::constructor_default (HERE)) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_configSettingList_2D_element GALGAS_configSettingList_2D_element::constructor_new (const GALGAS_lstring & inOperand0,
+                                                                                          const GALGAS_lstring & inOperand1 
+                                                                                          COMMA_UNUSED_LOCATION_ARGS) {
+  GALGAS_configSettingList_2D_element result ;
+  if (inOperand0.isValid () && inOperand1.isValid ()) {
+    result = GALGAS_configSettingList_2D_element (inOperand0, inOperand1) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+typeComparisonResult GALGAS_configSettingList_2D_element::objectCompare (const GALGAS_configSettingList_2D_element & inOperand) const {
+   typeComparisonResult result = kOperandEqual ;
+  if (result == kOperandEqual) {
+    result = mAttribute_mSettingName.objectCompare (inOperand.mAttribute_mSettingName) ;
+  }
+  if (result == kOperandEqual) {
+    result = mAttribute_mSettingValue.objectCompare (inOperand.mAttribute_mSettingValue) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+bool GALGAS_configSettingList_2D_element::isValid (void) const {
+  return mAttribute_mSettingName.isValid () && mAttribute_mSettingValue.isValid () ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void GALGAS_configSettingList_2D_element::drop (void) {
+  mAttribute_mSettingName.drop () ;
+  mAttribute_mSettingValue.drop () ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void GALGAS_configSettingList_2D_element::description (C_String & ioString,
+                                                       const int32_t inIndentation) const {
+  ioString << "<struct @configSettingList-element:" ;
+  if (! isValid ()) {
+    ioString << " not built" ;
+  }else{
+    mAttribute_mSettingName.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mAttribute_mSettingValue.description (ioString, inIndentation+1) ;
+  }
+  ioString << ">" ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_lstring GALGAS_configSettingList_2D_element::reader_mSettingName (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mSettingName ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_lstring GALGAS_configSettingList_2D_element::reader_mSettingValue (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mSettingValue ;
+}
+
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                           @configSettingList-element type                                           *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+const C_galgas_type_descriptor
+kTypeDescriptor_GALGAS_configSettingList_2D_element ("configSettingList-element",
+                                                     NULL) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+const C_galgas_type_descriptor * GALGAS_configSettingList_2D_element::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_configSettingList_2D_element ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+AC_GALGAS_root * GALGAS_configSettingList_2D_element::clonedObject (void) const {
+  AC_GALGAS_root * result = NULL ;
+  if (isValid ()) {
+    macroMyNew (result, GALGAS_configSettingList_2D_element (*this)) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_configSettingList_2D_element GALGAS_configSettingList_2D_element::extractObject (const GALGAS_object & inObject,
+                                                                                        C_Compiler * inCompiler
+                                                                                        COMMA_LOCATION_ARGS) {
+  GALGAS_configSettingList_2D_element result ;
+  const GALGAS_configSettingList_2D_element * p = (const GALGAS_configSettingList_2D_element *) inObject.embeddedObject () ;
+  if (NULL != p) {
+    if (NULL != dynamic_cast <const GALGAS_configSettingList_2D_element *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("configSettingList-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_immediatSliceExpressionList_2D_element::GALGAS_immediatSliceExpressionList_2D_element (void) :
+mAttribute_mSliceName (),
+mAttribute_mExpression () {
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_immediatSliceExpressionList_2D_element::~ GALGAS_immediatSliceExpressionList_2D_element (void) {
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_immediatSliceExpressionList_2D_element::GALGAS_immediatSliceExpressionList_2D_element (const GALGAS_lstring & inOperand0,
+                                                                                              const GALGAS_immediatExpression & inOperand1) :
+mAttribute_mSliceName (inOperand0),
+mAttribute_mExpression (inOperand1) {
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_immediatSliceExpressionList_2D_element GALGAS_immediatSliceExpressionList_2D_element::constructor_new (const GALGAS_lstring & inOperand0,
+                                                                                                              const GALGAS_immediatExpression & inOperand1 
+                                                                                                              COMMA_UNUSED_LOCATION_ARGS) {
+  GALGAS_immediatSliceExpressionList_2D_element result ;
+  if (inOperand0.isValid () && inOperand1.isValid ()) {
+    result = GALGAS_immediatSliceExpressionList_2D_element (inOperand0, inOperand1) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+typeComparisonResult GALGAS_immediatSliceExpressionList_2D_element::objectCompare (const GALGAS_immediatSliceExpressionList_2D_element & inOperand) const {
+   typeComparisonResult result = kOperandEqual ;
+  if (result == kOperandEqual) {
+    result = mAttribute_mSliceName.objectCompare (inOperand.mAttribute_mSliceName) ;
+  }
+  if (result == kOperandEqual) {
+    result = mAttribute_mExpression.objectCompare (inOperand.mAttribute_mExpression) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+bool GALGAS_immediatSliceExpressionList_2D_element::isValid (void) const {
+  return mAttribute_mSliceName.isValid () && mAttribute_mExpression.isValid () ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void GALGAS_immediatSliceExpressionList_2D_element::drop (void) {
+  mAttribute_mSliceName.drop () ;
+  mAttribute_mExpression.drop () ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void GALGAS_immediatSliceExpressionList_2D_element::description (C_String & ioString,
+                                                                 const int32_t inIndentation) const {
+  ioString << "<struct @immediatSliceExpressionList-element:" ;
+  if (! isValid ()) {
+    ioString << " not built" ;
+  }else{
+    mAttribute_mSliceName.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mAttribute_mExpression.description (ioString, inIndentation+1) ;
+  }
+  ioString << ">" ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_lstring GALGAS_immediatSliceExpressionList_2D_element::reader_mSliceName (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mSliceName ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_immediatExpression GALGAS_immediatSliceExpressionList_2D_element::reader_mExpression (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mExpression ;
+}
+
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                      @immediatSliceExpressionList-element type                                      *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+const C_galgas_type_descriptor
+kTypeDescriptor_GALGAS_immediatSliceExpressionList_2D_element ("immediatSliceExpressionList-element",
+                                                               NULL) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+const C_galgas_type_descriptor * GALGAS_immediatSliceExpressionList_2D_element::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_immediatSliceExpressionList_2D_element ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+AC_GALGAS_root * GALGAS_immediatSliceExpressionList_2D_element::clonedObject (void) const {
+  AC_GALGAS_root * result = NULL ;
+  if (isValid ()) {
+    macroMyNew (result, GALGAS_immediatSliceExpressionList_2D_element (*this)) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_immediatSliceExpressionList_2D_element GALGAS_immediatSliceExpressionList_2D_element::extractObject (const GALGAS_object & inObject,
+                                                                                                            C_Compiler * inCompiler
+                                                                                                            COMMA_LOCATION_ARGS) {
+  GALGAS_immediatSliceExpressionList_2D_element result ;
+  const GALGAS_immediatSliceExpressionList_2D_element * p = (const GALGAS_immediatSliceExpressionList_2D_element *) inObject.embeddedObject () ;
+  if (NULL != p) {
+    if (NULL != dynamic_cast <const GALGAS_immediatSliceExpressionList_2D_element *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("immediatSliceExpressionList-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
 GALGAS_constantDefinitionList_2D_element::GALGAS_constantDefinitionList_2D_element (void) :
 mAttribute_mConstantName (),
 mAttribute_mExpression () {
@@ -5646,6 +5913,306 @@ GALGAS_routineStackRequirementMap_2D_element GALGAS_routineStackRequirementMap_2
       result = *p ;
     }else{
       inCompiler->castError ("routineStackRequirementMap-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_blockMapForDurationComputation_2D_element::GALGAS_blockMapForDurationComputation_2D_element (void) :
+mAttribute_lkey (),
+mAttribute_mBlock (),
+mAttribute_mNextLabel () {
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_blockMapForDurationComputation_2D_element::~ GALGAS_blockMapForDurationComputation_2D_element (void) {
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_blockMapForDurationComputation_2D_element::GALGAS_blockMapForDurationComputation_2D_element (const GALGAS_lstring & inOperand0,
+                                                                                                    const GALGAS_ipic_31__38_Block & inOperand1,
+                                                                                                    const GALGAS_string & inOperand2) :
+mAttribute_lkey (inOperand0),
+mAttribute_mBlock (inOperand1),
+mAttribute_mNextLabel (inOperand2) {
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_blockMapForDurationComputation_2D_element GALGAS_blockMapForDurationComputation_2D_element::constructor_new (const GALGAS_lstring & inOperand0,
+                                                                                                                    const GALGAS_ipic_31__38_Block & inOperand1,
+                                                                                                                    const GALGAS_string & inOperand2 
+                                                                                                                    COMMA_UNUSED_LOCATION_ARGS) {
+  GALGAS_blockMapForDurationComputation_2D_element result ;
+  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid ()) {
+    result = GALGAS_blockMapForDurationComputation_2D_element (inOperand0, inOperand1, inOperand2) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+typeComparisonResult GALGAS_blockMapForDurationComputation_2D_element::objectCompare (const GALGAS_blockMapForDurationComputation_2D_element & inOperand) const {
+   typeComparisonResult result = kOperandEqual ;
+  if (result == kOperandEqual) {
+    result = mAttribute_lkey.objectCompare (inOperand.mAttribute_lkey) ;
+  }
+  if (result == kOperandEqual) {
+    result = mAttribute_mBlock.objectCompare (inOperand.mAttribute_mBlock) ;
+  }
+  if (result == kOperandEqual) {
+    result = mAttribute_mNextLabel.objectCompare (inOperand.mAttribute_mNextLabel) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+bool GALGAS_blockMapForDurationComputation_2D_element::isValid (void) const {
+  return mAttribute_lkey.isValid () && mAttribute_mBlock.isValid () && mAttribute_mNextLabel.isValid () ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void GALGAS_blockMapForDurationComputation_2D_element::drop (void) {
+  mAttribute_lkey.drop () ;
+  mAttribute_mBlock.drop () ;
+  mAttribute_mNextLabel.drop () ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void GALGAS_blockMapForDurationComputation_2D_element::description (C_String & ioString,
+                                                                    const int32_t inIndentation) const {
+  ioString << "<struct @blockMapForDurationComputation-element:" ;
+  if (! isValid ()) {
+    ioString << " not built" ;
+  }else{
+    mAttribute_lkey.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mAttribute_mBlock.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mAttribute_mNextLabel.description (ioString, inIndentation+1) ;
+  }
+  ioString << ">" ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_lstring GALGAS_blockMapForDurationComputation_2D_element::reader_lkey (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_lkey ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_ipic_31__38_Block GALGAS_blockMapForDurationComputation_2D_element::reader_mBlock (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mBlock ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_string GALGAS_blockMapForDurationComputation_2D_element::reader_mNextLabel (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mNextLabel ;
+}
+
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                    @blockMapForDurationComputation-element type                                     *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+const C_galgas_type_descriptor
+kTypeDescriptor_GALGAS_blockMapForDurationComputation_2D_element ("blockMapForDurationComputation-element",
+                                                                  NULL) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+const C_galgas_type_descriptor * GALGAS_blockMapForDurationComputation_2D_element::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_blockMapForDurationComputation_2D_element ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+AC_GALGAS_root * GALGAS_blockMapForDurationComputation_2D_element::clonedObject (void) const {
+  AC_GALGAS_root * result = NULL ;
+  if (isValid ()) {
+    macroMyNew (result, GALGAS_blockMapForDurationComputation_2D_element (*this)) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_blockMapForDurationComputation_2D_element GALGAS_blockMapForDurationComputation_2D_element::extractObject (const GALGAS_object & inObject,
+                                                                                                                  C_Compiler * inCompiler
+                                                                                                                  COMMA_LOCATION_ARGS) {
+  GALGAS_blockMapForDurationComputation_2D_element result ;
+  const GALGAS_blockMapForDurationComputation_2D_element * p = (const GALGAS_blockMapForDurationComputation_2D_element *) inObject.embeddedObject () ;
+  if (NULL != p) {
+    if (NULL != dynamic_cast <const GALGAS_blockMapForDurationComputation_2D_element *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("blockMapForDurationComputation-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_exploredBlockMap_2D_element::GALGAS_exploredBlockMap_2D_element (void) :
+mAttribute_lkey (),
+mAttribute_mMinDuration (),
+mAttribute_mMaxDuration () {
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_exploredBlockMap_2D_element::~ GALGAS_exploredBlockMap_2D_element (void) {
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_exploredBlockMap_2D_element::GALGAS_exploredBlockMap_2D_element (const GALGAS_lstring & inOperand0,
+                                                                        const GALGAS_uint & inOperand1,
+                                                                        const GALGAS_uint & inOperand2) :
+mAttribute_lkey (inOperand0),
+mAttribute_mMinDuration (inOperand1),
+mAttribute_mMaxDuration (inOperand2) {
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_exploredBlockMap_2D_element GALGAS_exploredBlockMap_2D_element::constructor_default (UNUSED_LOCATION_ARGS) {
+  return GALGAS_exploredBlockMap_2D_element (GALGAS_lstring::constructor_default (HERE),
+                                             GALGAS_uint::constructor_default (HERE),
+                                             GALGAS_uint::constructor_default (HERE)) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_exploredBlockMap_2D_element GALGAS_exploredBlockMap_2D_element::constructor_new (const GALGAS_lstring & inOperand0,
+                                                                                        const GALGAS_uint & inOperand1,
+                                                                                        const GALGAS_uint & inOperand2 
+                                                                                        COMMA_UNUSED_LOCATION_ARGS) {
+  GALGAS_exploredBlockMap_2D_element result ;
+  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid ()) {
+    result = GALGAS_exploredBlockMap_2D_element (inOperand0, inOperand1, inOperand2) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+typeComparisonResult GALGAS_exploredBlockMap_2D_element::objectCompare (const GALGAS_exploredBlockMap_2D_element & inOperand) const {
+   typeComparisonResult result = kOperandEqual ;
+  if (result == kOperandEqual) {
+    result = mAttribute_lkey.objectCompare (inOperand.mAttribute_lkey) ;
+  }
+  if (result == kOperandEqual) {
+    result = mAttribute_mMinDuration.objectCompare (inOperand.mAttribute_mMinDuration) ;
+  }
+  if (result == kOperandEqual) {
+    result = mAttribute_mMaxDuration.objectCompare (inOperand.mAttribute_mMaxDuration) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+bool GALGAS_exploredBlockMap_2D_element::isValid (void) const {
+  return mAttribute_lkey.isValid () && mAttribute_mMinDuration.isValid () && mAttribute_mMaxDuration.isValid () ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void GALGAS_exploredBlockMap_2D_element::drop (void) {
+  mAttribute_lkey.drop () ;
+  mAttribute_mMinDuration.drop () ;
+  mAttribute_mMaxDuration.drop () ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void GALGAS_exploredBlockMap_2D_element::description (C_String & ioString,
+                                                      const int32_t inIndentation) const {
+  ioString << "<struct @exploredBlockMap-element:" ;
+  if (! isValid ()) {
+    ioString << " not built" ;
+  }else{
+    mAttribute_lkey.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mAttribute_mMinDuration.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mAttribute_mMaxDuration.description (ioString, inIndentation+1) ;
+  }
+  ioString << ">" ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_lstring GALGAS_exploredBlockMap_2D_element::reader_lkey (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_lkey ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_uint GALGAS_exploredBlockMap_2D_element::reader_mMinDuration (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mMinDuration ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_uint GALGAS_exploredBlockMap_2D_element::reader_mMaxDuration (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mMaxDuration ;
+}
+
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                           @exploredBlockMap-element type                                            *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+const C_galgas_type_descriptor
+kTypeDescriptor_GALGAS_exploredBlockMap_2D_element ("exploredBlockMap-element",
+                                                    NULL) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+const C_galgas_type_descriptor * GALGAS_exploredBlockMap_2D_element::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_exploredBlockMap_2D_element ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+AC_GALGAS_root * GALGAS_exploredBlockMap_2D_element::clonedObject (void) const {
+  AC_GALGAS_root * result = NULL ;
+  if (isValid ()) {
+    macroMyNew (result, GALGAS_exploredBlockMap_2D_element (*this)) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_exploredBlockMap_2D_element GALGAS_exploredBlockMap_2D_element::extractObject (const GALGAS_object & inObject,
+                                                                                      C_Compiler * inCompiler
+                                                                                      COMMA_LOCATION_ARGS) {
+  GALGAS_exploredBlockMap_2D_element result ;
+  const GALGAS_exploredBlockMap_2D_element * p = (const GALGAS_exploredBlockMap_2D_element *) inObject.embeddedObject () ;
+  if (NULL != p) {
+    if (NULL != dynamic_cast <const GALGAS_exploredBlockMap_2D_element *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("exploredBlockMap-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
     }  
   }
   return result ;
@@ -14037,320 +14604,4 @@ static void defineCategoryReader_midrange_5F_intermediate_5F_pseudo_5F_LABEL_ins
 //---------------------------------------------------------------------------------------------------------------------*
 
 C_PrologueEpilogue gReader_midrange_5F_intermediate_5F_pseudo_5F_LABEL_instructionLength (defineCategoryReader_midrange_5F_intermediate_5F_pseudo_5F_LABEL_instructionLength, NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//               Overriding category reader '@midrange_intermediate_actualInstruction instructionLength'               *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-static GALGAS_uint categoryReader_midrange_5F_intermediate_5F_actualInstruction_instructionLength (const cPtr_midrange_5F_intermediate_5F_instruction * /* inObject */,
-                                                                                                   C_Compiler * /* inCompiler */
-                                                                                                   COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_uint result_outLength ; // Returned variable
-  result_outLength = GALGAS_uint ((uint32_t) 1U) ;
-//---
-  return result_outLength ;
-}
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void defineCategoryReader_midrange_5F_intermediate_5F_actualInstruction_instructionLength (void) {
-  enterCategoryReader_instructionLength (kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_actualInstruction.mSlotID,
-                                         categoryReader_midrange_5F_intermediate_5F_actualInstruction_instructionLength) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-C_PrologueEpilogue gReader_midrange_5F_intermediate_5F_actualInstruction_instructionLength (defineCategoryReader_midrange_5F_intermediate_5F_actualInstruction_instructionLength, NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                     Overriding category reader '@midrange_intermediate_JUMP instructionLength'                      *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-static GALGAS_uint categoryReader_midrange_5F_intermediate_5F_JUMP_instructionLength (const cPtr_midrange_5F_intermediate_5F_instruction * inObject,
-                                                                                      C_Compiler * inCompiler
-                                                                                      COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_uint result_outLength ; // Returned variable
-  const cPtr_midrange_5F_intermediate_5F_JUMP * object = (const cPtr_midrange_5F_intermediate_5F_JUMP *) inObject ;
-  macroValidSharedObject (object, cPtr_midrange_5F_intermediate_5F_JUMP) ;
-  result_outLength = GALGAS_uint ((uint32_t) 1U) ;
-  const enumGalgasBool test_0 = GALGAS_bool (kIsNotEqual, object->mAttribute_mBit_31__31_.objectCompare (GALGAS_midrange_5F_call_5F_goto_5F_bit::constructor_noChange (SOURCE_FILE ("midrange_intermediate_instruction_length.galgas", 36)))).boolEnum () ;
-  if (kBoolTrue == test_0) {
-    result_outLength.increment_operation (inCompiler  COMMA_SOURCE_FILE ("midrange_intermediate_instruction_length.galgas", 37)) ;
-  }
-  const enumGalgasBool test_1 = GALGAS_bool (kIsNotEqual, object->mAttribute_mBit_31__32_.objectCompare (GALGAS_midrange_5F_call_5F_goto_5F_bit::constructor_noChange (SOURCE_FILE ("midrange_intermediate_instruction_length.galgas", 39)))).boolEnum () ;
-  if (kBoolTrue == test_1) {
-    result_outLength.increment_operation (inCompiler  COMMA_SOURCE_FILE ("midrange_intermediate_instruction_length.galgas", 40)) ;
-  }
-//---
-  return result_outLength ;
-}
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void defineCategoryReader_midrange_5F_intermediate_5F_JUMP_instructionLength (void) {
-  enterCategoryReader_instructionLength (kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_JUMP.mSlotID,
-                                         categoryReader_midrange_5F_intermediate_5F_JUMP_instructionLength) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-C_PrologueEpilogue gReader_midrange_5F_intermediate_5F_JUMP_instructionLength (defineCategoryReader_midrange_5F_intermediate_5F_JUMP_instructionLength, NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                      Overriding category reader '@midrange_intermediate_JSR instructionLength'                      *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-static GALGAS_uint categoryReader_midrange_5F_intermediate_5F_JSR_instructionLength (const cPtr_midrange_5F_intermediate_5F_instruction * inObject,
-                                                                                     C_Compiler * inCompiler
-                                                                                     COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_uint result_outLength ; // Returned variable
-  const cPtr_midrange_5F_intermediate_5F_JSR * object = (const cPtr_midrange_5F_intermediate_5F_JSR *) inObject ;
-  macroValidSharedObject (object, cPtr_midrange_5F_intermediate_5F_JSR) ;
-  result_outLength = GALGAS_uint ((uint32_t) 1U) ;
-  const enumGalgasBool test_0 = GALGAS_bool (kIsNotEqual, object->mAttribute_mBit_31__31_.objectCompare (GALGAS_midrange_5F_call_5F_goto_5F_bit::constructor_noChange (SOURCE_FILE ("midrange_intermediate_instruction_length.galgas", 49)))).boolEnum () ;
-  if (kBoolTrue == test_0) {
-    result_outLength = result_outLength.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("midrange_intermediate_instruction_length.galgas", 50)) ;
-  }
-  const enumGalgasBool test_1 = GALGAS_bool (kIsNotEqual, object->mAttribute_mBit_31__32_.objectCompare (GALGAS_midrange_5F_call_5F_goto_5F_bit::constructor_noChange (SOURCE_FILE ("midrange_intermediate_instruction_length.galgas", 52)))).boolEnum () ;
-  if (kBoolTrue == test_1) {
-    result_outLength = result_outLength.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("midrange_intermediate_instruction_length.galgas", 53)) ;
-  }
-//---
-  return result_outLength ;
-}
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void defineCategoryReader_midrange_5F_intermediate_5F_JSR_instructionLength (void) {
-  enterCategoryReader_instructionLength (kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_JSR.mSlotID,
-                                         categoryReader_midrange_5F_intermediate_5F_JSR_instructionLength) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-C_PrologueEpilogue gReader_midrange_5F_intermediate_5F_JSR_instructionLength (defineCategoryReader_midrange_5F_intermediate_5F_JSR_instructionLength, NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//               Overriding category reader '@midrange_intermediate_instruction_MNOP instructionLength'                *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-static GALGAS_uint categoryReader_midrange_5F_intermediate_5F_instruction_5F_MNOP_instructionLength (const cPtr_midrange_5F_intermediate_5F_instruction * inObject,
-                                                                                                     C_Compiler * /* inCompiler */
-                                                                                                     COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_uint result_outLength ; // Returned variable
-  const cPtr_midrange_5F_intermediate_5F_instruction_5F_MNOP * object = (const cPtr_midrange_5F_intermediate_5F_instruction_5F_MNOP *) inObject ;
-  macroValidSharedObject (object, cPtr_midrange_5F_intermediate_5F_instruction_5F_MNOP) ;
-  result_outLength = object->mAttribute_mOccurrenceFactor.reader_uint (SOURCE_FILE ("midrange_intermediate_instruction_length.galgas", 61)) ;
-//---
-  return result_outLength ;
-}
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void defineCategoryReader_midrange_5F_intermediate_5F_instruction_5F_MNOP_instructionLength (void) {
-  enterCategoryReader_instructionLength (kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_instruction_5F_MNOP.mSlotID,
-                                         categoryReader_midrange_5F_intermediate_5F_instruction_5F_MNOP_instructionLength) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-C_PrologueEpilogue gReader_midrange_5F_intermediate_5F_instruction_5F_MNOP_instructionLength (defineCategoryReader_midrange_5F_intermediate_5F_instruction_5F_MNOP_instructionLength, NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//           Overriding category reader '@midrange_intermediate_incDecRegisterInCondition instructionLength'           *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-static GALGAS_uint categoryReader_midrange_5F_intermediate_5F_incDecRegisterInCondition_instructionLength (const cPtr_midrange_5F_intermediate_5F_instruction * inObject,
-                                                                                                           C_Compiler * /* inCompiler */
-                                                                                                           COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_uint result_outLength ; // Returned variable
-  const cPtr_midrange_5F_intermediate_5F_incDecRegisterInCondition * object = (const cPtr_midrange_5F_intermediate_5F_incDecRegisterInCondition *) inObject ;
-  macroValidSharedObject (object, cPtr_midrange_5F_intermediate_5F_incDecRegisterInCondition) ;
-  const enumGalgasBool test_0 = object->mAttribute_mBranchIfZero.boolEnum () ;
-  if (kBoolTrue == test_0) {
-    result_outLength = GALGAS_uint ((uint32_t) 3U) ;
-  }else if (kBoolFalse == test_0) {
-    result_outLength = GALGAS_uint ((uint32_t) 2U) ;
-  }
-//---
-  return result_outLength ;
-}
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void defineCategoryReader_midrange_5F_intermediate_5F_incDecRegisterInCondition_instructionLength (void) {
-  enterCategoryReader_instructionLength (kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_incDecRegisterInCondition.mSlotID,
-                                         categoryReader_midrange_5F_intermediate_5F_incDecRegisterInCondition_instructionLength) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-C_PrologueEpilogue gReader_midrange_5F_intermediate_5F_incDecRegisterInCondition_instructionLength (defineCategoryReader_midrange_5F_intermediate_5F_incDecRegisterInCondition_instructionLength, NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                           Overriding category method '@midrange_intermediate_NULL print'                            *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void categoryMethod_midrange_5F_intermediate_5F_NULL_print (const cPtr_midrange_5F_intermediate_5F_instruction * /* inObject */,
-                                                                   GALGAS_string & ioArgument_ioListFileContents,
-                                                                   C_Compiler * /* inCompiler */
-                                                                   COMMA_UNUSED_LOCATION_ARGS) {
-  ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string ("-")  COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 11)) ;
-}
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void defineCategoryMethod_midrange_5F_intermediate_5F_NULL_print (void) {
-  enterCategoryMethod_print (kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_NULL.mSlotID,
-                             categoryMethod_midrange_5F_intermediate_5F_NULL_print) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-C_PrologueEpilogue gMethod_midrange_5F_intermediate_5F_NULL_print (defineCategoryMethod_midrange_5F_intermediate_5F_NULL_print, NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                        Overriding category method '@midrange_intermediate_pseudo_ORG print'                         *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void categoryMethod_midrange_5F_intermediate_5F_pseudo_5F_ORG_print (const cPtr_midrange_5F_intermediate_5F_instruction * inObject,
-                                                                            GALGAS_string & ioArgument_ioListFileContents,
-                                                                            C_Compiler * inCompiler
-                                                                            COMMA_UNUSED_LOCATION_ARGS) {
-  const cPtr_midrange_5F_intermediate_5F_pseudo_5F_ORG * object = (const cPtr_midrange_5F_intermediate_5F_pseudo_5F_ORG *) inObject ;
-  macroValidSharedObject (object, cPtr_midrange_5F_intermediate_5F_pseudo_5F_ORG) ;
-  ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string ("ORG ").add_operation (object->mAttribute_mOrigin.reader_hexString (SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 18)), inCompiler COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 18))  COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 18)) ;
-}
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void defineCategoryMethod_midrange_5F_intermediate_5F_pseudo_5F_ORG_print (void) {
-  enterCategoryMethod_print (kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_pseudo_5F_ORG.mSlotID,
-                             categoryMethod_midrange_5F_intermediate_5F_pseudo_5F_ORG_print) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-C_PrologueEpilogue gMethod_midrange_5F_intermediate_5F_pseudo_5F_ORG_print (defineCategoryMethod_midrange_5F_intermediate_5F_pseudo_5F_ORG_print, NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                       Overriding category method '@midrange_intermediate_pseudo_LABEL print'                        *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void categoryMethod_midrange_5F_intermediate_5F_pseudo_5F_LABEL_print (const cPtr_midrange_5F_intermediate_5F_instruction * inObject,
-                                                                              GALGAS_string & ioArgument_ioListFileContents,
-                                                                              C_Compiler * inCompiler
-                                                                              COMMA_UNUSED_LOCATION_ARGS) {
-  const cPtr_midrange_5F_intermediate_5F_pseudo_5F_LABEL * object = (const cPtr_midrange_5F_intermediate_5F_pseudo_5F_LABEL *) inObject ;
-  macroValidSharedObject (object, cPtr_midrange_5F_intermediate_5F_pseudo_5F_LABEL) ;
-  ioArgument_ioListFileContents.dotAssign_operation (object->mAttribute_mLabel.mAttribute_string.add_operation (GALGAS_string (":"), inCompiler COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 25))  COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 25)) ;
-}
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void defineCategoryMethod_midrange_5F_intermediate_5F_pseudo_5F_LABEL_print (void) {
-  enterCategoryMethod_print (kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_pseudo_5F_LABEL.mSlotID,
-                             categoryMethod_midrange_5F_intermediate_5F_pseudo_5F_LABEL_print) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-C_PrologueEpilogue gMethod_midrange_5F_intermediate_5F_pseudo_5F_LABEL_print (defineCategoryMethod_midrange_5F_intermediate_5F_pseudo_5F_LABEL_print, NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                      Overriding category method '@midrange_intermediate_instruction_FD print'                       *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void categoryMethod_midrange_5F_intermediate_5F_instruction_5F_FD_print (const cPtr_midrange_5F_intermediate_5F_instruction * inObject,
-                                                                                GALGAS_string & ioArgument_ioListFileContents,
-                                                                                C_Compiler * inCompiler
-                                                                                COMMA_UNUSED_LOCATION_ARGS) {
-  const cPtr_midrange_5F_intermediate_5F_instruction_5F_FD * object = (const cPtr_midrange_5F_intermediate_5F_instruction_5F_FD *) inObject ;
-  macroValidSharedObject (object, cPtr_midrange_5F_intermediate_5F_instruction_5F_FD) ;
-  ioArgument_ioListFileContents.dotAssign_operation (categoryReader_mnemonic (object->mAttribute_mInstruction_5F_FD_5F_base_5F_code, inCompiler COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 32)).add_operation (GALGAS_string (" "), inCompiler COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 32)).add_operation (object->mAttribute_mRegisterDescription.reader_mAssemblyString (SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 32)), inCompiler COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 32))  COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 32)) ;
-  const enumGalgasBool test_0 = object->mAttribute_m_5F_W_5F_isDestination.boolEnum () ;
-  if (kBoolTrue == test_0) {
-    ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string (", W")  COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 34)) ;
-  }
-}
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void defineCategoryMethod_midrange_5F_intermediate_5F_instruction_5F_FD_print (void) {
-  enterCategoryMethod_print (kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_instruction_5F_FD.mSlotID,
-                             categoryMethod_midrange_5F_intermediate_5F_instruction_5F_FD_print) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-C_PrologueEpilogue gMethod_midrange_5F_intermediate_5F_instruction_5F_FD_print (defineCategoryMethod_midrange_5F_intermediate_5F_instruction_5F_FD_print, NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                       Overriding category method '@midrange_intermediate_instruction_F print'                       *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void categoryMethod_midrange_5F_intermediate_5F_instruction_5F_F_print (const cPtr_midrange_5F_intermediate_5F_instruction * inObject,
-                                                                               GALGAS_string & ioArgument_ioListFileContents,
-                                                                               C_Compiler * inCompiler
-                                                                               COMMA_UNUSED_LOCATION_ARGS) {
-  const cPtr_midrange_5F_intermediate_5F_instruction_5F_F * object = (const cPtr_midrange_5F_intermediate_5F_instruction_5F_F *) inObject ;
-  macroValidSharedObject (object, cPtr_midrange_5F_intermediate_5F_instruction_5F_F) ;
-  ioArgument_ioListFileContents.dotAssign_operation (categoryReader_mnemonic (object->mAttribute_mFinstruction, inCompiler COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 42)).add_operation (GALGAS_string (" "), inCompiler COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 42)).add_operation (object->mAttribute_mRegisterDescription.reader_mAssemblyString (SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 42)), inCompiler COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 42))  COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 42)) ;
-}
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void defineCategoryMethod_midrange_5F_intermediate_5F_instruction_5F_F_print (void) {
-  enterCategoryMethod_print (kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_instruction_5F_F.mSlotID,
-                             categoryMethod_midrange_5F_intermediate_5F_instruction_5F_F_print) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-C_PrologueEpilogue gMethod_midrange_5F_intermediate_5F_instruction_5F_F_print (defineCategoryMethod_midrange_5F_intermediate_5F_instruction_5F_F_print, NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                      Overriding category method '@midrange_intermediate_instruction_FB print'                       *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void categoryMethod_midrange_5F_intermediate_5F_instruction_5F_FB_print (const cPtr_midrange_5F_intermediate_5F_instruction * inObject,
-                                                                                GALGAS_string & ioArgument_ioListFileContents,
-                                                                                C_Compiler * inCompiler
-                                                                                COMMA_UNUSED_LOCATION_ARGS) {
-  const cPtr_midrange_5F_intermediate_5F_instruction_5F_FB * object = (const cPtr_midrange_5F_intermediate_5F_instruction_5F_FB *) inObject ;
-  macroValidSharedObject (object, cPtr_midrange_5F_intermediate_5F_instruction_5F_FB) ;
-  ioArgument_ioListFileContents.dotAssign_operation (categoryReader_mnemonic (object->mAttribute_mBitOrientedOp, inCompiler COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 49)).add_operation (GALGAS_string (" "), inCompiler COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 49)).add_operation (object->mAttribute_mRegisterDescription.reader_mAssemblyString (SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 49)), inCompiler COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 49)).add_operation (GALGAS_string (", "), inCompiler COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 49)).add_operation (object->mAttribute_mBitNumber.reader_string (SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 49)), inCompiler COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 49))  COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 49)) ;
-}
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void defineCategoryMethod_midrange_5F_intermediate_5F_instruction_5F_FB_print (void) {
-  enterCategoryMethod_print (kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_instruction_5F_FB.mSlotID,
-                             categoryMethod_midrange_5F_intermediate_5F_instruction_5F_FB_print) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-C_PrologueEpilogue gMethod_midrange_5F_intermediate_5F_instruction_5F_FB_print (defineCategoryMethod_midrange_5F_intermediate_5F_instruction_5F_FB_print, NULL) ;
 
