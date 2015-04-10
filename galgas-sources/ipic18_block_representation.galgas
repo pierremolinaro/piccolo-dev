@@ -130,12 +130,6 @@ abstract class @ipic18AbstractConditionTerminator : @ipic18AbstractBlockTerminat
 
 #----------------------------------------------------------------------------*
 
-#class @ipic18ConditionalBranchTerminator extends @ipic18AbstractConditionTerminator {
-#  @conditional_branch mConditionalBranch ;
-#}
-
-#----------------------------------------------------------------------------*
-
 class @pic18RegisterComparisonTerminator : @ipic18AbstractConditionTerminator {
   @ipic18_intermediate_registerExpression mRegisterDescription
   @ipic18RegisterComparison mComparison

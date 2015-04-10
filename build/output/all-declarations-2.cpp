@@ -5989,6 +5989,624 @@ GALGAS_routineStackRequirementMap GALGAS_routineStackRequirementMap::extractObje
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
+
+cMapElement_blockMapForDurationComputation::cMapElement_blockMapForDurationComputation (const GALGAS_lstring & inKey,
+                                                                                        const GALGAS_ipic_31__38_Block & in_mBlock,
+                                                                                        const GALGAS_string & in_mNextLabel
+                                                                                        COMMA_LOCATION_ARGS) :
+cMapElement (inKey COMMA_THERE),
+mAttribute_mBlock (in_mBlock),
+mAttribute_mNextLabel (in_mNextLabel) {
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+bool cMapElement_blockMapForDurationComputation::isValid (void) const {
+  return mAttribute_lkey.isValid () && mAttribute_mBlock.isValid () && mAttribute_mNextLabel.isValid () ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+cMapElement * cMapElement_blockMapForDurationComputation::copy (void) {
+  cMapElement * result = NULL ;
+  macroMyNew (result, cMapElement_blockMapForDurationComputation (mAttribute_lkey, mAttribute_mBlock, mAttribute_mNextLabel COMMA_HERE)) ;
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void cMapElement_blockMapForDurationComputation::description (C_String & ioString, const int32_t inIndentation) const {
+  ioString << "\n" ;
+  ioString.writeStringMultiple ("| ", inIndentation) ;
+  ioString << "mBlock" ":" ;
+  mAttribute_mBlock.description (ioString, inIndentation) ;
+  ioString << "\n" ;
+  ioString.writeStringMultiple ("| ", inIndentation) ;
+  ioString << "mNextLabel" ":" ;
+  mAttribute_mNextLabel.description (ioString, inIndentation) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+typeComparisonResult cMapElement_blockMapForDurationComputation::compare (const cCollectionElement * inOperand) const {
+  cMapElement_blockMapForDurationComputation * operand = (cMapElement_blockMapForDurationComputation *) inOperand ;
+  typeComparisonResult result = mAttribute_lkey.objectCompare (operand->mAttribute_lkey) ;
+  if (kOperandEqual == result) {
+    result = mAttribute_mBlock.objectCompare (operand->mAttribute_mBlock) ;
+  }
+  if (kOperandEqual == result) {
+    result = mAttribute_mNextLabel.objectCompare (operand->mAttribute_mNextLabel) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_blockMapForDurationComputation::GALGAS_blockMapForDurationComputation (void) :
+AC_GALGAS_map () {
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_blockMapForDurationComputation::GALGAS_blockMapForDurationComputation (const GALGAS_blockMapForDurationComputation & inSource) :
+AC_GALGAS_map (inSource) {
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_blockMapForDurationComputation & GALGAS_blockMapForDurationComputation::operator = (const GALGAS_blockMapForDurationComputation & inSource) {
+  * ((AC_GALGAS_map *) this) = inSource ;
+  return * this ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_blockMapForDurationComputation GALGAS_blockMapForDurationComputation::constructor_emptyMap (LOCATION_ARGS) {
+  GALGAS_blockMapForDurationComputation result ;
+  result.makeNewEmptyMap (THERE) ;
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_blockMapForDurationComputation GALGAS_blockMapForDurationComputation::constructor_mapWithMapToOverride (const GALGAS_blockMapForDurationComputation & inMapToOverride
+                                                                                                               COMMA_LOCATION_ARGS) {
+  GALGAS_blockMapForDurationComputation result ;
+  result.makeNewEmptyMapWithMapToOverride (inMapToOverride COMMA_THERE) ;
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_blockMapForDurationComputation GALGAS_blockMapForDurationComputation::reader_overriddenMap (C_Compiler * inCompiler
+                                                                                                   COMMA_LOCATION_ARGS) const {
+  GALGAS_blockMapForDurationComputation result ;
+  getOverridenMap (result, inCompiler COMMA_THERE) ;
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void GALGAS_blockMapForDurationComputation::addAssign_operation (const GALGAS_lstring & inKey,
+                                                                 const GALGAS_ipic_31__38_Block & inArgument0,
+                                                                 const GALGAS_string & inArgument1,
+                                                                 C_Compiler * inCompiler
+                                                                 COMMA_LOCATION_ARGS) {
+  cMapElement_blockMapForDurationComputation * p = NULL ;
+  macroMyNew (p, cMapElement_blockMapForDurationComputation (inKey, inArgument0, inArgument1 COMMA_HERE)) ;
+  capCollectionElement attributes ;
+  attributes.setPointer (p) ;
+  macroDetachSharedObject (p) ;
+  const char * kInsertErrorMessage = "@blockMapForDurationComputation insert error: '%K' already in map" ;
+  const char * kShadowErrorMessage = "" ;
+  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void GALGAS_blockMapForDurationComputation::modifier_insertKey (GALGAS_lstring inKey,
+                                                                GALGAS_ipic_31__38_Block inArgument0,
+                                                                GALGAS_string inArgument1,
+                                                                C_Compiler * inCompiler
+                                                                COMMA_LOCATION_ARGS) {
+  cMapElement_blockMapForDurationComputation * p = NULL ;
+  macroMyNew (p, cMapElement_blockMapForDurationComputation (inKey, inArgument0, inArgument1 COMMA_HERE)) ;
+  capCollectionElement attributes ;
+  attributes.setPointer (p) ;
+  macroDetachSharedObject (p) ;
+  const char * kInsertErrorMessage = "the '%K' block is already declared in %L" ;
+  const char * kShadowErrorMessage = "" ;
+  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+const char * kSearchErrorMessage_blockMapForDurationComputation_searchKey = "the '%K' block is not declared" ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void GALGAS_blockMapForDurationComputation::method_searchKey (GALGAS_lstring inKey,
+                                                              GALGAS_ipic_31__38_Block & outArgument0,
+                                                              GALGAS_string & outArgument1,
+                                                              C_Compiler * inCompiler
+                                                              COMMA_LOCATION_ARGS) const {
+  const cMapElement_blockMapForDurationComputation * p = (const cMapElement_blockMapForDurationComputation *) performSearch (inKey,
+                                                                                                                               inCompiler,
+                                                                                                                               kSearchErrorMessage_blockMapForDurationComputation_searchKey
+                                                                                                                               COMMA_THERE) ;
+  if (NULL == p) {
+    outArgument0.drop () ;
+    outArgument1.drop () ;
+  }else{
+    macroValidSharedObject (p, cMapElement_blockMapForDurationComputation) ;
+    outArgument0 = p->mAttribute_mBlock ;
+    outArgument1 = p->mAttribute_mNextLabel ;
+  }
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_ipic_31__38_Block GALGAS_blockMapForDurationComputation::reader_mBlockForKey (const GALGAS_string & inKey,
+                                                                                     C_Compiler * inCompiler
+                                                                                     COMMA_LOCATION_ARGS) const {
+  const cCollectionElement * attributes = searchForReadingAttribute (inKey, inCompiler COMMA_THERE) ;
+  const cMapElement_blockMapForDurationComputation * p = (const cMapElement_blockMapForDurationComputation *) attributes ;
+  GALGAS_ipic_31__38_Block result ;
+  if (NULL != p) {
+    macroValidSharedObject (p, cMapElement_blockMapForDurationComputation) ;
+    result = p->mAttribute_mBlock ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_string GALGAS_blockMapForDurationComputation::reader_mNextLabelForKey (const GALGAS_string & inKey,
+                                                                              C_Compiler * inCompiler
+                                                                              COMMA_LOCATION_ARGS) const {
+  const cCollectionElement * attributes = searchForReadingAttribute (inKey, inCompiler COMMA_THERE) ;
+  const cMapElement_blockMapForDurationComputation * p = (const cMapElement_blockMapForDurationComputation *) attributes ;
+  GALGAS_string result ;
+  if (NULL != p) {
+    macroValidSharedObject (p, cMapElement_blockMapForDurationComputation) ;
+    result = p->mAttribute_mNextLabel ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void GALGAS_blockMapForDurationComputation::modifier_setMBlockForKey (GALGAS_ipic_31__38_Block inAttributeValue,
+                                                                      GALGAS_string inKey,
+                                                                      C_Compiler * inCompiler
+                                                                      COMMA_LOCATION_ARGS) {
+  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
+  cMapElement_blockMapForDurationComputation * p = (cMapElement_blockMapForDurationComputation *) attributes ;
+  if (NULL != p) {
+    macroValidSharedObject (p, cMapElement_blockMapForDurationComputation) ;
+    p->mAttribute_mBlock = inAttributeValue ;
+  }
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void GALGAS_blockMapForDurationComputation::modifier_setMNextLabelForKey (GALGAS_string inAttributeValue,
+                                                                          GALGAS_string inKey,
+                                                                          C_Compiler * inCompiler
+                                                                          COMMA_LOCATION_ARGS) {
+  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
+  cMapElement_blockMapForDurationComputation * p = (cMapElement_blockMapForDurationComputation *) attributes ;
+  if (NULL != p) {
+    macroValidSharedObject (p, cMapElement_blockMapForDurationComputation) ;
+    p->mAttribute_mNextLabel = inAttributeValue ;
+  }
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+cMapElement_blockMapForDurationComputation * GALGAS_blockMapForDurationComputation::readWriteAccessForWithInstruction (C_Compiler * inCompiler,
+                                                                                                                       const GALGAS_string & inKey
+                                                                                                                       COMMA_LOCATION_ARGS) {
+  cMapElement_blockMapForDurationComputation * result = (cMapElement_blockMapForDurationComputation *) searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
+  macroNullOrValidSharedObject (result, cMapElement_blockMapForDurationComputation) ;
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+cEnumerator_blockMapForDurationComputation::cEnumerator_blockMapForDurationComputation (const GALGAS_blockMapForDurationComputation & inEnumeratedObject,
+                                                                                        const typeEnumerationOrder inOrder) :
+cGenericAbstractEnumerator () {
+  inEnumeratedObject.populateEnumerationArray (mEnumerationArray, inOrder) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_blockMapForDurationComputation_2D_element cEnumerator_blockMapForDurationComputation::current (LOCATION_ARGS) const {
+  const cMapElement_blockMapForDurationComputation * p = (const cMapElement_blockMapForDurationComputation *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement_blockMapForDurationComputation) ;
+  return GALGAS_blockMapForDurationComputation_2D_element (p->mAttribute_lkey, p->mAttribute_mBlock, p->mAttribute_mNextLabel) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_lstring cEnumerator_blockMapForDurationComputation::current_lkey (LOCATION_ARGS) const {
+  const cMapElement * p = (const cMapElement *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement) ;
+  return p->mAttribute_lkey ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_ipic_31__38_Block cEnumerator_blockMapForDurationComputation::current_mBlock (LOCATION_ARGS) const {
+  const cMapElement_blockMapForDurationComputation * p = (const cMapElement_blockMapForDurationComputation *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement_blockMapForDurationComputation) ;
+  return p->mAttribute_mBlock ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_string cEnumerator_blockMapForDurationComputation::current_mNextLabel (LOCATION_ARGS) const {
+  const cMapElement_blockMapForDurationComputation * p = (const cMapElement_blockMapForDurationComputation *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement_blockMapForDurationComputation) ;
+  return p->mAttribute_mNextLabel ;
+}
+
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                        @blockMapForDurationComputation type                                         *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+const C_galgas_type_descriptor
+kTypeDescriptor_GALGAS_blockMapForDurationComputation ("blockMapForDurationComputation",
+                                                       NULL) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+const C_galgas_type_descriptor * GALGAS_blockMapForDurationComputation::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_blockMapForDurationComputation ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+AC_GALGAS_root * GALGAS_blockMapForDurationComputation::clonedObject (void) const {
+  AC_GALGAS_root * result = NULL ;
+  if (isValid ()) {
+    macroMyNew (result, GALGAS_blockMapForDurationComputation (*this)) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_blockMapForDurationComputation GALGAS_blockMapForDurationComputation::extractObject (const GALGAS_object & inObject,
+                                                                                            C_Compiler * inCompiler
+                                                                                            COMMA_LOCATION_ARGS) {
+  GALGAS_blockMapForDurationComputation result ;
+  const GALGAS_blockMapForDurationComputation * p = (const GALGAS_blockMapForDurationComputation *) inObject.embeddedObject () ;
+  if (NULL != p) {
+    if (NULL != dynamic_cast <const GALGAS_blockMapForDurationComputation *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("blockMapForDurationComputation", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+cMapElement_exploredBlockMap::cMapElement_exploredBlockMap (const GALGAS_lstring & inKey,
+                                                            const GALGAS_uint & in_mMinDuration,
+                                                            const GALGAS_uint & in_mMaxDuration
+                                                            COMMA_LOCATION_ARGS) :
+cMapElement (inKey COMMA_THERE),
+mAttribute_mMinDuration (in_mMinDuration),
+mAttribute_mMaxDuration (in_mMaxDuration) {
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+bool cMapElement_exploredBlockMap::isValid (void) const {
+  return mAttribute_lkey.isValid () && mAttribute_mMinDuration.isValid () && mAttribute_mMaxDuration.isValid () ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+cMapElement * cMapElement_exploredBlockMap::copy (void) {
+  cMapElement * result = NULL ;
+  macroMyNew (result, cMapElement_exploredBlockMap (mAttribute_lkey, mAttribute_mMinDuration, mAttribute_mMaxDuration COMMA_HERE)) ;
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void cMapElement_exploredBlockMap::description (C_String & ioString, const int32_t inIndentation) const {
+  ioString << "\n" ;
+  ioString.writeStringMultiple ("| ", inIndentation) ;
+  ioString << "mMinDuration" ":" ;
+  mAttribute_mMinDuration.description (ioString, inIndentation) ;
+  ioString << "\n" ;
+  ioString.writeStringMultiple ("| ", inIndentation) ;
+  ioString << "mMaxDuration" ":" ;
+  mAttribute_mMaxDuration.description (ioString, inIndentation) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+typeComparisonResult cMapElement_exploredBlockMap::compare (const cCollectionElement * inOperand) const {
+  cMapElement_exploredBlockMap * operand = (cMapElement_exploredBlockMap *) inOperand ;
+  typeComparisonResult result = mAttribute_lkey.objectCompare (operand->mAttribute_lkey) ;
+  if (kOperandEqual == result) {
+    result = mAttribute_mMinDuration.objectCompare (operand->mAttribute_mMinDuration) ;
+  }
+  if (kOperandEqual == result) {
+    result = mAttribute_mMaxDuration.objectCompare (operand->mAttribute_mMaxDuration) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_exploredBlockMap::GALGAS_exploredBlockMap (void) :
+AC_GALGAS_map () {
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_exploredBlockMap::GALGAS_exploredBlockMap (const GALGAS_exploredBlockMap & inSource) :
+AC_GALGAS_map (inSource) {
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_exploredBlockMap & GALGAS_exploredBlockMap::operator = (const GALGAS_exploredBlockMap & inSource) {
+  * ((AC_GALGAS_map *) this) = inSource ;
+  return * this ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_exploredBlockMap GALGAS_exploredBlockMap::constructor_emptyMap (LOCATION_ARGS) {
+  GALGAS_exploredBlockMap result ;
+  result.makeNewEmptyMap (THERE) ;
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_exploredBlockMap GALGAS_exploredBlockMap::constructor_mapWithMapToOverride (const GALGAS_exploredBlockMap & inMapToOverride
+                                                                                   COMMA_LOCATION_ARGS) {
+  GALGAS_exploredBlockMap result ;
+  result.makeNewEmptyMapWithMapToOverride (inMapToOverride COMMA_THERE) ;
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_exploredBlockMap GALGAS_exploredBlockMap::reader_overriddenMap (C_Compiler * inCompiler
+                                                                       COMMA_LOCATION_ARGS) const {
+  GALGAS_exploredBlockMap result ;
+  getOverridenMap (result, inCompiler COMMA_THERE) ;
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void GALGAS_exploredBlockMap::addAssign_operation (const GALGAS_lstring & inKey,
+                                                   const GALGAS_uint & inArgument0,
+                                                   const GALGAS_uint & inArgument1,
+                                                   C_Compiler * inCompiler
+                                                   COMMA_LOCATION_ARGS) {
+  cMapElement_exploredBlockMap * p = NULL ;
+  macroMyNew (p, cMapElement_exploredBlockMap (inKey, inArgument0, inArgument1 COMMA_HERE)) ;
+  capCollectionElement attributes ;
+  attributes.setPointer (p) ;
+  macroDetachSharedObject (p) ;
+  const char * kInsertErrorMessage = "@exploredBlockMap insert error: '%K' already in map" ;
+  const char * kShadowErrorMessage = "" ;
+  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void GALGAS_exploredBlockMap::modifier_insertKey (GALGAS_lstring inKey,
+                                                  GALGAS_uint inArgument0,
+                                                  GALGAS_uint inArgument1,
+                                                  C_Compiler * inCompiler
+                                                  COMMA_LOCATION_ARGS) {
+  cMapElement_exploredBlockMap * p = NULL ;
+  macroMyNew (p, cMapElement_exploredBlockMap (inKey, inArgument0, inArgument1 COMMA_HERE)) ;
+  capCollectionElement attributes ;
+  attributes.setPointer (p) ;
+  macroDetachSharedObject (p) ;
+  const char * kInsertErrorMessage = "the '%K' entry is already declared in %L" ;
+  const char * kShadowErrorMessage = "" ;
+  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+const char * kSearchErrorMessage_exploredBlockMap_searchKey = "the '%K' entry is not declared" ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void GALGAS_exploredBlockMap::method_searchKey (GALGAS_lstring inKey,
+                                                GALGAS_uint & outArgument0,
+                                                GALGAS_uint & outArgument1,
+                                                C_Compiler * inCompiler
+                                                COMMA_LOCATION_ARGS) const {
+  const cMapElement_exploredBlockMap * p = (const cMapElement_exploredBlockMap *) performSearch (inKey,
+                                                                                                   inCompiler,
+                                                                                                   kSearchErrorMessage_exploredBlockMap_searchKey
+                                                                                                   COMMA_THERE) ;
+  if (NULL == p) {
+    outArgument0.drop () ;
+    outArgument1.drop () ;
+  }else{
+    macroValidSharedObject (p, cMapElement_exploredBlockMap) ;
+    outArgument0 = p->mAttribute_mMinDuration ;
+    outArgument1 = p->mAttribute_mMaxDuration ;
+  }
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_uint GALGAS_exploredBlockMap::reader_mMinDurationForKey (const GALGAS_string & inKey,
+                                                                C_Compiler * inCompiler
+                                                                COMMA_LOCATION_ARGS) const {
+  const cCollectionElement * attributes = searchForReadingAttribute (inKey, inCompiler COMMA_THERE) ;
+  const cMapElement_exploredBlockMap * p = (const cMapElement_exploredBlockMap *) attributes ;
+  GALGAS_uint result ;
+  if (NULL != p) {
+    macroValidSharedObject (p, cMapElement_exploredBlockMap) ;
+    result = p->mAttribute_mMinDuration ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_uint GALGAS_exploredBlockMap::reader_mMaxDurationForKey (const GALGAS_string & inKey,
+                                                                C_Compiler * inCompiler
+                                                                COMMA_LOCATION_ARGS) const {
+  const cCollectionElement * attributes = searchForReadingAttribute (inKey, inCompiler COMMA_THERE) ;
+  const cMapElement_exploredBlockMap * p = (const cMapElement_exploredBlockMap *) attributes ;
+  GALGAS_uint result ;
+  if (NULL != p) {
+    macroValidSharedObject (p, cMapElement_exploredBlockMap) ;
+    result = p->mAttribute_mMaxDuration ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void GALGAS_exploredBlockMap::modifier_setMMinDurationForKey (GALGAS_uint inAttributeValue,
+                                                              GALGAS_string inKey,
+                                                              C_Compiler * inCompiler
+                                                              COMMA_LOCATION_ARGS) {
+  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
+  cMapElement_exploredBlockMap * p = (cMapElement_exploredBlockMap *) attributes ;
+  if (NULL != p) {
+    macroValidSharedObject (p, cMapElement_exploredBlockMap) ;
+    p->mAttribute_mMinDuration = inAttributeValue ;
+  }
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void GALGAS_exploredBlockMap::modifier_setMMaxDurationForKey (GALGAS_uint inAttributeValue,
+                                                              GALGAS_string inKey,
+                                                              C_Compiler * inCompiler
+                                                              COMMA_LOCATION_ARGS) {
+  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
+  cMapElement_exploredBlockMap * p = (cMapElement_exploredBlockMap *) attributes ;
+  if (NULL != p) {
+    macroValidSharedObject (p, cMapElement_exploredBlockMap) ;
+    p->mAttribute_mMaxDuration = inAttributeValue ;
+  }
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+cMapElement_exploredBlockMap * GALGAS_exploredBlockMap::readWriteAccessForWithInstruction (C_Compiler * inCompiler,
+                                                                                           const GALGAS_string & inKey
+                                                                                           COMMA_LOCATION_ARGS) {
+  cMapElement_exploredBlockMap * result = (cMapElement_exploredBlockMap *) searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
+  macroNullOrValidSharedObject (result, cMapElement_exploredBlockMap) ;
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+cEnumerator_exploredBlockMap::cEnumerator_exploredBlockMap (const GALGAS_exploredBlockMap & inEnumeratedObject,
+                                                            const typeEnumerationOrder inOrder) :
+cGenericAbstractEnumerator () {
+  inEnumeratedObject.populateEnumerationArray (mEnumerationArray, inOrder) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_exploredBlockMap_2D_element cEnumerator_exploredBlockMap::current (LOCATION_ARGS) const {
+  const cMapElement_exploredBlockMap * p = (const cMapElement_exploredBlockMap *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement_exploredBlockMap) ;
+  return GALGAS_exploredBlockMap_2D_element (p->mAttribute_lkey, p->mAttribute_mMinDuration, p->mAttribute_mMaxDuration) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_lstring cEnumerator_exploredBlockMap::current_lkey (LOCATION_ARGS) const {
+  const cMapElement * p = (const cMapElement *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement) ;
+  return p->mAttribute_lkey ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_uint cEnumerator_exploredBlockMap::current_mMinDuration (LOCATION_ARGS) const {
+  const cMapElement_exploredBlockMap * p = (const cMapElement_exploredBlockMap *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement_exploredBlockMap) ;
+  return p->mAttribute_mMinDuration ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_uint cEnumerator_exploredBlockMap::current_mMaxDuration (LOCATION_ARGS) const {
+  const cMapElement_exploredBlockMap * p = (const cMapElement_exploredBlockMap *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement_exploredBlockMap) ;
+  return p->mAttribute_mMaxDuration ;
+}
+
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                               @exploredBlockMap type                                                *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+const C_galgas_type_descriptor
+kTypeDescriptor_GALGAS_exploredBlockMap ("exploredBlockMap",
+                                         NULL) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+const C_galgas_type_descriptor * GALGAS_exploredBlockMap::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_exploredBlockMap ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+AC_GALGAS_root * GALGAS_exploredBlockMap::clonedObject (void) const {
+  AC_GALGAS_root * result = NULL ;
+  if (isValid ()) {
+    macroMyNew (result, GALGAS_exploredBlockMap (*this)) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_exploredBlockMap GALGAS_exploredBlockMap::extractObject (const GALGAS_object & inObject,
+                                                                C_Compiler * inCompiler
+                                                                COMMA_LOCATION_ARGS) {
+  GALGAS_exploredBlockMap result ;
+  const GALGAS_exploredBlockMap * p = (const GALGAS_exploredBlockMap *) inObject.embeddedObject () ;
+  if (NULL != p) {
+    if (NULL != dynamic_cast <const GALGAS_exploredBlockMap *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("exploredBlockMap", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //     L E X I Q U E                                                                                                   *
 //                                                                                                                     *
