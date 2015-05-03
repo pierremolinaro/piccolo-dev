@@ -1,4 +1,11 @@
+#----------------------------------------------------------------------------------------------------------------------*
 
+map @generatedCodeMap { # Key is code address (decimal representation)
+  @codeList mCode
+  @ipic18SequentialInstruction mInstruction
+  insert insertKey error message "the '%K' entry is already declared in %L"
+  search searchKey error message "the '%K' entry is not declared"
+}
 
 #----------------------------------------------------------------------------*
 
@@ -59,13 +66,14 @@ proc generateLineWithCode
   
 #----------------------------------------------------------------------------*
 
-method @ipic18Block generateCode
+method @ipic18Block generateCodeForBlock
   ?let @symbolTableForRelativesResolution inSymbolTable
   ?let @pic18_dataAddressMap inDataMap
   ?let @uint inBlockAddress
   ?let @string inNextBlockLabel
   ?!@string ioListFileContents
   ?!@string ioAssemblyString
+  ?!@generatedCodeMap ioGeneratedCodeMap
 {
   ioListFileContents += "Addr.  Code       Assembly                                           Intermediate Representation\n"
   if mAddress == .max then # Relocatable
@@ -91,21 +99,22 @@ method @ipic18Block generateCode
   end
 #--- Generate regular instructions
   var address = inBlockAddress
-  for () in  mInstructionList do
+  for () in mInstructionList do
     [mInstruction generateCode
       !address
       !inSymbolTable
       !inDataMap
       ?let @codeList code
     ]
+    [!?ioGeneratedCodeMap insertKey ![[address string] nowhere] !code !mInstruction]
     generateLineWithCode (
       !address
       !code
       ![mInstruction instructionDisplay]
       !?ioListFileContents
     )
-    for () in  code do
-      for () in  mBinaryCode do
+    for () in code do
+      for () in mBinaryCode do
         emitCode (!mValue)
       end
       ioAssemblyString += mAssemblyCode + "\n"
@@ -113,13 +122,13 @@ method @ipic18Block generateCode
     address = address + [mInstruction instructionSize]
   #--- Check instruction size corresponds generated code size
     @uint generatedCodeSize = 0
-    for () in  code do
+    for () in code do
       generatedCodeSize = generatedCodeSize + 2 * [mBinaryCode length]
     end
     if generatedCodeSize != [mInstruction instructionSize] then
-      @string s = "*** INTERNAL ERROR ** generated code size ("
+      var s = "*** INTERNAL ERROR ** generated code size ("
       + generatedCodeSize + ") != instruction size (" + [mInstruction instructionSize] + ")"
-      error @location. nowhere : s
+      error .nowhere : s
       ioListFileContents += s + "\n"
     end
   end
@@ -136,21 +145,21 @@ method @ipic18Block generateCode
     !{![mTerminator terminatorDisplay !inNextBlockLabel]}
     !?ioListFileContents
   )
-  for () in  code do
-    for () in  mBinaryCode do
-      emitCode ( !mValue )
+  for () in code do
+    for () in mBinaryCode do
+      emitCode (!mValue)
     end
     ioAssemblyString += mAssemblyCode + "\n"
   end
   #--- Check terminator size corresponds generated code size
     var generatedCodeSize = 0
-    for () in  code do
+    for () in code do
       generatedCodeSize = generatedCodeSize + 2 * [mBinaryCode length]
     end
     if generatedCodeSize != [mTerminator terminatorSize !inNextBlockLabel] then
-      @string s = "*** INTERNAL ERROR ** generated code size ("
+      var s = "*** INTERNAL ERROR ** generated code size ("
       + generatedCodeSize + ") != instruction size (" + [mTerminator terminatorSize !inNextBlockLabel] + ")"
-      error @location. nowhere : s
+      error .nowhere : s
       ioListFileContents += s + "\n"
     end
 #---
@@ -176,6 +185,7 @@ proc ipic18GenerateCode
   ?!@string ioListFileContents
   ?let @ipic18BlockList inGeneratedBlockList
   !@uint outUsedROMsize
+  !@generatedCodeMap outGeneratedCodeMap
 {
   ioListFileContents += ["" stringByLeftAndRightPadding !79 !'*'] + "\n"
   ioListFileContents += "*" + ["CODE GENERATION" stringByLeftAndRightPadding !77 !' '] + "*\n"
@@ -202,6 +212,7 @@ proc ipic18GenerateCode
   var assemblyString = ""
   var relocatableCodeSize = 0
   var blockStartAddress = 0
+  outGeneratedCodeMap = {}
   for () in  inGeneratedBlockList do(blockIndex)
     @string nextBlockLabel
     if (blockIndex+1) < [inGeneratedBlockList length] then
@@ -213,17 +224,18 @@ proc ipic18GenerateCode
       blockStartAddress = mBlock.mAddress
       setEmitAddress (!blockStartAddress)
     end
-    [mBlock generateCode
+    [mBlock generateCodeForBlock
       !symbolTable
       !dataAddressMap
       !blockStartAddress
       !nextBlockLabel
       !?ioListFileContents
       !?assemblyString
+      !?outGeneratedCodeMap
     ]
     let @uint blockSize = [mBlock blockSize !nextBlockLabel]
     blockStartAddress = blockStartAddress + blockSize
-    if mBlock.mAddress == @uint. max then
+    if mBlock.mAddress == .max then
       relocatableCodeSize = relocatableCodeSize + blockSize
     end
   end

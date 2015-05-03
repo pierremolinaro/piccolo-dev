@@ -998,10 +998,22 @@ method @ipic18Block optimize
     case == @ipic18_intermediate_JSR jsr :
       if inOptimizeFlagStruct.mJSRfollowedByRETreplacedByJUMP then
         [!?optimizedInstructionList popLast ?*]
-        optimizedTerminator = @ipic18JumpTerminator. new { ![jsr mInstructionLocation] ![jsr mTargetLabel] ![jsr mKind]}
+        optimizedTerminator = @ipic18JumpTerminator.new {![jsr mInstructionLocation] ![jsr mTargetLabel] ![jsr mKind]}
         optimized = true
         ioListFileContents += "  [J] " + mLabel + ": JSR " + [jsr mTargetLabel] + " ; RETURN --> JUMP " + [jsr mTargetLabel] + "\n"
       end
+  #--- Transform computed rcall ; RETURN to computed bra
+#    case == @ipic18_intermediate_instruction_computed_rcall computedRCALL :
+#      if inOptimizeFlagStruct.mComputedRCALLFollowedByRETURNreplacedByComputedBRA then
+#        [!?optimizedInstructionList popLast ?*]
+#        optimizedTerminator = @ipic18ComputedBraTerminator.new {
+#          ![computedRCALL mInstructionLocation]
+#          ![computedRCALL mTargetLabels]
+#          ![computedRCALL mKind]
+#         }
+#        optimized = true
+#        ioListFileContents += "  [J] " + mLabel + ": JSR " + [jsr mTargetLabel] + " ; RETURN --> JUMP " + [jsr mTargetLabel] + "\n"
+#      end
     else
     end
   end
@@ -1045,6 +1057,7 @@ struct @optimizeFlagStruct {
  @bool mJSRtoOneInstructionRoutineReplacedByInstruction # [I]
  @bool mJSRtoOneInstructionRoutineInComputedRCALLreplacedByInstruction # [i]
  @bool mJSRtoEmptyRoutineInComputedRCALLreplacedByBlank # [e]
+# @bool mComputedRCALLFollowedByRETURNreplacedByComputedBRA # [c]
 }
 
 #----------------------------------------------------------------------------*
@@ -1067,12 +1080,14 @@ proc ipic18OptimizeBlocks
     ![option piccolo_options.performOptimizations value] | [[option piccolo_options.optimizationFlags value] containsCharacter !'I'] # [I]
     ![option piccolo_options.performOptimizations value] | [[option piccolo_options.optimizationFlags value] containsCharacter !'i'] # [i]
     ![option piccolo_options.performOptimizations value] | [[option piccolo_options.optimizationFlags value] containsCharacter !'e'] # [e]
+#    ![option piccolo_options.performOptimizations value] | [[option piccolo_options.optimizationFlags value] containsCharacter !'c'] # [c]
   }
 #---
   ioListFileContents += ["" stringByLeftAndRightPadding !79 !'*'] + "\n"
   ioListFileContents += "*" + ["BLOCK REPRESENTATION OPTIMIZATION" stringByLeftAndRightPadding !77 !' '] + "*\n"
   ioListFileContents += ["" stringByLeftAndRightPadding !79 !'*'] + "\n\n"
   ioListFileContents += "Optimization flags:\n"
+#  ioListFileContents += "  [c] computed RCALL followed by RETURN replaced by computed BRA: " + [optimizeFlagStruct.mComputedRCALLFollowedByRETURNreplacedByComputedBRA flagValue] + "\n"
   ioListFileContents += "  [D] Dead code elimination: always enabled\n"
   ioListFileContents += "  [E] Empty routine elimination: " + [optimizeFlagStruct.mRemoveEmptyRoutine flagValue] + "\n"
   ioListFileContents += "  [e] In Computed RCALL, empty routine call replaced by BLANK: " + [optimizeFlagStruct.mJSRtoEmptyRoutineInComputedRCALLreplacedByBlank flagValue] + "\n"
