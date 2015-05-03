@@ -3409,10 +3409,6 @@ proc build_ipic18_block_representation_list
       !?ioListFileContents
       !generatedBlockList
     )
-    ipic18DurationComputations (
-      !?ioListFileContents
-      !generatedBlockList
-    )
   end
 #----------------------------------------------------------- Generate code
   if @uint.errorCount == 0 then
@@ -3429,7 +3425,16 @@ proc build_ipic18_block_representation_list
       !?ioListFileContents
       !generatedBlockList
       ?let @uint usedROMsize
+      ?let @generatedCodeMap unused generatedCodeMap
     )
+#----------------------------------------------------------- Check and compute stack requirements
+#  if (@uint.errorCount == 0) & (inProgramKind != .userProgram) then
+#    ipic18DurationComputations (
+#      !?ioListFileContents
+#      !generatedBlockList
+#      !generatedCodeMap
+#    )
+#  end
   #----------------------------------------------------------- Print usage
     if [option.verbose_output value] then
       @string verboseMessage = "Resource usage:\n"
