@@ -4520,6 +4520,17 @@ GALGAS_blockInvocationGraph GALGAS_blockInvocationGraph::reader_reversedGraph (L
 
 //---------------------------------------------------------------------------------------------------------------------*
 
+void GALGAS_blockInvocationGraph::method_circularities (GALGAS_stringlist & outInfoList,
+                                                        GALGAS_lstringlist & outKeyList
+                                                        COMMA_LOCATION_ARGS) const {
+  cSharedList * infoList = NULL ;
+  internalFindCircularities (infoList, outKeyList COMMA_THERE) ;
+  outInfoList = GALGAS_stringlist (infoList) ;
+  GALGAS_stringlist::detachSharedList (infoList) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
 void GALGAS_blockInvocationGraph::method_nodesWithNoSuccessor (GALGAS_stringlist & outInfoList,
                                                                GALGAS_lstringlist & outKeyList
                                                                COMMA_LOCATION_ARGS) const {
