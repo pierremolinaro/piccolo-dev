@@ -14,7 +14,7 @@ pic18 repetition_statique_pic18 "18F448" :
 
 noreturn routine main bank:requires 0 {
 #--- Instruction de répétition statique
-  do (5)
+  do (N : 0 ... 4)
     movlw 7
     nop
   end

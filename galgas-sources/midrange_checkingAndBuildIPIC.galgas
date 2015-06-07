@@ -999,6 +999,7 @@ override method @midrange_instruction_STATIC_REPEAT build_midrange_ipic_instruct
       !inRoutineKind
       !?ioUsedRegisters
     )
+    idx ++
   end
 }
 
