@@ -1022,6 +1022,198 @@ GALGAS_pic_31__38_Instruction_5F_switch GALGAS_pic_31__38_Instruction_5F_switch:
 //   Object comparison                                                                                                 *
 //---------------------------------------------------------------------------------------------------------------------*
 
+typeComparisonResult cPtr_pic_31__38_Instruction_5F_with::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
+  typeComparisonResult result = kOperandEqual ;
+  const cPtr_pic_31__38_Instruction_5F_with * p = (const cPtr_pic_31__38_Instruction_5F_with *) inOperandPtr ;
+  macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_with) ;
+  if (kOperandEqual == result) {
+    result = mAttribute_mInstructionLocation.objectCompare (p->mAttribute_mInstructionLocation) ;
+  }
+  if (kOperandEqual == result) {
+    result = mAttribute_mInstructionList.objectCompare (p->mAttribute_mInstructionList) ;
+  }
+  if (kOperandEqual == result) {
+    result = mAttribute_mWithInstructionConstantDeclarationList.objectCompare (p->mAttribute_mWithInstructionConstantDeclarationList) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+
+typeComparisonResult GALGAS_pic_31__38_Instruction_5F_with::objectCompare (const GALGAS_pic_31__38_Instruction_5F_with & inOperand) const {
+  typeComparisonResult result = kOperandNotValid ;
+  if (isValid () && inOperand.isValid ()) {
+    const int32_t mySlot = mObjectPtr->classDescriptor ()->mSlotID ;
+    const int32_t operandSlot = inOperand.mObjectPtr->classDescriptor ()->mSlotID ;
+    if (mySlot < operandSlot) {
+      result = kFirstOperandLowerThanSecond ;
+    }else if (mySlot > operandSlot) {
+      result = kFirstOperandGreaterThanSecond ;
+    }else{
+      result = mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+    }
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_pic_31__38_Instruction_5F_with::GALGAS_pic_31__38_Instruction_5F_with (void) :
+GALGAS_pic_31__38_PiccoloInstruction () {
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_pic_31__38_Instruction_5F_with GALGAS_pic_31__38_Instruction_5F_with::constructor_default (LOCATION_ARGS) {
+  return GALGAS_pic_31__38_Instruction_5F_with::constructor_new (GALGAS_location::constructor_nowhere (HERE),
+                                                                 GALGAS_pic_31__38_InstructionList::constructor_emptyList (HERE),
+                                                                 GALGAS_withInstructionConstantDeclarationList::constructor_emptyList (HERE)
+                                                                 COMMA_THERE) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_pic_31__38_Instruction_5F_with::GALGAS_pic_31__38_Instruction_5F_with (const cPtr_pic_31__38_Instruction_5F_with * inSourcePtr) :
+GALGAS_pic_31__38_PiccoloInstruction (inSourcePtr) {
+  macroNullOrValidSharedObject (inSourcePtr, cPtr_pic_31__38_Instruction_5F_with) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_pic_31__38_Instruction_5F_with GALGAS_pic_31__38_Instruction_5F_with::constructor_new (const GALGAS_location & inAttribute_mInstructionLocation,
+                                                                                              const GALGAS_pic_31__38_InstructionList & inAttribute_mInstructionList,
+                                                                                              const GALGAS_withInstructionConstantDeclarationList & inAttribute_mWithInstructionConstantDeclarationList
+                                                                                              COMMA_LOCATION_ARGS) {
+  GALGAS_pic_31__38_Instruction_5F_with result ;
+  if (inAttribute_mInstructionLocation.isValid () && inAttribute_mInstructionList.isValid () && inAttribute_mWithInstructionConstantDeclarationList.isValid ()) {
+    macroMyNew (result.mObjectPtr, cPtr_pic_31__38_Instruction_5F_with (inAttribute_mInstructionLocation, inAttribute_mInstructionList, inAttribute_mWithInstructionConstantDeclarationList COMMA_THERE)) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_pic_31__38_InstructionList GALGAS_pic_31__38_Instruction_5F_with::reader_mInstructionList (UNUSED_LOCATION_ARGS) const {
+  GALGAS_pic_31__38_InstructionList result ;
+  if (NULL != mObjectPtr) {
+    const cPtr_pic_31__38_Instruction_5F_with * p = (const cPtr_pic_31__38_Instruction_5F_with *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_with) ;
+    result = p->mAttribute_mInstructionList ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_pic_31__38_InstructionList cPtr_pic_31__38_Instruction_5F_with::reader_mInstructionList (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mInstructionList ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_withInstructionConstantDeclarationList GALGAS_pic_31__38_Instruction_5F_with::reader_mWithInstructionConstantDeclarationList (UNUSED_LOCATION_ARGS) const {
+  GALGAS_withInstructionConstantDeclarationList result ;
+  if (NULL != mObjectPtr) {
+    const cPtr_pic_31__38_Instruction_5F_with * p = (const cPtr_pic_31__38_Instruction_5F_with *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_with) ;
+    result = p->mAttribute_mWithInstructionConstantDeclarationList ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_withInstructionConstantDeclarationList cPtr_pic_31__38_Instruction_5F_with::reader_mWithInstructionConstantDeclarationList (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mWithInstructionConstantDeclarationList ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                   Pointer class for @pic18Instruction_with class                                    *
+//---------------------------------------------------------------------------------------------------------------------*
+
+cPtr_pic_31__38_Instruction_5F_with::cPtr_pic_31__38_Instruction_5F_with (const GALGAS_location & in_mInstructionLocation,
+                                                                          const GALGAS_pic_31__38_InstructionList & in_mInstructionList,
+                                                                          const GALGAS_withInstructionConstantDeclarationList & in_mWithInstructionConstantDeclarationList
+                                                                          COMMA_LOCATION_ARGS) :
+cPtr_pic_31__38_PiccoloInstruction (in_mInstructionLocation COMMA_THERE),
+mAttribute_mInstructionList (in_mInstructionList),
+mAttribute_mWithInstructionConstantDeclarationList (in_mWithInstructionConstantDeclarationList) {
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+const C_galgas_type_descriptor * cPtr_pic_31__38_Instruction_5F_with::classDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_with ;
+}
+
+void cPtr_pic_31__38_Instruction_5F_with::description (C_String & ioString,
+                                                       const int32_t inIndentation) const {
+  ioString << "[@pic18Instruction_with:" ;
+  mAttribute_mInstructionLocation.description (ioString, inIndentation+1) ;
+  ioString << ", " ;
+  mAttribute_mInstructionList.description (ioString, inIndentation+1) ;
+  ioString << ", " ;
+  mAttribute_mWithInstructionConstantDeclarationList.description (ioString, inIndentation+1) ;
+  ioString << "]" ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+acPtr_class * cPtr_pic_31__38_Instruction_5F_with::duplicate (LOCATION_ARGS) const {
+  acPtr_class * ptr = NULL ;
+  macroMyNew (ptr, cPtr_pic_31__38_Instruction_5F_with (mAttribute_mInstructionLocation, mAttribute_mInstructionList, mAttribute_mWithInstructionConstantDeclarationList COMMA_THERE)) ;
+  return ptr ;
+}
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                             @pic18Instruction_with type                                             *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+const C_galgas_type_descriptor
+kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_with ("pic18Instruction_with",
+                                                       & kTypeDescriptor_GALGAS_pic_31__38_PiccoloInstruction) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+const C_galgas_type_descriptor * GALGAS_pic_31__38_Instruction_5F_with::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_with ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+AC_GALGAS_root * GALGAS_pic_31__38_Instruction_5F_with::clonedObject (void) const {
+  AC_GALGAS_root * result = NULL ;
+  if (isValid ()) {
+    macroMyNew (result, GALGAS_pic_31__38_Instruction_5F_with (*this)) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_pic_31__38_Instruction_5F_with GALGAS_pic_31__38_Instruction_5F_with::extractObject (const GALGAS_object & inObject,
+                                                                                            C_Compiler * inCompiler
+                                                                                            COMMA_LOCATION_ARGS) {
+  GALGAS_pic_31__38_Instruction_5F_with result ;
+  const GALGAS_pic_31__38_Instruction_5F_with * p = (const GALGAS_pic_31__38_Instruction_5F_with *) inObject.embeddedObject () ;
+  if (NULL != p) {
+    if (NULL != dynamic_cast <const GALGAS_pic_31__38_Instruction_5F_with *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("pic18Instruction_with", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+//   Object comparison                                                                                                 *
+//---------------------------------------------------------------------------------------------------------------------*
+
 
 
 typeComparisonResult GALGAS_pic_31__38_PiccoloSimpleInstruction::objectCompare (const GALGAS_pic_31__38_PiccoloSimpleInstruction & inOperand) const {
@@ -16690,160 +16882,6 @@ GALGAS_piccoloDeviceModel GALGAS_piccoloDeviceModel::extractObject (const GALGAS
       result = *p ;
     }else{
       inCompiler->castError ("piccoloDeviceModel", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_bitSliceTable_2D_element::GALGAS_bitSliceTable_2D_element (void) :
-mAttribute_lkey (),
-mAttribute_mSliceIndex (),
-mAttribute_mSliceSize () {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_bitSliceTable_2D_element::~ GALGAS_bitSliceTable_2D_element (void) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_bitSliceTable_2D_element::GALGAS_bitSliceTable_2D_element (const GALGAS_lstring & inOperand0,
-                                                                  const GALGAS_uint & inOperand1,
-                                                                  const GALGAS_uint & inOperand2) :
-mAttribute_lkey (inOperand0),
-mAttribute_mSliceIndex (inOperand1),
-mAttribute_mSliceSize (inOperand2) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_bitSliceTable_2D_element GALGAS_bitSliceTable_2D_element::constructor_default (UNUSED_LOCATION_ARGS) {
-  return GALGAS_bitSliceTable_2D_element (GALGAS_lstring::constructor_default (HERE),
-                                          GALGAS_uint::constructor_default (HERE),
-                                          GALGAS_uint::constructor_default (HERE)) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_bitSliceTable_2D_element GALGAS_bitSliceTable_2D_element::constructor_new (const GALGAS_lstring & inOperand0,
-                                                                                  const GALGAS_uint & inOperand1,
-                                                                                  const GALGAS_uint & inOperand2 
-                                                                                  COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_bitSliceTable_2D_element result ;
-  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid ()) {
-    result = GALGAS_bitSliceTable_2D_element (inOperand0, inOperand1, inOperand2) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-typeComparisonResult GALGAS_bitSliceTable_2D_element::objectCompare (const GALGAS_bitSliceTable_2D_element & inOperand) const {
-   typeComparisonResult result = kOperandEqual ;
-  if (result == kOperandEqual) {
-    result = mAttribute_lkey.objectCompare (inOperand.mAttribute_lkey) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mSliceIndex.objectCompare (inOperand.mAttribute_mSliceIndex) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mSliceSize.objectCompare (inOperand.mAttribute_mSliceSize) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-bool GALGAS_bitSliceTable_2D_element::isValid (void) const {
-  return mAttribute_lkey.isValid () && mAttribute_mSliceIndex.isValid () && mAttribute_mSliceSize.isValid () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_bitSliceTable_2D_element::drop (void) {
-  mAttribute_lkey.drop () ;
-  mAttribute_mSliceIndex.drop () ;
-  mAttribute_mSliceSize.drop () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_bitSliceTable_2D_element::description (C_String & ioString,
-                                                   const int32_t inIndentation) const {
-  ioString << "<struct @bitSliceTable-element:" ;
-  if (! isValid ()) {
-    ioString << " not built" ;
-  }else{
-    mAttribute_lkey.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mSliceIndex.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mSliceSize.description (ioString, inIndentation+1) ;
-  }
-  ioString << ">" ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_lstring GALGAS_bitSliceTable_2D_element::reader_lkey (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_lkey ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_uint GALGAS_bitSliceTable_2D_element::reader_mSliceIndex (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mSliceIndex ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_uint GALGAS_bitSliceTable_2D_element::reader_mSliceSize (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mSliceSize ;
-}
-
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                             @bitSliceTable-element type                                             *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_bitSliceTable_2D_element ("bitSliceTable-element",
-                                                 NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor * GALGAS_bitSliceTable_2D_element::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_bitSliceTable_2D_element ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-AC_GALGAS_root * GALGAS_bitSliceTable_2D_element::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_bitSliceTable_2D_element (*this)) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_bitSliceTable_2D_element GALGAS_bitSliceTable_2D_element::extractObject (const GALGAS_object & inObject,
-                                                                                C_Compiler * inCompiler
-                                                                                COMMA_LOCATION_ARGS) {
-  GALGAS_bitSliceTable_2D_element result ;
-  const GALGAS_bitSliceTable_2D_element * p = (const GALGAS_bitSliceTable_2D_element *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_bitSliceTable_2D_element *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("bitSliceTable-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
     }  
   }
   return result ;

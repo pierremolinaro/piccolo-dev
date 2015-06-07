@@ -172,6 +172,14 @@ override method @pic18Instruction_switch addUsedRoutines
 
 #---------------------------------------------------------------------------*
 
+override method @pic18Instruction_with addUsedRoutines
+  ?!@stringset ioUsedRoutines
+{
+  addPic18UsedRoutinesFromInstructionList (!mInstructionList !?ioUsedRoutines)
+}
+
+#---------------------------------------------------------------------------*
+
 override method @pic18Instruction_FA addUsedRoutines
   ?!@stringset unused ioUsedRoutines {
 }
