@@ -1,7 +1,7 @@
 #!/bin/sh
 set -x
 DIR=`dirname $0` &&
-cd $DIR/../makefile-macosx && make piccolo -j `sysctl -n hw.ncpu` &&
+cd $DIR/../makefile-macosx && python build.py &&
 PATH=$DIR/../makefile-macosx:$PATH &&
 cd $DIR &&
 rm -f piccolo-couleur.pdf &&
