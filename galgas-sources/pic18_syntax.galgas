@@ -924,29 +924,6 @@ rule <structured_instruction>
       !macroName
       !immediatExpressionList
     }
-  or
-    $with$
-    let instructionLocation = @location.here
-    @withInstructionConstantDeclarationList withInstructionConstantDeclarationList = {}
-    repeat
-      $identifier$ ?let localConstantName
-      $=$
-      <immediate_expression> ?let @immediatExpression constantExpression
-      withInstructionConstantDeclarationList += !localConstantName !constantExpression
-    while
-      $,$
-    end
-    $do$
-    <instruction_list>
-      ?let @pic18InstructionList instructionList
-      !?ioNeedsComputedGoto2
-      !?ioNeedsComputedGoto4
-    $end$
-    outInstruction = @pic18Instruction_with.new {
-      !instructionLocation
-      !instructionList
-      !withInstructionConstantDeclarationList
-    }
   end
 }
 
