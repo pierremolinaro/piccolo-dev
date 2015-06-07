@@ -238,6 +238,20 @@ class @pic18Instruction_JSR : @pic18PiccoloSimpleInstruction {
 
 #----------------------------------------------------*
 
+list @withInstructionConstantDeclarationList {
+  @lstring mLocalConstantName
+  @immediatExpression mExpression
+}
+
+#----------------------------------------------------*
+
+class @pic18Instruction_with : @pic18PiccoloInstruction {
+  @pic18InstructionList mInstructionList
+  @withInstructionConstantDeclarationList mWithInstructionConstantDeclarationList
+}
+
+#----------------------------------------------------*
+
 class @pic18Instruction_JUMP : @pic18PiccoloInstruction {
   @lstring mTargetLabel
   @jumpInstructionKind mKind

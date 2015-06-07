@@ -70,7 +70,8 @@ list controlKeyWordList style keywordStyle error message "the '%K' keyword"{
   "unused",
   "uses",
   "w",
-  "while"
+  "while",
+  "with"
  }
 
 list instructionKeyWordList style instructionStyle error message "the '%K' instruction"{

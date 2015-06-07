@@ -1484,6 +1484,29 @@ static const utf32 gSyntaxErrorMessage_piccolo_5F_lexique_while [] = {
   TO_UNICODE (0)
 } ;
 
+//--- Syntax error message for terminal '$with$' :
+static const utf32 gSyntaxErrorMessage_piccolo_5F_lexique_with [] = {
+  TO_UNICODE ('t'),
+  TO_UNICODE ('h'),
+  TO_UNICODE ('e'),
+  TO_UNICODE (' '),
+  TO_UNICODE ('\''),
+  TO_UNICODE ('w'),
+  TO_UNICODE ('i'),
+  TO_UNICODE ('t'),
+  TO_UNICODE ('h'),
+  TO_UNICODE ('\''),
+  TO_UNICODE (' '),
+  TO_UNICODE ('k'),
+  TO_UNICODE ('e'),
+  TO_UNICODE ('y'),
+  TO_UNICODE ('w'),
+  TO_UNICODE ('o'),
+  TO_UNICODE ('r'),
+  TO_UNICODE ('d'),
+  TO_UNICODE (0)
+} ;
+
 //--- Syntax error message for terminal '$addlw$' :
 static const utf32 gSyntaxErrorMessage_piccolo_5F_lexique_addlw [] = {
   TO_UNICODE ('t'),
@@ -4076,7 +4099,7 @@ static const utf32 gSyntaxErrorMessage_piccolo_5F_lexique__40_ [] = {
 //---------------------------------------------------------------------------------------------------------------------*
 
 C_String C_Lexique_piccolo_5F_lexique::getMessageForTerminal (const int16_t inTerminalIndex) const {
-  static const utf32 * syntaxErrorMessageArray [152] = {kEndOfSourceLexicalErrorMessage,
+  static const utf32 * syntaxErrorMessageArray [153] = {kEndOfSourceLexicalErrorMessage,
     gSyntaxErrorMessage_piccolo_5F_lexique_identifier,
     gSyntaxErrorMessage_piccolo_5F_lexique_integer,
     gSyntaxErrorMessage_piccolo_5F_lexique_literal_5F_char,
@@ -4127,6 +4150,7 @@ C_String C_Lexique_piccolo_5F_lexique::getMessageForTerminal (const int16_t inTe
     gSyntaxErrorMessage_piccolo_5F_lexique_uses,
     gSyntaxErrorMessage_piccolo_5F_lexique_w,
     gSyntaxErrorMessage_piccolo_5F_lexique_while,
+    gSyntaxErrorMessage_piccolo_5F_lexique_with,
     gSyntaxErrorMessage_piccolo_5F_lexique_addlw,
     gSyntaxErrorMessage_piccolo_5F_lexique_addwf,
     gSyntaxErrorMessage_piccolo_5F_lexique_addwfc,
@@ -5534,6 +5558,15 @@ static const utf32 kUnicodeString_piccolo_5F_lexique_while [] = {
   TO_UNICODE (0)
 } ;
 
+//--- Unicode string for '$with$'
+static const utf32 kUnicodeString_piccolo_5F_lexique_with [] = {
+  TO_UNICODE ('w'),
+  TO_UNICODE ('i'),
+  TO_UNICODE ('t'),
+  TO_UNICODE ('h'),
+  TO_UNICODE (0)
+} ;
+
 //--- Unicode string for '$xorlw$'
 static const utf32 kUnicodeString_piccolo_5F_lexique_xorlw [] = {
   TO_UNICODE ('x'),
@@ -5582,7 +5615,7 @@ static const utf32 kUnicodeString_piccolo_5F_lexique__7E_ [] = {
 //             Key words table 'controlKeyWordList'                            *
 //---------------------------------------------------------------------------------------------------------------------*
 
-static const int32_t ktable_size_piccolo_5F_lexique_controlKeyWordList = 44 ;
+static const int32_t ktable_size_piccolo_5F_lexique_controlKeyWordList = 45 ;
 
 static const C_unicode_lexique_table_entry ktable_for_piccolo_5F_lexique_controlKeyWordList [ktable_size_piccolo_5F_lexique_controlKeyWordList] = {
   C_unicode_lexique_table_entry (kUnicodeString_piccolo_5F_lexique_w, 1, C_Lexique_piccolo_5F_lexique::kToken_w),
@@ -5600,6 +5633,7 @@ static const C_unicode_lexique_table_entry ktable_for_piccolo_5F_lexique_control
   C_unicode_lexique_table_entry (kUnicodeString_piccolo_5F_lexique_mark, 4, C_Lexique_piccolo_5F_lexique::kToken_mark),
   C_unicode_lexique_table_entry (kUnicodeString_piccolo_5F_lexique_page, 4, C_Lexique_piccolo_5F_lexique::kToken_page),
   C_unicode_lexique_table_entry (kUnicodeString_piccolo_5F_lexique_uses, 4, C_Lexique_piccolo_5F_lexique::kToken_uses),
+  C_unicode_lexique_table_entry (kUnicodeString_piccolo_5F_lexique_with, 4, C_Lexique_piccolo_5F_lexique::kToken_with),
   C_unicode_lexique_table_entry (kUnicodeString_piccolo_5F_lexique_block, 5, C_Lexique_piccolo_5F_lexique::kToken_block),
   C_unicode_lexique_table_entry (kUnicodeString_piccolo_5F_lexique_const, 5, C_Lexique_piccolo_5F_lexique::kToken_const),
   C_unicode_lexique_table_entry (kUnicodeString_piccolo_5F_lexique_elsif, 5, C_Lexique_piccolo_5F_lexique::kToken_elsif),
@@ -6033,6 +6067,11 @@ C_String C_Lexique_piccolo_5F_lexique::getCurrentTokenString (const cToken * inT
     case kToken_while:
       s.appendUnicodeCharacter (TO_UNICODE ('$') COMMA_HERE) ;
       s.appendCString ("while") ;
+      s.appendUnicodeCharacter (TO_UNICODE ('$') COMMA_HERE) ;
+      break ;
+    case kToken_with:
+      s.appendUnicodeCharacter (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendCString ("with") ;
       s.appendUnicodeCharacter (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
     case kToken_addlw:
@@ -7021,6 +7060,7 @@ GALGAS_stringlist C_Lexique_piccolo_5F_lexique::symbols (LOCATION_ARGS) {
   result.addAssign_operation (GALGAS_string ("uses") COMMA_THERE) ;
   result.addAssign_operation (GALGAS_string ("w") COMMA_THERE) ;
   result.addAssign_operation (GALGAS_string ("while") COMMA_THERE) ;
+  result.addAssign_operation (GALGAS_string ("with") COMMA_THERE) ;
   result.addAssign_operation (GALGAS_string ("addlw") COMMA_THERE) ;
   result.addAssign_operation (GALGAS_string ("addwf") COMMA_THERE) ;
   result.addAssign_operation (GALGAS_string ("addwfc") COMMA_THERE) ;
@@ -7130,7 +7170,7 @@ GALGAS_stringlist C_Lexique_piccolo_5F_lexique::symbols (LOCATION_ARGS) {
 //---------------------------------------------------------------------------------------------------------------------*
 
 uint32_t C_Lexique_piccolo_5F_lexique::styleIndexForTerminal (const int32_t inTerminalIndex) const {
-  static const uint32_t kTerminalSymbolStyles [152] = {0,
+  static const uint32_t kTerminalSymbolStyles [153] = {0,
     0 /* piccolo_lexique_1_identifier */,
     4 /* piccolo_lexique_1_integer */,
     5 /* piccolo_lexique_1_literal_5F_char */,
@@ -7181,6 +7221,7 @@ uint32_t C_Lexique_piccolo_5F_lexique::styleIndexForTerminal (const int32_t inTe
     1 /* piccolo_lexique_1_uses */,
     1 /* piccolo_lexique_1_w */,
     1 /* piccolo_lexique_1_while */,
+    1 /* piccolo_lexique_1_with */,
     2 /* piccolo_lexique_1_addlw */,
     2 /* piccolo_lexique_1_addwf */,
     2 /* piccolo_lexique_1_addwfc */,

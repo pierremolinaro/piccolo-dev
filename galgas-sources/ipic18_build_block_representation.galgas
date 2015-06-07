@@ -1769,6 +1769,49 @@ override method @pic18Instruction_structured_if analyze
   end
 }
 
+#----------------------------------------------------*
+
+override method @pic18Instruction_with analyze
+  ?let @uint inAccessBankSplitOffset
+  ?!@ipic18BlockList ioGeneratedBlockList
+  ?let @routineMap inRoutineMap
+  ?let @registerTable inRegisterTable
+  ?let @pic18_dataMap inDataMap
+  ?let @constantMap inConstantMap
+  ?!@uint ioLocalLabelIndex
+  ?!@ipic18SequentialInstructionList ioGeneratedInstructionList
+  ?!@lstring ioBlockLabel
+  ?!@string ioListFileContents
+  ?!@uint ioCurrentBank
+  ?let @bool inShouldPreserveBSR
+  ?let @routineKind inRoutineKind
+  ?!@stringset ioUsedRegisters
+{
+  @constantMap constantMap = inConstantMap
+  for () in mWithInstructionConstantDeclarationList do
+    [mExpression eval !inRegisterTable !constantMap ?let @sint64 expressionValue !?ioUsedRegisters]
+    [!?constantMap insertKey !mLocalConstantName !expressionValue]
+  end
+#--- Analyze instruction list
+  analyzeInstructionList (
+    !mInstructionList
+    !?ioGeneratedBlockList
+    !inAccessBankSplitOffset
+    !inRoutineMap
+    !inRegisterTable
+    !inDataMap
+    !constantMap
+    !?ioLocalLabelIndex
+    !?ioGeneratedInstructionList
+    !?ioBlockLabel
+    !?ioListFileContents
+    !?ioCurrentBank
+    !inShouldPreserveBSR
+    !inRoutineKind
+    !?ioUsedRegisters
+  )
+}
+
 #------------------------------------------------------------------------------*
 
 #!--- Switch instruction
