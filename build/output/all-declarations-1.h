@@ -5291,10 +5291,6 @@ class cParser_pic_31__38__5F_syntax {
 
   protected : virtual int32_t select_pic_31__38__5F_syntax_44 (C_Lexique_piccolo_5F_lexique *) = 0 ;
 
-  protected : virtual int32_t select_pic_31__38__5F_syntax_45 (C_Lexique_piccolo_5F_lexique *) = 0 ;
-
-  protected : virtual int32_t select_pic_31__38__5F_syntax_46 (C_Lexique_piccolo_5F_lexique *) = 0 ;
-
 
 } ;
 
@@ -5668,8 +5664,7 @@ class GALGAS_pic_31__38_BitTestInStructuredCondition : public GALGAS_pic_31__38_
 
 //--------------------------------- GALGAS constructors
   public : static GALGAS_pic_31__38_BitTestInStructuredCondition constructor_new (const class GALGAS_registerExpression & inOperand0,
-                                                                                  const class GALGAS_bitNumberExpression & inOperand1,
-                                                                                  const class GALGAS_bool & inOperand2
+                                                                                  const class GALGAS_bitNumberExpression & inOperand1
                                                                                   COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -5681,8 +5676,6 @@ class GALGAS_pic_31__38_BitTestInStructuredCondition : public GALGAS_pic_31__38_
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public : VIRTUAL_IN_DEBUG class GALGAS_bool reader_mBTFSSinstruction (LOCATION_ARGS) const ;
-
   public : VIRTUAL_IN_DEBUG class GALGAS_bitNumberExpression reader_mBitNumber (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_registerExpression reader_mRegisterExpression (LOCATION_ARGS) const ;
@@ -5708,12 +5701,10 @@ class cPtr_pic_31__38_BitTestInStructuredCondition : public cPtr_pic_31__38_Cond
 //--- Attributes
   public : GALGAS_registerExpression mAttribute_mRegisterExpression ;
   public : GALGAS_bitNumberExpression mAttribute_mBitNumber ;
-  public : GALGAS_bool mAttribute_mBTFSSinstruction ;
 
 //--- Constructor
   public : cPtr_pic_31__38_BitTestInStructuredCondition (const GALGAS_registerExpression & in_mRegisterExpression,
-                                                         const GALGAS_bitNumberExpression & in_mBitNumber,
-                                                         const GALGAS_bool & in_mBTFSSinstruction
+                                                         const GALGAS_bitNumberExpression & in_mBitNumber
                                                          COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
@@ -5722,7 +5713,6 @@ class cPtr_pic_31__38_BitTestInStructuredCondition : public cPtr_pic_31__38_Cond
 //--- Attribute accessors
   public : VIRTUAL_IN_DEBUG GALGAS_registerExpression reader_mRegisterExpression (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_bitNumberExpression reader_mBitNumber (LOCATION_ARGS) const ;
-  public : VIRTUAL_IN_DEBUG GALGAS_bool reader_mBTFSSinstruction (LOCATION_ARGS) const ;
 //--- Description
   public : virtual void description (C_String & ioString,
                                      const int32_t inIndentation) const ;
@@ -10161,10 +10151,6 @@ class cGrammar_pic_31__38__5F_include_5F_grammar : public cParser_pic_31__38__5F
 
   public : virtual int32_t select_pic_31__38__5F_syntax_44 (C_Lexique_piccolo_5F_lexique *) ;
 
-  public : virtual int32_t select_pic_31__38__5F_syntax_45 (C_Lexique_piccolo_5F_lexique *) ;
-
-  public : virtual int32_t select_pic_31__38__5F_syntax_46 (C_Lexique_piccolo_5F_lexique *) ;
-
   public : virtual int32_t select_communs_0 (C_Lexique_piccolo_5F_lexique *) ;
 
   public : virtual int32_t select_communs_1 (C_Lexique_piccolo_5F_lexique *) ;
@@ -11431,8 +11417,6 @@ class cParser_midrange_5F_syntax {
 
   protected : virtual int32_t select_midrange_5F_syntax_26 (C_Lexique_piccolo_5F_lexique *) = 0 ;
 
-  protected : virtual int32_t select_midrange_5F_syntax_27 (C_Lexique_piccolo_5F_lexique *) = 0 ;
-
 
 } ;
 
@@ -11717,8 +11701,7 @@ class GALGAS_midrange_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition : public
 
 //--------------------------------- GALGAS constructors
   public : static GALGAS_midrange_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition constructor_new (const class GALGAS_registerExpression & inOperand0,
-                                                                                                     const class GALGAS_bitNumberExpression & inOperand1,
-                                                                                                     const class GALGAS_bool & inOperand2
+                                                                                                     const class GALGAS_bitNumberExpression & inOperand1
                                                                                                      COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -11730,8 +11713,6 @@ class GALGAS_midrange_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition : public
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public : VIRTUAL_IN_DEBUG class GALGAS_bool reader_mBTFSSinstruction (LOCATION_ARGS) const ;
-
   public : VIRTUAL_IN_DEBUG class GALGAS_bitNumberExpression reader_mBitNumber (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_registerExpression reader_mRegisterExpression (LOCATION_ARGS) const ;
@@ -11757,12 +11738,10 @@ class cPtr_midrange_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition : public c
 //--- Attributes
   public : GALGAS_registerExpression mAttribute_mRegisterExpression ;
   public : GALGAS_bitNumberExpression mAttribute_mBitNumber ;
-  public : GALGAS_bool mAttribute_mBTFSSinstruction ;
 
 //--- Constructor
   public : cPtr_midrange_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition (const GALGAS_registerExpression & in_mRegisterExpression,
-                                                                            const GALGAS_bitNumberExpression & in_mBitNumber,
-                                                                            const GALGAS_bool & in_mBTFSSinstruction
+                                                                            const GALGAS_bitNumberExpression & in_mBitNumber
                                                                             COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
@@ -11771,7 +11750,6 @@ class cPtr_midrange_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition : public c
 //--- Attribute accessors
   public : VIRTUAL_IN_DEBUG GALGAS_registerExpression reader_mRegisterExpression (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_bitNumberExpression reader_mBitNumber (LOCATION_ARGS) const ;
-  public : VIRTUAL_IN_DEBUG GALGAS_bool reader_mBTFSSinstruction (LOCATION_ARGS) const ;
 //--- Description
   public : virtual void description (C_String & ioString,
                                      const int32_t inIndentation) const ;

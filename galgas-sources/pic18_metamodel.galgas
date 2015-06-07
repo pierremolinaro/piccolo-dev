@@ -466,7 +466,7 @@ class @pic18AndCondition : @pic18ConditionExpression {
 class @pic18BitTestInStructuredCondition : @pic18ConditionExpression {
   @registerExpression mRegisterExpression
   @bitNumberExpression mBitNumber
-  @bool mBTFSSinstruction
+#  @bool mBTFSSinstruction
 }
 
 #----------------------------------------------------*

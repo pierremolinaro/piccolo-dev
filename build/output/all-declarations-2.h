@@ -6512,8 +6512,6 @@ class cGrammar_baseline_5F_include_5F_grammar : public cParser_baseline_5F_synta
 
   public : virtual int32_t select_baseline_5F_syntax_21 (C_Lexique_piccolo_5F_lexique *) ;
 
-  public : virtual int32_t select_baseline_5F_syntax_22 (C_Lexique_piccolo_5F_lexique *) ;
-
   public : virtual int32_t select_communs_0 (C_Lexique_piccolo_5F_lexique *) ;
 
   public : virtual int32_t select_communs_1 (C_Lexique_piccolo_5F_lexique *) ;

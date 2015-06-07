@@ -314,7 +314,6 @@ rule <register_parsing> !@registerExpression outRegisterExpression {
   or
     $[$
     $integer$ ? offset
-    <immediate_expression> ?let @immediatExpression minExpression
     $]$
   end
   outRegisterExpression = @registerExpression.new {
