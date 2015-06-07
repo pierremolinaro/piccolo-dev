@@ -6672,7 +6672,13 @@ typeComparisonResult cPtr_baseline_5F_instruction_5F_STATIC_5F_REPEAT::dynamicOb
     result = mAttribute_mInstructionLocation.objectCompare (p->mAttribute_mInstructionLocation) ;
   }
   if (kOperandEqual == result) {
-    result = mAttribute_mRepeatExpression.objectCompare (p->mAttribute_mRepeatExpression) ;
+    result = mAttribute_mConstantName.objectCompare (p->mAttribute_mConstantName) ;
+  }
+  if (kOperandEqual == result) {
+    result = mAttribute_mLowerBoundExpression.objectCompare (p->mAttribute_mLowerBoundExpression) ;
+  }
+  if (kOperandEqual == result) {
+    result = mAttribute_mUpperBoundExpression.objectCompare (p->mAttribute_mUpperBoundExpression) ;
   }
   if (kOperandEqual == result) {
     result = mAttribute_mInstructionList.objectCompare (p->mAttribute_mInstructionList) ;
@@ -6718,33 +6724,71 @@ GALGAS_baseline_5F_instruction (inSourcePtr) {
 //---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_baseline_5F_instruction_5F_STATIC_5F_REPEAT GALGAS_baseline_5F_instruction_5F_STATIC_5F_REPEAT::constructor_new (const GALGAS_location & inAttribute_mInstructionLocation,
-                                                                                                                        const GALGAS_immediatExpression & inAttribute_mRepeatExpression,
+                                                                                                                        const GALGAS_lstring & inAttribute_mConstantName,
+                                                                                                                        const GALGAS_immediatExpression & inAttribute_mLowerBoundExpression,
+                                                                                                                        const GALGAS_immediatExpression & inAttribute_mUpperBoundExpression,
                                                                                                                         const GALGAS_baseline_5F_instructionList & inAttribute_mInstructionList,
                                                                                                                         const GALGAS_location & inAttribute_mEndOfInstruction
                                                                                                                         COMMA_LOCATION_ARGS) {
   GALGAS_baseline_5F_instruction_5F_STATIC_5F_REPEAT result ;
-  if (inAttribute_mInstructionLocation.isValid () && inAttribute_mRepeatExpression.isValid () && inAttribute_mInstructionList.isValid () && inAttribute_mEndOfInstruction.isValid ()) {
-    macroMyNew (result.mObjectPtr, cPtr_baseline_5F_instruction_5F_STATIC_5F_REPEAT (inAttribute_mInstructionLocation, inAttribute_mRepeatExpression, inAttribute_mInstructionList, inAttribute_mEndOfInstruction COMMA_THERE)) ;
+  if (inAttribute_mInstructionLocation.isValid () && inAttribute_mConstantName.isValid () && inAttribute_mLowerBoundExpression.isValid () && inAttribute_mUpperBoundExpression.isValid () && inAttribute_mInstructionList.isValid () && inAttribute_mEndOfInstruction.isValid ()) {
+    macroMyNew (result.mObjectPtr, cPtr_baseline_5F_instruction_5F_STATIC_5F_REPEAT (inAttribute_mInstructionLocation, inAttribute_mConstantName, inAttribute_mLowerBoundExpression, inAttribute_mUpperBoundExpression, inAttribute_mInstructionList, inAttribute_mEndOfInstruction COMMA_THERE)) ;
   }
   return result ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_immediatExpression GALGAS_baseline_5F_instruction_5F_STATIC_5F_REPEAT::reader_mRepeatExpression (UNUSED_LOCATION_ARGS) const {
+GALGAS_lstring GALGAS_baseline_5F_instruction_5F_STATIC_5F_REPEAT::reader_mConstantName (UNUSED_LOCATION_ARGS) const {
+  GALGAS_lstring result ;
+  if (NULL != mObjectPtr) {
+    const cPtr_baseline_5F_instruction_5F_STATIC_5F_REPEAT * p = (const cPtr_baseline_5F_instruction_5F_STATIC_5F_REPEAT *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_baseline_5F_instruction_5F_STATIC_5F_REPEAT) ;
+    result = p->mAttribute_mConstantName ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_lstring cPtr_baseline_5F_instruction_5F_STATIC_5F_REPEAT::reader_mConstantName (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mConstantName ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_immediatExpression GALGAS_baseline_5F_instruction_5F_STATIC_5F_REPEAT::reader_mLowerBoundExpression (UNUSED_LOCATION_ARGS) const {
   GALGAS_immediatExpression result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_instruction_5F_STATIC_5F_REPEAT * p = (const cPtr_baseline_5F_instruction_5F_STATIC_5F_REPEAT *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_baseline_5F_instruction_5F_STATIC_5F_REPEAT) ;
-    result = p->mAttribute_mRepeatExpression ;
+    result = p->mAttribute_mLowerBoundExpression ;
   }
   return result ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_immediatExpression cPtr_baseline_5F_instruction_5F_STATIC_5F_REPEAT::reader_mRepeatExpression (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mRepeatExpression ;
+GALGAS_immediatExpression cPtr_baseline_5F_instruction_5F_STATIC_5F_REPEAT::reader_mLowerBoundExpression (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mLowerBoundExpression ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_immediatExpression GALGAS_baseline_5F_instruction_5F_STATIC_5F_REPEAT::reader_mUpperBoundExpression (UNUSED_LOCATION_ARGS) const {
+  GALGAS_immediatExpression result ;
+  if (NULL != mObjectPtr) {
+    const cPtr_baseline_5F_instruction_5F_STATIC_5F_REPEAT * p = (const cPtr_baseline_5F_instruction_5F_STATIC_5F_REPEAT *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_baseline_5F_instruction_5F_STATIC_5F_REPEAT) ;
+    result = p->mAttribute_mUpperBoundExpression ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_immediatExpression cPtr_baseline_5F_instruction_5F_STATIC_5F_REPEAT::reader_mUpperBoundExpression (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mUpperBoundExpression ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -6788,12 +6832,16 @@ GALGAS_location cPtr_baseline_5F_instruction_5F_STATIC_5F_REPEAT::reader_mEndOfI
 //---------------------------------------------------------------------------------------------------------------------*
 
 cPtr_baseline_5F_instruction_5F_STATIC_5F_REPEAT::cPtr_baseline_5F_instruction_5F_STATIC_5F_REPEAT (const GALGAS_location & in_mInstructionLocation,
-                                                                                                    const GALGAS_immediatExpression & in_mRepeatExpression,
+                                                                                                    const GALGAS_lstring & in_mConstantName,
+                                                                                                    const GALGAS_immediatExpression & in_mLowerBoundExpression,
+                                                                                                    const GALGAS_immediatExpression & in_mUpperBoundExpression,
                                                                                                     const GALGAS_baseline_5F_instructionList & in_mInstructionList,
                                                                                                     const GALGAS_location & in_mEndOfInstruction
                                                                                                     COMMA_LOCATION_ARGS) :
 cPtr_baseline_5F_instruction (in_mInstructionLocation COMMA_THERE),
-mAttribute_mRepeatExpression (in_mRepeatExpression),
+mAttribute_mConstantName (in_mConstantName),
+mAttribute_mLowerBoundExpression (in_mLowerBoundExpression),
+mAttribute_mUpperBoundExpression (in_mUpperBoundExpression),
 mAttribute_mInstructionList (in_mInstructionList),
 mAttribute_mEndOfInstruction (in_mEndOfInstruction) {
 }
@@ -6809,7 +6857,11 @@ void cPtr_baseline_5F_instruction_5F_STATIC_5F_REPEAT::description (C_String & i
   ioString << "[@baseline_instruction_STATIC_REPEAT:" ;
   mAttribute_mInstructionLocation.description (ioString, inIndentation+1) ;
   ioString << ", " ;
-  mAttribute_mRepeatExpression.description (ioString, inIndentation+1) ;
+  mAttribute_mConstantName.description (ioString, inIndentation+1) ;
+  ioString << ", " ;
+  mAttribute_mLowerBoundExpression.description (ioString, inIndentation+1) ;
+  ioString << ", " ;
+  mAttribute_mUpperBoundExpression.description (ioString, inIndentation+1) ;
   ioString << ", " ;
   mAttribute_mInstructionList.description (ioString, inIndentation+1) ;
   ioString << ", " ;
@@ -6821,7 +6873,7 @@ void cPtr_baseline_5F_instruction_5F_STATIC_5F_REPEAT::description (C_String & i
 
 acPtr_class * cPtr_baseline_5F_instruction_5F_STATIC_5F_REPEAT::duplicate (LOCATION_ARGS) const {
   acPtr_class * ptr = NULL ;
-  macroMyNew (ptr, cPtr_baseline_5F_instruction_5F_STATIC_5F_REPEAT (mAttribute_mInstructionLocation, mAttribute_mRepeatExpression, mAttribute_mInstructionList, mAttribute_mEndOfInstruction COMMA_THERE)) ;
+  macroMyNew (ptr, cPtr_baseline_5F_instruction_5F_STATIC_5F_REPEAT (mAttribute_mInstructionLocation, mAttribute_mConstantName, mAttribute_mLowerBoundExpression, mAttribute_mUpperBoundExpression, mAttribute_mInstructionList, mAttribute_mEndOfInstruction COMMA_THERE)) ;
   return ptr ;
 }
 
@@ -18955,114 +19007,6 @@ GALGAS_ipic_31__38_InstructionWithNoOperand GALGAS_ipic_31__38_InstructionWithNo
       result = *p ;
     }else{
       inCompiler->castError ("ipic18InstructionWithNoOperand", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-//   Object comparison                                                                                                 *
-//---------------------------------------------------------------------------------------------------------------------*
-
-
-
-typeComparisonResult GALGAS_ipic_31__38__5F_condition_5F_skip_5F_instruction::objectCompare (const GALGAS_ipic_31__38__5F_condition_5F_skip_5F_instruction & inOperand) const {
-  typeComparisonResult result = kOperandNotValid ;
-  if (isValid () && inOperand.isValid ()) {
-    const int32_t mySlot = mObjectPtr->classDescriptor ()->mSlotID ;
-    const int32_t operandSlot = inOperand.mObjectPtr->classDescriptor ()->mSlotID ;
-    if (mySlot < operandSlot) {
-      result = kFirstOperandLowerThanSecond ;
-    }else if (mySlot > operandSlot) {
-      result = kFirstOperandGreaterThanSecond ;
-    }else{
-      result = mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
-    }
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_ipic_31__38__5F_condition_5F_skip_5F_instruction::GALGAS_ipic_31__38__5F_condition_5F_skip_5F_instruction (void) :
-GALGAS_ipic_31__38_SequentialInstruction () {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_ipic_31__38__5F_condition_5F_skip_5F_instruction::GALGAS_ipic_31__38__5F_condition_5F_skip_5F_instruction (const cPtr_ipic_31__38__5F_condition_5F_skip_5F_instruction * inSourcePtr) :
-GALGAS_ipic_31__38_SequentialInstruction (inSourcePtr) {
-  macroNullOrValidSharedObject (inSourcePtr, cPtr_ipic_31__38__5F_condition_5F_skip_5F_instruction) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_ipic_31__38_SequentialInstruction GALGAS_ipic_31__38__5F_condition_5F_skip_5F_instruction::reader_mEmbeddedInstruction (UNUSED_LOCATION_ARGS) const {
-  GALGAS_ipic_31__38_SequentialInstruction result ;
-  if (NULL != mObjectPtr) {
-    const cPtr_ipic_31__38__5F_condition_5F_skip_5F_instruction * p = (const cPtr_ipic_31__38__5F_condition_5F_skip_5F_instruction *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_ipic_31__38__5F_condition_5F_skip_5F_instruction) ;
-    result = p->mAttribute_mEmbeddedInstruction ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_ipic_31__38_SequentialInstruction cPtr_ipic_31__38__5F_condition_5F_skip_5F_instruction::reader_mEmbeddedInstruction (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mEmbeddedInstruction ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                             Pointer class for @ipic18_condition_skip_instruction class                              *
-//---------------------------------------------------------------------------------------------------------------------*
-
-cPtr_ipic_31__38__5F_condition_5F_skip_5F_instruction::cPtr_ipic_31__38__5F_condition_5F_skip_5F_instruction (const GALGAS_location & in_mInstructionLocation,
-                                                                                                              const GALGAS_ipic_31__38_SequentialInstruction & in_mEmbeddedInstruction
-                                                                                                              COMMA_LOCATION_ARGS) :
-cPtr_ipic_31__38_SequentialInstruction (in_mInstructionLocation COMMA_THERE),
-mAttribute_mEmbeddedInstruction (in_mEmbeddedInstruction) {
-}
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                       @ipic18_condition_skip_instruction type                                       *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_ipic_31__38__5F_condition_5F_skip_5F_instruction ("ipic18_condition_skip_instruction",
-                                                                         & kTypeDescriptor_GALGAS_ipic_31__38_SequentialInstruction) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor * GALGAS_ipic_31__38__5F_condition_5F_skip_5F_instruction::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_ipic_31__38__5F_condition_5F_skip_5F_instruction ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-AC_GALGAS_root * GALGAS_ipic_31__38__5F_condition_5F_skip_5F_instruction::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_ipic_31__38__5F_condition_5F_skip_5F_instruction (*this)) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_ipic_31__38__5F_condition_5F_skip_5F_instruction GALGAS_ipic_31__38__5F_condition_5F_skip_5F_instruction::extractObject (const GALGAS_object & inObject,
-                                                                                                                                C_Compiler * inCompiler
-                                                                                                                                COMMA_LOCATION_ARGS) {
-  GALGAS_ipic_31__38__5F_condition_5F_skip_5F_instruction result ;
-  const GALGAS_ipic_31__38__5F_condition_5F_skip_5F_instruction * p = (const GALGAS_ipic_31__38__5F_condition_5F_skip_5F_instruction *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_ipic_31__38__5F_condition_5F_skip_5F_instruction *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("ipic18_condition_skip_instruction", p->dynamicTypeDescriptor () COMMA_THERE) ;
     }  
   }
   return result ;

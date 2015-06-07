@@ -339,6 +339,8 @@ static NSInteger search_into_piccolo_5F_lexique_instructionKeyWordList (NSString
       }else{
         scanningOk = NO ;
       }
+    }else if (scanningOk && [self testForInputString:@"..." advance:YES]) {
+      mTokenCode = piccolo_lexique_1__2E__2E__2E_ ;
     }else if (scanningOk && [self testForInputString:@">>" advance:YES]) {
       mTokenCode = piccolo_lexique_1__3E__3E_ ;
     }else if (scanningOk && [self testForInputString:@">=" advance:YES]) {
@@ -494,7 +496,7 @@ static NSInteger search_into_piccolo_5F_lexique_instructionKeyWordList (NSString
 //---------------------------------------------------------------------------------------------------------------------*
 
 - (NSUInteger) terminalVocabularyCount {
-  return 152 ;
+  return 153 ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -524,7 +526,7 @@ static NSInteger search_into_piccolo_5F_lexique_instructionKeyWordList (NSString
 //---------------------------------------------------------------------------------------------------------------------*
 
 - (NSUInteger) styleIndexForTerminal: (NSInteger) inTerminal {
-  static const NSUInteger kTerminalSymbolStyles [153] = {0,
+  static const NSUInteger kTerminalSymbolStyles [154] = {0,
     0 /* piccolo_lexique_1_identifier */,
     4 /* piccolo_lexique_1_integer */,
     5 /* piccolo_lexique_1_literal_5F_char */,
@@ -676,7 +678,8 @@ static NSInteger search_into_piccolo_5F_lexique_instructionKeyWordList (NSString
     3 /* piccolo_lexique_1__3E__3E_ */,
     3 /* piccolo_lexique_1__7E_ */,
     3 /* piccolo_lexique_1__25_ */,
-    3 /* piccolo_lexique_1__40_ */
+    3 /* piccolo_lexique_1__40_ */,
+    3 /* piccolo_lexique_1__2E__2E__2E_ */
   } ;
   return kTerminalSymbolStyles [inTerminal] ;
 }
@@ -688,7 +691,7 @@ static NSInteger search_into_piccolo_5F_lexique_instructionKeyWordList (NSString
 //---------------------------------------------------------------------------------------------------------------------*
 
 - (BOOL) atomicSelectionForToken: (NSUInteger) inTokenIndex {
-  static const BOOL kTerminalAtomicSelection [153] = {NO,
+  static const BOOL kTerminalAtomicSelection [154] = {NO,
     YES /* piccolo_lexique_1_identifier */,
     YES /* piccolo_lexique_1_integer */,
     YES /* piccolo_lexique_1_literal_5F_char */,
@@ -840,7 +843,8 @@ static NSInteger search_into_piccolo_5F_lexique_instructionKeyWordList (NSString
     YES /* piccolo_lexique_1__3E__3E_ */,
     YES /* piccolo_lexique_1__7E_ */,
     YES /* piccolo_lexique_1__25_ */,
-    YES /* piccolo_lexique_1__40_ */
+    YES /* piccolo_lexique_1__40_ */,
+    YES /* piccolo_lexique_1__2E__2E__2E_ */
   } ;
   return kTerminalAtomicSelection [inTokenIndex] ;
 }

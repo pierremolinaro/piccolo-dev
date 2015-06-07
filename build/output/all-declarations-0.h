@@ -228,7 +228,8 @@ class C_Lexique_piccolo_5F_lexique : public C_Lexique {
    kToken__3E__3E_,
    kToken__7E_,
    kToken__25_,
-   kToken__40_} ;
+   kToken__40_,
+   kToken__2E__2E__2E_} ;
 
 //--- Key words table 'controlKeyWordList'
   public : static int16_t search_into_controlKeyWordList (const C_String & inSearchedString) ;
@@ -273,7 +274,7 @@ class C_Lexique_piccolo_5F_lexique : public C_Lexique {
   protected : virtual C_String getMessageForTerminal (const int16_t inTerminalSymbol) const ;
 
 //--- Get terminal count
-  public : virtual int16_t terminalVocabularyCount (void) const { return 152 ; }
+  public : virtual int16_t terminalVocabularyCount (void) const { return 153 ; }
 
 //--- Get Token String
   public : virtual C_String getCurrentTokenString (const cToken * inTokenPtr) const ;
@@ -6646,9 +6647,11 @@ class GALGAS_baseline_5F_instruction_5F_STATIC_5F_REPEAT : public GALGAS_baselin
 
 //--------------------------------- GALGAS constructors
   public : static GALGAS_baseline_5F_instruction_5F_STATIC_5F_REPEAT constructor_new (const class GALGAS_location & inOperand0,
-                                                                                      const class GALGAS_immediatExpression & inOperand1,
-                                                                                      const class GALGAS_baseline_5F_instructionList & inOperand2,
-                                                                                      const class GALGAS_location & inOperand3
+                                                                                      const class GALGAS_lstring & inOperand1,
+                                                                                      const class GALGAS_immediatExpression & inOperand2,
+                                                                                      const class GALGAS_immediatExpression & inOperand3,
+                                                                                      const class GALGAS_baseline_5F_instructionList & inOperand4,
+                                                                                      const class GALGAS_location & inOperand5
                                                                                       COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -6660,11 +6663,15 @@ class GALGAS_baseline_5F_instruction_5F_STATIC_5F_REPEAT : public GALGAS_baselin
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
+  public : VIRTUAL_IN_DEBUG class GALGAS_lstring reader_mConstantName (LOCATION_ARGS) const ;
+
   public : VIRTUAL_IN_DEBUG class GALGAS_location reader_mEndOfInstruction (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_baseline_5F_instructionList reader_mInstructionList (LOCATION_ARGS) const ;
 
-  public : VIRTUAL_IN_DEBUG class GALGAS_immediatExpression reader_mRepeatExpression (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG class GALGAS_immediatExpression reader_mLowerBoundExpression (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_immediatExpression reader_mUpperBoundExpression (LOCATION_ARGS) const ;
 
 
 //--------------------------------- Introspection
@@ -6685,13 +6692,17 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruc
 
 class cPtr_baseline_5F_instruction_5F_STATIC_5F_REPEAT : public cPtr_baseline_5F_instruction {
 //--- Attributes
-  public : GALGAS_immediatExpression mAttribute_mRepeatExpression ;
+  public : GALGAS_lstring mAttribute_mConstantName ;
+  public : GALGAS_immediatExpression mAttribute_mLowerBoundExpression ;
+  public : GALGAS_immediatExpression mAttribute_mUpperBoundExpression ;
   public : GALGAS_baseline_5F_instructionList mAttribute_mInstructionList ;
   public : GALGAS_location mAttribute_mEndOfInstruction ;
 
 //--- Constructor
   public : cPtr_baseline_5F_instruction_5F_STATIC_5F_REPEAT (const GALGAS_location & in_mInstructionLocation,
-                                                             const GALGAS_immediatExpression & in_mRepeatExpression,
+                                                             const GALGAS_lstring & in_mConstantName,
+                                                             const GALGAS_immediatExpression & in_mLowerBoundExpression,
+                                                             const GALGAS_immediatExpression & in_mUpperBoundExpression,
                                                              const GALGAS_baseline_5F_instructionList & in_mInstructionList,
                                                              const GALGAS_location & in_mEndOfInstruction
                                                              COMMA_LOCATION_ARGS) ;
@@ -6700,7 +6711,9 @@ class cPtr_baseline_5F_instruction_5F_STATIC_5F_REPEAT : public cPtr_baseline_5F
   public : virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
 
 //--- Attribute accessors
-  public : VIRTUAL_IN_DEBUG GALGAS_immediatExpression reader_mRepeatExpression (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_lstring reader_mConstantName (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_immediatExpression reader_mLowerBoundExpression (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_immediatExpression reader_mUpperBoundExpression (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_baseline_5F_instructionList reader_mInstructionList (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_location reader_mEndOfInstruction (LOCATION_ARGS) const ;
 //--- Description

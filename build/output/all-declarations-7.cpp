@@ -569,7 +569,13 @@ typeComparisonResult cPtr_pic_31__38_Instruction_5F_repetitionStatique::dynamicO
     result = mAttribute_mInstructionLocation.objectCompare (p->mAttribute_mInstructionLocation) ;
   }
   if (kOperandEqual == result) {
-    result = mAttribute_mRepeatExpression.objectCompare (p->mAttribute_mRepeatExpression) ;
+    result = mAttribute_mConstantName.objectCompare (p->mAttribute_mConstantName) ;
+  }
+  if (kOperandEqual == result) {
+    result = mAttribute_mLowerBoundExpression.objectCompare (p->mAttribute_mLowerBoundExpression) ;
+  }
+  if (kOperandEqual == result) {
+    result = mAttribute_mUpperBoundExpression.objectCompare (p->mAttribute_mUpperBoundExpression) ;
   }
   if (kOperandEqual == result) {
     result = mAttribute_mInstructionList.objectCompare (p->mAttribute_mInstructionList) ;
@@ -615,33 +621,71 @@ GALGAS_pic_31__38_PiccoloInstruction (inSourcePtr) {
 //---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_pic_31__38_Instruction_5F_repetitionStatique GALGAS_pic_31__38_Instruction_5F_repetitionStatique::constructor_new (const GALGAS_location & inAttribute_mInstructionLocation,
-                                                                                                                          const GALGAS_immediatExpression & inAttribute_mRepeatExpression,
+                                                                                                                          const GALGAS_lstring & inAttribute_mConstantName,
+                                                                                                                          const GALGAS_immediatExpression & inAttribute_mLowerBoundExpression,
+                                                                                                                          const GALGAS_immediatExpression & inAttribute_mUpperBoundExpression,
                                                                                                                           const GALGAS_pic_31__38_InstructionList & inAttribute_mInstructionList,
                                                                                                                           const GALGAS_location & inAttribute_mEndOfInstruction
                                                                                                                           COMMA_LOCATION_ARGS) {
   GALGAS_pic_31__38_Instruction_5F_repetitionStatique result ;
-  if (inAttribute_mInstructionLocation.isValid () && inAttribute_mRepeatExpression.isValid () && inAttribute_mInstructionList.isValid () && inAttribute_mEndOfInstruction.isValid ()) {
-    macroMyNew (result.mObjectPtr, cPtr_pic_31__38_Instruction_5F_repetitionStatique (inAttribute_mInstructionLocation, inAttribute_mRepeatExpression, inAttribute_mInstructionList, inAttribute_mEndOfInstruction COMMA_THERE)) ;
+  if (inAttribute_mInstructionLocation.isValid () && inAttribute_mConstantName.isValid () && inAttribute_mLowerBoundExpression.isValid () && inAttribute_mUpperBoundExpression.isValid () && inAttribute_mInstructionList.isValid () && inAttribute_mEndOfInstruction.isValid ()) {
+    macroMyNew (result.mObjectPtr, cPtr_pic_31__38_Instruction_5F_repetitionStatique (inAttribute_mInstructionLocation, inAttribute_mConstantName, inAttribute_mLowerBoundExpression, inAttribute_mUpperBoundExpression, inAttribute_mInstructionList, inAttribute_mEndOfInstruction COMMA_THERE)) ;
   }
   return result ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_immediatExpression GALGAS_pic_31__38_Instruction_5F_repetitionStatique::reader_mRepeatExpression (UNUSED_LOCATION_ARGS) const {
+GALGAS_lstring GALGAS_pic_31__38_Instruction_5F_repetitionStatique::reader_mConstantName (UNUSED_LOCATION_ARGS) const {
+  GALGAS_lstring result ;
+  if (NULL != mObjectPtr) {
+    const cPtr_pic_31__38_Instruction_5F_repetitionStatique * p = (const cPtr_pic_31__38_Instruction_5F_repetitionStatique *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_repetitionStatique) ;
+    result = p->mAttribute_mConstantName ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_lstring cPtr_pic_31__38_Instruction_5F_repetitionStatique::reader_mConstantName (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mConstantName ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_immediatExpression GALGAS_pic_31__38_Instruction_5F_repetitionStatique::reader_mLowerBoundExpression (UNUSED_LOCATION_ARGS) const {
   GALGAS_immediatExpression result ;
   if (NULL != mObjectPtr) {
     const cPtr_pic_31__38_Instruction_5F_repetitionStatique * p = (const cPtr_pic_31__38_Instruction_5F_repetitionStatique *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_repetitionStatique) ;
-    result = p->mAttribute_mRepeatExpression ;
+    result = p->mAttribute_mLowerBoundExpression ;
   }
   return result ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_immediatExpression cPtr_pic_31__38_Instruction_5F_repetitionStatique::reader_mRepeatExpression (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mRepeatExpression ;
+GALGAS_immediatExpression cPtr_pic_31__38_Instruction_5F_repetitionStatique::reader_mLowerBoundExpression (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mLowerBoundExpression ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_immediatExpression GALGAS_pic_31__38_Instruction_5F_repetitionStatique::reader_mUpperBoundExpression (UNUSED_LOCATION_ARGS) const {
+  GALGAS_immediatExpression result ;
+  if (NULL != mObjectPtr) {
+    const cPtr_pic_31__38_Instruction_5F_repetitionStatique * p = (const cPtr_pic_31__38_Instruction_5F_repetitionStatique *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_repetitionStatique) ;
+    result = p->mAttribute_mUpperBoundExpression ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_immediatExpression cPtr_pic_31__38_Instruction_5F_repetitionStatique::reader_mUpperBoundExpression (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mUpperBoundExpression ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -685,12 +729,16 @@ GALGAS_location cPtr_pic_31__38_Instruction_5F_repetitionStatique::reader_mEndOf
 //---------------------------------------------------------------------------------------------------------------------*
 
 cPtr_pic_31__38_Instruction_5F_repetitionStatique::cPtr_pic_31__38_Instruction_5F_repetitionStatique (const GALGAS_location & in_mInstructionLocation,
-                                                                                                      const GALGAS_immediatExpression & in_mRepeatExpression,
+                                                                                                      const GALGAS_lstring & in_mConstantName,
+                                                                                                      const GALGAS_immediatExpression & in_mLowerBoundExpression,
+                                                                                                      const GALGAS_immediatExpression & in_mUpperBoundExpression,
                                                                                                       const GALGAS_pic_31__38_InstructionList & in_mInstructionList,
                                                                                                       const GALGAS_location & in_mEndOfInstruction
                                                                                                       COMMA_LOCATION_ARGS) :
 cPtr_pic_31__38_PiccoloInstruction (in_mInstructionLocation COMMA_THERE),
-mAttribute_mRepeatExpression (in_mRepeatExpression),
+mAttribute_mConstantName (in_mConstantName),
+mAttribute_mLowerBoundExpression (in_mLowerBoundExpression),
+mAttribute_mUpperBoundExpression (in_mUpperBoundExpression),
 mAttribute_mInstructionList (in_mInstructionList),
 mAttribute_mEndOfInstruction (in_mEndOfInstruction) {
 }
@@ -706,7 +754,11 @@ void cPtr_pic_31__38_Instruction_5F_repetitionStatique::description (C_String & 
   ioString << "[@pic18Instruction_repetitionStatique:" ;
   mAttribute_mInstructionLocation.description (ioString, inIndentation+1) ;
   ioString << ", " ;
-  mAttribute_mRepeatExpression.description (ioString, inIndentation+1) ;
+  mAttribute_mConstantName.description (ioString, inIndentation+1) ;
+  ioString << ", " ;
+  mAttribute_mLowerBoundExpression.description (ioString, inIndentation+1) ;
+  ioString << ", " ;
+  mAttribute_mUpperBoundExpression.description (ioString, inIndentation+1) ;
   ioString << ", " ;
   mAttribute_mInstructionList.description (ioString, inIndentation+1) ;
   ioString << ", " ;
@@ -718,7 +770,7 @@ void cPtr_pic_31__38_Instruction_5F_repetitionStatique::description (C_String & 
 
 acPtr_class * cPtr_pic_31__38_Instruction_5F_repetitionStatique::duplicate (LOCATION_ARGS) const {
   acPtr_class * ptr = NULL ;
-  macroMyNew (ptr, cPtr_pic_31__38_Instruction_5F_repetitionStatique (mAttribute_mInstructionLocation, mAttribute_mRepeatExpression, mAttribute_mInstructionList, mAttribute_mEndOfInstruction COMMA_THERE)) ;
+  macroMyNew (ptr, cPtr_pic_31__38_Instruction_5F_repetitionStatique (mAttribute_mInstructionLocation, mAttribute_mConstantName, mAttribute_mLowerBoundExpression, mAttribute_mUpperBoundExpression, mAttribute_mInstructionList, mAttribute_mEndOfInstruction COMMA_THERE)) ;
   return ptr ;
 }
 

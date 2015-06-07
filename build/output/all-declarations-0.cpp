@@ -4095,12 +4095,36 @@ static const utf32 gSyntaxErrorMessage_piccolo_5F_lexique__40_ [] = {
   TO_UNICODE (0)
 } ;
 
+//--- Syntax error message for terminal '$...$' :
+static const utf32 gSyntaxErrorMessage_piccolo_5F_lexique__2E__2E__2E_ [] = {
+  TO_UNICODE ('t'),
+  TO_UNICODE ('h'),
+  TO_UNICODE ('e'),
+  TO_UNICODE (' '),
+  TO_UNICODE ('\''),
+  TO_UNICODE ('.'),
+  TO_UNICODE ('.'),
+  TO_UNICODE ('.'),
+  TO_UNICODE ('\''),
+  TO_UNICODE (' '),
+  TO_UNICODE ('d'),
+  TO_UNICODE ('e'),
+  TO_UNICODE ('l'),
+  TO_UNICODE ('i'),
+  TO_UNICODE ('m'),
+  TO_UNICODE ('i'),
+  TO_UNICODE ('t'),
+  TO_UNICODE ('o'),
+  TO_UNICODE ('r'),
+  TO_UNICODE (0)
+} ;
+
 //---------------------------------------------------------------------------------------------------------------------*
 //                getMessageForTerminal                                                                                *
 //---------------------------------------------------------------------------------------------------------------------*
 
 C_String C_Lexique_piccolo_5F_lexique::getMessageForTerminal (const int16_t inTerminalIndex) const {
-  static const utf32 * syntaxErrorMessageArray [153] = {kEndOfSourceLexicalErrorMessage,
+  static const utf32 * syntaxErrorMessageArray [154] = {kEndOfSourceLexicalErrorMessage,
     gSyntaxErrorMessage_piccolo_5F_lexique_identifier,
     gSyntaxErrorMessage_piccolo_5F_lexique_integer,
     gSyntaxErrorMessage_piccolo_5F_lexique_literal_5F_char,
@@ -4252,7 +4276,8 @@ C_String C_Lexique_piccolo_5F_lexique::getMessageForTerminal (const int16_t inTe
     gSyntaxErrorMessage_piccolo_5F_lexique__3E__3E_,
     gSyntaxErrorMessage_piccolo_5F_lexique__7E_,
     gSyntaxErrorMessage_piccolo_5F_lexique__25_,
-    gSyntaxErrorMessage_piccolo_5F_lexique__40_} ;
+    gSyntaxErrorMessage_piccolo_5F_lexique__40_,
+    gSyntaxErrorMessage_piccolo_5F_lexique__2E__2E__2E_} ;
   return syntaxErrorMessageArray [inTerminalIndex] ;
 }
 
@@ -4344,6 +4369,14 @@ static const utf32 kUnicodeString_piccolo_5F_lexique__2D_ [] = {
 
 //--- Unicode string for '$_2E_$'
 static const utf32 kUnicodeString_piccolo_5F_lexique__2E_ [] = {
+  TO_UNICODE ('.'),
+  TO_UNICODE (0)
+} ;
+
+//--- Unicode string for '$_2E__2E__2E_$'
+static const utf32 kUnicodeString_piccolo_5F_lexique__2E__2E__2E_ [] = {
+  TO_UNICODE ('.'),
+  TO_UNICODE ('.'),
   TO_UNICODE ('.'),
   TO_UNICODE (0)
 } ;
@@ -5675,7 +5708,7 @@ int16_t C_Lexique_piccolo_5F_lexique::search_into_controlKeyWordList (const C_St
 //             Key words table 'delimitorsList'                            *
 //---------------------------------------------------------------------------------------------------------------------*
 
-static const int32_t ktable_size_piccolo_5F_lexique_delimitorsList = 34 ;
+static const int32_t ktable_size_piccolo_5F_lexique_delimitorsList = 35 ;
 
 static const C_unicode_lexique_table_entry ktable_for_piccolo_5F_lexique_delimitorsList [ktable_size_piccolo_5F_lexique_delimitorsList] = {
   C_unicode_lexique_table_entry (kUnicodeString_piccolo_5F_lexique__21_, 1, C_Lexique_piccolo_5F_lexique::kToken__21_),
@@ -5711,7 +5744,8 @@ static const C_unicode_lexique_table_entry ktable_for_piccolo_5F_lexique_delimit
   C_unicode_lexique_table_entry (kUnicodeString_piccolo_5F_lexique__3C__3D_, 2, C_Lexique_piccolo_5F_lexique::kToken__3C__3D_),
   C_unicode_lexique_table_entry (kUnicodeString_piccolo_5F_lexique__3D__3D_, 2, C_Lexique_piccolo_5F_lexique::kToken__3D__3D_),
   C_unicode_lexique_table_entry (kUnicodeString_piccolo_5F_lexique__3E__3D_, 2, C_Lexique_piccolo_5F_lexique::kToken__3E__3D_),
-  C_unicode_lexique_table_entry (kUnicodeString_piccolo_5F_lexique__3E__3E_, 2, C_Lexique_piccolo_5F_lexique::kToken__3E__3E_)
+  C_unicode_lexique_table_entry (kUnicodeString_piccolo_5F_lexique__3E__3E_, 2, C_Lexique_piccolo_5F_lexique::kToken__3E__3E_),
+  C_unicode_lexique_table_entry (kUnicodeString_piccolo_5F_lexique__2E__2E__2E_, 3, C_Lexique_piccolo_5F_lexique::kToken__2E__2E__2E_)
 } ;
 
 int16_t C_Lexique_piccolo_5F_lexique::search_into_delimitorsList (const C_String & inSearchedString) {
@@ -6581,6 +6615,11 @@ C_String C_Lexique_piccolo_5F_lexique::getCurrentTokenString (const cToken * inT
       s.appendCString ("@") ;
       s.appendUnicodeCharacter (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
+    case kToken__2E__2E__2E_:
+      s.appendUnicodeCharacter (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendCString ("...") ;
+      s.appendUnicodeCharacter (TO_UNICODE ('$') COMMA_HERE) ;
+      break ;
     default:
       break ;
     }
@@ -6725,6 +6764,9 @@ bool C_Lexique_piccolo_5F_lexique::parseLexicalToken (void) {
         }else{
           lexicalError (gLexicalMessage_piccolo_5F_lexique_incorrectCharConstant COMMA_LINE_AND_SOURCE_FILE) ;
         }
+      }else if (testForInputUTF32String (kUnicodeString_piccolo_5F_lexique__2E__2E__2E_, 3, true)) {
+        token.mTokenCode = kToken__2E__2E__2E_ ;
+        enterToken (token) ;
       }else if (testForInputUTF32String (kUnicodeString_piccolo_5F_lexique__3E__3E_, 2, true)) {
         token.mTokenCode = kToken__3E__3E_ ;
         enterToken (token) ;
@@ -7164,6 +7206,7 @@ GALGAS_stringlist C_Lexique_piccolo_5F_lexique::symbols (LOCATION_ARGS) {
   result.addAssign_operation (GALGAS_string ("~") COMMA_THERE) ;
   result.addAssign_operation (GALGAS_string ("%") COMMA_THERE) ;
   result.addAssign_operation (GALGAS_string ("@") COMMA_THERE) ;
+  result.addAssign_operation (GALGAS_string ("...") COMMA_THERE) ;
   return result ;
 }
 
@@ -7172,7 +7215,7 @@ GALGAS_stringlist C_Lexique_piccolo_5F_lexique::symbols (LOCATION_ARGS) {
 //---------------------------------------------------------------------------------------------------------------------*
 
 uint32_t C_Lexique_piccolo_5F_lexique::styleIndexForTerminal (const int32_t inTerminalIndex) const {
-  static const uint32_t kTerminalSymbolStyles [153] = {0,
+  static const uint32_t kTerminalSymbolStyles [154] = {0,
     0 /* piccolo_lexique_1_identifier */,
     4 /* piccolo_lexique_1_integer */,
     5 /* piccolo_lexique_1_literal_5F_char */,
@@ -7324,7 +7367,8 @@ uint32_t C_Lexique_piccolo_5F_lexique::styleIndexForTerminal (const int32_t inTe
     3 /* piccolo_lexique_1__3E__3E_ */,
     3 /* piccolo_lexique_1__7E_ */,
     3 /* piccolo_lexique_1__25_ */,
-    3 /* piccolo_lexique_1__40_ */
+    3 /* piccolo_lexique_1__40_ */,
+    3 /* piccolo_lexique_1__2E__2E__2E_ */
   } ;
   return (inTerminalIndex >= 0) ? kTerminalSymbolStyles [inTerminalIndex] : 0 ;
 }
@@ -15358,75 +15402,81 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_structured_
     inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_do) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 127)) ;
     GALGAS_location var_instructionLocation = GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 128)) ;
     inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__28_) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 129)) ;
-    GALGAS_immediatExpression var_repeatExpression ;
-    nt_immediate_5F_expression_ (var_repeatExpression, inCompiler) ;
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__29_) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 131)) ;
+    GALGAS_lstring var_constantName = inCompiler->synthetizedAttribute_tokenString () ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 130)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__3A_) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 131)) ;
+    GALGAS_immediatExpression var_lowBoundExpression ;
+    nt_immediate_5F_expression_ (var_lowBoundExpression, inCompiler) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__2E__2E__2E_) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 133)) ;
+    GALGAS_immediatExpression var_highBoundExpression ;
+    nt_immediate_5F_expression_ (var_highBoundExpression, inCompiler) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__29_) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 135)) ;
     GALGAS_baseline_5F_instructionList var_instructionList ;
     nt_baseline_5F_instruction_5F_list_ (var_instructionList, inCompiler) ;
-    outArgument_outInstruction = GALGAS_baseline_5F_instruction_5F_STATIC_5F_REPEAT::constructor_new (var_instructionLocation, var_repeatExpression, var_instructionList, GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 137))  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 133)) ;
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_end) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 138)) ;
+    outArgument_outInstruction = GALGAS_baseline_5F_instruction_5F_STATIC_5F_REPEAT::constructor_new (var_instructionLocation, var_constantName, var_lowBoundExpression, var_highBoundExpression, var_instructionList, GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 143))  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 137)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_end) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 145)) ;
   } break ;
   case 2: {
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_jump) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 140)) ;
-    GALGAS_location var_instructionLocation = GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 141)) ;
-    GALGAS_lstring var_targetLabelName = inCompiler->synthetizedAttribute_tokenString () ;
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 142)) ;
-    outArgument_outInstruction = GALGAS_baseline_5F_instruction_5F_JUMP::constructor_new (var_instructionLocation, var_targetLabelName  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 143)) ;
-  } break ;
-  case 3: {
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_jsr) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 147)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_jump) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 147)) ;
     GALGAS_location var_instructionLocation = GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 148)) ;
     GALGAS_lstring var_targetLabelName = inCompiler->synthetizedAttribute_tokenString () ;
     inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 149)) ;
-    outArgument_outInstruction = GALGAS_baseline_5F_instruction_5F_JSR::constructor_new (var_instructionLocation, var_targetLabelName  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 150)) ;
+    outArgument_outInstruction = GALGAS_baseline_5F_instruction_5F_JUMP::constructor_new (var_instructionLocation, var_targetLabelName  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 150)) ;
+  } break ;
+  case 3: {
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_jsr) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 154)) ;
+    GALGAS_location var_instructionLocation = GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 155)) ;
+    GALGAS_lstring var_targetLabelName = inCompiler->synthetizedAttribute_tokenString () ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 156)) ;
+    outArgument_outInstruction = GALGAS_baseline_5F_instruction_5F_JSR::constructor_new (var_instructionLocation, var_targetLabelName  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 157)) ;
   } break ;
   case 4: {
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_forever) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 154)) ;
-    GALGAS_location var_instructionLocation = GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 155)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_forever) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 161)) ;
+    GALGAS_location var_instructionLocation = GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 162)) ;
     GALGAS_baseline_5F_instructionList var_instructionList ;
     nt_baseline_5F_instruction_5F_list_ (var_instructionList, inCompiler) ;
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_end) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 158)) ;
-    outArgument_outInstruction = GALGAS_baseline_5F_instruction_5F_FOREVER::constructor_new (var_instructionLocation, var_instructionList, GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 162))  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 159)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_end) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 165)) ;
+    outArgument_outInstruction = GALGAS_baseline_5F_instruction_5F_FOREVER::constructor_new (var_instructionLocation, var_instructionList, GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 169))  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 166)) ;
   } break ;
   case 5: {
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_if) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 164)) ;
-    GALGAS_location var_instructionLocation = GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 165)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_if) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 171)) ;
+    GALGAS_location var_instructionLocation = GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 172)) ;
     GALGAS_registerExpression var_registerExpression ;
     GALGAS_bitNumberExpression var_bitNumberExpression ;
     GALGAS_bool var_skipIfSet ;
     switch (select_baseline_5F_syntax_7 (inCompiler)) {
     case 1: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__21_) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 170)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__21_) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 177)) ;
       nt_register_5F_parsing_ (var_registerExpression, inCompiler) ;
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__2E_) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 172)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__2E_) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 179)) ;
       nt_bit_5F_number_5F_parsing_ (var_bitNumberExpression, inCompiler) ;
       var_skipIfSet = GALGAS_bool (true) ;
     } break ;
     case 2: {
       nt_register_5F_parsing_ (var_registerExpression, inCompiler) ;
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__2E_) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 177)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__2E_) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 184)) ;
       nt_bit_5F_number_5F_parsing_ (var_bitNumberExpression, inCompiler) ;
       var_skipIfSet = GALGAS_bool (false) ;
     } break ;
     default:
       break ;
     }
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__3A_) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 181)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__3A_) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 188)) ;
     GALGAS_baseline_5F_instruction var_instruction ;
     nt_baseline_5F_simple_5F_instruction_ (var_instruction, inCompiler) ;
-    outArgument_outInstruction = GALGAS_baseline_5F_instruction_5F_IF_5F_BitTest::constructor_new (var_instructionLocation, var_instruction, var_skipIfSet, var_registerExpression, var_bitNumberExpression  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 184)) ;
+    outArgument_outInstruction = GALGAS_baseline_5F_instruction_5F_IF_5F_BitTest::constructor_new (var_instructionLocation, var_instruction, var_skipIfSet, var_registerExpression, var_bitNumberExpression  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 191)) ;
   } break ;
   case 6: {
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_if) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 191)) ;
-    GALGAS_location var_instructionLocation = GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 192)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_if) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 198)) ;
+    GALGAS_location var_instructionLocation = GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 199)) ;
     GALGAS_bool var_increment ;
     switch (select_baseline_5F_syntax_8 (inCompiler)) {
     case 1: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_decf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 195)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_decf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 202)) ;
       var_increment = GALGAS_bool (false) ;
     } break ;
     case 2: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_incf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 197)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_incf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 204)) ;
       var_increment = GALGAS_bool (true) ;
     } break ;
     default:
@@ -15440,46 +15490,46 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_structured_
       var_w_5F_isTarget = GALGAS_bool (false) ;
     } break ;
     case 2: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__2C_) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 205)) ;
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_w) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 205)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__2C_) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 212)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_w) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 212)) ;
       var_w_5F_isTarget = GALGAS_bool (true) ;
     } break ;
     default:
       break ;
     }
     GALGAS_lstring var_conditionString = inCompiler->synthetizedAttribute_tokenString () ;
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 207)) ;
-    GALGAS_string var_condition = var_conditionString.reader_string (SOURCE_FILE ("baseline_syntax.galgas", 208)).reader_uppercaseString (SOURCE_FILE ("baseline_syntax.galgas", 208)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 214)) ;
+    GALGAS_string var_condition = var_conditionString.reader_string (SOURCE_FILE ("baseline_syntax.galgas", 215)).reader_uppercaseString (SOURCE_FILE ("baseline_syntax.galgas", 215)) ;
     const enumGalgasBool test_0 = GALGAS_bool (kIsNotEqual, var_condition.objectCompare (GALGAS_string ("NZ"))).boolEnum () ;
     if (kBoolTrue == test_0) {
       GALGAS_location location_1 (var_conditionString.reader_location (HERE)) ; // Implicit use of 'location' reader
-      inCompiler->emitSemanticError (location_1, GALGAS_string ("invalid '").add_operation (var_condition, inCompiler COMMA_SOURCE_FILE ("baseline_syntax.galgas", 210)).add_operation (GALGAS_string ("' condition; it should be 'nz'"), inCompiler COMMA_SOURCE_FILE ("baseline_syntax.galgas", 210))  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 210)) ;
+      inCompiler->emitSemanticError (location_1, GALGAS_string ("invalid '").add_operation (var_condition, inCompiler COMMA_SOURCE_FILE ("baseline_syntax.galgas", 217)).add_operation (GALGAS_string ("' condition; it should be 'nz'"), inCompiler COMMA_SOURCE_FILE ("baseline_syntax.galgas", 217))  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 217)) ;
     }
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__3A_) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 212)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__3A_) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 219)) ;
     GALGAS_baseline_5F_instruction var_instruction ;
     nt_baseline_5F_simple_5F_instruction_ (var_instruction, inCompiler) ;
-    outArgument_outInstruction = GALGAS_baseline_5F_instruction_5F_IF_5F_IncDec::constructor_new (var_instructionLocation, var_instruction, var_increment, var_registerExpression, var_w_5F_isTarget  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 215)) ;
+    outArgument_outInstruction = GALGAS_baseline_5F_instruction_5F_IF_5F_IncDec::constructor_new (var_instructionLocation, var_instruction, var_increment, var_registerExpression, var_w_5F_isTarget  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 222)) ;
   } break ;
   case 7: {
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_if) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 222)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_if) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 229)) ;
     nt_baseline_5F_structured_5F_if_5F_instruction_ (outArgument_outInstruction, inCompiler) ;
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_end) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 225)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_end) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 232)) ;
   } break ;
   case 8: {
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_do) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 227)) ;
-    GALGAS_location var_instructionLocation = GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 228)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_do) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 234)) ;
+    GALGAS_location var_instructionLocation = GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 235)) ;
     GALGAS_baseline_5F_instructionList var_repeatedInstructionList ;
     nt_baseline_5F_instruction_5F_list_ (var_repeatedInstructionList, inCompiler) ;
-    GALGAS_location var_endOfRepeatedInstructionList = GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 232)) ;
-    GALGAS_baseline_5F_partList var_whilePartList = GALGAS_baseline_5F_partList::constructor_emptyList (SOURCE_FILE ("baseline_syntax.galgas", 233)) ;
+    GALGAS_location var_endOfRepeatedInstructionList = GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 239)) ;
+    GALGAS_baseline_5F_partList var_whilePartList = GALGAS_baseline_5F_partList::constructor_emptyList (SOURCE_FILE ("baseline_syntax.galgas", 240)) ;
     bool repeatFlag_2 = true ;
     while (repeatFlag_2) {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_while) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 235)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_while) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 242)) ;
       GALGAS_baseline_5F_conditionExpression var_whileCondition ;
       nt_baseline_5F_condition_5F_expression_ (var_whileCondition, inCompiler) ;
       GALGAS_baseline_5F_instructionList var_instructionList ;
       nt_baseline_5F_instruction_5F_list_ (var_instructionList, inCompiler) ;
-      var_whilePartList.addAssign_operation (var_whileCondition, var_instructionList, GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 241))  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 241)) ;
+      var_whilePartList.addAssign_operation (var_whileCondition, var_instructionList, GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 248))  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 248)) ;
       switch (select_baseline_5F_syntax_10 (inCompiler)) {
       case 2: {
       } break ;
@@ -15488,15 +15538,15 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_structured_
         break ;
       }
     }
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_end) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 244)) ;
-    outArgument_outInstruction = GALGAS_baseline_5F_instruction_5F_do_5F_while::constructor_new (var_instructionLocation, var_repeatedInstructionList, var_endOfRepeatedInstructionList, var_whilePartList  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 245)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_end) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 251)) ;
+    outArgument_outInstruction = GALGAS_baseline_5F_instruction_5F_do_5F_while::constructor_new (var_instructionLocation, var_repeatedInstructionList, var_endOfRepeatedInstructionList, var_whilePartList  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 252)) ;
   } break ;
   case 9: {
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_mnop) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 251)) ;
-    GALGAS_location var_instructionLocation = GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 252)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_mnop) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 258)) ;
+    GALGAS_location var_instructionLocation = GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 259)) ;
     GALGAS_luint var_occurrenceFactor = inCompiler->synthetizedAttribute_uint_33__32_value () ;
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_integer) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 253)) ;
-    outArgument_outInstruction = GALGAS_baseline_5F_instruction_5F_MNOP::constructor_new (var_instructionLocation, var_occurrenceFactor  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 254)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_integer) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 260)) ;
+    outArgument_outInstruction = GALGAS_baseline_5F_instruction_5F_MNOP::constructor_new (var_instructionLocation, var_occurrenceFactor  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 261)) ;
   } break ;
   default:
     break ;
@@ -15510,52 +15560,56 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_structured_
   case 1: {
     inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_do) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 127)) ;
     inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__28_) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 129)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 130)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__3A_) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 131)) ;
     nt_immediate_5F_expression_parse (inCompiler) ;
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__29_) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 131)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__2E__2E__2E_) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 133)) ;
+    nt_immediate_5F_expression_parse (inCompiler) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__29_) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 135)) ;
     nt_baseline_5F_instruction_5F_list_parse (inCompiler) ;
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_end) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 138)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_end) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 145)) ;
   } break ;
   case 2: {
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_jump) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 140)) ;
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 142)) ;
-  } break ;
-  case 3: {
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_jsr) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 147)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_jump) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 147)) ;
     inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 149)) ;
   } break ;
+  case 3: {
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_jsr) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 154)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 156)) ;
+  } break ;
   case 4: {
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_forever) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 154)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_forever) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 161)) ;
     nt_baseline_5F_instruction_5F_list_parse (inCompiler) ;
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_end) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 158)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_end) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 165)) ;
   } break ;
   case 5: {
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_if) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 164)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_if) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 171)) ;
     switch (select_baseline_5F_syntax_7 (inCompiler)) {
     case 1: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__21_) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 170)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__21_) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 177)) ;
       nt_register_5F_parsing_parse (inCompiler) ;
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__2E_) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 172)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__2E_) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 179)) ;
       nt_bit_5F_number_5F_parsing_parse (inCompiler) ;
     } break ;
     case 2: {
       nt_register_5F_parsing_parse (inCompiler) ;
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__2E_) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 177)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__2E_) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 184)) ;
       nt_bit_5F_number_5F_parsing_parse (inCompiler) ;
     } break ;
     default:
       break ;
     }
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__3A_) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 181)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__3A_) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 188)) ;
     nt_baseline_5F_simple_5F_instruction_parse (inCompiler) ;
   } break ;
   case 6: {
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_if) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 191)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_if) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 198)) ;
     switch (select_baseline_5F_syntax_8 (inCompiler)) {
     case 1: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_decf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 195)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_decf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 202)) ;
     } break ;
     case 2: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_incf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 197)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_incf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 204)) ;
     } break ;
     default:
       break ;
@@ -15565,27 +15619,27 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_structured_
     case 1: {
     } break ;
     case 2: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__2C_) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 205)) ;
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_w) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 205)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__2C_) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 212)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_w) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 212)) ;
     } break ;
     default:
       break ;
     }
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 207)) ;
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__3A_) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 212)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 214)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__3A_) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 219)) ;
     nt_baseline_5F_simple_5F_instruction_parse (inCompiler) ;
   } break ;
   case 7: {
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_if) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 222)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_if) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 229)) ;
     nt_baseline_5F_structured_5F_if_5F_instruction_parse (inCompiler) ;
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_end) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 225)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_end) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 232)) ;
   } break ;
   case 8: {
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_do) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 227)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_do) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 234)) ;
     nt_baseline_5F_instruction_5F_list_parse (inCompiler) ;
     bool repeatFlag_0 = true ;
     while (repeatFlag_0) {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_while) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 235)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_while) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 242)) ;
       nt_baseline_5F_condition_5F_expression_parse (inCompiler) ;
       nt_baseline_5F_instruction_5F_list_parse (inCompiler) ;
       switch (select_baseline_5F_syntax_10 (inCompiler)) {
@@ -15596,11 +15650,11 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_structured_
         break ;
       }
     }
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_end) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 244)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_end) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 251)) ;
   } break ;
   case 9: {
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_mnop) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 251)) ;
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_integer) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 253)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_mnop) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 258)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_integer) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 260)) ;
   } break ;
   default:
     break ;
@@ -15615,52 +15669,56 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_structured_
   case 1: {
     inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_do) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 127)) ;
     inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__28_) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 129)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 130)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__3A_) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 131)) ;
     nt_immediate_5F_expression_indexing (inCompiler) ;
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__29_) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 131)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__2E__2E__2E_) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 133)) ;
+    nt_immediate_5F_expression_indexing (inCompiler) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__29_) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 135)) ;
     nt_baseline_5F_instruction_5F_list_indexing (inCompiler) ;
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_end) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 138)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_end) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 145)) ;
   } break ;
   case 2: {
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_jump) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 140)) ;
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 142)) ;
-  } break ;
-  case 3: {
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_jsr) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 147)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_jump) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 147)) ;
     inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 149)) ;
   } break ;
+  case 3: {
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_jsr) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 154)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 156)) ;
+  } break ;
   case 4: {
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_forever) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 154)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_forever) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 161)) ;
     nt_baseline_5F_instruction_5F_list_indexing (inCompiler) ;
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_end) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 158)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_end) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 165)) ;
   } break ;
   case 5: {
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_if) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 164)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_if) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 171)) ;
     switch (select_baseline_5F_syntax_7 (inCompiler)) {
     case 1: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__21_) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 170)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__21_) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 177)) ;
       nt_register_5F_parsing_indexing (inCompiler) ;
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__2E_) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 172)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__2E_) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 179)) ;
       nt_bit_5F_number_5F_parsing_indexing (inCompiler) ;
     } break ;
     case 2: {
       nt_register_5F_parsing_indexing (inCompiler) ;
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__2E_) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 177)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__2E_) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 184)) ;
       nt_bit_5F_number_5F_parsing_indexing (inCompiler) ;
     } break ;
     default:
       break ;
     }
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__3A_) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 181)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__3A_) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 188)) ;
     nt_baseline_5F_simple_5F_instruction_indexing (inCompiler) ;
   } break ;
   case 6: {
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_if) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 191)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_if) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 198)) ;
     switch (select_baseline_5F_syntax_8 (inCompiler)) {
     case 1: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_decf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 195)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_decf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 202)) ;
     } break ;
     case 2: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_incf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 197)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_incf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 204)) ;
     } break ;
     default:
       break ;
@@ -15670,27 +15728,27 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_structured_
     case 1: {
     } break ;
     case 2: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__2C_) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 205)) ;
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_w) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 205)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__2C_) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 212)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_w) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 212)) ;
     } break ;
     default:
       break ;
     }
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 207)) ;
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__3A_) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 212)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 214)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__3A_) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 219)) ;
     nt_baseline_5F_simple_5F_instruction_indexing (inCompiler) ;
   } break ;
   case 7: {
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_if) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 222)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_if) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 229)) ;
     nt_baseline_5F_structured_5F_if_5F_instruction_indexing (inCompiler) ;
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_end) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 225)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_end) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 232)) ;
   } break ;
   case 8: {
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_do) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 227)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_do) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 234)) ;
     nt_baseline_5F_instruction_5F_list_indexing (inCompiler) ;
     bool repeatFlag_0 = true ;
     while (repeatFlag_0) {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_while) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 235)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_while) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 242)) ;
       nt_baseline_5F_condition_5F_expression_indexing (inCompiler) ;
       nt_baseline_5F_instruction_5F_list_indexing (inCompiler) ;
       switch (select_baseline_5F_syntax_10 (inCompiler)) {
@@ -15701,11 +15759,11 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_structured_
         break ;
       }
     }
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_end) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 244)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_end) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 251)) ;
   } break ;
   case 9: {
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_mnop) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 251)) ;
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_integer) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 253)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_mnop) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 258)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_integer) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 260)) ;
   } break ;
   default:
     break ;
@@ -15717,7 +15775,7 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_structured_
 void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_structured_5F_if_5F_instruction_i4_ (GALGAS_baseline_5F_instruction & outArgument_outInstruction,
                                                                                                           C_Lexique_piccolo_5F_lexique * inCompiler) {
   outArgument_outInstruction.drop () ; // Release 'out' argument
-  GALGAS_location var_instructionLocation = GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 262)) ;
+  GALGAS_location var_instructionLocation = GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 269)) ;
   GALGAS_baseline_5F_conditionExpression var_structured_5F_if_5F_condition ;
   nt_baseline_5F_condition_5F_expression_ (var_structured_5F_if_5F_condition, inCompiler) ;
   GALGAS_baseline_5F_instructionList var_thenInstructionList ;
@@ -15725,24 +15783,24 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_structured_
   GALGAS_baseline_5F_instructionList var_elseInstructionList ;
   switch (select_baseline_5F_syntax_11 (inCompiler)) {
   case 1: {
-    var_elseInstructionList = GALGAS_baseline_5F_instructionList::constructor_emptyList (SOURCE_FILE ("baseline_syntax.galgas", 270)) ;
+    var_elseInstructionList = GALGAS_baseline_5F_instructionList::constructor_emptyList (SOURCE_FILE ("baseline_syntax.galgas", 277)) ;
   } break ;
   case 2: {
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_elsif) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 272)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_elsif) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 279)) ;
     GALGAS_baseline_5F_instruction var_elsifPartInstruction ;
     nt_baseline_5F_structured_5F_if_5F_instruction_ (var_elsifPartInstruction, inCompiler) ;
-    var_elseInstructionList = GALGAS_baseline_5F_instructionList::constructor_emptyList (SOURCE_FILE ("baseline_syntax.galgas", 276)) ;
-    var_elseInstructionList.addAssign_operation (var_elsifPartInstruction  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 277)) ;
+    var_elseInstructionList = GALGAS_baseline_5F_instructionList::constructor_emptyList (SOURCE_FILE ("baseline_syntax.galgas", 283)) ;
+    var_elseInstructionList.addAssign_operation (var_elsifPartInstruction  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 284)) ;
   } break ;
   case 3: {
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_else) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 279)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_else) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 286)) ;
     nt_baseline_5F_instruction_5F_list_ (var_elseInstructionList, inCompiler) ;
   } break ;
   default:
     break ;
   }
-  GALGAS_location var_endOfElsePartLocation = GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 283)) ;
-  outArgument_outInstruction = GALGAS_baseline_5F_instruction_5F_structured_5F_if::constructor_new (var_instructionLocation, var_structured_5F_if_5F_condition, var_thenInstructionList, var_elseInstructionList, var_endOfElsePartLocation  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 284)) ;
+  GALGAS_location var_endOfElsePartLocation = GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 290)) ;
+  outArgument_outInstruction = GALGAS_baseline_5F_instruction_5F_structured_5F_if::constructor_new (var_instructionLocation, var_structured_5F_if_5F_condition, var_thenInstructionList, var_elseInstructionList, var_endOfElsePartLocation  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 291)) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -15754,11 +15812,11 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_structured_
   case 1: {
   } break ;
   case 2: {
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_elsif) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 272)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_elsif) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 279)) ;
     nt_baseline_5F_structured_5F_if_5F_instruction_parse (inCompiler) ;
   } break ;
   case 3: {
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_else) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 279)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_else) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 286)) ;
     nt_baseline_5F_instruction_5F_list_parse (inCompiler) ;
   } break ;
   default:
@@ -15776,11 +15834,11 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_structured_
   case 1: {
   } break ;
   case 2: {
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_elsif) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 272)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_elsif) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 279)) ;
     nt_baseline_5F_structured_5F_if_5F_instruction_indexing (inCompiler) ;
   } break ;
   case 3: {
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_else) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 279)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_else) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 286)) ;
     nt_baseline_5F_instruction_5F_list_indexing (inCompiler) ;
   } break ;
   default:
@@ -15798,172 +15856,172 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_simple_5F_i
     GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code var_baseCode ;
     switch (select_baseline_5F_syntax_13 (inCompiler)) {
     case 1: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_addwf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 298)) ;
-      var_baseCode = GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::constructor_ADDWF (SOURCE_FILE ("baseline_syntax.galgas", 299)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_addwf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 305)) ;
+      var_baseCode = GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::constructor_ADDWF (SOURCE_FILE ("baseline_syntax.galgas", 306)) ;
     } break ;
     case 2: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_andwf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 301)) ;
-      var_baseCode = GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::constructor_ANDWF (SOURCE_FILE ("baseline_syntax.galgas", 302)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_andwf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 308)) ;
+      var_baseCode = GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::constructor_ANDWF (SOURCE_FILE ("baseline_syntax.galgas", 309)) ;
     } break ;
     case 3: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_comf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 304)) ;
-      var_baseCode = GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::constructor_COMF (SOURCE_FILE ("baseline_syntax.galgas", 305)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_comf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 311)) ;
+      var_baseCode = GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::constructor_COMF (SOURCE_FILE ("baseline_syntax.galgas", 312)) ;
     } break ;
     case 4: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_decf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 307)) ;
-      var_baseCode = GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::constructor_DECF (SOURCE_FILE ("baseline_syntax.galgas", 308)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_decf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 314)) ;
+      var_baseCode = GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::constructor_DECF (SOURCE_FILE ("baseline_syntax.galgas", 315)) ;
     } break ;
     case 5: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_incf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 310)) ;
-      var_baseCode = GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::constructor_INCF (SOURCE_FILE ("baseline_syntax.galgas", 311)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_incf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 317)) ;
+      var_baseCode = GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::constructor_INCF (SOURCE_FILE ("baseline_syntax.galgas", 318)) ;
     } break ;
     case 6: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_iorwf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 313)) ;
-      var_baseCode = GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::constructor_IORWF (SOURCE_FILE ("baseline_syntax.galgas", 314)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_iorwf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 320)) ;
+      var_baseCode = GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::constructor_IORWF (SOURCE_FILE ("baseline_syntax.galgas", 321)) ;
     } break ;
     case 7: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_movf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 316)) ;
-      var_baseCode = GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::constructor_MOVF (SOURCE_FILE ("baseline_syntax.galgas", 317)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_movf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 323)) ;
+      var_baseCode = GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::constructor_MOVF (SOURCE_FILE ("baseline_syntax.galgas", 324)) ;
     } break ;
     case 8: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_rlf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 319)) ;
-      var_baseCode = GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::constructor_RLF (SOURCE_FILE ("baseline_syntax.galgas", 320)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_rlf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 326)) ;
+      var_baseCode = GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::constructor_RLF (SOURCE_FILE ("baseline_syntax.galgas", 327)) ;
     } break ;
     case 9: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_rrf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 322)) ;
-      var_baseCode = GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::constructor_RRF (SOURCE_FILE ("baseline_syntax.galgas", 323)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_rrf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 329)) ;
+      var_baseCode = GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::constructor_RRF (SOURCE_FILE ("baseline_syntax.galgas", 330)) ;
     } break ;
     case 10: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_subwf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 325)) ;
-      var_baseCode = GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::constructor_SUBWF (SOURCE_FILE ("baseline_syntax.galgas", 326)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_subwf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 332)) ;
+      var_baseCode = GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::constructor_SUBWF (SOURCE_FILE ("baseline_syntax.galgas", 333)) ;
     } break ;
     case 11: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_swapf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 328)) ;
-      var_baseCode = GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::constructor_SWAPF (SOURCE_FILE ("baseline_syntax.galgas", 329)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_swapf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 335)) ;
+      var_baseCode = GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::constructor_SWAPF (SOURCE_FILE ("baseline_syntax.galgas", 336)) ;
     } break ;
     case 12: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_xorwf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 331)) ;
-      var_baseCode = GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::constructor_XORWF (SOURCE_FILE ("baseline_syntax.galgas", 332)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_xorwf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 338)) ;
+      var_baseCode = GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::constructor_XORWF (SOURCE_FILE ("baseline_syntax.galgas", 339)) ;
     } break ;
     default:
       break ;
     }
-    GALGAS_location var_instructionLocation = GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 334)) ;
+    GALGAS_location var_instructionLocation = GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 341)) ;
     GALGAS_registerExpression var_registerExpression ;
     nt_register_5F_parsing_ (var_registerExpression, inCompiler) ;
     GALGAS_bool var_W_5F_isDestination ;
     nt_optional_5F_w_5F_as_5F_dest_ (var_W_5F_isDestination, inCompiler) ;
-    outArgument_outInstruction = GALGAS_baseline_5F_instruction_5F_FD::constructor_new (var_instructionLocation, var_baseCode, var_registerExpression, var_W_5F_isDestination  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 339)) ;
+    outArgument_outInstruction = GALGAS_baseline_5F_instruction_5F_FD::constructor_new (var_instructionLocation, var_baseCode, var_registerExpression, var_W_5F_isDestination  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 346)) ;
   } break ;
   case 2: {
     GALGAS_baseline_5F_F_5F_instruction_5F_base_5F_code var_FAinstruction ;
     switch (select_baseline_5F_syntax_14 (inCompiler)) {
     case 1: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_clrf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 347)) ;
-      var_FAinstruction = GALGAS_baseline_5F_F_5F_instruction_5F_base_5F_code::constructor_CLRF (SOURCE_FILE ("baseline_syntax.galgas", 348)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_clrf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 354)) ;
+      var_FAinstruction = GALGAS_baseline_5F_F_5F_instruction_5F_base_5F_code::constructor_CLRF (SOURCE_FILE ("baseline_syntax.galgas", 355)) ;
     } break ;
     case 2: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_movwf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 350)) ;
-      var_FAinstruction = GALGAS_baseline_5F_F_5F_instruction_5F_base_5F_code::constructor_MOVWF (SOURCE_FILE ("baseline_syntax.galgas", 351)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_movwf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 357)) ;
+      var_FAinstruction = GALGAS_baseline_5F_F_5F_instruction_5F_base_5F_code::constructor_MOVWF (SOURCE_FILE ("baseline_syntax.galgas", 358)) ;
     } break ;
     default:
       break ;
     }
-    GALGAS_location var_instructionLocation = GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 353)) ;
+    GALGAS_location var_instructionLocation = GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 360)) ;
     GALGAS_registerExpression var_registerExpression ;
     nt_register_5F_parsing_ (var_registerExpression, inCompiler) ;
-    outArgument_outInstruction = GALGAS_baseline_5F_instruction_5F_F::constructor_new (var_instructionLocation, var_FAinstruction, var_registerExpression  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 356)) ;
+    outArgument_outInstruction = GALGAS_baseline_5F_instruction_5F_F::constructor_new (var_instructionLocation, var_FAinstruction, var_registerExpression  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 363)) ;
   } break ;
   case 3: {
     GALGAS_baseline_5F_bit_5F_oriented_5F_op var_bitOrientedOp ;
     switch (select_baseline_5F_syntax_15 (inCompiler)) {
     case 1: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_bcf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 363)) ;
-      var_bitOrientedOp = GALGAS_baseline_5F_bit_5F_oriented_5F_op::constructor_BCF (SOURCE_FILE ("baseline_syntax.galgas", 363)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_bcf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 370)) ;
+      var_bitOrientedOp = GALGAS_baseline_5F_bit_5F_oriented_5F_op::constructor_BCF (SOURCE_FILE ("baseline_syntax.galgas", 370)) ;
     } break ;
     case 2: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_bsf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 365)) ;
-      var_bitOrientedOp = GALGAS_baseline_5F_bit_5F_oriented_5F_op::constructor_BSF (SOURCE_FILE ("baseline_syntax.galgas", 365)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_bsf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 372)) ;
+      var_bitOrientedOp = GALGAS_baseline_5F_bit_5F_oriented_5F_op::constructor_BSF (SOURCE_FILE ("baseline_syntax.galgas", 372)) ;
     } break ;
     default:
       break ;
     }
-    GALGAS_location var_instructionLocation = GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 367)) ;
+    GALGAS_location var_instructionLocation = GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 374)) ;
     GALGAS_registerExpression var_registerExpression ;
     nt_register_5F_parsing_ (var_registerExpression, inCompiler) ;
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__2E_) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 370)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__2E_) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 377)) ;
     GALGAS_bitNumberExpression var_bitNumberExpression ;
     nt_bit_5F_number_5F_parsing_ (var_bitNumberExpression, inCompiler) ;
-    outArgument_outInstruction = GALGAS_baseline_5F_instruction_5F_FB::constructor_new (var_instructionLocation, var_bitOrientedOp, var_registerExpression, var_bitNumberExpression  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 373)) ;
+    outArgument_outInstruction = GALGAS_baseline_5F_instruction_5F_FB::constructor_new (var_instructionLocation, var_bitOrientedOp, var_registerExpression, var_bitNumberExpression  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 380)) ;
   } break ;
   case 4: {
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_goto) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 379)) ;
-    GALGAS_location var_instructionLocation = GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 380)) ;
-    GALGAS_lstring var_targetLabelName = inCompiler->synthetizedAttribute_tokenString () ;
-    inCompiler->enterIndexing (C_Lexique_piccolo_5F_lexique::kIndexing_routineCall, "") ;
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 381)) ;
-    outArgument_outInstruction = GALGAS_baseline_5F_instruction_5F_GOTO::constructor_new (var_instructionLocation, var_targetLabelName  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 382)) ;
-  } break ;
-  case 5: {
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_call) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 386)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_goto) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 386)) ;
     GALGAS_location var_instructionLocation = GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 387)) ;
     GALGAS_lstring var_targetLabelName = inCompiler->synthetizedAttribute_tokenString () ;
     inCompiler->enterIndexing (C_Lexique_piccolo_5F_lexique::kIndexing_routineCall, "") ;
     inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 388)) ;
-    outArgument_outInstruction = GALGAS_baseline_5F_instruction_5F_CALL::constructor_new (var_instructionLocation, var_targetLabelName  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 389)) ;
+    outArgument_outInstruction = GALGAS_baseline_5F_instruction_5F_GOTO::constructor_new (var_instructionLocation, var_targetLabelName  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 389)) ;
+  } break ;
+  case 5: {
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_call) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 393)) ;
+    GALGAS_location var_instructionLocation = GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 394)) ;
+    GALGAS_lstring var_targetLabelName = inCompiler->synthetizedAttribute_tokenString () ;
+    inCompiler->enterIndexing (C_Lexique_piccolo_5F_lexique::kIndexing_routineCall, "") ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 395)) ;
+    outArgument_outInstruction = GALGAS_baseline_5F_instruction_5F_CALL::constructor_new (var_instructionLocation, var_targetLabelName  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 396)) ;
   } break ;
   case 6: {
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_clrw) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 393)) ;
-    outArgument_outInstruction = GALGAS_baseline_5F_instruction_5F_WO_5F_OPERAND::constructor_new (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 394)), GALGAS_baseline_5F_WO_5F_OPERAND_5F_group::constructor_CLRW (SOURCE_FILE ("baseline_syntax.galgas", 394))  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 394)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_clrw) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 400)) ;
+    outArgument_outInstruction = GALGAS_baseline_5F_instruction_5F_WO_5F_OPERAND::constructor_new (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 401)), GALGAS_baseline_5F_WO_5F_OPERAND_5F_group::constructor_CLRW (SOURCE_FILE ("baseline_syntax.galgas", 401))  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 401)) ;
   } break ;
   case 7: {
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_clrwdt) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 396)) ;
-    outArgument_outInstruction = GALGAS_baseline_5F_instruction_5F_WO_5F_OPERAND::constructor_new (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 397)), GALGAS_baseline_5F_WO_5F_OPERAND_5F_group::constructor_CLRWDT (SOURCE_FILE ("baseline_syntax.galgas", 397))  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 397)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_clrwdt) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 403)) ;
+    outArgument_outInstruction = GALGAS_baseline_5F_instruction_5F_WO_5F_OPERAND::constructor_new (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 404)), GALGAS_baseline_5F_WO_5F_OPERAND_5F_group::constructor_CLRWDT (SOURCE_FILE ("baseline_syntax.galgas", 404))  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 404)) ;
   } break ;
   case 8: {
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_nop) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 399)) ;
-    outArgument_outInstruction = GALGAS_baseline_5F_instruction_5F_WO_5F_OPERAND::constructor_new (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 400)), GALGAS_baseline_5F_WO_5F_OPERAND_5F_group::constructor_NOP (SOURCE_FILE ("baseline_syntax.galgas", 400))  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 400)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_nop) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 406)) ;
+    outArgument_outInstruction = GALGAS_baseline_5F_instruction_5F_WO_5F_OPERAND::constructor_new (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 407)), GALGAS_baseline_5F_WO_5F_OPERAND_5F_group::constructor_NOP (SOURCE_FILE ("baseline_syntax.galgas", 407))  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 407)) ;
   } break ;
   case 9: {
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_option) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 402)) ;
-    outArgument_outInstruction = GALGAS_baseline_5F_instruction_5F_WO_5F_OPERAND::constructor_new (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 403)), GALGAS_baseline_5F_WO_5F_OPERAND_5F_group::constructor_OPTION_5F_ (SOURCE_FILE ("baseline_syntax.galgas", 403))  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 403)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_option) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 409)) ;
+    outArgument_outInstruction = GALGAS_baseline_5F_instruction_5F_WO_5F_OPERAND::constructor_new (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 410)), GALGAS_baseline_5F_WO_5F_OPERAND_5F_group::constructor_OPTION_5F_ (SOURCE_FILE ("baseline_syntax.galgas", 410))  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 410)) ;
   } break ;
   case 10: {
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_sleep) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 405)) ;
-    outArgument_outInstruction = GALGAS_baseline_5F_instruction_5F_WO_5F_OPERAND::constructor_new (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 406)), GALGAS_baseline_5F_WO_5F_OPERAND_5F_group::constructor_SLEEP (SOURCE_FILE ("baseline_syntax.galgas", 406))  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 406)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_sleep) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 412)) ;
+    outArgument_outInstruction = GALGAS_baseline_5F_instruction_5F_WO_5F_OPERAND::constructor_new (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 413)), GALGAS_baseline_5F_WO_5F_OPERAND_5F_group::constructor_SLEEP (SOURCE_FILE ("baseline_syntax.galgas", 413))  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 413)) ;
   } break ;
   case 11: {
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_tris) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 408)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_tris) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 415)) ;
     GALGAS_lstring var_operand = inCompiler->synthetizedAttribute_tokenString () ;
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 409)) ;
-    outArgument_outInstruction = GALGAS_baseline_5F_instruction_5F_TRIS::constructor_new (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 410)), var_operand  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 410)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 416)) ;
+    outArgument_outInstruction = GALGAS_baseline_5F_instruction_5F_TRIS::constructor_new (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 417)), var_operand  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 417)) ;
   } break ;
   case 12: {
     GALGAS_baseline_5F_literal_5F_instruction_5F_opcode var_literalInstruction ;
     switch (select_baseline_5F_syntax_16 (inCompiler)) {
     case 1: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_andlw) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 414)) ;
-      var_literalInstruction = GALGAS_baseline_5F_literal_5F_instruction_5F_opcode::constructor_ANDLW (SOURCE_FILE ("baseline_syntax.galgas", 414)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_andlw) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 421)) ;
+      var_literalInstruction = GALGAS_baseline_5F_literal_5F_instruction_5F_opcode::constructor_ANDLW (SOURCE_FILE ("baseline_syntax.galgas", 421)) ;
     } break ;
     case 2: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_iorlw) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 416)) ;
-      var_literalInstruction = GALGAS_baseline_5F_literal_5F_instruction_5F_opcode::constructor_IORLW (SOURCE_FILE ("baseline_syntax.galgas", 416)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_iorlw) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 423)) ;
+      var_literalInstruction = GALGAS_baseline_5F_literal_5F_instruction_5F_opcode::constructor_IORLW (SOURCE_FILE ("baseline_syntax.galgas", 423)) ;
     } break ;
     case 3: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_movlw) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 418)) ;
-      var_literalInstruction = GALGAS_baseline_5F_literal_5F_instruction_5F_opcode::constructor_MOVLW (SOURCE_FILE ("baseline_syntax.galgas", 418)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_movlw) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 425)) ;
+      var_literalInstruction = GALGAS_baseline_5F_literal_5F_instruction_5F_opcode::constructor_MOVLW (SOURCE_FILE ("baseline_syntax.galgas", 425)) ;
     } break ;
     case 4: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_xorlw) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 420)) ;
-      var_literalInstruction = GALGAS_baseline_5F_literal_5F_instruction_5F_opcode::constructor_XORLW (SOURCE_FILE ("baseline_syntax.galgas", 420)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_xorlw) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 427)) ;
+      var_literalInstruction = GALGAS_baseline_5F_literal_5F_instruction_5F_opcode::constructor_XORLW (SOURCE_FILE ("baseline_syntax.galgas", 427)) ;
     } break ;
     default:
       break ;
     }
-    GALGAS_location var_instructionLocation = GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 422)) ;
+    GALGAS_location var_instructionLocation = GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 429)) ;
     GALGAS_immediatExpression var_expression ;
     nt_immediate_5F_expression_ (var_expression, inCompiler) ;
-    outArgument_outInstruction = GALGAS_baseline_5F_instruction_5F_literalOperation::constructor_new (var_instructionLocation, var_literalInstruction, var_expression  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 425)) ;
+    outArgument_outInstruction = GALGAS_baseline_5F_instruction_5F_literalOperation::constructor_new (var_instructionLocation, var_literalInstruction, var_expression  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 432)) ;
   } break ;
   default:
     break ;
@@ -15977,40 +16035,40 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_simple_5F_i
   case 1: {
     switch (select_baseline_5F_syntax_13 (inCompiler)) {
     case 1: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_addwf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 298)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_addwf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 305)) ;
     } break ;
     case 2: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_andwf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 301)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_andwf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 308)) ;
     } break ;
     case 3: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_comf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 304)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_comf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 311)) ;
     } break ;
     case 4: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_decf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 307)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_decf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 314)) ;
     } break ;
     case 5: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_incf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 310)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_incf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 317)) ;
     } break ;
     case 6: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_iorwf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 313)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_iorwf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 320)) ;
     } break ;
     case 7: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_movf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 316)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_movf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 323)) ;
     } break ;
     case 8: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_rlf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 319)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_rlf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 326)) ;
     } break ;
     case 9: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_rrf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 322)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_rrf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 329)) ;
     } break ;
     case 10: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_subwf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 325)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_subwf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 332)) ;
     } break ;
     case 11: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_swapf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 328)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_swapf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 335)) ;
     } break ;
     case 12: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_xorwf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 331)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_xorwf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 338)) ;
     } break ;
     default:
       break ;
@@ -16021,10 +16079,10 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_simple_5F_i
   case 2: {
     switch (select_baseline_5F_syntax_14 (inCompiler)) {
     case 1: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_clrf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 347)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_clrf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 354)) ;
     } break ;
     case 2: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_movwf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 350)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_movwf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 357)) ;
     } break ;
     default:
       break ;
@@ -16034,60 +16092,60 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_simple_5F_i
   case 3: {
     switch (select_baseline_5F_syntax_15 (inCompiler)) {
     case 1: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_bcf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 363)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_bcf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 370)) ;
     } break ;
     case 2: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_bsf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 365)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_bsf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 372)) ;
     } break ;
     default:
       break ;
     }
     nt_register_5F_parsing_parse (inCompiler) ;
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__2E_) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 370)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__2E_) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 377)) ;
     nt_bit_5F_number_5F_parsing_parse (inCompiler) ;
   } break ;
   case 4: {
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_goto) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 379)) ;
-    inCompiler->enterIndexing (C_Lexique_piccolo_5F_lexique::kIndexing_routineCall, "") ;
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 381)) ;
-  } break ;
-  case 5: {
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_call) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 386)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_goto) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 386)) ;
     inCompiler->enterIndexing (C_Lexique_piccolo_5F_lexique::kIndexing_routineCall, "") ;
     inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 388)) ;
   } break ;
+  case 5: {
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_call) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 393)) ;
+    inCompiler->enterIndexing (C_Lexique_piccolo_5F_lexique::kIndexing_routineCall, "") ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 395)) ;
+  } break ;
   case 6: {
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_clrw) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 393)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_clrw) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 400)) ;
   } break ;
   case 7: {
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_clrwdt) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 396)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_clrwdt) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 403)) ;
   } break ;
   case 8: {
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_nop) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 399)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_nop) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 406)) ;
   } break ;
   case 9: {
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_option) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 402)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_option) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 409)) ;
   } break ;
   case 10: {
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_sleep) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 405)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_sleep) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 412)) ;
   } break ;
   case 11: {
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_tris) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 408)) ;
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 409)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_tris) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 415)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 416)) ;
   } break ;
   case 12: {
     switch (select_baseline_5F_syntax_16 (inCompiler)) {
     case 1: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_andlw) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 414)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_andlw) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 421)) ;
     } break ;
     case 2: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_iorlw) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 416)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_iorlw) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 423)) ;
     } break ;
     case 3: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_movlw) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 418)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_movlw) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 425)) ;
     } break ;
     case 4: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_xorlw) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 420)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_xorlw) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 427)) ;
     } break ;
     default:
       break ;
@@ -16107,40 +16165,40 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_simple_5F_i
   case 1: {
     switch (select_baseline_5F_syntax_13 (inCompiler)) {
     case 1: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_addwf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 298)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_addwf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 305)) ;
     } break ;
     case 2: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_andwf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 301)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_andwf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 308)) ;
     } break ;
     case 3: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_comf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 304)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_comf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 311)) ;
     } break ;
     case 4: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_decf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 307)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_decf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 314)) ;
     } break ;
     case 5: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_incf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 310)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_incf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 317)) ;
     } break ;
     case 6: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_iorwf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 313)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_iorwf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 320)) ;
     } break ;
     case 7: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_movf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 316)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_movf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 323)) ;
     } break ;
     case 8: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_rlf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 319)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_rlf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 326)) ;
     } break ;
     case 9: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_rrf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 322)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_rrf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 329)) ;
     } break ;
     case 10: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_subwf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 325)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_subwf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 332)) ;
     } break ;
     case 11: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_swapf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 328)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_swapf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 335)) ;
     } break ;
     case 12: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_xorwf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 331)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_xorwf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 338)) ;
     } break ;
     default:
       break ;
@@ -16151,10 +16209,10 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_simple_5F_i
   case 2: {
     switch (select_baseline_5F_syntax_14 (inCompiler)) {
     case 1: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_clrf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 347)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_clrf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 354)) ;
     } break ;
     case 2: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_movwf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 350)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_movwf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 357)) ;
     } break ;
     default:
       break ;
@@ -16164,60 +16222,60 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_simple_5F_i
   case 3: {
     switch (select_baseline_5F_syntax_15 (inCompiler)) {
     case 1: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_bcf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 363)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_bcf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 370)) ;
     } break ;
     case 2: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_bsf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 365)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_bsf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 372)) ;
     } break ;
     default:
       break ;
     }
     nt_register_5F_parsing_indexing (inCompiler) ;
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__2E_) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 370)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__2E_) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 377)) ;
     nt_bit_5F_number_5F_parsing_indexing (inCompiler) ;
   } break ;
   case 4: {
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_goto) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 379)) ;
-    inCompiler->enterIndexing (C_Lexique_piccolo_5F_lexique::kIndexing_routineCall, "") ;
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 381)) ;
-  } break ;
-  case 5: {
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_call) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 386)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_goto) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 386)) ;
     inCompiler->enterIndexing (C_Lexique_piccolo_5F_lexique::kIndexing_routineCall, "") ;
     inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 388)) ;
   } break ;
+  case 5: {
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_call) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 393)) ;
+    inCompiler->enterIndexing (C_Lexique_piccolo_5F_lexique::kIndexing_routineCall, "") ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 395)) ;
+  } break ;
   case 6: {
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_clrw) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 393)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_clrw) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 400)) ;
   } break ;
   case 7: {
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_clrwdt) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 396)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_clrwdt) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 403)) ;
   } break ;
   case 8: {
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_nop) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 399)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_nop) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 406)) ;
   } break ;
   case 9: {
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_option) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 402)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_option) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 409)) ;
   } break ;
   case 10: {
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_sleep) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 405)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_sleep) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 412)) ;
   } break ;
   case 11: {
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_tris) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 408)) ;
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 409)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_tris) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 415)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 416)) ;
   } break ;
   case 12: {
     switch (select_baseline_5F_syntax_16 (inCompiler)) {
     case 1: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_andlw) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 414)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_andlw) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 421)) ;
     } break ;
     case 2: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_iorlw) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 416)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_iorlw) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 423)) ;
     } break ;
     case 3: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_movlw) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 418)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_movlw) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 425)) ;
     } break ;
     case 4: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_xorlw) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 420)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_xorlw) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 427)) ;
     } break ;
     default:
       break ;
@@ -16234,16 +16292,16 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_simple_5F_i
 void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_condition_5F_factor_i6_ (GALGAS_baseline_5F_conditionExpression & outArgument_outCondition,
                                                                                               C_Lexique_piccolo_5F_lexique * inCompiler) {
   outArgument_outCondition.drop () ; // Release 'out' argument
-  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__21_) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 436)) ;
+  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__21_) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 443)) ;
   GALGAS_baseline_5F_conditionExpression var_condition ;
   nt_baseline_5F_condition_5F_factor_ (var_condition, inCompiler) ;
-  outArgument_outCondition = GALGAS_baseline_5F_negateCondition::constructor_new (var_condition  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 439)) ;
+  outArgument_outCondition = GALGAS_baseline_5F_negateCondition::constructor_new (var_condition  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 446)) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_condition_5F_factor_i6_parse (C_Lexique_piccolo_5F_lexique * inCompiler) {
-  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__21_) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 436)) ;
+  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__21_) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 443)) ;
   nt_baseline_5F_condition_5F_factor_parse (inCompiler) ;
   inCompiler->resetTemplateString () ;
 }
@@ -16251,7 +16309,7 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_condition_5
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_condition_5F_factor_i6_indexing (C_Lexique_piccolo_5F_lexique * inCompiler) {
-  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__21_) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 436)) ;
+  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__21_) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 443)) ;
   nt_baseline_5F_condition_5F_factor_indexing (inCompiler) ;
 }
 
@@ -16286,11 +16344,11 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_condition_5
     GALGAS_bool var_isIncrement ;
     switch (select_baseline_5F_syntax_18 (inCompiler)) {
     case 1: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_incf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 456)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_incf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 463)) ;
       var_isIncrement = GALGAS_bool (true) ;
     } break ;
     case 2: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_decf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 458)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_decf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 465)) ;
       var_isIncrement = GALGAS_bool (false) ;
     } break ;
     default:
@@ -16304,16 +16362,16 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_condition_5
       var_W_5F_isDestination = GALGAS_bool (false) ;
     } break ;
     case 2: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__2C_) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 466)) ;
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_w) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 466)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__2C_) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 473)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_w) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 473)) ;
       var_W_5F_isDestination = GALGAS_bool (true) ;
     } break ;
     default:
       break ;
     }
     GALGAS_lstring var_conditionString = inCompiler->synthetizedAttribute_tokenString () ;
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 468)) ;
-    GALGAS_string var_condition = var_conditionString.reader_string (SOURCE_FILE ("baseline_syntax.galgas", 469)).reader_uppercaseString (SOURCE_FILE ("baseline_syntax.galgas", 469)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 475)) ;
+    GALGAS_string var_condition = var_conditionString.reader_string (SOURCE_FILE ("baseline_syntax.galgas", 476)).reader_uppercaseString (SOURCE_FILE ("baseline_syntax.galgas", 476)) ;
     GALGAS_bool var_branchIfZero ;
     const enumGalgasBool test_0 = GALGAS_bool (kIsEqual, var_condition.objectCompare (GALGAS_string ("Z"))).boolEnum () ;
     if (kBoolTrue == test_0) {
@@ -16324,19 +16382,19 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_condition_5
         var_branchIfZero = GALGAS_bool (false) ;
       }else if (kBoolFalse == test_1) {
         GALGAS_location location_2 (var_conditionString.reader_location (HERE)) ; // Implicit use of 'location' reader
-        inCompiler->emitSemanticError (location_2, GALGAS_string ("invalid '").add_operation (var_conditionString.reader_string (SOURCE_FILE ("baseline_syntax.galgas", 476)), inCompiler COMMA_SOURCE_FILE ("baseline_syntax.galgas", 476)).add_operation (GALGAS_string ("' condition; valid ones are: 'z' and 'nz'"), inCompiler COMMA_SOURCE_FILE ("baseline_syntax.galgas", 476))  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 476)) ;
+        inCompiler->emitSemanticError (location_2, GALGAS_string ("invalid '").add_operation (var_conditionString.reader_string (SOURCE_FILE ("baseline_syntax.galgas", 483)), inCompiler COMMA_SOURCE_FILE ("baseline_syntax.galgas", 483)).add_operation (GALGAS_string ("' condition; valid ones are: 'z' and 'nz'"), inCompiler COMMA_SOURCE_FILE ("baseline_syntax.galgas", 483))  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 483)) ;
         var_branchIfZero.drop () ; // Release error dropped variable
       }
     }
-    outArgument_outCondition = GALGAS_baseline_5F_incDecRegisterInCondition::constructor_new (var_registerExpression, var_isIncrement, var_W_5F_isDestination, var_branchIfZero  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 480)) ;
+    outArgument_outCondition = GALGAS_baseline_5F_incDecRegisterInCondition::constructor_new (var_registerExpression, var_isIncrement, var_W_5F_isDestination, var_branchIfZero  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 487)) ;
   } break ;
   case 2: {
     GALGAS_registerExpression var_registerExpression ;
     GALGAS_bitNumberExpression var_bitNumberExpression ;
     nt_register_5F_parsing_ (var_registerExpression, inCompiler) ;
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__2E_) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 490)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__2E_) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 497)) ;
     nt_bit_5F_number_5F_parsing_ (var_bitNumberExpression, inCompiler) ;
-    outArgument_outCondition = GALGAS_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition::constructor_new (var_registerExpression, var_bitNumberExpression  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 519)) ;
+    outArgument_outCondition = GALGAS_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition::constructor_new (var_registerExpression, var_bitNumberExpression  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 526)) ;
   } break ;
   default:
     break ;
@@ -16350,10 +16408,10 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_condition_5
   case 1: {
     switch (select_baseline_5F_syntax_18 (inCompiler)) {
     case 1: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_incf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 456)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_incf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 463)) ;
     } break ;
     case 2: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_decf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 458)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_decf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 465)) ;
     } break ;
     default:
       break ;
@@ -16363,17 +16421,17 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_condition_5
     case 1: {
     } break ;
     case 2: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__2C_) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 466)) ;
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_w) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 466)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__2C_) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 473)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_w) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 473)) ;
     } break ;
     default:
       break ;
     }
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 468)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 475)) ;
   } break ;
   case 2: {
     nt_register_5F_parsing_parse (inCompiler) ;
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__2E_) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 490)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__2E_) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 497)) ;
     nt_bit_5F_number_5F_parsing_parse (inCompiler) ;
   } break ;
   default:
@@ -16389,10 +16447,10 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_condition_5
   case 1: {
     switch (select_baseline_5F_syntax_18 (inCompiler)) {
     case 1: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_incf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 456)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_incf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 463)) ;
     } break ;
     case 2: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_decf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 458)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_decf) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 465)) ;
     } break ;
     default:
       break ;
@@ -16402,17 +16460,17 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_condition_5
     case 1: {
     } break ;
     case 2: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__2C_) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 466)) ;
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_w) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 466)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__2C_) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 473)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_w) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 473)) ;
     } break ;
     default:
       break ;
     }
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 468)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 475)) ;
   } break ;
   case 2: {
     nt_register_5F_parsing_indexing (inCompiler) ;
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__2E_) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 490)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__2E_) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 497)) ;
     nt_bit_5F_number_5F_parsing_indexing (inCompiler) ;
   } break ;
   default:
@@ -16425,37 +16483,37 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_condition_5
 void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_condition_5F_expression_i9_ (GALGAS_baseline_5F_conditionExpression & outArgument_outCondition,
                                                                                                   C_Lexique_piccolo_5F_lexique * inCompiler) {
   outArgument_outCondition.drop () ; // Release 'out' argument
-  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__28_) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 531)) ;
+  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__28_) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 538)) ;
   nt_baseline_5F_condition_5F_term_ (outArgument_outCondition, inCompiler) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
     switch (select_baseline_5F_syntax_20 (inCompiler)) {
     case 2: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__7C_) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 535)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__7C_) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 542)) ;
       GALGAS_baseline_5F_conditionExpression var_c ;
       nt_baseline_5F_condition_5F_term_ (var_c, inCompiler) ;
-      GALGAS_baseline_5F_conditionExpression var_rc = GALGAS_baseline_5F_negateCondition::constructor_new (var_c  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 538)) ;
-      GALGAS_baseline_5F_conditionExpression var_lc = GALGAS_baseline_5F_negateCondition::constructor_new (outArgument_outCondition  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 539)) ;
-      outArgument_outCondition = GALGAS_baseline_5F_negateCondition::constructor_new (GALGAS_baseline_5F_andCondition::constructor_new (var_lc, var_rc  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 540))  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 540)) ;
+      GALGAS_baseline_5F_conditionExpression var_rc = GALGAS_baseline_5F_negateCondition::constructor_new (var_c  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 545)) ;
+      GALGAS_baseline_5F_conditionExpression var_lc = GALGAS_baseline_5F_negateCondition::constructor_new (outArgument_outCondition  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 546)) ;
+      outArgument_outCondition = GALGAS_baseline_5F_negateCondition::constructor_new (GALGAS_baseline_5F_andCondition::constructor_new (var_lc, var_rc  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 547))  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 547)) ;
     } break ;
     default:
       repeatFlag_0 = false ;
       break ;
     }
   }
-  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__29_) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 542)) ;
+  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__29_) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 549)) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_condition_5F_expression_i9_parse (C_Lexique_piccolo_5F_lexique * inCompiler) {
-  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__28_) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 531)) ;
+  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__28_) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 538)) ;
   nt_baseline_5F_condition_5F_term_parse (inCompiler) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
     switch (select_baseline_5F_syntax_20 (inCompiler)) {
     case 2: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__7C_) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 535)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__7C_) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 542)) ;
       nt_baseline_5F_condition_5F_term_parse (inCompiler) ;
     } break ;
     default:
@@ -16463,20 +16521,20 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_condition_5
       break ;
     }
   }
-  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__29_) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 542)) ;
+  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__29_) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 549)) ;
   inCompiler->resetTemplateString () ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_condition_5F_expression_i9_indexing (C_Lexique_piccolo_5F_lexique * inCompiler) {
-  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__28_) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 531)) ;
+  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__28_) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 538)) ;
   nt_baseline_5F_condition_5F_term_indexing (inCompiler) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
     switch (select_baseline_5F_syntax_20 (inCompiler)) {
     case 2: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__7C_) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 535)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__7C_) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 542)) ;
       nt_baseline_5F_condition_5F_term_indexing (inCompiler) ;
     } break ;
     default:
@@ -16484,7 +16542,7 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_condition_5
       break ;
     }
   }
-  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__29_) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 542)) ;
+  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__29_) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 549)) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -16497,10 +16555,10 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_condition_5
   while (repeatFlag_0) {
     switch (select_baseline_5F_syntax_21 (inCompiler)) {
     case 2: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__26_) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 552)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__26_) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 559)) ;
       GALGAS_baseline_5F_conditionExpression var_c ;
       nt_baseline_5F_condition_5F_factor_ (var_c, inCompiler) ;
-      outArgument_outCondition = GALGAS_baseline_5F_andCondition::constructor_new (outArgument_outCondition, var_c  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 555)) ;
+      outArgument_outCondition = GALGAS_baseline_5F_andCondition::constructor_new (outArgument_outCondition, var_c  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 562)) ;
     } break ;
     default:
       repeatFlag_0 = false ;
@@ -16517,7 +16575,7 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_condition_5
   while (repeatFlag_0) {
     switch (select_baseline_5F_syntax_21 (inCompiler)) {
     case 2: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__26_) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 552)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__26_) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 559)) ;
       nt_baseline_5F_condition_5F_factor_parse (inCompiler) ;
     } break ;
     default:
@@ -16536,7 +16594,7 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_condition_5
   while (repeatFlag_0) {
     switch (select_baseline_5F_syntax_21 (inCompiler)) {
     case 2: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__26_) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 552)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__26_) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 559)) ;
       nt_baseline_5F_condition_5F_factor_indexing (inCompiler) ;
     } break ;
     default:

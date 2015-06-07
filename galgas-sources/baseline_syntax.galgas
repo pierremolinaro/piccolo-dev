@@ -127,14 +127,21 @@ rule <baseline_structured_instruction>
     $do$
     let @location instructionLocation = @location.here
     $($
-    <immediate_expression> ?let @immediatExpression repeatExpression
+    $identifier$ ?let constantName
+    $:$
+    <immediate_expression> ?let @immediatExpression lowBoundExpression
+    $...$
+    <immediate_expression> ?let @immediatExpression highBoundExpression
     $)$
     <baseline_instruction_list> ?let @baseline_instructionList instructionList
     outInstruction = @baseline_instruction_STATIC_REPEAT. new {
       !instructionLocation
-      !repeatExpression
+      !constantName
+      !lowBoundExpression
+      !highBoundExpression
       !instructionList
-      !@location.here}
+      !.here
+    }
     $end$
   or
     $jump$
