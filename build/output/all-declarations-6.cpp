@@ -12,6 +12,222 @@
 //   Object comparison                                                                                                 *
 //---------------------------------------------------------------------------------------------------------------------*
 
+typeComparisonResult cPtr_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
+  typeComparisonResult result = kOperandEqual ;
+  const cPtr_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip * p = (const cPtr_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip *) inOperandPtr ;
+  macroValidSharedObject (p, cPtr_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip) ;
+  if (kOperandEqual == result) {
+    result = mAttribute_mInstructionLocation.objectCompare (p->mAttribute_mInstructionLocation) ;
+  }
+  if (kOperandEqual == result) {
+    result = mAttribute_mEmbeddedInstruction.objectCompare (p->mAttribute_mEmbeddedInstruction) ;
+  }
+  if (kOperandEqual == result) {
+    result = mAttribute_mSkipIfSet.objectCompare (p->mAttribute_mSkipIfSet) ;
+  }
+  if (kOperandEqual == result) {
+    result = mAttribute_mRegisterDescription.objectCompare (p->mAttribute_mRegisterDescription) ;
+  }
+  if (kOperandEqual == result) {
+    result = mAttribute_mBitNumber.objectCompare (p->mAttribute_mBitNumber) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+
+typeComparisonResult GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip::objectCompare (const GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip & inOperand) const {
+  typeComparisonResult result = kOperandNotValid ;
+  if (isValid () && inOperand.isValid ()) {
+    const int32_t mySlot = mObjectPtr->classDescriptor ()->mSlotID ;
+    const int32_t operandSlot = inOperand.mObjectPtr->classDescriptor ()->mSlotID ;
+    if (mySlot < operandSlot) {
+      result = kFirstOperandLowerThanSecond ;
+    }else if (mySlot > operandSlot) {
+      result = kFirstOperandGreaterThanSecond ;
+    }else{
+      result = mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+    }
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip::GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip (void) :
+GALGAS_ipic_31__38__5F_condition_5F_skip_5F_instruction () {
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip::GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip (const cPtr_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip * inSourcePtr) :
+GALGAS_ipic_31__38__5F_condition_5F_skip_5F_instruction (inSourcePtr) {
+  macroNullOrValidSharedObject (inSourcePtr, cPtr_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip::constructor_new (const GALGAS_location & inAttribute_mInstructionLocation,
+                                                                                                                                      const GALGAS_ipic_31__38_SequentialInstruction & inAttribute_mEmbeddedInstruction,
+                                                                                                                                      const GALGAS_bool & inAttribute_mSkipIfSet,
+                                                                                                                                      const GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression & inAttribute_mRegisterDescription,
+                                                                                                                                      const GALGAS_uint & inAttribute_mBitNumber
+                                                                                                                                      COMMA_LOCATION_ARGS) {
+  GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip result ;
+  if (inAttribute_mInstructionLocation.isValid () && inAttribute_mEmbeddedInstruction.isValid () && inAttribute_mSkipIfSet.isValid () && inAttribute_mRegisterDescription.isValid () && inAttribute_mBitNumber.isValid ()) {
+    macroMyNew (result.mObjectPtr, cPtr_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip (inAttribute_mInstructionLocation, inAttribute_mEmbeddedInstruction, inAttribute_mSkipIfSet, inAttribute_mRegisterDescription, inAttribute_mBitNumber COMMA_THERE)) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_bool GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip::reader_mSkipIfSet (UNUSED_LOCATION_ARGS) const {
+  GALGAS_bool result ;
+  if (NULL != mObjectPtr) {
+    const cPtr_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip * p = (const cPtr_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip) ;
+    result = p->mAttribute_mSkipIfSet ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_bool cPtr_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip::reader_mSkipIfSet (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mSkipIfSet ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip::reader_mRegisterDescription (UNUSED_LOCATION_ARGS) const {
+  GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression result ;
+  if (NULL != mObjectPtr) {
+    const cPtr_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip * p = (const cPtr_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip) ;
+    result = p->mAttribute_mRegisterDescription ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression cPtr_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip::reader_mRegisterDescription (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mRegisterDescription ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_uint GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip::reader_mBitNumber (UNUSED_LOCATION_ARGS) const {
+  GALGAS_uint result ;
+  if (NULL != mObjectPtr) {
+    const cPtr_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip * p = (const cPtr_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip) ;
+    result = p->mAttribute_mBitNumber ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_uint cPtr_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip::reader_mBitNumber (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mBitNumber ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                            Pointer class for @ipic18_skip_instruction_BitTestSkip class                             *
+//---------------------------------------------------------------------------------------------------------------------*
+
+cPtr_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip::cPtr_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip (const GALGAS_location & in_mInstructionLocation,
+                                                                                                                  const GALGAS_ipic_31__38_SequentialInstruction & in_mEmbeddedInstruction,
+                                                                                                                  const GALGAS_bool & in_mSkipIfSet,
+                                                                                                                  const GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression & in_mRegisterDescription,
+                                                                                                                  const GALGAS_uint & in_mBitNumber
+                                                                                                                  COMMA_LOCATION_ARGS) :
+cPtr_ipic_31__38__5F_condition_5F_skip_5F_instruction (in_mInstructionLocation, in_mEmbeddedInstruction COMMA_THERE),
+mAttribute_mSkipIfSet (in_mSkipIfSet),
+mAttribute_mRegisterDescription (in_mRegisterDescription),
+mAttribute_mBitNumber (in_mBitNumber) {
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+const C_galgas_type_descriptor * cPtr_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip::classDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip ;
+}
+
+void cPtr_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip::description (C_String & ioString,
+                                                                           const int32_t inIndentation) const {
+  ioString << "[@ipic18_skip_instruction_BitTestSkip:" ;
+  mAttribute_mInstructionLocation.description (ioString, inIndentation+1) ;
+  ioString << ", " ;
+  mAttribute_mEmbeddedInstruction.description (ioString, inIndentation+1) ;
+  ioString << ", " ;
+  mAttribute_mSkipIfSet.description (ioString, inIndentation+1) ;
+  ioString << ", " ;
+  mAttribute_mRegisterDescription.description (ioString, inIndentation+1) ;
+  ioString << ", " ;
+  mAttribute_mBitNumber.description (ioString, inIndentation+1) ;
+  ioString << "]" ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+acPtr_class * cPtr_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip::duplicate (LOCATION_ARGS) const {
+  acPtr_class * ptr = NULL ;
+  macroMyNew (ptr, cPtr_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip (mAttribute_mInstructionLocation, mAttribute_mEmbeddedInstruction, mAttribute_mSkipIfSet, mAttribute_mRegisterDescription, mAttribute_mBitNumber COMMA_THERE)) ;
+  return ptr ;
+}
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                      @ipic18_skip_instruction_BitTestSkip type                                      *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+const C_galgas_type_descriptor
+kTypeDescriptor_GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip ("ipic18_skip_instruction_BitTestSkip",
+                                                                           & kTypeDescriptor_GALGAS_ipic_31__38__5F_condition_5F_skip_5F_instruction) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+const C_galgas_type_descriptor * GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+AC_GALGAS_root * GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip::clonedObject (void) const {
+  AC_GALGAS_root * result = NULL ;
+  if (isValid ()) {
+    macroMyNew (result, GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip (*this)) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip::extractObject (const GALGAS_object & inObject,
+                                                                                                                                    C_Compiler * inCompiler
+                                                                                                                                    COMMA_LOCATION_ARGS) {
+  GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip result ;
+  const GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip * p = (const GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip *) inObject.embeddedObject () ;
+  if (NULL != p) {
+    if (NULL != dynamic_cast <const GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("ipic18_skip_instruction_BitTestSkip", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+//   Object comparison                                                                                                 *
+//---------------------------------------------------------------------------------------------------------------------*
+
 typeComparisonResult cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
   typeComparisonResult result = kOperandEqual ;
   const cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA * p = (const cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA *) inOperandPtr ;
@@ -17831,225 +18047,6 @@ GALGAS_pic_31__38_Instruction_5F_computed_5F_retlw GALGAS_pic_31__38_Instruction
       result = *p ;
     }else{
       inCompiler->castError ("pic18Instruction_computed_retlw", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-//   Object comparison                                                                                                 *
-//---------------------------------------------------------------------------------------------------------------------*
-
-typeComparisonResult cPtr_pic_31__38_Instruction_5F_do_5F_while::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
-  typeComparisonResult result = kOperandEqual ;
-  const cPtr_pic_31__38_Instruction_5F_do_5F_while * p = (const cPtr_pic_31__38_Instruction_5F_do_5F_while *) inOperandPtr ;
-  macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_do_5F_while) ;
-  if (kOperandEqual == result) {
-    result = mAttribute_mInstructionLocation.objectCompare (p->mAttribute_mInstructionLocation) ;
-  }
-  if (kOperandEqual == result) {
-    result = mAttribute_mRepeatedInstructionList.objectCompare (p->mAttribute_mRepeatedInstructionList) ;
-  }
-  if (kOperandEqual == result) {
-    result = mAttribute_mEndOfRepeatedInstructionList.objectCompare (p->mAttribute_mEndOfRepeatedInstructionList) ;
-  }
-  if (kOperandEqual == result) {
-    result = mAttribute_mWhilePartList.objectCompare (p->mAttribute_mWhilePartList) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-
-typeComparisonResult GALGAS_pic_31__38_Instruction_5F_do_5F_while::objectCompare (const GALGAS_pic_31__38_Instruction_5F_do_5F_while & inOperand) const {
-  typeComparisonResult result = kOperandNotValid ;
-  if (isValid () && inOperand.isValid ()) {
-    const int32_t mySlot = mObjectPtr->classDescriptor ()->mSlotID ;
-    const int32_t operandSlot = inOperand.mObjectPtr->classDescriptor ()->mSlotID ;
-    if (mySlot < operandSlot) {
-      result = kFirstOperandLowerThanSecond ;
-    }else if (mySlot > operandSlot) {
-      result = kFirstOperandGreaterThanSecond ;
-    }else{
-      result = mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
-    }
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_pic_31__38_Instruction_5F_do_5F_while::GALGAS_pic_31__38_Instruction_5F_do_5F_while (void) :
-GALGAS_pic_31__38_PiccoloInstruction () {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_pic_31__38_Instruction_5F_do_5F_while GALGAS_pic_31__38_Instruction_5F_do_5F_while::constructor_default (LOCATION_ARGS) {
-  return GALGAS_pic_31__38_Instruction_5F_do_5F_while::constructor_new (GALGAS_location::constructor_nowhere (HERE),
-                                                                        GALGAS_pic_31__38_InstructionList::constructor_emptyList (HERE),
-                                                                        GALGAS_location::constructor_nowhere (HERE),
-                                                                        GALGAS_pic_31__38_DoWhilePartList::constructor_emptyList (HERE)
-                                                                        COMMA_THERE) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_pic_31__38_Instruction_5F_do_5F_while::GALGAS_pic_31__38_Instruction_5F_do_5F_while (const cPtr_pic_31__38_Instruction_5F_do_5F_while * inSourcePtr) :
-GALGAS_pic_31__38_PiccoloInstruction (inSourcePtr) {
-  macroNullOrValidSharedObject (inSourcePtr, cPtr_pic_31__38_Instruction_5F_do_5F_while) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_pic_31__38_Instruction_5F_do_5F_while GALGAS_pic_31__38_Instruction_5F_do_5F_while::constructor_new (const GALGAS_location & inAttribute_mInstructionLocation,
-                                                                                                            const GALGAS_pic_31__38_InstructionList & inAttribute_mRepeatedInstructionList,
-                                                                                                            const GALGAS_location & inAttribute_mEndOfRepeatedInstructionList,
-                                                                                                            const GALGAS_pic_31__38_DoWhilePartList & inAttribute_mWhilePartList
-                                                                                                            COMMA_LOCATION_ARGS) {
-  GALGAS_pic_31__38_Instruction_5F_do_5F_while result ;
-  if (inAttribute_mInstructionLocation.isValid () && inAttribute_mRepeatedInstructionList.isValid () && inAttribute_mEndOfRepeatedInstructionList.isValid () && inAttribute_mWhilePartList.isValid ()) {
-    macroMyNew (result.mObjectPtr, cPtr_pic_31__38_Instruction_5F_do_5F_while (inAttribute_mInstructionLocation, inAttribute_mRepeatedInstructionList, inAttribute_mEndOfRepeatedInstructionList, inAttribute_mWhilePartList COMMA_THERE)) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_pic_31__38_InstructionList GALGAS_pic_31__38_Instruction_5F_do_5F_while::reader_mRepeatedInstructionList (UNUSED_LOCATION_ARGS) const {
-  GALGAS_pic_31__38_InstructionList result ;
-  if (NULL != mObjectPtr) {
-    const cPtr_pic_31__38_Instruction_5F_do_5F_while * p = (const cPtr_pic_31__38_Instruction_5F_do_5F_while *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_do_5F_while) ;
-    result = p->mAttribute_mRepeatedInstructionList ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_pic_31__38_InstructionList cPtr_pic_31__38_Instruction_5F_do_5F_while::reader_mRepeatedInstructionList (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mRepeatedInstructionList ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_location GALGAS_pic_31__38_Instruction_5F_do_5F_while::reader_mEndOfRepeatedInstructionList (UNUSED_LOCATION_ARGS) const {
-  GALGAS_location result ;
-  if (NULL != mObjectPtr) {
-    const cPtr_pic_31__38_Instruction_5F_do_5F_while * p = (const cPtr_pic_31__38_Instruction_5F_do_5F_while *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_do_5F_while) ;
-    result = p->mAttribute_mEndOfRepeatedInstructionList ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_location cPtr_pic_31__38_Instruction_5F_do_5F_while::reader_mEndOfRepeatedInstructionList (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mEndOfRepeatedInstructionList ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_pic_31__38_DoWhilePartList GALGAS_pic_31__38_Instruction_5F_do_5F_while::reader_mWhilePartList (UNUSED_LOCATION_ARGS) const {
-  GALGAS_pic_31__38_DoWhilePartList result ;
-  if (NULL != mObjectPtr) {
-    const cPtr_pic_31__38_Instruction_5F_do_5F_while * p = (const cPtr_pic_31__38_Instruction_5F_do_5F_while *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_do_5F_while) ;
-    result = p->mAttribute_mWhilePartList ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_pic_31__38_DoWhilePartList cPtr_pic_31__38_Instruction_5F_do_5F_while::reader_mWhilePartList (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mWhilePartList ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                 Pointer class for @pic18Instruction_do_while class                                  *
-//---------------------------------------------------------------------------------------------------------------------*
-
-cPtr_pic_31__38_Instruction_5F_do_5F_while::cPtr_pic_31__38_Instruction_5F_do_5F_while (const GALGAS_location & in_mInstructionLocation,
-                                                                                        const GALGAS_pic_31__38_InstructionList & in_mRepeatedInstructionList,
-                                                                                        const GALGAS_location & in_mEndOfRepeatedInstructionList,
-                                                                                        const GALGAS_pic_31__38_DoWhilePartList & in_mWhilePartList
-                                                                                        COMMA_LOCATION_ARGS) :
-cPtr_pic_31__38_PiccoloInstruction (in_mInstructionLocation COMMA_THERE),
-mAttribute_mRepeatedInstructionList (in_mRepeatedInstructionList),
-mAttribute_mEndOfRepeatedInstructionList (in_mEndOfRepeatedInstructionList),
-mAttribute_mWhilePartList (in_mWhilePartList) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor * cPtr_pic_31__38_Instruction_5F_do_5F_while::classDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_do_5F_while ;
-}
-
-void cPtr_pic_31__38_Instruction_5F_do_5F_while::description (C_String & ioString,
-                                                              const int32_t inIndentation) const {
-  ioString << "[@pic18Instruction_do_while:" ;
-  mAttribute_mInstructionLocation.description (ioString, inIndentation+1) ;
-  ioString << ", " ;
-  mAttribute_mRepeatedInstructionList.description (ioString, inIndentation+1) ;
-  ioString << ", " ;
-  mAttribute_mEndOfRepeatedInstructionList.description (ioString, inIndentation+1) ;
-  ioString << ", " ;
-  mAttribute_mWhilePartList.description (ioString, inIndentation+1) ;
-  ioString << "]" ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-acPtr_class * cPtr_pic_31__38_Instruction_5F_do_5F_while::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
-  macroMyNew (ptr, cPtr_pic_31__38_Instruction_5F_do_5F_while (mAttribute_mInstructionLocation, mAttribute_mRepeatedInstructionList, mAttribute_mEndOfRepeatedInstructionList, mAttribute_mWhilePartList COMMA_THERE)) ;
-  return ptr ;
-}
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                           @pic18Instruction_do_while type                                           *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_do_5F_while ("pic18Instruction_do_while",
-                                                              & kTypeDescriptor_GALGAS_pic_31__38_PiccoloInstruction) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor * GALGAS_pic_31__38_Instruction_5F_do_5F_while::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_do_5F_while ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-AC_GALGAS_root * GALGAS_pic_31__38_Instruction_5F_do_5F_while::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_pic_31__38_Instruction_5F_do_5F_while (*this)) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_pic_31__38_Instruction_5F_do_5F_while GALGAS_pic_31__38_Instruction_5F_do_5F_while::extractObject (const GALGAS_object & inObject,
-                                                                                                          C_Compiler * inCompiler
-                                                                                                          COMMA_LOCATION_ARGS) {
-  GALGAS_pic_31__38_Instruction_5F_do_5F_while result ;
-  const GALGAS_pic_31__38_Instruction_5F_do_5F_while * p = (const GALGAS_pic_31__38_Instruction_5F_do_5F_while *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_pic_31__38_Instruction_5F_do_5F_while *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("pic18Instruction_do_while", p->dynamicTypeDescriptor () COMMA_THERE) ;
     }  
   }
   return result ;

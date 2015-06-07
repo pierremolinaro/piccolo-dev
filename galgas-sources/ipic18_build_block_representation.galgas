@@ -259,6 +259,9 @@ override method @pic18Instruction_FBA analyzeSimpleInstruction
     !?ioUsedRegisters
   ]
   [mBitNumber getBitNumber
+    !inRegisterTable
+    !inConstantMap
+    !?ioUsedRegisters
     !bitSliceTable
     ?var @uint bitNumber
   ]
@@ -1526,6 +1529,9 @@ override method @pic18Instruction_IF_BitTest analyze
     !?ioUsedRegisters
   ]
   [mBitNumber getBitNumber
+    !inRegisterTable
+    !inConstantMap
+    !?ioUsedRegisters
     !bitSliceTable
     ?let @uint bitNumber
   ]
@@ -1552,7 +1558,8 @@ override method @pic18Instruction_IF_BitTest analyze
     !embeddedInstruction
     !mSkipIfSet
     !IPICregisterDescription
-    !bitNumber}
+    !bitNumber
+  }
 }
 
 #----------------------------------------------------*
@@ -2837,27 +2844,21 @@ override method @pic18BitTestInStructuredCondition analyzeCondition
     !?ioUsedRegisters
   ]
   [mBitNumber getBitNumber
+    !inRegisterTable
+    !inConstantMap
+    !?ioUsedRegisters
     !bitSliceTable
     ?let @uint bitNumber
   ]
 #--- Save terminator of current block
   let @location location = [mRegisterExpression mRegisterName].location
-#  if mBTFSSinstruction then
-#    outCurrentBlockTerminator = @pic18BitTestTerminator. new {
-#      !location
-#      !@ipic18JumpTerminator. new { !location !inConditionTrueLabel !@jumpInstructionKind. ipicRelative}
-#      !@ipic18JumpTerminator. new { !location !inConditionFalseLabel !@jumpInstructionKind. ipicRelative}
-#      !IPICregisterDescription
-#      !bitNumber}
-#  else
-    outCurrentBlockTerminator = @pic18BitTestTerminator. new {
-      !location
-      !@ipic18JumpTerminator.new {!location !inConditionFalseLabel !@jumpInstructionKind.ipicRelative}
-      !@ipic18JumpTerminator.new {!location !inConditionTrueLabel !@jumpInstructionKind.ipicRelative}
-      !IPICregisterDescription
-      !bitNumber
-    }
-#  end
+  outCurrentBlockTerminator = @pic18BitTestTerminator. new {
+    !location
+    !@ipic18JumpTerminator.new {!location !inConditionFalseLabel !@jumpInstructionKind.ipicRelative}
+    !@ipic18JumpTerminator.new {!location !inConditionTrueLabel !@jumpInstructionKind.ipicRelative}
+    !IPICregisterDescription
+    !bitNumber
+  }
 }
 
 #----------------------------------------------------*

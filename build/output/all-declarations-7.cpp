@@ -12,6 +12,225 @@
 //   Object comparison                                                                                                 *
 //---------------------------------------------------------------------------------------------------------------------*
 
+typeComparisonResult cPtr_pic_31__38_Instruction_5F_do_5F_while::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
+  typeComparisonResult result = kOperandEqual ;
+  const cPtr_pic_31__38_Instruction_5F_do_5F_while * p = (const cPtr_pic_31__38_Instruction_5F_do_5F_while *) inOperandPtr ;
+  macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_do_5F_while) ;
+  if (kOperandEqual == result) {
+    result = mAttribute_mInstructionLocation.objectCompare (p->mAttribute_mInstructionLocation) ;
+  }
+  if (kOperandEqual == result) {
+    result = mAttribute_mRepeatedInstructionList.objectCompare (p->mAttribute_mRepeatedInstructionList) ;
+  }
+  if (kOperandEqual == result) {
+    result = mAttribute_mEndOfRepeatedInstructionList.objectCompare (p->mAttribute_mEndOfRepeatedInstructionList) ;
+  }
+  if (kOperandEqual == result) {
+    result = mAttribute_mWhilePartList.objectCompare (p->mAttribute_mWhilePartList) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+
+typeComparisonResult GALGAS_pic_31__38_Instruction_5F_do_5F_while::objectCompare (const GALGAS_pic_31__38_Instruction_5F_do_5F_while & inOperand) const {
+  typeComparisonResult result = kOperandNotValid ;
+  if (isValid () && inOperand.isValid ()) {
+    const int32_t mySlot = mObjectPtr->classDescriptor ()->mSlotID ;
+    const int32_t operandSlot = inOperand.mObjectPtr->classDescriptor ()->mSlotID ;
+    if (mySlot < operandSlot) {
+      result = kFirstOperandLowerThanSecond ;
+    }else if (mySlot > operandSlot) {
+      result = kFirstOperandGreaterThanSecond ;
+    }else{
+      result = mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+    }
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_pic_31__38_Instruction_5F_do_5F_while::GALGAS_pic_31__38_Instruction_5F_do_5F_while (void) :
+GALGAS_pic_31__38_PiccoloInstruction () {
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_pic_31__38_Instruction_5F_do_5F_while GALGAS_pic_31__38_Instruction_5F_do_5F_while::constructor_default (LOCATION_ARGS) {
+  return GALGAS_pic_31__38_Instruction_5F_do_5F_while::constructor_new (GALGAS_location::constructor_nowhere (HERE),
+                                                                        GALGAS_pic_31__38_InstructionList::constructor_emptyList (HERE),
+                                                                        GALGAS_location::constructor_nowhere (HERE),
+                                                                        GALGAS_pic_31__38_DoWhilePartList::constructor_emptyList (HERE)
+                                                                        COMMA_THERE) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_pic_31__38_Instruction_5F_do_5F_while::GALGAS_pic_31__38_Instruction_5F_do_5F_while (const cPtr_pic_31__38_Instruction_5F_do_5F_while * inSourcePtr) :
+GALGAS_pic_31__38_PiccoloInstruction (inSourcePtr) {
+  macroNullOrValidSharedObject (inSourcePtr, cPtr_pic_31__38_Instruction_5F_do_5F_while) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_pic_31__38_Instruction_5F_do_5F_while GALGAS_pic_31__38_Instruction_5F_do_5F_while::constructor_new (const GALGAS_location & inAttribute_mInstructionLocation,
+                                                                                                            const GALGAS_pic_31__38_InstructionList & inAttribute_mRepeatedInstructionList,
+                                                                                                            const GALGAS_location & inAttribute_mEndOfRepeatedInstructionList,
+                                                                                                            const GALGAS_pic_31__38_DoWhilePartList & inAttribute_mWhilePartList
+                                                                                                            COMMA_LOCATION_ARGS) {
+  GALGAS_pic_31__38_Instruction_5F_do_5F_while result ;
+  if (inAttribute_mInstructionLocation.isValid () && inAttribute_mRepeatedInstructionList.isValid () && inAttribute_mEndOfRepeatedInstructionList.isValid () && inAttribute_mWhilePartList.isValid ()) {
+    macroMyNew (result.mObjectPtr, cPtr_pic_31__38_Instruction_5F_do_5F_while (inAttribute_mInstructionLocation, inAttribute_mRepeatedInstructionList, inAttribute_mEndOfRepeatedInstructionList, inAttribute_mWhilePartList COMMA_THERE)) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_pic_31__38_InstructionList GALGAS_pic_31__38_Instruction_5F_do_5F_while::reader_mRepeatedInstructionList (UNUSED_LOCATION_ARGS) const {
+  GALGAS_pic_31__38_InstructionList result ;
+  if (NULL != mObjectPtr) {
+    const cPtr_pic_31__38_Instruction_5F_do_5F_while * p = (const cPtr_pic_31__38_Instruction_5F_do_5F_while *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_do_5F_while) ;
+    result = p->mAttribute_mRepeatedInstructionList ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_pic_31__38_InstructionList cPtr_pic_31__38_Instruction_5F_do_5F_while::reader_mRepeatedInstructionList (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mRepeatedInstructionList ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_location GALGAS_pic_31__38_Instruction_5F_do_5F_while::reader_mEndOfRepeatedInstructionList (UNUSED_LOCATION_ARGS) const {
+  GALGAS_location result ;
+  if (NULL != mObjectPtr) {
+    const cPtr_pic_31__38_Instruction_5F_do_5F_while * p = (const cPtr_pic_31__38_Instruction_5F_do_5F_while *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_do_5F_while) ;
+    result = p->mAttribute_mEndOfRepeatedInstructionList ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_location cPtr_pic_31__38_Instruction_5F_do_5F_while::reader_mEndOfRepeatedInstructionList (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mEndOfRepeatedInstructionList ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_pic_31__38_DoWhilePartList GALGAS_pic_31__38_Instruction_5F_do_5F_while::reader_mWhilePartList (UNUSED_LOCATION_ARGS) const {
+  GALGAS_pic_31__38_DoWhilePartList result ;
+  if (NULL != mObjectPtr) {
+    const cPtr_pic_31__38_Instruction_5F_do_5F_while * p = (const cPtr_pic_31__38_Instruction_5F_do_5F_while *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_do_5F_while) ;
+    result = p->mAttribute_mWhilePartList ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_pic_31__38_DoWhilePartList cPtr_pic_31__38_Instruction_5F_do_5F_while::reader_mWhilePartList (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mWhilePartList ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                 Pointer class for @pic18Instruction_do_while class                                  *
+//---------------------------------------------------------------------------------------------------------------------*
+
+cPtr_pic_31__38_Instruction_5F_do_5F_while::cPtr_pic_31__38_Instruction_5F_do_5F_while (const GALGAS_location & in_mInstructionLocation,
+                                                                                        const GALGAS_pic_31__38_InstructionList & in_mRepeatedInstructionList,
+                                                                                        const GALGAS_location & in_mEndOfRepeatedInstructionList,
+                                                                                        const GALGAS_pic_31__38_DoWhilePartList & in_mWhilePartList
+                                                                                        COMMA_LOCATION_ARGS) :
+cPtr_pic_31__38_PiccoloInstruction (in_mInstructionLocation COMMA_THERE),
+mAttribute_mRepeatedInstructionList (in_mRepeatedInstructionList),
+mAttribute_mEndOfRepeatedInstructionList (in_mEndOfRepeatedInstructionList),
+mAttribute_mWhilePartList (in_mWhilePartList) {
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+const C_galgas_type_descriptor * cPtr_pic_31__38_Instruction_5F_do_5F_while::classDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_do_5F_while ;
+}
+
+void cPtr_pic_31__38_Instruction_5F_do_5F_while::description (C_String & ioString,
+                                                              const int32_t inIndentation) const {
+  ioString << "[@pic18Instruction_do_while:" ;
+  mAttribute_mInstructionLocation.description (ioString, inIndentation+1) ;
+  ioString << ", " ;
+  mAttribute_mRepeatedInstructionList.description (ioString, inIndentation+1) ;
+  ioString << ", " ;
+  mAttribute_mEndOfRepeatedInstructionList.description (ioString, inIndentation+1) ;
+  ioString << ", " ;
+  mAttribute_mWhilePartList.description (ioString, inIndentation+1) ;
+  ioString << "]" ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+acPtr_class * cPtr_pic_31__38_Instruction_5F_do_5F_while::duplicate (LOCATION_ARGS) const {
+  acPtr_class * ptr = NULL ;
+  macroMyNew (ptr, cPtr_pic_31__38_Instruction_5F_do_5F_while (mAttribute_mInstructionLocation, mAttribute_mRepeatedInstructionList, mAttribute_mEndOfRepeatedInstructionList, mAttribute_mWhilePartList COMMA_THERE)) ;
+  return ptr ;
+}
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                           @pic18Instruction_do_while type                                           *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+const C_galgas_type_descriptor
+kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_do_5F_while ("pic18Instruction_do_while",
+                                                              & kTypeDescriptor_GALGAS_pic_31__38_PiccoloInstruction) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+const C_galgas_type_descriptor * GALGAS_pic_31__38_Instruction_5F_do_5F_while::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_do_5F_while ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+AC_GALGAS_root * GALGAS_pic_31__38_Instruction_5F_do_5F_while::clonedObject (void) const {
+  AC_GALGAS_root * result = NULL ;
+  if (isValid ()) {
+    macroMyNew (result, GALGAS_pic_31__38_Instruction_5F_do_5F_while (*this)) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_pic_31__38_Instruction_5F_do_5F_while GALGAS_pic_31__38_Instruction_5F_do_5F_while::extractObject (const GALGAS_object & inObject,
+                                                                                                          C_Compiler * inCompiler
+                                                                                                          COMMA_LOCATION_ARGS) {
+  GALGAS_pic_31__38_Instruction_5F_do_5F_while result ;
+  const GALGAS_pic_31__38_Instruction_5F_do_5F_while * p = (const GALGAS_pic_31__38_Instruction_5F_do_5F_while *) inObject.embeddedObject () ;
+  if (NULL != p) {
+    if (NULL != dynamic_cast <const GALGAS_pic_31__38_Instruction_5F_do_5F_while *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("pic18Instruction_do_while", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+//   Object comparison                                                                                                 *
+//---------------------------------------------------------------------------------------------------------------------*
+
 typeComparisonResult cPtr_pic_31__38_Instruction_5F_macro::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
   typeComparisonResult result = kOperandEqual ;
   const cPtr_pic_31__38_Instruction_5F_macro * p = (const cPtr_pic_31__38_Instruction_5F_macro *) inOperandPtr ;
@@ -3904,66 +4123,6 @@ int mainForLIBPM (int inArgc, const char * inArgv []) {
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                               Abstract category method '@bitNumberExpression display'                               *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-static TC_UniqueArray <categoryMethodSignature_bitNumberExpression_display> gCategoryMethodTable_bitNumberExpression_display ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void enterCategoryMethod_display (const int32_t inClassIndex,
-                                  categoryMethodSignature_bitNumberExpression_display inMethod) {
-  gCategoryMethodTable_bitNumberExpression_display.forceObjectAtIndex (inClassIndex, inMethod, NULL COMMA_HERE) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void freeCategoryMethod_bitNumberExpression_display (void) {
-  gCategoryMethodTable_bitNumberExpression_display.free () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-C_PrologueEpilogue gMethod_bitNumberExpression_display (NULL,
-                                                        freeCategoryMethod_bitNumberExpression_display) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void callCategoryMethod_display (const cPtr_bitNumberExpression * inObject,
-                                 GALGAS_string & io_ioString,
-                                 C_Compiler * inCompiler
-                                 COMMA_LOCATION_ARGS) {
-//--- Drop output arguments
-//--- Find method
-  if (NULL != inObject) {
-    macroValidSharedObject (inObject, cPtr_bitNumberExpression) ;
-    const C_galgas_type_descriptor * info = inObject->classDescriptor () ;
-    const int32_t classIndex = info->mSlotID ;
-    categoryMethodSignature_bitNumberExpression_display f = NULL ;
-    if (classIndex < gCategoryMethodTable_bitNumberExpression_display.count ()) {
-      f = gCategoryMethodTable_bitNumberExpression_display (classIndex COMMA_HERE) ;
-    }
-    if (NULL == f) {
-       const C_galgas_type_descriptor * p = info->mSuperclassDescriptor ;
-       while ((NULL == f) && (NULL != p)) {
-         if (p->mSlotID < gCategoryMethodTable_bitNumberExpression_display.count ()) {
-           f = gCategoryMethodTable_bitNumberExpression_display (p->mSlotID COMMA_HERE) ;
-         }
-         p = p->mSuperclassDescriptor ;
-       }
-       gCategoryMethodTable_bitNumberExpression_display.forceObjectAtIndex (classIndex, f, NULL COMMA_HERE) ;
-    }
-    if (NULL == f) {
-      fatalError ("FATAL CATEGORY METHOD CALL ERROR", __FILE__, __LINE__) ;
-    }else{
-      f (inObject, io_ioString, inCompiler COMMA_THERE) ;
-    }
-  }
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
 //                                          Category Reader '@uint x4String'                                           *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
@@ -4086,6 +4245,9 @@ C_PrologueEpilogue gMethod_bitNumberExpression_getBitNumber (NULL,
 //---------------------------------------------------------------------------------------------------------------------*
 
 void callCategoryMethod_getBitNumber (const cPtr_bitNumberExpression * inObject,
+                                      const GALGAS_registerTable constin_inRegisterTable,
+                                      const GALGAS_constantMap constin_inConstantMap,
+                                      GALGAS_stringset & io_ioUsedRegisters,
                                       const GALGAS_bitSliceTable constin_inBitSliceTable,
                                       GALGAS_uint & out_outBitNumber,
                                       C_Compiler * inCompiler
@@ -4114,7 +4276,7 @@ void callCategoryMethod_getBitNumber (const cPtr_bitNumberExpression * inObject,
     if (NULL == f) {
       fatalError ("FATAL CATEGORY METHOD CALL ERROR", __FILE__, __LINE__) ;
     }else{
-      f (inObject, constin_inBitSliceTable, out_outBitNumber, inCompiler COMMA_THERE) ;
+      f (inObject, constin_inRegisterTable, constin_inConstantMap, io_ioUsedRegisters, constin_inBitSliceTable, out_outBitNumber, inCompiler COMMA_THERE) ;
     }
   }
 }
@@ -16602,306 +16764,4 @@ void categoryMethod_generateCodeForBlock (const GALGAS_ipic_31__38_Block inObjec
   ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string ("\n")  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 166)) ;
 }
 
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                Category method '@ipic18Block computeMinMaxDuration'                                 *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-void categoryMethod_computeMinMaxDuration (const GALGAS_ipic_31__38_Block inObject,
-                                           const GALGAS_blockMapForDurationComputation constinArgument_inBlockMapForDurationComputation,
-                                           GALGAS_exploredBlockMap & ioArgument_ioExploredBlockMap,
-                                           GALGAS_codeWithDuration & ioArgument_ioCodeWithDuration,
-                                           const GALGAS_string constinArgument_inNextLabel,
-                                           GALGAS_uint & outArgument_outMin,
-                                           GALGAS_uint & outArgument_outMax,
-                                           C_Compiler * inCompiler
-                                           COMMA_UNUSED_LOCATION_ARGS) {
-  outArgument_outMin.drop () ; // Release 'out' argument
-  outArgument_outMax.drop () ; // Release 'out' argument
-  const enumGalgasBool test_0 = ioArgument_ioExploredBlockMap.reader_hasKey (inObject.mAttribute_mLabel.mAttribute_string COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 286)).boolEnum () ;
-  if (kBoolTrue == test_0) {
-    ioArgument_ioExploredBlockMap.method_searchKey (inObject.mAttribute_mLabel, outArgument_outMin, outArgument_outMax, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 287)) ;
-  }else if (kBoolFalse == test_0) {
-    outArgument_outMin = GALGAS_uint ((uint32_t) 2U) ;
-    outArgument_outMax = GALGAS_uint ((uint32_t) 2U) ;
-    cEnumerator_ipic_31__38_SequentialInstructionList enumerator_9891 (inObject.mAttribute_mInstructionList, kEnumeration_up) ;
-    while (enumerator_9891.hasCurrentObject ()) {
-      GALGAS_uint var_min ;
-      GALGAS_uint var_max ;
-      callCategoryMethod_minMaxDuration ((const cPtr_ipic_31__38_SequentialInstruction *) enumerator_9891.current_mInstruction (HERE).ptr (), constinArgument_inBlockMapForDurationComputation, ioArgument_ioExploredBlockMap, ioArgument_ioCodeWithDuration, var_min, var_max, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 292)) ;
-      outArgument_outMin = outArgument_outMin.add_operation (var_min, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 299)) ;
-      outArgument_outMax = outArgument_outMax.add_operation (var_max, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 300)) ;
-      enumerator_9891.gotoNextObject () ;
-    }
-    GALGAS_uint var_min ;
-    GALGAS_uint var_max ;
-    callCategoryMethod_terminatorMinMaxDuration ((const cPtr_ipic_31__38_AbstractBlockTerminator *) inObject.mAttribute_mTerminator.ptr (), constinArgument_inBlockMapForDurationComputation, ioArgument_ioExploredBlockMap, ioArgument_ioCodeWithDuration, constinArgument_inNextLabel, var_min, var_max, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 302)) ;
-    outArgument_outMin = outArgument_outMin.add_operation (var_min, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 310)) ;
-    outArgument_outMax = outArgument_outMax.add_operation (var_max, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 311)) ;
-    {
-    ioArgument_ioExploredBlockMap.modifier_insertKey (inObject.mAttribute_mLabel, outArgument_outMin, outArgument_outMax, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 312)) ;
-    }
-  }
-}
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_piccoloDeviceModel::GALGAS_piccoloDeviceModel (void) :
-mAttribute_mDeviceName (),
-mAttribute_mProcessorType (),
-mAttribute_mRomSize (),
-mAttribute_mBankCount (),
-mAttribute_mRegisterTable (),
-mAttribute_mRamBankTable (),
-mAttribute_mEepromSize (),
-mAttribute_mEepromAddress (),
-mAttribute_mConfigRegisterMap (),
-mAttribute_mSharedBankName () {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_piccoloDeviceModel::~ GALGAS_piccoloDeviceModel (void) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_piccoloDeviceModel::GALGAS_piccoloDeviceModel (const GALGAS_lstring & inOperand0,
-                                                      const GALGAS_processorType & inOperand1,
-                                                      const GALGAS_luint & inOperand2,
-                                                      const GALGAS_luint & inOperand3,
-                                                      const GALGAS_registerTable & inOperand4,
-                                                      const GALGAS_ramBankTable & inOperand5,
-                                                      const GALGAS_uint & inOperand6,
-                                                      const GALGAS_uint & inOperand7,
-                                                      const GALGAS_configRegisterMap & inOperand8,
-                                                      const GALGAS_string & inOperand9) :
-mAttribute_mDeviceName (inOperand0),
-mAttribute_mProcessorType (inOperand1),
-mAttribute_mRomSize (inOperand2),
-mAttribute_mBankCount (inOperand3),
-mAttribute_mRegisterTable (inOperand4),
-mAttribute_mRamBankTable (inOperand5),
-mAttribute_mEepromSize (inOperand6),
-mAttribute_mEepromAddress (inOperand7),
-mAttribute_mConfigRegisterMap (inOperand8),
-mAttribute_mSharedBankName (inOperand9) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_piccoloDeviceModel GALGAS_piccoloDeviceModel::constructor_new (const GALGAS_lstring & inOperand0,
-                                                                      const GALGAS_processorType & inOperand1,
-                                                                      const GALGAS_luint & inOperand2,
-                                                                      const GALGAS_luint & inOperand3,
-                                                                      const GALGAS_registerTable & inOperand4,
-                                                                      const GALGAS_ramBankTable & inOperand5,
-                                                                      const GALGAS_uint & inOperand6,
-                                                                      const GALGAS_uint & inOperand7,
-                                                                      const GALGAS_configRegisterMap & inOperand8,
-                                                                      const GALGAS_string & inOperand9 
-                                                                      COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_piccoloDeviceModel result ;
-  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid () && inOperand5.isValid () && inOperand6.isValid () && inOperand7.isValid () && inOperand8.isValid () && inOperand9.isValid ()) {
-    result = GALGAS_piccoloDeviceModel (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4, inOperand5, inOperand6, inOperand7, inOperand8, inOperand9) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-typeComparisonResult GALGAS_piccoloDeviceModel::objectCompare (const GALGAS_piccoloDeviceModel & inOperand) const {
-   typeComparisonResult result = kOperandEqual ;
-  if (result == kOperandEqual) {
-    result = mAttribute_mDeviceName.objectCompare (inOperand.mAttribute_mDeviceName) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mProcessorType.objectCompare (inOperand.mAttribute_mProcessorType) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mRomSize.objectCompare (inOperand.mAttribute_mRomSize) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mBankCount.objectCompare (inOperand.mAttribute_mBankCount) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mRegisterTable.objectCompare (inOperand.mAttribute_mRegisterTable) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mRamBankTable.objectCompare (inOperand.mAttribute_mRamBankTable) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mEepromSize.objectCompare (inOperand.mAttribute_mEepromSize) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mEepromAddress.objectCompare (inOperand.mAttribute_mEepromAddress) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mConfigRegisterMap.objectCompare (inOperand.mAttribute_mConfigRegisterMap) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mSharedBankName.objectCompare (inOperand.mAttribute_mSharedBankName) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-bool GALGAS_piccoloDeviceModel::isValid (void) const {
-  return mAttribute_mDeviceName.isValid () && mAttribute_mProcessorType.isValid () && mAttribute_mRomSize.isValid () && mAttribute_mBankCount.isValid () && mAttribute_mRegisterTable.isValid () && mAttribute_mRamBankTable.isValid () && mAttribute_mEepromSize.isValid () && mAttribute_mEepromAddress.isValid () && mAttribute_mConfigRegisterMap.isValid () && mAttribute_mSharedBankName.isValid () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_piccoloDeviceModel::drop (void) {
-  mAttribute_mDeviceName.drop () ;
-  mAttribute_mProcessorType.drop () ;
-  mAttribute_mRomSize.drop () ;
-  mAttribute_mBankCount.drop () ;
-  mAttribute_mRegisterTable.drop () ;
-  mAttribute_mRamBankTable.drop () ;
-  mAttribute_mEepromSize.drop () ;
-  mAttribute_mEepromAddress.drop () ;
-  mAttribute_mConfigRegisterMap.drop () ;
-  mAttribute_mSharedBankName.drop () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_piccoloDeviceModel::description (C_String & ioString,
-                                             const int32_t inIndentation) const {
-  ioString << "<struct @piccoloDeviceModel:" ;
-  if (! isValid ()) {
-    ioString << " not built" ;
-  }else{
-    mAttribute_mDeviceName.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mProcessorType.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mRomSize.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mBankCount.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mRegisterTable.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mRamBankTable.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mEepromSize.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mEepromAddress.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mConfigRegisterMap.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mSharedBankName.description (ioString, inIndentation+1) ;
-  }
-  ioString << ">" ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_lstring GALGAS_piccoloDeviceModel::reader_mDeviceName (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mDeviceName ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_processorType GALGAS_piccoloDeviceModel::reader_mProcessorType (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mProcessorType ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_luint GALGAS_piccoloDeviceModel::reader_mRomSize (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mRomSize ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_luint GALGAS_piccoloDeviceModel::reader_mBankCount (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mBankCount ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_registerTable GALGAS_piccoloDeviceModel::reader_mRegisterTable (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mRegisterTable ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_ramBankTable GALGAS_piccoloDeviceModel::reader_mRamBankTable (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mRamBankTable ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_uint GALGAS_piccoloDeviceModel::reader_mEepromSize (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mEepromSize ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_uint GALGAS_piccoloDeviceModel::reader_mEepromAddress (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mEepromAddress ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_configRegisterMap GALGAS_piccoloDeviceModel::reader_mConfigRegisterMap (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mConfigRegisterMap ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_string GALGAS_piccoloDeviceModel::reader_mSharedBankName (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mSharedBankName ;
-}
-
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                              @piccoloDeviceModel type                                               *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_piccoloDeviceModel ("piccoloDeviceModel",
-                                           NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor * GALGAS_piccoloDeviceModel::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_piccoloDeviceModel ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-AC_GALGAS_root * GALGAS_piccoloDeviceModel::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_piccoloDeviceModel (*this)) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_piccoloDeviceModel GALGAS_piccoloDeviceModel::extractObject (const GALGAS_object & inObject,
-                                                                    C_Compiler * inCompiler
-                                                                    COMMA_LOCATION_ARGS) {
-  GALGAS_piccoloDeviceModel result ;
-  const GALGAS_piccoloDeviceModel * p = (const GALGAS_piccoloDeviceModel *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_piccoloDeviceModel *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("piccoloDeviceModel", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
 

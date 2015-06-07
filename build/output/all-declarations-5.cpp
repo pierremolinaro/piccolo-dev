@@ -11749,6 +11749,182 @@ GALGAS_bitNumberLabelValue GALGAS_bitNumberLabelValue::extractObject (const GALG
 //   Object comparison                                                                                                 *
 //---------------------------------------------------------------------------------------------------------------------*
 
+typeComparisonResult cPtr_bitNumberLiteralExpression::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
+  typeComparisonResult result = kOperandEqual ;
+  const cPtr_bitNumberLiteralExpression * p = (const cPtr_bitNumberLiteralExpression *) inOperandPtr ;
+  macroValidSharedObject (p, cPtr_bitNumberLiteralExpression) ;
+  if (kOperandEqual == result) {
+    result = mAttribute_mBitNumberLiteralExpression.objectCompare (p->mAttribute_mBitNumberLiteralExpression) ;
+  }
+  if (kOperandEqual == result) {
+    result = mAttribute_mEndOfExpression.objectCompare (p->mAttribute_mEndOfExpression) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+
+typeComparisonResult GALGAS_bitNumberLiteralExpression::objectCompare (const GALGAS_bitNumberLiteralExpression & inOperand) const {
+  typeComparisonResult result = kOperandNotValid ;
+  if (isValid () && inOperand.isValid ()) {
+    const int32_t mySlot = mObjectPtr->classDescriptor ()->mSlotID ;
+    const int32_t operandSlot = inOperand.mObjectPtr->classDescriptor ()->mSlotID ;
+    if (mySlot < operandSlot) {
+      result = kFirstOperandLowerThanSecond ;
+    }else if (mySlot > operandSlot) {
+      result = kFirstOperandGreaterThanSecond ;
+    }else{
+      result = mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+    }
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_bitNumberLiteralExpression::GALGAS_bitNumberLiteralExpression (void) :
+GALGAS_bitNumberExpression () {
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_bitNumberLiteralExpression::GALGAS_bitNumberLiteralExpression (const cPtr_bitNumberLiteralExpression * inSourcePtr) :
+GALGAS_bitNumberExpression (inSourcePtr) {
+  macroNullOrValidSharedObject (inSourcePtr, cPtr_bitNumberLiteralExpression) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_bitNumberLiteralExpression GALGAS_bitNumberLiteralExpression::constructor_new (const GALGAS_immediatExpression & inAttribute_mBitNumberLiteralExpression,
+                                                                                      const GALGAS_location & inAttribute_mEndOfExpression
+                                                                                      COMMA_LOCATION_ARGS) {
+  GALGAS_bitNumberLiteralExpression result ;
+  if (inAttribute_mBitNumberLiteralExpression.isValid () && inAttribute_mEndOfExpression.isValid ()) {
+    macroMyNew (result.mObjectPtr, cPtr_bitNumberLiteralExpression (inAttribute_mBitNumberLiteralExpression, inAttribute_mEndOfExpression COMMA_THERE)) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_immediatExpression GALGAS_bitNumberLiteralExpression::reader_mBitNumberLiteralExpression (UNUSED_LOCATION_ARGS) const {
+  GALGAS_immediatExpression result ;
+  if (NULL != mObjectPtr) {
+    const cPtr_bitNumberLiteralExpression * p = (const cPtr_bitNumberLiteralExpression *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_bitNumberLiteralExpression) ;
+    result = p->mAttribute_mBitNumberLiteralExpression ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_immediatExpression cPtr_bitNumberLiteralExpression::reader_mBitNumberLiteralExpression (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mBitNumberLiteralExpression ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_location GALGAS_bitNumberLiteralExpression::reader_mEndOfExpression (UNUSED_LOCATION_ARGS) const {
+  GALGAS_location result ;
+  if (NULL != mObjectPtr) {
+    const cPtr_bitNumberLiteralExpression * p = (const cPtr_bitNumberLiteralExpression *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_bitNumberLiteralExpression) ;
+    result = p->mAttribute_mEndOfExpression ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_location cPtr_bitNumberLiteralExpression::reader_mEndOfExpression (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mEndOfExpression ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                 Pointer class for @bitNumberLiteralExpression class                                 *
+//---------------------------------------------------------------------------------------------------------------------*
+
+cPtr_bitNumberLiteralExpression::cPtr_bitNumberLiteralExpression (const GALGAS_immediatExpression & in_mBitNumberLiteralExpression,
+                                                                  const GALGAS_location & in_mEndOfExpression
+                                                                  COMMA_LOCATION_ARGS) :
+cPtr_bitNumberExpression (THERE),
+mAttribute_mBitNumberLiteralExpression (in_mBitNumberLiteralExpression),
+mAttribute_mEndOfExpression (in_mEndOfExpression) {
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+const C_galgas_type_descriptor * cPtr_bitNumberLiteralExpression::classDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_bitNumberLiteralExpression ;
+}
+
+void cPtr_bitNumberLiteralExpression::description (C_String & ioString,
+                                                   const int32_t inIndentation) const {
+  ioString << "[@bitNumberLiteralExpression:" ;
+  mAttribute_mBitNumberLiteralExpression.description (ioString, inIndentation+1) ;
+  ioString << ", " ;
+  mAttribute_mEndOfExpression.description (ioString, inIndentation+1) ;
+  ioString << "]" ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+acPtr_class * cPtr_bitNumberLiteralExpression::duplicate (LOCATION_ARGS) const {
+  acPtr_class * ptr = NULL ;
+  macroMyNew (ptr, cPtr_bitNumberLiteralExpression (mAttribute_mBitNumberLiteralExpression, mAttribute_mEndOfExpression COMMA_THERE)) ;
+  return ptr ;
+}
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                          @bitNumberLiteralExpression type                                           *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+const C_galgas_type_descriptor
+kTypeDescriptor_GALGAS_bitNumberLiteralExpression ("bitNumberLiteralExpression",
+                                                   & kTypeDescriptor_GALGAS_bitNumberExpression) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+const C_galgas_type_descriptor * GALGAS_bitNumberLiteralExpression::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_bitNumberLiteralExpression ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+AC_GALGAS_root * GALGAS_bitNumberLiteralExpression::clonedObject (void) const {
+  AC_GALGAS_root * result = NULL ;
+  if (isValid ()) {
+    macroMyNew (result, GALGAS_bitNumberLiteralExpression (*this)) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_bitNumberLiteralExpression GALGAS_bitNumberLiteralExpression::extractObject (const GALGAS_object & inObject,
+                                                                                    C_Compiler * inCompiler
+                                                                                    COMMA_LOCATION_ARGS) {
+  GALGAS_bitNumberLiteralExpression result ;
+  const GALGAS_bitNumberLiteralExpression * p = (const GALGAS_bitNumberLiteralExpression *) inObject.embeddedObject () ;
+  if (NULL != p) {
+    if (NULL != dynamic_cast <const GALGAS_bitNumberLiteralExpression *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("bitNumberLiteralExpression", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+//   Object comparison                                                                                                 *
+//---------------------------------------------------------------------------------------------------------------------*
+
 typeComparisonResult cPtr_bitNumberLiteralValue::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
   typeComparisonResult result = kOperandEqual ;
   const cPtr_bitNumberLiteralValue * p = (const cPtr_bitNumberLiteralValue *) inOperandPtr ;
@@ -18887,222 +19063,6 @@ GALGAS_ipic_31__38__5F_condition_5F_skip_5F_instruction GALGAS_ipic_31__38__5F_c
       result = *p ;
     }else{
       inCompiler->castError ("ipic18_condition_skip_instruction", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-//   Object comparison                                                                                                 *
-//---------------------------------------------------------------------------------------------------------------------*
-
-typeComparisonResult cPtr_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
-  typeComparisonResult result = kOperandEqual ;
-  const cPtr_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip * p = (const cPtr_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip *) inOperandPtr ;
-  macroValidSharedObject (p, cPtr_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip) ;
-  if (kOperandEqual == result) {
-    result = mAttribute_mInstructionLocation.objectCompare (p->mAttribute_mInstructionLocation) ;
-  }
-  if (kOperandEqual == result) {
-    result = mAttribute_mEmbeddedInstruction.objectCompare (p->mAttribute_mEmbeddedInstruction) ;
-  }
-  if (kOperandEqual == result) {
-    result = mAttribute_mSkipIfSet.objectCompare (p->mAttribute_mSkipIfSet) ;
-  }
-  if (kOperandEqual == result) {
-    result = mAttribute_mRegisterDescription.objectCompare (p->mAttribute_mRegisterDescription) ;
-  }
-  if (kOperandEqual == result) {
-    result = mAttribute_mBitNumber.objectCompare (p->mAttribute_mBitNumber) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-
-typeComparisonResult GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip::objectCompare (const GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip & inOperand) const {
-  typeComparisonResult result = kOperandNotValid ;
-  if (isValid () && inOperand.isValid ()) {
-    const int32_t mySlot = mObjectPtr->classDescriptor ()->mSlotID ;
-    const int32_t operandSlot = inOperand.mObjectPtr->classDescriptor ()->mSlotID ;
-    if (mySlot < operandSlot) {
-      result = kFirstOperandLowerThanSecond ;
-    }else if (mySlot > operandSlot) {
-      result = kFirstOperandGreaterThanSecond ;
-    }else{
-      result = mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
-    }
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip::GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip (void) :
-GALGAS_ipic_31__38__5F_condition_5F_skip_5F_instruction () {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip::GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip (const cPtr_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip * inSourcePtr) :
-GALGAS_ipic_31__38__5F_condition_5F_skip_5F_instruction (inSourcePtr) {
-  macroNullOrValidSharedObject (inSourcePtr, cPtr_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip::constructor_new (const GALGAS_location & inAttribute_mInstructionLocation,
-                                                                                                                                      const GALGAS_ipic_31__38_SequentialInstruction & inAttribute_mEmbeddedInstruction,
-                                                                                                                                      const GALGAS_bool & inAttribute_mSkipIfSet,
-                                                                                                                                      const GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression & inAttribute_mRegisterDescription,
-                                                                                                                                      const GALGAS_uint & inAttribute_mBitNumber
-                                                                                                                                      COMMA_LOCATION_ARGS) {
-  GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip result ;
-  if (inAttribute_mInstructionLocation.isValid () && inAttribute_mEmbeddedInstruction.isValid () && inAttribute_mSkipIfSet.isValid () && inAttribute_mRegisterDescription.isValid () && inAttribute_mBitNumber.isValid ()) {
-    macroMyNew (result.mObjectPtr, cPtr_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip (inAttribute_mInstructionLocation, inAttribute_mEmbeddedInstruction, inAttribute_mSkipIfSet, inAttribute_mRegisterDescription, inAttribute_mBitNumber COMMA_THERE)) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_bool GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip::reader_mSkipIfSet (UNUSED_LOCATION_ARGS) const {
-  GALGAS_bool result ;
-  if (NULL != mObjectPtr) {
-    const cPtr_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip * p = (const cPtr_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip) ;
-    result = p->mAttribute_mSkipIfSet ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_bool cPtr_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip::reader_mSkipIfSet (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mSkipIfSet ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip::reader_mRegisterDescription (UNUSED_LOCATION_ARGS) const {
-  GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression result ;
-  if (NULL != mObjectPtr) {
-    const cPtr_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip * p = (const cPtr_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip) ;
-    result = p->mAttribute_mRegisterDescription ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression cPtr_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip::reader_mRegisterDescription (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mRegisterDescription ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_uint GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip::reader_mBitNumber (UNUSED_LOCATION_ARGS) const {
-  GALGAS_uint result ;
-  if (NULL != mObjectPtr) {
-    const cPtr_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip * p = (const cPtr_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip) ;
-    result = p->mAttribute_mBitNumber ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_uint cPtr_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip::reader_mBitNumber (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mBitNumber ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                            Pointer class for @ipic18_skip_instruction_BitTestSkip class                             *
-//---------------------------------------------------------------------------------------------------------------------*
-
-cPtr_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip::cPtr_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip (const GALGAS_location & in_mInstructionLocation,
-                                                                                                                  const GALGAS_ipic_31__38_SequentialInstruction & in_mEmbeddedInstruction,
-                                                                                                                  const GALGAS_bool & in_mSkipIfSet,
-                                                                                                                  const GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression & in_mRegisterDescription,
-                                                                                                                  const GALGAS_uint & in_mBitNumber
-                                                                                                                  COMMA_LOCATION_ARGS) :
-cPtr_ipic_31__38__5F_condition_5F_skip_5F_instruction (in_mInstructionLocation, in_mEmbeddedInstruction COMMA_THERE),
-mAttribute_mSkipIfSet (in_mSkipIfSet),
-mAttribute_mRegisterDescription (in_mRegisterDescription),
-mAttribute_mBitNumber (in_mBitNumber) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor * cPtr_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip::classDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip ;
-}
-
-void cPtr_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip::description (C_String & ioString,
-                                                                           const int32_t inIndentation) const {
-  ioString << "[@ipic18_skip_instruction_BitTestSkip:" ;
-  mAttribute_mInstructionLocation.description (ioString, inIndentation+1) ;
-  ioString << ", " ;
-  mAttribute_mEmbeddedInstruction.description (ioString, inIndentation+1) ;
-  ioString << ", " ;
-  mAttribute_mSkipIfSet.description (ioString, inIndentation+1) ;
-  ioString << ", " ;
-  mAttribute_mRegisterDescription.description (ioString, inIndentation+1) ;
-  ioString << ", " ;
-  mAttribute_mBitNumber.description (ioString, inIndentation+1) ;
-  ioString << "]" ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-acPtr_class * cPtr_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
-  macroMyNew (ptr, cPtr_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip (mAttribute_mInstructionLocation, mAttribute_mEmbeddedInstruction, mAttribute_mSkipIfSet, mAttribute_mRegisterDescription, mAttribute_mBitNumber COMMA_THERE)) ;
-  return ptr ;
-}
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                      @ipic18_skip_instruction_BitTestSkip type                                      *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip ("ipic18_skip_instruction_BitTestSkip",
-                                                                           & kTypeDescriptor_GALGAS_ipic_31__38__5F_condition_5F_skip_5F_instruction) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor * GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-AC_GALGAS_root * GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip (*this)) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip::extractObject (const GALGAS_object & inObject,
-                                                                                                                                    C_Compiler * inCompiler
-                                                                                                                                    COMMA_LOCATION_ARGS) {
-  GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip result ;
-  const GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip * p = (const GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("ipic18_skip_instruction_BitTestSkip", p->dynamicTypeDescriptor () COMMA_THERE) ;
     }  
   }
   return result ;

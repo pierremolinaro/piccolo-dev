@@ -9,6 +9,308 @@
 
 
 //---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                Category method '@ipic18Block computeMinMaxDuration'                                 *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+void categoryMethod_computeMinMaxDuration (const GALGAS_ipic_31__38_Block inObject,
+                                           const GALGAS_blockMapForDurationComputation constinArgument_inBlockMapForDurationComputation,
+                                           GALGAS_exploredBlockMap & ioArgument_ioExploredBlockMap,
+                                           GALGAS_codeWithDuration & ioArgument_ioCodeWithDuration,
+                                           const GALGAS_string constinArgument_inNextLabel,
+                                           GALGAS_uint & outArgument_outMin,
+                                           GALGAS_uint & outArgument_outMax,
+                                           C_Compiler * inCompiler
+                                           COMMA_UNUSED_LOCATION_ARGS) {
+  outArgument_outMin.drop () ; // Release 'out' argument
+  outArgument_outMax.drop () ; // Release 'out' argument
+  const enumGalgasBool test_0 = ioArgument_ioExploredBlockMap.reader_hasKey (inObject.mAttribute_mLabel.mAttribute_string COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 286)).boolEnum () ;
+  if (kBoolTrue == test_0) {
+    ioArgument_ioExploredBlockMap.method_searchKey (inObject.mAttribute_mLabel, outArgument_outMin, outArgument_outMax, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 287)) ;
+  }else if (kBoolFalse == test_0) {
+    outArgument_outMin = GALGAS_uint ((uint32_t) 2U) ;
+    outArgument_outMax = GALGAS_uint ((uint32_t) 2U) ;
+    cEnumerator_ipic_31__38_SequentialInstructionList enumerator_9891 (inObject.mAttribute_mInstructionList, kEnumeration_up) ;
+    while (enumerator_9891.hasCurrentObject ()) {
+      GALGAS_uint var_min ;
+      GALGAS_uint var_max ;
+      callCategoryMethod_minMaxDuration ((const cPtr_ipic_31__38_SequentialInstruction *) enumerator_9891.current_mInstruction (HERE).ptr (), constinArgument_inBlockMapForDurationComputation, ioArgument_ioExploredBlockMap, ioArgument_ioCodeWithDuration, var_min, var_max, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 292)) ;
+      outArgument_outMin = outArgument_outMin.add_operation (var_min, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 299)) ;
+      outArgument_outMax = outArgument_outMax.add_operation (var_max, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 300)) ;
+      enumerator_9891.gotoNextObject () ;
+    }
+    GALGAS_uint var_min ;
+    GALGAS_uint var_max ;
+    callCategoryMethod_terminatorMinMaxDuration ((const cPtr_ipic_31__38_AbstractBlockTerminator *) inObject.mAttribute_mTerminator.ptr (), constinArgument_inBlockMapForDurationComputation, ioArgument_ioExploredBlockMap, ioArgument_ioCodeWithDuration, constinArgument_inNextLabel, var_min, var_max, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 302)) ;
+    outArgument_outMin = outArgument_outMin.add_operation (var_min, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 310)) ;
+    outArgument_outMax = outArgument_outMax.add_operation (var_max, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 311)) ;
+    {
+    ioArgument_ioExploredBlockMap.modifier_insertKey (inObject.mAttribute_mLabel, outArgument_outMin, outArgument_outMax, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 312)) ;
+    }
+  }
+}
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_piccoloDeviceModel::GALGAS_piccoloDeviceModel (void) :
+mAttribute_mDeviceName (),
+mAttribute_mProcessorType (),
+mAttribute_mRomSize (),
+mAttribute_mBankCount (),
+mAttribute_mRegisterTable (),
+mAttribute_mRamBankTable (),
+mAttribute_mEepromSize (),
+mAttribute_mEepromAddress (),
+mAttribute_mConfigRegisterMap (),
+mAttribute_mSharedBankName () {
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_piccoloDeviceModel::~ GALGAS_piccoloDeviceModel (void) {
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_piccoloDeviceModel::GALGAS_piccoloDeviceModel (const GALGAS_lstring & inOperand0,
+                                                      const GALGAS_processorType & inOperand1,
+                                                      const GALGAS_luint & inOperand2,
+                                                      const GALGAS_luint & inOperand3,
+                                                      const GALGAS_registerTable & inOperand4,
+                                                      const GALGAS_ramBankTable & inOperand5,
+                                                      const GALGAS_uint & inOperand6,
+                                                      const GALGAS_uint & inOperand7,
+                                                      const GALGAS_configRegisterMap & inOperand8,
+                                                      const GALGAS_string & inOperand9) :
+mAttribute_mDeviceName (inOperand0),
+mAttribute_mProcessorType (inOperand1),
+mAttribute_mRomSize (inOperand2),
+mAttribute_mBankCount (inOperand3),
+mAttribute_mRegisterTable (inOperand4),
+mAttribute_mRamBankTable (inOperand5),
+mAttribute_mEepromSize (inOperand6),
+mAttribute_mEepromAddress (inOperand7),
+mAttribute_mConfigRegisterMap (inOperand8),
+mAttribute_mSharedBankName (inOperand9) {
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_piccoloDeviceModel GALGAS_piccoloDeviceModel::constructor_new (const GALGAS_lstring & inOperand0,
+                                                                      const GALGAS_processorType & inOperand1,
+                                                                      const GALGAS_luint & inOperand2,
+                                                                      const GALGAS_luint & inOperand3,
+                                                                      const GALGAS_registerTable & inOperand4,
+                                                                      const GALGAS_ramBankTable & inOperand5,
+                                                                      const GALGAS_uint & inOperand6,
+                                                                      const GALGAS_uint & inOperand7,
+                                                                      const GALGAS_configRegisterMap & inOperand8,
+                                                                      const GALGAS_string & inOperand9 
+                                                                      COMMA_UNUSED_LOCATION_ARGS) {
+  GALGAS_piccoloDeviceModel result ;
+  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid () && inOperand5.isValid () && inOperand6.isValid () && inOperand7.isValid () && inOperand8.isValid () && inOperand9.isValid ()) {
+    result = GALGAS_piccoloDeviceModel (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4, inOperand5, inOperand6, inOperand7, inOperand8, inOperand9) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+typeComparisonResult GALGAS_piccoloDeviceModel::objectCompare (const GALGAS_piccoloDeviceModel & inOperand) const {
+   typeComparisonResult result = kOperandEqual ;
+  if (result == kOperandEqual) {
+    result = mAttribute_mDeviceName.objectCompare (inOperand.mAttribute_mDeviceName) ;
+  }
+  if (result == kOperandEqual) {
+    result = mAttribute_mProcessorType.objectCompare (inOperand.mAttribute_mProcessorType) ;
+  }
+  if (result == kOperandEqual) {
+    result = mAttribute_mRomSize.objectCompare (inOperand.mAttribute_mRomSize) ;
+  }
+  if (result == kOperandEqual) {
+    result = mAttribute_mBankCount.objectCompare (inOperand.mAttribute_mBankCount) ;
+  }
+  if (result == kOperandEqual) {
+    result = mAttribute_mRegisterTable.objectCompare (inOperand.mAttribute_mRegisterTable) ;
+  }
+  if (result == kOperandEqual) {
+    result = mAttribute_mRamBankTable.objectCompare (inOperand.mAttribute_mRamBankTable) ;
+  }
+  if (result == kOperandEqual) {
+    result = mAttribute_mEepromSize.objectCompare (inOperand.mAttribute_mEepromSize) ;
+  }
+  if (result == kOperandEqual) {
+    result = mAttribute_mEepromAddress.objectCompare (inOperand.mAttribute_mEepromAddress) ;
+  }
+  if (result == kOperandEqual) {
+    result = mAttribute_mConfigRegisterMap.objectCompare (inOperand.mAttribute_mConfigRegisterMap) ;
+  }
+  if (result == kOperandEqual) {
+    result = mAttribute_mSharedBankName.objectCompare (inOperand.mAttribute_mSharedBankName) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+bool GALGAS_piccoloDeviceModel::isValid (void) const {
+  return mAttribute_mDeviceName.isValid () && mAttribute_mProcessorType.isValid () && mAttribute_mRomSize.isValid () && mAttribute_mBankCount.isValid () && mAttribute_mRegisterTable.isValid () && mAttribute_mRamBankTable.isValid () && mAttribute_mEepromSize.isValid () && mAttribute_mEepromAddress.isValid () && mAttribute_mConfigRegisterMap.isValid () && mAttribute_mSharedBankName.isValid () ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void GALGAS_piccoloDeviceModel::drop (void) {
+  mAttribute_mDeviceName.drop () ;
+  mAttribute_mProcessorType.drop () ;
+  mAttribute_mRomSize.drop () ;
+  mAttribute_mBankCount.drop () ;
+  mAttribute_mRegisterTable.drop () ;
+  mAttribute_mRamBankTable.drop () ;
+  mAttribute_mEepromSize.drop () ;
+  mAttribute_mEepromAddress.drop () ;
+  mAttribute_mConfigRegisterMap.drop () ;
+  mAttribute_mSharedBankName.drop () ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void GALGAS_piccoloDeviceModel::description (C_String & ioString,
+                                             const int32_t inIndentation) const {
+  ioString << "<struct @piccoloDeviceModel:" ;
+  if (! isValid ()) {
+    ioString << " not built" ;
+  }else{
+    mAttribute_mDeviceName.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mAttribute_mProcessorType.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mAttribute_mRomSize.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mAttribute_mBankCount.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mAttribute_mRegisterTable.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mAttribute_mRamBankTable.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mAttribute_mEepromSize.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mAttribute_mEepromAddress.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mAttribute_mConfigRegisterMap.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mAttribute_mSharedBankName.description (ioString, inIndentation+1) ;
+  }
+  ioString << ">" ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_lstring GALGAS_piccoloDeviceModel::reader_mDeviceName (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mDeviceName ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_processorType GALGAS_piccoloDeviceModel::reader_mProcessorType (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mProcessorType ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_luint GALGAS_piccoloDeviceModel::reader_mRomSize (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mRomSize ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_luint GALGAS_piccoloDeviceModel::reader_mBankCount (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mBankCount ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_registerTable GALGAS_piccoloDeviceModel::reader_mRegisterTable (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mRegisterTable ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_ramBankTable GALGAS_piccoloDeviceModel::reader_mRamBankTable (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mRamBankTable ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_uint GALGAS_piccoloDeviceModel::reader_mEepromSize (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mEepromSize ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_uint GALGAS_piccoloDeviceModel::reader_mEepromAddress (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mEepromAddress ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_configRegisterMap GALGAS_piccoloDeviceModel::reader_mConfigRegisterMap (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mConfigRegisterMap ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_string GALGAS_piccoloDeviceModel::reader_mSharedBankName (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mSharedBankName ;
+}
+
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                              @piccoloDeviceModel type                                               *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+const C_galgas_type_descriptor
+kTypeDescriptor_GALGAS_piccoloDeviceModel ("piccoloDeviceModel",
+                                           NULL) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+const C_galgas_type_descriptor * GALGAS_piccoloDeviceModel::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_piccoloDeviceModel ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+AC_GALGAS_root * GALGAS_piccoloDeviceModel::clonedObject (void) const {
+  AC_GALGAS_root * result = NULL ;
+  if (isValid ()) {
+    macroMyNew (result, GALGAS_piccoloDeviceModel (*this)) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_piccoloDeviceModel GALGAS_piccoloDeviceModel::extractObject (const GALGAS_object & inObject,
+                                                                    C_Compiler * inCompiler
+                                                                    COMMA_LOCATION_ARGS) {
+  GALGAS_piccoloDeviceModel result ;
+  const GALGAS_piccoloDeviceModel * p = (const GALGAS_piccoloDeviceModel *) inObject.embeddedObject () ;
+  if (NULL != p) {
+    if (NULL != dynamic_cast <const GALGAS_piccoloDeviceModel *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("piccoloDeviceModel", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_bitSliceTable_2D_element::GALGAS_bitSliceTable_2D_element (void) :
 mAttribute_lkey (),
@@ -9098,56 +9400,6 @@ C_PrologueEpilogue gMethod_registerExpression_getRegisterAddress (defineCategory
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                             Overriding category method '@bitNumberLiteralValue display'                             *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void categoryMethod_bitNumberLiteralValue_display (const cPtr_bitNumberExpression * inObject,
-                                                          GALGAS_string & ioArgument_ioString,
-                                                          C_Compiler * /* inCompiler */
-                                                          COMMA_UNUSED_LOCATION_ARGS) {
-  const cPtr_bitNumberLiteralValue * object = (const cPtr_bitNumberLiteralValue *) inObject ;
-  macroValidSharedObject (object, cPtr_bitNumberLiteralValue) ;
-  ioArgument_ioString.dotAssign_operation (object->mAttribute_mBitNumberLiteralValue.reader_uint (SOURCE_FILE ("generic_metamodel.galgas", 257)).reader_string (SOURCE_FILE ("generic_metamodel.galgas", 257))  COMMA_SOURCE_FILE ("generic_metamodel.galgas", 257)) ;
-}
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void defineCategoryMethod_bitNumberLiteralValue_display (void) {
-  enterCategoryMethod_display (kTypeDescriptor_GALGAS_bitNumberLiteralValue.mSlotID,
-                               categoryMethod_bitNumberLiteralValue_display) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-C_PrologueEpilogue gMethod_bitNumberLiteralValue_display (defineCategoryMethod_bitNumberLiteralValue_display, NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                              Overriding category method '@bitNumberLabelValue display'                              *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void categoryMethod_bitNumberLabelValue_display (const cPtr_bitNumberExpression * inObject,
-                                                        GALGAS_string & ioArgument_ioString,
-                                                        C_Compiler * inCompiler
-                                                        COMMA_UNUSED_LOCATION_ARGS) {
-  const cPtr_bitNumberLabelValue * object = (const cPtr_bitNumberLabelValue *) inObject ;
-  macroValidSharedObject (object, cPtr_bitNumberLabelValue) ;
-  ioArgument_ioString.dotAssign_operation (object->mAttribute_mBitNumberLabelValue.reader_string (SOURCE_FILE ("generic_metamodel.galgas", 270)).add_operation (GALGAS_string (" ["), inCompiler COMMA_SOURCE_FILE ("generic_metamodel.galgas", 270)).add_operation (object->mAttribute_mBitNumberIndexValue.reader_uint (SOURCE_FILE ("generic_metamodel.galgas", 270)).reader_string (SOURCE_FILE ("generic_metamodel.galgas", 270)), inCompiler COMMA_SOURCE_FILE ("generic_metamodel.galgas", 270)).add_operation (GALGAS_string ("]"), inCompiler COMMA_SOURCE_FILE ("generic_metamodel.galgas", 270))  COMMA_SOURCE_FILE ("generic_metamodel.galgas", 270)) ;
-}
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void defineCategoryMethod_bitNumberLabelValue_display (void) {
-  enterCategoryMethod_display (kTypeDescriptor_GALGAS_bitNumberLabelValue.mSlotID,
-                               categoryMethod_bitNumberLabelValue_display) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-C_PrologueEpilogue gMethod_bitNumberLabelValue_display (defineCategoryMethod_bitNumberLabelValue_display, NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
 //                                 Overriding category method '@immediatInteger eval'                                  *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
@@ -9905,18 +10157,21 @@ C_PrologueEpilogue gMethod_immediatSlice_eval (defineCategoryMethod_immediatSlic
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void categoryMethod_bitNumberLiteralValue_getBitNumber (const cPtr_bitNumberExpression * inObject,
+                                                               const GALGAS_registerTable /* constinArgument_inRegisterTable */,
+                                                               const GALGAS_constantMap /* constinArgument_inConstantMap */,
+                                                               GALGAS_stringset & /* ioArgument_ioUsedRegisters */,
                                                                const GALGAS_bitSliceTable /* constinArgument_inBitSliceTable */,
                                                                GALGAS_uint & outArgument_outBitNumber,
                                                                C_Compiler * inCompiler
                                                                COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_bitNumberLiteralValue * object = (const cPtr_bitNumberLiteralValue *) inObject ;
   macroValidSharedObject (object, cPtr_bitNumberLiteralValue) ;
-  const enumGalgasBool test_0 = GALGAS_bool (kIsStrictSup, object->mAttribute_mBitNumberLiteralValue.reader_uint (SOURCE_FILE ("intermediate_generic.galgas", 415)).objectCompare (GALGAS_uint ((uint32_t) 7U))).boolEnum () ;
+  const enumGalgasBool test_0 = GALGAS_bool (kIsStrictSup, object->mAttribute_mBitNumberLiteralValue.reader_uint (SOURCE_FILE ("intermediate_generic.galgas", 422)).objectCompare (GALGAS_uint ((uint32_t) 7U))).boolEnum () ;
   if (kBoolTrue == test_0) {
     GALGAS_location location_1 (object->mAttribute_mBitNumberLiteralValue.reader_location (HERE)) ; // Implicit use of 'location' reader
-    inCompiler->emitSemanticError (location_1, GALGAS_string ("The bit number is ").add_operation (object->mAttribute_mBitNumberLiteralValue.reader_uint (SOURCE_FILE ("intermediate_generic.galgas", 416)).reader_string (SOURCE_FILE ("intermediate_generic.galgas", 416)), inCompiler COMMA_SOURCE_FILE ("intermediate_generic.galgas", 416)).add_operation (GALGAS_string (" (should be <= 7)"), inCompiler COMMA_SOURCE_FILE ("intermediate_generic.galgas", 416))  COMMA_SOURCE_FILE ("intermediate_generic.galgas", 416)) ;
+    inCompiler->emitSemanticError (location_1, GALGAS_string ("The bit number is ").add_operation (object->mAttribute_mBitNumberLiteralValue.reader_uint (SOURCE_FILE ("intermediate_generic.galgas", 423)).reader_string (SOURCE_FILE ("intermediate_generic.galgas", 423)), inCompiler COMMA_SOURCE_FILE ("intermediate_generic.galgas", 423)).add_operation (GALGAS_string (" (should be <= 7)"), inCompiler COMMA_SOURCE_FILE ("intermediate_generic.galgas", 423))  COMMA_SOURCE_FILE ("intermediate_generic.galgas", 423)) ;
   }
-  outArgument_outBitNumber = object->mAttribute_mBitNumberLiteralValue.reader_uint (SOURCE_FILE ("intermediate_generic.galgas", 418)) ;
+  outArgument_outBitNumber = object->mAttribute_mBitNumberLiteralValue.reader_uint (SOURCE_FILE ("intermediate_generic.galgas", 425)) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -9936,6 +10191,9 @@ C_PrologueEpilogue gMethod_bitNumberLiteralValue_getBitNumber (defineCategoryMet
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void categoryMethod_bitNumberLabelValue_getBitNumber (const cPtr_bitNumberExpression * inObject,
+                                                             const GALGAS_registerTable /* constinArgument_inRegisterTable */,
+                                                             const GALGAS_constantMap /* constinArgument_inConstantMap */,
+                                                             GALGAS_stringset & /* ioArgument_ioUsedRegisters */,
                                                              const GALGAS_bitSliceTable constinArgument_inBitSliceTable,
                                                              GALGAS_uint & outArgument_outBitNumber,
                                                              C_Compiler * inCompiler
@@ -9944,13 +10202,13 @@ static void categoryMethod_bitNumberLabelValue_getBitNumber (const cPtr_bitNumbe
   macroValidSharedObject (object, cPtr_bitNumberLabelValue) ;
   GALGAS_uint var_sliceIndex ;
   GALGAS_uint var_sliceSize ;
-  constinArgument_inBitSliceTable.method_searchKey (object->mAttribute_mBitNumberLabelValue, var_sliceIndex, var_sliceSize, inCompiler COMMA_SOURCE_FILE ("intermediate_generic.galgas", 428)) ;
-  const enumGalgasBool test_0 = GALGAS_bool (kIsStrictSup, object->mAttribute_mBitNumberIndexValue.reader_uint (SOURCE_FILE ("intermediate_generic.galgas", 429)).objectCompare (var_sliceSize)).boolEnum () ;
+  constinArgument_inBitSliceTable.method_searchKey (object->mAttribute_mBitNumberLabelValue, var_sliceIndex, var_sliceSize, inCompiler COMMA_SOURCE_FILE ("intermediate_generic.galgas", 437)) ;
+  const enumGalgasBool test_0 = GALGAS_bool (kIsStrictSup, object->mAttribute_mBitNumberIndexValue.reader_uint (SOURCE_FILE ("intermediate_generic.galgas", 438)).objectCompare (var_sliceSize)).boolEnum () ;
   if (kBoolTrue == test_0) {
     GALGAS_location location_1 (object->mAttribute_mBitNumberIndexValue.reader_location (HERE)) ; // Implicit use of 'location' reader
-    inCompiler->emitSemanticError (location_1, GALGAS_string ("The ").add_operation (object->mAttribute_mBitNumberIndexValue.reader_uint (SOURCE_FILE ("intermediate_generic.galgas", 430)).reader_string (SOURCE_FILE ("intermediate_generic.galgas", 430)), inCompiler COMMA_SOURCE_FILE ("intermediate_generic.galgas", 430)).add_operation (GALGAS_string (" index is too large (should be < "), inCompiler COMMA_SOURCE_FILE ("intermediate_generic.galgas", 430)).add_operation (var_sliceSize.reader_string (SOURCE_FILE ("intermediate_generic.galgas", 431)), inCompiler COMMA_SOURCE_FILE ("intermediate_generic.galgas", 431)).add_operation (GALGAS_string (")"), inCompiler COMMA_SOURCE_FILE ("intermediate_generic.galgas", 431))  COMMA_SOURCE_FILE ("intermediate_generic.galgas", 430)) ;
+    inCompiler->emitSemanticError (location_1, GALGAS_string ("The ").add_operation (object->mAttribute_mBitNumberIndexValue.reader_uint (SOURCE_FILE ("intermediate_generic.galgas", 439)).reader_string (SOURCE_FILE ("intermediate_generic.galgas", 439)), inCompiler COMMA_SOURCE_FILE ("intermediate_generic.galgas", 439)).add_operation (GALGAS_string (" index is too large (should be < "), inCompiler COMMA_SOURCE_FILE ("intermediate_generic.galgas", 439)).add_operation (var_sliceSize.reader_string (SOURCE_FILE ("intermediate_generic.galgas", 440)), inCompiler COMMA_SOURCE_FILE ("intermediate_generic.galgas", 440)).add_operation (GALGAS_string (")"), inCompiler COMMA_SOURCE_FILE ("intermediate_generic.galgas", 440))  COMMA_SOURCE_FILE ("intermediate_generic.galgas", 439)) ;
   }
-  outArgument_outBitNumber = var_sliceIndex.add_operation (object->mAttribute_mBitNumberIndexValue.reader_uint (SOURCE_FILE ("intermediate_generic.galgas", 433)), inCompiler COMMA_SOURCE_FILE ("intermediate_generic.galgas", 433)) ;
+  outArgument_outBitNumber = var_sliceIndex.add_operation (object->mAttribute_mBitNumberIndexValue.reader_uint (SOURCE_FILE ("intermediate_generic.galgas", 442)), inCompiler COMMA_SOURCE_FILE ("intermediate_generic.galgas", 442)) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -9962,6 +10220,49 @@ static void defineCategoryMethod_bitNumberLabelValue_getBitNumber (void) {
 //---------------------------------------------------------------------------------------------------------------------*
 
 C_PrologueEpilogue gMethod_bitNumberLabelValue_getBitNumber (defineCategoryMethod_bitNumberLabelValue_getBitNumber, NULL) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                        Overriding category method '@bitNumberLiteralExpression getBitNumber'                        *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+static void categoryMethod_bitNumberLiteralExpression_getBitNumber (const cPtr_bitNumberExpression * inObject,
+                                                                    const GALGAS_registerTable constinArgument_inRegisterTable,
+                                                                    const GALGAS_constantMap constinArgument_inConstantMap,
+                                                                    GALGAS_stringset & ioArgument_ioUsedRegisters,
+                                                                    const GALGAS_bitSliceTable /* constinArgument_inBitSliceTable */,
+                                                                    GALGAS_uint & outArgument_outBitNumber,
+                                                                    C_Compiler * inCompiler
+                                                                    COMMA_UNUSED_LOCATION_ARGS) {
+  const cPtr_bitNumberLiteralExpression * object = (const cPtr_bitNumberLiteralExpression *) inObject ;
+  macroValidSharedObject (object, cPtr_bitNumberLiteralExpression) ;
+  GALGAS_sint_36__34_ var_result ;
+  callCategoryMethod_eval ((const cPtr_immediatExpression *) object->mAttribute_mBitNumberLiteralExpression.ptr (), constinArgument_inRegisterTable, constinArgument_inConstantMap, var_result, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("intermediate_generic.galgas", 454)) ;
+  const enumGalgasBool test_0 = GALGAS_bool (kIsStrictInf, var_result.objectCompare (GALGAS_sint_36__34_ ((int64_t) 0LL))).boolEnum () ;
+  if (kBoolTrue == test_0) {
+    inCompiler->emitSemanticError (object->mAttribute_mEndOfExpression, GALGAS_string ("bit index is ").add_operation (var_result.reader_string (SOURCE_FILE ("intermediate_generic.galgas", 456)), inCompiler COMMA_SOURCE_FILE ("intermediate_generic.galgas", 456)).add_operation (GALGAS_string (", but should be >= 0"), inCompiler COMMA_SOURCE_FILE ("intermediate_generic.galgas", 456))  COMMA_SOURCE_FILE ("intermediate_generic.galgas", 456)) ;
+    outArgument_outBitNumber.drop () ; // Release error dropped variable
+  }else if (kBoolFalse == test_0) {
+    const enumGalgasBool test_1 = GALGAS_bool (kIsStrictSup, var_result.objectCompare (GALGAS_sint_36__34_ ((int64_t) 7LL))).boolEnum () ;
+    if (kBoolTrue == test_1) {
+      inCompiler->emitSemanticError (object->mAttribute_mEndOfExpression, GALGAS_string ("bit index is ").add_operation (var_result.reader_string (SOURCE_FILE ("intermediate_generic.galgas", 458)), inCompiler COMMA_SOURCE_FILE ("intermediate_generic.galgas", 458)).add_operation (GALGAS_string (", but should be <= 7"), inCompiler COMMA_SOURCE_FILE ("intermediate_generic.galgas", 458))  COMMA_SOURCE_FILE ("intermediate_generic.galgas", 458)) ;
+      outArgument_outBitNumber.drop () ; // Release error dropped variable
+    }else if (kBoolFalse == test_1) {
+      outArgument_outBitNumber = var_result.reader_uint (inCompiler COMMA_SOURCE_FILE ("intermediate_generic.galgas", 460)) ;
+    }
+  }
+}
+//---------------------------------------------------------------------------------------------------------------------*
+
+static void defineCategoryMethod_bitNumberLiteralExpression_getBitNumber (void) {
+  enterCategoryMethod_getBitNumber (kTypeDescriptor_GALGAS_bitNumberLiteralExpression.mSlotID,
+                                    categoryMethod_bitNumberLiteralExpression_getBitNumber) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+C_PrologueEpilogue gMethod_bitNumberLiteralExpression_getBitNumber (defineCategoryMethod_bitNumberLiteralExpression_getBitNumber, NULL) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -10968,8 +11269,8 @@ static void categoryMethod_baseline_5F_instruction_5F_FB_build_5F_baseline_5F_in
   GALGAS_bitSliceTable var_bitSliceTable ;
   callCategoryMethod_resolveBaselineAccess ((const cPtr_registerExpression *) object->mAttribute_mRegisterExpression.ptr (), constinArgument_inRegisterTable, constinArgument_inConstantMap, var_intermediateRegisterDescription, var_bitSliceTable, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 376)) ;
   GALGAS_uint var_bitNumber ;
-  callCategoryMethod_getBitNumber ((const cPtr_bitNumberExpression *) object->mAttribute_mBitNumber.ptr (), var_bitSliceTable, var_bitNumber, inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 383)) ;
-  ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_instruction_5F_FB::constructor_new (object->mAttribute_mInstructionLocation, object->mAttribute_mBitOrientedOp, var_intermediateRegisterDescription, var_bitNumber  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 387))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 387)) ;
+  callCategoryMethod_getBitNumber ((const cPtr_bitNumberExpression *) object->mAttribute_mBitNumber.ptr (), constinArgument_inRegisterTable, constinArgument_inConstantMap, ioArgument_ioUsedRegisters, var_bitSliceTable, var_bitNumber, inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 383)) ;
+  ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_instruction_5F_FB::constructor_new (object->mAttribute_mInstructionLocation, object->mAttribute_mBitOrientedOp, var_intermediateRegisterDescription, var_bitNumber  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 390))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 390)) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -11006,23 +11307,23 @@ static void categoryMethod_baseline_5F_instruction_5F_GOTO_build_5F_baseline_5F_
   macroValidSharedObject (object, cPtr_baseline_5F_instruction_5F_GOTO) ;
   const enumGalgasBool test_0 = constinArgument_inLastInstructionShouldReturn.boolEnum () ;
   if (kBoolTrue == test_0) {
-    inCompiler->emitSemanticError (object->mAttribute_mInstructionLocation, GALGAS_string ("this instruction is the last routine instruction and should be MOVLW")  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 409)) ;
+    inCompiler->emitSemanticError (object->mAttribute_mInstructionLocation, GALGAS_string ("this instruction is the last routine instruction and should be MOVLW")  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 413)) ;
   }
   GALGAS_bool var_isNoReturn ;
   GALGAS_luint var_targetPage ;
-  constinArgument_inRoutineMap.method_searchKey (object->mAttribute_mTargetLabel, var_isNoReturn, var_targetPage, inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 411)) ;
-  const enumGalgasBool test_1 = var_isNoReturn.operator_not (SOURCE_FILE ("baseline_semantic_analysis.galgas", 412)).boolEnum () ;
+  constinArgument_inRoutineMap.method_searchKey (object->mAttribute_mTargetLabel, var_isNoReturn, var_targetPage, inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 415)) ;
+  const enumGalgasBool test_1 = var_isNoReturn.operator_not (SOURCE_FILE ("baseline_semantic_analysis.galgas", 416)).boolEnum () ;
   if (kBoolTrue == test_1) {
     GALGAS_location location_2 (object->mAttribute_mTargetLabel.reader_location (HERE)) ; // Implicit use of 'location' reader
-    inCompiler->emitSemanticError (location_2, GALGAS_string ("a regular routine should be called with a CALL or a JSR instruction")  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 413)) ;
+    inCompiler->emitSemanticError (location_2, GALGAS_string ("a regular routine should be called with a CALL or a JSR instruction")  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 417)) ;
   }
   const enumGalgasBool test_3 = GALGAS_bool (kIsNotEqual, constinArgument_inCurrentPage.objectCompare (var_targetPage.mAttribute_uint)).boolEnum () ;
   if (kBoolTrue == test_3) {
     GALGAS_location location_4 (object->mAttribute_mTargetLabel.reader_location (HERE)) ; // Implicit use of 'location' reader
-    inCompiler->emitSemanticError (location_4, GALGAS_string ("for an inter-page noreturn routine call, use a JUMP instruction")  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 416)) ;
+    inCompiler->emitSemanticError (location_4, GALGAS_string ("for an inter-page noreturn routine call, use a JUMP instruction")  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 420)) ;
   }
   ioArgument_ioContinuesInSequence = GALGAS_bool (false) ;
-  ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_GOTO::constructor_new (object->mAttribute_mInstructionLocation, object->mAttribute_mTargetLabel  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 420))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 420)) ;
+  ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_GOTO::constructor_new (object->mAttribute_mInstructionLocation, object->mAttribute_mTargetLabel  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 424))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 424)) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -11059,18 +11360,18 @@ static void categoryMethod_baseline_5F_instruction_5F_JUMP_build_5F_baseline_5F_
   macroValidSharedObject (object, cPtr_baseline_5F_instruction_5F_JUMP) ;
   const enumGalgasBool test_0 = constinArgument_inLastInstructionShouldReturn.boolEnum () ;
   if (kBoolTrue == test_0) {
-    inCompiler->emitSemanticError (object->mAttribute_mInstructionLocation, GALGAS_string ("this instruction is the last routine instruction and should be MOVLW")  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 440)) ;
+    inCompiler->emitSemanticError (object->mAttribute_mInstructionLocation, GALGAS_string ("this instruction is the last routine instruction and should be MOVLW")  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 444)) ;
   }
   GALGAS_bool var_isNoReturn ;
   GALGAS_luint var_targetPage ;
-  constinArgument_inRoutineMap.method_searchKey (object->mAttribute_mTargetLabel, var_isNoReturn, var_targetPage, inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 442)) ;
-  const enumGalgasBool test_1 = var_isNoReturn.operator_not (SOURCE_FILE ("baseline_semantic_analysis.galgas", 443)).boolEnum () ;
+  constinArgument_inRoutineMap.method_searchKey (object->mAttribute_mTargetLabel, var_isNoReturn, var_targetPage, inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 446)) ;
+  const enumGalgasBool test_1 = var_isNoReturn.operator_not (SOURCE_FILE ("baseline_semantic_analysis.galgas", 447)).boolEnum () ;
   if (kBoolTrue == test_1) {
     GALGAS_location location_2 (object->mAttribute_mTargetLabel.reader_location (HERE)) ; // Implicit use of 'location' reader
-    inCompiler->emitSemanticError (location_2, GALGAS_string ("a regular routine should be called with a CALL or a JSR instruction")  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 444)) ;
+    inCompiler->emitSemanticError (location_2, GALGAS_string ("a regular routine should be called with a CALL or a JSR instruction")  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 448)) ;
   }
   ioArgument_ioContinuesInSequence = GALGAS_bool (false) ;
-  ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_JUMP::constructor_new (object->mAttribute_mInstructionLocation, object->mAttribute_mTargetLabel, constinArgument_inCurrentPage, var_targetPage.mAttribute_uint  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 448))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 448)) ;
+  ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_JUMP::constructor_new (object->mAttribute_mInstructionLocation, object->mAttribute_mTargetLabel, constinArgument_inCurrentPage, var_targetPage.mAttribute_uint  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 452))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 452)) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -11107,12 +11408,12 @@ static void categoryMethod_baseline_5F_instruction_5F_IF_5F_BitTest_build_5F_bas
   macroValidSharedObject (object, cPtr_baseline_5F_instruction_5F_IF_5F_BitTest) ;
   GALGAS_baseline_5F_intermediate_5F_registerExpression var_intermediateRegisterDescription ;
   GALGAS_bitSliceTable var_bitSliceTable ;
-  callCategoryMethod_resolveBaselineAccess ((const cPtr_registerExpression *) object->mAttribute_mRegisterExpression.ptr (), constinArgument_inRegisterTable, constinArgument_inConstantMap, var_intermediateRegisterDescription, var_bitSliceTable, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 469)) ;
+  callCategoryMethod_resolveBaselineAccess ((const cPtr_registerExpression *) object->mAttribute_mRegisterExpression.ptr (), constinArgument_inRegisterTable, constinArgument_inConstantMap, var_intermediateRegisterDescription, var_bitSliceTable, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 473)) ;
   GALGAS_uint var_bitNumber ;
-  callCategoryMethod_getBitNumber ((const cPtr_bitNumberExpression *) object->mAttribute_mBitNumber.ptr (), var_bitSliceTable, var_bitNumber, inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 477)) ;
-  ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip::constructor_new (object->mAttribute_mInstructionLocation, object->mAttribute_mSkipIfSet, var_intermediateRegisterDescription, var_bitNumber  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 481))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 481)) ;
+  callCategoryMethod_getBitNumber ((const cPtr_bitNumberExpression *) object->mAttribute_mBitNumber.ptr (), constinArgument_inRegisterTable, constinArgument_inConstantMap, ioArgument_ioUsedRegisters, var_bitSliceTable, var_bitNumber, inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 481)) ;
+  ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip::constructor_new (object->mAttribute_mInstructionLocation, object->mAttribute_mSkipIfSet, var_intermediateRegisterDescription, var_bitNumber  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 488))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 488)) ;
   GALGAS_bool var_unusedContinuesInSequence = GALGAS_bool (true) ;
-  callCategoryMethod_build_5F_baseline_5F_intermediate_5F_instructionList ((const cPtr_baseline_5F_instruction *) object->mAttribute_mInstruction.ptr (), constinArgument_inCurrentPage, constinArgument_inRoutineMap, constinArgument_inRegisterTable, constinArgument_inConstantMap, ioArgument_ioLocalLabelIndex, ioArgument_ioGeneratedInstructionList, ioArgument_ioListFileContents, var_unusedContinuesInSequence, constinArgument_inRoutineKind, constinArgument_inLastInstructionShouldReturn, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 488)) ;
+  callCategoryMethod_build_5F_baseline_5F_intermediate_5F_instructionList ((const cPtr_baseline_5F_instruction *) object->mAttribute_mInstruction.ptr (), constinArgument_inCurrentPage, constinArgument_inRoutineMap, constinArgument_inRegisterTable, constinArgument_inConstantMap, ioArgument_ioLocalLabelIndex, ioArgument_ioGeneratedInstructionList, ioArgument_ioListFileContents, var_unusedContinuesInSequence, constinArgument_inRoutineKind, constinArgument_inLastInstructionShouldReturn, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 495)) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -11150,16 +11451,16 @@ static void categoryMethod_baseline_5F_instruction_5F_IF_5F_IncDec_build_5F_base
   GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code var_baseCode ;
   const enumGalgasBool test_0 = object->mAttribute_mIncrement.boolEnum () ;
   if (kBoolTrue == test_0) {
-    var_baseCode = GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::constructor_INCFSZ (SOURCE_FILE ("baseline_semantic_analysis.galgas", 520)) ;
+    var_baseCode = GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::constructor_INCFSZ (SOURCE_FILE ("baseline_semantic_analysis.galgas", 527)) ;
   }else if (kBoolFalse == test_0) {
-    var_baseCode = GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::constructor_DECFSZ (SOURCE_FILE ("baseline_semantic_analysis.galgas", 522)) ;
+    var_baseCode = GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::constructor_DECFSZ (SOURCE_FILE ("baseline_semantic_analysis.galgas", 529)) ;
   }
   GALGAS_baseline_5F_intermediate_5F_registerExpression var_intermediateRegisterDescription ;
   GALGAS_bitSliceTable var_bitSliceTable ;
-  callCategoryMethod_resolveBaselineAccess ((const cPtr_registerExpression *) object->mAttribute_mRegisterExpression.ptr (), constinArgument_inRegisterTable, constinArgument_inConstantMap, var_intermediateRegisterDescription, var_bitSliceTable, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 525)) ;
-  ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_instruction_5F_FD::constructor_new (object->mAttribute_mInstructionLocation, var_baseCode, var_intermediateRegisterDescription, object->mAttribute_m_5F_W_5F_isDestination  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 533))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 533)) ;
+  callCategoryMethod_resolveBaselineAccess ((const cPtr_registerExpression *) object->mAttribute_mRegisterExpression.ptr (), constinArgument_inRegisterTable, constinArgument_inConstantMap, var_intermediateRegisterDescription, var_bitSliceTable, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 532)) ;
+  ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_instruction_5F_FD::constructor_new (object->mAttribute_mInstructionLocation, var_baseCode, var_intermediateRegisterDescription, object->mAttribute_m_5F_W_5F_isDestination  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 540))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 540)) ;
   GALGAS_bool var_unusedContinuesInSequence = GALGAS_bool (true) ;
-  callCategoryMethod_build_5F_baseline_5F_intermediate_5F_instructionList ((const cPtr_baseline_5F_instruction *) object->mAttribute_mInstruction.ptr (), constinArgument_inCurrentPage, constinArgument_inRoutineMap, constinArgument_inRegisterTable, constinArgument_inConstantMap, ioArgument_ioLocalLabelIndex, ioArgument_ioGeneratedInstructionList, ioArgument_ioListFileContents, var_unusedContinuesInSequence, constinArgument_inRoutineKind, constinArgument_inLastInstructionShouldReturn, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 540)) ;
+  callCategoryMethod_build_5F_baseline_5F_intermediate_5F_instructionList ((const cPtr_baseline_5F_instruction *) object->mAttribute_mInstruction.ptr (), constinArgument_inCurrentPage, constinArgument_inRoutineMap, constinArgument_inRegisterTable, constinArgument_inConstantMap, ioArgument_ioLocalLabelIndex, ioArgument_ioGeneratedInstructionList, ioArgument_ioListFileContents, var_unusedContinuesInSequence, constinArgument_inRoutineKind, constinArgument_inLastInstructionShouldReturn, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 547)) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -11199,7 +11500,7 @@ static void categoryMethod_baseline_5F_instruction_5F_FOREVER_build_5F_baseline_
     break ;
   case GALGAS_routineKind::kEnum_regularRoutine:
     {
-      inCompiler->emitSemanticError (object->mAttribute_mInstructionLocation, GALGAS_string ("a regular routine does not accept the \"forever\" instruction")  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 571)) ;
+      inCompiler->emitSemanticError (object->mAttribute_mInstructionLocation, GALGAS_string ("a regular routine does not accept the \"forever\" instruction")  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 578)) ;
     }
     break ;
   case GALGAS_routineKind::kEnum_noReturnRoutine:
@@ -11208,17 +11509,17 @@ static void categoryMethod_baseline_5F_instruction_5F_FOREVER_build_5F_baseline_
     break ;
   case GALGAS_routineKind::kEnum_interruptRoutine:
     {
-      inCompiler->emitSemanticError (object->mAttribute_mInstructionLocation, GALGAS_string ("an interrupt routine does not accept the \"forever\" instruction")  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 574)) ;
+      inCompiler->emitSemanticError (object->mAttribute_mInstructionLocation, GALGAS_string ("an interrupt routine does not accept the \"forever\" instruction")  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 581)) ;
     }
     break ;
   }
-  GALGAS_string var_label_30_ = GALGAS_string (".L").add_operation (ioArgument_ioLocalLabelIndex.reader_string (SOURCE_FILE ("baseline_semantic_analysis.galgas", 577)), inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 577)) ;
-  ioArgument_ioLocalLabelIndex.increment_operation (inCompiler  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 578)) ;
-  ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_pseudo_5F_LABEL::constructor_new (GALGAS_lstring::constructor_new (var_label_30_, object->mAttribute_mInstructionLocation  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 579))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 579))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 579)) ;
+  GALGAS_string var_label_30_ = GALGAS_string (".L").add_operation (ioArgument_ioLocalLabelIndex.reader_string (SOURCE_FILE ("baseline_semantic_analysis.galgas", 584)), inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 584)) ;
+  ioArgument_ioLocalLabelIndex.increment_operation (inCompiler  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 585)) ;
+  ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_pseudo_5F_LABEL::constructor_new (GALGAS_lstring::constructor_new (var_label_30_, object->mAttribute_mInstructionLocation  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 586))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 586))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 586)) ;
   {
-  routine_handleBaselineInstructionList (constinArgument_inCurrentPage, object->mAttribute_mInstructionList, constinArgument_inRoutineMap, constinArgument_inRegisterTable, constinArgument_inConstantMap, ioArgument_ioLocalLabelIndex, ioArgument_ioGeneratedInstructionList, ioArgument_ioListFileContents, ioArgument_ioContinuesInSequence, constinArgument_inRoutineKind, GALGAS_bool (false), ioArgument_ioUsedRegisters, inCompiler  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 580)) ;
+  routine_handleBaselineInstructionList (constinArgument_inCurrentPage, object->mAttribute_mInstructionList, constinArgument_inRoutineMap, constinArgument_inRegisterTable, constinArgument_inConstantMap, ioArgument_ioLocalLabelIndex, ioArgument_ioGeneratedInstructionList, ioArgument_ioListFileContents, ioArgument_ioContinuesInSequence, constinArgument_inRoutineKind, GALGAS_bool (false), ioArgument_ioUsedRegisters, inCompiler  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 587)) ;
   }
-  ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_GOTO::constructor_new (object->mAttribute_mInstructionLocation, GALGAS_lstring::constructor_new (var_label_30_, object->mAttribute_mInstructionLocation  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 597))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 595))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 595)) ;
+  ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_GOTO::constructor_new (object->mAttribute_mInstructionLocation, GALGAS_lstring::constructor_new (var_label_30_, object->mAttribute_mInstructionLocation  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 604))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 602))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 602)) ;
   ioArgument_ioContinuesInSequence = GALGAS_bool (false) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
@@ -11255,28 +11556,28 @@ static void categoryMethod_baseline_5F_instruction_5F_STATIC_5F_REPEAT_build_5F_
   const cPtr_baseline_5F_instruction_5F_STATIC_5F_REPEAT * object = (const cPtr_baseline_5F_instruction_5F_STATIC_5F_REPEAT *) inObject ;
   macroValidSharedObject (object, cPtr_baseline_5F_instruction_5F_STATIC_5F_REPEAT) ;
   GALGAS_sint_36__34_ var_repeatCount ;
-  callCategoryMethod_eval ((const cPtr_immediatExpression *) object->mAttribute_mRepeatExpression.ptr (), constinArgument_inRegisterTable, constinArgument_inConstantMap, var_repeatCount, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 616)) ;
-  const enumGalgasBool test_0 = GALGAS_bool (kIsStrictSup, var_repeatCount.objectCompare (GALGAS_sint_36__34_ ((int64_t) 65535LL))).operator_or (GALGAS_bool (kIsInfOrEqual, var_repeatCount.objectCompare (GALGAS_sint_36__34_ ((int64_t) 0LL))) COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 618)).boolEnum () ;
+  callCategoryMethod_eval ((const cPtr_immediatExpression *) object->mAttribute_mRepeatExpression.ptr (), constinArgument_inRegisterTable, constinArgument_inConstantMap, var_repeatCount, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 623)) ;
+  const enumGalgasBool test_0 = GALGAS_bool (kIsStrictSup, var_repeatCount.objectCompare (GALGAS_sint_36__34_ ((int64_t) 65535LL))).operator_or (GALGAS_bool (kIsInfOrEqual, var_repeatCount.objectCompare (GALGAS_sint_36__34_ ((int64_t) 0LL))) COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 625)).boolEnum () ;
   if (kBoolTrue == test_0) {
-    inCompiler->emitSemanticError (object->mAttribute_mInstructionLocation, GALGAS_string ("immediate value is evaluated as ").add_operation (var_repeatCount.reader_string (SOURCE_FILE ("baseline_semantic_analysis.galgas", 619)), inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 619)).add_operation (GALGAS_string (" (should be > 0 and < 0xFFFF)"), inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 619))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 619)) ;
+    inCompiler->emitSemanticError (object->mAttribute_mInstructionLocation, GALGAS_string ("immediate value is evaluated as ").add_operation (var_repeatCount.reader_string (SOURCE_FILE ("baseline_semantic_analysis.galgas", 626)), inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 626)).add_operation (GALGAS_string (" (should be > 0 and < 0xFFFF)"), inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 626))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 626)) ;
   }
   {
-  routine_handleBaselineInstructionList (constinArgument_inCurrentPage, object->mAttribute_mInstructionList, constinArgument_inRoutineMap, constinArgument_inRegisterTable, constinArgument_inConstantMap, ioArgument_ioLocalLabelIndex, ioArgument_ioGeneratedInstructionList, ioArgument_ioListFileContents, ioArgument_ioContinuesInSequence, constinArgument_inRoutineKind, GALGAS_bool (false), ioArgument_ioUsedRegisters, inCompiler  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 622)) ;
+  routine_handleBaselineInstructionList (constinArgument_inCurrentPage, object->mAttribute_mInstructionList, constinArgument_inRoutineMap, constinArgument_inRegisterTable, constinArgument_inConstantMap, ioArgument_ioLocalLabelIndex, ioArgument_ioGeneratedInstructionList, ioArgument_ioListFileContents, ioArgument_ioContinuesInSequence, constinArgument_inRoutineKind, GALGAS_bool (false), ioArgument_ioUsedRegisters, inCompiler  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 629)) ;
   }
-  const enumGalgasBool test_1 = ioArgument_ioContinuesInSequence.operator_not (SOURCE_FILE ("baseline_semantic_analysis.galgas", 636)).boolEnum () ;
+  const enumGalgasBool test_1 = ioArgument_ioContinuesInSequence.operator_not (SOURCE_FILE ("baseline_semantic_analysis.galgas", 643)).boolEnum () ;
   if (kBoolTrue == test_1) {
-    inCompiler->emitSemanticError (object->mAttribute_mEndOfInstruction, GALGAS_string ("enclosed instruction list contains an endless loop")  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 637)) ;
+    inCompiler->emitSemanticError (object->mAttribute_mEndOfInstruction, GALGAS_string ("enclosed instruction list contains an endless loop")  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 644)) ;
   }
-  cEnumerator_range enumerator_23274 (GALGAS_range::constructor_new (GALGAS_uint ((uint32_t) 0U), var_repeatCount.substract_operation (GALGAS_sint_36__34_ ((int64_t) 1LL), inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 640)).reader_uint (inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 640))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 640)), kEnumeration_up) ;
-  bool bool_2 = GALGAS_bool (kIsEqual, GALGAS_uint::constructor_errorCount (SOURCE_FILE ("baseline_semantic_analysis.galgas", 640)).objectCompare (GALGAS_uint ((uint32_t) 0U))).isValidAndTrue () ;
-  if (enumerator_23274.hasCurrentObject () && bool_2) {
-    while (enumerator_23274.hasCurrentObject () && bool_2) {
+  cEnumerator_range enumerator_23401 (GALGAS_range::constructor_new (GALGAS_uint ((uint32_t) 0U), var_repeatCount.substract_operation (GALGAS_sint_36__34_ ((int64_t) 1LL), inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 647)).reader_uint (inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 647))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 647)), kEnumeration_up) ;
+  bool bool_2 = GALGAS_bool (kIsEqual, GALGAS_uint::constructor_errorCount (SOURCE_FILE ("baseline_semantic_analysis.galgas", 647)).objectCompare (GALGAS_uint ((uint32_t) 0U))).isValidAndTrue () ;
+  if (enumerator_23401.hasCurrentObject () && bool_2) {
+    while (enumerator_23401.hasCurrentObject () && bool_2) {
       {
-      routine_handleBaselineInstructionList (constinArgument_inCurrentPage, object->mAttribute_mInstructionList, constinArgument_inRoutineMap, constinArgument_inRegisterTable, constinArgument_inConstantMap, ioArgument_ioLocalLabelIndex, ioArgument_ioGeneratedInstructionList, ioArgument_ioListFileContents, ioArgument_ioContinuesInSequence, constinArgument_inRoutineKind, GALGAS_bool (false), ioArgument_ioUsedRegisters, inCompiler  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 641)) ;
+      routine_handleBaselineInstructionList (constinArgument_inCurrentPage, object->mAttribute_mInstructionList, constinArgument_inRoutineMap, constinArgument_inRegisterTable, constinArgument_inConstantMap, ioArgument_ioLocalLabelIndex, ioArgument_ioGeneratedInstructionList, ioArgument_ioListFileContents, ioArgument_ioContinuesInSequence, constinArgument_inRoutineKind, GALGAS_bool (false), ioArgument_ioUsedRegisters, inCompiler  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 648)) ;
       }
-      enumerator_23274.gotoNextObject () ;
-      if (enumerator_23274.hasCurrentObject ()) {
-        bool_2 = GALGAS_bool (kIsEqual, GALGAS_uint::constructor_errorCount (SOURCE_FILE ("baseline_semantic_analysis.galgas", 640)).objectCompare (GALGAS_uint ((uint32_t) 0U))).isValidAndTrue () ;
+      enumerator_23401.gotoNextObject () ;
+      if (enumerator_23401.hasCurrentObject ()) {
+        bool_2 = GALGAS_bool (kIsEqual, GALGAS_uint::constructor_errorCount (SOURCE_FILE ("baseline_semantic_analysis.galgas", 647)).objectCompare (GALGAS_uint ((uint32_t) 0U))).isValidAndTrue () ;
       }
     }
   }
@@ -11314,28 +11615,28 @@ static void categoryMethod_baseline_5F_instruction_5F_do_5F_while_build_5F_basel
                                                                                                                         COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_baseline_5F_instruction_5F_do_5F_while * object = (const cPtr_baseline_5F_instruction_5F_do_5F_while *) inObject ;
   macroValidSharedObject (object, cPtr_baseline_5F_instruction_5F_do_5F_while) ;
-  GALGAS_string var_labelInstructionBegin = GALGAS_string (".L").add_operation (ioArgument_ioLocalLabelIndex.reader_string (SOURCE_FILE ("baseline_semantic_analysis.galgas", 673)), inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 673)) ;
-  ioArgument_ioLocalLabelIndex.increment_operation (inCompiler  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 673)) ;
-  ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_pseudo_5F_LABEL::constructor_new (GALGAS_lstring::constructor_new (var_labelInstructionBegin, object->mAttribute_mInstructionLocation  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 675))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 675))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 675)) ;
+  GALGAS_string var_labelInstructionBegin = GALGAS_string (".L").add_operation (ioArgument_ioLocalLabelIndex.reader_string (SOURCE_FILE ("baseline_semantic_analysis.galgas", 680)), inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 680)) ;
+  ioArgument_ioLocalLabelIndex.increment_operation (inCompiler  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 680)) ;
+  ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_pseudo_5F_LABEL::constructor_new (GALGAS_lstring::constructor_new (var_labelInstructionBegin, object->mAttribute_mInstructionLocation  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 682))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 682))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 682)) ;
   {
-  routine_handleBaselineInstructionList (constinArgument_inCurrentPage, object->mAttribute_mRepeatedInstructionList, constinArgument_inRoutineMap, constinArgument_inRegisterTable, constinArgument_inConstantMap, ioArgument_ioLocalLabelIndex, ioArgument_ioGeneratedInstructionList, ioArgument_ioListFileContents, ioArgument_ioContinuesInSequence, constinArgument_inRoutineKind, constinArgument_inLastInstructionShouldReturn, ioArgument_ioUsedRegisters, inCompiler  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 677)) ;
+  routine_handleBaselineInstructionList (constinArgument_inCurrentPage, object->mAttribute_mRepeatedInstructionList, constinArgument_inRoutineMap, constinArgument_inRegisterTable, constinArgument_inConstantMap, ioArgument_ioLocalLabelIndex, ioArgument_ioGeneratedInstructionList, ioArgument_ioListFileContents, ioArgument_ioContinuesInSequence, constinArgument_inRoutineKind, constinArgument_inLastInstructionShouldReturn, ioArgument_ioUsedRegisters, inCompiler  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 684)) ;
   }
-  cEnumerator_baseline_5F_partList enumerator_24943 (object->mAttribute_mWhilePartList, kEnumeration_up) ;
-  while (enumerator_24943.hasCurrentObject ()) {
-    const enumGalgasBool test_0 = GALGAS_bool (kIsEqual, enumerator_24943.current_mInstructionList (HERE).reader_length (SOURCE_FILE ("baseline_semantic_analysis.galgas", 693)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
+  cEnumerator_baseline_5F_partList enumerator_25070 (object->mAttribute_mWhilePartList, kEnumeration_up) ;
+  while (enumerator_25070.hasCurrentObject ()) {
+    const enumGalgasBool test_0 = GALGAS_bool (kIsEqual, enumerator_25070.current_mInstructionList (HERE).reader_length (SOURCE_FILE ("baseline_semantic_analysis.galgas", 700)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
     if (kBoolTrue == test_0) {
-      callCategoryMethod_build_5F_intermediate_5F_condition_5F_instructions ((const cPtr_baseline_5F_conditionExpression *) enumerator_24943.current_mCondition (HERE).ptr (), constinArgument_inCurrentPage, constinArgument_inRegisterTable, constinArgument_inConstantMap, ioArgument_ioLocalLabelIndex, GALGAS_bool (false), object->mAttribute_mInstructionLocation, var_labelInstructionBegin, ioArgument_ioGeneratedInstructionList, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 694)) ;
+      callCategoryMethod_build_5F_intermediate_5F_condition_5F_instructions ((const cPtr_baseline_5F_conditionExpression *) enumerator_25070.current_mCondition (HERE).ptr (), constinArgument_inCurrentPage, constinArgument_inRegisterTable, constinArgument_inConstantMap, ioArgument_ioLocalLabelIndex, GALGAS_bool (false), object->mAttribute_mInstructionLocation, var_labelInstructionBegin, ioArgument_ioGeneratedInstructionList, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 701)) ;
     }else if (kBoolFalse == test_0) {
-      GALGAS_string var_nextBranchLabel = GALGAS_string (".L").add_operation (ioArgument_ioLocalLabelIndex.reader_string (SOURCE_FILE ("baseline_semantic_analysis.galgas", 706)), inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 706)) ;
-      ioArgument_ioLocalLabelIndex.increment_operation (inCompiler  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 706)) ;
-      callCategoryMethod_build_5F_intermediate_5F_condition_5F_instructions ((const cPtr_baseline_5F_conditionExpression *) enumerator_24943.current_mCondition (HERE).ptr (), constinArgument_inCurrentPage, constinArgument_inRegisterTable, constinArgument_inConstantMap, ioArgument_ioLocalLabelIndex, GALGAS_bool (true), object->mAttribute_mInstructionLocation, var_nextBranchLabel, ioArgument_ioGeneratedInstructionList, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 707)) ;
+      GALGAS_string var_nextBranchLabel = GALGAS_string (".L").add_operation (ioArgument_ioLocalLabelIndex.reader_string (SOURCE_FILE ("baseline_semantic_analysis.galgas", 713)), inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 713)) ;
+      ioArgument_ioLocalLabelIndex.increment_operation (inCompiler  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 713)) ;
+      callCategoryMethod_build_5F_intermediate_5F_condition_5F_instructions ((const cPtr_baseline_5F_conditionExpression *) enumerator_25070.current_mCondition (HERE).ptr (), constinArgument_inCurrentPage, constinArgument_inRegisterTable, constinArgument_inConstantMap, ioArgument_ioLocalLabelIndex, GALGAS_bool (true), object->mAttribute_mInstructionLocation, var_nextBranchLabel, ioArgument_ioGeneratedInstructionList, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 714)) ;
       {
-      routine_handleBaselineInstructionList (constinArgument_inCurrentPage, enumerator_24943.current_mInstructionList (HERE), constinArgument_inRoutineMap, constinArgument_inRegisterTable, constinArgument_inConstantMap, ioArgument_ioLocalLabelIndex, ioArgument_ioGeneratedInstructionList, ioArgument_ioListFileContents, ioArgument_ioContinuesInSequence, constinArgument_inRoutineKind, constinArgument_inLastInstructionShouldReturn, ioArgument_ioUsedRegisters, inCompiler  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 718)) ;
+      routine_handleBaselineInstructionList (constinArgument_inCurrentPage, enumerator_25070.current_mInstructionList (HERE), constinArgument_inRoutineMap, constinArgument_inRegisterTable, constinArgument_inConstantMap, ioArgument_ioLocalLabelIndex, ioArgument_ioGeneratedInstructionList, ioArgument_ioListFileContents, ioArgument_ioContinuesInSequence, constinArgument_inRoutineKind, constinArgument_inLastInstructionShouldReturn, ioArgument_ioUsedRegisters, inCompiler  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 725)) ;
       }
-      ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_GOTO::constructor_new (object->mAttribute_mInstructionLocation, GALGAS_lstring::constructor_new (var_labelInstructionBegin, object->mAttribute_mInstructionLocation  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 734))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 732))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 732)) ;
-      ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_pseudo_5F_LABEL::constructor_new (GALGAS_lstring::constructor_new (var_nextBranchLabel, object->mAttribute_mInstructionLocation  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 735))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 735))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 735)) ;
+      ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_GOTO::constructor_new (object->mAttribute_mInstructionLocation, GALGAS_lstring::constructor_new (var_labelInstructionBegin, object->mAttribute_mInstructionLocation  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 741))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 739))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 739)) ;
+      ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_pseudo_5F_LABEL::constructor_new (GALGAS_lstring::constructor_new (var_nextBranchLabel, object->mAttribute_mInstructionLocation  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 742))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 742))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 742)) ;
     }
-    enumerator_24943.gotoNextObject () ;
+    enumerator_25070.gotoNextObject () ;
   }
 }
 //---------------------------------------------------------------------------------------------------------------------*
@@ -11371,29 +11672,29 @@ static void categoryMethod_baseline_5F_instruction_5F_structured_5F_if_build_5F_
                                                                                                                              COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_baseline_5F_instruction_5F_structured_5F_if * object = (const cPtr_baseline_5F_instruction_5F_structured_5F_if *) inObject ;
   macroValidSharedObject (object, cPtr_baseline_5F_instruction_5F_structured_5F_if) ;
-  GALGAS_string var_label_5F_nextCondition = GALGAS_string (".L").add_operation (ioArgument_ioLocalLabelIndex.reader_string (SOURCE_FILE ("baseline_semantic_analysis.galgas", 755)), inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 755)) ;
-  ioArgument_ioLocalLabelIndex.increment_operation (inCompiler  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 755)) ;
-  GALGAS_string var_label_5F_endOfIfinstruction = GALGAS_string (".L").add_operation (ioArgument_ioLocalLabelIndex.reader_string (SOURCE_FILE ("baseline_semantic_analysis.galgas", 756)), inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 756)) ;
-  ioArgument_ioLocalLabelIndex.increment_operation (inCompiler  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 756)) ;
-  callCategoryMethod_build_5F_intermediate_5F_condition_5F_instructions ((const cPtr_baseline_5F_conditionExpression *) object->mAttribute_mIfCondition.ptr (), constinArgument_inCurrentPage, constinArgument_inRegisterTable, constinArgument_inConstantMap, ioArgument_ioLocalLabelIndex, GALGAS_bool (true), object->mAttribute_mInstructionLocation, var_label_5F_nextCondition, ioArgument_ioGeneratedInstructionList, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 758)) ;
+  GALGAS_string var_label_5F_nextCondition = GALGAS_string (".L").add_operation (ioArgument_ioLocalLabelIndex.reader_string (SOURCE_FILE ("baseline_semantic_analysis.galgas", 762)), inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 762)) ;
+  ioArgument_ioLocalLabelIndex.increment_operation (inCompiler  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 762)) ;
+  GALGAS_string var_label_5F_endOfIfinstruction = GALGAS_string (".L").add_operation (ioArgument_ioLocalLabelIndex.reader_string (SOURCE_FILE ("baseline_semantic_analysis.galgas", 763)), inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 763)) ;
+  ioArgument_ioLocalLabelIndex.increment_operation (inCompiler  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 763)) ;
+  callCategoryMethod_build_5F_intermediate_5F_condition_5F_instructions ((const cPtr_baseline_5F_conditionExpression *) object->mAttribute_mIfCondition.ptr (), constinArgument_inCurrentPage, constinArgument_inRegisterTable, constinArgument_inConstantMap, ioArgument_ioLocalLabelIndex, GALGAS_bool (true), object->mAttribute_mInstructionLocation, var_label_5F_nextCondition, ioArgument_ioGeneratedInstructionList, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 765)) ;
   GALGAS_bool var_thenContinuesInSequence ;
   {
-  routine_handleBaselineInstructionList (constinArgument_inCurrentPage, object->mAttribute_mThenInstructionList, constinArgument_inRoutineMap, constinArgument_inRegisterTable, constinArgument_inConstantMap, ioArgument_ioLocalLabelIndex, ioArgument_ioGeneratedInstructionList, ioArgument_ioListFileContents, var_thenContinuesInSequence, constinArgument_inRoutineKind, constinArgument_inLastInstructionShouldReturn, ioArgument_ioUsedRegisters, inCompiler  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 770)) ;
+  routine_handleBaselineInstructionList (constinArgument_inCurrentPage, object->mAttribute_mThenInstructionList, constinArgument_inRoutineMap, constinArgument_inRegisterTable, constinArgument_inConstantMap, ioArgument_ioLocalLabelIndex, ioArgument_ioGeneratedInstructionList, ioArgument_ioListFileContents, var_thenContinuesInSequence, constinArgument_inRoutineKind, constinArgument_inLastInstructionShouldReturn, ioArgument_ioUsedRegisters, inCompiler  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 777)) ;
   }
-  const enumGalgasBool test_0 = GALGAS_bool (kIsStrictSup, object->mAttribute_mElseInstructionList.reader_length (SOURCE_FILE ("baseline_semantic_analysis.galgas", 785)).objectCompare (GALGAS_uint ((uint32_t) 0U))).operator_and (constinArgument_inLastInstructionShouldReturn.operator_not (SOURCE_FILE ("baseline_semantic_analysis.galgas", 785)) COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 785)).boolEnum () ;
+  const enumGalgasBool test_0 = GALGAS_bool (kIsStrictSup, object->mAttribute_mElseInstructionList.reader_length (SOURCE_FILE ("baseline_semantic_analysis.galgas", 792)).objectCompare (GALGAS_uint ((uint32_t) 0U))).operator_and (constinArgument_inLastInstructionShouldReturn.operator_not (SOURCE_FILE ("baseline_semantic_analysis.galgas", 792)) COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 792)).boolEnum () ;
   if (kBoolTrue == test_0) {
-    ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_GOTO::constructor_new (object->mAttribute_mInstructionLocation, GALGAS_lstring::constructor_new (var_label_5F_endOfIfinstruction, object->mAttribute_mInstructionLocation  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 788))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 786))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 786)) ;
+    ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_GOTO::constructor_new (object->mAttribute_mInstructionLocation, GALGAS_lstring::constructor_new (var_label_5F_endOfIfinstruction, object->mAttribute_mInstructionLocation  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 795))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 793))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 793)) ;
   }
-  ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_pseudo_5F_LABEL::constructor_new (GALGAS_lstring::constructor_new (var_label_5F_nextCondition, object->mAttribute_mInstructionLocation  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 790))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 790))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 790)) ;
+  ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_pseudo_5F_LABEL::constructor_new (GALGAS_lstring::constructor_new (var_label_5F_nextCondition, object->mAttribute_mInstructionLocation  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 797))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 797))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 797)) ;
   GALGAS_bool var_elseContinuesInSequence ;
   {
-  routine_handleBaselineInstructionList (constinArgument_inCurrentPage, object->mAttribute_mElseInstructionList, constinArgument_inRoutineMap, constinArgument_inRegisterTable, constinArgument_inConstantMap, ioArgument_ioLocalLabelIndex, ioArgument_ioGeneratedInstructionList, ioArgument_ioListFileContents, var_elseContinuesInSequence, constinArgument_inRoutineKind, constinArgument_inLastInstructionShouldReturn, ioArgument_ioUsedRegisters, inCompiler  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 791)) ;
+  routine_handleBaselineInstructionList (constinArgument_inCurrentPage, object->mAttribute_mElseInstructionList, constinArgument_inRoutineMap, constinArgument_inRegisterTable, constinArgument_inConstantMap, ioArgument_ioLocalLabelIndex, ioArgument_ioGeneratedInstructionList, ioArgument_ioListFileContents, var_elseContinuesInSequence, constinArgument_inRoutineKind, constinArgument_inLastInstructionShouldReturn, ioArgument_ioUsedRegisters, inCompiler  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 798)) ;
   }
-  const enumGalgasBool test_1 = GALGAS_bool (kIsStrictSup, object->mAttribute_mElseInstructionList.reader_length (SOURCE_FILE ("baseline_semantic_analysis.galgas", 805)).objectCompare (GALGAS_uint ((uint32_t) 0U))).operator_and (constinArgument_inLastInstructionShouldReturn.operator_not (SOURCE_FILE ("baseline_semantic_analysis.galgas", 805)) COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 805)).boolEnum () ;
+  const enumGalgasBool test_1 = GALGAS_bool (kIsStrictSup, object->mAttribute_mElseInstructionList.reader_length (SOURCE_FILE ("baseline_semantic_analysis.galgas", 812)).objectCompare (GALGAS_uint ((uint32_t) 0U))).operator_and (constinArgument_inLastInstructionShouldReturn.operator_not (SOURCE_FILE ("baseline_semantic_analysis.galgas", 812)) COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 812)).boolEnum () ;
   if (kBoolTrue == test_1) {
-    ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_pseudo_5F_LABEL::constructor_new (GALGAS_lstring::constructor_new (var_label_5F_endOfIfinstruction, object->mAttribute_mInstructionLocation  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 806))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 806))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 806)) ;
+    ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_pseudo_5F_LABEL::constructor_new (GALGAS_lstring::constructor_new (var_label_5F_endOfIfinstruction, object->mAttribute_mInstructionLocation  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 813))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 813))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 813)) ;
   }
-  ioArgument_ioContinuesInSequence = var_thenContinuesInSequence.operator_or (var_elseContinuesInSequence COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 809)) ;
+  ioArgument_ioContinuesInSequence = var_thenContinuesInSequence.operator_or (var_elseContinuesInSequence COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 816)) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -11428,8 +11729,8 @@ static void categoryMethod_baseline_5F_incDecRegisterInCondition_build_5F_interm
   macroValidSharedObject (object, cPtr_baseline_5F_incDecRegisterInCondition) ;
   GALGAS_baseline_5F_intermediate_5F_registerExpression var_intermediateRegisterDescription ;
   GALGAS_bitSliceTable var_bitSliceTable ;
-  callCategoryMethod_resolveBaselineAccess ((const cPtr_registerExpression *) object->mAttribute_mRegisterExpression.ptr (), constinArgument_inRegisterTable, constinArgument_inConstantMap, var_intermediateRegisterDescription, var_bitSliceTable, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 841)) ;
-  ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition::constructor_new (constinArgument_inInstructionLocation, var_intermediateRegisterDescription, constinArgument_inTargetLabel, object->mAttribute_mIncrement, object->mAttribute_m_5F_W_5F_isDestination, object->mAttribute_mBranchIfZero.operator_xor (constinArgument_inComplementaryBranch COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 855))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 849))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 849)) ;
+  callCategoryMethod_resolveBaselineAccess ((const cPtr_registerExpression *) object->mAttribute_mRegisterExpression.ptr (), constinArgument_inRegisterTable, constinArgument_inConstantMap, var_intermediateRegisterDescription, var_bitSliceTable, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 848)) ;
+  ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition::constructor_new (constinArgument_inInstructionLocation, var_intermediateRegisterDescription, constinArgument_inTargetLabel, object->mAttribute_mIncrement, object->mAttribute_m_5F_W_5F_isDestination, object->mAttribute_mBranchIfZero.operator_xor (constinArgument_inComplementaryBranch COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 862))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 856))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 856)) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -11462,7 +11763,7 @@ static void categoryMethod_baseline_5F_negateCondition_build_5F_intermediate_5F_
                                                                                                            COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_baseline_5F_negateCondition * object = (const cPtr_baseline_5F_negateCondition *) inObject ;
   macroValidSharedObject (object, cPtr_baseline_5F_negateCondition) ;
-  callCategoryMethod_build_5F_intermediate_5F_condition_5F_instructions ((const cPtr_baseline_5F_conditionExpression *) object->mAttribute_mCondition.ptr (), constinArgument_inCurrentPage, constinArgument_inRegisterTable, constinArgument_inConstantMap, ioArgument_ioLocalLabelIndex, constinArgument_inComplementaryBranch.operator_not (SOURCE_FILE ("baseline_semantic_analysis.galgas", 875)), constinArgument_inInstructionLocation, constinArgument_inTargetLabel, ioArgument_ioGeneratedInstructionList, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 870)) ;
+  callCategoryMethod_build_5F_intermediate_5F_condition_5F_instructions ((const cPtr_baseline_5F_conditionExpression *) object->mAttribute_mCondition.ptr (), constinArgument_inCurrentPage, constinArgument_inRegisterTable, constinArgument_inConstantMap, ioArgument_ioLocalLabelIndex, constinArgument_inComplementaryBranch.operator_not (SOURCE_FILE ("baseline_semantic_analysis.galgas", 882)), constinArgument_inInstructionLocation, constinArgument_inTargetLabel, ioArgument_ioGeneratedInstructionList, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 877)) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -11497,14 +11798,14 @@ static void categoryMethod_baseline_5F_andCondition_build_5F_intermediate_5F_con
   macroValidSharedObject (object, cPtr_baseline_5F_andCondition) ;
   const enumGalgasBool test_0 = constinArgument_inComplementaryBranch.boolEnum () ;
   if (kBoolTrue == test_0) {
-    callCategoryMethod_build_5F_intermediate_5F_condition_5F_instructions ((const cPtr_baseline_5F_conditionExpression *) object->mAttribute_mLeftExpression.ptr (), constinArgument_inCurrentPage, constinArgument_inRegisterTable, constinArgument_inConstantMap, ioArgument_ioLocalLabelIndex, GALGAS_bool (true), constinArgument_inInstructionLocation, constinArgument_inTargetLabel, ioArgument_ioGeneratedInstructionList, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 896)) ;
-    callCategoryMethod_build_5F_intermediate_5F_condition_5F_instructions ((const cPtr_baseline_5F_conditionExpression *) object->mAttribute_mRightExpression.ptr (), constinArgument_inCurrentPage, constinArgument_inRegisterTable, constinArgument_inConstantMap, ioArgument_ioLocalLabelIndex, GALGAS_bool (true), constinArgument_inInstructionLocation, constinArgument_inTargetLabel, ioArgument_ioGeneratedInstructionList, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 907)) ;
+    callCategoryMethod_build_5F_intermediate_5F_condition_5F_instructions ((const cPtr_baseline_5F_conditionExpression *) object->mAttribute_mLeftExpression.ptr (), constinArgument_inCurrentPage, constinArgument_inRegisterTable, constinArgument_inConstantMap, ioArgument_ioLocalLabelIndex, GALGAS_bool (true), constinArgument_inInstructionLocation, constinArgument_inTargetLabel, ioArgument_ioGeneratedInstructionList, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 903)) ;
+    callCategoryMethod_build_5F_intermediate_5F_condition_5F_instructions ((const cPtr_baseline_5F_conditionExpression *) object->mAttribute_mRightExpression.ptr (), constinArgument_inCurrentPage, constinArgument_inRegisterTable, constinArgument_inConstantMap, ioArgument_ioLocalLabelIndex, GALGAS_bool (true), constinArgument_inInstructionLocation, constinArgument_inTargetLabel, ioArgument_ioGeneratedInstructionList, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 914)) ;
   }else if (kBoolFalse == test_0) {
-    GALGAS_string var_label_30_ = GALGAS_string (".L").add_operation (ioArgument_ioLocalLabelIndex.reader_string (SOURCE_FILE ("baseline_semantic_analysis.galgas", 919)), inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 919)) ;
-    ioArgument_ioLocalLabelIndex.increment_operation (inCompiler  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 919)) ;
-    callCategoryMethod_build_5F_intermediate_5F_condition_5F_instructions ((const cPtr_baseline_5F_conditionExpression *) object->mAttribute_mLeftExpression.ptr (), constinArgument_inCurrentPage, constinArgument_inRegisterTable, constinArgument_inConstantMap, ioArgument_ioLocalLabelIndex, GALGAS_bool (true), constinArgument_inInstructionLocation, var_label_30_, ioArgument_ioGeneratedInstructionList, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 920)) ;
-    callCategoryMethod_build_5F_intermediate_5F_condition_5F_instructions ((const cPtr_baseline_5F_conditionExpression *) object->mAttribute_mRightExpression.ptr (), constinArgument_inCurrentPage, constinArgument_inRegisterTable, constinArgument_inConstantMap, ioArgument_ioLocalLabelIndex, GALGAS_bool (false), constinArgument_inInstructionLocation, constinArgument_inTargetLabel, ioArgument_ioGeneratedInstructionList, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 931)) ;
-    ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_pseudo_5F_LABEL::constructor_new (GALGAS_lstring::constructor_new (var_label_30_, constinArgument_inInstructionLocation  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 942))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 942))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 942)) ;
+    GALGAS_string var_label_30_ = GALGAS_string (".L").add_operation (ioArgument_ioLocalLabelIndex.reader_string (SOURCE_FILE ("baseline_semantic_analysis.galgas", 926)), inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 926)) ;
+    ioArgument_ioLocalLabelIndex.increment_operation (inCompiler  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 926)) ;
+    callCategoryMethod_build_5F_intermediate_5F_condition_5F_instructions ((const cPtr_baseline_5F_conditionExpression *) object->mAttribute_mLeftExpression.ptr (), constinArgument_inCurrentPage, constinArgument_inRegisterTable, constinArgument_inConstantMap, ioArgument_ioLocalLabelIndex, GALGAS_bool (true), constinArgument_inInstructionLocation, var_label_30_, ioArgument_ioGeneratedInstructionList, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 927)) ;
+    callCategoryMethod_build_5F_intermediate_5F_condition_5F_instructions ((const cPtr_baseline_5F_conditionExpression *) object->mAttribute_mRightExpression.ptr (), constinArgument_inCurrentPage, constinArgument_inRegisterTable, constinArgument_inConstantMap, ioArgument_ioLocalLabelIndex, GALGAS_bool (false), constinArgument_inInstructionLocation, constinArgument_inTargetLabel, ioArgument_ioGeneratedInstructionList, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 938)) ;
+    ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_pseudo_5F_LABEL::constructor_new (GALGAS_lstring::constructor_new (var_label_30_, constinArgument_inInstructionLocation  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 949))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 949))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 949)) ;
   }
 }
 //---------------------------------------------------------------------------------------------------------------------*
@@ -11540,11 +11841,11 @@ static void categoryMethod_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_cond
   macroValidSharedObject (object, cPtr_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition) ;
   GALGAS_baseline_5F_intermediate_5F_registerExpression var_intermediateRegisterDescription ;
   GALGAS_bitSliceTable var_bitSliceTable ;
-  callCategoryMethod_resolveBaselineAccess ((const cPtr_registerExpression *) object->mAttribute_mRegisterExpression.ptr (), constinArgument_inRegisterTable, constinArgument_inConstantMap, var_intermediateRegisterDescription, var_bitSliceTable, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 959)) ;
+  callCategoryMethod_resolveBaselineAccess ((const cPtr_registerExpression *) object->mAttribute_mRegisterExpression.ptr (), constinArgument_inRegisterTable, constinArgument_inConstantMap, var_intermediateRegisterDescription, var_bitSliceTable, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 966)) ;
   GALGAS_uint var_bitNumber ;
-  callCategoryMethod_getBitNumber ((const cPtr_bitNumberExpression *) object->mAttribute_mBitNumber.ptr (), var_bitSliceTable, var_bitNumber, inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 967)) ;
-  ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip::constructor_new (constinArgument_inInstructionLocation, constinArgument_inComplementaryBranch, var_intermediateRegisterDescription, var_bitNumber  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 971))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 971)) ;
-  ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_GOTO::constructor_new (constinArgument_inInstructionLocation, GALGAS_lstring::constructor_new (constinArgument_inTargetLabel, constinArgument_inInstructionLocation  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 979))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 977))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 977)) ;
+  callCategoryMethod_getBitNumber ((const cPtr_bitNumberExpression *) object->mAttribute_mBitNumber.ptr (), constinArgument_inRegisterTable, constinArgument_inConstantMap, ioArgument_ioUsedRegisters, var_bitSliceTable, var_bitNumber, inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 974)) ;
+  ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip::constructor_new (constinArgument_inInstructionLocation, constinArgument_inComplementaryBranch, var_intermediateRegisterDescription, var_bitNumber  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 981))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 981)) ;
+  ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_GOTO::constructor_new (constinArgument_inInstructionLocation, GALGAS_lstring::constructor_new (constinArgument_inTargetLabel, constinArgument_inInstructionLocation  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 989))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 987))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 987)) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -14669,208 +14970,4 @@ static void defineCategoryMethod_baseline_5F_assembly_5F_pseudo_5F_LABEL_generat
 //---------------------------------------------------------------------------------------------------------------------*
 
 C_PrologueEpilogue gMethod_baseline_5F_assembly_5F_pseudo_5F_LABEL_generateBinaryCodeAtAddress (defineCategoryMethod_baseline_5F_assembly_5F_pseudo_5F_LABEL_generateBinaryCodeAtAddress, NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                    Overriding category method '@midrange_instruction_IF_BitTest addUsedRoutines'                    *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void categoryMethod_midrange_5F_instruction_5F_IF_5F_BitTest_addUsedRoutines (const cPtr_midrange_5F_instruction * inObject,
-                                                                                     GALGAS_stringset & ioArgument_ioUsedRoutines,
-                                                                                     C_Compiler * inCompiler
-                                                                                     COMMA_UNUSED_LOCATION_ARGS) {
-  const cPtr_midrange_5F_instruction_5F_IF_5F_BitTest * object = (const cPtr_midrange_5F_instruction_5F_IF_5F_BitTest *) inObject ;
-  macroValidSharedObject (object, cPtr_midrange_5F_instruction_5F_IF_5F_BitTest) ;
-  callCategoryMethod_addUsedRoutines ((const cPtr_midrange_5F_instruction *) object->mAttribute_mInstruction.ptr (), ioArgument_ioUsedRoutines, inCompiler COMMA_SOURCE_FILE ("midrange_used_routines.galgas", 12)) ;
-}
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void defineCategoryMethod_midrange_5F_instruction_5F_IF_5F_BitTest_addUsedRoutines (void) {
-  enterCategoryMethod_addUsedRoutines (kTypeDescriptor_GALGAS_midrange_5F_instruction_5F_IF_5F_BitTest.mSlotID,
-                                       categoryMethod_midrange_5F_instruction_5F_IF_5F_BitTest_addUsedRoutines) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-C_PrologueEpilogue gMethod_midrange_5F_instruction_5F_IF_5F_BitTest_addUsedRoutines (defineCategoryMethod_midrange_5F_instruction_5F_IF_5F_BitTest_addUsedRoutines, NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                  Overriding category method '@midrange_instruction_IF_SEMI_COLON addUsedRoutines'                   *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void categoryMethod_midrange_5F_instruction_5F_IF_5F_SEMI_5F_COLON_addUsedRoutines (const cPtr_midrange_5F_instruction * inObject,
-                                                                                           GALGAS_stringset & ioArgument_ioUsedRoutines,
-                                                                                           C_Compiler * inCompiler
-                                                                                           COMMA_UNUSED_LOCATION_ARGS) {
-  const cPtr_midrange_5F_instruction_5F_IF_5F_SEMI_5F_COLON * object = (const cPtr_midrange_5F_instruction_5F_IF_5F_SEMI_5F_COLON *) inObject ;
-  macroValidSharedObject (object, cPtr_midrange_5F_instruction_5F_IF_5F_SEMI_5F_COLON) ;
-  callCategoryMethod_addUsedRoutines ((const cPtr_midrange_5F_instruction *) object->mAttribute_mInstruction.ptr (), ioArgument_ioUsedRoutines, inCompiler COMMA_SOURCE_FILE ("midrange_used_routines.galgas", 19)) ;
-}
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void defineCategoryMethod_midrange_5F_instruction_5F_IF_5F_SEMI_5F_COLON_addUsedRoutines (void) {
-  enterCategoryMethod_addUsedRoutines (kTypeDescriptor_GALGAS_midrange_5F_instruction_5F_IF_5F_SEMI_5F_COLON.mSlotID,
-                                       categoryMethod_midrange_5F_instruction_5F_IF_5F_SEMI_5F_COLON_addUsedRoutines) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-C_PrologueEpilogue gMethod_midrange_5F_instruction_5F_IF_5F_SEMI_5F_COLON_addUsedRoutines (defineCategoryMethod_midrange_5F_instruction_5F_IF_5F_SEMI_5F_COLON_addUsedRoutines, NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                    Overriding category method '@midrange_instruction_IF_IncDec addUsedRoutines'                     *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void categoryMethod_midrange_5F_instruction_5F_IF_5F_IncDec_addUsedRoutines (const cPtr_midrange_5F_instruction * inObject,
-                                                                                    GALGAS_stringset & ioArgument_ioUsedRoutines,
-                                                                                    C_Compiler * inCompiler
-                                                                                    COMMA_UNUSED_LOCATION_ARGS) {
-  const cPtr_midrange_5F_instruction_5F_IF_5F_IncDec * object = (const cPtr_midrange_5F_instruction_5F_IF_5F_IncDec *) inObject ;
-  macroValidSharedObject (object, cPtr_midrange_5F_instruction_5F_IF_5F_IncDec) ;
-  callCategoryMethod_addUsedRoutines ((const cPtr_midrange_5F_instruction *) object->mAttribute_mInstruction.ptr (), ioArgument_ioUsedRoutines, inCompiler COMMA_SOURCE_FILE ("midrange_used_routines.galgas", 26)) ;
-}
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void defineCategoryMethod_midrange_5F_instruction_5F_IF_5F_IncDec_addUsedRoutines (void) {
-  enterCategoryMethod_addUsedRoutines (kTypeDescriptor_GALGAS_midrange_5F_instruction_5F_IF_5F_IncDec.mSlotID,
-                                       categoryMethod_midrange_5F_instruction_5F_IF_5F_IncDec_addUsedRoutines) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-C_PrologueEpilogue gMethod_midrange_5F_instruction_5F_IF_5F_IncDec_addUsedRoutines (defineCategoryMethod_midrange_5F_instruction_5F_IF_5F_IncDec_addUsedRoutines, NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                       Overriding category method '@midrange_instruction_JUMP addUsedRoutines'                       *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void categoryMethod_midrange_5F_instruction_5F_JUMP_addUsedRoutines (const cPtr_midrange_5F_instruction * inObject,
-                                                                            GALGAS_stringset & ioArgument_ioUsedRoutines,
-                                                                            C_Compiler * /* inCompiler */
-                                                                            COMMA_UNUSED_LOCATION_ARGS) {
-  const cPtr_midrange_5F_instruction_5F_JUMP * object = (const cPtr_midrange_5F_instruction_5F_JUMP *) inObject ;
-  macroValidSharedObject (object, cPtr_midrange_5F_instruction_5F_JUMP) ;
-  ioArgument_ioUsedRoutines.addAssign_operation (object->mAttribute_mTargetLabel.mAttribute_string  COMMA_SOURCE_FILE ("midrange_used_routines.galgas", 33)) ;
-}
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void defineCategoryMethod_midrange_5F_instruction_5F_JUMP_addUsedRoutines (void) {
-  enterCategoryMethod_addUsedRoutines (kTypeDescriptor_GALGAS_midrange_5F_instruction_5F_JUMP.mSlotID,
-                                       categoryMethod_midrange_5F_instruction_5F_JUMP_addUsedRoutines) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-C_PrologueEpilogue gMethod_midrange_5F_instruction_5F_JUMP_addUsedRoutines (defineCategoryMethod_midrange_5F_instruction_5F_JUMP_addUsedRoutines, NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                       Overriding category method '@midrange_instruction_GOTO addUsedRoutines'                       *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void categoryMethod_midrange_5F_instruction_5F_GOTO_addUsedRoutines (const cPtr_midrange_5F_instruction * inObject,
-                                                                            GALGAS_stringset & ioArgument_ioUsedRoutines,
-                                                                            C_Compiler * /* inCompiler */
-                                                                            COMMA_UNUSED_LOCATION_ARGS) {
-  const cPtr_midrange_5F_instruction_5F_GOTO * object = (const cPtr_midrange_5F_instruction_5F_GOTO *) inObject ;
-  macroValidSharedObject (object, cPtr_midrange_5F_instruction_5F_GOTO) ;
-  ioArgument_ioUsedRoutines.addAssign_operation (object->mAttribute_mTargetLabel.mAttribute_string  COMMA_SOURCE_FILE ("midrange_used_routines.galgas", 40)) ;
-}
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void defineCategoryMethod_midrange_5F_instruction_5F_GOTO_addUsedRoutines (void) {
-  enterCategoryMethod_addUsedRoutines (kTypeDescriptor_GALGAS_midrange_5F_instruction_5F_GOTO.mSlotID,
-                                       categoryMethod_midrange_5F_instruction_5F_GOTO_addUsedRoutines) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-C_PrologueEpilogue gMethod_midrange_5F_instruction_5F_GOTO_addUsedRoutines (defineCategoryMethod_midrange_5F_instruction_5F_GOTO_addUsedRoutines, NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                       Overriding category method '@midrange_instruction_CALL addUsedRoutines'                       *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void categoryMethod_midrange_5F_instruction_5F_CALL_addUsedRoutines (const cPtr_midrange_5F_instruction * inObject,
-                                                                            GALGAS_stringset & ioArgument_ioUsedRoutines,
-                                                                            C_Compiler * /* inCompiler */
-                                                                            COMMA_UNUSED_LOCATION_ARGS) {
-  const cPtr_midrange_5F_instruction_5F_CALL * object = (const cPtr_midrange_5F_instruction_5F_CALL *) inObject ;
-  macroValidSharedObject (object, cPtr_midrange_5F_instruction_5F_CALL) ;
-  ioArgument_ioUsedRoutines.addAssign_operation (object->mAttribute_mTargetLabel.mAttribute_string  COMMA_SOURCE_FILE ("midrange_used_routines.galgas", 47)) ;
-}
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void defineCategoryMethod_midrange_5F_instruction_5F_CALL_addUsedRoutines (void) {
-  enterCategoryMethod_addUsedRoutines (kTypeDescriptor_GALGAS_midrange_5F_instruction_5F_CALL.mSlotID,
-                                       categoryMethod_midrange_5F_instruction_5F_CALL_addUsedRoutines) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-C_PrologueEpilogue gMethod_midrange_5F_instruction_5F_CALL_addUsedRoutines (defineCategoryMethod_midrange_5F_instruction_5F_CALL_addUsedRoutines, NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                     Overriding category method '@midrange_instruction_FOREVER addUsedRoutines'                      *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void categoryMethod_midrange_5F_instruction_5F_FOREVER_addUsedRoutines (const cPtr_midrange_5F_instruction * inObject,
-                                                                               GALGAS_stringset & ioArgument_ioUsedRoutines,
-                                                                               C_Compiler * inCompiler
-                                                                               COMMA_UNUSED_LOCATION_ARGS) {
-  const cPtr_midrange_5F_instruction_5F_FOREVER * object = (const cPtr_midrange_5F_instruction_5F_FOREVER *) inObject ;
-  macroValidSharedObject (object, cPtr_midrange_5F_instruction_5F_FOREVER) ;
-  {
-  routine_addMidRangeUsedRoutinesFromInstructionList (object->mAttribute_mInstructionList, ioArgument_ioUsedRoutines, inCompiler  COMMA_SOURCE_FILE ("midrange_used_routines.galgas", 54)) ;
-  }
-}
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void defineCategoryMethod_midrange_5F_instruction_5F_FOREVER_addUsedRoutines (void) {
-  enterCategoryMethod_addUsedRoutines (kTypeDescriptor_GALGAS_midrange_5F_instruction_5F_FOREVER.mSlotID,
-                                       categoryMethod_midrange_5F_instruction_5F_FOREVER_addUsedRoutines) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-C_PrologueEpilogue gMethod_midrange_5F_instruction_5F_FOREVER_addUsedRoutines (defineCategoryMethod_midrange_5F_instruction_5F_FOREVER_addUsedRoutines, NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                  Overriding category method '@midrange_instruction_STATIC_REPEAT addUsedRoutines'                   *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void categoryMethod_midrange_5F_instruction_5F_STATIC_5F_REPEAT_addUsedRoutines (const cPtr_midrange_5F_instruction * inObject,
-                                                                                        GALGAS_stringset & ioArgument_ioUsedRoutines,
-                                                                                        C_Compiler * inCompiler
-                                                                                        COMMA_UNUSED_LOCATION_ARGS) {
-  const cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT * object = (const cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT *) inObject ;
-  macroValidSharedObject (object, cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT) ;
-  {
-  routine_addMidRangeUsedRoutinesFromInstructionList (object->mAttribute_mInstructionList, ioArgument_ioUsedRoutines, inCompiler  COMMA_SOURCE_FILE ("midrange_used_routines.galgas", 61)) ;
-  }
-}
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void defineCategoryMethod_midrange_5F_instruction_5F_STATIC_5F_REPEAT_addUsedRoutines (void) {
-  enterCategoryMethod_addUsedRoutines (kTypeDescriptor_GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT.mSlotID,
-                                       categoryMethod_midrange_5F_instruction_5F_STATIC_5F_REPEAT_addUsedRoutines) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-C_PrologueEpilogue gMethod_midrange_5F_instruction_5F_STATIC_5F_REPEAT_addUsedRoutines (defineCategoryMethod_midrange_5F_instruction_5F_STATIC_5F_REPEAT_addUsedRoutines, NULL) ;
 
