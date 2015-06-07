@@ -5,6 +5,7 @@ syntax communs
  <body>
   ?!@pic18InterruptDefinitionList interruptDefinitionList
   ?!@pic18RoutineDefinitionList routineDefinitionList
+  ?!@pic18MacroDefinitionList ioMacroDefinitionList
   ?!@lstringlist unusedRoutineList
   ?!@lstringlist inlinedRoutineList
   ?!@ramDefinitionList ramDefinitionList

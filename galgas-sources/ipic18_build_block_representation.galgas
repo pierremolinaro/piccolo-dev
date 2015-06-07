@@ -396,6 +396,7 @@ abstract method @pic18PiccoloInstruction analyze
   ?let @registerTable inRegisterTable
   ?let @pic18_dataMap inDataMap
   ?let @constantMap inConstantMap
+  ?let @pic18MacroMap inMacroMap
   ?!@uint ioLocalLabelIndex
   ?!@ipic18SequentialInstructionList ioGeneratedInstructionList
   ?!@lstring ioBlockLabel
@@ -414,6 +415,7 @@ override method @pic18Instruction_checkbank analyze
   ?let @registerTable unused inRegisterTable
   ?let @pic18_dataMap unused inDataMap
   ?let @constantMap unused inConstantMap
+  ?let @pic18MacroMap unused inMacroMap
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic18SequentialInstructionList unused ioGeneratedInstructionList
   ?!@lstring unused ioBlockLabel
@@ -442,6 +444,7 @@ override method @pic18Instruction_checknobank analyze
   ?let @registerTable unused inRegisterTable
   ?let @pic18_dataMap unused inDataMap
   ?let @constantMap unused inConstantMap
+  ?let @pic18MacroMap unused inMacroMap
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic18SequentialInstructionList unused ioGeneratedInstructionList
   ?!@lstring unused ioBlockLabel
@@ -466,6 +469,7 @@ override method @pic18PiccoloSimpleInstruction analyze
   ?let @registerTable inRegisterTable
   ?let @pic18_dataMap inDataMap
   ?let @constantMap inConstantMap
+  ?let @pic18MacroMap unused inMacroMap
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic18SequentialInstructionList ioGeneratedInstructionList
   ?!@lstring unused ioBlockLabel
@@ -497,6 +501,7 @@ override method @pic18Instruction_FOREVER analyze
   ?let @registerTable inRegisterTable
   ?let @pic18_dataMap inDataMap
   ?let @constantMap inConstantMap
+  ?let @pic18MacroMap inMacroMap
   ?!@uint ioLocalLabelIndex
   ?!@ipic18SequentialInstructionList ioGeneratedInstructionList
   ?!@lstring ioBlockLabel
@@ -533,6 +538,7 @@ override method @pic18Instruction_FOREVER analyze
     !inRegisterTable
     !inDataMap
     !inConstantMap
+    !inMacroMap
     !?ioLocalLabelIndex
     !?ioGeneratedInstructionList
     !?ioBlockLabel
@@ -569,6 +575,7 @@ override method @pic18Instruction_nobanksel analyze
   ?let @registerTable unused inRegisterTable
   ?let @pic18_dataMap unused inDataMap
   ?let @constantMap unused inConstantMap
+  ?let @pic18MacroMap unused inMacroMap
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic18SequentialInstructionList unused ioGeneratedInstructionList
   ?!@lstring unused ioBlockLabel
@@ -593,6 +600,7 @@ override method @pic18Instruction_savebank analyze
   ?let @registerTable inRegisterTable
   ?let @pic18_dataMap inDataMap
   ?let @constantMap inConstantMap
+  ?let @pic18MacroMap inMacroMap
   ?!@uint ioLocalLabelIndex
   ?!@ipic18SequentialInstructionList ioGeneratedInstructionList
   ?!@lstring ioBlockLabel
@@ -636,6 +644,7 @@ override method @pic18Instruction_savebank analyze
     !inRegisterTable
     !inDataMap
     !inConstantMap
+    !inMacroMap
     !?ioLocalLabelIndex
     !?ioGeneratedInstructionList
     !?ioBlockLabel
@@ -663,6 +672,7 @@ override method @pic18Instruction_repetitionStatique analyze
   ?let @registerTable inRegisterTable
   ?let @pic18_dataMap inDataMap
   ?let @constantMap inConstantMap
+  ?let @pic18MacroMap inMacroMap
   ?!@uint ioLocalLabelIndex
   ?!@ipic18SequentialInstructionList ioGeneratedInstructionList
   ?!@lstring ioBlockLabel
@@ -687,6 +697,7 @@ override method @pic18Instruction_repetitionStatique analyze
     !inRegisterTable
     !inDataMap
     !inConstantMap
+    !inMacroMap
     !?ioLocalLabelIndex
     !?ioGeneratedInstructionList
     !?ioBlockLabel
@@ -712,6 +723,7 @@ override method @pic18Instruction_repetitionStatique analyze
       !inRegisterTable
       !inDataMap
       !inConstantMap
+      !inMacroMap
       !?ioLocalLabelIndex
       !?ioGeneratedInstructionList
       !?ioBlockLabel
@@ -733,6 +745,7 @@ override method @pic18Instruction_banksel analyze
   ?let @registerTable unused inRegisterTable
   ?let @pic18_dataMap unused inDataMap
   ?let @constantMap unused inConstantMap
+  ?let @pic18MacroMap unused inMacroMap
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic18SequentialInstructionList ioGeneratedInstructionList
   ?!@lstring unused ioBlockLabel
@@ -764,6 +777,7 @@ override method @pic18Instruction_banksel_register analyze
   ?let @registerTable inRegisterTable
   ?let @pic18_dataMap unused inDataMap
   ?let @constantMap inConstantMap
+  ?let @pic18MacroMap unused inMacroMap
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic18SequentialInstructionList ioGeneratedInstructionList
   ?!@lstring unused ioBlockLabel
@@ -800,7 +814,8 @@ override method @pic18Instruction_TBLRD analyzeSimpleInstruction
   ?!@uint unused ioCurrentBank
   ?let @bool unused inShouldPreserveBSR
   ?!@stringset unused ioUsedRegisters
-  !@ipic18SequentialInstruction outInstruction {
+  !@ipic18SequentialInstruction outInstruction
+{
   outInstruction = @ipic18_intermediate_instruction_TBLRD. new {
     !mInstructionLocation
     !mOption}
@@ -817,7 +832,8 @@ override method @pic18Instruction_TBLWT analyzeSimpleInstruction
   ?!@uint unused ioCurrentBank
   ?let @bool unused inShouldPreserveBSR
   ?!@stringset unused ioUsedRegisters
-  !@ipic18SequentialInstruction outInstruction {
+  !@ipic18SequentialInstruction outInstruction
+{
   outInstruction = @ipic18_intermediate_instruction_TBLWT. new {
     !mInstructionLocation
     !mOption}
@@ -832,6 +848,7 @@ override method @pic18Instruction_MNOP analyze
   ?let @registerTable unused inRegisterTable
   ?let @pic18_dataMap unused inDataMap
   ?let @constantMap unused inConstantMap
+  ?let @pic18MacroMap unused inMacroMap
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic18SequentialInstructionList ioGeneratedInstructionList
   ?!@lstring unused ioBlockLabel
@@ -859,6 +876,7 @@ override method @pic18Instruction_LTBLPTR analyze
   ?let @registerTable inRegisterTable
   ?let @pic18_dataMap unused inDataMap
   ?let @constantMap inConstantMap
+  ?let @pic18MacroMap unused inMacroMap
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic18SequentialInstructionList ioGeneratedInstructionList
   ?!@lstring unused ioBlockLabel
@@ -995,6 +1013,7 @@ override method @pic18Instruction_LDATAPTR analyze
   ?let @registerTable inRegisterTable
   ?let @pic18_dataMap inDataMap
   ?let @constantMap inConstantMap
+  ?let @pic18MacroMap unused inMacroMap
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic18SequentialInstructionList ioGeneratedInstructionList
   ?!@lstring unused ioBlockLabel
@@ -1091,6 +1110,7 @@ override method @pic18Instruction_JUMP analyze
   ?let @registerTable unused inRegisterTable
   ?let @pic18_dataMap unused inDataMap
   ?let @constantMap unused inConstantMap
+  ?let @pic18MacroMap unused inMacroMap
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic18SequentialInstructionList ioGeneratedInstructionList
   ?!@lstring ioBlockLabel
@@ -1134,6 +1154,7 @@ override method @pic18Instruction_computed_rcall analyze
   ?let @registerTable inRegisterTable
   ?let @pic18_dataMap unused inDataMap
   ?let @constantMap inConstantMap
+  ?let @pic18MacroMap unused inMacroMap
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic18SequentialInstructionList ioGeneratedInstructionList
   ?!@lstring unused ioBlockLabel
@@ -1217,6 +1238,7 @@ override method @pic18Instruction_computed_goto analyze
   ?let @registerTable inRegisterTable
   ?let @pic18_dataMap unused inDataMap
   ?let @constantMap inConstantMap
+  ?let @pic18MacroMap unused inMacroMap
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic18SequentialInstructionList ioGeneratedInstructionList
   ?!@lstring ioBlockLabel
@@ -1280,6 +1302,7 @@ override method @pic18Instruction_computed_bra analyze
   ?let @registerTable inRegisterTable
   ?let @pic18_dataMap unused inDataMap
   ?let @constantMap inConstantMap
+  ?let @pic18MacroMap unused inMacroMap
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic18SequentialInstructionList ioGeneratedInstructionList
   ?!@lstring ioBlockLabel
@@ -1367,6 +1390,7 @@ override method @pic18Instruction_computed_retlw analyze
   ?let @registerTable inRegisterTable
   ?let @pic18_dataMap unused inDataMap
   ?let @constantMap inConstantMap
+  ?let @pic18MacroMap unused inMacroMap
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic18SequentialInstructionList ioGeneratedInstructionList
   ?!@lstring ioBlockLabel
@@ -1423,6 +1447,7 @@ override method @pic18Instruction_JUMPCC analyze
   ?let @registerTable unused inRegisterTable
   ?let @pic18_dataMap unused inDataMap
   ?let @constantMap unused  inConstantMap
+  ?let @pic18MacroMap unused inMacroMap
   ?!@uint ioLocalLabelIndex
   ?!@ipic18SequentialInstructionList ioGeneratedInstructionList
   ?!@lstring ioBlockLabel
@@ -1481,6 +1506,7 @@ override method @pic18Instruction_IF_BitTest analyze
   ?let @registerTable inRegisterTable
   ?let @pic18_dataMap inDataMap
   ?let @constantMap inConstantMap
+  ?let @pic18MacroMap unused inMacroMap
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic18SequentialInstructionList ioGeneratedInstructionList
   ?!@lstring unused ioBlockLabel
@@ -1538,6 +1564,7 @@ override method @pic18Instruction_IF_FA_SEMI_COLON analyze
   ?let @registerTable inRegisterTable
   ?let @pic18_dataMap inDataMap
   ?let @constantMap inConstantMap
+  ?let @pic18MacroMap unused inMacroMap
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic18SequentialInstructionList ioGeneratedInstructionList
   ?!@lstring unused ioBlockLabel
@@ -1596,6 +1623,7 @@ override method @pic18Instruction_IF_IncDec analyze
   ?let @registerTable inRegisterTable
   ?let @pic18_dataMap inDataMap
   ?let @constantMap inConstantMap
+  ?let @pic18MacroMap unused inMacroMap
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic18SequentialInstructionList ioGeneratedInstructionList
   ?!@lstring unused ioBlockLabel
@@ -1660,6 +1688,7 @@ override method @pic18Instruction_structured_if analyze
   ?let @registerTable inRegisterTable
   ?let @pic18_dataMap inDataMap
   ?let @constantMap inConstantMap
+  ?let @pic18MacroMap inMacroMap
   ?!@uint ioLocalLabelIndex
   ?!@ipic18SequentialInstructionList ioGeneratedInstructionList
   ?!@lstring ioBlockLabel
@@ -1708,6 +1737,7 @@ override method @pic18Instruction_structured_if analyze
     !inRegisterTable
     !inDataMap
     !inConstantMap
+    !inMacroMap
     !?ioLocalLabelIndex
     !?ioGeneratedInstructionList
     !?ioBlockLabel
@@ -1736,6 +1766,7 @@ override method @pic18Instruction_structured_if analyze
     !inRegisterTable
     !inDataMap
     !inConstantMap
+    !inMacroMap
     !?ioLocalLabelIndex
     !?ioGeneratedInstructionList
     !?ioBlockLabel
@@ -1778,6 +1809,7 @@ override method @pic18Instruction_with analyze
   ?let @registerTable inRegisterTable
   ?let @pic18_dataMap inDataMap
   ?let @constantMap inConstantMap
+  ?let @pic18MacroMap inMacroMap
   ?!@uint ioLocalLabelIndex
   ?!@ipic18SequentialInstructionList ioGeneratedInstructionList
   ?!@lstring ioBlockLabel
@@ -1801,6 +1833,57 @@ override method @pic18Instruction_with analyze
     !inRegisterTable
     !inDataMap
     !constantMap
+    !inMacroMap
+    !?ioLocalLabelIndex
+    !?ioGeneratedInstructionList
+    !?ioBlockLabel
+    !?ioListFileContents
+    !?ioCurrentBank
+    !inShouldPreserveBSR
+    !inRoutineKind
+    !?ioUsedRegisters
+  )
+}
+
+#----------------------------------------------------*
+
+override method @pic18Instruction_macro analyze
+  ?let @uint inAccessBankSplitOffset
+  ?!@ipic18BlockList ioGeneratedBlockList
+  ?let @routineMap inRoutineMap
+  ?let @registerTable inRegisterTable
+  ?let @pic18_dataMap inDataMap
+  ?let @constantMap inConstantMap
+  ?let @pic18MacroMap inMacroMap
+  ?!@uint ioLocalLabelIndex
+  ?!@ipic18SequentialInstructionList ioGeneratedInstructionList
+  ?!@lstring ioBlockLabel
+  ?!@string ioListFileContents
+  ?!@uint ioCurrentBank
+  ?let @bool inShouldPreserveBSR
+  ?let @routineKind inRoutineKind
+  ?!@stringset ioUsedRegisters
+{
+  [inMacroMap searchKey !mMacroName ?let constantNameList ?let instructionList]
+  if [mExpressionList length] != [constantNameList length] then
+    error mInstructionLocation
+    : [[constantNameList length] string] + " argument(s) required"
+  end
+  @constantMap constantMap = inConstantMap
+  for () in mExpressionList, (constantName) in constantNameList do
+    [mExpression eval !inRegisterTable !constantMap ?let @sint64 expressionValue !?ioUsedRegisters]
+    [!?constantMap insertKey !constantName !expressionValue]
+  end
+#--- Analyze instruction list
+  analyzeInstructionList (
+    !instructionList
+    !?ioGeneratedBlockList
+    !inAccessBankSplitOffset
+    !inRoutineMap
+    !inRegisterTable
+    !inDataMap
+    !constantMap
+    !inMacroMap
     !?ioLocalLabelIndex
     !?ioGeneratedInstructionList
     !?ioBlockLabel
@@ -1989,6 +2072,7 @@ override method @pic18Instruction_switch analyze
   ?let @registerTable inRegisterTable
   ?let @pic18_dataMap inDataMap
   ?let @constantMap inConstantMap
+  ?let @pic18MacroMap inMacroMap
   ?!@uint ioLocalLabelIndex
   ?!@ipic18SequentialInstructionList ioGeneratedInstructionList
   ?!@lstring ioBlockLabel
@@ -2041,6 +2125,7 @@ override method @pic18Instruction_switch analyze
       !inRegisterTable
       !inDataMap
       !inConstantMap
+      !inMacroMap
       !?ioLocalLabelIndex
       !?ioGeneratedInstructionList
       !?ioBlockLabel
@@ -2083,6 +2168,7 @@ override method @pic18Instruction_switch analyze
     !inRegisterTable
     !inDataMap
     !inConstantMap
+    !inMacroMap
     !?ioLocalLabelIndex
     !?ioGeneratedInstructionList
     !?ioBlockLabel
@@ -2116,97 +2202,6 @@ override method @pic18Instruction_switch analyze
   else
     ioBlockLabel = ["" nowhere]
   end
-
-##--- Save bank settings
-#  @uint elseBranchFinalBank := ioCurrentBank ;
-#  @uint thenBranchFinalBank := ioCurrentBank ;
-#  const @lstring exitLabel [new !".L" . [ioLocalLabelIndex string] !mInstructionLocation] ; 
-#  ioLocalLabelIndex ++ ;
-##---- Analyze condition
-#  [mIfCondition analyzeCondition
-#    !inAccessBankSplitOffset
-#    !ioCurrentBank
-#    !inRegisterTable
-#    !?ioLocalLabelIndex
-#    !?ioGeneratedBlockList
-#    !conditionTrueLabel
-#    !conditionFalseLabel
-#    !?ioUsedRegisters
-#    ?@ipic18AbstractBlockTerminator testTerminator
-#  ] ;
-##--- Save current block block
-#  ioGeneratedBlockList += ![@ipic18Block new
-#    ![@uint max] # relocatable
-#    !ioBlockLabel
-#    !ioGeneratedInstructionList
-#    !testTerminator
-#  ] ;
-#  ioGeneratedInstructionList := [@ipic18SequentialInstructionList emptyList] ;
-##--- Analyze 'then' instruction list
-#  ioBlockLabel := conditionTrueLabel ;
-#  analyzeInstructionList
-#    !mThenInstructionList
-#    !?ioGeneratedBlockList
-#    !inAccessBankSplitOffset
-#    !inRoutineMap
-#    !inRegisterTable
-#    !inDataMap
-#    !inConstantMap
-#    !?ioLocalLabelIndex
-#    !?ioGeneratedInstructionList
-#    !?ioBlockLabel
-#    !?ioListFileContents
-#    !?thenBranchFinalBank
-#    !inShouldPreserveBSR
-#    !inRoutineKind
-#    !?ioUsedRegisters
-#  ;
-#  const @bool thenContinuesInSequence := ioBlockLabel->string != "" ;
-#  if thenContinuesInSequence then
-#    ioGeneratedBlockList += ![@ipic18Block new
-#      ![@uint max] # relocatable
-#      !ioBlockLabel
-#      !ioGeneratedInstructionList
-#      ![@ipic18JumpTerminator new !mInstructionLocation !exitLabel ![@jumpInstructionKind ipicRelative]]
-#    ] ;
-#  end if ;
-#  ioGeneratedInstructionList := [@ipic18SequentialInstructionList emptyList] ;
-##--- Build block
-#  ioBlockLabel := conditionFalseLabel ;
-#  analyzeInstructionList
-#    !mElseInstructionList
-#    !?ioGeneratedBlockList
-#    !inAccessBankSplitOffset
-#    !inRoutineMap
-#    !inRegisterTable
-#    !inDataMap
-#    !inConstantMap
-#    !?ioLocalLabelIndex
-#    !?ioGeneratedInstructionList
-#    !?ioBlockLabel
-#    !?ioListFileContents
-#    !?elseBranchFinalBank
-#    !inShouldPreserveBSR
-#    !inRoutineKind
-#    !?ioUsedRegisters
-#  ;
-#  const @bool elseContinuesInSequence := ioBlockLabel->string != "" ;
-#  if elseContinuesInSequence then
-#    ioGeneratedBlockList += ![@ipic18Block new
-#      ![@uint max] # relocatable
-#      !ioBlockLabel
-#      !ioGeneratedInstructionList
-#      ![@ipic18JumpTerminator new !mInstructionLocation !exitLabel ![@jumpInstructionKind ipicRelative]]
-#    ] ;
-#  end if ;
-#  ioGeneratedInstructionList := [@ipic18SequentialInstructionList emptyList] ;
-##---
-#  if elseBranchFinalBank == thenBranchFinalBank then
-#    ioCurrentBank := elseBranchFinalBank ;
-#  else
-#    error mEndOfElsePartLocation:"This branch does not leave bank selection value as the first one does";
-#    elseBranchFinalBank := [@uint max] ; # No available value for BSR
-#  end if ;
 }
 
 #----------------------------------------------------*
@@ -2218,6 +2213,7 @@ override method @pic18Instruction_do_while analyze
   ?let @registerTable inRegisterTable
   ?let @pic18_dataMap inDataMap
   ?let @constantMap inConstantMap
+  ?let @pic18MacroMap inMacroMap
   ?!@uint ioLocalLabelIndex
   ?!@ipic18SequentialInstructionList ioGeneratedInstructionList
   ?!@lstring ioBlockLabel
@@ -2229,8 +2225,6 @@ override method @pic18Instruction_do_while analyze
 #--- Labels
   let startLabel = @lstring.new { !".L" + [ioLocalLabelIndex string] !mInstructionLocation} 
   ioLocalLabelIndex ++
-#  const @lstring exitLabel [new !".L" . [ioLocalLabelIndex string] !mInstructionLocation] ; 
-#  ioLocalLabelIndex ++ ;
 #--- Save current block
   ioGeneratedBlockList += !@ipic18Block. new {
     !@uint. max # relocatable
@@ -2238,20 +2232,6 @@ override method @pic18Instruction_do_while analyze
     !ioGeneratedInstructionList
     !@ipic18JumpTerminator. new { !mInstructionLocation !startLabel !@jumpInstructionKind. ipicRelative}}
   ioGeneratedInstructionList = @ipic18SequentialInstructionList. emptyList
-
-
-
-#  const @ipic18AbstractBlockTerminator currentBlockTerminator :=  ioCurrentBlock->mTerminator ;
-##--- Close current block
-#  ioCurrentBlock->mTerminator := [@ipic18JumpTerminator new !mInstructionLocation !startLabel ![@jumpInstructionKind ipicRelative]] ;
-#  ioGeneratedBlockList += !ioCurrentBlock ;
-#--- Create an new block, for repeated instruction list
-#  ioCurrentBlock := [@ipic18Block new
-#    ![@uint max] # relocatable
-#    !startLabel
-#    ![@ipic18SequentialInstructionList emptyList]
-#    !currentBlockTerminator
-#  ] ;
 #--- Repeated instruction list
   ioBlockLabel = startLabel
   @uint repeatedBranchFinalBank = ioCurrentBank
@@ -2263,6 +2243,7 @@ override method @pic18Instruction_do_while analyze
     !inRegisterTable
     !inDataMap
     !inConstantMap
+    !inMacroMap
     !?ioLocalLabelIndex
     !?ioGeneratedInstructionList
     !?ioBlockLabel
@@ -2306,17 +2287,6 @@ override method @pic18Instruction_do_while analyze
       !testTerminator}
     ioGeneratedInstructionList = @ipic18SequentialInstructionList. emptyList
     ioBlockLabel = conditionTrueLabel
-#
-#
-#
-#    ioCurrentBlock->mTerminator := testTerminator ;
-#    ioGeneratedBlockList += !ioCurrentBlock ;
-#    ioCurrentBlock := [@ipic18Block new
-#      ![@uint max] # relocatable
-#      !conditionTrueLabel
-#      ![@ipic18SequentialInstructionList emptyList]
-#      ![@ipic18JumpTerminator new !mInstructionLocation !startLabel ![@jumpInstructionKind ipicRelative]]
-#    ] ;
     @uint branchFinalBank = ioCurrentBank
     analyzeInstructionList (
       !mInstructionList
@@ -2326,6 +2296,7 @@ override method @pic18Instruction_do_while analyze
       !inRegisterTable
       !inDataMap
       !inConstantMap
+      !inMacroMap
       !?ioLocalLabelIndex
       !?ioGeneratedInstructionList
       !?ioBlockLabel
@@ -2594,6 +2565,7 @@ override method @pic18Instruction_block analyze
   ?let @registerTable inRegisterTable
   ?let @pic18_dataMap inDataMap
   ?let @constantMap inConstantMap
+  ?let @pic18MacroMap inMacroMap
   ?!@uint ioLocalLabelIndex
   ?!@ipic18SequentialInstructionList ioGeneratedInstructionList
   ?!@lstring ioBlockLabel
@@ -2650,6 +2622,7 @@ override method @pic18Instruction_block analyze
         !inRegisterTable
         !inDataMap
         !inConstantMap
+        !inMacroMap
         !?ioLocalLabelIndex
         !?ioGeneratedInstructionList
         !?ioBlockLabel
@@ -3011,7 +2984,7 @@ override method @pic18AndCondition analyzeCondition
 
 #----------------------------------------------------------------------------*
 
-#!--- Routines
+#! Routines
 
 #----------------------------------------------------------------------------*
 
@@ -3023,6 +2996,7 @@ proc analyzeInstructionList
   ?let @registerTable inRegisterTable
   ?let @pic18_dataMap inDataMap
   ?let @constantMap inConstantMap
+  ?let @pic18MacroMap inMacroMap
   ?!@uint ioLocalLabelIndex
   ?!@ipic18SequentialInstructionList ioGeneratedInstructionList
   ?!@lstring ioBlockLabel
@@ -3043,6 +3017,7 @@ proc analyzeInstructionList
       !inRegisterTable
       !inDataMap
       !inConstantMap
+      !inMacroMap
       !?ioLocalLabelIndex
       !?ioGeneratedInstructionList
       !?ioBlockLabel
@@ -3099,6 +3074,7 @@ proc build_ipic18_block_representation_list
   ?let @string inSourceFileName
   ?let @sint64 inROMSize
   ?let @sint64 inRAMSize
+  ?let @pic18MacroMap inMacroMap
   ?let @routineDeclarationList inBootloaderRoutineDeclarationListForBootloaderImplementation
   ?let @routineDeclarationList inUserRoutineDeclarationListForBootloaderImplementation
   ?let @luint inBootloaderReservedROMsize
@@ -3140,7 +3116,7 @@ proc build_ipic18_block_representation_list
     [!?routineMap insertKey !mRoutineName !mIsNoReturn ![mRequiredBank uint] ![mReturnedBank uint] !mPreservesBank]
   end
 #-------------------------------- Build constant map
-  var constantMap =@constantMap.emptyMap{}
+  var constantMap = @constantMap.emptyMap{}
 #--- Add "ROM_SIZE" and "RAM_SIZE" constants
   [!?constantMap insertKey !@lstring. new { !"ROM_SIZE" !@location.here} !inROMSize]
   [!?constantMap insertKey !@lstring. new { !"RAM_SIZE" !@location.here} !inRAMSize]
@@ -3290,6 +3266,7 @@ proc build_ipic18_block_representation_list
           !inRegisterTable
           !dataMap
           !constantMap
+          !inMacroMap
           !?localLabelIndex
           !?generatedInstructionList
           !?currentBlockLabel
@@ -3326,6 +3303,7 @@ proc build_ipic18_block_representation_list
           !inRegisterTable
           !dataMap
           !constantMap
+          !inMacroMap
           !?localLabelIndex
           !?generatedInstructionList
           !?currentBlockLabel
@@ -3366,6 +3344,7 @@ proc build_ipic18_block_representation_list
       !inRegisterTable
       !dataMap
       !constantMap
+      !inMacroMap
       !?localLabelIndex
       !?generatedInstructionList
       !?currentBlockLabel

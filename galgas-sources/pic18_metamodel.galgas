@@ -252,6 +252,13 @@ class @pic18Instruction_with : @pic18PiccoloInstruction {
 
 #----------------------------------------------------*
 
+class @pic18Instruction_macro : @pic18PiccoloInstruction {
+  @lstring mMacroName
+  @immediatExpressionList mExpressionList
+}
+
+#----------------------------------------------------*
+
 class @pic18Instruction_JUMP : @pic18PiccoloInstruction {
   @lstring mTargetLabel
   @jumpInstructionKind mKind
@@ -531,6 +538,23 @@ list @pic18RoutineDefinitionList {
 
 #----------------------------------------------------*
 
+list @pic18MacroDefinitionList {
+  @lstring mMacroName
+  @lstringlist mConstantNameList
+  @pic18InstructionList mInstructionList
+}
+
+#----------------------------------------------------*
+
+map @pic18MacroMap {
+  @lstringlist mConstantNameList
+  @pic18InstructionList mInstructionList
+  insert insertKey error message "the '%K' macro is already declared in %L"
+  search searchKey error message "there is no '%K' macro"
+}
+
+#----------------------------------------------------*
+
 list @routineDeclarationList {
   @lstring mRoutineName
   @luint mRequiredBank
@@ -581,6 +605,7 @@ struct @pic18AST {
   @pic18InterruptDefinitionList mInterruptDefinitionList
   @constantDefinitionList mConstantDefinitionList
   @pic18RoutineDefinitionList mRoutineDefinitionList
+  @pic18MacroDefinitionList mMacroDefinitionList
   @lstringlist mUnusedRoutineList
   @lstringlist mInlinedRoutineList
   @bool mNeedsComputedGoto2

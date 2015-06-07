@@ -4137,6 +4137,455 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_RoutineD
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
+//                                           @pic18MacroDefinitionList list                                            *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class GALGAS_pic_31__38_MacroDefinitionList : public AC_GALGAS_list {
+//--------------------------------- Default constructor
+  public : GALGAS_pic_31__38_MacroDefinitionList (void) ;
+
+//--------------------------------- List constructor used by listmap
+  public : GALGAS_pic_31__38_MacroDefinitionList (cSharedList * inSharedListPtr) ;
+
+//--------------------------------- Element constructor used by listmap
+  public : static void makeAttributesFromObjects (capCollectionElement & outAttributes,
+                                                  const class GALGAS_lstring & in_mMacroName,
+                                                  const class GALGAS_lstringlist & in_mConstantNameList,
+                                                  const class GALGAS_pic_31__38_InstructionList & in_mInstructionList
+                                                  COMMA_LOCATION_ARGS) ;
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public : static GALGAS_pic_31__38_MacroDefinitionList extractObject (const GALGAS_object & inObject,
+                                                                       C_Compiler * inCompiler
+                                                                       COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public : static GALGAS_pic_31__38_MacroDefinitionList constructor_emptyList (LOCATION_ARGS) ;
+
+  public : static GALGAS_pic_31__38_MacroDefinitionList constructor_listWithValue (const class GALGAS_lstring & inOperand0,
+                                                                                   const class GALGAS_lstringlist & inOperand1,
+                                                                                   const class GALGAS_pic_31__38_InstructionList & inOperand2
+                                                                                   COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- += operator (with expression)
+  public : VIRTUAL_IN_DEBUG void dotAssign_operation (const GALGAS_pic_31__38_MacroDefinitionList inOperand
+                                                      COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- += operator (with list of field expressions)
+  public : VIRTUAL_IN_DEBUG void addAssign_operation (const class GALGAS_lstring & inOperand0,
+                                                      const class GALGAS_lstringlist & inOperand1,
+                                                      const class GALGAS_pic_31__38_InstructionList & inOperand2
+                                                      COMMA_LOCATION_ARGS) ;
+//--------------------------------- . (concat) operator
+  public : VIRTUAL_IN_DEBUG GALGAS_pic_31__38_MacroDefinitionList operator_concat (const GALGAS_pic_31__38_MacroDefinitionList & inOperand
+                                                                                   COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- + operator
+  public : VIRTUAL_IN_DEBUG GALGAS_pic_31__38_MacroDefinitionList add_operation (const GALGAS_pic_31__38_MacroDefinitionList & inOperand,
+                                                                                 C_Compiler * inCompiler
+                                                                                 COMMA_LOCATION_ARGS) const ;
+
+
+//--------------------------------- Setters
+  public : VIRTUAL_IN_DEBUG void modifier_insertAtIndex (class GALGAS_lstring constinArgument0,
+                                                         class GALGAS_lstringlist constinArgument1,
+                                                         class GALGAS_pic_31__38_InstructionList constinArgument2,
+                                                         class GALGAS_uint constinArgument3,
+                                                         C_Compiler * inCompiler
+                                                         COMMA_LOCATION_ARGS) ;
+
+  public : VIRTUAL_IN_DEBUG void modifier_popFirst (class GALGAS_lstring & outArgument0,
+                                                    class GALGAS_lstringlist & outArgument1,
+                                                    class GALGAS_pic_31__38_InstructionList & outArgument2,
+                                                    C_Compiler * inCompiler
+                                                    COMMA_LOCATION_ARGS) ;
+
+  public : VIRTUAL_IN_DEBUG void modifier_popLast (class GALGAS_lstring & outArgument0,
+                                                   class GALGAS_lstringlist & outArgument1,
+                                                   class GALGAS_pic_31__38_InstructionList & outArgument2,
+                                                   C_Compiler * inCompiler
+                                                   COMMA_LOCATION_ARGS) ;
+
+  public : VIRTUAL_IN_DEBUG void modifier_removeAtIndex (class GALGAS_lstring & outArgument0,
+                                                         class GALGAS_lstringlist & outArgument1,
+                                                         class GALGAS_pic_31__38_InstructionList & outArgument2,
+                                                         class GALGAS_uint constinArgument3,
+                                                         C_Compiler * inCompiler
+                                                         COMMA_LOCATION_ARGS) ;
+
+
+//--------------------------------- Instance Methods
+  public : VIRTUAL_IN_DEBUG void method_first (class GALGAS_lstring & outArgument0,
+                                               class GALGAS_lstringlist & outArgument1,
+                                               class GALGAS_pic_31__38_InstructionList & outArgument2,
+                                               C_Compiler * inCompiler
+                                               COMMA_LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG void method_last (class GALGAS_lstring & outArgument0,
+                                              class GALGAS_lstringlist & outArgument1,
+                                              class GALGAS_pic_31__38_InstructionList & outArgument2,
+                                              C_Compiler * inCompiler
+                                              COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+  public : VIRTUAL_IN_DEBUG class GALGAS_lstringlist reader_mConstantNameListAtIndex (const class GALGAS_uint & constinOperand0,
+                                                                                      C_Compiler * inCompiler
+                                                                                      COMMA_LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_pic_31__38_InstructionList reader_mInstructionListAtIndex (const class GALGAS_uint & constinOperand0,
+                                                                                                    C_Compiler * inCompiler
+                                                                                                    COMMA_LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_lstring reader_mMacroNameAtIndex (const class GALGAS_uint & constinOperand0,
+                                                                           C_Compiler * inCompiler
+                                                                           COMMA_LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_pic_31__38_MacroDefinitionList reader_subListFromIndex (const class GALGAS_uint & constinOperand0,
+                                                                                                 C_Compiler * inCompiler
+                                                                                                 COMMA_LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_pic_31__38_MacroDefinitionList reader_subListWithRange (const class GALGAS_range & constinOperand0,
+                                                                                                 C_Compiler * inCompiler
+                                                                                                 COMMA_LOCATION_ARGS) const ;
+
+
+//--------------------------------- Introspection
+  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+//--------------------------------- Friend
+
+  friend class cEnumerator_pic_31__38_MacroDefinitionList ;
+ 
+} ; // End of GALGAS_pic_31__38_MacroDefinitionList class
+
+//---------------------------------------------------------------------------------------------------------------------*
+//   Enumerator declaration                                                    *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class cEnumerator_pic_31__38_MacroDefinitionList : public cGenericAbstractEnumerator {
+  public : cEnumerator_pic_31__38_MacroDefinitionList (const GALGAS_pic_31__38_MacroDefinitionList & inEnumeratedObject,
+                                                       const typeEnumerationOrder inOrder) ;
+
+//--- Current element access
+  public : class GALGAS_lstring current_mMacroName (LOCATION_ARGS) const ;
+  public : class GALGAS_lstringlist current_mConstantNameList (LOCATION_ARGS) const ;
+  public : class GALGAS_pic_31__38_InstructionList current_mInstructionList (LOCATION_ARGS) const ;
+//--- Current element access
+  public : class GALGAS_pic_31__38_MacroDefinitionList_2D_element current (LOCATION_ARGS) const ;
+} ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_MacroDefinitionList ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                  @pic_31__38_MacroDefinitionList_2D_element struct                                  *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class GALGAS_pic_31__38_MacroDefinitionList_2D_element : public AC_GALGAS_root {
+//--------------------------------- Public data members
+  public : GALGAS_lstring mAttribute_mMacroName ;
+  public : GALGAS_lstringlist mAttribute_mConstantNameList ;
+  public : GALGAS_pic_31__38_InstructionList mAttribute_mInstructionList ;
+
+
+//--------------------------------- Accessors
+  public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
+  public : VIRTUAL_IN_DEBUG void drop (void) ;
+
+//--------------------------------- Default GALGAS constructor
+  public : static GALGAS_pic_31__38_MacroDefinitionList_2D_element constructor_default (LOCATION_ARGS) ;
+
+//--------------------------------- Default constructor
+  public : GALGAS_pic_31__38_MacroDefinitionList_2D_element (void) ;
+
+//--------------------------------- Virtual destructor (in debug mode)
+  public : VIRTUAL_IN_DEBUG ~ GALGAS_pic_31__38_MacroDefinitionList_2D_element (void) ;
+
+//--------------------------------- Native constructor
+  public : GALGAS_pic_31__38_MacroDefinitionList_2D_element (const GALGAS_lstring & in_mMacroName,
+                                                             const GALGAS_lstringlist & in_mConstantNameList,
+                                                             const GALGAS_pic_31__38_InstructionList & in_mInstructionList) ;
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public : static GALGAS_pic_31__38_MacroDefinitionList_2D_element extractObject (const GALGAS_object & inObject,
+                                                                                  C_Compiler * inCompiler
+                                                                                  COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public : static GALGAS_pic_31__38_MacroDefinitionList_2D_element constructor_new (const class GALGAS_lstring & inOperand0,
+                                                                                    const class GALGAS_lstringlist & inOperand1,
+                                                                                    const class GALGAS_pic_31__38_InstructionList & inOperand2
+                                                                                    COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Implementation of reader 'description'
+  public : VIRTUAL_IN_DEBUG void description (C_String & ioString,
+                                              const int32_t inIndentation) const ;
+//--------------------------------- Comparison
+  public : typeComparisonResult objectCompare (const GALGAS_pic_31__38_MacroDefinitionList_2D_element & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+  public : VIRTUAL_IN_DEBUG class GALGAS_lstringlist reader_mConstantNameList (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_pic_31__38_InstructionList reader_mInstructionList (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_lstring reader_mMacroName (LOCATION_ARGS) const ;
+
+
+//--------------------------------- Introspection
+  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+ 
+} ; // End of GALGAS_pic_31__38_MacroDefinitionList_2D_element class
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_MacroDefinitionList_2D_element ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                                 @pic18MacroMap map                                                  *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class cMapElement_pic_31__38_MacroMap ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+extern const char * kSearchErrorMessage_pic_31__38_MacroMap_searchKey ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+class GALGAS_pic_31__38_MacroMap : public AC_GALGAS_map {
+//--------------------------------- Default constructor
+  public : GALGAS_pic_31__38_MacroMap (void) ;
+
+//--------------------------------- Handle copy
+  public : GALGAS_pic_31__38_MacroMap (const GALGAS_pic_31__38_MacroMap & inSource) ;
+  public : GALGAS_pic_31__38_MacroMap & operator = (const GALGAS_pic_31__38_MacroMap & inSource) ;
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public : static GALGAS_pic_31__38_MacroMap extractObject (const GALGAS_object & inObject,
+                                                            C_Compiler * inCompiler
+                                                            COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public : static GALGAS_pic_31__38_MacroMap constructor_emptyMap (LOCATION_ARGS) ;
+
+  public : static GALGAS_pic_31__38_MacroMap constructor_mapWithMapToOverride (const class GALGAS_pic_31__38_MacroMap & inOperand0
+                                                                               COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- += operator (with list of field expressions)
+  public : VIRTUAL_IN_DEBUG void addAssign_operation (const class GALGAS_lstring & inOperand0,
+                                                      const class GALGAS_lstringlist & inOperand1,
+                                                      const class GALGAS_pic_31__38_InstructionList & inOperand2,
+                                                      C_Compiler * inCompiler
+                                                      COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Setters
+  public : VIRTUAL_IN_DEBUG void modifier_insertKey (class GALGAS_lstring constinArgument0,
+                                                     class GALGAS_lstringlist constinArgument1,
+                                                     class GALGAS_pic_31__38_InstructionList constinArgument2,
+                                                     C_Compiler * inCompiler
+                                                     COMMA_LOCATION_ARGS) ;
+
+  public : VIRTUAL_IN_DEBUG void modifier_setMConstantNameListForKey (class GALGAS_lstringlist constinArgument0,
+                                                                      class GALGAS_string constinArgument1,
+                                                                      C_Compiler * inCompiler
+                                                                      COMMA_LOCATION_ARGS) ;
+
+  public : VIRTUAL_IN_DEBUG void modifier_setMInstructionListForKey (class GALGAS_pic_31__38_InstructionList constinArgument0,
+                                                                     class GALGAS_string constinArgument1,
+                                                                     C_Compiler * inCompiler
+                                                                     COMMA_LOCATION_ARGS) ;
+
+
+//--------------------------------- Instance Methods
+  public : VIRTUAL_IN_DEBUG void method_searchKey (class GALGAS_lstring constinArgument0,
+                                                   class GALGAS_lstringlist & outArgument1,
+                                                   class GALGAS_pic_31__38_InstructionList & outArgument2,
+                                                   C_Compiler * inCompiler
+                                                   COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+  public : VIRTUAL_IN_DEBUG class GALGAS_lstringlist reader_mConstantNameListForKey (const class GALGAS_string & constinOperand0,
+                                                                                     C_Compiler * inCompiler
+                                                                                     COMMA_LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_pic_31__38_InstructionList reader_mInstructionListForKey (const class GALGAS_string & constinOperand0,
+                                                                                                   C_Compiler * inCompiler
+                                                                                                   COMMA_LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_pic_31__38_MacroMap reader_overriddenMap (C_Compiler * inCompiler
+                                                                                   COMMA_LOCATION_ARGS) const ;
+
+
+//--------------------------------- Introspection
+  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+  public : VIRTUAL_IN_DEBUG cMapElement_pic_31__38_MacroMap * readWriteAccessForWithInstruction (C_Compiler * inCompiler,
+                                                                                                 const GALGAS_string & inKey
+                                                                                                 COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Friend
+
+  friend class cEnumerator_pic_31__38_MacroMap ;
+ 
+} ; // End of GALGAS_pic_31__38_MacroMap class
+
+//---------------------------------------------------------------------------------------------------------------------*
+//   Enumerator declaration                                                    *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class cEnumerator_pic_31__38_MacroMap : public cGenericAbstractEnumerator {
+  public : cEnumerator_pic_31__38_MacroMap (const GALGAS_pic_31__38_MacroMap & inEnumeratedObject,
+                                            const typeEnumerationOrder inOrder) ;
+
+//--- Current element access
+  public : class GALGAS_lstring current_lkey (LOCATION_ARGS) const ;
+  public : class GALGAS_lstringlist current_mConstantNameList (LOCATION_ARGS) const ;
+  public : class GALGAS_pic_31__38_InstructionList current_mInstructionList (LOCATION_ARGS) const ;
+//--- Current element access
+  public : class GALGAS_pic_31__38_MacroMap_2D_element current (LOCATION_ARGS) const ;
+} ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_MacroMap ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                      Class for element of '@pic18MacroMap' map                                      *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class cMapElement_pic_31__38_MacroMap : public cMapElement {
+//--- Map attributes
+  public : GALGAS_lstringlist mAttribute_mConstantNameList ;
+  public : GALGAS_pic_31__38_InstructionList mAttribute_mInstructionList ;
+
+//--- Constructor
+  public : cMapElement_pic_31__38_MacroMap (const GALGAS_lstring & inKey,
+                                            const GALGAS_lstringlist & in_mConstantNameList,
+                                            const GALGAS_pic_31__38_InstructionList & in_mInstructionList
+                                            COMMA_LOCATION_ARGS) ;
+
+//--- Virtual method for comparing elements
+  public : virtual typeComparisonResult compare (const cCollectionElement * inOperand) const ;
+
+//--- Virtual method that checks that all attributes are valid
+  public : virtual bool isValid (void) const ;
+
+//--- Virtual method that returns a copy of current object
+  public : virtual cMapElement * copy (void) ;
+
+//--- Description
+ public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
+} ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                       @pic_31__38_MacroMap_2D_element struct                                        *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class GALGAS_pic_31__38_MacroMap_2D_element : public AC_GALGAS_root {
+//--------------------------------- Public data members
+  public : GALGAS_lstring mAttribute_lkey ;
+  public : GALGAS_lstringlist mAttribute_mConstantNameList ;
+  public : GALGAS_pic_31__38_InstructionList mAttribute_mInstructionList ;
+
+
+//--------------------------------- Accessors
+  public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
+  public : VIRTUAL_IN_DEBUG void drop (void) ;
+
+//--------------------------------- Default GALGAS constructor
+  public : static GALGAS_pic_31__38_MacroMap_2D_element constructor_default (LOCATION_ARGS) ;
+
+//--------------------------------- Default constructor
+  public : GALGAS_pic_31__38_MacroMap_2D_element (void) ;
+
+//--------------------------------- Virtual destructor (in debug mode)
+  public : VIRTUAL_IN_DEBUG ~ GALGAS_pic_31__38_MacroMap_2D_element (void) ;
+
+//--------------------------------- Native constructor
+  public : GALGAS_pic_31__38_MacroMap_2D_element (const GALGAS_lstring & in_lkey,
+                                                  const GALGAS_lstringlist & in_mConstantNameList,
+                                                  const GALGAS_pic_31__38_InstructionList & in_mInstructionList) ;
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public : static GALGAS_pic_31__38_MacroMap_2D_element extractObject (const GALGAS_object & inObject,
+                                                                       C_Compiler * inCompiler
+                                                                       COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public : static GALGAS_pic_31__38_MacroMap_2D_element constructor_new (const class GALGAS_lstring & inOperand0,
+                                                                         const class GALGAS_lstringlist & inOperand1,
+                                                                         const class GALGAS_pic_31__38_InstructionList & inOperand2
+                                                                         COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Implementation of reader 'description'
+  public : VIRTUAL_IN_DEBUG void description (C_String & ioString,
+                                              const int32_t inIndentation) const ;
+//--------------------------------- Comparison
+  public : typeComparisonResult objectCompare (const GALGAS_pic_31__38_MacroMap_2D_element & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+  public : VIRTUAL_IN_DEBUG class GALGAS_lstring reader_lkey (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_lstringlist reader_mConstantNameList (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_pic_31__38_InstructionList reader_mInstructionList (LOCATION_ARGS) const ;
+
+
+//--------------------------------- Introspection
+  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+ 
+} ; // End of GALGAS_pic_31__38_MacroMap_2D_element class
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_MacroMap_2D_element ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
 //                                            @routineDeclarationList list                                             *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
@@ -5115,16 +5564,17 @@ class cParser_pic_31__38__5F_syntax {
 
   protected : virtual void nt_body_ (class GALGAS_pic_31__38_InterruptDefinitionList & ioArgument0,
                                      class GALGAS_pic_31__38_RoutineDefinitionList & ioArgument1,
-                                     class GALGAS_lstringlist & ioArgument2,
+                                     class GALGAS_pic_31__38_MacroDefinitionList & ioArgument2,
                                      class GALGAS_lstringlist & ioArgument3,
-                                     class GALGAS_ramDefinitionList & ioArgument4,
-                                     class GALGAS_lstringlist & ioArgument5,
-                                     class GALGAS_configDefinitionList & ioArgument6,
-                                     class GALGAS_constantDefinitionList & ioArgument7,
-                                     class GALGAS_checkpicList & ioArgument8,
-                                     class GALGAS_dataList & ioArgument9,
-                                     class GALGAS_bool & ioArgument10,
+                                     class GALGAS_lstringlist & ioArgument4,
+                                     class GALGAS_ramDefinitionList & ioArgument5,
+                                     class GALGAS_lstringlist & ioArgument6,
+                                     class GALGAS_configDefinitionList & ioArgument7,
+                                     class GALGAS_constantDefinitionList & ioArgument8,
+                                     class GALGAS_checkpicList & ioArgument9,
+                                     class GALGAS_dataList & ioArgument10,
                                      class GALGAS_bool & ioArgument11,
+                                     class GALGAS_bool & ioArgument12,
                                      class C_Lexique_piccolo_5F_lexique * inLexique) = 0 ;
 
   protected : virtual void nt_body_parse (class C_Lexique_piccolo_5F_lexique * inLexique) = 0 ;
@@ -5264,16 +5714,17 @@ class cParser_pic_31__38__5F_syntax {
 //--- Rule declarations
   protected : void rule_pic_31__38__5F_syntax_body_i0_ (GALGAS_pic_31__38_InterruptDefinitionList & ioArgument0,
                                                         GALGAS_pic_31__38_RoutineDefinitionList & ioArgument1,
-                                                        GALGAS_lstringlist & ioArgument2,
+                                                        GALGAS_pic_31__38_MacroDefinitionList & ioArgument2,
                                                         GALGAS_lstringlist & ioArgument3,
-                                                        GALGAS_ramDefinitionList & ioArgument4,
-                                                        GALGAS_lstringlist & ioArgument5,
-                                                        GALGAS_configDefinitionList & ioArgument6,
-                                                        GALGAS_constantDefinitionList & ioArgument7,
-                                                        GALGAS_checkpicList & ioArgument8,
-                                                        GALGAS_dataList & ioArgument9,
-                                                        GALGAS_bool & ioArgument10,
+                                                        GALGAS_lstringlist & ioArgument4,
+                                                        GALGAS_ramDefinitionList & ioArgument5,
+                                                        GALGAS_lstringlist & ioArgument6,
+                                                        GALGAS_configDefinitionList & ioArgument7,
+                                                        GALGAS_constantDefinitionList & ioArgument8,
+                                                        GALGAS_checkpicList & ioArgument9,
+                                                        GALGAS_dataList & ioArgument10,
                                                         GALGAS_bool & ioArgument11,
+                                                        GALGAS_bool & ioArgument12,
                                                         C_Lexique_piccolo_5F_lexique * inLexique) ;
 
   protected : void rule_pic_31__38__5F_syntax_body_i0_parse (C_Lexique_piccolo_5F_lexique * inLexique) ;
@@ -5496,6 +5947,10 @@ class cParser_pic_31__38__5F_syntax {
   protected : virtual int32_t select_pic_31__38__5F_syntax_44 (C_Lexique_piccolo_5F_lexique *) = 0 ;
 
   protected : virtual int32_t select_pic_31__38__5F_syntax_45 (C_Lexique_piccolo_5F_lexique *) = 0 ;
+
+  protected : virtual int32_t select_pic_31__38__5F_syntax_46 (C_Lexique_piccolo_5F_lexique *) = 0 ;
+
+  protected : virtual int32_t select_pic_31__38__5F_syntax_47 (C_Lexique_piccolo_5F_lexique *) = 0 ;
 
 
 } ;
@@ -8810,6 +9265,98 @@ class cPtr_pic_31__38_Instruction_5F_literalOperation : public cPtr_pic_31__38_P
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
+//                                       @pic_31__38_Instruction_5F_macro class                                        *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class GALGAS_pic_31__38_Instruction_5F_macro : public GALGAS_pic_31__38_PiccoloInstruction {
+//--- Constructor
+  public : GALGAS_pic_31__38_Instruction_5F_macro (void) ;
+
+//--------------------------------- Default GALGAS constructor
+  public : static GALGAS_pic_31__38_Instruction_5F_macro constructor_default (LOCATION_ARGS) ;
+
+//---
+  public : inline const class cPtr_pic_31__38_Instruction_5F_macro * ptr (void) const { return (const cPtr_pic_31__38_Instruction_5F_macro *) mObjectPtr ; }
+
+//--------------------------------- Constructor from pointer
+  public : GALGAS_pic_31__38_Instruction_5F_macro (const cPtr_pic_31__38_Instruction_5F_macro * inSourcePtr) ;
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public : static GALGAS_pic_31__38_Instruction_5F_macro extractObject (const GALGAS_object & inObject,
+                                                                        C_Compiler * inCompiler
+                                                                        COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public : static GALGAS_pic_31__38_Instruction_5F_macro constructor_new (const class GALGAS_location & inOperand0,
+                                                                          const class GALGAS_lstring & inOperand1,
+                                                                          const class GALGAS_immediatExpressionList & inOperand2
+                                                                          COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Comparison
+  public : typeComparisonResult objectCompare (const GALGAS_pic_31__38_Instruction_5F_macro & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+  public : VIRTUAL_IN_DEBUG class GALGAS_immediatExpressionList reader_mExpressionList (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_lstring reader_mMacroName (LOCATION_ARGS) const ;
+
+
+//--------------------------------- Introspection
+  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+ 
+} ; // End of GALGAS_pic_31__38_Instruction_5F_macro class
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_macro ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                   Pointer class for @pic18Instruction_macro class                                   *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class cPtr_pic_31__38_Instruction_5F_macro : public cPtr_pic_31__38_PiccoloInstruction {
+//--- Attributes
+  public : GALGAS_lstring mAttribute_mMacroName ;
+  public : GALGAS_immediatExpressionList mAttribute_mExpressionList ;
+
+//--- Constructor
+  public : cPtr_pic_31__38_Instruction_5F_macro (const GALGAS_location & in_mInstructionLocation,
+                                                 const GALGAS_lstring & in_mMacroName,
+                                                 const GALGAS_immediatExpressionList & in_mExpressionList
+                                                 COMMA_LOCATION_ARGS) ;
+
+//--- Duplication
+  public : virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+
+//--- Attribute accessors
+  public : VIRTUAL_IN_DEBUG GALGAS_lstring reader_mMacroName (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_immediatExpressionList reader_mExpressionList (LOCATION_ARGS) const ;
+//--- Description
+  public : virtual void description (C_String & ioString,
+                                     const int32_t inIndentation) const ;
+
+  public : virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+
+  public : virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+
+} ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
 //                                     @pic_31__38_Instruction_5F_nobanksel class                                      *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
@@ -10024,16 +10571,17 @@ class cGrammar_pic_31__38__5F_include_5F_grammar : public cParser_pic_31__38__5F
 //----------- '' label
   public : virtual void nt_body_ (GALGAS_pic_31__38_InterruptDefinitionList & ioArgument0,
                                   GALGAS_pic_31__38_RoutineDefinitionList & ioArgument1,
-                                  GALGAS_lstringlist & ioArgument2,
+                                  GALGAS_pic_31__38_MacroDefinitionList & ioArgument2,
                                   GALGAS_lstringlist & ioArgument3,
-                                  GALGAS_ramDefinitionList & ioArgument4,
-                                  GALGAS_lstringlist & ioArgument5,
-                                  GALGAS_configDefinitionList & ioArgument6,
-                                  GALGAS_constantDefinitionList & ioArgument7,
-                                  GALGAS_checkpicList & ioArgument8,
-                                  GALGAS_dataList & ioArgument9,
-                                  GALGAS_bool & ioArgument10,
+                                  GALGAS_lstringlist & ioArgument4,
+                                  GALGAS_ramDefinitionList & ioArgument5,
+                                  GALGAS_lstringlist & ioArgument6,
+                                  GALGAS_configDefinitionList & ioArgument7,
+                                  GALGAS_constantDefinitionList & ioArgument8,
+                                  GALGAS_checkpicList & ioArgument9,
+                                  GALGAS_dataList & ioArgument10,
                                   GALGAS_bool & ioArgument11,
+                                  GALGAS_bool & ioArgument12,
                                   C_Lexique_piccolo_5F_lexique * inCompiler) ;
 
 //--- Start symbol
@@ -10041,32 +10589,34 @@ class cGrammar_pic_31__38__5F_include_5F_grammar : public cParser_pic_31__38__5F
                                                    GALGAS_lstring inFileName,
                                                    GALGAS_pic_31__38_InterruptDefinitionList & ioArgument0,
                                                    GALGAS_pic_31__38_RoutineDefinitionList & ioArgument1,
-                                                   GALGAS_lstringlist & ioArgument2,
+                                                   GALGAS_pic_31__38_MacroDefinitionList & ioArgument2,
                                                    GALGAS_lstringlist & ioArgument3,
-                                                   GALGAS_ramDefinitionList & ioArgument4,
-                                                   GALGAS_lstringlist & ioArgument5,
-                                                   GALGAS_configDefinitionList & ioArgument6,
-                                                   GALGAS_constantDefinitionList & ioArgument7,
-                                                   GALGAS_checkpicList & ioArgument8,
-                                                   GALGAS_dataList & ioArgument9,
-                                                   GALGAS_bool & ioArgument10,
-                                                   GALGAS_bool & ioArgument11
+                                                   GALGAS_lstringlist & ioArgument4,
+                                                   GALGAS_ramDefinitionList & ioArgument5,
+                                                   GALGAS_lstringlist & ioArgument6,
+                                                   GALGAS_configDefinitionList & ioArgument7,
+                                                   GALGAS_constantDefinitionList & ioArgument8,
+                                                   GALGAS_checkpicList & ioArgument9,
+                                                   GALGAS_dataList & ioArgument10,
+                                                   GALGAS_bool & ioArgument11,
+                                                   GALGAS_bool & ioArgument12
                                                    COMMA_LOCATION_ARGS) ;
 
   public : static void _performSourceStringParsing_ (C_Compiler * inCompiler,
                                                      GALGAS_string inSourceString,
                                                      GALGAS_pic_31__38_InterruptDefinitionList & ioArgument0,
                                                      GALGAS_pic_31__38_RoutineDefinitionList & ioArgument1,
-                                                     GALGAS_lstringlist & ioArgument2,
+                                                     GALGAS_pic_31__38_MacroDefinitionList & ioArgument2,
                                                      GALGAS_lstringlist & ioArgument3,
-                                                     GALGAS_ramDefinitionList & ioArgument4,
-                                                     GALGAS_lstringlist & ioArgument5,
-                                                     GALGAS_configDefinitionList & ioArgument6,
-                                                     GALGAS_constantDefinitionList & ioArgument7,
-                                                     GALGAS_checkpicList & ioArgument8,
-                                                     GALGAS_dataList & ioArgument9,
-                                                     GALGAS_bool & ioArgument10,
-                                                     GALGAS_bool & ioArgument11
+                                                     GALGAS_lstringlist & ioArgument4,
+                                                     GALGAS_ramDefinitionList & ioArgument5,
+                                                     GALGAS_lstringlist & ioArgument6,
+                                                     GALGAS_configDefinitionList & ioArgument7,
+                                                     GALGAS_constantDefinitionList & ioArgument8,
+                                                     GALGAS_checkpicList & ioArgument9,
+                                                     GALGAS_dataList & ioArgument10,
+                                                     GALGAS_bool & ioArgument11,
+                                                     GALGAS_bool & ioArgument12
                                                      COMMA_LOCATION_ARGS) ;
 
 //--- Indexing
@@ -10436,6 +10986,10 @@ class cGrammar_pic_31__38__5F_include_5F_grammar : public cParser_pic_31__38__5F
 
   public : virtual int32_t select_pic_31__38__5F_syntax_45 (C_Lexique_piccolo_5F_lexique *) ;
 
+  public : virtual int32_t select_pic_31__38__5F_syntax_46 (C_Lexique_piccolo_5F_lexique *) ;
+
+  public : virtual int32_t select_pic_31__38__5F_syntax_47 (C_Lexique_piccolo_5F_lexique *) ;
+
   public : virtual int32_t select_communs_0 (C_Lexique_piccolo_5F_lexique *) ;
 
   public : virtual int32_t select_communs_1 (C_Lexique_piccolo_5F_lexique *) ;
@@ -10491,16 +11045,17 @@ class cParser_pic_31__38__5F_start_5F_symbol {
 //--- Non terminal declarations
   protected : virtual void nt_body_ (class GALGAS_pic_31__38_InterruptDefinitionList & ioArgument0,
                                      class GALGAS_pic_31__38_RoutineDefinitionList & ioArgument1,
-                                     class GALGAS_lstringlist & ioArgument2,
+                                     class GALGAS_pic_31__38_MacroDefinitionList & ioArgument2,
                                      class GALGAS_lstringlist & ioArgument3,
-                                     class GALGAS_ramDefinitionList & ioArgument4,
-                                     class GALGAS_lstringlist & ioArgument5,
-                                     class GALGAS_configDefinitionList & ioArgument6,
-                                     class GALGAS_constantDefinitionList & ioArgument7,
-                                     class GALGAS_checkpicList & ioArgument8,
-                                     class GALGAS_dataList & ioArgument9,
-                                     class GALGAS_bool & ioArgument10,
+                                     class GALGAS_lstringlist & ioArgument4,
+                                     class GALGAS_ramDefinitionList & ioArgument5,
+                                     class GALGAS_lstringlist & ioArgument6,
+                                     class GALGAS_configDefinitionList & ioArgument7,
+                                     class GALGAS_constantDefinitionList & ioArgument8,
+                                     class GALGAS_checkpicList & ioArgument9,
+                                     class GALGAS_dataList & ioArgument10,
                                      class GALGAS_bool & ioArgument11,
+                                     class GALGAS_bool & ioArgument12,
                                      class C_Lexique_piccolo_5F_lexique * inLexique) = 0 ;
 
   protected : virtual void nt_body_parse (class C_Lexique_piccolo_5F_lexique * inLexique) = 0 ;
@@ -10935,6 +11490,7 @@ class GALGAS_pic_31__38_AST : public AC_GALGAS_root {
   public : GALGAS_pic_31__38_InterruptDefinitionList mAttribute_mInterruptDefinitionList ;
   public : GALGAS_constantDefinitionList mAttribute_mConstantDefinitionList ;
   public : GALGAS_pic_31__38_RoutineDefinitionList mAttribute_mRoutineDefinitionList ;
+  public : GALGAS_pic_31__38_MacroDefinitionList mAttribute_mMacroDefinitionList ;
   public : GALGAS_lstringlist mAttribute_mUnusedRoutineList ;
   public : GALGAS_lstringlist mAttribute_mInlinedRoutineList ;
   public : GALGAS_bool mAttribute_mNeedsComputedGoto_32_ ;
@@ -10964,6 +11520,7 @@ class GALGAS_pic_31__38_AST : public AC_GALGAS_root {
                                   const GALGAS_pic_31__38_InterruptDefinitionList & in_mInterruptDefinitionList,
                                   const GALGAS_constantDefinitionList & in_mConstantDefinitionList,
                                   const GALGAS_pic_31__38_RoutineDefinitionList & in_mRoutineDefinitionList,
+                                  const GALGAS_pic_31__38_MacroDefinitionList & in_mMacroDefinitionList,
                                   const GALGAS_lstringlist & in_mUnusedRoutineList,
                                   const GALGAS_lstringlist & in_mInlinedRoutineList,
                                   const GALGAS_bool & in_mNeedsComputedGoto_32_,
@@ -10992,11 +11549,12 @@ class GALGAS_pic_31__38_AST : public AC_GALGAS_root {
                                                          const class GALGAS_pic_31__38_InterruptDefinitionList & inOperand8,
                                                          const class GALGAS_constantDefinitionList & inOperand9,
                                                          const class GALGAS_pic_31__38_RoutineDefinitionList & inOperand10,
-                                                         const class GALGAS_lstringlist & inOperand11,
+                                                         const class GALGAS_pic_31__38_MacroDefinitionList & inOperand11,
                                                          const class GALGAS_lstringlist & inOperand12,
-                                                         const class GALGAS_bool & inOperand13,
+                                                         const class GALGAS_lstringlist & inOperand13,
                                                          const class GALGAS_bool & inOperand14,
-                                                         const class GALGAS_location & inOperand15
+                                                         const class GALGAS_bool & inOperand15,
+                                                         const class GALGAS_location & inOperand16
                                                          COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of reader 'description'
@@ -11026,6 +11584,8 @@ class GALGAS_pic_31__38_AST : public AC_GALGAS_root {
   public : VIRTUAL_IN_DEBUG class GALGAS_lstringlist reader_mInlinedRoutineList (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_pic_31__38_InterruptDefinitionList reader_mInterruptDefinitionList (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_pic_31__38_MacroDefinitionList reader_mMacroDefinitionList (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_bool reader_mNeedsComputedGoto_32_ (LOCATION_ARGS) const ;
 

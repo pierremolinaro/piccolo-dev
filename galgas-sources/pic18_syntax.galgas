@@ -28,6 +28,7 @@ rule <bit_number_parsing>
 rule <body>
   ?!@pic18InterruptDefinitionList interruptDefinitionList
   ?!@pic18RoutineDefinitionList routineDefinitionList
+  ?!@pic18MacroDefinitionList ioMacroDefinitionList
   ?!@lstringlist unusedRoutineList
   ?!@lstringlist inlinedRoutineList
   ?!@ramDefinitionList ramDefinitionList
@@ -95,6 +96,7 @@ rule <body>
     grammar pic18_include_grammar in includedFilePath
       !?interruptDefinitionList
       !?routineDefinitionList
+      !?ioMacroDefinitionList
       !?unusedRoutineList
       !?inlinedRoutineList
       !?ramDefinitionList
@@ -105,7 +107,29 @@ rule <body>
       !?dataList
       !?needsComputedGoto2
       !?needsComputedGoto4
+  while
+    $macro$
+    $identifier$ ?let macroName
+    $($
+    @lstringlist constantNameList = {}
+    repeat
+      $identifier$ ?let constantName
+      constantNameList += !constantName
+    while
+      $,$
     end
+    $)$
+    ${$
+    <instruction_list>
+      ?let @pic18InstructionList instructionList
+      !?needsComputedGoto2
+      !?needsComputedGoto4
+    $}$
+    ioMacroDefinitionList +=
+      !macroName
+      !constantNameList
+      !instructionList
+  end
 }
 
 #----------------------------------------------------*
@@ -884,14 +908,31 @@ rule <structured_instruction>
       !@jumpInstructionKind.relative
     }
   or
+    $macro$
+    $identifier$ ?let macroName
+    $($
+    @immediatExpressionList immediatExpressionList = {}
+    repeat
+      <immediate_expression> ?let @immediatExpression constantExpression
+      immediatExpressionList += !constantExpression !.here
+    while
+      $,$
+    end
+    $)$
+    outInstruction = @pic18Instruction_macro.new {
+      !macroName.location
+      !macroName
+      !immediatExpressionList
+    }
+  or
     $with$
     let instructionLocation = @location.here
     @withInstructionConstantDeclarationList withInstructionConstantDeclarationList = {}
     repeat
-      $identifier$ ?let localContantName
+      $identifier$ ?let localConstantName
       $=$
       <immediate_expression> ?let @immediatExpression constantExpression
-      withInstructionConstantDeclarationList += !localContantName !constantExpression
+      withInstructionConstantDeclarationList += !localConstantName !constantExpression
     while
       $,$
     end

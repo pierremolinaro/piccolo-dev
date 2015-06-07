@@ -6,7 +6,10 @@
 #                                                                            *
 #----------------------------------------------------------------------------*
 
-proc pic18_analyze ?let @pic18AST inPiccoloModel ?let @string inSourceFileName {
+proc pic18_analyze
+  ?let @pic18AST inPiccoloModel
+  ?let @string inSourceFileName
+{
 #-------------------------------- Check source file name
   @string sourceFileBaseName = [[inSourceFileName lastPathComponent] stringByDeletingPathExtension]
   if sourceFileBaseName != [[inPiccoloModel mProgramName] string] then
@@ -74,10 +77,16 @@ proc pic18_analyze ?let @pic18AST inPiccoloModel ?let @string inSourceFileName {
     bootloaderRoutineDeclarationListForBootloaderImplementation = @routineDeclarationList. emptyList
     userRoutineDeclarationListForBootloaderImplementation = @routineDeclarationList. emptyList
   end
+#-------------------------------- Build macro map
+  @pic18MacroMap macroMap = {}
+  for () in inPiccoloModel.mMacroDefinitionList do
+    [!?macroMap insertKey !mMacroName !mConstantNameList !mInstructionList]
+  end
 #-------------------------------- Compute used routine set
   let @stringset usedRoutineSet = pic18_computeUsedRoutines (
     !inPiccoloModel.mInterruptDefinitionList
     !inPiccoloModel.mRoutineDefinitionList
+    !macroMap
     !bootloaderRoutineDeclarationListForBootloaderImplementation
     !userRoutineDeclarationListForUserProgramImplementation
   )
@@ -223,6 +232,7 @@ proc pic18_analyze ?let @pic18AST inPiccoloModel ?let @string inSourceFileName {
     !inSourceFileName
     ![piccoloDeviceModel.mRomSize.uint sint64]
     ![RAMsize sint64]
+    !macroMap
     !bootloaderRoutineDeclarationListForBootloaderImplementation # Empty for regular program
     !userRoutineDeclarationListForBootloaderImplementation # Empty for regular program
     !bootloaderReservedROMsize

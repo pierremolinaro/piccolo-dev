@@ -5,6 +5,7 @@ syntax pic18_start_symbol (piccolo_lexique) {
 rule <body>
   ?!@pic18InterruptDefinitionList interruptDefinitionList
   ?!@pic18RoutineDefinitionList routineDefinitionList
+  ?!@pic18MacroDefinitionList ioMacroDefinitionList
   ?!@lstringlist unusedRoutineList
   ?!@lstringlist inlinedRoutineList
   ?!@ramDefinitionList ramDefinitionList
@@ -38,6 +39,7 @@ rule <start_symbol> {
   $:$
   var interruptDefinitionList =@pic18InterruptDefinitionList.emptyList{}
   var routineDefinitionList =@pic18RoutineDefinitionList.emptyList{}
+  @pic18MacroDefinitionList macroDefinitionList = {}
   var unusedRoutineList =@lstringlist.emptyList{}
   var ramDefinitionList =@ramDefinitionList.emptyList{}
   var unusedRegisterList =@lstringlist.emptyList{}
@@ -51,6 +53,7 @@ rule <start_symbol> {
   <body>
     !?interruptDefinitionList
     !?routineDefinitionList
+    !?macroDefinitionList
     !?unusedRoutineList
     !?inlinedRoutineList
     !?ramDefinitionList
@@ -76,6 +79,7 @@ rule <start_symbol> {
       !interruptDefinitionList
       !constantDefinitionList
       !routineDefinitionList
+      !macroDefinitionList
       !unusedRoutineList
       !inlinedRoutineList
       !needsComputedGoto2

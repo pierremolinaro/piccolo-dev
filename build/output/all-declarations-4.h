@@ -4505,8 +4505,9 @@ void routine_getComplementaryBcc (const class GALGAS_conditional_5F_branch const
 
 class GALGAS_stringset function_pic_31__38__5F_computeUsedRoutines (const class GALGAS_pic_31__38_InterruptDefinitionList & constinArgument0,
                                                                     const class GALGAS_pic_31__38_RoutineDefinitionList & constinArgument1,
-                                                                    const class GALGAS_routineDeclarationList & constinArgument2,
+                                                                    const class GALGAS_pic_31__38_MacroMap & constinArgument2,
                                                                     const class GALGAS_routineDeclarationList & constinArgument3,
+                                                                    const class GALGAS_routineDeclarationList & constinArgument4,
                                                                     class C_Compiler * inCompiler
                                                                     COMMA_LOCATION_ARGS) ;
 
@@ -4519,28 +4520,29 @@ class GALGAS_stringset function_pic_31__38__5F_computeUsedRoutines (const class 
 void routine_build_5F_ipic_31__38__5F_block_5F_representation_5F_list (const class GALGAS_string constinArgument0,
                                                                        const class GALGAS_sint_36__34_ constinArgument1,
                                                                        const class GALGAS_sint_36__34_ constinArgument2,
-                                                                       const class GALGAS_routineDeclarationList constinArgument3,
+                                                                       const class GALGAS_pic_31__38_MacroMap constinArgument3,
                                                                        const class GALGAS_routineDeclarationList constinArgument4,
-                                                                       const class GALGAS_luint constinArgument5,
-                                                                       const class GALGAS_routineDeclarationList constinArgument6,
+                                                                       const class GALGAS_routineDeclarationList constinArgument5,
+                                                                       const class GALGAS_luint constinArgument6,
                                                                        const class GALGAS_routineDeclarationList constinArgument7,
-                                                                       const class GALGAS_uint constinArgument8,
-                                                                       const class GALGAS_registerTable constinArgument9,
-                                                                       const class GALGAS_declaredByteMap constinArgument10,
-                                                                       const class GALGAS_pic_31__38_RoutineDefinitionList constinArgument11,
-                                                                       const class GALGAS_programKind constinArgument12,
-                                                                       const class GALGAS_constantDefinitionList constinArgument13,
-                                                                       const class GALGAS_dataList constinArgument14,
-                                                                       const class GALGAS_pic_31__38_InterruptDefinitionList constinArgument15,
-                                                                       const class GALGAS_lstringlist constinArgument16,
-                                                                       const class GALGAS_ramBankTable constinArgument17,
-                                                                       const class GALGAS_bool constinArgument18,
+                                                                       const class GALGAS_routineDeclarationList constinArgument8,
+                                                                       const class GALGAS_uint constinArgument9,
+                                                                       const class GALGAS_registerTable constinArgument10,
+                                                                       const class GALGAS_declaredByteMap constinArgument11,
+                                                                       const class GALGAS_pic_31__38_RoutineDefinitionList constinArgument12,
+                                                                       const class GALGAS_programKind constinArgument13,
+                                                                       const class GALGAS_constantDefinitionList constinArgument14,
+                                                                       const class GALGAS_dataList constinArgument15,
+                                                                       const class GALGAS_pic_31__38_InterruptDefinitionList constinArgument16,
+                                                                       const class GALGAS_lstringlist constinArgument17,
+                                                                       const class GALGAS_ramBankTable constinArgument18,
                                                                        const class GALGAS_bool constinArgument19,
-                                                                       const class GALGAS_string constinArgument20,
-                                                                       const class GALGAS_registerTable constinArgument21,
-                                                                       const class GALGAS_actualConfigurationMap constinArgument22,
-                                                                       const class GALGAS_location constinArgument23,
-                                                                       class GALGAS_string & ioArgument24,
+                                                                       const class GALGAS_bool constinArgument20,
+                                                                       const class GALGAS_string constinArgument21,
+                                                                       const class GALGAS_registerTable constinArgument22,
+                                                                       const class GALGAS_actualConfigurationMap constinArgument23,
+                                                                       const class GALGAS_location constinArgument24,
+                                                                       class GALGAS_string & ioArgument25,
                                                                        class C_Compiler * inCompiler
                                                                        COMMA_LOCATION_ARGS) ;
 
@@ -4670,7 +4672,8 @@ class GALGAS_codeList function_pic_31__38__5F_definition_5F_label (const class G
 //---------------------------------------------------------------------------------------------------------------------*
 
 void routine_addPic_31__38_UsedRoutinesFromInstructionList (const class GALGAS_pic_31__38_InstructionList constinArgument0,
-                                                            class GALGAS_stringset & ioArgument1,
+                                                            const class GALGAS_pic_31__38_MacroMap constinArgument1,
+                                                            class GALGAS_stringset & ioArgument2,
                                                             class C_Compiler * inCompiler
                                                             COMMA_LOCATION_ARGS) ;
 
@@ -4681,7 +4684,8 @@ void routine_addPic_31__38_UsedRoutinesFromInstructionList (const class GALGAS_p
 //---------------------------------------------------------------------------------------------------------------------*
 
 typedef void (*categoryMethodSignature_pic_31__38_PiccoloInstruction_addUsedRoutines) (const class cPtr_pic_31__38_PiccoloInstruction * inObject,
-                                                                                       class GALGAS_stringset & ioArgument0,
+                                                                                       const class GALGAS_pic_31__38_MacroMap constinArgument0,
+                                                                                       class GALGAS_stringset & ioArgument1,
                                                                                        class C_Compiler * inCompiler
                                                                                        COMMA_LOCATION_ARGS) ;
 
@@ -4693,6 +4697,7 @@ void enterCategoryMethod_addUsedRoutines (const int32_t inClassIndex,
 //---------------------------------------------------------------------------------------------------------------------*
 
 void callCategoryMethod_addUsedRoutines (const class cPtr_pic_31__38_PiccoloInstruction * inObject,
+                                         const GALGAS_pic_31__38_MacroMap constin_inMacroMap,
                                          GALGAS_stringset & io_ioUsedRoutines,
                                          C_Compiler * inCompiler
                                          COMMA_LOCATION_ARGS) ;
@@ -4777,14 +4782,15 @@ void routine_analyzeInstructionList (const class GALGAS_pic_31__38_InstructionLi
                                      const class GALGAS_registerTable constinArgument4,
                                      const class GALGAS_pic_31__38__5F_dataMap constinArgument5,
                                      const class GALGAS_constantMap constinArgument6,
-                                     class GALGAS_uint & ioArgument7,
-                                     class GALGAS_ipic_31__38_SequentialInstructionList & ioArgument8,
-                                     class GALGAS_lstring & ioArgument9,
-                                     class GALGAS_string & ioArgument10,
-                                     class GALGAS_uint & ioArgument11,
-                                     const class GALGAS_bool constinArgument12,
-                                     const class GALGAS_routineKind constinArgument13,
-                                     class GALGAS_stringset & ioArgument14,
+                                     const class GALGAS_pic_31__38_MacroMap constinArgument7,
+                                     class GALGAS_uint & ioArgument8,
+                                     class GALGAS_ipic_31__38_SequentialInstructionList & ioArgument9,
+                                     class GALGAS_lstring & ioArgument10,
+                                     class GALGAS_string & ioArgument11,
+                                     class GALGAS_uint & ioArgument12,
+                                     const class GALGAS_bool constinArgument13,
+                                     const class GALGAS_routineKind constinArgument14,
+                                     class GALGAS_stringset & ioArgument15,
                                      class C_Compiler * inCompiler
                                      COMMA_LOCATION_ARGS) ;
 
@@ -4801,14 +4807,15 @@ typedef void (*categoryMethodSignature_pic_31__38_PiccoloInstruction_analyze) (c
                                                                                const class GALGAS_registerTable constinArgument3,
                                                                                const class GALGAS_pic_31__38__5F_dataMap constinArgument4,
                                                                                const class GALGAS_constantMap constinArgument5,
-                                                                               class GALGAS_uint & ioArgument6,
-                                                                               class GALGAS_ipic_31__38_SequentialInstructionList & ioArgument7,
-                                                                               class GALGAS_lstring & ioArgument8,
-                                                                               class GALGAS_string & ioArgument9,
-                                                                               class GALGAS_uint & ioArgument10,
-                                                                               const class GALGAS_bool constinArgument11,
-                                                                               const class GALGAS_routineKind constinArgument12,
-                                                                               class GALGAS_stringset & ioArgument13,
+                                                                               const class GALGAS_pic_31__38_MacroMap constinArgument6,
+                                                                               class GALGAS_uint & ioArgument7,
+                                                                               class GALGAS_ipic_31__38_SequentialInstructionList & ioArgument8,
+                                                                               class GALGAS_lstring & ioArgument9,
+                                                                               class GALGAS_string & ioArgument10,
+                                                                               class GALGAS_uint & ioArgument11,
+                                                                               const class GALGAS_bool constinArgument12,
+                                                                               const class GALGAS_routineKind constinArgument13,
+                                                                               class GALGAS_stringset & ioArgument14,
                                                                                class C_Compiler * inCompiler
                                                                                COMMA_LOCATION_ARGS) ;
 
@@ -4826,6 +4833,7 @@ void callCategoryMethod_analyze (const class cPtr_pic_31__38_PiccoloInstruction 
                                  const GALGAS_registerTable constin_inRegisterTable,
                                  const GALGAS_pic_31__38__5F_dataMap constin_inDataMap,
                                  const GALGAS_constantMap constin_inConstantMap,
+                                 const GALGAS_pic_31__38_MacroMap constin_inMacroMap,
                                  GALGAS_uint & io_ioLocalLabelIndex,
                                  GALGAS_ipic_31__38_SequentialInstructionList & io_ioGeneratedInstructionList,
                                  GALGAS_lstring & io_ioBlockLabel,
