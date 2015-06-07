@@ -1214,198 +1214,6 @@ GALGAS_pic_31__38_Instruction_5F_switch GALGAS_pic_31__38_Instruction_5F_switch:
 //   Object comparison                                                                                                 *
 //---------------------------------------------------------------------------------------------------------------------*
 
-typeComparisonResult cPtr_pic_31__38_Instruction_5F_with::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
-  typeComparisonResult result = kOperandEqual ;
-  const cPtr_pic_31__38_Instruction_5F_with * p = (const cPtr_pic_31__38_Instruction_5F_with *) inOperandPtr ;
-  macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_with) ;
-  if (kOperandEqual == result) {
-    result = mAttribute_mInstructionLocation.objectCompare (p->mAttribute_mInstructionLocation) ;
-  }
-  if (kOperandEqual == result) {
-    result = mAttribute_mInstructionList.objectCompare (p->mAttribute_mInstructionList) ;
-  }
-  if (kOperandEqual == result) {
-    result = mAttribute_mWithInstructionConstantDeclarationList.objectCompare (p->mAttribute_mWithInstructionConstantDeclarationList) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-
-typeComparisonResult GALGAS_pic_31__38_Instruction_5F_with::objectCompare (const GALGAS_pic_31__38_Instruction_5F_with & inOperand) const {
-  typeComparisonResult result = kOperandNotValid ;
-  if (isValid () && inOperand.isValid ()) {
-    const int32_t mySlot = mObjectPtr->classDescriptor ()->mSlotID ;
-    const int32_t operandSlot = inOperand.mObjectPtr->classDescriptor ()->mSlotID ;
-    if (mySlot < operandSlot) {
-      result = kFirstOperandLowerThanSecond ;
-    }else if (mySlot > operandSlot) {
-      result = kFirstOperandGreaterThanSecond ;
-    }else{
-      result = mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
-    }
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_pic_31__38_Instruction_5F_with::GALGAS_pic_31__38_Instruction_5F_with (void) :
-GALGAS_pic_31__38_PiccoloInstruction () {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_pic_31__38_Instruction_5F_with GALGAS_pic_31__38_Instruction_5F_with::constructor_default (LOCATION_ARGS) {
-  return GALGAS_pic_31__38_Instruction_5F_with::constructor_new (GALGAS_location::constructor_nowhere (HERE),
-                                                                 GALGAS_pic_31__38_InstructionList::constructor_emptyList (HERE),
-                                                                 GALGAS_withInstructionConstantDeclarationList::constructor_emptyList (HERE)
-                                                                 COMMA_THERE) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_pic_31__38_Instruction_5F_with::GALGAS_pic_31__38_Instruction_5F_with (const cPtr_pic_31__38_Instruction_5F_with * inSourcePtr) :
-GALGAS_pic_31__38_PiccoloInstruction (inSourcePtr) {
-  macroNullOrValidSharedObject (inSourcePtr, cPtr_pic_31__38_Instruction_5F_with) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_pic_31__38_Instruction_5F_with GALGAS_pic_31__38_Instruction_5F_with::constructor_new (const GALGAS_location & inAttribute_mInstructionLocation,
-                                                                                              const GALGAS_pic_31__38_InstructionList & inAttribute_mInstructionList,
-                                                                                              const GALGAS_withInstructionConstantDeclarationList & inAttribute_mWithInstructionConstantDeclarationList
-                                                                                              COMMA_LOCATION_ARGS) {
-  GALGAS_pic_31__38_Instruction_5F_with result ;
-  if (inAttribute_mInstructionLocation.isValid () && inAttribute_mInstructionList.isValid () && inAttribute_mWithInstructionConstantDeclarationList.isValid ()) {
-    macroMyNew (result.mObjectPtr, cPtr_pic_31__38_Instruction_5F_with (inAttribute_mInstructionLocation, inAttribute_mInstructionList, inAttribute_mWithInstructionConstantDeclarationList COMMA_THERE)) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_pic_31__38_InstructionList GALGAS_pic_31__38_Instruction_5F_with::reader_mInstructionList (UNUSED_LOCATION_ARGS) const {
-  GALGAS_pic_31__38_InstructionList result ;
-  if (NULL != mObjectPtr) {
-    const cPtr_pic_31__38_Instruction_5F_with * p = (const cPtr_pic_31__38_Instruction_5F_with *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_with) ;
-    result = p->mAttribute_mInstructionList ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_pic_31__38_InstructionList cPtr_pic_31__38_Instruction_5F_with::reader_mInstructionList (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mInstructionList ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_withInstructionConstantDeclarationList GALGAS_pic_31__38_Instruction_5F_with::reader_mWithInstructionConstantDeclarationList (UNUSED_LOCATION_ARGS) const {
-  GALGAS_withInstructionConstantDeclarationList result ;
-  if (NULL != mObjectPtr) {
-    const cPtr_pic_31__38_Instruction_5F_with * p = (const cPtr_pic_31__38_Instruction_5F_with *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_with) ;
-    result = p->mAttribute_mWithInstructionConstantDeclarationList ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_withInstructionConstantDeclarationList cPtr_pic_31__38_Instruction_5F_with::reader_mWithInstructionConstantDeclarationList (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mWithInstructionConstantDeclarationList ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                   Pointer class for @pic18Instruction_with class                                    *
-//---------------------------------------------------------------------------------------------------------------------*
-
-cPtr_pic_31__38_Instruction_5F_with::cPtr_pic_31__38_Instruction_5F_with (const GALGAS_location & in_mInstructionLocation,
-                                                                          const GALGAS_pic_31__38_InstructionList & in_mInstructionList,
-                                                                          const GALGAS_withInstructionConstantDeclarationList & in_mWithInstructionConstantDeclarationList
-                                                                          COMMA_LOCATION_ARGS) :
-cPtr_pic_31__38_PiccoloInstruction (in_mInstructionLocation COMMA_THERE),
-mAttribute_mInstructionList (in_mInstructionList),
-mAttribute_mWithInstructionConstantDeclarationList (in_mWithInstructionConstantDeclarationList) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor * cPtr_pic_31__38_Instruction_5F_with::classDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_with ;
-}
-
-void cPtr_pic_31__38_Instruction_5F_with::description (C_String & ioString,
-                                                       const int32_t inIndentation) const {
-  ioString << "[@pic18Instruction_with:" ;
-  mAttribute_mInstructionLocation.description (ioString, inIndentation+1) ;
-  ioString << ", " ;
-  mAttribute_mInstructionList.description (ioString, inIndentation+1) ;
-  ioString << ", " ;
-  mAttribute_mWithInstructionConstantDeclarationList.description (ioString, inIndentation+1) ;
-  ioString << "]" ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-acPtr_class * cPtr_pic_31__38_Instruction_5F_with::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
-  macroMyNew (ptr, cPtr_pic_31__38_Instruction_5F_with (mAttribute_mInstructionLocation, mAttribute_mInstructionList, mAttribute_mWithInstructionConstantDeclarationList COMMA_THERE)) ;
-  return ptr ;
-}
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                             @pic18Instruction_with type                                             *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_with ("pic18Instruction_with",
-                                                       & kTypeDescriptor_GALGAS_pic_31__38_PiccoloInstruction) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor * GALGAS_pic_31__38_Instruction_5F_with::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_with ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-AC_GALGAS_root * GALGAS_pic_31__38_Instruction_5F_with::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_pic_31__38_Instruction_5F_with (*this)) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_pic_31__38_Instruction_5F_with GALGAS_pic_31__38_Instruction_5F_with::extractObject (const GALGAS_object & inObject,
-                                                                                            C_Compiler * inCompiler
-                                                                                            COMMA_LOCATION_ARGS) {
-  GALGAS_pic_31__38_Instruction_5F_with result ;
-  const GALGAS_pic_31__38_Instruction_5F_with * p = (const GALGAS_pic_31__38_Instruction_5F_with *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_pic_31__38_Instruction_5F_with *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("pic18Instruction_with", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-//   Object comparison                                                                                                 *
-//---------------------------------------------------------------------------------------------------------------------*
-
 
 
 typeComparisonResult GALGAS_pic_31__38_PiccoloSimpleInstruction::objectCompare (const GALGAS_pic_31__38_PiccoloSimpleInstruction & inOperand) const {
@@ -16794,4 +16602,306 @@ void categoryMethod_generateCodeForBlock (const GALGAS_ipic_31__38_Block inObjec
   ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string ("\n")  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 166)) ;
 }
 
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                Category method '@ipic18Block computeMinMaxDuration'                                 *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+void categoryMethod_computeMinMaxDuration (const GALGAS_ipic_31__38_Block inObject,
+                                           const GALGAS_blockMapForDurationComputation constinArgument_inBlockMapForDurationComputation,
+                                           GALGAS_exploredBlockMap & ioArgument_ioExploredBlockMap,
+                                           GALGAS_codeWithDuration & ioArgument_ioCodeWithDuration,
+                                           const GALGAS_string constinArgument_inNextLabel,
+                                           GALGAS_uint & outArgument_outMin,
+                                           GALGAS_uint & outArgument_outMax,
+                                           C_Compiler * inCompiler
+                                           COMMA_UNUSED_LOCATION_ARGS) {
+  outArgument_outMin.drop () ; // Release 'out' argument
+  outArgument_outMax.drop () ; // Release 'out' argument
+  const enumGalgasBool test_0 = ioArgument_ioExploredBlockMap.reader_hasKey (inObject.mAttribute_mLabel.mAttribute_string COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 286)).boolEnum () ;
+  if (kBoolTrue == test_0) {
+    ioArgument_ioExploredBlockMap.method_searchKey (inObject.mAttribute_mLabel, outArgument_outMin, outArgument_outMax, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 287)) ;
+  }else if (kBoolFalse == test_0) {
+    outArgument_outMin = GALGAS_uint ((uint32_t) 2U) ;
+    outArgument_outMax = GALGAS_uint ((uint32_t) 2U) ;
+    cEnumerator_ipic_31__38_SequentialInstructionList enumerator_9891 (inObject.mAttribute_mInstructionList, kEnumeration_up) ;
+    while (enumerator_9891.hasCurrentObject ()) {
+      GALGAS_uint var_min ;
+      GALGAS_uint var_max ;
+      callCategoryMethod_minMaxDuration ((const cPtr_ipic_31__38_SequentialInstruction *) enumerator_9891.current_mInstruction (HERE).ptr (), constinArgument_inBlockMapForDurationComputation, ioArgument_ioExploredBlockMap, ioArgument_ioCodeWithDuration, var_min, var_max, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 292)) ;
+      outArgument_outMin = outArgument_outMin.add_operation (var_min, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 299)) ;
+      outArgument_outMax = outArgument_outMax.add_operation (var_max, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 300)) ;
+      enumerator_9891.gotoNextObject () ;
+    }
+    GALGAS_uint var_min ;
+    GALGAS_uint var_max ;
+    callCategoryMethod_terminatorMinMaxDuration ((const cPtr_ipic_31__38_AbstractBlockTerminator *) inObject.mAttribute_mTerminator.ptr (), constinArgument_inBlockMapForDurationComputation, ioArgument_ioExploredBlockMap, ioArgument_ioCodeWithDuration, constinArgument_inNextLabel, var_min, var_max, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 302)) ;
+    outArgument_outMin = outArgument_outMin.add_operation (var_min, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 310)) ;
+    outArgument_outMax = outArgument_outMax.add_operation (var_max, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 311)) ;
+    {
+    ioArgument_ioExploredBlockMap.modifier_insertKey (inObject.mAttribute_mLabel, outArgument_outMin, outArgument_outMax, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 312)) ;
+    }
+  }
+}
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_piccoloDeviceModel::GALGAS_piccoloDeviceModel (void) :
+mAttribute_mDeviceName (),
+mAttribute_mProcessorType (),
+mAttribute_mRomSize (),
+mAttribute_mBankCount (),
+mAttribute_mRegisterTable (),
+mAttribute_mRamBankTable (),
+mAttribute_mEepromSize (),
+mAttribute_mEepromAddress (),
+mAttribute_mConfigRegisterMap (),
+mAttribute_mSharedBankName () {
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_piccoloDeviceModel::~ GALGAS_piccoloDeviceModel (void) {
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_piccoloDeviceModel::GALGAS_piccoloDeviceModel (const GALGAS_lstring & inOperand0,
+                                                      const GALGAS_processorType & inOperand1,
+                                                      const GALGAS_luint & inOperand2,
+                                                      const GALGAS_luint & inOperand3,
+                                                      const GALGAS_registerTable & inOperand4,
+                                                      const GALGAS_ramBankTable & inOperand5,
+                                                      const GALGAS_uint & inOperand6,
+                                                      const GALGAS_uint & inOperand7,
+                                                      const GALGAS_configRegisterMap & inOperand8,
+                                                      const GALGAS_string & inOperand9) :
+mAttribute_mDeviceName (inOperand0),
+mAttribute_mProcessorType (inOperand1),
+mAttribute_mRomSize (inOperand2),
+mAttribute_mBankCount (inOperand3),
+mAttribute_mRegisterTable (inOperand4),
+mAttribute_mRamBankTable (inOperand5),
+mAttribute_mEepromSize (inOperand6),
+mAttribute_mEepromAddress (inOperand7),
+mAttribute_mConfigRegisterMap (inOperand8),
+mAttribute_mSharedBankName (inOperand9) {
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_piccoloDeviceModel GALGAS_piccoloDeviceModel::constructor_new (const GALGAS_lstring & inOperand0,
+                                                                      const GALGAS_processorType & inOperand1,
+                                                                      const GALGAS_luint & inOperand2,
+                                                                      const GALGAS_luint & inOperand3,
+                                                                      const GALGAS_registerTable & inOperand4,
+                                                                      const GALGAS_ramBankTable & inOperand5,
+                                                                      const GALGAS_uint & inOperand6,
+                                                                      const GALGAS_uint & inOperand7,
+                                                                      const GALGAS_configRegisterMap & inOperand8,
+                                                                      const GALGAS_string & inOperand9 
+                                                                      COMMA_UNUSED_LOCATION_ARGS) {
+  GALGAS_piccoloDeviceModel result ;
+  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid () && inOperand5.isValid () && inOperand6.isValid () && inOperand7.isValid () && inOperand8.isValid () && inOperand9.isValid ()) {
+    result = GALGAS_piccoloDeviceModel (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4, inOperand5, inOperand6, inOperand7, inOperand8, inOperand9) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+typeComparisonResult GALGAS_piccoloDeviceModel::objectCompare (const GALGAS_piccoloDeviceModel & inOperand) const {
+   typeComparisonResult result = kOperandEqual ;
+  if (result == kOperandEqual) {
+    result = mAttribute_mDeviceName.objectCompare (inOperand.mAttribute_mDeviceName) ;
+  }
+  if (result == kOperandEqual) {
+    result = mAttribute_mProcessorType.objectCompare (inOperand.mAttribute_mProcessorType) ;
+  }
+  if (result == kOperandEqual) {
+    result = mAttribute_mRomSize.objectCompare (inOperand.mAttribute_mRomSize) ;
+  }
+  if (result == kOperandEqual) {
+    result = mAttribute_mBankCount.objectCompare (inOperand.mAttribute_mBankCount) ;
+  }
+  if (result == kOperandEqual) {
+    result = mAttribute_mRegisterTable.objectCompare (inOperand.mAttribute_mRegisterTable) ;
+  }
+  if (result == kOperandEqual) {
+    result = mAttribute_mRamBankTable.objectCompare (inOperand.mAttribute_mRamBankTable) ;
+  }
+  if (result == kOperandEqual) {
+    result = mAttribute_mEepromSize.objectCompare (inOperand.mAttribute_mEepromSize) ;
+  }
+  if (result == kOperandEqual) {
+    result = mAttribute_mEepromAddress.objectCompare (inOperand.mAttribute_mEepromAddress) ;
+  }
+  if (result == kOperandEqual) {
+    result = mAttribute_mConfigRegisterMap.objectCompare (inOperand.mAttribute_mConfigRegisterMap) ;
+  }
+  if (result == kOperandEqual) {
+    result = mAttribute_mSharedBankName.objectCompare (inOperand.mAttribute_mSharedBankName) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+bool GALGAS_piccoloDeviceModel::isValid (void) const {
+  return mAttribute_mDeviceName.isValid () && mAttribute_mProcessorType.isValid () && mAttribute_mRomSize.isValid () && mAttribute_mBankCount.isValid () && mAttribute_mRegisterTable.isValid () && mAttribute_mRamBankTable.isValid () && mAttribute_mEepromSize.isValid () && mAttribute_mEepromAddress.isValid () && mAttribute_mConfigRegisterMap.isValid () && mAttribute_mSharedBankName.isValid () ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void GALGAS_piccoloDeviceModel::drop (void) {
+  mAttribute_mDeviceName.drop () ;
+  mAttribute_mProcessorType.drop () ;
+  mAttribute_mRomSize.drop () ;
+  mAttribute_mBankCount.drop () ;
+  mAttribute_mRegisterTable.drop () ;
+  mAttribute_mRamBankTable.drop () ;
+  mAttribute_mEepromSize.drop () ;
+  mAttribute_mEepromAddress.drop () ;
+  mAttribute_mConfigRegisterMap.drop () ;
+  mAttribute_mSharedBankName.drop () ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void GALGAS_piccoloDeviceModel::description (C_String & ioString,
+                                             const int32_t inIndentation) const {
+  ioString << "<struct @piccoloDeviceModel:" ;
+  if (! isValid ()) {
+    ioString << " not built" ;
+  }else{
+    mAttribute_mDeviceName.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mAttribute_mProcessorType.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mAttribute_mRomSize.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mAttribute_mBankCount.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mAttribute_mRegisterTable.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mAttribute_mRamBankTable.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mAttribute_mEepromSize.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mAttribute_mEepromAddress.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mAttribute_mConfigRegisterMap.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mAttribute_mSharedBankName.description (ioString, inIndentation+1) ;
+  }
+  ioString << ">" ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_lstring GALGAS_piccoloDeviceModel::reader_mDeviceName (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mDeviceName ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_processorType GALGAS_piccoloDeviceModel::reader_mProcessorType (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mProcessorType ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_luint GALGAS_piccoloDeviceModel::reader_mRomSize (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mRomSize ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_luint GALGAS_piccoloDeviceModel::reader_mBankCount (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mBankCount ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_registerTable GALGAS_piccoloDeviceModel::reader_mRegisterTable (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mRegisterTable ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_ramBankTable GALGAS_piccoloDeviceModel::reader_mRamBankTable (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mRamBankTable ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_uint GALGAS_piccoloDeviceModel::reader_mEepromSize (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mEepromSize ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_uint GALGAS_piccoloDeviceModel::reader_mEepromAddress (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mEepromAddress ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_configRegisterMap GALGAS_piccoloDeviceModel::reader_mConfigRegisterMap (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mConfigRegisterMap ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_string GALGAS_piccoloDeviceModel::reader_mSharedBankName (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mSharedBankName ;
+}
+
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                              @piccoloDeviceModel type                                               *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+const C_galgas_type_descriptor
+kTypeDescriptor_GALGAS_piccoloDeviceModel ("piccoloDeviceModel",
+                                           NULL) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+const C_galgas_type_descriptor * GALGAS_piccoloDeviceModel::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_piccoloDeviceModel ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+AC_GALGAS_root * GALGAS_piccoloDeviceModel::clonedObject (void) const {
+  AC_GALGAS_root * result = NULL ;
+  if (isValid ()) {
+    macroMyNew (result, GALGAS_piccoloDeviceModel (*this)) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_piccoloDeviceModel GALGAS_piccoloDeviceModel::extractObject (const GALGAS_object & inObject,
+                                                                    C_Compiler * inCompiler
+                                                                    COMMA_LOCATION_ARGS) {
+  GALGAS_piccoloDeviceModel result ;
+  const GALGAS_piccoloDeviceModel * p = (const GALGAS_piccoloDeviceModel *) inObject.embeddedObject () ;
+  if (NULL != p) {
+    if (NULL != dynamic_cast <const GALGAS_piccoloDeviceModel *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("piccoloDeviceModel", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
 

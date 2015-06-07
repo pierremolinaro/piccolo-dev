@@ -219,14 +219,6 @@ override method @pic18Instruction_switch addUsedRoutines
 
 #---------------------------------------------------------------------------*
 
-override method @pic18Instruction_with addUsedRoutines
-  ?let @pic18MacroMap inMacroMap
-  ?!@stringset ioUsedRoutines
-{
-  addPic18UsedRoutinesFromInstructionList (!mInstructionList !inMacroMap !?ioUsedRoutines)
-}
-#---------------------------------------------------------------------------*
-
 override method @pic18Instruction_macro addUsedRoutines
   ?let @pic18MacroMap inMacroMap
   ?!@stringset ioUsedRoutines
