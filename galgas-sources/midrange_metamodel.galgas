@@ -285,7 +285,7 @@ class @midrange_andCondition : @midrange_conditionExpression {
 class @midrange_bitTest_in_structured_if_condition : @midrange_conditionExpression {
   @registerExpression mRegisterExpression
   @bitNumberExpression mBitNumber
-  @bool mBTFSSinstruction
+#  @bool mBTFSSinstruction
 }
 
 #----------------------------------------------------*

@@ -2784,21 +2784,22 @@ override method @pic18BitTestInStructuredCondition analyzeCondition
   ]
 #--- Save terminator of current block
   let @location location = [mRegisterExpression mRegisterName].location
-  if mBTFSSinstruction then
+#  if mBTFSSinstruction then
+#    outCurrentBlockTerminator = @pic18BitTestTerminator. new {
+#      !location
+#      !@ipic18JumpTerminator. new { !location !inConditionTrueLabel !@jumpInstructionKind. ipicRelative}
+#      !@ipic18JumpTerminator. new { !location !inConditionFalseLabel !@jumpInstructionKind. ipicRelative}
+#      !IPICregisterDescription
+#      !bitNumber}
+#  else
     outCurrentBlockTerminator = @pic18BitTestTerminator. new {
       !location
-      !@ipic18JumpTerminator. new { !location !inConditionTrueLabel !@jumpInstructionKind. ipicRelative}
-      !@ipic18JumpTerminator. new { !location !inConditionFalseLabel !@jumpInstructionKind. ipicRelative}
+      !@ipic18JumpTerminator.new {!location !inConditionFalseLabel !@jumpInstructionKind.ipicRelative}
+      !@ipic18JumpTerminator.new {!location !inConditionTrueLabel !@jumpInstructionKind.ipicRelative}
       !IPICregisterDescription
-      !bitNumber}
-  else
-    outCurrentBlockTerminator = @pic18BitTestTerminator. new {
-      !location
-      !@ipic18JumpTerminator. new { !location !inConditionFalseLabel !@jumpInstructionKind. ipicRelative}
-      !@ipic18JumpTerminator. new { !location !inConditionTrueLabel !@jumpInstructionKind. ipicRelative}
-      !IPICregisterDescription
-      !bitNumber}
-  end
+      !bitNumber
+    }
+#  end
 }
 
 #----------------------------------------------------*

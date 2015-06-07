@@ -5109,8 +5109,6 @@ class cParser_baseline_5F_syntax {
 
   protected : virtual int32_t select_baseline_5F_syntax_21 (C_Lexique_piccolo_5F_lexique *) = 0 ;
 
-  protected : virtual int32_t select_baseline_5F_syntax_22 (C_Lexique_piccolo_5F_lexique *) = 0 ;
-
 
 } ;
 
@@ -5229,8 +5227,7 @@ class GALGAS_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition : public
 
 //--------------------------------- GALGAS constructors
   public : static GALGAS_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition constructor_new (const class GALGAS_registerExpression & inOperand0,
-                                                                                                     const class GALGAS_bitNumberExpression & inOperand1,
-                                                                                                     const class GALGAS_bool & inOperand2
+                                                                                                     const class GALGAS_bitNumberExpression & inOperand1
                                                                                                      COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -5242,8 +5239,6 @@ class GALGAS_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition : public
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public : VIRTUAL_IN_DEBUG class GALGAS_bool reader_mBTFSSinstruction (LOCATION_ARGS) const ;
-
   public : VIRTUAL_IN_DEBUG class GALGAS_bitNumberExpression reader_mBitNumber (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_registerExpression reader_mRegisterExpression (LOCATION_ARGS) const ;
@@ -5428,12 +5423,10 @@ class cPtr_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition : public c
 //--- Attributes
   public : GALGAS_registerExpression mAttribute_mRegisterExpression ;
   public : GALGAS_bitNumberExpression mAttribute_mBitNumber ;
-  public : GALGAS_bool mAttribute_mBTFSSinstruction ;
 
 //--- Constructor
   public : cPtr_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition (const GALGAS_registerExpression & in_mRegisterExpression,
-                                                                            const GALGAS_bitNumberExpression & in_mBitNumber,
-                                                                            const GALGAS_bool & in_mBTFSSinstruction
+                                                                            const GALGAS_bitNumberExpression & in_mBitNumber
                                                                             COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
@@ -5442,7 +5435,6 @@ class cPtr_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition : public c
 //--- Attribute accessors
   public : VIRTUAL_IN_DEBUG GALGAS_registerExpression reader_mRegisterExpression (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_bitNumberExpression reader_mBitNumber (LOCATION_ARGS) const ;
-  public : VIRTUAL_IN_DEBUG GALGAS_bool reader_mBTFSSinstruction (LOCATION_ARGS) const ;
 //--- Description
   public : virtual void description (C_String & ioString,
                                      const int32_t inIndentation) const ;
@@ -7257,29 +7249,6 @@ class cPtr_baseline_5F_negateCondition : public cPtr_baseline_5F_conditionExpres
   public : virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
 
 } ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                               Abstract category method '@bitNumberExpression display'                               *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-typedef void (*categoryMethodSignature_bitNumberExpression_display) (const class cPtr_bitNumberExpression * inObject,
-                                                                     class GALGAS_string & ioArgument0,
-                                                                     class C_Compiler * inCompiler
-                                                                     COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void enterCategoryMethod_display (const int32_t inClassIndex,
-                                  categoryMethodSignature_bitNumberExpression_display inMethod) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void callCategoryMethod_display (const class cPtr_bitNumberExpression * inObject,
-                                 GALGAS_string & io_ioString,
-                                 C_Compiler * inCompiler
-                                 COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *

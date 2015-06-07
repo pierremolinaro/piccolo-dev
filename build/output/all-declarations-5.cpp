@@ -3855,9 +3855,6 @@ typeComparisonResult cPtr_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condi
   if (kOperandEqual == result) {
     result = mAttribute_mBitNumber.objectCompare (p->mAttribute_mBitNumber) ;
   }
-  if (kOperandEqual == result) {
-    result = mAttribute_mBTFSSinstruction.objectCompare (p->mAttribute_mBTFSSinstruction) ;
-  }
   return result ;
 }
 
@@ -3896,12 +3893,11 @@ GALGAS_baseline_5F_conditionExpression (inSourcePtr) {
 //---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition GALGAS_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition::constructor_new (const GALGAS_registerExpression & inAttribute_mRegisterExpression,
-                                                                                                                                                      const GALGAS_bitNumberExpression & inAttribute_mBitNumber,
-                                                                                                                                                      const GALGAS_bool & inAttribute_mBTFSSinstruction
+                                                                                                                                                      const GALGAS_bitNumberExpression & inAttribute_mBitNumber
                                                                                                                                                       COMMA_LOCATION_ARGS) {
   GALGAS_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition result ;
-  if (inAttribute_mRegisterExpression.isValid () && inAttribute_mBitNumber.isValid () && inAttribute_mBTFSSinstruction.isValid ()) {
-    macroMyNew (result.mObjectPtr, cPtr_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition (inAttribute_mRegisterExpression, inAttribute_mBitNumber, inAttribute_mBTFSSinstruction COMMA_THERE)) ;
+  if (inAttribute_mRegisterExpression.isValid () && inAttribute_mBitNumber.isValid ()) {
+    macroMyNew (result.mObjectPtr, cPtr_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition (inAttribute_mRegisterExpression, inAttribute_mBitNumber COMMA_THERE)) ;
   }
   return result ;
 }
@@ -3943,35 +3939,15 @@ GALGAS_bitNumberExpression cPtr_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_bool GALGAS_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition::reader_mBTFSSinstruction (UNUSED_LOCATION_ARGS) const {
-  GALGAS_bool result ;
-  if (NULL != mObjectPtr) {
-    const cPtr_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition * p = (const cPtr_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition) ;
-    result = p->mAttribute_mBTFSSinstruction ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_bool cPtr_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition::reader_mBTFSSinstruction (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mBTFSSinstruction ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
 //                        Pointer class for @baseline_bitTest_in_structured_if_condition class                         *
 //---------------------------------------------------------------------------------------------------------------------*
 
 cPtr_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition::cPtr_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition (const GALGAS_registerExpression & in_mRegisterExpression,
-                                                                                                                                  const GALGAS_bitNumberExpression & in_mBitNumber,
-                                                                                                                                  const GALGAS_bool & in_mBTFSSinstruction
+                                                                                                                                  const GALGAS_bitNumberExpression & in_mBitNumber
                                                                                                                                   COMMA_LOCATION_ARGS) :
 cPtr_baseline_5F_conditionExpression (THERE),
 mAttribute_mRegisterExpression (in_mRegisterExpression),
-mAttribute_mBitNumber (in_mBitNumber),
-mAttribute_mBTFSSinstruction (in_mBTFSSinstruction) {
+mAttribute_mBitNumber (in_mBitNumber) {
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -3986,8 +3962,6 @@ void cPtr_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition::descriptio
   mAttribute_mRegisterExpression.description (ioString, inIndentation+1) ;
   ioString << ", " ;
   mAttribute_mBitNumber.description (ioString, inIndentation+1) ;
-  ioString << ", " ;
-  mAttribute_mBTFSSinstruction.description (ioString, inIndentation+1) ;
   ioString << "]" ;
 }
 
@@ -3995,7 +3969,7 @@ void cPtr_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition::descriptio
 
 acPtr_class * cPtr_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition::duplicate (LOCATION_ARGS) const {
   acPtr_class * ptr = NULL ;
-  macroMyNew (ptr, cPtr_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition (mAttribute_mRegisterExpression, mAttribute_mBitNumber, mAttribute_mBTFSSinstruction COMMA_THERE)) ;
+  macroMyNew (ptr, cPtr_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition (mAttribute_mRegisterExpression, mAttribute_mBitNumber COMMA_THERE)) ;
   return ptr ;
 }
 

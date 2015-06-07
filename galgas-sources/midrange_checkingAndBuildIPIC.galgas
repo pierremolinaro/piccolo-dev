@@ -1235,15 +1235,16 @@ override method @midrange_bitTest_in_structured_if_condition buildIPICinstructio
   ]
   ioGeneratedInstructionList += !@midrange_intermediate_instruction_BitTestSkip. new {
     !inInstructionLocation
-    !mBTFSSinstruction ^ inComplementaryBranch
+    !inComplementaryBranch # mBTFSSinstruction ^ inComplementaryBranch
     !IPICregisterDescription
-    !bitNumber}
+    !bitNumber
+  }
   ioGeneratedInstructionList += !@midrange_intermediate_JUMP. new {
     !inInstructionLocation
-    !@lstring. new { !inTargetLabel
-    !inInstructionLocation}
-    !@midrange_call_goto_bit. noChange
-    !@midrange_call_goto_bit. noChange}
+    !@lstring.new {!inTargetLabel !inInstructionLocation}
+    !@midrange_call_goto_bit.noChange
+    !@midrange_call_goto_bit.noChange
+  }
 }
 
 #----------------------------------------------------------------------------*

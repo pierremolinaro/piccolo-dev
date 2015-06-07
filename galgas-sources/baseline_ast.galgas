@@ -170,7 +170,7 @@ class @baseline_andCondition : @baseline_conditionExpression {
 class @baseline_bitTest_in_structured_if_condition : @baseline_conditionExpression {
   @registerExpression mRegisterExpression
   @bitNumberExpression mBitNumber
-  @bool mBTFSSinstruction
+#  @bool mBTFSSinstruction
 }
 
 #----------------------------------------------------*

@@ -3427,9 +3427,6 @@ typeComparisonResult cPtr_midrange_5F_bitTest_5F_in_5F_structured_5F_if_5F_condi
   if (kOperandEqual == result) {
     result = mAttribute_mBitNumber.objectCompare (p->mAttribute_mBitNumber) ;
   }
-  if (kOperandEqual == result) {
-    result = mAttribute_mBTFSSinstruction.objectCompare (p->mAttribute_mBTFSSinstruction) ;
-  }
   return result ;
 }
 
@@ -3468,12 +3465,11 @@ GALGAS_midrange_5F_conditionExpression (inSourcePtr) {
 //---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_midrange_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition GALGAS_midrange_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition::constructor_new (const GALGAS_registerExpression & inAttribute_mRegisterExpression,
-                                                                                                                                                      const GALGAS_bitNumberExpression & inAttribute_mBitNumber,
-                                                                                                                                                      const GALGAS_bool & inAttribute_mBTFSSinstruction
+                                                                                                                                                      const GALGAS_bitNumberExpression & inAttribute_mBitNumber
                                                                                                                                                       COMMA_LOCATION_ARGS) {
   GALGAS_midrange_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition result ;
-  if (inAttribute_mRegisterExpression.isValid () && inAttribute_mBitNumber.isValid () && inAttribute_mBTFSSinstruction.isValid ()) {
-    macroMyNew (result.mObjectPtr, cPtr_midrange_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition (inAttribute_mRegisterExpression, inAttribute_mBitNumber, inAttribute_mBTFSSinstruction COMMA_THERE)) ;
+  if (inAttribute_mRegisterExpression.isValid () && inAttribute_mBitNumber.isValid ()) {
+    macroMyNew (result.mObjectPtr, cPtr_midrange_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition (inAttribute_mRegisterExpression, inAttribute_mBitNumber COMMA_THERE)) ;
   }
   return result ;
 }
@@ -3515,35 +3511,15 @@ GALGAS_bitNumberExpression cPtr_midrange_5F_bitTest_5F_in_5F_structured_5F_if_5F
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_bool GALGAS_midrange_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition::reader_mBTFSSinstruction (UNUSED_LOCATION_ARGS) const {
-  GALGAS_bool result ;
-  if (NULL != mObjectPtr) {
-    const cPtr_midrange_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition * p = (const cPtr_midrange_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_midrange_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition) ;
-    result = p->mAttribute_mBTFSSinstruction ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_bool cPtr_midrange_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition::reader_mBTFSSinstruction (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mBTFSSinstruction ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
 //                        Pointer class for @midrange_bitTest_in_structured_if_condition class                         *
 //---------------------------------------------------------------------------------------------------------------------*
 
 cPtr_midrange_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition::cPtr_midrange_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition (const GALGAS_registerExpression & in_mRegisterExpression,
-                                                                                                                                  const GALGAS_bitNumberExpression & in_mBitNumber,
-                                                                                                                                  const GALGAS_bool & in_mBTFSSinstruction
+                                                                                                                                  const GALGAS_bitNumberExpression & in_mBitNumber
                                                                                                                                   COMMA_LOCATION_ARGS) :
 cPtr_midrange_5F_conditionExpression (THERE),
 mAttribute_mRegisterExpression (in_mRegisterExpression),
-mAttribute_mBitNumber (in_mBitNumber),
-mAttribute_mBTFSSinstruction (in_mBTFSSinstruction) {
+mAttribute_mBitNumber (in_mBitNumber) {
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -3558,8 +3534,6 @@ void cPtr_midrange_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition::descriptio
   mAttribute_mRegisterExpression.description (ioString, inIndentation+1) ;
   ioString << ", " ;
   mAttribute_mBitNumber.description (ioString, inIndentation+1) ;
-  ioString << ", " ;
-  mAttribute_mBTFSSinstruction.description (ioString, inIndentation+1) ;
   ioString << "]" ;
 }
 
@@ -3567,7 +3541,7 @@ void cPtr_midrange_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition::descriptio
 
 acPtr_class * cPtr_midrange_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition::duplicate (LOCATION_ARGS) const {
   acPtr_class * ptr = NULL ;
-  macroMyNew (ptr, cPtr_midrange_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition (mAttribute_mRegisterExpression, mAttribute_mBitNumber, mAttribute_mBTFSSinstruction COMMA_THERE)) ;
+  macroMyNew (ptr, cPtr_midrange_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition (mAttribute_mRegisterExpression, mAttribute_mBitNumber COMMA_THERE)) ;
   return ptr ;
 }
 
@@ -13305,9 +13279,6 @@ typeComparisonResult cPtr_pic_31__38_BitTestInStructuredCondition::dynamicObject
   if (kOperandEqual == result) {
     result = mAttribute_mBitNumber.objectCompare (p->mAttribute_mBitNumber) ;
   }
-  if (kOperandEqual == result) {
-    result = mAttribute_mBTFSSinstruction.objectCompare (p->mAttribute_mBTFSSinstruction) ;
-  }
   return result ;
 }
 
@@ -13346,12 +13317,11 @@ GALGAS_pic_31__38_ConditionExpression (inSourcePtr) {
 //---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_pic_31__38_BitTestInStructuredCondition GALGAS_pic_31__38_BitTestInStructuredCondition::constructor_new (const GALGAS_registerExpression & inAttribute_mRegisterExpression,
-                                                                                                                const GALGAS_bitNumberExpression & inAttribute_mBitNumber,
-                                                                                                                const GALGAS_bool & inAttribute_mBTFSSinstruction
+                                                                                                                const GALGAS_bitNumberExpression & inAttribute_mBitNumber
                                                                                                                 COMMA_LOCATION_ARGS) {
   GALGAS_pic_31__38_BitTestInStructuredCondition result ;
-  if (inAttribute_mRegisterExpression.isValid () && inAttribute_mBitNumber.isValid () && inAttribute_mBTFSSinstruction.isValid ()) {
-    macroMyNew (result.mObjectPtr, cPtr_pic_31__38_BitTestInStructuredCondition (inAttribute_mRegisterExpression, inAttribute_mBitNumber, inAttribute_mBTFSSinstruction COMMA_THERE)) ;
+  if (inAttribute_mRegisterExpression.isValid () && inAttribute_mBitNumber.isValid ()) {
+    macroMyNew (result.mObjectPtr, cPtr_pic_31__38_BitTestInStructuredCondition (inAttribute_mRegisterExpression, inAttribute_mBitNumber COMMA_THERE)) ;
   }
   return result ;
 }
@@ -13393,35 +13363,15 @@ GALGAS_bitNumberExpression cPtr_pic_31__38_BitTestInStructuredCondition::reader_
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_bool GALGAS_pic_31__38_BitTestInStructuredCondition::reader_mBTFSSinstruction (UNUSED_LOCATION_ARGS) const {
-  GALGAS_bool result ;
-  if (NULL != mObjectPtr) {
-    const cPtr_pic_31__38_BitTestInStructuredCondition * p = (const cPtr_pic_31__38_BitTestInStructuredCondition *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_pic_31__38_BitTestInStructuredCondition) ;
-    result = p->mAttribute_mBTFSSinstruction ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_bool cPtr_pic_31__38_BitTestInStructuredCondition::reader_mBTFSSinstruction (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mBTFSSinstruction ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
 //                             Pointer class for @pic18BitTestInStructuredCondition class                              *
 //---------------------------------------------------------------------------------------------------------------------*
 
 cPtr_pic_31__38_BitTestInStructuredCondition::cPtr_pic_31__38_BitTestInStructuredCondition (const GALGAS_registerExpression & in_mRegisterExpression,
-                                                                                            const GALGAS_bitNumberExpression & in_mBitNumber,
-                                                                                            const GALGAS_bool & in_mBTFSSinstruction
+                                                                                            const GALGAS_bitNumberExpression & in_mBitNumber
                                                                                             COMMA_LOCATION_ARGS) :
 cPtr_pic_31__38_ConditionExpression (THERE),
 mAttribute_mRegisterExpression (in_mRegisterExpression),
-mAttribute_mBitNumber (in_mBitNumber),
-mAttribute_mBTFSSinstruction (in_mBTFSSinstruction) {
+mAttribute_mBitNumber (in_mBitNumber) {
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -13436,8 +13386,6 @@ void cPtr_pic_31__38_BitTestInStructuredCondition::description (C_String & ioStr
   mAttribute_mRegisterExpression.description (ioString, inIndentation+1) ;
   ioString << ", " ;
   mAttribute_mBitNumber.description (ioString, inIndentation+1) ;
-  ioString << ", " ;
-  mAttribute_mBTFSSinstruction.description (ioString, inIndentation+1) ;
   ioString << "]" ;
 }
 
@@ -13445,7 +13393,7 @@ void cPtr_pic_31__38_BitTestInStructuredCondition::description (C_String & ioStr
 
 acPtr_class * cPtr_pic_31__38_BitTestInStructuredCondition::duplicate (LOCATION_ARGS) const {
   acPtr_class * ptr = NULL ;
-  macroMyNew (ptr, cPtr_pic_31__38_BitTestInStructuredCondition (mAttribute_mRegisterExpression, mAttribute_mBitNumber, mAttribute_mBTFSSinstruction COMMA_THERE)) ;
+  macroMyNew (ptr, cPtr_pic_31__38_BitTestInStructuredCondition (mAttribute_mRegisterExpression, mAttribute_mBitNumber COMMA_THERE)) ;
   return ptr ;
 }
 

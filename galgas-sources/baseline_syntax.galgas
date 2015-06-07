@@ -485,41 +485,42 @@ rule <baseline_condition_factor>
   or
     @registerExpression registerExpression
     @bitNumberExpression bitNumberExpression
-    @bool BTFSSinstruction
+#    @bool BTFSSinstruction
     <register_parsing> ? registerExpression
     $.$
     <bit_number_parsing> ?bitNumberExpression
-    select
-      BTFSSinstruction = false
-    or
-      $identifier$ ?var  @lstring conditionString
-      @string condition = [[conditionString string] uppercaseString]
-      if condition == "Z" then
-        BTFSSinstruction = true
-        @string s = "! " + [[registerExpression mRegisterName] string]
-        if [[registerExpression mOffset] uint] > 0 then
-          s += " [" + [[[registerExpression mOffset] uint] string] + "]"
-        end
-        s += "." [bitNumberExpression display !?s]
-        warning conditionString: "In Piccolo 1.2.0 and later, this construction is deprecated; use '" + s + "' instead" 
-      elsif condition == "NZ" then
-        BTFSSinstruction = false
-        @string s = [[registerExpression mRegisterName] string]
-        if [[registerExpression mOffset] uint] > 0 then
-          s += " [" + [[[registerExpression mOffset] uint] string] + "]"
-        end
-        s += "." [bitNumberExpression display !?s]
-        warning conditionString: "In Piccolo 1.2.0 and later, this construction is deprecated; use '" + s + "' instead" 
-      else
-        error conditionString: "invalid '" + conditionString
-        + "' condition; valid ones are: 'z' and 'nz'"
-        : BTFSSinstruction
-      end
-    end
+#    select
+#      BTFSSinstruction = false
+#    or
+#      $identifier$ ?var  @lstring conditionString
+#      @string condition = [[conditionString string] uppercaseString]
+#      if condition == "Z" then
+#        BTFSSinstruction = true
+#        @string s = "! " + [[registerExpression mRegisterName] string]
+#        if [[registerExpression mOffset] uint] > 0 then
+#          s += " [" + [[[registerExpression mOffset] uint] string] + "]"
+#        end
+#        s += "." [bitNumberExpression display !?s]
+#        warning conditionString: "In Piccolo 1.2.0 and later, this construction is deprecated; use '" + s + "' instead" 
+#      elsif condition == "NZ" then
+#        BTFSSinstruction = false
+#        @string s = [[registerExpression mRegisterName] string]
+#        if [[registerExpression mOffset] uint] > 0 then
+#          s += " [" + [[[registerExpression mOffset] uint] string] + "]"
+#        end
+#        s += "." [bitNumberExpression display !?s]
+#        warning conditionString: "In Piccolo 1.2.0 and later, this construction is deprecated; use '" + s + "' instead" 
+#      else
+#        error conditionString: "invalid '" + conditionString
+#        + "' condition; valid ones are: 'z' and 'nz'"
+#        : BTFSSinstruction
+#      end
+#    end
     outCondition = @baseline_bitTest_in_structured_if_condition. new {
       !registerExpression
       !bitNumberExpression
-      !BTFSSinstruction}
+#      !false
+    }
   end
 }
 

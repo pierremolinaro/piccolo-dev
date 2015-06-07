@@ -733,10 +733,6 @@ class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
 
   public : virtual int32_t select_pic_31__38__5F_syntax_44 (C_Lexique_piccolo_5F_lexique *) ;
 
-  public : virtual int32_t select_pic_31__38__5F_syntax_45 (C_Lexique_piccolo_5F_lexique *) ;
-
-  public : virtual int32_t select_pic_31__38__5F_syntax_46 (C_Lexique_piccolo_5F_lexique *) ;
-
   public : virtual int32_t select_pic_31__38__5F_start_5F_symbol_0 (C_Lexique_piccolo_5F_lexique *) ;
 
   public : virtual int32_t select_midrange_5F_syntax_0 (C_Lexique_piccolo_5F_lexique *) ;
@@ -793,8 +789,6 @@ class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
 
   public : virtual int32_t select_midrange_5F_syntax_26 (C_Lexique_piccolo_5F_lexique *) ;
 
-  public : virtual int32_t select_midrange_5F_syntax_27 (C_Lexique_piccolo_5F_lexique *) ;
-
   public : virtual int32_t select_baseline_5F_syntax_0 (C_Lexique_piccolo_5F_lexique *) ;
 
   public : virtual int32_t select_baseline_5F_syntax_1 (C_Lexique_piccolo_5F_lexique *) ;
@@ -838,8 +832,6 @@ class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
   public : virtual int32_t select_baseline_5F_syntax_20 (C_Lexique_piccolo_5F_lexique *) ;
 
   public : virtual int32_t select_baseline_5F_syntax_21 (C_Lexique_piccolo_5F_lexique *) ;
-
-  public : virtual int32_t select_baseline_5F_syntax_22 (C_Lexique_piccolo_5F_lexique *) ;
 
   public : virtual int32_t select_pic_31__38__5F_bootloader_5F_syntax_0 (C_Lexique_piccolo_5F_lexique *) ;
 

@@ -931,7 +931,8 @@ override method @baseline_bitTest_in_structured_if_condition build_intermediate_
   ?let @location inInstructionLocation
   ?let @string inTargetLabel
   ?!@baseline_intermediate_instructionList ioGeneratedInstructionList
-  ?!@stringset ioUsedRegisters {
+  ?!@stringset ioUsedRegisters
+{
   [mRegisterExpression resolveBaselineAccess
     !inRegisterTable
     ?var @baseline_intermediate_registerExpression intermediateRegisterDescription
@@ -945,12 +946,14 @@ override method @baseline_bitTest_in_structured_if_condition build_intermediate_
   ]
   ioGeneratedInstructionList += !@baseline_intermediate_instruction_BitTestSkip. new {
     !inInstructionLocation
-    !mBTFSSinstruction ^ inComplementaryBranch
+    !inComplementaryBranch # mBTFSSinstruction ^ inComplementaryBranch
     !intermediateRegisterDescription
-    !bitNumber}
+    !bitNumber
+  }
   ioGeneratedInstructionList += !@baseline_intermediate_GOTO. new {
     !inInstructionLocation
-    !@lstring. new { !inTargetLabel !inInstructionLocation}}
+    !@lstring. new {!inTargetLabel !inInstructionLocation}
+  }
 }
 
 #-------------------------------------------------------------------------------*
