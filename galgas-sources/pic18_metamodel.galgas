@@ -70,7 +70,9 @@ class @pic18Instruction_savebank : @pic18PiccoloInstruction {
 #----------------------------------------------------*
 
 class @pic18Instruction_repetitionStatique : @pic18PiccoloInstruction {
-  @immediatExpression mRepeatExpression
+  @lstring mConstantName
+  @immediatExpression mLowerBoundExpression
+  @immediatExpression mUpperBoundExpression
   @pic18InstructionList mInstructionList
   @location mEndOfInstruction
 }

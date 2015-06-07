@@ -94,7 +94,9 @@ class @baseline_instruction_FOREVER : @baseline_instruction {
 #----------------------------------------------------*
 
 class @baseline_instruction_STATIC_REPEAT : @baseline_instruction {
-  @immediatExpression mRepeatExpression
+  @lstring mConstantName
+  @immediatExpression mLowerBoundExpression
+  @immediatExpression mUpperBoundExpression
   @baseline_instructionList mInstructionList
   @location mEndOfInstruction
 }

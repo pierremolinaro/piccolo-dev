@@ -23,12 +23,18 @@ method @registerExpression analyzeRegisterExpression
     assemblyString += " + " + [[offset uint] hexString]
   end
 #--- 
-  @uintlist registerAddressList
-  @uint size
   @uint registerAddress = 0
-  [inRegisterTable searchKey !mRegisterName ?registerAddressList ?size ?outBitSliceTable ?*]
+  [inRegisterTable searchKey
+    !mRegisterName
+    ?let registerAddressList
+    ?@uint size
+    ?outBitSliceTable
+    ?*
+  ]
 #---
-  if [offset uint] > size then
+  if offset < 0LS then
+    error mEndOfOffsetExpression: "offset (" + offset + ") should be >= 0"
+  elsif [offset uint] >= size then
     error mEndOfOffsetExpression: "this offset is too large: should be lower than " + [size string]
   end
 #---
@@ -79,13 +85,14 @@ method @registerExpression analyzeRegisterExpressionWithoutCheckingBank
   [inRegisterTable searchKey !mRegisterName ?var @uintlist registerAddressList ?var @uint size ?* ?*]
   [registerAddressList first ?var @uint registerAddress]
 #---
-  if [offset uint] > size then
+  if [offset uint] >= size then
     error mEndOfOffsetExpression: "this offset is too large: should be lower than " + [size string]
   end
 #---
   outIPICregisterDescription = @ipic18_intermediate_registerExpressionWithoutBSRIndication.new {
     !assemblyString
-    !registerAddress + [offset uint]}
+    !registerAddress + [offset uint]
+  }
 }
 
 #----------------------------------------------------------------------------*
@@ -97,13 +104,15 @@ method @registerExpression getRegisterAddress
   !@uint outRegisterAddress
 {
   [inRegisterTable searchKey !mRegisterName ?var @uintlist registerAddressList ?var @uint size ?* ?*]
-  [registerAddressList first ?outRegisterAddress]
 #---
   [mOffset eval !inRegisterTable !inConstantMap ?let @sint64 offset !?ioUsedRegisters]
   if offset < 0LS then
-    error mEndOfOffsetExpression: "offset (" + offset + ") should be >= 0"
-  elsif [offset uint] > size then
-    error mEndOfOffsetExpression: "this offset is too large: should be lower than " + [size string]
+    error mEndOfOffsetExpression: "offset (" + offset + ") should be >= 0" : outRegisterAddress
+  elsif [offset uint] >= size then
+    error mEndOfOffsetExpression: "this offset is too large: should be lower than " + [size string] : outRegisterAddress
+  else
+    [registerAddressList first ?outRegisterAddress]
+    outRegisterAddress = outRegisterAddress + [offset uint]
   end
 }
 
@@ -685,13 +694,18 @@ override method @pic18Instruction_repetitionStatique analyze
   ?let @routineKind inRoutineKind
   ?!@stringset ioUsedRegisters {
 #--- Solve immediat expression
-  [mRepeatExpression eval !inRegisterTable !inConstantMap ?let @sint64 repeatCount !?ioUsedRegisters]
+  [mLowerBoundExpression eval !inRegisterTable !inConstantMap ?let @sint64 lowerBound !?ioUsedRegisters]
+  [mUpperBoundExpression eval !inRegisterTable !inConstantMap ?let @sint64 upperBound !?ioUsedRegisters]
 #---
-  if (repeatCount > 0xFF_FFFF_LS) | (repeatCount <= 0LS) then
-    error mInstructionLocation:"immediate value is evaluated as " + repeatCount + " (should be > 0 and <= 0xFF_FFFF)"
+  if lowerBound > upperBound then
+    error mInstructionLocation: "lower bound (" + lowerBound + ") greater then upper bound (" + upperBound + ")"
+  elsif (upperBound - lowerBound) > 0xFF_FFFF_LS then
+    error mInstructionLocation:"repeat count (" + (upperBound - lowerBound) + ") too large (should be <= 0xFF_FFFF)"
   end
-#--- Generate instruction list (first pass)
+#--- Generate instruction list (first pass, for lower bound)
   @uint finalBank = ioCurrentBank
+  var tempConstantMap = inConstantMap
+  [!?tempConstantMap insertKey !mConstantName !lowerBound]
   analyzeInstructionList (
     !mInstructionList
     !?ioGeneratedBlockList
@@ -699,7 +713,7 @@ override method @pic18Instruction_repetitionStatique analyze
     !inRoutineMap
     !inRegisterTable
     !inDataMap
-    !inConstantMap
+    !tempConstantMap
     !inMacroMap
     !?ioLocalLabelIndex
     !?ioGeneratedInstructionList
@@ -717,7 +731,10 @@ override method @pic18Instruction_repetitionStatique analyze
     error mEndOfInstruction:"enclosed instruction list should not modify bank selection"
   end
 #--- Generate instruction list (other passes)
-  for idx in @range. new { !0 ![repeatCount-1S uint]} while @uint. errorCount == 0 do
+  var idx = lowerBound + 1
+  loop ([upperBound - lowerBound + 1 uint]) while (idx <= upperBound) && (@uint.errorCount == 0) do
+    var constantMap = inConstantMap
+    [!?constantMap insertKey !mConstantName !idx]
     analyzeInstructionList (
       !mInstructionList
       !?ioGeneratedBlockList
@@ -725,7 +742,7 @@ override method @pic18Instruction_repetitionStatique analyze
       !inRoutineMap
       !inRegisterTable
       !inDataMap
-      !inConstantMap
+      !constantMap
       !inMacroMap
       !?ioLocalLabelIndex
       !?ioGeneratedInstructionList
@@ -736,6 +753,7 @@ override method @pic18Instruction_repetitionStatique analyze
       !inRoutineKind 
       !?ioUsedRegisters
     )
+    idx ++
   end
 }
 

@@ -9257,9 +9257,11 @@ class GALGAS_pic_31__38_Instruction_5F_repetitionStatique : public GALGAS_pic_31
 
 //--------------------------------- GALGAS constructors
   public : static GALGAS_pic_31__38_Instruction_5F_repetitionStatique constructor_new (const class GALGAS_location & inOperand0,
-                                                                                       const class GALGAS_immediatExpression & inOperand1,
-                                                                                       const class GALGAS_pic_31__38_InstructionList & inOperand2,
-                                                                                       const class GALGAS_location & inOperand3
+                                                                                       const class GALGAS_lstring & inOperand1,
+                                                                                       const class GALGAS_immediatExpression & inOperand2,
+                                                                                       const class GALGAS_immediatExpression & inOperand3,
+                                                                                       const class GALGAS_pic_31__38_InstructionList & inOperand4,
+                                                                                       const class GALGAS_location & inOperand5
                                                                                        COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -9271,11 +9273,15 @@ class GALGAS_pic_31__38_Instruction_5F_repetitionStatique : public GALGAS_pic_31
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
+  public : VIRTUAL_IN_DEBUG class GALGAS_lstring reader_mConstantName (LOCATION_ARGS) const ;
+
   public : VIRTUAL_IN_DEBUG class GALGAS_location reader_mEndOfInstruction (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_pic_31__38_InstructionList reader_mInstructionList (LOCATION_ARGS) const ;
 
-  public : VIRTUAL_IN_DEBUG class GALGAS_immediatExpression reader_mRepeatExpression (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG class GALGAS_immediatExpression reader_mLowerBoundExpression (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_immediatExpression reader_mUpperBoundExpression (LOCATION_ARGS) const ;
 
 
 //--------------------------------- Introspection
@@ -9296,13 +9302,17 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruct
 
 class cPtr_pic_31__38_Instruction_5F_repetitionStatique : public cPtr_pic_31__38_PiccoloInstruction {
 //--- Attributes
-  public : GALGAS_immediatExpression mAttribute_mRepeatExpression ;
+  public : GALGAS_lstring mAttribute_mConstantName ;
+  public : GALGAS_immediatExpression mAttribute_mLowerBoundExpression ;
+  public : GALGAS_immediatExpression mAttribute_mUpperBoundExpression ;
   public : GALGAS_pic_31__38_InstructionList mAttribute_mInstructionList ;
   public : GALGAS_location mAttribute_mEndOfInstruction ;
 
 //--- Constructor
   public : cPtr_pic_31__38_Instruction_5F_repetitionStatique (const GALGAS_location & in_mInstructionLocation,
-                                                              const GALGAS_immediatExpression & in_mRepeatExpression,
+                                                              const GALGAS_lstring & in_mConstantName,
+                                                              const GALGAS_immediatExpression & in_mLowerBoundExpression,
+                                                              const GALGAS_immediatExpression & in_mUpperBoundExpression,
                                                               const GALGAS_pic_31__38_InstructionList & in_mInstructionList,
                                                               const GALGAS_location & in_mEndOfInstruction
                                                               COMMA_LOCATION_ARGS) ;
@@ -9311,7 +9321,9 @@ class cPtr_pic_31__38_Instruction_5F_repetitionStatique : public cPtr_pic_31__38
   public : virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
 
 //--- Attribute accessors
-  public : VIRTUAL_IN_DEBUG GALGAS_immediatExpression reader_mRepeatExpression (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_lstring reader_mConstantName (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_immediatExpression reader_mLowerBoundExpression (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_immediatExpression reader_mUpperBoundExpression (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_pic_31__38_InstructionList reader_mInstructionList (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_location reader_mEndOfInstruction (LOCATION_ARGS) const ;
 //--- Description
@@ -13822,9 +13834,11 @@ class GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT : public GALGAS_midrang
 
 //--------------------------------- GALGAS constructors
   public : static GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT constructor_new (const class GALGAS_location & inOperand0,
-                                                                                      const class GALGAS_immediatExpression & inOperand1,
-                                                                                      const class GALGAS_midrange_5F_instructionList & inOperand2,
-                                                                                      const class GALGAS_location & inOperand3
+                                                                                      const class GALGAS_lstring & inOperand1,
+                                                                                      const class GALGAS_immediatExpression & inOperand2,
+                                                                                      const class GALGAS_immediatExpression & inOperand3,
+                                                                                      const class GALGAS_midrange_5F_instructionList & inOperand4,
+                                                                                      const class GALGAS_location & inOperand5
                                                                                       COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -13836,11 +13850,15 @@ class GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT : public GALGAS_midrang
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
+  public : VIRTUAL_IN_DEBUG class GALGAS_lstring reader_mConstantName (LOCATION_ARGS) const ;
+
   public : VIRTUAL_IN_DEBUG class GALGAS_location reader_mEndOfInstruction (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_midrange_5F_instructionList reader_mInstructionList (LOCATION_ARGS) const ;
 
-  public : VIRTUAL_IN_DEBUG class GALGAS_immediatExpression reader_mRepeatExpression (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG class GALGAS_immediatExpression reader_mLowerBoundExpression (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_immediatExpression reader_mUpperBoundExpression (LOCATION_ARGS) const ;
 
 
 //--------------------------------- Introspection
@@ -13861,13 +13879,17 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_instruc
 
 class cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT : public cPtr_midrange_5F_instruction {
 //--- Attributes
-  public : GALGAS_immediatExpression mAttribute_mRepeatExpression ;
+  public : GALGAS_lstring mAttribute_mConstantName ;
+  public : GALGAS_immediatExpression mAttribute_mLowerBoundExpression ;
+  public : GALGAS_immediatExpression mAttribute_mUpperBoundExpression ;
   public : GALGAS_midrange_5F_instructionList mAttribute_mInstructionList ;
   public : GALGAS_location mAttribute_mEndOfInstruction ;
 
 //--- Constructor
   public : cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT (const GALGAS_location & in_mInstructionLocation,
-                                                             const GALGAS_immediatExpression & in_mRepeatExpression,
+                                                             const GALGAS_lstring & in_mConstantName,
+                                                             const GALGAS_immediatExpression & in_mLowerBoundExpression,
+                                                             const GALGAS_immediatExpression & in_mUpperBoundExpression,
                                                              const GALGAS_midrange_5F_instructionList & in_mInstructionList,
                                                              const GALGAS_location & in_mEndOfInstruction
                                                              COMMA_LOCATION_ARGS) ;
@@ -13876,7 +13898,9 @@ class cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT : public cPtr_midrange_5F
   public : virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
 
 //--- Attribute accessors
-  public : VIRTUAL_IN_DEBUG GALGAS_immediatExpression reader_mRepeatExpression (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_lstring reader_mConstantName (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_immediatExpression reader_mLowerBoundExpression (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_immediatExpression reader_mUpperBoundExpression (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_midrange_5F_instructionList reader_mInstructionList (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_location reader_mEndOfInstruction (LOCATION_ARGS) const ;
 //--- Description

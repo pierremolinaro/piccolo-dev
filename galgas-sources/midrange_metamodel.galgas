@@ -53,7 +53,9 @@ class @midrange_instruction_savebank : @midrange_instruction {
 #----------------------------------------------------*
 
 class @midrange_instruction_STATIC_REPEAT : @midrange_instruction {
-  @immediatExpression mRepeatExpression
+  @lstring mConstantName
+  @immediatExpression mLowerBoundExpression
+  @immediatExpression mUpperBoundExpression
   @midrange_instructionList mInstructionList
   @location mEndOfInstruction
 }

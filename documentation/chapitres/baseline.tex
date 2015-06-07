@@ -504,6 +504,13 @@ Pour désigner le bit concerné, vous pouvez utiliser un nombre compris entre 0 
 bcf maVariable.3
 \end{piccolo}
 
+
+Vous pouvez utiliser une expression statique pour désigner un numéro de bit, à condition de la mettre entre parenthèses :
+\begin{piccolo}
+bcf maVariable.(2 + 1)
+\end{piccolo}
+
+
 Si le registre a été défini en déclarant des noms de bit :
 \begin{piccolo}
 ram ... {

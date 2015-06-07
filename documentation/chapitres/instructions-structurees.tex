@@ -308,21 +308,26 @@ Implémentation : la répétition infinie est simplement réalisée par une inst
 
 \sectionLabel{Instruction de répétition statique}{repetitionStatique}
 
-\textbf{À partir de Piccolo 3.0.3.}
+\textbf{À partir de Piccolo 3.0.3, la syntaxe a été modifiée dans la version 3.0.8.}
 
 
 Cette instruction a la syntaxe suivante :
 \begin{piccolo}
-do (expression)
+do (nom : expression_borne_inf ... expression_borne_sup)
   liste_instructions_simples_ou_structurees
 end
 \end{piccolo}
 
-L'\pic!expression! est une expression statique, c'est-à-dire calculée à la compilation, qui doit être strictement positive. Cette expression spécifie le nombre de fois que le corps de la boucle est répété. La répétition est organisée par le compilateur, le code engendré est \pic!expression! fois le corps de la boucle.
+Pour les \emph{pic18} et les \emph{mid-range}, le corps de la boucle ne doit pas changer la sélection de banc.
+
+\pic!expression_borne_inf! et \pic!expression_borne_sup! sont des expressions statiques, c'est-à-dire calculées à la compilation. Leurs valeurs sont signées sur 64 bits. \pic!expression_borne_inf! doit être inférieure ou égale à \pic!expression_borne_sup!.
+
+Le code engendré est \pic!expression_borne_sup - expression_borne_inf + 1! fois le corps de la boucle, l'identificateur \pic!nom! étant une constante locale recevant les valeurs successives \pic!expression_borne_inf!, \pic!expression_borne_inf+1!, ..., \pic!expression_borne_sup!.
+
 
 Par exemple, le code suivant :
 \begin{piccolo}
-do (3)
+do (N : 0 ... 2)
   bcf PORTA.0
   nop
   bsf PORTA.0
@@ -343,7 +348,23 @@ bsf PORTA.0
 \end{piccolo}
 
 
-Pour les \emph{pic18} et les \emph{mid-range}, le corps de la boucle ne doit pas changer la sélection de banc.
+Voici un autre exemple pour \emph{pic18}, où \pic!COMMANDE_LED! et \pic!CONSIGNE_LED! sont des tableaux de 32 octets :
+
+\begin{piccolo}
+do (kLED : 0 ... 31)
+  movf COMMANDE_LED [kLED], W
+  if (CONSIGNE_LED [kLED] > W)
+    addlw 3
+    if STATUS.C : movlw 255
+    if CONSIGNE_LED [kLED] <= W : movf CONSIGNE_LED [kLED], W
+    movwf COMMANDE_LED [kLED]
+  elsif (CONSIGNE_LED [kLED] < W)
+    addlw -3
+    if !STATUS.C : movlw 0
+    movwf COMMANDE_LED [kLED]
+  end
+end
+\end{piccolo}
 
 
 
@@ -358,7 +379,7 @@ Pour les \emph{pic18} et les \emph{mid-range}, le corps de la boucle ne doit pas
 L'instruction répétitive a une structure moins répandue car elle accepte un ou plusieurs blocs \pic!while! ; voici plusieurs exemples, \pic!cca!, \pic!ccb! et \pic!ccc! étant des expressions conditionnelles (voir \refSectionPage{formeGeneraleConditions}).
 
 
-Voici un premier exemple, qui a une exécution équivalente à l'instruction \pic!while (cca) do { instructions }! du langage C (\refFigure{}{organigrammeDoWhile1}) :
+Voici un premier exemple, qui a une exécution équivalente à l'instruction \texttt{while (cca) do \{ instructions \}} du langage C (\refFigure{}{organigrammeDoWhile1}) :
 \begin{piccolo}
 do
 while (cca)
@@ -390,7 +411,7 @@ end
   \ligne
 \end{figure}
 
-La construction suivante a une exécution équivalente à l'instruction \pic!do { instructions } while (cca) ;! du langage C (\refFigure{}{organigrammeDoWhile2}) :
+La construction suivante a une exécution équivalente à l'instruction \texttt{do \{ instructions \} while (cca) ;} du langage C (\refFigure{}{organigrammeDoWhile2}) :
 \begin{piccolo}
 do
   instructions

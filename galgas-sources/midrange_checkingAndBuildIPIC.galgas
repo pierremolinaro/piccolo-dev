@@ -945,18 +945,24 @@ override method @midrange_instruction_STATIC_REPEAT build_midrange_ipic_instruct
   ?!@bool ioContinuesInSequence
   ?let @routineKind inRoutineKind
   ?!@stringset ioUsedRegisters {
-  [mRepeatExpression eval !inRegisterTable !inConstantMap ?let @sint64 repeatCount !?ioUsedRegisters]
+#--- Solve immediat expression
+  [mLowerBoundExpression eval !inRegisterTable !inConstantMap ?let @sint64 lowerBound !?ioUsedRegisters]
+  [mUpperBoundExpression eval !inRegisterTable !inConstantMap ?let @sint64 upperBound !?ioUsedRegisters]
 #---
-  if (repeatCount > 0xFFFFLS) | (repeatCount <= 0LS) then
-    error mInstructionLocation:"immediate value is evaluated as " + repeatCount + " (should be > 0 and < 0xFFFF)"
+  if lowerBound > upperBound then
+    error mInstructionLocation: "lower bound (" + lowerBound + ") greater then upper bound (" + upperBound + ")"
+  elsif (upperBound - lowerBound) > 0xFFFF_LS then
+    error mInstructionLocation:"repeat count (" + (upperBound - lowerBound) + ") too large (should be <= 0xFFFF)"
   end
-#--- First pass
+#--- First pass (for lower bound
   @uint finalBank = ioCurrentBank
+  var tempConstantMap = inConstantMap
+  [!?tempConstantMap insertKey !mConstantName !lowerBound]
   handleMidrangeInstructionList (
     !mInstructionList 
     !inRoutineMap
     !inRegisterTable
-    !inConstantMap
+    !tempConstantMap
     !?ioLocalLabelIndex
     !?ioGeneratedInstructionList
     !?ioListFileContents
@@ -974,12 +980,15 @@ override method @midrange_instruction_STATIC_REPEAT build_midrange_ipic_instruct
     error mEndOfInstruction:"enclosed instruction list contains an endless loop"
   end
 #--- Other passes
-  for idx in @range. new { !0 ![repeatCount-1LS uint]} while @uint. errorCount == 0 do
+  var idx = lowerBound + 1
+  loop ([upperBound - lowerBound + 1 uint]) while (idx <= upperBound) && (@uint.errorCount == 0) do
+    var constantMap = inConstantMap
+    [!?constantMap insertKey !mConstantName !idx]
     handleMidrangeInstructionList (
       !mInstructionList 
       !inRoutineMap
       !inRegisterTable
-      !inConstantMap
+      !constantMap
       !?ioLocalLabelIndex
       !?ioGeneratedInstructionList
       !?ioListFileContents

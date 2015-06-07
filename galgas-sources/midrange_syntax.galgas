@@ -304,14 +304,20 @@ rule <midrange_structured_instruction>
   ?!@bool ioNeedsComputedGoto4 {
   select
     $do$
-    let @location instructionLocation = @location.here
+    let instructionLocation = @location.here
     $($
-    <immediate_expression> ?let @immediatExpression repeatExpression
+    $identifier$ ?let constantName
+    $:$
+    <immediate_expression> ?let @immediatExpression lowBoundExpression
+    $...$
+    <immediate_expression> ?let @immediatExpression highBoundExpression
     $)$
     <midrange_instruction_list> ?let @midrange_instructionList instructionList !?ioNeedsComputedGoto2 !?ioNeedsComputedGoto4
     outInstruction = @midrange_instruction_STATIC_REPEAT. new {
       !instructionLocation
-      !repeatExpression
+      !constantName
+      !lowBoundExpression
+      !highBoundExpression
       !instructionList
       !@location.here}
     $end$
