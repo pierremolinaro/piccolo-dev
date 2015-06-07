@@ -300,7 +300,7 @@ rule <immediate_primary> !@immediatExpression outExpression {
       $,$
     end
     $)$
-    outExpression = @immediatSlice. new { !registerName !sliceExpressionList}
+    outExpression = @immediatSlice.new {!registerName !sliceExpressionList}
   end
 }
 
@@ -310,15 +310,17 @@ rule <register_parsing> !@registerExpression outRegisterExpression {
   $identifier$ ?var @lstring registerName indexing variableUse
   @luint offset
   select
-    offset = @luint. new { !0 !@location.here}
+    offset = .new {!0 !.here}
   or
     $[$
     $integer$ ? offset
+    <immediate_expression> ?let @immediatExpression minExpression
     $]$
   end
-  outRegisterExpression = @registerExpression. new {
+  outRegisterExpression = @registerExpression.new {
     !registerName
-    !offset}
+    !offset
+  }
 }
 
 #----------------------------------------------------*
