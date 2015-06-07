@@ -17806,9 +17806,9 @@ void cParser_communs::rule_communs_bit_5F_number_5F_parsing_i11_indexing (C_Lexi
 void cParser_communs::rule_communs_bit_5F_number_5F_parsing_i12_ (GALGAS_bitNumberExpression & outArgument_outBitNumber,
                                                                   C_Lexique_piccolo_5F_lexique * inCompiler) {
   outArgument_outBitNumber.drop () ; // Release 'out' argument
-  GALGAS_luint var_bitNumberLiteral = inCompiler->synthetizedAttribute_uint_33__32_value () ;
+  GALGAS_luint var_bitIndex = inCompiler->synthetizedAttribute_uint_33__32_value () ;
   inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_integer) COMMA_SOURCE_FILE ("communs.galgas", 362)) ;
-  outArgument_outBitNumber = GALGAS_bitNumberLiteralValue::constructor_new (var_bitNumberLiteral  COMMA_SOURCE_FILE ("communs.galgas", 363)) ;
+  outArgument_outBitNumber = GALGAS_bitNumberLiteralValue::constructor_new (var_bitIndex  COMMA_SOURCE_FILE ("communs.galgas", 363)) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -17826,7 +17826,37 @@ void cParser_communs::rule_communs_bit_5F_number_5F_parsing_i12_indexing (C_Lexi
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void cParser_communs::rule_communs_optional_5F_w_5F_as_5F_dest_i13_ (GALGAS_bool & outArgument_out_5F_W_5F_isDestination,
+void cParser_communs::rule_communs_bit_5F_number_5F_parsing_i13_ (GALGAS_bitNumberExpression & outArgument_outBitNumber,
+                                                                  C_Lexique_piccolo_5F_lexique * inCompiler) {
+  outArgument_outBitNumber.drop () ; // Release 'out' argument
+  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__28_) COMMA_SOURCE_FILE ("communs.galgas", 369)) ;
+  GALGAS_immediatExpression var_bitNumberExpression ;
+  nt_immediate_5F_expression_ (var_bitNumberExpression, inCompiler) ;
+  GALGAS_location var_endOfExpression = GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 371)) ;
+  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__29_) COMMA_SOURCE_FILE ("communs.galgas", 372)) ;
+  outArgument_outBitNumber = GALGAS_bitNumberLiteralExpression::constructor_new (var_bitNumberExpression, var_endOfExpression  COMMA_SOURCE_FILE ("communs.galgas", 373)) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void cParser_communs::rule_communs_bit_5F_number_5F_parsing_i13_parse (C_Lexique_piccolo_5F_lexique * inCompiler) {
+  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__28_) COMMA_SOURCE_FILE ("communs.galgas", 369)) ;
+  nt_immediate_5F_expression_parse (inCompiler) ;
+  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__29_) COMMA_SOURCE_FILE ("communs.galgas", 372)) ;
+  inCompiler->resetTemplateString () ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void cParser_communs::rule_communs_bit_5F_number_5F_parsing_i13_indexing (C_Lexique_piccolo_5F_lexique * inCompiler) {
+  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__28_) COMMA_SOURCE_FILE ("communs.galgas", 369)) ;
+  nt_immediate_5F_expression_indexing (inCompiler) ;
+  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__29_) COMMA_SOURCE_FILE ("communs.galgas", 372)) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void cParser_communs::rule_communs_optional_5F_w_5F_as_5F_dest_i14_ (GALGAS_bool & outArgument_out_5F_W_5F_isDestination,
                                                                      C_Lexique_piccolo_5F_lexique * inCompiler) {
   outArgument_out_5F_W_5F_isDestination.drop () ; // Release 'out' argument
   switch (select_communs_19 (inCompiler)) {
@@ -17834,8 +17864,8 @@ void cParser_communs::rule_communs_optional_5F_w_5F_as_5F_dest_i13_ (GALGAS_bool
     outArgument_out_5F_W_5F_isDestination = GALGAS_bool (false) ;
   } break ;
   case 2: {
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__2C_) COMMA_SOURCE_FILE ("communs.galgas", 372)) ;
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_w) COMMA_SOURCE_FILE ("communs.galgas", 373)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__2C_) COMMA_SOURCE_FILE ("communs.galgas", 382)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_w) COMMA_SOURCE_FILE ("communs.galgas", 383)) ;
     outArgument_out_5F_W_5F_isDestination = GALGAS_bool (true) ;
   } break ;
   default:
@@ -17845,13 +17875,13 @@ void cParser_communs::rule_communs_optional_5F_w_5F_as_5F_dest_i13_ (GALGAS_bool
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void cParser_communs::rule_communs_optional_5F_w_5F_as_5F_dest_i13_parse (C_Lexique_piccolo_5F_lexique * inCompiler) {
+void cParser_communs::rule_communs_optional_5F_w_5F_as_5F_dest_i14_parse (C_Lexique_piccolo_5F_lexique * inCompiler) {
   switch (select_communs_19 (inCompiler)) {
   case 1: {
   } break ;
   case 2: {
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__2C_) COMMA_SOURCE_FILE ("communs.galgas", 372)) ;
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_w) COMMA_SOURCE_FILE ("communs.galgas", 373)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__2C_) COMMA_SOURCE_FILE ("communs.galgas", 382)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_w) COMMA_SOURCE_FILE ("communs.galgas", 383)) ;
   } break ;
   default:
     break ;
@@ -17861,13 +17891,13 @@ void cParser_communs::rule_communs_optional_5F_w_5F_as_5F_dest_i13_parse (C_Lexi
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void cParser_communs::rule_communs_optional_5F_w_5F_as_5F_dest_i13_indexing (C_Lexique_piccolo_5F_lexique * inCompiler) {
+void cParser_communs::rule_communs_optional_5F_w_5F_as_5F_dest_i14_indexing (C_Lexique_piccolo_5F_lexique * inCompiler) {
   switch (select_communs_19 (inCompiler)) {
   case 1: {
   } break ;
   case 2: {
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__2C_) COMMA_SOURCE_FILE ("communs.galgas", 372)) ;
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_w) COMMA_SOURCE_FILE ("communs.galgas", 373)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__2C_) COMMA_SOURCE_FILE ("communs.galgas", 382)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_w) COMMA_SOURCE_FILE ("communs.galgas", 383)) ;
   } break ;
   default:
     break ;

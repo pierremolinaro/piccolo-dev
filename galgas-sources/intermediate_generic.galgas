@@ -404,14 +404,21 @@ override method @immediatSlice eval
 #----------------------------------------------------------------------------*
 
 abstract method @bitNumberExpression getBitNumber
+  ?let @registerTable inRegisterTable
+  ?let @constantMap inConstantMap
+  ?!@stringset ioUsedRegisters
   ?let @bitSliceTable inBitSliceTable
   !@uint outBitNumber
 
 #----------------------------------------------------------------------------*
 
 override method @bitNumberLiteralValue getBitNumber
+  ?let @registerTable unused inRegisterTable
+  ?let @constantMap unused inConstantMap
+  ?!@stringset unused ioUsedRegisters
   ?let @bitSliceTable unused inBitSliceTable
-  !@uint outBitNumber {
+  !@uint outBitNumber
+{
   if [mBitNumberLiteralValue uint] > 7 then
     error mBitNumberLiteralValue:"The bit number is " + [[mBitNumberLiteralValue uint] string] + " (should be <= 7)"
   end
@@ -421,16 +428,37 @@ override method @bitNumberLiteralValue getBitNumber
 #----------------------------------------------------------------------------*
 
 override method @bitNumberLabelValue getBitNumber
+  ?let @registerTable unused inRegisterTable
+  ?let @constantMap unused inConstantMap
+  ?!@stringset unused ioUsedRegisters
   ?let @bitSliceTable inBitSliceTable
-  !@uint outBitNumber {
-  @uint sliceIndex
-  @uint sliceSize
-  [inBitSliceTable searchKey !mBitNumberLabelValue ?sliceIndex ? sliceSize]
+  !@uint outBitNumber
+{
+  [inBitSliceTable searchKey !mBitNumberLabelValue ?let sliceIndex ?let sliceSize]
   if [mBitNumberIndexValue uint] > sliceSize then
     error mBitNumberIndexValue: "The " + [[mBitNumberIndexValue uint] string]
     + " index is too large (should be < " + [sliceSize string] + ")"
   end
   outBitNumber = sliceIndex + [mBitNumberIndexValue uint]
+}
+
+#----------------------------------------------------------------------------*
+
+override method @bitNumberLiteralExpression getBitNumber
+  ?let @registerTable inRegisterTable
+  ?let @constantMap inConstantMap
+  ?!@stringset ioUsedRegisters
+  ?let @bitSliceTable unused inBitSliceTable
+  !@uint outBitNumber
+{
+  [mBitNumberLiteralExpression eval !inRegisterTable !inConstantMap ?let @sint64 result !?ioUsedRegisters]
+  if result < 0LS then
+    error mEndOfExpression : "bit index is " + result + ", but should be >= 0" : outBitNumber
+  elsif result > 7LS then
+    error mEndOfExpression: "bit index is " + result + ", but should be <= 7" : outBitNumber
+  else
+    outBitNumber = [result uint]
+  end
 }
 
 #----------------------------------------------------------------------------*

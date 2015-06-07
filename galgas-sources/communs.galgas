@@ -353,14 +353,24 @@ rule <bit_number_parsing> !@bitNumberExpression outBitNumber {
     $integer$ ? bitIndex
     $]$
   end
-  outBitNumber = @bitNumberLabelValue. new { !bitNumberLabel !bitIndex}
+  outBitNumber = @bitNumberLabelValue.new {!bitNumberLabel !bitIndex}
 }
 
 #----------------------------------------------------*
 
 rule <bit_number_parsing> !@bitNumberExpression outBitNumber {
-  $integer$ ?var @luint bitNumberLiteral
-  outBitNumber = @bitNumberLiteralValue. new { !bitNumberLiteral}
+  $integer$ ?let bitIndex
+  outBitNumber = @bitNumberLiteralValue.new {!bitIndex}
+}
+
+#----------------------------------------------------*
+
+rule <bit_number_parsing> !@bitNumberExpression outBitNumber {
+  $($
+  <immediate_expression> ?let bitNumberExpression
+  let endOfExpression = @location.here
+  $)$
+  outBitNumber = @bitNumberLiteralExpression.new {!bitNumberExpression !endOfExpression}
 }
 
 #----------------------------------------------------*

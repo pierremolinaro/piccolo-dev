@@ -11,36 +11,16 @@
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                               Abstract category method '@bitNumberExpression display'                               *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-typedef void (*categoryMethodSignature_bitNumberExpression_display) (const class cPtr_bitNumberExpression * inObject,
-                                                                     class GALGAS_string & ioArgument0,
-                                                                     class C_Compiler * inCompiler
-                                                                     COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void enterCategoryMethod_display (const int32_t inClassIndex,
-                                  categoryMethodSignature_bitNumberExpression_display inMethod) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void callCategoryMethod_display (const class cPtr_bitNumberExpression * inObject,
-                                 GALGAS_string & io_ioString,
-                                 C_Compiler * inCompiler
-                                 COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
 //                            Abstract category method '@bitNumberExpression getBitNumber'                             *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
 typedef void (*categoryMethodSignature_bitNumberExpression_getBitNumber) (const class cPtr_bitNumberExpression * inObject,
-                                                                          const class GALGAS_bitSliceTable constinArgument0,
-                                                                          class GALGAS_uint & outArgument1,
+                                                                          const class GALGAS_registerTable constinArgument0,
+                                                                          const class GALGAS_constantMap constinArgument1,
+                                                                          class GALGAS_stringset & ioArgument2,
+                                                                          const class GALGAS_bitSliceTable constinArgument3,
+                                                                          class GALGAS_uint & outArgument4,
                                                                           class C_Compiler * inCompiler
                                                                           COMMA_LOCATION_ARGS) ;
 
@@ -52,6 +32,9 @@ void enterCategoryMethod_getBitNumber (const int32_t inClassIndex,
 //---------------------------------------------------------------------------------------------------------------------*
 
 void callCategoryMethod_getBitNumber (const class cPtr_bitNumberExpression * inObject,
+                                      const GALGAS_registerTable constin_inRegisterTable,
+                                      const GALGAS_constantMap constin_inConstantMap,
+                                      GALGAS_stringset & io_ioUsedRegisters,
                                       const GALGAS_bitSliceTable constin_inBitSliceTable,
                                       GALGAS_uint & out_outBitNumber,
                                       C_Compiler * inCompiler

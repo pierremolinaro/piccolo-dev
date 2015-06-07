@@ -519,6 +519,9 @@ override method @midrange_instruction_FB build_midrange_ipic_instructionList
   ]
   @uint bitNumber
   [mBitNumber getBitNumber
+    !inRegisterTable
+    !inConstantMap
+    !?ioUsedRegisters
     !bitSliceTable
     ?bitNumber
   ]
@@ -1018,6 +1021,9 @@ override method @midrange_instruction_IF_BitTest build_midrange_ipic_instruction
   ]
   @uint bitNumber
   [mBitNumber getBitNumber
+    !inRegisterTable
+    !inConstantMap
+    !?ioUsedRegisters
     !bitSliceTable
     ?bitNumber
   ]
@@ -1271,6 +1277,9 @@ override method @midrange_bitTest_in_structured_if_condition buildIPICinstructio
   ]
   @uint bitNumber
   [mBitNumber getBitNumber
+    !inRegisterTable
+    !inConstantMap
+    !?ioUsedRegisters
     !bitSliceTable
     ?bitNumber
   ]

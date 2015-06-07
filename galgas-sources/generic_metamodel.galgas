@@ -243,7 +243,10 @@ abstract class @bitNumberExpression {
 
 #----------------------------------------------------*
 
-abstract method @bitNumberExpression display ?!@string ioString
+class @bitNumberLiteralExpression : @bitNumberExpression {
+  @immediatExpression mBitNumberLiteralExpression
+  @location mEndOfExpression
+}
 
 #----------------------------------------------------*
 
@@ -253,21 +256,9 @@ class @bitNumberLiteralValue : @bitNumberExpression {
 
 #----------------------------------------------------*
 
-override method @bitNumberLiteralValue display ?!@string ioString {
-  ioString += [[mBitNumberLiteralValue uint] string]
-}
-
-#----------------------------------------------------*
-
 class @bitNumberLabelValue : @bitNumberExpression {
   @lstring mBitNumberLabelValue
   @luint mBitNumberIndexValue
-}
-
-#----------------------------------------------------*
-
-override method @bitNumberLabelValue display ?!@string ioString {
-  ioString += [mBitNumberLabelValue string] + " [" + [[mBitNumberIndexValue uint] string] + "]"
 }
 
 #----------------------------------------------------*

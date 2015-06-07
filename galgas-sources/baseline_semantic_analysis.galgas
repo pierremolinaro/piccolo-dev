@@ -381,6 +381,9 @@ override method @baseline_instruction_FB build_baseline_intermediate_instruction
     !?ioUsedRegisters
   ]
   [mBitNumber getBitNumber
+    !inRegisterTable
+    !inConstantMap
+    !?ioUsedRegisters
     !bitSliceTable
     ?var @uint bitNumber
   ]
@@ -388,7 +391,8 @@ override method @baseline_instruction_FB build_baseline_intermediate_instruction
     !mInstructionLocation
     !mBitOrientedOp
     !intermediateRegisterDescription
-    !bitNumber}
+    !bitNumber
+  }
 }
 
 #----------------------------------------------------------------------------*
@@ -475,6 +479,9 @@ override method @baseline_instruction_IF_BitTest build_baseline_intermediate_ins
   ]
   @uint bitNumber
   [mBitNumber getBitNumber
+    !inRegisterTable
+    !inConstantMap
+    !?ioUsedRegisters
     !bitSliceTable
     ?bitNumber
   ]
@@ -965,6 +972,9 @@ override method @baseline_bitTest_in_structured_if_condition build_intermediate_
   ]
   @uint bitNumber
   [mBitNumber getBitNumber
+    !inRegisterTable
+    !inConstantMap
+    !?ioUsedRegisters
     !bitSliceTable
     ?bitNumber
   ]

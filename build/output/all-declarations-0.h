@@ -7446,12 +7446,19 @@ class cParser_communs {
 
   protected : void rule_communs_bit_5F_number_5F_parsing_i12_indexing (C_Lexique_piccolo_5F_lexique * inLexique) ;
 
-  protected : void rule_communs_optional_5F_w_5F_as_5F_dest_i13_ (GALGAS_bool & outArgument0,
+  protected : void rule_communs_bit_5F_number_5F_parsing_i13_ (GALGAS_bitNumberExpression & outArgument0,
+                                                               C_Lexique_piccolo_5F_lexique * inLexique) ;
+
+  protected : void rule_communs_bit_5F_number_5F_parsing_i13_parse (C_Lexique_piccolo_5F_lexique * inLexique) ;
+
+  protected : void rule_communs_bit_5F_number_5F_parsing_i13_indexing (C_Lexique_piccolo_5F_lexique * inLexique) ;
+
+  protected : void rule_communs_optional_5F_w_5F_as_5F_dest_i14_ (GALGAS_bool & outArgument0,
                                                                   C_Lexique_piccolo_5F_lexique * inLexique) ;
 
-  protected : void rule_communs_optional_5F_w_5F_as_5F_dest_i13_parse (C_Lexique_piccolo_5F_lexique * inLexique) ;
+  protected : void rule_communs_optional_5F_w_5F_as_5F_dest_i14_parse (C_Lexique_piccolo_5F_lexique * inLexique) ;
 
-  protected : void rule_communs_optional_5F_w_5F_as_5F_dest_i13_indexing (C_Lexique_piccolo_5F_lexique * inLexique) ;
+  protected : void rule_communs_optional_5F_w_5F_as_5F_dest_i14_indexing (C_Lexique_piccolo_5F_lexique * inLexique) ;
 
 
 
@@ -7579,6 +7586,93 @@ class cPtr_bitNumberLabelValue : public cPtr_bitNumberExpression {
 //--- Attribute accessors
   public : VIRTUAL_IN_DEBUG GALGAS_lstring reader_mBitNumberLabelValue (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_luint reader_mBitNumberIndexValue (LOCATION_ARGS) const ;
+//--- Description
+  public : virtual void description (C_String & ioString,
+                                     const int32_t inIndentation) const ;
+
+  public : virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+
+  public : virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+
+} ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                          @bitNumberLiteralExpression class                                          *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class GALGAS_bitNumberLiteralExpression : public GALGAS_bitNumberExpression {
+//--- Constructor
+  public : GALGAS_bitNumberLiteralExpression (void) ;
+
+//---
+  public : inline const class cPtr_bitNumberLiteralExpression * ptr (void) const { return (const cPtr_bitNumberLiteralExpression *) mObjectPtr ; }
+
+//--------------------------------- Constructor from pointer
+  public : GALGAS_bitNumberLiteralExpression (const cPtr_bitNumberLiteralExpression * inSourcePtr) ;
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public : static GALGAS_bitNumberLiteralExpression extractObject (const GALGAS_object & inObject,
+                                                                   C_Compiler * inCompiler
+                                                                   COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public : static GALGAS_bitNumberLiteralExpression constructor_new (const class GALGAS_immediatExpression & inOperand0,
+                                                                     const class GALGAS_location & inOperand1
+                                                                     COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Comparison
+  public : typeComparisonResult objectCompare (const GALGAS_bitNumberLiteralExpression & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+  public : VIRTUAL_IN_DEBUG class GALGAS_immediatExpression reader_mBitNumberLiteralExpression (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_location reader_mEndOfExpression (LOCATION_ARGS) const ;
+
+
+//--------------------------------- Introspection
+  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+ 
+} ; // End of GALGAS_bitNumberLiteralExpression class
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_bitNumberLiteralExpression ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                 Pointer class for @bitNumberLiteralExpression class                                 *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class cPtr_bitNumberLiteralExpression : public cPtr_bitNumberExpression {
+//--- Attributes
+  public : GALGAS_immediatExpression mAttribute_mBitNumberLiteralExpression ;
+  public : GALGAS_location mAttribute_mEndOfExpression ;
+
+//--- Constructor
+  public : cPtr_bitNumberLiteralExpression (const GALGAS_immediatExpression & in_mBitNumberLiteralExpression,
+                                            const GALGAS_location & in_mEndOfExpression
+                                            COMMA_LOCATION_ARGS) ;
+
+//--- Duplication
+  public : virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+
+//--- Attribute accessors
+  public : VIRTUAL_IN_DEBUG GALGAS_immediatExpression reader_mBitNumberLiteralExpression (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_location reader_mEndOfExpression (LOCATION_ARGS) const ;
 //--- Description
   public : virtual void description (C_String & ioString,
                                      const int32_t inIndentation) const ;
