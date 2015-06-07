@@ -111,6 +111,7 @@ class C_Lexique_piccolo_5F_lexique : public C_Lexique {
    kToken_include,
    kToken_inline,
    kToken_interrupt,
+   kToken_macro,
    kToken_mark,
    kToken_midrange,
    kToken_nobank,
@@ -273,7 +274,7 @@ class C_Lexique_piccolo_5F_lexique : public C_Lexique {
   protected : virtual C_String getMessageForTerminal (const int16_t inTerminalSymbol) const ;
 
 //--- Get terminal count
-  public : virtual int16_t terminalVocabularyCount (void) const { return 152 ; }
+  public : virtual int16_t terminalVocabularyCount (void) const { return 153 ; }
 
 //--- Get Token String
   public : virtual C_String getCurrentTokenString (const cToken * inTokenPtr) const ;

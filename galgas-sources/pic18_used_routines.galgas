@@ -3,103 +3,134 @@
 #---------------------------------------------------------------------------*
 
 abstract method @pic18PiccoloInstruction addUsedRoutines
+  ?let @pic18MacroMap inMacroMap
   ?!@stringset ioUsedRoutines
 
 #---------------------------------------------------------------------------*
 
 override method @pic18Instruction_IF_BitTest addUsedRoutines
-  ?!@stringset ioUsedRoutines {
-  [mEmbeddedInstruction addUsedRoutines !?ioUsedRoutines]
+  ?let @pic18MacroMap inMacroMap
+  ?!@stringset ioUsedRoutines
+{
+  [mEmbeddedInstruction addUsedRoutines !inMacroMap !?ioUsedRoutines]
 }
 
 #---------------------------------------------------------------------------*
 
 override method @pic18Instruction_IF_FA_SEMI_COLON addUsedRoutines
-  ?!@stringset ioUsedRoutines {
-  [mEmbeddedInstruction addUsedRoutines !?ioUsedRoutines]
+  ?let @pic18MacroMap inMacroMap
+  ?!@stringset ioUsedRoutines
+{
+  [mEmbeddedInstruction addUsedRoutines !inMacroMap !?ioUsedRoutines]
 }
 
 #---------------------------------------------------------------------------*
 
 override method @pic18Instruction_IF_IncDec addUsedRoutines
-  ?!@stringset ioUsedRoutines {
-  [mEmbeddedInstruction addUsedRoutines !?ioUsedRoutines]
+  ?let @pic18MacroMap inMacroMap
+  ?!@stringset ioUsedRoutines
+{
+  [mEmbeddedInstruction addUsedRoutines !inMacroMap !?ioUsedRoutines]
 }
 
 #---------------------------------------------------------------------------*
 
 override method @pic18Instruction_JUMP addUsedRoutines
-  ?!@stringset ioUsedRoutines {
+  ?let @pic18MacroMap unused inMacroMap
+  ?!@stringset ioUsedRoutines
+{
   ioUsedRoutines += !mTargetLabel.string
 }
 
 #---------------------------------------------------------------------------*
 
 override method @pic18Instruction_JUMPCC addUsedRoutines
-  ?!@stringset ioUsedRoutines {
+  ?let @pic18MacroMap unused inMacroMap
+  ?!@stringset ioUsedRoutines
+{
   ioUsedRoutines += !mTargetLabel.string
 }
 
 #---------------------------------------------------------------------------*
 
 override method @pic18Instruction_FOREVER addUsedRoutines
-  ?!@stringset ioUsedRoutines {
-  addPic18UsedRoutinesFromInstructionList ( !mInstructionList !?ioUsedRoutines )
+  ?let @pic18MacroMap inMacroMap
+  ?!@stringset ioUsedRoutines
+{
+  addPic18UsedRoutinesFromInstructionList (!mInstructionList !inMacroMap !?ioUsedRoutines )
 }
 
 #---------------------------------------------------------------------------*
 
 override method @pic18Instruction_repetitionStatique addUsedRoutines
-  ?!@stringset ioUsedRoutines {
-  addPic18UsedRoutinesFromInstructionList ( !mInstructionList !?ioUsedRoutines )
+  ?let @pic18MacroMap inMacroMap
+  ?!@stringset ioUsedRoutines
+{
+  addPic18UsedRoutinesFromInstructionList (!mInstructionList !inMacroMap !?ioUsedRoutines )
 }
 
 #---------------------------------------------------------------------------*
 
 override method @pic18Instruction_checkbank addUsedRoutines
-  ?!@stringset unused ioUsedRoutines {
+  ?let @pic18MacroMap unused inMacroMap
+  ?!@stringset unused ioUsedRoutines
+{
 }
 
 #---------------------------------------------------------------------------*
 
 override method @pic18Instruction_LDATAPTR addUsedRoutines
-  ?!@stringset unused ioUsedRoutines {
+  ?let @pic18MacroMap unused inMacroMap
+  ?!@stringset unused ioUsedRoutines
+{
 }
 
 #---------------------------------------------------------------------------*
 
 override method @pic18Instruction_LTBLPTR addUsedRoutines
-  ?!@stringset unused ioUsedRoutines {
+  ?let @pic18MacroMap unused inMacroMap
+  ?!@stringset unused ioUsedRoutines
+{
 }
 
 #---------------------------------------------------------------------------*
 
 override method @pic18Instruction_MNOP addUsedRoutines
-  ?!@stringset unused ioUsedRoutines {
+  ?let @pic18MacroMap unused inMacroMap
+  ?!@stringset unused ioUsedRoutines
+{
 }
 
 #---------------------------------------------------------------------------*
 
 override method @pic18Instruction_banksel addUsedRoutines
-  ?!@stringset unused ioUsedRoutines {
+  ?let @pic18MacroMap unused inMacroMap
+  ?!@stringset unused ioUsedRoutines
+{
 }
 
 #---------------------------------------------------------------------------*
 
 override method @pic18Instruction_checknobank addUsedRoutines
-  ?!@stringset unused ioUsedRoutines {
+  ?let @pic18MacroMap unused inMacroMap
+  ?!@stringset unused ioUsedRoutines
+{
 }
 
 #---------------------------------------------------------------------------*
 
 override method @pic18Instruction_banksel_register addUsedRoutines
-  ?!@stringset unused ioUsedRoutines {
+  ?let @pic18MacroMap unused inMacroMap
+  ?!@stringset unused ioUsedRoutines
+{
 }
 
 #---------------------------------------------------------------------------*
 
 override method @pic18Instruction_computed_bra addUsedRoutines
-  ?!@stringset ioUsedRoutines {
+  ?let @pic18MacroMap unused inMacroMap
+  ?!@stringset ioUsedRoutines
+{
   for () in  mTargetLabels do
     ioUsedRoutines += !mValue.string
   end
@@ -108,7 +139,9 @@ override method @pic18Instruction_computed_bra addUsedRoutines
 #---------------------------------------------------------------------------*
 
 override method @pic18Instruction_computed_goto addUsedRoutines
-  ?!@stringset ioUsedRoutines {
+  ?let @pic18MacroMap unused inMacroMap
+  ?!@stringset ioUsedRoutines
+{
   for () in  mTargetLabels do
     ioUsedRoutines += !mValue.string
   end
@@ -117,7 +150,9 @@ override method @pic18Instruction_computed_goto addUsedRoutines
 #---------------------------------------------------------------------------*
 
 override method @pic18Instruction_computed_rcall addUsedRoutines
-  ?!@stringset ioUsedRoutines {
+  ?let @pic18MacroMap unused inMacroMap
+  ?!@stringset ioUsedRoutines
+{
   for () in  mTargetLabels do
     ioUsedRoutines += !mValue.string
   end
@@ -126,131 +161,177 @@ override method @pic18Instruction_computed_rcall addUsedRoutines
 #---------------------------------------------------------------------------*
 
 override method @pic18Instruction_computed_retlw addUsedRoutines
-  ?!@stringset unused ioUsedRoutines {
+  ?let @pic18MacroMap unused inMacroMap
+  ?!@stringset unused ioUsedRoutines
+{
 }
 
 #---------------------------------------------------------------------------*
 
 override method @pic18Instruction_do_while addUsedRoutines
-  ?!@stringset ioUsedRoutines {
-  addPic18UsedRoutinesFromInstructionList ( !mRepeatedInstructionList !?ioUsedRoutines )
+  ?let @pic18MacroMap inMacroMap
+  ?!@stringset ioUsedRoutines
+{
+  addPic18UsedRoutinesFromInstructionList (!mRepeatedInstructionList !inMacroMap !?ioUsedRoutines )
   for () in  mWhilePartList do
-    addPic18UsedRoutinesFromInstructionList ( !mInstructionList !?ioUsedRoutines )
+    addPic18UsedRoutinesFromInstructionList (!mInstructionList !inMacroMap !?ioUsedRoutines )
   end
 }
 
 #---------------------------------------------------------------------------*
 
 override method @pic18Instruction_nobanksel addUsedRoutines
-  ?!@stringset unused ioUsedRoutines {
+  ?let @pic18MacroMap unused inMacroMap
+  ?!@stringset unused ioUsedRoutines
+{
 }
 
 #---------------------------------------------------------------------------*
 
 override method @pic18Instruction_savebank addUsedRoutines
-  ?!@stringset ioUsedRoutines {
-  addPic18UsedRoutinesFromInstructionList ( !mInstructionList !?ioUsedRoutines )
+  ?let @pic18MacroMap inMacroMap
+  ?!@stringset ioUsedRoutines
+{
+  addPic18UsedRoutinesFromInstructionList ( !mInstructionList !inMacroMap !?ioUsedRoutines )
 }
 
 #---------------------------------------------------------------------------*
 
 override method @pic18Instruction_structured_if addUsedRoutines
-  ?!@stringset ioUsedRoutines {
-  addPic18UsedRoutinesFromInstructionList ( !mThenInstructionList !?ioUsedRoutines )
-  addPic18UsedRoutinesFromInstructionList ( !mElseInstructionList !?ioUsedRoutines )
+  ?let @pic18MacroMap inMacroMap
+  ?!@stringset ioUsedRoutines
+{
+  addPic18UsedRoutinesFromInstructionList (!mThenInstructionList !inMacroMap !?ioUsedRoutines )
+  addPic18UsedRoutinesFromInstructionList (!mElseInstructionList !inMacroMap !?ioUsedRoutines )
 }
 
 #---------------------------------------------------------------------------*
 
 override method @pic18Instruction_switch addUsedRoutines
-  ?!@stringset ioUsedRoutines {
+  ?let @pic18MacroMap inMacroMap
+  ?!@stringset ioUsedRoutines
+{
   for () in  mCaseList do
-    addPic18UsedRoutinesFromInstructionList ( !mInstructionList !?ioUsedRoutines )
+    addPic18UsedRoutinesFromInstructionList (!mInstructionList !inMacroMap !?ioUsedRoutines )
   end
-  addPic18UsedRoutinesFromInstructionList ( !mElseInstructionList !?ioUsedRoutines )
+  addPic18UsedRoutinesFromInstructionList (!mElseInstructionList !inMacroMap !?ioUsedRoutines )
 }
 
 #---------------------------------------------------------------------------*
 
 override method @pic18Instruction_with addUsedRoutines
+  ?let @pic18MacroMap inMacroMap
   ?!@stringset ioUsedRoutines
 {
-  addPic18UsedRoutinesFromInstructionList (!mInstructionList !?ioUsedRoutines)
+  addPic18UsedRoutinesFromInstructionList (!mInstructionList !inMacroMap !?ioUsedRoutines)
+}
+#---------------------------------------------------------------------------*
+
+override method @pic18Instruction_macro addUsedRoutines
+  ?let @pic18MacroMap inMacroMap
+  ?!@stringset ioUsedRoutines
+{
+  [inMacroMap searchKey !mMacroName ?* ?let instructionList]
+  addPic18UsedRoutinesFromInstructionList (!instructionList !inMacroMap !?ioUsedRoutines)
 }
 
 #---------------------------------------------------------------------------*
 
 override method @pic18Instruction_FA addUsedRoutines
-  ?!@stringset unused ioUsedRoutines {
+  ?let @pic18MacroMap unused inMacroMap
+  ?!@stringset unused ioUsedRoutines
+{
 }
 
 #---------------------------------------------------------------------------*
 
 override method @pic18Instruction_FBA addUsedRoutines
-  ?!@stringset unused ioUsedRoutines {
+  ?let @pic18MacroMap unused inMacroMap
+  ?!@stringset unused ioUsedRoutines
+{
 }
 
 #---------------------------------------------------------------------------*
 
 override method @pic18Instruction_FDA addUsedRoutines
-  ?!@stringset unused ioUsedRoutines {
+  ?let @pic18MacroMap unused inMacroMap
+  ?!@stringset unused ioUsedRoutines
+{
 }
 
 #---------------------------------------------------------------------------*
 
 override method @pic18Instruction_JSR addUsedRoutines
-  ?!@stringset ioUsedRoutines {
+  ?let @pic18MacroMap unused inMacroMap
+  ?!@stringset ioUsedRoutines
+{
   ioUsedRoutines += !mTargetLabel.string
 }
 
 #---------------------------------------------------------------------------*
 
 override method @pic18Instruction_LFSR addUsedRoutines
-  ?!@stringset unused ioUsedRoutines {
+  ?let @pic18MacroMap unused inMacroMap
+  ?!@stringset unused ioUsedRoutines
+{
 }
 
 #---------------------------------------------------------------------------*
 
 override method @pic18Instruction_MOVFF addUsedRoutines
-  ?!@stringset unused ioUsedRoutines {
+  ?let @pic18MacroMap unused inMacroMap
+  ?!@stringset unused ioUsedRoutines
+{
 }
 
 #---------------------------------------------------------------------------*
 
 override method @pic18Instruction_TBLWT addUsedRoutines
-  ?!@stringset unused ioUsedRoutines {
+  ?let @pic18MacroMap unused inMacroMap
+  ?!@stringset unused ioUsedRoutines
+{
 }
 
 #---------------------------------------------------------------------------*
 
 override method @pic18Instruction_TBLRD addUsedRoutines
-  ?!@stringset unused ioUsedRoutines {
+  ?let @pic18MacroMap unused inMacroMap
+  ?!@stringset unused ioUsedRoutines
+{
 }
 
 #---------------------------------------------------------------------------*
 
 override method @pic18Instruction_literalOperation addUsedRoutines
-  ?!@stringset unused ioUsedRoutines {
+  ?let @pic18MacroMap unused inMacroMap
+  ?!@stringset unused ioUsedRoutines
+{
 }
 
 #---------------------------------------------------------------------------*
 
 override method @pic18Instruction_fnop addUsedRoutines
-  ?!@stringset unused ioUsedRoutines {
+  ?let @pic18MacroMap unused inMacroMap
+  ?!@stringset unused ioUsedRoutines
+{
 }
 
 #---------------------------------------------------------------------------*
 
 override method @pic18Instruction_withNoOperand addUsedRoutines
-  ?!@stringset unused ioUsedRoutines {
+  ?let @pic18MacroMap unused inMacroMap
+  ?!@stringset unused ioUsedRoutines
+{
 }
 
 #---------------------------------------------------------------------------*
 
 override method @pic18Instruction_block addUsedRoutines
-  ?!@stringset ioUsedRoutines {
+  ?let @pic18MacroMap inMacroMap
+  ?!@stringset ioUsedRoutines
+{
   for () in  mBlockList do
-    addPic18UsedRoutinesFromInstructionList ( !mInstructionList !?ioUsedRoutines )
+    addPic18UsedRoutinesFromInstructionList (!mInstructionList !inMacroMap !?ioUsedRoutines )
   end
 }
 
@@ -258,9 +339,11 @@ override method @pic18Instruction_block addUsedRoutines
 
 proc addPic18UsedRoutinesFromInstructionList
   ?let @pic18InstructionList inInstructionList
-  ?!@stringset ioUsedRoutines {
+  ?let @pic18MacroMap inMacroMap
+  ?!@stringset ioUsedRoutines
+{
   for () in  inInstructionList do
-    [mInstruction addUsedRoutines !?ioUsedRoutines]
+    [mInstruction addUsedRoutines !inMacroMap !?ioUsedRoutines]
   end
 }
 
@@ -269,6 +352,7 @@ proc addPic18UsedRoutinesFromInstructionList
 func pic18_computeUsedRoutines
   ?let @pic18InterruptDefinitionList inInterruptDefinitionList
   ?let @pic18RoutineDefinitionList inRoutineDefinitionList
+  ?let @pic18MacroMap inMacroMap
   ?let @routineDeclarationList inBootloaderRoutineDeclarationListForBootloaderImplementation
   ?let @routineDeclarationList inUserRoutineDeclarationListForUserProgramImplementation
   -> @stringset outUsedRoutineSet {
@@ -278,6 +362,7 @@ func pic18_computeUsedRoutines
   for () in  inInterruptDefinitionList do
     addPic18UsedRoutinesFromInstructionList (
       !mInstructionList
+      !inMacroMap
       !?outUsedRoutineSet
     )  
   end
@@ -296,7 +381,7 @@ func pic18_computeUsedRoutines
     s = outUsedRoutineSet
     for () in  inRoutineDefinitionList do
       if [outUsedRoutineSet hasKey !mRoutineName.string] then
-        addPic18UsedRoutinesFromInstructionList ( !mInstructionList !?outUsedRoutineSet )
+        addPic18UsedRoutinesFromInstructionList (!mInstructionList !inMacroMap !?outUsedRoutineSet)
       end
     end
   end

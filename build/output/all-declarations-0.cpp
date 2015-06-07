@@ -1093,6 +1093,30 @@ static const utf32 gSyntaxErrorMessage_piccolo_5F_lexique_interrupt [] = {
   TO_UNICODE (0)
 } ;
 
+//--- Syntax error message for terminal '$macro$' :
+static const utf32 gSyntaxErrorMessage_piccolo_5F_lexique_macro [] = {
+  TO_UNICODE ('t'),
+  TO_UNICODE ('h'),
+  TO_UNICODE ('e'),
+  TO_UNICODE (' '),
+  TO_UNICODE ('\''),
+  TO_UNICODE ('m'),
+  TO_UNICODE ('a'),
+  TO_UNICODE ('c'),
+  TO_UNICODE ('r'),
+  TO_UNICODE ('o'),
+  TO_UNICODE ('\''),
+  TO_UNICODE (' '),
+  TO_UNICODE ('k'),
+  TO_UNICODE ('e'),
+  TO_UNICODE ('y'),
+  TO_UNICODE ('w'),
+  TO_UNICODE ('o'),
+  TO_UNICODE ('r'),
+  TO_UNICODE ('d'),
+  TO_UNICODE (0)
+} ;
+
 //--- Syntax error message for terminal '$mark$' :
 static const utf32 gSyntaxErrorMessage_piccolo_5F_lexique_mark [] = {
   TO_UNICODE ('t'),
@@ -4099,7 +4123,7 @@ static const utf32 gSyntaxErrorMessage_piccolo_5F_lexique__40_ [] = {
 //---------------------------------------------------------------------------------------------------------------------*
 
 C_String C_Lexique_piccolo_5F_lexique::getMessageForTerminal (const int16_t inTerminalIndex) const {
-  static const utf32 * syntaxErrorMessageArray [153] = {kEndOfSourceLexicalErrorMessage,
+  static const utf32 * syntaxErrorMessageArray [154] = {kEndOfSourceLexicalErrorMessage,
     gSyntaxErrorMessage_piccolo_5F_lexique_identifier,
     gSyntaxErrorMessage_piccolo_5F_lexique_integer,
     gSyntaxErrorMessage_piccolo_5F_lexique_literal_5F_char,
@@ -4134,6 +4158,7 @@ C_String C_Lexique_piccolo_5F_lexique::getMessageForTerminal (const int16_t inTe
     gSyntaxErrorMessage_piccolo_5F_lexique_include,
     gSyntaxErrorMessage_piccolo_5F_lexique_inline,
     gSyntaxErrorMessage_piccolo_5F_lexique_interrupt,
+    gSyntaxErrorMessage_piccolo_5F_lexique_macro,
     gSyntaxErrorMessage_piccolo_5F_lexique_mark,
     gSyntaxErrorMessage_piccolo_5F_lexique_midrange,
     gSyntaxErrorMessage_piccolo_5F_lexique_nobank,
@@ -5094,6 +5119,16 @@ static const utf32 kUnicodeString_piccolo_5F_lexique_ltblptr [] = {
   TO_UNICODE (0)
 } ;
 
+//--- Unicode string for '$macro$'
+static const utf32 kUnicodeString_piccolo_5F_lexique_macro [] = {
+  TO_UNICODE ('m'),
+  TO_UNICODE ('a'),
+  TO_UNICODE ('c'),
+  TO_UNICODE ('r'),
+  TO_UNICODE ('o'),
+  TO_UNICODE (0)
+} ;
+
 //--- Unicode string for '$mark$'
 static const utf32 kUnicodeString_piccolo_5F_lexique_mark [] = {
   TO_UNICODE ('m'),
@@ -5615,7 +5650,7 @@ static const utf32 kUnicodeString_piccolo_5F_lexique__7E_ [] = {
 //             Key words table 'controlKeyWordList'                            *
 //---------------------------------------------------------------------------------------------------------------------*
 
-static const int32_t ktable_size_piccolo_5F_lexique_controlKeyWordList = 45 ;
+static const int32_t ktable_size_piccolo_5F_lexique_controlKeyWordList = 46 ;
 
 static const C_unicode_lexique_table_entry ktable_for_piccolo_5F_lexique_controlKeyWordList [ktable_size_piccolo_5F_lexique_controlKeyWordList] = {
   C_unicode_lexique_table_entry (kUnicodeString_piccolo_5F_lexique_w, 1, C_Lexique_piccolo_5F_lexique::kToken_w),
@@ -5637,6 +5672,7 @@ static const C_unicode_lexique_table_entry ktable_for_piccolo_5F_lexique_control
   C_unicode_lexique_table_entry (kUnicodeString_piccolo_5F_lexique_block, 5, C_Lexique_piccolo_5F_lexique::kToken_block),
   C_unicode_lexique_table_entry (kUnicodeString_piccolo_5F_lexique_const, 5, C_Lexique_piccolo_5F_lexique::kToken_const),
   C_unicode_lexique_table_entry (kUnicodeString_piccolo_5F_lexique_elsif, 5, C_Lexique_piccolo_5F_lexique::kToken_elsif),
+  C_unicode_lexique_table_entry (kUnicodeString_piccolo_5F_lexique_macro, 5, C_Lexique_piccolo_5F_lexique::kToken_macro),
   C_unicode_lexique_table_entry (kUnicodeString_piccolo_5F_lexique_pic_31__38_, 5, C_Lexique_piccolo_5F_lexique::kToken_pic_31__38_),
   C_unicode_lexique_table_entry (kUnicodeString_piccolo_5F_lexique_while, 5, C_Lexique_piccolo_5F_lexique::kToken_while),
   C_unicode_lexique_table_entry (kUnicodeString_piccolo_5F_lexique_inline, 6, C_Lexique_piccolo_5F_lexique::kToken_inline),
@@ -5987,6 +6023,11 @@ C_String C_Lexique_piccolo_5F_lexique::getCurrentTokenString (const cToken * inT
     case kToken_interrupt:
       s.appendUnicodeCharacter (TO_UNICODE ('$') COMMA_HERE) ;
       s.appendCString ("interrupt") ;
+      s.appendUnicodeCharacter (TO_UNICODE ('$') COMMA_HERE) ;
+      break ;
+    case kToken_macro:
+      s.appendUnicodeCharacter (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendCString ("macro") ;
       s.appendUnicodeCharacter (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
     case kToken_mark:
@@ -7044,6 +7085,7 @@ GALGAS_stringlist C_Lexique_piccolo_5F_lexique::symbols (LOCATION_ARGS) {
   result.addAssign_operation (GALGAS_string ("include") COMMA_THERE) ;
   result.addAssign_operation (GALGAS_string ("inline") COMMA_THERE) ;
   result.addAssign_operation (GALGAS_string ("interrupt") COMMA_THERE) ;
+  result.addAssign_operation (GALGAS_string ("macro") COMMA_THERE) ;
   result.addAssign_operation (GALGAS_string ("mark") COMMA_THERE) ;
   result.addAssign_operation (GALGAS_string ("midrange") COMMA_THERE) ;
   result.addAssign_operation (GALGAS_string ("nobank") COMMA_THERE) ;
@@ -7170,7 +7212,7 @@ GALGAS_stringlist C_Lexique_piccolo_5F_lexique::symbols (LOCATION_ARGS) {
 //---------------------------------------------------------------------------------------------------------------------*
 
 uint32_t C_Lexique_piccolo_5F_lexique::styleIndexForTerminal (const int32_t inTerminalIndex) const {
-  static const uint32_t kTerminalSymbolStyles [153] = {0,
+  static const uint32_t kTerminalSymbolStyles [154] = {0,
     0 /* piccolo_lexique_1_identifier */,
     4 /* piccolo_lexique_1_integer */,
     5 /* piccolo_lexique_1_literal_5F_char */,
@@ -7205,6 +7247,7 @@ uint32_t C_Lexique_piccolo_5F_lexique::styleIndexForTerminal (const int32_t inTe
     1 /* piccolo_lexique_1_include */,
     1 /* piccolo_lexique_1_inline */,
     1 /* piccolo_lexique_1_interrupt */,
+    1 /* piccolo_lexique_1_macro */,
     1 /* piccolo_lexique_1_mark */,
     1 /* piccolo_lexique_1_midrange */,
     1 /* piccolo_lexique_1_nobank */,
