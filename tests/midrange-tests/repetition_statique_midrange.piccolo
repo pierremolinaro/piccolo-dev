@@ -12,7 +12,7 @@ midrange repetition_statique_midrange "12F683" :
 noreturn routine main bank:requires 0 {
 #--- Instruction de répétition statique
 #    La boucle est déroulée
-  do (4)
+  do (N : 0 ... 3)
     movlw 0x07
     nop
   end 

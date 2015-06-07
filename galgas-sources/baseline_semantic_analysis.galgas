@@ -669,6 +669,7 @@ override method @baseline_instruction_STATIC_REPEAT build_baseline_intermediate_
       !false # Instruction list does not need to end with MOVLW
       !?ioUsedRegisters
     )
+    idx ++
   end
 }
 
