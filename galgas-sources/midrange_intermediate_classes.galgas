@@ -13,14 +13,17 @@ method @registerExpression resolveMidrangeAccess
   ?let @uint inTotalBankCount
   ?let @uint inCurrentBank
   ?let @registerTable inRegisterTable
+  ?let @constantMap inConstantMap
   !@midrange_intermediate_registerExpression outIPICregisterDescription
   !@bitSliceTable outBitSliceTable
-  ?!@stringset ioUsedRegisters {
+  ?!@stringset ioUsedRegisters
+{
+  [mOffset eval !inRegisterTable !inConstantMap ?let @sint64 offset !?ioUsedRegisters]
   ioUsedRegisters += !mRegisterName.string
 #--- Build assembly string
   @string assemblyString = mRegisterName.string
-  if [mOffset uint] > 0 then
-    assemblyString += " + " + [[mOffset uint] hexString]
+  if offset > 0LS then
+    assemblyString += " + " + [[offset uint] hexString]
   end
 #--- 
   [inRegisterTable searchKey
@@ -31,8 +34,8 @@ method @registerExpression resolveMidrangeAccess
     ?*
   ]
 #---
-  if [mOffset uint] >= size then
-    error mOffset: "maximum index value is " + (size - 1)
+  if [offset uint] >= size then
+    error mEndOfOffsetExpression: "maximum index value is " + (size - 1)
   end
 #--- Find acceptable bank settings
   var acceptableBanks =@uintlist.emptyList{}
@@ -79,7 +82,7 @@ method @registerExpression resolveMidrangeAccess
 #---
   outIPICregisterDescription = @midrange_intermediate_registerExpression. new {
     !assemblyString
-    !registerAddress + [mOffset uint]}
+    !registerAddress + [offset uint]}
 }
 
 #----------------------------------------------------*

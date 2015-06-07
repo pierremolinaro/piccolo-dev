@@ -102,19 +102,27 @@ override method @immediatRegister eval
   ?let @registerTable inRegisterTable
   ?let @constantMap inConstantMap
   !@sint64 outResult
-  ?!@stringset ioUsedRegisters {
+  ?!@stringset ioUsedRegisters
+{
   if [inRegisterTable hasKey ![[mRegister mRegisterName] string]] then
     ioUsedRegisters += ![mRegister mRegisterName].string
     [inRegisterTable searchKey ![mRegister mRegisterName] ?let @uintlist registerAddressList ?let @uint size ?* ?*]
     @uint registerAddress [registerAddressList first ?registerAddress]
-    if [[mRegister mOffset] uint] >= size then
-      error [mRegister mOffset]:"index (" + [[[mRegister mOffset] uint] string] + ") should be lower than size (" + [size string] + ")"
+    [[mRegister mOffset] eval !inRegisterTable !inConstantMap ?let @sint64 offset !?ioUsedRegisters]
+    if offset < 0LS then
+      error [mRegister mEndOfOffsetExpression]
+      :"index (" + offset + ") should be >= 0"
+    elsif [offset uint] >= size then
+      error [mRegister mEndOfOffsetExpression]
+      :"index (" + offset + ") should be lower than size (" + [size string] + ")"
     end
-    outResult = [registerAddress + [[mRegister mOffset] uint] sint64]
+    outResult = [registerAddress sint64] + offset
   elsif [inConstantMap hasKey ![[mRegister mRegisterName] string]] then
     [inConstantMap searchKey ![mRegister mRegisterName] ?outResult]
-    if [[mRegister mOffset] uint] > 0 then
-      error [mRegister mOffset]:"index notation (" + [[[mRegister mOffset] uint] string] + ") cannot be used with a constant"
+    [[mRegister mOffset] eval !inRegisterTable !inConstantMap ?let @sint64 offset !?ioUsedRegisters]
+    if offset != 0LS then
+      error [mRegister mEndOfOffsetExpression]:
+      "index notation (" + offset + ") cannot be used with a constant"
     end
   else
     error [mRegister mRegisterName]: "'" + [mRegister mRegisterName] + "' should be declared as ram register or as constant" : outResult

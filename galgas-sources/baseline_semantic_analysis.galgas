@@ -13,14 +13,17 @@ map @baselineRoutineMap {
 
 method @registerExpression resolveBaselineAccess
   ?let @registerTable inRegisterTable
+  ?let @constantMap inConstantMap
   !@baseline_intermediate_registerExpression outIntermediateRegisterDescription
   !@bitSliceTable outBitSliceTable
-  ?!@stringset ioUsedRegisters {
+  ?!@stringset ioUsedRegisters
+{
+  [mOffset eval !inRegisterTable !inConstantMap ?let @sint64 offset !?ioUsedRegisters]
   ioUsedRegisters += !mRegisterName.string
 #--- Build assembly string
   @string assemblyString = [mRegisterName string]
-  if [mOffset uint] > 0 then
-    assemblyString += " + " + [[mOffset uint] hexString]
+  if offset > 0LS then
+    assemblyString += " + " + [[offset uint] hexString]
   end
 #--- Find register
   [inRegisterTable searchKey
@@ -45,7 +48,8 @@ method @registerExpression resolveBaselineAccess
 #---
   outIntermediateRegisterDescription = @baseline_intermediate_registerExpression. new {
     !assemblyString
-    !registerAddress + [mOffset uint]}
+    !registerAddress + [offset uint]
+  }
 }
 
 #----------------------------------------------------------------------------*
@@ -228,7 +232,7 @@ override method @baseline_instruction_FD build_baseline_intermediate_instruction
   ?let @uint unused inCurrentPage
   ?let @baselineRoutineMap unused inRoutineMap
   ?let @registerTable inRegisterTable
-  ?let @constantMap unused inConstantMap
+  ?let @constantMap inConstantMap
   ?!@uint unused ioLocalLabelIndex
   ?!@baseline_intermediate_instructionList ioGeneratedInstructionList
   ?!@string unused ioListFileContents
@@ -241,6 +245,7 @@ override method @baseline_instruction_FD build_baseline_intermediate_instruction
   end
   [mRegisterExpression resolveBaselineAccess
     !inRegisterTable
+    !inConstantMap
     ?var @baseline_intermediate_registerExpression intermediateRegisterDescription
     ?var @bitSliceTable bitSliceTable
     !?ioUsedRegisters
@@ -327,7 +332,7 @@ override method @baseline_instruction_F build_baseline_intermediate_instructionL
   ?let @uint unused inCurrentPage
   ?let @baselineRoutineMap unused inRoutineMap
   ?let @registerTable inRegisterTable
-  ?let @constantMap unused inConstantMap
+  ?let @constantMap inConstantMap
   ?!@uint unused ioLocalLabelIndex
   ?!@baseline_intermediate_instructionList ioGeneratedInstructionList
   ?!@string unused ioListFileContents
@@ -340,6 +345,7 @@ override method @baseline_instruction_F build_baseline_intermediate_instructionL
   end
   [mRegisterExpression resolveBaselineAccess
     !inRegisterTable
+    !inConstantMap
     ?var @baseline_intermediate_registerExpression intermediateRegisterDescription
     ?*
     !?ioUsedRegisters
@@ -356,7 +362,7 @@ override method @baseline_instruction_FB build_baseline_intermediate_instruction
   ?let @uint unused inCurrentPage
   ?let @baselineRoutineMap unused inRoutineMap
   ?let @registerTable inRegisterTable
-  ?let @constantMap unused inConstantMap
+  ?let @constantMap inConstantMap
   ?!@uint unused ioLocalLabelIndex
   ?!@baseline_intermediate_instructionList ioGeneratedInstructionList
   ?!@string unused ioListFileContents
@@ -369,6 +375,7 @@ override method @baseline_instruction_FB build_baseline_intermediate_instruction
   end
   [mRegisterExpression resolveBaselineAccess
     !inRegisterTable
+    !inConstantMap
     ?var @baseline_intermediate_registerExpression intermediateRegisterDescription
     ?var @bitSliceTable bitSliceTable
     !?ioUsedRegisters
@@ -461,6 +468,7 @@ override method @baseline_instruction_IF_BitTest build_baseline_intermediate_ins
   ?!@stringset ioUsedRegisters {
   [mRegisterExpression resolveBaselineAccess
     !inRegisterTable
+    !inConstantMap
     ?var @baseline_intermediate_registerExpression intermediateRegisterDescription
     ?var @bitSliceTable bitSliceTable
     !?ioUsedRegisters
@@ -516,6 +524,7 @@ override method @baseline_instruction_IF_IncDec build_baseline_intermediate_inst
 #---
   [mRegisterExpression resolveBaselineAccess
     !inRegisterTable
+    !inConstantMap
     ?var @baseline_intermediate_registerExpression intermediateRegisterDescription
     ?var @bitSliceTable bitSliceTable
     !?ioUsedRegisters
@@ -685,6 +694,7 @@ override method @baseline_instruction_do_while build_baseline_intermediate_instr
       [mCondition build_intermediate_condition_instructions
         !inCurrentPage
         !inRegisterTable
+        !inConstantMap
         !?ioLocalLabelIndex
         !false
         !mInstructionLocation
@@ -697,6 +707,7 @@ override method @baseline_instruction_do_while build_baseline_intermediate_instr
       [mCondition build_intermediate_condition_instructions
         !inCurrentPage
         !inRegisterTable
+        !inConstantMap
         !?ioLocalLabelIndex
         !true
         !mInstructionLocation
@@ -747,6 +758,7 @@ override method @baseline_instruction_structured_if build_baseline_intermediate_
   [mIfCondition build_intermediate_condition_instructions
     !inCurrentPage
     !inRegisterTable
+    !inConstantMap
     !?ioLocalLabelIndex
     !true
     !mInstructionLocation
@@ -806,6 +818,7 @@ override method @baseline_instruction_structured_if build_baseline_intermediate_
 abstract method @baseline_conditionExpression build_intermediate_condition_instructions
   ?let @uint inCurrentPage
   ?let @registerTable inRegisterTable
+  ?let @constantMap inConstantMap
   ?!@uint ioLocalLabelIndex
   ?let @bool inComplementaryBranch
   ?let @location inInstructionLocation
@@ -818,6 +831,7 @@ abstract method @baseline_conditionExpression build_intermediate_condition_instr
 override method @baseline_incDecRegisterInCondition build_intermediate_condition_instructions
   ?let @uint unused inCurrentPage
   ?let @registerTable inRegisterTable
+  ?let @constantMap inConstantMap
   ?!@uint unused ioLocalLabelIndex
   ?let @bool inComplementaryBranch
   ?let @location inInstructionLocation
@@ -826,6 +840,7 @@ override method @baseline_incDecRegisterInCondition build_intermediate_condition
   ?!@stringset ioUsedRegisters {
   [mRegisterExpression resolveBaselineAccess
     !inRegisterTable
+    !inConstantMap
     ?var @baseline_intermediate_registerExpression intermediateRegisterDescription
     ?var @bitSliceTable bitSliceTable
     !?ioUsedRegisters
@@ -845,6 +860,7 @@ override method @baseline_incDecRegisterInCondition build_intermediate_condition
 override method @baseline_negateCondition build_intermediate_condition_instructions
   ?let @uint inCurrentPage
   ?let @registerTable inRegisterTable
+  ?let @constantMap inConstantMap
   ?!@uint ioLocalLabelIndex
   ?let @bool inComplementaryBranch
   ?let @location inInstructionLocation
@@ -854,6 +870,7 @@ override method @baseline_negateCondition build_intermediate_condition_instructi
   [mCondition build_intermediate_condition_instructions
     !inCurrentPage
     !inRegisterTable
+    !inConstantMap
     !?ioLocalLabelIndex
     !not inComplementaryBranch
     !inInstructionLocation
@@ -868,6 +885,7 @@ override method @baseline_negateCondition build_intermediate_condition_instructi
 override method @baseline_andCondition build_intermediate_condition_instructions
   ?let @uint inCurrentPage
   ?let @registerTable inRegisterTable
+  ?let @constantMap inConstantMap
   ?!@uint ioLocalLabelIndex
   ?let @bool inComplementaryBranch
   ?let @location inInstructionLocation
@@ -878,6 +896,7 @@ override method @baseline_andCondition build_intermediate_condition_instructions
     [mLeftExpression build_intermediate_condition_instructions
       !inCurrentPage
       !inRegisterTable
+      !inConstantMap
       !?ioLocalLabelIndex
       !true
       !inInstructionLocation
@@ -888,6 +907,7 @@ override method @baseline_andCondition build_intermediate_condition_instructions
     [mRightExpression build_intermediate_condition_instructions
       !inCurrentPage
       !inRegisterTable
+      !inConstantMap
       !?ioLocalLabelIndex
       !true
       !inInstructionLocation
@@ -900,6 +920,7 @@ override method @baseline_andCondition build_intermediate_condition_instructions
     [mLeftExpression build_intermediate_condition_instructions
       !inCurrentPage
       !inRegisterTable
+      !inConstantMap
       !?ioLocalLabelIndex
       !true
       !inInstructionLocation
@@ -910,6 +931,7 @@ override method @baseline_andCondition build_intermediate_condition_instructions
     [mRightExpression build_intermediate_condition_instructions
       !inCurrentPage
       !inRegisterTable
+      !inConstantMap
       !?ioLocalLabelIndex
       !false
       !inInstructionLocation
@@ -926,6 +948,7 @@ override method @baseline_andCondition build_intermediate_condition_instructions
 override method @baseline_bitTest_in_structured_if_condition build_intermediate_condition_instructions
   ?let @uint unused inCurrentPage
   ?let @registerTable inRegisterTable
+  ?let @constantMap inConstantMap
   ?!@uint unused ioLocalLabelIndex
   ?let @bool inComplementaryBranch
   ?let @location inInstructionLocation
@@ -935,6 +958,7 @@ override method @baseline_bitTest_in_structured_if_condition build_intermediate_
 {
   [mRegisterExpression resolveBaselineAccess
     !inRegisterTable
+    !inConstantMap
     ?var @baseline_intermediate_registerExpression intermediateRegisterDescription
     ?var @bitSliceTable bitSliceTable
     !?ioUsedRegisters

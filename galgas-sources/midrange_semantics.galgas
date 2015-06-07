@@ -128,6 +128,7 @@ proc midrange_analyze ?let @midrange_model inPiccoloModel ?let @string inSourceF
     @uint usedROMsize
     build_midrange_ipic_binary_code (
       !registerTable
+      !{}
       ![[piccoloDeviceModel mBankCount] uint]
       !generatedInstructionList
       ![[piccoloDeviceModel mRomSize] uint]

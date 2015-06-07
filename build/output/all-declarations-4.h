@@ -1020,9 +1020,10 @@ void callCategoryMethod_eval (const class cPtr_immediatExpression * inObject,
 
 typedef void (*categoryMethodSignature_registerExpression_resolveBaselineAccess) (const class cPtr_registerExpression * inObject,
                                                                                   const class GALGAS_registerTable constinArgument0,
-                                                                                  class GALGAS_baseline_5F_intermediate_5F_registerExpression & outArgument1,
-                                                                                  class GALGAS_bitSliceTable & outArgument2,
-                                                                                  class GALGAS_stringset & ioArgument3,
+                                                                                  const class GALGAS_constantMap constinArgument1,
+                                                                                  class GALGAS_baseline_5F_intermediate_5F_registerExpression & outArgument2,
+                                                                                  class GALGAS_bitSliceTable & outArgument3,
+                                                                                  class GALGAS_stringset & ioArgument4,
                                                                                   class C_Compiler * inCompiler
                                                                                   COMMA_LOCATION_ARGS) ;
 
@@ -1035,6 +1036,7 @@ void enterCategoryMethod_resolveBaselineAccess (const int32_t inClassIndex,
 
 void callCategoryMethod_resolveBaselineAccess (const class cPtr_registerExpression * inObject,
                                                const GALGAS_registerTable constin_inRegisterTable,
+                                               const GALGAS_constantMap constin_inConstantMap,
                                                GALGAS_baseline_5F_intermediate_5F_registerExpression & out_outIntermediateRegisterDescription,
                                                GALGAS_bitSliceTable & out_outBitSliceTable,
                                                GALGAS_stringset & io_ioUsedRegisters,
@@ -3382,9 +3384,10 @@ typedef void (*categoryMethodSignature_registerExpression_resolveMidrangeAccess)
                                                                                   const class GALGAS_uint constinArgument0,
                                                                                   const class GALGAS_uint constinArgument1,
                                                                                   const class GALGAS_registerTable constinArgument2,
-                                                                                  class GALGAS_midrange_5F_intermediate_5F_registerExpression & outArgument3,
-                                                                                  class GALGAS_bitSliceTable & outArgument4,
-                                                                                  class GALGAS_stringset & ioArgument5,
+                                                                                  const class GALGAS_constantMap constinArgument3,
+                                                                                  class GALGAS_midrange_5F_intermediate_5F_registerExpression & outArgument4,
+                                                                                  class GALGAS_bitSliceTable & outArgument5,
+                                                                                  class GALGAS_stringset & ioArgument6,
                                                                                   class C_Compiler * inCompiler
                                                                                   COMMA_LOCATION_ARGS) ;
 
@@ -3399,6 +3402,7 @@ void callCategoryMethod_resolveMidrangeAccess (const class cPtr_registerExpressi
                                                const GALGAS_uint constin_inTotalBankCount,
                                                const GALGAS_uint constin_inCurrentBank,
                                                const GALGAS_registerTable constin_inRegisterTable,
+                                               const GALGAS_constantMap constin_inConstantMap,
                                                GALGAS_midrange_5F_intermediate_5F_registerExpression & out_outIPICregisterDescription,
                                                GALGAS_bitSliceTable & out_outBitSliceTable,
                                                GALGAS_stringset & io_ioUsedRegisters,
@@ -4414,12 +4418,13 @@ void routine_emit_5F_midrange_5F_CALLinstruction (const class GALGAS_location co
 //---------------------------------------------------------------------------------------------------------------------*
 
 void routine_build_5F_midrange_5F_ipic_5F_binary_5F_code (const class GALGAS_registerTable constinArgument0,
-                                                          const class GALGAS_uint constinArgument1,
-                                                          const class GALGAS_midrange_5F_intermediate_5F_instructionList constinArgument2,
-                                                          const class GALGAS_uint constinArgument3,
-                                                          const class GALGAS_actualConfigurationMap constinArgument4,
-                                                          class GALGAS_string & ioArgument5,
-                                                          class GALGAS_uint & outArgument6,
+                                                          const class GALGAS_constantMap constinArgument1,
+                                                          const class GALGAS_uint constinArgument2,
+                                                          const class GALGAS_midrange_5F_intermediate_5F_instructionList constinArgument3,
+                                                          const class GALGAS_uint constinArgument4,
+                                                          const class GALGAS_actualConfigurationMap constinArgument5,
+                                                          class GALGAS_string & ioArgument6,
+                                                          class GALGAS_uint & outArgument7,
                                                           class C_Compiler * inCompiler
                                                           COMMA_LOCATION_ARGS) ;
 
@@ -4456,10 +4461,11 @@ void callCategoryMethod_enterLabelAtAddress (const class cPtr_midrange_5F_interm
 
 typedef void (*categoryMethodSignature_midrange_5F_intermediate_5F_instruction_generateBinaryCodeAtAddress) (const class cPtr_midrange_5F_intermediate_5F_instruction * inObject,
                                                                                                              const class GALGAS_registerTable constinArgument0,
-                                                                                                             const class GALGAS_uint constinArgument1,
-                                                                                                             const class GALGAS_midrange_5F_symbolTable constinArgument2,
-                                                                                                             class GALGAS_string & ioArgument3,
-                                                                                                             class GALGAS_uint & ioArgument4,
+                                                                                                             const class GALGAS_constantMap constinArgument1,
+                                                                                                             const class GALGAS_uint constinArgument2,
+                                                                                                             const class GALGAS_midrange_5F_symbolTable constinArgument3,
+                                                                                                             class GALGAS_string & ioArgument4,
+                                                                                                             class GALGAS_uint & ioArgument5,
                                                                                                              class C_Compiler * inCompiler
                                                                                                              COMMA_LOCATION_ARGS) ;
 
@@ -4472,6 +4478,7 @@ void enterCategoryMethod_generateBinaryCodeAtAddress (const int32_t inClassIndex
 
 void callCategoryMethod_generateBinaryCodeAtAddress (const class cPtr_midrange_5F_intermediate_5F_instruction * inObject,
                                                      const GALGAS_registerTable constin_inRegisterTable,
+                                                     const GALGAS_constantMap constin_inConstantMap,
                                                      const GALGAS_uint constin_inTotalBankCount,
                                                      const GALGAS_midrange_5F_symbolTable constin_inRoutineSymbolTable,
                                                      GALGAS_string & io_ioListFileContents,
@@ -5553,9 +5560,10 @@ typedef void (*categoryMethodSignature_registerExpression_analyzeRegisterExpress
                                                                                       const class GALGAS_uint constinArgument0,
                                                                                       const class GALGAS_uint constinArgument1,
                                                                                       const class GALGAS_registerTable constinArgument2,
-                                                                                      class GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression & outArgument3,
-                                                                                      class GALGAS_bitSliceTable & outArgument4,
-                                                                                      class GALGAS_stringset & ioArgument5,
+                                                                                      const class GALGAS_constantMap constinArgument3,
+                                                                                      class GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression & outArgument4,
+                                                                                      class GALGAS_bitSliceTable & outArgument5,
+                                                                                      class GALGAS_stringset & ioArgument6,
                                                                                       class C_Compiler * inCompiler
                                                                                       COMMA_LOCATION_ARGS) ;
 
@@ -5570,6 +5578,7 @@ void callCategoryMethod_analyzeRegisterExpression (const class cPtr_registerExpr
                                                    const GALGAS_uint constin_inAccessBankSplitOffset,
                                                    const GALGAS_uint constin_inCurrentBank,
                                                    const GALGAS_registerTable constin_inRegisterTable,
+                                                   const GALGAS_constantMap constin_inConstantMap,
                                                    GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression & out_outIPICregisterDescription,
                                                    GALGAS_bitSliceTable & out_outBitSliceTable,
                                                    GALGAS_stringset & io_ioUsedRegisters,

@@ -4067,16 +4067,6 @@ GALGAS_baseline_5F_conditionExpression () {
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_baseline_5F_incDecRegisterInCondition GALGAS_baseline_5F_incDecRegisterInCondition::constructor_default (LOCATION_ARGS) {
-  return GALGAS_baseline_5F_incDecRegisterInCondition::constructor_new (GALGAS_registerExpression::constructor_default (HERE),
-                                                                        GALGAS_bool::constructor_default (HERE),
-                                                                        GALGAS_bool::constructor_default (HERE),
-                                                                        GALGAS_bool::constructor_default (HERE)
-                                                                        COMMA_THERE) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
 GALGAS_baseline_5F_incDecRegisterInCondition::GALGAS_baseline_5F_incDecRegisterInCondition (const cPtr_baseline_5F_incDecRegisterInCondition * inSourcePtr) :
 GALGAS_baseline_5F_conditionExpression (inSourcePtr) {
   macroNullOrValidSharedObject (inSourcePtr, cPtr_baseline_5F_incDecRegisterInCondition) ;
@@ -15106,13 +15096,6 @@ typeComparisonResult GALGAS_immediatRegister::objectCompare (const GALGAS_immedi
 
 GALGAS_immediatRegister::GALGAS_immediatRegister (void) :
 GALGAS_immediatExpression () {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_immediatRegister GALGAS_immediatRegister::constructor_default (LOCATION_ARGS) {
-  return GALGAS_immediatRegister::constructor_new (GALGAS_registerExpression::constructor_default (HERE)
-                                                   COMMA_THERE) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
