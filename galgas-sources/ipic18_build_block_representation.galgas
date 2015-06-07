@@ -10,14 +10,17 @@ method @registerExpression analyzeRegisterExpression
   ?let @uint inAccessBankSplitOffset
   ?let @uint inCurrentBank
   ?let @registerTable inRegisterTable
+  ?let @constantMap inConstantMap
   !@ipic18_intermediate_registerExpression outIPICregisterDescription
   !@bitSliceTable outBitSliceTable
-  ?!@stringset ioUsedRegisters {
+  ?!@stringset ioUsedRegisters
+{
+  [mOffset eval !inRegisterTable !inConstantMap ?let @sint64 offset !?ioUsedRegisters]
   ioUsedRegisters += !mRegisterName.string
 #--- Build assembly string
   @string assemblyString = [mRegisterName string]
-  if [mOffset uint] > 0 then
-    assemblyString += " + " + [[mOffset uint] hexString]
+  if offset > 0LS then
+    assemblyString += " + " + [[offset uint] hexString]
   end
 #--- 
   @uintlist registerAddressList
@@ -25,8 +28,8 @@ method @registerExpression analyzeRegisterExpression
   @uint registerAddress = 0
   [inRegisterTable searchKey !mRegisterName ?registerAddressList ?size ?outBitSliceTable ?*]
 #---
-  if [mOffset uint] > size then
-    error mOffset: "this offset is too large: should be lower than " + [size string]
+  if [offset uint] > size then
+    error mEndOfOffsetExpression: "this offset is too large: should be lower than " + [size string]
   end
 #---
   @bool found = false
@@ -52,45 +55,55 @@ method @registerExpression analyzeRegisterExpression
 #---
   outIPICregisterDescription = @ipic18_intermediate_registerExpression. new {
     !assemblyString
-    !registerAddress + [mOffset uint]
-    !needsBSRaccess}
+    !registerAddress + [offset uint]
+    !needsBSRaccess
+  }
 }
 
 #----------------------------------------------------------------------------*
 
 method @registerExpression analyzeRegisterExpressionWithoutCheckingBank
   ?let @registerTable inRegisterTable
+  ?let @constantMap inConstantMap
   !@ipic18_intermediate_registerExpressionWithoutBSRIndication outIPICregisterDescription
-  ?!@stringset ioUsedRegisters {
+  ?!@stringset ioUsedRegisters
+{
   ioUsedRegisters += !mRegisterName.string
 #--- Build assembly string
   @string assemblyString = [mRegisterName string]
-  if [mOffset uint] > 0 then
-    assemblyString += " + " + [[mOffset uint] hexString]
+  [mOffset eval !inRegisterTable !inConstantMap ?let @sint64 offset !?ioUsedRegisters]
+  if offset > 0LS then
+    assemblyString += " + " + [[offset uint] hexString]
   end
 #--- 
   [inRegisterTable searchKey !mRegisterName ?var @uintlist registerAddressList ?var @uint size ?* ?*]
   [registerAddressList first ?var @uint registerAddress]
 #---
-  if [mOffset uint] > size then
-    error mOffset: "this offset is too large: should be lower than " + [size string]
+  if [offset uint] > size then
+    error mEndOfOffsetExpression: "this offset is too large: should be lower than " + [size string]
   end
 #---
-  outIPICregisterDescription = @ipic18_intermediate_registerExpressionWithoutBSRIndication. new {
+  outIPICregisterDescription = @ipic18_intermediate_registerExpressionWithoutBSRIndication.new {
     !assemblyString
-    !registerAddress + [mOffset uint]}
+    !registerAddress + [offset uint]}
 }
 
 #----------------------------------------------------------------------------*
 
-getter @registerExpression getRegisterAddress
+method @registerExpression getRegisterAddress
   ?let @registerTable inRegisterTable
-  -> @uint outRegisterAddress {
+  ?let @constantMap inConstantMap
+  ?!@stringset ioUsedRegisters
+  !@uint outRegisterAddress
+{
   [inRegisterTable searchKey !mRegisterName ?var @uintlist registerAddressList ?var @uint size ?* ?*]
   [registerAddressList first ?outRegisterAddress]
 #---
-  if [mOffset uint] > size then
-    error mOffset: "this offset is too large: should be lower than " + [size string]
+  [mOffset eval !inRegisterTable !inConstantMap ?let @sint64 offset !?ioUsedRegisters]
+  if offset < 0LS then
+    error mEndOfOffsetExpression: "offset (" + offset + ") should be >= 0"
+  elsif [offset uint] > size then
+    error mEndOfOffsetExpression: "this offset is too large: should be lower than " + [size string]
   end
 }
 
@@ -135,7 +148,7 @@ override method @pic18Instruction_FDA analyzeSimpleInstruction
   ?let @routineMap unused inRoutineMap
   ?let @registerTable inRegisterTable
   ?let @pic18_dataMap unused inDataMap
-  ?let @constantMap unused inConstantMap
+  ?let @constantMap inConstantMap
   ?!@uint ioCurrentBank
   ?let @bool unused inShouldPreserveBSR
   ?!@stringset ioUsedRegisters
@@ -144,6 +157,7 @@ override method @pic18Instruction_FDA analyzeSimpleInstruction
     !inAccessBankSplitOffset
     !ioCurrentBank
     !inRegisterTable
+    !inConstantMap
     ?var @ipic18_intermediate_registerExpression IPICregisterDescription
     ?*
     !?ioUsedRegisters
@@ -152,7 +166,8 @@ override method @pic18Instruction_FDA analyzeSimpleInstruction
     !mInstructionLocation
     !mInstruction_FDA_base_code
     !IPICregisterDescription
-    !m_W_isDestination}
+    !m_W_isDestination
+  }
 }
 
 #----------------------------------------------------------------------------*
@@ -162,7 +177,7 @@ override method @pic18Instruction_FA analyzeSimpleInstruction
   ?let @routineMap unused inRoutineMap
   ?let @registerTable inRegisterTable
   ?let @pic18_dataMap unused inDataMap
-  ?let @constantMap unused inConstantMap
+  ?let @constantMap inConstantMap
   ?!@uint ioCurrentBank
   ?let @bool unused inShouldPreserveBSR
   ?!@stringset ioUsedRegisters
@@ -171,6 +186,7 @@ override method @pic18Instruction_FA analyzeSimpleInstruction
     !inAccessBankSplitOffset
     !ioCurrentBank
     !inRegisterTable
+    !inConstantMap
     ?var @ipic18_intermediate_registerExpression IPICregisterDescription
     ?*
     !?ioUsedRegisters
@@ -198,18 +214,20 @@ override method @pic18Instruction_MOVFF analyzeSimpleInstruction
   ?let @routineMap unused inRoutineMap
   ?let @registerTable inRegisterTable
   ?let @pic18_dataMap unused inDataMap
-  ?let @constantMap unused inConstantMap
+  ?let @constantMap inConstantMap
   ?!@uint unused ioCurrentBank
   ?let @bool unused inShouldPreserveBSR
   ?!@stringset ioUsedRegisters
   !@ipic18SequentialInstruction outInstruction {
   [mSourceRegisterName analyzeRegisterExpressionWithoutCheckingBank
     !inRegisterTable
+    !inConstantMap
     ?var @ipic18_intermediate_registerExpressionWithoutBSRIndication sourceIPICregisterDescription
     !?ioUsedRegisters
   ]
   [mDestinationRegisterName analyzeRegisterExpressionWithoutCheckingBank
     !inRegisterTable
+    !inConstantMap
     ?var @ipic18_intermediate_registerExpressionWithoutBSRIndication destinationIPICregisterDescription
     !?ioUsedRegisters
   ]
@@ -226,7 +244,7 @@ override method @pic18Instruction_FBA analyzeSimpleInstruction
   ?let @routineMap unused inRoutineMap
   ?let @registerTable inRegisterTable
   ?let @pic18_dataMap unused inDataMap
-  ?let @constantMap unused inConstantMap
+  ?let @constantMap inConstantMap
   ?!@uint ioCurrentBank
   ?let @bool unused inShouldPreserveBSR
   ?!@stringset ioUsedRegisters
@@ -235,6 +253,7 @@ override method @pic18Instruction_FBA analyzeSimpleInstruction
     !inAccessBankSplitOffset
     !ioCurrentBank
     !inRegisterTable
+    !inConstantMap
     ?var @ipic18_intermediate_registerExpression IPICregisterDescription
     ?var @bitSliceTable bitSliceTable
     !?ioUsedRegisters
@@ -581,17 +600,24 @@ override method @pic18Instruction_savebank analyze
   ?!@uint ioCurrentBank
   ?let @bool unused inShouldPreserveBSR
   ?let @routineKind inRoutineKind
-  ?!@stringset ioUsedRegisters {
+  ?!@stringset ioUsedRegisters
+{
 #--- Get values for BSR register
-  let BSRregister = @registerExpression.new { !@lstring. new { !"BSR" !@location.here} !@luint. new { !0 !@location.here}}
+  let BSRregister = @registerExpression.new {
+    !.new { !"BSR" !.here}
+    !@immediatInteger.new {!.new {!0 !.here}}
+    !.here
+  }
   [BSRregister analyzeRegisterExpressionWithoutCheckingBank
     !inRegisterTable
+    !inConstantMap
     ?var @ipic18_intermediate_registerExpressionWithoutBSRIndication BSR_IPICregisterDescription
     !?ioUsedRegisters
   ]
 #--- Get values for register used for saving
   [mRegister analyzeRegisterExpressionWithoutCheckingBank
     !inRegisterTable
+    !inConstantMap
     ?var @ipic18_intermediate_registerExpressionWithoutBSRIndication save_IPICregisterDescription
     !?ioUsedRegisters
   ]
@@ -737,7 +763,7 @@ override method @pic18Instruction_banksel_register analyze
   ?let @routineMap unused inRoutineMap
   ?let @registerTable inRegisterTable
   ?let @pic18_dataMap unused inDataMap
-  ?let @constantMap unused inConstantMap
+  ?let @constantMap inConstantMap
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic18SequentialInstructionList ioGeneratedInstructionList
   ?!@lstring unused ioBlockLabel
@@ -745,11 +771,13 @@ override method @pic18Instruction_banksel_register analyze
   ?!@uint ioCurrentBank
   ?let @bool inShouldPreserveBSR
   ?let @routineKind unused inRoutineKind
-  ?!@stringset unused ioUsedRegisters {
+  ?!@stringset ioUsedRegisters
+{
   if inShouldPreserveBSR then
     error mInstructionLocation: "cannot use \"banksel\" here: bank selection should be preserved (use \"banksave\" instruction)"
   end
-  let @uint registerAddress = [mRegisterExpression getRegisterAddress !inRegisterTable]
+  [mRegisterExpression getRegisterAddress !inRegisterTable !inConstantMap !?ioUsedRegisters ?let registerAddress]
+#  let @uint registerAddress = [mRegisterExpression getRegisterAddress !inRegisterTable]
   let @uint newBank = registerAddress >> 8
   if ioCurrentBank != newBank then
     ioCurrentBank = newBank
@@ -846,11 +874,16 @@ override method @pic18Instruction_LTBLPTR analyze
   end
   let @uint address = [result uint]
 #--- Upper byte
-  let TBLPTRU = @registerExpression.new { !@lstring. new { !"TBLPTRU" !mInstructionLocation} !@luint. new { !0 !mInstructionLocation}}
+  let TBLPTRU = @registerExpression.new {
+    !@lstring.new { !"TBLPTRU" !mInstructionLocation}
+    !@immediatInteger.new {!.new {!0 !.here}}
+    !.here
+  }
   [TBLPTRU analyzeRegisterExpression
     !inAccessBankSplitOffset
     !ioCurrentBank
     !inRegisterTable
+    !inConstantMap
     ?var @ipic18_intermediate_registerExpression outIPICregisterDescription
     ?*
     !?ioUsedRegisters
@@ -860,12 +893,14 @@ override method @pic18Instruction_LTBLPTR analyze
     ioGeneratedInstructionList += !@ipic18_intermediate_instruction_FA. new {
       !mInstructionLocation
       !@FA_sequential_instruction_base_code. CLRF
-      !outIPICregisterDescription}  
+      !outIPICregisterDescription
+    }  
   elsif upper == 0xFF then
     ioGeneratedInstructionList += !@ipic18_intermediate_instruction_FA. new {
       !mInstructionLocation
       !@FA_sequential_instruction_base_code. SETF
-      !outIPICregisterDescription}  
+      !outIPICregisterDescription
+    }  
   else
     ioGeneratedInstructionList += !@ipic18_intermediate_instruction_literalOperation. new {
       !mInstructionLocation
@@ -874,14 +909,20 @@ override method @pic18Instruction_LTBLPTR analyze
     ioGeneratedInstructionList += !@ipic18_intermediate_instruction_FA. new {
       !mInstructionLocation
       !@FA_sequential_instruction_base_code. MOVWF
-      !outIPICregisterDescription}  
+      !outIPICregisterDescription
+    }  
   end
 #--- High byte
-  let TBLPTRH = @registerExpression.new { !@lstring. new { !"TBLPTRH" !mInstructionLocation} !@luint. new { !0 !mInstructionLocation}}
+  let TBLPTRH = @registerExpression.new {
+    !@lstring.new { !"TBLPTRH" !mInstructionLocation}
+    !@immediatInteger.new {!.new {!0 !.here}}
+    !.here
+  }
   [TBLPTRH analyzeRegisterExpression
     !inAccessBankSplitOffset
     !ioCurrentBank
     !inRegisterTable
+    !inConstantMap
     ?outIPICregisterDescription
     ?*
     !?ioUsedRegisters
@@ -908,11 +949,16 @@ override method @pic18Instruction_LTBLPTR analyze
       !outIPICregisterDescription}  
   end
 #--- Low byte
-  let TBLPTRL = @registerExpression.new { !@lstring. new { !"TBLPTRL" !mInstructionLocation} !@luint. new { !0 !mInstructionLocation}}
+  let TBLPTRL = @registerExpression.new {
+    !@lstring.new {!"TBLPTRL" !mInstructionLocation}
+    !@immediatInteger.new {!.new {!0 !.here}}
+    !.here
+  }
   [TBLPTRL analyzeRegisterExpression
     !inAccessBankSplitOffset
     !ioCurrentBank
     !inRegisterTable
+    !inConstantMap
     ?outIPICregisterDescription
     ?*
     !?ioUsedRegisters
@@ -948,7 +994,7 @@ override method @pic18Instruction_LDATAPTR analyze
   ?let @routineMap unused inRoutineMap
   ?let @registerTable inRegisterTable
   ?let @pic18_dataMap inDataMap
-  ?let @constantMap unused inConstantMap
+  ?let @constantMap inConstantMap
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic18SequentialInstructionList ioGeneratedInstructionList
   ?!@lstring unused ioBlockLabel
@@ -963,11 +1009,16 @@ override method @pic18Instruction_LDATAPTR analyze
     error mDataIndex: "index should be < " + [data length]
   end
 #--- Upper byte
-  let TBLPTRU = @registerExpression.new { !@lstring. new { !"TBLPTRU" !mInstructionLocation} !@luint. new { !0 !mInstructionLocation}}
+  let TBLPTRU = @registerExpression.new {
+    !@lstring. new { !"TBLPTRU" !mInstructionLocation}
+    !@immediatInteger.new {!.new {!0 !.here}}
+    !.here
+  }
   [TBLPTRU analyzeRegisterExpression
     !inAccessBankSplitOffset
     !ioCurrentBank
     !inRegisterTable
+    !inConstantMap
     ?var @ipic18_intermediate_registerExpression outIPICregisterDescription
     ?*
     !?ioUsedRegisters
@@ -982,11 +1033,16 @@ override method @pic18Instruction_LDATAPTR analyze
     !@FA_sequential_instruction_base_code. MOVWF
     !outIPICregisterDescription}  
 #--- High byte
-  let TBLPTRH = @registerExpression.new { !@lstring. new { !"TBLPTRH" !mInstructionLocation} !@luint. new { !0 !mInstructionLocation}}
+  let TBLPTRH = @registerExpression.new {
+    !@lstring.new {!"TBLPTRH" !mInstructionLocation}
+    !@immediatInteger.new {!.new {!0 !.here}}
+    !.here
+  }
   [TBLPTRH analyzeRegisterExpression
     !inAccessBankSplitOffset
     !ioCurrentBank
     !inRegisterTable
+    !inConstantMap
     ?outIPICregisterDescription
     ?*
     !?ioUsedRegisters
@@ -1001,11 +1057,16 @@ override method @pic18Instruction_LDATAPTR analyze
     !@FA_sequential_instruction_base_code. MOVWF
     !outIPICregisterDescription}  
 #--- Low byte
-  let TBLPTRL = @registerExpression.new { !@lstring. new { !"TBLPTRL" !mInstructionLocation} !@luint. new { !0 !mInstructionLocation}}
+  let TBLPTRL = @registerExpression.new {
+    !@lstring.new { !"TBLPTRL" !mInstructionLocation}
+    !@immediatInteger.new {!.new {!0 !.here}}
+    !.here
+  }
   [TBLPTRL analyzeRegisterExpression
     !inAccessBankSplitOffset
     !ioCurrentBank
     !inRegisterTable
+    !inConstantMap
     ?outIPICregisterDescription
     ?*
     !?ioUsedRegisters
@@ -1433,6 +1494,7 @@ override method @pic18Instruction_IF_BitTest analyze
     !inAccessBankSplitOffset
     !ioCurrentBank
     !inRegisterTable
+    !inConstantMap
     ?let @ipic18_intermediate_registerExpression IPICregisterDescription
     ?let @bitSliceTable bitSliceTable
     !?ioUsedRegisters
@@ -1495,6 +1557,7 @@ override method @pic18Instruction_IF_FA_SEMI_COLON analyze
     !inAccessBankSplitOffset
     !ioCurrentBank
     !inRegisterTable
+    !inConstantMap
     ?let @ipic18_intermediate_registerExpression IPICregisterDescription
     ?*
     !?ioUsedRegisters
@@ -1557,6 +1620,7 @@ override method @pic18Instruction_IF_IncDec analyze
     !inAccessBankSplitOffset
     !ioCurrentBank
     !inRegisterTable
+    !inConstantMap
     ?let @ipic18_intermediate_registerExpression IPICregisterDescription
     ?*
     !?ioUsedRegisters
@@ -1619,6 +1683,7 @@ override method @pic18Instruction_structured_if analyze
     !inAccessBankSplitOffset
     !ioCurrentBank
     !inRegisterTable
+    !inConstantMap
     !?ioLocalLabelIndex
     !?ioGeneratedBlockList
     !conditionTrueLabel
@@ -2183,6 +2248,7 @@ override method @pic18Instruction_do_while analyze
       !inAccessBankSplitOffset
       !ioCurrentBank
       !inRegisterTable
+      !inConstantMap
       !?ioLocalLabelIndex
       !?ioGeneratedBlockList
       !conditionTrueLabel
@@ -2366,6 +2432,7 @@ abstract method @abstractBlockTerminationForBlockInstruction generateBlock
   ?let @uint inAccessBankSplitOffset
   ?let @uint inCurrentBank
   ?let @registerTable inRegisterTable
+  ?let @constantMap inConstantMap
   ?!@uint ioLocalLabelIndex
   ?!@ipic18BlockList ioGeneratedBlockList
   ?!@stringset ioUsedRegisters
@@ -2378,6 +2445,7 @@ override method @gotoTerminationForBlockInstruction generateBlock
   ?let @uint unused inAccessBankSplitOffset
   ?let @uint unused inCurrentBank
   ?let @registerTable unused inRegisterTable
+  ?let @constantMap unused inConstantMap
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic18BlockList unused ioGeneratedBlockList
   ?!@stringset unused ioUsedRegisters
@@ -2395,15 +2463,18 @@ override method @exitBlockTerminationForBlockInstruction generateBlock
   ?let @uint unused inAccessBankSplitOffset
   ?let @uint unused inCurrentBank
   ?let @registerTable unused inRegisterTable
+  ?let @constantMap unused inConstantMap
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic18BlockList unused ioGeneratedBlockList
   ?!@stringset unused ioUsedRegisters
   ?let @string inLabelForBlock
-  !@ipic18AbstractBlockTerminator outTerminator {
+  !@ipic18AbstractBlockTerminator outTerminator
+{
   outTerminator = @ipic18JumpTerminator. new {
     !mLocation
     !@lstring. new { !inLabelForBlock + "_exit" !mLocation}
-    !@jumpInstructionKind. ipicRelative}
+    !@jumpInstructionKind. ipicRelative
+  }
 }
 
 #----------------------------------------------------*
@@ -2412,6 +2483,7 @@ override method @testTerminationForBlockInstruction generateBlock
   ?let @uint inAccessBankSplitOffset
   ?let @uint inCurrentBank
   ?let @registerTable inRegisterTable
+  ?let @constantMap inConstantMap
   ?!@uint ioLocalLabelIndex
   ?!@ipic18BlockList ioGeneratedBlockList
   ?!@stringset ioUsedRegisters
@@ -2426,6 +2498,7 @@ override method @testTerminationForBlockInstruction generateBlock
     !inAccessBankSplitOffset
     !inCurrentBank
     !inRegisterTable
+    !inConstantMap
     !?ioLocalLabelIndex
     !?ioGeneratedBlockList
     !conditionTrueLabel
@@ -2438,6 +2511,7 @@ override method @testTerminationForBlockInstruction generateBlock
     !inAccessBankSplitOffset
     !inCurrentBank
     !inRegisterTable
+    !inConstantMap
     !?ioLocalLabelIndex
     !?ioGeneratedBlockList
     !?ioUsedRegisters
@@ -2454,6 +2528,7 @@ override method @testTerminationForBlockInstruction generateBlock
     !inAccessBankSplitOffset
     !inCurrentBank
     !inRegisterTable
+    !inConstantMap
     !?ioLocalLabelIndex
     !?ioGeneratedBlockList
     !?ioUsedRegisters
@@ -2545,6 +2620,7 @@ override method @pic18Instruction_block analyze
         !inAccessBankSplitOffset
         !currentBank
         !inRegisterTable
+        !inConstantMap
         !?ioLocalLabelIndex
         !?ioGeneratedBlockList
         !?ioUsedRegisters
@@ -2558,7 +2634,8 @@ override method @pic18Instruction_block analyze
         !@uint. max # relocatable
         !ioBlockLabel
         !ioGeneratedInstructionList
-        !terminator}
+        !terminator
+      }
       ioGeneratedInstructionList = @ipic18SequentialInstructionList. emptyList
     #---
       [blockTermination addVisitedBlocks !?accessibleBlockSet !blockMap !currentBlockName !currentBank !?blockInitialBankSelectionMap !?continuesInSequence !?continueAccessibilityExploration]
@@ -2586,9 +2663,10 @@ override method @pic18Instruction_block analyze
 #----------------------------------------------------*
 
 abstract method @pic18ConditionExpression analyzeCondition
-  ?let @uint unused inAccessBankSplitOffset
-  ?let @uint unused inCurrentBank
-  ?let @registerTable unused inRegisterTable
+  ?let @uint inAccessBankSplitOffset
+  ?let @uint inCurrentBank
+  ?let @registerTable inRegisterTable
+  ?let @constantMap inConstantMap
   ?!@uint ioLocalLabelIndex
   ?!@ipic18BlockList ioGeneratedBlockList
   ?let @lstring inConditionTrueLabel
@@ -2602,6 +2680,7 @@ override method @pic18BccInStructuredCondition analyzeCondition
   ?let @uint unused inAccessBankSplitOffset
   ?let @uint unused inCurrentBank
   ?let @registerTable unused inRegisterTable
+  ?let @constantMap unused  inConstantMap
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic18BlockList unused ioGeneratedBlockList
   ?let @lstring inConditionTrueLabel
@@ -2624,6 +2703,7 @@ override method @pic18RegisterComparisonCondition analyzeCondition
   ?let @uint inAccessBankSplitOffset
   ?let @uint inCurrentBank
   ?let @registerTable inRegisterTable
+  ?let @constantMap inConstantMap
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic18BlockList unused ioGeneratedBlockList
   ?let @lstring inConditionTrueLabel
@@ -2634,6 +2714,7 @@ override method @pic18RegisterComparisonCondition analyzeCondition
     !inAccessBankSplitOffset
     !inCurrentBank
     !inRegisterTable
+    !inConstantMap
     ?let @ipic18_intermediate_registerExpression IPICregisterDescription
     ?*
     !?ioUsedRegisters
@@ -2686,6 +2767,7 @@ override method @pic18IncDecRegisterInCondition analyzeCondition
   ?let @uint inAccessBankSplitOffset
   ?let @uint inCurrentBank
   ?let @registerTable inRegisterTable
+  ?let @constantMap inConstantMap
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic18BlockList unused ioGeneratedBlockList
   ?let @lstring inConditionTrueLabel
@@ -2696,6 +2778,7 @@ override method @pic18IncDecRegisterInCondition analyzeCondition
     !inAccessBankSplitOffset
     !inCurrentBank
     !inRegisterTable
+    !inConstantMap
     ?let @ipic18_intermediate_registerExpression IPICregisterDescription
     ?*
     !?ioUsedRegisters
@@ -2727,6 +2810,7 @@ override method @pic18RegisterTestCondition analyzeCondition
   ?let @uint inAccessBankSplitOffset
   ?let @uint inCurrentBank
   ?let @registerTable inRegisterTable
+  ?let @constantMap inConstantMap
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic18BlockList unused ioGeneratedBlockList
   ?let @lstring inConditionTrueLabel
@@ -2737,6 +2821,7 @@ override method @pic18RegisterTestCondition analyzeCondition
     !inAccessBankSplitOffset
     !inCurrentBank
     !inRegisterTable
+    !inConstantMap
     ?let @ipic18_intermediate_registerExpression IPICregisterDescription
     ?*
     !?ioUsedRegisters
@@ -2764,6 +2849,7 @@ override method @pic18BitTestInStructuredCondition analyzeCondition
   ?let @uint inAccessBankSplitOffset
   ?let @uint inCurrentBank
   ?let @registerTable inRegisterTable
+  ?let @constantMap inConstantMap
   ?!@uint unused ioLocalLabelIndex
   ?!@ipic18BlockList unused ioGeneratedBlockList
   ?let @lstring inConditionTrueLabel
@@ -2774,6 +2860,7 @@ override method @pic18BitTestInStructuredCondition analyzeCondition
     !inAccessBankSplitOffset
     !inCurrentBank
     !inRegisterTable
+    !inConstantMap
     ?let @ipic18_intermediate_registerExpression IPICregisterDescription
     ?let @bitSliceTable bitSliceTable
     !?ioUsedRegisters
@@ -2808,6 +2895,7 @@ override method @pic18NegateCondition analyzeCondition
   ?let @uint inAccessBankSplitOffset
   ?let @uint inCurrentBank
   ?let @registerTable inRegisterTable
+  ?let @constantMap inConstantMap
   ?!@uint ioLocalLabelIndex
   ?!@ipic18BlockList ioGeneratedBlockList
   ?let @lstring inConditionTrueLabel
@@ -2818,6 +2906,7 @@ override method @pic18NegateCondition analyzeCondition
     !inAccessBankSplitOffset
     !inCurrentBank
     !inRegisterTable
+    !inConstantMap
     !?ioLocalLabelIndex
     !?ioGeneratedBlockList
     !inConditionFalseLabel
@@ -2833,6 +2922,7 @@ override method @pic18AndCondition analyzeCondition
   ?let @uint inAccessBankSplitOffset
   ?let @uint inCurrentBank
   ?let @registerTable inRegisterTable
+  ?let @constantMap inConstantMap
   ?!@uint ioLocalLabelIndex
   ?!@ipic18BlockList ioGeneratedBlockList
   ?let @lstring inConditionTrueLabel
@@ -2847,6 +2937,7 @@ override method @pic18AndCondition analyzeCondition
     !inAccessBankSplitOffset
     !inCurrentBank
     !inRegisterTable
+    !inConstantMap
     !?ioLocalLabelIndex
     !?ioGeneratedBlockList
     !conditionTrueLabel
@@ -2859,6 +2950,7 @@ override method @pic18AndCondition analyzeCondition
     !inAccessBankSplitOffset
     !inCurrentBank
     !inRegisterTable
+    !inConstantMap
     !?ioLocalLabelIndex
     !?ioGeneratedBlockList
     !inConditionTrueLabel
@@ -2985,7 +3077,8 @@ proc build_ipic18_block_representation_list
   ?let @registerTable inPredefinedRegisters
   ?let @actualConfigurationMap inActualConfigurationMap
   ?let @location inEndOfProgram
-  ?!@string ioListFileContents {
+  ?!@string ioListFileContents
+{
 #-------------------------------- Build routine map
   var routineMap =@routineMap.emptyMap{}
   for () in  inUserRoutineDeclarationListForBootloaderImplementation do
@@ -3014,7 +3107,7 @@ proc build_ipic18_block_representation_list
     [!?constantMap insertKey !bootloaderSizeString ![[inBootloaderReservedROMsize uint] sint64]]
   end
 #--- Add declared constants
-  var usedRegisters =@stringset.emptySet{}
+  var usedRegisters = @stringset.emptySet{}
   for () in  inConstantDefinitionList do
     [mExpression eval !inRegisterTable !constantMap ?let @sint64 result !?usedRegisters]
     if [inRegisterTable hasKey ![mConstantName string]] then
@@ -3259,41 +3352,61 @@ proc build_ipic18_block_representation_list
 #-------------------------------- Add computed goto, rcall, ... utility routines
 #  They wil be removed by optimizer if there are useless
 #--- Description of register WREG
-  var WREGregister =@registerExpression.new{ !@lstring. new { !"WREG" !@location.here} !@luint. new { !0 !@location.here}}
+  let WREGregister =@registerExpression.new {
+    !@lstring. new {!"WREG" !.here}
+    !@immediatInteger.new {!.new {!0 !.here}}
+    !.here
+   }
   [WREGregister analyzeRegisterExpression
     !inAccessBankSplitOffset
     !0 # Current bank
     !inRegisterTable
+    !constantMap
     ?let @ipic18_intermediate_registerExpression WREG_IPICregisterDescription
     ?*
     !?usedRegisters
   ]
 #--- Description of register TOSL
-  var TOSLregister =@registerExpression.new{ !@lstring. new { !"TOSL" !@location.here} !@luint. new { !0 !@location.here}}
+  let TOSLregister = @registerExpression.new {
+    !@lstring. new { !"TOSL" !.here}
+    !@immediatInteger.new {!.new {!0 !.here}}
+    !.here
+  }
   [TOSLregister analyzeRegisterExpression
     !inAccessBankSplitOffset
     !0 # Current bank
     !inRegisterTable
+    !constantMap
     ?let @ipic18_intermediate_registerExpression TOSL_IPICregisterDescription
     ?*
     !?usedRegisters
   ]
 #--- Description of register TOSH
-  var TOSHregister =@registerExpression.new{ !@lstring. new { !"TOSH" !@location.here} !@luint. new { !0 !@location.here}}
+  let TOSHregister = @registerExpression.new {
+    !@lstring.new {!"TOSH" !.here} 
+    !@immediatInteger.new {!.new {!0 !.here}}
+    !.here
+  }
   [TOSHregister analyzeRegisterExpression
     !inAccessBankSplitOffset
     !0 # Current bank
     !inRegisterTable
+    !constantMap
     ?let @ipic18_intermediate_registerExpression TOSH_IPICregisterDescription
     ?*
     !?usedRegisters
   ]
 #--- Description of register TOSU
-  var TOSUregister =@registerExpression.new{ !@lstring. new { !"TOSU" !@location.here} !@luint. new { !0 !@location.here}}
+  let TOSUregister = @registerExpression.new {
+    !@lstring.new {!"TOSU" !.here}
+    !@immediatInteger.new {!.new {!0 !.here}}
+    !.here
+  }
   [TOSUregister analyzeRegisterExpression
     !inAccessBankSplitOffset
     !0 # Current bank
     !inRegisterTable
+    !constantMap
     ?let @ipic18_intermediate_registerExpression TOSU_IPICregisterDescription
     ?*
     !?usedRegisters

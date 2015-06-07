@@ -94,6 +94,7 @@ method @midrange_intermediate_actualInstruction enterLabelAtAddress
 
 abstract method @midrange_intermediate_instruction generateBinaryCodeAtAddress
   ?let @registerTable inRegisterTable
+  ?let @constantMap inConstantMap
   ?let @uint inTotalBankCount
   ?let @midrange_symbolTable unused inRoutineSymbolTable
   ?!@string ioListFileContents
@@ -103,6 +104,7 @@ abstract method @midrange_intermediate_instruction generateBinaryCodeAtAddress
 
 override method @midrange_intermediate_NULL generateBinaryCodeAtAddress
   ?let @registerTable unused inRegisterTable
+  ?let @constantMap unused inConstantMap
   ?let @uint unused inTotalBankCount
   ?let @midrange_symbolTable unused inRoutineSymbolTable
   ?!@string unused ioListFileContents
@@ -114,6 +116,7 @@ override method @midrange_intermediate_NULL generateBinaryCodeAtAddress
 override
 method @midrange_intermediate_pseudo_ORG generateBinaryCodeAtAddress
   ?let @registerTable unused inRegisterTable
+  ?let @constantMap unused inConstantMap
   ?let @uint unused inTotalBankCount
   ?let @midrange_symbolTable unused inRoutineSymbolTable
   ?!@string ioListFileContents
@@ -148,6 +151,7 @@ getter @midrange_instruction_FD_base_code basecode -> @uint outBaseCode {
 
 override method @midrange_intermediate_instruction_FD generateBinaryCodeAtAddress
   ?let @registerTable unused inRegisterTable
+  ?let @constantMap unused inConstantMap
   ?let @uint unused inTotalBankCount
   ?let @midrange_symbolTable unused inRoutineSymbolTable
   ?!@string ioListFileContents
@@ -174,6 +178,7 @@ getter @midrange_F_instruction_base_code baseCode -> @uint outBaseCode {
 
 override method @midrange_intermediate_instruction_F generateBinaryCodeAtAddress
   ?let @registerTable unused inRegisterTable
+  ?let @constantMap unused inConstantMap
   ?let @uint unused inTotalBankCount
   ?let @midrange_symbolTable unused inRoutineSymbolTable
   ?!@string ioListFileContents
@@ -198,6 +203,7 @@ getter @midrange_bit_oriented_op baseCode -> @uint outBaseCode {
 
 override method @midrange_intermediate_instruction_FB generateBinaryCodeAtAddress
   ?let @registerTable unused inRegisterTable
+  ?let @constantMap unused inConstantMap
   ?let @uint unused inTotalBankCount
   ?let @midrange_symbolTable unused inRoutineSymbolTable
   ?!@string ioListFileContents
@@ -213,6 +219,7 @@ override method @midrange_intermediate_instruction_FB generateBinaryCodeAtAddres
 
 override method @midrange_intermediate_instruction_BitTestSkip generateBinaryCodeAtAddress
   ?let @registerTable unused inRegisterTable
+  ?let @constantMap unused inConstantMap
   ?let @uint unused inTotalBankCount
   ?let @midrange_symbolTable unused inRoutineSymbolTable
   ?!@string ioListFileContents
@@ -283,6 +290,7 @@ proc emit_midrange_CALLinstruction
 
 override method @midrange_intermediate_JUMP generateBinaryCodeAtAddress
   ?let @registerTable inRegisterTable
+  ?let @constantMap inConstantMap
   ?let @uint inTotalBankCount
   ?let @midrange_symbolTable inRoutineSymbolTable
   ?!@string ioListFileContents
@@ -292,12 +300,17 @@ override method @midrange_intermediate_JUMP generateBinaryCodeAtAddress
   @uint targetAddress
   [inRoutineSymbolTable searchKey !mTargetLabel ?targetAddress]
 #--- Get values for PCLATH register
-  var PCLATH_register =@registerExpression.new{ !@lstring. new { !"PCLATH" !@location.here} !@luint. new { !0 !@location.here}}
+  let PCLATH_register = @registerExpression.new {
+    !@lstring. new {!"PCLATH" !.here}
+    !@immediatInteger.new {!.new {!0 !@location.here}}
+    !.here
+  }
   @midrange_intermediate_registerExpression PCLATH_IPICregisterDescription
   [PCLATH_register resolveMidrangeAccess
     !inTotalBankCount
     !@uint. max # Means unknown bank
     !inRegisterTable
+    !inConstantMap
     ?PCLATH_IPICregisterDescription
     ?*
     !?usedRegisters
@@ -345,6 +358,7 @@ override method @midrange_intermediate_JUMP generateBinaryCodeAtAddress
 
 override method @midrange_intermediate_GOTO generateBinaryCodeAtAddress
   ?let @registerTable unused inRegisterTable
+  ?let @constantMap unused inConstantMap
   ?let @uint unused inTotalBankCount
   ?let @midrange_symbolTable inRoutineSymbolTable
   ?!@string ioListFileContents
@@ -360,6 +374,7 @@ override method @midrange_intermediate_GOTO generateBinaryCodeAtAddress
 
 override method @midrange_intermediate_JSR generateBinaryCodeAtAddress
   ?let @registerTable inRegisterTable
+  ?let @constantMap inConstantMap
   ?let @uint inTotalBankCount
   ?let @midrange_symbolTable inRoutineSymbolTable
   ?!@string ioListFileContents
@@ -369,12 +384,17 @@ override method @midrange_intermediate_JSR generateBinaryCodeAtAddress
   @uint targetAddress
   [inRoutineSymbolTable searchKey !mTargetLabel ?targetAddress]
 #--- Get values for PCLATH register
-  var PCLATH_register =@registerExpression.new{ !@lstring. new { !"PCLATH" !@location.here} !@luint. new { !0 !@location.here}}
+  let PCLATH_register = @registerExpression.new{
+    !@lstring.new {!"PCLATH" !@location.here}
+    !@immediatInteger.new {!.new {!0 !@location.here}}
+    !.here
+  }
   @midrange_intermediate_registerExpression PCLATH_IPICregisterDescription
   [PCLATH_register resolveMidrangeAccess
     !inTotalBankCount
     !@uint. max # Means unknown bank
     !inRegisterTable
+    !inConstantMap
     ?PCLATH_IPICregisterDescription
     ?*
     !?usedRegisters
@@ -455,6 +475,7 @@ override method @midrange_intermediate_JSR generateBinaryCodeAtAddress
 
 override method @midrange_intermediate_CALL generateBinaryCodeAtAddress
   ?let @registerTable unused inRegisterTable
+  ?let @constantMap unused inConstantMap
   ?let @uint unused inTotalBankCount
   ?let @midrange_symbolTable inRoutineSymbolTable
   ?!@string ioListFileContents
@@ -470,6 +491,7 @@ override method @midrange_intermediate_CALL generateBinaryCodeAtAddress
 
 override method @midrange_intermediate_incDecRegisterInCondition generateBinaryCodeAtAddress
   ?let @registerTable unused inRegisterTable
+  ?let @constantMap unused inConstantMap
   ?let @uint unused inTotalBankCount
   ?let @midrange_symbolTable inRoutineSymbolTable
   ?!@string ioListFileContents
@@ -501,6 +523,7 @@ override method @midrange_intermediate_incDecRegisterInCondition generateBinaryC
 
 override method @midrange_intermediate_instruction_CLRWDT generateBinaryCodeAtAddress
   ?let @registerTable unused inRegisterTable
+  ?let @constantMap unused inConstantMap
   ?let @uint unused inTotalBankCount
   ?let @midrange_symbolTable unused inRoutineSymbolTable
   ?!@string ioListFileContents
@@ -512,6 +535,7 @@ override method @midrange_intermediate_instruction_CLRWDT generateBinaryCodeAtAd
 
 override method @midrange_intermediate_instruction_CLRW generateBinaryCodeAtAddress
   ?let @registerTable unused inRegisterTable
+  ?let @constantMap unused inConstantMap
   ?let @uint unused inTotalBankCount
   ?let @midrange_symbolTable unused inRoutineSymbolTable
   ?!@string ioListFileContents
@@ -523,6 +547,7 @@ override method @midrange_intermediate_instruction_CLRW generateBinaryCodeAtAddr
 
 override method @midrange_intermediate_instruction_NOP generateBinaryCodeAtAddress
   ?let @registerTable unused inRegisterTable
+  ?let @constantMap unused inConstantMap
   ?let @uint unused inTotalBankCount
   ?let @midrange_symbolTable unused inRoutineSymbolTable
   ?!@string ioListFileContents
@@ -534,6 +559,7 @@ override method @midrange_intermediate_instruction_NOP generateBinaryCodeAtAddre
 
 override method @midrange_intermediate_instruction_RETURN generateBinaryCodeAtAddress
   ?let @registerTable unused inRegisterTable
+  ?let @constantMap unused inConstantMap
   ?let @uint unused inTotalBankCount
   ?let @midrange_symbolTable unused inRoutineSymbolTable
   ?!@string ioListFileContents
@@ -545,6 +571,7 @@ override method @midrange_intermediate_instruction_RETURN generateBinaryCodeAtAd
 
 override method @midrange_intermediate_instruction_RETFIE generateBinaryCodeAtAddress
   ?let @registerTable unused inRegisterTable
+  ?let @constantMap unused inConstantMap
   ?let @uint unused inTotalBankCount
   ?let @midrange_symbolTable unused inRoutineSymbolTable
   ?!@string ioListFileContents
@@ -556,6 +583,7 @@ override method @midrange_intermediate_instruction_RETFIE generateBinaryCodeAtAd
 
 override method @midrange_intermediate_instruction_SLEEP generateBinaryCodeAtAddress
   ?let @registerTable unused inRegisterTable
+  ?let @constantMap unused inConstantMap
   ?let @uint unused inTotalBankCount
   ?let @midrange_symbolTable unused inRoutineSymbolTable
   ?!@string ioListFileContents
@@ -581,6 +609,7 @@ getter @midrange_literal_instruction_opcode baseCode -> @uint outBaseCode {
 
 override method @midrange_intermediate_instruction_literalOperation generateBinaryCodeAtAddress
   ?let @registerTable unused inRegisterTable
+  ?let @constantMap unused inConstantMap
   ?let @uint unused inTotalBankCount
   ?let @midrange_symbolTable unused inRoutineSymbolTable
   ?!@string ioListFileContents
@@ -595,6 +624,7 @@ override method @midrange_intermediate_instruction_literalOperation generateBina
 
 override method @midrange_intermediate_pseudo_LABEL generateBinaryCodeAtAddress
   ?let @registerTable unused inRegisterTable
+  ?let @constantMap unused inConstantMap
   ?let @uint unused inTotalBankCount
   ?let @midrange_symbolTable inRoutineSymbolTable
   ?!@string ioListFileContents
@@ -612,6 +642,7 @@ override method @midrange_intermediate_pseudo_LABEL generateBinaryCodeAtAddress
 
 override method @midrange_intermediate_instruction_MNOP generateBinaryCodeAtAddress
   ?let @registerTable unused inRegisterTable
+  ?let @constantMap unused inConstantMap
   ?let @uint unused inTotalBankCount
   ?let @midrange_symbolTable unused inRoutineSymbolTable
   ?!@string ioListFileContents
@@ -636,6 +667,7 @@ override method @midrange_intermediate_instruction_MNOP generateBinaryCodeAtAddr
 
 proc build_midrange_ipic_binary_code
   ?let @registerTable inRegisterTable
+  ?let @constantMap inConstantMap
   ?let @uint inTotalBankCount
   ?let @midrange_intermediate_instructionList inGeneratedInstructionList
   ?let @uint inROMsize
@@ -661,6 +693,7 @@ proc build_midrange_ipic_binary_code
   for () in  inGeneratedInstructionList do
     [mInstruction generateBinaryCodeAtAddress
       !inRegisterTable
+      !inConstantMap
       !inTotalBankCount
       !symbolTable
       !?ioListFileContents

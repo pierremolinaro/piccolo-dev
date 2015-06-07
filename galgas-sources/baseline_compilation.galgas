@@ -325,16 +325,21 @@ proc baseline_analysis
     perform_baseline_optimizations ( !?intermediateInstructionList !?listFileContents )
   end
 #-------------------------------- Build assembly instruction list
-  initCodeGenerator ( )
-  let sr = @registerExpression.new { !@lstring. new { !"STATUS" !@location.here} !@luint. new { !0 !@location.here}}
+  initCodeGenerator ()
+  let sr = @registerExpression.new {
+    !.new {!"STATUS" !.here}
+    !@immediatInteger.new {!.new {!0 !.here}}
+    !.here
+  }
   [sr resolveBaselineAccess
     !registerTable
+    !constantMap
     ?var @baseline_intermediate_registerExpression statusRegister
     ?var @bitSliceTable statusRegisterBitSliceTable
     !?usedRegisters
   ]
   var assemblyInstructionList =@baseline_assembly_instructionList.emptyList{}
-  if @uint. errorCount == 0 then
+  if @uint.errorCount == 0 then
     build_baseline_assembly_code (
       !intermediateInstructionList
       !actualConfigurationMap

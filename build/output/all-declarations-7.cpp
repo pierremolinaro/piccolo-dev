@@ -405,16 +405,6 @@ GALGAS_pic_31__38_PiccoloInstruction () {
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_pic_31__38_Instruction_5F_savebank GALGAS_pic_31__38_Instruction_5F_savebank::constructor_default (LOCATION_ARGS) {
-  return GALGAS_pic_31__38_Instruction_5F_savebank::constructor_new (GALGAS_location::constructor_nowhere (HERE),
-                                                                     GALGAS_registerExpression::constructor_default (HERE),
-                                                                     GALGAS_pic_31__38_InstructionList::constructor_emptyList (HERE),
-                                                                     GALGAS_location::constructor_nowhere (HERE)
-                                                                     COMMA_THERE) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
 GALGAS_pic_31__38_Instruction_5F_savebank::GALGAS_pic_31__38_Instruction_5F_savebank (const cPtr_pic_31__38_Instruction_5F_savebank * inSourcePtr) :
 GALGAS_pic_31__38_PiccoloInstruction (inSourcePtr) {
   macroNullOrValidSharedObject (inSourcePtr, cPtr_pic_31__38_Instruction_5F_savebank) ;
@@ -2130,15 +2120,6 @@ GALGAS_pic_31__38_PiccoloSimpleInstruction () {
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_pic_31__38_Instruction_5F_MOVFF GALGAS_pic_31__38_Instruction_5F_MOVFF::constructor_default (LOCATION_ARGS) {
-  return GALGAS_pic_31__38_Instruction_5F_MOVFF::constructor_new (GALGAS_location::constructor_nowhere (HERE),
-                                                                  GALGAS_registerExpression::constructor_default (HERE),
-                                                                  GALGAS_registerExpression::constructor_default (HERE)
-                                                                  COMMA_THERE) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
 GALGAS_pic_31__38_Instruction_5F_MOVFF::GALGAS_pic_31__38_Instruction_5F_MOVFF (const cPtr_pic_31__38_Instruction_5F_MOVFF * inSourcePtr) :
 GALGAS_pic_31__38_PiccoloSimpleInstruction (inSourcePtr) {
   macroNullOrValidSharedObject (inSourcePtr, cPtr_pic_31__38_Instruction_5F_MOVFF) ;
@@ -3100,6 +3081,9 @@ typeComparisonResult cPtr_registerExpression::dynamicObjectCompare (const acPtr_
   if (kOperandEqual == result) {
     result = mAttribute_mOffset.objectCompare (p->mAttribute_mOffset) ;
   }
+  if (kOperandEqual == result) {
+    result = mAttribute_mEndOfOffsetExpression.objectCompare (p->mAttribute_mEndOfOffsetExpression) ;
+  }
   return result ;
 }
 
@@ -3130,14 +3114,6 @@ AC_GALGAS_class () {
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_registerExpression GALGAS_registerExpression::constructor_default (LOCATION_ARGS) {
-  return GALGAS_registerExpression::constructor_new (GALGAS_lstring::constructor_default (HERE),
-                                                     GALGAS_luint::constructor_default (HERE)
-                                                     COMMA_THERE) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
 GALGAS_registerExpression::GALGAS_registerExpression (const cPtr_registerExpression * inSourcePtr) :
 AC_GALGAS_class (inSourcePtr) {
   macroNullOrValidSharedObject (inSourcePtr, cPtr_registerExpression) ;
@@ -3146,11 +3122,12 @@ AC_GALGAS_class (inSourcePtr) {
 //---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_registerExpression GALGAS_registerExpression::constructor_new (const GALGAS_lstring & inAttribute_mRegisterName,
-                                                                      const GALGAS_luint & inAttribute_mOffset
+                                                                      const GALGAS_immediatExpression & inAttribute_mOffset,
+                                                                      const GALGAS_location & inAttribute_mEndOfOffsetExpression
                                                                       COMMA_LOCATION_ARGS) {
   GALGAS_registerExpression result ;
-  if (inAttribute_mRegisterName.isValid () && inAttribute_mOffset.isValid ()) {
-    macroMyNew (result.mObjectPtr, cPtr_registerExpression (inAttribute_mRegisterName, inAttribute_mOffset COMMA_THERE)) ;
+  if (inAttribute_mRegisterName.isValid () && inAttribute_mOffset.isValid () && inAttribute_mEndOfOffsetExpression.isValid ()) {
+    macroMyNew (result.mObjectPtr, cPtr_registerExpression (inAttribute_mRegisterName, inAttribute_mOffset, inAttribute_mEndOfOffsetExpression COMMA_THERE)) ;
   }
   return result ;
 }
@@ -3175,8 +3152,8 @@ GALGAS_lstring cPtr_registerExpression::reader_mRegisterName (UNUSED_LOCATION_AR
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_luint GALGAS_registerExpression::reader_mOffset (UNUSED_LOCATION_ARGS) const {
-  GALGAS_luint result ;
+GALGAS_immediatExpression GALGAS_registerExpression::reader_mOffset (UNUSED_LOCATION_ARGS) const {
+  GALGAS_immediatExpression result ;
   if (NULL != mObjectPtr) {
     const cPtr_registerExpression * p = (const cPtr_registerExpression *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_registerExpression) ;
@@ -3187,8 +3164,26 @@ GALGAS_luint GALGAS_registerExpression::reader_mOffset (UNUSED_LOCATION_ARGS) co
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_luint cPtr_registerExpression::reader_mOffset (UNUSED_LOCATION_ARGS) const {
+GALGAS_immediatExpression cPtr_registerExpression::reader_mOffset (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mOffset ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_location GALGAS_registerExpression::reader_mEndOfOffsetExpression (UNUSED_LOCATION_ARGS) const {
+  GALGAS_location result ;
+  if (NULL != mObjectPtr) {
+    const cPtr_registerExpression * p = (const cPtr_registerExpression *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_registerExpression) ;
+    result = p->mAttribute_mEndOfOffsetExpression ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_location cPtr_registerExpression::reader_mEndOfOffsetExpression (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mEndOfOffsetExpression ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -3196,11 +3191,13 @@ GALGAS_luint cPtr_registerExpression::reader_mOffset (UNUSED_LOCATION_ARGS) cons
 //---------------------------------------------------------------------------------------------------------------------*
 
 cPtr_registerExpression::cPtr_registerExpression (const GALGAS_lstring & in_mRegisterName,
-                                                  const GALGAS_luint & in_mOffset
+                                                  const GALGAS_immediatExpression & in_mOffset,
+                                                  const GALGAS_location & in_mEndOfOffsetExpression
                                                   COMMA_LOCATION_ARGS) :
 acPtr_class (THERE),
 mAttribute_mRegisterName (in_mRegisterName),
-mAttribute_mOffset (in_mOffset) {
+mAttribute_mOffset (in_mOffset),
+mAttribute_mEndOfOffsetExpression (in_mEndOfOffsetExpression) {
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -3215,6 +3212,8 @@ void cPtr_registerExpression::description (C_String & ioString,
   mAttribute_mRegisterName.description (ioString, inIndentation+1) ;
   ioString << ", " ;
   mAttribute_mOffset.description (ioString, inIndentation+1) ;
+  ioString << ", " ;
+  mAttribute_mEndOfOffsetExpression.description (ioString, inIndentation+1) ;
   ioString << "]" ;
 }
 
@@ -3222,7 +3221,7 @@ void cPtr_registerExpression::description (C_String & ioString,
 
 acPtr_class * cPtr_registerExpression::duplicate (LOCATION_ARGS) const {
   acPtr_class * ptr = NULL ;
-  macroMyNew (ptr, cPtr_registerExpression (mAttribute_mRegisterName, mAttribute_mOffset COMMA_THERE)) ;
+  macroMyNew (ptr, cPtr_registerExpression (mAttribute_mRegisterName, mAttribute_mOffset, mAttribute_mEndOfOffsetExpression COMMA_THERE)) ;
   return ptr ;
 }
 
@@ -4658,6 +4657,7 @@ C_PrologueEpilogue gMethod_baseline_5F_conditionExpression_build_5F_intermediate
 void callCategoryMethod_build_5F_intermediate_5F_condition_5F_instructions (const cPtr_baseline_5F_conditionExpression * inObject,
                                                                             const GALGAS_uint constin_inCurrentPage,
                                                                             const GALGAS_registerTable constin_inRegisterTable,
+                                                                            const GALGAS_constantMap constin_inConstantMap,
                                                                             GALGAS_uint & io_ioLocalLabelIndex,
                                                                             const GALGAS_bool constin_inComplementaryBranch,
                                                                             const GALGAS_location constin_inInstructionLocation,
@@ -4689,7 +4689,7 @@ void callCategoryMethod_build_5F_intermediate_5F_condition_5F_instructions (cons
     if (NULL == f) {
       fatalError ("FATAL CATEGORY METHOD CALL ERROR", __FILE__, __LINE__) ;
     }else{
-      f (inObject, constin_inCurrentPage, constin_inRegisterTable, io_ioLocalLabelIndex, constin_inComplementaryBranch, constin_inInstructionLocation, constin_inTargetLabel, io_ioGeneratedInstructionList, io_ioUsedRegisters, inCompiler COMMA_THERE) ;
+      f (inObject, constin_inCurrentPage, constin_inRegisterTable, constin_inConstantMap, io_ioLocalLabelIndex, constin_inComplementaryBranch, constin_inInstructionLocation, constin_inTargetLabel, io_ioGeneratedInstructionList, io_ioUsedRegisters, inCompiler COMMA_THERE) ;
     }
   }
 }
@@ -6568,6 +6568,7 @@ void callCategoryMethod_buildIPICinstructionForCondition (const cPtr_midrange_5F
                                                           const GALGAS_uint constin_inTotalBankCount,
                                                           const GALGAS_uint constin_inCurrentBank,
                                                           const GALGAS_registerTable constin_inRegisterTable,
+                                                          const GALGAS_constantMap constin_inConstantMap,
                                                           GALGAS_uint & io_ioLocalLabelIndex,
                                                           const GALGAS_bool constin_inComplementaryBranch,
                                                           const GALGAS_location constin_inInstructionLocation,
@@ -6600,7 +6601,7 @@ void callCategoryMethod_buildIPICinstructionForCondition (const cPtr_midrange_5F
     if (NULL == f) {
       fatalError ("FATAL CATEGORY METHOD CALL ERROR", __FILE__, __LINE__) ;
     }else{
-      f (inObject, constin_inTotalBankCount, constin_inCurrentBank, constin_inRegisterTable, io_ioLocalLabelIndex, constin_inComplementaryBranch, constin_inInstructionLocation, constin_inTargetLabel, io_ioGeneratedInstructionList, io_ioListFileContents, io_ioUsedRegisters, inCompiler COMMA_THERE) ;
+      f (inObject, constin_inTotalBankCount, constin_inCurrentBank, constin_inRegisterTable, constin_inConstantMap, io_ioLocalLabelIndex, constin_inComplementaryBranch, constin_inInstructionLocation, constin_inTargetLabel, io_ioGeneratedInstructionList, io_ioListFileContents, io_ioUsedRegisters, inCompiler COMMA_THERE) ;
     }
   }
 }
@@ -7795,6 +7796,7 @@ C_PrologueEpilogue gMethod_midrange_5F_intermediate_5F_instruction_generateBinar
 
 void callCategoryMethod_generateBinaryCodeAtAddress (const cPtr_midrange_5F_intermediate_5F_instruction * inObject,
                                                      const GALGAS_registerTable constin_inRegisterTable,
+                                                     const GALGAS_constantMap constin_inConstantMap,
                                                      const GALGAS_uint constin_inTotalBankCount,
                                                      const GALGAS_midrange_5F_symbolTable constin_inRoutineSymbolTable,
                                                      GALGAS_string & io_ioListFileContents,
@@ -7824,7 +7826,7 @@ void callCategoryMethod_generateBinaryCodeAtAddress (const cPtr_midrange_5F_inte
     if (NULL == f) {
       fatalError ("FATAL CATEGORY METHOD CALL ERROR", __FILE__, __LINE__) ;
     }else{
-      f (inObject, constin_inRegisterTable, constin_inTotalBankCount, constin_inRoutineSymbolTable, io_ioListFileContents, io_ioAddress, inCompiler COMMA_THERE) ;
+      f (inObject, constin_inRegisterTable, constin_inConstantMap, constin_inTotalBankCount, constin_inRoutineSymbolTable, io_ioListFileContents, io_ioAddress, inCompiler COMMA_THERE) ;
     }
   }
 }
@@ -10088,6 +10090,7 @@ void callCategoryMethod_generateBlock (const cPtr_abstractBlockTerminationForBlo
                                        const GALGAS_uint constin_inAccessBankSplitOffset,
                                        const GALGAS_uint constin_inCurrentBank,
                                        const GALGAS_registerTable constin_inRegisterTable,
+                                       const GALGAS_constantMap constin_inConstantMap,
                                        GALGAS_uint & io_ioLocalLabelIndex,
                                        GALGAS_ipic_31__38_BlockList & io_ioGeneratedBlockList,
                                        GALGAS_stringset & io_ioUsedRegisters,
@@ -10119,7 +10122,7 @@ void callCategoryMethod_generateBlock (const cPtr_abstractBlockTerminationForBlo
     if (NULL == f) {
       fatalError ("FATAL CATEGORY METHOD CALL ERROR", __FILE__, __LINE__) ;
     }else{
-      f (inObject, constin_inAccessBankSplitOffset, constin_inCurrentBank, constin_inRegisterTable, io_ioLocalLabelIndex, io_ioGeneratedBlockList, io_ioUsedRegisters, constin_inLabelForBlock, out_outTerminator, inCompiler COMMA_THERE) ;
+      f (inObject, constin_inAccessBankSplitOffset, constin_inCurrentBank, constin_inRegisterTable, constin_inConstantMap, io_ioLocalLabelIndex, io_ioGeneratedBlockList, io_ioUsedRegisters, constin_inLabelForBlock, out_outTerminator, inCompiler COMMA_THERE) ;
     }
   }
 }
@@ -10156,6 +10159,7 @@ void callCategoryMethod_analyzeCondition (const cPtr_pic_31__38_ConditionExpress
                                           const GALGAS_uint constin_inAccessBankSplitOffset,
                                           const GALGAS_uint constin_inCurrentBank,
                                           const GALGAS_registerTable constin_inRegisterTable,
+                                          const GALGAS_constantMap constin_inConstantMap,
                                           GALGAS_uint & io_ioLocalLabelIndex,
                                           GALGAS_ipic_31__38_BlockList & io_ioGeneratedBlockList,
                                           const GALGAS_lstring constin_inConditionTrueLabel,
@@ -10188,7 +10192,7 @@ void callCategoryMethod_analyzeCondition (const cPtr_pic_31__38_ConditionExpress
     if (NULL == f) {
       fatalError ("FATAL CATEGORY METHOD CALL ERROR", __FILE__, __LINE__) ;
     }else{
-      f (inObject, constin_inAccessBankSplitOffset, constin_inCurrentBank, constin_inRegisterTable, io_ioLocalLabelIndex, io_ioGeneratedBlockList, constin_inConditionTrueLabel, constin_inConditionFalseLabel, io_ioUsedRegisters, out_outCurrentBlockTerminator, inCompiler COMMA_THERE) ;
+      f (inObject, constin_inAccessBankSplitOffset, constin_inCurrentBank, constin_inRegisterTable, constin_inConstantMap, io_ioLocalLabelIndex, io_ioGeneratedBlockList, constin_inConditionTrueLabel, constin_inConditionFalseLabel, io_ioUsedRegisters, out_outCurrentBlockTerminator, inCompiler COMMA_THERE) ;
     }
   }
 }

@@ -5333,9 +5333,6 @@ class GALGAS_registerExpression : public AC_GALGAS_class {
 //--- Constructor
   public : GALGAS_registerExpression (void) ;
 
-//--------------------------------- Default GALGAS constructor
-  public : static GALGAS_registerExpression constructor_default (LOCATION_ARGS) ;
-
 //---
   public : inline const class cPtr_registerExpression * ptr (void) const { return (const cPtr_registerExpression *) mObjectPtr ; }
 
@@ -5354,7 +5351,8 @@ class GALGAS_registerExpression : public AC_GALGAS_class {
 
 //--------------------------------- GALGAS constructors
   public : static GALGAS_registerExpression constructor_new (const class GALGAS_lstring & inOperand0,
-                                                             const class GALGAS_luint & inOperand1
+                                                             const class GALGAS_immediatExpression & inOperand1,
+                                                             const class GALGAS_location & inOperand2
                                                              COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -5366,7 +5364,9 @@ class GALGAS_registerExpression : public AC_GALGAS_class {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public : VIRTUAL_IN_DEBUG class GALGAS_luint reader_mOffset (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG class GALGAS_location reader_mEndOfOffsetExpression (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_immediatExpression reader_mOffset (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_lstring reader_mRegisterName (LOCATION_ARGS) const ;
 
@@ -5390,11 +5390,13 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_registerExpression 
 class cPtr_registerExpression : public acPtr_class {
 //--- Attributes
   public : GALGAS_lstring mAttribute_mRegisterName ;
-  public : GALGAS_luint mAttribute_mOffset ;
+  public : GALGAS_immediatExpression mAttribute_mOffset ;
+  public : GALGAS_location mAttribute_mEndOfOffsetExpression ;
 
 //--- Constructor
   public : cPtr_registerExpression (const GALGAS_lstring & in_mRegisterName,
-                                    const GALGAS_luint & in_mOffset
+                                    const GALGAS_immediatExpression & in_mOffset,
+                                    const GALGAS_location & in_mEndOfOffsetExpression
                                     COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
@@ -5402,7 +5404,8 @@ class cPtr_registerExpression : public acPtr_class {
 
 //--- Attribute accessors
   public : VIRTUAL_IN_DEBUG GALGAS_lstring reader_mRegisterName (LOCATION_ARGS) const ;
-  public : VIRTUAL_IN_DEBUG GALGAS_luint reader_mOffset (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_immediatExpression reader_mOffset (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_location reader_mEndOfOffsetExpression (LOCATION_ARGS) const ;
 //--- Description
   public : virtual void description (C_String & ioString,
                                      const int32_t inIndentation) const ;
@@ -5454,9 +5457,6 @@ class cPtr_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition : public c
 class GALGAS_baseline_5F_incDecRegisterInCondition : public GALGAS_baseline_5F_conditionExpression {
 //--- Constructor
   public : GALGAS_baseline_5F_incDecRegisterInCondition (void) ;
-
-//--------------------------------- Default GALGAS constructor
-  public : static GALGAS_baseline_5F_incDecRegisterInCondition constructor_default (LOCATION_ARGS) ;
 
 //---
   public : inline const class cPtr_baseline_5F_incDecRegisterInCondition * ptr (void) const { return (const cPtr_baseline_5F_incDecRegisterInCondition *) mObjectPtr ; }
@@ -9160,9 +9160,6 @@ class cPtr_immediatOr : public cPtr_immediatExpression {
 class GALGAS_immediatRegister : public GALGAS_immediatExpression {
 //--- Constructor
   public : GALGAS_immediatRegister (void) ;
-
-//--------------------------------- Default GALGAS constructor
-  public : static GALGAS_immediatRegister constructor_default (LOCATION_ARGS) ;
 
 //---
   public : inline const class cPtr_immediatRegister * ptr (void) const { return (const cPtr_immediatRegister *) mObjectPtr ; }

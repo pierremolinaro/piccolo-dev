@@ -109,8 +109,9 @@ void callCategoryMethod_getMnemonic (const class cPtr_midrange_5F_instruction_5F
 
 typedef void (*categoryMethodSignature_registerExpression_analyzeRegisterExpressionWithoutCheckingBank) (const class cPtr_registerExpression * inObject,
                                                                                                          const class GALGAS_registerTable constinArgument0,
-                                                                                                         class GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication & outArgument1,
-                                                                                                         class GALGAS_stringset & ioArgument2,
+                                                                                                         const class GALGAS_constantMap constinArgument1,
+                                                                                                         class GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication & outArgument2,
+                                                                                                         class GALGAS_stringset & ioArgument3,
                                                                                                          class C_Compiler * inCompiler
                                                                                                          COMMA_LOCATION_ARGS) ;
 
@@ -123,6 +124,7 @@ void enterCategoryMethod_analyzeRegisterExpressionWithoutCheckingBank (const int
 
 void callCategoryMethod_analyzeRegisterExpressionWithoutCheckingBank (const class cPtr_registerExpression * inObject,
                                                                       const GALGAS_registerTable constin_inRegisterTable,
+                                                                      const GALGAS_constantMap constin_inConstantMap,
                                                                       GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication & out_outIPICregisterDescription,
                                                                       GALGAS_stringset & io_ioUsedRegisters,
                                                                       C_Compiler * inCompiler
@@ -130,25 +132,31 @@ void callCategoryMethod_analyzeRegisterExpressionWithoutCheckingBank (const clas
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                              Category reader '@registerExpression getRegisterAddress'                               *
+//                              Category method '@registerExpression getRegisterAddress'                               *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-typedef class GALGAS_uint (*categoryReaderSignature_registerExpression_getRegisterAddress) (const class cPtr_registerExpression * inObject,
-                                                                                            const class GALGAS_registerTable & constinArgument0,
-                                                                                            C_Compiler * inCompiler
-                                                                                            COMMA_LOCATION_ARGS) ;
+typedef void (*categoryMethodSignature_registerExpression_getRegisterAddress) (const class cPtr_registerExpression * inObject,
+                                                                               const class GALGAS_registerTable constinArgument0,
+                                                                               const class GALGAS_constantMap constinArgument1,
+                                                                               class GALGAS_stringset & ioArgument2,
+                                                                               class GALGAS_uint & outArgument3,
+                                                                               class C_Compiler * inCompiler
+                                                                               COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void enterCategoryReader_getRegisterAddress (const int32_t inClassIndex,
-                                             categoryReaderSignature_registerExpression_getRegisterAddress inReader) ;
+void enterCategoryMethod_getRegisterAddress (const int32_t inClassIndex,
+                                             categoryMethodSignature_registerExpression_getRegisterAddress inMethod) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-class GALGAS_uint callCategoryReader_getRegisterAddress (const cPtr_registerExpression * inObject,
-                                                         const GALGAS_registerTable & constin_inRegisterTable,
-                                                         class C_Compiler * inCompiler
-                                                         COMMA_LOCATION_ARGS) ;
+void callCategoryMethod_getRegisterAddress (const class cPtr_registerExpression * inObject,
+                                            const GALGAS_registerTable constin_inRegisterTable,
+                                            const GALGAS_constantMap constin_inConstantMap,
+                                            GALGAS_stringset & io_ioUsedRegisters,
+                                            GALGAS_uint & out_outRegisterAddress,
+                                            C_Compiler * inCompiler
+                                            COMMA_LOCATION_ARGS) ;
 
 #endif

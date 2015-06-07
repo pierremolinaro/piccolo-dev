@@ -3,7 +3,8 @@ syntax communs (piccolo_lexique) {
 #----------------------------------------------------*
 
 rule <configuration_definition>
-  ?!@configDefinitionList ioConfigDefinitionList {
+  ?!@configDefinitionList ioConfigDefinitionList
+{
   $configuration$
   @location defLocation = @location.here
   var settingList =@configSettingList.emptyList{}
@@ -27,7 +28,8 @@ rule <configuration_definition>
 #----------------------------------------------------*
 
 rule <declaration_in_ram>
-  !@declarationInRam outDeclaration {
+  !@declarationInRam outDeclaration
+{
   $byte$
   $identifier$ ?var  @lstring name indexing variableDeclaration
   @luint size
@@ -103,7 +105,8 @@ rule <declaration_in_ram>
 #----------------------------------------------------*
 
 rule <ram_definition>
-  ?!@ramDefinitionList ioRamDefinitionList {
+  ?!@ramDefinitionList ioRamDefinitionList
+{
   $ram$
   $identifier$ ?var  @lstring bankName
   ${$
@@ -268,17 +271,29 @@ rule <immediate_primary> !@immediatExpression outExpression {
     outExpression = @immediatInteger. new { !@luint. new { ![[literalCharValue char] uint] ![literalCharValue location]}}
   or
     $identifier$ ?var @lstring registerName indexing variableUse
-    @luint offset
+    @immediatExpression offset
+    @location endOfOffsetExpression
     select
-      offset = @luint. new { !0 !@location.here}
+      offset = @immediatInteger.new {!.new {!0 !.here}}
+      endOfOffsetExpression = .here
     or
       $[$
-      $integer$ ? offset
+      <immediate_expression> ?offset
+      endOfOffsetExpression = .here
       $]$
     end
+#    @luint offset
+#    select
+#      offset = @luint. new { !0 !@location.here}
+#    or
+#      $[$
+#      $integer$ ? offset
+#      $]$
+#    end
     var registerExpression =@registerExpression.new{
       !registerName
       !offset
+      !endOfOffsetExpression
     }
     outExpression = @immediatRegister. new { !registerExpression}
   or
@@ -308,17 +323,21 @@ rule <immediate_primary> !@immediatExpression outExpression {
 
 rule <register_parsing> !@registerExpression outRegisterExpression {
   $identifier$ ?var @lstring registerName indexing variableUse
-  @luint offset
+  @immediatExpression offset
+  @location endOfOffsetExpression
   select
-    offset = .new {!0 !.here}
+    offset = @immediatInteger.new {!.new {!0 !.here}}
+    endOfOffsetExpression = .here
   or
     $[$
-    $integer$ ? offset
+    <immediate_expression> ?offset
+    endOfOffsetExpression = .here
     $]$
   end
   outRegisterExpression = @registerExpression.new {
     !registerName
     !offset
+    !endOfOffsetExpression
   }
 }
 

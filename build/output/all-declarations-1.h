@@ -5733,9 +5733,6 @@ class GALGAS_pic_31__38_IncDecRegisterInCondition : public GALGAS_pic_31__38_Con
 //--- Constructor
   public : GALGAS_pic_31__38_IncDecRegisterInCondition (void) ;
 
-//--------------------------------- Default GALGAS constructor
-  public : static GALGAS_pic_31__38_IncDecRegisterInCondition constructor_default (LOCATION_ARGS) ;
-
 //---
   public : inline const class cPtr_pic_31__38_IncDecRegisterInCondition * ptr (void) const { return (const cPtr_pic_31__38_IncDecRegisterInCondition *) mObjectPtr ; }
 
@@ -7265,9 +7262,6 @@ class GALGAS_pic_31__38_Instruction_5F_MOVFF : public GALGAS_pic_31__38_PiccoloS
 //--- Constructor
   public : GALGAS_pic_31__38_Instruction_5F_MOVFF (void) ;
 
-//--------------------------------- Default GALGAS constructor
-  public : static GALGAS_pic_31__38_Instruction_5F_MOVFF constructor_default (LOCATION_ARGS) ;
-
 //---
   public : inline const class cPtr_pic_31__38_Instruction_5F_MOVFF * ptr (void) const { return (const cPtr_pic_31__38_Instruction_5F_MOVFF *) mObjectPtr ; }
 
@@ -7614,9 +7608,6 @@ class cPtr_pic_31__38_Instruction_5F_banksel : public cPtr_pic_31__38_PiccoloIns
 class GALGAS_pic_31__38_Instruction_5F_banksel_5F_register : public GALGAS_pic_31__38_PiccoloInstruction {
 //--- Constructor
   public : GALGAS_pic_31__38_Instruction_5F_banksel_5F_register (void) ;
-
-//--------------------------------- Default GALGAS constructor
-  public : static GALGAS_pic_31__38_Instruction_5F_banksel_5F_register constructor_default (LOCATION_ARGS) ;
 
 //---
   public : inline const class cPtr_pic_31__38_Instruction_5F_banksel_5F_register * ptr (void) const { return (const cPtr_pic_31__38_Instruction_5F_banksel_5F_register *) mObjectPtr ; }
@@ -8796,9 +8787,6 @@ class GALGAS_pic_31__38_Instruction_5F_savebank : public GALGAS_pic_31__38_Picco
 //--- Constructor
   public : GALGAS_pic_31__38_Instruction_5F_savebank (void) ;
 
-//--------------------------------- Default GALGAS constructor
-  public : static GALGAS_pic_31__38_Instruction_5F_savebank constructor_default (LOCATION_ARGS) ;
-
 //---
   public : inline const class cPtr_pic_31__38_Instruction_5F_savebank * ptr (void) const { return (const cPtr_pic_31__38_Instruction_5F_savebank *) mObjectPtr ; }
 
@@ -9436,9 +9424,6 @@ class cPtr_pic_31__38_RegisterComparisonCondition : public cPtr_pic_31__38_Condi
 class GALGAS_pic_31__38_RegisterTestCondition : public GALGAS_pic_31__38_ConditionExpression {
 //--- Constructor
   public : GALGAS_pic_31__38_RegisterTestCondition (void) ;
-
-//--------------------------------- Default GALGAS constructor
-  public : static GALGAS_pic_31__38_RegisterTestCondition constructor_default (LOCATION_ARGS) ;
 
 //---
   public : inline const class cPtr_pic_31__38_RegisterTestCondition * ptr (void) const { return (const cPtr_pic_31__38_RegisterTestCondition *) mObjectPtr ; }
@@ -11770,9 +11755,6 @@ class GALGAS_midrange_5F_incDecRegisterInCondition : public GALGAS_midrange_5F_c
 //--- Constructor
   public : GALGAS_midrange_5F_incDecRegisterInCondition (void) ;
 
-//--------------------------------- Default GALGAS constructor
-  public : static GALGAS_midrange_5F_incDecRegisterInCondition constructor_default (LOCATION_ARGS) ;
-
 //---
   public : inline const class cPtr_midrange_5F_incDecRegisterInCondition * ptr (void) const { return (const cPtr_midrange_5F_incDecRegisterInCondition *) mObjectPtr ; }
 
@@ -13449,9 +13431,6 @@ class GALGAS_midrange_5F_instruction_5F_banksel_5F_register : public GALGAS_midr
 //--- Constructor
   public : GALGAS_midrange_5F_instruction_5F_banksel_5F_register (void) ;
 
-//--------------------------------- Default GALGAS constructor
-  public : static GALGAS_midrange_5F_instruction_5F_banksel_5F_register constructor_default (LOCATION_ARGS) ;
-
 //---
   public : inline const class cPtr_midrange_5F_instruction_5F_banksel_5F_register * ptr (void) const { return (const cPtr_midrange_5F_instruction_5F_banksel_5F_register *) mObjectPtr ; }
 
@@ -13807,9 +13786,6 @@ class cPtr_midrange_5F_instruction_5F_nobanksel : public cPtr_midrange_5F_instru
 class GALGAS_midrange_5F_instruction_5F_savebank : public GALGAS_midrange_5F_instruction {
 //--- Constructor
   public : GALGAS_midrange_5F_instruction_5F_savebank (void) ;
-
-//--------------------------------- Default GALGAS constructor
-  public : static GALGAS_midrange_5F_instruction_5F_savebank constructor_default (LOCATION_ARGS) ;
 
 //---
   public : inline const class cPtr_midrange_5F_instruction_5F_savebank * ptr (void) const { return (const cPtr_midrange_5F_instruction_5F_savebank *) mObjectPtr ; }

@@ -13,7 +13,8 @@ map @bitSliceTable {
 
 class @registerExpression {
   @lstring mRegisterName
-  @luint mOffset
+  @immediatExpression mOffset
+  @location mEndOfOffsetExpression
 }
 
 #----------------------------------------------------*
