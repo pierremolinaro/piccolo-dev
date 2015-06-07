@@ -120,7 +120,6 @@ runCommand (["mv", TEMP_DIR, DIR])
 writeFile (versionPICCOLO, DIR + "/version-piccolo.txt")
 writeFile (numeroRevisionSVN, DIR + "/version-repository.txt")
 remplacerAnneeEtVersionGALGAS (ANNEE, versionPICCOLO, DIR + "/piccolo/xcode-project/Info.plist")
-# remplacerAnneeEtVersionGALGAS (ANNEE, versionPICCOLO, DIR + "/piccolo/project-xcode-piccolo/English.lproj/InfoPlist.strings")
 for root, dirs, files in os.walk (DIR + "/piccolo/piccolo-sources"):
   for filename in files:
     (base, extension) = os.path.splitext (filename)
@@ -153,6 +152,10 @@ runCommand (["mv", DIR + "/piccolo/changeLog.html", DIR + "/changeLog.html"])
 # runCommand (["rm", "-fr", DIR + "/piccolo/testsuite"])
 # #-------------------- Vérifier la création de projet
 # runCommand ([DIR + "/piccolo/-verifier-create-piccolo.command"])
+#-------------------- Recompiler le projet Xcode
+os.chdir (DIR + "/piccolo/xcode-project")
+runCommand (["xcodebuild", "-project", "piccolo.xcodeproj", "-target", "GALGAS Cocoa", "-configuration", "Default"])
+os.chdir (DIR)
 #-------------------- Construire la documentation Latex
 remplacerAnneeEtVersionGALGAS (ANNEE, versionPICCOLO, DIR + "/piccolo/documentation/piccolo.tex")
 runHiddenCommand ([DIR + "/piccolo/documentation/-build-couleur.command"])
@@ -188,28 +191,24 @@ runCommand (["mv", DIR + "/piccolo/makefile-x86linux64-on-macosx/piccolo.zip", "
 runCommand (["mv", DIR + "/piccolo/makefile-x86linux64-on-macosx/piccolo-debug.zip", "piccolo-debug-x86-linux64.zip"])
 runCommand (["rm", "-fr", "piccolo/makefile-x86linux64-on-macosx"])
 runCommand (["rm", "-fr", "piccolo/build/cli-objects"])
-#-------------------- Recompiler le projet Xcode
-os.chdir (DIR + "/piccolo/project-xcode-piccolo")
-runCommand (["xcodebuild", "-project", "piccolo-distribution.xcodeproj", "-target", "GALGAS Cocoa", "-configuration", "Default"])
-os.chdir (DIR)
 #-------------------- Creer l'archive BZ2 de cocoa piccolo
-runCommand (["cp", "-r", DIR + "/piccolo/project-xcode-piccolo/build/Default/cocoaGalgas.app", DIR])
-runCommand (["tar", "-cf", "cocoaGalgas.app.tar", "cocoaGalgas.app"])
-runCommand (["bzip2", "-9", "cocoaGalgas.app.tar"])
-runCommand (["rm", "-fr", DIR + "/cocoaGalgas.app"])
+runCommand (["cp", "-r", DIR + "/piccolo/xcode-project/build/Default/cocoaPiccolo.app", DIR])
+runCommand (["tar", "-cf", "cocoaPiccolo.app.tar", "cocoaPiccolo.app"])
+runCommand (["bzip2", "-9", "cocoaPiccolo.app.tar"])
+runCommand (["rm", "-fr", DIR + "/cocoaPiccolo.app"])
 #-------------------- Creer l'archive de Cocoa Galgas
 runCommand (["mkdir", DIR + "/COCOA-GALGAS"])
 runCommand (["cp", DIR + "/piccolo/AUTHORS", DIR + "/COCOA-GALGAS"])
 runCommand (["cp", DIR + "/piccolo/COPYING", DIR + "/COCOA-GALGAS"])
-runCommand (["cp", "-r", DIR + "/piccolo/project-xcode-piccolo/build/Default/cocoaGalgas.app", DIR + "/COCOA-GALGAS"])
+runCommand (["cp", "-r", DIR + "/piccolo/xcode-project/build/Default/cocoaPiccolo.app", DIR + "/COCOA-GALGAS"])
 runCommand (["hdiutil", "create", "-srcfolder", DIR + "/COCOA-GALGAS", DIR + "/cocoa-piccolo.dmg"])
 runCommand (["rm", "-fr", DIR + "/COCOA-GALGAS"])
 #-------------------- Creer l'archive de l'outil ligne de commande pour mac
 runCommand (["mkdir", DIR + "/COCOA-TOOL"])
 runCommand (["cp", DIR + "/piccolo/AUTHORS", DIR + "/COCOA-TOOL"])
 runCommand (["cp", DIR + "/piccolo/COPYING", DIR + "/COCOA-TOOL"])
-runCommand (["cp", "-r", DIR + "/piccolo/project-xcode-piccolo/build/Default/cocoaGalgas.app/Contents/Resources/piccolo", DIR + "/COCOA-TOOL/piccolo"])
-runCommand (["cp", "-r", DIR + "/piccolo/project-xcode-piccolo/build/Default/cocoaGalgas.app/Contents/Resources/piccolo-debug", DIR + "/COCOA-TOOL/piccolo-debug"])
+runCommand (["cp", "-r", DIR + "/piccolo/xcode-project/build/Default/cocoaPiccolo.app/Contents/Resources/piccolo", DIR + "/COCOA-TOOL/piccolo"])
+runCommand (["cp", "-r", DIR + "/piccolo/xcode-project/build/Default/cocoaPiccolo.app/Contents/Resources/piccolo-debug", DIR + "/COCOA-TOOL/piccolo-debug"])
 runCommand (["hdiutil", "create", "-srcfolder", DIR + "/COCOA-TOOL", DIR + "/cocoa-tool.dmg"])
 runCommand (["rm", "-fr", DIR + "/COCOA-TOOL"])
 #-------------------- Supprimer les repertoires sources
