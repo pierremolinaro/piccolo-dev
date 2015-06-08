@@ -157,7 +157,6 @@ runCommand ([DIR + "/piccolo/documentation/-build-files-from-piccolo.command"])
 #-------------------- Copy samples
 runCommand (["python", DIR + "/piccolo/tests/-compile-all.py"])
 runCommand (["mkdir", DIR + "/samples" ])
-runCommand ([DIR + "/piccolo/tests/-compile-all.command"])
 runCommand (["cp", "-R", DIR + "/piccolo/tests/baseline-testfiles", DIR + "/samples/baseline_examples"])
 runCommand (["cp", "-R", DIR + "/piccolo/tests/midrange-tests", DIR + "/samples/midrange_examples"])
 runCommand (["cp", "-R", DIR + "/piccolo/tests/pic18-tests", DIR + "/samples/pic18_examples"])
