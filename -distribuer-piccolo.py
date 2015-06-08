@@ -134,14 +134,15 @@ for root, dirs, files in os.walk (DIR + "/piccolo/piccolo-sources"):
       ok = extension == ".m"
     remplacerAnneeEtVersionGALGAS (ANNEE, versionPICCOLO, root + "/" + filename)
 #-------------------- Creer l'archive des sources de piccolo
-runCommand (["eolc", "-unix", "-D" + DIR + "/piccolo", "-Eh", "-Ec", "-Ecpp", "-Em", "-Emm", "-Epy", "-Ebat"])
 os.chdir (DIR)
+runCommand (["eolc", "-unix", "-D" + DIR + "/piccolo", "-Eh", "-Ec", "-Ecpp", "-Em", "-Emm", "-Epy", "-Epiccolo"])
 runCommand (["tar", "-cf", "piccolo-sources-lf.tar", "piccolo"])
 runCommand (["bzip2", "-9", "piccolo-sources-lf.tar"])
-runCommand (["eolc", "-dos", "-D" + DIR + "/piccolo", "-Eh", "-Ec", "-Ecpp", "-Em", "-Emm", "-Epy", "-Ebat"])
-os.chdir (DIR)
+runCommand (["eolc", "-dos", "-D" + DIR + "/piccolo", "-Eh", "-Ec", "-Ecpp", "-Em", "-Emm", "-Epy", "-Epiccolo"])
+#os.chdir (DIR)
 runCommand (["tar", "-cf", "piccolo-sources-crlf.tar", "piccolo"])
 runCommand (["bzip2", "-9", "piccolo-sources-crlf.tar"])
+runCommand (["eolc", "-unix", "-D" + DIR + "/piccolo", "-Eh", "-Ec", "-Ecpp", "-Em", "-Emm", "-Epy", "-Epiccolo"])
 #-------------------- Copier changeLog
 runCommand (["mv", DIR + "/piccolo/changeLog.html", DIR + "/changeLog.html"])
 #-------------------- Vérifier les programmes d'exemple
@@ -163,10 +164,17 @@ os.chdir (DIR)
 runCommand ([DIR + "/piccolo/documentation/-build-files-from-piccolo.command"])
 #-------------------- Copy samples
 runCommand (["mkdir", DIR + "/samples" ])
-runCommand ([DIR + "/samples/-compile-all.command" ])
-runCommand (["cp", "-R", DIR + "/piccolo/tests/baseline-testfiles", DIR + "/samples/baseline_examples" ])
-runCommand (["cp", "-R", DIR + "/piccolo/tests/midrange-tests", DIR + "/samples/midrange_examples" ])
-runCommand (["cp", "-R", DIR + "/piccolo/tests/pic18-tests", DIR + "/samples/pic18_examples" ])
+runCommand ([DIR + "/piccolo/tests/-compile-all.command"])
+#runCommand (["mkdir", DIR + "/samples/baseline-testfiles"])
+# for root, dirs, files in os.walk ("."):
+#   for name in files:
+
+runCommand (["cp", "-R", DIR + "/piccolo/tests/baseline-testfiles", DIR + "/samples/baseline_examples"])
+runCommand (["cp", "-R", DIR + "/piccolo/tests/midrange-tests", DIR + "/samples/midrange_examples"])
+runCommand (["cp", "-R", DIR + "/piccolo/tests/pic18-tests", DIR + "/samples/pic18_examples"])
+runCommand (["cp", DIR + "/piccolo/tests/-compile-all.py", DIR + "/samples/-compile-all.py"])
+runCommand (["python", DIR + "/samples/-compile-all.py"])
+runCommand (["rm", DIR + "/samples/-compile-all.py"])
 #-------------------- Supported devices
 texteSurConsole = runHiddenCommand ([DIR + "/piccolo/makefile-macosx/piccolo", "--baseline"])
 with open (DIR + "/supported-baseline-devices.txt", "w") as f :
