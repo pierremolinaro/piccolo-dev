@@ -90,13 +90,13 @@ def runHiddenCommand (cmd) :
 #-------------------------------------- Get script absolute path
 scriptDir = os.path.dirname (os.path.abspath (sys.argv [0]))
 os.chdir (scriptDir)
-runCommand (["python", "../makefile-macosx/build.py"])
+runCommand (["python", scriptDir + "/../makefile-macosx/build.py"])
 #-------------------- Lister les répertoires
 for dirname, dirnames, filenames in os.walk (scriptDir) :
   for filename in filenames:
     f, extension = os.path.splitext (filename)
     if extension == ".piccolo" :
       fullPath = os.path.join (dirname, filename)
-      runCommand (["../makefile-macosx/piccolo", "-v", "-S", "-O", "-L", "--Werror", fullPath])
+      runCommand ([scriptDir + "/../makefile-macosx/piccolo", "-v", "-S", "-O", "-L", "--Werror", fullPath])
 
 #------------------------------------------------------------------------------*
