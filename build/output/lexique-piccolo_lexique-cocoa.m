@@ -3,6 +3,7 @@
 
 //--- END OF USER ZONE 1
 
+
 #import "lexique-piccolo_lexique-cocoa.h"
 #import "PMDebug.h"
 
@@ -914,5 +915,6 @@ static NSInteger search_into_piccolo_5F_lexique_instructionKeyWordList (NSString
 
 
 //--- END OF USER ZONE 2
+
 
 
