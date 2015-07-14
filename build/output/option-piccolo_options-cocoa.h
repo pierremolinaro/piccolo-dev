@@ -2,6 +2,7 @@
 
 
 //--- END OF USER ZONE 1
+
 #ifndef piccolo_options_FOR_COCOA_DEFINED
 #define piccolo_options_FOR_COCOA_DEFINED
 
@@ -15,6 +16,7 @@
 
 
 //--- END OF USER ZONE 2
+
 
 //---------------------------------------------------------------------------------------------------------------------*
 
