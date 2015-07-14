@@ -88,6 +88,14 @@ rule <declaration_in_ram>
         $-$
         bitDefinitionString += "-"
         sliceIndex --
+      or
+        $integer$ ?let bitCount
+        var idx = 0
+        for idx in @range.new {!0 !bitCount.uint}
+          do bitDefinitionString += "-"
+          between bitDefinitionString += ", "
+        end
+        sliceIndex = sliceIndex - [bitCount.uint sint]
       end
     while
       $,$

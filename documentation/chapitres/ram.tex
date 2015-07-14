@@ -130,14 +130,15 @@ byte var [n]
 Vous pouvez nommer les bits individuels lors de la déclaration d'une variable, comme par exemple :
 
 \begin{piccolo}
-byte var <-, A, b, -, d, e [2], ->
+byte var <-, A, b, 2, d, e [2]>
 \end{piccolo}
 
 La déclaration est effectuée entre les délimiteurs \pic!<! et \pic!>!, et séparés par une virgule. Le premier bit déclaré est le bit de poids fort (7), le dernier le bit de poids faible (0).
 
-Si vous ne voulez pas nommer un bit particulier, mettez le délimiteur \pic!-! : c'est le cas des bits 7, 4 et 0 dans l'exemple ci-dessus.
+Si vous ne voulez pas nommer un bit particulier, mettez le délimiteur \pic!-! : c'est le cas du bit 7 dans l'exemple ci-dessus. À partir de la version 3.0.9, vous pouvez aussi utiliser un nombre pour indiquer une séquence de bits inutilisés consécutifs. Dans l'exemple ci-dessus, \pic!2! indique les bits 4 et 3 sont inutilisés. On pourrait écrire : \pic!byte var <-, A, b, -, -, d, e [2]>!.
 
-À un nom est associé le numéro du bit correspondant : ainsi \pic!A! est associé à 6, \pic!b! à 5, et \pic!d! à 3. \pic!e! est complété par une dimension, ce qui signifie que \pic!e[1]! prend la valeur 2, et \pic!e[0]! la valeur 1.
+
+À un nom est associé le numéro du bit correspondant : ainsi \pic!A! est associé à 6, \pic!b! à 5, et \pic!d! à 3. \pic!e! est complété par une dimension, ce qui signifie que \pic!e[1]! prend la valeur 1, et \pic!e[0]! la valeur 0.
 
 La déclaration doit toujours comprendre la définition des 8 bits, autrement dit à la dernière définition, juste avant le \pic!>!, est associé le numéro 0.
 
@@ -146,7 +147,7 @@ Les noms de bits sont locaux, c'est à dire que vous pouvez utiliser les mêmes 
 Enfin, vous pouvez combiner la présence d'une dimension explicite avec le nommage de bits :
 
 \begin{piccolo}
-byte var [2] <-, A, b, -, d, e [2], ->
+byte var [2] <-, A, b, 2, d, e [2]>
 \end{piccolo}
 
 Dans ce cas, tous les octets du tableaux ont leurs bits nommés de la même façon.
