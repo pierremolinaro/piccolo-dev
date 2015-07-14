@@ -90,8 +90,10 @@ rule <declaration_in_ram>
         sliceIndex --
       or
         $integer$ ?let bitCount
-        var idx = 0
-        for idx in @range.new {!0 !bitCount.uint}
+        if bitCount.uint == 0 then
+          error bitCount.location: "the bit count should be > 0"
+        end
+        for idx in 0 ..< bitCount.uint
           do bitDefinitionString += "-"
           between bitDefinitionString += ", "
         end

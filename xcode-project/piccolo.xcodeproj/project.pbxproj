@@ -4414,7 +4414,7 @@
       GCC_WARN_UNUSED_VALUE = YES ;
       GCC_WARN_UNUSED_VARIABLE = YES ;
       HEADER_SEARCH_PATHS = ("../build/output", "../build/libpm", "../build/user-headers", "../hand_coded_sources/**") ;
-      SDKROOT = macosx ;
+      SDKROOT = macosx10.10 ;
       COPY_PHASE_STRIP = NO ;
     };
     name = Default;
