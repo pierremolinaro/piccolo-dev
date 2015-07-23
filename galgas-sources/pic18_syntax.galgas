@@ -120,10 +120,12 @@ rule <body>
     end
     $)$
     ${$
+    @labelMap labelMap = {}
     <instruction_list>
       ?let @pic18InstructionList instructionList
       !?needsComputedGoto2
       !?needsComputedGoto4
+      !?labelMap
     $}$
     ioMacroDefinitionList +=
       !macroName
@@ -172,7 +174,9 @@ rule <data_definition>
 rule <instruction_list>
   !@pic18InstructionList outInstructionList
   ?!@bool ioNeedsComputedGoto2
-  ?!@bool ioNeedsComputedGoto4 {
+  ?!@bool ioNeedsComputedGoto4
+  ?!@labelMap ioLabelMap
+{
   outInstructionList = @pic18InstructionList. emptyList
   repeat
   while
@@ -184,6 +188,7 @@ rule <instruction_list>
       ?instruction
       !?ioNeedsComputedGoto2
       !?ioNeedsComputedGoto4
+      !?ioLabelMap
     outInstructionList += !instruction
   end
 }
@@ -193,7 +198,8 @@ rule <instruction_list>
 rule <interrupt_definition>
   ?!@pic18InterruptDefinitionList ioInterruptDefinitionList
   ?!@bool ioNeedsComputedGoto2 
-  ?!@bool ioNeedsComputedGoto4 {
+  ?!@bool ioNeedsComputedGoto4
+{
   $interrupt$
   $identifier$ ?let @lstring interruptName
   @bool isFast
@@ -204,11 +210,12 @@ rule <interrupt_definition>
     isFast = true
   end
   ${$
-  @pic18InstructionList instructionList
+  @labelMap labelMap = {}
   <instruction_list>
-    ?instructionList
+    ?let instructionList
     !?ioNeedsComputedGoto2
     !?ioNeedsComputedGoto4
+    !?labelMap
   $}$
   ioInterruptDefinitionList += !interruptName !isFast !instructionList !@location.here
 }
@@ -270,11 +277,12 @@ rule <routine_definition>
     end
   end
   ${$
-  @pic18InstructionList instructionList
+  @labelMap labelMap = {}
   <instruction_list>
-    ?instructionList
+    ?let @pic18InstructionList instructionList
     !?ioNeedsComputedGoto2
     !?ioNeedsComputedGoto4
+    !?labelMap
   $}$
   ioRoutineDefinitionList += !routineName !requiredBank !returnedBank !preservesBank !noreturn !instructionList !@location.here
 }
@@ -473,14 +481,32 @@ rule <structured_instruction>
   !@pic18PiccoloInstruction outInstruction
   ?!@bool ioNeedsComputedGoto2
   ?!@bool ioNeedsComputedGoto4
+  ?!@labelMap ioLabelMap
 {
   select
     $switch$
-    let @location instructionLocation = @location.here
+    @lstring switchLabel
+    select
+      switchLabel = .new {!"" !.here}
+    or
+      $label$ ?switchLabel
+      [!?ioLabelMap insertKey !switchLabel]
+    end
+    let instructionLocation = @location.here
     $w$
-    var caseList =@pic18SwitchInstructionCaseList.emptyList{}
+    @pic18SwitchInstructionCaseList caseList = {}
     repeat
       $case$
+      @lstring caseLabel
+      select
+        caseLabel = .new {!"" !.here}
+      or
+        $label$ ?caseLabel
+      end
+      if switchLabel.string != caseLabel.string then
+        error caseLabel : "'case' label does not match with 'switch' label, it should be "
+           + (if switchLabel.string != "" then switchLabel.string else "empty" end)
+      end 
       let @location caseLocation = @location.here
       var caseExpressionList =@pic18CaseExpressionList.emptyList{}
       repeat
@@ -499,7 +525,11 @@ rule <structured_instruction>
         $,$
       end
       $:$
-      <instruction_list> ?let @pic18InstructionList instructionList !?ioNeedsComputedGoto2 !?ioNeedsComputedGoto4
+      <instruction_list>
+        ?let @pic18InstructionList instructionList
+        !?ioNeedsComputedGoto2
+        !?ioNeedsComputedGoto4
+        !?ioLabelMap
       caseList += !caseLocation !caseExpressionList !instructionList
     while
     end
@@ -510,8 +540,22 @@ rule <structured_instruction>
       elseInstructionList = @pic18InstructionList. emptyList
     or
       $else$
+      @lstring elseLabel
+      select
+        elseLabel = .new {!"" !.here}
+      or
+        $label$ ?elseLabel
+      end
+      if switchLabel.string != elseLabel.string then
+        error elseLabel : "'else' label does not match with 'switch' label, it should be "
+           + (if switchLabel.string != "" then switchLabel.string else "empty" end)
+      end 
       elseLocation = @location.here
-      <instruction_list> ?elseInstructionList !?ioNeedsComputedGoto2 !?ioNeedsComputedGoto4
+      <instruction_list>
+        ?elseInstructionList
+        !?ioNeedsComputedGoto2
+        !?ioNeedsComputedGoto4
+        !?ioLabelMap
     end
     outInstruction = @pic18Instruction_switch. new {
       !instructionLocation
@@ -519,6 +563,16 @@ rule <structured_instruction>
       !elseLocation
       !elseInstructionList}
     $end$
+    @lstring endSwitchLabel
+    select
+      endSwitchLabel = .new {!"" !.here}
+    or
+      $label$ ?endSwitchLabel
+    end
+    if switchLabel.string != endSwitchLabel.string then
+      error switchLabel : "end label does not match with 'switch' label, it should be "
+         + (if switchLabel.string != "" then switchLabel.string else "empty" end)
+    end 
   or
     $block$
     let @location instructionLocation = @location.here
@@ -528,7 +582,11 @@ rule <structured_instruction>
     repeat
       $identifier$ ?var @lstring blockName
       ${$
-      <instruction_list> ?let @pic18InstructionList instructionList !?ioNeedsComputedGoto2 !?ioNeedsComputedGoto4
+      <instruction_list>
+        ?let @pic18InstructionList instructionList
+        !?ioNeedsComputedGoto2
+        !?ioNeedsComputedGoto4
+        !?ioLabelMap
       $}$
       let @location endOfBlock = @location.here
       <block_termination> ?var @abstractBlockTerminationForBlockInstruction blockTermination
@@ -548,6 +606,7 @@ rule <structured_instruction>
       doLabel = .new {!"" !.here}
     or
       $label$ ?doLabel
+      [!?ioLabelMap insertKey !doLabel]
     end
     let instructionLocation = @location.here
     $($
@@ -557,7 +616,11 @@ rule <structured_instruction>
     $...$
     <immediate_expression> ?let @immediatExpression highBoundExpression
     $)$
-    <instruction_list> ?let @pic18InstructionList instructionList !?ioNeedsComputedGoto2 !?ioNeedsComputedGoto4
+    <instruction_list>
+      ?let @pic18InstructionList instructionList
+      !?ioNeedsComputedGoto2
+      !?ioNeedsComputedGoto4
+      !?ioLabelMap
     outInstruction = @pic18Instruction_repetitionStatique. new {
       !instructionLocation
       !constantName
@@ -630,13 +693,18 @@ rule <structured_instruction>
     $banksave$
     let @location instructionLocation = @location.here
     <register_parsing> ?var @registerExpression register
-    <instruction_list> ?let @pic18InstructionList instructionList !?ioNeedsComputedGoto2 !?ioNeedsComputedGoto4
+    <instruction_list>
+      ?let @pic18InstructionList instructionList
+      !?ioNeedsComputedGoto2
+      !?ioNeedsComputedGoto4
+      !?ioLabelMap
     $end$
     outInstruction = @pic18Instruction_savebank. new {
       !instructionLocation
       !register
       !instructionList
-      !@location.here}
+      !@location.here
+    }
   or
     $computed$
     let @location instructionLocation = @location.here
@@ -713,9 +781,14 @@ rule <structured_instruction>
       foreverLabel = .new {!"" !.here}
     or
       $label$ ?foreverLabel
+      [!?ioLabelMap insertKey !foreverLabel]
     end
     let instructionLocation = @location.here
-    <instruction_list> ?let instructionList !?ioNeedsComputedGoto2 !?ioNeedsComputedGoto4
+    <instruction_list>
+      ?let instructionList
+      !?ioNeedsComputedGoto2
+      !?ioNeedsComputedGoto4
+      !?ioLabelMap
     $end$
     @lstring endForeverLabel
     select
@@ -730,7 +803,8 @@ rule <structured_instruction>
     outInstruction = @pic18Instruction_FOREVER. new {
       !instructionLocation
       !instructionList
-      !@location.here}
+      !@location.here
+    }
   or
     $if$
     let @location instructionLocation = @location.here
@@ -828,12 +902,14 @@ rule <structured_instruction>
       ifLabel = .new {!"" !.here}
     or
       $label$ ?ifLabel
+      [!?ioLabelMap insertKey !ifLabel]
     end
     <structured_if_instruction>
       !ifLabel
       ?outInstruction
       !?ioNeedsComputedGoto2
       !?ioNeedsComputedGoto4
+      !?ioLabelMap
     $end$
     @lstring endIfLabel
     select
@@ -852,6 +928,7 @@ rule <structured_instruction>
       doLabel = .new {!"" !.here}
     or
       $label$ ?doLabel
+      [!?ioLabelMap insertKey !doLabel]
     end
     let @location instructionLocation = @location.here
     @pic18InstructionList repeatedInstructionList
@@ -859,7 +936,8 @@ rule <structured_instruction>
       ?repeatedInstructionList
       !?ioNeedsComputedGoto2
       !?ioNeedsComputedGoto4
-    @location endOfRepeatedInstructionList = @location.here
+      !?ioLabelMap
+    let endOfRepeatedInstructionList = @location.here
     var whilePartList =@pic18DoWhilePartList.emptyList{}
     repeat
       $while$
@@ -880,6 +958,7 @@ rule <structured_instruction>
         ?instructionList
         !?ioNeedsComputedGoto2
         !?ioNeedsComputedGoto4
+        !?ioLabelMap
       whilePartList += !whileCondition !instructionList !@location.here
     while
     end
@@ -898,7 +977,8 @@ rule <structured_instruction>
       !instructionLocation
       !repeatedInstructionList
       !endOfRepeatedInstructionList
-      !whilePartList}
+      !whilePartList
+    }
   or
     $mnop$
     let @location instructionLocation = @location.here
@@ -1015,6 +1095,7 @@ rule <structured_if_instruction>
   !@pic18PiccoloInstruction outInstruction
   ?!@bool ioNeedsComputedGoto2
   ?!@bool ioNeedsComputedGoto4
+  ?!@labelMap ioLabelMap
 {
   @location instructionLocation = @location.here
   @pic18ConditionExpression structured_if_condition
@@ -1024,6 +1105,7 @@ rule <structured_if_instruction>
     ?thenInstructionList
     !?ioNeedsComputedGoto2
     !?ioNeedsComputedGoto4
+    !?ioLabelMap
   @pic18InstructionList elseInstructionList
   select
     elseInstructionList = @pic18InstructionList. emptyList
@@ -1045,6 +1127,7 @@ rule <structured_if_instruction>
       ?elsifPartInstruction
       !?ioNeedsComputedGoto2
       !?ioNeedsComputedGoto4
+      !?ioLabelMap
     elseInstructionList = @pic18InstructionList. emptyList
     elseInstructionList += !elsifPartInstruction
   or
@@ -1063,6 +1146,7 @@ rule <structured_if_instruction>
       ?elseInstructionList
       !?ioNeedsComputedGoto2
       !?ioNeedsComputedGoto4
+      !?ioLabelMap
   end
   @location endOfElsePartLocation = @location.here
   outInstruction = @pic18Instruction_structured_if. new {

@@ -312,7 +312,7 @@ noreturn routine main bank:requires 0 {
 #  PR2 est fixe a 250 -> 10 kHz
   movlw  250 - 1 # La periode est PR2 + 1
   movwf  PR2
-  movlw  @T2CON (TOUTPS:0, TMR2ON:1, T2CKPS:1)
+  movlw  T2CON (TOUTPS:0, TMR2ON:1, T2CKPS:1)
   movwf  T2CON  
 #--- Autoriser les priorites d'interruption
   bsf  RCON.IPEN
@@ -331,7 +331,7 @@ Deux commentaires : ici aussi, l’instruction \pic!banksel 2! est obligatoire a
 
 L’instruction
 \begin{piccolo}
-  movlw  @T2CON (TOUTPS:0, TMR2ON:1, T2CKPS:1)
+  movlw  T2CON (TOUTPS:0, TMR2ON:1, T2CKPS:1)
 \end{piccolo}
 est particulière : elle permet de construire une valeur statique champ par champ (voir \refSectionPage{exprLiteraleDescriptiveDeRegistre}).
 

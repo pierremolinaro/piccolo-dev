@@ -69,7 +69,9 @@ rule <section_list>
 #----------------------------------------------------*
 
 rule <baseline_instruction_list>
-  !@baseline_instructionList outInstructionList {
+  !@baseline_instructionList outInstructionList
+  ?!@labelMap ioLabelMap
+{
   outInstructionList = @baseline_instructionList. emptyList
   repeat
   while
@@ -80,6 +82,7 @@ rule <baseline_instruction_list>
     @baseline_instruction instruction
     <baseline_structured_instruction>
       ?instruction
+      !?ioLabelMap
     outInstructionList += !instruction
   end
 }
@@ -107,9 +110,10 @@ rule <baseline_routine_definition>
   end
 #---
   ${$
-  @baseline_instructionList instructionList
+  @labelMap labelMap = {}
   <baseline_instruction_list>
-    ?instructionList
+    ?let instructionList
+    !?labelMap
   $}$
   ioRoutineDefinitionList +=
     !routineName
@@ -122,7 +126,9 @@ rule <baseline_routine_definition>
 #----------------------------------------------------*
 
 rule <baseline_structured_instruction>
-  !@baseline_instruction outInstruction {
+  !@baseline_instruction outInstruction
+  ?!@labelMap ioLabelMap
+{
   select
     $do$
     @lstring doLabel
@@ -130,6 +136,7 @@ rule <baseline_structured_instruction>
       doLabel = .new {!"" !.here}
     or
       $label$ ?doLabel
+      [!?ioLabelMap insertKey !doLabel]
     end
     let @location instructionLocation = @location.here
     $($
@@ -139,7 +146,7 @@ rule <baseline_structured_instruction>
     $...$
     <immediate_expression> ?let @immediatExpression highBoundExpression
     $)$
-    <baseline_instruction_list> ?let @baseline_instructionList instructionList
+    <baseline_instruction_list> ?let @baseline_instructionList instructionList !?ioLabelMap
     outInstruction = @baseline_instruction_STATIC_REPEAT. new {
       !instructionLocation
       !constantName
@@ -180,9 +187,10 @@ rule <baseline_structured_instruction>
       foreverLabel = .new {!"" !.here}
     or
       $label$ ?foreverLabel
+      [!?ioLabelMap insertKey !foreverLabel]
     end
     let instructionLocation = @location.here
-    <baseline_instruction_list> ?let instructionList
+    <baseline_instruction_list> ?let instructionList !?ioLabelMap
     $end$
     @lstring endForeverLabel
     select
@@ -197,7 +205,8 @@ rule <baseline_structured_instruction>
     outInstruction = @baseline_instruction_FOREVER. new {
       !instructionLocation
       !instructionList
-      !@location.here}
+      !@location.here
+    }
   or
     $if$
     @location instructionLocation = @location.here
@@ -255,7 +264,8 @@ rule <baseline_structured_instruction>
       !instruction
       !increment
       !registerExpression
-      !w_isTarget}
+      !w_isTarget
+    }
   or
     $if$
     @lstring ifLabel
@@ -263,8 +273,9 @@ rule <baseline_structured_instruction>
       ifLabel = .new {!"" !.here}
     or
       $label$ ?ifLabel
+      [!?ioLabelMap insertKey !ifLabel]
     end
-    <baseline_structured_if_instruction> !ifLabel ?outInstruction
+    <baseline_structured_if_instruction> !ifLabel ?outInstruction !?ioLabelMap
     $end$
     @lstring endIfLabel
     select
@@ -283,9 +294,10 @@ rule <baseline_structured_instruction>
       doLabel = .new {!"" !.here}
     or
       $label$ ?doLabel
+      [!?ioLabelMap insertKey !doLabel]
     end
     let instructionLocation = @location.here
-    <baseline_instruction_list> ?let repeatedInstructionList
+    <baseline_instruction_list> ?let repeatedInstructionList !?ioLabelMap
     let endOfRepeatedInstructionList = @location.here
     var whilePartList = @baseline_partList.emptyList{}
     repeat
@@ -301,7 +313,7 @@ rule <baseline_structured_instruction>
            + (if doLabel.string != "" then doLabel.string else "empty" end)
       end 
       <baseline_condition_expression> ?let whileCondition
-      <baseline_instruction_list> ?let instructionList
+      <baseline_instruction_list> ?let instructionList !?ioLabelMap
       whilePartList += !whileCondition !instructionList !@location.here
     while
     end
@@ -334,13 +346,12 @@ rule <baseline_structured_instruction>
 rule <baseline_structured_if_instruction>
   ?let @lstring ifLabel
   !@baseline_instruction outInstruction
+  ?!@labelMap ioLabelMap
  {
   @location instructionLocation = @location.here
   @baseline_conditionExpression structured_if_condition
   <baseline_condition_expression> ?structured_if_condition
-  @baseline_instructionList thenInstructionList
-  <baseline_instruction_list>
-    ?thenInstructionList
+  <baseline_instruction_list> ?let thenInstructionList !?ioLabelMap
   @baseline_instructionList elseInstructionList
   select
     elseInstructionList = @baseline_instructionList. emptyList
@@ -356,8 +367,7 @@ rule <baseline_structured_if_instruction>
       error elsifIfLabel : "elsif label does not match with 'if' label, it should be "
          + (if ifLabel.string != "" then ifLabel.string else "empty" end)
     end 
-    @baseline_instruction elsifPartInstruction
-    <baseline_structured_if_instruction> !ifLabel ?elsifPartInstruction
+    <baseline_structured_if_instruction> !ifLabel ?let elsifPartInstruction !?ioLabelMap
     elseInstructionList = @baseline_instructionList. emptyList
     elseInstructionList += !elsifPartInstruction
   or
@@ -372,8 +382,7 @@ rule <baseline_structured_if_instruction>
       error elseLabel : "else label does not match with 'if' label, it should be "
          + (if ifLabel.string != "" then ifLabel.string else "empty" end)
     end 
-    <baseline_instruction_list>
-      ?elseInstructionList
+    <baseline_instruction_list> ?elseInstructionList !?ioLabelMap
   end
   @location endOfElsePartLocation = @location.here
   outInstruction = @baseline_instruction_structured_if. new {

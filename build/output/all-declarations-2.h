@@ -6230,6 +6230,7 @@ class cGrammar_baseline_5F_include_5F_grammar : public cParser_baseline_5F_synta
 
 //----------- '' label
   public : virtual void nt_baseline_5F_instruction_5F_list_ (GALGAS_baseline_5F_instructionList & outArgument0,
+                                                             GALGAS_labelMap & ioArgument1,
                                                              C_Lexique_piccolo_5F_lexique * inCompiler) ;
 
 //------------------------------------- 'baseline_routine_definition' non terminal
@@ -6264,6 +6265,7 @@ class cGrammar_baseline_5F_include_5F_grammar : public cParser_baseline_5F_synta
 //----------- '' label
   public : virtual void nt_baseline_5F_structured_5F_if_5F_instruction_ (const GALGAS_lstring inArgument0,
                                                                          GALGAS_baseline_5F_instruction & outArgument1,
+                                                                         GALGAS_labelMap & ioArgument2,
                                                                          C_Lexique_piccolo_5F_lexique * inCompiler) ;
 
 //------------------------------------- 'baseline_structured_instruction' non terminal
@@ -6275,6 +6277,7 @@ class cGrammar_baseline_5F_include_5F_grammar : public cParser_baseline_5F_synta
 
 //----------- '' label
   public : virtual void nt_baseline_5F_structured_5F_instruction_ (GALGAS_baseline_5F_instruction & outArgument0,
+                                                                   GALGAS_labelMap & ioArgument1,
                                                                    C_Lexique_piccolo_5F_lexique * inCompiler) ;
 
 //------------------------------------- 'bit_number_parsing' non terminal

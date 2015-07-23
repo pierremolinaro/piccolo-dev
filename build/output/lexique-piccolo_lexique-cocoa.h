@@ -177,7 +177,6 @@ enum {piccolo_lexique_1_,
   piccolo_lexique_1__3E__3E_,
   piccolo_lexique_1__7E_,
   piccolo_lexique_1__25_,
-  piccolo_lexique_1__40_,
   piccolo_lexique_1__2E__2E__2E_
 } ;
 

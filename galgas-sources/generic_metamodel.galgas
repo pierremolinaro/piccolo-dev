@@ -1,6 +1,6 @@
 
 
-#----------------------------------------------------*
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 map @bitSliceTable {
   @uint mSliceIndex
@@ -9,7 +9,7 @@ map @bitSliceTable {
   search searchKey error message "the '%K' slice is not declared"
 }
 
-#----------------------------------------------------*
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 class @registerExpression {
   @lstring mRegisterName
@@ -17,12 +17,12 @@ class @registerExpression {
   @location mEndOfOffsetExpression
 }
 
-#----------------------------------------------------*
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 abstract class @declarationInRam {
 }
 
-#----------------------------------------------------*
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 class @byteDeclarationInRam : @declarationInRam {
   @lstring mName
@@ -31,203 +31,203 @@ class @byteDeclarationInRam : @declarationInRam {
   @string mBitDefinitionString
 }
 
-#----------------------------------------------------*
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 list @declarationInRamList {
   @declarationInRam mDeclarationInRAM
 }
 
-#----------------------------------------------------*
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 list @ramDefinitionList {
   @lstring mBankName
   @declarationInRamList mDeclaration
 }
 
-#----------------------------------------------------*
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 list @configSettingList {
   @lstring mSettingName
   @lstring mSettingValue
 }
 
-#----------------------------------------------------*
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 list @configDefinitionList {
   @location mDefinitionLocation
   @configSettingList mSettingList
 }
 
-#----------------------------------------------------*
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 abstract class @immediatExpression {
 }
 
-#----------------------------------------------------*
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 list @immediatExpressionList {
   @immediatExpression mExpression
   @location mErrorLocation
 }
 
-#----------------------------------------------------*
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 class @immediatInteger : @immediatExpression {
   @luint mValue
 }
 
-#----------------------------------------------------*
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 class @immediatRegister : @immediatExpression {
   @registerExpression mRegister
 }
 
-#----------------------------------------------------*
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 class @immediatAdd : @immediatExpression {
   @immediatExpression mLeftExpression
   @immediatExpression mRightExpression
 }
 
-#----------------------------------------------------*
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 class @immediatSub : @immediatExpression {
   @immediatExpression mLeftExpression
   @immediatExpression mRightExpression
 }
 
-#----------------------------------------------------*
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 class @immediatMul : @immediatExpression {
   @immediatExpression mLeftExpression
   @immediatExpression mRightExpression
 }
 
-#----------------------------------------------------*
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 class @immediatDiv : @immediatExpression {
   @immediatExpression mLeftExpression
   @immediatExpression mRightExpression
 }
 
-#----------------------------------------------------*
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 class @immediatMod : @immediatExpression {
   @immediatExpression mLeftExpression
   @immediatExpression mRightExpression
 }
 
-#----------------------------------------------------*
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 class @immediatOr : @immediatExpression {
   @immediatExpression mLeftExpression
   @immediatExpression mRightExpression
 }
 
-#----------------------------------------------------*
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 class @immediatAnd : @immediatExpression {
   @immediatExpression mLeftExpression
   @immediatExpression mRightExpression
 }
 
-#----------------------------------------------------*
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 class @immediatXor : @immediatExpression {
   @immediatExpression mLeftExpression
   @immediatExpression mRightExpression
 }
 
-#----------------------------------------------------*
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 class @immediatLeftShift : @immediatExpression {
   @immediatExpression mLeftExpression
   @immediatExpression mRightExpression
 }
 
-#----------------------------------------------------*
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 class @immediatRightShift : @immediatExpression {
   @immediatExpression mLeftExpression
   @immediatExpression mRightExpression
 }
 
-#----------------------------------------------------*
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 class @immediatEqualTest : @immediatExpression {
   @immediatExpression mLeftExpression
   @immediatExpression mRightExpression
 }
 
-#----------------------------------------------------*
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 class @immediatNotEqualTest : @immediatExpression {
   @immediatExpression mLeftExpression
   @immediatExpression mRightExpression
 }
 
-#----------------------------------------------------*
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 class @immediatGreaterTest : @immediatExpression {
   @immediatExpression mLeftExpression
   @immediatExpression mRightExpression
 }
 
-#----------------------------------------------------*
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 class @immediatGreaterOrEqualTest : @immediatExpression {
   @immediatExpression mLeftExpression
   @immediatExpression mRightExpression
 }
 
-#----------------------------------------------------*
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 class @immediatLowerTest : @immediatExpression {
   @immediatExpression mLeftExpression
   @immediatExpression mRightExpression
 }
 
-#----------------------------------------------------*
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 class @immediatLowerOrEqualTest : @immediatExpression {
   @immediatExpression mLeftExpression
   @immediatExpression mRightExpression
 }
 
-#----------------------------------------------------*
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 class @immediatNegate : @immediatExpression {
   @immediatExpression mExpression
 }
 
-#----------------------------------------------------*
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 class @immediatComplement : @immediatExpression {
   @immediatExpression mExpression
 }
 
-#----------------------------------------------------*
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 list @immediatSliceExpressionList {
   @lstring mSliceName
   @immediatExpression mExpression
 }
 
-#----------------------------------------------------*
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 class @immediatSlice : @immediatExpression {
   @lstring mRegisterName
   @immediatSliceExpressionList mSliceExpressionList
 }
 
-#----------------------------------------------------*
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 list @constantDefinitionList {
   @lstring mConstantName
   @immediatExpression mExpression
 }
 
-#----------------------------------------------------------------------------*
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 map @actualConfigurationMap {
   @uint mRegisterAddress
@@ -236,30 +236,36 @@ map @actualConfigurationMap {
   search searchKey error message "the '%K' configuration register is not declared"
 }
 
-#----------------------------------------------------*
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 abstract class @bitNumberExpression {
 }
 
-#----------------------------------------------------*
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 class @bitNumberLiteralExpression : @bitNumberExpression {
   @immediatExpression mBitNumberLiteralExpression
   @location mEndOfExpression
 }
 
-#----------------------------------------------------*
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 class @bitNumberLiteralValue : @bitNumberExpression {
   @luint mBitNumberLiteralValue
 }
 
-#----------------------------------------------------*
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 class @bitNumberLabelValue : @bitNumberExpression {
   @lstring mBitNumberLabelValue
   @luint mBitNumberIndexValue
 }
 
-#----------------------------------------------------*
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+map @labelMap {
+  insert insertKey error message "the '%K' label is already in use"
+}
+
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 

@@ -190,13 +190,13 @@ La seconde solution est d'utiliser la construction que nous allons décrire. Pou
 
 Les noms correspondent bien. En utilisant ces noms, nous pouvons écrire :
 \begin{piccolo}
-movlw   @ T2CON (TOUTPS:5, TMR2ON:1, T2CKPS:1)
+movlw   T2CON (TOUTPS:5, TMR2ON:1, T2CKPS:1)
 movwf   T2CON
 \end{piccolo}
 
-L'expression litérale présente la syntaxe suivante : elle est introduite par le délimiteur \texttt{@}, suivi d’un nom de registre, puis, entre parenthèses, une séquence de couples formés d’un nom de champ et d’une valeur immédiate :
+L'expression litérale présente la syntaxe suivante : elle est introduite par un nom de registre\footnote{Avant la version 3.1.0, cette construction était introduite par un un \texttt{@}. À partir de la version 3.1.0, le caractère \texttt{@} permet de définir des \emph{étiquettes} (\refSectionPage{etiquette}).}, puis, entre parenthèses, une séquence de couples formés d’un nom de champ et d’une valeur immédiate :
 \begin{piccolo}
-  @ nom_registre (nom_champ:expression_literale, ...)
+  nom_registre (nom_champ:expression_literale, ...)
 \end{piccolo}
 
 Tout registre spécial, toute variable déclarée (dans une section \pic!ram!) ayant des champs définis peut être utilisée.
