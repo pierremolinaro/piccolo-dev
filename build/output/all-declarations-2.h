@@ -6262,7 +6262,8 @@ class cGrammar_baseline_5F_include_5F_grammar : public cParser_baseline_5F_synta
   public : virtual void nt_baseline_5F_structured_5F_if_5F_instruction_indexing (C_Lexique_piccolo_5F_lexique * inCompiler) ;
 
 //----------- '' label
-  public : virtual void nt_baseline_5F_structured_5F_if_5F_instruction_ (GALGAS_baseline_5F_instruction & outArgument0,
+  public : virtual void nt_baseline_5F_structured_5F_if_5F_instruction_ (const GALGAS_lstring inArgument0,
+                                                                         GALGAS_baseline_5F_instruction & outArgument1,
                                                                          C_Lexique_piccolo_5F_lexique * inCompiler) ;
 
 //------------------------------------- 'baseline_structured_instruction' non terminal
@@ -6511,6 +6512,28 @@ class cGrammar_baseline_5F_include_5F_grammar : public cParser_baseline_5F_synta
   public : virtual int32_t select_baseline_5F_syntax_20 (C_Lexique_piccolo_5F_lexique *) ;
 
   public : virtual int32_t select_baseline_5F_syntax_21 (C_Lexique_piccolo_5F_lexique *) ;
+
+  public : virtual int32_t select_baseline_5F_syntax_22 (C_Lexique_piccolo_5F_lexique *) ;
+
+  public : virtual int32_t select_baseline_5F_syntax_23 (C_Lexique_piccolo_5F_lexique *) ;
+
+  public : virtual int32_t select_baseline_5F_syntax_24 (C_Lexique_piccolo_5F_lexique *) ;
+
+  public : virtual int32_t select_baseline_5F_syntax_25 (C_Lexique_piccolo_5F_lexique *) ;
+
+  public : virtual int32_t select_baseline_5F_syntax_26 (C_Lexique_piccolo_5F_lexique *) ;
+
+  public : virtual int32_t select_baseline_5F_syntax_27 (C_Lexique_piccolo_5F_lexique *) ;
+
+  public : virtual int32_t select_baseline_5F_syntax_28 (C_Lexique_piccolo_5F_lexique *) ;
+
+  public : virtual int32_t select_baseline_5F_syntax_29 (C_Lexique_piccolo_5F_lexique *) ;
+
+  public : virtual int32_t select_baseline_5F_syntax_30 (C_Lexique_piccolo_5F_lexique *) ;
+
+  public : virtual int32_t select_baseline_5F_syntax_31 (C_Lexique_piccolo_5F_lexique *) ;
+
+  public : virtual int32_t select_baseline_5F_syntax_32 (C_Lexique_piccolo_5F_lexique *) ;
 
   public : virtual int32_t select_communs_0 (C_Lexique_piccolo_5F_lexique *) ;
 

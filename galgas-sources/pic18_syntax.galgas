@@ -543,6 +543,12 @@ rule <structured_instruction>
     $end$
   or
     $do$
+    @lstring doLabel
+    select
+      doLabel = .new {!"" !.here}
+    or
+      $label$ ?doLabel
+    end
     let instructionLocation = @location.here
     $($
     $identifier$ ?let constantName
@@ -561,6 +567,16 @@ rule <structured_instruction>
       !@location.here
     }
     $end$
+    @lstring endDoLabel
+    select
+      endDoLabel = .new {!"" !.here}
+    or
+      $label$ ?endDoLabel
+    end
+    if doLabel.string != endDoLabel.string then
+      error endDoLabel : "end label does not match with 'do' label, it should be "
+         + (if doLabel.string != "" then doLabel.string else "empty" end)
+    end 
   or
     $checkbank$
     $integer$ ?var  @luint bankIndex
@@ -692,10 +708,25 @@ rule <structured_instruction>
     end
   or
     $forever$
-    let @location instructionLocation = @location.here
-    @pic18InstructionList instructionList
-    <instruction_list> ?instructionList !?ioNeedsComputedGoto2 !?ioNeedsComputedGoto4
+    @lstring foreverLabel
+    select
+      foreverLabel = .new {!"" !.here}
+    or
+      $label$ ?foreverLabel
+    end
+    let instructionLocation = @location.here
+    <instruction_list> ?let instructionList !?ioNeedsComputedGoto2 !?ioNeedsComputedGoto4
     $end$
+    @lstring endForeverLabel
+    select
+      endForeverLabel = .new {!"" !.here}
+    or
+      $label$ ?endForeverLabel
+    end
+    if foreverLabel.string != endForeverLabel.string then
+      error endForeverLabel : "end label does not match with 'fovever' label, it should be "
+         + (if foreverLabel.string != "" then foreverLabel.string else "empty" end)
+    end 
     outInstruction = @pic18Instruction_FOREVER. new {
       !instructionLocation
       !instructionList
@@ -792,13 +823,36 @@ rule <structured_instruction>
       !w_isTarget}
   or
     $if$
+    @lstring ifLabel
+    select
+      ifLabel = .new {!"" !.here}
+    or
+      $label$ ?ifLabel
+    end
     <structured_if_instruction>
+      !ifLabel
       ?outInstruction
       !?ioNeedsComputedGoto2
       !?ioNeedsComputedGoto4
     $end$
+    @lstring endIfLabel
+    select
+      endIfLabel = .new {!"" !.here}
+    or
+      $label$ ?endIfLabel
+    end
+    if ifLabel.string != endIfLabel.string then
+      error endIfLabel : "end label does not match with 'if' label, it should be "
+         + (if ifLabel.string != "" then ifLabel.string else "empty" end)
+    end 
   or
     $do$
+    @lstring doLabel
+    select
+      doLabel = .new {!"" !.here}
+    or
+      $label$ ?doLabel
+    end
     let @location instructionLocation = @location.here
     @pic18InstructionList repeatedInstructionList
     <instruction_list>
@@ -809,6 +863,16 @@ rule <structured_instruction>
     var whilePartList =@pic18DoWhilePartList.emptyList{}
     repeat
       $while$
+      @lstring whileLabel
+      select
+        whileLabel = .new {!"" !.here}
+      or
+        $label$ ?whileLabel
+      end
+      if doLabel.string != whileLabel.string then
+        error whileLabel : "'while' label does not match with 'do' label, it should be "
+           + (if doLabel.string != "" then doLabel.string else "empty" end)
+      end 
       @pic18ConditionExpression whileCondition
       <condition_expression> ?whileCondition
       @pic18InstructionList instructionList
@@ -820,6 +884,16 @@ rule <structured_instruction>
     while
     end
     $end$
+    @lstring endDoLabel
+    select
+      endDoLabel = .new {!"" !.here}
+    or
+      $label$ ?endDoLabel
+    end
+    if doLabel.string != endDoLabel.string then
+      error endDoLabel : "end label does not match with 'do' label, it should be "
+         + (if doLabel.string != "" then doLabel.string else "empty" end)
+    end 
     outInstruction = @pic18Instruction_do_while. new {
       !instructionLocation
       !repeatedInstructionList
@@ -937,9 +1011,11 @@ rule <structured_instruction>
 #----------------------------------------------------*
 
 rule <structured_if_instruction>
+  ?let @lstring ifLabel
   !@pic18PiccoloInstruction outInstruction
   ?!@bool ioNeedsComputedGoto2
-  ?!@bool ioNeedsComputedGoto4 {
+  ?!@bool ioNeedsComputedGoto4
+{
   @location instructionLocation = @location.here
   @pic18ConditionExpression structured_if_condition
   <condition_expression> ?structured_if_condition
@@ -953,8 +1029,19 @@ rule <structured_if_instruction>
     elseInstructionList = @pic18InstructionList. emptyList
   or
     $elsif$
+    @lstring elsifIfLabel
+    select
+      elsifIfLabel = .new {!"" !.here}
+    or
+      $label$ ?elsifIfLabel
+    end
+    if ifLabel.string != elsifIfLabel.string then
+      error elsifIfLabel : "elsif label does not match with 'if' label, it should be "
+         + (if ifLabel.string != "" then ifLabel.string else "empty" end)
+    end 
     @pic18PiccoloInstruction elsifPartInstruction
     <structured_if_instruction>
+      !ifLabel
       ?elsifPartInstruction
       !?ioNeedsComputedGoto2
       !?ioNeedsComputedGoto4
@@ -962,6 +1049,16 @@ rule <structured_if_instruction>
     elseInstructionList += !elsifPartInstruction
   or
     $else$
+    @lstring elsifLabel
+    select
+      elsifLabel = .new {!"" !.here}
+    or
+      $label$ ?elsifLabel
+    end
+    if ifLabel.string != elsifLabel.string then
+      error elsifLabel : "else label does not match with 'if' label, it should be "
+         + (if ifLabel.string != "" then ifLabel.string else "empty" end)
+    end 
     <instruction_list>
       ?elseInstructionList
       !?ioNeedsComputedGoto2

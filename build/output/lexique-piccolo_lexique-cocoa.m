@@ -256,6 +256,16 @@ static NSInteger search_into_piccolo_5F_lexique_instructionKeyWordList (NSString
       if (mTokenCode == 0) {
         mTokenCode = piccolo_lexique_1_identifier ;
       }
+    }else if (scanningOk && ([self testForInputChar:36])) {
+      do {
+        scanner_cocoa_routine_enterCharacterIntoString (& scanningOk, mLexicalAttribute_tokenString, mPreviousChar) ;
+        if (scanningOk && ([self testForInputFromChar:97 toChar:122] || [self testForInputFromChar:65 toChar:90] || [self testForInputChar:95] || [self testForInputFromChar:48 toChar:57])) {
+        }else{
+          mLoop = NO ;
+        }
+      }while (mLoop && scanningOk) ;
+      mLoop = YES ;
+      mTokenCode = piccolo_lexique_1_label ;
     }else if (scanningOk && ([self testForInputString:@"0x" advance:YES])) {
       do {
         if (scanningOk && ([self testForInputFromChar:48 toChar:57])) {
@@ -495,7 +505,7 @@ static NSInteger search_into_piccolo_5F_lexique_instructionKeyWordList (NSString
 //---------------------------------------------------------------------------------------------------------------------*
 
 - (NSUInteger) terminalVocabularyCount {
-  return 153 ;
+  return 154 ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -505,7 +515,7 @@ static NSInteger search_into_piccolo_5F_lexique_instructionKeyWordList (NSString
 //---------------------------------------------------------------------------------------------------------------------*
 
 - (NSUInteger) styleCount {
-  return 8 ;
+  return 9 ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -525,8 +535,9 @@ static NSInteger search_into_piccolo_5F_lexique_instructionKeyWordList (NSString
 //---------------------------------------------------------------------------------------------------------------------*
 
 - (NSUInteger) styleIndexForTerminal: (NSInteger) inTerminal {
-  static const NSUInteger kTerminalSymbolStyles [154] = {0,
+  static const NSUInteger kTerminalSymbolStyles [155] = {0,
     0 /* piccolo_lexique_1_identifier */,
+    8 /* piccolo_lexique_1_label */,
     4 /* piccolo_lexique_1_integer */,
     5 /* piccolo_lexique_1_literal_5F_char */,
     6 /* piccolo_lexique_1_literal_5F_string */,
@@ -690,8 +701,9 @@ static NSInteger search_into_piccolo_5F_lexique_instructionKeyWordList (NSString
 //---------------------------------------------------------------------------------------------------------------------*
 
 - (BOOL) atomicSelectionForToken: (NSUInteger) inTokenIndex {
-  static const BOOL kTerminalAtomicSelection [154] = {NO,
+  static const BOOL kTerminalAtomicSelection [155] = {NO,
     YES /* piccolo_lexique_1_identifier */,
+    YES /* piccolo_lexique_1_label */,
     YES /* piccolo_lexique_1_integer */,
     YES /* piccolo_lexique_1_literal_5F_char */,
     NO /* piccolo_lexique_1_literal_5F_string */,
@@ -856,8 +868,8 @@ static NSInteger search_into_piccolo_5F_lexique_instructionKeyWordList (NSString
 
 - (NSString *) styleNameForStyleIndex: (NSInteger) inIndex {
   NSString * result = nil ;
-  if ((inIndex >= 0) && (inIndex < 8)) {
-    NSString * kStyleArray [8] = {
+  if ((inIndex >= 0) && (inIndex < 9)) {
+    NSString * kStyleArray [9] = {
       @"Default Style",
       @"Keywords:",
       @"Instructions:",
@@ -865,7 +877,8 @@ static NSInteger search_into_piccolo_5F_lexique_instructionKeyWordList (NSString
       @"Integer Constants:",
       @"Character Constants:",
       @"String Constants:",
-      @"Comments:"
+      @"Comments:",
+      @"Labels:"
     } ;
     result = kStyleArray [inIndex] ;
   }
@@ -880,8 +893,8 @@ static NSInteger search_into_piccolo_5F_lexique_instructionKeyWordList (NSString
 
 - (NSString *) styleIdentifierForStyleIndex: (NSInteger) inIndex {
   NSString * result = nil ;
-  if ((inIndex >= 0) && (inIndex < 8)) {
-    NSString * kStyleArray [8] = {
+  if ((inIndex >= 0) && (inIndex < 9)) {
+    NSString * kStyleArray [9] = {
       @"piccolo_lexique",
       @"piccolo_lexique-keywordStyle",
       @"piccolo_lexique-instructionStyle",
@@ -889,7 +902,8 @@ static NSInteger search_into_piccolo_5F_lexique_instructionKeyWordList (NSString
       @"piccolo_lexique-integerStyle",
       @"piccolo_lexique-characterStyle",
       @"piccolo_lexique-stringStyle",
-      @"piccolo_lexique-commentStyle"
+      @"piccolo_lexique-commentStyle",
+      @"piccolo_lexique-labelStyle"
     } ;
     result = kStyleArray [inIndex] ;
   }

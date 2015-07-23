@@ -10,7 +10,7 @@ project (3:0:9) -> "piccolo" {
   %Yosemite
 #  %LatestMacOS
   %applicationBundleBase : "fr.irccyn"
-
+       
   "galgas-sources/piccolo_options.galgas"
   "galgas-sources/piccolo_options_not_in_cocoa.galgas"
 
@@ -104,4 +104,3 @@ project (3:0:9) -> "piccolo" {
   %app-source : "hand_coded_sources/installCLITools.xib"  
   %app-link : "Security.framework"  
 }
-
