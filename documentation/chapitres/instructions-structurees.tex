@@ -183,7 +183,23 @@ elsif (ccc)
 end
 \end{piccolo}
 
+À partir de la version 3.1.0, il est possible d'utiliser des étiquettes. Par exemple :
+\begin{piccolo}
+if@un (cca)
+  instructions_1
+end@un
+\end{piccolo}
 
+Une étiquette « \pic!@un! »\footnote{Voir \refSectionPage{etiquette}.} permet d'étiqueter un \pic!if!, et impose que le \pic!end! correspondant porte la même étiquette. Ceci permet de faciliter la repérage visuel des  \pic!if! et des \pic!end! appairés. Les \pic!elsif! et le \pic!else! obéissent à la même règle :
+\begin{piccolo}
+if@un (cca)
+  instructions_1
+elsif@un (ccb)
+  instructions_2
+else@un
+  instructions_3
+end@un
+\end{piccolo}
 
 
 
@@ -246,6 +262,20 @@ Cette instruction compare successivement le contenu de \pic!W! à différentes e
   \item le compilateur vérifie qu'une constante n'est pas nommée plusieurs fois : un message d'erreur est engendré si cette règle n'est pas respectée.
 \end{itemize}
 
+À partir de la version 3.1.0, il est possible d'utiliser des étiquettes. Par exemple :
+\begin{piccolo}
+switch@choix w
+case@choix cst1 :
+  instructions1 # Executees si W == cst1
+case@choix cst2 :
+  instructions2 # Executees si W == cst2
+else@choix
+  instructionsElse # Executees si W != cst1 et W != cst2
+end@choix
+\end{piccolo}
+
+Une étiquette « \pic!@choix! »\footnote{Voir \refSectionPage{etiquette}.} permet d'étiqueter un \pic!switch!, et impose que les \pic!case!, \pic!else! et \pic!end! correspondants portent la même étiquette. Ceci permet de faciliter la repérage visuel des  \pic!switch!,  \pic!case!, \pic!else! et \pic!end! appairés.
+
 
 \subsection{Citer plusieurs constantes dans une branche \texttt{case}}
 
@@ -302,13 +332,20 @@ end
 
 Implémentation : la répétition infinie est simplement réalisée par une instruction de \pic!jump! (pour les \emph{pic18}) ou \pic!goto! (pour les \emph{baseline} et \emph{mid-range}), placée à la fin de la séquence d'instructions, qui renvoie l'exécution au début de la séquence.
 
+À partir de la version 3.1.0, il est possible d'utiliser des étiquettes. Par exemple :
+\begin{piccolo}
+forever@boucle
+  liste_instructions_simples_ou_structurees
+end@boucle
+\end{piccolo}
 
+Une étiquette « \pic!@boucle! »\footnote{Voir \refSectionPage{etiquette}.} permet d'étiqueter un \pic!forever!, et impose que le \pic!end! correspondant porte la même étiquette. Ceci permet de faciliter la repérage visuel des  \pic!forever! et des \pic!end! appairés.
 
 
 
 \sectionLabel{Instruction de répétition statique}{repetitionStatique}
 
-\textbf{À partir de Piccolo 3.0.3, la syntaxe a été modifiée dans la version 3.0.8.}
+\textbf{À partir de Piccolo 3.0.3, et la syntaxe a été modifiée dans la version 3.0.8.}
 
 
 Cette instruction a la syntaxe suivante :
@@ -368,6 +405,14 @@ end
 
 
 
+À partir de la version 3.1.0, il est possible d'utiliser des étiquettes. Par exemple :
+\begin{piccolo}
+do@rep (nom : expression_borne_inf ... expression_borne_sup)
+  liste_instructions_simples_ou_structurees
+end@rep
+\end{piccolo}
+
+Une étiquette « \pic!@rep! »\footnote{Voir \refSectionPage{etiquette}.} permet d'étiqueter un \pic!do!, et impose que le \pic!end! correspondant porte la même étiquette. Ceci permet de faciliter la repérage visuel des  \pic!do! et des \pic!end! appairés.
 
 
 
@@ -485,6 +530,15 @@ end
   \ligne
 \end{figure}
 
+À partir de la version 3.1.0, il est possible d'utiliser des étiquettes. Par exemple :
+\begin{piccolo}
+do@boucle
+  instructions
+while@boucle (cca)
+end@boucle
+\end{piccolo}
+
+Une étiquette « \pic!@boucle! »\footnote{Voir \refSectionPage{etiquette}.} permet d'étiqueter un \pic!do!, et impose que les \pic!while! et le \pic!end! correspondants portent la même étiquette. Ceci permet de faciliter la repérage visuel des \pic!do!, des \pic!while! et des \pic!end! appairés.
 
 
 

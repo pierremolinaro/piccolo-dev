@@ -22,7 +22,7 @@ Piccolo définit les délimiteurs listés dans le \refTableau{delimiteursLangage
     \hline
     \pic!*!  & \pic!*+! & \pic!,!  & \pic+!=+ & \pic!<=! & \pic!>=! & \pic!*-! & \pic!+*! & \pic!;! & \pic!:! & \pic!==! & \pic!<! & \pic!>! & \pic![! & \pic!]! \\
     \pic!.! & \pic+!+ & \pic!&! & \pic!|!  & \pic!}! & \pic!}! & \pic!(!  & \pic!)!  & \pic!/!  & \pic!-! & \pic!+! & \pic!^! & \pic!<<! & \pic!>>! & \pic!~!\\
-    \pic!@! & \pic!%! & \pic!=! & \pic!?! & \pic!...!\\
+    \pic!%! & \pic!=! & \pic!?! & \pic!...!\\
   \end{tabular}
   \caption{Délimiteurs du langage Piccolo}
   \labelTableau{delimiteursLangage}
@@ -130,6 +130,23 @@ Attention :
   \item contrairement au C, un nombre qui commence par un zéro est un nombre écrit en décimal ;
   \item contrairement à l’assembleur PIC, le préfixe \texttt{0x} est indispensable pour écrire un nombre en hexadécimal.
 \end{itemize}
+
+\sectionLabel{Étiquettes}{etiquette}
+
+
+À partir de la version 3.1.0, des étiquettes marquant les instructions structurées peuvent être définies. Une étiquette est séquence commençant par un \texttt{@} et suivi de zéro, un ou plusieurs chiffres, lettres, ou caractère de soulignement (« \texttt{\_} »). Voici quelques étiquettes valides : \pic!@toto!, \pic!@truc1!, \pic!@123!, \pic!@!.
+
+Les étiquettes peuvent être utilisées :
+\begin{itemize}
+  \item l'instruction conditionnelle structurée (\refSectionPage{instructionConditionnelleStructuree}) ;
+  \item l'instruction de répétition infinie (\refSectionPage{repetitionInfinie}) ;
+  \item l'instruction de répétition statique (\refSectionPage{repetitionStatique}) ;
+  \item l'instruction répétitive (\refSectionPage{instructionRepetitive}) ;
+  \item l'instruction \texttt{switch} (\refSectionPage{instructionSwitch}).
+
+
+\end{itemize}
+
 
 \section{Format}
 

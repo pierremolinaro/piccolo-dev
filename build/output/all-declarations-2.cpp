@@ -12590,16 +12590,15 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken__2D_, SHIFT (45)
 , C_Lexique_piccolo_5F_lexique::kToken__7E_, SHIFT (46)
 , C_Lexique_piccolo_5F_lexique::kToken_literal_5F_char, SHIFT (47)
-, C_Lexique_piccolo_5F_lexique::kToken__40_, SHIFT (48)
 , END
-// State S32 (index = 230)
-, C_Lexique_piccolo_5F_lexique::kToken_page, SHIFT (56)
+// State S32 (index = 228)
+, C_Lexique_piccolo_5F_lexique::kToken_page, SHIFT (55)
 , C_Lexique_piccolo_5F_lexique::kToken__7B_, REDUCE (43)
 , END
-// State S33 (index = 235)
-, C_Lexique_piccolo_5F_lexique::kToken_identifier, SHIFT (58)
+// State S33 (index = 233)
+, C_Lexique_piccolo_5F_lexique::kToken_identifier, SHIFT (57)
 , END
-// State S34 (index = 238)
+// State S34 (index = 236)
 , C_Lexique_piccolo_5F_lexique::kToken_mark, SHIFT (1)
 , C_Lexique_piccolo_5F_lexique::kToken_unused, SHIFT (2)
 , C_Lexique_piccolo_5F_lexique::kToken_routine, REDUCE (41)
@@ -12609,10 +12608,10 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken_const, SHIFT (6)
 , C_Lexique_piccolo_5F_lexique::kToken_, REDUCE (26)
 , END
-// State S35 (index = 255)
-, C_Lexique_piccolo_5F_lexique::kToken_identifier, SHIFT (60)
+// State S35 (index = 253)
+, C_Lexique_piccolo_5F_lexique::kToken_identifier, SHIFT (59)
 , END
-// State S36 (index = 258)
+// State S36 (index = 256)
 , C_Lexique_piccolo_5F_lexique::kToken_mark, SHIFT (1)
 , C_Lexique_piccolo_5F_lexique::kToken_unused, SHIFT (2)
 , C_Lexique_piccolo_5F_lexique::kToken_routine, REDUCE (41)
@@ -12622,11 +12621,11 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken_const, SHIFT (6)
 , C_Lexique_piccolo_5F_lexique::kToken_, REDUCE (26)
 , END
-// State S37 (index = 275)
-, C_Lexique_piccolo_5F_lexique::kToken_literal_5F_string, SHIFT (62)
-, C_Lexique_piccolo_5F_lexique::kToken_identifier, SHIFT (63)
+// State S37 (index = 273)
+, C_Lexique_piccolo_5F_lexique::kToken_literal_5F_string, SHIFT (61)
+, C_Lexique_piccolo_5F_lexique::kToken_identifier, SHIFT (62)
 , END
-// State S38 (index = 280)
+// State S38 (index = 278)
 , C_Lexique_piccolo_5F_lexique::kToken_mark, REDUCE (11)
 , C_Lexique_piccolo_5F_lexique::kToken_unused, REDUCE (11)
 , C_Lexique_piccolo_5F_lexique::kToken_routine, REDUCE (11)
@@ -12636,17 +12635,17 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken_const, REDUCE (11)
 , C_Lexique_piccolo_5F_lexique::kToken_, REDUCE (11)
 , END
-// State S39 (index = 297)
-, C_Lexique_piccolo_5F_lexique::kToken_identifier, SHIFT (65)
+// State S39 (index = 295)
+, C_Lexique_piccolo_5F_lexique::kToken_identifier, SHIFT (64)
 , END
-// State S40 (index = 300)
+// State S40 (index = 298)
 , C_Lexique_piccolo_5F_lexique::kToken_byte, SHIFT (39)
 , C_Lexique_piccolo_5F_lexique::kToken__7D_, REDUCE (146)
 , END
-// State S41 (index = 305)
-, C_Lexique_piccolo_5F_lexique::kToken__7D_, SHIFT (67)
+// State S41 (index = 303)
+, C_Lexique_piccolo_5F_lexique::kToken__7D_, SHIFT (66)
 , END
-// State S42 (index = 308)
+// State S42 (index = 306)
 , C_Lexique_piccolo_5F_lexique::kToken_mark, REDUCE (176)
 , C_Lexique_piccolo_5F_lexique::kToken_unused, REDUCE (176)
 , C_Lexique_piccolo_5F_lexique::kToken__2C_, REDUCE (176)
@@ -12654,6 +12653,7 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken_noreturn, REDUCE (176)
 , C_Lexique_piccolo_5F_lexique::kToken__7D_, REDUCE (176)
 , C_Lexique_piccolo_5F_lexique::kToken_do, REDUCE (176)
+, C_Lexique_piccolo_5F_lexique::kToken__28_, SHIFT (67)
 , C_Lexique_piccolo_5F_lexique::kToken__2E__2E__2E_, REDUCE (176)
 , C_Lexique_piccolo_5F_lexique::kToken__29_, REDUCE (176)
 , C_Lexique_piccolo_5F_lexique::kToken_end, REDUCE (176)
@@ -12792,27 +12792,24 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken__2D_, SHIFT (45)
 , C_Lexique_piccolo_5F_lexique::kToken__7E_, SHIFT (46)
 , C_Lexique_piccolo_5F_lexique::kToken_literal_5F_char, SHIFT (47)
-, C_Lexique_piccolo_5F_lexique::kToken__40_, SHIFT (48)
 , END
-// State S45 (index = 595)
+// State S45 (index = 593)
 , C_Lexique_piccolo_5F_lexique::kToken_identifier, SHIFT (42)
 , C_Lexique_piccolo_5F_lexique::kToken_integer, SHIFT (43)
 , C_Lexique_piccolo_5F_lexique::kToken__28_, SHIFT (44)
 , C_Lexique_piccolo_5F_lexique::kToken__2D_, SHIFT (45)
 , C_Lexique_piccolo_5F_lexique::kToken__7E_, SHIFT (46)
 , C_Lexique_piccolo_5F_lexique::kToken_literal_5F_char, SHIFT (47)
-, C_Lexique_piccolo_5F_lexique::kToken__40_, SHIFT (48)
 , END
-// State S46 (index = 610)
+// State S46 (index = 606)
 , C_Lexique_piccolo_5F_lexique::kToken_identifier, SHIFT (42)
 , C_Lexique_piccolo_5F_lexique::kToken_integer, SHIFT (43)
 , C_Lexique_piccolo_5F_lexique::kToken__28_, SHIFT (44)
 , C_Lexique_piccolo_5F_lexique::kToken__2D_, SHIFT (45)
 , C_Lexique_piccolo_5F_lexique::kToken__7E_, SHIFT (46)
 , C_Lexique_piccolo_5F_lexique::kToken_literal_5F_char, SHIFT (47)
-, C_Lexique_piccolo_5F_lexique::kToken__40_, SHIFT (48)
 , END
-// State S47 (index = 625)
+// State S47 (index = 619)
 , C_Lexique_piccolo_5F_lexique::kToken_mark, REDUCE (172)
 , C_Lexique_piccolo_5F_lexique::kToken_unused, REDUCE (172)
 , C_Lexique_piccolo_5F_lexique::kToken__2C_, REDUCE (172)
@@ -12881,10 +12878,7 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken__25_, REDUCE (172)
 , C_Lexique_piccolo_5F_lexique::kToken_, REDUCE (172)
 , END
-// State S48 (index = 760)
-, C_Lexique_piccolo_5F_lexique::kToken_identifier, SHIFT (73)
-, END
-// State S49 (index = 763)
+// State S48 (index = 754)
 , C_Lexique_piccolo_5F_lexique::kToken_mark, REDUCE (14)
 , C_Lexique_piccolo_5F_lexique::kToken_unused, REDUCE (14)
 , C_Lexique_piccolo_5F_lexique::kToken_routine, REDUCE (14)
@@ -12894,7 +12888,7 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken_const, REDUCE (14)
 , C_Lexique_piccolo_5F_lexique::kToken_, REDUCE (14)
 , END
-// State S50 (index = 780)
+// State S49 (index = 771)
 , C_Lexique_piccolo_5F_lexique::kToken_mark, REDUCE (148)
 , C_Lexique_piccolo_5F_lexique::kToken_unused, REDUCE (148)
 , C_Lexique_piccolo_5F_lexique::kToken__2C_, REDUCE (148)
@@ -12941,15 +12935,15 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken_iorlw, REDUCE (148)
 , C_Lexique_piccolo_5F_lexique::kToken_movlw, REDUCE (148)
 , C_Lexique_piccolo_5F_lexique::kToken_xorlw, REDUCE (148)
-, C_Lexique_piccolo_5F_lexique::kToken__7C_, SHIFT (74)
+, C_Lexique_piccolo_5F_lexique::kToken__7C_, SHIFT (73)
 , C_Lexique_piccolo_5F_lexique::kToken_configuration, REDUCE (148)
 , C_Lexique_piccolo_5F_lexique::kToken__5D_, REDUCE (148)
 , C_Lexique_piccolo_5F_lexique::kToken_ram, REDUCE (148)
 , C_Lexique_piccolo_5F_lexique::kToken_const, REDUCE (148)
-, C_Lexique_piccolo_5F_lexique::kToken__5E_, SHIFT (75)
+, C_Lexique_piccolo_5F_lexique::kToken__5E_, SHIFT (74)
 , C_Lexique_piccolo_5F_lexique::kToken_, REDUCE (148)
 , END
-// State S51 (index = 887)
+// State S50 (index = 878)
 , C_Lexique_piccolo_5F_lexique::kToken_mark, REDUCE (151)
 , C_Lexique_piccolo_5F_lexique::kToken_unused, REDUCE (151)
 , C_Lexique_piccolo_5F_lexique::kToken__2C_, REDUCE (151)
@@ -12997,7 +12991,7 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken_movlw, REDUCE (151)
 , C_Lexique_piccolo_5F_lexique::kToken_xorlw, REDUCE (151)
 , C_Lexique_piccolo_5F_lexique::kToken__7C_, REDUCE (151)
-, C_Lexique_piccolo_5F_lexique::kToken__26_, SHIFT (77)
+, C_Lexique_piccolo_5F_lexique::kToken__26_, SHIFT (76)
 , C_Lexique_piccolo_5F_lexique::kToken_configuration, REDUCE (151)
 , C_Lexique_piccolo_5F_lexique::kToken__5D_, REDUCE (151)
 , C_Lexique_piccolo_5F_lexique::kToken_ram, REDUCE (151)
@@ -13005,7 +12999,7 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken__5E_, REDUCE (151)
 , C_Lexique_piccolo_5F_lexique::kToken_, REDUCE (151)
 , END
-// State S52 (index = 996)
+// State S51 (index = 987)
 , C_Lexique_piccolo_5F_lexique::kToken_mark, REDUCE (153)
 , C_Lexique_piccolo_5F_lexique::kToken_unused, REDUCE (153)
 , C_Lexique_piccolo_5F_lexique::kToken__2C_, REDUCE (153)
@@ -13056,18 +13050,18 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken__26_, REDUCE (153)
 , C_Lexique_piccolo_5F_lexique::kToken_configuration, REDUCE (153)
 , C_Lexique_piccolo_5F_lexique::kToken__5D_, REDUCE (153)
-, C_Lexique_piccolo_5F_lexique::kToken__3C_, SHIFT (79)
-, C_Lexique_piccolo_5F_lexique::kToken__3E_, SHIFT (80)
+, C_Lexique_piccolo_5F_lexique::kToken__3C_, SHIFT (78)
+, C_Lexique_piccolo_5F_lexique::kToken__3E_, SHIFT (79)
 , C_Lexique_piccolo_5F_lexique::kToken_ram, REDUCE (153)
 , C_Lexique_piccolo_5F_lexique::kToken_const, REDUCE (153)
 , C_Lexique_piccolo_5F_lexique::kToken__5E_, REDUCE (153)
-, C_Lexique_piccolo_5F_lexique::kToken__3D__3D_, SHIFT (81)
-, C_Lexique_piccolo_5F_lexique::kToken__21__3D_, SHIFT (82)
-, C_Lexique_piccolo_5F_lexique::kToken__3E__3D_, SHIFT (83)
-, C_Lexique_piccolo_5F_lexique::kToken__3C__3D_, SHIFT (84)
+, C_Lexique_piccolo_5F_lexique::kToken__3D__3D_, SHIFT (80)
+, C_Lexique_piccolo_5F_lexique::kToken__21__3D_, SHIFT (81)
+, C_Lexique_piccolo_5F_lexique::kToken__3E__3D_, SHIFT (82)
+, C_Lexique_piccolo_5F_lexique::kToken__3C__3D_, SHIFT (83)
 , C_Lexique_piccolo_5F_lexique::kToken_, REDUCE (153)
 , END
-// State S53 (index = 1117)
+// State S52 (index = 1108)
 , C_Lexique_piccolo_5F_lexique::kToken_mark, REDUCE (160)
 , C_Lexique_piccolo_5F_lexique::kToken_unused, REDUCE (160)
 , C_Lexique_piccolo_5F_lexique::kToken__2C_, REDUCE (160)
@@ -13119,7 +13113,7 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken_configuration, REDUCE (160)
 , C_Lexique_piccolo_5F_lexique::kToken__5D_, REDUCE (160)
 , C_Lexique_piccolo_5F_lexique::kToken__3C_, REDUCE (160)
-, C_Lexique_piccolo_5F_lexique::kToken__2D_, SHIFT (86)
+, C_Lexique_piccolo_5F_lexique::kToken__2D_, SHIFT (85)
 , C_Lexique_piccolo_5F_lexique::kToken__3E_, REDUCE (160)
 , C_Lexique_piccolo_5F_lexique::kToken_ram, REDUCE (160)
 , C_Lexique_piccolo_5F_lexique::kToken_const, REDUCE (160)
@@ -13128,12 +13122,12 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken__21__3D_, REDUCE (160)
 , C_Lexique_piccolo_5F_lexique::kToken__3E__3D_, REDUCE (160)
 , C_Lexique_piccolo_5F_lexique::kToken__3C__3D_, REDUCE (160)
-, C_Lexique_piccolo_5F_lexique::kToken__2B_, SHIFT (87)
-, C_Lexique_piccolo_5F_lexique::kToken__3C__3C_, SHIFT (88)
-, C_Lexique_piccolo_5F_lexique::kToken__3E__3E_, SHIFT (89)
+, C_Lexique_piccolo_5F_lexique::kToken__2B_, SHIFT (86)
+, C_Lexique_piccolo_5F_lexique::kToken__3C__3C_, SHIFT (87)
+, C_Lexique_piccolo_5F_lexique::kToken__3E__3E_, SHIFT (88)
 , C_Lexique_piccolo_5F_lexique::kToken_, REDUCE (160)
 , END
-// State S54 (index = 1246)
+// State S53 (index = 1237)
 , C_Lexique_piccolo_5F_lexique::kToken_mark, REDUCE (165)
 , C_Lexique_piccolo_5F_lexique::kToken_unused, REDUCE (165)
 , C_Lexique_piccolo_5F_lexique::kToken__2C_, REDUCE (165)
@@ -13185,7 +13179,7 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken_configuration, REDUCE (165)
 , C_Lexique_piccolo_5F_lexique::kToken__5D_, REDUCE (165)
 , C_Lexique_piccolo_5F_lexique::kToken__3C_, REDUCE (165)
-, C_Lexique_piccolo_5F_lexique::kToken__2F_, SHIFT (91)
+, C_Lexique_piccolo_5F_lexique::kToken__2F_, SHIFT (90)
 , C_Lexique_piccolo_5F_lexique::kToken__2D_, REDUCE (165)
 , C_Lexique_piccolo_5F_lexique::kToken__3E_, REDUCE (165)
 , C_Lexique_piccolo_5F_lexique::kToken_ram, REDUCE (165)
@@ -13198,11 +13192,11 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken__2B_, REDUCE (165)
 , C_Lexique_piccolo_5F_lexique::kToken__3C__3C_, REDUCE (165)
 , C_Lexique_piccolo_5F_lexique::kToken__3E__3E_, REDUCE (165)
-, C_Lexique_piccolo_5F_lexique::kToken__2A_, SHIFT (92)
-, C_Lexique_piccolo_5F_lexique::kToken__25_, SHIFT (93)
+, C_Lexique_piccolo_5F_lexique::kToken__2A_, SHIFT (91)
+, C_Lexique_piccolo_5F_lexique::kToken__25_, SHIFT (92)
 , C_Lexique_piccolo_5F_lexique::kToken_, REDUCE (165)
 , END
-// State S55 (index = 1381)
+// State S54 (index = 1372)
 , C_Lexique_piccolo_5F_lexique::kToken_mark, REDUCE (20)
 , C_Lexique_piccolo_5F_lexique::kToken_unused, REDUCE (20)
 , C_Lexique_piccolo_5F_lexique::kToken__2C_, REDUCE (20)
@@ -13271,13 +13265,13 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken__25_, REDUCE (20)
 , C_Lexique_piccolo_5F_lexique::kToken_, REDUCE (20)
 , END
-// State S56 (index = 1516)
-, C_Lexique_piccolo_5F_lexique::kToken_integer, SHIFT (95)
+// State S55 (index = 1507)
+, C_Lexique_piccolo_5F_lexique::kToken_integer, SHIFT (94)
 , END
-// State S57 (index = 1519)
-, C_Lexique_piccolo_5F_lexique::kToken__7B_, SHIFT (96)
+// State S56 (index = 1510)
+, C_Lexique_piccolo_5F_lexique::kToken__7B_, SHIFT (95)
 , END
-// State S58 (index = 1522)
+// State S57 (index = 1513)
 , C_Lexique_piccolo_5F_lexique::kToken_mark, REDUCE (34)
 , C_Lexique_piccolo_5F_lexique::kToken_unused, REDUCE (34)
 , C_Lexique_piccolo_5F_lexique::kToken__2C_, SHIFT (33)
@@ -13288,10 +13282,10 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken_const, REDUCE (34)
 , C_Lexique_piccolo_5F_lexique::kToken_, REDUCE (34)
 , END
-// State S59 (index = 1541)
+// State S58 (index = 1532)
 , C_Lexique_piccolo_5F_lexique::kToken_, REDUCE (28)
 , END
-// State S60 (index = 1544)
+// State S59 (index = 1535)
 , C_Lexique_piccolo_5F_lexique::kToken_mark, REDUCE (36)
 , C_Lexique_piccolo_5F_lexique::kToken_unused, REDUCE (36)
 , C_Lexique_piccolo_5F_lexique::kToken__2C_, SHIFT (35)
@@ -13302,31 +13296,31 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken_const, REDUCE (36)
 , C_Lexique_piccolo_5F_lexique::kToken_, REDUCE (36)
 , END
-// State S61 (index = 1563)
+// State S60 (index = 1554)
 , C_Lexique_piccolo_5F_lexique::kToken_, REDUCE (29)
 , END
-// State S62 (index = 1566)
+// State S61 (index = 1557)
 , C_Lexique_piccolo_5F_lexique::kToken_identifier, REDUCE (132)
 , C_Lexique_piccolo_5F_lexique::kToken__7D_, REDUCE (132)
 , END
-// State S63 (index = 1571)
+// State S62 (index = 1562)
 , C_Lexique_piccolo_5F_lexique::kToken_identifier, REDUCE (131)
 , C_Lexique_piccolo_5F_lexique::kToken__7D_, REDUCE (131)
 , END
-// State S64 (index = 1576)
+// State S63 (index = 1567)
 , C_Lexique_piccolo_5F_lexique::kToken_identifier, SHIFT (28)
 , C_Lexique_piccolo_5F_lexique::kToken__7D_, REDUCE (129)
 , END
-// State S65 (index = 1581)
+// State S64 (index = 1572)
 , C_Lexique_piccolo_5F_lexique::kToken_byte, REDUCE (133)
 , C_Lexique_piccolo_5F_lexique::kToken__7D_, REDUCE (133)
-, C_Lexique_piccolo_5F_lexique::kToken__5B_, SHIFT (100)
+, C_Lexique_piccolo_5F_lexique::kToken__5B_, SHIFT (99)
 , C_Lexique_piccolo_5F_lexique::kToken__3C_, REDUCE (133)
 , END
-// State S66 (index = 1590)
+// State S65 (index = 1581)
 , C_Lexique_piccolo_5F_lexique::kToken__7D_, REDUCE (147)
 , END
-// State S67 (index = 1593)
+// State S66 (index = 1584)
 , C_Lexique_piccolo_5F_lexique::kToken_mark, REDUCE (13)
 , C_Lexique_piccolo_5F_lexique::kToken_unused, REDUCE (13)
 , C_Lexique_piccolo_5F_lexique::kToken_routine, REDUCE (13)
@@ -13336,16 +13330,18 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken_const, REDUCE (13)
 , C_Lexique_piccolo_5F_lexique::kToken_, REDUCE (13)
 , END
-// State S68 (index = 1610)
+// State S67 (index = 1601)
+, C_Lexique_piccolo_5F_lexique::kToken_identifier, SHIFT (101)
+, END
+// State S68 (index = 1604)
 , C_Lexique_piccolo_5F_lexique::kToken_identifier, SHIFT (42)
 , C_Lexique_piccolo_5F_lexique::kToken_integer, SHIFT (43)
 , C_Lexique_piccolo_5F_lexique::kToken__28_, SHIFT (44)
 , C_Lexique_piccolo_5F_lexique::kToken__2D_, SHIFT (45)
 , C_Lexique_piccolo_5F_lexique::kToken__7E_, SHIFT (46)
 , C_Lexique_piccolo_5F_lexique::kToken_literal_5F_char, SHIFT (47)
-, C_Lexique_piccolo_5F_lexique::kToken__40_, SHIFT (48)
 , END
-// State S69 (index = 1625)
+// State S69 (index = 1617)
 , C_Lexique_piccolo_5F_lexique::kToken_mark, REDUCE (173)
 , C_Lexique_piccolo_5F_lexique::kToken_unused, REDUCE (173)
 , C_Lexique_piccolo_5F_lexique::kToken__2C_, REDUCE (173)
@@ -13414,10 +13410,10 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken__25_, REDUCE (173)
 , C_Lexique_piccolo_5F_lexique::kToken_, REDUCE (173)
 , END
-// State S70 (index = 1760)
+// State S70 (index = 1752)
 , C_Lexique_piccolo_5F_lexique::kToken__29_, SHIFT (103)
 , END
-// State S71 (index = 1763)
+// State S71 (index = 1755)
 , C_Lexique_piccolo_5F_lexique::kToken_mark, REDUCE (169)
 , C_Lexique_piccolo_5F_lexique::kToken_unused, REDUCE (169)
 , C_Lexique_piccolo_5F_lexique::kToken__2C_, REDUCE (169)
@@ -13486,7 +13482,7 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken__25_, REDUCE (169)
 , C_Lexique_piccolo_5F_lexique::kToken_, REDUCE (169)
 , END
-// State S72 (index = 1898)
+// State S72 (index = 1890)
 , C_Lexique_piccolo_5F_lexique::kToken_mark, REDUCE (170)
 , C_Lexique_piccolo_5F_lexique::kToken_unused, REDUCE (170)
 , C_Lexique_piccolo_5F_lexique::kToken__2C_, REDUCE (170)
@@ -13555,28 +13551,23 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken__25_, REDUCE (170)
 , C_Lexique_piccolo_5F_lexique::kToken_, REDUCE (170)
 , END
-// State S73 (index = 2033)
-, C_Lexique_piccolo_5F_lexique::kToken__28_, SHIFT (104)
-, END
-// State S74 (index = 2036)
+// State S73 (index = 2025)
 , C_Lexique_piccolo_5F_lexique::kToken_identifier, SHIFT (42)
 , C_Lexique_piccolo_5F_lexique::kToken_integer, SHIFT (43)
 , C_Lexique_piccolo_5F_lexique::kToken__28_, SHIFT (44)
 , C_Lexique_piccolo_5F_lexique::kToken__2D_, SHIFT (45)
 , C_Lexique_piccolo_5F_lexique::kToken__7E_, SHIFT (46)
 , C_Lexique_piccolo_5F_lexique::kToken_literal_5F_char, SHIFT (47)
-, C_Lexique_piccolo_5F_lexique::kToken__40_, SHIFT (48)
+, END
+// State S74 (index = 2038)
+, C_Lexique_piccolo_5F_lexique::kToken_identifier, SHIFT (42)
+, C_Lexique_piccolo_5F_lexique::kToken_integer, SHIFT (43)
+, C_Lexique_piccolo_5F_lexique::kToken__28_, SHIFT (44)
+, C_Lexique_piccolo_5F_lexique::kToken__2D_, SHIFT (45)
+, C_Lexique_piccolo_5F_lexique::kToken__7E_, SHIFT (46)
+, C_Lexique_piccolo_5F_lexique::kToken_literal_5F_char, SHIFT (47)
 , END
 // State S75 (index = 2051)
-, C_Lexique_piccolo_5F_lexique::kToken_identifier, SHIFT (42)
-, C_Lexique_piccolo_5F_lexique::kToken_integer, SHIFT (43)
-, C_Lexique_piccolo_5F_lexique::kToken__28_, SHIFT (44)
-, C_Lexique_piccolo_5F_lexique::kToken__2D_, SHIFT (45)
-, C_Lexique_piccolo_5F_lexique::kToken__7E_, SHIFT (46)
-, C_Lexique_piccolo_5F_lexique::kToken_literal_5F_char, SHIFT (47)
-, C_Lexique_piccolo_5F_lexique::kToken__40_, SHIFT (48)
-, END
-// State S76 (index = 2066)
 , C_Lexique_piccolo_5F_lexique::kToken_mark, REDUCE (15)
 , C_Lexique_piccolo_5F_lexique::kToken_unused, REDUCE (15)
 , C_Lexique_piccolo_5F_lexique::kToken__2C_, REDUCE (15)
@@ -13629,16 +13620,15 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken_const, REDUCE (15)
 , C_Lexique_piccolo_5F_lexique::kToken_, REDUCE (15)
 , END
-// State S77 (index = 2169)
+// State S76 (index = 2154)
 , C_Lexique_piccolo_5F_lexique::kToken_identifier, SHIFT (42)
 , C_Lexique_piccolo_5F_lexique::kToken_integer, SHIFT (43)
 , C_Lexique_piccolo_5F_lexique::kToken__28_, SHIFT (44)
 , C_Lexique_piccolo_5F_lexique::kToken__2D_, SHIFT (45)
 , C_Lexique_piccolo_5F_lexique::kToken__7E_, SHIFT (46)
 , C_Lexique_piccolo_5F_lexique::kToken_literal_5F_char, SHIFT (47)
-, C_Lexique_piccolo_5F_lexique::kToken__40_, SHIFT (48)
 , END
-// State S78 (index = 2184)
+// State S77 (index = 2167)
 , C_Lexique_piccolo_5F_lexique::kToken_mark, REDUCE (16)
 , C_Lexique_piccolo_5F_lexique::kToken_unused, REDUCE (16)
 , C_Lexique_piccolo_5F_lexique::kToken__2C_, REDUCE (16)
@@ -13693,61 +13683,55 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken__5E_, REDUCE (16)
 , C_Lexique_piccolo_5F_lexique::kToken_, REDUCE (16)
 , END
-// State S79 (index = 2291)
+// State S78 (index = 2274)
 , C_Lexique_piccolo_5F_lexique::kToken_identifier, SHIFT (42)
 , C_Lexique_piccolo_5F_lexique::kToken_integer, SHIFT (43)
 , C_Lexique_piccolo_5F_lexique::kToken__28_, SHIFT (44)
 , C_Lexique_piccolo_5F_lexique::kToken__2D_, SHIFT (45)
 , C_Lexique_piccolo_5F_lexique::kToken__7E_, SHIFT (46)
 , C_Lexique_piccolo_5F_lexique::kToken_literal_5F_char, SHIFT (47)
-, C_Lexique_piccolo_5F_lexique::kToken__40_, SHIFT (48)
 , END
-// State S80 (index = 2306)
+// State S79 (index = 2287)
 , C_Lexique_piccolo_5F_lexique::kToken_identifier, SHIFT (42)
 , C_Lexique_piccolo_5F_lexique::kToken_integer, SHIFT (43)
 , C_Lexique_piccolo_5F_lexique::kToken__28_, SHIFT (44)
 , C_Lexique_piccolo_5F_lexique::kToken__2D_, SHIFT (45)
 , C_Lexique_piccolo_5F_lexique::kToken__7E_, SHIFT (46)
 , C_Lexique_piccolo_5F_lexique::kToken_literal_5F_char, SHIFT (47)
-, C_Lexique_piccolo_5F_lexique::kToken__40_, SHIFT (48)
 , END
-// State S81 (index = 2321)
+// State S80 (index = 2300)
 , C_Lexique_piccolo_5F_lexique::kToken_identifier, SHIFT (42)
 , C_Lexique_piccolo_5F_lexique::kToken_integer, SHIFT (43)
 , C_Lexique_piccolo_5F_lexique::kToken__28_, SHIFT (44)
 , C_Lexique_piccolo_5F_lexique::kToken__2D_, SHIFT (45)
 , C_Lexique_piccolo_5F_lexique::kToken__7E_, SHIFT (46)
 , C_Lexique_piccolo_5F_lexique::kToken_literal_5F_char, SHIFT (47)
-, C_Lexique_piccolo_5F_lexique::kToken__40_, SHIFT (48)
 , END
-// State S82 (index = 2336)
+// State S81 (index = 2313)
 , C_Lexique_piccolo_5F_lexique::kToken_identifier, SHIFT (42)
 , C_Lexique_piccolo_5F_lexique::kToken_integer, SHIFT (43)
 , C_Lexique_piccolo_5F_lexique::kToken__28_, SHIFT (44)
 , C_Lexique_piccolo_5F_lexique::kToken__2D_, SHIFT (45)
 , C_Lexique_piccolo_5F_lexique::kToken__7E_, SHIFT (46)
 , C_Lexique_piccolo_5F_lexique::kToken_literal_5F_char, SHIFT (47)
-, C_Lexique_piccolo_5F_lexique::kToken__40_, SHIFT (48)
 , END
-// State S83 (index = 2351)
+// State S82 (index = 2326)
 , C_Lexique_piccolo_5F_lexique::kToken_identifier, SHIFT (42)
 , C_Lexique_piccolo_5F_lexique::kToken_integer, SHIFT (43)
 , C_Lexique_piccolo_5F_lexique::kToken__28_, SHIFT (44)
 , C_Lexique_piccolo_5F_lexique::kToken__2D_, SHIFT (45)
 , C_Lexique_piccolo_5F_lexique::kToken__7E_, SHIFT (46)
 , C_Lexique_piccolo_5F_lexique::kToken_literal_5F_char, SHIFT (47)
-, C_Lexique_piccolo_5F_lexique::kToken__40_, SHIFT (48)
 , END
-// State S84 (index = 2366)
+// State S83 (index = 2339)
 , C_Lexique_piccolo_5F_lexique::kToken_identifier, SHIFT (42)
 , C_Lexique_piccolo_5F_lexique::kToken_integer, SHIFT (43)
 , C_Lexique_piccolo_5F_lexique::kToken__28_, SHIFT (44)
 , C_Lexique_piccolo_5F_lexique::kToken__2D_, SHIFT (45)
 , C_Lexique_piccolo_5F_lexique::kToken__7E_, SHIFT (46)
 , C_Lexique_piccolo_5F_lexique::kToken_literal_5F_char, SHIFT (47)
-, C_Lexique_piccolo_5F_lexique::kToken__40_, SHIFT (48)
 , END
-// State S85 (index = 2381)
+// State S84 (index = 2352)
 , C_Lexique_piccolo_5F_lexique::kToken_mark, REDUCE (17)
 , C_Lexique_piccolo_5F_lexique::kToken_unused, REDUCE (17)
 , C_Lexique_piccolo_5F_lexique::kToken__2C_, REDUCE (17)
@@ -13803,43 +13787,39 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken__5E_, REDUCE (17)
 , C_Lexique_piccolo_5F_lexique::kToken_, REDUCE (17)
 , END
-// State S86 (index = 2490)
+// State S85 (index = 2461)
 , C_Lexique_piccolo_5F_lexique::kToken_identifier, SHIFT (42)
 , C_Lexique_piccolo_5F_lexique::kToken_integer, SHIFT (43)
 , C_Lexique_piccolo_5F_lexique::kToken__28_, SHIFT (44)
 , C_Lexique_piccolo_5F_lexique::kToken__2D_, SHIFT (45)
 , C_Lexique_piccolo_5F_lexique::kToken__7E_, SHIFT (46)
 , C_Lexique_piccolo_5F_lexique::kToken_literal_5F_char, SHIFT (47)
-, C_Lexique_piccolo_5F_lexique::kToken__40_, SHIFT (48)
 , END
-// State S87 (index = 2505)
+// State S86 (index = 2474)
 , C_Lexique_piccolo_5F_lexique::kToken_identifier, SHIFT (42)
 , C_Lexique_piccolo_5F_lexique::kToken_integer, SHIFT (43)
 , C_Lexique_piccolo_5F_lexique::kToken__28_, SHIFT (44)
 , C_Lexique_piccolo_5F_lexique::kToken__2D_, SHIFT (45)
 , C_Lexique_piccolo_5F_lexique::kToken__7E_, SHIFT (46)
 , C_Lexique_piccolo_5F_lexique::kToken_literal_5F_char, SHIFT (47)
-, C_Lexique_piccolo_5F_lexique::kToken__40_, SHIFT (48)
 , END
-// State S88 (index = 2520)
+// State S87 (index = 2487)
 , C_Lexique_piccolo_5F_lexique::kToken_identifier, SHIFT (42)
 , C_Lexique_piccolo_5F_lexique::kToken_integer, SHIFT (43)
 , C_Lexique_piccolo_5F_lexique::kToken__28_, SHIFT (44)
 , C_Lexique_piccolo_5F_lexique::kToken__2D_, SHIFT (45)
 , C_Lexique_piccolo_5F_lexique::kToken__7E_, SHIFT (46)
 , C_Lexique_piccolo_5F_lexique::kToken_literal_5F_char, SHIFT (47)
-, C_Lexique_piccolo_5F_lexique::kToken__40_, SHIFT (48)
 , END
-// State S89 (index = 2535)
+// State S88 (index = 2500)
 , C_Lexique_piccolo_5F_lexique::kToken_identifier, SHIFT (42)
 , C_Lexique_piccolo_5F_lexique::kToken_integer, SHIFT (43)
 , C_Lexique_piccolo_5F_lexique::kToken__28_, SHIFT (44)
 , C_Lexique_piccolo_5F_lexique::kToken__2D_, SHIFT (45)
 , C_Lexique_piccolo_5F_lexique::kToken__7E_, SHIFT (46)
 , C_Lexique_piccolo_5F_lexique::kToken_literal_5F_char, SHIFT (47)
-, C_Lexique_piccolo_5F_lexique::kToken__40_, SHIFT (48)
 , END
-// State S90 (index = 2550)
+// State S89 (index = 2513)
 , C_Lexique_piccolo_5F_lexique::kToken_mark, REDUCE (18)
 , C_Lexique_piccolo_5F_lexique::kToken_unused, REDUCE (18)
 , C_Lexique_piccolo_5F_lexique::kToken__2C_, REDUCE (18)
@@ -13901,34 +13881,31 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken__3C__3D_, REDUCE (18)
 , C_Lexique_piccolo_5F_lexique::kToken_, REDUCE (18)
 , END
-// State S91 (index = 2671)
+// State S90 (index = 2634)
 , C_Lexique_piccolo_5F_lexique::kToken_identifier, SHIFT (42)
 , C_Lexique_piccolo_5F_lexique::kToken_integer, SHIFT (43)
 , C_Lexique_piccolo_5F_lexique::kToken__28_, SHIFT (44)
 , C_Lexique_piccolo_5F_lexique::kToken__2D_, SHIFT (45)
 , C_Lexique_piccolo_5F_lexique::kToken__7E_, SHIFT (46)
 , C_Lexique_piccolo_5F_lexique::kToken_literal_5F_char, SHIFT (47)
-, C_Lexique_piccolo_5F_lexique::kToken__40_, SHIFT (48)
 , END
-// State S92 (index = 2686)
+// State S91 (index = 2647)
 , C_Lexique_piccolo_5F_lexique::kToken_identifier, SHIFT (42)
 , C_Lexique_piccolo_5F_lexique::kToken_integer, SHIFT (43)
 , C_Lexique_piccolo_5F_lexique::kToken__28_, SHIFT (44)
 , C_Lexique_piccolo_5F_lexique::kToken__2D_, SHIFT (45)
 , C_Lexique_piccolo_5F_lexique::kToken__7E_, SHIFT (46)
 , C_Lexique_piccolo_5F_lexique::kToken_literal_5F_char, SHIFT (47)
-, C_Lexique_piccolo_5F_lexique::kToken__40_, SHIFT (48)
 , END
-// State S93 (index = 2701)
+// State S92 (index = 2660)
 , C_Lexique_piccolo_5F_lexique::kToken_identifier, SHIFT (42)
 , C_Lexique_piccolo_5F_lexique::kToken_integer, SHIFT (43)
 , C_Lexique_piccolo_5F_lexique::kToken__28_, SHIFT (44)
 , C_Lexique_piccolo_5F_lexique::kToken__2D_, SHIFT (45)
 , C_Lexique_piccolo_5F_lexique::kToken__7E_, SHIFT (46)
 , C_Lexique_piccolo_5F_lexique::kToken_literal_5F_char, SHIFT (47)
-, C_Lexique_piccolo_5F_lexique::kToken__40_, SHIFT (48)
 , END
-// State S94 (index = 2716)
+// State S93 (index = 2673)
 , C_Lexique_piccolo_5F_lexique::kToken_mark, REDUCE (19)
 , C_Lexique_piccolo_5F_lexique::kToken_unused, REDUCE (19)
 , C_Lexique_piccolo_5F_lexique::kToken__2C_, REDUCE (19)
@@ -13994,51 +13971,51 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken__3E__3E_, REDUCE (19)
 , C_Lexique_piccolo_5F_lexique::kToken_, REDUCE (19)
 , END
-// State S95 (index = 2845)
+// State S94 (index = 2802)
 , C_Lexique_piccolo_5F_lexique::kToken__7B_, REDUCE (44)
 , END
-// State S96 (index = 2848)
+// State S95 (index = 2805)
 , C_Lexique_piccolo_5F_lexique::kToken__7D_, REDUCE (38)
-, C_Lexique_piccolo_5F_lexique::kToken_do, SHIFT (121)
+, C_Lexique_piccolo_5F_lexique::kToken_do, SHIFT (120)
 , C_Lexique_piccolo_5F_lexique::kToken_end, REDUCE (38)
-, C_Lexique_piccolo_5F_lexique::kToken_jump, SHIFT (122)
-, C_Lexique_piccolo_5F_lexique::kToken_jsr, SHIFT (123)
-, C_Lexique_piccolo_5F_lexique::kToken_forever, SHIFT (124)
-, C_Lexique_piccolo_5F_lexique::kToken_if, SHIFT (125)
-, C_Lexique_piccolo_5F_lexique::kToken_decf, SHIFT (126)
-, C_Lexique_piccolo_5F_lexique::kToken_incf, SHIFT (127)
+, C_Lexique_piccolo_5F_lexique::kToken_jump, SHIFT (121)
+, C_Lexique_piccolo_5F_lexique::kToken_jsr, SHIFT (122)
+, C_Lexique_piccolo_5F_lexique::kToken_forever, SHIFT (123)
+, C_Lexique_piccolo_5F_lexique::kToken_if, SHIFT (124)
+, C_Lexique_piccolo_5F_lexique::kToken_decf, SHIFT (125)
+, C_Lexique_piccolo_5F_lexique::kToken_incf, SHIFT (126)
 , C_Lexique_piccolo_5F_lexique::kToken_while, REDUCE (38)
-, C_Lexique_piccolo_5F_lexique::kToken_mnop, SHIFT (128)
+, C_Lexique_piccolo_5F_lexique::kToken_mnop, SHIFT (127)
 , C_Lexique_piccolo_5F_lexique::kToken_elsif, REDUCE (38)
 , C_Lexique_piccolo_5F_lexique::kToken_else, REDUCE (38)
-, C_Lexique_piccolo_5F_lexique::kToken_addwf, SHIFT (129)
-, C_Lexique_piccolo_5F_lexique::kToken_andwf, SHIFT (130)
-, C_Lexique_piccolo_5F_lexique::kToken_comf, SHIFT (131)
-, C_Lexique_piccolo_5F_lexique::kToken_iorwf, SHIFT (132)
-, C_Lexique_piccolo_5F_lexique::kToken_movf, SHIFT (133)
-, C_Lexique_piccolo_5F_lexique::kToken_rlf, SHIFT (134)
-, C_Lexique_piccolo_5F_lexique::kToken_rrf, SHIFT (135)
-, C_Lexique_piccolo_5F_lexique::kToken_subwf, SHIFT (136)
-, C_Lexique_piccolo_5F_lexique::kToken_swapf, SHIFT (137)
-, C_Lexique_piccolo_5F_lexique::kToken_xorwf, SHIFT (138)
-, C_Lexique_piccolo_5F_lexique::kToken_clrf, SHIFT (139)
-, C_Lexique_piccolo_5F_lexique::kToken_movwf, SHIFT (140)
-, C_Lexique_piccolo_5F_lexique::kToken_bcf, SHIFT (141)
-, C_Lexique_piccolo_5F_lexique::kToken_bsf, SHIFT (142)
-, C_Lexique_piccolo_5F_lexique::kToken_goto, SHIFT (143)
-, C_Lexique_piccolo_5F_lexique::kToken_call, SHIFT (144)
-, C_Lexique_piccolo_5F_lexique::kToken_clrw, SHIFT (145)
-, C_Lexique_piccolo_5F_lexique::kToken_clrwdt, SHIFT (146)
-, C_Lexique_piccolo_5F_lexique::kToken_nop, SHIFT (147)
-, C_Lexique_piccolo_5F_lexique::kToken_option, SHIFT (148)
-, C_Lexique_piccolo_5F_lexique::kToken_sleep, SHIFT (149)
-, C_Lexique_piccolo_5F_lexique::kToken_tris, SHIFT (150)
-, C_Lexique_piccolo_5F_lexique::kToken_andlw, SHIFT (151)
-, C_Lexique_piccolo_5F_lexique::kToken_iorlw, SHIFT (152)
-, C_Lexique_piccolo_5F_lexique::kToken_movlw, SHIFT (153)
-, C_Lexique_piccolo_5F_lexique::kToken_xorlw, SHIFT (154)
+, C_Lexique_piccolo_5F_lexique::kToken_addwf, SHIFT (128)
+, C_Lexique_piccolo_5F_lexique::kToken_andwf, SHIFT (129)
+, C_Lexique_piccolo_5F_lexique::kToken_comf, SHIFT (130)
+, C_Lexique_piccolo_5F_lexique::kToken_iorwf, SHIFT (131)
+, C_Lexique_piccolo_5F_lexique::kToken_movf, SHIFT (132)
+, C_Lexique_piccolo_5F_lexique::kToken_rlf, SHIFT (133)
+, C_Lexique_piccolo_5F_lexique::kToken_rrf, SHIFT (134)
+, C_Lexique_piccolo_5F_lexique::kToken_subwf, SHIFT (135)
+, C_Lexique_piccolo_5F_lexique::kToken_swapf, SHIFT (136)
+, C_Lexique_piccolo_5F_lexique::kToken_xorwf, SHIFT (137)
+, C_Lexique_piccolo_5F_lexique::kToken_clrf, SHIFT (138)
+, C_Lexique_piccolo_5F_lexique::kToken_movwf, SHIFT (139)
+, C_Lexique_piccolo_5F_lexique::kToken_bcf, SHIFT (140)
+, C_Lexique_piccolo_5F_lexique::kToken_bsf, SHIFT (141)
+, C_Lexique_piccolo_5F_lexique::kToken_goto, SHIFT (142)
+, C_Lexique_piccolo_5F_lexique::kToken_call, SHIFT (143)
+, C_Lexique_piccolo_5F_lexique::kToken_clrw, SHIFT (144)
+, C_Lexique_piccolo_5F_lexique::kToken_clrwdt, SHIFT (145)
+, C_Lexique_piccolo_5F_lexique::kToken_nop, SHIFT (146)
+, C_Lexique_piccolo_5F_lexique::kToken_option, SHIFT (147)
+, C_Lexique_piccolo_5F_lexique::kToken_sleep, SHIFT (148)
+, C_Lexique_piccolo_5F_lexique::kToken_tris, SHIFT (149)
+, C_Lexique_piccolo_5F_lexique::kToken_andlw, SHIFT (150)
+, C_Lexique_piccolo_5F_lexique::kToken_iorlw, SHIFT (151)
+, C_Lexique_piccolo_5F_lexique::kToken_movlw, SHIFT (152)
+, C_Lexique_piccolo_5F_lexique::kToken_xorlw, SHIFT (153)
 , END
-// State S97 (index = 2927)
+// State S96 (index = 2884)
 , C_Lexique_piccolo_5F_lexique::kToken_mark, REDUCE (35)
 , C_Lexique_piccolo_5F_lexique::kToken_unused, REDUCE (35)
 , C_Lexique_piccolo_5F_lexique::kToken_routine, REDUCE (35)
@@ -14048,7 +14025,7 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken_const, REDUCE (35)
 , C_Lexique_piccolo_5F_lexique::kToken_, REDUCE (35)
 , END
-// State S98 (index = 2944)
+// State S97 (index = 2901)
 , C_Lexique_piccolo_5F_lexique::kToken_mark, REDUCE (37)
 , C_Lexique_piccolo_5F_lexique::kToken_unused, REDUCE (37)
 , C_Lexique_piccolo_5F_lexique::kToken_routine, REDUCE (37)
@@ -14058,21 +14035,24 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken_const, REDUCE (37)
 , C_Lexique_piccolo_5F_lexique::kToken_, REDUCE (37)
 , END
-// State S99 (index = 2961)
+// State S98 (index = 2918)
 , C_Lexique_piccolo_5F_lexique::kToken__7D_, REDUCE (130)
 , END
-// State S100 (index = 2964)
-, C_Lexique_piccolo_5F_lexique::kToken_integer, SHIFT (165)
+// State S99 (index = 2921)
+, C_Lexique_piccolo_5F_lexique::kToken_integer, SHIFT (164)
 , END
-// State S101 (index = 2967)
+// State S100 (index = 2924)
 , C_Lexique_piccolo_5F_lexique::kToken_byte, REDUCE (135)
 , C_Lexique_piccolo_5F_lexique::kToken__7D_, REDUCE (135)
-, C_Lexique_piccolo_5F_lexique::kToken__3C_, SHIFT (166)
+, C_Lexique_piccolo_5F_lexique::kToken__3C_, SHIFT (165)
 , END
-// State S102 (index = 2974)
+// State S101 (index = 2931)
+, C_Lexique_piccolo_5F_lexique::kToken__3A_, SHIFT (167)
+, END
+// State S102 (index = 2934)
 , C_Lexique_piccolo_5F_lexique::kToken__5D_, SHIFT (168)
 , END
-// State S103 (index = 2977)
+// State S103 (index = 2937)
 , C_Lexique_piccolo_5F_lexique::kToken_mark, REDUCE (174)
 , C_Lexique_piccolo_5F_lexique::kToken_unused, REDUCE (174)
 , C_Lexique_piccolo_5F_lexique::kToken__2C_, REDUCE (174)
@@ -14141,10 +14121,7 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken__25_, REDUCE (174)
 , C_Lexique_piccolo_5F_lexique::kToken_, REDUCE (174)
 , END
-// State S104 (index = 3112)
-, C_Lexique_piccolo_5F_lexique::kToken_identifier, SHIFT (169)
-, END
-// State S105 (index = 3115)
+// State S104 (index = 3072)
 , C_Lexique_piccolo_5F_lexique::kToken_mark, REDUCE (148)
 , C_Lexique_piccolo_5F_lexique::kToken_unused, REDUCE (148)
 , C_Lexique_piccolo_5F_lexique::kToken__2C_, REDUCE (148)
@@ -14191,15 +14168,15 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken_iorlw, REDUCE (148)
 , C_Lexique_piccolo_5F_lexique::kToken_movlw, REDUCE (148)
 , C_Lexique_piccolo_5F_lexique::kToken_xorlw, REDUCE (148)
-, C_Lexique_piccolo_5F_lexique::kToken__7C_, SHIFT (74)
+, C_Lexique_piccolo_5F_lexique::kToken__7C_, SHIFT (73)
 , C_Lexique_piccolo_5F_lexique::kToken_configuration, REDUCE (148)
 , C_Lexique_piccolo_5F_lexique::kToken__5D_, REDUCE (148)
 , C_Lexique_piccolo_5F_lexique::kToken_ram, REDUCE (148)
 , C_Lexique_piccolo_5F_lexique::kToken_const, REDUCE (148)
-, C_Lexique_piccolo_5F_lexique::kToken__5E_, SHIFT (75)
+, C_Lexique_piccolo_5F_lexique::kToken__5E_, SHIFT (74)
 , C_Lexique_piccolo_5F_lexique::kToken_, REDUCE (148)
 , END
-// State S106 (index = 3222)
+// State S105 (index = 3179)
 , C_Lexique_piccolo_5F_lexique::kToken_mark, REDUCE (148)
 , C_Lexique_piccolo_5F_lexique::kToken_unused, REDUCE (148)
 , C_Lexique_piccolo_5F_lexique::kToken__2C_, REDUCE (148)
@@ -14246,15 +14223,15 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken_iorlw, REDUCE (148)
 , C_Lexique_piccolo_5F_lexique::kToken_movlw, REDUCE (148)
 , C_Lexique_piccolo_5F_lexique::kToken_xorlw, REDUCE (148)
-, C_Lexique_piccolo_5F_lexique::kToken__7C_, SHIFT (74)
+, C_Lexique_piccolo_5F_lexique::kToken__7C_, SHIFT (73)
 , C_Lexique_piccolo_5F_lexique::kToken_configuration, REDUCE (148)
 , C_Lexique_piccolo_5F_lexique::kToken__5D_, REDUCE (148)
 , C_Lexique_piccolo_5F_lexique::kToken_ram, REDUCE (148)
 , C_Lexique_piccolo_5F_lexique::kToken_const, REDUCE (148)
-, C_Lexique_piccolo_5F_lexique::kToken__5E_, SHIFT (75)
+, C_Lexique_piccolo_5F_lexique::kToken__5E_, SHIFT (74)
 , C_Lexique_piccolo_5F_lexique::kToken_, REDUCE (148)
 , END
-// State S107 (index = 3329)
+// State S106 (index = 3286)
 , C_Lexique_piccolo_5F_lexique::kToken_mark, REDUCE (151)
 , C_Lexique_piccolo_5F_lexique::kToken_unused, REDUCE (151)
 , C_Lexique_piccolo_5F_lexique::kToken__2C_, REDUCE (151)
@@ -14302,7 +14279,7 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken_movlw, REDUCE (151)
 , C_Lexique_piccolo_5F_lexique::kToken_xorlw, REDUCE (151)
 , C_Lexique_piccolo_5F_lexique::kToken__7C_, REDUCE (151)
-, C_Lexique_piccolo_5F_lexique::kToken__26_, SHIFT (77)
+, C_Lexique_piccolo_5F_lexique::kToken__26_, SHIFT (76)
 , C_Lexique_piccolo_5F_lexique::kToken_configuration, REDUCE (151)
 , C_Lexique_piccolo_5F_lexique::kToken__5D_, REDUCE (151)
 , C_Lexique_piccolo_5F_lexique::kToken_ram, REDUCE (151)
@@ -14310,7 +14287,7 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken__5E_, REDUCE (151)
 , C_Lexique_piccolo_5F_lexique::kToken_, REDUCE (151)
 , END
-// State S108 (index = 3438)
+// State S107 (index = 3395)
 , C_Lexique_piccolo_5F_lexique::kToken_mark, REDUCE (159)
 , C_Lexique_piccolo_5F_lexique::kToken_unused, REDUCE (159)
 , C_Lexique_piccolo_5F_lexique::kToken__2C_, REDUCE (159)
@@ -14366,7 +14343,7 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken__5E_, REDUCE (159)
 , C_Lexique_piccolo_5F_lexique::kToken_, REDUCE (159)
 , END
-// State S109 (index = 3547)
+// State S108 (index = 3504)
 , C_Lexique_piccolo_5F_lexique::kToken_mark, REDUCE (158)
 , C_Lexique_piccolo_5F_lexique::kToken_unused, REDUCE (158)
 , C_Lexique_piccolo_5F_lexique::kToken__2C_, REDUCE (158)
@@ -14422,7 +14399,7 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken__5E_, REDUCE (158)
 , C_Lexique_piccolo_5F_lexique::kToken_, REDUCE (158)
 , END
-// State S110 (index = 3656)
+// State S109 (index = 3613)
 , C_Lexique_piccolo_5F_lexique::kToken_mark, REDUCE (154)
 , C_Lexique_piccolo_5F_lexique::kToken_unused, REDUCE (154)
 , C_Lexique_piccolo_5F_lexique::kToken__2C_, REDUCE (154)
@@ -14478,7 +14455,7 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken__5E_, REDUCE (154)
 , C_Lexique_piccolo_5F_lexique::kToken_, REDUCE (154)
 , END
-// State S111 (index = 3765)
+// State S110 (index = 3722)
 , C_Lexique_piccolo_5F_lexique::kToken_mark, REDUCE (155)
 , C_Lexique_piccolo_5F_lexique::kToken_unused, REDUCE (155)
 , C_Lexique_piccolo_5F_lexique::kToken__2C_, REDUCE (155)
@@ -14534,7 +14511,7 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken__5E_, REDUCE (155)
 , C_Lexique_piccolo_5F_lexique::kToken_, REDUCE (155)
 , END
-// State S112 (index = 3874)
+// State S111 (index = 3831)
 , C_Lexique_piccolo_5F_lexique::kToken_mark, REDUCE (156)
 , C_Lexique_piccolo_5F_lexique::kToken_unused, REDUCE (156)
 , C_Lexique_piccolo_5F_lexique::kToken__2C_, REDUCE (156)
@@ -14590,7 +14567,7 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken__5E_, REDUCE (156)
 , C_Lexique_piccolo_5F_lexique::kToken_, REDUCE (156)
 , END
-// State S113 (index = 3983)
+// State S112 (index = 3940)
 , C_Lexique_piccolo_5F_lexique::kToken_mark, REDUCE (157)
 , C_Lexique_piccolo_5F_lexique::kToken_unused, REDUCE (157)
 , C_Lexique_piccolo_5F_lexique::kToken__2C_, REDUCE (157)
@@ -14646,7 +14623,7 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken__5E_, REDUCE (157)
 , C_Lexique_piccolo_5F_lexique::kToken_, REDUCE (157)
 , END
-// State S114 (index = 4092)
+// State S113 (index = 4049)
 , C_Lexique_piccolo_5F_lexique::kToken_mark, REDUCE (160)
 , C_Lexique_piccolo_5F_lexique::kToken_unused, REDUCE (160)
 , C_Lexique_piccolo_5F_lexique::kToken__2C_, REDUCE (160)
@@ -14698,7 +14675,7 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken_configuration, REDUCE (160)
 , C_Lexique_piccolo_5F_lexique::kToken__5D_, REDUCE (160)
 , C_Lexique_piccolo_5F_lexique::kToken__3C_, REDUCE (160)
-, C_Lexique_piccolo_5F_lexique::kToken__2D_, SHIFT (86)
+, C_Lexique_piccolo_5F_lexique::kToken__2D_, SHIFT (85)
 , C_Lexique_piccolo_5F_lexique::kToken__3E_, REDUCE (160)
 , C_Lexique_piccolo_5F_lexique::kToken_ram, REDUCE (160)
 , C_Lexique_piccolo_5F_lexique::kToken_const, REDUCE (160)
@@ -14707,12 +14684,12 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken__21__3D_, REDUCE (160)
 , C_Lexique_piccolo_5F_lexique::kToken__3E__3D_, REDUCE (160)
 , C_Lexique_piccolo_5F_lexique::kToken__3C__3D_, REDUCE (160)
-, C_Lexique_piccolo_5F_lexique::kToken__2B_, SHIFT (87)
-, C_Lexique_piccolo_5F_lexique::kToken__3C__3C_, SHIFT (88)
-, C_Lexique_piccolo_5F_lexique::kToken__3E__3E_, SHIFT (89)
+, C_Lexique_piccolo_5F_lexique::kToken__2B_, SHIFT (86)
+, C_Lexique_piccolo_5F_lexique::kToken__3C__3C_, SHIFT (87)
+, C_Lexique_piccolo_5F_lexique::kToken__3E__3E_, SHIFT (88)
 , C_Lexique_piccolo_5F_lexique::kToken_, REDUCE (160)
 , END
-// State S115 (index = 4221)
+// State S114 (index = 4178)
 , C_Lexique_piccolo_5F_lexique::kToken_mark, REDUCE (160)
 , C_Lexique_piccolo_5F_lexique::kToken_unused, REDUCE (160)
 , C_Lexique_piccolo_5F_lexique::kToken__2C_, REDUCE (160)
@@ -14764,7 +14741,7 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken_configuration, REDUCE (160)
 , C_Lexique_piccolo_5F_lexique::kToken__5D_, REDUCE (160)
 , C_Lexique_piccolo_5F_lexique::kToken__3C_, REDUCE (160)
-, C_Lexique_piccolo_5F_lexique::kToken__2D_, SHIFT (86)
+, C_Lexique_piccolo_5F_lexique::kToken__2D_, SHIFT (85)
 , C_Lexique_piccolo_5F_lexique::kToken__3E_, REDUCE (160)
 , C_Lexique_piccolo_5F_lexique::kToken_ram, REDUCE (160)
 , C_Lexique_piccolo_5F_lexique::kToken_const, REDUCE (160)
@@ -14773,12 +14750,12 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken__21__3D_, REDUCE (160)
 , C_Lexique_piccolo_5F_lexique::kToken__3E__3D_, REDUCE (160)
 , C_Lexique_piccolo_5F_lexique::kToken__3C__3D_, REDUCE (160)
-, C_Lexique_piccolo_5F_lexique::kToken__2B_, SHIFT (87)
-, C_Lexique_piccolo_5F_lexique::kToken__3C__3C_, SHIFT (88)
-, C_Lexique_piccolo_5F_lexique::kToken__3E__3E_, SHIFT (89)
+, C_Lexique_piccolo_5F_lexique::kToken__2B_, SHIFT (86)
+, C_Lexique_piccolo_5F_lexique::kToken__3C__3C_, SHIFT (87)
+, C_Lexique_piccolo_5F_lexique::kToken__3E__3E_, SHIFT (88)
 , C_Lexique_piccolo_5F_lexique::kToken_, REDUCE (160)
 , END
-// State S116 (index = 4350)
+// State S115 (index = 4307)
 , C_Lexique_piccolo_5F_lexique::kToken_mark, REDUCE (160)
 , C_Lexique_piccolo_5F_lexique::kToken_unused, REDUCE (160)
 , C_Lexique_piccolo_5F_lexique::kToken__2C_, REDUCE (160)
@@ -14830,7 +14807,7 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken_configuration, REDUCE (160)
 , C_Lexique_piccolo_5F_lexique::kToken__5D_, REDUCE (160)
 , C_Lexique_piccolo_5F_lexique::kToken__3C_, REDUCE (160)
-, C_Lexique_piccolo_5F_lexique::kToken__2D_, SHIFT (86)
+, C_Lexique_piccolo_5F_lexique::kToken__2D_, SHIFT (85)
 , C_Lexique_piccolo_5F_lexique::kToken__3E_, REDUCE (160)
 , C_Lexique_piccolo_5F_lexique::kToken_ram, REDUCE (160)
 , C_Lexique_piccolo_5F_lexique::kToken_const, REDUCE (160)
@@ -14839,12 +14816,12 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken__21__3D_, REDUCE (160)
 , C_Lexique_piccolo_5F_lexique::kToken__3E__3D_, REDUCE (160)
 , C_Lexique_piccolo_5F_lexique::kToken__3C__3D_, REDUCE (160)
-, C_Lexique_piccolo_5F_lexique::kToken__2B_, SHIFT (87)
-, C_Lexique_piccolo_5F_lexique::kToken__3C__3C_, SHIFT (88)
-, C_Lexique_piccolo_5F_lexique::kToken__3E__3E_, SHIFT (89)
+, C_Lexique_piccolo_5F_lexique::kToken__2B_, SHIFT (86)
+, C_Lexique_piccolo_5F_lexique::kToken__3C__3C_, SHIFT (87)
+, C_Lexique_piccolo_5F_lexique::kToken__3E__3E_, SHIFT (88)
 , C_Lexique_piccolo_5F_lexique::kToken_, REDUCE (160)
 , END
-// State S117 (index = 4479)
+// State S116 (index = 4436)
 , C_Lexique_piccolo_5F_lexique::kToken_mark, REDUCE (160)
 , C_Lexique_piccolo_5F_lexique::kToken_unused, REDUCE (160)
 , C_Lexique_piccolo_5F_lexique::kToken__2C_, REDUCE (160)
@@ -14896,7 +14873,7 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken_configuration, REDUCE (160)
 , C_Lexique_piccolo_5F_lexique::kToken__5D_, REDUCE (160)
 , C_Lexique_piccolo_5F_lexique::kToken__3C_, REDUCE (160)
-, C_Lexique_piccolo_5F_lexique::kToken__2D_, SHIFT (86)
+, C_Lexique_piccolo_5F_lexique::kToken__2D_, SHIFT (85)
 , C_Lexique_piccolo_5F_lexique::kToken__3E_, REDUCE (160)
 , C_Lexique_piccolo_5F_lexique::kToken_ram, REDUCE (160)
 , C_Lexique_piccolo_5F_lexique::kToken_const, REDUCE (160)
@@ -14905,12 +14882,12 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken__21__3D_, REDUCE (160)
 , C_Lexique_piccolo_5F_lexique::kToken__3E__3D_, REDUCE (160)
 , C_Lexique_piccolo_5F_lexique::kToken__3C__3D_, REDUCE (160)
-, C_Lexique_piccolo_5F_lexique::kToken__2B_, SHIFT (87)
-, C_Lexique_piccolo_5F_lexique::kToken__3C__3C_, SHIFT (88)
-, C_Lexique_piccolo_5F_lexique::kToken__3E__3E_, SHIFT (89)
+, C_Lexique_piccolo_5F_lexique::kToken__2B_, SHIFT (86)
+, C_Lexique_piccolo_5F_lexique::kToken__3C__3C_, SHIFT (87)
+, C_Lexique_piccolo_5F_lexique::kToken__3E__3E_, SHIFT (88)
 , C_Lexique_piccolo_5F_lexique::kToken_, REDUCE (160)
 , END
-// State S118 (index = 4608)
+// State S117 (index = 4565)
 , C_Lexique_piccolo_5F_lexique::kToken_mark, REDUCE (165)
 , C_Lexique_piccolo_5F_lexique::kToken_unused, REDUCE (165)
 , C_Lexique_piccolo_5F_lexique::kToken__2C_, REDUCE (165)
@@ -14962,7 +14939,7 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken_configuration, REDUCE (165)
 , C_Lexique_piccolo_5F_lexique::kToken__5D_, REDUCE (165)
 , C_Lexique_piccolo_5F_lexique::kToken__3C_, REDUCE (165)
-, C_Lexique_piccolo_5F_lexique::kToken__2F_, SHIFT (91)
+, C_Lexique_piccolo_5F_lexique::kToken__2F_, SHIFT (90)
 , C_Lexique_piccolo_5F_lexique::kToken__2D_, REDUCE (165)
 , C_Lexique_piccolo_5F_lexique::kToken__3E_, REDUCE (165)
 , C_Lexique_piccolo_5F_lexique::kToken_ram, REDUCE (165)
@@ -14975,11 +14952,11 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken__2B_, REDUCE (165)
 , C_Lexique_piccolo_5F_lexique::kToken__3C__3C_, REDUCE (165)
 , C_Lexique_piccolo_5F_lexique::kToken__3E__3E_, REDUCE (165)
-, C_Lexique_piccolo_5F_lexique::kToken__2A_, SHIFT (92)
-, C_Lexique_piccolo_5F_lexique::kToken__25_, SHIFT (93)
+, C_Lexique_piccolo_5F_lexique::kToken__2A_, SHIFT (91)
+, C_Lexique_piccolo_5F_lexique::kToken__25_, SHIFT (92)
 , C_Lexique_piccolo_5F_lexique::kToken_, REDUCE (165)
 , END
-// State S119 (index = 4743)
+// State S118 (index = 4700)
 , C_Lexique_piccolo_5F_lexique::kToken_mark, REDUCE (165)
 , C_Lexique_piccolo_5F_lexique::kToken_unused, REDUCE (165)
 , C_Lexique_piccolo_5F_lexique::kToken__2C_, REDUCE (165)
@@ -15031,7 +15008,7 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken_configuration, REDUCE (165)
 , C_Lexique_piccolo_5F_lexique::kToken__5D_, REDUCE (165)
 , C_Lexique_piccolo_5F_lexique::kToken__3C_, REDUCE (165)
-, C_Lexique_piccolo_5F_lexique::kToken__2F_, SHIFT (91)
+, C_Lexique_piccolo_5F_lexique::kToken__2F_, SHIFT (90)
 , C_Lexique_piccolo_5F_lexique::kToken__2D_, REDUCE (165)
 , C_Lexique_piccolo_5F_lexique::kToken__3E_, REDUCE (165)
 , C_Lexique_piccolo_5F_lexique::kToken_ram, REDUCE (165)
@@ -15044,11 +15021,11 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken__2B_, REDUCE (165)
 , C_Lexique_piccolo_5F_lexique::kToken__3C__3C_, REDUCE (165)
 , C_Lexique_piccolo_5F_lexique::kToken__3E__3E_, REDUCE (165)
-, C_Lexique_piccolo_5F_lexique::kToken__2A_, SHIFT (92)
-, C_Lexique_piccolo_5F_lexique::kToken__25_, SHIFT (93)
+, C_Lexique_piccolo_5F_lexique::kToken__2A_, SHIFT (91)
+, C_Lexique_piccolo_5F_lexique::kToken__25_, SHIFT (92)
 , C_Lexique_piccolo_5F_lexique::kToken_, REDUCE (165)
 , END
-// State S120 (index = 4878)
+// State S119 (index = 4835)
 , C_Lexique_piccolo_5F_lexique::kToken_mark, REDUCE (165)
 , C_Lexique_piccolo_5F_lexique::kToken_unused, REDUCE (165)
 , C_Lexique_piccolo_5F_lexique::kToken__2C_, REDUCE (165)
@@ -15100,7 +15077,7 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken_configuration, REDUCE (165)
 , C_Lexique_piccolo_5F_lexique::kToken__5D_, REDUCE (165)
 , C_Lexique_piccolo_5F_lexique::kToken__3C_, REDUCE (165)
-, C_Lexique_piccolo_5F_lexique::kToken__2F_, SHIFT (91)
+, C_Lexique_piccolo_5F_lexique::kToken__2F_, SHIFT (90)
 , C_Lexique_piccolo_5F_lexique::kToken__2D_, REDUCE (165)
 , C_Lexique_piccolo_5F_lexique::kToken__3E_, REDUCE (165)
 , C_Lexique_piccolo_5F_lexique::kToken_ram, REDUCE (165)
@@ -15113,13 +15090,13 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken__2B_, REDUCE (165)
 , C_Lexique_piccolo_5F_lexique::kToken__3C__3C_, REDUCE (165)
 , C_Lexique_piccolo_5F_lexique::kToken__3E__3E_, REDUCE (165)
-, C_Lexique_piccolo_5F_lexique::kToken__2A_, SHIFT (92)
-, C_Lexique_piccolo_5F_lexique::kToken__25_, SHIFT (93)
+, C_Lexique_piccolo_5F_lexique::kToken__2A_, SHIFT (91)
+, C_Lexique_piccolo_5F_lexique::kToken__25_, SHIFT (92)
 , C_Lexique_piccolo_5F_lexique::kToken_, REDUCE (165)
 , END
-// State S121 (index = 5013)
+// State S120 (index = 4970)
 , C_Lexique_piccolo_5F_lexique::kToken_do, REDUCE (72)
-, C_Lexique_piccolo_5F_lexique::kToken_label, SHIFT (180)
+, C_Lexique_piccolo_5F_lexique::kToken_label, SHIFT (179)
 , C_Lexique_piccolo_5F_lexique::kToken__28_, REDUCE (54)
 , C_Lexique_piccolo_5F_lexique::kToken_jump, REDUCE (72)
 , C_Lexique_piccolo_5F_lexique::kToken_jsr, REDUCE (72)
@@ -15156,15 +15133,15 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken_movlw, REDUCE (72)
 , C_Lexique_piccolo_5F_lexique::kToken_xorlw, REDUCE (72)
 , END
-// State S122 (index = 5088)
+// State S121 (index = 5045)
+, C_Lexique_piccolo_5F_lexique::kToken_identifier, SHIFT (182)
+, END
+// State S122 (index = 5048)
 , C_Lexique_piccolo_5F_lexique::kToken_identifier, SHIFT (183)
 , END
-// State S123 (index = 5091)
-, C_Lexique_piccolo_5F_lexique::kToken_identifier, SHIFT (184)
-, END
-// State S124 (index = 5094)
+// State S123 (index = 5051)
 , C_Lexique_piccolo_5F_lexique::kToken_do, REDUCE (58)
-, C_Lexique_piccolo_5F_lexique::kToken_label, SHIFT (185)
+, C_Lexique_piccolo_5F_lexique::kToken_label, SHIFT (184)
 , C_Lexique_piccolo_5F_lexique::kToken_end, REDUCE (58)
 , C_Lexique_piccolo_5F_lexique::kToken_jump, REDUCE (58)
 , C_Lexique_piccolo_5F_lexique::kToken_jsr, REDUCE (58)
@@ -15200,72 +15177,72 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken_movlw, REDUCE (58)
 , C_Lexique_piccolo_5F_lexique::kToken_xorlw, REDUCE (58)
 , END
-// State S125 (index = 5167)
-, C_Lexique_piccolo_5F_lexique::kToken_identifier, SHIFT (187)
-, C_Lexique_piccolo_5F_lexique::kToken_label, SHIFT (188)
+// State S124 (index = 5124)
+, C_Lexique_piccolo_5F_lexique::kToken_identifier, SHIFT (186)
+, C_Lexique_piccolo_5F_lexique::kToken_label, SHIFT (187)
 , C_Lexique_piccolo_5F_lexique::kToken__28_, REDUCE (68)
-, C_Lexique_piccolo_5F_lexique::kToken__21_, SHIFT (189)
-, C_Lexique_piccolo_5F_lexique::kToken_decf, SHIFT (190)
-, C_Lexique_piccolo_5F_lexique::kToken_incf, SHIFT (191)
+, C_Lexique_piccolo_5F_lexique::kToken__21_, SHIFT (188)
+, C_Lexique_piccolo_5F_lexique::kToken_decf, SHIFT (189)
+, C_Lexique_piccolo_5F_lexique::kToken_incf, SHIFT (190)
 , END
-// State S126 (index = 5180)
+// State S125 (index = 5137)
 , C_Lexique_piccolo_5F_lexique::kToken_identifier, REDUCE (102)
 , END
-// State S127 (index = 5183)
+// State S126 (index = 5140)
 , C_Lexique_piccolo_5F_lexique::kToken_identifier, REDUCE (103)
 , END
-// State S128 (index = 5186)
-, C_Lexique_piccolo_5F_lexique::kToken_integer, SHIFT (196)
+// State S127 (index = 5143)
+, C_Lexique_piccolo_5F_lexique::kToken_integer, SHIFT (195)
 , END
-// State S129 (index = 5189)
+// State S128 (index = 5146)
 , C_Lexique_piccolo_5F_lexique::kToken_identifier, REDUCE (99)
 , END
-// State S130 (index = 5192)
+// State S129 (index = 5149)
 , C_Lexique_piccolo_5F_lexique::kToken_identifier, REDUCE (100)
 , END
-// State S131 (index = 5195)
+// State S130 (index = 5152)
 , C_Lexique_piccolo_5F_lexique::kToken_identifier, REDUCE (101)
 , END
-// State S132 (index = 5198)
+// State S131 (index = 5155)
 , C_Lexique_piccolo_5F_lexique::kToken_identifier, REDUCE (104)
 , END
-// State S133 (index = 5201)
+// State S132 (index = 5158)
 , C_Lexique_piccolo_5F_lexique::kToken_identifier, REDUCE (105)
 , END
-// State S134 (index = 5204)
+// State S133 (index = 5161)
 , C_Lexique_piccolo_5F_lexique::kToken_identifier, REDUCE (106)
 , END
-// State S135 (index = 5207)
+// State S134 (index = 5164)
 , C_Lexique_piccolo_5F_lexique::kToken_identifier, REDUCE (107)
 , END
-// State S136 (index = 5210)
+// State S135 (index = 5167)
 , C_Lexique_piccolo_5F_lexique::kToken_identifier, REDUCE (108)
 , END
-// State S137 (index = 5213)
+// State S136 (index = 5170)
 , C_Lexique_piccolo_5F_lexique::kToken_identifier, REDUCE (109)
 , END
-// State S138 (index = 5216)
+// State S137 (index = 5173)
 , C_Lexique_piccolo_5F_lexique::kToken_identifier, REDUCE (110)
 , END
-// State S139 (index = 5219)
+// State S138 (index = 5176)
 , C_Lexique_piccolo_5F_lexique::kToken_identifier, REDUCE (111)
 , END
-// State S140 (index = 5222)
+// State S139 (index = 5179)
 , C_Lexique_piccolo_5F_lexique::kToken_identifier, REDUCE (112)
 , END
-// State S141 (index = 5225)
+// State S140 (index = 5182)
 , C_Lexique_piccolo_5F_lexique::kToken_identifier, REDUCE (113)
 , END
-// State S142 (index = 5228)
+// State S141 (index = 5185)
 , C_Lexique_piccolo_5F_lexique::kToken_identifier, REDUCE (114)
 , END
-// State S143 (index = 5231)
+// State S142 (index = 5188)
+, C_Lexique_piccolo_5F_lexique::kToken_identifier, SHIFT (196)
+, END
+// State S143 (index = 5191)
 , C_Lexique_piccolo_5F_lexique::kToken_identifier, SHIFT (197)
 , END
-// State S144 (index = 5234)
-, C_Lexique_piccolo_5F_lexique::kToken_identifier, SHIFT (198)
-, END
-// State S145 (index = 5237)
+// State S144 (index = 5194)
 , C_Lexique_piccolo_5F_lexique::kToken__7D_, REDUCE (92)
 , C_Lexique_piccolo_5F_lexique::kToken_do, REDUCE (92)
 , C_Lexique_piccolo_5F_lexique::kToken_end, REDUCE (92)
@@ -15306,7 +15283,7 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken_movlw, REDUCE (92)
 , C_Lexique_piccolo_5F_lexique::kToken_xorlw, REDUCE (92)
 , END
-// State S146 (index = 5316)
+// State S145 (index = 5273)
 , C_Lexique_piccolo_5F_lexique::kToken__7D_, REDUCE (93)
 , C_Lexique_piccolo_5F_lexique::kToken_do, REDUCE (93)
 , C_Lexique_piccolo_5F_lexique::kToken_end, REDUCE (93)
@@ -15347,7 +15324,7 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken_movlw, REDUCE (93)
 , C_Lexique_piccolo_5F_lexique::kToken_xorlw, REDUCE (93)
 , END
-// State S147 (index = 5395)
+// State S146 (index = 5352)
 , C_Lexique_piccolo_5F_lexique::kToken__7D_, REDUCE (94)
 , C_Lexique_piccolo_5F_lexique::kToken_do, REDUCE (94)
 , C_Lexique_piccolo_5F_lexique::kToken_end, REDUCE (94)
@@ -15388,7 +15365,7 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken_movlw, REDUCE (94)
 , C_Lexique_piccolo_5F_lexique::kToken_xorlw, REDUCE (94)
 , END
-// State S148 (index = 5474)
+// State S147 (index = 5431)
 , C_Lexique_piccolo_5F_lexique::kToken__7D_, REDUCE (95)
 , C_Lexique_piccolo_5F_lexique::kToken_do, REDUCE (95)
 , C_Lexique_piccolo_5F_lexique::kToken_end, REDUCE (95)
@@ -15429,7 +15406,7 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken_movlw, REDUCE (95)
 , C_Lexique_piccolo_5F_lexique::kToken_xorlw, REDUCE (95)
 , END
-// State S149 (index = 5553)
+// State S148 (index = 5510)
 , C_Lexique_piccolo_5F_lexique::kToken__7D_, REDUCE (96)
 , C_Lexique_piccolo_5F_lexique::kToken_do, REDUCE (96)
 , C_Lexique_piccolo_5F_lexique::kToken_end, REDUCE (96)
@@ -15470,138 +15447,134 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken_movlw, REDUCE (96)
 , C_Lexique_piccolo_5F_lexique::kToken_xorlw, REDUCE (96)
 , END
-// State S150 (index = 5632)
-, C_Lexique_piccolo_5F_lexique::kToken_identifier, SHIFT (199)
+// State S149 (index = 5589)
+, C_Lexique_piccolo_5F_lexique::kToken_identifier, SHIFT (198)
 , END
-// State S151 (index = 5635)
+// State S150 (index = 5592)
 , C_Lexique_piccolo_5F_lexique::kToken_identifier, REDUCE (115)
 , C_Lexique_piccolo_5F_lexique::kToken_integer, REDUCE (115)
 , C_Lexique_piccolo_5F_lexique::kToken__28_, REDUCE (115)
 , C_Lexique_piccolo_5F_lexique::kToken__2D_, REDUCE (115)
 , C_Lexique_piccolo_5F_lexique::kToken__7E_, REDUCE (115)
 , C_Lexique_piccolo_5F_lexique::kToken_literal_5F_char, REDUCE (115)
-, C_Lexique_piccolo_5F_lexique::kToken__40_, REDUCE (115)
 , END
-// State S152 (index = 5650)
+// State S151 (index = 5605)
 , C_Lexique_piccolo_5F_lexique::kToken_identifier, REDUCE (116)
 , C_Lexique_piccolo_5F_lexique::kToken_integer, REDUCE (116)
 , C_Lexique_piccolo_5F_lexique::kToken__28_, REDUCE (116)
 , C_Lexique_piccolo_5F_lexique::kToken__2D_, REDUCE (116)
 , C_Lexique_piccolo_5F_lexique::kToken__7E_, REDUCE (116)
 , C_Lexique_piccolo_5F_lexique::kToken_literal_5F_char, REDUCE (116)
-, C_Lexique_piccolo_5F_lexique::kToken__40_, REDUCE (116)
 , END
-// State S153 (index = 5665)
+// State S152 (index = 5618)
 , C_Lexique_piccolo_5F_lexique::kToken_identifier, REDUCE (117)
 , C_Lexique_piccolo_5F_lexique::kToken_integer, REDUCE (117)
 , C_Lexique_piccolo_5F_lexique::kToken__28_, REDUCE (117)
 , C_Lexique_piccolo_5F_lexique::kToken__2D_, REDUCE (117)
 , C_Lexique_piccolo_5F_lexique::kToken__7E_, REDUCE (117)
 , C_Lexique_piccolo_5F_lexique::kToken_literal_5F_char, REDUCE (117)
-, C_Lexique_piccolo_5F_lexique::kToken__40_, REDUCE (117)
 , END
-// State S154 (index = 5680)
+// State S153 (index = 5631)
 , C_Lexique_piccolo_5F_lexique::kToken_identifier, REDUCE (118)
 , C_Lexique_piccolo_5F_lexique::kToken_integer, REDUCE (118)
 , C_Lexique_piccolo_5F_lexique::kToken__28_, REDUCE (118)
 , C_Lexique_piccolo_5F_lexique::kToken__2D_, REDUCE (118)
 , C_Lexique_piccolo_5F_lexique::kToken__7E_, REDUCE (118)
 , C_Lexique_piccolo_5F_lexique::kToken_literal_5F_char, REDUCE (118)
-, C_Lexique_piccolo_5F_lexique::kToken__40_, REDUCE (118)
 , END
-// State S155 (index = 5695)
-, C_Lexique_piccolo_5F_lexique::kToken__7D_, SHIFT (200)
+// State S154 (index = 5644)
+, C_Lexique_piccolo_5F_lexique::kToken__7D_, SHIFT (199)
 , END
-// State S156 (index = 5698)
+// State S155 (index = 5647)
 , C_Lexique_piccolo_5F_lexique::kToken__7D_, REDUCE (38)
-, C_Lexique_piccolo_5F_lexique::kToken_do, SHIFT (121)
+, C_Lexique_piccolo_5F_lexique::kToken_do, SHIFT (120)
 , C_Lexique_piccolo_5F_lexique::kToken_end, REDUCE (38)
-, C_Lexique_piccolo_5F_lexique::kToken_jump, SHIFT (122)
-, C_Lexique_piccolo_5F_lexique::kToken_jsr, SHIFT (123)
-, C_Lexique_piccolo_5F_lexique::kToken_forever, SHIFT (124)
-, C_Lexique_piccolo_5F_lexique::kToken_if, SHIFT (125)
-, C_Lexique_piccolo_5F_lexique::kToken_decf, SHIFT (126)
-, C_Lexique_piccolo_5F_lexique::kToken_incf, SHIFT (127)
+, C_Lexique_piccolo_5F_lexique::kToken_jump, SHIFT (121)
+, C_Lexique_piccolo_5F_lexique::kToken_jsr, SHIFT (122)
+, C_Lexique_piccolo_5F_lexique::kToken_forever, SHIFT (123)
+, C_Lexique_piccolo_5F_lexique::kToken_if, SHIFT (124)
+, C_Lexique_piccolo_5F_lexique::kToken_decf, SHIFT (125)
+, C_Lexique_piccolo_5F_lexique::kToken_incf, SHIFT (126)
 , C_Lexique_piccolo_5F_lexique::kToken_while, REDUCE (38)
-, C_Lexique_piccolo_5F_lexique::kToken_mnop, SHIFT (128)
+, C_Lexique_piccolo_5F_lexique::kToken_mnop, SHIFT (127)
 , C_Lexique_piccolo_5F_lexique::kToken_elsif, REDUCE (38)
 , C_Lexique_piccolo_5F_lexique::kToken_else, REDUCE (38)
-, C_Lexique_piccolo_5F_lexique::kToken_addwf, SHIFT (129)
-, C_Lexique_piccolo_5F_lexique::kToken_andwf, SHIFT (130)
-, C_Lexique_piccolo_5F_lexique::kToken_comf, SHIFT (131)
-, C_Lexique_piccolo_5F_lexique::kToken_iorwf, SHIFT (132)
-, C_Lexique_piccolo_5F_lexique::kToken_movf, SHIFT (133)
-, C_Lexique_piccolo_5F_lexique::kToken_rlf, SHIFT (134)
-, C_Lexique_piccolo_5F_lexique::kToken_rrf, SHIFT (135)
-, C_Lexique_piccolo_5F_lexique::kToken_subwf, SHIFT (136)
-, C_Lexique_piccolo_5F_lexique::kToken_swapf, SHIFT (137)
-, C_Lexique_piccolo_5F_lexique::kToken_xorwf, SHIFT (138)
-, C_Lexique_piccolo_5F_lexique::kToken_clrf, SHIFT (139)
-, C_Lexique_piccolo_5F_lexique::kToken_movwf, SHIFT (140)
-, C_Lexique_piccolo_5F_lexique::kToken_bcf, SHIFT (141)
-, C_Lexique_piccolo_5F_lexique::kToken_bsf, SHIFT (142)
-, C_Lexique_piccolo_5F_lexique::kToken_goto, SHIFT (143)
-, C_Lexique_piccolo_5F_lexique::kToken_call, SHIFT (144)
-, C_Lexique_piccolo_5F_lexique::kToken_clrw, SHIFT (145)
-, C_Lexique_piccolo_5F_lexique::kToken_clrwdt, SHIFT (146)
-, C_Lexique_piccolo_5F_lexique::kToken_nop, SHIFT (147)
-, C_Lexique_piccolo_5F_lexique::kToken_option, SHIFT (148)
-, C_Lexique_piccolo_5F_lexique::kToken_sleep, SHIFT (149)
-, C_Lexique_piccolo_5F_lexique::kToken_tris, SHIFT (150)
-, C_Lexique_piccolo_5F_lexique::kToken_andlw, SHIFT (151)
-, C_Lexique_piccolo_5F_lexique::kToken_iorlw, SHIFT (152)
-, C_Lexique_piccolo_5F_lexique::kToken_movlw, SHIFT (153)
-, C_Lexique_piccolo_5F_lexique::kToken_xorlw, SHIFT (154)
+, C_Lexique_piccolo_5F_lexique::kToken_addwf, SHIFT (128)
+, C_Lexique_piccolo_5F_lexique::kToken_andwf, SHIFT (129)
+, C_Lexique_piccolo_5F_lexique::kToken_comf, SHIFT (130)
+, C_Lexique_piccolo_5F_lexique::kToken_iorwf, SHIFT (131)
+, C_Lexique_piccolo_5F_lexique::kToken_movf, SHIFT (132)
+, C_Lexique_piccolo_5F_lexique::kToken_rlf, SHIFT (133)
+, C_Lexique_piccolo_5F_lexique::kToken_rrf, SHIFT (134)
+, C_Lexique_piccolo_5F_lexique::kToken_subwf, SHIFT (135)
+, C_Lexique_piccolo_5F_lexique::kToken_swapf, SHIFT (136)
+, C_Lexique_piccolo_5F_lexique::kToken_xorwf, SHIFT (137)
+, C_Lexique_piccolo_5F_lexique::kToken_clrf, SHIFT (138)
+, C_Lexique_piccolo_5F_lexique::kToken_movwf, SHIFT (139)
+, C_Lexique_piccolo_5F_lexique::kToken_bcf, SHIFT (140)
+, C_Lexique_piccolo_5F_lexique::kToken_bsf, SHIFT (141)
+, C_Lexique_piccolo_5F_lexique::kToken_goto, SHIFT (142)
+, C_Lexique_piccolo_5F_lexique::kToken_call, SHIFT (143)
+, C_Lexique_piccolo_5F_lexique::kToken_clrw, SHIFT (144)
+, C_Lexique_piccolo_5F_lexique::kToken_clrwdt, SHIFT (145)
+, C_Lexique_piccolo_5F_lexique::kToken_nop, SHIFT (146)
+, C_Lexique_piccolo_5F_lexique::kToken_option, SHIFT (147)
+, C_Lexique_piccolo_5F_lexique::kToken_sleep, SHIFT (148)
+, C_Lexique_piccolo_5F_lexique::kToken_tris, SHIFT (149)
+, C_Lexique_piccolo_5F_lexique::kToken_andlw, SHIFT (150)
+, C_Lexique_piccolo_5F_lexique::kToken_iorlw, SHIFT (151)
+, C_Lexique_piccolo_5F_lexique::kToken_movlw, SHIFT (152)
+, C_Lexique_piccolo_5F_lexique::kToken_xorlw, SHIFT (153)
 , END
-// State S157 (index = 5777)
+// State S156 (index = 5726)
 , C_Lexique_piccolo_5F_lexique::kToken__7D_, REDUCE (38)
-, C_Lexique_piccolo_5F_lexique::kToken_do, SHIFT (121)
+, C_Lexique_piccolo_5F_lexique::kToken_do, SHIFT (120)
 , C_Lexique_piccolo_5F_lexique::kToken_end, REDUCE (38)
-, C_Lexique_piccolo_5F_lexique::kToken_jump, SHIFT (122)
-, C_Lexique_piccolo_5F_lexique::kToken_jsr, SHIFT (123)
-, C_Lexique_piccolo_5F_lexique::kToken_forever, SHIFT (124)
-, C_Lexique_piccolo_5F_lexique::kToken_if, SHIFT (125)
-, C_Lexique_piccolo_5F_lexique::kToken_decf, SHIFT (126)
-, C_Lexique_piccolo_5F_lexique::kToken_incf, SHIFT (127)
+, C_Lexique_piccolo_5F_lexique::kToken_jump, SHIFT (121)
+, C_Lexique_piccolo_5F_lexique::kToken_jsr, SHIFT (122)
+, C_Lexique_piccolo_5F_lexique::kToken_forever, SHIFT (123)
+, C_Lexique_piccolo_5F_lexique::kToken_if, SHIFT (124)
+, C_Lexique_piccolo_5F_lexique::kToken_decf, SHIFT (125)
+, C_Lexique_piccolo_5F_lexique::kToken_incf, SHIFT (126)
 , C_Lexique_piccolo_5F_lexique::kToken_while, REDUCE (38)
-, C_Lexique_piccolo_5F_lexique::kToken_mnop, SHIFT (128)
+, C_Lexique_piccolo_5F_lexique::kToken_mnop, SHIFT (127)
 , C_Lexique_piccolo_5F_lexique::kToken_elsif, REDUCE (38)
 , C_Lexique_piccolo_5F_lexique::kToken_else, REDUCE (38)
-, C_Lexique_piccolo_5F_lexique::kToken_addwf, SHIFT (129)
-, C_Lexique_piccolo_5F_lexique::kToken_andwf, SHIFT (130)
-, C_Lexique_piccolo_5F_lexique::kToken_comf, SHIFT (131)
-, C_Lexique_piccolo_5F_lexique::kToken_iorwf, SHIFT (132)
-, C_Lexique_piccolo_5F_lexique::kToken_movf, SHIFT (133)
-, C_Lexique_piccolo_5F_lexique::kToken_rlf, SHIFT (134)
-, C_Lexique_piccolo_5F_lexique::kToken_rrf, SHIFT (135)
-, C_Lexique_piccolo_5F_lexique::kToken_subwf, SHIFT (136)
-, C_Lexique_piccolo_5F_lexique::kToken_swapf, SHIFT (137)
-, C_Lexique_piccolo_5F_lexique::kToken_xorwf, SHIFT (138)
-, C_Lexique_piccolo_5F_lexique::kToken_clrf, SHIFT (139)
-, C_Lexique_piccolo_5F_lexique::kToken_movwf, SHIFT (140)
-, C_Lexique_piccolo_5F_lexique::kToken_bcf, SHIFT (141)
-, C_Lexique_piccolo_5F_lexique::kToken_bsf, SHIFT (142)
-, C_Lexique_piccolo_5F_lexique::kToken_goto, SHIFT (143)
-, C_Lexique_piccolo_5F_lexique::kToken_call, SHIFT (144)
-, C_Lexique_piccolo_5F_lexique::kToken_clrw, SHIFT (145)
-, C_Lexique_piccolo_5F_lexique::kToken_clrwdt, SHIFT (146)
-, C_Lexique_piccolo_5F_lexique::kToken_nop, SHIFT (147)
-, C_Lexique_piccolo_5F_lexique::kToken_option, SHIFT (148)
-, C_Lexique_piccolo_5F_lexique::kToken_sleep, SHIFT (149)
-, C_Lexique_piccolo_5F_lexique::kToken_tris, SHIFT (150)
-, C_Lexique_piccolo_5F_lexique::kToken_andlw, SHIFT (151)
-, C_Lexique_piccolo_5F_lexique::kToken_iorlw, SHIFT (152)
-, C_Lexique_piccolo_5F_lexique::kToken_movlw, SHIFT (153)
-, C_Lexique_piccolo_5F_lexique::kToken_xorlw, SHIFT (154)
+, C_Lexique_piccolo_5F_lexique::kToken_addwf, SHIFT (128)
+, C_Lexique_piccolo_5F_lexique::kToken_andwf, SHIFT (129)
+, C_Lexique_piccolo_5F_lexique::kToken_comf, SHIFT (130)
+, C_Lexique_piccolo_5F_lexique::kToken_iorwf, SHIFT (131)
+, C_Lexique_piccolo_5F_lexique::kToken_movf, SHIFT (132)
+, C_Lexique_piccolo_5F_lexique::kToken_rlf, SHIFT (133)
+, C_Lexique_piccolo_5F_lexique::kToken_rrf, SHIFT (134)
+, C_Lexique_piccolo_5F_lexique::kToken_subwf, SHIFT (135)
+, C_Lexique_piccolo_5F_lexique::kToken_swapf, SHIFT (136)
+, C_Lexique_piccolo_5F_lexique::kToken_xorwf, SHIFT (137)
+, C_Lexique_piccolo_5F_lexique::kToken_clrf, SHIFT (138)
+, C_Lexique_piccolo_5F_lexique::kToken_movwf, SHIFT (139)
+, C_Lexique_piccolo_5F_lexique::kToken_bcf, SHIFT (140)
+, C_Lexique_piccolo_5F_lexique::kToken_bsf, SHIFT (141)
+, C_Lexique_piccolo_5F_lexique::kToken_goto, SHIFT (142)
+, C_Lexique_piccolo_5F_lexique::kToken_call, SHIFT (143)
+, C_Lexique_piccolo_5F_lexique::kToken_clrw, SHIFT (144)
+, C_Lexique_piccolo_5F_lexique::kToken_clrwdt, SHIFT (145)
+, C_Lexique_piccolo_5F_lexique::kToken_nop, SHIFT (146)
+, C_Lexique_piccolo_5F_lexique::kToken_option, SHIFT (147)
+, C_Lexique_piccolo_5F_lexique::kToken_sleep, SHIFT (148)
+, C_Lexique_piccolo_5F_lexique::kToken_tris, SHIFT (149)
+, C_Lexique_piccolo_5F_lexique::kToken_andlw, SHIFT (150)
+, C_Lexique_piccolo_5F_lexique::kToken_iorlw, SHIFT (151)
+, C_Lexique_piccolo_5F_lexique::kToken_movlw, SHIFT (152)
+, C_Lexique_piccolo_5F_lexique::kToken_xorlw, SHIFT (153)
 , END
-// State S158 (index = 5856)
+// State S157 (index = 5805)
 , C_Lexique_piccolo_5F_lexique::kToken__7D_, REDUCE (1)
 , C_Lexique_piccolo_5F_lexique::kToken_end, REDUCE (1)
 , C_Lexique_piccolo_5F_lexique::kToken_while, REDUCE (1)
 , C_Lexique_piccolo_5F_lexique::kToken_elsif, REDUCE (1)
 , C_Lexique_piccolo_5F_lexique::kToken_else, REDUCE (1)
 , END
-// State S159 (index = 5867)
+// State S158 (index = 5816)
 , C_Lexique_piccolo_5F_lexique::kToken__7D_, REDUCE (3)
 , C_Lexique_piccolo_5F_lexique::kToken_do, REDUCE (3)
 , C_Lexique_piccolo_5F_lexique::kToken_end, REDUCE (3)
@@ -15642,7 +15615,7 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken_movlw, REDUCE (3)
 , C_Lexique_piccolo_5F_lexique::kToken_xorlw, REDUCE (3)
 , END
-// State S160 (index = 5946)
+// State S159 (index = 5895)
 , C_Lexique_piccolo_5F_lexique::kToken__7D_, REDUCE (5)
 , C_Lexique_piccolo_5F_lexique::kToken_do, REDUCE (5)
 , C_Lexique_piccolo_5F_lexique::kToken_end, REDUCE (5)
@@ -15683,37 +15656,44 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken_movlw, REDUCE (5)
 , C_Lexique_piccolo_5F_lexique::kToken_xorlw, REDUCE (5)
 , END
-// State S161 (index = 6025)
-, C_Lexique_piccolo_5F_lexique::kToken_identifier, SHIFT (187)
+// State S160 (index = 5974)
+, C_Lexique_piccolo_5F_lexique::kToken_identifier, SHIFT (186)
 , END
-// State S162 (index = 6028)
-, C_Lexique_piccolo_5F_lexique::kToken_identifier, SHIFT (187)
+// State S161 (index = 5977)
+, C_Lexique_piccolo_5F_lexique::kToken_identifier, SHIFT (186)
 , END
-// State S163 (index = 6031)
-, C_Lexique_piccolo_5F_lexique::kToken_identifier, SHIFT (187)
+// State S162 (index = 5980)
+, C_Lexique_piccolo_5F_lexique::kToken_identifier, SHIFT (186)
 , END
-// State S164 (index = 6034)
+// State S163 (index = 5983)
 , C_Lexique_piccolo_5F_lexique::kToken_identifier, SHIFT (42)
 , C_Lexique_piccolo_5F_lexique::kToken_integer, SHIFT (43)
 , C_Lexique_piccolo_5F_lexique::kToken__28_, SHIFT (44)
 , C_Lexique_piccolo_5F_lexique::kToken__2D_, SHIFT (45)
 , C_Lexique_piccolo_5F_lexique::kToken__7E_, SHIFT (46)
 , C_Lexique_piccolo_5F_lexique::kToken_literal_5F_char, SHIFT (47)
-, C_Lexique_piccolo_5F_lexique::kToken__40_, SHIFT (48)
 , END
-// State S165 (index = 6049)
-, C_Lexique_piccolo_5F_lexique::kToken__5D_, SHIFT (207)
+// State S164 (index = 5996)
+, C_Lexique_piccolo_5F_lexique::kToken__5D_, SHIFT (206)
 , END
-// State S166 (index = 6052)
-, C_Lexique_piccolo_5F_lexique::kToken_identifier, SHIFT (208)
-, C_Lexique_piccolo_5F_lexique::kToken_integer, SHIFT (209)
-, C_Lexique_piccolo_5F_lexique::kToken__2D_, SHIFT (210)
+// State S165 (index = 5999)
+, C_Lexique_piccolo_5F_lexique::kToken_identifier, SHIFT (207)
+, C_Lexique_piccolo_5F_lexique::kToken_integer, SHIFT (208)
+, C_Lexique_piccolo_5F_lexique::kToken__2D_, SHIFT (209)
 , END
-// State S167 (index = 6059)
+// State S166 (index = 6006)
 , C_Lexique_piccolo_5F_lexique::kToken_byte, REDUCE (12)
 , C_Lexique_piccolo_5F_lexique::kToken__7D_, REDUCE (12)
 , END
-// State S168 (index = 6064)
+// State S167 (index = 6011)
+, C_Lexique_piccolo_5F_lexique::kToken_identifier, SHIFT (42)
+, C_Lexique_piccolo_5F_lexique::kToken_integer, SHIFT (43)
+, C_Lexique_piccolo_5F_lexique::kToken__28_, SHIFT (44)
+, C_Lexique_piccolo_5F_lexique::kToken__2D_, SHIFT (45)
+, C_Lexique_piccolo_5F_lexique::kToken__7E_, SHIFT (46)
+, C_Lexique_piccolo_5F_lexique::kToken_literal_5F_char, SHIFT (47)
+, END
+// State S168 (index = 6024)
 , C_Lexique_piccolo_5F_lexique::kToken_mark, REDUCE (177)
 , C_Lexique_piccolo_5F_lexique::kToken_unused, REDUCE (177)
 , C_Lexique_piccolo_5F_lexique::kToken__2C_, REDUCE (177)
@@ -15782,10 +15762,7 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken__25_, REDUCE (177)
 , C_Lexique_piccolo_5F_lexique::kToken_, REDUCE (177)
 , END
-// State S169 (index = 6199)
-, C_Lexique_piccolo_5F_lexique::kToken__3A_, SHIFT (212)
-, END
-// State S170 (index = 6202)
+// State S169 (index = 6159)
 , C_Lexique_piccolo_5F_lexique::kToken_mark, REDUCE (149)
 , C_Lexique_piccolo_5F_lexique::kToken_unused, REDUCE (149)
 , C_Lexique_piccolo_5F_lexique::kToken__2C_, REDUCE (149)
@@ -15838,7 +15815,7 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken_const, REDUCE (149)
 , C_Lexique_piccolo_5F_lexique::kToken_, REDUCE (149)
 , END
-// State S171 (index = 6305)
+// State S170 (index = 6262)
 , C_Lexique_piccolo_5F_lexique::kToken_mark, REDUCE (150)
 , C_Lexique_piccolo_5F_lexique::kToken_unused, REDUCE (150)
 , C_Lexique_piccolo_5F_lexique::kToken__2C_, REDUCE (150)
@@ -15891,7 +15868,7 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken_const, REDUCE (150)
 , C_Lexique_piccolo_5F_lexique::kToken_, REDUCE (150)
 , END
-// State S172 (index = 6408)
+// State S171 (index = 6365)
 , C_Lexique_piccolo_5F_lexique::kToken_mark, REDUCE (152)
 , C_Lexique_piccolo_5F_lexique::kToken_unused, REDUCE (152)
 , C_Lexique_piccolo_5F_lexique::kToken__2C_, REDUCE (152)
@@ -15946,7 +15923,7 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken__5E_, REDUCE (152)
 , C_Lexique_piccolo_5F_lexique::kToken_, REDUCE (152)
 , END
-// State S173 (index = 6515)
+// State S172 (index = 6472)
 , C_Lexique_piccolo_5F_lexique::kToken_mark, REDUCE (162)
 , C_Lexique_piccolo_5F_lexique::kToken_unused, REDUCE (162)
 , C_Lexique_piccolo_5F_lexique::kToken__2C_, REDUCE (162)
@@ -16008,7 +15985,7 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken__3C__3D_, REDUCE (162)
 , C_Lexique_piccolo_5F_lexique::kToken_, REDUCE (162)
 , END
-// State S174 (index = 6636)
+// State S173 (index = 6593)
 , C_Lexique_piccolo_5F_lexique::kToken_mark, REDUCE (161)
 , C_Lexique_piccolo_5F_lexique::kToken_unused, REDUCE (161)
 , C_Lexique_piccolo_5F_lexique::kToken__2C_, REDUCE (161)
@@ -16070,7 +16047,7 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken__3C__3D_, REDUCE (161)
 , C_Lexique_piccolo_5F_lexique::kToken_, REDUCE (161)
 , END
-// State S175 (index = 6757)
+// State S174 (index = 6714)
 , C_Lexique_piccolo_5F_lexique::kToken_mark, REDUCE (163)
 , C_Lexique_piccolo_5F_lexique::kToken_unused, REDUCE (163)
 , C_Lexique_piccolo_5F_lexique::kToken__2C_, REDUCE (163)
@@ -16132,7 +16109,7 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken__3C__3D_, REDUCE (163)
 , C_Lexique_piccolo_5F_lexique::kToken_, REDUCE (163)
 , END
-// State S176 (index = 6878)
+// State S175 (index = 6835)
 , C_Lexique_piccolo_5F_lexique::kToken_mark, REDUCE (164)
 , C_Lexique_piccolo_5F_lexique::kToken_unused, REDUCE (164)
 , C_Lexique_piccolo_5F_lexique::kToken__2C_, REDUCE (164)
@@ -16194,7 +16171,7 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken__3C__3D_, REDUCE (164)
 , C_Lexique_piccolo_5F_lexique::kToken_, REDUCE (164)
 , END
-// State S177 (index = 6999)
+// State S176 (index = 6956)
 , C_Lexique_piccolo_5F_lexique::kToken_mark, REDUCE (168)
 , C_Lexique_piccolo_5F_lexique::kToken_unused, REDUCE (168)
 , C_Lexique_piccolo_5F_lexique::kToken__2C_, REDUCE (168)
@@ -16260,7 +16237,7 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken__3E__3E_, REDUCE (168)
 , C_Lexique_piccolo_5F_lexique::kToken_, REDUCE (168)
 , END
-// State S178 (index = 7128)
+// State S177 (index = 7085)
 , C_Lexique_piccolo_5F_lexique::kToken_mark, REDUCE (166)
 , C_Lexique_piccolo_5F_lexique::kToken_unused, REDUCE (166)
 , C_Lexique_piccolo_5F_lexique::kToken__2C_, REDUCE (166)
@@ -16326,7 +16303,7 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken__3E__3E_, REDUCE (166)
 , C_Lexique_piccolo_5F_lexique::kToken_, REDUCE (166)
 , END
-// State S179 (index = 7257)
+// State S178 (index = 7214)
 , C_Lexique_piccolo_5F_lexique::kToken_mark, REDUCE (167)
 , C_Lexique_piccolo_5F_lexique::kToken_unused, REDUCE (167)
 , C_Lexique_piccolo_5F_lexique::kToken__2C_, REDUCE (167)
@@ -16392,7 +16369,7 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken__3E__3E_, REDUCE (167)
 , C_Lexique_piccolo_5F_lexique::kToken_, REDUCE (167)
 , END
-// State S180 (index = 7386)
+// State S179 (index = 7343)
 , C_Lexique_piccolo_5F_lexique::kToken_do, REDUCE (73)
 , C_Lexique_piccolo_5F_lexique::kToken__28_, REDUCE (55)
 , C_Lexique_piccolo_5F_lexique::kToken_jump, REDUCE (73)
@@ -16430,51 +16407,51 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken_movlw, REDUCE (73)
 , C_Lexique_piccolo_5F_lexique::kToken_xorlw, REDUCE (73)
 , END
-// State S181 (index = 7459)
-, C_Lexique_piccolo_5F_lexique::kToken__28_, SHIFT (213)
+// State S180 (index = 7416)
+, C_Lexique_piccolo_5F_lexique::kToken__28_, SHIFT (212)
 , END
-// State S182 (index = 7462)
+// State S181 (index = 7419)
 , C_Lexique_piccolo_5F_lexique::kToken__7D_, REDUCE (38)
-, C_Lexique_piccolo_5F_lexique::kToken_do, SHIFT (121)
+, C_Lexique_piccolo_5F_lexique::kToken_do, SHIFT (120)
 , C_Lexique_piccolo_5F_lexique::kToken_end, REDUCE (38)
-, C_Lexique_piccolo_5F_lexique::kToken_jump, SHIFT (122)
-, C_Lexique_piccolo_5F_lexique::kToken_jsr, SHIFT (123)
-, C_Lexique_piccolo_5F_lexique::kToken_forever, SHIFT (124)
-, C_Lexique_piccolo_5F_lexique::kToken_if, SHIFT (125)
-, C_Lexique_piccolo_5F_lexique::kToken_decf, SHIFT (126)
-, C_Lexique_piccolo_5F_lexique::kToken_incf, SHIFT (127)
+, C_Lexique_piccolo_5F_lexique::kToken_jump, SHIFT (121)
+, C_Lexique_piccolo_5F_lexique::kToken_jsr, SHIFT (122)
+, C_Lexique_piccolo_5F_lexique::kToken_forever, SHIFT (123)
+, C_Lexique_piccolo_5F_lexique::kToken_if, SHIFT (124)
+, C_Lexique_piccolo_5F_lexique::kToken_decf, SHIFT (125)
+, C_Lexique_piccolo_5F_lexique::kToken_incf, SHIFT (126)
 , C_Lexique_piccolo_5F_lexique::kToken_while, REDUCE (38)
-, C_Lexique_piccolo_5F_lexique::kToken_mnop, SHIFT (128)
+, C_Lexique_piccolo_5F_lexique::kToken_mnop, SHIFT (127)
 , C_Lexique_piccolo_5F_lexique::kToken_elsif, REDUCE (38)
 , C_Lexique_piccolo_5F_lexique::kToken_else, REDUCE (38)
-, C_Lexique_piccolo_5F_lexique::kToken_addwf, SHIFT (129)
-, C_Lexique_piccolo_5F_lexique::kToken_andwf, SHIFT (130)
-, C_Lexique_piccolo_5F_lexique::kToken_comf, SHIFT (131)
-, C_Lexique_piccolo_5F_lexique::kToken_iorwf, SHIFT (132)
-, C_Lexique_piccolo_5F_lexique::kToken_movf, SHIFT (133)
-, C_Lexique_piccolo_5F_lexique::kToken_rlf, SHIFT (134)
-, C_Lexique_piccolo_5F_lexique::kToken_rrf, SHIFT (135)
-, C_Lexique_piccolo_5F_lexique::kToken_subwf, SHIFT (136)
-, C_Lexique_piccolo_5F_lexique::kToken_swapf, SHIFT (137)
-, C_Lexique_piccolo_5F_lexique::kToken_xorwf, SHIFT (138)
-, C_Lexique_piccolo_5F_lexique::kToken_clrf, SHIFT (139)
-, C_Lexique_piccolo_5F_lexique::kToken_movwf, SHIFT (140)
-, C_Lexique_piccolo_5F_lexique::kToken_bcf, SHIFT (141)
-, C_Lexique_piccolo_5F_lexique::kToken_bsf, SHIFT (142)
-, C_Lexique_piccolo_5F_lexique::kToken_goto, SHIFT (143)
-, C_Lexique_piccolo_5F_lexique::kToken_call, SHIFT (144)
-, C_Lexique_piccolo_5F_lexique::kToken_clrw, SHIFT (145)
-, C_Lexique_piccolo_5F_lexique::kToken_clrwdt, SHIFT (146)
-, C_Lexique_piccolo_5F_lexique::kToken_nop, SHIFT (147)
-, C_Lexique_piccolo_5F_lexique::kToken_option, SHIFT (148)
-, C_Lexique_piccolo_5F_lexique::kToken_sleep, SHIFT (149)
-, C_Lexique_piccolo_5F_lexique::kToken_tris, SHIFT (150)
-, C_Lexique_piccolo_5F_lexique::kToken_andlw, SHIFT (151)
-, C_Lexique_piccolo_5F_lexique::kToken_iorlw, SHIFT (152)
-, C_Lexique_piccolo_5F_lexique::kToken_movlw, SHIFT (153)
-, C_Lexique_piccolo_5F_lexique::kToken_xorlw, SHIFT (154)
+, C_Lexique_piccolo_5F_lexique::kToken_addwf, SHIFT (128)
+, C_Lexique_piccolo_5F_lexique::kToken_andwf, SHIFT (129)
+, C_Lexique_piccolo_5F_lexique::kToken_comf, SHIFT (130)
+, C_Lexique_piccolo_5F_lexique::kToken_iorwf, SHIFT (131)
+, C_Lexique_piccolo_5F_lexique::kToken_movf, SHIFT (132)
+, C_Lexique_piccolo_5F_lexique::kToken_rlf, SHIFT (133)
+, C_Lexique_piccolo_5F_lexique::kToken_rrf, SHIFT (134)
+, C_Lexique_piccolo_5F_lexique::kToken_subwf, SHIFT (135)
+, C_Lexique_piccolo_5F_lexique::kToken_swapf, SHIFT (136)
+, C_Lexique_piccolo_5F_lexique::kToken_xorwf, SHIFT (137)
+, C_Lexique_piccolo_5F_lexique::kToken_clrf, SHIFT (138)
+, C_Lexique_piccolo_5F_lexique::kToken_movwf, SHIFT (139)
+, C_Lexique_piccolo_5F_lexique::kToken_bcf, SHIFT (140)
+, C_Lexique_piccolo_5F_lexique::kToken_bsf, SHIFT (141)
+, C_Lexique_piccolo_5F_lexique::kToken_goto, SHIFT (142)
+, C_Lexique_piccolo_5F_lexique::kToken_call, SHIFT (143)
+, C_Lexique_piccolo_5F_lexique::kToken_clrw, SHIFT (144)
+, C_Lexique_piccolo_5F_lexique::kToken_clrwdt, SHIFT (145)
+, C_Lexique_piccolo_5F_lexique::kToken_nop, SHIFT (146)
+, C_Lexique_piccolo_5F_lexique::kToken_option, SHIFT (147)
+, C_Lexique_piccolo_5F_lexique::kToken_sleep, SHIFT (148)
+, C_Lexique_piccolo_5F_lexique::kToken_tris, SHIFT (149)
+, C_Lexique_piccolo_5F_lexique::kToken_andlw, SHIFT (150)
+, C_Lexique_piccolo_5F_lexique::kToken_iorlw, SHIFT (151)
+, C_Lexique_piccolo_5F_lexique::kToken_movlw, SHIFT (152)
+, C_Lexique_piccolo_5F_lexique::kToken_xorlw, SHIFT (153)
 , END
-// State S183 (index = 7541)
+// State S182 (index = 7498)
 , C_Lexique_piccolo_5F_lexique::kToken__7D_, REDUCE (46)
 , C_Lexique_piccolo_5F_lexique::kToken_do, REDUCE (46)
 , C_Lexique_piccolo_5F_lexique::kToken_end, REDUCE (46)
@@ -16515,7 +16492,7 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken_movlw, REDUCE (46)
 , C_Lexique_piccolo_5F_lexique::kToken_xorlw, REDUCE (46)
 , END
-// State S184 (index = 7620)
+// State S183 (index = 7577)
 , C_Lexique_piccolo_5F_lexique::kToken__7D_, REDUCE (47)
 , C_Lexique_piccolo_5F_lexique::kToken_do, REDUCE (47)
 , C_Lexique_piccolo_5F_lexique::kToken_end, REDUCE (47)
@@ -16556,7 +16533,7 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken_movlw, REDUCE (47)
 , C_Lexique_piccolo_5F_lexique::kToken_xorlw, REDUCE (47)
 , END
-// State S185 (index = 7699)
+// State S184 (index = 7656)
 , C_Lexique_piccolo_5F_lexique::kToken_do, REDUCE (59)
 , C_Lexique_piccolo_5F_lexique::kToken_end, REDUCE (59)
 , C_Lexique_piccolo_5F_lexique::kToken_jump, REDUCE (59)
@@ -16593,48 +16570,48 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken_movlw, REDUCE (59)
 , C_Lexique_piccolo_5F_lexique::kToken_xorlw, REDUCE (59)
 , END
-// State S186 (index = 7770)
+// State S185 (index = 7727)
 , C_Lexique_piccolo_5F_lexique::kToken__7D_, REDUCE (38)
-, C_Lexique_piccolo_5F_lexique::kToken_do, SHIFT (121)
+, C_Lexique_piccolo_5F_lexique::kToken_do, SHIFT (120)
 , C_Lexique_piccolo_5F_lexique::kToken_end, REDUCE (38)
-, C_Lexique_piccolo_5F_lexique::kToken_jump, SHIFT (122)
-, C_Lexique_piccolo_5F_lexique::kToken_jsr, SHIFT (123)
-, C_Lexique_piccolo_5F_lexique::kToken_forever, SHIFT (124)
-, C_Lexique_piccolo_5F_lexique::kToken_if, SHIFT (125)
-, C_Lexique_piccolo_5F_lexique::kToken_decf, SHIFT (126)
-, C_Lexique_piccolo_5F_lexique::kToken_incf, SHIFT (127)
+, C_Lexique_piccolo_5F_lexique::kToken_jump, SHIFT (121)
+, C_Lexique_piccolo_5F_lexique::kToken_jsr, SHIFT (122)
+, C_Lexique_piccolo_5F_lexique::kToken_forever, SHIFT (123)
+, C_Lexique_piccolo_5F_lexique::kToken_if, SHIFT (124)
+, C_Lexique_piccolo_5F_lexique::kToken_decf, SHIFT (125)
+, C_Lexique_piccolo_5F_lexique::kToken_incf, SHIFT (126)
 , C_Lexique_piccolo_5F_lexique::kToken_while, REDUCE (38)
-, C_Lexique_piccolo_5F_lexique::kToken_mnop, SHIFT (128)
+, C_Lexique_piccolo_5F_lexique::kToken_mnop, SHIFT (127)
 , C_Lexique_piccolo_5F_lexique::kToken_elsif, REDUCE (38)
 , C_Lexique_piccolo_5F_lexique::kToken_else, REDUCE (38)
-, C_Lexique_piccolo_5F_lexique::kToken_addwf, SHIFT (129)
-, C_Lexique_piccolo_5F_lexique::kToken_andwf, SHIFT (130)
-, C_Lexique_piccolo_5F_lexique::kToken_comf, SHIFT (131)
-, C_Lexique_piccolo_5F_lexique::kToken_iorwf, SHIFT (132)
-, C_Lexique_piccolo_5F_lexique::kToken_movf, SHIFT (133)
-, C_Lexique_piccolo_5F_lexique::kToken_rlf, SHIFT (134)
-, C_Lexique_piccolo_5F_lexique::kToken_rrf, SHIFT (135)
-, C_Lexique_piccolo_5F_lexique::kToken_subwf, SHIFT (136)
-, C_Lexique_piccolo_5F_lexique::kToken_swapf, SHIFT (137)
-, C_Lexique_piccolo_5F_lexique::kToken_xorwf, SHIFT (138)
-, C_Lexique_piccolo_5F_lexique::kToken_clrf, SHIFT (139)
-, C_Lexique_piccolo_5F_lexique::kToken_movwf, SHIFT (140)
-, C_Lexique_piccolo_5F_lexique::kToken_bcf, SHIFT (141)
-, C_Lexique_piccolo_5F_lexique::kToken_bsf, SHIFT (142)
-, C_Lexique_piccolo_5F_lexique::kToken_goto, SHIFT (143)
-, C_Lexique_piccolo_5F_lexique::kToken_call, SHIFT (144)
-, C_Lexique_piccolo_5F_lexique::kToken_clrw, SHIFT (145)
-, C_Lexique_piccolo_5F_lexique::kToken_clrwdt, SHIFT (146)
-, C_Lexique_piccolo_5F_lexique::kToken_nop, SHIFT (147)
-, C_Lexique_piccolo_5F_lexique::kToken_option, SHIFT (148)
-, C_Lexique_piccolo_5F_lexique::kToken_sleep, SHIFT (149)
-, C_Lexique_piccolo_5F_lexique::kToken_tris, SHIFT (150)
-, C_Lexique_piccolo_5F_lexique::kToken_andlw, SHIFT (151)
-, C_Lexique_piccolo_5F_lexique::kToken_iorlw, SHIFT (152)
-, C_Lexique_piccolo_5F_lexique::kToken_movlw, SHIFT (153)
-, C_Lexique_piccolo_5F_lexique::kToken_xorlw, SHIFT (154)
+, C_Lexique_piccolo_5F_lexique::kToken_addwf, SHIFT (128)
+, C_Lexique_piccolo_5F_lexique::kToken_andwf, SHIFT (129)
+, C_Lexique_piccolo_5F_lexique::kToken_comf, SHIFT (130)
+, C_Lexique_piccolo_5F_lexique::kToken_iorwf, SHIFT (131)
+, C_Lexique_piccolo_5F_lexique::kToken_movf, SHIFT (132)
+, C_Lexique_piccolo_5F_lexique::kToken_rlf, SHIFT (133)
+, C_Lexique_piccolo_5F_lexique::kToken_rrf, SHIFT (134)
+, C_Lexique_piccolo_5F_lexique::kToken_subwf, SHIFT (135)
+, C_Lexique_piccolo_5F_lexique::kToken_swapf, SHIFT (136)
+, C_Lexique_piccolo_5F_lexique::kToken_xorwf, SHIFT (137)
+, C_Lexique_piccolo_5F_lexique::kToken_clrf, SHIFT (138)
+, C_Lexique_piccolo_5F_lexique::kToken_movwf, SHIFT (139)
+, C_Lexique_piccolo_5F_lexique::kToken_bcf, SHIFT (140)
+, C_Lexique_piccolo_5F_lexique::kToken_bsf, SHIFT (141)
+, C_Lexique_piccolo_5F_lexique::kToken_goto, SHIFT (142)
+, C_Lexique_piccolo_5F_lexique::kToken_call, SHIFT (143)
+, C_Lexique_piccolo_5F_lexique::kToken_clrw, SHIFT (144)
+, C_Lexique_piccolo_5F_lexique::kToken_clrwdt, SHIFT (145)
+, C_Lexique_piccolo_5F_lexique::kToken_nop, SHIFT (146)
+, C_Lexique_piccolo_5F_lexique::kToken_option, SHIFT (147)
+, C_Lexique_piccolo_5F_lexique::kToken_sleep, SHIFT (148)
+, C_Lexique_piccolo_5F_lexique::kToken_tris, SHIFT (149)
+, C_Lexique_piccolo_5F_lexique::kToken_andlw, SHIFT (150)
+, C_Lexique_piccolo_5F_lexique::kToken_iorlw, SHIFT (151)
+, C_Lexique_piccolo_5F_lexique::kToken_movlw, SHIFT (152)
+, C_Lexique_piccolo_5F_lexique::kToken_xorlw, SHIFT (153)
 , END
-// State S187 (index = 7849)
+// State S186 (index = 7806)
 , C_Lexique_piccolo_5F_lexique::kToken_identifier, REDUCE (180)
 , C_Lexique_piccolo_5F_lexique::kToken__2C_, REDUCE (180)
 , C_Lexique_piccolo_5F_lexique::kToken__7D_, REDUCE (180)
@@ -16677,33 +16654,33 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken_iorlw, REDUCE (180)
 , C_Lexique_piccolo_5F_lexique::kToken_movlw, REDUCE (180)
 , C_Lexique_piccolo_5F_lexique::kToken_xorlw, REDUCE (180)
-, C_Lexique_piccolo_5F_lexique::kToken__5B_, SHIFT (216)
+, C_Lexique_piccolo_5F_lexique::kToken__5B_, SHIFT (215)
 , END
-// State S188 (index = 7936)
+// State S187 (index = 7893)
 , C_Lexique_piccolo_5F_lexique::kToken__28_, REDUCE (69)
 , END
-// State S189 (index = 7939)
-, C_Lexique_piccolo_5F_lexique::kToken_identifier, SHIFT (187)
+// State S188 (index = 7896)
+, C_Lexique_piccolo_5F_lexique::kToken_identifier, SHIFT (186)
 , END
-// State S190 (index = 7942)
+// State S189 (index = 7899)
 , C_Lexique_piccolo_5F_lexique::kToken_identifier, REDUCE (64)
 , END
-// State S191 (index = 7945)
+// State S190 (index = 7902)
 , C_Lexique_piccolo_5F_lexique::kToken_identifier, REDUCE (65)
 , END
-// State S192 (index = 7948)
-, C_Lexique_piccolo_5F_lexique::kToken__2E_, SHIFT (219)
+// State S191 (index = 7905)
+, C_Lexique_piccolo_5F_lexique::kToken__2E_, SHIFT (218)
 , END
-// State S193 (index = 7951)
-, C_Lexique_piccolo_5F_lexique::kToken__3A_, SHIFT (220)
+// State S192 (index = 7908)
+, C_Lexique_piccolo_5F_lexique::kToken__3A_, SHIFT (219)
 , END
-// State S194 (index = 7954)
-, C_Lexique_piccolo_5F_lexique::kToken_identifier, SHIFT (187)
+// State S193 (index = 7911)
+, C_Lexique_piccolo_5F_lexique::kToken_identifier, SHIFT (186)
 , END
-// State S195 (index = 7957)
-, C_Lexique_piccolo_5F_lexique::kToken__28_, SHIFT (222)
+// State S194 (index = 7914)
+, C_Lexique_piccolo_5F_lexique::kToken__28_, SHIFT (221)
 , END
-// State S196 (index = 7960)
+// State S195 (index = 7917)
 , C_Lexique_piccolo_5F_lexique::kToken__7D_, REDUCE (53)
 , C_Lexique_piccolo_5F_lexique::kToken_do, REDUCE (53)
 , C_Lexique_piccolo_5F_lexique::kToken_end, REDUCE (53)
@@ -16744,7 +16721,7 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken_movlw, REDUCE (53)
 , C_Lexique_piccolo_5F_lexique::kToken_xorlw, REDUCE (53)
 , END
-// State S197 (index = 8039)
+// State S196 (index = 7996)
 , C_Lexique_piccolo_5F_lexique::kToken__7D_, REDUCE (90)
 , C_Lexique_piccolo_5F_lexique::kToken_do, REDUCE (90)
 , C_Lexique_piccolo_5F_lexique::kToken_end, REDUCE (90)
@@ -16785,7 +16762,7 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken_movlw, REDUCE (90)
 , C_Lexique_piccolo_5F_lexique::kToken_xorlw, REDUCE (90)
 , END
-// State S198 (index = 8118)
+// State S197 (index = 8075)
 , C_Lexique_piccolo_5F_lexique::kToken__7D_, REDUCE (91)
 , C_Lexique_piccolo_5F_lexique::kToken_do, REDUCE (91)
 , C_Lexique_piccolo_5F_lexique::kToken_end, REDUCE (91)
@@ -16826,7 +16803,7 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken_movlw, REDUCE (91)
 , C_Lexique_piccolo_5F_lexique::kToken_xorlw, REDUCE (91)
 , END
-// State S199 (index = 8197)
+// State S198 (index = 8154)
 , C_Lexique_piccolo_5F_lexique::kToken__7D_, REDUCE (97)
 , C_Lexique_piccolo_5F_lexique::kToken_do, REDUCE (97)
 , C_Lexique_piccolo_5F_lexique::kToken_end, REDUCE (97)
@@ -16867,7 +16844,7 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken_movlw, REDUCE (97)
 , C_Lexique_piccolo_5F_lexique::kToken_xorlw, REDUCE (97)
 , END
-// State S200 (index = 8276)
+// State S199 (index = 8233)
 , C_Lexique_piccolo_5F_lexique::kToken_mark, REDUCE (2)
 , C_Lexique_piccolo_5F_lexique::kToken_unused, REDUCE (2)
 , C_Lexique_piccolo_5F_lexique::kToken_routine, REDUCE (2)
@@ -16877,22 +16854,22 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken_const, REDUCE (2)
 , C_Lexique_piccolo_5F_lexique::kToken_, REDUCE (2)
 , END
-// State S201 (index = 8293)
+// State S200 (index = 8250)
 , C_Lexique_piccolo_5F_lexique::kToken__7D_, REDUCE (40)
 , C_Lexique_piccolo_5F_lexique::kToken_end, REDUCE (40)
 , C_Lexique_piccolo_5F_lexique::kToken_while, REDUCE (40)
 , C_Lexique_piccolo_5F_lexique::kToken_elsif, REDUCE (40)
 , C_Lexique_piccolo_5F_lexique::kToken_else, REDUCE (40)
 , END
-// State S202 (index = 8304)
+// State S201 (index = 8261)
 , C_Lexique_piccolo_5F_lexique::kToken__7D_, REDUCE (39)
 , C_Lexique_piccolo_5F_lexique::kToken_end, REDUCE (39)
 , C_Lexique_piccolo_5F_lexique::kToken_while, REDUCE (39)
 , C_Lexique_piccolo_5F_lexique::kToken_elsif, REDUCE (39)
 , C_Lexique_piccolo_5F_lexique::kToken_else, REDUCE (39)
 , END
-// State S203 (index = 8315)
-, C_Lexique_piccolo_5F_lexique::kToken__2C_, SHIFT (225)
+// State S202 (index = 8272)
+, C_Lexique_piccolo_5F_lexique::kToken__2C_, SHIFT (224)
 , C_Lexique_piccolo_5F_lexique::kToken__7D_, REDUCE (184)
 , C_Lexique_piccolo_5F_lexique::kToken_do, REDUCE (184)
 , C_Lexique_piccolo_5F_lexique::kToken_end, REDUCE (184)
@@ -16933,7 +16910,7 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken_movlw, REDUCE (184)
 , C_Lexique_piccolo_5F_lexique::kToken_xorlw, REDUCE (184)
 , END
-// State S204 (index = 8396)
+// State S203 (index = 8353)
 , C_Lexique_piccolo_5F_lexique::kToken__7D_, REDUCE (88)
 , C_Lexique_piccolo_5F_lexique::kToken_do, REDUCE (88)
 , C_Lexique_piccolo_5F_lexique::kToken_end, REDUCE (88)
@@ -16974,10 +16951,10 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken_movlw, REDUCE (88)
 , C_Lexique_piccolo_5F_lexique::kToken_xorlw, REDUCE (88)
 , END
-// State S205 (index = 8475)
-, C_Lexique_piccolo_5F_lexique::kToken__2E_, SHIFT (228)
+// State S204 (index = 8432)
+, C_Lexique_piccolo_5F_lexique::kToken__2E_, SHIFT (227)
 , END
-// State S206 (index = 8478)
+// State S205 (index = 8435)
 , C_Lexique_piccolo_5F_lexique::kToken__7D_, REDUCE (98)
 , C_Lexique_piccolo_5F_lexique::kToken_do, REDUCE (98)
 , C_Lexique_piccolo_5F_lexique::kToken_end, REDUCE (98)
@@ -17018,57 +16995,51 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken_movlw, REDUCE (98)
 , C_Lexique_piccolo_5F_lexique::kToken_xorlw, REDUCE (98)
 , END
-// State S207 (index = 8557)
+// State S206 (index = 8514)
 , C_Lexique_piccolo_5F_lexique::kToken_byte, REDUCE (134)
 , C_Lexique_piccolo_5F_lexique::kToken__7D_, REDUCE (134)
 , C_Lexique_piccolo_5F_lexique::kToken__3C_, REDUCE (134)
 , END
-// State S208 (index = 8564)
+// State S207 (index = 8521)
 , C_Lexique_piccolo_5F_lexique::kToken__2C_, REDUCE (144)
-, C_Lexique_piccolo_5F_lexique::kToken__5B_, SHIFT (229)
+, C_Lexique_piccolo_5F_lexique::kToken__5B_, SHIFT (228)
 , C_Lexique_piccolo_5F_lexique::kToken__2F_, REDUCE (144)
 , C_Lexique_piccolo_5F_lexique::kToken__3E_, REDUCE (144)
 , END
-// State S209 (index = 8573)
+// State S208 (index = 8530)
 , C_Lexique_piccolo_5F_lexique::kToken__2C_, REDUCE (141)
 , C_Lexique_piccolo_5F_lexique::kToken__3E_, REDUCE (141)
 , END
-// State S210 (index = 8578)
+// State S209 (index = 8535)
 , C_Lexique_piccolo_5F_lexique::kToken__2C_, REDUCE (140)
 , C_Lexique_piccolo_5F_lexique::kToken__3E_, REDUCE (140)
 , END
-// State S211 (index = 8583)
-, C_Lexique_piccolo_5F_lexique::kToken__2C_, SHIFT (231)
+// State S210 (index = 8540)
+, C_Lexique_piccolo_5F_lexique::kToken__2C_, SHIFT (230)
 , C_Lexique_piccolo_5F_lexique::kToken__3E_, REDUCE (137)
 , END
-// State S212 (index = 8588)
-, C_Lexique_piccolo_5F_lexique::kToken_identifier, SHIFT (42)
-, C_Lexique_piccolo_5F_lexique::kToken_integer, SHIFT (43)
-, C_Lexique_piccolo_5F_lexique::kToken__28_, SHIFT (44)
-, C_Lexique_piccolo_5F_lexique::kToken__2D_, SHIFT (45)
-, C_Lexique_piccolo_5F_lexique::kToken__7E_, SHIFT (46)
-, C_Lexique_piccolo_5F_lexique::kToken_literal_5F_char, SHIFT (47)
-, C_Lexique_piccolo_5F_lexique::kToken__40_, SHIFT (48)
+// State S211 (index = 8545)
+, C_Lexique_piccolo_5F_lexique::kToken__2C_, SHIFT (232)
+, C_Lexique_piccolo_5F_lexique::kToken__29_, REDUCE (178)
 , END
-// State S213 (index = 8603)
+// State S212 (index = 8550)
 , C_Lexique_piccolo_5F_lexique::kToken_identifier, SHIFT (234)
 , END
-// State S214 (index = 8606)
+// State S213 (index = 8553)
 , C_Lexique_piccolo_5F_lexique::kToken_while, SHIFT (235)
 , END
-// State S215 (index = 8609)
+// State S214 (index = 8556)
 , C_Lexique_piccolo_5F_lexique::kToken_end, SHIFT (236)
 , END
-// State S216 (index = 8612)
+// State S215 (index = 8559)
 , C_Lexique_piccolo_5F_lexique::kToken_identifier, SHIFT (42)
 , C_Lexique_piccolo_5F_lexique::kToken_integer, SHIFT (43)
 , C_Lexique_piccolo_5F_lexique::kToken__28_, SHIFT (44)
 , C_Lexique_piccolo_5F_lexique::kToken__2D_, SHIFT (45)
 , C_Lexique_piccolo_5F_lexique::kToken__7E_, SHIFT (46)
 , C_Lexique_piccolo_5F_lexique::kToken_literal_5F_char, SHIFT (47)
-, C_Lexique_piccolo_5F_lexique::kToken__40_, SHIFT (48)
 , END
-// State S217 (index = 8627)
+// State S216 (index = 8572)
 , C_Lexique_piccolo_5F_lexique::kToken_identifier, REDUCE (21)
 , C_Lexique_piccolo_5F_lexique::kToken__2C_, REDUCE (21)
 , C_Lexique_piccolo_5F_lexique::kToken__7D_, REDUCE (21)
@@ -17112,103 +17083,103 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken_movlw, REDUCE (21)
 , C_Lexique_piccolo_5F_lexique::kToken_xorlw, REDUCE (21)
 , END
-// State S218 (index = 8712)
+// State S217 (index = 8657)
 , C_Lexique_piccolo_5F_lexique::kToken__2E_, SHIFT (238)
 , END
-// State S219 (index = 8715)
+// State S218 (index = 8660)
 , C_Lexique_piccolo_5F_lexique::kToken_identifier, SHIFT (239)
 , C_Lexique_piccolo_5F_lexique::kToken_integer, SHIFT (240)
 , C_Lexique_piccolo_5F_lexique::kToken__28_, SHIFT (241)
 , END
-// State S220 (index = 8722)
-, C_Lexique_piccolo_5F_lexique::kToken_decf, SHIFT (126)
-, C_Lexique_piccolo_5F_lexique::kToken_incf, SHIFT (127)
-, C_Lexique_piccolo_5F_lexique::kToken_addwf, SHIFT (129)
-, C_Lexique_piccolo_5F_lexique::kToken_andwf, SHIFT (130)
-, C_Lexique_piccolo_5F_lexique::kToken_comf, SHIFT (131)
-, C_Lexique_piccolo_5F_lexique::kToken_iorwf, SHIFT (132)
-, C_Lexique_piccolo_5F_lexique::kToken_movf, SHIFT (133)
-, C_Lexique_piccolo_5F_lexique::kToken_rlf, SHIFT (134)
-, C_Lexique_piccolo_5F_lexique::kToken_rrf, SHIFT (135)
-, C_Lexique_piccolo_5F_lexique::kToken_subwf, SHIFT (136)
-, C_Lexique_piccolo_5F_lexique::kToken_swapf, SHIFT (137)
-, C_Lexique_piccolo_5F_lexique::kToken_xorwf, SHIFT (138)
-, C_Lexique_piccolo_5F_lexique::kToken_clrf, SHIFT (139)
-, C_Lexique_piccolo_5F_lexique::kToken_movwf, SHIFT (140)
-, C_Lexique_piccolo_5F_lexique::kToken_bcf, SHIFT (141)
-, C_Lexique_piccolo_5F_lexique::kToken_bsf, SHIFT (142)
-, C_Lexique_piccolo_5F_lexique::kToken_goto, SHIFT (143)
-, C_Lexique_piccolo_5F_lexique::kToken_call, SHIFT (144)
-, C_Lexique_piccolo_5F_lexique::kToken_clrw, SHIFT (145)
-, C_Lexique_piccolo_5F_lexique::kToken_clrwdt, SHIFT (146)
-, C_Lexique_piccolo_5F_lexique::kToken_nop, SHIFT (147)
-, C_Lexique_piccolo_5F_lexique::kToken_option, SHIFT (148)
-, C_Lexique_piccolo_5F_lexique::kToken_sleep, SHIFT (149)
-, C_Lexique_piccolo_5F_lexique::kToken_tris, SHIFT (150)
-, C_Lexique_piccolo_5F_lexique::kToken_andlw, SHIFT (151)
-, C_Lexique_piccolo_5F_lexique::kToken_iorlw, SHIFT (152)
-, C_Lexique_piccolo_5F_lexique::kToken_movlw, SHIFT (153)
-, C_Lexique_piccolo_5F_lexique::kToken_xorlw, SHIFT (154)
+// State S219 (index = 8667)
+, C_Lexique_piccolo_5F_lexique::kToken_decf, SHIFT (125)
+, C_Lexique_piccolo_5F_lexique::kToken_incf, SHIFT (126)
+, C_Lexique_piccolo_5F_lexique::kToken_addwf, SHIFT (128)
+, C_Lexique_piccolo_5F_lexique::kToken_andwf, SHIFT (129)
+, C_Lexique_piccolo_5F_lexique::kToken_comf, SHIFT (130)
+, C_Lexique_piccolo_5F_lexique::kToken_iorwf, SHIFT (131)
+, C_Lexique_piccolo_5F_lexique::kToken_movf, SHIFT (132)
+, C_Lexique_piccolo_5F_lexique::kToken_rlf, SHIFT (133)
+, C_Lexique_piccolo_5F_lexique::kToken_rrf, SHIFT (134)
+, C_Lexique_piccolo_5F_lexique::kToken_subwf, SHIFT (135)
+, C_Lexique_piccolo_5F_lexique::kToken_swapf, SHIFT (136)
+, C_Lexique_piccolo_5F_lexique::kToken_xorwf, SHIFT (137)
+, C_Lexique_piccolo_5F_lexique::kToken_clrf, SHIFT (138)
+, C_Lexique_piccolo_5F_lexique::kToken_movwf, SHIFT (139)
+, C_Lexique_piccolo_5F_lexique::kToken_bcf, SHIFT (140)
+, C_Lexique_piccolo_5F_lexique::kToken_bsf, SHIFT (141)
+, C_Lexique_piccolo_5F_lexique::kToken_goto, SHIFT (142)
+, C_Lexique_piccolo_5F_lexique::kToken_call, SHIFT (143)
+, C_Lexique_piccolo_5F_lexique::kToken_clrw, SHIFT (144)
+, C_Lexique_piccolo_5F_lexique::kToken_clrwdt, SHIFT (145)
+, C_Lexique_piccolo_5F_lexique::kToken_nop, SHIFT (146)
+, C_Lexique_piccolo_5F_lexique::kToken_option, SHIFT (147)
+, C_Lexique_piccolo_5F_lexique::kToken_sleep, SHIFT (148)
+, C_Lexique_piccolo_5F_lexique::kToken_tris, SHIFT (149)
+, C_Lexique_piccolo_5F_lexique::kToken_andlw, SHIFT (150)
+, C_Lexique_piccolo_5F_lexique::kToken_iorlw, SHIFT (151)
+, C_Lexique_piccolo_5F_lexique::kToken_movlw, SHIFT (152)
+, C_Lexique_piccolo_5F_lexique::kToken_xorlw, SHIFT (153)
 , END
-// State S221 (index = 8779)
+// State S220 (index = 8724)
 , C_Lexique_piccolo_5F_lexique::kToken_identifier, REDUCE (66)
 , C_Lexique_piccolo_5F_lexique::kToken__2C_, SHIFT (244)
 , END
-// State S222 (index = 8784)
-, C_Lexique_piccolo_5F_lexique::kToken_identifier, SHIFT (187)
-, C_Lexique_piccolo_5F_lexique::kToken__28_, SHIFT (222)
+// State S221 (index = 8729)
+, C_Lexique_piccolo_5F_lexique::kToken_identifier, SHIFT (186)
+, C_Lexique_piccolo_5F_lexique::kToken__28_, SHIFT (221)
 , C_Lexique_piccolo_5F_lexique::kToken__21_, SHIFT (246)
 , C_Lexique_piccolo_5F_lexique::kToken_decf, SHIFT (247)
 , C_Lexique_piccolo_5F_lexique::kToken_incf, SHIFT (248)
 , END
-// State S223 (index = 8795)
+// State S222 (index = 8740)
 , C_Lexique_piccolo_5F_lexique::kToken_end, SHIFT (255)
 , END
-// State S224 (index = 8798)
+// State S223 (index = 8743)
 , C_Lexique_piccolo_5F_lexique::kToken__7D_, REDUCE (38)
-, C_Lexique_piccolo_5F_lexique::kToken_do, SHIFT (121)
+, C_Lexique_piccolo_5F_lexique::kToken_do, SHIFT (120)
 , C_Lexique_piccolo_5F_lexique::kToken_end, REDUCE (38)
-, C_Lexique_piccolo_5F_lexique::kToken_jump, SHIFT (122)
-, C_Lexique_piccolo_5F_lexique::kToken_jsr, SHIFT (123)
-, C_Lexique_piccolo_5F_lexique::kToken_forever, SHIFT (124)
-, C_Lexique_piccolo_5F_lexique::kToken_if, SHIFT (125)
-, C_Lexique_piccolo_5F_lexique::kToken_decf, SHIFT (126)
-, C_Lexique_piccolo_5F_lexique::kToken_incf, SHIFT (127)
+, C_Lexique_piccolo_5F_lexique::kToken_jump, SHIFT (121)
+, C_Lexique_piccolo_5F_lexique::kToken_jsr, SHIFT (122)
+, C_Lexique_piccolo_5F_lexique::kToken_forever, SHIFT (123)
+, C_Lexique_piccolo_5F_lexique::kToken_if, SHIFT (124)
+, C_Lexique_piccolo_5F_lexique::kToken_decf, SHIFT (125)
+, C_Lexique_piccolo_5F_lexique::kToken_incf, SHIFT (126)
 , C_Lexique_piccolo_5F_lexique::kToken_while, REDUCE (38)
-, C_Lexique_piccolo_5F_lexique::kToken_mnop, SHIFT (128)
+, C_Lexique_piccolo_5F_lexique::kToken_mnop, SHIFT (127)
 , C_Lexique_piccolo_5F_lexique::kToken_elsif, REDUCE (38)
 , C_Lexique_piccolo_5F_lexique::kToken_else, REDUCE (38)
-, C_Lexique_piccolo_5F_lexique::kToken_addwf, SHIFT (129)
-, C_Lexique_piccolo_5F_lexique::kToken_andwf, SHIFT (130)
-, C_Lexique_piccolo_5F_lexique::kToken_comf, SHIFT (131)
-, C_Lexique_piccolo_5F_lexique::kToken_iorwf, SHIFT (132)
-, C_Lexique_piccolo_5F_lexique::kToken_movf, SHIFT (133)
-, C_Lexique_piccolo_5F_lexique::kToken_rlf, SHIFT (134)
-, C_Lexique_piccolo_5F_lexique::kToken_rrf, SHIFT (135)
-, C_Lexique_piccolo_5F_lexique::kToken_subwf, SHIFT (136)
-, C_Lexique_piccolo_5F_lexique::kToken_swapf, SHIFT (137)
-, C_Lexique_piccolo_5F_lexique::kToken_xorwf, SHIFT (138)
-, C_Lexique_piccolo_5F_lexique::kToken_clrf, SHIFT (139)
-, C_Lexique_piccolo_5F_lexique::kToken_movwf, SHIFT (140)
-, C_Lexique_piccolo_5F_lexique::kToken_bcf, SHIFT (141)
-, C_Lexique_piccolo_5F_lexique::kToken_bsf, SHIFT (142)
-, C_Lexique_piccolo_5F_lexique::kToken_goto, SHIFT (143)
-, C_Lexique_piccolo_5F_lexique::kToken_call, SHIFT (144)
-, C_Lexique_piccolo_5F_lexique::kToken_clrw, SHIFT (145)
-, C_Lexique_piccolo_5F_lexique::kToken_clrwdt, SHIFT (146)
-, C_Lexique_piccolo_5F_lexique::kToken_nop, SHIFT (147)
-, C_Lexique_piccolo_5F_lexique::kToken_option, SHIFT (148)
-, C_Lexique_piccolo_5F_lexique::kToken_sleep, SHIFT (149)
-, C_Lexique_piccolo_5F_lexique::kToken_tris, SHIFT (150)
-, C_Lexique_piccolo_5F_lexique::kToken_andlw, SHIFT (151)
-, C_Lexique_piccolo_5F_lexique::kToken_iorlw, SHIFT (152)
-, C_Lexique_piccolo_5F_lexique::kToken_movlw, SHIFT (153)
-, C_Lexique_piccolo_5F_lexique::kToken_xorlw, SHIFT (154)
+, C_Lexique_piccolo_5F_lexique::kToken_addwf, SHIFT (128)
+, C_Lexique_piccolo_5F_lexique::kToken_andwf, SHIFT (129)
+, C_Lexique_piccolo_5F_lexique::kToken_comf, SHIFT (130)
+, C_Lexique_piccolo_5F_lexique::kToken_iorwf, SHIFT (131)
+, C_Lexique_piccolo_5F_lexique::kToken_movf, SHIFT (132)
+, C_Lexique_piccolo_5F_lexique::kToken_rlf, SHIFT (133)
+, C_Lexique_piccolo_5F_lexique::kToken_rrf, SHIFT (134)
+, C_Lexique_piccolo_5F_lexique::kToken_subwf, SHIFT (135)
+, C_Lexique_piccolo_5F_lexique::kToken_swapf, SHIFT (136)
+, C_Lexique_piccolo_5F_lexique::kToken_xorwf, SHIFT (137)
+, C_Lexique_piccolo_5F_lexique::kToken_clrf, SHIFT (138)
+, C_Lexique_piccolo_5F_lexique::kToken_movwf, SHIFT (139)
+, C_Lexique_piccolo_5F_lexique::kToken_bcf, SHIFT (140)
+, C_Lexique_piccolo_5F_lexique::kToken_bsf, SHIFT (141)
+, C_Lexique_piccolo_5F_lexique::kToken_goto, SHIFT (142)
+, C_Lexique_piccolo_5F_lexique::kToken_call, SHIFT (143)
+, C_Lexique_piccolo_5F_lexique::kToken_clrw, SHIFT (144)
+, C_Lexique_piccolo_5F_lexique::kToken_clrwdt, SHIFT (145)
+, C_Lexique_piccolo_5F_lexique::kToken_nop, SHIFT (146)
+, C_Lexique_piccolo_5F_lexique::kToken_option, SHIFT (147)
+, C_Lexique_piccolo_5F_lexique::kToken_sleep, SHIFT (148)
+, C_Lexique_piccolo_5F_lexique::kToken_tris, SHIFT (149)
+, C_Lexique_piccolo_5F_lexique::kToken_andlw, SHIFT (150)
+, C_Lexique_piccolo_5F_lexique::kToken_iorlw, SHIFT (151)
+, C_Lexique_piccolo_5F_lexique::kToken_movlw, SHIFT (152)
+, C_Lexique_piccolo_5F_lexique::kToken_xorlw, SHIFT (153)
 , END
-// State S225 (index = 8877)
+// State S224 (index = 8822)
 , C_Lexique_piccolo_5F_lexique::kToken_w, SHIFT (257)
 , END
-// State S226 (index = 8880)
+// State S225 (index = 8825)
 , C_Lexique_piccolo_5F_lexique::kToken__7D_, REDUCE (87)
 , C_Lexique_piccolo_5F_lexique::kToken_do, REDUCE (87)
 , C_Lexique_piccolo_5F_lexique::kToken_end, REDUCE (87)
@@ -17249,7 +17220,7 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken_movlw, REDUCE (87)
 , C_Lexique_piccolo_5F_lexique::kToken_xorlw, REDUCE (87)
 , END
-// State S227 (index = 8959)
+// State S226 (index = 8904)
 , C_Lexique_piccolo_5F_lexique::kToken__7D_, REDUCE (25)
 , C_Lexique_piccolo_5F_lexique::kToken_do, REDUCE (25)
 , C_Lexique_piccolo_5F_lexique::kToken_end, REDUCE (25)
@@ -17290,39 +17261,41 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken_movlw, REDUCE (25)
 , C_Lexique_piccolo_5F_lexique::kToken_xorlw, REDUCE (25)
 , END
-// State S228 (index = 9038)
+// State S227 (index = 8983)
 , C_Lexique_piccolo_5F_lexique::kToken_identifier, SHIFT (239)
 , C_Lexique_piccolo_5F_lexique::kToken_integer, SHIFT (240)
 , C_Lexique_piccolo_5F_lexique::kToken__28_, SHIFT (241)
 , END
-// State S229 (index = 9045)
+// State S228 (index = 8990)
 , C_Lexique_piccolo_5F_lexique::kToken_integer, SHIFT (259)
 , END
-// State S230 (index = 9048)
+// State S229 (index = 8993)
 , C_Lexique_piccolo_5F_lexique::kToken__2C_, REDUCE (142)
 , C_Lexique_piccolo_5F_lexique::kToken__2F_, SHIFT (260)
 , C_Lexique_piccolo_5F_lexique::kToken__3E_, REDUCE (142)
 , END
-// State S231 (index = 9055)
-, C_Lexique_piccolo_5F_lexique::kToken_identifier, SHIFT (208)
-, C_Lexique_piccolo_5F_lexique::kToken_integer, SHIFT (209)
-, C_Lexique_piccolo_5F_lexique::kToken__2D_, SHIFT (210)
+// State S230 (index = 9000)
+, C_Lexique_piccolo_5F_lexique::kToken_identifier, SHIFT (207)
+, C_Lexique_piccolo_5F_lexique::kToken_integer, SHIFT (208)
+, C_Lexique_piccolo_5F_lexique::kToken__2D_, SHIFT (209)
 , END
-// State S232 (index = 9062)
+// State S231 (index = 9007)
 , C_Lexique_piccolo_5F_lexique::kToken__3E_, SHIFT (263)
 , END
-// State S233 (index = 9065)
-, C_Lexique_piccolo_5F_lexique::kToken__2C_, SHIFT (264)
-, C_Lexique_piccolo_5F_lexique::kToken__29_, REDUCE (178)
+// State S232 (index = 9010)
+, C_Lexique_piccolo_5F_lexique::kToken_identifier, SHIFT (264)
 , END
-// State S234 (index = 9070)
+// State S233 (index = 9013)
+, C_Lexique_piccolo_5F_lexique::kToken__29_, SHIFT (265)
+, END
+// State S234 (index = 9016)
 , C_Lexique_piccolo_5F_lexique::kToken__3A_, SHIFT (266)
 , END
-// State S235 (index = 9073)
+// State S235 (index = 9019)
 , C_Lexique_piccolo_5F_lexique::kToken_label, SHIFT (267)
 , C_Lexique_piccolo_5F_lexique::kToken__28_, REDUCE (76)
 , END
-// State S236 (index = 9078)
+// State S236 (index = 9024)
 , C_Lexique_piccolo_5F_lexique::kToken__7D_, REDUCE (60)
 , C_Lexique_piccolo_5F_lexique::kToken_do, REDUCE (60)
 , C_Lexique_piccolo_5F_lexique::kToken_label, SHIFT (269)
@@ -17364,15 +17337,15 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken_movlw, REDUCE (60)
 , C_Lexique_piccolo_5F_lexique::kToken_xorlw, REDUCE (60)
 , END
-// State S237 (index = 9159)
+// State S237 (index = 9105)
 , C_Lexique_piccolo_5F_lexique::kToken__5D_, SHIFT (271)
 , END
-// State S238 (index = 9162)
+// State S238 (index = 9108)
 , C_Lexique_piccolo_5F_lexique::kToken_identifier, SHIFT (239)
 , C_Lexique_piccolo_5F_lexique::kToken_integer, SHIFT (240)
 , C_Lexique_piccolo_5F_lexique::kToken__28_, SHIFT (241)
 , END
-// State S239 (index = 9169)
+// State S239 (index = 9115)
 , C_Lexique_piccolo_5F_lexique::kToken__7D_, REDUCE (182)
 , C_Lexique_piccolo_5F_lexique::kToken_do, REDUCE (182)
 , C_Lexique_piccolo_5F_lexique::kToken__3A_, REDUCE (182)
@@ -17418,7 +17391,7 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken__26_, REDUCE (182)
 , C_Lexique_piccolo_5F_lexique::kToken__5B_, SHIFT (273)
 , END
-// State S240 (index = 9258)
+// State S240 (index = 9204)
 , C_Lexique_piccolo_5F_lexique::kToken__7D_, REDUCE (23)
 , C_Lexique_piccolo_5F_lexique::kToken_do, REDUCE (23)
 , C_Lexique_piccolo_5F_lexique::kToken__3A_, REDUCE (23)
@@ -17463,19 +17436,18 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken__7C_, REDUCE (23)
 , C_Lexique_piccolo_5F_lexique::kToken__26_, REDUCE (23)
 , END
-// State S241 (index = 9345)
+// State S241 (index = 9291)
 , C_Lexique_piccolo_5F_lexique::kToken_identifier, SHIFT (42)
 , C_Lexique_piccolo_5F_lexique::kToken_integer, SHIFT (43)
 , C_Lexique_piccolo_5F_lexique::kToken__28_, SHIFT (44)
 , C_Lexique_piccolo_5F_lexique::kToken__2D_, SHIFT (45)
 , C_Lexique_piccolo_5F_lexique::kToken__7E_, SHIFT (46)
 , C_Lexique_piccolo_5F_lexique::kToken_literal_5F_char, SHIFT (47)
-, C_Lexique_piccolo_5F_lexique::kToken__40_, SHIFT (48)
 , END
-// State S242 (index = 9360)
+// State S242 (index = 9304)
 , C_Lexique_piccolo_5F_lexique::kToken__3A_, REDUCE (63)
 , END
-// State S243 (index = 9363)
+// State S243 (index = 9307)
 , C_Lexique_piccolo_5F_lexique::kToken__7D_, REDUCE (49)
 , C_Lexique_piccolo_5F_lexique::kToken_do, REDUCE (49)
 , C_Lexique_piccolo_5F_lexique::kToken_end, REDUCE (49)
@@ -17516,51 +17488,51 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken_movlw, REDUCE (49)
 , C_Lexique_piccolo_5F_lexique::kToken_xorlw, REDUCE (49)
 , END
-// State S244 (index = 9442)
+// State S244 (index = 9386)
 , C_Lexique_piccolo_5F_lexique::kToken_w, SHIFT (276)
 , END
-// State S245 (index = 9445)
+// State S245 (index = 9389)
 , C_Lexique_piccolo_5F_lexique::kToken_identifier, SHIFT (277)
 , END
-// State S246 (index = 9448)
-, C_Lexique_piccolo_5F_lexique::kToken_identifier, SHIFT (187)
-, C_Lexique_piccolo_5F_lexique::kToken__28_, SHIFT (222)
+// State S246 (index = 9392)
+, C_Lexique_piccolo_5F_lexique::kToken_identifier, SHIFT (186)
+, C_Lexique_piccolo_5F_lexique::kToken__28_, SHIFT (221)
 , C_Lexique_piccolo_5F_lexique::kToken__21_, SHIFT (246)
 , C_Lexique_piccolo_5F_lexique::kToken_decf, SHIFT (247)
 , C_Lexique_piccolo_5F_lexique::kToken_incf, SHIFT (248)
 , END
-// State S247 (index = 9459)
+// State S247 (index = 9403)
 , C_Lexique_piccolo_5F_lexique::kToken_identifier, REDUCE (122)
 , END
-// State S248 (index = 9462)
+// State S248 (index = 9406)
 , C_Lexique_piccolo_5F_lexique::kToken_identifier, REDUCE (121)
 , END
-// State S249 (index = 9465)
+// State S249 (index = 9409)
 , C_Lexique_piccolo_5F_lexique::kToken__2E_, SHIFT (279)
 , END
-// State S250 (index = 9468)
+// State S250 (index = 9412)
 , C_Lexique_piccolo_5F_lexique::kToken__29_, REDUCE (127)
 , C_Lexique_piccolo_5F_lexique::kToken__7C_, REDUCE (127)
 , C_Lexique_piccolo_5F_lexique::kToken__26_, SHIFT (280)
 , END
-// State S251 (index = 9475)
+// State S251 (index = 9419)
 , C_Lexique_piccolo_5F_lexique::kToken__29_, REDUCE (7)
 , C_Lexique_piccolo_5F_lexique::kToken__7C_, REDUCE (7)
 , C_Lexique_piccolo_5F_lexique::kToken__26_, REDUCE (7)
 , END
-// State S252 (index = 9482)
+// State S252 (index = 9426)
 , C_Lexique_piccolo_5F_lexique::kToken__29_, REDUCE (125)
 , C_Lexique_piccolo_5F_lexique::kToken__7C_, SHIFT (282)
 , END
-// State S253 (index = 9487)
+// State S253 (index = 9431)
 , C_Lexique_piccolo_5F_lexique::kToken__29_, REDUCE (8)
 , C_Lexique_piccolo_5F_lexique::kToken__7C_, REDUCE (8)
 , C_Lexique_piccolo_5F_lexique::kToken__26_, REDUCE (8)
 , END
-// State S254 (index = 9494)
-, C_Lexique_piccolo_5F_lexique::kToken_identifier, SHIFT (187)
+// State S254 (index = 9438)
+, C_Lexique_piccolo_5F_lexique::kToken_identifier, SHIFT (186)
 , END
-// State S255 (index = 9497)
+// State S255 (index = 9441)
 , C_Lexique_piccolo_5F_lexique::kToken__7D_, REDUCE (70)
 , C_Lexique_piccolo_5F_lexique::kToken_do, REDUCE (70)
 , C_Lexique_piccolo_5F_lexique::kToken_label, SHIFT (285)
@@ -17602,12 +17574,12 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken_movlw, REDUCE (70)
 , C_Lexique_piccolo_5F_lexique::kToken_xorlw, REDUCE (70)
 , END
-// State S256 (index = 9578)
+// State S256 (index = 9522)
 , C_Lexique_piccolo_5F_lexique::kToken_end, REDUCE (80)
 , C_Lexique_piccolo_5F_lexique::kToken_elsif, SHIFT (287)
 , C_Lexique_piccolo_5F_lexique::kToken_else, SHIFT (288)
 , END
-// State S257 (index = 9585)
+// State S257 (index = 9529)
 , C_Lexique_piccolo_5F_lexique::kToken__7D_, REDUCE (185)
 , C_Lexique_piccolo_5F_lexique::kToken_do, REDUCE (185)
 , C_Lexique_piccolo_5F_lexique::kToken_end, REDUCE (185)
@@ -17648,7 +17620,7 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken_movlw, REDUCE (185)
 , C_Lexique_piccolo_5F_lexique::kToken_xorlw, REDUCE (185)
 , END
-// State S258 (index = 9664)
+// State S258 (index = 9608)
 , C_Lexique_piccolo_5F_lexique::kToken__7D_, REDUCE (89)
 , C_Lexique_piccolo_5F_lexique::kToken_do, REDUCE (89)
 , C_Lexique_piccolo_5F_lexique::kToken_end, REDUCE (89)
@@ -17689,411 +17661,28 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken_movlw, REDUCE (89)
 , C_Lexique_piccolo_5F_lexique::kToken_xorlw, REDUCE (89)
 , END
-// State S259 (index = 9743)
+// State S259 (index = 9687)
 , C_Lexique_piccolo_5F_lexique::kToken__5D_, SHIFT (290)
 , END
-// State S260 (index = 9746)
+// State S260 (index = 9690)
 , C_Lexique_piccolo_5F_lexique::kToken_identifier, SHIFT (291)
 , END
-// State S261 (index = 9749)
+// State S261 (index = 9693)
 , C_Lexique_piccolo_5F_lexique::kToken__2C_, REDUCE (139)
 , C_Lexique_piccolo_5F_lexique::kToken__3E_, REDUCE (139)
 , END
-// State S262 (index = 9754)
-, C_Lexique_piccolo_5F_lexique::kToken__2C_, SHIFT (231)
+// State S262 (index = 9698)
+, C_Lexique_piccolo_5F_lexique::kToken__2C_, SHIFT (230)
 , C_Lexique_piccolo_5F_lexique::kToken__3E_, REDUCE (137)
 , END
-// State S263 (index = 9759)
+// State S263 (index = 9703)
 , C_Lexique_piccolo_5F_lexique::kToken_byte, REDUCE (136)
 , C_Lexique_piccolo_5F_lexique::kToken__7D_, REDUCE (136)
 , END
-// State S264 (index = 9764)
-, C_Lexique_piccolo_5F_lexique::kToken_identifier, SHIFT (293)
+// State S264 (index = 9708)
+, C_Lexique_piccolo_5F_lexique::kToken__3A_, SHIFT (293)
 , END
-// State S265 (index = 9767)
-, C_Lexique_piccolo_5F_lexique::kToken__29_, SHIFT (294)
-, END
-// State S266 (index = 9770)
-, C_Lexique_piccolo_5F_lexique::kToken_identifier, SHIFT (42)
-, C_Lexique_piccolo_5F_lexique::kToken_integer, SHIFT (43)
-, C_Lexique_piccolo_5F_lexique::kToken__28_, SHIFT (44)
-, C_Lexique_piccolo_5F_lexique::kToken__2D_, SHIFT (45)
-, C_Lexique_piccolo_5F_lexique::kToken__7E_, SHIFT (46)
-, C_Lexique_piccolo_5F_lexique::kToken_literal_5F_char, SHIFT (47)
-, C_Lexique_piccolo_5F_lexique::kToken__40_, SHIFT (48)
-, END
-// State S267 (index = 9785)
-, C_Lexique_piccolo_5F_lexique::kToken__28_, REDUCE (77)
-, END
-// State S268 (index = 9788)
-, C_Lexique_piccolo_5F_lexique::kToken__28_, SHIFT (222)
-, END
-// State S269 (index = 9791)
-, C_Lexique_piccolo_5F_lexique::kToken__7D_, REDUCE (61)
-, C_Lexique_piccolo_5F_lexique::kToken_do, REDUCE (61)
-, C_Lexique_piccolo_5F_lexique::kToken_end, REDUCE (61)
-, C_Lexique_piccolo_5F_lexique::kToken_jump, REDUCE (61)
-, C_Lexique_piccolo_5F_lexique::kToken_jsr, REDUCE (61)
-, C_Lexique_piccolo_5F_lexique::kToken_forever, REDUCE (61)
-, C_Lexique_piccolo_5F_lexique::kToken_if, REDUCE (61)
-, C_Lexique_piccolo_5F_lexique::kToken_decf, REDUCE (61)
-, C_Lexique_piccolo_5F_lexique::kToken_incf, REDUCE (61)
-, C_Lexique_piccolo_5F_lexique::kToken_while, REDUCE (61)
-, C_Lexique_piccolo_5F_lexique::kToken_mnop, REDUCE (61)
-, C_Lexique_piccolo_5F_lexique::kToken_elsif, REDUCE (61)
-, C_Lexique_piccolo_5F_lexique::kToken_else, REDUCE (61)
-, C_Lexique_piccolo_5F_lexique::kToken_addwf, REDUCE (61)
-, C_Lexique_piccolo_5F_lexique::kToken_andwf, REDUCE (61)
-, C_Lexique_piccolo_5F_lexique::kToken_comf, REDUCE (61)
-, C_Lexique_piccolo_5F_lexique::kToken_iorwf, REDUCE (61)
-, C_Lexique_piccolo_5F_lexique::kToken_movf, REDUCE (61)
-, C_Lexique_piccolo_5F_lexique::kToken_rlf, REDUCE (61)
-, C_Lexique_piccolo_5F_lexique::kToken_rrf, REDUCE (61)
-, C_Lexique_piccolo_5F_lexique::kToken_subwf, REDUCE (61)
-, C_Lexique_piccolo_5F_lexique::kToken_swapf, REDUCE (61)
-, C_Lexique_piccolo_5F_lexique::kToken_xorwf, REDUCE (61)
-, C_Lexique_piccolo_5F_lexique::kToken_clrf, REDUCE (61)
-, C_Lexique_piccolo_5F_lexique::kToken_movwf, REDUCE (61)
-, C_Lexique_piccolo_5F_lexique::kToken_bcf, REDUCE (61)
-, C_Lexique_piccolo_5F_lexique::kToken_bsf, REDUCE (61)
-, C_Lexique_piccolo_5F_lexique::kToken_goto, REDUCE (61)
-, C_Lexique_piccolo_5F_lexique::kToken_call, REDUCE (61)
-, C_Lexique_piccolo_5F_lexique::kToken_clrw, REDUCE (61)
-, C_Lexique_piccolo_5F_lexique::kToken_clrwdt, REDUCE (61)
-, C_Lexique_piccolo_5F_lexique::kToken_nop, REDUCE (61)
-, C_Lexique_piccolo_5F_lexique::kToken_option, REDUCE (61)
-, C_Lexique_piccolo_5F_lexique::kToken_sleep, REDUCE (61)
-, C_Lexique_piccolo_5F_lexique::kToken_tris, REDUCE (61)
-, C_Lexique_piccolo_5F_lexique::kToken_andlw, REDUCE (61)
-, C_Lexique_piccolo_5F_lexique::kToken_iorlw, REDUCE (61)
-, C_Lexique_piccolo_5F_lexique::kToken_movlw, REDUCE (61)
-, C_Lexique_piccolo_5F_lexique::kToken_xorlw, REDUCE (61)
-, END
-// State S270 (index = 9870)
-, C_Lexique_piccolo_5F_lexique::kToken__7D_, REDUCE (48)
-, C_Lexique_piccolo_5F_lexique::kToken_do, REDUCE (48)
-, C_Lexique_piccolo_5F_lexique::kToken_end, REDUCE (48)
-, C_Lexique_piccolo_5F_lexique::kToken_jump, REDUCE (48)
-, C_Lexique_piccolo_5F_lexique::kToken_jsr, REDUCE (48)
-, C_Lexique_piccolo_5F_lexique::kToken_forever, REDUCE (48)
-, C_Lexique_piccolo_5F_lexique::kToken_if, REDUCE (48)
-, C_Lexique_piccolo_5F_lexique::kToken_decf, REDUCE (48)
-, C_Lexique_piccolo_5F_lexique::kToken_incf, REDUCE (48)
-, C_Lexique_piccolo_5F_lexique::kToken_while, REDUCE (48)
-, C_Lexique_piccolo_5F_lexique::kToken_mnop, REDUCE (48)
-, C_Lexique_piccolo_5F_lexique::kToken_elsif, REDUCE (48)
-, C_Lexique_piccolo_5F_lexique::kToken_else, REDUCE (48)
-, C_Lexique_piccolo_5F_lexique::kToken_addwf, REDUCE (48)
-, C_Lexique_piccolo_5F_lexique::kToken_andwf, REDUCE (48)
-, C_Lexique_piccolo_5F_lexique::kToken_comf, REDUCE (48)
-, C_Lexique_piccolo_5F_lexique::kToken_iorwf, REDUCE (48)
-, C_Lexique_piccolo_5F_lexique::kToken_movf, REDUCE (48)
-, C_Lexique_piccolo_5F_lexique::kToken_rlf, REDUCE (48)
-, C_Lexique_piccolo_5F_lexique::kToken_rrf, REDUCE (48)
-, C_Lexique_piccolo_5F_lexique::kToken_subwf, REDUCE (48)
-, C_Lexique_piccolo_5F_lexique::kToken_swapf, REDUCE (48)
-, C_Lexique_piccolo_5F_lexique::kToken_xorwf, REDUCE (48)
-, C_Lexique_piccolo_5F_lexique::kToken_clrf, REDUCE (48)
-, C_Lexique_piccolo_5F_lexique::kToken_movwf, REDUCE (48)
-, C_Lexique_piccolo_5F_lexique::kToken_bcf, REDUCE (48)
-, C_Lexique_piccolo_5F_lexique::kToken_bsf, REDUCE (48)
-, C_Lexique_piccolo_5F_lexique::kToken_goto, REDUCE (48)
-, C_Lexique_piccolo_5F_lexique::kToken_call, REDUCE (48)
-, C_Lexique_piccolo_5F_lexique::kToken_clrw, REDUCE (48)
-, C_Lexique_piccolo_5F_lexique::kToken_clrwdt, REDUCE (48)
-, C_Lexique_piccolo_5F_lexique::kToken_nop, REDUCE (48)
-, C_Lexique_piccolo_5F_lexique::kToken_option, REDUCE (48)
-, C_Lexique_piccolo_5F_lexique::kToken_sleep, REDUCE (48)
-, C_Lexique_piccolo_5F_lexique::kToken_tris, REDUCE (48)
-, C_Lexique_piccolo_5F_lexique::kToken_andlw, REDUCE (48)
-, C_Lexique_piccolo_5F_lexique::kToken_iorlw, REDUCE (48)
-, C_Lexique_piccolo_5F_lexique::kToken_movlw, REDUCE (48)
-, C_Lexique_piccolo_5F_lexique::kToken_xorlw, REDUCE (48)
-, END
-// State S271 (index = 9949)
-, C_Lexique_piccolo_5F_lexique::kToken_identifier, REDUCE (181)
-, C_Lexique_piccolo_5F_lexique::kToken__2C_, REDUCE (181)
-, C_Lexique_piccolo_5F_lexique::kToken__7D_, REDUCE (181)
-, C_Lexique_piccolo_5F_lexique::kToken_do, REDUCE (181)
-, C_Lexique_piccolo_5F_lexique::kToken_end, REDUCE (181)
-, C_Lexique_piccolo_5F_lexique::kToken_jump, REDUCE (181)
-, C_Lexique_piccolo_5F_lexique::kToken_jsr, REDUCE (181)
-, C_Lexique_piccolo_5F_lexique::kToken_forever, REDUCE (181)
-, C_Lexique_piccolo_5F_lexique::kToken_if, REDUCE (181)
-, C_Lexique_piccolo_5F_lexique::kToken__2E_, REDUCE (181)
-, C_Lexique_piccolo_5F_lexique::kToken_decf, REDUCE (181)
-, C_Lexique_piccolo_5F_lexique::kToken_incf, REDUCE (181)
-, C_Lexique_piccolo_5F_lexique::kToken_while, REDUCE (181)
-, C_Lexique_piccolo_5F_lexique::kToken_mnop, REDUCE (181)
-, C_Lexique_piccolo_5F_lexique::kToken_elsif, REDUCE (181)
-, C_Lexique_piccolo_5F_lexique::kToken_else, REDUCE (181)
-, C_Lexique_piccolo_5F_lexique::kToken_addwf, REDUCE (181)
-, C_Lexique_piccolo_5F_lexique::kToken_andwf, REDUCE (181)
-, C_Lexique_piccolo_5F_lexique::kToken_comf, REDUCE (181)
-, C_Lexique_piccolo_5F_lexique::kToken_iorwf, REDUCE (181)
-, C_Lexique_piccolo_5F_lexique::kToken_movf, REDUCE (181)
-, C_Lexique_piccolo_5F_lexique::kToken_rlf, REDUCE (181)
-, C_Lexique_piccolo_5F_lexique::kToken_rrf, REDUCE (181)
-, C_Lexique_piccolo_5F_lexique::kToken_subwf, REDUCE (181)
-, C_Lexique_piccolo_5F_lexique::kToken_swapf, REDUCE (181)
-, C_Lexique_piccolo_5F_lexique::kToken_xorwf, REDUCE (181)
-, C_Lexique_piccolo_5F_lexique::kToken_clrf, REDUCE (181)
-, C_Lexique_piccolo_5F_lexique::kToken_movwf, REDUCE (181)
-, C_Lexique_piccolo_5F_lexique::kToken_bcf, REDUCE (181)
-, C_Lexique_piccolo_5F_lexique::kToken_bsf, REDUCE (181)
-, C_Lexique_piccolo_5F_lexique::kToken_goto, REDUCE (181)
-, C_Lexique_piccolo_5F_lexique::kToken_call, REDUCE (181)
-, C_Lexique_piccolo_5F_lexique::kToken_clrw, REDUCE (181)
-, C_Lexique_piccolo_5F_lexique::kToken_clrwdt, REDUCE (181)
-, C_Lexique_piccolo_5F_lexique::kToken_nop, REDUCE (181)
-, C_Lexique_piccolo_5F_lexique::kToken_option, REDUCE (181)
-, C_Lexique_piccolo_5F_lexique::kToken_sleep, REDUCE (181)
-, C_Lexique_piccolo_5F_lexique::kToken_tris, REDUCE (181)
-, C_Lexique_piccolo_5F_lexique::kToken_andlw, REDUCE (181)
-, C_Lexique_piccolo_5F_lexique::kToken_iorlw, REDUCE (181)
-, C_Lexique_piccolo_5F_lexique::kToken_movlw, REDUCE (181)
-, C_Lexique_piccolo_5F_lexique::kToken_xorlw, REDUCE (181)
-, END
-// State S272 (index = 10034)
-, C_Lexique_piccolo_5F_lexique::kToken__3A_, REDUCE (62)
-, END
-// State S273 (index = 10037)
-, C_Lexique_piccolo_5F_lexique::kToken_integer, SHIFT (297)
-, END
-// State S274 (index = 10040)
-, C_Lexique_piccolo_5F_lexique::kToken__7D_, REDUCE (22)
-, C_Lexique_piccolo_5F_lexique::kToken_do, REDUCE (22)
-, C_Lexique_piccolo_5F_lexique::kToken__3A_, REDUCE (22)
-, C_Lexique_piccolo_5F_lexique::kToken__29_, REDUCE (22)
-, C_Lexique_piccolo_5F_lexique::kToken_end, REDUCE (22)
-, C_Lexique_piccolo_5F_lexique::kToken_jump, REDUCE (22)
-, C_Lexique_piccolo_5F_lexique::kToken_jsr, REDUCE (22)
-, C_Lexique_piccolo_5F_lexique::kToken_forever, REDUCE (22)
-, C_Lexique_piccolo_5F_lexique::kToken_if, REDUCE (22)
-, C_Lexique_piccolo_5F_lexique::kToken_decf, REDUCE (22)
-, C_Lexique_piccolo_5F_lexique::kToken_incf, REDUCE (22)
-, C_Lexique_piccolo_5F_lexique::kToken_while, REDUCE (22)
-, C_Lexique_piccolo_5F_lexique::kToken_mnop, REDUCE (22)
-, C_Lexique_piccolo_5F_lexique::kToken_elsif, REDUCE (22)
-, C_Lexique_piccolo_5F_lexique::kToken_else, REDUCE (22)
-, C_Lexique_piccolo_5F_lexique::kToken_addwf, REDUCE (22)
-, C_Lexique_piccolo_5F_lexique::kToken_andwf, REDUCE (22)
-, C_Lexique_piccolo_5F_lexique::kToken_comf, REDUCE (22)
-, C_Lexique_piccolo_5F_lexique::kToken_iorwf, REDUCE (22)
-, C_Lexique_piccolo_5F_lexique::kToken_movf, REDUCE (22)
-, C_Lexique_piccolo_5F_lexique::kToken_rlf, REDUCE (22)
-, C_Lexique_piccolo_5F_lexique::kToken_rrf, REDUCE (22)
-, C_Lexique_piccolo_5F_lexique::kToken_subwf, REDUCE (22)
-, C_Lexique_piccolo_5F_lexique::kToken_swapf, REDUCE (22)
-, C_Lexique_piccolo_5F_lexique::kToken_xorwf, REDUCE (22)
-, C_Lexique_piccolo_5F_lexique::kToken_clrf, REDUCE (22)
-, C_Lexique_piccolo_5F_lexique::kToken_movwf, REDUCE (22)
-, C_Lexique_piccolo_5F_lexique::kToken_bcf, REDUCE (22)
-, C_Lexique_piccolo_5F_lexique::kToken_bsf, REDUCE (22)
-, C_Lexique_piccolo_5F_lexique::kToken_goto, REDUCE (22)
-, C_Lexique_piccolo_5F_lexique::kToken_call, REDUCE (22)
-, C_Lexique_piccolo_5F_lexique::kToken_clrw, REDUCE (22)
-, C_Lexique_piccolo_5F_lexique::kToken_clrwdt, REDUCE (22)
-, C_Lexique_piccolo_5F_lexique::kToken_nop, REDUCE (22)
-, C_Lexique_piccolo_5F_lexique::kToken_option, REDUCE (22)
-, C_Lexique_piccolo_5F_lexique::kToken_sleep, REDUCE (22)
-, C_Lexique_piccolo_5F_lexique::kToken_tris, REDUCE (22)
-, C_Lexique_piccolo_5F_lexique::kToken_andlw, REDUCE (22)
-, C_Lexique_piccolo_5F_lexique::kToken_iorlw, REDUCE (22)
-, C_Lexique_piccolo_5F_lexique::kToken_movlw, REDUCE (22)
-, C_Lexique_piccolo_5F_lexique::kToken_xorlw, REDUCE (22)
-, C_Lexique_piccolo_5F_lexique::kToken__7C_, REDUCE (22)
-, C_Lexique_piccolo_5F_lexique::kToken__26_, REDUCE (22)
-, END
-// State S275 (index = 10127)
-, C_Lexique_piccolo_5F_lexique::kToken__29_, SHIFT (298)
-, END
-// State S276 (index = 10130)
-, C_Lexique_piccolo_5F_lexique::kToken_identifier, REDUCE (67)
-, END
-// State S277 (index = 10133)
-, C_Lexique_piccolo_5F_lexique::kToken__3A_, SHIFT (299)
-, END
-// State S278 (index = 10136)
-, C_Lexique_piccolo_5F_lexique::kToken__29_, REDUCE (6)
-, C_Lexique_piccolo_5F_lexique::kToken__7C_, REDUCE (6)
-, C_Lexique_piccolo_5F_lexique::kToken__26_, REDUCE (6)
-, END
-// State S279 (index = 10143)
-, C_Lexique_piccolo_5F_lexique::kToken_identifier, SHIFT (239)
-, C_Lexique_piccolo_5F_lexique::kToken_integer, SHIFT (240)
-, C_Lexique_piccolo_5F_lexique::kToken__28_, SHIFT (241)
-, END
-// State S280 (index = 10150)
-, C_Lexique_piccolo_5F_lexique::kToken_identifier, SHIFT (187)
-, C_Lexique_piccolo_5F_lexique::kToken__28_, SHIFT (222)
-, C_Lexique_piccolo_5F_lexique::kToken__21_, SHIFT (246)
-, C_Lexique_piccolo_5F_lexique::kToken_decf, SHIFT (247)
-, C_Lexique_piccolo_5F_lexique::kToken_incf, SHIFT (248)
-, END
-// State S281 (index = 10161)
-, C_Lexique_piccolo_5F_lexique::kToken__29_, REDUCE (10)
-, C_Lexique_piccolo_5F_lexique::kToken__7C_, REDUCE (10)
-, END
-// State S282 (index = 10166)
-, C_Lexique_piccolo_5F_lexique::kToken_identifier, SHIFT (187)
-, C_Lexique_piccolo_5F_lexique::kToken__28_, SHIFT (222)
-, C_Lexique_piccolo_5F_lexique::kToken__21_, SHIFT (246)
-, C_Lexique_piccolo_5F_lexique::kToken_decf, SHIFT (247)
-, C_Lexique_piccolo_5F_lexique::kToken_incf, SHIFT (248)
-, END
-// State S283 (index = 10177)
-, C_Lexique_piccolo_5F_lexique::kToken__29_, SHIFT (303)
-, END
-// State S284 (index = 10180)
-, C_Lexique_piccolo_5F_lexique::kToken_identifier, REDUCE (123)
-, C_Lexique_piccolo_5F_lexique::kToken__2C_, SHIFT (304)
-, END
-// State S285 (index = 10185)
-, C_Lexique_piccolo_5F_lexique::kToken__7D_, REDUCE (71)
-, C_Lexique_piccolo_5F_lexique::kToken_do, REDUCE (71)
-, C_Lexique_piccolo_5F_lexique::kToken_end, REDUCE (71)
-, C_Lexique_piccolo_5F_lexique::kToken_jump, REDUCE (71)
-, C_Lexique_piccolo_5F_lexique::kToken_jsr, REDUCE (71)
-, C_Lexique_piccolo_5F_lexique::kToken_forever, REDUCE (71)
-, C_Lexique_piccolo_5F_lexique::kToken_if, REDUCE (71)
-, C_Lexique_piccolo_5F_lexique::kToken_decf, REDUCE (71)
-, C_Lexique_piccolo_5F_lexique::kToken_incf, REDUCE (71)
-, C_Lexique_piccolo_5F_lexique::kToken_while, REDUCE (71)
-, C_Lexique_piccolo_5F_lexique::kToken_mnop, REDUCE (71)
-, C_Lexique_piccolo_5F_lexique::kToken_elsif, REDUCE (71)
-, C_Lexique_piccolo_5F_lexique::kToken_else, REDUCE (71)
-, C_Lexique_piccolo_5F_lexique::kToken_addwf, REDUCE (71)
-, C_Lexique_piccolo_5F_lexique::kToken_andwf, REDUCE (71)
-, C_Lexique_piccolo_5F_lexique::kToken_comf, REDUCE (71)
-, C_Lexique_piccolo_5F_lexique::kToken_iorwf, REDUCE (71)
-, C_Lexique_piccolo_5F_lexique::kToken_movf, REDUCE (71)
-, C_Lexique_piccolo_5F_lexique::kToken_rlf, REDUCE (71)
-, C_Lexique_piccolo_5F_lexique::kToken_rrf, REDUCE (71)
-, C_Lexique_piccolo_5F_lexique::kToken_subwf, REDUCE (71)
-, C_Lexique_piccolo_5F_lexique::kToken_swapf, REDUCE (71)
-, C_Lexique_piccolo_5F_lexique::kToken_xorwf, REDUCE (71)
-, C_Lexique_piccolo_5F_lexique::kToken_clrf, REDUCE (71)
-, C_Lexique_piccolo_5F_lexique::kToken_movwf, REDUCE (71)
-, C_Lexique_piccolo_5F_lexique::kToken_bcf, REDUCE (71)
-, C_Lexique_piccolo_5F_lexique::kToken_bsf, REDUCE (71)
-, C_Lexique_piccolo_5F_lexique::kToken_goto, REDUCE (71)
-, C_Lexique_piccolo_5F_lexique::kToken_call, REDUCE (71)
-, C_Lexique_piccolo_5F_lexique::kToken_clrw, REDUCE (71)
-, C_Lexique_piccolo_5F_lexique::kToken_clrwdt, REDUCE (71)
-, C_Lexique_piccolo_5F_lexique::kToken_nop, REDUCE (71)
-, C_Lexique_piccolo_5F_lexique::kToken_option, REDUCE (71)
-, C_Lexique_piccolo_5F_lexique::kToken_sleep, REDUCE (71)
-, C_Lexique_piccolo_5F_lexique::kToken_tris, REDUCE (71)
-, C_Lexique_piccolo_5F_lexique::kToken_andlw, REDUCE (71)
-, C_Lexique_piccolo_5F_lexique::kToken_iorlw, REDUCE (71)
-, C_Lexique_piccolo_5F_lexique::kToken_movlw, REDUCE (71)
-, C_Lexique_piccolo_5F_lexique::kToken_xorlw, REDUCE (71)
-, END
-// State S286 (index = 10264)
-, C_Lexique_piccolo_5F_lexique::kToken__7D_, REDUCE (51)
-, C_Lexique_piccolo_5F_lexique::kToken_do, REDUCE (51)
-, C_Lexique_piccolo_5F_lexique::kToken_end, REDUCE (51)
-, C_Lexique_piccolo_5F_lexique::kToken_jump, REDUCE (51)
-, C_Lexique_piccolo_5F_lexique::kToken_jsr, REDUCE (51)
-, C_Lexique_piccolo_5F_lexique::kToken_forever, REDUCE (51)
-, C_Lexique_piccolo_5F_lexique::kToken_if, REDUCE (51)
-, C_Lexique_piccolo_5F_lexique::kToken_decf, REDUCE (51)
-, C_Lexique_piccolo_5F_lexique::kToken_incf, REDUCE (51)
-, C_Lexique_piccolo_5F_lexique::kToken_while, REDUCE (51)
-, C_Lexique_piccolo_5F_lexique::kToken_mnop, REDUCE (51)
-, C_Lexique_piccolo_5F_lexique::kToken_elsif, REDUCE (51)
-, C_Lexique_piccolo_5F_lexique::kToken_else, REDUCE (51)
-, C_Lexique_piccolo_5F_lexique::kToken_addwf, REDUCE (51)
-, C_Lexique_piccolo_5F_lexique::kToken_andwf, REDUCE (51)
-, C_Lexique_piccolo_5F_lexique::kToken_comf, REDUCE (51)
-, C_Lexique_piccolo_5F_lexique::kToken_iorwf, REDUCE (51)
-, C_Lexique_piccolo_5F_lexique::kToken_movf, REDUCE (51)
-, C_Lexique_piccolo_5F_lexique::kToken_rlf, REDUCE (51)
-, C_Lexique_piccolo_5F_lexique::kToken_rrf, REDUCE (51)
-, C_Lexique_piccolo_5F_lexique::kToken_subwf, REDUCE (51)
-, C_Lexique_piccolo_5F_lexique::kToken_swapf, REDUCE (51)
-, C_Lexique_piccolo_5F_lexique::kToken_xorwf, REDUCE (51)
-, C_Lexique_piccolo_5F_lexique::kToken_clrf, REDUCE (51)
-, C_Lexique_piccolo_5F_lexique::kToken_movwf, REDUCE (51)
-, C_Lexique_piccolo_5F_lexique::kToken_bcf, REDUCE (51)
-, C_Lexique_piccolo_5F_lexique::kToken_bsf, REDUCE (51)
-, C_Lexique_piccolo_5F_lexique::kToken_goto, REDUCE (51)
-, C_Lexique_piccolo_5F_lexique::kToken_call, REDUCE (51)
-, C_Lexique_piccolo_5F_lexique::kToken_clrw, REDUCE (51)
-, C_Lexique_piccolo_5F_lexique::kToken_clrwdt, REDUCE (51)
-, C_Lexique_piccolo_5F_lexique::kToken_nop, REDUCE (51)
-, C_Lexique_piccolo_5F_lexique::kToken_option, REDUCE (51)
-, C_Lexique_piccolo_5F_lexique::kToken_sleep, REDUCE (51)
-, C_Lexique_piccolo_5F_lexique::kToken_tris, REDUCE (51)
-, C_Lexique_piccolo_5F_lexique::kToken_andlw, REDUCE (51)
-, C_Lexique_piccolo_5F_lexique::kToken_iorlw, REDUCE (51)
-, C_Lexique_piccolo_5F_lexique::kToken_movlw, REDUCE (51)
-, C_Lexique_piccolo_5F_lexique::kToken_xorlw, REDUCE (51)
-, END
-// State S287 (index = 10343)
-, C_Lexique_piccolo_5F_lexique::kToken_label, SHIFT (306)
-, C_Lexique_piccolo_5F_lexique::kToken__28_, REDUCE (83)
-, END
-// State S288 (index = 10348)
-, C_Lexique_piccolo_5F_lexique::kToken_do, REDUCE (85)
-, C_Lexique_piccolo_5F_lexique::kToken_label, SHIFT (308)
-, C_Lexique_piccolo_5F_lexique::kToken_end, REDUCE (85)
-, C_Lexique_piccolo_5F_lexique::kToken_jump, REDUCE (85)
-, C_Lexique_piccolo_5F_lexique::kToken_jsr, REDUCE (85)
-, C_Lexique_piccolo_5F_lexique::kToken_forever, REDUCE (85)
-, C_Lexique_piccolo_5F_lexique::kToken_if, REDUCE (85)
-, C_Lexique_piccolo_5F_lexique::kToken_decf, REDUCE (85)
-, C_Lexique_piccolo_5F_lexique::kToken_incf, REDUCE (85)
-, C_Lexique_piccolo_5F_lexique::kToken_mnop, REDUCE (85)
-, C_Lexique_piccolo_5F_lexique::kToken_addwf, REDUCE (85)
-, C_Lexique_piccolo_5F_lexique::kToken_andwf, REDUCE (85)
-, C_Lexique_piccolo_5F_lexique::kToken_comf, REDUCE (85)
-, C_Lexique_piccolo_5F_lexique::kToken_iorwf, REDUCE (85)
-, C_Lexique_piccolo_5F_lexique::kToken_movf, REDUCE (85)
-, C_Lexique_piccolo_5F_lexique::kToken_rlf, REDUCE (85)
-, C_Lexique_piccolo_5F_lexique::kToken_rrf, REDUCE (85)
-, C_Lexique_piccolo_5F_lexique::kToken_subwf, REDUCE (85)
-, C_Lexique_piccolo_5F_lexique::kToken_swapf, REDUCE (85)
-, C_Lexique_piccolo_5F_lexique::kToken_xorwf, REDUCE (85)
-, C_Lexique_piccolo_5F_lexique::kToken_clrf, REDUCE (85)
-, C_Lexique_piccolo_5F_lexique::kToken_movwf, REDUCE (85)
-, C_Lexique_piccolo_5F_lexique::kToken_bcf, REDUCE (85)
-, C_Lexique_piccolo_5F_lexique::kToken_bsf, REDUCE (85)
-, C_Lexique_piccolo_5F_lexique::kToken_goto, REDUCE (85)
-, C_Lexique_piccolo_5F_lexique::kToken_call, REDUCE (85)
-, C_Lexique_piccolo_5F_lexique::kToken_clrw, REDUCE (85)
-, C_Lexique_piccolo_5F_lexique::kToken_clrwdt, REDUCE (85)
-, C_Lexique_piccolo_5F_lexique::kToken_nop, REDUCE (85)
-, C_Lexique_piccolo_5F_lexique::kToken_option, REDUCE (85)
-, C_Lexique_piccolo_5F_lexique::kToken_sleep, REDUCE (85)
-, C_Lexique_piccolo_5F_lexique::kToken_tris, REDUCE (85)
-, C_Lexique_piccolo_5F_lexique::kToken_andlw, REDUCE (85)
-, C_Lexique_piccolo_5F_lexique::kToken_iorlw, REDUCE (85)
-, C_Lexique_piccolo_5F_lexique::kToken_movlw, REDUCE (85)
-, C_Lexique_piccolo_5F_lexique::kToken_xorlw, REDUCE (85)
-, END
-// State S289 (index = 10421)
-, C_Lexique_piccolo_5F_lexique::kToken_end, REDUCE (4)
-, END
-// State S290 (index = 10424)
-, C_Lexique_piccolo_5F_lexique::kToken__2C_, REDUCE (145)
-, C_Lexique_piccolo_5F_lexique::kToken__2F_, REDUCE (145)
-, C_Lexique_piccolo_5F_lexique::kToken__3E_, REDUCE (145)
-, END
-// State S291 (index = 10431)
-, C_Lexique_piccolo_5F_lexique::kToken__2C_, REDUCE (144)
-, C_Lexique_piccolo_5F_lexique::kToken__5B_, SHIFT (229)
-, C_Lexique_piccolo_5F_lexique::kToken__2F_, REDUCE (144)
-, C_Lexique_piccolo_5F_lexique::kToken__3E_, REDUCE (144)
-, END
-// State S292 (index = 10440)
-, C_Lexique_piccolo_5F_lexique::kToken__3E_, REDUCE (138)
-, END
-// State S293 (index = 10443)
-, C_Lexique_piccolo_5F_lexique::kToken__3A_, SHIFT (311)
-, END
-// State S294 (index = 10446)
+// State S265 (index = 9711)
 , C_Lexique_piccolo_5F_lexique::kToken_mark, REDUCE (175)
 , C_Lexique_piccolo_5F_lexique::kToken_unused, REDUCE (175)
 , C_Lexique_piccolo_5F_lexique::kToken__2C_, REDUCE (175)
@@ -18162,54 +17751,438 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken__25_, REDUCE (175)
 , C_Lexique_piccolo_5F_lexique::kToken_, REDUCE (175)
 , END
-// State S295 (index = 10581)
-, C_Lexique_piccolo_5F_lexique::kToken__2E__2E__2E_, SHIFT (312)
+// State S266 (index = 9846)
+, C_Lexique_piccolo_5F_lexique::kToken_identifier, SHIFT (42)
+, C_Lexique_piccolo_5F_lexique::kToken_integer, SHIFT (43)
+, C_Lexique_piccolo_5F_lexique::kToken__28_, SHIFT (44)
+, C_Lexique_piccolo_5F_lexique::kToken__2D_, SHIFT (45)
+, C_Lexique_piccolo_5F_lexique::kToken__7E_, SHIFT (46)
+, C_Lexique_piccolo_5F_lexique::kToken_literal_5F_char, SHIFT (47)
 , END
-// State S296 (index = 10584)
+// State S267 (index = 9859)
+, C_Lexique_piccolo_5F_lexique::kToken__28_, REDUCE (77)
+, END
+// State S268 (index = 9862)
+, C_Lexique_piccolo_5F_lexique::kToken__28_, SHIFT (221)
+, END
+// State S269 (index = 9865)
+, C_Lexique_piccolo_5F_lexique::kToken__7D_, REDUCE (61)
+, C_Lexique_piccolo_5F_lexique::kToken_do, REDUCE (61)
+, C_Lexique_piccolo_5F_lexique::kToken_end, REDUCE (61)
+, C_Lexique_piccolo_5F_lexique::kToken_jump, REDUCE (61)
+, C_Lexique_piccolo_5F_lexique::kToken_jsr, REDUCE (61)
+, C_Lexique_piccolo_5F_lexique::kToken_forever, REDUCE (61)
+, C_Lexique_piccolo_5F_lexique::kToken_if, REDUCE (61)
+, C_Lexique_piccolo_5F_lexique::kToken_decf, REDUCE (61)
+, C_Lexique_piccolo_5F_lexique::kToken_incf, REDUCE (61)
+, C_Lexique_piccolo_5F_lexique::kToken_while, REDUCE (61)
+, C_Lexique_piccolo_5F_lexique::kToken_mnop, REDUCE (61)
+, C_Lexique_piccolo_5F_lexique::kToken_elsif, REDUCE (61)
+, C_Lexique_piccolo_5F_lexique::kToken_else, REDUCE (61)
+, C_Lexique_piccolo_5F_lexique::kToken_addwf, REDUCE (61)
+, C_Lexique_piccolo_5F_lexique::kToken_andwf, REDUCE (61)
+, C_Lexique_piccolo_5F_lexique::kToken_comf, REDUCE (61)
+, C_Lexique_piccolo_5F_lexique::kToken_iorwf, REDUCE (61)
+, C_Lexique_piccolo_5F_lexique::kToken_movf, REDUCE (61)
+, C_Lexique_piccolo_5F_lexique::kToken_rlf, REDUCE (61)
+, C_Lexique_piccolo_5F_lexique::kToken_rrf, REDUCE (61)
+, C_Lexique_piccolo_5F_lexique::kToken_subwf, REDUCE (61)
+, C_Lexique_piccolo_5F_lexique::kToken_swapf, REDUCE (61)
+, C_Lexique_piccolo_5F_lexique::kToken_xorwf, REDUCE (61)
+, C_Lexique_piccolo_5F_lexique::kToken_clrf, REDUCE (61)
+, C_Lexique_piccolo_5F_lexique::kToken_movwf, REDUCE (61)
+, C_Lexique_piccolo_5F_lexique::kToken_bcf, REDUCE (61)
+, C_Lexique_piccolo_5F_lexique::kToken_bsf, REDUCE (61)
+, C_Lexique_piccolo_5F_lexique::kToken_goto, REDUCE (61)
+, C_Lexique_piccolo_5F_lexique::kToken_call, REDUCE (61)
+, C_Lexique_piccolo_5F_lexique::kToken_clrw, REDUCE (61)
+, C_Lexique_piccolo_5F_lexique::kToken_clrwdt, REDUCE (61)
+, C_Lexique_piccolo_5F_lexique::kToken_nop, REDUCE (61)
+, C_Lexique_piccolo_5F_lexique::kToken_option, REDUCE (61)
+, C_Lexique_piccolo_5F_lexique::kToken_sleep, REDUCE (61)
+, C_Lexique_piccolo_5F_lexique::kToken_tris, REDUCE (61)
+, C_Lexique_piccolo_5F_lexique::kToken_andlw, REDUCE (61)
+, C_Lexique_piccolo_5F_lexique::kToken_iorlw, REDUCE (61)
+, C_Lexique_piccolo_5F_lexique::kToken_movlw, REDUCE (61)
+, C_Lexique_piccolo_5F_lexique::kToken_xorlw, REDUCE (61)
+, END
+// State S270 (index = 9944)
+, C_Lexique_piccolo_5F_lexique::kToken__7D_, REDUCE (48)
+, C_Lexique_piccolo_5F_lexique::kToken_do, REDUCE (48)
+, C_Lexique_piccolo_5F_lexique::kToken_end, REDUCE (48)
+, C_Lexique_piccolo_5F_lexique::kToken_jump, REDUCE (48)
+, C_Lexique_piccolo_5F_lexique::kToken_jsr, REDUCE (48)
+, C_Lexique_piccolo_5F_lexique::kToken_forever, REDUCE (48)
+, C_Lexique_piccolo_5F_lexique::kToken_if, REDUCE (48)
+, C_Lexique_piccolo_5F_lexique::kToken_decf, REDUCE (48)
+, C_Lexique_piccolo_5F_lexique::kToken_incf, REDUCE (48)
+, C_Lexique_piccolo_5F_lexique::kToken_while, REDUCE (48)
+, C_Lexique_piccolo_5F_lexique::kToken_mnop, REDUCE (48)
+, C_Lexique_piccolo_5F_lexique::kToken_elsif, REDUCE (48)
+, C_Lexique_piccolo_5F_lexique::kToken_else, REDUCE (48)
+, C_Lexique_piccolo_5F_lexique::kToken_addwf, REDUCE (48)
+, C_Lexique_piccolo_5F_lexique::kToken_andwf, REDUCE (48)
+, C_Lexique_piccolo_5F_lexique::kToken_comf, REDUCE (48)
+, C_Lexique_piccolo_5F_lexique::kToken_iorwf, REDUCE (48)
+, C_Lexique_piccolo_5F_lexique::kToken_movf, REDUCE (48)
+, C_Lexique_piccolo_5F_lexique::kToken_rlf, REDUCE (48)
+, C_Lexique_piccolo_5F_lexique::kToken_rrf, REDUCE (48)
+, C_Lexique_piccolo_5F_lexique::kToken_subwf, REDUCE (48)
+, C_Lexique_piccolo_5F_lexique::kToken_swapf, REDUCE (48)
+, C_Lexique_piccolo_5F_lexique::kToken_xorwf, REDUCE (48)
+, C_Lexique_piccolo_5F_lexique::kToken_clrf, REDUCE (48)
+, C_Lexique_piccolo_5F_lexique::kToken_movwf, REDUCE (48)
+, C_Lexique_piccolo_5F_lexique::kToken_bcf, REDUCE (48)
+, C_Lexique_piccolo_5F_lexique::kToken_bsf, REDUCE (48)
+, C_Lexique_piccolo_5F_lexique::kToken_goto, REDUCE (48)
+, C_Lexique_piccolo_5F_lexique::kToken_call, REDUCE (48)
+, C_Lexique_piccolo_5F_lexique::kToken_clrw, REDUCE (48)
+, C_Lexique_piccolo_5F_lexique::kToken_clrwdt, REDUCE (48)
+, C_Lexique_piccolo_5F_lexique::kToken_nop, REDUCE (48)
+, C_Lexique_piccolo_5F_lexique::kToken_option, REDUCE (48)
+, C_Lexique_piccolo_5F_lexique::kToken_sleep, REDUCE (48)
+, C_Lexique_piccolo_5F_lexique::kToken_tris, REDUCE (48)
+, C_Lexique_piccolo_5F_lexique::kToken_andlw, REDUCE (48)
+, C_Lexique_piccolo_5F_lexique::kToken_iorlw, REDUCE (48)
+, C_Lexique_piccolo_5F_lexique::kToken_movlw, REDUCE (48)
+, C_Lexique_piccolo_5F_lexique::kToken_xorlw, REDUCE (48)
+, END
+// State S271 (index = 10023)
+, C_Lexique_piccolo_5F_lexique::kToken_identifier, REDUCE (181)
+, C_Lexique_piccolo_5F_lexique::kToken__2C_, REDUCE (181)
+, C_Lexique_piccolo_5F_lexique::kToken__7D_, REDUCE (181)
+, C_Lexique_piccolo_5F_lexique::kToken_do, REDUCE (181)
+, C_Lexique_piccolo_5F_lexique::kToken_end, REDUCE (181)
+, C_Lexique_piccolo_5F_lexique::kToken_jump, REDUCE (181)
+, C_Lexique_piccolo_5F_lexique::kToken_jsr, REDUCE (181)
+, C_Lexique_piccolo_5F_lexique::kToken_forever, REDUCE (181)
+, C_Lexique_piccolo_5F_lexique::kToken_if, REDUCE (181)
+, C_Lexique_piccolo_5F_lexique::kToken__2E_, REDUCE (181)
+, C_Lexique_piccolo_5F_lexique::kToken_decf, REDUCE (181)
+, C_Lexique_piccolo_5F_lexique::kToken_incf, REDUCE (181)
+, C_Lexique_piccolo_5F_lexique::kToken_while, REDUCE (181)
+, C_Lexique_piccolo_5F_lexique::kToken_mnop, REDUCE (181)
+, C_Lexique_piccolo_5F_lexique::kToken_elsif, REDUCE (181)
+, C_Lexique_piccolo_5F_lexique::kToken_else, REDUCE (181)
+, C_Lexique_piccolo_5F_lexique::kToken_addwf, REDUCE (181)
+, C_Lexique_piccolo_5F_lexique::kToken_andwf, REDUCE (181)
+, C_Lexique_piccolo_5F_lexique::kToken_comf, REDUCE (181)
+, C_Lexique_piccolo_5F_lexique::kToken_iorwf, REDUCE (181)
+, C_Lexique_piccolo_5F_lexique::kToken_movf, REDUCE (181)
+, C_Lexique_piccolo_5F_lexique::kToken_rlf, REDUCE (181)
+, C_Lexique_piccolo_5F_lexique::kToken_rrf, REDUCE (181)
+, C_Lexique_piccolo_5F_lexique::kToken_subwf, REDUCE (181)
+, C_Lexique_piccolo_5F_lexique::kToken_swapf, REDUCE (181)
+, C_Lexique_piccolo_5F_lexique::kToken_xorwf, REDUCE (181)
+, C_Lexique_piccolo_5F_lexique::kToken_clrf, REDUCE (181)
+, C_Lexique_piccolo_5F_lexique::kToken_movwf, REDUCE (181)
+, C_Lexique_piccolo_5F_lexique::kToken_bcf, REDUCE (181)
+, C_Lexique_piccolo_5F_lexique::kToken_bsf, REDUCE (181)
+, C_Lexique_piccolo_5F_lexique::kToken_goto, REDUCE (181)
+, C_Lexique_piccolo_5F_lexique::kToken_call, REDUCE (181)
+, C_Lexique_piccolo_5F_lexique::kToken_clrw, REDUCE (181)
+, C_Lexique_piccolo_5F_lexique::kToken_clrwdt, REDUCE (181)
+, C_Lexique_piccolo_5F_lexique::kToken_nop, REDUCE (181)
+, C_Lexique_piccolo_5F_lexique::kToken_option, REDUCE (181)
+, C_Lexique_piccolo_5F_lexique::kToken_sleep, REDUCE (181)
+, C_Lexique_piccolo_5F_lexique::kToken_tris, REDUCE (181)
+, C_Lexique_piccolo_5F_lexique::kToken_andlw, REDUCE (181)
+, C_Lexique_piccolo_5F_lexique::kToken_iorlw, REDUCE (181)
+, C_Lexique_piccolo_5F_lexique::kToken_movlw, REDUCE (181)
+, C_Lexique_piccolo_5F_lexique::kToken_xorlw, REDUCE (181)
+, END
+// State S272 (index = 10108)
+, C_Lexique_piccolo_5F_lexique::kToken__3A_, REDUCE (62)
+, END
+// State S273 (index = 10111)
+, C_Lexique_piccolo_5F_lexique::kToken_integer, SHIFT (296)
+, END
+// State S274 (index = 10114)
+, C_Lexique_piccolo_5F_lexique::kToken__7D_, REDUCE (22)
+, C_Lexique_piccolo_5F_lexique::kToken_do, REDUCE (22)
+, C_Lexique_piccolo_5F_lexique::kToken__3A_, REDUCE (22)
+, C_Lexique_piccolo_5F_lexique::kToken__29_, REDUCE (22)
+, C_Lexique_piccolo_5F_lexique::kToken_end, REDUCE (22)
+, C_Lexique_piccolo_5F_lexique::kToken_jump, REDUCE (22)
+, C_Lexique_piccolo_5F_lexique::kToken_jsr, REDUCE (22)
+, C_Lexique_piccolo_5F_lexique::kToken_forever, REDUCE (22)
+, C_Lexique_piccolo_5F_lexique::kToken_if, REDUCE (22)
+, C_Lexique_piccolo_5F_lexique::kToken_decf, REDUCE (22)
+, C_Lexique_piccolo_5F_lexique::kToken_incf, REDUCE (22)
+, C_Lexique_piccolo_5F_lexique::kToken_while, REDUCE (22)
+, C_Lexique_piccolo_5F_lexique::kToken_mnop, REDUCE (22)
+, C_Lexique_piccolo_5F_lexique::kToken_elsif, REDUCE (22)
+, C_Lexique_piccolo_5F_lexique::kToken_else, REDUCE (22)
+, C_Lexique_piccolo_5F_lexique::kToken_addwf, REDUCE (22)
+, C_Lexique_piccolo_5F_lexique::kToken_andwf, REDUCE (22)
+, C_Lexique_piccolo_5F_lexique::kToken_comf, REDUCE (22)
+, C_Lexique_piccolo_5F_lexique::kToken_iorwf, REDUCE (22)
+, C_Lexique_piccolo_5F_lexique::kToken_movf, REDUCE (22)
+, C_Lexique_piccolo_5F_lexique::kToken_rlf, REDUCE (22)
+, C_Lexique_piccolo_5F_lexique::kToken_rrf, REDUCE (22)
+, C_Lexique_piccolo_5F_lexique::kToken_subwf, REDUCE (22)
+, C_Lexique_piccolo_5F_lexique::kToken_swapf, REDUCE (22)
+, C_Lexique_piccolo_5F_lexique::kToken_xorwf, REDUCE (22)
+, C_Lexique_piccolo_5F_lexique::kToken_clrf, REDUCE (22)
+, C_Lexique_piccolo_5F_lexique::kToken_movwf, REDUCE (22)
+, C_Lexique_piccolo_5F_lexique::kToken_bcf, REDUCE (22)
+, C_Lexique_piccolo_5F_lexique::kToken_bsf, REDUCE (22)
+, C_Lexique_piccolo_5F_lexique::kToken_goto, REDUCE (22)
+, C_Lexique_piccolo_5F_lexique::kToken_call, REDUCE (22)
+, C_Lexique_piccolo_5F_lexique::kToken_clrw, REDUCE (22)
+, C_Lexique_piccolo_5F_lexique::kToken_clrwdt, REDUCE (22)
+, C_Lexique_piccolo_5F_lexique::kToken_nop, REDUCE (22)
+, C_Lexique_piccolo_5F_lexique::kToken_option, REDUCE (22)
+, C_Lexique_piccolo_5F_lexique::kToken_sleep, REDUCE (22)
+, C_Lexique_piccolo_5F_lexique::kToken_tris, REDUCE (22)
+, C_Lexique_piccolo_5F_lexique::kToken_andlw, REDUCE (22)
+, C_Lexique_piccolo_5F_lexique::kToken_iorlw, REDUCE (22)
+, C_Lexique_piccolo_5F_lexique::kToken_movlw, REDUCE (22)
+, C_Lexique_piccolo_5F_lexique::kToken_xorlw, REDUCE (22)
+, C_Lexique_piccolo_5F_lexique::kToken__7C_, REDUCE (22)
+, C_Lexique_piccolo_5F_lexique::kToken__26_, REDUCE (22)
+, END
+// State S275 (index = 10201)
+, C_Lexique_piccolo_5F_lexique::kToken__29_, SHIFT (297)
+, END
+// State S276 (index = 10204)
+, C_Lexique_piccolo_5F_lexique::kToken_identifier, REDUCE (67)
+, END
+// State S277 (index = 10207)
+, C_Lexique_piccolo_5F_lexique::kToken__3A_, SHIFT (298)
+, END
+// State S278 (index = 10210)
+, C_Lexique_piccolo_5F_lexique::kToken__29_, REDUCE (6)
+, C_Lexique_piccolo_5F_lexique::kToken__7C_, REDUCE (6)
+, C_Lexique_piccolo_5F_lexique::kToken__26_, REDUCE (6)
+, END
+// State S279 (index = 10217)
+, C_Lexique_piccolo_5F_lexique::kToken_identifier, SHIFT (239)
+, C_Lexique_piccolo_5F_lexique::kToken_integer, SHIFT (240)
+, C_Lexique_piccolo_5F_lexique::kToken__28_, SHIFT (241)
+, END
+// State S280 (index = 10224)
+, C_Lexique_piccolo_5F_lexique::kToken_identifier, SHIFT (186)
+, C_Lexique_piccolo_5F_lexique::kToken__28_, SHIFT (221)
+, C_Lexique_piccolo_5F_lexique::kToken__21_, SHIFT (246)
+, C_Lexique_piccolo_5F_lexique::kToken_decf, SHIFT (247)
+, C_Lexique_piccolo_5F_lexique::kToken_incf, SHIFT (248)
+, END
+// State S281 (index = 10235)
+, C_Lexique_piccolo_5F_lexique::kToken__29_, REDUCE (10)
+, C_Lexique_piccolo_5F_lexique::kToken__7C_, REDUCE (10)
+, END
+// State S282 (index = 10240)
+, C_Lexique_piccolo_5F_lexique::kToken_identifier, SHIFT (186)
+, C_Lexique_piccolo_5F_lexique::kToken__28_, SHIFT (221)
+, C_Lexique_piccolo_5F_lexique::kToken__21_, SHIFT (246)
+, C_Lexique_piccolo_5F_lexique::kToken_decf, SHIFT (247)
+, C_Lexique_piccolo_5F_lexique::kToken_incf, SHIFT (248)
+, END
+// State S283 (index = 10251)
+, C_Lexique_piccolo_5F_lexique::kToken__29_, SHIFT (302)
+, END
+// State S284 (index = 10254)
+, C_Lexique_piccolo_5F_lexique::kToken_identifier, REDUCE (123)
+, C_Lexique_piccolo_5F_lexique::kToken__2C_, SHIFT (303)
+, END
+// State S285 (index = 10259)
+, C_Lexique_piccolo_5F_lexique::kToken__7D_, REDUCE (71)
+, C_Lexique_piccolo_5F_lexique::kToken_do, REDUCE (71)
+, C_Lexique_piccolo_5F_lexique::kToken_end, REDUCE (71)
+, C_Lexique_piccolo_5F_lexique::kToken_jump, REDUCE (71)
+, C_Lexique_piccolo_5F_lexique::kToken_jsr, REDUCE (71)
+, C_Lexique_piccolo_5F_lexique::kToken_forever, REDUCE (71)
+, C_Lexique_piccolo_5F_lexique::kToken_if, REDUCE (71)
+, C_Lexique_piccolo_5F_lexique::kToken_decf, REDUCE (71)
+, C_Lexique_piccolo_5F_lexique::kToken_incf, REDUCE (71)
+, C_Lexique_piccolo_5F_lexique::kToken_while, REDUCE (71)
+, C_Lexique_piccolo_5F_lexique::kToken_mnop, REDUCE (71)
+, C_Lexique_piccolo_5F_lexique::kToken_elsif, REDUCE (71)
+, C_Lexique_piccolo_5F_lexique::kToken_else, REDUCE (71)
+, C_Lexique_piccolo_5F_lexique::kToken_addwf, REDUCE (71)
+, C_Lexique_piccolo_5F_lexique::kToken_andwf, REDUCE (71)
+, C_Lexique_piccolo_5F_lexique::kToken_comf, REDUCE (71)
+, C_Lexique_piccolo_5F_lexique::kToken_iorwf, REDUCE (71)
+, C_Lexique_piccolo_5F_lexique::kToken_movf, REDUCE (71)
+, C_Lexique_piccolo_5F_lexique::kToken_rlf, REDUCE (71)
+, C_Lexique_piccolo_5F_lexique::kToken_rrf, REDUCE (71)
+, C_Lexique_piccolo_5F_lexique::kToken_subwf, REDUCE (71)
+, C_Lexique_piccolo_5F_lexique::kToken_swapf, REDUCE (71)
+, C_Lexique_piccolo_5F_lexique::kToken_xorwf, REDUCE (71)
+, C_Lexique_piccolo_5F_lexique::kToken_clrf, REDUCE (71)
+, C_Lexique_piccolo_5F_lexique::kToken_movwf, REDUCE (71)
+, C_Lexique_piccolo_5F_lexique::kToken_bcf, REDUCE (71)
+, C_Lexique_piccolo_5F_lexique::kToken_bsf, REDUCE (71)
+, C_Lexique_piccolo_5F_lexique::kToken_goto, REDUCE (71)
+, C_Lexique_piccolo_5F_lexique::kToken_call, REDUCE (71)
+, C_Lexique_piccolo_5F_lexique::kToken_clrw, REDUCE (71)
+, C_Lexique_piccolo_5F_lexique::kToken_clrwdt, REDUCE (71)
+, C_Lexique_piccolo_5F_lexique::kToken_nop, REDUCE (71)
+, C_Lexique_piccolo_5F_lexique::kToken_option, REDUCE (71)
+, C_Lexique_piccolo_5F_lexique::kToken_sleep, REDUCE (71)
+, C_Lexique_piccolo_5F_lexique::kToken_tris, REDUCE (71)
+, C_Lexique_piccolo_5F_lexique::kToken_andlw, REDUCE (71)
+, C_Lexique_piccolo_5F_lexique::kToken_iorlw, REDUCE (71)
+, C_Lexique_piccolo_5F_lexique::kToken_movlw, REDUCE (71)
+, C_Lexique_piccolo_5F_lexique::kToken_xorlw, REDUCE (71)
+, END
+// State S286 (index = 10338)
+, C_Lexique_piccolo_5F_lexique::kToken__7D_, REDUCE (51)
+, C_Lexique_piccolo_5F_lexique::kToken_do, REDUCE (51)
+, C_Lexique_piccolo_5F_lexique::kToken_end, REDUCE (51)
+, C_Lexique_piccolo_5F_lexique::kToken_jump, REDUCE (51)
+, C_Lexique_piccolo_5F_lexique::kToken_jsr, REDUCE (51)
+, C_Lexique_piccolo_5F_lexique::kToken_forever, REDUCE (51)
+, C_Lexique_piccolo_5F_lexique::kToken_if, REDUCE (51)
+, C_Lexique_piccolo_5F_lexique::kToken_decf, REDUCE (51)
+, C_Lexique_piccolo_5F_lexique::kToken_incf, REDUCE (51)
+, C_Lexique_piccolo_5F_lexique::kToken_while, REDUCE (51)
+, C_Lexique_piccolo_5F_lexique::kToken_mnop, REDUCE (51)
+, C_Lexique_piccolo_5F_lexique::kToken_elsif, REDUCE (51)
+, C_Lexique_piccolo_5F_lexique::kToken_else, REDUCE (51)
+, C_Lexique_piccolo_5F_lexique::kToken_addwf, REDUCE (51)
+, C_Lexique_piccolo_5F_lexique::kToken_andwf, REDUCE (51)
+, C_Lexique_piccolo_5F_lexique::kToken_comf, REDUCE (51)
+, C_Lexique_piccolo_5F_lexique::kToken_iorwf, REDUCE (51)
+, C_Lexique_piccolo_5F_lexique::kToken_movf, REDUCE (51)
+, C_Lexique_piccolo_5F_lexique::kToken_rlf, REDUCE (51)
+, C_Lexique_piccolo_5F_lexique::kToken_rrf, REDUCE (51)
+, C_Lexique_piccolo_5F_lexique::kToken_subwf, REDUCE (51)
+, C_Lexique_piccolo_5F_lexique::kToken_swapf, REDUCE (51)
+, C_Lexique_piccolo_5F_lexique::kToken_xorwf, REDUCE (51)
+, C_Lexique_piccolo_5F_lexique::kToken_clrf, REDUCE (51)
+, C_Lexique_piccolo_5F_lexique::kToken_movwf, REDUCE (51)
+, C_Lexique_piccolo_5F_lexique::kToken_bcf, REDUCE (51)
+, C_Lexique_piccolo_5F_lexique::kToken_bsf, REDUCE (51)
+, C_Lexique_piccolo_5F_lexique::kToken_goto, REDUCE (51)
+, C_Lexique_piccolo_5F_lexique::kToken_call, REDUCE (51)
+, C_Lexique_piccolo_5F_lexique::kToken_clrw, REDUCE (51)
+, C_Lexique_piccolo_5F_lexique::kToken_clrwdt, REDUCE (51)
+, C_Lexique_piccolo_5F_lexique::kToken_nop, REDUCE (51)
+, C_Lexique_piccolo_5F_lexique::kToken_option, REDUCE (51)
+, C_Lexique_piccolo_5F_lexique::kToken_sleep, REDUCE (51)
+, C_Lexique_piccolo_5F_lexique::kToken_tris, REDUCE (51)
+, C_Lexique_piccolo_5F_lexique::kToken_andlw, REDUCE (51)
+, C_Lexique_piccolo_5F_lexique::kToken_iorlw, REDUCE (51)
+, C_Lexique_piccolo_5F_lexique::kToken_movlw, REDUCE (51)
+, C_Lexique_piccolo_5F_lexique::kToken_xorlw, REDUCE (51)
+, END
+// State S287 (index = 10417)
+, C_Lexique_piccolo_5F_lexique::kToken_label, SHIFT (305)
+, C_Lexique_piccolo_5F_lexique::kToken__28_, REDUCE (83)
+, END
+// State S288 (index = 10422)
+, C_Lexique_piccolo_5F_lexique::kToken_do, REDUCE (85)
+, C_Lexique_piccolo_5F_lexique::kToken_label, SHIFT (307)
+, C_Lexique_piccolo_5F_lexique::kToken_end, REDUCE (85)
+, C_Lexique_piccolo_5F_lexique::kToken_jump, REDUCE (85)
+, C_Lexique_piccolo_5F_lexique::kToken_jsr, REDUCE (85)
+, C_Lexique_piccolo_5F_lexique::kToken_forever, REDUCE (85)
+, C_Lexique_piccolo_5F_lexique::kToken_if, REDUCE (85)
+, C_Lexique_piccolo_5F_lexique::kToken_decf, REDUCE (85)
+, C_Lexique_piccolo_5F_lexique::kToken_incf, REDUCE (85)
+, C_Lexique_piccolo_5F_lexique::kToken_mnop, REDUCE (85)
+, C_Lexique_piccolo_5F_lexique::kToken_addwf, REDUCE (85)
+, C_Lexique_piccolo_5F_lexique::kToken_andwf, REDUCE (85)
+, C_Lexique_piccolo_5F_lexique::kToken_comf, REDUCE (85)
+, C_Lexique_piccolo_5F_lexique::kToken_iorwf, REDUCE (85)
+, C_Lexique_piccolo_5F_lexique::kToken_movf, REDUCE (85)
+, C_Lexique_piccolo_5F_lexique::kToken_rlf, REDUCE (85)
+, C_Lexique_piccolo_5F_lexique::kToken_rrf, REDUCE (85)
+, C_Lexique_piccolo_5F_lexique::kToken_subwf, REDUCE (85)
+, C_Lexique_piccolo_5F_lexique::kToken_swapf, REDUCE (85)
+, C_Lexique_piccolo_5F_lexique::kToken_xorwf, REDUCE (85)
+, C_Lexique_piccolo_5F_lexique::kToken_clrf, REDUCE (85)
+, C_Lexique_piccolo_5F_lexique::kToken_movwf, REDUCE (85)
+, C_Lexique_piccolo_5F_lexique::kToken_bcf, REDUCE (85)
+, C_Lexique_piccolo_5F_lexique::kToken_bsf, REDUCE (85)
+, C_Lexique_piccolo_5F_lexique::kToken_goto, REDUCE (85)
+, C_Lexique_piccolo_5F_lexique::kToken_call, REDUCE (85)
+, C_Lexique_piccolo_5F_lexique::kToken_clrw, REDUCE (85)
+, C_Lexique_piccolo_5F_lexique::kToken_clrwdt, REDUCE (85)
+, C_Lexique_piccolo_5F_lexique::kToken_nop, REDUCE (85)
+, C_Lexique_piccolo_5F_lexique::kToken_option, REDUCE (85)
+, C_Lexique_piccolo_5F_lexique::kToken_sleep, REDUCE (85)
+, C_Lexique_piccolo_5F_lexique::kToken_tris, REDUCE (85)
+, C_Lexique_piccolo_5F_lexique::kToken_andlw, REDUCE (85)
+, C_Lexique_piccolo_5F_lexique::kToken_iorlw, REDUCE (85)
+, C_Lexique_piccolo_5F_lexique::kToken_movlw, REDUCE (85)
+, C_Lexique_piccolo_5F_lexique::kToken_xorlw, REDUCE (85)
+, END
+// State S289 (index = 10495)
+, C_Lexique_piccolo_5F_lexique::kToken_end, REDUCE (4)
+, END
+// State S290 (index = 10498)
+, C_Lexique_piccolo_5F_lexique::kToken__2C_, REDUCE (145)
+, C_Lexique_piccolo_5F_lexique::kToken__2F_, REDUCE (145)
+, C_Lexique_piccolo_5F_lexique::kToken__3E_, REDUCE (145)
+, END
+// State S291 (index = 10505)
+, C_Lexique_piccolo_5F_lexique::kToken__2C_, REDUCE (144)
+, C_Lexique_piccolo_5F_lexique::kToken__5B_, SHIFT (228)
+, C_Lexique_piccolo_5F_lexique::kToken__2F_, REDUCE (144)
+, C_Lexique_piccolo_5F_lexique::kToken__3E_, REDUCE (144)
+, END
+// State S292 (index = 10514)
+, C_Lexique_piccolo_5F_lexique::kToken__3E_, REDUCE (138)
+, END
+// State S293 (index = 10517)
+, C_Lexique_piccolo_5F_lexique::kToken_identifier, SHIFT (42)
+, C_Lexique_piccolo_5F_lexique::kToken_integer, SHIFT (43)
+, C_Lexique_piccolo_5F_lexique::kToken__28_, SHIFT (44)
+, C_Lexique_piccolo_5F_lexique::kToken__2D_, SHIFT (45)
+, C_Lexique_piccolo_5F_lexique::kToken__7E_, SHIFT (46)
+, C_Lexique_piccolo_5F_lexique::kToken_literal_5F_char, SHIFT (47)
+, END
+// State S294 (index = 10530)
+, C_Lexique_piccolo_5F_lexique::kToken__2E__2E__2E_, SHIFT (311)
+, END
+// State S295 (index = 10533)
 , C_Lexique_piccolo_5F_lexique::kToken__7D_, REDUCE (38)
-, C_Lexique_piccolo_5F_lexique::kToken_do, SHIFT (121)
+, C_Lexique_piccolo_5F_lexique::kToken_do, SHIFT (120)
 , C_Lexique_piccolo_5F_lexique::kToken_end, REDUCE (38)
-, C_Lexique_piccolo_5F_lexique::kToken_jump, SHIFT (122)
-, C_Lexique_piccolo_5F_lexique::kToken_jsr, SHIFT (123)
-, C_Lexique_piccolo_5F_lexique::kToken_forever, SHIFT (124)
-, C_Lexique_piccolo_5F_lexique::kToken_if, SHIFT (125)
-, C_Lexique_piccolo_5F_lexique::kToken_decf, SHIFT (126)
-, C_Lexique_piccolo_5F_lexique::kToken_incf, SHIFT (127)
+, C_Lexique_piccolo_5F_lexique::kToken_jump, SHIFT (121)
+, C_Lexique_piccolo_5F_lexique::kToken_jsr, SHIFT (122)
+, C_Lexique_piccolo_5F_lexique::kToken_forever, SHIFT (123)
+, C_Lexique_piccolo_5F_lexique::kToken_if, SHIFT (124)
+, C_Lexique_piccolo_5F_lexique::kToken_decf, SHIFT (125)
+, C_Lexique_piccolo_5F_lexique::kToken_incf, SHIFT (126)
 , C_Lexique_piccolo_5F_lexique::kToken_while, REDUCE (38)
-, C_Lexique_piccolo_5F_lexique::kToken_mnop, SHIFT (128)
+, C_Lexique_piccolo_5F_lexique::kToken_mnop, SHIFT (127)
 , C_Lexique_piccolo_5F_lexique::kToken_elsif, REDUCE (38)
 , C_Lexique_piccolo_5F_lexique::kToken_else, REDUCE (38)
-, C_Lexique_piccolo_5F_lexique::kToken_addwf, SHIFT (129)
-, C_Lexique_piccolo_5F_lexique::kToken_andwf, SHIFT (130)
-, C_Lexique_piccolo_5F_lexique::kToken_comf, SHIFT (131)
-, C_Lexique_piccolo_5F_lexique::kToken_iorwf, SHIFT (132)
-, C_Lexique_piccolo_5F_lexique::kToken_movf, SHIFT (133)
-, C_Lexique_piccolo_5F_lexique::kToken_rlf, SHIFT (134)
-, C_Lexique_piccolo_5F_lexique::kToken_rrf, SHIFT (135)
-, C_Lexique_piccolo_5F_lexique::kToken_subwf, SHIFT (136)
-, C_Lexique_piccolo_5F_lexique::kToken_swapf, SHIFT (137)
-, C_Lexique_piccolo_5F_lexique::kToken_xorwf, SHIFT (138)
-, C_Lexique_piccolo_5F_lexique::kToken_clrf, SHIFT (139)
-, C_Lexique_piccolo_5F_lexique::kToken_movwf, SHIFT (140)
-, C_Lexique_piccolo_5F_lexique::kToken_bcf, SHIFT (141)
-, C_Lexique_piccolo_5F_lexique::kToken_bsf, SHIFT (142)
-, C_Lexique_piccolo_5F_lexique::kToken_goto, SHIFT (143)
-, C_Lexique_piccolo_5F_lexique::kToken_call, SHIFT (144)
-, C_Lexique_piccolo_5F_lexique::kToken_clrw, SHIFT (145)
-, C_Lexique_piccolo_5F_lexique::kToken_clrwdt, SHIFT (146)
-, C_Lexique_piccolo_5F_lexique::kToken_nop, SHIFT (147)
-, C_Lexique_piccolo_5F_lexique::kToken_option, SHIFT (148)
-, C_Lexique_piccolo_5F_lexique::kToken_sleep, SHIFT (149)
-, C_Lexique_piccolo_5F_lexique::kToken_tris, SHIFT (150)
-, C_Lexique_piccolo_5F_lexique::kToken_andlw, SHIFT (151)
-, C_Lexique_piccolo_5F_lexique::kToken_iorlw, SHIFT (152)
-, C_Lexique_piccolo_5F_lexique::kToken_movlw, SHIFT (153)
-, C_Lexique_piccolo_5F_lexique::kToken_xorlw, SHIFT (154)
+, C_Lexique_piccolo_5F_lexique::kToken_addwf, SHIFT (128)
+, C_Lexique_piccolo_5F_lexique::kToken_andwf, SHIFT (129)
+, C_Lexique_piccolo_5F_lexique::kToken_comf, SHIFT (130)
+, C_Lexique_piccolo_5F_lexique::kToken_iorwf, SHIFT (131)
+, C_Lexique_piccolo_5F_lexique::kToken_movf, SHIFT (132)
+, C_Lexique_piccolo_5F_lexique::kToken_rlf, SHIFT (133)
+, C_Lexique_piccolo_5F_lexique::kToken_rrf, SHIFT (134)
+, C_Lexique_piccolo_5F_lexique::kToken_subwf, SHIFT (135)
+, C_Lexique_piccolo_5F_lexique::kToken_swapf, SHIFT (136)
+, C_Lexique_piccolo_5F_lexique::kToken_xorwf, SHIFT (137)
+, C_Lexique_piccolo_5F_lexique::kToken_clrf, SHIFT (138)
+, C_Lexique_piccolo_5F_lexique::kToken_movwf, SHIFT (139)
+, C_Lexique_piccolo_5F_lexique::kToken_bcf, SHIFT (140)
+, C_Lexique_piccolo_5F_lexique::kToken_bsf, SHIFT (141)
+, C_Lexique_piccolo_5F_lexique::kToken_goto, SHIFT (142)
+, C_Lexique_piccolo_5F_lexique::kToken_call, SHIFT (143)
+, C_Lexique_piccolo_5F_lexique::kToken_clrw, SHIFT (144)
+, C_Lexique_piccolo_5F_lexique::kToken_clrwdt, SHIFT (145)
+, C_Lexique_piccolo_5F_lexique::kToken_nop, SHIFT (146)
+, C_Lexique_piccolo_5F_lexique::kToken_option, SHIFT (147)
+, C_Lexique_piccolo_5F_lexique::kToken_sleep, SHIFT (148)
+, C_Lexique_piccolo_5F_lexique::kToken_tris, SHIFT (149)
+, C_Lexique_piccolo_5F_lexique::kToken_andlw, SHIFT (150)
+, C_Lexique_piccolo_5F_lexique::kToken_iorlw, SHIFT (151)
+, C_Lexique_piccolo_5F_lexique::kToken_movlw, SHIFT (152)
+, C_Lexique_piccolo_5F_lexique::kToken_xorlw, SHIFT (153)
 , END
-// State S297 (index = 10663)
-, C_Lexique_piccolo_5F_lexique::kToken__5D_, SHIFT (314)
+// State S296 (index = 10612)
+, C_Lexique_piccolo_5F_lexique::kToken__5D_, SHIFT (313)
 , END
-// State S298 (index = 10666)
+// State S297 (index = 10615)
 , C_Lexique_piccolo_5F_lexique::kToken__7D_, REDUCE (24)
 , C_Lexique_piccolo_5F_lexique::kToken_do, REDUCE (24)
 , C_Lexique_piccolo_5F_lexique::kToken__3A_, REDUCE (24)
@@ -18254,51 +18227,51 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken__7C_, REDUCE (24)
 , C_Lexique_piccolo_5F_lexique::kToken__26_, REDUCE (24)
 , END
-// State S299 (index = 10753)
-, C_Lexique_piccolo_5F_lexique::kToken_decf, SHIFT (126)
-, C_Lexique_piccolo_5F_lexique::kToken_incf, SHIFT (127)
-, C_Lexique_piccolo_5F_lexique::kToken_addwf, SHIFT (129)
-, C_Lexique_piccolo_5F_lexique::kToken_andwf, SHIFT (130)
-, C_Lexique_piccolo_5F_lexique::kToken_comf, SHIFT (131)
-, C_Lexique_piccolo_5F_lexique::kToken_iorwf, SHIFT (132)
-, C_Lexique_piccolo_5F_lexique::kToken_movf, SHIFT (133)
-, C_Lexique_piccolo_5F_lexique::kToken_rlf, SHIFT (134)
-, C_Lexique_piccolo_5F_lexique::kToken_rrf, SHIFT (135)
-, C_Lexique_piccolo_5F_lexique::kToken_subwf, SHIFT (136)
-, C_Lexique_piccolo_5F_lexique::kToken_swapf, SHIFT (137)
-, C_Lexique_piccolo_5F_lexique::kToken_xorwf, SHIFT (138)
-, C_Lexique_piccolo_5F_lexique::kToken_clrf, SHIFT (139)
-, C_Lexique_piccolo_5F_lexique::kToken_movwf, SHIFT (140)
-, C_Lexique_piccolo_5F_lexique::kToken_bcf, SHIFT (141)
-, C_Lexique_piccolo_5F_lexique::kToken_bsf, SHIFT (142)
-, C_Lexique_piccolo_5F_lexique::kToken_goto, SHIFT (143)
-, C_Lexique_piccolo_5F_lexique::kToken_call, SHIFT (144)
-, C_Lexique_piccolo_5F_lexique::kToken_clrw, SHIFT (145)
-, C_Lexique_piccolo_5F_lexique::kToken_clrwdt, SHIFT (146)
-, C_Lexique_piccolo_5F_lexique::kToken_nop, SHIFT (147)
-, C_Lexique_piccolo_5F_lexique::kToken_option, SHIFT (148)
-, C_Lexique_piccolo_5F_lexique::kToken_sleep, SHIFT (149)
-, C_Lexique_piccolo_5F_lexique::kToken_tris, SHIFT (150)
-, C_Lexique_piccolo_5F_lexique::kToken_andlw, SHIFT (151)
-, C_Lexique_piccolo_5F_lexique::kToken_iorlw, SHIFT (152)
-, C_Lexique_piccolo_5F_lexique::kToken_movlw, SHIFT (153)
-, C_Lexique_piccolo_5F_lexique::kToken_xorlw, SHIFT (154)
+// State S298 (index = 10702)
+, C_Lexique_piccolo_5F_lexique::kToken_decf, SHIFT (125)
+, C_Lexique_piccolo_5F_lexique::kToken_incf, SHIFT (126)
+, C_Lexique_piccolo_5F_lexique::kToken_addwf, SHIFT (128)
+, C_Lexique_piccolo_5F_lexique::kToken_andwf, SHIFT (129)
+, C_Lexique_piccolo_5F_lexique::kToken_comf, SHIFT (130)
+, C_Lexique_piccolo_5F_lexique::kToken_iorwf, SHIFT (131)
+, C_Lexique_piccolo_5F_lexique::kToken_movf, SHIFT (132)
+, C_Lexique_piccolo_5F_lexique::kToken_rlf, SHIFT (133)
+, C_Lexique_piccolo_5F_lexique::kToken_rrf, SHIFT (134)
+, C_Lexique_piccolo_5F_lexique::kToken_subwf, SHIFT (135)
+, C_Lexique_piccolo_5F_lexique::kToken_swapf, SHIFT (136)
+, C_Lexique_piccolo_5F_lexique::kToken_xorwf, SHIFT (137)
+, C_Lexique_piccolo_5F_lexique::kToken_clrf, SHIFT (138)
+, C_Lexique_piccolo_5F_lexique::kToken_movwf, SHIFT (139)
+, C_Lexique_piccolo_5F_lexique::kToken_bcf, SHIFT (140)
+, C_Lexique_piccolo_5F_lexique::kToken_bsf, SHIFT (141)
+, C_Lexique_piccolo_5F_lexique::kToken_goto, SHIFT (142)
+, C_Lexique_piccolo_5F_lexique::kToken_call, SHIFT (143)
+, C_Lexique_piccolo_5F_lexique::kToken_clrw, SHIFT (144)
+, C_Lexique_piccolo_5F_lexique::kToken_clrwdt, SHIFT (145)
+, C_Lexique_piccolo_5F_lexique::kToken_nop, SHIFT (146)
+, C_Lexique_piccolo_5F_lexique::kToken_option, SHIFT (147)
+, C_Lexique_piccolo_5F_lexique::kToken_sleep, SHIFT (148)
+, C_Lexique_piccolo_5F_lexique::kToken_tris, SHIFT (149)
+, C_Lexique_piccolo_5F_lexique::kToken_andlw, SHIFT (150)
+, C_Lexique_piccolo_5F_lexique::kToken_iorlw, SHIFT (151)
+, C_Lexique_piccolo_5F_lexique::kToken_movlw, SHIFT (152)
+, C_Lexique_piccolo_5F_lexique::kToken_xorlw, SHIFT (153)
 , END
-// State S300 (index = 10810)
+// State S299 (index = 10759)
 , C_Lexique_piccolo_5F_lexique::kToken__29_, REDUCE (120)
 , C_Lexique_piccolo_5F_lexique::kToken__7C_, REDUCE (120)
 , C_Lexique_piccolo_5F_lexique::kToken__26_, REDUCE (120)
 , END
-// State S301 (index = 10817)
+// State S300 (index = 10766)
 , C_Lexique_piccolo_5F_lexique::kToken__29_, REDUCE (127)
 , C_Lexique_piccolo_5F_lexique::kToken__7C_, REDUCE (127)
 , C_Lexique_piccolo_5F_lexique::kToken__26_, SHIFT (280)
 , END
-// State S302 (index = 10824)
+// State S301 (index = 10773)
 , C_Lexique_piccolo_5F_lexique::kToken__29_, REDUCE (125)
 , C_Lexique_piccolo_5F_lexique::kToken__7C_, SHIFT (282)
 , END
-// State S303 (index = 10829)
+// State S302 (index = 10778)
 , C_Lexique_piccolo_5F_lexique::kToken_do, REDUCE (9)
 , C_Lexique_piccolo_5F_lexique::kToken__29_, REDUCE (9)
 , C_Lexique_piccolo_5F_lexique::kToken_end, REDUCE (9)
@@ -18341,19 +18314,19 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken__7C_, REDUCE (9)
 , C_Lexique_piccolo_5F_lexique::kToken__26_, REDUCE (9)
 , END
-// State S304 (index = 10912)
-, C_Lexique_piccolo_5F_lexique::kToken_w, SHIFT (318)
+// State S303 (index = 10861)
+, C_Lexique_piccolo_5F_lexique::kToken_w, SHIFT (317)
 , END
-// State S305 (index = 10915)
-, C_Lexique_piccolo_5F_lexique::kToken_identifier, SHIFT (319)
+// State S304 (index = 10864)
+, C_Lexique_piccolo_5F_lexique::kToken_identifier, SHIFT (318)
 , END
-// State S306 (index = 10918)
+// State S305 (index = 10867)
 , C_Lexique_piccolo_5F_lexique::kToken__28_, REDUCE (84)
 , END
-// State S307 (index = 10921)
-, C_Lexique_piccolo_5F_lexique::kToken__28_, SHIFT (222)
+// State S306 (index = 10870)
+, C_Lexique_piccolo_5F_lexique::kToken__28_, SHIFT (221)
 , END
-// State S308 (index = 10924)
+// State S307 (index = 10873)
 , C_Lexique_piccolo_5F_lexique::kToken_do, REDUCE (86)
 , C_Lexique_piccolo_5F_lexique::kToken_end, REDUCE (86)
 , C_Lexique_piccolo_5F_lexique::kToken_jump, REDUCE (86)
@@ -18390,75 +18363,69 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken_movlw, REDUCE (86)
 , C_Lexique_piccolo_5F_lexique::kToken_xorlw, REDUCE (86)
 , END
-// State S309 (index = 10995)
+// State S308 (index = 10944)
 , C_Lexique_piccolo_5F_lexique::kToken__7D_, REDUCE (38)
-, C_Lexique_piccolo_5F_lexique::kToken_do, SHIFT (121)
+, C_Lexique_piccolo_5F_lexique::kToken_do, SHIFT (120)
 , C_Lexique_piccolo_5F_lexique::kToken_end, REDUCE (38)
-, C_Lexique_piccolo_5F_lexique::kToken_jump, SHIFT (122)
-, C_Lexique_piccolo_5F_lexique::kToken_jsr, SHIFT (123)
-, C_Lexique_piccolo_5F_lexique::kToken_forever, SHIFT (124)
-, C_Lexique_piccolo_5F_lexique::kToken_if, SHIFT (125)
-, C_Lexique_piccolo_5F_lexique::kToken_decf, SHIFT (126)
-, C_Lexique_piccolo_5F_lexique::kToken_incf, SHIFT (127)
+, C_Lexique_piccolo_5F_lexique::kToken_jump, SHIFT (121)
+, C_Lexique_piccolo_5F_lexique::kToken_jsr, SHIFT (122)
+, C_Lexique_piccolo_5F_lexique::kToken_forever, SHIFT (123)
+, C_Lexique_piccolo_5F_lexique::kToken_if, SHIFT (124)
+, C_Lexique_piccolo_5F_lexique::kToken_decf, SHIFT (125)
+, C_Lexique_piccolo_5F_lexique::kToken_incf, SHIFT (126)
 , C_Lexique_piccolo_5F_lexique::kToken_while, REDUCE (38)
-, C_Lexique_piccolo_5F_lexique::kToken_mnop, SHIFT (128)
+, C_Lexique_piccolo_5F_lexique::kToken_mnop, SHIFT (127)
 , C_Lexique_piccolo_5F_lexique::kToken_elsif, REDUCE (38)
 , C_Lexique_piccolo_5F_lexique::kToken_else, REDUCE (38)
-, C_Lexique_piccolo_5F_lexique::kToken_addwf, SHIFT (129)
-, C_Lexique_piccolo_5F_lexique::kToken_andwf, SHIFT (130)
-, C_Lexique_piccolo_5F_lexique::kToken_comf, SHIFT (131)
-, C_Lexique_piccolo_5F_lexique::kToken_iorwf, SHIFT (132)
-, C_Lexique_piccolo_5F_lexique::kToken_movf, SHIFT (133)
-, C_Lexique_piccolo_5F_lexique::kToken_rlf, SHIFT (134)
-, C_Lexique_piccolo_5F_lexique::kToken_rrf, SHIFT (135)
-, C_Lexique_piccolo_5F_lexique::kToken_subwf, SHIFT (136)
-, C_Lexique_piccolo_5F_lexique::kToken_swapf, SHIFT (137)
-, C_Lexique_piccolo_5F_lexique::kToken_xorwf, SHIFT (138)
-, C_Lexique_piccolo_5F_lexique::kToken_clrf, SHIFT (139)
-, C_Lexique_piccolo_5F_lexique::kToken_movwf, SHIFT (140)
-, C_Lexique_piccolo_5F_lexique::kToken_bcf, SHIFT (141)
-, C_Lexique_piccolo_5F_lexique::kToken_bsf, SHIFT (142)
-, C_Lexique_piccolo_5F_lexique::kToken_goto, SHIFT (143)
-, C_Lexique_piccolo_5F_lexique::kToken_call, SHIFT (144)
-, C_Lexique_piccolo_5F_lexique::kToken_clrw, SHIFT (145)
-, C_Lexique_piccolo_5F_lexique::kToken_clrwdt, SHIFT (146)
-, C_Lexique_piccolo_5F_lexique::kToken_nop, SHIFT (147)
-, C_Lexique_piccolo_5F_lexique::kToken_option, SHIFT (148)
-, C_Lexique_piccolo_5F_lexique::kToken_sleep, SHIFT (149)
-, C_Lexique_piccolo_5F_lexique::kToken_tris, SHIFT (150)
-, C_Lexique_piccolo_5F_lexique::kToken_andlw, SHIFT (151)
-, C_Lexique_piccolo_5F_lexique::kToken_iorlw, SHIFT (152)
-, C_Lexique_piccolo_5F_lexique::kToken_movlw, SHIFT (153)
-, C_Lexique_piccolo_5F_lexique::kToken_xorlw, SHIFT (154)
+, C_Lexique_piccolo_5F_lexique::kToken_addwf, SHIFT (128)
+, C_Lexique_piccolo_5F_lexique::kToken_andwf, SHIFT (129)
+, C_Lexique_piccolo_5F_lexique::kToken_comf, SHIFT (130)
+, C_Lexique_piccolo_5F_lexique::kToken_iorwf, SHIFT (131)
+, C_Lexique_piccolo_5F_lexique::kToken_movf, SHIFT (132)
+, C_Lexique_piccolo_5F_lexique::kToken_rlf, SHIFT (133)
+, C_Lexique_piccolo_5F_lexique::kToken_rrf, SHIFT (134)
+, C_Lexique_piccolo_5F_lexique::kToken_subwf, SHIFT (135)
+, C_Lexique_piccolo_5F_lexique::kToken_swapf, SHIFT (136)
+, C_Lexique_piccolo_5F_lexique::kToken_xorwf, SHIFT (137)
+, C_Lexique_piccolo_5F_lexique::kToken_clrf, SHIFT (138)
+, C_Lexique_piccolo_5F_lexique::kToken_movwf, SHIFT (139)
+, C_Lexique_piccolo_5F_lexique::kToken_bcf, SHIFT (140)
+, C_Lexique_piccolo_5F_lexique::kToken_bsf, SHIFT (141)
+, C_Lexique_piccolo_5F_lexique::kToken_goto, SHIFT (142)
+, C_Lexique_piccolo_5F_lexique::kToken_call, SHIFT (143)
+, C_Lexique_piccolo_5F_lexique::kToken_clrw, SHIFT (144)
+, C_Lexique_piccolo_5F_lexique::kToken_clrwdt, SHIFT (145)
+, C_Lexique_piccolo_5F_lexique::kToken_nop, SHIFT (146)
+, C_Lexique_piccolo_5F_lexique::kToken_option, SHIFT (147)
+, C_Lexique_piccolo_5F_lexique::kToken_sleep, SHIFT (148)
+, C_Lexique_piccolo_5F_lexique::kToken_tris, SHIFT (149)
+, C_Lexique_piccolo_5F_lexique::kToken_andlw, SHIFT (150)
+, C_Lexique_piccolo_5F_lexique::kToken_iorlw, SHIFT (151)
+, C_Lexique_piccolo_5F_lexique::kToken_movlw, SHIFT (152)
+, C_Lexique_piccolo_5F_lexique::kToken_xorlw, SHIFT (153)
 , END
-// State S310 (index = 11074)
+// State S309 (index = 11023)
 , C_Lexique_piccolo_5F_lexique::kToken__2C_, REDUCE (142)
 , C_Lexique_piccolo_5F_lexique::kToken__2F_, SHIFT (260)
 , C_Lexique_piccolo_5F_lexique::kToken__3E_, REDUCE (142)
 , END
-// State S311 (index = 11081)
+// State S310 (index = 11030)
+, C_Lexique_piccolo_5F_lexique::kToken__2C_, SHIFT (232)
+, C_Lexique_piccolo_5F_lexique::kToken__29_, REDUCE (178)
+, END
+// State S311 (index = 11035)
 , C_Lexique_piccolo_5F_lexique::kToken_identifier, SHIFT (42)
 , C_Lexique_piccolo_5F_lexique::kToken_integer, SHIFT (43)
 , C_Lexique_piccolo_5F_lexique::kToken__28_, SHIFT (44)
 , C_Lexique_piccolo_5F_lexique::kToken__2D_, SHIFT (45)
 , C_Lexique_piccolo_5F_lexique::kToken__7E_, SHIFT (46)
 , C_Lexique_piccolo_5F_lexique::kToken_literal_5F_char, SHIFT (47)
-, C_Lexique_piccolo_5F_lexique::kToken__40_, SHIFT (48)
 , END
-// State S312 (index = 11096)
-, C_Lexique_piccolo_5F_lexique::kToken_identifier, SHIFT (42)
-, C_Lexique_piccolo_5F_lexique::kToken_integer, SHIFT (43)
-, C_Lexique_piccolo_5F_lexique::kToken__28_, SHIFT (44)
-, C_Lexique_piccolo_5F_lexique::kToken__2D_, SHIFT (45)
-, C_Lexique_piccolo_5F_lexique::kToken__7E_, SHIFT (46)
-, C_Lexique_piccolo_5F_lexique::kToken_literal_5F_char, SHIFT (47)
-, C_Lexique_piccolo_5F_lexique::kToken__40_, SHIFT (48)
-, END
-// State S313 (index = 11111)
+// State S312 (index = 11048)
 , C_Lexique_piccolo_5F_lexique::kToken_end, REDUCE (74)
-, C_Lexique_piccolo_5F_lexique::kToken_while, SHIFT (325)
+, C_Lexique_piccolo_5F_lexique::kToken_while, SHIFT (324)
 , END
-// State S314 (index = 11116)
+// State S313 (index = 11053)
 , C_Lexique_piccolo_5F_lexique::kToken__7D_, REDUCE (183)
 , C_Lexique_piccolo_5F_lexique::kToken_do, REDUCE (183)
 , C_Lexique_piccolo_5F_lexique::kToken__3A_, REDUCE (183)
@@ -18503,7 +18470,7 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken__7C_, REDUCE (183)
 , C_Lexique_piccolo_5F_lexique::kToken__26_, REDUCE (183)
 , END
-// State S315 (index = 11203)
+// State S314 (index = 11140)
 , C_Lexique_piccolo_5F_lexique::kToken__7D_, REDUCE (50)
 , C_Lexique_piccolo_5F_lexique::kToken_do, REDUCE (50)
 , C_Lexique_piccolo_5F_lexique::kToken_end, REDUCE (50)
@@ -18544,96 +18511,92 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken_movlw, REDUCE (50)
 , C_Lexique_piccolo_5F_lexique::kToken_xorlw, REDUCE (50)
 , END
-// State S316 (index = 11282)
+// State S315 (index = 11219)
 , C_Lexique_piccolo_5F_lexique::kToken__29_, REDUCE (128)
 , C_Lexique_piccolo_5F_lexique::kToken__7C_, REDUCE (128)
 , END
-// State S317 (index = 11287)
+// State S316 (index = 11224)
 , C_Lexique_piccolo_5F_lexique::kToken__29_, REDUCE (126)
 , END
-// State S318 (index = 11290)
+// State S317 (index = 11227)
 , C_Lexique_piccolo_5F_lexique::kToken_identifier, REDUCE (124)
 , END
-// State S319 (index = 11293)
+// State S318 (index = 11230)
 , C_Lexique_piccolo_5F_lexique::kToken__29_, REDUCE (119)
 , C_Lexique_piccolo_5F_lexique::kToken__7C_, REDUCE (119)
 , C_Lexique_piccolo_5F_lexique::kToken__26_, REDUCE (119)
 , END
-// State S320 (index = 11300)
+// State S319 (index = 11237)
 , C_Lexique_piccolo_5F_lexique::kToken_end, REDUCE (81)
 , END
-// State S321 (index = 11303)
+// State S320 (index = 11240)
 , C_Lexique_piccolo_5F_lexique::kToken_end, REDUCE (82)
 , END
-// State S322 (index = 11306)
+// State S321 (index = 11243)
 , C_Lexique_piccolo_5F_lexique::kToken__2C_, REDUCE (143)
 , C_Lexique_piccolo_5F_lexique::kToken__3E_, REDUCE (143)
 , END
-// State S323 (index = 11311)
-, C_Lexique_piccolo_5F_lexique::kToken__2C_, SHIFT (264)
-, C_Lexique_piccolo_5F_lexique::kToken__29_, REDUCE (178)
+// State S322 (index = 11248)
+, C_Lexique_piccolo_5F_lexique::kToken__29_, REDUCE (179)
 , END
-// State S324 (index = 11316)
-, C_Lexique_piccolo_5F_lexique::kToken__29_, SHIFT (328)
+// State S323 (index = 11251)
+, C_Lexique_piccolo_5F_lexique::kToken__29_, SHIFT (326)
 , END
-// State S325 (index = 11319)
+// State S324 (index = 11254)
 , C_Lexique_piccolo_5F_lexique::kToken_label, SHIFT (267)
 , C_Lexique_piccolo_5F_lexique::kToken__28_, REDUCE (76)
 , END
-// State S326 (index = 11324)
-, C_Lexique_piccolo_5F_lexique::kToken_end, SHIFT (330)
+// State S325 (index = 11259)
+, C_Lexique_piccolo_5F_lexique::kToken_end, SHIFT (328)
 , END
-// State S327 (index = 11327)
-, C_Lexique_piccolo_5F_lexique::kToken__29_, REDUCE (179)
-, END
-// State S328 (index = 11330)
+// State S326 (index = 11262)
 , C_Lexique_piccolo_5F_lexique::kToken__7D_, REDUCE (38)
-, C_Lexique_piccolo_5F_lexique::kToken_do, SHIFT (121)
+, C_Lexique_piccolo_5F_lexique::kToken_do, SHIFT (120)
 , C_Lexique_piccolo_5F_lexique::kToken_end, REDUCE (38)
-, C_Lexique_piccolo_5F_lexique::kToken_jump, SHIFT (122)
-, C_Lexique_piccolo_5F_lexique::kToken_jsr, SHIFT (123)
-, C_Lexique_piccolo_5F_lexique::kToken_forever, SHIFT (124)
-, C_Lexique_piccolo_5F_lexique::kToken_if, SHIFT (125)
-, C_Lexique_piccolo_5F_lexique::kToken_decf, SHIFT (126)
-, C_Lexique_piccolo_5F_lexique::kToken_incf, SHIFT (127)
+, C_Lexique_piccolo_5F_lexique::kToken_jump, SHIFT (121)
+, C_Lexique_piccolo_5F_lexique::kToken_jsr, SHIFT (122)
+, C_Lexique_piccolo_5F_lexique::kToken_forever, SHIFT (123)
+, C_Lexique_piccolo_5F_lexique::kToken_if, SHIFT (124)
+, C_Lexique_piccolo_5F_lexique::kToken_decf, SHIFT (125)
+, C_Lexique_piccolo_5F_lexique::kToken_incf, SHIFT (126)
 , C_Lexique_piccolo_5F_lexique::kToken_while, REDUCE (38)
-, C_Lexique_piccolo_5F_lexique::kToken_mnop, SHIFT (128)
+, C_Lexique_piccolo_5F_lexique::kToken_mnop, SHIFT (127)
 , C_Lexique_piccolo_5F_lexique::kToken_elsif, REDUCE (38)
 , C_Lexique_piccolo_5F_lexique::kToken_else, REDUCE (38)
-, C_Lexique_piccolo_5F_lexique::kToken_addwf, SHIFT (129)
-, C_Lexique_piccolo_5F_lexique::kToken_andwf, SHIFT (130)
-, C_Lexique_piccolo_5F_lexique::kToken_comf, SHIFT (131)
-, C_Lexique_piccolo_5F_lexique::kToken_iorwf, SHIFT (132)
-, C_Lexique_piccolo_5F_lexique::kToken_movf, SHIFT (133)
-, C_Lexique_piccolo_5F_lexique::kToken_rlf, SHIFT (134)
-, C_Lexique_piccolo_5F_lexique::kToken_rrf, SHIFT (135)
-, C_Lexique_piccolo_5F_lexique::kToken_subwf, SHIFT (136)
-, C_Lexique_piccolo_5F_lexique::kToken_swapf, SHIFT (137)
-, C_Lexique_piccolo_5F_lexique::kToken_xorwf, SHIFT (138)
-, C_Lexique_piccolo_5F_lexique::kToken_clrf, SHIFT (139)
-, C_Lexique_piccolo_5F_lexique::kToken_movwf, SHIFT (140)
-, C_Lexique_piccolo_5F_lexique::kToken_bcf, SHIFT (141)
-, C_Lexique_piccolo_5F_lexique::kToken_bsf, SHIFT (142)
-, C_Lexique_piccolo_5F_lexique::kToken_goto, SHIFT (143)
-, C_Lexique_piccolo_5F_lexique::kToken_call, SHIFT (144)
-, C_Lexique_piccolo_5F_lexique::kToken_clrw, SHIFT (145)
-, C_Lexique_piccolo_5F_lexique::kToken_clrwdt, SHIFT (146)
-, C_Lexique_piccolo_5F_lexique::kToken_nop, SHIFT (147)
-, C_Lexique_piccolo_5F_lexique::kToken_option, SHIFT (148)
-, C_Lexique_piccolo_5F_lexique::kToken_sleep, SHIFT (149)
-, C_Lexique_piccolo_5F_lexique::kToken_tris, SHIFT (150)
-, C_Lexique_piccolo_5F_lexique::kToken_andlw, SHIFT (151)
-, C_Lexique_piccolo_5F_lexique::kToken_iorlw, SHIFT (152)
-, C_Lexique_piccolo_5F_lexique::kToken_movlw, SHIFT (153)
-, C_Lexique_piccolo_5F_lexique::kToken_xorlw, SHIFT (154)
+, C_Lexique_piccolo_5F_lexique::kToken_addwf, SHIFT (128)
+, C_Lexique_piccolo_5F_lexique::kToken_andwf, SHIFT (129)
+, C_Lexique_piccolo_5F_lexique::kToken_comf, SHIFT (130)
+, C_Lexique_piccolo_5F_lexique::kToken_iorwf, SHIFT (131)
+, C_Lexique_piccolo_5F_lexique::kToken_movf, SHIFT (132)
+, C_Lexique_piccolo_5F_lexique::kToken_rlf, SHIFT (133)
+, C_Lexique_piccolo_5F_lexique::kToken_rrf, SHIFT (134)
+, C_Lexique_piccolo_5F_lexique::kToken_subwf, SHIFT (135)
+, C_Lexique_piccolo_5F_lexique::kToken_swapf, SHIFT (136)
+, C_Lexique_piccolo_5F_lexique::kToken_xorwf, SHIFT (137)
+, C_Lexique_piccolo_5F_lexique::kToken_clrf, SHIFT (138)
+, C_Lexique_piccolo_5F_lexique::kToken_movwf, SHIFT (139)
+, C_Lexique_piccolo_5F_lexique::kToken_bcf, SHIFT (140)
+, C_Lexique_piccolo_5F_lexique::kToken_bsf, SHIFT (141)
+, C_Lexique_piccolo_5F_lexique::kToken_goto, SHIFT (142)
+, C_Lexique_piccolo_5F_lexique::kToken_call, SHIFT (143)
+, C_Lexique_piccolo_5F_lexique::kToken_clrw, SHIFT (144)
+, C_Lexique_piccolo_5F_lexique::kToken_clrwdt, SHIFT (145)
+, C_Lexique_piccolo_5F_lexique::kToken_nop, SHIFT (146)
+, C_Lexique_piccolo_5F_lexique::kToken_option, SHIFT (147)
+, C_Lexique_piccolo_5F_lexique::kToken_sleep, SHIFT (148)
+, C_Lexique_piccolo_5F_lexique::kToken_tris, SHIFT (149)
+, C_Lexique_piccolo_5F_lexique::kToken_andlw, SHIFT (150)
+, C_Lexique_piccolo_5F_lexique::kToken_iorlw, SHIFT (151)
+, C_Lexique_piccolo_5F_lexique::kToken_movlw, SHIFT (152)
+, C_Lexique_piccolo_5F_lexique::kToken_xorlw, SHIFT (153)
 , END
-// State S329 (index = 11409)
-, C_Lexique_piccolo_5F_lexique::kToken__28_, SHIFT (222)
+// State S327 (index = 11341)
+, C_Lexique_piccolo_5F_lexique::kToken__28_, SHIFT (221)
 , END
-// State S330 (index = 11412)
+// State S328 (index = 11344)
 , C_Lexique_piccolo_5F_lexique::kToken__7D_, REDUCE (78)
 , C_Lexique_piccolo_5F_lexique::kToken_do, REDUCE (78)
-, C_Lexique_piccolo_5F_lexique::kToken_label, SHIFT (333)
+, C_Lexique_piccolo_5F_lexique::kToken_label, SHIFT (331)
 , C_Lexique_piccolo_5F_lexique::kToken_end, REDUCE (78)
 , C_Lexique_piccolo_5F_lexique::kToken_jump, REDUCE (78)
 , C_Lexique_piccolo_5F_lexique::kToken_jsr, REDUCE (78)
@@ -18672,51 +18635,51 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken_movlw, REDUCE (78)
 , C_Lexique_piccolo_5F_lexique::kToken_xorlw, REDUCE (78)
 , END
-// State S331 (index = 11493)
-, C_Lexique_piccolo_5F_lexique::kToken_end, SHIFT (335)
+// State S329 (index = 11425)
+, C_Lexique_piccolo_5F_lexique::kToken_end, SHIFT (333)
 , END
-// State S332 (index = 11496)
+// State S330 (index = 11428)
 , C_Lexique_piccolo_5F_lexique::kToken__7D_, REDUCE (38)
-, C_Lexique_piccolo_5F_lexique::kToken_do, SHIFT (121)
+, C_Lexique_piccolo_5F_lexique::kToken_do, SHIFT (120)
 , C_Lexique_piccolo_5F_lexique::kToken_end, REDUCE (38)
-, C_Lexique_piccolo_5F_lexique::kToken_jump, SHIFT (122)
-, C_Lexique_piccolo_5F_lexique::kToken_jsr, SHIFT (123)
-, C_Lexique_piccolo_5F_lexique::kToken_forever, SHIFT (124)
-, C_Lexique_piccolo_5F_lexique::kToken_if, SHIFT (125)
-, C_Lexique_piccolo_5F_lexique::kToken_decf, SHIFT (126)
-, C_Lexique_piccolo_5F_lexique::kToken_incf, SHIFT (127)
+, C_Lexique_piccolo_5F_lexique::kToken_jump, SHIFT (121)
+, C_Lexique_piccolo_5F_lexique::kToken_jsr, SHIFT (122)
+, C_Lexique_piccolo_5F_lexique::kToken_forever, SHIFT (123)
+, C_Lexique_piccolo_5F_lexique::kToken_if, SHIFT (124)
+, C_Lexique_piccolo_5F_lexique::kToken_decf, SHIFT (125)
+, C_Lexique_piccolo_5F_lexique::kToken_incf, SHIFT (126)
 , C_Lexique_piccolo_5F_lexique::kToken_while, REDUCE (38)
-, C_Lexique_piccolo_5F_lexique::kToken_mnop, SHIFT (128)
+, C_Lexique_piccolo_5F_lexique::kToken_mnop, SHIFT (127)
 , C_Lexique_piccolo_5F_lexique::kToken_elsif, REDUCE (38)
 , C_Lexique_piccolo_5F_lexique::kToken_else, REDUCE (38)
-, C_Lexique_piccolo_5F_lexique::kToken_addwf, SHIFT (129)
-, C_Lexique_piccolo_5F_lexique::kToken_andwf, SHIFT (130)
-, C_Lexique_piccolo_5F_lexique::kToken_comf, SHIFT (131)
-, C_Lexique_piccolo_5F_lexique::kToken_iorwf, SHIFT (132)
-, C_Lexique_piccolo_5F_lexique::kToken_movf, SHIFT (133)
-, C_Lexique_piccolo_5F_lexique::kToken_rlf, SHIFT (134)
-, C_Lexique_piccolo_5F_lexique::kToken_rrf, SHIFT (135)
-, C_Lexique_piccolo_5F_lexique::kToken_subwf, SHIFT (136)
-, C_Lexique_piccolo_5F_lexique::kToken_swapf, SHIFT (137)
-, C_Lexique_piccolo_5F_lexique::kToken_xorwf, SHIFT (138)
-, C_Lexique_piccolo_5F_lexique::kToken_clrf, SHIFT (139)
-, C_Lexique_piccolo_5F_lexique::kToken_movwf, SHIFT (140)
-, C_Lexique_piccolo_5F_lexique::kToken_bcf, SHIFT (141)
-, C_Lexique_piccolo_5F_lexique::kToken_bsf, SHIFT (142)
-, C_Lexique_piccolo_5F_lexique::kToken_goto, SHIFT (143)
-, C_Lexique_piccolo_5F_lexique::kToken_call, SHIFT (144)
-, C_Lexique_piccolo_5F_lexique::kToken_clrw, SHIFT (145)
-, C_Lexique_piccolo_5F_lexique::kToken_clrwdt, SHIFT (146)
-, C_Lexique_piccolo_5F_lexique::kToken_nop, SHIFT (147)
-, C_Lexique_piccolo_5F_lexique::kToken_option, SHIFT (148)
-, C_Lexique_piccolo_5F_lexique::kToken_sleep, SHIFT (149)
-, C_Lexique_piccolo_5F_lexique::kToken_tris, SHIFT (150)
-, C_Lexique_piccolo_5F_lexique::kToken_andlw, SHIFT (151)
-, C_Lexique_piccolo_5F_lexique::kToken_iorlw, SHIFT (152)
-, C_Lexique_piccolo_5F_lexique::kToken_movlw, SHIFT (153)
-, C_Lexique_piccolo_5F_lexique::kToken_xorlw, SHIFT (154)
+, C_Lexique_piccolo_5F_lexique::kToken_addwf, SHIFT (128)
+, C_Lexique_piccolo_5F_lexique::kToken_andwf, SHIFT (129)
+, C_Lexique_piccolo_5F_lexique::kToken_comf, SHIFT (130)
+, C_Lexique_piccolo_5F_lexique::kToken_iorwf, SHIFT (131)
+, C_Lexique_piccolo_5F_lexique::kToken_movf, SHIFT (132)
+, C_Lexique_piccolo_5F_lexique::kToken_rlf, SHIFT (133)
+, C_Lexique_piccolo_5F_lexique::kToken_rrf, SHIFT (134)
+, C_Lexique_piccolo_5F_lexique::kToken_subwf, SHIFT (135)
+, C_Lexique_piccolo_5F_lexique::kToken_swapf, SHIFT (136)
+, C_Lexique_piccolo_5F_lexique::kToken_xorwf, SHIFT (137)
+, C_Lexique_piccolo_5F_lexique::kToken_clrf, SHIFT (138)
+, C_Lexique_piccolo_5F_lexique::kToken_movwf, SHIFT (139)
+, C_Lexique_piccolo_5F_lexique::kToken_bcf, SHIFT (140)
+, C_Lexique_piccolo_5F_lexique::kToken_bsf, SHIFT (141)
+, C_Lexique_piccolo_5F_lexique::kToken_goto, SHIFT (142)
+, C_Lexique_piccolo_5F_lexique::kToken_call, SHIFT (143)
+, C_Lexique_piccolo_5F_lexique::kToken_clrw, SHIFT (144)
+, C_Lexique_piccolo_5F_lexique::kToken_clrwdt, SHIFT (145)
+, C_Lexique_piccolo_5F_lexique::kToken_nop, SHIFT (146)
+, C_Lexique_piccolo_5F_lexique::kToken_option, SHIFT (147)
+, C_Lexique_piccolo_5F_lexique::kToken_sleep, SHIFT (148)
+, C_Lexique_piccolo_5F_lexique::kToken_tris, SHIFT (149)
+, C_Lexique_piccolo_5F_lexique::kToken_andlw, SHIFT (150)
+, C_Lexique_piccolo_5F_lexique::kToken_iorlw, SHIFT (151)
+, C_Lexique_piccolo_5F_lexique::kToken_movlw, SHIFT (152)
+, C_Lexique_piccolo_5F_lexique::kToken_xorlw, SHIFT (153)
 , END
-// State S333 (index = 11575)
+// State S331 (index = 11507)
 , C_Lexique_piccolo_5F_lexique::kToken__7D_, REDUCE (79)
 , C_Lexique_piccolo_5F_lexique::kToken_do, REDUCE (79)
 , C_Lexique_piccolo_5F_lexique::kToken_end, REDUCE (79)
@@ -18757,7 +18720,7 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken_movlw, REDUCE (79)
 , C_Lexique_piccolo_5F_lexique::kToken_xorlw, REDUCE (79)
 , END
-// State S334 (index = 11654)
+// State S332 (index = 11586)
 , C_Lexique_piccolo_5F_lexique::kToken__7D_, REDUCE (52)
 , C_Lexique_piccolo_5F_lexique::kToken_do, REDUCE (52)
 , C_Lexique_piccolo_5F_lexique::kToken_end, REDUCE (52)
@@ -18798,10 +18761,10 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken_movlw, REDUCE (52)
 , C_Lexique_piccolo_5F_lexique::kToken_xorlw, REDUCE (52)
 , END
-// State S335 (index = 11733)
+// State S333 (index = 11665)
 , C_Lexique_piccolo_5F_lexique::kToken__7D_, REDUCE (56)
 , C_Lexique_piccolo_5F_lexique::kToken_do, REDUCE (56)
-, C_Lexique_piccolo_5F_lexique::kToken_label, SHIFT (337)
+, C_Lexique_piccolo_5F_lexique::kToken_label, SHIFT (335)
 , C_Lexique_piccolo_5F_lexique::kToken_end, REDUCE (56)
 , C_Lexique_piccolo_5F_lexique::kToken_jump, REDUCE (56)
 , C_Lexique_piccolo_5F_lexique::kToken_jsr, REDUCE (56)
@@ -18840,11 +18803,11 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken_movlw, REDUCE (56)
 , C_Lexique_piccolo_5F_lexique::kToken_xorlw, REDUCE (56)
 , END
-// State S336 (index = 11814)
+// State S334 (index = 11746)
 , C_Lexique_piccolo_5F_lexique::kToken_end, REDUCE (74)
-, C_Lexique_piccolo_5F_lexique::kToken_while, SHIFT (325)
+, C_Lexique_piccolo_5F_lexique::kToken_while, SHIFT (324)
 , END
-// State S337 (index = 11819)
+// State S335 (index = 11751)
 , C_Lexique_piccolo_5F_lexique::kToken__7D_, REDUCE (57)
 , C_Lexique_piccolo_5F_lexique::kToken_do, REDUCE (57)
 , C_Lexique_piccolo_5F_lexique::kToken_end, REDUCE (57)
@@ -18885,7 +18848,7 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken_movlw, REDUCE (57)
 , C_Lexique_piccolo_5F_lexique::kToken_xorlw, REDUCE (57)
 , END
-// State S338 (index = 11898)
+// State S336 (index = 11830)
 , C_Lexique_piccolo_5F_lexique::kToken__7D_, REDUCE (45)
 , C_Lexique_piccolo_5F_lexique::kToken_do, REDUCE (45)
 , C_Lexique_piccolo_5F_lexique::kToken_end, REDUCE (45)
@@ -18926,11 +18889,11 @@ static const int16_t gActionTable_baseline_include_grammar [] = {
 , C_Lexique_piccolo_5F_lexique::kToken_movlw, REDUCE (45)
 , C_Lexique_piccolo_5F_lexique::kToken_xorlw, REDUCE (45)
 , END
-// State S339 (index = 11977)
+// State S337 (index = 11909)
 , C_Lexique_piccolo_5F_lexique::kToken_end, REDUCE (75)
 , END} ;
 
-static const uint32_t gActionTableIndex_baseline_include_grammar [340] = {
+static const uint32_t gActionTableIndex_baseline_include_grammar [338] = {
   0  // S0
 , 17  // S1
 , 20  // S2
@@ -18963,314 +18926,312 @@ static const uint32_t gActionTableIndex_baseline_include_grammar [340] = {
 , 207  // S29
 , 210  // S30
 , 215  // S31
-, 230  // S32
-, 235  // S33
-, 238  // S34
-, 255  // S35
-, 258  // S36
-, 275  // S37
-, 280  // S38
-, 297  // S39
-, 300  // S40
-, 305  // S41
-, 308  // S42
+, 228  // S32
+, 233  // S33
+, 236  // S34
+, 253  // S35
+, 256  // S36
+, 273  // S37
+, 278  // S38
+, 295  // S39
+, 298  // S40
+, 303  // S41
+, 306  // S42
 , 445  // S43
 , 580  // S44
-, 595  // S45
-, 610  // S46
-, 625  // S47
-, 760  // S48
-, 763  // S49
-, 780  // S50
-, 887  // S51
-, 996  // S52
-, 1117  // S53
-, 1246  // S54
-, 1381  // S55
-, 1516  // S56
-, 1519  // S57
-, 1522  // S58
-, 1541  // S59
-, 1544  // S60
-, 1563  // S61
-, 1566  // S62
-, 1571  // S63
-, 1576  // S64
+, 593  // S45
+, 606  // S46
+, 619  // S47
+, 754  // S48
+, 771  // S49
+, 878  // S50
+, 987  // S51
+, 1108  // S52
+, 1237  // S53
+, 1372  // S54
+, 1507  // S55
+, 1510  // S56
+, 1513  // S57
+, 1532  // S58
+, 1535  // S59
+, 1554  // S60
+, 1557  // S61
+, 1562  // S62
+, 1567  // S63
+, 1572  // S64
 , 1581  // S65
-, 1590  // S66
-, 1593  // S67
-, 1610  // S68
-, 1625  // S69
-, 1760  // S70
-, 1763  // S71
-, 1898  // S72
-, 2033  // S73
-, 2036  // S74
+, 1584  // S66
+, 1601  // S67
+, 1604  // S68
+, 1617  // S69
+, 1752  // S70
+, 1755  // S71
+, 1890  // S72
+, 2025  // S73
+, 2038  // S74
 , 2051  // S75
-, 2066  // S76
-, 2169  // S77
-, 2184  // S78
-, 2291  // S79
-, 2306  // S80
-, 2321  // S81
-, 2336  // S82
-, 2351  // S83
-, 2366  // S84
-, 2381  // S85
-, 2490  // S86
-, 2505  // S87
-, 2520  // S88
-, 2535  // S89
-, 2550  // S90
-, 2671  // S91
-, 2686  // S92
-, 2701  // S93
-, 2716  // S94
-, 2845  // S95
-, 2848  // S96
-, 2927  // S97
-, 2944  // S98
-, 2961  // S99
-, 2964  // S100
-, 2967  // S101
-, 2974  // S102
-, 2977  // S103
-, 3112  // S104
-, 3115  // S105
-, 3222  // S106
-, 3329  // S107
-, 3438  // S108
-, 3547  // S109
-, 3656  // S110
-, 3765  // S111
-, 3874  // S112
-, 3983  // S113
-, 4092  // S114
-, 4221  // S115
-, 4350  // S116
-, 4479  // S117
-, 4608  // S118
-, 4743  // S119
-, 4878  // S120
-, 5013  // S121
-, 5088  // S122
-, 5091  // S123
-, 5094  // S124
-, 5167  // S125
-, 5180  // S126
-, 5183  // S127
-, 5186  // S128
-, 5189  // S129
-, 5192  // S130
-, 5195  // S131
-, 5198  // S132
-, 5201  // S133
-, 5204  // S134
-, 5207  // S135
-, 5210  // S136
-, 5213  // S137
-, 5216  // S138
-, 5219  // S139
-, 5222  // S140
-, 5225  // S141
-, 5228  // S142
-, 5231  // S143
-, 5234  // S144
-, 5237  // S145
-, 5316  // S146
-, 5395  // S147
-, 5474  // S148
-, 5553  // S149
-, 5632  // S150
-, 5635  // S151
-, 5650  // S152
-, 5665  // S153
-, 5680  // S154
-, 5695  // S155
-, 5698  // S156
-, 5777  // S157
-, 5856  // S158
-, 5867  // S159
-, 5946  // S160
-, 6025  // S161
-, 6028  // S162
-, 6031  // S163
-, 6034  // S164
-, 6049  // S165
-, 6052  // S166
-, 6059  // S167
-, 6064  // S168
-, 6199  // S169
-, 6202  // S170
-, 6305  // S171
-, 6408  // S172
-, 6515  // S173
-, 6636  // S174
-, 6757  // S175
-, 6878  // S176
-, 6999  // S177
-, 7128  // S178
-, 7257  // S179
-, 7386  // S180
-, 7459  // S181
-, 7462  // S182
-, 7541  // S183
-, 7620  // S184
-, 7699  // S185
-, 7770  // S186
-, 7849  // S187
-, 7936  // S188
-, 7939  // S189
-, 7942  // S190
-, 7945  // S191
-, 7948  // S192
-, 7951  // S193
-, 7954  // S194
-, 7957  // S195
-, 7960  // S196
-, 8039  // S197
-, 8118  // S198
-, 8197  // S199
-, 8276  // S200
-, 8293  // S201
-, 8304  // S202
-, 8315  // S203
-, 8396  // S204
-, 8475  // S205
-, 8478  // S206
-, 8557  // S207
-, 8564  // S208
-, 8573  // S209
-, 8578  // S210
-, 8583  // S211
-, 8588  // S212
-, 8603  // S213
-, 8606  // S214
-, 8609  // S215
-, 8612  // S216
-, 8627  // S217
-, 8712  // S218
-, 8715  // S219
-, 8722  // S220
-, 8779  // S221
-, 8784  // S222
-, 8795  // S223
-, 8798  // S224
-, 8877  // S225
-, 8880  // S226
-, 8959  // S227
-, 9038  // S228
-, 9045  // S229
-, 9048  // S230
-, 9055  // S231
-, 9062  // S232
-, 9065  // S233
-, 9070  // S234
-, 9073  // S235
-, 9078  // S236
-, 9159  // S237
-, 9162  // S238
-, 9169  // S239
-, 9258  // S240
-, 9345  // S241
-, 9360  // S242
-, 9363  // S243
-, 9442  // S244
-, 9445  // S245
-, 9448  // S246
-, 9459  // S247
-, 9462  // S248
-, 9465  // S249
-, 9468  // S250
-, 9475  // S251
-, 9482  // S252
-, 9487  // S253
-, 9494  // S254
-, 9497  // S255
-, 9578  // S256
-, 9585  // S257
-, 9664  // S258
-, 9743  // S259
-, 9746  // S260
-, 9749  // S261
-, 9754  // S262
-, 9759  // S263
-, 9764  // S264
-, 9767  // S265
-, 9770  // S266
-, 9785  // S267
-, 9788  // S268
-, 9791  // S269
-, 9870  // S270
-, 9949  // S271
-, 10034  // S272
-, 10037  // S273
-, 10040  // S274
-, 10127  // S275
-, 10130  // S276
-, 10133  // S277
-, 10136  // S278
-, 10143  // S279
-, 10150  // S280
-, 10161  // S281
-, 10166  // S282
-, 10177  // S283
-, 10180  // S284
-, 10185  // S285
-, 10264  // S286
-, 10343  // S287
-, 10348  // S288
-, 10421  // S289
-, 10424  // S290
-, 10431  // S291
-, 10440  // S292
-, 10443  // S293
-, 10446  // S294
-, 10581  // S295
-, 10584  // S296
-, 10663  // S297
-, 10666  // S298
-, 10753  // S299
-, 10810  // S300
-, 10817  // S301
-, 10824  // S302
-, 10829  // S303
-, 10912  // S304
-, 10915  // S305
-, 10918  // S306
-, 10921  // S307
-, 10924  // S308
-, 10995  // S309
-, 11074  // S310
-, 11081  // S311
-, 11096  // S312
-, 11111  // S313
-, 11116  // S314
-, 11203  // S315
-, 11282  // S316
-, 11287  // S317
-, 11290  // S318
-, 11293  // S319
-, 11300  // S320
-, 11303  // S321
-, 11306  // S322
-, 11311  // S323
-, 11316  // S324
-, 11319  // S325
-, 11324  // S326
-, 11327  // S327
-, 11330  // S328
-, 11409  // S329
-, 11412  // S330
-, 11493  // S331
-, 11496  // S332
-, 11575  // S333
-, 11654  // S334
-, 11733  // S335
-, 11814  // S336
-, 11819  // S337
-, 11898  // S338
-, 11977  // S339
+, 2154  // S76
+, 2167  // S77
+, 2274  // S78
+, 2287  // S79
+, 2300  // S80
+, 2313  // S81
+, 2326  // S82
+, 2339  // S83
+, 2352  // S84
+, 2461  // S85
+, 2474  // S86
+, 2487  // S87
+, 2500  // S88
+, 2513  // S89
+, 2634  // S90
+, 2647  // S91
+, 2660  // S92
+, 2673  // S93
+, 2802  // S94
+, 2805  // S95
+, 2884  // S96
+, 2901  // S97
+, 2918  // S98
+, 2921  // S99
+, 2924  // S100
+, 2931  // S101
+, 2934  // S102
+, 2937  // S103
+, 3072  // S104
+, 3179  // S105
+, 3286  // S106
+, 3395  // S107
+, 3504  // S108
+, 3613  // S109
+, 3722  // S110
+, 3831  // S111
+, 3940  // S112
+, 4049  // S113
+, 4178  // S114
+, 4307  // S115
+, 4436  // S116
+, 4565  // S117
+, 4700  // S118
+, 4835  // S119
+, 4970  // S120
+, 5045  // S121
+, 5048  // S122
+, 5051  // S123
+, 5124  // S124
+, 5137  // S125
+, 5140  // S126
+, 5143  // S127
+, 5146  // S128
+, 5149  // S129
+, 5152  // S130
+, 5155  // S131
+, 5158  // S132
+, 5161  // S133
+, 5164  // S134
+, 5167  // S135
+, 5170  // S136
+, 5173  // S137
+, 5176  // S138
+, 5179  // S139
+, 5182  // S140
+, 5185  // S141
+, 5188  // S142
+, 5191  // S143
+, 5194  // S144
+, 5273  // S145
+, 5352  // S146
+, 5431  // S147
+, 5510  // S148
+, 5589  // S149
+, 5592  // S150
+, 5605  // S151
+, 5618  // S152
+, 5631  // S153
+, 5644  // S154
+, 5647  // S155
+, 5726  // S156
+, 5805  // S157
+, 5816  // S158
+, 5895  // S159
+, 5974  // S160
+, 5977  // S161
+, 5980  // S162
+, 5983  // S163
+, 5996  // S164
+, 5999  // S165
+, 6006  // S166
+, 6011  // S167
+, 6024  // S168
+, 6159  // S169
+, 6262  // S170
+, 6365  // S171
+, 6472  // S172
+, 6593  // S173
+, 6714  // S174
+, 6835  // S175
+, 6956  // S176
+, 7085  // S177
+, 7214  // S178
+, 7343  // S179
+, 7416  // S180
+, 7419  // S181
+, 7498  // S182
+, 7577  // S183
+, 7656  // S184
+, 7727  // S185
+, 7806  // S186
+, 7893  // S187
+, 7896  // S188
+, 7899  // S189
+, 7902  // S190
+, 7905  // S191
+, 7908  // S192
+, 7911  // S193
+, 7914  // S194
+, 7917  // S195
+, 7996  // S196
+, 8075  // S197
+, 8154  // S198
+, 8233  // S199
+, 8250  // S200
+, 8261  // S201
+, 8272  // S202
+, 8353  // S203
+, 8432  // S204
+, 8435  // S205
+, 8514  // S206
+, 8521  // S207
+, 8530  // S208
+, 8535  // S209
+, 8540  // S210
+, 8545  // S211
+, 8550  // S212
+, 8553  // S213
+, 8556  // S214
+, 8559  // S215
+, 8572  // S216
+, 8657  // S217
+, 8660  // S218
+, 8667  // S219
+, 8724  // S220
+, 8729  // S221
+, 8740  // S222
+, 8743  // S223
+, 8822  // S224
+, 8825  // S225
+, 8904  // S226
+, 8983  // S227
+, 8990  // S228
+, 8993  // S229
+, 9000  // S230
+, 9007  // S231
+, 9010  // S232
+, 9013  // S233
+, 9016  // S234
+, 9019  // S235
+, 9024  // S236
+, 9105  // S237
+, 9108  // S238
+, 9115  // S239
+, 9204  // S240
+, 9291  // S241
+, 9304  // S242
+, 9307  // S243
+, 9386  // S244
+, 9389  // S245
+, 9392  // S246
+, 9403  // S247
+, 9406  // S248
+, 9409  // S249
+, 9412  // S250
+, 9419  // S251
+, 9426  // S252
+, 9431  // S253
+, 9438  // S254
+, 9441  // S255
+, 9522  // S256
+, 9529  // S257
+, 9608  // S258
+, 9687  // S259
+, 9690  // S260
+, 9693  // S261
+, 9698  // S262
+, 9703  // S263
+, 9708  // S264
+, 9711  // S265
+, 9846  // S266
+, 9859  // S267
+, 9862  // S268
+, 9865  // S269
+, 9944  // S270
+, 10023  // S271
+, 10108  // S272
+, 10111  // S273
+, 10114  // S274
+, 10201  // S275
+, 10204  // S276
+, 10207  // S277
+, 10210  // S278
+, 10217  // S279
+, 10224  // S280
+, 10235  // S281
+, 10240  // S282
+, 10251  // S283
+, 10254  // S284
+, 10259  // S285
+, 10338  // S286
+, 10417  // S287
+, 10422  // S288
+, 10495  // S289
+, 10498  // S290
+, 10505  // S291
+, 10514  // S292
+, 10517  // S293
+, 10530  // S294
+, 10533  // S295
+, 10612  // S296
+, 10615  // S297
+, 10702  // S298
+, 10759  // S299
+, 10766  // S300
+, 10773  // S301
+, 10778  // S302
+, 10861  // S303
+, 10864  // S304
+, 10867  // S305
+, 10870  // S306
+, 10873  // S307
+, 10944  // S308
+, 11023  // S309
+, 11030  // S310
+, 11035  // S311
+, 11048  // S312
+, 11053  // S313
+, 11140  // S314
+, 11219  // S315
+, 11224  // S316
+, 11227  // S317
+, 11230  // S318
+, 11237  // S319
+, 11240  // S320
+, 11243  // S321
+, 11248  // S322
+, 11251  // S323
+, 11254  // S324
+, 11259  // S325
+, 11262  // S326
+, 11341  // S327
+, 11344  // S328
+, 11425  // S329
+, 11428  // S330
+, 11507  // S331
+, 11586  // S332
+, 11665  // S333
+, 11746  // S334
+, 11751  // S335
+, 11830  // S336
+, 11909  // S337
 } ;
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -19334,170 +19295,172 @@ static const int16_t gSuccessorTable_baseline_include_grammar_27 [3] = {24, 36, 
 static const int16_t gSuccessorTable_baseline_include_grammar_30 [5] = {16, 40,
   63, 41, -1} ;
 
-static const int16_t gSuccessorTable_baseline_include_grammar_31 [15] = {6, 49,
-  17, 50,
-  18, 51,
-  19, 52,
-  20, 53,
-  21, 54,
-  69, 55, -1} ;
+static const int16_t gSuccessorTable_baseline_include_grammar_31 [15] = {6, 48,
+  17, 49,
+  18, 50,
+  19, 51,
+  20, 52,
+  21, 53,
+  69, 54, -1} ;
 
-static const int16_t gSuccessorTable_baseline_include_grammar_32 [3] = {27, 57, -1} ;
+static const int16_t gSuccessorTable_baseline_include_grammar_32 [3] = {27, 56, -1} ;
 
 static const int16_t gSuccessorTable_baseline_include_grammar_34 [13] = {0, 7,
   1, 8,
   2, 9,
   9, 11,
-  22, 59,
+  22, 58,
   26, 13, -1} ;
 
 static const int16_t gSuccessorTable_baseline_include_grammar_36 [13] = {0, 7,
   1, 8,
   2, 9,
   9, 11,
-  22, 61,
+  22, 60,
   26, 13, -1} ;
 
-static const int16_t gSuccessorTable_baseline_include_grammar_37 [3] = {56, 64, -1} ;
+static const int16_t gSuccessorTable_baseline_include_grammar_37 [3] = {56, 63, -1} ;
 
 static const int16_t gSuccessorTable_baseline_include_grammar_40 [5] = {16, 40,
-  63, 66, -1} ;
+  63, 65, -1} ;
 
 static const int16_t gSuccessorTable_baseline_include_grammar_42 [3] = {70, 69, -1} ;
 
 static const int16_t gSuccessorTable_baseline_include_grammar_44 [15] = {6, 70,
-  17, 50,
-  18, 51,
-  19, 52,
-  20, 53,
-  21, 54,
-  69, 55, -1} ;
+  17, 49,
+  18, 50,
+  19, 51,
+  20, 52,
+  21, 53,
+  69, 54, -1} ;
 
 static const int16_t gSuccessorTable_baseline_include_grammar_45 [5] = {21, 71,
-  69, 55, -1} ;
+  69, 54, -1} ;
 
 static const int16_t gSuccessorTable_baseline_include_grammar_46 [5] = {21, 72,
-  69, 55, -1} ;
+  69, 54, -1} ;
 
-static const int16_t gSuccessorTable_baseline_include_grammar_50 [3] = {64, 76, -1} ;
+static const int16_t gSuccessorTable_baseline_include_grammar_49 [3] = {64, 75, -1} ;
 
-static const int16_t gSuccessorTable_baseline_include_grammar_51 [3] = {65, 78, -1} ;
+static const int16_t gSuccessorTable_baseline_include_grammar_50 [3] = {65, 77, -1} ;
 
-static const int16_t gSuccessorTable_baseline_include_grammar_52 [3] = {66, 85, -1} ;
+static const int16_t gSuccessorTable_baseline_include_grammar_51 [3] = {66, 84, -1} ;
 
-static const int16_t gSuccessorTable_baseline_include_grammar_53 [3] = {67, 90, -1} ;
+static const int16_t gSuccessorTable_baseline_include_grammar_52 [3] = {67, 89, -1} ;
 
-static const int16_t gSuccessorTable_baseline_include_grammar_54 [3] = {68, 94, -1} ;
+static const int16_t gSuccessorTable_baseline_include_grammar_53 [3] = {68, 93, -1} ;
 
-static const int16_t gSuccessorTable_baseline_include_grammar_58 [3] = {23, 97, -1} ;
+static const int16_t gSuccessorTable_baseline_include_grammar_57 [3] = {23, 96, -1} ;
 
-static const int16_t gSuccessorTable_baseline_include_grammar_60 [3] = {24, 98, -1} ;
+static const int16_t gSuccessorTable_baseline_include_grammar_59 [3] = {24, 97, -1} ;
 
-static const int16_t gSuccessorTable_baseline_include_grammar_64 [3] = {55, 99, -1} ;
+static const int16_t gSuccessorTable_baseline_include_grammar_63 [3] = {55, 98, -1} ;
 
-static const int16_t gSuccessorTable_baseline_include_grammar_65 [3] = {57, 101, -1} ;
+static const int16_t gSuccessorTable_baseline_include_grammar_64 [3] = {57, 100, -1} ;
 
 static const int16_t gSuccessorTable_baseline_include_grammar_68 [15] = {6, 102,
-  17, 50,
-  18, 51,
-  19, 52,
-  20, 53,
-  21, 54,
-  69, 55, -1} ;
+  17, 49,
+  18, 50,
+  19, 51,
+  20, 52,
+  21, 53,
+  69, 54, -1} ;
+
+static const int16_t gSuccessorTable_baseline_include_grammar_73 [13] = {17, 104,
+  18, 50,
+  19, 51,
+  20, 52,
+  21, 53,
+  69, 54, -1} ;
 
 static const int16_t gSuccessorTable_baseline_include_grammar_74 [13] = {17, 105,
-  18, 51,
-  19, 52,
-  20, 53,
-  21, 54,
-  69, 55, -1} ;
+  18, 50,
+  19, 51,
+  20, 52,
+  21, 53,
+  69, 54, -1} ;
 
-static const int16_t gSuccessorTable_baseline_include_grammar_75 [13] = {17, 106,
-  18, 51,
-  19, 52,
-  20, 53,
-  21, 54,
-  69, 55, -1} ;
+static const int16_t gSuccessorTable_baseline_include_grammar_76 [11] = {18, 106,
+  19, 51,
+  20, 52,
+  21, 53,
+  69, 54, -1} ;
 
-static const int16_t gSuccessorTable_baseline_include_grammar_77 [11] = {18, 107,
-  19, 52,
-  20, 53,
-  21, 54,
-  69, 55, -1} ;
+static const int16_t gSuccessorTable_baseline_include_grammar_78 [9] = {19, 107,
+  20, 52,
+  21, 53,
+  69, 54, -1} ;
 
 static const int16_t gSuccessorTable_baseline_include_grammar_79 [9] = {19, 108,
-  20, 53,
-  21, 54,
-  69, 55, -1} ;
+  20, 52,
+  21, 53,
+  69, 54, -1} ;
 
 static const int16_t gSuccessorTable_baseline_include_grammar_80 [9] = {19, 109,
-  20, 53,
-  21, 54,
-  69, 55, -1} ;
+  20, 52,
+  21, 53,
+  69, 54, -1} ;
 
 static const int16_t gSuccessorTable_baseline_include_grammar_81 [9] = {19, 110,
-  20, 53,
-  21, 54,
-  69, 55, -1} ;
+  20, 52,
+  21, 53,
+  69, 54, -1} ;
 
 static const int16_t gSuccessorTable_baseline_include_grammar_82 [9] = {19, 111,
-  20, 53,
-  21, 54,
-  69, 55, -1} ;
+  20, 52,
+  21, 53,
+  69, 54, -1} ;
 
 static const int16_t gSuccessorTable_baseline_include_grammar_83 [9] = {19, 112,
-  20, 53,
-  21, 54,
-  69, 55, -1} ;
+  20, 52,
+  21, 53,
+  69, 54, -1} ;
 
-static const int16_t gSuccessorTable_baseline_include_grammar_84 [9] = {19, 113,
-  20, 53,
-  21, 54,
-  69, 55, -1} ;
+static const int16_t gSuccessorTable_baseline_include_grammar_85 [7] = {20, 113,
+  21, 53,
+  69, 54, -1} ;
 
 static const int16_t gSuccessorTable_baseline_include_grammar_86 [7] = {20, 114,
-  21, 54,
-  69, 55, -1} ;
+  21, 53,
+  69, 54, -1} ;
 
 static const int16_t gSuccessorTable_baseline_include_grammar_87 [7] = {20, 115,
-  21, 54,
-  69, 55, -1} ;
+  21, 53,
+  69, 54, -1} ;
 
 static const int16_t gSuccessorTable_baseline_include_grammar_88 [7] = {20, 116,
-  21, 54,
-  69, 55, -1} ;
+  21, 53,
+  69, 54, -1} ;
 
-static const int16_t gSuccessorTable_baseline_include_grammar_89 [7] = {20, 117,
-  21, 54,
-  69, 55, -1} ;
+static const int16_t gSuccessorTable_baseline_include_grammar_90 [5] = {21, 117,
+  69, 54, -1} ;
 
 static const int16_t gSuccessorTable_baseline_include_grammar_91 [5] = {21, 118,
-  69, 55, -1} ;
+  69, 54, -1} ;
 
 static const int16_t gSuccessorTable_baseline_include_grammar_92 [5] = {21, 119,
-  69, 55, -1} ;
+  69, 54, -1} ;
 
-static const int16_t gSuccessorTable_baseline_include_grammar_93 [5] = {21, 120,
-  69, 55, -1} ;
+static const int16_t gSuccessorTable_baseline_include_grammar_95 [21] = {8, 154,
+  10, 155,
+  12, 156,
+  25, 157,
+  28, 158,
+  45, 159,
+  46, 160,
+  47, 161,
+  48, 162,
+  49, 163, -1} ;
 
-static const int16_t gSuccessorTable_baseline_include_grammar_96 [21] = {8, 155,
-  10, 156,
-  12, 157,
-  25, 158,
-  28, 159,
-  45, 160,
-  46, 161,
-  47, 162,
-  48, 163,
-  49, 164, -1} ;
+static const int16_t gSuccessorTable_baseline_include_grammar_100 [3] = {58, 166, -1} ;
 
-static const int16_t gSuccessorTable_baseline_include_grammar_101 [3] = {58, 167, -1} ;
+static const int16_t gSuccessorTable_baseline_include_grammar_104 [3] = {64, 169, -1} ;
 
 static const int16_t gSuccessorTable_baseline_include_grammar_105 [3] = {64, 170, -1} ;
 
-static const int16_t gSuccessorTable_baseline_include_grammar_106 [3] = {64, 171, -1} ;
+static const int16_t gSuccessorTable_baseline_include_grammar_106 [3] = {65, 171, -1} ;
 
-static const int16_t gSuccessorTable_baseline_include_grammar_107 [3] = {65, 172, -1} ;
+static const int16_t gSuccessorTable_baseline_include_grammar_113 [3] = {67, 172, -1} ;
 
 static const int16_t gSuccessorTable_baseline_include_grammar_114 [3] = {67, 173, -1} ;
 
@@ -19505,150 +19468,148 @@ static const int16_t gSuccessorTable_baseline_include_grammar_115 [3] = {67, 174
 
 static const int16_t gSuccessorTable_baseline_include_grammar_116 [3] = {67, 175, -1} ;
 
-static const int16_t gSuccessorTable_baseline_include_grammar_117 [3] = {67, 176, -1} ;
+static const int16_t gSuccessorTable_baseline_include_grammar_117 [3] = {68, 176, -1} ;
 
 static const int16_t gSuccessorTable_baseline_include_grammar_118 [3] = {68, 177, -1} ;
 
 static const int16_t gSuccessorTable_baseline_include_grammar_119 [3] = {68, 178, -1} ;
 
-static const int16_t gSuccessorTable_baseline_include_grammar_120 [3] = {68, 179, -1} ;
+static const int16_t gSuccessorTable_baseline_include_grammar_120 [5] = {29, 180,
+  38, 181, -1} ;
 
-static const int16_t gSuccessorTable_baseline_include_grammar_121 [5] = {29, 181,
-  38, 182, -1} ;
+static const int16_t gSuccessorTable_baseline_include_grammar_123 [3] = {31, 185, -1} ;
 
-static const int16_t gSuccessorTable_baseline_include_grammar_124 [3] = {31, 186, -1} ;
+static const int16_t gSuccessorTable_baseline_include_grammar_124 [9] = {3, 191,
+  33, 192,
+  34, 193,
+  36, 194, -1} ;
 
-static const int16_t gSuccessorTable_baseline_include_grammar_125 [9] = {3, 192,
-  33, 193,
-  34, 194,
-  36, 195, -1} ;
+static const int16_t gSuccessorTable_baseline_include_grammar_155 [19] = {10, 155,
+  12, 156,
+  25, 200,
+  28, 158,
+  45, 159,
+  46, 160,
+  47, 161,
+  48, 162,
+  49, 163, -1} ;
 
-static const int16_t gSuccessorTable_baseline_include_grammar_156 [19] = {10, 156,
-  12, 157,
+static const int16_t gSuccessorTable_baseline_include_grammar_156 [19] = {10, 155,
+  12, 156,
   25, 201,
-  28, 159,
-  45, 160,
-  46, 161,
-  47, 162,
-  48, 163,
-  49, 164, -1} ;
+  28, 158,
+  45, 159,
+  46, 160,
+  47, 161,
+  48, 162,
+  49, 163, -1} ;
 
-static const int16_t gSuccessorTable_baseline_include_grammar_157 [19] = {10, 156,
-  12, 157,
-  25, 202,
-  28, 159,
-  45, 160,
-  46, 161,
-  47, 162,
-  48, 163,
-  49, 164, -1} ;
+static const int16_t gSuccessorTable_baseline_include_grammar_160 [3] = {3, 202, -1} ;
 
 static const int16_t gSuccessorTable_baseline_include_grammar_161 [3] = {3, 203, -1} ;
 
 static const int16_t gSuccessorTable_baseline_include_grammar_162 [3] = {3, 204, -1} ;
 
-static const int16_t gSuccessorTable_baseline_include_grammar_163 [3] = {3, 205, -1} ;
+static const int16_t gSuccessorTable_baseline_include_grammar_163 [15] = {6, 205,
+  17, 49,
+  18, 50,
+  19, 51,
+  20, 52,
+  21, 53,
+  69, 54, -1} ;
 
-static const int16_t gSuccessorTable_baseline_include_grammar_164 [15] = {6, 206,
-  17, 50,
-  18, 51,
-  19, 52,
-  20, 53,
-  21, 54,
-  69, 55, -1} ;
+static const int16_t gSuccessorTable_baseline_include_grammar_165 [3] = {60, 210, -1} ;
 
-static const int16_t gSuccessorTable_baseline_include_grammar_166 [3] = {60, 211, -1} ;
+static const int16_t gSuccessorTable_baseline_include_grammar_167 [15] = {6, 211,
+  17, 49,
+  18, 50,
+  19, 51,
+  20, 52,
+  21, 53,
+  69, 54, -1} ;
 
-static const int16_t gSuccessorTable_baseline_include_grammar_182 [21] = {8, 214,
-  10, 156,
-  12, 157,
-  25, 158,
-  28, 159,
-  45, 160,
-  46, 161,
-  47, 162,
-  48, 163,
-  49, 164, -1} ;
+static const int16_t gSuccessorTable_baseline_include_grammar_181 [21] = {8, 213,
+  10, 155,
+  12, 156,
+  25, 157,
+  28, 158,
+  45, 159,
+  46, 160,
+  47, 161,
+  48, 162,
+  49, 163, -1} ;
 
-static const int16_t gSuccessorTable_baseline_include_grammar_186 [21] = {8, 215,
-  10, 156,
-  12, 157,
-  25, 158,
-  28, 159,
-  45, 160,
-  46, 161,
-  47, 162,
-  48, 163,
-  49, 164, -1} ;
+static const int16_t gSuccessorTable_baseline_include_grammar_185 [21] = {8, 214,
+  10, 155,
+  12, 156,
+  25, 157,
+  28, 158,
+  45, 159,
+  46, 160,
+  47, 161,
+  48, 162,
+  49, 163, -1} ;
 
-static const int16_t gSuccessorTable_baseline_include_grammar_187 [3] = {72, 217, -1} ;
+static const int16_t gSuccessorTable_baseline_include_grammar_186 [3] = {72, 216, -1} ;
 
-static const int16_t gSuccessorTable_baseline_include_grammar_189 [3] = {3, 218, -1} ;
+static const int16_t gSuccessorTable_baseline_include_grammar_188 [3] = {3, 217, -1} ;
 
-static const int16_t gSuccessorTable_baseline_include_grammar_194 [3] = {3, 221, -1} ;
+static const int16_t gSuccessorTable_baseline_include_grammar_193 [3] = {3, 220, -1} ;
 
-static const int16_t gSuccessorTable_baseline_include_grammar_195 [5] = {11, 223,
-  14, 224, -1} ;
+static const int16_t gSuccessorTable_baseline_include_grammar_194 [5] = {11, 222,
+  14, 223, -1} ;
 
-static const int16_t gSuccessorTable_baseline_include_grammar_203 [5] = {4, 226,
-  74, 227, -1} ;
+static const int16_t gSuccessorTable_baseline_include_grammar_202 [5] = {4, 225,
+  74, 226, -1} ;
 
-static const int16_t gSuccessorTable_baseline_include_grammar_208 [3] = {62, 230, -1} ;
+static const int16_t gSuccessorTable_baseline_include_grammar_207 [3] = {62, 229, -1} ;
 
-static const int16_t gSuccessorTable_baseline_include_grammar_211 [3] = {59, 232, -1} ;
+static const int16_t gSuccessorTable_baseline_include_grammar_210 [3] = {59, 231, -1} ;
 
-static const int16_t gSuccessorTable_baseline_include_grammar_212 [15] = {6, 233,
-  17, 50,
-  18, 51,
-  19, 52,
-  20, 53,
-  21, 54,
-  69, 55, -1} ;
+static const int16_t gSuccessorTable_baseline_include_grammar_211 [3] = {71, 233, -1} ;
 
-static const int16_t gSuccessorTable_baseline_include_grammar_216 [15] = {6, 237,
-  17, 50,
-  18, 51,
-  19, 52,
-  20, 53,
-  21, 54,
-  69, 55, -1} ;
+static const int16_t gSuccessorTable_baseline_include_grammar_215 [15] = {6, 237,
+  17, 49,
+  18, 50,
+  19, 51,
+  20, 52,
+  21, 53,
+  69, 54, -1} ;
 
-static const int16_t gSuccessorTable_baseline_include_grammar_219 [3] = {5, 242, -1} ;
+static const int16_t gSuccessorTable_baseline_include_grammar_218 [3] = {5, 242, -1} ;
 
-static const int16_t gSuccessorTable_baseline_include_grammar_220 [13] = {12, 243,
-  45, 160,
-  46, 161,
-  47, 162,
-  48, 163,
-  49, 164, -1} ;
+static const int16_t gSuccessorTable_baseline_include_grammar_219 [13] = {12, 243,
+  45, 159,
+  46, 160,
+  47, 161,
+  48, 162,
+  49, 163, -1} ;
 
-static const int16_t gSuccessorTable_baseline_include_grammar_221 [3] = {35, 245, -1} ;
+static const int16_t gSuccessorTable_baseline_include_grammar_220 [3] = {35, 245, -1} ;
 
-static const int16_t gSuccessorTable_baseline_include_grammar_222 [13] = {3, 249,
+static const int16_t gSuccessorTable_baseline_include_grammar_221 [13] = {3, 249,
   13, 250,
   14, 251,
   15, 252,
   50, 253,
   51, 254, -1} ;
 
-static const int16_t gSuccessorTable_baseline_include_grammar_224 [21] = {8, 256,
-  10, 156,
-  12, 157,
-  25, 158,
-  28, 159,
-  45, 160,
-  46, 161,
-  47, 162,
-  48, 163,
-  49, 164, -1} ;
+static const int16_t gSuccessorTable_baseline_include_grammar_223 [21] = {8, 256,
+  10, 155,
+  12, 156,
+  25, 157,
+  28, 158,
+  45, 159,
+  46, 160,
+  47, 161,
+  48, 162,
+  49, 163, -1} ;
 
-static const int16_t gSuccessorTable_baseline_include_grammar_228 [3] = {5, 258, -1} ;
+static const int16_t gSuccessorTable_baseline_include_grammar_227 [3] = {5, 258, -1} ;
 
-static const int16_t gSuccessorTable_baseline_include_grammar_230 [3] = {61, 261, -1} ;
+static const int16_t gSuccessorTable_baseline_include_grammar_229 [3] = {61, 261, -1} ;
 
-static const int16_t gSuccessorTable_baseline_include_grammar_231 [3] = {60, 262, -1} ;
-
-static const int16_t gSuccessorTable_baseline_include_grammar_233 [3] = {71, 265, -1} ;
+static const int16_t gSuccessorTable_baseline_include_grammar_230 [3] = {60, 262, -1} ;
 
 static const int16_t gSuccessorTable_baseline_include_grammar_235 [3] = {40, 268, -1} ;
 
@@ -19659,12 +19620,12 @@ static const int16_t gSuccessorTable_baseline_include_grammar_238 [3] = {5, 272,
 static const int16_t gSuccessorTable_baseline_include_grammar_239 [3] = {73, 274, -1} ;
 
 static const int16_t gSuccessorTable_baseline_include_grammar_241 [15] = {6, 275,
-  17, 50,
-  18, 51,
-  19, 52,
-  20, 53,
-  21, 54,
-  69, 55, -1} ;
+  17, 49,
+  18, 50,
+  19, 51,
+  20, 52,
+  21, 53,
+  69, 54, -1} ;
 
 static const int16_t gSuccessorTable_baseline_include_grammar_246 [11] = {3, 249,
   13, 278,
@@ -19684,20 +19645,20 @@ static const int16_t gSuccessorTable_baseline_include_grammar_256 [3] = {42, 289
 
 static const int16_t gSuccessorTable_baseline_include_grammar_262 [3] = {59, 292, -1} ;
 
-static const int16_t gSuccessorTable_baseline_include_grammar_266 [15] = {6, 295,
-  17, 50,
-  18, 51,
-  19, 52,
-  20, 53,
-  21, 54,
-  69, 55, -1} ;
+static const int16_t gSuccessorTable_baseline_include_grammar_266 [15] = {6, 294,
+  17, 49,
+  18, 50,
+  19, 51,
+  20, 52,
+  21, 53,
+  69, 54, -1} ;
 
-static const int16_t gSuccessorTable_baseline_include_grammar_268 [3] = {14, 296, -1} ;
+static const int16_t gSuccessorTable_baseline_include_grammar_268 [3] = {14, 295, -1} ;
 
-static const int16_t gSuccessorTable_baseline_include_grammar_279 [3] = {5, 300, -1} ;
+static const int16_t gSuccessorTable_baseline_include_grammar_279 [3] = {5, 299, -1} ;
 
 static const int16_t gSuccessorTable_baseline_include_grammar_280 [11] = {3, 249,
-  13, 301,
+  13, 300,
   14, 251,
   50, 253,
   51, 254, -1} ;
@@ -19705,109 +19666,109 @@ static const int16_t gSuccessorTable_baseline_include_grammar_280 [11] = {3, 249
 static const int16_t gSuccessorTable_baseline_include_grammar_282 [13] = {3, 249,
   13, 250,
   14, 251,
-  15, 302,
+  15, 301,
   50, 253,
   51, 254, -1} ;
 
-static const int16_t gSuccessorTable_baseline_include_grammar_284 [3] = {52, 305, -1} ;
+static const int16_t gSuccessorTable_baseline_include_grammar_284 [3] = {52, 304, -1} ;
 
-static const int16_t gSuccessorTable_baseline_include_grammar_287 [3] = {43, 307, -1} ;
+static const int16_t gSuccessorTable_baseline_include_grammar_287 [3] = {43, 306, -1} ;
 
-static const int16_t gSuccessorTable_baseline_include_grammar_288 [3] = {44, 309, -1} ;
+static const int16_t gSuccessorTable_baseline_include_grammar_288 [3] = {44, 308, -1} ;
 
-static const int16_t gSuccessorTable_baseline_include_grammar_291 [3] = {62, 310, -1} ;
+static const int16_t gSuccessorTable_baseline_include_grammar_291 [3] = {62, 309, -1} ;
 
-static const int16_t gSuccessorTable_baseline_include_grammar_296 [21] = {8, 313,
-  10, 156,
-  12, 157,
-  25, 158,
-  28, 159,
-  45, 160,
-  46, 161,
-  47, 162,
-  48, 163,
-  49, 164, -1} ;
+static const int16_t gSuccessorTable_baseline_include_grammar_293 [15] = {6, 310,
+  17, 49,
+  18, 50,
+  19, 51,
+  20, 52,
+  21, 53,
+  69, 54, -1} ;
 
-static const int16_t gSuccessorTable_baseline_include_grammar_299 [13] = {12, 315,
-  45, 160,
-  46, 161,
-  47, 162,
-  48, 163,
-  49, 164, -1} ;
+static const int16_t gSuccessorTable_baseline_include_grammar_295 [21] = {8, 312,
+  10, 155,
+  12, 156,
+  25, 157,
+  28, 158,
+  45, 159,
+  46, 160,
+  47, 161,
+  48, 162,
+  49, 163, -1} ;
 
-static const int16_t gSuccessorTable_baseline_include_grammar_301 [3] = {54, 316, -1} ;
+static const int16_t gSuccessorTable_baseline_include_grammar_298 [13] = {12, 314,
+  45, 159,
+  46, 160,
+  47, 161,
+  48, 162,
+  49, 163, -1} ;
 
-static const int16_t gSuccessorTable_baseline_include_grammar_302 [3] = {53, 317, -1} ;
+static const int16_t gSuccessorTable_baseline_include_grammar_300 [3] = {54, 315, -1} ;
 
-static const int16_t gSuccessorTable_baseline_include_grammar_307 [5] = {11, 320,
-  14, 224, -1} ;
+static const int16_t gSuccessorTable_baseline_include_grammar_301 [3] = {53, 316, -1} ;
 
-static const int16_t gSuccessorTable_baseline_include_grammar_309 [21] = {8, 321,
-  10, 156,
-  12, 157,
-  25, 158,
-  28, 159,
-  45, 160,
-  46, 161,
-  47, 162,
-  48, 163,
-  49, 164, -1} ;
+static const int16_t gSuccessorTable_baseline_include_grammar_306 [5] = {11, 319,
+  14, 223, -1} ;
 
-static const int16_t gSuccessorTable_baseline_include_grammar_310 [3] = {61, 322, -1} ;
+static const int16_t gSuccessorTable_baseline_include_grammar_308 [21] = {8, 320,
+  10, 155,
+  12, 156,
+  25, 157,
+  28, 158,
+  45, 159,
+  46, 160,
+  47, 161,
+  48, 162,
+  49, 163, -1} ;
+
+static const int16_t gSuccessorTable_baseline_include_grammar_309 [3] = {61, 321, -1} ;
+
+static const int16_t gSuccessorTable_baseline_include_grammar_310 [3] = {71, 322, -1} ;
 
 static const int16_t gSuccessorTable_baseline_include_grammar_311 [15] = {6, 323,
-  17, 50,
-  18, 51,
-  19, 52,
-  20, 53,
-  21, 54,
-  69, 55, -1} ;
+  17, 49,
+  18, 50,
+  19, 51,
+  20, 52,
+  21, 53,
+  69, 54, -1} ;
 
-static const int16_t gSuccessorTable_baseline_include_grammar_312 [15] = {6, 324,
-  17, 50,
-  18, 51,
-  19, 52,
-  20, 53,
-  21, 54,
-  69, 55, -1} ;
+static const int16_t gSuccessorTable_baseline_include_grammar_312 [3] = {39, 325, -1} ;
 
-static const int16_t gSuccessorTable_baseline_include_grammar_313 [3] = {39, 326, -1} ;
+static const int16_t gSuccessorTable_baseline_include_grammar_324 [3] = {40, 327, -1} ;
 
-static const int16_t gSuccessorTable_baseline_include_grammar_323 [3] = {71, 327, -1} ;
+static const int16_t gSuccessorTable_baseline_include_grammar_326 [21] = {8, 329,
+  10, 155,
+  12, 156,
+  25, 157,
+  28, 158,
+  45, 159,
+  46, 160,
+  47, 161,
+  48, 162,
+  49, 163, -1} ;
 
-static const int16_t gSuccessorTable_baseline_include_grammar_325 [3] = {40, 329, -1} ;
+static const int16_t gSuccessorTable_baseline_include_grammar_327 [3] = {14, 330, -1} ;
 
-static const int16_t gSuccessorTable_baseline_include_grammar_328 [21] = {8, 331,
-  10, 156,
-  12, 157,
-  25, 158,
-  28, 159,
-  45, 160,
-  46, 161,
-  47, 162,
-  48, 163,
-  49, 164, -1} ;
+static const int16_t gSuccessorTable_baseline_include_grammar_328 [3] = {41, 332, -1} ;
 
-static const int16_t gSuccessorTable_baseline_include_grammar_329 [3] = {14, 332, -1} ;
+static const int16_t gSuccessorTable_baseline_include_grammar_330 [21] = {8, 334,
+  10, 155,
+  12, 156,
+  25, 157,
+  28, 158,
+  45, 159,
+  46, 160,
+  47, 161,
+  48, 162,
+  49, 163, -1} ;
 
-static const int16_t gSuccessorTable_baseline_include_grammar_330 [3] = {41, 334, -1} ;
+static const int16_t gSuccessorTable_baseline_include_grammar_333 [3] = {30, 336, -1} ;
 
-static const int16_t gSuccessorTable_baseline_include_grammar_332 [21] = {8, 336,
-  10, 156,
-  12, 157,
-  25, 158,
-  28, 159,
-  45, 160,
-  46, 161,
-  47, 162,
-  48, 163,
-  49, 164, -1} ;
+static const int16_t gSuccessorTable_baseline_include_grammar_334 [3] = {39, 337, -1} ;
 
-static const int16_t gSuccessorTable_baseline_include_grammar_335 [3] = {30, 338, -1} ;
-
-static const int16_t gSuccessorTable_baseline_include_grammar_336 [3] = {39, 339, -1} ;
-
-static const int16_t * gSuccessorTable_baseline_include_grammar [340] = {
+static const int16_t * gSuccessorTable_baseline_include_grammar [338] = {
 gSuccessorTable_baseline_include_grammar_0, NULL, NULL, NULL, 
   NULL, NULL, NULL, gSuccessorTable_baseline_include_grammar_7, 
   gSuccessorTable_baseline_include_grammar_8, gSuccessorTable_baseline_include_grammar_9, NULL, gSuccessorTable_baseline_include_grammar_11, 
@@ -19820,53 +19781,53 @@ gSuccessorTable_baseline_include_grammar_0, NULL, NULL, NULL,
   gSuccessorTable_baseline_include_grammar_36, gSuccessorTable_baseline_include_grammar_37, NULL, NULL, 
   gSuccessorTable_baseline_include_grammar_40, NULL, gSuccessorTable_baseline_include_grammar_42, NULL, 
   gSuccessorTable_baseline_include_grammar_44, gSuccessorTable_baseline_include_grammar_45, gSuccessorTable_baseline_include_grammar_46, NULL, 
-  NULL, NULL, gSuccessorTable_baseline_include_grammar_50, gSuccessorTable_baseline_include_grammar_51, 
-  gSuccessorTable_baseline_include_grammar_52, gSuccessorTable_baseline_include_grammar_53, gSuccessorTable_baseline_include_grammar_54, NULL, 
-  NULL, NULL, gSuccessorTable_baseline_include_grammar_58, NULL, 
-  gSuccessorTable_baseline_include_grammar_60, NULL, NULL, NULL, 
-  gSuccessorTable_baseline_include_grammar_64, gSuccessorTable_baseline_include_grammar_65, NULL, NULL, 
+  NULL, gSuccessorTable_baseline_include_grammar_49, gSuccessorTable_baseline_include_grammar_50, gSuccessorTable_baseline_include_grammar_51, 
+  gSuccessorTable_baseline_include_grammar_52, gSuccessorTable_baseline_include_grammar_53, NULL, NULL, 
+  NULL, gSuccessorTable_baseline_include_grammar_57, NULL, gSuccessorTable_baseline_include_grammar_59, 
+  NULL, NULL, NULL, gSuccessorTable_baseline_include_grammar_63, 
+  gSuccessorTable_baseline_include_grammar_64, NULL, NULL, NULL, 
   gSuccessorTable_baseline_include_grammar_68, NULL, NULL, NULL, 
-  NULL, NULL, gSuccessorTable_baseline_include_grammar_74, gSuccessorTable_baseline_include_grammar_75, 
-  NULL, gSuccessorTable_baseline_include_grammar_77, NULL, gSuccessorTable_baseline_include_grammar_79, 
+  NULL, gSuccessorTable_baseline_include_grammar_73, gSuccessorTable_baseline_include_grammar_74, NULL, 
+  gSuccessorTable_baseline_include_grammar_76, NULL, gSuccessorTable_baseline_include_grammar_78, gSuccessorTable_baseline_include_grammar_79, 
   gSuccessorTable_baseline_include_grammar_80, gSuccessorTable_baseline_include_grammar_81, gSuccessorTable_baseline_include_grammar_82, gSuccessorTable_baseline_include_grammar_83, 
-  gSuccessorTable_baseline_include_grammar_84, NULL, gSuccessorTable_baseline_include_grammar_86, gSuccessorTable_baseline_include_grammar_87, 
-  gSuccessorTable_baseline_include_grammar_88, gSuccessorTable_baseline_include_grammar_89, NULL, gSuccessorTable_baseline_include_grammar_91, 
-  gSuccessorTable_baseline_include_grammar_92, gSuccessorTable_baseline_include_grammar_93, NULL, NULL, 
-  gSuccessorTable_baseline_include_grammar_96, NULL, NULL, NULL, 
-  NULL, gSuccessorTable_baseline_include_grammar_101, NULL, NULL, 
-  NULL, gSuccessorTable_baseline_include_grammar_105, gSuccessorTable_baseline_include_grammar_106, gSuccessorTable_baseline_include_grammar_107, 
+  NULL, gSuccessorTable_baseline_include_grammar_85, gSuccessorTable_baseline_include_grammar_86, gSuccessorTable_baseline_include_grammar_87, 
+  gSuccessorTable_baseline_include_grammar_88, NULL, gSuccessorTable_baseline_include_grammar_90, gSuccessorTable_baseline_include_grammar_91, 
+  gSuccessorTable_baseline_include_grammar_92, NULL, NULL, gSuccessorTable_baseline_include_grammar_95, 
   NULL, NULL, NULL, NULL, 
-  NULL, NULL, gSuccessorTable_baseline_include_grammar_114, gSuccessorTable_baseline_include_grammar_115, 
+  gSuccessorTable_baseline_include_grammar_100, NULL, NULL, NULL, 
+  gSuccessorTable_baseline_include_grammar_104, gSuccessorTable_baseline_include_grammar_105, gSuccessorTable_baseline_include_grammar_106, NULL, 
+  NULL, NULL, NULL, NULL, 
+  NULL, gSuccessorTable_baseline_include_grammar_113, gSuccessorTable_baseline_include_grammar_114, gSuccessorTable_baseline_include_grammar_115, 
   gSuccessorTable_baseline_include_grammar_116, gSuccessorTable_baseline_include_grammar_117, gSuccessorTable_baseline_include_grammar_118, gSuccessorTable_baseline_include_grammar_119, 
-  gSuccessorTable_baseline_include_grammar_120, gSuccessorTable_baseline_include_grammar_121, NULL, NULL, 
-  gSuccessorTable_baseline_include_grammar_124, gSuccessorTable_baseline_include_grammar_125, NULL, NULL, 
+  gSuccessorTable_baseline_include_grammar_120, NULL, NULL, gSuccessorTable_baseline_include_grammar_123, 
+  gSuccessorTable_baseline_include_grammar_124, NULL, NULL, NULL, 
   NULL, NULL, NULL, NULL, 
   NULL, NULL, NULL, NULL, 
   NULL, NULL, NULL, NULL, 
   NULL, NULL, NULL, NULL, 
   NULL, NULL, NULL, NULL, 
   NULL, NULL, NULL, NULL, 
+  NULL, NULL, NULL, gSuccessorTable_baseline_include_grammar_155, 
+  gSuccessorTable_baseline_include_grammar_156, NULL, NULL, NULL, 
+  gSuccessorTable_baseline_include_grammar_160, gSuccessorTable_baseline_include_grammar_161, gSuccessorTable_baseline_include_grammar_162, gSuccessorTable_baseline_include_grammar_163, 
+  NULL, gSuccessorTable_baseline_include_grammar_165, NULL, gSuccessorTable_baseline_include_grammar_167, 
   NULL, NULL, NULL, NULL, 
-  gSuccessorTable_baseline_include_grammar_156, gSuccessorTable_baseline_include_grammar_157, NULL, NULL, 
-  NULL, gSuccessorTable_baseline_include_grammar_161, gSuccessorTable_baseline_include_grammar_162, gSuccessorTable_baseline_include_grammar_163, 
-  gSuccessorTable_baseline_include_grammar_164, NULL, gSuccessorTable_baseline_include_grammar_166, NULL, 
   NULL, NULL, NULL, NULL, 
   NULL, NULL, NULL, NULL, 
+  NULL, gSuccessorTable_baseline_include_grammar_181, NULL, NULL, 
+  NULL, gSuccessorTable_baseline_include_grammar_185, gSuccessorTable_baseline_include_grammar_186, NULL, 
+  gSuccessorTable_baseline_include_grammar_188, NULL, NULL, NULL, 
+  NULL, gSuccessorTable_baseline_include_grammar_193, gSuccessorTable_baseline_include_grammar_194, NULL, 
   NULL, NULL, NULL, NULL, 
-  NULL, NULL, gSuccessorTable_baseline_include_grammar_182, NULL, 
-  NULL, NULL, gSuccessorTable_baseline_include_grammar_186, gSuccessorTable_baseline_include_grammar_187, 
-  NULL, gSuccessorTable_baseline_include_grammar_189, NULL, NULL, 
-  NULL, NULL, gSuccessorTable_baseline_include_grammar_194, gSuccessorTable_baseline_include_grammar_195, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, gSuccessorTable_baseline_include_grammar_203, 
-  NULL, NULL, NULL, NULL, 
-  gSuccessorTable_baseline_include_grammar_208, NULL, NULL, gSuccessorTable_baseline_include_grammar_211, 
-  gSuccessorTable_baseline_include_grammar_212, NULL, NULL, NULL, 
-  gSuccessorTable_baseline_include_grammar_216, NULL, NULL, gSuccessorTable_baseline_include_grammar_219, 
-  gSuccessorTable_baseline_include_grammar_220, gSuccessorTable_baseline_include_grammar_221, gSuccessorTable_baseline_include_grammar_222, NULL, 
-  gSuccessorTable_baseline_include_grammar_224, NULL, NULL, NULL, 
-  gSuccessorTable_baseline_include_grammar_228, NULL, gSuccessorTable_baseline_include_grammar_230, gSuccessorTable_baseline_include_grammar_231, 
-  NULL, gSuccessorTable_baseline_include_grammar_233, NULL, gSuccessorTable_baseline_include_grammar_235, 
+  NULL, NULL, gSuccessorTable_baseline_include_grammar_202, NULL, 
+  NULL, NULL, NULL, gSuccessorTable_baseline_include_grammar_207, 
+  NULL, NULL, gSuccessorTable_baseline_include_grammar_210, gSuccessorTable_baseline_include_grammar_211, 
+  NULL, NULL, NULL, gSuccessorTable_baseline_include_grammar_215, 
+  NULL, NULL, gSuccessorTable_baseline_include_grammar_218, gSuccessorTable_baseline_include_grammar_219, 
+  gSuccessorTable_baseline_include_grammar_220, gSuccessorTable_baseline_include_grammar_221, NULL, gSuccessorTable_baseline_include_grammar_223, 
+  NULL, NULL, NULL, gSuccessorTable_baseline_include_grammar_227, 
+  NULL, gSuccessorTable_baseline_include_grammar_229, gSuccessorTable_baseline_include_grammar_230, NULL, 
+  NULL, NULL, NULL, gSuccessorTable_baseline_include_grammar_235, 
   gSuccessorTable_baseline_include_grammar_236, NULL, gSuccessorTable_baseline_include_grammar_238, gSuccessorTable_baseline_include_grammar_239, 
   NULL, gSuccessorTable_baseline_include_grammar_241, NULL, NULL, 
   NULL, NULL, gSuccessorTable_baseline_include_grammar_246, NULL, 
@@ -19881,18 +19842,18 @@ gSuccessorTable_baseline_include_grammar_0, NULL, NULL, NULL,
   gSuccessorTable_baseline_include_grammar_280, NULL, gSuccessorTable_baseline_include_grammar_282, NULL, 
   gSuccessorTable_baseline_include_grammar_284, NULL, NULL, gSuccessorTable_baseline_include_grammar_287, 
   gSuccessorTable_baseline_include_grammar_288, NULL, NULL, gSuccessorTable_baseline_include_grammar_291, 
+  NULL, gSuccessorTable_baseline_include_grammar_293, NULL, gSuccessorTable_baseline_include_grammar_295, 
+  NULL, NULL, gSuccessorTable_baseline_include_grammar_298, NULL, 
+  gSuccessorTable_baseline_include_grammar_300, gSuccessorTable_baseline_include_grammar_301, NULL, NULL, 
+  NULL, NULL, gSuccessorTable_baseline_include_grammar_306, NULL, 
+  gSuccessorTable_baseline_include_grammar_308, gSuccessorTable_baseline_include_grammar_309, gSuccessorTable_baseline_include_grammar_310, gSuccessorTable_baseline_include_grammar_311, 
+  gSuccessorTable_baseline_include_grammar_312, NULL, NULL, NULL, 
   NULL, NULL, NULL, NULL, 
-  gSuccessorTable_baseline_include_grammar_296, NULL, NULL, gSuccessorTable_baseline_include_grammar_299, 
-  NULL, gSuccessorTable_baseline_include_grammar_301, gSuccessorTable_baseline_include_grammar_302, NULL, 
-  NULL, NULL, NULL, gSuccessorTable_baseline_include_grammar_307, 
-  NULL, gSuccessorTable_baseline_include_grammar_309, gSuccessorTable_baseline_include_grammar_310, gSuccessorTable_baseline_include_grammar_311, 
-  gSuccessorTable_baseline_include_grammar_312, gSuccessorTable_baseline_include_grammar_313, NULL, NULL, 
   NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, gSuccessorTable_baseline_include_grammar_323, 
-  NULL, gSuccessorTable_baseline_include_grammar_325, NULL, NULL, 
-  gSuccessorTable_baseline_include_grammar_328, gSuccessorTable_baseline_include_grammar_329, gSuccessorTable_baseline_include_grammar_330, NULL, 
-  gSuccessorTable_baseline_include_grammar_332, NULL, NULL, gSuccessorTable_baseline_include_grammar_335, 
-  gSuccessorTable_baseline_include_grammar_336, NULL, NULL, NULL} ;
+  gSuccessorTable_baseline_include_grammar_324, NULL, gSuccessorTable_baseline_include_grammar_326, gSuccessorTable_baseline_include_grammar_327, 
+  gSuccessorTable_baseline_include_grammar_328, NULL, gSuccessorTable_baseline_include_grammar_330, NULL, 
+  NULL, gSuccessorTable_baseline_include_grammar_333, gSuccessorTable_baseline_include_grammar_334, NULL, 
+  NULL, NULL} ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -20076,7 +20037,7 @@ static const int16_t gProductionsTable_baseline_include_grammar [187 * 2] = {
   69, 1,
   69, 2,
   69, 3,
-  69, 8,
+  69, 7,
   70, 0,
   70, 3,
   71, 0,
@@ -20567,10 +20528,11 @@ void cGrammar_baseline_5F_include_5F_grammar::nt_baseline_5F_instruction_5F_list
 }
 
 void cGrammar_baseline_5F_include_5F_grammar::nt_baseline_5F_instruction_5F_list_ (GALGAS_baseline_5F_instructionList &  parameter_1,
+                                GALGAS_labelMap &  parameter_2,
                                 C_Lexique_piccolo_5F_lexique * inLexique) {
   switch (inLexique->nextProductionIndex ()) {
   case 1 :
-      rule_baseline_5F_syntax_baseline_5F_instruction_5F_list_i1_(parameter_1, inLexique) ;
+      rule_baseline_5F_syntax_baseline_5F_instruction_5F_list_i1_(parameter_1, parameter_2, inLexique) ;
     break ;
   default :
     inLexique->internalBottomUpParserError (HERE) ;
@@ -20645,10 +20607,11 @@ void cGrammar_baseline_5F_include_5F_grammar::nt_baseline_5F_structured_5F_instr
 }
 
 void cGrammar_baseline_5F_include_5F_grammar::nt_baseline_5F_structured_5F_instruction_ (GALGAS_baseline_5F_instruction &  parameter_1,
+                                GALGAS_labelMap &  parameter_2,
                                 C_Lexique_piccolo_5F_lexique * inLexique) {
   switch (inLexique->nextProductionIndex ()) {
   case 3 :
-      rule_baseline_5F_syntax_baseline_5F_structured_5F_instruction_i3_(parameter_1, inLexique) ;
+      rule_baseline_5F_syntax_baseline_5F_structured_5F_instruction_i3_(parameter_1, parameter_2, inLexique) ;
     break ;
   default :
     inLexique->internalBottomUpParserError (HERE) ;
@@ -20685,10 +20648,11 @@ void cGrammar_baseline_5F_include_5F_grammar::nt_baseline_5F_structured_5F_if_5F
 
 void cGrammar_baseline_5F_include_5F_grammar::nt_baseline_5F_structured_5F_if_5F_instruction_ (const GALGAS_lstring  parameter_1,
                                 GALGAS_baseline_5F_instruction &  parameter_2,
+                                GALGAS_labelMap &  parameter_3,
                                 C_Lexique_piccolo_5F_lexique * inLexique) {
   switch (inLexique->nextProductionIndex ()) {
   case 4 :
-      rule_baseline_5F_syntax_baseline_5F_structured_5F_if_5F_instruction_i4_(parameter_1, parameter_2, inLexique) ;
+      rule_baseline_5F_syntax_baseline_5F_structured_5F_if_5F_instruction_i4_(parameter_1, parameter_2, parameter_3, inLexique) ;
     break ;
   default :
     inLexique->internalBottomUpParserError (HERE) ;

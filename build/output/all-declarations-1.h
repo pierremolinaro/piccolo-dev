@@ -5436,6 +5436,7 @@ class cParser_pic_31__38__5F_syntax {
   protected : virtual void nt_instruction_5F_list_ (class GALGAS_pic_31__38_InstructionList & outArgument0,
                                                     class GALGAS_bool & ioArgument1,
                                                     class GALGAS_bool & ioArgument2,
+                                                    class GALGAS_labelMap & ioArgument3,
                                                     class C_Lexique_piccolo_5F_lexique * inLexique) = 0 ;
 
   protected : virtual void nt_instruction_5F_list_parse (class C_Lexique_piccolo_5F_lexique * inLexique) = 0 ;
@@ -5492,6 +5493,7 @@ class cParser_pic_31__38__5F_syntax {
                                                                 class GALGAS_pic_31__38_PiccoloInstruction & outArgument1,
                                                                 class GALGAS_bool & ioArgument2,
                                                                 class GALGAS_bool & ioArgument3,
+                                                                class GALGAS_labelMap & ioArgument4,
                                                                 class C_Lexique_piccolo_5F_lexique * inLexique) = 0 ;
 
   protected : virtual void nt_structured_5F_if_5F_instruction_parse (class C_Lexique_piccolo_5F_lexique * inLexique) = 0 ;
@@ -5501,6 +5503,7 @@ class cParser_pic_31__38__5F_syntax {
   protected : virtual void nt_structured_5F_instruction_ (class GALGAS_pic_31__38_PiccoloInstruction & outArgument0,
                                                           class GALGAS_bool & ioArgument1,
                                                           class GALGAS_bool & ioArgument2,
+                                                          class GALGAS_labelMap & ioArgument3,
                                                           class C_Lexique_piccolo_5F_lexique * inLexique) = 0 ;
 
   protected : virtual void nt_structured_5F_instruction_parse (class C_Lexique_piccolo_5F_lexique * inLexique) = 0 ;
@@ -5545,6 +5548,7 @@ class cParser_pic_31__38__5F_syntax {
   protected : void rule_pic_31__38__5F_syntax_instruction_5F_list_i3_ (GALGAS_pic_31__38_InstructionList & outArgument0,
                                                                        GALGAS_bool & ioArgument1,
                                                                        GALGAS_bool & ioArgument2,
+                                                                       GALGAS_labelMap & ioArgument3,
                                                                        C_Lexique_piccolo_5F_lexique * inLexique) ;
 
   protected : void rule_pic_31__38__5F_syntax_instruction_5F_list_i3_parse (C_Lexique_piccolo_5F_lexique * inLexique) ;
@@ -5628,6 +5632,7 @@ class cParser_pic_31__38__5F_syntax {
   protected : void rule_pic_31__38__5F_syntax_structured_5F_instruction_i14_ (GALGAS_pic_31__38_PiccoloInstruction & outArgument0,
                                                                               GALGAS_bool & ioArgument1,
                                                                               GALGAS_bool & ioArgument2,
+                                                                              GALGAS_labelMap & ioArgument3,
                                                                               C_Lexique_piccolo_5F_lexique * inLexique) ;
 
   protected : void rule_pic_31__38__5F_syntax_structured_5F_instruction_i14_parse (C_Lexique_piccolo_5F_lexique * inLexique) ;
@@ -5638,6 +5643,7 @@ class cParser_pic_31__38__5F_syntax {
                                                                                     GALGAS_pic_31__38_PiccoloInstruction & outArgument1,
                                                                                     GALGAS_bool & ioArgument2,
                                                                                     GALGAS_bool & ioArgument3,
+                                                                                    GALGAS_labelMap & ioArgument4,
                                                                                     C_Lexique_piccolo_5F_lexique * inLexique) ;
 
   protected : void rule_pic_31__38__5F_syntax_structured_5F_if_5F_instruction_i15_parse (C_Lexique_piccolo_5F_lexique * inLexique) ;
@@ -5769,6 +5775,14 @@ class cParser_pic_31__38__5F_syntax {
   protected : virtual int32_t select_pic_31__38__5F_syntax_56 (C_Lexique_piccolo_5F_lexique *) = 0 ;
 
   protected : virtual int32_t select_pic_31__38__5F_syntax_57 (C_Lexique_piccolo_5F_lexique *) = 0 ;
+
+  protected : virtual int32_t select_pic_31__38__5F_syntax_58 (C_Lexique_piccolo_5F_lexique *) = 0 ;
+
+  protected : virtual int32_t select_pic_31__38__5F_syntax_59 (C_Lexique_piccolo_5F_lexique *) = 0 ;
+
+  protected : virtual int32_t select_pic_31__38__5F_syntax_60 (C_Lexique_piccolo_5F_lexique *) = 0 ;
+
+  protected : virtual int32_t select_pic_31__38__5F_syntax_61 (C_Lexique_piccolo_5F_lexique *) = 0 ;
 
 
 } ;
@@ -10534,6 +10548,7 @@ class cGrammar_pic_31__38__5F_include_5F_grammar : public cParser_pic_31__38__5F
   public : virtual void nt_instruction_5F_list_ (GALGAS_pic_31__38_InstructionList & outArgument0,
                                                  GALGAS_bool & ioArgument1,
                                                  GALGAS_bool & ioArgument2,
+                                                 GALGAS_labelMap & ioArgument3,
                                                  C_Lexique_piccolo_5F_lexique * inCompiler) ;
 
 //------------------------------------- 'interrupt_definition' non terminal
@@ -10618,6 +10633,7 @@ class cGrammar_pic_31__38__5F_include_5F_grammar : public cParser_pic_31__38__5F
                                                              GALGAS_pic_31__38_PiccoloInstruction & outArgument1,
                                                              GALGAS_bool & ioArgument2,
                                                              GALGAS_bool & ioArgument3,
+                                                             GALGAS_labelMap & ioArgument4,
                                                              C_Lexique_piccolo_5F_lexique * inCompiler) ;
 
 //------------------------------------- 'structured_instruction' non terminal
@@ -10631,6 +10647,7 @@ class cGrammar_pic_31__38__5F_include_5F_grammar : public cParser_pic_31__38__5F
   public : virtual void nt_structured_5F_instruction_ (GALGAS_pic_31__38_PiccoloInstruction & outArgument0,
                                                        GALGAS_bool & ioArgument1,
                                                        GALGAS_bool & ioArgument2,
+                                                       GALGAS_labelMap & ioArgument3,
                                                        C_Lexique_piccolo_5F_lexique * inCompiler) ;
 
   public : virtual int32_t select_pic_31__38__5F_syntax_0 (C_Lexique_piccolo_5F_lexique *) ;
@@ -10748,6 +10765,14 @@ class cGrammar_pic_31__38__5F_include_5F_grammar : public cParser_pic_31__38__5F
   public : virtual int32_t select_pic_31__38__5F_syntax_56 (C_Lexique_piccolo_5F_lexique *) ;
 
   public : virtual int32_t select_pic_31__38__5F_syntax_57 (C_Lexique_piccolo_5F_lexique *) ;
+
+  public : virtual int32_t select_pic_31__38__5F_syntax_58 (C_Lexique_piccolo_5F_lexique *) ;
+
+  public : virtual int32_t select_pic_31__38__5F_syntax_59 (C_Lexique_piccolo_5F_lexique *) ;
+
+  public : virtual int32_t select_pic_31__38__5F_syntax_60 (C_Lexique_piccolo_5F_lexique *) ;
+
+  public : virtual int32_t select_pic_31__38__5F_syntax_61 (C_Lexique_piccolo_5F_lexique *) ;
 
   public : virtual int32_t select_communs_0 (C_Lexique_piccolo_5F_lexique *) ;
 
@@ -11771,6 +11796,7 @@ class cParser_midrange_5F_syntax {
   protected : virtual void nt_midrange_5F_instruction_5F_list_ (class GALGAS_midrange_5F_instructionList & outArgument0,
                                                                 class GALGAS_bool & ioArgument1,
                                                                 class GALGAS_bool & ioArgument2,
+                                                                class GALGAS_labelMap & ioArgument3,
                                                                 class C_Lexique_piccolo_5F_lexique * inLexique) = 0 ;
 
   protected : virtual void nt_midrange_5F_instruction_5F_list_parse (class C_Lexique_piccolo_5F_lexique * inLexique) = 0 ;
@@ -11806,6 +11832,7 @@ class cParser_midrange_5F_syntax {
                                                                             class GALGAS_midrange_5F_instruction & outArgument1,
                                                                             class GALGAS_bool & ioArgument2,
                                                                             class GALGAS_bool & ioArgument3,
+                                                                            class GALGAS_labelMap & ioArgument4,
                                                                             class C_Lexique_piccolo_5F_lexique * inLexique) = 0 ;
 
   protected : virtual void nt_midrange_5F_structured_5F_if_5F_instruction_parse (class C_Lexique_piccolo_5F_lexique * inLexique) = 0 ;
@@ -11815,6 +11842,7 @@ class cParser_midrange_5F_syntax {
   protected : virtual void nt_midrange_5F_structured_5F_instruction_ (class GALGAS_midrange_5F_instruction & outArgument0,
                                                                       class GALGAS_bool & ioArgument1,
                                                                       class GALGAS_bool & ioArgument2,
+                                                                      class GALGAS_labelMap & ioArgument3,
                                                                       class C_Lexique_piccolo_5F_lexique * inLexique) = 0 ;
 
   protected : virtual void nt_midrange_5F_structured_5F_instruction_parse (class C_Lexique_piccolo_5F_lexique * inLexique) = 0 ;
@@ -11881,6 +11909,7 @@ class cParser_midrange_5F_syntax {
   protected : void rule_midrange_5F_syntax_midrange_5F_instruction_5F_list_i1_ (GALGAS_midrange_5F_instructionList & outArgument0,
                                                                                 GALGAS_bool & ioArgument1,
                                                                                 GALGAS_bool & ioArgument2,
+                                                                                GALGAS_labelMap & ioArgument3,
                                                                                 C_Lexique_piccolo_5F_lexique * inLexique) ;
 
   protected : void rule_midrange_5F_syntax_midrange_5F_instruction_5F_list_i1_parse (C_Lexique_piccolo_5F_lexique * inLexique) ;
@@ -11908,6 +11937,7 @@ class cParser_midrange_5F_syntax {
   protected : void rule_midrange_5F_syntax_midrange_5F_structured_5F_instruction_i4_ (GALGAS_midrange_5F_instruction & outArgument0,
                                                                                       GALGAS_bool & ioArgument1,
                                                                                       GALGAS_bool & ioArgument2,
+                                                                                      GALGAS_labelMap & ioArgument3,
                                                                                       C_Lexique_piccolo_5F_lexique * inLexique) ;
 
   protected : void rule_midrange_5F_syntax_midrange_5F_structured_5F_instruction_i4_parse (C_Lexique_piccolo_5F_lexique * inLexique) ;
@@ -11918,6 +11948,7 @@ class cParser_midrange_5F_syntax {
                                                                                             GALGAS_midrange_5F_instruction & outArgument1,
                                                                                             GALGAS_bool & ioArgument2,
                                                                                             GALGAS_bool & ioArgument3,
+                                                                                            GALGAS_labelMap & ioArgument4,
                                                                                             C_Lexique_piccolo_5F_lexique * inLexique) ;
 
   protected : void rule_midrange_5F_syntax_midrange_5F_structured_5F_if_5F_instruction_i5_parse (C_Lexique_piccolo_5F_lexique * inLexique) ;

@@ -169,19 +169,20 @@ label importBootloaderSpecification
 rule <midrange_instruction_list>
   !@midrange_instructionList outInstructionList
   ?!@bool ioNeedsComputedGoto2
-  ?!@bool ioNeedsComputedGoto4 {
+  ?!@bool ioNeedsComputedGoto4
+  ?!@labelMap ioLabelMap
+  {
   outInstructionList = @midrange_instructionList. emptyList
   repeat
   while
-    @midrange_instruction instruction
-    <midrange_simple_instruction> ?instruction
+    <midrange_simple_instruction> ?let instruction
     outInstructionList += !instruction
   while
-    @midrange_instruction instruction
     <midrange_structured_instruction>
-      ?instruction
+      ?let instruction
       !?ioNeedsComputedGoto2
       !?ioNeedsComputedGoto4
+      !?ioLabelMap
     outInstructionList += !instruction
   end
 }
@@ -199,18 +200,19 @@ rule <midrange_interrupt_definition>
   $,$
   $identifier$ ?var  @lstring secondSaveRegister
   ${$
-  @midrange_instructionList instructionList
+  @labelMap labelMap = {}
   <midrange_instruction_list>
-    ?instructionList
+    ?let instructionList
     !?ioNeedsComputedGoto2
     !?ioNeedsComputedGoto4
+    !?labelMap
   $}$
   ioInterruptDefinitionList +=
    !interruptionLocation
    !instructionList
    !firstSaveRegister
    !secondSaveRegister
-   !@location.here
+   !.here
 }
 
 #----------------------------------------------------*
@@ -218,7 +220,8 @@ rule <midrange_interrupt_definition>
 rule <midrange_routine_definition>
   ?!@midrange_routineDefinitionList ioRoutineDefinitionList
   ?!@bool ioNeedsComputedGoto2 
-  ?!@bool ioNeedsComputedGoto4 {
+  ?!@bool ioNeedsComputedGoto4
+{
   @bool noreturn
   select
     noreturn = false
@@ -279,11 +282,12 @@ rule <midrange_routine_definition>
     end
   end
   ${$
-  @midrange_instructionList instructionList
+  @labelMap labelMap = {}
   <midrange_instruction_list>
-    ?instructionList
+    ?let instructionList
     !?ioNeedsComputedGoto2
     !?ioNeedsComputedGoto4
+    !?labelMap
   $}$
   ioRoutineDefinitionList +=
     !routineName
@@ -301,7 +305,9 @@ rule <midrange_routine_definition>
 rule <midrange_structured_instruction>
   !@midrange_instruction outInstruction
   ?!@bool ioNeedsComputedGoto2
-  ?!@bool ioNeedsComputedGoto4 {
+  ?!@bool ioNeedsComputedGoto4
+  ?!@labelMap ioLabelMap
+ {
   select
     $do$
     @lstring doLabel
@@ -309,6 +315,7 @@ rule <midrange_structured_instruction>
       doLabel = .new {!"" !.here}
     or
       $label$ ?doLabel
+      [!?ioLabelMap insertKey !doLabel]
     end
     let instructionLocation = @location.here
     $($
@@ -318,7 +325,11 @@ rule <midrange_structured_instruction>
     $...$
     <immediate_expression> ?let @immediatExpression highBoundExpression
     $)$
-    <midrange_instruction_list> ?let @midrange_instructionList instructionList !?ioNeedsComputedGoto2 !?ioNeedsComputedGoto4
+    <midrange_instruction_list>
+      ?let @midrange_instructionList instructionList
+      !?ioNeedsComputedGoto2
+      !?ioNeedsComputedGoto4
+      !?ioLabelMap
     outInstruction = @midrange_instruction_STATIC_REPEAT. new {
       !instructionLocation
       !constantName
@@ -379,6 +390,7 @@ rule <midrange_structured_instruction>
       ?instructionList
       !?ioNeedsComputedGoto2
       !?ioNeedsComputedGoto4
+      !?ioLabelMap
     $end$
     outInstruction = @midrange_instruction_savebank. new {
       !instructionLocation
@@ -395,10 +407,14 @@ rule <midrange_structured_instruction>
       foreverLabel = .new {!"" !.here}
     or
       $label$ ?foreverLabel
+      [!?ioLabelMap insertKey !foreverLabel]
     end
     @location instructionLocation = @location.here
-    @midrange_instructionList instructionList
-    <midrange_instruction_list> ?instructionList !?ioNeedsComputedGoto2 !?ioNeedsComputedGoto4
+    <midrange_instruction_list>
+      ?let instructionList
+      !?ioNeedsComputedGoto2
+      !?ioNeedsComputedGoto4
+      !?ioLabelMap
     $end$
     @lstring endForeverLabel
     select
@@ -471,7 +487,8 @@ rule <midrange_structured_instruction>
       !instruction
       !increment
       !registerExpression
-      !w_isTarget}
+      !w_isTarget
+    }
   or
     $if$
     @lstring ifLabel
@@ -479,12 +496,14 @@ rule <midrange_structured_instruction>
       ifLabel = .new {!"" !.here}
     or
       $label$ ?ifLabel
+      [!?ioLabelMap insertKey !ifLabel]
     end
     <midrange_structured_if_instruction>
       !ifLabel
       ?outInstruction
       !?ioNeedsComputedGoto2
       !?ioNeedsComputedGoto4
+      !?ioLabelMap
     $end$
     @lstring endIfLabel
     select
@@ -503,6 +522,7 @@ rule <midrange_structured_instruction>
       doLabel = .new {!"" !.here}
     or
       $label$ ?doLabel
+      [!?ioLabelMap insertKey !doLabel]
     end
     @location instructionLocation = @location.here
     @midrange_instructionList repeatedInstructionList
@@ -510,6 +530,7 @@ rule <midrange_structured_instruction>
       ?repeatedInstructionList
       !?ioNeedsComputedGoto2
       !?ioNeedsComputedGoto4
+      !?ioLabelMap
     @location endOfRepeatedInstructionList = @location.here
     var whilePartList =@midrange_partList.emptyList{}
     repeat
@@ -526,11 +547,11 @@ rule <midrange_structured_instruction>
       end 
       @midrange_conditionExpression whileCondition
       <midrange_condition_expression> ?whileCondition
-      @midrange_instructionList instructionList
       <midrange_instruction_list>
-        ?instructionList
+        ?let instructionList
         !?ioNeedsComputedGoto2
         !?ioNeedsComputedGoto4
+      !?ioLabelMap
       whilePartList += !whileCondition !instructionList !@location.here
     while
     end
@@ -578,15 +599,18 @@ rule <midrange_structured_if_instruction>
   ?let @lstring ifLabel
   !@midrange_instruction outInstruction
   ?!@bool ioNeedsComputedGoto2
-  ?!@bool ioNeedsComputedGoto4 {
+  ?!@bool ioNeedsComputedGoto4
+  ?!@labelMap ioLabelMap
+
+{
   @location instructionLocation = @location.here
   @midrange_conditionExpression structured_if_condition
   <midrange_condition_expression> ?structured_if_condition
-  @midrange_instructionList thenInstructionList
   <midrange_instruction_list>
-    ?thenInstructionList
+    ?let thenInstructionList
     !?ioNeedsComputedGoto2
     !?ioNeedsComputedGoto4
+    !?ioLabelMap
   @midrange_instructionList elseInstructionList
   select
     elseInstructionList = @midrange_instructionList. emptyList
@@ -602,12 +626,12 @@ rule <midrange_structured_if_instruction>
       error elsifIfLabel : "elsif label does not match with 'if' label, it should be "
          + (if ifLabel.string != "" then ifLabel.string else "empty" end)
     end 
-    @midrange_instruction elsifPartInstruction
     <midrange_structured_if_instruction>
       !ifLabel
-      ?elsifPartInstruction
+      ?let elsifPartInstruction
       !?ioNeedsComputedGoto2
       !?ioNeedsComputedGoto4
+      !?ioLabelMap
     elseInstructionList = @midrange_instructionList. emptyList
     elseInstructionList += !elsifPartInstruction
   or
@@ -626,6 +650,7 @@ rule <midrange_structured_if_instruction>
       ?elseInstructionList
       !?ioNeedsComputedGoto2
       !?ioNeedsComputedGoto4
+      !?ioLabelMap
   end
   @location endOfElsePartLocation = @location.here
   outInstruction = @midrange_instruction_structured_if. new {

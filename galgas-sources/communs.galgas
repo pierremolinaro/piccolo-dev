@@ -311,8 +311,7 @@ rule <immediate_primary> !@immediatExpression outExpression {
     <immediate_expression> ?outExpression
     $)$
   or
-    $@$
-    $identifier$ ?var  @lstring registerName
+    $identifier$ ?let @lstring registerName
     $($
     var sliceExpressionList =@immediatSliceExpressionList.emptyList{}
     repeat

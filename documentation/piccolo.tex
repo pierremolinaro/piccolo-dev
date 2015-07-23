@@ -1,6 +1,6 @@
 %!TEX encoding = UTF-8 Unicode
 
-\documentclass[a4paper,10pt,obeyspaces,openany]{book}
+\documentclass[a4paper,11pt,obeyspaces,openany]{book}
 \usepackage{verbatim}
 % L'option 'openany' permet de démarrer un chapitre sur une page paire
 
@@ -356,7 +356,7 @@
 %-----------------------------------------------------------------------------------------------------------------------*
 
 \usepackage{array}
-\usepackage[table]{xcolor}
+\usepackage[table,dvipsnames]{xcolor}
 
 \usepackage{arydshln} % Pour faire des séparateurs de ligne en pointillés (\hdashline)
 \renewcommand\dashlinedash{1pt}
@@ -558,6 +558,7 @@
 \newcommand\characterStylePiccolo[1]{\textcolor{orange}{#1}}
 \newcommand\stringStylePiccolo[1]{\textcolor{gray}{#1}}
 \newcommand\commentStylePiccolo[1]{\textcolor{red}{#1}}
+\newcommand\labelStylePiccolo[1]{\textcolor{ForestGreen}{#1}}
 
 \newcommand\lexicalErrorPiccolo{\textcolor{red}{\textbullet ERRLEX\textbullet}}
 
@@ -593,7 +594,7 @@
 \makeatother
 
 %-----------------------------------------------------------------------------------------------------------------------*
-% COMMANDE \ggs : affichage de code en ligne galgas                                                                     *
+% COMMANDE \pic : affichage de code en ligne Piccolo
 %-----------------------------------------------------------------------------------------------------------------------*
 
 \newcommand\keywordStylepiccolo[1]{\textcolor{blue}{\textbf{#1}}}
@@ -603,6 +604,7 @@
 \newcommand\characterStylepiccolo[1]{\textcolor{orange}{#1}}
 \newcommand\stringStylepiccolo[1]{\textcolor{gray}{#1}}
 \newcommand\commentStylepiccolo[1]{\textcolor{red}{#1}}
+\newcommand\labelStylepiccolo[1]{\textcolor{ForestGreen}{#1}}
 
 \newcommand\lexicalErrorpiccolo{\textcolor{red}{\textbullet ERRLEX\textbullet}}
 

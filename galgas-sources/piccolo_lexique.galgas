@@ -159,8 +159,8 @@ rule 'a'->'z' |  'A'->'Z' {
 }
 
 #------------------------------- Label ------------------
-$label$ ! tokenString  style labelStyle error message "a label beginning with '$'"
-rule '$' {
+$label$ ! tokenString  style labelStyle error message "a label beginning with '@'"
+rule '@' {
   repeat
     enterCharacterIntoString (!?tokenString !* )
   while 'a'->'z' | 'A'->'Z' | '_' | '0'->'9' :
@@ -267,7 +267,7 @@ list delimitorsList style delimitersStyle error message "the '%K' delimitor"{
   "*-", "+*",   ";",  ":",  "==", "<", ">",
   "[",  "]",    ".",  "!", "&", "|", "=",
   "{",  "}", "(", ")", "/", "-", "+", "?",
-  "^", "<<", ">>", "~", "%", "@", "..."
+  "^", "<<", ">>", "~", "%", "..."
 }
 
 rule list delimitorsList
