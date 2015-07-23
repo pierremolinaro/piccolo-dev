@@ -78,6 +78,7 @@ class C_Lexique_piccolo_5F_lexique : public C_Lexique {
 //--- Terminal symbols enumeration
   public : enum {kToken_,
    kToken_identifier,
+   kToken_label,
    kToken_integer,
    kToken_literal_5F_char,
    kToken_literal_5F_string,
@@ -274,7 +275,7 @@ class C_Lexique_piccolo_5F_lexique : public C_Lexique {
   protected : virtual C_String getMessageForTerminal (const int16_t inTerminalSymbol) const ;
 
 //--- Get terminal count
-  public : virtual int16_t terminalVocabularyCount (void) const { return 153 ; }
+  public : virtual int16_t terminalVocabularyCount (void) const { return 154 ; }
 
 //--- Get Token String
   public : virtual C_String getCurrentTokenString (const cToken * inTokenPtr) const ;
@@ -4905,7 +4906,8 @@ class cParser_baseline_5F_syntax {
 
   protected : virtual void nt_baseline_5F_simple_5F_instruction_indexing (class C_Lexique_piccolo_5F_lexique * inLexique) = 0 ;
 
-  protected : virtual void nt_baseline_5F_structured_5F_if_5F_instruction_ (class GALGAS_baseline_5F_instruction & outArgument0,
+  protected : virtual void nt_baseline_5F_structured_5F_if_5F_instruction_ (const class GALGAS_lstring constinArgument0,
+                                                                            class GALGAS_baseline_5F_instruction & outArgument1,
                                                                             class C_Lexique_piccolo_5F_lexique * inLexique) = 0 ;
 
   protected : virtual void nt_baseline_5F_structured_5F_if_5F_instruction_parse (class C_Lexique_piccolo_5F_lexique * inLexique) = 0 ;
@@ -5015,7 +5017,8 @@ class cParser_baseline_5F_syntax {
 
   protected : void rule_baseline_5F_syntax_baseline_5F_structured_5F_instruction_i3_indexing (C_Lexique_piccolo_5F_lexique * inLexique) ;
 
-  protected : void rule_baseline_5F_syntax_baseline_5F_structured_5F_if_5F_instruction_i4_ (GALGAS_baseline_5F_instruction & outArgument0,
+  protected : void rule_baseline_5F_syntax_baseline_5F_structured_5F_if_5F_instruction_i4_ (const GALGAS_lstring constinArgument0,
+                                                                                            GALGAS_baseline_5F_instruction & outArgument1,
                                                                                             C_Lexique_piccolo_5F_lexique * inLexique) ;
 
   protected : void rule_baseline_5F_syntax_baseline_5F_structured_5F_if_5F_instruction_i4_parse (C_Lexique_piccolo_5F_lexique * inLexique) ;
@@ -5110,6 +5113,28 @@ class cParser_baseline_5F_syntax {
   protected : virtual int32_t select_baseline_5F_syntax_20 (C_Lexique_piccolo_5F_lexique *) = 0 ;
 
   protected : virtual int32_t select_baseline_5F_syntax_21 (C_Lexique_piccolo_5F_lexique *) = 0 ;
+
+  protected : virtual int32_t select_baseline_5F_syntax_22 (C_Lexique_piccolo_5F_lexique *) = 0 ;
+
+  protected : virtual int32_t select_baseline_5F_syntax_23 (C_Lexique_piccolo_5F_lexique *) = 0 ;
+
+  protected : virtual int32_t select_baseline_5F_syntax_24 (C_Lexique_piccolo_5F_lexique *) = 0 ;
+
+  protected : virtual int32_t select_baseline_5F_syntax_25 (C_Lexique_piccolo_5F_lexique *) = 0 ;
+
+  protected : virtual int32_t select_baseline_5F_syntax_26 (C_Lexique_piccolo_5F_lexique *) = 0 ;
+
+  protected : virtual int32_t select_baseline_5F_syntax_27 (C_Lexique_piccolo_5F_lexique *) = 0 ;
+
+  protected : virtual int32_t select_baseline_5F_syntax_28 (C_Lexique_piccolo_5F_lexique *) = 0 ;
+
+  protected : virtual int32_t select_baseline_5F_syntax_29 (C_Lexique_piccolo_5F_lexique *) = 0 ;
+
+  protected : virtual int32_t select_baseline_5F_syntax_30 (C_Lexique_piccolo_5F_lexique *) = 0 ;
+
+  protected : virtual int32_t select_baseline_5F_syntax_31 (C_Lexique_piccolo_5F_lexique *) = 0 ;
+
+  protected : virtual int32_t select_baseline_5F_syntax_32 (C_Lexique_piccolo_5F_lexique *) = 0 ;
 
 
 } ;

@@ -125,6 +125,12 @@ rule <baseline_structured_instruction>
   !@baseline_instruction outInstruction {
   select
     $do$
+    @lstring doLabel
+    select
+      doLabel = .new {!"" !.here}
+    or
+      $label$ ?doLabel
+    end
     let @location instructionLocation = @location.here
     $($
     $identifier$ ?let constantName
@@ -143,6 +149,16 @@ rule <baseline_structured_instruction>
       !.here
     }
     $end$
+    @lstring endDoLabel
+    select
+      endDoLabel = .new {!"" !.here}
+    or
+      $label$ ?endDoLabel
+    end
+    if doLabel.string != endDoLabel.string then
+      error endDoLabel : "end label does not match with 'do' label, it should be "
+         + (if doLabel.string != "" then doLabel.string else "empty" end)
+    end 
   or
     $jump$
     @location instructionLocation = @location.here
@@ -159,10 +175,25 @@ rule <baseline_structured_instruction>
       !targetLabelName}
   or
     $forever$
-    @location instructionLocation = @location.here
-    @baseline_instructionList instructionList
-    <baseline_instruction_list> ?instructionList
+    @lstring foreverLabel
+    select
+      foreverLabel = .new {!"" !.here}
+    or
+      $label$ ?foreverLabel
+    end
+    let instructionLocation = @location.here
+    <baseline_instruction_list> ?let instructionList
     $end$
+    @lstring endForeverLabel
+    select
+      endForeverLabel = .new {!"" !.here}
+    or
+      $label$ ?endForeverLabel
+    end
+    if foreverLabel.string != endForeverLabel.string then
+      error endForeverLabel : "end label does not match with 'fovever' label, it should be "
+         + (if foreverLabel.string != "" then foreverLabel.string else "empty" end)
+    end 
     outInstruction = @baseline_instruction_FOREVER. new {
       !instructionLocation
       !instructionList
@@ -227,28 +258,64 @@ rule <baseline_structured_instruction>
       !w_isTarget}
   or
     $if$
-    <baseline_structured_if_instruction>
-      ?outInstruction
+    @lstring ifLabel
+    select
+      ifLabel = .new {!"" !.here}
+    or
+      $label$ ?ifLabel
+    end
+    <baseline_structured_if_instruction> !ifLabel ?outInstruction
     $end$
+    @lstring endIfLabel
+    select
+      endIfLabel = .new {!"" !.here}
+    or
+      $label$ ?endIfLabel
+    end
+    if ifLabel.string != endIfLabel.string then
+      error endIfLabel : "end label does not match with 'if' label, it should be "
+         + (if ifLabel.string != "" then ifLabel.string else "empty" end)
+    end 
   or
     $do$
-    @location instructionLocation = @location.here
-    @baseline_instructionList repeatedInstructionList
-    <baseline_instruction_list>
-      ?repeatedInstructionList
-    @location endOfRepeatedInstructionList = @location.here
-    var whilePartList =@baseline_partList.emptyList{}
+    @lstring doLabel
+    select
+      doLabel = .new {!"" !.here}
+    or
+      $label$ ?doLabel
+    end
+    let instructionLocation = @location.here
+    <baseline_instruction_list> ?let repeatedInstructionList
+    let endOfRepeatedInstructionList = @location.here
+    var whilePartList = @baseline_partList.emptyList{}
     repeat
       $while$
-      @baseline_conditionExpression whileCondition
-      <baseline_condition_expression> ?whileCondition
-      @baseline_instructionList instructionList
-      <baseline_instruction_list>
-        ?instructionList
+      @lstring whileLabel
+      select
+        whileLabel = .new {!"" !.here}
+      or
+        $label$ ?whileLabel
+      end
+      if doLabel.string != whileLabel.string then
+        error whileLabel : "'while' label does not match with 'do' label, it should be "
+           + (if doLabel.string != "" then doLabel.string else "empty" end)
+      end 
+      <baseline_condition_expression> ?let whileCondition
+      <baseline_instruction_list> ?let instructionList
       whilePartList += !whileCondition !instructionList !@location.here
     while
     end
     $end$
+    @lstring endDoLabel
+    select
+      endDoLabel = .new {!"" !.here}
+    or
+      $label$ ?endDoLabel
+    end
+    if doLabel.string != endDoLabel.string then
+      error endDoLabel : "end label does not match with 'do' label, it should be "
+         + (if doLabel.string != "" then doLabel.string else "empty" end)
+    end 
     outInstruction = @baseline_instruction_do_while. new {
       !instructionLocation
       !repeatedInstructionList
@@ -265,7 +332,9 @@ rule <baseline_structured_instruction>
 #----------------------------------------------------*
 
 rule <baseline_structured_if_instruction>
-  !@baseline_instruction outInstruction {
+  ?let @lstring ifLabel
+  !@baseline_instruction outInstruction
+ {
   @location instructionLocation = @location.here
   @baseline_conditionExpression structured_if_condition
   <baseline_condition_expression> ?structured_if_condition
@@ -277,13 +346,32 @@ rule <baseline_structured_if_instruction>
     elseInstructionList = @baseline_instructionList. emptyList
   or
     $elsif$
+    @lstring elsifIfLabel
+    select
+      elsifIfLabel = .new {!"" !.here}
+    or
+      $label$ ?elsifIfLabel
+    end
+    if ifLabel.string != elsifIfLabel.string then
+      error elsifIfLabel : "elsif label does not match with 'if' label, it should be "
+         + (if ifLabel.string != "" then ifLabel.string else "empty" end)
+    end 
     @baseline_instruction elsifPartInstruction
-    <baseline_structured_if_instruction>
-      ?elsifPartInstruction
+    <baseline_structured_if_instruction> !ifLabel ?elsifPartInstruction
     elseInstructionList = @baseline_instructionList. emptyList
     elseInstructionList += !elsifPartInstruction
   or
     $else$
+    @lstring elseLabel
+    select
+      elseLabel = .new {!"" !.here}
+    or
+      $label$ ?elseLabel
+    end
+    if ifLabel.string != elseLabel.string then
+      error elseLabel : "else label does not match with 'if' label, it should be "
+         + (if ifLabel.string != "" then ifLabel.string else "empty" end)
+    end 
     <baseline_instruction_list>
       ?elseInstructionList
   end

@@ -304,6 +304,12 @@ rule <midrange_structured_instruction>
   ?!@bool ioNeedsComputedGoto4 {
   select
     $do$
+    @lstring doLabel
+    select
+      doLabel = .new {!"" !.here}
+    or
+      $label$ ?doLabel
+    end
     let instructionLocation = @location.here
     $($
     $identifier$ ?let constantName
@@ -321,6 +327,16 @@ rule <midrange_structured_instruction>
       !instructionList
       !@location.here}
     $end$
+    @lstring endDoLabel
+    select
+      endDoLabel = .new {!"" !.here}
+    or
+      $label$ ?endDoLabel
+    end
+    if doLabel.string != endDoLabel.string then
+      error endDoLabel : "end label does not match with 'do' label, it should be "
+         + (if doLabel.string != "" then doLabel.string else "empty" end)
+    end 
   or
     $checkbank$
     $integer$ ?var  @luint bankIndex
@@ -374,10 +390,26 @@ rule <midrange_structured_instruction>
     outInstruction = @midrange_instruction_nobanksel. new { !@location.here}
   or
     $forever$
+    @lstring foreverLabel
+    select
+      foreverLabel = .new {!"" !.here}
+    or
+      $label$ ?foreverLabel
+    end
     @location instructionLocation = @location.here
     @midrange_instructionList instructionList
     <midrange_instruction_list> ?instructionList !?ioNeedsComputedGoto2 !?ioNeedsComputedGoto4
     $end$
+    @lstring endForeverLabel
+    select
+      endForeverLabel = .new {!"" !.here}
+    or
+      $label$ ?endForeverLabel
+    end
+    if foreverLabel.string != endForeverLabel.string then
+      error endForeverLabel : "end label does not match with 'fovever' label, it should be "
+         + (if foreverLabel.string != "" then foreverLabel.string else "empty" end)
+    end 
     outInstruction = @midrange_instruction_FOREVER. new {
       !instructionLocation
       !instructionList
@@ -442,13 +474,36 @@ rule <midrange_structured_instruction>
       !w_isTarget}
   or
     $if$
+    @lstring ifLabel
+    select
+      ifLabel = .new {!"" !.here}
+    or
+      $label$ ?ifLabel
+    end
     <midrange_structured_if_instruction>
+      !ifLabel
       ?outInstruction
       !?ioNeedsComputedGoto2
       !?ioNeedsComputedGoto4
     $end$
+    @lstring endIfLabel
+    select
+      endIfLabel = .new {!"" !.here}
+    or
+      $label$ ?endIfLabel
+    end
+    if ifLabel.string != endIfLabel.string then
+      error endIfLabel : "end label does not match with 'if' label, it should be "
+         + (if ifLabel.string != "" then ifLabel.string else "empty" end)
+    end 
   or
     $do$
+    @lstring doLabel
+    select
+      doLabel = .new {!"" !.here}
+    or
+      $label$ ?doLabel
+    end
     @location instructionLocation = @location.here
     @midrange_instructionList repeatedInstructionList
     <midrange_instruction_list>
@@ -459,6 +514,16 @@ rule <midrange_structured_instruction>
     var whilePartList =@midrange_partList.emptyList{}
     repeat
       $while$
+      @lstring whileLabel
+      select
+        whileLabel = .new {!"" !.here}
+      or
+        $label$ ?whileLabel
+      end
+      if doLabel.string != whileLabel.string then
+        error whileLabel : "'while' label does not match with 'do' label, it should be "
+           + (if doLabel.string != "" then doLabel.string else "empty" end)
+      end 
       @midrange_conditionExpression whileCondition
       <midrange_condition_expression> ?whileCondition
       @midrange_instructionList instructionList
@@ -470,6 +535,16 @@ rule <midrange_structured_instruction>
     while
     end
     $end$
+    @lstring endDoLabel
+    select
+      endDoLabel = .new {!"" !.here}
+    or
+      $label$ ?endDoLabel
+    end
+    if doLabel.string != endDoLabel.string then
+      error endDoLabel : "end label does not match with 'do' label, it should be "
+         + (if doLabel.string != "" then doLabel.string else "empty" end)
+    end 
     outInstruction = @midrange_instruction_do_while. new {
       !instructionLocation
       !repeatedInstructionList
@@ -500,6 +575,7 @@ rule <midrange_structured_instruction>
 #----------------------------------------------------*
 
 rule <midrange_structured_if_instruction>
+  ?let @lstring ifLabel
   !@midrange_instruction outInstruction
   ?!@bool ioNeedsComputedGoto2
   ?!@bool ioNeedsComputedGoto4 {
@@ -516,8 +592,19 @@ rule <midrange_structured_if_instruction>
     elseInstructionList = @midrange_instructionList. emptyList
   or
     $elsif$
+    @lstring elsifIfLabel
+    select
+      elsifIfLabel = .new {!"" !.here}
+    or
+      $label$ ?elsifIfLabel
+    end
+    if ifLabel.string != elsifIfLabel.string then
+      error elsifIfLabel : "elsif label does not match with 'if' label, it should be "
+         + (if ifLabel.string != "" then ifLabel.string else "empty" end)
+    end 
     @midrange_instruction elsifPartInstruction
     <midrange_structured_if_instruction>
+      !ifLabel
       ?elsifPartInstruction
       !?ioNeedsComputedGoto2
       !?ioNeedsComputedGoto4
@@ -525,6 +612,16 @@ rule <midrange_structured_if_instruction>
     elseInstructionList += !elsifPartInstruction
   or
     $else$
+    @lstring elseLabel
+    select
+      elseLabel = .new {!"" !.here}
+    or
+      $label$ ?elseLabel
+    end
+    if ifLabel.string != elseLabel.string then
+      error elseLabel : "else label does not match with 'if' label, it should be "
+         + (if ifLabel.string != "" then ifLabel.string else "empty" end)
+    end 
     <midrange_instruction_list>
       ?elseInstructionList
       !?ioNeedsComputedGoto2

@@ -26,6 +26,7 @@
 
 enum {piccolo_lexique_1_,
   piccolo_lexique_1_identifier,
+  piccolo_lexique_1_label,
   piccolo_lexique_1_integer,
   piccolo_lexique_1_literal_5F_char,
   piccolo_lexique_1_literal_5F_string,
