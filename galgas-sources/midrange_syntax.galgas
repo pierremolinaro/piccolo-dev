@@ -345,7 +345,7 @@ rule <midrange_structured_instruction>
       $label$ ?endDoLabel
     end
     if doLabel.string != endDoLabel.string then
-      error endDoLabel : "end label does not match with 'do' label, it should be "
+      error endDoLabel : "'end' label does not match 'do' label, it should be "
          + (if doLabel.string != "" then doLabel.string else "empty" end)
     end 
   or
@@ -423,7 +423,7 @@ rule <midrange_structured_instruction>
       $label$ ?endForeverLabel
     end
     if foreverLabel.string != endForeverLabel.string then
-      error endForeverLabel : "end label does not match with 'fovever' label, it should be "
+      error endForeverLabel : "'end' label does not match 'fovever' label, it should be "
          + (if foreverLabel.string != "" then foreverLabel.string else "empty" end)
     end 
     outInstruction = @midrange_instruction_FOREVER. new {
@@ -512,7 +512,7 @@ rule <midrange_structured_instruction>
       $label$ ?endIfLabel
     end
     if ifLabel.string != endIfLabel.string then
-      error endIfLabel : "end label does not match with 'if' label, it should be "
+      error endIfLabel : "'end' label does not match 'if' label, it should be "
          + (if ifLabel.string != "" then ifLabel.string else "empty" end)
     end 
   or
@@ -542,7 +542,7 @@ rule <midrange_structured_instruction>
         $label$ ?whileLabel
       end
       if doLabel.string != whileLabel.string then
-        error whileLabel : "'while' label does not match with 'do' label, it should be "
+        error whileLabel : "'while' label does not match 'do' label, it should be "
            + (if doLabel.string != "" then doLabel.string else "empty" end)
       end 
       @midrange_conditionExpression whileCondition
@@ -563,7 +563,7 @@ rule <midrange_structured_instruction>
       $label$ ?endDoLabel
     end
     if doLabel.string != endDoLabel.string then
-      error endDoLabel : "end label does not match with 'do' label, it should be "
+      error endDoLabel : "'end' label does not match 'do' label, it should be "
          + (if doLabel.string != "" then doLabel.string else "empty" end)
     end 
     outInstruction = @midrange_instruction_do_while. new {
@@ -623,7 +623,7 @@ rule <midrange_structured_if_instruction>
       $label$ ?elsifIfLabel
     end
     if ifLabel.string != elsifIfLabel.string then
-      error elsifIfLabel : "elsif label does not match with 'if' label, it should be "
+      error elsifIfLabel : "'elsif' label does not match 'if' label, it should be "
          + (if ifLabel.string != "" then ifLabel.string else "empty" end)
     end 
     <midrange_structured_if_instruction>
@@ -643,7 +643,7 @@ rule <midrange_structured_if_instruction>
       $label$ ?elseLabel
     end
     if ifLabel.string != elseLabel.string then
-      error elseLabel : "else label does not match with 'if' label, it should be "
+      error elseLabel : "'else' label does not match 'if' label, it should be "
          + (if ifLabel.string != "" then ifLabel.string else "empty" end)
     end 
     <midrange_instruction_list>

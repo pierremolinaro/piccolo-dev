@@ -504,7 +504,7 @@ rule <structured_instruction>
         $label$ ?caseLabel
       end
       if switchLabel.string != caseLabel.string then
-        error caseLabel : "'case' label does not match with 'switch' label, it should be "
+        error caseLabel : "'case' label does not match 'switch' label, it should be "
            + (if switchLabel.string != "" then switchLabel.string else "empty" end)
       end 
       let @location caseLocation = @location.here
@@ -547,7 +547,7 @@ rule <structured_instruction>
         $label$ ?elseLabel
       end
       if switchLabel.string != elseLabel.string then
-        error elseLabel : "'else' label does not match with 'switch' label, it should be "
+        error elseLabel : "'else' label does not match 'switch' label, it should be "
            + (if switchLabel.string != "" then switchLabel.string else "empty" end)
       end 
       elseLocation = @location.here
@@ -570,7 +570,7 @@ rule <structured_instruction>
       $label$ ?endSwitchLabel
     end
     if switchLabel.string != endSwitchLabel.string then
-      error switchLabel : "end label does not match with 'switch' label, it should be "
+      error switchLabel : "'end' label does not match 'switch' label, it should be "
          + (if switchLabel.string != "" then switchLabel.string else "empty" end)
     end 
   or
@@ -637,7 +637,7 @@ rule <structured_instruction>
       $label$ ?endDoLabel
     end
     if doLabel.string != endDoLabel.string then
-      error endDoLabel : "end label does not match with 'do' label, it should be "
+      error endDoLabel : "'end' label does not match 'do' label, it should be "
          + (if doLabel.string != "" then doLabel.string else "empty" end)
     end 
   or
@@ -797,7 +797,7 @@ rule <structured_instruction>
       $label$ ?endForeverLabel
     end
     if foreverLabel.string != endForeverLabel.string then
-      error endForeverLabel : "end label does not match with 'fovever' label, it should be "
+      error endForeverLabel : "'end' label does not match 'fovever' label, it should be "
          + (if foreverLabel.string != "" then foreverLabel.string else "empty" end)
     end 
     outInstruction = @pic18Instruction_FOREVER. new {
@@ -918,7 +918,7 @@ rule <structured_instruction>
       $label$ ?endIfLabel
     end
     if ifLabel.string != endIfLabel.string then
-      error endIfLabel : "end label does not match with 'if' label, it should be "
+      error endIfLabel : "'end' label does not match 'if' label, it should be "
          + (if ifLabel.string != "" then ifLabel.string else "empty" end)
     end 
   or
@@ -948,7 +948,7 @@ rule <structured_instruction>
         $label$ ?whileLabel
       end
       if doLabel.string != whileLabel.string then
-        error whileLabel : "'while' label does not match with 'do' label, it should be "
+        error whileLabel : "'while' label does not match 'do' label, it should be "
            + (if doLabel.string != "" then doLabel.string else "empty" end)
       end 
       @pic18ConditionExpression whileCondition
@@ -970,7 +970,7 @@ rule <structured_instruction>
       $label$ ?endDoLabel
     end
     if doLabel.string != endDoLabel.string then
-      error endDoLabel : "end label does not match with 'do' label, it should be "
+      error endDoLabel : "'end' label does not match 'do' label, it should be "
          + (if doLabel.string != "" then doLabel.string else "empty" end)
     end 
     outInstruction = @pic18Instruction_do_while. new {
@@ -1118,7 +1118,7 @@ rule <structured_if_instruction>
       $label$ ?elsifIfLabel
     end
     if ifLabel.string != elsifIfLabel.string then
-      error elsifIfLabel : "elsif label does not match with 'if' label, it should be "
+      error elsifIfLabel : "'elsif' label does not match 'if' label, it should be "
          + (if ifLabel.string != "" then ifLabel.string else "empty" end)
     end 
     @pic18PiccoloInstruction elsifPartInstruction
@@ -1139,7 +1139,7 @@ rule <structured_if_instruction>
       $label$ ?elsifLabel
     end
     if ifLabel.string != elsifLabel.string then
-      error elsifLabel : "else label does not match with 'if' label, it should be "
+      error elsifLabel : "'else' label does not match 'if' label, it should be "
          + (if ifLabel.string != "" then ifLabel.string else "empty" end)
     end 
     <instruction_list>

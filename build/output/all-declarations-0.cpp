@@ -15656,7 +15656,7 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_structured_
         temp_1 = GALGAS_string ("empty") ;
       }
       GALGAS_location location_3 (var_endDoLabel.reader_location (HERE)) ; // Implicit use of 'location' reader
-      inCompiler->emitSemanticError (location_3, GALGAS_string ("end label does not match with 'do' label, it should be ").add_operation (temp_1, inCompiler COMMA_SOURCE_FILE ("baseline_syntax.galgas", 166))  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 166)) ;
+      inCompiler->emitSemanticError (location_3, GALGAS_string ("'end' label does not match 'do' label, it should be ").add_operation (temp_1, inCompiler COMMA_SOURCE_FILE ("baseline_syntax.galgas", 166))  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 166)) ;
     }
   } break ;
   case 2: {
@@ -15716,7 +15716,7 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_structured_
         temp_5 = GALGAS_string ("empty") ;
       }
       GALGAS_location location_7 (var_endForeverLabel.reader_location (HERE)) ; // Implicit use of 'location' reader
-      inCompiler->emitSemanticError (location_7, GALGAS_string ("end label does not match with 'fovever' label, it should be ").add_operation (temp_5, inCompiler COMMA_SOURCE_FILE ("baseline_syntax.galgas", 202))  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 202)) ;
+      inCompiler->emitSemanticError (location_7, GALGAS_string ("'end' label does not match 'fovever' label, it should be ").add_operation (temp_5, inCompiler COMMA_SOURCE_FILE ("baseline_syntax.galgas", 202))  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 202)) ;
     }
     outArgument_outInstruction = GALGAS_baseline_5F_instruction_5F_FOREVER::constructor_new (var_instructionLocation, var_instructionList, GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 208))  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 205)) ;
   } break ;
@@ -15833,7 +15833,7 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_structured_
         temp_11 = GALGAS_string ("empty") ;
       }
       GALGAS_location location_13 (var_endIfLabel.reader_location (HERE)) ; // Implicit use of 'location' reader
-      inCompiler->emitSemanticError (location_13, GALGAS_string ("end label does not match with 'if' label, it should be ").add_operation (temp_11, inCompiler COMMA_SOURCE_FILE ("baseline_syntax.galgas", 287))  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 287)) ;
+      inCompiler->emitSemanticError (location_13, GALGAS_string ("'end' label does not match 'if' label, it should be ").add_operation (temp_11, inCompiler COMMA_SOURCE_FILE ("baseline_syntax.galgas", 287))  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 287)) ;
     }
   } break ;
   case 8: {
@@ -15883,7 +15883,7 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_structured_
           temp_16 = GALGAS_string ("empty") ;
         }
         GALGAS_location location_18 (var_whileLabel.reader_location (HERE)) ; // Implicit use of 'location' reader
-        inCompiler->emitSemanticError (location_18, GALGAS_string ("'while' label does not match with 'do' label, it should be ").add_operation (temp_16, inCompiler COMMA_SOURCE_FILE ("baseline_syntax.galgas", 312))  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 312)) ;
+        inCompiler->emitSemanticError (location_18, GALGAS_string ("'while' label does not match 'do' label, it should be ").add_operation (temp_16, inCompiler COMMA_SOURCE_FILE ("baseline_syntax.galgas", 312))  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 312)) ;
       }
       GALGAS_baseline_5F_conditionExpression var_whileCondition ;
       nt_baseline_5F_condition_5F_expression_ (var_whileCondition, inCompiler) ;
@@ -15921,7 +15921,7 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_structured_
         temp_20 = GALGAS_string ("empty") ;
       }
       GALGAS_location location_22 (var_endDoLabel.reader_location (HERE)) ; // Implicit use of 'location' reader
-      inCompiler->emitSemanticError (location_22, GALGAS_string ("end label does not match with 'do' label, it should be ").add_operation (temp_20, inCompiler COMMA_SOURCE_FILE ("baseline_syntax.galgas", 328))  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 328)) ;
+      inCompiler->emitSemanticError (location_22, GALGAS_string ("'end' label does not match 'do' label, it should be ").add_operation (temp_20, inCompiler COMMA_SOURCE_FILE ("baseline_syntax.galgas", 328))  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 328)) ;
     }
     outArgument_outInstruction = GALGAS_baseline_5F_instruction_5F_do_5F_while::constructor_new (var_instructionLocation, var_repeatedInstructionList, var_endOfRepeatedInstructionList, var_whilePartList  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 331)) ;
   } break ;
@@ -16357,7 +16357,7 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_structured_
         temp_1 = GALGAS_string ("empty") ;
       }
       GALGAS_location location_3 (var_elsifIfLabel.reader_location (HERE)) ; // Implicit use of 'location' reader
-      inCompiler->emitSemanticError (location_3, GALGAS_string ("elsif label does not match with 'if' label, it should be ").add_operation (temp_1, inCompiler COMMA_SOURCE_FILE ("baseline_syntax.galgas", 367))  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 367)) ;
+      inCompiler->emitSemanticError (location_3, GALGAS_string ("'elsif' label does not match 'if' label, it should be ").add_operation (temp_1, inCompiler COMMA_SOURCE_FILE ("baseline_syntax.galgas", 367))  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 367)) ;
     }
     GALGAS_baseline_5F_instruction var_elsifPartInstruction ;
     nt_baseline_5F_structured_5F_if_5F_instruction_ (constinArgument_ifLabel, var_elsifPartInstruction, ioArgument_ioLabelMap, inCompiler) ;
@@ -16388,7 +16388,7 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_structured_
         temp_5 = GALGAS_string ("empty") ;
       }
       GALGAS_location location_7 (var_elseLabel.reader_location (HERE)) ; // Implicit use of 'location' reader
-      inCompiler->emitSemanticError (location_7, GALGAS_string ("else label does not match with 'if' label, it should be ").add_operation (temp_5, inCompiler COMMA_SOURCE_FILE ("baseline_syntax.galgas", 382))  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 382)) ;
+      inCompiler->emitSemanticError (location_7, GALGAS_string ("'else' label does not match 'if' label, it should be ").add_operation (temp_5, inCompiler COMMA_SOURCE_FILE ("baseline_syntax.galgas", 382))  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 382)) ;
     }
     nt_baseline_5F_instruction_5F_list_ (var_elseInstructionList, ioArgument_ioLabelMap, inCompiler) ;
   } break ;

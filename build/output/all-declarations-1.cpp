@@ -10673,7 +10673,7 @@ void cParser_pic_31__38__5F_syntax::rule_pic_31__38__5F_syntax_structured_5F_ins
           temp_2 = GALGAS_string ("empty") ;
         }
         GALGAS_location location_4 (var_caseLabel.reader_location (HERE)) ; // Implicit use of 'location' reader
-        inCompiler->emitSemanticError (location_4, GALGAS_string ("'case' label does not match with 'switch' label, it should be ").add_operation (temp_2, inCompiler COMMA_SOURCE_FILE ("pic18_syntax.galgas", 507))  COMMA_SOURCE_FILE ("pic18_syntax.galgas", 507)) ;
+        inCompiler->emitSemanticError (location_4, GALGAS_string ("'case' label does not match 'switch' label, it should be ").add_operation (temp_2, inCompiler COMMA_SOURCE_FILE ("pic18_syntax.galgas", 507))  COMMA_SOURCE_FILE ("pic18_syntax.galgas", 507)) ;
       }
       GALGAS_location var_caseLocation = GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("pic18_syntax.galgas", 510)) ;
       GALGAS_pic_31__38_CaseExpressionList var_caseExpressionList = GALGAS_pic_31__38_CaseExpressionList::constructor_emptyList (SOURCE_FILE ("pic18_syntax.galgas", 511)) ;
@@ -10750,7 +10750,7 @@ void cParser_pic_31__38__5F_syntax::rule_pic_31__38__5F_syntax_structured_5F_ins
           temp_7 = GALGAS_string ("empty") ;
         }
         GALGAS_location location_9 (var_elseLabel.reader_location (HERE)) ; // Implicit use of 'location' reader
-        inCompiler->emitSemanticError (location_9, GALGAS_string ("'else' label does not match with 'switch' label, it should be ").add_operation (temp_7, inCompiler COMMA_SOURCE_FILE ("pic18_syntax.galgas", 550))  COMMA_SOURCE_FILE ("pic18_syntax.galgas", 550)) ;
+        inCompiler->emitSemanticError (location_9, GALGAS_string ("'else' label does not match 'switch' label, it should be ").add_operation (temp_7, inCompiler COMMA_SOURCE_FILE ("pic18_syntax.galgas", 550))  COMMA_SOURCE_FILE ("pic18_syntax.galgas", 550)) ;
       }
       var_elseLocation = GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("pic18_syntax.galgas", 553)) ;
       nt_instruction_5F_list_ (var_elseInstructionList, ioArgument_ioNeedsComputedGoto_32_, ioArgument_ioNeedsComputedGoto_34_, ioArgument_ioLabelMap, inCompiler) ;
@@ -10782,7 +10782,7 @@ void cParser_pic_31__38__5F_syntax::rule_pic_31__38__5F_syntax_structured_5F_ins
         temp_11 = GALGAS_string ("empty") ;
       }
       GALGAS_location location_13 (var_switchLabel.reader_location (HERE)) ; // Implicit use of 'location' reader
-      inCompiler->emitSemanticError (location_13, GALGAS_string ("end label does not match with 'switch' label, it should be ").add_operation (temp_11, inCompiler COMMA_SOURCE_FILE ("pic18_syntax.galgas", 573))  COMMA_SOURCE_FILE ("pic18_syntax.galgas", 573)) ;
+      inCompiler->emitSemanticError (location_13, GALGAS_string ("'end' label does not match 'switch' label, it should be ").add_operation (temp_11, inCompiler COMMA_SOURCE_FILE ("pic18_syntax.galgas", 573))  COMMA_SOURCE_FILE ("pic18_syntax.galgas", 573)) ;
     }
   } break ;
   case 2: {
@@ -10869,7 +10869,7 @@ void cParser_pic_31__38__5F_syntax::rule_pic_31__38__5F_syntax_structured_5F_ins
         temp_16 = GALGAS_string ("empty") ;
       }
       GALGAS_location location_18 (var_endDoLabel.reader_location (HERE)) ; // Implicit use of 'location' reader
-      inCompiler->emitSemanticError (location_18, GALGAS_string ("end label does not match with 'do' label, it should be ").add_operation (temp_16, inCompiler COMMA_SOURCE_FILE ("pic18_syntax.galgas", 640))  COMMA_SOURCE_FILE ("pic18_syntax.galgas", 640)) ;
+      inCompiler->emitSemanticError (location_18, GALGAS_string ("'end' label does not match 'do' label, it should be ").add_operation (temp_16, inCompiler COMMA_SOURCE_FILE ("pic18_syntax.galgas", 640))  COMMA_SOURCE_FILE ("pic18_syntax.galgas", 640)) ;
     }
   } break ;
   case 4: {
@@ -11092,7 +11092,7 @@ void cParser_pic_31__38__5F_syntax::rule_pic_31__38__5F_syntax_structured_5F_ins
         temp_24 = GALGAS_string ("empty") ;
       }
       GALGAS_location location_26 (var_endForeverLabel.reader_location (HERE)) ; // Implicit use of 'location' reader
-      inCompiler->emitSemanticError (location_26, GALGAS_string ("end label does not match with 'fovever' label, it should be ").add_operation (temp_24, inCompiler COMMA_SOURCE_FILE ("pic18_syntax.galgas", 800))  COMMA_SOURCE_FILE ("pic18_syntax.galgas", 800)) ;
+      inCompiler->emitSemanticError (location_26, GALGAS_string ("'end' label does not match 'fovever' label, it should be ").add_operation (temp_24, inCompiler COMMA_SOURCE_FILE ("pic18_syntax.galgas", 800))  COMMA_SOURCE_FILE ("pic18_syntax.galgas", 800)) ;
     }
     outArgument_outInstruction = GALGAS_pic_31__38_Instruction_5F_FOREVER::constructor_new (var_instructionLocation, var_instructionList, GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("pic18_syntax.galgas", 806))  COMMA_SOURCE_FILE ("pic18_syntax.galgas", 803)) ;
   } break ;
@@ -11259,7 +11259,7 @@ void cParser_pic_31__38__5F_syntax::rule_pic_31__38__5F_syntax_structured_5F_ins
         temp_33 = GALGAS_string ("empty") ;
       }
       GALGAS_location location_35 (var_endIfLabel.reader_location (HERE)) ; // Implicit use of 'location' reader
-      inCompiler->emitSemanticError (location_35, GALGAS_string ("end label does not match with 'if' label, it should be ").add_operation (temp_33, inCompiler COMMA_SOURCE_FILE ("pic18_syntax.galgas", 921))  COMMA_SOURCE_FILE ("pic18_syntax.galgas", 921)) ;
+      inCompiler->emitSemanticError (location_35, GALGAS_string ("'end' label does not match 'if' label, it should be ").add_operation (temp_33, inCompiler COMMA_SOURCE_FILE ("pic18_syntax.galgas", 921))  COMMA_SOURCE_FILE ("pic18_syntax.galgas", 921)) ;
     }
   } break ;
   case 18: {
@@ -11309,7 +11309,7 @@ void cParser_pic_31__38__5F_syntax::rule_pic_31__38__5F_syntax_structured_5F_ins
           temp_38 = GALGAS_string ("empty") ;
         }
         GALGAS_location location_40 (var_whileLabel.reader_location (HERE)) ; // Implicit use of 'location' reader
-        inCompiler->emitSemanticError (location_40, GALGAS_string ("'while' label does not match with 'do' label, it should be ").add_operation (temp_38, inCompiler COMMA_SOURCE_FILE ("pic18_syntax.galgas", 951))  COMMA_SOURCE_FILE ("pic18_syntax.galgas", 951)) ;
+        inCompiler->emitSemanticError (location_40, GALGAS_string ("'while' label does not match 'do' label, it should be ").add_operation (temp_38, inCompiler COMMA_SOURCE_FILE ("pic18_syntax.galgas", 951))  COMMA_SOURCE_FILE ("pic18_syntax.galgas", 951)) ;
       }
       GALGAS_pic_31__38_ConditionExpression var_whileCondition ;
       nt_condition_5F_expression_ (var_whileCondition, inCompiler) ;
@@ -11347,7 +11347,7 @@ void cParser_pic_31__38__5F_syntax::rule_pic_31__38__5F_syntax_structured_5F_ins
         temp_42 = GALGAS_string ("empty") ;
       }
       GALGAS_location location_44 (var_endDoLabel.reader_location (HERE)) ; // Implicit use of 'location' reader
-      inCompiler->emitSemanticError (location_44, GALGAS_string ("end label does not match with 'do' label, it should be ").add_operation (temp_42, inCompiler COMMA_SOURCE_FILE ("pic18_syntax.galgas", 973))  COMMA_SOURCE_FILE ("pic18_syntax.galgas", 973)) ;
+      inCompiler->emitSemanticError (location_44, GALGAS_string ("'end' label does not match 'do' label, it should be ").add_operation (temp_42, inCompiler COMMA_SOURCE_FILE ("pic18_syntax.galgas", 973))  COMMA_SOURCE_FILE ("pic18_syntax.galgas", 973)) ;
     }
     outArgument_outInstruction = GALGAS_pic_31__38_Instruction_5F_do_5F_while::constructor_new (var_instructionLocation, var_repeatedInstructionList, var_endOfRepeatedInstructionList, var_whilePartList  COMMA_SOURCE_FILE ("pic18_syntax.galgas", 976)) ;
   } break ;
@@ -12583,7 +12583,7 @@ void cParser_pic_31__38__5F_syntax::rule_pic_31__38__5F_syntax_structured_5F_if_
         temp_1 = GALGAS_string ("empty") ;
       }
       GALGAS_location location_3 (var_elsifIfLabel.reader_location (HERE)) ; // Implicit use of 'location' reader
-      inCompiler->emitSemanticError (location_3, GALGAS_string ("elsif label does not match with 'if' label, it should be ").add_operation (temp_1, inCompiler COMMA_SOURCE_FILE ("pic18_syntax.galgas", 1121))  COMMA_SOURCE_FILE ("pic18_syntax.galgas", 1121)) ;
+      inCompiler->emitSemanticError (location_3, GALGAS_string ("'elsif' label does not match 'if' label, it should be ").add_operation (temp_1, inCompiler COMMA_SOURCE_FILE ("pic18_syntax.galgas", 1121))  COMMA_SOURCE_FILE ("pic18_syntax.galgas", 1121)) ;
     }
     GALGAS_pic_31__38_PiccoloInstruction var_elsifPartInstruction ;
     nt_structured_5F_if_5F_instruction_ (constinArgument_ifLabel, var_elsifPartInstruction, ioArgument_ioNeedsComputedGoto_32_, ioArgument_ioNeedsComputedGoto_34_, ioArgument_ioLabelMap, inCompiler) ;
@@ -12614,7 +12614,7 @@ void cParser_pic_31__38__5F_syntax::rule_pic_31__38__5F_syntax_structured_5F_if_
         temp_5 = GALGAS_string ("empty") ;
       }
       GALGAS_location location_7 (var_elsifLabel.reader_location (HERE)) ; // Implicit use of 'location' reader
-      inCompiler->emitSemanticError (location_7, GALGAS_string ("else label does not match with 'if' label, it should be ").add_operation (temp_5, inCompiler COMMA_SOURCE_FILE ("pic18_syntax.galgas", 1142))  COMMA_SOURCE_FILE ("pic18_syntax.galgas", 1142)) ;
+      inCompiler->emitSemanticError (location_7, GALGAS_string ("'else' label does not match 'if' label, it should be ").add_operation (temp_5, inCompiler COMMA_SOURCE_FILE ("pic18_syntax.galgas", 1142))  COMMA_SOURCE_FILE ("pic18_syntax.galgas", 1142)) ;
     }
     nt_instruction_5F_list_ (var_elseInstructionList, ioArgument_ioNeedsComputedGoto_32_, ioArgument_ioNeedsComputedGoto_34_, ioArgument_ioLabelMap, inCompiler) ;
   } break ;
@@ -14417,7 +14417,7 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_structured_
         temp_1 = GALGAS_string ("empty") ;
       }
       GALGAS_location location_3 (var_endDoLabel.reader_location (HERE)) ; // Implicit use of 'location' reader
-      inCompiler->emitSemanticError (location_3, GALGAS_string ("end label does not match with 'do' label, it should be ").add_operation (temp_1, inCompiler COMMA_SOURCE_FILE ("midrange_syntax.galgas", 348))  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 348)) ;
+      inCompiler->emitSemanticError (location_3, GALGAS_string ("'end' label does not match 'do' label, it should be ").add_operation (temp_1, inCompiler COMMA_SOURCE_FILE ("midrange_syntax.galgas", 348))  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 348)) ;
     }
   } break ;
   case 2: {
@@ -14527,7 +14527,7 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_structured_
         temp_5 = GALGAS_string ("empty") ;
       }
       GALGAS_location location_7 (var_endForeverLabel.reader_location (HERE)) ; // Implicit use of 'location' reader
-      inCompiler->emitSemanticError (location_7, GALGAS_string ("end label does not match with 'fovever' label, it should be ").add_operation (temp_5, inCompiler COMMA_SOURCE_FILE ("midrange_syntax.galgas", 426))  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 426)) ;
+      inCompiler->emitSemanticError (location_7, GALGAS_string ("'end' label does not match 'fovever' label, it should be ").add_operation (temp_5, inCompiler COMMA_SOURCE_FILE ("midrange_syntax.galgas", 426))  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 426)) ;
     }
     outArgument_outInstruction = GALGAS_midrange_5F_instruction_5F_FOREVER::constructor_new (var_instructionLocation, var_instructionList, GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 432))  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 429)) ;
   } break ;
@@ -14644,7 +14644,7 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_structured_
         temp_11 = GALGAS_string ("empty") ;
       }
       GALGAS_location location_13 (var_endIfLabel.reader_location (HERE)) ; // Implicit use of 'location' reader
-      inCompiler->emitSemanticError (location_13, GALGAS_string ("end label does not match with 'if' label, it should be ").add_operation (temp_11, inCompiler COMMA_SOURCE_FILE ("midrange_syntax.galgas", 515))  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 515)) ;
+      inCompiler->emitSemanticError (location_13, GALGAS_string ("'end' label does not match 'if' label, it should be ").add_operation (temp_11, inCompiler COMMA_SOURCE_FILE ("midrange_syntax.galgas", 515))  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 515)) ;
     }
   } break ;
   case 12: {
@@ -14694,7 +14694,7 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_structured_
           temp_16 = GALGAS_string ("empty") ;
         }
         GALGAS_location location_18 (var_whileLabel.reader_location (HERE)) ; // Implicit use of 'location' reader
-        inCompiler->emitSemanticError (location_18, GALGAS_string ("'while' label does not match with 'do' label, it should be ").add_operation (temp_16, inCompiler COMMA_SOURCE_FILE ("midrange_syntax.galgas", 545))  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 545)) ;
+        inCompiler->emitSemanticError (location_18, GALGAS_string ("'while' label does not match 'do' label, it should be ").add_operation (temp_16, inCompiler COMMA_SOURCE_FILE ("midrange_syntax.galgas", 545))  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 545)) ;
       }
       GALGAS_midrange_5F_conditionExpression var_whileCondition ;
       nt_midrange_5F_condition_5F_expression_ (var_whileCondition, inCompiler) ;
@@ -14732,7 +14732,7 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_structured_
         temp_20 = GALGAS_string ("empty") ;
       }
       GALGAS_location location_22 (var_endDoLabel.reader_location (HERE)) ; // Implicit use of 'location' reader
-      inCompiler->emitSemanticError (location_22, GALGAS_string ("end label does not match with 'do' label, it should be ").add_operation (temp_20, inCompiler COMMA_SOURCE_FILE ("midrange_syntax.galgas", 566))  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 566)) ;
+      inCompiler->emitSemanticError (location_22, GALGAS_string ("'end' label does not match 'do' label, it should be ").add_operation (temp_20, inCompiler COMMA_SOURCE_FILE ("midrange_syntax.galgas", 566))  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 566)) ;
     }
     outArgument_outInstruction = GALGAS_midrange_5F_instruction_5F_do_5F_while::constructor_new (var_instructionLocation, var_repeatedInstructionList, var_endOfRepeatedInstructionList, var_whilePartList  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 569)) ;
   } break ;
@@ -15272,7 +15272,7 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_structured_
         temp_1 = GALGAS_string ("empty") ;
       }
       GALGAS_location location_3 (var_elsifIfLabel.reader_location (HERE)) ; // Implicit use of 'location' reader
-      inCompiler->emitSemanticError (location_3, GALGAS_string ("elsif label does not match with 'if' label, it should be ").add_operation (temp_1, inCompiler COMMA_SOURCE_FILE ("midrange_syntax.galgas", 626))  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 626)) ;
+      inCompiler->emitSemanticError (location_3, GALGAS_string ("'elsif' label does not match 'if' label, it should be ").add_operation (temp_1, inCompiler COMMA_SOURCE_FILE ("midrange_syntax.galgas", 626))  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 626)) ;
     }
     GALGAS_midrange_5F_instruction var_elsifPartInstruction ;
     nt_midrange_5F_structured_5F_if_5F_instruction_ (constinArgument_ifLabel, var_elsifPartInstruction, ioArgument_ioNeedsComputedGoto_32_, ioArgument_ioNeedsComputedGoto_34_, ioArgument_ioLabelMap, inCompiler) ;
@@ -15303,7 +15303,7 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_structured_
         temp_5 = GALGAS_string ("empty") ;
       }
       GALGAS_location location_7 (var_elseLabel.reader_location (HERE)) ; // Implicit use of 'location' reader
-      inCompiler->emitSemanticError (location_7, GALGAS_string ("else label does not match with 'if' label, it should be ").add_operation (temp_5, inCompiler COMMA_SOURCE_FILE ("midrange_syntax.galgas", 646))  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 646)) ;
+      inCompiler->emitSemanticError (location_7, GALGAS_string ("'else' label does not match 'if' label, it should be ").add_operation (temp_5, inCompiler COMMA_SOURCE_FILE ("midrange_syntax.galgas", 646))  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 646)) ;
     }
     nt_midrange_5F_instruction_5F_list_ (var_elseInstructionList, ioArgument_ioNeedsComputedGoto_32_, ioArgument_ioNeedsComputedGoto_34_, ioArgument_ioLabelMap, inCompiler) ;
   } break ;
