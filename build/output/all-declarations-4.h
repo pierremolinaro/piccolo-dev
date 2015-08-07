@@ -5595,6 +5595,17 @@ void callCategoryMethod_analyzeRegisterExpression (const class cPtr_registerExpr
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
+//                                        Routine 'ipic18DurationComputations'                                         *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+void routine_ipic_31__38_DurationComputations (class GALGAS_ipic_31__38_BlockList & ioArgument0,
+                                               class GALGAS_blockDurationMap & outArgument1,
+                                               class C_Compiler * inCompiler
+                                               COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
 //                                            Routine 'ipic18GenerateCode'                                             *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
@@ -5635,6 +5646,17 @@ void routine_ipic_31__38_OptimizeBlockOrdering (const class GALGAS_string consti
 
 void routine_ipic_31__38_OptimizeBlocks (class GALGAS_string & ioArgument0,
                                          class GALGAS_ipic_31__38_BlockList & ioArgument1,
+                                         class C_Compiler * inCompiler
+                                         COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                           Routine 'ipic18PrintDurations'                                            *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+void routine_ipic_31__38_PrintDurations (class GALGAS_string & ioArgument0,
+                                         const class GALGAS_blockDurationMap constinArgument1,
                                          class C_Compiler * inCompiler
                                          COMMA_LOCATION_ARGS) ;
 
@@ -6116,7 +6138,9 @@ void categoryMethod_relativeBranchOverflow (const class GALGAS_ipic_31__38_Block
 void routine_generateLineWithCode (const class GALGAS_uint constinArgument0,
                                    const class GALGAS_codeList constinArgument1,
                                    const class GALGAS_stringlist constinArgument2,
-                                   class GALGAS_string & ioArgument3,
+                                   const class GALGAS_uint constinArgument3,
+                                   const class GALGAS_uint constinArgument4,
+                                   class GALGAS_string & ioArgument5,
                                    class C_Compiler * inCompiler
                                    COMMA_LOCATION_ARGS) ;
 
@@ -6222,31 +6246,17 @@ void callCategoryMethod_buildCalledRoutineSetForStackComputations (const class c
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                                        Routine 'ipic18DurationComputations'                                         *
+//                                   Category method '@ipic18Block computeDuration'                                    *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-void routine_ipic_31__38_DurationComputations (class GALGAS_string & ioArgument0,
-                                               const class GALGAS_ipic_31__38_BlockList constinArgument1,
-                                               const class GALGAS_generatedCodeMap constinArgument2,
-                                               class C_Compiler * inCompiler
-                                               COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                Category method '@ipic18Block computeMinMaxDuration'                                 *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-void categoryMethod_computeMinMaxDuration (const class GALGAS_ipic_31__38_Block inObject,
-                                           const class GALGAS_blockMapForDurationComputation constin_inBlockMapForDurationComputation,
-                                           class GALGAS_exploredBlockMap & io_ioExploredBlockMap,
-                                           class GALGAS_codeWithDuration & io_ioCodeWithDuration,
-                                           const class GALGAS_string constin_inNextLabel,
-                                           class GALGAS_uint & out_outMin,
-                                           class GALGAS_uint & out_outMax,
-                                           class C_Compiler * inCompiler
-                                           COMMA_LOCATION_ARGS) ;
+void categoryMethod_computeDuration (const class GALGAS_ipic_31__38_Block inObject,
+                                     class GALGAS_blockDurationMap & io_ioExploredBlockMap,
+                                     class GALGAS_string in_inNextLabel,
+                                     class GALGAS_ipic_31__38_Block & out_outNewBlock,
+                                     class GALGAS_bool & io_ioContinue,
+                                     class C_Compiler * inCompiler
+                                     COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *

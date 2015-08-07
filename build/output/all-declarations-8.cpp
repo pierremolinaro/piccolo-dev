@@ -10,43 +10,71 @@
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                                Category method '@ipic18Block computeMinMaxDuration'                                 *
+//                                   Category method '@ipic18Block computeDuration'                                    *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-void categoryMethod_computeMinMaxDuration (const GALGAS_ipic_31__38_Block inObject,
-                                           const GALGAS_blockMapForDurationComputation constinArgument_inBlockMapForDurationComputation,
-                                           GALGAS_exploredBlockMap & ioArgument_ioExploredBlockMap,
-                                           GALGAS_codeWithDuration & ioArgument_ioCodeWithDuration,
-                                           const GALGAS_string constinArgument_inNextLabel,
-                                           GALGAS_uint & outArgument_outMin,
-                                           GALGAS_uint & outArgument_outMax,
-                                           C_Compiler * inCompiler
-                                           COMMA_UNUSED_LOCATION_ARGS) {
-  outArgument_outMin.drop () ; // Release 'out' argument
-  outArgument_outMax.drop () ; // Release 'out' argument
-  const enumGalgasBool test_0 = ioArgument_ioExploredBlockMap.reader_hasKey (inObject.mAttribute_mLabel.mAttribute_string COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 286)).boolEnum () ;
-  if (kBoolTrue == test_0) {
-    ioArgument_ioExploredBlockMap.method_searchKey (inObject.mAttribute_mLabel, outArgument_outMin, outArgument_outMax, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 287)) ;
-  }else if (kBoolFalse == test_0) {
-    outArgument_outMin = GALGAS_uint ((uint32_t) 2U) ;
-    outArgument_outMax = GALGAS_uint ((uint32_t) 2U) ;
-    cEnumerator_ipic_31__38_SequentialInstructionList enumerator_9891 (inObject.mAttribute_mInstructionList, kEnumeration_up) ;
-    while (enumerator_9891.hasCurrentObject ()) {
-      GALGAS_uint var_min ;
-      GALGAS_uint var_max ;
-      callCategoryMethod_minMaxDuration ((const cPtr_ipic_31__38_SequentialInstruction *) enumerator_9891.current_mInstruction (HERE).ptr (), constinArgument_inBlockMapForDurationComputation, ioArgument_ioExploredBlockMap, ioArgument_ioCodeWithDuration, var_min, var_max, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 292)) ;
-      outArgument_outMin = outArgument_outMin.add_operation (var_min, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 299)) ;
-      outArgument_outMax = outArgument_outMax.add_operation (var_max, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 300)) ;
-      enumerator_9891.gotoNextObject () ;
+void categoryMethod_computeDuration (const GALGAS_ipic_31__38_Block inObject,
+                                     GALGAS_blockDurationMap & ioArgument_ioExploredBlockMap,
+                                     GALGAS_string inArgument_inNextLabel,
+                                     GALGAS_ipic_31__38_Block & outArgument_outNewBlock,
+                                     GALGAS_bool & ioArgument_ioContinue,
+                                     C_Compiler * inCompiler
+                                     COMMA_UNUSED_LOCATION_ARGS) {
+  outArgument_outNewBlock.drop () ; // Release 'out' argument
+  const GALGAS_ipic_31__38_Block temp_0 = inObject ;
+  const GALGAS_ipic_31__38_Block temp_1 = inObject ;
+  const enumGalgasBool test_2 = GALGAS_bool (kIsInfOrEqual, temp_0.mAttribute_mTerminatorMin.objectCompare (temp_1.mAttribute_mTerminatorMax)).boolEnum () ;
+  if (kBoolTrue == test_2) {
+    const GALGAS_ipic_31__38_Block temp_3 = inObject ;
+    outArgument_outNewBlock = temp_3 ;
+  }else if (kBoolFalse == test_2) {
+    GALGAS_uint var_terminatorMin ;
+    GALGAS_uint var_terminatorMax ;
+    const GALGAS_ipic_31__38_Block temp_4 = inObject ;
+    callCategoryMethod_terminatorMinMaxDuration ((const cPtr_ipic_31__38_AbstractBlockTerminator *) temp_4.mAttribute_mTerminator.ptr (), ioArgument_ioExploredBlockMap, inArgument_inNextLabel, var_terminatorMin, var_terminatorMax, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 504)) ;
+    GALGAS_uint var_min = var_terminatorMin ;
+    GALGAS_uint var_max = var_terminatorMax ;
+    GALGAS_ipic_31__38_SequentialInstructionList var_computedInstructionList = GALGAS_ipic_31__38_SequentialInstructionList::constructor_emptyList (SOURCE_FILE ("ipic18_duration_computations.galgas", 507)) ;
+    GALGAS_bool var_ok = GALGAS_bool (kIsInfOrEqual, var_min.objectCompare (var_max)) ;
+    cEnumerator_ipic_31__38_SequentialInstructionList enumerator_19198 (inObject.mAttribute_mInstructionList, kEnumeration_down) ;
+    while (enumerator_19198.hasCurrentObject ()) {
+      GALGAS_uint var_instructionMin ;
+      GALGAS_uint var_instructionMax ;
+      callCategoryMethod_minMaxDuration ((const cPtr_ipic_31__38_SequentialInstruction *) enumerator_19198.current_mInstruction (HERE).ptr (), ioArgument_ioExploredBlockMap, var_instructionMin, var_instructionMax, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 510)) ;
+      GALGAS_bool test_5 = var_ok ;
+      if (kBoolTrue == test_5.boolEnum ()) {
+        test_5 = GALGAS_bool (kIsInfOrEqual, var_instructionMin.objectCompare (var_instructionMax)) ;
+      }
+      const enumGalgasBool test_6 = test_5.boolEnum () ;
+      if (kBoolTrue == test_6) {
+        var_min = var_min.add_operation (var_instructionMin, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 516)) ;
+        var_max = var_max.add_operation (var_instructionMax, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 517)) ;
+        {
+        var_computedInstructionList.modifier_insertAtIndex (enumerator_19198.current_mInstruction (HERE), var_min, var_max, GALGAS_uint ((uint32_t) 0U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 518)) ;
+        }
+      }else if (kBoolFalse == test_6) {
+        var_ok = GALGAS_bool (false) ;
+        {
+        var_computedInstructionList.modifier_insertAtIndex (enumerator_19198.current_mInstruction (HERE), GALGAS_uint::constructor_max (SOURCE_FILE ("ipic18_duration_computations.galgas", 521)), GALGAS_uint ((uint32_t) 0U), GALGAS_uint ((uint32_t) 0U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 521)) ;
+        }
+      }
+      enumerator_19198.gotoNextObject () ;
     }
-    GALGAS_uint var_min ;
-    GALGAS_uint var_max ;
-    callCategoryMethod_terminatorMinMaxDuration ((const cPtr_ipic_31__38_AbstractBlockTerminator *) inObject.mAttribute_mTerminator.ptr (), constinArgument_inBlockMapForDurationComputation, ioArgument_ioExploredBlockMap, ioArgument_ioCodeWithDuration, constinArgument_inNextLabel, var_min, var_max, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 302)) ;
-    outArgument_outMin = outArgument_outMin.add_operation (var_min, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 310)) ;
-    outArgument_outMax = outArgument_outMax.add_operation (var_max, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 311)) ;
-    {
-    ioArgument_ioExploredBlockMap.modifier_insertKey (inObject.mAttribute_mLabel, outArgument_outMin, outArgument_outMax, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 312)) ;
+    const enumGalgasBool test_7 = var_ok.boolEnum () ;
+    if (kBoolTrue == test_7) {
+      const GALGAS_ipic_31__38_Block temp_8 = inObject ;
+      const GALGAS_ipic_31__38_Block temp_9 = inObject ;
+      const GALGAS_ipic_31__38_Block temp_10 = inObject ;
+      outArgument_outNewBlock = GALGAS_ipic_31__38_Block::constructor_new (temp_8.mAttribute_mAddress, temp_9.mAttribute_mLabel, var_computedInstructionList, temp_10.mAttribute_mTerminator, var_terminatorMin, var_terminatorMax  COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 525)) ;
+      ioArgument_ioContinue = GALGAS_bool (true) ;
+      {
+      const GALGAS_ipic_31__38_Block temp_11 = inObject ;
+      ioArgument_ioExploredBlockMap.modifier_insertKey (temp_11.mAttribute_mLabel, var_min, var_max, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 534)) ;
+      }
+    }else if (kBoolFalse == test_7) {
+      const GALGAS_ipic_31__38_Block temp_12 = inObject ;
+      outArgument_outNewBlock = temp_12 ;
     }
   }
 }
@@ -7087,153 +7115,7 @@ GALGAS_routineStackRequirementMap_2D_element GALGAS_routineStackRequirementMap_2
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_blockMapForDurationComputation_2D_element::GALGAS_blockMapForDurationComputation_2D_element (void) :
-mAttribute_lkey (),
-mAttribute_mBlock (),
-mAttribute_mNextLabel () {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_blockMapForDurationComputation_2D_element::~ GALGAS_blockMapForDurationComputation_2D_element (void) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_blockMapForDurationComputation_2D_element::GALGAS_blockMapForDurationComputation_2D_element (const GALGAS_lstring & inOperand0,
-                                                                                                    const GALGAS_ipic_31__38_Block & inOperand1,
-                                                                                                    const GALGAS_string & inOperand2) :
-mAttribute_lkey (inOperand0),
-mAttribute_mBlock (inOperand1),
-mAttribute_mNextLabel (inOperand2) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_blockMapForDurationComputation_2D_element GALGAS_blockMapForDurationComputation_2D_element::constructor_new (const GALGAS_lstring & inOperand0,
-                                                                                                                    const GALGAS_ipic_31__38_Block & inOperand1,
-                                                                                                                    const GALGAS_string & inOperand2 
-                                                                                                                    COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_blockMapForDurationComputation_2D_element result ;
-  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid ()) {
-    result = GALGAS_blockMapForDurationComputation_2D_element (inOperand0, inOperand1, inOperand2) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-typeComparisonResult GALGAS_blockMapForDurationComputation_2D_element::objectCompare (const GALGAS_blockMapForDurationComputation_2D_element & inOperand) const {
-   typeComparisonResult result = kOperandEqual ;
-  if (result == kOperandEqual) {
-    result = mAttribute_lkey.objectCompare (inOperand.mAttribute_lkey) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mBlock.objectCompare (inOperand.mAttribute_mBlock) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mNextLabel.objectCompare (inOperand.mAttribute_mNextLabel) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-bool GALGAS_blockMapForDurationComputation_2D_element::isValid (void) const {
-  return mAttribute_lkey.isValid () && mAttribute_mBlock.isValid () && mAttribute_mNextLabel.isValid () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_blockMapForDurationComputation_2D_element::drop (void) {
-  mAttribute_lkey.drop () ;
-  mAttribute_mBlock.drop () ;
-  mAttribute_mNextLabel.drop () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_blockMapForDurationComputation_2D_element::description (C_String & ioString,
-                                                                    const int32_t inIndentation) const {
-  ioString << "<struct @blockMapForDurationComputation-element:" ;
-  if (! isValid ()) {
-    ioString << " not built" ;
-  }else{
-    mAttribute_lkey.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mBlock.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mNextLabel.description (ioString, inIndentation+1) ;
-  }
-  ioString << ">" ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_lstring GALGAS_blockMapForDurationComputation_2D_element::reader_lkey (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_lkey ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_ipic_31__38_Block GALGAS_blockMapForDurationComputation_2D_element::reader_mBlock (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mBlock ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_string GALGAS_blockMapForDurationComputation_2D_element::reader_mNextLabel (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mNextLabel ;
-}
-
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                    @blockMapForDurationComputation-element type                                     *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_blockMapForDurationComputation_2D_element ("blockMapForDurationComputation-element",
-                                                                  NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor * GALGAS_blockMapForDurationComputation_2D_element::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_blockMapForDurationComputation_2D_element ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-AC_GALGAS_root * GALGAS_blockMapForDurationComputation_2D_element::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_blockMapForDurationComputation_2D_element (*this)) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_blockMapForDurationComputation_2D_element GALGAS_blockMapForDurationComputation_2D_element::extractObject (const GALGAS_object & inObject,
-                                                                                                                  C_Compiler * inCompiler
-                                                                                                                  COMMA_LOCATION_ARGS) {
-  GALGAS_blockMapForDurationComputation_2D_element result ;
-  const GALGAS_blockMapForDurationComputation_2D_element * p = (const GALGAS_blockMapForDurationComputation_2D_element *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_blockMapForDurationComputation_2D_element *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("blockMapForDurationComputation-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_exploredBlockMap_2D_element::GALGAS_exploredBlockMap_2D_element (void) :
+GALGAS_blockDurationMap_2D_element::GALGAS_blockDurationMap_2D_element (void) :
 mAttribute_lkey (),
 mAttribute_mMinDuration (),
 mAttribute_mMaxDuration () {
@@ -7241,12 +7123,12 @@ mAttribute_mMaxDuration () {
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_exploredBlockMap_2D_element::~ GALGAS_exploredBlockMap_2D_element (void) {
+GALGAS_blockDurationMap_2D_element::~ GALGAS_blockDurationMap_2D_element (void) {
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_exploredBlockMap_2D_element::GALGAS_exploredBlockMap_2D_element (const GALGAS_lstring & inOperand0,
+GALGAS_blockDurationMap_2D_element::GALGAS_blockDurationMap_2D_element (const GALGAS_lstring & inOperand0,
                                                                         const GALGAS_uint & inOperand1,
                                                                         const GALGAS_uint & inOperand2) :
 mAttribute_lkey (inOperand0),
@@ -7256,28 +7138,28 @@ mAttribute_mMaxDuration (inOperand2) {
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_exploredBlockMap_2D_element GALGAS_exploredBlockMap_2D_element::constructor_default (UNUSED_LOCATION_ARGS) {
-  return GALGAS_exploredBlockMap_2D_element (GALGAS_lstring::constructor_default (HERE),
+GALGAS_blockDurationMap_2D_element GALGAS_blockDurationMap_2D_element::constructor_default (UNUSED_LOCATION_ARGS) {
+  return GALGAS_blockDurationMap_2D_element (GALGAS_lstring::constructor_default (HERE),
                                              GALGAS_uint::constructor_default (HERE),
                                              GALGAS_uint::constructor_default (HERE)) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_exploredBlockMap_2D_element GALGAS_exploredBlockMap_2D_element::constructor_new (const GALGAS_lstring & inOperand0,
+GALGAS_blockDurationMap_2D_element GALGAS_blockDurationMap_2D_element::constructor_new (const GALGAS_lstring & inOperand0,
                                                                                         const GALGAS_uint & inOperand1,
                                                                                         const GALGAS_uint & inOperand2 
                                                                                         COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_exploredBlockMap_2D_element result ;
+  GALGAS_blockDurationMap_2D_element result ;
   if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid ()) {
-    result = GALGAS_exploredBlockMap_2D_element (inOperand0, inOperand1, inOperand2) ;
+    result = GALGAS_blockDurationMap_2D_element (inOperand0, inOperand1, inOperand2) ;
   }
   return result ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-typeComparisonResult GALGAS_exploredBlockMap_2D_element::objectCompare (const GALGAS_exploredBlockMap_2D_element & inOperand) const {
+typeComparisonResult GALGAS_blockDurationMap_2D_element::objectCompare (const GALGAS_blockDurationMap_2D_element & inOperand) const {
    typeComparisonResult result = kOperandEqual ;
   if (result == kOperandEqual) {
     result = mAttribute_lkey.objectCompare (inOperand.mAttribute_lkey) ;
@@ -7293,13 +7175,13 @@ typeComparisonResult GALGAS_exploredBlockMap_2D_element::objectCompare (const GA
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-bool GALGAS_exploredBlockMap_2D_element::isValid (void) const {
+bool GALGAS_blockDurationMap_2D_element::isValid (void) const {
   return mAttribute_lkey.isValid () && mAttribute_mMinDuration.isValid () && mAttribute_mMaxDuration.isValid () ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_exploredBlockMap_2D_element::drop (void) {
+void GALGAS_blockDurationMap_2D_element::drop (void) {
   mAttribute_lkey.drop () ;
   mAttribute_mMinDuration.drop () ;
   mAttribute_mMaxDuration.drop () ;
@@ -7307,9 +7189,9 @@ void GALGAS_exploredBlockMap_2D_element::drop (void) {
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_exploredBlockMap_2D_element::description (C_String & ioString,
+void GALGAS_blockDurationMap_2D_element::description (C_String & ioString,
                                                       const int32_t inIndentation) const {
-  ioString << "<struct @exploredBlockMap-element:" ;
+  ioString << "<struct @blockDurationMap-element:" ;
   if (! isValid ()) {
     ioString << " not built" ;
   }else{
@@ -7324,19 +7206,19 @@ void GALGAS_exploredBlockMap_2D_element::description (C_String & ioString,
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_lstring GALGAS_exploredBlockMap_2D_element::reader_lkey (UNUSED_LOCATION_ARGS) const {
+GALGAS_lstring GALGAS_blockDurationMap_2D_element::reader_lkey (UNUSED_LOCATION_ARGS) const {
   return mAttribute_lkey ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_uint GALGAS_exploredBlockMap_2D_element::reader_mMinDuration (UNUSED_LOCATION_ARGS) const {
+GALGAS_uint GALGAS_blockDurationMap_2D_element::reader_mMinDuration (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mMinDuration ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_uint GALGAS_exploredBlockMap_2D_element::reader_mMaxDuration (UNUSED_LOCATION_ARGS) const {
+GALGAS_uint GALGAS_blockDurationMap_2D_element::reader_mMaxDuration (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mMaxDuration ;
 }
 
@@ -7344,42 +7226,42 @@ GALGAS_uint GALGAS_exploredBlockMap_2D_element::reader_mMaxDuration (UNUSED_LOCA
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                                           @exploredBlockMap-element type                                            *
+//                                           @blockDurationMap-element type                                            *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
 const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_exploredBlockMap_2D_element ("exploredBlockMap-element",
+kTypeDescriptor_GALGAS_blockDurationMap_2D_element ("blockDurationMap-element",
                                                     NULL) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-const C_galgas_type_descriptor * GALGAS_exploredBlockMap_2D_element::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_exploredBlockMap_2D_element ;
+const C_galgas_type_descriptor * GALGAS_blockDurationMap_2D_element::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_blockDurationMap_2D_element ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-AC_GALGAS_root * GALGAS_exploredBlockMap_2D_element::clonedObject (void) const {
+AC_GALGAS_root * GALGAS_blockDurationMap_2D_element::clonedObject (void) const {
   AC_GALGAS_root * result = NULL ;
   if (isValid ()) {
-    macroMyNew (result, GALGAS_exploredBlockMap_2D_element (*this)) ;
+    macroMyNew (result, GALGAS_blockDurationMap_2D_element (*this)) ;
   }
   return result ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_exploredBlockMap_2D_element GALGAS_exploredBlockMap_2D_element::extractObject (const GALGAS_object & inObject,
+GALGAS_blockDurationMap_2D_element GALGAS_blockDurationMap_2D_element::extractObject (const GALGAS_object & inObject,
                                                                                       C_Compiler * inCompiler
                                                                                       COMMA_LOCATION_ARGS) {
-  GALGAS_exploredBlockMap_2D_element result ;
-  const GALGAS_exploredBlockMap_2D_element * p = (const GALGAS_exploredBlockMap_2D_element *) inObject.embeddedObject () ;
+  GALGAS_blockDurationMap_2D_element result ;
+  const GALGAS_blockDurationMap_2D_element * p = (const GALGAS_blockDurationMap_2D_element *) inObject.embeddedObject () ;
   if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_exploredBlockMap_2D_element *> (p)) {
+    if (NULL != dynamic_cast <const GALGAS_blockDurationMap_2D_element *> (p)) {
       result = *p ;
     }else{
-      inCompiler->castError ("exploredBlockMap-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
+      inCompiler->castError ("blockDurationMap-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
     }  
   }
   return result ;
@@ -15029,4 +14911,65 @@ static void defineCategoryMethod_baseline_5F_assembly_5F_TRIS_generateBinaryCode
 //---------------------------------------------------------------------------------------------------------------------*
 
 C_PrologueEpilogue gMethod_baseline_5F_assembly_5F_TRIS_generateBinaryCodeAtAddress (defineCategoryMethod_baseline_5F_assembly_5F_TRIS_generateBinaryCodeAtAddress, NULL) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//      Overriding category method '@baseline_assembly_instruction_literalOperation generateBinaryCodeAtAddress'       *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+static void categoryMethod_baseline_5F_assembly_5F_instruction_5F_literalOperation_generateBinaryCodeAtAddress (const cPtr_baseline_5F_assembly_5F_instruction * inObject,
+                                                                                                                const GALGAS_baseline_5F_symbolTable /* constinArgument_inRoutineSymbolTable */,
+                                                                                                                GALGAS_string & ioArgument_ioListFileContents,
+                                                                                                                GALGAS_uint & ioArgument_ioWordAddress,
+                                                                                                                C_Compiler * inCompiler
+                                                                                                                COMMA_UNUSED_LOCATION_ARGS) {
+  const cPtr_baseline_5F_assembly_5F_instruction_5F_literalOperation * object = (const cPtr_baseline_5F_assembly_5F_instruction_5F_literalOperation *) inObject ;
+  macroValidSharedObject (object, cPtr_baseline_5F_assembly_5F_instruction_5F_literalOperation) ;
+  GALGAS_uint var_code ;
+  switch (object->mAttribute_mInstruction.enumValue ()) {
+  case GALGAS_baseline_5F_literal_5F_instruction_5F_opcode::kNotBuilt:
+    break ;
+  case GALGAS_baseline_5F_literal_5F_instruction_5F_opcode::kEnum_ANDLW:
+    {
+      var_code = GALGAS_uint ((uint32_t) 3584U) ;
+    }
+    break ;
+  case GALGAS_baseline_5F_literal_5F_instruction_5F_opcode::kEnum_IORLW:
+    {
+      var_code = GALGAS_uint ((uint32_t) 3328U) ;
+    }
+    break ;
+  case GALGAS_baseline_5F_literal_5F_instruction_5F_opcode::kEnum_MOVLW:
+    {
+      var_code = GALGAS_uint ((uint32_t) 3072U) ;
+    }
+    break ;
+  case GALGAS_baseline_5F_literal_5F_instruction_5F_opcode::kEnum_RETLW:
+    {
+      var_code = GALGAS_uint ((uint32_t) 2048U) ;
+    }
+    break ;
+  case GALGAS_baseline_5F_literal_5F_instruction_5F_opcode::kEnum_XORLW:
+    {
+      var_code = GALGAS_uint ((uint32_t) 3840U) ;
+    }
+    break ;
+  }
+  var_code = var_code.operator_or (object->mAttribute_mLiteralValue COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 292)) ;
+  {
+  const GALGAS_baseline_5F_assembly_5F_instruction_5F_literalOperation temp_0 = object ;
+  routine_emitBaselineCodeAtWordAddress (var_code, ioArgument_ioWordAddress, temp_0, ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 293)) ;
+  }
+}
+//---------------------------------------------------------------------------------------------------------------------*
+
+static void defineCategoryMethod_baseline_5F_assembly_5F_instruction_5F_literalOperation_generateBinaryCodeAtAddress (void) {
+  enterCategoryMethod_generateBinaryCodeAtAddress (kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_instruction_5F_literalOperation.mSlotID,
+                                                   categoryMethod_baseline_5F_assembly_5F_instruction_5F_literalOperation_generateBinaryCodeAtAddress) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+C_PrologueEpilogue gMethod_baseline_5F_assembly_5F_instruction_5F_literalOperation_generateBinaryCodeAtAddress (defineCategoryMethod_baseline_5F_assembly_5F_instruction_5F_literalOperation_generateBinaryCodeAtAddress, NULL) ;
 

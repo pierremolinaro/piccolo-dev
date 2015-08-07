@@ -382,7 +382,8 @@ override method @pic18RegisterComparisonTerminator generateTerminatorCode
   ?let @uint inAddress
   ?let @symbolTableForRelativesResolution inSymbolTable
   ?let @string inNextBlockLabel
-  !@codeList outCode {
+  !@codeList outCode
+{
   @uint binCode
   @string assemblyCode
   switch mComparison
@@ -402,9 +403,10 @@ override method @pic18RegisterComparisonTerminator generateTerminatorCode
     binCode = binCode | 0x0100
     assemblyCode += ", BSR_ACCESS"
   end
-  outCode = @codeList. listWithValue {
+  outCode = @codeList.listWithValue {
     !assemblyCode
-    !@uintlist. listWithValue { !binCode}}
+    !@uintlist.listWithValue {!binCode}
+  }
   [mSingleInstructionTerminatorIfConditionFalse generateTerminatorCode
     !inAddress + 2
     !inSymbolTable
@@ -622,7 +624,8 @@ override method @pic18BitTestTerminator generateTerminatorCode
   ?let @uint inAddress
   ?let @symbolTableForRelativesResolution inSymbolTable
   ?let @string inNextBlockLabel
-  !@codeList outCode {
+  !@codeList outCode
+{
   if [mSingleInstructionTerminatorIfConditionTrue terminatorSize !inNextBlockLabel] == 0 then
   #--- Generate direct code (no code for true terminator)
     @uint binCode = 0xB000
