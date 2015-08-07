@@ -18,6 +18,8 @@ abstract class @ipic18SequentialInstruction {
 
 list @ipic18SequentialInstructionList {
   @ipic18SequentialInstruction mInstruction
+  @uint mMin
+  @uint mMax
 }
 
 #----------------------------------------------------------------------------*
@@ -33,6 +35,8 @@ struct @ipic18Block {
   @lstring mLabel
   @ipic18SequentialInstructionList mInstructionList
   @ipic18AbstractBlockTerminator mTerminator
+  @uint mTerminatorMin
+  @uint mTerminatorMax
 }
 
 #----------------------------------------------------------------------------*

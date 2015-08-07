@@ -752,7 +752,7 @@ override method @ipic18_intermediate_instruction_computed_rcall optimizeInstruct
          & [targetBloc.mInstructionList length] == 0 then # Empty block, replace by NOP
           opt = true
           outOptimizationDone = true
-          optimizedInstructionList += !@ipic18_intermediate_instruction_BLANK. new { ![jsr mInstructionLocation] !0}
+          optimizedInstructionList += !@ipic18_intermediate_instruction_BLANK. new { ![jsr mInstructionLocation] !0} !@uint.max !0
           ioListFileContents += "  [e] " + inBlockLabel + ", "
           ioListFileContents += "JSR " + [jsr mTargetLabel] + " to empty routine replaced by BLANK 0"
           ioListFileContents += "\n"
@@ -762,7 +762,7 @@ override method @ipic18_intermediate_instruction_computed_rcall optimizeInstruct
           if [inst instructionSize] == 2 then # Instruction size == 2, perform replacement
             opt = true
             outOptimizationDone = true
-            optimizedInstructionList += !inst
+            optimizedInstructionList += !inst !@uint.max !0
             ioListFileContents += "  [i] " + inBlockLabel + ", "
             ioListFileContents += "JSR " + [jsr mTargetLabel] + " to one instruction routine replaced by routine instruction"
             ioListFileContents += "\n"
@@ -771,7 +771,7 @@ override method @ipic18_intermediate_instruction_computed_rcall optimizeInstruct
       end
     end
     if not opt then
-      optimizedInstructionList += !mInstruction
+      optimizedInstructionList += !mInstruction !@uint.max !0
     end
   end
   if outOptimizationDone then
@@ -920,7 +920,7 @@ proc instructionListOptimization
       outOptimizationDone = true
     end
     if not NOPsubstitution then
-      outOptimizedInstructionList += !optimizedInstruction
+      outOptimizedInstructionList += !optimizedInstruction !@uint.max !0
     end
   end
 }
@@ -985,11 +985,11 @@ method @ipic18Block optimize
 #--- Transform MOVLW k ; RETURN to RETLW
   @ipic18AbstractBlockTerminator optimizedTerminator = mTerminator
   if ([optimizedInstructionList length] > 0) & (mTerminator is >= @ipic18ReturnTerminator) then
-    [optimizedInstructionList last ?let @ipic18SequentialInstruction lastInstruction]
+    [optimizedInstructionList last ?let @ipic18SequentialInstruction lastInstruction ?2*]
     cast lastInstruction
     case == @ipic18_intermediate_instruction_literalOperation op :
       if inOptimizeFlagStruct.mMOVLWfollowedByRETreplacedByRETLW & ([op mLiteralInstruction] == @literal_instruction_opcode. MOVLW) then
-        [!?optimizedInstructionList popLast ?*]
+        [!?optimizedInstructionList popLast ?3*]
         optimizedTerminator = @ipic18RetlwTerminator. new { ![op mInstructionLocation] ![op mLiteralValue]}
         optimized = true
         ioListFileContents += "  [M] " + mLabel + ": MOVLW k ; RETURN --> RETLW k\n"
@@ -997,7 +997,7 @@ method @ipic18Block optimize
   #--- Transform JSR label ; RETURN to JUMP label
     case == @ipic18_intermediate_JSR jsr :
       if inOptimizeFlagStruct.mJSRfollowedByRETreplacedByJUMP then
-        [!?optimizedInstructionList popLast ?*]
+        [!?optimizedInstructionList popLast ?3*]
         optimizedTerminator = @ipic18JumpTerminator.new {![jsr mInstructionLocation] ![jsr mTargetLabel] ![jsr mKind]}
         optimized = true
         ioListFileContents += "  [J] " + mLabel + ": JSR " + [jsr mTargetLabel] + " ; RETURN --> JUMP " + [jsr mTargetLabel] + "\n"
@@ -1037,7 +1037,10 @@ method @ipic18Block optimize
       !mAddress
       !mLabel
       !optimizedInstructionList
-      !optimizedTerminator}
+      !optimizedTerminator
+      !@uint.max
+      !0
+    }
   else
     outOptimizedBlock = self
   end

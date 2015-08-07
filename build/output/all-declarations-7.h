@@ -1049,12 +1049,10 @@ void categoryMethod_enterInstructionReferencedLabels (const class GALGAS_ipic_31
 //---------------------------------------------------------------------------------------------------------------------*
 
 typedef void (*categoryMethodSignature_ipic_31__38_AbstractBlockTerminator_terminatorMinMaxDuration) (const class cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
-                                                                                                      const class GALGAS_blockMapForDurationComputation constinArgument0,
-                                                                                                      class GALGAS_exploredBlockMap & ioArgument1,
-                                                                                                      class GALGAS_codeWithDuration & ioArgument2,
-                                                                                                      const class GALGAS_string constinArgument3,
-                                                                                                      class GALGAS_uint & outArgument4,
-                                                                                                      class GALGAS_uint & outArgument5,
+                                                                                                      const class GALGAS_blockDurationMap constinArgument0,
+                                                                                                      const class GALGAS_string constinArgument1,
+                                                                                                      class GALGAS_uint & outArgument2,
+                                                                                                      class GALGAS_uint & outArgument3,
                                                                                                       class C_Compiler * inCompiler
                                                                                                       COMMA_LOCATION_ARGS) ;
 
@@ -1066,9 +1064,7 @@ void enterCategoryMethod_terminatorMinMaxDuration (const int32_t inClassIndex,
 //---------------------------------------------------------------------------------------------------------------------*
 
 void callCategoryMethod_terminatorMinMaxDuration (const class cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
-                                                  const GALGAS_blockMapForDurationComputation constin_inBlockMapForDurationComputation,
-                                                  GALGAS_exploredBlockMap & io_ioExploredBlockMap,
-                                                  GALGAS_codeWithDuration & io_ioCodeWithDuration,
+                                                  const GALGAS_blockDurationMap constin_inExploredBlockMap,
                                                   const GALGAS_string constin_inNextLabel,
                                                   GALGAS_uint & out_outMin,
                                                   GALGAS_uint & out_outMax,
@@ -1077,16 +1073,43 @@ void callCategoryMethod_terminatorMinMaxDuration (const class cPtr_ipic_31__38_A
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
+//                       Abstract category method '@ipic18SingleInstructionTerminator duration'                        *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+typedef void (*categoryMethodSignature_ipic_31__38_SingleInstructionTerminator_duration) (const class cPtr_ipic_31__38_SingleInstructionTerminator * inObject,
+                                                                                          const class GALGAS_blockDurationMap constinArgument0,
+                                                                                          const class GALGAS_string constinArgument1,
+                                                                                          class GALGAS_uint & outArgument2,
+                                                                                          class GALGAS_uint & outArgument3,
+                                                                                          class C_Compiler * inCompiler
+                                                                                          COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void enterCategoryMethod_duration (const int32_t inClassIndex,
+                                   categoryMethodSignature_ipic_31__38_SingleInstructionTerminator_duration inMethod) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void callCategoryMethod_duration (const class cPtr_ipic_31__38_SingleInstructionTerminator * inObject,
+                                  const GALGAS_blockDurationMap constin_inExploredBlockMap,
+                                  const GALGAS_string constin_inNextLabel,
+                                  GALGAS_uint & out_outMin,
+                                  GALGAS_uint & out_outMax,
+                                  C_Compiler * inCompiler
+                                  COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
 //                            Category method '@ipic18SequentialInstruction minMaxDuration'                            *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
 typedef void (*categoryMethodSignature_ipic_31__38_SequentialInstruction_minMaxDuration) (const class cPtr_ipic_31__38_SequentialInstruction * inObject,
-                                                                                          const class GALGAS_blockMapForDurationComputation constinArgument0,
-                                                                                          class GALGAS_exploredBlockMap & ioArgument1,
-                                                                                          class GALGAS_codeWithDuration & ioArgument2,
-                                                                                          class GALGAS_uint & outArgument3,
-                                                                                          class GALGAS_uint & outArgument4,
+                                                                                          class GALGAS_blockDurationMap inArgument0,
+                                                                                          class GALGAS_uint & outArgument1,
+                                                                                          class GALGAS_uint & outArgument2,
                                                                                           class C_Compiler * inCompiler
                                                                                           COMMA_LOCATION_ARGS) ;
 
@@ -1098,9 +1121,7 @@ void enterCategoryMethod_minMaxDuration (const int32_t inClassIndex,
 //---------------------------------------------------------------------------------------------------------------------*
 
 void callCategoryMethod_minMaxDuration (const class cPtr_ipic_31__38_SequentialInstruction * inObject,
-                                        const GALGAS_blockMapForDurationComputation constin_inBlockMapForDurationComputation,
-                                        GALGAS_exploredBlockMap & io_ioExploredBlockMap,
-                                        GALGAS_codeWithDuration & io_ioCodeWithDuration,
+                                        GALGAS_blockDurationMap in_inExploredBlockMap,
                                         GALGAS_uint & out_outMin,
                                         GALGAS_uint & out_outMax,
                                         C_Compiler * inCompiler

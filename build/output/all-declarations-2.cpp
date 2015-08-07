@@ -276,7 +276,9 @@ class cCollectionElement_ipic_31__38_SequentialInstructionList : public cCollect
   public : GALGAS_ipic_31__38_SequentialInstructionList_2D_element mObject ;
 
 //--- Constructor
-  public : cCollectionElement_ipic_31__38_SequentialInstructionList (const GALGAS_ipic_31__38_SequentialInstruction & in_mInstruction
+  public : cCollectionElement_ipic_31__38_SequentialInstructionList (const GALGAS_ipic_31__38_SequentialInstruction & in_mInstruction,
+                                                                     const GALGAS_uint & in_mMin,
+                                                                     const GALGAS_uint & in_mMax
                                                                      COMMA_LOCATION_ARGS) ;
 
 //--- Virtual method for comparing elements
@@ -294,10 +296,12 @@ class cCollectionElement_ipic_31__38_SequentialInstructionList : public cCollect
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-cCollectionElement_ipic_31__38_SequentialInstructionList::cCollectionElement_ipic_31__38_SequentialInstructionList (const GALGAS_ipic_31__38_SequentialInstruction & in_mInstruction
+cCollectionElement_ipic_31__38_SequentialInstructionList::cCollectionElement_ipic_31__38_SequentialInstructionList (const GALGAS_ipic_31__38_SequentialInstruction & in_mInstruction,
+                                                                                                                    const GALGAS_uint & in_mMin,
+                                                                                                                    const GALGAS_uint & in_mMax
                                                                                                                     COMMA_LOCATION_ARGS) :
 cCollectionElement (THERE),
-mObject (in_mInstruction) {
+mObject (in_mInstruction, in_mMin, in_mMax) {
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -310,7 +314,7 @@ bool cCollectionElement_ipic_31__38_SequentialInstructionList::isValid (void) co
 
 cCollectionElement * cCollectionElement_ipic_31__38_SequentialInstructionList::copy (void) {
   cCollectionElement * result = NULL ;
-  macroMyNew (result, cCollectionElement_ipic_31__38_SequentialInstructionList (mObject.mAttribute_mInstruction COMMA_HERE)) ;
+  macroMyNew (result, cCollectionElement_ipic_31__38_SequentialInstructionList (mObject.mAttribute_mInstruction, mObject.mAttribute_mMin, mObject.mAttribute_mMax COMMA_HERE)) ;
   return result ;
 }
 
@@ -321,6 +325,14 @@ void cCollectionElement_ipic_31__38_SequentialInstructionList::description (C_St
   ioString.writeStringMultiple ("| ", inIndentation) ;
   ioString << "mInstruction" ":" ;
   mObject.mAttribute_mInstruction.description (ioString, inIndentation) ;
+  ioString << "\n" ;
+  ioString.writeStringMultiple ("| ", inIndentation) ;
+  ioString << "mMin" ":" ;
+  mObject.mAttribute_mMin.description (ioString, inIndentation) ;
+  ioString << "\n" ;
+  ioString.writeStringMultiple ("| ", inIndentation) ;
+  ioString << "mMax" ":" ;
+  mObject.mAttribute_mMax.description (ioString, inIndentation) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -356,13 +368,15 @@ GALGAS_ipic_31__38_SequentialInstructionList GALGAS_ipic_31__38_SequentialInstru
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_ipic_31__38_SequentialInstructionList GALGAS_ipic_31__38_SequentialInstructionList::constructor_listWithValue (const GALGAS_ipic_31__38_SequentialInstruction & inOperand0
+GALGAS_ipic_31__38_SequentialInstructionList GALGAS_ipic_31__38_SequentialInstructionList::constructor_listWithValue (const GALGAS_ipic_31__38_SequentialInstruction & inOperand0,
+                                                                                                                      const GALGAS_uint & inOperand1,
+                                                                                                                      const GALGAS_uint & inOperand2
                                                                                                                       COMMA_LOCATION_ARGS) {
   GALGAS_ipic_31__38_SequentialInstructionList result ;
-  if (inOperand0.isValid ()) {
+  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid ()) {
     result.createNewEmptyList (THERE) ;
     capCollectionElement attributes ;
-    GALGAS_ipic_31__38_SequentialInstructionList::makeAttributesFromObjects (attributes, inOperand0 COMMA_THERE) ;
+    GALGAS_ipic_31__38_SequentialInstructionList::makeAttributesFromObjects (attributes, inOperand0, inOperand1, inOperand2 COMMA_THERE) ;
     result.addObject (attributes) ;
   }
   return result ;
@@ -371,21 +385,27 @@ GALGAS_ipic_31__38_SequentialInstructionList GALGAS_ipic_31__38_SequentialInstru
 //---------------------------------------------------------------------------------------------------------------------*
 
 void GALGAS_ipic_31__38_SequentialInstructionList::makeAttributesFromObjects (capCollectionElement & outAttributes,
-                                                                              const GALGAS_ipic_31__38_SequentialInstruction & in_mInstruction
+                                                                              const GALGAS_ipic_31__38_SequentialInstruction & in_mInstruction,
+                                                                              const GALGAS_uint & in_mMin,
+                                                                              const GALGAS_uint & in_mMax
                                                                               COMMA_LOCATION_ARGS) {
   cCollectionElement_ipic_31__38_SequentialInstructionList * p = NULL ;
-  macroMyNew (p, cCollectionElement_ipic_31__38_SequentialInstructionList (in_mInstruction COMMA_THERE)) ;
+  macroMyNew (p, cCollectionElement_ipic_31__38_SequentialInstructionList (in_mInstruction,
+                                                                           in_mMin,
+                                                                           in_mMax COMMA_THERE)) ;
   outAttributes.setPointer (p) ;
   macroDetachSharedObject (p) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_ipic_31__38_SequentialInstructionList::addAssign_operation (const GALGAS_ipic_31__38_SequentialInstruction & inOperand0
+void GALGAS_ipic_31__38_SequentialInstructionList::addAssign_operation (const GALGAS_ipic_31__38_SequentialInstruction & inOperand0,
+                                                                        const GALGAS_uint & inOperand1,
+                                                                        const GALGAS_uint & inOperand2
                                                                         COMMA_LOCATION_ARGS) {
-  if (isValid () && inOperand0.isValid ()) {
+  if (isValid () && inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid ()) {
     cCollectionElement * p = NULL ;
-    macroMyNew (p, cCollectionElement_ipic_31__38_SequentialInstructionList (inOperand0 COMMA_THERE)) ;
+    macroMyNew (p, cCollectionElement_ipic_31__38_SequentialInstructionList (inOperand0, inOperand1, inOperand2 COMMA_THERE)) ;
     capCollectionElement attributes ;
     attributes.setPointer (p) ;
     macroDetachSharedObject (p) ;
@@ -396,12 +416,14 @@ void GALGAS_ipic_31__38_SequentialInstructionList::addAssign_operation (const GA
 //---------------------------------------------------------------------------------------------------------------------*
 
 void GALGAS_ipic_31__38_SequentialInstructionList::modifier_insertAtIndex (const GALGAS_ipic_31__38_SequentialInstruction inOperand0,
+                                                                           const GALGAS_uint inOperand1,
+                                                                           const GALGAS_uint inOperand2,
                                                                            const GALGAS_uint inInsertionIndex,
                                                                            C_Compiler * inCompiler
                                                                            COMMA_LOCATION_ARGS) {
-  if (isValid () && inInsertionIndex.isValid () && inOperand0.isValid ()) {
+  if (isValid () && inInsertionIndex.isValid () && inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid ()) {
     cCollectionElement * p = NULL ;
-    macroMyNew (p, cCollectionElement_ipic_31__38_SequentialInstructionList (inOperand0 COMMA_THERE)) ;
+    macroMyNew (p, cCollectionElement_ipic_31__38_SequentialInstructionList (inOperand0, inOperand1, inOperand2 COMMA_THERE)) ;
     capCollectionElement attributes ;
     attributes.setPointer (p) ;
     macroDetachSharedObject (p) ;
@@ -412,6 +434,8 @@ void GALGAS_ipic_31__38_SequentialInstructionList::modifier_insertAtIndex (const
 //---------------------------------------------------------------------------------------------------------------------*
 
 void GALGAS_ipic_31__38_SequentialInstructionList::modifier_removeAtIndex (GALGAS_ipic_31__38_SequentialInstruction & outOperand0,
+                                                                           GALGAS_uint & outOperand1,
+                                                                           GALGAS_uint & outOperand2,
                                                                            const GALGAS_uint inRemoveIndex,
                                                                            C_Compiler * inCompiler
                                                                            COMMA_LOCATION_ARGS) {
@@ -421,9 +445,13 @@ void GALGAS_ipic_31__38_SequentialInstructionList::modifier_removeAtIndex (GALGA
     cCollectionElement_ipic_31__38_SequentialInstructionList * p = (cCollectionElement_ipic_31__38_SequentialInstructionList *) attributes.ptr () ;
     if (NULL == p) {
       outOperand0.drop () ;
+      outOperand1.drop () ;
+      outOperand2.drop () ;
     }else{
       macroValidSharedObject (p, cCollectionElement_ipic_31__38_SequentialInstructionList) ;
       outOperand0 = p->mObject.mAttribute_mInstruction ;
+      outOperand1 = p->mObject.mAttribute_mMin ;
+      outOperand2 = p->mObject.mAttribute_mMax ;
     }
   }
 }
@@ -431,6 +459,8 @@ void GALGAS_ipic_31__38_SequentialInstructionList::modifier_removeAtIndex (GALGA
 //---------------------------------------------------------------------------------------------------------------------*
 
 void GALGAS_ipic_31__38_SequentialInstructionList::modifier_popFirst (GALGAS_ipic_31__38_SequentialInstruction & outOperand0,
+                                                                      GALGAS_uint & outOperand1,
+                                                                      GALGAS_uint & outOperand2,
                                                                       C_Compiler * inCompiler
                                                                       COMMA_LOCATION_ARGS) {
   capCollectionElement attributes ;
@@ -438,15 +468,21 @@ void GALGAS_ipic_31__38_SequentialInstructionList::modifier_popFirst (GALGAS_ipi
   cCollectionElement_ipic_31__38_SequentialInstructionList * p = (cCollectionElement_ipic_31__38_SequentialInstructionList *) attributes.ptr () ;
   if (NULL == p) {
     outOperand0.drop () ;
+    outOperand1.drop () ;
+    outOperand2.drop () ;
   }else{
     macroValidSharedObject (p, cCollectionElement_ipic_31__38_SequentialInstructionList) ;
     outOperand0 = p->mObject.mAttribute_mInstruction ;
+    outOperand1 = p->mObject.mAttribute_mMin ;
+    outOperand2 = p->mObject.mAttribute_mMax ;
   }
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
 void GALGAS_ipic_31__38_SequentialInstructionList::modifier_popLast (GALGAS_ipic_31__38_SequentialInstruction & outOperand0,
+                                                                     GALGAS_uint & outOperand1,
+                                                                     GALGAS_uint & outOperand2,
                                                                      C_Compiler * inCompiler
                                                                      COMMA_LOCATION_ARGS) {
   capCollectionElement attributes ;
@@ -454,15 +490,21 @@ void GALGAS_ipic_31__38_SequentialInstructionList::modifier_popLast (GALGAS_ipic
   cCollectionElement_ipic_31__38_SequentialInstructionList * p = (cCollectionElement_ipic_31__38_SequentialInstructionList *) attributes.ptr () ;
   if (NULL == p) {
     outOperand0.drop () ;
+    outOperand1.drop () ;
+    outOperand2.drop () ;
   }else{
     macroValidSharedObject (p, cCollectionElement_ipic_31__38_SequentialInstructionList) ;
     outOperand0 = p->mObject.mAttribute_mInstruction ;
+    outOperand1 = p->mObject.mAttribute_mMin ;
+    outOperand2 = p->mObject.mAttribute_mMax ;
   }
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
 void GALGAS_ipic_31__38_SequentialInstructionList::method_first (GALGAS_ipic_31__38_SequentialInstruction & outOperand0,
+                                                                 GALGAS_uint & outOperand1,
+                                                                 GALGAS_uint & outOperand2,
                                                                  C_Compiler * inCompiler
                                                                  COMMA_LOCATION_ARGS) const {
   capCollectionElement attributes ;
@@ -470,15 +512,21 @@ void GALGAS_ipic_31__38_SequentialInstructionList::method_first (GALGAS_ipic_31_
   cCollectionElement_ipic_31__38_SequentialInstructionList * p = (cCollectionElement_ipic_31__38_SequentialInstructionList *) attributes.ptr () ;
   if (NULL == p) {
     outOperand0.drop () ;
+    outOperand1.drop () ;
+    outOperand2.drop () ;
   }else{
     macroValidSharedObject (p, cCollectionElement_ipic_31__38_SequentialInstructionList) ;
     outOperand0 = p->mObject.mAttribute_mInstruction ;
+    outOperand1 = p->mObject.mAttribute_mMin ;
+    outOperand2 = p->mObject.mAttribute_mMax ;
   }
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
 void GALGAS_ipic_31__38_SequentialInstructionList::method_last (GALGAS_ipic_31__38_SequentialInstruction & outOperand0,
+                                                                GALGAS_uint & outOperand1,
+                                                                GALGAS_uint & outOperand2,
                                                                 C_Compiler * inCompiler
                                                                 COMMA_LOCATION_ARGS) const {
   capCollectionElement attributes ;
@@ -486,9 +534,13 @@ void GALGAS_ipic_31__38_SequentialInstructionList::method_last (GALGAS_ipic_31__
   cCollectionElement_ipic_31__38_SequentialInstructionList * p = (cCollectionElement_ipic_31__38_SequentialInstructionList *) attributes.ptr () ;
   if (NULL == p) {
     outOperand0.drop () ;
+    outOperand1.drop () ;
+    outOperand2.drop () ;
   }else{
     macroValidSharedObject (p, cCollectionElement_ipic_31__38_SequentialInstructionList) ;
     outOperand0 = p->mObject.mAttribute_mInstruction ;
+    outOperand1 = p->mObject.mAttribute_mMin ;
+    outOperand2 = p->mObject.mAttribute_mMax ;
   }
 }
 
@@ -559,6 +611,36 @@ GALGAS_ipic_31__38_SequentialInstruction GALGAS_ipic_31__38_SequentialInstructio
   return result ;
 }
 
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_uint GALGAS_ipic_31__38_SequentialInstructionList::reader_mMinAtIndex (const GALGAS_uint & inIndex,
+                                                                              C_Compiler * inCompiler
+                                                                              COMMA_LOCATION_ARGS) const {
+  capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
+  cCollectionElement_ipic_31__38_SequentialInstructionList * p = (cCollectionElement_ipic_31__38_SequentialInstructionList *) attributes.ptr () ;
+  GALGAS_uint result ;
+  if (NULL != p) {
+    macroValidSharedObject (p, cCollectionElement_ipic_31__38_SequentialInstructionList) ;
+    result = p->mObject.mAttribute_mMin ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_uint GALGAS_ipic_31__38_SequentialInstructionList::reader_mMaxAtIndex (const GALGAS_uint & inIndex,
+                                                                              C_Compiler * inCompiler
+                                                                              COMMA_LOCATION_ARGS) const {
+  capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
+  cCollectionElement_ipic_31__38_SequentialInstructionList * p = (cCollectionElement_ipic_31__38_SequentialInstructionList *) attributes.ptr () ;
+  GALGAS_uint result ;
+  if (NULL != p) {
+    macroValidSharedObject (p, cCollectionElement_ipic_31__38_SequentialInstructionList) ;
+    result = p->mObject.mAttribute_mMax ;
+  }
+  return result ;
+}
+
 
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -584,6 +666,22 @@ GALGAS_ipic_31__38_SequentialInstruction cEnumerator_ipic_31__38_SequentialInstr
   const cCollectionElement_ipic_31__38_SequentialInstructionList * p = (const cCollectionElement_ipic_31__38_SequentialInstructionList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_ipic_31__38_SequentialInstructionList) ;
   return p->mObject.mAttribute_mInstruction ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_uint cEnumerator_ipic_31__38_SequentialInstructionList::current_mMin (LOCATION_ARGS) const {
+  const cCollectionElement_ipic_31__38_SequentialInstructionList * p = (const cCollectionElement_ipic_31__38_SequentialInstructionList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_ipic_31__38_SequentialInstructionList) ;
+  return p->mObject.mAttribute_mMin ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_uint cEnumerator_ipic_31__38_SequentialInstructionList::current_mMax (LOCATION_ARGS) const {
+  const cCollectionElement_ipic_31__38_SequentialInstructionList * p = (const cCollectionElement_ipic_31__38_SequentialInstructionList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_ipic_31__38_SequentialInstructionList) ;
+  return p->mObject.mAttribute_mMax ;
 }
 
 
@@ -6310,316 +6408,7 @@ GALGAS_routineStackRequirementMap GALGAS_routineStackRequirementMap::extractObje
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-cMapElement_blockMapForDurationComputation::cMapElement_blockMapForDurationComputation (const GALGAS_lstring & inKey,
-                                                                                        const GALGAS_ipic_31__38_Block & in_mBlock,
-                                                                                        const GALGAS_string & in_mNextLabel
-                                                                                        COMMA_LOCATION_ARGS) :
-cMapElement (inKey COMMA_THERE),
-mAttribute_mBlock (in_mBlock),
-mAttribute_mNextLabel (in_mNextLabel) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-bool cMapElement_blockMapForDurationComputation::isValid (void) const {
-  return mAttribute_lkey.isValid () && mAttribute_mBlock.isValid () && mAttribute_mNextLabel.isValid () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-cMapElement * cMapElement_blockMapForDurationComputation::copy (void) {
-  cMapElement * result = NULL ;
-  macroMyNew (result, cMapElement_blockMapForDurationComputation (mAttribute_lkey, mAttribute_mBlock, mAttribute_mNextLabel COMMA_HERE)) ;
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void cMapElement_blockMapForDurationComputation::description (C_String & ioString, const int32_t inIndentation) const {
-  ioString << "\n" ;
-  ioString.writeStringMultiple ("| ", inIndentation) ;
-  ioString << "mBlock" ":" ;
-  mAttribute_mBlock.description (ioString, inIndentation) ;
-  ioString << "\n" ;
-  ioString.writeStringMultiple ("| ", inIndentation) ;
-  ioString << "mNextLabel" ":" ;
-  mAttribute_mNextLabel.description (ioString, inIndentation) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-typeComparisonResult cMapElement_blockMapForDurationComputation::compare (const cCollectionElement * inOperand) const {
-  cMapElement_blockMapForDurationComputation * operand = (cMapElement_blockMapForDurationComputation *) inOperand ;
-  typeComparisonResult result = mAttribute_lkey.objectCompare (operand->mAttribute_lkey) ;
-  if (kOperandEqual == result) {
-    result = mAttribute_mBlock.objectCompare (operand->mAttribute_mBlock) ;
-  }
-  if (kOperandEqual == result) {
-    result = mAttribute_mNextLabel.objectCompare (operand->mAttribute_mNextLabel) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_blockMapForDurationComputation::GALGAS_blockMapForDurationComputation (void) :
-AC_GALGAS_map () {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_blockMapForDurationComputation::GALGAS_blockMapForDurationComputation (const GALGAS_blockMapForDurationComputation & inSource) :
-AC_GALGAS_map (inSource) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_blockMapForDurationComputation & GALGAS_blockMapForDurationComputation::operator = (const GALGAS_blockMapForDurationComputation & inSource) {
-  * ((AC_GALGAS_map *) this) = inSource ;
-  return * this ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_blockMapForDurationComputation GALGAS_blockMapForDurationComputation::constructor_emptyMap (LOCATION_ARGS) {
-  GALGAS_blockMapForDurationComputation result ;
-  result.makeNewEmptyMap (THERE) ;
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_blockMapForDurationComputation GALGAS_blockMapForDurationComputation::constructor_mapWithMapToOverride (const GALGAS_blockMapForDurationComputation & inMapToOverride
-                                                                                                               COMMA_LOCATION_ARGS) {
-  GALGAS_blockMapForDurationComputation result ;
-  result.makeNewEmptyMapWithMapToOverride (inMapToOverride COMMA_THERE) ;
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_blockMapForDurationComputation GALGAS_blockMapForDurationComputation::reader_overriddenMap (C_Compiler * inCompiler
-                                                                                                   COMMA_LOCATION_ARGS) const {
-  GALGAS_blockMapForDurationComputation result ;
-  getOverridenMap (result, inCompiler COMMA_THERE) ;
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_blockMapForDurationComputation::addAssign_operation (const GALGAS_lstring & inKey,
-                                                                 const GALGAS_ipic_31__38_Block & inArgument0,
-                                                                 const GALGAS_string & inArgument1,
-                                                                 C_Compiler * inCompiler
-                                                                 COMMA_LOCATION_ARGS) {
-  cMapElement_blockMapForDurationComputation * p = NULL ;
-  macroMyNew (p, cMapElement_blockMapForDurationComputation (inKey, inArgument0, inArgument1 COMMA_HERE)) ;
-  capCollectionElement attributes ;
-  attributes.setPointer (p) ;
-  macroDetachSharedObject (p) ;
-  const char * kInsertErrorMessage = "@blockMapForDurationComputation insert error: '%K' already in map" ;
-  const char * kShadowErrorMessage = "" ;
-  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_blockMapForDurationComputation::modifier_insertKey (GALGAS_lstring inKey,
-                                                                GALGAS_ipic_31__38_Block inArgument0,
-                                                                GALGAS_string inArgument1,
-                                                                C_Compiler * inCompiler
-                                                                COMMA_LOCATION_ARGS) {
-  cMapElement_blockMapForDurationComputation * p = NULL ;
-  macroMyNew (p, cMapElement_blockMapForDurationComputation (inKey, inArgument0, inArgument1 COMMA_HERE)) ;
-  capCollectionElement attributes ;
-  attributes.setPointer (p) ;
-  macroDetachSharedObject (p) ;
-  const char * kInsertErrorMessage = "the '%K' block is already declared in %L" ;
-  const char * kShadowErrorMessage = "" ;
-  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-const char * kSearchErrorMessage_blockMapForDurationComputation_searchKey = "the '%K' block is not declared" ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_blockMapForDurationComputation::method_searchKey (GALGAS_lstring inKey,
-                                                              GALGAS_ipic_31__38_Block & outArgument0,
-                                                              GALGAS_string & outArgument1,
-                                                              C_Compiler * inCompiler
-                                                              COMMA_LOCATION_ARGS) const {
-  const cMapElement_blockMapForDurationComputation * p = (const cMapElement_blockMapForDurationComputation *) performSearch (inKey,
-                                                                                                                               inCompiler,
-                                                                                                                               kSearchErrorMessage_blockMapForDurationComputation_searchKey
-                                                                                                                               COMMA_THERE) ;
-  if (NULL == p) {
-    outArgument0.drop () ;
-    outArgument1.drop () ;
-  }else{
-    macroValidSharedObject (p, cMapElement_blockMapForDurationComputation) ;
-    outArgument0 = p->mAttribute_mBlock ;
-    outArgument1 = p->mAttribute_mNextLabel ;
-  }
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_ipic_31__38_Block GALGAS_blockMapForDurationComputation::reader_mBlockForKey (const GALGAS_string & inKey,
-                                                                                     C_Compiler * inCompiler
-                                                                                     COMMA_LOCATION_ARGS) const {
-  const cCollectionElement * attributes = searchForReadingAttribute (inKey, inCompiler COMMA_THERE) ;
-  const cMapElement_blockMapForDurationComputation * p = (const cMapElement_blockMapForDurationComputation *) attributes ;
-  GALGAS_ipic_31__38_Block result ;
-  if (NULL != p) {
-    macroValidSharedObject (p, cMapElement_blockMapForDurationComputation) ;
-    result = p->mAttribute_mBlock ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_string GALGAS_blockMapForDurationComputation::reader_mNextLabelForKey (const GALGAS_string & inKey,
-                                                                              C_Compiler * inCompiler
-                                                                              COMMA_LOCATION_ARGS) const {
-  const cCollectionElement * attributes = searchForReadingAttribute (inKey, inCompiler COMMA_THERE) ;
-  const cMapElement_blockMapForDurationComputation * p = (const cMapElement_blockMapForDurationComputation *) attributes ;
-  GALGAS_string result ;
-  if (NULL != p) {
-    macroValidSharedObject (p, cMapElement_blockMapForDurationComputation) ;
-    result = p->mAttribute_mNextLabel ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_blockMapForDurationComputation::modifier_setMBlockForKey (GALGAS_ipic_31__38_Block inAttributeValue,
-                                                                      GALGAS_string inKey,
-                                                                      C_Compiler * inCompiler
-                                                                      COMMA_LOCATION_ARGS) {
-  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
-  cMapElement_blockMapForDurationComputation * p = (cMapElement_blockMapForDurationComputation *) attributes ;
-  if (NULL != p) {
-    macroValidSharedObject (p, cMapElement_blockMapForDurationComputation) ;
-    p->mAttribute_mBlock = inAttributeValue ;
-  }
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_blockMapForDurationComputation::modifier_setMNextLabelForKey (GALGAS_string inAttributeValue,
-                                                                          GALGAS_string inKey,
-                                                                          C_Compiler * inCompiler
-                                                                          COMMA_LOCATION_ARGS) {
-  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
-  cMapElement_blockMapForDurationComputation * p = (cMapElement_blockMapForDurationComputation *) attributes ;
-  if (NULL != p) {
-    macroValidSharedObject (p, cMapElement_blockMapForDurationComputation) ;
-    p->mAttribute_mNextLabel = inAttributeValue ;
-  }
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-cMapElement_blockMapForDurationComputation * GALGAS_blockMapForDurationComputation::readWriteAccessForWithInstruction (C_Compiler * inCompiler,
-                                                                                                                       const GALGAS_string & inKey
-                                                                                                                       COMMA_LOCATION_ARGS) {
-  cMapElement_blockMapForDurationComputation * result = (cMapElement_blockMapForDurationComputation *) searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
-  macroNullOrValidSharedObject (result, cMapElement_blockMapForDurationComputation) ;
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-cEnumerator_blockMapForDurationComputation::cEnumerator_blockMapForDurationComputation (const GALGAS_blockMapForDurationComputation & inEnumeratedObject,
-                                                                                        const typeEnumerationOrder inOrder) :
-cGenericAbstractEnumerator () {
-  inEnumeratedObject.populateEnumerationArray (mEnumerationArray, inOrder) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_blockMapForDurationComputation_2D_element cEnumerator_blockMapForDurationComputation::current (LOCATION_ARGS) const {
-  const cMapElement_blockMapForDurationComputation * p = (const cMapElement_blockMapForDurationComputation *) currentObjectPtr (THERE) ;
-  macroValidSharedObject (p, cMapElement_blockMapForDurationComputation) ;
-  return GALGAS_blockMapForDurationComputation_2D_element (p->mAttribute_lkey, p->mAttribute_mBlock, p->mAttribute_mNextLabel) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_lstring cEnumerator_blockMapForDurationComputation::current_lkey (LOCATION_ARGS) const {
-  const cMapElement * p = (const cMapElement *) currentObjectPtr (THERE) ;
-  macroValidSharedObject (p, cMapElement) ;
-  return p->mAttribute_lkey ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_ipic_31__38_Block cEnumerator_blockMapForDurationComputation::current_mBlock (LOCATION_ARGS) const {
-  const cMapElement_blockMapForDurationComputation * p = (const cMapElement_blockMapForDurationComputation *) currentObjectPtr (THERE) ;
-  macroValidSharedObject (p, cMapElement_blockMapForDurationComputation) ;
-  return p->mAttribute_mBlock ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_string cEnumerator_blockMapForDurationComputation::current_mNextLabel (LOCATION_ARGS) const {
-  const cMapElement_blockMapForDurationComputation * p = (const cMapElement_blockMapForDurationComputation *) currentObjectPtr (THERE) ;
-  macroValidSharedObject (p, cMapElement_blockMapForDurationComputation) ;
-  return p->mAttribute_mNextLabel ;
-}
-
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                        @blockMapForDurationComputation type                                         *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_blockMapForDurationComputation ("blockMapForDurationComputation",
-                                                       NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor * GALGAS_blockMapForDurationComputation::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_blockMapForDurationComputation ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-AC_GALGAS_root * GALGAS_blockMapForDurationComputation::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_blockMapForDurationComputation (*this)) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_blockMapForDurationComputation GALGAS_blockMapForDurationComputation::extractObject (const GALGAS_object & inObject,
-                                                                                            C_Compiler * inCompiler
-                                                                                            COMMA_LOCATION_ARGS) {
-  GALGAS_blockMapForDurationComputation result ;
-  const GALGAS_blockMapForDurationComputation * p = (const GALGAS_blockMapForDurationComputation *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_blockMapForDurationComputation *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("blockMapForDurationComputation", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-cMapElement_exploredBlockMap::cMapElement_exploredBlockMap (const GALGAS_lstring & inKey,
+cMapElement_blockDurationMap::cMapElement_blockDurationMap (const GALGAS_lstring & inKey,
                                                             const GALGAS_uint & in_mMinDuration,
                                                             const GALGAS_uint & in_mMaxDuration
                                                             COMMA_LOCATION_ARGS) :
@@ -6630,21 +6419,21 @@ mAttribute_mMaxDuration (in_mMaxDuration) {
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-bool cMapElement_exploredBlockMap::isValid (void) const {
+bool cMapElement_blockDurationMap::isValid (void) const {
   return mAttribute_lkey.isValid () && mAttribute_mMinDuration.isValid () && mAttribute_mMaxDuration.isValid () ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-cMapElement * cMapElement_exploredBlockMap::copy (void) {
+cMapElement * cMapElement_blockDurationMap::copy (void) {
   cMapElement * result = NULL ;
-  macroMyNew (result, cMapElement_exploredBlockMap (mAttribute_lkey, mAttribute_mMinDuration, mAttribute_mMaxDuration COMMA_HERE)) ;
+  macroMyNew (result, cMapElement_blockDurationMap (mAttribute_lkey, mAttribute_mMinDuration, mAttribute_mMaxDuration COMMA_HERE)) ;
   return result ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void cMapElement_exploredBlockMap::description (C_String & ioString, const int32_t inIndentation) const {
+void cMapElement_blockDurationMap::description (C_String & ioString, const int32_t inIndentation) const {
   ioString << "\n" ;
   ioString.writeStringMultiple ("| ", inIndentation) ;
   ioString << "mMinDuration" ":" ;
@@ -6657,8 +6446,8 @@ void cMapElement_exploredBlockMap::description (C_String & ioString, const int32
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-typeComparisonResult cMapElement_exploredBlockMap::compare (const cCollectionElement * inOperand) const {
-  cMapElement_exploredBlockMap * operand = (cMapElement_exploredBlockMap *) inOperand ;
+typeComparisonResult cMapElement_blockDurationMap::compare (const cCollectionElement * inOperand) const {
+  cMapElement_blockDurationMap * operand = (cMapElement_blockDurationMap *) inOperand ;
   typeComparisonResult result = mAttribute_lkey.objectCompare (operand->mAttribute_lkey) ;
   if (kOperandEqual == result) {
     result = mAttribute_mMinDuration.objectCompare (operand->mAttribute_mMinDuration) ;
@@ -6671,75 +6460,75 @@ typeComparisonResult cMapElement_exploredBlockMap::compare (const cCollectionEle
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_exploredBlockMap::GALGAS_exploredBlockMap (void) :
+GALGAS_blockDurationMap::GALGAS_blockDurationMap (void) :
 AC_GALGAS_map () {
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_exploredBlockMap::GALGAS_exploredBlockMap (const GALGAS_exploredBlockMap & inSource) :
+GALGAS_blockDurationMap::GALGAS_blockDurationMap (const GALGAS_blockDurationMap & inSource) :
 AC_GALGAS_map (inSource) {
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_exploredBlockMap & GALGAS_exploredBlockMap::operator = (const GALGAS_exploredBlockMap & inSource) {
+GALGAS_blockDurationMap & GALGAS_blockDurationMap::operator = (const GALGAS_blockDurationMap & inSource) {
   * ((AC_GALGAS_map *) this) = inSource ;
   return * this ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_exploredBlockMap GALGAS_exploredBlockMap::constructor_emptyMap (LOCATION_ARGS) {
-  GALGAS_exploredBlockMap result ;
+GALGAS_blockDurationMap GALGAS_blockDurationMap::constructor_emptyMap (LOCATION_ARGS) {
+  GALGAS_blockDurationMap result ;
   result.makeNewEmptyMap (THERE) ;
   return result ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_exploredBlockMap GALGAS_exploredBlockMap::constructor_mapWithMapToOverride (const GALGAS_exploredBlockMap & inMapToOverride
+GALGAS_blockDurationMap GALGAS_blockDurationMap::constructor_mapWithMapToOverride (const GALGAS_blockDurationMap & inMapToOverride
                                                                                    COMMA_LOCATION_ARGS) {
-  GALGAS_exploredBlockMap result ;
+  GALGAS_blockDurationMap result ;
   result.makeNewEmptyMapWithMapToOverride (inMapToOverride COMMA_THERE) ;
   return result ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_exploredBlockMap GALGAS_exploredBlockMap::reader_overriddenMap (C_Compiler * inCompiler
+GALGAS_blockDurationMap GALGAS_blockDurationMap::reader_overriddenMap (C_Compiler * inCompiler
                                                                        COMMA_LOCATION_ARGS) const {
-  GALGAS_exploredBlockMap result ;
+  GALGAS_blockDurationMap result ;
   getOverridenMap (result, inCompiler COMMA_THERE) ;
   return result ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_exploredBlockMap::addAssign_operation (const GALGAS_lstring & inKey,
+void GALGAS_blockDurationMap::addAssign_operation (const GALGAS_lstring & inKey,
                                                    const GALGAS_uint & inArgument0,
                                                    const GALGAS_uint & inArgument1,
                                                    C_Compiler * inCompiler
                                                    COMMA_LOCATION_ARGS) {
-  cMapElement_exploredBlockMap * p = NULL ;
-  macroMyNew (p, cMapElement_exploredBlockMap (inKey, inArgument0, inArgument1 COMMA_HERE)) ;
+  cMapElement_blockDurationMap * p = NULL ;
+  macroMyNew (p, cMapElement_blockDurationMap (inKey, inArgument0, inArgument1 COMMA_HERE)) ;
   capCollectionElement attributes ;
   attributes.setPointer (p) ;
   macroDetachSharedObject (p) ;
-  const char * kInsertErrorMessage = "@exploredBlockMap insert error: '%K' already in map" ;
+  const char * kInsertErrorMessage = "@blockDurationMap insert error: '%K' already in map" ;
   const char * kShadowErrorMessage = "" ;
   performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_exploredBlockMap::modifier_insertKey (GALGAS_lstring inKey,
+void GALGAS_blockDurationMap::modifier_insertKey (GALGAS_lstring inKey,
                                                   GALGAS_uint inArgument0,
                                                   GALGAS_uint inArgument1,
                                                   C_Compiler * inCompiler
                                                   COMMA_LOCATION_ARGS) {
-  cMapElement_exploredBlockMap * p = NULL ;
-  macroMyNew (p, cMapElement_exploredBlockMap (inKey, inArgument0, inArgument1 COMMA_HERE)) ;
+  cMapElement_blockDurationMap * p = NULL ;
+  macroMyNew (p, cMapElement_blockDurationMap (inKey, inArgument0, inArgument1 COMMA_HERE)) ;
   capCollectionElement attributes ;
   attributes.setPointer (p) ;
   macroDetachSharedObject (p) ;
@@ -6750,24 +6539,24 @@ void GALGAS_exploredBlockMap::modifier_insertKey (GALGAS_lstring inKey,
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-const char * kSearchErrorMessage_exploredBlockMap_searchKey = "the '%K' entry is not declared" ;
+const char * kSearchErrorMessage_blockDurationMap_searchKey = "the '%K' entry is not declared" ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_exploredBlockMap::method_searchKey (GALGAS_lstring inKey,
+void GALGAS_blockDurationMap::method_searchKey (GALGAS_lstring inKey,
                                                 GALGAS_uint & outArgument0,
                                                 GALGAS_uint & outArgument1,
                                                 C_Compiler * inCompiler
                                                 COMMA_LOCATION_ARGS) const {
-  const cMapElement_exploredBlockMap * p = (const cMapElement_exploredBlockMap *) performSearch (inKey,
+  const cMapElement_blockDurationMap * p = (const cMapElement_blockDurationMap *) performSearch (inKey,
                                                                                                    inCompiler,
-                                                                                                   kSearchErrorMessage_exploredBlockMap_searchKey
+                                                                                                   kSearchErrorMessage_blockDurationMap_searchKey
                                                                                                    COMMA_THERE) ;
   if (NULL == p) {
     outArgument0.drop () ;
     outArgument1.drop () ;
   }else{
-    macroValidSharedObject (p, cMapElement_exploredBlockMap) ;
+    macroValidSharedObject (p, cMapElement_blockDurationMap) ;
     outArgument0 = p->mAttribute_mMinDuration ;
     outArgument1 = p->mAttribute_mMaxDuration ;
   }
@@ -6775,14 +6564,14 @@ void GALGAS_exploredBlockMap::method_searchKey (GALGAS_lstring inKey,
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_uint GALGAS_exploredBlockMap::reader_mMinDurationForKey (const GALGAS_string & inKey,
+GALGAS_uint GALGAS_blockDurationMap::reader_mMinDurationForKey (const GALGAS_string & inKey,
                                                                 C_Compiler * inCompiler
                                                                 COMMA_LOCATION_ARGS) const {
   const cCollectionElement * attributes = searchForReadingAttribute (inKey, inCompiler COMMA_THERE) ;
-  const cMapElement_exploredBlockMap * p = (const cMapElement_exploredBlockMap *) attributes ;
+  const cMapElement_blockDurationMap * p = (const cMapElement_blockDurationMap *) attributes ;
   GALGAS_uint result ;
   if (NULL != p) {
-    macroValidSharedObject (p, cMapElement_exploredBlockMap) ;
+    macroValidSharedObject (p, cMapElement_blockDurationMap) ;
     result = p->mAttribute_mMinDuration ;
   }
   return result ;
@@ -6790,14 +6579,14 @@ GALGAS_uint GALGAS_exploredBlockMap::reader_mMinDurationForKey (const GALGAS_str
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_uint GALGAS_exploredBlockMap::reader_mMaxDurationForKey (const GALGAS_string & inKey,
+GALGAS_uint GALGAS_blockDurationMap::reader_mMaxDurationForKey (const GALGAS_string & inKey,
                                                                 C_Compiler * inCompiler
                                                                 COMMA_LOCATION_ARGS) const {
   const cCollectionElement * attributes = searchForReadingAttribute (inKey, inCompiler COMMA_THERE) ;
-  const cMapElement_exploredBlockMap * p = (const cMapElement_exploredBlockMap *) attributes ;
+  const cMapElement_blockDurationMap * p = (const cMapElement_blockDurationMap *) attributes ;
   GALGAS_uint result ;
   if (NULL != p) {
-    macroValidSharedObject (p, cMapElement_exploredBlockMap) ;
+    macroValidSharedObject (p, cMapElement_blockDurationMap) ;
     result = p->mAttribute_mMaxDuration ;
   }
   return result ;
@@ -6805,45 +6594,45 @@ GALGAS_uint GALGAS_exploredBlockMap::reader_mMaxDurationForKey (const GALGAS_str
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_exploredBlockMap::modifier_setMMinDurationForKey (GALGAS_uint inAttributeValue,
+void GALGAS_blockDurationMap::modifier_setMMinDurationForKey (GALGAS_uint inAttributeValue,
                                                               GALGAS_string inKey,
                                                               C_Compiler * inCompiler
                                                               COMMA_LOCATION_ARGS) {
   cCollectionElement * attributes = searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
-  cMapElement_exploredBlockMap * p = (cMapElement_exploredBlockMap *) attributes ;
+  cMapElement_blockDurationMap * p = (cMapElement_blockDurationMap *) attributes ;
   if (NULL != p) {
-    macroValidSharedObject (p, cMapElement_exploredBlockMap) ;
+    macroValidSharedObject (p, cMapElement_blockDurationMap) ;
     p->mAttribute_mMinDuration = inAttributeValue ;
   }
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_exploredBlockMap::modifier_setMMaxDurationForKey (GALGAS_uint inAttributeValue,
+void GALGAS_blockDurationMap::modifier_setMMaxDurationForKey (GALGAS_uint inAttributeValue,
                                                               GALGAS_string inKey,
                                                               C_Compiler * inCompiler
                                                               COMMA_LOCATION_ARGS) {
   cCollectionElement * attributes = searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
-  cMapElement_exploredBlockMap * p = (cMapElement_exploredBlockMap *) attributes ;
+  cMapElement_blockDurationMap * p = (cMapElement_blockDurationMap *) attributes ;
   if (NULL != p) {
-    macroValidSharedObject (p, cMapElement_exploredBlockMap) ;
+    macroValidSharedObject (p, cMapElement_blockDurationMap) ;
     p->mAttribute_mMaxDuration = inAttributeValue ;
   }
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-cMapElement_exploredBlockMap * GALGAS_exploredBlockMap::readWriteAccessForWithInstruction (C_Compiler * inCompiler,
+cMapElement_blockDurationMap * GALGAS_blockDurationMap::readWriteAccessForWithInstruction (C_Compiler * inCompiler,
                                                                                            const GALGAS_string & inKey
                                                                                            COMMA_LOCATION_ARGS) {
-  cMapElement_exploredBlockMap * result = (cMapElement_exploredBlockMap *) searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
-  macroNullOrValidSharedObject (result, cMapElement_exploredBlockMap) ;
+  cMapElement_blockDurationMap * result = (cMapElement_blockDurationMap *) searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
+  macroNullOrValidSharedObject (result, cMapElement_blockDurationMap) ;
   return result ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-cEnumerator_exploredBlockMap::cEnumerator_exploredBlockMap (const GALGAS_exploredBlockMap & inEnumeratedObject,
+cEnumerator_blockDurationMap::cEnumerator_blockDurationMap (const GALGAS_blockDurationMap & inEnumeratedObject,
                                                             const typeEnumerationOrder inOrder) :
 cGenericAbstractEnumerator () {
   inEnumeratedObject.populateEnumerationArray (mEnumerationArray, inOrder) ;
@@ -6851,15 +6640,15 @@ cGenericAbstractEnumerator () {
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_exploredBlockMap_2D_element cEnumerator_exploredBlockMap::current (LOCATION_ARGS) const {
-  const cMapElement_exploredBlockMap * p = (const cMapElement_exploredBlockMap *) currentObjectPtr (THERE) ;
-  macroValidSharedObject (p, cMapElement_exploredBlockMap) ;
-  return GALGAS_exploredBlockMap_2D_element (p->mAttribute_lkey, p->mAttribute_mMinDuration, p->mAttribute_mMaxDuration) ;
+GALGAS_blockDurationMap_2D_element cEnumerator_blockDurationMap::current (LOCATION_ARGS) const {
+  const cMapElement_blockDurationMap * p = (const cMapElement_blockDurationMap *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement_blockDurationMap) ;
+  return GALGAS_blockDurationMap_2D_element (p->mAttribute_lkey, p->mAttribute_mMinDuration, p->mAttribute_mMaxDuration) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_lstring cEnumerator_exploredBlockMap::current_lkey (LOCATION_ARGS) const {
+GALGAS_lstring cEnumerator_blockDurationMap::current_lkey (LOCATION_ARGS) const {
   const cMapElement * p = (const cMapElement *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cMapElement) ;
   return p->mAttribute_lkey ;
@@ -6867,17 +6656,17 @@ GALGAS_lstring cEnumerator_exploredBlockMap::current_lkey (LOCATION_ARGS) const 
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_uint cEnumerator_exploredBlockMap::current_mMinDuration (LOCATION_ARGS) const {
-  const cMapElement_exploredBlockMap * p = (const cMapElement_exploredBlockMap *) currentObjectPtr (THERE) ;
-  macroValidSharedObject (p, cMapElement_exploredBlockMap) ;
+GALGAS_uint cEnumerator_blockDurationMap::current_mMinDuration (LOCATION_ARGS) const {
+  const cMapElement_blockDurationMap * p = (const cMapElement_blockDurationMap *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement_blockDurationMap) ;
   return p->mAttribute_mMinDuration ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_uint cEnumerator_exploredBlockMap::current_mMaxDuration (LOCATION_ARGS) const {
-  const cMapElement_exploredBlockMap * p = (const cMapElement_exploredBlockMap *) currentObjectPtr (THERE) ;
-  macroValidSharedObject (p, cMapElement_exploredBlockMap) ;
+GALGAS_uint cEnumerator_blockDurationMap::current_mMaxDuration (LOCATION_ARGS) const {
+  const cMapElement_blockDurationMap * p = (const cMapElement_blockDurationMap *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement_blockDurationMap) ;
   return p->mAttribute_mMaxDuration ;
 }
 
@@ -6885,403 +6674,42 @@ GALGAS_uint cEnumerator_exploredBlockMap::current_mMaxDuration (LOCATION_ARGS) c
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                                               @exploredBlockMap type                                                *
+//                                               @blockDurationMap type                                                *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
 const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_exploredBlockMap ("exploredBlockMap",
+kTypeDescriptor_GALGAS_blockDurationMap ("blockDurationMap",
                                          NULL) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-const C_galgas_type_descriptor * GALGAS_exploredBlockMap::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_exploredBlockMap ;
+const C_galgas_type_descriptor * GALGAS_blockDurationMap::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_blockDurationMap ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-AC_GALGAS_root * GALGAS_exploredBlockMap::clonedObject (void) const {
+AC_GALGAS_root * GALGAS_blockDurationMap::clonedObject (void) const {
   AC_GALGAS_root * result = NULL ;
   if (isValid ()) {
-    macroMyNew (result, GALGAS_exploredBlockMap (*this)) ;
+    macroMyNew (result, GALGAS_blockDurationMap (*this)) ;
   }
   return result ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_exploredBlockMap GALGAS_exploredBlockMap::extractObject (const GALGAS_object & inObject,
+GALGAS_blockDurationMap GALGAS_blockDurationMap::extractObject (const GALGAS_object & inObject,
                                                                 C_Compiler * inCompiler
                                                                 COMMA_LOCATION_ARGS) {
-  GALGAS_exploredBlockMap result ;
-  const GALGAS_exploredBlockMap * p = (const GALGAS_exploredBlockMap *) inObject.embeddedObject () ;
+  GALGAS_blockDurationMap result ;
+  const GALGAS_blockDurationMap * p = (const GALGAS_blockDurationMap *) inObject.embeddedObject () ;
   if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_exploredBlockMap *> (p)) {
+    if (NULL != dynamic_cast <const GALGAS_blockDurationMap *> (p)) {
       result = *p ;
     }else{
-      inCompiler->castError ("exploredBlockMap", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                Class for element of '@codeWithDuration' sorted list                                 *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-class cSortedListElement_codeWithDuration : public cSortedListElement {
-  public : GALGAS_codeWithDuration_2D_element mObject ;
-
-//--- Constructor
-  public : cSortedListElement_codeWithDuration (const GALGAS_uint & in_mAddress,
-                                                const GALGAS_string & in_mAssembly,
-                                                const GALGAS_uint & in_mMinDuration,
-                                                const GALGAS_uint & in_mMaxDuration
-                                                COMMA_LOCATION_ARGS) ;
-
-//--- Virtual method that checks that all attributes are valid
-  public : virtual bool isValid (void) const ;
-
-//--- Virtual method that returns a copy of current object
-  public : virtual cSortedListElement * copy (void) ;
-
-//--- Virtual method for comparing elements
-  public : virtual typeComparisonResult compare (const cCollectionElement * inOperand) const ;
-
-//--- Description
- public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
-
-//--- Virtual method that comparing element for sorting
-  public : virtual typeComparisonResult compareForSorting (const cSortedListElement * inOperand) const ;
-} ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-cSortedListElement_codeWithDuration::cSortedListElement_codeWithDuration (const GALGAS_uint & in_mAddress,
-                                                                          const GALGAS_string & in_mAssembly,
-                                                                          const GALGAS_uint & in_mMinDuration,
-                                                                          const GALGAS_uint & in_mMaxDuration
-                                                                          COMMA_LOCATION_ARGS) :
-cSortedListElement (THERE),
-mObject (in_mAddress, in_mAssembly, in_mMinDuration, in_mMaxDuration) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-bool cSortedListElement_codeWithDuration::isValid (void) const {
-  return mObject.isValid () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-cSortedListElement * cSortedListElement_codeWithDuration::copy (void) {
-  cSortedListElement * result = NULL ;
-  macroMyNew (result, cSortedListElement_codeWithDuration (mObject.mAttribute_mAddress, mObject.mAttribute_mAssembly, mObject.mAttribute_mMinDuration, mObject.mAttribute_mMaxDuration COMMA_HERE)) ;
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void cSortedListElement_codeWithDuration::description (C_String & ioString, const int32_t inIndentation) const {
-  ioString << "\n" ;
-  ioString.writeStringMultiple ("| ", inIndentation) ;
-  ioString << "mAddress" ":" ;
-  mObject.mAttribute_mAddress.description (ioString, inIndentation) ;
-  ioString << "\n" ;
-  ioString.writeStringMultiple ("| ", inIndentation) ;
-  ioString << "mAssembly" ":" ;
-  mObject.mAttribute_mAssembly.description (ioString, inIndentation) ;
-  ioString << "\n" ;
-  ioString.writeStringMultiple ("| ", inIndentation) ;
-  ioString << "mMinDuration" ":" ;
-  mObject.mAttribute_mMinDuration.description (ioString, inIndentation) ;
-  ioString << "\n" ;
-  ioString.writeStringMultiple ("| ", inIndentation) ;
-  ioString << "mMaxDuration" ":" ;
-  mObject.mAttribute_mMaxDuration.description (ioString, inIndentation) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-typeComparisonResult cSortedListElement_codeWithDuration::compare (const cCollectionElement * inOperand) const {
-  cSortedListElement_codeWithDuration * operand = (cSortedListElement_codeWithDuration *) inOperand ;
-  macroValidSharedObject (operand, cSortedListElement_codeWithDuration) ;
-  return mObject.objectCompare (operand->mObject) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_codeWithDuration::GALGAS_codeWithDuration (void) :
-AC_GALGAS_sortedlist () {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-typeComparisonResult cSortedListElement_codeWithDuration::compareForSorting (const cSortedListElement * inOperand) const {
-  typeComparisonResult result = kOperandEqual ;
-  const cSortedListElement_codeWithDuration * operand = (const cSortedListElement_codeWithDuration *) inOperand ;
-  macroValidSharedObject (operand, cSortedListElement_codeWithDuration) ;
-  if (result == kOperandEqual) {
-    result = mObject.mAttribute_mAddress.objectCompare (operand->mObject.mAttribute_mAddress) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_codeWithDuration GALGAS_codeWithDuration::constructor_emptySortedList (LOCATION_ARGS) {
-  GALGAS_codeWithDuration result ;
-  result.createNewEmptySortedList (THERE) ;
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_codeWithDuration GALGAS_codeWithDuration::constructor_sortedListWithValue (const GALGAS_uint & inOperand0,
-                                                                                  const GALGAS_string & inOperand1,
-                                                                                  const GALGAS_uint & inOperand2,
-                                                                                  const GALGAS_uint & inOperand3
-                                                                                  COMMA_LOCATION_ARGS) {
-  GALGAS_codeWithDuration result = constructor_emptySortedList (THERE) ;
-  cSortedListElement * p = NULL ;
-  macroMyNew (p, cSortedListElement_codeWithDuration (inOperand0, inOperand1, inOperand2, inOperand3 COMMA_THERE)) ;
-  capSortedListElement attributes ;
-  attributes.setPointer (p) ;
-  macroDetachSharedObject (p) ;
-  result.addObject (attributes) ;
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_codeWithDuration::addAssign_operation (const GALGAS_uint & inOperand0,
-                                                   const GALGAS_string & inOperand1,
-                                                   const GALGAS_uint & inOperand2,
-                                                   const GALGAS_uint & inOperand3
-                                                   COMMA_LOCATION_ARGS) {
-  if (isValid ()) {
-    cSortedListElement * p = NULL ;
-    macroMyNew (p, cSortedListElement_codeWithDuration (inOperand0, inOperand1, inOperand2, inOperand3 COMMA_THERE)) ;
-    capSortedListElement attributes ;
-    attributes.setPointer (p) ;
-    macroDetachSharedObject (p) ;
-    addObject (attributes) ;
-  }
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_codeWithDuration::dotAssign_operation (const GALGAS_codeWithDuration inOperand
-                                                   COMMA_UNUSED_LOCATION_ARGS) {
-  if (isValid ()) {
-    appendSortedList (inOperand) ;
-  }
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_codeWithDuration GALGAS_codeWithDuration::operator_concat (const GALGAS_codeWithDuration & inOperand
-                                                                  COMMA_LOCATION_ARGS) const {
-  GALGAS_codeWithDuration result ;
-  if (isValid () && inOperand.isValid ()) {
-    result = constructor_emptySortedList (THERE) ;
-    result = *this ;
-    result.appendSortedList (inOperand) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_codeWithDuration::modifier_popSmallest (GALGAS_uint & outOperand0,
-                                                    GALGAS_string & outOperand1,
-                                                    GALGAS_uint & outOperand2,
-                                                    GALGAS_uint & outOperand3,
-                                                    C_Compiler * inCompiler
-                                                    COMMA_LOCATION_ARGS) {
-  capSortedListElement attributes ;
-  removeSmallestObject (attributes, inCompiler COMMA_THERE) ;
-  cSortedListElement_codeWithDuration * p = (cSortedListElement_codeWithDuration *) attributes.ptr () ;
-  if (NULL == p) {
-    outOperand0.drop () ;
-    outOperand1.drop () ;
-    outOperand2.drop () ;
-    outOperand3.drop () ;
-  }else{
-    macroValidSharedObject (p, cSortedListElement_codeWithDuration) ;
-    outOperand0 = p->mObject.mAttribute_mAddress ;
-    outOperand1 = p->mObject.mAttribute_mAssembly ;
-    outOperand2 = p->mObject.mAttribute_mMinDuration ;
-    outOperand3 = p->mObject.mAttribute_mMaxDuration ;
-  }
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_codeWithDuration::modifier_popGreatest (GALGAS_uint & outOperand0,
-                                                    GALGAS_string & outOperand1,
-                                                    GALGAS_uint & outOperand2,
-                                                    GALGAS_uint & outOperand3,
-                                                    C_Compiler * inCompiler
-                                                    COMMA_LOCATION_ARGS) {
-  capSortedListElement attributes ;
-  removeGreatestObject (attributes, inCompiler COMMA_THERE) ;
-  cSortedListElement_codeWithDuration * p = (cSortedListElement_codeWithDuration *) attributes.ptr () ;
-  if (NULL == p) {
-    outOperand0.drop () ;
-    outOperand1.drop () ;
-    outOperand2.drop () ;
-    outOperand3.drop () ;
-  }else{
-    macroValidSharedObject (p, cSortedListElement_codeWithDuration) ;
-    outOperand0 = p->mObject.mAttribute_mAddress ;
-    outOperand1 = p->mObject.mAttribute_mAssembly ;
-    outOperand2 = p->mObject.mAttribute_mMinDuration ;
-    outOperand3 = p->mObject.mAttribute_mMaxDuration ;
-  }
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_codeWithDuration::method_smallest (GALGAS_uint & outOperand0,
-                                               GALGAS_string & outOperand1,
-                                               GALGAS_uint & outOperand2,
-                                               GALGAS_uint & outOperand3,
-                                               C_Compiler * inCompiler
-                                               COMMA_LOCATION_ARGS) const {
-  capSortedListElement attributes ;
-  smallestObjectAttributeList (attributes, inCompiler COMMA_THERE) ;
-  cSortedListElement_codeWithDuration * p = (cSortedListElement_codeWithDuration *) attributes.ptr () ;
-  if (NULL == p) {
-    outOperand0.drop () ;
-    outOperand1.drop () ;
-    outOperand2.drop () ;
-    outOperand3.drop () ;
-  }else{
-    macroValidSharedObject (p, cSortedListElement_codeWithDuration) ;
-    outOperand0 = p->mObject.mAttribute_mAddress ;
-    outOperand1 = p->mObject.mAttribute_mAssembly ;
-    outOperand2 = p->mObject.mAttribute_mMinDuration ;
-    outOperand3 = p->mObject.mAttribute_mMaxDuration ;
-  }
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_codeWithDuration::method_greatest (GALGAS_uint & outOperand0,
-                                               GALGAS_string & outOperand1,
-                                               GALGAS_uint & outOperand2,
-                                               GALGAS_uint & outOperand3,
-                                               C_Compiler * inCompiler
-                                               COMMA_LOCATION_ARGS) const {
-  capSortedListElement attributes ;
-  greatestObjectAttributeList (attributes, inCompiler COMMA_THERE) ;
-  cSortedListElement_codeWithDuration * p = (cSortedListElement_codeWithDuration *) attributes.ptr () ;
-  if (NULL == p) {
-    outOperand0.drop () ;
-    outOperand1.drop () ;
-    outOperand2.drop () ;
-    outOperand3.drop () ;
-  }else{
-    macroValidSharedObject (p, cSortedListElement_codeWithDuration) ;
-    outOperand0 = p->mObject.mAttribute_mAddress ;
-    outOperand1 = p->mObject.mAttribute_mAssembly ;
-    outOperand2 = p->mObject.mAttribute_mMinDuration ;
-    outOperand3 = p->mObject.mAttribute_mMaxDuration ;
-  }
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-cEnumerator_codeWithDuration::cEnumerator_codeWithDuration (const GALGAS_codeWithDuration & inEnumeratedObject,
-                                                            const typeEnumerationOrder inOrder) :
-cGenericAbstractEnumerator () {
-  inEnumeratedObject.populateEnumerationArray (mEnumerationArray, inOrder) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_codeWithDuration_2D_element cEnumerator_codeWithDuration::current (LOCATION_ARGS) const {
-  const cSortedListElement_codeWithDuration * p = (const cSortedListElement_codeWithDuration *) currentObjectPtr (THERE) ;
-  macroValidSharedObject (p, cSortedListElement_codeWithDuration) ;
-  return p->mObject ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_uint cEnumerator_codeWithDuration::current_mAddress (LOCATION_ARGS) const {
-  const cSortedListElement_codeWithDuration * p = (const cSortedListElement_codeWithDuration *) currentObjectPtr (THERE) ;
-  macroValidSharedObject (p, cSortedListElement_codeWithDuration) ;
-  return p->mObject.mAttribute_mAddress ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_string cEnumerator_codeWithDuration::current_mAssembly (LOCATION_ARGS) const {
-  const cSortedListElement_codeWithDuration * p = (const cSortedListElement_codeWithDuration *) currentObjectPtr (THERE) ;
-  macroValidSharedObject (p, cSortedListElement_codeWithDuration) ;
-  return p->mObject.mAttribute_mAssembly ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_uint cEnumerator_codeWithDuration::current_mMinDuration (LOCATION_ARGS) const {
-  const cSortedListElement_codeWithDuration * p = (const cSortedListElement_codeWithDuration *) currentObjectPtr (THERE) ;
-  macroValidSharedObject (p, cSortedListElement_codeWithDuration) ;
-  return p->mObject.mAttribute_mMinDuration ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_uint cEnumerator_codeWithDuration::current_mMaxDuration (LOCATION_ARGS) const {
-  const cSortedListElement_codeWithDuration * p = (const cSortedListElement_codeWithDuration *) currentObjectPtr (THERE) ;
-  macroValidSharedObject (p, cSortedListElement_codeWithDuration) ;
-  return p->mObject.mAttribute_mMaxDuration ;
-}
-
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                               @codeWithDuration type                                                *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_codeWithDuration ("codeWithDuration",
-                                         NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor * GALGAS_codeWithDuration::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_codeWithDuration ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-AC_GALGAS_root * GALGAS_codeWithDuration::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_codeWithDuration (*this)) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_codeWithDuration GALGAS_codeWithDuration::extractObject (const GALGAS_object & inObject,
-                                                                C_Compiler * inCompiler
-                                                                COMMA_LOCATION_ARGS) {
-  GALGAS_codeWithDuration result ;
-  const GALGAS_codeWithDuration * p = (const GALGAS_codeWithDuration *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_codeWithDuration *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("codeWithDuration", p->dynamicTypeDescriptor () COMMA_THERE) ;
+      inCompiler->castError ("blockDurationMap", p->dynamicTypeDescriptor () COMMA_THERE) ;
     }  
   }
   return result ;

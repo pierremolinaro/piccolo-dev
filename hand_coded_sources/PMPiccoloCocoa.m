@@ -73,7 +73,7 @@
       informativeTextWithFormat:@"No command line Tool is currently embedded by application."
     ] ;
     [alert
-      beginSheetModalForWindow:nil
+      beginSheetModalForWindow:mResultText.window
       modalDelegate:nil
       didEndSelector:0
       contextInfo:NULL

@@ -21,7 +21,7 @@ method @ipic18Block performRelativesResolution
       !?ioListFileContents
       ?let @ipic18SequentialInstruction modifiedInstruction
     ]
-    modifiedInstructionList += !modifiedInstruction
+    modifiedInstructionList += !modifiedInstruction !@uint.max !0
     address = address + [mInstruction instructionSize]
   end
 #--- Terminator
@@ -39,7 +39,10 @@ method @ipic18Block performRelativesResolution
     !mAddress
     !mLabel
     !modifiedInstructionList
-    !modifiedTerminator}
+    !modifiedTerminator
+    !@uint.max
+    !0
+  }
 }
 
 #----------------------------------------------------------------------------*
