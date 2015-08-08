@@ -7,7 +7,7 @@ syntax baseline_program
 syntax pic18_bootloader_syntax
 syntax communs
 
- <start_symbol>
+<start_symbol>
 label importBootloaderSpecification
   !@piccoloDeviceModel outPiccoloDeviceModel
   !@string outDeviceName

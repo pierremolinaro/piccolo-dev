@@ -527,9 +527,9 @@ proc perform_midrange_optimizations
   ?!@midrange_intermediate_instructionList ioGeneratedInstructionList
   ?!@string ioListFileContents {
 #-------------------------------- List file
-  ioListFileContents += ["" stringByLeftAndRightPadding !79 !'*'] + "\n"
-  ioListFileContents += "*" + ["CODE OPTIMIZATION" stringByLeftAndRightPadding !77 !' '] + "*\n"
-  ioListFileContents += ["" stringByLeftAndRightPadding !79 !'*'] + "\n\n"
+  ioListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n"
+  ioListFileContents += "*" + ["CODE OPTIMIZATION" stringByLeftAndRightPadding !117 !' '] + "*\n"
+  ioListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n\n"
 #-------------------------------- Build label map
   var symbolTable =@symbolTableForOptimizations.emptyMap{}
   for () in  ioGeneratedInstructionList do(lineIndex)

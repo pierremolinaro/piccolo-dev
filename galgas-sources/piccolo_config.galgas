@@ -108,9 +108,9 @@ proc buildConfig
  ?!@string ioListFileContents
  !@actualConfigurationMap outActualConfigurationMap {
 #--- Log
-  ioListFileContents += ["" stringByLeftAndRightPadding !79 !'*'] + "\n"
-  ioListFileContents += "*" + ["MICROCONTROLLER CONFIGURATION" stringByLeftAndRightPadding !77 !' '] + "*\n"
-  ioListFileContents += ["" stringByLeftAndRightPadding !79 !'*'] + "\n\n"
+  ioListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n"
+  ioListFileContents += "*" + ["MICROCONTROLLER CONFIGURATION" stringByLeftAndRightPadding !117 !' '] + "*\n"
+  ioListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n\n"
 #--- 
   if [inConfigDefinitionList length] > 0 then
     actualBuildConfig (

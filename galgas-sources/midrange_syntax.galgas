@@ -44,10 +44,6 @@ rule <start_symbol> {
   @bool needsComputedGoto4 = false
   repeat
   while
-    $mark$
-    $literal_string$ ?var @lstring s
-    warning s : "obsolete construct: use a comment beginning by #!"
-  while
     $unused$
     $byte$
     repeat
@@ -131,9 +127,6 @@ label importBootloaderSpecification
   $literal_string$ ? *
   $:$
   repeat
-  while
-    $mark$
-    $literal_string$ ?*
   while
     $unused$
     $byte$

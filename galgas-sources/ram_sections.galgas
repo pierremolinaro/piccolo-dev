@@ -62,9 +62,9 @@ proc analyze_ram_sections
     end
   end
   if [option piccolo_options.ouputListingFile value] then
-    ioListFileContents += ["" stringByLeftAndRightPadding !79 !'*'] + "\n"
-    ioListFileContents += "*" + [inListingTitle stringByLeftAndRightPadding !77 !' '] + "*\n"
-    ioListFileContents += ["" stringByLeftAndRightPadding !79 !'*'] + "\n\n"
+    ioListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n"
+    ioListFileContents += "*" + [inListingTitle stringByLeftAndRightPadding !117 !' '] + "*\n"
+    ioListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n\n"
     ioListFileContents += ["Variable" stringByLeftPadding !40 !' '] + " Address\n"
     for () in  ioAllRegisters do
       if not [inSpecialRegisterTable hasKey ![lkey string]] then

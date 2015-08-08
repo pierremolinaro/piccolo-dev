@@ -1,8 +1,5 @@
 
-
-#----------------------------------------------------------------------------*
-
-#!--- Terminator optimizeTerminator
+#!Terminator optimizeTerminator
 
 #----------------------------------------------------------------------------*
 
@@ -415,7 +412,7 @@ override method @ipic18ComputedRETLWTerminator optimizeTerminator
 
 #----------------------------------------------------------------------------*
 
-#!--- Terminator enterTerminatorReferencedLabels
+#!Terminator enterTerminatorReferencedLabels
 
 #----------------------------------------------------------------------------*
 
@@ -589,7 +586,7 @@ override method @ipic18AbstractConditionTerminator enterTerminatorReferencedLabe
 
 #----------------------------------------------------------------------------*
 
-#!--- Instruction enterInstructionReferencedLabels
+#!Instruction enterInstructionReferencedLabels
 
 #----------------------------------------------------------------------------*
 
@@ -652,7 +649,7 @@ override method @ipic18_condition_skip_instruction  enterInstructionReferencedLa
 
 #----------------------------------------------------------------------------*
 
-#!--- Instruction optimization
+#!Instruction optimization
 
 #----------------------------------------------------------------------------*
 
@@ -680,7 +677,8 @@ override method @ipic18_intermediate_JSR optimizeInstruction
   !@bool outOptimizationDone
   ?!@string ioListFileContents
   !@ipic18SequentialInstruction outOptimizedInstruction
-  !@bool outNOPsubstitution {
+  !@bool outNOPsubstitution
+{
   outOptimizedInstruction = self
   outOptimizationDone = false
   outNOPsubstitution = false
@@ -735,11 +733,12 @@ override method @ipic18_intermediate_instruction_computed_rcall optimizeInstruct
   !@bool outOptimizationDone
   ?!@string ioListFileContents
   !@ipic18SequentialInstruction outOptimizedInstruction
-  !@bool outNOPsubstitution {
+  !@bool outNOPsubstitution
+{
   outOptimizationDone = false
   outNOPsubstitution = false
 #---
-  var optimizedInstructionList =@ipic18SequentialInstructionList.emptyList{}
+  @ipic18SequentialInstructionList optimizedInstructionList = {}
   for () in  mTargetInstructions do
     @bool opt = false
     if (mInstruction is >= @ipic18_intermediate_JSR) then
@@ -890,7 +889,7 @@ override method @ipic18_skip_instruction_FDA optimizeInstruction
 
 #----------------------------------------------------------------------------*
 
-#!--- Instruction list optimization
+#!Instruction list optimization
 
 #----------------------------------------------------------------------------*
 
@@ -927,7 +926,7 @@ proc instructionListOptimization
 
 #----------------------------------------------------------------------------*
 
-#!--- Block optimization
+#!Block optimization
 
 #----------------------------------------------------------------------------*
 
@@ -1048,7 +1047,7 @@ method @ipic18Block optimize
 
 #----------------------------------------------------------------------------*
 
-#!--- optimizeFlagStruct
+#!optimizeFlagStruct
 
 #----------------------------------------------------------------------------*
 
@@ -1086,9 +1085,9 @@ proc ipic18OptimizeBlocks
 #    ![option piccolo_options.performOptimizations value] | [[option piccolo_options.optimizationFlags value] containsCharacter !'c'] # [c]
   }
 #---
-  ioListFileContents += ["" stringByLeftAndRightPadding !79 !'*'] + "\n"
-  ioListFileContents += "*" + ["BLOCK REPRESENTATION OPTIMIZATION" stringByLeftAndRightPadding !77 !' '] + "*\n"
-  ioListFileContents += ["" stringByLeftAndRightPadding !79 !'*'] + "\n\n"
+  ioListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n"
+  ioListFileContents += "*" + ["BLOCK REPRESENTATION OPTIMIZATION" stringByLeftAndRightPadding !117 !' '] + "*\n"
+  ioListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n\n"
   ioListFileContents += "Optimization flags:\n"
 #  ioListFileContents += "  [c] computed RCALL followed by RETURN replaced by computed BRA: " + [optimizeFlagStruct.mComputedRCALLFollowedByRETURNreplacedByComputedBRA flagValue] + "\n"
   ioListFileContents += "  [D] Dead code elimination: always enabled\n"

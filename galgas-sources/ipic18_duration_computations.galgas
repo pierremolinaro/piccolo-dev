@@ -218,13 +218,38 @@ override method @ipic18ConditionalJumpTerminator terminatorMinMaxDuration
 #----------------------------------------------------------------------------------------------------------------------*
 
 override method @ipic18IncDecRegisterTerminator terminatorMinMaxDuration
-  ?let @blockDurationMap unused inExploredBlockMap
-  ?let @string unused inNextLabel
+  ?let @blockDurationMap inExploredBlockMap
+  ?let @string inNextLabel
   !@uint outMin
   !@uint outMax
 {
-  outMin = 40000 # TODO
-  outMax = 1
+  [mSingleInstructionTerminatorIfConditionTrue duration !inExploredBlockMap !inNextLabel ?let trueMin ?let trueMax]
+  [mSingleInstructionTerminatorIfConditionFalse duration !inExploredBlockMap !inNextLabel ?let falseMin ?let falseMax]
+  if (trueMin <= trueMax) && (falseMin <= falseMax) then # Solved
+    if [mSingleInstructionTerminatorIfConditionTrue terminatorSize !inNextLabel] == 0 then # No code for true terminator
+      let trueBranchMinDuration = trueMin + 2
+      let trueBranchMaxDuration = trueMax + 2
+      outMin = if trueBranchMinDuration < falseMin then trueBranchMinDuration else falseMin end
+      outMax = if trueBranchMaxDuration > falseMax then trueBranchMaxDuration else falseMax end
+    elsif [mSingleInstructionTerminatorIfConditionFalse terminatorSize !inNextLabel] == 0 then # No code for false terminator
+      let trueBranchMinDuration = trueMin + 1
+      let trueBranchMaxDuration = trueMax + 1
+      let falseBranchMinDuration = falseMin + 2
+      let falseBranchMaxDuration = falseMax + 2
+      outMin = if falseBranchMinDuration < trueBranchMinDuration then falseBranchMinDuration else trueBranchMinDuration end
+      outMax = if falseBranchMaxDuration > trueBranchMaxDuration then falseBranchMaxDuration else trueBranchMaxDuration end
+    else
+      let trueBranchMinDuration = trueMin + 2
+      let trueBranchMaxDuration = trueMax + 2
+      let falseBranchMinDuration = falseMin + 1
+      let falseBranchMaxDuration = falseMax + 1
+      outMin = if trueBranchMinDuration < falseBranchMinDuration then trueBranchMinDuration else falseBranchMinDuration end
+      outMax = if trueBranchMaxDuration > falseBranchMaxDuration then trueBranchMaxDuration else falseBranchMaxDuration end
+    end
+  else # Not solved
+    outMin = @uint.max
+    outMax = 0
+  end
 }
 
 #----------------------------------------------------------------------------------------------------------------------*
@@ -415,6 +440,20 @@ override method @ipic18_intermediate_JSR minMaxDuration
     outMax = 0
   end
 }
+#----------------------------------------------------------------------------------------------------------------------*
+
+override method @ipic18_condition_skip_instruction minMaxDuration
+  ?@blockDurationMap inExploredBlockMap
+  !@uint outMin
+  !@uint outMax
+{
+  [mEmbeddedInstruction minMaxDuration !inExploredBlockMap ?outMin ?outMax]
+  if outMin <= outMax then
+    outMin = outMin + 1
+    outMax = outMax + 1
+  end
+}
+
 
 #----------------------------------------------------------------------------------------------------------------------*
 
@@ -445,50 +484,7 @@ proc ipic18DurationComputations
       ioBlockList += !newBlock
     end
   end
-#---
-#  ioListFileContents += ["" stringByLeftAndRightPadding !79 !'*'] + "\n"
-#  ioListFileContents += "*" + ["ROUTINE DURATION COMPUTATIONS" stringByLeftAndRightPadding !77 !' '] + "*\n"
-#  ioListFileContents += ["" stringByLeftAndRightPadding !79 !'*'] + "\n\n"
-#  var m = "Interrupt routine durations (in CPU clock units)\n"
-#--- Find interrupt blocks
-#  @stringset startLabelsToExplore = {}
-#  @blockMapForDurationComputation blockMapForStackComputation = {}
-#  @stringlist nextLabelList = {}
-#  for () in inBlockList do
-#    nextLabelList += !mBlock.mLabel.string
-#  end
-#  nextLabelList += !""
-#  for () in inBlockList do (idx)
-#    if (mBlock.mAddress == 0x8) || (mBlock.mAddress == 0x18) then
-#      startLabelsToExplore += !mBlock.mLabel.string
-#    end
-#    [!?blockMapForStackComputation insertKey !mBlock.mLabel !mBlock ![nextLabelList mValueAtIndex!idx+1]]
-#  end
-##--- Explore blocks to computing duration
-#  @codeWithDuration codeWithDuration = {}
-#  @blockDurationMap outBlockDurationMap = {}
-#  loop ([inBlockList length] + 1)
-#  while [startLabelsToExplore count] > 0
-#  do
-#    let startLabel = [startLabelsToExplore anyString]
-#    [!?startLabelsToExplore removeKey !startLabel]
-#    [blockMapForStackComputation searchKey ![startLabel nowhere] ?let @ipic18Block aBlock ?let nextLabel]
-#    [aBlock computeMinMaxDuration
-#      !blockMapForStackComputation
-#      !?outBlockDurationMap
-#      !?codeWithDuration
-#      !nextLabel
-#      ?let @uint min
-#      ?let @uint max
-#    ]
-#    ioListFileContents += startLabel + ": [" + min + " ... " + max + "]\n"
-#    m += "  " + startLabel + ": [" + min + " ... " + max + "]\n"
-#  end
-#  message m + '\n' ;
-#  for () in codeWithDuration do
-#    ioListFileContents += [mAddress x6string] + "\n"
-#  end
-}      
+}
 
 #----------------------------------------------------------------------------------------------------------------------*
 
@@ -544,12 +540,12 @@ proc ipic18PrintDurations
   ?!@string ioListFileContents 
   ?let @blockDurationMap inBlockDurationMap
 {
-  ioListFileContents += ["" stringByLeftAndRightPadding !79 !'*'] + "\n"
-  ioListFileContents += "*" + ["TIMINGS" stringByLeftAndRightPadding !77 !' '] + "*\n"
-  ioListFileContents += ["" stringByLeftAndRightPadding !79 !'*'] + "\n\n"
-  ioListFileContents += ["Label" stringByLeftPadding !50 !' '] + ": min ... max\n" 
+  ioListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n"
+  ioListFileContents += "*" + ["TIMINGS" stringByLeftAndRightPadding !117 !' '] + "*\n"
+  ioListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n\n"
+  ioListFileContents += ["Label" stringByLeftPadding !100 !' '] + ": min ... max\n" 
   for (key min max) in inBlockDurationMap do
-    ioListFileContents += [key.string stringByLeftPadding !50 !' '] + ": " + min + " ... " + max + "\n" 
+    ioListFileContents += [key.string stringByLeftPadding !100 !' '] + ": " + min + " ... " + max + "\n" 
   end
   ioListFileContents += "\n"
 }

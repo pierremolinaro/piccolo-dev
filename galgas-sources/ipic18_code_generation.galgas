@@ -44,6 +44,7 @@ proc generateLineWithCode
   end
 #---
   @uint address = inAddress
+  var first = true
   for () in  ipicText, () in  inCode do
     ioListFileContents += [address x6string]
     address = address + 2 * [mBinaryCode length]
@@ -53,7 +54,7 @@ proc generateLineWithCode
     end
     ioListFileContents += [s stringByRightPadding !13 !' ']
     s = ""
-    if inMin <= inMax then
+    if first && (inMin <= inMax) then
       if inMin <= 99_999 then
         s += [inMin string]
       else
@@ -71,13 +72,13 @@ proc generateLineWithCode
     ioListFileContents += [mAssemblyCode stringByRightPadding !50 !' ']
     ioListFileContents += " "
     ioListFileContents += mValue
-    ioListFileContents += "\n" 
+    ioListFileContents += "\n"
+    first = false 
   end
 #--- Display supplementary text
-#  log ipicText, inCode ;
   for () in  [ipicText subListFromIndex ![inCode length]] do
     ioListFileContents += [address x6string]
-    ioListFileContents += ["" stringByRightPadding !64 !' ']
+    ioListFileContents += ["" stringByRightPadding !76 !' ']
     ioListFileContents += mValue
     ioListFileContents += "\n" 
   end
@@ -214,9 +215,9 @@ proc ipic18GenerateCode
   !@uint outUsedROMsize
   !@generatedCodeMap outGeneratedCodeMap
 {
-  ioListFileContents += ["" stringByLeftAndRightPadding !79 !'*'] + "\n"
-  ioListFileContents += "*" + ["CODE GENERATION" stringByLeftAndRightPadding !77 !' '] + "*\n"
-  ioListFileContents += ["" stringByLeftAndRightPadding !79 !'*'] + "\n\n"
+  ioListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n"
+  ioListFileContents += "*" + ["CODE GENERATION" stringByLeftAndRightPadding !117 !' '] + "*\n"
+  ioListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n\n"
   if [option.verbose_output value] then
     message "Code generation:\n"
   end
@@ -407,6 +408,4 @@ proc pic18GenerateAssemblyFile
 }
 
 #----------------------------------------------------------------------------*
-
-
 

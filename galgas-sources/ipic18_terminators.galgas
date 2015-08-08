@@ -2,7 +2,7 @@
 
 #----------------------------------------------------------------------------*
 
-#!--- Abstract readers
+#!Abstract readers
 
 #----------------------------------------------------------------------------*
 
@@ -18,7 +18,7 @@ abstract getter @ipic18AbstractBlockTerminator terminatorSize
 
 #----------------------------------------------------------------------------*
 
-#!--- Terminator @ipic18ReturnTerminator
+#!Terminator @ipic18ReturnTerminator
 
 #----------------------------------------------------------------------------*
 
@@ -58,7 +58,7 @@ override getter @ipic18ReturnTerminator isEqualToTerminator
 
 #----------------------------------------------------------------------------*
 
-#!--- Terminator @ipic18RetfieTerminator
+#!Terminator @ipic18RetfieTerminator
 
 #----------------------------------------------------------------------------*
 
@@ -101,7 +101,7 @@ override getter @ipic18RetfieTerminator isEqualToTerminator
 
 #----------------------------------------------------------------------------*
 
-#!--- Terminator @ipic18RetlwTerminator
+#!Terminator @ipic18RetlwTerminator
 
 #----------------------------------------------------------------------------*
 
@@ -145,7 +145,7 @@ override getter @ipic18RetlwTerminator isEqualToTerminator
 
 #----------------------------------------------------------------------------*
 
-#!--- @ipic18JumpTerminator
+#!@ipic18JumpTerminator
 
 #----------------------------------------------------------------------------*
 
@@ -171,7 +171,8 @@ override method @ipic18JumpTerminator terminatorRelativeBranchOverflow
   ?let @string inBlockLabel
   ?let @symbolTableForRelativesResolution inSymbolTable
   ?let @string inNextBlockLabel
-  ?!@branchOverflowMap ioOverflowMap {
+  ?!@branchOverflowMap ioOverflowMap
+{
   if mLabel.string != inNextBlockLabel then
     switch mKind
     case ipicRelative, relative :
@@ -265,7 +266,7 @@ override getter @ipic18JumpTerminator isEqualToTerminator
 
 #----------------------------------------------------------------------------*
 
-#!--- @ipic18AbstractConditionTerminator
+#!@ipic18AbstractConditionTerminator
 
 #----------------------------------------------------------------------------*
 
@@ -303,7 +304,7 @@ override method @ipic18AbstractConditionTerminator terminatorRelativeBranchOverf
 
 #----------------------------------------------------------------------------*
 
-#!--- Terminator @pic18RegisterComparisonTerminator
+#!Terminator @pic18RegisterComparisonTerminator
 
 #----------------------------------------------------------------------------*
 
@@ -446,7 +447,7 @@ override getter @pic18RegisterComparisonTerminator isEqualToTerminator
 
 #----------------------------------------------------------------------------*
 
-#!--- Terminator @pic18TestRegisterTerminator
+#!Terminator @pic18TestRegisterTerminator
 
 #----------------------------------------------------------------------------*
 
@@ -564,7 +565,7 @@ override getter @pic18TestRegisterTerminator isEqualToTerminator
 
 #----------------------------------------------------------------------------*
 
-#!--- Terminator @pic18BitTestTerminator
+#!Terminator @pic18BitTestTerminator
 
 #----------------------------------------------------------------------------*
 
@@ -699,7 +700,7 @@ override getter @pic18BitTestTerminator isEqualToTerminator
 
 #----------------------------------------------------------------------------*
 
-#!--- Terminator @ipic18IncDecRegisterTerminator
+#!Terminator @ipic18IncDecRegisterTerminator
 
 #----------------------------------------------------------------------------*
 
@@ -860,7 +861,7 @@ override getter @ipic18IncDecRegisterTerminator isEqualToTerminator
 
 #----------------------------------------------------------------------------*
 
-#!--- Terminator @ipic18ComputedRETLWTerminator
+#!Terminator @ipic18ComputedRETLWTerminator
 
 #----------------------------------------------------------------------------*
 
@@ -959,7 +960,7 @@ override getter @ipic18ComputedRETLWTerminator isEqualToTerminator
 
 #----------------------------------------------------------------------------*
 
-#!--- Terminator @ipic18ComputedGotoTerminator
+#!Terminator @ipic18ComputedGotoTerminator
 
 #----------------------------------------------------------------------------*
 
@@ -1062,7 +1063,7 @@ override getter @ipic18ComputedGotoTerminator isEqualToTerminator
 
 #----------------------------------------------------------------------------*
 
-#!--- Terminator @ipic18ComputedBraTerminator
+#!Terminator @ipic18ComputedBraTerminator
 
 #----------------------------------------------------------------------------*
 
@@ -1182,7 +1183,7 @@ override getter @ipic18ComputedBraTerminator isEqualToTerminator
 
 #----------------------------------------------------------------------------*
 
-#!--- Terminator @ipic18ConditionalBranchTerminator
+#!Terminator @ipic18ConditionalBranchTerminator
 
 #----------------------------------------------------------------------------*
 
@@ -1267,7 +1268,7 @@ override getter @ipic18ComputedBraTerminator isEqualToTerminator
 
 #----------------------------------------------------------------------------*
 
-#!--- Terminator @ipic18ConditionalJumpTerminator
+#!Terminator @ipic18ConditionalJumpTerminator
 
 #----------------------------------------------------------------------------*
 

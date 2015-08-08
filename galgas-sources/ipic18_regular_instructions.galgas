@@ -2,7 +2,7 @@
 
 #----------------------------------------------------------------------------*
 
-#!--- Instruction size
+#!Instruction size
 
 #----------------------------------------------------------------------------*
 
@@ -20,7 +20,7 @@ override getter @ipic18_condition_skip_instruction instructionSize
 
 #----------------------------------------------------------------------------*
 
-#!--- Check relative resolution : instruction
+#!Check relative resolution : instruction
 
 #----------------------------------------------------------------------------*
 
@@ -51,7 +51,7 @@ override method @ipic18_condition_skip_instruction instructionRelativeBranchOver
 
 #----------------------------------------------------------------------------*
 
-#!--- Intermediate instruction display
+#!Intermediate instruction display
 
 #----------------------------------------------------------------------------*
 
@@ -60,7 +60,7 @@ abstract getter @ipic18SequentialInstruction instructionDisplay
 
 #----------------------------------------------------------------------------*
 
-#!--- Intermediate @ipic18InstructionWithNoOperand
+#!Intermediate @ipic18InstructionWithNoOperand
 
 #----------------------------------------------------------------------------*
 
@@ -115,7 +115,7 @@ override method @ipic18InstructionWithNoOperand generateCode
 
 #----------------------------------------------------------------------------*
 
-#!--- Intermediate @ipic18_intermediate_instruction_FDA
+#!Intermediate @ipic18_intermediate_instruction_FDA
 
 #----------------------------------------------------------------------------*
 
@@ -196,7 +196,7 @@ override method @ipic18_intermediate_instruction_FDA generateCode
 
 #----------------------------------------------------------------------------*
 
-#!--- Intermediate @ipic18_intermediate_instruction_FDA
+#!Intermediate @ipic18_intermediate_instruction_FDA
 
 #----------------------------------------------------------------------------*
 
@@ -241,7 +241,7 @@ override method @ipic18_intermediate_instruction_FA generateCode
 
 #----------------------------------------------------------------------------*
 
-#!--- Intermediate @ipic18_intermediate_instruction_MOVFF
+#!Intermediate @ipic18_intermediate_instruction_MOVFF
 
 #----------------------------------------------------------------------------*
 
@@ -275,7 +275,7 @@ override method @ipic18_intermediate_instruction_MOVFF generateCode
 
 #----------------------------------------------------------------------------*
 
-#!--- Intermediate @ipic18_intermediate_instruction_literalOperation
+#!Intermediate @ipic18_intermediate_instruction_literalOperation
 
 #----------------------------------------------------------------------------*
 
@@ -309,7 +309,7 @@ override method @ipic18_intermediate_instruction_literalOperation generateCode
 
 #----------------------------------------------------------------------------*
 
-#!--- Intermediate @ipic18_intermediate_instruction_LFSR
+#!Intermediate @ipic18_intermediate_instruction_LFSR
 
 #----------------------------------------------------------------------------*
 
@@ -342,7 +342,7 @@ override method @ipic18_intermediate_instruction_LFSR generateCode
 
 #----------------------------------------------------------------------------*
 
-#!--- Intermediate @ipic18_intermediate_instruction_FBA
+#!Intermediate @ipic18_intermediate_instruction_FBA
 
 #----------------------------------------------------------------------------*
 
@@ -376,7 +376,7 @@ override method @ipic18_intermediate_instruction_FBA generateCode
 
 #----------------------------------------------------------------------------*
 
-#!--- Intermediate @ipic18_intermediate_instruction_MOVLB
+#!Intermediate @ipic18_intermediate_instruction_MOVLB
 
 #----------------------------------------------------------------------------*
 
@@ -400,7 +400,7 @@ override method @ipic18_intermediate_instruction_MOVLB generateCode
 
 #----------------------------------------------------------------------------*
 
-#!--- Intermediate @ipic18_intermediate_instruction_TBLRD
+#!Intermediate @ipic18_intermediate_instruction_TBLRD
 
 #----------------------------------------------------------------------------*
 
@@ -430,7 +430,7 @@ override method @ipic18_intermediate_instruction_TBLRD generateCode
 
 #----------------------------------------------------------------------------*
 
-#!--- Intermediate @ipic18_intermediate_instruction_TBLWT
+#!Intermediate @ipic18_intermediate_instruction_TBLWT
 
 #----------------------------------------------------------------------------*
 
@@ -460,7 +460,7 @@ override method @ipic18_intermediate_instruction_TBLWT generateCode
 
 #----------------------------------------------------------------------------*
 
-#!--- Intermediate @ipic18_intermediate_instruction_MNOP
+#!Intermediate @ipic18_intermediate_instruction_MNOP
 
 #----------------------------------------------------------------------------*
 
@@ -495,7 +495,7 @@ override method @ipic18_intermediate_instruction_MNOP generateCode
 
 #----------------------------------------------------------------------------*
 
-#!--- Intermediate @ipic18_intermediate_MOV_LABEL_W
+#!Intermediate @ipic18_intermediate_MOV_LABEL_W
 
 #----------------------------------------------------------------------------*
 
@@ -521,7 +521,7 @@ override method @ipic18_intermediate_MOV_LABEL_W generateCode
 
 #----------------------------------------------------------------------------*
 
-#!--- Intermediate @ipic18_intermediate_BLANK
+#!Intermediate @ipic18_intermediate_BLANK
 
 #----------------------------------------------------------------------------*
 
@@ -545,7 +545,7 @@ override method @ipic18_intermediate_instruction_BLANK generateCode
 
 #----------------------------------------------------------------------------*
 
-#!--- Intermediate @ipic18_intermediate_instruction_FNOP
+#!Intermediate @ipic18_intermediate_instruction_FNOP
 
 #----------------------------------------------------------------------------*
 
@@ -569,7 +569,7 @@ override method @ipic18_intermediate_instruction_FNOP generateCode
 
 #----------------------------------------------------------------------------*
 
-#!--- Intermediate @ipic18_skip_instruction_compare_register
+#!Intermediate @ipic18_skip_instruction_compare_register
 
 #----------------------------------------------------------------------------*
 
@@ -659,7 +659,7 @@ override method @ipic18_skip_instruction_compare_register performInstructionRela
 
 #----------------------------------------------------------------------------*
 
-#!--- Intermediate @ipic18_skip_instruction_BitTestSkip
+#!Intermediate @ipic18_skip_instruction_BitTestSkip
 
 #----------------------------------------------------------------------------*
 
@@ -745,7 +745,7 @@ override method @ipic18_skip_instruction_BitTestSkip performInstructionRelativeB
 
 #----------------------------------------------------------------------------*
 
-#!--- Intermediate @ipic18_skip_instruction_FDA
+#!Intermediate @ipic18_skip_instruction_FDA
 
 #----------------------------------------------------------------------------*
 
@@ -848,7 +848,7 @@ override method @ipic18_skip_instruction_FDA performInstructionRelativeBranchRes
 
 #----------------------------------------------------------------------------*
 
-#!--- Intermediate @ipic18_intermediate_JSR
+#!Intermediate @ipic18_intermediate_JSR
 
 #----------------------------------------------------------------------------*
 
@@ -935,7 +935,7 @@ override method @ipic18_intermediate_JSR generateCode
 
 #----------------------------------------------------------------------------*
 
-#!--- Intermediate @ipic18_intermediate_instruction_computed_rcall
+#!Intermediate @ipic18_intermediate_instruction_computed_rcall
 
 #----------------------------------------------------------------------------*
 

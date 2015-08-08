@@ -2,7 +2,7 @@
 
 #----------------------------------------------------------------------------*
 
-#!--- Register analysis
+#!Register analysis
 
 #----------------------------------------------------------------------------*
 
@@ -118,7 +118,7 @@ method @registerExpression getRegisterAddress
 
 #----------------------------------------------------------------------------*
 
-#!--- Simple Instruction analysis
+#!Simple Instruction analysis
 
 #----------------------------------------------------------------------------*
 
@@ -397,7 +397,7 @@ override method @pic18Instruction_JSR analyzeSimpleInstruction
 
 #----------------------------------------------------------------------------*
 
-#!--- Instruction analysis
+#!Instruction analysis
 
 #----------------------------------------------------------------------------*
 
@@ -1983,7 +1983,7 @@ override method @pic18Instruction_macro analyze
 
 #------------------------------------------------------------------------------*
 
-#!--- Switch instruction
+#!Switch instruction
 
 #------------------------------------------------------------------------------*
 
@@ -2443,7 +2443,7 @@ override method @pic18Instruction_do_while analyze
 
 #----------------------------------------------------*
 
-#!--- Block instruction
+#!Block instruction
 
 #----------------------------------------------------*
 
@@ -2698,7 +2698,8 @@ override method @pic18Instruction_block analyze
   ?!@uint ioCurrentBank
   ?let @bool inShouldPreserveBSR
   ?let @routineKind inRoutineKind
-  ?!@stringset ioUsedRegisters {
+  ?!@stringset ioUsedRegisters
+{
 #----------------- Block labels prefix
   let @string labelForBlock = ".L" + [ioLocalLabelIndex string] + "_" 
   ioLocalLabelIndex ++
@@ -2804,7 +2805,7 @@ override method @pic18Instruction_block analyze
 
 #----------------------------------------------------------------------------*
 
-#!--- analyze condition
+#!analyze condition
 
 #----------------------------------------------------*
 
@@ -3174,9 +3175,9 @@ proc pic18_analyze_data_sections
   outDataMap = @pic18_dataMap. emptyMap
   for () in  inDataDefinitionList
   before
-    ioListFileContents += "*******************************************************************************\n"
-    ioListFileContents += "*                    D A T A    D E C L A R A T I O N                         *\n"
-    ioListFileContents += "*******************************************************************************\n\n"
+    ioListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n"
+    ioListFileContents += "*" + ["DATA DECLARATION" stringByLeftAndRightPadding !117 !' '] + "*\n"
+    ioListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n\n"
   do
     ioListFileContents += "Data '" + mDataName + "', " + [mValueList length] + " words (" + [mValueList length] * 2 + " bytes).\n" 
     [!?ioConstantMap insertKey !@lstring. new { !mDataName.string + "_BYTE_COUNT" !mDataName.location} ![[mValueList length] * 2 sint64]]

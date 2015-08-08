@@ -81,7 +81,7 @@ proc performRelativesResolution
 
 #----------------------------------------------------------------------------*
 
-#!--- Block Size and address
+#!Block Size and address
 
 #----------------------------------------------------------------------------*
 
@@ -141,9 +141,9 @@ proc ipic18RelativesResolution
   if [option.verbose_output value] then
     message "Relative branch conversion to absolute:\n"
   end
-  ioListFileContents += ["" stringByLeftAndRightPadding !79 !'*'] + "\n"
-  ioListFileContents += "*" + ["RELATIVES RESOLUTION" stringByLeftAndRightPadding !77 !' '] + "*\n"
-  ioListFileContents += ["" stringByLeftAndRightPadding !79 !'*'] + "\n"
+  ioListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n"
+  ioListFileContents += "*" + ["RELATIVES RESOLUTION" stringByLeftAndRightPadding !117 !' '] + "*\n"
+  ioListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n"
 #---
   @bool resolutionDone = false
   @uint pass = 0

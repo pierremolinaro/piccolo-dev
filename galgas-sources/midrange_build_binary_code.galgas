@@ -683,9 +683,9 @@ proc build_midrange_ipic_binary_code
   @uint lastAddressForFirstPass = currentAddress
   outUsedROMsize = currentAddress
 #-------------------------------- Second pass: generate code
-  ioListFileContents += ["" stringByLeftAndRightPadding !79 !'*'] + "\n"
-  ioListFileContents += "*" + ["GENERATED CODE" stringByLeftAndRightPadding !77 !' '] + "*\n"
-  ioListFileContents += ["" stringByLeftAndRightPadding !79 !'*'] + "\n\n"
+  ioListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n"
+  ioListFileContents += "*" + ["GENERATED CODE" stringByLeftAndRightPadding !117 !' '] + "*\n"
+  ioListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n\n"
   ioListFileContents += "Address Code Mnemonic\n"
   initCodeGenerator ( )
   currentAddress = 0

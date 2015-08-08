@@ -38,12 +38,9 @@ rule <body>
   ?!@checkpicList ioCheckpicList
   ?!@dataList dataList
   ?!@bool needsComputedGoto2
-  ?!@bool needsComputedGoto4 {
+  ?!@bool needsComputedGoto4
+{
   repeat
-  while
-    $mark$
-    $literal_string$ ?var @lstring s
-    warning s : "obsolete construct: use a comment beginning by #!"
   while
     $unused$
     $byte$

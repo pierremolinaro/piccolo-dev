@@ -39,9 +39,9 @@ proc perform_cluster_ordering
     ioListFileContents += "Option '--" + [option piccolo_options.doNotReorderCluster string] + "': this optimization is not performed.n\n"
   else
     let @uint clusterCount = [inInitialClusterList length]
-    ioListFileContents += ["" stringByLeftAndRightPadding !79 !'*'] + "\n"
-    ioListFileContents += "*" + ["CLUSTER ORDERING OPTIMIZATION" stringByLeftAndRightPadding !77 !' '] + "*\n"
-    ioListFileContents += ["" stringByLeftAndRightPadding !79 !'*'] + "\n\n"
+    ioListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n"
+    ioListFileContents += "*" + ["CLUSTER ORDERING OPTIMIZATION" stringByLeftAndRightPadding !117 !' '] + "*\n"
+    ioListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n\n"
     @string s = "Cluster ordering optimization (" + clusterCount + " cluster" + if clusterCount > 1 then "s" else "" end + "):\n"
     ioListFileContents += s + "\n"
   #---
