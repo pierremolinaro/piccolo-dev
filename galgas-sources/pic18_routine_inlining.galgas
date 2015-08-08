@@ -24,11 +24,43 @@ method @pic18PiccoloInstruction performInlining
 
 #---------------------------------------------------------------------------*
 
+override method @pic18Instruction_block performInlining
+  ?let @stringset inInlinedRoutineSet
+  ?let @declaredRoutineMap inDeclaredRoutineMap
+  ?let @stringset inCurrentlyInlinedRoutineSet
+  ?!@pic18InstructionList ioInstructionList
+{
+  @pic18BlockInstructionBlockList inlinedBlockList = {}
+  for () in mBlockList do
+    performInlineFromInstructionList (
+      !mInstructionList
+      !inInlinedRoutineSet
+      !inDeclaredRoutineMap
+      !inCurrentlyInlinedRoutineSet
+      ?let @pic18InstructionList instructionList
+    )
+    inlinedBlockList += 
+      !mBlockName
+      !instructionList
+      !mBlockTerminaisonForBlockInstruction
+      !mEndOfBlock
+  end
+  ioInstructionList += !@pic18Instruction_block.new {
+    !mInstructionLocation
+    !mStartBlockName
+    !inlinedBlockList
+    !mEndOfBlockInstruction
+  }
+}
+
+#---------------------------------------------------------------------------*
+
 override method @pic18Instruction_FOREVER performInlining
   ?let @stringset inInlinedRoutineSet
   ?let @declaredRoutineMap inDeclaredRoutineMap
   ?let @stringset inCurrentlyInlinedRoutineSet
-  ?!@pic18InstructionList ioInstructionList {
+  ?!@pic18InstructionList ioInstructionList
+{
   performInlineFromInstructionList (
     !mInstructionList
     !inInlinedRoutineSet
@@ -195,7 +227,8 @@ proc pic18PerformRoutineInline
   ?let @stringset inInlinedRoutineSet
   ?let @declaredRoutineMap inDeclaredRoutineMap
   ?!@pic18InterruptDefinitionList ioInterruptDefinitionList
-  ?!@pic18RoutineDefinitionList ioRoutineDefinitionList {
+  ?!@pic18RoutineDefinitionList ioRoutineDefinitionList
+{
 #--- Interrupt routines
   var interruptDefinitionList =@pic18InterruptDefinitionList.emptyList{}
   for () in  ioInterruptDefinitionList do

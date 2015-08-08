@@ -8228,7 +8228,7 @@ class GALGAS_pic_31__38_Instruction_5F_block : public GALGAS_pic_31__38_PiccoloI
 //--------------------------------- Getters
   public : VIRTUAL_IN_DEBUG class GALGAS_pic_31__38_BlockInstructionBlockList reader_mBlockList (LOCATION_ARGS) const ;
 
-  public : VIRTUAL_IN_DEBUG class GALGAS_location reader_mEndOfInstruction (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG class GALGAS_location reader_mEndOfBlockInstruction (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_lstring reader_mStartBlockName (LOCATION_ARGS) const ;
 
@@ -8253,13 +8253,13 @@ class cPtr_pic_31__38_Instruction_5F_block : public cPtr_pic_31__38_PiccoloInstr
 //--- Attributes
   public : GALGAS_lstring mAttribute_mStartBlockName ;
   public : GALGAS_pic_31__38_BlockInstructionBlockList mAttribute_mBlockList ;
-  public : GALGAS_location mAttribute_mEndOfInstruction ;
+  public : GALGAS_location mAttribute_mEndOfBlockInstruction ;
 
 //--- Constructor
   public : cPtr_pic_31__38_Instruction_5F_block (const GALGAS_location & in_mInstructionLocation,
                                                  const GALGAS_lstring & in_mStartBlockName,
                                                  const GALGAS_pic_31__38_BlockInstructionBlockList & in_mBlockList,
-                                                 const GALGAS_location & in_mEndOfInstruction
+                                                 const GALGAS_location & in_mEndOfBlockInstruction
                                                  COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
@@ -8268,7 +8268,7 @@ class cPtr_pic_31__38_Instruction_5F_block : public cPtr_pic_31__38_PiccoloInstr
 //--- Attribute accessors
   public : VIRTUAL_IN_DEBUG GALGAS_lstring reader_mStartBlockName (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_pic_31__38_BlockInstructionBlockList reader_mBlockList (LOCATION_ARGS) const ;
-  public : VIRTUAL_IN_DEBUG GALGAS_location reader_mEndOfInstruction (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_location reader_mEndOfBlockInstruction (LOCATION_ARGS) const ;
 //--- Description
   public : virtual void description (C_String & ioString,
                                      const int32_t inIndentation) const ;

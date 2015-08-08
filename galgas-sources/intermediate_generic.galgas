@@ -481,9 +481,9 @@ proc print_constant_definition
   ?let @constantMap inConstantMap
   ?!@string ioListFileContents {
   if [inConstantMap count] > 0 then
-    ioListFileContents += ["" stringByLeftAndRightPadding !79 !'*'] + "\n"
-    ioListFileContents += "*" + ["CONSTANTS" stringByLeftAndRightPadding !77 !' '] + "*\n"
-    ioListFileContents += ["" stringByLeftAndRightPadding !79 !'*'] + "\n\n"
+    ioListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n"
+    ioListFileContents += "*" + ["CONSTANTS" stringByLeftAndRightPadding !117 !' '] + "*\n"
+    ioListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n\n"
     ioListFileContents += ["Constant" stringByLeftPadding !40 !' '] + " Value\n"
     for () in  inConstantMap do
       ioListFileContents += [[lkey string] stringByLeftPadding !40 !' '] + " " + [mValue string] + "\n"

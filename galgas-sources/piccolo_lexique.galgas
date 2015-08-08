@@ -57,7 +57,6 @@ list controlKeyWordList style keywordStyle error message "the '%K' keyword"{
   "inline",
   "interrupt",
   "macro",
-  "mark",
   "midrange",
   "nobank",
   "noreturn",

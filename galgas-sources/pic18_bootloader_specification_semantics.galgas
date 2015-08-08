@@ -32,9 +32,9 @@ proc pic18BootloaderSpecificationAnalysis
     case baseline : error inDeviceName: "a baseline device is not accepted here" : outAccessBankSplitOffset
   end
 #-------------------------------- Check reserved ROM size < microcontroller ROM size
-  outListFileContents += ["" stringByLeftAndRightPadding !79 !'*'] + "\n"
-  outListFileContents += "*" + ["BOOTLOADER FOOTPRINT" stringByLeftAndRightPadding !77 !' '] + "*\n"
-  outListFileContents += ["" stringByLeftAndRightPadding !79 !'*'] + "\n\n"
+  outListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n"
+  outListFileContents += "*" + ["BOOTLOADER FOOTPRINT" stringByLeftAndRightPadding !117 !' '] + "*\n"
+  outListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n\n"
   if [inReservedRomSize uint] >= [[outPiccoloDeviceModel mRomSize] uint] then
     error inReservedRomSize: "reserved size for bootloader ("
     + [[inReservedRomSize uint] string] + " bytes) is greater than ROM size ("
@@ -61,9 +61,9 @@ proc pic18BootloaderSpecificationAnalysis
     end
   end
 #-------------------------------- Check bootloader routines
-  outListFileContents += ["" stringByLeftAndRightPadding !79 !'*'] + "\n"
-  outListFileContents += "*" + ["BOOTLOADER ROUTINES" stringByLeftAndRightPadding !77 !' '] + "*\n"
-  outListFileContents += ["" stringByLeftAndRightPadding !79 !'*'] + "\n\n"
+  outListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n"
+  outListFileContents += "*" + ["BOOTLOADER ROUTINES" stringByLeftAndRightPadding !117 !' '] + "*\n"
+  outListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n\n"
   outListFileContents += ["Routine" stringByLeftPadding !40 !' '] + " Entry point address\n"
   var routineNameSet =@stringset.emptySet{}
   @uint entryPointAddress = 0x4
@@ -82,9 +82,9 @@ proc pic18BootloaderSpecificationAnalysis
   end
   outListFileContents += "\n"
 #-------------------------------- Check user program routines
-  outListFileContents += ["" stringByLeftAndRightPadding !79 !'*'] + "\n"
-  outListFileContents += "*" + ["USER PROGRAM ROUTINES" stringByLeftAndRightPadding !77 !' '] + "*\n"
-  outListFileContents += ["" stringByLeftAndRightPadding !79 !'*'] + "\n\n"
+  outListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n"
+  outListFileContents += "*" + ["USER PROGRAM ROUTINES" stringByLeftAndRightPadding !117 !' '] + "*\n"
+  outListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n\n"
   outListFileContents += ["Routine" stringByLeftPadding !40 !' '] + " Entry point address\n"
   entryPointAddress = [inReservedRomSize uint]
   for () in  inUserRoutineDeclarationList do
@@ -107,7 +107,7 @@ proc pic18BootloaderSpecificationAnalysis
     !?outRegisterTable
     ?*
   )
-  outListFileContents += ["" stringByLeftAndRightPadding !79 !'*'] + "\n\n"
+  outListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n\n"
 }
 
 #----------------------------------------------------------------------------*

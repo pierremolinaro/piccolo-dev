@@ -70,35 +70,28 @@ static const UInt16 gPopUpData_piccolo_5F_lexique_241 [6] = {
   0
 } ;
 
-static const UInt16 gPopUpData_piccolo_5F_lexique_274 [6] = {
-  0, // Leading character count to strip
-  piccolo_lexique_1_mark, 0,
-  piccolo_lexique_1_literal_5F_string, 0,
-  0
-} ;
-
-static const UInt16 gPopUpData_piccolo_5F_lexique_302 [6] = {
+static const UInt16 gPopUpData_piccolo_5F_lexique_269 [6] = {
   0, // Leading character count to strip
   piccolo_lexique_1_ram, 0,
   piccolo_lexique_1_identifier, 0,
   0
 } ;
 
-static const UInt16 gPopUpData_piccolo_5F_lexique_336 [6] = {
+static const UInt16 gPopUpData_piccolo_5F_lexique_303 [6] = {
   0, // Leading character count to strip
   piccolo_lexique_1_interrupt, 0,
   piccolo_lexique_1_identifier, 0,
   0
 } ;
 
-static const UInt16 gPopUpData_piccolo_5F_lexique_372 [6] = {
+static const UInt16 gPopUpData_piccolo_5F_lexique_339 [6] = {
   0, // Leading character count to strip
   piccolo_lexique_1_include, 0,
   piccolo_lexique_1_literal_5F_string, 0,
   0
 } ;
 
-static const UInt16 gPopUpData_piccolo_5F_lexique_411 [8] = {
+static const UInt16 gPopUpData_piccolo_5F_lexique_378 [8] = {
   0, // Leading character count to strip
   piccolo_lexique_1_unused, 0,
   piccolo_lexique_1_byte, 0,
@@ -106,7 +99,7 @@ static const UInt16 gPopUpData_piccolo_5F_lexique_411 [8] = {
   0
 } ;
 
-static const UInt16 gPopUpData_piccolo_5F_lexique_453 [8] = {
+static const UInt16 gPopUpData_piccolo_5F_lexique_420 [8] = {
   0, // Leading character count to strip
   piccolo_lexique_1_unused, 0,
   piccolo_lexique_1_routine, 0,
@@ -114,21 +107,20 @@ static const UInt16 gPopUpData_piccolo_5F_lexique_453 [8] = {
   0
 } ;
 
-static const UInt16 gPopUpData_piccolo_5F_lexique_483 [4] = {
+static const UInt16 gPopUpData_piccolo_5F_lexique_450 [4] = {
   1, // Leading character count to strip
   piccolo_lexique_1_commentMark, 32,
   0
 } ;
 
-static const UInt16 * gPopUpData_piccolo_5F_lexique [9] = {
+static const UInt16 * gPopUpData_piccolo_5F_lexique [8] = {
   gPopUpData_piccolo_5F_lexique_241,
-  gPopUpData_piccolo_5F_lexique_274,
-  gPopUpData_piccolo_5F_lexique_302,
-  gPopUpData_piccolo_5F_lexique_336,
-  gPopUpData_piccolo_5F_lexique_372,
-  gPopUpData_piccolo_5F_lexique_411,
-  gPopUpData_piccolo_5F_lexique_453,
-  gPopUpData_piccolo_5F_lexique_483,
+  gPopUpData_piccolo_5F_lexique_269,
+  gPopUpData_piccolo_5F_lexique_303,
+  gPopUpData_piccolo_5F_lexique_339,
+  gPopUpData_piccolo_5F_lexique_378,
+  gPopUpData_piccolo_5F_lexique_420,
+  gPopUpData_piccolo_5F_lexique_450,
   NULL
 } ;
 

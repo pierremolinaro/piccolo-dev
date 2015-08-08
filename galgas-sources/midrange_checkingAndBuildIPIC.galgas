@@ -1759,14 +1759,9 @@ proc build_midrange_assembly_instruction_list
   end
 #--- Output a listing ?
   if [option piccolo_options.ouputListingFile value] then
-    ioListFileContents += ["" stringByLeftAndRightPadding !79 !'*'] + "\n"
-    ioListFileContents += "*" + ["IPIC INSTRUCTION LIST" stringByLeftAndRightPadding !77 !' '] + "*\n"
-    ioListFileContents += ["" stringByLeftAndRightPadding !79 !'*'] + "\n\n"
-#    if [generationOptimizationMessages length] > 0 then
-#      ioListFileContents .= "Optimizations during generation:\n" ;
-#      ioListFileContents .= generationOptimizationMessages ;
-#      ioListFileContents .= "\n" ;
-#    end if ;
+    ioListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n"
+    ioListFileContents += "*" + ["IPIC INSTRUCTION LIST" stringByLeftAndRightPadding !117 !' '] + "*\n"
+    ioListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n\n"
     ioListFileContents += "Generated intermediate code:\n"
     @uint idx = 0
     @uint currentAddress = 0
@@ -1850,9 +1845,9 @@ proc handleInterruptRoutine
     !@midrange_call_goto_bit. noChange}
 #---
   if inHasInterrupt then
-    ioListFileContents += ["" stringByLeftAndRightPadding !79 !'*'] + "\n"
-    ioListFileContents += "*" + ["INTERRUPT ROUTINE" stringByLeftAndRightPadding !77 !' '] + "*\n"
-    ioListFileContents += ["" stringByLeftAndRightPadding !79 !'*'] + "\n\n"
+    ioListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n"
+    ioListFileContents += "*" + ["INTERRUPT ROUTINE" stringByLeftAndRightPadding !117 !' '] + "*\n"
+    ioListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n\n"
   #-------------------------------- Should save PCLATH ?
     interruptRoutineShouldSavePCLATH (
       !inPiccoloModel

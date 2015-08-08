@@ -315,9 +315,9 @@ override method @midrange_intermediate_pseudo_LABEL compute
 proc midrange_compute_JSR_JUMP
   ?!@midrange_intermediate_instructionList ioGeneratedInstructionList
   ?!@string ioListFileContents {
-  ioListFileContents += ["" stringByLeftAndRightPadding !79 !'*'] + "\n"
-  ioListFileContents += "*" + ["COMPUTE JSR and JUMP" stringByLeftAndRightPadding !77 !' '] + "*\n"
-  ioListFileContents += ["" stringByLeftAndRightPadding !79 !'*'] + "\n\n"
+  ioListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n"
+  ioListFileContents += "*" + ["COMPUTE JSR and JUMP" stringByLeftAndRightPadding !117 !' '] + "*\n"
+  ioListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n\n"
   @bool JUMP_or_JSR_fixed = true
   @uint iteration = 0
   loop( [ioGeneratedInstructionList length])

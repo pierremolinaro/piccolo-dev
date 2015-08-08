@@ -16872,7 +16872,7 @@ typeComparisonResult cPtr_pic_31__38_Instruction_5F_block::dynamicObjectCompare 
     result = mAttribute_mBlockList.objectCompare (p->mAttribute_mBlockList) ;
   }
   if (kOperandEqual == result) {
-    result = mAttribute_mEndOfInstruction.objectCompare (p->mAttribute_mEndOfInstruction) ;
+    result = mAttribute_mEndOfBlockInstruction.objectCompare (p->mAttribute_mEndOfBlockInstruction) ;
   }
   return result ;
 }
@@ -16924,11 +16924,11 @@ GALGAS_pic_31__38_PiccoloInstruction (inSourcePtr) {
 GALGAS_pic_31__38_Instruction_5F_block GALGAS_pic_31__38_Instruction_5F_block::constructor_new (const GALGAS_location & inAttribute_mInstructionLocation,
                                                                                                 const GALGAS_lstring & inAttribute_mStartBlockName,
                                                                                                 const GALGAS_pic_31__38_BlockInstructionBlockList & inAttribute_mBlockList,
-                                                                                                const GALGAS_location & inAttribute_mEndOfInstruction
+                                                                                                const GALGAS_location & inAttribute_mEndOfBlockInstruction
                                                                                                 COMMA_LOCATION_ARGS) {
   GALGAS_pic_31__38_Instruction_5F_block result ;
-  if (inAttribute_mInstructionLocation.isValid () && inAttribute_mStartBlockName.isValid () && inAttribute_mBlockList.isValid () && inAttribute_mEndOfInstruction.isValid ()) {
-    macroMyNew (result.mObjectPtr, cPtr_pic_31__38_Instruction_5F_block (inAttribute_mInstructionLocation, inAttribute_mStartBlockName, inAttribute_mBlockList, inAttribute_mEndOfInstruction COMMA_THERE)) ;
+  if (inAttribute_mInstructionLocation.isValid () && inAttribute_mStartBlockName.isValid () && inAttribute_mBlockList.isValid () && inAttribute_mEndOfBlockInstruction.isValid ()) {
+    macroMyNew (result.mObjectPtr, cPtr_pic_31__38_Instruction_5F_block (inAttribute_mInstructionLocation, inAttribute_mStartBlockName, inAttribute_mBlockList, inAttribute_mEndOfBlockInstruction COMMA_THERE)) ;
   }
   return result ;
 }
@@ -16971,20 +16971,20 @@ GALGAS_pic_31__38_BlockInstructionBlockList cPtr_pic_31__38_Instruction_5F_block
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_location GALGAS_pic_31__38_Instruction_5F_block::reader_mEndOfInstruction (UNUSED_LOCATION_ARGS) const {
+GALGAS_location GALGAS_pic_31__38_Instruction_5F_block::reader_mEndOfBlockInstruction (UNUSED_LOCATION_ARGS) const {
   GALGAS_location result ;
   if (NULL != mObjectPtr) {
     const cPtr_pic_31__38_Instruction_5F_block * p = (const cPtr_pic_31__38_Instruction_5F_block *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_block) ;
-    result = p->mAttribute_mEndOfInstruction ;
+    result = p->mAttribute_mEndOfBlockInstruction ;
   }
   return result ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_location cPtr_pic_31__38_Instruction_5F_block::reader_mEndOfInstruction (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mEndOfInstruction ;
+GALGAS_location cPtr_pic_31__38_Instruction_5F_block::reader_mEndOfBlockInstruction (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mEndOfBlockInstruction ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -16994,12 +16994,12 @@ GALGAS_location cPtr_pic_31__38_Instruction_5F_block::reader_mEndOfInstruction (
 cPtr_pic_31__38_Instruction_5F_block::cPtr_pic_31__38_Instruction_5F_block (const GALGAS_location & in_mInstructionLocation,
                                                                             const GALGAS_lstring & in_mStartBlockName,
                                                                             const GALGAS_pic_31__38_BlockInstructionBlockList & in_mBlockList,
-                                                                            const GALGAS_location & in_mEndOfInstruction
+                                                                            const GALGAS_location & in_mEndOfBlockInstruction
                                                                             COMMA_LOCATION_ARGS) :
 cPtr_pic_31__38_PiccoloInstruction (in_mInstructionLocation COMMA_THERE),
 mAttribute_mStartBlockName (in_mStartBlockName),
 mAttribute_mBlockList (in_mBlockList),
-mAttribute_mEndOfInstruction (in_mEndOfInstruction) {
+mAttribute_mEndOfBlockInstruction (in_mEndOfBlockInstruction) {
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -17017,7 +17017,7 @@ void cPtr_pic_31__38_Instruction_5F_block::description (C_String & ioString,
   ioString << ", " ;
   mAttribute_mBlockList.description (ioString, inIndentation+1) ;
   ioString << ", " ;
-  mAttribute_mEndOfInstruction.description (ioString, inIndentation+1) ;
+  mAttribute_mEndOfBlockInstruction.description (ioString, inIndentation+1) ;
   ioString << "]" ;
 }
 
@@ -17025,7 +17025,7 @@ void cPtr_pic_31__38_Instruction_5F_block::description (C_String & ioString,
 
 acPtr_class * cPtr_pic_31__38_Instruction_5F_block::duplicate (LOCATION_ARGS) const {
   acPtr_class * ptr = NULL ;
-  macroMyNew (ptr, cPtr_pic_31__38_Instruction_5F_block (mAttribute_mInstructionLocation, mAttribute_mStartBlockName, mAttribute_mBlockList, mAttribute_mEndOfInstruction COMMA_THERE)) ;
+  macroMyNew (ptr, cPtr_pic_31__38_Instruction_5F_block (mAttribute_mInstructionLocation, mAttribute_mStartBlockName, mAttribute_mBlockList, mAttribute_mEndOfBlockInstruction COMMA_THERE)) ;
   return ptr ;
 }
 

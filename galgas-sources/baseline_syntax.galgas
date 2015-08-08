@@ -34,10 +34,6 @@ rule <section_list>
   ?!@constantDefinitionList ioConstantDefinitionList {
   repeat
   while
-    $mark$
-    $literal_string$ ?var @lstring s
-    warning s : "obsolete construct: use a comment beginning by #!"
-  while
     $unused$
     $byte$
     repeat

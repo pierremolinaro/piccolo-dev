@@ -163,9 +163,9 @@ proc ipic18StackComputations
   ?!@string ioListFileContents
   ?let @ipic18BlockList inBlockList
 {
-  ioListFileContents += ["" stringByLeftAndRightPadding !79 !'*'] + "\n"
-  ioListFileContents += "*" + ["STACK COMPUTATIONS" stringByLeftAndRightPadding !77 !' '] + "*\n"
-  ioListFileContents += ["" stringByLeftAndRightPadding !79 !'*'] + "\n\n"
+  ioListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n"
+  ioListFileContents += "*" + ["STACK COMPUTATIONS" stringByLeftAndRightPadding !117 !' '] + "*\n"
+  ioListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n\n"
 #--- Find all absolute blocks
   var startLabelsToExplore =@stringset.emptySet{}
   var blockMapForStackComputation =@blockMapForStackComputation.emptyMap{}

@@ -32,45 +32,45 @@ void categoryMethod_computeDuration (const GALGAS_ipic_31__38_Block inObject,
     GALGAS_uint var_terminatorMin ;
     GALGAS_uint var_terminatorMax ;
     const GALGAS_ipic_31__38_Block temp_4 = inObject ;
-    callCategoryMethod_terminatorMinMaxDuration ((const cPtr_ipic_31__38_AbstractBlockTerminator *) temp_4.mAttribute_mTerminator.ptr (), ioArgument_ioExploredBlockMap, inArgument_inNextLabel, var_terminatorMin, var_terminatorMax, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 504)) ;
+    callCategoryMethod_terminatorMinMaxDuration ((const cPtr_ipic_31__38_AbstractBlockTerminator *) temp_4.mAttribute_mTerminator.ptr (), ioArgument_ioExploredBlockMap, inArgument_inNextLabel, var_terminatorMin, var_terminatorMax, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 500)) ;
     GALGAS_uint var_min = var_terminatorMin ;
     GALGAS_uint var_max = var_terminatorMax ;
-    GALGAS_ipic_31__38_SequentialInstructionList var_computedInstructionList = GALGAS_ipic_31__38_SequentialInstructionList::constructor_emptyList (SOURCE_FILE ("ipic18_duration_computations.galgas", 507)) ;
+    GALGAS_ipic_31__38_SequentialInstructionList var_computedInstructionList = GALGAS_ipic_31__38_SequentialInstructionList::constructor_emptyList (SOURCE_FILE ("ipic18_duration_computations.galgas", 503)) ;
     GALGAS_bool var_ok = GALGAS_bool (kIsInfOrEqual, var_min.objectCompare (var_max)) ;
-    cEnumerator_ipic_31__38_SequentialInstructionList enumerator_19198 (inObject.mAttribute_mInstructionList, kEnumeration_down) ;
-    while (enumerator_19198.hasCurrentObject ()) {
+    cEnumerator_ipic_31__38_SequentialInstructionList enumerator_19581 (inObject.mAttribute_mInstructionList, kEnumeration_down) ;
+    while (enumerator_19581.hasCurrentObject ()) {
       GALGAS_uint var_instructionMin ;
       GALGAS_uint var_instructionMax ;
-      callCategoryMethod_minMaxDuration ((const cPtr_ipic_31__38_SequentialInstruction *) enumerator_19198.current_mInstruction (HERE).ptr (), ioArgument_ioExploredBlockMap, var_instructionMin, var_instructionMax, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 510)) ;
+      callCategoryMethod_minMaxDuration ((const cPtr_ipic_31__38_SequentialInstruction *) enumerator_19581.current_mInstruction (HERE).ptr (), ioArgument_ioExploredBlockMap, var_instructionMin, var_instructionMax, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 506)) ;
       GALGAS_bool test_5 = var_ok ;
       if (kBoolTrue == test_5.boolEnum ()) {
         test_5 = GALGAS_bool (kIsInfOrEqual, var_instructionMin.objectCompare (var_instructionMax)) ;
       }
       const enumGalgasBool test_6 = test_5.boolEnum () ;
       if (kBoolTrue == test_6) {
-        var_min = var_min.add_operation (var_instructionMin, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 516)) ;
-        var_max = var_max.add_operation (var_instructionMax, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 517)) ;
+        var_min = var_min.add_operation (var_instructionMin, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 512)) ;
+        var_max = var_max.add_operation (var_instructionMax, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 513)) ;
         {
-        var_computedInstructionList.modifier_insertAtIndex (enumerator_19198.current_mInstruction (HERE), var_min, var_max, GALGAS_uint ((uint32_t) 0U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 518)) ;
+        var_computedInstructionList.modifier_insertAtIndex (enumerator_19581.current_mInstruction (HERE), var_min, var_max, GALGAS_uint ((uint32_t) 0U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 514)) ;
         }
       }else if (kBoolFalse == test_6) {
         var_ok = GALGAS_bool (false) ;
         {
-        var_computedInstructionList.modifier_insertAtIndex (enumerator_19198.current_mInstruction (HERE), GALGAS_uint::constructor_max (SOURCE_FILE ("ipic18_duration_computations.galgas", 521)), GALGAS_uint ((uint32_t) 0U), GALGAS_uint ((uint32_t) 0U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 521)) ;
+        var_computedInstructionList.modifier_insertAtIndex (enumerator_19581.current_mInstruction (HERE), GALGAS_uint::constructor_max (SOURCE_FILE ("ipic18_duration_computations.galgas", 517)), GALGAS_uint ((uint32_t) 0U), GALGAS_uint ((uint32_t) 0U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 517)) ;
         }
       }
-      enumerator_19198.gotoNextObject () ;
+      enumerator_19581.gotoNextObject () ;
     }
     const enumGalgasBool test_7 = var_ok.boolEnum () ;
     if (kBoolTrue == test_7) {
       const GALGAS_ipic_31__38_Block temp_8 = inObject ;
       const GALGAS_ipic_31__38_Block temp_9 = inObject ;
       const GALGAS_ipic_31__38_Block temp_10 = inObject ;
-      outArgument_outNewBlock = GALGAS_ipic_31__38_Block::constructor_new (temp_8.mAttribute_mAddress, temp_9.mAttribute_mLabel, var_computedInstructionList, temp_10.mAttribute_mTerminator, var_terminatorMin, var_terminatorMax  COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 525)) ;
+      outArgument_outNewBlock = GALGAS_ipic_31__38_Block::constructor_new (temp_8.mAttribute_mAddress, temp_9.mAttribute_mLabel, var_computedInstructionList, temp_10.mAttribute_mTerminator, var_terminatorMin, var_terminatorMax  COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 521)) ;
       ioArgument_ioContinue = GALGAS_bool (true) ;
       {
       const GALGAS_ipic_31__38_Block temp_11 = inObject ;
-      ioArgument_ioExploredBlockMap.modifier_insertKey (temp_11.mAttribute_mLabel, var_min, var_max, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 534)) ;
+      ioArgument_ioExploredBlockMap.modifier_insertKey (temp_11.mAttribute_mLabel, var_min, var_max, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 530)) ;
       }
     }else if (kBoolFalse == test_7) {
       const GALGAS_ipic_31__38_Block temp_12 = inObject ;
@@ -9143,8 +9143,8 @@ static void categoryMethod_registerExpression_analyzeRegisterExpression (const c
   GALGAS_uint var_registerAddress = GALGAS_uint ((uint32_t) 0U) ;
   GALGAS_uintlist var_registerAddressList ;
   GALGAS_uint var_size ;
-  GALGAS_string joker_959 ; // Joker input parameter
-  constinArgument_inRegisterTable.method_searchKey (object->mAttribute_mRegisterName, var_registerAddressList, var_size, outArgument_outBitSliceTable, joker_959, inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 27)) ;
+  GALGAS_string joker_955 ; // Joker input parameter
+  constinArgument_inRegisterTable.method_searchKey (object->mAttribute_mRegisterName, var_registerAddressList, var_size, outArgument_outBitSliceTable, joker_955, inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 27)) ;
   const enumGalgasBool test_1 = GALGAS_bool (kIsStrictInf, var_offset.objectCompare (GALGAS_sint_36__34_ ((int64_t) 0LL))).boolEnum () ;
   if (kBoolTrue == test_1) {
     inCompiler->emitSemanticError (object->mAttribute_mEndOfOffsetExpression, GALGAS_string ("offset (").add_operation (var_offset.reader_string (SOURCE_FILE ("ipic18_build_block_representation.galgas", 36)), inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 36)).add_operation (GALGAS_string (") should be >= 0"), inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 36))  COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 36)) ;
@@ -9155,14 +9155,14 @@ static void categoryMethod_registerExpression_analyzeRegisterExpression (const c
     }
   }
   GALGAS_bool var_found = GALGAS_bool (false) ;
-  cEnumerator_uintlist enumerator_1268 (var_registerAddressList, kEnumeration_up) ;
+  cEnumerator_uintlist enumerator_1264 (var_registerAddressList, kEnumeration_up) ;
   bool bool_3 = var_found.operator_not (SOURCE_FILE ("ipic18_build_block_representation.galgas", 42)).isValidAndTrue () ;
-  if (enumerator_1268.hasCurrentObject () && bool_3) {
-    while (enumerator_1268.hasCurrentObject () && bool_3) {
-      var_found = GALGAS_bool (kIsStrictInf, enumerator_1268.current_mValue (HERE).objectCompare (constinArgument_inAccessBankSplitOffset)).operator_or (GALGAS_bool (kIsSupOrEqual, enumerator_1268.current_mValue (HERE).objectCompare (GALGAS_uint ((uint32_t) 3840U).add_operation (constinArgument_inAccessBankSplitOffset, inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 43)))) COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 43)) ;
-      var_registerAddress = enumerator_1268.current_mValue (HERE) ;
-      enumerator_1268.gotoNextObject () ;
-      if (enumerator_1268.hasCurrentObject ()) {
+  if (enumerator_1264.hasCurrentObject () && bool_3) {
+    while (enumerator_1264.hasCurrentObject () && bool_3) {
+      var_found = GALGAS_bool (kIsStrictInf, enumerator_1264.current_mValue (HERE).objectCompare (constinArgument_inAccessBankSplitOffset)).operator_or (GALGAS_bool (kIsSupOrEqual, enumerator_1264.current_mValue (HERE).objectCompare (GALGAS_uint ((uint32_t) 3840U).add_operation (constinArgument_inAccessBankSplitOffset, inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 43)))) COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 43)) ;
+      var_registerAddress = enumerator_1264.current_mValue (HERE) ;
+      enumerator_1264.gotoNextObject () ;
+      if (enumerator_1264.hasCurrentObject ()) {
         bool_3 = var_found.operator_not (SOURCE_FILE ("ipic18_build_block_representation.galgas", 42)).isValidAndTrue () ;
       }
     }
@@ -9278,9 +9278,9 @@ static void categoryMethod_registerExpression_analyzeRegisterExpressionWithoutCh
   }
   GALGAS_uintlist var_registerAddressList ;
   GALGAS_uint var_size ;
-  GALGAS_bitSliceTable joker_2942 ; // Joker input parameter
-  GALGAS_string joker_2945 ; // Joker input parameter
-  constinArgument_inRegisterTable.method_searchKey (object->mAttribute_mRegisterName, var_registerAddressList, var_size, joker_2942, joker_2945, inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 85)) ;
+  GALGAS_bitSliceTable joker_2938 ; // Joker input parameter
+  GALGAS_string joker_2941 ; // Joker input parameter
+  constinArgument_inRegisterTable.method_searchKey (object->mAttribute_mRegisterName, var_registerAddressList, var_size, joker_2938, joker_2941, inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 85)) ;
   GALGAS_uint var_registerAddress ;
   var_registerAddressList.method_first (var_registerAddress, inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 86)) ;
   const enumGalgasBool test_1 = GALGAS_bool (kIsSupOrEqual, var_offset.reader_uint (inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 88)).objectCompare (var_size)).boolEnum () ;
@@ -9371,9 +9371,9 @@ static void categoryMethod_registerExpression_getRegisterAddress (const cPtr_reg
   macroValidSharedObject (object, cPtr_registerExpression) ;
   GALGAS_uintlist var_registerAddressList ;
   GALGAS_uint var_size ;
-  GALGAS_bitSliceTable joker_3669 ; // Joker input parameter
-  GALGAS_string joker_3672 ; // Joker input parameter
-  constinArgument_inRegisterTable.method_searchKey (object->mAttribute_mRegisterName, var_registerAddressList, var_size, joker_3669, joker_3672, inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 106)) ;
+  GALGAS_bitSliceTable joker_3665 ; // Joker input parameter
+  GALGAS_string joker_3668 ; // Joker input parameter
+  constinArgument_inRegisterTable.method_searchKey (object->mAttribute_mRegisterName, var_registerAddressList, var_size, joker_3665, joker_3668, inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 106)) ;
   GALGAS_sint_36__34_ var_offset ;
   callCategoryMethod_eval ((const cPtr_immediatExpression *) object->mAttribute_mOffset.ptr (), constinArgument_inRegisterTable, constinArgument_inConstantMap, var_offset, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 108)) ;
   const enumGalgasBool test_0 = GALGAS_bool (kIsStrictInf, var_offset.objectCompare (GALGAS_sint_36__34_ ((int64_t) 0LL))).boolEnum () ;

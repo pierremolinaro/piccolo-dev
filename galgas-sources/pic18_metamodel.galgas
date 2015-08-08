@@ -79,7 +79,7 @@ class @pic18Instruction_repetitionStatique : @pic18PiccoloInstruction {
 
 #----------------------------------------------------*
 
-#!--- Block Instruction
+#!Block Instruction
 
 #----------------------------------------------------*
 
@@ -121,12 +121,12 @@ list @pic18BlockInstructionBlockList {
 class @pic18Instruction_block : @pic18PiccoloInstruction {
   @lstring mStartBlockName
   @pic18BlockInstructionBlockList mBlockList
-  @location mEndOfInstruction
+  @location mEndOfBlockInstruction
 }
 
 #----------------------------------------------------*
 
-#!--- Switch instruction
+#!Switch instruction
 
 #----------------------------------------------------*
 

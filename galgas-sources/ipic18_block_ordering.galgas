@@ -2,7 +2,7 @@
 
 #----------------------------------------------------------------------------*
 
-#!--- Block invocation graph
+#!Block invocation graph
 
 #----------------------------------------------------------------------------*
 
@@ -12,7 +12,7 @@ graph @blockInvocationGraph (@stringlist) {
 
 #----------------------------------------------------------------------------*
 
-#!--- buildInstructionInvocationGraph
+#!buildInstructionInvocationGraph
 
 #----------------------------------------------------------------------------*
 
@@ -56,7 +56,7 @@ override method @ipic18_condition_skip_instruction buildInstructionInvocationGra
 
 #----------------------------------------------------------------------------*
 
-#!--- buildTerminatorInvocationGraph
+#!buildTerminatorInvocationGraph
 
 #----------------------------------------------------------------------------*
 
@@ -179,7 +179,7 @@ override method @ipic18ConditionalJumpTerminator buildTerminatorInvocationGraph
 
 #----------------------------------------------------------------------------*
 
-#!--- Terminator noNeedToInsertJumpInstruction
+#!Terminator noNeedToInsertJumpInstruction
 
 #----------------------------------------------------------------------------*
 
@@ -282,7 +282,7 @@ override getter @pic18TestRegisterTerminator needToInsertJumpInstruction
 
 #----------------------------------------------------------------------------*
 
-#!--- buildTerminatorInvocationGraph
+#!buildTerminatorInvocationGraph
 
 #----------------------------------------------------------------------------*
 
@@ -362,7 +362,7 @@ override method @pic18BitTestTerminator buildTerminatorOrderedGraph
 
 #----------------------------------------------------------------------------*
 
-#!--- Routines
+#!Routines
 
 #----------------------------------------------------------------------------*
 
@@ -370,9 +370,9 @@ proc buildOrderedGraph
   ?!@ipic18BlockList ioBlockList
   ?let @string inSourceFileName
   ?!@string ioListFileContents {
-  ioListFileContents += ["" stringByLeftAndRightPadding !79 !'*'] + "\n"
-  ioListFileContents += "*" + ["BLOCK ORDERING OPTIMIZATION" stringByLeftAndRightPadding !77 !' '] + "*\n"
-  ioListFileContents += ["" stringByLeftAndRightPadding !79 !'*'] + "\n\n"
+  ioListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n"
+  ioListFileContents += "*" + ["BLOCK ORDERING OPTIMIZATION" stringByLeftAndRightPadding !117 !' '] + "*\n"
+  ioListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n\n"
   ioListFileContents += "Block ordering optimization:\n"
   let @uint n = blockDiscontinuityCount (!ioBlockList)
   ioListFileContents += "  count before optimization: " + n + "\n"

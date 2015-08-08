@@ -304,9 +304,9 @@ proc baseline_analysis
   end
 #-------------------------------- Print intermediate Instruction List
   if (@uint. errorCount == 0) & [option piccolo_options.ouputListingFile value] then
-    listFileContents += ["" stringByLeftAndRightPadding !79 !'*'] + "\n"
-    listFileContents += "*" + ["INTERMEDIATE INSTRUCTION LIST" stringByLeftAndRightPadding !77 !' '] + "*\n"
-    listFileContents += ["" stringByLeftAndRightPadding !79 !'*'] + "\n\n"
+    listFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n"
+    listFileContents += "*" + ["INTERMEDIATE INSTRUCTION LIST" stringByLeftAndRightPadding !117 !' '] + "*\n"
+    listFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n\n"
     listFileContents += "Generated intermediate code:\n"
     listFileContents += " Line Length Mnemonic\n"
     @uint currentAddress = 0
@@ -350,9 +350,9 @@ proc baseline_analysis
   end
 #-------------------------------- Build binary code
   if @uint. errorCount == 0 then
-    listFileContents += ["" stringByLeftAndRightPadding !79 !'*'] + "\n"
-    listFileContents += "*" + ["GENERATED CODE" stringByLeftAndRightPadding !77 !' '] + "*\n"
-    listFileContents += ["" stringByLeftAndRightPadding !79 !'*'] + "\n\n"
+    listFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n"
+    listFileContents += "*" + ["GENERATED CODE" stringByLeftAndRightPadding !117 !' '] + "*\n"
+    listFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n\n"
     listFileContents += "Address Code Mnemonic\n"
     build_baseline_binary_code (
       !assemblyInstructionList

@@ -47,7 +47,7 @@ list @ipic18BlockList {
 
 #----------------------------------------------------------------------------*
 
-#!--- Block terminators
+#!Block terminators
 
 #----------------------------------------------------------------------------*
 
@@ -162,7 +162,7 @@ class @pic18BitTestTerminator : @ipic18AbstractConditionTerminator {
 
 #----------------------------------------------------------------------------*
 
-#!--- Regular instructions
+#!Regular instructions
 
 #----------------------------------------------------------------------------*
 
@@ -350,7 +350,7 @@ class @ipic18_skip_instruction_FDA : @ipic18_condition_skip_instruction {
 
 #----------------------------------------------------------------------------*
 
-#!--- Optimization
+#!Optimization
 
 #----------------------------------------------------------------------------*
 
@@ -362,7 +362,7 @@ map @symbolTableForBlockOptimization {
 
 #----------------------------------------------------------------------------*
 
-#!--- Cluster ordering optimization
+#!Cluster ordering optimization
 
 #----------------------------------------------------------------------------*
 
@@ -397,7 +397,7 @@ method @ipic18AbstractBlockTerminator terminatorRelativeBranchOverflow
 
 #----------------------------------------------------------------------------*
 
-#!--- @symbolTableForRelativesResolution
+#!@symbolTableForRelativesResolution
 
 #----------------------------------------------------------------------------*
 
@@ -459,7 +459,7 @@ abstract getter @ipic18AbstractBlockTerminator isEqualToTerminator
 
 #----------------------------------------------------------------------------*
 
-#!--- Check displacement
+#!Check displacement
 
 #----------------------------------------------------------------------------*
 
@@ -499,7 +499,7 @@ func pic18_BRA_RCALL_displacement
 
 #----------------------------------------------------------------------------*
 
-#!--- Generate branch instructions
+#!Generate branch instructions
 
 #----------------------------------------------------------------------------*
 

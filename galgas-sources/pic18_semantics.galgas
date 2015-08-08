@@ -258,7 +258,7 @@ proc pic18_analyze
   )
 #-------------------------------- Write listing file
   if [option piccolo_options.ouputListingFile value] then
-    listFileContents += "*******************************************************************************\n"
+    listFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n\n"
     @string listFile = [inSourceFileName stringByDeletingPathExtension] + ".list"
     [listFileContents writeToFileWhenDifferentContents !listFile ?*]
   end
