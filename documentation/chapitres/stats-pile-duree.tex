@@ -2,21 +2,17 @@
 %!TEX root = ../piccolo.tex
 
 
-\chapterLabel{Calcul des besoins en pile et des durées d'exécutions}{pile-et-durees}
+\chapterLabel{Calcul des besoins en pile et des durées d'exécution}{pile-et-durees}
 
 %--- Pour supprimer tout en-tête et pied de page sur la 1re page d'un chapitre
 \thispagestyle{empty}
 
-Par défaut, la compilation d'un source pour \emph{pic18} lance le calcul des besoins en pile et des durées d'exécutions de chaque routine. Ces résultats apparaissent à la fin du fichier listing. Les options contrôlant cette générations sont décrites à la \refSubsubsectionPage{optionsGeneration}, notamment :
+\textcolor{red}{\bf Uniquement pour les \emph{pic18}, à partir de la version 3.1.1.}
+
+Par défaut, la compilation d'un source pour \emph{pic18} lance le calcul des besoins en pile et des durées d'exécutions de chaque routine. Ces résultats apparaissent à la fin du fichier listing. Les options contrôlant cette génération sont décrites à la \refSubsubsectionPage{optionsGeneration}, notamment :
 \begin{description}
 
   \item[\texttt{-L}, \texttt{-{-}list}] Produit un fichier listing contenant de nombreux détails concernant la configuration, l’allocation de la RAM, les optimisations réalisées et la transformation des branchement relatifs en absolu. Ce fichier est écrit dans le même répertoire que le fichier source, porte le même nom, mais avec l’extension \texttt{.list}.
-
-  \item[\texttt{-I}, \texttt{-{-}no-routine-duration}] Par défaut, Piccolo tente de calculer la durée d'exécution des routines. Cette option inhibe ce calcul.
-
-  \item[\texttt{-T}, \texttt{-{-}no-stack-computation}] Par défaut, Piccolo tente de calculer les besoins en pile du programme. Cette option inhibe ce calcul.
-
-  \item[\texttt{-d}, \texttt{-{-}detailled-computations}] Insère dans le fichier listing le détail des calculs de pile et de durée d'exécutions du programme.
 \end{description}
 
 \section{Calcul des besoins en pile}
@@ -29,15 +25,21 @@ Si un programme n'a pas de routine d'interruption, le nombre total de niveaux de
 
 
 Si un programme a des routines d'interruption, en supposant que celles-ci ne sont pas interruptibles et donc ne s'imbriquent pas, le nombre total de niveaux de pile nécessaire est :
-\begin{equation*}
-  N_{main} + 1 + \text{sup} \left(N_{\_high\_interrupt\_routine} + N_{\_low\_interrupt\_routine}\right)
-\end{equation*}
+\begin{equation}
+  N_{main} + 1 + \text{sup} \left(N_{high\_interrupt\_routine} + N_{low\_interrupt\_routine}\right)
+\end{equation}
 
+où :
+\begin{itemize}
+\item $N_{main}$ est le nombre de niveaux de pile requis par le programme principal ;
+\item $N_{high\_interrupt\_routine}$ est le nombre de niveaux de pile requis par le sous-programme d'interruption de haute priorité ;
+\item $N_{low\_interrupt\_routine}$ est le nombre de niveaux de pile requis par le sous-programme d'interruption de basse priorité.
+\end{itemize}
 
 
 \section{Calcul des durées d'exécution}
 
-Pour toutes les routines non récursives, Piccolo tente de calculer les bornes de leur durée d'exécution. Il y a une condition supplémentaire, l'absence d'instruction entraînant un bouclage, à savoir l'\emph{instruction de répétition infinie} (\refSectionPage{repetitionInfinie}), et l'\emph{instruction répétitive} (\refSectionPage{instructionRepetitive}). En fonction des instructions conditionnelles, Piccolo calcule le \emph{meilleur} et le \emph{pire} temps d'exécution.
+Pour toutes les routines non récursives, Piccolo tente de calculer les bornes de leur durée d'exécution. Il y a une condition supplémentaire, l'absence d'instruction entraînant un bouclage, à savoir l'\emph{instruction de répétition infinie} (\refSectionPage{repetitionInfinie}), et l'\emph{instruction répétitive} (\refSectionPage{instructionRepetitive}), ou un agencement de l'instruction \pic!block! (\refSectionPage{instructionBloc}) entraînant un bouclage. En fonction des instructions conditionnelles, Piccolo calcule le \emph{meilleur} et le \emph{pire} temps d'exécution.
 
 Ces durées sont exprimées en nombre de cycles de l'horloge des instructions : la plupart des instructions s'exécute en un cycle, et quelques instructions comme \assembleur{CALL}, \assembleur{RETURN}, \assembleur{MOVFF}, \dots\ en deux cycles.
 
@@ -45,36 +47,46 @@ Ces durées sont exprimées en nombre de cycles de l'horloge des instructions : 
 
 \section{Exemple}
 
-Considérons le programme suivant :
+À titre d'exemple, considérons le programme d'exemple \emph{blink\_led\_it\_18F448.piccolo}, où les commentaires, la déclaration des variables et la configuration ont été retirés :
 
 \begin{piccolo}
-pic18 optimizations "18F2580" :
+pic18 blink_led_it_18F448 "18F448" :
 
-routine optimize1 {
-  if (STATUS.Z)
-    movlw 1
-  elsif (! STATUS.OV)
-    movlw 2
-  else
-    movlw 3
-  end
-}
+...
 
-routine optimize2 {
-  if (STATUS.Z)
-    if (! STATUS.OV)
-      movlw 1
-    else
-      movlw 2
-    end
+interrupt high fast {
+  BCF  PIR1.TMR2IF
+  banksel 2
+  if (compteurL NZ)
+    DECF compteurL
+  elsif (compteurH NZ)
+    DECF compteurH
+    SETF compteurL
   else
-    addlw 3
+  #--- Reinitialiser les compteurs
+    MOVLW  0x13
+    MOVWF  compteurH
+    MOVLW  0x87
+    MOVWF  compteurL
+  #--- Clignoter
+    BTG  PORTE.0
   end
 }
 
 noreturn routine main bank:requires 0 {
-  rcall optimize1
-  rcall optimize2
+  MOVLW 7
+  MOVWF ADCON1
+  BCF  TRISE.0
+  banksel 2
+  CLRF compteurL
+  CLRF compteurH
+  MOVLW  250 - 1 # La periode est PR2 + 1
+  MOVWF  PR2
+  MOVLW  T2CON (TOUTPS:0, TMR2ON:1, T2CKPS:1) # New syntax in 3.1.0
+  MOVWF  T2CON  
+  BSF  RCON.IPEN
+  BSF  PIE1.TMR2IE
+  BSF  INTCON.GIEH
   forever
   end
 }
@@ -82,142 +94,299 @@ noreturn routine main bank:requires 0 {
 end
 \end{piccolo}
 
-Ce programme est juste pris pour exemple de calcul de niveau de pile et de durée d'exécution, le faire tourner n'aurait pas grand intérêt.
 
-\subsection{Résultats en absence d'optimisation}
+\subsection{Taille de la pile}
 
-Sans l'option « \texttt{-O} », le code engendré est le suivant, extrait du fichier listing engendré grâce à l'option « \texttt{-L} ».
+Le programme principal et le sous-programme d'interruption n'appellent pas de sous-programmes : le besoin en pile est donc de $1$ niveau, celui du sous-programme d'interruption. Ce résultat apparaît sur la sortie console, si l'option \emph{verbose output} (« \texttt{-v} ») est activée :
 
-La routine \assembleur{optimize1} :
-
-\begin{lstlisting}[language=assembleur, frame=l]
-    2  000002 :           optimize1:
-    3  000002 : A4D8        BTFSS  STATUS, 2
-    4  000004 : D002        BRA   _label_0
-    5  000006 : 0E01        MOVLW 0x1
-    6  000008 : D005        BRA   _label_1
-    7  00000A :           _label_0:
-    8  00000A : B6D8        BTFSC  STATUS, 3
-    9  00000C : D002        BRA   _label_2
-   10  00000E : 0E02        MOVLW 0x2
-   11  000010 : D001        BRA   _label_3
-   12  000012 :           _label_2:
-   13  000012 : 0E03        MOVLW 0x3
-   14  000014 :           _label_3:
-   15  000014 :           _label_1:
-   16  000014 : 0012        RETURN
+\begin{lstlisting}[language=assembleur]
+...
+Max stack depth: 1
+...
 \end{lstlisting}
 
-La routine \assembleur{optimize2} :
+Un résultat détaillé est disponible dans le fichier listing \emph{blink\_led\_it\_18F448.list} qui est produit si l'option « \texttt{-L} » est présente :
 
-\begin{lstlisting}[language=assembleur, frame=l]
-   17  000016 :           optimize2:
-   18  000016 : A4D8        BTFSS  STATUS, 2
-   19  000018 : D006        BRA   _label_4
-   20  00001A : B6D8        BTFSC  STATUS, 3
-   21  00001C : D002        BRA   _label_6
-   22  00001E : 0E01        MOVLW 0x1
-   23  000020 : D001        BRA   _label_7
-   24  000022 :           _label_6:
-   25  000022 : 0E02        MOVLW 0x2
-   26  000024 :           _label_7:
-   27  000024 : D001        BRA   _label_5
-   28  000026 :           _label_4:
-   29  000026 : 0F03        ADDLW 0x3
-   30  000028 :           _label_5:
-   31  000028 : 0012        RETURN
-   32  00002A :           main:
-\end{lstlisting}
+\begin{lstlisting}[language=assembleur]
+...
+*******************************************************************
+*                       STACK COMPUTATIONS                        *
+*******************************************************************
 
-Les besoins en pile sont faciles à calculer, ces routines n'appelant pas d'autres routines et étant appelées par \pic!main!. Le résultat calculé par Piccolo apparaît dans le fichier listing sous la forme suivante :
-\begin{lstlisting}[language=assembleur, frame=l]
-Stack needs:
-                                        Routine Levels
-                                      optimize1 0
-                                      optimize2 0
-                                           main 1
-\end{lstlisting}
+Levels Routine
+     0 .HIGH_INTERRUPT
+     0 .START
 
-L'option « \texttt{-d} » permet d'insérer dans le fichier listing le détail des calculs des durées minimum et maximum de chaque routine, exprimés en nombre de cycles de l'horloge des instructions (la plupart des instructions s'exécute en un cycle, et quelques instructions comme \assembleur{CALL}, \assembleur{RETURN}, \assembleur{MOVFF}, \dots\ en deux cycles). Pour la routine \assembleur{optimize1}, on obtient :
-
-\begin{lstlisting}[language=assembleur, frame=l]
- Line:  min-  max:
-    2:    0-    0:LABEL optimize1
-    3:    1-    1:BTFSS STATUS, 2
-    4:    3-    3:BRA _label_0
-    5:    3-    3:MOVLW 0x1
-    6:    5-    5:BRA _label_1
-    7:    3-    3:LABEL _label_0
-    8:    4-    4:BTFSC STATUS, 3
-    9:    6-    6:BRA _label_2
-   10:    6-    6:MOVLW 0x2
-   11:    8-    8:BRA _label_3
-   12:    6-    6:LABEL _label_2
-   13:    7-    7:MOVLW 0x3
-   14:    7-    8:LABEL _label_3
-   15:    5-    8:LABEL _label_1
-   16:    7-   10:RETURN
-optimize1 --> 7 ... 10
-\end{lstlisting}
-
-Pour chaque ligne, sont affichés les instants \emph{minimum} et \emph{maximum} auxquels se termine l'exécution de l'instruction citée. La dernière ligne récapitule résultat : la routine \assembleur{optimize1} s'exécute au mieux en 7 cycles de l'horloge des instructions, au pire en 10.
-
-Et pour la routine \assembleur{optimize2}, on obtient :
-
-\begin{lstlisting}[language=assembleur, frame=l]
-   17:    0-    0:LABEL optimize2
-   18:    1-    1:BTFSS STATUS, 2
-   19:    3-    3:BRA _label_4
-   20:    3-    3:BTFSC STATUS, 3
-   21:    5-    5:BRA _label_6
-   22:    5-    5:MOVLW 0x1
-   23:    7-    7:BRA _label_7
-   24:    5-    5:LABEL _label_6
-   25:    6-    6:MOVLW 0x2
-   26:    6-    7:LABEL _label_7
-   27:    8-    9:BRA _label_5
-   28:    3-    3:LABEL _label_4
-   29:    4-    4:ADDLW 0x3
-   30:    4-    9:LABEL _label_5
-   31:    6-   11:RETURN
-optimize2 --> 6 ... 11
-\end{lstlisting}
-
-On n'obtient aucun résultat pour la routine \assembleur{main}, car celle-ci boucle.
-
-\subsection{Résultats avec optimisation}
-
-L'optimisation (option « \texttt{-O} ») transforme la séquence \assembleur{MOVLW k - RETURN} en \assembleur{RETLW k}, et un branchement vers une instruction \assembleur{RETURN} en \assembleur{RETURN}. La routine \assembleur{optimize1} devient donc :
-
-\begin{lstlisting}[language=assembleur, frame=l]
- Line:  min-  max:
-    2:    0-    0:LABEL optimize1
-    3:    1-    1:BTFSS STATUS, 2
-    4:    3-    3:BRA _label_0
-    5:    4-    4:RETLW 0x1
-    7:    3-    3:LABEL _label_0
-    8:    4-    4:BTFSC STATUS, 3
-    9:    6-    6:RETLW 0x3
-   10:    7-    7:RETLW 0x2
-optimize1 --> 4 ... 7
+...
 \end{lstlisting}
 
 
-Et la routine \assembleur{optimize2} :
 
-\begin{lstlisting}[language=assembleur, frame=l]
- Line:  min-  max:
-   17:    0-    0:LABEL optimize2
-   18:    1-    1:BTFSS STATUS, 2
-   19:    3-    3:BRA _label_4
-   20:    3-    3:BTFSC STATUS, 3
-   21:    5-    5:RETLW 0x2
-   22:    6-    6:RETLW 0x1
-   28:    3-    3:LABEL _label_4
-   29:    4-    4:ADDLW 0x3
-   30:    4-    4:-
-   31:    6-    6:RETURN
-optimize2 --> 5 ... 6
+\subsection{Durées d'exécution}
+
+On suppose que l'optimisation (option « \texttt{-O} ») est activée, ainsi que l'option « \texttt{-L} » qui produit le fichier listing dont les codes suivants sont extraits. Le code intermédiaire engendré pour le sous-programme d'interruption est : 
+
+\begin{lstlisting}[language=assembleur]
+LABEL .HIGH_INTERRUPT, ORG 0x8:
+  (JUMP _high_interrupt)
+
+LABEL _high_interrupt:
+  BCF PIR1, 1
+  MOVLB 0x2
+  compteurL Z ? (JUMP .L1) : JUMP .L0
+
+LABEL .L1:
+  compteurH Z ? (JUMP .L4) : JUMP .L3
+
+LABEL .L4:
+  MOVLW 0x13
+  MOVWF compteurH
+  MOVLW 0x87
+  MOVWF compteurL
+  BTG PORTE, 0
+  RETFIE FAST
+
+LABEL .L0:
+  DECF compteurL, F, BSR_ACCESS
+  RETFIE FAST
+
+LABEL .L3:
+  DECF compteurH, F, BSR_ACCESS
+  SETF compteurL
+  RETFIE FAST
 \end{lstlisting}
+
+Pour calculer les bornes des durées d'exécution du sous-programme d'interruption, Piccolo commence par la fin, c'est-à-dire les blocs dont il peut directement calculer les durées ; ici, ce sont les blocs \texttt{.L4}, \texttt{.L0} et \texttt{.L3} :
+
+\begin{lstlisting}[language=assembleur]
+Addr.  Code       Duration    Assembly
+00014                         .L4:
+00014  0E13       7-7             MOVLW 0x13
+00016  6F01       6-6             MOVWF compteurH
+00018  0E87       5-5             MOVLW 0x87
+0001A  6F00       4-4             MOVWF compteurL
+0001C  7084       3-3             BTG PORTE, 0
+0001E  0011       2-2             RETFIE FAST
+
+Addr.  Code       Duration    Assembly
+00020                         .L0:
+00020  0700       3-3             DECF compteurL, F, BSR_ACCESS
+00022  0011       2-2             RETFIE FAST
+
+Addr.  Code       Duration    Assembly
+00024                         .L3:
+00024  0701       4-4             DECF compteurH, F, BSR_ACCESS
+00026  6900       3-3             SETF compteurL
+00028  0011       2-2             RETFIE FAST
+\end{lstlisting}
+
+Les durées d'exécution sont affichées sous la forme \emph{min-max}, et l'unité de temps est une période de l'horloge des instructions. Les durées affichées sont les durées d'exécution à partir de ligne courante jusqu'à la fin de l'exécution du sous-programme d'interruption ; par exemple, pour le label \texttt{.L0}, la durée est de $3$ : 1 cycle d'horloge pour l'instruction \texttt{DECF} et 2 cycles pour \texttt{RETFIE}. Les bornes \emph{min} et \emph{max} sont égales car le code est linéaire, sans branchement.
+
+Comme les durées de \texttt{.L4} et \texttt{.L3} sont calculées, Piccolo calcule la durée de \texttt{.L1} :
+\begin{lstlisting}[language=assembleur]
+LABEL .L1:
+  compteurH Z ? (JUMP .L4) : JUMP .L3
+\end{lstlisting}
+
+Rappelons que \texttt{JUMP .L4} est placé entre parenthèses pour signifier que l'instruction de saut n'est pas engendrée, l'optimiseur ayant placé le bloc \texttt{.L4} à la suite du bloc \texttt{.L1}.
+
+Le résultat est :
+\begin{lstlisting}[language=assembleur]
+Addr.  Code       Duration    Assembly
+00010                         .L1:
+00010  6701       7-9             TSTFSZ compteurH, BSR_ACCESS
+00012  D008                       BRA .L3
+\end{lstlisting}
+
+Voyons comment les bornes 7 et 9 sont calculées :
+\begin{itemize}
+\item si \texttt{compteurH} est nul, le test est vrai, et l'instruction \texttt{BRA .L3} est ignorée, ce qui prend 2 cycles ; comme le bloc \texttt{.L4} s'exécute en 7 cycles, la durée est donc de 9 cycles ;
+\item si \texttt{compteurH} est non nul, le test est faux (1 cycle), et l'instruction \texttt{BRA .L3} est exécutée (2 cycles) ; comme le bloc \texttt{.L3} s'exécute en 4 cycles, la durée est donc de 7 cycles.
+\end{itemize}
+
+La connaissance des bornes de \texttt{.L1} (et de \texttt{.L0}) permet de calculer les bornes de \texttt{\_high\_interrupt} :
+\begin{lstlisting}[language=assembleur]
+LABEL _high_interrupt:
+  BCF PIR1, 1
+  MOVLB 0x2
+  compteurL Z ? (JUMP .L1) : JUMP .L0
+\end{lstlisting}
+
+Le résultat est :
+\begin{lstlisting}[language=assembleur]
+Addr.  Code       Duration    Assembly
+00008                         _high_interrupt:
+00008  929E       8-13            BCF PIR1, 1
+0000A  0102       7-12            MOVLB 0x2
+0000C  6700       6-11            TSTFSZ compteurL, BSR_ACCESS
+0000E  D008                       BRA .L0
+\end{lstlisting}
+
+Les bornes 6 et 11 du terminateur sont calculées de la façon suivante :
+\begin{itemize}
+\item si \texttt{compteurL} est nul, le test est vrai, et l'instruction \texttt{BRA .L0} est ignorée (2 cycles) ; comme le bloc \texttt{.L1} s'exécute en 7 à 9 cycles, la durée est donc de 9 à 11 cycles ;
+\item si \texttt{compteurL} est non nul, le test est faux (1 cycle), et l'instruction \texttt{BRA .L0} est exécutée (2 cycles) ; comme le bloc \texttt{.L0} s'exécute en 3 cycles, la durée est donc de 6 cycles.
+\end{itemize}
+
+La borne min de la durée d'exécution du terminateur est donc de 6 cycles, et la borne max 11 cycles.
+
+Pour obtenir les bornes de la durée d'exécution du sous-programme d'interruption, il suffit d'ajouter les durées des deux instructions \texttt{BCF} et \texttt{MOVLB} (1 cycle chacune). On obtient ainsi les bornes 8 et 13.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%\subsection{Résultats en absence d'optimisation}
+%
+%Sans l'option « \texttt{-O} », le code engendré est le suivant, extrait du fichier listing engendré grâce à l'option « \texttt{-L} ».
+%
+%La routine \assembleur{optimize1} :
+%
+%\begin{lstlisting}[language=assembleur, frame=l]
+%    2  000002 :           optimize1:
+%    3  000002 : A4D8        BTFSS  STATUS, 2
+%    4  000004 : D002        BRA   _label_0
+%    5  000006 : 0E01        MOVLW 0x1
+%    6  000008 : D005        BRA   _label_1
+%    7  00000A :           _label_0:
+%    8  00000A : B6D8        BTFSC  STATUS, 3
+%    9  00000C : D002        BRA   _label_2
+%   10  00000E : 0E02        MOVLW 0x2
+%   11  000010 : D001        BRA   _label_3
+%   12  000012 :           _label_2:
+%   13  000012 : 0E03        MOVLW 0x3
+%   14  000014 :           _label_3:
+%   15  000014 :           _label_1:
+%   16  000014 : 0012        RETURN
+%\end{lstlisting}
+%
+%La routine \assembleur{optimize2} :
+%
+%\begin{lstlisting}[language=assembleur, frame=l]
+%   17  000016 :           optimize2:
+%   18  000016 : A4D8        BTFSS  STATUS, 2
+%   19  000018 : D006        BRA   _label_4
+%   20  00001A : B6D8        BTFSC  STATUS, 3
+%   21  00001C : D002        BRA   _label_6
+%   22  00001E : 0E01        MOVLW 0x1
+%   23  000020 : D001        BRA   _label_7
+%   24  000022 :           _label_6:
+%   25  000022 : 0E02        MOVLW 0x2
+%   26  000024 :           _label_7:
+%   27  000024 : D001        BRA   _label_5
+%   28  000026 :           _label_4:
+%   29  000026 : 0F03        ADDLW 0x3
+%   30  000028 :           _label_5:
+%   31  000028 : 0012        RETURN
+%   32  00002A :           main:
+%\end{lstlisting}
+%
+%Les besoins en pile sont faciles à calculer, ces routines n'appelant pas d'autres routines et étant appelées par \pic!main!. Le résultat calculé par Piccolo apparaît dans le fichier listing sous la forme suivante :
+%\begin{lstlisting}[language=assembleur, frame=l]
+%Stack needs:
+%                                        Routine Levels
+%                                      optimize1 0
+%                                      optimize2 0
+%                                           main 1
+%\end{lstlisting}
+%
+%L'option « \texttt{-d} » permet d'insérer dans le fichier listing le détail des calculs des durées minimum et maximum de chaque routine, exprimés en nombre de cycles de l'horloge des instructions (la plupart des instructions s'exécute en un cycle, et quelques instructions comme \assembleur{CALL}, \assembleur{RETURN}, \assembleur{MOVFF}, \dots\ en deux cycles). Pour la routine \assembleur{optimize1}, on obtient :
+%
+%\begin{lstlisting}[language=assembleur, frame=l]
+% Line:  min-  max:
+%    2:    0-    0:LABEL optimize1
+%    3:    1-    1:BTFSS STATUS, 2
+%    4:    3-    3:BRA _label_0
+%    5:    3-    3:MOVLW 0x1
+%    6:    5-    5:BRA _label_1
+%    7:    3-    3:LABEL _label_0
+%    8:    4-    4:BTFSC STATUS, 3
+%    9:    6-    6:BRA _label_2
+%   10:    6-    6:MOVLW 0x2
+%   11:    8-    8:BRA _label_3
+%   12:    6-    6:LABEL _label_2
+%   13:    7-    7:MOVLW 0x3
+%   14:    7-    8:LABEL _label_3
+%   15:    5-    8:LABEL _label_1
+%   16:    7-   10:RETURN
+%optimize1 --> 7 ... 10
+%\end{lstlisting}
+%
+%Pour chaque ligne, sont affichés les instants \emph{minimum} et \emph{maximum} auxquels se termine l'exécution de l'instruction citée. La dernière ligne récapitule résultat : la routine \assembleur{optimize1} s'exécute au mieux en 7 cycles de l'horloge des instructions, au pire en 10.
+%
+%Et pour la routine \assembleur{optimize2}, on obtient :
+%
+%\begin{lstlisting}[language=assembleur, frame=l]
+%   17:    0-    0:LABEL optimize2
+%   18:    1-    1:BTFSS STATUS, 2
+%   19:    3-    3:BRA _label_4
+%   20:    3-    3:BTFSC STATUS, 3
+%   21:    5-    5:BRA _label_6
+%   22:    5-    5:MOVLW 0x1
+%   23:    7-    7:BRA _label_7
+%   24:    5-    5:LABEL _label_6
+%   25:    6-    6:MOVLW 0x2
+%   26:    6-    7:LABEL _label_7
+%   27:    8-    9:BRA _label_5
+%   28:    3-    3:LABEL _label_4
+%   29:    4-    4:ADDLW 0x3
+%   30:    4-    9:LABEL _label_5
+%   31:    6-   11:RETURN
+%optimize2 --> 6 ... 11
+%\end{lstlisting}
+%
+%On n'obtient aucun résultat pour la routine \assembleur{main}, car celle-ci boucle.
+%
+%\subsection{Résultats avec optimisation}
+%
+%L'optimisation (option « \texttt{-O} ») transforme la séquence \assembleur{MOVLW k - RETURN} en \assembleur{RETLW k}, et un branchement vers une instruction \assembleur{RETURN} en \assembleur{RETURN}. La routine \assembleur{optimize1} devient donc :
+%
+%\begin{lstlisting}[language=assembleur, frame=l]
+% Line:  min-  max:
+%    2:    0-    0:LABEL optimize1
+%    3:    1-    1:BTFSS STATUS, 2
+%    4:    3-    3:BRA _label_0
+%    5:    4-    4:RETLW 0x1
+%    7:    3-    3:LABEL _label_0
+%    8:    4-    4:BTFSC STATUS, 3
+%    9:    6-    6:RETLW 0x3
+%   10:    7-    7:RETLW 0x2
+%optimize1 --> 4 ... 7
+%\end{lstlisting}
+%
+%
+%Et la routine \assembleur{optimize2} :
+%
+%\begin{lstlisting}[language=assembleur, frame=l]
+% Line:  min-  max:
+%   17:    0-    0:LABEL optimize2
+%   18:    1-    1:BTFSS STATUS, 2
+%   19:    3-    3:BRA _label_4
+%   20:    3-    3:BTFSC STATUS, 3
+%   21:    5-    5:RETLW 0x2
+%   22:    6-    6:RETLW 0x1
+%   28:    3-    3:LABEL _label_4
+%   29:    4-    4:ADDLW 0x3
+%   30:    4-    4:-
+%   31:    6-    6:RETURN
+%optimize2 --> 5 ... 6
+%\end{lstlisting}
 
 

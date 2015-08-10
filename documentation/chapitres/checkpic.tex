@@ -46,9 +46,7 @@ Cette écriture déclenche une erreur de compilation car le type du micro-contr�
 \section{Utilisation combinée avec \texttt{include}}
 L'intérêt de la construction \pic!checkpic! est son utilisation combinée avec l'inclusion de fichier source (construction \pic!include!, \refSectionPage{sectionInclude}).
 
-En effet, l'inclusion de fichier source peut être utilisée pour décrire des routines génériques, valables pour plusieurs types de micro-contrôleurs.
-
-Le code source a alors l'allure suivante :
+En effet, l'inclusion de fichier source peut être utilisée pour décrire des routines génériques, valables pour plusieurs types de micro-contrôleurs. Le code source a alors l'allure suivante :
 \begin{piccolo}
 pic18 "18F26K80" ...
   ...
@@ -58,7 +56,6 @@ include "monCodeGenerique_xxK80.piccolo"
 
 Mais si le code générique n'est valide que pour les micro-contrôleurs de la même famille \texttt{18F26K80}, \texttt{18F46K80}, \dots\ il n'y a aucune garantie que ce code générique soit utilisé qu'avec ces micro-contrôleurs. Ainsi, si on écrit :
 
-Le code source a alors l'allure suivante :
 \begin{piccolo}
 pic18 "18F4480" ...
   ...
@@ -66,10 +63,7 @@ include "monCodeGenerique_xxK80.piccolo"
   ...
 \end{piccolo}
 
-Il n'y a pas obligatoirement de message d'erreur, et un code invalide pour un \texttt{18F4480} est utilisé.
-
-
-La solution pour déclencher une erreur dans cette dernière situation est d'utiliser la construction \pic!chekpic! dans le fichier inclus \pic!monCodeGenerique_xxK80.piccolo! :
+Il n'y a pas obligatoirement de message d'erreur, et un code invalide pour un \texttt{18F4480} est utilisé. La solution pour déclencher une erreur dans cette dernière situation est d'utiliser la construction \pic!chekpic! dans le fichier inclus \pic!monCodeGenerique_xxK80.piccolo! :
 
 \begin{piccolo}
   ...

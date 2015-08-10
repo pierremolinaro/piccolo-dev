@@ -84,18 +84,18 @@ override method @pic18TestRegisterTerminator terminatorMinMaxDuration
   !@uint outMax
 {
   [mSingleInstructionTerminatorIfConditionTrue duration !inExploredBlockMap !inNextLabel ?let trueMin ?let trueMax]
-  [mSingleInstructionTerminatorIfConditionFalse duration !inExploredBlockMap !inNextLabel ?let falseMin ?let falseMax]
+  [mSingleInstructionTerminatorIfConditionFalse duration !inExploredBlockMap !"" ?let falseMin ?let falseMax]
   if (trueMin <= trueMax) && (falseMin <= falseMax) then # Solved
     if [mSingleInstructionTerminatorIfConditionTrue terminatorSize !inNextLabel] == 0 then # No code for true terminator
-      let trueBranchMinDuration = trueMin + 1
-      let trueBranchMaxDuration = trueMax + 1
-      let falseBranchMinDuration = falseMin + 2
-      let falseBranchMaxDuration = falseMax + 2
+      let trueBranchMinDuration = trueMin + 2
+      let trueBranchMaxDuration = trueMax + 2
+      let falseBranchMinDuration = falseMin + 1
+      let falseBranchMaxDuration = falseMax + 1
       outMin = if falseBranchMinDuration < trueBranchMinDuration then falseBranchMinDuration else trueBranchMinDuration end
       outMax = if falseBranchMaxDuration > trueBranchMaxDuration then falseBranchMaxDuration else trueBranchMaxDuration end
     else
-      let trueBranchMinDuration = trueMin + 2
-      let trueBranchMaxDuration = trueMax + 2
+      let trueBranchMinDuration = trueMin + 4
+      let trueBranchMaxDuration = trueMax + 4
       let falseBranchMinDuration = falseMin + 3
       let falseBranchMaxDuration = falseMax + 3
       outMin = if falseBranchMinDuration < trueBranchMinDuration then falseBranchMinDuration else trueBranchMinDuration end
@@ -119,10 +119,10 @@ override method @pic18RegisterComparisonTerminator terminatorMinMaxDuration
   [mSingleInstructionTerminatorIfConditionFalse duration !inExploredBlockMap !inNextLabel ?let falseMin ?let falseMax]
   if (trueMin <= trueMax) && (falseMin <= falseMax) then # Solved
     if [mSingleInstructionTerminatorIfConditionTrue terminatorSize !inNextLabel] == 0 then # No code for true terminator
-      let trueBranchMinDuration = trueMin + 1
-      let trueBranchMaxDuration = trueMax + 1
-      let falseBranchMinDuration = falseMin + 2
-      let falseBranchMaxDuration = falseMax + 2
+      let trueBranchMinDuration = trueMin + 2
+      let trueBranchMaxDuration = trueMax + 2
+      let falseBranchMinDuration = falseMin + 1
+      let falseBranchMaxDuration = falseMax + 1
       outMin = if falseBranchMinDuration < trueBranchMinDuration then falseBranchMinDuration else trueBranchMinDuration end
       outMax = if falseBranchMaxDuration > trueBranchMaxDuration then falseBranchMaxDuration else trueBranchMaxDuration end
     else
@@ -153,13 +153,15 @@ override method @pic18BitTestTerminator terminatorMinMaxDuration
     if [mSingleInstructionTerminatorIfConditionTrue terminatorSize !inNextLabel] == 0 then # No code for true terminator
       let trueBranchMinDuration = trueMin + 2
       let trueBranchMaxDuration = trueMax + 2
-      outMin = if trueBranchMinDuration < falseMin then trueBranchMinDuration else falseMin end
-      outMax = if trueBranchMaxDuration > falseMax then trueBranchMaxDuration else falseMax end
+      let falseBranchMinDuration = falseMin + 1
+      let falseBranchMaxDuration = falseMax + 1
+      outMin = if falseBranchMinDuration < trueBranchMinDuration then falseBranchMinDuration else trueBranchMinDuration end
+      outMax = if falseBranchMaxDuration > trueBranchMaxDuration then falseBranchMaxDuration else trueBranchMaxDuration end
     elsif [mSingleInstructionTerminatorIfConditionFalse terminatorSize !inNextLabel] == 0 then # No code for false terminator
-      let trueBranchMinDuration = trueMin + 1
-      let trueBranchMaxDuration = trueMax + 1
       let falseBranchMinDuration = falseMin + 2
       let falseBranchMaxDuration = falseMax + 2
+      let trueBranchMinDuration = trueMin + 1
+      let trueBranchMaxDuration = trueMax + 1
       outMin = if falseBranchMinDuration < trueBranchMinDuration then falseBranchMinDuration else trueBranchMinDuration end
       outMax = if falseBranchMaxDuration > trueBranchMaxDuration then falseBranchMaxDuration else trueBranchMaxDuration end
     else
@@ -195,10 +197,10 @@ override method @ipic18ConditionalJumpTerminator terminatorMinMaxDuration
       outMin = if trueBranchMinDuration < falseBranchMinDuration then trueBranchMinDuration else falseBranchMinDuration end
       outMax = if trueBranchMaxDuration > falseBranchMaxDuration then trueBranchMaxDuration else falseBranchMaxDuration end
     elsif mTargetLabelWhenFalse.string == inNextLabel then # No code for false terminator
-      let trueBranchMinDuration = trueMin + 2
-      let trueBranchMaxDuration = trueMax + 2
       let falseBranchMinDuration = falseMin + 1
       let falseBranchMaxDuration = falseMax + 1
+      let trueBranchMinDuration = trueMin + 2
+      let trueBranchMaxDuration = trueMax + 2
       outMin = if trueBranchMinDuration < falseBranchMinDuration then trueBranchMinDuration else falseBranchMinDuration end
       outMax = if trueBranchMaxDuration > falseBranchMaxDuration then trueBranchMaxDuration else falseBranchMaxDuration end
     else
@@ -227,15 +229,17 @@ override method @ipic18IncDecRegisterTerminator terminatorMinMaxDuration
   [mSingleInstructionTerminatorIfConditionFalse duration !inExploredBlockMap !inNextLabel ?let falseMin ?let falseMax]
   if (trueMin <= trueMax) && (falseMin <= falseMax) then # Solved
     if [mSingleInstructionTerminatorIfConditionTrue terminatorSize !inNextLabel] == 0 then # No code for true terminator
-      let trueBranchMinDuration = trueMin + 2
-      let trueBranchMaxDuration = trueMax + 2
-      outMin = if trueBranchMinDuration < falseMin then trueBranchMinDuration else falseMin end
-      outMax = if trueBranchMaxDuration > falseMax then trueBranchMaxDuration else falseMax end
-    elsif [mSingleInstructionTerminatorIfConditionFalse terminatorSize !inNextLabel] == 0 then # No code for false terminator
       let trueBranchMinDuration = trueMin + 1
       let trueBranchMaxDuration = trueMax + 1
       let falseBranchMinDuration = falseMin + 2
       let falseBranchMaxDuration = falseMax + 2
+      outMin = if trueBranchMinDuration < falseBranchMinDuration then trueBranchMinDuration else falseBranchMinDuration end
+      outMax = if trueBranchMaxDuration > falseBranchMaxDuration then trueBranchMaxDuration else falseBranchMaxDuration end
+    elsif [mSingleInstructionTerminatorIfConditionFalse terminatorSize !inNextLabel] == 0 then # No code for false terminator
+      let falseBranchMinDuration = falseMin + 1
+      let falseBranchMaxDuration = falseMax + 1
+      let trueBranchMinDuration = trueMin + 2
+      let trueBranchMaxDuration = trueMax + 2
       outMin = if falseBranchMinDuration < trueBranchMinDuration then falseBranchMinDuration else trueBranchMinDuration end
       outMax = if falseBranchMaxDuration > trueBranchMaxDuration then falseBranchMaxDuration else trueBranchMaxDuration end
     else

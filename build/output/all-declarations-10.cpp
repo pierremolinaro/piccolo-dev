@@ -7360,7 +7360,7 @@ static void categoryMethod_pic_31__38_TestRegisterTerminator_terminatorMinMaxDur
   callCategoryMethod_duration ((const cPtr_ipic_31__38_SingleInstructionTerminator *) object->mAttribute_mSingleInstructionTerminatorIfConditionTrue.ptr (), constinArgument_inExploredBlockMap, constinArgument_inNextLabel, var_trueMin, var_trueMax, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 86)) ;
   GALGAS_uint var_falseMin ;
   GALGAS_uint var_falseMax ;
-  callCategoryMethod_duration ((const cPtr_ipic_31__38_SingleInstructionTerminator *) object->mAttribute_mSingleInstructionTerminatorIfConditionFalse.ptr (), constinArgument_inExploredBlockMap, constinArgument_inNextLabel, var_falseMin, var_falseMax, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 87)) ;
+  callCategoryMethod_duration ((const cPtr_ipic_31__38_SingleInstructionTerminator *) object->mAttribute_mSingleInstructionTerminatorIfConditionFalse.ptr (), constinArgument_inExploredBlockMap, GALGAS_string::makeEmptyString (), var_falseMin, var_falseMax, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 87)) ;
   GALGAS_bool test_0 = GALGAS_bool (kIsInfOrEqual, var_trueMin.objectCompare (var_trueMax)) ;
   if (kBoolTrue == test_0.boolEnum ()) {
     test_0 = GALGAS_bool (kIsInfOrEqual, var_falseMin.objectCompare (var_falseMax)) ;
@@ -7369,10 +7369,10 @@ static void categoryMethod_pic_31__38_TestRegisterTerminator_terminatorMinMaxDur
   if (kBoolTrue == test_1) {
     const enumGalgasBool test_2 = GALGAS_bool (kIsEqual, callCategoryReader_terminatorSize ((const cPtr_ipic_31__38_SingleInstructionTerminator *) object->mAttribute_mSingleInstructionTerminatorIfConditionTrue.ptr (), constinArgument_inNextLabel, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 89)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
     if (kBoolTrue == test_2) {
-      GALGAS_uint var_trueBranchMinDuration = var_trueMin.add_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 90)) ;
-      GALGAS_uint var_trueBranchMaxDuration = var_trueMax.add_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 91)) ;
-      GALGAS_uint var_falseBranchMinDuration = var_falseMin.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 92)) ;
-      GALGAS_uint var_falseBranchMaxDuration = var_falseMax.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 93)) ;
+      GALGAS_uint var_trueBranchMinDuration = var_trueMin.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 90)) ;
+      GALGAS_uint var_trueBranchMaxDuration = var_trueMax.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 91)) ;
+      GALGAS_uint var_falseBranchMinDuration = var_falseMin.add_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 92)) ;
+      GALGAS_uint var_falseBranchMaxDuration = var_falseMax.add_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 93)) ;
       GALGAS_uint temp_3 ;
       const enumGalgasBool test_4 = GALGAS_bool (kIsStrictInf, var_falseBranchMinDuration.objectCompare (var_trueBranchMinDuration)).boolEnum () ;
       if (kBoolTrue == test_4) {
@@ -7390,8 +7390,8 @@ static void categoryMethod_pic_31__38_TestRegisterTerminator_terminatorMinMaxDur
       }
       outArgument_outMax = temp_5 ;
     }else if (kBoolFalse == test_2) {
-      GALGAS_uint var_trueBranchMinDuration = var_trueMin.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 97)) ;
-      GALGAS_uint var_trueBranchMaxDuration = var_trueMax.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 98)) ;
+      GALGAS_uint var_trueBranchMinDuration = var_trueMin.add_operation (GALGAS_uint ((uint32_t) 4U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 97)) ;
+      GALGAS_uint var_trueBranchMaxDuration = var_trueMax.add_operation (GALGAS_uint ((uint32_t) 4U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 98)) ;
       GALGAS_uint var_falseBranchMinDuration = var_falseMin.add_operation (GALGAS_uint ((uint32_t) 3U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 99)) ;
       GALGAS_uint var_falseBranchMaxDuration = var_falseMax.add_operation (GALGAS_uint ((uint32_t) 3U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 100)) ;
       GALGAS_uint temp_7 ;
@@ -7456,10 +7456,10 @@ static void categoryMethod_pic_31__38_RegisterComparisonTerminator_terminatorMin
   if (kBoolTrue == test_1) {
     const enumGalgasBool test_2 = GALGAS_bool (kIsEqual, callCategoryReader_terminatorSize ((const cPtr_ipic_31__38_SingleInstructionTerminator *) object->mAttribute_mSingleInstructionTerminatorIfConditionTrue.ptr (), constinArgument_inNextLabel, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 121)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
     if (kBoolTrue == test_2) {
-      GALGAS_uint var_trueBranchMinDuration = var_trueMin.add_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 122)) ;
-      GALGAS_uint var_trueBranchMaxDuration = var_trueMax.add_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 123)) ;
-      GALGAS_uint var_falseBranchMinDuration = var_falseMin.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 124)) ;
-      GALGAS_uint var_falseBranchMaxDuration = var_falseMax.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 125)) ;
+      GALGAS_uint var_trueBranchMinDuration = var_trueMin.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 122)) ;
+      GALGAS_uint var_trueBranchMaxDuration = var_trueMax.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 123)) ;
+      GALGAS_uint var_falseBranchMinDuration = var_falseMin.add_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 124)) ;
+      GALGAS_uint var_falseBranchMaxDuration = var_falseMax.add_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 125)) ;
       GALGAS_uint temp_3 ;
       const enumGalgasBool test_4 = GALGAS_bool (kIsStrictInf, var_falseBranchMinDuration.objectCompare (var_trueBranchMinDuration)).boolEnum () ;
       if (kBoolTrue == test_4) {
@@ -7545,29 +7545,31 @@ static void categoryMethod_pic_31__38_BitTestTerminator_terminatorMinMaxDuration
     if (kBoolTrue == test_2) {
       GALGAS_uint var_trueBranchMinDuration = var_trueMin.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 154)) ;
       GALGAS_uint var_trueBranchMaxDuration = var_trueMax.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 155)) ;
+      GALGAS_uint var_falseBranchMinDuration = var_falseMin.add_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 156)) ;
+      GALGAS_uint var_falseBranchMaxDuration = var_falseMax.add_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 157)) ;
       GALGAS_uint temp_3 ;
-      const enumGalgasBool test_4 = GALGAS_bool (kIsStrictInf, var_trueBranchMinDuration.objectCompare (var_falseMin)).boolEnum () ;
+      const enumGalgasBool test_4 = GALGAS_bool (kIsStrictInf, var_falseBranchMinDuration.objectCompare (var_trueBranchMinDuration)).boolEnum () ;
       if (kBoolTrue == test_4) {
-        temp_3 = var_trueBranchMinDuration ;
+        temp_3 = var_falseBranchMinDuration ;
       }else if (kBoolFalse == test_4) {
-        temp_3 = var_falseMin ;
+        temp_3 = var_trueBranchMinDuration ;
       }
       outArgument_outMin = temp_3 ;
       GALGAS_uint temp_5 ;
-      const enumGalgasBool test_6 = GALGAS_bool (kIsStrictSup, var_trueBranchMaxDuration.objectCompare (var_falseMax)).boolEnum () ;
+      const enumGalgasBool test_6 = GALGAS_bool (kIsStrictSup, var_falseBranchMaxDuration.objectCompare (var_trueBranchMaxDuration)).boolEnum () ;
       if (kBoolTrue == test_6) {
-        temp_5 = var_trueBranchMaxDuration ;
+        temp_5 = var_falseBranchMaxDuration ;
       }else if (kBoolFalse == test_6) {
-        temp_5 = var_falseMax ;
+        temp_5 = var_trueBranchMaxDuration ;
       }
       outArgument_outMax = temp_5 ;
     }else if (kBoolFalse == test_2) {
-      const enumGalgasBool test_7 = GALGAS_bool (kIsEqual, callCategoryReader_terminatorSize ((const cPtr_ipic_31__38_SingleInstructionTerminator *) object->mAttribute_mSingleInstructionTerminatorIfConditionFalse.ptr (), constinArgument_inNextLabel, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 158)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
+      const enumGalgasBool test_7 = GALGAS_bool (kIsEqual, callCategoryReader_terminatorSize ((const cPtr_ipic_31__38_SingleInstructionTerminator *) object->mAttribute_mSingleInstructionTerminatorIfConditionFalse.ptr (), constinArgument_inNextLabel, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 160)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
       if (kBoolTrue == test_7) {
-        GALGAS_uint var_trueBranchMinDuration = var_trueMin.add_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 159)) ;
-        GALGAS_uint var_trueBranchMaxDuration = var_trueMax.add_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 160)) ;
         GALGAS_uint var_falseBranchMinDuration = var_falseMin.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 161)) ;
         GALGAS_uint var_falseBranchMaxDuration = var_falseMax.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 162)) ;
+        GALGAS_uint var_trueBranchMinDuration = var_trueMin.add_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 163)) ;
+        GALGAS_uint var_trueBranchMaxDuration = var_trueMax.add_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 164)) ;
         GALGAS_uint temp_8 ;
         const enumGalgasBool test_9 = GALGAS_bool (kIsStrictInf, var_falseBranchMinDuration.objectCompare (var_trueBranchMinDuration)).boolEnum () ;
         if (kBoolTrue == test_9) {
@@ -7585,10 +7587,10 @@ static void categoryMethod_pic_31__38_BitTestTerminator_terminatorMinMaxDuration
         }
         outArgument_outMax = temp_10 ;
       }else if (kBoolFalse == test_7) {
-        GALGAS_uint var_trueBranchMinDuration = var_trueMin.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 166)) ;
-        GALGAS_uint var_trueBranchMaxDuration = var_trueMax.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 167)) ;
-        GALGAS_uint var_falseBranchMinDuration = var_falseMin.add_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 168)) ;
-        GALGAS_uint var_falseBranchMaxDuration = var_falseMax.add_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 169)) ;
+        GALGAS_uint var_trueBranchMinDuration = var_trueMin.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 168)) ;
+        GALGAS_uint var_trueBranchMaxDuration = var_trueMax.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 169)) ;
+        GALGAS_uint var_falseBranchMinDuration = var_falseMin.add_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 170)) ;
+        GALGAS_uint var_falseBranchMaxDuration = var_falseMax.add_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 171)) ;
         GALGAS_uint temp_12 ;
         const enumGalgasBool test_13 = GALGAS_bool (kIsStrictInf, var_trueBranchMinDuration.objectCompare (var_falseBranchMinDuration)).boolEnum () ;
         if (kBoolTrue == test_13) {
@@ -7608,7 +7610,7 @@ static void categoryMethod_pic_31__38_BitTestTerminator_terminatorMinMaxDuration
       }
     }
   }else if (kBoolFalse == test_1) {
-    outArgument_outMin = GALGAS_uint::constructor_max (SOURCE_FILE ("ipic18_duration_computations.galgas", 174)) ;
+    outArgument_outMin = GALGAS_uint::constructor_max (SOURCE_FILE ("ipic18_duration_computations.galgas", 176)) ;
     outArgument_outMax = GALGAS_uint ((uint32_t) 0U) ;
   }
 }
@@ -7638,24 +7640,24 @@ static void categoryMethod_ipic_31__38_ConditionalJumpTerminator_terminatorMinMa
                                                                                            COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_ipic_31__38_ConditionalJumpTerminator * object = (const cPtr_ipic_31__38_ConditionalJumpTerminator *) inObject ;
   macroValidSharedObject (object, cPtr_ipic_31__38_ConditionalJumpTerminator) ;
-  GALGAS_bool test_0 = constinArgument_inExploredBlockMap.reader_hasKey (object->mAttribute_mTargetLabelWhenTrue.mAttribute_string COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 187)) ;
+  GALGAS_bool test_0 = constinArgument_inExploredBlockMap.reader_hasKey (object->mAttribute_mTargetLabelWhenTrue.mAttribute_string COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 189)) ;
   if (kBoolTrue == test_0.boolEnum ()) {
-    test_0 = constinArgument_inExploredBlockMap.reader_hasKey (object->mAttribute_mTargetLabelWhenFalse.mAttribute_string COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 187)) ;
+    test_0 = constinArgument_inExploredBlockMap.reader_hasKey (object->mAttribute_mTargetLabelWhenFalse.mAttribute_string COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 189)) ;
   }
   const enumGalgasBool test_1 = test_0.boolEnum () ;
   if (kBoolTrue == test_1) {
     GALGAS_uint var_trueMin ;
     GALGAS_uint var_trueMax ;
-    constinArgument_inExploredBlockMap.method_searchKey (object->mAttribute_mTargetLabelWhenTrue, var_trueMin, var_trueMax, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 188)) ;
+    constinArgument_inExploredBlockMap.method_searchKey (object->mAttribute_mTargetLabelWhenTrue, var_trueMin, var_trueMax, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 190)) ;
     GALGAS_uint var_falseMin ;
     GALGAS_uint var_falseMax ;
-    constinArgument_inExploredBlockMap.method_searchKey (object->mAttribute_mTargetLabelWhenFalse, var_falseMin, var_falseMax, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 189)) ;
+    constinArgument_inExploredBlockMap.method_searchKey (object->mAttribute_mTargetLabelWhenFalse, var_falseMin, var_falseMax, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 191)) ;
     const enumGalgasBool test_2 = GALGAS_bool (kIsEqual, object->mAttribute_mTargetLabelWhenTrue.mAttribute_string.objectCompare (constinArgument_inNextLabel)).boolEnum () ;
     if (kBoolTrue == test_2) {
-      GALGAS_uint var_trueBranchMinDuration = var_trueMin.add_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 191)) ;
-      GALGAS_uint var_trueBranchMaxDuration = var_trueMax.add_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 192)) ;
-      GALGAS_uint var_falseBranchMinDuration = var_falseMin.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 193)) ;
-      GALGAS_uint var_falseBranchMaxDuration = var_falseMax.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 194)) ;
+      GALGAS_uint var_trueBranchMinDuration = var_trueMin.add_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 193)) ;
+      GALGAS_uint var_trueBranchMaxDuration = var_trueMax.add_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 194)) ;
+      GALGAS_uint var_falseBranchMinDuration = var_falseMin.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 195)) ;
+      GALGAS_uint var_falseBranchMaxDuration = var_falseMax.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 196)) ;
       GALGAS_uint temp_3 ;
       const enumGalgasBool test_4 = GALGAS_bool (kIsStrictInf, var_trueBranchMinDuration.objectCompare (var_falseBranchMinDuration)).boolEnum () ;
       if (kBoolTrue == test_4) {
@@ -7675,10 +7677,10 @@ static void categoryMethod_ipic_31__38_ConditionalJumpTerminator_terminatorMinMa
     }else if (kBoolFalse == test_2) {
       const enumGalgasBool test_7 = GALGAS_bool (kIsEqual, object->mAttribute_mTargetLabelWhenFalse.mAttribute_string.objectCompare (constinArgument_inNextLabel)).boolEnum () ;
       if (kBoolTrue == test_7) {
-        GALGAS_uint var_trueBranchMinDuration = var_trueMin.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 198)) ;
-        GALGAS_uint var_trueBranchMaxDuration = var_trueMax.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 199)) ;
         GALGAS_uint var_falseBranchMinDuration = var_falseMin.add_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 200)) ;
         GALGAS_uint var_falseBranchMaxDuration = var_falseMax.add_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 201)) ;
+        GALGAS_uint var_trueBranchMinDuration = var_trueMin.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 202)) ;
+        GALGAS_uint var_trueBranchMaxDuration = var_trueMax.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 203)) ;
         GALGAS_uint temp_8 ;
         const enumGalgasBool test_9 = GALGAS_bool (kIsStrictInf, var_trueBranchMinDuration.objectCompare (var_falseBranchMinDuration)).boolEnum () ;
         if (kBoolTrue == test_9) {
@@ -7696,10 +7698,10 @@ static void categoryMethod_ipic_31__38_ConditionalJumpTerminator_terminatorMinMa
         }
         outArgument_outMax = temp_10 ;
       }else if (kBoolFalse == test_7) {
-        GALGAS_uint var_trueBranchMinDuration = var_trueMin.add_operation (GALGAS_uint ((uint32_t) 3U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 205)) ;
-        GALGAS_uint var_trueBranchMaxDuration = var_trueMax.add_operation (GALGAS_uint ((uint32_t) 3U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 206)) ;
-        GALGAS_uint var_falseBranchMinDuration = var_falseMin.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 207)) ;
-        GALGAS_uint var_falseBranchMaxDuration = var_falseMax.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 208)) ;
+        GALGAS_uint var_trueBranchMinDuration = var_trueMin.add_operation (GALGAS_uint ((uint32_t) 3U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 207)) ;
+        GALGAS_uint var_trueBranchMaxDuration = var_trueMax.add_operation (GALGAS_uint ((uint32_t) 3U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 208)) ;
+        GALGAS_uint var_falseBranchMinDuration = var_falseMin.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 209)) ;
+        GALGAS_uint var_falseBranchMaxDuration = var_falseMax.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 210)) ;
         GALGAS_uint temp_12 ;
         const enumGalgasBool test_13 = GALGAS_bool (kIsStrictInf, var_trueBranchMinDuration.objectCompare (var_falseBranchMinDuration)).boolEnum () ;
         if (kBoolTrue == test_13) {
@@ -7719,7 +7721,7 @@ static void categoryMethod_ipic_31__38_ConditionalJumpTerminator_terminatorMinMa
       }
     }
   }else if (kBoolFalse == test_1) {
-    outArgument_outMin = GALGAS_uint::constructor_max (SOURCE_FILE ("ipic18_duration_computations.galgas", 213)) ;
+    outArgument_outMin = GALGAS_uint::constructor_max (SOURCE_FILE ("ipic18_duration_computations.galgas", 215)) ;
     outArgument_outMax = GALGAS_uint ((uint32_t) 0U) ;
   }
 }
@@ -7751,43 +7753,45 @@ static void categoryMethod_ipic_31__38_IncDecRegisterTerminator_terminatorMinMax
   macroValidSharedObject (object, cPtr_ipic_31__38_IncDecRegisterTerminator) ;
   GALGAS_uint var_trueMin ;
   GALGAS_uint var_trueMax ;
-  callCategoryMethod_duration ((const cPtr_ipic_31__38_SingleInstructionTerminator *) object->mAttribute_mSingleInstructionTerminatorIfConditionTrue.ptr (), constinArgument_inExploredBlockMap, constinArgument_inNextLabel, var_trueMin, var_trueMax, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 226)) ;
+  callCategoryMethod_duration ((const cPtr_ipic_31__38_SingleInstructionTerminator *) object->mAttribute_mSingleInstructionTerminatorIfConditionTrue.ptr (), constinArgument_inExploredBlockMap, constinArgument_inNextLabel, var_trueMin, var_trueMax, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 228)) ;
   GALGAS_uint var_falseMin ;
   GALGAS_uint var_falseMax ;
-  callCategoryMethod_duration ((const cPtr_ipic_31__38_SingleInstructionTerminator *) object->mAttribute_mSingleInstructionTerminatorIfConditionFalse.ptr (), constinArgument_inExploredBlockMap, constinArgument_inNextLabel, var_falseMin, var_falseMax, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 227)) ;
+  callCategoryMethod_duration ((const cPtr_ipic_31__38_SingleInstructionTerminator *) object->mAttribute_mSingleInstructionTerminatorIfConditionFalse.ptr (), constinArgument_inExploredBlockMap, constinArgument_inNextLabel, var_falseMin, var_falseMax, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 229)) ;
   GALGAS_bool test_0 = GALGAS_bool (kIsInfOrEqual, var_trueMin.objectCompare (var_trueMax)) ;
   if (kBoolTrue == test_0.boolEnum ()) {
     test_0 = GALGAS_bool (kIsInfOrEqual, var_falseMin.objectCompare (var_falseMax)) ;
   }
   const enumGalgasBool test_1 = test_0.boolEnum () ;
   if (kBoolTrue == test_1) {
-    const enumGalgasBool test_2 = GALGAS_bool (kIsEqual, callCategoryReader_terminatorSize ((const cPtr_ipic_31__38_SingleInstructionTerminator *) object->mAttribute_mSingleInstructionTerminatorIfConditionTrue.ptr (), constinArgument_inNextLabel, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 229)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
+    const enumGalgasBool test_2 = GALGAS_bool (kIsEqual, callCategoryReader_terminatorSize ((const cPtr_ipic_31__38_SingleInstructionTerminator *) object->mAttribute_mSingleInstructionTerminatorIfConditionTrue.ptr (), constinArgument_inNextLabel, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 231)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
     if (kBoolTrue == test_2) {
-      GALGAS_uint var_trueBranchMinDuration = var_trueMin.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 230)) ;
-      GALGAS_uint var_trueBranchMaxDuration = var_trueMax.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 231)) ;
+      GALGAS_uint var_trueBranchMinDuration = var_trueMin.add_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 232)) ;
+      GALGAS_uint var_trueBranchMaxDuration = var_trueMax.add_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 233)) ;
+      GALGAS_uint var_falseBranchMinDuration = var_falseMin.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 234)) ;
+      GALGAS_uint var_falseBranchMaxDuration = var_falseMax.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 235)) ;
       GALGAS_uint temp_3 ;
-      const enumGalgasBool test_4 = GALGAS_bool (kIsStrictInf, var_trueBranchMinDuration.objectCompare (var_falseMin)).boolEnum () ;
+      const enumGalgasBool test_4 = GALGAS_bool (kIsStrictInf, var_trueBranchMinDuration.objectCompare (var_falseBranchMinDuration)).boolEnum () ;
       if (kBoolTrue == test_4) {
         temp_3 = var_trueBranchMinDuration ;
       }else if (kBoolFalse == test_4) {
-        temp_3 = var_falseMin ;
+        temp_3 = var_falseBranchMinDuration ;
       }
       outArgument_outMin = temp_3 ;
       GALGAS_uint temp_5 ;
-      const enumGalgasBool test_6 = GALGAS_bool (kIsStrictSup, var_trueBranchMaxDuration.objectCompare (var_falseMax)).boolEnum () ;
+      const enumGalgasBool test_6 = GALGAS_bool (kIsStrictSup, var_trueBranchMaxDuration.objectCompare (var_falseBranchMaxDuration)).boolEnum () ;
       if (kBoolTrue == test_6) {
         temp_5 = var_trueBranchMaxDuration ;
       }else if (kBoolFalse == test_6) {
-        temp_5 = var_falseMax ;
+        temp_5 = var_falseBranchMaxDuration ;
       }
       outArgument_outMax = temp_5 ;
     }else if (kBoolFalse == test_2) {
-      const enumGalgasBool test_7 = GALGAS_bool (kIsEqual, callCategoryReader_terminatorSize ((const cPtr_ipic_31__38_SingleInstructionTerminator *) object->mAttribute_mSingleInstructionTerminatorIfConditionFalse.ptr (), constinArgument_inNextLabel, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 234)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
+      const enumGalgasBool test_7 = GALGAS_bool (kIsEqual, callCategoryReader_terminatorSize ((const cPtr_ipic_31__38_SingleInstructionTerminator *) object->mAttribute_mSingleInstructionTerminatorIfConditionFalse.ptr (), constinArgument_inNextLabel, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 238)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
       if (kBoolTrue == test_7) {
-        GALGAS_uint var_trueBranchMinDuration = var_trueMin.add_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 235)) ;
-        GALGAS_uint var_trueBranchMaxDuration = var_trueMax.add_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 236)) ;
-        GALGAS_uint var_falseBranchMinDuration = var_falseMin.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 237)) ;
-        GALGAS_uint var_falseBranchMaxDuration = var_falseMax.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 238)) ;
+        GALGAS_uint var_falseBranchMinDuration = var_falseMin.add_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 239)) ;
+        GALGAS_uint var_falseBranchMaxDuration = var_falseMax.add_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 240)) ;
+        GALGAS_uint var_trueBranchMinDuration = var_trueMin.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 241)) ;
+        GALGAS_uint var_trueBranchMaxDuration = var_trueMax.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 242)) ;
         GALGAS_uint temp_8 ;
         const enumGalgasBool test_9 = GALGAS_bool (kIsStrictInf, var_falseBranchMinDuration.objectCompare (var_trueBranchMinDuration)).boolEnum () ;
         if (kBoolTrue == test_9) {
@@ -7805,10 +7809,10 @@ static void categoryMethod_ipic_31__38_IncDecRegisterTerminator_terminatorMinMax
         }
         outArgument_outMax = temp_10 ;
       }else if (kBoolFalse == test_7) {
-        GALGAS_uint var_trueBranchMinDuration = var_trueMin.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 242)) ;
-        GALGAS_uint var_trueBranchMaxDuration = var_trueMax.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 243)) ;
-        GALGAS_uint var_falseBranchMinDuration = var_falseMin.add_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 244)) ;
-        GALGAS_uint var_falseBranchMaxDuration = var_falseMax.add_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 245)) ;
+        GALGAS_uint var_trueBranchMinDuration = var_trueMin.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 246)) ;
+        GALGAS_uint var_trueBranchMaxDuration = var_trueMax.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 247)) ;
+        GALGAS_uint var_falseBranchMinDuration = var_falseMin.add_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 248)) ;
+        GALGAS_uint var_falseBranchMaxDuration = var_falseMax.add_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 249)) ;
         GALGAS_uint temp_12 ;
         const enumGalgasBool test_13 = GALGAS_bool (kIsStrictInf, var_trueBranchMinDuration.objectCompare (var_falseBranchMinDuration)).boolEnum () ;
         if (kBoolTrue == test_13) {
@@ -7828,7 +7832,7 @@ static void categoryMethod_ipic_31__38_IncDecRegisterTerminator_terminatorMinMax
       }
     }
   }else if (kBoolFalse == test_1) {
-    outArgument_outMin = GALGAS_uint::constructor_max (SOURCE_FILE ("ipic18_duration_computations.galgas", 250)) ;
+    outArgument_outMin = GALGAS_uint::constructor_max (SOURCE_FILE ("ipic18_duration_computations.galgas", 254)) ;
     outArgument_outMax = GALGAS_uint ((uint32_t) 0U) ;
   }
 }
@@ -8020,20 +8024,20 @@ static void categoryMethod_ipic_31__38_JumpTerminator_duration (const cPtr_ipic_
                                                                 COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_ipic_31__38_JumpTerminator * object = (const cPtr_ipic_31__38_JumpTerminator *) inObject ;
   macroValidSharedObject (object, cPtr_ipic_31__38_JumpTerminator) ;
-  const enumGalgasBool test_0 = constinArgument_inExploredBlockMap.reader_hasKey (object->mAttribute_mLabel.mAttribute_string COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 345)).boolEnum () ;
+  const enumGalgasBool test_0 = constinArgument_inExploredBlockMap.reader_hasKey (object->mAttribute_mLabel.mAttribute_string COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 349)).boolEnum () ;
   if (kBoolTrue == test_0) {
     GALGAS_uint var_min ;
     GALGAS_uint var_max ;
-    constinArgument_inExploredBlockMap.method_searchKey (object->mAttribute_mLabel, var_min, var_max, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 346)) ;
+    constinArgument_inExploredBlockMap.method_searchKey (object->mAttribute_mLabel, var_min, var_max, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 350)) ;
     outArgument_outMin = var_min ;
     outArgument_outMax = var_max ;
     const enumGalgasBool test_1 = GALGAS_bool (kIsNotEqual, object->mAttribute_mLabel.mAttribute_string.objectCompare (constinArgument_inNextLabel)).boolEnum () ;
     if (kBoolTrue == test_1) {
-      outArgument_outMin = outArgument_outMin.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 350)) ;
-      outArgument_outMax = outArgument_outMax.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 351)) ;
+      outArgument_outMin = outArgument_outMin.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 354)) ;
+      outArgument_outMax = outArgument_outMax.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 355)) ;
     }
   }else if (kBoolFalse == test_0) {
-    outArgument_outMin = GALGAS_uint::constructor_max (SOURCE_FILE ("ipic18_duration_computations.galgas", 354)) ;
+    outArgument_outMin = GALGAS_uint::constructor_max (SOURCE_FILE ("ipic18_duration_computations.galgas", 358)) ;
     outArgument_outMax = GALGAS_uint ((uint32_t) 0U) ;
   }
 }
@@ -8194,13 +8198,13 @@ static void categoryMethod_ipic_31__38__5F_intermediate_5F_JSR_minMaxDuration (c
                                                                                COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_ipic_31__38__5F_intermediate_5F_JSR * object = (const cPtr_ipic_31__38__5F_intermediate_5F_JSR *) inObject ;
   macroValidSharedObject (object, cPtr_ipic_31__38__5F_intermediate_5F_JSR) ;
-  const enumGalgasBool test_0 = inArgument_inExploredBlockMap.reader_hasKey (object->mAttribute_mTargetLabel.mAttribute_string COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 434)).boolEnum () ;
+  const enumGalgasBool test_0 = inArgument_inExploredBlockMap.reader_hasKey (object->mAttribute_mTargetLabel.mAttribute_string COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 438)).boolEnum () ;
   if (kBoolTrue == test_0) {
-    inArgument_inExploredBlockMap.method_searchKey (object->mAttribute_mTargetLabel, outArgument_outMin, outArgument_outMax, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 435)) ;
-    outArgument_outMin = outArgument_outMin.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 436)) ;
-    outArgument_outMax = outArgument_outMax.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 437)) ;
+    inArgument_inExploredBlockMap.method_searchKey (object->mAttribute_mTargetLabel, outArgument_outMin, outArgument_outMax, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 439)) ;
+    outArgument_outMin = outArgument_outMin.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 440)) ;
+    outArgument_outMax = outArgument_outMax.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 441)) ;
   }else if (kBoolFalse == test_0) {
-    outArgument_outMin = GALGAS_uint::constructor_max (SOURCE_FILE ("ipic18_duration_computations.galgas", 439)) ;
+    outArgument_outMin = GALGAS_uint::constructor_max (SOURCE_FILE ("ipic18_duration_computations.galgas", 443)) ;
     outArgument_outMax = GALGAS_uint ((uint32_t) 0U) ;
   }
 }
@@ -8229,11 +8233,11 @@ static void categoryMethod_ipic_31__38__5F_condition_5F_skip_5F_instruction_minM
                                                                                             COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_ipic_31__38__5F_condition_5F_skip_5F_instruction * object = (const cPtr_ipic_31__38__5F_condition_5F_skip_5F_instruction *) inObject ;
   macroValidSharedObject (object, cPtr_ipic_31__38__5F_condition_5F_skip_5F_instruction) ;
-  callCategoryMethod_minMaxDuration ((const cPtr_ipic_31__38_SequentialInstruction *) object->mAttribute_mEmbeddedInstruction.ptr (), inArgument_inExploredBlockMap, outArgument_outMin, outArgument_outMax, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 450)) ;
+  callCategoryMethod_minMaxDuration ((const cPtr_ipic_31__38_SequentialInstruction *) object->mAttribute_mEmbeddedInstruction.ptr (), inArgument_inExploredBlockMap, outArgument_outMin, outArgument_outMax, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 454)) ;
   const enumGalgasBool test_0 = GALGAS_bool (kIsInfOrEqual, outArgument_outMin.objectCompare (outArgument_outMax)).boolEnum () ;
   if (kBoolTrue == test_0) {
-    outArgument_outMin = outArgument_outMin.add_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 452)) ;
-    outArgument_outMax = outArgument_outMax.add_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 453)) ;
+    outArgument_outMin = outArgument_outMin.add_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 456)) ;
+    outArgument_outMax = outArgument_outMax.add_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 457)) ;
   }
 }
 //---------------------------------------------------------------------------------------------------------------------*
