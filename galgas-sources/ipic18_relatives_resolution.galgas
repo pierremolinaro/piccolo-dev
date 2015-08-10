@@ -8,7 +8,8 @@ method @ipic18Block performRelativesResolution
   ?let @uint inBlockStartAddress
   ?!@uint ioConversionCount
   ?!@string ioListFileContents
-  !@ipic18Block outModifiedBlock {
+  !@ipic18Block outModifiedBlock
+{
 #--- Instruction
   var modifiedInstructionList =@ipic18SequentialInstructionList.emptyList{}
   @uint address = inBlockStartAddress
