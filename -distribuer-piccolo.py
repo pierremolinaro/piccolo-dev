@@ -147,7 +147,7 @@ runCommand (["eolc", "-unix", "-D" + DIR + "/piccolo", "-Eh", "-Ec", "-Ecpp", "-
 runCommand (["mv", DIR + "/piccolo/changeLog.html", DIR + "/changeLog.html"])
 #-------------------- Recompiler le projet Xcode
 os.chdir (DIR + "/piccolo/xcode-project")
-runCommand (["xcodebuild", "-project", "piccolo.xcodeproj", "-sdk", "macosx10.7", "-target", "Cocoa piccolo", "-configuration", "Default"])
+runCommand (["xcodebuild", "-project", "piccolo.xcodeproj", "-target", "Cocoa piccolo", "-configuration", "Default"])
 os.chdir (DIR)
 #-------------------- Creer l'executable mac (release et debug)
 os.chdir (DIR + "/piccolo/makefile-macosx")
