@@ -4443,7 +4443,7 @@
       SDKROOT = macosx10.6 ;
       COPY_PHASE_STRIP = NO ;
       CLANG_ENABLE_OBJC_ARC = NO ;
-      GCC_ENABLE_OBJC_GCC = required ;
+      GCC_ENABLE_OBJC_GC = required ;
       MACOSX_DEPLOYMENT_TARGET = "10.6" ;
     };
     name = Default;
