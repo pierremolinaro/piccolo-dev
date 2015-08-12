@@ -24,7 +24,7 @@ routine routine3 bank:preserved {
 
 #----------------------------------------------------------------------------*
 
-routine computed_goto bank:preserved {
+routine r bank:preserved {
   computed [3] goto routine1, routine2, routine3
 }
 
@@ -32,7 +32,7 @@ routine computed_goto bank:preserved {
 
 noreturn routine main bank:requires 0 {
   forever
-    rcall computed_goto
+    rcall r
   end
 }
 

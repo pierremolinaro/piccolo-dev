@@ -7426,12 +7426,23 @@ C_PrologueEpilogue gMethod_pic_31__38_BitTestTerminator_buildTerminatorOrderedGr
 static void categoryMethod_ipic_31__38_AbstractConditionTerminator_exploreAccessibleBlocksForStackComputations (const cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
                                                                                                                 GALGAS_stringset & ioArgument_ioBlockToExploreSet,
                                                                                                                 GALGAS_stringset & ioArgument_ioExploredBlockSet,
+                                                                                                                GALGAS_uint & outArgument_outStackNeeds,
                                                                                                                 C_Compiler * inCompiler
                                                                                                                 COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_ipic_31__38_AbstractConditionTerminator * object = (const cPtr_ipic_31__38_AbstractConditionTerminator *) inObject ;
   macroValidSharedObject (object, cPtr_ipic_31__38_AbstractConditionTerminator) ;
-  callCategoryMethod_exploreAccessibleBlocksForStackComputations ((const cPtr_ipic_31__38_SingleInstructionTerminator *) object->mAttribute_mSingleInstructionTerminatorIfConditionTrue.ptr (), ioArgument_ioBlockToExploreSet, ioArgument_ioExploredBlockSet, inCompiler COMMA_SOURCE_FILE ("ipic18_stack_computations.galgas", 37)) ;
-  callCategoryMethod_exploreAccessibleBlocksForStackComputations ((const cPtr_ipic_31__38_SingleInstructionTerminator *) object->mAttribute_mSingleInstructionTerminatorIfConditionFalse.ptr (), ioArgument_ioBlockToExploreSet, ioArgument_ioExploredBlockSet, inCompiler COMMA_SOURCE_FILE ("ipic18_stack_computations.galgas", 41)) ;
+  GALGAS_uint var_trueStackNeeds ;
+  callCategoryMethod_exploreAccessibleBlocksForStackComputations ((const cPtr_ipic_31__38_SingleInstructionTerminator *) object->mAttribute_mSingleInstructionTerminatorIfConditionTrue.ptr (), ioArgument_ioBlockToExploreSet, ioArgument_ioExploredBlockSet, var_trueStackNeeds, inCompiler COMMA_SOURCE_FILE ("ipic18_stack_computations.galgas", 41)) ;
+  GALGAS_uint var_falseStackNeeds ;
+  callCategoryMethod_exploreAccessibleBlocksForStackComputations ((const cPtr_ipic_31__38_SingleInstructionTerminator *) object->mAttribute_mSingleInstructionTerminatorIfConditionFalse.ptr (), ioArgument_ioBlockToExploreSet, ioArgument_ioExploredBlockSet, var_falseStackNeeds, inCompiler COMMA_SOURCE_FILE ("ipic18_stack_computations.galgas", 46)) ;
+  GALGAS_uint temp_0 ;
+  const enumGalgasBool test_1 = GALGAS_bool (kIsStrictSup, var_trueStackNeeds.objectCompare (var_falseStackNeeds)).boolEnum () ;
+  if (kBoolTrue == test_1) {
+    temp_0 = var_trueStackNeeds ;
+  }else if (kBoolFalse == test_1) {
+    temp_0 = var_falseStackNeeds ;
+  }
+  outArgument_outStackNeeds = temp_0 ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -7453,18 +7464,20 @@ C_PrologueEpilogue gMethod_ipic_31__38_AbstractConditionTerminator_exploreAccess
 static void categoryMethod_ipic_31__38_ComputedBraTerminator_exploreAccessibleBlocksForStackComputations (const cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
                                                                                                           GALGAS_stringset & ioArgument_ioBlockToExploreSet,
                                                                                                           GALGAS_stringset & ioArgument_ioExploredBlockSet,
+                                                                                                          GALGAS_uint & outArgument_outStackNeeds,
                                                                                                           C_Compiler * /* inCompiler */
                                                                                                           COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_ipic_31__38_ComputedBraTerminator * object = (const cPtr_ipic_31__38_ComputedBraTerminator *) inObject ;
   macroValidSharedObject (object, cPtr_ipic_31__38_ComputedBraTerminator) ;
-  cEnumerator_lstringlist enumerator_1883 (object->mAttribute_mTargetLabels, kEnumeration_up) ;
-  while (enumerator_1883.hasCurrentObject ()) {
-    const enumGalgasBool test_0 = ioArgument_ioExploredBlockSet.reader_hasKey (enumerator_1883.current_mValue (HERE).mAttribute_string COMMA_SOURCE_FILE ("ipic18_stack_computations.galgas", 53)).operator_not (SOURCE_FILE ("ipic18_stack_computations.galgas", 53)).boolEnum () ;
+  cEnumerator_lstringlist enumerator_2130 (object->mAttribute_mTargetLabels, kEnumeration_up) ;
+  while (enumerator_2130.hasCurrentObject ()) {
+    const enumGalgasBool test_0 = ioArgument_ioExploredBlockSet.reader_hasKey (enumerator_2130.current_mValue (HERE).mAttribute_string COMMA_SOURCE_FILE ("ipic18_stack_computations.galgas", 62)).operator_not (SOURCE_FILE ("ipic18_stack_computations.galgas", 62)).boolEnum () ;
     if (kBoolTrue == test_0) {
-      ioArgument_ioBlockToExploreSet.addAssign_operation (enumerator_1883.current_mValue (HERE).mAttribute_string  COMMA_SOURCE_FILE ("ipic18_stack_computations.galgas", 54)) ;
+      ioArgument_ioBlockToExploreSet.addAssign_operation (enumerator_2130.current_mValue (HERE).mAttribute_string  COMMA_SOURCE_FILE ("ipic18_stack_computations.galgas", 63)) ;
     }
-    enumerator_1883.gotoNextObject () ;
+    enumerator_2130.gotoNextObject () ;
   }
+  outArgument_outStackNeeds = GALGAS_uint ((uint32_t) 1U) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -7486,18 +7499,20 @@ C_PrologueEpilogue gMethod_ipic_31__38_ComputedBraTerminator_exploreAccessibleBl
 static void categoryMethod_ipic_31__38_ComputedGotoTerminator_exploreAccessibleBlocksForStackComputations (const cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
                                                                                                            GALGAS_stringset & ioArgument_ioBlockToExploreSet,
                                                                                                            GALGAS_stringset & ioArgument_ioExploredBlockSet,
+                                                                                                           GALGAS_uint & outArgument_outStackNeeds,
                                                                                                            C_Compiler * /* inCompiler */
                                                                                                            COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_ipic_31__38_ComputedGotoTerminator * object = (const cPtr_ipic_31__38_ComputedGotoTerminator *) inObject ;
   macroValidSharedObject (object, cPtr_ipic_31__38_ComputedGotoTerminator) ;
-  cEnumerator_lstringlist enumerator_2274 (object->mAttribute_mTargetLabels, kEnumeration_up) ;
-  while (enumerator_2274.hasCurrentObject ()) {
-    const enumGalgasBool test_0 = ioArgument_ioExploredBlockSet.reader_hasKey (enumerator_2274.current_mValue (HERE).mAttribute_string COMMA_SOURCE_FILE ("ipic18_stack_computations.galgas", 65)).operator_not (SOURCE_FILE ("ipic18_stack_computations.galgas", 65)).boolEnum () ;
+  cEnumerator_lstringlist enumerator_2564 (object->mAttribute_mTargetLabels, kEnumeration_up) ;
+  while (enumerator_2564.hasCurrentObject ()) {
+    const enumGalgasBool test_0 = ioArgument_ioExploredBlockSet.reader_hasKey (enumerator_2564.current_mValue (HERE).mAttribute_string COMMA_SOURCE_FILE ("ipic18_stack_computations.galgas", 77)).operator_not (SOURCE_FILE ("ipic18_stack_computations.galgas", 77)).boolEnum () ;
     if (kBoolTrue == test_0) {
-      ioArgument_ioBlockToExploreSet.addAssign_operation (enumerator_2274.current_mValue (HERE).mAttribute_string  COMMA_SOURCE_FILE ("ipic18_stack_computations.galgas", 66)) ;
+      ioArgument_ioBlockToExploreSet.addAssign_operation (enumerator_2564.current_mValue (HERE).mAttribute_string  COMMA_SOURCE_FILE ("ipic18_stack_computations.galgas", 78)) ;
     }
-    enumerator_2274.gotoNextObject () ;
+    enumerator_2564.gotoNextObject () ;
   }
+  outArgument_outStackNeeds = GALGAS_uint ((uint32_t) 1U) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -7519,14 +7534,16 @@ C_PrologueEpilogue gMethod_ipic_31__38_ComputedGotoTerminator_exploreAccessibleB
 static void categoryMethod_ipic_31__38_JumpTerminator_exploreAccessibleBlocksForStackComputations (const cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
                                                                                                    GALGAS_stringset & ioArgument_ioBlockToExploreSet,
                                                                                                    GALGAS_stringset & ioArgument_ioExploredBlockSet,
+                                                                                                   GALGAS_uint & outArgument_outStackNeeds,
                                                                                                    C_Compiler * /* inCompiler */
                                                                                                    COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_ipic_31__38_JumpTerminator * object = (const cPtr_ipic_31__38_JumpTerminator *) inObject ;
   macroValidSharedObject (object, cPtr_ipic_31__38_JumpTerminator) ;
-  const enumGalgasBool test_0 = ioArgument_ioExploredBlockSet.reader_hasKey (object->mAttribute_mLabel.mAttribute_string COMMA_SOURCE_FILE ("ipic18_stack_computations.galgas", 76)).operator_not (SOURCE_FILE ("ipic18_stack_computations.galgas", 76)).boolEnum () ;
+  const enumGalgasBool test_0 = ioArgument_ioExploredBlockSet.reader_hasKey (object->mAttribute_mLabel.mAttribute_string COMMA_SOURCE_FILE ("ipic18_stack_computations.galgas", 91)).operator_not (SOURCE_FILE ("ipic18_stack_computations.galgas", 91)).boolEnum () ;
   if (kBoolTrue == test_0) {
-    ioArgument_ioBlockToExploreSet.addAssign_operation (object->mAttribute_mLabel.mAttribute_string  COMMA_SOURCE_FILE ("ipic18_stack_computations.galgas", 77)) ;
+    ioArgument_ioBlockToExploreSet.addAssign_operation (object->mAttribute_mLabel.mAttribute_string  COMMA_SOURCE_FILE ("ipic18_stack_computations.galgas", 92)) ;
   }
+  outArgument_outStackNeeds = GALGAS_uint ((uint32_t) 0U) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -7548,18 +7565,20 @@ C_PrologueEpilogue gMethod_ipic_31__38_JumpTerminator_exploreAccessibleBlocksFor
 static void categoryMethod_ipic_31__38_ConditionalJumpTerminator_exploreAccessibleBlocksForStackComputations (const cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
                                                                                                               GALGAS_stringset & ioArgument_ioBlockToExploreSet,
                                                                                                               GALGAS_stringset & ioArgument_ioExploredBlockSet,
+                                                                                                              GALGAS_uint & outArgument_outStackNeeds,
                                                                                                               C_Compiler * /* inCompiler */
                                                                                                               COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_ipic_31__38_ConditionalJumpTerminator * object = (const cPtr_ipic_31__38_ConditionalJumpTerminator *) inObject ;
   macroValidSharedObject (object, cPtr_ipic_31__38_ConditionalJumpTerminator) ;
-  const enumGalgasBool test_0 = ioArgument_ioExploredBlockSet.reader_hasKey (object->mAttribute_mTargetLabelWhenTrue.mAttribute_string COMMA_SOURCE_FILE ("ipic18_stack_computations.galgas", 86)).operator_not (SOURCE_FILE ("ipic18_stack_computations.galgas", 86)).boolEnum () ;
+  const enumGalgasBool test_0 = ioArgument_ioExploredBlockSet.reader_hasKey (object->mAttribute_mTargetLabelWhenTrue.mAttribute_string COMMA_SOURCE_FILE ("ipic18_stack_computations.galgas", 104)).operator_not (SOURCE_FILE ("ipic18_stack_computations.galgas", 104)).boolEnum () ;
   if (kBoolTrue == test_0) {
-    ioArgument_ioBlockToExploreSet.addAssign_operation (object->mAttribute_mTargetLabelWhenTrue.mAttribute_string  COMMA_SOURCE_FILE ("ipic18_stack_computations.galgas", 87)) ;
+    ioArgument_ioBlockToExploreSet.addAssign_operation (object->mAttribute_mTargetLabelWhenTrue.mAttribute_string  COMMA_SOURCE_FILE ("ipic18_stack_computations.galgas", 105)) ;
   }
-  const enumGalgasBool test_1 = ioArgument_ioExploredBlockSet.reader_hasKey (object->mAttribute_mTargetLabelWhenFalse.mAttribute_string COMMA_SOURCE_FILE ("ipic18_stack_computations.galgas", 89)).operator_not (SOURCE_FILE ("ipic18_stack_computations.galgas", 89)).boolEnum () ;
+  const enumGalgasBool test_1 = ioArgument_ioExploredBlockSet.reader_hasKey (object->mAttribute_mTargetLabelWhenFalse.mAttribute_string COMMA_SOURCE_FILE ("ipic18_stack_computations.galgas", 107)).operator_not (SOURCE_FILE ("ipic18_stack_computations.galgas", 107)).boolEnum () ;
   if (kBoolTrue == test_1) {
-    ioArgument_ioBlockToExploreSet.addAssign_operation (object->mAttribute_mTargetLabelWhenFalse.mAttribute_string  COMMA_SOURCE_FILE ("ipic18_stack_computations.galgas", 90)) ;
+    ioArgument_ioBlockToExploreSet.addAssign_operation (object->mAttribute_mTargetLabelWhenFalse.mAttribute_string  COMMA_SOURCE_FILE ("ipic18_stack_computations.galgas", 108)) ;
   }
+  outArgument_outStackNeeds = GALGAS_uint ((uint32_t) 0U) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -7581,8 +7600,10 @@ C_PrologueEpilogue gMethod_ipic_31__38_ConditionalJumpTerminator_exploreAccessib
 static void categoryMethod_ipic_31__38_ComputedRETLWTerminator_exploreAccessibleBlocksForStackComputations (const cPtr_ipic_31__38_AbstractBlockTerminator * /* inObject */,
                                                                                                             GALGAS_stringset & /* ioArgument_ioBlockToExploreSet */,
                                                                                                             GALGAS_stringset & /* ioArgument_ioExploredBlockSet */,
+                                                                                                            GALGAS_uint & outArgument_outStackNeeds,
                                                                                                             C_Compiler * /* inCompiler */
                                                                                                             COMMA_UNUSED_LOCATION_ARGS) {
+  outArgument_outStackNeeds = GALGAS_uint ((uint32_t) 1U) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -7604,8 +7625,10 @@ C_PrologueEpilogue gMethod_ipic_31__38_ComputedRETLWTerminator_exploreAccessible
 static void categoryMethod_ipic_31__38_ReturnTerminator_exploreAccessibleBlocksForStackComputations (const cPtr_ipic_31__38_AbstractBlockTerminator * /* inObject */,
                                                                                                      GALGAS_stringset & /* ioArgument_ioBlockToExploreSet */,
                                                                                                      GALGAS_stringset & /* ioArgument_ioExploredBlockSet */,
+                                                                                                     GALGAS_uint & outArgument_outStackNeeds,
                                                                                                      C_Compiler * /* inCompiler */
                                                                                                      COMMA_UNUSED_LOCATION_ARGS) {
+  outArgument_outStackNeeds = GALGAS_uint ((uint32_t) 0U) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -7627,8 +7650,10 @@ C_PrologueEpilogue gMethod_ipic_31__38_ReturnTerminator_exploreAccessibleBlocksF
 static void categoryMethod_ipic_31__38_RetlwTerminator_exploreAccessibleBlocksForStackComputations (const cPtr_ipic_31__38_AbstractBlockTerminator * /* inObject */,
                                                                                                     GALGAS_stringset & /* ioArgument_ioBlockToExploreSet */,
                                                                                                     GALGAS_stringset & /* ioArgument_ioExploredBlockSet */,
+                                                                                                    GALGAS_uint & outArgument_outStackNeeds,
                                                                                                     C_Compiler * /* inCompiler */
                                                                                                     COMMA_UNUSED_LOCATION_ARGS) {
+  outArgument_outStackNeeds = GALGAS_uint ((uint32_t) 0U) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -7650,8 +7675,10 @@ C_PrologueEpilogue gMethod_ipic_31__38_RetlwTerminator_exploreAccessibleBlocksFo
 static void categoryMethod_ipic_31__38_RetfieTerminator_exploreAccessibleBlocksForStackComputations (const cPtr_ipic_31__38_AbstractBlockTerminator * /* inObject */,
                                                                                                      GALGAS_stringset & /* ioArgument_ioBlockToExploreSet */,
                                                                                                      GALGAS_stringset & /* ioArgument_ioExploredBlockSet */,
+                                                                                                     GALGAS_uint & outArgument_outStackNeeds,
                                                                                                      C_Compiler * /* inCompiler */
                                                                                                      COMMA_UNUSED_LOCATION_ARGS) {
+  outArgument_outStackNeeds = GALGAS_uint ((uint32_t) 0U) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -7676,7 +7703,7 @@ static void categoryMethod_ipic_31__38__5F_intermediate_5F_JSR_buildCalledRoutin
                                                                                                           COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_ipic_31__38__5F_intermediate_5F_JSR * object = (const cPtr_ipic_31__38__5F_intermediate_5F_JSR *) inObject ;
   macroValidSharedObject (object, cPtr_ipic_31__38__5F_intermediate_5F_JSR) ;
-  ioArgument_ioRoutineCalledSet.addAssign_operation (object->mAttribute_mTargetLabel.mAttribute_string  COMMA_SOURCE_FILE ("ipic18_stack_computations.galgas", 137)) ;
+  ioArgument_ioRoutineCalledSet.addAssign_operation (object->mAttribute_mTargetLabel.mAttribute_string  COMMA_SOURCE_FILE ("ipic18_stack_computations.galgas", 168)) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -7701,10 +7728,10 @@ static void categoryMethod_ipic_31__38__5F_intermediate_5F_instruction_5F_comput
                                                                                                                                        COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall * object = (const cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall *) inObject ;
   macroValidSharedObject (object, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall) ;
-  cEnumerator_ipic_31__38_SequentialInstructionList enumerator_5099 (object->mAttribute_mTargetInstructions, kEnumeration_up) ;
-  while (enumerator_5099.hasCurrentObject ()) {
-    callCategoryMethod_buildCalledRoutineSetForStackComputations ((const cPtr_ipic_31__38_SequentialInstruction *) enumerator_5099.current_mInstruction (HERE).ptr (), ioArgument_ioRoutineCalledSet, inCompiler COMMA_SOURCE_FILE ("ipic18_stack_computations.galgas", 145)) ;
-    enumerator_5099.gotoNextObject () ;
+  cEnumerator_ipic_31__38_SequentialInstructionList enumerator_5667 (object->mAttribute_mTargetInstructions, kEnumeration_up) ;
+  while (enumerator_5667.hasCurrentObject ()) {
+    callCategoryMethod_buildCalledRoutineSetForStackComputations ((const cPtr_ipic_31__38_SequentialInstruction *) enumerator_5667.current_mInstruction (HERE).ptr (), ioArgument_ioRoutineCalledSet, inCompiler COMMA_SOURCE_FILE ("ipic18_stack_computations.galgas", 176)) ;
+    enumerator_5667.gotoNextObject () ;
   }
 }
 //---------------------------------------------------------------------------------------------------------------------*
@@ -7730,7 +7757,7 @@ static void categoryMethod_ipic_31__38__5F_condition_5F_skip_5F_instruction_buil
                                                                                                                        COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_ipic_31__38__5F_condition_5F_skip_5F_instruction * object = (const cPtr_ipic_31__38__5F_condition_5F_skip_5F_instruction *) inObject ;
   macroValidSharedObject (object, cPtr_ipic_31__38__5F_condition_5F_skip_5F_instruction) ;
-  callCategoryMethod_buildCalledRoutineSetForStackComputations ((const cPtr_ipic_31__38_SequentialInstruction *) object->mAttribute_mEmbeddedInstruction.ptr (), ioArgument_ioRoutineCalledSet, inCompiler COMMA_SOURCE_FILE ("ipic18_stack_computations.galgas", 153)) ;
+  callCategoryMethod_buildCalledRoutineSetForStackComputations ((const cPtr_ipic_31__38_SequentialInstruction *) object->mAttribute_mEmbeddedInstruction.ptr (), ioArgument_ioRoutineCalledSet, inCompiler COMMA_SOURCE_FILE ("ipic18_stack_computations.galgas", 184)) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
