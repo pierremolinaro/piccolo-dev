@@ -110,7 +110,7 @@ override method @ipic18InstructionWithNoOperand generateCode
   end
   outCode = @codeList. listWithValue {
     !"    " + [mKind mnemonic]
-    !@uintlist. listWithValue { !c}}
+    !{!c}}
 }
 
 #----------------------------------------------------------------------------*
@@ -191,7 +191,7 @@ override method @ipic18_intermediate_instruction_FDA generateCode
   code = code | ([mRegisterDescription mRegisterAddress] & 255)
   outCode = @codeList. listWithValue {
     !"    " + [[self instructionDisplay] mValueAtIndex !0]
-    !@uintlist. listWithValue { !code}}
+    !{!code}}
 }
 
 #----------------------------------------------------------------------------*
@@ -236,7 +236,7 @@ override method @ipic18_intermediate_instruction_FA generateCode
   code = code | ([mRegisterDescription mRegisterAddress] & 255)
   outCode = @codeList. listWithValue {
     !"    " + [[self instructionDisplay] mValueAtIndex !0]
-    !@uintlist. listWithValue { !code}}
+    !{!code}}
 }
 
 #----------------------------------------------------------------------------*
@@ -304,7 +304,7 @@ override method @ipic18_intermediate_instruction_literalOperation generateCode
   code = code | mLiteralValue
   outCode = @codeList. listWithValue {
     !"    " + [[self instructionDisplay] mValueAtIndex !0]
-    !@uintlist. listWithValue { !code}}
+    !{!code}}
 }
 
 #----------------------------------------------------------------------------*
@@ -371,7 +371,7 @@ override method @ipic18_intermediate_instruction_FBA generateCode
   code = code | (mBitNumber << 9)
   outCode = @codeList. listWithValue {
     !"    " + [[self instructionDisplay] mValueAtIndex !0]
-    !@uintlist. listWithValue { !code}}
+    !{!code}}
 }
 
 #----------------------------------------------------------------------------*
@@ -395,7 +395,7 @@ override method @ipic18_intermediate_instruction_MOVLB generateCode
   let @uint code = 0x0100 | [mBankIndex uint]
   outCode = @codeList. listWithValue {
     !"    " + [[self instructionDisplay] mValueAtIndex !0]
-    !@uintlist. listWithValue { !code}}
+    !{!code}}
 }
 
 #----------------------------------------------------------------------------*
@@ -425,7 +425,7 @@ override method @ipic18_intermediate_instruction_TBLRD generateCode
   end
   outCode = @codeList. listWithValue {
     !"    " + [[self instructionDisplay] mValueAtIndex !0]
-    !@uintlist. listWithValue { !code}}
+    !{!code}}
 }
 
 #----------------------------------------------------------------------------*
@@ -455,7 +455,7 @@ override method @ipic18_intermediate_instruction_TBLWT generateCode
   end
   outCode = @codeList. listWithValue {
     !"    " + [[self instructionDisplay] mValueAtIndex !0]
-    !@uintlist. listWithValue { !code}}
+    !{!code}}
 }
 
 #----------------------------------------------------------------------------*
@@ -465,14 +465,15 @@ override method @ipic18_intermediate_instruction_TBLWT generateCode
 #----------------------------------------------------------------------------*
 
 override getter @ipic18_intermediate_instruction_MNOP instructionSize
-  -> @uint outSize {
+  -> @uint outSize
+{
   outSize = mOccurrenceFactor.uint * 2
 }
 
 #----------------------------------------------------------------------------*
 
 override getter @ipic18_intermediate_instruction_MNOP instructionDisplay ->@stringlist outResult {
-  @string s = "MNOP " + [mOccurrenceFactor uint]
+  let s = "MNOP " + [mOccurrenceFactor uint]
   outResult = @stringlist. listWithValue { !s}
 }
 
@@ -482,13 +483,50 @@ override method @ipic18_intermediate_instruction_MNOP generateCode
   ?let @uint unused inAddress
   ?let @symbolTableForRelativesResolution unused inSymbolTable
   ?let @pic18_dataAddressMap unused inDataAddressMap
-  !@codeList outCode {
+  !@codeList outCode
+{
   outCode = @codeList. emptyList
   @uint idx = 0
   loop( [mOccurrenceFactor uint])
   while idx < [mOccurrenceFactor uint]
   do
-    outCode += !"    NOP" !@uintlist. listWithValue { !0x0000}
+    outCode += !"    NOP" !{!0x0000}
+    idx ++
+  end
+}
+
+#----------------------------------------------------------------------------*
+
+#!Intermediate @ipic18_intermediate_instruction_NOPBRA
+
+#----------------------------------------------------------------------------*
+
+override getter @ipic18_intermediate_instruction_NOPBRA instructionSize
+  -> @uint outSize {
+  outSize = mOccurrenceFactor.uint * 2
+}
+
+#----------------------------------------------------------------------------*
+
+override getter @ipic18_intermediate_instruction_NOPBRA instructionDisplay ->@stringlist outResult {
+  let s = "NOPBRA " + [mOccurrenceFactor uint]
+  outResult = {!s}
+}
+
+#----------------------------------------------------------------------------*
+
+override method @ipic18_intermediate_instruction_NOPBRA generateCode
+  ?let @uint unused inAddress
+  ?let @symbolTableForRelativesResolution unused inSymbolTable
+  ?let @pic18_dataAddressMap unused inDataAddressMap
+  !@codeList outCode
+ {
+  outCode = {}
+  @uint idx = 0
+  loop ([mOccurrenceFactor uint])
+  while idx < [mOccurrenceFactor uint]
+  do
+    outCode += !"    BRA $+2" !{!0xD000}
     idx ++
   end
 }
@@ -516,7 +554,7 @@ override method @ipic18_intermediate_MOV_LABEL_W generateCode
   let @uint code_MOVLW = 0x0E00
   outCode = @codeList. listWithValue {
     !"    MOVLW ((_data_" + mLabel + " + " + mOffset + ") >> " + mRightShift + ") & 0xFF"
-    !@uintlist. listWithValue { !code | code_MOVLW}}
+    !{!code | code_MOVLW}}
 }
 
 #----------------------------------------------------------------------------*
@@ -540,7 +578,7 @@ override method @ipic18_intermediate_instruction_BLANK generateCode
   let @uint code = 0xF000 | mBlankValue
   outCode = @codeList. listWithValue {
     !"    DW " + [code hexString]
-    !@uintlist. listWithValue { !code}}
+    !{!code}}
 }
 
 #----------------------------------------------------------------------------*
@@ -564,7 +602,7 @@ override method @ipic18_intermediate_instruction_FNOP generateCode
   let @uint code = 0xF000 | mBlankValue
   outCode = @codeList. listWithValue {
     !"    DW " + [code hexString]
-    !@uintlist. listWithValue { !code}}
+    !{!code}}
 }
 
 #----------------------------------------------------------------------------*
@@ -619,7 +657,7 @@ override method @ipic18_skip_instruction_compare_register generateCode
 #---
   outCode = @codeList. listWithValue {
     !s
-    !@uintlist. listWithValue { !code}}
+    !{!code}}
   [mEmbeddedInstruction generateCode
     !inAddress + 2
     !inSymbolTable
@@ -704,7 +742,7 @@ override method @ipic18_skip_instruction_BitTestSkip generateCode
 #---
   outCode = @codeList. listWithValue {
     !s
-    !@uintlist. listWithValue { !code}}
+    !{!code}}
   [mEmbeddedInstruction generateCode
     !inAddress + 2
     !inSymbolTable
@@ -807,7 +845,7 @@ override method @ipic18_skip_instruction_FDA generateCode
 #---
   outCode = @codeList. listWithValue {
     !assemblyCode
-    !@uintlist. listWithValue { !binCode}}
+    !{!binCode}}
   [mEmbeddedInstruction generateCode
     !inAddress + 2
     !inSymbolTable

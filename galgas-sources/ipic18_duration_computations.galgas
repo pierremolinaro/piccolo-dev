@@ -94,10 +94,10 @@ override method @pic18TestRegisterTerminator terminatorMinMaxDuration
       outMin = if falseBranchMinDuration < trueBranchMinDuration then falseBranchMinDuration else trueBranchMinDuration end
       outMax = if falseBranchMaxDuration > trueBranchMaxDuration then falseBranchMaxDuration else trueBranchMaxDuration end
     else
-      let trueBranchMinDuration = trueMin + 4
-      let trueBranchMaxDuration = trueMax + 4
-      let falseBranchMinDuration = falseMin + 3
-      let falseBranchMaxDuration = falseMax + 3
+      let trueBranchMinDuration = trueMin + 2
+      let trueBranchMaxDuration = trueMax + 2
+      let falseBranchMinDuration = falseMin + 1
+      let falseBranchMaxDuration = falseMax + 1
       outMin = if falseBranchMinDuration < trueBranchMinDuration then falseBranchMinDuration else trueBranchMinDuration end
       outMax = if falseBranchMaxDuration > trueBranchMaxDuration then falseBranchMaxDuration else trueBranchMaxDuration end
     end
@@ -128,8 +128,8 @@ override method @pic18RegisterComparisonTerminator terminatorMinMaxDuration
     else
       let trueBranchMinDuration = trueMin + 2
       let trueBranchMaxDuration = trueMax + 2
-      let falseBranchMinDuration = falseMin + 3
-      let falseBranchMaxDuration = falseMax + 3
+      let falseBranchMinDuration = falseMin + 1
+      let falseBranchMaxDuration = falseMax + 1
       outMin = if falseBranchMinDuration < trueBranchMinDuration then falseBranchMinDuration else trueBranchMinDuration end
       outMax = if falseBranchMaxDuration > trueBranchMaxDuration then falseBranchMaxDuration else trueBranchMaxDuration end
     end
@@ -404,6 +404,17 @@ override method @ipic18_intermediate_instruction_MNOP minMaxDuration
 {
   outMin = mOccurrenceFactor.uint
   outMax = mOccurrenceFactor.uint
+}
+
+#----------------------------------------------------------------------------------------------------------------------*
+
+override method @ipic18_intermediate_instruction_NOPBRA minMaxDuration
+  ?@blockDurationMap unused inExploredBlockMap
+  !@uint outMin
+  !@uint outMax
+{
+  outMin = mOccurrenceFactor.uint * 2
+  outMax = mOccurrenceFactor.uint * 2
 }
 
 #----------------------------------------------------------------------------------------------------------------------*

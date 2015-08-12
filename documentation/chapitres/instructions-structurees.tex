@@ -26,6 +26,7 @@ En Piccolo, il existe deux types d'instructions :
 Piccolo définit les instructions structurées suivantes :
 \begin{itemize}
   \item l'instruction \pic!mnop! (\refSectionPage{instructionMNOP}) ;
+  \item l'instruction \pic!nopbra! (\refSectionPage{instructionNOPBRA}, pour \emph{pic18} uniquement) ;
   \item l'instruction conditionnelle simple (\refSectionPage{instructionConditionnelleSimple}) ;
   \item l'instruction conditionnelle structurée (\refSectionPage{instructionConditionnelleStructuree}) ;
   \item l'instruction \pic!switch! (\refSectionPage{instructionSwitch}, pour \emph{pic18} uniquement) ;
@@ -41,11 +42,33 @@ Piccolo définit les instructions structurées suivantes :
   \item l'instruction \pic!banksave! (\refSubsectionPage{instructionBanksave}).
 \end{itemize}
 
+
+
+
 \sectionLabel{Instruction \texttt{mnop}}{instructionMNOP}
 
 Cette instruction n'existe pas en assembleur. En Piccolo, \pic!mnop k! engendre une séquence de \pic!k! instructions \assembleur{NOP}.
 
 \pic!k! est une expression statique. La forme générale des expressions statiques est donnée à la \refSectionPage{expressionImmediate}. Une expression statique est évaluée à la compilation. Le compilateur effectue tous les calculs avec des nombres entiers 32 bits signés.
+
+
+
+
+\sectionLabel{Instruction \texttt{nopbra}}{instructionNOPBRA}
+
+\textcolor{red}{\bf Cette instruction n'est valide que pour les \emph{pic18}, à partir de la version 3.1.1.}
+
+Cette instruction n'existe pas en assembleur. En Piccolo, \pic!nopbra k! engendre une séquence de \pic!k! instructions assembleur \assembleur{BRA \$+2}.
+
+\pic!k! est une expression statique. La forme générale des expressions statiques est donnée à la \refSectionPage{expressionImmediate}. Une expression statique est évaluée à la compilation. Le compilateur effectue tous les calculs avec des nombres entiers 32 bits signés.
+
+Cette instruction permet d'exprimer des cycles d'attente de manière plus compacte que l'instruction \pic!mnop k!. En effet, en assembleur, l'instruction \assembleur{BRA \$+2} effectue un saut vers l'instruction qui suit, et donc ne rompt pas l'exécution séquentielle. Comme une instruction \assembleur{NOP}, elle occupe deux octets, mais s'exécute en deux cycles, alors que l'instruction \assembleur{NOP} s'exécute en un seul :
+
+\begin{piccolo}
+mnop 2   # 4 octets, 2 cycles
+nopbra 2 # 4 octets, 4 cycles
+\end{piccolo}
+
 
 
 
@@ -80,18 +103,18 @@ Le \refTableau{instructionsConditionnellesSimplesBaseline} donne la liste de tou
   \small
 %  \rowcolors{2}{\fondTableau}{}
   \begin{tabular}{lp{4cm}lll}
-    \textbf{Instruction} & \textbf{Code engendré}\\
-    \pic!if reg.bit : instruction! & \assembleur{BTFSC reg, bit instruction} \\
+    \textbf{Instruction} & \textbf{Code engendré} & \\
+    \pic!if reg.bit : instruction! & \assembleur{BTFSC reg, bit} & \assembleur{instruction} \\
     \hdashline
-    \pic!if ! reg.bit : instruction! & \assembleur{BTFSS reg, bit instruction} \\
+    \pic+if ! reg.bit : instruction+ & \assembleur{BTFSS reg, bit} & \assembleur{instruction} \\
     \hdashline
-    \pic!if decf reg nz : instruction! & \assembleur{DECFSZ reg instruction} \\
+    \pic!if decf reg nz : instruction! & \assembleur{DECFSZ reg} & \assembleur{instruction} \\
     \hdashline
-    \pic!if decf reg, W nz : instruction! & \assembleur{DECFSZ reg, W instruction} \\
+    \pic!if decf reg, W nz : instruction! & \assembleur{DECFSZ reg, W} & \assembleur{instruction} \\
     \hdashline
-    \pic!if incf reg nz : instruction! & \assembleur{INCFSZ reg instruction} \\
+    \pic!if incf reg nz : instruction! & \assembleur{INCFSZ reg} & \assembleur{instruction} \\
     \hdashline
-    \pic!if incf reg, W nz : instruction! & \assembleur{INCFSZ reg, W instruction} \\
+    \pic!if incf reg, W nz : instruction! & \assembleur{INCFSZ reg, W} & \assembleur{instruction} \\
   \end{tabular}
   \caption{Instructions conditionnelles simples pour \emph{baseline} et \emph{mid-range}}
   \labelTableau{instructionsConditionnellesSimplesBaseline}
@@ -103,34 +126,34 @@ Le \refTableau{instructionsConditionnellesSimplesBaseline} donne la liste de tou
   \small
 %  \rowcolors{2}{\fondTableau}{}
   \begin{tabular}{lp{4cm}lll}
-    \textbf{Instruction} & \textbf{Code engendré}\\
-    \pic!if reg != W : instruction! & \assembleur{CPFSEQ reg instruction} \\
+    \textbf{Instruction} & \textbf{Code engendré} & \\
+    \pic+if reg != W : instruction+ & \assembleur{CPFSEQ reg} & \assembleur{instruction} \\
     \hdashline
-    \pic!if reg >= W : instruction! & \assembleur{CPFSLT reg instruction} \\
+    \pic!if reg >= W : instruction! & \assembleur{CPFSLT reg} & \assembleur{instruction} \\
     \hdashline
-    \pic!if reg <= W : instruction! & \assembleur{CPFSGT reg instruction} \\
+    \pic!if reg <= W : instruction! & \assembleur{CPFSGT reg} & \assembleur{instruction} \\
     \hdashline
-    \pic!if reg nz : instruction! & \assembleur{TSTFSZ reg instruction} \\
+    \pic!if reg nz : instruction! & \assembleur{TSTFSZ reg} & \assembleur{instruction} \\
     \hdashline
-    \pic!if reg.bit : instruction! & \assembleur{BTFSC reg, bit instruction} \\
+    \pic!if reg.bit : instruction! & \assembleur{BTFSC reg, bit} & \assembleur{instruction} \\
     \hdashline
-    \pic!if ! reg.bit : instruction! & \assembleur{BTFSS reg, bit instruction} \\
+    \pic+if ! reg.bit : instruction+ & \assembleur{BTFSS reg, bit} & \assembleur{instruction} \\
     \hdashline
-    \pic!if decf reg z : instruction! & \assembleur{DCFSNZ reg instruction} \\
+    \pic!if decf reg z : instruction! & \assembleur{DCFSNZ reg} & \assembleur{instruction} \\
     \hdashline
-    \pic!if decf reg, W z : instruction! & \assembleur{DCFSNZ reg, W instruction} \\
+    \pic!if decf reg, W z : instruction! & \assembleur{DCFSNZ reg, W} & \assembleur{instruction} \\
     \hdashline
-    \pic!if decf reg nz : instruction! & \assembleur{DECFSZ reg instruction} \\
+    \pic!if decf reg nz : instruction! & \assembleur{DECFSZ reg} & \assembleur{instruction} \\
     \hdashline
-    \pic!if decf reg, W nz : instruction! & \assembleur{DECFSZ reg, W instruction} \\
+    \pic!if decf reg, W nz : instruction! & \assembleur{DECFSZ reg, W} & \assembleur{instruction} \\
     \hdashline
-    \pic!if incf reg z : instruction! & \assembleur{INFSNZ reg instruction} \\
+    \pic!if incf reg z : instruction! & \assembleur{INFSNZ reg} & \assembleur{instruction} \\
     \hdashline
-    \pic!if incf reg, W z : instruction! & \assembleur{INFSNZ reg, W instruction} \\
+    \pic!if incf reg, W z : instruction! & \assembleur{INFSNZ reg, W} & \assembleur{instruction} \\
     \hdashline
-    \pic!if incf reg nz : instruction! & \assembleur{INCFSZ reg instruction} \\
+    \pic!if incf reg nz : instruction! & \assembleur{INCFSZ reg} & \assembleur{instruction} \\
     \hdashline
-    \pic!if incf reg, W nz : instruction! & \assembleur{INCFSZ reg, W instruction} \\
+    \pic!if incf reg, W nz : instruction! & \assembleur{INCFSZ reg, W} & \assembleur{instruction} \\
   \end{tabular}
   \caption{Instructions conditionnelles simples pour \emph{pic18}}
   \labelTableau{instructionsConditionnellesSimplesPic18}
@@ -357,7 +380,7 @@ end
 
 Pour les \emph{pic18} et les \emph{mid-range}, le corps de la boucle ne doit pas changer la sélection de banc.
 
-\pic!expression_borne_inf! et \pic!expression_borne_sup! sont des expressions statiques, c'est-à-dire calculées à la compilation. Leurs valeurs sont signées sur 64 bits. \pic!expression_borne_inf! doit être inférieure ou égale à \pic!expression_borne_sup!.
+\pic!expression_borne_inf! et \pic!expression_borne_sup! sont des expressions statiques, c'est-à-dire calculées à la compilation. Leurs valeurs sont signées sur 32 bits. Évidemment, \pic!expression_borne_inf! doit être inférieure ou égale à \pic!expression_borne_sup!.
 
 Le code engendré est \pic!expression_borne_sup - expression_borne_inf + 1! fois le corps de la boucle, l'identificateur \pic!nom! étant une constante locale recevant les valeurs successives \pic!expression_borne_inf!, \pic!expression_borne_inf+1!, ..., \pic!expression_borne_sup!.
 

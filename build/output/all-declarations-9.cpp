@@ -10,6 +10,379 @@
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
+//             Overriding category method '@baseline_assembly_instruction_FB generateBinaryCodeAtAddress'              *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+static void categoryMethod_baseline_5F_assembly_5F_instruction_5F_FB_generateBinaryCodeAtAddress (const cPtr_baseline_5F_assembly_5F_instruction * inObject,
+                                                                                                  const GALGAS_baseline_5F_symbolTable /* constinArgument_inRoutineSymbolTable */,
+                                                                                                  GALGAS_string & ioArgument_ioListFileContents,
+                                                                                                  GALGAS_uint & ioArgument_ioWordAddress,
+                                                                                                  C_Compiler * inCompiler
+                                                                                                  COMMA_UNUSED_LOCATION_ARGS) {
+  const cPtr_baseline_5F_assembly_5F_instruction_5F_FB * object = (const cPtr_baseline_5F_assembly_5F_instruction_5F_FB *) inObject ;
+  macroValidSharedObject (object, cPtr_baseline_5F_assembly_5F_instruction_5F_FB) ;
+  GALGAS_uint var_code ;
+  switch (object->mAttribute_mInstruction.enumValue ()) {
+  case GALGAS_baseline_5F_bit_5F_oriented_5F_op::kNotBuilt:
+    break ;
+  case GALGAS_baseline_5F_bit_5F_oriented_5F_op::kEnum_BCF:
+    {
+      var_code = GALGAS_uint ((uint32_t) 1024U) ;
+    }
+    break ;
+  case GALGAS_baseline_5F_bit_5F_oriented_5F_op::kEnum_BSF:
+    {
+      var_code = GALGAS_uint ((uint32_t) 1280U) ;
+    }
+    break ;
+  }
+  var_code = var_code.operator_or (object->mAttribute_mRegisterDescription.reader_mRegisterAddress (SOURCE_FILE ("baseline_build_binary_code.galgas", 176)).operator_and (GALGAS_uint ((uint32_t) 31U) COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 176)) COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 176)) ;
+  var_code = var_code.operator_or (object->mAttribute_mBitNumber.left_shift_operation (GALGAS_uint ((uint32_t) 5U) COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 177)) COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 177)) ;
+  {
+  const GALGAS_baseline_5F_assembly_5F_instruction_5F_FB temp_0 = object ;
+  routine_emitBaselineCodeAtWordAddress (var_code, ioArgument_ioWordAddress, temp_0, ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 178)) ;
+  }
+}
+//---------------------------------------------------------------------------------------------------------------------*
+
+static void defineCategoryMethod_baseline_5F_assembly_5F_instruction_5F_FB_generateBinaryCodeAtAddress (void) {
+  enterCategoryMethod_generateBinaryCodeAtAddress (kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_instruction_5F_FB.mSlotID,
+                                                   categoryMethod_baseline_5F_assembly_5F_instruction_5F_FB_generateBinaryCodeAtAddress) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+C_PrologueEpilogue gMethod_baseline_5F_assembly_5F_instruction_5F_FB_generateBinaryCodeAtAddress (defineCategoryMethod_baseline_5F_assembly_5F_instruction_5F_FB_generateBinaryCodeAtAddress, NULL) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//         Overriding category method '@baseline_assembly_instruction_BitTestSkip generateBinaryCodeAtAddress'         *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+static void categoryMethod_baseline_5F_assembly_5F_instruction_5F_BitTestSkip_generateBinaryCodeAtAddress (const cPtr_baseline_5F_assembly_5F_instruction * inObject,
+                                                                                                           const GALGAS_baseline_5F_symbolTable /* constinArgument_inRoutineSymbolTable */,
+                                                                                                           GALGAS_string & ioArgument_ioListFileContents,
+                                                                                                           GALGAS_uint & ioArgument_ioWordAddress,
+                                                                                                           C_Compiler * inCompiler
+                                                                                                           COMMA_UNUSED_LOCATION_ARGS) {
+  const cPtr_baseline_5F_assembly_5F_instruction_5F_BitTestSkip * object = (const cPtr_baseline_5F_assembly_5F_instruction_5F_BitTestSkip *) inObject ;
+  macroValidSharedObject (object, cPtr_baseline_5F_assembly_5F_instruction_5F_BitTestSkip) ;
+  GALGAS_uint var_code ;
+  const enumGalgasBool test_0 = object->mAttribute_mSkipIfSet.boolEnum () ;
+  if (kBoolTrue == test_0) {
+    var_code = GALGAS_uint ((uint32_t) 1792U) ;
+  }else if (kBoolFalse == test_0) {
+    var_code = GALGAS_uint ((uint32_t) 1536U) ;
+  }
+  var_code = var_code.operator_or (object->mAttribute_mRegisterDescription.reader_mRegisterAddress (SOURCE_FILE ("baseline_build_binary_code.galgas", 194)).operator_and (GALGAS_uint ((uint32_t) 31U) COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 194)) COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 194)) ;
+  var_code = var_code.operator_or (object->mAttribute_mBitNumber.left_shift_operation (GALGAS_uint ((uint32_t) 5U) COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 195)) COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 195)) ;
+  {
+  const GALGAS_baseline_5F_assembly_5F_instruction_5F_BitTestSkip temp_1 = object ;
+  routine_emitBaselineCodeAtWordAddress (var_code, ioArgument_ioWordAddress, temp_1, ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 196)) ;
+  }
+}
+//---------------------------------------------------------------------------------------------------------------------*
+
+static void defineCategoryMethod_baseline_5F_assembly_5F_instruction_5F_BitTestSkip_generateBinaryCodeAtAddress (void) {
+  enterCategoryMethod_generateBinaryCodeAtAddress (kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_instruction_5F_BitTestSkip.mSlotID,
+                                                   categoryMethod_baseline_5F_assembly_5F_instruction_5F_BitTestSkip_generateBinaryCodeAtAddress) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+C_PrologueEpilogue gMethod_baseline_5F_assembly_5F_instruction_5F_BitTestSkip_generateBinaryCodeAtAddress (defineCategoryMethod_baseline_5F_assembly_5F_instruction_5F_BitTestSkip_generateBinaryCodeAtAddress, NULL) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                  Overriding category method '@baseline_assembly_GOTO generateBinaryCodeAtAddress'                   *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+static void categoryMethod_baseline_5F_assembly_5F_GOTO_generateBinaryCodeAtAddress (const cPtr_baseline_5F_assembly_5F_instruction * inObject,
+                                                                                     const GALGAS_baseline_5F_symbolTable constinArgument_inRoutineSymbolTable,
+                                                                                     GALGAS_string & ioArgument_ioListFileContents,
+                                                                                     GALGAS_uint & ioArgument_ioWordAddress,
+                                                                                     C_Compiler * inCompiler
+                                                                                     COMMA_UNUSED_LOCATION_ARGS) {
+  const cPtr_baseline_5F_assembly_5F_GOTO * object = (const cPtr_baseline_5F_assembly_5F_GOTO *) inObject ;
+  macroValidSharedObject (object, cPtr_baseline_5F_assembly_5F_GOTO) ;
+  GALGAS_uint var_targetAddress ;
+  constinArgument_inRoutineSymbolTable.method_searchKey (object->mAttribute_mTargetLabel, var_targetAddress, inCompiler COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 206)) ;
+  {
+  const GALGAS_baseline_5F_assembly_5F_GOTO temp_0 = object ;
+  routine_emitBaselineCodeAtWordAddress (GALGAS_uint ((uint32_t) 2560U).operator_or (var_targetAddress.operator_and (GALGAS_uint ((uint32_t) 511U) COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 208)) COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 208)), ioArgument_ioWordAddress, temp_0, ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 208)) ;
+  }
+}
+//---------------------------------------------------------------------------------------------------------------------*
+
+static void defineCategoryMethod_baseline_5F_assembly_5F_GOTO_generateBinaryCodeAtAddress (void) {
+  enterCategoryMethod_generateBinaryCodeAtAddress (kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_GOTO.mSlotID,
+                                                   categoryMethod_baseline_5F_assembly_5F_GOTO_generateBinaryCodeAtAddress) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+C_PrologueEpilogue gMethod_baseline_5F_assembly_5F_GOTO_generateBinaryCodeAtAddress (defineCategoryMethod_baseline_5F_assembly_5F_GOTO_generateBinaryCodeAtAddress, NULL) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                  Overriding category method '@baseline_assembly_SKIP generateBinaryCodeAtAddress'                   *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+static void categoryMethod_baseline_5F_assembly_5F_SKIP_generateBinaryCodeAtAddress (const cPtr_baseline_5F_assembly_5F_instruction * inObject,
+                                                                                     const GALGAS_baseline_5F_symbolTable /* constinArgument_inRoutineSymbolTable */,
+                                                                                     GALGAS_string & ioArgument_ioListFileContents,
+                                                                                     GALGAS_uint & ioArgument_ioWordAddress,
+                                                                                     C_Compiler * inCompiler
+                                                                                     COMMA_UNUSED_LOCATION_ARGS) {
+  const cPtr_baseline_5F_assembly_5F_SKIP * object = (const cPtr_baseline_5F_assembly_5F_SKIP *) inObject ;
+  macroValidSharedObject (object, cPtr_baseline_5F_assembly_5F_SKIP) ;
+  {
+  const GALGAS_baseline_5F_assembly_5F_SKIP temp_0 = object ;
+  routine_emitBaselineCodeAtWordAddress (GALGAS_uint ((uint32_t) 2560U).operator_or (ioArgument_ioWordAddress.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 217)).operator_and (GALGAS_uint ((uint32_t) 511U) COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 217)) COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 217)), ioArgument_ioWordAddress, temp_0, ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 217)) ;
+  }
+}
+//---------------------------------------------------------------------------------------------------------------------*
+
+static void defineCategoryMethod_baseline_5F_assembly_5F_SKIP_generateBinaryCodeAtAddress (void) {
+  enterCategoryMethod_generateBinaryCodeAtAddress (kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_SKIP.mSlotID,
+                                                   categoryMethod_baseline_5F_assembly_5F_SKIP_generateBinaryCodeAtAddress) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+C_PrologueEpilogue gMethod_baseline_5F_assembly_5F_SKIP_generateBinaryCodeAtAddress (defineCategoryMethod_baseline_5F_assembly_5F_SKIP_generateBinaryCodeAtAddress, NULL) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                  Overriding category method '@baseline_assembly_CALL generateBinaryCodeAtAddress'                   *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+static void categoryMethod_baseline_5F_assembly_5F_CALL_generateBinaryCodeAtAddress (const cPtr_baseline_5F_assembly_5F_instruction * inObject,
+                                                                                     const GALGAS_baseline_5F_symbolTable constinArgument_inRoutineSymbolTable,
+                                                                                     GALGAS_string & ioArgument_ioListFileContents,
+                                                                                     GALGAS_uint & ioArgument_ioWordAddress,
+                                                                                     C_Compiler * inCompiler
+                                                                                     COMMA_UNUSED_LOCATION_ARGS) {
+  const cPtr_baseline_5F_assembly_5F_CALL * object = (const cPtr_baseline_5F_assembly_5F_CALL *) inObject ;
+  macroValidSharedObject (object, cPtr_baseline_5F_assembly_5F_CALL) ;
+  GALGAS_uint var_targetAddress ;
+  constinArgument_inRoutineSymbolTable.method_searchKey (object->mAttribute_mTargetLabel, var_targetAddress, inCompiler COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 228)) ;
+  {
+  const GALGAS_baseline_5F_assembly_5F_CALL temp_0 = object ;
+  routine_emitBaselineCodeAtWordAddress (GALGAS_uint ((uint32_t) 2304U).operator_or (var_targetAddress.operator_and (GALGAS_uint ((uint32_t) 255U) COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 230)) COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 230)), ioArgument_ioWordAddress, temp_0, ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 230)) ;
+  }
+}
+//---------------------------------------------------------------------------------------------------------------------*
+
+static void defineCategoryMethod_baseline_5F_assembly_5F_CALL_generateBinaryCodeAtAddress (void) {
+  enterCategoryMethod_generateBinaryCodeAtAddress (kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_CALL.mSlotID,
+                                                   categoryMethod_baseline_5F_assembly_5F_CALL_generateBinaryCodeAtAddress) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+C_PrologueEpilogue gMethod_baseline_5F_assembly_5F_CALL_generateBinaryCodeAtAddress (defineCategoryMethod_baseline_5F_assembly_5F_CALL_generateBinaryCodeAtAddress, NULL) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//        Overriding category method '@baseline_assembly_incDecRegisterInCondition generateBinaryCodeAtAddress'        *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+static void categoryMethod_baseline_5F_assembly_5F_incDecRegisterInCondition_generateBinaryCodeAtAddress (const cPtr_baseline_5F_assembly_5F_instruction * inObject,
+                                                                                                          const GALGAS_baseline_5F_symbolTable /* constinArgument_inRoutineSymbolTable */,
+                                                                                                          GALGAS_string & ioArgument_ioListFileContents,
+                                                                                                          GALGAS_uint & ioArgument_ioWordAddress,
+                                                                                                          C_Compiler * inCompiler
+                                                                                                          COMMA_UNUSED_LOCATION_ARGS) {
+  const cPtr_baseline_5F_assembly_5F_incDecRegisterInCondition * object = (const cPtr_baseline_5F_assembly_5F_incDecRegisterInCondition *) inObject ;
+  macroValidSharedObject (object, cPtr_baseline_5F_assembly_5F_incDecRegisterInCondition) ;
+  GALGAS_uint var_code ;
+  const enumGalgasBool test_0 = object->mAttribute_mIncrement.boolEnum () ;
+  if (kBoolTrue == test_0) {
+    var_code = GALGAS_uint ((uint32_t) 960U) ;
+  }else if (kBoolFalse == test_0) {
+    var_code = GALGAS_uint ((uint32_t) 704U) ;
+  }
+  const enumGalgasBool test_1 = object->mAttribute_m_5F_W_5F_isDestination.operator_not (SOURCE_FILE ("baseline_build_binary_code.galgas", 245)).boolEnum () ;
+  if (kBoolTrue == test_1) {
+    var_code = var_code.operator_or (GALGAS_uint ((uint32_t) 32U) COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 246)) ;
+  }
+  var_code = var_code.operator_or (object->mAttribute_mRegisterDescription.reader_mRegisterAddress (SOURCE_FILE ("baseline_build_binary_code.galgas", 248)).operator_and (GALGAS_uint ((uint32_t) 31U) COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 248)) COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 248)) ;
+  {
+  const GALGAS_baseline_5F_assembly_5F_incDecRegisterInCondition temp_2 = object ;
+  routine_emitBaselineCodeAtWordAddress (var_code, ioArgument_ioWordAddress, temp_2, ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 249)) ;
+  }
+}
+//---------------------------------------------------------------------------------------------------------------------*
+
+static void defineCategoryMethod_baseline_5F_assembly_5F_incDecRegisterInCondition_generateBinaryCodeAtAddress (void) {
+  enterCategoryMethod_generateBinaryCodeAtAddress (kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_incDecRegisterInCondition.mSlotID,
+                                                   categoryMethod_baseline_5F_assembly_5F_incDecRegisterInCondition_generateBinaryCodeAtAddress) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+C_PrologueEpilogue gMethod_baseline_5F_assembly_5F_incDecRegisterInCondition_generateBinaryCodeAtAddress (defineCategoryMethod_baseline_5F_assembly_5F_incDecRegisterInCondition_generateBinaryCodeAtAddress, NULL) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//               Overriding category method '@baseline_assembly_WO_OPERAND generateBinaryCodeAtAddress'                *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+static void categoryMethod_baseline_5F_assembly_5F_WO_5F_OPERAND_generateBinaryCodeAtAddress (const cPtr_baseline_5F_assembly_5F_instruction * inObject,
+                                                                                              const GALGAS_baseline_5F_symbolTable /* constinArgument_inRoutineSymbolTable */,
+                                                                                              GALGAS_string & ioArgument_ioListFileContents,
+                                                                                              GALGAS_uint & ioArgument_ioWordAddress,
+                                                                                              C_Compiler * inCompiler
+                                                                                              COMMA_UNUSED_LOCATION_ARGS) {
+  const cPtr_baseline_5F_assembly_5F_WO_5F_OPERAND * object = (const cPtr_baseline_5F_assembly_5F_WO_5F_OPERAND *) inObject ;
+  macroValidSharedObject (object, cPtr_baseline_5F_assembly_5F_WO_5F_OPERAND) ;
+  GALGAS_uint var_code ;
+  switch (object->mAttribute_mInstruction.enumValue ()) {
+  case GALGAS_baseline_5F_WO_5F_OPERAND_5F_group::kNotBuilt:
+    break ;
+  case GALGAS_baseline_5F_WO_5F_OPERAND_5F_group::kEnum_CLRW:
+    {
+      var_code = GALGAS_uint ((uint32_t) 64U) ;
+    }
+    break ;
+  case GALGAS_baseline_5F_WO_5F_OPERAND_5F_group::kEnum_NOP:
+    {
+      var_code = GALGAS_uint ((uint32_t) 0U) ;
+    }
+    break ;
+  case GALGAS_baseline_5F_WO_5F_OPERAND_5F_group::kEnum_CLRWDT:
+    {
+      var_code = GALGAS_uint ((uint32_t) 4U) ;
+    }
+    break ;
+  case GALGAS_baseline_5F_WO_5F_OPERAND_5F_group::kEnum_OPTION_5F_:
+    {
+      var_code = GALGAS_uint ((uint32_t) 2U) ;
+    }
+    break ;
+  case GALGAS_baseline_5F_WO_5F_OPERAND_5F_group::kEnum_SLEEP:
+    {
+      var_code = GALGAS_uint ((uint32_t) 3U) ;
+    }
+    break ;
+  }
+  {
+  const GALGAS_baseline_5F_assembly_5F_WO_5F_OPERAND temp_0 = object ;
+  routine_emitBaselineCodeAtWordAddress (var_code, ioArgument_ioWordAddress, temp_0, ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 266)) ;
+  }
+}
+//---------------------------------------------------------------------------------------------------------------------*
+
+static void defineCategoryMethod_baseline_5F_assembly_5F_WO_5F_OPERAND_generateBinaryCodeAtAddress (void) {
+  enterCategoryMethod_generateBinaryCodeAtAddress (kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_WO_5F_OPERAND.mSlotID,
+                                                   categoryMethod_baseline_5F_assembly_5F_WO_5F_OPERAND_generateBinaryCodeAtAddress) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+C_PrologueEpilogue gMethod_baseline_5F_assembly_5F_WO_5F_OPERAND_generateBinaryCodeAtAddress (defineCategoryMethod_baseline_5F_assembly_5F_WO_5F_OPERAND_generateBinaryCodeAtAddress, NULL) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                  Overriding category method '@baseline_assembly_TRIS generateBinaryCodeAtAddress'                   *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+static void categoryMethod_baseline_5F_assembly_5F_TRIS_generateBinaryCodeAtAddress (const cPtr_baseline_5F_assembly_5F_instruction * inObject,
+                                                                                     const GALGAS_baseline_5F_symbolTable /* constinArgument_inRoutineSymbolTable */,
+                                                                                     GALGAS_string & ioArgument_ioListFileContents,
+                                                                                     GALGAS_uint & ioArgument_ioWordAddress,
+                                                                                     C_Compiler * inCompiler
+                                                                                     COMMA_UNUSED_LOCATION_ARGS) {
+  const cPtr_baseline_5F_assembly_5F_TRIS * object = (const cPtr_baseline_5F_assembly_5F_TRIS *) inObject ;
+  macroValidSharedObject (object, cPtr_baseline_5F_assembly_5F_TRIS) ;
+  {
+  const GALGAS_baseline_5F_assembly_5F_TRIS temp_0 = object ;
+  routine_emitBaselineCodeAtWordAddress (object->mAttribute_mOpcode, ioArgument_ioWordAddress, temp_0, ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 275)) ;
+  }
+}
+//---------------------------------------------------------------------------------------------------------------------*
+
+static void defineCategoryMethod_baseline_5F_assembly_5F_TRIS_generateBinaryCodeAtAddress (void) {
+  enterCategoryMethod_generateBinaryCodeAtAddress (kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_TRIS.mSlotID,
+                                                   categoryMethod_baseline_5F_assembly_5F_TRIS_generateBinaryCodeAtAddress) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+C_PrologueEpilogue gMethod_baseline_5F_assembly_5F_TRIS_generateBinaryCodeAtAddress (defineCategoryMethod_baseline_5F_assembly_5F_TRIS_generateBinaryCodeAtAddress, NULL) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//      Overriding category method '@baseline_assembly_instruction_literalOperation generateBinaryCodeAtAddress'       *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+static void categoryMethod_baseline_5F_assembly_5F_instruction_5F_literalOperation_generateBinaryCodeAtAddress (const cPtr_baseline_5F_assembly_5F_instruction * inObject,
+                                                                                                                const GALGAS_baseline_5F_symbolTable /* constinArgument_inRoutineSymbolTable */,
+                                                                                                                GALGAS_string & ioArgument_ioListFileContents,
+                                                                                                                GALGAS_uint & ioArgument_ioWordAddress,
+                                                                                                                C_Compiler * inCompiler
+                                                                                                                COMMA_UNUSED_LOCATION_ARGS) {
+  const cPtr_baseline_5F_assembly_5F_instruction_5F_literalOperation * object = (const cPtr_baseline_5F_assembly_5F_instruction_5F_literalOperation *) inObject ;
+  macroValidSharedObject (object, cPtr_baseline_5F_assembly_5F_instruction_5F_literalOperation) ;
+  GALGAS_uint var_code ;
+  switch (object->mAttribute_mInstruction.enumValue ()) {
+  case GALGAS_baseline_5F_literal_5F_instruction_5F_opcode::kNotBuilt:
+    break ;
+  case GALGAS_baseline_5F_literal_5F_instruction_5F_opcode::kEnum_ANDLW:
+    {
+      var_code = GALGAS_uint ((uint32_t) 3584U) ;
+    }
+    break ;
+  case GALGAS_baseline_5F_literal_5F_instruction_5F_opcode::kEnum_IORLW:
+    {
+      var_code = GALGAS_uint ((uint32_t) 3328U) ;
+    }
+    break ;
+  case GALGAS_baseline_5F_literal_5F_instruction_5F_opcode::kEnum_MOVLW:
+    {
+      var_code = GALGAS_uint ((uint32_t) 3072U) ;
+    }
+    break ;
+  case GALGAS_baseline_5F_literal_5F_instruction_5F_opcode::kEnum_RETLW:
+    {
+      var_code = GALGAS_uint ((uint32_t) 2048U) ;
+    }
+    break ;
+  case GALGAS_baseline_5F_literal_5F_instruction_5F_opcode::kEnum_XORLW:
+    {
+      var_code = GALGAS_uint ((uint32_t) 3840U) ;
+    }
+    break ;
+  }
+  var_code = var_code.operator_or (object->mAttribute_mLiteralValue COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 292)) ;
+  {
+  const GALGAS_baseline_5F_assembly_5F_instruction_5F_literalOperation temp_0 = object ;
+  routine_emitBaselineCodeAtWordAddress (var_code, ioArgument_ioWordAddress, temp_0, ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 293)) ;
+  }
+}
+//---------------------------------------------------------------------------------------------------------------------*
+
+static void defineCategoryMethod_baseline_5F_assembly_5F_instruction_5F_literalOperation_generateBinaryCodeAtAddress (void) {
+  enterCategoryMethod_generateBinaryCodeAtAddress (kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_instruction_5F_literalOperation.mSlotID,
+                                                   categoryMethod_baseline_5F_assembly_5F_instruction_5F_literalOperation_generateBinaryCodeAtAddress) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+C_PrologueEpilogue gMethod_baseline_5F_assembly_5F_instruction_5F_literalOperation_generateBinaryCodeAtAddress (defineCategoryMethod_baseline_5F_assembly_5F_instruction_5F_literalOperation_generateBinaryCodeAtAddress, NULL) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
 //              Overriding category method '@baseline_assembly_pseudo_LABEL generateBinaryCodeAtAddress'               *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
@@ -9194,7 +9567,9 @@ static void categoryMethod_ipic_31__38_InstructionWithNoOperand_generateCode (co
     }
     break ;
   }
-  outArgument_outCode = GALGAS_codeList::constructor_listWithValue (GALGAS_string ("    ").add_operation (categoryReader_mnemonic (object->mAttribute_mKind, inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 112)), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 112)), GALGAS_uintlist::constructor_listWithValue (var_c  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 113))  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 111)) ;
+  GALGAS_uintlist temp_0 = GALGAS_uintlist::constructor_emptyList (SOURCE_FILE ("ipic18_regular_instructions.galgas", 113)) ;
+  temp_0.addAssign_operation (var_c  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 113)) ;
+  outArgument_outCode = GALGAS_codeList::constructor_listWithValue (GALGAS_string ("    ").add_operation (categoryReader_mnemonic (object->mAttribute_mKind, inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 112)), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 112)), temp_0  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 111)) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -9458,7 +9833,9 @@ static void categoryMethod_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA_ge
   }
   var_code = var_code.operator_or (object->mAttribute_mRegisterDescription.reader_mRegisterAddress (SOURCE_FILE ("ipic18_regular_instructions.galgas", 191)).operator_and (GALGAS_uint ((uint32_t) 255U) COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 191)) COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 191)) ;
   const GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA temp_2 = object ;
-  outArgument_outCode = GALGAS_codeList::constructor_listWithValue (GALGAS_string ("    ").add_operation (callCategoryReader_instructionDisplay ((const cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA *) temp_2.ptr (), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 193)).reader_mValueAtIndex (GALGAS_uint ((uint32_t) 0U), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 193)), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 193)), GALGAS_uintlist::constructor_listWithValue (var_code  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 194))  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 192)) ;
+  GALGAS_uintlist temp_3 = GALGAS_uintlist::constructor_emptyList (SOURCE_FILE ("ipic18_regular_instructions.galgas", 194)) ;
+  temp_3.addAssign_operation (var_code  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 194)) ;
+  outArgument_outCode = GALGAS_codeList::constructor_listWithValue (GALGAS_string ("    ").add_operation (callCategoryReader_instructionDisplay ((const cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA *) temp_2.ptr (), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 193)).reader_mValueAtIndex (GALGAS_uint ((uint32_t) 0U), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 193)), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 193)), temp_3  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 192)) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -9582,7 +9959,9 @@ static void categoryMethod_ipic_31__38__5F_intermediate_5F_instruction_5F_FA_gen
   }
   var_code = var_code.operator_or (object->mAttribute_mRegisterDescription.reader_mRegisterAddress (SOURCE_FILE ("ipic18_regular_instructions.galgas", 236)).operator_and (GALGAS_uint ((uint32_t) 255U) COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 236)) COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 236)) ;
   const GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FA temp_1 = object ;
-  outArgument_outCode = GALGAS_codeList::constructor_listWithValue (GALGAS_string ("    ").add_operation (callCategoryReader_instructionDisplay ((const cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FA *) temp_1.ptr (), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 238)).reader_mValueAtIndex (GALGAS_uint ((uint32_t) 0U), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 238)), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 238)), GALGAS_uintlist::constructor_listWithValue (var_code  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 239))  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 237)) ;
+  GALGAS_uintlist temp_2 = GALGAS_uintlist::constructor_emptyList (SOURCE_FILE ("ipic18_regular_instructions.galgas", 239)) ;
+  temp_2.addAssign_operation (var_code  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 239)) ;
+  outArgument_outCode = GALGAS_codeList::constructor_listWithValue (GALGAS_string ("    ").add_operation (callCategoryReader_instructionDisplay ((const cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FA *) temp_1.ptr (), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 238)).reader_mValueAtIndex (GALGAS_uint ((uint32_t) 0U), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 238)), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 238)), temp_2  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 237)) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -9771,7 +10150,9 @@ static void categoryMethod_ipic_31__38__5F_intermediate_5F_instruction_5F_litera
   }
   var_code = var_code.operator_or (object->mAttribute_mLiteralValue COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 304)) ;
   const GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation temp_0 = object ;
-  outArgument_outCode = GALGAS_codeList::constructor_listWithValue (GALGAS_string ("    ").add_operation (callCategoryReader_instructionDisplay ((const cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation *) temp_0.ptr (), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 306)).reader_mValueAtIndex (GALGAS_uint ((uint32_t) 0U), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 306)), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 306)), GALGAS_uintlist::constructor_listWithValue (var_code  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 307))  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 305)) ;
+  GALGAS_uintlist temp_1 = GALGAS_uintlist::constructor_emptyList (SOURCE_FILE ("ipic18_regular_instructions.galgas", 307)) ;
+  temp_1.addAssign_operation (var_code  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 307)) ;
+  outArgument_outCode = GALGAS_codeList::constructor_listWithValue (GALGAS_string ("    ").add_operation (callCategoryReader_instructionDisplay ((const cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation *) temp_0.ptr (), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 306)).reader_mValueAtIndex (GALGAS_uint ((uint32_t) 0U), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 306)), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 306)), temp_1  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 305)) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -9945,7 +10326,9 @@ static void categoryMethod_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA_ge
   var_code = var_code.operator_or (object->mAttribute_mRegisterDescription.reader_mRegisterAddress (SOURCE_FILE ("ipic18_regular_instructions.galgas", 370)).operator_and (GALGAS_uint ((uint32_t) 255U) COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 370)) COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 370)) ;
   var_code = var_code.operator_or (object->mAttribute_mBitNumber.left_shift_operation (GALGAS_uint ((uint32_t) 9U) COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 371)) COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 371)) ;
   const GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA temp_1 = object ;
-  outArgument_outCode = GALGAS_codeList::constructor_listWithValue (GALGAS_string ("    ").add_operation (callCategoryReader_instructionDisplay ((const cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA *) temp_1.ptr (), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 373)).reader_mValueAtIndex (GALGAS_uint ((uint32_t) 0U), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 373)), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 373)), GALGAS_uintlist::constructor_listWithValue (var_code  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 374))  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 372)) ;
+  GALGAS_uintlist temp_2 = GALGAS_uintlist::constructor_emptyList (SOURCE_FILE ("ipic18_regular_instructions.galgas", 374)) ;
+  temp_2.addAssign_operation (var_code  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 374)) ;
+  outArgument_outCode = GALGAS_codeList::constructor_listWithValue (GALGAS_string ("    ").add_operation (callCategoryReader_instructionDisplay ((const cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA *) temp_1.ptr (), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 373)).reader_mValueAtIndex (GALGAS_uint ((uint32_t) 0U), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 373)), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 373)), temp_2  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 372)) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -10005,7 +10388,9 @@ static void categoryMethod_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB_
   macroValidSharedObject (object, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB) ;
   GALGAS_uint var_code = GALGAS_uint ((uint32_t) 256U).operator_or (object->mAttribute_mBankIndex.reader_uint (SOURCE_FILE ("ipic18_regular_instructions.galgas", 395)) COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 395)) ;
   const GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB temp_0 = object ;
-  outArgument_outCode = GALGAS_codeList::constructor_listWithValue (GALGAS_string ("    ").add_operation (callCategoryReader_instructionDisplay ((const cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB *) temp_0.ptr (), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 397)).reader_mValueAtIndex (GALGAS_uint ((uint32_t) 0U), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 397)), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 397)), GALGAS_uintlist::constructor_listWithValue (var_code  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 398))  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 396)) ;
+  GALGAS_uintlist temp_1 = GALGAS_uintlist::constructor_emptyList (SOURCE_FILE ("ipic18_regular_instructions.galgas", 398)) ;
+  temp_1.addAssign_operation (var_code  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 398)) ;
+  outArgument_outCode = GALGAS_codeList::constructor_listWithValue (GALGAS_string ("    ").add_operation (callCategoryReader_instructionDisplay ((const cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB *) temp_0.ptr (), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 397)).reader_mValueAtIndex (GALGAS_uint ((uint32_t) 0U), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 397)), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 397)), temp_1  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 396)) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -10089,7 +10474,9 @@ static void categoryMethod_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD_
     break ;
   }
   const GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD temp_0 = object ;
-  outArgument_outCode = GALGAS_codeList::constructor_listWithValue (GALGAS_string ("    ").add_operation (callCategoryReader_instructionDisplay ((const cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD *) temp_0.ptr (), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 427)).reader_mValueAtIndex (GALGAS_uint ((uint32_t) 0U), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 427)), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 427)), GALGAS_uintlist::constructor_listWithValue (var_code  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 428))  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 426)) ;
+  GALGAS_uintlist temp_1 = GALGAS_uintlist::constructor_emptyList (SOURCE_FILE ("ipic18_regular_instructions.galgas", 428)) ;
+  temp_1.addAssign_operation (var_code  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 428)) ;
+  outArgument_outCode = GALGAS_codeList::constructor_listWithValue (GALGAS_string ("    ").add_operation (callCategoryReader_instructionDisplay ((const cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD *) temp_0.ptr (), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 427)).reader_mValueAtIndex (GALGAS_uint ((uint32_t) 0U), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 427)), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 427)), temp_1  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 426)) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -10173,7 +10560,9 @@ static void categoryMethod_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT_
     break ;
   }
   const GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT temp_0 = object ;
-  outArgument_outCode = GALGAS_codeList::constructor_listWithValue (GALGAS_string ("    ").add_operation (callCategoryReader_instructionDisplay ((const cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT *) temp_0.ptr (), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 457)).reader_mValueAtIndex (GALGAS_uint ((uint32_t) 0U), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 457)), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 457)), GALGAS_uintlist::constructor_listWithValue (var_code  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 458))  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 456)) ;
+  GALGAS_uintlist temp_1 = GALGAS_uintlist::constructor_emptyList (SOURCE_FILE ("ipic18_regular_instructions.galgas", 458)) ;
+  temp_1.addAssign_operation (var_code  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 458)) ;
+  outArgument_outCode = GALGAS_codeList::constructor_listWithValue (GALGAS_string ("    ").add_operation (callCategoryReader_instructionDisplay ((const cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT *) temp_0.ptr (), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 457)).reader_mValueAtIndex (GALGAS_uint ((uint32_t) 0U), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 457)), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 457)), temp_1  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 456)) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -10198,7 +10587,7 @@ static GALGAS_uint categoryReader_ipic_31__38__5F_intermediate_5F_instruction_5F
   GALGAS_uint result_outSize ; // Returned variable
   const cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP * object = (const cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP *) inObject ;
   macroValidSharedObject (object, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP) ;
-  result_outSize = object->mAttribute_mOccurrenceFactor.mAttribute_uint.multiply_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 469)) ;
+  result_outSize = object->mAttribute_mOccurrenceFactor.mAttribute_uint.multiply_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 470)) ;
 //---
   return result_outSize ;
 }
@@ -10227,8 +10616,8 @@ static GALGAS_stringlist categoryReader_ipic_31__38__5F_intermediate_5F_instruct
   GALGAS_stringlist result_outResult ; // Returned variable
   const cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP * object = (const cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP *) inObject ;
   macroValidSharedObject (object, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP) ;
-  GALGAS_string var_s = GALGAS_string ("MNOP ").add_operation (object->mAttribute_mOccurrenceFactor.reader_uint (SOURCE_FILE ("ipic18_regular_instructions.galgas", 475)).reader_string (SOURCE_FILE ("ipic18_regular_instructions.galgas", 475)), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 475)) ;
-  result_outResult = GALGAS_stringlist::constructor_listWithValue (var_s  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 476)) ;
+  GALGAS_string var_s = GALGAS_string ("MNOP ").add_operation (object->mAttribute_mOccurrenceFactor.reader_uint (SOURCE_FILE ("ipic18_regular_instructions.galgas", 476)).reader_string (SOURCE_FILE ("ipic18_regular_instructions.galgas", 476)), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 476)) ;
+  result_outResult = GALGAS_stringlist::constructor_listWithValue (var_s  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 477)) ;
 //---
   return result_outResult ;
 }
@@ -10260,24 +10649,26 @@ static void categoryMethod_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP_g
                                                                                              COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP * object = (const cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP *) inObject ;
   macroValidSharedObject (object, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP) ;
-  outArgument_outCode = GALGAS_codeList::constructor_emptyList (SOURCE_FILE ("ipic18_regular_instructions.galgas", 486)) ;
+  outArgument_outCode = GALGAS_codeList::constructor_emptyList (SOURCE_FILE ("ipic18_regular_instructions.galgas", 488)) ;
   GALGAS_uint var_idx = GALGAS_uint ((uint32_t) 0U) ;
-  if (object->mAttribute_mOccurrenceFactor.reader_uint (SOURCE_FILE ("ipic18_regular_instructions.galgas", 488)).isValid ()) {
-    uint32_t variant_15959 = object->mAttribute_mOccurrenceFactor.reader_uint (SOURCE_FILE ("ipic18_regular_instructions.galgas", 488)).uintValue () ;
-    bool loop_15959 = true ;
-    while (loop_15959) {
-      loop_15959 = GALGAS_bool (kIsStrictInf, var_idx.objectCompare (object->mAttribute_mOccurrenceFactor.reader_uint (SOURCE_FILE ("ipic18_regular_instructions.galgas", 489)))).isValid () ;
-      if (loop_15959) {
-        loop_15959 = GALGAS_bool (kIsStrictInf, var_idx.objectCompare (object->mAttribute_mOccurrenceFactor.reader_uint (SOURCE_FILE ("ipic18_regular_instructions.galgas", 489)))).boolValue () ;
+  if (object->mAttribute_mOccurrenceFactor.reader_uint (SOURCE_FILE ("ipic18_regular_instructions.galgas", 490)).isValid ()) {
+    uint32_t variant_15747 = object->mAttribute_mOccurrenceFactor.reader_uint (SOURCE_FILE ("ipic18_regular_instructions.galgas", 490)).uintValue () ;
+    bool loop_15747 = true ;
+    while (loop_15747) {
+      loop_15747 = GALGAS_bool (kIsStrictInf, var_idx.objectCompare (object->mAttribute_mOccurrenceFactor.reader_uint (SOURCE_FILE ("ipic18_regular_instructions.galgas", 491)))).isValid () ;
+      if (loop_15747) {
+        loop_15747 = GALGAS_bool (kIsStrictInf, var_idx.objectCompare (object->mAttribute_mOccurrenceFactor.reader_uint (SOURCE_FILE ("ipic18_regular_instructions.galgas", 491)))).boolValue () ;
       }
-      if (loop_15959 && (0 == variant_15959)) {
-        loop_15959 = false ;
-        inCompiler->loopRunTimeVariantError (SOURCE_FILE ("ipic18_regular_instructions.galgas", 488)) ;
+      if (loop_15747 && (0 == variant_15747)) {
+        loop_15747 = false ;
+        inCompiler->loopRunTimeVariantError (SOURCE_FILE ("ipic18_regular_instructions.galgas", 490)) ;
       }
-      if (loop_15959) {
-        variant_15959 -- ;
-        outArgument_outCode.addAssign_operation (GALGAS_string ("    NOP"), GALGAS_uintlist::constructor_listWithValue (GALGAS_uint ((uint32_t) 0U)  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 491))  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 491)) ;
-        var_idx.increment_operation (inCompiler  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 492)) ;
+      if (loop_15747) {
+        variant_15747 -- ;
+        GALGAS_uintlist temp_0 = GALGAS_uintlist::constructor_emptyList (SOURCE_FILE ("ipic18_regular_instructions.galgas", 493)) ;
+        temp_0.addAssign_operation (GALGAS_uint ((uint32_t) 0U)  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 493)) ;
+        outArgument_outCode.addAssign_operation (GALGAS_string ("    NOP"), temp_0  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 493)) ;
+        var_idx.increment_operation (inCompiler  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 494)) ;
       }
     }
   }
@@ -10295,6 +10686,117 @@ C_PrologueEpilogue gMethod_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP_g
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
+//                Overriding category reader '@ipic18_intermediate_instruction_NOPBRA instructionSize'                 *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+static GALGAS_uint categoryReader_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA_instructionSize (const cPtr_ipic_31__38_SequentialInstruction * inObject,
+                                                                                                         C_Compiler * inCompiler
+                                                                                                         COMMA_UNUSED_LOCATION_ARGS) {
+  GALGAS_uint result_outSize ; // Returned variable
+  const cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA * object = (const cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA *) inObject ;
+  macroValidSharedObject (object, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA) ;
+  result_outSize = object->mAttribute_mOccurrenceFactor.mAttribute_uint.multiply_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 506)) ;
+//---
+  return result_outSize ;
+}
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+static void defineCategoryReader_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA_instructionSize (void) {
+  enterCategoryReader_instructionSize (kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA.mSlotID,
+                                       categoryReader_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA_instructionSize) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+C_PrologueEpilogue gReader_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA_instructionSize (defineCategoryReader_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA_instructionSize, NULL) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//               Overriding category reader '@ipic18_intermediate_instruction_NOPBRA instructionDisplay'               *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+static GALGAS_stringlist categoryReader_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA_instructionDisplay (const cPtr_ipic_31__38_SequentialInstruction * inObject,
+                                                                                                                  C_Compiler * inCompiler
+                                                                                                                  COMMA_UNUSED_LOCATION_ARGS) {
+  GALGAS_stringlist result_outResult ; // Returned variable
+  const cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA * object = (const cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA *) inObject ;
+  macroValidSharedObject (object, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA) ;
+  GALGAS_string var_s = GALGAS_string ("NOPBRA ").add_operation (object->mAttribute_mOccurrenceFactor.reader_uint (SOURCE_FILE ("ipic18_regular_instructions.galgas", 512)).reader_string (SOURCE_FILE ("ipic18_regular_instructions.galgas", 512)), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 512)) ;
+  GALGAS_stringlist temp_0 = GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("ipic18_regular_instructions.galgas", 513)) ;
+  temp_0.addAssign_operation (var_s  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 513)) ;
+  result_outResult = temp_0 ;
+//---
+  return result_outResult ;
+}
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+static void defineCategoryReader_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA_instructionDisplay (void) {
+  enterCategoryReader_instructionDisplay (kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA.mSlotID,
+                                          categoryReader_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA_instructionDisplay) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+C_PrologueEpilogue gReader_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA_instructionDisplay (defineCategoryReader_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA_instructionDisplay, NULL) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                  Overriding category method '@ipic18_intermediate_instruction_NOPBRA generateCode'                  *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+static void categoryMethod_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA_generateCode (const cPtr_ipic_31__38_SequentialInstruction * inObject,
+                                                                                               const GALGAS_uint /* constinArgument_inAddress */,
+                                                                                               const GALGAS_symbolTableForRelativesResolution /* constinArgument_inSymbolTable */,
+                                                                                               const GALGAS_pic_31__38__5F_dataAddressMap /* constinArgument_inDataAddressMap */,
+                                                                                               GALGAS_codeList & outArgument_outCode,
+                                                                                               C_Compiler * inCompiler
+                                                                                               COMMA_UNUSED_LOCATION_ARGS) {
+  const cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA * object = (const cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA *) inObject ;
+  macroValidSharedObject (object, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA) ;
+  outArgument_outCode = GALGAS_codeList::constructor_emptyList (SOURCE_FILE ("ipic18_regular_instructions.galgas", 524)) ;
+  GALGAS_uint var_idx = GALGAS_uint ((uint32_t) 0U) ;
+  if (object->mAttribute_mOccurrenceFactor.reader_uint (SOURCE_FILE ("ipic18_regular_instructions.galgas", 526)).isValid ()) {
+    uint32_t variant_16833 = object->mAttribute_mOccurrenceFactor.reader_uint (SOURCE_FILE ("ipic18_regular_instructions.galgas", 526)).uintValue () ;
+    bool loop_16833 = true ;
+    while (loop_16833) {
+      loop_16833 = GALGAS_bool (kIsStrictInf, var_idx.objectCompare (object->mAttribute_mOccurrenceFactor.reader_uint (SOURCE_FILE ("ipic18_regular_instructions.galgas", 527)))).isValid () ;
+      if (loop_16833) {
+        loop_16833 = GALGAS_bool (kIsStrictInf, var_idx.objectCompare (object->mAttribute_mOccurrenceFactor.reader_uint (SOURCE_FILE ("ipic18_regular_instructions.galgas", 527)))).boolValue () ;
+      }
+      if (loop_16833 && (0 == variant_16833)) {
+        loop_16833 = false ;
+        inCompiler->loopRunTimeVariantError (SOURCE_FILE ("ipic18_regular_instructions.galgas", 526)) ;
+      }
+      if (loop_16833) {
+        variant_16833 -- ;
+        GALGAS_uintlist temp_0 = GALGAS_uintlist::constructor_emptyList (SOURCE_FILE ("ipic18_regular_instructions.galgas", 529)) ;
+        temp_0.addAssign_operation (GALGAS_uint ((uint32_t) 53248U)  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 529)) ;
+        outArgument_outCode.addAssign_operation (GALGAS_string ("    BRA $+2"), temp_0  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 529)) ;
+        var_idx.increment_operation (inCompiler  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 530)) ;
+      }
+    }
+  }
+}
+//---------------------------------------------------------------------------------------------------------------------*
+
+static void defineCategoryMethod_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA_generateCode (void) {
+  enterCategoryMethod_generateCode (kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA.mSlotID,
+                                    categoryMethod_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA_generateCode) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+C_PrologueEpilogue gMethod_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA_generateCode (defineCategoryMethod_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA_generateCode, NULL) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
 //                  Overriding category reader '@ipic18_intermediate_MOV_LABEL_W instructionDisplay'                   *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
@@ -10305,8 +10807,8 @@ static GALGAS_stringlist categoryReader_ipic_31__38__5F_intermediate_5F_MOV_5F_L
   GALGAS_stringlist result_outResult ; // Returned variable
   const cPtr_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W * object = (const cPtr_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W *) inObject ;
   macroValidSharedObject (object, cPtr_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W) ;
-  GALGAS_string var_s = GALGAS_string ("MOVLW ((").add_operation (object->mAttribute_mLabel.reader_string (SOURCE_FILE ("ipic18_regular_instructions.galgas", 503)), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 503)).add_operation (GALGAS_string (" + "), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 503)).add_operation (object->mAttribute_mOffset.reader_string (SOURCE_FILE ("ipic18_regular_instructions.galgas", 503)), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 503)).add_operation (GALGAS_string (") >> "), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 503)).add_operation (object->mAttribute_mRightShift.reader_string (SOURCE_FILE ("ipic18_regular_instructions.galgas", 503)), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 503)).add_operation (GALGAS_string (") & 0xFF"), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 503)) ;
-  result_outResult = GALGAS_stringlist::constructor_listWithValue (var_s  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 504)) ;
+  GALGAS_string var_s = GALGAS_string ("MOVLW ((").add_operation (object->mAttribute_mLabel.reader_string (SOURCE_FILE ("ipic18_regular_instructions.galgas", 541)), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 541)).add_operation (GALGAS_string (" + "), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 541)).add_operation (object->mAttribute_mOffset.reader_string (SOURCE_FILE ("ipic18_regular_instructions.galgas", 541)), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 541)).add_operation (GALGAS_string (") >> "), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 541)).add_operation (object->mAttribute_mRightShift.reader_string (SOURCE_FILE ("ipic18_regular_instructions.galgas", 541)), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 541)).add_operation (GALGAS_string (") & 0xFF"), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 541)) ;
+  result_outResult = GALGAS_stringlist::constructor_listWithValue (var_s  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 542)) ;
 //---
   return result_outResult ;
 }
@@ -10339,10 +10841,12 @@ static void categoryMethod_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W_gen
   const cPtr_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W * object = (const cPtr_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W *) inObject ;
   macroValidSharedObject (object, cPtr_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W) ;
   GALGAS_uint var_address ;
-  constinArgument_inDataAddressMap.method_searchKey (object->mAttribute_mLabel, var_address, inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 514)) ;
-  GALGAS_uint var_code = var_address.add_operation (object->mAttribute_mOffset, inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 515)).right_shift_operation (object->mAttribute_mRightShift COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 515)).operator_and (GALGAS_uint ((uint32_t) 255U) COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 515)) ;
+  constinArgument_inDataAddressMap.method_searchKey (object->mAttribute_mLabel, var_address, inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 552)) ;
+  GALGAS_uint var_code = var_address.add_operation (object->mAttribute_mOffset, inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 553)).right_shift_operation (object->mAttribute_mRightShift COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 553)).operator_and (GALGAS_uint ((uint32_t) 255U) COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 553)) ;
   GALGAS_uint var_code_5F_MOVLW = GALGAS_uint ((uint32_t) 3584U) ;
-  outArgument_outCode = GALGAS_codeList::constructor_listWithValue (GALGAS_string ("    MOVLW ((_data_").add_operation (object->mAttribute_mLabel.reader_string (SOURCE_FILE ("ipic18_regular_instructions.galgas", 518)), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 518)).add_operation (GALGAS_string (" + "), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 518)).add_operation (object->mAttribute_mOffset.reader_string (SOURCE_FILE ("ipic18_regular_instructions.galgas", 518)), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 518)).add_operation (GALGAS_string (") >> "), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 518)).add_operation (object->mAttribute_mRightShift.reader_string (SOURCE_FILE ("ipic18_regular_instructions.galgas", 518)), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 518)).add_operation (GALGAS_string (") & 0xFF"), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 518)), GALGAS_uintlist::constructor_listWithValue (var_code.operator_or (var_code_5F_MOVLW COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 519))  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 519))  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 517)) ;
+  GALGAS_uintlist temp_0 = GALGAS_uintlist::constructor_emptyList (SOURCE_FILE ("ipic18_regular_instructions.galgas", 557)) ;
+  temp_0.addAssign_operation (var_code.operator_or (var_code_5F_MOVLW COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 557))  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 557)) ;
+  outArgument_outCode = GALGAS_codeList::constructor_listWithValue (GALGAS_string ("    MOVLW ((_data_").add_operation (object->mAttribute_mLabel.reader_string (SOURCE_FILE ("ipic18_regular_instructions.galgas", 556)), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 556)).add_operation (GALGAS_string (" + "), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 556)).add_operation (object->mAttribute_mOffset.reader_string (SOURCE_FILE ("ipic18_regular_instructions.galgas", 556)), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 556)).add_operation (GALGAS_string (") >> "), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 556)).add_operation (object->mAttribute_mRightShift.reader_string (SOURCE_FILE ("ipic18_regular_instructions.galgas", 556)), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 556)).add_operation (GALGAS_string (") & 0xFF"), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 556)), temp_0  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 555)) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -10367,8 +10871,8 @@ static GALGAS_stringlist categoryReader_ipic_31__38__5F_intermediate_5F_instruct
   GALGAS_stringlist result_outResult ; // Returned variable
   const cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK * object = (const cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK *) inObject ;
   macroValidSharedObject (object, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK) ;
-  GALGAS_string var_s = GALGAS_string ("BLANK ").add_operation (object->mAttribute_mBlankValue.reader_hexString (SOURCE_FILE ("ipic18_regular_instructions.galgas", 529)), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 529)) ;
-  result_outResult = GALGAS_stringlist::constructor_listWithValue (var_s  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 530)) ;
+  GALGAS_string var_s = GALGAS_string ("BLANK ").add_operation (object->mAttribute_mBlankValue.reader_hexString (SOURCE_FILE ("ipic18_regular_instructions.galgas", 567)), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 567)) ;
+  result_outResult = GALGAS_stringlist::constructor_listWithValue (var_s  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 568)) ;
 //---
   return result_outResult ;
 }
@@ -10400,8 +10904,10 @@ static void categoryMethod_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK_
                                                                                               COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK * object = (const cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK *) inObject ;
   macroValidSharedObject (object, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK) ;
-  GALGAS_uint var_code = GALGAS_uint ((uint32_t) 61440U).operator_or (object->mAttribute_mBlankValue COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 540)) ;
-  outArgument_outCode = GALGAS_codeList::constructor_listWithValue (GALGAS_string ("    DW ").add_operation (var_code.reader_hexString (SOURCE_FILE ("ipic18_regular_instructions.galgas", 542)), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 542)), GALGAS_uintlist::constructor_listWithValue (var_code  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 543))  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 541)) ;
+  GALGAS_uint var_code = GALGAS_uint ((uint32_t) 61440U).operator_or (object->mAttribute_mBlankValue COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 578)) ;
+  GALGAS_uintlist temp_0 = GALGAS_uintlist::constructor_emptyList (SOURCE_FILE ("ipic18_regular_instructions.galgas", 581)) ;
+  temp_0.addAssign_operation (var_code  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 581)) ;
+  outArgument_outCode = GALGAS_codeList::constructor_listWithValue (GALGAS_string ("    DW ").add_operation (var_code.reader_hexString (SOURCE_FILE ("ipic18_regular_instructions.galgas", 580)), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 580)), temp_0  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 579)) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -10426,8 +10932,8 @@ static GALGAS_stringlist categoryReader_ipic_31__38__5F_intermediate_5F_instruct
   GALGAS_stringlist result_outResult ; // Returned variable
   const cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP * object = (const cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP *) inObject ;
   macroValidSharedObject (object, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP) ;
-  GALGAS_string var_s = GALGAS_string ("FNOP ").add_operation (object->mAttribute_mBlankValue.reader_hexString (SOURCE_FILE ("ipic18_regular_instructions.galgas", 553)), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 553)) ;
-  result_outResult = GALGAS_stringlist::constructor_listWithValue (var_s  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 554)) ;
+  GALGAS_string var_s = GALGAS_string ("FNOP ").add_operation (object->mAttribute_mBlankValue.reader_hexString (SOURCE_FILE ("ipic18_regular_instructions.galgas", 591)), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 591)) ;
+  result_outResult = GALGAS_stringlist::constructor_listWithValue (var_s  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 592)) ;
 //---
   return result_outResult ;
 }
@@ -10459,8 +10965,10 @@ static void categoryMethod_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP_g
                                                                                              COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP * object = (const cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP *) inObject ;
   macroValidSharedObject (object, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP) ;
-  GALGAS_uint var_code = GALGAS_uint ((uint32_t) 61440U).operator_or (object->mAttribute_mBlankValue COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 564)) ;
-  outArgument_outCode = GALGAS_codeList::constructor_listWithValue (GALGAS_string ("    DW ").add_operation (var_code.reader_hexString (SOURCE_FILE ("ipic18_regular_instructions.galgas", 566)), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 566)), GALGAS_uintlist::constructor_listWithValue (var_code  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 567))  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 565)) ;
+  GALGAS_uint var_code = GALGAS_uint ((uint32_t) 61440U).operator_or (object->mAttribute_mBlankValue COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 602)) ;
+  GALGAS_uintlist temp_0 = GALGAS_uintlist::constructor_emptyList (SOURCE_FILE ("ipic18_regular_instructions.galgas", 605)) ;
+  temp_0.addAssign_operation (var_code  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 605)) ;
+  outArgument_outCode = GALGAS_codeList::constructor_listWithValue (GALGAS_string ("    DW ").add_operation (var_code.reader_hexString (SOURCE_FILE ("ipic18_regular_instructions.galgas", 604)), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 604)), temp_0  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 603)) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -10485,33 +10993,33 @@ static GALGAS_stringlist categoryReader_ipic_31__38__5F_skip_5F_instruction_5F_c
   GALGAS_stringlist result_outResult ; // Returned variable
   const cPtr_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register * object = (const cPtr_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register *) inObject ;
   macroValidSharedObject (object, cPtr_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register) ;
-  GALGAS_string var_s = object->mAttribute_mRegisterDescription.reader_mAssemblyString (SOURCE_FILE ("ipic18_regular_instructions.galgas", 577)).add_operation (GALGAS_string (" "), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 577)) ;
+  GALGAS_string var_s = object->mAttribute_mRegisterDescription.reader_mAssemblyString (SOURCE_FILE ("ipic18_regular_instructions.galgas", 615)).add_operation (GALGAS_string (" "), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 615)) ;
   switch (object->mAttribute_mCompareInstruction.enumValue ()) {
   case GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code::kNotBuilt:
     break ;
   case GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code::kEnum_CPFSEQ:
     {
-      var_s.dotAssign_operation (GALGAS_string ("!= W")  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 579)) ;
+      var_s.dotAssign_operation (GALGAS_string ("!= W")  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 617)) ;
     }
     break ;
   case GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code::kEnum_CPFSGT:
     {
-      var_s.dotAssign_operation (GALGAS_string ("<= W")  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 580)) ;
+      var_s.dotAssign_operation (GALGAS_string ("<= W")  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 618)) ;
     }
     break ;
   case GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code::kEnum_CPFSLT:
     {
-      var_s.dotAssign_operation (GALGAS_string (">= W")  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 581)) ;
+      var_s.dotAssign_operation (GALGAS_string (">= W")  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 619)) ;
     }
     break ;
   case GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code::kEnum_TSTFSZ:
     {
-      var_s.dotAssign_operation (GALGAS_string ("!= 0")  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 582)) ;
+      var_s.dotAssign_operation (GALGAS_string ("!= 0")  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 620)) ;
     }
     break ;
   }
-  var_s.dotAssign_operation (GALGAS_string (" \? ").add_operation (callCategoryReader_instructionDisplay ((const cPtr_ipic_31__38_SequentialInstruction *) object->mAttribute_mEmbeddedInstruction.ptr (), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 584)).reader_mValueAtIndex (GALGAS_uint ((uint32_t) 0U), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 584)), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 584))  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 584)) ;
-  result_outResult = GALGAS_stringlist::constructor_listWithValue (var_s  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 585)) ;
+  var_s.dotAssign_operation (GALGAS_string (" \? ").add_operation (callCategoryReader_instructionDisplay ((const cPtr_ipic_31__38_SequentialInstruction *) object->mAttribute_mEmbeddedInstruction.ptr (), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 622)).reader_mValueAtIndex (GALGAS_uint ((uint32_t) 0U), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 622)), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 622))  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 622)) ;
+  result_outResult = GALGAS_stringlist::constructor_listWithValue (var_s  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 623)) ;
 //---
   return result_outResult ;
 }
@@ -10527,459 +11035,4 @@ static void defineCategoryReader_ipic_31__38__5F_skip_5F_instruction_5F_compare_
 //---------------------------------------------------------------------------------------------------------------------*
 
 C_PrologueEpilogue gReader_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register_instructionDisplay (defineCategoryReader_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register_instructionDisplay, NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                 Overriding category method '@ipic18_skip_instruction_compare_register generateCode'                 *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void categoryMethod_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register_generateCode (const cPtr_ipic_31__38_SequentialInstruction * inObject,
-                                                                                                    const GALGAS_uint constinArgument_inAddress,
-                                                                                                    const GALGAS_symbolTableForRelativesResolution constinArgument_inSymbolTable,
-                                                                                                    const GALGAS_pic_31__38__5F_dataAddressMap constinArgument_inDataAddressMap,
-                                                                                                    GALGAS_codeList & outArgument_outCode,
-                                                                                                    C_Compiler * inCompiler
-                                                                                                    COMMA_UNUSED_LOCATION_ARGS) {
-  const cPtr_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register * object = (const cPtr_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register *) inObject ;
-  macroValidSharedObject (object, cPtr_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register) ;
-  GALGAS_uint var_code ;
-  switch (object->mAttribute_mCompareInstruction.enumValue ()) {
-  case GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code::kNotBuilt:
-    break ;
-  case GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code::kEnum_CPFSEQ:
-    {
-      var_code = GALGAS_uint ((uint32_t) 25088U) ;
-    }
-    break ;
-  case GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code::kEnum_CPFSGT:
-    {
-      var_code = GALGAS_uint ((uint32_t) 25600U) ;
-    }
-    break ;
-  case GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code::kEnum_CPFSLT:
-    {
-      var_code = GALGAS_uint ((uint32_t) 24576U) ;
-    }
-    break ;
-  case GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code::kEnum_TSTFSZ:
-    {
-      var_code = GALGAS_uint ((uint32_t) 26112U) ;
-    }
-    break ;
-  }
-  const enumGalgasBool test_0 = object->mAttribute_mRegisterDescription.reader_mNeedsBSR (SOURCE_FILE ("ipic18_regular_instructions.galgas", 603)).boolEnum () ;
-  if (kBoolTrue == test_0) {
-    var_code = var_code.operator_or (GALGAS_uint ((uint32_t) 256U) COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 604)) ;
-  }
-  var_code = var_code.operator_or (object->mAttribute_mRegisterDescription.reader_mRegisterAddress (SOURCE_FILE ("ipic18_regular_instructions.galgas", 606)).operator_and (GALGAS_uint ((uint32_t) 255U) COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 606)) COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 606)) ;
-  GALGAS_string var_s = GALGAS_string ("    ") ;
-  switch (object->mAttribute_mCompareInstruction.enumValue ()) {
-  case GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code::kNotBuilt:
-    break ;
-  case GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code::kEnum_CPFSEQ:
-    {
-      var_s.dotAssign_operation (GALGAS_string ("CPFSEQ")  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 610)) ;
-    }
-    break ;
-  case GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code::kEnum_CPFSGT:
-    {
-      var_s.dotAssign_operation (GALGAS_string ("CPFSGT")  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 611)) ;
-    }
-    break ;
-  case GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code::kEnum_CPFSLT:
-    {
-      var_s.dotAssign_operation (GALGAS_string ("CPFSLT")  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 612)) ;
-    }
-    break ;
-  case GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code::kEnum_TSTFSZ:
-    {
-      var_s.dotAssign_operation (GALGAS_string ("TSTFSZ")  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 613)) ;
-    }
-    break ;
-  }
-  var_s.dotAssign_operation (GALGAS_string (" ").add_operation (object->mAttribute_mRegisterDescription.reader_mAssemblyString (SOURCE_FILE ("ipic18_regular_instructions.galgas", 615)), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 615))  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 615)) ;
-  const enumGalgasBool test_1 = object->mAttribute_mRegisterDescription.reader_mNeedsBSR (SOURCE_FILE ("ipic18_regular_instructions.galgas", 616)).boolEnum () ;
-  if (kBoolTrue == test_1) {
-    var_s.dotAssign_operation (GALGAS_string (", BSR_ACCESS")  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 617)) ;
-  }
-  outArgument_outCode = GALGAS_codeList::constructor_listWithValue (var_s, GALGAS_uintlist::constructor_listWithValue (var_code  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 622))  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 620)) ;
-  GALGAS_codeList var_c ;
-  callCategoryMethod_generateCode ((const cPtr_ipic_31__38_SequentialInstruction *) object->mAttribute_mEmbeddedInstruction.ptr (), constinArgument_inAddress.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 624)), constinArgument_inSymbolTable, constinArgument_inDataAddressMap, var_c, inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 623)) ;
-  outArgument_outCode.dotAssign_operation (var_c  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 629)) ;
-}
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void defineCategoryMethod_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register_generateCode (void) {
-  enterCategoryMethod_generateCode (kTypeDescriptor_GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register.mSlotID,
-                                    categoryMethod_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register_generateCode) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-C_PrologueEpilogue gMethod_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register_generateCode (defineCategoryMethod_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register_generateCode, NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//  Overriding category method '@ipic18_skip_instruction_compare_register performInstructionRelativeBranchResolution'  *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void categoryMethod_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register_performInstructionRelativeBranchResolution (const cPtr_ipic_31__38_SequentialInstruction * inObject,
-                                                                                                                                  const GALGAS_uint constinArgument_inAddress,
-                                                                                                                                  const GALGAS_string constinArgument_inBlockLabel,
-                                                                                                                                  const GALGAS_symbolTableForRelativesResolution constinArgument_inSymbolTable,
-                                                                                                                                  GALGAS_uint & ioArgument_ioConversionCount,
-                                                                                                                                  GALGAS_string & ioArgument_ioListFileContents,
-                                                                                                                                  GALGAS_ipic_31__38_SequentialInstruction & outArgument_outModifiedInstruction,
-                                                                                                                                  C_Compiler * inCompiler
-                                                                                                                                  COMMA_UNUSED_LOCATION_ARGS) {
-  const cPtr_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register * object = (const cPtr_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register *) inObject ;
-  macroValidSharedObject (object, cPtr_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register) ;
-  const GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register temp_0 = object ;
-  outArgument_outModifiedInstruction = temp_0 ;
-  GALGAS_uint var_n = ioArgument_ioConversionCount ;
-  GALGAS_ipic_31__38_SequentialInstruction var_outModifiedEmbeddedInstruction ;
-  callCategoryMethod_performInstructionRelativeBranchResolution ((const cPtr_ipic_31__38_SequentialInstruction *) object->mAttribute_mEmbeddedInstruction.ptr (), constinArgument_inAddress.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 644)), constinArgument_inBlockLabel, constinArgument_inSymbolTable, ioArgument_ioConversionCount, ioArgument_ioListFileContents, var_outModifiedEmbeddedInstruction, inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 643)) ;
-  const enumGalgasBool test_1 = GALGAS_bool (kIsNotEqual, var_n.objectCompare (ioArgument_ioConversionCount)).boolEnum () ;
-  if (kBoolTrue == test_1) {
-    outArgument_outModifiedInstruction = GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register::constructor_new (object->mAttribute_mInstructionLocation, var_outModifiedEmbeddedInstruction, object->mAttribute_mCompareInstruction, object->mAttribute_mRegisterDescription  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 652)) ;
-  }
-}
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void defineCategoryMethod_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register_performInstructionRelativeBranchResolution (void) {
-  enterCategoryMethod_performInstructionRelativeBranchResolution (kTypeDescriptor_GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register.mSlotID,
-                                                                  categoryMethod_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register_performInstructionRelativeBranchResolution) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-C_PrologueEpilogue gMethod_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register_performInstructionRelativeBranchResolution (defineCategoryMethod_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register_performInstructionRelativeBranchResolution, NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                Overriding category reader '@ipic18_skip_instruction_BitTestSkip instructionDisplay'                 *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-static GALGAS_stringlist categoryReader_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip_instructionDisplay (const cPtr_ipic_31__38_SequentialInstruction * inObject,
-                                                                                                               C_Compiler * inCompiler
-                                                                                                               COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_stringlist result_outResult ; // Returned variable
-  const cPtr_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip * object = (const cPtr_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip *) inObject ;
-  macroValidSharedObject (object, cPtr_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip) ;
-  GALGAS_string var_s = GALGAS_string::makeEmptyString () ;
-  const enumGalgasBool test_0 = object->mAttribute_mSkipIfSet.boolEnum () ;
-  if (kBoolTrue == test_0) {
-    var_s.dotAssign_operation (GALGAS_string ("!")  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 669)) ;
-  }
-  var_s.dotAssign_operation (object->mAttribute_mRegisterDescription.reader_mAssemblyString (SOURCE_FILE ("ipic18_regular_instructions.galgas", 671)).add_operation (GALGAS_string ("."), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 671)).add_operation (object->mAttribute_mBitNumber.reader_string (SOURCE_FILE ("ipic18_regular_instructions.galgas", 671)), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 671)).add_operation (GALGAS_string (" \? "), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 671))  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 671)) ;
-  GALGAS_stringlist var_x = callCategoryReader_instructionDisplay ((const cPtr_ipic_31__38_SequentialInstruction *) object->mAttribute_mEmbeddedInstruction.ptr (), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 673)) ;
-  var_s.dotAssign_operation (var_x.reader_mValueAtIndex (GALGAS_uint ((uint32_t) 0U), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 674))  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 674)) ;
-  result_outResult = GALGAS_stringlist::constructor_listWithValue (var_s  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 675)) ;
-//---
-  return result_outResult ;
-}
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void defineCategoryReader_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip_instructionDisplay (void) {
-  enterCategoryReader_instructionDisplay (kTypeDescriptor_GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip.mSlotID,
-                                          categoryReader_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip_instructionDisplay) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-C_PrologueEpilogue gReader_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip_instructionDisplay (defineCategoryReader_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip_instructionDisplay, NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                   Overriding category method '@ipic18_skip_instruction_BitTestSkip generateCode'                    *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void categoryMethod_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip_generateCode (const cPtr_ipic_31__38_SequentialInstruction * inObject,
-                                                                                            const GALGAS_uint constinArgument_inAddress,
-                                                                                            const GALGAS_symbolTableForRelativesResolution constinArgument_inSymbolTable,
-                                                                                            const GALGAS_pic_31__38__5F_dataAddressMap constinArgument_inDataAddressMap,
-                                                                                            GALGAS_codeList & outArgument_outCode,
-                                                                                            C_Compiler * inCompiler
-                                                                                            COMMA_UNUSED_LOCATION_ARGS) {
-  const cPtr_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip * object = (const cPtr_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip *) inObject ;
-  macroValidSharedObject (object, cPtr_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip) ;
-  GALGAS_uint var_code ;
-  const enumGalgasBool test_0 = object->mAttribute_mSkipIfSet.boolEnum () ;
-  if (kBoolTrue == test_0) {
-    var_code = GALGAS_uint ((uint32_t) 40960U) ;
-  }else if (kBoolFalse == test_0) {
-    var_code = GALGAS_uint ((uint32_t) 45056U) ;
-  }
-  const enumGalgasBool test_1 = object->mAttribute_mRegisterDescription.reader_mNeedsBSR (SOURCE_FILE ("ipic18_regular_instructions.galgas", 691)).boolEnum () ;
-  if (kBoolTrue == test_1) {
-    var_code = var_code.operator_or (GALGAS_uint ((uint32_t) 256U) COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 692)) ;
-  }
-  var_code = var_code.operator_or (object->mAttribute_mRegisterDescription.reader_mRegisterAddress (SOURCE_FILE ("ipic18_regular_instructions.galgas", 694)).operator_and (GALGAS_uint ((uint32_t) 255U) COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 694)) COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 694)) ;
-  var_code = var_code.operator_or (object->mAttribute_mBitNumber.left_shift_operation (GALGAS_uint ((uint32_t) 9U) COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 695)) COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 695)) ;
-  GALGAS_string var_s = GALGAS_string ("    ") ;
-  const enumGalgasBool test_2 = object->mAttribute_mSkipIfSet.boolEnum () ;
-  if (kBoolTrue == test_2) {
-    var_s.dotAssign_operation (GALGAS_string ("BTFSS")  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 699)) ;
-  }else if (kBoolFalse == test_2) {
-    var_s.dotAssign_operation (GALGAS_string ("BTFSC")  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 701)) ;
-  }
-  var_s.dotAssign_operation (GALGAS_string (" ").add_operation (object->mAttribute_mRegisterDescription.reader_mAssemblyString (SOURCE_FILE ("ipic18_regular_instructions.galgas", 703)), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 703)).add_operation (GALGAS_string (", "), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 703)).add_operation (object->mAttribute_mBitNumber.reader_string (SOURCE_FILE ("ipic18_regular_instructions.galgas", 703)), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 703))  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 703)) ;
-  outArgument_outCode = GALGAS_codeList::constructor_listWithValue (var_s, GALGAS_uintlist::constructor_listWithValue (var_code  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 707))  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 705)) ;
-  GALGAS_codeList var_c ;
-  callCategoryMethod_generateCode ((const cPtr_ipic_31__38_SequentialInstruction *) object->mAttribute_mEmbeddedInstruction.ptr (), constinArgument_inAddress.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 709)), constinArgument_inSymbolTable, constinArgument_inDataAddressMap, var_c, inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 708)) ;
-  outArgument_outCode.dotAssign_operation (var_c  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 714)) ;
-}
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void defineCategoryMethod_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip_generateCode (void) {
-  enterCategoryMethod_generateCode (kTypeDescriptor_GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip.mSlotID,
-                                    categoryMethod_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip_generateCode) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-C_PrologueEpilogue gMethod_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip_generateCode (defineCategoryMethod_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip_generateCode, NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//    Overriding category method '@ipic18_skip_instruction_BitTestSkip performInstructionRelativeBranchResolution'     *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void categoryMethod_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip_performInstructionRelativeBranchResolution (const cPtr_ipic_31__38_SequentialInstruction * inObject,
-                                                                                                                          const GALGAS_uint constinArgument_inAddress,
-                                                                                                                          const GALGAS_string constinArgument_inBlockLabel,
-                                                                                                                          const GALGAS_symbolTableForRelativesResolution constinArgument_inSymbolTable,
-                                                                                                                          GALGAS_uint & ioArgument_ioConversionCount,
-                                                                                                                          GALGAS_string & ioArgument_ioListFileContents,
-                                                                                                                          GALGAS_ipic_31__38_SequentialInstruction & outArgument_outModifiedInstruction,
-                                                                                                                          C_Compiler * inCompiler
-                                                                                                                          COMMA_UNUSED_LOCATION_ARGS) {
-  const cPtr_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip * object = (const cPtr_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip *) inObject ;
-  macroValidSharedObject (object, cPtr_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip) ;
-  const GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip temp_0 = object ;
-  outArgument_outModifiedInstruction = temp_0 ;
-  GALGAS_uint var_n = ioArgument_ioConversionCount ;
-  GALGAS_ipic_31__38_SequentialInstruction var_outModifiedEmbeddedInstruction ;
-  callCategoryMethod_performInstructionRelativeBranchResolution ((const cPtr_ipic_31__38_SequentialInstruction *) object->mAttribute_mEmbeddedInstruction.ptr (), constinArgument_inAddress.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 729)), constinArgument_inBlockLabel, constinArgument_inSymbolTable, ioArgument_ioConversionCount, ioArgument_ioListFileContents, var_outModifiedEmbeddedInstruction, inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 728)) ;
-  const enumGalgasBool test_1 = GALGAS_bool (kIsNotEqual, var_n.objectCompare (ioArgument_ioConversionCount)).boolEnum () ;
-  if (kBoolTrue == test_1) {
-    outArgument_outModifiedInstruction = GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip::constructor_new (object->mAttribute_mInstructionLocation, var_outModifiedEmbeddedInstruction, object->mAttribute_mSkipIfSet, object->mAttribute_mRegisterDescription, object->mAttribute_mBitNumber  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 737)) ;
-  }
-}
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void defineCategoryMethod_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip_performInstructionRelativeBranchResolution (void) {
-  enterCategoryMethod_performInstructionRelativeBranchResolution (kTypeDescriptor_GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip.mSlotID,
-                                                                  categoryMethod_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip_performInstructionRelativeBranchResolution) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-C_PrologueEpilogue gMethod_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip_performInstructionRelativeBranchResolution (defineCategoryMethod_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip_performInstructionRelativeBranchResolution, NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                    Overriding category reader '@ipic18_skip_instruction_FDA instructionDisplay'                     *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-static GALGAS_stringlist categoryReader_ipic_31__38__5F_skip_5F_instruction_5F_FDA_instructionDisplay (const cPtr_ipic_31__38_SequentialInstruction * inObject,
-                                                                                                       C_Compiler * inCompiler
-                                                                                                       COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_stringlist result_outResult ; // Returned variable
-  const cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA * object = (const cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA *) inObject ;
-  macroValidSharedObject (object, cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA) ;
-  GALGAS_string var_s ;
-  switch (object->mAttribute_mInstruction_5F_FDA_5F_base_5F_code.enumValue ()) {
-  case GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code::kNotBuilt:
-    break ;
-  case GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code::kEnum_DECFSZ:
-    {
-      var_s = GALGAS_string ("DECFSZ") ;
-    }
-    break ;
-  case GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code::kEnum_DCFSNZ:
-    {
-      var_s = GALGAS_string ("DCFSNZ") ;
-    }
-    break ;
-  case GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code::kEnum_INCFSZ:
-    {
-      var_s = GALGAS_string ("INCFSZ") ;
-    }
-    break ;
-  case GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code::kEnum_INFSNZ:
-    {
-      var_s = GALGAS_string ("INFSNZ") ;
-    }
-    break ;
-  }
-  var_s.dotAssign_operation (GALGAS_string (" ").add_operation (object->mAttribute_mRegisterDescription.reader_mAssemblyString (SOURCE_FILE ("ipic18_regular_instructions.galgas", 760)), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 760))  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 760)) ;
-  const enumGalgasBool test_0 = object->mAttribute_m_5F_W_5F_isDestination.boolEnum () ;
-  if (kBoolTrue == test_0) {
-    var_s.dotAssign_operation (GALGAS_string (", W")  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 762)) ;
-  }
-  var_s.dotAssign_operation (GALGAS_string (" \? ")  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 764)) ;
-  GALGAS_stringlist var_x = callCategoryReader_instructionDisplay ((const cPtr_ipic_31__38_SequentialInstruction *) object->mAttribute_mEmbeddedInstruction.ptr (), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 765)) ;
-  var_s.dotAssign_operation (var_x.reader_mValueAtIndex (GALGAS_uint ((uint32_t) 0U), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 766))  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 766)) ;
-  result_outResult = GALGAS_stringlist::constructor_listWithValue (var_s  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 767)) ;
-//---
-  return result_outResult ;
-}
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void defineCategoryReader_ipic_31__38__5F_skip_5F_instruction_5F_FDA_instructionDisplay (void) {
-  enterCategoryReader_instructionDisplay (kTypeDescriptor_GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_FDA.mSlotID,
-                                          categoryReader_ipic_31__38__5F_skip_5F_instruction_5F_FDA_instructionDisplay) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-C_PrologueEpilogue gReader_ipic_31__38__5F_skip_5F_instruction_5F_FDA_instructionDisplay (defineCategoryReader_ipic_31__38__5F_skip_5F_instruction_5F_FDA_instructionDisplay, NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                       Overriding category method '@ipic18_skip_instruction_FDA generateCode'                        *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void categoryMethod_ipic_31__38__5F_skip_5F_instruction_5F_FDA_generateCode (const cPtr_ipic_31__38_SequentialInstruction * inObject,
-                                                                                    const GALGAS_uint constinArgument_inAddress,
-                                                                                    const GALGAS_symbolTableForRelativesResolution constinArgument_inSymbolTable,
-                                                                                    const GALGAS_pic_31__38__5F_dataAddressMap constinArgument_inDataAddressMap,
-                                                                                    GALGAS_codeList & outArgument_outCode,
-                                                                                    C_Compiler * inCompiler
-                                                                                    COMMA_UNUSED_LOCATION_ARGS) {
-  const cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA * object = (const cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA *) inObject ;
-  macroValidSharedObject (object, cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA) ;
-  GALGAS_uint var_binCode ;
-  switch (object->mAttribute_mInstruction_5F_FDA_5F_base_5F_code.enumValue ()) {
-  case GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code::kNotBuilt:
-    break ;
-  case GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code::kEnum_DECFSZ:
-    {
-      var_binCode = GALGAS_uint ((uint32_t) 11264U) ;
-    }
-    break ;
-  case GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code::kEnum_DCFSNZ:
-    {
-      var_binCode = GALGAS_uint ((uint32_t) 19456U) ;
-    }
-    break ;
-  case GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code::kEnum_INCFSZ:
-    {
-      var_binCode = GALGAS_uint ((uint32_t) 15360U) ;
-    }
-    break ;
-  case GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code::kEnum_INFSNZ:
-    {
-      var_binCode = GALGAS_uint ((uint32_t) 18432U) ;
-    }
-    break ;
-  }
-  const enumGalgasBool test_0 = object->mAttribute_mRegisterDescription.reader_mNeedsBSR (SOURCE_FILE ("ipic18_regular_instructions.galgas", 784)).boolEnum () ;
-  if (kBoolTrue == test_0) {
-    var_binCode = var_binCode.operator_or (GALGAS_uint ((uint32_t) 256U) COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 785)) ;
-  }
-  var_binCode = var_binCode.operator_or (object->mAttribute_mRegisterDescription.reader_mRegisterAddress (SOURCE_FILE ("ipic18_regular_instructions.galgas", 787)).operator_and (GALGAS_uint ((uint32_t) 255U) COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 787)) COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 787)) ;
-  GALGAS_string var_assemblyCode = GALGAS_string ("    ") ;
-  switch (object->mAttribute_mInstruction_5F_FDA_5F_base_5F_code.enumValue ()) {
-  case GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code::kNotBuilt:
-    break ;
-  case GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code::kEnum_DECFSZ:
-    {
-      var_assemblyCode.dotAssign_operation (GALGAS_string ("DECFSZ")  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 791)) ;
-    }
-    break ;
-  case GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code::kEnum_DCFSNZ:
-    {
-      var_assemblyCode.dotAssign_operation (GALGAS_string ("DCFSNZ")  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 792)) ;
-    }
-    break ;
-  case GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code::kEnum_INCFSZ:
-    {
-      var_assemblyCode.dotAssign_operation (GALGAS_string ("INCFSZ")  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 793)) ;
-    }
-    break ;
-  case GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code::kEnum_INFSNZ:
-    {
-      var_assemblyCode.dotAssign_operation (GALGAS_string ("INFSNZ")  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 794)) ;
-    }
-    break ;
-  }
-  var_assemblyCode.dotAssign_operation (GALGAS_string (" ").add_operation (object->mAttribute_mRegisterDescription.reader_mAssemblyString (SOURCE_FILE ("ipic18_regular_instructions.galgas", 796)), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 796))  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 796)) ;
-  const enumGalgasBool test_1 = object->mAttribute_m_5F_W_5F_isDestination.boolEnum () ;
-  if (kBoolTrue == test_1) {
-    var_assemblyCode.dotAssign_operation (GALGAS_string (", W")  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 798)) ;
-  }else if (kBoolFalse == test_1) {
-    var_binCode = var_binCode.operator_or (GALGAS_uint ((uint32_t) 512U) COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 800)) ;
-    var_assemblyCode.dotAssign_operation (GALGAS_string (", F")  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 801)) ;
-  }
-  const enumGalgasBool test_2 = object->mAttribute_mRegisterDescription.reader_mNeedsBSR (SOURCE_FILE ("ipic18_regular_instructions.galgas", 803)).boolEnum () ;
-  if (kBoolTrue == test_2) {
-    var_binCode = var_binCode.operator_or (GALGAS_uint ((uint32_t) 256U) COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 804)) ;
-    var_assemblyCode.dotAssign_operation (GALGAS_string (", BSR_ACCESS")  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 805)) ;
-  }
-  outArgument_outCode = GALGAS_codeList::constructor_listWithValue (var_assemblyCode, GALGAS_uintlist::constructor_listWithValue (var_binCode  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 810))  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 808)) ;
-  GALGAS_codeList var_c ;
-  callCategoryMethod_generateCode ((const cPtr_ipic_31__38_SequentialInstruction *) object->mAttribute_mEmbeddedInstruction.ptr (), constinArgument_inAddress.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 812)), constinArgument_inSymbolTable, constinArgument_inDataAddressMap, var_c, inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 811)) ;
-  outArgument_outCode.dotAssign_operation (var_c  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 817)) ;
-}
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void defineCategoryMethod_ipic_31__38__5F_skip_5F_instruction_5F_FDA_generateCode (void) {
-  enterCategoryMethod_generateCode (kTypeDescriptor_GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_FDA.mSlotID,
-                                    categoryMethod_ipic_31__38__5F_skip_5F_instruction_5F_FDA_generateCode) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-C_PrologueEpilogue gMethod_ipic_31__38__5F_skip_5F_instruction_5F_FDA_generateCode (defineCategoryMethod_ipic_31__38__5F_skip_5F_instruction_5F_FDA_generateCode, NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//        Overriding category method '@ipic18_skip_instruction_FDA performInstructionRelativeBranchResolution'         *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void categoryMethod_ipic_31__38__5F_skip_5F_instruction_5F_FDA_performInstructionRelativeBranchResolution (const cPtr_ipic_31__38_SequentialInstruction * inObject,
-                                                                                                                  const GALGAS_uint constinArgument_inAddress,
-                                                                                                                  const GALGAS_string constinArgument_inBlockLabel,
-                                                                                                                  const GALGAS_symbolTableForRelativesResolution constinArgument_inSymbolTable,
-                                                                                                                  GALGAS_uint & ioArgument_ioConversionCount,
-                                                                                                                  GALGAS_string & ioArgument_ioListFileContents,
-                                                                                                                  GALGAS_ipic_31__38_SequentialInstruction & outArgument_outModifiedInstruction,
-                                                                                                                  C_Compiler * inCompiler
-                                                                                                                  COMMA_UNUSED_LOCATION_ARGS) {
-  const cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA * object = (const cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA *) inObject ;
-  macroValidSharedObject (object, cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA) ;
-  const GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_FDA temp_0 = object ;
-  outArgument_outModifiedInstruction = temp_0 ;
-  GALGAS_uint var_n = ioArgument_ioConversionCount ;
-  GALGAS_ipic_31__38_SequentialInstruction var_outModifiedEmbeddedInstruction ;
-  callCategoryMethod_performInstructionRelativeBranchResolution ((const cPtr_ipic_31__38_SequentialInstruction *) object->mAttribute_mEmbeddedInstruction.ptr (), constinArgument_inAddress.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 832)), constinArgument_inBlockLabel, constinArgument_inSymbolTable, ioArgument_ioConversionCount, ioArgument_ioListFileContents, var_outModifiedEmbeddedInstruction, inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 831)) ;
-  const enumGalgasBool test_1 = GALGAS_bool (kIsNotEqual, var_n.objectCompare (ioArgument_ioConversionCount)).boolEnum () ;
-  if (kBoolTrue == test_1) {
-    outArgument_outModifiedInstruction = GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_FDA::constructor_new (object->mAttribute_mInstructionLocation, var_outModifiedEmbeddedInstruction, object->mAttribute_mInstruction_5F_FDA_5F_base_5F_code, object->mAttribute_mRegisterDescription, object->mAttribute_m_5F_W_5F_isDestination  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 840)) ;
-  }
-}
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void defineCategoryMethod_ipic_31__38__5F_skip_5F_instruction_5F_FDA_performInstructionRelativeBranchResolution (void) {
-  enterCategoryMethod_performInstructionRelativeBranchResolution (kTypeDescriptor_GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_FDA.mSlotID,
-                                                                  categoryMethod_ipic_31__38__5F_skip_5F_instruction_5F_FDA_performInstructionRelativeBranchResolution) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-C_PrologueEpilogue gMethod_ipic_31__38__5F_skip_5F_instruction_5F_FDA_performInstructionRelativeBranchResolution (defineCategoryMethod_ipic_31__38__5F_skip_5F_instruction_5F_FDA_performInstructionRelativeBranchResolution, NULL) ;
 

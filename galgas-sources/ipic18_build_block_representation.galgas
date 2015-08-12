@@ -909,6 +909,37 @@ override method @pic18Instruction_MNOP analyze
 
 #----------------------------------------------------*
 
+override method @pic18Instruction_NOPBRA analyze
+  ?let @uint unused inAccessBankSplitOffset
+  ?!@ipic18BlockList unused ioGeneratedBlockList
+  ?let @routineMap unused inRoutineMap
+  ?let @registerTable unused inRegisterTable
+  ?let @pic18_dataMap unused inDataMap
+  ?let @constantMap unused inConstantMap
+  ?let @pic18MacroMap unused inMacroMap
+  ?!@uint unused ioLocalLabelIndex
+  ?!@ipic18SequentialInstructionList ioGeneratedInstructionList
+  ?!@lstring unused ioBlockLabel
+  ?!@string unused ioListFileContents
+  ?!@uint unused ioCurrentBank
+  ?let @bool unused inShouldPreserveBSR
+  ?let @routineKind unused inRoutineKind
+  ?!@stringset unused ioUsedRegisters {
+#---
+  if [mOccurrenceFactor uint] == 0 then
+    warning mOccurrenceFactor:"occurrence argument is zero: no generated code"
+  end
+#---
+  ioGeneratedInstructionList += !@ipic18_intermediate_instruction_NOPBRA. new {
+    !mInstructionLocation
+    !mOccurrenceFactor
+  }
+  !@uint.max
+  !0
+}
+
+#----------------------------------------------------*
+
 override method @pic18Instruction_LTBLPTR analyze
   ?let @uint inAccessBankSplitOffset
   ?!@ipic18BlockList unused ioGeneratedBlockList

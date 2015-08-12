@@ -6,7 +6,7 @@ pic18 code_bigger_than_64k "18F6722" : # Has 128 kB Flash
 
 noreturn routine main bank:requires 0 {
   forever
-    MNOP 32769
+    NOPBRA 32769
   end
 }
 

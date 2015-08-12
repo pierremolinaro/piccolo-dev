@@ -343,6 +343,12 @@ class @pic18Instruction_MNOP : @pic18PiccoloInstruction {
 
 #----------------------------------------------------*
 
+class @pic18Instruction_NOPBRA : @pic18PiccoloInstruction {
+  @luint mOccurrenceFactor
+}
+
+#----------------------------------------------------*
+
 class @pic18Instruction_FOREVER : @pic18PiccoloInstruction {
   @pic18InstructionList mInstructionList
   @location mEndOfInstructionList
