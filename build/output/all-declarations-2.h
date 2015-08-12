@@ -4081,12 +4081,14 @@ class GALGAS_routineCallMap : public AC_GALGAS_map {
 //--------------------------------- += operator (with list of field expressions)
   public : VIRTUAL_IN_DEBUG void addAssign_operation (const class GALGAS_lstring & inOperand0,
                                                       const class GALGAS_stringset & inOperand1,
+                                                      const class GALGAS_uint & inOperand2,
                                                       C_Compiler * inCompiler
                                                       COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Setters
   public : VIRTUAL_IN_DEBUG void modifier_insertKey (class GALGAS_lstring constinArgument0,
                                                      class GALGAS_stringset constinArgument1,
+                                                     class GALGAS_uint constinArgument2,
                                                      C_Compiler * inCompiler
                                                      COMMA_LOCATION_ARGS) ;
 
@@ -4094,6 +4096,11 @@ class GALGAS_routineCallMap : public AC_GALGAS_map {
                                                                       class GALGAS_string constinArgument1,
                                                                       C_Compiler * inCompiler
                                                                       COMMA_LOCATION_ARGS) ;
+
+  public : VIRTUAL_IN_DEBUG void modifier_setMTerminatorStackNeedsForKey (class GALGAS_uint constinArgument0,
+                                                                          class GALGAS_string constinArgument1,
+                                                                          C_Compiler * inCompiler
+                                                                          COMMA_LOCATION_ARGS) ;
 
 
 //--------------------------------- Instance Methods
@@ -4103,6 +4110,10 @@ class GALGAS_routineCallMap : public AC_GALGAS_map {
   public : VIRTUAL_IN_DEBUG class GALGAS_stringset reader_mCalledRoutineSetForKey (const class GALGAS_string & constinOperand0,
                                                                                    C_Compiler * inCompiler
                                                                                    COMMA_LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_uint reader_mTerminatorStackNeedsForKey (const class GALGAS_string & constinOperand0,
+                                                                                  C_Compiler * inCompiler
+                                                                                  COMMA_LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_routineCallMap reader_overriddenMap (C_Compiler * inCompiler
                                                                               COMMA_LOCATION_ARGS) const ;
@@ -4131,6 +4142,7 @@ class cEnumerator_routineCallMap : public cGenericAbstractEnumerator {
 //--- Current element access
   public : class GALGAS_lstring current_lkey (LOCATION_ARGS) const ;
   public : class GALGAS_stringset current_mCalledRoutineSet (LOCATION_ARGS) const ;
+  public : class GALGAS_uint current_mTerminatorStackNeeds (LOCATION_ARGS) const ;
 //--- Current element access
   public : class GALGAS_routineCallMap_2D_element current (LOCATION_ARGS) const ;
 } ;
@@ -4148,10 +4160,12 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_routineCallMap ;
 class cMapElement_routineCallMap : public cMapElement {
 //--- Map attributes
   public : GALGAS_stringset mAttribute_mCalledRoutineSet ;
+  public : GALGAS_uint mAttribute_mTerminatorStackNeeds ;
 
 //--- Constructor
   public : cMapElement_routineCallMap (const GALGAS_lstring & inKey,
-                                       const GALGAS_stringset & in_mCalledRoutineSet
+                                       const GALGAS_stringset & in_mCalledRoutineSet,
+                                       const GALGAS_uint & in_mTerminatorStackNeeds
                                        COMMA_LOCATION_ARGS) ;
 
 //--- Virtual method for comparing elements
@@ -4177,6 +4191,7 @@ class GALGAS_routineCallMap_2D_element : public AC_GALGAS_root {
 //--------------------------------- Public data members
   public : GALGAS_lstring mAttribute_lkey ;
   public : GALGAS_stringset mAttribute_mCalledRoutineSet ;
+  public : GALGAS_uint mAttribute_mTerminatorStackNeeds ;
 
 
 //--------------------------------- Accessors
@@ -4194,7 +4209,8 @@ class GALGAS_routineCallMap_2D_element : public AC_GALGAS_root {
 
 //--------------------------------- Native constructor
   public : GALGAS_routineCallMap_2D_element (const GALGAS_lstring & in_lkey,
-                                             const GALGAS_stringset & in_mCalledRoutineSet) ;
+                                             const GALGAS_stringset & in_mCalledRoutineSet,
+                                             const GALGAS_uint & in_mTerminatorStackNeeds) ;
 
 //-- Start of generic part --*
 
@@ -4208,7 +4224,8 @@ class GALGAS_routineCallMap_2D_element : public AC_GALGAS_root {
 
 //--------------------------------- GALGAS constructors
   public : static GALGAS_routineCallMap_2D_element constructor_new (const class GALGAS_lstring & inOperand0,
-                                                                    const class GALGAS_stringset & inOperand1
+                                                                    const class GALGAS_stringset & inOperand1,
+                                                                    const class GALGAS_uint & inOperand2
                                                                     COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of reader 'description'
@@ -4226,6 +4243,8 @@ class GALGAS_routineCallMap_2D_element : public AC_GALGAS_root {
   public : VIRTUAL_IN_DEBUG class GALGAS_lstring reader_lkey (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_stringset reader_mCalledRoutineSet (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_uint reader_mTerminatorStackNeeds (LOCATION_ARGS) const ;
 
 
 //--------------------------------- Introspection

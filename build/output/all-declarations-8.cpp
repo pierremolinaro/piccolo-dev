@@ -7110,7 +7110,8 @@ GALGAS_blockMapForStackComputation_2D_element GALGAS_blockMapForStackComputation
 
 GALGAS_routineCallMap_2D_element::GALGAS_routineCallMap_2D_element (void) :
 mAttribute_lkey (),
-mAttribute_mCalledRoutineSet () {
+mAttribute_mCalledRoutineSet (),
+mAttribute_mTerminatorStackNeeds () {
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -7121,26 +7122,30 @@ GALGAS_routineCallMap_2D_element::~ GALGAS_routineCallMap_2D_element (void) {
 //---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_routineCallMap_2D_element::GALGAS_routineCallMap_2D_element (const GALGAS_lstring & inOperand0,
-                                                                    const GALGAS_stringset & inOperand1) :
+                                                                    const GALGAS_stringset & inOperand1,
+                                                                    const GALGAS_uint & inOperand2) :
 mAttribute_lkey (inOperand0),
-mAttribute_mCalledRoutineSet (inOperand1) {
+mAttribute_mCalledRoutineSet (inOperand1),
+mAttribute_mTerminatorStackNeeds (inOperand2) {
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_routineCallMap_2D_element GALGAS_routineCallMap_2D_element::constructor_default (UNUSED_LOCATION_ARGS) {
   return GALGAS_routineCallMap_2D_element (GALGAS_lstring::constructor_default (HERE),
-                                           GALGAS_stringset::constructor_emptySet (HERE)) ;
+                                           GALGAS_stringset::constructor_emptySet (HERE),
+                                           GALGAS_uint::constructor_default (HERE)) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_routineCallMap_2D_element GALGAS_routineCallMap_2D_element::constructor_new (const GALGAS_lstring & inOperand0,
-                                                                                    const GALGAS_stringset & inOperand1 
+                                                                                    const GALGAS_stringset & inOperand1,
+                                                                                    const GALGAS_uint & inOperand2 
                                                                                     COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_routineCallMap_2D_element result ;
-  if (inOperand0.isValid () && inOperand1.isValid ()) {
-    result = GALGAS_routineCallMap_2D_element (inOperand0, inOperand1) ;
+  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid ()) {
+    result = GALGAS_routineCallMap_2D_element (inOperand0, inOperand1, inOperand2) ;
   }
   return result ;
 }
@@ -7155,13 +7160,16 @@ typeComparisonResult GALGAS_routineCallMap_2D_element::objectCompare (const GALG
   if (result == kOperandEqual) {
     result = mAttribute_mCalledRoutineSet.objectCompare (inOperand.mAttribute_mCalledRoutineSet) ;
   }
+  if (result == kOperandEqual) {
+    result = mAttribute_mTerminatorStackNeeds.objectCompare (inOperand.mAttribute_mTerminatorStackNeeds) ;
+  }
   return result ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
 bool GALGAS_routineCallMap_2D_element::isValid (void) const {
-  return mAttribute_lkey.isValid () && mAttribute_mCalledRoutineSet.isValid () ;
+  return mAttribute_lkey.isValid () && mAttribute_mCalledRoutineSet.isValid () && mAttribute_mTerminatorStackNeeds.isValid () ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -7169,6 +7177,7 @@ bool GALGAS_routineCallMap_2D_element::isValid (void) const {
 void GALGAS_routineCallMap_2D_element::drop (void) {
   mAttribute_lkey.drop () ;
   mAttribute_mCalledRoutineSet.drop () ;
+  mAttribute_mTerminatorStackNeeds.drop () ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -7182,6 +7191,8 @@ void GALGAS_routineCallMap_2D_element::description (C_String & ioString,
     mAttribute_lkey.description (ioString, inIndentation+1) ;
     ioString << ", " ;
     mAttribute_mCalledRoutineSet.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mAttribute_mTerminatorStackNeeds.description (ioString, inIndentation+1) ;
   }
   ioString << ">" ;
 }
@@ -7196,6 +7207,12 @@ GALGAS_lstring GALGAS_routineCallMap_2D_element::reader_lkey (UNUSED_LOCATION_AR
 
 GALGAS_stringset GALGAS_routineCallMap_2D_element::reader_mCalledRoutineSet (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mCalledRoutineSet ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_uint GALGAS_routineCallMap_2D_element::reader_mTerminatorStackNeeds (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mTerminatorStackNeeds ;
 }
 
 

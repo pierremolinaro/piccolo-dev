@@ -12113,9 +12113,11 @@ C_PrologueEpilogue gMethod_ipic_31__38_AbstractBlockTerminator_exploreAccessible
 void callCategoryMethod_exploreAccessibleBlocksForStackComputations (const cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
                                                                      GALGAS_stringset & io_ioBlockToExploreSet,
                                                                      GALGAS_stringset & io_ioExploredBlockSet,
+                                                                     GALGAS_uint & out_outStackNeeds,
                                                                      C_Compiler * inCompiler
                                                                      COMMA_LOCATION_ARGS) {
 //--- Drop output arguments
+  out_outStackNeeds.drop () ;
 //--- Find method
   if (NULL != inObject) {
     macroValidSharedObject (inObject, cPtr_ipic_31__38_AbstractBlockTerminator) ;
@@ -12138,7 +12140,7 @@ void callCategoryMethod_exploreAccessibleBlocksForStackComputations (const cPtr_
     if (NULL == f) {
       fatalError ("FATAL CATEGORY METHOD CALL ERROR", __FILE__, __LINE__) ;
     }else{
-      f (inObject, io_ioBlockToExploreSet, io_ioExploredBlockSet, inCompiler COMMA_THERE) ;
+      f (inObject, io_ioBlockToExploreSet, io_ioExploredBlockSet, out_outStackNeeds, inCompiler COMMA_THERE) ;
     }
   }
 }

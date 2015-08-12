@@ -6205,6 +6205,7 @@ void routine_pic_31__38_GenerateAssemblyFile (const class GALGAS_string constinA
 typedef void (*categoryMethodSignature_ipic_31__38_AbstractBlockTerminator_exploreAccessibleBlocksForStackComputations) (const class cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
                                                                                                                          class GALGAS_stringset & ioArgument0,
                                                                                                                          class GALGAS_stringset & ioArgument1,
+                                                                                                                         class GALGAS_uint & outArgument2,
                                                                                                                          class C_Compiler * inCompiler
                                                                                                                          COMMA_LOCATION_ARGS) ;
 
@@ -6218,6 +6219,7 @@ void enterCategoryMethod_exploreAccessibleBlocksForStackComputations (const int3
 void callCategoryMethod_exploreAccessibleBlocksForStackComputations (const class cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
                                                                      GALGAS_stringset & io_ioBlockToExploreSet,
                                                                      GALGAS_stringset & io_ioExploredBlockSet,
+                                                                     GALGAS_uint & out_outStackNeeds,
                                                                      C_Compiler * inCompiler
                                                                      COMMA_LOCATION_ARGS) ;
 

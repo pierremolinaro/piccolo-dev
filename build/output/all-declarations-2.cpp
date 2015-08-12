@@ -5915,23 +5915,25 @@ GALGAS_blockMapForStackComputation GALGAS_blockMapForStackComputation::extractOb
 //---------------------------------------------------------------------------------------------------------------------*
 
 cMapElement_routineCallMap::cMapElement_routineCallMap (const GALGAS_lstring & inKey,
-                                                        const GALGAS_stringset & in_mCalledRoutineSet
+                                                        const GALGAS_stringset & in_mCalledRoutineSet,
+                                                        const GALGAS_uint & in_mTerminatorStackNeeds
                                                         COMMA_LOCATION_ARGS) :
 cMapElement (inKey COMMA_THERE),
-mAttribute_mCalledRoutineSet (in_mCalledRoutineSet) {
+mAttribute_mCalledRoutineSet (in_mCalledRoutineSet),
+mAttribute_mTerminatorStackNeeds (in_mTerminatorStackNeeds) {
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
 bool cMapElement_routineCallMap::isValid (void) const {
-  return mAttribute_lkey.isValid () && mAttribute_mCalledRoutineSet.isValid () ;
+  return mAttribute_lkey.isValid () && mAttribute_mCalledRoutineSet.isValid () && mAttribute_mTerminatorStackNeeds.isValid () ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
 cMapElement * cMapElement_routineCallMap::copy (void) {
   cMapElement * result = NULL ;
-  macroMyNew (result, cMapElement_routineCallMap (mAttribute_lkey, mAttribute_mCalledRoutineSet COMMA_HERE)) ;
+  macroMyNew (result, cMapElement_routineCallMap (mAttribute_lkey, mAttribute_mCalledRoutineSet, mAttribute_mTerminatorStackNeeds COMMA_HERE)) ;
   return result ;
 }
 
@@ -5942,6 +5944,10 @@ void cMapElement_routineCallMap::description (C_String & ioString, const int32_t
   ioString.writeStringMultiple ("| ", inIndentation) ;
   ioString << "mCalledRoutineSet" ":" ;
   mAttribute_mCalledRoutineSet.description (ioString, inIndentation) ;
+  ioString << "\n" ;
+  ioString.writeStringMultiple ("| ", inIndentation) ;
+  ioString << "mTerminatorStackNeeds" ":" ;
+  mAttribute_mTerminatorStackNeeds.description (ioString, inIndentation) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -5951,6 +5957,9 @@ typeComparisonResult cMapElement_routineCallMap::compare (const cCollectionEleme
   typeComparisonResult result = mAttribute_lkey.objectCompare (operand->mAttribute_lkey) ;
   if (kOperandEqual == result) {
     result = mAttribute_mCalledRoutineSet.objectCompare (operand->mAttribute_mCalledRoutineSet) ;
+  }
+  if (kOperandEqual == result) {
+    result = mAttribute_mTerminatorStackNeeds.objectCompare (operand->mAttribute_mTerminatorStackNeeds) ;
   }
   return result ;
 }
@@ -6004,10 +6013,11 @@ GALGAS_routineCallMap GALGAS_routineCallMap::reader_overriddenMap (C_Compiler * 
 
 void GALGAS_routineCallMap::addAssign_operation (const GALGAS_lstring & inKey,
                                                  const GALGAS_stringset & inArgument0,
+                                                 const GALGAS_uint & inArgument1,
                                                  C_Compiler * inCompiler
                                                  COMMA_LOCATION_ARGS) {
   cMapElement_routineCallMap * p = NULL ;
-  macroMyNew (p, cMapElement_routineCallMap (inKey, inArgument0 COMMA_HERE)) ;
+  macroMyNew (p, cMapElement_routineCallMap (inKey, inArgument0, inArgument1 COMMA_HERE)) ;
   capCollectionElement attributes ;
   attributes.setPointer (p) ;
   macroDetachSharedObject (p) ;
@@ -6020,10 +6030,11 @@ void GALGAS_routineCallMap::addAssign_operation (const GALGAS_lstring & inKey,
 
 void GALGAS_routineCallMap::modifier_insertKey (GALGAS_lstring inKey,
                                                 GALGAS_stringset inArgument0,
+                                                GALGAS_uint inArgument1,
                                                 C_Compiler * inCompiler
                                                 COMMA_LOCATION_ARGS) {
   cMapElement_routineCallMap * p = NULL ;
-  macroMyNew (p, cMapElement_routineCallMap (inKey, inArgument0 COMMA_HERE)) ;
+  macroMyNew (p, cMapElement_routineCallMap (inKey, inArgument0, inArgument1 COMMA_HERE)) ;
   capCollectionElement attributes ;
   attributes.setPointer (p) ;
   macroDetachSharedObject (p) ;
@@ -6049,6 +6060,21 @@ GALGAS_stringset GALGAS_routineCallMap::reader_mCalledRoutineSetForKey (const GA
 
 //---------------------------------------------------------------------------------------------------------------------*
 
+GALGAS_uint GALGAS_routineCallMap::reader_mTerminatorStackNeedsForKey (const GALGAS_string & inKey,
+                                                                       C_Compiler * inCompiler
+                                                                       COMMA_LOCATION_ARGS) const {
+  const cCollectionElement * attributes = searchForReadingAttribute (inKey, inCompiler COMMA_THERE) ;
+  const cMapElement_routineCallMap * p = (const cMapElement_routineCallMap *) attributes ;
+  GALGAS_uint result ;
+  if (NULL != p) {
+    macroValidSharedObject (p, cMapElement_routineCallMap) ;
+    result = p->mAttribute_mTerminatorStackNeeds ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
 void GALGAS_routineCallMap::modifier_setMCalledRoutineSetForKey (GALGAS_stringset inAttributeValue,
                                                                  GALGAS_string inKey,
                                                                  C_Compiler * inCompiler
@@ -6058,6 +6084,20 @@ void GALGAS_routineCallMap::modifier_setMCalledRoutineSetForKey (GALGAS_stringse
   if (NULL != p) {
     macroValidSharedObject (p, cMapElement_routineCallMap) ;
     p->mAttribute_mCalledRoutineSet = inAttributeValue ;
+  }
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void GALGAS_routineCallMap::modifier_setMTerminatorStackNeedsForKey (GALGAS_uint inAttributeValue,
+                                                                     GALGAS_string inKey,
+                                                                     C_Compiler * inCompiler
+                                                                     COMMA_LOCATION_ARGS) {
+  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
+  cMapElement_routineCallMap * p = (cMapElement_routineCallMap *) attributes ;
+  if (NULL != p) {
+    macroValidSharedObject (p, cMapElement_routineCallMap) ;
+    p->mAttribute_mTerminatorStackNeeds = inAttributeValue ;
   }
 }
 
@@ -6084,7 +6124,7 @@ cGenericAbstractEnumerator () {
 GALGAS_routineCallMap_2D_element cEnumerator_routineCallMap::current (LOCATION_ARGS) const {
   const cMapElement_routineCallMap * p = (const cMapElement_routineCallMap *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cMapElement_routineCallMap) ;
-  return GALGAS_routineCallMap_2D_element (p->mAttribute_lkey, p->mAttribute_mCalledRoutineSet) ;
+  return GALGAS_routineCallMap_2D_element (p->mAttribute_lkey, p->mAttribute_mCalledRoutineSet, p->mAttribute_mTerminatorStackNeeds) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -6101,6 +6141,14 @@ GALGAS_stringset cEnumerator_routineCallMap::current_mCalledRoutineSet (LOCATION
   const cMapElement_routineCallMap * p = (const cMapElement_routineCallMap *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cMapElement_routineCallMap) ;
   return p->mAttribute_mCalledRoutineSet ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_uint cEnumerator_routineCallMap::current_mTerminatorStackNeeds (LOCATION_ARGS) const {
+  const cMapElement_routineCallMap * p = (const cMapElement_routineCallMap *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement_routineCallMap) ;
+  return p->mAttribute_mTerminatorStackNeeds ;
 }
 
 
