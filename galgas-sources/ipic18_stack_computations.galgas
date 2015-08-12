@@ -208,8 +208,8 @@ proc ipic18StackComputations
   end
 #  log routineCallMap ;
 #--- Compute stack requirement of every routine
-  var routineStackRequirementMap =@routineStackRequirementMap.emptyMap{}
-  @bool progress = true
+  @routineStackRequirementMap routineStackRequirementMap = {}
+  var progress = true
   loop( [routineCallMap count] + 1)
   while progress
   do

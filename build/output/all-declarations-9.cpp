@@ -8076,8 +8076,7 @@ static GALGAS_string categoryReader_ipic_31__38_ComputedGotoTerminator_terminato
   }
   cEnumerator_lstringlist enumerator_33764 (object->mAttribute_mTargetLabels, kEnumeration_up) ;
   while (enumerator_33764.hasCurrentObject ()) {
-    result_outResult.dotAssign_operation (GALGAS_string ("\n"
-      "                                                                       ").add_operation (enumerator_33764.current_mValue (HERE).reader_string (SOURCE_FILE ("ipic18_terminators.galgas", 977)), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 977))  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 977)) ;
+    result_outResult.dotAssign_operation (GALGAS_string (" ").add_operation (enumerator_33764.current_mValue (HERE).reader_string (SOURCE_FILE ("ipic18_terminators.galgas", 977)), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 977))  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 977)) ;
     enumerator_33764.gotoNextObject () ;
   }
 //---
@@ -8232,12 +8231,12 @@ static void categoryMethod_ipic_31__38_ComputedGotoTerminator_generateTerminator
   }else if (kBoolFalse == test_0) {
     outArgument_outCode = function_pic_31__38__5F_CALL_5F_instruction_5F_code (var_targetAddress, var_goto_34_label, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1041)) ;
   }
-  cEnumerator_lstringlist enumerator_36192 (object->mAttribute_mTargetLabels, kEnumeration_up) ;
-  while (enumerator_36192.hasCurrentObject ()) {
+  cEnumerator_lstringlist enumerator_36120 (object->mAttribute_mTargetLabels, kEnumeration_up) ;
+  while (enumerator_36120.hasCurrentObject ()) {
     GALGAS_uint var_targetLabelAddress ;
-    constinArgument_inSymbolTable.method_searchKey (enumerator_36192.current_mValue (HERE), var_targetLabelAddress, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1044)) ;
-    outArgument_outCode.dotAssign_operation (function_pic_31__38__5F_GOTO_5F_instruction_5F_code (var_targetLabelAddress, enumerator_36192.current_mValue (HERE), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1045))  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1045)) ;
-    enumerator_36192.gotoNextObject () ;
+    constinArgument_inSymbolTable.method_searchKey (enumerator_36120.current_mValue (HERE), var_targetLabelAddress, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1044)) ;
+    outArgument_outCode.dotAssign_operation (function_pic_31__38__5F_GOTO_5F_instruction_5F_code (var_targetLabelAddress, enumerator_36120.current_mValue (HERE), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1045))  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1045)) ;
+    enumerator_36120.gotoNextObject () ;
   }
 }
 //---------------------------------------------------------------------------------------------------------------------*
@@ -8277,15 +8276,15 @@ static GALGAS_bool categoryReader_ipic_31__38_ComputedGotoTerminator_isEqualToTe
     }
     GALGAS_ipic_31__38_ComputedGotoTerminator var_t = temp_1 ;
     result_outResult = GALGAS_bool (kIsEqual, object->mAttribute_mTargetLabels.reader_length (SOURCE_FILE ("ipic18_terminators.galgas", 1057)).objectCompare (var_t.reader_mTargetLabels (SOURCE_FILE ("ipic18_terminators.galgas", 1057)).reader_length (SOURCE_FILE ("ipic18_terminators.galgas", 1057)))) ;
-    cEnumerator_lstringlist enumerator_36839 (object->mAttribute_mTargetLabels, kEnumeration_up) ;
-    cEnumerator_lstringlist enumerator_36868 (var_t.reader_mTargetLabels (SOURCE_FILE ("ipic18_terminators.galgas", 1058)), kEnumeration_up) ;
+    cEnumerator_lstringlist enumerator_36767 (object->mAttribute_mTargetLabels, kEnumeration_up) ;
+    cEnumerator_lstringlist enumerator_36796 (var_t.reader_mTargetLabels (SOURCE_FILE ("ipic18_terminators.galgas", 1058)), kEnumeration_up) ;
     bool bool_2 = result_outResult.isValidAndTrue () ;
-    if (enumerator_36839.hasCurrentObject () && enumerator_36868.hasCurrentObject () && bool_2) {
-      while (enumerator_36839.hasCurrentObject () && enumerator_36868.hasCurrentObject () && bool_2) {
-        result_outResult = GALGAS_bool (kIsEqual, enumerator_36839.current_mValue (HERE).mAttribute_string.objectCompare (enumerator_36868.current_mValue (HERE).mAttribute_string)) ;
-        enumerator_36839.gotoNextObject () ;
-        enumerator_36868.gotoNextObject () ;
-        if (enumerator_36839.hasCurrentObject () && enumerator_36868.hasCurrentObject ()) {
+    if (enumerator_36767.hasCurrentObject () && enumerator_36796.hasCurrentObject () && bool_2) {
+      while (enumerator_36767.hasCurrentObject () && enumerator_36796.hasCurrentObject () && bool_2) {
+        result_outResult = GALGAS_bool (kIsEqual, enumerator_36767.current_mValue (HERE).mAttribute_string.objectCompare (enumerator_36796.current_mValue (HERE).mAttribute_string)) ;
+        enumerator_36767.gotoNextObject () ;
+        enumerator_36796.gotoNextObject () ;
+        if (enumerator_36767.hasCurrentObject () && enumerator_36796.hasCurrentObject ()) {
           bool_2 = result_outResult.isValidAndTrue () ;
         }
       }
@@ -8357,10 +8356,10 @@ static GALGAS_string categoryReader_ipic_31__38_ComputedBraTerminator_terminator
   const cPtr_ipic_31__38_ComputedBraTerminator * object = (const cPtr_ipic_31__38_ComputedBraTerminator *) inObject ;
   macroValidSharedObject (object, cPtr_ipic_31__38_ComputedBraTerminator) ;
   result_outResult = GALGAS_string ("COMPUTED BRA") ;
-  cEnumerator_lstringlist enumerator_37658 (object->mAttribute_mTargetLabels, kEnumeration_up) ;
-  while (enumerator_37658.hasCurrentObject ()) {
-    result_outResult.dotAssign_operation (GALGAS_string (" ").add_operation (enumerator_37658.current_mValue (HERE).reader_string (SOURCE_FILE ("ipic18_terminators.galgas", 1088)), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1088))  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1088)) ;
-    enumerator_37658.gotoNextObject () ;
+  cEnumerator_lstringlist enumerator_37586 (object->mAttribute_mTargetLabels, kEnumeration_up) ;
+  while (enumerator_37586.hasCurrentObject ()) {
+    result_outResult.dotAssign_operation (GALGAS_string (" ").add_operation (enumerator_37586.current_mValue (HERE).reader_string (SOURCE_FILE ("ipic18_terminators.galgas", 1088)), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1088))  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1088)) ;
+    enumerator_37586.gotoNextObject () ;
   }
 //---
   return result_outResult ;
@@ -8396,13 +8395,13 @@ static void categoryMethod_ipic_31__38_ComputedBraTerminator_performTerminatorRe
                                                                                                         COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_ipic_31__38_ComputedBraTerminator * object = (const cPtr_ipic_31__38_ComputedBraTerminator *) inObject ;
   macroValidSharedObject (object, cPtr_ipic_31__38_ComputedBraTerminator) ;
-  cEnumerator_lstringlist enumerator_38157 (object->mAttribute_mTargetLabels, kEnumeration_up) ;
-  while (enumerator_38157.hasCurrentObject ()) {
-    const enumGalgasBool test_0 = function_pic_31__38__5F_checkBRA_5F_RCALL (constinArgument_inSymbolTable, enumerator_38157.current_mValue (HERE), constinArgument_inAddress, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1103)).operator_not (SOURCE_FILE ("ipic18_terminators.galgas", 1103)).boolEnum () ;
+  cEnumerator_lstringlist enumerator_38085 (object->mAttribute_mTargetLabels, kEnumeration_up) ;
+  while (enumerator_38085.hasCurrentObject ()) {
+    const enumGalgasBool test_0 = function_pic_31__38__5F_checkBRA_5F_RCALL (constinArgument_inSymbolTable, enumerator_38085.current_mValue (HERE), constinArgument_inAddress, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1103)).operator_not (SOURCE_FILE ("ipic18_terminators.galgas", 1103)).boolEnum () ;
     if (kBoolTrue == test_0) {
-      inCompiler->emitSemanticError (object->mAttribute_mInstructionLocation, GALGAS_string ("displacement (").add_operation (function_pic_31__38__5F_BRA_5F_RCALL_5F_displacement (constinArgument_inSymbolTable, enumerator_38157.current_mValue (HERE), constinArgument_inAddress, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1105)).reader_string (SOURCE_FILE ("ipic18_terminators.galgas", 1104)), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1104)).add_operation (GALGAS_string (") too large for rcall "), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1105)).add_operation (enumerator_38157.current_mValue (HERE).reader_string (SOURCE_FILE ("ipic18_terminators.galgas", 1105)), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1105)).add_operation (GALGAS_string (" instruction (limited to [-1024, 1023])"), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1106))  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1104)) ;
+      inCompiler->emitSemanticError (object->mAttribute_mInstructionLocation, GALGAS_string ("displacement (").add_operation (function_pic_31__38__5F_BRA_5F_RCALL_5F_displacement (constinArgument_inSymbolTable, enumerator_38085.current_mValue (HERE), constinArgument_inAddress, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1105)).reader_string (SOURCE_FILE ("ipic18_terminators.galgas", 1104)), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1104)).add_operation (GALGAS_string (") too large for rcall "), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1105)).add_operation (enumerator_38085.current_mValue (HERE).reader_string (SOURCE_FILE ("ipic18_terminators.galgas", 1105)), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1105)).add_operation (GALGAS_string (" instruction (limited to [-1024, 1023])"), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1106))  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1104)) ;
     }
-    enumerator_38157.gotoNextObject () ;
+    enumerator_38085.gotoNextObject () ;
   }
   const GALGAS_ipic_31__38_ComputedBraTerminator temp_1 = object ;
   outArgument_outModifiedTerminator = temp_1 ;
@@ -8454,14 +8453,14 @@ static void categoryMethod_ipic_31__38_ComputedBraTerminator_terminatorRelativeB
   }else if (kBoolFalse == test_0) {
     var_address = constinArgument_inAddress.add_operation (GALGAS_uint ((uint32_t) 4U), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1134)) ;
   }
-  cEnumerator_lstringlist enumerator_39497 (object->mAttribute_mTargetLabels, kEnumeration_up) ;
-  while (enumerator_39497.hasCurrentObject ()) {
-    const enumGalgasBool test_2 = function_pic_31__38__5F_checkBRA_5F_RCALL (constinArgument_inSymbolTable, enumerator_39497.current_mValue (HERE), var_address, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1137)).operator_not (SOURCE_FILE ("ipic18_terminators.galgas", 1137)).boolEnum () ;
+  cEnumerator_lstringlist enumerator_39425 (object->mAttribute_mTargetLabels, kEnumeration_up) ;
+  while (enumerator_39425.hasCurrentObject ()) {
+    const enumGalgasBool test_2 = function_pic_31__38__5F_checkBRA_5F_RCALL (constinArgument_inSymbolTable, enumerator_39425.current_mValue (HERE), var_address, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1137)).operator_not (SOURCE_FILE ("ipic18_terminators.galgas", 1137)).boolEnum () ;
     if (kBoolTrue == test_2) {
-      ioArgument_ioOverflowMap.addAssign_operation (constinArgument_inBlockLabel, enumerator_39497.current_mValue (HERE).mAttribute_string  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1138)) ;
+      ioArgument_ioOverflowMap.addAssign_operation (constinArgument_inBlockLabel, enumerator_39425.current_mValue (HERE).mAttribute_string  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1138)) ;
     }
     var_address = var_address.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1140)) ;
-    enumerator_39497.gotoNextObject () ;
+    enumerator_39425.gotoNextObject () ;
   }
 }
 //---------------------------------------------------------------------------------------------------------------------*
@@ -8502,13 +8501,13 @@ static void categoryMethod_ipic_31__38_ComputedBraTerminator_generateTerminatorC
     outArgument_outCode = function_pic_31__38__5F_CALL_5F_instruction_5F_code (var_targetAddress, var_goto_32_label, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1158)) ;
     var_address = constinArgument_inAddress.add_operation (GALGAS_uint ((uint32_t) 4U), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1159)) ;
   }
-  cEnumerator_lstringlist enumerator_40364 (object->mAttribute_mTargetLabels, kEnumeration_up) ;
-  while (enumerator_40364.hasCurrentObject ()) {
+  cEnumerator_lstringlist enumerator_40292 (object->mAttribute_mTargetLabels, kEnumeration_up) ;
+  while (enumerator_40292.hasCurrentObject ()) {
     GALGAS_uint var_labelAddress ;
-    constinArgument_inSymbolTable.method_searchKey (enumerator_40364.current_mValue (HERE), var_labelAddress, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1162)) ;
-    outArgument_outCode.dotAssign_operation (function_pic_31__38__5F_BRA_5F_instruction_5F_code (var_address, var_labelAddress, enumerator_40364.current_mValue (HERE), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1163))  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1163)) ;
+    constinArgument_inSymbolTable.method_searchKey (enumerator_40292.current_mValue (HERE), var_labelAddress, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1162)) ;
+    outArgument_outCode.dotAssign_operation (function_pic_31__38__5F_BRA_5F_instruction_5F_code (var_address, var_labelAddress, enumerator_40292.current_mValue (HERE), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1163))  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1163)) ;
     var_address = var_address.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1164)) ;
-    enumerator_40364.gotoNextObject () ;
+    enumerator_40292.gotoNextObject () ;
   }
 }
 //---------------------------------------------------------------------------------------------------------------------*
@@ -8548,15 +8547,15 @@ static GALGAS_bool categoryReader_ipic_31__38_ComputedBraTerminator_isEqualToTer
     }
     GALGAS_ipic_31__38_ComputedBraTerminator var_t = temp_1 ;
     result_outResult = GALGAS_bool (kIsEqual, object->mAttribute_mTargetLabels.reader_length (SOURCE_FILE ("ipic18_terminators.galgas", 1176)).objectCompare (var_t.reader_mTargetLabels (SOURCE_FILE ("ipic18_terminators.galgas", 1176)).reader_length (SOURCE_FILE ("ipic18_terminators.galgas", 1176)))) ;
-    cEnumerator_lstringlist enumerator_41029 (object->mAttribute_mTargetLabels, kEnumeration_up) ;
-    cEnumerator_lstringlist enumerator_41058 (var_t.reader_mTargetLabels (SOURCE_FILE ("ipic18_terminators.galgas", 1177)), kEnumeration_up) ;
+    cEnumerator_lstringlist enumerator_40957 (object->mAttribute_mTargetLabels, kEnumeration_up) ;
+    cEnumerator_lstringlist enumerator_40986 (var_t.reader_mTargetLabels (SOURCE_FILE ("ipic18_terminators.galgas", 1177)), kEnumeration_up) ;
     bool bool_2 = result_outResult.isValidAndTrue () ;
-    if (enumerator_41029.hasCurrentObject () && enumerator_41058.hasCurrentObject () && bool_2) {
-      while (enumerator_41029.hasCurrentObject () && enumerator_41058.hasCurrentObject () && bool_2) {
-        result_outResult = GALGAS_bool (kIsEqual, enumerator_41029.current_mValue (HERE).mAttribute_string.objectCompare (enumerator_41058.current_mValue (HERE).mAttribute_string)) ;
-        enumerator_41029.gotoNextObject () ;
-        enumerator_41058.gotoNextObject () ;
-        if (enumerator_41029.hasCurrentObject () && enumerator_41058.hasCurrentObject ()) {
+    if (enumerator_40957.hasCurrentObject () && enumerator_40986.hasCurrentObject () && bool_2) {
+      while (enumerator_40957.hasCurrentObject () && enumerator_40986.hasCurrentObject () && bool_2) {
+        result_outResult = GALGAS_bool (kIsEqual, enumerator_40957.current_mValue (HERE).mAttribute_string.objectCompare (enumerator_40986.current_mValue (HERE).mAttribute_string)) ;
+        enumerator_40957.gotoNextObject () ;
+        enumerator_40986.gotoNextObject () ;
+        if (enumerator_40957.hasCurrentObject () && enumerator_40986.hasCurrentObject ()) {
           bool_2 = result_outResult.isValidAndTrue () ;
         }
       }

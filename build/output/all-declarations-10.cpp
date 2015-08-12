@@ -8381,15 +8381,49 @@ C_PrologueEpilogue gMethod_ipic_31__38_IncDecRegisterTerminator_terminatorMinMax
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-static void categoryMethod_ipic_31__38_ComputedGotoTerminator_terminatorMinMaxDuration (const cPtr_ipic_31__38_AbstractBlockTerminator * /* inObject */,
-                                                                                        const GALGAS_blockDurationMap /* constinArgument_inExploredBlockMap */,
+static void categoryMethod_ipic_31__38_ComputedGotoTerminator_terminatorMinMaxDuration (const cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
+                                                                                        const GALGAS_blockDurationMap constinArgument_inExploredBlockMap,
                                                                                         const GALGAS_string /* constinArgument_inNextLabel */,
                                                                                         GALGAS_uint & outArgument_outMin,
                                                                                         GALGAS_uint & outArgument_outMax,
-                                                                                        C_Compiler * /* inCompiler */
+                                                                                        C_Compiler * inCompiler
                                                                                         COMMA_UNUSED_LOCATION_ARGS) {
-  outArgument_outMin = GALGAS_uint ((uint32_t) 50000U) ;
-  outArgument_outMax = GALGAS_uint ((uint32_t) 1U) ;
+  const cPtr_ipic_31__38_ComputedGotoTerminator * object = (const cPtr_ipic_31__38_ComputedGotoTerminator *) inObject ;
+  macroValidSharedObject (object, cPtr_ipic_31__38_ComputedGotoTerminator) ;
+  outArgument_outMin = GALGAS_uint::constructor_max (SOURCE_FILE ("ipic18_duration_computations.galgas", 267)) ;
+  outArgument_outMax = GALGAS_uint ((uint32_t) 0U) ;
+  GALGAS_bool var_solved = GALGAS_bool (true) ;
+  cEnumerator_lstringlist enumerator_12672 (object->mAttribute_mTargetLabels, kEnumeration_up) ;
+  bool bool_0 = var_solved.isValidAndTrue () ;
+  if (enumerator_12672.hasCurrentObject () && bool_0) {
+    while (enumerator_12672.hasCurrentObject () && bool_0) {
+      var_solved = constinArgument_inExploredBlockMap.reader_hasKey (enumerator_12672.current_mValue (HERE).mAttribute_string COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 272)) ;
+      enumerator_12672.gotoNextObject () ;
+      if (enumerator_12672.hasCurrentObject ()) {
+        bool_0 = var_solved.isValidAndTrue () ;
+      }
+    }
+  }
+  const enumGalgasBool test_1 = var_solved.boolEnum () ;
+  if (kBoolTrue == test_1) {
+    cEnumerator_lstringlist enumerator_12806 (object->mAttribute_mTargetLabels, kEnumeration_up) ;
+    while (enumerator_12806.hasCurrentObject ()) {
+      GALGAS_uint var_min ;
+      GALGAS_uint var_max ;
+      constinArgument_inExploredBlockMap.method_searchKey (enumerator_12806.current_mValue (HERE), var_min, var_max, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 277)) ;
+      const enumGalgasBool test_2 = GALGAS_bool (kIsStrictInf, var_min.objectCompare (outArgument_outMin)).boolEnum () ;
+      if (kBoolTrue == test_2) {
+        outArgument_outMin = var_min ;
+      }
+      const enumGalgasBool test_3 = GALGAS_bool (kIsStrictSup, var_max.objectCompare (outArgument_outMax)).boolEnum () ;
+      if (kBoolTrue == test_3) {
+        outArgument_outMax = var_max ;
+      }
+      enumerator_12806.gotoNextObject () ;
+    }
+    outArgument_outMin = outArgument_outMin.add_operation (GALGAS_uint ((uint32_t) 12U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 286)) ;
+    outArgument_outMax = outArgument_outMax.add_operation (GALGAS_uint ((uint32_t) 12U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 287)) ;
+  }
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -8408,15 +8442,21 @@ C_PrologueEpilogue gMethod_ipic_31__38_ComputedGotoTerminator_terminatorMinMaxDu
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-static void categoryMethod_ipic_31__38_ComputedRETLWTerminator_terminatorMinMaxDuration (const cPtr_ipic_31__38_AbstractBlockTerminator * /* inObject */,
+static void categoryMethod_ipic_31__38_ComputedRETLWTerminator_terminatorMinMaxDuration (const cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
                                                                                          const GALGAS_blockDurationMap /* constinArgument_inExploredBlockMap */,
                                                                                          const GALGAS_string /* constinArgument_inNextLabel */,
                                                                                          GALGAS_uint & outArgument_outMin,
                                                                                          GALGAS_uint & outArgument_outMax,
-                                                                                         C_Compiler * /* inCompiler */
+                                                                                         C_Compiler * inCompiler
                                                                                          COMMA_UNUSED_LOCATION_ARGS) {
-  outArgument_outMin = GALGAS_uint ((uint32_t) 60000U) ;
-  outArgument_outMax = GALGAS_uint ((uint32_t) 1U) ;
+  const cPtr_ipic_31__38_ComputedRETLWTerminator * object = (const cPtr_ipic_31__38_ComputedRETLWTerminator *) inObject ;
+  macroValidSharedObject (object, cPtr_ipic_31__38_ComputedRETLWTerminator) ;
+  outArgument_outMin = GALGAS_uint ((uint32_t) 11U) ;
+  const enumGalgasBool test_0 = object->mAttribute_mUsesRCALL.operator_not (SOURCE_FILE ("ipic18_duration_computations.galgas", 300)).boolEnum () ;
+  if (kBoolTrue == test_0) {
+    outArgument_outMin.increment_operation (inCompiler  COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 301)) ;
+  }
+  outArgument_outMax = outArgument_outMin ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -8435,15 +8475,49 @@ C_PrologueEpilogue gMethod_ipic_31__38_ComputedRETLWTerminator_terminatorMinMaxD
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-static void categoryMethod_ipic_31__38_ComputedBraTerminator_terminatorMinMaxDuration (const cPtr_ipic_31__38_AbstractBlockTerminator * /* inObject */,
-                                                                                       const GALGAS_blockDurationMap /* constinArgument_inExploredBlockMap */,
+static void categoryMethod_ipic_31__38_ComputedBraTerminator_terminatorMinMaxDuration (const cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
+                                                                                       const GALGAS_blockDurationMap constinArgument_inExploredBlockMap,
                                                                                        const GALGAS_string /* constinArgument_inNextLabel */,
                                                                                        GALGAS_uint & outArgument_outMin,
                                                                                        GALGAS_uint & outArgument_outMax,
-                                                                                       C_Compiler * /* inCompiler */
+                                                                                       C_Compiler * inCompiler
                                                                                        COMMA_UNUSED_LOCATION_ARGS) {
-  outArgument_outMin = GALGAS_uint ((uint32_t) 70000U) ;
-  outArgument_outMax = GALGAS_uint ((uint32_t) 1U) ;
+  const cPtr_ipic_31__38_ComputedBraTerminator * object = (const cPtr_ipic_31__38_ComputedBraTerminator *) inObject ;
+  macroValidSharedObject (object, cPtr_ipic_31__38_ComputedBraTerminator) ;
+  outArgument_outMin = GALGAS_uint::constructor_max (SOURCE_FILE ("ipic18_duration_computations.galgas", 314)) ;
+  outArgument_outMax = GALGAS_uint ((uint32_t) 0U) ;
+  GALGAS_bool var_solved = GALGAS_bool (true) ;
+  cEnumerator_lstringlist enumerator_13959 (object->mAttribute_mTargetLabels, kEnumeration_up) ;
+  bool bool_0 = var_solved.isValidAndTrue () ;
+  if (enumerator_13959.hasCurrentObject () && bool_0) {
+    while (enumerator_13959.hasCurrentObject () && bool_0) {
+      var_solved = constinArgument_inExploredBlockMap.reader_hasKey (enumerator_13959.current_mValue (HERE).mAttribute_string COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 319)) ;
+      enumerator_13959.gotoNextObject () ;
+      if (enumerator_13959.hasCurrentObject ()) {
+        bool_0 = var_solved.isValidAndTrue () ;
+      }
+    }
+  }
+  const enumGalgasBool test_1 = var_solved.boolEnum () ;
+  if (kBoolTrue == test_1) {
+    cEnumerator_lstringlist enumerator_14093 (object->mAttribute_mTargetLabels, kEnumeration_up) ;
+    while (enumerator_14093.hasCurrentObject ()) {
+      GALGAS_uint var_min ;
+      GALGAS_uint var_max ;
+      constinArgument_inExploredBlockMap.method_searchKey (enumerator_14093.current_mValue (HERE), var_min, var_max, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 324)) ;
+      const enumGalgasBool test_2 = GALGAS_bool (kIsStrictInf, var_min.objectCompare (outArgument_outMin)).boolEnum () ;
+      if (kBoolTrue == test_2) {
+        outArgument_outMin = var_min ;
+      }
+      const enumGalgasBool test_3 = GALGAS_bool (kIsStrictSup, var_max.objectCompare (outArgument_outMax)).boolEnum () ;
+      if (kBoolTrue == test_3) {
+        outArgument_outMax = var_max ;
+      }
+      enumerator_14093.gotoNextObject () ;
+    }
+    outArgument_outMin = outArgument_outMin.add_operation (GALGAS_uint ((uint32_t) 11U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 333)) ;
+    outArgument_outMax = outArgument_outMax.add_operation (GALGAS_uint ((uint32_t) 11U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 334)) ;
+  }
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -8552,20 +8626,20 @@ static void categoryMethod_ipic_31__38_JumpTerminator_duration (const cPtr_ipic_
                                                                 COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_ipic_31__38_JumpTerminator * object = (const cPtr_ipic_31__38_JumpTerminator *) inObject ;
   macroValidSharedObject (object, cPtr_ipic_31__38_JumpTerminator) ;
-  const enumGalgasBool test_0 = constinArgument_inExploredBlockMap.reader_hasKey (object->mAttribute_mLabel.mAttribute_string COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 349)).boolEnum () ;
+  const enumGalgasBool test_0 = constinArgument_inExploredBlockMap.reader_hasKey (object->mAttribute_mLabel.mAttribute_string COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 392)).boolEnum () ;
   if (kBoolTrue == test_0) {
     GALGAS_uint var_min ;
     GALGAS_uint var_max ;
-    constinArgument_inExploredBlockMap.method_searchKey (object->mAttribute_mLabel, var_min, var_max, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 350)) ;
+    constinArgument_inExploredBlockMap.method_searchKey (object->mAttribute_mLabel, var_min, var_max, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 393)) ;
     outArgument_outMin = var_min ;
     outArgument_outMax = var_max ;
     const enumGalgasBool test_1 = GALGAS_bool (kIsNotEqual, object->mAttribute_mLabel.mAttribute_string.objectCompare (constinArgument_inNextLabel)).boolEnum () ;
     if (kBoolTrue == test_1) {
-      outArgument_outMin = outArgument_outMin.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 354)) ;
-      outArgument_outMax = outArgument_outMax.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 355)) ;
+      outArgument_outMin = outArgument_outMin.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 397)) ;
+      outArgument_outMax = outArgument_outMax.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 398)) ;
     }
   }else if (kBoolFalse == test_0) {
-    outArgument_outMin = GALGAS_uint::constructor_max (SOURCE_FILE ("ipic18_duration_computations.galgas", 358)) ;
+    outArgument_outMin = GALGAS_uint::constructor_max (SOURCE_FILE ("ipic18_duration_computations.galgas", 401)) ;
     outArgument_outMax = GALGAS_uint ((uint32_t) 0U) ;
   }
 }
@@ -8674,8 +8748,8 @@ static void categoryMethod_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA
                                                                                                  COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA * object = (const cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA *) inObject ;
   macroValidSharedObject (object, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA) ;
-  outArgument_outMin = object->mAttribute_mOccurrenceFactor.mAttribute_uint.multiply_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 416)) ;
-  outArgument_outMax = object->mAttribute_mOccurrenceFactor.mAttribute_uint.multiply_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 417)) ;
+  outArgument_outMin = object->mAttribute_mOccurrenceFactor.mAttribute_uint.multiply_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 459)) ;
+  outArgument_outMax = object->mAttribute_mOccurrenceFactor.mAttribute_uint.multiply_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 460)) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -8754,13 +8828,13 @@ static void categoryMethod_ipic_31__38__5F_intermediate_5F_JSR_minMaxDuration (c
                                                                                COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_ipic_31__38__5F_intermediate_5F_JSR * object = (const cPtr_ipic_31__38__5F_intermediate_5F_JSR *) inObject ;
   macroValidSharedObject (object, cPtr_ipic_31__38__5F_intermediate_5F_JSR) ;
-  const enumGalgasBool test_0 = inArgument_inExploredBlockMap.reader_hasKey (object->mAttribute_mTargetLabel.mAttribute_string COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 449)).boolEnum () ;
+  const enumGalgasBool test_0 = inArgument_inExploredBlockMap.reader_hasKey (object->mAttribute_mTargetLabel.mAttribute_string COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 492)).boolEnum () ;
   if (kBoolTrue == test_0) {
-    inArgument_inExploredBlockMap.method_searchKey (object->mAttribute_mTargetLabel, outArgument_outMin, outArgument_outMax, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 450)) ;
-    outArgument_outMin = outArgument_outMin.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 451)) ;
-    outArgument_outMax = outArgument_outMax.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 452)) ;
+    inArgument_inExploredBlockMap.method_searchKey (object->mAttribute_mTargetLabel, outArgument_outMin, outArgument_outMax, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 493)) ;
+    outArgument_outMin = outArgument_outMin.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 494)) ;
+    outArgument_outMax = outArgument_outMax.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 495)) ;
   }else if (kBoolFalse == test_0) {
-    outArgument_outMin = GALGAS_uint::constructor_max (SOURCE_FILE ("ipic18_duration_computations.galgas", 454)) ;
+    outArgument_outMin = GALGAS_uint::constructor_max (SOURCE_FILE ("ipic18_duration_computations.galgas", 497)) ;
     outArgument_outMax = GALGAS_uint ((uint32_t) 0U) ;
   }
 }
@@ -8789,11 +8863,11 @@ static void categoryMethod_ipic_31__38__5F_condition_5F_skip_5F_instruction_minM
                                                                                             COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_ipic_31__38__5F_condition_5F_skip_5F_instruction * object = (const cPtr_ipic_31__38__5F_condition_5F_skip_5F_instruction *) inObject ;
   macroValidSharedObject (object, cPtr_ipic_31__38__5F_condition_5F_skip_5F_instruction) ;
-  callCategoryMethod_minMaxDuration ((const cPtr_ipic_31__38_SequentialInstruction *) object->mAttribute_mEmbeddedInstruction.ptr (), inArgument_inExploredBlockMap, outArgument_outMin, outArgument_outMax, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 465)) ;
+  callCategoryMethod_minMaxDuration ((const cPtr_ipic_31__38_SequentialInstruction *) object->mAttribute_mEmbeddedInstruction.ptr (), inArgument_inExploredBlockMap, outArgument_outMin, outArgument_outMax, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 509)) ;
   const enumGalgasBool test_0 = GALGAS_bool (kIsInfOrEqual, outArgument_outMin.objectCompare (outArgument_outMax)).boolEnum () ;
   if (kBoolTrue == test_0) {
-    outArgument_outMin = outArgument_outMin.add_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 467)) ;
-    outArgument_outMax = outArgument_outMax.add_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 468)) ;
+    outArgument_outMin = outArgument_outMin.add_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 511)) ;
+    outArgument_outMax = outArgument_outMax.add_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 512)) ;
   }
 }
 //---------------------------------------------------------------------------------------------------------------------*
@@ -8806,6 +8880,76 @@ static void defineCategoryMethod_ipic_31__38__5F_condition_5F_skip_5F_instructio
 //---------------------------------------------------------------------------------------------------------------------*
 
 C_PrologueEpilogue gMethod_ipic_31__38__5F_condition_5F_skip_5F_instruction_minMaxDuration (defineCategoryMethod_ipic_31__38__5F_condition_5F_skip_5F_instruction_minMaxDuration, NULL) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//             Overriding category method '@ipic18_intermediate_instruction_computed_rcall minMaxDuration'             *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+static void categoryMethod_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall_minMaxDuration (const cPtr_ipic_31__38_SequentialInstruction * inObject,
+                                                                                                            GALGAS_blockDurationMap inArgument_inExploredBlockMap,
+                                                                                                            GALGAS_uint & outArgument_outMin,
+                                                                                                            GALGAS_uint & outArgument_outMax,
+                                                                                                            C_Compiler * inCompiler
+                                                                                                            COMMA_UNUSED_LOCATION_ARGS) {
+  const cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall * object = (const cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall *) inObject ;
+  macroValidSharedObject (object, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall) ;
+  outArgument_outMin = GALGAS_uint::constructor_max (SOURCE_FILE ("ipic18_duration_computations.galgas", 523)) ;
+  outArgument_outMax = GALGAS_uint ((uint32_t) 0U) ;
+  GALGAS_bool var_solved = GALGAS_bool (true) ;
+  cEnumerator_ipic_31__38_SequentialInstructionList enumerator_20020 (object->mAttribute_mTargetInstructions, kEnumeration_up) ;
+  bool bool_0 = var_solved.isValidAndTrue () ;
+  if (enumerator_20020.hasCurrentObject () && bool_0) {
+    while (enumerator_20020.hasCurrentObject () && bool_0) {
+      GALGAS_uint var_min ;
+      GALGAS_uint var_max ;
+      callCategoryMethod_minMaxDuration ((const cPtr_ipic_31__38_SequentialInstruction *) enumerator_20020.current_mInstruction (HERE).ptr (), inArgument_inExploredBlockMap, var_min, var_max, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 527)) ;
+      var_solved = GALGAS_bool (kIsInfOrEqual, var_min.objectCompare (var_max)) ;
+      enumerator_20020.gotoNextObject () ;
+      if (enumerator_20020.hasCurrentObject ()) {
+        bool_0 = var_solved.isValidAndTrue () ;
+      }
+    }
+  }
+  const enumGalgasBool test_1 = var_solved.boolEnum () ;
+  if (kBoolTrue == test_1) {
+    cEnumerator_ipic_31__38_SequentialInstructionList enumerator_20191 (object->mAttribute_mTargetInstructions, kEnumeration_up) ;
+    GALGAS_uint index_20156 ((uint32_t) 0) ;
+    while (enumerator_20191.hasCurrentObject ()) {
+      GALGAS_uint var_min ;
+      GALGAS_uint var_max ;
+      callCategoryMethod_minMaxDuration ((const cPtr_ipic_31__38_SequentialInstruction *) enumerator_20191.current_mInstruction (HERE).ptr (), inArgument_inExploredBlockMap, var_min, var_max, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 532)) ;
+      const enumGalgasBool test_2 = GALGAS_bool (kIsStrictInf, index_20156.objectCompare (object->mAttribute_mTargetInstructions.reader_length (SOURCE_FILE ("ipic18_duration_computations.galgas", 534)).substract_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 534)))).boolEnum () ;
+      if (kBoolTrue == test_2) {
+        var_min = var_min.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 535)) ;
+        var_max = var_max.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 536)) ;
+      }
+      const enumGalgasBool test_3 = GALGAS_bool (kIsStrictInf, var_min.objectCompare (outArgument_outMin)).boolEnum () ;
+      if (kBoolTrue == test_3) {
+        outArgument_outMin = var_min ;
+      }
+      const enumGalgasBool test_4 = GALGAS_bool (kIsStrictSup, var_max.objectCompare (outArgument_outMax)).boolEnum () ;
+      if (kBoolTrue == test_4) {
+        outArgument_outMax = var_max ;
+      }
+      enumerator_20191.gotoNextObject () ;
+      index_20156.increment_operation (inCompiler  COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 531)) ;
+    }
+    outArgument_outMin = outArgument_outMin.add_operation (GALGAS_uint ((uint32_t) 10U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 546)) ;
+    outArgument_outMax = outArgument_outMax.add_operation (GALGAS_uint ((uint32_t) 10U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 547)) ;
+  }
+}
+//---------------------------------------------------------------------------------------------------------------------*
+
+static void defineCategoryMethod_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall_minMaxDuration (void) {
+  enterCategoryMethod_minMaxDuration (kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall.mSlotID,
+                                      categoryMethod_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall_minMaxDuration) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+C_PrologueEpilogue gMethod_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall_minMaxDuration (defineCategoryMethod_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall_minMaxDuration, NULL) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *

@@ -299,45 +299,45 @@ void categoryMethod_computeDuration (const GALGAS_ipic_31__38_Block inObject,
     GALGAS_uint var_terminatorMin ;
     GALGAS_uint var_terminatorMax ;
     const GALGAS_ipic_31__38_Block temp_4 = inObject ;
-    callCategoryMethod_terminatorMinMaxDuration ((const cPtr_ipic_31__38_AbstractBlockTerminator *) temp_4.mAttribute_mTerminator.ptr (), ioArgument_ioExploredBlockMap, inArgument_inNextLabel, var_terminatorMin, var_terminatorMax, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 515)) ;
+    callCategoryMethod_terminatorMinMaxDuration ((const cPtr_ipic_31__38_AbstractBlockTerminator *) temp_4.mAttribute_mTerminator.ptr (), ioArgument_ioExploredBlockMap, inArgument_inNextLabel, var_terminatorMin, var_terminatorMax, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 593)) ;
     GALGAS_uint var_min = var_terminatorMin ;
     GALGAS_uint var_max = var_terminatorMax ;
-    GALGAS_ipic_31__38_SequentialInstructionList var_computedInstructionList = GALGAS_ipic_31__38_SequentialInstructionList::constructor_emptyList (SOURCE_FILE ("ipic18_duration_computations.galgas", 518)) ;
+    GALGAS_ipic_31__38_SequentialInstructionList var_computedInstructionList = GALGAS_ipic_31__38_SequentialInstructionList::constructor_emptyList (SOURCE_FILE ("ipic18_duration_computations.galgas", 596)) ;
     GALGAS_bool var_ok = GALGAS_bool (kIsInfOrEqual, var_min.objectCompare (var_max)) ;
-    cEnumerator_ipic_31__38_SequentialInstructionList enumerator_20229 (inObject.mAttribute_mInstructionList, kEnumeration_down) ;
-    while (enumerator_20229.hasCurrentObject ()) {
+    cEnumerator_ipic_31__38_SequentialInstructionList enumerator_22360 (inObject.mAttribute_mInstructionList, kEnumeration_down) ;
+    while (enumerator_22360.hasCurrentObject ()) {
       GALGAS_uint var_instructionMin ;
       GALGAS_uint var_instructionMax ;
-      callCategoryMethod_minMaxDuration ((const cPtr_ipic_31__38_SequentialInstruction *) enumerator_20229.current_mInstruction (HERE).ptr (), ioArgument_ioExploredBlockMap, var_instructionMin, var_instructionMax, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 521)) ;
+      callCategoryMethod_minMaxDuration ((const cPtr_ipic_31__38_SequentialInstruction *) enumerator_22360.current_mInstruction (HERE).ptr (), ioArgument_ioExploredBlockMap, var_instructionMin, var_instructionMax, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 599)) ;
       GALGAS_bool test_5 = var_ok ;
       if (kBoolTrue == test_5.boolEnum ()) {
         test_5 = GALGAS_bool (kIsInfOrEqual, var_instructionMin.objectCompare (var_instructionMax)) ;
       }
       const enumGalgasBool test_6 = test_5.boolEnum () ;
       if (kBoolTrue == test_6) {
-        var_min = var_min.add_operation (var_instructionMin, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 527)) ;
-        var_max = var_max.add_operation (var_instructionMax, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 528)) ;
+        var_min = var_min.add_operation (var_instructionMin, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 605)) ;
+        var_max = var_max.add_operation (var_instructionMax, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 606)) ;
         {
-        var_computedInstructionList.modifier_insertAtIndex (enumerator_20229.current_mInstruction (HERE), var_min, var_max, GALGAS_uint ((uint32_t) 0U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 529)) ;
+        var_computedInstructionList.modifier_insertAtIndex (enumerator_22360.current_mInstruction (HERE), var_min, var_max, GALGAS_uint ((uint32_t) 0U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 607)) ;
         }
       }else if (kBoolFalse == test_6) {
         var_ok = GALGAS_bool (false) ;
         {
-        var_computedInstructionList.modifier_insertAtIndex (enumerator_20229.current_mInstruction (HERE), GALGAS_uint::constructor_max (SOURCE_FILE ("ipic18_duration_computations.galgas", 532)), GALGAS_uint ((uint32_t) 0U), GALGAS_uint ((uint32_t) 0U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 532)) ;
+        var_computedInstructionList.modifier_insertAtIndex (enumerator_22360.current_mInstruction (HERE), GALGAS_uint::constructor_max (SOURCE_FILE ("ipic18_duration_computations.galgas", 610)), GALGAS_uint ((uint32_t) 0U), GALGAS_uint ((uint32_t) 0U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 610)) ;
         }
       }
-      enumerator_20229.gotoNextObject () ;
+      enumerator_22360.gotoNextObject () ;
     }
     const enumGalgasBool test_7 = var_ok.boolEnum () ;
     if (kBoolTrue == test_7) {
       const GALGAS_ipic_31__38_Block temp_8 = inObject ;
       const GALGAS_ipic_31__38_Block temp_9 = inObject ;
       const GALGAS_ipic_31__38_Block temp_10 = inObject ;
-      outArgument_outNewBlock = GALGAS_ipic_31__38_Block::constructor_new (temp_8.mAttribute_mAddress, temp_9.mAttribute_mLabel, var_computedInstructionList, temp_10.mAttribute_mTerminator, var_terminatorMin, var_terminatorMax  COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 536)) ;
+      outArgument_outNewBlock = GALGAS_ipic_31__38_Block::constructor_new (temp_8.mAttribute_mAddress, temp_9.mAttribute_mLabel, var_computedInstructionList, temp_10.mAttribute_mTerminator, var_terminatorMin, var_terminatorMax  COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 614)) ;
       ioArgument_ioContinue = GALGAS_bool (true) ;
       {
       const GALGAS_ipic_31__38_Block temp_11 = inObject ;
-      ioArgument_ioExploredBlockMap.modifier_insertKey (temp_11.mAttribute_mLabel, var_min, var_max, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 545)) ;
+      ioArgument_ioExploredBlockMap.modifier_insertKey (temp_11.mAttribute_mLabel, var_min, var_max, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 623)) ;
       }
     }else if (kBoolFalse == test_7) {
       const GALGAS_ipic_31__38_Block temp_12 = inObject ;
