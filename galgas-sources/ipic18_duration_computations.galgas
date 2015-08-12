@@ -259,13 +259,33 @@ override method @ipic18IncDecRegisterTerminator terminatorMinMaxDuration
 #----------------------------------------------------------------------------------------------------------------------*
 
 override method @ipic18ComputedGotoTerminator terminatorMinMaxDuration
-  ?let @blockDurationMap unused inExploredBlockMap
+  ?let @blockDurationMap inExploredBlockMap
   ?let @string unused inNextLabel
   !@uint outMin
   !@uint outMax
 {
-  outMin = 50000# TODO
-  outMax = 1
+  outMin = @uint.max
+  outMax = 0
+#---
+  var solved = true
+  for (aLabel) in mTargetLabels while solved do
+    solved = [inExploredBlockMap hasKey !aLabel.string]
+  end
+#---
+  if solved then
+    for (aLabel) in mTargetLabels do
+      [inExploredBlockMap searchKey !aLabel ?let min ?let max]
+      if min < outMin then
+        outMin = min
+      end
+      if max > outMax then
+        outMax = max
+      end
+    end
+  #--- Add RCALL execution (2), computed goto 4 execution (8), GOTO (2)
+    outMin = outMin + 12
+    outMax = outMax + 12
+  end
 }
 
 #----------------------------------------------------------------------------------------------------------------------*
@@ -276,20 +296,43 @@ override method @ipic18ComputedRETLWTerminator terminatorMinMaxDuration
   !@uint outMin
   !@uint outMax
 {
-  outMin = 60000 # TODO
-  outMax = 1
+  outMin = 11 # RCALL (2), _computed_goto2 (7), RETLW (2)
+  if not mUsesRCALL then
+    outMin ++
+  end
+  outMax = outMin
 }
 
 #----------------------------------------------------------------------------------------------------------------------*
 
 override method @ipic18ComputedBraTerminator terminatorMinMaxDuration
-  ?let @blockDurationMap unused inExploredBlockMap
+  ?let @blockDurationMap inExploredBlockMap
   ?let @string unused inNextLabel
   !@uint outMin
   !@uint outMax
 {
-  outMin = 70000# TODO
-  outMax = 1
+  outMin = @uint.max
+  outMax = 0
+#---
+  var solved = true
+  for (aLabel) in mTargetLabels while solved do
+    solved = [inExploredBlockMap hasKey !aLabel.string]
+  end
+#---
+  if solved then
+    for (aLabel) in mTargetLabels do
+      [inExploredBlockMap searchKey !aLabel ?let min ?let max]
+      if min < outMin then
+        outMin = min
+      end
+      if max > outMax then
+        outMax = max
+      end
+    end
+  #--- Add RCALL execution (2), computed goto 2 execution (7), BRA (2)
+    outMin = outMin + 11
+    outMax = outMax + 11
+  end
 }
 
 #----------------------------------------------------------------------------------------------------------------------*
@@ -455,6 +498,7 @@ override method @ipic18_intermediate_JSR minMaxDuration
     outMax = 0
   end
 }
+
 #----------------------------------------------------------------------------------------------------------------------*
 
 override method @ipic18_condition_skip_instruction minMaxDuration
@@ -469,6 +513,40 @@ override method @ipic18_condition_skip_instruction minMaxDuration
   end
 }
 
+#----------------------------------------------------------------------------------------------------------------------*
+
+override method @ipic18_intermediate_instruction_computed_rcall minMaxDuration
+  ?@blockDurationMap inExploredBlockMap
+  !@uint outMin
+  !@uint outMax
+{
+  outMin = @uint.max
+  outMax = 0
+  var solved = true
+  for (instr * *) in mTargetInstructions while solved do
+    [instr minMaxDuration !inExploredBlockMap ?let min ?let max]
+    solved = min <= max
+  end
+  if solved then
+    for (instr * *) in mTargetInstructions do (idx)
+      [instr minMaxDuration !inExploredBlockMap ?@uint min ?@uint max]
+    #--- For all branches (but the last one) add BRA execution (2 cycles)
+      if idx < ([mTargetInstructions length] - 1) then
+        min = min + 2
+        max = max + 2
+      end
+      if min < outMin then
+        outMin = min
+      end
+      if max > outMax then
+        outMax = max
+      end
+    end
+  #--- Add RCALL execution (2), computed_goto4 execution (8)
+    outMin = outMin + 10
+    outMax = outMax + 10
+  end
+}
 
 #----------------------------------------------------------------------------------------------------------------------*
 

@@ -974,7 +974,7 @@ override getter @ipic18ComputedGotoTerminator terminatorDisplay
     outResult += " (uses CALL)"
   end
   for () in  mTargetLabels do
-    outResult += "\n                                                                       " + mValue
+    outResult += " " + mValue
   end
 }
 
