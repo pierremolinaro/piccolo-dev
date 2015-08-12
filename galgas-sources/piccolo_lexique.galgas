@@ -118,6 +118,7 @@ list instructionKeyWordList style instructionStyle error message "the '%K' instr
   "mulwf",
   "negf",
   "nop",
+  "nopbra",
   "pop",
   "option",
   "push",

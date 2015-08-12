@@ -982,6 +982,11 @@ rule <structured_instruction>
     $integer$ ?var  @luint occurrenceFactor
     outInstruction = @pic18Instruction_MNOP. new { !instructionLocation !occurrenceFactor}
   or
+    $nopbra$
+    let instructionLocation = @location.here
+    $integer$ ?let @luint occurrenceFactor
+    outInstruction = @pic18Instruction_NOPBRA. new {!instructionLocation !occurrenceFactor}
+  or
     @conditional_branch condition
     select
       $bc$ condition = @conditional_branch. bc

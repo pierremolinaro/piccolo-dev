@@ -103,6 +103,14 @@ override method @pic18Instruction_MNOP addUsedRoutines
 
 #---------------------------------------------------------------------------*
 
+override method @pic18Instruction_NOPBRA addUsedRoutines
+  ?let @pic18MacroMap unused inMacroMap
+  ?!@stringset unused ioUsedRoutines
+{
+}
+
+#---------------------------------------------------------------------------*
+
 override method @pic18Instruction_banksel addUsedRoutines
   ?let @pic18MacroMap unused inMacroMap
   ?!@stringset unused ioUsedRoutines

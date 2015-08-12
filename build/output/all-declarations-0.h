@@ -171,6 +171,7 @@ class C_Lexique_piccolo_5F_lexique : public C_Lexique {
    kToken_mulwf,
    kToken_negf,
    kToken_nop,
+   kToken_nopbra,
    kToken_pop,
    kToken_option,
    kToken_push,
@@ -273,7 +274,7 @@ class C_Lexique_piccolo_5F_lexique : public C_Lexique {
   protected : virtual C_String getMessageForTerminal (const int16_t inTerminalSymbol) const ;
 
 //--- Get terminal count
-  public : virtual int16_t terminalVocabularyCount (void) const { return 152 ; }
+  public : virtual int16_t terminalVocabularyCount (void) const { return 153 ; }
 
 //--- Get Token String
   public : virtual C_String getCurrentTokenString (const cToken * inTokenPtr) const ;

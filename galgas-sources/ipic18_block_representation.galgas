@@ -291,6 +291,11 @@ class @ipic18_intermediate_instruction_TBLWT : @ipic18SequentialInstruction {
 class @ipic18_intermediate_instruction_MNOP : @ipic18SequentialInstruction {
   @luint mOccurrenceFactor
 }
+#----------------------------------------------------------------------------*
+
+class @ipic18_intermediate_instruction_NOPBRA : @ipic18SequentialInstruction {
+  @luint mOccurrenceFactor
+}
 
 #----------------------------------------------------------------------------*
 

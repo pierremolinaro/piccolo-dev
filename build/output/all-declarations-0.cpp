@@ -2682,6 +2682,35 @@ static const utf32 gSyntaxErrorMessage_piccolo_5F_lexique_nop [] = {
   TO_UNICODE (0)
 } ;
 
+//--- Syntax error message for terminal '$nopbra$' :
+static const utf32 gSyntaxErrorMessage_piccolo_5F_lexique_nopbra [] = {
+  TO_UNICODE ('t'),
+  TO_UNICODE ('h'),
+  TO_UNICODE ('e'),
+  TO_UNICODE (' '),
+  TO_UNICODE ('\''),
+  TO_UNICODE ('n'),
+  TO_UNICODE ('o'),
+  TO_UNICODE ('p'),
+  TO_UNICODE ('b'),
+  TO_UNICODE ('r'),
+  TO_UNICODE ('a'),
+  TO_UNICODE ('\''),
+  TO_UNICODE (' '),
+  TO_UNICODE ('i'),
+  TO_UNICODE ('n'),
+  TO_UNICODE ('s'),
+  TO_UNICODE ('t'),
+  TO_UNICODE ('r'),
+  TO_UNICODE ('u'),
+  TO_UNICODE ('c'),
+  TO_UNICODE ('t'),
+  TO_UNICODE ('i'),
+  TO_UNICODE ('o'),
+  TO_UNICODE ('n'),
+  TO_UNICODE (0)
+} ;
+
 //--- Syntax error message for terminal '$pop$' :
 static const utf32 gSyntaxErrorMessage_piccolo_5F_lexique_pop [] = {
   TO_UNICODE ('t'),
@@ -4110,7 +4139,7 @@ static const utf32 gSyntaxErrorMessage_piccolo_5F_lexique__2E__2E__2E_ [] = {
 //---------------------------------------------------------------------------------------------------------------------*
 
 C_String C_Lexique_piccolo_5F_lexique::getMessageForTerminal (const int16_t inTerminalIndex) const {
-  static const utf32 * syntaxErrorMessageArray [153] = {kEndOfSourceLexicalErrorMessage,
+  static const utf32 * syntaxErrorMessageArray [154] = {kEndOfSourceLexicalErrorMessage,
     gSyntaxErrorMessage_piccolo_5F_lexique_identifier,
     gSyntaxErrorMessage_piccolo_5F_lexique_label,
     gSyntaxErrorMessage_piccolo_5F_lexique_integer,
@@ -4205,6 +4234,7 @@ C_String C_Lexique_piccolo_5F_lexique::getMessageForTerminal (const int16_t inTe
     gSyntaxErrorMessage_piccolo_5F_lexique_mulwf,
     gSyntaxErrorMessage_piccolo_5F_lexique_negf,
     gSyntaxErrorMessage_piccolo_5F_lexique_nop,
+    gSyntaxErrorMessage_piccolo_5F_lexique_nopbra,
     gSyntaxErrorMessage_piccolo_5F_lexique_pop,
     gSyntaxErrorMessage_piccolo_5F_lexique_option,
     gSyntaxErrorMessage_piccolo_5F_lexique_push,
@@ -5226,6 +5256,17 @@ static const utf32 kUnicodeString_piccolo_5F_lexique_nop [] = {
   TO_UNICODE (0)
 } ;
 
+//--- Unicode string for '$nopbra$'
+static const utf32 kUnicodeString_piccolo_5F_lexique_nopbra [] = {
+  TO_UNICODE ('n'),
+  TO_UNICODE ('o'),
+  TO_UNICODE ('p'),
+  TO_UNICODE ('b'),
+  TO_UNICODE ('r'),
+  TO_UNICODE ('a'),
+  TO_UNICODE (0)
+} ;
+
 //--- Unicode string for '$noreturn$'
 static const utf32 kUnicodeString_piccolo_5F_lexique_noreturn [] = {
   TO_UNICODE ('n'),
@@ -5724,7 +5765,7 @@ int16_t C_Lexique_piccolo_5F_lexique::search_into_delimitorsList (const C_String
 //             Key words table 'instructionKeyWordList'                            *
 //---------------------------------------------------------------------------------------------------------------------*
 
-static const int32_t ktable_size_piccolo_5F_lexique_instructionKeyWordList = 67 ;
+static const int32_t ktable_size_piccolo_5F_lexique_instructionKeyWordList = 68 ;
 
 static const C_unicode_lexique_table_entry ktable_for_piccolo_5F_lexique_instructionKeyWordList [ktable_size_piccolo_5F_lexique_instructionKeyWordList] = {
   C_unicode_lexique_table_entry (kUnicodeString_piccolo_5F_lexique_bc, 2, C_Lexique_piccolo_5F_lexique::kToken_bc),
@@ -5789,6 +5830,7 @@ static const C_unicode_lexique_table_entry ktable_for_piccolo_5F_lexique_instruc
   C_unicode_lexique_table_entry (kUnicodeString_piccolo_5F_lexique_xorwf, 5, C_Lexique_piccolo_5F_lexique::kToken_xorwf),
   C_unicode_lexique_table_entry (kUnicodeString_piccolo_5F_lexique_addwfc, 6, C_Lexique_piccolo_5F_lexique::kToken_addwfc),
   C_unicode_lexique_table_entry (kUnicodeString_piccolo_5F_lexique_clrwdt, 6, C_Lexique_piccolo_5F_lexique::kToken_clrwdt),
+  C_unicode_lexique_table_entry (kUnicodeString_piccolo_5F_lexique_nopbra, 6, C_Lexique_piccolo_5F_lexique::kToken_nopbra),
   C_unicode_lexique_table_entry (kUnicodeString_piccolo_5F_lexique_option, 6, C_Lexique_piccolo_5F_lexique::kToken_option),
   C_unicode_lexique_table_entry (kUnicodeString_piccolo_5F_lexique_subfwb, 6, C_Lexique_piccolo_5F_lexique::kToken_subfwb),
   C_unicode_lexique_table_entry (kUnicodeString_piccolo_5F_lexique_subwfb, 6, C_Lexique_piccolo_5F_lexique::kToken_subwfb),
@@ -6293,6 +6335,11 @@ C_String C_Lexique_piccolo_5F_lexique::getCurrentTokenString (const cToken * inT
     case kToken_nop:
       s.appendUnicodeCharacter (TO_UNICODE ('$') COMMA_HERE) ;
       s.appendCString ("nop") ;
+      s.appendUnicodeCharacter (TO_UNICODE ('$') COMMA_HERE) ;
+      break ;
+    case kToken_nopbra:
+      s.appendUnicodeCharacter (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendCString ("nopbra") ;
       s.appendUnicodeCharacter (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
     case kToken_pop:
@@ -7121,6 +7168,7 @@ GALGAS_stringlist C_Lexique_piccolo_5F_lexique::symbols (LOCATION_ARGS) {
   result.addAssign_operation (GALGAS_string ("mulwf") COMMA_THERE) ;
   result.addAssign_operation (GALGAS_string ("negf") COMMA_THERE) ;
   result.addAssign_operation (GALGAS_string ("nop") COMMA_THERE) ;
+  result.addAssign_operation (GALGAS_string ("nopbra") COMMA_THERE) ;
   result.addAssign_operation (GALGAS_string ("pop") COMMA_THERE) ;
   result.addAssign_operation (GALGAS_string ("option") COMMA_THERE) ;
   result.addAssign_operation (GALGAS_string ("push") COMMA_THERE) ;
@@ -7187,7 +7235,7 @@ GALGAS_stringlist C_Lexique_piccolo_5F_lexique::symbols (LOCATION_ARGS) {
 //---------------------------------------------------------------------------------------------------------------------*
 
 uint32_t C_Lexique_piccolo_5F_lexique::styleIndexForTerminal (const int32_t inTerminalIndex) const {
-  static const uint32_t kTerminalSymbolStyles [153] = {0,
+  static const uint32_t kTerminalSymbolStyles [154] = {0,
     0 /* piccolo_lexique_1_identifier */,
     8 /* piccolo_lexique_1_label */,
     4 /* piccolo_lexique_1_integer */,
@@ -7282,6 +7330,7 @@ uint32_t C_Lexique_piccolo_5F_lexique::styleIndexForTerminal (const int32_t inTe
     2 /* piccolo_lexique_1_mulwf */,
     2 /* piccolo_lexique_1_negf */,
     2 /* piccolo_lexique_1_nop */,
+    2 /* piccolo_lexique_1_nopbra */,
     2 /* piccolo_lexique_1_pop */,
     2 /* piccolo_lexique_1_option */,
     2 /* piccolo_lexique_1_push */,
