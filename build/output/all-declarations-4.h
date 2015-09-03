@@ -56,7 +56,7 @@ class GALGAS_branchOverflowMap : public AC_GALGAS_listmap {
 } ; // End of GALGAS_branchOverflowMap class
 
 //---------------------------------------------------------------------------------------------------------------------*
-//   Enumerator declaration                                                    *
+//   Enumerator declaration                                                                                            *
 //---------------------------------------------------------------------------------------------------------------------*
 
 class cEnumerator_branchOverflowMap : public cGenericAbstractEnumerator {
