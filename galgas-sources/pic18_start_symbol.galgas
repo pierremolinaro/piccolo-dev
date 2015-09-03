@@ -67,7 +67,7 @@ rule <start_symbol> {
   $end$
 #--- Semantic analysis
   if @uint. errorCount == 0 then
-    var piccoloModel =@pic18AST.new{
+    var piccoloModel = @pic18AST.new{
       !programName
       !programKind
       !deviceNameOrBootloaderReference
@@ -86,7 +86,7 @@ rule <start_symbol> {
       !needsComputedGoto4
       !@location.here
     }
-    pic18_analyze ( !piccoloModel !@string. stringWithSourceFilePath )
+    pic18_analyze (!piccoloModel !@string.stringWithSourceFilePath)
   else
     @string hexDestinationFile = [@string. stringWithSourceFilePath stringByDeletingPathExtension] + ".hex"
     if [hexDestinationFile fileExists] then

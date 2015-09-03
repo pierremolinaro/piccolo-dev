@@ -4460,8 +4460,6 @@ static void routine_before (C_Compiler * inCompiler
 
 static void routine_after (C_Compiler * /* inCompiler */
                            COMMA_UNUSED_LOCATION_ARGS) {
-  {
-  }
 }
 
 
