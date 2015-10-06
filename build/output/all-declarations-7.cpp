@@ -25,7 +25,7 @@ void routine_parseDeviceDefinition (const GALGAS_lstring constinArgument_inDevic
   if (kBoolTrue == test_0) {
     GALGAS_string var_definitionString = var_fw.reader_textFileContentsAtPath (var_deviceFullName, inCompiler COMMA_SOURCE_FILE ("piccolo_embedded_devices.galgas", 19)) ;
     outArgument_outPiccoloDeviceModel.drop () ;
-    cGrammar_piccoloDevice_5F_grammar::_performSourceStringParsing_ (inCompiler, var_definitionString, outArgument_outPiccoloDeviceModel  COMMA_SOURCE_FILE ("piccolo_embedded_devices.galgas", 20)) ;
+    cGrammar_piccoloDevice_5F_grammar::_performSourceStringParsing_ (inCompiler, var_definitionString, var_deviceFullName, outArgument_outPiccoloDeviceModel  COMMA_SOURCE_FILE ("piccolo_embedded_devices.galgas", 20)) ;
   }else if (kBoolFalse == test_0) {
     GALGAS_location location_1 (constinArgument_inDeviceName.reader_location (HERE)) ; // Implicit use of 'location' reader
     inCompiler->emitSemanticError (location_1, GALGAS_string ("The '").add_operation (constinArgument_inDeviceName.reader_string (SOURCE_FILE ("piccolo_embedded_devices.galgas", 24)), inCompiler COMMA_SOURCE_FILE ("piccolo_embedded_devices.galgas", 24)).add_operation (GALGAS_string ("' definition file is not defined"), inCompiler COMMA_SOURCE_FILE ("piccolo_embedded_devices.galgas", 24))  COMMA_SOURCE_FILE ("piccolo_embedded_devices.galgas", 22)) ;

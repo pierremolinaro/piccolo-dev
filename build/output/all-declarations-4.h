@@ -573,7 +573,8 @@ class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
                                                    COMMA_LOCATION_ARGS) ;
 
   public : static void _performSourceStringParsing_ (C_Compiler * inCompiler,
-                                                     GALGAS_string inSourceString
+                                                     GALGAS_string inSourceString,
+                                                     GALGAS_string inNameString
                                                      COMMA_LOCATION_ARGS) ;
 
 //----------- 'importBootloaderSpecification' label
@@ -604,6 +605,7 @@ class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
 
   public : static void _performSourceStringParsing_importBootloaderSpecification (C_Compiler * inCompiler,
                                                                                   GALGAS_string inSourceString,
+                                                                                  GALGAS_string inNameString,
                                                                                   GALGAS_piccoloDeviceModel & outArgument0,
                                                                                   GALGAS_string & outArgument1,
                                                                                   GALGAS_uint & outArgument2,
