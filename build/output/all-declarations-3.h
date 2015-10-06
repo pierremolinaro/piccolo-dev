@@ -6110,6 +6110,7 @@ class cGrammar_baseline_5F_include_5F_grammar : public cParser_baseline_5F_synta
 
   public : static void _performSourceStringParsing_ (C_Compiler * inCompiler,
                                                      GALGAS_string inSourceString,
+                                                     GALGAS_string inNameString,
                                                      GALGAS_baseline_5F_routineDefinitionList & ioArgument0,
                                                      GALGAS_lstringlist & ioArgument1,
                                                      GALGAS_ramDefinitionList & ioArgument2,

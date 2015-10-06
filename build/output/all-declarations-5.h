@@ -166,6 +166,7 @@ class cGrammar_piccoloDevice_5F_grammar : public cParser_piccoloDevice_5F_syntax
 
   public : static void _performSourceStringParsing_ (C_Compiler * inCompiler,
                                                      GALGAS_string inSourceString,
+                                                     GALGAS_string inNameString,
                                                      GALGAS_piccoloDeviceModel & outArgument0
                                                      COMMA_LOCATION_ARGS) ;
 

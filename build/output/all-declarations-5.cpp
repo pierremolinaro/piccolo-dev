@@ -624,12 +624,14 @@ void cGrammar_piccoloDevice_5F_grammar::_performSourceFileParsing_ (C_Compiler *
 
 void cGrammar_piccoloDevice_5F_grammar::_performSourceStringParsing_ (C_Compiler * inCompiler,
                                 GALGAS_string inSourceString,
+                                GALGAS_string inNameString,
                                 GALGAS_piccoloDeviceModel &  parameter_1
                                 COMMA_UNUSED_LOCATION_ARGS) {
-  if (inSourceString.isValid ()) {
+  if (inSourceString.isValid () && inNameString.isValid ()) {
     const C_String sourceString = inSourceString.stringValue () ;
+    const C_String nameString = inNameString.stringValue () ;
     C_Lexique_piccoloDevice_5F_lexique * scanner = NULL ;
-    macroMyNew (scanner, C_Lexique_piccoloDevice_5F_lexique (inCompiler, sourceString, "" COMMA_HERE)) ;
+    macroMyNew (scanner, C_Lexique_piccoloDevice_5F_lexique (inCompiler, sourceString, nameString COMMA_HERE)) ;
     const bool ok = scanner->performTopDownParsing (gProductions_piccoloDevice_grammar, gProductionNames_piccoloDevice_grammar, gProductionIndexes_piccoloDevice_grammar,
                                                     gFirstProductionIndexes_piccoloDevice_grammar, gDecision_piccoloDevice_grammar, gDecisionIndexes_piccoloDevice_grammar, 144) ;
     if (ok && ! executionModeIsSyntaxAnalysisOnly ()) {

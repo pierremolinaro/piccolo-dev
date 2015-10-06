@@ -13266,6 +13266,7 @@ class cGrammar_pic_31__38__5F_include_5F_grammar : public cParser_pic_31__38__5F
 
   public : static void _performSourceStringParsing_ (C_Compiler * inCompiler,
                                                      GALGAS_string inSourceString,
+                                                     GALGAS_string inNameString,
                                                      GALGAS_pic_31__38_InterruptDefinitionList & ioArgument0,
                                                      GALGAS_pic_31__38_RoutineDefinitionList & ioArgument1,
                                                      GALGAS_pic_31__38_MacroDefinitionList & ioArgument2,

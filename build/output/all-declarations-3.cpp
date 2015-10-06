@@ -19863,6 +19863,7 @@ void cGrammar_baseline_5F_include_5F_grammar::_performSourceFileParsing_ (C_Comp
 
 void cGrammar_baseline_5F_include_5F_grammar::_performSourceStringParsing_ (C_Compiler * inCompiler,
                                 GALGAS_string inSourceString,
+                                GALGAS_string inNameString,
                                 GALGAS_baseline_5F_routineDefinitionList &  parameter_1,
                                 GALGAS_lstringlist &  parameter_2,
                                 GALGAS_ramDefinitionList &  parameter_3,
@@ -19870,18 +19871,22 @@ void cGrammar_baseline_5F_include_5F_grammar::_performSourceStringParsing_ (C_Co
                                 GALGAS_configDefinitionList &  parameter_5,
                                 GALGAS_constantDefinitionList &  parameter_6
                                 COMMA_UNUSED_LOCATION_ARGS) {
-  C_Lexique_piccolo_5F_lexique * scanner = NULL ;
-  macroMyNew (scanner, C_Lexique_piccolo_5F_lexique (inCompiler, inSourceString.stringValue (), "" COMMA_HERE)) ;
-  if (scanner->sourceText () != NULL) {
-    const bool ok = scanner->performBottomUpParsing (gActionTable_baseline_include_grammar, gNonTerminalNames_baseline_include_grammar,
-                                                     gActionTableIndex_baseline_include_grammar, gSuccessorTable_baseline_include_grammar,
-                                                     gProductionsTable_baseline_include_grammar) ;
-    if (ok && ! executionModeIsSyntaxAnalysisOnly ()) {
-      cGrammar_baseline_5F_include_5F_grammar grammar ;
-      grammar.nt_section_5F_list_ (parameter_1, parameter_2, parameter_3, parameter_4, parameter_5, parameter_6, scanner) ;
+  if (inSourceString.isValid () && inNameString.isValid ()) {
+    const C_String sourceString = inSourceString.stringValue () ;
+    const C_String nameString = inNameString.stringValue () ;
+    C_Lexique_piccolo_5F_lexique * scanner = NULL ;
+    macroMyNew (scanner, C_Lexique_piccolo_5F_lexique (inCompiler, sourceString, nameString COMMA_HERE)) ;
+    if (scanner->sourceText () != NULL) {
+      const bool ok = scanner->performBottomUpParsing (gActionTable_baseline_include_grammar, gNonTerminalNames_baseline_include_grammar,
+                                                       gActionTableIndex_baseline_include_grammar, gSuccessorTable_baseline_include_grammar,
+                                                       gProductionsTable_baseline_include_grammar) ;
+      if (ok && ! executionModeIsSyntaxAnalysisOnly ()) {
+        cGrammar_baseline_5F_include_5F_grammar grammar ;
+        grammar.nt_section_5F_list_ (parameter_1, parameter_2, parameter_3, parameter_4, parameter_5, parameter_6, scanner) ;
       }
+    }
+    macroDetachSharedObject (scanner) ;
   }
-  macroDetachSharedObject (scanner) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
