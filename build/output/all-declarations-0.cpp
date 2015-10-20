@@ -7508,7 +7508,7 @@ GALGAS_bitSliceTable GALGAS_bitSliceTable::constructor_mapWithMapToOverride (con
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_bitSliceTable GALGAS_bitSliceTable::reader_overriddenMap (C_Compiler * inCompiler
+GALGAS_bitSliceTable GALGAS_bitSliceTable::getter_overriddenMap (C_Compiler * inCompiler
                                                                  COMMA_LOCATION_ARGS) const {
   GALGAS_bitSliceTable result ;
   getOverridenMap (result, inCompiler COMMA_THERE) ;
@@ -7576,7 +7576,7 @@ void GALGAS_bitSliceTable::method_searchKey (GALGAS_lstring inKey,
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_uint GALGAS_bitSliceTable::reader_mSliceIndexForKey (const GALGAS_string & inKey,
+GALGAS_uint GALGAS_bitSliceTable::getter_mSliceIndexForKey (const GALGAS_string & inKey,
                                                             C_Compiler * inCompiler
                                                             COMMA_LOCATION_ARGS) const {
   const cCollectionElement * attributes = searchForReadingAttribute (inKey, inCompiler COMMA_THERE) ;
@@ -7591,7 +7591,7 @@ GALGAS_uint GALGAS_bitSliceTable::reader_mSliceIndexForKey (const GALGAS_string 
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_uint GALGAS_bitSliceTable::reader_mSliceSizeForKey (const GALGAS_string & inKey,
+GALGAS_uint GALGAS_bitSliceTable::getter_mSliceSizeForKey (const GALGAS_string & inKey,
                                                            C_Compiler * inCompiler
                                                            COMMA_LOCATION_ARGS) const {
   const cCollectionElement * attributes = searchForReadingAttribute (inKey, inCompiler COMMA_THERE) ;
@@ -7980,7 +7980,7 @@ GALGAS_declarationInRamList GALGAS_declarationInRamList::add_operation (const GA
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_declarationInRamList GALGAS_declarationInRamList::reader_subListWithRange (const GALGAS_range & inRange,
+GALGAS_declarationInRamList GALGAS_declarationInRamList::getter_subListWithRange (const GALGAS_range & inRange,
                                                                                   C_Compiler * inCompiler
                                                                                   COMMA_LOCATION_ARGS) const {
   GALGAS_declarationInRamList result = GALGAS_declarationInRamList::constructor_emptyList (THERE) ;
@@ -7990,7 +7990,7 @@ GALGAS_declarationInRamList GALGAS_declarationInRamList::reader_subListWithRange
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_declarationInRamList GALGAS_declarationInRamList::reader_subListFromIndex (const GALGAS_uint & inIndex,
+GALGAS_declarationInRamList GALGAS_declarationInRamList::getter_subListFromIndex (const GALGAS_uint & inIndex,
                                                                                   C_Compiler * inCompiler
                                                                                   COMMA_LOCATION_ARGS) const {
   GALGAS_declarationInRamList result = GALGAS_declarationInRamList::constructor_emptyList (THERE) ;
@@ -8007,7 +8007,7 @@ void GALGAS_declarationInRamList::dotAssign_operation (const GALGAS_declarationI
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_declarationInRam GALGAS_declarationInRamList::reader_mDeclarationInRAMAtIndex (const GALGAS_uint & inIndex,
+GALGAS_declarationInRam GALGAS_declarationInRamList::getter_mDeclarationInRAMAtIndex (const GALGAS_uint & inIndex,
                                                                                       C_Compiler * inCompiler
                                                                                       COMMA_LOCATION_ARGS) const {
   capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
@@ -8372,7 +8372,7 @@ GALGAS_ramDefinitionList GALGAS_ramDefinitionList::add_operation (const GALGAS_r
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_ramDefinitionList GALGAS_ramDefinitionList::reader_subListWithRange (const GALGAS_range & inRange,
+GALGAS_ramDefinitionList GALGAS_ramDefinitionList::getter_subListWithRange (const GALGAS_range & inRange,
                                                                             C_Compiler * inCompiler
                                                                             COMMA_LOCATION_ARGS) const {
   GALGAS_ramDefinitionList result = GALGAS_ramDefinitionList::constructor_emptyList (THERE) ;
@@ -8382,7 +8382,7 @@ GALGAS_ramDefinitionList GALGAS_ramDefinitionList::reader_subListWithRange (cons
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_ramDefinitionList GALGAS_ramDefinitionList::reader_subListFromIndex (const GALGAS_uint & inIndex,
+GALGAS_ramDefinitionList GALGAS_ramDefinitionList::getter_subListFromIndex (const GALGAS_uint & inIndex,
                                                                             C_Compiler * inCompiler
                                                                             COMMA_LOCATION_ARGS) const {
   GALGAS_ramDefinitionList result = GALGAS_ramDefinitionList::constructor_emptyList (THERE) ;
@@ -8399,7 +8399,7 @@ void GALGAS_ramDefinitionList::dotAssign_operation (const GALGAS_ramDefinitionLi
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_lstring GALGAS_ramDefinitionList::reader_mBankNameAtIndex (const GALGAS_uint & inIndex,
+GALGAS_lstring GALGAS_ramDefinitionList::getter_mBankNameAtIndex (const GALGAS_uint & inIndex,
                                                                   C_Compiler * inCompiler
                                                                   COMMA_LOCATION_ARGS) const {
   capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
@@ -8414,7 +8414,7 @@ GALGAS_lstring GALGAS_ramDefinitionList::reader_mBankNameAtIndex (const GALGAS_u
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_declarationInRamList GALGAS_ramDefinitionList::reader_mDeclarationAtIndex (const GALGAS_uint & inIndex,
+GALGAS_declarationInRamList GALGAS_ramDefinitionList::getter_mDeclarationAtIndex (const GALGAS_uint & inIndex,
                                                                                   C_Compiler * inCompiler
                                                                                   COMMA_LOCATION_ARGS) const {
   capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
@@ -8787,7 +8787,7 @@ GALGAS_configSettingList GALGAS_configSettingList::add_operation (const GALGAS_c
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_configSettingList GALGAS_configSettingList::reader_subListWithRange (const GALGAS_range & inRange,
+GALGAS_configSettingList GALGAS_configSettingList::getter_subListWithRange (const GALGAS_range & inRange,
                                                                             C_Compiler * inCompiler
                                                                             COMMA_LOCATION_ARGS) const {
   GALGAS_configSettingList result = GALGAS_configSettingList::constructor_emptyList (THERE) ;
@@ -8797,7 +8797,7 @@ GALGAS_configSettingList GALGAS_configSettingList::reader_subListWithRange (cons
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_configSettingList GALGAS_configSettingList::reader_subListFromIndex (const GALGAS_uint & inIndex,
+GALGAS_configSettingList GALGAS_configSettingList::getter_subListFromIndex (const GALGAS_uint & inIndex,
                                                                             C_Compiler * inCompiler
                                                                             COMMA_LOCATION_ARGS) const {
   GALGAS_configSettingList result = GALGAS_configSettingList::constructor_emptyList (THERE) ;
@@ -8814,7 +8814,7 @@ void GALGAS_configSettingList::dotAssign_operation (const GALGAS_configSettingLi
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_lstring GALGAS_configSettingList::reader_mSettingNameAtIndex (const GALGAS_uint & inIndex,
+GALGAS_lstring GALGAS_configSettingList::getter_mSettingNameAtIndex (const GALGAS_uint & inIndex,
                                                                      C_Compiler * inCompiler
                                                                      COMMA_LOCATION_ARGS) const {
   capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
@@ -8829,7 +8829,7 @@ GALGAS_lstring GALGAS_configSettingList::reader_mSettingNameAtIndex (const GALGA
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_lstring GALGAS_configSettingList::reader_mSettingValueAtIndex (const GALGAS_uint & inIndex,
+GALGAS_lstring GALGAS_configSettingList::getter_mSettingValueAtIndex (const GALGAS_uint & inIndex,
                                                                       C_Compiler * inCompiler
                                                                       COMMA_LOCATION_ARGS) const {
   capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
@@ -9202,7 +9202,7 @@ GALGAS_configDefinitionList GALGAS_configDefinitionList::add_operation (const GA
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_configDefinitionList GALGAS_configDefinitionList::reader_subListWithRange (const GALGAS_range & inRange,
+GALGAS_configDefinitionList GALGAS_configDefinitionList::getter_subListWithRange (const GALGAS_range & inRange,
                                                                                   C_Compiler * inCompiler
                                                                                   COMMA_LOCATION_ARGS) const {
   GALGAS_configDefinitionList result = GALGAS_configDefinitionList::constructor_emptyList (THERE) ;
@@ -9212,7 +9212,7 @@ GALGAS_configDefinitionList GALGAS_configDefinitionList::reader_subListWithRange
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_configDefinitionList GALGAS_configDefinitionList::reader_subListFromIndex (const GALGAS_uint & inIndex,
+GALGAS_configDefinitionList GALGAS_configDefinitionList::getter_subListFromIndex (const GALGAS_uint & inIndex,
                                                                                   C_Compiler * inCompiler
                                                                                   COMMA_LOCATION_ARGS) const {
   GALGAS_configDefinitionList result = GALGAS_configDefinitionList::constructor_emptyList (THERE) ;
@@ -9229,7 +9229,7 @@ void GALGAS_configDefinitionList::dotAssign_operation (const GALGAS_configDefini
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_location GALGAS_configDefinitionList::reader_mDefinitionLocationAtIndex (const GALGAS_uint & inIndex,
+GALGAS_location GALGAS_configDefinitionList::getter_mDefinitionLocationAtIndex (const GALGAS_uint & inIndex,
                                                                                 C_Compiler * inCompiler
                                                                                 COMMA_LOCATION_ARGS) const {
   capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
@@ -9244,7 +9244,7 @@ GALGAS_location GALGAS_configDefinitionList::reader_mDefinitionLocationAtIndex (
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_configSettingList GALGAS_configDefinitionList::reader_mSettingListAtIndex (const GALGAS_uint & inIndex,
+GALGAS_configSettingList GALGAS_configDefinitionList::getter_mSettingListAtIndex (const GALGAS_uint & inIndex,
                                                                                   C_Compiler * inCompiler
                                                                                   COMMA_LOCATION_ARGS) const {
   capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
@@ -9617,7 +9617,7 @@ GALGAS_immediatExpressionList GALGAS_immediatExpressionList::add_operation (cons
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_immediatExpressionList GALGAS_immediatExpressionList::reader_subListWithRange (const GALGAS_range & inRange,
+GALGAS_immediatExpressionList GALGAS_immediatExpressionList::getter_subListWithRange (const GALGAS_range & inRange,
                                                                                       C_Compiler * inCompiler
                                                                                       COMMA_LOCATION_ARGS) const {
   GALGAS_immediatExpressionList result = GALGAS_immediatExpressionList::constructor_emptyList (THERE) ;
@@ -9627,7 +9627,7 @@ GALGAS_immediatExpressionList GALGAS_immediatExpressionList::reader_subListWithR
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_immediatExpressionList GALGAS_immediatExpressionList::reader_subListFromIndex (const GALGAS_uint & inIndex,
+GALGAS_immediatExpressionList GALGAS_immediatExpressionList::getter_subListFromIndex (const GALGAS_uint & inIndex,
                                                                                       C_Compiler * inCompiler
                                                                                       COMMA_LOCATION_ARGS) const {
   GALGAS_immediatExpressionList result = GALGAS_immediatExpressionList::constructor_emptyList (THERE) ;
@@ -9644,7 +9644,7 @@ void GALGAS_immediatExpressionList::dotAssign_operation (const GALGAS_immediatEx
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_immediatExpression GALGAS_immediatExpressionList::reader_mExpressionAtIndex (const GALGAS_uint & inIndex,
+GALGAS_immediatExpression GALGAS_immediatExpressionList::getter_mExpressionAtIndex (const GALGAS_uint & inIndex,
                                                                                     C_Compiler * inCompiler
                                                                                     COMMA_LOCATION_ARGS) const {
   capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
@@ -9659,7 +9659,7 @@ GALGAS_immediatExpression GALGAS_immediatExpressionList::reader_mExpressionAtInd
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_location GALGAS_immediatExpressionList::reader_mErrorLocationAtIndex (const GALGAS_uint & inIndex,
+GALGAS_location GALGAS_immediatExpressionList::getter_mErrorLocationAtIndex (const GALGAS_uint & inIndex,
                                                                              C_Compiler * inCompiler
                                                                              COMMA_LOCATION_ARGS) const {
   capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
@@ -10032,7 +10032,7 @@ GALGAS_immediatSliceExpressionList GALGAS_immediatSliceExpressionList::add_opera
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_immediatSliceExpressionList GALGAS_immediatSliceExpressionList::reader_subListWithRange (const GALGAS_range & inRange,
+GALGAS_immediatSliceExpressionList GALGAS_immediatSliceExpressionList::getter_subListWithRange (const GALGAS_range & inRange,
                                                                                                 C_Compiler * inCompiler
                                                                                                 COMMA_LOCATION_ARGS) const {
   GALGAS_immediatSliceExpressionList result = GALGAS_immediatSliceExpressionList::constructor_emptyList (THERE) ;
@@ -10042,7 +10042,7 @@ GALGAS_immediatSliceExpressionList GALGAS_immediatSliceExpressionList::reader_su
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_immediatSliceExpressionList GALGAS_immediatSliceExpressionList::reader_subListFromIndex (const GALGAS_uint & inIndex,
+GALGAS_immediatSliceExpressionList GALGAS_immediatSliceExpressionList::getter_subListFromIndex (const GALGAS_uint & inIndex,
                                                                                                 C_Compiler * inCompiler
                                                                                                 COMMA_LOCATION_ARGS) const {
   GALGAS_immediatSliceExpressionList result = GALGAS_immediatSliceExpressionList::constructor_emptyList (THERE) ;
@@ -10059,7 +10059,7 @@ void GALGAS_immediatSliceExpressionList::dotAssign_operation (const GALGAS_immed
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_lstring GALGAS_immediatSliceExpressionList::reader_mSliceNameAtIndex (const GALGAS_uint & inIndex,
+GALGAS_lstring GALGAS_immediatSliceExpressionList::getter_mSliceNameAtIndex (const GALGAS_uint & inIndex,
                                                                              C_Compiler * inCompiler
                                                                              COMMA_LOCATION_ARGS) const {
   capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
@@ -10074,7 +10074,7 @@ GALGAS_lstring GALGAS_immediatSliceExpressionList::reader_mSliceNameAtIndex (con
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_immediatExpression GALGAS_immediatSliceExpressionList::reader_mExpressionAtIndex (const GALGAS_uint & inIndex,
+GALGAS_immediatExpression GALGAS_immediatSliceExpressionList::getter_mExpressionAtIndex (const GALGAS_uint & inIndex,
                                                                                          C_Compiler * inCompiler
                                                                                          COMMA_LOCATION_ARGS) const {
   capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
@@ -10447,7 +10447,7 @@ GALGAS_constantDefinitionList GALGAS_constantDefinitionList::add_operation (cons
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_constantDefinitionList GALGAS_constantDefinitionList::reader_subListWithRange (const GALGAS_range & inRange,
+GALGAS_constantDefinitionList GALGAS_constantDefinitionList::getter_subListWithRange (const GALGAS_range & inRange,
                                                                                       C_Compiler * inCompiler
                                                                                       COMMA_LOCATION_ARGS) const {
   GALGAS_constantDefinitionList result = GALGAS_constantDefinitionList::constructor_emptyList (THERE) ;
@@ -10457,7 +10457,7 @@ GALGAS_constantDefinitionList GALGAS_constantDefinitionList::reader_subListWithR
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_constantDefinitionList GALGAS_constantDefinitionList::reader_subListFromIndex (const GALGAS_uint & inIndex,
+GALGAS_constantDefinitionList GALGAS_constantDefinitionList::getter_subListFromIndex (const GALGAS_uint & inIndex,
                                                                                       C_Compiler * inCompiler
                                                                                       COMMA_LOCATION_ARGS) const {
   GALGAS_constantDefinitionList result = GALGAS_constantDefinitionList::constructor_emptyList (THERE) ;
@@ -10474,7 +10474,7 @@ void GALGAS_constantDefinitionList::dotAssign_operation (const GALGAS_constantDe
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_lstring GALGAS_constantDefinitionList::reader_mConstantNameAtIndex (const GALGAS_uint & inIndex,
+GALGAS_lstring GALGAS_constantDefinitionList::getter_mConstantNameAtIndex (const GALGAS_uint & inIndex,
                                                                            C_Compiler * inCompiler
                                                                            COMMA_LOCATION_ARGS) const {
   capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
@@ -10489,7 +10489,7 @@ GALGAS_lstring GALGAS_constantDefinitionList::reader_mConstantNameAtIndex (const
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_immediatExpression GALGAS_constantDefinitionList::reader_mExpressionAtIndex (const GALGAS_uint & inIndex,
+GALGAS_immediatExpression GALGAS_constantDefinitionList::getter_mExpressionAtIndex (const GALGAS_uint & inIndex,
                                                                                     C_Compiler * inCompiler
                                                                                     COMMA_LOCATION_ARGS) const {
   capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
@@ -10673,7 +10673,7 @@ GALGAS_actualConfigurationMap GALGAS_actualConfigurationMap::constructor_mapWith
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_actualConfigurationMap GALGAS_actualConfigurationMap::reader_overriddenMap (C_Compiler * inCompiler
+GALGAS_actualConfigurationMap GALGAS_actualConfigurationMap::getter_overriddenMap (C_Compiler * inCompiler
                                                                                    COMMA_LOCATION_ARGS) const {
   GALGAS_actualConfigurationMap result ;
   getOverridenMap (result, inCompiler COMMA_THERE) ;
@@ -10741,7 +10741,7 @@ void GALGAS_actualConfigurationMap::method_searchKey (GALGAS_lstring inKey,
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_uint GALGAS_actualConfigurationMap::reader_mRegisterAddressForKey (const GALGAS_string & inKey,
+GALGAS_uint GALGAS_actualConfigurationMap::getter_mRegisterAddressForKey (const GALGAS_string & inKey,
                                                                           C_Compiler * inCompiler
                                                                           COMMA_LOCATION_ARGS) const {
   const cCollectionElement * attributes = searchForReadingAttribute (inKey, inCompiler COMMA_THERE) ;
@@ -10756,7 +10756,7 @@ GALGAS_uint GALGAS_actualConfigurationMap::reader_mRegisterAddressForKey (const 
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_uint GALGAS_actualConfigurationMap::reader_mRegisterValueForKey (const GALGAS_string & inKey,
+GALGAS_uint GALGAS_actualConfigurationMap::getter_mRegisterValueForKey (const GALGAS_string & inKey,
                                                                         C_Compiler * inCompiler
                                                                         COMMA_LOCATION_ARGS) const {
   const cCollectionElement * attributes = searchForReadingAttribute (inKey, inCompiler COMMA_THERE) ;
@@ -10964,7 +10964,7 @@ GALGAS_labelMap GALGAS_labelMap::constructor_mapWithMapToOverride (const GALGAS_
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_labelMap GALGAS_labelMap::reader_overriddenMap (C_Compiler * inCompiler
+GALGAS_labelMap GALGAS_labelMap::getter_overriddenMap (C_Compiler * inCompiler
                                                        COMMA_LOCATION_ARGS) const {
   GALGAS_labelMap result ;
   getOverridenMap (result, inCompiler COMMA_THERE) ;
@@ -11161,7 +11161,7 @@ GALGAS_constantMap GALGAS_constantMap::constructor_mapWithMapToOverride (const G
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_constantMap GALGAS_constantMap::reader_overriddenMap (C_Compiler * inCompiler
+GALGAS_constantMap GALGAS_constantMap::getter_overriddenMap (C_Compiler * inCompiler
                                                              COMMA_LOCATION_ARGS) const {
   GALGAS_constantMap result ;
   getOverridenMap (result, inCompiler COMMA_THERE) ;
@@ -11224,7 +11224,7 @@ void GALGAS_constantMap::method_searchKey (GALGAS_lstring inKey,
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_sint_36__34_ GALGAS_constantMap::reader_mValueForKey (const GALGAS_string & inKey,
+GALGAS_sint_36__34_ GALGAS_constantMap::getter_mValueForKey (const GALGAS_string & inKey,
                                                              C_Compiler * inCompiler
                                                              COMMA_LOCATION_ARGS) const {
   const cCollectionElement * attributes = searchForReadingAttribute (inKey, inCompiler COMMA_THERE) ;
@@ -11446,7 +11446,7 @@ GALGAS_routineMap GALGAS_routineMap::constructor_mapWithMapToOverride (const GAL
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_routineMap GALGAS_routineMap::reader_overriddenMap (C_Compiler * inCompiler
+GALGAS_routineMap GALGAS_routineMap::getter_overriddenMap (C_Compiler * inCompiler
                                                            COMMA_LOCATION_ARGS) const {
   GALGAS_routineMap result ;
   getOverridenMap (result, inCompiler COMMA_THERE) ;
@@ -11524,7 +11524,7 @@ void GALGAS_routineMap::method_searchKey (GALGAS_lstring inKey,
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_bool GALGAS_routineMap::reader_mIsNoReturnForKey (const GALGAS_string & inKey,
+GALGAS_bool GALGAS_routineMap::getter_mIsNoReturnForKey (const GALGAS_string & inKey,
                                                          C_Compiler * inCompiler
                                                          COMMA_LOCATION_ARGS) const {
   const cCollectionElement * attributes = searchForReadingAttribute (inKey, inCompiler COMMA_THERE) ;
@@ -11539,7 +11539,7 @@ GALGAS_bool GALGAS_routineMap::reader_mIsNoReturnForKey (const GALGAS_string & i
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_uint GALGAS_routineMap::reader_mRequiredBankForKey (const GALGAS_string & inKey,
+GALGAS_uint GALGAS_routineMap::getter_mRequiredBankForKey (const GALGAS_string & inKey,
                                                            C_Compiler * inCompiler
                                                            COMMA_LOCATION_ARGS) const {
   const cCollectionElement * attributes = searchForReadingAttribute (inKey, inCompiler COMMA_THERE) ;
@@ -11554,7 +11554,7 @@ GALGAS_uint GALGAS_routineMap::reader_mRequiredBankForKey (const GALGAS_string &
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_uint GALGAS_routineMap::reader_mReturnedBankForKey (const GALGAS_string & inKey,
+GALGAS_uint GALGAS_routineMap::getter_mReturnedBankForKey (const GALGAS_string & inKey,
                                                            C_Compiler * inCompiler
                                                            COMMA_LOCATION_ARGS) const {
   const cCollectionElement * attributes = searchForReadingAttribute (inKey, inCompiler COMMA_THERE) ;
@@ -11569,7 +11569,7 @@ GALGAS_uint GALGAS_routineMap::reader_mReturnedBankForKey (const GALGAS_string &
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_bool GALGAS_routineMap::reader_mPreservesBankForKey (const GALGAS_string & inKey,
+GALGAS_bool GALGAS_routineMap::getter_mPreservesBankForKey (const GALGAS_string & inKey,
                                                             C_Compiler * inCompiler
                                                             COMMA_LOCATION_ARGS) const {
   const cCollectionElement * attributes = searchForReadingAttribute (inKey, inCompiler COMMA_THERE) ;
@@ -11790,19 +11790,19 @@ static const char * gEnumNameArrayFor_routineKind [4] = {
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_bool GALGAS_routineKind::reader_isRegularRoutine (UNUSED_LOCATION_ARGS) const {
+GALGAS_bool GALGAS_routineKind::getter_isRegularRoutine (UNUSED_LOCATION_ARGS) const {
   return GALGAS_bool (kNotBuilt != mEnum, kEnum_regularRoutine == mEnum) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_bool GALGAS_routineKind::reader_isNoReturnRoutine (UNUSED_LOCATION_ARGS) const {
+GALGAS_bool GALGAS_routineKind::getter_isNoReturnRoutine (UNUSED_LOCATION_ARGS) const {
   return GALGAS_bool (kNotBuilt != mEnum, kEnum_noReturnRoutine == mEnum) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_bool GALGAS_routineKind::reader_isInterruptRoutine (UNUSED_LOCATION_ARGS) const {
+GALGAS_bool GALGAS_routineKind::getter_isInterruptRoutine (UNUSED_LOCATION_ARGS) const {
   return GALGAS_bool (kNotBuilt != mEnum, kEnum_interruptRoutine == mEnum) ;
 }
 
@@ -11963,7 +11963,7 @@ GALGAS_symbolTableForOptimizations GALGAS_symbolTableForOptimizations::construct
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_symbolTableForOptimizations GALGAS_symbolTableForOptimizations::reader_overriddenMap (C_Compiler * inCompiler
+GALGAS_symbolTableForOptimizations GALGAS_symbolTableForOptimizations::getter_overriddenMap (C_Compiler * inCompiler
                                                                                              COMMA_LOCATION_ARGS) const {
   GALGAS_symbolTableForOptimizations result ;
   getOverridenMap (result, inCompiler COMMA_THERE) ;
@@ -12049,7 +12049,7 @@ void GALGAS_symbolTableForOptimizations::modifier_removeKey (GALGAS_lstring inKe
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_uint GALGAS_symbolTableForOptimizations::reader_mDefinitionLineIndexForKey (const GALGAS_string & inKey,
+GALGAS_uint GALGAS_symbolTableForOptimizations::getter_mDefinitionLineIndexForKey (const GALGAS_string & inKey,
                                                                                    C_Compiler * inCompiler
                                                                                    COMMA_LOCATION_ARGS) const {
   const cCollectionElement * attributes = searchForReadingAttribute (inKey, inCompiler COMMA_THERE) ;
@@ -12064,7 +12064,7 @@ GALGAS_uint GALGAS_symbolTableForOptimizations::reader_mDefinitionLineIndexForKe
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_bool GALGAS_symbolTableForOptimizations::reader_mIsDeletableForKey (const GALGAS_string & inKey,
+GALGAS_bool GALGAS_symbolTableForOptimizations::getter_mIsDeletableForKey (const GALGAS_string & inKey,
                                                                            C_Compiler * inCompiler
                                                                            COMMA_LOCATION_ARGS) const {
   const cCollectionElement * attributes = searchForReadingAttribute (inKey, inCompiler COMMA_THERE) ;
@@ -12308,7 +12308,7 @@ GALGAS_configFieldMap GALGAS_configFieldMap::constructor_mapWithMapToOverride (c
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_configFieldMap GALGAS_configFieldMap::reader_overriddenMap (C_Compiler * inCompiler
+GALGAS_configFieldMap GALGAS_configFieldMap::getter_overriddenMap (C_Compiler * inCompiler
                                                                    COMMA_LOCATION_ARGS) const {
   GALGAS_configFieldMap result ;
   getOverridenMap (result, inCompiler COMMA_THERE) ;
@@ -12386,7 +12386,7 @@ void GALGAS_configFieldMap::method_searchKey (GALGAS_lstring inKey,
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_lstring GALGAS_configFieldMap::reader_mRegisterNameForKey (const GALGAS_string & inKey,
+GALGAS_lstring GALGAS_configFieldMap::getter_mRegisterNameForKey (const GALGAS_string & inKey,
                                                                   C_Compiler * inCompiler
                                                                   COMMA_LOCATION_ARGS) const {
   const cCollectionElement * attributes = searchForReadingAttribute (inKey, inCompiler COMMA_THERE) ;
@@ -12401,7 +12401,7 @@ GALGAS_lstring GALGAS_configFieldMap::reader_mRegisterNameForKey (const GALGAS_s
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_luint GALGAS_configFieldMap::reader_mMaskValueForKey (const GALGAS_string & inKey,
+GALGAS_luint GALGAS_configFieldMap::getter_mMaskValueForKey (const GALGAS_string & inKey,
                                                              C_Compiler * inCompiler
                                                              COMMA_LOCATION_ARGS) const {
   const cCollectionElement * attributes = searchForReadingAttribute (inKey, inCompiler COMMA_THERE) ;
@@ -12416,7 +12416,7 @@ GALGAS_luint GALGAS_configFieldMap::reader_mMaskValueForKey (const GALGAS_string
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_lstring GALGAS_configFieldMap::reader_mDescriptionForKey (const GALGAS_string & inKey,
+GALGAS_lstring GALGAS_configFieldMap::getter_mDescriptionForKey (const GALGAS_string & inKey,
                                                                  C_Compiler * inCompiler
                                                                  COMMA_LOCATION_ARGS) const {
   const cCollectionElement * attributes = searchForReadingAttribute (inKey, inCompiler COMMA_THERE) ;
@@ -12431,7 +12431,7 @@ GALGAS_lstring GALGAS_configFieldMap::reader_mDescriptionForKey (const GALGAS_st
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_fieldSettingMap GALGAS_configFieldMap::reader_mFieldSettingMapForKey (const GALGAS_string & inKey,
+GALGAS_fieldSettingMap GALGAS_configFieldMap::getter_mFieldSettingMapForKey (const GALGAS_string & inKey,
                                                                              C_Compiler * inCompiler
                                                                              COMMA_LOCATION_ARGS) const {
   const cCollectionElement * attributes = searchForReadingAttribute (inKey, inCompiler COMMA_THERE) ;
@@ -12701,7 +12701,7 @@ GALGAS_fieldSettingMap GALGAS_fieldSettingMap::constructor_mapWithMapToOverride 
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_fieldSettingMap GALGAS_fieldSettingMap::reader_overriddenMap (C_Compiler * inCompiler
+GALGAS_fieldSettingMap GALGAS_fieldSettingMap::getter_overriddenMap (C_Compiler * inCompiler
                                                                      COMMA_LOCATION_ARGS) const {
   GALGAS_fieldSettingMap result ;
   getOverridenMap (result, inCompiler COMMA_THERE) ;
@@ -12769,7 +12769,7 @@ void GALGAS_fieldSettingMap::method_searchKey (GALGAS_lstring inKey,
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_uint GALGAS_fieldSettingMap::reader_mValueForKey (const GALGAS_string & inKey,
+GALGAS_uint GALGAS_fieldSettingMap::getter_mValueForKey (const GALGAS_string & inKey,
                                                          C_Compiler * inCompiler
                                                          COMMA_LOCATION_ARGS) const {
   const cCollectionElement * attributes = searchForReadingAttribute (inKey, inCompiler COMMA_THERE) ;
@@ -12784,7 +12784,7 @@ GALGAS_uint GALGAS_fieldSettingMap::reader_mValueForKey (const GALGAS_string & i
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_uint GALGAS_fieldSettingMap::reader_mMaskForKey (const GALGAS_string & inKey,
+GALGAS_uint GALGAS_fieldSettingMap::getter_mMaskForKey (const GALGAS_string & inKey,
                                                         C_Compiler * inCompiler
                                                         COMMA_LOCATION_ARGS) const {
   const cCollectionElement * attributes = searchForReadingAttribute (inKey, inCompiler COMMA_THERE) ;
@@ -13060,85 +13060,85 @@ static const char * gEnumNameArrayFor_baseline_5F_instruction_5F_FD_5F_base_5F_c
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_bool GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::reader_isADDWF (UNUSED_LOCATION_ARGS) const {
+GALGAS_bool GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::getter_isADDWF (UNUSED_LOCATION_ARGS) const {
   return GALGAS_bool (kNotBuilt != mEnum, kEnum_ADDWF == mEnum) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_bool GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::reader_isANDWF (UNUSED_LOCATION_ARGS) const {
+GALGAS_bool GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::getter_isANDWF (UNUSED_LOCATION_ARGS) const {
   return GALGAS_bool (kNotBuilt != mEnum, kEnum_ANDWF == mEnum) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_bool GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::reader_isCOMF (UNUSED_LOCATION_ARGS) const {
+GALGAS_bool GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::getter_isCOMF (UNUSED_LOCATION_ARGS) const {
   return GALGAS_bool (kNotBuilt != mEnum, kEnum_COMF == mEnum) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_bool GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::reader_isDECF (UNUSED_LOCATION_ARGS) const {
+GALGAS_bool GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::getter_isDECF (UNUSED_LOCATION_ARGS) const {
   return GALGAS_bool (kNotBuilt != mEnum, kEnum_DECF == mEnum) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_bool GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::reader_isDECFSZ (UNUSED_LOCATION_ARGS) const {
+GALGAS_bool GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::getter_isDECFSZ (UNUSED_LOCATION_ARGS) const {
   return GALGAS_bool (kNotBuilt != mEnum, kEnum_DECFSZ == mEnum) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_bool GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::reader_isINCF (UNUSED_LOCATION_ARGS) const {
+GALGAS_bool GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::getter_isINCF (UNUSED_LOCATION_ARGS) const {
   return GALGAS_bool (kNotBuilt != mEnum, kEnum_INCF == mEnum) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_bool GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::reader_isINCFSZ (UNUSED_LOCATION_ARGS) const {
+GALGAS_bool GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::getter_isINCFSZ (UNUSED_LOCATION_ARGS) const {
   return GALGAS_bool (kNotBuilt != mEnum, kEnum_INCFSZ == mEnum) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_bool GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::reader_isIORWF (UNUSED_LOCATION_ARGS) const {
+GALGAS_bool GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::getter_isIORWF (UNUSED_LOCATION_ARGS) const {
   return GALGAS_bool (kNotBuilt != mEnum, kEnum_IORWF == mEnum) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_bool GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::reader_isMOVF (UNUSED_LOCATION_ARGS) const {
+GALGAS_bool GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::getter_isMOVF (UNUSED_LOCATION_ARGS) const {
   return GALGAS_bool (kNotBuilt != mEnum, kEnum_MOVF == mEnum) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_bool GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::reader_isRLF (UNUSED_LOCATION_ARGS) const {
+GALGAS_bool GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::getter_isRLF (UNUSED_LOCATION_ARGS) const {
   return GALGAS_bool (kNotBuilt != mEnum, kEnum_RLF == mEnum) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_bool GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::reader_isRRF (UNUSED_LOCATION_ARGS) const {
+GALGAS_bool GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::getter_isRRF (UNUSED_LOCATION_ARGS) const {
   return GALGAS_bool (kNotBuilt != mEnum, kEnum_RRF == mEnum) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_bool GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::reader_isSUBWF (UNUSED_LOCATION_ARGS) const {
+GALGAS_bool GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::getter_isSUBWF (UNUSED_LOCATION_ARGS) const {
   return GALGAS_bool (kNotBuilt != mEnum, kEnum_SUBWF == mEnum) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_bool GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::reader_isSWAPF (UNUSED_LOCATION_ARGS) const {
+GALGAS_bool GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::getter_isSWAPF (UNUSED_LOCATION_ARGS) const {
   return GALGAS_bool (kNotBuilt != mEnum, kEnum_SWAPF == mEnum) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_bool GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::reader_isXORWF (UNUSED_LOCATION_ARGS) const {
+GALGAS_bool GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::getter_isXORWF (UNUSED_LOCATION_ARGS) const {
   return GALGAS_bool (kNotBuilt != mEnum, kEnum_XORWF == mEnum) ;
 }
 
@@ -13241,13 +13241,13 @@ static const char * gEnumNameArrayFor_baseline_5F_F_5F_instruction_5F_base_5F_co
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_bool GALGAS_baseline_5F_F_5F_instruction_5F_base_5F_code::reader_isCLRF (UNUSED_LOCATION_ARGS) const {
+GALGAS_bool GALGAS_baseline_5F_F_5F_instruction_5F_base_5F_code::getter_isCLRF (UNUSED_LOCATION_ARGS) const {
   return GALGAS_bool (kNotBuilt != mEnum, kEnum_CLRF == mEnum) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_bool GALGAS_baseline_5F_F_5F_instruction_5F_base_5F_code::reader_isMOVWF (UNUSED_LOCATION_ARGS) const {
+GALGAS_bool GALGAS_baseline_5F_F_5F_instruction_5F_base_5F_code::getter_isMOVWF (UNUSED_LOCATION_ARGS) const {
   return GALGAS_bool (kNotBuilt != mEnum, kEnum_MOVWF == mEnum) ;
 }
 
@@ -13350,13 +13350,13 @@ static const char * gEnumNameArrayFor_baseline_5F_bit_5F_oriented_5F_op [3] = {
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_bool GALGAS_baseline_5F_bit_5F_oriented_5F_op::reader_isBCF (UNUSED_LOCATION_ARGS) const {
+GALGAS_bool GALGAS_baseline_5F_bit_5F_oriented_5F_op::getter_isBCF (UNUSED_LOCATION_ARGS) const {
   return GALGAS_bool (kNotBuilt != mEnum, kEnum_BCF == mEnum) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_bool GALGAS_baseline_5F_bit_5F_oriented_5F_op::reader_isBSF (UNUSED_LOCATION_ARGS) const {
+GALGAS_bool GALGAS_baseline_5F_bit_5F_oriented_5F_op::getter_isBSF (UNUSED_LOCATION_ARGS) const {
   return GALGAS_bool (kNotBuilt != mEnum, kEnum_BSF == mEnum) ;
 }
 
@@ -13486,31 +13486,31 @@ static const char * gEnumNameArrayFor_baseline_5F_literal_5F_instruction_5F_opco
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_bool GALGAS_baseline_5F_literal_5F_instruction_5F_opcode::reader_isANDLW (UNUSED_LOCATION_ARGS) const {
+GALGAS_bool GALGAS_baseline_5F_literal_5F_instruction_5F_opcode::getter_isANDLW (UNUSED_LOCATION_ARGS) const {
   return GALGAS_bool (kNotBuilt != mEnum, kEnum_ANDLW == mEnum) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_bool GALGAS_baseline_5F_literal_5F_instruction_5F_opcode::reader_isIORLW (UNUSED_LOCATION_ARGS) const {
+GALGAS_bool GALGAS_baseline_5F_literal_5F_instruction_5F_opcode::getter_isIORLW (UNUSED_LOCATION_ARGS) const {
   return GALGAS_bool (kNotBuilt != mEnum, kEnum_IORLW == mEnum) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_bool GALGAS_baseline_5F_literal_5F_instruction_5F_opcode::reader_isMOVLW (UNUSED_LOCATION_ARGS) const {
+GALGAS_bool GALGAS_baseline_5F_literal_5F_instruction_5F_opcode::getter_isMOVLW (UNUSED_LOCATION_ARGS) const {
   return GALGAS_bool (kNotBuilt != mEnum, kEnum_MOVLW == mEnum) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_bool GALGAS_baseline_5F_literal_5F_instruction_5F_opcode::reader_isRETLW (UNUSED_LOCATION_ARGS) const {
+GALGAS_bool GALGAS_baseline_5F_literal_5F_instruction_5F_opcode::getter_isRETLW (UNUSED_LOCATION_ARGS) const {
   return GALGAS_bool (kNotBuilt != mEnum, kEnum_RETLW == mEnum) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_bool GALGAS_baseline_5F_literal_5F_instruction_5F_opcode::reader_isXORLW (UNUSED_LOCATION_ARGS) const {
+GALGAS_bool GALGAS_baseline_5F_literal_5F_instruction_5F_opcode::getter_isXORLW (UNUSED_LOCATION_ARGS) const {
   return GALGAS_bool (kNotBuilt != mEnum, kEnum_XORLW == mEnum) ;
 }
 
@@ -13613,13 +13613,13 @@ static const char * gEnumNameArrayFor_baseline_5F_IF_5F_BitTest_5F_opcode [3] = 
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_bool GALGAS_baseline_5F_IF_5F_BitTest_5F_opcode::reader_isBTFSS (UNUSED_LOCATION_ARGS) const {
+GALGAS_bool GALGAS_baseline_5F_IF_5F_BitTest_5F_opcode::getter_isBTFSS (UNUSED_LOCATION_ARGS) const {
   return GALGAS_bool (kNotBuilt != mEnum, kEnum_BTFSS == mEnum) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_bool GALGAS_baseline_5F_IF_5F_BitTest_5F_opcode::reader_isBTFSC (UNUSED_LOCATION_ARGS) const {
+GALGAS_bool GALGAS_baseline_5F_IF_5F_BitTest_5F_opcode::getter_isBTFSC (UNUSED_LOCATION_ARGS) const {
   return GALGAS_bool (kNotBuilt != mEnum, kEnum_BTFSC == mEnum) ;
 }
 
@@ -13749,31 +13749,31 @@ static const char * gEnumNameArrayFor_baseline_5F_WO_5F_OPERAND_5F_group [6] = {
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_bool GALGAS_baseline_5F_WO_5F_OPERAND_5F_group::reader_isCLRW (UNUSED_LOCATION_ARGS) const {
+GALGAS_bool GALGAS_baseline_5F_WO_5F_OPERAND_5F_group::getter_isCLRW (UNUSED_LOCATION_ARGS) const {
   return GALGAS_bool (kNotBuilt != mEnum, kEnum_CLRW == mEnum) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_bool GALGAS_baseline_5F_WO_5F_OPERAND_5F_group::reader_isNOP (UNUSED_LOCATION_ARGS) const {
+GALGAS_bool GALGAS_baseline_5F_WO_5F_OPERAND_5F_group::getter_isNOP (UNUSED_LOCATION_ARGS) const {
   return GALGAS_bool (kNotBuilt != mEnum, kEnum_NOP == mEnum) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_bool GALGAS_baseline_5F_WO_5F_OPERAND_5F_group::reader_isCLRWDT (UNUSED_LOCATION_ARGS) const {
+GALGAS_bool GALGAS_baseline_5F_WO_5F_OPERAND_5F_group::getter_isCLRWDT (UNUSED_LOCATION_ARGS) const {
   return GALGAS_bool (kNotBuilt != mEnum, kEnum_CLRWDT == mEnum) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_bool GALGAS_baseline_5F_WO_5F_OPERAND_5F_group::reader_isOPTION_5F_ (UNUSED_LOCATION_ARGS) const {
+GALGAS_bool GALGAS_baseline_5F_WO_5F_OPERAND_5F_group::getter_isOPTION_5F_ (UNUSED_LOCATION_ARGS) const {
   return GALGAS_bool (kNotBuilt != mEnum, kEnum_OPTION_5F_ == mEnum) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_bool GALGAS_baseline_5F_WO_5F_OPERAND_5F_group::reader_isSLEEP (UNUSED_LOCATION_ARGS) const {
+GALGAS_bool GALGAS_baseline_5F_WO_5F_OPERAND_5F_group::getter_isSLEEP (UNUSED_LOCATION_ARGS) const {
   return GALGAS_bool (kNotBuilt != mEnum, kEnum_SLEEP == mEnum) ;
 }
 
@@ -14097,7 +14097,7 @@ GALGAS_baseline_5F_instructionList GALGAS_baseline_5F_instructionList::add_opera
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_baseline_5F_instructionList GALGAS_baseline_5F_instructionList::reader_subListWithRange (const GALGAS_range & inRange,
+GALGAS_baseline_5F_instructionList GALGAS_baseline_5F_instructionList::getter_subListWithRange (const GALGAS_range & inRange,
                                                                                                 C_Compiler * inCompiler
                                                                                                 COMMA_LOCATION_ARGS) const {
   GALGAS_baseline_5F_instructionList result = GALGAS_baseline_5F_instructionList::constructor_emptyList (THERE) ;
@@ -14107,7 +14107,7 @@ GALGAS_baseline_5F_instructionList GALGAS_baseline_5F_instructionList::reader_su
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_baseline_5F_instructionList GALGAS_baseline_5F_instructionList::reader_subListFromIndex (const GALGAS_uint & inIndex,
+GALGAS_baseline_5F_instructionList GALGAS_baseline_5F_instructionList::getter_subListFromIndex (const GALGAS_uint & inIndex,
                                                                                                 C_Compiler * inCompiler
                                                                                                 COMMA_LOCATION_ARGS) const {
   GALGAS_baseline_5F_instructionList result = GALGAS_baseline_5F_instructionList::constructor_emptyList (THERE) ;
@@ -14124,7 +14124,7 @@ void GALGAS_baseline_5F_instructionList::dotAssign_operation (const GALGAS_basel
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_baseline_5F_instruction GALGAS_baseline_5F_instructionList::reader_mInstructionAtIndex (const GALGAS_uint & inIndex,
+GALGAS_baseline_5F_instruction GALGAS_baseline_5F_instructionList::getter_mInstructionAtIndex (const GALGAS_uint & inIndex,
                                                                                                C_Compiler * inCompiler
                                                                                                COMMA_LOCATION_ARGS) const {
   capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
@@ -14515,7 +14515,7 @@ GALGAS_baseline_5F_partList GALGAS_baseline_5F_partList::add_operation (const GA
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_baseline_5F_partList GALGAS_baseline_5F_partList::reader_subListWithRange (const GALGAS_range & inRange,
+GALGAS_baseline_5F_partList GALGAS_baseline_5F_partList::getter_subListWithRange (const GALGAS_range & inRange,
                                                                                   C_Compiler * inCompiler
                                                                                   COMMA_LOCATION_ARGS) const {
   GALGAS_baseline_5F_partList result = GALGAS_baseline_5F_partList::constructor_emptyList (THERE) ;
@@ -14525,7 +14525,7 @@ GALGAS_baseline_5F_partList GALGAS_baseline_5F_partList::reader_subListWithRange
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_baseline_5F_partList GALGAS_baseline_5F_partList::reader_subListFromIndex (const GALGAS_uint & inIndex,
+GALGAS_baseline_5F_partList GALGAS_baseline_5F_partList::getter_subListFromIndex (const GALGAS_uint & inIndex,
                                                                                   C_Compiler * inCompiler
                                                                                   COMMA_LOCATION_ARGS) const {
   GALGAS_baseline_5F_partList result = GALGAS_baseline_5F_partList::constructor_emptyList (THERE) ;
@@ -14542,7 +14542,7 @@ void GALGAS_baseline_5F_partList::dotAssign_operation (const GALGAS_baseline_5F_
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_baseline_5F_conditionExpression GALGAS_baseline_5F_partList::reader_mConditionAtIndex (const GALGAS_uint & inIndex,
+GALGAS_baseline_5F_conditionExpression GALGAS_baseline_5F_partList::getter_mConditionAtIndex (const GALGAS_uint & inIndex,
                                                                                               C_Compiler * inCompiler
                                                                                               COMMA_LOCATION_ARGS) const {
   capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
@@ -14557,7 +14557,7 @@ GALGAS_baseline_5F_conditionExpression GALGAS_baseline_5F_partList::reader_mCond
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_baseline_5F_instructionList GALGAS_baseline_5F_partList::reader_mInstructionListAtIndex (const GALGAS_uint & inIndex,
+GALGAS_baseline_5F_instructionList GALGAS_baseline_5F_partList::getter_mInstructionListAtIndex (const GALGAS_uint & inIndex,
                                                                                                 C_Compiler * inCompiler
                                                                                                 COMMA_LOCATION_ARGS) const {
   capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
@@ -14572,7 +14572,7 @@ GALGAS_baseline_5F_instructionList GALGAS_baseline_5F_partList::reader_mInstruct
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_location GALGAS_baseline_5F_partList::reader_mEndOfPartLocationAtIndex (const GALGAS_uint & inIndex,
+GALGAS_location GALGAS_baseline_5F_partList::getter_mEndOfPartLocationAtIndex (const GALGAS_uint & inIndex,
                                                                                C_Compiler * inCompiler
                                                                                COMMA_LOCATION_ARGS) const {
   capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
@@ -15031,7 +15031,7 @@ GALGAS_baseline_5F_routineDefinitionList GALGAS_baseline_5F_routineDefinitionLis
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_baseline_5F_routineDefinitionList GALGAS_baseline_5F_routineDefinitionList::reader_subListWithRange (const GALGAS_range & inRange,
+GALGAS_baseline_5F_routineDefinitionList GALGAS_baseline_5F_routineDefinitionList::getter_subListWithRange (const GALGAS_range & inRange,
                                                                                                             C_Compiler * inCompiler
                                                                                                             COMMA_LOCATION_ARGS) const {
   GALGAS_baseline_5F_routineDefinitionList result = GALGAS_baseline_5F_routineDefinitionList::constructor_emptyList (THERE) ;
@@ -15041,7 +15041,7 @@ GALGAS_baseline_5F_routineDefinitionList GALGAS_baseline_5F_routineDefinitionLis
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_baseline_5F_routineDefinitionList GALGAS_baseline_5F_routineDefinitionList::reader_subListFromIndex (const GALGAS_uint & inIndex,
+GALGAS_baseline_5F_routineDefinitionList GALGAS_baseline_5F_routineDefinitionList::getter_subListFromIndex (const GALGAS_uint & inIndex,
                                                                                                             C_Compiler * inCompiler
                                                                                                             COMMA_LOCATION_ARGS) const {
   GALGAS_baseline_5F_routineDefinitionList result = GALGAS_baseline_5F_routineDefinitionList::constructor_emptyList (THERE) ;
@@ -15058,7 +15058,7 @@ void GALGAS_baseline_5F_routineDefinitionList::dotAssign_operation (const GALGAS
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_lstring GALGAS_baseline_5F_routineDefinitionList::reader_mRoutineNameAtIndex (const GALGAS_uint & inIndex,
+GALGAS_lstring GALGAS_baseline_5F_routineDefinitionList::getter_mRoutineNameAtIndex (const GALGAS_uint & inIndex,
                                                                                      C_Compiler * inCompiler
                                                                                      COMMA_LOCATION_ARGS) const {
   capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
@@ -15073,7 +15073,7 @@ GALGAS_lstring GALGAS_baseline_5F_routineDefinitionList::reader_mRoutineNameAtIn
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_luint GALGAS_baseline_5F_routineDefinitionList::reader_mPageAtIndex (const GALGAS_uint & inIndex,
+GALGAS_luint GALGAS_baseline_5F_routineDefinitionList::getter_mPageAtIndex (const GALGAS_uint & inIndex,
                                                                             C_Compiler * inCompiler
                                                                             COMMA_LOCATION_ARGS) const {
   capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
@@ -15088,7 +15088,7 @@ GALGAS_luint GALGAS_baseline_5F_routineDefinitionList::reader_mPageAtIndex (cons
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_bool GALGAS_baseline_5F_routineDefinitionList::reader_mIsNoReturnAtIndex (const GALGAS_uint & inIndex,
+GALGAS_bool GALGAS_baseline_5F_routineDefinitionList::getter_mIsNoReturnAtIndex (const GALGAS_uint & inIndex,
                                                                                  C_Compiler * inCompiler
                                                                                  COMMA_LOCATION_ARGS) const {
   capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
@@ -15103,7 +15103,7 @@ GALGAS_bool GALGAS_baseline_5F_routineDefinitionList::reader_mIsNoReturnAtIndex 
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_baseline_5F_instructionList GALGAS_baseline_5F_routineDefinitionList::reader_mInstructionListAtIndex (const GALGAS_uint & inIndex,
+GALGAS_baseline_5F_instructionList GALGAS_baseline_5F_routineDefinitionList::getter_mInstructionListAtIndex (const GALGAS_uint & inIndex,
                                                                                                              C_Compiler * inCompiler
                                                                                                              COMMA_LOCATION_ARGS) const {
   capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
@@ -15118,7 +15118,7 @@ GALGAS_baseline_5F_instructionList GALGAS_baseline_5F_routineDefinitionList::rea
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_location GALGAS_baseline_5F_routineDefinitionList::reader_mEndOfRoutineLocationAtIndex (const GALGAS_uint & inIndex,
+GALGAS_location GALGAS_baseline_5F_routineDefinitionList::getter_mEndOfRoutineLocationAtIndex (const GALGAS_uint & inIndex,
                                                                                                C_Compiler * inCompiler
                                                                                                COMMA_LOCATION_ARGS) const {
   capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
@@ -15648,7 +15648,7 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_structured_
       }else if (kBoolFalse == test_2) {
         temp_1 = GALGAS_string ("empty") ;
       }
-      GALGAS_location location_3 (var_endDoLabel.reader_location (HERE)) ; // Implicit use of 'location' reader
+      GALGAS_location location_3 (var_endDoLabel.getter_location (HERE)) ; // Implicit use of 'location' getter
       inCompiler->emitSemanticError (location_3, GALGAS_string ("'end' label does not match 'do' label, it should be ").add_operation (temp_1, inCompiler COMMA_SOURCE_FILE ("baseline_syntax.galgas", 162))  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 162)) ;
     }
   } break ;
@@ -15708,7 +15708,7 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_structured_
       }else if (kBoolFalse == test_6) {
         temp_5 = GALGAS_string ("empty") ;
       }
-      GALGAS_location location_7 (var_endForeverLabel.reader_location (HERE)) ; // Implicit use of 'location' reader
+      GALGAS_location location_7 (var_endForeverLabel.getter_location (HERE)) ; // Implicit use of 'location' getter
       inCompiler->emitSemanticError (location_7, GALGAS_string ("'end' label does not match 'fovever' label, it should be ").add_operation (temp_5, inCompiler COMMA_SOURCE_FILE ("baseline_syntax.galgas", 198))  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 198)) ;
     }
     outArgument_outInstruction = GALGAS_baseline_5F_instruction_5F_FOREVER::constructor_new (var_instructionLocation, var_instructionList, GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 204))  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 201)) ;
@@ -15774,10 +15774,10 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_structured_
     }
     GALGAS_lstring var_conditionString = inCompiler->synthetizedAttribute_tokenString () ;
     inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 250)) ;
-    GALGAS_string var_condition = var_conditionString.reader_string (SOURCE_FILE ("baseline_syntax.galgas", 251)).reader_uppercaseString (SOURCE_FILE ("baseline_syntax.galgas", 251)) ;
+    GALGAS_string var_condition = var_conditionString.getter_string (SOURCE_FILE ("baseline_syntax.galgas", 251)).getter_uppercaseString (SOURCE_FILE ("baseline_syntax.galgas", 251)) ;
     const enumGalgasBool test_8 = GALGAS_bool (kIsNotEqual, var_condition.objectCompare (GALGAS_string ("NZ"))).boolEnum () ;
     if (kBoolTrue == test_8) {
-      GALGAS_location location_9 (var_conditionString.reader_location (HERE)) ; // Implicit use of 'location' reader
+      GALGAS_location location_9 (var_conditionString.getter_location (HERE)) ; // Implicit use of 'location' getter
       inCompiler->emitSemanticError (location_9, GALGAS_string ("invalid '").add_operation (var_condition, inCompiler COMMA_SOURCE_FILE ("baseline_syntax.galgas", 253)).add_operation (GALGAS_string ("' condition; it should be 'nz'"), inCompiler COMMA_SOURCE_FILE ("baseline_syntax.galgas", 253))  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 253)) ;
     }
     inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__3A_) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 255)) ;
@@ -15825,7 +15825,7 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_structured_
       }else if (kBoolFalse == test_12) {
         temp_11 = GALGAS_string ("empty") ;
       }
-      GALGAS_location location_13 (var_endIfLabel.reader_location (HERE)) ; // Implicit use of 'location' reader
+      GALGAS_location location_13 (var_endIfLabel.getter_location (HERE)) ; // Implicit use of 'location' getter
       inCompiler->emitSemanticError (location_13, GALGAS_string ("'end' label does not match 'if' label, it should be ").add_operation (temp_11, inCompiler COMMA_SOURCE_FILE ("baseline_syntax.galgas", 283))  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 283)) ;
     }
   } break ;
@@ -15875,7 +15875,7 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_structured_
         }else if (kBoolFalse == test_17) {
           temp_16 = GALGAS_string ("empty") ;
         }
-        GALGAS_location location_18 (var_whileLabel.reader_location (HERE)) ; // Implicit use of 'location' reader
+        GALGAS_location location_18 (var_whileLabel.getter_location (HERE)) ; // Implicit use of 'location' getter
         inCompiler->emitSemanticError (location_18, GALGAS_string ("'while' label does not match 'do' label, it should be ").add_operation (temp_16, inCompiler COMMA_SOURCE_FILE ("baseline_syntax.galgas", 308))  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 308)) ;
       }
       GALGAS_baseline_5F_conditionExpression var_whileCondition ;
@@ -15913,7 +15913,7 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_structured_
       }else if (kBoolFalse == test_21) {
         temp_20 = GALGAS_string ("empty") ;
       }
-      GALGAS_location location_22 (var_endDoLabel.reader_location (HERE)) ; // Implicit use of 'location' reader
+      GALGAS_location location_22 (var_endDoLabel.getter_location (HERE)) ; // Implicit use of 'location' getter
       inCompiler->emitSemanticError (location_22, GALGAS_string ("'end' label does not match 'do' label, it should be ").add_operation (temp_20, inCompiler COMMA_SOURCE_FILE ("baseline_syntax.galgas", 324))  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 324)) ;
     }
     outArgument_outInstruction = GALGAS_baseline_5F_instruction_5F_do_5F_while::constructor_new (var_instructionLocation, var_repeatedInstructionList, var_endOfRepeatedInstructionList, var_whilePartList  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 327)) ;
@@ -16349,7 +16349,7 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_structured_
       }else if (kBoolFalse == test_2) {
         temp_1 = GALGAS_string ("empty") ;
       }
-      GALGAS_location location_3 (var_elsifIfLabel.reader_location (HERE)) ; // Implicit use of 'location' reader
+      GALGAS_location location_3 (var_elsifIfLabel.getter_location (HERE)) ; // Implicit use of 'location' getter
       inCompiler->emitSemanticError (location_3, GALGAS_string ("'elsif' label does not match 'if' label, it should be ").add_operation (temp_1, inCompiler COMMA_SOURCE_FILE ("baseline_syntax.galgas", 363))  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 363)) ;
     }
     GALGAS_baseline_5F_instruction var_elsifPartInstruction ;
@@ -16380,7 +16380,7 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_structured_
       }else if (kBoolFalse == test_6) {
         temp_5 = GALGAS_string ("empty") ;
       }
-      GALGAS_location location_7 (var_elseLabel.reader_location (HERE)) ; // Implicit use of 'location' reader
+      GALGAS_location location_7 (var_elseLabel.getter_location (HERE)) ; // Implicit use of 'location' getter
       inCompiler->emitSemanticError (location_7, GALGAS_string ("'else' label does not match 'if' label, it should be ").add_operation (temp_5, inCompiler COMMA_SOURCE_FILE ("baseline_syntax.galgas", 378))  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 378)) ;
     }
     nt_baseline_5F_instruction_5F_list_ (var_elseInstructionList, ioArgument_ioLabelMap, inCompiler) ;
@@ -16996,7 +16996,7 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_condition_5
     }
     GALGAS_lstring var_conditionString = inCompiler->synthetizedAttribute_tokenString () ;
     inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 568)) ;
-    GALGAS_string var_condition = var_conditionString.reader_string (SOURCE_FILE ("baseline_syntax.galgas", 569)).reader_uppercaseString (SOURCE_FILE ("baseline_syntax.galgas", 569)) ;
+    GALGAS_string var_condition = var_conditionString.getter_string (SOURCE_FILE ("baseline_syntax.galgas", 569)).getter_uppercaseString (SOURCE_FILE ("baseline_syntax.galgas", 569)) ;
     GALGAS_bool var_branchIfZero ;
     const enumGalgasBool test_0 = GALGAS_bool (kIsEqual, var_condition.objectCompare (GALGAS_string ("Z"))).boolEnum () ;
     if (kBoolTrue == test_0) {
@@ -17006,8 +17006,8 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_condition_5
       if (kBoolTrue == test_1) {
         var_branchIfZero = GALGAS_bool (false) ;
       }else if (kBoolFalse == test_1) {
-        GALGAS_location location_2 (var_conditionString.reader_location (HERE)) ; // Implicit use of 'location' reader
-        inCompiler->emitSemanticError (location_2, GALGAS_string ("invalid '").add_operation (var_conditionString.reader_string (SOURCE_FILE ("baseline_syntax.galgas", 576)), inCompiler COMMA_SOURCE_FILE ("baseline_syntax.galgas", 576)).add_operation (GALGAS_string ("' condition; valid ones are: 'z' and 'nz'"), inCompiler COMMA_SOURCE_FILE ("baseline_syntax.galgas", 576))  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 576)) ;
+        GALGAS_location location_2 (var_conditionString.getter_location (HERE)) ; // Implicit use of 'location' getter
+        inCompiler->emitSemanticError (location_2, GALGAS_string ("invalid '").add_operation (var_conditionString.getter_string (SOURCE_FILE ("baseline_syntax.galgas", 576)), inCompiler COMMA_SOURCE_FILE ("baseline_syntax.galgas", 576)).add_operation (GALGAS_string ("' condition; valid ones are: 'z' and 'nz'"), inCompiler COMMA_SOURCE_FILE ("baseline_syntax.galgas", 576))  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 576)) ;
         var_branchIfZero.drop () ; // Release error dropped variable
       }
     }
@@ -17374,7 +17374,7 @@ void cParser_communs::rule_communs_declaration_5F_in_5F_ram_i1_ (GALGAS_declarat
           GALGAS_uint var_sliceBase = GALGAS_uint ((uint32_t) 0U) ;
           const enumGalgasBool test_2 = GALGAS_bool (kIsSupOrEqual, var_sliceIndex.objectCompare (GALGAS_sint ((int32_t) 0L))).boolEnum () ;
           if (kBoolTrue == test_2) {
-            var_sliceBase = var_sliceIndex.reader_uint (inCompiler COMMA_SOURCE_FILE ("communs.galgas", 57)) ;
+            var_sliceBase = var_sliceIndex.getter_uint (inCompiler COMMA_SOURCE_FILE ("communs.galgas", 57)) ;
           }
           GALGAS_lstring var_sliceName = inCompiler->synthetizedAttribute_tokenString () ;
           inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("communs.galgas", 59)) ;
@@ -17382,33 +17382,33 @@ void cParser_communs::rule_communs_declaration_5F_in_5F_ram_i1_ (GALGAS_declarat
           case 1: {
             const enumGalgasBool test_3 = GALGAS_bool (kIsNotEqual, var_sliceWidth.objectCompare (GALGAS_uint ((uint32_t) 0U))).operator_and (GALGAS_bool (kIsNotEqual, var_sliceWidth.objectCompare (GALGAS_uint ((uint32_t) 1U))) COMMA_SOURCE_FILE ("communs.galgas", 61)).boolEnum () ;
             if (kBoolTrue == test_3) {
-              GALGAS_location location_4 (var_sliceName.reader_location (HERE)) ; // Implicit use of 'location' reader
-              inCompiler->emitSemanticError (location_4, GALGAS_string ("a slice of 1 bit is expected for '").add_operation (var_sliceName.reader_string (SOURCE_FILE ("communs.galgas", 62)), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 62)).add_operation (GALGAS_string ("'"), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 62))  COMMA_SOURCE_FILE ("communs.galgas", 62)) ;
+              GALGAS_location location_4 (var_sliceName.getter_location (HERE)) ; // Implicit use of 'location' getter
+              inCompiler->emitSemanticError (location_4, GALGAS_string ("a slice of 1 bit is expected for '").add_operation (var_sliceName.getter_string (SOURCE_FILE ("communs.galgas", 62)), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 62)).add_operation (GALGAS_string ("'"), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 62))  COMMA_SOURCE_FILE ("communs.galgas", 62)) ;
             }
             var_sliceWidth = GALGAS_uint ((uint32_t) 1U) ;
-            var_bitDefinitionString.dotAssign_operation (var_sliceName.reader_string (SOURCE_FILE ("communs.galgas", 65))  COMMA_SOURCE_FILE ("communs.galgas", 65)) ;
+            var_bitDefinitionString.dotAssign_operation (var_sliceName.getter_string (SOURCE_FILE ("communs.galgas", 65))  COMMA_SOURCE_FILE ("communs.galgas", 65)) ;
           } break ;
           case 2: {
             inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__5B_) COMMA_SOURCE_FILE ("communs.galgas", 67)) ;
             GALGAS_luint var_sliceSize = inCompiler->synthetizedAttribute_uint_33__32_value () ;
             inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_integer) COMMA_SOURCE_FILE ("communs.galgas", 68)) ;
-            const enumGalgasBool test_5 = GALGAS_bool (kIsNotEqual, var_sliceWidth.objectCompare (GALGAS_uint ((uint32_t) 0U))).operator_and (GALGAS_bool (kIsNotEqual, var_sliceWidth.objectCompare (var_sliceSize.reader_uint (SOURCE_FILE ("communs.galgas", 69)))) COMMA_SOURCE_FILE ("communs.galgas", 69)).boolEnum () ;
+            const enumGalgasBool test_5 = GALGAS_bool (kIsNotEqual, var_sliceWidth.objectCompare (GALGAS_uint ((uint32_t) 0U))).operator_and (GALGAS_bool (kIsNotEqual, var_sliceWidth.objectCompare (var_sliceSize.getter_uint (SOURCE_FILE ("communs.galgas", 69)))) COMMA_SOURCE_FILE ("communs.galgas", 69)).boolEnum () ;
             if (kBoolTrue == test_5) {
-              GALGAS_location location_6 (var_sliceName.reader_location (HERE)) ; // Implicit use of 'location' reader
-              inCompiler->emitSemanticError (location_6, GALGAS_string ("a slice of ").add_operation (var_sliceWidth.reader_string (SOURCE_FILE ("communs.galgas", 70)), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 70)).add_operation (GALGAS_string (" bits is expected for '"), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 70)).add_operation (var_sliceName.reader_string (SOURCE_FILE ("communs.galgas", 70)), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 70)).add_operation (GALGAS_string ("'"), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 70))  COMMA_SOURCE_FILE ("communs.galgas", 70)) ;
+              GALGAS_location location_6 (var_sliceName.getter_location (HERE)) ; // Implicit use of 'location' getter
+              inCompiler->emitSemanticError (location_6, GALGAS_string ("a slice of ").add_operation (var_sliceWidth.getter_string (SOURCE_FILE ("communs.galgas", 70)), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 70)).add_operation (GALGAS_string (" bits is expected for '"), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 70)).add_operation (var_sliceName.getter_string (SOURCE_FILE ("communs.galgas", 70)), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 70)).add_operation (GALGAS_string ("'"), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 70))  COMMA_SOURCE_FILE ("communs.galgas", 70)) ;
             }
-            var_sliceWidth = var_sliceSize.reader_uint (SOURCE_FILE ("communs.galgas", 72)) ;
-            var_sliceBase = var_sliceBase.add_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 73)).substract_operation (var_sliceSize.reader_uint (SOURCE_FILE ("communs.galgas", 73)), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 73)) ;
-            var_bitDefinitionString.dotAssign_operation (var_sliceName.reader_string (SOURCE_FILE ("communs.galgas", 74)).add_operation (GALGAS_string ("["), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 74)).add_operation (var_sliceSize.reader_uint (SOURCE_FILE ("communs.galgas", 74)).reader_string (SOURCE_FILE ("communs.galgas", 74)), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 74)).add_operation (GALGAS_string ("]"), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 74))  COMMA_SOURCE_FILE ("communs.galgas", 74)) ;
+            var_sliceWidth = var_sliceSize.getter_uint (SOURCE_FILE ("communs.galgas", 72)) ;
+            var_sliceBase = var_sliceBase.add_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 73)).substract_operation (var_sliceSize.getter_uint (SOURCE_FILE ("communs.galgas", 73)), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 73)) ;
+            var_bitDefinitionString.dotAssign_operation (var_sliceName.getter_string (SOURCE_FILE ("communs.galgas", 74)).add_operation (GALGAS_string ("["), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 74)).add_operation (var_sliceSize.getter_uint (SOURCE_FILE ("communs.galgas", 74)).getter_string (SOURCE_FILE ("communs.galgas", 74)), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 74)).add_operation (GALGAS_string ("]"), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 74))  COMMA_SOURCE_FILE ("communs.galgas", 74)) ;
             inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__5D_) COMMA_SOURCE_FILE ("communs.galgas", 75)) ;
           } break ;
           default:
             break ;
           }
           GALGAS_uint var_base = GALGAS_uint ((uint32_t) 0U) ;
-          const enumGalgasBool test_7 = GALGAS_bool (kIsSupOrEqual, var_sliceIndex.objectCompare (var_sliceWidth.reader_sint (inCompiler COMMA_SOURCE_FILE ("communs.galgas", 78)))).boolEnum () ;
+          const enumGalgasBool test_7 = GALGAS_bool (kIsSupOrEqual, var_sliceIndex.objectCompare (var_sliceWidth.getter_sint (inCompiler COMMA_SOURCE_FILE ("communs.galgas", 78)))).boolEnum () ;
           if (kBoolTrue == test_7) {
-            var_base = var_sliceIndex.reader_uint (inCompiler COMMA_SOURCE_FILE ("communs.galgas", 79)).substract_operation (var_sliceWidth, inCompiler COMMA_SOURCE_FILE ("communs.galgas", 79)) ;
+            var_base = var_sliceIndex.getter_uint (inCompiler COMMA_SOURCE_FILE ("communs.galgas", 79)).substract_operation (var_sliceWidth, inCompiler COMMA_SOURCE_FILE ("communs.galgas", 79)) ;
           }
           {
           var_bitSliceTable.modifier_insertKey (var_sliceName, var_base, var_sliceWidth, inCompiler COMMA_SOURCE_FILE ("communs.galgas", 81)) ;
@@ -17423,7 +17423,7 @@ void cParser_communs::rule_communs_declaration_5F_in_5F_ram_i1_ (GALGAS_declarat
             break ;
           }
         }
-        var_sliceIndex = var_sliceIndex.substract_operation (var_sliceWidth.reader_sint (inCompiler COMMA_SOURCE_FILE ("communs.galgas", 86)), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 86)) ;
+        var_sliceIndex = var_sliceIndex.substract_operation (var_sliceWidth.getter_sint (inCompiler COMMA_SOURCE_FILE ("communs.galgas", 86)), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 86)) ;
       } break ;
       case 2: {
         inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__2D_) COMMA_SOURCE_FILE ("communs.galgas", 88)) ;
@@ -17445,7 +17445,7 @@ void cParser_communs::rule_communs_declaration_5F_in_5F_ram_i1_ (GALGAS_declarat
           }
           enumerator_2707.gotoNextObject () ;
         }
-        var_sliceIndex = var_sliceIndex.substract_operation (var_bitCount.mAttribute_uint.reader_sint (inCompiler COMMA_SOURCE_FILE ("communs.galgas", 100)), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 100)) ;
+        var_sliceIndex = var_sliceIndex.substract_operation (var_bitCount.mAttribute_uint.getter_sint (inCompiler COMMA_SOURCE_FILE ("communs.galgas", 100)), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 100)) ;
       } break ;
       default:
         break ;
@@ -17462,8 +17462,8 @@ void cParser_communs::rule_communs_declaration_5F_in_5F_ram_i1_ (GALGAS_declarat
     }
     const enumGalgasBool test_9 = GALGAS_bool (kIsNotEqual, var_sliceIndex.objectCompare (GALGAS_sint ((int32_t) 0L))).boolEnum () ;
     if (kBoolTrue == test_9) {
-      GALGAS_location location_10 (var_name.reader_location (HERE)) ; // Implicit use of 'location' reader
-      inCompiler->emitSemanticError (location_10, GALGAS_string ("Incorrect bit definition for register '").add_operation (var_name.reader_string (SOURCE_FILE ("communs.galgas", 107)), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 107)).add_operation (GALGAS_string ("': "), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 107)).add_operation (GALGAS_sint ((int32_t) 8L).substract_operation (var_sliceIndex, inCompiler COMMA_SOURCE_FILE ("communs.galgas", 107)).reader_string (SOURCE_FILE ("communs.galgas", 107)), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 107)).add_operation (GALGAS_string (" bits (s) are defined, instead of 8"), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 107))  COMMA_SOURCE_FILE ("communs.galgas", 107)) ;
+      GALGAS_location location_10 (var_name.getter_location (HERE)) ; // Implicit use of 'location' getter
+      inCompiler->emitSemanticError (location_10, GALGAS_string ("Incorrect bit definition for register '").add_operation (var_name.getter_string (SOURCE_FILE ("communs.galgas", 107)), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 107)).add_operation (GALGAS_string ("': "), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 107)).add_operation (GALGAS_sint ((int32_t) 8L).substract_operation (var_sliceIndex, inCompiler COMMA_SOURCE_FILE ("communs.galgas", 107)).getter_string (SOURCE_FILE ("communs.galgas", 107)), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 107)).add_operation (GALGAS_string (" bits (s) are defined, instead of 8"), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 107))  COMMA_SOURCE_FILE ("communs.galgas", 107)) ;
     }
     inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__3E_) COMMA_SOURCE_FILE ("communs.galgas", 109)) ;
     var_bitDefinitionString.dotAssign_operation (GALGAS_string (">")  COMMA_SOURCE_FILE ("communs.galgas", 110)) ;
@@ -18196,7 +18196,7 @@ void cParser_communs::rule_communs_immediate_5F_primary_i9_ (GALGAS_immediatExpr
   case 4: {
     GALGAS_lchar var_literalCharValue = inCompiler->synthetizedAttribute_charValue () ;
     inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_literal_5F_char) COMMA_SOURCE_FILE ("communs.galgas", 280)) ;
-    outArgument_outExpression = GALGAS_immediatInteger::constructor_new (GALGAS_luint::constructor_new (var_literalCharValue.reader_char (SOURCE_FILE ("communs.galgas", 281)).reader_uint (SOURCE_FILE ("communs.galgas", 281)), var_literalCharValue.reader_location (SOURCE_FILE ("communs.galgas", 281))  COMMA_SOURCE_FILE ("communs.galgas", 281))  COMMA_SOURCE_FILE ("communs.galgas", 281)) ;
+    outArgument_outExpression = GALGAS_immediatInteger::constructor_new (GALGAS_luint::constructor_new (var_literalCharValue.getter_char (SOURCE_FILE ("communs.galgas", 281)).getter_uint (SOURCE_FILE ("communs.galgas", 281)), var_literalCharValue.getter_location (SOURCE_FILE ("communs.galgas", 281))  COMMA_SOURCE_FILE ("communs.galgas", 281))  COMMA_SOURCE_FILE ("communs.galgas", 281)) ;
   } break ;
   case 5: {
     GALGAS_lstring var_registerName = inCompiler->synthetizedAttribute_tokenString () ;

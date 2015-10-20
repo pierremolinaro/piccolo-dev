@@ -42,63 +42,63 @@ void callCategoryMethod_getBitNumber (const class cPtr_bitNumberExpression * inO
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                     Category Getter '@baseline_instruction_FD_base_code mnemonic' (as function)                     *
+//                     Category getter '@baseline_instruction_FD_base_code mnemonic' (as function)                     *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-class GALGAS_string categoryReader_mnemonic (const class GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code & inObject,
-                                             class C_Compiler * inCompiler
-                                             COMMA_LOCATION_ARGS) ;
+class GALGAS_string extensionGetter_mnemonic (const class GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code & inObject,
+                                              class C_Compiler * inCompiler
+                                              COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                     Category Getter '@baseline_F_instruction_base_code mnemonic' (as function)                      *
+//                     Category getter '@baseline_F_instruction_base_code mnemonic' (as function)                      *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-class GALGAS_string categoryReader_mnemonic (const class GALGAS_baseline_5F_F_5F_instruction_5F_base_5F_code & inObject,
-                                             class C_Compiler * inCompiler
-                                             COMMA_LOCATION_ARGS) ;
+class GALGAS_string extensionGetter_mnemonic (const class GALGAS_baseline_5F_F_5F_instruction_5F_base_5F_code & inObject,
+                                              class C_Compiler * inCompiler
+                                              COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                         Category Getter '@baseline_bit_oriented_op mnemonic' (as function)                          *
+//                         Category getter '@baseline_bit_oriented_op mnemonic' (as function)                          *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-class GALGAS_string categoryReader_mnemonic (const class GALGAS_baseline_5F_bit_5F_oriented_5F_op & inObject,
-                                             class C_Compiler * inCompiler
-                                             COMMA_LOCATION_ARGS) ;
+class GALGAS_string extensionGetter_mnemonic (const class GALGAS_baseline_5F_bit_5F_oriented_5F_op & inObject,
+                                              class C_Compiler * inCompiler
+                                              COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                    Category Getter '@baseline_literal_instruction_opcode mnemonic' (as function)                    *
+//                    Category getter '@baseline_literal_instruction_opcode mnemonic' (as function)                    *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-class GALGAS_string categoryReader_mnemonic (const class GALGAS_baseline_5F_literal_5F_instruction_5F_opcode & inObject,
-                                             class C_Compiler * inCompiler
-                                             COMMA_LOCATION_ARGS) ;
+class GALGAS_string extensionGetter_mnemonic (const class GALGAS_baseline_5F_literal_5F_instruction_5F_opcode & inObject,
+                                              class C_Compiler * inCompiler
+                                              COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                        Category Getter '@baseline_IF_BitTest_opcode mnemonic' (as function)                         *
+//                        Category getter '@baseline_IF_BitTest_opcode mnemonic' (as function)                         *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-class GALGAS_string categoryReader_mnemonic (const class GALGAS_baseline_5F_IF_5F_BitTest_5F_opcode & inObject,
-                                             class C_Compiler * inCompiler
-                                             COMMA_LOCATION_ARGS) ;
+class GALGAS_string extensionGetter_mnemonic (const class GALGAS_baseline_5F_IF_5F_BitTest_5F_opcode & inObject,
+                                              class C_Compiler * inCompiler
+                                              COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                         Category Getter '@baseline_WO_OPERAND_group mnemonic' (as function)                         *
+//                         Category getter '@baseline_WO_OPERAND_group mnemonic' (as function)                         *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-class GALGAS_string categoryReader_mnemonic (const class GALGAS_baseline_5F_WO_5F_OPERAND_5F_group & inObject,
-                                             class C_Compiler * inCompiler
-                                             COMMA_LOCATION_ARGS) ;
+class GALGAS_string extensionGetter_mnemonic (const class GALGAS_baseline_5F_WO_5F_OPERAND_5F_group & inObject,
+                                              class C_Compiler * inCompiler
+                                              COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -141,64 +141,64 @@ void callCategoryMethod_build_5F_intermediate_5F_condition_5F_instructions (cons
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                          Abstract category reader '@baseline_assembly_instruction length'                           *
+//                          Abstract category getter '@baseline_assembly_instruction length'                           *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-typedef class GALGAS_uint (*categoryReaderSignature_baseline_5F_assembly_5F_instruction_length) (const class cPtr_baseline_5F_assembly_5F_instruction * inObject,
+typedef class GALGAS_uint (*categoryGetterSignature_baseline_5F_assembly_5F_instruction_length) (const class cPtr_baseline_5F_assembly_5F_instruction * inObject,
                                                                                                  class C_Compiler * inCompiler
                                                                                                  COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void enterCategoryReader_length (const int32_t inClassIndex,
-                                 categoryReaderSignature_baseline_5F_assembly_5F_instruction_length inMethod) ;
+void enterCategoryGetter_length (const int32_t inClassIndex,
+                                 categoryGetterSignature_baseline_5F_assembly_5F_instruction_length inMethod) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-class GALGAS_uint callCategoryReader_length (const class cPtr_baseline_5F_assembly_5F_instruction * inObject,
+class GALGAS_uint callCategoryGetter_length (const class cPtr_baseline_5F_assembly_5F_instruction * inObject,
                                              C_Compiler * inCompiler
                                              COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                     Category Getter '@midrange_instruction_FD_base_code mnemonic' (as function)                     *
+//                     Category getter '@midrange_instruction_FD_base_code mnemonic' (as function)                     *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-class GALGAS_string categoryReader_mnemonic (const class GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code & inObject,
-                                             class C_Compiler * inCompiler
-                                             COMMA_LOCATION_ARGS) ;
+class GALGAS_string extensionGetter_mnemonic (const class GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code & inObject,
+                                              class C_Compiler * inCompiler
+                                              COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                     Category Getter '@midrange_F_instruction_base_code mnemonic' (as function)                      *
+//                     Category getter '@midrange_F_instruction_base_code mnemonic' (as function)                      *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-class GALGAS_string categoryReader_mnemonic (const class GALGAS_midrange_5F_F_5F_instruction_5F_base_5F_code & inObject,
-                                             class C_Compiler * inCompiler
-                                             COMMA_LOCATION_ARGS) ;
+class GALGAS_string extensionGetter_mnemonic (const class GALGAS_midrange_5F_F_5F_instruction_5F_base_5F_code & inObject,
+                                              class C_Compiler * inCompiler
+                                              COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                         Category Getter '@midrange_bit_oriented_op mnemonic' (as function)                          *
+//                         Category getter '@midrange_bit_oriented_op mnemonic' (as function)                          *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-class GALGAS_string categoryReader_mnemonic (const class GALGAS_midrange_5F_bit_5F_oriented_5F_op & inObject,
-                                             class C_Compiler * inCompiler
-                                             COMMA_LOCATION_ARGS) ;
+class GALGAS_string extensionGetter_mnemonic (const class GALGAS_midrange_5F_bit_5F_oriented_5F_op & inObject,
+                                              class C_Compiler * inCompiler
+                                              COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                    Category Getter '@midrange_literal_instruction_opcode mnemonic' (as function)                    *
+//                    Category getter '@midrange_literal_instruction_opcode mnemonic' (as function)                    *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-class GALGAS_string categoryReader_mnemonic (const class GALGAS_midrange_5F_literal_5F_instruction_5F_opcode & inObject,
-                                             class C_Compiler * inCompiler
-                                             COMMA_LOCATION_ARGS) ;
+class GALGAS_string extensionGetter_mnemonic (const class GALGAS_midrange_5F_literal_5F_instruction_5F_opcode & inObject,
+                                              class C_Compiler * inCompiler
+                                              COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -270,134 +270,134 @@ void callCategoryMethod_computeInstructionCountForCondition (const class cPtr_mi
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                     Category Getter '@midrange_instruction_FD_base_code basecode' (as function)                     *
+//                     Category getter '@midrange_instruction_FD_base_code basecode' (as function)                     *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-class GALGAS_uint categoryReader_basecode (const class GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code & inObject,
-                                           class C_Compiler * inCompiler
-                                           COMMA_LOCATION_ARGS) ;
+class GALGAS_uint extensionGetter_basecode (const class GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code & inObject,
+                                            class C_Compiler * inCompiler
+                                            COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                     Category Getter '@midrange_F_instruction_base_code baseCode' (as function)                      *
+//                     Category getter '@midrange_F_instruction_base_code baseCode' (as function)                      *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-class GALGAS_uint categoryReader_baseCode (const class GALGAS_midrange_5F_F_5F_instruction_5F_base_5F_code & inObject,
-                                           class C_Compiler * inCompiler
-                                           COMMA_LOCATION_ARGS) ;
+class GALGAS_uint extensionGetter_baseCode (const class GALGAS_midrange_5F_F_5F_instruction_5F_base_5F_code & inObject,
+                                            class C_Compiler * inCompiler
+                                            COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                         Category Getter '@midrange_bit_oriented_op baseCode' (as function)                          *
+//                         Category getter '@midrange_bit_oriented_op baseCode' (as function)                          *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-class GALGAS_uint categoryReader_baseCode (const class GALGAS_midrange_5F_bit_5F_oriented_5F_op & inObject,
-                                           class C_Compiler * inCompiler
-                                           COMMA_LOCATION_ARGS) ;
+class GALGAS_uint extensionGetter_baseCode (const class GALGAS_midrange_5F_bit_5F_oriented_5F_op & inObject,
+                                            class C_Compiler * inCompiler
+                                            COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                    Category Getter '@midrange_literal_instruction_opcode baseCode' (as function)                    *
+//                    Category getter '@midrange_literal_instruction_opcode baseCode' (as function)                    *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-class GALGAS_uint categoryReader_baseCode (const class GALGAS_midrange_5F_literal_5F_instruction_5F_opcode & inObject,
-                                           class C_Compiler * inCompiler
-                                           COMMA_LOCATION_ARGS) ;
+class GALGAS_uint extensionGetter_baseCode (const class GALGAS_midrange_5F_literal_5F_instruction_5F_opcode & inObject,
+                                            class C_Compiler * inCompiler
+                                            COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                          Category Getter '@pic18RegisterComparison mnemonic' (as function)                          *
+//                          Category getter '@pic18RegisterComparison mnemonic' (as function)                          *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-class GALGAS_string categoryReader_mnemonic (const class GALGAS_pic_31__38_RegisterComparison & inObject,
-                                             class C_Compiler * inCompiler
-                                             COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                            Category Getter '@conditional_branch condition' (as function)                            *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-class GALGAS_string categoryReader_condition (const class GALGAS_conditional_5F_branch & inObject,
+class GALGAS_string extensionGetter_mnemonic (const class GALGAS_pic_31__38_RegisterComparison & inObject,
                                               class C_Compiler * inCompiler
                                               COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                   Category Getter '@pic18InstructionWithNoOperandKind assemblyCode' (as function)                   *
+//                            Category getter '@conditional_branch condition' (as function)                            *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-class GALGAS_string categoryReader_assemblyCode (const class GALGAS_pic_31__38_InstructionWithNoOperandKind & inObject,
-                                                 class C_Compiler * inCompiler
-                                                 COMMA_LOCATION_ARGS) ;
+class GALGAS_string extensionGetter_condition (const class GALGAS_conditional_5F_branch & inObject,
+                                               class C_Compiler * inCompiler
+                                               COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                         Category Getter '@FA_instruction_base_code mnemonic' (as function)                          *
+//                   Category getter '@pic18InstructionWithNoOperandKind assemblyCode' (as function)                   *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-class GALGAS_string categoryReader_mnemonic (const class GALGAS_FA_5F_instruction_5F_base_5F_code & inObject,
-                                             class C_Compiler * inCompiler
-                                             COMMA_LOCATION_ARGS) ;
+class GALGAS_string extensionGetter_assemblyCode (const class GALGAS_pic_31__38_InstructionWithNoOperandKind & inObject,
+                                                  class C_Compiler * inCompiler
+                                                  COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                              Category Getter '@bit_oriented_op mnemonic' (as function)                              *
+//                         Category getter '@FA_instruction_base_code mnemonic' (as function)                          *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-class GALGAS_string categoryReader_mnemonic (const class GALGAS_bit_5F_oriented_5F_op & inObject,
-                                             class C_Compiler * inCompiler
-                                             COMMA_LOCATION_ARGS) ;
+class GALGAS_string extensionGetter_mnemonic (const class GALGAS_FA_5F_instruction_5F_base_5F_code & inObject,
+                                              class C_Compiler * inCompiler
+                                              COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                            Category Getter '@conditional_branch mnemonic' (as function)                             *
+//                              Category getter '@bit_oriented_op mnemonic' (as function)                              *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-class GALGAS_string categoryReader_mnemonic (const class GALGAS_conditional_5F_branch & inObject,
-                                             class C_Compiler * inCompiler
-                                             COMMA_LOCATION_ARGS) ;
+class GALGAS_string extensionGetter_mnemonic (const class GALGAS_bit_5F_oriented_5F_op & inObject,
+                                              class C_Compiler * inCompiler
+                                              COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                        Category Getter '@literal_instruction_opcode mnemonic' (as function)                         *
+//                            Category getter '@conditional_branch mnemonic' (as function)                             *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-class GALGAS_string categoryReader_mnemonic (const class GALGAS_literal_5F_instruction_5F_opcode & inObject,
-                                             class C_Compiler * inCompiler
-                                             COMMA_LOCATION_ARGS) ;
+class GALGAS_string extensionGetter_mnemonic (const class GALGAS_conditional_5F_branch & inObject,
+                                              class C_Compiler * inCompiler
+                                              COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                             Category Getter '@tableAccessOption mnemonic' (as function)                             *
+//                        Category getter '@literal_instruction_opcode mnemonic' (as function)                         *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-class GALGAS_string categoryReader_mnemonic (const class GALGAS_tableAccessOption & inObject,
-                                             class C_Compiler * inCompiler
-                                             COMMA_LOCATION_ARGS) ;
+class GALGAS_string extensionGetter_mnemonic (const class GALGAS_literal_5F_instruction_5F_opcode & inObject,
+                                              class C_Compiler * inCompiler
+                                              COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//              Category Getter '@ipic18_intermediate_registerExpression isEqualToRegister' (as function)              *
+//                             Category getter '@tableAccessOption mnemonic' (as function)                             *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-class GALGAS_bool categoryReader_isEqualToRegister (const class GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression & inObject,
-                                                    const class GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression & constinArgument0,
-                                                    class C_Compiler * inCompiler
-                                                    COMMA_LOCATION_ARGS) ;
+class GALGAS_string extensionGetter_mnemonic (const class GALGAS_tableAccessOption & inObject,
+                                              class C_Compiler * inCompiler
+                                              COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//              Category getter '@ipic18_intermediate_registerExpression isEqualToRegister' (as function)              *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class GALGAS_bool extensionGetter_isEqualToRegister (const class GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression & inObject,
+                                                     const class GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression & constinArgument0,
+                                                     class C_Compiler * inCompiler
+                                                     COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -554,91 +554,91 @@ void callCategoryMethod_generateTerminatorCode (const class cPtr_ipic_31__38_Abs
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                    Abstract category reader '@ipic18AbstractBlockTerminator isEqualToTerminator'                    *
+//                    Abstract category getter '@ipic18AbstractBlockTerminator isEqualToTerminator'                    *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-typedef class GALGAS_bool (*categoryReaderSignature_ipic_31__38_AbstractBlockTerminator_isEqualToTerminator) (const class cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
+typedef class GALGAS_bool (*categoryGetterSignature_ipic_31__38_AbstractBlockTerminator_isEqualToTerminator) (const class cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
                                                                                                               const class GALGAS_ipic_31__38_AbstractBlockTerminator & constinArgument0,
                                                                                                               class C_Compiler * inCompiler
                                                                                                               COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void enterCategoryReader_isEqualToTerminator (const int32_t inClassIndex,
-                                              categoryReaderSignature_ipic_31__38_AbstractBlockTerminator_isEqualToTerminator inMethod) ;
+void enterCategoryGetter_isEqualToTerminator (const int32_t inClassIndex,
+                                              categoryGetterSignature_ipic_31__38_AbstractBlockTerminator_isEqualToTerminator inMethod) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-class GALGAS_bool callCategoryReader_isEqualToTerminator (const class cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
+class GALGAS_bool callCategoryGetter_isEqualToTerminator (const class cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
                                                           const GALGAS_ipic_31__38_AbstractBlockTerminator & constin_inTerminator,
                                                           C_Compiler * inCompiler
                                                           COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                     Abstract category reader '@ipic18AbstractBlockTerminator terminatorDisplay'                     *
+//                     Abstract category getter '@ipic18AbstractBlockTerminator terminatorDisplay'                     *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-typedef class GALGAS_string (*categoryReaderSignature_ipic_31__38_AbstractBlockTerminator_terminatorDisplay) (const class cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
+typedef class GALGAS_string (*categoryGetterSignature_ipic_31__38_AbstractBlockTerminator_terminatorDisplay) (const class cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
                                                                                                               const class GALGAS_string & constinArgument0,
                                                                                                               class C_Compiler * inCompiler
                                                                                                               COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void enterCategoryReader_terminatorDisplay (const int32_t inClassIndex,
-                                            categoryReaderSignature_ipic_31__38_AbstractBlockTerminator_terminatorDisplay inMethod) ;
+void enterCategoryGetter_terminatorDisplay (const int32_t inClassIndex,
+                                            categoryGetterSignature_ipic_31__38_AbstractBlockTerminator_terminatorDisplay inMethod) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-class GALGAS_string callCategoryReader_terminatorDisplay (const class cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
+class GALGAS_string callCategoryGetter_terminatorDisplay (const class cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
                                                           const GALGAS_string & constin_inNextBlockLabel,
                                                           C_Compiler * inCompiler
                                                           COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                      Abstract category reader '@ipic18AbstractBlockTerminator terminatorSize'                       *
+//                      Abstract category getter '@ipic18AbstractBlockTerminator terminatorSize'                       *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-typedef class GALGAS_uint (*categoryReaderSignature_ipic_31__38_AbstractBlockTerminator_terminatorSize) (const class cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
+typedef class GALGAS_uint (*categoryGetterSignature_ipic_31__38_AbstractBlockTerminator_terminatorSize) (const class cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
                                                                                                          const class GALGAS_string & constinArgument0,
                                                                                                          class C_Compiler * inCompiler
                                                                                                          COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void enterCategoryReader_terminatorSize (const int32_t inClassIndex,
-                                         categoryReaderSignature_ipic_31__38_AbstractBlockTerminator_terminatorSize inMethod) ;
+void enterCategoryGetter_terminatorSize (const int32_t inClassIndex,
+                                         categoryGetterSignature_ipic_31__38_AbstractBlockTerminator_terminatorSize inMethod) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-class GALGAS_uint callCategoryReader_terminatorSize (const class cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
+class GALGAS_uint callCategoryGetter_terminatorSize (const class cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
                                                      const GALGAS_string & constin_inNextBlockLabel,
                                                      C_Compiler * inCompiler
                                                      COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                           Category reader '@ipic18SequentialInstruction instructionSize'                            *
+//                           Category getter '@ipic18SequentialInstruction instructionSize'                            *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-typedef class GALGAS_uint (*categoryReaderSignature_ipic_31__38_SequentialInstruction_instructionSize) (const class cPtr_ipic_31__38_SequentialInstruction * inObject,
+typedef class GALGAS_uint (*categoryGetterSignature_ipic_31__38_SequentialInstruction_instructionSize) (const class cPtr_ipic_31__38_SequentialInstruction * inObject,
                                                                                                         C_Compiler * inCompiler
                                                                                                         COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void enterCategoryReader_instructionSize (const int32_t inClassIndex,
-                                          categoryReaderSignature_ipic_31__38_SequentialInstruction_instructionSize inReader) ;
+void enterCategoryGetter_instructionSize (const int32_t inClassIndex,
+                                          categoryGetterSignature_ipic_31__38_SequentialInstruction_instructionSize inGetter) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-class GALGAS_uint callCategoryReader_instructionSize (const cPtr_ipic_31__38_SequentialInstruction * inObject,
+class GALGAS_uint callCategoryGetter_instructionSize (const cPtr_ipic_31__38_SequentialInstruction * inObject,
                                                       class C_Compiler * inCompiler
                                                       COMMA_LOCATION_ARGS) ;
 
@@ -677,34 +677,34 @@ void callCategoryMethod_performInstructionRelativeBranchResolution (const class 
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                     Abstract category reader '@ipic18SequentialInstruction instructionDisplay'                      *
+//                     Abstract category getter '@ipic18SequentialInstruction instructionDisplay'                      *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-typedef class GALGAS_stringlist (*categoryReaderSignature_ipic_31__38_SequentialInstruction_instructionDisplay) (const class cPtr_ipic_31__38_SequentialInstruction * inObject,
+typedef class GALGAS_stringlist (*categoryGetterSignature_ipic_31__38_SequentialInstruction_instructionDisplay) (const class cPtr_ipic_31__38_SequentialInstruction * inObject,
                                                                                                                  class C_Compiler * inCompiler
                                                                                                                  COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void enterCategoryReader_instructionDisplay (const int32_t inClassIndex,
-                                             categoryReaderSignature_ipic_31__38_SequentialInstruction_instructionDisplay inMethod) ;
+void enterCategoryGetter_instructionDisplay (const int32_t inClassIndex,
+                                             categoryGetterSignature_ipic_31__38_SequentialInstruction_instructionDisplay inMethod) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-class GALGAS_stringlist callCategoryReader_instructionDisplay (const class cPtr_ipic_31__38_SequentialInstruction * inObject,
+class GALGAS_stringlist callCategoryGetter_instructionDisplay (const class cPtr_ipic_31__38_SequentialInstruction * inObject,
                                                                C_Compiler * inCompiler
                                                                COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                     Category Getter '@pic18InstructionWithNoOperandKind mnemonic' (as function)                     *
+//                     Category getter '@pic18InstructionWithNoOperandKind mnemonic' (as function)                     *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-class GALGAS_string categoryReader_mnemonic (const class GALGAS_pic_31__38_InstructionWithNoOperandKind & inObject,
-                                             class C_Compiler * inCompiler
-                                             COMMA_LOCATION_ARGS) ;
+class GALGAS_string extensionGetter_mnemonic (const class GALGAS_pic_31__38_InstructionWithNoOperandKind & inObject,
+                                              class C_Compiler * inCompiler
+                                              COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
