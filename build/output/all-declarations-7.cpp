@@ -20,15 +20,15 @@ void routine_parseDeviceDefinition (const GALGAS_lstring constinArgument_inDevic
                                     COMMA_UNUSED_LOCATION_ARGS) {
   outArgument_outPiccoloDeviceModel.drop () ; // Release 'out' argument
   GALGAS_filewrapper var_fw = GALGAS_filewrapper (gWrapperDirectory_0_embeddedDevices) ;
-  GALGAS_string var_deviceFullName = constinArgument_inDeviceName.reader_string (SOURCE_FILE ("piccolo_embedded_devices.galgas", 17)).add_operation (GALGAS_string (".piccoloDevice"), inCompiler COMMA_SOURCE_FILE ("piccolo_embedded_devices.galgas", 17)) ;
-  const enumGalgasBool test_0 = var_fw.reader_fileExistsAtPath (var_deviceFullName, inCompiler COMMA_SOURCE_FILE ("piccolo_embedded_devices.galgas", 18)).boolEnum () ;
+  GALGAS_string var_deviceFullName = constinArgument_inDeviceName.getter_string (SOURCE_FILE ("piccolo_embedded_devices.galgas", 17)).add_operation (GALGAS_string (".piccoloDevice"), inCompiler COMMA_SOURCE_FILE ("piccolo_embedded_devices.galgas", 17)) ;
+  const enumGalgasBool test_0 = var_fw.getter_fileExistsAtPath (var_deviceFullName, inCompiler COMMA_SOURCE_FILE ("piccolo_embedded_devices.galgas", 18)).boolEnum () ;
   if (kBoolTrue == test_0) {
-    GALGAS_string var_definitionString = var_fw.reader_textFileContentsAtPath (var_deviceFullName, inCompiler COMMA_SOURCE_FILE ("piccolo_embedded_devices.galgas", 19)) ;
+    GALGAS_string var_definitionString = var_fw.getter_textFileContentsAtPath (var_deviceFullName, inCompiler COMMA_SOURCE_FILE ("piccolo_embedded_devices.galgas", 19)) ;
     outArgument_outPiccoloDeviceModel.drop () ;
     cGrammar_piccoloDevice_5F_grammar::_performSourceStringParsing_ (inCompiler, var_definitionString, var_deviceFullName, outArgument_outPiccoloDeviceModel  COMMA_SOURCE_FILE ("piccolo_embedded_devices.galgas", 20)) ;
   }else if (kBoolFalse == test_0) {
-    GALGAS_location location_1 (constinArgument_inDeviceName.reader_location (HERE)) ; // Implicit use of 'location' reader
-    inCompiler->emitSemanticError (location_1, GALGAS_string ("The '").add_operation (constinArgument_inDeviceName.reader_string (SOURCE_FILE ("piccolo_embedded_devices.galgas", 24)), inCompiler COMMA_SOURCE_FILE ("piccolo_embedded_devices.galgas", 24)).add_operation (GALGAS_string ("' definition file is not defined"), inCompiler COMMA_SOURCE_FILE ("piccolo_embedded_devices.galgas", 24))  COMMA_SOURCE_FILE ("piccolo_embedded_devices.galgas", 22)) ;
+    GALGAS_location location_1 (constinArgument_inDeviceName.getter_location (HERE)) ; // Implicit use of 'location' getter
+    inCompiler->emitSemanticError (location_1, GALGAS_string ("The '").add_operation (constinArgument_inDeviceName.getter_string (SOURCE_FILE ("piccolo_embedded_devices.galgas", 24)), inCompiler COMMA_SOURCE_FILE ("piccolo_embedded_devices.galgas", 24)).add_operation (GALGAS_string ("' definition file is not defined"), inCompiler COMMA_SOURCE_FILE ("piccolo_embedded_devices.galgas", 24))  COMMA_SOURCE_FILE ("piccolo_embedded_devices.galgas", 22)) ;
     outArgument_outPiccoloDeviceModel.drop () ; // Release error dropped variable
   }
 }
@@ -187,7 +187,7 @@ GALGAS_exitBlockTerminationForBlockInstruction GALGAS_exitBlockTerminationForBlo
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_location GALGAS_exitBlockTerminationForBlockInstruction::reader_mLocation (UNUSED_LOCATION_ARGS) const {
+GALGAS_location GALGAS_exitBlockTerminationForBlockInstruction::getter_mLocation (UNUSED_LOCATION_ARGS) const {
   GALGAS_location result ;
   if (NULL != mObjectPtr) {
     const cPtr_exitBlockTerminationForBlockInstruction * p = (const cPtr_exitBlockTerminationForBlockInstruction *) mObjectPtr ;
@@ -199,7 +199,7 @@ GALGAS_location GALGAS_exitBlockTerminationForBlockInstruction::reader_mLocation
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_location cPtr_exitBlockTerminationForBlockInstruction::reader_mLocation (UNUSED_LOCATION_ARGS) const {
+GALGAS_location cPtr_exitBlockTerminationForBlockInstruction::getter_mLocation (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mLocation ;
 }
 
@@ -344,7 +344,7 @@ GALGAS_gotoTerminationForBlockInstruction GALGAS_gotoTerminationForBlockInstruct
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_lstring GALGAS_gotoTerminationForBlockInstruction::reader_mNextBlock (UNUSED_LOCATION_ARGS) const {
+GALGAS_lstring GALGAS_gotoTerminationForBlockInstruction::getter_mNextBlock (UNUSED_LOCATION_ARGS) const {
   GALGAS_lstring result ;
   if (NULL != mObjectPtr) {
     const cPtr_gotoTerminationForBlockInstruction * p = (const cPtr_gotoTerminationForBlockInstruction *) mObjectPtr ;
@@ -356,7 +356,7 @@ GALGAS_lstring GALGAS_gotoTerminationForBlockInstruction::reader_mNextBlock (UNU
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_lstring cPtr_gotoTerminationForBlockInstruction::reader_mNextBlock (UNUSED_LOCATION_ARGS) const {
+GALGAS_lstring cPtr_gotoTerminationForBlockInstruction::getter_mNextBlock (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mNextBlock ;
 }
 
@@ -506,7 +506,7 @@ GALGAS_testTerminationForBlockInstruction GALGAS_testTerminationForBlockInstruct
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_pic_31__38_ConditionExpression GALGAS_testTerminationForBlockInstruction::reader_mCondition (UNUSED_LOCATION_ARGS) const {
+GALGAS_pic_31__38_ConditionExpression GALGAS_testTerminationForBlockInstruction::getter_mCondition (UNUSED_LOCATION_ARGS) const {
   GALGAS_pic_31__38_ConditionExpression result ;
   if (NULL != mObjectPtr) {
     const cPtr_testTerminationForBlockInstruction * p = (const cPtr_testTerminationForBlockInstruction *) mObjectPtr ;
@@ -518,13 +518,13 @@ GALGAS_pic_31__38_ConditionExpression GALGAS_testTerminationForBlockInstruction:
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_pic_31__38_ConditionExpression cPtr_testTerminationForBlockInstruction::reader_mCondition (UNUSED_LOCATION_ARGS) const {
+GALGAS_pic_31__38_ConditionExpression cPtr_testTerminationForBlockInstruction::getter_mCondition (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mCondition ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_abstractBlockTerminationForBlockInstruction GALGAS_testTerminationForBlockInstruction::reader_mTrueTermination (UNUSED_LOCATION_ARGS) const {
+GALGAS_abstractBlockTerminationForBlockInstruction GALGAS_testTerminationForBlockInstruction::getter_mTrueTermination (UNUSED_LOCATION_ARGS) const {
   GALGAS_abstractBlockTerminationForBlockInstruction result ;
   if (NULL != mObjectPtr) {
     const cPtr_testTerminationForBlockInstruction * p = (const cPtr_testTerminationForBlockInstruction *) mObjectPtr ;
@@ -536,13 +536,13 @@ GALGAS_abstractBlockTerminationForBlockInstruction GALGAS_testTerminationForBloc
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_abstractBlockTerminationForBlockInstruction cPtr_testTerminationForBlockInstruction::reader_mTrueTermination (UNUSED_LOCATION_ARGS) const {
+GALGAS_abstractBlockTerminationForBlockInstruction cPtr_testTerminationForBlockInstruction::getter_mTrueTermination (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mTrueTermination ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_abstractBlockTerminationForBlockInstruction GALGAS_testTerminationForBlockInstruction::reader_mFalseTermination (UNUSED_LOCATION_ARGS) const {
+GALGAS_abstractBlockTerminationForBlockInstruction GALGAS_testTerminationForBlockInstruction::getter_mFalseTermination (UNUSED_LOCATION_ARGS) const {
   GALGAS_abstractBlockTerminationForBlockInstruction result ;
   if (NULL != mObjectPtr) {
     const cPtr_testTerminationForBlockInstruction * p = (const cPtr_testTerminationForBlockInstruction *) mObjectPtr ;
@@ -554,13 +554,13 @@ GALGAS_abstractBlockTerminationForBlockInstruction GALGAS_testTerminationForBloc
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_abstractBlockTerminationForBlockInstruction cPtr_testTerminationForBlockInstruction::reader_mFalseTermination (UNUSED_LOCATION_ARGS) const {
+GALGAS_abstractBlockTerminationForBlockInstruction cPtr_testTerminationForBlockInstruction::getter_mFalseTermination (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mFalseTermination ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_location GALGAS_testTerminationForBlockInstruction::reader_mLocation (UNUSED_LOCATION_ARGS) const {
+GALGAS_location GALGAS_testTerminationForBlockInstruction::getter_mLocation (UNUSED_LOCATION_ARGS) const {
   GALGAS_location result ;
   if (NULL != mObjectPtr) {
     const cPtr_testTerminationForBlockInstruction * p = (const cPtr_testTerminationForBlockInstruction *) mObjectPtr ;
@@ -572,7 +572,7 @@ GALGAS_location GALGAS_testTerminationForBlockInstruction::reader_mLocation (UNU
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_location cPtr_testTerminationForBlockInstruction::reader_mLocation (UNUSED_LOCATION_ARGS) const {
+GALGAS_location cPtr_testTerminationForBlockInstruction::getter_mLocation (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mLocation ;
 }
 
@@ -787,7 +787,7 @@ GALGAS_baseline_5F_assembly_5F_instruction (inSourcePtr) {
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_location GALGAS_baseline_5F_assembly_5F_actualInstruction::reader_mInstructionLocation (UNUSED_LOCATION_ARGS) const {
+GALGAS_location GALGAS_baseline_5F_assembly_5F_actualInstruction::getter_mInstructionLocation (UNUSED_LOCATION_ARGS) const {
   GALGAS_location result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_assembly_5F_actualInstruction * p = (const cPtr_baseline_5F_assembly_5F_actualInstruction *) mObjectPtr ;
@@ -799,7 +799,7 @@ GALGAS_location GALGAS_baseline_5F_assembly_5F_actualInstruction::reader_mInstru
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_location cPtr_baseline_5F_assembly_5F_actualInstruction::reader_mInstructionLocation (UNUSED_LOCATION_ARGS) const {
+GALGAS_location cPtr_baseline_5F_assembly_5F_actualInstruction::getter_mInstructionLocation (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mInstructionLocation ;
 }
 
@@ -928,7 +928,7 @@ GALGAS_baseline_5F_assembly_5F_CALL GALGAS_baseline_5F_assembly_5F_CALL::constru
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_lstring GALGAS_baseline_5F_assembly_5F_CALL::reader_mTargetLabel (UNUSED_LOCATION_ARGS) const {
+GALGAS_lstring GALGAS_baseline_5F_assembly_5F_CALL::getter_mTargetLabel (UNUSED_LOCATION_ARGS) const {
   GALGAS_lstring result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_assembly_5F_CALL * p = (const cPtr_baseline_5F_assembly_5F_CALL *) mObjectPtr ;
@@ -940,7 +940,7 @@ GALGAS_lstring GALGAS_baseline_5F_assembly_5F_CALL::reader_mTargetLabel (UNUSED_
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_lstring cPtr_baseline_5F_assembly_5F_CALL::reader_mTargetLabel (UNUSED_LOCATION_ARGS) const {
+GALGAS_lstring cPtr_baseline_5F_assembly_5F_CALL::getter_mTargetLabel (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mTargetLabel ;
 }
 
@@ -1093,7 +1093,7 @@ GALGAS_baseline_5F_assembly_5F_GOTO GALGAS_baseline_5F_assembly_5F_GOTO::constru
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_lstring GALGAS_baseline_5F_assembly_5F_GOTO::reader_mTargetLabel (UNUSED_LOCATION_ARGS) const {
+GALGAS_lstring GALGAS_baseline_5F_assembly_5F_GOTO::getter_mTargetLabel (UNUSED_LOCATION_ARGS) const {
   GALGAS_lstring result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_assembly_5F_GOTO * p = (const cPtr_baseline_5F_assembly_5F_GOTO *) mObjectPtr ;
@@ -1105,7 +1105,7 @@ GALGAS_lstring GALGAS_baseline_5F_assembly_5F_GOTO::reader_mTargetLabel (UNUSED_
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_lstring cPtr_baseline_5F_assembly_5F_GOTO::reader_mTargetLabel (UNUSED_LOCATION_ARGS) const {
+GALGAS_lstring cPtr_baseline_5F_assembly_5F_GOTO::getter_mTargetLabel (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mTargetLabel ;
 }
 
@@ -1401,7 +1401,7 @@ GALGAS_baseline_5F_assembly_5F_TRIS GALGAS_baseline_5F_assembly_5F_TRIS::constru
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_lstring GALGAS_baseline_5F_assembly_5F_TRIS::reader_mOperand (UNUSED_LOCATION_ARGS) const {
+GALGAS_lstring GALGAS_baseline_5F_assembly_5F_TRIS::getter_mOperand (UNUSED_LOCATION_ARGS) const {
   GALGAS_lstring result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_assembly_5F_TRIS * p = (const cPtr_baseline_5F_assembly_5F_TRIS *) mObjectPtr ;
@@ -1413,13 +1413,13 @@ GALGAS_lstring GALGAS_baseline_5F_assembly_5F_TRIS::reader_mOperand (UNUSED_LOCA
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_lstring cPtr_baseline_5F_assembly_5F_TRIS::reader_mOperand (UNUSED_LOCATION_ARGS) const {
+GALGAS_lstring cPtr_baseline_5F_assembly_5F_TRIS::getter_mOperand (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mOperand ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_uint GALGAS_baseline_5F_assembly_5F_TRIS::reader_mOpcode (UNUSED_LOCATION_ARGS) const {
+GALGAS_uint GALGAS_baseline_5F_assembly_5F_TRIS::getter_mOpcode (UNUSED_LOCATION_ARGS) const {
   GALGAS_uint result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_assembly_5F_TRIS * p = (const cPtr_baseline_5F_assembly_5F_TRIS *) mObjectPtr ;
@@ -1431,7 +1431,7 @@ GALGAS_uint GALGAS_baseline_5F_assembly_5F_TRIS::reader_mOpcode (UNUSED_LOCATION
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_uint cPtr_baseline_5F_assembly_5F_TRIS::reader_mOpcode (UNUSED_LOCATION_ARGS) const {
+GALGAS_uint cPtr_baseline_5F_assembly_5F_TRIS::getter_mOpcode (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mOpcode ;
 }
 
@@ -1580,7 +1580,7 @@ GALGAS_baseline_5F_assembly_5F_WO_5F_OPERAND GALGAS_baseline_5F_assembly_5F_WO_5
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_baseline_5F_WO_5F_OPERAND_5F_group GALGAS_baseline_5F_assembly_5F_WO_5F_OPERAND::reader_mInstruction (UNUSED_LOCATION_ARGS) const {
+GALGAS_baseline_5F_WO_5F_OPERAND_5F_group GALGAS_baseline_5F_assembly_5F_WO_5F_OPERAND::getter_mInstruction (UNUSED_LOCATION_ARGS) const {
   GALGAS_baseline_5F_WO_5F_OPERAND_5F_group result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_assembly_5F_WO_5F_OPERAND * p = (const cPtr_baseline_5F_assembly_5F_WO_5F_OPERAND *) mObjectPtr ;
@@ -1592,7 +1592,7 @@ GALGAS_baseline_5F_WO_5F_OPERAND_5F_group GALGAS_baseline_5F_assembly_5F_WO_5F_O
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_baseline_5F_WO_5F_OPERAND_5F_group cPtr_baseline_5F_assembly_5F_WO_5F_OPERAND::reader_mInstruction (UNUSED_LOCATION_ARGS) const {
+GALGAS_baseline_5F_WO_5F_OPERAND_5F_group cPtr_baseline_5F_assembly_5F_WO_5F_OPERAND::getter_mInstruction (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mInstruction ;
 }
 
@@ -1755,7 +1755,7 @@ GALGAS_baseline_5F_assembly_5F_incDecRegisterInCondition GALGAS_baseline_5F_asse
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_baseline_5F_intermediate_5F_registerExpression GALGAS_baseline_5F_assembly_5F_incDecRegisterInCondition::reader_mRegisterDescription (UNUSED_LOCATION_ARGS) const {
+GALGAS_baseline_5F_intermediate_5F_registerExpression GALGAS_baseline_5F_assembly_5F_incDecRegisterInCondition::getter_mRegisterDescription (UNUSED_LOCATION_ARGS) const {
   GALGAS_baseline_5F_intermediate_5F_registerExpression result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_assembly_5F_incDecRegisterInCondition * p = (const cPtr_baseline_5F_assembly_5F_incDecRegisterInCondition *) mObjectPtr ;
@@ -1767,13 +1767,13 @@ GALGAS_baseline_5F_intermediate_5F_registerExpression GALGAS_baseline_5F_assembl
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_baseline_5F_intermediate_5F_registerExpression cPtr_baseline_5F_assembly_5F_incDecRegisterInCondition::reader_mRegisterDescription (UNUSED_LOCATION_ARGS) const {
+GALGAS_baseline_5F_intermediate_5F_registerExpression cPtr_baseline_5F_assembly_5F_incDecRegisterInCondition::getter_mRegisterDescription (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mRegisterDescription ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_bool GALGAS_baseline_5F_assembly_5F_incDecRegisterInCondition::reader_mIncrement (UNUSED_LOCATION_ARGS) const {
+GALGAS_bool GALGAS_baseline_5F_assembly_5F_incDecRegisterInCondition::getter_mIncrement (UNUSED_LOCATION_ARGS) const {
   GALGAS_bool result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_assembly_5F_incDecRegisterInCondition * p = (const cPtr_baseline_5F_assembly_5F_incDecRegisterInCondition *) mObjectPtr ;
@@ -1785,13 +1785,13 @@ GALGAS_bool GALGAS_baseline_5F_assembly_5F_incDecRegisterInCondition::reader_mIn
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_bool cPtr_baseline_5F_assembly_5F_incDecRegisterInCondition::reader_mIncrement (UNUSED_LOCATION_ARGS) const {
+GALGAS_bool cPtr_baseline_5F_assembly_5F_incDecRegisterInCondition::getter_mIncrement (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mIncrement ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_bool GALGAS_baseline_5F_assembly_5F_incDecRegisterInCondition::reader_m_5F_W_5F_isDestination (UNUSED_LOCATION_ARGS) const {
+GALGAS_bool GALGAS_baseline_5F_assembly_5F_incDecRegisterInCondition::getter_m_5F_W_5F_isDestination (UNUSED_LOCATION_ARGS) const {
   GALGAS_bool result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_assembly_5F_incDecRegisterInCondition * p = (const cPtr_baseline_5F_assembly_5F_incDecRegisterInCondition *) mObjectPtr ;
@@ -1803,7 +1803,7 @@ GALGAS_bool GALGAS_baseline_5F_assembly_5F_incDecRegisterInCondition::reader_m_5
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_bool cPtr_baseline_5F_assembly_5F_incDecRegisterInCondition::reader_m_5F_W_5F_isDestination (UNUSED_LOCATION_ARGS) const {
+GALGAS_bool cPtr_baseline_5F_assembly_5F_incDecRegisterInCondition::getter_m_5F_W_5F_isDestination (UNUSED_LOCATION_ARGS) const {
   return mAttribute_m_5F_W_5F_isDestination ;
 }
 
@@ -1974,7 +1974,7 @@ GALGAS_baseline_5F_assembly_5F_instruction_5F_BitTestSkip GALGAS_baseline_5F_ass
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_bool GALGAS_baseline_5F_assembly_5F_instruction_5F_BitTestSkip::reader_mSkipIfSet (UNUSED_LOCATION_ARGS) const {
+GALGAS_bool GALGAS_baseline_5F_assembly_5F_instruction_5F_BitTestSkip::getter_mSkipIfSet (UNUSED_LOCATION_ARGS) const {
   GALGAS_bool result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_assembly_5F_instruction_5F_BitTestSkip * p = (const cPtr_baseline_5F_assembly_5F_instruction_5F_BitTestSkip *) mObjectPtr ;
@@ -1986,13 +1986,13 @@ GALGAS_bool GALGAS_baseline_5F_assembly_5F_instruction_5F_BitTestSkip::reader_mS
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_bool cPtr_baseline_5F_assembly_5F_instruction_5F_BitTestSkip::reader_mSkipIfSet (UNUSED_LOCATION_ARGS) const {
+GALGAS_bool cPtr_baseline_5F_assembly_5F_instruction_5F_BitTestSkip::getter_mSkipIfSet (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mSkipIfSet ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_baseline_5F_intermediate_5F_registerExpression GALGAS_baseline_5F_assembly_5F_instruction_5F_BitTestSkip::reader_mRegisterDescription (UNUSED_LOCATION_ARGS) const {
+GALGAS_baseline_5F_intermediate_5F_registerExpression GALGAS_baseline_5F_assembly_5F_instruction_5F_BitTestSkip::getter_mRegisterDescription (UNUSED_LOCATION_ARGS) const {
   GALGAS_baseline_5F_intermediate_5F_registerExpression result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_assembly_5F_instruction_5F_BitTestSkip * p = (const cPtr_baseline_5F_assembly_5F_instruction_5F_BitTestSkip *) mObjectPtr ;
@@ -2004,13 +2004,13 @@ GALGAS_baseline_5F_intermediate_5F_registerExpression GALGAS_baseline_5F_assembl
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_baseline_5F_intermediate_5F_registerExpression cPtr_baseline_5F_assembly_5F_instruction_5F_BitTestSkip::reader_mRegisterDescription (UNUSED_LOCATION_ARGS) const {
+GALGAS_baseline_5F_intermediate_5F_registerExpression cPtr_baseline_5F_assembly_5F_instruction_5F_BitTestSkip::getter_mRegisterDescription (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mRegisterDescription ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_uint GALGAS_baseline_5F_assembly_5F_instruction_5F_BitTestSkip::reader_mBitNumber (UNUSED_LOCATION_ARGS) const {
+GALGAS_uint GALGAS_baseline_5F_assembly_5F_instruction_5F_BitTestSkip::getter_mBitNumber (UNUSED_LOCATION_ARGS) const {
   GALGAS_uint result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_assembly_5F_instruction_5F_BitTestSkip * p = (const cPtr_baseline_5F_assembly_5F_instruction_5F_BitTestSkip *) mObjectPtr ;
@@ -2022,7 +2022,7 @@ GALGAS_uint GALGAS_baseline_5F_assembly_5F_instruction_5F_BitTestSkip::reader_mB
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_uint cPtr_baseline_5F_assembly_5F_instruction_5F_BitTestSkip::reader_mBitNumber (UNUSED_LOCATION_ARGS) const {
+GALGAS_uint cPtr_baseline_5F_assembly_5F_instruction_5F_BitTestSkip::getter_mBitNumber (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mBitNumber ;
 }
 
@@ -2179,7 +2179,7 @@ GALGAS_baseline_5F_assembly_5F_instruction_5F_F GALGAS_baseline_5F_assembly_5F_i
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_baseline_5F_F_5F_instruction_5F_base_5F_code GALGAS_baseline_5F_assembly_5F_instruction_5F_F::reader_mInstruction (UNUSED_LOCATION_ARGS) const {
+GALGAS_baseline_5F_F_5F_instruction_5F_base_5F_code GALGAS_baseline_5F_assembly_5F_instruction_5F_F::getter_mInstruction (UNUSED_LOCATION_ARGS) const {
   GALGAS_baseline_5F_F_5F_instruction_5F_base_5F_code result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_assembly_5F_instruction_5F_F * p = (const cPtr_baseline_5F_assembly_5F_instruction_5F_F *) mObjectPtr ;
@@ -2191,13 +2191,13 @@ GALGAS_baseline_5F_F_5F_instruction_5F_base_5F_code GALGAS_baseline_5F_assembly_
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_baseline_5F_F_5F_instruction_5F_base_5F_code cPtr_baseline_5F_assembly_5F_instruction_5F_F::reader_mInstruction (UNUSED_LOCATION_ARGS) const {
+GALGAS_baseline_5F_F_5F_instruction_5F_base_5F_code cPtr_baseline_5F_assembly_5F_instruction_5F_F::getter_mInstruction (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mInstruction ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_baseline_5F_intermediate_5F_registerExpression GALGAS_baseline_5F_assembly_5F_instruction_5F_F::reader_mRegisterDescription (UNUSED_LOCATION_ARGS) const {
+GALGAS_baseline_5F_intermediate_5F_registerExpression GALGAS_baseline_5F_assembly_5F_instruction_5F_F::getter_mRegisterDescription (UNUSED_LOCATION_ARGS) const {
   GALGAS_baseline_5F_intermediate_5F_registerExpression result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_assembly_5F_instruction_5F_F * p = (const cPtr_baseline_5F_assembly_5F_instruction_5F_F *) mObjectPtr ;
@@ -2209,7 +2209,7 @@ GALGAS_baseline_5F_intermediate_5F_registerExpression GALGAS_baseline_5F_assembl
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_baseline_5F_intermediate_5F_registerExpression cPtr_baseline_5F_assembly_5F_instruction_5F_F::reader_mRegisterDescription (UNUSED_LOCATION_ARGS) const {
+GALGAS_baseline_5F_intermediate_5F_registerExpression cPtr_baseline_5F_assembly_5F_instruction_5F_F::getter_mRegisterDescription (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mRegisterDescription ;
 }
 
@@ -2366,7 +2366,7 @@ GALGAS_baseline_5F_assembly_5F_instruction_5F_FB GALGAS_baseline_5F_assembly_5F_
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_baseline_5F_bit_5F_oriented_5F_op GALGAS_baseline_5F_assembly_5F_instruction_5F_FB::reader_mInstruction (UNUSED_LOCATION_ARGS) const {
+GALGAS_baseline_5F_bit_5F_oriented_5F_op GALGAS_baseline_5F_assembly_5F_instruction_5F_FB::getter_mInstruction (UNUSED_LOCATION_ARGS) const {
   GALGAS_baseline_5F_bit_5F_oriented_5F_op result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_assembly_5F_instruction_5F_FB * p = (const cPtr_baseline_5F_assembly_5F_instruction_5F_FB *) mObjectPtr ;
@@ -2378,13 +2378,13 @@ GALGAS_baseline_5F_bit_5F_oriented_5F_op GALGAS_baseline_5F_assembly_5F_instruct
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_baseline_5F_bit_5F_oriented_5F_op cPtr_baseline_5F_assembly_5F_instruction_5F_FB::reader_mInstruction (UNUSED_LOCATION_ARGS) const {
+GALGAS_baseline_5F_bit_5F_oriented_5F_op cPtr_baseline_5F_assembly_5F_instruction_5F_FB::getter_mInstruction (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mInstruction ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_baseline_5F_intermediate_5F_registerExpression GALGAS_baseline_5F_assembly_5F_instruction_5F_FB::reader_mRegisterDescription (UNUSED_LOCATION_ARGS) const {
+GALGAS_baseline_5F_intermediate_5F_registerExpression GALGAS_baseline_5F_assembly_5F_instruction_5F_FB::getter_mRegisterDescription (UNUSED_LOCATION_ARGS) const {
   GALGAS_baseline_5F_intermediate_5F_registerExpression result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_assembly_5F_instruction_5F_FB * p = (const cPtr_baseline_5F_assembly_5F_instruction_5F_FB *) mObjectPtr ;
@@ -2396,13 +2396,13 @@ GALGAS_baseline_5F_intermediate_5F_registerExpression GALGAS_baseline_5F_assembl
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_baseline_5F_intermediate_5F_registerExpression cPtr_baseline_5F_assembly_5F_instruction_5F_FB::reader_mRegisterDescription (UNUSED_LOCATION_ARGS) const {
+GALGAS_baseline_5F_intermediate_5F_registerExpression cPtr_baseline_5F_assembly_5F_instruction_5F_FB::getter_mRegisterDescription (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mRegisterDescription ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_uint GALGAS_baseline_5F_assembly_5F_instruction_5F_FB::reader_mBitNumber (UNUSED_LOCATION_ARGS) const {
+GALGAS_uint GALGAS_baseline_5F_assembly_5F_instruction_5F_FB::getter_mBitNumber (UNUSED_LOCATION_ARGS) const {
   GALGAS_uint result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_assembly_5F_instruction_5F_FB * p = (const cPtr_baseline_5F_assembly_5F_instruction_5F_FB *) mObjectPtr ;
@@ -2414,7 +2414,7 @@ GALGAS_uint GALGAS_baseline_5F_assembly_5F_instruction_5F_FB::reader_mBitNumber 
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_uint cPtr_baseline_5F_assembly_5F_instruction_5F_FB::reader_mBitNumber (UNUSED_LOCATION_ARGS) const {
+GALGAS_uint cPtr_baseline_5F_assembly_5F_instruction_5F_FB::getter_mBitNumber (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mBitNumber ;
 }
 
@@ -2575,7 +2575,7 @@ GALGAS_baseline_5F_assembly_5F_instruction_5F_FD GALGAS_baseline_5F_assembly_5F_
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code GALGAS_baseline_5F_assembly_5F_instruction_5F_FD::reader_mInstruction (UNUSED_LOCATION_ARGS) const {
+GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code GALGAS_baseline_5F_assembly_5F_instruction_5F_FD::getter_mInstruction (UNUSED_LOCATION_ARGS) const {
   GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_assembly_5F_instruction_5F_FD * p = (const cPtr_baseline_5F_assembly_5F_instruction_5F_FD *) mObjectPtr ;
@@ -2587,13 +2587,13 @@ GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code GALGAS_baseline_5F_assembly
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code cPtr_baseline_5F_assembly_5F_instruction_5F_FD::reader_mInstruction (UNUSED_LOCATION_ARGS) const {
+GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code cPtr_baseline_5F_assembly_5F_instruction_5F_FD::getter_mInstruction (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mInstruction ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_baseline_5F_intermediate_5F_registerExpression GALGAS_baseline_5F_assembly_5F_instruction_5F_FD::reader_mRegisterDescription (UNUSED_LOCATION_ARGS) const {
+GALGAS_baseline_5F_intermediate_5F_registerExpression GALGAS_baseline_5F_assembly_5F_instruction_5F_FD::getter_mRegisterDescription (UNUSED_LOCATION_ARGS) const {
   GALGAS_baseline_5F_intermediate_5F_registerExpression result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_assembly_5F_instruction_5F_FD * p = (const cPtr_baseline_5F_assembly_5F_instruction_5F_FD *) mObjectPtr ;
@@ -2605,13 +2605,13 @@ GALGAS_baseline_5F_intermediate_5F_registerExpression GALGAS_baseline_5F_assembl
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_baseline_5F_intermediate_5F_registerExpression cPtr_baseline_5F_assembly_5F_instruction_5F_FD::reader_mRegisterDescription (UNUSED_LOCATION_ARGS) const {
+GALGAS_baseline_5F_intermediate_5F_registerExpression cPtr_baseline_5F_assembly_5F_instruction_5F_FD::getter_mRegisterDescription (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mRegisterDescription ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_bool GALGAS_baseline_5F_assembly_5F_instruction_5F_FD::reader_m_5F_W_5F_isDestination (UNUSED_LOCATION_ARGS) const {
+GALGAS_bool GALGAS_baseline_5F_assembly_5F_instruction_5F_FD::getter_m_5F_W_5F_isDestination (UNUSED_LOCATION_ARGS) const {
   GALGAS_bool result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_assembly_5F_instruction_5F_FD * p = (const cPtr_baseline_5F_assembly_5F_instruction_5F_FD *) mObjectPtr ;
@@ -2623,7 +2623,7 @@ GALGAS_bool GALGAS_baseline_5F_assembly_5F_instruction_5F_FD::reader_m_5F_W_5F_i
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_bool cPtr_baseline_5F_assembly_5F_instruction_5F_FD::reader_m_5F_W_5F_isDestination (UNUSED_LOCATION_ARGS) const {
+GALGAS_bool cPtr_baseline_5F_assembly_5F_instruction_5F_FD::getter_m_5F_W_5F_isDestination (UNUSED_LOCATION_ARGS) const {
   return mAttribute_m_5F_W_5F_isDestination ;
 }
 
@@ -2780,7 +2780,7 @@ GALGAS_baseline_5F_assembly_5F_instruction_5F_literalOperation GALGAS_baseline_5
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_baseline_5F_literal_5F_instruction_5F_opcode GALGAS_baseline_5F_assembly_5F_instruction_5F_literalOperation::reader_mInstruction (UNUSED_LOCATION_ARGS) const {
+GALGAS_baseline_5F_literal_5F_instruction_5F_opcode GALGAS_baseline_5F_assembly_5F_instruction_5F_literalOperation::getter_mInstruction (UNUSED_LOCATION_ARGS) const {
   GALGAS_baseline_5F_literal_5F_instruction_5F_opcode result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_assembly_5F_instruction_5F_literalOperation * p = (const cPtr_baseline_5F_assembly_5F_instruction_5F_literalOperation *) mObjectPtr ;
@@ -2792,13 +2792,13 @@ GALGAS_baseline_5F_literal_5F_instruction_5F_opcode GALGAS_baseline_5F_assembly_
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_baseline_5F_literal_5F_instruction_5F_opcode cPtr_baseline_5F_assembly_5F_instruction_5F_literalOperation::reader_mInstruction (UNUSED_LOCATION_ARGS) const {
+GALGAS_baseline_5F_literal_5F_instruction_5F_opcode cPtr_baseline_5F_assembly_5F_instruction_5F_literalOperation::getter_mInstruction (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mInstruction ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_uint GALGAS_baseline_5F_assembly_5F_instruction_5F_literalOperation::reader_mLiteralValue (UNUSED_LOCATION_ARGS) const {
+GALGAS_uint GALGAS_baseline_5F_assembly_5F_instruction_5F_literalOperation::getter_mLiteralValue (UNUSED_LOCATION_ARGS) const {
   GALGAS_uint result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_assembly_5F_instruction_5F_literalOperation * p = (const cPtr_baseline_5F_assembly_5F_instruction_5F_literalOperation *) mObjectPtr ;
@@ -2810,7 +2810,7 @@ GALGAS_uint GALGAS_baseline_5F_assembly_5F_instruction_5F_literalOperation::read
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_uint cPtr_baseline_5F_assembly_5F_instruction_5F_literalOperation::reader_mLiteralValue (UNUSED_LOCATION_ARGS) const {
+GALGAS_uint cPtr_baseline_5F_assembly_5F_instruction_5F_literalOperation::getter_mLiteralValue (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mLiteralValue ;
 }
 
@@ -2967,7 +2967,7 @@ GALGAS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE GALGAS_baseline_5F_assem
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_lstring GALGAS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE::reader_mRoutineName (UNUSED_LOCATION_ARGS) const {
+GALGAS_lstring GALGAS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE::getter_mRoutineName (UNUSED_LOCATION_ARGS) const {
   GALGAS_lstring result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE * p = (const cPtr_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE *) mObjectPtr ;
@@ -2979,13 +2979,13 @@ GALGAS_lstring GALGAS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE::reader_m
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_lstring cPtr_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE::reader_mRoutineName (UNUSED_LOCATION_ARGS) const {
+GALGAS_lstring cPtr_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE::getter_mRoutineName (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mRoutineName ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_bool GALGAS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE::reader_mIsRegular (UNUSED_LOCATION_ARGS) const {
+GALGAS_bool GALGAS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE::getter_mIsRegular (UNUSED_LOCATION_ARGS) const {
   GALGAS_bool result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE * p = (const cPtr_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE *) mObjectPtr ;
@@ -2997,7 +2997,7 @@ GALGAS_bool GALGAS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE::reader_mIsR
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_bool cPtr_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE::reader_mIsRegular (UNUSED_LOCATION_ARGS) const {
+GALGAS_bool cPtr_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE::getter_mIsRegular (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mIsRegular ;
 }
 
@@ -3151,7 +3151,7 @@ GALGAS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE GALGAS_baseline_5F_assembl
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_lstring GALGAS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE::reader_mRoutineName (UNUSED_LOCATION_ARGS) const {
+GALGAS_lstring GALGAS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE::getter_mRoutineName (UNUSED_LOCATION_ARGS) const {
   GALGAS_lstring result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE * p = (const cPtr_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE *) mObjectPtr ;
@@ -3163,13 +3163,13 @@ GALGAS_lstring GALGAS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE::reader_mRo
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_lstring cPtr_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE::reader_mRoutineName (UNUSED_LOCATION_ARGS) const {
+GALGAS_lstring cPtr_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE::getter_mRoutineName (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mRoutineName ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_uint GALGAS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE::reader_mPage (UNUSED_LOCATION_ARGS) const {
+GALGAS_uint GALGAS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE::getter_mPage (UNUSED_LOCATION_ARGS) const {
   GALGAS_uint result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE * p = (const cPtr_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE *) mObjectPtr ;
@@ -3181,7 +3181,7 @@ GALGAS_uint GALGAS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE::reader_mPage 
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_uint cPtr_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE::reader_mPage (UNUSED_LOCATION_ARGS) const {
+GALGAS_uint cPtr_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE::getter_mPage (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mPage ;
 }
 
@@ -3330,7 +3330,7 @@ GALGAS_baseline_5F_assembly_5F_pseudo_5F_LABEL GALGAS_baseline_5F_assembly_5F_ps
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_lstring GALGAS_baseline_5F_assembly_5F_pseudo_5F_LABEL::reader_mLabel (UNUSED_LOCATION_ARGS) const {
+GALGAS_lstring GALGAS_baseline_5F_assembly_5F_pseudo_5F_LABEL::getter_mLabel (UNUSED_LOCATION_ARGS) const {
   GALGAS_lstring result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_assembly_5F_pseudo_5F_LABEL * p = (const cPtr_baseline_5F_assembly_5F_pseudo_5F_LABEL *) mObjectPtr ;
@@ -3342,7 +3342,7 @@ GALGAS_lstring GALGAS_baseline_5F_assembly_5F_pseudo_5F_LABEL::reader_mLabel (UN
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_lstring cPtr_baseline_5F_assembly_5F_pseudo_5F_LABEL::reader_mLabel (UNUSED_LOCATION_ARGS) const {
+GALGAS_lstring cPtr_baseline_5F_assembly_5F_pseudo_5F_LABEL::getter_mLabel (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mLabel ;
 }
 
@@ -3487,7 +3487,7 @@ GALGAS_baseline_5F_assembly_5F_pseudo_5F_ORG GALGAS_baseline_5F_assembly_5F_pseu
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_uint GALGAS_baseline_5F_assembly_5F_pseudo_5F_ORG::reader_mOrigin (UNUSED_LOCATION_ARGS) const {
+GALGAS_uint GALGAS_baseline_5F_assembly_5F_pseudo_5F_ORG::getter_mOrigin (UNUSED_LOCATION_ARGS) const {
   GALGAS_uint result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG * p = (const cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG *) mObjectPtr ;
@@ -3499,7 +3499,7 @@ GALGAS_uint GALGAS_baseline_5F_assembly_5F_pseudo_5F_ORG::reader_mOrigin (UNUSED
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_uint cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG::reader_mOrigin (UNUSED_LOCATION_ARGS) const {
+GALGAS_uint cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG::getter_mOrigin (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mOrigin ;
 }
 
@@ -3728,7 +3728,7 @@ GALGAS_baseline_5F_andCondition GALGAS_baseline_5F_andCondition::constructor_new
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_baseline_5F_conditionExpression GALGAS_baseline_5F_andCondition::reader_mLeftExpression (UNUSED_LOCATION_ARGS) const {
+GALGAS_baseline_5F_conditionExpression GALGAS_baseline_5F_andCondition::getter_mLeftExpression (UNUSED_LOCATION_ARGS) const {
   GALGAS_baseline_5F_conditionExpression result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_andCondition * p = (const cPtr_baseline_5F_andCondition *) mObjectPtr ;
@@ -3740,13 +3740,13 @@ GALGAS_baseline_5F_conditionExpression GALGAS_baseline_5F_andCondition::reader_m
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_baseline_5F_conditionExpression cPtr_baseline_5F_andCondition::reader_mLeftExpression (UNUSED_LOCATION_ARGS) const {
+GALGAS_baseline_5F_conditionExpression cPtr_baseline_5F_andCondition::getter_mLeftExpression (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mLeftExpression ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_baseline_5F_conditionExpression GALGAS_baseline_5F_andCondition::reader_mRightExpression (UNUSED_LOCATION_ARGS) const {
+GALGAS_baseline_5F_conditionExpression GALGAS_baseline_5F_andCondition::getter_mRightExpression (UNUSED_LOCATION_ARGS) const {
   GALGAS_baseline_5F_conditionExpression result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_andCondition * p = (const cPtr_baseline_5F_andCondition *) mObjectPtr ;
@@ -3758,7 +3758,7 @@ GALGAS_baseline_5F_conditionExpression GALGAS_baseline_5F_andCondition::reader_m
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_baseline_5F_conditionExpression cPtr_baseline_5F_andCondition::reader_mRightExpression (UNUSED_LOCATION_ARGS) const {
+GALGAS_baseline_5F_conditionExpression cPtr_baseline_5F_andCondition::getter_mRightExpression (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mRightExpression ;
 }
 
@@ -3904,7 +3904,7 @@ GALGAS_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition GALGAS_baselin
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_registerExpression GALGAS_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition::reader_mRegisterExpression (UNUSED_LOCATION_ARGS) const {
+GALGAS_registerExpression GALGAS_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition::getter_mRegisterExpression (UNUSED_LOCATION_ARGS) const {
   GALGAS_registerExpression result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition * p = (const cPtr_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition *) mObjectPtr ;
@@ -3916,13 +3916,13 @@ GALGAS_registerExpression GALGAS_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_registerExpression cPtr_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition::reader_mRegisterExpression (UNUSED_LOCATION_ARGS) const {
+GALGAS_registerExpression cPtr_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition::getter_mRegisterExpression (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mRegisterExpression ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_bitNumberExpression GALGAS_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition::reader_mBitNumber (UNUSED_LOCATION_ARGS) const {
+GALGAS_bitNumberExpression GALGAS_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition::getter_mBitNumber (UNUSED_LOCATION_ARGS) const {
   GALGAS_bitNumberExpression result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition * p = (const cPtr_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition *) mObjectPtr ;
@@ -3934,7 +3934,7 @@ GALGAS_bitNumberExpression GALGAS_baseline_5F_bitTest_5F_in_5F_structured_5F_if_
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_bitNumberExpression cPtr_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition::reader_mBitNumber (UNUSED_LOCATION_ARGS) const {
+GALGAS_bitNumberExpression cPtr_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition::getter_mBitNumber (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mBitNumber ;
 }
 
@@ -4088,7 +4088,7 @@ GALGAS_baseline_5F_incDecRegisterInCondition GALGAS_baseline_5F_incDecRegisterIn
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_registerExpression GALGAS_baseline_5F_incDecRegisterInCondition::reader_mRegisterExpression (UNUSED_LOCATION_ARGS) const {
+GALGAS_registerExpression GALGAS_baseline_5F_incDecRegisterInCondition::getter_mRegisterExpression (UNUSED_LOCATION_ARGS) const {
   GALGAS_registerExpression result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_incDecRegisterInCondition * p = (const cPtr_baseline_5F_incDecRegisterInCondition *) mObjectPtr ;
@@ -4100,13 +4100,13 @@ GALGAS_registerExpression GALGAS_baseline_5F_incDecRegisterInCondition::reader_m
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_registerExpression cPtr_baseline_5F_incDecRegisterInCondition::reader_mRegisterExpression (UNUSED_LOCATION_ARGS) const {
+GALGAS_registerExpression cPtr_baseline_5F_incDecRegisterInCondition::getter_mRegisterExpression (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mRegisterExpression ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_bool GALGAS_baseline_5F_incDecRegisterInCondition::reader_mIncrement (UNUSED_LOCATION_ARGS) const {
+GALGAS_bool GALGAS_baseline_5F_incDecRegisterInCondition::getter_mIncrement (UNUSED_LOCATION_ARGS) const {
   GALGAS_bool result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_incDecRegisterInCondition * p = (const cPtr_baseline_5F_incDecRegisterInCondition *) mObjectPtr ;
@@ -4118,13 +4118,13 @@ GALGAS_bool GALGAS_baseline_5F_incDecRegisterInCondition::reader_mIncrement (UNU
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_bool cPtr_baseline_5F_incDecRegisterInCondition::reader_mIncrement (UNUSED_LOCATION_ARGS) const {
+GALGAS_bool cPtr_baseline_5F_incDecRegisterInCondition::getter_mIncrement (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mIncrement ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_bool GALGAS_baseline_5F_incDecRegisterInCondition::reader_m_5F_W_5F_isDestination (UNUSED_LOCATION_ARGS) const {
+GALGAS_bool GALGAS_baseline_5F_incDecRegisterInCondition::getter_m_5F_W_5F_isDestination (UNUSED_LOCATION_ARGS) const {
   GALGAS_bool result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_incDecRegisterInCondition * p = (const cPtr_baseline_5F_incDecRegisterInCondition *) mObjectPtr ;
@@ -4136,13 +4136,13 @@ GALGAS_bool GALGAS_baseline_5F_incDecRegisterInCondition::reader_m_5F_W_5F_isDes
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_bool cPtr_baseline_5F_incDecRegisterInCondition::reader_m_5F_W_5F_isDestination (UNUSED_LOCATION_ARGS) const {
+GALGAS_bool cPtr_baseline_5F_incDecRegisterInCondition::getter_m_5F_W_5F_isDestination (UNUSED_LOCATION_ARGS) const {
   return mAttribute_m_5F_W_5F_isDestination ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_bool GALGAS_baseline_5F_incDecRegisterInCondition::reader_mBranchIfZero (UNUSED_LOCATION_ARGS) const {
+GALGAS_bool GALGAS_baseline_5F_incDecRegisterInCondition::getter_mBranchIfZero (UNUSED_LOCATION_ARGS) const {
   GALGAS_bool result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_incDecRegisterInCondition * p = (const cPtr_baseline_5F_incDecRegisterInCondition *) mObjectPtr ;
@@ -4154,7 +4154,7 @@ GALGAS_bool GALGAS_baseline_5F_incDecRegisterInCondition::reader_mBranchIfZero (
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_bool cPtr_baseline_5F_incDecRegisterInCondition::reader_mBranchIfZero (UNUSED_LOCATION_ARGS) const {
+GALGAS_bool cPtr_baseline_5F_incDecRegisterInCondition::getter_mBranchIfZero (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mBranchIfZero ;
 }
 
@@ -4304,7 +4304,7 @@ GALGAS_baseline_5F_negateCondition GALGAS_baseline_5F_negateCondition::construct
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_baseline_5F_conditionExpression GALGAS_baseline_5F_negateCondition::reader_mCondition (UNUSED_LOCATION_ARGS) const {
+GALGAS_baseline_5F_conditionExpression GALGAS_baseline_5F_negateCondition::getter_mCondition (UNUSED_LOCATION_ARGS) const {
   GALGAS_baseline_5F_conditionExpression result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_negateCondition * p = (const cPtr_baseline_5F_negateCondition *) mObjectPtr ;
@@ -4316,7 +4316,7 @@ GALGAS_baseline_5F_conditionExpression GALGAS_baseline_5F_negateCondition::reade
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_baseline_5F_conditionExpression cPtr_baseline_5F_negateCondition::reader_mCondition (UNUSED_LOCATION_ARGS) const {
+GALGAS_baseline_5F_conditionExpression cPtr_baseline_5F_negateCondition::getter_mCondition (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mCondition ;
 }
 
@@ -4432,7 +4432,7 @@ AC_GALGAS_class (inSourcePtr) {
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_location GALGAS_baseline_5F_instruction::reader_mInstructionLocation (UNUSED_LOCATION_ARGS) const {
+GALGAS_location GALGAS_baseline_5F_instruction::getter_mInstructionLocation (UNUSED_LOCATION_ARGS) const {
   GALGAS_location result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_instruction * p = (const cPtr_baseline_5F_instruction *) mObjectPtr ;
@@ -4444,7 +4444,7 @@ GALGAS_location GALGAS_baseline_5F_instruction::reader_mInstructionLocation (UNU
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_location cPtr_baseline_5F_instruction::reader_mInstructionLocation (UNUSED_LOCATION_ARGS) const {
+GALGAS_location cPtr_baseline_5F_instruction::getter_mInstructionLocation (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mInstructionLocation ;
 }
 
@@ -4573,7 +4573,7 @@ GALGAS_baseline_5F_instruction_5F_CALL GALGAS_baseline_5F_instruction_5F_CALL::c
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_lstring GALGAS_baseline_5F_instruction_5F_CALL::reader_mTargetLabel (UNUSED_LOCATION_ARGS) const {
+GALGAS_lstring GALGAS_baseline_5F_instruction_5F_CALL::getter_mTargetLabel (UNUSED_LOCATION_ARGS) const {
   GALGAS_lstring result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_instruction_5F_CALL * p = (const cPtr_baseline_5F_instruction_5F_CALL *) mObjectPtr ;
@@ -4585,7 +4585,7 @@ GALGAS_lstring GALGAS_baseline_5F_instruction_5F_CALL::reader_mTargetLabel (UNUS
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_lstring cPtr_baseline_5F_instruction_5F_CALL::reader_mTargetLabel (UNUSED_LOCATION_ARGS) const {
+GALGAS_lstring cPtr_baseline_5F_instruction_5F_CALL::getter_mTargetLabel (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mTargetLabel ;
 }
 
@@ -4734,7 +4734,7 @@ GALGAS_baseline_5F_instruction_5F_F GALGAS_baseline_5F_instruction_5F_F::constru
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_baseline_5F_F_5F_instruction_5F_base_5F_code GALGAS_baseline_5F_instruction_5F_F::reader_mFAinstruction (UNUSED_LOCATION_ARGS) const {
+GALGAS_baseline_5F_F_5F_instruction_5F_base_5F_code GALGAS_baseline_5F_instruction_5F_F::getter_mFAinstruction (UNUSED_LOCATION_ARGS) const {
   GALGAS_baseline_5F_F_5F_instruction_5F_base_5F_code result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_instruction_5F_F * p = (const cPtr_baseline_5F_instruction_5F_F *) mObjectPtr ;
@@ -4746,13 +4746,13 @@ GALGAS_baseline_5F_F_5F_instruction_5F_base_5F_code GALGAS_baseline_5F_instructi
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_baseline_5F_F_5F_instruction_5F_base_5F_code cPtr_baseline_5F_instruction_5F_F::reader_mFAinstruction (UNUSED_LOCATION_ARGS) const {
+GALGAS_baseline_5F_F_5F_instruction_5F_base_5F_code cPtr_baseline_5F_instruction_5F_F::getter_mFAinstruction (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mFAinstruction ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_registerExpression GALGAS_baseline_5F_instruction_5F_F::reader_mRegisterExpression (UNUSED_LOCATION_ARGS) const {
+GALGAS_registerExpression GALGAS_baseline_5F_instruction_5F_F::getter_mRegisterExpression (UNUSED_LOCATION_ARGS) const {
   GALGAS_registerExpression result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_instruction_5F_F * p = (const cPtr_baseline_5F_instruction_5F_F *) mObjectPtr ;
@@ -4764,7 +4764,7 @@ GALGAS_registerExpression GALGAS_baseline_5F_instruction_5F_F::reader_mRegisterE
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_registerExpression cPtr_baseline_5F_instruction_5F_F::reader_mRegisterExpression (UNUSED_LOCATION_ARGS) const {
+GALGAS_registerExpression cPtr_baseline_5F_instruction_5F_F::getter_mRegisterExpression (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mRegisterExpression ;
 }
 
@@ -4921,7 +4921,7 @@ GALGAS_baseline_5F_instruction_5F_FB GALGAS_baseline_5F_instruction_5F_FB::const
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_baseline_5F_bit_5F_oriented_5F_op GALGAS_baseline_5F_instruction_5F_FB::reader_mBitOrientedOp (UNUSED_LOCATION_ARGS) const {
+GALGAS_baseline_5F_bit_5F_oriented_5F_op GALGAS_baseline_5F_instruction_5F_FB::getter_mBitOrientedOp (UNUSED_LOCATION_ARGS) const {
   GALGAS_baseline_5F_bit_5F_oriented_5F_op result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_instruction_5F_FB * p = (const cPtr_baseline_5F_instruction_5F_FB *) mObjectPtr ;
@@ -4933,13 +4933,13 @@ GALGAS_baseline_5F_bit_5F_oriented_5F_op GALGAS_baseline_5F_instruction_5F_FB::r
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_baseline_5F_bit_5F_oriented_5F_op cPtr_baseline_5F_instruction_5F_FB::reader_mBitOrientedOp (UNUSED_LOCATION_ARGS) const {
+GALGAS_baseline_5F_bit_5F_oriented_5F_op cPtr_baseline_5F_instruction_5F_FB::getter_mBitOrientedOp (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mBitOrientedOp ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_registerExpression GALGAS_baseline_5F_instruction_5F_FB::reader_mRegisterExpression (UNUSED_LOCATION_ARGS) const {
+GALGAS_registerExpression GALGAS_baseline_5F_instruction_5F_FB::getter_mRegisterExpression (UNUSED_LOCATION_ARGS) const {
   GALGAS_registerExpression result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_instruction_5F_FB * p = (const cPtr_baseline_5F_instruction_5F_FB *) mObjectPtr ;
@@ -4951,13 +4951,13 @@ GALGAS_registerExpression GALGAS_baseline_5F_instruction_5F_FB::reader_mRegister
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_registerExpression cPtr_baseline_5F_instruction_5F_FB::reader_mRegisterExpression (UNUSED_LOCATION_ARGS) const {
+GALGAS_registerExpression cPtr_baseline_5F_instruction_5F_FB::getter_mRegisterExpression (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mRegisterExpression ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_bitNumberExpression GALGAS_baseline_5F_instruction_5F_FB::reader_mBitNumber (UNUSED_LOCATION_ARGS) const {
+GALGAS_bitNumberExpression GALGAS_baseline_5F_instruction_5F_FB::getter_mBitNumber (UNUSED_LOCATION_ARGS) const {
   GALGAS_bitNumberExpression result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_instruction_5F_FB * p = (const cPtr_baseline_5F_instruction_5F_FB *) mObjectPtr ;
@@ -4969,7 +4969,7 @@ GALGAS_bitNumberExpression GALGAS_baseline_5F_instruction_5F_FB::reader_mBitNumb
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_bitNumberExpression cPtr_baseline_5F_instruction_5F_FB::reader_mBitNumber (UNUSED_LOCATION_ARGS) const {
+GALGAS_bitNumberExpression cPtr_baseline_5F_instruction_5F_FB::getter_mBitNumber (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mBitNumber ;
 }
 
@@ -5130,7 +5130,7 @@ GALGAS_baseline_5F_instruction_5F_FD GALGAS_baseline_5F_instruction_5F_FD::const
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code GALGAS_baseline_5F_instruction_5F_FD::reader_mInstruction_5F_FD_5F_base_5F_code (UNUSED_LOCATION_ARGS) const {
+GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code GALGAS_baseline_5F_instruction_5F_FD::getter_mInstruction_5F_FD_5F_base_5F_code (UNUSED_LOCATION_ARGS) const {
   GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_instruction_5F_FD * p = (const cPtr_baseline_5F_instruction_5F_FD *) mObjectPtr ;
@@ -5142,13 +5142,13 @@ GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code GALGAS_baseline_5F_instruct
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code cPtr_baseline_5F_instruction_5F_FD::reader_mInstruction_5F_FD_5F_base_5F_code (UNUSED_LOCATION_ARGS) const {
+GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code cPtr_baseline_5F_instruction_5F_FD::getter_mInstruction_5F_FD_5F_base_5F_code (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mInstruction_5F_FD_5F_base_5F_code ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_registerExpression GALGAS_baseline_5F_instruction_5F_FD::reader_mRegisterExpression (UNUSED_LOCATION_ARGS) const {
+GALGAS_registerExpression GALGAS_baseline_5F_instruction_5F_FD::getter_mRegisterExpression (UNUSED_LOCATION_ARGS) const {
   GALGAS_registerExpression result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_instruction_5F_FD * p = (const cPtr_baseline_5F_instruction_5F_FD *) mObjectPtr ;
@@ -5160,13 +5160,13 @@ GALGAS_registerExpression GALGAS_baseline_5F_instruction_5F_FD::reader_mRegister
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_registerExpression cPtr_baseline_5F_instruction_5F_FD::reader_mRegisterExpression (UNUSED_LOCATION_ARGS) const {
+GALGAS_registerExpression cPtr_baseline_5F_instruction_5F_FD::getter_mRegisterExpression (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mRegisterExpression ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_bool GALGAS_baseline_5F_instruction_5F_FD::reader_m_5F_W_5F_isDestination (UNUSED_LOCATION_ARGS) const {
+GALGAS_bool GALGAS_baseline_5F_instruction_5F_FD::getter_m_5F_W_5F_isDestination (UNUSED_LOCATION_ARGS) const {
   GALGAS_bool result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_instruction_5F_FD * p = (const cPtr_baseline_5F_instruction_5F_FD *) mObjectPtr ;
@@ -5178,7 +5178,7 @@ GALGAS_bool GALGAS_baseline_5F_instruction_5F_FD::reader_m_5F_W_5F_isDestination
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_bool cPtr_baseline_5F_instruction_5F_FD::reader_m_5F_W_5F_isDestination (UNUSED_LOCATION_ARGS) const {
+GALGAS_bool cPtr_baseline_5F_instruction_5F_FD::getter_m_5F_W_5F_isDestination (UNUSED_LOCATION_ARGS) const {
   return mAttribute_m_5F_W_5F_isDestination ;
 }
 
@@ -5344,7 +5344,7 @@ GALGAS_baseline_5F_instruction_5F_FOREVER GALGAS_baseline_5F_instruction_5F_FORE
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_baseline_5F_instructionList GALGAS_baseline_5F_instruction_5F_FOREVER::reader_mInstructionList (UNUSED_LOCATION_ARGS) const {
+GALGAS_baseline_5F_instructionList GALGAS_baseline_5F_instruction_5F_FOREVER::getter_mInstructionList (UNUSED_LOCATION_ARGS) const {
   GALGAS_baseline_5F_instructionList result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_instruction_5F_FOREVER * p = (const cPtr_baseline_5F_instruction_5F_FOREVER *) mObjectPtr ;
@@ -5356,13 +5356,13 @@ GALGAS_baseline_5F_instructionList GALGAS_baseline_5F_instruction_5F_FOREVER::re
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_baseline_5F_instructionList cPtr_baseline_5F_instruction_5F_FOREVER::reader_mInstructionList (UNUSED_LOCATION_ARGS) const {
+GALGAS_baseline_5F_instructionList cPtr_baseline_5F_instruction_5F_FOREVER::getter_mInstructionList (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mInstructionList ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_location GALGAS_baseline_5F_instruction_5F_FOREVER::reader_mEndOfInstructionList (UNUSED_LOCATION_ARGS) const {
+GALGAS_location GALGAS_baseline_5F_instruction_5F_FOREVER::getter_mEndOfInstructionList (UNUSED_LOCATION_ARGS) const {
   GALGAS_location result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_instruction_5F_FOREVER * p = (const cPtr_baseline_5F_instruction_5F_FOREVER *) mObjectPtr ;
@@ -5374,7 +5374,7 @@ GALGAS_location GALGAS_baseline_5F_instruction_5F_FOREVER::reader_mEndOfInstruct
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_location cPtr_baseline_5F_instruction_5F_FOREVER::reader_mEndOfInstructionList (UNUSED_LOCATION_ARGS) const {
+GALGAS_location cPtr_baseline_5F_instruction_5F_FOREVER::getter_mEndOfInstructionList (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mEndOfInstructionList ;
 }
 
@@ -5531,7 +5531,7 @@ GALGAS_baseline_5F_instruction_5F_GOTO GALGAS_baseline_5F_instruction_5F_GOTO::c
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_lstring GALGAS_baseline_5F_instruction_5F_GOTO::reader_mTargetLabel (UNUSED_LOCATION_ARGS) const {
+GALGAS_lstring GALGAS_baseline_5F_instruction_5F_GOTO::getter_mTargetLabel (UNUSED_LOCATION_ARGS) const {
   GALGAS_lstring result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_instruction_5F_GOTO * p = (const cPtr_baseline_5F_instruction_5F_GOTO *) mObjectPtr ;
@@ -5543,7 +5543,7 @@ GALGAS_lstring GALGAS_baseline_5F_instruction_5F_GOTO::reader_mTargetLabel (UNUS
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_lstring cPtr_baseline_5F_instruction_5F_GOTO::reader_mTargetLabel (UNUSED_LOCATION_ARGS) const {
+GALGAS_lstring cPtr_baseline_5F_instruction_5F_GOTO::getter_mTargetLabel (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mTargetLabel ;
 }
 
@@ -5662,7 +5662,7 @@ GALGAS_baseline_5F_instruction (inSourcePtr) {
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_baseline_5F_instruction GALGAS_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON::reader_mInstruction (UNUSED_LOCATION_ARGS) const {
+GALGAS_baseline_5F_instruction GALGAS_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON::getter_mInstruction (UNUSED_LOCATION_ARGS) const {
   GALGAS_baseline_5F_instruction result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON * p = (const cPtr_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON *) mObjectPtr ;
@@ -5674,7 +5674,7 @@ GALGAS_baseline_5F_instruction GALGAS_baseline_5F_instruction_5F_IF_5F_SEMI_5F_C
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_baseline_5F_instruction cPtr_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON::reader_mInstruction (UNUSED_LOCATION_ARGS) const {
+GALGAS_baseline_5F_instruction cPtr_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON::getter_mInstruction (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mInstruction ;
 }
 
@@ -5808,7 +5808,7 @@ GALGAS_baseline_5F_instruction_5F_IF_5F_BitTest GALGAS_baseline_5F_instruction_5
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_bool GALGAS_baseline_5F_instruction_5F_IF_5F_BitTest::reader_mSkipIfSet (UNUSED_LOCATION_ARGS) const {
+GALGAS_bool GALGAS_baseline_5F_instruction_5F_IF_5F_BitTest::getter_mSkipIfSet (UNUSED_LOCATION_ARGS) const {
   GALGAS_bool result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_instruction_5F_IF_5F_BitTest * p = (const cPtr_baseline_5F_instruction_5F_IF_5F_BitTest *) mObjectPtr ;
@@ -5820,13 +5820,13 @@ GALGAS_bool GALGAS_baseline_5F_instruction_5F_IF_5F_BitTest::reader_mSkipIfSet (
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_bool cPtr_baseline_5F_instruction_5F_IF_5F_BitTest::reader_mSkipIfSet (UNUSED_LOCATION_ARGS) const {
+GALGAS_bool cPtr_baseline_5F_instruction_5F_IF_5F_BitTest::getter_mSkipIfSet (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mSkipIfSet ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_registerExpression GALGAS_baseline_5F_instruction_5F_IF_5F_BitTest::reader_mRegisterExpression (UNUSED_LOCATION_ARGS) const {
+GALGAS_registerExpression GALGAS_baseline_5F_instruction_5F_IF_5F_BitTest::getter_mRegisterExpression (UNUSED_LOCATION_ARGS) const {
   GALGAS_registerExpression result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_instruction_5F_IF_5F_BitTest * p = (const cPtr_baseline_5F_instruction_5F_IF_5F_BitTest *) mObjectPtr ;
@@ -5838,13 +5838,13 @@ GALGAS_registerExpression GALGAS_baseline_5F_instruction_5F_IF_5F_BitTest::reade
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_registerExpression cPtr_baseline_5F_instruction_5F_IF_5F_BitTest::reader_mRegisterExpression (UNUSED_LOCATION_ARGS) const {
+GALGAS_registerExpression cPtr_baseline_5F_instruction_5F_IF_5F_BitTest::getter_mRegisterExpression (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mRegisterExpression ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_bitNumberExpression GALGAS_baseline_5F_instruction_5F_IF_5F_BitTest::reader_mBitNumber (UNUSED_LOCATION_ARGS) const {
+GALGAS_bitNumberExpression GALGAS_baseline_5F_instruction_5F_IF_5F_BitTest::getter_mBitNumber (UNUSED_LOCATION_ARGS) const {
   GALGAS_bitNumberExpression result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_instruction_5F_IF_5F_BitTest * p = (const cPtr_baseline_5F_instruction_5F_IF_5F_BitTest *) mObjectPtr ;
@@ -5856,7 +5856,7 @@ GALGAS_bitNumberExpression GALGAS_baseline_5F_instruction_5F_IF_5F_BitTest::read
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_bitNumberExpression cPtr_baseline_5F_instruction_5F_IF_5F_BitTest::reader_mBitNumber (UNUSED_LOCATION_ARGS) const {
+GALGAS_bitNumberExpression cPtr_baseline_5F_instruction_5F_IF_5F_BitTest::getter_mBitNumber (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mBitNumber ;
 }
 
@@ -6024,7 +6024,7 @@ GALGAS_baseline_5F_instruction_5F_IF_5F_IncDec GALGAS_baseline_5F_instruction_5F
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_bool GALGAS_baseline_5F_instruction_5F_IF_5F_IncDec::reader_mIncrement (UNUSED_LOCATION_ARGS) const {
+GALGAS_bool GALGAS_baseline_5F_instruction_5F_IF_5F_IncDec::getter_mIncrement (UNUSED_LOCATION_ARGS) const {
   GALGAS_bool result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_instruction_5F_IF_5F_IncDec * p = (const cPtr_baseline_5F_instruction_5F_IF_5F_IncDec *) mObjectPtr ;
@@ -6036,13 +6036,13 @@ GALGAS_bool GALGAS_baseline_5F_instruction_5F_IF_5F_IncDec::reader_mIncrement (U
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_bool cPtr_baseline_5F_instruction_5F_IF_5F_IncDec::reader_mIncrement (UNUSED_LOCATION_ARGS) const {
+GALGAS_bool cPtr_baseline_5F_instruction_5F_IF_5F_IncDec::getter_mIncrement (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mIncrement ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_registerExpression GALGAS_baseline_5F_instruction_5F_IF_5F_IncDec::reader_mRegisterExpression (UNUSED_LOCATION_ARGS) const {
+GALGAS_registerExpression GALGAS_baseline_5F_instruction_5F_IF_5F_IncDec::getter_mRegisterExpression (UNUSED_LOCATION_ARGS) const {
   GALGAS_registerExpression result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_instruction_5F_IF_5F_IncDec * p = (const cPtr_baseline_5F_instruction_5F_IF_5F_IncDec *) mObjectPtr ;
@@ -6054,13 +6054,13 @@ GALGAS_registerExpression GALGAS_baseline_5F_instruction_5F_IF_5F_IncDec::reader
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_registerExpression cPtr_baseline_5F_instruction_5F_IF_5F_IncDec::reader_mRegisterExpression (UNUSED_LOCATION_ARGS) const {
+GALGAS_registerExpression cPtr_baseline_5F_instruction_5F_IF_5F_IncDec::getter_mRegisterExpression (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mRegisterExpression ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_bool GALGAS_baseline_5F_instruction_5F_IF_5F_IncDec::reader_m_5F_W_5F_isDestination (UNUSED_LOCATION_ARGS) const {
+GALGAS_bool GALGAS_baseline_5F_instruction_5F_IF_5F_IncDec::getter_m_5F_W_5F_isDestination (UNUSED_LOCATION_ARGS) const {
   GALGAS_bool result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_instruction_5F_IF_5F_IncDec * p = (const cPtr_baseline_5F_instruction_5F_IF_5F_IncDec *) mObjectPtr ;
@@ -6072,7 +6072,7 @@ GALGAS_bool GALGAS_baseline_5F_instruction_5F_IF_5F_IncDec::reader_m_5F_W_5F_isD
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_bool cPtr_baseline_5F_instruction_5F_IF_5F_IncDec::reader_m_5F_W_5F_isDestination (UNUSED_LOCATION_ARGS) const {
+GALGAS_bool cPtr_baseline_5F_instruction_5F_IF_5F_IncDec::getter_m_5F_W_5F_isDestination (UNUSED_LOCATION_ARGS) const {
   return mAttribute_m_5F_W_5F_isDestination ;
 }
 
@@ -6236,7 +6236,7 @@ GALGAS_baseline_5F_instruction_5F_JSR GALGAS_baseline_5F_instruction_5F_JSR::con
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_lstring GALGAS_baseline_5F_instruction_5F_JSR::reader_mTargetLabel (UNUSED_LOCATION_ARGS) const {
+GALGAS_lstring GALGAS_baseline_5F_instruction_5F_JSR::getter_mTargetLabel (UNUSED_LOCATION_ARGS) const {
   GALGAS_lstring result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_instruction_5F_JSR * p = (const cPtr_baseline_5F_instruction_5F_JSR *) mObjectPtr ;
@@ -6248,7 +6248,7 @@ GALGAS_lstring GALGAS_baseline_5F_instruction_5F_JSR::reader_mTargetLabel (UNUSE
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_lstring cPtr_baseline_5F_instruction_5F_JSR::reader_mTargetLabel (UNUSED_LOCATION_ARGS) const {
+GALGAS_lstring cPtr_baseline_5F_instruction_5F_JSR::getter_mTargetLabel (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mTargetLabel ;
 }
 
@@ -6401,7 +6401,7 @@ GALGAS_baseline_5F_instruction_5F_JUMP GALGAS_baseline_5F_instruction_5F_JUMP::c
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_lstring GALGAS_baseline_5F_instruction_5F_JUMP::reader_mTargetLabel (UNUSED_LOCATION_ARGS) const {
+GALGAS_lstring GALGAS_baseline_5F_instruction_5F_JUMP::getter_mTargetLabel (UNUSED_LOCATION_ARGS) const {
   GALGAS_lstring result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_instruction_5F_JUMP * p = (const cPtr_baseline_5F_instruction_5F_JUMP *) mObjectPtr ;
@@ -6413,7 +6413,7 @@ GALGAS_lstring GALGAS_baseline_5F_instruction_5F_JUMP::reader_mTargetLabel (UNUS
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_lstring cPtr_baseline_5F_instruction_5F_JUMP::reader_mTargetLabel (UNUSED_LOCATION_ARGS) const {
+GALGAS_lstring cPtr_baseline_5F_instruction_5F_JUMP::getter_mTargetLabel (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mTargetLabel ;
 }
 
@@ -6566,7 +6566,7 @@ GALGAS_baseline_5F_instruction_5F_MNOP GALGAS_baseline_5F_instruction_5F_MNOP::c
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_luint GALGAS_baseline_5F_instruction_5F_MNOP::reader_mOccurrenceFactor (UNUSED_LOCATION_ARGS) const {
+GALGAS_luint GALGAS_baseline_5F_instruction_5F_MNOP::getter_mOccurrenceFactor (UNUSED_LOCATION_ARGS) const {
   GALGAS_luint result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_instruction_5F_MNOP * p = (const cPtr_baseline_5F_instruction_5F_MNOP *) mObjectPtr ;
@@ -6578,7 +6578,7 @@ GALGAS_luint GALGAS_baseline_5F_instruction_5F_MNOP::reader_mOccurrenceFactor (U
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_luint cPtr_baseline_5F_instruction_5F_MNOP::reader_mOccurrenceFactor (UNUSED_LOCATION_ARGS) const {
+GALGAS_luint cPtr_baseline_5F_instruction_5F_MNOP::getter_mOccurrenceFactor (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mOccurrenceFactor ;
 }
 
@@ -6739,7 +6739,7 @@ GALGAS_baseline_5F_instruction_5F_STATIC_5F_REPEAT GALGAS_baseline_5F_instructio
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_lstring GALGAS_baseline_5F_instruction_5F_STATIC_5F_REPEAT::reader_mConstantName (UNUSED_LOCATION_ARGS) const {
+GALGAS_lstring GALGAS_baseline_5F_instruction_5F_STATIC_5F_REPEAT::getter_mConstantName (UNUSED_LOCATION_ARGS) const {
   GALGAS_lstring result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_instruction_5F_STATIC_5F_REPEAT * p = (const cPtr_baseline_5F_instruction_5F_STATIC_5F_REPEAT *) mObjectPtr ;
@@ -6751,13 +6751,13 @@ GALGAS_lstring GALGAS_baseline_5F_instruction_5F_STATIC_5F_REPEAT::reader_mConst
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_lstring cPtr_baseline_5F_instruction_5F_STATIC_5F_REPEAT::reader_mConstantName (UNUSED_LOCATION_ARGS) const {
+GALGAS_lstring cPtr_baseline_5F_instruction_5F_STATIC_5F_REPEAT::getter_mConstantName (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mConstantName ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_immediatExpression GALGAS_baseline_5F_instruction_5F_STATIC_5F_REPEAT::reader_mLowerBoundExpression (UNUSED_LOCATION_ARGS) const {
+GALGAS_immediatExpression GALGAS_baseline_5F_instruction_5F_STATIC_5F_REPEAT::getter_mLowerBoundExpression (UNUSED_LOCATION_ARGS) const {
   GALGAS_immediatExpression result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_instruction_5F_STATIC_5F_REPEAT * p = (const cPtr_baseline_5F_instruction_5F_STATIC_5F_REPEAT *) mObjectPtr ;
@@ -6769,13 +6769,13 @@ GALGAS_immediatExpression GALGAS_baseline_5F_instruction_5F_STATIC_5F_REPEAT::re
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_immediatExpression cPtr_baseline_5F_instruction_5F_STATIC_5F_REPEAT::reader_mLowerBoundExpression (UNUSED_LOCATION_ARGS) const {
+GALGAS_immediatExpression cPtr_baseline_5F_instruction_5F_STATIC_5F_REPEAT::getter_mLowerBoundExpression (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mLowerBoundExpression ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_immediatExpression GALGAS_baseline_5F_instruction_5F_STATIC_5F_REPEAT::reader_mUpperBoundExpression (UNUSED_LOCATION_ARGS) const {
+GALGAS_immediatExpression GALGAS_baseline_5F_instruction_5F_STATIC_5F_REPEAT::getter_mUpperBoundExpression (UNUSED_LOCATION_ARGS) const {
   GALGAS_immediatExpression result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_instruction_5F_STATIC_5F_REPEAT * p = (const cPtr_baseline_5F_instruction_5F_STATIC_5F_REPEAT *) mObjectPtr ;
@@ -6787,13 +6787,13 @@ GALGAS_immediatExpression GALGAS_baseline_5F_instruction_5F_STATIC_5F_REPEAT::re
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_immediatExpression cPtr_baseline_5F_instruction_5F_STATIC_5F_REPEAT::reader_mUpperBoundExpression (UNUSED_LOCATION_ARGS) const {
+GALGAS_immediatExpression cPtr_baseline_5F_instruction_5F_STATIC_5F_REPEAT::getter_mUpperBoundExpression (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mUpperBoundExpression ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_baseline_5F_instructionList GALGAS_baseline_5F_instruction_5F_STATIC_5F_REPEAT::reader_mInstructionList (UNUSED_LOCATION_ARGS) const {
+GALGAS_baseline_5F_instructionList GALGAS_baseline_5F_instruction_5F_STATIC_5F_REPEAT::getter_mInstructionList (UNUSED_LOCATION_ARGS) const {
   GALGAS_baseline_5F_instructionList result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_instruction_5F_STATIC_5F_REPEAT * p = (const cPtr_baseline_5F_instruction_5F_STATIC_5F_REPEAT *) mObjectPtr ;
@@ -6805,13 +6805,13 @@ GALGAS_baseline_5F_instructionList GALGAS_baseline_5F_instruction_5F_STATIC_5F_R
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_baseline_5F_instructionList cPtr_baseline_5F_instruction_5F_STATIC_5F_REPEAT::reader_mInstructionList (UNUSED_LOCATION_ARGS) const {
+GALGAS_baseline_5F_instructionList cPtr_baseline_5F_instruction_5F_STATIC_5F_REPEAT::getter_mInstructionList (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mInstructionList ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_location GALGAS_baseline_5F_instruction_5F_STATIC_5F_REPEAT::reader_mEndOfInstruction (UNUSED_LOCATION_ARGS) const {
+GALGAS_location GALGAS_baseline_5F_instruction_5F_STATIC_5F_REPEAT::getter_mEndOfInstruction (UNUSED_LOCATION_ARGS) const {
   GALGAS_location result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_instruction_5F_STATIC_5F_REPEAT * p = (const cPtr_baseline_5F_instruction_5F_STATIC_5F_REPEAT *) mObjectPtr ;
@@ -6823,7 +6823,7 @@ GALGAS_location GALGAS_baseline_5F_instruction_5F_STATIC_5F_REPEAT::reader_mEndO
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_location cPtr_baseline_5F_instruction_5F_STATIC_5F_REPEAT::reader_mEndOfInstruction (UNUSED_LOCATION_ARGS) const {
+GALGAS_location cPtr_baseline_5F_instruction_5F_STATIC_5F_REPEAT::getter_mEndOfInstruction (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mEndOfInstruction ;
 }
 
@@ -6992,7 +6992,7 @@ GALGAS_baseline_5F_instruction_5F_TRIS GALGAS_baseline_5F_instruction_5F_TRIS::c
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_lstring GALGAS_baseline_5F_instruction_5F_TRIS::reader_mOperand (UNUSED_LOCATION_ARGS) const {
+GALGAS_lstring GALGAS_baseline_5F_instruction_5F_TRIS::getter_mOperand (UNUSED_LOCATION_ARGS) const {
   GALGAS_lstring result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_instruction_5F_TRIS * p = (const cPtr_baseline_5F_instruction_5F_TRIS *) mObjectPtr ;
@@ -7004,7 +7004,7 @@ GALGAS_lstring GALGAS_baseline_5F_instruction_5F_TRIS::reader_mOperand (UNUSED_L
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_lstring cPtr_baseline_5F_instruction_5F_TRIS::reader_mOperand (UNUSED_LOCATION_ARGS) const {
+GALGAS_lstring cPtr_baseline_5F_instruction_5F_TRIS::getter_mOperand (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mOperand ;
 }
 
@@ -7149,7 +7149,7 @@ GALGAS_baseline_5F_instruction_5F_WO_5F_OPERAND GALGAS_baseline_5F_instruction_5
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_baseline_5F_WO_5F_OPERAND_5F_group GALGAS_baseline_5F_instruction_5F_WO_5F_OPERAND::reader_mInstruction (UNUSED_LOCATION_ARGS) const {
+GALGAS_baseline_5F_WO_5F_OPERAND_5F_group GALGAS_baseline_5F_instruction_5F_WO_5F_OPERAND::getter_mInstruction (UNUSED_LOCATION_ARGS) const {
   GALGAS_baseline_5F_WO_5F_OPERAND_5F_group result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_instruction_5F_WO_5F_OPERAND * p = (const cPtr_baseline_5F_instruction_5F_WO_5F_OPERAND *) mObjectPtr ;
@@ -7161,7 +7161,7 @@ GALGAS_baseline_5F_WO_5F_OPERAND_5F_group GALGAS_baseline_5F_instruction_5F_WO_5
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_baseline_5F_WO_5F_OPERAND_5F_group cPtr_baseline_5F_instruction_5F_WO_5F_OPERAND::reader_mInstruction (UNUSED_LOCATION_ARGS) const {
+GALGAS_baseline_5F_WO_5F_OPERAND_5F_group cPtr_baseline_5F_instruction_5F_WO_5F_OPERAND::getter_mInstruction (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mInstruction ;
 }
 
@@ -7324,7 +7324,7 @@ GALGAS_baseline_5F_instruction_5F_do_5F_while GALGAS_baseline_5F_instruction_5F_
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_baseline_5F_instructionList GALGAS_baseline_5F_instruction_5F_do_5F_while::reader_mRepeatedInstructionList (UNUSED_LOCATION_ARGS) const {
+GALGAS_baseline_5F_instructionList GALGAS_baseline_5F_instruction_5F_do_5F_while::getter_mRepeatedInstructionList (UNUSED_LOCATION_ARGS) const {
   GALGAS_baseline_5F_instructionList result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_instruction_5F_do_5F_while * p = (const cPtr_baseline_5F_instruction_5F_do_5F_while *) mObjectPtr ;
@@ -7336,13 +7336,13 @@ GALGAS_baseline_5F_instructionList GALGAS_baseline_5F_instruction_5F_do_5F_while
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_baseline_5F_instructionList cPtr_baseline_5F_instruction_5F_do_5F_while::reader_mRepeatedInstructionList (UNUSED_LOCATION_ARGS) const {
+GALGAS_baseline_5F_instructionList cPtr_baseline_5F_instruction_5F_do_5F_while::getter_mRepeatedInstructionList (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mRepeatedInstructionList ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_location GALGAS_baseline_5F_instruction_5F_do_5F_while::reader_mEndOfRepeatedInstructionList (UNUSED_LOCATION_ARGS) const {
+GALGAS_location GALGAS_baseline_5F_instruction_5F_do_5F_while::getter_mEndOfRepeatedInstructionList (UNUSED_LOCATION_ARGS) const {
   GALGAS_location result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_instruction_5F_do_5F_while * p = (const cPtr_baseline_5F_instruction_5F_do_5F_while *) mObjectPtr ;
@@ -7354,13 +7354,13 @@ GALGAS_location GALGAS_baseline_5F_instruction_5F_do_5F_while::reader_mEndOfRepe
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_location cPtr_baseline_5F_instruction_5F_do_5F_while::reader_mEndOfRepeatedInstructionList (UNUSED_LOCATION_ARGS) const {
+GALGAS_location cPtr_baseline_5F_instruction_5F_do_5F_while::getter_mEndOfRepeatedInstructionList (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mEndOfRepeatedInstructionList ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_baseline_5F_partList GALGAS_baseline_5F_instruction_5F_do_5F_while::reader_mWhilePartList (UNUSED_LOCATION_ARGS) const {
+GALGAS_baseline_5F_partList GALGAS_baseline_5F_instruction_5F_do_5F_while::getter_mWhilePartList (UNUSED_LOCATION_ARGS) const {
   GALGAS_baseline_5F_partList result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_instruction_5F_do_5F_while * p = (const cPtr_baseline_5F_instruction_5F_do_5F_while *) mObjectPtr ;
@@ -7372,7 +7372,7 @@ GALGAS_baseline_5F_partList GALGAS_baseline_5F_instruction_5F_do_5F_while::reade
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_baseline_5F_partList cPtr_baseline_5F_instruction_5F_do_5F_while::reader_mWhilePartList (UNUSED_LOCATION_ARGS) const {
+GALGAS_baseline_5F_partList cPtr_baseline_5F_instruction_5F_do_5F_while::getter_mWhilePartList (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mWhilePartList ;
 }
 
@@ -7529,7 +7529,7 @@ GALGAS_baseline_5F_instruction_5F_literalOperation GALGAS_baseline_5F_instructio
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_baseline_5F_literal_5F_instruction_5F_opcode GALGAS_baseline_5F_instruction_5F_literalOperation::reader_mLiteralInstruction (UNUSED_LOCATION_ARGS) const {
+GALGAS_baseline_5F_literal_5F_instruction_5F_opcode GALGAS_baseline_5F_instruction_5F_literalOperation::getter_mLiteralInstruction (UNUSED_LOCATION_ARGS) const {
   GALGAS_baseline_5F_literal_5F_instruction_5F_opcode result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_instruction_5F_literalOperation * p = (const cPtr_baseline_5F_instruction_5F_literalOperation *) mObjectPtr ;
@@ -7541,13 +7541,13 @@ GALGAS_baseline_5F_literal_5F_instruction_5F_opcode GALGAS_baseline_5F_instructi
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_baseline_5F_literal_5F_instruction_5F_opcode cPtr_baseline_5F_instruction_5F_literalOperation::reader_mLiteralInstruction (UNUSED_LOCATION_ARGS) const {
+GALGAS_baseline_5F_literal_5F_instruction_5F_opcode cPtr_baseline_5F_instruction_5F_literalOperation::getter_mLiteralInstruction (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mLiteralInstruction ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_immediatExpression GALGAS_baseline_5F_instruction_5F_literalOperation::reader_mImmediatExpression (UNUSED_LOCATION_ARGS) const {
+GALGAS_immediatExpression GALGAS_baseline_5F_instruction_5F_literalOperation::getter_mImmediatExpression (UNUSED_LOCATION_ARGS) const {
   GALGAS_immediatExpression result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_instruction_5F_literalOperation * p = (const cPtr_baseline_5F_instruction_5F_literalOperation *) mObjectPtr ;
@@ -7559,7 +7559,7 @@ GALGAS_immediatExpression GALGAS_baseline_5F_instruction_5F_literalOperation::re
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_immediatExpression cPtr_baseline_5F_instruction_5F_literalOperation::reader_mImmediatExpression (UNUSED_LOCATION_ARGS) const {
+GALGAS_immediatExpression cPtr_baseline_5F_instruction_5F_literalOperation::getter_mImmediatExpression (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mImmediatExpression ;
 }
 
@@ -7720,7 +7720,7 @@ GALGAS_baseline_5F_instruction_5F_structured_5F_if GALGAS_baseline_5F_instructio
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_baseline_5F_conditionExpression GALGAS_baseline_5F_instruction_5F_structured_5F_if::reader_mIfCondition (UNUSED_LOCATION_ARGS) const {
+GALGAS_baseline_5F_conditionExpression GALGAS_baseline_5F_instruction_5F_structured_5F_if::getter_mIfCondition (UNUSED_LOCATION_ARGS) const {
   GALGAS_baseline_5F_conditionExpression result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_instruction_5F_structured_5F_if * p = (const cPtr_baseline_5F_instruction_5F_structured_5F_if *) mObjectPtr ;
@@ -7732,13 +7732,13 @@ GALGAS_baseline_5F_conditionExpression GALGAS_baseline_5F_instruction_5F_structu
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_baseline_5F_conditionExpression cPtr_baseline_5F_instruction_5F_structured_5F_if::reader_mIfCondition (UNUSED_LOCATION_ARGS) const {
+GALGAS_baseline_5F_conditionExpression cPtr_baseline_5F_instruction_5F_structured_5F_if::getter_mIfCondition (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mIfCondition ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_baseline_5F_instructionList GALGAS_baseline_5F_instruction_5F_structured_5F_if::reader_mThenInstructionList (UNUSED_LOCATION_ARGS) const {
+GALGAS_baseline_5F_instructionList GALGAS_baseline_5F_instruction_5F_structured_5F_if::getter_mThenInstructionList (UNUSED_LOCATION_ARGS) const {
   GALGAS_baseline_5F_instructionList result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_instruction_5F_structured_5F_if * p = (const cPtr_baseline_5F_instruction_5F_structured_5F_if *) mObjectPtr ;
@@ -7750,13 +7750,13 @@ GALGAS_baseline_5F_instructionList GALGAS_baseline_5F_instruction_5F_structured_
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_baseline_5F_instructionList cPtr_baseline_5F_instruction_5F_structured_5F_if::reader_mThenInstructionList (UNUSED_LOCATION_ARGS) const {
+GALGAS_baseline_5F_instructionList cPtr_baseline_5F_instruction_5F_structured_5F_if::getter_mThenInstructionList (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mThenInstructionList ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_baseline_5F_instructionList GALGAS_baseline_5F_instruction_5F_structured_5F_if::reader_mElseInstructionList (UNUSED_LOCATION_ARGS) const {
+GALGAS_baseline_5F_instructionList GALGAS_baseline_5F_instruction_5F_structured_5F_if::getter_mElseInstructionList (UNUSED_LOCATION_ARGS) const {
   GALGAS_baseline_5F_instructionList result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_instruction_5F_structured_5F_if * p = (const cPtr_baseline_5F_instruction_5F_structured_5F_if *) mObjectPtr ;
@@ -7768,13 +7768,13 @@ GALGAS_baseline_5F_instructionList GALGAS_baseline_5F_instruction_5F_structured_
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_baseline_5F_instructionList cPtr_baseline_5F_instruction_5F_structured_5F_if::reader_mElseInstructionList (UNUSED_LOCATION_ARGS) const {
+GALGAS_baseline_5F_instructionList cPtr_baseline_5F_instruction_5F_structured_5F_if::getter_mElseInstructionList (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mElseInstructionList ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_location GALGAS_baseline_5F_instruction_5F_structured_5F_if::reader_mEndOfElsePartLocation (UNUSED_LOCATION_ARGS) const {
+GALGAS_location GALGAS_baseline_5F_instruction_5F_structured_5F_if::getter_mEndOfElsePartLocation (UNUSED_LOCATION_ARGS) const {
   GALGAS_location result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_instruction_5F_structured_5F_if * p = (const cPtr_baseline_5F_instruction_5F_structured_5F_if *) mObjectPtr ;
@@ -7786,7 +7786,7 @@ GALGAS_location GALGAS_baseline_5F_instruction_5F_structured_5F_if::reader_mEndO
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_location cPtr_baseline_5F_instruction_5F_structured_5F_if::reader_mEndOfElsePartLocation (UNUSED_LOCATION_ARGS) const {
+GALGAS_location cPtr_baseline_5F_instruction_5F_structured_5F_if::getter_mEndOfElsePartLocation (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mEndOfElsePartLocation ;
 }
 
@@ -8129,7 +8129,7 @@ GALGAS_baseline_5F_intermediate_5F_instruction (inSourcePtr) {
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_location GALGAS_baseline_5F_intermediate_5F_actualInstruction::reader_mInstructionLocation (UNUSED_LOCATION_ARGS) const {
+GALGAS_location GALGAS_baseline_5F_intermediate_5F_actualInstruction::getter_mInstructionLocation (UNUSED_LOCATION_ARGS) const {
   GALGAS_location result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_intermediate_5F_actualInstruction * p = (const cPtr_baseline_5F_intermediate_5F_actualInstruction *) mObjectPtr ;
@@ -8141,7 +8141,7 @@ GALGAS_location GALGAS_baseline_5F_intermediate_5F_actualInstruction::reader_mIn
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_location cPtr_baseline_5F_intermediate_5F_actualInstruction::reader_mInstructionLocation (UNUSED_LOCATION_ARGS) const {
+GALGAS_location cPtr_baseline_5F_intermediate_5F_actualInstruction::getter_mInstructionLocation (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mInstructionLocation ;
 }
 
@@ -8270,7 +8270,7 @@ GALGAS_baseline_5F_intermediate_5F_CALL GALGAS_baseline_5F_intermediate_5F_CALL:
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_lstring GALGAS_baseline_5F_intermediate_5F_CALL::reader_mTargetLabel (UNUSED_LOCATION_ARGS) const {
+GALGAS_lstring GALGAS_baseline_5F_intermediate_5F_CALL::getter_mTargetLabel (UNUSED_LOCATION_ARGS) const {
   GALGAS_lstring result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_intermediate_5F_CALL * p = (const cPtr_baseline_5F_intermediate_5F_CALL *) mObjectPtr ;
@@ -8282,7 +8282,7 @@ GALGAS_lstring GALGAS_baseline_5F_intermediate_5F_CALL::reader_mTargetLabel (UNU
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_lstring cPtr_baseline_5F_intermediate_5F_CALL::reader_mTargetLabel (UNUSED_LOCATION_ARGS) const {
+GALGAS_lstring cPtr_baseline_5F_intermediate_5F_CALL::getter_mTargetLabel (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mTargetLabel ;
 }
 
@@ -8435,7 +8435,7 @@ GALGAS_baseline_5F_intermediate_5F_GOTO GALGAS_baseline_5F_intermediate_5F_GOTO:
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_lstring GALGAS_baseline_5F_intermediate_5F_GOTO::reader_mTargetLabel (UNUSED_LOCATION_ARGS) const {
+GALGAS_lstring GALGAS_baseline_5F_intermediate_5F_GOTO::getter_mTargetLabel (UNUSED_LOCATION_ARGS) const {
   GALGAS_lstring result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_intermediate_5F_GOTO * p = (const cPtr_baseline_5F_intermediate_5F_GOTO *) mObjectPtr ;
@@ -8447,7 +8447,7 @@ GALGAS_lstring GALGAS_baseline_5F_intermediate_5F_GOTO::reader_mTargetLabel (UNU
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_lstring cPtr_baseline_5F_intermediate_5F_GOTO::reader_mTargetLabel (UNUSED_LOCATION_ARGS) const {
+GALGAS_lstring cPtr_baseline_5F_intermediate_5F_GOTO::getter_mTargetLabel (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mTargetLabel ;
 }
 
@@ -8610,7 +8610,7 @@ GALGAS_baseline_5F_intermediate_5F_JSR GALGAS_baseline_5F_intermediate_5F_JSR::c
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_lstring GALGAS_baseline_5F_intermediate_5F_JSR::reader_mTargetLabel (UNUSED_LOCATION_ARGS) const {
+GALGAS_lstring GALGAS_baseline_5F_intermediate_5F_JSR::getter_mTargetLabel (UNUSED_LOCATION_ARGS) const {
   GALGAS_lstring result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_intermediate_5F_JSR * p = (const cPtr_baseline_5F_intermediate_5F_JSR *) mObjectPtr ;
@@ -8622,13 +8622,13 @@ GALGAS_lstring GALGAS_baseline_5F_intermediate_5F_JSR::reader_mTargetLabel (UNUS
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_lstring cPtr_baseline_5F_intermediate_5F_JSR::reader_mTargetLabel (UNUSED_LOCATION_ARGS) const {
+GALGAS_lstring cPtr_baseline_5F_intermediate_5F_JSR::getter_mTargetLabel (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mTargetLabel ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_uint GALGAS_baseline_5F_intermediate_5F_JSR::reader_mCurrentPage (UNUSED_LOCATION_ARGS) const {
+GALGAS_uint GALGAS_baseline_5F_intermediate_5F_JSR::getter_mCurrentPage (UNUSED_LOCATION_ARGS) const {
   GALGAS_uint result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_intermediate_5F_JSR * p = (const cPtr_baseline_5F_intermediate_5F_JSR *) mObjectPtr ;
@@ -8640,13 +8640,13 @@ GALGAS_uint GALGAS_baseline_5F_intermediate_5F_JSR::reader_mCurrentPage (UNUSED_
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_uint cPtr_baseline_5F_intermediate_5F_JSR::reader_mCurrentPage (UNUSED_LOCATION_ARGS) const {
+GALGAS_uint cPtr_baseline_5F_intermediate_5F_JSR::getter_mCurrentPage (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mCurrentPage ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_uint GALGAS_baseline_5F_intermediate_5F_JSR::reader_mTargetPage (UNUSED_LOCATION_ARGS) const {
+GALGAS_uint GALGAS_baseline_5F_intermediate_5F_JSR::getter_mTargetPage (UNUSED_LOCATION_ARGS) const {
   GALGAS_uint result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_intermediate_5F_JSR * p = (const cPtr_baseline_5F_intermediate_5F_JSR *) mObjectPtr ;
@@ -8658,7 +8658,7 @@ GALGAS_uint GALGAS_baseline_5F_intermediate_5F_JSR::reader_mTargetPage (UNUSED_L
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_uint cPtr_baseline_5F_intermediate_5F_JSR::reader_mTargetPage (UNUSED_LOCATION_ARGS) const {
+GALGAS_uint cPtr_baseline_5F_intermediate_5F_JSR::getter_mTargetPage (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mTargetPage ;
 }
 
@@ -8829,7 +8829,7 @@ GALGAS_baseline_5F_intermediate_5F_JUMP GALGAS_baseline_5F_intermediate_5F_JUMP:
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_lstring GALGAS_baseline_5F_intermediate_5F_JUMP::reader_mTargetLabel (UNUSED_LOCATION_ARGS) const {
+GALGAS_lstring GALGAS_baseline_5F_intermediate_5F_JUMP::getter_mTargetLabel (UNUSED_LOCATION_ARGS) const {
   GALGAS_lstring result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_intermediate_5F_JUMP * p = (const cPtr_baseline_5F_intermediate_5F_JUMP *) mObjectPtr ;
@@ -8841,13 +8841,13 @@ GALGAS_lstring GALGAS_baseline_5F_intermediate_5F_JUMP::reader_mTargetLabel (UNU
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_lstring cPtr_baseline_5F_intermediate_5F_JUMP::reader_mTargetLabel (UNUSED_LOCATION_ARGS) const {
+GALGAS_lstring cPtr_baseline_5F_intermediate_5F_JUMP::getter_mTargetLabel (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mTargetLabel ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_uint GALGAS_baseline_5F_intermediate_5F_JUMP::reader_mCurrentPage (UNUSED_LOCATION_ARGS) const {
+GALGAS_uint GALGAS_baseline_5F_intermediate_5F_JUMP::getter_mCurrentPage (UNUSED_LOCATION_ARGS) const {
   GALGAS_uint result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_intermediate_5F_JUMP * p = (const cPtr_baseline_5F_intermediate_5F_JUMP *) mObjectPtr ;
@@ -8859,13 +8859,13 @@ GALGAS_uint GALGAS_baseline_5F_intermediate_5F_JUMP::reader_mCurrentPage (UNUSED
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_uint cPtr_baseline_5F_intermediate_5F_JUMP::reader_mCurrentPage (UNUSED_LOCATION_ARGS) const {
+GALGAS_uint cPtr_baseline_5F_intermediate_5F_JUMP::getter_mCurrentPage (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mCurrentPage ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_uint GALGAS_baseline_5F_intermediate_5F_JUMP::reader_mTargetPage (UNUSED_LOCATION_ARGS) const {
+GALGAS_uint GALGAS_baseline_5F_intermediate_5F_JUMP::getter_mTargetPage (UNUSED_LOCATION_ARGS) const {
   GALGAS_uint result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_intermediate_5F_JUMP * p = (const cPtr_baseline_5F_intermediate_5F_JUMP *) mObjectPtr ;
@@ -8877,7 +8877,7 @@ GALGAS_uint GALGAS_baseline_5F_intermediate_5F_JUMP::reader_mTargetPage (UNUSED_
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_uint cPtr_baseline_5F_intermediate_5F_JUMP::reader_mTargetPage (UNUSED_LOCATION_ARGS) const {
+GALGAS_uint cPtr_baseline_5F_intermediate_5F_JUMP::getter_mTargetPage (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mTargetPage ;
 }
 
@@ -9043,7 +9043,7 @@ GALGAS_baseline_5F_intermediate_5F_TRIS GALGAS_baseline_5F_intermediate_5F_TRIS:
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_lstring GALGAS_baseline_5F_intermediate_5F_TRIS::reader_mOperand (UNUSED_LOCATION_ARGS) const {
+GALGAS_lstring GALGAS_baseline_5F_intermediate_5F_TRIS::getter_mOperand (UNUSED_LOCATION_ARGS) const {
   GALGAS_lstring result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_intermediate_5F_TRIS * p = (const cPtr_baseline_5F_intermediate_5F_TRIS *) mObjectPtr ;
@@ -9055,13 +9055,13 @@ GALGAS_lstring GALGAS_baseline_5F_intermediate_5F_TRIS::reader_mOperand (UNUSED_
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_lstring cPtr_baseline_5F_intermediate_5F_TRIS::reader_mOperand (UNUSED_LOCATION_ARGS) const {
+GALGAS_lstring cPtr_baseline_5F_intermediate_5F_TRIS::getter_mOperand (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mOperand ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_uint GALGAS_baseline_5F_intermediate_5F_TRIS::reader_mOpcode (UNUSED_LOCATION_ARGS) const {
+GALGAS_uint GALGAS_baseline_5F_intermediate_5F_TRIS::getter_mOpcode (UNUSED_LOCATION_ARGS) const {
   GALGAS_uint result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_intermediate_5F_TRIS * p = (const cPtr_baseline_5F_intermediate_5F_TRIS *) mObjectPtr ;
@@ -9073,7 +9073,7 @@ GALGAS_uint GALGAS_baseline_5F_intermediate_5F_TRIS::reader_mOpcode (UNUSED_LOCA
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_uint cPtr_baseline_5F_intermediate_5F_TRIS::reader_mOpcode (UNUSED_LOCATION_ARGS) const {
+GALGAS_uint cPtr_baseline_5F_intermediate_5F_TRIS::getter_mOpcode (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mOpcode ;
 }
 
@@ -9222,7 +9222,7 @@ GALGAS_baseline_5F_intermediate_5F_WO_5F_OPERAND GALGAS_baseline_5F_intermediate
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_baseline_5F_WO_5F_OPERAND_5F_group GALGAS_baseline_5F_intermediate_5F_WO_5F_OPERAND::reader_mInstruction (UNUSED_LOCATION_ARGS) const {
+GALGAS_baseline_5F_WO_5F_OPERAND_5F_group GALGAS_baseline_5F_intermediate_5F_WO_5F_OPERAND::getter_mInstruction (UNUSED_LOCATION_ARGS) const {
   GALGAS_baseline_5F_WO_5F_OPERAND_5F_group result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_intermediate_5F_WO_5F_OPERAND * p = (const cPtr_baseline_5F_intermediate_5F_WO_5F_OPERAND *) mObjectPtr ;
@@ -9234,7 +9234,7 @@ GALGAS_baseline_5F_WO_5F_OPERAND_5F_group GALGAS_baseline_5F_intermediate_5F_WO_
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_baseline_5F_WO_5F_OPERAND_5F_group cPtr_baseline_5F_intermediate_5F_WO_5F_OPERAND::reader_mInstruction (UNUSED_LOCATION_ARGS) const {
+GALGAS_baseline_5F_WO_5F_OPERAND_5F_group cPtr_baseline_5F_intermediate_5F_WO_5F_OPERAND::getter_mInstruction (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mInstruction ;
 }
 
@@ -9407,7 +9407,7 @@ GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition GALGAS_baseline_5F_
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_baseline_5F_intermediate_5F_registerExpression GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition::reader_mRegisterDescription (UNUSED_LOCATION_ARGS) const {
+GALGAS_baseline_5F_intermediate_5F_registerExpression GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition::getter_mRegisterDescription (UNUSED_LOCATION_ARGS) const {
   GALGAS_baseline_5F_intermediate_5F_registerExpression result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition * p = (const cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition *) mObjectPtr ;
@@ -9419,13 +9419,13 @@ GALGAS_baseline_5F_intermediate_5F_registerExpression GALGAS_baseline_5F_interme
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_baseline_5F_intermediate_5F_registerExpression cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition::reader_mRegisterDescription (UNUSED_LOCATION_ARGS) const {
+GALGAS_baseline_5F_intermediate_5F_registerExpression cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition::getter_mRegisterDescription (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mRegisterDescription ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_string GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition::reader_mTargetLabel (UNUSED_LOCATION_ARGS) const {
+GALGAS_string GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition::getter_mTargetLabel (UNUSED_LOCATION_ARGS) const {
   GALGAS_string result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition * p = (const cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition *) mObjectPtr ;
@@ -9437,13 +9437,13 @@ GALGAS_string GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition::read
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_string cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition::reader_mTargetLabel (UNUSED_LOCATION_ARGS) const {
+GALGAS_string cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition::getter_mTargetLabel (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mTargetLabel ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_bool GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition::reader_mIncrement (UNUSED_LOCATION_ARGS) const {
+GALGAS_bool GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition::getter_mIncrement (UNUSED_LOCATION_ARGS) const {
   GALGAS_bool result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition * p = (const cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition *) mObjectPtr ;
@@ -9455,13 +9455,13 @@ GALGAS_bool GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition::reader
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_bool cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition::reader_mIncrement (UNUSED_LOCATION_ARGS) const {
+GALGAS_bool cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition::getter_mIncrement (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mIncrement ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_bool GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition::reader_m_5F_W_5F_isDestination (UNUSED_LOCATION_ARGS) const {
+GALGAS_bool GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition::getter_m_5F_W_5F_isDestination (UNUSED_LOCATION_ARGS) const {
   GALGAS_bool result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition * p = (const cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition *) mObjectPtr ;
@@ -9473,13 +9473,13 @@ GALGAS_bool GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition::reader
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_bool cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition::reader_m_5F_W_5F_isDestination (UNUSED_LOCATION_ARGS) const {
+GALGAS_bool cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition::getter_m_5F_W_5F_isDestination (UNUSED_LOCATION_ARGS) const {
   return mAttribute_m_5F_W_5F_isDestination ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_bool GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition::reader_mBranchIfZero (UNUSED_LOCATION_ARGS) const {
+GALGAS_bool GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition::getter_mBranchIfZero (UNUSED_LOCATION_ARGS) const {
   GALGAS_bool result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition * p = (const cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition *) mObjectPtr ;
@@ -9491,7 +9491,7 @@ GALGAS_bool GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition::reader
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_bool cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition::reader_mBranchIfZero (UNUSED_LOCATION_ARGS) const {
+GALGAS_bool cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition::getter_mBranchIfZero (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mBranchIfZero ;
 }
 
@@ -9670,7 +9670,7 @@ GALGAS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip GALGAS_baseline_5F
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_bool GALGAS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip::reader_mSkipIfSet (UNUSED_LOCATION_ARGS) const {
+GALGAS_bool GALGAS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip::getter_mSkipIfSet (UNUSED_LOCATION_ARGS) const {
   GALGAS_bool result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip * p = (const cPtr_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip *) mObjectPtr ;
@@ -9682,13 +9682,13 @@ GALGAS_bool GALGAS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip::reade
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_bool cPtr_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip::reader_mSkipIfSet (UNUSED_LOCATION_ARGS) const {
+GALGAS_bool cPtr_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip::getter_mSkipIfSet (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mSkipIfSet ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_baseline_5F_intermediate_5F_registerExpression GALGAS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip::reader_mRegisterDescription (UNUSED_LOCATION_ARGS) const {
+GALGAS_baseline_5F_intermediate_5F_registerExpression GALGAS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip::getter_mRegisterDescription (UNUSED_LOCATION_ARGS) const {
   GALGAS_baseline_5F_intermediate_5F_registerExpression result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip * p = (const cPtr_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip *) mObjectPtr ;
@@ -9700,13 +9700,13 @@ GALGAS_baseline_5F_intermediate_5F_registerExpression GALGAS_baseline_5F_interme
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_baseline_5F_intermediate_5F_registerExpression cPtr_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip::reader_mRegisterDescription (UNUSED_LOCATION_ARGS) const {
+GALGAS_baseline_5F_intermediate_5F_registerExpression cPtr_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip::getter_mRegisterDescription (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mRegisterDescription ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_uint GALGAS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip::reader_mBitNumber (UNUSED_LOCATION_ARGS) const {
+GALGAS_uint GALGAS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip::getter_mBitNumber (UNUSED_LOCATION_ARGS) const {
   GALGAS_uint result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip * p = (const cPtr_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip *) mObjectPtr ;
@@ -9718,7 +9718,7 @@ GALGAS_uint GALGAS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip::reade
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_uint cPtr_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip::reader_mBitNumber (UNUSED_LOCATION_ARGS) const {
+GALGAS_uint cPtr_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip::getter_mBitNumber (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mBitNumber ;
 }
 
@@ -9875,7 +9875,7 @@ GALGAS_baseline_5F_intermediate_5F_instruction_5F_F GALGAS_baseline_5F_intermedi
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_baseline_5F_F_5F_instruction_5F_base_5F_code GALGAS_baseline_5F_intermediate_5F_instruction_5F_F::reader_mInstruction (UNUSED_LOCATION_ARGS) const {
+GALGAS_baseline_5F_F_5F_instruction_5F_base_5F_code GALGAS_baseline_5F_intermediate_5F_instruction_5F_F::getter_mInstruction (UNUSED_LOCATION_ARGS) const {
   GALGAS_baseline_5F_F_5F_instruction_5F_base_5F_code result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_intermediate_5F_instruction_5F_F * p = (const cPtr_baseline_5F_intermediate_5F_instruction_5F_F *) mObjectPtr ;
@@ -9887,13 +9887,13 @@ GALGAS_baseline_5F_F_5F_instruction_5F_base_5F_code GALGAS_baseline_5F_intermedi
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_baseline_5F_F_5F_instruction_5F_base_5F_code cPtr_baseline_5F_intermediate_5F_instruction_5F_F::reader_mInstruction (UNUSED_LOCATION_ARGS) const {
+GALGAS_baseline_5F_F_5F_instruction_5F_base_5F_code cPtr_baseline_5F_intermediate_5F_instruction_5F_F::getter_mInstruction (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mInstruction ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_baseline_5F_intermediate_5F_registerExpression GALGAS_baseline_5F_intermediate_5F_instruction_5F_F::reader_mRegisterDescription (UNUSED_LOCATION_ARGS) const {
+GALGAS_baseline_5F_intermediate_5F_registerExpression GALGAS_baseline_5F_intermediate_5F_instruction_5F_F::getter_mRegisterDescription (UNUSED_LOCATION_ARGS) const {
   GALGAS_baseline_5F_intermediate_5F_registerExpression result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_intermediate_5F_instruction_5F_F * p = (const cPtr_baseline_5F_intermediate_5F_instruction_5F_F *) mObjectPtr ;
@@ -9905,7 +9905,7 @@ GALGAS_baseline_5F_intermediate_5F_registerExpression GALGAS_baseline_5F_interme
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_baseline_5F_intermediate_5F_registerExpression cPtr_baseline_5F_intermediate_5F_instruction_5F_F::reader_mRegisterDescription (UNUSED_LOCATION_ARGS) const {
+GALGAS_baseline_5F_intermediate_5F_registerExpression cPtr_baseline_5F_intermediate_5F_instruction_5F_F::getter_mRegisterDescription (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mRegisterDescription ;
 }
 
@@ -10062,7 +10062,7 @@ GALGAS_baseline_5F_intermediate_5F_instruction_5F_FB GALGAS_baseline_5F_intermed
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_baseline_5F_bit_5F_oriented_5F_op GALGAS_baseline_5F_intermediate_5F_instruction_5F_FB::reader_mInstruction (UNUSED_LOCATION_ARGS) const {
+GALGAS_baseline_5F_bit_5F_oriented_5F_op GALGAS_baseline_5F_intermediate_5F_instruction_5F_FB::getter_mInstruction (UNUSED_LOCATION_ARGS) const {
   GALGAS_baseline_5F_bit_5F_oriented_5F_op result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_intermediate_5F_instruction_5F_FB * p = (const cPtr_baseline_5F_intermediate_5F_instruction_5F_FB *) mObjectPtr ;
@@ -10074,13 +10074,13 @@ GALGAS_baseline_5F_bit_5F_oriented_5F_op GALGAS_baseline_5F_intermediate_5F_inst
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_baseline_5F_bit_5F_oriented_5F_op cPtr_baseline_5F_intermediate_5F_instruction_5F_FB::reader_mInstruction (UNUSED_LOCATION_ARGS) const {
+GALGAS_baseline_5F_bit_5F_oriented_5F_op cPtr_baseline_5F_intermediate_5F_instruction_5F_FB::getter_mInstruction (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mInstruction ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_baseline_5F_intermediate_5F_registerExpression GALGAS_baseline_5F_intermediate_5F_instruction_5F_FB::reader_mRegisterDescription (UNUSED_LOCATION_ARGS) const {
+GALGAS_baseline_5F_intermediate_5F_registerExpression GALGAS_baseline_5F_intermediate_5F_instruction_5F_FB::getter_mRegisterDescription (UNUSED_LOCATION_ARGS) const {
   GALGAS_baseline_5F_intermediate_5F_registerExpression result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_intermediate_5F_instruction_5F_FB * p = (const cPtr_baseline_5F_intermediate_5F_instruction_5F_FB *) mObjectPtr ;
@@ -10092,13 +10092,13 @@ GALGAS_baseline_5F_intermediate_5F_registerExpression GALGAS_baseline_5F_interme
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_baseline_5F_intermediate_5F_registerExpression cPtr_baseline_5F_intermediate_5F_instruction_5F_FB::reader_mRegisterDescription (UNUSED_LOCATION_ARGS) const {
+GALGAS_baseline_5F_intermediate_5F_registerExpression cPtr_baseline_5F_intermediate_5F_instruction_5F_FB::getter_mRegisterDescription (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mRegisterDescription ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_uint GALGAS_baseline_5F_intermediate_5F_instruction_5F_FB::reader_mBitNumber (UNUSED_LOCATION_ARGS) const {
+GALGAS_uint GALGAS_baseline_5F_intermediate_5F_instruction_5F_FB::getter_mBitNumber (UNUSED_LOCATION_ARGS) const {
   GALGAS_uint result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_intermediate_5F_instruction_5F_FB * p = (const cPtr_baseline_5F_intermediate_5F_instruction_5F_FB *) mObjectPtr ;
@@ -10110,7 +10110,7 @@ GALGAS_uint GALGAS_baseline_5F_intermediate_5F_instruction_5F_FB::reader_mBitNum
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_uint cPtr_baseline_5F_intermediate_5F_instruction_5F_FB::reader_mBitNumber (UNUSED_LOCATION_ARGS) const {
+GALGAS_uint cPtr_baseline_5F_intermediate_5F_instruction_5F_FB::getter_mBitNumber (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mBitNumber ;
 }
 
@@ -10271,7 +10271,7 @@ GALGAS_baseline_5F_intermediate_5F_instruction_5F_FD GALGAS_baseline_5F_intermed
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code GALGAS_baseline_5F_intermediate_5F_instruction_5F_FD::reader_mInstruction (UNUSED_LOCATION_ARGS) const {
+GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code GALGAS_baseline_5F_intermediate_5F_instruction_5F_FD::getter_mInstruction (UNUSED_LOCATION_ARGS) const {
   GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_intermediate_5F_instruction_5F_FD * p = (const cPtr_baseline_5F_intermediate_5F_instruction_5F_FD *) mObjectPtr ;
@@ -10283,13 +10283,13 @@ GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code GALGAS_baseline_5F_intermed
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code cPtr_baseline_5F_intermediate_5F_instruction_5F_FD::reader_mInstruction (UNUSED_LOCATION_ARGS) const {
+GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code cPtr_baseline_5F_intermediate_5F_instruction_5F_FD::getter_mInstruction (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mInstruction ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_baseline_5F_intermediate_5F_registerExpression GALGAS_baseline_5F_intermediate_5F_instruction_5F_FD::reader_mRegisterDescription (UNUSED_LOCATION_ARGS) const {
+GALGAS_baseline_5F_intermediate_5F_registerExpression GALGAS_baseline_5F_intermediate_5F_instruction_5F_FD::getter_mRegisterDescription (UNUSED_LOCATION_ARGS) const {
   GALGAS_baseline_5F_intermediate_5F_registerExpression result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_intermediate_5F_instruction_5F_FD * p = (const cPtr_baseline_5F_intermediate_5F_instruction_5F_FD *) mObjectPtr ;
@@ -10301,13 +10301,13 @@ GALGAS_baseline_5F_intermediate_5F_registerExpression GALGAS_baseline_5F_interme
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_baseline_5F_intermediate_5F_registerExpression cPtr_baseline_5F_intermediate_5F_instruction_5F_FD::reader_mRegisterDescription (UNUSED_LOCATION_ARGS) const {
+GALGAS_baseline_5F_intermediate_5F_registerExpression cPtr_baseline_5F_intermediate_5F_instruction_5F_FD::getter_mRegisterDescription (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mRegisterDescription ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_bool GALGAS_baseline_5F_intermediate_5F_instruction_5F_FD::reader_m_5F_W_5F_isDestination (UNUSED_LOCATION_ARGS) const {
+GALGAS_bool GALGAS_baseline_5F_intermediate_5F_instruction_5F_FD::getter_m_5F_W_5F_isDestination (UNUSED_LOCATION_ARGS) const {
   GALGAS_bool result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_intermediate_5F_instruction_5F_FD * p = (const cPtr_baseline_5F_intermediate_5F_instruction_5F_FD *) mObjectPtr ;
@@ -10319,7 +10319,7 @@ GALGAS_bool GALGAS_baseline_5F_intermediate_5F_instruction_5F_FD::reader_m_5F_W_
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_bool cPtr_baseline_5F_intermediate_5F_instruction_5F_FD::reader_m_5F_W_5F_isDestination (UNUSED_LOCATION_ARGS) const {
+GALGAS_bool cPtr_baseline_5F_intermediate_5F_instruction_5F_FD::getter_m_5F_W_5F_isDestination (UNUSED_LOCATION_ARGS) const {
   return mAttribute_m_5F_W_5F_isDestination ;
 }
 
@@ -10480,7 +10480,7 @@ GALGAS_baseline_5F_intermediate_5F_instruction_5F_MNOP GALGAS_baseline_5F_interm
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_luint GALGAS_baseline_5F_intermediate_5F_instruction_5F_MNOP::reader_mOccurrenceFactor (UNUSED_LOCATION_ARGS) const {
+GALGAS_luint GALGAS_baseline_5F_intermediate_5F_instruction_5F_MNOP::getter_mOccurrenceFactor (UNUSED_LOCATION_ARGS) const {
   GALGAS_luint result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_intermediate_5F_instruction_5F_MNOP * p = (const cPtr_baseline_5F_intermediate_5F_instruction_5F_MNOP *) mObjectPtr ;
@@ -10492,7 +10492,7 @@ GALGAS_luint GALGAS_baseline_5F_intermediate_5F_instruction_5F_MNOP::reader_mOcc
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_luint cPtr_baseline_5F_intermediate_5F_instruction_5F_MNOP::reader_mOccurrenceFactor (UNUSED_LOCATION_ARGS) const {
+GALGAS_luint cPtr_baseline_5F_intermediate_5F_instruction_5F_MNOP::getter_mOccurrenceFactor (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mOccurrenceFactor ;
 }
 
@@ -10641,7 +10641,7 @@ GALGAS_baseline_5F_intermediate_5F_instruction_5F_literalOperation GALGAS_baseli
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_baseline_5F_literal_5F_instruction_5F_opcode GALGAS_baseline_5F_intermediate_5F_instruction_5F_literalOperation::reader_mInstruction (UNUSED_LOCATION_ARGS) const {
+GALGAS_baseline_5F_literal_5F_instruction_5F_opcode GALGAS_baseline_5F_intermediate_5F_instruction_5F_literalOperation::getter_mInstruction (UNUSED_LOCATION_ARGS) const {
   GALGAS_baseline_5F_literal_5F_instruction_5F_opcode result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_intermediate_5F_instruction_5F_literalOperation * p = (const cPtr_baseline_5F_intermediate_5F_instruction_5F_literalOperation *) mObjectPtr ;
@@ -10653,13 +10653,13 @@ GALGAS_baseline_5F_literal_5F_instruction_5F_opcode GALGAS_baseline_5F_intermedi
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_baseline_5F_literal_5F_instruction_5F_opcode cPtr_baseline_5F_intermediate_5F_instruction_5F_literalOperation::reader_mInstruction (UNUSED_LOCATION_ARGS) const {
+GALGAS_baseline_5F_literal_5F_instruction_5F_opcode cPtr_baseline_5F_intermediate_5F_instruction_5F_literalOperation::getter_mInstruction (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mInstruction ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_uint GALGAS_baseline_5F_intermediate_5F_instruction_5F_literalOperation::reader_mLiteralValue (UNUSED_LOCATION_ARGS) const {
+GALGAS_uint GALGAS_baseline_5F_intermediate_5F_instruction_5F_literalOperation::getter_mLiteralValue (UNUSED_LOCATION_ARGS) const {
   GALGAS_uint result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_intermediate_5F_instruction_5F_literalOperation * p = (const cPtr_baseline_5F_intermediate_5F_instruction_5F_literalOperation *) mObjectPtr ;
@@ -10671,7 +10671,7 @@ GALGAS_uint GALGAS_baseline_5F_intermediate_5F_instruction_5F_literalOperation::
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_uint cPtr_baseline_5F_intermediate_5F_instruction_5F_literalOperation::reader_mLiteralValue (UNUSED_LOCATION_ARGS) const {
+GALGAS_uint cPtr_baseline_5F_intermediate_5F_instruction_5F_literalOperation::getter_mLiteralValue (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mLiteralValue ;
 }
 
@@ -10915,7 +10915,7 @@ GALGAS_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE GALGAS_baseline_5F
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_lstring GALGAS_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE::reader_mRoutineName (UNUSED_LOCATION_ARGS) const {
+GALGAS_lstring GALGAS_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE::getter_mRoutineName (UNUSED_LOCATION_ARGS) const {
   GALGAS_lstring result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE * p = (const cPtr_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE *) mObjectPtr ;
@@ -10927,13 +10927,13 @@ GALGAS_lstring GALGAS_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE::re
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_lstring cPtr_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE::reader_mRoutineName (UNUSED_LOCATION_ARGS) const {
+GALGAS_lstring cPtr_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE::getter_mRoutineName (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mRoutineName ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_bool GALGAS_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE::reader_mIsRegular (UNUSED_LOCATION_ARGS) const {
+GALGAS_bool GALGAS_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE::getter_mIsRegular (UNUSED_LOCATION_ARGS) const {
   GALGAS_bool result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE * p = (const cPtr_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE *) mObjectPtr ;
@@ -10945,7 +10945,7 @@ GALGAS_bool GALGAS_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE::reade
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_bool cPtr_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE::reader_mIsRegular (UNUSED_LOCATION_ARGS) const {
+GALGAS_bool cPtr_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE::getter_mIsRegular (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mIsRegular ;
 }
 
@@ -11099,7 +11099,7 @@ GALGAS_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE GALGAS_baseline_5F_i
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_lstring GALGAS_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE::reader_mRoutineName (UNUSED_LOCATION_ARGS) const {
+GALGAS_lstring GALGAS_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE::getter_mRoutineName (UNUSED_LOCATION_ARGS) const {
   GALGAS_lstring result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE * p = (const cPtr_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE *) mObjectPtr ;
@@ -11111,13 +11111,13 @@ GALGAS_lstring GALGAS_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE::read
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_lstring cPtr_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE::reader_mRoutineName (UNUSED_LOCATION_ARGS) const {
+GALGAS_lstring cPtr_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE::getter_mRoutineName (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mRoutineName ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_uint GALGAS_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE::reader_mPage (UNUSED_LOCATION_ARGS) const {
+GALGAS_uint GALGAS_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE::getter_mPage (UNUSED_LOCATION_ARGS) const {
   GALGAS_uint result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE * p = (const cPtr_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE *) mObjectPtr ;
@@ -11129,7 +11129,7 @@ GALGAS_uint GALGAS_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE::reader_
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_uint cPtr_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE::reader_mPage (UNUSED_LOCATION_ARGS) const {
+GALGAS_uint cPtr_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE::getter_mPage (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mPage ;
 }
 
@@ -11278,7 +11278,7 @@ GALGAS_baseline_5F_intermediate_5F_pseudo_5F_LABEL GALGAS_baseline_5F_intermedia
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_lstring GALGAS_baseline_5F_intermediate_5F_pseudo_5F_LABEL::reader_mLabel (UNUSED_LOCATION_ARGS) const {
+GALGAS_lstring GALGAS_baseline_5F_intermediate_5F_pseudo_5F_LABEL::getter_mLabel (UNUSED_LOCATION_ARGS) const {
   GALGAS_lstring result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_intermediate_5F_pseudo_5F_LABEL * p = (const cPtr_baseline_5F_intermediate_5F_pseudo_5F_LABEL *) mObjectPtr ;
@@ -11290,7 +11290,7 @@ GALGAS_lstring GALGAS_baseline_5F_intermediate_5F_pseudo_5F_LABEL::reader_mLabel
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_lstring cPtr_baseline_5F_intermediate_5F_pseudo_5F_LABEL::reader_mLabel (UNUSED_LOCATION_ARGS) const {
+GALGAS_lstring cPtr_baseline_5F_intermediate_5F_pseudo_5F_LABEL::getter_mLabel (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mLabel ;
 }
 
@@ -11435,7 +11435,7 @@ GALGAS_baseline_5F_intermediate_5F_pseudo_5F_PAGE GALGAS_baseline_5F_intermediat
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_uint GALGAS_baseline_5F_intermediate_5F_pseudo_5F_PAGE::reader_mPage (UNUSED_LOCATION_ARGS) const {
+GALGAS_uint GALGAS_baseline_5F_intermediate_5F_pseudo_5F_PAGE::getter_mPage (UNUSED_LOCATION_ARGS) const {
   GALGAS_uint result ;
   if (NULL != mObjectPtr) {
     const cPtr_baseline_5F_intermediate_5F_pseudo_5F_PAGE * p = (const cPtr_baseline_5F_intermediate_5F_pseudo_5F_PAGE *) mObjectPtr ;
@@ -11447,7 +11447,7 @@ GALGAS_uint GALGAS_baseline_5F_intermediate_5F_pseudo_5F_PAGE::reader_mPage (UNU
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_uint cPtr_baseline_5F_intermediate_5F_pseudo_5F_PAGE::reader_mPage (UNUSED_LOCATION_ARGS) const {
+GALGAS_uint cPtr_baseline_5F_intermediate_5F_pseudo_5F_PAGE::getter_mPage (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mPage ;
 }
 
@@ -11684,7 +11684,7 @@ GALGAS_bitNumberLabelValue GALGAS_bitNumberLabelValue::constructor_new (const GA
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_lstring GALGAS_bitNumberLabelValue::reader_mBitNumberLabelValue (UNUSED_LOCATION_ARGS) const {
+GALGAS_lstring GALGAS_bitNumberLabelValue::getter_mBitNumberLabelValue (UNUSED_LOCATION_ARGS) const {
   GALGAS_lstring result ;
   if (NULL != mObjectPtr) {
     const cPtr_bitNumberLabelValue * p = (const cPtr_bitNumberLabelValue *) mObjectPtr ;
@@ -11696,13 +11696,13 @@ GALGAS_lstring GALGAS_bitNumberLabelValue::reader_mBitNumberLabelValue (UNUSED_L
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_lstring cPtr_bitNumberLabelValue::reader_mBitNumberLabelValue (UNUSED_LOCATION_ARGS) const {
+GALGAS_lstring cPtr_bitNumberLabelValue::getter_mBitNumberLabelValue (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mBitNumberLabelValue ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_luint GALGAS_bitNumberLabelValue::reader_mBitNumberIndexValue (UNUSED_LOCATION_ARGS) const {
+GALGAS_luint GALGAS_bitNumberLabelValue::getter_mBitNumberIndexValue (UNUSED_LOCATION_ARGS) const {
   GALGAS_luint result ;
   if (NULL != mObjectPtr) {
     const cPtr_bitNumberLabelValue * p = (const cPtr_bitNumberLabelValue *) mObjectPtr ;
@@ -11714,7 +11714,7 @@ GALGAS_luint GALGAS_bitNumberLabelValue::reader_mBitNumberIndexValue (UNUSED_LOC
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_luint cPtr_bitNumberLabelValue::reader_mBitNumberIndexValue (UNUSED_LOCATION_ARGS) const {
+GALGAS_luint cPtr_bitNumberLabelValue::getter_mBitNumberIndexValue (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mBitNumberIndexValue ;
 }
 
@@ -11860,7 +11860,7 @@ GALGAS_bitNumberLiteralExpression GALGAS_bitNumberLiteralExpression::constructor
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_immediatExpression GALGAS_bitNumberLiteralExpression::reader_mBitNumberLiteralExpression (UNUSED_LOCATION_ARGS) const {
+GALGAS_immediatExpression GALGAS_bitNumberLiteralExpression::getter_mBitNumberLiteralExpression (UNUSED_LOCATION_ARGS) const {
   GALGAS_immediatExpression result ;
   if (NULL != mObjectPtr) {
     const cPtr_bitNumberLiteralExpression * p = (const cPtr_bitNumberLiteralExpression *) mObjectPtr ;
@@ -11872,13 +11872,13 @@ GALGAS_immediatExpression GALGAS_bitNumberLiteralExpression::reader_mBitNumberLi
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_immediatExpression cPtr_bitNumberLiteralExpression::reader_mBitNumberLiteralExpression (UNUSED_LOCATION_ARGS) const {
+GALGAS_immediatExpression cPtr_bitNumberLiteralExpression::getter_mBitNumberLiteralExpression (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mBitNumberLiteralExpression ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_location GALGAS_bitNumberLiteralExpression::reader_mEndOfExpression (UNUSED_LOCATION_ARGS) const {
+GALGAS_location GALGAS_bitNumberLiteralExpression::getter_mEndOfExpression (UNUSED_LOCATION_ARGS) const {
   GALGAS_location result ;
   if (NULL != mObjectPtr) {
     const cPtr_bitNumberLiteralExpression * p = (const cPtr_bitNumberLiteralExpression *) mObjectPtr ;
@@ -11890,7 +11890,7 @@ GALGAS_location GALGAS_bitNumberLiteralExpression::reader_mEndOfExpression (UNUS
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_location cPtr_bitNumberLiteralExpression::reader_mEndOfExpression (UNUSED_LOCATION_ARGS) const {
+GALGAS_location cPtr_bitNumberLiteralExpression::getter_mEndOfExpression (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mEndOfExpression ;
 }
 
@@ -12039,7 +12039,7 @@ GALGAS_bitNumberLiteralValue GALGAS_bitNumberLiteralValue::constructor_new (cons
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_luint GALGAS_bitNumberLiteralValue::reader_mBitNumberLiteralValue (UNUSED_LOCATION_ARGS) const {
+GALGAS_luint GALGAS_bitNumberLiteralValue::getter_mBitNumberLiteralValue (UNUSED_LOCATION_ARGS) const {
   GALGAS_luint result ;
   if (NULL != mObjectPtr) {
     const cPtr_bitNumberLiteralValue * p = (const cPtr_bitNumberLiteralValue *) mObjectPtr ;
@@ -12051,7 +12051,7 @@ GALGAS_luint GALGAS_bitNumberLiteralValue::reader_mBitNumberLiteralValue (UNUSED
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_luint cPtr_bitNumberLiteralValue::reader_mBitNumberLiteralValue (UNUSED_LOCATION_ARGS) const {
+GALGAS_luint cPtr_bitNumberLiteralValue::getter_mBitNumberLiteralValue (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mBitNumberLiteralValue ;
 }
 
@@ -12298,7 +12298,7 @@ GALGAS_byteDeclarationInRam GALGAS_byteDeclarationInRam::constructor_new (const 
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_lstring GALGAS_byteDeclarationInRam::reader_mName (UNUSED_LOCATION_ARGS) const {
+GALGAS_lstring GALGAS_byteDeclarationInRam::getter_mName (UNUSED_LOCATION_ARGS) const {
   GALGAS_lstring result ;
   if (NULL != mObjectPtr) {
     const cPtr_byteDeclarationInRam * p = (const cPtr_byteDeclarationInRam *) mObjectPtr ;
@@ -12310,13 +12310,13 @@ GALGAS_lstring GALGAS_byteDeclarationInRam::reader_mName (UNUSED_LOCATION_ARGS) 
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_lstring cPtr_byteDeclarationInRam::reader_mName (UNUSED_LOCATION_ARGS) const {
+GALGAS_lstring cPtr_byteDeclarationInRam::getter_mName (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mName ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_luint GALGAS_byteDeclarationInRam::reader_mSize (UNUSED_LOCATION_ARGS) const {
+GALGAS_luint GALGAS_byteDeclarationInRam::getter_mSize (UNUSED_LOCATION_ARGS) const {
   GALGAS_luint result ;
   if (NULL != mObjectPtr) {
     const cPtr_byteDeclarationInRam * p = (const cPtr_byteDeclarationInRam *) mObjectPtr ;
@@ -12328,13 +12328,13 @@ GALGAS_luint GALGAS_byteDeclarationInRam::reader_mSize (UNUSED_LOCATION_ARGS) co
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_luint cPtr_byteDeclarationInRam::reader_mSize (UNUSED_LOCATION_ARGS) const {
+GALGAS_luint cPtr_byteDeclarationInRam::getter_mSize (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mSize ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_bitSliceTable GALGAS_byteDeclarationInRam::reader_mBitSliceTable (UNUSED_LOCATION_ARGS) const {
+GALGAS_bitSliceTable GALGAS_byteDeclarationInRam::getter_mBitSliceTable (UNUSED_LOCATION_ARGS) const {
   GALGAS_bitSliceTable result ;
   if (NULL != mObjectPtr) {
     const cPtr_byteDeclarationInRam * p = (const cPtr_byteDeclarationInRam *) mObjectPtr ;
@@ -12346,13 +12346,13 @@ GALGAS_bitSliceTable GALGAS_byteDeclarationInRam::reader_mBitSliceTable (UNUSED_
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_bitSliceTable cPtr_byteDeclarationInRam::reader_mBitSliceTable (UNUSED_LOCATION_ARGS) const {
+GALGAS_bitSliceTable cPtr_byteDeclarationInRam::getter_mBitSliceTable (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mBitSliceTable ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_string GALGAS_byteDeclarationInRam::reader_mBitDefinitionString (UNUSED_LOCATION_ARGS) const {
+GALGAS_string GALGAS_byteDeclarationInRam::getter_mBitDefinitionString (UNUSED_LOCATION_ARGS) const {
   GALGAS_string result ;
   if (NULL != mObjectPtr) {
     const cPtr_byteDeclarationInRam * p = (const cPtr_byteDeclarationInRam *) mObjectPtr ;
@@ -12364,7 +12364,7 @@ GALGAS_string GALGAS_byteDeclarationInRam::reader_mBitDefinitionString (UNUSED_L
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_string cPtr_byteDeclarationInRam::reader_mBitDefinitionString (UNUSED_LOCATION_ARGS) const {
+GALGAS_string cPtr_byteDeclarationInRam::getter_mBitDefinitionString (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mBitDefinitionString ;
 }
 
@@ -12605,7 +12605,7 @@ GALGAS_immediatAdd GALGAS_immediatAdd::constructor_new (const GALGAS_immediatExp
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_immediatExpression GALGAS_immediatAdd::reader_mLeftExpression (UNUSED_LOCATION_ARGS) const {
+GALGAS_immediatExpression GALGAS_immediatAdd::getter_mLeftExpression (UNUSED_LOCATION_ARGS) const {
   GALGAS_immediatExpression result ;
   if (NULL != mObjectPtr) {
     const cPtr_immediatAdd * p = (const cPtr_immediatAdd *) mObjectPtr ;
@@ -12617,13 +12617,13 @@ GALGAS_immediatExpression GALGAS_immediatAdd::reader_mLeftExpression (UNUSED_LOC
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_immediatExpression cPtr_immediatAdd::reader_mLeftExpression (UNUSED_LOCATION_ARGS) const {
+GALGAS_immediatExpression cPtr_immediatAdd::getter_mLeftExpression (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mLeftExpression ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_immediatExpression GALGAS_immediatAdd::reader_mRightExpression (UNUSED_LOCATION_ARGS) const {
+GALGAS_immediatExpression GALGAS_immediatAdd::getter_mRightExpression (UNUSED_LOCATION_ARGS) const {
   GALGAS_immediatExpression result ;
   if (NULL != mObjectPtr) {
     const cPtr_immediatAdd * p = (const cPtr_immediatAdd *) mObjectPtr ;
@@ -12635,7 +12635,7 @@ GALGAS_immediatExpression GALGAS_immediatAdd::reader_mRightExpression (UNUSED_LO
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_immediatExpression cPtr_immediatAdd::reader_mRightExpression (UNUSED_LOCATION_ARGS) const {
+GALGAS_immediatExpression cPtr_immediatAdd::getter_mRightExpression (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mRightExpression ;
 }
 
@@ -12781,7 +12781,7 @@ GALGAS_immediatAnd GALGAS_immediatAnd::constructor_new (const GALGAS_immediatExp
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_immediatExpression GALGAS_immediatAnd::reader_mLeftExpression (UNUSED_LOCATION_ARGS) const {
+GALGAS_immediatExpression GALGAS_immediatAnd::getter_mLeftExpression (UNUSED_LOCATION_ARGS) const {
   GALGAS_immediatExpression result ;
   if (NULL != mObjectPtr) {
     const cPtr_immediatAnd * p = (const cPtr_immediatAnd *) mObjectPtr ;
@@ -12793,13 +12793,13 @@ GALGAS_immediatExpression GALGAS_immediatAnd::reader_mLeftExpression (UNUSED_LOC
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_immediatExpression cPtr_immediatAnd::reader_mLeftExpression (UNUSED_LOCATION_ARGS) const {
+GALGAS_immediatExpression cPtr_immediatAnd::getter_mLeftExpression (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mLeftExpression ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_immediatExpression GALGAS_immediatAnd::reader_mRightExpression (UNUSED_LOCATION_ARGS) const {
+GALGAS_immediatExpression GALGAS_immediatAnd::getter_mRightExpression (UNUSED_LOCATION_ARGS) const {
   GALGAS_immediatExpression result ;
   if (NULL != mObjectPtr) {
     const cPtr_immediatAnd * p = (const cPtr_immediatAnd *) mObjectPtr ;
@@ -12811,7 +12811,7 @@ GALGAS_immediatExpression GALGAS_immediatAnd::reader_mRightExpression (UNUSED_LO
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_immediatExpression cPtr_immediatAnd::reader_mRightExpression (UNUSED_LOCATION_ARGS) const {
+GALGAS_immediatExpression cPtr_immediatAnd::getter_mRightExpression (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mRightExpression ;
 }
 
@@ -12953,7 +12953,7 @@ GALGAS_immediatComplement GALGAS_immediatComplement::constructor_new (const GALG
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_immediatExpression GALGAS_immediatComplement::reader_mExpression (UNUSED_LOCATION_ARGS) const {
+GALGAS_immediatExpression GALGAS_immediatComplement::getter_mExpression (UNUSED_LOCATION_ARGS) const {
   GALGAS_immediatExpression result ;
   if (NULL != mObjectPtr) {
     const cPtr_immediatComplement * p = (const cPtr_immediatComplement *) mObjectPtr ;
@@ -12965,7 +12965,7 @@ GALGAS_immediatExpression GALGAS_immediatComplement::reader_mExpression (UNUSED_
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_immediatExpression cPtr_immediatComplement::reader_mExpression (UNUSED_LOCATION_ARGS) const {
+GALGAS_immediatExpression cPtr_immediatComplement::getter_mExpression (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mExpression ;
 }
 
@@ -13107,7 +13107,7 @@ GALGAS_immediatDiv GALGAS_immediatDiv::constructor_new (const GALGAS_immediatExp
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_immediatExpression GALGAS_immediatDiv::reader_mLeftExpression (UNUSED_LOCATION_ARGS) const {
+GALGAS_immediatExpression GALGAS_immediatDiv::getter_mLeftExpression (UNUSED_LOCATION_ARGS) const {
   GALGAS_immediatExpression result ;
   if (NULL != mObjectPtr) {
     const cPtr_immediatDiv * p = (const cPtr_immediatDiv *) mObjectPtr ;
@@ -13119,13 +13119,13 @@ GALGAS_immediatExpression GALGAS_immediatDiv::reader_mLeftExpression (UNUSED_LOC
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_immediatExpression cPtr_immediatDiv::reader_mLeftExpression (UNUSED_LOCATION_ARGS) const {
+GALGAS_immediatExpression cPtr_immediatDiv::getter_mLeftExpression (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mLeftExpression ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_immediatExpression GALGAS_immediatDiv::reader_mRightExpression (UNUSED_LOCATION_ARGS) const {
+GALGAS_immediatExpression GALGAS_immediatDiv::getter_mRightExpression (UNUSED_LOCATION_ARGS) const {
   GALGAS_immediatExpression result ;
   if (NULL != mObjectPtr) {
     const cPtr_immediatDiv * p = (const cPtr_immediatDiv *) mObjectPtr ;
@@ -13137,7 +13137,7 @@ GALGAS_immediatExpression GALGAS_immediatDiv::reader_mRightExpression (UNUSED_LO
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_immediatExpression cPtr_immediatDiv::reader_mRightExpression (UNUSED_LOCATION_ARGS) const {
+GALGAS_immediatExpression cPtr_immediatDiv::getter_mRightExpression (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mRightExpression ;
 }
 
@@ -13283,7 +13283,7 @@ GALGAS_immediatEqualTest GALGAS_immediatEqualTest::constructor_new (const GALGAS
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_immediatExpression GALGAS_immediatEqualTest::reader_mLeftExpression (UNUSED_LOCATION_ARGS) const {
+GALGAS_immediatExpression GALGAS_immediatEqualTest::getter_mLeftExpression (UNUSED_LOCATION_ARGS) const {
   GALGAS_immediatExpression result ;
   if (NULL != mObjectPtr) {
     const cPtr_immediatEqualTest * p = (const cPtr_immediatEqualTest *) mObjectPtr ;
@@ -13295,13 +13295,13 @@ GALGAS_immediatExpression GALGAS_immediatEqualTest::reader_mLeftExpression (UNUS
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_immediatExpression cPtr_immediatEqualTest::reader_mLeftExpression (UNUSED_LOCATION_ARGS) const {
+GALGAS_immediatExpression cPtr_immediatEqualTest::getter_mLeftExpression (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mLeftExpression ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_immediatExpression GALGAS_immediatEqualTest::reader_mRightExpression (UNUSED_LOCATION_ARGS) const {
+GALGAS_immediatExpression GALGAS_immediatEqualTest::getter_mRightExpression (UNUSED_LOCATION_ARGS) const {
   GALGAS_immediatExpression result ;
   if (NULL != mObjectPtr) {
     const cPtr_immediatEqualTest * p = (const cPtr_immediatEqualTest *) mObjectPtr ;
@@ -13313,7 +13313,7 @@ GALGAS_immediatExpression GALGAS_immediatEqualTest::reader_mRightExpression (UNU
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_immediatExpression cPtr_immediatEqualTest::reader_mRightExpression (UNUSED_LOCATION_ARGS) const {
+GALGAS_immediatExpression cPtr_immediatEqualTest::getter_mRightExpression (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mRightExpression ;
 }
 
@@ -13459,7 +13459,7 @@ GALGAS_immediatGreaterOrEqualTest GALGAS_immediatGreaterOrEqualTest::constructor
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_immediatExpression GALGAS_immediatGreaterOrEqualTest::reader_mLeftExpression (UNUSED_LOCATION_ARGS) const {
+GALGAS_immediatExpression GALGAS_immediatGreaterOrEqualTest::getter_mLeftExpression (UNUSED_LOCATION_ARGS) const {
   GALGAS_immediatExpression result ;
   if (NULL != mObjectPtr) {
     const cPtr_immediatGreaterOrEqualTest * p = (const cPtr_immediatGreaterOrEqualTest *) mObjectPtr ;
@@ -13471,13 +13471,13 @@ GALGAS_immediatExpression GALGAS_immediatGreaterOrEqualTest::reader_mLeftExpress
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_immediatExpression cPtr_immediatGreaterOrEqualTest::reader_mLeftExpression (UNUSED_LOCATION_ARGS) const {
+GALGAS_immediatExpression cPtr_immediatGreaterOrEqualTest::getter_mLeftExpression (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mLeftExpression ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_immediatExpression GALGAS_immediatGreaterOrEqualTest::reader_mRightExpression (UNUSED_LOCATION_ARGS) const {
+GALGAS_immediatExpression GALGAS_immediatGreaterOrEqualTest::getter_mRightExpression (UNUSED_LOCATION_ARGS) const {
   GALGAS_immediatExpression result ;
   if (NULL != mObjectPtr) {
     const cPtr_immediatGreaterOrEqualTest * p = (const cPtr_immediatGreaterOrEqualTest *) mObjectPtr ;
@@ -13489,7 +13489,7 @@ GALGAS_immediatExpression GALGAS_immediatGreaterOrEqualTest::reader_mRightExpres
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_immediatExpression cPtr_immediatGreaterOrEqualTest::reader_mRightExpression (UNUSED_LOCATION_ARGS) const {
+GALGAS_immediatExpression cPtr_immediatGreaterOrEqualTest::getter_mRightExpression (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mRightExpression ;
 }
 
@@ -13635,7 +13635,7 @@ GALGAS_immediatGreaterTest GALGAS_immediatGreaterTest::constructor_new (const GA
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_immediatExpression GALGAS_immediatGreaterTest::reader_mLeftExpression (UNUSED_LOCATION_ARGS) const {
+GALGAS_immediatExpression GALGAS_immediatGreaterTest::getter_mLeftExpression (UNUSED_LOCATION_ARGS) const {
   GALGAS_immediatExpression result ;
   if (NULL != mObjectPtr) {
     const cPtr_immediatGreaterTest * p = (const cPtr_immediatGreaterTest *) mObjectPtr ;
@@ -13647,13 +13647,13 @@ GALGAS_immediatExpression GALGAS_immediatGreaterTest::reader_mLeftExpression (UN
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_immediatExpression cPtr_immediatGreaterTest::reader_mLeftExpression (UNUSED_LOCATION_ARGS) const {
+GALGAS_immediatExpression cPtr_immediatGreaterTest::getter_mLeftExpression (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mLeftExpression ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_immediatExpression GALGAS_immediatGreaterTest::reader_mRightExpression (UNUSED_LOCATION_ARGS) const {
+GALGAS_immediatExpression GALGAS_immediatGreaterTest::getter_mRightExpression (UNUSED_LOCATION_ARGS) const {
   GALGAS_immediatExpression result ;
   if (NULL != mObjectPtr) {
     const cPtr_immediatGreaterTest * p = (const cPtr_immediatGreaterTest *) mObjectPtr ;
@@ -13665,7 +13665,7 @@ GALGAS_immediatExpression GALGAS_immediatGreaterTest::reader_mRightExpression (U
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_immediatExpression cPtr_immediatGreaterTest::reader_mRightExpression (UNUSED_LOCATION_ARGS) const {
+GALGAS_immediatExpression cPtr_immediatGreaterTest::getter_mRightExpression (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mRightExpression ;
 }
 
@@ -13814,7 +13814,7 @@ GALGAS_immediatInteger GALGAS_immediatInteger::constructor_new (const GALGAS_lui
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_luint GALGAS_immediatInteger::reader_mValue (UNUSED_LOCATION_ARGS) const {
+GALGAS_luint GALGAS_immediatInteger::getter_mValue (UNUSED_LOCATION_ARGS) const {
   GALGAS_luint result ;
   if (NULL != mObjectPtr) {
     const cPtr_immediatInteger * p = (const cPtr_immediatInteger *) mObjectPtr ;
@@ -13826,7 +13826,7 @@ GALGAS_luint GALGAS_immediatInteger::reader_mValue (UNUSED_LOCATION_ARGS) const 
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_luint cPtr_immediatInteger::reader_mValue (UNUSED_LOCATION_ARGS) const {
+GALGAS_luint cPtr_immediatInteger::getter_mValue (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mValue ;
 }
 
@@ -13968,7 +13968,7 @@ GALGAS_immediatLeftShift GALGAS_immediatLeftShift::constructor_new (const GALGAS
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_immediatExpression GALGAS_immediatLeftShift::reader_mLeftExpression (UNUSED_LOCATION_ARGS) const {
+GALGAS_immediatExpression GALGAS_immediatLeftShift::getter_mLeftExpression (UNUSED_LOCATION_ARGS) const {
   GALGAS_immediatExpression result ;
   if (NULL != mObjectPtr) {
     const cPtr_immediatLeftShift * p = (const cPtr_immediatLeftShift *) mObjectPtr ;
@@ -13980,13 +13980,13 @@ GALGAS_immediatExpression GALGAS_immediatLeftShift::reader_mLeftExpression (UNUS
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_immediatExpression cPtr_immediatLeftShift::reader_mLeftExpression (UNUSED_LOCATION_ARGS) const {
+GALGAS_immediatExpression cPtr_immediatLeftShift::getter_mLeftExpression (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mLeftExpression ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_immediatExpression GALGAS_immediatLeftShift::reader_mRightExpression (UNUSED_LOCATION_ARGS) const {
+GALGAS_immediatExpression GALGAS_immediatLeftShift::getter_mRightExpression (UNUSED_LOCATION_ARGS) const {
   GALGAS_immediatExpression result ;
   if (NULL != mObjectPtr) {
     const cPtr_immediatLeftShift * p = (const cPtr_immediatLeftShift *) mObjectPtr ;
@@ -13998,7 +13998,7 @@ GALGAS_immediatExpression GALGAS_immediatLeftShift::reader_mRightExpression (UNU
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_immediatExpression cPtr_immediatLeftShift::reader_mRightExpression (UNUSED_LOCATION_ARGS) const {
+GALGAS_immediatExpression cPtr_immediatLeftShift::getter_mRightExpression (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mRightExpression ;
 }
 

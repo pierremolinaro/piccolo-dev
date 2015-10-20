@@ -29089,7 +29089,7 @@ void cGrammar_pic_31__38__5F_grammar::_performSourceFileParsing_ (C_Compiler * i
                                 GALGAS_lstring inFilePath
                                 COMMA_LOCATION_ARGS) {
   if (inFilePath.isValid ()) {
-    const GALGAS_string filePathAsString = inFilePath.reader_string (HERE) ;
+    const GALGAS_string filePathAsString = inFilePath.getter_string (HERE) ;
     C_String filePath = filePathAsString.stringValue () ;
     if (! C_FileManager::isAbsolutePath (filePath)) {
       filePath = inCompiler->sourceFilePath ().stringByDeletingLastPathComponent ().stringByAppendingPathComponent (filePath) ;
@@ -29108,14 +29108,14 @@ void cGrammar_pic_31__38__5F_grammar::_performSourceFileParsing_ (C_Compiler * i
       }else{
         C_String message ;
         message << "the '" << filePath << "' file exists, but cannot be read" ;
-        const GALGAS_location errorLocation (inFilePath.reader_location (THERE)) ;
+        const GALGAS_location errorLocation (inFilePath.getter_location (THERE)) ;
         inCompiler->semanticErrorAtLocation (errorLocation, message COMMA_THERE) ;
       }
       macroDetachSharedObject (scanner) ;
     }else{
       C_String message ;
       message << "the '" << filePath << "' file does not exist" ;
-      const GALGAS_location errorLocation (inFilePath.reader_location (THERE)) ;
+      const GALGAS_location errorLocation (inFilePath.getter_location (THERE)) ;
       inCompiler->semanticErrorAtLocation (errorLocation, message COMMA_THERE) ;
     }
   }
@@ -29164,7 +29164,7 @@ void cGrammar_pic_31__38__5F_grammar::_performSourceFileParsing_importBootloader
                                 GALGAS_luint &  parameter_9
                                 COMMA_LOCATION_ARGS) {
   if (inFilePath.isValid ()) {
-    const GALGAS_string filePathAsString = inFilePath.reader_string (HERE) ;
+    const GALGAS_string filePathAsString = inFilePath.getter_string (HERE) ;
     C_String filePath = filePathAsString.stringValue () ;
     if (! C_FileManager::isAbsolutePath (filePath)) {
       filePath = inCompiler->sourceFilePath ().stringByDeletingLastPathComponent ().stringByAppendingPathComponent (filePath) ;
@@ -29183,14 +29183,14 @@ void cGrammar_pic_31__38__5F_grammar::_performSourceFileParsing_importBootloader
       }else{
         C_String message ;
         message << "the '" << filePath << "' file exists, but cannot be read" ;
-        const GALGAS_location errorLocation (inFilePath.reader_location (THERE)) ;
+        const GALGAS_location errorLocation (inFilePath.getter_location (THERE)) ;
         inCompiler->semanticErrorAtLocation (errorLocation, message COMMA_THERE) ;
       }
       macroDetachSharedObject (scanner) ;
     }else{
       C_String message ;
       message << "the '" << filePath << "' file does not exist" ;
-      const GALGAS_location errorLocation (inFilePath.reader_location (THERE)) ;
+      const GALGAS_location errorLocation (inFilePath.getter_location (THERE)) ;
       inCompiler->semanticErrorAtLocation (errorLocation, message COMMA_THERE) ;
     }
   }
