@@ -591,6 +591,16 @@ GALGAS_ipic_31__38_SequentialInstructionList GALGAS_ipic_31__38_SequentialInstru
 
 //---------------------------------------------------------------------------------------------------------------------*
 
+GALGAS_ipic_31__38_SequentialInstructionList GALGAS_ipic_31__38_SequentialInstructionList::getter_subListToIndex (const GALGAS_uint & inIndex,
+                                                                                                                  C_Compiler * inCompiler
+                                                                                                                  COMMA_LOCATION_ARGS) const {
+  GALGAS_ipic_31__38_SequentialInstructionList result = GALGAS_ipic_31__38_SequentialInstructionList::constructor_emptyList (THERE) ;
+  subListToIndex (result, inIndex, inCompiler COMMA_THERE) ;
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
 void GALGAS_ipic_31__38_SequentialInstructionList::dotAssign_operation (const GALGAS_ipic_31__38_SequentialInstructionList inOperand
                                                                         COMMA_UNUSED_LOCATION_ARGS) {
   appendList (inOperand) ;
@@ -998,6 +1008,16 @@ GALGAS_ipic_31__38_BlockList GALGAS_ipic_31__38_BlockList::getter_subListFromInd
                                                                                     COMMA_LOCATION_ARGS) const {
   GALGAS_ipic_31__38_BlockList result = GALGAS_ipic_31__38_BlockList::constructor_emptyList (THERE) ;
   subListFromIndex (result, inIndex, inCompiler COMMA_THERE) ;
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_ipic_31__38_BlockList GALGAS_ipic_31__38_BlockList::getter_subListToIndex (const GALGAS_uint & inIndex,
+                                                                                  C_Compiler * inCompiler
+                                                                                  COMMA_LOCATION_ARGS) const {
+  GALGAS_ipic_31__38_BlockList result = GALGAS_ipic_31__38_BlockList::constructor_emptyList (THERE) ;
+  subListToIndex (result, inIndex, inCompiler COMMA_THERE) ;
   return result ;
 }
 
@@ -2844,6 +2864,16 @@ GALGAS_codeList GALGAS_codeList::getter_subListFromIndex (const GALGAS_uint & in
                                                           COMMA_LOCATION_ARGS) const {
   GALGAS_codeList result = GALGAS_codeList::constructor_emptyList (THERE) ;
   subListFromIndex (result, inIndex, inCompiler COMMA_THERE) ;
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_codeList GALGAS_codeList::getter_subListToIndex (const GALGAS_uint & inIndex,
+                                                        C_Compiler * inCompiler
+                                                        COMMA_LOCATION_ARGS) const {
+  GALGAS_codeList result = GALGAS_codeList::constructor_emptyList (THERE) ;
+  subListToIndex (result, inIndex, inCompiler COMMA_THERE) ;
   return result ;
 }
 
@@ -4989,6 +5019,16 @@ GALGAS_clusterList GALGAS_clusterList::getter_subListFromIndex (const GALGAS_uin
                                                                 COMMA_LOCATION_ARGS) const {
   GALGAS_clusterList result = GALGAS_clusterList::constructor_emptyList (THERE) ;
   subListFromIndex (result, inIndex, inCompiler COMMA_THERE) ;
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_clusterList GALGAS_clusterList::getter_subListToIndex (const GALGAS_uint & inIndex,
+                                                              C_Compiler * inCompiler
+                                                              COMMA_LOCATION_ARGS) const {
+  GALGAS_clusterList result = GALGAS_clusterList::constructor_emptyList (THERE) ;
+  subListToIndex (result, inIndex, inCompiler COMMA_THERE) ;
   return result ;
 }
 
@@ -10245,6 +10285,16 @@ GALGAS_illegalMaskList GALGAS_illegalMaskList::getter_subListFromIndex (const GA
                                                                         COMMA_LOCATION_ARGS) const {
   GALGAS_illegalMaskList result = GALGAS_illegalMaskList::constructor_emptyList (THERE) ;
   subListFromIndex (result, inIndex, inCompiler COMMA_THERE) ;
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_illegalMaskList GALGAS_illegalMaskList::getter_subListToIndex (const GALGAS_uint & inIndex,
+                                                                      C_Compiler * inCompiler
+                                                                      COMMA_LOCATION_ARGS) const {
+  GALGAS_illegalMaskList result = GALGAS_illegalMaskList::constructor_emptyList (THERE) ;
+  subListToIndex (result, inIndex, inCompiler COMMA_THERE) ;
   return result ;
 }
 
