@@ -33,7 +33,7 @@ before {
     end
   #--- Print baseline device list
     if [option piccolo_options_not_in_cocoa.outputDeviceList value] | [option piccolo_options_not_in_cocoa.outputBaselineDeviceList value] then
-      message [[baseline_devices length] string] + " baseline devices supported by Piccolo " + @string. stringWithVersionString + ":\n"
+      message [[baseline_devices length] string] + " baseline devices supported by Piccolo " + @application.projectVersionString + ":\n"
       @uint idx = 0
       for () in  baseline_devices do
         message [mValue stringByRightPadding !15 !' ']
@@ -49,7 +49,7 @@ before {
     end
   #--- Print mid-range device list
     if [option piccolo_options_not_in_cocoa.outputDeviceList value] | [option piccolo_options_not_in_cocoa.outputMidrangeDeviceList value] then
-      message [[midrange_devices length] string] + " mid-range devices supported by Piccolo " + @string. stringWithVersionString + ":\n"
+      message [[midrange_devices length] string] + " mid-range devices supported by Piccolo " + @application.projectVersionString + ":\n"
       @uint idx = 0
       for () in  midrange_devices do
         message [mValue stringByRightPadding !15 !' ']
@@ -65,7 +65,7 @@ before {
     end
   #--- Print pic18 device list
     if [option piccolo_options_not_in_cocoa.outputDeviceList value] | [option piccolo_options_not_in_cocoa.outputPic18DeviceList value] then
-      message [[pic18_devices length] string] + " pic18 devices supported by Piccolo " + @string. stringWithVersionString + ":\n"
+      message [[pic18_devices length] string] + " pic18 devices supported by Piccolo " + @application.projectVersionString + ":\n"
       @uint idx = 0
       for () in  pic18_devices do
         message [mValue stringByRightPadding !15 !' ']

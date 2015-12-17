@@ -8000,6 +8000,16 @@ GALGAS_declarationInRamList GALGAS_declarationInRamList::getter_subListFromIndex
 
 //---------------------------------------------------------------------------------------------------------------------*
 
+GALGAS_declarationInRamList GALGAS_declarationInRamList::getter_subListToIndex (const GALGAS_uint & inIndex,
+                                                                                C_Compiler * inCompiler
+                                                                                COMMA_LOCATION_ARGS) const {
+  GALGAS_declarationInRamList result = GALGAS_declarationInRamList::constructor_emptyList (THERE) ;
+  subListToIndex (result, inIndex, inCompiler COMMA_THERE) ;
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
 void GALGAS_declarationInRamList::dotAssign_operation (const GALGAS_declarationInRamList inOperand
                                                        COMMA_UNUSED_LOCATION_ARGS) {
   appendList (inOperand) ;
@@ -8387,6 +8397,16 @@ GALGAS_ramDefinitionList GALGAS_ramDefinitionList::getter_subListFromIndex (cons
                                                                             COMMA_LOCATION_ARGS) const {
   GALGAS_ramDefinitionList result = GALGAS_ramDefinitionList::constructor_emptyList (THERE) ;
   subListFromIndex (result, inIndex, inCompiler COMMA_THERE) ;
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_ramDefinitionList GALGAS_ramDefinitionList::getter_subListToIndex (const GALGAS_uint & inIndex,
+                                                                          C_Compiler * inCompiler
+                                                                          COMMA_LOCATION_ARGS) const {
+  GALGAS_ramDefinitionList result = GALGAS_ramDefinitionList::constructor_emptyList (THERE) ;
+  subListToIndex (result, inIndex, inCompiler COMMA_THERE) ;
   return result ;
 }
 
@@ -8807,6 +8827,16 @@ GALGAS_configSettingList GALGAS_configSettingList::getter_subListFromIndex (cons
 
 //---------------------------------------------------------------------------------------------------------------------*
 
+GALGAS_configSettingList GALGAS_configSettingList::getter_subListToIndex (const GALGAS_uint & inIndex,
+                                                                          C_Compiler * inCompiler
+                                                                          COMMA_LOCATION_ARGS) const {
+  GALGAS_configSettingList result = GALGAS_configSettingList::constructor_emptyList (THERE) ;
+  subListToIndex (result, inIndex, inCompiler COMMA_THERE) ;
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
 void GALGAS_configSettingList::dotAssign_operation (const GALGAS_configSettingList inOperand
                                                     COMMA_UNUSED_LOCATION_ARGS) {
   appendList (inOperand) ;
@@ -9217,6 +9247,16 @@ GALGAS_configDefinitionList GALGAS_configDefinitionList::getter_subListFromIndex
                                                                                   COMMA_LOCATION_ARGS) const {
   GALGAS_configDefinitionList result = GALGAS_configDefinitionList::constructor_emptyList (THERE) ;
   subListFromIndex (result, inIndex, inCompiler COMMA_THERE) ;
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_configDefinitionList GALGAS_configDefinitionList::getter_subListToIndex (const GALGAS_uint & inIndex,
+                                                                                C_Compiler * inCompiler
+                                                                                COMMA_LOCATION_ARGS) const {
+  GALGAS_configDefinitionList result = GALGAS_configDefinitionList::constructor_emptyList (THERE) ;
+  subListToIndex (result, inIndex, inCompiler COMMA_THERE) ;
   return result ;
 }
 
@@ -9637,6 +9677,16 @@ GALGAS_immediatExpressionList GALGAS_immediatExpressionList::getter_subListFromI
 
 //---------------------------------------------------------------------------------------------------------------------*
 
+GALGAS_immediatExpressionList GALGAS_immediatExpressionList::getter_subListToIndex (const GALGAS_uint & inIndex,
+                                                                                    C_Compiler * inCompiler
+                                                                                    COMMA_LOCATION_ARGS) const {
+  GALGAS_immediatExpressionList result = GALGAS_immediatExpressionList::constructor_emptyList (THERE) ;
+  subListToIndex (result, inIndex, inCompiler COMMA_THERE) ;
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
 void GALGAS_immediatExpressionList::dotAssign_operation (const GALGAS_immediatExpressionList inOperand
                                                          COMMA_UNUSED_LOCATION_ARGS) {
   appendList (inOperand) ;
@@ -10052,6 +10102,16 @@ GALGAS_immediatSliceExpressionList GALGAS_immediatSliceExpressionList::getter_su
 
 //---------------------------------------------------------------------------------------------------------------------*
 
+GALGAS_immediatSliceExpressionList GALGAS_immediatSliceExpressionList::getter_subListToIndex (const GALGAS_uint & inIndex,
+                                                                                              C_Compiler * inCompiler
+                                                                                              COMMA_LOCATION_ARGS) const {
+  GALGAS_immediatSliceExpressionList result = GALGAS_immediatSliceExpressionList::constructor_emptyList (THERE) ;
+  subListToIndex (result, inIndex, inCompiler COMMA_THERE) ;
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
 void GALGAS_immediatSliceExpressionList::dotAssign_operation (const GALGAS_immediatSliceExpressionList inOperand
                                                               COMMA_UNUSED_LOCATION_ARGS) {
   appendList (inOperand) ;
@@ -10462,6 +10522,16 @@ GALGAS_constantDefinitionList GALGAS_constantDefinitionList::getter_subListFromI
                                                                                       COMMA_LOCATION_ARGS) const {
   GALGAS_constantDefinitionList result = GALGAS_constantDefinitionList::constructor_emptyList (THERE) ;
   subListFromIndex (result, inIndex, inCompiler COMMA_THERE) ;
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_constantDefinitionList GALGAS_constantDefinitionList::getter_subListToIndex (const GALGAS_uint & inIndex,
+                                                                                    C_Compiler * inCompiler
+                                                                                    COMMA_LOCATION_ARGS) const {
+  GALGAS_constantDefinitionList result = GALGAS_constantDefinitionList::constructor_emptyList (THERE) ;
+  subListToIndex (result, inIndex, inCompiler COMMA_THERE) ;
   return result ;
 }
 
@@ -14117,6 +14187,16 @@ GALGAS_baseline_5F_instructionList GALGAS_baseline_5F_instructionList::getter_su
 
 //---------------------------------------------------------------------------------------------------------------------*
 
+GALGAS_baseline_5F_instructionList GALGAS_baseline_5F_instructionList::getter_subListToIndex (const GALGAS_uint & inIndex,
+                                                                                              C_Compiler * inCompiler
+                                                                                              COMMA_LOCATION_ARGS) const {
+  GALGAS_baseline_5F_instructionList result = GALGAS_baseline_5F_instructionList::constructor_emptyList (THERE) ;
+  subListToIndex (result, inIndex, inCompiler COMMA_THERE) ;
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
 void GALGAS_baseline_5F_instructionList::dotAssign_operation (const GALGAS_baseline_5F_instructionList inOperand
                                                               COMMA_UNUSED_LOCATION_ARGS) {
   appendList (inOperand) ;
@@ -14530,6 +14610,16 @@ GALGAS_baseline_5F_partList GALGAS_baseline_5F_partList::getter_subListFromIndex
                                                                                   COMMA_LOCATION_ARGS) const {
   GALGAS_baseline_5F_partList result = GALGAS_baseline_5F_partList::constructor_emptyList (THERE) ;
   subListFromIndex (result, inIndex, inCompiler COMMA_THERE) ;
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_baseline_5F_partList GALGAS_baseline_5F_partList::getter_subListToIndex (const GALGAS_uint & inIndex,
+                                                                                C_Compiler * inCompiler
+                                                                                COMMA_LOCATION_ARGS) const {
+  GALGAS_baseline_5F_partList result = GALGAS_baseline_5F_partList::constructor_emptyList (THERE) ;
+  subListToIndex (result, inIndex, inCompiler COMMA_THERE) ;
   return result ;
 }
 
@@ -15046,6 +15136,16 @@ GALGAS_baseline_5F_routineDefinitionList GALGAS_baseline_5F_routineDefinitionLis
                                                                                                             COMMA_LOCATION_ARGS) const {
   GALGAS_baseline_5F_routineDefinitionList result = GALGAS_baseline_5F_routineDefinitionList::constructor_emptyList (THERE) ;
   subListFromIndex (result, inIndex, inCompiler COMMA_THERE) ;
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_baseline_5F_routineDefinitionList GALGAS_baseline_5F_routineDefinitionList::getter_subListToIndex (const GALGAS_uint & inIndex,
+                                                                                                          C_Compiler * inCompiler
+                                                                                                          COMMA_LOCATION_ARGS) const {
+  GALGAS_baseline_5F_routineDefinitionList result = GALGAS_baseline_5F_routineDefinitionList::constructor_emptyList (THERE) ;
+  subListToIndex (result, inIndex, inCompiler COMMA_THERE) ;
   return result ;
 }
 
