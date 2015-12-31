@@ -29,19 +29,19 @@ mLexicalAttribute_uint_33__32_value () {
 //---------------------------------------------------------------------------------------------------------------------*
 
 C_Lexique_piccolo_5F_lexique::C_Lexique_piccolo_5F_lexique (C_Compiler * inCallerCompiler,
-                const C_String & inDependencyFileExtension,
-                const C_String & inDependencyFilePath,
-                const C_String & inSourceFileName
-                COMMA_LOCATION_ARGS) :
+                                                            const C_String & inDependencyFileExtension,
+                                                            const C_String & inDependencyFilePath,
+                                                            const C_String & inSourceFileName
+                                                            COMMA_LOCATION_ARGS) :
 C_Lexique (inCallerCompiler, inDependencyFileExtension, inDependencyFilePath, inSourceFileName COMMA_THERE) {
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
 C_Lexique_piccolo_5F_lexique::C_Lexique_piccolo_5F_lexique (C_Compiler * inCallerCompiler,
-                const C_String & inSourceString,
-                const C_String & inStringForError
-                COMMA_LOCATION_ARGS) :
+                                                            const C_String & inSourceString,
+                                                            const C_String & inStringForError
+                                                            COMMA_LOCATION_ARGS) :
 C_Lexique (inCallerCompiler, inSourceString, inStringForError COMMA_THERE) {
 }
 
@@ -7750,7 +7750,7 @@ class cCollectionElement_declarationInRamList : public cCollectionElement {
   public : virtual cCollectionElement * copy (void) ;
 
 //--- Description
- public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
+  public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
 } ;
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -7955,18 +7955,6 @@ void GALGAS_declarationInRamList::method_last (GALGAS_declarationInRam & outOper
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_declarationInRamList GALGAS_declarationInRamList::operator_concat (const GALGAS_declarationInRamList & inOperand
-                                                                          COMMA_UNUSED_LOCATION_ARGS) const {
-  GALGAS_declarationInRamList result ;
-  if (isValid () && inOperand.isValid ()) {
-    result = *this ;
-    result.appendList (inOperand) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
 GALGAS_declarationInRamList GALGAS_declarationInRamList::add_operation (const GALGAS_declarationInRamList & inOperand,
                                                                         C_Compiler * /* inCompiler */
                                                                         COMMA_UNUSED_LOCATION_ARGS) const {
@@ -8010,8 +7998,9 @@ GALGAS_declarationInRamList GALGAS_declarationInRamList::getter_subListToIndex (
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_declarationInRamList::dotAssign_operation (const GALGAS_declarationInRamList inOperand
-                                                       COMMA_UNUSED_LOCATION_ARGS) {
+void GALGAS_declarationInRamList::plusAssign_operation (const GALGAS_declarationInRamList inOperand,
+                                                        C_Compiler * /* inCompiler */
+                                                        COMMA_UNUSED_LOCATION_ARGS) {
   appendList (inOperand) ;
 }
 
@@ -8127,7 +8116,7 @@ class cCollectionElement_ramDefinitionList : public cCollectionElement {
   public : virtual cCollectionElement * copy (void) ;
 
 //--- Description
- public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
+  public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
 } ;
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -8357,18 +8346,6 @@ void GALGAS_ramDefinitionList::method_last (GALGAS_lstring & outOperand0,
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_ramDefinitionList GALGAS_ramDefinitionList::operator_concat (const GALGAS_ramDefinitionList & inOperand
-                                                                    COMMA_UNUSED_LOCATION_ARGS) const {
-  GALGAS_ramDefinitionList result ;
-  if (isValid () && inOperand.isValid ()) {
-    result = *this ;
-    result.appendList (inOperand) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
 GALGAS_ramDefinitionList GALGAS_ramDefinitionList::add_operation (const GALGAS_ramDefinitionList & inOperand,
                                                                   C_Compiler * /* inCompiler */
                                                                   COMMA_UNUSED_LOCATION_ARGS) const {
@@ -8412,8 +8389,9 @@ GALGAS_ramDefinitionList GALGAS_ramDefinitionList::getter_subListToIndex (const 
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_ramDefinitionList::dotAssign_operation (const GALGAS_ramDefinitionList inOperand
-                                                    COMMA_UNUSED_LOCATION_ARGS) {
+void GALGAS_ramDefinitionList::plusAssign_operation (const GALGAS_ramDefinitionList inOperand,
+                                                     C_Compiler * /* inCompiler */
+                                                     COMMA_UNUSED_LOCATION_ARGS) {
   appendList (inOperand) ;
 }
 
@@ -8552,7 +8530,7 @@ class cCollectionElement_configSettingList : public cCollectionElement {
   public : virtual cCollectionElement * copy (void) ;
 
 //--- Description
- public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
+  public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
 } ;
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -8782,18 +8760,6 @@ void GALGAS_configSettingList::method_last (GALGAS_lstring & outOperand0,
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_configSettingList GALGAS_configSettingList::operator_concat (const GALGAS_configSettingList & inOperand
-                                                                    COMMA_UNUSED_LOCATION_ARGS) const {
-  GALGAS_configSettingList result ;
-  if (isValid () && inOperand.isValid ()) {
-    result = *this ;
-    result.appendList (inOperand) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
 GALGAS_configSettingList GALGAS_configSettingList::add_operation (const GALGAS_configSettingList & inOperand,
                                                                   C_Compiler * /* inCompiler */
                                                                   COMMA_UNUSED_LOCATION_ARGS) const {
@@ -8837,8 +8803,9 @@ GALGAS_configSettingList GALGAS_configSettingList::getter_subListToIndex (const 
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_configSettingList::dotAssign_operation (const GALGAS_configSettingList inOperand
-                                                    COMMA_UNUSED_LOCATION_ARGS) {
+void GALGAS_configSettingList::plusAssign_operation (const GALGAS_configSettingList inOperand,
+                                                     C_Compiler * /* inCompiler */
+                                                     COMMA_UNUSED_LOCATION_ARGS) {
   appendList (inOperand) ;
 }
 
@@ -8977,7 +8944,7 @@ class cCollectionElement_configDefinitionList : public cCollectionElement {
   public : virtual cCollectionElement * copy (void) ;
 
 //--- Description
- public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
+  public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
 } ;
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -9207,18 +9174,6 @@ void GALGAS_configDefinitionList::method_last (GALGAS_location & outOperand0,
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_configDefinitionList GALGAS_configDefinitionList::operator_concat (const GALGAS_configDefinitionList & inOperand
-                                                                          COMMA_UNUSED_LOCATION_ARGS) const {
-  GALGAS_configDefinitionList result ;
-  if (isValid () && inOperand.isValid ()) {
-    result = *this ;
-    result.appendList (inOperand) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
 GALGAS_configDefinitionList GALGAS_configDefinitionList::add_operation (const GALGAS_configDefinitionList & inOperand,
                                                                         C_Compiler * /* inCompiler */
                                                                         COMMA_UNUSED_LOCATION_ARGS) const {
@@ -9262,8 +9217,9 @@ GALGAS_configDefinitionList GALGAS_configDefinitionList::getter_subListToIndex (
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_configDefinitionList::dotAssign_operation (const GALGAS_configDefinitionList inOperand
-                                                       COMMA_UNUSED_LOCATION_ARGS) {
+void GALGAS_configDefinitionList::plusAssign_operation (const GALGAS_configDefinitionList inOperand,
+                                                        C_Compiler * /* inCompiler */
+                                                        COMMA_UNUSED_LOCATION_ARGS) {
   appendList (inOperand) ;
 }
 
@@ -9402,7 +9358,7 @@ class cCollectionElement_immediatExpressionList : public cCollectionElement {
   public : virtual cCollectionElement * copy (void) ;
 
 //--- Description
- public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
+  public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
 } ;
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -9632,18 +9588,6 @@ void GALGAS_immediatExpressionList::method_last (GALGAS_immediatExpression & out
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_immediatExpressionList GALGAS_immediatExpressionList::operator_concat (const GALGAS_immediatExpressionList & inOperand
-                                                                              COMMA_UNUSED_LOCATION_ARGS) const {
-  GALGAS_immediatExpressionList result ;
-  if (isValid () && inOperand.isValid ()) {
-    result = *this ;
-    result.appendList (inOperand) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
 GALGAS_immediatExpressionList GALGAS_immediatExpressionList::add_operation (const GALGAS_immediatExpressionList & inOperand,
                                                                             C_Compiler * /* inCompiler */
                                                                             COMMA_UNUSED_LOCATION_ARGS) const {
@@ -9687,8 +9631,9 @@ GALGAS_immediatExpressionList GALGAS_immediatExpressionList::getter_subListToInd
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_immediatExpressionList::dotAssign_operation (const GALGAS_immediatExpressionList inOperand
-                                                         COMMA_UNUSED_LOCATION_ARGS) {
+void GALGAS_immediatExpressionList::plusAssign_operation (const GALGAS_immediatExpressionList inOperand,
+                                                          C_Compiler * /* inCompiler */
+                                                          COMMA_UNUSED_LOCATION_ARGS) {
   appendList (inOperand) ;
 }
 
@@ -9827,7 +9772,7 @@ class cCollectionElement_immediatSliceExpressionList : public cCollectionElement
   public : virtual cCollectionElement * copy (void) ;
 
 //--- Description
- public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
+  public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
 } ;
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -10057,18 +10002,6 @@ void GALGAS_immediatSliceExpressionList::method_last (GALGAS_lstring & outOperan
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_immediatSliceExpressionList GALGAS_immediatSliceExpressionList::operator_concat (const GALGAS_immediatSliceExpressionList & inOperand
-                                                                                        COMMA_UNUSED_LOCATION_ARGS) const {
-  GALGAS_immediatSliceExpressionList result ;
-  if (isValid () && inOperand.isValid ()) {
-    result = *this ;
-    result.appendList (inOperand) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
 GALGAS_immediatSliceExpressionList GALGAS_immediatSliceExpressionList::add_operation (const GALGAS_immediatSliceExpressionList & inOperand,
                                                                                       C_Compiler * /* inCompiler */
                                                                                       COMMA_UNUSED_LOCATION_ARGS) const {
@@ -10112,8 +10045,9 @@ GALGAS_immediatSliceExpressionList GALGAS_immediatSliceExpressionList::getter_su
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_immediatSliceExpressionList::dotAssign_operation (const GALGAS_immediatSliceExpressionList inOperand
-                                                              COMMA_UNUSED_LOCATION_ARGS) {
+void GALGAS_immediatSliceExpressionList::plusAssign_operation (const GALGAS_immediatSliceExpressionList inOperand,
+                                                               C_Compiler * /* inCompiler */
+                                                               COMMA_UNUSED_LOCATION_ARGS) {
   appendList (inOperand) ;
 }
 
@@ -10252,7 +10186,7 @@ class cCollectionElement_constantDefinitionList : public cCollectionElement {
   public : virtual cCollectionElement * copy (void) ;
 
 //--- Description
- public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
+  public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
 } ;
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -10482,18 +10416,6 @@ void GALGAS_constantDefinitionList::method_last (GALGAS_lstring & outOperand0,
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_constantDefinitionList GALGAS_constantDefinitionList::operator_concat (const GALGAS_constantDefinitionList & inOperand
-                                                                              COMMA_UNUSED_LOCATION_ARGS) const {
-  GALGAS_constantDefinitionList result ;
-  if (isValid () && inOperand.isValid ()) {
-    result = *this ;
-    result.appendList (inOperand) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
 GALGAS_constantDefinitionList GALGAS_constantDefinitionList::add_operation (const GALGAS_constantDefinitionList & inOperand,
                                                                             C_Compiler * /* inCompiler */
                                                                             COMMA_UNUSED_LOCATION_ARGS) const {
@@ -10537,8 +10459,9 @@ GALGAS_constantDefinitionList GALGAS_constantDefinitionList::getter_subListToInd
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_constantDefinitionList::dotAssign_operation (const GALGAS_constantDefinitionList inOperand
-                                                         COMMA_UNUSED_LOCATION_ARGS) {
+void GALGAS_constantDefinitionList::plusAssign_operation (const GALGAS_constantDefinitionList inOperand,
+                                                          C_Compiler * /* inCompiler */
+                                                          COMMA_UNUSED_LOCATION_ARGS) {
   appendList (inOperand) ;
 }
 
@@ -13937,7 +13860,7 @@ class cCollectionElement_baseline_5F_instructionList : public cCollectionElement
   public : virtual cCollectionElement * copy (void) ;
 
 //--- Description
- public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
+  public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
 } ;
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -14142,18 +14065,6 @@ void GALGAS_baseline_5F_instructionList::method_last (GALGAS_baseline_5F_instruc
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_baseline_5F_instructionList GALGAS_baseline_5F_instructionList::operator_concat (const GALGAS_baseline_5F_instructionList & inOperand
-                                                                                        COMMA_UNUSED_LOCATION_ARGS) const {
-  GALGAS_baseline_5F_instructionList result ;
-  if (isValid () && inOperand.isValid ()) {
-    result = *this ;
-    result.appendList (inOperand) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
 GALGAS_baseline_5F_instructionList GALGAS_baseline_5F_instructionList::add_operation (const GALGAS_baseline_5F_instructionList & inOperand,
                                                                                       C_Compiler * /* inCompiler */
                                                                                       COMMA_UNUSED_LOCATION_ARGS) const {
@@ -14197,8 +14108,9 @@ GALGAS_baseline_5F_instructionList GALGAS_baseline_5F_instructionList::getter_su
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_baseline_5F_instructionList::dotAssign_operation (const GALGAS_baseline_5F_instructionList inOperand
-                                                              COMMA_UNUSED_LOCATION_ARGS) {
+void GALGAS_baseline_5F_instructionList::plusAssign_operation (const GALGAS_baseline_5F_instructionList inOperand,
+                                                               C_Compiler * /* inCompiler */
+                                                               COMMA_UNUSED_LOCATION_ARGS) {
   appendList (inOperand) ;
 }
 
@@ -14315,7 +14227,7 @@ class cCollectionElement_baseline_5F_partList : public cCollectionElement {
   public : virtual cCollectionElement * copy (void) ;
 
 //--- Description
- public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
+  public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
 } ;
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -14570,18 +14482,6 @@ void GALGAS_baseline_5F_partList::method_last (GALGAS_baseline_5F_conditionExpre
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_baseline_5F_partList GALGAS_baseline_5F_partList::operator_concat (const GALGAS_baseline_5F_partList & inOperand
-                                                                          COMMA_UNUSED_LOCATION_ARGS) const {
-  GALGAS_baseline_5F_partList result ;
-  if (isValid () && inOperand.isValid ()) {
-    result = *this ;
-    result.appendList (inOperand) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
 GALGAS_baseline_5F_partList GALGAS_baseline_5F_partList::add_operation (const GALGAS_baseline_5F_partList & inOperand,
                                                                         C_Compiler * /* inCompiler */
                                                                         COMMA_UNUSED_LOCATION_ARGS) const {
@@ -14625,8 +14525,9 @@ GALGAS_baseline_5F_partList GALGAS_baseline_5F_partList::getter_subListToIndex (
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_baseline_5F_partList::dotAssign_operation (const GALGAS_baseline_5F_partList inOperand
-                                                       COMMA_UNUSED_LOCATION_ARGS) {
+void GALGAS_baseline_5F_partList::plusAssign_operation (const GALGAS_baseline_5F_partList inOperand,
+                                                        C_Compiler * /* inCompiler */
+                                                        COMMA_UNUSED_LOCATION_ARGS) {
   appendList (inOperand) ;
 }
 
@@ -14791,7 +14692,7 @@ class cCollectionElement_baseline_5F_routineDefinitionList : public cCollectionE
   public : virtual cCollectionElement * copy (void) ;
 
 //--- Description
- public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
+  public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
 } ;
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -15096,18 +14997,6 @@ void GALGAS_baseline_5F_routineDefinitionList::method_last (GALGAS_lstring & out
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_baseline_5F_routineDefinitionList GALGAS_baseline_5F_routineDefinitionList::operator_concat (const GALGAS_baseline_5F_routineDefinitionList & inOperand
-                                                                                                    COMMA_UNUSED_LOCATION_ARGS) const {
-  GALGAS_baseline_5F_routineDefinitionList result ;
-  if (isValid () && inOperand.isValid ()) {
-    result = *this ;
-    result.appendList (inOperand) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
 GALGAS_baseline_5F_routineDefinitionList GALGAS_baseline_5F_routineDefinitionList::add_operation (const GALGAS_baseline_5F_routineDefinitionList & inOperand,
                                                                                                   C_Compiler * /* inCompiler */
                                                                                                   COMMA_UNUSED_LOCATION_ARGS) const {
@@ -15151,8 +15040,9 @@ GALGAS_baseline_5F_routineDefinitionList GALGAS_baseline_5F_routineDefinitionLis
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_baseline_5F_routineDefinitionList::dotAssign_operation (const GALGAS_baseline_5F_routineDefinitionList inOperand
-                                                                    COMMA_UNUSED_LOCATION_ARGS) {
+void GALGAS_baseline_5F_routineDefinitionList::plusAssign_operation (const GALGAS_baseline_5F_routineDefinitionList inOperand,
+                                                                     C_Compiler * /* inCompiler */
+                                                                     COMMA_UNUSED_LOCATION_ARGS) {
   appendList (inOperand) ;
 }
 
@@ -17486,7 +17376,7 @@ void cParser_communs::rule_communs_declaration_5F_in_5F_ram_i1_ (GALGAS_declarat
               inCompiler->emitSemanticError (location_4, GALGAS_string ("a slice of 1 bit is expected for '").add_operation (var_sliceName.getter_string (SOURCE_FILE ("communs.galgas", 62)), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 62)).add_operation (GALGAS_string ("'"), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 62))  COMMA_SOURCE_FILE ("communs.galgas", 62)) ;
             }
             var_sliceWidth = GALGAS_uint ((uint32_t) 1U) ;
-            var_bitDefinitionString.dotAssign_operation (var_sliceName.getter_string (SOURCE_FILE ("communs.galgas", 65))  COMMA_SOURCE_FILE ("communs.galgas", 65)) ;
+            var_bitDefinitionString.plusAssign_operation(var_sliceName.getter_string (SOURCE_FILE ("communs.galgas", 65)), inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 65)) ;
           } break ;
           case 2: {
             inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__5B_) COMMA_SOURCE_FILE ("communs.galgas", 67)) ;
@@ -17499,7 +17389,7 @@ void cParser_communs::rule_communs_declaration_5F_in_5F_ram_i1_ (GALGAS_declarat
             }
             var_sliceWidth = var_sliceSize.getter_uint (SOURCE_FILE ("communs.galgas", 72)) ;
             var_sliceBase = var_sliceBase.add_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 73)).substract_operation (var_sliceSize.getter_uint (SOURCE_FILE ("communs.galgas", 73)), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 73)) ;
-            var_bitDefinitionString.dotAssign_operation (var_sliceName.getter_string (SOURCE_FILE ("communs.galgas", 74)).add_operation (GALGAS_string ("["), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 74)).add_operation (var_sliceSize.getter_uint (SOURCE_FILE ("communs.galgas", 74)).getter_string (SOURCE_FILE ("communs.galgas", 74)), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 74)).add_operation (GALGAS_string ("]"), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 74))  COMMA_SOURCE_FILE ("communs.galgas", 74)) ;
+            var_bitDefinitionString.plusAssign_operation(var_sliceName.getter_string (SOURCE_FILE ("communs.galgas", 74)).add_operation (GALGAS_string ("["), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 74)).add_operation (var_sliceSize.getter_uint (SOURCE_FILE ("communs.galgas", 74)).getter_string (SOURCE_FILE ("communs.galgas", 74)), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 74)).add_operation (GALGAS_string ("]"), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 74)), inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 74)) ;
             inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__5D_) COMMA_SOURCE_FILE ("communs.galgas", 75)) ;
           } break ;
           default:
@@ -17516,7 +17406,7 @@ void cParser_communs::rule_communs_declaration_5F_in_5F_ram_i1_ (GALGAS_declarat
           switch (select_communs_6 (inCompiler)) {
           case 2: {
             inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__2F_) COMMA_SOURCE_FILE ("communs.galgas", 83)) ;
-            var_bitDefinitionString.dotAssign_operation (GALGAS_string ("/")  COMMA_SOURCE_FILE ("communs.galgas", 84)) ;
+            var_bitDefinitionString.plusAssign_operation(GALGAS_string ("/"), inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 84)) ;
           } break ;
           default:
             repeatFlag_1 = false ;
@@ -17527,7 +17417,7 @@ void cParser_communs::rule_communs_declaration_5F_in_5F_ram_i1_ (GALGAS_declarat
       } break ;
       case 2: {
         inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__2D_) COMMA_SOURCE_FILE ("communs.galgas", 88)) ;
-        var_bitDefinitionString.dotAssign_operation (GALGAS_string ("-")  COMMA_SOURCE_FILE ("communs.galgas", 89)) ;
+        var_bitDefinitionString.plusAssign_operation(GALGAS_string ("-"), inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 89)) ;
         var_sliceIndex.decrement_operation (inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 90)) ;
       } break ;
       case 3: {
@@ -17539,9 +17429,9 @@ void cParser_communs::rule_communs_declaration_5F_in_5F_ram_i1_ (GALGAS_declarat
         }
         cEnumerator_range enumerator_2707 (GALGAS_range (GALGAS_uint ((uint32_t) 0U), var_bitCount.mAttribute_uint.substract_operation (GALGAS_uint ((uint32_t) 0U), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 96))), kEnumeration_up) ;
         while (enumerator_2707.hasCurrentObject ()) {
-          var_bitDefinitionString.dotAssign_operation (GALGAS_string ("-")  COMMA_SOURCE_FILE ("communs.galgas", 97)) ;
+          var_bitDefinitionString.plusAssign_operation(GALGAS_string ("-"), inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 97)) ;
           if (enumerator_2707.hasNextObject ()) {
-            var_bitDefinitionString.dotAssign_operation (GALGAS_string (", ")  COMMA_SOURCE_FILE ("communs.galgas", 98)) ;
+            var_bitDefinitionString.plusAssign_operation(GALGAS_string (", "), inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 98)) ;
           }
           enumerator_2707.gotoNextObject () ;
         }
@@ -17553,7 +17443,7 @@ void cParser_communs::rule_communs_declaration_5F_in_5F_ram_i1_ (GALGAS_declarat
       switch (select_communs_4 (inCompiler)) {
       case 2: {
         inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__2C_) COMMA_SOURCE_FILE ("communs.galgas", 103)) ;
-        var_bitDefinitionString.dotAssign_operation (GALGAS_string (", ")  COMMA_SOURCE_FILE ("communs.galgas", 104)) ;
+        var_bitDefinitionString.plusAssign_operation(GALGAS_string (", "), inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 104)) ;
       } break ;
       default:
         repeatFlag_0 = false ;
@@ -17566,7 +17456,7 @@ void cParser_communs::rule_communs_declaration_5F_in_5F_ram_i1_ (GALGAS_declarat
       inCompiler->emitSemanticError (location_10, GALGAS_string ("Incorrect bit definition for register '").add_operation (var_name.getter_string (SOURCE_FILE ("communs.galgas", 107)), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 107)).add_operation (GALGAS_string ("': "), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 107)).add_operation (GALGAS_sint ((int32_t) 8L).substract_operation (var_sliceIndex, inCompiler COMMA_SOURCE_FILE ("communs.galgas", 107)).getter_string (SOURCE_FILE ("communs.galgas", 107)), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 107)).add_operation (GALGAS_string (" bits (s) are defined, instead of 8"), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 107))  COMMA_SOURCE_FILE ("communs.galgas", 107)) ;
     }
     inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__3E_) COMMA_SOURCE_FILE ("communs.galgas", 109)) ;
-    var_bitDefinitionString.dotAssign_operation (GALGAS_string (">")  COMMA_SOURCE_FILE ("communs.galgas", 110)) ;
+    var_bitDefinitionString.plusAssign_operation(GALGAS_string (">"), inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 110)) ;
   } break ;
   default:
     break ;

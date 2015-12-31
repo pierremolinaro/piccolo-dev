@@ -3771,7 +3771,7 @@ proc build_ipic18_block_representation_list
       ?let @generatedCodeMap unused generatedCodeMap
     )
   #----------------------------------------------------------- Print usage
-    if [option.verbose_output value] then
+    if @application.verboseOutput then
       @string verboseMessage = "Resource usage:\n"
       verboseMessage += "  ROM size: " + inROMSize + " bytes;"
       verboseMessage += " used: " + [usedROMsize string] + " bytes ("

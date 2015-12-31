@@ -13318,6 +13318,7 @@ GALGAS_registerExpression GALGAS_registerExpression::extractObject (const GALGAS
 #include "command_line_interface/F_Analyze_CLI_Options.h"
 #include "utilities/F_DisplayException.h"
 #include "galgas2/C_galgas_CLI_Options.h"
+#include "galgas2/F_verbose_output.h"
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -13559,13 +13560,13 @@ static void routine_before (C_Compiler * inCompiler
           GALGAS_string var_s = GALGAS_string ("  '").add_operation (enumerator_7067.current_lkey (HERE).getter_string (SOURCE_FILE ("piccolo_program.galgas", 155)), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 155)).add_operation (GALGAS_string ("' at "), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 155)) ;
           cEnumerator_uintlist enumerator_7153 (enumerator_7067.current_mRegisterAddressList (HERE), kEnumeration_up) ;
           while (enumerator_7153.hasCurrentObject ()) {
-            var_s.dotAssign_operation (enumerator_7153.current_mValue (HERE).getter_hexString (SOURCE_FILE ("piccolo_program.galgas", 157))  COMMA_SOURCE_FILE ("piccolo_program.galgas", 157)) ;
+            var_s.plusAssign_operation(enumerator_7153.current_mValue (HERE).getter_hexString (SOURCE_FILE ("piccolo_program.galgas", 157)), inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 157)) ;
             if (enumerator_7153.hasNextObject ()) {
-              var_s.dotAssign_operation (GALGAS_string (", ")  COMMA_SOURCE_FILE ("piccolo_program.galgas", 158)) ;
+              var_s.plusAssign_operation(GALGAS_string (", "), inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 158)) ;
             }
             enumerator_7153.gotoNextObject () ;
           }
-          var_s.dotAssign_operation (enumerator_7067.current_mBitDefinitionString (HERE).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 160))  COMMA_SOURCE_FILE ("piccolo_program.galgas", 160)) ;
+          var_s.plusAssign_operation(enumerator_7067.current_mBitDefinitionString (HERE).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 160)), inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 160)) ;
           inCompiler->printMessage (var_s  COMMA_SOURCE_FILE ("piccolo_program.galgas", 161)) ;
           enumerator_7067.gotoNextObject () ;
         }
@@ -13589,15 +13590,15 @@ static void routine_before (C_Compiler * inCompiler
           GALGAS_string var_s = GALGAS_string ("REGISTER '").add_operation (enumerator_8173.current_lkey (HERE).getter_string (SOURCE_FILE ("piccolo_program.galgas", 176)), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 176)).add_operation (GALGAS_string ("' at "), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 176)).add_operation (enumerator_8173.current_mRegisterAddress (HERE).getter_uint (SOURCE_FILE ("piccolo_program.galgas", 176)).getter_hexString (SOURCE_FILE ("piccolo_program.galgas", 176)), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 176)).add_operation (GALGAS_string (", width "), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 176)).add_operation (enumerator_8173.current_mRegisterWidth (HERE).getter_uint (SOURCE_FILE ("piccolo_program.galgas", 176)).getter_string (SOURCE_FILE ("piccolo_program.galgas", 176)), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 176)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 176)) ;
           cEnumerator_illegalMaskList enumerator_8353 (enumerator_8173.current_mIllegalMaskList (HERE), kEnumeration_up) ;
           while (enumerator_8353.hasCurrentObject ()) {
-            var_s.dotAssign_operation (GALGAS_string ("  illegal value ").add_operation (enumerator_8353.current_mIllegalValue (HERE).getter_uint (SOURCE_FILE ("piccolo_program.galgas", 178)).getter_hexString (SOURCE_FILE ("piccolo_program.galgas", 178)), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 178)).add_operation (GALGAS_string (" mask "), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 178)).add_operation (enumerator_8353.current_mIllegalMask (HERE).getter_uint (SOURCE_FILE ("piccolo_program.galgas", 178)).getter_hexString (SOURCE_FILE ("piccolo_program.galgas", 178)), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 178)).add_operation (GALGAS_string (" description \""), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 178)).add_operation (enumerator_8353.current_mDescription (HERE).getter_string (SOURCE_FILE ("piccolo_program.galgas", 178)), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 178)).add_operation (GALGAS_string ("\"\n"), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 178))  COMMA_SOURCE_FILE ("piccolo_program.galgas", 178)) ;
+            var_s.plusAssign_operation(GALGAS_string ("  illegal value ").add_operation (enumerator_8353.current_mIllegalValue (HERE).getter_uint (SOURCE_FILE ("piccolo_program.galgas", 178)).getter_hexString (SOURCE_FILE ("piccolo_program.galgas", 178)), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 178)).add_operation (GALGAS_string (" mask "), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 178)).add_operation (enumerator_8353.current_mIllegalMask (HERE).getter_uint (SOURCE_FILE ("piccolo_program.galgas", 178)).getter_hexString (SOURCE_FILE ("piccolo_program.galgas", 178)), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 178)).add_operation (GALGAS_string (" description \""), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 178)).add_operation (enumerator_8353.current_mDescription (HERE).getter_string (SOURCE_FILE ("piccolo_program.galgas", 178)), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 178)).add_operation (GALGAS_string ("\"\n"), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 178)), inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 178)) ;
             enumerator_8353.gotoNextObject () ;
           }
           cEnumerator_configRegisterMaskMap enumerator_8576 (enumerator_8173.current_mConfigRegisterMaskMap (HERE), kEnumeration_up) ;
           while (enumerator_8576.hasCurrentObject ()) {
-            var_s.dotAssign_operation (GALGAS_string ("  setting '").add_operation (enumerator_8576.current_lkey (HERE).getter_string (SOURCE_FILE ("piccolo_program.galgas", 181)), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 181)).add_operation (GALGAS_string ("': mask "), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 181)).add_operation (enumerator_8576.current_mMaskValue (HERE).getter_uint (SOURCE_FILE ("piccolo_program.galgas", 181)).getter_hexString (SOURCE_FILE ("piccolo_program.galgas", 181)), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 181)).add_operation (GALGAS_string (" description \""), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 181)).add_operation (enumerator_8576.current_mDescription (HERE).getter_string (SOURCE_FILE ("piccolo_program.galgas", 181)), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 181)).add_operation (GALGAS_string ("\"\n"), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 181))  COMMA_SOURCE_FILE ("piccolo_program.galgas", 181)) ;
+            var_s.plusAssign_operation(GALGAS_string ("  setting '").add_operation (enumerator_8576.current_lkey (HERE).getter_string (SOURCE_FILE ("piccolo_program.galgas", 181)), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 181)).add_operation (GALGAS_string ("': mask "), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 181)).add_operation (enumerator_8576.current_mMaskValue (HERE).getter_uint (SOURCE_FILE ("piccolo_program.galgas", 181)).getter_hexString (SOURCE_FILE ("piccolo_program.galgas", 181)), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 181)).add_operation (GALGAS_string (" description \""), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 181)).add_operation (enumerator_8576.current_mDescription (HERE).getter_string (SOURCE_FILE ("piccolo_program.galgas", 181)), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 181)).add_operation (GALGAS_string ("\"\n"), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 181)), inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 181)) ;
             cEnumerator_fieldSettingMap enumerator_8778 (enumerator_8576.current_mFieldSettingMap (HERE), kEnumeration_up) ;
             while (enumerator_8778.hasCurrentObject ()) {
-              var_s.dotAssign_operation (GALGAS_string ("    value ").add_operation (enumerator_8778.current_mValue (HERE).getter_hexString (SOURCE_FILE ("piccolo_program.galgas", 183)), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 183)).add_operation (GALGAS_string (" description \""), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 183)).add_operation (enumerator_8778.current_lkey (HERE).getter_string (SOURCE_FILE ("piccolo_program.galgas", 183)), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 183)).add_operation (GALGAS_string ("\"\n"), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 183))  COMMA_SOURCE_FILE ("piccolo_program.galgas", 183)) ;
+              var_s.plusAssign_operation(GALGAS_string ("    value ").add_operation (enumerator_8778.current_mValue (HERE).getter_hexString (SOURCE_FILE ("piccolo_program.galgas", 183)), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 183)).add_operation (GALGAS_string (" description \""), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 183)).add_operation (enumerator_8778.current_lkey (HERE).getter_string (SOURCE_FILE ("piccolo_program.galgas", 183)), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 183)).add_operation (GALGAS_string ("\"\n"), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 183)), inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 183)) ;
               enumerator_8778.gotoNextObject () ;
             }
             enumerator_8576.gotoNextObject () ;
@@ -13652,8 +13653,7 @@ int mainForLIBPM (int inArgc, const char * inArgv []) {
                          kSourceFileHelpMessages,
                          print_tool_help_message) ;
 //---
-  bool verboseOptionOn = true ;
-  int16_t returnCode = 0 ; // No error
+  int returnCode = 0 ; // No error
 //--- Set Execution mode
   C_String executionModeOptionErrorMessage ;
   setExecutionMode (executionModeOptionErrorMessage) ;
@@ -13666,7 +13666,7 @@ int mainForLIBPM (int inArgc, const char * inArgv []) {
     macroMyNew (commonLexique, C_Compiler (NULL, "", "" COMMA_HERE)) ;
     try{
       routine_before (commonLexique COMMA_HERE) ;
-      verboseOptionOn = gOption_galgas_5F_builtin_5F_options_verbose_5F_output.mValue ;
+      const bool verboseOptionOn = verboseOutput () ;
       for (int32_t i=0 ; i<sourceFilesArray.count () ; i++) {
         if (gOption_galgas_5F_builtin_5F_options_trace.mValue) {
           enableTraceWithPath (sourceFilesArray (i COMMA_HERE)) ;
@@ -13675,7 +13675,7 @@ int mainForLIBPM (int inArgc, const char * inArgv []) {
         const GALGAS_string sfp = GALGAS_string (sourceFilesArray (i COMMA_HERE)) ;
         const GALGAS_location location = commonLexique->here () ;
         const GALGAS_lstring sourceFilePath (sfp, location) ;
-        int16_t r = 0 ;
+        int r = 0 ;
         if (fileExtension == "piccolo") {
           switch (executionMode ()) {
           case kExecutionModeNormal :
@@ -13717,7 +13717,7 @@ int mainForLIBPM (int inArgc, const char * inArgv []) {
     //--- Epilogue
       routine_after (commonLexique COMMA_HERE) ;
     //--- Display error and warnings count
-      if (gOption_galgas_5F_builtin_5F_options_verbose_5F_output.mValue || (totalWarningCount () > 0) || (totalErrorCount () > 0)) {
+      if (verboseOptionOn || (totalWarningCount () > 0) || (totalErrorCount () > 0)) {
         C_String message ;
         if (totalWarningCount () == 0) {
           message << "No warning" ;

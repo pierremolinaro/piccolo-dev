@@ -218,7 +218,7 @@ proc ipic18GenerateCode
   ioListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n"
   ioListFileContents += "*" + ["CODE GENERATION" stringByLeftAndRightPadding !117 !' '] + "*\n"
   ioListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n\n"
-  if [option.verbose_output value] then
+  if @application.verboseOutput then
     message "Code generation:\n"
   end
 #--- Build address map
@@ -306,7 +306,7 @@ proc ipic18GenerateCode
     end
     ioListFileContents += "\n"
   end 
-  if [option.verbose_output value] then
+  if @application.verboseOutput then
     message "  Relocatable code size: " + relocatableCodeSize + " bytes.\n\n"
   end
   outUsedROMsize = dataAddress

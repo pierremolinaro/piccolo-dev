@@ -16,9 +16,9 @@
 
 static void categoryMethod_baseline_5F_intermediate_5F_NULL_print (const cPtr_baseline_5F_intermediate_5F_instruction * /* inObject */,
                                                                    GALGAS_string & ioArgument_ioListFileContents,
-                                                                   C_Compiler * /* inCompiler */
+                                                                   C_Compiler * inCompiler
                                                                    COMMA_UNUSED_LOCATION_ARGS) {
-  ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string ("-")  COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 10)) ;
+  ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("-"), inCompiler  COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 10)) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -43,7 +43,7 @@ static void categoryMethod_baseline_5F_intermediate_5F_pseudo_5F_PAGE_print (con
                                                                              COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_baseline_5F_intermediate_5F_pseudo_5F_PAGE * object = (const cPtr_baseline_5F_intermediate_5F_pseudo_5F_PAGE *) inObject ;
   macroValidSharedObject (object, cPtr_baseline_5F_intermediate_5F_pseudo_5F_PAGE) ;
-  ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string ("ORG ").add_operation (object->mAttribute_mPage.multiply_operation (GALGAS_uint ((uint32_t) 512U), inCompiler COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 16)).getter_hexString (SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 16)), inCompiler COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 16))  COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 16)) ;
+  ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("ORG ").add_operation (object->mAttribute_mPage.multiply_operation (GALGAS_uint ((uint32_t) 512U), inCompiler COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 16)).getter_hexString (SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 16)), inCompiler COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 16)), inCompiler  COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 16)) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -68,7 +68,7 @@ static void categoryMethod_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTIN
                                                                                          COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE * object = (const cPtr_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE *) inObject ;
   macroValidSharedObject (object, cPtr_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE) ;
-  ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string ("BEGIN OF ROUTINE ").add_operation (object->mAttribute_mRoutineName.getter_string (SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 22)), inCompiler COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 22))  COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 22)) ;
+  ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("BEGIN OF ROUTINE ").add_operation (object->mAttribute_mRoutineName.getter_string (SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 22)), inCompiler COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 22)), inCompiler  COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 22)) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -93,7 +93,7 @@ static void categoryMethod_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE_
                                                                                        COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE * object = (const cPtr_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE *) inObject ;
   macroValidSharedObject (object, cPtr_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE) ;
-  ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string ("END OF ROUTINE ").add_operation (object->mAttribute_mRoutineName.getter_string (SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 28)), inCompiler COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 28)).add_operation (GALGAS_string (" IN PAGE "), inCompiler COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 28)).add_operation (object->mAttribute_mPage.getter_string (SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 28)), inCompiler COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 28))  COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 28)) ;
+  ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("END OF ROUTINE ").add_operation (object->mAttribute_mRoutineName.getter_string (SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 28)), inCompiler COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 28)).add_operation (GALGAS_string (" IN PAGE "), inCompiler COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 28)).add_operation (object->mAttribute_mPage.getter_string (SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 28)), inCompiler COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 28)), inCompiler  COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 28)) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -118,7 +118,7 @@ static void categoryMethod_baseline_5F_intermediate_5F_pseudo_5F_LABEL_print (co
                                                                               COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_baseline_5F_intermediate_5F_pseudo_5F_LABEL * object = (const cPtr_baseline_5F_intermediate_5F_pseudo_5F_LABEL *) inObject ;
   macroValidSharedObject (object, cPtr_baseline_5F_intermediate_5F_pseudo_5F_LABEL) ;
-  ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string ("LABEL ").add_operation (object->mAttribute_mLabel.getter_string (SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 34)), inCompiler COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 34))  COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 34)) ;
+  ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("LABEL ").add_operation (object->mAttribute_mLabel.getter_string (SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 34)), inCompiler COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 34)), inCompiler  COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 34)) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -143,10 +143,10 @@ static void categoryMethod_baseline_5F_intermediate_5F_instruction_5F_FD_print (
                                                                                 COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_baseline_5F_intermediate_5F_instruction_5F_FD * object = (const cPtr_baseline_5F_intermediate_5F_instruction_5F_FD *) inObject ;
   macroValidSharedObject (object, cPtr_baseline_5F_intermediate_5F_instruction_5F_FD) ;
-  ioArgument_ioListFileContents.dotAssign_operation (extensionGetter_mnemonic (object->mAttribute_mInstruction, inCompiler COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 40)).add_operation (GALGAS_string (" "), inCompiler COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 40)).add_operation (object->mAttribute_mRegisterDescription.getter_mAssemblyString (SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 40)), inCompiler COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 40))  COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 40)) ;
+  ioArgument_ioListFileContents.plusAssign_operation(extensionGetter_mnemonic (object->mAttribute_mInstruction, inCompiler COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 40)).add_operation (GALGAS_string (" "), inCompiler COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 40)).add_operation (object->mAttribute_mRegisterDescription.getter_mAssemblyString (SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 40)), inCompiler COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 40)), inCompiler  COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 40)) ;
   const enumGalgasBool test_0 = object->mAttribute_m_5F_W_5F_isDestination.boolEnum () ;
   if (kBoolTrue == test_0) {
-    ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string (", W")  COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 42)) ;
+    ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string (", W"), inCompiler  COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 42)) ;
   }
 }
 //---------------------------------------------------------------------------------------------------------------------*
@@ -172,7 +172,7 @@ static void categoryMethod_baseline_5F_intermediate_5F_instruction_5F_F_print (c
                                                                                COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_baseline_5F_intermediate_5F_instruction_5F_F * object = (const cPtr_baseline_5F_intermediate_5F_instruction_5F_F *) inObject ;
   macroValidSharedObject (object, cPtr_baseline_5F_intermediate_5F_instruction_5F_F) ;
-  ioArgument_ioListFileContents.dotAssign_operation (extensionGetter_mnemonic (object->mAttribute_mInstruction, inCompiler COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 49)).add_operation (GALGAS_string (" "), inCompiler COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 49)).add_operation (object->mAttribute_mRegisterDescription.getter_mAssemblyString (SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 49)), inCompiler COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 49))  COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 49)) ;
+  ioArgument_ioListFileContents.plusAssign_operation(extensionGetter_mnemonic (object->mAttribute_mInstruction, inCompiler COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 49)).add_operation (GALGAS_string (" "), inCompiler COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 49)).add_operation (object->mAttribute_mRegisterDescription.getter_mAssemblyString (SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 49)), inCompiler COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 49)), inCompiler  COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 49)) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -197,7 +197,7 @@ static void categoryMethod_baseline_5F_intermediate_5F_instruction_5F_FB_print (
                                                                                 COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_baseline_5F_intermediate_5F_instruction_5F_FB * object = (const cPtr_baseline_5F_intermediate_5F_instruction_5F_FB *) inObject ;
   macroValidSharedObject (object, cPtr_baseline_5F_intermediate_5F_instruction_5F_FB) ;
-  ioArgument_ioListFileContents.dotAssign_operation (extensionGetter_mnemonic (object->mAttribute_mInstruction, inCompiler COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 55)).add_operation (GALGAS_string (" "), inCompiler COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 55)).add_operation (object->mAttribute_mRegisterDescription.getter_mAssemblyString (SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 55)), inCompiler COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 55)).add_operation (GALGAS_string (", "), inCompiler COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 55)).add_operation (object->mAttribute_mBitNumber.getter_string (SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 55)), inCompiler COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 55))  COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 55)) ;
+  ioArgument_ioListFileContents.plusAssign_operation(extensionGetter_mnemonic (object->mAttribute_mInstruction, inCompiler COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 55)).add_operation (GALGAS_string (" "), inCompiler COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 55)).add_operation (object->mAttribute_mRegisterDescription.getter_mAssemblyString (SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 55)), inCompiler COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 55)).add_operation (GALGAS_string (", "), inCompiler COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 55)).add_operation (object->mAttribute_mBitNumber.getter_string (SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 55)), inCompiler COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 55)), inCompiler  COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 55)) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -224,11 +224,11 @@ static void categoryMethod_baseline_5F_intermediate_5F_instruction_5F_BitTestSki
   macroValidSharedObject (object, cPtr_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip) ;
   const enumGalgasBool test_0 = object->mAttribute_mSkipIfSet.boolEnum () ;
   if (kBoolTrue == test_0) {
-    ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string ("BTFSS")  COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 62)) ;
+    ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("BTFSS"), inCompiler  COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 62)) ;
   }else if (kBoolFalse == test_0) {
-    ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string ("BTFSC")  COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 64)) ;
+    ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("BTFSC"), inCompiler  COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 64)) ;
   }
-  ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string (" ").add_operation (object->mAttribute_mRegisterDescription.getter_mAssemblyString (SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 66)), inCompiler COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 66)).add_operation (GALGAS_string (", "), inCompiler COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 66)).add_operation (object->mAttribute_mBitNumber.getter_string (SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 66)), inCompiler COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 66))  COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 66)) ;
+  ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string (" ").add_operation (object->mAttribute_mRegisterDescription.getter_mAssemblyString (SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 66)), inCompiler COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 66)).add_operation (GALGAS_string (", "), inCompiler COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 66)).add_operation (object->mAttribute_mBitNumber.getter_string (SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 66)), inCompiler COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 66)), inCompiler  COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 66)) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -253,7 +253,7 @@ static void categoryMethod_baseline_5F_intermediate_5F_GOTO_print (const cPtr_ba
                                                                    COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_baseline_5F_intermediate_5F_GOTO * object = (const cPtr_baseline_5F_intermediate_5F_GOTO *) inObject ;
   macroValidSharedObject (object, cPtr_baseline_5F_intermediate_5F_GOTO) ;
-  ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string ("GOTO ").add_operation (object->mAttribute_mTargetLabel.getter_string (SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 72)), inCompiler COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 72))  COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 72)) ;
+  ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("GOTO ").add_operation (object->mAttribute_mTargetLabel.getter_string (SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 72)), inCompiler COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 72)), inCompiler  COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 72)) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -278,7 +278,7 @@ static void categoryMethod_baseline_5F_intermediate_5F_JUMP_print (const cPtr_ba
                                                                    COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_baseline_5F_intermediate_5F_JUMP * object = (const cPtr_baseline_5F_intermediate_5F_JUMP *) inObject ;
   macroValidSharedObject (object, cPtr_baseline_5F_intermediate_5F_JUMP) ;
-  ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string ("JUMP ").add_operation (object->mAttribute_mTargetLabel.getter_string (SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 78)), inCompiler COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 78))  COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 78)) ;
+  ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("JUMP ").add_operation (object->mAttribute_mTargetLabel.getter_string (SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 78)), inCompiler COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 78)), inCompiler  COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 78)) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -303,7 +303,7 @@ static void categoryMethod_baseline_5F_intermediate_5F_CALL_print (const cPtr_ba
                                                                    COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_baseline_5F_intermediate_5F_CALL * object = (const cPtr_baseline_5F_intermediate_5F_CALL *) inObject ;
   macroValidSharedObject (object, cPtr_baseline_5F_intermediate_5F_CALL) ;
-  ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string ("CALL ").add_operation (object->mAttribute_mTargetLabel.getter_string (SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 85)), inCompiler COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 85))  COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 85)) ;
+  ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("CALL ").add_operation (object->mAttribute_mTargetLabel.getter_string (SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 85)), inCompiler COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 85)), inCompiler  COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 85)) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -328,7 +328,7 @@ static void categoryMethod_baseline_5F_intermediate_5F_JSR_print (const cPtr_bas
                                                                   COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_baseline_5F_intermediate_5F_JSR * object = (const cPtr_baseline_5F_intermediate_5F_JSR *) inObject ;
   macroValidSharedObject (object, cPtr_baseline_5F_intermediate_5F_JSR) ;
-  ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string ("JSR ").add_operation (object->mAttribute_mTargetLabel.getter_string (SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 92)), inCompiler COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 92))  COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 92)) ;
+  ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("JSR ").add_operation (object->mAttribute_mTargetLabel.getter_string (SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 92)), inCompiler COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 92)), inCompiler  COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 92)) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -353,7 +353,7 @@ static void categoryMethod_baseline_5F_intermediate_5F_instruction_5F_literalOpe
                                                                                               COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_baseline_5F_intermediate_5F_instruction_5F_literalOperation * object = (const cPtr_baseline_5F_intermediate_5F_instruction_5F_literalOperation *) inObject ;
   macroValidSharedObject (object, cPtr_baseline_5F_intermediate_5F_instruction_5F_literalOperation) ;
-  ioArgument_ioListFileContents.dotAssign_operation (extensionGetter_mnemonic (object->mAttribute_mInstruction, inCompiler COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 98)).add_operation (GALGAS_string (" "), inCompiler COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 98)).add_operation (object->mAttribute_mLiteralValue.getter_hexString (SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 98)), inCompiler COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 98))  COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 98)) ;
+  ioArgument_ioListFileContents.plusAssign_operation(extensionGetter_mnemonic (object->mAttribute_mInstruction, inCompiler COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 98)).add_operation (GALGAS_string (" "), inCompiler COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 98)).add_operation (object->mAttribute_mLiteralValue.getter_hexString (SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 98)), inCompiler COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 98)), inCompiler  COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 98)) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -378,7 +378,7 @@ static void categoryMethod_baseline_5F_intermediate_5F_instruction_5F_MNOP_print
                                                                                   COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_baseline_5F_intermediate_5F_instruction_5F_MNOP * object = (const cPtr_baseline_5F_intermediate_5F_instruction_5F_MNOP *) inObject ;
   macroValidSharedObject (object, cPtr_baseline_5F_intermediate_5F_instruction_5F_MNOP) ;
-  ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string ("MNOP ").add_operation (object->mAttribute_mOccurrenceFactor.getter_uint (SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 104)).getter_string (SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 104)), inCompiler COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 104))  COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 104)) ;
+  ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("MNOP ").add_operation (object->mAttribute_mOccurrenceFactor.getter_uint (SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 104)).getter_string (SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 104)), inCompiler COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 104)), inCompiler  COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 104)) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -403,25 +403,25 @@ static void categoryMethod_baseline_5F_intermediate_5F_incDecRegisterInCondition
                                                                                         COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition * object = (const cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition *) inObject ;
   macroValidSharedObject (object, cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition) ;
-  ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string ("JUMP ")  COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 110)) ;
+  ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("JUMP "), inCompiler  COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 110)) ;
   const enumGalgasBool test_0 = object->mAttribute_mIncrement.boolEnum () ;
   if (kBoolTrue == test_0) {
-    ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string ("INCF ")  COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 112)) ;
+    ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("INCF "), inCompiler  COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 112)) ;
   }else if (kBoolFalse == test_0) {
-    ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string ("DECF ")  COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 114)) ;
+    ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("DECF "), inCompiler  COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 114)) ;
   }
-  ioArgument_ioListFileContents.dotAssign_operation (object->mAttribute_mRegisterDescription.getter_mAssemblyString (SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 116))  COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 116)) ;
+  ioArgument_ioListFileContents.plusAssign_operation(object->mAttribute_mRegisterDescription.getter_mAssemblyString (SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 116)), inCompiler  COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 116)) ;
   const enumGalgasBool test_1 = object->mAttribute_m_5F_W_5F_isDestination.boolEnum () ;
   if (kBoolTrue == test_1) {
-    ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string (", W")  COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 118)) ;
+    ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string (", W"), inCompiler  COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 118)) ;
   }
   const enumGalgasBool test_2 = object->mAttribute_mBranchIfZero.boolEnum () ;
   if (kBoolTrue == test_2) {
-    ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string (" Z")  COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 121)) ;
+    ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string (" Z"), inCompiler  COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 121)) ;
   }else if (kBoolFalse == test_2) {
-    ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string (" NZ")  COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 123)) ;
+    ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string (" NZ"), inCompiler  COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 123)) ;
   }
-  ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string (" ").add_operation (object->mAttribute_mTargetLabel, inCompiler COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 125))  COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 125)) ;
+  ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string (" ").add_operation (object->mAttribute_mTargetLabel, inCompiler COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 125)), inCompiler  COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 125)) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -446,7 +446,7 @@ static void categoryMethod_baseline_5F_intermediate_5F_WO_5F_OPERAND_print (cons
                                                                             COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_baseline_5F_intermediate_5F_WO_5F_OPERAND * object = (const cPtr_baseline_5F_intermediate_5F_WO_5F_OPERAND *) inObject ;
   macroValidSharedObject (object, cPtr_baseline_5F_intermediate_5F_WO_5F_OPERAND) ;
-  ioArgument_ioListFileContents.dotAssign_operation (extensionGetter_mnemonic (object->mAttribute_mInstruction, inCompiler COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 131))  COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 131)) ;
+  ioArgument_ioListFileContents.plusAssign_operation(extensionGetter_mnemonic (object->mAttribute_mInstruction, inCompiler COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 131)), inCompiler  COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 131)) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -471,7 +471,7 @@ static void categoryMethod_baseline_5F_intermediate_5F_TRIS_print (const cPtr_ba
                                                                    COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_baseline_5F_intermediate_5F_TRIS * object = (const cPtr_baseline_5F_intermediate_5F_TRIS *) inObject ;
   macroValidSharedObject (object, cPtr_baseline_5F_intermediate_5F_TRIS) ;
-  ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string ("TRIS ").add_operation (object->mAttribute_mOperand.getter_string (SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 137)), inCompiler COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 137))  COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 137)) ;
+  ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("TRIS ").add_operation (object->mAttribute_mOperand.getter_string (SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 137)), inCompiler COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 137)), inCompiler  COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 137)) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -1202,7 +1202,7 @@ static void categoryMethod_baseline_5F_assembly_5F_pseudo_5F_ORG_print (const cP
                                                                         COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG * object = (const cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG *) inObject ;
   macroValidSharedObject (object, cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG) ;
-  ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string ("  ORG ").add_operation (object->mAttribute_mOrigin.getter_hexString (SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 10)), inCompiler COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 10))  COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 10)) ;
+  ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  ORG ").add_operation (object->mAttribute_mOrigin.getter_hexString (SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 10)), inCompiler COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 10)), inCompiler  COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 10)) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -1227,7 +1227,7 @@ static void categoryMethod_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_prin
                                                                                    COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE * object = (const cPtr_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE *) inObject ;
   macroValidSharedObject (object, cPtr_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE) ;
-  ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string (";  BEGIN OF ROUTINE ").add_operation (object->mAttribute_mRoutineName.getter_string (SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 16)), inCompiler COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 16))  COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 16)) ;
+  ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string (";  BEGIN OF ROUTINE ").add_operation (object->mAttribute_mRoutineName.getter_string (SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 16)), inCompiler COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 16)), inCompiler  COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 16)) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -1252,7 +1252,7 @@ static void categoryMethod_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE_print 
                                                                                  COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE * object = (const cPtr_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE *) inObject ;
   macroValidSharedObject (object, cPtr_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE) ;
-  ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string (";  END OF ROUTINE ").add_operation (object->mAttribute_mRoutineName.getter_string (SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 22)), inCompiler COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 22)).add_operation (GALGAS_string (" IN PAGE "), inCompiler COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 22)).add_operation (object->mAttribute_mPage.getter_string (SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 22)), inCompiler COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 22))  COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 22)) ;
+  ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string (";  END OF ROUTINE ").add_operation (object->mAttribute_mRoutineName.getter_string (SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 22)), inCompiler COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 22)).add_operation (GALGAS_string (" IN PAGE "), inCompiler COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 22)).add_operation (object->mAttribute_mPage.getter_string (SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 22)), inCompiler COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 22)), inCompiler  COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 22)) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -1277,7 +1277,7 @@ static void categoryMethod_baseline_5F_assembly_5F_pseudo_5F_LABEL_print (const 
                                                                           COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_baseline_5F_assembly_5F_pseudo_5F_LABEL * object = (const cPtr_baseline_5F_assembly_5F_pseudo_5F_LABEL *) inObject ;
   macroValidSharedObject (object, cPtr_baseline_5F_assembly_5F_pseudo_5F_LABEL) ;
-  ioArgument_ioListFileContents.dotAssign_operation (object->mAttribute_mLabel.mAttribute_string.add_operation (GALGAS_string (":"), inCompiler COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 28))  COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 28)) ;
+  ioArgument_ioListFileContents.plusAssign_operation(object->mAttribute_mLabel.mAttribute_string.add_operation (GALGAS_string (":"), inCompiler COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 28)), inCompiler  COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 28)) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -1302,12 +1302,12 @@ static void categoryMethod_baseline_5F_assembly_5F_instruction_5F_FD_print (cons
                                                                             COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_baseline_5F_assembly_5F_instruction_5F_FD * object = (const cPtr_baseline_5F_assembly_5F_instruction_5F_FD *) inObject ;
   macroValidSharedObject (object, cPtr_baseline_5F_assembly_5F_instruction_5F_FD) ;
-  ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string ("  ").add_operation (extensionGetter_mnemonic (object->mAttribute_mInstruction, inCompiler COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 34)), inCompiler COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 34)).add_operation (GALGAS_string (" "), inCompiler COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 34)).add_operation (object->mAttribute_mRegisterDescription.getter_mAssemblyString (SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 34)), inCompiler COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 34))  COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 34)) ;
+  ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  ").add_operation (extensionGetter_mnemonic (object->mAttribute_mInstruction, inCompiler COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 34)), inCompiler COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 34)).add_operation (GALGAS_string (" "), inCompiler COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 34)).add_operation (object->mAttribute_mRegisterDescription.getter_mAssemblyString (SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 34)), inCompiler COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 34)), inCompiler  COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 34)) ;
   const enumGalgasBool test_0 = object->mAttribute_m_5F_W_5F_isDestination.boolEnum () ;
   if (kBoolTrue == test_0) {
-    ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string (", W")  COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 36)) ;
+    ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string (", W"), inCompiler  COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 36)) ;
   }else if (kBoolFalse == test_0) {
-    ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string (", 1")  COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 38)) ;
+    ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string (", 1"), inCompiler  COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 38)) ;
   }
 }
 //---------------------------------------------------------------------------------------------------------------------*
@@ -1333,7 +1333,7 @@ static void categoryMethod_baseline_5F_assembly_5F_instruction_5F_F_print (const
                                                                            COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_baseline_5F_assembly_5F_instruction_5F_F * object = (const cPtr_baseline_5F_assembly_5F_instruction_5F_F *) inObject ;
   macroValidSharedObject (object, cPtr_baseline_5F_assembly_5F_instruction_5F_F) ;
-  ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string ("  ").add_operation (extensionGetter_mnemonic (object->mAttribute_mInstruction, inCompiler COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 45)), inCompiler COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 45)).add_operation (GALGAS_string (" "), inCompiler COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 45)).add_operation (object->mAttribute_mRegisterDescription.getter_mAssemblyString (SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 45)), inCompiler COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 45))  COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 45)) ;
+  ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  ").add_operation (extensionGetter_mnemonic (object->mAttribute_mInstruction, inCompiler COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 45)), inCompiler COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 45)).add_operation (GALGAS_string (" "), inCompiler COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 45)).add_operation (object->mAttribute_mRegisterDescription.getter_mAssemblyString (SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 45)), inCompiler COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 45)), inCompiler  COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 45)) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -1358,7 +1358,7 @@ static void categoryMethod_baseline_5F_assembly_5F_instruction_5F_FB_print (cons
                                                                             COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_baseline_5F_assembly_5F_instruction_5F_FB * object = (const cPtr_baseline_5F_assembly_5F_instruction_5F_FB *) inObject ;
   macroValidSharedObject (object, cPtr_baseline_5F_assembly_5F_instruction_5F_FB) ;
-  ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string ("  ").add_operation (extensionGetter_mnemonic (object->mAttribute_mInstruction, inCompiler COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 51)), inCompiler COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 51)).add_operation (GALGAS_string (" "), inCompiler COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 51)).add_operation (object->mAttribute_mRegisterDescription.getter_mAssemblyString (SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 51)), inCompiler COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 51)).add_operation (GALGAS_string (", "), inCompiler COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 51)).add_operation (object->mAttribute_mBitNumber.getter_string (SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 51)), inCompiler COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 51))  COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 51)) ;
+  ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  ").add_operation (extensionGetter_mnemonic (object->mAttribute_mInstruction, inCompiler COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 51)), inCompiler COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 51)).add_operation (GALGAS_string (" "), inCompiler COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 51)).add_operation (object->mAttribute_mRegisterDescription.getter_mAssemblyString (SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 51)), inCompiler COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 51)).add_operation (GALGAS_string (", "), inCompiler COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 51)).add_operation (object->mAttribute_mBitNumber.getter_string (SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 51)), inCompiler COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 51)), inCompiler  COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 51)) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -1385,11 +1385,11 @@ static void categoryMethod_baseline_5F_assembly_5F_instruction_5F_BitTestSkip_pr
   macroValidSharedObject (object, cPtr_baseline_5F_assembly_5F_instruction_5F_BitTestSkip) ;
   const enumGalgasBool test_0 = object->mAttribute_mSkipIfSet.boolEnum () ;
   if (kBoolTrue == test_0) {
-    ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string ("  BTFSS ")  COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 58)) ;
+    ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  BTFSS "), inCompiler  COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 58)) ;
   }else if (kBoolFalse == test_0) {
-    ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string ("  BTFSC ")  COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 60)) ;
+    ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  BTFSC "), inCompiler  COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 60)) ;
   }
-  ioArgument_ioListFileContents.dotAssign_operation (object->mAttribute_mRegisterDescription.getter_mAssemblyString (SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 62)).add_operation (GALGAS_string (", "), inCompiler COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 62)).add_operation (object->mAttribute_mBitNumber.getter_string (SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 62)), inCompiler COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 62))  COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 62)) ;
+  ioArgument_ioListFileContents.plusAssign_operation(object->mAttribute_mRegisterDescription.getter_mAssemblyString (SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 62)).add_operation (GALGAS_string (", "), inCompiler COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 62)).add_operation (object->mAttribute_mBitNumber.getter_string (SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 62)), inCompiler COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 62)), inCompiler  COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 62)) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -1414,7 +1414,7 @@ static void categoryMethod_baseline_5F_assembly_5F_GOTO_print (const cPtr_baseli
                                                                COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_baseline_5F_assembly_5F_GOTO * object = (const cPtr_baseline_5F_assembly_5F_GOTO *) inObject ;
   macroValidSharedObject (object, cPtr_baseline_5F_assembly_5F_GOTO) ;
-  ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string ("  GOTO ").add_operation (object->mAttribute_mTargetLabel.getter_string (SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 68)), inCompiler COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 68))  COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 68)) ;
+  ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  GOTO ").add_operation (object->mAttribute_mTargetLabel.getter_string (SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 68)), inCompiler COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 68)), inCompiler  COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 68)) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -1435,9 +1435,9 @@ C_PrologueEpilogue gMethod_baseline_5F_assembly_5F_GOTO_print (defineCategoryMet
 
 static void categoryMethod_baseline_5F_assembly_5F_SKIP_print (const cPtr_baseline_5F_assembly_5F_instruction * /* inObject */,
                                                                GALGAS_string & ioArgument_ioListFileContents,
-                                                               C_Compiler * /* inCompiler */
+                                                               C_Compiler * inCompiler
                                                                COMMA_UNUSED_LOCATION_ARGS) {
-  ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string ("  GOTO * + 2")  COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 74)) ;
+  ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  GOTO * + 2"), inCompiler  COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 74)) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -1462,7 +1462,7 @@ static void categoryMethod_baseline_5F_assembly_5F_CALL_print (const cPtr_baseli
                                                                COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_baseline_5F_assembly_5F_CALL * object = (const cPtr_baseline_5F_assembly_5F_CALL *) inObject ;
   macroValidSharedObject (object, cPtr_baseline_5F_assembly_5F_CALL) ;
-  ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string ("  CALL ").add_operation (object->mAttribute_mTargetLabel.getter_string (SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 81)), inCompiler COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 81))  COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 81)) ;
+  ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  CALL ").add_operation (object->mAttribute_mTargetLabel.getter_string (SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 81)), inCompiler COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 81)), inCompiler  COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 81)) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -1487,7 +1487,7 @@ static void categoryMethod_baseline_5F_assembly_5F_instruction_5F_literalOperati
                                                                                           COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_baseline_5F_assembly_5F_instruction_5F_literalOperation * object = (const cPtr_baseline_5F_assembly_5F_instruction_5F_literalOperation *) inObject ;
   macroValidSharedObject (object, cPtr_baseline_5F_assembly_5F_instruction_5F_literalOperation) ;
-  ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string ("  ").add_operation (extensionGetter_mnemonic (object->mAttribute_mInstruction, inCompiler COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 87)), inCompiler COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 87)).add_operation (GALGAS_string (" "), inCompiler COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 87)).add_operation (object->mAttribute_mLiteralValue.getter_hexString (SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 87)), inCompiler COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 87))  COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 87)) ;
+  ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  ").add_operation (extensionGetter_mnemonic (object->mAttribute_mInstruction, inCompiler COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 87)), inCompiler COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 87)).add_operation (GALGAS_string (" "), inCompiler COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 87)).add_operation (object->mAttribute_mLiteralValue.getter_hexString (SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 87)), inCompiler COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 87)), inCompiler  COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 87)) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -1508,22 +1508,22 @@ C_PrologueEpilogue gMethod_baseline_5F_assembly_5F_instruction_5F_literalOperati
 
 static void categoryMethod_baseline_5F_assembly_5F_incDecRegisterInCondition_print (const cPtr_baseline_5F_assembly_5F_instruction * inObject,
                                                                                     GALGAS_string & ioArgument_ioListFileContents,
-                                                                                    C_Compiler * /* inCompiler */
+                                                                                    C_Compiler * inCompiler
                                                                                     COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_baseline_5F_assembly_5F_incDecRegisterInCondition * object = (const cPtr_baseline_5F_assembly_5F_incDecRegisterInCondition *) inObject ;
   macroValidSharedObject (object, cPtr_baseline_5F_assembly_5F_incDecRegisterInCondition) ;
   const enumGalgasBool test_0 = object->mAttribute_mIncrement.boolEnum () ;
   if (kBoolTrue == test_0) {
-    ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string ("  INCFSZ ")  COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 94)) ;
+    ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  INCFSZ "), inCompiler  COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 94)) ;
   }else if (kBoolFalse == test_0) {
-    ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string ("  DECFSZ ")  COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 96)) ;
+    ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  DECFSZ "), inCompiler  COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 96)) ;
   }
-  ioArgument_ioListFileContents.dotAssign_operation (object->mAttribute_mRegisterDescription.getter_mAssemblyString (SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 98))  COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 98)) ;
+  ioArgument_ioListFileContents.plusAssign_operation(object->mAttribute_mRegisterDescription.getter_mAssemblyString (SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 98)), inCompiler  COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 98)) ;
   const enumGalgasBool test_1 = object->mAttribute_m_5F_W_5F_isDestination.boolEnum () ;
   if (kBoolTrue == test_1) {
-    ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string (", W")  COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 100)) ;
+    ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string (", W"), inCompiler  COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 100)) ;
   }else if (kBoolFalse == test_1) {
-    ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string (", 1")  COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 102)) ;
+    ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string (", 1"), inCompiler  COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 102)) ;
   }
 }
 //---------------------------------------------------------------------------------------------------------------------*
@@ -1549,7 +1549,7 @@ static void categoryMethod_baseline_5F_assembly_5F_WO_5F_OPERAND_print (const cP
                                                                         COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_baseline_5F_assembly_5F_WO_5F_OPERAND * object = (const cPtr_baseline_5F_assembly_5F_WO_5F_OPERAND *) inObject ;
   macroValidSharedObject (object, cPtr_baseline_5F_assembly_5F_WO_5F_OPERAND) ;
-  ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string ("  ").add_operation (extensionGetter_mnemonic (object->mAttribute_mInstruction, inCompiler COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 109)), inCompiler COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 109))  COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 109)) ;
+  ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  ").add_operation (extensionGetter_mnemonic (object->mAttribute_mInstruction, inCompiler COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 109)), inCompiler COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 109)), inCompiler  COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 109)) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -1574,7 +1574,7 @@ static void categoryMethod_baseline_5F_assembly_5F_TRIS_print (const cPtr_baseli
                                                                COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_baseline_5F_assembly_5F_TRIS * object = (const cPtr_baseline_5F_assembly_5F_TRIS *) inObject ;
   macroValidSharedObject (object, cPtr_baseline_5F_assembly_5F_TRIS) ;
-  ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string ("  TRIS ").add_operation (object->mAttribute_mOperand.getter_string (SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 115)), inCompiler COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 115))  COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 115)) ;
+  ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  TRIS ").add_operation (object->mAttribute_mOperand.getter_string (SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 115)), inCompiler COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 115)), inCompiler  COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 115)) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -4002,9 +4002,9 @@ C_PrologueEpilogue gGetter_midrange_5F_intermediate_5F_incDecRegisterInCondition
 
 static void categoryMethod_midrange_5F_intermediate_5F_NULL_print (const cPtr_midrange_5F_intermediate_5F_instruction * /* inObject */,
                                                                    GALGAS_string & ioArgument_ioListFileContents,
-                                                                   C_Compiler * /* inCompiler */
+                                                                   C_Compiler * inCompiler
                                                                    COMMA_UNUSED_LOCATION_ARGS) {
-  ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string ("-")  COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 11)) ;
+  ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("-"), inCompiler  COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 11)) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -4029,7 +4029,7 @@ static void categoryMethod_midrange_5F_intermediate_5F_pseudo_5F_ORG_print (cons
                                                                             COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_midrange_5F_intermediate_5F_pseudo_5F_ORG * object = (const cPtr_midrange_5F_intermediate_5F_pseudo_5F_ORG *) inObject ;
   macroValidSharedObject (object, cPtr_midrange_5F_intermediate_5F_pseudo_5F_ORG) ;
-  ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string ("ORG ").add_operation (object->mAttribute_mOrigin.getter_hexString (SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 18)), inCompiler COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 18))  COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 18)) ;
+  ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("ORG ").add_operation (object->mAttribute_mOrigin.getter_hexString (SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 18)), inCompiler COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 18)), inCompiler  COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 18)) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -4054,7 +4054,7 @@ static void categoryMethod_midrange_5F_intermediate_5F_pseudo_5F_LABEL_print (co
                                                                               COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_midrange_5F_intermediate_5F_pseudo_5F_LABEL * object = (const cPtr_midrange_5F_intermediate_5F_pseudo_5F_LABEL *) inObject ;
   macroValidSharedObject (object, cPtr_midrange_5F_intermediate_5F_pseudo_5F_LABEL) ;
-  ioArgument_ioListFileContents.dotAssign_operation (object->mAttribute_mLabel.mAttribute_string.add_operation (GALGAS_string (":"), inCompiler COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 25))  COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 25)) ;
+  ioArgument_ioListFileContents.plusAssign_operation(object->mAttribute_mLabel.mAttribute_string.add_operation (GALGAS_string (":"), inCompiler COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 25)), inCompiler  COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 25)) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -4079,10 +4079,10 @@ static void categoryMethod_midrange_5F_intermediate_5F_instruction_5F_FD_print (
                                                                                 COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_midrange_5F_intermediate_5F_instruction_5F_FD * object = (const cPtr_midrange_5F_intermediate_5F_instruction_5F_FD *) inObject ;
   macroValidSharedObject (object, cPtr_midrange_5F_intermediate_5F_instruction_5F_FD) ;
-  ioArgument_ioListFileContents.dotAssign_operation (extensionGetter_mnemonic (object->mAttribute_mInstruction_5F_FD_5F_base_5F_code, inCompiler COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 32)).add_operation (GALGAS_string (" "), inCompiler COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 32)).add_operation (object->mAttribute_mRegisterDescription.getter_mAssemblyString (SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 32)), inCompiler COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 32))  COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 32)) ;
+  ioArgument_ioListFileContents.plusAssign_operation(extensionGetter_mnemonic (object->mAttribute_mInstruction_5F_FD_5F_base_5F_code, inCompiler COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 32)).add_operation (GALGAS_string (" "), inCompiler COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 32)).add_operation (object->mAttribute_mRegisterDescription.getter_mAssemblyString (SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 32)), inCompiler COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 32)), inCompiler  COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 32)) ;
   const enumGalgasBool test_0 = object->mAttribute_m_5F_W_5F_isDestination.boolEnum () ;
   if (kBoolTrue == test_0) {
-    ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string (", W")  COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 34)) ;
+    ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string (", W"), inCompiler  COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 34)) ;
   }
 }
 //---------------------------------------------------------------------------------------------------------------------*
@@ -4108,7 +4108,7 @@ static void categoryMethod_midrange_5F_intermediate_5F_instruction_5F_F_print (c
                                                                                COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_midrange_5F_intermediate_5F_instruction_5F_F * object = (const cPtr_midrange_5F_intermediate_5F_instruction_5F_F *) inObject ;
   macroValidSharedObject (object, cPtr_midrange_5F_intermediate_5F_instruction_5F_F) ;
-  ioArgument_ioListFileContents.dotAssign_operation (extensionGetter_mnemonic (object->mAttribute_mFinstruction, inCompiler COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 42)).add_operation (GALGAS_string (" "), inCompiler COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 42)).add_operation (object->mAttribute_mRegisterDescription.getter_mAssemblyString (SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 42)), inCompiler COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 42))  COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 42)) ;
+  ioArgument_ioListFileContents.plusAssign_operation(extensionGetter_mnemonic (object->mAttribute_mFinstruction, inCompiler COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 42)).add_operation (GALGAS_string (" "), inCompiler COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 42)).add_operation (object->mAttribute_mRegisterDescription.getter_mAssemblyString (SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 42)), inCompiler COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 42)), inCompiler  COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 42)) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -4133,7 +4133,7 @@ static void categoryMethod_midrange_5F_intermediate_5F_instruction_5F_FB_print (
                                                                                 COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_midrange_5F_intermediate_5F_instruction_5F_FB * object = (const cPtr_midrange_5F_intermediate_5F_instruction_5F_FB *) inObject ;
   macroValidSharedObject (object, cPtr_midrange_5F_intermediate_5F_instruction_5F_FB) ;
-  ioArgument_ioListFileContents.dotAssign_operation (extensionGetter_mnemonic (object->mAttribute_mBitOrientedOp, inCompiler COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 49)).add_operation (GALGAS_string (" "), inCompiler COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 49)).add_operation (object->mAttribute_mRegisterDescription.getter_mAssemblyString (SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 49)), inCompiler COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 49)).add_operation (GALGAS_string (", "), inCompiler COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 49)).add_operation (object->mAttribute_mBitNumber.getter_string (SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 49)), inCompiler COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 49))  COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 49)) ;
+  ioArgument_ioListFileContents.plusAssign_operation(extensionGetter_mnemonic (object->mAttribute_mBitOrientedOp, inCompiler COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 49)).add_operation (GALGAS_string (" "), inCompiler COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 49)).add_operation (object->mAttribute_mRegisterDescription.getter_mAssemblyString (SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 49)), inCompiler COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 49)).add_operation (GALGAS_string (", "), inCompiler COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 49)).add_operation (object->mAttribute_mBitNumber.getter_string (SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 49)), inCompiler COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 49)), inCompiler  COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 49)) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -4160,11 +4160,11 @@ static void categoryMethod_midrange_5F_intermediate_5F_instruction_5F_BitTestSki
   macroValidSharedObject (object, cPtr_midrange_5F_intermediate_5F_instruction_5F_BitTestSkip) ;
   const enumGalgasBool test_0 = object->mAttribute_mSkipIfSet.boolEnum () ;
   if (kBoolTrue == test_0) {
-    ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string ("BTFSS")  COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 57)) ;
+    ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("BTFSS"), inCompiler  COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 57)) ;
   }else if (kBoolFalse == test_0) {
-    ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string ("BTFSC")  COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 59)) ;
+    ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("BTFSC"), inCompiler  COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 59)) ;
   }
-  ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string (" ").add_operation (object->mAttribute_mRegisterDescription.getter_mAssemblyString (SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 61)), inCompiler COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 61)).add_operation (GALGAS_string (", "), inCompiler COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 61)).add_operation (object->mAttribute_mBitNumber.getter_string (SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 61)), inCompiler COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 61))  COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 61)) ;
+  ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string (" ").add_operation (object->mAttribute_mRegisterDescription.getter_mAssemblyString (SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 61)), inCompiler COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 61)).add_operation (GALGAS_string (", "), inCompiler COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 61)).add_operation (object->mAttribute_mBitNumber.getter_string (SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 61)), inCompiler COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 61)), inCompiler  COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 61)) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -4189,7 +4189,7 @@ static void categoryMethod_midrange_5F_intermediate_5F_JUMP_print (const cPtr_mi
                                                                    COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_midrange_5F_intermediate_5F_JUMP * object = (const cPtr_midrange_5F_intermediate_5F_JUMP *) inObject ;
   macroValidSharedObject (object, cPtr_midrange_5F_intermediate_5F_JUMP) ;
-  ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string ("JUMP ").add_operation (object->mAttribute_mTargetLabel.getter_string (SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 68)), inCompiler COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 68))  COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 68)) ;
+  ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("JUMP ").add_operation (object->mAttribute_mTargetLabel.getter_string (SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 68)), inCompiler COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 68)), inCompiler  COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 68)) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -4214,7 +4214,7 @@ static void categoryMethod_midrange_5F_intermediate_5F_GOTO_print (const cPtr_mi
                                                                    COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_midrange_5F_intermediate_5F_GOTO * object = (const cPtr_midrange_5F_intermediate_5F_GOTO *) inObject ;
   macroValidSharedObject (object, cPtr_midrange_5F_intermediate_5F_GOTO) ;
-  ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string ("GOTO ").add_operation (object->mAttribute_mTargetLabel.getter_string (SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 75)), inCompiler COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 75))  COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 75)) ;
+  ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("GOTO ").add_operation (object->mAttribute_mTargetLabel.getter_string (SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 75)), inCompiler COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 75)), inCompiler  COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 75)) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -4239,7 +4239,7 @@ static void categoryMethod_midrange_5F_intermediate_5F_CALL_print (const cPtr_mi
                                                                    COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_midrange_5F_intermediate_5F_CALL * object = (const cPtr_midrange_5F_intermediate_5F_CALL *) inObject ;
   macroValidSharedObject (object, cPtr_midrange_5F_intermediate_5F_CALL) ;
-  ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string ("CALL ").add_operation (object->mAttribute_mTargetLabel.getter_string (SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 82)), inCompiler COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 82))  COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 82)) ;
+  ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("CALL ").add_operation (object->mAttribute_mTargetLabel.getter_string (SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 82)), inCompiler COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 82)), inCompiler  COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 82)) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -4264,7 +4264,7 @@ static void categoryMethod_midrange_5F_intermediate_5F_JSR_print (const cPtr_mid
                                                                   COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_midrange_5F_intermediate_5F_JSR * object = (const cPtr_midrange_5F_intermediate_5F_JSR *) inObject ;
   macroValidSharedObject (object, cPtr_midrange_5F_intermediate_5F_JSR) ;
-  ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string ("JSR ").add_operation (object->mAttribute_mTargetLabel.getter_string (SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 89)), inCompiler COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 89))  COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 89)) ;
+  ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("JSR ").add_operation (object->mAttribute_mTargetLabel.getter_string (SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 89)), inCompiler COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 89)), inCompiler  COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 89)) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -4285,9 +4285,9 @@ C_PrologueEpilogue gMethod_midrange_5F_intermediate_5F_JSR_print (defineCategory
 
 static void categoryMethod_midrange_5F_intermediate_5F_instruction_5F_CLRWDT_print (const cPtr_midrange_5F_intermediate_5F_instruction * /* inObject */,
                                                                                     GALGAS_string & ioArgument_ioListFileContents,
-                                                                                    C_Compiler * /* inCompiler */
+                                                                                    C_Compiler * inCompiler
                                                                                     COMMA_UNUSED_LOCATION_ARGS) {
-  ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string ("CLRWDT")  COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 96)) ;
+  ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("CLRWDT"), inCompiler  COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 96)) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -4308,9 +4308,9 @@ C_PrologueEpilogue gMethod_midrange_5F_intermediate_5F_instruction_5F_CLRWDT_pri
 
 static void categoryMethod_midrange_5F_intermediate_5F_instruction_5F_CLRW_print (const cPtr_midrange_5F_intermediate_5F_instruction * /* inObject */,
                                                                                   GALGAS_string & ioArgument_ioListFileContents,
-                                                                                  C_Compiler * /* inCompiler */
+                                                                                  C_Compiler * inCompiler
                                                                                   COMMA_UNUSED_LOCATION_ARGS) {
-  ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string ("CLRW")  COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 103)) ;
+  ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("CLRW"), inCompiler  COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 103)) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -4331,9 +4331,9 @@ C_PrologueEpilogue gMethod_midrange_5F_intermediate_5F_instruction_5F_CLRW_print
 
 static void categoryMethod_midrange_5F_intermediate_5F_instruction_5F_NOP_print (const cPtr_midrange_5F_intermediate_5F_instruction * /* inObject */,
                                                                                  GALGAS_string & ioArgument_ioListFileContents,
-                                                                                 C_Compiler * /* inCompiler */
+                                                                                 C_Compiler * inCompiler
                                                                                  COMMA_UNUSED_LOCATION_ARGS) {
-  ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string ("NOP")  COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 111)) ;
+  ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("NOP"), inCompiler  COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 111)) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -4354,9 +4354,9 @@ C_PrologueEpilogue gMethod_midrange_5F_intermediate_5F_instruction_5F_NOP_print 
 
 static void categoryMethod_midrange_5F_intermediate_5F_instruction_5F_RETURN_print (const cPtr_midrange_5F_intermediate_5F_instruction * /* inObject */,
                                                                                     GALGAS_string & ioArgument_ioListFileContents,
-                                                                                    C_Compiler * /* inCompiler */
+                                                                                    C_Compiler * inCompiler
                                                                                     COMMA_UNUSED_LOCATION_ARGS) {
-  ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string ("RETURN")  COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 118)) ;
+  ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("RETURN"), inCompiler  COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 118)) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -4377,9 +4377,9 @@ C_PrologueEpilogue gMethod_midrange_5F_intermediate_5F_instruction_5F_RETURN_pri
 
 static void categoryMethod_midrange_5F_intermediate_5F_instruction_5F_RETFIE_print (const cPtr_midrange_5F_intermediate_5F_instruction * /* inObject */,
                                                                                     GALGAS_string & ioArgument_ioListFileContents,
-                                                                                    C_Compiler * /* inCompiler */
+                                                                                    C_Compiler * inCompiler
                                                                                     COMMA_UNUSED_LOCATION_ARGS) {
-  ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string ("RETFIE")  COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 125)) ;
+  ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("RETFIE"), inCompiler  COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 125)) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -4400,9 +4400,9 @@ C_PrologueEpilogue gMethod_midrange_5F_intermediate_5F_instruction_5F_RETFIE_pri
 
 static void categoryMethod_midrange_5F_intermediate_5F_instruction_5F_SLEEP_print (const cPtr_midrange_5F_intermediate_5F_instruction * /* inObject */,
                                                                                    GALGAS_string & ioArgument_ioListFileContents,
-                                                                                   C_Compiler * /* inCompiler */
+                                                                                   C_Compiler * inCompiler
                                                                                    COMMA_UNUSED_LOCATION_ARGS) {
-  ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string ("SLEEP")  COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 132)) ;
+  ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("SLEEP"), inCompiler  COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 132)) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -4427,7 +4427,7 @@ static void categoryMethod_midrange_5F_intermediate_5F_instruction_5F_literalOpe
                                                                                               COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_midrange_5F_intermediate_5F_instruction_5F_literalOperation * object = (const cPtr_midrange_5F_intermediate_5F_instruction_5F_literalOperation *) inObject ;
   macroValidSharedObject (object, cPtr_midrange_5F_intermediate_5F_instruction_5F_literalOperation) ;
-  ioArgument_ioListFileContents.dotAssign_operation (extensionGetter_mnemonic (object->mAttribute_mLiteralInstruction, inCompiler COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 139)).add_operation (GALGAS_string (" "), inCompiler COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 139)).add_operation (object->mAttribute_mLiteralValue.getter_hexString (SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 139)), inCompiler COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 139))  COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 139)) ;
+  ioArgument_ioListFileContents.plusAssign_operation(extensionGetter_mnemonic (object->mAttribute_mLiteralInstruction, inCompiler COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 139)).add_operation (GALGAS_string (" "), inCompiler COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 139)).add_operation (object->mAttribute_mLiteralValue.getter_hexString (SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 139)), inCompiler COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 139)), inCompiler  COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 139)) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -4452,7 +4452,7 @@ static void categoryMethod_midrange_5F_intermediate_5F_instruction_5F_MNOP_print
                                                                                   COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_midrange_5F_intermediate_5F_instruction_5F_MNOP * object = (const cPtr_midrange_5F_intermediate_5F_instruction_5F_MNOP *) inObject ;
   macroValidSharedObject (object, cPtr_midrange_5F_intermediate_5F_instruction_5F_MNOP) ;
-  ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string ("MNOP ").add_operation (object->mAttribute_mOccurrenceFactor.getter_uint (SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 146)).getter_string (SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 146)), inCompiler COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 146))  COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 146)) ;
+  ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("MNOP ").add_operation (object->mAttribute_mOccurrenceFactor.getter_uint (SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 146)).getter_string (SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 146)), inCompiler COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 146)), inCompiler  COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 146)) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -4477,25 +4477,25 @@ static void categoryMethod_midrange_5F_intermediate_5F_incDecRegisterInCondition
                                                                                         COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_midrange_5F_intermediate_5F_incDecRegisterInCondition * object = (const cPtr_midrange_5F_intermediate_5F_incDecRegisterInCondition *) inObject ;
   macroValidSharedObject (object, cPtr_midrange_5F_intermediate_5F_incDecRegisterInCondition) ;
-  ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string ("JUMP ")  COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 153)) ;
+  ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("JUMP "), inCompiler  COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 153)) ;
   const enumGalgasBool test_0 = object->mAttribute_mIncrement.boolEnum () ;
   if (kBoolTrue == test_0) {
-    ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string ("INCF ")  COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 155)) ;
+    ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("INCF "), inCompiler  COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 155)) ;
   }else if (kBoolFalse == test_0) {
-    ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string ("DECF ")  COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 157)) ;
+    ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("DECF "), inCompiler  COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 157)) ;
   }
-  ioArgument_ioListFileContents.dotAssign_operation (object->mAttribute_mRegisterDescription.getter_mAssemblyString (SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 159))  COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 159)) ;
+  ioArgument_ioListFileContents.plusAssign_operation(object->mAttribute_mRegisterDescription.getter_mAssemblyString (SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 159)), inCompiler  COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 159)) ;
   const enumGalgasBool test_1 = object->mAttribute_m_5F_W_5F_isDestination.boolEnum () ;
   if (kBoolTrue == test_1) {
-    ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string (", W")  COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 161)) ;
+    ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string (", W"), inCompiler  COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 161)) ;
   }
   const enumGalgasBool test_2 = object->mAttribute_mBranchIfZero.boolEnum () ;
   if (kBoolTrue == test_2) {
-    ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string (" Z")  COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 164)) ;
+    ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string (" Z"), inCompiler  COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 164)) ;
   }else if (kBoolFalse == test_2) {
-    ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string (" NZ")  COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 166)) ;
+    ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string (" NZ"), inCompiler  COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 166)) ;
   }
-  ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string (" ").add_operation (object->mAttribute_mTargetLabel, inCompiler COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 168))  COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 168)) ;
+  ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string (" ").add_operation (object->mAttribute_mTargetLabel, inCompiler COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 168)), inCompiler  COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 168)) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -4880,9 +4880,9 @@ static void categoryMethod_midrange_5F_instruction_5F_banksel_build_5F_midrange_
               if (kBoolTrue == test_10) {
                 ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_midrange_5F_intermediate_5F_instruction_5F_FB::constructor_new (object->mAttribute_mInstructionLocation, var_op, var_STATUS_5F_IPICregisterDescription, var_rpIndex.add_operation (var_idx, inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 302))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 298))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 298)) ;
               }else if (kBoolFalse == test_10) {
-                ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string ("  line ").add_operation (ioArgument_ioGeneratedInstructionList.getter_length (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 304)).getter_string (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 304)), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 304))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 304)) ;
-                ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string (": useless '").add_operation (extensionGetter_mnemonic (var_op, inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 305)), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 305)).add_operation (GALGAS_string (" STATUS, "), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 305))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 305)) ;
-                ioArgument_ioListFileContents.dotAssign_operation (var_rpIndex.add_operation (var_idx, inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 306)).getter_string (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 306)).add_operation (GALGAS_string ("' not generated\n"), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 306))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 306)) ;
+                ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  line ").add_operation (ioArgument_ioGeneratedInstructionList.getter_length (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 304)).getter_string (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 304)), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 304)), inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 304)) ;
+                ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string (": useless '").add_operation (extensionGetter_mnemonic (var_op, inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 305)), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 305)).add_operation (GALGAS_string (" STATUS, "), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 305)), inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 305)) ;
+                ioArgument_ioListFileContents.plusAssign_operation(var_rpIndex.add_operation (var_idx, inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 306)).getter_string (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 306)).add_operation (GALGAS_string ("' not generated\n"), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 306)), inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 306)) ;
               }
               var_idx.increment_operation (inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 308)) ;
               var_shiftedBank = var_shiftedBank.right_shift_operation (GALGAS_uint ((uint32_t) 1U) COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 309)) ;
@@ -5040,9 +5040,9 @@ static void categoryMethod_midrange_5F_instruction_5F_banksel_5F_register_build_
               if (kBoolTrue == test_12) {
                 ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_midrange_5F_intermediate_5F_instruction_5F_FB::constructor_new (object->mAttribute_mInstructionLocation, var_op, var_STATUS_5F_IPICregisterDescription, var_rpIndex.add_operation (var_idx, inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 415))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 411))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 411)) ;
               }else if (kBoolFalse == test_12) {
-                ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string ("  line ").add_operation (ioArgument_ioGeneratedInstructionList.getter_length (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 417)).getter_string (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 417)), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 417))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 417)) ;
-                ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string (": useless '").add_operation (extensionGetter_mnemonic (var_op, inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 418)), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 418)).add_operation (GALGAS_string (" STATUS, "), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 418))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 418)) ;
-                ioArgument_ioListFileContents.dotAssign_operation (var_rpIndex.add_operation (var_idx, inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 419)).getter_string (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 419)).add_operation (GALGAS_string ("' not generated\n"), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 419))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 419)) ;
+                ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  line ").add_operation (ioArgument_ioGeneratedInstructionList.getter_length (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 417)).getter_string (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 417)), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 417)), inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 417)) ;
+                ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string (": useless '").add_operation (extensionGetter_mnemonic (var_op, inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 418)), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 418)).add_operation (GALGAS_string (" STATUS, "), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 418)), inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 418)) ;
+                ioArgument_ioListFileContents.plusAssign_operation(var_rpIndex.add_operation (var_idx, inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 419)).getter_string (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 419)).add_operation (GALGAS_string ("' not generated\n"), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 419)), inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 419)) ;
               }
               var_idx.increment_operation (inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 421)) ;
               var_shiftedBank = var_shiftedBank.right_shift_operation (GALGAS_uint ((uint32_t) 1U) COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 422)) ;
@@ -5216,12 +5216,12 @@ static void categoryMethod_midrange_5F_instruction_5F_JSR_build_5F_midrange_5F_i
   const enumGalgasBool test_0 = GALGAS_bool (kIsNotEqual, var_requiredBank.objectCompare (GALGAS_uint::constructor_max (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 557)))).operator_and (GALGAS_bool (kIsNotEqual, var_requiredBank.objectCompare (ioArgument_ioCurrentBank)) COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 557)).boolEnum () ;
   if (kBoolTrue == test_0) {
     GALGAS_string var_errorMessage = GALGAS_string ("the routine '").add_operation (object->mAttribute_mTargetLabel.getter_string (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 558)), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 558)).add_operation (GALGAS_string ("' requires bank selection to be set to "), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 558)).add_operation (var_requiredBank.getter_string (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 558)), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 558)) ;
-    var_errorMessage.dotAssign_operation (GALGAS_string (", but bank selection ")  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 559)) ;
+    var_errorMessage.plusAssign_operation(GALGAS_string (", but bank selection "), inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 559)) ;
     const enumGalgasBool test_1 = GALGAS_bool (kIsEqual, ioArgument_ioCurrentBank.objectCompare (GALGAS_uint::constructor_max (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 560)))).boolEnum () ;
     if (kBoolTrue == test_1) {
-      var_errorMessage.dotAssign_operation (GALGAS_string ("does contain any reliable value")  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 561)) ;
+      var_errorMessage.plusAssign_operation(GALGAS_string ("does contain any reliable value"), inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 561)) ;
     }else if (kBoolFalse == test_1) {
-      var_errorMessage.dotAssign_operation (GALGAS_string ("is set to ").add_operation (ioArgument_ioCurrentBank.getter_string (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 563)), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 563))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 563)) ;
+      var_errorMessage.plusAssign_operation(GALGAS_string ("is set to ").add_operation (ioArgument_ioCurrentBank.getter_string (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 563)), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 563)), inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 563)) ;
     }
     GALGAS_location location_2 (object->mAttribute_mTargetLabel.getter_location (HERE)) ; // Implicit use of 'location' getter
     inCompiler->emitSemanticError (location_2, var_errorMessage  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 565)) ;
@@ -5369,12 +5369,12 @@ static void categoryMethod_midrange_5F_instruction_5F_CALL_build_5F_midrange_5F_
   const enumGalgasBool test_0 = GALGAS_bool (kIsNotEqual, var_requiredBank.objectCompare (GALGAS_uint::constructor_max (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 650)))).operator_and (GALGAS_bool (kIsNotEqual, var_requiredBank.objectCompare (ioArgument_ioCurrentBank)) COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 650)).boolEnum () ;
   if (kBoolTrue == test_0) {
     GALGAS_string var_errorMessage = GALGAS_string ("the routine '").add_operation (object->mAttribute_mTargetLabel.getter_string (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 651)), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 651)).add_operation (GALGAS_string ("' requires bank selection to be set to "), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 651)).add_operation (var_requiredBank.getter_string (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 651)), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 651)) ;
-    var_errorMessage.dotAssign_operation (GALGAS_string (", but bank selection ")  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 652)) ;
+    var_errorMessage.plusAssign_operation(GALGAS_string (", but bank selection "), inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 652)) ;
     const enumGalgasBool test_1 = GALGAS_bool (kIsEqual, ioArgument_ioCurrentBank.objectCompare (GALGAS_uint::constructor_max (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 653)))).boolEnum () ;
     if (kBoolTrue == test_1) {
-      var_errorMessage.dotAssign_operation (GALGAS_string ("does contain any reliable value")  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 654)) ;
+      var_errorMessage.plusAssign_operation(GALGAS_string ("does contain any reliable value"), inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 654)) ;
     }else if (kBoolFalse == test_1) {
-      var_errorMessage.dotAssign_operation (GALGAS_string ("is set to ").add_operation (ioArgument_ioCurrentBank.getter_string (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 656)), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 656))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 656)) ;
+      var_errorMessage.plusAssign_operation(GALGAS_string ("is set to ").add_operation (ioArgument_ioCurrentBank.getter_string (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 656)), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 656)), inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 656)) ;
     }
     GALGAS_location location_2 (object->mAttribute_mTargetLabel.getter_location (HERE)) ; // Implicit use of 'location' getter
     inCompiler->emitSemanticError (location_2, var_errorMessage  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 658)) ;
@@ -5432,12 +5432,12 @@ static void categoryMethod_midrange_5F_instruction_5F_JUMP_build_5F_midrange_5F_
   const enumGalgasBool test_0 = GALGAS_bool (kIsNotEqual, var_requiredBank.objectCompare (GALGAS_uint::constructor_max (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 691)))).operator_and (GALGAS_bool (kIsNotEqual, var_requiredBank.objectCompare (ioArgument_ioCurrentBank)) COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 691)).boolEnum () ;
   if (kBoolTrue == test_0) {
     GALGAS_string var_errorMessage = GALGAS_string ("the routine '").add_operation (object->mAttribute_mTargetLabel.getter_string (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 692)), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 692)).add_operation (GALGAS_string ("' requires bank selection to be set to "), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 692)).add_operation (var_requiredBank.getter_string (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 692)), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 692)) ;
-    var_errorMessage.dotAssign_operation (GALGAS_string (", but bank selection ")  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 693)) ;
+    var_errorMessage.plusAssign_operation(GALGAS_string (", but bank selection "), inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 693)) ;
     const enumGalgasBool test_1 = GALGAS_bool (kIsEqual, ioArgument_ioCurrentBank.objectCompare (GALGAS_uint::constructor_max (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 694)))).boolEnum () ;
     if (kBoolTrue == test_1) {
-      var_errorMessage.dotAssign_operation (GALGAS_string ("does contain any reliable value")  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 695)) ;
+      var_errorMessage.plusAssign_operation(GALGAS_string ("does contain any reliable value"), inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 695)) ;
     }else if (kBoolFalse == test_1) {
-      var_errorMessage.dotAssign_operation (GALGAS_string ("is set to ").add_operation (ioArgument_ioCurrentBank.getter_string (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 697)), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 697))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 697)) ;
+      var_errorMessage.plusAssign_operation(GALGAS_string ("is set to ").add_operation (ioArgument_ioCurrentBank.getter_string (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 697)), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 697)), inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 697)) ;
     }
     GALGAS_location location_2 (object->mAttribute_mTargetLabel.getter_location (HERE)) ; // Implicit use of 'location' getter
     inCompiler->emitSemanticError (location_2, var_errorMessage  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 699)) ;
@@ -5492,12 +5492,12 @@ static void categoryMethod_midrange_5F_instruction_5F_GOTO_build_5F_midrange_5F_
   const enumGalgasBool test_0 = GALGAS_bool (kIsNotEqual, var_requiredBank.objectCompare (GALGAS_uint::constructor_max (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 732)))).operator_and (GALGAS_bool (kIsNotEqual, var_requiredBank.objectCompare (ioArgument_ioCurrentBank)) COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 732)).boolEnum () ;
   if (kBoolTrue == test_0) {
     GALGAS_string var_errorMessage = GALGAS_string ("the routine '").add_operation (object->mAttribute_mTargetLabel.getter_string (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 733)), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 733)).add_operation (GALGAS_string ("' requires bank selection to be set to "), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 733)).add_operation (var_requiredBank.getter_string (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 733)), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 733)) ;
-    var_errorMessage.dotAssign_operation (GALGAS_string (", but bank selection ")  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 734)) ;
+    var_errorMessage.plusAssign_operation(GALGAS_string (", but bank selection "), inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 734)) ;
     const enumGalgasBool test_1 = GALGAS_bool (kIsEqual, ioArgument_ioCurrentBank.objectCompare (GALGAS_uint::constructor_max (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 735)))).boolEnum () ;
     if (kBoolTrue == test_1) {
-      var_errorMessage.dotAssign_operation (GALGAS_string ("does contain any reliable value")  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 736)) ;
+      var_errorMessage.plusAssign_operation(GALGAS_string ("does contain any reliable value"), inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 736)) ;
     }else if (kBoolFalse == test_1) {
-      var_errorMessage.dotAssign_operation (GALGAS_string ("is set to ").add_operation (ioArgument_ioCurrentBank.getter_string (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 738)), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 738))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 738)) ;
+      var_errorMessage.plusAssign_operation(GALGAS_string ("is set to ").add_operation (ioArgument_ioCurrentBank.getter_string (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 738)), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 738)), inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 738)) ;
     }
     GALGAS_location location_2 (object->mAttribute_mTargetLabel.getter_location (HERE)) ; // Implicit use of 'location' getter
     inCompiler->emitSemanticError (location_2, var_errorMessage  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 740)) ;
@@ -6262,12 +6262,12 @@ static void categoryMethod_midrange_5F_instruction_5F_structured_5F_if_build_5F_
     const enumGalgasBool test_3 = GALGAS_bool (kIsStrictInf, var_complementaryCount.objectCompare (var_directCount)).boolEnum () ;
     if (kBoolTrue == test_3) {
       var_generateComplementaryCondition = GALGAS_bool (true) ;
-      ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string ("  line ").add_operation (ioArgument_ioGeneratedInstructionList.getter_length (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1346)).getter_string (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1346)), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1346)).add_operation (GALGAS_string (": generates complementary test (saves "), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1346)).add_operation (var_directCount.substract_operation (var_complementaryCount, inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1347)).getter_string (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1347)), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1346)).add_operation (GALGAS_string (" instruction"), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1347))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1346)) ;
+      ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  line ").add_operation (ioArgument_ioGeneratedInstructionList.getter_length (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1346)).getter_string (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1346)), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1346)).add_operation (GALGAS_string (": generates complementary test (saves "), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1346)).add_operation (var_directCount.substract_operation (var_complementaryCount, inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1347)).getter_string (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1347)), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1346)).add_operation (GALGAS_string (" instruction"), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1347)), inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1346)) ;
       const enumGalgasBool test_4 = GALGAS_bool (kIsStrictSup, var_directCount.substract_operation (var_complementaryCount, inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1348)).objectCompare (GALGAS_uint ((uint32_t) 1U))).boolEnum () ;
       if (kBoolTrue == test_4) {
-        ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string ("s")  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1349)) ;
+        ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("s"), inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1349)) ;
       }
-      ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string (")\n")  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1351)) ;
+      ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string (")\n"), inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1351)) ;
     }
   }
   GALGAS_uint var_elseBranchFinalBank = ioArgument_ioCurrentBank ;
@@ -7077,7 +7077,7 @@ static void categoryMethod_midrange_5F_intermediate_5F_JUMP_compute (const cPtr_
     ioArgument_ioGeneratedInstructionList.modifier_setMInstructionAtIndex (var_instruction, constinArgument_inIndex, inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 144)) ;
     }
     ioArgument_ioJUMP_5F_or_5F_JSR_5F_fixed = GALGAS_bool (true) ;
-    ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string ("  line ").add_operation (constinArgument_inIndex.getter_string (SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 146)), inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 146)).add_operation (GALGAS_string (":  JUMP to other page fixed\n"), inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 146))  COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 146)) ;
+    ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  line ").add_operation (constinArgument_inIndex.getter_string (SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 146)), inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 146)).add_operation (GALGAS_string (":  JUMP to other page fixed\n"), inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 146)), inCompiler  COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 146)) ;
   }
 }
 //---------------------------------------------------------------------------------------------------------------------*
@@ -7142,7 +7142,7 @@ static void categoryMethod_midrange_5F_intermediate_5F_JSR_compute (const cPtr_m
     ioArgument_ioGeneratedInstructionList.modifier_setMInstructionAtIndex (var_instruction, constinArgument_inIndex, inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 188)) ;
     }
     ioArgument_ioJUMP_5F_or_5F_JSR_5F_fixed = GALGAS_bool (true) ;
-    ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string ("  line ").add_operation (constinArgument_inIndex.getter_string (SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 190)), inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 190)).add_operation (GALGAS_string (":  JSR to other page fixed\n"), inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 190))  COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 190)) ;
+    ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  line ").add_operation (constinArgument_inIndex.getter_string (SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 190)), inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 190)).add_operation (GALGAS_string (":  JSR to other page fixed\n"), inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 190)), inCompiler  COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 190)) ;
   }
 }
 //---------------------------------------------------------------------------------------------------------------------*
@@ -7228,7 +7228,7 @@ static void categoryMethod_midrange_5F_intermediate_5F_pseudo_5F_ORG_buildAssemb
                                                                                         COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_midrange_5F_intermediate_5F_pseudo_5F_ORG * object = (const cPtr_midrange_5F_intermediate_5F_pseudo_5F_ORG *) inObject ;
   macroValidSharedObject (object, cPtr_midrange_5F_intermediate_5F_pseudo_5F_ORG) ;
-  ioArgument_ioString.dotAssign_operation (GALGAS_string ("  ORG ").add_operation (object->mAttribute_mOrigin.getter_hexString (SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 23)), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 23)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 23))  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 23)) ;
+  ioArgument_ioString.plusAssign_operation(GALGAS_string ("  ORG ").add_operation (object->mAttribute_mOrigin.getter_hexString (SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 23)), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 23)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 23)), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 23)) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -7254,7 +7254,7 @@ static void categoryMethod_midrange_5F_intermediate_5F_pseudo_5F_LABEL_buildAsse
                                                                                           COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_midrange_5F_intermediate_5F_pseudo_5F_LABEL * object = (const cPtr_midrange_5F_intermediate_5F_pseudo_5F_LABEL *) inObject ;
   macroValidSharedObject (object, cPtr_midrange_5F_intermediate_5F_pseudo_5F_LABEL) ;
-  ioArgument_ioString.dotAssign_operation (object->mAttribute_mLabel.getter_string (SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 31)).add_operation (GALGAS_string (":\n"), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 31))  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 31)) ;
+  ioArgument_ioString.plusAssign_operation(object->mAttribute_mLabel.getter_string (SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 31)).add_operation (GALGAS_string (":\n"), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 31)), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 31)) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -7280,14 +7280,14 @@ static void categoryMethod_midrange_5F_intermediate_5F_instruction_5F_FD_buildAs
                                                                                             COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_midrange_5F_intermediate_5F_instruction_5F_FD * object = (const cPtr_midrange_5F_intermediate_5F_instruction_5F_FD *) inObject ;
   macroValidSharedObject (object, cPtr_midrange_5F_intermediate_5F_instruction_5F_FD) ;
-  ioArgument_ioString.dotAssign_operation (GALGAS_string ("  ").add_operation (extensionGetter_mnemonic (object->mAttribute_mInstruction_5F_FD_5F_base_5F_code, inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 39)), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 39)).add_operation (GALGAS_string (" "), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 39)).add_operation (object->mAttribute_mRegisterDescription.getter_mAssemblyString (SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 39)), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 39))  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 39)) ;
+  ioArgument_ioString.plusAssign_operation(GALGAS_string ("  ").add_operation (extensionGetter_mnemonic (object->mAttribute_mInstruction_5F_FD_5F_base_5F_code, inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 39)), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 39)).add_operation (GALGAS_string (" "), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 39)).add_operation (object->mAttribute_mRegisterDescription.getter_mAssemblyString (SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 39)), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 39)), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 39)) ;
   const enumGalgasBool test_0 = object->mAttribute_m_5F_W_5F_isDestination.boolEnum () ;
   if (kBoolTrue == test_0) {
-    ioArgument_ioString.dotAssign_operation (GALGAS_string (", W")  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 41)) ;
+    ioArgument_ioString.plusAssign_operation(GALGAS_string (", W"), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 41)) ;
   }else if (kBoolFalse == test_0) {
-    ioArgument_ioString.dotAssign_operation (GALGAS_string (", F")  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 43)) ;
+    ioArgument_ioString.plusAssign_operation(GALGAS_string (", F"), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 43)) ;
   }
-  ioArgument_ioString.dotAssign_operation (GALGAS_string ("\n")  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 45)) ;
+  ioArgument_ioString.plusAssign_operation(GALGAS_string ("\n"), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 45)) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -7313,10 +7313,10 @@ static void categoryMethod_midrange_5F_intermediate_5F_instruction_5F_FB_buildAs
                                                                                             COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_midrange_5F_intermediate_5F_instruction_5F_FB * object = (const cPtr_midrange_5F_intermediate_5F_instruction_5F_FB *) inObject ;
   macroValidSharedObject (object, cPtr_midrange_5F_intermediate_5F_instruction_5F_FB) ;
-  ioArgument_ioString.dotAssign_operation (GALGAS_string ("  ").add_operation (extensionGetter_mnemonic (object->mAttribute_mBitOrientedOp, inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 53)), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 53))  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 53)) ;
-  ioArgument_ioString.dotAssign_operation (GALGAS_string ("  ").add_operation (object->mAttribute_mRegisterDescription.getter_mAssemblyString (SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 54)), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 54))  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 54)) ;
-  ioArgument_ioString.dotAssign_operation (GALGAS_string (", ").add_operation (object->mAttribute_mBitNumber.getter_string (SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 55)), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 55))  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 55)) ;
-  ioArgument_ioString.dotAssign_operation (GALGAS_string ("\n")  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 56)) ;
+  ioArgument_ioString.plusAssign_operation(GALGAS_string ("  ").add_operation (extensionGetter_mnemonic (object->mAttribute_mBitOrientedOp, inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 53)), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 53)), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 53)) ;
+  ioArgument_ioString.plusAssign_operation(GALGAS_string ("  ").add_operation (object->mAttribute_mRegisterDescription.getter_mAssemblyString (SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 54)), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 54)), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 54)) ;
+  ioArgument_ioString.plusAssign_operation(GALGAS_string (", ").add_operation (object->mAttribute_mBitNumber.getter_string (SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 55)), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 55)), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 55)) ;
+  ioArgument_ioString.plusAssign_operation(GALGAS_string ("\n"), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 56)) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -7342,16 +7342,16 @@ static void categoryMethod_midrange_5F_intermediate_5F_instruction_5F_BitTestSki
                                                                                                      COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_midrange_5F_intermediate_5F_instruction_5F_BitTestSkip * object = (const cPtr_midrange_5F_intermediate_5F_instruction_5F_BitTestSkip *) inObject ;
   macroValidSharedObject (object, cPtr_midrange_5F_intermediate_5F_instruction_5F_BitTestSkip) ;
-  ioArgument_ioString.dotAssign_operation (GALGAS_string ("  ")  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 64)) ;
+  ioArgument_ioString.plusAssign_operation(GALGAS_string ("  "), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 64)) ;
   const enumGalgasBool test_0 = object->mAttribute_mSkipIfSet.boolEnum () ;
   if (kBoolTrue == test_0) {
-    ioArgument_ioString.dotAssign_operation (GALGAS_string ("BTFSS")  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 66)) ;
+    ioArgument_ioString.plusAssign_operation(GALGAS_string ("BTFSS"), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 66)) ;
   }else if (kBoolFalse == test_0) {
-    ioArgument_ioString.dotAssign_operation (GALGAS_string ("BTFSC")  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 68)) ;
+    ioArgument_ioString.plusAssign_operation(GALGAS_string ("BTFSC"), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 68)) ;
   }
-  ioArgument_ioString.dotAssign_operation (GALGAS_string ("  ").add_operation (object->mAttribute_mRegisterDescription.getter_mAssemblyString (SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 70)), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 70))  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 70)) ;
-  ioArgument_ioString.dotAssign_operation (GALGAS_string (", ").add_operation (object->mAttribute_mBitNumber.getter_string (SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 71)), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 71))  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 71)) ;
-  ioArgument_ioString.dotAssign_operation (GALGAS_string ("\n")  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 72)) ;
+  ioArgument_ioString.plusAssign_operation(GALGAS_string ("  ").add_operation (object->mAttribute_mRegisterDescription.getter_mAssemblyString (SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 70)), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 70)), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 70)) ;
+  ioArgument_ioString.plusAssign_operation(GALGAS_string (", ").add_operation (object->mAttribute_mBitNumber.getter_string (SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 71)), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 71)), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 71)) ;
+  ioArgument_ioString.plusAssign_operation(GALGAS_string ("\n"), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 72)) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -7377,8 +7377,8 @@ static void categoryMethod_midrange_5F_intermediate_5F_instruction_5F_F_buildAss
                                                                                            COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_midrange_5F_intermediate_5F_instruction_5F_F * object = (const cPtr_midrange_5F_intermediate_5F_instruction_5F_F *) inObject ;
   macroValidSharedObject (object, cPtr_midrange_5F_intermediate_5F_instruction_5F_F) ;
-  ioArgument_ioString.dotAssign_operation (GALGAS_string ("  ").add_operation (extensionGetter_mnemonic (object->mAttribute_mFinstruction, inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 80)), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 80)).add_operation (GALGAS_string (" "), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 80)).add_operation (object->mAttribute_mRegisterDescription.getter_mAssemblyString (SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 80)), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 80))  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 80)) ;
-  ioArgument_ioString.dotAssign_operation (GALGAS_string ("\n")  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 81)) ;
+  ioArgument_ioString.plusAssign_operation(GALGAS_string ("  ").add_operation (extensionGetter_mnemonic (object->mAttribute_mFinstruction, inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 80)), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 80)).add_operation (GALGAS_string (" "), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 80)).add_operation (object->mAttribute_mRegisterDescription.getter_mAssemblyString (SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 80)), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 80)), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 80)) ;
+  ioArgument_ioString.plusAssign_operation(GALGAS_string ("\n"), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 81)) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -7406,27 +7406,27 @@ static void categoryMethod_midrange_5F_intermediate_5F_incDecRegisterInCondition
   macroValidSharedObject (object, cPtr_midrange_5F_intermediate_5F_incDecRegisterInCondition) ;
   const enumGalgasBool test_0 = object->mAttribute_mIncrement.boolEnum () ;
   if (kBoolTrue == test_0) {
-    ioArgument_ioString.dotAssign_operation (GALGAS_string ("  ").add_operation (GALGAS_string ("INCFSZ "), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 90))  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 90)) ;
+    ioArgument_ioString.plusAssign_operation(GALGAS_string ("  ").add_operation (GALGAS_string ("INCFSZ "), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 90)), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 90)) ;
   }else if (kBoolFalse == test_0) {
-    ioArgument_ioString.dotAssign_operation (GALGAS_string ("  ").add_operation (GALGAS_string ("DECFSZ "), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 92))  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 92)) ;
+    ioArgument_ioString.plusAssign_operation(GALGAS_string ("  ").add_operation (GALGAS_string ("DECFSZ "), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 92)), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 92)) ;
   }
-  ioArgument_ioString.dotAssign_operation (object->mAttribute_mRegisterDescription.getter_mAssemblyString (SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 94))  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 94)) ;
+  ioArgument_ioString.plusAssign_operation(object->mAttribute_mRegisterDescription.getter_mAssemblyString (SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 94)), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 94)) ;
   const enumGalgasBool test_1 = object->mAttribute_m_5F_W_5F_isDestination.boolEnum () ;
   if (kBoolTrue == test_1) {
-    ioArgument_ioString.dotAssign_operation (GALGAS_string (", W")  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 96)) ;
+    ioArgument_ioString.plusAssign_operation(GALGAS_string (", W"), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 96)) ;
   }else if (kBoolFalse == test_1) {
-    ioArgument_ioString.dotAssign_operation (GALGAS_string (", F")  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 98)) ;
+    ioArgument_ioString.plusAssign_operation(GALGAS_string (", F"), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 98)) ;
   }
-  ioArgument_ioString.dotAssign_operation (GALGAS_string ("\n")  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 100)) ;
+  ioArgument_ioString.plusAssign_operation(GALGAS_string ("\n"), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 100)) ;
   const enumGalgasBool test_2 = object->mAttribute_mBranchIfZero.boolEnum () ;
   if (kBoolTrue == test_2) {
     GALGAS_string var_localLabel = GALGAS_string (".LL").add_operation (ioArgument_ioLocalLabelIndex.getter_string (SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 102)), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 102)) ;
     ioArgument_ioLocalLabelIndex.increment_operation (inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 102)) ;
-    ioArgument_ioString.dotAssign_operation (GALGAS_string ("  GOTO ").add_operation (var_localLabel, inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 103)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 103))  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 103)) ;
-    ioArgument_ioString.dotAssign_operation (GALGAS_string ("  GOTO ").add_operation (object->mAttribute_mTargetLabel, inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 104)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 104))  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 104)) ;
-    ioArgument_ioString.dotAssign_operation (var_localLabel.add_operation (GALGAS_string (":\n"), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 105))  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 105)) ;
+    ioArgument_ioString.plusAssign_operation(GALGAS_string ("  GOTO ").add_operation (var_localLabel, inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 103)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 103)), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 103)) ;
+    ioArgument_ioString.plusAssign_operation(GALGAS_string ("  GOTO ").add_operation (object->mAttribute_mTargetLabel, inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 104)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 104)), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 104)) ;
+    ioArgument_ioString.plusAssign_operation(var_localLabel.add_operation (GALGAS_string (":\n"), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 105)), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 105)) ;
   }else if (kBoolFalse == test_2) {
-    ioArgument_ioString.dotAssign_operation (GALGAS_string ("  GOTO ").add_operation (object->mAttribute_mTargetLabel, inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 107)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 107))  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 107)) ;
+    ioArgument_ioString.plusAssign_operation(GALGAS_string ("  GOTO ").add_operation (object->mAttribute_mTargetLabel, inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 107)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 107)), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 107)) ;
   }
 }
 //---------------------------------------------------------------------------------------------------------------------*
@@ -7458,12 +7458,12 @@ static void categoryMethod_midrange_5F_intermediate_5F_JUMP_buildAssemblyCode (c
     break ;
   case GALGAS_midrange_5F_call_5F_goto_5F_bit::kEnum_set:
     {
-      ioArgument_ioString.dotAssign_operation (GALGAS_string ("  BSF PCLATH, 3\n")  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 117)) ;
+      ioArgument_ioString.plusAssign_operation(GALGAS_string ("  BSF PCLATH, 3\n"), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 117)) ;
     }
     break ;
   case GALGAS_midrange_5F_call_5F_goto_5F_bit::kEnum_clear:
     {
-      ioArgument_ioString.dotAssign_operation (GALGAS_string ("  BCF PCLATH, 3\n")  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 118)) ;
+      ioArgument_ioString.plusAssign_operation(GALGAS_string ("  BCF PCLATH, 3\n"), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 118)) ;
     }
     break ;
   case GALGAS_midrange_5F_call_5F_goto_5F_bit::kEnum_noChange:
@@ -7476,12 +7476,12 @@ static void categoryMethod_midrange_5F_intermediate_5F_JUMP_buildAssemblyCode (c
     break ;
   case GALGAS_midrange_5F_call_5F_goto_5F_bit::kEnum_set:
     {
-      ioArgument_ioString.dotAssign_operation (GALGAS_string ("  BSF PCLATH, 4\n")  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 122)) ;
+      ioArgument_ioString.plusAssign_operation(GALGAS_string ("  BSF PCLATH, 4\n"), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 122)) ;
     }
     break ;
   case GALGAS_midrange_5F_call_5F_goto_5F_bit::kEnum_clear:
     {
-      ioArgument_ioString.dotAssign_operation (GALGAS_string ("  BCF PCLATH, 4\n")  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 123)) ;
+      ioArgument_ioString.plusAssign_operation(GALGAS_string ("  BCF PCLATH, 4\n"), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 123)) ;
     }
     break ;
   case GALGAS_midrange_5F_call_5F_goto_5F_bit::kEnum_noChange:
@@ -7489,7 +7489,7 @@ static void categoryMethod_midrange_5F_intermediate_5F_JUMP_buildAssemblyCode (c
     }
     break ;
   }
-  ioArgument_ioString.dotAssign_operation (GALGAS_string ("  GOTO   ").add_operation (object->mAttribute_mTargetLabel.getter_string (SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 126)), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 126)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 126))  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 126)) ;
+  ioArgument_ioString.plusAssign_operation(GALGAS_string ("  GOTO   ").add_operation (object->mAttribute_mTargetLabel.getter_string (SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 126)), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 126)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 126)), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 126)) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -7515,7 +7515,7 @@ static void categoryMethod_midrange_5F_intermediate_5F_GOTO_buildAssemblyCode (c
                                                                                COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_midrange_5F_intermediate_5F_GOTO * object = (const cPtr_midrange_5F_intermediate_5F_GOTO *) inObject ;
   macroValidSharedObject (object, cPtr_midrange_5F_intermediate_5F_GOTO) ;
-  ioArgument_ioString.dotAssign_operation (GALGAS_string ("  GOTO   ").add_operation (object->mAttribute_mTargetLabel.getter_string (SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 134)), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 134)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 134))  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 134)) ;
+  ioArgument_ioString.plusAssign_operation(GALGAS_string ("  GOTO   ").add_operation (object->mAttribute_mTargetLabel.getter_string (SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 134)), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 134)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 134)), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 134)) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -7546,12 +7546,12 @@ static void categoryMethod_midrange_5F_intermediate_5F_JSR_buildAssemblyCode (co
     break ;
   case GALGAS_midrange_5F_call_5F_goto_5F_bit::kEnum_set:
     {
-      ioArgument_ioString.dotAssign_operation (GALGAS_string ("  BSF PCLATH, 3\n")  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 143)) ;
+      ioArgument_ioString.plusAssign_operation(GALGAS_string ("  BSF PCLATH, 3\n"), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 143)) ;
     }
     break ;
   case GALGAS_midrange_5F_call_5F_goto_5F_bit::kEnum_clear:
     {
-      ioArgument_ioString.dotAssign_operation (GALGAS_string ("  BCF PCLATH, 3\n")  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 144)) ;
+      ioArgument_ioString.plusAssign_operation(GALGAS_string ("  BCF PCLATH, 3\n"), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 144)) ;
     }
     break ;
   case GALGAS_midrange_5F_call_5F_goto_5F_bit::kEnum_noChange:
@@ -7564,12 +7564,12 @@ static void categoryMethod_midrange_5F_intermediate_5F_JSR_buildAssemblyCode (co
     break ;
   case GALGAS_midrange_5F_call_5F_goto_5F_bit::kEnum_set:
     {
-      ioArgument_ioString.dotAssign_operation (GALGAS_string ("  BSF PCLATH, 4\n")  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 148)) ;
+      ioArgument_ioString.plusAssign_operation(GALGAS_string ("  BSF PCLATH, 4\n"), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 148)) ;
     }
     break ;
   case GALGAS_midrange_5F_call_5F_goto_5F_bit::kEnum_clear:
     {
-      ioArgument_ioString.dotAssign_operation (GALGAS_string ("  BCF PCLATH, 4\n")  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 149)) ;
+      ioArgument_ioString.plusAssign_operation(GALGAS_string ("  BCF PCLATH, 4\n"), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 149)) ;
     }
     break ;
   case GALGAS_midrange_5F_call_5F_goto_5F_bit::kEnum_noChange:
@@ -7577,18 +7577,18 @@ static void categoryMethod_midrange_5F_intermediate_5F_JSR_buildAssemblyCode (co
     }
     break ;
   }
-  ioArgument_ioString.dotAssign_operation (GALGAS_string ("  CALL  ").add_operation (object->mAttribute_mTargetLabel.getter_string (SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 152)), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 152)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 152))  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 152)) ;
+  ioArgument_ioString.plusAssign_operation(GALGAS_string ("  CALL  ").add_operation (object->mAttribute_mTargetLabel.getter_string (SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 152)), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 152)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 152)), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 152)) ;
   switch (object->mAttribute_mBit_31__31_.enumValue ()) {
   case GALGAS_midrange_5F_call_5F_goto_5F_bit::kNotBuilt:
     break ;
   case GALGAS_midrange_5F_call_5F_goto_5F_bit::kEnum_set:
     {
-      ioArgument_ioString.dotAssign_operation (GALGAS_string ("  BCF PCLATH, 3\n")  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 154)) ;
+      ioArgument_ioString.plusAssign_operation(GALGAS_string ("  BCF PCLATH, 3\n"), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 154)) ;
     }
     break ;
   case GALGAS_midrange_5F_call_5F_goto_5F_bit::kEnum_clear:
     {
-      ioArgument_ioString.dotAssign_operation (GALGAS_string ("  BSF PCLATH, 3\n")  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 155)) ;
+      ioArgument_ioString.plusAssign_operation(GALGAS_string ("  BSF PCLATH, 3\n"), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 155)) ;
     }
     break ;
   case GALGAS_midrange_5F_call_5F_goto_5F_bit::kEnum_noChange:
@@ -7601,12 +7601,12 @@ static void categoryMethod_midrange_5F_intermediate_5F_JSR_buildAssemblyCode (co
     break ;
   case GALGAS_midrange_5F_call_5F_goto_5F_bit::kEnum_set:
     {
-      ioArgument_ioString.dotAssign_operation (GALGAS_string ("  BCF PCLATH, 4\n")  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 159)) ;
+      ioArgument_ioString.plusAssign_operation(GALGAS_string ("  BCF PCLATH, 4\n"), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 159)) ;
     }
     break ;
   case GALGAS_midrange_5F_call_5F_goto_5F_bit::kEnum_clear:
     {
-      ioArgument_ioString.dotAssign_operation (GALGAS_string ("  BSF PCLATH, 4\n")  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 160)) ;
+      ioArgument_ioString.plusAssign_operation(GALGAS_string ("  BSF PCLATH, 4\n"), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 160)) ;
     }
     break ;
   case GALGAS_midrange_5F_call_5F_goto_5F_bit::kEnum_noChange:
@@ -7639,7 +7639,7 @@ static void categoryMethod_midrange_5F_intermediate_5F_CALL_buildAssemblyCode (c
                                                                                COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_midrange_5F_intermediate_5F_CALL * object = (const cPtr_midrange_5F_intermediate_5F_CALL *) inObject ;
   macroValidSharedObject (object, cPtr_midrange_5F_intermediate_5F_CALL) ;
-  ioArgument_ioString.dotAssign_operation (GALGAS_string ("  CALL  ").add_operation (object->mAttribute_mTargetLabel.getter_string (SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 170)), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 170)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 170))  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 170)) ;
+  ioArgument_ioString.plusAssign_operation(GALGAS_string ("  CALL  ").add_operation (object->mAttribute_mTargetLabel.getter_string (SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 170)), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 170)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 170)), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 170)) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -7661,9 +7661,9 @@ C_PrologueEpilogue gMethod_midrange_5F_intermediate_5F_CALL_buildAssemblyCode (d
 static void categoryMethod_midrange_5F_intermediate_5F_instruction_5F_CLRWDT_buildAssemblyCode (const cPtr_midrange_5F_intermediate_5F_instruction * /* inObject */,
                                                                                                 GALGAS_string & ioArgument_ioString,
                                                                                                 GALGAS_uint & /* ioArgument_ioLocalLabelIndex */,
-                                                                                                C_Compiler * /* inCompiler */
+                                                                                                C_Compiler * inCompiler
                                                                                                 COMMA_UNUSED_LOCATION_ARGS) {
-  ioArgument_ioString.dotAssign_operation (GALGAS_string ("  CLRWDT\n")  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 178)) ;
+  ioArgument_ioString.plusAssign_operation(GALGAS_string ("  CLRWDT\n"), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 178)) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -7685,9 +7685,9 @@ C_PrologueEpilogue gMethod_midrange_5F_intermediate_5F_instruction_5F_CLRWDT_bui
 static void categoryMethod_midrange_5F_intermediate_5F_instruction_5F_CLRW_buildAssemblyCode (const cPtr_midrange_5F_intermediate_5F_instruction * /* inObject */,
                                                                                               GALGAS_string & ioArgument_ioString,
                                                                                               GALGAS_uint & /* ioArgument_ioLocalLabelIndex */,
-                                                                                              C_Compiler * /* inCompiler */
+                                                                                              C_Compiler * inCompiler
                                                                                               COMMA_UNUSED_LOCATION_ARGS) {
-  ioArgument_ioString.dotAssign_operation (GALGAS_string ("  CLRW\n")  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 186)) ;
+  ioArgument_ioString.plusAssign_operation(GALGAS_string ("  CLRW\n"), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 186)) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -7709,9 +7709,9 @@ C_PrologueEpilogue gMethod_midrange_5F_intermediate_5F_instruction_5F_CLRW_build
 static void categoryMethod_midrange_5F_intermediate_5F_instruction_5F_NOP_buildAssemblyCode (const cPtr_midrange_5F_intermediate_5F_instruction * /* inObject */,
                                                                                              GALGAS_string & ioArgument_ioString,
                                                                                              GALGAS_uint & /* ioArgument_ioLocalLabelIndex */,
-                                                                                             C_Compiler * /* inCompiler */
+                                                                                             C_Compiler * inCompiler
                                                                                              COMMA_UNUSED_LOCATION_ARGS) {
-  ioArgument_ioString.dotAssign_operation (GALGAS_string ("  NOP\n")  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 194)) ;
+  ioArgument_ioString.plusAssign_operation(GALGAS_string ("  NOP\n"), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 194)) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -7733,9 +7733,9 @@ C_PrologueEpilogue gMethod_midrange_5F_intermediate_5F_instruction_5F_NOP_buildA
 static void categoryMethod_midrange_5F_intermediate_5F_instruction_5F_RETURN_buildAssemblyCode (const cPtr_midrange_5F_intermediate_5F_instruction * /* inObject */,
                                                                                                 GALGAS_string & ioArgument_ioString,
                                                                                                 GALGAS_uint & /* ioArgument_ioLocalLabelIndex */,
-                                                                                                C_Compiler * /* inCompiler */
+                                                                                                C_Compiler * inCompiler
                                                                                                 COMMA_UNUSED_LOCATION_ARGS) {
-  ioArgument_ioString.dotAssign_operation (GALGAS_string ("  RETURN\n")  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 202)) ;
+  ioArgument_ioString.plusAssign_operation(GALGAS_string ("  RETURN\n"), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 202)) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -7757,9 +7757,9 @@ C_PrologueEpilogue gMethod_midrange_5F_intermediate_5F_instruction_5F_RETURN_bui
 static void categoryMethod_midrange_5F_intermediate_5F_instruction_5F_RETFIE_buildAssemblyCode (const cPtr_midrange_5F_intermediate_5F_instruction * /* inObject */,
                                                                                                 GALGAS_string & ioArgument_ioString,
                                                                                                 GALGAS_uint & /* ioArgument_ioLocalLabelIndex */,
-                                                                                                C_Compiler * /* inCompiler */
+                                                                                                C_Compiler * inCompiler
                                                                                                 COMMA_UNUSED_LOCATION_ARGS) {
-  ioArgument_ioString.dotAssign_operation (GALGAS_string ("  RETFIE\n")  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 210)) ;
+  ioArgument_ioString.plusAssign_operation(GALGAS_string ("  RETFIE\n"), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 210)) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -7781,9 +7781,9 @@ C_PrologueEpilogue gMethod_midrange_5F_intermediate_5F_instruction_5F_RETFIE_bui
 static void categoryMethod_midrange_5F_intermediate_5F_instruction_5F_SLEEP_buildAssemblyCode (const cPtr_midrange_5F_intermediate_5F_instruction * /* inObject */,
                                                                                                GALGAS_string & ioArgument_ioString,
                                                                                                GALGAS_uint & /* ioArgument_ioLocalLabelIndex */,
-                                                                                               C_Compiler * /* inCompiler */
+                                                                                               C_Compiler * inCompiler
                                                                                                COMMA_UNUSED_LOCATION_ARGS) {
-  ioArgument_ioString.dotAssign_operation (GALGAS_string ("  SLEEP\n")  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 218)) ;
+  ioArgument_ioString.plusAssign_operation(GALGAS_string ("  SLEEP\n"), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 218)) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -7809,7 +7809,7 @@ static void categoryMethod_midrange_5F_intermediate_5F_instruction_5F_literalOpe
                                                                                                           COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_midrange_5F_intermediate_5F_instruction_5F_literalOperation * object = (const cPtr_midrange_5F_intermediate_5F_instruction_5F_literalOperation *) inObject ;
   macroValidSharedObject (object, cPtr_midrange_5F_intermediate_5F_instruction_5F_literalOperation) ;
-  ioArgument_ioString.dotAssign_operation (GALGAS_string ("  ").add_operation (extensionGetter_mnemonic (object->mAttribute_mLiteralInstruction, inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 226)), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 226)).add_operation (GALGAS_string (" "), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 226)).add_operation (object->mAttribute_mLiteralValue.getter_hexString (SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 226)), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 226)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 226))  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 226)) ;
+  ioArgument_ioString.plusAssign_operation(GALGAS_string ("  ").add_operation (extensionGetter_mnemonic (object->mAttribute_mLiteralInstruction, inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 226)), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 226)).add_operation (GALGAS_string (" "), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 226)).add_operation (object->mAttribute_mLiteralValue.getter_hexString (SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 226)), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 226)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 226)), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 226)) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -7855,7 +7855,7 @@ static void categoryMethod_midrange_5F_intermediate_5F_instruction_5F_MNOP_build
       }
       if (loop_6836) {
         variant_6836 -- ;
-        ioArgument_ioString.dotAssign_operation (GALGAS_string ("  NOP\n")  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 241)) ;
+        ioArgument_ioString.plusAssign_operation(GALGAS_string ("  NOP\n"), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 241)) ;
         var_idx.increment_operation (inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 242)) ;
       }
     }
