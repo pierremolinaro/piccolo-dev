@@ -15,7 +15,7 @@
 //---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_string extensionGetter_x_34_String (const GALGAS_uint & inObject,
-                                           C_Compiler * /* inCompiler */
+                                           C_Compiler * inCompiler
                                            COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_string result_outResult ; // Returned variable
   const GALGAS_uint temp_0 = inObject ;
@@ -26,11 +26,11 @@ GALGAS_string extensionGetter_x_34_String (const GALGAS_uint & inObject,
     const GALGAS_uint temp_2 = inObject ;
     result_outResult = temp_2.right_shift_operation (GALGAS_uint ((uint32_t) 12U) COMMA_SOURCE_FILE ("intermediate_generic.galgas", 31)).getter_xString (SOURCE_FILE ("intermediate_generic.galgas", 31)) ;
     const GALGAS_uint temp_3 = inObject ;
-    result_outResult.dotAssign_operation (temp_3.right_shift_operation (GALGAS_uint ((uint32_t) 8U) COMMA_SOURCE_FILE ("intermediate_generic.galgas", 32)).operator_and (GALGAS_uint ((uint32_t) 15U) COMMA_SOURCE_FILE ("intermediate_generic.galgas", 32)).getter_xString (SOURCE_FILE ("intermediate_generic.galgas", 32))  COMMA_SOURCE_FILE ("intermediate_generic.galgas", 32)) ;
+    result_outResult.plusAssign_operation(temp_3.right_shift_operation (GALGAS_uint ((uint32_t) 8U) COMMA_SOURCE_FILE ("intermediate_generic.galgas", 32)).operator_and (GALGAS_uint ((uint32_t) 15U) COMMA_SOURCE_FILE ("intermediate_generic.galgas", 32)).getter_xString (SOURCE_FILE ("intermediate_generic.galgas", 32)), inCompiler  COMMA_SOURCE_FILE ("intermediate_generic.galgas", 32)) ;
     const GALGAS_uint temp_4 = inObject ;
-    result_outResult.dotAssign_operation (temp_4.right_shift_operation (GALGAS_uint ((uint32_t) 4U) COMMA_SOURCE_FILE ("intermediate_generic.galgas", 33)).operator_and (GALGAS_uint ((uint32_t) 15U) COMMA_SOURCE_FILE ("intermediate_generic.galgas", 33)).getter_xString (SOURCE_FILE ("intermediate_generic.galgas", 33))  COMMA_SOURCE_FILE ("intermediate_generic.galgas", 33)) ;
+    result_outResult.plusAssign_operation(temp_4.right_shift_operation (GALGAS_uint ((uint32_t) 4U) COMMA_SOURCE_FILE ("intermediate_generic.galgas", 33)).operator_and (GALGAS_uint ((uint32_t) 15U) COMMA_SOURCE_FILE ("intermediate_generic.galgas", 33)).getter_xString (SOURCE_FILE ("intermediate_generic.galgas", 33)), inCompiler  COMMA_SOURCE_FILE ("intermediate_generic.galgas", 33)) ;
     const GALGAS_uint temp_5 = inObject ;
-    result_outResult.dotAssign_operation (temp_5.operator_and (GALGAS_uint ((uint32_t) 15U) COMMA_SOURCE_FILE ("intermediate_generic.galgas", 34)).getter_xString (SOURCE_FILE ("intermediate_generic.galgas", 34))  COMMA_SOURCE_FILE ("intermediate_generic.galgas", 34)) ;
+    result_outResult.plusAssign_operation(temp_5.operator_and (GALGAS_uint ((uint32_t) 15U) COMMA_SOURCE_FILE ("intermediate_generic.galgas", 34)).getter_xString (SOURCE_FILE ("intermediate_generic.galgas", 34)), inCompiler  COMMA_SOURCE_FILE ("intermediate_generic.galgas", 34)) ;
   }
 //---
   return result_outResult ;
@@ -1669,26 +1669,26 @@ static void categoryMethod_baseline_5F_intermediate_5F_incDecRegisterInCondition
       ioArgument_ioGeneratedInstructionList.modifier_setMInstructionAtIndex (GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition::constructor_new (object->mAttribute_mInstructionLocation, object->mAttribute_mRegisterDescription, cast_18775_goto.getter_mTargetLabel (SOURCE_FILE ("baseline_optimizations.galgas", 483)).getter_string (SOURCE_FILE ("baseline_optimizations.galgas", 483)), object->mAttribute_mIncrement, object->mAttribute_m_5F_W_5F_isDestination, object->mAttribute_mBranchIfZero  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 480)), constinArgument_inLineIndex, inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 479)) ;
       }
       ioArgument_ioOptimizationsDone = GALGAS_bool (true) ;
-      ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string ("  line ").add_operation (constinArgument_inLineIndex.getter_string (SOURCE_FILE ("baseline_optimizations.galgas", 490)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 490)).add_operation (GALGAS_string (": label of "), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 490))  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 490)) ;
-      ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string ("GOTO ")  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 491)) ;
+      ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  line ").add_operation (constinArgument_inLineIndex.getter_string (SOURCE_FILE ("baseline_optimizations.galgas", 490)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 490)).add_operation (GALGAS_string (": label of "), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 490)), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 490)) ;
+      ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("GOTO "), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 491)) ;
       const enumGalgasBool test_0 = object->mAttribute_mIncrement.boolEnum () ;
       if (kBoolTrue == test_0) {
-        ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string ("INCF ")  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 493)) ;
+        ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("INCF "), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 493)) ;
       }else if (kBoolFalse == test_0) {
-        ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string ("DECF ")  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 495)) ;
+        ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("DECF "), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 495)) ;
       }
-      ioArgument_ioListFileContents.dotAssign_operation (object->mAttribute_mRegisterDescription.getter_mAssemblyString (SOURCE_FILE ("baseline_optimizations.galgas", 497))  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 497)) ;
+      ioArgument_ioListFileContents.plusAssign_operation(object->mAttribute_mRegisterDescription.getter_mAssemblyString (SOURCE_FILE ("baseline_optimizations.galgas", 497)), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 497)) ;
       const enumGalgasBool test_1 = object->mAttribute_m_5F_W_5F_isDestination.boolEnum () ;
       if (kBoolTrue == test_1) {
-        ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string (", W")  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 499)) ;
+        ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string (", W"), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 499)) ;
       }
       const enumGalgasBool test_2 = object->mAttribute_mBranchIfZero.boolEnum () ;
       if (kBoolTrue == test_2) {
-        ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string (" Z")  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 502)) ;
+        ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string (" Z"), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 502)) ;
       }else if (kBoolFalse == test_2) {
-        ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string (" NZ")  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 504)) ;
+        ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string (" NZ"), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 504)) ;
       }
-      ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string (": branching to GOTO replaced by second GOTO label\n")  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 506)) ;
+      ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string (": branching to GOTO replaced by second GOTO label\n"), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 506)) ;
     }
   }
 }
@@ -3444,7 +3444,7 @@ static void categoryMethod_midrange_5F_intermediate_5F_instruction_5F_literalOpe
         ioArgument_ioGeneratedInstructionList.modifier_setMInstructionAtIndex (GALGAS_midrange_5F_intermediate_5F_instruction_5F_literalOperation::constructor_new (object->mAttribute_mInstructionLocation, GALGAS_midrange_5F_literal_5F_instruction_5F_opcode::constructor_RETLW (SOURCE_FILE ("midrange_optimizations.galgas", 375)), object->mAttribute_mLiteralValue  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 375)), constinArgument_inLineIndex, inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 374)) ;
         }
         ioArgument_ioOptimizationsDone = GALGAS_bool (true) ;
-        ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string ("  line ").add_operation (constinArgument_inLineIndex.getter_string (SOURCE_FILE ("midrange_optimizations.galgas", 379)), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 379)).add_operation (GALGAS_string (": MOVLW followed by RETURN replaced by RETLW\n"), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 379))  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 379)) ;
+        ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  line ").add_operation (constinArgument_inLineIndex.getter_string (SOURCE_FILE ("midrange_optimizations.galgas", 379)), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 379)).add_operation (GALGAS_string (": MOVLW followed by RETURN replaced by RETLW\n"), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 379)), inCompiler  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 379)) ;
       }
     }
   }
@@ -3544,52 +3544,52 @@ static void categoryMethod_midrange_5F_intermediate_5F_incDecRegisterInCondition
       ioArgument_ioGeneratedInstructionList.modifier_setMInstructionAtIndex (GALGAS_midrange_5F_intermediate_5F_incDecRegisterInCondition::constructor_new (object->mAttribute_mInstructionLocation, object->mAttribute_mRegisterDescription, cast_17594_jump.getter_mTargetLabel (SOURCE_FILE ("midrange_optimizations.galgas", 407)).getter_string (SOURCE_FILE ("midrange_optimizations.galgas", 407)), object->mAttribute_mIncrement, object->mAttribute_m_5F_W_5F_isDestination, object->mAttribute_mBranchIfZero  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 404)), constinArgument_inLineIndex, inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 403)) ;
       }
       ioArgument_ioOptimizationsDone = GALGAS_bool (true) ;
-      ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string ("  line ").add_operation (constinArgument_inLineIndex.getter_string (SOURCE_FILE ("midrange_optimizations.galgas", 414)), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 414)).add_operation (GALGAS_string (": label of "), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 414))  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 414)) ;
-      ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string ("JUMP ")  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 415)) ;
+      ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  line ").add_operation (constinArgument_inLineIndex.getter_string (SOURCE_FILE ("midrange_optimizations.galgas", 414)), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 414)).add_operation (GALGAS_string (": label of "), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 414)), inCompiler  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 414)) ;
+      ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("JUMP "), inCompiler  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 415)) ;
       const enumGalgasBool test_0 = object->mAttribute_mIncrement.boolEnum () ;
       if (kBoolTrue == test_0) {
-        ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string ("INCF ")  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 417)) ;
+        ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("INCF "), inCompiler  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 417)) ;
       }else if (kBoolFalse == test_0) {
-        ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string ("DECF ")  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 419)) ;
+        ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("DECF "), inCompiler  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 419)) ;
       }
-      ioArgument_ioListFileContents.dotAssign_operation (object->mAttribute_mRegisterDescription.getter_mAssemblyString (SOURCE_FILE ("midrange_optimizations.galgas", 421))  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 421)) ;
+      ioArgument_ioListFileContents.plusAssign_operation(object->mAttribute_mRegisterDescription.getter_mAssemblyString (SOURCE_FILE ("midrange_optimizations.galgas", 421)), inCompiler  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 421)) ;
       const enumGalgasBool test_1 = object->mAttribute_m_5F_W_5F_isDestination.boolEnum () ;
       if (kBoolTrue == test_1) {
-        ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string (", W ")  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 423)) ;
+        ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string (", W "), inCompiler  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 423)) ;
       }
       const enumGalgasBool test_2 = object->mAttribute_mBranchIfZero.boolEnum () ;
       if (kBoolTrue == test_2) {
-        ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string ("Z")  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 426)) ;
+        ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("Z"), inCompiler  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 426)) ;
       }else if (kBoolFalse == test_2) {
-        ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string ("NZ")  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 428)) ;
+        ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("NZ"), inCompiler  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 428)) ;
       }
-      ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string (": branching to JUMP replaced by second JUMP label\n")  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 430)) ;
+      ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string (": branching to JUMP replaced by second JUMP label\n"), inCompiler  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 430)) ;
     }else if (var_firstInstruction.dynamicTypeDescriptor () == & kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_GOTO) {
       GALGAS_midrange_5F_intermediate_5F_GOTO cast_18531_goto ((cPtr_midrange_5F_intermediate_5F_GOTO *) var_firstInstruction.ptr ()) ;
       {
       ioArgument_ioGeneratedInstructionList.modifier_setMInstructionAtIndex (GALGAS_midrange_5F_intermediate_5F_incDecRegisterInCondition::constructor_new (object->mAttribute_mInstructionLocation, object->mAttribute_mRegisterDescription, cast_18531_goto.getter_mTargetLabel (SOURCE_FILE ("midrange_optimizations.galgas", 436)).getter_string (SOURCE_FILE ("midrange_optimizations.galgas", 436)), object->mAttribute_mIncrement, object->mAttribute_m_5F_W_5F_isDestination, object->mAttribute_mBranchIfZero  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 433)), constinArgument_inLineIndex, inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 432)) ;
       }
       ioArgument_ioOptimizationsDone = GALGAS_bool (true) ;
-      ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string ("  line ").add_operation (constinArgument_inLineIndex.getter_string (SOURCE_FILE ("midrange_optimizations.galgas", 443)), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 443)).add_operation (GALGAS_string (": label of "), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 443))  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 443)) ;
-      ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string ("JUMP ")  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 444)) ;
+      ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  line ").add_operation (constinArgument_inLineIndex.getter_string (SOURCE_FILE ("midrange_optimizations.galgas", 443)), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 443)).add_operation (GALGAS_string (": label of "), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 443)), inCompiler  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 443)) ;
+      ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("JUMP "), inCompiler  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 444)) ;
       const enumGalgasBool test_3 = object->mAttribute_mIncrement.boolEnum () ;
       if (kBoolTrue == test_3) {
-        ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string ("INCF ")  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 446)) ;
+        ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("INCF "), inCompiler  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 446)) ;
       }else if (kBoolFalse == test_3) {
-        ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string ("DECF ")  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 448)) ;
+        ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("DECF "), inCompiler  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 448)) ;
       }
-      ioArgument_ioListFileContents.dotAssign_operation (object->mAttribute_mRegisterDescription.getter_mAssemblyString (SOURCE_FILE ("midrange_optimizations.galgas", 450))  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 450)) ;
+      ioArgument_ioListFileContents.plusAssign_operation(object->mAttribute_mRegisterDescription.getter_mAssemblyString (SOURCE_FILE ("midrange_optimizations.galgas", 450)), inCompiler  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 450)) ;
       const enumGalgasBool test_4 = object->mAttribute_m_5F_W_5F_isDestination.boolEnum () ;
       if (kBoolTrue == test_4) {
-        ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string (", W")  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 452)) ;
+        ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string (", W"), inCompiler  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 452)) ;
       }
       const enumGalgasBool test_5 = object->mAttribute_mBranchIfZero.boolEnum () ;
       if (kBoolTrue == test_5) {
-        ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string (" Z")  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 455)) ;
+        ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string (" Z"), inCompiler  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 455)) ;
       }else if (kBoolFalse == test_5) {
-        ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string (" NZ")  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 457)) ;
+        ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string (" NZ"), inCompiler  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 457)) ;
       }
-      ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string (": branching to GOTO replaced by second JUMP label\n")  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 459)) ;
+      ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string (": branching to GOTO replaced by second JUMP label\n"), inCompiler  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 459)) ;
     }
   }
 }
@@ -3711,8 +3711,8 @@ static void categoryMethod_midrange_5F_intermediate_5F_instruction_5F_BitTestSki
     ioArgument_ioGeneratedInstructionList.modifier_setMInstructionAtIndex (GALGAS_midrange_5F_intermediate_5F_NULL::constructor_new (SOURCE_FILE ("midrange_optimizations.galgas", 509)), constinArgument_inLineIndex.add_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 510)), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 508)) ;
     }
     ioArgument_ioOptimizationsDone = GALGAS_bool (true) ;
-    ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string ("  lines ").add_operation (constinArgument_inLineIndex.getter_string (SOURCE_FILE ("midrange_optimizations.galgas", 515)), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 515)).add_operation (GALGAS_string (" to "), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 515)).add_operation (constinArgument_inLineIndex.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 515)).getter_string (SOURCE_FILE ("midrange_optimizations.galgas", 515)), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 515))  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 515)) ;
-    ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string (" bit test skip, following by a JUMP skipping next instruction, is complemented\n")  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 516)) ;
+    ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  lines ").add_operation (constinArgument_inLineIndex.getter_string (SOURCE_FILE ("midrange_optimizations.galgas", 515)), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 515)).add_operation (GALGAS_string (" to "), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 515)).add_operation (constinArgument_inLineIndex.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 515)).getter_string (SOURCE_FILE ("midrange_optimizations.galgas", 515)), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 515)), inCompiler  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 515)) ;
+    ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string (" bit test skip, following by a JUMP skipping next instruction, is complemented\n"), inCompiler  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 516)) ;
   }
 }
 //---------------------------------------------------------------------------------------------------------------------*
@@ -7460,11 +7460,11 @@ GALGAS_string extensionGetter_x_34_string (const GALGAS_uint & inObject,
   const GALGAS_uint temp_0 = inObject ;
   result_outResult = temp_0.divide_operation (GALGAS_uint ((uint32_t) 4096U), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 13)).operator_and (GALGAS_uint ((uint32_t) 15U) COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 13)).getter_xString (SOURCE_FILE ("ipic18_code_generation.galgas", 13)) ;
   const GALGAS_uint temp_1 = inObject ;
-  result_outResult.dotAssign_operation (temp_1.divide_operation (GALGAS_uint ((uint32_t) 256U), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 14)).operator_and (GALGAS_uint ((uint32_t) 15U) COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 14)).getter_xString (SOURCE_FILE ("ipic18_code_generation.galgas", 14))  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 14)) ;
+  result_outResult.plusAssign_operation(temp_1.divide_operation (GALGAS_uint ((uint32_t) 256U), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 14)).operator_and (GALGAS_uint ((uint32_t) 15U) COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 14)).getter_xString (SOURCE_FILE ("ipic18_code_generation.galgas", 14)), inCompiler  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 14)) ;
   const GALGAS_uint temp_2 = inObject ;
-  result_outResult.dotAssign_operation (temp_2.divide_operation (GALGAS_uint ((uint32_t) 16U), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 15)).operator_and (GALGAS_uint ((uint32_t) 15U) COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 15)).getter_xString (SOURCE_FILE ("ipic18_code_generation.galgas", 15))  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 15)) ;
+  result_outResult.plusAssign_operation(temp_2.divide_operation (GALGAS_uint ((uint32_t) 16U), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 15)).operator_and (GALGAS_uint ((uint32_t) 15U) COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 15)).getter_xString (SOURCE_FILE ("ipic18_code_generation.galgas", 15)), inCompiler  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 15)) ;
   const GALGAS_uint temp_3 = inObject ;
-  result_outResult.dotAssign_operation (temp_3.operator_and (GALGAS_uint ((uint32_t) 15U) COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 16)).getter_xString (SOURCE_FILE ("ipic18_code_generation.galgas", 16))  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 16)) ;
+  result_outResult.plusAssign_operation(temp_3.operator_and (GALGAS_uint ((uint32_t) 15U) COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 16)).getter_xString (SOURCE_FILE ("ipic18_code_generation.galgas", 16)), inCompiler  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 16)) ;
 //---
   return result_outResult ;
 }
@@ -7485,13 +7485,13 @@ GALGAS_string extensionGetter_x_36_string (const GALGAS_uint & inObject,
   const GALGAS_uint temp_0 = inObject ;
   result_outResult = temp_0.divide_operation (GALGAS_uint ((uint32_t) 65536U), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 22)).operator_and (GALGAS_uint ((uint32_t) 15U) COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 22)).getter_xString (SOURCE_FILE ("ipic18_code_generation.galgas", 22)) ;
   const GALGAS_uint temp_1 = inObject ;
-  result_outResult.dotAssign_operation (temp_1.divide_operation (GALGAS_uint ((uint32_t) 4096U), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 23)).operator_and (GALGAS_uint ((uint32_t) 15U) COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 23)).getter_xString (SOURCE_FILE ("ipic18_code_generation.galgas", 23))  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 23)) ;
+  result_outResult.plusAssign_operation(temp_1.divide_operation (GALGAS_uint ((uint32_t) 4096U), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 23)).operator_and (GALGAS_uint ((uint32_t) 15U) COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 23)).getter_xString (SOURCE_FILE ("ipic18_code_generation.galgas", 23)), inCompiler  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 23)) ;
   const GALGAS_uint temp_2 = inObject ;
-  result_outResult.dotAssign_operation (temp_2.divide_operation (GALGAS_uint ((uint32_t) 256U), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 24)).operator_and (GALGAS_uint ((uint32_t) 15U) COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 24)).getter_xString (SOURCE_FILE ("ipic18_code_generation.galgas", 24))  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 24)) ;
+  result_outResult.plusAssign_operation(temp_2.divide_operation (GALGAS_uint ((uint32_t) 256U), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 24)).operator_and (GALGAS_uint ((uint32_t) 15U) COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 24)).getter_xString (SOURCE_FILE ("ipic18_code_generation.galgas", 24)), inCompiler  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 24)) ;
   const GALGAS_uint temp_3 = inObject ;
-  result_outResult.dotAssign_operation (temp_3.divide_operation (GALGAS_uint ((uint32_t) 16U), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 25)).operator_and (GALGAS_uint ((uint32_t) 15U) COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 25)).getter_xString (SOURCE_FILE ("ipic18_code_generation.galgas", 25))  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 25)) ;
+  result_outResult.plusAssign_operation(temp_3.divide_operation (GALGAS_uint ((uint32_t) 16U), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 25)).operator_and (GALGAS_uint ((uint32_t) 15U) COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 25)).getter_xString (SOURCE_FILE ("ipic18_code_generation.galgas", 25)), inCompiler  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 25)) ;
   const GALGAS_uint temp_4 = inObject ;
-  result_outResult.dotAssign_operation (temp_4.operator_and (GALGAS_uint ((uint32_t) 15U) COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 26)).getter_xString (SOURCE_FILE ("ipic18_code_generation.galgas", 26))  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 26)) ;
+  result_outResult.plusAssign_operation(temp_4.operator_and (GALGAS_uint ((uint32_t) 15U) COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 26)).getter_xString (SOURCE_FILE ("ipic18_code_generation.galgas", 26)), inCompiler  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 26)) ;
 //---
   return result_outResult ;
 }
@@ -10684,7 +10684,7 @@ static void categoryMethod_baseline_5F_intermediate_5F_GOTO_optimizeGOTO (const 
     {
     ioArgument_ioGeneratedInstructionList.modifier_setMInstructionAtIndex (GALGAS_baseline_5F_intermediate_5F_NULL::constructor_new (SOURCE_FILE ("baseline_optimizations.galgas", 263)), constinArgument_inLineIndex, inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 263)) ;
     }
-    ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string ("  line ").add_operation (constinArgument_inLineIndex.getter_string (SOURCE_FILE ("baseline_optimizations.galgas", 264)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 264)).add_operation (GALGAS_string (": GOTO branching to next instruction deleted\n"), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 264))  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 264)) ;
+    ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  line ").add_operation (constinArgument_inLineIndex.getter_string (SOURCE_FILE ("baseline_optimizations.galgas", 264)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 264)).add_operation (GALGAS_string (": GOTO branching to next instruction deleted\n"), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 264)), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 264)) ;
   }else if (kBoolFalse == test_0) {
     GALGAS_uint var_line ;
     constinArgument_inSymbolTable.method_searchKey (object->mAttribute_mTargetLabel, var_line, inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 267)) ;
@@ -10701,7 +10701,7 @@ static void categoryMethod_baseline_5F_intermediate_5F_GOTO_optimizeGOTO (const 
           ioArgument_ioGeneratedInstructionList.modifier_setMInstructionAtIndex (cast_10879_literalOp, constinArgument_inLineIndex, inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 275)) ;
           }
           ioArgument_ioOptimizationsDone = GALGAS_bool (true) ;
-          ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string ("  line ").add_operation (constinArgument_inLineIndex.getter_string (SOURCE_FILE ("baseline_optimizations.galgas", 280)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 280)).add_operation (GALGAS_string (": GOTO branching to RETLW replaced by RETLW\n"), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 280))  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 280)) ;
+          ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  line ").add_operation (constinArgument_inLineIndex.getter_string (SOURCE_FILE ("baseline_optimizations.galgas", 280)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 280)).add_operation (GALGAS_string (": GOTO branching to RETLW replaced by RETLW\n"), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 280)), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 280)) ;
         }
       }else if (var_firstInstruction.dynamicTypeDescriptor () == & kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_GOTO) {
         GALGAS_baseline_5F_intermediate_5F_GOTO cast_11285_goto ((cPtr_baseline_5F_intermediate_5F_GOTO *) var_firstInstruction.ptr ()) ;
@@ -10711,7 +10711,7 @@ static void categoryMethod_baseline_5F_intermediate_5F_GOTO_optimizeGOTO (const 
           ioArgument_ioGeneratedInstructionList.modifier_setMInstructionAtIndex (GALGAS_baseline_5F_intermediate_5F_GOTO::constructor_new (object->mAttribute_mInstructionLocation, cast_11285_goto.getter_mTargetLabel (SOURCE_FILE ("baseline_optimizations.galgas", 287))  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 285)), constinArgument_inLineIndex, inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 284)) ;
           }
           ioArgument_ioOptimizationsDone = GALGAS_bool (true) ;
-          ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string ("  line ").add_operation (constinArgument_inLineIndex.getter_string (SOURCE_FILE ("baseline_optimizations.galgas", 291)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 291)).add_operation (GALGAS_string (": GOTO "), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 291)).add_operation (object->mAttribute_mTargetLabel.getter_string (SOURCE_FILE ("baseline_optimizations.galgas", 291)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 291)).add_operation (GALGAS_string (" branching to GOTO "), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 291)).add_operation (cast_11285_goto.getter_mTargetLabel (SOURCE_FILE ("baseline_optimizations.galgas", 291)).getter_string (SOURCE_FILE ("baseline_optimizations.galgas", 291)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 291)).add_operation (GALGAS_string (" replaced by GOTO "), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 291)).add_operation (cast_11285_goto.getter_mTargetLabel (SOURCE_FILE ("baseline_optimizations.galgas", 291)).getter_string (SOURCE_FILE ("baseline_optimizations.galgas", 291)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 291)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 291))  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 291)) ;
+          ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  line ").add_operation (constinArgument_inLineIndex.getter_string (SOURCE_FILE ("baseline_optimizations.galgas", 291)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 291)).add_operation (GALGAS_string (": GOTO "), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 291)).add_operation (object->mAttribute_mTargetLabel.getter_string (SOURCE_FILE ("baseline_optimizations.galgas", 291)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 291)).add_operation (GALGAS_string (" branching to GOTO "), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 291)).add_operation (cast_11285_goto.getter_mTargetLabel (SOURCE_FILE ("baseline_optimizations.galgas", 291)).getter_string (SOURCE_FILE ("baseline_optimizations.galgas", 291)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 291)).add_operation (GALGAS_string (" replaced by GOTO "), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 291)).add_operation (cast_11285_goto.getter_mTargetLabel (SOURCE_FILE ("baseline_optimizations.galgas", 291)).getter_string (SOURCE_FILE ("baseline_optimizations.galgas", 291)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 291)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 291)), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 291)) ;
         }
       }
     }
@@ -10813,7 +10813,7 @@ static void categoryMethod_baseline_5F_intermediate_5F_JUMP_optimizeJUMP (const 
         ioArgument_ioGeneratedInstructionList.modifier_setMInstructionAtIndex (cast_12602_literalOp, constinArgument_inLineIndex, inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 318)) ;
         }
         ioArgument_ioOptimizationsDone = GALGAS_bool (true) ;
-        ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string ("  line ").add_operation (constinArgument_inLineIndex.getter_string (SOURCE_FILE ("baseline_optimizations.galgas", 323)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 323)).add_operation (GALGAS_string (": JUMP branching to RETLW replaced by RETLW\n"), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 323))  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 323)) ;
+        ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  line ").add_operation (constinArgument_inLineIndex.getter_string (SOURCE_FILE ("baseline_optimizations.galgas", 323)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 323)).add_operation (GALGAS_string (": JUMP branching to RETLW replaced by RETLW\n"), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 323)), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 323)) ;
       }
     }else if (var_firstInstruction.dynamicTypeDescriptor () == & kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_GOTO) {
       GALGAS_baseline_5F_intermediate_5F_GOTO cast_12990_goto ((cPtr_baseline_5F_intermediate_5F_GOTO *) var_firstInstruction.ptr ()) ;
@@ -10823,7 +10823,7 @@ static void categoryMethod_baseline_5F_intermediate_5F_JUMP_optimizeJUMP (const 
         ioArgument_ioGeneratedInstructionList.modifier_setMInstructionAtIndex (GALGAS_baseline_5F_intermediate_5F_JUMP::constructor_new (object->mAttribute_mInstructionLocation, cast_12990_goto.getter_mTargetLabel (SOURCE_FILE ("baseline_optimizations.galgas", 330)), object->mAttribute_mCurrentPage, object->mAttribute_mTargetPage  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 328)), constinArgument_inLineIndex, inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 327)) ;
         }
         ioArgument_ioOptimizationsDone = GALGAS_bool (true) ;
-        ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string ("  line ").add_operation (constinArgument_inLineIndex.getter_string (SOURCE_FILE ("baseline_optimizations.galgas", 336)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 336)).add_operation (GALGAS_string (": JUMP "), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 336)).add_operation (object->mAttribute_mTargetLabel.getter_string (SOURCE_FILE ("baseline_optimizations.galgas", 336)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 336)).add_operation (GALGAS_string (" branching to GOTO "), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 336)).add_operation (cast_12990_goto.getter_mTargetLabel (SOURCE_FILE ("baseline_optimizations.galgas", 337)).getter_string (SOURCE_FILE ("baseline_optimizations.galgas", 337)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 337)).add_operation (GALGAS_string (" replaced by JUMP "), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 337)).add_operation (cast_12990_goto.getter_mTargetLabel (SOURCE_FILE ("baseline_optimizations.galgas", 338)).getter_string (SOURCE_FILE ("baseline_optimizations.galgas", 338)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 338)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 338))  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 336)) ;
+        ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  line ").add_operation (constinArgument_inLineIndex.getter_string (SOURCE_FILE ("baseline_optimizations.galgas", 336)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 336)).add_operation (GALGAS_string (": JUMP "), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 336)).add_operation (object->mAttribute_mTargetLabel.getter_string (SOURCE_FILE ("baseline_optimizations.galgas", 336)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 336)).add_operation (GALGAS_string (" branching to GOTO "), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 336)).add_operation (cast_12990_goto.getter_mTargetLabel (SOURCE_FILE ("baseline_optimizations.galgas", 337)).getter_string (SOURCE_FILE ("baseline_optimizations.galgas", 337)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 337)).add_operation (GALGAS_string (" replaced by JUMP "), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 337)).add_operation (cast_12990_goto.getter_mTargetLabel (SOURCE_FILE ("baseline_optimizations.galgas", 338)).getter_string (SOURCE_FILE ("baseline_optimizations.galgas", 338)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 338)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 338)), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 336)) ;
       }
     }else if (var_firstInstruction.dynamicTypeDescriptor () == & kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_JUMP) {
       GALGAS_baseline_5F_intermediate_5F_JUMP cast_13560_jump ((cPtr_baseline_5F_intermediate_5F_JUMP *) var_firstInstruction.ptr ()) ;
@@ -10833,7 +10833,7 @@ static void categoryMethod_baseline_5F_intermediate_5F_JUMP_optimizeJUMP (const 
         ioArgument_ioGeneratedInstructionList.modifier_setMInstructionAtIndex (GALGAS_baseline_5F_intermediate_5F_JUMP::constructor_new (object->mAttribute_mInstructionLocation, cast_13560_jump.getter_mTargetLabel (SOURCE_FILE ("baseline_optimizations.galgas", 345)), object->mAttribute_mCurrentPage, cast_13560_jump.getter_mTargetPage (SOURCE_FILE ("baseline_optimizations.galgas", 347))  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 343)), constinArgument_inLineIndex, inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 342)) ;
         }
         ioArgument_ioOptimizationsDone = GALGAS_bool (true) ;
-        ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string ("  line ").add_operation (constinArgument_inLineIndex.getter_string (SOURCE_FILE ("baseline_optimizations.galgas", 351)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 351)).add_operation (GALGAS_string (": JUMP "), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 351)).add_operation (object->mAttribute_mTargetLabel.getter_string (SOURCE_FILE ("baseline_optimizations.galgas", 351)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 351)).add_operation (GALGAS_string (" branching to JUMP "), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 351)).add_operation (cast_13560_jump.getter_mTargetLabel (SOURCE_FILE ("baseline_optimizations.galgas", 352)).getter_string (SOURCE_FILE ("baseline_optimizations.galgas", 352)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 352)).add_operation (GALGAS_string (" replaced by JUMP "), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 352)).add_operation (cast_13560_jump.getter_mTargetLabel (SOURCE_FILE ("baseline_optimizations.galgas", 353)).getter_string (SOURCE_FILE ("baseline_optimizations.galgas", 353)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 353)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 353))  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 351)) ;
+        ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  line ").add_operation (constinArgument_inLineIndex.getter_string (SOURCE_FILE ("baseline_optimizations.galgas", 351)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 351)).add_operation (GALGAS_string (": JUMP "), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 351)).add_operation (object->mAttribute_mTargetLabel.getter_string (SOURCE_FILE ("baseline_optimizations.galgas", 351)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 351)).add_operation (GALGAS_string (" branching to JUMP "), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 351)).add_operation (cast_13560_jump.getter_mTargetLabel (SOURCE_FILE ("baseline_optimizations.galgas", 352)).getter_string (SOURCE_FILE ("baseline_optimizations.galgas", 352)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 352)).add_operation (GALGAS_string (" replaced by JUMP "), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 352)).add_operation (cast_13560_jump.getter_mTargetLabel (SOURCE_FILE ("baseline_optimizations.galgas", 353)).getter_string (SOURCE_FILE ("baseline_optimizations.galgas", 353)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 353)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 353)), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 351)) ;
       }
     }
   }
@@ -10934,7 +10934,7 @@ static void categoryMethod_baseline_5F_intermediate_5F_CALL_optimizeCALL (const 
         ioArgument_ioGeneratedInstructionList.modifier_setMInstructionAtIndex (GALGAS_baseline_5F_intermediate_5F_instruction_5F_literalOperation::constructor_new (object->mAttribute_mInstructionLocation, GALGAS_baseline_5F_literal_5F_instruction_5F_opcode::constructor_MOVLW (SOURCE_FILE ("baseline_optimizations.galgas", 382)), cast_14911_literalOp.getter_mLiteralValue (SOURCE_FILE ("baseline_optimizations.galgas", 383))  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 380)), constinArgument_inLineIndex, inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 379)) ;
         }
         ioArgument_ioOptimizationsDone = GALGAS_bool (true) ;
-        ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string ("  line ").add_operation (constinArgument_inLineIndex.getter_string (SOURCE_FILE ("baseline_optimizations.galgas", 387)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 387)).add_operation (GALGAS_string (": CALL "), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 387)).add_operation (object->mAttribute_mTargetLabel.getter_string (SOURCE_FILE ("baseline_optimizations.galgas", 387)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 387)).add_operation (GALGAS_string (" to RETLW "), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 387)).add_operation (cast_14911_literalOp.getter_mLiteralValue (SOURCE_FILE ("baseline_optimizations.galgas", 388)).getter_string (SOURCE_FILE ("baseline_optimizations.galgas", 388)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 388)).add_operation (GALGAS_string (" replaced by MOVLW "), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 388)).add_operation (cast_14911_literalOp.getter_mLiteralValue (SOURCE_FILE ("baseline_optimizations.galgas", 389)).getter_string (SOURCE_FILE ("baseline_optimizations.galgas", 389)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 389)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 389))  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 387)) ;
+        ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  line ").add_operation (constinArgument_inLineIndex.getter_string (SOURCE_FILE ("baseline_optimizations.galgas", 387)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 387)).add_operation (GALGAS_string (": CALL "), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 387)).add_operation (object->mAttribute_mTargetLabel.getter_string (SOURCE_FILE ("baseline_optimizations.galgas", 387)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 387)).add_operation (GALGAS_string (" to RETLW "), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 387)).add_operation (cast_14911_literalOp.getter_mLiteralValue (SOURCE_FILE ("baseline_optimizations.galgas", 388)).getter_string (SOURCE_FILE ("baseline_optimizations.galgas", 388)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 388)).add_operation (GALGAS_string (" replaced by MOVLW "), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 388)).add_operation (cast_14911_literalOp.getter_mLiteralValue (SOURCE_FILE ("baseline_optimizations.galgas", 389)).getter_string (SOURCE_FILE ("baseline_optimizations.galgas", 389)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 389)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 389)), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 387)) ;
       }
     }
   }
@@ -11035,7 +11035,7 @@ static void categoryMethod_baseline_5F_intermediate_5F_JSR_optimizeJSR (const cP
         ioArgument_ioGeneratedInstructionList.modifier_setMInstructionAtIndex (GALGAS_baseline_5F_intermediate_5F_instruction_5F_literalOperation::constructor_new (object->mAttribute_mInstructionLocation, GALGAS_baseline_5F_literal_5F_instruction_5F_opcode::constructor_MOVLW (SOURCE_FILE ("baseline_optimizations.galgas", 418)), cast_16311_literalOp.getter_mLiteralValue (SOURCE_FILE ("baseline_optimizations.galgas", 419))  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 416)), constinArgument_inLineIndex, inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 415)) ;
         }
         ioArgument_ioOptimizationsDone = GALGAS_bool (true) ;
-        ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string ("  line ").add_operation (constinArgument_inLineIndex.getter_string (SOURCE_FILE ("baseline_optimizations.galgas", 423)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 423)).add_operation (GALGAS_string (": JSR "), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 423)).add_operation (object->mAttribute_mTargetLabel.getter_string (SOURCE_FILE ("baseline_optimizations.galgas", 423)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 423)).add_operation (GALGAS_string (" to RETLW "), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 423)).add_operation (cast_16311_literalOp.getter_mLiteralValue (SOURCE_FILE ("baseline_optimizations.galgas", 424)).getter_string (SOURCE_FILE ("baseline_optimizations.galgas", 424)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 424)).add_operation (GALGAS_string (" replaced by MOVLW "), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 424)).add_operation (cast_16311_literalOp.getter_mLiteralValue (SOURCE_FILE ("baseline_optimizations.galgas", 425)).getter_string (SOURCE_FILE ("baseline_optimizations.galgas", 425)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 425)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 425))  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 423)) ;
+        ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  line ").add_operation (constinArgument_inLineIndex.getter_string (SOURCE_FILE ("baseline_optimizations.galgas", 423)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 423)).add_operation (GALGAS_string (": JSR "), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 423)).add_operation (object->mAttribute_mTargetLabel.getter_string (SOURCE_FILE ("baseline_optimizations.galgas", 423)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 423)).add_operation (GALGAS_string (" to RETLW "), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 423)).add_operation (cast_16311_literalOp.getter_mLiteralValue (SOURCE_FILE ("baseline_optimizations.galgas", 424)).getter_string (SOURCE_FILE ("baseline_optimizations.galgas", 424)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 424)).add_operation (GALGAS_string (" replaced by MOVLW "), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 424)).add_operation (cast_16311_literalOp.getter_mLiteralValue (SOURCE_FILE ("baseline_optimizations.galgas", 425)).getter_string (SOURCE_FILE ("baseline_optimizations.galgas", 425)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 425)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 425)), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 423)) ;
       }
     }
   }
@@ -11130,7 +11130,7 @@ static void categoryMethod_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTIN
     ioArgument_ioGeneratedInstructionList.modifier_setMInstructionAtIndex (GALGAS_baseline_5F_intermediate_5F_NULL::constructor_new (SOURCE_FILE ("baseline_optimizations.galgas", 452)), constinArgument_inLineIndex, inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 451)) ;
     }
     ioArgument_ioOptimizationsDone = GALGAS_bool (true) ;
-    ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string ("  line ").add_operation (constinArgument_inLineIndex.getter_string (SOURCE_FILE ("baseline_optimizations.galgas", 456)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 456)).add_operation (GALGAS_string (": dead code is deleted\n"), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 456))  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 456)) ;
+    ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  line ").add_operation (constinArgument_inLineIndex.getter_string (SOURCE_FILE ("baseline_optimizations.galgas", 456)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 456)).add_operation (GALGAS_string (": dead code is deleted\n"), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 456)), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 456)) ;
   }
 }
 //---------------------------------------------------------------------------------------------------------------------*
@@ -11531,7 +11531,7 @@ static void categoryMethod_midrange_5F_intermediate_5F_JUMP_optimizeJUMP (const 
     {
     ioArgument_ioGeneratedInstructionList.modifier_setMInstructionAtIndex (GALGAS_midrange_5F_intermediate_5F_NULL::constructor_new (SOURCE_FILE ("midrange_optimizations.galgas", 232)), constinArgument_inLineIndex, inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 232)) ;
     }
-    ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string ("  line ").add_operation (constinArgument_inLineIndex.getter_string (SOURCE_FILE ("midrange_optimizations.galgas", 233)), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 233)).add_operation (GALGAS_string (": JUMP branching to next instruction deleted\n"), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 233))  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 233)) ;
+    ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  line ").add_operation (constinArgument_inLineIndex.getter_string (SOURCE_FILE ("midrange_optimizations.galgas", 233)), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 233)).add_operation (GALGAS_string (": JUMP branching to next instruction deleted\n"), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 233)), inCompiler  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 233)) ;
   }else if (kBoolFalse == test_0) {
     GALGAS_uint var_line ;
     GALGAS_bool joker_9810 ; // Joker input parameter
@@ -11546,7 +11546,7 @@ static void categoryMethod_midrange_5F_intermediate_5F_JUMP_optimizeJUMP (const 
         ioArgument_ioGeneratedInstructionList.modifier_setMInstructionAtIndex (GALGAS_midrange_5F_intermediate_5F_instruction_5F_RETURN::constructor_new (object->mAttribute_mInstructionLocation  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 244)), constinArgument_inLineIndex, inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 243)) ;
         }
         ioArgument_ioOptimizationsDone = GALGAS_bool (true) ;
-        ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string ("  line ").add_operation (constinArgument_inLineIndex.getter_string (SOURCE_FILE ("midrange_optimizations.galgas", 248)), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 248)).add_operation (GALGAS_string (": JUMP branching to RETURN replaced by RETURN\n"), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 248))  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 248)) ;
+        ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  line ").add_operation (constinArgument_inLineIndex.getter_string (SOURCE_FILE ("midrange_optimizations.galgas", 248)), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 248)).add_operation (GALGAS_string (": JUMP branching to RETURN replaced by RETURN\n"), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 248)), inCompiler  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 248)) ;
       }else if (var_firstInstruction.dynamicTypeDescriptor () == & kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_instruction_5F_literalOperation) {
         GALGAS_midrange_5F_intermediate_5F_instruction_5F_literalOperation cast_10533_literalOp ((cPtr_midrange_5F_intermediate_5F_instruction_5F_literalOperation *) var_firstInstruction.ptr ()) ;
         const enumGalgasBool test_1 = GALGAS_bool (kIsEqual, cast_10533_literalOp.getter_mLiteralInstruction (SOURCE_FILE ("midrange_optimizations.galgas", 250)).objectCompare (GALGAS_midrange_5F_literal_5F_instruction_5F_opcode::constructor_RETLW (SOURCE_FILE ("midrange_optimizations.galgas", 250)))).boolEnum () ;
@@ -11555,7 +11555,7 @@ static void categoryMethod_midrange_5F_intermediate_5F_JUMP_optimizeJUMP (const 
           ioArgument_ioGeneratedInstructionList.modifier_setMInstructionAtIndex (cast_10533_literalOp, constinArgument_inLineIndex, inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 251)) ;
           }
           ioArgument_ioOptimizationsDone = GALGAS_bool (true) ;
-          ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string ("  line ").add_operation (constinArgument_inLineIndex.getter_string (SOURCE_FILE ("midrange_optimizations.galgas", 256)), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 256)).add_operation (GALGAS_string (": JUMP branching to RETLW replaced by RETLW\n"), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 256))  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 256)) ;
+          ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  line ").add_operation (constinArgument_inLineIndex.getter_string (SOURCE_FILE ("midrange_optimizations.galgas", 256)), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 256)).add_operation (GALGAS_string (": JUMP branching to RETLW replaced by RETLW\n"), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 256)), inCompiler  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 256)) ;
         }
       }else if (var_firstInstruction.dynamicTypeDescriptor () == & kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_JUMP) {
         GALGAS_midrange_5F_intermediate_5F_JUMP cast_10946_jump ((cPtr_midrange_5F_intermediate_5F_JUMP *) var_firstInstruction.ptr ()) ;
@@ -11565,7 +11565,7 @@ static void categoryMethod_midrange_5F_intermediate_5F_JUMP_optimizeJUMP (const 
           ioArgument_ioGeneratedInstructionList.modifier_setMInstructionAtIndex (GALGAS_midrange_5F_intermediate_5F_JUMP::constructor_new (object->mAttribute_mInstructionLocation, cast_10946_jump.getter_mTargetLabel (SOURCE_FILE ("midrange_optimizations.galgas", 261)), GALGAS_midrange_5F_call_5F_goto_5F_bit::constructor_noChange (SOURCE_FILE ("midrange_optimizations.galgas", 261)), GALGAS_midrange_5F_call_5F_goto_5F_bit::constructor_noChange (SOURCE_FILE ("midrange_optimizations.galgas", 261))  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 261)), constinArgument_inLineIndex, inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 260)) ;
           }
           ioArgument_ioOptimizationsDone = GALGAS_bool (true) ;
-          ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string ("  line ").add_operation (constinArgument_inLineIndex.getter_string (SOURCE_FILE ("midrange_optimizations.galgas", 265)), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 265)).add_operation (GALGAS_string (": JUMP branching to JUMP replaced by JUMP\n"), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 265))  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 265)) ;
+          ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  line ").add_operation (constinArgument_inLineIndex.getter_string (SOURCE_FILE ("midrange_optimizations.galgas", 265)), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 265)).add_operation (GALGAS_string (": JUMP branching to JUMP replaced by JUMP\n"), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 265)), inCompiler  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 265)) ;
         }
       }
     }
@@ -11662,7 +11662,7 @@ static void categoryMethod_midrange_5F_intermediate_5F_GOTO_optimizeGOTO (const 
     {
     ioArgument_ioGeneratedInstructionList.modifier_setMInstructionAtIndex (GALGAS_midrange_5F_intermediate_5F_NULL::constructor_new (SOURCE_FILE ("midrange_optimizations.galgas", 286)), constinArgument_inLineIndex, inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 286)) ;
     }
-    ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string ("  line ").add_operation (constinArgument_inLineIndex.getter_string (SOURCE_FILE ("midrange_optimizations.galgas", 287)), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 287)).add_operation (GALGAS_string (": GOTO branching to next instruction deleted\n"), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 287))  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 287)) ;
+    ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  line ").add_operation (constinArgument_inLineIndex.getter_string (SOURCE_FILE ("midrange_optimizations.galgas", 287)), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 287)).add_operation (GALGAS_string (": GOTO branching to next instruction deleted\n"), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 287)), inCompiler  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 287)) ;
   }else if (kBoolFalse == test_0) {
     GALGAS_uint var_line ;
     GALGAS_bool joker_12478 ; // Joker input parameter
@@ -11677,7 +11677,7 @@ static void categoryMethod_midrange_5F_intermediate_5F_GOTO_optimizeGOTO (const 
         ioArgument_ioGeneratedInstructionList.modifier_setMInstructionAtIndex (GALGAS_midrange_5F_intermediate_5F_instruction_5F_RETURN::constructor_new (object->mAttribute_mInstructionLocation  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 299)), constinArgument_inLineIndex, inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 298)) ;
         }
         ioArgument_ioOptimizationsDone = GALGAS_bool (true) ;
-        ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string ("  line ").add_operation (constinArgument_inLineIndex.getter_string (SOURCE_FILE ("midrange_optimizations.galgas", 303)), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 303)).add_operation (GALGAS_string (": GOTO branching to RETURN replaced by RETURN\n"), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 303))  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 303)) ;
+        ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  line ").add_operation (constinArgument_inLineIndex.getter_string (SOURCE_FILE ("midrange_optimizations.galgas", 303)), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 303)).add_operation (GALGAS_string (": GOTO branching to RETURN replaced by RETURN\n"), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 303)), inCompiler  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 303)) ;
       }else if (var_firstInstruction.dynamicTypeDescriptor () == & kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_instruction_5F_literalOperation) {
         GALGAS_midrange_5F_intermediate_5F_instruction_5F_literalOperation cast_13229_literalOp ((cPtr_midrange_5F_intermediate_5F_instruction_5F_literalOperation *) var_firstInstruction.ptr ()) ;
         const enumGalgasBool test_1 = GALGAS_bool (kIsEqual, cast_13229_literalOp.getter_mLiteralInstruction (SOURCE_FILE ("midrange_optimizations.galgas", 305)).objectCompare (GALGAS_midrange_5F_literal_5F_instruction_5F_opcode::constructor_RETLW (SOURCE_FILE ("midrange_optimizations.galgas", 305)))).boolEnum () ;
@@ -11686,7 +11686,7 @@ static void categoryMethod_midrange_5F_intermediate_5F_GOTO_optimizeGOTO (const 
           ioArgument_ioGeneratedInstructionList.modifier_setMInstructionAtIndex (cast_13229_literalOp, constinArgument_inLineIndex, inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 306)) ;
           }
           ioArgument_ioOptimizationsDone = GALGAS_bool (true) ;
-          ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string ("  line ").add_operation (constinArgument_inLineIndex.getter_string (SOURCE_FILE ("midrange_optimizations.galgas", 311)), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 311)).add_operation (GALGAS_string (": GOTO branching to RETLW replaced by RETLW\n"), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 311))  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 311)) ;
+          ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  line ").add_operation (constinArgument_inLineIndex.getter_string (SOURCE_FILE ("midrange_optimizations.galgas", 311)), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 311)).add_operation (GALGAS_string (": GOTO branching to RETLW replaced by RETLW\n"), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 311)), inCompiler  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 311)) ;
         }
       }else if (var_firstInstruction.dynamicTypeDescriptor () == & kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_JUMP) {
         GALGAS_midrange_5F_intermediate_5F_JUMP cast_13642_jump ((cPtr_midrange_5F_intermediate_5F_JUMP *) var_firstInstruction.ptr ()) ;
@@ -11696,7 +11696,7 @@ static void categoryMethod_midrange_5F_intermediate_5F_GOTO_optimizeGOTO (const 
           ioArgument_ioGeneratedInstructionList.modifier_setMInstructionAtIndex (GALGAS_midrange_5F_intermediate_5F_JUMP::constructor_new (object->mAttribute_mInstructionLocation, cast_13642_jump.getter_mTargetLabel (SOURCE_FILE ("midrange_optimizations.galgas", 316)), GALGAS_midrange_5F_call_5F_goto_5F_bit::constructor_noChange (SOURCE_FILE ("midrange_optimizations.galgas", 316)), GALGAS_midrange_5F_call_5F_goto_5F_bit::constructor_noChange (SOURCE_FILE ("midrange_optimizations.galgas", 316))  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 316)), constinArgument_inLineIndex, inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 315)) ;
           }
           ioArgument_ioOptimizationsDone = GALGAS_bool (true) ;
-          ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string ("  line ").add_operation (constinArgument_inLineIndex.getter_string (SOURCE_FILE ("midrange_optimizations.galgas", 320)), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 320)).add_operation (GALGAS_string (": GOTO branching to JUMP replaced by JUMP\n"), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 320))  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 320)) ;
+          ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  line ").add_operation (constinArgument_inLineIndex.getter_string (SOURCE_FILE ("midrange_optimizations.galgas", 320)), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 320)).add_operation (GALGAS_string (": GOTO branching to JUMP replaced by JUMP\n"), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 320)), inCompiler  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 320)) ;
         }
       }else if (var_firstInstruction.dynamicTypeDescriptor () == & kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_GOTO) {
         GALGAS_midrange_5F_intermediate_5F_GOTO cast_14149_goto ((cPtr_midrange_5F_intermediate_5F_GOTO *) var_firstInstruction.ptr ()) ;
@@ -11706,7 +11706,7 @@ static void categoryMethod_midrange_5F_intermediate_5F_GOTO_optimizeGOTO (const 
           ioArgument_ioGeneratedInstructionList.modifier_setMInstructionAtIndex (GALGAS_midrange_5F_intermediate_5F_GOTO::constructor_new (object->mAttribute_mInstructionLocation, cast_14149_goto.getter_mTargetLabel (SOURCE_FILE ("midrange_optimizations.galgas", 325))  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 325)), constinArgument_inLineIndex, inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 324)) ;
           }
           ioArgument_ioOptimizationsDone = GALGAS_bool (true) ;
-          ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string ("  line ").add_operation (constinArgument_inLineIndex.getter_string (SOURCE_FILE ("midrange_optimizations.galgas", 329)), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 329)).add_operation (GALGAS_string (": GOTO branching to GOTO replaced by GOTO\n"), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 329))  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 329)) ;
+          ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  line ").add_operation (constinArgument_inLineIndex.getter_string (SOURCE_FILE ("midrange_optimizations.galgas", 329)), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 329)).add_operation (GALGAS_string (": GOTO branching to GOTO replaced by GOTO\n"), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 329)), inCompiler  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 329)) ;
         }
       }
     }
@@ -12305,26 +12305,26 @@ void categoryMethod_display (const GALGAS_ipic_31__38_Block inObject,
                              GALGAS_string & ioArgument_ioListFileContents,
                              C_Compiler * inCompiler
                              COMMA_UNUSED_LOCATION_ARGS) {
-  ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string ("LABEL ").add_operation (inObject.mAttribute_mLabel.getter_string (SOURCE_FILE ("ipic18_display_block_list.galgas", 12)), inCompiler COMMA_SOURCE_FILE ("ipic18_display_block_list.galgas", 12))  COMMA_SOURCE_FILE ("ipic18_display_block_list.galgas", 12)) ;
+  ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("LABEL ").add_operation (inObject.mAttribute_mLabel.getter_string (SOURCE_FILE ("ipic18_display_block_list.galgas", 12)), inCompiler COMMA_SOURCE_FILE ("ipic18_display_block_list.galgas", 12)), inCompiler  COMMA_SOURCE_FILE ("ipic18_display_block_list.galgas", 12)) ;
   const enumGalgasBool test_0 = GALGAS_bool (kIsNotEqual, inObject.mAttribute_mAddress.objectCompare (GALGAS_uint::constructor_max (SOURCE_FILE ("ipic18_display_block_list.galgas", 13)))).boolEnum () ;
   if (kBoolTrue == test_0) {
-    ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string (", ORG ").add_operation (inObject.mAttribute_mAddress.getter_hexString (SOURCE_FILE ("ipic18_display_block_list.galgas", 14)), inCompiler COMMA_SOURCE_FILE ("ipic18_display_block_list.galgas", 14))  COMMA_SOURCE_FILE ("ipic18_display_block_list.galgas", 14)) ;
+    ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string (", ORG ").add_operation (inObject.mAttribute_mAddress.getter_hexString (SOURCE_FILE ("ipic18_display_block_list.galgas", 14)), inCompiler COMMA_SOURCE_FILE ("ipic18_display_block_list.galgas", 14)), inCompiler  COMMA_SOURCE_FILE ("ipic18_display_block_list.galgas", 14)) ;
   }
-  ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string (":\n")  COMMA_SOURCE_FILE ("ipic18_display_block_list.galgas", 16)) ;
+  ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string (":\n"), inCompiler  COMMA_SOURCE_FILE ("ipic18_display_block_list.galgas", 16)) ;
   cEnumerator_ipic_31__38_SequentialInstructionList enumerator_492 (inObject.mAttribute_mInstructionList, kEnumeration_up) ;
   while (enumerator_492.hasCurrentObject ()) {
     GALGAS_stringlist var_d = callCategoryGetter_instructionDisplay ((const cPtr_ipic_31__38_SequentialInstruction *) enumerator_492.current_mInstruction (HERE).ptr (), inCompiler COMMA_SOURCE_FILE ("ipic18_display_block_list.galgas", 19)) ;
     cEnumerator_stringlist enumerator_570 (var_d, kEnumeration_up) ;
     while (enumerator_570.hasCurrentObject ()) {
-      ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string ("  ").add_operation (enumerator_570.current_mValue (HERE), inCompiler COMMA_SOURCE_FILE ("ipic18_display_block_list.galgas", 21)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("ipic18_display_block_list.galgas", 21))  COMMA_SOURCE_FILE ("ipic18_display_block_list.galgas", 21)) ;
+      ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  ").add_operation (enumerator_570.current_mValue (HERE), inCompiler COMMA_SOURCE_FILE ("ipic18_display_block_list.galgas", 21)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("ipic18_display_block_list.galgas", 21)), inCompiler  COMMA_SOURCE_FILE ("ipic18_display_block_list.galgas", 21)) ;
       enumerator_570.gotoNextObject () ;
     }
     enumerator_492.gotoNextObject () ;
   }
-  ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string ("  ")  COMMA_SOURCE_FILE ("ipic18_display_block_list.galgas", 25)) ;
-  ioArgument_ioListFileContents.dotAssign_operation (callCategoryGetter_terminatorDisplay ((const cPtr_ipic_31__38_AbstractBlockTerminator *) inObject.mAttribute_mTerminator.ptr (), constinArgument_inNextBlockLabel, inCompiler COMMA_SOURCE_FILE ("ipic18_display_block_list.galgas", 26))  COMMA_SOURCE_FILE ("ipic18_display_block_list.galgas", 26)) ;
-  ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string ("\n"
-    "\n")  COMMA_SOURCE_FILE ("ipic18_display_block_list.galgas", 27)) ;
+  ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  "), inCompiler  COMMA_SOURCE_FILE ("ipic18_display_block_list.galgas", 25)) ;
+  ioArgument_ioListFileContents.plusAssign_operation(callCategoryGetter_terminatorDisplay ((const cPtr_ipic_31__38_AbstractBlockTerminator *) inObject.mAttribute_mTerminator.ptr (), constinArgument_inNextBlockLabel, inCompiler COMMA_SOURCE_FILE ("ipic18_display_block_list.galgas", 26)), inCompiler  COMMA_SOURCE_FILE ("ipic18_display_block_list.galgas", 26)) ;
+  ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("\n"
+    "\n"), inCompiler  COMMA_SOURCE_FILE ("ipic18_display_block_list.galgas", 27)) ;
 }
 
 
@@ -12386,7 +12386,7 @@ void categoryMethod_optimize (const GALGAS_ipic_31__38_Block inObject,
           }
           var_optimizedTerminator = GALGAS_ipic_31__38_RetlwTerminator::constructor_new (cast_36996_op.getter_mInstructionLocation (SOURCE_FILE ("ipic18_optimize_block.galgas", 992)), cast_36996_op.getter_mLiteralValue (SOURCE_FILE ("ipic18_optimize_block.galgas", 992))  COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 992)) ;
           var_optimized = GALGAS_bool (true) ;
-          ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string ("  [M] ").add_operation (inObject.mAttribute_mLabel.getter_string (SOURCE_FILE ("ipic18_optimize_block.galgas", 994)), inCompiler COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 994)).add_operation (GALGAS_string (": MOVLW k ; RETURN --> RETLW k\n"), inCompiler COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 994))  COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 994)) ;
+          ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  [M] ").add_operation (inObject.mAttribute_mLabel.getter_string (SOURCE_FILE ("ipic18_optimize_block.galgas", 994)), inCompiler COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 994)).add_operation (GALGAS_string (": MOVLW k ; RETURN --> RETLW k\n"), inCompiler COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 994)), inCompiler  COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 994)) ;
         }
       }else if (var_lastInstruction.dynamicTypeDescriptor () == & kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_JSR) {
         GALGAS_ipic_31__38__5F_intermediate_5F_JSR cast_37503_jsr ((cPtr_ipic_31__38__5F_intermediate_5F_JSR *) var_lastInstruction.ptr ()) ;
@@ -12400,7 +12400,7 @@ void categoryMethod_optimize (const GALGAS_ipic_31__38_Block inObject,
           }
           var_optimizedTerminator = GALGAS_ipic_31__38_JumpTerminator::constructor_new (cast_37503_jsr.getter_mInstructionLocation (SOURCE_FILE ("ipic18_optimize_block.galgas", 1000)), cast_37503_jsr.getter_mTargetLabel (SOURCE_FILE ("ipic18_optimize_block.galgas", 1000)), cast_37503_jsr.getter_mKind (SOURCE_FILE ("ipic18_optimize_block.galgas", 1000))  COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 1000)) ;
           var_optimized = GALGAS_bool (true) ;
-          ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string ("  [J] ").add_operation (inObject.mAttribute_mLabel.getter_string (SOURCE_FILE ("ipic18_optimize_block.galgas", 1002)), inCompiler COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 1002)).add_operation (GALGAS_string (": JSR "), inCompiler COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 1002)).add_operation (cast_37503_jsr.getter_mTargetLabel (SOURCE_FILE ("ipic18_optimize_block.galgas", 1002)).getter_string (SOURCE_FILE ("ipic18_optimize_block.galgas", 1002)), inCompiler COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 1002)).add_operation (GALGAS_string (" ; RETURN --> JUMP "), inCompiler COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 1002)).add_operation (cast_37503_jsr.getter_mTargetLabel (SOURCE_FILE ("ipic18_optimize_block.galgas", 1002)).getter_string (SOURCE_FILE ("ipic18_optimize_block.galgas", 1002)), inCompiler COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 1002)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 1002))  COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 1002)) ;
+          ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  [J] ").add_operation (inObject.mAttribute_mLabel.getter_string (SOURCE_FILE ("ipic18_optimize_block.galgas", 1002)), inCompiler COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 1002)).add_operation (GALGAS_string (": JSR "), inCompiler COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 1002)).add_operation (cast_37503_jsr.getter_mTargetLabel (SOURCE_FILE ("ipic18_optimize_block.galgas", 1002)).getter_string (SOURCE_FILE ("ipic18_optimize_block.galgas", 1002)), inCompiler COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 1002)).add_operation (GALGAS_string (" ; RETURN --> JUMP "), inCompiler COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 1002)).add_operation (cast_37503_jsr.getter_mTargetLabel (SOURCE_FILE ("ipic18_optimize_block.galgas", 1002)).getter_string (SOURCE_FILE ("ipic18_optimize_block.galgas", 1002)), inCompiler COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 1002)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 1002)), inCompiler  COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 1002)) ;
         }
       }
     }

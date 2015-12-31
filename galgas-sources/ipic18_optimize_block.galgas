@@ -1100,7 +1100,7 @@ proc ipic18OptimizeBlocks
   ioListFileContents += "  [P] JUMP propagation: always enabled\n"
   ioListFileContents += "  [R] Call to RETLW replaced by MOVLW: " + [optimizeFlagStruct.mJSRtoRETLWreplacedByMOVLW flagValue] + "\n"
   ioListFileContents += "  [U] Useless test elimination: always enabled\n"
-  if [option.verbose_output value] then
+  if @application.verboseOutput then
     message "Optimizations:\n"
   end
 #--- Optimizations loops
@@ -1112,7 +1112,7 @@ proc ipic18OptimizeBlocks
     optimizationPass = optimizationPass + 1
     ioListFileContents += "\n--- Pass " + optimizationPass + " (" + [ioGeneratedBlockList length] + " blocks)\n"
     let @uint blockCountBeforeOptimization = [ioGeneratedBlockList length]
-    if [option.verbose_output value] then
+    if @application.verboseOutput then
       message "  Pass " + optimizationPass + " : " + blockCountBeforeOptimization + " blocks.\n"
     end
   #-------------------------------- Build label map
@@ -1152,7 +1152,7 @@ proc ipic18OptimizeBlocks
     ioGeneratedBlockList = optimizedBlockList
   end
   ioListFileContents += "  No optimization.\n\n"
-  if [option.verbose_output value] then
+  if @application.verboseOutput then
     message "\n"
   end
 }

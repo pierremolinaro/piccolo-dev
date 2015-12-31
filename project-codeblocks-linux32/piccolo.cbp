@@ -67,7 +67,6 @@
   <Add directory="../hand_coded_sources" />
   </Compiler>
   <Linker>
-
   </Linker>
   <Unit filename="../build/libpm/all-libpm.cpp" />
   <Unit filename="../build/libpm/galgas2/all-galgas.cpp" />
@@ -86,6 +85,7 @@
   <Unit filename="../build/output/all-declarations-2.cpp" />
   <Unit filename="../build/output/all-declarations-1.cpp" />
   <Unit filename="../build/output/all-declarations-0.cpp" />
+  <Unit filename="../build/output/C_galgas_quiet_option.cpp" />
   <Unit filename="../hand_coded_sources/piccolo_computations.cpp" />
 
   <Unit filename="../build/libpm/gmp/32-mp_bases.c" />

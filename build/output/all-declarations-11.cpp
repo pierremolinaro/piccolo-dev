@@ -22,11 +22,11 @@ void categoryMethod_relativeBranchOverflow (const GALGAS_ipic_31__38_Block inObj
                                             C_Compiler * inCompiler
                                             COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_uint var_address = constinArgument_inBlockStartAddress ;
-  cEnumerator_ipic_31__38_SequentialInstructionList enumerator_6271 (inObject.mAttribute_mInstructionList, kEnumeration_up) ;
-  while (enumerator_6271.hasCurrentObject ()) {
-    callCategoryMethod_instructionRelativeBranchOverflow ((const cPtr_ipic_31__38_SequentialInstruction *) enumerator_6271.current_mInstruction (HERE).ptr (), var_address, inObject.mAttribute_mLabel.mAttribute_string, constinArgument_inSymbolTable, ioArgument_ioOverflowMap, inCompiler COMMA_SOURCE_FILE ("ipic18_relatives_resolution.galgas", 201)) ;
-    var_address = var_address.add_operation (callCategoryGetter_instructionSize ((const cPtr_ipic_31__38_SequentialInstruction *) enumerator_6271.current_mInstruction (HERE).ptr (), inCompiler COMMA_SOURCE_FILE ("ipic18_relatives_resolution.galgas", 207)), inCompiler COMMA_SOURCE_FILE ("ipic18_relatives_resolution.galgas", 207)) ;
-    enumerator_6271.gotoNextObject () ;
+  cEnumerator_ipic_31__38_SequentialInstructionList enumerator_6262 (inObject.mAttribute_mInstructionList, kEnumeration_up) ;
+  while (enumerator_6262.hasCurrentObject ()) {
+    callCategoryMethod_instructionRelativeBranchOverflow ((const cPtr_ipic_31__38_SequentialInstruction *) enumerator_6262.current_mInstruction (HERE).ptr (), var_address, inObject.mAttribute_mLabel.mAttribute_string, constinArgument_inSymbolTable, ioArgument_ioOverflowMap, inCompiler COMMA_SOURCE_FILE ("ipic18_relatives_resolution.galgas", 201)) ;
+    var_address = var_address.add_operation (callCategoryGetter_instructionSize ((const cPtr_ipic_31__38_SequentialInstruction *) enumerator_6262.current_mInstruction (HERE).ptr (), inCompiler COMMA_SOURCE_FILE ("ipic18_relatives_resolution.galgas", 207)), inCompiler COMMA_SOURCE_FILE ("ipic18_relatives_resolution.galgas", 207)) ;
+    enumerator_6262.gotoNextObject () ;
   }
   callCategoryMethod_terminatorRelativeBranchOverflow ((const cPtr_ipic_31__38_AbstractBlockTerminator *) inObject.mAttribute_mTerminator.ptr (), var_address, inObject.mAttribute_mLabel.mAttribute_string, constinArgument_inSymbolTable, constinArgument_inNextBlockLabel, ioArgument_ioOverflowMap, inCompiler COMMA_SOURCE_FILE ("ipic18_relatives_resolution.galgas", 210)) ;
 }
@@ -48,7 +48,7 @@ void categoryMethod_generateCodeForBlock (const GALGAS_ipic_31__38_Block inObjec
                                           GALGAS_generatedCodeMap & ioArgument_ioGeneratedCodeMap,
                                           C_Compiler * inCompiler
                                           COMMA_UNUSED_LOCATION_ARGS) {
-  ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string ("Addr.  Code       Duration    Assembly                                           Intermediate Representation\n")  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 98)) ;
+  ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("Addr.  Code       Duration    Assembly                                           Intermediate Representation\n"), inCompiler  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 98)) ;
   const enumGalgasBool test_0 = GALGAS_bool (kIsEqual, inObject.mAttribute_mAddress.objectCompare (GALGAS_uint::constructor_max (SOURCE_FILE ("ipic18_code_generation.galgas", 99)))).boolEnum () ;
   if (kBoolTrue == test_0) {
     {
@@ -58,7 +58,7 @@ void categoryMethod_generateCodeForBlock (const GALGAS_ipic_31__38_Block inObjec
     temp_2.addAssign_operation (GALGAS_string ("LABEL ").add_operation (inObject.mAttribute_mLabel.getter_string (SOURCE_FILE ("ipic18_code_generation.galgas", 103)), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 103))  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 103)) ;
     routine_generateLineWithCode (constinArgument_inBlockAddress, temp_1, temp_2, GALGAS_uint::constructor_max (SOURCE_FILE ("ipic18_code_generation.galgas", 104)), GALGAS_uint ((uint32_t) 0U), ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 100)) ;
     }
-    ioArgument_ioAssemblyString.dotAssign_operation (inObject.mAttribute_mLabel.mAttribute_string.add_operation (GALGAS_string (":\n"), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 108))  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 108)) ;
+    ioArgument_ioAssemblyString.plusAssign_operation(inObject.mAttribute_mLabel.mAttribute_string.add_operation (GALGAS_string (":\n"), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 108)), inCompiler  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 108)) ;
   }else if (kBoolFalse == test_0) {
     GALGAS_codeList var_cd = GALGAS_codeList::constructor_emptyList (SOURCE_FILE ("ipic18_code_generation.galgas", 110)) ;
     var_cd.addAssign_operation (GALGAS_string ("ORG ").add_operation (constinArgument_inBlockAddress.getter_hexString (SOURCE_FILE ("ipic18_code_generation.galgas", 111)), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 111)), GALGAS_uintlist::constructor_emptyList (SOURCE_FILE ("ipic18_code_generation.galgas", 111))  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 111)) ;
@@ -68,8 +68,8 @@ void categoryMethod_generateCodeForBlock (const GALGAS_ipic_31__38_Block inObjec
     temp_3.addAssign_operation (GALGAS_string ("LABEL ").add_operation (inObject.mAttribute_mLabel.getter_string (SOURCE_FILE ("ipic18_code_generation.galgas", 116)), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 116)).add_operation (GALGAS_string (", ORG "), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 116)).add_operation (constinArgument_inBlockAddress.getter_hexString (SOURCE_FILE ("ipic18_code_generation.galgas", 116)), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 116))  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 116)) ;
     routine_generateLineWithCode (constinArgument_inBlockAddress, var_cd, temp_3, GALGAS_uint::constructor_max (SOURCE_FILE ("ipic18_code_generation.galgas", 117)), GALGAS_uint ((uint32_t) 0U), ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 113)) ;
     }
-    ioArgument_ioAssemblyString.dotAssign_operation (GALGAS_string ("    ORG ").add_operation (constinArgument_inBlockAddress.getter_hexString (SOURCE_FILE ("ipic18_code_generation.galgas", 121)), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 121)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 121))  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 121)) ;
-    ioArgument_ioAssemblyString.dotAssign_operation (inObject.mAttribute_mLabel.mAttribute_string.add_operation (GALGAS_string (":\n"), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 122))  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 122)) ;
+    ioArgument_ioAssemblyString.plusAssign_operation(GALGAS_string ("    ORG ").add_operation (constinArgument_inBlockAddress.getter_hexString (SOURCE_FILE ("ipic18_code_generation.galgas", 121)), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 121)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 121)), inCompiler  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 121)) ;
+    ioArgument_ioAssemblyString.plusAssign_operation(inObject.mAttribute_mLabel.mAttribute_string.add_operation (GALGAS_string (":\n"), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 122)), inCompiler  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 122)) ;
   }
   GALGAS_uint var_address = constinArgument_inBlockAddress ;
   cEnumerator_ipic_31__38_SequentialInstructionList enumerator_3940 (inObject.mAttribute_mInstructionList, kEnumeration_up) ;
@@ -91,7 +91,7 @@ void categoryMethod_generateCodeForBlock (const GALGAS_ipic_31__38_Block inObjec
         }
         enumerator_4346.gotoNextObject () ;
       }
-      ioArgument_ioAssemblyString.dotAssign_operation (enumerator_4315.current_mAssemblyCode (HERE).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 146))  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 146)) ;
+      ioArgument_ioAssemblyString.plusAssign_operation(enumerator_4315.current_mAssemblyCode (HERE).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 146)), inCompiler  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 146)) ;
       enumerator_4315.gotoNextObject () ;
     }
     var_address = var_address.add_operation (callCategoryGetter_instructionSize ((const cPtr_ipic_31__38_SequentialInstruction *) enumerator_3940.current_mInstruction (HERE).ptr (), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 148)), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 148)) ;
@@ -105,7 +105,7 @@ void categoryMethod_generateCodeForBlock (const GALGAS_ipic_31__38_Block inObjec
     if (kBoolTrue == test_4) {
       GALGAS_string var_s = GALGAS_string ("*** INTERNAL ERROR ** generated code size (").add_operation (var_generatedCodeSize.getter_string (SOURCE_FILE ("ipic18_code_generation.galgas", 155)), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 155)).add_operation (GALGAS_string (") != instruction size ("), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 156)).add_operation (callCategoryGetter_instructionSize ((const cPtr_ipic_31__38_SequentialInstruction *) enumerator_3940.current_mInstruction (HERE).ptr (), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 156)).getter_string (SOURCE_FILE ("ipic18_code_generation.galgas", 156)), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 156)).add_operation (GALGAS_string (")"), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 156)) ;
       inCompiler->emitSemanticError (GALGAS_location::constructor_nowhere (SOURCE_FILE ("ipic18_code_generation.galgas", 157)), var_s  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 157)) ;
-      ioArgument_ioListFileContents.dotAssign_operation (var_s.add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 158))  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 158)) ;
+      ioArgument_ioListFileContents.plusAssign_operation(var_s.add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 158)), inCompiler  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 158)) ;
     }
     enumerator_3940.gotoNextObject () ;
   }
@@ -125,7 +125,7 @@ void categoryMethod_generateCodeForBlock (const GALGAS_ipic_31__38_Block inObjec
       }
       enumerator_5356.gotoNextObject () ;
     }
-    ioArgument_ioAssemblyString.dotAssign_operation (enumerator_5327.current_mAssemblyCode (HERE).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 180))  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 180)) ;
+    ioArgument_ioAssemblyString.plusAssign_operation(enumerator_5327.current_mAssemblyCode (HERE).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 180)), inCompiler  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 180)) ;
     enumerator_5327.gotoNextObject () ;
   }
   GALGAS_uint var_generatedCodeSize = GALGAS_uint ((uint32_t) 0U) ;
@@ -138,9 +138,9 @@ void categoryMethod_generateCodeForBlock (const GALGAS_ipic_31__38_Block inObjec
   if (kBoolTrue == test_6) {
     GALGAS_string var_s = GALGAS_string ("*** INTERNAL ERROR ** generated code size (").add_operation (var_generatedCodeSize.getter_string (SOURCE_FILE ("ipic18_code_generation.galgas", 188)), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 188)).add_operation (GALGAS_string (") != instruction size ("), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 189)).add_operation (callCategoryGetter_terminatorSize ((const cPtr_ipic_31__38_AbstractBlockTerminator *) inObject.mAttribute_mTerminator.ptr (), constinArgument_inNextBlockLabel, inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 189)).getter_string (SOURCE_FILE ("ipic18_code_generation.galgas", 189)), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 189)).add_operation (GALGAS_string (")"), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 189)) ;
     inCompiler->emitSemanticError (GALGAS_location::constructor_nowhere (SOURCE_FILE ("ipic18_code_generation.galgas", 190)), var_s  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 190)) ;
-    ioArgument_ioListFileContents.dotAssign_operation (var_s.add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 191))  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 191)) ;
+    ioArgument_ioListFileContents.plusAssign_operation(var_s.add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 191)), inCompiler  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 191)) ;
   }
-  ioArgument_ioListFileContents.dotAssign_operation (GALGAS_string ("\n")  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 194)) ;
+  ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("\n"), inCompiler  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 194)) ;
 }
 
 
@@ -8816,7 +8816,7 @@ static void categoryMethod_registerExpression_resolveBaselineAccess (const cPtr_
   GALGAS_string var_assemblyString = object->mAttribute_mRegisterName.getter_string (SOURCE_FILE ("baseline_semantic_analysis.galgas", 24)) ;
   const enumGalgasBool test_0 = GALGAS_bool (kIsStrictSup, var_offset.objectCompare (GALGAS_sint_36__34_ ((int64_t) 0LL))).boolEnum () ;
   if (kBoolTrue == test_0) {
-    var_assemblyString.dotAssign_operation (GALGAS_string (" + ").add_operation (var_offset.getter_uint (inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 26)).getter_hexString (SOURCE_FILE ("baseline_semantic_analysis.galgas", 26)), inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 26))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 26)) ;
+    var_assemblyString.plusAssign_operation(GALGAS_string (" + ").add_operation (var_offset.getter_uint (inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 26)).getter_hexString (SOURCE_FILE ("baseline_semantic_analysis.galgas", 26)), inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 26)), inCompiler  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 26)) ;
   }
   GALGAS_uintlist var_registerAddressList ;
   GALGAS_uint var_size ;
@@ -9101,7 +9101,7 @@ static void categoryMethod_registerExpression_resolveMidrangeAccess (const cPtr_
   GALGAS_string var_assemblyString = object->mAttribute_mRegisterName.mAttribute_string ;
   const enumGalgasBool test_0 = GALGAS_bool (kIsStrictSup, var_offset.objectCompare (GALGAS_sint_36__34_ ((int64_t) 0LL))).boolEnum () ;
   if (kBoolTrue == test_0) {
-    var_assemblyString.dotAssign_operation (GALGAS_string (" + ").add_operation (var_offset.getter_uint (inCompiler COMMA_SOURCE_FILE ("midrange_intermediate_classes.galgas", 26)).getter_hexString (SOURCE_FILE ("midrange_intermediate_classes.galgas", 26)), inCompiler COMMA_SOURCE_FILE ("midrange_intermediate_classes.galgas", 26))  COMMA_SOURCE_FILE ("midrange_intermediate_classes.galgas", 26)) ;
+    var_assemblyString.plusAssign_operation(GALGAS_string (" + ").add_operation (var_offset.getter_uint (inCompiler COMMA_SOURCE_FILE ("midrange_intermediate_classes.galgas", 26)).getter_hexString (SOURCE_FILE ("midrange_intermediate_classes.galgas", 26)), inCompiler COMMA_SOURCE_FILE ("midrange_intermediate_classes.galgas", 26)), inCompiler  COMMA_SOURCE_FILE ("midrange_intermediate_classes.galgas", 26)) ;
   }
   GALGAS_uintlist var_registerAddressList ;
   GALGAS_uint var_size ;
@@ -9158,9 +9158,9 @@ static void categoryMethod_registerExpression_resolveMidrangeAccess (const cPtr_
       GALGAS_string var_acceptableBankMessage = GALGAS_string::makeEmptyString () ;
       cEnumerator_uintlist enumerator_1821 (var_registerAddressList, kEnumeration_up) ;
       while (enumerator_1821.hasCurrentObject ()) {
-        var_acceptableBankMessage.dotAssign_operation (enumerator_1821.current_mValue (HERE).right_shift_operation (GALGAS_uint ((uint32_t) 7U) COMMA_SOURCE_FILE ("midrange_intermediate_classes.galgas", 62)).getter_string (SOURCE_FILE ("midrange_intermediate_classes.galgas", 62))  COMMA_SOURCE_FILE ("midrange_intermediate_classes.galgas", 62)) ;
+        var_acceptableBankMessage.plusAssign_operation(enumerator_1821.current_mValue (HERE).right_shift_operation (GALGAS_uint ((uint32_t) 7U) COMMA_SOURCE_FILE ("midrange_intermediate_classes.galgas", 62)).getter_string (SOURCE_FILE ("midrange_intermediate_classes.galgas", 62)), inCompiler  COMMA_SOURCE_FILE ("midrange_intermediate_classes.galgas", 62)) ;
         if (enumerator_1821.hasNextObject ()) {
-          var_acceptableBankMessage.dotAssign_operation (GALGAS_string (", ")  COMMA_SOURCE_FILE ("midrange_intermediate_classes.galgas", 63)) ;
+          var_acceptableBankMessage.plusAssign_operation(GALGAS_string (", "), inCompiler  COMMA_SOURCE_FILE ("midrange_intermediate_classes.galgas", 63)) ;
         }
         enumerator_1821.gotoNextObject () ;
       }
@@ -9186,9 +9186,9 @@ static void categoryMethod_registerExpression_resolveMidrangeAccess (const cPtr_
       GALGAS_string var_acceptableBankMessage = GALGAS_string::makeEmptyString () ;
       cEnumerator_uintlist enumerator_2462 (var_registerAddressList, kEnumeration_up) ;
       while (enumerator_2462.hasCurrentObject ()) {
-        var_acceptableBankMessage.dotAssign_operation (enumerator_2462.current_mValue (HERE).right_shift_operation (GALGAS_uint ((uint32_t) 7U) COMMA_SOURCE_FILE ("midrange_intermediate_classes.galgas", 76)).getter_string (SOURCE_FILE ("midrange_intermediate_classes.galgas", 76))  COMMA_SOURCE_FILE ("midrange_intermediate_classes.galgas", 76)) ;
+        var_acceptableBankMessage.plusAssign_operation(enumerator_2462.current_mValue (HERE).right_shift_operation (GALGAS_uint ((uint32_t) 7U) COMMA_SOURCE_FILE ("midrange_intermediate_classes.galgas", 76)).getter_string (SOURCE_FILE ("midrange_intermediate_classes.galgas", 76)), inCompiler  COMMA_SOURCE_FILE ("midrange_intermediate_classes.galgas", 76)) ;
         if (enumerator_2462.hasNextObject ()) {
-          var_acceptableBankMessage.dotAssign_operation (GALGAS_string (", ")  COMMA_SOURCE_FILE ("midrange_intermediate_classes.galgas", 77)) ;
+          var_acceptableBankMessage.plusAssign_operation(GALGAS_string (", "), inCompiler  COMMA_SOURCE_FILE ("midrange_intermediate_classes.galgas", 77)) ;
         }
         enumerator_2462.gotoNextObject () ;
       }
@@ -9291,7 +9291,7 @@ static void categoryMethod_registerExpression_analyzeRegisterExpression (const c
   GALGAS_string var_assemblyString = object->mAttribute_mRegisterName.getter_string (SOURCE_FILE ("ipic18_build_block_representation.galgas", 21)) ;
   const enumGalgasBool test_0 = GALGAS_bool (kIsStrictSup, var_offset.objectCompare (GALGAS_sint_36__34_ ((int64_t) 0LL))).boolEnum () ;
   if (kBoolTrue == test_0) {
-    var_assemblyString.dotAssign_operation (GALGAS_string (" + ").add_operation (var_offset.getter_uint (inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 23)).getter_hexString (SOURCE_FILE ("ipic18_build_block_representation.galgas", 23)), inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 23))  COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 23)) ;
+    var_assemblyString.plusAssign_operation(GALGAS_string (" + ").add_operation (var_offset.getter_uint (inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 23)).getter_hexString (SOURCE_FILE ("ipic18_build_block_representation.galgas", 23)), inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 23)), inCompiler  COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 23)) ;
   }
   GALGAS_uint var_registerAddress = GALGAS_uint ((uint32_t) 0U) ;
   GALGAS_uintlist var_registerAddressList ;
@@ -9331,9 +9331,9 @@ static void categoryMethod_registerExpression_analyzeRegisterExpression (const c
       GALGAS_string var_errorMessage = GALGAS_string ("Accessing the '").add_operation (object->mAttribute_mRegisterName.getter_string (SOURCE_FILE ("ipic18_build_block_representation.galgas", 52)), inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 52)).add_operation (GALGAS_string ("' needs the bank selection set to "), inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 52)).add_operation (var_neededBank.getter_string (SOURCE_FILE ("ipic18_build_block_representation.galgas", 52)), inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 52)) ;
       const enumGalgasBool test_6 = GALGAS_bool (kIsEqual, constinArgument_inCurrentBank.objectCompare (GALGAS_uint::constructor_max (SOURCE_FILE ("ipic18_build_block_representation.galgas", 53)))).boolEnum () ;
       if (kBoolTrue == test_6) {
-        var_errorMessage.dotAssign_operation (GALGAS_string (", but current bank selection cannot be known")  COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 54)) ;
+        var_errorMessage.plusAssign_operation(GALGAS_string (", but current bank selection cannot be known"), inCompiler  COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 54)) ;
       }else if (kBoolFalse == test_6) {
-        var_errorMessage.dotAssign_operation (GALGAS_string (", but current bank selection is set to ").add_operation (constinArgument_inCurrentBank.getter_string (SOURCE_FILE ("ipic18_build_block_representation.galgas", 56)), inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 56))  COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 56)) ;
+        var_errorMessage.plusAssign_operation(GALGAS_string (", but current bank selection is set to ").add_operation (constinArgument_inCurrentBank.getter_string (SOURCE_FILE ("ipic18_build_block_representation.galgas", 56)), inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 56)), inCompiler  COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 56)) ;
       }
       GALGAS_location location_7 (object->mAttribute_mRegisterName.getter_location (HERE)) ; // Implicit use of 'location' getter
       inCompiler->emitSemanticError (location_7, var_errorMessage  COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 58)) ;
@@ -9427,7 +9427,7 @@ static void categoryMethod_registerExpression_analyzeRegisterExpressionWithoutCh
   callCategoryMethod_eval ((const cPtr_immediatExpression *) object->mAttribute_mOffset.ptr (), constinArgument_inRegisterTable, constinArgument_inConstantMap, var_offset, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 80)) ;
   const enumGalgasBool test_0 = GALGAS_bool (kIsStrictSup, var_offset.objectCompare (GALGAS_sint_36__34_ ((int64_t) 0LL))).boolEnum () ;
   if (kBoolTrue == test_0) {
-    var_assemblyString.dotAssign_operation (GALGAS_string (" + ").add_operation (var_offset.getter_uint (inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 82)).getter_hexString (SOURCE_FILE ("ipic18_build_block_representation.galgas", 82)), inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 82))  COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 82)) ;
+    var_assemblyString.plusAssign_operation(GALGAS_string (" + ").add_operation (var_offset.getter_uint (inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 82)).getter_hexString (SOURCE_FILE ("ipic18_build_block_representation.galgas", 82)), inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 82)), inCompiler  COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 82)) ;
   }
   GALGAS_uintlist var_registerAddressList ;
   GALGAS_uint var_size ;
@@ -11101,9 +11101,9 @@ static void categoryMethod_baseline_5F_instruction_5F_TRIS_build_5F_baseline_5F_
     GALGAS_string var_s = GALGAS_string::makeEmptyString () ;
     cEnumerator_stringset enumerator_5533 (function_acceptableTRISoperand (inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 159)), kEnumeration_up) ;
     while (enumerator_5533.hasCurrentObject ()) {
-      var_s.dotAssign_operation (enumerator_5533.current_key (HERE)  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 160)) ;
+      var_s.plusAssign_operation(enumerator_5533.current_key (HERE), inCompiler  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 160)) ;
       if (enumerator_5533.hasNextObject ()) {
-        var_s.dotAssign_operation (GALGAS_string (", ")  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 161)) ;
+        var_s.plusAssign_operation(GALGAS_string (", "), inCompiler  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 161)) ;
       }
       enumerator_5533.gotoNextObject () ;
     }

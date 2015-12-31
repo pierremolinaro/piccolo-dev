@@ -45,7 +45,7 @@ proc perform_cluster_ordering
     @string s = "Cluster ordering optimization (" + clusterCount + " cluster" + if clusterCount > 1 then "s" else "" end + "):\n"
     ioListFileContents += s + "\n"
   #---
-    if [option.verbose_output value] then
+    if @application.verboseOutput then
       message s
     end
   #------------------- Optimization loop
@@ -94,7 +94,7 @@ proc perform_cluster_ordering
         ![sortKey (!clusterList) nowhere]
         !overflowCount
       ]
-      if [option.verbose_output value] then
+      if @application.verboseOutput then
         @string s = "  Pass " + pass + ": "
         if overflowCount == 0 then
           s += "no branch overflow"
@@ -120,7 +120,7 @@ proc perform_cluster_ordering
               [!?clusterList insertAtIndex !first + last !sourceCluster]
               let @string m = "merge #" + targetCluster + " into #" + sourceCluster + "]"
               ioListFileContents += "  --> " + m + "\n"
-              if [option.verbose_output value] then
+              if @application.verboseOutput then
                 message " -> " + m
               end
             elsif sourceCluster == (targetCluster + 1) then
@@ -131,7 +131,7 @@ proc perform_cluster_ordering
               [!?clusterList insertAtIndex !first + last !targetCluster]
               let @string m = "merge #" + sourceCluster + " into #" + targetCluster + "]"
               ioListFileContents += "  --> " + m + "\n"
-              if [option.verbose_output value] then
+              if @application.verboseOutput then
                 message " -> " + m
               end
             elsif sourceCluster < targetCluster then
@@ -144,7 +144,7 @@ proc perform_cluster_ordering
                 continue = true
                 let @string m = "roll up [#" + ((targetCluster + sourceCluster) / 2) + ", #" + targetCluster + "]"
                 ioListFileContents += "  --> " + m + "\n"
-                if [option.verbose_output value] then
+                if @application.verboseOutput then
                   message " -> " + m
                 end
               end
@@ -158,7 +158,7 @@ proc perform_cluster_ordering
                 continue = true
                 let @string m = "roll up [#" + targetCluster+ ", #" + ((targetCluster + sourceCluster) / 2) + "]"
                 ioListFileContents += "  --> " + m + "\n"
-                if [option.verbose_output value] then
+                if @application.verboseOutput then
                   message " -> " + m
                 end
               end
@@ -166,11 +166,11 @@ proc perform_cluster_ordering
           end
         end
       end
-      if [option.verbose_output value] then
+      if @application.verboseOutput then
         message ".\n"
       end
     end
-    if [option.verbose_output value] then
+    if @application.verboseOutput then
       message "\n"
     end
     ioListFileContents += "\n"

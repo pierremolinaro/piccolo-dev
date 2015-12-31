@@ -377,7 +377,7 @@ proc buildOrderedGraph
   let @uint n = blockDiscontinuityCount (!ioBlockList)
   ioListFileContents += "  count before optimization: " + n + "\n"
 #---
-  if [option.verbose_output value] then
+  if @application.verboseOutput then
     message "Block ordering optimization... "
   end
 #-------------------------------- Build label map
@@ -475,7 +475,7 @@ proc buildOrderedGraph
 #------------------------ Messaging
   let @uint p = blockDiscontinuityCount (!orderedBlockList)
   ioListFileContents += "  count after optimization: " + p + "\n\n"
-  if [option.verbose_output value] then
+  if @application.verboseOutput then
     message [n string] + " -> " + p + ".\n\n"
   end
 #--- Write Graphviz file
