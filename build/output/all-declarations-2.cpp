@@ -887,7 +887,7 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_structured_
       var_doLabel = inCompiler->synthetizedAttribute_tokenString () ;
       inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_label) COMMA_SOURCE_FILE ("midrange_syntax.galgas", 310)) ;
       {
-      ioArgument_ioLabelMap.modifier_insertKey (var_doLabel, inCompiler COMMA_SOURCE_FILE ("midrange_syntax.galgas", 311)) ;
+      ioArgument_ioLabelMap.setter_insertKey (var_doLabel, inCompiler COMMA_SOURCE_FILE ("midrange_syntax.galgas", 311)) ;
       }
     } break ;
     default:
@@ -1008,7 +1008,7 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_structured_
       var_foreverLabel = inCompiler->synthetizedAttribute_tokenString () ;
       inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_label) COMMA_SOURCE_FILE ("midrange_syntax.galgas", 402)) ;
       {
-      ioArgument_ioLabelMap.modifier_insertKey (var_foreverLabel, inCompiler COMMA_SOURCE_FILE ("midrange_syntax.galgas", 403)) ;
+      ioArgument_ioLabelMap.setter_insertKey (var_foreverLabel, inCompiler COMMA_SOURCE_FILE ("midrange_syntax.galgas", 403)) ;
       }
     } break ;
     default:
@@ -1127,7 +1127,7 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_structured_
       var_ifLabel = inCompiler->synthetizedAttribute_tokenString () ;
       inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_label) COMMA_SOURCE_FILE ("midrange_syntax.galgas", 491)) ;
       {
-      ioArgument_ioLabelMap.modifier_insertKey (var_ifLabel, inCompiler COMMA_SOURCE_FILE ("midrange_syntax.galgas", 492)) ;
+      ioArgument_ioLabelMap.setter_insertKey (var_ifLabel, inCompiler COMMA_SOURCE_FILE ("midrange_syntax.galgas", 492)) ;
       }
     } break ;
     default:
@@ -1171,7 +1171,7 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_structured_
       var_doLabel = inCompiler->synthetizedAttribute_tokenString () ;
       inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_label) COMMA_SOURCE_FILE ("midrange_syntax.galgas", 517)) ;
       {
-      ioArgument_ioLabelMap.modifier_insertKey (var_doLabel, inCompiler COMMA_SOURCE_FILE ("midrange_syntax.galgas", 518)) ;
+      ioArgument_ioLabelMap.setter_insertKey (var_doLabel, inCompiler COMMA_SOURCE_FILE ("midrange_syntax.galgas", 518)) ;
       }
     } break ;
     default:
@@ -2855,7 +2855,7 @@ void cParser_pic_31__38__5F_bootloader_5F_syntax::rule_pic_31__38__5F_bootloader
           inCompiler->emitSemanticError (location_10, GALGAS_string ("RAM size should be > 0")  COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 70)) ;
         }else if (kBoolFalse == test_9) {
           {
-          outArgument_outBootloaderReservedRAMmap.modifier_insertKey (var_bankName, var_rs, inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 72)) ;
+          outArgument_outBootloaderReservedRAMmap.setter_insertKey (var_bankName, var_rs, inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 72)) ;
           }
         }
       }

@@ -77,7 +77,7 @@ void categoryMethod_generateCodeForBlock (const GALGAS_ipic_31__38_Block inObjec
     GALGAS_codeList var_code ;
     callCategoryMethod_generateCode ((const cPtr_ipic_31__38_SequentialInstruction *) enumerator_3940.current_mInstruction (HERE).ptr (), var_address, constinArgument_inSymbolTable, constinArgument_inDataMap, var_code, inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 127)) ;
     {
-    ioArgument_ioGeneratedCodeMap.modifier_insertKey (var_address.getter_string (SOURCE_FILE ("ipic18_code_generation.galgas", 133)).getter_nowhere (SOURCE_FILE ("ipic18_code_generation.galgas", 133)), var_code, enumerator_3940.current_mInstruction (HERE), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 133)) ;
+    ioArgument_ioGeneratedCodeMap.setter_insertKey (var_address.getter_string (SOURCE_FILE ("ipic18_code_generation.galgas", 133)).getter_nowhere (SOURCE_FILE ("ipic18_code_generation.galgas", 133)), var_code, enumerator_3940.current_mInstruction (HERE), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 133)) ;
     }
     {
     routine_generateLineWithCode (var_address, var_code, callCategoryGetter_instructionDisplay ((const cPtr_ipic_31__38_SequentialInstruction *) enumerator_3940.current_mInstruction (HERE).ptr (), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 137)), enumerator_3940.current_mMin (HERE), enumerator_3940.current_mMax (HERE), ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 134)) ;
@@ -187,12 +187,12 @@ void categoryMethod_computeDuration (const GALGAS_ipic_31__38_Block inObject,
         var_min = var_min.add_operation (var_instructionMin, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 605)) ;
         var_max = var_max.add_operation (var_instructionMax, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 606)) ;
         {
-        var_computedInstructionList.modifier_insertAtIndex (enumerator_22360.current_mInstruction (HERE), var_min, var_max, GALGAS_uint ((uint32_t) 0U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 607)) ;
+        var_computedInstructionList.setter_insertAtIndex (enumerator_22360.current_mInstruction (HERE), var_min, var_max, GALGAS_uint ((uint32_t) 0U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 607)) ;
         }
       }else if (kBoolFalse == test_6) {
         var_ok = GALGAS_bool (false) ;
         {
-        var_computedInstructionList.modifier_insertAtIndex (enumerator_22360.current_mInstruction (HERE), GALGAS_uint::constructor_max (SOURCE_FILE ("ipic18_duration_computations.galgas", 610)), GALGAS_uint ((uint32_t) 0U), GALGAS_uint ((uint32_t) 0U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 610)) ;
+        var_computedInstructionList.setter_insertAtIndex (enumerator_22360.current_mInstruction (HERE), GALGAS_uint::constructor_max (SOURCE_FILE ("ipic18_duration_computations.galgas", 610)), GALGAS_uint ((uint32_t) 0U), GALGAS_uint ((uint32_t) 0U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 610)) ;
         }
       }
       enumerator_22360.gotoNextObject () ;
@@ -206,7 +206,7 @@ void categoryMethod_computeDuration (const GALGAS_ipic_31__38_Block inObject,
       ioArgument_ioContinue = GALGAS_bool (true) ;
       {
       const GALGAS_ipic_31__38_Block temp_11 = inObject ;
-      ioArgument_ioExploredBlockMap.modifier_insertKey (temp_11.mAttribute_mLabel, var_min, var_max, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 623)) ;
+      ioArgument_ioExploredBlockMap.setter_insertKey (temp_11.mAttribute_mLabel, var_min, var_max, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 623)) ;
       }
     }else if (kBoolFalse == test_7) {
       const GALGAS_ipic_31__38_Block temp_12 = inObject ;
@@ -11734,7 +11734,7 @@ static void categoryMethod_baseline_5F_instruction_5F_STATIC_5F_REPEAT_build_5F_
   }
   GALGAS_constantMap var_tempConstantMap = constinArgument_inConstantMap ;
   {
-  var_tempConstantMap.modifier_insertKey (object->mAttribute_mConstantName, var_lowerBound, inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 635)) ;
+  var_tempConstantMap.setter_insertKey (object->mAttribute_mConstantName, var_lowerBound, inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 635)) ;
   }
   {
   routine_handleBaselineInstructionList (constinArgument_inCurrentPage, object->mAttribute_mInstructionList, constinArgument_inRoutineMap, constinArgument_inRegisterTable, var_tempConstantMap, ioArgument_ioLocalLabelIndex, ioArgument_ioGeneratedInstructionList, ioArgument_ioListFileContents, ioArgument_ioContinuesInSequence, constinArgument_inRoutineKind, GALGAS_bool (false), ioArgument_ioUsedRegisters, inCompiler  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 636)) ;
@@ -11764,7 +11764,7 @@ static void categoryMethod_baseline_5F_instruction_5F_STATIC_5F_REPEAT_build_5F_
         variant_23758 -- ;
         GALGAS_constantMap var_constantMap = constinArgument_inConstantMap ;
         {
-        var_constantMap.modifier_insertKey (object->mAttribute_mConstantName, var_idx, inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 657)) ;
+        var_constantMap.setter_insertKey (object->mAttribute_mConstantName, var_idx, inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 657)) ;
         }
         {
         routine_handleBaselineInstructionList (constinArgument_inCurrentPage, object->mAttribute_mInstructionList, constinArgument_inRoutineMap, constinArgument_inRegisterTable, var_constantMap, ioArgument_ioLocalLabelIndex, ioArgument_ioGeneratedInstructionList, ioArgument_ioListFileContents, ioArgument_ioContinuesInSequence, constinArgument_inRoutineKind, GALGAS_bool (false), ioArgument_ioUsedRegisters, inCompiler  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 658)) ;

@@ -1176,7 +1176,7 @@ static void categoryMethod_baseline_5F_intermediate_5F_pseudo_5F_LABEL_defineLab
   const cPtr_baseline_5F_intermediate_5F_pseudo_5F_LABEL * object = (const cPtr_baseline_5F_intermediate_5F_pseudo_5F_LABEL *) inObject ;
   macroValidSharedObject (object, cPtr_baseline_5F_intermediate_5F_pseudo_5F_LABEL) ;
   {
-  ioArgument_ioRoutineSymbolTable.modifier_insertKey (object->mAttribute_mLabel, constinArgument_inLineIndex, inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 191)) ;
+  ioArgument_ioRoutineSymbolTable.setter_insertKey (object->mAttribute_mLabel, constinArgument_inLineIndex, inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 191)) ;
   }
 }
 //---------------------------------------------------------------------------------------------------------------------*
@@ -2384,7 +2384,7 @@ static void categoryMethod_baseline_5F_assembly_5F_pseudo_5F_LABEL_enterLabelAtA
   const cPtr_baseline_5F_assembly_5F_pseudo_5F_LABEL * object = (const cPtr_baseline_5F_assembly_5F_pseudo_5F_LABEL *) inObject ;
   macroValidSharedObject (object, cPtr_baseline_5F_assembly_5F_pseudo_5F_LABEL) ;
   {
-  ioArgument_ioRoutineSymbolTable.modifier_insertKey (object->mAttribute_mLabel, ioArgument_ioWordAddress, inCompiler COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 54)) ;
+  ioArgument_ioRoutineSymbolTable.setter_insertKey (object->mAttribute_mLabel, ioArgument_ioWordAddress, inCompiler COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 54)) ;
   }
 }
 //---------------------------------------------------------------------------------------------------------------------*
@@ -5853,7 +5853,7 @@ static void categoryMethod_midrange_5F_instruction_5F_STATIC_5F_REPEAT_build_5F_
   GALGAS_uint var_finalBank = ioArgument_ioCurrentBank ;
   GALGAS_constantMap var_tempConstantMap = constinArgument_inConstantMap ;
   {
-  var_tempConstantMap.modifier_insertKey (object->mAttribute_mConstantName, var_lowerBound, inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 960)) ;
+  var_tempConstantMap.setter_insertKey (object->mAttribute_mConstantName, var_lowerBound, inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 960)) ;
   }
   {
   routine_handleMidrangeInstructionList (object->mAttribute_mInstructionList, constinArgument_inRoutineMap, constinArgument_inRegisterTable, var_tempConstantMap, ioArgument_ioLocalLabelIndex, ioArgument_ioGeneratedInstructionList, ioArgument_ioListFileContents, constinArgument_inTotalBankCount, var_finalBank, constinArgument_inShouldPreserveBank, ioArgument_ioContinuesInSequence, constinArgument_inRoutineKind, ioArgument_ioUsedRegisters, inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 961)) ;
@@ -5887,7 +5887,7 @@ static void categoryMethod_midrange_5F_instruction_5F_STATIC_5F_REPEAT_build_5F_
         variant_35821 -- ;
         GALGAS_constantMap var_constantMap = constinArgument_inConstantMap ;
         {
-        var_constantMap.modifier_insertKey (object->mAttribute_mConstantName, var_idx, inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 986)) ;
+        var_constantMap.setter_insertKey (object->mAttribute_mConstantName, var_idx, inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 986)) ;
         }
         {
         routine_handleMidrangeInstructionList (object->mAttribute_mInstructionList, constinArgument_inRoutineMap, constinArgument_inRegisterTable, var_constantMap, ioArgument_ioLocalLabelIndex, ioArgument_ioGeneratedInstructionList, ioArgument_ioListFileContents, constinArgument_inTotalBankCount, ioArgument_ioCurrentBank, constinArgument_inShouldPreserveBank, ioArgument_ioContinuesInSequence, constinArgument_inRoutineKind, ioArgument_ioUsedRegisters, inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 987)) ;
@@ -6838,7 +6838,7 @@ static void categoryMethod_midrange_5F_intermediate_5F_pseudo_5F_LABEL_defineLab
   const cPtr_midrange_5F_intermediate_5F_pseudo_5F_LABEL * object = (const cPtr_midrange_5F_intermediate_5F_pseudo_5F_LABEL *) inObject ;
   macroValidSharedObject (object, cPtr_midrange_5F_intermediate_5F_pseudo_5F_LABEL) ;
   {
-  ioArgument_ioRoutineSymbolTable.modifier_insertKey (object->mAttribute_mLabel, constinArgument_inLineIndex, object->mAttribute_mIsDeletable, inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 155)) ;
+  ioArgument_ioRoutineSymbolTable.setter_insertKey (object->mAttribute_mLabel, constinArgument_inLineIndex, object->mAttribute_mIsDeletable, inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 155)) ;
   }
 }
 //---------------------------------------------------------------------------------------------------------------------*
@@ -6866,7 +6866,7 @@ static void categoryMethod_midrange_5F_intermediate_5F_pseudo_5F_LABEL_defineLab
   const cPtr_midrange_5F_intermediate_5F_pseudo_5F_LABEL * object = (const cPtr_midrange_5F_intermediate_5F_pseudo_5F_LABEL *) inObject ;
   macroValidSharedObject (object, cPtr_midrange_5F_intermediate_5F_pseudo_5F_LABEL) ;
   {
-  ioArgument_ioRoutineSymbolTable.modifier_insertKey (object->mAttribute_mLabel, ioArgument_ioAddress, inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 28)) ;
+  ioArgument_ioRoutineSymbolTable.setter_insertKey (object->mAttribute_mLabel, ioArgument_ioAddress, inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 28)) ;
   }
 }
 //---------------------------------------------------------------------------------------------------------------------*
@@ -7074,7 +7074,7 @@ static void categoryMethod_midrange_5F_intermediate_5F_JUMP_compute (const cPtr_
   if (kBoolTrue == test_4) {
     GALGAS_midrange_5F_intermediate_5F_actualInstruction var_instruction = GALGAS_midrange_5F_intermediate_5F_JUMP::constructor_new (object->mAttribute_mInstructionLocation, object->mAttribute_mTargetLabel, var_bit_31__31_, var_bit_31__32_  COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 139)) ;
     {
-    ioArgument_ioGeneratedInstructionList.modifier_setMInstructionAtIndex (var_instruction, constinArgument_inIndex, inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 144)) ;
+    ioArgument_ioGeneratedInstructionList.setter_setMInstructionAtIndex (var_instruction, constinArgument_inIndex, inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 144)) ;
     }
     ioArgument_ioJUMP_5F_or_5F_JSR_5F_fixed = GALGAS_bool (true) ;
     ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  line ").add_operation (constinArgument_inIndex.getter_string (SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 146)), inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 146)).add_operation (GALGAS_string (":  JUMP to other page fixed\n"), inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 146)), inCompiler  COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 146)) ;
@@ -7139,7 +7139,7 @@ static void categoryMethod_midrange_5F_intermediate_5F_JSR_compute (const cPtr_m
   if (kBoolTrue == test_4) {
     GALGAS_midrange_5F_intermediate_5F_actualInstruction var_instruction = GALGAS_midrange_5F_intermediate_5F_JSR::constructor_new (object->mAttribute_mInstructionLocation, object->mAttribute_mTargetLabel, var_bit_31__31_, var_bit_31__32_  COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 183)) ;
     {
-    ioArgument_ioGeneratedInstructionList.modifier_setMInstructionAtIndex (var_instruction, constinArgument_inIndex, inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 188)) ;
+    ioArgument_ioGeneratedInstructionList.setter_setMInstructionAtIndex (var_instruction, constinArgument_inIndex, inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 188)) ;
     }
     ioArgument_ioJUMP_5F_or_5F_JSR_5F_fixed = GALGAS_bool (true) ;
     ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  line ").add_operation (constinArgument_inIndex.getter_string (SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 190)), inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 190)).add_operation (GALGAS_string (":  JSR to other page fixed\n"), inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 190)), inCompiler  COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 190)) ;
@@ -7886,7 +7886,7 @@ static void categoryMethod_midrange_5F_intermediate_5F_pseudo_5F_LABEL_enterLabe
   const cPtr_midrange_5F_intermediate_5F_pseudo_5F_LABEL * object = (const cPtr_midrange_5F_intermediate_5F_pseudo_5F_LABEL *) inObject ;
   macroValidSharedObject (object, cPtr_midrange_5F_intermediate_5F_pseudo_5F_LABEL) ;
   {
-  ioArgument_ioRoutineSymbolTable.modifier_insertKey (object->mAttribute_mLabel, ioArgument_ioAddress, inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 68)) ;
+  ioArgument_ioRoutineSymbolTable.setter_insertKey (object->mAttribute_mLabel, ioArgument_ioAddress, inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 68)) ;
   }
 }
 //---------------------------------------------------------------------------------------------------------------------*
