@@ -114,10 +114,10 @@ void GALGAS_pic_31__38__5F_dataMap::addAssign_operation (const GALGAS_lstring & 
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_pic_31__38__5F_dataMap::modifier_insertKey (GALGAS_lstring inKey,
-                                                        GALGAS_uintlist inArgument0,
-                                                        C_Compiler * inCompiler
-                                                        COMMA_LOCATION_ARGS) {
+void GALGAS_pic_31__38__5F_dataMap::setter_insertKey (GALGAS_lstring inKey,
+                                                      GALGAS_uintlist inArgument0,
+                                                      C_Compiler * inCompiler
+                                                      COMMA_LOCATION_ARGS) {
   cMapElement_pic_31__38__5F_dataMap * p = NULL ;
   macroMyNew (p, cMapElement_pic_31__38__5F_dataMap (inKey, inArgument0 COMMA_HERE)) ;
   capCollectionElement attributes ;
@@ -167,10 +167,10 @@ GALGAS_uintlist GALGAS_pic_31__38__5F_dataMap::getter_mDataForKey (const GALGAS_
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_pic_31__38__5F_dataMap::modifier_setMDataForKey (GALGAS_uintlist inAttributeValue,
-                                                             GALGAS_string inKey,
-                                                             C_Compiler * inCompiler
-                                                             COMMA_LOCATION_ARGS) {
+void GALGAS_pic_31__38__5F_dataMap::setter_setMDataForKey (GALGAS_uintlist inAttributeValue,
+                                                           GALGAS_string inKey,
+                                                           C_Compiler * inCompiler
+                                                           COMMA_LOCATION_ARGS) {
   cCollectionElement * attributes = searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
   cMapElement_pic_31__38__5F_dataMap * p = (cMapElement_pic_31__38__5F_dataMap *) attributes ;
   if (NULL != p) {
@@ -415,12 +415,12 @@ void GALGAS_ipic_31__38_SequentialInstructionList::addAssign_operation (const GA
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_ipic_31__38_SequentialInstructionList::modifier_insertAtIndex (const GALGAS_ipic_31__38_SequentialInstruction inOperand0,
-                                                                           const GALGAS_uint inOperand1,
-                                                                           const GALGAS_uint inOperand2,
-                                                                           const GALGAS_uint inInsertionIndex,
-                                                                           C_Compiler * inCompiler
-                                                                           COMMA_LOCATION_ARGS) {
+void GALGAS_ipic_31__38_SequentialInstructionList::setter_insertAtIndex (const GALGAS_ipic_31__38_SequentialInstruction inOperand0,
+                                                                         const GALGAS_uint inOperand1,
+                                                                         const GALGAS_uint inOperand2,
+                                                                         const GALGAS_uint inInsertionIndex,
+                                                                         C_Compiler * inCompiler
+                                                                         COMMA_LOCATION_ARGS) {
   if (isValid () && inInsertionIndex.isValid () && inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid ()) {
     cCollectionElement * p = NULL ;
     macroMyNew (p, cCollectionElement_ipic_31__38_SequentialInstructionList (inOperand0, inOperand1, inOperand2 COMMA_THERE)) ;
@@ -433,12 +433,12 @@ void GALGAS_ipic_31__38_SequentialInstructionList::modifier_insertAtIndex (const
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_ipic_31__38_SequentialInstructionList::modifier_removeAtIndex (GALGAS_ipic_31__38_SequentialInstruction & outOperand0,
-                                                                           GALGAS_uint & outOperand1,
-                                                                           GALGAS_uint & outOperand2,
-                                                                           const GALGAS_uint inRemoveIndex,
-                                                                           C_Compiler * inCompiler
-                                                                           COMMA_LOCATION_ARGS) {
+void GALGAS_ipic_31__38_SequentialInstructionList::setter_removeAtIndex (GALGAS_ipic_31__38_SequentialInstruction & outOperand0,
+                                                                         GALGAS_uint & outOperand1,
+                                                                         GALGAS_uint & outOperand2,
+                                                                         const GALGAS_uint inRemoveIndex,
+                                                                         C_Compiler * inCompiler
+                                                                         COMMA_LOCATION_ARGS) {
   if (isValid () && inRemoveIndex.isValid ()) {
     capCollectionElement attributes ;
     removeObjectAtIndex (attributes, inRemoveIndex.uintValue (), inCompiler COMMA_THERE) ;
@@ -458,11 +458,11 @@ void GALGAS_ipic_31__38_SequentialInstructionList::modifier_removeAtIndex (GALGA
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_ipic_31__38_SequentialInstructionList::modifier_popFirst (GALGAS_ipic_31__38_SequentialInstruction & outOperand0,
-                                                                      GALGAS_uint & outOperand1,
-                                                                      GALGAS_uint & outOperand2,
-                                                                      C_Compiler * inCompiler
-                                                                      COMMA_LOCATION_ARGS) {
+void GALGAS_ipic_31__38_SequentialInstructionList::setter_popFirst (GALGAS_ipic_31__38_SequentialInstruction & outOperand0,
+                                                                    GALGAS_uint & outOperand1,
+                                                                    GALGAS_uint & outOperand2,
+                                                                    C_Compiler * inCompiler
+                                                                    COMMA_LOCATION_ARGS) {
   capCollectionElement attributes ;
   removeFirstObject (attributes, inCompiler COMMA_THERE) ;
   cCollectionElement_ipic_31__38_SequentialInstructionList * p = (cCollectionElement_ipic_31__38_SequentialInstructionList *) attributes.ptr () ;
@@ -480,11 +480,11 @@ void GALGAS_ipic_31__38_SequentialInstructionList::modifier_popFirst (GALGAS_ipi
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_ipic_31__38_SequentialInstructionList::modifier_popLast (GALGAS_ipic_31__38_SequentialInstruction & outOperand0,
-                                                                     GALGAS_uint & outOperand1,
-                                                                     GALGAS_uint & outOperand2,
-                                                                     C_Compiler * inCompiler
-                                                                     COMMA_LOCATION_ARGS) {
+void GALGAS_ipic_31__38_SequentialInstructionList::setter_popLast (GALGAS_ipic_31__38_SequentialInstruction & outOperand0,
+                                                                   GALGAS_uint & outOperand1,
+                                                                   GALGAS_uint & outOperand2,
+                                                                   C_Compiler * inCompiler
+                                                                   COMMA_LOCATION_ARGS) {
   capCollectionElement attributes ;
   removeLastObject (attributes, inCompiler COMMA_THERE) ;
   cCollectionElement_ipic_31__38_SequentialInstructionList * p = (cCollectionElement_ipic_31__38_SequentialInstructionList *) attributes.ptr () ;
@@ -858,10 +858,10 @@ void GALGAS_ipic_31__38_BlockList::addAssign_operation (const GALGAS_ipic_31__38
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_ipic_31__38_BlockList::modifier_insertAtIndex (const GALGAS_ipic_31__38_Block inOperand0,
-                                                           const GALGAS_uint inInsertionIndex,
-                                                           C_Compiler * inCompiler
-                                                           COMMA_LOCATION_ARGS) {
+void GALGAS_ipic_31__38_BlockList::setter_insertAtIndex (const GALGAS_ipic_31__38_Block inOperand0,
+                                                         const GALGAS_uint inInsertionIndex,
+                                                         C_Compiler * inCompiler
+                                                         COMMA_LOCATION_ARGS) {
   if (isValid () && inInsertionIndex.isValid () && inOperand0.isValid ()) {
     cCollectionElement * p = NULL ;
     macroMyNew (p, cCollectionElement_ipic_31__38_BlockList (inOperand0 COMMA_THERE)) ;
@@ -874,10 +874,10 @@ void GALGAS_ipic_31__38_BlockList::modifier_insertAtIndex (const GALGAS_ipic_31_
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_ipic_31__38_BlockList::modifier_removeAtIndex (GALGAS_ipic_31__38_Block & outOperand0,
-                                                           const GALGAS_uint inRemoveIndex,
-                                                           C_Compiler * inCompiler
-                                                           COMMA_LOCATION_ARGS) {
+void GALGAS_ipic_31__38_BlockList::setter_removeAtIndex (GALGAS_ipic_31__38_Block & outOperand0,
+                                                         const GALGAS_uint inRemoveIndex,
+                                                         C_Compiler * inCompiler
+                                                         COMMA_LOCATION_ARGS) {
   if (isValid () && inRemoveIndex.isValid ()) {
     capCollectionElement attributes ;
     removeObjectAtIndex (attributes, inRemoveIndex.uintValue (), inCompiler COMMA_THERE) ;
@@ -893,9 +893,9 @@ void GALGAS_ipic_31__38_BlockList::modifier_removeAtIndex (GALGAS_ipic_31__38_Bl
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_ipic_31__38_BlockList::modifier_popFirst (GALGAS_ipic_31__38_Block & outOperand0,
-                                                      C_Compiler * inCompiler
-                                                      COMMA_LOCATION_ARGS) {
+void GALGAS_ipic_31__38_BlockList::setter_popFirst (GALGAS_ipic_31__38_Block & outOperand0,
+                                                    C_Compiler * inCompiler
+                                                    COMMA_LOCATION_ARGS) {
   capCollectionElement attributes ;
   removeFirstObject (attributes, inCompiler COMMA_THERE) ;
   cCollectionElement_ipic_31__38_BlockList * p = (cCollectionElement_ipic_31__38_BlockList *) attributes.ptr () ;
@@ -909,9 +909,9 @@ void GALGAS_ipic_31__38_BlockList::modifier_popFirst (GALGAS_ipic_31__38_Block &
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_ipic_31__38_BlockList::modifier_popLast (GALGAS_ipic_31__38_Block & outOperand0,
-                                                     C_Compiler * inCompiler
-                                                     COMMA_LOCATION_ARGS) {
+void GALGAS_ipic_31__38_BlockList::setter_popLast (GALGAS_ipic_31__38_Block & outOperand0,
+                                                   C_Compiler * inCompiler
+                                                   COMMA_LOCATION_ARGS) {
   capCollectionElement attributes ;
   removeLastObject (attributes, inCompiler COMMA_THERE) ;
   cCollectionElement_ipic_31__38_BlockList * p = (cCollectionElement_ipic_31__38_BlockList *) attributes.ptr () ;
@@ -1880,10 +1880,10 @@ void GALGAS_symbolTableForBlockOptimization::addAssign_operation (const GALGAS_l
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_symbolTableForBlockOptimization::modifier_insertKey (GALGAS_lstring inKey,
-                                                                 GALGAS_uint inArgument0,
-                                                                 C_Compiler * inCompiler
-                                                                 COMMA_LOCATION_ARGS) {
+void GALGAS_symbolTableForBlockOptimization::setter_insertKey (GALGAS_lstring inKey,
+                                                               GALGAS_uint inArgument0,
+                                                               C_Compiler * inCompiler
+                                                               COMMA_LOCATION_ARGS) {
   cMapElement_symbolTableForBlockOptimization * p = NULL ;
   macroMyNew (p, cMapElement_symbolTableForBlockOptimization (inKey, inArgument0 COMMA_HERE)) ;
   capCollectionElement attributes ;
@@ -1933,10 +1933,10 @@ GALGAS_uint GALGAS_symbolTableForBlockOptimization::getter_mDefinitionBlockIndex
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_symbolTableForBlockOptimization::modifier_setMDefinitionBlockIndexForKey (GALGAS_uint inAttributeValue,
-                                                                                      GALGAS_string inKey,
-                                                                                      C_Compiler * inCompiler
-                                                                                      COMMA_LOCATION_ARGS) {
+void GALGAS_symbolTableForBlockOptimization::setter_setMDefinitionBlockIndexForKey (GALGAS_uint inAttributeValue,
+                                                                                    GALGAS_string inKey,
+                                                                                    C_Compiler * inCompiler
+                                                                                    COMMA_LOCATION_ARGS) {
   cCollectionElement * attributes = searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
   cMapElement_symbolTableForBlockOptimization * p = (cMapElement_symbolTableForBlockOptimization *) attributes ;
   if (NULL != p) {
@@ -2138,10 +2138,10 @@ void GALGAS_symbolTableForClusterOrdering::addAssign_operation (const GALGAS_lst
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_symbolTableForClusterOrdering::modifier_insertKey (GALGAS_lstring inKey,
-                                                               GALGAS_uint inArgument0,
-                                                               C_Compiler * inCompiler
-                                                               COMMA_LOCATION_ARGS) {
+void GALGAS_symbolTableForClusterOrdering::setter_insertKey (GALGAS_lstring inKey,
+                                                             GALGAS_uint inArgument0,
+                                                             C_Compiler * inCompiler
+                                                             COMMA_LOCATION_ARGS) {
   cMapElement_symbolTableForClusterOrdering * p = NULL ;
   macroMyNew (p, cMapElement_symbolTableForClusterOrdering (inKey, inArgument0 COMMA_HERE)) ;
   capCollectionElement attributes ;
@@ -2191,10 +2191,10 @@ GALGAS_uint GALGAS_symbolTableForClusterOrdering::getter_mClusterForKey (const G
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_symbolTableForClusterOrdering::modifier_setMClusterForKey (GALGAS_uint inAttributeValue,
-                                                                       GALGAS_string inKey,
-                                                                       C_Compiler * inCompiler
-                                                                       COMMA_LOCATION_ARGS) {
+void GALGAS_symbolTableForClusterOrdering::setter_setMClusterForKey (GALGAS_uint inAttributeValue,
+                                                                     GALGAS_string inKey,
+                                                                     C_Compiler * inCompiler
+                                                                     COMMA_LOCATION_ARGS) {
   cCollectionElement * attributes = searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
   cMapElement_symbolTableForClusterOrdering * p = (cMapElement_symbolTableForClusterOrdering *) attributes ;
   if (NULL != p) {
@@ -2396,10 +2396,10 @@ void GALGAS_symbolTableForRelativesResolution::addAssign_operation (const GALGAS
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_symbolTableForRelativesResolution::modifier_insertKey (GALGAS_lstring inKey,
-                                                                   GALGAS_uint inArgument0,
-                                                                   C_Compiler * inCompiler
-                                                                   COMMA_LOCATION_ARGS) {
+void GALGAS_symbolTableForRelativesResolution::setter_insertKey (GALGAS_lstring inKey,
+                                                                 GALGAS_uint inArgument0,
+                                                                 C_Compiler * inCompiler
+                                                                 COMMA_LOCATION_ARGS) {
   cMapElement_symbolTableForRelativesResolution * p = NULL ;
   macroMyNew (p, cMapElement_symbolTableForRelativesResolution (inKey, inArgument0 COMMA_HERE)) ;
   capCollectionElement attributes ;
@@ -2449,10 +2449,10 @@ GALGAS_uint GALGAS_symbolTableForRelativesResolution::getter_mLabelAddressForKey
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_symbolTableForRelativesResolution::modifier_setMLabelAddressForKey (GALGAS_uint inAttributeValue,
-                                                                                GALGAS_string inKey,
-                                                                                C_Compiler * inCompiler
-                                                                                COMMA_LOCATION_ARGS) {
+void GALGAS_symbolTableForRelativesResolution::setter_setMLabelAddressForKey (GALGAS_uint inAttributeValue,
+                                                                              GALGAS_string inKey,
+                                                                              C_Compiler * inCompiler
+                                                                              COMMA_LOCATION_ARGS) {
   cCollectionElement * attributes = searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
   cMapElement_symbolTableForRelativesResolution * p = (cMapElement_symbolTableForRelativesResolution *) attributes ;
   if (NULL != p) {
@@ -2687,11 +2687,11 @@ void GALGAS_codeList::addAssign_operation (const GALGAS_string & inOperand0,
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_codeList::modifier_insertAtIndex (const GALGAS_string inOperand0,
-                                              const GALGAS_uintlist inOperand1,
-                                              const GALGAS_uint inInsertionIndex,
-                                              C_Compiler * inCompiler
-                                              COMMA_LOCATION_ARGS) {
+void GALGAS_codeList::setter_insertAtIndex (const GALGAS_string inOperand0,
+                                            const GALGAS_uintlist inOperand1,
+                                            const GALGAS_uint inInsertionIndex,
+                                            C_Compiler * inCompiler
+                                            COMMA_LOCATION_ARGS) {
   if (isValid () && inInsertionIndex.isValid () && inOperand0.isValid () && inOperand1.isValid ()) {
     cCollectionElement * p = NULL ;
     macroMyNew (p, cCollectionElement_codeList (inOperand0, inOperand1 COMMA_THERE)) ;
@@ -2704,11 +2704,11 @@ void GALGAS_codeList::modifier_insertAtIndex (const GALGAS_string inOperand0,
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_codeList::modifier_removeAtIndex (GALGAS_string & outOperand0,
-                                              GALGAS_uintlist & outOperand1,
-                                              const GALGAS_uint inRemoveIndex,
-                                              C_Compiler * inCompiler
-                                              COMMA_LOCATION_ARGS) {
+void GALGAS_codeList::setter_removeAtIndex (GALGAS_string & outOperand0,
+                                            GALGAS_uintlist & outOperand1,
+                                            const GALGAS_uint inRemoveIndex,
+                                            C_Compiler * inCompiler
+                                            COMMA_LOCATION_ARGS) {
   if (isValid () && inRemoveIndex.isValid ()) {
     capCollectionElement attributes ;
     removeObjectAtIndex (attributes, inRemoveIndex.uintValue (), inCompiler COMMA_THERE) ;
@@ -2726,10 +2726,10 @@ void GALGAS_codeList::modifier_removeAtIndex (GALGAS_string & outOperand0,
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_codeList::modifier_popFirst (GALGAS_string & outOperand0,
-                                         GALGAS_uintlist & outOperand1,
-                                         C_Compiler * inCompiler
-                                         COMMA_LOCATION_ARGS) {
+void GALGAS_codeList::setter_popFirst (GALGAS_string & outOperand0,
+                                       GALGAS_uintlist & outOperand1,
+                                       C_Compiler * inCompiler
+                                       COMMA_LOCATION_ARGS) {
   capCollectionElement attributes ;
   removeFirstObject (attributes, inCompiler COMMA_THERE) ;
   cCollectionElement_codeList * p = (cCollectionElement_codeList *) attributes.ptr () ;
@@ -2745,10 +2745,10 @@ void GALGAS_codeList::modifier_popFirst (GALGAS_string & outOperand0,
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_codeList::modifier_popLast (GALGAS_string & outOperand0,
-                                        GALGAS_uintlist & outOperand1,
-                                        C_Compiler * inCompiler
-                                        COMMA_LOCATION_ARGS) {
+void GALGAS_codeList::setter_popLast (GALGAS_string & outOperand0,
+                                      GALGAS_uintlist & outOperand1,
+                                      C_Compiler * inCompiler
+                                      COMMA_LOCATION_ARGS) {
   capCollectionElement attributes ;
   removeLastObject (attributes, inCompiler COMMA_THERE) ;
   cCollectionElement_codeList * p = (cCollectionElement_codeList *) attributes.ptr () ;
@@ -3068,10 +3068,10 @@ void GALGAS_pic_31__38__5F_dataAddressMap::addAssign_operation (const GALGAS_lst
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_pic_31__38__5F_dataAddressMap::modifier_insertKey (GALGAS_lstring inKey,
-                                                               GALGAS_uint inArgument0,
-                                                               C_Compiler * inCompiler
-                                                               COMMA_LOCATION_ARGS) {
+void GALGAS_pic_31__38__5F_dataAddressMap::setter_insertKey (GALGAS_lstring inKey,
+                                                             GALGAS_uint inArgument0,
+                                                             C_Compiler * inCompiler
+                                                             COMMA_LOCATION_ARGS) {
   cMapElement_pic_31__38__5F_dataAddressMap * p = NULL ;
   macroMyNew (p, cMapElement_pic_31__38__5F_dataAddressMap (inKey, inArgument0 COMMA_HERE)) ;
   capCollectionElement attributes ;
@@ -3121,10 +3121,10 @@ GALGAS_uint GALGAS_pic_31__38__5F_dataAddressMap::getter_mDataAddressForKey (con
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_pic_31__38__5F_dataAddressMap::modifier_setMDataAddressForKey (GALGAS_uint inAttributeValue,
-                                                                           GALGAS_string inKey,
-                                                                           C_Compiler * inCompiler
-                                                                           COMMA_LOCATION_ARGS) {
+void GALGAS_pic_31__38__5F_dataAddressMap::setter_setMDataAddressForKey (GALGAS_uint inAttributeValue,
+                                                                         GALGAS_string inKey,
+                                                                         C_Compiler * inCompiler
+                                                                         COMMA_LOCATION_ARGS) {
   cCollectionElement * attributes = searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
   cMapElement_pic_31__38__5F_dataAddressMap * p = (cMapElement_pic_31__38__5F_dataAddressMap *) attributes ;
   if (NULL != p) {
@@ -3366,14 +3366,14 @@ void GALGAS_declaredRoutineMap::addAssign_operation (const GALGAS_lstring & inKe
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_declaredRoutineMap::modifier_insertKey (GALGAS_lstring inKey,
-                                                    GALGAS_luint inArgument0,
-                                                    GALGAS_luint inArgument1,
-                                                    GALGAS_bool inArgument2,
-                                                    GALGAS_bool inArgument3,
-                                                    GALGAS_pic_31__38_InstructionList inArgument4,
-                                                    C_Compiler * inCompiler
-                                                    COMMA_LOCATION_ARGS) {
+void GALGAS_declaredRoutineMap::setter_insertKey (GALGAS_lstring inKey,
+                                                  GALGAS_luint inArgument0,
+                                                  GALGAS_luint inArgument1,
+                                                  GALGAS_bool inArgument2,
+                                                  GALGAS_bool inArgument3,
+                                                  GALGAS_pic_31__38_InstructionList inArgument4,
+                                                  C_Compiler * inCompiler
+                                                  COMMA_LOCATION_ARGS) {
   cMapElement_declaredRoutineMap * p = NULL ;
   macroMyNew (p, cMapElement_declaredRoutineMap (inKey, inArgument0, inArgument1, inArgument2, inArgument3, inArgument4 COMMA_HERE)) ;
   capCollectionElement attributes ;
@@ -3495,10 +3495,10 @@ GALGAS_pic_31__38_InstructionList GALGAS_declaredRoutineMap::getter_mInstruction
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_declaredRoutineMap::modifier_setMRequiredBankForKey (GALGAS_luint inAttributeValue,
-                                                                 GALGAS_string inKey,
-                                                                 C_Compiler * inCompiler
-                                                                 COMMA_LOCATION_ARGS) {
+void GALGAS_declaredRoutineMap::setter_setMRequiredBankForKey (GALGAS_luint inAttributeValue,
+                                                               GALGAS_string inKey,
+                                                               C_Compiler * inCompiler
+                                                               COMMA_LOCATION_ARGS) {
   cCollectionElement * attributes = searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
   cMapElement_declaredRoutineMap * p = (cMapElement_declaredRoutineMap *) attributes ;
   if (NULL != p) {
@@ -3509,10 +3509,10 @@ void GALGAS_declaredRoutineMap::modifier_setMRequiredBankForKey (GALGAS_luint in
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_declaredRoutineMap::modifier_setMReturnedBankForKey (GALGAS_luint inAttributeValue,
-                                                                 GALGAS_string inKey,
-                                                                 C_Compiler * inCompiler
-                                                                 COMMA_LOCATION_ARGS) {
+void GALGAS_declaredRoutineMap::setter_setMReturnedBankForKey (GALGAS_luint inAttributeValue,
+                                                               GALGAS_string inKey,
+                                                               C_Compiler * inCompiler
+                                                               COMMA_LOCATION_ARGS) {
   cCollectionElement * attributes = searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
   cMapElement_declaredRoutineMap * p = (cMapElement_declaredRoutineMap *) attributes ;
   if (NULL != p) {
@@ -3523,10 +3523,10 @@ void GALGAS_declaredRoutineMap::modifier_setMReturnedBankForKey (GALGAS_luint in
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_declaredRoutineMap::modifier_setMPreservesBankForKey (GALGAS_bool inAttributeValue,
-                                                                  GALGAS_string inKey,
-                                                                  C_Compiler * inCompiler
-                                                                  COMMA_LOCATION_ARGS) {
+void GALGAS_declaredRoutineMap::setter_setMPreservesBankForKey (GALGAS_bool inAttributeValue,
+                                                                GALGAS_string inKey,
+                                                                C_Compiler * inCompiler
+                                                                COMMA_LOCATION_ARGS) {
   cCollectionElement * attributes = searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
   cMapElement_declaredRoutineMap * p = (cMapElement_declaredRoutineMap *) attributes ;
   if (NULL != p) {
@@ -3537,10 +3537,10 @@ void GALGAS_declaredRoutineMap::modifier_setMPreservesBankForKey (GALGAS_bool in
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_declaredRoutineMap::modifier_setMIsNoReturnForKey (GALGAS_bool inAttributeValue,
-                                                               GALGAS_string inKey,
-                                                               C_Compiler * inCompiler
-                                                               COMMA_LOCATION_ARGS) {
+void GALGAS_declaredRoutineMap::setter_setMIsNoReturnForKey (GALGAS_bool inAttributeValue,
+                                                             GALGAS_string inKey,
+                                                             C_Compiler * inCompiler
+                                                             COMMA_LOCATION_ARGS) {
   cCollectionElement * attributes = searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
   cMapElement_declaredRoutineMap * p = (cMapElement_declaredRoutineMap *) attributes ;
   if (NULL != p) {
@@ -3551,10 +3551,10 @@ void GALGAS_declaredRoutineMap::modifier_setMIsNoReturnForKey (GALGAS_bool inAtt
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_declaredRoutineMap::modifier_setMInstructionListForKey (GALGAS_pic_31__38_InstructionList inAttributeValue,
-                                                                    GALGAS_string inKey,
-                                                                    C_Compiler * inCompiler
-                                                                    COMMA_LOCATION_ARGS) {
+void GALGAS_declaredRoutineMap::setter_setMInstructionListForKey (GALGAS_pic_31__38_InstructionList inAttributeValue,
+                                                                  GALGAS_string inKey,
+                                                                  C_Compiler * inCompiler
+                                                                  COMMA_LOCATION_ARGS) {
   cCollectionElement * attributes = searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
   cMapElement_declaredRoutineMap * p = (cMapElement_declaredRoutineMap *) attributes ;
   if (NULL != p) {
@@ -3778,9 +3778,9 @@ void GALGAS_caseConstantMap::addAssign_operation (const GALGAS_lstring & inKey,
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_caseConstantMap::modifier_insertKey (GALGAS_lstring inKey,
-                                                 C_Compiler * inCompiler
-                                                 COMMA_LOCATION_ARGS) {
+void GALGAS_caseConstantMap::setter_insertKey (GALGAS_lstring inKey,
+                                               C_Compiler * inCompiler
+                                               COMMA_LOCATION_ARGS) {
   cMapElement_caseConstantMap * p = NULL ;
   macroMyNew (p, cMapElement_caseConstantMap (inKey COMMA_HERE)) ;
   capCollectionElement attributes ;
@@ -3996,12 +3996,12 @@ void GALGAS_blockInstructionBlockMap::addAssign_operation (const GALGAS_lstring 
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_blockInstructionBlockMap::modifier_insertKey (GALGAS_lstring inKey,
-                                                          GALGAS_pic_31__38_InstructionList inArgument0,
-                                                          GALGAS_abstractBlockTerminationForBlockInstruction inArgument1,
-                                                          GALGAS_location inArgument2,
-                                                          C_Compiler * inCompiler
-                                                          COMMA_LOCATION_ARGS) {
+void GALGAS_blockInstructionBlockMap::setter_insertKey (GALGAS_lstring inKey,
+                                                        GALGAS_pic_31__38_InstructionList inArgument0,
+                                                        GALGAS_abstractBlockTerminationForBlockInstruction inArgument1,
+                                                        GALGAS_location inArgument2,
+                                                        C_Compiler * inCompiler
+                                                        COMMA_LOCATION_ARGS) {
   cMapElement_blockInstructionBlockMap * p = NULL ;
   macroMyNew (p, cMapElement_blockInstructionBlockMap (inKey, inArgument0, inArgument1, inArgument2 COMMA_HERE)) ;
   capCollectionElement attributes ;
@@ -4087,10 +4087,10 @@ GALGAS_location GALGAS_blockInstructionBlockMap::getter_mEndOfBlockForKey (const
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_blockInstructionBlockMap::modifier_setMInstructionListForKey (GALGAS_pic_31__38_InstructionList inAttributeValue,
-                                                                          GALGAS_string inKey,
-                                                                          C_Compiler * inCompiler
-                                                                          COMMA_LOCATION_ARGS) {
+void GALGAS_blockInstructionBlockMap::setter_setMInstructionListForKey (GALGAS_pic_31__38_InstructionList inAttributeValue,
+                                                                        GALGAS_string inKey,
+                                                                        C_Compiler * inCompiler
+                                                                        COMMA_LOCATION_ARGS) {
   cCollectionElement * attributes = searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
   cMapElement_blockInstructionBlockMap * p = (cMapElement_blockInstructionBlockMap *) attributes ;
   if (NULL != p) {
@@ -4101,10 +4101,10 @@ void GALGAS_blockInstructionBlockMap::modifier_setMInstructionListForKey (GALGAS
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_blockInstructionBlockMap::modifier_setMBlockTerminaisonForBlockInstructionForKey (GALGAS_abstractBlockTerminationForBlockInstruction inAttributeValue,
-                                                                                              GALGAS_string inKey,
-                                                                                              C_Compiler * inCompiler
-                                                                                              COMMA_LOCATION_ARGS) {
+void GALGAS_blockInstructionBlockMap::setter_setMBlockTerminaisonForBlockInstructionForKey (GALGAS_abstractBlockTerminationForBlockInstruction inAttributeValue,
+                                                                                            GALGAS_string inKey,
+                                                                                            C_Compiler * inCompiler
+                                                                                            COMMA_LOCATION_ARGS) {
   cCollectionElement * attributes = searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
   cMapElement_blockInstructionBlockMap * p = (cMapElement_blockInstructionBlockMap *) attributes ;
   if (NULL != p) {
@@ -4115,10 +4115,10 @@ void GALGAS_blockInstructionBlockMap::modifier_setMBlockTerminaisonForBlockInstr
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_blockInstructionBlockMap::modifier_setMEndOfBlockForKey (GALGAS_location inAttributeValue,
-                                                                     GALGAS_string inKey,
-                                                                     C_Compiler * inCompiler
-                                                                     COMMA_LOCATION_ARGS) {
+void GALGAS_blockInstructionBlockMap::setter_setMEndOfBlockForKey (GALGAS_location inAttributeValue,
+                                                                   GALGAS_string inKey,
+                                                                   C_Compiler * inCompiler
+                                                                   COMMA_LOCATION_ARGS) {
   cCollectionElement * attributes = searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
   cMapElement_blockInstructionBlockMap * p = (cMapElement_blockInstructionBlockMap *) attributes ;
   if (NULL != p) {
@@ -4346,11 +4346,11 @@ void GALGAS_blockInitialBankSelectionMap::addAssign_operation (const GALGAS_lstr
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_blockInitialBankSelectionMap::modifier_insertKey (GALGAS_lstring inKey,
-                                                              GALGAS_uint inArgument0,
-                                                              GALGAS_string inArgument1,
-                                                              C_Compiler * inCompiler
-                                                              COMMA_LOCATION_ARGS) {
+void GALGAS_blockInitialBankSelectionMap::setter_insertKey (GALGAS_lstring inKey,
+                                                            GALGAS_uint inArgument0,
+                                                            GALGAS_string inArgument1,
+                                                            C_Compiler * inCompiler
+                                                            COMMA_LOCATION_ARGS) {
   cMapElement_blockInitialBankSelectionMap * p = NULL ;
   macroMyNew (p, cMapElement_blockInitialBankSelectionMap (inKey, inArgument0, inArgument1 COMMA_HERE)) ;
   capCollectionElement attributes ;
@@ -4418,10 +4418,10 @@ GALGAS_string GALGAS_blockInitialBankSelectionMap::getter_mSourceBlockForKey (co
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_blockInitialBankSelectionMap::modifier_setMInitialBankSelectionForKey (GALGAS_uint inAttributeValue,
-                                                                                   GALGAS_string inKey,
-                                                                                   C_Compiler * inCompiler
-                                                                                   COMMA_LOCATION_ARGS) {
+void GALGAS_blockInitialBankSelectionMap::setter_setMInitialBankSelectionForKey (GALGAS_uint inAttributeValue,
+                                                                                 GALGAS_string inKey,
+                                                                                 C_Compiler * inCompiler
+                                                                                 COMMA_LOCATION_ARGS) {
   cCollectionElement * attributes = searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
   cMapElement_blockInitialBankSelectionMap * p = (cMapElement_blockInitialBankSelectionMap *) attributes ;
   if (NULL != p) {
@@ -4432,10 +4432,10 @@ void GALGAS_blockInitialBankSelectionMap::modifier_setMInitialBankSelectionForKe
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_blockInitialBankSelectionMap::modifier_setMSourceBlockForKey (GALGAS_string inAttributeValue,
-                                                                          GALGAS_string inKey,
-                                                                          C_Compiler * inCompiler
-                                                                          COMMA_LOCATION_ARGS) {
+void GALGAS_blockInitialBankSelectionMap::setter_setMSourceBlockForKey (GALGAS_string inAttributeValue,
+                                                                        GALGAS_string inKey,
+                                                                        C_Compiler * inCompiler
+                                                                        COMMA_LOCATION_ARGS) {
   cCollectionElement * attributes = searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
   cMapElement_blockInitialBankSelectionMap * p = (cMapElement_blockInitialBankSelectionMap *) attributes ;
   if (NULL != p) {
@@ -4559,10 +4559,10 @@ GALGAS_blockInvocationGraph GALGAS_blockInvocationGraph::constructor_emptyGraph 
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_blockInvocationGraph::modifier_addNode (GALGAS_lstring inKey,
-                                                    GALGAS_string inArgument_0,
-                                                    C_Compiler * inCompiler
-                                                    COMMA_LOCATION_ARGS) {
+void GALGAS_blockInvocationGraph::setter_addNode (GALGAS_lstring inKey,
+                                                  GALGAS_string inArgument_0,
+                                                  C_Compiler * inCompiler
+                                                  COMMA_LOCATION_ARGS) {
   capCollectionElement attributes ;
   GALGAS_stringlist::makeAttributesFromObjects (attributes, inArgument_0 COMMA_THERE) ;
   const char * kErrorMessage = "the '%K' label is already declared at %L" ;
@@ -4847,10 +4847,10 @@ void GALGAS_clusterList::addAssign_operation (const GALGAS_ipic_31__38_BlockList
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_clusterList::modifier_insertAtIndex (const GALGAS_ipic_31__38_BlockList inOperand0,
-                                                 const GALGAS_uint inInsertionIndex,
-                                                 C_Compiler * inCompiler
-                                                 COMMA_LOCATION_ARGS) {
+void GALGAS_clusterList::setter_insertAtIndex (const GALGAS_ipic_31__38_BlockList inOperand0,
+                                               const GALGAS_uint inInsertionIndex,
+                                               C_Compiler * inCompiler
+                                               COMMA_LOCATION_ARGS) {
   if (isValid () && inInsertionIndex.isValid () && inOperand0.isValid ()) {
     cCollectionElement * p = NULL ;
     macroMyNew (p, cCollectionElement_clusterList (inOperand0 COMMA_THERE)) ;
@@ -4863,10 +4863,10 @@ void GALGAS_clusterList::modifier_insertAtIndex (const GALGAS_ipic_31__38_BlockL
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_clusterList::modifier_removeAtIndex (GALGAS_ipic_31__38_BlockList & outOperand0,
-                                                 const GALGAS_uint inRemoveIndex,
-                                                 C_Compiler * inCompiler
-                                                 COMMA_LOCATION_ARGS) {
+void GALGAS_clusterList::setter_removeAtIndex (GALGAS_ipic_31__38_BlockList & outOperand0,
+                                               const GALGAS_uint inRemoveIndex,
+                                               C_Compiler * inCompiler
+                                               COMMA_LOCATION_ARGS) {
   if (isValid () && inRemoveIndex.isValid ()) {
     capCollectionElement attributes ;
     removeObjectAtIndex (attributes, inRemoveIndex.uintValue (), inCompiler COMMA_THERE) ;
@@ -4882,9 +4882,9 @@ void GALGAS_clusterList::modifier_removeAtIndex (GALGAS_ipic_31__38_BlockList & 
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_clusterList::modifier_popFirst (GALGAS_ipic_31__38_BlockList & outOperand0,
-                                            C_Compiler * inCompiler
-                                            COMMA_LOCATION_ARGS) {
+void GALGAS_clusterList::setter_popFirst (GALGAS_ipic_31__38_BlockList & outOperand0,
+                                          C_Compiler * inCompiler
+                                          COMMA_LOCATION_ARGS) {
   capCollectionElement attributes ;
   removeFirstObject (attributes, inCompiler COMMA_THERE) ;
   cCollectionElement_clusterList * p = (cCollectionElement_clusterList *) attributes.ptr () ;
@@ -4898,9 +4898,9 @@ void GALGAS_clusterList::modifier_popFirst (GALGAS_ipic_31__38_BlockList & outOp
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_clusterList::modifier_popLast (GALGAS_ipic_31__38_BlockList & outOperand0,
-                                           C_Compiler * inCompiler
-                                           COMMA_LOCATION_ARGS) {
+void GALGAS_clusterList::setter_popLast (GALGAS_ipic_31__38_BlockList & outOperand0,
+                                         C_Compiler * inCompiler
+                                         COMMA_LOCATION_ARGS) {
   capCollectionElement attributes ;
   removeLastObject (attributes, inCompiler COMMA_THERE) ;
   cCollectionElement_clusterList * p = (cCollectionElement_clusterList *) attributes.ptr () ;
@@ -5189,10 +5189,10 @@ void GALGAS_neededConversionForClusterOrder::addAssign_operation (const GALGAS_l
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_neededConversionForClusterOrder::modifier_insertKey (GALGAS_lstring inKey,
-                                                                 GALGAS_uint inArgument0,
-                                                                 C_Compiler * inCompiler
-                                                                 COMMA_LOCATION_ARGS) {
+void GALGAS_neededConversionForClusterOrder::setter_insertKey (GALGAS_lstring inKey,
+                                                               GALGAS_uint inArgument0,
+                                                               C_Compiler * inCompiler
+                                                               COMMA_LOCATION_ARGS) {
   cMapElement_neededConversionForClusterOrder * p = NULL ;
   macroMyNew (p, cMapElement_neededConversionForClusterOrder (inKey, inArgument0 COMMA_HERE)) ;
   capCollectionElement attributes ;
@@ -5242,10 +5242,10 @@ GALGAS_uint GALGAS_neededConversionForClusterOrder::getter_mConversionsForKey (c
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_neededConversionForClusterOrder::modifier_setMConversionsForKey (GALGAS_uint inAttributeValue,
-                                                                             GALGAS_string inKey,
-                                                                             C_Compiler * inCompiler
-                                                                             COMMA_LOCATION_ARGS) {
+void GALGAS_neededConversionForClusterOrder::setter_setMConversionsForKey (GALGAS_uint inAttributeValue,
+                                                                           GALGAS_string inKey,
+                                                                           C_Compiler * inCompiler
+                                                                           COMMA_LOCATION_ARGS) {
   cCollectionElement * attributes = searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
   cMapElement_neededConversionForClusterOrder * p = (cMapElement_neededConversionForClusterOrder *) attributes ;
   if (NULL != p) {
@@ -5457,11 +5457,11 @@ void GALGAS_generatedCodeMap::addAssign_operation (const GALGAS_lstring & inKey,
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_generatedCodeMap::modifier_insertKey (GALGAS_lstring inKey,
-                                                  GALGAS_codeList inArgument0,
-                                                  GALGAS_ipic_31__38_SequentialInstruction inArgument1,
-                                                  C_Compiler * inCompiler
-                                                  COMMA_LOCATION_ARGS) {
+void GALGAS_generatedCodeMap::setter_insertKey (GALGAS_lstring inKey,
+                                                GALGAS_codeList inArgument0,
+                                                GALGAS_ipic_31__38_SequentialInstruction inArgument1,
+                                                C_Compiler * inCompiler
+                                                COMMA_LOCATION_ARGS) {
   cMapElement_generatedCodeMap * p = NULL ;
   macroMyNew (p, cMapElement_generatedCodeMap (inKey, inArgument0, inArgument1 COMMA_HERE)) ;
   capCollectionElement attributes ;
@@ -5529,10 +5529,10 @@ GALGAS_ipic_31__38_SequentialInstruction GALGAS_generatedCodeMap::getter_mInstru
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_generatedCodeMap::modifier_setMCodeForKey (GALGAS_codeList inAttributeValue,
-                                                       GALGAS_string inKey,
-                                                       C_Compiler * inCompiler
-                                                       COMMA_LOCATION_ARGS) {
+void GALGAS_generatedCodeMap::setter_setMCodeForKey (GALGAS_codeList inAttributeValue,
+                                                     GALGAS_string inKey,
+                                                     C_Compiler * inCompiler
+                                                     COMMA_LOCATION_ARGS) {
   cCollectionElement * attributes = searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
   cMapElement_generatedCodeMap * p = (cMapElement_generatedCodeMap *) attributes ;
   if (NULL != p) {
@@ -5543,10 +5543,10 @@ void GALGAS_generatedCodeMap::modifier_setMCodeForKey (GALGAS_codeList inAttribu
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_generatedCodeMap::modifier_setMInstructionForKey (GALGAS_ipic_31__38_SequentialInstruction inAttributeValue,
-                                                              GALGAS_string inKey,
-                                                              C_Compiler * inCompiler
-                                                              COMMA_LOCATION_ARGS) {
+void GALGAS_generatedCodeMap::setter_setMInstructionForKey (GALGAS_ipic_31__38_SequentialInstruction inAttributeValue,
+                                                            GALGAS_string inKey,
+                                                            C_Compiler * inCompiler
+                                                            COMMA_LOCATION_ARGS) {
   cCollectionElement * attributes = searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
   cMapElement_generatedCodeMap * p = (cMapElement_generatedCodeMap *) attributes ;
   if (NULL != p) {
@@ -5756,10 +5756,10 @@ void GALGAS_blockMapForStackComputation::addAssign_operation (const GALGAS_lstri
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_blockMapForStackComputation::modifier_insertKey (GALGAS_lstring inKey,
-                                                             GALGAS_ipic_31__38_Block inArgument0,
-                                                             C_Compiler * inCompiler
-                                                             COMMA_LOCATION_ARGS) {
+void GALGAS_blockMapForStackComputation::setter_insertKey (GALGAS_lstring inKey,
+                                                           GALGAS_ipic_31__38_Block inArgument0,
+                                                           C_Compiler * inCompiler
+                                                           COMMA_LOCATION_ARGS) {
   cMapElement_blockMapForStackComputation * p = NULL ;
   macroMyNew (p, cMapElement_blockMapForStackComputation (inKey, inArgument0 COMMA_HERE)) ;
   capCollectionElement attributes ;
@@ -5809,10 +5809,10 @@ GALGAS_ipic_31__38_Block GALGAS_blockMapForStackComputation::getter_mBlockForKey
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_blockMapForStackComputation::modifier_setMBlockForKey (GALGAS_ipic_31__38_Block inAttributeValue,
-                                                                   GALGAS_string inKey,
-                                                                   C_Compiler * inCompiler
-                                                                   COMMA_LOCATION_ARGS) {
+void GALGAS_blockMapForStackComputation::setter_setMBlockForKey (GALGAS_ipic_31__38_Block inAttributeValue,
+                                                                 GALGAS_string inKey,
+                                                                 C_Compiler * inCompiler
+                                                                 COMMA_LOCATION_ARGS) {
   cCollectionElement * attributes = searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
   cMapElement_blockMapForStackComputation * p = (cMapElement_blockMapForStackComputation *) attributes ;
   if (NULL != p) {
@@ -6024,11 +6024,11 @@ void GALGAS_routineCallMap::addAssign_operation (const GALGAS_lstring & inKey,
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_routineCallMap::modifier_insertKey (GALGAS_lstring inKey,
-                                                GALGAS_stringset inArgument0,
-                                                GALGAS_uint inArgument1,
-                                                C_Compiler * inCompiler
-                                                COMMA_LOCATION_ARGS) {
+void GALGAS_routineCallMap::setter_insertKey (GALGAS_lstring inKey,
+                                              GALGAS_stringset inArgument0,
+                                              GALGAS_uint inArgument1,
+                                              C_Compiler * inCompiler
+                                              COMMA_LOCATION_ARGS) {
   cMapElement_routineCallMap * p = NULL ;
   macroMyNew (p, cMapElement_routineCallMap (inKey, inArgument0, inArgument1 COMMA_HERE)) ;
   capCollectionElement attributes ;
@@ -6071,10 +6071,10 @@ GALGAS_uint GALGAS_routineCallMap::getter_mTerminatorStackNeedsForKey (const GAL
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_routineCallMap::modifier_setMCalledRoutineSetForKey (GALGAS_stringset inAttributeValue,
-                                                                 GALGAS_string inKey,
-                                                                 C_Compiler * inCompiler
-                                                                 COMMA_LOCATION_ARGS) {
+void GALGAS_routineCallMap::setter_setMCalledRoutineSetForKey (GALGAS_stringset inAttributeValue,
+                                                               GALGAS_string inKey,
+                                                               C_Compiler * inCompiler
+                                                               COMMA_LOCATION_ARGS) {
   cCollectionElement * attributes = searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
   cMapElement_routineCallMap * p = (cMapElement_routineCallMap *) attributes ;
   if (NULL != p) {
@@ -6085,10 +6085,10 @@ void GALGAS_routineCallMap::modifier_setMCalledRoutineSetForKey (GALGAS_stringse
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_routineCallMap::modifier_setMTerminatorStackNeedsForKey (GALGAS_uint inAttributeValue,
-                                                                     GALGAS_string inKey,
-                                                                     C_Compiler * inCompiler
-                                                                     COMMA_LOCATION_ARGS) {
+void GALGAS_routineCallMap::setter_setMTerminatorStackNeedsForKey (GALGAS_uint inAttributeValue,
+                                                                   GALGAS_string inKey,
+                                                                   C_Compiler * inCompiler
+                                                                   COMMA_LOCATION_ARGS) {
   cCollectionElement * attributes = searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
   cMapElement_routineCallMap * p = (cMapElement_routineCallMap *) attributes ;
   if (NULL != p) {
@@ -6298,10 +6298,10 @@ void GALGAS_routineStackRequirementMap::addAssign_operation (const GALGAS_lstrin
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_routineStackRequirementMap::modifier_insertKey (GALGAS_lstring inKey,
-                                                            GALGAS_uint inArgument0,
-                                                            C_Compiler * inCompiler
-                                                            COMMA_LOCATION_ARGS) {
+void GALGAS_routineStackRequirementMap::setter_insertKey (GALGAS_lstring inKey,
+                                                          GALGAS_uint inArgument0,
+                                                          C_Compiler * inCompiler
+                                                          COMMA_LOCATION_ARGS) {
   cMapElement_routineStackRequirementMap * p = NULL ;
   macroMyNew (p, cMapElement_routineStackRequirementMap (inKey, inArgument0 COMMA_HERE)) ;
   capCollectionElement attributes ;
@@ -6351,10 +6351,10 @@ GALGAS_uint GALGAS_routineStackRequirementMap::getter_mLevelsForKey (const GALGA
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_routineStackRequirementMap::modifier_setMLevelsForKey (GALGAS_uint inAttributeValue,
-                                                                   GALGAS_string inKey,
-                                                                   C_Compiler * inCompiler
-                                                                   COMMA_LOCATION_ARGS) {
+void GALGAS_routineStackRequirementMap::setter_setMLevelsForKey (GALGAS_uint inAttributeValue,
+                                                                 GALGAS_string inKey,
+                                                                 C_Compiler * inCompiler
+                                                                 COMMA_LOCATION_ARGS) {
   cCollectionElement * attributes = searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
   cMapElement_routineStackRequirementMap * p = (cMapElement_routineStackRequirementMap *) attributes ;
   if (NULL != p) {
@@ -6566,11 +6566,11 @@ void GALGAS_blockDurationMap::addAssign_operation (const GALGAS_lstring & inKey,
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_blockDurationMap::modifier_insertKey (GALGAS_lstring inKey,
-                                                  GALGAS_uint inArgument0,
-                                                  GALGAS_uint inArgument1,
-                                                  C_Compiler * inCompiler
-                                                  COMMA_LOCATION_ARGS) {
+void GALGAS_blockDurationMap::setter_insertKey (GALGAS_lstring inKey,
+                                                GALGAS_uint inArgument0,
+                                                GALGAS_uint inArgument1,
+                                                C_Compiler * inCompiler
+                                                COMMA_LOCATION_ARGS) {
   cMapElement_blockDurationMap * p = NULL ;
   macroMyNew (p, cMapElement_blockDurationMap (inKey, inArgument0, inArgument1 COMMA_HERE)) ;
   capCollectionElement attributes ;
@@ -6638,10 +6638,10 @@ GALGAS_uint GALGAS_blockDurationMap::getter_mMaxDurationForKey (const GALGAS_str
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_blockDurationMap::modifier_setMMinDurationForKey (GALGAS_uint inAttributeValue,
-                                                              GALGAS_string inKey,
-                                                              C_Compiler * inCompiler
-                                                              COMMA_LOCATION_ARGS) {
+void GALGAS_blockDurationMap::setter_setMMinDurationForKey (GALGAS_uint inAttributeValue,
+                                                            GALGAS_string inKey,
+                                                            C_Compiler * inCompiler
+                                                            COMMA_LOCATION_ARGS) {
   cCollectionElement * attributes = searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
   cMapElement_blockDurationMap * p = (cMapElement_blockDurationMap *) attributes ;
   if (NULL != p) {
@@ -6652,10 +6652,10 @@ void GALGAS_blockDurationMap::modifier_setMMinDurationForKey (GALGAS_uint inAttr
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_blockDurationMap::modifier_setMMaxDurationForKey (GALGAS_uint inAttributeValue,
-                                                              GALGAS_string inKey,
-                                                              C_Compiler * inCompiler
-                                                              COMMA_LOCATION_ARGS) {
+void GALGAS_blockDurationMap::setter_setMMaxDurationForKey (GALGAS_uint inAttributeValue,
+                                                            GALGAS_string inKey,
+                                                            C_Compiler * inCompiler
+                                                            COMMA_LOCATION_ARGS) {
   cCollectionElement * attributes = searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
   cMapElement_blockDurationMap * p = (cMapElement_blockDurationMap *) attributes ;
   if (NULL != p) {
@@ -6808,983 +6808,127 @@ C_String C_Lexique_piccoloDevice_5F_lexique::indexingDirectory (void) const {
 //                        Lexical error message list                                                                   *
 //---------------------------------------------------------------------------------------------------------------------*
 
-static const utf32 gLexicalMessage_piccoloDevice_5F_lexique_ASCIIcodeTooLargeError [] = {
-  TO_UNICODE ('A'),
-  TO_UNICODE ('S'),
-  TO_UNICODE ('C'),
-  TO_UNICODE ('I'),
-  TO_UNICODE ('I'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('c'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('d'),
-  TO_UNICODE ('e'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('>'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('2'),
-  TO_UNICODE ('5'),
-  TO_UNICODE ('5'),
-  TO_UNICODE (0)
-} ;
+static const char * gLexicalMessage_piccoloDevice_5F_lexique_ASCIIcodeTooLargeError = "ASCII code > 255" ;
 
-static const utf32 gLexicalMessage_piccoloDevice_5F_lexique_decimalNumberTooLarge [] = {
-  TO_UNICODE ('d'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('c'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('m'),
-  TO_UNICODE ('a'),
-  TO_UNICODE ('l'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('n'),
-  TO_UNICODE ('u'),
-  TO_UNICODE ('m'),
-  TO_UNICODE ('b'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('r'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('t'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('o'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('l'),
-  TO_UNICODE ('a'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('g'),
-  TO_UNICODE ('e'),
-  TO_UNICODE (0)
-} ;
+static const char * gLexicalMessage_piccoloDevice_5F_lexique_decimalNumberTooLarge = "decimal number too large" ;
 
-static const utf32 gLexicalMessage_piccoloDevice_5F_lexique_hexNumberTooLarge [] = {
-  TO_UNICODE ('h'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('x'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('n'),
-  TO_UNICODE ('u'),
-  TO_UNICODE ('m'),
-  TO_UNICODE ('b'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('r'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('t'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('o'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('l'),
-  TO_UNICODE ('a'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('g'),
-  TO_UNICODE ('e'),
-  TO_UNICODE (0)
-} ;
+static const char * gLexicalMessage_piccoloDevice_5F_lexique_hexNumberTooLarge = "hex number too large" ;
 
-static const utf32 gLexicalMessage_piccoloDevice_5F_lexique_incorrectCharConstant [] = {
-  TO_UNICODE ('i'),
-  TO_UNICODE ('n'),
-  TO_UNICODE ('c'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('c'),
-  TO_UNICODE ('t'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('l'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('t'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('a'),
-  TO_UNICODE ('l'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('c'),
-  TO_UNICODE ('h'),
-  TO_UNICODE ('a'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('a'),
-  TO_UNICODE ('c'),
-  TO_UNICODE ('t'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('r'),
-  TO_UNICODE (0)
-} ;
+static const char * gLexicalMessage_piccoloDevice_5F_lexique_incorrectCharConstant = "incorrect literal character" ;
 
-static const utf32 gLexicalMessage_piccoloDevice_5F_lexique_incorrectStringEnd [] = {
-  TO_UNICODE ('s'),
-  TO_UNICODE ('t'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('n'),
-  TO_UNICODE ('g'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('d'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('s'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('n'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('t'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('n'),
-  TO_UNICODE ('d'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('w'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('t'),
-  TO_UNICODE ('h'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('\''),
-  TO_UNICODE ('\"'),
-  TO_UNICODE ('\''),
-  TO_UNICODE (0)
-} ;
+static const char * gLexicalMessage_piccoloDevice_5F_lexique_incorrectStringEnd = "string does not end with '\"'" ;
 
-static const utf32 gLexicalMessage_piccoloDevice_5F_lexique_internalError [] = {
-  TO_UNICODE ('i'),
-  TO_UNICODE ('n'),
-  TO_UNICODE ('t'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('n'),
-  TO_UNICODE ('a'),
-  TO_UNICODE ('l'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('r'),
-  TO_UNICODE (0)
-} ;
+static const char * gLexicalMessage_piccoloDevice_5F_lexique_internalError = "internal error" ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //          Syntax error messages, for every terminal symbol                                                           *
 //---------------------------------------------------------------------------------------------------------------------*
 
 //--- Syntax error message for terminal '$identifier$' :
-static const utf32 gSyntaxErrorMessage_piccoloDevice_5F_lexique_identifier [] = {
-  TO_UNICODE ('a'),
-  TO_UNICODE ('n'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('d'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('n'),
-  TO_UNICODE ('t'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('f'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('r'),
-  TO_UNICODE (0)
-} ;
+static const char * gSyntaxErrorMessage_piccoloDevice_5F_lexique_identifier = "an identifier" ;
 
 //--- Syntax error message for terminal '$integer$' :
-static const utf32 gSyntaxErrorMessage_piccoloDevice_5F_lexique_integer [] = {
-  TO_UNICODE ('a'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('3'),
-  TO_UNICODE ('2'),
-  TO_UNICODE ('-'),
-  TO_UNICODE ('b'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('t'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('u'),
-  TO_UNICODE ('n'),
-  TO_UNICODE ('s'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('g'),
-  TO_UNICODE ('n'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('d'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('n'),
-  TO_UNICODE ('u'),
-  TO_UNICODE ('m'),
-  TO_UNICODE ('b'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('r'),
-  TO_UNICODE (0)
-} ;
+static const char * gSyntaxErrorMessage_piccoloDevice_5F_lexique_integer = "a 32-bit unsigned number" ;
 
 //--- Syntax error message for terminal '$string$' :
-static const utf32 gSyntaxErrorMessage_piccoloDevice_5F_lexique_string [] = {
-  TO_UNICODE ('a'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('c'),
-  TO_UNICODE ('h'),
-  TO_UNICODE ('a'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('a'),
-  TO_UNICODE ('c'),
-  TO_UNICODE ('t'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('r'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('s'),
-  TO_UNICODE ('t'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('n'),
-  TO_UNICODE ('g'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('c'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('n'),
-  TO_UNICODE ('s'),
-  TO_UNICODE ('t'),
-  TO_UNICODE ('a'),
-  TO_UNICODE ('n'),
-  TO_UNICODE ('t'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('\"'),
-  TO_UNICODE ('.'),
-  TO_UNICODE ('.'),
-  TO_UNICODE ('.'),
-  TO_UNICODE ('\"'),
-  TO_UNICODE (0)
-} ;
+static const char * gSyntaxErrorMessage_piccoloDevice_5F_lexique_string = "a character string constant \"...\"" ;
 
 //--- Syntax error message for terminal '$comment$' :
-static const utf32 gSyntaxErrorMessage_piccoloDevice_5F_lexique_comment [] = {
-  TO_UNICODE ('a'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('c'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('m'),
-  TO_UNICODE ('m'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('n'),
-  TO_UNICODE ('t'),
-  TO_UNICODE (0)
-} ;
+static const char * gSyntaxErrorMessage_piccoloDevice_5F_lexique_comment = "a comment" ;
 
 //--- Syntax error message for terminal '$controller$' :
-static const utf32 gSyntaxErrorMessage_piccoloDevice_5F_lexique_controller [] = {
-  TO_UNICODE ('t'),
-  TO_UNICODE ('h'),
-  TO_UNICODE ('e'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('\''),
-  TO_UNICODE ('c'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('n'),
-  TO_UNICODE ('t'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('l'),
-  TO_UNICODE ('l'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('\''),
-  TO_UNICODE (' '),
-  TO_UNICODE ('k'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('y'),
-  TO_UNICODE ('w'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('d'),
-  TO_UNICODE (0)
-} ;
+static const char * gSyntaxErrorMessage_piccoloDevice_5F_lexique_controller = "the 'controller' keyword" ;
 
 //--- Syntax error message for terminal '$processor$' :
-static const utf32 gSyntaxErrorMessage_piccoloDevice_5F_lexique_processor [] = {
-  TO_UNICODE ('t'),
-  TO_UNICODE ('h'),
-  TO_UNICODE ('e'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('\''),
-  TO_UNICODE ('p'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('c'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('s'),
-  TO_UNICODE ('s'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('\''),
-  TO_UNICODE (' '),
-  TO_UNICODE ('k'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('y'),
-  TO_UNICODE ('w'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('d'),
-  TO_UNICODE (0)
-} ;
+static const char * gSyntaxErrorMessage_piccoloDevice_5F_lexique_processor = "the 'processor' keyword" ;
 
 //--- Syntax error message for terminal '$romsize$' :
-static const utf32 gSyntaxErrorMessage_piccoloDevice_5F_lexique_romsize [] = {
-  TO_UNICODE ('t'),
-  TO_UNICODE ('h'),
-  TO_UNICODE ('e'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('\''),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('m'),
-  TO_UNICODE ('s'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('z'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('\''),
-  TO_UNICODE (' '),
-  TO_UNICODE ('k'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('y'),
-  TO_UNICODE ('w'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('d'),
-  TO_UNICODE (0)
-} ;
+static const char * gSyntaxErrorMessage_piccoloDevice_5F_lexique_romsize = "the 'romsize' keyword" ;
 
 //--- Syntax error message for terminal '$eepromsize$' :
-static const utf32 gSyntaxErrorMessage_piccoloDevice_5F_lexique_eepromsize [] = {
-  TO_UNICODE ('t'),
-  TO_UNICODE ('h'),
-  TO_UNICODE ('e'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('\''),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('p'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('m'),
-  TO_UNICODE ('s'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('z'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('\''),
-  TO_UNICODE (' '),
-  TO_UNICODE ('k'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('y'),
-  TO_UNICODE ('w'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('d'),
-  TO_UNICODE (0)
-} ;
+static const char * gSyntaxErrorMessage_piccoloDevice_5F_lexique_eepromsize = "the 'eepromsize' keyword" ;
 
 //--- Syntax error message for terminal '$bank$' :
-static const utf32 gSyntaxErrorMessage_piccoloDevice_5F_lexique_bank [] = {
-  TO_UNICODE ('t'),
-  TO_UNICODE ('h'),
-  TO_UNICODE ('e'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('\''),
-  TO_UNICODE ('b'),
-  TO_UNICODE ('a'),
-  TO_UNICODE ('n'),
-  TO_UNICODE ('k'),
-  TO_UNICODE ('\''),
-  TO_UNICODE (' '),
-  TO_UNICODE ('k'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('y'),
-  TO_UNICODE ('w'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('d'),
-  TO_UNICODE (0)
-} ;
+static const char * gSyntaxErrorMessage_piccoloDevice_5F_lexique_bank = "the 'bank' keyword" ;
 
 //--- Syntax error message for terminal '$unusedregister$' :
-static const utf32 gSyntaxErrorMessage_piccoloDevice_5F_lexique_unusedregister [] = {
-  TO_UNICODE ('t'),
-  TO_UNICODE ('h'),
-  TO_UNICODE ('e'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('\''),
-  TO_UNICODE ('u'),
-  TO_UNICODE ('n'),
-  TO_UNICODE ('u'),
-  TO_UNICODE ('s'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('d'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('g'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('s'),
-  TO_UNICODE ('t'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('\''),
-  TO_UNICODE (' '),
-  TO_UNICODE ('k'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('y'),
-  TO_UNICODE ('w'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('d'),
-  TO_UNICODE (0)
-} ;
+static const char * gSyntaxErrorMessage_piccoloDevice_5F_lexique_unusedregister = "the 'unusedregister' keyword" ;
 
 //--- Syntax error message for terminal '$mirrorat$' :
-static const utf32 gSyntaxErrorMessage_piccoloDevice_5F_lexique_mirrorat [] = {
-  TO_UNICODE ('t'),
-  TO_UNICODE ('h'),
-  TO_UNICODE ('e'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('\''),
-  TO_UNICODE ('m'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('a'),
-  TO_UNICODE ('t'),
-  TO_UNICODE ('\''),
-  TO_UNICODE (' '),
-  TO_UNICODE ('k'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('y'),
-  TO_UNICODE ('w'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('d'),
-  TO_UNICODE (0)
-} ;
+static const char * gSyntaxErrorMessage_piccoloDevice_5F_lexique_mirrorat = "the 'mirrorat' keyword" ;
 
 //--- Syntax error message for terminal '$ram$' :
-static const utf32 gSyntaxErrorMessage_piccoloDevice_5F_lexique_ram [] = {
-  TO_UNICODE ('t'),
-  TO_UNICODE ('h'),
-  TO_UNICODE ('e'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('\''),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('a'),
-  TO_UNICODE ('m'),
-  TO_UNICODE ('\''),
-  TO_UNICODE (' '),
-  TO_UNICODE ('k'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('y'),
-  TO_UNICODE ('w'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('d'),
-  TO_UNICODE (0)
-} ;
+static const char * gSyntaxErrorMessage_piccoloDevice_5F_lexique_ram = "the 'ram' keyword" ;
 
 //--- Syntax error message for terminal '$register$' :
-static const utf32 gSyntaxErrorMessage_piccoloDevice_5F_lexique_register [] = {
-  TO_UNICODE ('t'),
-  TO_UNICODE ('h'),
-  TO_UNICODE ('e'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('\''),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('g'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('s'),
-  TO_UNICODE ('t'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('\''),
-  TO_UNICODE (' '),
-  TO_UNICODE ('k'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('y'),
-  TO_UNICODE ('w'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('d'),
-  TO_UNICODE (0)
-} ;
+static const char * gSyntaxErrorMessage_piccoloDevice_5F_lexique_register = "the 'register' keyword" ;
 
 //--- Syntax error message for terminal '$at$' :
-static const utf32 gSyntaxErrorMessage_piccoloDevice_5F_lexique_at [] = {
-  TO_UNICODE ('t'),
-  TO_UNICODE ('h'),
-  TO_UNICODE ('e'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('\''),
-  TO_UNICODE ('a'),
-  TO_UNICODE ('t'),
-  TO_UNICODE ('\''),
-  TO_UNICODE (' '),
-  TO_UNICODE ('k'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('y'),
-  TO_UNICODE ('w'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('d'),
-  TO_UNICODE (0)
-} ;
+static const char * gSyntaxErrorMessage_piccoloDevice_5F_lexique_at = "the 'at' keyword" ;
 
 //--- Syntax error message for terminal '$to$' :
-static const utf32 gSyntaxErrorMessage_piccoloDevice_5F_lexique_to [] = {
-  TO_UNICODE ('t'),
-  TO_UNICODE ('h'),
-  TO_UNICODE ('e'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('\''),
-  TO_UNICODE ('t'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('\''),
-  TO_UNICODE (' '),
-  TO_UNICODE ('k'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('y'),
-  TO_UNICODE ('w'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('d'),
-  TO_UNICODE (0)
-} ;
+static const char * gSyntaxErrorMessage_piccoloDevice_5F_lexique_to = "the 'to' keyword" ;
 
 //--- Syntax error message for terminal '$configuration$' :
-static const utf32 gSyntaxErrorMessage_piccoloDevice_5F_lexique_configuration [] = {
-  TO_UNICODE ('t'),
-  TO_UNICODE ('h'),
-  TO_UNICODE ('e'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('\''),
-  TO_UNICODE ('c'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('n'),
-  TO_UNICODE ('f'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('g'),
-  TO_UNICODE ('u'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('a'),
-  TO_UNICODE ('t'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('n'),
-  TO_UNICODE ('\''),
-  TO_UNICODE (' '),
-  TO_UNICODE ('k'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('y'),
-  TO_UNICODE ('w'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('d'),
-  TO_UNICODE (0)
-} ;
+static const char * gSyntaxErrorMessage_piccoloDevice_5F_lexique_configuration = "the 'configuration' keyword" ;
 
 //--- Syntax error message for terminal '$width$' :
-static const utf32 gSyntaxErrorMessage_piccoloDevice_5F_lexique_width [] = {
-  TO_UNICODE ('t'),
-  TO_UNICODE ('h'),
-  TO_UNICODE ('e'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('\''),
-  TO_UNICODE ('w'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('d'),
-  TO_UNICODE ('t'),
-  TO_UNICODE ('h'),
-  TO_UNICODE ('\''),
-  TO_UNICODE (' '),
-  TO_UNICODE ('k'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('y'),
-  TO_UNICODE ('w'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('d'),
-  TO_UNICODE (0)
-} ;
+static const char * gSyntaxErrorMessage_piccoloDevice_5F_lexique_width = "the 'width' keyword" ;
 
 //--- Syntax error message for terminal '$description$' :
-static const utf32 gSyntaxErrorMessage_piccoloDevice_5F_lexique_description [] = {
-  TO_UNICODE ('t'),
-  TO_UNICODE ('h'),
-  TO_UNICODE ('e'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('\''),
-  TO_UNICODE ('d'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('s'),
-  TO_UNICODE ('c'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('p'),
-  TO_UNICODE ('t'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('n'),
-  TO_UNICODE ('\''),
-  TO_UNICODE (' '),
-  TO_UNICODE ('k'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('y'),
-  TO_UNICODE ('w'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('d'),
-  TO_UNICODE (0)
-} ;
+static const char * gSyntaxErrorMessage_piccoloDevice_5F_lexique_description = "the 'description' keyword" ;
 
 //--- Syntax error message for terminal '$mask$' :
-static const utf32 gSyntaxErrorMessage_piccoloDevice_5F_lexique_mask [] = {
-  TO_UNICODE ('t'),
-  TO_UNICODE ('h'),
-  TO_UNICODE ('e'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('\''),
-  TO_UNICODE ('m'),
-  TO_UNICODE ('a'),
-  TO_UNICODE ('s'),
-  TO_UNICODE ('k'),
-  TO_UNICODE ('\''),
-  TO_UNICODE (' '),
-  TO_UNICODE ('k'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('y'),
-  TO_UNICODE ('w'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('d'),
-  TO_UNICODE (0)
-} ;
+static const char * gSyntaxErrorMessage_piccoloDevice_5F_lexique_mask = "the 'mask' keyword" ;
 
 //--- Syntax error message for terminal '$illegal$' :
-static const utf32 gSyntaxErrorMessage_piccoloDevice_5F_lexique_illegal [] = {
-  TO_UNICODE ('t'),
-  TO_UNICODE ('h'),
-  TO_UNICODE ('e'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('\''),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('l'),
-  TO_UNICODE ('l'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('g'),
-  TO_UNICODE ('a'),
-  TO_UNICODE ('l'),
-  TO_UNICODE ('\''),
-  TO_UNICODE (' '),
-  TO_UNICODE ('k'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('y'),
-  TO_UNICODE ('w'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('d'),
-  TO_UNICODE (0)
-} ;
+static const char * gSyntaxErrorMessage_piccoloDevice_5F_lexique_illegal = "the 'illegal' keyword" ;
 
 //--- Syntax error message for terminal '$message$' :
-static const utf32 gSyntaxErrorMessage_piccoloDevice_5F_lexique_message [] = {
-  TO_UNICODE ('t'),
-  TO_UNICODE ('h'),
-  TO_UNICODE ('e'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('\''),
-  TO_UNICODE ('m'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('s'),
-  TO_UNICODE ('s'),
-  TO_UNICODE ('a'),
-  TO_UNICODE ('g'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('\''),
-  TO_UNICODE (' '),
-  TO_UNICODE ('k'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('y'),
-  TO_UNICODE ('w'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('d'),
-  TO_UNICODE (0)
-} ;
+static const char * gSyntaxErrorMessage_piccoloDevice_5F_lexique_message = "the 'message' keyword" ;
 
 //--- Syntax error message for terminal '$setting$' :
-static const utf32 gSyntaxErrorMessage_piccoloDevice_5F_lexique_setting [] = {
-  TO_UNICODE ('t'),
-  TO_UNICODE ('h'),
-  TO_UNICODE ('e'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('\''),
-  TO_UNICODE ('s'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('t'),
-  TO_UNICODE ('t'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('n'),
-  TO_UNICODE ('g'),
-  TO_UNICODE ('\''),
-  TO_UNICODE (' '),
-  TO_UNICODE ('k'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('y'),
-  TO_UNICODE ('w'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('d'),
-  TO_UNICODE (0)
-} ;
+static const char * gSyntaxErrorMessage_piccoloDevice_5F_lexique_setting = "the 'setting' keyword" ;
 
 //--- Syntax error message for terminal '$<$' :
-static const utf32 gSyntaxErrorMessage_piccoloDevice_5F_lexique__3C_ [] = {
-  TO_UNICODE ('t'),
-  TO_UNICODE ('h'),
-  TO_UNICODE ('e'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('\''),
-  TO_UNICODE ('<'),
-  TO_UNICODE ('\''),
-  TO_UNICODE (' '),
-  TO_UNICODE ('d'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('l'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('m'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('t'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('r'),
-  TO_UNICODE (0)
-} ;
+static const char * gSyntaxErrorMessage_piccoloDevice_5F_lexique__3C_ = "the '<' delimitor" ;
 
 //--- Syntax error message for terminal '$>$' :
-static const utf32 gSyntaxErrorMessage_piccoloDevice_5F_lexique__3E_ [] = {
-  TO_UNICODE ('t'),
-  TO_UNICODE ('h'),
-  TO_UNICODE ('e'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('\''),
-  TO_UNICODE ('>'),
-  TO_UNICODE ('\''),
-  TO_UNICODE (' '),
-  TO_UNICODE ('d'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('l'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('m'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('t'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('r'),
-  TO_UNICODE (0)
-} ;
+static const char * gSyntaxErrorMessage_piccoloDevice_5F_lexique__3E_ = "the '>' delimitor" ;
 
 //--- Syntax error message for terminal '$,$' :
-static const utf32 gSyntaxErrorMessage_piccoloDevice_5F_lexique__2C_ [] = {
-  TO_UNICODE ('t'),
-  TO_UNICODE ('h'),
-  TO_UNICODE ('e'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('\''),
-  TO_UNICODE (','),
-  TO_UNICODE ('\''),
-  TO_UNICODE (' '),
-  TO_UNICODE ('d'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('l'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('m'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('t'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('r'),
-  TO_UNICODE (0)
-} ;
+static const char * gSyntaxErrorMessage_piccoloDevice_5F_lexique__2C_ = "the ',' delimitor" ;
 
 //--- Syntax error message for terminal '$-$' :
-static const utf32 gSyntaxErrorMessage_piccoloDevice_5F_lexique__2D_ [] = {
-  TO_UNICODE ('t'),
-  TO_UNICODE ('h'),
-  TO_UNICODE ('e'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('\''),
-  TO_UNICODE ('-'),
-  TO_UNICODE ('\''),
-  TO_UNICODE (' '),
-  TO_UNICODE ('d'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('l'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('m'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('t'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('r'),
-  TO_UNICODE (0)
-} ;
+static const char * gSyntaxErrorMessage_piccoloDevice_5F_lexique__2D_ = "the '-' delimitor" ;
 
 //--- Syntax error message for terminal '$/$' :
-static const utf32 gSyntaxErrorMessage_piccoloDevice_5F_lexique__2F_ [] = {
-  TO_UNICODE ('t'),
-  TO_UNICODE ('h'),
-  TO_UNICODE ('e'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('\''),
-  TO_UNICODE ('/'),
-  TO_UNICODE ('\''),
-  TO_UNICODE (' '),
-  TO_UNICODE ('d'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('l'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('m'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('t'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('r'),
-  TO_UNICODE (0)
-} ;
+static const char * gSyntaxErrorMessage_piccoloDevice_5F_lexique__2F_ = "the '/' delimitor" ;
 
 //--- Syntax error message for terminal '$;$' :
-static const utf32 gSyntaxErrorMessage_piccoloDevice_5F_lexique__3B_ [] = {
-  TO_UNICODE ('t'),
-  TO_UNICODE ('h'),
-  TO_UNICODE ('e'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('\''),
-  TO_UNICODE (';'),
-  TO_UNICODE ('\''),
-  TO_UNICODE (' '),
-  TO_UNICODE ('d'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('l'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('m'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('t'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('r'),
-  TO_UNICODE (0)
-} ;
+static const char * gSyntaxErrorMessage_piccoloDevice_5F_lexique__3B_ = "the ';' delimitor" ;
 
 //--- Syntax error message for terminal '$:$' :
-static const utf32 gSyntaxErrorMessage_piccoloDevice_5F_lexique__3A_ [] = {
-  TO_UNICODE ('t'),
-  TO_UNICODE ('h'),
-  TO_UNICODE ('e'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('\''),
-  TO_UNICODE (':'),
-  TO_UNICODE ('\''),
-  TO_UNICODE (' '),
-  TO_UNICODE ('d'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('l'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('m'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('t'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('r'),
-  TO_UNICODE (0)
-} ;
+static const char * gSyntaxErrorMessage_piccoloDevice_5F_lexique__3A_ = "the ':' delimitor" ;
 
 //--- Syntax error message for terminal '$[$' :
-static const utf32 gSyntaxErrorMessage_piccoloDevice_5F_lexique__5B_ [] = {
-  TO_UNICODE ('t'),
-  TO_UNICODE ('h'),
-  TO_UNICODE ('e'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('\''),
-  TO_UNICODE ('['),
-  TO_UNICODE ('\''),
-  TO_UNICODE (' '),
-  TO_UNICODE ('d'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('l'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('m'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('t'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('r'),
-  TO_UNICODE (0)
-} ;
+static const char * gSyntaxErrorMessage_piccoloDevice_5F_lexique__5B_ = "the '[' delimitor" ;
 
 //--- Syntax error message for terminal '$]$' :
-static const utf32 gSyntaxErrorMessage_piccoloDevice_5F_lexique__5D_ [] = {
-  TO_UNICODE ('t'),
-  TO_UNICODE ('h'),
-  TO_UNICODE ('e'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('\''),
-  TO_UNICODE (']'),
-  TO_UNICODE ('\''),
-  TO_UNICODE (' '),
-  TO_UNICODE ('d'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('l'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('m'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('t'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('r'),
-  TO_UNICODE (0)
-} ;
+static const char * gSyntaxErrorMessage_piccoloDevice_5F_lexique__5D_ = "the ']' delimitor" ;
 
 //--- Syntax error message for terminal '${$' :
-static const utf32 gSyntaxErrorMessage_piccoloDevice_5F_lexique__7B_ [] = {
-  TO_UNICODE ('t'),
-  TO_UNICODE ('h'),
-  TO_UNICODE ('e'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('\''),
-  TO_UNICODE ('{'),
-  TO_UNICODE ('\''),
-  TO_UNICODE (' '),
-  TO_UNICODE ('d'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('l'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('m'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('t'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('r'),
-  TO_UNICODE (0)
-} ;
+static const char * gSyntaxErrorMessage_piccoloDevice_5F_lexique__7B_ = "the '{' delimitor" ;
 
 //--- Syntax error message for terminal '$}$' :
-static const utf32 gSyntaxErrorMessage_piccoloDevice_5F_lexique__7D_ [] = {
-  TO_UNICODE ('t'),
-  TO_UNICODE ('h'),
-  TO_UNICODE ('e'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('\''),
-  TO_UNICODE ('}'),
-  TO_UNICODE ('\''),
-  TO_UNICODE (' '),
-  TO_UNICODE ('d'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('l'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('m'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('t'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('r'),
-  TO_UNICODE (0)
-} ;
+static const char * gSyntaxErrorMessage_piccoloDevice_5F_lexique__7D_ = "the '}' delimitor" ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                getMessageForTerminal                                                                                *
 //---------------------------------------------------------------------------------------------------------------------*
 
 C_String C_Lexique_piccoloDevice_5F_lexique::getMessageForTerminal (const int16_t inTerminalIndex) const {
-  static const utf32 * syntaxErrorMessageArray [34] = {kEndOfSourceLexicalErrorMessage,
+  static const char * syntaxErrorMessageArray [34] = {kEndOfSourceLexicalErrorMessage,
     gSyntaxErrorMessage_piccoloDevice_5F_lexique_identifier,
     gSyntaxErrorMessage_piccoloDevice_5F_lexique_integer,
     gSyntaxErrorMessage_piccoloDevice_5F_lexique_string,
@@ -8849,9 +7993,9 @@ void GALGAS_declaredByteMap::addAssign_operation (const GALGAS_lstring & inKey,
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_declaredByteMap::modifier_insertKey (GALGAS_lstring inKey,
-                                                 C_Compiler * inCompiler
-                                                 COMMA_LOCATION_ARGS) {
+void GALGAS_declaredByteMap::setter_insertKey (GALGAS_lstring inKey,
+                                               C_Compiler * inCompiler
+                                               COMMA_LOCATION_ARGS) {
   cMapElement_declaredByteMap * p = NULL ;
   macroMyNew (p, cMapElement_declaredByteMap (inKey COMMA_HERE)) ;
   capCollectionElement attributes ;
@@ -9096,13 +8240,13 @@ void GALGAS_registerTable::addAssign_operation (const GALGAS_lstring & inKey,
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_registerTable::modifier_insertKey (GALGAS_lstring inKey,
-                                               GALGAS_uintlist inArgument0,
-                                               GALGAS_uint inArgument1,
-                                               GALGAS_bitSliceTable inArgument2,
-                                               GALGAS_string inArgument3,
-                                               C_Compiler * inCompiler
-                                               COMMA_LOCATION_ARGS) {
+void GALGAS_registerTable::setter_insertKey (GALGAS_lstring inKey,
+                                             GALGAS_uintlist inArgument0,
+                                             GALGAS_uint inArgument1,
+                                             GALGAS_bitSliceTable inArgument2,
+                                             GALGAS_string inArgument3,
+                                             C_Compiler * inCompiler
+                                             COMMA_LOCATION_ARGS) {
   cMapElement_registerTable * p = NULL ;
   macroMyNew (p, cMapElement_registerTable (inKey, inArgument0, inArgument1, inArgument2, inArgument3 COMMA_HERE)) ;
   capCollectionElement attributes ;
@@ -9206,10 +8350,10 @@ GALGAS_string GALGAS_registerTable::getter_mBitDefinitionStringForKey (const GAL
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_registerTable::modifier_setMRegisterAddressListForKey (GALGAS_uintlist inAttributeValue,
-                                                                   GALGAS_string inKey,
-                                                                   C_Compiler * inCompiler
-                                                                   COMMA_LOCATION_ARGS) {
+void GALGAS_registerTable::setter_setMRegisterAddressListForKey (GALGAS_uintlist inAttributeValue,
+                                                                 GALGAS_string inKey,
+                                                                 C_Compiler * inCompiler
+                                                                 COMMA_LOCATION_ARGS) {
   cCollectionElement * attributes = searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
   cMapElement_registerTable * p = (cMapElement_registerTable *) attributes ;
   if (NULL != p) {
@@ -9220,10 +8364,10 @@ void GALGAS_registerTable::modifier_setMRegisterAddressListForKey (GALGAS_uintli
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_registerTable::modifier_setMSizeForKey (GALGAS_uint inAttributeValue,
-                                                    GALGAS_string inKey,
-                                                    C_Compiler * inCompiler
-                                                    COMMA_LOCATION_ARGS) {
+void GALGAS_registerTable::setter_setMSizeForKey (GALGAS_uint inAttributeValue,
+                                                  GALGAS_string inKey,
+                                                  C_Compiler * inCompiler
+                                                  COMMA_LOCATION_ARGS) {
   cCollectionElement * attributes = searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
   cMapElement_registerTable * p = (cMapElement_registerTable *) attributes ;
   if (NULL != p) {
@@ -9234,10 +8378,10 @@ void GALGAS_registerTable::modifier_setMSizeForKey (GALGAS_uint inAttributeValue
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_registerTable::modifier_setMBitSliceTableForKey (GALGAS_bitSliceTable inAttributeValue,
-                                                             GALGAS_string inKey,
-                                                             C_Compiler * inCompiler
-                                                             COMMA_LOCATION_ARGS) {
+void GALGAS_registerTable::setter_setMBitSliceTableForKey (GALGAS_bitSliceTable inAttributeValue,
+                                                           GALGAS_string inKey,
+                                                           C_Compiler * inCompiler
+                                                           COMMA_LOCATION_ARGS) {
   cCollectionElement * attributes = searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
   cMapElement_registerTable * p = (cMapElement_registerTable *) attributes ;
   if (NULL != p) {
@@ -9248,10 +8392,10 @@ void GALGAS_registerTable::modifier_setMBitSliceTableForKey (GALGAS_bitSliceTabl
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_registerTable::modifier_setMBitDefinitionStringForKey (GALGAS_string inAttributeValue,
-                                                                   GALGAS_string inKey,
-                                                                   C_Compiler * inCompiler
-                                                                   COMMA_LOCATION_ARGS) {
+void GALGAS_registerTable::setter_setMBitDefinitionStringForKey (GALGAS_string inAttributeValue,
+                                                                 GALGAS_string inKey,
+                                                                 C_Compiler * inCompiler
+                                                                 COMMA_LOCATION_ARGS) {
   cCollectionElement * attributes = searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
   cMapElement_registerTable * p = (cMapElement_registerTable *) attributes ;
   if (NULL != p) {
@@ -9507,13 +8651,13 @@ void GALGAS_ramBankTable::addAssign_operation (const GALGAS_lstring & inKey,
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_ramBankTable::modifier_insertKey (GALGAS_lstring inKey,
-                                              GALGAS_uint inArgument0,
-                                              GALGAS_uint inArgument1,
-                                              GALGAS_uint inArgument2,
-                                              GALGAS_uintlist inArgument3,
-                                              C_Compiler * inCompiler
-                                              COMMA_LOCATION_ARGS) {
+void GALGAS_ramBankTable::setter_insertKey (GALGAS_lstring inKey,
+                                            GALGAS_uint inArgument0,
+                                            GALGAS_uint inArgument1,
+                                            GALGAS_uint inArgument2,
+                                            GALGAS_uintlist inArgument3,
+                                            C_Compiler * inCompiler
+                                            COMMA_LOCATION_ARGS) {
   cMapElement_ramBankTable * p = NULL ;
   macroMyNew (p, cMapElement_ramBankTable (inKey, inArgument0, inArgument1, inArgument2, inArgument3 COMMA_HERE)) ;
   capCollectionElement attributes ;
@@ -9617,10 +8761,10 @@ GALGAS_uintlist GALGAS_ramBankTable::getter_mMirrorOffsetListForKey (const GALGA
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_ramBankTable::modifier_setMFirstAddressForKey (GALGAS_uint inAttributeValue,
-                                                           GALGAS_string inKey,
-                                                           C_Compiler * inCompiler
-                                                           COMMA_LOCATION_ARGS) {
+void GALGAS_ramBankTable::setter_setMFirstAddressForKey (GALGAS_uint inAttributeValue,
+                                                         GALGAS_string inKey,
+                                                         C_Compiler * inCompiler
+                                                         COMMA_LOCATION_ARGS) {
   cCollectionElement * attributes = searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
   cMapElement_ramBankTable * p = (cMapElement_ramBankTable *) attributes ;
   if (NULL != p) {
@@ -9631,10 +8775,10 @@ void GALGAS_ramBankTable::modifier_setMFirstAddressForKey (GALGAS_uint inAttribu
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_ramBankTable::modifier_setMFirstFreeAddressForKey (GALGAS_uint inAttributeValue,
-                                                               GALGAS_string inKey,
-                                                               C_Compiler * inCompiler
-                                                               COMMA_LOCATION_ARGS) {
+void GALGAS_ramBankTable::setter_setMFirstFreeAddressForKey (GALGAS_uint inAttributeValue,
+                                                             GALGAS_string inKey,
+                                                             C_Compiler * inCompiler
+                                                             COMMA_LOCATION_ARGS) {
   cCollectionElement * attributes = searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
   cMapElement_ramBankTable * p = (cMapElement_ramBankTable *) attributes ;
   if (NULL != p) {
@@ -9645,10 +8789,10 @@ void GALGAS_ramBankTable::modifier_setMFirstFreeAddressForKey (GALGAS_uint inAtt
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_ramBankTable::modifier_setMLastAddressPlusOneForKey (GALGAS_uint inAttributeValue,
-                                                                 GALGAS_string inKey,
-                                                                 C_Compiler * inCompiler
-                                                                 COMMA_LOCATION_ARGS) {
+void GALGAS_ramBankTable::setter_setMLastAddressPlusOneForKey (GALGAS_uint inAttributeValue,
+                                                               GALGAS_string inKey,
+                                                               C_Compiler * inCompiler
+                                                               COMMA_LOCATION_ARGS) {
   cCollectionElement * attributes = searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
   cMapElement_ramBankTable * p = (cMapElement_ramBankTable *) attributes ;
   if (NULL != p) {
@@ -9659,10 +8803,10 @@ void GALGAS_ramBankTable::modifier_setMLastAddressPlusOneForKey (GALGAS_uint inA
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_ramBankTable::modifier_setMMirrorOffsetListForKey (GALGAS_uintlist inAttributeValue,
-                                                               GALGAS_string inKey,
-                                                               C_Compiler * inCompiler
-                                                               COMMA_LOCATION_ARGS) {
+void GALGAS_ramBankTable::setter_setMMirrorOffsetListForKey (GALGAS_uintlist inAttributeValue,
+                                                             GALGAS_string inKey,
+                                                             C_Compiler * inCompiler
+                                                             COMMA_LOCATION_ARGS) {
   cCollectionElement * attributes = searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
   cMapElement_ramBankTable * p = (cMapElement_ramBankTable *) attributes ;
   if (NULL != p) {
@@ -10070,12 +9214,12 @@ void GALGAS_illegalMaskList::addAssign_operation (const GALGAS_luint & inOperand
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_illegalMaskList::modifier_insertAtIndex (const GALGAS_luint inOperand0,
-                                                     const GALGAS_luint inOperand1,
-                                                     const GALGAS_lstring inOperand2,
-                                                     const GALGAS_uint inInsertionIndex,
-                                                     C_Compiler * inCompiler
-                                                     COMMA_LOCATION_ARGS) {
+void GALGAS_illegalMaskList::setter_insertAtIndex (const GALGAS_luint inOperand0,
+                                                   const GALGAS_luint inOperand1,
+                                                   const GALGAS_lstring inOperand2,
+                                                   const GALGAS_uint inInsertionIndex,
+                                                   C_Compiler * inCompiler
+                                                   COMMA_LOCATION_ARGS) {
   if (isValid () && inInsertionIndex.isValid () && inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid ()) {
     cCollectionElement * p = NULL ;
     macroMyNew (p, cCollectionElement_illegalMaskList (inOperand0, inOperand1, inOperand2 COMMA_THERE)) ;
@@ -10088,12 +9232,12 @@ void GALGAS_illegalMaskList::modifier_insertAtIndex (const GALGAS_luint inOperan
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_illegalMaskList::modifier_removeAtIndex (GALGAS_luint & outOperand0,
-                                                     GALGAS_luint & outOperand1,
-                                                     GALGAS_lstring & outOperand2,
-                                                     const GALGAS_uint inRemoveIndex,
-                                                     C_Compiler * inCompiler
-                                                     COMMA_LOCATION_ARGS) {
+void GALGAS_illegalMaskList::setter_removeAtIndex (GALGAS_luint & outOperand0,
+                                                   GALGAS_luint & outOperand1,
+                                                   GALGAS_lstring & outOperand2,
+                                                   const GALGAS_uint inRemoveIndex,
+                                                   C_Compiler * inCompiler
+                                                   COMMA_LOCATION_ARGS) {
   if (isValid () && inRemoveIndex.isValid ()) {
     capCollectionElement attributes ;
     removeObjectAtIndex (attributes, inRemoveIndex.uintValue (), inCompiler COMMA_THERE) ;
@@ -10113,11 +9257,11 @@ void GALGAS_illegalMaskList::modifier_removeAtIndex (GALGAS_luint & outOperand0,
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_illegalMaskList::modifier_popFirst (GALGAS_luint & outOperand0,
-                                                GALGAS_luint & outOperand1,
-                                                GALGAS_lstring & outOperand2,
-                                                C_Compiler * inCompiler
-                                                COMMA_LOCATION_ARGS) {
+void GALGAS_illegalMaskList::setter_popFirst (GALGAS_luint & outOperand0,
+                                              GALGAS_luint & outOperand1,
+                                              GALGAS_lstring & outOperand2,
+                                              C_Compiler * inCompiler
+                                              COMMA_LOCATION_ARGS) {
   capCollectionElement attributes ;
   removeFirstObject (attributes, inCompiler COMMA_THERE) ;
   cCollectionElement_illegalMaskList * p = (cCollectionElement_illegalMaskList *) attributes.ptr () ;
@@ -10135,11 +9279,11 @@ void GALGAS_illegalMaskList::modifier_popFirst (GALGAS_luint & outOperand0,
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_illegalMaskList::modifier_popLast (GALGAS_luint & outOperand0,
-                                               GALGAS_luint & outOperand1,
-                                               GALGAS_lstring & outOperand2,
-                                               C_Compiler * inCompiler
-                                               COMMA_LOCATION_ARGS) {
+void GALGAS_illegalMaskList::setter_popLast (GALGAS_luint & outOperand0,
+                                             GALGAS_luint & outOperand1,
+                                             GALGAS_lstring & outOperand2,
+                                             C_Compiler * inCompiler
+                                             COMMA_LOCATION_ARGS) {
   capCollectionElement attributes ;
   removeLastObject (attributes, inCompiler COMMA_THERE) ;
   cCollectionElement_illegalMaskList * p = (cCollectionElement_illegalMaskList *) attributes.ptr () ;
@@ -10510,12 +9654,12 @@ void GALGAS_configRegisterMaskMap::addAssign_operation (const GALGAS_lstring & i
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_configRegisterMaskMap::modifier_insertKey (GALGAS_lstring inKey,
-                                                       GALGAS_luint inArgument0,
-                                                       GALGAS_lstring inArgument1,
-                                                       GALGAS_fieldSettingMap inArgument2,
-                                                       C_Compiler * inCompiler
-                                                       COMMA_LOCATION_ARGS) {
+void GALGAS_configRegisterMaskMap::setter_insertKey (GALGAS_lstring inKey,
+                                                     GALGAS_luint inArgument0,
+                                                     GALGAS_lstring inArgument1,
+                                                     GALGAS_fieldSettingMap inArgument2,
+                                                     C_Compiler * inCompiler
+                                                     COMMA_LOCATION_ARGS) {
   cMapElement_configRegisterMaskMap * p = NULL ;
   macroMyNew (p, cMapElement_configRegisterMaskMap (inKey, inArgument0, inArgument1, inArgument2 COMMA_HERE)) ;
   capCollectionElement attributes ;
@@ -10601,10 +9745,10 @@ GALGAS_fieldSettingMap GALGAS_configRegisterMaskMap::getter_mFieldSettingMapForK
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_configRegisterMaskMap::modifier_setMMaskValueForKey (GALGAS_luint inAttributeValue,
-                                                                 GALGAS_string inKey,
-                                                                 C_Compiler * inCompiler
-                                                                 COMMA_LOCATION_ARGS) {
+void GALGAS_configRegisterMaskMap::setter_setMMaskValueForKey (GALGAS_luint inAttributeValue,
+                                                               GALGAS_string inKey,
+                                                               C_Compiler * inCompiler
+                                                               COMMA_LOCATION_ARGS) {
   cCollectionElement * attributes = searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
   cMapElement_configRegisterMaskMap * p = (cMapElement_configRegisterMaskMap *) attributes ;
   if (NULL != p) {
@@ -10615,10 +9759,10 @@ void GALGAS_configRegisterMaskMap::modifier_setMMaskValueForKey (GALGAS_luint in
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_configRegisterMaskMap::modifier_setMDescriptionForKey (GALGAS_lstring inAttributeValue,
-                                                                   GALGAS_string inKey,
-                                                                   C_Compiler * inCompiler
-                                                                   COMMA_LOCATION_ARGS) {
+void GALGAS_configRegisterMaskMap::setter_setMDescriptionForKey (GALGAS_lstring inAttributeValue,
+                                                                 GALGAS_string inKey,
+                                                                 C_Compiler * inCompiler
+                                                                 COMMA_LOCATION_ARGS) {
   cCollectionElement * attributes = searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
   cMapElement_configRegisterMaskMap * p = (cMapElement_configRegisterMaskMap *) attributes ;
   if (NULL != p) {
@@ -10629,10 +9773,10 @@ void GALGAS_configRegisterMaskMap::modifier_setMDescriptionForKey (GALGAS_lstrin
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_configRegisterMaskMap::modifier_setMFieldSettingMapForKey (GALGAS_fieldSettingMap inAttributeValue,
-                                                                       GALGAS_string inKey,
-                                                                       C_Compiler * inCompiler
-                                                                       COMMA_LOCATION_ARGS) {
+void GALGAS_configRegisterMaskMap::setter_setMFieldSettingMapForKey (GALGAS_fieldSettingMap inAttributeValue,
+                                                                     GALGAS_string inKey,
+                                                                     C_Compiler * inCompiler
+                                                                     COMMA_LOCATION_ARGS) {
   cCollectionElement * attributes = searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
   cMapElement_configRegisterMaskMap * p = (cMapElement_configRegisterMaskMap *) attributes ;
   if (NULL != p) {
@@ -10880,13 +10024,13 @@ void GALGAS_configRegisterMap::addAssign_operation (const GALGAS_lstring & inKey
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_configRegisterMap::modifier_insertKey (GALGAS_lstring inKey,
-                                                   GALGAS_luint inArgument0,
-                                                   GALGAS_luint inArgument1,
-                                                   GALGAS_configRegisterMaskMap inArgument2,
-                                                   GALGAS_illegalMaskList inArgument3,
-                                                   C_Compiler * inCompiler
-                                                   COMMA_LOCATION_ARGS) {
+void GALGAS_configRegisterMap::setter_insertKey (GALGAS_lstring inKey,
+                                                 GALGAS_luint inArgument0,
+                                                 GALGAS_luint inArgument1,
+                                                 GALGAS_configRegisterMaskMap inArgument2,
+                                                 GALGAS_illegalMaskList inArgument3,
+                                                 C_Compiler * inCompiler
+                                                 COMMA_LOCATION_ARGS) {
   cMapElement_configRegisterMap * p = NULL ;
   macroMyNew (p, cMapElement_configRegisterMap (inKey, inArgument0, inArgument1, inArgument2, inArgument3 COMMA_HERE)) ;
   capCollectionElement attributes ;
@@ -10990,10 +10134,10 @@ GALGAS_illegalMaskList GALGAS_configRegisterMap::getter_mIllegalMaskListForKey (
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_configRegisterMap::modifier_setMRegisterAddressForKey (GALGAS_luint inAttributeValue,
-                                                                   GALGAS_string inKey,
-                                                                   C_Compiler * inCompiler
-                                                                   COMMA_LOCATION_ARGS) {
+void GALGAS_configRegisterMap::setter_setMRegisterAddressForKey (GALGAS_luint inAttributeValue,
+                                                                 GALGAS_string inKey,
+                                                                 C_Compiler * inCompiler
+                                                                 COMMA_LOCATION_ARGS) {
   cCollectionElement * attributes = searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
   cMapElement_configRegisterMap * p = (cMapElement_configRegisterMap *) attributes ;
   if (NULL != p) {
@@ -11004,10 +10148,10 @@ void GALGAS_configRegisterMap::modifier_setMRegisterAddressForKey (GALGAS_luint 
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_configRegisterMap::modifier_setMRegisterWidthForKey (GALGAS_luint inAttributeValue,
-                                                                 GALGAS_string inKey,
-                                                                 C_Compiler * inCompiler
-                                                                 COMMA_LOCATION_ARGS) {
+void GALGAS_configRegisterMap::setter_setMRegisterWidthForKey (GALGAS_luint inAttributeValue,
+                                                               GALGAS_string inKey,
+                                                               C_Compiler * inCompiler
+                                                               COMMA_LOCATION_ARGS) {
   cCollectionElement * attributes = searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
   cMapElement_configRegisterMap * p = (cMapElement_configRegisterMap *) attributes ;
   if (NULL != p) {
@@ -11018,10 +10162,10 @@ void GALGAS_configRegisterMap::modifier_setMRegisterWidthForKey (GALGAS_luint in
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_configRegisterMap::modifier_setMConfigRegisterMaskMapForKey (GALGAS_configRegisterMaskMap inAttributeValue,
-                                                                         GALGAS_string inKey,
-                                                                         C_Compiler * inCompiler
-                                                                         COMMA_LOCATION_ARGS) {
+void GALGAS_configRegisterMap::setter_setMConfigRegisterMaskMapForKey (GALGAS_configRegisterMaskMap inAttributeValue,
+                                                                       GALGAS_string inKey,
+                                                                       C_Compiler * inCompiler
+                                                                       COMMA_LOCATION_ARGS) {
   cCollectionElement * attributes = searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
   cMapElement_configRegisterMap * p = (cMapElement_configRegisterMap *) attributes ;
   if (NULL != p) {
@@ -11032,10 +10176,10 @@ void GALGAS_configRegisterMap::modifier_setMConfigRegisterMaskMapForKey (GALGAS_
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_configRegisterMap::modifier_setMIllegalMaskListForKey (GALGAS_illegalMaskList inAttributeValue,
-                                                                   GALGAS_string inKey,
-                                                                   C_Compiler * inCompiler
-                                                                   COMMA_LOCATION_ARGS) {
+void GALGAS_configRegisterMap::setter_setMIllegalMaskListForKey (GALGAS_illegalMaskList inAttributeValue,
+                                                                 GALGAS_string inKey,
+                                                                 C_Compiler * inCompiler
+                                                                 COMMA_LOCATION_ARGS) {
   cCollectionElement * attributes = searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
   cMapElement_configRegisterMap * p = (cMapElement_configRegisterMap *) attributes ;
   if (NULL != p) {
@@ -11287,7 +10431,7 @@ void cParser_piccoloDevice_5F_syntax::rule_piccoloDevice_5F_syntax_start_5F_symb
       }
       inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__3B_) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 81)) ;
       {
-      var_ramBankTable.modifier_insertKey (var_ramName, var_ramStart.getter_uint (SOURCE_FILE ("piccoloDevice_syntax.galgas", 84)), var_ramStart.getter_uint (SOURCE_FILE ("piccoloDevice_syntax.galgas", 85)), var_ramEnd.getter_uint (SOURCE_FILE ("piccoloDevice_syntax.galgas", 86)).add_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 86)), var_mirrorOffsetList, inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 82)) ;
+      var_ramBankTable.setter_insertKey (var_ramName, var_ramStart.getter_uint (SOURCE_FILE ("piccoloDevice_syntax.galgas", 84)), var_ramStart.getter_uint (SOURCE_FILE ("piccoloDevice_syntax.galgas", 85)), var_ramEnd.getter_uint (SOURCE_FILE ("piccoloDevice_syntax.galgas", 86)).add_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 86)), var_mirrorOffsetList, inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 82)) ;
       }
     } break ;
     default:
@@ -11361,7 +10505,7 @@ void cParser_piccoloDevice_5F_syntax::rule_piccoloDevice_5F_syntax_start_5F_symb
               break ;
             }
             {
-            var_bitSliceTable.modifier_insertKey (var_sliceName, var_sliceIndex.substract_operation (var_sliceWidth, inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 130)), var_sliceWidth, inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 130)) ;
+            var_bitSliceTable.setter_insertKey (var_sliceName, var_sliceIndex.substract_operation (var_sliceWidth, inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 130)), var_sliceWidth, inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 130)) ;
             }
             switch (select_piccoloDevice_5F_syntax_10 (inCompiler)) {
             case 2: {
@@ -11401,7 +10545,7 @@ void cParser_piccoloDevice_5F_syntax::rule_piccoloDevice_5F_syntax_start_5F_symb
       var_bitDefinitionString.plusAssign_operation(GALGAS_string (">"), inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 148)) ;
       inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__3E_) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 149)) ;
       {
-      var_registerTable.modifier_insertKey (var_registerName, var_registerAddressList, GALGAS_uint ((uint32_t) 1U), var_bitSliceTable, var_bitDefinitionString, inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 150)) ;
+      var_registerTable.setter_insertKey (var_registerName, var_registerAddressList, GALGAS_uint ((uint32_t) 1U), var_bitSliceTable, var_bitDefinitionString, inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 150)) ;
       }
       inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__3B_) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 151)) ;
     } break ;
@@ -11479,7 +10623,7 @@ void cParser_piccoloDevice_5F_syntax::rule_piccoloDevice_5F_syntax_start_5F_symb
             GALGAS_lstring var_descriptionString = inCompiler->synthetizedAttribute_tokenString () ;
             inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_string) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 194)) ;
             {
-            var_fieldSettingMap.modifier_insertKey (var_descriptionString, var_value.getter_uint (SOURCE_FILE ("piccoloDevice_syntax.galgas", 195)), var_mask.getter_uint (SOURCE_FILE ("piccoloDevice_syntax.galgas", 195)), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 195)) ;
+            var_fieldSettingMap.setter_insertKey (var_descriptionString, var_value.getter_uint (SOURCE_FILE ("piccoloDevice_syntax.galgas", 195)), var_mask.getter_uint (SOURCE_FILE ("piccoloDevice_syntax.galgas", 195)), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 195)) ;
             }
             switch (select_piccoloDevice_5F_syntax_15 (inCompiler)) {
             case 2: {
@@ -11490,7 +10634,7 @@ void cParser_piccoloDevice_5F_syntax::rule_piccoloDevice_5F_syntax_start_5F_symb
             }
           }
           {
-          var_configRegisterMaskMap.modifier_insertKey (var_maskName, var_maskValue, var_maskDescriptionString, var_fieldSettingMap, inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 198)) ;
+          var_configRegisterMaskMap.setter_insertKey (var_maskName, var_maskValue, var_maskDescriptionString, var_fieldSettingMap, inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 198)) ;
           }
         } break ;
         default:
@@ -11500,7 +10644,7 @@ void cParser_piccoloDevice_5F_syntax::rule_piccoloDevice_5F_syntax_start_5F_symb
       }
       inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__7D_) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 200)) ;
       {
-      var_configRegisterMap.modifier_insertKey (var_configRegisterName, var_configRegisterAddress, var_configRegisterWidth, var_configRegisterMaskMap, var_illegalMaskList, inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 201)) ;
+      var_configRegisterMap.setter_insertKey (var_configRegisterName, var_configRegisterAddress, var_configRegisterWidth, var_configRegisterMaskMap, var_illegalMaskList, inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 201)) ;
       }
     } break ;
     default:
