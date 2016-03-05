@@ -6767,6 +6767,7 @@ GALGAS_blockDurationMap GALGAS_blockDurationMap::extractObject (const GALGAS_obj
 
 #include "strings/unicode_character_cpp.h"
 #include "galgas2/scanner_actions.h"
+#include "galgas2/cLexiqueIntrospection.h"
 
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -7830,6 +7831,63 @@ GALGAS_stringlist C_Lexique_piccoloDevice_5F_lexique::symbols (LOCATION_ARGS) {
   result.addAssign_operation (GALGAS_string ("}") COMMA_THERE) ;
   return result ;
 }
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+static void getKeywordLists_piccoloDevice_5F_lexique (TC_UniqueArray <C_String> & ioList) {
+  ioList.addObject ("piccoloDevice_lexique:controlKeyWordList") ;
+  ioList.addObject ("piccoloDevice_lexique:delimitorsList") ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+static void getKeywordsForIdentifier_piccoloDevice_5F_lexique (const C_String & inIdentifier,
+                                                               bool & ioFound,
+                                                               TC_UniqueArray <C_String> & ioList) {
+  if (inIdentifier == "piccoloDevice_lexique:controlKeyWordList") {
+    ioFound = true ;
+    ioList.addObject ("at") ;
+    ioList.addObject ("to") ;
+    ioList.addObject ("ram") ;
+    ioList.addObject ("bank") ;
+    ioList.addObject ("mask") ;
+    ioList.addObject ("width") ;
+    ioList.addObject ("illegal") ;
+    ioList.addObject ("message") ;
+    ioList.addObject ("romsize") ;
+    ioList.addObject ("setting") ;
+    ioList.addObject ("mirrorat") ;
+    ioList.addObject ("register") ;
+    ioList.addObject ("processor") ;
+    ioList.addObject ("controller") ;
+    ioList.addObject ("eepromsize") ;
+    ioList.addObject ("description") ;
+    ioList.addObject ("configuration") ;
+    ioList.addObject ("unusedregister") ;
+    ioList.sortArrayUsingCompareMethod() ;
+  }
+  if (inIdentifier == "piccoloDevice_lexique:delimitorsList") {
+    ioFound = true ;
+    ioList.addObject (",") ;
+    ioList.addObject ("-") ;
+    ioList.addObject ("/") ;
+    ioList.addObject (":") ;
+    ioList.addObject (";") ;
+    ioList.addObject ("<") ;
+    ioList.addObject (">") ;
+    ioList.addObject ("[") ;
+    ioList.addObject ("]") ;
+    ioList.addObject ("{") ;
+    ioList.addObject ("}") ;
+    ioList.sortArrayUsingCompareMethod() ;
+  }
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+static cLexiqueIntrospection lexiqueIntrospection_piccoloDevice_5F_lexique
+__attribute__ ((used))
+__attribute__ ((unused)) (getKeywordLists_piccoloDevice_5F_lexique, getKeywordsForIdentifier_piccoloDevice_5F_lexique) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //   S T Y L E   I N D E X    F O R    T E R M I N A L                                                                 *

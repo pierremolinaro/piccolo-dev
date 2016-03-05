@@ -5424,7 +5424,6 @@ void routine_build_5F_ipic_31__38__5F_block_5F_representation_5F_list (const GAL
     var_entryPoint = var_entryPoint.add_operation (GALGAS_uint ((uint32_t) 4U), inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 3433)) ;
     enumerator_120918.gotoNextObject () ;
   }
-  var_tempBootloaderRoutineDeclarationList.drop () ; // drop instruction
   GALGAS_uint var_localLabelIndex = GALGAS_uint ((uint32_t) 0U) ;
   const enumGalgasBool test_17 = constinArgument_inHasLowInterrupt.boolEnum () ;
   if (kBoolTrue == test_17) {
