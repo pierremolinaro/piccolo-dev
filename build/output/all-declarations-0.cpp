@@ -16,6 +16,7 @@
 
 #include "strings/unicode_character_cpp.h"
 #include "galgas2/scanner_actions.h"
+#include "galgas2/cLexiqueIntrospection.h"
 
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -3629,6 +3630,185 @@ GALGAS_stringlist C_Lexique_piccolo_5F_lexique::symbols (LOCATION_ARGS) {
   result.addAssign_operation (GALGAS_string ("...") COMMA_THERE) ;
   return result ;
 }
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+static void getKeywordLists_piccolo_5F_lexique (TC_UniqueArray <C_String> & ioList) {
+  ioList.addObject ("piccolo_lexique:controlKeyWordList") ;
+  ioList.addObject ("piccolo_lexique:delimitorsList") ;
+  ioList.addObject ("piccolo_lexique:instructionKeyWordList") ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+static void getKeywordsForIdentifier_piccolo_5F_lexique (const C_String & inIdentifier,
+                                                         bool & ioFound,
+                                                         TC_UniqueArray <C_String> & ioList) {
+  if (inIdentifier == "piccolo_lexique:controlKeyWordList") {
+    ioFound = true ;
+    ioList.addObject ("w") ;
+    ioList.addObject ("do") ;
+    ioList.addObject ("if") ;
+    ioList.addObject ("end") ;
+    ioList.addObject ("ram") ;
+    ioList.addObject ("rom") ;
+    ioList.addObject ("bank") ;
+    ioList.addObject ("byte") ;
+    ioList.addObject ("case") ;
+    ioList.addObject ("data") ;
+    ioList.addObject ("else") ;
+    ioList.addObject ("fast") ;
+    ioList.addObject ("page") ;
+    ioList.addObject ("uses") ;
+    ioList.addObject ("block") ;
+    ioList.addObject ("const") ;
+    ioList.addObject ("elsif") ;
+    ioList.addObject ("macro") ;
+    ioList.addObject ("pic18") ;
+    ioList.addObject ("while") ;
+    ioList.addObject ("inline") ;
+    ioList.addObject ("nobank") ;
+    ioList.addObject ("switch") ;
+    ioList.addObject ("unused") ;
+    ioList.addObject ("banksel") ;
+    ioList.addObject ("ensures") ;
+    ioList.addObject ("forever") ;
+    ioList.addObject ("include") ;
+    ioList.addObject ("routine") ;
+    ioList.addObject ("banksave") ;
+    ioList.addObject ("baseline") ;
+    ioList.addObject ("checkpic") ;
+    ioList.addObject ("computed") ;
+    ioList.addObject ("midrange") ;
+    ioList.addObject ("noreturn") ;
+    ioList.addObject ("requires") ;
+    ioList.addObject ("checkbank") ;
+    ioList.addObject ("interrupt") ;
+    ioList.addObject ("preserved") ;
+    ioList.addObject ("bootloader") ;
+    ioList.addObject ("implements") ;
+    ioList.addObject ("checknobank") ;
+    ioList.addObject ("contextsave") ;
+    ioList.addObject ("configuration") ;
+    ioList.sortArrayUsingCompareMethod() ;
+  }
+  if (inIdentifier == "piccolo_lexique:delimitorsList") {
+    ioFound = true ;
+    ioList.addObject ("!") ;
+    ioList.addObject ("%") ;
+    ioList.addObject ("&") ;
+    ioList.addObject ("(") ;
+    ioList.addObject (")") ;
+    ioList.addObject ("*") ;
+    ioList.addObject ("+") ;
+    ioList.addObject (",") ;
+    ioList.addObject ("-") ;
+    ioList.addObject (".") ;
+    ioList.addObject ("/") ;
+    ioList.addObject (":") ;
+    ioList.addObject (";") ;
+    ioList.addObject ("<") ;
+    ioList.addObject ("=") ;
+    ioList.addObject (">") ;
+    ioList.addObject ("\?") ;
+    ioList.addObject ("[") ;
+    ioList.addObject ("]") ;
+    ioList.addObject ("^") ;
+    ioList.addObject ("{") ;
+    ioList.addObject ("|") ;
+    ioList.addObject ("}") ;
+    ioList.addObject ("~") ;
+    ioList.addObject ("!=") ;
+    ioList.addObject ("*+") ;
+    ioList.addObject ("*-") ;
+    ioList.addObject ("+*") ;
+    ioList.addObject ("<<") ;
+    ioList.addObject ("<=") ;
+    ioList.addObject ("==") ;
+    ioList.addObject (">=") ;
+    ioList.addObject (">>") ;
+    ioList.addObject ("...") ;
+    ioList.sortArrayUsingCompareMethod() ;
+  }
+  if (inIdentifier == "piccolo_lexique:instructionKeyWordList") {
+    ioFound = true ;
+    ioList.addObject ("bc") ;
+    ioList.addObject ("bn") ;
+    ioList.addObject ("bz") ;
+    ioList.addObject ("bcf") ;
+    ioList.addObject ("bnc") ;
+    ioList.addObject ("bnn") ;
+    ioList.addObject ("bnz") ;
+    ioList.addObject ("bov") ;
+    ioList.addObject ("bra") ;
+    ioList.addObject ("bsf") ;
+    ioList.addObject ("btg") ;
+    ioList.addObject ("daw") ;
+    ioList.addObject ("jsr") ;
+    ioList.addObject ("nop") ;
+    ioList.addObject ("pop") ;
+    ioList.addObject ("rlf") ;
+    ioList.addObject ("rrf") ;
+    ioList.addObject ("bnov") ;
+    ioList.addObject ("call") ;
+    ioList.addObject ("clrf") ;
+    ioList.addObject ("clrw") ;
+    ioList.addObject ("comf") ;
+    ioList.addObject ("decf") ;
+    ioList.addObject ("fnop") ;
+    ioList.addObject ("goto") ;
+    ioList.addObject ("incf") ;
+    ioList.addObject ("jump") ;
+    ioList.addObject ("lfsr") ;
+    ioList.addObject ("mnop") ;
+    ioList.addObject ("movf") ;
+    ioList.addObject ("negf") ;
+    ioList.addObject ("push") ;
+    ioList.addObject ("rlcf") ;
+    ioList.addObject ("rrcf") ;
+    ioList.addObject ("setf") ;
+    ioList.addObject ("tris") ;
+    ioList.addObject ("addlw") ;
+    ioList.addObject ("addwf") ;
+    ioList.addObject ("andlw") ;
+    ioList.addObject ("andwf") ;
+    ioList.addObject ("iorlw") ;
+    ioList.addObject ("iorwf") ;
+    ioList.addObject ("movff") ;
+    ioList.addObject ("movlw") ;
+    ioList.addObject ("movwf") ;
+    ioList.addObject ("mullw") ;
+    ioList.addObject ("mulwf") ;
+    ioList.addObject ("rcall") ;
+    ioList.addObject ("reset") ;
+    ioList.addObject ("retlw") ;
+    ioList.addObject ("rlncf") ;
+    ioList.addObject ("rrncf") ;
+    ioList.addObject ("sleep") ;
+    ioList.addObject ("sublw") ;
+    ioList.addObject ("subwf") ;
+    ioList.addObject ("swapf") ;
+    ioList.addObject ("tblrd") ;
+    ioList.addObject ("tblwt") ;
+    ioList.addObject ("xorlw") ;
+    ioList.addObject ("xorwf") ;
+    ioList.addObject ("addwfc") ;
+    ioList.addObject ("clrwdt") ;
+    ioList.addObject ("nopbra") ;
+    ioList.addObject ("option") ;
+    ioList.addObject ("subfwb") ;
+    ioList.addObject ("subwfb") ;
+    ioList.addObject ("ltblptr") ;
+    ioList.addObject ("ldataptr") ;
+    ioList.sortArrayUsingCompareMethod() ;
+  }
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+static cLexiqueIntrospection lexiqueIntrospection_piccolo_5F_lexique
+__attribute__ ((used))
+__attribute__ ((unused)) (getKeywordLists_piccolo_5F_lexique, getKeywordsForIdentifier_piccolo_5F_lexique) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //   S T Y L E   I N D E X    F O R    T E R M I N A L                                                                 *
