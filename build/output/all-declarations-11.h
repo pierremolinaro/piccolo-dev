@@ -11,7 +11,7 @@
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                           Category method '@baseline_instruction_IF_BitTest getBaseCode'                            *
+//                           Extension method '@baseline_instruction_IF_BitTest getBaseCode'                           *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -34,7 +34,7 @@ void callCategoryMethod_getBaseCode (const class cPtr_baseline_5F_instruction_5F
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                           Category method '@baseline_instruction_IF_BitTest getMnemonic'                            *
+//                           Extension method '@baseline_instruction_IF_BitTest getMnemonic'                           *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -57,7 +57,7 @@ void callCategoryMethod_getMnemonic (const class cPtr_baseline_5F_instruction_5F
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                           Category method '@midrange_instruction_IF_BitTest getBaseCode'                            *
+//                           Extension method '@midrange_instruction_IF_BitTest getBaseCode'                           *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -80,7 +80,7 @@ void callCategoryMethod_getBaseCode (const class cPtr_midrange_5F_instruction_5F
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                           Category method '@midrange_instruction_IF_BitTest getMnemonic'                            *
+//                           Extension method '@midrange_instruction_IF_BitTest getMnemonic'                           *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -103,7 +103,7 @@ void callCategoryMethod_getMnemonic (const class cPtr_midrange_5F_instruction_5F
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                 Category method '@registerExpression analyzeRegisterExpressionWithoutCheckingBank'                  *
+//                 Extension method '@registerExpression analyzeRegisterExpressionWithoutCheckingBank'                 *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -132,7 +132,7 @@ void callCategoryMethod_analyzeRegisterExpressionWithoutCheckingBank (const clas
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                              Category method '@registerExpression getRegisterAddress'                               *
+//                              Extension method '@registerExpression getRegisterAddress'                              *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
