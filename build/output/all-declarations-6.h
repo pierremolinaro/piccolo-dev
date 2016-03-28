@@ -11,7 +11,7 @@
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                                   Category method '@ipic18Block computeDuration'                                    *
+//                                   Extension method '@ipic18Block computeDuration'                                   *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -25,7 +25,7 @@ void categoryMethod_computeDuration (const class GALGAS_ipic_31__38_Block inObje
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                           Abstract category method '@declarationInRam handleDeclaration'                            *
+//                           Abstract extension method '@declarationInRam handleDeclaration'                           *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 

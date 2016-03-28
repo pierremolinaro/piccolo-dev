@@ -10,7 +10,7 @@
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                      Overriding category method '@pic18Instruction_repetitionStatique analyze'                      *
+//                     Overriding extension method '@pic18Instruction_repetitionStatique analyze'                      *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -94,6 +94,7 @@ static void categoryMethod_pic_31__38_Instruction_5F_repetitionStatique_analyze 
     }
   }
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_pic_31__38_Instruction_5F_repetitionStatique_analyze (void) {
@@ -107,7 +108,7 @@ C_PrologueEpilogue gMethod_pic_31__38_Instruction_5F_repetitionStatique_analyze 
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                           Overriding category method '@pic18Instruction_banksel analyze'                            *
+//                           Overriding extension method '@pic18Instruction_banksel analyze'                           *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -154,6 +155,7 @@ static void categoryMethod_pic_31__38_Instruction_5F_banksel_analyze (const cPtr
     }
   }
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_pic_31__38_Instruction_5F_banksel_analyze (void) {
@@ -167,7 +169,7 @@ C_PrologueEpilogue gMethod_pic_31__38_Instruction_5F_banksel_analyze (defineCate
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                       Overriding category method '@pic18Instruction_banksel_register analyze'                       *
+//                      Overriding extension method '@pic18Instruction_banksel_register analyze'                       *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -210,6 +212,7 @@ static void categoryMethod_pic_31__38_Instruction_5F_banksel_5F_register_analyze
     }
   }
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_pic_31__38_Instruction_5F_banksel_5F_register_analyze (void) {
@@ -223,7 +226,7 @@ C_PrologueEpilogue gMethod_pic_31__38_Instruction_5F_banksel_5F_register_analyze
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                    Overriding category method '@pic18Instruction_TBLRD analyzeSimpleInstruction'                    *
+//                   Overriding extension method '@pic18Instruction_TBLRD analyzeSimpleInstruction'                    *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -243,6 +246,7 @@ static void categoryMethod_pic_31__38_Instruction_5F_TBLRD_analyzeSimpleInstruct
   macroValidSharedObject (object, cPtr_pic_31__38_Instruction_5F_TBLRD) ;
   outArgument_outInstruction = GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD::constructor_new (object->mAttribute_mInstructionLocation, object->mAttribute_mOption  COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 856)) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_pic_31__38_Instruction_5F_TBLRD_analyzeSimpleInstruction (void) {
@@ -256,7 +260,7 @@ C_PrologueEpilogue gMethod_pic_31__38_Instruction_5F_TBLRD_analyzeSimpleInstruct
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                    Overriding category method '@pic18Instruction_TBLWT analyzeSimpleInstruction'                    *
+//                   Overriding extension method '@pic18Instruction_TBLWT analyzeSimpleInstruction'                    *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -276,6 +280,7 @@ static void categoryMethod_pic_31__38_Instruction_5F_TBLWT_analyzeSimpleInstruct
   macroValidSharedObject (object, cPtr_pic_31__38_Instruction_5F_TBLWT) ;
   outArgument_outInstruction = GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT::constructor_new (object->mAttribute_mInstructionLocation, object->mAttribute_mOption  COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 874)) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_pic_31__38_Instruction_5F_TBLWT_analyzeSimpleInstruction (void) {
@@ -289,7 +294,7 @@ C_PrologueEpilogue gMethod_pic_31__38_Instruction_5F_TBLWT_analyzeSimpleInstruct
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                             Overriding category method '@pic18Instruction_MNOP analyze'                             *
+//                            Overriding extension method '@pic18Instruction_MNOP analyze'                             *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -320,6 +325,7 @@ static void categoryMethod_pic_31__38_Instruction_5F_MNOP_analyze (const cPtr_pi
   }
   ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP::constructor_new (object->mAttribute_mInstructionLocation, object->mAttribute_mOccurrenceFactor  COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 902)), GALGAS_uint::constructor_max (SOURCE_FILE ("ipic18_build_block_representation.galgas", 906)), GALGAS_uint ((uint32_t) 0U)  COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 902)) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_pic_31__38_Instruction_5F_MNOP_analyze (void) {
@@ -333,7 +339,7 @@ C_PrologueEpilogue gMethod_pic_31__38_Instruction_5F_MNOP_analyze (defineCategor
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                            Overriding category method '@pic18Instruction_NOPBRA analyze'                            *
+//                           Overriding extension method '@pic18Instruction_NOPBRA analyze'                            *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -364,6 +370,7 @@ static void categoryMethod_pic_31__38_Instruction_5F_NOPBRA_analyze (const cPtr_
   }
   ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA::constructor_new (object->mAttribute_mInstructionLocation, object->mAttribute_mOccurrenceFactor  COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 933)), GALGAS_uint::constructor_max (SOURCE_FILE ("ipic18_build_block_representation.galgas", 937)), GALGAS_uint ((uint32_t) 0U)  COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 933)) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_pic_31__38_Instruction_5F_NOPBRA_analyze (void) {
@@ -377,7 +384,7 @@ C_PrologueEpilogue gMethod_pic_31__38_Instruction_5F_NOPBRA_analyze (defineCateg
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                           Overriding category method '@pic18Instruction_LTBLPTR analyze'                            *
+//                           Overriding extension method '@pic18Instruction_LTBLPTR analyze'                           *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -458,6 +465,7 @@ static void categoryMethod_pic_31__38_Instruction_5F_LTBLPTR_analyze (const cPtr
     }
   }
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_pic_31__38_Instruction_5F_LTBLPTR_analyze (void) {
@@ -471,7 +479,7 @@ C_PrologueEpilogue gMethod_pic_31__38_Instruction_5F_LTBLPTR_analyze (defineCate
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                           Overriding category method '@pic18Instruction_LDATAPTR analyze'                           *
+//                          Overriding extension method '@pic18Instruction_LDATAPTR analyze'                           *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -519,6 +527,7 @@ static void categoryMethod_pic_31__38_Instruction_5F_LDATAPTR_analyze (const cPt
   ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W::constructor_new (object->mAttribute_mInstructionLocation, object->mAttribute_mDataName, object->mAttribute_mDataIndex.getter_uint (SOURCE_FILE ("ipic18_build_block_representation.galgas", 1212)).multiply_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 1212)), GALGAS_uint ((uint32_t) 0U)  COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 1209)), GALGAS_uint::constructor_max (SOURCE_FILE ("ipic18_build_block_representation.galgas", 1215)), GALGAS_uint ((uint32_t) 0U)  COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 1209)) ;
   ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FA::constructor_new (object->mAttribute_mInstructionLocation, GALGAS_FA_5F_sequential_5F_instruction_5F_base_5F_code::constructor_MOVWF (SOURCE_FILE ("ipic18_build_block_representation.galgas", 1219)), var_outIPICregisterDescription  COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 1217)), GALGAS_uint::constructor_max (SOURCE_FILE ("ipic18_build_block_representation.galgas", 1222)), GALGAS_uint ((uint32_t) 0U)  COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 1217)) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_pic_31__38_Instruction_5F_LDATAPTR_analyze (void) {
@@ -532,7 +541,7 @@ C_PrologueEpilogue gMethod_pic_31__38_Instruction_5F_LDATAPTR_analyze (defineCat
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                             Overriding category method '@pic18Instruction_JUMP analyze'                             *
+//                            Overriding extension method '@pic18Instruction_JUMP analyze'                             *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -583,6 +592,7 @@ static void categoryMethod_pic_31__38_Instruction_5F_JUMP_analyze (const cPtr_pi
   ioArgument_ioGeneratedInstructionList = GALGAS_ipic_31__38_SequentialInstructionList::constructor_emptyList (SOURCE_FILE ("ipic18_build_block_representation.galgas", 1268)) ;
   ioArgument_ioBlockLabel = GALGAS_string::makeEmptyString ().getter_nowhere (SOURCE_FILE ("ipic18_build_block_representation.galgas", 1270)) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_pic_31__38_Instruction_5F_JUMP_analyze (void) {
@@ -596,7 +606,7 @@ C_PrologueEpilogue gMethod_pic_31__38_Instruction_5F_JUMP_analyze (defineCategor
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                        Overriding category method '@pic18Instruction_computed_rcall analyze'                        *
+//                       Overriding extension method '@pic18Instruction_computed_rcall analyze'                        *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -713,6 +723,7 @@ static void categoryMethod_pic_31__38_Instruction_5F_computed_5F_rcall_analyze (
   }
   ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall::constructor_new (object->mAttribute_mInstructionLocation, var_targetInstructionList, object->mAttribute_mUsesRelativeCall  COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 1351)), GALGAS_uint::constructor_max (SOURCE_FILE ("ipic18_build_block_representation.galgas", 1357)), GALGAS_uint ((uint32_t) 0U)  COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 1351)) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_pic_31__38_Instruction_5F_computed_5F_rcall_analyze (void) {
@@ -726,7 +737,7 @@ C_PrologueEpilogue gMethod_pic_31__38_Instruction_5F_computed_5F_rcall_analyze (
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                        Overriding category method '@pic18Instruction_computed_goto analyze'                         *
+//                        Overriding extension method '@pic18Instruction_computed_goto analyze'                        *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -814,6 +825,7 @@ static void categoryMethod_pic_31__38_Instruction_5F_computed_5F_goto_analyze (c
   ioArgument_ioGeneratedInstructionList = GALGAS_ipic_31__38_SequentialInstructionList::constructor_emptyList (SOURCE_FILE ("ipic18_build_block_representation.galgas", 1423)) ;
   ioArgument_ioBlockLabel = GALGAS_string::makeEmptyString ().getter_nowhere (SOURCE_FILE ("ipic18_build_block_representation.galgas", 1425)) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_pic_31__38_Instruction_5F_computed_5F_goto_analyze (void) {
@@ -827,7 +839,7 @@ C_PrologueEpilogue gMethod_pic_31__38_Instruction_5F_computed_5F_goto_analyze (d
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                         Overriding category method '@pic18Instruction_computed_bra analyze'                         *
+//                        Overriding extension method '@pic18Instruction_computed_bra analyze'                         *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -944,6 +956,7 @@ static void categoryMethod_pic_31__38_Instruction_5F_computed_5F_bra_analyze (co
   ioArgument_ioGeneratedInstructionList = GALGAS_ipic_31__38_SequentialInstructionList::constructor_emptyList (SOURCE_FILE ("ipic18_build_block_representation.galgas", 1514)) ;
   ioArgument_ioBlockLabel = GALGAS_string::makeEmptyString ().getter_nowhere (SOURCE_FILE ("ipic18_build_block_representation.galgas", 1516)) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_pic_31__38_Instruction_5F_computed_5F_bra_analyze (void) {
@@ -957,7 +970,7 @@ C_PrologueEpilogue gMethod_pic_31__38_Instruction_5F_computed_5F_bra_analyze (de
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                        Overriding category method '@pic18Instruction_computed_retlw analyze'                        *
+//                       Overriding extension method '@pic18Instruction_computed_retlw analyze'                        *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -1033,6 +1046,7 @@ static void categoryMethod_pic_31__38_Instruction_5F_computed_5F_retlw_analyze (
   ioArgument_ioGeneratedInstructionList = GALGAS_ipic_31__38_SequentialInstructionList::constructor_emptyList (SOURCE_FILE ("ipic18_build_block_representation.galgas", 1574)) ;
   ioArgument_ioBlockLabel = GALGAS_string::makeEmptyString ().getter_nowhere (SOURCE_FILE ("ipic18_build_block_representation.galgas", 1576)) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_pic_31__38_Instruction_5F_computed_5F_retlw_analyze (void) {
@@ -1046,7 +1060,7 @@ C_PrologueEpilogue gMethod_pic_31__38_Instruction_5F_computed_5F_retlw_analyze (
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                            Overriding category method '@pic18Instruction_JUMPCC analyze'                            *
+//                           Overriding extension method '@pic18Instruction_JUMPCC analyze'                            *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -1106,6 +1120,7 @@ static void categoryMethod_pic_31__38_Instruction_5F_JUMPCC_analyze (const cPtr_
   ioArgument_ioGeneratedInstructionList = GALGAS_ipic_31__38_SequentialInstructionList::constructor_emptyList (SOURCE_FILE ("ipic18_build_block_representation.galgas", 1636)) ;
   ioArgument_ioBlockLabel = var_label_30_ ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_pic_31__38_Instruction_5F_JUMPCC_analyze (void) {
@@ -1119,7 +1134,7 @@ C_PrologueEpilogue gMethod_pic_31__38_Instruction_5F_JUMPCC_analyze (defineCateg
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                          Overriding category method '@pic18Instruction_IF_BitTest analyze'                          *
+//                         Overriding extension method '@pic18Instruction_IF_BitTest analyze'                          *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -1157,6 +1172,7 @@ static void categoryMethod_pic_31__38_Instruction_5F_IF_5F_BitTest_analyze (cons
   }
   ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip::constructor_new (object->mAttribute_mInstructionLocation, var_embeddedInstruction, object->mAttribute_mSkipIfSet, var_IPICregisterDescription, var_bitNumber  COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 1694)), GALGAS_uint::constructor_max (SOURCE_FILE ("ipic18_build_block_representation.galgas", 1701)), GALGAS_uint ((uint32_t) 0U)  COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 1694)) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_pic_31__38_Instruction_5F_IF_5F_BitTest_analyze (void) {
@@ -1170,7 +1186,7 @@ C_PrologueEpilogue gMethod_pic_31__38_Instruction_5F_IF_5F_BitTest_analyze (defi
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                       Overriding category method '@pic18Instruction_IF_FA_SEMI_COLON analyze'                       *
+//                      Overriding extension method '@pic18Instruction_IF_FA_SEMI_COLON analyze'                       *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -1231,6 +1247,7 @@ static void categoryMethod_pic_31__38_Instruction_5F_IF_5F_FA_5F_SEMI_5F_COLON_a
   }
   ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register::constructor_new (object->mAttribute_mInstructionLocation, var_embeddedInstruction, var_baseCode, var_IPICregisterDescription  COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 1757)), GALGAS_uint::constructor_max (SOURCE_FILE ("ipic18_build_block_representation.galgas", 1763)), GALGAS_uint ((uint32_t) 0U)  COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 1757)) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_pic_31__38_Instruction_5F_IF_5F_FA_5F_SEMI_5F_COLON_analyze (void) {
@@ -1244,7 +1261,7 @@ C_PrologueEpilogue gMethod_pic_31__38_Instruction_5F_IF_5F_FA_5F_SEMI_5F_COLON_a
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                          Overriding category method '@pic18Instruction_IF_IncDec analyze'                           *
+//                          Overriding extension method '@pic18Instruction_IF_IncDec analyze'                          *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -1297,6 +1314,7 @@ static void categoryMethod_pic_31__38_Instruction_5F_IF_5F_IncDec_analyze (const
   }
   ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_FDA::constructor_new (object->mAttribute_mInstructionLocation, var_embeddedInstruction, var_baseCode, var_IPICregisterDescription, object->mAttribute_m_5F_W_5F_isDestination  COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 1824)), GALGAS_uint::constructor_max (SOURCE_FILE ("ipic18_build_block_representation.galgas", 1831)), GALGAS_uint ((uint32_t) 0U)  COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 1824)) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_pic_31__38_Instruction_5F_IF_5F_IncDec_analyze (void) {
@@ -1310,7 +1328,7 @@ C_PrologueEpilogue gMethod_pic_31__38_Instruction_5F_IF_5F_IncDec_analyze (defin
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                        Overriding category method '@pic18Instruction_structured_if analyze'                         *
+//                        Overriding extension method '@pic18Instruction_structured_if analyze'                        *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -1380,6 +1398,7 @@ static void categoryMethod_pic_31__38_Instruction_5F_structured_5F_if_analyze (c
     ioArgument_ioBlockLabel = GALGAS_string::makeEmptyString ().getter_nowhere (SOURCE_FILE ("ipic18_build_block_representation.galgas", 1961)) ;
   }
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_pic_31__38_Instruction_5F_structured_5F_if_analyze (void) {
@@ -1393,7 +1412,7 @@ C_PrologueEpilogue gMethod_pic_31__38_Instruction_5F_structured_5F_if_analyze (d
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                            Overriding category method '@pic18Instruction_macro analyze'                             *
+//                            Overriding extension method '@pic18Instruction_macro analyze'                            *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -1440,6 +1459,7 @@ static void categoryMethod_pic_31__38_Instruction_5F_macro_analyze (const cPtr_p
   routine_analyzeInstructionList (var_instructionList, ioArgument_ioGeneratedBlockList, constinArgument_inAccessBankSplitOffset, constinArgument_inRoutineMap, constinArgument_inRegisterTable, constinArgument_inDataMap, var_constantMap, constinArgument_inMacroMap, ioArgument_ioLocalLabelIndex, ioArgument_ioGeneratedInstructionList, ioArgument_ioBlockLabel, ioArgument_ioListFileContents, ioArgument_ioCurrentBank, constinArgument_inShouldPreserveBSR, constinArgument_inRoutineKind, ioArgument_ioUsedRegisters, inCompiler  COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 1995)) ;
   }
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_pic_31__38_Instruction_5F_macro_analyze (void) {
@@ -1453,7 +1473,7 @@ C_PrologueEpilogue gMethod_pic_31__38_Instruction_5F_macro_analyze (defineCatego
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                      Overriding category method '@pic18SimpleConstantCaseItem analyzeCaseItem'                      *
+//                     Overriding extension method '@pic18SimpleConstantCaseItem analyzeCaseItem'                      *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -1496,6 +1516,7 @@ static void categoryMethod_pic_31__38_SimpleConstantCaseItem_analyzeCaseItem (co
   ioArgument_ioGeneratedInstructionList = GALGAS_ipic_31__38_SequentialInstructionList::constructor_emptyList (SOURCE_FILE ("ipic18_build_block_representation.galgas", 2094)) ;
   ioArgument_ioBlockLabel = var_conditionFalseLabel ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_pic_31__38_SimpleConstantCaseItem_analyzeCaseItem (void) {
@@ -1509,7 +1530,7 @@ C_PrologueEpilogue gMethod_pic_31__38_SimpleConstantCaseItem_analyzeCaseItem (de
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                         Overriding category method '@pic18IntervalCaseItem analyzeCaseItem'                         *
+//                        Overriding extension method '@pic18IntervalCaseItem analyzeCaseItem'                         *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -1580,6 +1601,7 @@ static void categoryMethod_pic_31__38_IntervalCaseItem_analyzeCaseItem (const cP
     ioArgument_ioLastComparisonValue = var_maxBound.add_operation (GALGAS_uint ((uint32_t) 1U).getter_sint_36__34_ (SOURCE_FILE ("ipic18_build_block_representation.galgas", 2197)), inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 2197)) ;
   }
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_pic_31__38_IntervalCaseItem_analyzeCaseItem (void) {
@@ -1593,7 +1615,7 @@ C_PrologueEpilogue gMethod_pic_31__38_IntervalCaseItem_analyzeCaseItem (defineCa
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                            Overriding category method '@pic18Instruction_switch analyze'                            *
+//                           Overriding extension method '@pic18Instruction_switch analyze'                            *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -1709,6 +1731,7 @@ static void categoryMethod_pic_31__38_Instruction_5F_switch_analyze (const cPtr_
     ioArgument_ioBlockLabel = GALGAS_string::makeEmptyString ().getter_nowhere (SOURCE_FILE ("ipic18_build_block_representation.galgas", 2344)) ;
   }
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_pic_31__38_Instruction_5F_switch_analyze (void) {
@@ -1722,7 +1745,7 @@ C_PrologueEpilogue gMethod_pic_31__38_Instruction_5F_switch_analyze (defineCateg
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                           Overriding category method '@pic18Instruction_do_while analyze'                           *
+//                          Overriding extension method '@pic18Instruction_do_while analyze'                           *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -1793,6 +1816,7 @@ static void categoryMethod_pic_31__38_Instruction_5F_do_5F_while_analyze (const 
     enumerator_83356.gotoNextObject () ;
   }
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_pic_31__38_Instruction_5F_do_5F_while_analyze (void) {
@@ -1806,7 +1830,7 @@ C_PrologueEpilogue gMethod_pic_31__38_Instruction_5F_do_5F_while_analyze (define
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//               Overriding category method '@exitBlockTerminationForBlockInstruction addVisitedBlocks'                *
+//               Overriding extension method '@exitBlockTerminationForBlockInstruction addVisitedBlocks'               *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -1852,6 +1876,7 @@ static void categoryMethod_exitBlockTerminationForBlockInstruction_addVisitedBlo
     }
   }
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_exitBlockTerminationForBlockInstruction_addVisitedBlocks (void) {
@@ -1865,7 +1890,7 @@ C_PrologueEpilogue gMethod_exitBlockTerminationForBlockInstruction_addVisitedBlo
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                  Overriding category method '@gotoTerminationForBlockInstruction addVisitedBlocks'                  *
+//                 Overriding extension method '@gotoTerminationForBlockInstruction addVisitedBlocks'                  *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -1920,6 +1945,7 @@ static void categoryMethod_gotoTerminationForBlockInstruction_addVisitedBlocks (
     }
   }
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_gotoTerminationForBlockInstruction_addVisitedBlocks (void) {
@@ -1933,7 +1959,7 @@ C_PrologueEpilogue gMethod_gotoTerminationForBlockInstruction_addVisitedBlocks (
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                  Overriding category method '@testTerminationForBlockInstruction addVisitedBlocks'                  *
+//                 Overriding extension method '@testTerminationForBlockInstruction addVisitedBlocks'                  *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -1952,6 +1978,7 @@ static void categoryMethod_testTerminationForBlockInstruction_addVisitedBlocks (
   callCategoryMethod_addVisitedBlocks ((const cPtr_abstractBlockTerminationForBlockInstruction *) object->mAttribute_mTrueTermination.ptr (), ioArgument_ioVisitedBlockSet, constinArgument_inBlockMap, constinArgument_inCurrentBlockName, constinArgument_inInitialBlockSetting, ioArgument_ioBlockInitialBankSelectionMap, ioArgument_ioContinuesInSequence, ioArgument_ioContinueAccessibilityExploration, inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 2573)) ;
   callCategoryMethod_addVisitedBlocks ((const cPtr_abstractBlockTerminationForBlockInstruction *) object->mAttribute_mFalseTermination.ptr (), ioArgument_ioVisitedBlockSet, constinArgument_inBlockMap, constinArgument_inCurrentBlockName, constinArgument_inInitialBlockSetting, ioArgument_ioBlockInitialBankSelectionMap, ioArgument_ioContinuesInSequence, ioArgument_ioContinueAccessibilityExploration, inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 2582)) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_testTerminationForBlockInstruction_addVisitedBlocks (void) {
@@ -1965,7 +1992,7 @@ C_PrologueEpilogue gMethod_testTerminationForBlockInstruction_addVisitedBlocks (
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                   Overriding category method '@gotoTerminationForBlockInstruction generateBlock'                    *
+//                   Overriding extension method '@gotoTerminationForBlockInstruction generateBlock'                   *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -1985,6 +2012,7 @@ static void categoryMethod_gotoTerminationForBlockInstruction_generateBlock (con
   macroValidSharedObject (object, cPtr_gotoTerminationForBlockInstruction) ;
   outArgument_outTerminator = GALGAS_ipic_31__38_JumpTerminator::constructor_new (object->mAttribute_mNextBlock.mAttribute_location, GALGAS_lstring::constructor_new (constinArgument_inLabelForBlock.add_operation (object->mAttribute_mNextBlock.getter_string (SOURCE_FILE ("ipic18_build_block_representation.galgas", 2620)), inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 2620)), object->mAttribute_mNextBlock.mAttribute_location  COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 2620)), GALGAS_jumpInstructionKind::constructor_ipicRelative (SOURCE_FILE ("ipic18_build_block_representation.galgas", 2621))  COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 2618)) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_gotoTerminationForBlockInstruction_generateBlock (void) {
@@ -1998,7 +2026,7 @@ C_PrologueEpilogue gMethod_gotoTerminationForBlockInstruction_generateBlock (def
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                 Overriding category method '@exitBlockTerminationForBlockInstruction generateBlock'                 *
+//                Overriding extension method '@exitBlockTerminationForBlockInstruction generateBlock'                 *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -2018,6 +2046,7 @@ static void categoryMethod_exitBlockTerminationForBlockInstruction_generateBlock
   macroValidSharedObject (object, cPtr_exitBlockTerminationForBlockInstruction) ;
   outArgument_outTerminator = GALGAS_ipic_31__38_JumpTerminator::constructor_new (object->mAttribute_mLocation, GALGAS_lstring::constructor_new (constinArgument_inLabelForBlock.add_operation (GALGAS_string ("_exit"), inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 2639)), object->mAttribute_mLocation  COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 2639)), GALGAS_jumpInstructionKind::constructor_ipicRelative (SOURCE_FILE ("ipic18_build_block_representation.galgas", 2640))  COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 2637)) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_exitBlockTerminationForBlockInstruction_generateBlock (void) {
@@ -2031,7 +2060,7 @@ C_PrologueEpilogue gMethod_exitBlockTerminationForBlockInstruction_generateBlock
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                   Overriding category method '@testTerminationForBlockInstruction generateBlock'                    *
+//                   Overriding extension method '@testTerminationForBlockInstruction generateBlock'                   *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -2061,6 +2090,7 @@ static void categoryMethod_testTerminationForBlockInstruction_generateBlock (con
   callCategoryMethod_generateBlock ((const cPtr_abstractBlockTerminationForBlockInstruction *) object->mAttribute_mFalseTermination.ptr (), constinArgument_inAccessBankSplitOffset, constinArgument_inCurrentBank, constinArgument_inRegisterTable, constinArgument_inConstantMap, ioArgument_ioLocalLabelIndex, ioArgument_ioGeneratedBlockList, ioArgument_ioUsedRegisters, constinArgument_inLabelForBlock, var_falseTerminator, inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 2694)) ;
   ioArgument_ioGeneratedBlockList.addAssign_operation (GALGAS_ipic_31__38_Block::constructor_new (GALGAS_uint::constructor_max (SOURCE_FILE ("ipic18_build_block_representation.galgas", 2706)), var_conditionFalseLabel, GALGAS_ipic_31__38_SequentialInstructionList::constructor_emptyList (SOURCE_FILE ("ipic18_build_block_representation.galgas", 2708)), var_falseTerminator, GALGAS_uint::constructor_max (SOURCE_FILE ("ipic18_build_block_representation.galgas", 2710)), GALGAS_uint ((uint32_t) 0U)  COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 2705))  COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 2705)) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_testTerminationForBlockInstruction_generateBlock (void) {
@@ -2074,7 +2104,7 @@ C_PrologueEpilogue gMethod_testTerminationForBlockInstruction_generateBlock (def
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                            Overriding category method '@pic18Instruction_block analyze'                             *
+//                            Overriding extension method '@pic18Instruction_block analyze'                            *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -2183,6 +2213,7 @@ static void categoryMethod_pic_31__38_Instruction_5F_block_analyze (const cPtr_p
     ioArgument_ioBlockLabel = GALGAS_string::makeEmptyString ().getter_nowhere (SOURCE_FILE ("ipic18_build_block_representation.galgas", 2833)) ;
   }
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_pic_31__38_Instruction_5F_block_analyze (void) {
@@ -2196,7 +2227,7 @@ C_PrologueEpilogue gMethod_pic_31__38_Instruction_5F_block_analyze (defineCatego
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                    Overriding category method '@pic18BccInStructuredCondition analyzeCondition'                     *
+//                    Overriding extension method '@pic18BccInStructuredCondition analyzeCondition'                    *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -2217,6 +2248,7 @@ static void categoryMethod_pic_31__38_BccInStructuredCondition_analyzeCondition 
   macroValidSharedObject (object, cPtr_pic_31__38_BccInStructuredCondition) ;
   outArgument_outCurrentBlockTerminator = GALGAS_ipic_31__38_ConditionalJumpTerminator::constructor_new (object->mAttribute_mConditionLocation, object->mAttribute_mCondition, constinArgument_inConditionTrueLabel, GALGAS_conditionalBranchMode::constructor_native (SOURCE_FILE ("ipic18_build_block_representation.galgas", 2873)), constinArgument_inConditionFalseLabel, GALGAS_conditionalBranchMode::constructor_native (SOURCE_FILE ("ipic18_build_block_representation.galgas", 2875))  COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 2869)) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_pic_31__38_BccInStructuredCondition_analyzeCondition (void) {
@@ -2230,7 +2262,7 @@ C_PrologueEpilogue gMethod_pic_31__38_BccInStructuredCondition_analyzeCondition 
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                   Overriding category method '@pic18RegisterComparisonCondition analyzeCondition'                   *
+//                  Overriding extension method '@pic18RegisterComparisonCondition analyzeCondition'                   *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -2302,6 +2334,7 @@ static void categoryMethod_pic_31__38_RegisterComparisonCondition_analyzeConditi
     outArgument_outCurrentBlockTerminator = GALGAS_pic_31__38_RegisterComparisonTerminator::constructor_new (var_location, GALGAS_ipic_31__38_JumpTerminator::constructor_new (var_location, constinArgument_inConditionTrueLabel, GALGAS_jumpInstructionKind::constructor_ipicRelative (SOURCE_FILE ("ipic18_build_block_representation.galgas", 2935))  COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 2935)), GALGAS_ipic_31__38_JumpTerminator::constructor_new (var_location, constinArgument_inConditionFalseLabel, GALGAS_jumpInstructionKind::constructor_ipicRelative (SOURCE_FILE ("ipic18_build_block_representation.galgas", 2936))  COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 2936)), var_IPICregisterDescription, var_ipicComparison  COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 2933)) ;
   }
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_pic_31__38_RegisterComparisonCondition_analyzeCondition (void) {
@@ -2315,7 +2348,7 @@ C_PrologueEpilogue gMethod_pic_31__38_RegisterComparisonCondition_analyzeConditi
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                    Overriding category method '@pic18IncDecRegisterInCondition analyzeCondition'                    *
+//                   Overriding extension method '@pic18IncDecRegisterInCondition analyzeCondition'                    *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -2345,6 +2378,7 @@ static void categoryMethod_pic_31__38_IncDecRegisterInCondition_analyzeCondition
     outArgument_outCurrentBlockTerminator = GALGAS_ipic_31__38_IncDecRegisterTerminator::constructor_new (var_location, GALGAS_ipic_31__38_JumpTerminator::constructor_new (var_location, constinArgument_inConditionFalseLabel, GALGAS_jumpInstructionKind::constructor_ipicRelative (SOURCE_FILE ("ipic18_build_block_representation.galgas", 2977))  COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 2977)), GALGAS_ipic_31__38_JumpTerminator::constructor_new (var_location, constinArgument_inConditionTrueLabel, GALGAS_jumpInstructionKind::constructor_ipicRelative (SOURCE_FILE ("ipic18_build_block_representation.galgas", 2978))  COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 2978)), var_IPICregisterDescription, object->mAttribute_mIncrement, object->mAttribute_m_5F_W_5F_isDestination  COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 2975)) ;
   }
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_pic_31__38_IncDecRegisterInCondition_analyzeCondition (void) {
@@ -2358,7 +2392,7 @@ C_PrologueEpilogue gMethod_pic_31__38_IncDecRegisterInCondition_analyzeCondition
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                      Overriding category method '@pic18RegisterTestCondition analyzeCondition'                      *
+//                     Overriding extension method '@pic18RegisterTestCondition analyzeCondition'                      *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -2388,6 +2422,7 @@ static void categoryMethod_pic_31__38_RegisterTestCondition_analyzeCondition (co
     outArgument_outCurrentBlockTerminator = GALGAS_pic_31__38_TestRegisterTerminator::constructor_new (var_location, GALGAS_ipic_31__38_JumpTerminator::constructor_new (var_location, constinArgument_inConditionFalseLabel, GALGAS_jumpInstructionKind::constructor_ipicRelative (SOURCE_FILE ("ipic18_build_block_representation.galgas", 3018))  COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 3018)), GALGAS_ipic_31__38_JumpTerminator::constructor_new (var_location, constinArgument_inConditionTrueLabel, GALGAS_jumpInstructionKind::constructor_ipicRelative (SOURCE_FILE ("ipic18_build_block_representation.galgas", 3019))  COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 3019)), var_IPICregisterDescription  COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 3016)) ;
   }
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_pic_31__38_RegisterTestCondition_analyzeCondition (void) {
@@ -2401,7 +2436,7 @@ C_PrologueEpilogue gMethod_pic_31__38_RegisterTestCondition_analyzeCondition (de
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                  Overriding category method '@pic18BitTestInStructuredCondition analyzeCondition'                   *
+//                  Overriding extension method '@pic18BitTestInStructuredCondition analyzeCondition'                  *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -2428,6 +2463,7 @@ static void categoryMethod_pic_31__38_BitTestInStructuredCondition_analyzeCondit
   GALGAS_location var_location = object->mAttribute_mRegisterExpression.getter_mRegisterName (SOURCE_FILE ("ipic18_build_block_representation.galgas", 3054)).mAttribute_location ;
   outArgument_outCurrentBlockTerminator = GALGAS_pic_31__38_BitTestTerminator::constructor_new (var_location, GALGAS_ipic_31__38_JumpTerminator::constructor_new (var_location, constinArgument_inConditionFalseLabel, GALGAS_jumpInstructionKind::constructor_ipicRelative (SOURCE_FILE ("ipic18_build_block_representation.galgas", 3057))  COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 3057)), GALGAS_ipic_31__38_JumpTerminator::constructor_new (var_location, constinArgument_inConditionTrueLabel, GALGAS_jumpInstructionKind::constructor_ipicRelative (SOURCE_FILE ("ipic18_build_block_representation.galgas", 3058))  COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 3058)), var_IPICregisterDescription, var_bitNumber  COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 3055)) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_pic_31__38_BitTestInStructuredCondition_analyzeCondition (void) {
@@ -2441,7 +2477,7 @@ C_PrologueEpilogue gMethod_pic_31__38_BitTestInStructuredCondition_analyzeCondit
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                         Overriding category method '@pic18NegateCondition analyzeCondition'                         *
+//                        Overriding extension method '@pic18NegateCondition analyzeCondition'                         *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -2462,6 +2498,7 @@ static void categoryMethod_pic_31__38_NegateCondition_analyzeCondition (const cP
   macroValidSharedObject (object, cPtr_pic_31__38_NegateCondition) ;
   callCategoryMethod_analyzeCondition ((const cPtr_pic_31__38_ConditionExpression *) object->mAttribute_mCondition.ptr (), constinArgument_inAccessBankSplitOffset, constinArgument_inCurrentBank, constinArgument_inRegisterTable, constinArgument_inConstantMap, ioArgument_ioLocalLabelIndex, ioArgument_ioGeneratedBlockList, constinArgument_inConditionFalseLabel, constinArgument_inConditionTrueLabel, ioArgument_ioUsedRegisters, outArgument_outCurrentBlockTerminator, inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 3077)) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_pic_31__38_NegateCondition_analyzeCondition (void) {
@@ -2475,7 +2512,7 @@ C_PrologueEpilogue gMethod_pic_31__38_NegateCondition_analyzeCondition (defineCa
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                          Overriding category method '@pic18AndCondition analyzeCondition'                           *
+//                          Overriding extension method '@pic18AndCondition analyzeCondition'                          *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -2501,6 +2538,7 @@ static void categoryMethod_pic_31__38_AndCondition_analyzeCondition (const cPtr_
   callCategoryMethod_analyzeCondition ((const cPtr_pic_31__38_ConditionExpression *) object->mAttribute_mRightExpression.ptr (), constinArgument_inAccessBankSplitOffset, constinArgument_inCurrentBank, constinArgument_inRegisterTable, constinArgument_inConstantMap, ioArgument_ioLocalLabelIndex, ioArgument_ioGeneratedBlockList, constinArgument_inConditionTrueLabel, constinArgument_inConditionFalseLabel, ioArgument_ioUsedRegisters, var_secondTestBlockTerminator, inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 3121)) ;
   ioArgument_ioGeneratedBlockList.addAssign_operation (GALGAS_ipic_31__38_Block::constructor_new (GALGAS_uint::constructor_max (SOURCE_FILE ("ipic18_build_block_representation.galgas", 3135)), var_conditionTrueLabel, GALGAS_ipic_31__38_SequentialInstructionList::constructor_emptyList (SOURCE_FILE ("ipic18_build_block_representation.galgas", 3137)), var_secondTestBlockTerminator, GALGAS_uint::constructor_max (SOURCE_FILE ("ipic18_build_block_representation.galgas", 3139)), GALGAS_uint ((uint32_t) 0U)  COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 3134))  COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 3134)) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_pic_31__38_AndCondition_analyzeCondition (void) {
@@ -2514,7 +2552,7 @@ C_PrologueEpilogue gMethod_pic_31__38_AndCondition_analyzeCondition (defineCateg
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                    Overriding category method '@ipic18ComputedBraTerminator optimizeTerminator'                     *
+//                    Overriding extension method '@ipic18ComputedBraTerminator optimizeTerminator'                    *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -2533,6 +2571,7 @@ static void categoryMethod_ipic_31__38_ComputedBraTerminator_optimizeTerminator 
   const GALGAS_ipic_31__38_ComputedBraTerminator temp_0 = object ;
   outArgument_outOptimizedTerminator = temp_0 ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_ipic_31__38_ComputedBraTerminator_optimizeTerminator (void) {
@@ -2546,7 +2585,7 @@ C_PrologueEpilogue gMethod_ipic_31__38_ComputedBraTerminator_optimizeTerminator 
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                    Overriding category method '@ipic18ComputedGotoTerminator optimizeTerminator'                    *
+//                   Overriding extension method '@ipic18ComputedGotoTerminator optimizeTerminator'                    *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -2565,6 +2604,7 @@ static void categoryMethod_ipic_31__38_ComputedGotoTerminator_optimizeTerminator
   const GALGAS_ipic_31__38_ComputedGotoTerminator temp_0 = object ;
   outArgument_outOptimizedTerminator = temp_0 ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_ipic_31__38_ComputedGotoTerminator_optimizeTerminator (void) {
@@ -2578,7 +2618,7 @@ C_PrologueEpilogue gMethod_ipic_31__38_ComputedGotoTerminator_optimizeTerminator
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                        Overriding category method '@ipic18JumpTerminator optimizeTerminator'                        *
+//                       Overriding extension method '@ipic18JumpTerminator optimizeTerminator'                        *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -2633,6 +2673,7 @@ static void categoryMethod_ipic_31__38_JumpTerminator_optimizeTerminator (const 
     }
   }
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_ipic_31__38_JumpTerminator_optimizeTerminator (void) {
@@ -2646,7 +2687,7 @@ C_PrologueEpilogue gMethod_ipic_31__38_JumpTerminator_optimizeTerminator (define
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                  Overriding category method '@ipic18ConditionalJumpTerminator optimizeTerminator'                   *
+//                  Overriding extension method '@ipic18ConditionalJumpTerminator optimizeTerminator'                  *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -2732,6 +2773,7 @@ static void categoryMethod_ipic_31__38_ConditionalJumpTerminator_optimizeTermina
     }
   }
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_ipic_31__38_ConditionalJumpTerminator_optimizeTerminator (void) {
@@ -2745,7 +2787,7 @@ C_PrologueEpilogue gMethod_ipic_31__38_ConditionalJumpTerminator_optimizeTermina
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                   Overriding category method '@ipic18IncDecRegisterTerminator optimizeTerminator'                   *
+//                  Overriding extension method '@ipic18IncDecRegisterTerminator optimizeTerminator'                   *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -2783,6 +2825,7 @@ static void categoryMethod_ipic_31__38_IncDecRegisterTerminator_optimizeTerminat
     }
   }
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_ipic_31__38_IncDecRegisterTerminator_optimizeTerminator (void) {
@@ -2796,7 +2839,7 @@ C_PrologueEpilogue gMethod_ipic_31__38_IncDecRegisterTerminator_optimizeTerminat
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                       Overriding category method '@pic18BitTestTerminator optimizeTerminator'                       *
+//                      Overriding extension method '@pic18BitTestTerminator optimizeTerminator'                       *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -2835,6 +2878,7 @@ static void categoryMethod_pic_31__38_BitTestTerminator_optimizeTerminator (cons
     }
   }
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_pic_31__38_BitTestTerminator_optimizeTerminator (void) {
@@ -2848,7 +2892,7 @@ C_PrologueEpilogue gMethod_pic_31__38_BitTestTerminator_optimizeTerminator (defi
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                 Overriding category method '@pic18RegisterComparisonTerminator optimizeTerminator'                  *
+//                 Overriding extension method '@pic18RegisterComparisonTerminator optimizeTerminator'                 *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -2887,6 +2931,7 @@ static void categoryMethod_pic_31__38_RegisterComparisonTerminator_optimizeTermi
     }
   }
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_pic_31__38_RegisterComparisonTerminator_optimizeTerminator (void) {
@@ -2900,7 +2945,7 @@ C_PrologueEpilogue gMethod_pic_31__38_RegisterComparisonTerminator_optimizeTermi
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                    Overriding category method '@pic18TestRegisterTerminator optimizeTerminator'                     *
+//                    Overriding extension method '@pic18TestRegisterTerminator optimizeTerminator'                    *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -2939,6 +2984,7 @@ static void categoryMethod_pic_31__38_TestRegisterTerminator_optimizeTerminator 
     }
   }
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_pic_31__38_TestRegisterTerminator_optimizeTerminator (void) {
@@ -2952,7 +2998,7 @@ C_PrologueEpilogue gMethod_pic_31__38_TestRegisterTerminator_optimizeTerminator 
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                       Overriding category method '@ipic18RetfieTerminator optimizeTerminator'                       *
+//                      Overriding extension method '@ipic18RetfieTerminator optimizeTerminator'                       *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -2971,6 +3017,7 @@ static void categoryMethod_ipic_31__38_RetfieTerminator_optimizeTerminator (cons
   const GALGAS_ipic_31__38_RetfieTerminator temp_0 = object ;
   outArgument_outOptimizedTerminator = temp_0 ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_ipic_31__38_RetfieTerminator_optimizeTerminator (void) {
@@ -2984,7 +3031,7 @@ C_PrologueEpilogue gMethod_ipic_31__38_RetfieTerminator_optimizeTerminator (defi
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                       Overriding category method '@ipic18RetlwTerminator optimizeTerminator'                        *
+//                       Overriding extension method '@ipic18RetlwTerminator optimizeTerminator'                       *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -3003,6 +3050,7 @@ static void categoryMethod_ipic_31__38_RetlwTerminator_optimizeTerminator (const
   const GALGAS_ipic_31__38_RetlwTerminator temp_0 = object ;
   outArgument_outOptimizedTerminator = temp_0 ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_ipic_31__38_RetlwTerminator_optimizeTerminator (void) {
@@ -3016,7 +3064,7 @@ C_PrologueEpilogue gMethod_ipic_31__38_RetlwTerminator_optimizeTerminator (defin
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                       Overriding category method '@ipic18ReturnTerminator optimizeTerminator'                       *
+//                      Overriding extension method '@ipic18ReturnTerminator optimizeTerminator'                       *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -3035,6 +3083,7 @@ static void categoryMethod_ipic_31__38_ReturnTerminator_optimizeTerminator (cons
   const GALGAS_ipic_31__38_ReturnTerminator temp_0 = object ;
   outArgument_outOptimizedTerminator = temp_0 ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_ipic_31__38_ReturnTerminator_optimizeTerminator (void) {
@@ -3048,7 +3097,7 @@ C_PrologueEpilogue gMethod_ipic_31__38_ReturnTerminator_optimizeTerminator (defi
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                   Overriding category method '@ipic18ComputedRETLWTerminator optimizeTerminator'                    *
+//                   Overriding extension method '@ipic18ComputedRETLWTerminator optimizeTerminator'                   *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -3067,6 +3116,7 @@ static void categoryMethod_ipic_31__38_ComputedRETLWTerminator_optimizeTerminato
   const GALGAS_ipic_31__38_ComputedRETLWTerminator temp_0 = object ;
   outArgument_outOptimizedTerminator = temp_0 ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_ipic_31__38_ComputedRETLWTerminator_optimizeTerminator (void) {
@@ -3080,7 +3130,7 @@ C_PrologueEpilogue gMethod_ipic_31__38_ComputedRETLWTerminator_optimizeTerminato
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//             Overriding category method '@ipic18ComputedRETLWTerminator enterTerminatorReferencedLabels'             *
+//            Overriding extension method '@ipic18ComputedRETLWTerminator enterTerminatorReferencedLabels'             *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -3094,6 +3144,7 @@ static void categoryMethod_ipic_31__38_ComputedRETLWTerminator_enterTerminatorRe
   routine_enterGoto_32_block (constinArgument_inSymbolTable, constinArgument_inBlockList, ioArgument_ioReferencedBlockSet, inCompiler  COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 466)) ;
   }
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_ipic_31__38_ComputedRETLWTerminator_enterTerminatorReferencedLabels (void) {
@@ -3107,7 +3158,7 @@ C_PrologueEpilogue gMethod_ipic_31__38_ComputedRETLWTerminator_enterTerminatorRe
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//              Overriding category method '@ipic18ComputedBraTerminator enterTerminatorReferencedLabels'              *
+//             Overriding extension method '@ipic18ComputedBraTerminator enterTerminatorReferencedLabels'              *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -3135,6 +3186,7 @@ static void categoryMethod_ipic_31__38_ComputedBraTerminator_enterTerminatorRefe
     enumerator_18547.gotoNextObject () ;
   }
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_ipic_31__38_ComputedBraTerminator_enterTerminatorReferencedLabels (void) {
@@ -3148,7 +3200,7 @@ C_PrologueEpilogue gMethod_ipic_31__38_ComputedBraTerminator_enterTerminatorRefe
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//             Overriding category method '@ipic18ComputedGotoTerminator enterTerminatorReferencedLabels'              *
+//             Overriding extension method '@ipic18ComputedGotoTerminator enterTerminatorReferencedLabels'             *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -3176,6 +3228,7 @@ static void categoryMethod_ipic_31__38_ComputedGotoTerminator_enterTerminatorRef
     enumerator_19317.gotoNextObject () ;
   }
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_ipic_31__38_ComputedGotoTerminator_enterTerminatorReferencedLabels (void) {
@@ -3189,7 +3242,7 @@ C_PrologueEpilogue gMethod_ipic_31__38_ComputedGotoTerminator_enterTerminatorRef
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                 Overriding category method '@ipic18JumpTerminator enterTerminatorReferencedLabels'                  *
+//                 Overriding extension method '@ipic18JumpTerminator enterTerminatorReferencedLabels'                 *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -3210,6 +3263,7 @@ static void categoryMethod_ipic_31__38_JumpTerminator_enterTerminatorReferencedL
     categoryMethod_enterReferencedLabels (var_b, constinArgument_inSymbolTable, constinArgument_inBlockList, ioArgument_ioReferencedBlockSet, inCompiler COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 533)) ;
   }
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_ipic_31__38_JumpTerminator_enterTerminatorReferencedLabels (void) {
@@ -3223,7 +3277,7 @@ C_PrologueEpilogue gMethod_ipic_31__38_JumpTerminator_enterTerminatorReferencedL
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//            Overriding category method '@ipic18ConditionalJumpTerminator enterTerminatorReferencedLabels'            *
+//           Overriding extension method '@ipic18ConditionalJumpTerminator enterTerminatorReferencedLabels'            *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -3252,6 +3306,7 @@ static void categoryMethod_ipic_31__38_ConditionalJumpTerminator_enterTerminator
     categoryMethod_enterReferencedLabels (var_b, constinArgument_inSymbolTable, constinArgument_inBlockList, ioArgument_ioReferencedBlockSet, inCompiler COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 561)) ;
   }
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_ipic_31__38_ConditionalJumpTerminator_enterTerminatorReferencedLabels (void) {
@@ -3265,7 +3320,7 @@ C_PrologueEpilogue gMethod_ipic_31__38_ConditionalJumpTerminator_enterTerminator
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//           Overriding category method '@ipic18SingleInstructionTerminator enterTerminatorReferencedLabels'           *
+//          Overriding extension method '@ipic18SingleInstructionTerminator enterTerminatorReferencedLabels'           *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -3276,6 +3331,7 @@ static void categoryMethod_ipic_31__38_SingleInstructionTerminator_enterTerminat
                                                                                                     C_Compiler * /* inCompiler */
                                                                                                     COMMA_UNUSED_LOCATION_ARGS) {
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_ipic_31__38_SingleInstructionTerminator_enterTerminatorReferencedLabels (void) {
@@ -3289,7 +3345,7 @@ C_PrologueEpilogue gMethod_ipic_31__38_SingleInstructionTerminator_enterTerminat
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//           Overriding category method '@ipic18AbstractConditionTerminator enterTerminatorReferencedLabels'           *
+//          Overriding extension method '@ipic18AbstractConditionTerminator enterTerminatorReferencedLabels'           *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -3304,6 +3360,7 @@ static void categoryMethod_ipic_31__38_AbstractConditionTerminator_enterTerminat
   callCategoryMethod_enterTerminatorReferencedLabels ((const cPtr_ipic_31__38_SingleInstructionTerminator *) object->mAttribute_mSingleInstructionTerminatorIfConditionTrue.ptr (), constinArgument_inSymbolTable, constinArgument_inBlockList, ioArgument_ioReferencedBlockSet, inCompiler COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 583)) ;
   callCategoryMethod_enterTerminatorReferencedLabels ((const cPtr_ipic_31__38_SingleInstructionTerminator *) object->mAttribute_mSingleInstructionTerminatorIfConditionFalse.ptr (), constinArgument_inSymbolTable, constinArgument_inBlockList, ioArgument_ioReferencedBlockSet, inCompiler COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 584)) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_ipic_31__38_AbstractConditionTerminator_enterTerminatorReferencedLabels (void) {
@@ -3317,7 +3374,7 @@ C_PrologueEpilogue gMethod_ipic_31__38_AbstractConditionTerminator_enterTerminat
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//               Overriding category method '@ipic18_intermediate_JSR enterInstructionReferencedLabels'                *
+//               Overriding extension method '@ipic18_intermediate_JSR enterInstructionReferencedLabels'               *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -3338,6 +3395,7 @@ static void categoryMethod_ipic_31__38__5F_intermediate_5F_JSR_enterInstructionR
     categoryMethod_enterReferencedLabels (var_b, constinArgument_inSymbolTable, constinArgument_inBlockList, ioArgument_ioReferencedBlockSet, inCompiler COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 609)) ;
   }
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_ipic_31__38__5F_intermediate_5F_JSR_enterInstructionReferencedLabels (void) {
@@ -3351,7 +3409,7 @@ C_PrologueEpilogue gMethod_ipic_31__38__5F_intermediate_5F_JSR_enterInstructionR
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//    Overriding category method '@ipic18_intermediate_instruction_computed_rcall enterInstructionReferencedLabels'    *
+//   Overriding extension method '@ipic18_intermediate_instruction_computed_rcall enterInstructionReferencedLabels'    *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -3372,6 +3430,7 @@ static void categoryMethod_ipic_31__38__5F_intermediate_5F_instruction_5F_comput
     enumerator_23726.gotoNextObject () ;
   }
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall_enterInstructionReferencedLabels (void) {
@@ -3385,7 +3444,7 @@ C_PrologueEpilogue gMethod_ipic_31__38__5F_intermediate_5F_instruction_5F_comput
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//          Overriding category method '@ipic18_condition_skip_instruction enterInstructionReferencedLabels'           *
+//          Overriding extension method '@ipic18_condition_skip_instruction enterInstructionReferencedLabels'          *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -3399,6 +3458,7 @@ static void categoryMethod_ipic_31__38__5F_condition_5F_skip_5F_instruction_ente
   macroValidSharedObject (object, cPtr_ipic_31__38__5F_condition_5F_skip_5F_instruction) ;
   callCategoryMethod_enterInstructionReferencedLabels ((const cPtr_ipic_31__38_SequentialInstruction *) object->mAttribute_mEmbeddedInstruction.ptr (), constinArgument_inSymbolTable, constinArgument_inBlockList, ioArgument_ioReferencedBlockSet, inCompiler COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 643)) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_ipic_31__38__5F_condition_5F_skip_5F_instruction_enterInstructionReferencedLabels (void) {
@@ -3412,7 +3472,7 @@ C_PrologueEpilogue gMethod_ipic_31__38__5F_condition_5F_skip_5F_instruction_ente
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                      Overriding category method '@ipic18_intermediate_JSR optimizeInstruction'                      *
+//                     Overriding extension method '@ipic18_intermediate_JSR optimizeInstruction'                      *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -3473,6 +3533,7 @@ static void categoryMethod_ipic_31__38__5F_intermediate_5F_JSR_optimizeInstructi
     }
   }
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_ipic_31__38__5F_intermediate_5F_JSR_optimizeInstruction (void) {
@@ -3486,7 +3547,7 @@ C_PrologueEpilogue gMethod_ipic_31__38__5F_intermediate_5F_JSR_optimizeInstructi
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//          Overriding category method '@ipic18_intermediate_instruction_computed_rcall optimizeInstruction'           *
+//          Overriding extension method '@ipic18_intermediate_instruction_computed_rcall optimizeInstruction'          *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -3564,6 +3625,7 @@ static void categoryMethod_ipic_31__38__5F_intermediate_5F_instruction_5F_comput
     outArgument_outOptimizedInstruction = temp_8 ;
   }
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall_optimizeInstruction (void) {
@@ -3577,7 +3639,7 @@ C_PrologueEpilogue gMethod_ipic_31__38__5F_intermediate_5F_instruction_5F_comput
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                Overriding category method '@ipic18_skip_instruction_BitTestSkip optimizeInstruction'                *
+//               Overriding extension method '@ipic18_skip_instruction_BitTestSkip optimizeInstruction'                *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -3606,6 +3668,7 @@ static void categoryMethod_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip_op
     outArgument_outOptimizedInstruction = temp_1 ;
   }
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip_optimizeInstruction (void) {
@@ -3619,7 +3682,7 @@ C_PrologueEpilogue gMethod_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip_op
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//             Overriding category method '@ipic18_skip_instruction_compare_register optimizeInstruction'              *
+//             Overriding extension method '@ipic18_skip_instruction_compare_register optimizeInstruction'             *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -3648,6 +3711,7 @@ static void categoryMethod_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_reg
     outArgument_outOptimizedInstruction = temp_1 ;
   }
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register_optimizeInstruction (void) {
@@ -3661,7 +3725,7 @@ C_PrologueEpilogue gMethod_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_reg
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                    Overriding category method '@ipic18_skip_instruction_FDA optimizeInstruction'                    *
+//                   Overriding extension method '@ipic18_skip_instruction_FDA optimizeInstruction'                    *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -3690,6 +3754,7 @@ static void categoryMethod_ipic_31__38__5F_skip_5F_instruction_5F_FDA_optimizeIn
     outArgument_outOptimizedInstruction = temp_1 ;
   }
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_ipic_31__38__5F_skip_5F_instruction_5F_FDA_optimizeInstruction (void) {
@@ -3703,7 +3768,7 @@ C_PrologueEpilogue gMethod_ipic_31__38__5F_skip_5F_instruction_5F_FDA_optimizeIn
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                Overriding category method '@ipic18_intermediate_JSR buildInstructionInvocationGraph'                *
+//               Overriding extension method '@ipic18_intermediate_JSR buildInstructionInvocationGraph'                *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -3716,6 +3781,7 @@ static void categoryMethod_ipic_31__38__5F_intermediate_5F_JSR_buildInstructionI
   macroValidSharedObject (object, cPtr_ipic_31__38__5F_intermediate_5F_JSR) ;
   ioArgument_ioGraphVizString.plusAssign_operation(GALGAS_string ("  \"").add_operation (constinArgument_inBlockLabel.getter_string (SOURCE_FILE ("ipic18_block_ordering.galgas", 29)), inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 29)).add_operation (GALGAS_string ("\" -> \""), inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 29)).add_operation (object->mAttribute_mTargetLabel.getter_string (SOURCE_FILE ("ipic18_block_ordering.galgas", 29)), inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 29)).add_operation (GALGAS_string ("\" [color=red] ;\n"), inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 29)), inCompiler  COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 29)) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_ipic_31__38__5F_intermediate_5F_JSR_buildInstructionInvocationGraph (void) {
@@ -3729,7 +3795,7 @@ C_PrologueEpilogue gMethod_ipic_31__38__5F_intermediate_5F_JSR_buildInstructionI
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//    Overriding category method '@ipic18_intermediate_instruction_computed_rcall buildInstructionInvocationGraph'     *
+//    Overriding extension method '@ipic18_intermediate_instruction_computed_rcall buildInstructionInvocationGraph'    *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -3747,6 +3813,7 @@ static void categoryMethod_ipic_31__38__5F_intermediate_5F_instruction_5F_comput
     enumerator_1318.gotoNextObject () ;
   }
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall_buildInstructionInvocationGraph (void) {
@@ -3760,7 +3827,7 @@ C_PrologueEpilogue gMethod_ipic_31__38__5F_intermediate_5F_instruction_5F_comput
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//           Overriding category method '@ipic18_condition_skip_instruction buildInstructionInvocationGraph'           *
+//          Overriding extension method '@ipic18_condition_skip_instruction buildInstructionInvocationGraph'           *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -3773,6 +3840,7 @@ static void categoryMethod_ipic_31__38__5F_condition_5F_skip_5F_instruction_buil
   macroValidSharedObject (object, cPtr_ipic_31__38__5F_condition_5F_skip_5F_instruction) ;
   callCategoryMethod_buildInstructionInvocationGraph ((const cPtr_ipic_31__38_SequentialInstruction *) object->mAttribute_mEmbeddedInstruction.ptr (), constinArgument_inBlockLabel, ioArgument_ioGraphVizString, inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 51)) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_ipic_31__38__5F_condition_5F_skip_5F_instruction_buildInstructionInvocationGraph (void) {
@@ -3786,7 +3854,7 @@ C_PrologueEpilogue gMethod_ipic_31__38__5F_condition_5F_skip_5F_instruction_buil
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                 Overriding category method '@ipic18ReturnTerminator buildTerminatorInvocationGraph'                 *
+//                Overriding extension method '@ipic18ReturnTerminator buildTerminatorInvocationGraph'                 *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -3797,6 +3865,7 @@ static void categoryMethod_ipic_31__38_ReturnTerminator_buildTerminatorInvocatio
                                                                                         C_Compiler * /* inCompiler */
                                                                                         COMMA_UNUSED_LOCATION_ARGS) {
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_ipic_31__38_ReturnTerminator_buildTerminatorInvocationGraph (void) {
@@ -3810,7 +3879,7 @@ C_PrologueEpilogue gMethod_ipic_31__38_ReturnTerminator_buildTerminatorInvocatio
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                 Overriding category method '@ipic18RetlwTerminator buildTerminatorInvocationGraph'                  *
+//                 Overriding extension method '@ipic18RetlwTerminator buildTerminatorInvocationGraph'                 *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -3821,6 +3890,7 @@ static void categoryMethod_ipic_31__38_RetlwTerminator_buildTerminatorInvocation
                                                                                        C_Compiler * /* inCompiler */
                                                                                        COMMA_UNUSED_LOCATION_ARGS) {
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_ipic_31__38_RetlwTerminator_buildTerminatorInvocationGraph (void) {
@@ -3834,7 +3904,7 @@ C_PrologueEpilogue gMethod_ipic_31__38_RetlwTerminator_buildTerminatorInvocation
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                 Overriding category method '@ipic18RetfieTerminator buildTerminatorInvocationGraph'                 *
+//                Overriding extension method '@ipic18RetfieTerminator buildTerminatorInvocationGraph'                 *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -3845,6 +3915,7 @@ static void categoryMethod_ipic_31__38_RetfieTerminator_buildTerminatorInvocatio
                                                                                         C_Compiler * /* inCompiler */
                                                                                         COMMA_UNUSED_LOCATION_ARGS) {
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_ipic_31__38_RetfieTerminator_buildTerminatorInvocationGraph (void) {
@@ -3858,7 +3929,7 @@ C_PrologueEpilogue gMethod_ipic_31__38_RetfieTerminator_buildTerminatorInvocatio
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//              Overriding category method '@ipic18ComputedGotoTerminator buildTerminatorInvocationGraph'              *
+//             Overriding extension method '@ipic18ComputedGotoTerminator buildTerminatorInvocationGraph'              *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -3870,6 +3941,7 @@ static void categoryMethod_ipic_31__38_ComputedGotoTerminator_buildTerminatorInv
                                                                                               COMMA_UNUSED_LOCATION_ARGS) {
   ioArgument_ioGraphVizString.plusAssign_operation(GALGAS_string ("  \"").add_operation (constinArgument_inBlockLabel.getter_string (SOURCE_FILE ("ipic18_block_ordering.galgas", 98)), inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 98)).add_operation (GALGAS_string ("\" -> \"_computed_goto_4\" [color=red] ;\n"), inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 98)), inCompiler  COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 98)) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_ipic_31__38_ComputedGotoTerminator_buildTerminatorInvocationGraph (void) {
@@ -3883,7 +3955,7 @@ C_PrologueEpilogue gMethod_ipic_31__38_ComputedGotoTerminator_buildTerminatorInv
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//             Overriding category method '@ipic18ComputedRETLWTerminator buildTerminatorInvocationGraph'              *
+//             Overriding extension method '@ipic18ComputedRETLWTerminator buildTerminatorInvocationGraph'             *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -3895,6 +3967,7 @@ static void categoryMethod_ipic_31__38_ComputedRETLWTerminator_buildTerminatorIn
                                                                                                COMMA_UNUSED_LOCATION_ARGS) {
   ioArgument_ioGraphVizString.plusAssign_operation(GALGAS_string ("  \"").add_operation (constinArgument_inBlockLabel.getter_string (SOURCE_FILE ("ipic18_block_ordering.galgas", 107)), inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 107)).add_operation (GALGAS_string ("\" -> \"_computed_goto_2\" [color=red] ;\n"), inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 107)), inCompiler  COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 107)) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_ipic_31__38_ComputedRETLWTerminator_buildTerminatorInvocationGraph (void) {
@@ -3908,7 +3981,7 @@ C_PrologueEpilogue gMethod_ipic_31__38_ComputedRETLWTerminator_buildTerminatorIn
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//              Overriding category method '@ipic18ComputedBraTerminator buildTerminatorInvocationGraph'               *
+//              Overriding extension method '@ipic18ComputedBraTerminator buildTerminatorInvocationGraph'              *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -3920,6 +3993,7 @@ static void categoryMethod_ipic_31__38_ComputedBraTerminator_buildTerminatorInvo
                                                                                              COMMA_UNUSED_LOCATION_ARGS) {
   ioArgument_ioGraphVizString.plusAssign_operation(GALGAS_string ("  \"").add_operation (constinArgument_inBlockLabel.getter_string (SOURCE_FILE ("ipic18_block_ordering.galgas", 116)), inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 116)).add_operation (GALGAS_string ("\" -> \"_computed_goto_2\" [color=red] ;\n"), inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 116)), inCompiler  COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 116)) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_ipic_31__38_ComputedBraTerminator_buildTerminatorInvocationGraph (void) {
@@ -3933,7 +4007,7 @@ C_PrologueEpilogue gMethod_ipic_31__38_ComputedBraTerminator_buildTerminatorInvo
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//           Overriding category method '@ipic18AbstractConditionTerminator buildTerminatorInvocationGraph'            *
+//           Overriding extension method '@ipic18AbstractConditionTerminator buildTerminatorInvocationGraph'           *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -3948,6 +4022,7 @@ static void categoryMethod_ipic_31__38_AbstractConditionTerminator_buildTerminat
   callCategoryMethod_buildTerminatorInvocationGraph ((const cPtr_ipic_31__38_SingleInstructionTerminator *) object->mAttribute_mSingleInstructionTerminatorIfConditionTrue.ptr (), constinArgument_inBlockLabel, ioArgument_ioGraphVizString, GALGAS_bool (false), inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 125)) ;
   callCategoryMethod_buildTerminatorInvocationGraph ((const cPtr_ipic_31__38_SingleInstructionTerminator *) object->mAttribute_mSingleInstructionTerminatorIfConditionFalse.ptr (), constinArgument_inBlockLabel, ioArgument_ioGraphVizString, GALGAS_bool (false), inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 126)) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_ipic_31__38_AbstractConditionTerminator_buildTerminatorInvocationGraph (void) {
@@ -3961,7 +4036,7 @@ C_PrologueEpilogue gMethod_ipic_31__38_AbstractConditionTerminator_buildTerminat
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//           Overriding category method '@pic18RegisterComparisonTerminator buildTerminatorInvocationGraph'            *
+//           Overriding extension method '@pic18RegisterComparisonTerminator buildTerminatorInvocationGraph'           *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -3976,6 +4051,7 @@ static void categoryMethod_pic_31__38_RegisterComparisonTerminator_buildTerminat
   callCategoryMethod_buildTerminatorInvocationGraph ((const cPtr_ipic_31__38_SingleInstructionTerminator *) object->mAttribute_mSingleInstructionTerminatorIfConditionTrue.ptr (), constinArgument_inBlockLabel, ioArgument_ioGraphVizString, GALGAS_bool (false), inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 135)) ;
   callCategoryMethod_buildTerminatorInvocationGraph ((const cPtr_ipic_31__38_SingleInstructionTerminator *) object->mAttribute_mSingleInstructionTerminatorIfConditionFalse.ptr (), constinArgument_inBlockLabel, ioArgument_ioGraphVizString, GALGAS_bool (true), inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 136)) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_pic_31__38_RegisterComparisonTerminator_buildTerminatorInvocationGraph (void) {
@@ -3989,7 +4065,7 @@ C_PrologueEpilogue gMethod_pic_31__38_RegisterComparisonTerminator_buildTerminat
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//              Overriding category method '@pic18TestRegisterTerminator buildTerminatorInvocationGraph'               *
+//              Overriding extension method '@pic18TestRegisterTerminator buildTerminatorInvocationGraph'              *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -4004,6 +4080,7 @@ static void categoryMethod_pic_31__38_TestRegisterTerminator_buildTerminatorInvo
   callCategoryMethod_buildTerminatorInvocationGraph ((const cPtr_ipic_31__38_SingleInstructionTerminator *) object->mAttribute_mSingleInstructionTerminatorIfConditionTrue.ptr (), constinArgument_inBlockLabel, ioArgument_ioGraphVizString, GALGAS_bool (false), inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 145)) ;
   callCategoryMethod_buildTerminatorInvocationGraph ((const cPtr_ipic_31__38_SingleInstructionTerminator *) object->mAttribute_mSingleInstructionTerminatorIfConditionFalse.ptr (), constinArgument_inBlockLabel, ioArgument_ioGraphVizString, GALGAS_bool (true), inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 146)) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_pic_31__38_TestRegisterTerminator_buildTerminatorInvocationGraph (void) {
@@ -4017,7 +4094,7 @@ C_PrologueEpilogue gMethod_pic_31__38_TestRegisterTerminator_buildTerminatorInvo
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                  Overriding category method '@ipic18JumpTerminator buildTerminatorInvocationGraph'                  *
+//                 Overriding extension method '@ipic18JumpTerminator buildTerminatorInvocationGraph'                  *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -4036,6 +4113,7 @@ static void categoryMethod_ipic_31__38_JumpTerminator_buildTerminatorInvocationG
   }
   ioArgument_ioGraphVizString.plusAssign_operation(GALGAS_string (" ;\n"), inCompiler  COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 159)) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_ipic_31__38_JumpTerminator_buildTerminatorInvocationGraph (void) {
@@ -4049,7 +4127,7 @@ C_PrologueEpilogue gMethod_ipic_31__38_JumpTerminator_buildTerminatorInvocationG
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//            Overriding category method '@ipic18ConditionalJumpTerminator buildTerminatorInvocationGraph'             *
+//            Overriding extension method '@ipic18ConditionalJumpTerminator buildTerminatorInvocationGraph'            *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -4074,6 +4152,7 @@ static void categoryMethod_ipic_31__38_ConditionalJumpTerminator_buildTerminator
   }
   ioArgument_ioGraphVizString.plusAssign_operation(GALGAS_string (" ;\n"), inCompiler  COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 177)) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_ipic_31__38_ConditionalJumpTerminator_buildTerminatorInvocationGraph (void) {
@@ -4087,7 +4166,7 @@ C_PrologueEpilogue gMethod_ipic_31__38_ConditionalJumpTerminator_buildTerminator
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                  Overriding category getter '@ipic18ReturnTerminator needToInsertJumpInstruction'                   *
+//                  Overriding extension getter '@ipic18ReturnTerminator needToInsertJumpInstruction'                  *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -4115,7 +4194,7 @@ C_PrologueEpilogue gGetter_ipic_31__38_ReturnTerminator_needToInsertJumpInstruct
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                   Overriding category getter '@ipic18RetlwTerminator needToInsertJumpInstruction'                   *
+//                  Overriding extension getter '@ipic18RetlwTerminator needToInsertJumpInstruction'                   *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -4143,7 +4222,7 @@ C_PrologueEpilogue gGetter_ipic_31__38_RetlwTerminator_needToInsertJumpInstructi
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                  Overriding category getter '@ipic18RetfieTerminator needToInsertJumpInstruction'                   *
+//                  Overriding extension getter '@ipic18RetfieTerminator needToInsertJumpInstruction'                  *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -4171,7 +4250,7 @@ C_PrologueEpilogue gGetter_ipic_31__38_RetfieTerminator_needToInsertJumpInstruct
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                   Overriding category getter '@ipic18JumpTerminator needToInsertJumpInstruction'                    *
+//                   Overriding extension getter '@ipic18JumpTerminator needToInsertJumpInstruction'                   *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -4201,7 +4280,7 @@ C_PrologueEpilogue gGetter_ipic_31__38_JumpTerminator_needToInsertJumpInstructio
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//               Overriding category getter '@ipic18ComputedGotoTerminator needToInsertJumpInstruction'                *
+//               Overriding extension getter '@ipic18ComputedGotoTerminator needToInsertJumpInstruction'               *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -4229,7 +4308,7 @@ C_PrologueEpilogue gGetter_ipic_31__38_ComputedGotoTerminator_needToInsertJumpIn
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//               Overriding category getter '@ipic18ComputedRETLWTerminator needToInsertJumpInstruction'               *
+//              Overriding extension getter '@ipic18ComputedRETLWTerminator needToInsertJumpInstruction'               *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -4257,7 +4336,7 @@ C_PrologueEpilogue gGetter_ipic_31__38_ComputedRETLWTerminator_needToInsertJumpI
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//              Overriding category getter '@ipic18ConditionalJumpTerminator needToInsertJumpInstruction'              *
+//             Overriding extension getter '@ipic18ConditionalJumpTerminator needToInsertJumpInstruction'              *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -4285,7 +4364,7 @@ C_PrologueEpilogue gGetter_ipic_31__38_ConditionalJumpTerminator_needToInsertJum
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                Overriding category getter '@ipic18ComputedBraTerminator needToInsertJumpInstruction'                *
+//               Overriding extension getter '@ipic18ComputedBraTerminator needToInsertJumpInstruction'                *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -4313,7 +4392,7 @@ C_PrologueEpilogue gGetter_ipic_31__38_ComputedBraTerminator_needToInsertJumpIns
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//             Overriding category getter '@ipic18AbstractConditionTerminator needToInsertJumpInstruction'             *
+//            Overriding extension getter '@ipic18AbstractConditionTerminator needToInsertJumpInstruction'             *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -4343,7 +4422,7 @@ C_PrologueEpilogue gGetter_ipic_31__38_AbstractConditionTerminator_needToInsertJ
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//             Overriding category getter '@pic18RegisterComparisonTerminator needToInsertJumpInstruction'             *
+//            Overriding extension getter '@pic18RegisterComparisonTerminator needToInsertJumpInstruction'             *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -4373,7 +4452,7 @@ C_PrologueEpilogue gGetter_pic_31__38_RegisterComparisonTerminator_needToInsertJ
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                Overriding category getter '@pic18TestRegisterTerminator needToInsertJumpInstruction'                *
+//               Overriding extension getter '@pic18TestRegisterTerminator needToInsertJumpInstruction'                *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -4403,7 +4482,7 @@ C_PrologueEpilogue gGetter_pic_31__38_TestRegisterTerminator_needToInsertJumpIns
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                   Overriding category method '@ipic18JumpTerminator buildTerminatorOrderedGraph'                    *
+//                   Overriding extension method '@ipic18JumpTerminator buildTerminatorOrderedGraph'                   *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -4418,6 +4497,7 @@ static void categoryMethod_ipic_31__38_JumpTerminator_buildTerminatorOrderedGrap
   ioArgument_ioGraph.setter_addEdge (constinArgument_inBlockLabel, object->mAttribute_mLabel COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 299)) ;
   }
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_ipic_31__38_JumpTerminator_buildTerminatorOrderedGraph (void) {
@@ -4431,7 +4511,7 @@ C_PrologueEpilogue gMethod_ipic_31__38_JumpTerminator_buildTerminatorOrderedGrap
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//              Overriding category method '@ipic18ConditionalJumpTerminator buildTerminatorOrderedGraph'              *
+//             Overriding extension method '@ipic18ConditionalJumpTerminator buildTerminatorOrderedGraph'              *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -4449,6 +4529,7 @@ static void categoryMethod_ipic_31__38_ConditionalJumpTerminator_buildTerminator
   ioArgument_ioGraph.setter_addEdge (constinArgument_inBlockLabel, object->mAttribute_mTargetLabelWhenFalse COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 308)) ;
   }
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_ipic_31__38_ConditionalJumpTerminator_buildTerminatorOrderedGraph (void) {
@@ -4462,7 +4543,7 @@ C_PrologueEpilogue gMethod_ipic_31__38_ConditionalJumpTerminator_buildTerminator
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//             Overriding category method '@pic18RegisterComparisonTerminator buildTerminatorOrderedGraph'             *
+//            Overriding extension method '@pic18RegisterComparisonTerminator buildTerminatorOrderedGraph'             *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -4475,6 +4556,7 @@ static void categoryMethod_pic_31__38_RegisterComparisonTerminator_buildTerminat
   macroValidSharedObject (object, cPtr_pic_31__38_RegisterComparisonTerminator) ;
   callCategoryMethod_buildTerminatorOrderedGraph ((const cPtr_ipic_31__38_SingleInstructionTerminator *) object->mAttribute_mSingleInstructionTerminatorIfConditionTrue.ptr (), constinArgument_inBlockLabel, ioArgument_ioGraph, inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 316)) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_pic_31__38_RegisterComparisonTerminator_buildTerminatorOrderedGraph (void) {
@@ -4488,7 +4570,7 @@ C_PrologueEpilogue gMethod_pic_31__38_RegisterComparisonTerminator_buildTerminat
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                Overriding category method '@pic18TestRegisterTerminator buildTerminatorOrderedGraph'                *
+//               Overriding extension method '@pic18TestRegisterTerminator buildTerminatorOrderedGraph'                *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -4501,6 +4583,7 @@ static void categoryMethod_pic_31__38_TestRegisterTerminator_buildTerminatorOrde
   macroValidSharedObject (object, cPtr_pic_31__38_TestRegisterTerminator) ;
   callCategoryMethod_buildTerminatorOrderedGraph ((const cPtr_ipic_31__38_SingleInstructionTerminator *) object->mAttribute_mSingleInstructionTerminatorIfConditionTrue.ptr (), constinArgument_inBlockLabel, ioArgument_ioGraph, inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 327)) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_pic_31__38_TestRegisterTerminator_buildTerminatorOrderedGraph (void) {
@@ -4514,7 +4597,7 @@ C_PrologueEpilogue gMethod_pic_31__38_TestRegisterTerminator_buildTerminatorOrde
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//              Overriding category method '@ipic18IncDecRegisterTerminator buildTerminatorOrderedGraph'               *
+//              Overriding extension method '@ipic18IncDecRegisterTerminator buildTerminatorOrderedGraph'              *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -4528,6 +4611,7 @@ static void categoryMethod_ipic_31__38_IncDecRegisterTerminator_buildTerminatorO
   callCategoryMethod_buildTerminatorOrderedGraph ((const cPtr_ipic_31__38_SingleInstructionTerminator *) object->mAttribute_mSingleInstructionTerminatorIfConditionTrue.ptr (), constinArgument_inBlockLabel, ioArgument_ioGraph, inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 338)) ;
   callCategoryMethod_buildTerminatorOrderedGraph ((const cPtr_ipic_31__38_SingleInstructionTerminator *) object->mAttribute_mSingleInstructionTerminatorIfConditionFalse.ptr (), constinArgument_inBlockLabel, ioArgument_ioGraph, inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 342)) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_ipic_31__38_IncDecRegisterTerminator_buildTerminatorOrderedGraph (void) {
@@ -4541,7 +4625,7 @@ C_PrologueEpilogue gMethod_ipic_31__38_IncDecRegisterTerminator_buildTerminatorO
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                  Overriding category method '@pic18BitTestTerminator buildTerminatorOrderedGraph'                   *
+//                  Overriding extension method '@pic18BitTestTerminator buildTerminatorOrderedGraph'                  *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -4555,6 +4639,7 @@ static void categoryMethod_pic_31__38_BitTestTerminator_buildTerminatorOrderedGr
   callCategoryMethod_buildTerminatorOrderedGraph ((const cPtr_ipic_31__38_SingleInstructionTerminator *) object->mAttribute_mSingleInstructionTerminatorIfConditionTrue.ptr (), constinArgument_inBlockLabel, ioArgument_ioGraph, inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 353)) ;
   callCategoryMethod_buildTerminatorOrderedGraph ((const cPtr_ipic_31__38_SingleInstructionTerminator *) object->mAttribute_mSingleInstructionTerminatorIfConditionFalse.ptr (), constinArgument_inBlockLabel, ioArgument_ioGraph, inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 357)) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_pic_31__38_BitTestTerminator_buildTerminatorOrderedGraph (void) {
@@ -4568,7 +4653,7 @@ C_PrologueEpilogue gMethod_pic_31__38_BitTestTerminator_buildTerminatorOrderedGr
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//     Overriding category method '@ipic18AbstractConditionTerminator exploreAccessibleBlocksForStackComputations'     *
+//    Overriding extension method '@ipic18AbstractConditionTerminator exploreAccessibleBlocksForStackComputations'     *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -4593,6 +4678,7 @@ static void categoryMethod_ipic_31__38_AbstractConditionTerminator_exploreAccess
   }
   outArgument_outStackNeeds = temp_0 ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_ipic_31__38_AbstractConditionTerminator_exploreAccessibleBlocksForStackComputations (void) {
@@ -4606,7 +4692,7 @@ C_PrologueEpilogue gMethod_ipic_31__38_AbstractConditionTerminator_exploreAccess
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//        Overriding category method '@ipic18ComputedBraTerminator exploreAccessibleBlocksForStackComputations'        *
+//       Overriding extension method '@ipic18ComputedBraTerminator exploreAccessibleBlocksForStackComputations'        *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -4628,6 +4714,7 @@ static void categoryMethod_ipic_31__38_ComputedBraTerminator_exploreAccessibleBl
   }
   outArgument_outStackNeeds = GALGAS_uint ((uint32_t) 1U) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_ipic_31__38_ComputedBraTerminator_exploreAccessibleBlocksForStackComputations (void) {
@@ -4641,7 +4728,7 @@ C_PrologueEpilogue gMethod_ipic_31__38_ComputedBraTerminator_exploreAccessibleBl
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//       Overriding category method '@ipic18ComputedGotoTerminator exploreAccessibleBlocksForStackComputations'        *
+//       Overriding extension method '@ipic18ComputedGotoTerminator exploreAccessibleBlocksForStackComputations'       *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -4663,6 +4750,7 @@ static void categoryMethod_ipic_31__38_ComputedGotoTerminator_exploreAccessibleB
   }
   outArgument_outStackNeeds = GALGAS_uint ((uint32_t) 1U) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_ipic_31__38_ComputedGotoTerminator_exploreAccessibleBlocksForStackComputations (void) {
@@ -4676,7 +4764,7 @@ C_PrologueEpilogue gMethod_ipic_31__38_ComputedGotoTerminator_exploreAccessibleB
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//           Overriding category method '@ipic18JumpTerminator exploreAccessibleBlocksForStackComputations'            *
+//           Overriding extension method '@ipic18JumpTerminator exploreAccessibleBlocksForStackComputations'           *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -4694,6 +4782,7 @@ static void categoryMethod_ipic_31__38_JumpTerminator_exploreAccessibleBlocksFor
   }
   outArgument_outStackNeeds = GALGAS_uint ((uint32_t) 0U) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_ipic_31__38_JumpTerminator_exploreAccessibleBlocksForStackComputations (void) {
@@ -4707,7 +4796,7 @@ C_PrologueEpilogue gMethod_ipic_31__38_JumpTerminator_exploreAccessibleBlocksFor
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//      Overriding category method '@ipic18ConditionalJumpTerminator exploreAccessibleBlocksForStackComputations'      *
+//     Overriding extension method '@ipic18ConditionalJumpTerminator exploreAccessibleBlocksForStackComputations'      *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -4729,6 +4818,7 @@ static void categoryMethod_ipic_31__38_ConditionalJumpTerminator_exploreAccessib
   }
   outArgument_outStackNeeds = GALGAS_uint ((uint32_t) 0U) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_ipic_31__38_ConditionalJumpTerminator_exploreAccessibleBlocksForStackComputations (void) {
@@ -4742,7 +4832,7 @@ C_PrologueEpilogue gMethod_ipic_31__38_ConditionalJumpTerminator_exploreAccessib
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//       Overriding category method '@ipic18ComputedRETLWTerminator exploreAccessibleBlocksForStackComputations'       *
+//      Overriding extension method '@ipic18ComputedRETLWTerminator exploreAccessibleBlocksForStackComputations'       *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -4754,6 +4844,7 @@ static void categoryMethod_ipic_31__38_ComputedRETLWTerminator_exploreAccessible
                                                                                                             COMMA_UNUSED_LOCATION_ARGS) {
   outArgument_outStackNeeds = GALGAS_uint ((uint32_t) 1U) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_ipic_31__38_ComputedRETLWTerminator_exploreAccessibleBlocksForStackComputations (void) {
@@ -4767,7 +4858,7 @@ C_PrologueEpilogue gMethod_ipic_31__38_ComputedRETLWTerminator_exploreAccessible
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//          Overriding category method '@ipic18ReturnTerminator exploreAccessibleBlocksForStackComputations'           *
+//          Overriding extension method '@ipic18ReturnTerminator exploreAccessibleBlocksForStackComputations'          *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -4779,6 +4870,7 @@ static void categoryMethod_ipic_31__38_ReturnTerminator_exploreAccessibleBlocksF
                                                                                                      COMMA_UNUSED_LOCATION_ARGS) {
   outArgument_outStackNeeds = GALGAS_uint ((uint32_t) 0U) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_ipic_31__38_ReturnTerminator_exploreAccessibleBlocksForStackComputations (void) {
@@ -4792,7 +4884,7 @@ C_PrologueEpilogue gMethod_ipic_31__38_ReturnTerminator_exploreAccessibleBlocksF
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//           Overriding category method '@ipic18RetlwTerminator exploreAccessibleBlocksForStackComputations'           *
+//          Overriding extension method '@ipic18RetlwTerminator exploreAccessibleBlocksForStackComputations'           *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -4804,6 +4896,7 @@ static void categoryMethod_ipic_31__38_RetlwTerminator_exploreAccessibleBlocksFo
                                                                                                     COMMA_UNUSED_LOCATION_ARGS) {
   outArgument_outStackNeeds = GALGAS_uint ((uint32_t) 0U) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_ipic_31__38_RetlwTerminator_exploreAccessibleBlocksForStackComputations (void) {
@@ -4817,7 +4910,7 @@ C_PrologueEpilogue gMethod_ipic_31__38_RetlwTerminator_exploreAccessibleBlocksFo
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//          Overriding category method '@ipic18RetfieTerminator exploreAccessibleBlocksForStackComputations'           *
+//          Overriding extension method '@ipic18RetfieTerminator exploreAccessibleBlocksForStackComputations'          *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -4829,6 +4922,7 @@ static void categoryMethod_ipic_31__38_RetfieTerminator_exploreAccessibleBlocksF
                                                                                                      COMMA_UNUSED_LOCATION_ARGS) {
   outArgument_outStackNeeds = GALGAS_uint ((uint32_t) 0U) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_ipic_31__38_RetfieTerminator_exploreAccessibleBlocksForStackComputations (void) {
@@ -4842,7 +4936,7 @@ C_PrologueEpilogue gMethod_ipic_31__38_RetfieTerminator_exploreAccessibleBlocksF
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//           Overriding category method '@ipic18_intermediate_JSR buildCalledRoutineSetForStackComputations'           *
+//          Overriding extension method '@ipic18_intermediate_JSR buildCalledRoutineSetForStackComputations'           *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -4854,6 +4948,7 @@ static void categoryMethod_ipic_31__38__5F_intermediate_5F_JSR_buildCalledRoutin
   macroValidSharedObject (object, cPtr_ipic_31__38__5F_intermediate_5F_JSR) ;
   ioArgument_ioRoutineCalledSet.addAssign_operation (object->mAttribute_mTargetLabel.mAttribute_string  COMMA_SOURCE_FILE ("ipic18_stack_computations.galgas", 168)) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_ipic_31__38__5F_intermediate_5F_JSR_buildCalledRoutineSetForStackComputations (void) {
@@ -4867,7 +4962,7 @@ C_PrologueEpilogue gMethod_ipic_31__38__5F_intermediate_5F_JSR_buildCalledRoutin
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//Overriding category method '@ipic18_intermediate_instruction_computed_rcall buildCalledRoutineSetForStackComputations'*
+//Overriding extension method '@ipic18_intermediate_instruction_computed_rcall buildCalledRoutineSetForStackComputations'*
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -4883,6 +4978,7 @@ static void categoryMethod_ipic_31__38__5F_intermediate_5F_instruction_5F_comput
     enumerator_5667.gotoNextObject () ;
   }
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall_buildCalledRoutineSetForStackComputations (void) {
@@ -4896,7 +4992,7 @@ C_PrologueEpilogue gMethod_ipic_31__38__5F_intermediate_5F_instruction_5F_comput
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//      Overriding category method '@ipic18_condition_skip_instruction buildCalledRoutineSetForStackComputations'      *
+//     Overriding extension method '@ipic18_condition_skip_instruction buildCalledRoutineSetForStackComputations'      *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -4908,6 +5004,7 @@ static void categoryMethod_ipic_31__38__5F_condition_5F_skip_5F_instruction_buil
   macroValidSharedObject (object, cPtr_ipic_31__38__5F_condition_5F_skip_5F_instruction) ;
   callCategoryMethod_buildCalledRoutineSetForStackComputations ((const cPtr_ipic_31__38_SequentialInstruction *) object->mAttribute_mEmbeddedInstruction.ptr (), ioArgument_ioRoutineCalledSet, inCompiler COMMA_SOURCE_FILE ("ipic18_stack_computations.galgas", 184)) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_ipic_31__38__5F_condition_5F_skip_5F_instruction_buildCalledRoutineSetForStackComputations (void) {
@@ -4921,7 +5018,7 @@ C_PrologueEpilogue gMethod_ipic_31__38__5F_condition_5F_skip_5F_instruction_buil
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                    Overriding category method '@ipic18ReturnTerminator terminatorMinMaxDuration'                    *
+//                   Overriding extension method '@ipic18ReturnTerminator terminatorMinMaxDuration'                    *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -4935,6 +5032,7 @@ static void categoryMethod_ipic_31__38_ReturnTerminator_terminatorMinMaxDuration
   outArgument_outMin = GALGAS_uint ((uint32_t) 2U) ;
   outArgument_outMax = GALGAS_uint ((uint32_t) 2U) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_ipic_31__38_ReturnTerminator_terminatorMinMaxDuration (void) {
@@ -4948,7 +5046,7 @@ C_PrologueEpilogue gMethod_ipic_31__38_ReturnTerminator_terminatorMinMaxDuration
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                    Overriding category method '@ipic18RetlwTerminator terminatorMinMaxDuration'                     *
+//                    Overriding extension method '@ipic18RetlwTerminator terminatorMinMaxDuration'                    *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -4962,6 +5060,7 @@ static void categoryMethod_ipic_31__38_RetlwTerminator_terminatorMinMaxDuration 
   outArgument_outMin = GALGAS_uint ((uint32_t) 2U) ;
   outArgument_outMax = GALGAS_uint ((uint32_t) 2U) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_ipic_31__38_RetlwTerminator_terminatorMinMaxDuration (void) {
@@ -4975,7 +5074,7 @@ C_PrologueEpilogue gMethod_ipic_31__38_RetlwTerminator_terminatorMinMaxDuration 
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                    Overriding category method '@ipic18RetfieTerminator terminatorMinMaxDuration'                    *
+//                   Overriding extension method '@ipic18RetfieTerminator terminatorMinMaxDuration'                    *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -4989,6 +5088,7 @@ static void categoryMethod_ipic_31__38_RetfieTerminator_terminatorMinMaxDuration
   outArgument_outMin = GALGAS_uint ((uint32_t) 2U) ;
   outArgument_outMax = GALGAS_uint ((uint32_t) 2U) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_ipic_31__38_RetfieTerminator_terminatorMinMaxDuration (void) {
@@ -5002,7 +5102,7 @@ C_PrologueEpilogue gMethod_ipic_31__38_RetfieTerminator_terminatorMinMaxDuration
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                     Overriding category method '@ipic18JumpTerminator terminatorMinMaxDuration'                     *
+//                    Overriding extension method '@ipic18JumpTerminator terminatorMinMaxDuration'                     *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -5033,6 +5133,7 @@ static void categoryMethod_ipic_31__38_JumpTerminator_terminatorMinMaxDuration (
     outArgument_outMax = GALGAS_uint ((uint32_t) 0U) ;
   }
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_ipic_31__38_JumpTerminator_terminatorMinMaxDuration (void) {
@@ -5046,7 +5147,7 @@ C_PrologueEpilogue gMethod_ipic_31__38_JumpTerminator_terminatorMinMaxDuration (
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                 Overriding category method '@pic18TestRegisterTerminator terminatorMinMaxDuration'                  *
+//                 Overriding extension method '@pic18TestRegisterTerminator terminatorMinMaxDuration'                 *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -5120,6 +5221,7 @@ static void categoryMethod_pic_31__38_TestRegisterTerminator_terminatorMinMaxDur
     outArgument_outMax = GALGAS_uint ((uint32_t) 0U) ;
   }
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_pic_31__38_TestRegisterTerminator_terminatorMinMaxDuration (void) {
@@ -5133,7 +5235,7 @@ C_PrologueEpilogue gMethod_pic_31__38_TestRegisterTerminator_terminatorMinMaxDur
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//              Overriding category method '@pic18RegisterComparisonTerminator terminatorMinMaxDuration'               *
+//              Overriding extension method '@pic18RegisterComparisonTerminator terminatorMinMaxDuration'              *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -5207,6 +5309,7 @@ static void categoryMethod_pic_31__38_RegisterComparisonTerminator_terminatorMin
     outArgument_outMax = GALGAS_uint ((uint32_t) 0U) ;
   }
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_pic_31__38_RegisterComparisonTerminator_terminatorMinMaxDuration (void) {
@@ -5220,7 +5323,7 @@ C_PrologueEpilogue gMethod_pic_31__38_RegisterComparisonTerminator_terminatorMin
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                    Overriding category method '@pic18BitTestTerminator terminatorMinMaxDuration'                    *
+//                   Overriding extension method '@pic18BitTestTerminator terminatorMinMaxDuration'                    *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -5318,6 +5421,7 @@ static void categoryMethod_pic_31__38_BitTestTerminator_terminatorMinMaxDuration
     outArgument_outMax = GALGAS_uint ((uint32_t) 0U) ;
   }
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_pic_31__38_BitTestTerminator_terminatorMinMaxDuration (void) {
@@ -5331,7 +5435,7 @@ C_PrologueEpilogue gMethod_pic_31__38_BitTestTerminator_terminatorMinMaxDuration
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//               Overriding category method '@ipic18ConditionalJumpTerminator terminatorMinMaxDuration'                *
+//               Overriding extension method '@ipic18ConditionalJumpTerminator terminatorMinMaxDuration'               *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -5429,6 +5533,7 @@ static void categoryMethod_ipic_31__38_ConditionalJumpTerminator_terminatorMinMa
     outArgument_outMax = GALGAS_uint ((uint32_t) 0U) ;
   }
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_ipic_31__38_ConditionalJumpTerminator_terminatorMinMaxDuration (void) {
@@ -5442,7 +5547,7 @@ C_PrologueEpilogue gMethod_ipic_31__38_ConditionalJumpTerminator_terminatorMinMa
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                Overriding category method '@ipic18IncDecRegisterTerminator terminatorMinMaxDuration'                *
+//               Overriding extension method '@ipic18IncDecRegisterTerminator terminatorMinMaxDuration'                *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -5540,6 +5645,7 @@ static void categoryMethod_ipic_31__38_IncDecRegisterTerminator_terminatorMinMax
     outArgument_outMax = GALGAS_uint ((uint32_t) 0U) ;
   }
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_ipic_31__38_IncDecRegisterTerminator_terminatorMinMaxDuration (void) {
@@ -5553,7 +5659,7 @@ C_PrologueEpilogue gMethod_ipic_31__38_IncDecRegisterTerminator_terminatorMinMax
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                 Overriding category method '@ipic18ComputedGotoTerminator terminatorMinMaxDuration'                 *
+//                Overriding extension method '@ipic18ComputedGotoTerminator terminatorMinMaxDuration'                 *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -5601,6 +5707,7 @@ static void categoryMethod_ipic_31__38_ComputedGotoTerminator_terminatorMinMaxDu
     outArgument_outMax = outArgument_outMax.add_operation (GALGAS_uint ((uint32_t) 12U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 287)) ;
   }
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_ipic_31__38_ComputedGotoTerminator_terminatorMinMaxDuration (void) {
@@ -5614,7 +5721,7 @@ C_PrologueEpilogue gMethod_ipic_31__38_ComputedGotoTerminator_terminatorMinMaxDu
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                Overriding category method '@ipic18ComputedRETLWTerminator terminatorMinMaxDuration'                 *
+//                Overriding extension method '@ipic18ComputedRETLWTerminator terminatorMinMaxDuration'                *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -5634,6 +5741,7 @@ static void categoryMethod_ipic_31__38_ComputedRETLWTerminator_terminatorMinMaxD
   }
   outArgument_outMax = outArgument_outMin ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_ipic_31__38_ComputedRETLWTerminator_terminatorMinMaxDuration (void) {
@@ -5647,7 +5755,7 @@ C_PrologueEpilogue gMethod_ipic_31__38_ComputedRETLWTerminator_terminatorMinMaxD
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                 Overriding category method '@ipic18ComputedBraTerminator terminatorMinMaxDuration'                  *
+//                 Overriding extension method '@ipic18ComputedBraTerminator terminatorMinMaxDuration'                 *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -5695,6 +5803,7 @@ static void categoryMethod_ipic_31__38_ComputedBraTerminator_terminatorMinMaxDur
     outArgument_outMax = outArgument_outMax.add_operation (GALGAS_uint ((uint32_t) 11U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 334)) ;
   }
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_ipic_31__38_ComputedBraTerminator_terminatorMinMaxDuration (void) {
@@ -5708,7 +5817,7 @@ C_PrologueEpilogue gMethod_ipic_31__38_ComputedBraTerminator_terminatorMinMaxDur
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                            Overriding category method '@ipic18ReturnTerminator duration'                            *
+//                           Overriding extension method '@ipic18ReturnTerminator duration'                            *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -5722,6 +5831,7 @@ static void categoryMethod_ipic_31__38_ReturnTerminator_duration (const cPtr_ipi
   outArgument_outMin = GALGAS_uint ((uint32_t) 2U) ;
   outArgument_outMax = GALGAS_uint ((uint32_t) 2U) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_ipic_31__38_ReturnTerminator_duration (void) {
@@ -5735,7 +5845,7 @@ C_PrologueEpilogue gMethod_ipic_31__38_ReturnTerminator_duration (defineCategory
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                            Overriding category method '@ipic18RetlwTerminator duration'                             *
+//                            Overriding extension method '@ipic18RetlwTerminator duration'                            *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -5749,6 +5859,7 @@ static void categoryMethod_ipic_31__38_RetlwTerminator_duration (const cPtr_ipic
   outArgument_outMin = GALGAS_uint ((uint32_t) 2U) ;
   outArgument_outMax = GALGAS_uint ((uint32_t) 2U) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_ipic_31__38_RetlwTerminator_duration (void) {
@@ -5762,7 +5873,7 @@ C_PrologueEpilogue gMethod_ipic_31__38_RetlwTerminator_duration (defineCategoryM
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                            Overriding category method '@ipic18RetfieTerminator duration'                            *
+//                           Overriding extension method '@ipic18RetfieTerminator duration'                            *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -5776,6 +5887,7 @@ static void categoryMethod_ipic_31__38_RetfieTerminator_duration (const cPtr_ipi
   outArgument_outMin = GALGAS_uint ((uint32_t) 2U) ;
   outArgument_outMax = GALGAS_uint ((uint32_t) 2U) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_ipic_31__38_RetfieTerminator_duration (void) {
@@ -5789,7 +5901,7 @@ C_PrologueEpilogue gMethod_ipic_31__38_RetfieTerminator_duration (defineCategory
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                             Overriding category method '@ipic18JumpTerminator duration'                             *
+//                            Overriding extension method '@ipic18JumpTerminator duration'                             *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -5819,6 +5931,7 @@ static void categoryMethod_ipic_31__38_JumpTerminator_duration (const cPtr_ipic_
     outArgument_outMax = GALGAS_uint ((uint32_t) 0U) ;
   }
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_ipic_31__38_JumpTerminator_duration (void) {
@@ -5832,7 +5945,7 @@ C_PrologueEpilogue gMethod_ipic_31__38_JumpTerminator_duration (defineCategoryMe
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                 Overriding category method '@ipic18_intermediate_instruction_TBLRD minMaxDuration'                  *
+//                 Overriding extension method '@ipic18_intermediate_instruction_TBLRD minMaxDuration'                 *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -5845,6 +5958,7 @@ static void categoryMethod_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD_
   outArgument_outMin = GALGAS_uint ((uint32_t) 2U) ;
   outArgument_outMax = GALGAS_uint ((uint32_t) 2U) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD_minMaxDuration (void) {
@@ -5858,7 +5972,7 @@ C_PrologueEpilogue gMethod_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD_
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                 Overriding category method '@ipic18_intermediate_instruction_TBLWT minMaxDuration'                  *
+//                 Overriding extension method '@ipic18_intermediate_instruction_TBLWT minMaxDuration'                 *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -5871,6 +5985,7 @@ static void categoryMethod_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT_
   outArgument_outMin = GALGAS_uint ((uint32_t) 2U) ;
   outArgument_outMax = GALGAS_uint ((uint32_t) 2U) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT_minMaxDuration (void) {
@@ -5884,7 +5999,7 @@ C_PrologueEpilogue gMethod_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT_
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                  Overriding category method '@ipic18_intermediate_instruction_MNOP minMaxDuration'                  *
+//                 Overriding extension method '@ipic18_intermediate_instruction_MNOP minMaxDuration'                  *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -5899,6 +6014,7 @@ static void categoryMethod_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP_m
   outArgument_outMin = object->mAttribute_mOccurrenceFactor.mAttribute_uint ;
   outArgument_outMax = object->mAttribute_mOccurrenceFactor.mAttribute_uint ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP_minMaxDuration (void) {
@@ -5912,7 +6028,7 @@ C_PrologueEpilogue gMethod_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP_m
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                 Overriding category method '@ipic18_intermediate_instruction_NOPBRA minMaxDuration'                 *
+//                Overriding extension method '@ipic18_intermediate_instruction_NOPBRA minMaxDuration'                 *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -5927,6 +6043,7 @@ static void categoryMethod_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA
   outArgument_outMin = object->mAttribute_mOccurrenceFactor.mAttribute_uint.multiply_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 459)) ;
   outArgument_outMax = object->mAttribute_mOccurrenceFactor.mAttribute_uint.multiply_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 460)) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA_minMaxDuration (void) {
@@ -5940,7 +6057,7 @@ C_PrologueEpilogue gMethod_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                  Overriding category method '@ipic18_intermediate_instruction_LFSR minMaxDuration'                  *
+//                 Overriding extension method '@ipic18_intermediate_instruction_LFSR minMaxDuration'                  *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -5953,6 +6070,7 @@ static void categoryMethod_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR_m
   outArgument_outMin = GALGAS_uint ((uint32_t) 2U) ;
   outArgument_outMax = GALGAS_uint ((uint32_t) 2U) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR_minMaxDuration (void) {
@@ -5966,7 +6084,7 @@ C_PrologueEpilogue gMethod_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR_m
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                 Overriding category method '@ipic18_intermediate_instruction_MOVFF minMaxDuration'                  *
+//                 Overriding extension method '@ipic18_intermediate_instruction_MOVFF minMaxDuration'                 *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -5979,6 +6097,7 @@ static void categoryMethod_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF_
   outArgument_outMin = GALGAS_uint ((uint32_t) 2U) ;
   outArgument_outMax = GALGAS_uint ((uint32_t) 2U) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF_minMaxDuration (void) {
@@ -5992,7 +6111,7 @@ C_PrologueEpilogue gMethod_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF_
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                        Overriding category method '@ipic18_intermediate_JSR minMaxDuration'                         *
+//                        Overriding extension method '@ipic18_intermediate_JSR minMaxDuration'                        *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -6014,6 +6133,7 @@ static void categoryMethod_ipic_31__38__5F_intermediate_5F_JSR_minMaxDuration (c
     outArgument_outMax = GALGAS_uint ((uint32_t) 0U) ;
   }
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_ipic_31__38__5F_intermediate_5F_JSR_minMaxDuration (void) {
@@ -6027,7 +6147,7 @@ C_PrologueEpilogue gMethod_ipic_31__38__5F_intermediate_5F_JSR_minMaxDuration (d
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                   Overriding category method '@ipic18_condition_skip_instruction minMaxDuration'                    *
+//                   Overriding extension method '@ipic18_condition_skip_instruction minMaxDuration'                   *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -6046,6 +6166,7 @@ static void categoryMethod_ipic_31__38__5F_condition_5F_skip_5F_instruction_minM
     outArgument_outMax = outArgument_outMax.add_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 512)) ;
   }
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_ipic_31__38__5F_condition_5F_skip_5F_instruction_minMaxDuration (void) {
@@ -6059,7 +6180,7 @@ C_PrologueEpilogue gMethod_ipic_31__38__5F_condition_5F_skip_5F_instruction_minM
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//             Overriding category method '@ipic18_intermediate_instruction_computed_rcall minMaxDuration'             *
+//            Overriding extension method '@ipic18_intermediate_instruction_computed_rcall minMaxDuration'             *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -6116,6 +6237,7 @@ static void categoryMethod_ipic_31__38__5F_intermediate_5F_instruction_5F_comput
     outArgument_outMax = outArgument_outMax.add_operation (GALGAS_uint ((uint32_t) 10U), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 547)) ;
   }
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall_minMaxDuration (void) {
@@ -6129,7 +6251,7 @@ C_PrologueEpilogue gMethod_ipic_31__38__5F_intermediate_5F_instruction_5F_comput
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                        Overriding category method '@byteDeclarationInRam handleDeclaration'                         *
+//                        Overriding extension method '@byteDeclarationInRam handleDeclaration'                        *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -6177,6 +6299,7 @@ static void categoryMethod_byteDeclarationInRam_handleDeclaration (const cPtr_de
     inCompiler->emitSemanticError (location_4, GALGAS_string ("overflow in '").add_operation (constinArgument_inCurrentRamBank.getter_string (SOURCE_FILE ("ram_sections.galgas", 40)), inCompiler COMMA_SOURCE_FILE ("ram_sections.galgas", 40)).add_operation (GALGAS_string ("' ram bank for '"), inCompiler COMMA_SOURCE_FILE ("ram_sections.galgas", 40)).add_operation (object->mAttribute_mName.getter_string (SOURCE_FILE ("ram_sections.galgas", 40)), inCompiler COMMA_SOURCE_FILE ("ram_sections.galgas", 40)).add_operation (GALGAS_string ("' declaration"), inCompiler COMMA_SOURCE_FILE ("ram_sections.galgas", 40))  COMMA_SOURCE_FILE ("ram_sections.galgas", 40)) ;
   }
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_byteDeclarationInRam_handleDeclaration (void) {

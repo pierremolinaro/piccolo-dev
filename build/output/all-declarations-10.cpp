@@ -10,7 +10,7 @@
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                                          Category Getter '@uint x4String'                                           *
+//                                          Extension Getter '@uint x4String'                                          *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -41,7 +41,7 @@ GALGAS_string extensionGetter_x_34_String (const GALGAS_uint & inObject,
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                                 Abstract category method '@immediatExpression eval'                                 *
+//                                Abstract extension method '@immediatExpression eval'                                 *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -105,7 +105,7 @@ void callCategoryMethod_eval (const cPtr_immediatExpression * inObject,
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                            Abstract category method '@bitNumberExpression getBitNumber'                             *
+//                            Abstract extension method '@bitNumberExpression getBitNumber'                            *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -170,7 +170,7 @@ void callCategoryMethod_getBitNumber (const cPtr_bitNumberExpression * inObject,
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                            Category Getter '@baseline_instruction_FD_base_code mnemonic'                            *
+//                           Extension Getter '@baseline_instruction_FD_base_code mnemonic'                            *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -262,7 +262,7 @@ GALGAS_string extensionGetter_mnemonic (const GALGAS_baseline_5F_instruction_5F_
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                            Category Getter '@baseline_F_instruction_base_code mnemonic'                             *
+//                            Extension Getter '@baseline_F_instruction_base_code mnemonic'                            *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -294,7 +294,7 @@ GALGAS_string extensionGetter_mnemonic (const GALGAS_baseline_5F_F_5F_instructio
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                                Category Getter '@baseline_bit_oriented_op mnemonic'                                 *
+//                                Extension Getter '@baseline_bit_oriented_op mnemonic'                                *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -326,7 +326,7 @@ GALGAS_string extensionGetter_mnemonic (const GALGAS_baseline_5F_bit_5F_oriented
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                           Category Getter '@baseline_literal_instruction_opcode mnemonic'                           *
+//                          Extension Getter '@baseline_literal_instruction_opcode mnemonic'                           *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -373,7 +373,7 @@ GALGAS_string extensionGetter_mnemonic (const GALGAS_baseline_5F_literal_5F_inst
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                               Category Getter '@baseline_IF_BitTest_opcode mnemonic'                                *
+//                               Extension Getter '@baseline_IF_BitTest_opcode mnemonic'                               *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -405,7 +405,7 @@ GALGAS_string extensionGetter_mnemonic (const GALGAS_baseline_5F_IF_5F_BitTest_5
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                                Category Getter '@baseline_WO_OPERAND_group mnemonic'                                *
+//                               Extension Getter '@baseline_WO_OPERAND_group mnemonic'                                *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -452,7 +452,7 @@ GALGAS_string extensionGetter_mnemonic (const GALGAS_baseline_5F_WO_5F_OPERAND_5
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                          Abstract category method '@baseline_instruction addUsedRoutines'                           *
+//                          Abstract extension method '@baseline_instruction addUsedRoutines'                          *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -512,7 +512,7 @@ void callCategoryMethod_addUsedRoutines (const cPtr_baseline_5F_instruction * in
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                          Category method '@baseline_instruction shouldTerminateWithMOVLW'                           *
+//                          Extension method '@baseline_instruction shouldTerminateWithMOVLW'                          *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -587,7 +587,7 @@ C_PrologueEpilogue gMethod_baseline_5F_instruction_shouldTerminateWithMOVLW (def
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                         Category method '@baseline_instruction shouldNotContinueInSequence'                         *
+//                        Extension method '@baseline_instruction shouldNotContinueInSequence'                         *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -799,7 +799,7 @@ GALGAS_baseline_5F_intermediate_5F_registerExpression GALGAS_baseline_5F_interme
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//            Abstract category method '@baseline_instruction build_baseline_intermediate_instructionList'             *
+//            Abstract extension method '@baseline_instruction build_baseline_intermediate_instructionList'            *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -869,7 +869,7 @@ void callCategoryMethod_build_5F_baseline_5F_intermediate_5F_instructionList (co
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//         Abstract category method '@baseline_conditionExpression build_intermediate_condition_instructions'          *
+//         Abstract extension method '@baseline_conditionExpression build_intermediate_condition_instructions'         *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -937,7 +937,7 @@ void callCategoryMethod_build_5F_intermediate_5F_condition_5F_instructions (cons
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                         Abstract category method '@baseline_intermediate_instruction print'                         *
+//                        Abstract extension method '@baseline_intermediate_instruction print'                         *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -997,7 +997,7 @@ void callCategoryMethod_print (const cPtr_baseline_5F_intermediate_5F_instructio
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                        Abstract category getter '@baseline_intermediate_instruction length'                         *
+//                        Abstract extension getter '@baseline_intermediate_instruction length'                        *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -1057,7 +1057,7 @@ GALGAS_uint callCategoryGetter_length (const cPtr_baseline_5F_intermediate_5F_in
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                       Category method '@baseline_intermediate_instruction setCurrentAddress'                        *
+//                       Extension method '@baseline_intermediate_instruction setCurrentAddress'                       *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -1133,7 +1133,7 @@ C_PrologueEpilogue gMethod_baseline_5F_intermediate_5F_instruction_setCurrentAdd
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                            Category getter '@baseline_intermediate_instruction isLABEL'                             *
+//                            Extension getter '@baseline_intermediate_instruction isLABEL'                            *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -1212,7 +1212,7 @@ C_PrologueEpilogue gGetter_baseline_5F_intermediate_5F_instruction_isLABEL (defi
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                             Category getter '@baseline_intermediate_instruction isNULL'                             *
+//                            Extension getter '@baseline_intermediate_instruction isNULL'                             *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -1291,7 +1291,7 @@ C_PrologueEpilogue gGetter_baseline_5F_intermediate_5F_instruction_isNULL (defin
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                     Category getter '@baseline_intermediate_instruction isSkippingInstruction'                      *
+//                     Extension getter '@baseline_intermediate_instruction isSkippingInstruction'                     *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -1370,7 +1370,7 @@ C_PrologueEpilogue gGetter_baseline_5F_intermediate_5F_instruction_isSkippingIns
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                   Category getter '@baseline_intermediate_instruction nextInstructionIsReachable'                   *
+//                  Extension getter '@baseline_intermediate_instruction nextInstructionIsReachable'                   *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -1449,7 +1449,7 @@ C_PrologueEpilogue gGetter_baseline_5F_intermediate_5F_instruction_nextInstructi
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                      Category method '@baseline_intermediate_instruction enterReferencedLabel'                      *
+//                     Extension method '@baseline_intermediate_instruction enterReferencedLabel'                      *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -1521,7 +1521,7 @@ C_PrologueEpilogue gMethod_baseline_5F_intermediate_5F_instruction_enterReferenc
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                          Category method '@baseline_intermediate_instruction defineLabel'                           *
+//                          Extension method '@baseline_intermediate_instruction defineLabel'                          *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -1595,7 +1595,7 @@ C_PrologueEpilogue gMethod_baseline_5F_intermediate_5F_instruction_defineLabel (
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                Category method '@baseline_intermediate_incDecRegisterInCondition optimizeTestDecInc'                *
+//               Extension method '@baseline_intermediate_incDecRegisterInCondition optimizeTestDecInc'                *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -1712,7 +1712,7 @@ C_PrologueEpilogue gMethod_baseline_5F_intermediate_5F_incDecRegisterInCondition
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                           Abstract category method '@baseline_assembly_instruction print'                           *
+//                          Abstract extension method '@baseline_assembly_instruction print'                           *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -1772,7 +1772,7 @@ void callCategoryMethod_print (const cPtr_baseline_5F_assembly_5F_instruction * 
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                          Abstract category getter '@baseline_assembly_instruction length'                           *
+//                          Abstract extension getter '@baseline_assembly_instruction length'                          *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -1832,7 +1832,7 @@ GALGAS_uint callCategoryGetter_length (const cPtr_baseline_5F_assembly_5F_instru
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                 Abstract category method '@baseline_intermediate_instruction generateAssemblyCode'                  *
+//                 Abstract extension method '@baseline_intermediate_instruction generateAssemblyCode'                 *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -1894,7 +1894,7 @@ void callCategoryMethod_generateAssemblyCode (const cPtr_baseline_5F_intermediat
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                        Category method '@baseline_assembly_instruction enterLabelAtAddress'                         *
+//                        Extension method '@baseline_assembly_instruction enterLabelAtAddress'                        *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -1968,7 +1968,7 @@ C_PrologueEpilogue gMethod_baseline_5F_assembly_5F_instruction_enterLabelAtAddre
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                Abstract category method '@baseline_assembly_instruction generateBinaryCodeAtAddress'                *
+//               Abstract extension method '@baseline_assembly_instruction generateBinaryCodeAtAddress'                *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -2030,7 +2030,7 @@ void callCategoryMethod_generateBinaryCodeAtAddress (const cPtr_baseline_5F_asse
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                            Category Getter '@midrange_instruction_FD_base_code mnemonic'                            *
+//                           Extension Getter '@midrange_instruction_FD_base_code mnemonic'                            *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -2122,7 +2122,7 @@ GALGAS_string extensionGetter_mnemonic (const GALGAS_midrange_5F_instruction_5F_
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                            Category Getter '@midrange_F_instruction_base_code mnemonic'                             *
+//                            Extension Getter '@midrange_F_instruction_base_code mnemonic'                            *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -2154,7 +2154,7 @@ GALGAS_string extensionGetter_mnemonic (const GALGAS_midrange_5F_F_5F_instructio
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                                Category Getter '@midrange_bit_oriented_op mnemonic'                                 *
+//                                Extension Getter '@midrange_bit_oriented_op mnemonic'                                *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -2186,7 +2186,7 @@ GALGAS_string extensionGetter_mnemonic (const GALGAS_midrange_5F_bit_5F_oriented
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                           Category Getter '@midrange_literal_instruction_opcode mnemonic'                           *
+//                          Extension Getter '@midrange_literal_instruction_opcode mnemonic'                           *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -2380,7 +2380,7 @@ GALGAS_midrange_5F_intermediate_5F_registerExpression GALGAS_midrange_5F_interme
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                          Abstract category method '@midrange_instruction addUsedRoutines'                           *
+//                          Abstract extension method '@midrange_instruction addUsedRoutines'                          *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -2440,7 +2440,7 @@ void callCategoryMethod_addUsedRoutines (const cPtr_midrange_5F_instruction * in
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                   Abstract category getter '@midrange_intermediate_instruction instructionLength'                   *
+//                  Abstract extension getter '@midrange_intermediate_instruction instructionLength'                   *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -2500,7 +2500,7 @@ GALGAS_uint callCategoryGetter_instructionLength (const cPtr_midrange_5F_interme
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                         Abstract category method '@midrange_intermediate_instruction print'                         *
+//                        Abstract extension method '@midrange_intermediate_instruction print'                         *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -2560,7 +2560,7 @@ void callCategoryMethod_print (const cPtr_midrange_5F_intermediate_5F_instructio
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                       Category method '@midrange_intermediate_instruction setCurrentAddress'                        *
+//                       Extension method '@midrange_intermediate_instruction setCurrentAddress'                       *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -2636,7 +2636,7 @@ C_PrologueEpilogue gMethod_midrange_5F_intermediate_5F_instruction_setCurrentAdd
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                          Category method '@midrange_instruction instructionUsesGOTOorCALL'                          *
+//                         Extension method '@midrange_instruction instructionUsesGOTOorCALL'                          *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -2708,7 +2708,7 @@ C_PrologueEpilogue gMethod_midrange_5F_instruction_instructionUsesGOTOorCALL (de
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                Abstract category method '@midrange_instruction build_midrange_ipic_instructionList'                 *
+//                Abstract extension method '@midrange_instruction build_midrange_ipic_instructionList'                *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -2779,7 +2779,7 @@ void callCategoryMethod_build_5F_midrange_5F_ipic_5F_instructionList (const cPtr
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//              Abstract category method '@midrange_conditionExpression buildIPICinstructionForCondition'              *
+//             Abstract extension method '@midrange_conditionExpression buildIPICinstructionForCondition'              *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -2849,7 +2849,7 @@ void callCategoryMethod_buildIPICinstructionForCondition (const cPtr_midrange_5F
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//            Abstract category method '@midrange_conditionExpression computeInstructionCountForCondition'             *
+//            Abstract extension method '@midrange_conditionExpression computeInstructionCountForCondition'            *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -2911,7 +2911,7 @@ void callCategoryMethod_computeInstructionCountForCondition (const cPtr_midrange
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                          Category getter '@midrange_intermediate_instruction isLABELorORG'                          *
+//                         Extension getter '@midrange_intermediate_instruction isLABELorORG'                          *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -2990,7 +2990,7 @@ C_PrologueEpilogue gGetter_midrange_5F_intermediate_5F_instruction_isLABELorORG 
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                             Category getter '@midrange_intermediate_instruction isNULL'                             *
+//                            Extension getter '@midrange_intermediate_instruction isNULL'                             *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -3069,7 +3069,7 @@ C_PrologueEpilogue gGetter_midrange_5F_intermediate_5F_instruction_isNULL (defin
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                      Category method '@midrange_intermediate_instruction enterReferencedLabel'                      *
+//                     Extension method '@midrange_intermediate_instruction enterReferencedLabel'                      *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -3141,7 +3141,7 @@ C_PrologueEpilogue gMethod_midrange_5F_intermediate_5F_instruction_enterReferenc
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                     Category getter '@midrange_intermediate_instruction isSkippingInstruction'                      *
+//                     Extension getter '@midrange_intermediate_instruction isSkippingInstruction'                     *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -3220,7 +3220,7 @@ C_PrologueEpilogue gGetter_midrange_5F_intermediate_5F_instruction_isSkippingIns
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                   Category getter '@midrange_intermediate_instruction nextInstructionIsReachable'                   *
+//                  Extension getter '@midrange_intermediate_instruction nextInstructionIsReachable'                   *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -3299,7 +3299,7 @@ C_PrologueEpilogue gGetter_midrange_5F_intermediate_5F_instruction_nextInstructi
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                          Category method '@midrange_intermediate_instruction defineLabel'                           *
+//                          Extension method '@midrange_intermediate_instruction defineLabel'                          *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -3373,7 +3373,7 @@ C_PrologueEpilogue gMethod_midrange_5F_intermediate_5F_instruction_defineLabel (
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                 Category method '@midrange_intermediate_instruction_literalOperation optimizeMOVLW'                 *
+//                Extension method '@midrange_intermediate_instruction_literalOperation optimizeMOVLW'                 *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -3469,7 +3469,7 @@ C_PrologueEpilogue gMethod_midrange_5F_intermediate_5F_instruction_5F_literalOpe
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                Category method '@midrange_intermediate_incDecRegisterInCondition optimizeTestDecInc'                *
+//               Extension method '@midrange_intermediate_incDecRegisterInCondition optimizeTestDecInc'                *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -3613,7 +3613,7 @@ C_PrologueEpilogue gMethod_midrange_5F_intermediate_5F_incDecRegisterInCondition
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                Category method '@midrange_intermediate_instruction_BitTestSkip optimizeBitTestSkip'                 *
+//                Extension method '@midrange_intermediate_instruction_BitTestSkip optimizeBitTestSkip'                *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -3735,7 +3735,7 @@ C_PrologueEpilogue gMethod_midrange_5F_intermediate_5F_instruction_5F_BitTestSki
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                      Category method '@midrange_intermediate_instruction defineLabelAtAddress'                      *
+//                     Extension method '@midrange_intermediate_instruction defineLabelAtAddress'                      *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -3809,7 +3809,7 @@ C_PrologueEpilogue gMethod_midrange_5F_intermediate_5F_instruction_defineLabelAt
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                        Abstract category method '@midrange_intermediate_instruction compute'                        *
+//                       Abstract extension method '@midrange_intermediate_instruction compute'                        *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -3874,7 +3874,7 @@ void callCategoryMethod_compute (const cPtr_midrange_5F_intermediate_5F_instruct
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                   Abstract category method '@midrange_intermediate_instruction buildAssemblyCode'                   *
+//                  Abstract extension method '@midrange_intermediate_instruction buildAssemblyCode'                   *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -3935,7 +3935,7 @@ void callCategoryMethod_buildAssemblyCode (const cPtr_midrange_5F_intermediate_5
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                      Category method '@midrange_intermediate_instruction enterLabelAtAddress'                       *
+//                      Extension method '@midrange_intermediate_instruction enterLabelAtAddress'                      *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -4009,7 +4009,7 @@ C_PrologueEpilogue gMethod_midrange_5F_intermediate_5F_instruction_enterLabelAtA
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//              Abstract category method '@midrange_intermediate_instruction generateBinaryCodeAtAddress'              *
+//             Abstract extension method '@midrange_intermediate_instruction generateBinaryCodeAtAddress'              *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -4074,7 +4074,7 @@ void callCategoryMethod_generateBinaryCodeAtAddress (const cPtr_midrange_5F_inte
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                            Category Getter '@midrange_instruction_FD_base_code basecode'                            *
+//                           Extension Getter '@midrange_instruction_FD_base_code basecode'                            *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -4166,7 +4166,7 @@ GALGAS_uint extensionGetter_basecode (const GALGAS_midrange_5F_instruction_5F_FD
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                            Category Getter '@midrange_F_instruction_base_code baseCode'                             *
+//                            Extension Getter '@midrange_F_instruction_base_code baseCode'                            *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -4198,7 +4198,7 @@ GALGAS_uint extensionGetter_baseCode (const GALGAS_midrange_5F_F_5F_instruction_
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                                Category Getter '@midrange_bit_oriented_op baseCode'                                 *
+//                                Extension Getter '@midrange_bit_oriented_op baseCode'                                *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -4230,7 +4230,7 @@ GALGAS_uint extensionGetter_baseCode (const GALGAS_midrange_5F_bit_5F_oriented_5
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                           Category Getter '@midrange_literal_instruction_opcode baseCode'                           *
+//                          Extension Getter '@midrange_literal_instruction_opcode baseCode'                           *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -4287,7 +4287,7 @@ GALGAS_uint extensionGetter_baseCode (const GALGAS_midrange_5F_literal_5F_instru
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                                 Category Getter '@pic18RegisterComparison mnemonic'                                 *
+//                                Extension Getter '@pic18RegisterComparison mnemonic'                                 *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -4339,7 +4339,7 @@ GALGAS_string extensionGetter_mnemonic (const GALGAS_pic_31__38_RegisterComparis
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                                   Category Getter '@conditional_branch condition'                                   *
+//                                  Extension Getter '@conditional_branch condition'                                   *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -4401,7 +4401,7 @@ GALGAS_string extensionGetter_condition (const GALGAS_conditional_5F_branch & in
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                          Category Getter '@pic18InstructionWithNoOperandKind assemblyCode'                          *
+//                         Extension Getter '@pic18InstructionWithNoOperandKind assemblyCode'                          *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -4458,7 +4458,7 @@ GALGAS_string extensionGetter_assemblyCode (const GALGAS_pic_31__38_InstructionW
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                                Category Getter '@FA_instruction_base_code mnemonic'                                 *
+//                                Extension Getter '@FA_instruction_base_code mnemonic'                                *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -4525,7 +4525,7 @@ GALGAS_string extensionGetter_mnemonic (const GALGAS_FA_5F_instruction_5F_base_5
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                                     Category Getter '@bit_oriented_op mnemonic'                                     *
+//                                    Extension Getter '@bit_oriented_op mnemonic'                                     *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -4562,7 +4562,7 @@ GALGAS_string extensionGetter_mnemonic (const GALGAS_bit_5F_oriented_5F_op & inO
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                                   Category Getter '@conditional_branch mnemonic'                                    *
+//                                   Extension Getter '@conditional_branch mnemonic'                                   *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -4624,7 +4624,7 @@ GALGAS_string extensionGetter_mnemonic (const GALGAS_conditional_5F_branch & inO
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                               Category Getter '@literal_instruction_opcode mnemonic'                                *
+//                               Extension Getter '@literal_instruction_opcode mnemonic'                               *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -4681,7 +4681,7 @@ GALGAS_string extensionGetter_mnemonic (const GALGAS_literal_5F_instruction_5F_o
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                                    Category Getter '@tableAccessOption mnemonic'                                    *
+//                                   Extension Getter '@tableAccessOption mnemonic'                                    *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -4877,7 +4877,7 @@ GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression GALGAS_ipic_31__38__5F
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                     Category Getter '@ipic18_intermediate_registerExpression isEqualToRegister'                     *
+//                    Extension Getter '@ipic18_intermediate_registerExpression isEqualToRegister'                     *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -5041,7 +5041,7 @@ GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication GA
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                  Category method '@ipic18SequentialInstruction instructionRelativeBranchOverflow'                   *
+//                  Extension method '@ipic18SequentialInstruction instructionRelativeBranchOverflow'                  *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -5119,7 +5119,7 @@ C_PrologueEpilogue gMethod_ipic_31__38_SequentialInstruction_instructionRelative
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                  Category method '@ipic18AbstractBlockTerminator terminatorRelativeBranchOverflow'                  *
+//                 Extension method '@ipic18AbstractBlockTerminator terminatorRelativeBranchOverflow'                  *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -5199,7 +5199,7 @@ C_PrologueEpilogue gMethod_ipic_31__38_AbstractBlockTerminator_terminatorRelativ
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//             Category method '@ipic18AbstractBlockTerminator performTerminatorRelativeBranchResolution'              *
+//             Extension method '@ipic18AbstractBlockTerminator performTerminatorRelativeBranchResolution'             *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -5288,7 +5288,7 @@ C_PrologueEpilogue gMethod_ipic_31__38_AbstractBlockTerminator_performTerminator
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                        Abstract category method '@ipic18SequentialInstruction generateCode'                         *
+//                        Abstract extension method '@ipic18SequentialInstruction generateCode'                        *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -5352,7 +5352,7 @@ void callCategoryMethod_generateCode (const cPtr_ipic_31__38_SequentialInstructi
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                  Abstract category method '@ipic18AbstractBlockTerminator generateTerminatorCode'                   *
+//                  Abstract extension method '@ipic18AbstractBlockTerminator generateTerminatorCode'                  *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -5416,7 +5416,7 @@ void callCategoryMethod_generateTerminatorCode (const cPtr_ipic_31__38_AbstractB
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                    Abstract category getter '@ipic18AbstractBlockTerminator isEqualToTerminator'                    *
+//                   Abstract extension getter '@ipic18AbstractBlockTerminator isEqualToTerminator'                    *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -5477,7 +5477,7 @@ GALGAS_bool callCategoryGetter_isEqualToTerminator (const cPtr_ipic_31__38_Abstr
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                     Abstract category getter '@ipic18AbstractBlockTerminator terminatorDisplay'                     *
+//                    Abstract extension getter '@ipic18AbstractBlockTerminator terminatorDisplay'                     *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -5538,7 +5538,7 @@ GALGAS_string callCategoryGetter_terminatorDisplay (const cPtr_ipic_31__38_Abstr
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                      Abstract category getter '@ipic18AbstractBlockTerminator terminatorSize'                       *
+//                      Abstract extension getter '@ipic18AbstractBlockTerminator terminatorSize'                      *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -5599,7 +5599,7 @@ GALGAS_uint callCategoryGetter_terminatorSize (const cPtr_ipic_31__38_AbstractBl
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                           Category getter '@ipic18SequentialInstruction instructionSize'                            *
+//                           Extension getter '@ipic18SequentialInstruction instructionSize'                           *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -5678,7 +5678,7 @@ C_PrologueEpilogue gGetter_ipic_31__38_SequentialInstruction_instructionSize (de
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//              Category method '@ipic18SequentialInstruction performInstructionRelativeBranchResolution'              *
+//             Extension method '@ipic18SequentialInstruction performInstructionRelativeBranchResolution'              *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -5765,7 +5765,7 @@ C_PrologueEpilogue gMethod_ipic_31__38_SequentialInstruction_performInstructionR
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                     Abstract category getter '@ipic18SequentialInstruction instructionDisplay'                      *
+//                     Abstract extension getter '@ipic18SequentialInstruction instructionDisplay'                     *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -5825,7 +5825,7 @@ GALGAS_stringlist callCategoryGetter_instructionDisplay (const cPtr_ipic_31__38_
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                            Category Getter '@pic18InstructionWithNoOperandKind mnemonic'                            *
+//                           Extension Getter '@pic18InstructionWithNoOperandKind mnemonic'                            *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -5882,7 +5882,7 @@ GALGAS_string extensionGetter_mnemonic (const GALGAS_pic_31__38_InstructionWithN
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                         Abstract category method '@pic18PiccoloInstruction addUsedRoutines'                         *
+//                        Abstract extension method '@pic18PiccoloInstruction addUsedRoutines'                         *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -5943,7 +5943,7 @@ void callCategoryMethod_addUsedRoutines (const cPtr_pic_31__38_PiccoloInstructio
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                             Category method '@pic18PiccoloInstruction performInlining'                              *
+//                             Extension method '@pic18PiccoloInstruction performInlining'                             *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -6025,7 +6025,7 @@ C_PrologueEpilogue gMethod_pic_31__38_PiccoloInstruction_performInlining (define
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                 Abstract category method '@pic18PiccoloSimpleInstruction analyzeSimpleInstruction'                  *
+//                 Abstract extension method '@pic18PiccoloSimpleInstruction analyzeSimpleInstruction'                 *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -6094,7 +6094,7 @@ void callCategoryMethod_analyzeSimpleInstruction (const cPtr_pic_31__38_PiccoloS
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                             Abstract category method '@pic18PiccoloInstruction analyze'                             *
+//                            Abstract extension method '@pic18PiccoloInstruction analyze'                             *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -6168,7 +6168,7 @@ void callCategoryMethod_analyze (const cPtr_pic_31__38_PiccoloInstruction * inOb
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                          Abstract category method '@pic18AbstractCaseItem analyzeCaseItem'                          *
+//                         Abstract extension method '@pic18AbstractCaseItem analyzeCaseItem'                          *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -6237,7 +6237,7 @@ void callCategoryMethod_analyzeCaseItem (const cPtr_pic_31__38_AbstractCaseItem 
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//              Abstract category method '@abstractBlockTerminationForBlockInstruction addVisitedBlocks'               *
+//              Abstract extension method '@abstractBlockTerminationForBlockInstruction addVisitedBlocks'              *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -6303,7 +6303,7 @@ void callCategoryMethod_addVisitedBlocks (const cPtr_abstractBlockTerminationFor
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                Abstract category method '@abstractBlockTerminationForBlockInstruction generateBlock'                *
+//               Abstract extension method '@abstractBlockTerminationForBlockInstruction generateBlock'                *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -6372,7 +6372,7 @@ void callCategoryMethod_generateBlock (const cPtr_abstractBlockTerminationForBlo
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                        Abstract category method '@pic18ConditionExpression analyzeCondition'                        *
+//                       Abstract extension method '@pic18ConditionExpression analyzeCondition'                        *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -6442,7 +6442,7 @@ void callCategoryMethod_analyzeCondition (const cPtr_pic_31__38_ConditionExpress
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                    Abstract category method '@ipic18AbstractBlockTerminator optimizeTerminator'                     *
+//                    Abstract extension method '@ipic18AbstractBlockTerminator optimizeTerminator'                    *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -6509,7 +6509,7 @@ void callCategoryMethod_optimizeTerminator (const cPtr_ipic_31__38_AbstractBlock
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                    Category method '@ipic18AbstractConditionTerminator getOptimizedTerminators'                     *
+//                    Extension method '@ipic18AbstractConditionTerminator getOptimizedTerminators'                    *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -6676,7 +6676,7 @@ C_PrologueEpilogue gMethod_ipic_31__38_AbstractConditionTerminator_getOptimizedT
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//              Abstract category method '@ipic18AbstractBlockTerminator enterTerminatorReferencedLabels'              *
+//             Abstract extension method '@ipic18AbstractBlockTerminator enterTerminatorReferencedLabels'              *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -6738,7 +6738,7 @@ void callCategoryMethod_enterTerminatorReferencedLabels (const cPtr_ipic_31__38_
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                   Category method '@ipic18SequentialInstruction enterInstructionReferencedLabels'                   *
+//                  Extension method '@ipic18SequentialInstruction enterInstructionReferencedLabels'                   *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -6814,7 +6814,7 @@ C_PrologueEpilogue gMethod_ipic_31__38_SequentialInstruction_enterInstructionRef
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                         Category method '@ipic18SequentialInstruction optimizeInstruction'                          *
+//                         Extension method '@ipic18SequentialInstruction optimizeInstruction'                         *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -6909,7 +6909,7 @@ C_PrologueEpilogue gMethod_ipic_31__38_SequentialInstruction_optimizeInstruction
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                 Category method '@ipic18SequentialInstructionList enterInstructionReferencedLabels'                 *
+//                Extension method '@ipic18SequentialInstructionList enterInstructionReferencedLabels'                 *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -7152,7 +7152,7 @@ GALGAS_optimizeFlagStruct GALGAS_optimizeFlagStruct::extractObject (const GALGAS
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                                          Category Getter '@bool flagValue'                                          *
+//                                         Extension Getter '@bool flagValue'                                          *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -7178,7 +7178,7 @@ GALGAS_string extensionGetter_flagValue (const GALGAS_bool & inObject,
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                   Category method '@ipic18SequentialInstruction buildInstructionInvocationGraph'                    *
+//                   Extension method '@ipic18SequentialInstruction buildInstructionInvocationGraph'                   *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -7252,7 +7252,7 @@ C_PrologueEpilogue gMethod_ipic_31__38_SequentialInstruction_buildInstructionInv
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//              Abstract category method '@ipic18AbstractBlockTerminator buildTerminatorInvocationGraph'               *
+//              Abstract extension method '@ipic18AbstractBlockTerminator buildTerminatorInvocationGraph'              *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -7314,7 +7314,7 @@ void callCategoryMethod_buildTerminatorInvocationGraph (const cPtr_ipic_31__38_A
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                Abstract category getter '@ipic18AbstractBlockTerminator needToInsertJumpInstruction'                *
+//               Abstract extension getter '@ipic18AbstractBlockTerminator needToInsertJumpInstruction'                *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -7375,7 +7375,7 @@ GALGAS_bool callCategoryGetter_needToInsertJumpInstruction (const cPtr_ipic_31__
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                    Category method '@ipic18AbstractBlockTerminator buildTerminatorOrderedGraph'                     *
+//                    Extension method '@ipic18AbstractBlockTerminator buildTerminatorOrderedGraph'                    *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -7449,7 +7449,7 @@ C_PrologueEpilogue gMethod_ipic_31__38_AbstractBlockTerminator_buildTerminatorOr
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                                          Category Getter '@uint x4string'                                           *
+//                                          Extension Getter '@uint x4string'                                          *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -7474,7 +7474,7 @@ GALGAS_string extensionGetter_x_34_string (const GALGAS_uint & inObject,
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                                          Category Getter '@uint x6string'                                           *
+//                                          Extension Getter '@uint x6string'                                          *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -7501,7 +7501,7 @@ GALGAS_string extensionGetter_x_36_string (const GALGAS_uint & inObject,
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//        Abstract category method '@ipic18AbstractBlockTerminator exploreAccessibleBlocksForStackComputations'        *
+//       Abstract extension method '@ipic18AbstractBlockTerminator exploreAccessibleBlocksForStackComputations'        *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -7564,7 +7564,7 @@ void callCategoryMethod_exploreAccessibleBlocksForStackComputations (const cPtr_
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//              Category method '@ipic18SequentialInstruction buildCalledRoutineSetForStackComputations'               *
+//              Extension method '@ipic18SequentialInstruction buildCalledRoutineSetForStackComputations'              *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -7636,7 +7636,7 @@ C_PrologueEpilogue gMethod_ipic_31__38_SequentialInstruction_buildCalledRoutineS
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                 Abstract category method '@ipic18AbstractBlockTerminator terminatorMinMaxDuration'                  *
+//                 Abstract extension method '@ipic18AbstractBlockTerminator terminatorMinMaxDuration'                 *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -7701,7 +7701,7 @@ void callCategoryMethod_terminatorMinMaxDuration (const cPtr_ipic_31__38_Abstrac
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                       Abstract category method '@ipic18SingleInstructionTerminator duration'                        *
+//                       Abstract extension method '@ipic18SingleInstructionTerminator duration'                       *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -7766,7 +7766,7 @@ void callCategoryMethod_duration (const cPtr_ipic_31__38_SingleInstructionTermin
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                            Category method '@ipic18SequentialInstruction minMaxDuration'                            *
+//                           Extension method '@ipic18SequentialInstruction minMaxDuration'                            *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -7846,7 +7846,7 @@ C_PrologueEpilogue gMethod_ipic_31__38_SequentialInstruction_minMaxDuration (def
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                           Abstract category method '@declarationInRam handleDeclaration'                            *
+//                           Abstract extension method '@declarationInRam handleDeclaration'                           *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -10613,7 +10613,7 @@ GALGAS_baseline_5F_model GALGAS_baseline_5F_model::extractObject (const GALGAS_o
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                             Category method '@baseline_intermediate_GOTO optimizeGOTO'                              *
+//                             Extension method '@baseline_intermediate_GOTO optimizeGOTO'                             *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -10737,7 +10737,7 @@ C_PrologueEpilogue gMethod_baseline_5F_intermediate_5F_GOTO_optimizeGOTO (define
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                             Category method '@baseline_intermediate_JUMP optimizeJUMP'                              *
+//                             Extension method '@baseline_intermediate_JUMP optimizeJUMP'                             *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -10858,7 +10858,7 @@ C_PrologueEpilogue gMethod_baseline_5F_intermediate_5F_JUMP_optimizeJUMP (define
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                             Category method '@baseline_intermediate_CALL optimizeCALL'                              *
+//                             Extension method '@baseline_intermediate_CALL optimizeCALL'                             *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -10959,7 +10959,7 @@ C_PrologueEpilogue gMethod_baseline_5F_intermediate_5F_CALL_optimizeCALL (define
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                              Category method '@baseline_intermediate_JSR optimizeJSR'                               *
+//                              Extension method '@baseline_intermediate_JSR optimizeJSR'                              *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -11060,7 +11060,7 @@ C_PrologueEpilogue gMethod_baseline_5F_intermediate_5F_JSR_optimizeJSR (defineCa
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                 Category method '@baseline_intermediate_pseudo_BEGIN_ROUTINE optimizeBEGIN_ROUTINE'                 *
+//                Extension method '@baseline_intermediate_pseudo_BEGIN_ROUTINE optimizeBEGIN_ROUTINE'                 *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -11460,7 +11460,7 @@ GALGAS_midrange_5F_model GALGAS_midrange_5F_model::extractObject (const GALGAS_o
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                             Category method '@midrange_intermediate_JUMP optimizeJUMP'                              *
+//                             Extension method '@midrange_intermediate_JUMP optimizeJUMP'                             *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -11591,7 +11591,7 @@ C_PrologueEpilogue gMethod_midrange_5F_intermediate_5F_JUMP_optimizeJUMP (define
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                             Category method '@midrange_intermediate_GOTO optimizeGOTO'                              *
+//                             Extension method '@midrange_intermediate_GOTO optimizeGOTO'                             *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -12296,7 +12296,7 @@ GALGAS_ipic_31__38_Block GALGAS_ipic_31__38_Block::extractObject (const GALGAS_o
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                                       Category method '@ipic18Block display'                                        *
+//                                       Extension method '@ipic18Block display'                                       *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -12330,7 +12330,7 @@ void categoryMethod_display (const GALGAS_ipic_31__38_Block inObject,
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                                Category method '@ipic18Block enterReferencedLabels'                                 *
+//                                Extension method '@ipic18Block enterReferencedLabels'                                *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -12347,7 +12347,7 @@ void categoryMethod_enterReferencedLabels (const GALGAS_ipic_31__38_Block inObje
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                                       Category method '@ipic18Block optimize'                                       *
+//                                      Extension method '@ipic18Block optimize'                                       *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -12422,7 +12422,7 @@ void categoryMethod_optimize (const GALGAS_ipic_31__38_Block inObject,
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                              Category method '@ipic18Block performRelativesResolution'                              *
+//                             Extension method '@ipic18Block performRelativesResolution'                              *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -12454,7 +12454,7 @@ void categoryMethod_performRelativesResolution (const GALGAS_ipic_31__38_Block i
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                                      Category Getter '@ipic18Block blockSize'                                       *
+//                                      Extension Getter '@ipic18Block blockSize'                                      *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 

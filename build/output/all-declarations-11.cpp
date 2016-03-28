@@ -10,7 +10,7 @@
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                                Category method '@ipic18Block relativeBranchOverflow'                                *
+//                               Extension method '@ipic18Block relativeBranchOverflow'                                *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -34,7 +34,7 @@ void categoryMethod_relativeBranchOverflow (const GALGAS_ipic_31__38_Block inObj
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                                 Category method '@ipic18Block generateCodeForBlock'                                 *
+//                                Extension method '@ipic18Block generateCodeForBlock'                                 *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -146,7 +146,7 @@ void categoryMethod_generateCodeForBlock (const GALGAS_ipic_31__38_Block inObjec
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                                   Category method '@ipic18Block computeDuration'                                    *
+//                                   Extension method '@ipic18Block computeDuration'                                   *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -8585,7 +8585,7 @@ GALGAS_configRegisterMap_2D_element GALGAS_configRegisterMap_2D_element::extract
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                           Category method '@baseline_instruction_IF_BitTest getBaseCode'                            *
+//                           Extension method '@baseline_instruction_IF_BitTest getBaseCode'                           *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -8666,7 +8666,7 @@ C_PrologueEpilogue gMethod_baseline_5F_instruction_5F_IF_5F_BitTest_getBaseCode 
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                           Category method '@baseline_instruction_IF_BitTest getMnemonic'                            *
+//                           Extension method '@baseline_instruction_IF_BitTest getMnemonic'                           *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -8747,7 +8747,7 @@ C_PrologueEpilogue gMethod_baseline_5F_instruction_5F_IF_5F_BitTest_getMnemonic 
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                             Category method '@registerExpression resolveBaselineAccess'                             *
+//                            Extension method '@registerExpression resolveBaselineAccess'                             *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -8866,7 +8866,7 @@ C_PrologueEpilogue gMethod_registerExpression_resolveBaselineAccess (defineCateg
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                           Category method '@midrange_instruction_IF_BitTest getBaseCode'                            *
+//                           Extension method '@midrange_instruction_IF_BitTest getBaseCode'                           *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -8947,7 +8947,7 @@ C_PrologueEpilogue gMethod_midrange_5F_instruction_5F_IF_5F_BitTest_getBaseCode 
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                           Category method '@midrange_instruction_IF_BitTest getMnemonic'                            *
+//                           Extension method '@midrange_instruction_IF_BitTest getMnemonic'                           *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -9028,7 +9028,7 @@ C_PrologueEpilogue gMethod_midrange_5F_instruction_5F_IF_5F_BitTest_getMnemonic 
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                             Category method '@registerExpression resolveMidrangeAccess'                             *
+//                            Extension method '@registerExpression resolveMidrangeAccess'                             *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -9218,7 +9218,7 @@ C_PrologueEpilogue gMethod_registerExpression_resolveMidrangeAccess (defineCateg
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                           Category method '@registerExpression analyzeRegisterExpression'                           *
+//                          Extension method '@registerExpression analyzeRegisterExpression'                           *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -9361,7 +9361,7 @@ C_PrologueEpilogue gMethod_registerExpression_analyzeRegisterExpression (defineC
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                 Category method '@registerExpression analyzeRegisterExpressionWithoutCheckingBank'                  *
+//                 Extension method '@registerExpression analyzeRegisterExpressionWithoutCheckingBank'                 *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -9462,7 +9462,7 @@ C_PrologueEpilogue gMethod_registerExpression_analyzeRegisterExpressionWithoutCh
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                              Category method '@registerExpression getRegisterAddress'                               *
+//                              Extension method '@registerExpression getRegisterAddress'                              *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -9564,7 +9564,7 @@ C_PrologueEpilogue gMethod_registerExpression_getRegisterAddress (defineCategory
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                                 Overriding category method '@immediatInteger eval'                                  *
+//                                 Overriding extension method '@immediatInteger eval'                                 *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -9579,6 +9579,7 @@ static void categoryMethod_immediatInteger_eval (const cPtr_immediatExpression *
   macroValidSharedObject (object, cPtr_immediatInteger) ;
   outArgument_outResult = object->mAttribute_mValue.getter_uint (SOURCE_FILE ("intermediate_generic.galgas", 96)).getter_sint_36__34_ (SOURCE_FILE ("intermediate_generic.galgas", 96)) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_immediatInteger_eval (void) {
@@ -9592,7 +9593,7 @@ C_PrologueEpilogue gMethod_immediatInteger_eval (defineCategoryMethod_immediatIn
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                                 Overriding category method '@immediatRegister eval'                                 *
+//                                Overriding extension method '@immediatRegister eval'                                 *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -9644,6 +9645,7 @@ static void categoryMethod_immediatRegister_eval (const cPtr_immediatExpression 
     }
   }
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_immediatRegister_eval (void) {
@@ -9657,7 +9659,7 @@ C_PrologueEpilogue gMethod_immediatRegister_eval (defineCategoryMethod_immediatR
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                                   Overriding category method '@immediatAdd eval'                                    *
+//                                   Overriding extension method '@immediatAdd eval'                                   *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -9676,6 +9678,7 @@ static void categoryMethod_immediatAdd_eval (const cPtr_immediatExpression * inO
   callCategoryMethod_eval ((const cPtr_immediatExpression *) object->mAttribute_mRightExpression.ptr (), constinArgument_inRegisterTable, constinArgument_inConstantMap, var_rightResult, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("intermediate_generic.galgas", 140)) ;
   outArgument_outResult = var_leftResult.add_operation (var_rightResult, inCompiler COMMA_SOURCE_FILE ("intermediate_generic.galgas", 141)) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_immediatAdd_eval (void) {
@@ -9689,7 +9692,7 @@ C_PrologueEpilogue gMethod_immediatAdd_eval (defineCategoryMethod_immediatAdd_ev
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                                   Overriding category method '@immediatSub eval'                                    *
+//                                   Overriding extension method '@immediatSub eval'                                   *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -9708,6 +9711,7 @@ static void categoryMethod_immediatSub_eval (const cPtr_immediatExpression * inO
   callCategoryMethod_eval ((const cPtr_immediatExpression *) object->mAttribute_mRightExpression.ptr (), constinArgument_inRegisterTable, constinArgument_inConstantMap, var_rightResult, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("intermediate_generic.galgas", 152)) ;
   outArgument_outResult = var_leftResult.substract_operation (var_rightResult, inCompiler COMMA_SOURCE_FILE ("intermediate_generic.galgas", 153)) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_immediatSub_eval (void) {
@@ -9721,7 +9725,7 @@ C_PrologueEpilogue gMethod_immediatSub_eval (defineCategoryMethod_immediatSub_ev
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                                   Overriding category method '@immediatMul eval'                                    *
+//                                   Overriding extension method '@immediatMul eval'                                   *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -9740,6 +9744,7 @@ static void categoryMethod_immediatMul_eval (const cPtr_immediatExpression * inO
   callCategoryMethod_eval ((const cPtr_immediatExpression *) object->mAttribute_mRightExpression.ptr (), constinArgument_inRegisterTable, constinArgument_inConstantMap, var_rightResult, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("intermediate_generic.galgas", 164)) ;
   outArgument_outResult = var_leftResult.multiply_operation (var_rightResult, inCompiler COMMA_SOURCE_FILE ("intermediate_generic.galgas", 165)) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_immediatMul_eval (void) {
@@ -9753,7 +9758,7 @@ C_PrologueEpilogue gMethod_immediatMul_eval (defineCategoryMethod_immediatMul_ev
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                                   Overriding category method '@immediatDiv eval'                                    *
+//                                   Overriding extension method '@immediatDiv eval'                                   *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -9772,6 +9777,7 @@ static void categoryMethod_immediatDiv_eval (const cPtr_immediatExpression * inO
   callCategoryMethod_eval ((const cPtr_immediatExpression *) object->mAttribute_mRightExpression.ptr (), constinArgument_inRegisterTable, constinArgument_inConstantMap, var_rightResult, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("intermediate_generic.galgas", 176)) ;
   outArgument_outResult = var_leftResult.divide_operation (var_rightResult, inCompiler COMMA_SOURCE_FILE ("intermediate_generic.galgas", 177)) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_immediatDiv_eval (void) {
@@ -9785,7 +9791,7 @@ C_PrologueEpilogue gMethod_immediatDiv_eval (defineCategoryMethod_immediatDiv_ev
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                                   Overriding category method '@immediatMod eval'                                    *
+//                                   Overriding extension method '@immediatMod eval'                                   *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -9804,6 +9810,7 @@ static void categoryMethod_immediatMod_eval (const cPtr_immediatExpression * inO
   callCategoryMethod_eval ((const cPtr_immediatExpression *) object->mAttribute_mRightExpression.ptr (), constinArgument_inRegisterTable, constinArgument_inConstantMap, var_rightResult, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("intermediate_generic.galgas", 188)) ;
   outArgument_outResult = var_leftResult.modulo_operation (var_rightResult, inCompiler COMMA_SOURCE_FILE ("intermediate_generic.galgas", 189)) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_immediatMod_eval (void) {
@@ -9817,7 +9824,7 @@ C_PrologueEpilogue gMethod_immediatMod_eval (defineCategoryMethod_immediatMod_ev
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                                   Overriding category method '@immediatAnd eval'                                    *
+//                                   Overriding extension method '@immediatAnd eval'                                   *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -9836,6 +9843,7 @@ static void categoryMethod_immediatAnd_eval (const cPtr_immediatExpression * inO
   callCategoryMethod_eval ((const cPtr_immediatExpression *) object->mAttribute_mRightExpression.ptr (), constinArgument_inRegisterTable, constinArgument_inConstantMap, var_rightResult, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("intermediate_generic.galgas", 200)) ;
   outArgument_outResult = var_leftResult.operator_and (var_rightResult COMMA_SOURCE_FILE ("intermediate_generic.galgas", 201)) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_immediatAnd_eval (void) {
@@ -9849,7 +9857,7 @@ C_PrologueEpilogue gMethod_immediatAnd_eval (defineCategoryMethod_immediatAnd_ev
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                                    Overriding category method '@immediatOr eval'                                    *
+//                                   Overriding extension method '@immediatOr eval'                                    *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -9868,6 +9876,7 @@ static void categoryMethod_immediatOr_eval (const cPtr_immediatExpression * inOb
   callCategoryMethod_eval ((const cPtr_immediatExpression *) object->mAttribute_mRightExpression.ptr (), constinArgument_inRegisterTable, constinArgument_inConstantMap, var_rightResult, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("intermediate_generic.galgas", 212)) ;
   outArgument_outResult = var_leftResult.operator_or (var_rightResult COMMA_SOURCE_FILE ("intermediate_generic.galgas", 213)) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_immediatOr_eval (void) {
@@ -9881,7 +9890,7 @@ C_PrologueEpilogue gMethod_immediatOr_eval (defineCategoryMethod_immediatOr_eval
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                                   Overriding category method '@immediatXor eval'                                    *
+//                                   Overriding extension method '@immediatXor eval'                                   *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -9900,6 +9909,7 @@ static void categoryMethod_immediatXor_eval (const cPtr_immediatExpression * inO
   callCategoryMethod_eval ((const cPtr_immediatExpression *) object->mAttribute_mRightExpression.ptr (), constinArgument_inRegisterTable, constinArgument_inConstantMap, var_rightResult, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("intermediate_generic.galgas", 224)) ;
   outArgument_outResult = var_leftResult.operator_xor (var_rightResult COMMA_SOURCE_FILE ("intermediate_generic.galgas", 225)) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_immediatXor_eval (void) {
@@ -9913,7 +9923,7 @@ C_PrologueEpilogue gMethod_immediatXor_eval (defineCategoryMethod_immediatXor_ev
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                                Overriding category method '@immediatLeftShift eval'                                 *
+//                                Overriding extension method '@immediatLeftShift eval'                                *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -9932,6 +9942,7 @@ static void categoryMethod_immediatLeftShift_eval (const cPtr_immediatExpression
   callCategoryMethod_eval ((const cPtr_immediatExpression *) object->mAttribute_mRightExpression.ptr (), constinArgument_inRegisterTable, constinArgument_inConstantMap, var_rightResult, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("intermediate_generic.galgas", 236)) ;
   outArgument_outResult = var_leftResult.left_shift_operation (var_rightResult.getter_uint (inCompiler COMMA_SOURCE_FILE ("intermediate_generic.galgas", 237)) COMMA_SOURCE_FILE ("intermediate_generic.galgas", 237)) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_immediatLeftShift_eval (void) {
@@ -9945,7 +9956,7 @@ C_PrologueEpilogue gMethod_immediatLeftShift_eval (defineCategoryMethod_immediat
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                                Overriding category method '@immediatRightShift eval'                                *
+//                               Overriding extension method '@immediatRightShift eval'                                *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -9964,6 +9975,7 @@ static void categoryMethod_immediatRightShift_eval (const cPtr_immediatExpressio
   callCategoryMethod_eval ((const cPtr_immediatExpression *) object->mAttribute_mRightExpression.ptr (), constinArgument_inRegisterTable, constinArgument_inConstantMap, var_rightResult, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("intermediate_generic.galgas", 248)) ;
   outArgument_outResult = var_leftResult.right_shift_operation (var_rightResult.getter_uint (inCompiler COMMA_SOURCE_FILE ("intermediate_generic.galgas", 249)) COMMA_SOURCE_FILE ("intermediate_generic.galgas", 249)) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_immediatRightShift_eval (void) {
@@ -9977,7 +9989,7 @@ C_PrologueEpilogue gMethod_immediatRightShift_eval (defineCategoryMethod_immedia
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                                Overriding category method '@immediatEqualTest eval'                                 *
+//                                Overriding extension method '@immediatEqualTest eval'                                *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -10001,6 +10013,7 @@ static void categoryMethod_immediatEqualTest_eval (const cPtr_immediatExpression
     outArgument_outResult = GALGAS_sint_36__34_ ((int64_t) 0LL) ;
   }
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_immediatEqualTest_eval (void) {
@@ -10014,7 +10027,7 @@ C_PrologueEpilogue gMethod_immediatEqualTest_eval (defineCategoryMethod_immediat
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                               Overriding category method '@immediatNotEqualTest eval'                               *
+//                              Overriding extension method '@immediatNotEqualTest eval'                               *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -10038,6 +10051,7 @@ static void categoryMethod_immediatNotEqualTest_eval (const cPtr_immediatExpress
     outArgument_outResult = GALGAS_sint_36__34_ ((int64_t) 0LL) ;
   }
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_immediatNotEqualTest_eval (void) {
@@ -10051,7 +10065,7 @@ C_PrologueEpilogue gMethod_immediatNotEqualTest_eval (defineCategoryMethod_immed
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                            Overriding category method '@immediatGreaterOrEqualTest eval'                            *
+//                           Overriding extension method '@immediatGreaterOrEqualTest eval'                            *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -10075,6 +10089,7 @@ static void categoryMethod_immediatGreaterOrEqualTest_eval (const cPtr_immediatE
     outArgument_outResult = GALGAS_sint_36__34_ ((int64_t) 0LL) ;
   }
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_immediatGreaterOrEqualTest_eval (void) {
@@ -10088,7 +10103,7 @@ C_PrologueEpilogue gMethod_immediatGreaterOrEqualTest_eval (defineCategoryMethod
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                             Overriding category method '@immediatLowerOrEqualTest eval'                             *
+//                            Overriding extension method '@immediatLowerOrEqualTest eval'                             *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -10112,6 +10127,7 @@ static void categoryMethod_immediatLowerOrEqualTest_eval (const cPtr_immediatExp
     outArgument_outResult = GALGAS_sint_36__34_ ((int64_t) 0LL) ;
   }
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_immediatLowerOrEqualTest_eval (void) {
@@ -10125,7 +10141,7 @@ C_PrologueEpilogue gMethod_immediatLowerOrEqualTest_eval (defineCategoryMethod_i
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                               Overriding category method '@immediatGreaterTest eval'                                *
+//                               Overriding extension method '@immediatGreaterTest eval'                               *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -10149,6 +10165,7 @@ static void categoryMethod_immediatGreaterTest_eval (const cPtr_immediatExpressi
     outArgument_outResult = GALGAS_sint_36__34_ ((int64_t) 0LL) ;
   }
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_immediatGreaterTest_eval (void) {
@@ -10162,7 +10179,7 @@ C_PrologueEpilogue gMethod_immediatGreaterTest_eval (defineCategoryMethod_immedi
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                                Overriding category method '@immediatLowerTest eval'                                 *
+//                                Overriding extension method '@immediatLowerTest eval'                                *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -10186,6 +10203,7 @@ static void categoryMethod_immediatLowerTest_eval (const cPtr_immediatExpression
     outArgument_outResult = GALGAS_sint_36__34_ ((int64_t) 0LL) ;
   }
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_immediatLowerTest_eval (void) {
@@ -10199,7 +10217,7 @@ C_PrologueEpilogue gMethod_immediatLowerTest_eval (defineCategoryMethod_immediat
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                                  Overriding category method '@immediatNegate eval'                                  *
+//                                 Overriding extension method '@immediatNegate eval'                                  *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -10216,6 +10234,7 @@ static void categoryMethod_immediatNegate_eval (const cPtr_immediatExpression * 
   callCategoryMethod_eval ((const cPtr_immediatExpression *) object->mAttribute_mExpression.ptr (), constinArgument_inRegisterTable, constinArgument_inConstantMap, var_result, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("intermediate_generic.galgas", 355)) ;
   outArgument_outResult = var_result.operator_unary_minus (inCompiler COMMA_SOURCE_FILE ("intermediate_generic.galgas", 356)) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_immediatNegate_eval (void) {
@@ -10229,7 +10248,7 @@ C_PrologueEpilogue gMethod_immediatNegate_eval (defineCategoryMethod_immediatNeg
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                                Overriding category method '@immediatComplement eval'                                *
+//                               Overriding extension method '@immediatComplement eval'                                *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -10246,6 +10265,7 @@ static void categoryMethod_immediatComplement_eval (const cPtr_immediatExpressio
   callCategoryMethod_eval ((const cPtr_immediatExpression *) object->mAttribute_mExpression.ptr (), constinArgument_inRegisterTable, constinArgument_inConstantMap, var_result, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("intermediate_generic.galgas", 366)) ;
   outArgument_outResult = var_result.operator_tilde (SOURCE_FILE ("intermediate_generic.galgas", 367)) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_immediatComplement_eval (void) {
@@ -10259,7 +10279,7 @@ C_PrologueEpilogue gMethod_immediatComplement_eval (defineCategoryMethod_immedia
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                                  Overriding category method '@immediatSlice eval'                                   *
+//                                  Overriding extension method '@immediatSlice eval'                                  *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -10303,6 +10323,7 @@ static void categoryMethod_immediatSlice_eval (const cPtr_immediatExpression * i
     enumerator_14380.gotoNextObject () ;
   }
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_immediatSlice_eval (void) {
@@ -10316,7 +10337,7 @@ C_PrologueEpilogue gMethod_immediatSlice_eval (defineCategoryMethod_immediatSlic
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                          Overriding category method '@bitNumberLiteralValue getBitNumber'                           *
+//                          Overriding extension method '@bitNumberLiteralValue getBitNumber'                          *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -10337,6 +10358,7 @@ static void categoryMethod_bitNumberLiteralValue_getBitNumber (const cPtr_bitNum
   }
   outArgument_outBitNumber = object->mAttribute_mBitNumberLiteralValue.getter_uint (SOURCE_FILE ("intermediate_generic.galgas", 425)) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_bitNumberLiteralValue_getBitNumber (void) {
@@ -10350,7 +10372,7 @@ C_PrologueEpilogue gMethod_bitNumberLiteralValue_getBitNumber (defineCategoryMet
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                           Overriding category method '@bitNumberLabelValue getBitNumber'                            *
+//                           Overriding extension method '@bitNumberLabelValue getBitNumber'                           *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -10374,6 +10396,7 @@ static void categoryMethod_bitNumberLabelValue_getBitNumber (const cPtr_bitNumbe
   }
   outArgument_outBitNumber = var_sliceIndex.add_operation (object->mAttribute_mBitNumberIndexValue.getter_uint (SOURCE_FILE ("intermediate_generic.galgas", 442)), inCompiler COMMA_SOURCE_FILE ("intermediate_generic.galgas", 442)) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_bitNumberLabelValue_getBitNumber (void) {
@@ -10387,7 +10410,7 @@ C_PrologueEpilogue gMethod_bitNumberLabelValue_getBitNumber (defineCategoryMetho
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                        Overriding category method '@bitNumberLiteralExpression getBitNumber'                        *
+//                       Overriding extension method '@bitNumberLiteralExpression getBitNumber'                        *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -10417,6 +10440,7 @@ static void categoryMethod_bitNumberLiteralExpression_getBitNumber (const cPtr_b
     }
   }
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_bitNumberLiteralExpression_getBitNumber (void) {
@@ -10430,7 +10454,7 @@ C_PrologueEpilogue gMethod_bitNumberLiteralExpression_getBitNumber (defineCatego
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                    Overriding category method '@baseline_instruction_IF_BitTest addUsedRoutines'                    *
+//                   Overriding extension method '@baseline_instruction_IF_BitTest addUsedRoutines'                    *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -10442,6 +10466,7 @@ static void categoryMethod_baseline_5F_instruction_5F_IF_5F_BitTest_addUsedRouti
   macroValidSharedObject (object, cPtr_baseline_5F_instruction_5F_IF_5F_BitTest) ;
   callCategoryMethod_addUsedRoutines ((const cPtr_baseline_5F_instruction *) object->mAttribute_mInstruction.ptr (), ioArgument_ioUsedRoutines, inCompiler COMMA_SOURCE_FILE ("baseline_used_routines.galgas", 12)) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_baseline_5F_instruction_5F_IF_5F_BitTest_addUsedRoutines (void) {
@@ -10455,7 +10480,7 @@ C_PrologueEpilogue gMethod_baseline_5F_instruction_5F_IF_5F_BitTest_addUsedRouti
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                  Overriding category method '@baseline_instruction_IF_SEMI_COLON addUsedRoutines'                   *
+//                  Overriding extension method '@baseline_instruction_IF_SEMI_COLON addUsedRoutines'                  *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -10467,6 +10492,7 @@ static void categoryMethod_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON_addUse
   macroValidSharedObject (object, cPtr_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON) ;
   callCategoryMethod_addUsedRoutines ((const cPtr_baseline_5F_instruction *) object->mAttribute_mInstruction.ptr (), ioArgument_ioUsedRoutines, inCompiler COMMA_SOURCE_FILE ("baseline_used_routines.galgas", 19)) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON_addUsedRoutines (void) {
@@ -10480,7 +10506,7 @@ C_PrologueEpilogue gMethod_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON_addUse
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                    Overriding category method '@baseline_instruction_IF_IncDec addUsedRoutines'                     *
+//                    Overriding extension method '@baseline_instruction_IF_IncDec addUsedRoutines'                    *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -10492,6 +10518,7 @@ static void categoryMethod_baseline_5F_instruction_5F_IF_5F_IncDec_addUsedRoutin
   macroValidSharedObject (object, cPtr_baseline_5F_instruction_5F_IF_5F_IncDec) ;
   callCategoryMethod_addUsedRoutines ((const cPtr_baseline_5F_instruction *) object->mAttribute_mInstruction.ptr (), ioArgument_ioUsedRoutines, inCompiler COMMA_SOURCE_FILE ("baseline_used_routines.galgas", 26)) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_baseline_5F_instruction_5F_IF_5F_IncDec_addUsedRoutines (void) {
@@ -10505,7 +10532,7 @@ C_PrologueEpilogue gMethod_baseline_5F_instruction_5F_IF_5F_IncDec_addUsedRoutin
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                       Overriding category method '@baseline_instruction_JUMP addUsedRoutines'                       *
+//                      Overriding extension method '@baseline_instruction_JUMP addUsedRoutines'                       *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -10517,6 +10544,7 @@ static void categoryMethod_baseline_5F_instruction_5F_JUMP_addUsedRoutines (cons
   macroValidSharedObject (object, cPtr_baseline_5F_instruction_5F_JUMP) ;
   ioArgument_ioUsedRoutines.addAssign_operation (object->mAttribute_mTargetLabel.mAttribute_string  COMMA_SOURCE_FILE ("baseline_used_routines.galgas", 33)) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_baseline_5F_instruction_5F_JUMP_addUsedRoutines (void) {
@@ -10530,7 +10558,7 @@ C_PrologueEpilogue gMethod_baseline_5F_instruction_5F_JUMP_addUsedRoutines (defi
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                       Overriding category method '@baseline_instruction_GOTO addUsedRoutines'                       *
+//                      Overriding extension method '@baseline_instruction_GOTO addUsedRoutines'                       *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -10542,6 +10570,7 @@ static void categoryMethod_baseline_5F_instruction_5F_GOTO_addUsedRoutines (cons
   macroValidSharedObject (object, cPtr_baseline_5F_instruction_5F_GOTO) ;
   ioArgument_ioUsedRoutines.addAssign_operation (object->mAttribute_mTargetLabel.mAttribute_string  COMMA_SOURCE_FILE ("baseline_used_routines.galgas", 40)) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_baseline_5F_instruction_5F_GOTO_addUsedRoutines (void) {
@@ -10555,7 +10584,7 @@ C_PrologueEpilogue gMethod_baseline_5F_instruction_5F_GOTO_addUsedRoutines (defi
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                       Overriding category method '@baseline_instruction_CALL addUsedRoutines'                       *
+//                      Overriding extension method '@baseline_instruction_CALL addUsedRoutines'                       *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -10567,6 +10596,7 @@ static void categoryMethod_baseline_5F_instruction_5F_CALL_addUsedRoutines (cons
   macroValidSharedObject (object, cPtr_baseline_5F_instruction_5F_CALL) ;
   ioArgument_ioUsedRoutines.addAssign_operation (object->mAttribute_mTargetLabel.mAttribute_string  COMMA_SOURCE_FILE ("baseline_used_routines.galgas", 47)) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_baseline_5F_instruction_5F_CALL_addUsedRoutines (void) {
@@ -10580,7 +10610,7 @@ C_PrologueEpilogue gMethod_baseline_5F_instruction_5F_CALL_addUsedRoutines (defi
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                     Overriding category method '@baseline_instruction_FOREVER addUsedRoutines'                      *
+//                     Overriding extension method '@baseline_instruction_FOREVER addUsedRoutines'                     *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -10594,6 +10624,7 @@ static void categoryMethod_baseline_5F_instruction_5F_FOREVER_addUsedRoutines (c
   routine_addBaselineUsedRoutinesFromInstructionList (object->mAttribute_mInstructionList, ioArgument_ioUsedRoutines, inCompiler  COMMA_SOURCE_FILE ("baseline_used_routines.galgas", 54)) ;
   }
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_baseline_5F_instruction_5F_FOREVER_addUsedRoutines (void) {
@@ -10607,7 +10638,7 @@ C_PrologueEpilogue gMethod_baseline_5F_instruction_5F_FOREVER_addUsedRoutines (d
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                  Overriding category method '@baseline_instruction_STATIC_REPEAT addUsedRoutines'                   *
+//                  Overriding extension method '@baseline_instruction_STATIC_REPEAT addUsedRoutines'                  *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -10621,6 +10652,7 @@ static void categoryMethod_baseline_5F_instruction_5F_STATIC_5F_REPEAT_addUsedRo
   routine_addBaselineUsedRoutinesFromInstructionList (object->mAttribute_mInstructionList, ioArgument_ioUsedRoutines, inCompiler  COMMA_SOURCE_FILE ("baseline_used_routines.galgas", 61)) ;
   }
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_baseline_5F_instruction_5F_STATIC_5F_REPEAT_addUsedRoutines (void) {
@@ -10634,7 +10666,7 @@ C_PrologueEpilogue gMethod_baseline_5F_instruction_5F_STATIC_5F_REPEAT_addUsedRo
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                       Overriding category method '@baseline_instruction_MNOP addUsedRoutines'                       *
+//                      Overriding extension method '@baseline_instruction_MNOP addUsedRoutines'                       *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -10643,6 +10675,7 @@ static void categoryMethod_baseline_5F_instruction_5F_MNOP_addUsedRoutines (cons
                                                                             C_Compiler * /* inCompiler */
                                                                             COMMA_UNUSED_LOCATION_ARGS) {
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_baseline_5F_instruction_5F_MNOP_addUsedRoutines (void) {
@@ -10656,7 +10689,7 @@ C_PrologueEpilogue gMethod_baseline_5F_instruction_5F_MNOP_addUsedRoutines (defi
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                       Overriding category method '@baseline_instruction_TRIS addUsedRoutines'                       *
+//                      Overriding extension method '@baseline_instruction_TRIS addUsedRoutines'                       *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -10665,6 +10698,7 @@ static void categoryMethod_baseline_5F_instruction_5F_TRIS_addUsedRoutines (cons
                                                                             C_Compiler * /* inCompiler */
                                                                             COMMA_UNUSED_LOCATION_ARGS) {
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_baseline_5F_instruction_5F_TRIS_addUsedRoutines (void) {
@@ -10678,7 +10712,7 @@ C_PrologueEpilogue gMethod_baseline_5F_instruction_5F_TRIS_addUsedRoutines (defi
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                    Overriding category method '@baseline_instruction_WO_OPERAND addUsedRoutines'                    *
+//                   Overriding extension method '@baseline_instruction_WO_OPERAND addUsedRoutines'                    *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -10687,6 +10721,7 @@ static void categoryMethod_baseline_5F_instruction_5F_WO_5F_OPERAND_addUsedRouti
                                                                                      C_Compiler * /* inCompiler */
                                                                                      COMMA_UNUSED_LOCATION_ARGS) {
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_baseline_5F_instruction_5F_WO_5F_OPERAND_addUsedRoutines (void) {
@@ -10700,7 +10735,7 @@ C_PrologueEpilogue gMethod_baseline_5F_instruction_5F_WO_5F_OPERAND_addUsedRouti
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                        Overriding category method '@baseline_instruction_F addUsedRoutines'                         *
+//                        Overriding extension method '@baseline_instruction_F addUsedRoutines'                        *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -10709,6 +10744,7 @@ static void categoryMethod_baseline_5F_instruction_5F_F_addUsedRoutines (const c
                                                                          C_Compiler * /* inCompiler */
                                                                          COMMA_UNUSED_LOCATION_ARGS) {
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_baseline_5F_instruction_5F_F_addUsedRoutines (void) {
@@ -10722,7 +10758,7 @@ C_PrologueEpilogue gMethod_baseline_5F_instruction_5F_F_addUsedRoutines (defineC
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                        Overriding category method '@baseline_instruction_FB addUsedRoutines'                        *
+//                       Overriding extension method '@baseline_instruction_FB addUsedRoutines'                        *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -10731,6 +10767,7 @@ static void categoryMethod_baseline_5F_instruction_5F_FB_addUsedRoutines (const 
                                                                           C_Compiler * /* inCompiler */
                                                                           COMMA_UNUSED_LOCATION_ARGS) {
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_baseline_5F_instruction_5F_FB_addUsedRoutines (void) {
@@ -10744,7 +10781,7 @@ C_PrologueEpilogue gMethod_baseline_5F_instruction_5F_FB_addUsedRoutines (define
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                     Overriding category method '@baseline_instruction_do_while addUsedRoutines'                     *
+//                    Overriding extension method '@baseline_instruction_do_while addUsedRoutines'                     *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -10765,6 +10802,7 @@ static void categoryMethod_baseline_5F_instruction_5F_do_5F_while_addUsedRoutine
     enumerator_3216.gotoNextObject () ;
   }
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_baseline_5F_instruction_5F_do_5F_while_addUsedRoutines (void) {
@@ -10778,7 +10816,7 @@ C_PrologueEpilogue gMethod_baseline_5F_instruction_5F_do_5F_while_addUsedRoutine
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                  Overriding category method '@baseline_instruction_structured_if addUsedRoutines'                   *
+//                  Overriding extension method '@baseline_instruction_structured_if addUsedRoutines'                  *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -10795,6 +10833,7 @@ static void categoryMethod_baseline_5F_instruction_5F_structured_5F_if_addUsedRo
   routine_addBaselineUsedRoutinesFromInstructionList (object->mAttribute_mElseInstructionList, ioArgument_ioUsedRoutines, inCompiler  COMMA_SOURCE_FILE ("baseline_used_routines.galgas", 109)) ;
   }
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_baseline_5F_instruction_5F_structured_5F_if_addUsedRoutines (void) {
@@ -10808,7 +10847,7 @@ C_PrologueEpilogue gMethod_baseline_5F_instruction_5F_structured_5F_if_addUsedRo
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                        Overriding category method '@baseline_instruction_FD addUsedRoutines'                        *
+//                       Overriding extension method '@baseline_instruction_FD addUsedRoutines'                        *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -10817,6 +10856,7 @@ static void categoryMethod_baseline_5F_instruction_5F_FD_addUsedRoutines (const 
                                                                           C_Compiler * /* inCompiler */
                                                                           COMMA_UNUSED_LOCATION_ARGS) {
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_baseline_5F_instruction_5F_FD_addUsedRoutines (void) {
@@ -10830,7 +10870,7 @@ C_PrologueEpilogue gMethod_baseline_5F_instruction_5F_FD_addUsedRoutines (define
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                       Overriding category method '@baseline_instruction_JSR addUsedRoutines'                        *
+//                       Overriding extension method '@baseline_instruction_JSR addUsedRoutines'                       *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -10842,6 +10882,7 @@ static void categoryMethod_baseline_5F_instruction_5F_JSR_addUsedRoutines (const
   macroValidSharedObject (object, cPtr_baseline_5F_instruction_5F_JSR) ;
   ioArgument_ioUsedRoutines.addAssign_operation (object->mAttribute_mTargetLabel.mAttribute_string  COMMA_SOURCE_FILE ("baseline_used_routines.galgas", 122)) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_baseline_5F_instruction_5F_JSR_addUsedRoutines (void) {
@@ -10855,7 +10896,7 @@ C_PrologueEpilogue gMethod_baseline_5F_instruction_5F_JSR_addUsedRoutines (defin
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                 Overriding category method '@baseline_instruction_literalOperation addUsedRoutines'                 *
+//                Overriding extension method '@baseline_instruction_literalOperation addUsedRoutines'                 *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -10864,6 +10905,7 @@ static void categoryMethod_baseline_5F_instruction_5F_literalOperation_addUsedRo
                                                                                         C_Compiler * /* inCompiler */
                                                                                         COMMA_UNUSED_LOCATION_ARGS) {
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_baseline_5F_instruction_5F_literalOperation_addUsedRoutines (void) {
@@ -10877,7 +10919,7 @@ C_PrologueEpilogue gMethod_baseline_5F_instruction_5F_literalOperation_addUsedRo
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//            Overriding category method '@baseline_instruction_literalOperation shouldTerminateWithMOVLW'             *
+//            Overriding extension method '@baseline_instruction_literalOperation shouldTerminateWithMOVLW'            *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -10892,6 +10934,7 @@ static void categoryMethod_baseline_5F_instruction_5F_literalOperation_shouldTer
     inCompiler->emitSemanticError (object->mAttribute_mInstructionLocation, constinArgument_inErrorMessage  COMMA_SOURCE_FILE ("baseline_compilation.galgas", 26)) ;
   }
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_baseline_5F_instruction_5F_literalOperation_shouldTerminateWithMOVLW (void) {
@@ -10905,7 +10948,7 @@ C_PrologueEpilogue gMethod_baseline_5F_instruction_5F_literalOperation_shouldTer
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                  Overriding category method '@baseline_instruction_CALL shouldTerminateWithMOVLW'                   *
+//                  Overriding extension method '@baseline_instruction_CALL shouldTerminateWithMOVLW'                  *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -10914,6 +10957,7 @@ static void categoryMethod_baseline_5F_instruction_5F_CALL_shouldTerminateWithMO
                                                                                      C_Compiler * /* inCompiler */
                                                                                      COMMA_UNUSED_LOCATION_ARGS) {
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_baseline_5F_instruction_5F_CALL_shouldTerminateWithMOVLW (void) {
@@ -10927,7 +10971,7 @@ C_PrologueEpilogue gMethod_baseline_5F_instruction_5F_CALL_shouldTerminateWithMO
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//              Overriding category method '@baseline_instruction_structured_if shouldTerminateWithMOVLW'              *
+//             Overriding extension method '@baseline_instruction_structured_if shouldTerminateWithMOVLW'              *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -10954,6 +10998,7 @@ static void categoryMethod_baseline_5F_instruction_5F_structured_5F_if_shouldTer
     callCategoryMethod_shouldTerminateWithMOVLW ((const cPtr_baseline_5F_instruction *) var_lastInstruction.ptr (), GALGAS_string ("the 'else' branch of this 'if' instruction must terminate with a MOVLW instruction"), inCompiler COMMA_SOURCE_FILE ("baseline_compilation.galgas", 52)) ;
   }
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_baseline_5F_instruction_5F_structured_5F_if_shouldTerminateWithMOVLW (void) {
@@ -10967,7 +11012,7 @@ C_PrologueEpilogue gMethod_baseline_5F_instruction_5F_structured_5F_if_shouldTer
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                 Overriding category method '@baseline_instruction_GOTO shouldNotContinueInSequence'                 *
+//                Overriding extension method '@baseline_instruction_GOTO shouldNotContinueInSequence'                 *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -10976,6 +11021,7 @@ static void categoryMethod_baseline_5F_instruction_5F_GOTO_shouldNotContinueInSe
                                                                                         C_Compiler * /* inCompiler */
                                                                                         COMMA_UNUSED_LOCATION_ARGS) {
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_baseline_5F_instruction_5F_GOTO_shouldNotContinueInSequence (void) {
@@ -10989,7 +11035,7 @@ C_PrologueEpilogue gMethod_baseline_5F_instruction_5F_GOTO_shouldNotContinueInSe
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                 Overriding category method '@baseline_instruction_JUMP shouldNotContinueInSequence'                 *
+//                Overriding extension method '@baseline_instruction_JUMP shouldNotContinueInSequence'                 *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -10998,6 +11044,7 @@ static void categoryMethod_baseline_5F_instruction_5F_JUMP_shouldNotContinueInSe
                                                                                         C_Compiler * /* inCompiler */
                                                                                         COMMA_UNUSED_LOCATION_ARGS) {
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_baseline_5F_instruction_5F_JUMP_shouldNotContinueInSequence (void) {
@@ -11011,7 +11058,7 @@ C_PrologueEpilogue gMethod_baseline_5F_instruction_5F_JUMP_shouldNotContinueInSe
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//               Overriding category method '@baseline_instruction_FOREVER shouldNotContinueInSequence'                *
+//               Overriding extension method '@baseline_instruction_FOREVER shouldNotContinueInSequence'               *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -11020,6 +11067,7 @@ static void categoryMethod_baseline_5F_instruction_5F_FOREVER_shouldNotContinueI
                                                                                            C_Compiler * /* inCompiler */
                                                                                            COMMA_UNUSED_LOCATION_ARGS) {
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_baseline_5F_instruction_5F_FOREVER_shouldNotContinueInSequence (void) {
@@ -11033,7 +11081,7 @@ C_PrologueEpilogue gMethod_baseline_5F_instruction_5F_FOREVER_shouldNotContinueI
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//      Overriding category method '@baseline_instruction_WO_OPERAND build_baseline_intermediate_instructionList'      *
+//     Overriding extension method '@baseline_instruction_WO_OPERAND build_baseline_intermediate_instructionList'      *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -11059,6 +11107,7 @@ static void categoryMethod_baseline_5F_instruction_5F_WO_5F_OPERAND_build_5F_bas
   }
   ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_WO_5F_OPERAND::constructor_new (object->mAttribute_mInstructionLocation, object->mAttribute_mInstruction  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 124))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 124)) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_baseline_5F_instruction_5F_WO_5F_OPERAND_build_5F_baseline_5F_intermediate_5F_instructionList (void) {
@@ -11072,7 +11121,7 @@ C_PrologueEpilogue gMethod_baseline_5F_instruction_5F_WO_5F_OPERAND_build_5F_bas
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//         Overriding category method '@baseline_instruction_TRIS build_baseline_intermediate_instructionList'         *
+//        Overriding extension method '@baseline_instruction_TRIS build_baseline_intermediate_instructionList'         *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -11118,6 +11167,7 @@ static void categoryMethod_baseline_5F_instruction_5F_TRIS_build_5F_baseline_5F_
   var_registerAddressList.method_first (var_opcode, inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 167)) ;
   ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_TRIS::constructor_new (object->mAttribute_mInstructionLocation, object->mAttribute_mOperand, var_opcode  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 169))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 169)) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_baseline_5F_instruction_5F_TRIS_build_5F_baseline_5F_intermediate_5F_instructionList (void) {
@@ -11131,7 +11181,7 @@ C_PrologueEpilogue gMethod_baseline_5F_instruction_5F_TRIS_build_5F_baseline_5F_
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//         Overriding category method '@baseline_instruction_MNOP build_baseline_intermediate_instructionList'         *
+//        Overriding extension method '@baseline_instruction_MNOP build_baseline_intermediate_instructionList'         *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -11157,6 +11207,7 @@ static void categoryMethod_baseline_5F_instruction_5F_MNOP_build_5F_baseline_5F_
   }
   ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_instruction_5F_MNOP::constructor_new (object->mAttribute_mInstructionLocation, object->mAttribute_mOccurrenceFactor  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 189))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 189)) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_baseline_5F_instruction_5F_MNOP_build_5F_baseline_5F_intermediate_5F_instructionList (void) {
@@ -11170,7 +11221,7 @@ C_PrologueEpilogue gMethod_baseline_5F_instruction_5F_MNOP_build_5F_baseline_5F_
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//   Overriding category method '@baseline_instruction_literalOperation build_baseline_intermediate_instructionList'   *
+//  Overriding extension method '@baseline_instruction_literalOperation build_baseline_intermediate_instructionList'   *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -11207,6 +11258,7 @@ static void categoryMethod_baseline_5F_instruction_5F_literalOperation_build_5F_
     ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_instruction_5F_literalOperation::constructor_new (object->mAttribute_mInstructionLocation, object->mAttribute_mLiteralInstruction, var_immediatValue.operator_and (GALGAS_sint ((int32_t) 255L).getter_sint_36__34_ (SOURCE_FILE ("baseline_semantic_analysis.galgas", 224)) COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 224)).getter_uint (inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 224))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 221))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 221)) ;
   }
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_baseline_5F_instruction_5F_literalOperation_build_5F_baseline_5F_intermediate_5F_instructionList (void) {
@@ -11220,7 +11272,7 @@ C_PrologueEpilogue gMethod_baseline_5F_instruction_5F_literalOperation_build_5F_
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//          Overriding category method '@baseline_instruction_FD build_baseline_intermediate_instructionList'          *
+//         Overriding extension method '@baseline_instruction_FD build_baseline_intermediate_instructionList'          *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -11249,6 +11301,7 @@ static void categoryMethod_baseline_5F_instruction_5F_FD_build_5F_baseline_5F_in
   callCategoryMethod_resolveBaselineAccess ((const cPtr_registerExpression *) object->mAttribute_mRegisterExpression.ptr (), constinArgument_inRegisterTable, constinArgument_inConstantMap, var_intermediateRegisterDescription, var_bitSliceTable, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 246)) ;
   ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_instruction_5F_FD::constructor_new (object->mAttribute_mInstructionLocation, object->mAttribute_mInstruction_5F_FD_5F_base_5F_code, var_intermediateRegisterDescription, object->mAttribute_m_5F_W_5F_isDestination  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 253))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 253)) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_baseline_5F_instruction_5F_FD_build_5F_baseline_5F_intermediate_5F_instructionList (void) {
@@ -11262,7 +11315,7 @@ C_PrologueEpilogue gMethod_baseline_5F_instruction_5F_FD_build_5F_baseline_5F_in
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//         Overriding category method '@baseline_instruction_CALL build_baseline_intermediate_instructionList'         *
+//        Overriding extension method '@baseline_instruction_CALL build_baseline_intermediate_instructionList'         *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -11302,6 +11355,7 @@ static void categoryMethod_baseline_5F_instruction_5F_CALL_build_5F_baseline_5F_
     ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_CALL::constructor_new (object->mAttribute_mInstructionLocation, object->mAttribute_mTargetLabel  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 288))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 288)) ;
   }
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_baseline_5F_instruction_5F_CALL_build_5F_baseline_5F_intermediate_5F_instructionList (void) {
@@ -11315,7 +11369,7 @@ C_PrologueEpilogue gMethod_baseline_5F_instruction_5F_CALL_build_5F_baseline_5F_
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//         Overriding category method '@baseline_instruction_JSR build_baseline_intermediate_instructionList'          *
+//         Overriding extension method '@baseline_instruction_JSR build_baseline_intermediate_instructionList'         *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -11350,6 +11404,7 @@ static void categoryMethod_baseline_5F_instruction_5F_JSR_build_5F_baseline_5F_i
     ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_JSR::constructor_new (object->mAttribute_mInstructionLocation, object->mAttribute_mTargetLabel, constinArgument_inCurrentPage, var_targetPage.mAttribute_uint  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 321))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 321)) ;
   }
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_baseline_5F_instruction_5F_JSR_build_5F_baseline_5F_intermediate_5F_instructionList (void) {
@@ -11363,7 +11418,7 @@ C_PrologueEpilogue gMethod_baseline_5F_instruction_5F_JSR_build_5F_baseline_5F_i
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//          Overriding category method '@baseline_instruction_F build_baseline_intermediate_instructionList'           *
+//          Overriding extension method '@baseline_instruction_F build_baseline_intermediate_instructionList'          *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -11392,6 +11447,7 @@ static void categoryMethod_baseline_5F_instruction_5F_F_build_5F_baseline_5F_int
   callCategoryMethod_resolveBaselineAccess ((const cPtr_registerExpression *) object->mAttribute_mRegisterExpression.ptr (), constinArgument_inRegisterTable, constinArgument_inConstantMap, var_intermediateRegisterDescription, joker_13143, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 346)) ;
   ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_instruction_5F_F::constructor_new (object->mAttribute_mInstructionLocation, object->mAttribute_mFAinstruction, var_intermediateRegisterDescription  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 353))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 353)) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_baseline_5F_instruction_5F_F_build_5F_baseline_5F_intermediate_5F_instructionList (void) {
@@ -11405,7 +11461,7 @@ C_PrologueEpilogue gMethod_baseline_5F_instruction_5F_F_build_5F_baseline_5F_int
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//          Overriding category method '@baseline_instruction_FB build_baseline_intermediate_instructionList'          *
+//         Overriding extension method '@baseline_instruction_FB build_baseline_intermediate_instructionList'          *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -11436,6 +11492,7 @@ static void categoryMethod_baseline_5F_instruction_5F_FB_build_5F_baseline_5F_in
   callCategoryMethod_getBitNumber ((const cPtr_bitNumberExpression *) object->mAttribute_mBitNumber.ptr (), constinArgument_inRegisterTable, constinArgument_inConstantMap, ioArgument_ioUsedRegisters, var_bitSliceTable, var_bitNumber, inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 383)) ;
   ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_instruction_5F_FB::constructor_new (object->mAttribute_mInstructionLocation, object->mAttribute_mBitOrientedOp, var_intermediateRegisterDescription, var_bitNumber  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 390))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 390)) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_baseline_5F_instruction_5F_FB_build_5F_baseline_5F_intermediate_5F_instructionList (void) {
@@ -11449,7 +11506,7 @@ C_PrologueEpilogue gMethod_baseline_5F_instruction_5F_FB_build_5F_baseline_5F_in
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//         Overriding category method '@baseline_instruction_GOTO build_baseline_intermediate_instructionList'         *
+//        Overriding extension method '@baseline_instruction_GOTO build_baseline_intermediate_instructionList'         *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -11489,6 +11546,7 @@ static void categoryMethod_baseline_5F_instruction_5F_GOTO_build_5F_baseline_5F_
   ioArgument_ioContinuesInSequence = GALGAS_bool (false) ;
   ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_GOTO::constructor_new (object->mAttribute_mInstructionLocation, object->mAttribute_mTargetLabel  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 424))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 424)) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_baseline_5F_instruction_5F_GOTO_build_5F_baseline_5F_intermediate_5F_instructionList (void) {
@@ -11502,7 +11560,7 @@ C_PrologueEpilogue gMethod_baseline_5F_instruction_5F_GOTO_build_5F_baseline_5F_
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//         Overriding category method '@baseline_instruction_JUMP build_baseline_intermediate_instructionList'         *
+//        Overriding extension method '@baseline_instruction_JUMP build_baseline_intermediate_instructionList'         *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -11537,6 +11595,7 @@ static void categoryMethod_baseline_5F_instruction_5F_JUMP_build_5F_baseline_5F_
   ioArgument_ioContinuesInSequence = GALGAS_bool (false) ;
   ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_JUMP::constructor_new (object->mAttribute_mInstructionLocation, object->mAttribute_mTargetLabel, constinArgument_inCurrentPage, var_targetPage.mAttribute_uint  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 452))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 452)) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_baseline_5F_instruction_5F_JUMP_build_5F_baseline_5F_intermediate_5F_instructionList (void) {
@@ -11550,7 +11609,7 @@ C_PrologueEpilogue gMethod_baseline_5F_instruction_5F_JUMP_build_5F_baseline_5F_
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//      Overriding category method '@baseline_instruction_IF_BitTest build_baseline_intermediate_instructionList'      *
+//     Overriding extension method '@baseline_instruction_IF_BitTest build_baseline_intermediate_instructionList'      *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -11579,6 +11638,7 @@ static void categoryMethod_baseline_5F_instruction_5F_IF_5F_BitTest_build_5F_bas
   GALGAS_bool var_unusedContinuesInSequence = GALGAS_bool (true) ;
   callCategoryMethod_build_5F_baseline_5F_intermediate_5F_instructionList ((const cPtr_baseline_5F_instruction *) object->mAttribute_mInstruction.ptr (), constinArgument_inCurrentPage, constinArgument_inRoutineMap, constinArgument_inRegisterTable, constinArgument_inConstantMap, ioArgument_ioLocalLabelIndex, ioArgument_ioGeneratedInstructionList, ioArgument_ioListFileContents, var_unusedContinuesInSequence, constinArgument_inRoutineKind, constinArgument_inLastInstructionShouldReturn, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 495)) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_baseline_5F_instruction_5F_IF_5F_BitTest_build_5F_baseline_5F_intermediate_5F_instructionList (void) {
@@ -11592,7 +11652,7 @@ C_PrologueEpilogue gMethod_baseline_5F_instruction_5F_IF_5F_BitTest_build_5F_bas
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//      Overriding category method '@baseline_instruction_IF_IncDec build_baseline_intermediate_instructionList'       *
+//      Overriding extension method '@baseline_instruction_IF_IncDec build_baseline_intermediate_instructionList'      *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -11626,6 +11686,7 @@ static void categoryMethod_baseline_5F_instruction_5F_IF_5F_IncDec_build_5F_base
   GALGAS_bool var_unusedContinuesInSequence = GALGAS_bool (true) ;
   callCategoryMethod_build_5F_baseline_5F_intermediate_5F_instructionList ((const cPtr_baseline_5F_instruction *) object->mAttribute_mInstruction.ptr (), constinArgument_inCurrentPage, constinArgument_inRoutineMap, constinArgument_inRegisterTable, constinArgument_inConstantMap, ioArgument_ioLocalLabelIndex, ioArgument_ioGeneratedInstructionList, ioArgument_ioListFileContents, var_unusedContinuesInSequence, constinArgument_inRoutineKind, constinArgument_inLastInstructionShouldReturn, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 547)) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_baseline_5F_instruction_5F_IF_5F_IncDec_build_5F_baseline_5F_intermediate_5F_instructionList (void) {
@@ -11639,7 +11700,7 @@ C_PrologueEpilogue gMethod_baseline_5F_instruction_5F_IF_5F_IncDec_build_5F_base
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//       Overriding category method '@baseline_instruction_FOREVER build_baseline_intermediate_instructionList'        *
+//       Overriding extension method '@baseline_instruction_FOREVER build_baseline_intermediate_instructionList'       *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -11686,6 +11747,7 @@ static void categoryMethod_baseline_5F_instruction_5F_FOREVER_build_5F_baseline_
   ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_GOTO::constructor_new (object->mAttribute_mInstructionLocation, GALGAS_lstring::constructor_new (var_label_30_, object->mAttribute_mInstructionLocation  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 604))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 602))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 602)) ;
   ioArgument_ioContinuesInSequence = GALGAS_bool (false) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_baseline_5F_instruction_5F_FOREVER_build_5F_baseline_5F_intermediate_5F_instructionList (void) {
@@ -11699,7 +11761,7 @@ C_PrologueEpilogue gMethod_baseline_5F_instruction_5F_FOREVER_build_5F_baseline_
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//    Overriding category method '@baseline_instruction_STATIC_REPEAT build_baseline_intermediate_instructionList'     *
+//    Overriding extension method '@baseline_instruction_STATIC_REPEAT build_baseline_intermediate_instructionList'    *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -11774,6 +11836,7 @@ static void categoryMethod_baseline_5F_instruction_5F_STATIC_5F_REPEAT_build_5F_
     }
   }
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_baseline_5F_instruction_5F_STATIC_5F_REPEAT_build_5F_baseline_5F_intermediate_5F_instructionList (void) {
@@ -11787,7 +11850,7 @@ C_PrologueEpilogue gMethod_baseline_5F_instruction_5F_STATIC_5F_REPEAT_build_5F_
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//       Overriding category method '@baseline_instruction_do_while build_baseline_intermediate_instructionList'       *
+//      Overriding extension method '@baseline_instruction_do_while build_baseline_intermediate_instructionList'       *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -11831,6 +11894,7 @@ static void categoryMethod_baseline_5F_instruction_5F_do_5F_while_build_5F_basel
     enumerator_25583.gotoNextObject () ;
   }
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_baseline_5F_instruction_5F_do_5F_while_build_5F_baseline_5F_intermediate_5F_instructionList (void) {
@@ -11844,7 +11908,7 @@ C_PrologueEpilogue gMethod_baseline_5F_instruction_5F_do_5F_while_build_5F_basel
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//    Overriding category method '@baseline_instruction_structured_if build_baseline_intermediate_instructionList'     *
+//    Overriding extension method '@baseline_instruction_structured_if build_baseline_intermediate_instructionList'    *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -11888,6 +11952,7 @@ static void categoryMethod_baseline_5F_instruction_5F_structured_5F_if_build_5F_
   }
   ioArgument_ioContinuesInSequence = var_thenContinuesInSequence.operator_or (var_elseContinuesInSequence COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 827)) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_baseline_5F_instruction_5F_structured_5F_if_build_5F_baseline_5F_intermediate_5F_instructionList (void) {
@@ -11901,7 +11966,7 @@ C_PrologueEpilogue gMethod_baseline_5F_instruction_5F_structured_5F_if_build_5F_
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//     Overriding category method '@baseline_incDecRegisterInCondition build_intermediate_condition_instructions'      *
+//     Overriding extension method '@baseline_incDecRegisterInCondition build_intermediate_condition_instructions'     *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -11924,6 +11989,7 @@ static void categoryMethod_baseline_5F_incDecRegisterInCondition_build_5F_interm
   callCategoryMethod_resolveBaselineAccess ((const cPtr_registerExpression *) object->mAttribute_mRegisterExpression.ptr (), constinArgument_inRegisterTable, constinArgument_inConstantMap, var_intermediateRegisterDescription, var_bitSliceTable, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 859)) ;
   ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition::constructor_new (constinArgument_inInstructionLocation, var_intermediateRegisterDescription, constinArgument_inTargetLabel, object->mAttribute_mIncrement, object->mAttribute_m_5F_W_5F_isDestination, object->mAttribute_mBranchIfZero.operator_xor (constinArgument_inComplementaryBranch COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 873))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 867))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 867)) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_baseline_5F_incDecRegisterInCondition_build_5F_intermediate_5F_condition_5F_instructions (void) {
@@ -11937,7 +12003,7 @@ C_PrologueEpilogue gMethod_baseline_5F_incDecRegisterInCondition_build_5F_interm
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//          Overriding category method '@baseline_negateCondition build_intermediate_condition_instructions'           *
+//          Overriding extension method '@baseline_negateCondition build_intermediate_condition_instructions'          *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -11957,6 +12023,7 @@ static void categoryMethod_baseline_5F_negateCondition_build_5F_intermediate_5F_
   macroValidSharedObject (object, cPtr_baseline_5F_negateCondition) ;
   callCategoryMethod_build_5F_intermediate_5F_condition_5F_instructions ((const cPtr_baseline_5F_conditionExpression *) object->mAttribute_mCondition.ptr (), constinArgument_inCurrentPage, constinArgument_inRegisterTable, constinArgument_inConstantMap, ioArgument_ioLocalLabelIndex, constinArgument_inComplementaryBranch.operator_not (SOURCE_FILE ("baseline_semantic_analysis.galgas", 893)), constinArgument_inInstructionLocation, constinArgument_inTargetLabel, ioArgument_ioGeneratedInstructionList, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 888)) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_baseline_5F_negateCondition_build_5F_intermediate_5F_condition_5F_instructions (void) {
@@ -11970,7 +12037,7 @@ C_PrologueEpilogue gMethod_baseline_5F_negateCondition_build_5F_intermediate_5F_
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//            Overriding category method '@baseline_andCondition build_intermediate_condition_instructions'            *
+//           Overriding extension method '@baseline_andCondition build_intermediate_condition_instructions'            *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -12000,6 +12067,7 @@ static void categoryMethod_baseline_5F_andCondition_build_5F_intermediate_5F_con
     ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_pseudo_5F_LABEL::constructor_new (GALGAS_lstring::constructor_new (var_label_30_, constinArgument_inInstructionLocation  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 960))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 960))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 960)) ;
   }
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_baseline_5F_andCondition_build_5F_intermediate_5F_condition_5F_instructions (void) {
@@ -12013,7 +12081,7 @@ C_PrologueEpilogue gMethod_baseline_5F_andCondition_build_5F_intermediate_5F_con
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-// Overriding category method '@baseline_bitTest_in_structured_if_condition build_intermediate_condition_instructions' *
+//Overriding extension method '@baseline_bitTest_in_structured_if_condition build_intermediate_condition_instructions' *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -12039,6 +12107,7 @@ static void categoryMethod_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_cond
   ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip::constructor_new (constinArgument_inInstructionLocation, constinArgument_inComplementaryBranch, var_intermediateRegisterDescription, var_bitNumber  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 992))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 992)) ;
   ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_GOTO::constructor_new (constinArgument_inInstructionLocation, GALGAS_lstring::constructor_new (constinArgument_inTargetLabel, constinArgument_inInstructionLocation  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 1000))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 998))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 998)) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition_build_5F_intermediate_5F_condition_5F_instructions (void) {
