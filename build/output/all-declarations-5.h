@@ -404,22 +404,22 @@ void routine_addBaselineUsedRoutinesFromInstructionList (const class GALGAS_base
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-typedef void (*categoryMethodSignature_baseline_5F_instruction_addUsedRoutines) (const class cPtr_baseline_5F_instruction * inObject,
-                                                                                 class GALGAS_stringset & ioArgument0,
-                                                                                 class C_Compiler * inCompiler
-                                                                                 COMMA_LOCATION_ARGS) ;
+typedef void (*extensionMethodSignature_baseline_5F_instruction_addUsedRoutines) (const class cPtr_baseline_5F_instruction * inObject,
+                                                                                  class GALGAS_stringset & ioArgument0,
+                                                                                  class C_Compiler * inCompiler
+                                                                                  COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void enterCategoryMethod_addUsedRoutines (const int32_t inClassIndex,
-                                          categoryMethodSignature_baseline_5F_instruction_addUsedRoutines inMethod) ;
+void enterExtensionMethod_addUsedRoutines (const int32_t inClassIndex,
+                                           extensionMethodSignature_baseline_5F_instruction_addUsedRoutines inMethod) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void callCategoryMethod_addUsedRoutines (const class cPtr_baseline_5F_instruction * inObject,
-                                         GALGAS_stringset & io_ioUsedRoutines,
-                                         C_Compiler * inCompiler
-                                         COMMA_LOCATION_ARGS) ;
+void callExtensionMethod_addUsedRoutines (const class cPtr_baseline_5F_instruction * inObject,
+                                          GALGAS_stringset & io_ioUsedRoutines,
+                                          C_Compiler * inCompiler
+                                          COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -854,20 +854,20 @@ class cPtr_baseline_5F_intermediate_5F_pseudo_5F_PAGE : public cPtr_baseline_5F_
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-typedef class GALGAS_uint (*categoryGetterSignature_baseline_5F_intermediate_5F_instruction_length) (const class cPtr_baseline_5F_intermediate_5F_instruction * inObject,
-                                                                                                     class C_Compiler * inCompiler
-                                                                                                     COMMA_LOCATION_ARGS) ;
+typedef class GALGAS_uint (*enterExtensionGetter_baseline_5F_intermediate_5F_instruction_length) (const class cPtr_baseline_5F_intermediate_5F_instruction * inObject,
+                                                                                                  class C_Compiler * inCompiler
+                                                                                                  COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void enterCategoryGetter_length (const int32_t inClassIndex,
-                                 categoryGetterSignature_baseline_5F_intermediate_5F_instruction_length inMethod) ;
+void enterExtensionGetter_length (const int32_t inClassIndex,
+                                  enterExtensionGetter_baseline_5F_intermediate_5F_instruction_length inMethod) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-class GALGAS_uint callCategoryGetter_length (const class cPtr_baseline_5F_intermediate_5F_instruction * inObject,
-                                             C_Compiler * inCompiler
-                                             COMMA_LOCATION_ARGS) ;
+class GALGAS_uint callExtensionGetter_length (const class cPtr_baseline_5F_intermediate_5F_instruction * inObject,
+                                              C_Compiler * inCompiler
+                                              COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -875,22 +875,22 @@ class GALGAS_uint callCategoryGetter_length (const class cPtr_baseline_5F_interm
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-typedef void (*categoryMethodSignature_baseline_5F_assembly_5F_instruction_print) (const class cPtr_baseline_5F_assembly_5F_instruction * inObject,
-                                                                                   class GALGAS_string & ioArgument0,
-                                                                                   class C_Compiler * inCompiler
-                                                                                   COMMA_LOCATION_ARGS) ;
+typedef void (*extensionMethodSignature_baseline_5F_assembly_5F_instruction_print) (const class cPtr_baseline_5F_assembly_5F_instruction * inObject,
+                                                                                    class GALGAS_string & ioArgument0,
+                                                                                    class C_Compiler * inCompiler
+                                                                                    COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void enterCategoryMethod_print (const int32_t inClassIndex,
-                                categoryMethodSignature_baseline_5F_assembly_5F_instruction_print inMethod) ;
+void enterExtensionMethod_print (const int32_t inClassIndex,
+                                 extensionMethodSignature_baseline_5F_assembly_5F_instruction_print inMethod) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void callCategoryMethod_print (const class cPtr_baseline_5F_assembly_5F_instruction * inObject,
-                               GALGAS_string & io_ioListFileContents,
-                               C_Compiler * inCompiler
-                               COMMA_LOCATION_ARGS) ;
+void callExtensionMethod_print (const class cPtr_baseline_5F_assembly_5F_instruction * inObject,
+                                GALGAS_string & io_ioListFileContents,
+                                C_Compiler * inCompiler
+                                COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -898,22 +898,22 @@ void callCategoryMethod_print (const class cPtr_baseline_5F_assembly_5F_instruct
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-typedef void (*categoryMethodSignature_baseline_5F_instruction_shouldNotContinueInSequence) (const class cPtr_baseline_5F_instruction * inObject,
-                                                                                             const class GALGAS_string constinArgument0,
-                                                                                             class C_Compiler * inCompiler
-                                                                                             COMMA_LOCATION_ARGS) ;
+typedef void (*extensionMethodSignature_baseline_5F_instruction_shouldNotContinueInSequence) (const class cPtr_baseline_5F_instruction * inObject,
+                                                                                              const class GALGAS_string constinArgument0,
+                                                                                              class C_Compiler * inCompiler
+                                                                                              COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void enterCategoryMethod_shouldNotContinueInSequence (const int32_t inClassIndex,
-                                                      categoryMethodSignature_baseline_5F_instruction_shouldNotContinueInSequence inMethod) ;
+void enterExtensionMethod_shouldNotContinueInSequence (const int32_t inClassIndex,
+                                                       extensionMethodSignature_baseline_5F_instruction_shouldNotContinueInSequence inMethod) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void callCategoryMethod_shouldNotContinueInSequence (const class cPtr_baseline_5F_instruction * inObject,
-                                                     const GALGAS_string constin_inErrorMessage,
-                                                     C_Compiler * inCompiler
-                                                     COMMA_LOCATION_ARGS) ;
+void callExtensionMethod_shouldNotContinueInSequence (const class cPtr_baseline_5F_instruction * inObject,
+                                                      const GALGAS_string constin_inErrorMessage,
+                                                      C_Compiler * inCompiler
+                                                      COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -921,22 +921,22 @@ void callCategoryMethod_shouldNotContinueInSequence (const class cPtr_baseline_5
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-typedef void (*categoryMethodSignature_baseline_5F_instruction_shouldTerminateWithMOVLW) (const class cPtr_baseline_5F_instruction * inObject,
-                                                                                          const class GALGAS_string constinArgument0,
-                                                                                          class C_Compiler * inCompiler
-                                                                                          COMMA_LOCATION_ARGS) ;
+typedef void (*extensionMethodSignature_baseline_5F_instruction_shouldTerminateWithMOVLW) (const class cPtr_baseline_5F_instruction * inObject,
+                                                                                           const class GALGAS_string constinArgument0,
+                                                                                           class C_Compiler * inCompiler
+                                                                                           COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void enterCategoryMethod_shouldTerminateWithMOVLW (const int32_t inClassIndex,
-                                                   categoryMethodSignature_baseline_5F_instruction_shouldTerminateWithMOVLW inMethod) ;
+void enterExtensionMethod_shouldTerminateWithMOVLW (const int32_t inClassIndex,
+                                                    extensionMethodSignature_baseline_5F_instruction_shouldTerminateWithMOVLW inMethod) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void callCategoryMethod_shouldTerminateWithMOVLW (const class cPtr_baseline_5F_instruction * inObject,
-                                                  const GALGAS_string constin_inErrorMessage,
-                                                  C_Compiler * inCompiler
-                                                  COMMA_LOCATION_ARGS) ;
+void callExtensionMethod_shouldTerminateWithMOVLW (const class cPtr_baseline_5F_instruction * inObject,
+                                                   const GALGAS_string constin_inErrorMessage,
+                                                   C_Compiler * inCompiler
+                                                   COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -944,22 +944,22 @@ void callCategoryMethod_shouldTerminateWithMOVLW (const class cPtr_baseline_5F_i
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-typedef void (*categoryMethodSignature_baseline_5F_intermediate_5F_instruction_print) (const class cPtr_baseline_5F_intermediate_5F_instruction * inObject,
-                                                                                       class GALGAS_string & ioArgument0,
-                                                                                       class C_Compiler * inCompiler
-                                                                                       COMMA_LOCATION_ARGS) ;
+typedef void (*extensionMethodSignature_baseline_5F_intermediate_5F_instruction_print) (const class cPtr_baseline_5F_intermediate_5F_instruction * inObject,
+                                                                                        class GALGAS_string & ioArgument0,
+                                                                                        class C_Compiler * inCompiler
+                                                                                        COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void enterCategoryMethod_print (const int32_t inClassIndex,
-                                categoryMethodSignature_baseline_5F_intermediate_5F_instruction_print inMethod) ;
+void enterExtensionMethod_print (const int32_t inClassIndex,
+                                 extensionMethodSignature_baseline_5F_intermediate_5F_instruction_print inMethod) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void callCategoryMethod_print (const class cPtr_baseline_5F_intermediate_5F_instruction * inObject,
-                               GALGAS_string & io_ioListFileContents,
-                               C_Compiler * inCompiler
-                               COMMA_LOCATION_ARGS) ;
+void callExtensionMethod_print (const class cPtr_baseline_5F_intermediate_5F_instruction * inObject,
+                                GALGAS_string & io_ioListFileContents,
+                                C_Compiler * inCompiler
+                                COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -967,22 +967,22 @@ void callCategoryMethod_print (const class cPtr_baseline_5F_intermediate_5F_inst
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-typedef void (*categoryMethodSignature_baseline_5F_intermediate_5F_instruction_setCurrentAddress) (const class cPtr_baseline_5F_intermediate_5F_instruction * inObject,
-                                                                                                   class GALGAS_uint & ioArgument0,
-                                                                                                   class C_Compiler * inCompiler
-                                                                                                   COMMA_LOCATION_ARGS) ;
+typedef void (*extensionMethodSignature_baseline_5F_intermediate_5F_instruction_setCurrentAddress) (const class cPtr_baseline_5F_intermediate_5F_instruction * inObject,
+                                                                                                    class GALGAS_uint & ioArgument0,
+                                                                                                    class C_Compiler * inCompiler
+                                                                                                    COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void enterCategoryMethod_setCurrentAddress (const int32_t inClassIndex,
-                                            categoryMethodSignature_baseline_5F_intermediate_5F_instruction_setCurrentAddress inMethod) ;
+void enterExtensionMethod_setCurrentAddress (const int32_t inClassIndex,
+                                             extensionMethodSignature_baseline_5F_intermediate_5F_instruction_setCurrentAddress inMethod) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void callCategoryMethod_setCurrentAddress (const class cPtr_baseline_5F_intermediate_5F_instruction * inObject,
-                                           GALGAS_uint & io_ioCurrentWordAdress,
-                                           C_Compiler * inCompiler
-                                           COMMA_LOCATION_ARGS) ;
+void callExtensionMethod_setCurrentAddress (const class cPtr_baseline_5F_intermediate_5F_instruction * inObject,
+                                            GALGAS_uint & io_ioCurrentWordAdress,
+                                            C_Compiler * inCompiler
+                                            COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -990,28 +990,28 @@ void callCategoryMethod_setCurrentAddress (const class cPtr_baseline_5F_intermed
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-typedef void (*categoryMethodSignature_immediatExpression_eval) (const class cPtr_immediatExpression * inObject,
-                                                                 const class GALGAS_registerTable constinArgument0,
-                                                                 const class GALGAS_constantMap constinArgument1,
-                                                                 class GALGAS_sint_36__34_ & outArgument2,
-                                                                 class GALGAS_stringset & ioArgument3,
-                                                                 class C_Compiler * inCompiler
-                                                                 COMMA_LOCATION_ARGS) ;
+typedef void (*extensionMethodSignature_immediatExpression_eval) (const class cPtr_immediatExpression * inObject,
+                                                                  const class GALGAS_registerTable constinArgument0,
+                                                                  const class GALGAS_constantMap constinArgument1,
+                                                                  class GALGAS_sint_36__34_ & outArgument2,
+                                                                  class GALGAS_stringset & ioArgument3,
+                                                                  class C_Compiler * inCompiler
+                                                                  COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void enterCategoryMethod_eval (const int32_t inClassIndex,
-                               categoryMethodSignature_immediatExpression_eval inMethod) ;
+void enterExtensionMethod_eval (const int32_t inClassIndex,
+                                extensionMethodSignature_immediatExpression_eval inMethod) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void callCategoryMethod_eval (const class cPtr_immediatExpression * inObject,
-                              const GALGAS_registerTable constin_inRegisterTable,
-                              const GALGAS_constantMap constin_inConstantMap,
-                              GALGAS_sint_36__34_ & out_outResult,
-                              GALGAS_stringset & io_ioUsedRegisters,
-                              C_Compiler * inCompiler
-                              COMMA_LOCATION_ARGS) ;
+void callExtensionMethod_eval (const class cPtr_immediatExpression * inObject,
+                               const GALGAS_registerTable constin_inRegisterTable,
+                               const GALGAS_constantMap constin_inConstantMap,
+                               GALGAS_sint_36__34_ & out_outResult,
+                               GALGAS_stringset & io_ioUsedRegisters,
+                               C_Compiler * inCompiler
+                               COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -1019,30 +1019,30 @@ void callCategoryMethod_eval (const class cPtr_immediatExpression * inObject,
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-typedef void (*categoryMethodSignature_registerExpression_resolveBaselineAccess) (const class cPtr_registerExpression * inObject,
-                                                                                  const class GALGAS_registerTable constinArgument0,
-                                                                                  const class GALGAS_constantMap constinArgument1,
-                                                                                  class GALGAS_baseline_5F_intermediate_5F_registerExpression & outArgument2,
-                                                                                  class GALGAS_bitSliceTable & outArgument3,
-                                                                                  class GALGAS_stringset & ioArgument4,
-                                                                                  class C_Compiler * inCompiler
-                                                                                  COMMA_LOCATION_ARGS) ;
+typedef void (*extensionMethodSignature_registerExpression_resolveBaselineAccess) (const class cPtr_registerExpression * inObject,
+                                                                                   const class GALGAS_registerTable constinArgument0,
+                                                                                   const class GALGAS_constantMap constinArgument1,
+                                                                                   class GALGAS_baseline_5F_intermediate_5F_registerExpression & outArgument2,
+                                                                                   class GALGAS_bitSliceTable & outArgument3,
+                                                                                   class GALGAS_stringset & ioArgument4,
+                                                                                   class C_Compiler * inCompiler
+                                                                                   COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void enterCategoryMethod_resolveBaselineAccess (const int32_t inClassIndex,
-                                                categoryMethodSignature_registerExpression_resolveBaselineAccess inMethod) ;
+void enterExtensionMethod_resolveBaselineAccess (const int32_t inClassIndex,
+                                                 extensionMethodSignature_registerExpression_resolveBaselineAccess inMethod) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void callCategoryMethod_resolveBaselineAccess (const class cPtr_registerExpression * inObject,
-                                               const GALGAS_registerTable constin_inRegisterTable,
-                                               const GALGAS_constantMap constin_inConstantMap,
-                                               GALGAS_baseline_5F_intermediate_5F_registerExpression & out_outIntermediateRegisterDescription,
-                                               GALGAS_bitSliceTable & out_outBitSliceTable,
-                                               GALGAS_stringset & io_ioUsedRegisters,
-                                               C_Compiler * inCompiler
-                                               COMMA_LOCATION_ARGS) ;
+void callExtensionMethod_resolveBaselineAccess (const class cPtr_registerExpression * inObject,
+                                                const GALGAS_registerTable constin_inRegisterTable,
+                                                const GALGAS_constantMap constin_inConstantMap,
+                                                GALGAS_baseline_5F_intermediate_5F_registerExpression & out_outIntermediateRegisterDescription,
+                                                GALGAS_bitSliceTable & out_outBitSliceTable,
+                                                GALGAS_stringset & io_ioUsedRegisters,
+                                                C_Compiler * inCompiler
+                                                COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -1207,42 +1207,42 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_interme
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-typedef void (*categoryMethodSignature_baseline_5F_instruction_build_5F_baseline_5F_intermediate_5F_instructionList) (const class cPtr_baseline_5F_instruction * inObject,
-                                                                                                                      const class GALGAS_uint constinArgument0,
-                                                                                                                      const class GALGAS_baselineRoutineMap constinArgument1,
-                                                                                                                      const class GALGAS_registerTable constinArgument2,
-                                                                                                                      const class GALGAS_constantMap constinArgument3,
-                                                                                                                      class GALGAS_uint & ioArgument4,
-                                                                                                                      class GALGAS_baseline_5F_intermediate_5F_instructionList & ioArgument5,
-                                                                                                                      class GALGAS_string & ioArgument6,
-                                                                                                                      class GALGAS_bool & ioArgument7,
-                                                                                                                      const class GALGAS_routineKind constinArgument8,
-                                                                                                                      const class GALGAS_bool constinArgument9,
-                                                                                                                      class GALGAS_stringset & ioArgument10,
-                                                                                                                      class C_Compiler * inCompiler
-                                                                                                                      COMMA_LOCATION_ARGS) ;
+typedef void (*extensionMethodSignature_baseline_5F_instruction_build_5F_baseline_5F_intermediate_5F_instructionList) (const class cPtr_baseline_5F_instruction * inObject,
+                                                                                                                       const class GALGAS_uint constinArgument0,
+                                                                                                                       const class GALGAS_baselineRoutineMap constinArgument1,
+                                                                                                                       const class GALGAS_registerTable constinArgument2,
+                                                                                                                       const class GALGAS_constantMap constinArgument3,
+                                                                                                                       class GALGAS_uint & ioArgument4,
+                                                                                                                       class GALGAS_baseline_5F_intermediate_5F_instructionList & ioArgument5,
+                                                                                                                       class GALGAS_string & ioArgument6,
+                                                                                                                       class GALGAS_bool & ioArgument7,
+                                                                                                                       const class GALGAS_routineKind constinArgument8,
+                                                                                                                       const class GALGAS_bool constinArgument9,
+                                                                                                                       class GALGAS_stringset & ioArgument10,
+                                                                                                                       class C_Compiler * inCompiler
+                                                                                                                       COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void enterCategoryMethod_build_5F_baseline_5F_intermediate_5F_instructionList (const int32_t inClassIndex,
-                                                                               categoryMethodSignature_baseline_5F_instruction_build_5F_baseline_5F_intermediate_5F_instructionList inMethod) ;
+void enterExtensionMethod_build_5F_baseline_5F_intermediate_5F_instructionList (const int32_t inClassIndex,
+                                                                                extensionMethodSignature_baseline_5F_instruction_build_5F_baseline_5F_intermediate_5F_instructionList inMethod) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void callCategoryMethod_build_5F_baseline_5F_intermediate_5F_instructionList (const class cPtr_baseline_5F_instruction * inObject,
-                                                                              const GALGAS_uint constin_inCurrentPage,
-                                                                              const GALGAS_baselineRoutineMap constin_inRoutineMap,
-                                                                              const GALGAS_registerTable constin_inRegisterTable,
-                                                                              const GALGAS_constantMap constin_inConstantMap,
-                                                                              GALGAS_uint & io_ioLocalLabelIndex,
-                                                                              GALGAS_baseline_5F_intermediate_5F_instructionList & io_ioGeneratedInstructionList,
-                                                                              GALGAS_string & io_ioListFileContents,
-                                                                              GALGAS_bool & io_ioContinuesInSequence,
-                                                                              const GALGAS_routineKind constin_inRoutineKind,
-                                                                              const GALGAS_bool constin_inLastInstructionShouldReturn,
-                                                                              GALGAS_stringset & io_ioUsedRegisters,
-                                                                              C_Compiler * inCompiler
-                                                                              COMMA_LOCATION_ARGS) ;
+void callExtensionMethod_build_5F_baseline_5F_intermediate_5F_instructionList (const class cPtr_baseline_5F_instruction * inObject,
+                                                                               const GALGAS_uint constin_inCurrentPage,
+                                                                               const GALGAS_baselineRoutineMap constin_inRoutineMap,
+                                                                               const GALGAS_registerTable constin_inRegisterTable,
+                                                                               const GALGAS_constantMap constin_inConstantMap,
+                                                                               GALGAS_uint & io_ioLocalLabelIndex,
+                                                                               GALGAS_baseline_5F_intermediate_5F_instructionList & io_ioGeneratedInstructionList,
+                                                                               GALGAS_string & io_ioListFileContents,
+                                                                               GALGAS_bool & io_ioContinuesInSequence,
+                                                                               const GALGAS_routineKind constin_inRoutineKind,
+                                                                               const GALGAS_bool constin_inLastInstructionShouldReturn,
+                                                                               GALGAS_stringset & io_ioUsedRegisters,
+                                                                               C_Compiler * inCompiler
+                                                                               COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -1914,20 +1914,20 @@ class cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition : public cPtr_b
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-typedef class GALGAS_bool (*categoryGetterSignature_baseline_5F_intermediate_5F_instruction_isLABEL) (const class cPtr_baseline_5F_intermediate_5F_instruction * inObject,
-                                                                                                      C_Compiler * inCompiler
-                                                                                                      COMMA_LOCATION_ARGS) ;
+typedef class GALGAS_bool (*enterExtensionGetter_baseline_5F_intermediate_5F_instruction_isLABEL) (const class cPtr_baseline_5F_intermediate_5F_instruction * inObject,
+                                                                                                   C_Compiler * inCompiler
+                                                                                                   COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void enterCategoryGetter_isLABEL (const int32_t inClassIndex,
-                                  categoryGetterSignature_baseline_5F_intermediate_5F_instruction_isLABEL inGetter) ;
+void enterExtensionGetter_isLABEL (const int32_t inClassIndex,
+                                   enterExtensionGetter_baseline_5F_intermediate_5F_instruction_isLABEL inGetter) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-class GALGAS_bool callCategoryGetter_isLABEL (const cPtr_baseline_5F_intermediate_5F_instruction * inObject,
-                                              class C_Compiler * inCompiler
-                                              COMMA_LOCATION_ARGS) ;
+class GALGAS_bool callExtensionGetter_isLABEL (const cPtr_baseline_5F_intermediate_5F_instruction * inObject,
+                                               class C_Compiler * inCompiler
+                                               COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -1935,20 +1935,20 @@ class GALGAS_bool callCategoryGetter_isLABEL (const cPtr_baseline_5F_intermediat
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-typedef class GALGAS_bool (*categoryGetterSignature_baseline_5F_intermediate_5F_instruction_isNULL) (const class cPtr_baseline_5F_intermediate_5F_instruction * inObject,
-                                                                                                     C_Compiler * inCompiler
-                                                                                                     COMMA_LOCATION_ARGS) ;
+typedef class GALGAS_bool (*enterExtensionGetter_baseline_5F_intermediate_5F_instruction_isNULL) (const class cPtr_baseline_5F_intermediate_5F_instruction * inObject,
+                                                                                                  C_Compiler * inCompiler
+                                                                                                  COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void enterCategoryGetter_isNULL (const int32_t inClassIndex,
-                                 categoryGetterSignature_baseline_5F_intermediate_5F_instruction_isNULL inGetter) ;
+void enterExtensionGetter_isNULL (const int32_t inClassIndex,
+                                  enterExtensionGetter_baseline_5F_intermediate_5F_instruction_isNULL inGetter) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-class GALGAS_bool callCategoryGetter_isNULL (const cPtr_baseline_5F_intermediate_5F_instruction * inObject,
-                                             class C_Compiler * inCompiler
-                                             COMMA_LOCATION_ARGS) ;
+class GALGAS_bool callExtensionGetter_isNULL (const cPtr_baseline_5F_intermediate_5F_instruction * inObject,
+                                              class C_Compiler * inCompiler
+                                              COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -1956,20 +1956,20 @@ class GALGAS_bool callCategoryGetter_isNULL (const cPtr_baseline_5F_intermediate
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-typedef class GALGAS_bool (*categoryGetterSignature_baseline_5F_intermediate_5F_instruction_isSkippingInstruction) (const class cPtr_baseline_5F_intermediate_5F_instruction * inObject,
-                                                                                                                    C_Compiler * inCompiler
-                                                                                                                    COMMA_LOCATION_ARGS) ;
+typedef class GALGAS_bool (*enterExtensionGetter_baseline_5F_intermediate_5F_instruction_isSkippingInstruction) (const class cPtr_baseline_5F_intermediate_5F_instruction * inObject,
+                                                                                                                 C_Compiler * inCompiler
+                                                                                                                 COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void enterCategoryGetter_isSkippingInstruction (const int32_t inClassIndex,
-                                                categoryGetterSignature_baseline_5F_intermediate_5F_instruction_isSkippingInstruction inGetter) ;
+void enterExtensionGetter_isSkippingInstruction (const int32_t inClassIndex,
+                                                 enterExtensionGetter_baseline_5F_intermediate_5F_instruction_isSkippingInstruction inGetter) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-class GALGAS_bool callCategoryGetter_isSkippingInstruction (const cPtr_baseline_5F_intermediate_5F_instruction * inObject,
-                                                            class C_Compiler * inCompiler
-                                                            COMMA_LOCATION_ARGS) ;
+class GALGAS_bool callExtensionGetter_isSkippingInstruction (const cPtr_baseline_5F_intermediate_5F_instruction * inObject,
+                                                             class C_Compiler * inCompiler
+                                                             COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -1977,20 +1977,20 @@ class GALGAS_bool callCategoryGetter_isSkippingInstruction (const cPtr_baseline_
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-typedef class GALGAS_bool (*categoryGetterSignature_baseline_5F_intermediate_5F_instruction_nextInstructionIsReachable) (const class cPtr_baseline_5F_intermediate_5F_instruction * inObject,
-                                                                                                                         C_Compiler * inCompiler
-                                                                                                                         COMMA_LOCATION_ARGS) ;
+typedef class GALGAS_bool (*enterExtensionGetter_baseline_5F_intermediate_5F_instruction_nextInstructionIsReachable) (const class cPtr_baseline_5F_intermediate_5F_instruction * inObject,
+                                                                                                                      C_Compiler * inCompiler
+                                                                                                                      COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void enterCategoryGetter_nextInstructionIsReachable (const int32_t inClassIndex,
-                                                     categoryGetterSignature_baseline_5F_intermediate_5F_instruction_nextInstructionIsReachable inGetter) ;
+void enterExtensionGetter_nextInstructionIsReachable (const int32_t inClassIndex,
+                                                      enterExtensionGetter_baseline_5F_intermediate_5F_instruction_nextInstructionIsReachable inGetter) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-class GALGAS_bool callCategoryGetter_nextInstructionIsReachable (const cPtr_baseline_5F_intermediate_5F_instruction * inObject,
-                                                                 class C_Compiler * inCompiler
-                                                                 COMMA_LOCATION_ARGS) ;
+class GALGAS_bool callExtensionGetter_nextInstructionIsReachable (const cPtr_baseline_5F_intermediate_5F_instruction * inObject,
+                                                                  class C_Compiler * inCompiler
+                                                                  COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -1998,30 +1998,30 @@ class GALGAS_bool callCategoryGetter_nextInstructionIsReachable (const cPtr_base
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-typedef void (*categoryMethodSignature_baseline_5F_intermediate_5F_CALL_optimizeCALL) (const class cPtr_baseline_5F_intermediate_5F_CALL * inObject,
-                                                                                       const class GALGAS_baselineSymbolTableForOptimizations constinArgument0,
-                                                                                       const class GALGAS_uint constinArgument1,
-                                                                                       class GALGAS_baseline_5F_intermediate_5F_instructionList & ioArgument2,
-                                                                                       class GALGAS_string & ioArgument3,
-                                                                                       class GALGAS_bool & ioArgument4,
-                                                                                       class C_Compiler * inCompiler
-                                                                                       COMMA_LOCATION_ARGS) ;
+typedef void (*extensionMethodSignature_baseline_5F_intermediate_5F_CALL_optimizeCALL) (const class cPtr_baseline_5F_intermediate_5F_CALL * inObject,
+                                                                                        const class GALGAS_baselineSymbolTableForOptimizations constinArgument0,
+                                                                                        const class GALGAS_uint constinArgument1,
+                                                                                        class GALGAS_baseline_5F_intermediate_5F_instructionList & ioArgument2,
+                                                                                        class GALGAS_string & ioArgument3,
+                                                                                        class GALGAS_bool & ioArgument4,
+                                                                                        class C_Compiler * inCompiler
+                                                                                        COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void enterCategoryMethod_optimizeCALL (const int32_t inClassIndex,
-                                       categoryMethodSignature_baseline_5F_intermediate_5F_CALL_optimizeCALL inMethod) ;
+void enterExtensionMethod_optimizeCALL (const int32_t inClassIndex,
+                                        extensionMethodSignature_baseline_5F_intermediate_5F_CALL_optimizeCALL inMethod) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void callCategoryMethod_optimizeCALL (const class cPtr_baseline_5F_intermediate_5F_CALL * inObject,
-                                      const GALGAS_baselineSymbolTableForOptimizations constin_inSymbolTable,
-                                      const GALGAS_uint constin_inLineIndex,
-                                      GALGAS_baseline_5F_intermediate_5F_instructionList & io_ioGeneratedInstructionList,
-                                      GALGAS_string & io_ioListFileContents,
-                                      GALGAS_bool & io_ioOptimizationsDone,
-                                      C_Compiler * inCompiler
-                                      COMMA_LOCATION_ARGS) ;
+void callExtensionMethod_optimizeCALL (const class cPtr_baseline_5F_intermediate_5F_CALL * inObject,
+                                       const GALGAS_baselineSymbolTableForOptimizations constin_inSymbolTable,
+                                       const GALGAS_uint constin_inLineIndex,
+                                       GALGAS_baseline_5F_intermediate_5F_instructionList & io_ioGeneratedInstructionList,
+                                       GALGAS_string & io_ioListFileContents,
+                                       GALGAS_bool & io_ioOptimizationsDone,
+                                       C_Compiler * inCompiler
+                                       COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -2029,30 +2029,30 @@ void callCategoryMethod_optimizeCALL (const class cPtr_baseline_5F_intermediate_
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-typedef void (*categoryMethodSignature_baseline_5F_intermediate_5F_GOTO_optimizeGOTO) (const class cPtr_baseline_5F_intermediate_5F_GOTO * inObject,
-                                                                                       const class GALGAS_baselineSymbolTableForOptimizations constinArgument0,
-                                                                                       const class GALGAS_uint constinArgument1,
-                                                                                       class GALGAS_baseline_5F_intermediate_5F_instructionList & ioArgument2,
-                                                                                       class GALGAS_string & ioArgument3,
-                                                                                       class GALGAS_bool & ioArgument4,
-                                                                                       class C_Compiler * inCompiler
-                                                                                       COMMA_LOCATION_ARGS) ;
+typedef void (*extensionMethodSignature_baseline_5F_intermediate_5F_GOTO_optimizeGOTO) (const class cPtr_baseline_5F_intermediate_5F_GOTO * inObject,
+                                                                                        const class GALGAS_baselineSymbolTableForOptimizations constinArgument0,
+                                                                                        const class GALGAS_uint constinArgument1,
+                                                                                        class GALGAS_baseline_5F_intermediate_5F_instructionList & ioArgument2,
+                                                                                        class GALGAS_string & ioArgument3,
+                                                                                        class GALGAS_bool & ioArgument4,
+                                                                                        class C_Compiler * inCompiler
+                                                                                        COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void enterCategoryMethod_optimizeGOTO (const int32_t inClassIndex,
-                                       categoryMethodSignature_baseline_5F_intermediate_5F_GOTO_optimizeGOTO inMethod) ;
+void enterExtensionMethod_optimizeGOTO (const int32_t inClassIndex,
+                                        extensionMethodSignature_baseline_5F_intermediate_5F_GOTO_optimizeGOTO inMethod) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void callCategoryMethod_optimizeGOTO (const class cPtr_baseline_5F_intermediate_5F_GOTO * inObject,
-                                      const GALGAS_baselineSymbolTableForOptimizations constin_inSymbolTable,
-                                      const GALGAS_uint constin_inLineIndex,
-                                      GALGAS_baseline_5F_intermediate_5F_instructionList & io_ioGeneratedInstructionList,
-                                      GALGAS_string & io_ioListFileContents,
-                                      GALGAS_bool & io_ioOptimizationsDone,
-                                      C_Compiler * inCompiler
-                                      COMMA_LOCATION_ARGS) ;
+void callExtensionMethod_optimizeGOTO (const class cPtr_baseline_5F_intermediate_5F_GOTO * inObject,
+                                       const GALGAS_baselineSymbolTableForOptimizations constin_inSymbolTable,
+                                       const GALGAS_uint constin_inLineIndex,
+                                       GALGAS_baseline_5F_intermediate_5F_instructionList & io_ioGeneratedInstructionList,
+                                       GALGAS_string & io_ioListFileContents,
+                                       GALGAS_bool & io_ioOptimizationsDone,
+                                       C_Compiler * inCompiler
+                                       COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -2060,54 +2060,23 @@ void callCategoryMethod_optimizeGOTO (const class cPtr_baseline_5F_intermediate_
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-typedef void (*categoryMethodSignature_baseline_5F_intermediate_5F_JSR_optimizeJSR) (const class cPtr_baseline_5F_intermediate_5F_JSR * inObject,
-                                                                                     const class GALGAS_baselineSymbolTableForOptimizations constinArgument0,
-                                                                                     const class GALGAS_uint constinArgument1,
-                                                                                     class GALGAS_baseline_5F_intermediate_5F_instructionList & ioArgument2,
-                                                                                     class GALGAS_string & ioArgument3,
-                                                                                     class GALGAS_bool & ioArgument4,
-                                                                                     class C_Compiler * inCompiler
-                                                                                     COMMA_LOCATION_ARGS) ;
+typedef void (*extensionMethodSignature_baseline_5F_intermediate_5F_JSR_optimizeJSR) (const class cPtr_baseline_5F_intermediate_5F_JSR * inObject,
+                                                                                      const class GALGAS_baselineSymbolTableForOptimizations constinArgument0,
+                                                                                      const class GALGAS_uint constinArgument1,
+                                                                                      class GALGAS_baseline_5F_intermediate_5F_instructionList & ioArgument2,
+                                                                                      class GALGAS_string & ioArgument3,
+                                                                                      class GALGAS_bool & ioArgument4,
+                                                                                      class C_Compiler * inCompiler
+                                                                                      COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void enterCategoryMethod_optimizeJSR (const int32_t inClassIndex,
-                                      categoryMethodSignature_baseline_5F_intermediate_5F_JSR_optimizeJSR inMethod) ;
+void enterExtensionMethod_optimizeJSR (const int32_t inClassIndex,
+                                       extensionMethodSignature_baseline_5F_intermediate_5F_JSR_optimizeJSR inMethod) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void callCategoryMethod_optimizeJSR (const class cPtr_baseline_5F_intermediate_5F_JSR * inObject,
-                                     const GALGAS_baselineSymbolTableForOptimizations constin_inSymbolTable,
-                                     const GALGAS_uint constin_inLineIndex,
-                                     GALGAS_baseline_5F_intermediate_5F_instructionList & io_ioGeneratedInstructionList,
-                                     GALGAS_string & io_ioListFileContents,
-                                     GALGAS_bool & io_ioOptimizationsDone,
-                                     C_Compiler * inCompiler
-                                     COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                             Extension method '@baseline_intermediate_JUMP optimizeJUMP'                             *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-typedef void (*categoryMethodSignature_baseline_5F_intermediate_5F_JUMP_optimizeJUMP) (const class cPtr_baseline_5F_intermediate_5F_JUMP * inObject,
-                                                                                       const class GALGAS_baselineSymbolTableForOptimizations constinArgument0,
-                                                                                       const class GALGAS_uint constinArgument1,
-                                                                                       class GALGAS_baseline_5F_intermediate_5F_instructionList & ioArgument2,
-                                                                                       class GALGAS_string & ioArgument3,
-                                                                                       class GALGAS_bool & ioArgument4,
-                                                                                       class C_Compiler * inCompiler
-                                                                                       COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void enterCategoryMethod_optimizeJUMP (const int32_t inClassIndex,
-                                       categoryMethodSignature_baseline_5F_intermediate_5F_JUMP_optimizeJUMP inMethod) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void callCategoryMethod_optimizeJUMP (const class cPtr_baseline_5F_intermediate_5F_JUMP * inObject,
+void callExtensionMethod_optimizeJSR (const class cPtr_baseline_5F_intermediate_5F_JSR * inObject,
                                       const GALGAS_baselineSymbolTableForOptimizations constin_inSymbolTable,
                                       const GALGAS_uint constin_inLineIndex,
                                       GALGAS_baseline_5F_intermediate_5F_instructionList & io_ioGeneratedInstructionList,
@@ -2118,34 +2087,65 @@ void callCategoryMethod_optimizeJUMP (const class cPtr_baseline_5F_intermediate_
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
+//                             Extension method '@baseline_intermediate_JUMP optimizeJUMP'                             *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+typedef void (*extensionMethodSignature_baseline_5F_intermediate_5F_JUMP_optimizeJUMP) (const class cPtr_baseline_5F_intermediate_5F_JUMP * inObject,
+                                                                                        const class GALGAS_baselineSymbolTableForOptimizations constinArgument0,
+                                                                                        const class GALGAS_uint constinArgument1,
+                                                                                        class GALGAS_baseline_5F_intermediate_5F_instructionList & ioArgument2,
+                                                                                        class GALGAS_string & ioArgument3,
+                                                                                        class GALGAS_bool & ioArgument4,
+                                                                                        class C_Compiler * inCompiler
+                                                                                        COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void enterExtensionMethod_optimizeJUMP (const int32_t inClassIndex,
+                                        extensionMethodSignature_baseline_5F_intermediate_5F_JUMP_optimizeJUMP inMethod) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void callExtensionMethod_optimizeJUMP (const class cPtr_baseline_5F_intermediate_5F_JUMP * inObject,
+                                       const GALGAS_baselineSymbolTableForOptimizations constin_inSymbolTable,
+                                       const GALGAS_uint constin_inLineIndex,
+                                       GALGAS_baseline_5F_intermediate_5F_instructionList & io_ioGeneratedInstructionList,
+                                       GALGAS_string & io_ioListFileContents,
+                                       GALGAS_bool & io_ioOptimizationsDone,
+                                       C_Compiler * inCompiler
+                                       COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
 //               Extension method '@baseline_intermediate_incDecRegisterInCondition optimizeTestDecInc'                *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-typedef void (*categoryMethodSignature_baseline_5F_intermediate_5F_incDecRegisterInCondition_optimizeTestDecInc) (const class cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition * inObject,
-                                                                                                                  const class GALGAS_baselineSymbolTableForOptimizations constinArgument0,
-                                                                                                                  const class GALGAS_uint constinArgument1,
-                                                                                                                  class GALGAS_baseline_5F_intermediate_5F_instructionList & ioArgument2,
-                                                                                                                  class GALGAS_string & ioArgument3,
-                                                                                                                  class GALGAS_bool & ioArgument4,
-                                                                                                                  class C_Compiler * inCompiler
-                                                                                                                  COMMA_LOCATION_ARGS) ;
+typedef void (*extensionMethodSignature_baseline_5F_intermediate_5F_incDecRegisterInCondition_optimizeTestDecInc) (const class cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition * inObject,
+                                                                                                                   const class GALGAS_baselineSymbolTableForOptimizations constinArgument0,
+                                                                                                                   const class GALGAS_uint constinArgument1,
+                                                                                                                   class GALGAS_baseline_5F_intermediate_5F_instructionList & ioArgument2,
+                                                                                                                   class GALGAS_string & ioArgument3,
+                                                                                                                   class GALGAS_bool & ioArgument4,
+                                                                                                                   class C_Compiler * inCompiler
+                                                                                                                   COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void enterCategoryMethod_optimizeTestDecInc (const int32_t inClassIndex,
-                                             categoryMethodSignature_baseline_5F_intermediate_5F_incDecRegisterInCondition_optimizeTestDecInc inMethod) ;
+void enterExtensionMethod_optimizeTestDecInc (const int32_t inClassIndex,
+                                              extensionMethodSignature_baseline_5F_intermediate_5F_incDecRegisterInCondition_optimizeTestDecInc inMethod) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void callCategoryMethod_optimizeTestDecInc (const class cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition * inObject,
-                                            const GALGAS_baselineSymbolTableForOptimizations constin_inSymbolTable,
-                                            const GALGAS_uint constin_inLineIndex,
-                                            GALGAS_baseline_5F_intermediate_5F_instructionList & io_ioGeneratedInstructionList,
-                                            GALGAS_string & io_ioListFileContents,
-                                            GALGAS_bool & io_ioOptimizationsDone,
-                                            C_Compiler * inCompiler
-                                            COMMA_LOCATION_ARGS) ;
+void callExtensionMethod_optimizeTestDecInc (const class cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition * inObject,
+                                             const GALGAS_baselineSymbolTableForOptimizations constin_inSymbolTable,
+                                             const GALGAS_uint constin_inLineIndex,
+                                             GALGAS_baseline_5F_intermediate_5F_instructionList & io_ioGeneratedInstructionList,
+                                             GALGAS_string & io_ioListFileContents,
+                                             GALGAS_bool & io_ioOptimizationsDone,
+                                             C_Compiler * inCompiler
+                                             COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -2153,24 +2153,24 @@ void callCategoryMethod_optimizeTestDecInc (const class cPtr_baseline_5F_interme
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-typedef void (*categoryMethodSignature_baseline_5F_intermediate_5F_instruction_defineLabel) (const class cPtr_baseline_5F_intermediate_5F_instruction * inObject,
-                                                                                             class GALGAS_baselineSymbolTableForOptimizations & ioArgument0,
-                                                                                             const class GALGAS_uint constinArgument1,
-                                                                                             class C_Compiler * inCompiler
-                                                                                             COMMA_LOCATION_ARGS) ;
+typedef void (*extensionMethodSignature_baseline_5F_intermediate_5F_instruction_defineLabel) (const class cPtr_baseline_5F_intermediate_5F_instruction * inObject,
+                                                                                              class GALGAS_baselineSymbolTableForOptimizations & ioArgument0,
+                                                                                              const class GALGAS_uint constinArgument1,
+                                                                                              class C_Compiler * inCompiler
+                                                                                              COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void enterCategoryMethod_defineLabel (const int32_t inClassIndex,
-                                      categoryMethodSignature_baseline_5F_intermediate_5F_instruction_defineLabel inMethod) ;
+void enterExtensionMethod_defineLabel (const int32_t inClassIndex,
+                                       extensionMethodSignature_baseline_5F_intermediate_5F_instruction_defineLabel inMethod) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void callCategoryMethod_defineLabel (const class cPtr_baseline_5F_intermediate_5F_instruction * inObject,
-                                     GALGAS_baselineSymbolTableForOptimizations & io_ioRoutineSymbolTable,
-                                     const GALGAS_uint constin_inLineIndex,
-                                     C_Compiler * inCompiler
-                                     COMMA_LOCATION_ARGS) ;
+void callExtensionMethod_defineLabel (const class cPtr_baseline_5F_intermediate_5F_instruction * inObject,
+                                      GALGAS_baselineSymbolTableForOptimizations & io_ioRoutineSymbolTable,
+                                      const GALGAS_uint constin_inLineIndex,
+                                      C_Compiler * inCompiler
+                                      COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -2178,22 +2178,22 @@ void callCategoryMethod_defineLabel (const class cPtr_baseline_5F_intermediate_5
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-typedef void (*categoryMethodSignature_baseline_5F_intermediate_5F_instruction_enterReferencedLabel) (const class cPtr_baseline_5F_intermediate_5F_instruction * inObject,
-                                                                                                      class GALGAS_stringset & ioArgument0,
-                                                                                                      class C_Compiler * inCompiler
-                                                                                                      COMMA_LOCATION_ARGS) ;
+typedef void (*extensionMethodSignature_baseline_5F_intermediate_5F_instruction_enterReferencedLabel) (const class cPtr_baseline_5F_intermediate_5F_instruction * inObject,
+                                                                                                       class GALGAS_stringset & ioArgument0,
+                                                                                                       class C_Compiler * inCompiler
+                                                                                                       COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void enterCategoryMethod_enterReferencedLabel (const int32_t inClassIndex,
-                                               categoryMethodSignature_baseline_5F_intermediate_5F_instruction_enterReferencedLabel inMethod) ;
+void enterExtensionMethod_enterReferencedLabel (const int32_t inClassIndex,
+                                                extensionMethodSignature_baseline_5F_intermediate_5F_instruction_enterReferencedLabel inMethod) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void callCategoryMethod_enterReferencedLabel (const class cPtr_baseline_5F_intermediate_5F_instruction * inObject,
-                                              GALGAS_stringset & io_ioReferencedLabelSet,
-                                              C_Compiler * inCompiler
-                                              COMMA_LOCATION_ARGS) ;
+void callExtensionMethod_enterReferencedLabel (const class cPtr_baseline_5F_intermediate_5F_instruction * inObject,
+                                               GALGAS_stringset & io_ioReferencedLabelSet,
+                                               C_Compiler * inCompiler
+                                               COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -2201,28 +2201,28 @@ void callCategoryMethod_enterReferencedLabel (const class cPtr_baseline_5F_inter
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-typedef void (*categoryMethodSignature_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE_optimizeBEGIN_5F_ROUTINE) (const class cPtr_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE * inObject,
-                                                                                                                         const class GALGAS_uint constinArgument0,
-                                                                                                                         class GALGAS_baseline_5F_intermediate_5F_instructionList & ioArgument1,
-                                                                                                                         class GALGAS_string & ioArgument2,
-                                                                                                                         class GALGAS_bool & ioArgument3,
-                                                                                                                         class C_Compiler * inCompiler
-                                                                                                                         COMMA_LOCATION_ARGS) ;
+typedef void (*extensionMethodSignature_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE_optimizeBEGIN_5F_ROUTINE) (const class cPtr_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE * inObject,
+                                                                                                                          const class GALGAS_uint constinArgument0,
+                                                                                                                          class GALGAS_baseline_5F_intermediate_5F_instructionList & ioArgument1,
+                                                                                                                          class GALGAS_string & ioArgument2,
+                                                                                                                          class GALGAS_bool & ioArgument3,
+                                                                                                                          class C_Compiler * inCompiler
+                                                                                                                          COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void enterCategoryMethod_optimizeBEGIN_5F_ROUTINE (const int32_t inClassIndex,
-                                                   categoryMethodSignature_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE_optimizeBEGIN_5F_ROUTINE inMethod) ;
+void enterExtensionMethod_optimizeBEGIN_5F_ROUTINE (const int32_t inClassIndex,
+                                                    extensionMethodSignature_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE_optimizeBEGIN_5F_ROUTINE inMethod) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void callCategoryMethod_optimizeBEGIN_5F_ROUTINE (const class cPtr_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE * inObject,
-                                                  const GALGAS_uint constin_inLineIndex,
-                                                  GALGAS_baseline_5F_intermediate_5F_instructionList & io_ioGeneratedInstructionList,
-                                                  GALGAS_string & io_ioListFileContents,
-                                                  GALGAS_bool & io_ioOptimizationsDone,
-                                                  C_Compiler * inCompiler
-                                                  COMMA_LOCATION_ARGS) ;
+void callExtensionMethod_optimizeBEGIN_5F_ROUTINE (const class cPtr_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE * inObject,
+                                                   const GALGAS_uint constin_inLineIndex,
+                                                   GALGAS_baseline_5F_intermediate_5F_instructionList & io_ioGeneratedInstructionList,
+                                                   GALGAS_string & io_ioListFileContents,
+                                                   GALGAS_bool & io_ioOptimizationsDone,
+                                                   C_Compiler * inCompiler
+                                                   COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -2230,26 +2230,26 @@ void callCategoryMethod_optimizeBEGIN_5F_ROUTINE (const class cPtr_baseline_5F_i
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-typedef void (*categoryMethodSignature_baseline_5F_intermediate_5F_instruction_generateAssemblyCode) (const class cPtr_baseline_5F_intermediate_5F_instruction * inObject,
-                                                                                                      const class GALGAS_baseline_5F_intermediate_5F_registerExpression constinArgument0,
-                                                                                                      const class GALGAS_bitSliceTable constinArgument1,
-                                                                                                      class GALGAS_baseline_5F_assembly_5F_instructionList & ioArgument2,
-                                                                                                      class C_Compiler * inCompiler
-                                                                                                      COMMA_LOCATION_ARGS) ;
+typedef void (*extensionMethodSignature_baseline_5F_intermediate_5F_instruction_generateAssemblyCode) (const class cPtr_baseline_5F_intermediate_5F_instruction * inObject,
+                                                                                                       const class GALGAS_baseline_5F_intermediate_5F_registerExpression constinArgument0,
+                                                                                                       const class GALGAS_bitSliceTable constinArgument1,
+                                                                                                       class GALGAS_baseline_5F_assembly_5F_instructionList & ioArgument2,
+                                                                                                       class C_Compiler * inCompiler
+                                                                                                       COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void enterCategoryMethod_generateAssemblyCode (const int32_t inClassIndex,
-                                               categoryMethodSignature_baseline_5F_intermediate_5F_instruction_generateAssemblyCode inMethod) ;
+void enterExtensionMethod_generateAssemblyCode (const int32_t inClassIndex,
+                                                extensionMethodSignature_baseline_5F_intermediate_5F_instruction_generateAssemblyCode inMethod) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void callCategoryMethod_generateAssemblyCode (const class cPtr_baseline_5F_intermediate_5F_instruction * inObject,
-                                              const GALGAS_baseline_5F_intermediate_5F_registerExpression constin_inSTATUSregister,
-                                              const GALGAS_bitSliceTable constin_inStatusRegisterBitSliceTable,
-                                              GALGAS_baseline_5F_assembly_5F_instructionList & io_ioAssemblyInstructionList,
-                                              C_Compiler * inCompiler
-                                              COMMA_LOCATION_ARGS) ;
+void callExtensionMethod_generateAssemblyCode (const class cPtr_baseline_5F_intermediate_5F_instruction * inObject,
+                                               const GALGAS_baseline_5F_intermediate_5F_registerExpression constin_inSTATUSregister,
+                                               const GALGAS_bitSliceTable constin_inStatusRegisterBitSliceTable,
+                                               GALGAS_baseline_5F_assembly_5F_instructionList & io_ioAssemblyInstructionList,
+                                               C_Compiler * inCompiler
+                                               COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -2292,24 +2292,24 @@ void routine_emitNoBaselineCodeAtWordAddress (const class GALGAS_uint constinArg
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-typedef void (*categoryMethodSignature_baseline_5F_assembly_5F_instruction_enterLabelAtAddress) (const class cPtr_baseline_5F_assembly_5F_instruction * inObject,
-                                                                                                 class GALGAS_baseline_5F_symbolTable & ioArgument0,
-                                                                                                 class GALGAS_uint & ioArgument1,
-                                                                                                 class C_Compiler * inCompiler
-                                                                                                 COMMA_LOCATION_ARGS) ;
+typedef void (*extensionMethodSignature_baseline_5F_assembly_5F_instruction_enterLabelAtAddress) (const class cPtr_baseline_5F_assembly_5F_instruction * inObject,
+                                                                                                  class GALGAS_baseline_5F_symbolTable & ioArgument0,
+                                                                                                  class GALGAS_uint & ioArgument1,
+                                                                                                  class C_Compiler * inCompiler
+                                                                                                  COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void enterCategoryMethod_enterLabelAtAddress (const int32_t inClassIndex,
-                                              categoryMethodSignature_baseline_5F_assembly_5F_instruction_enterLabelAtAddress inMethod) ;
+void enterExtensionMethod_enterLabelAtAddress (const int32_t inClassIndex,
+                                               extensionMethodSignature_baseline_5F_assembly_5F_instruction_enterLabelAtAddress inMethod) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void callCategoryMethod_enterLabelAtAddress (const class cPtr_baseline_5F_assembly_5F_instruction * inObject,
-                                             GALGAS_baseline_5F_symbolTable & io_ioRoutineSymbolTable,
-                                             GALGAS_uint & io_ioWordAddress,
-                                             C_Compiler * inCompiler
-                                             COMMA_LOCATION_ARGS) ;
+void callExtensionMethod_enterLabelAtAddress (const class cPtr_baseline_5F_assembly_5F_instruction * inObject,
+                                              GALGAS_baseline_5F_symbolTable & io_ioRoutineSymbolTable,
+                                              GALGAS_uint & io_ioWordAddress,
+                                              C_Compiler * inCompiler
+                                              COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -2317,26 +2317,26 @@ void callCategoryMethod_enterLabelAtAddress (const class cPtr_baseline_5F_assemb
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-typedef void (*categoryMethodSignature_baseline_5F_assembly_5F_instruction_generateBinaryCodeAtAddress) (const class cPtr_baseline_5F_assembly_5F_instruction * inObject,
-                                                                                                         const class GALGAS_baseline_5F_symbolTable constinArgument0,
-                                                                                                         class GALGAS_string & ioArgument1,
-                                                                                                         class GALGAS_uint & ioArgument2,
-                                                                                                         class C_Compiler * inCompiler
-                                                                                                         COMMA_LOCATION_ARGS) ;
+typedef void (*extensionMethodSignature_baseline_5F_assembly_5F_instruction_generateBinaryCodeAtAddress) (const class cPtr_baseline_5F_assembly_5F_instruction * inObject,
+                                                                                                          const class GALGAS_baseline_5F_symbolTable constinArgument0,
+                                                                                                          class GALGAS_string & ioArgument1,
+                                                                                                          class GALGAS_uint & ioArgument2,
+                                                                                                          class C_Compiler * inCompiler
+                                                                                                          COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void enterCategoryMethod_generateBinaryCodeAtAddress (const int32_t inClassIndex,
-                                                      categoryMethodSignature_baseline_5F_assembly_5F_instruction_generateBinaryCodeAtAddress inMethod) ;
+void enterExtensionMethod_generateBinaryCodeAtAddress (const int32_t inClassIndex,
+                                                       extensionMethodSignature_baseline_5F_assembly_5F_instruction_generateBinaryCodeAtAddress inMethod) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void callCategoryMethod_generateBinaryCodeAtAddress (const class cPtr_baseline_5F_assembly_5F_instruction * inObject,
-                                                     const GALGAS_baseline_5F_symbolTable constin_inRoutineSymbolTable,
-                                                     GALGAS_string & io_ioListFileContents,
-                                                     GALGAS_uint & io_ioWordAddress,
-                                                     C_Compiler * inCompiler
-                                                     COMMA_LOCATION_ARGS) ;
+void callExtensionMethod_generateBinaryCodeAtAddress (const class cPtr_baseline_5F_assembly_5F_instruction * inObject,
+                                                      const GALGAS_baseline_5F_symbolTable constin_inRoutineSymbolTable,
+                                                      GALGAS_string & io_ioListFileContents,
+                                                      GALGAS_uint & io_ioWordAddress,
+                                                      C_Compiler * inCompiler
+                                                      COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -2355,22 +2355,22 @@ void routine_addMidRangeUsedRoutinesFromInstructionList (const class GALGAS_midr
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-typedef void (*categoryMethodSignature_midrange_5F_instruction_addUsedRoutines) (const class cPtr_midrange_5F_instruction * inObject,
-                                                                                 class GALGAS_stringset & ioArgument0,
-                                                                                 class C_Compiler * inCompiler
-                                                                                 COMMA_LOCATION_ARGS) ;
+typedef void (*extensionMethodSignature_midrange_5F_instruction_addUsedRoutines) (const class cPtr_midrange_5F_instruction * inObject,
+                                                                                  class GALGAS_stringset & ioArgument0,
+                                                                                  class C_Compiler * inCompiler
+                                                                                  COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void enterCategoryMethod_addUsedRoutines (const int32_t inClassIndex,
-                                          categoryMethodSignature_midrange_5F_instruction_addUsedRoutines inMethod) ;
+void enterExtensionMethod_addUsedRoutines (const int32_t inClassIndex,
+                                           extensionMethodSignature_midrange_5F_instruction_addUsedRoutines inMethod) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void callCategoryMethod_addUsedRoutines (const class cPtr_midrange_5F_instruction * inObject,
-                                         GALGAS_stringset & io_ioUsedRoutines,
-                                         C_Compiler * inCompiler
-                                         COMMA_LOCATION_ARGS) ;
+void callExtensionMethod_addUsedRoutines (const class cPtr_midrange_5F_instruction * inObject,
+                                          GALGAS_stringset & io_ioUsedRoutines,
+                                          C_Compiler * inCompiler
+                                          COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -2411,44 +2411,44 @@ void routine_handleMidrangeInstructionList (const class GALGAS_midrange_5F_instr
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-typedef void (*categoryMethodSignature_midrange_5F_instruction_build_5F_midrange_5F_ipic_5F_instructionList) (const class cPtr_midrange_5F_instruction * inObject,
-                                                                                                              const class GALGAS_routineMap constinArgument0,
-                                                                                                              const class GALGAS_registerTable constinArgument1,
-                                                                                                              const class GALGAS_constantMap constinArgument2,
-                                                                                                              class GALGAS_uint & ioArgument3,
-                                                                                                              class GALGAS_midrange_5F_intermediate_5F_instructionList & ioArgument4,
-                                                                                                              class GALGAS_string & ioArgument5,
-                                                                                                              const class GALGAS_uint constinArgument6,
-                                                                                                              class GALGAS_uint & ioArgument7,
-                                                                                                              const class GALGAS_bool constinArgument8,
-                                                                                                              class GALGAS_bool & ioArgument9,
-                                                                                                              const class GALGAS_routineKind constinArgument10,
-                                                                                                              class GALGAS_stringset & ioArgument11,
-                                                                                                              class C_Compiler * inCompiler
-                                                                                                              COMMA_LOCATION_ARGS) ;
+typedef void (*extensionMethodSignature_midrange_5F_instruction_build_5F_midrange_5F_ipic_5F_instructionList) (const class cPtr_midrange_5F_instruction * inObject,
+                                                                                                               const class GALGAS_routineMap constinArgument0,
+                                                                                                               const class GALGAS_registerTable constinArgument1,
+                                                                                                               const class GALGAS_constantMap constinArgument2,
+                                                                                                               class GALGAS_uint & ioArgument3,
+                                                                                                               class GALGAS_midrange_5F_intermediate_5F_instructionList & ioArgument4,
+                                                                                                               class GALGAS_string & ioArgument5,
+                                                                                                               const class GALGAS_uint constinArgument6,
+                                                                                                               class GALGAS_uint & ioArgument7,
+                                                                                                               const class GALGAS_bool constinArgument8,
+                                                                                                               class GALGAS_bool & ioArgument9,
+                                                                                                               const class GALGAS_routineKind constinArgument10,
+                                                                                                               class GALGAS_stringset & ioArgument11,
+                                                                                                               class C_Compiler * inCompiler
+                                                                                                               COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void enterCategoryMethod_build_5F_midrange_5F_ipic_5F_instructionList (const int32_t inClassIndex,
-                                                                       categoryMethodSignature_midrange_5F_instruction_build_5F_midrange_5F_ipic_5F_instructionList inMethod) ;
+void enterExtensionMethod_build_5F_midrange_5F_ipic_5F_instructionList (const int32_t inClassIndex,
+                                                                        extensionMethodSignature_midrange_5F_instruction_build_5F_midrange_5F_ipic_5F_instructionList inMethod) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void callCategoryMethod_build_5F_midrange_5F_ipic_5F_instructionList (const class cPtr_midrange_5F_instruction * inObject,
-                                                                      const GALGAS_routineMap constin_inRoutineMap,
-                                                                      const GALGAS_registerTable constin_inRegisterTable,
-                                                                      const GALGAS_constantMap constin_inConstantMap,
-                                                                      GALGAS_uint & io_ioLocalLabelIndex,
-                                                                      GALGAS_midrange_5F_intermediate_5F_instructionList & io_ioGeneratedInstructionList,
-                                                                      GALGAS_string & io_ioListFileContents,
-                                                                      const GALGAS_uint constin_inTotalBankCount,
-                                                                      GALGAS_uint & io_ioCurrentBank,
-                                                                      const GALGAS_bool constin_inShouldPreserveBank,
-                                                                      GALGAS_bool & io_ioContinuesInSequence,
-                                                                      const GALGAS_routineKind constin_inRoutineKind,
-                                                                      GALGAS_stringset & io_ioUsedRegisters,
-                                                                      C_Compiler * inCompiler
-                                                                      COMMA_LOCATION_ARGS) ;
+void callExtensionMethod_build_5F_midrange_5F_ipic_5F_instructionList (const class cPtr_midrange_5F_instruction * inObject,
+                                                                       const GALGAS_routineMap constin_inRoutineMap,
+                                                                       const GALGAS_registerTable constin_inRegisterTable,
+                                                                       const GALGAS_constantMap constin_inConstantMap,
+                                                                       GALGAS_uint & io_ioLocalLabelIndex,
+                                                                       GALGAS_midrange_5F_intermediate_5F_instructionList & io_ioGeneratedInstructionList,
+                                                                       GALGAS_string & io_ioListFileContents,
+                                                                       const GALGAS_uint constin_inTotalBankCount,
+                                                                       GALGAS_uint & io_ioCurrentBank,
+                                                                       const GALGAS_bool constin_inShouldPreserveBank,
+                                                                       GALGAS_bool & io_ioContinuesInSequence,
+                                                                       const GALGAS_routineKind constin_inRoutineKind,
+                                                                       GALGAS_stringset & io_ioUsedRegisters,
+                                                                       C_Compiler * inCompiler
+                                                                       COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -2803,22 +2803,22 @@ class cPtr_midrange_5F_intermediate_5F_pseudo_5F_ORG : public cPtr_midrange_5F_i
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-typedef void (*categoryMethodSignature_midrange_5F_intermediate_5F_instruction_print) (const class cPtr_midrange_5F_intermediate_5F_instruction * inObject,
-                                                                                       class GALGAS_string & ioArgument0,
-                                                                                       class C_Compiler * inCompiler
-                                                                                       COMMA_LOCATION_ARGS) ;
+typedef void (*extensionMethodSignature_midrange_5F_intermediate_5F_instruction_print) (const class cPtr_midrange_5F_intermediate_5F_instruction * inObject,
+                                                                                        class GALGAS_string & ioArgument0,
+                                                                                        class C_Compiler * inCompiler
+                                                                                        COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void enterCategoryMethod_print (const int32_t inClassIndex,
-                                categoryMethodSignature_midrange_5F_intermediate_5F_instruction_print inMethod) ;
+void enterExtensionMethod_print (const int32_t inClassIndex,
+                                 extensionMethodSignature_midrange_5F_intermediate_5F_instruction_print inMethod) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void callCategoryMethod_print (const class cPtr_midrange_5F_intermediate_5F_instruction * inObject,
-                               GALGAS_string & io_ioListFileContents,
-                               C_Compiler * inCompiler
-                               COMMA_LOCATION_ARGS) ;
+void callExtensionMethod_print (const class cPtr_midrange_5F_intermediate_5F_instruction * inObject,
+                                GALGAS_string & io_ioListFileContents,
+                                C_Compiler * inCompiler
+                                COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -2826,22 +2826,22 @@ void callCategoryMethod_print (const class cPtr_midrange_5F_intermediate_5F_inst
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-typedef void (*categoryMethodSignature_midrange_5F_intermediate_5F_instruction_setCurrentAddress) (const class cPtr_midrange_5F_intermediate_5F_instruction * inObject,
-                                                                                                   class GALGAS_uint & ioArgument0,
-                                                                                                   class C_Compiler * inCompiler
-                                                                                                   COMMA_LOCATION_ARGS) ;
+typedef void (*extensionMethodSignature_midrange_5F_intermediate_5F_instruction_setCurrentAddress) (const class cPtr_midrange_5F_intermediate_5F_instruction * inObject,
+                                                                                                    class GALGAS_uint & ioArgument0,
+                                                                                                    class C_Compiler * inCompiler
+                                                                                                    COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void enterCategoryMethod_setCurrentAddress (const int32_t inClassIndex,
-                                            categoryMethodSignature_midrange_5F_intermediate_5F_instruction_setCurrentAddress inMethod) ;
+void enterExtensionMethod_setCurrentAddress (const int32_t inClassIndex,
+                                             extensionMethodSignature_midrange_5F_intermediate_5F_instruction_setCurrentAddress inMethod) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void callCategoryMethod_setCurrentAddress (const class cPtr_midrange_5F_intermediate_5F_instruction * inObject,
-                                           GALGAS_uint & io_ioCurrentAddress,
-                                           C_Compiler * inCompiler
-                                           COMMA_LOCATION_ARGS) ;
+void callExtensionMethod_setCurrentAddress (const class cPtr_midrange_5F_intermediate_5F_instruction * inObject,
+                                            GALGAS_uint & io_ioCurrentAddress,
+                                            C_Compiler * inCompiler
+                                            COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -2884,22 +2884,22 @@ void routine_interruptRoutineShouldSavePCLATH (const class GALGAS_midrange_5F_mo
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-typedef void (*categoryMethodSignature_midrange_5F_instruction_instructionUsesGOTOorCALL) (const class cPtr_midrange_5F_instruction * inObject,
-                                                                                           class GALGAS_bool & ioArgument0,
-                                                                                           class C_Compiler * inCompiler
-                                                                                           COMMA_LOCATION_ARGS) ;
+typedef void (*extensionMethodSignature_midrange_5F_instruction_instructionUsesGOTOorCALL) (const class cPtr_midrange_5F_instruction * inObject,
+                                                                                            class GALGAS_bool & ioArgument0,
+                                                                                            class C_Compiler * inCompiler
+                                                                                            COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void enterCategoryMethod_instructionUsesGOTOorCALL (const int32_t inClassIndex,
-                                                    categoryMethodSignature_midrange_5F_instruction_instructionUsesGOTOorCALL inMethod) ;
+void enterExtensionMethod_instructionUsesGOTOorCALL (const int32_t inClassIndex,
+                                                     extensionMethodSignature_midrange_5F_instruction_instructionUsesGOTOorCALL inMethod) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void callCategoryMethod_instructionUsesGOTOorCALL (const class cPtr_midrange_5F_instruction * inObject,
-                                                   GALGAS_bool & io_ioUsesGOTOorCALL,
-                                                   C_Compiler * inCompiler
-                                                   COMMA_LOCATION_ARGS) ;
+void callExtensionMethod_instructionUsesGOTOorCALL (const class cPtr_midrange_5F_instruction * inObject,
+                                                    GALGAS_bool & io_ioUsesGOTOorCALL,
+                                                    C_Compiler * inCompiler
+                                                    COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -3381,34 +3381,34 @@ class cPtr_midrange_5F_intermediate_5F_instruction_5F_RETFIE : public cPtr_midra
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-typedef void (*categoryMethodSignature_registerExpression_resolveMidrangeAccess) (const class cPtr_registerExpression * inObject,
-                                                                                  const class GALGAS_uint constinArgument0,
-                                                                                  const class GALGAS_uint constinArgument1,
-                                                                                  const class GALGAS_registerTable constinArgument2,
-                                                                                  const class GALGAS_constantMap constinArgument3,
-                                                                                  class GALGAS_midrange_5F_intermediate_5F_registerExpression & outArgument4,
-                                                                                  class GALGAS_bitSliceTable & outArgument5,
-                                                                                  class GALGAS_stringset & ioArgument6,
-                                                                                  class C_Compiler * inCompiler
-                                                                                  COMMA_LOCATION_ARGS) ;
+typedef void (*extensionMethodSignature_registerExpression_resolveMidrangeAccess) (const class cPtr_registerExpression * inObject,
+                                                                                   const class GALGAS_uint constinArgument0,
+                                                                                   const class GALGAS_uint constinArgument1,
+                                                                                   const class GALGAS_registerTable constinArgument2,
+                                                                                   const class GALGAS_constantMap constinArgument3,
+                                                                                   class GALGAS_midrange_5F_intermediate_5F_registerExpression & outArgument4,
+                                                                                   class GALGAS_bitSliceTable & outArgument5,
+                                                                                   class GALGAS_stringset & ioArgument6,
+                                                                                   class C_Compiler * inCompiler
+                                                                                   COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void enterCategoryMethod_resolveMidrangeAccess (const int32_t inClassIndex,
-                                                categoryMethodSignature_registerExpression_resolveMidrangeAccess inMethod) ;
+void enterExtensionMethod_resolveMidrangeAccess (const int32_t inClassIndex,
+                                                 extensionMethodSignature_registerExpression_resolveMidrangeAccess inMethod) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void callCategoryMethod_resolveMidrangeAccess (const class cPtr_registerExpression * inObject,
-                                               const GALGAS_uint constin_inTotalBankCount,
-                                               const GALGAS_uint constin_inCurrentBank,
-                                               const GALGAS_registerTable constin_inRegisterTable,
-                                               const GALGAS_constantMap constin_inConstantMap,
-                                               GALGAS_midrange_5F_intermediate_5F_registerExpression & out_outIPICregisterDescription,
-                                               GALGAS_bitSliceTable & out_outBitSliceTable,
-                                               GALGAS_stringset & io_ioUsedRegisters,
-                                               C_Compiler * inCompiler
-                                               COMMA_LOCATION_ARGS) ;
+void callExtensionMethod_resolveMidrangeAccess (const class cPtr_registerExpression * inObject,
+                                                const GALGAS_uint constin_inTotalBankCount,
+                                                const GALGAS_uint constin_inCurrentBank,
+                                                const GALGAS_registerTable constin_inRegisterTable,
+                                                const GALGAS_constantMap constin_inConstantMap,
+                                                GALGAS_midrange_5F_intermediate_5F_registerExpression & out_outIPICregisterDescription,
+                                                GALGAS_bitSliceTable & out_outBitSliceTable,
+                                                GALGAS_stringset & io_ioUsedRegisters,
+                                                C_Compiler * inCompiler
+                                                COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -3913,20 +3913,20 @@ class cPtr_midrange_5F_intermediate_5F_instruction_5F_literalOperation : public 
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-typedef class GALGAS_bool (*categoryGetterSignature_midrange_5F_intermediate_5F_instruction_isLABELorORG) (const class cPtr_midrange_5F_intermediate_5F_instruction * inObject,
-                                                                                                           C_Compiler * inCompiler
-                                                                                                           COMMA_LOCATION_ARGS) ;
+typedef class GALGAS_bool (*enterExtensionGetter_midrange_5F_intermediate_5F_instruction_isLABELorORG) (const class cPtr_midrange_5F_intermediate_5F_instruction * inObject,
+                                                                                                        C_Compiler * inCompiler
+                                                                                                        COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void enterCategoryGetter_isLABELorORG (const int32_t inClassIndex,
-                                       categoryGetterSignature_midrange_5F_intermediate_5F_instruction_isLABELorORG inGetter) ;
+void enterExtensionGetter_isLABELorORG (const int32_t inClassIndex,
+                                        enterExtensionGetter_midrange_5F_intermediate_5F_instruction_isLABELorORG inGetter) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-class GALGAS_bool callCategoryGetter_isLABELorORG (const cPtr_midrange_5F_intermediate_5F_instruction * inObject,
-                                                   class C_Compiler * inCompiler
-                                                   COMMA_LOCATION_ARGS) ;
+class GALGAS_bool callExtensionGetter_isLABELorORG (const cPtr_midrange_5F_intermediate_5F_instruction * inObject,
+                                                    class C_Compiler * inCompiler
+                                                    COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -3934,20 +3934,20 @@ class GALGAS_bool callCategoryGetter_isLABELorORG (const cPtr_midrange_5F_interm
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-typedef class GALGAS_bool (*categoryGetterSignature_midrange_5F_intermediate_5F_instruction_isNULL) (const class cPtr_midrange_5F_intermediate_5F_instruction * inObject,
-                                                                                                     C_Compiler * inCompiler
-                                                                                                     COMMA_LOCATION_ARGS) ;
+typedef class GALGAS_bool (*enterExtensionGetter_midrange_5F_intermediate_5F_instruction_isNULL) (const class cPtr_midrange_5F_intermediate_5F_instruction * inObject,
+                                                                                                  C_Compiler * inCompiler
+                                                                                                  COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void enterCategoryGetter_isNULL (const int32_t inClassIndex,
-                                 categoryGetterSignature_midrange_5F_intermediate_5F_instruction_isNULL inGetter) ;
+void enterExtensionGetter_isNULL (const int32_t inClassIndex,
+                                  enterExtensionGetter_midrange_5F_intermediate_5F_instruction_isNULL inGetter) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-class GALGAS_bool callCategoryGetter_isNULL (const cPtr_midrange_5F_intermediate_5F_instruction * inObject,
-                                             class C_Compiler * inCompiler
-                                             COMMA_LOCATION_ARGS) ;
+class GALGAS_bool callExtensionGetter_isNULL (const cPtr_midrange_5F_intermediate_5F_instruction * inObject,
+                                              class C_Compiler * inCompiler
+                                              COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -3955,20 +3955,20 @@ class GALGAS_bool callCategoryGetter_isNULL (const cPtr_midrange_5F_intermediate
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-typedef class GALGAS_bool (*categoryGetterSignature_midrange_5F_intermediate_5F_instruction_isSkippingInstruction) (const class cPtr_midrange_5F_intermediate_5F_instruction * inObject,
-                                                                                                                    C_Compiler * inCompiler
-                                                                                                                    COMMA_LOCATION_ARGS) ;
+typedef class GALGAS_bool (*enterExtensionGetter_midrange_5F_intermediate_5F_instruction_isSkippingInstruction) (const class cPtr_midrange_5F_intermediate_5F_instruction * inObject,
+                                                                                                                 C_Compiler * inCompiler
+                                                                                                                 COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void enterCategoryGetter_isSkippingInstruction (const int32_t inClassIndex,
-                                                categoryGetterSignature_midrange_5F_intermediate_5F_instruction_isSkippingInstruction inGetter) ;
+void enterExtensionGetter_isSkippingInstruction (const int32_t inClassIndex,
+                                                 enterExtensionGetter_midrange_5F_intermediate_5F_instruction_isSkippingInstruction inGetter) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-class GALGAS_bool callCategoryGetter_isSkippingInstruction (const cPtr_midrange_5F_intermediate_5F_instruction * inObject,
-                                                            class C_Compiler * inCompiler
-                                                            COMMA_LOCATION_ARGS) ;
+class GALGAS_bool callExtensionGetter_isSkippingInstruction (const cPtr_midrange_5F_intermediate_5F_instruction * inObject,
+                                                             class C_Compiler * inCompiler
+                                                             COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -3976,20 +3976,20 @@ class GALGAS_bool callCategoryGetter_isSkippingInstruction (const cPtr_midrange_
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-typedef class GALGAS_bool (*categoryGetterSignature_midrange_5F_intermediate_5F_instruction_nextInstructionIsReachable) (const class cPtr_midrange_5F_intermediate_5F_instruction * inObject,
-                                                                                                                         C_Compiler * inCompiler
-                                                                                                                         COMMA_LOCATION_ARGS) ;
+typedef class GALGAS_bool (*enterExtensionGetter_midrange_5F_intermediate_5F_instruction_nextInstructionIsReachable) (const class cPtr_midrange_5F_intermediate_5F_instruction * inObject,
+                                                                                                                      C_Compiler * inCompiler
+                                                                                                                      COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void enterCategoryGetter_nextInstructionIsReachable (const int32_t inClassIndex,
-                                                     categoryGetterSignature_midrange_5F_intermediate_5F_instruction_nextInstructionIsReachable inGetter) ;
+void enterExtensionGetter_nextInstructionIsReachable (const int32_t inClassIndex,
+                                                      enterExtensionGetter_midrange_5F_intermediate_5F_instruction_nextInstructionIsReachable inGetter) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-class GALGAS_bool callCategoryGetter_nextInstructionIsReachable (const cPtr_midrange_5F_intermediate_5F_instruction * inObject,
-                                                                 class C_Compiler * inCompiler
-                                                                 COMMA_LOCATION_ARGS) ;
+class GALGAS_bool callExtensionGetter_nextInstructionIsReachable (const cPtr_midrange_5F_intermediate_5F_instruction * inObject,
+                                                                  class C_Compiler * inCompiler
+                                                                  COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -3997,30 +3997,30 @@ class GALGAS_bool callCategoryGetter_nextInstructionIsReachable (const cPtr_midr
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-typedef void (*categoryMethodSignature_midrange_5F_intermediate_5F_GOTO_optimizeGOTO) (const class cPtr_midrange_5F_intermediate_5F_GOTO * inObject,
-                                                                                       const class GALGAS_symbolTableForOptimizations constinArgument0,
-                                                                                       const class GALGAS_uint constinArgument1,
-                                                                                       class GALGAS_midrange_5F_intermediate_5F_instructionList & ioArgument2,
-                                                                                       class GALGAS_string & ioArgument3,
-                                                                                       class GALGAS_bool & ioArgument4,
-                                                                                       class C_Compiler * inCompiler
-                                                                                       COMMA_LOCATION_ARGS) ;
+typedef void (*extensionMethodSignature_midrange_5F_intermediate_5F_GOTO_optimizeGOTO) (const class cPtr_midrange_5F_intermediate_5F_GOTO * inObject,
+                                                                                        const class GALGAS_symbolTableForOptimizations constinArgument0,
+                                                                                        const class GALGAS_uint constinArgument1,
+                                                                                        class GALGAS_midrange_5F_intermediate_5F_instructionList & ioArgument2,
+                                                                                        class GALGAS_string & ioArgument3,
+                                                                                        class GALGAS_bool & ioArgument4,
+                                                                                        class C_Compiler * inCompiler
+                                                                                        COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void enterCategoryMethod_optimizeGOTO (const int32_t inClassIndex,
-                                       categoryMethodSignature_midrange_5F_intermediate_5F_GOTO_optimizeGOTO inMethod) ;
+void enterExtensionMethod_optimizeGOTO (const int32_t inClassIndex,
+                                        extensionMethodSignature_midrange_5F_intermediate_5F_GOTO_optimizeGOTO inMethod) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void callCategoryMethod_optimizeGOTO (const class cPtr_midrange_5F_intermediate_5F_GOTO * inObject,
-                                      const GALGAS_symbolTableForOptimizations constin_inSymbolTable,
-                                      const GALGAS_uint constin_inLineIndex,
-                                      GALGAS_midrange_5F_intermediate_5F_instructionList & io_ioGeneratedInstructionList,
-                                      GALGAS_string & io_ioListFileContents,
-                                      GALGAS_bool & io_ioOptimizationsDone,
-                                      C_Compiler * inCompiler
-                                      COMMA_LOCATION_ARGS) ;
+void callExtensionMethod_optimizeGOTO (const class cPtr_midrange_5F_intermediate_5F_GOTO * inObject,
+                                       const GALGAS_symbolTableForOptimizations constin_inSymbolTable,
+                                       const GALGAS_uint constin_inLineIndex,
+                                       GALGAS_midrange_5F_intermediate_5F_instructionList & io_ioGeneratedInstructionList,
+                                       GALGAS_string & io_ioListFileContents,
+                                       GALGAS_bool & io_ioOptimizationsDone,
+                                       C_Compiler * inCompiler
+                                       COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -4028,30 +4028,30 @@ void callCategoryMethod_optimizeGOTO (const class cPtr_midrange_5F_intermediate_
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-typedef void (*categoryMethodSignature_midrange_5F_intermediate_5F_JUMP_optimizeJUMP) (const class cPtr_midrange_5F_intermediate_5F_JUMP * inObject,
-                                                                                       const class GALGAS_symbolTableForOptimizations constinArgument0,
-                                                                                       const class GALGAS_uint constinArgument1,
-                                                                                       class GALGAS_midrange_5F_intermediate_5F_instructionList & ioArgument2,
-                                                                                       class GALGAS_string & ioArgument3,
-                                                                                       class GALGAS_bool & ioArgument4,
-                                                                                       class C_Compiler * inCompiler
-                                                                                       COMMA_LOCATION_ARGS) ;
+typedef void (*extensionMethodSignature_midrange_5F_intermediate_5F_JUMP_optimizeJUMP) (const class cPtr_midrange_5F_intermediate_5F_JUMP * inObject,
+                                                                                        const class GALGAS_symbolTableForOptimizations constinArgument0,
+                                                                                        const class GALGAS_uint constinArgument1,
+                                                                                        class GALGAS_midrange_5F_intermediate_5F_instructionList & ioArgument2,
+                                                                                        class GALGAS_string & ioArgument3,
+                                                                                        class GALGAS_bool & ioArgument4,
+                                                                                        class C_Compiler * inCompiler
+                                                                                        COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void enterCategoryMethod_optimizeJUMP (const int32_t inClassIndex,
-                                       categoryMethodSignature_midrange_5F_intermediate_5F_JUMP_optimizeJUMP inMethod) ;
+void enterExtensionMethod_optimizeJUMP (const int32_t inClassIndex,
+                                        extensionMethodSignature_midrange_5F_intermediate_5F_JUMP_optimizeJUMP inMethod) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void callCategoryMethod_optimizeJUMP (const class cPtr_midrange_5F_intermediate_5F_JUMP * inObject,
-                                      const GALGAS_symbolTableForOptimizations constin_inSymbolTable,
-                                      const GALGAS_uint constin_inLineIndex,
-                                      GALGAS_midrange_5F_intermediate_5F_instructionList & io_ioGeneratedInstructionList,
-                                      GALGAS_string & io_ioListFileContents,
-                                      GALGAS_bool & io_ioOptimizationsDone,
-                                      C_Compiler * inCompiler
-                                      COMMA_LOCATION_ARGS) ;
+void callExtensionMethod_optimizeJUMP (const class cPtr_midrange_5F_intermediate_5F_JUMP * inObject,
+                                       const GALGAS_symbolTableForOptimizations constin_inSymbolTable,
+                                       const GALGAS_uint constin_inLineIndex,
+                                       GALGAS_midrange_5F_intermediate_5F_instructionList & io_ioGeneratedInstructionList,
+                                       GALGAS_string & io_ioListFileContents,
+                                       GALGAS_bool & io_ioOptimizationsDone,
+                                       C_Compiler * inCompiler
+                                       COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -4059,101 +4059,24 @@ void callCategoryMethod_optimizeJUMP (const class cPtr_midrange_5F_intermediate_
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-typedef void (*categoryMethodSignature_midrange_5F_intermediate_5F_incDecRegisterInCondition_optimizeTestDecInc) (const class cPtr_midrange_5F_intermediate_5F_incDecRegisterInCondition * inObject,
-                                                                                                                  const class GALGAS_symbolTableForOptimizations constinArgument0,
-                                                                                                                  const class GALGAS_uint constinArgument1,
-                                                                                                                  class GALGAS_midrange_5F_intermediate_5F_instructionList & ioArgument2,
-                                                                                                                  class GALGAS_string & ioArgument3,
-                                                                                                                  class GALGAS_bool & ioArgument4,
-                                                                                                                  class C_Compiler * inCompiler
-                                                                                                                  COMMA_LOCATION_ARGS) ;
+typedef void (*extensionMethodSignature_midrange_5F_intermediate_5F_incDecRegisterInCondition_optimizeTestDecInc) (const class cPtr_midrange_5F_intermediate_5F_incDecRegisterInCondition * inObject,
+                                                                                                                   const class GALGAS_symbolTableForOptimizations constinArgument0,
+                                                                                                                   const class GALGAS_uint constinArgument1,
+                                                                                                                   class GALGAS_midrange_5F_intermediate_5F_instructionList & ioArgument2,
+                                                                                                                   class GALGAS_string & ioArgument3,
+                                                                                                                   class GALGAS_bool & ioArgument4,
+                                                                                                                   class C_Compiler * inCompiler
+                                                                                                                   COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void enterCategoryMethod_optimizeTestDecInc (const int32_t inClassIndex,
-                                             categoryMethodSignature_midrange_5F_intermediate_5F_incDecRegisterInCondition_optimizeTestDecInc inMethod) ;
+void enterExtensionMethod_optimizeTestDecInc (const int32_t inClassIndex,
+                                              extensionMethodSignature_midrange_5F_intermediate_5F_incDecRegisterInCondition_optimizeTestDecInc inMethod) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void callCategoryMethod_optimizeTestDecInc (const class cPtr_midrange_5F_intermediate_5F_incDecRegisterInCondition * inObject,
-                                            const GALGAS_symbolTableForOptimizations constin_inSymbolTable,
-                                            const GALGAS_uint constin_inLineIndex,
-                                            GALGAS_midrange_5F_intermediate_5F_instructionList & io_ioGeneratedInstructionList,
-                                            GALGAS_string & io_ioListFileContents,
-                                            GALGAS_bool & io_ioOptimizationsDone,
-                                            C_Compiler * inCompiler
-                                            COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                          Extension method '@midrange_intermediate_instruction defineLabel'                          *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-typedef void (*categoryMethodSignature_midrange_5F_intermediate_5F_instruction_defineLabel) (const class cPtr_midrange_5F_intermediate_5F_instruction * inObject,
-                                                                                             class GALGAS_symbolTableForOptimizations & ioArgument0,
-                                                                                             const class GALGAS_uint constinArgument1,
-                                                                                             class C_Compiler * inCompiler
-                                                                                             COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void enterCategoryMethod_defineLabel (const int32_t inClassIndex,
-                                      categoryMethodSignature_midrange_5F_intermediate_5F_instruction_defineLabel inMethod) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void callCategoryMethod_defineLabel (const class cPtr_midrange_5F_intermediate_5F_instruction * inObject,
-                                     GALGAS_symbolTableForOptimizations & io_ioRoutineSymbolTable,
-                                     const GALGAS_uint constin_inLineIndex,
-                                     C_Compiler * inCompiler
-                                     COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                     Extension method '@midrange_intermediate_instruction enterReferencedLabel'                      *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-typedef void (*categoryMethodSignature_midrange_5F_intermediate_5F_instruction_enterReferencedLabel) (const class cPtr_midrange_5F_intermediate_5F_instruction * inObject,
-                                                                                                      class GALGAS_stringset & ioArgument0,
-                                                                                                      class C_Compiler * inCompiler
-                                                                                                      COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void enterCategoryMethod_enterReferencedLabel (const int32_t inClassIndex,
-                                               categoryMethodSignature_midrange_5F_intermediate_5F_instruction_enterReferencedLabel inMethod) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void callCategoryMethod_enterReferencedLabel (const class cPtr_midrange_5F_intermediate_5F_instruction * inObject,
-                                              GALGAS_stringset & io_ioReferencedLabelSet,
-                                              C_Compiler * inCompiler
-                                              COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                Extension method '@midrange_intermediate_instruction_BitTestSkip optimizeBitTestSkip'                *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-typedef void (*categoryMethodSignature_midrange_5F_intermediate_5F_instruction_5F_BitTestSkip_optimizeBitTestSkip) (const class cPtr_midrange_5F_intermediate_5F_instruction_5F_BitTestSkip * inObject,
-                                                                                                                    const class GALGAS_uint constinArgument0,
-                                                                                                                    class GALGAS_midrange_5F_intermediate_5F_instructionList & ioArgument1,
-                                                                                                                    class GALGAS_string & ioArgument2,
-                                                                                                                    class GALGAS_bool & ioArgument3,
-                                                                                                                    class C_Compiler * inCompiler
-                                                                                                                    COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void enterCategoryMethod_optimizeBitTestSkip (const int32_t inClassIndex,
-                                              categoryMethodSignature_midrange_5F_intermediate_5F_instruction_5F_BitTestSkip_optimizeBitTestSkip inMethod) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void callCategoryMethod_optimizeBitTestSkip (const class cPtr_midrange_5F_intermediate_5F_instruction_5F_BitTestSkip * inObject,
+void callExtensionMethod_optimizeTestDecInc (const class cPtr_midrange_5F_intermediate_5F_incDecRegisterInCondition * inObject,
+                                             const GALGAS_symbolTableForOptimizations constin_inSymbolTable,
                                              const GALGAS_uint constin_inLineIndex,
                                              GALGAS_midrange_5F_intermediate_5F_instructionList & io_ioGeneratedInstructionList,
                                              GALGAS_string & io_ioListFileContents,
@@ -4163,32 +4086,109 @@ void callCategoryMethod_optimizeBitTestSkip (const class cPtr_midrange_5F_interm
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
+//                          Extension method '@midrange_intermediate_instruction defineLabel'                          *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+typedef void (*extensionMethodSignature_midrange_5F_intermediate_5F_instruction_defineLabel) (const class cPtr_midrange_5F_intermediate_5F_instruction * inObject,
+                                                                                              class GALGAS_symbolTableForOptimizations & ioArgument0,
+                                                                                              const class GALGAS_uint constinArgument1,
+                                                                                              class C_Compiler * inCompiler
+                                                                                              COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void enterExtensionMethod_defineLabel (const int32_t inClassIndex,
+                                       extensionMethodSignature_midrange_5F_intermediate_5F_instruction_defineLabel inMethod) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void callExtensionMethod_defineLabel (const class cPtr_midrange_5F_intermediate_5F_instruction * inObject,
+                                      GALGAS_symbolTableForOptimizations & io_ioRoutineSymbolTable,
+                                      const GALGAS_uint constin_inLineIndex,
+                                      C_Compiler * inCompiler
+                                      COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                     Extension method '@midrange_intermediate_instruction enterReferencedLabel'                      *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+typedef void (*extensionMethodSignature_midrange_5F_intermediate_5F_instruction_enterReferencedLabel) (const class cPtr_midrange_5F_intermediate_5F_instruction * inObject,
+                                                                                                       class GALGAS_stringset & ioArgument0,
+                                                                                                       class C_Compiler * inCompiler
+                                                                                                       COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void enterExtensionMethod_enterReferencedLabel (const int32_t inClassIndex,
+                                                extensionMethodSignature_midrange_5F_intermediate_5F_instruction_enterReferencedLabel inMethod) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void callExtensionMethod_enterReferencedLabel (const class cPtr_midrange_5F_intermediate_5F_instruction * inObject,
+                                               GALGAS_stringset & io_ioReferencedLabelSet,
+                                               C_Compiler * inCompiler
+                                               COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                Extension method '@midrange_intermediate_instruction_BitTestSkip optimizeBitTestSkip'                *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+typedef void (*extensionMethodSignature_midrange_5F_intermediate_5F_instruction_5F_BitTestSkip_optimizeBitTestSkip) (const class cPtr_midrange_5F_intermediate_5F_instruction_5F_BitTestSkip * inObject,
+                                                                                                                     const class GALGAS_uint constinArgument0,
+                                                                                                                     class GALGAS_midrange_5F_intermediate_5F_instructionList & ioArgument1,
+                                                                                                                     class GALGAS_string & ioArgument2,
+                                                                                                                     class GALGAS_bool & ioArgument3,
+                                                                                                                     class C_Compiler * inCompiler
+                                                                                                                     COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void enterExtensionMethod_optimizeBitTestSkip (const int32_t inClassIndex,
+                                               extensionMethodSignature_midrange_5F_intermediate_5F_instruction_5F_BitTestSkip_optimizeBitTestSkip inMethod) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void callExtensionMethod_optimizeBitTestSkip (const class cPtr_midrange_5F_intermediate_5F_instruction_5F_BitTestSkip * inObject,
+                                              const GALGAS_uint constin_inLineIndex,
+                                              GALGAS_midrange_5F_intermediate_5F_instructionList & io_ioGeneratedInstructionList,
+                                              GALGAS_string & io_ioListFileContents,
+                                              GALGAS_bool & io_ioOptimizationsDone,
+                                              C_Compiler * inCompiler
+                                              COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
 //                Extension method '@midrange_intermediate_instruction_literalOperation optimizeMOVLW'                 *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-typedef void (*categoryMethodSignature_midrange_5F_intermediate_5F_instruction_5F_literalOperation_optimizeMOVLW) (const class cPtr_midrange_5F_intermediate_5F_instruction_5F_literalOperation * inObject,
-                                                                                                                   const class GALGAS_uint constinArgument0,
-                                                                                                                   class GALGAS_midrange_5F_intermediate_5F_instructionList & ioArgument1,
-                                                                                                                   class GALGAS_string & ioArgument2,
-                                                                                                                   class GALGAS_bool & ioArgument3,
-                                                                                                                   class C_Compiler * inCompiler
-                                                                                                                   COMMA_LOCATION_ARGS) ;
+typedef void (*extensionMethodSignature_midrange_5F_intermediate_5F_instruction_5F_literalOperation_optimizeMOVLW) (const class cPtr_midrange_5F_intermediate_5F_instruction_5F_literalOperation * inObject,
+                                                                                                                    const class GALGAS_uint constinArgument0,
+                                                                                                                    class GALGAS_midrange_5F_intermediate_5F_instructionList & ioArgument1,
+                                                                                                                    class GALGAS_string & ioArgument2,
+                                                                                                                    class GALGAS_bool & ioArgument3,
+                                                                                                                    class C_Compiler * inCompiler
+                                                                                                                    COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void enterCategoryMethod_optimizeMOVLW (const int32_t inClassIndex,
-                                        categoryMethodSignature_midrange_5F_intermediate_5F_instruction_5F_literalOperation_optimizeMOVLW inMethod) ;
+void enterExtensionMethod_optimizeMOVLW (const int32_t inClassIndex,
+                                         extensionMethodSignature_midrange_5F_intermediate_5F_instruction_5F_literalOperation_optimizeMOVLW inMethod) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void callCategoryMethod_optimizeMOVLW (const class cPtr_midrange_5F_intermediate_5F_instruction_5F_literalOperation * inObject,
-                                       const GALGAS_uint constin_inLineIndex,
-                                       GALGAS_midrange_5F_intermediate_5F_instructionList & io_ioGeneratedInstructionList,
-                                       GALGAS_string & io_ioListFileContents,
-                                       GALGAS_bool & io_ioOptimizationsDone,
-                                       C_Compiler * inCompiler
-                                       COMMA_LOCATION_ARGS) ;
+void callExtensionMethod_optimizeMOVLW (const class cPtr_midrange_5F_intermediate_5F_instruction_5F_literalOperation * inObject,
+                                        const GALGAS_uint constin_inLineIndex,
+                                        GALGAS_midrange_5F_intermediate_5F_instructionList & io_ioGeneratedInstructionList,
+                                        GALGAS_string & io_ioListFileContents,
+                                        GALGAS_bool & io_ioOptimizationsDone,
+                                        C_Compiler * inCompiler
+                                        COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -4207,20 +4207,20 @@ void routine_midrange_5F_compute_5F_JSR_5F_JUMP (class GALGAS_midrange_5F_interm
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-typedef class GALGAS_uint (*categoryGetterSignature_midrange_5F_intermediate_5F_instruction_instructionLength) (const class cPtr_midrange_5F_intermediate_5F_instruction * inObject,
-                                                                                                                class C_Compiler * inCompiler
-                                                                                                                COMMA_LOCATION_ARGS) ;
+typedef class GALGAS_uint (*enterExtensionGetter_midrange_5F_intermediate_5F_instruction_instructionLength) (const class cPtr_midrange_5F_intermediate_5F_instruction * inObject,
+                                                                                                             class C_Compiler * inCompiler
+                                                                                                             COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void enterCategoryGetter_instructionLength (const int32_t inClassIndex,
-                                            categoryGetterSignature_midrange_5F_intermediate_5F_instruction_instructionLength inMethod) ;
+void enterExtensionGetter_instructionLength (const int32_t inClassIndex,
+                                             enterExtensionGetter_midrange_5F_intermediate_5F_instruction_instructionLength inMethod) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-class GALGAS_uint callCategoryGetter_instructionLength (const class cPtr_midrange_5F_intermediate_5F_instruction * inObject,
-                                                        C_Compiler * inCompiler
-                                                        COMMA_LOCATION_ARGS) ;
+class GALGAS_uint callExtensionGetter_instructionLength (const class cPtr_midrange_5F_intermediate_5F_instruction * inObject,
+                                                         C_Compiler * inCompiler
+                                                         COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -4228,32 +4228,32 @@ class GALGAS_uint callCategoryGetter_instructionLength (const class cPtr_midrang
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-typedef void (*categoryMethodSignature_midrange_5F_intermediate_5F_instruction_compute) (const class cPtr_midrange_5F_intermediate_5F_instruction * inObject,
-                                                                                         const class GALGAS_midrange_5F_symbolTableForConvertingRelatives constinArgument0,
-                                                                                         class GALGAS_uint & ioArgument1,
-                                                                                         class GALGAS_bool & ioArgument2,
-                                                                                         class GALGAS_midrange_5F_intermediate_5F_instructionList & ioArgument3,
-                                                                                         const class GALGAS_uint constinArgument4,
-                                                                                         class GALGAS_string & ioArgument5,
-                                                                                         class C_Compiler * inCompiler
-                                                                                         COMMA_LOCATION_ARGS) ;
+typedef void (*extensionMethodSignature_midrange_5F_intermediate_5F_instruction_compute) (const class cPtr_midrange_5F_intermediate_5F_instruction * inObject,
+                                                                                          const class GALGAS_midrange_5F_symbolTableForConvertingRelatives constinArgument0,
+                                                                                          class GALGAS_uint & ioArgument1,
+                                                                                          class GALGAS_bool & ioArgument2,
+                                                                                          class GALGAS_midrange_5F_intermediate_5F_instructionList & ioArgument3,
+                                                                                          const class GALGAS_uint constinArgument4,
+                                                                                          class GALGAS_string & ioArgument5,
+                                                                                          class C_Compiler * inCompiler
+                                                                                          COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void enterCategoryMethod_compute (const int32_t inClassIndex,
-                                  categoryMethodSignature_midrange_5F_intermediate_5F_instruction_compute inMethod) ;
+void enterExtensionMethod_compute (const int32_t inClassIndex,
+                                   extensionMethodSignature_midrange_5F_intermediate_5F_instruction_compute inMethod) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void callCategoryMethod_compute (const class cPtr_midrange_5F_intermediate_5F_instruction * inObject,
-                                 const GALGAS_midrange_5F_symbolTableForConvertingRelatives constin_inRoutineSymbolTable,
-                                 GALGAS_uint & io_ioAddress,
-                                 GALGAS_bool & io_ioJUMP_5F_or_5F_JSR_5F_fixed,
-                                 GALGAS_midrange_5F_intermediate_5F_instructionList & io_ioGeneratedInstructionList,
-                                 const GALGAS_uint constin_inIndex,
-                                 GALGAS_string & io_ioListFileContents,
-                                 C_Compiler * inCompiler
-                                 COMMA_LOCATION_ARGS) ;
+void callExtensionMethod_compute (const class cPtr_midrange_5F_intermediate_5F_instruction * inObject,
+                                  const GALGAS_midrange_5F_symbolTableForConvertingRelatives constin_inRoutineSymbolTable,
+                                  GALGAS_uint & io_ioAddress,
+                                  GALGAS_bool & io_ioJUMP_5F_or_5F_JSR_5F_fixed,
+                                  GALGAS_midrange_5F_intermediate_5F_instructionList & io_ioGeneratedInstructionList,
+                                  const GALGAS_uint constin_inIndex,
+                                  GALGAS_string & io_ioListFileContents,
+                                  C_Compiler * inCompiler
+                                  COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -4261,24 +4261,24 @@ void callCategoryMethod_compute (const class cPtr_midrange_5F_intermediate_5F_in
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-typedef void (*categoryMethodSignature_midrange_5F_intermediate_5F_instruction_defineLabelAtAddress) (const class cPtr_midrange_5F_intermediate_5F_instruction * inObject,
-                                                                                                      class GALGAS_midrange_5F_symbolTableForConvertingRelatives & ioArgument0,
-                                                                                                      class GALGAS_uint & ioArgument1,
-                                                                                                      class C_Compiler * inCompiler
-                                                                                                      COMMA_LOCATION_ARGS) ;
+typedef void (*extensionMethodSignature_midrange_5F_intermediate_5F_instruction_defineLabelAtAddress) (const class cPtr_midrange_5F_intermediate_5F_instruction * inObject,
+                                                                                                       class GALGAS_midrange_5F_symbolTableForConvertingRelatives & ioArgument0,
+                                                                                                       class GALGAS_uint & ioArgument1,
+                                                                                                       class C_Compiler * inCompiler
+                                                                                                       COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void enterCategoryMethod_defineLabelAtAddress (const int32_t inClassIndex,
-                                               categoryMethodSignature_midrange_5F_intermediate_5F_instruction_defineLabelAtAddress inMethod) ;
+void enterExtensionMethod_defineLabelAtAddress (const int32_t inClassIndex,
+                                                extensionMethodSignature_midrange_5F_intermediate_5F_instruction_defineLabelAtAddress inMethod) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void callCategoryMethod_defineLabelAtAddress (const class cPtr_midrange_5F_intermediate_5F_instruction * inObject,
-                                              GALGAS_midrange_5F_symbolTableForConvertingRelatives & io_ioRoutineSymbolTable,
-                                              GALGAS_uint & io_ioAddress,
-                                              C_Compiler * inCompiler
-                                              COMMA_LOCATION_ARGS) ;
+void callExtensionMethod_defineLabelAtAddress (const class cPtr_midrange_5F_intermediate_5F_instruction * inObject,
+                                               GALGAS_midrange_5F_symbolTableForConvertingRelatives & io_ioRoutineSymbolTable,
+                                               GALGAS_uint & io_ioAddress,
+                                               C_Compiler * inCompiler
+                                               COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -4301,24 +4301,24 @@ void routine_midrange_5F_build_5F_assembly_5F_code (const class GALGAS_string co
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-typedef void (*categoryMethodSignature_midrange_5F_intermediate_5F_instruction_buildAssemblyCode) (const class cPtr_midrange_5F_intermediate_5F_instruction * inObject,
-                                                                                                   class GALGAS_string & ioArgument0,
-                                                                                                   class GALGAS_uint & ioArgument1,
-                                                                                                   class C_Compiler * inCompiler
-                                                                                                   COMMA_LOCATION_ARGS) ;
+typedef void (*extensionMethodSignature_midrange_5F_intermediate_5F_instruction_buildAssemblyCode) (const class cPtr_midrange_5F_intermediate_5F_instruction * inObject,
+                                                                                                    class GALGAS_string & ioArgument0,
+                                                                                                    class GALGAS_uint & ioArgument1,
+                                                                                                    class C_Compiler * inCompiler
+                                                                                                    COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void enterCategoryMethod_buildAssemblyCode (const int32_t inClassIndex,
-                                            categoryMethodSignature_midrange_5F_intermediate_5F_instruction_buildAssemblyCode inMethod) ;
+void enterExtensionMethod_buildAssemblyCode (const int32_t inClassIndex,
+                                             extensionMethodSignature_midrange_5F_intermediate_5F_instruction_buildAssemblyCode inMethod) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void callCategoryMethod_buildAssemblyCode (const class cPtr_midrange_5F_intermediate_5F_instruction * inObject,
-                                           GALGAS_string & io_ioString,
-                                           GALGAS_uint & io_ioLocalLabelIndex,
-                                           C_Compiler * inCompiler
-                                           COMMA_LOCATION_ARGS) ;
+void callExtensionMethod_buildAssemblyCode (const class cPtr_midrange_5F_intermediate_5F_instruction * inObject,
+                                            GALGAS_string & io_ioString,
+                                            GALGAS_uint & io_ioLocalLabelIndex,
+                                            C_Compiler * inCompiler
+                                            COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -4435,24 +4435,24 @@ void routine_build_5F_midrange_5F_ipic_5F_binary_5F_code (const class GALGAS_reg
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-typedef void (*categoryMethodSignature_midrange_5F_intermediate_5F_instruction_enterLabelAtAddress) (const class cPtr_midrange_5F_intermediate_5F_instruction * inObject,
-                                                                                                     class GALGAS_midrange_5F_symbolTable & ioArgument0,
-                                                                                                     class GALGAS_uint & ioArgument1,
-                                                                                                     class C_Compiler * inCompiler
-                                                                                                     COMMA_LOCATION_ARGS) ;
+typedef void (*extensionMethodSignature_midrange_5F_intermediate_5F_instruction_enterLabelAtAddress) (const class cPtr_midrange_5F_intermediate_5F_instruction * inObject,
+                                                                                                      class GALGAS_midrange_5F_symbolTable & ioArgument0,
+                                                                                                      class GALGAS_uint & ioArgument1,
+                                                                                                      class C_Compiler * inCompiler
+                                                                                                      COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void enterCategoryMethod_enterLabelAtAddress (const int32_t inClassIndex,
-                                              categoryMethodSignature_midrange_5F_intermediate_5F_instruction_enterLabelAtAddress inMethod) ;
+void enterExtensionMethod_enterLabelAtAddress (const int32_t inClassIndex,
+                                               extensionMethodSignature_midrange_5F_intermediate_5F_instruction_enterLabelAtAddress inMethod) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void callCategoryMethod_enterLabelAtAddress (const class cPtr_midrange_5F_intermediate_5F_instruction * inObject,
-                                             GALGAS_midrange_5F_symbolTable & io_ioRoutineSymbolTable,
-                                             GALGAS_uint & io_ioAddress,
-                                             C_Compiler * inCompiler
-                                             COMMA_LOCATION_ARGS) ;
+void callExtensionMethod_enterLabelAtAddress (const class cPtr_midrange_5F_intermediate_5F_instruction * inObject,
+                                              GALGAS_midrange_5F_symbolTable & io_ioRoutineSymbolTable,
+                                              GALGAS_uint & io_ioAddress,
+                                              C_Compiler * inCompiler
+                                              COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -4460,32 +4460,32 @@ void callCategoryMethod_enterLabelAtAddress (const class cPtr_midrange_5F_interm
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-typedef void (*categoryMethodSignature_midrange_5F_intermediate_5F_instruction_generateBinaryCodeAtAddress) (const class cPtr_midrange_5F_intermediate_5F_instruction * inObject,
-                                                                                                             const class GALGAS_registerTable constinArgument0,
-                                                                                                             const class GALGAS_constantMap constinArgument1,
-                                                                                                             const class GALGAS_uint constinArgument2,
-                                                                                                             const class GALGAS_midrange_5F_symbolTable constinArgument3,
-                                                                                                             class GALGAS_string & ioArgument4,
-                                                                                                             class GALGAS_uint & ioArgument5,
-                                                                                                             class C_Compiler * inCompiler
-                                                                                                             COMMA_LOCATION_ARGS) ;
+typedef void (*extensionMethodSignature_midrange_5F_intermediate_5F_instruction_generateBinaryCodeAtAddress) (const class cPtr_midrange_5F_intermediate_5F_instruction * inObject,
+                                                                                                              const class GALGAS_registerTable constinArgument0,
+                                                                                                              const class GALGAS_constantMap constinArgument1,
+                                                                                                              const class GALGAS_uint constinArgument2,
+                                                                                                              const class GALGAS_midrange_5F_symbolTable constinArgument3,
+                                                                                                              class GALGAS_string & ioArgument4,
+                                                                                                              class GALGAS_uint & ioArgument5,
+                                                                                                              class C_Compiler * inCompiler
+                                                                                                              COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void enterCategoryMethod_generateBinaryCodeAtAddress (const int32_t inClassIndex,
-                                                      categoryMethodSignature_midrange_5F_intermediate_5F_instruction_generateBinaryCodeAtAddress inMethod) ;
+void enterExtensionMethod_generateBinaryCodeAtAddress (const int32_t inClassIndex,
+                                                       extensionMethodSignature_midrange_5F_intermediate_5F_instruction_generateBinaryCodeAtAddress inMethod) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void callCategoryMethod_generateBinaryCodeAtAddress (const class cPtr_midrange_5F_intermediate_5F_instruction * inObject,
-                                                     const GALGAS_registerTable constin_inRegisterTable,
-                                                     const GALGAS_constantMap constin_inConstantMap,
-                                                     const GALGAS_uint constin_inTotalBankCount,
-                                                     const GALGAS_midrange_5F_symbolTable constin_inRoutineSymbolTable,
-                                                     GALGAS_string & io_ioListFileContents,
-                                                     GALGAS_uint & io_ioAddress,
-                                                     C_Compiler * inCompiler
-                                                     COMMA_LOCATION_ARGS) ;
+void callExtensionMethod_generateBinaryCodeAtAddress (const class cPtr_midrange_5F_intermediate_5F_instruction * inObject,
+                                                      const GALGAS_registerTable constin_inRegisterTable,
+                                                      const GALGAS_constantMap constin_inConstantMap,
+                                                      const GALGAS_uint constin_inTotalBankCount,
+                                                      const GALGAS_midrange_5F_symbolTable constin_inRoutineSymbolTable,
+                                                      GALGAS_string & io_ioListFileContents,
+                                                      GALGAS_uint & io_ioAddress,
+                                                      C_Compiler * inCompiler
+                                                      COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -4684,24 +4684,24 @@ void routine_addPic_31__38_UsedRoutinesFromInstructionList (const class GALGAS_p
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-typedef void (*categoryMethodSignature_pic_31__38_PiccoloInstruction_addUsedRoutines) (const class cPtr_pic_31__38_PiccoloInstruction * inObject,
-                                                                                       const class GALGAS_pic_31__38_MacroMap constinArgument0,
-                                                                                       class GALGAS_stringset & ioArgument1,
-                                                                                       class C_Compiler * inCompiler
-                                                                                       COMMA_LOCATION_ARGS) ;
+typedef void (*extensionMethodSignature_pic_31__38_PiccoloInstruction_addUsedRoutines) (const class cPtr_pic_31__38_PiccoloInstruction * inObject,
+                                                                                        const class GALGAS_pic_31__38_MacroMap constinArgument0,
+                                                                                        class GALGAS_stringset & ioArgument1,
+                                                                                        class C_Compiler * inCompiler
+                                                                                        COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void enterCategoryMethod_addUsedRoutines (const int32_t inClassIndex,
-                                          categoryMethodSignature_pic_31__38_PiccoloInstruction_addUsedRoutines inMethod) ;
+void enterExtensionMethod_addUsedRoutines (const int32_t inClassIndex,
+                                           extensionMethodSignature_pic_31__38_PiccoloInstruction_addUsedRoutines inMethod) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void callCategoryMethod_addUsedRoutines (const class cPtr_pic_31__38_PiccoloInstruction * inObject,
-                                         const GALGAS_pic_31__38_MacroMap constin_inMacroMap,
-                                         GALGAS_stringset & io_ioUsedRoutines,
-                                         C_Compiler * inCompiler
-                                         COMMA_LOCATION_ARGS) ;
+void callExtensionMethod_addUsedRoutines (const class cPtr_pic_31__38_PiccoloInstruction * inObject,
+                                          const GALGAS_pic_31__38_MacroMap constin_inMacroMap,
+                                          GALGAS_stringset & io_ioUsedRoutines,
+                                          C_Compiler * inCompiler
+                                          COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -4723,28 +4723,28 @@ void routine_performInlineFromInstructionList (const class GALGAS_pic_31__38_Ins
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-typedef void (*categoryMethodSignature_pic_31__38_PiccoloInstruction_performInlining) (const class cPtr_pic_31__38_PiccoloInstruction * inObject,
-                                                                                       const class GALGAS_stringset constinArgument0,
-                                                                                       const class GALGAS_declaredRoutineMap constinArgument1,
-                                                                                       const class GALGAS_stringset constinArgument2,
-                                                                                       class GALGAS_pic_31__38_InstructionList & ioArgument3,
-                                                                                       class C_Compiler * inCompiler
-                                                                                       COMMA_LOCATION_ARGS) ;
+typedef void (*extensionMethodSignature_pic_31__38_PiccoloInstruction_performInlining) (const class cPtr_pic_31__38_PiccoloInstruction * inObject,
+                                                                                        const class GALGAS_stringset constinArgument0,
+                                                                                        const class GALGAS_declaredRoutineMap constinArgument1,
+                                                                                        const class GALGAS_stringset constinArgument2,
+                                                                                        class GALGAS_pic_31__38_InstructionList & ioArgument3,
+                                                                                        class C_Compiler * inCompiler
+                                                                                        COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void enterCategoryMethod_performInlining (const int32_t inClassIndex,
-                                          categoryMethodSignature_pic_31__38_PiccoloInstruction_performInlining inMethod) ;
+void enterExtensionMethod_performInlining (const int32_t inClassIndex,
+                                           extensionMethodSignature_pic_31__38_PiccoloInstruction_performInlining inMethod) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void callCategoryMethod_performInlining (const class cPtr_pic_31__38_PiccoloInstruction * inObject,
-                                         const GALGAS_stringset constin_inInlinedRoutineSet,
-                                         const GALGAS_declaredRoutineMap constin_inDeclaredRoutineMap,
-                                         const GALGAS_stringset constin_inCurrentlyInlinedRoutineSet,
-                                         GALGAS_pic_31__38_InstructionList & io_ioInstructionList,
-                                         C_Compiler * inCompiler
-                                         COMMA_LOCATION_ARGS) ;
+void callExtensionMethod_performInlining (const class cPtr_pic_31__38_PiccoloInstruction * inObject,
+                                          const GALGAS_stringset constin_inInlinedRoutineSet,
+                                          const GALGAS_declaredRoutineMap constin_inDeclaredRoutineMap,
+                                          const GALGAS_stringset constin_inCurrentlyInlinedRoutineSet,
+                                          GALGAS_pic_31__38_InstructionList & io_ioInstructionList,
+                                          C_Compiler * inCompiler
+                                          COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -4764,11 +4764,11 @@ void routine_displayBlockList (const class GALGAS_string constinArgument0,
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-void categoryMethod_display (const class GALGAS_ipic_31__38_Block inObject,
-                             const class GALGAS_string constin_inNextBlockLabel,
-                             class GALGAS_string & io_ioListFileContents,
-                             class C_Compiler * inCompiler
-                             COMMA_LOCATION_ARGS) ;
+void extensionMethod_display (const class GALGAS_ipic_31__38_Block inObject,
+                              const class GALGAS_string constin_inNextBlockLabel,
+                              class GALGAS_string & io_ioListFileContents,
+                              class C_Compiler * inCompiler
+                              COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -4801,50 +4801,50 @@ void routine_analyzeInstructionList (const class GALGAS_pic_31__38_InstructionLi
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-typedef void (*categoryMethodSignature_pic_31__38_PiccoloInstruction_analyze) (const class cPtr_pic_31__38_PiccoloInstruction * inObject,
-                                                                               const class GALGAS_uint constinArgument0,
-                                                                               class GALGAS_ipic_31__38_BlockList & ioArgument1,
-                                                                               const class GALGAS_routineMap constinArgument2,
-                                                                               const class GALGAS_registerTable constinArgument3,
-                                                                               const class GALGAS_pic_31__38__5F_dataMap constinArgument4,
-                                                                               const class GALGAS_constantMap constinArgument5,
-                                                                               const class GALGAS_pic_31__38_MacroMap constinArgument6,
-                                                                               class GALGAS_uint & ioArgument7,
-                                                                               class GALGAS_ipic_31__38_SequentialInstructionList & ioArgument8,
-                                                                               class GALGAS_lstring & ioArgument9,
-                                                                               class GALGAS_string & ioArgument10,
-                                                                               class GALGAS_uint & ioArgument11,
-                                                                               const class GALGAS_bool constinArgument12,
-                                                                               const class GALGAS_routineKind constinArgument13,
-                                                                               class GALGAS_stringset & ioArgument14,
-                                                                               class C_Compiler * inCompiler
-                                                                               COMMA_LOCATION_ARGS) ;
+typedef void (*extensionMethodSignature_pic_31__38_PiccoloInstruction_analyze) (const class cPtr_pic_31__38_PiccoloInstruction * inObject,
+                                                                                const class GALGAS_uint constinArgument0,
+                                                                                class GALGAS_ipic_31__38_BlockList & ioArgument1,
+                                                                                const class GALGAS_routineMap constinArgument2,
+                                                                                const class GALGAS_registerTable constinArgument3,
+                                                                                const class GALGAS_pic_31__38__5F_dataMap constinArgument4,
+                                                                                const class GALGAS_constantMap constinArgument5,
+                                                                                const class GALGAS_pic_31__38_MacroMap constinArgument6,
+                                                                                class GALGAS_uint & ioArgument7,
+                                                                                class GALGAS_ipic_31__38_SequentialInstructionList & ioArgument8,
+                                                                                class GALGAS_lstring & ioArgument9,
+                                                                                class GALGAS_string & ioArgument10,
+                                                                                class GALGAS_uint & ioArgument11,
+                                                                                const class GALGAS_bool constinArgument12,
+                                                                                const class GALGAS_routineKind constinArgument13,
+                                                                                class GALGAS_stringset & ioArgument14,
+                                                                                class C_Compiler * inCompiler
+                                                                                COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void enterCategoryMethod_analyze (const int32_t inClassIndex,
-                                  categoryMethodSignature_pic_31__38_PiccoloInstruction_analyze inMethod) ;
+void enterExtensionMethod_analyze (const int32_t inClassIndex,
+                                   extensionMethodSignature_pic_31__38_PiccoloInstruction_analyze inMethod) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void callCategoryMethod_analyze (const class cPtr_pic_31__38_PiccoloInstruction * inObject,
-                                 const GALGAS_uint constin_inAccessBankSplitOffset,
-                                 GALGAS_ipic_31__38_BlockList & io_ioGeneratedBlockList,
-                                 const GALGAS_routineMap constin_inRoutineMap,
-                                 const GALGAS_registerTable constin_inRegisterTable,
-                                 const GALGAS_pic_31__38__5F_dataMap constin_inDataMap,
-                                 const GALGAS_constantMap constin_inConstantMap,
-                                 const GALGAS_pic_31__38_MacroMap constin_inMacroMap,
-                                 GALGAS_uint & io_ioLocalLabelIndex,
-                                 GALGAS_ipic_31__38_SequentialInstructionList & io_ioGeneratedInstructionList,
-                                 GALGAS_lstring & io_ioBlockLabel,
-                                 GALGAS_string & io_ioListFileContents,
-                                 GALGAS_uint & io_ioCurrentBank,
-                                 const GALGAS_bool constin_inShouldPreserveBSR,
-                                 const GALGAS_routineKind constin_inRoutineKind,
-                                 GALGAS_stringset & io_ioUsedRegisters,
-                                 C_Compiler * inCompiler
-                                 COMMA_LOCATION_ARGS) ;
+void callExtensionMethod_analyze (const class cPtr_pic_31__38_PiccoloInstruction * inObject,
+                                  const GALGAS_uint constin_inAccessBankSplitOffset,
+                                  GALGAS_ipic_31__38_BlockList & io_ioGeneratedBlockList,
+                                  const GALGAS_routineMap constin_inRoutineMap,
+                                  const GALGAS_registerTable constin_inRegisterTable,
+                                  const GALGAS_pic_31__38__5F_dataMap constin_inDataMap,
+                                  const GALGAS_constantMap constin_inConstantMap,
+                                  const GALGAS_pic_31__38_MacroMap constin_inMacroMap,
+                                  GALGAS_uint & io_ioLocalLabelIndex,
+                                  GALGAS_ipic_31__38_SequentialInstructionList & io_ioGeneratedInstructionList,
+                                  GALGAS_lstring & io_ioBlockLabel,
+                                  GALGAS_string & io_ioListFileContents,
+                                  GALGAS_uint & io_ioCurrentBank,
+                                  const GALGAS_bool constin_inShouldPreserveBSR,
+                                  const GALGAS_routineKind constin_inRoutineKind,
+                                  GALGAS_stringset & io_ioUsedRegisters,
+                                  C_Compiler * inCompiler
+                                  COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -5565,34 +5565,34 @@ class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation : pub
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-typedef void (*categoryMethodSignature_registerExpression_analyzeRegisterExpression) (const class cPtr_registerExpression * inObject,
-                                                                                      const class GALGAS_uint constinArgument0,
-                                                                                      const class GALGAS_uint constinArgument1,
-                                                                                      const class GALGAS_registerTable constinArgument2,
-                                                                                      const class GALGAS_constantMap constinArgument3,
-                                                                                      class GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression & outArgument4,
-                                                                                      class GALGAS_bitSliceTable & outArgument5,
-                                                                                      class GALGAS_stringset & ioArgument6,
-                                                                                      class C_Compiler * inCompiler
-                                                                                      COMMA_LOCATION_ARGS) ;
+typedef void (*extensionMethodSignature_registerExpression_analyzeRegisterExpression) (const class cPtr_registerExpression * inObject,
+                                                                                       const class GALGAS_uint constinArgument0,
+                                                                                       const class GALGAS_uint constinArgument1,
+                                                                                       const class GALGAS_registerTable constinArgument2,
+                                                                                       const class GALGAS_constantMap constinArgument3,
+                                                                                       class GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression & outArgument4,
+                                                                                       class GALGAS_bitSliceTable & outArgument5,
+                                                                                       class GALGAS_stringset & ioArgument6,
+                                                                                       class C_Compiler * inCompiler
+                                                                                       COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void enterCategoryMethod_analyzeRegisterExpression (const int32_t inClassIndex,
-                                                    categoryMethodSignature_registerExpression_analyzeRegisterExpression inMethod) ;
+void enterExtensionMethod_analyzeRegisterExpression (const int32_t inClassIndex,
+                                                     extensionMethodSignature_registerExpression_analyzeRegisterExpression inMethod) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void callCategoryMethod_analyzeRegisterExpression (const class cPtr_registerExpression * inObject,
-                                                   const GALGAS_uint constin_inAccessBankSplitOffset,
-                                                   const GALGAS_uint constin_inCurrentBank,
-                                                   const GALGAS_registerTable constin_inRegisterTable,
-                                                   const GALGAS_constantMap constin_inConstantMap,
-                                                   GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression & out_outIPICregisterDescription,
-                                                   GALGAS_bitSliceTable & out_outBitSliceTable,
-                                                   GALGAS_stringset & io_ioUsedRegisters,
-                                                   C_Compiler * inCompiler
-                                                   COMMA_LOCATION_ARGS) ;
+void callExtensionMethod_analyzeRegisterExpression (const class cPtr_registerExpression * inObject,
+                                                    const GALGAS_uint constin_inAccessBankSplitOffset,
+                                                    const GALGAS_uint constin_inCurrentBank,
+                                                    const GALGAS_registerTable constin_inRegisterTable,
+                                                    const GALGAS_constantMap constin_inConstantMap,
+                                                    GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression & out_outIPICregisterDescription,
+                                                    GALGAS_bitSliceTable & out_outBitSliceTable,
+                                                    GALGAS_stringset & io_ioUsedRegisters,
+                                                    C_Compiler * inCompiler
+                                                    COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -5701,12 +5701,12 @@ void routine_enterGoto_32_block (const class GALGAS_symbolTableForBlockOptimizat
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-void categoryMethod_enterReferencedLabels (const class GALGAS_ipic_31__38_Block inObject,
-                                           const class GALGAS_symbolTableForBlockOptimization constin_inSymbolTable,
-                                           const class GALGAS_ipic_31__38_BlockList constin_inBlockList,
-                                           class GALGAS_stringset & io_ioReferencedBlockSet,
-                                           class C_Compiler * inCompiler
-                                           COMMA_LOCATION_ARGS) ;
+void extensionMethod_enterReferencedLabels (const class GALGAS_ipic_31__38_Block inObject,
+                                            const class GALGAS_symbolTableForBlockOptimization constin_inSymbolTable,
+                                            const class GALGAS_ipic_31__38_BlockList constin_inBlockList,
+                                            class GALGAS_stringset & io_ioReferencedBlockSet,
+                                            class C_Compiler * inCompiler
+                                            COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -5743,36 +5743,36 @@ void routine_instructionListOptimization (const class GALGAS_symbolTableForBlock
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-typedef void (*categoryMethodSignature_ipic_31__38_SequentialInstruction_optimizeInstruction) (const class cPtr_ipic_31__38_SequentialInstruction * inObject,
-                                                                                               const class GALGAS_symbolTableForBlockOptimization constinArgument0,
-                                                                                               const class GALGAS_optimizeFlagStruct constinArgument1,
-                                                                                               const class GALGAS_ipic_31__38_BlockList constinArgument2,
-                                                                                               const class GALGAS_lstring constinArgument3,
-                                                                                               class GALGAS_bool & outArgument4,
-                                                                                               class GALGAS_string & ioArgument5,
-                                                                                               class GALGAS_ipic_31__38_SequentialInstruction & outArgument6,
-                                                                                               class GALGAS_bool & outArgument7,
-                                                                                               class C_Compiler * inCompiler
-                                                                                               COMMA_LOCATION_ARGS) ;
+typedef void (*extensionMethodSignature_ipic_31__38_SequentialInstruction_optimizeInstruction) (const class cPtr_ipic_31__38_SequentialInstruction * inObject,
+                                                                                                const class GALGAS_symbolTableForBlockOptimization constinArgument0,
+                                                                                                const class GALGAS_optimizeFlagStruct constinArgument1,
+                                                                                                const class GALGAS_ipic_31__38_BlockList constinArgument2,
+                                                                                                const class GALGAS_lstring constinArgument3,
+                                                                                                class GALGAS_bool & outArgument4,
+                                                                                                class GALGAS_string & ioArgument5,
+                                                                                                class GALGAS_ipic_31__38_SequentialInstruction & outArgument6,
+                                                                                                class GALGAS_bool & outArgument7,
+                                                                                                class C_Compiler * inCompiler
+                                                                                                COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void enterCategoryMethod_optimizeInstruction (const int32_t inClassIndex,
-                                              categoryMethodSignature_ipic_31__38_SequentialInstruction_optimizeInstruction inMethod) ;
+void enterExtensionMethod_optimizeInstruction (const int32_t inClassIndex,
+                                               extensionMethodSignature_ipic_31__38_SequentialInstruction_optimizeInstruction inMethod) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void callCategoryMethod_optimizeInstruction (const class cPtr_ipic_31__38_SequentialInstruction * inObject,
-                                             const GALGAS_symbolTableForBlockOptimization constin_inSymbolTable,
-                                             const GALGAS_optimizeFlagStruct constin_inOptimizeFlagStruct,
-                                             const GALGAS_ipic_31__38_BlockList constin_inBlockList,
-                                             const GALGAS_lstring constin_inBlockLabel,
-                                             GALGAS_bool & out_outOptimizationDone,
-                                             GALGAS_string & io_ioListFileContents,
-                                             GALGAS_ipic_31__38_SequentialInstruction & out_outOptimizedInstruction,
-                                             GALGAS_bool & out_outNOPsubstitution,
-                                             C_Compiler * inCompiler
-                                             COMMA_LOCATION_ARGS) ;
+void callExtensionMethod_optimizeInstruction (const class cPtr_ipic_31__38_SequentialInstruction * inObject,
+                                              const GALGAS_symbolTableForBlockOptimization constin_inSymbolTable,
+                                              const GALGAS_optimizeFlagStruct constin_inOptimizeFlagStruct,
+                                              const GALGAS_ipic_31__38_BlockList constin_inBlockList,
+                                              const GALGAS_lstring constin_inBlockLabel,
+                                              GALGAS_bool & out_outOptimizationDone,
+                                              GALGAS_string & io_ioListFileContents,
+                                              GALGAS_ipic_31__38_SequentialInstruction & out_outOptimizedInstruction,
+                                              GALGAS_bool & out_outNOPsubstitution,
+                                              C_Compiler * inCompiler
+                                              COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -5886,15 +5886,15 @@ class GALGAS_string extensionGetter_flagValue (const class GALGAS_bool & inObjec
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-void categoryMethod_optimize (const class GALGAS_ipic_31__38_Block inObject,
-                              const class GALGAS_symbolTableForBlockOptimization constin_inSymbolTable,
-                              const class GALGAS_optimizeFlagStruct constin_inOptimizeFlagStruct,
-                              const class GALGAS_ipic_31__38_BlockList constin_inBlockList,
-                              class GALGAS_bool & io_ioOptimizationDone,
-                              class GALGAS_string & io_ioListFileContents,
-                              class GALGAS_ipic_31__38_Block & out_outOptimizedBlock,
-                              class C_Compiler * inCompiler
-                              COMMA_LOCATION_ARGS) ;
+void extensionMethod_optimize (const class GALGAS_ipic_31__38_Block inObject,
+                               const class GALGAS_symbolTableForBlockOptimization constin_inSymbolTable,
+                               const class GALGAS_optimizeFlagStruct constin_inOptimizeFlagStruct,
+                               const class GALGAS_ipic_31__38_BlockList constin_inBlockList,
+                               class GALGAS_bool & io_ioOptimizationDone,
+                               class GALGAS_string & io_ioListFileContents,
+                               class GALGAS_ipic_31__38_Block & out_outOptimizedBlock,
+                               class C_Compiler * inCompiler
+                               COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -5924,24 +5924,24 @@ class GALGAS_uint function_blockDiscontinuityCount (class GALGAS_ipic_31__38_Blo
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-typedef void (*categoryMethodSignature_ipic_31__38_AbstractBlockTerminator_buildTerminatorOrderedGraph) (const class cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
-                                                                                                         const class GALGAS_lstring constinArgument0,
-                                                                                                         class GALGAS_blockInvocationGraph & ioArgument1,
-                                                                                                         class C_Compiler * inCompiler
-                                                                                                         COMMA_LOCATION_ARGS) ;
+typedef void (*extensionMethodSignature_ipic_31__38_AbstractBlockTerminator_buildTerminatorOrderedGraph) (const class cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
+                                                                                                          const class GALGAS_lstring constinArgument0,
+                                                                                                          class GALGAS_blockInvocationGraph & ioArgument1,
+                                                                                                          class C_Compiler * inCompiler
+                                                                                                          COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void enterCategoryMethod_buildTerminatorOrderedGraph (const int32_t inClassIndex,
-                                                      categoryMethodSignature_ipic_31__38_AbstractBlockTerminator_buildTerminatorOrderedGraph inMethod) ;
+void enterExtensionMethod_buildTerminatorOrderedGraph (const int32_t inClassIndex,
+                                                       extensionMethodSignature_ipic_31__38_AbstractBlockTerminator_buildTerminatorOrderedGraph inMethod) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void callCategoryMethod_buildTerminatorOrderedGraph (const class cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
-                                                     const GALGAS_lstring constin_inBlockLabel,
-                                                     GALGAS_blockInvocationGraph & io_ioGraph,
-                                                     C_Compiler * inCompiler
-                                                     COMMA_LOCATION_ARGS) ;
+void callExtensionMethod_buildTerminatorOrderedGraph (const class cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
+                                                      const GALGAS_lstring constin_inBlockLabel,
+                                                      GALGAS_blockInvocationGraph & io_ioGraph,
+                                                      C_Compiler * inCompiler
+                                                      COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -5972,26 +5972,26 @@ void routine_buildInvocationGraph (const class GALGAS_ipic_31__38_BlockList cons
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-typedef void (*categoryMethodSignature_ipic_31__38_AbstractBlockTerminator_buildTerminatorInvocationGraph) (const class cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
-                                                                                                            const class GALGAS_lstring constinArgument0,
-                                                                                                            class GALGAS_string & ioArgument1,
-                                                                                                            const class GALGAS_bool constinArgument2,
-                                                                                                            class C_Compiler * inCompiler
-                                                                                                            COMMA_LOCATION_ARGS) ;
+typedef void (*extensionMethodSignature_ipic_31__38_AbstractBlockTerminator_buildTerminatorInvocationGraph) (const class cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
+                                                                                                             const class GALGAS_lstring constinArgument0,
+                                                                                                             class GALGAS_string & ioArgument1,
+                                                                                                             const class GALGAS_bool constinArgument2,
+                                                                                                             class C_Compiler * inCompiler
+                                                                                                             COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void enterCategoryMethod_buildTerminatorInvocationGraph (const int32_t inClassIndex,
-                                                         categoryMethodSignature_ipic_31__38_AbstractBlockTerminator_buildTerminatorInvocationGraph inMethod) ;
+void enterExtensionMethod_buildTerminatorInvocationGraph (const int32_t inClassIndex,
+                                                          extensionMethodSignature_ipic_31__38_AbstractBlockTerminator_buildTerminatorInvocationGraph inMethod) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void callCategoryMethod_buildTerminatorInvocationGraph (const class cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
-                                                        const GALGAS_lstring constin_inBlockLabel,
-                                                        GALGAS_string & io_ioGraphVizString,
-                                                        const GALGAS_bool constin_inDottedArrow,
-                                                        C_Compiler * inCompiler
-                                                        COMMA_LOCATION_ARGS) ;
+void callExtensionMethod_buildTerminatorInvocationGraph (const class cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
+                                                         const GALGAS_lstring constin_inBlockLabel,
+                                                         GALGAS_string & io_ioGraphVizString,
+                                                         const GALGAS_bool constin_inDottedArrow,
+                                                         C_Compiler * inCompiler
+                                                         COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -5999,24 +5999,24 @@ void callCategoryMethod_buildTerminatorInvocationGraph (const class cPtr_ipic_31
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-typedef void (*categoryMethodSignature_ipic_31__38_SequentialInstruction_buildInstructionInvocationGraph) (const class cPtr_ipic_31__38_SequentialInstruction * inObject,
-                                                                                                           const class GALGAS_lstring constinArgument0,
-                                                                                                           class GALGAS_string & ioArgument1,
-                                                                                                           class C_Compiler * inCompiler
-                                                                                                           COMMA_LOCATION_ARGS) ;
+typedef void (*extensionMethodSignature_ipic_31__38_SequentialInstruction_buildInstructionInvocationGraph) (const class cPtr_ipic_31__38_SequentialInstruction * inObject,
+                                                                                                            const class GALGAS_lstring constinArgument0,
+                                                                                                            class GALGAS_string & ioArgument1,
+                                                                                                            class C_Compiler * inCompiler
+                                                                                                            COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void enterCategoryMethod_buildInstructionInvocationGraph (const int32_t inClassIndex,
-                                                          categoryMethodSignature_ipic_31__38_SequentialInstruction_buildInstructionInvocationGraph inMethod) ;
+void enterExtensionMethod_buildInstructionInvocationGraph (const int32_t inClassIndex,
+                                                           extensionMethodSignature_ipic_31__38_SequentialInstruction_buildInstructionInvocationGraph inMethod) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void callCategoryMethod_buildInstructionInvocationGraph (const class cPtr_ipic_31__38_SequentialInstruction * inObject,
-                                                         const GALGAS_lstring constin_inBlockLabel,
-                                                         GALGAS_string & io_ioGraphVizString,
-                                                         C_Compiler * inCompiler
-                                                         COMMA_LOCATION_ARGS) ;
+void callExtensionMethod_buildInstructionInvocationGraph (const class cPtr_ipic_31__38_SequentialInstruction * inObject,
+                                                          const GALGAS_lstring constin_inBlockLabel,
+                                                          GALGAS_string & io_ioGraphVizString,
+                                                          C_Compiler * inCompiler
+                                                          COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -6024,22 +6024,22 @@ void callCategoryMethod_buildInstructionInvocationGraph (const class cPtr_ipic_3
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-typedef class GALGAS_bool (*categoryGetterSignature_ipic_31__38_AbstractBlockTerminator_needToInsertJumpInstruction) (const class cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
-                                                                                                                      const class GALGAS_string & constinArgument0,
-                                                                                                                      class C_Compiler * inCompiler
-                                                                                                                      COMMA_LOCATION_ARGS) ;
+typedef class GALGAS_bool (*enterExtensionGetter_ipic_31__38_AbstractBlockTerminator_needToInsertJumpInstruction) (const class cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
+                                                                                                                   const class GALGAS_string & constinArgument0,
+                                                                                                                   class C_Compiler * inCompiler
+                                                                                                                   COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void enterCategoryGetter_needToInsertJumpInstruction (const int32_t inClassIndex,
-                                                      categoryGetterSignature_ipic_31__38_AbstractBlockTerminator_needToInsertJumpInstruction inMethod) ;
+void enterExtensionGetter_needToInsertJumpInstruction (const int32_t inClassIndex,
+                                                       enterExtensionGetter_ipic_31__38_AbstractBlockTerminator_needToInsertJumpInstruction inMethod) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-class GALGAS_bool callCategoryGetter_needToInsertJumpInstruction (const class cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
-                                                                  const GALGAS_string & constin_inNextBlockLabel,
-                                                                  C_Compiler * inCompiler
-                                                                  COMMA_LOCATION_ARGS) ;
+class GALGAS_bool callExtensionGetter_needToInsertJumpInstruction (const class cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
+                                                                   const GALGAS_string & constin_inNextBlockLabel,
+                                                                   C_Compiler * inCompiler
+                                                                   COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -6093,15 +6093,15 @@ class GALGAS_uint extensionGetter_blockSize (const class GALGAS_ipic_31__38_Bloc
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-void categoryMethod_performRelativesResolution (const class GALGAS_ipic_31__38_Block inObject,
-                                                const class GALGAS_symbolTableForRelativesResolution constin_inSymbolTable,
-                                                const class GALGAS_string constin_inNextBlockLabel,
-                                                const class GALGAS_uint constin_inBlockStartAddress,
-                                                class GALGAS_uint & io_ioConversionCount,
-                                                class GALGAS_string & io_ioListFileContents,
-                                                class GALGAS_ipic_31__38_Block & out_outModifiedBlock,
-                                                class C_Compiler * inCompiler
-                                                COMMA_LOCATION_ARGS) ;
+void extensionMethod_performRelativesResolution (const class GALGAS_ipic_31__38_Block inObject,
+                                                 const class GALGAS_symbolTableForRelativesResolution constin_inSymbolTable,
+                                                 const class GALGAS_string constin_inNextBlockLabel,
+                                                 const class GALGAS_uint constin_inBlockStartAddress,
+                                                 class GALGAS_uint & io_ioConversionCount,
+                                                 class GALGAS_string & io_ioListFileContents,
+                                                 class GALGAS_ipic_31__38_Block & out_outModifiedBlock,
+                                                 class C_Compiler * inCompiler
+                                                 COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -6122,13 +6122,13 @@ void routine_computeLabelAbsoluteAddressMap (const class GALGAS_ipic_31__38_Bloc
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-void categoryMethod_relativeBranchOverflow (const class GALGAS_ipic_31__38_Block inObject,
-                                            const class GALGAS_symbolTableForRelativesResolution constin_inSymbolTable,
-                                            const class GALGAS_string constin_inNextBlockLabel,
-                                            const class GALGAS_uint constin_inBlockStartAddress,
-                                            class GALGAS_branchOverflowMap & io_ioOverflowMap,
-                                            class C_Compiler * inCompiler
-                                            COMMA_LOCATION_ARGS) ;
+void extensionMethod_relativeBranchOverflow (const class GALGAS_ipic_31__38_Block inObject,
+                                             const class GALGAS_symbolTableForRelativesResolution constin_inSymbolTable,
+                                             const class GALGAS_string constin_inNextBlockLabel,
+                                             const class GALGAS_uint constin_inBlockStartAddress,
+                                             class GALGAS_branchOverflowMap & io_ioOverflowMap,
+                                             class C_Compiler * inCompiler
+                                             COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -6171,16 +6171,16 @@ class GALGAS_string extensionGetter_x_36_string (const class GALGAS_uint & inObj
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-void categoryMethod_generateCodeForBlock (const class GALGAS_ipic_31__38_Block inObject,
-                                          const class GALGAS_symbolTableForRelativesResolution constin_inSymbolTable,
-                                          const class GALGAS_pic_31__38__5F_dataAddressMap constin_inDataMap,
-                                          const class GALGAS_uint constin_inBlockAddress,
-                                          const class GALGAS_string constin_inNextBlockLabel,
-                                          class GALGAS_string & io_ioListFileContents,
-                                          class GALGAS_string & io_ioAssemblyString,
-                                          class GALGAS_generatedCodeMap & io_ioGeneratedCodeMap,
-                                          class C_Compiler * inCompiler
-                                          COMMA_LOCATION_ARGS) ;
+void extensionMethod_generateCodeForBlock (const class GALGAS_ipic_31__38_Block inObject,
+                                           const class GALGAS_symbolTableForRelativesResolution constin_inSymbolTable,
+                                           const class GALGAS_pic_31__38__5F_dataAddressMap constin_inDataMap,
+                                           const class GALGAS_uint constin_inBlockAddress,
+                                           const class GALGAS_string constin_inNextBlockLabel,
+                                           class GALGAS_string & io_ioListFileContents,
+                                           class GALGAS_string & io_ioAssemblyString,
+                                           class GALGAS_generatedCodeMap & io_ioGeneratedCodeMap,
+                                           class C_Compiler * inCompiler
+                                           COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -6203,26 +6203,26 @@ void routine_pic_31__38_GenerateAssemblyFile (const class GALGAS_string constinA
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-typedef void (*categoryMethodSignature_ipic_31__38_AbstractBlockTerminator_exploreAccessibleBlocksForStackComputations) (const class cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
-                                                                                                                         class GALGAS_stringset & ioArgument0,
-                                                                                                                         class GALGAS_stringset & ioArgument1,
-                                                                                                                         class GALGAS_uint & outArgument2,
-                                                                                                                         class C_Compiler * inCompiler
-                                                                                                                         COMMA_LOCATION_ARGS) ;
+typedef void (*extensionMethodSignature_ipic_31__38_AbstractBlockTerminator_exploreAccessibleBlocksForStackComputations) (const class cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
+                                                                                                                          class GALGAS_stringset & ioArgument0,
+                                                                                                                          class GALGAS_stringset & ioArgument1,
+                                                                                                                          class GALGAS_uint & outArgument2,
+                                                                                                                          class C_Compiler * inCompiler
+                                                                                                                          COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void enterCategoryMethod_exploreAccessibleBlocksForStackComputations (const int32_t inClassIndex,
-                                                                      categoryMethodSignature_ipic_31__38_AbstractBlockTerminator_exploreAccessibleBlocksForStackComputations inMethod) ;
+void enterExtensionMethod_exploreAccessibleBlocksForStackComputations (const int32_t inClassIndex,
+                                                                       extensionMethodSignature_ipic_31__38_AbstractBlockTerminator_exploreAccessibleBlocksForStackComputations inMethod) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void callCategoryMethod_exploreAccessibleBlocksForStackComputations (const class cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
-                                                                     GALGAS_stringset & io_ioBlockToExploreSet,
-                                                                     GALGAS_stringset & io_ioExploredBlockSet,
-                                                                     GALGAS_uint & out_outStackNeeds,
-                                                                     C_Compiler * inCompiler
-                                                                     COMMA_LOCATION_ARGS) ;
+void callExtensionMethod_exploreAccessibleBlocksForStackComputations (const class cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
+                                                                      GALGAS_stringset & io_ioBlockToExploreSet,
+                                                                      GALGAS_stringset & io_ioExploredBlockSet,
+                                                                      GALGAS_uint & out_outStackNeeds,
+                                                                      C_Compiler * inCompiler
+                                                                      COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -6230,21 +6230,21 @@ void callCategoryMethod_exploreAccessibleBlocksForStackComputations (const class
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-typedef void (*categoryMethodSignature_ipic_31__38_SequentialInstruction_buildCalledRoutineSetForStackComputations) (const class cPtr_ipic_31__38_SequentialInstruction * inObject,
-                                                                                                                     class GALGAS_stringset & ioArgument0,
-                                                                                                                     class C_Compiler * inCompiler
-                                                                                                                     COMMA_LOCATION_ARGS) ;
+typedef void (*extensionMethodSignature_ipic_31__38_SequentialInstruction_buildCalledRoutineSetForStackComputations) (const class cPtr_ipic_31__38_SequentialInstruction * inObject,
+                                                                                                                      class GALGAS_stringset & ioArgument0,
+                                                                                                                      class C_Compiler * inCompiler
+                                                                                                                      COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void enterCategoryMethod_buildCalledRoutineSetForStackComputations (const int32_t inClassIndex,
-                                                                    categoryMethodSignature_ipic_31__38_SequentialInstruction_buildCalledRoutineSetForStackComputations inMethod) ;
+void enterExtensionMethod_buildCalledRoutineSetForStackComputations (const int32_t inClassIndex,
+                                                                     extensionMethodSignature_ipic_31__38_SequentialInstruction_buildCalledRoutineSetForStackComputations inMethod) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void callCategoryMethod_buildCalledRoutineSetForStackComputations (const class cPtr_ipic_31__38_SequentialInstruction * inObject,
-                                                                   GALGAS_stringset & io_ioRoutineCalledSet,
-                                                                   C_Compiler * inCompiler
-                                                                   COMMA_LOCATION_ARGS) ;
+void callExtensionMethod_buildCalledRoutineSetForStackComputations (const class cPtr_ipic_31__38_SequentialInstruction * inObject,
+                                                                    GALGAS_stringset & io_ioRoutineCalledSet,
+                                                                    C_Compiler * inCompiler
+                                                                    COMMA_LOCATION_ARGS) ;
 
 #endif
