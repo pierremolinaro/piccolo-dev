@@ -15,13 +15,13 @@
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-void categoryMethod_computeDuration (const class GALGAS_ipic_31__38_Block inObject,
-                                     class GALGAS_blockDurationMap & io_ioExploredBlockMap,
-                                     class GALGAS_string in_inNextLabel,
-                                     class GALGAS_ipic_31__38_Block & out_outNewBlock,
-                                     class GALGAS_bool & io_ioContinue,
-                                     class C_Compiler * inCompiler
-                                     COMMA_LOCATION_ARGS) ;
+void extensionMethod_computeDuration (const class GALGAS_ipic_31__38_Block inObject,
+                                      class GALGAS_blockDurationMap & io_ioExploredBlockMap,
+                                      class GALGAS_string in_inNextLabel,
+                                      class GALGAS_ipic_31__38_Block & out_outNewBlock,
+                                      class GALGAS_bool & io_ioContinue,
+                                      class C_Compiler * inCompiler
+                                      COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -29,28 +29,28 @@ void categoryMethod_computeDuration (const class GALGAS_ipic_31__38_Block inObje
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-typedef void (*categoryMethodSignature_declarationInRam_handleDeclaration) (const class cPtr_declarationInRam * inObject,
-                                                                            class GALGAS_ramBankTable & ioArgument0,
-                                                                            class GALGAS_registerTable & ioArgument1,
-                                                                            const class GALGAS_lstring constinArgument2,
-                                                                            class GALGAS_declaredByteMap & ioArgument3,
-                                                                            class C_Compiler * inCompiler
-                                                                            COMMA_LOCATION_ARGS) ;
+typedef void (*extensionMethodSignature_declarationInRam_handleDeclaration) (const class cPtr_declarationInRam * inObject,
+                                                                             class GALGAS_ramBankTable & ioArgument0,
+                                                                             class GALGAS_registerTable & ioArgument1,
+                                                                             const class GALGAS_lstring constinArgument2,
+                                                                             class GALGAS_declaredByteMap & ioArgument3,
+                                                                             class C_Compiler * inCompiler
+                                                                             COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void enterCategoryMethod_handleDeclaration (const int32_t inClassIndex,
-                                            categoryMethodSignature_declarationInRam_handleDeclaration inMethod) ;
+void enterExtensionMethod_handleDeclaration (const int32_t inClassIndex,
+                                             extensionMethodSignature_declarationInRam_handleDeclaration inMethod) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void callCategoryMethod_handleDeclaration (const class cPtr_declarationInRam * inObject,
-                                           GALGAS_ramBankTable & io_ioRamBank,
-                                           GALGAS_registerTable & io_ioRegisterTable,
-                                           const GALGAS_lstring constin_inCurrentRamBank,
-                                           GALGAS_declaredByteMap & io_ioDeclaredByteMap,
-                                           C_Compiler * inCompiler
-                                           COMMA_LOCATION_ARGS) ;
+void callExtensionMethod_handleDeclaration (const class cPtr_declarationInRam * inObject,
+                                            GALGAS_ramBankTable & io_ioRamBank,
+                                            GALGAS_registerTable & io_ioRegisterTable,
+                                            const GALGAS_lstring constin_inCurrentRamBank,
+                                            GALGAS_declaredByteMap & io_ioDeclaredByteMap,
+                                            C_Compiler * inCompiler
+                                            COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
