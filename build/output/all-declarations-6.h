@@ -1,19 +1,19 @@
 #ifndef all_2D_declarations_2D__36__ENTITIES_DEFINED
 #define all_2D_declarations_2D__36__ENTITIES_DEFINED
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 #include "galgas2/predefined-types.h"
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 #include "all-declarations-5.h"
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                                   Extension method '@ipic18Block computeDuration'                                   *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 void extensionMethod_computeDuration (const class GALGAS_ipic_31__38_Block inObject,
                                       class GALGAS_blockDurationMap & io_ioExploredBlockMap,
@@ -23,11 +23,11 @@ void extensionMethod_computeDuration (const class GALGAS_ipic_31__38_Block inObj
                                       class C_Compiler * inCompiler
                                       COMMA_LOCATION_ARGS) ;
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                           Abstract extension method '@declarationInRam handleDeclaration'                           *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 typedef void (*extensionMethodSignature_declarationInRam_handleDeclaration) (const class cPtr_declarationInRam * inObject,
                                                                              class GALGAS_ramBankTable & ioArgument0,
@@ -37,12 +37,12 @@ typedef void (*extensionMethodSignature_declarationInRam_handleDeclaration) (con
                                                                              class C_Compiler * inCompiler
                                                                              COMMA_LOCATION_ARGS) ;
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 void enterExtensionMethod_handleDeclaration (const int32_t inClassIndex,
                                              extensionMethodSignature_declarationInRam_handleDeclaration inMethod) ;
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 void callExtensionMethod_handleDeclaration (const class cPtr_declarationInRam * inObject,
                                             GALGAS_ramBankTable & io_ioRamBank,
@@ -52,11 +52,11 @@ void callExtensionMethod_handleDeclaration (const class cPtr_declarationInRam * 
                                             C_Compiler * inCompiler
                                             COMMA_LOCATION_ARGS) ;
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                                            Filewrapper 'embeddedDevices'                                            *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 extern const char * gWrapperFileContent_0_embeddedDevices ;
 extern const char * gWrapperFileContent_1_embeddedDevices ;
@@ -536,10 +536,10 @@ extern const char * gWrapperFileContent_474_embeddedDevices ;
 extern const char * gWrapperFileContent_475_embeddedDevices ;
 extern const char * gWrapperFileContent_476_embeddedDevices ;
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 extern const cRegularFileWrapper gWrapperFile_0_embeddedDevices ;
 extern const cRegularFileWrapper gWrapperFile_1_embeddedDevices ;
@@ -1019,7 +1019,7 @@ extern const cRegularFileWrapper gWrapperFile_474_embeddedDevices ;
 extern const cRegularFileWrapper gWrapperFile_475_embeddedDevices ;
 extern const cRegularFileWrapper gWrapperFile_476_embeddedDevices ;
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 extern const cDirectoryWrapper gWrapperDirectory_0_embeddedDevices ;
 

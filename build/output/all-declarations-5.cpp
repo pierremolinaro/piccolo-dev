@@ -3,18 +3,18 @@
 #include "galgas2/C_galgas_CLI_Options.h"
 #include "utilities/C_PrologueEpilogue.h"
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 #include "all-declarations-5.h"
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_branchOverflowMap::GALGAS_branchOverflowMap (void) :
 AC_GALGAS_listmap () {
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_branchOverflowMap GALGAS_branchOverflowMap::constructor_emptyMap (LOCATION_ARGS) {
   GALGAS_branchOverflowMap result ;
@@ -22,7 +22,7 @@ GALGAS_branchOverflowMap GALGAS_branchOverflowMap::constructor_emptyMap (LOCATIO
   return result ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 void GALGAS_branchOverflowMap::addAssign_operation (const GALGAS_string & inKey,
                                                     const GALGAS_string & inOperand0
@@ -34,14 +34,14 @@ void GALGAS_branchOverflowMap::addAssign_operation (const GALGAS_string & inKey,
   }
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_stringlist GALGAS_branchOverflowMap::getter_listForKey (const GALGAS_string & inKey
                                                                COMMA_UNUSED_LOCATION_ARGS) const {
   return GALGAS_stringlist (listForKey (inKey)) ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 cEnumerator_branchOverflowMap::cEnumerator_branchOverflowMap (const GALGAS_branchOverflowMap & inEnumeratedObject,
                                                               const typeEnumerationOrder inOrder) :
@@ -49,7 +49,7 @@ cGenericAbstractEnumerator () {
   inEnumeratedObject.populateEnumerationArray (mEnumerationArray, inOrder) ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_branchOverflowMap_2D_element cEnumerator_branchOverflowMap::current (LOCATION_ARGS) const {
   const cListMapElement * p = (const cListMapElement *) currentObjectPtr (THERE) ;
@@ -57,7 +57,7 @@ GALGAS_branchOverflowMap_2D_element cEnumerator_branchOverflowMap::current (LOCA
   return GALGAS_branchOverflowMap_2D_element (p->mKey, p->mSharedListMapList) ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_string cEnumerator_branchOverflowMap::current_key (LOCATION_ARGS) const {
   const cListMapElement * p = (const cListMapElement *) currentObjectPtr (THERE) ;
@@ -65,7 +65,7 @@ GALGAS_string cEnumerator_branchOverflowMap::current_key (LOCATION_ARGS) const {
   return GALGAS_string (p->mKey) ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_stringlist cEnumerator_branchOverflowMap::current_mList (LOCATION_ARGS) const {
   const cListMapElement * p = (const cListMapElement *) currentObjectPtr (THERE) ;
@@ -73,23 +73,23 @@ GALGAS_stringlist cEnumerator_branchOverflowMap::current_mList (LOCATION_ARGS) c
   return GALGAS_stringlist (p->mSharedListMapList) ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                                               @branchOverflowMap type                                               *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor
 kTypeDescriptor_GALGAS_branchOverflowMap ("branchOverflowMap",
                                           NULL) ;
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor * GALGAS_branchOverflowMap::staticTypeDescriptor (void) const {
   return & kTypeDescriptor_GALGAS_branchOverflowMap ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_branchOverflowMap::clonedObject (void) const {
   AC_GALGAS_root * result = NULL ;
@@ -99,7 +99,7 @@ AC_GALGAS_root * GALGAS_branchOverflowMap::clonedObject (void) const {
   return result ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_branchOverflowMap GALGAS_branchOverflowMap::extractObject (const GALGAS_object & inObject,
                                                                   C_Compiler * inCompiler
@@ -116,21 +116,21 @@ GALGAS_branchOverflowMap GALGAS_branchOverflowMap::extractObject (const GALGAS_o
   return result ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 #include "utilities/MF_MemoryControl.h"
 #include "galgas2/C_galgas_CLI_Options.h"
 
 #include "files/C_FileManager.h"
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                   L L ( 1 )    P R O D U C T I O N    R U L E S                                     *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//                                                                                                                      
+//                                   L L ( 1 )    P R O D U C T I O N    R U L E S                                      
+//                                                                                                                      
+//----------------------------------------------------------------------------------------------------------------------
 
 #define TERMINAL(t)     ((t)+1)
 #define NONTERMINAL(nt) ((-nt)-1)
@@ -320,11 +320,11 @@ static const int16_t gProductions_piccoloDevice_grammar [] = {
 , END_PRODUCTION
 } ;
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                          P R O D U C T I O N    N A M E S                                           *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//                                                                                                                      
+//                                          P R O D U C T I O N    N A M E S                                            
+//                                                                                                                      
+//----------------------------------------------------------------------------------------------------------------------
 
 static const cProductionNameDescriptor gProductionNames_piccoloDevice_grammar [34] = {
  {"<start_symbol>", "piccoloDevice_syntax", 0}, // at index 0
@@ -363,11 +363,11 @@ static const cProductionNameDescriptor gProductionNames_piccoloDevice_grammar [3
  {"<>", "", 144} // at index 33
 } ;
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                 L L ( 1 )    P R O D U C T I O N    I N D E X E S                                   *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//                                                                                                                      
+//                                 L L ( 1 )    P R O D U C T I O N    I N D E X E S                                    
+//                                                                                                                      
+//----------------------------------------------------------------------------------------------------------------------
 
 static const int16_t gProductionIndexes_piccoloDevice_grammar [34] = {
 0, // index 0 : <start_symbol>, in file 'piccoloDevice_syntax.ggs', line 10
@@ -406,11 +406,11 @@ static const int16_t gProductionIndexes_piccoloDevice_grammar [34] = {
 144 // index 33 : <>, in file '.ggs', line 0
 } ;
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                           L L ( 1 )    F I R S T    P R O D U C T I O N    I N D E X E S                            *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//                                                                                                                      
+//                           L L ( 1 )    F I R S T    P R O D U C T I O N    I N D E X E S                             
+//                                                                                                                      
+//----------------------------------------------------------------------------------------------------------------------
 
 static const int16_t gFirstProductionIndexes_piccoloDevice_grammar [19] = {
 0, // at 0 : <start_symbol>
@@ -433,11 +433,11 @@ static const int16_t gFirstProductionIndexes_piccoloDevice_grammar [19] = {
 33, // at 17 : <>
 0} ;
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                    L L ( 1 )    D E C I S I O N    T A B L E S                                      *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//                                                                                                                      
+//                                    L L ( 1 )    D E C I S I O N    T A B L E S                                       
+//                                                                                                                      
+//----------------------------------------------------------------------------------------------------------------------
 
 static const int16_t gDecision_piccoloDevice_grammar [] = {
 // At index 0 : <start_symbol> only one production, no choice
@@ -511,11 +511,11 @@ C_Lexique_piccoloDevice_5F_lexique::kToken_setting, -1, // Choice 2
   -1,
 0} ;
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                            L L ( 1 )    D E C I S I O N    T A B L E S    I N D E X E S                             *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//                                                                                                                      
+//                            L L ( 1 )    D E C I S I O N    T A B L E S    I N D E X E S                              
+//                                                                                                                      
+//----------------------------------------------------------------------------------------------------------------------
 
 static const int16_t gDecisionIndexes_piccoloDevice_grammar [19] = {
 0, // at 0 : <start_symbol>
@@ -538,11 +538,11 @@ static const int16_t gDecisionIndexes_piccoloDevice_grammar [19] = {
 91, // at 17 : <>
 0} ;
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                     'start_symbol' non terminal implementation                                      *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//                                                                                                                      
+//                                     'start_symbol' non terminal implementation                                       
+//                                                                                                                      
+//----------------------------------------------------------------------------------------------------------------------
 
 void cGrammar_piccoloDevice_5F_grammar::nt_start_5F_symbol_parse (C_Lexique_piccoloDevice_5F_lexique * inLexique) {
   rule_piccoloDevice_5F_syntax_start_5F_symbol_i0_parse(inLexique) ;
@@ -578,11 +578,11 @@ void cGrammar_piccoloDevice_5F_grammar::performOnlySyntaxAnalysis (C_Compiler * 
   macroDetachSharedObject (scanner) ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                        Grammar start symbol implementation                                          *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//                                                                                                                      
+//                                        Grammar start symbol implementation                                           
+//                                                                                                                      
+//----------------------------------------------------------------------------------------------------------------------
 
 void cGrammar_piccoloDevice_5F_grammar::_performSourceFileParsing_ (C_Compiler * inCompiler,
                                 GALGAS_lstring inFilePath,
@@ -620,7 +620,7 @@ void cGrammar_piccoloDevice_5F_grammar::_performSourceFileParsing_ (C_Compiler *
   }
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 void cGrammar_piccoloDevice_5F_grammar::_performSourceStringParsing_ (C_Compiler * inCompiler,
                                 GALGAS_string inSourceString,
@@ -642,173 +642,173 @@ void cGrammar_piccoloDevice_5F_grammar::_performSourceStringParsing_ (C_Compiler
   }
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                        'select_piccoloDevice_5F_syntax_0' added non terminal implementation                         *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//                                                                                                                      
+//                        'select_piccoloDevice_5F_syntax_0' added non terminal implementation                          
+//                                                                                                                      
+//----------------------------------------------------------------------------------------------------------------------
 
 int32_t cGrammar_piccoloDevice_5F_grammar::select_piccoloDevice_5F_syntax_0 (C_Lexique_piccoloDevice_5F_lexique * inLexique) {
   return inLexique->nextProductionIndex () ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                        'select_piccoloDevice_5F_syntax_1' added non terminal implementation                         *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//                                                                                                                      
+//                        'select_piccoloDevice_5F_syntax_1' added non terminal implementation                          
+//                                                                                                                      
+//----------------------------------------------------------------------------------------------------------------------
 
 int32_t cGrammar_piccoloDevice_5F_grammar::select_piccoloDevice_5F_syntax_1 (C_Lexique_piccoloDevice_5F_lexique * inLexique) {
   return inLexique->nextProductionIndex () ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                        'select_piccoloDevice_5F_syntax_2' added non terminal implementation                         *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//                                                                                                                      
+//                        'select_piccoloDevice_5F_syntax_2' added non terminal implementation                          
+//                                                                                                                      
+//----------------------------------------------------------------------------------------------------------------------
 
 int32_t cGrammar_piccoloDevice_5F_grammar::select_piccoloDevice_5F_syntax_2 (C_Lexique_piccoloDevice_5F_lexique * inLexique) {
   return inLexique->nextProductionIndex () ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                        'select_piccoloDevice_5F_syntax_3' added non terminal implementation                         *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//                                                                                                                      
+//                        'select_piccoloDevice_5F_syntax_3' added non terminal implementation                          
+//                                                                                                                      
+//----------------------------------------------------------------------------------------------------------------------
 
 int32_t cGrammar_piccoloDevice_5F_grammar::select_piccoloDevice_5F_syntax_3 (C_Lexique_piccoloDevice_5F_lexique * inLexique) {
   return inLexique->nextProductionIndex () ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                        'select_piccoloDevice_5F_syntax_4' added non terminal implementation                         *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//                                                                                                                      
+//                        'select_piccoloDevice_5F_syntax_4' added non terminal implementation                          
+//                                                                                                                      
+//----------------------------------------------------------------------------------------------------------------------
 
 int32_t cGrammar_piccoloDevice_5F_grammar::select_piccoloDevice_5F_syntax_4 (C_Lexique_piccoloDevice_5F_lexique * inLexique) {
   return inLexique->nextProductionIndex () ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                        'select_piccoloDevice_5F_syntax_5' added non terminal implementation                         *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//                                                                                                                      
+//                        'select_piccoloDevice_5F_syntax_5' added non terminal implementation                          
+//                                                                                                                      
+//----------------------------------------------------------------------------------------------------------------------
 
 int32_t cGrammar_piccoloDevice_5F_grammar::select_piccoloDevice_5F_syntax_5 (C_Lexique_piccoloDevice_5F_lexique * inLexique) {
   return inLexique->nextProductionIndex () ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                        'select_piccoloDevice_5F_syntax_6' added non terminal implementation                         *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//                                                                                                                      
+//                        'select_piccoloDevice_5F_syntax_6' added non terminal implementation                          
+//                                                                                                                      
+//----------------------------------------------------------------------------------------------------------------------
 
 int32_t cGrammar_piccoloDevice_5F_grammar::select_piccoloDevice_5F_syntax_6 (C_Lexique_piccoloDevice_5F_lexique * inLexique) {
   return inLexique->nextProductionIndex () ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                        'select_piccoloDevice_5F_syntax_7' added non terminal implementation                         *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//                                                                                                                      
+//                        'select_piccoloDevice_5F_syntax_7' added non terminal implementation                          
+//                                                                                                                      
+//----------------------------------------------------------------------------------------------------------------------
 
 int32_t cGrammar_piccoloDevice_5F_grammar::select_piccoloDevice_5F_syntax_7 (C_Lexique_piccoloDevice_5F_lexique * inLexique) {
   return inLexique->nextProductionIndex () ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                        'select_piccoloDevice_5F_syntax_8' added non terminal implementation                         *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//                                                                                                                      
+//                        'select_piccoloDevice_5F_syntax_8' added non terminal implementation                          
+//                                                                                                                      
+//----------------------------------------------------------------------------------------------------------------------
 
 int32_t cGrammar_piccoloDevice_5F_grammar::select_piccoloDevice_5F_syntax_8 (C_Lexique_piccoloDevice_5F_lexique * inLexique) {
   return inLexique->nextProductionIndex () ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                        'select_piccoloDevice_5F_syntax_9' added non terminal implementation                         *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//                                                                                                                      
+//                        'select_piccoloDevice_5F_syntax_9' added non terminal implementation                          
+//                                                                                                                      
+//----------------------------------------------------------------------------------------------------------------------
 
 int32_t cGrammar_piccoloDevice_5F_grammar::select_piccoloDevice_5F_syntax_9 (C_Lexique_piccoloDevice_5F_lexique * inLexique) {
   return inLexique->nextProductionIndex () ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                       'select_piccoloDevice_5F_syntax_10' added non terminal implementation                         *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//                                                                                                                      
+//                       'select_piccoloDevice_5F_syntax_10' added non terminal implementation                          
+//                                                                                                                      
+//----------------------------------------------------------------------------------------------------------------------
 
 int32_t cGrammar_piccoloDevice_5F_grammar::select_piccoloDevice_5F_syntax_10 (C_Lexique_piccoloDevice_5F_lexique * inLexique) {
   return inLexique->nextProductionIndex () ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                       'select_piccoloDevice_5F_syntax_11' added non terminal implementation                         *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//                                                                                                                      
+//                       'select_piccoloDevice_5F_syntax_11' added non terminal implementation                          
+//                                                                                                                      
+//----------------------------------------------------------------------------------------------------------------------
 
 int32_t cGrammar_piccoloDevice_5F_grammar::select_piccoloDevice_5F_syntax_11 (C_Lexique_piccoloDevice_5F_lexique * inLexique) {
   return inLexique->nextProductionIndex () ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                       'select_piccoloDevice_5F_syntax_12' added non terminal implementation                         *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//                                                                                                                      
+//                       'select_piccoloDevice_5F_syntax_12' added non terminal implementation                          
+//                                                                                                                      
+//----------------------------------------------------------------------------------------------------------------------
 
 int32_t cGrammar_piccoloDevice_5F_grammar::select_piccoloDevice_5F_syntax_12 (C_Lexique_piccoloDevice_5F_lexique * inLexique) {
   return inLexique->nextProductionIndex () ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                       'select_piccoloDevice_5F_syntax_13' added non terminal implementation                         *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//                                                                                                                      
+//                       'select_piccoloDevice_5F_syntax_13' added non terminal implementation                          
+//                                                                                                                      
+//----------------------------------------------------------------------------------------------------------------------
 
 int32_t cGrammar_piccoloDevice_5F_grammar::select_piccoloDevice_5F_syntax_13 (C_Lexique_piccoloDevice_5F_lexique * inLexique) {
   return inLexique->nextProductionIndex () ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                       'select_piccoloDevice_5F_syntax_14' added non terminal implementation                         *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//                                                                                                                      
+//                       'select_piccoloDevice_5F_syntax_14' added non terminal implementation                          
+//                                                                                                                      
+//----------------------------------------------------------------------------------------------------------------------
 
 int32_t cGrammar_piccoloDevice_5F_grammar::select_piccoloDevice_5F_syntax_14 (C_Lexique_piccoloDevice_5F_lexique * inLexique) {
   return inLexique->nextProductionIndex () ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                       'select_piccoloDevice_5F_syntax_15' added non terminal implementation                         *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//                                                                                                                      
+//                       'select_piccoloDevice_5F_syntax_15' added non terminal implementation                          
+//                                                                                                                      
+//----------------------------------------------------------------------------------------------------------------------
 
 int32_t cGrammar_piccoloDevice_5F_grammar::select_piccoloDevice_5F_syntax_15 (C_Lexique_piccoloDevice_5F_lexique * inLexique) {
   return inLexique->nextProductionIndex () ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                               Bool options                                                                          *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 C_BoolCommandLineOption gOption_piccolo_5F_options_doNotReorderCluster ("piccolo_options",
                                          "doNotReorderCluster",
@@ -852,17 +852,17 @@ C_BoolCommandLineOption gOption_piccolo_5F_options_performOptimizations ("piccol
                                          "optimize",
                                          "Perform code optimizations") ;
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                               UInt options                                                                          *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                              String options                                                                         *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 C_StringCommandLineOption gOption_piccolo_5F_options_optimizationFlags ("piccolo_options",
                                          "optimizationFlags",
@@ -871,20 +871,20 @@ C_StringCommandLineOption gOption_piccolo_5F_options_optimizationFlags ("piccolo
                                          "Fine tuning of optimizations (PIC18 compiler only)",
                                          "") ;
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                              String List options                                                                    *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                               Bool options                                                                          *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 C_BoolCommandLineOption gOption_piccolo_5F_options_5F_not_5F_in_5F_cocoa_outputBaselineDeviceList ("piccolo_options_not_in_cocoa",
                                          "outputBaselineDeviceList",
@@ -910,17 +910,17 @@ C_BoolCommandLineOption gOption_piccolo_5F_options_5F_not_5F_in_5F_cocoa_outputP
                                          "pic18",
                                          "Output the list of supported pic18 devices") ;
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                               UInt options                                                                          *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                              String options                                                                         *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 C_StringCommandLineOption gOption_piccolo_5F_options_5F_not_5F_in_5F_cocoa_configDescription ("piccolo_options_not_in_cocoa",
                                          "configDescription",
@@ -950,20 +950,20 @@ C_StringCommandLineOption gOption_piccolo_5F_options_5F_not_5F_in_5F_cocoa_regis
                                          "Output the special register description of the device named by string",
                                          "") ;
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                              String List options                                                                    *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                                          Routine 'checkCurrentEmitAddress'                                          *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 void routine_checkCurrentEmitAddress (const GALGAS_uint constinArgument_inCurrentAddress,
                                       C_Compiler * inCompiler
@@ -979,11 +979,11 @@ void routine_checkCurrentEmitAddress (const GALGAS_uint constinArgument_inCurren
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                                         Routine 'print_constant_definition'                                         *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 void routine_print_5F_constant_5F_definition (const GALGAS_constantMap constinArgument_inConstantMap,
                                               GALGAS_string & ioArgument_ioListFileContents,
@@ -1006,11 +1006,11 @@ void routine_print_5F_constant_5F_definition (const GALGAS_constantMap constinAr
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                                             Routine 'actualBuildConfig'                                             *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 void routine_actualBuildConfig (const GALGAS_configRegisterMap constinArgument_inConfigRegisterMap,
                                 const GALGAS_configDefinitionList constinArgument_inConfigDefinitionList,
@@ -1142,11 +1142,11 @@ void routine_actualBuildConfig (const GALGAS_configRegisterMap constinArgument_i
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                                                Routine 'buildConfig'                                                *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 void routine_buildConfig (const GALGAS_configRegisterMap constinArgument_inConfigRegisterMap,
                           const GALGAS_configDefinitionList constinArgument_inConfigDefinitionList,
@@ -1172,11 +1172,11 @@ void routine_buildConfig (const GALGAS_configRegisterMap constinArgument_inConfi
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                                Routine 'addBaselineUsedRoutinesFromInstructionList'                                 *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 void routine_addBaselineUsedRoutinesFromInstructionList (const GALGAS_baseline_5F_instructionList constinArgument_inInstructionList,
                                                          GALGAS_stringset & ioArgument_ioUsedRoutines,
@@ -1190,11 +1190,11 @@ void routine_addBaselineUsedRoutinesFromInstructionList (const GALGAS_baseline_5
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                                       Function 'baseline_computeUsedRoutines'                                       *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_stringset function_baseline_5F_computeUsedRoutines (const GALGAS_baseline_5F_routineDefinitionList & constinArgument_inRoutineDefinitionList,
                                                            C_Compiler * inCompiler
@@ -1235,16 +1235,16 @@ GALGAS_stringset function_baseline_5F_computeUsedRoutines (const GALGAS_baseline
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //  Function introspection                                                                                             *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 static const C_galgas_type_descriptor * functionArgs_baseline_5F_computeUsedRoutines [2] = {
   & kTypeDescriptor_GALGAS_baseline_5F_routineDefinitionList,
   NULL
 } ;
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 static GALGAS_object functionWithGenericHeader_baseline_5F_computeUsedRoutines (C_Compiler * inCompiler,
                                                                                 const cObjectArray & inEffectiveParameterArray,
@@ -1258,7 +1258,7 @@ static GALGAS_object functionWithGenericHeader_baseline_5F_computeUsedRoutines (
                                                    COMMA_THERE).getter_object (THERE) ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 C_galgas_function_descriptor functionDescriptor_baseline_5F_computeUsedRoutines ("baseline_computeUsedRoutines",
                                                                                  functionWithGenericHeader_baseline_5F_computeUsedRoutines,
@@ -1266,11 +1266,11 @@ C_galgas_function_descriptor functionDescriptor_baseline_5F_computeUsedRoutines 
                                                                                  1,
                                                                                  functionArgs_baseline_5F_computeUsedRoutines) ;
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                                             Routine 'baseline_analysis'                                             *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 void routine_baseline_5F_analysis (const GALGAS_baseline_5F_model constinArgument_inPiccoloModel,
                                    const GALGAS_string constinArgument_inSourceFileName,
@@ -1683,11 +1683,11 @@ void routine_baseline_5F_analysis (const GALGAS_baseline_5F_model constinArgumen
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                                       Routine 'handleBaselineInstructionList'                                       *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 void routine_handleBaselineInstructionList (const GALGAS_uint constinArgument_inCurrentPage,
                                             const GALGAS_baseline_5F_instructionList constinArgument_inInstructionList,
@@ -1727,11 +1727,11 @@ void routine_handleBaselineInstructionList (const GALGAS_uint constinArgument_in
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                                        Once function 'acceptableTRISoperand'                                        *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 static GALGAS_stringset onceFunction_acceptableTRISoperand (C_Compiler * /* inCompiler */
                                                             COMMA_UNUSED_LOCATION_ARGS) {
@@ -1749,14 +1749,14 @@ static GALGAS_stringset onceFunction_acceptableTRISoperand (C_Compiler * /* inCo
 
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //  Function implementation                                                                                            *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 static bool gOnceFunctionResultAvailable_acceptableTRISoperand = false ;
 static GALGAS_stringset gOnceFunctionResult_acceptableTRISoperand ;
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_stringset function_acceptableTRISoperand (class C_Compiler * inCompiler
               COMMA_LOCATION_ARGS) {
@@ -1767,26 +1767,26 @@ GALGAS_stringset function_acceptableTRISoperand (class C_Compiler * inCompiler
   return gOnceFunctionResult_acceptableTRISoperand ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 static void releaseOnceFunctionResult_acceptableTRISoperand (void) {
   gOnceFunctionResult_acceptableTRISoperand.drop () ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 C_PrologueEpilogue gEpilogueForOnceFunction_acceptableTRISoperand (NULL,
                                                                    releaseOnceFunctionResult_acceptableTRISoperand) ;
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //  Function introspection                                                                                             *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 static const C_galgas_type_descriptor * functionArgs_acceptableTRISoperand [1] = {
   NULL
 } ;
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 static GALGAS_object functionWithGenericHeader_acceptableTRISoperand (C_Compiler * inCompiler,
                                                                       const cObjectArray & /* inEffectiveParameterArray */,
@@ -1795,7 +1795,7 @@ static GALGAS_object functionWithGenericHeader_acceptableTRISoperand (C_Compiler
   return function_acceptableTRISoperand (inCompiler COMMA_THERE).getter_object (THERE) ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 C_galgas_function_descriptor functionDescriptor_acceptableTRISoperand ("acceptableTRISoperand",
                                                                        functionWithGenericHeader_acceptableTRISoperand,
@@ -1803,11 +1803,11 @@ C_galgas_function_descriptor functionDescriptor_acceptableTRISoperand ("acceptab
                                                                        0,
                                                                        functionArgs_acceptableTRISoperand) ;
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                                  Routine 'findBaselineFirstInstructionFromAddress'                                  *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 void routine_findBaselineFirstInstructionFromAddress (const GALGAS_uint constinArgument_inLineIndex,
                                                       const GALGAS_baseline_5F_intermediate_5F_instructionList constinArgument_inGeneratedInstructionList,
@@ -1847,11 +1847,11 @@ void routine_findBaselineFirstInstructionFromAddress (const GALGAS_uint constinA
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                              Routine 'findBaselineFirstInstructionOrLabelFromAddress'                               *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 void routine_findBaselineFirstInstructionOrLabelFromAddress (const GALGAS_uint constinArgument_inLineIndex,
                                                              const GALGAS_baseline_5F_intermediate_5F_instructionList constinArgument_inGeneratedInstructionList,
@@ -1903,11 +1903,11 @@ void routine_findBaselineFirstInstructionOrLabelFromAddress (const GALGAS_uint c
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                                      Routine 'perform_baseline_optimizations'                                       *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 void routine_perform_5F_baseline_5F_optimizations (GALGAS_baseline_5F_intermediate_5F_instructionList & ioArgument_ioGeneratedInstructionList,
                                                    GALGAS_string & ioArgument_ioListFileContents,
@@ -2044,11 +2044,11 @@ void routine_perform_5F_baseline_5F_optimizations (GALGAS_baseline_5F_intermedia
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                                       Routine 'build_baseline_assembly_code'                                        *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 void routine_build_5F_baseline_5F_assembly_5F_code (const GALGAS_baseline_5F_intermediate_5F_instructionList constinArgument_inGeneratedInstructionList,
                                                     const GALGAS_actualConfigurationMap constinArgument_inActualConfigurationMap,
@@ -2075,11 +2075,11 @@ void routine_build_5F_baseline_5F_assembly_5F_code (const GALGAS_baseline_5F_int
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                                       Routine 'emitBaselineCodeAtWordAddress'                                       *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 void routine_emitBaselineCodeAtWordAddress (const GALGAS_uint constinArgument_inCode,
                                             GALGAS_uint & ioArgument_ioWordAddress,
@@ -2098,11 +2098,11 @@ void routine_emitBaselineCodeAtWordAddress (const GALGAS_uint constinArgument_in
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                                      Routine 'emitNoBaselineCodeAtWordAddress'                                      *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 void routine_emitNoBaselineCodeAtWordAddress (const GALGAS_uint constinArgument_inWordAddress,
                                               const GALGAS_baseline_5F_assembly_5F_instruction constinArgument_inInstruction,
@@ -2116,11 +2116,11 @@ void routine_emitNoBaselineCodeAtWordAddress (const GALGAS_uint constinArgument_
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                                        Routine 'build_baseline_binary_code'                                         *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 void routine_build_5F_baseline_5F_binary_5F_code (const GALGAS_baseline_5F_assembly_5F_instructionList constinArgument_inAssemblyInstructionList,
                                                   const GALGAS_uint constinArgument_inROMsize,
@@ -2162,11 +2162,11 @@ void routine_build_5F_baseline_5F_binary_5F_code (const GALGAS_baseline_5F_assem
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                                Routine 'addMidRangeUsedRoutinesFromInstructionList'                                 *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 void routine_addMidRangeUsedRoutinesFromInstructionList (const GALGAS_midrange_5F_instructionList constinArgument_inInstructionList,
                                                          GALGAS_stringset & ioArgument_ioUsedRoutines,
@@ -2180,11 +2180,11 @@ void routine_addMidRangeUsedRoutinesFromInstructionList (const GALGAS_midrange_5
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                                       Function 'midrange_computeUsedRoutines'                                       *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_stringset function_midrange_5F_computeUsedRoutines (const GALGAS_midrange_5F_interruptDefinitionList & constinArgument_inInterruptDefinitionList,
                                                            const GALGAS_midrange_5F_routineDefinitionList & constinArgument_inRoutineDefinitionList,
@@ -2233,9 +2233,9 @@ GALGAS_stringset function_midrange_5F_computeUsedRoutines (const GALGAS_midrange
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //  Function introspection                                                                                             *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 static const C_galgas_type_descriptor * functionArgs_midrange_5F_computeUsedRoutines [3] = {
   & kTypeDescriptor_GALGAS_midrange_5F_interruptDefinitionList,
@@ -2243,7 +2243,7 @@ static const C_galgas_type_descriptor * functionArgs_midrange_5F_computeUsedRout
   NULL
 } ;
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 static GALGAS_object functionWithGenericHeader_midrange_5F_computeUsedRoutines (C_Compiler * inCompiler,
                                                                                 const cObjectArray & inEffectiveParameterArray,
@@ -2261,7 +2261,7 @@ static GALGAS_object functionWithGenericHeader_midrange_5F_computeUsedRoutines (
                                                    COMMA_THERE).getter_object (THERE) ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 C_galgas_function_descriptor functionDescriptor_midrange_5F_computeUsedRoutines ("midrange_computeUsedRoutines",
                                                                                  functionWithGenericHeader_midrange_5F_computeUsedRoutines,
@@ -2269,11 +2269,11 @@ C_galgas_function_descriptor functionDescriptor_midrange_5F_computeUsedRoutines 
                                                                                  2,
                                                                                  functionArgs_midrange_5F_computeUsedRoutines) ;
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                                       Routine 'handleMidrangeInstructionList'                                       *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 void routine_handleMidrangeInstructionList (const GALGAS_midrange_5F_instructionList constinArgument_inInstructionList,
                                             const GALGAS_routineMap constinArgument_inRoutineMap,
@@ -2305,11 +2305,11 @@ void routine_handleMidrangeInstructionList (const GALGAS_midrange_5F_instruction
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                                 Routine 'build_midrange_assembly_instruction_list'                                  *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 void routine_build_5F_midrange_5F_assembly_5F_instruction_5F_list (const GALGAS_uint constinArgument_inTotalPageCount,
                                                                    const GALGAS_uint constinArgument_inTotalBankCount,
@@ -2476,11 +2476,11 @@ void routine_build_5F_midrange_5F_assembly_5F_instruction_5F_list (const GALGAS_
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                                     Routine 'interruptRoutineShouldSavePCLATH'                                      *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 void routine_interruptRoutineShouldSavePCLATH (const GALGAS_midrange_5F_model constinArgument_inPiccoloModel,
                                                const GALGAS_uint constinArgument_inTotalPageCount,
@@ -2543,11 +2543,11 @@ void routine_interruptRoutineShouldSavePCLATH (const GALGAS_midrange_5F_model co
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                                          Routine 'handleInterruptRoutine'                                           *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 void routine_handleInterruptRoutine (const GALGAS_midrange_5F_model constinArgument_inPiccoloModel,
                                      const GALGAS_bool constinArgument_inHasInterrupt,
@@ -2596,11 +2596,11 @@ void routine_handleInterruptRoutine (const GALGAS_midrange_5F_model constinArgum
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                            Routine 'generateInterruptRoutineForControllerWithSharedRAM'                             *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 void routine_generateInterruptRoutineForControllerWithSharedRAM (const GALGAS_uint constinArgument_inTotalBankCount,
                                                                  const GALGAS_registerTable constinArgument_inRegisterTable,
@@ -2726,11 +2726,11 @@ void routine_generateInterruptRoutineForControllerWithSharedRAM (const GALGAS_ui
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                           Routine 'generateInterruptRoutineForControllerWithoutSharedRAM'                           *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 void routine_generateInterruptRoutineForControllerWithoutSharedRAM (const GALGAS_uint constinArgument_inTotalBankCount,
                                                                     const GALGAS_registerTable constinArgument_inRegisterTable,
@@ -2891,11 +2891,11 @@ void routine_generateInterruptRoutineForControllerWithoutSharedRAM (const GALGAS
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                                  Routine 'findMidRangeFirstInstructionFromAddress'                                  *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 void routine_findMidRangeFirstInstructionFromAddress (const GALGAS_uint constinArgument_inLineIndex,
                                                       const GALGAS_midrange_5F_intermediate_5F_instructionList constinArgument_inGeneratedInstructionList,
@@ -2935,11 +2935,11 @@ void routine_findMidRangeFirstInstructionFromAddress (const GALGAS_uint constinA
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                              Routine 'findMidRangeFirstInstructionOrLabelFromAddress'                               *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 void routine_findMidRangeFirstInstructionOrLabelFromAddress (const GALGAS_uint constinArgument_inLineIndex,
                                                              const GALGAS_midrange_5F_intermediate_5F_instructionList constinArgument_inGeneratedInstructionList,
@@ -2991,11 +2991,11 @@ void routine_findMidRangeFirstInstructionOrLabelFromAddress (const GALGAS_uint c
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                                      Routine 'perform_midrange_optimizations'                                       *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 void routine_perform_5F_midrange_5F_optimizations (GALGAS_midrange_5F_intermediate_5F_instructionList & ioArgument_ioGeneratedInstructionList,
                                                    GALGAS_string & ioArgument_ioListFileContents,
@@ -3131,11 +3131,11 @@ void routine_perform_5F_midrange_5F_optimizations (GALGAS_midrange_5F_intermedia
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                                         Routine 'midrange_compute_JSR_JUMP'                                         *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 void routine_midrange_5F_compute_5F_JSR_5F_JUMP (GALGAS_midrange_5F_intermediate_5F_instructionList & ioArgument_ioGeneratedInstructionList,
                                                  GALGAS_string & ioArgument_ioListFileContents,
@@ -3198,11 +3198,11 @@ void routine_midrange_5F_compute_5F_JSR_5F_JUMP (GALGAS_midrange_5F_intermediate
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                                       Routine 'midrange_build_assembly_code'                                        *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 void routine_midrange_5F_build_5F_assembly_5F_code (const GALGAS_string constinArgument_inProcessorName,
                                                     const GALGAS_registerTable constinArgument_inPredefinedRegisters,
@@ -3268,11 +3268,11 @@ void routine_midrange_5F_build_5F_assembly_5F_code (const GALGAS_string constinA
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                                       Routine 'emitMidrangeCodeAtWordAddress'                                       *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 void routine_emitMidrangeCodeAtWordAddress (const GALGAS_uint constinArgument_inCode,
                                             GALGAS_uint & ioArgument_ioWordAddress,
@@ -3291,11 +3291,11 @@ void routine_emitMidrangeCodeAtWordAddress (const GALGAS_uint constinArgument_in
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                                    Routine 'emitMidrangeDirectCodeAtWordAddress'                                    *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 void routine_emitMidrangeDirectCodeAtWordAddress (const GALGAS_uint constinArgument_inCode,
                                                   GALGAS_uint & ioArgument_ioWordAddress,
@@ -3313,11 +3313,11 @@ void routine_emitMidrangeDirectCodeAtWordAddress (const GALGAS_uint constinArgum
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                                      Routine 'emitNoMidrangeCodeAtWordAddress'                                      *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 void routine_emitNoMidrangeCodeAtWordAddress (const GALGAS_uint constinArgument_inWordAddress,
                                               const GALGAS_midrange_5F_intermediate_5F_instruction constinArgument_inInstruction,
@@ -3331,11 +3331,11 @@ void routine_emitNoMidrangeCodeAtWordAddress (const GALGAS_uint constinArgument_
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                                   Routine 'emit_midrange_GOTOinstruction_nocheck'                                   *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 void routine_emit_5F_midrange_5F_GOTOinstruction_5F_nocheck (const GALGAS_string constinArgument_inTargetLabel,
                                                              const GALGAS_uint constinArgument_inTargetAddress,
@@ -3350,11 +3350,11 @@ void routine_emit_5F_midrange_5F_GOTOinstruction_5F_nocheck (const GALGAS_string
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                                       Routine 'emit_midrange_GOTOinstruction'                                       *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 void routine_emit_5F_midrange_5F_GOTOinstruction (const GALGAS_location constinArgument_inIntructionLocation,
                                                   GALGAS_uint & ioArgument_ioAddress,
@@ -3373,11 +3373,11 @@ void routine_emit_5F_midrange_5F_GOTOinstruction (const GALGAS_location constinA
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                                   Routine 'emit_midrange_CALLinstruction_nocheck'                                   *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 void routine_emit_5F_midrange_5F_CALLinstruction_5F_nocheck (const GALGAS_string constinArgument_inTargetLabel,
                                                              const GALGAS_uint constinArgument_inTargetAddress,
@@ -3392,11 +3392,11 @@ void routine_emit_5F_midrange_5F_CALLinstruction_5F_nocheck (const GALGAS_string
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                                       Routine 'emit_midrange_CALLinstruction'                                       *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 void routine_emit_5F_midrange_5F_CALLinstruction (const GALGAS_location constinArgument_inIntructionLocation,
                                                   GALGAS_uint & ioArgument_ioAddress,
@@ -3415,11 +3415,11 @@ void routine_emit_5F_midrange_5F_CALLinstruction (const GALGAS_location constinA
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                                      Routine 'build_midrange_ipic_binary_code'                                      *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 void routine_build_5F_midrange_5F_ipic_5F_binary_5F_code (const GALGAS_registerTable constinArgument_inRegisterTable,
                                                           const GALGAS_constantMap constinArgument_inConstantMap,
@@ -3483,11 +3483,11 @@ void routine_build_5F_midrange_5F_ipic_5F_binary_5F_code (const GALGAS_registerT
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                                             Routine 'midrange_analyze'                                              *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 void routine_midrange_5F_analyze (const GALGAS_midrange_5F_model constinArgument_inPiccoloModel,
                                   const GALGAS_string constinArgument_inSourceFileName,
@@ -3716,11 +3716,11 @@ void routine_midrange_5F_analyze (const GALGAS_midrange_5F_model constinArgument
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                                            Routine 'getComplementaryBcc'                                            *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 void routine_getComplementaryBcc (const GALGAS_conditional_5F_branch constinArgument_inConditionalBranch,
                                   GALGAS_conditional_5F_branch & outArgument_outComplementary,
@@ -3774,11 +3774,11 @@ void routine_getComplementaryBcc (const GALGAS_conditional_5F_branch constinArgu
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                                               Routine 'pic18_analyze'                                               *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 void routine_pic_31__38__5F_analyze (const GALGAS_pic_31__38_AST constinArgument_inPiccoloModel,
                                      const GALGAS_string constinArgument_inSourceFileName,
@@ -4085,11 +4085,11 @@ void routine_pic_31__38__5F_analyze (const GALGAS_pic_31__38_AST constinArgument
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                                   Routine 'pic18BootloaderSpecificationAnalysis'                                    *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 void routine_pic_31__38_BootloaderSpecificationAnalysis (const GALGAS_string constinArgument_inSourceFileName,
                                                          const GALGAS_lstring constinArgument_inBootloaderName,
@@ -4240,11 +4240,11 @@ void routine_pic_31__38_BootloaderSpecificationAnalysis (const GALGAS_string con
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                                              Function 'pic18_checkBCC'                                              *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_bool function_pic_31__38__5F_checkBCC (const GALGAS_symbolTableForRelativesResolution & constinArgument_inSymbolTable,
                                               const GALGAS_lstring & constinArgument_inTargetLabel,
@@ -4261,9 +4261,9 @@ GALGAS_bool function_pic_31__38__5F_checkBCC (const GALGAS_symbolTableForRelativ
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //  Function introspection                                                                                             *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 static const C_galgas_type_descriptor * functionArgs_pic_31__38__5F_checkBCC [4] = {
   & kTypeDescriptor_GALGAS_symbolTableForRelativesResolution,
@@ -4272,7 +4272,7 @@ static const C_galgas_type_descriptor * functionArgs_pic_31__38__5F_checkBCC [4]
   NULL
 } ;
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 static GALGAS_object functionWithGenericHeader_pic_31__38__5F_checkBCC (C_Compiler * inCompiler,
                                                                         const cObjectArray & inEffectiveParameterArray,
@@ -4294,7 +4294,7 @@ static GALGAS_object functionWithGenericHeader_pic_31__38__5F_checkBCC (C_Compil
                                            COMMA_THERE).getter_object (THERE) ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 C_galgas_function_descriptor functionDescriptor_pic_31__38__5F_checkBCC ("pic18_checkBCC",
                                                                          functionWithGenericHeader_pic_31__38__5F_checkBCC,
@@ -4302,11 +4302,11 @@ C_galgas_function_descriptor functionDescriptor_pic_31__38__5F_checkBCC ("pic18_
                                                                          3,
                                                                          functionArgs_pic_31__38__5F_checkBCC) ;
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                                           Function 'pic18_checkBRA_RCALL'                                           *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_bool function_pic_31__38__5F_checkBRA_5F_RCALL (const GALGAS_symbolTableForRelativesResolution & constinArgument_inSymbolTable,
                                                        const GALGAS_lstring & constinArgument_inTargetLabel,
@@ -4323,9 +4323,9 @@ GALGAS_bool function_pic_31__38__5F_checkBRA_5F_RCALL (const GALGAS_symbolTableF
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //  Function introspection                                                                                             *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 static const C_galgas_type_descriptor * functionArgs_pic_31__38__5F_checkBRA_5F_RCALL [4] = {
   & kTypeDescriptor_GALGAS_symbolTableForRelativesResolution,
@@ -4334,7 +4334,7 @@ static const C_galgas_type_descriptor * functionArgs_pic_31__38__5F_checkBRA_5F_
   NULL
 } ;
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 static GALGAS_object functionWithGenericHeader_pic_31__38__5F_checkBRA_5F_RCALL (C_Compiler * inCompiler,
                                                                                  const cObjectArray & inEffectiveParameterArray,
@@ -4356,7 +4356,7 @@ static GALGAS_object functionWithGenericHeader_pic_31__38__5F_checkBRA_5F_RCALL 
                                                     COMMA_THERE).getter_object (THERE) ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 C_galgas_function_descriptor functionDescriptor_pic_31__38__5F_checkBRA_5F_RCALL ("pic18_checkBRA_RCALL",
                                                                                   functionWithGenericHeader_pic_31__38__5F_checkBRA_5F_RCALL,
@@ -4364,11 +4364,11 @@ C_galgas_function_descriptor functionDescriptor_pic_31__38__5F_checkBRA_5F_RCALL
                                                                                   3,
                                                                                   functionArgs_pic_31__38__5F_checkBRA_5F_RCALL) ;
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                                       Function 'pic18_BRA_RCALL_displacement'                                       *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_sint function_pic_31__38__5F_BRA_5F_RCALL_5F_displacement (const GALGAS_symbolTableForRelativesResolution & constinArgument_inSymbolTable,
                                                                   const GALGAS_lstring & constinArgument_inTargetLabel,
@@ -4384,9 +4384,9 @@ GALGAS_sint function_pic_31__38__5F_BRA_5F_RCALL_5F_displacement (const GALGAS_s
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //  Function introspection                                                                                             *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 static const C_galgas_type_descriptor * functionArgs_pic_31__38__5F_BRA_5F_RCALL_5F_displacement [4] = {
   & kTypeDescriptor_GALGAS_symbolTableForRelativesResolution,
@@ -4395,7 +4395,7 @@ static const C_galgas_type_descriptor * functionArgs_pic_31__38__5F_BRA_5F_RCALL
   NULL
 } ;
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 static GALGAS_object functionWithGenericHeader_pic_31__38__5F_BRA_5F_RCALL_5F_displacement (C_Compiler * inCompiler,
                                                                                             const cObjectArray & inEffectiveParameterArray,
@@ -4417,7 +4417,7 @@ static GALGAS_object functionWithGenericHeader_pic_31__38__5F_BRA_5F_RCALL_5F_di
                                                                COMMA_THERE).getter_object (THERE) ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 C_galgas_function_descriptor functionDescriptor_pic_31__38__5F_BRA_5F_RCALL_5F_displacement ("pic18_BRA_RCALL_displacement",
                                                                                              functionWithGenericHeader_pic_31__38__5F_BRA_5F_RCALL_5F_displacement,
@@ -4425,11 +4425,11 @@ C_galgas_function_descriptor functionDescriptor_pic_31__38__5F_BRA_5F_RCALL_5F_d
                                                                                              3,
                                                                                              functionArgs_pic_31__38__5F_BRA_5F_RCALL_5F_displacement) ;
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                                        Function 'pic18_Bcc_instruction_code'                                        *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_codeList function_pic_31__38__5F_Bcc_5F_instruction_5F_code (const GALGAS_uint & constinArgument_inConditionalBranchInstructionAddress,
                                                                     const GALGAS_uint & constinArgument_inTargetAddress,
@@ -4555,9 +4555,9 @@ GALGAS_codeList function_pic_31__38__5F_Bcc_5F_instruction_5F_code (const GALGAS
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //  Function introspection                                                                                             *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 static const C_galgas_type_descriptor * functionArgs_pic_31__38__5F_Bcc_5F_instruction_5F_code [6] = {
   & kTypeDescriptor_GALGAS_uint,
@@ -4568,7 +4568,7 @@ static const C_galgas_type_descriptor * functionArgs_pic_31__38__5F_Bcc_5F_instr
   NULL
 } ;
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 static GALGAS_object functionWithGenericHeader_pic_31__38__5F_Bcc_5F_instruction_5F_code (C_Compiler * inCompiler,
                                                                                           const cObjectArray & inEffectiveParameterArray,
@@ -4598,7 +4598,7 @@ static GALGAS_object functionWithGenericHeader_pic_31__38__5F_Bcc_5F_instruction
                                                              COMMA_THERE).getter_object (THERE) ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 C_galgas_function_descriptor functionDescriptor_pic_31__38__5F_Bcc_5F_instruction_5F_code ("pic18_Bcc_instruction_code",
                                                                                            functionWithGenericHeader_pic_31__38__5F_Bcc_5F_instruction_5F_code,
@@ -4606,11 +4606,11 @@ C_galgas_function_descriptor functionDescriptor_pic_31__38__5F_Bcc_5F_instructio
                                                                                            5,
                                                                                            functionArgs_pic_31__38__5F_Bcc_5F_instruction_5F_code) ;
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                                       Function 'pic18_RCALL_instruction_code'                                       *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_codeList function_pic_31__38__5F_RCALL_5F_instruction_5F_code (const GALGAS_uint & constinArgument_inRCALLinstructionAddress,
                                                                       const GALGAS_uint & constinArgument_inTargetAddress,
@@ -4630,9 +4630,9 @@ GALGAS_codeList function_pic_31__38__5F_RCALL_5F_instruction_5F_code (const GALG
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //  Function introspection                                                                                             *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 static const C_galgas_type_descriptor * functionArgs_pic_31__38__5F_RCALL_5F_instruction_5F_code [4] = {
   & kTypeDescriptor_GALGAS_uint,
@@ -4641,7 +4641,7 @@ static const C_galgas_type_descriptor * functionArgs_pic_31__38__5F_RCALL_5F_ins
   NULL
 } ;
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 static GALGAS_object functionWithGenericHeader_pic_31__38__5F_RCALL_5F_instruction_5F_code (C_Compiler * inCompiler,
                                                                                             const cObjectArray & inEffectiveParameterArray,
@@ -4663,7 +4663,7 @@ static GALGAS_object functionWithGenericHeader_pic_31__38__5F_RCALL_5F_instructi
                                                                COMMA_THERE).getter_object (THERE) ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 C_galgas_function_descriptor functionDescriptor_pic_31__38__5F_RCALL_5F_instruction_5F_code ("pic18_RCALL_instruction_code",
                                                                                              functionWithGenericHeader_pic_31__38__5F_RCALL_5F_instruction_5F_code,
@@ -4671,11 +4671,11 @@ C_galgas_function_descriptor functionDescriptor_pic_31__38__5F_RCALL_5F_instruct
                                                                                              3,
                                                                                              functionArgs_pic_31__38__5F_RCALL_5F_instruction_5F_code) ;
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                                        Function 'pic18_BRA_instruction_code'                                        *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_codeList function_pic_31__38__5F_BRA_5F_instruction_5F_code (const GALGAS_uint & constinArgument_inRCALLinstructionAddress,
                                                                     const GALGAS_uint & constinArgument_inTargetAddress,
@@ -4695,9 +4695,9 @@ GALGAS_codeList function_pic_31__38__5F_BRA_5F_instruction_5F_code (const GALGAS
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //  Function introspection                                                                                             *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 static const C_galgas_type_descriptor * functionArgs_pic_31__38__5F_BRA_5F_instruction_5F_code [4] = {
   & kTypeDescriptor_GALGAS_uint,
@@ -4706,7 +4706,7 @@ static const C_galgas_type_descriptor * functionArgs_pic_31__38__5F_BRA_5F_instr
   NULL
 } ;
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 static GALGAS_object functionWithGenericHeader_pic_31__38__5F_BRA_5F_instruction_5F_code (C_Compiler * inCompiler,
                                                                                           const cObjectArray & inEffectiveParameterArray,
@@ -4728,7 +4728,7 @@ static GALGAS_object functionWithGenericHeader_pic_31__38__5F_BRA_5F_instruction
                                                              COMMA_THERE).getter_object (THERE) ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 C_galgas_function_descriptor functionDescriptor_pic_31__38__5F_BRA_5F_instruction_5F_code ("pic18_BRA_instruction_code",
                                                                                            functionWithGenericHeader_pic_31__38__5F_BRA_5F_instruction_5F_code,
@@ -4736,11 +4736,11 @@ C_galgas_function_descriptor functionDescriptor_pic_31__38__5F_BRA_5F_instructio
                                                                                            3,
                                                                                            functionArgs_pic_31__38__5F_BRA_5F_instruction_5F_code) ;
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                                       Function 'pic18_CALL_instruction_code'                                        *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_codeList function_pic_31__38__5F_CALL_5F_instruction_5F_code (const GALGAS_uint & constinArgument_inTargetAddress,
                                                                      const GALGAS_lstring & constinArgument_inTargetLabel,
@@ -4756,9 +4756,9 @@ GALGAS_codeList function_pic_31__38__5F_CALL_5F_instruction_5F_code (const GALGA
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //  Function introspection                                                                                             *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 static const C_galgas_type_descriptor * functionArgs_pic_31__38__5F_CALL_5F_instruction_5F_code [3] = {
   & kTypeDescriptor_GALGAS_uint,
@@ -4766,7 +4766,7 @@ static const C_galgas_type_descriptor * functionArgs_pic_31__38__5F_CALL_5F_inst
   NULL
 } ;
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 static GALGAS_object functionWithGenericHeader_pic_31__38__5F_CALL_5F_instruction_5F_code (C_Compiler * inCompiler,
                                                                                            const cObjectArray & inEffectiveParameterArray,
@@ -4784,7 +4784,7 @@ static GALGAS_object functionWithGenericHeader_pic_31__38__5F_CALL_5F_instructio
                                                               COMMA_THERE).getter_object (THERE) ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 C_galgas_function_descriptor functionDescriptor_pic_31__38__5F_CALL_5F_instruction_5F_code ("pic18_CALL_instruction_code",
                                                                                             functionWithGenericHeader_pic_31__38__5F_CALL_5F_instruction_5F_code,
@@ -4792,11 +4792,11 @@ C_galgas_function_descriptor functionDescriptor_pic_31__38__5F_CALL_5F_instructi
                                                                                             2,
                                                                                             functionArgs_pic_31__38__5F_CALL_5F_instruction_5F_code) ;
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                                       Function 'pic18_GOTO_instruction_code'                                        *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_codeList function_pic_31__38__5F_GOTO_5F_instruction_5F_code (const GALGAS_uint & constinArgument_inTargetAddress,
                                                                      const GALGAS_lstring & constinArgument_inTargetLabel,
@@ -4812,9 +4812,9 @@ GALGAS_codeList function_pic_31__38__5F_GOTO_5F_instruction_5F_code (const GALGA
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //  Function introspection                                                                                             *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 static const C_galgas_type_descriptor * functionArgs_pic_31__38__5F_GOTO_5F_instruction_5F_code [3] = {
   & kTypeDescriptor_GALGAS_uint,
@@ -4822,7 +4822,7 @@ static const C_galgas_type_descriptor * functionArgs_pic_31__38__5F_GOTO_5F_inst
   NULL
 } ;
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 static GALGAS_object functionWithGenericHeader_pic_31__38__5F_GOTO_5F_instruction_5F_code (C_Compiler * inCompiler,
                                                                                            const cObjectArray & inEffectiveParameterArray,
@@ -4840,7 +4840,7 @@ static GALGAS_object functionWithGenericHeader_pic_31__38__5F_GOTO_5F_instructio
                                                               COMMA_THERE).getter_object (THERE) ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 C_galgas_function_descriptor functionDescriptor_pic_31__38__5F_GOTO_5F_instruction_5F_code ("pic18_GOTO_instruction_code",
                                                                                             functionWithGenericHeader_pic_31__38__5F_GOTO_5F_instruction_5F_code,
@@ -4848,11 +4848,11 @@ C_galgas_function_descriptor functionDescriptor_pic_31__38__5F_GOTO_5F_instructi
                                                                                             2,
                                                                                             functionArgs_pic_31__38__5F_GOTO_5F_instruction_5F_code) ;
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                                          Function 'pic18_definition_label'                                          *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_codeList function_pic_31__38__5F_definition_5F_label (const GALGAS_lstring & constinArgument_inTargetLabel,
                                                              C_Compiler * inCompiler
@@ -4864,16 +4864,16 @@ GALGAS_codeList function_pic_31__38__5F_definition_5F_label (const GALGAS_lstrin
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //  Function introspection                                                                                             *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 static const C_galgas_type_descriptor * functionArgs_pic_31__38__5F_definition_5F_label [2] = {
   & kTypeDescriptor_GALGAS_lstring,
   NULL
 } ;
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 static GALGAS_object functionWithGenericHeader_pic_31__38__5F_definition_5F_label (C_Compiler * inCompiler,
                                                                                    const cObjectArray & inEffectiveParameterArray,
@@ -4887,7 +4887,7 @@ static GALGAS_object functionWithGenericHeader_pic_31__38__5F_definition_5F_labe
                                                       COMMA_THERE).getter_object (THERE) ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 C_galgas_function_descriptor functionDescriptor_pic_31__38__5F_definition_5F_label ("pic18_definition_label",
                                                                                     functionWithGenericHeader_pic_31__38__5F_definition_5F_label,
@@ -4895,11 +4895,11 @@ C_galgas_function_descriptor functionDescriptor_pic_31__38__5F_definition_5F_lab
                                                                                     1,
                                                                                     functionArgs_pic_31__38__5F_definition_5F_label) ;
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                                  Routine 'addPic18UsedRoutinesFromInstructionList'                                  *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 void routine_addPic_31__38_UsedRoutinesFromInstructionList (const GALGAS_pic_31__38_InstructionList constinArgument_inInstructionList,
                                                             const GALGAS_pic_31__38_MacroMap constinArgument_inMacroMap,
@@ -4914,11 +4914,11 @@ void routine_addPic_31__38_UsedRoutinesFromInstructionList (const GALGAS_pic_31_
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                                        Function 'pic18_computeUsedRoutines'                                         *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_stringset function_pic_31__38__5F_computeUsedRoutines (const GALGAS_pic_31__38_InterruptDefinitionList & constinArgument_inInterruptDefinitionList,
                                                               const GALGAS_pic_31__38_RoutineDefinitionList & constinArgument_inRoutineDefinitionList,
@@ -4980,9 +4980,9 @@ GALGAS_stringset function_pic_31__38__5F_computeUsedRoutines (const GALGAS_pic_3
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //  Function introspection                                                                                             *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 static const C_galgas_type_descriptor * functionArgs_pic_31__38__5F_computeUsedRoutines [6] = {
   & kTypeDescriptor_GALGAS_pic_31__38_InterruptDefinitionList,
@@ -4993,7 +4993,7 @@ static const C_galgas_type_descriptor * functionArgs_pic_31__38__5F_computeUsedR
   NULL
 } ;
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 static GALGAS_object functionWithGenericHeader_pic_31__38__5F_computeUsedRoutines (C_Compiler * inCompiler,
                                                                                    const cObjectArray & inEffectiveParameterArray,
@@ -5023,7 +5023,7 @@ static GALGAS_object functionWithGenericHeader_pic_31__38__5F_computeUsedRoutine
                                                       COMMA_THERE).getter_object (THERE) ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 C_galgas_function_descriptor functionDescriptor_pic_31__38__5F_computeUsedRoutines ("pic18_computeUsedRoutines",
                                                                                     functionWithGenericHeader_pic_31__38__5F_computeUsedRoutines,
@@ -5031,11 +5031,11 @@ C_galgas_function_descriptor functionDescriptor_pic_31__38__5F_computeUsedRoutin
                                                                                     5,
                                                                                     functionArgs_pic_31__38__5F_computeUsedRoutines) ;
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                                     Routine 'performInlineFromInstructionList'                                      *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 void routine_performInlineFromInstructionList (const GALGAS_pic_31__38_InstructionList constinArgument_inInstructionList,
                                                const GALGAS_stringset constinArgument_inInlinedRoutineSet,
@@ -5054,11 +5054,11 @@ void routine_performInlineFromInstructionList (const GALGAS_pic_31__38_Instructi
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                                         Routine 'pic18PerformRoutineInline'                                         *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 void routine_pic_31__38_PerformRoutineInline (const GALGAS_stringset constinArgument_inInlinedRoutineSet,
                                               const GALGAS_declaredRoutineMap constinArgument_inDeclaredRoutineMap,
@@ -5091,11 +5091,11 @@ void routine_pic_31__38_PerformRoutineInline (const GALGAS_stringset constinArgu
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                                             Routine 'displayBlockList'                                              *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 void routine_displayBlockList (const GALGAS_string constinArgument_inTitle,
                                GALGAS_string & ioArgument_ioListFileContents,
@@ -5123,11 +5123,11 @@ void routine_displayBlockList (const GALGAS_string constinArgument_inTitle,
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                                          Routine 'analyzeInstructionList'                                           *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 void routine_analyzeInstructionList (const GALGAS_pic_31__38_InstructionList constinArgument_inInstructionList,
                                      GALGAS_ipic_31__38_BlockList & ioArgument_ioGeneratedBlockList,
@@ -5160,11 +5160,11 @@ void routine_analyzeInstructionList (const GALGAS_pic_31__38_InstructionList con
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                                        Routine 'pic18_analyze_data_sections'                                        *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 void routine_pic_31__38__5F_analyze_5F_data_5F_sections (const GALGAS_dataList constinArgument_inDataDefinitionList,
                                                          const GALGAS_registerTable constinArgument_inRegisterTable,
@@ -5216,11 +5216,11 @@ void routine_pic_31__38__5F_analyze_5F_data_5F_sections (const GALGAS_dataList c
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                                  Routine 'build_ipic18_block_representation_list'                                   *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 void routine_build_5F_ipic_31__38__5F_block_5F_representation_5F_list (const GALGAS_string constinArgument_inSourceFileName,
                                                                        const GALGAS_sint_36__34_ constinArgument_inROMSize,
@@ -5647,11 +5647,11 @@ void routine_build_5F_ipic_31__38__5F_block_5F_representation_5F_list (const GAL
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                                              Routine 'enterGoto2block'                                              *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 void routine_enterGoto_32_block (const GALGAS_symbolTableForBlockOptimization constinArgument_inSymbolTable,
                                  const GALGAS_ipic_31__38_BlockList constinArgument_inBlockList,
@@ -5669,11 +5669,11 @@ void routine_enterGoto_32_block (const GALGAS_symbolTableForBlockOptimization co
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                                              Routine 'enterGoto4block'                                              *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 void routine_enterGoto_34_block (const GALGAS_symbolTableForBlockOptimization constinArgument_inSymbolTable,
                                  const GALGAS_ipic_31__38_BlockList constinArgument_inBlockList,
@@ -5691,11 +5691,11 @@ void routine_enterGoto_34_block (const GALGAS_symbolTableForBlockOptimization co
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                                        Routine 'instructionListOptimization'                                        *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 void routine_instructionListOptimization (const GALGAS_symbolTableForBlockOptimization constinArgument_inSymbolTable,
                                           const GALGAS_optimizeFlagStruct constinArgument_inOptimizeFlagStruct,
@@ -5730,11 +5730,11 @@ void routine_instructionListOptimization (const GALGAS_symbolTableForBlockOptimi
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                                           Routine 'ipic18OptimizeBlocks'                                            *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 void routine_ipic_31__38_OptimizeBlocks (GALGAS_string & ioArgument_ioListFileContents,
                                          GALGAS_ipic_31__38_BlockList & ioArgument_ioGeneratedBlockList,
@@ -5831,11 +5831,11 @@ void routine_ipic_31__38_OptimizeBlocks (GALGAS_string & ioArgument_ioListFileCo
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                                             Routine 'buildOrderedGraph'                                             *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 void routine_buildOrderedGraph (GALGAS_ipic_31__38_BlockList & ioArgument_ioBlockList,
                                 const GALGAS_string constinArgument_inSourceFileName,
@@ -6054,11 +6054,11 @@ void routine_buildOrderedGraph (GALGAS_ipic_31__38_BlockList & ioArgument_ioBloc
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                                           Routine 'buildInvocationGraph'                                            *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 void routine_buildInvocationGraph (const GALGAS_ipic_31__38_BlockList constinArgument_inBlockList,
                                    GALGAS_string & outArgument_outGraphVizString,
@@ -6085,11 +6085,11 @@ void routine_buildInvocationGraph (const GALGAS_ipic_31__38_BlockList constinArg
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                                         Function 'blockDiscontinuityCount'                                          *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_uint function_blockDiscontinuityCount (GALGAS_ipic_31__38_BlockList inArgument_inBlockList,
                                               C_Compiler * inCompiler
@@ -6121,16 +6121,16 @@ GALGAS_uint function_blockDiscontinuityCount (GALGAS_ipic_31__38_BlockList inArg
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //  Function introspection                                                                                             *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 static const C_galgas_type_descriptor * functionArgs_blockDiscontinuityCount [2] = {
   & kTypeDescriptor_GALGAS_ipic_31__38_BlockList,
   NULL
 } ;
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 static GALGAS_object functionWithGenericHeader_blockDiscontinuityCount (C_Compiler * inCompiler,
                                                                         const cObjectArray & inEffectiveParameterArray,
@@ -6144,7 +6144,7 @@ static GALGAS_object functionWithGenericHeader_blockDiscontinuityCount (C_Compil
                                            COMMA_THERE).getter_object (THERE) ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 C_galgas_function_descriptor functionDescriptor_blockDiscontinuityCount ("blockDiscontinuityCount",
                                                                          functionWithGenericHeader_blockDiscontinuityCount,
@@ -6152,11 +6152,11 @@ C_galgas_function_descriptor functionDescriptor_blockDiscontinuityCount ("blockD
                                                                          1,
                                                                          functionArgs_blockDiscontinuityCount) ;
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                                        Routine 'ipic18OptimizeBlockOrdering'                                        *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 void routine_ipic_31__38_OptimizeBlockOrdering (const GALGAS_string constinArgument_inSourceFileName,
                                                 GALGAS_string & ioArgument_ioListFileContents,
@@ -6182,11 +6182,11 @@ void routine_ipic_31__38_OptimizeBlockOrdering (const GALGAS_string constinArgum
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                                                 Function 'sortKey'                                                  *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_string function_sortKey (const GALGAS_clusterList & constinArgument_inClusterList,
                                 C_Compiler * inCompiler
@@ -6206,16 +6206,16 @@ GALGAS_string function_sortKey (const GALGAS_clusterList & constinArgument_inClu
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //  Function introspection                                                                                             *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 static const C_galgas_type_descriptor * functionArgs_sortKey [2] = {
   & kTypeDescriptor_GALGAS_clusterList,
   NULL
 } ;
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 static GALGAS_object functionWithGenericHeader_sortKey (C_Compiler * inCompiler,
                                                         const cObjectArray & inEffectiveParameterArray,
@@ -6229,7 +6229,7 @@ static GALGAS_object functionWithGenericHeader_sortKey (C_Compiler * inCompiler,
                            COMMA_THERE).getter_object (THERE) ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 C_galgas_function_descriptor functionDescriptor_sortKey ("sortKey",
                                                          functionWithGenericHeader_sortKey,
@@ -6237,11 +6237,11 @@ C_galgas_function_descriptor functionDescriptor_sortKey ("sortKey",
                                                          1,
                                                          functionArgs_sortKey) ;
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                                         Routine 'perform_cluster_ordering'                                          *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 void routine_perform_5F_cluster_5F_ordering (const GALGAS_clusterList constinArgument_inInitialClusterList,
                                              GALGAS_ipic_31__38_BlockList & ioArgument_ioBlockList,
@@ -6545,11 +6545,11 @@ void routine_perform_5F_cluster_5F_ordering (const GALGAS_clusterList constinArg
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                                        Routine 'performRelativesResolution'                                         *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 void routine_performRelativesResolution (const GALGAS_symbolTableForRelativesResolution constinArgument_inSymbolTable,
                                          GALGAS_ipic_31__38_BlockList & ioArgument_ioBlockList,
@@ -6585,11 +6585,11 @@ void routine_performRelativesResolution (const GALGAS_symbolTableForRelativesRes
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                                      Routine 'computeLabelAbsoluteAddressMap'                                       *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 void routine_computeLabelAbsoluteAddressMap (const GALGAS_ipic_31__38_BlockList constinArgument_inGeneratedBlockList,
                                              const GALGAS_ipic_31__38_BlockList constinArgument_inInitialBlockList,
@@ -6644,11 +6644,11 @@ void routine_computeLabelAbsoluteAddressMap (const GALGAS_ipic_31__38_BlockList 
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                                         Routine 'ipic18RelativesResolution'                                         *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 void routine_ipic_31__38_RelativesResolution (GALGAS_string & ioArgument_ioListFileContents,
                                               GALGAS_ipic_31__38_BlockList & ioArgument_ioGeneratedBlockList,
@@ -6718,11 +6718,11 @@ void routine_ipic_31__38_RelativesResolution (GALGAS_string & ioArgument_ioListF
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                                       Routine 'ipic18RelativeBranchOverflow'                                        *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 void routine_ipic_31__38_RelativeBranchOverflow (const GALGAS_ipic_31__38_BlockList constinArgument_inBlockList,
                                                  const GALGAS_ipic_31__38_BlockList constinArgument_inInitialBlockList,
@@ -6760,11 +6760,11 @@ void routine_ipic_31__38_RelativeBranchOverflow (const GALGAS_ipic_31__38_BlockL
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                                           Routine 'generateLineWithCode'                                            *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 void routine_generateLineWithCode (const GALGAS_uint constinArgument_inAddress,
                                    const GALGAS_codeList constinArgument_inCode,
@@ -6849,11 +6849,11 @@ void routine_generateLineWithCode (const GALGAS_uint constinArgument_inAddress,
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                                            Routine 'ipic18GenerateCode'                                             *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 void routine_ipic_31__38_GenerateCode (const GALGAS_string constinArgument_inSourceFileName,
                                        const GALGAS_programKind constinArgument_inProgramKind,
@@ -7046,11 +7046,11 @@ void routine_ipic_31__38_GenerateCode (const GALGAS_string constinArgument_inSou
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                                         Routine 'pic18GenerateAssemblyFile'                                         *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 void routine_pic_31__38_GenerateAssemblyFile (const GALGAS_string constinArgument_inSourceFileName,
                                               const GALGAS_string constinArgument_inProcessorName,
@@ -7111,11 +7111,11 @@ void routine_pic_31__38_GenerateAssemblyFile (const GALGAS_string constinArgumen
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                                          Routine 'ipic18StackComputations'                                          *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 void routine_ipic_31__38_StackComputations (GALGAS_string & ioArgument_ioListFileContents,
                                             const GALGAS_ipic_31__38_BlockList constinArgument_inBlockList,
