@@ -19,13 +19,13 @@ void routine_parseDeviceDefinition (const GALGAS_lstring constinArgument_inDevic
                                     C_Compiler * inCompiler
                                     COMMA_UNUSED_LOCATION_ARGS) {
   outArgument_outPiccoloDeviceModel.drop () ; // Release 'out' argument
-  GALGAS_filewrapper var_fw = GALGAS_filewrapper (gWrapperDirectory_0_embeddedDevices) ;
-  GALGAS_string var_deviceFullName = constinArgument_inDeviceName.getter_string (SOURCE_FILE ("piccolo_embedded_devices.galgas", 17)).add_operation (GALGAS_string (".piccoloDevice"), inCompiler COMMA_SOURCE_FILE ("piccolo_embedded_devices.galgas", 17)) ;
-  const enumGalgasBool test_0 = var_fw.getter_fileExistsAtPath (var_deviceFullName, inCompiler COMMA_SOURCE_FILE ("piccolo_embedded_devices.galgas", 18)).boolEnum () ;
+  GALGAS_filewrapper var_fw_316 = GALGAS_filewrapper (gWrapperDirectory_0_embeddedDevices) ;
+  GALGAS_string var_deviceFullName_373 = constinArgument_inDeviceName.getter_string (SOURCE_FILE ("piccolo_embedded_devices.galgas", 17)).add_operation (GALGAS_string (".piccoloDevice"), inCompiler COMMA_SOURCE_FILE ("piccolo_embedded_devices.galgas", 17)) ;
+  const enumGalgasBool test_0 = var_fw_316.getter_fileExistsAtPath (var_deviceFullName_373, inCompiler COMMA_SOURCE_FILE ("piccolo_embedded_devices.galgas", 18)).boolEnum () ;
   if (kBoolTrue == test_0) {
-    GALGAS_string var_definitionString = var_fw.getter_textFileContentsAtPath (var_deviceFullName, inCompiler COMMA_SOURCE_FILE ("piccolo_embedded_devices.galgas", 19)) ;
+    GALGAS_string var_definitionString_493 = var_fw_316.getter_textFileContentsAtPath (var_deviceFullName_373, inCompiler COMMA_SOURCE_FILE ("piccolo_embedded_devices.galgas", 19)) ;
     outArgument_outPiccoloDeviceModel.drop () ;
-    cGrammar_piccoloDevice_5F_grammar::_performSourceStringParsing_ (inCompiler, var_definitionString, var_deviceFullName, outArgument_outPiccoloDeviceModel  COMMA_SOURCE_FILE ("piccolo_embedded_devices.galgas", 20)) ;
+    cGrammar_piccoloDevice_5F_grammar::_performSourceStringParsing_ (inCompiler, var_definitionString_493, var_deviceFullName_373, outArgument_outPiccoloDeviceModel  COMMA_SOURCE_FILE ("piccolo_embedded_devices.galgas", 20)) ;
   }else if (kBoolFalse == test_0) {
     GALGAS_location location_1 (constinArgument_inDeviceName.getter_location (HERE)) ; // Implicit use of 'location' getter
     inCompiler->emitSemanticError (location_1, GALGAS_string ("The '").add_operation (constinArgument_inDeviceName.getter_string (SOURCE_FILE ("piccolo_embedded_devices.galgas", 24)), inCompiler COMMA_SOURCE_FILE ("piccolo_embedded_devices.galgas", 24)).add_operation (GALGAS_string ("' definition file is not defined"), inCompiler COMMA_SOURCE_FILE ("piccolo_embedded_devices.galgas", 24))  COMMA_SOURCE_FILE ("piccolo_embedded_devices.galgas", 22)) ;
