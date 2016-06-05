@@ -3,7 +3,7 @@
 
 //----------------------------------------------------------------------------------------------------------------------
 
-#include "galgas2/predefined-types.h"
+#include "all-predefined-types.h"
 
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -113,9 +113,9 @@ class GALGAS_baseline_5F_assembly_5F_CALL : public GALGAS_baseline_5F_assembly_5
                                                                      COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
-  public : static GALGAS_baseline_5F_assembly_5F_CALL constructor_new (const class GALGAS_location & inOperand0,
-                                                                       const class GALGAS_lstring & inOperand1
-                                                                       COMMA_LOCATION_ARGS) ;
+  public : static class GALGAS_baseline_5F_assembly_5F_CALL constructor_new (const class GALGAS_location & inOperand0,
+                                                                             const class GALGAS_lstring & inOperand1
+                                                                             COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public : typeComparisonResult objectCompare (const GALGAS_baseline_5F_assembly_5F_CALL & inOperand) const ;
@@ -199,9 +199,9 @@ class GALGAS_baseline_5F_assembly_5F_GOTO : public GALGAS_baseline_5F_assembly_5
                                                                      COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
-  public : static GALGAS_baseline_5F_assembly_5F_GOTO constructor_new (const class GALGAS_location & inOperand0,
-                                                                       const class GALGAS_lstring & inOperand1
-                                                                       COMMA_LOCATION_ARGS) ;
+  public : static class GALGAS_baseline_5F_assembly_5F_GOTO constructor_new (const class GALGAS_location & inOperand0,
+                                                                             const class GALGAS_lstring & inOperand1
+                                                                             COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public : typeComparisonResult objectCompare (const GALGAS_baseline_5F_assembly_5F_GOTO & inOperand) const ;
@@ -285,8 +285,8 @@ class GALGAS_baseline_5F_assembly_5F_SKIP : public GALGAS_baseline_5F_assembly_5
                                                                      COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
-  public : static GALGAS_baseline_5F_assembly_5F_SKIP constructor_new (const class GALGAS_location & inOperand0
-                                                                       COMMA_LOCATION_ARGS) ;
+  public : static class GALGAS_baseline_5F_assembly_5F_SKIP constructor_new (const class GALGAS_location & inOperand0
+                                                                             COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public : typeComparisonResult objectCompare (const GALGAS_baseline_5F_assembly_5F_SKIP & inOperand) const ;
@@ -365,10 +365,10 @@ class GALGAS_baseline_5F_assembly_5F_TRIS : public GALGAS_baseline_5F_assembly_5
                                                                      COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
-  public : static GALGAS_baseline_5F_assembly_5F_TRIS constructor_new (const class GALGAS_location & inOperand0,
-                                                                       const class GALGAS_lstring & inOperand1,
-                                                                       const class GALGAS_uint & inOperand2
-                                                                       COMMA_LOCATION_ARGS) ;
+  public : static class GALGAS_baseline_5F_assembly_5F_TRIS constructor_new (const class GALGAS_location & inOperand0,
+                                                                             const class GALGAS_lstring & inOperand1,
+                                                                             const class GALGAS_uint & inOperand2
+                                                                             COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public : typeComparisonResult objectCompare (const GALGAS_baseline_5F_assembly_5F_TRIS & inOperand) const ;
@@ -454,9 +454,9 @@ class GALGAS_baseline_5F_assembly_5F_WO_5F_OPERAND : public GALGAS_baseline_5F_a
                                                                               COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
-  public : static GALGAS_baseline_5F_assembly_5F_WO_5F_OPERAND constructor_new (const class GALGAS_location & inOperand0,
-                                                                                const class GALGAS_baseline_5F_WO_5F_OPERAND_5F_group & inOperand1
-                                                                                COMMA_LOCATION_ARGS) ;
+  public : static class GALGAS_baseline_5F_assembly_5F_WO_5F_OPERAND constructor_new (const class GALGAS_location & inOperand0,
+                                                                                      const class GALGAS_baseline_5F_WO_5F_OPERAND_5F_group & inOperand1
+                                                                                      COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public : typeComparisonResult objectCompare (const GALGAS_baseline_5F_assembly_5F_WO_5F_OPERAND & inOperand) const ;
@@ -540,11 +540,11 @@ class GALGAS_baseline_5F_assembly_5F_incDecRegisterInCondition : public GALGAS_b
                                                                                           COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
-  public : static GALGAS_baseline_5F_assembly_5F_incDecRegisterInCondition constructor_new (const class GALGAS_location & inOperand0,
-                                                                                            const class GALGAS_baseline_5F_intermediate_5F_registerExpression & inOperand1,
-                                                                                            const class GALGAS_bool & inOperand2,
-                                                                                            const class GALGAS_bool & inOperand3
-                                                                                            COMMA_LOCATION_ARGS) ;
+  public : static class GALGAS_baseline_5F_assembly_5F_incDecRegisterInCondition constructor_new (const class GALGAS_location & inOperand0,
+                                                                                                  const class GALGAS_baseline_5F_intermediate_5F_registerExpression & inOperand1,
+                                                                                                  const class GALGAS_bool & inOperand2,
+                                                                                                  const class GALGAS_bool & inOperand3
+                                                                                                  COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public : typeComparisonResult objectCompare (const GALGAS_baseline_5F_assembly_5F_incDecRegisterInCondition & inOperand) const ;
@@ -638,11 +638,11 @@ class GALGAS_baseline_5F_assembly_5F_instruction_5F_BitTestSkip : public GALGAS_
                                                                                            COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
-  public : static GALGAS_baseline_5F_assembly_5F_instruction_5F_BitTestSkip constructor_new (const class GALGAS_location & inOperand0,
-                                                                                             const class GALGAS_bool & inOperand1,
-                                                                                             const class GALGAS_baseline_5F_intermediate_5F_registerExpression & inOperand2,
-                                                                                             const class GALGAS_uint & inOperand3
-                                                                                             COMMA_LOCATION_ARGS) ;
+  public : static class GALGAS_baseline_5F_assembly_5F_instruction_5F_BitTestSkip constructor_new (const class GALGAS_location & inOperand0,
+                                                                                                   const class GALGAS_bool & inOperand1,
+                                                                                                   const class GALGAS_baseline_5F_intermediate_5F_registerExpression & inOperand2,
+                                                                                                   const class GALGAS_uint & inOperand3
+                                                                                                   COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public : typeComparisonResult objectCompare (const GALGAS_baseline_5F_assembly_5F_instruction_5F_BitTestSkip & inOperand) const ;
@@ -733,10 +733,10 @@ class GALGAS_baseline_5F_assembly_5F_instruction_5F_F : public GALGAS_baseline_5
                                                                                  COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
-  public : static GALGAS_baseline_5F_assembly_5F_instruction_5F_F constructor_new (const class GALGAS_location & inOperand0,
-                                                                                   const class GALGAS_baseline_5F_F_5F_instruction_5F_base_5F_code & inOperand1,
-                                                                                   const class GALGAS_baseline_5F_intermediate_5F_registerExpression & inOperand2
-                                                                                   COMMA_LOCATION_ARGS) ;
+  public : static class GALGAS_baseline_5F_assembly_5F_instruction_5F_F constructor_new (const class GALGAS_location & inOperand0,
+                                                                                         const class GALGAS_baseline_5F_F_5F_instruction_5F_base_5F_code & inOperand1,
+                                                                                         const class GALGAS_baseline_5F_intermediate_5F_registerExpression & inOperand2
+                                                                                         COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public : typeComparisonResult objectCompare (const GALGAS_baseline_5F_assembly_5F_instruction_5F_F & inOperand) const ;
@@ -822,11 +822,11 @@ class GALGAS_baseline_5F_assembly_5F_instruction_5F_FB : public GALGAS_baseline_
                                                                                   COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
-  public : static GALGAS_baseline_5F_assembly_5F_instruction_5F_FB constructor_new (const class GALGAS_location & inOperand0,
-                                                                                    const class GALGAS_baseline_5F_bit_5F_oriented_5F_op & inOperand1,
-                                                                                    const class GALGAS_baseline_5F_intermediate_5F_registerExpression & inOperand2,
-                                                                                    const class GALGAS_uint & inOperand3
-                                                                                    COMMA_LOCATION_ARGS) ;
+  public : static class GALGAS_baseline_5F_assembly_5F_instruction_5F_FB constructor_new (const class GALGAS_location & inOperand0,
+                                                                                          const class GALGAS_baseline_5F_bit_5F_oriented_5F_op & inOperand1,
+                                                                                          const class GALGAS_baseline_5F_intermediate_5F_registerExpression & inOperand2,
+                                                                                          const class GALGAS_uint & inOperand3
+                                                                                          COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public : typeComparisonResult objectCompare (const GALGAS_baseline_5F_assembly_5F_instruction_5F_FB & inOperand) const ;
@@ -917,11 +917,11 @@ class GALGAS_baseline_5F_assembly_5F_instruction_5F_FD : public GALGAS_baseline_
                                                                                   COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
-  public : static GALGAS_baseline_5F_assembly_5F_instruction_5F_FD constructor_new (const class GALGAS_location & inOperand0,
-                                                                                    const class GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code & inOperand1,
-                                                                                    const class GALGAS_baseline_5F_intermediate_5F_registerExpression & inOperand2,
-                                                                                    const class GALGAS_bool & inOperand3
-                                                                                    COMMA_LOCATION_ARGS) ;
+  public : static class GALGAS_baseline_5F_assembly_5F_instruction_5F_FD constructor_new (const class GALGAS_location & inOperand0,
+                                                                                          const class GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code & inOperand1,
+                                                                                          const class GALGAS_baseline_5F_intermediate_5F_registerExpression & inOperand2,
+                                                                                          const class GALGAS_bool & inOperand3
+                                                                                          COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public : typeComparisonResult objectCompare (const GALGAS_baseline_5F_assembly_5F_instruction_5F_FD & inOperand) const ;
@@ -1012,10 +1012,10 @@ class GALGAS_baseline_5F_assembly_5F_instruction_5F_literalOperation : public GA
                                                                                                 COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
-  public : static GALGAS_baseline_5F_assembly_5F_instruction_5F_literalOperation constructor_new (const class GALGAS_location & inOperand0,
-                                                                                                  const class GALGAS_baseline_5F_literal_5F_instruction_5F_opcode & inOperand1,
-                                                                                                  const class GALGAS_uint & inOperand2
-                                                                                                  COMMA_LOCATION_ARGS) ;
+  public : static class GALGAS_baseline_5F_assembly_5F_instruction_5F_literalOperation constructor_new (const class GALGAS_location & inOperand0,
+                                                                                                        const class GALGAS_baseline_5F_literal_5F_instruction_5F_opcode & inOperand1,
+                                                                                                        const class GALGAS_uint & inOperand2
+                                                                                                        COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public : typeComparisonResult objectCompare (const GALGAS_baseline_5F_assembly_5F_instruction_5F_literalOperation & inOperand) const ;
@@ -1104,9 +1104,9 @@ class GALGAS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE : public GALGAS_ba
                                                                                          COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
-  public : static GALGAS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE constructor_new (const class GALGAS_lstring & inOperand0,
-                                                                                           const class GALGAS_bool & inOperand1
-                                                                                           COMMA_LOCATION_ARGS) ;
+  public : static class GALGAS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE constructor_new (const class GALGAS_lstring & inOperand0,
+                                                                                                 const class GALGAS_bool & inOperand1
+                                                                                                 COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public : typeComparisonResult objectCompare (const GALGAS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE & inOperand) const ;
@@ -1194,9 +1194,9 @@ class GALGAS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE : public GALGAS_base
                                                                                        COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
-  public : static GALGAS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE constructor_new (const class GALGAS_lstring & inOperand0,
-                                                                                         const class GALGAS_uint & inOperand1
-                                                                                         COMMA_LOCATION_ARGS) ;
+  public : static class GALGAS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE constructor_new (const class GALGAS_lstring & inOperand0,
+                                                                                               const class GALGAS_uint & inOperand1
+                                                                                               COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public : typeComparisonResult objectCompare (const GALGAS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE & inOperand) const ;
@@ -1284,8 +1284,8 @@ class GALGAS_baseline_5F_assembly_5F_pseudo_5F_LABEL : public GALGAS_baseline_5F
                                                                                 COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
-  public : static GALGAS_baseline_5F_assembly_5F_pseudo_5F_LABEL constructor_new (const class GALGAS_lstring & inOperand0
-                                                                                  COMMA_LOCATION_ARGS) ;
+  public : static class GALGAS_baseline_5F_assembly_5F_pseudo_5F_LABEL constructor_new (const class GALGAS_lstring & inOperand0
+                                                                                        COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public : typeComparisonResult objectCompare (const GALGAS_baseline_5F_assembly_5F_pseudo_5F_LABEL & inOperand) const ;
@@ -1368,8 +1368,8 @@ class GALGAS_baseline_5F_assembly_5F_pseudo_5F_ORG : public GALGAS_baseline_5F_a
                                                                               COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
-  public : static GALGAS_baseline_5F_assembly_5F_pseudo_5F_ORG constructor_new (const class GALGAS_uint & inOperand0
-                                                                                COMMA_LOCATION_ARGS) ;
+  public : static class GALGAS_baseline_5F_assembly_5F_pseudo_5F_ORG constructor_new (const class GALGAS_uint & inOperand0
+                                                                                      COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public : typeComparisonResult objectCompare (const GALGAS_baseline_5F_assembly_5F_pseudo_5F_ORG & inOperand) const ;
@@ -1452,10 +1452,10 @@ class GALGAS_baseline_5F_intermediate_5F_TRIS : public GALGAS_baseline_5F_interm
                                                                          COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
-  public : static GALGAS_baseline_5F_intermediate_5F_TRIS constructor_new (const class GALGAS_location & inOperand0,
-                                                                           const class GALGAS_lstring & inOperand1,
-                                                                           const class GALGAS_uint & inOperand2
-                                                                           COMMA_LOCATION_ARGS) ;
+  public : static class GALGAS_baseline_5F_intermediate_5F_TRIS constructor_new (const class GALGAS_location & inOperand0,
+                                                                                 const class GALGAS_lstring & inOperand1,
+                                                                                 const class GALGAS_uint & inOperand2
+                                                                                 COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public : typeComparisonResult objectCompare (const GALGAS_baseline_5F_intermediate_5F_TRIS & inOperand) const ;
@@ -1541,9 +1541,9 @@ class GALGAS_baseline_5F_intermediate_5F_WO_5F_OPERAND : public GALGAS_baseline_
                                                                                   COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
-  public : static GALGAS_baseline_5F_intermediate_5F_WO_5F_OPERAND constructor_new (const class GALGAS_location & inOperand0,
-                                                                                    const class GALGAS_baseline_5F_WO_5F_OPERAND_5F_group & inOperand1
-                                                                                    COMMA_LOCATION_ARGS) ;
+  public : static class GALGAS_baseline_5F_intermediate_5F_WO_5F_OPERAND constructor_new (const class GALGAS_location & inOperand0,
+                                                                                          const class GALGAS_baseline_5F_WO_5F_OPERAND_5F_group & inOperand1
+                                                                                          COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public : typeComparisonResult objectCompare (const GALGAS_baseline_5F_intermediate_5F_WO_5F_OPERAND & inOperand) const ;
@@ -1627,11 +1627,11 @@ class GALGAS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip : public GAL
                                                                                                COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
-  public : static GALGAS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip constructor_new (const class GALGAS_location & inOperand0,
-                                                                                                 const class GALGAS_bool & inOperand1,
-                                                                                                 const class GALGAS_baseline_5F_intermediate_5F_registerExpression & inOperand2,
-                                                                                                 const class GALGAS_uint & inOperand3
-                                                                                                 COMMA_LOCATION_ARGS) ;
+  public : static class GALGAS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip constructor_new (const class GALGAS_location & inOperand0,
+                                                                                                       const class GALGAS_bool & inOperand1,
+                                                                                                       const class GALGAS_baseline_5F_intermediate_5F_registerExpression & inOperand2,
+                                                                                                       const class GALGAS_uint & inOperand3
+                                                                                                       COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public : typeComparisonResult objectCompare (const GALGAS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip & inOperand) const ;
@@ -1722,10 +1722,10 @@ class GALGAS_baseline_5F_intermediate_5F_instruction_5F_F : public GALGAS_baseli
                                                                                      COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
-  public : static GALGAS_baseline_5F_intermediate_5F_instruction_5F_F constructor_new (const class GALGAS_location & inOperand0,
-                                                                                       const class GALGAS_baseline_5F_F_5F_instruction_5F_base_5F_code & inOperand1,
-                                                                                       const class GALGAS_baseline_5F_intermediate_5F_registerExpression & inOperand2
-                                                                                       COMMA_LOCATION_ARGS) ;
+  public : static class GALGAS_baseline_5F_intermediate_5F_instruction_5F_F constructor_new (const class GALGAS_location & inOperand0,
+                                                                                             const class GALGAS_baseline_5F_F_5F_instruction_5F_base_5F_code & inOperand1,
+                                                                                             const class GALGAS_baseline_5F_intermediate_5F_registerExpression & inOperand2
+                                                                                             COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public : typeComparisonResult objectCompare (const GALGAS_baseline_5F_intermediate_5F_instruction_5F_F & inOperand) const ;
@@ -1811,11 +1811,11 @@ class GALGAS_baseline_5F_intermediate_5F_instruction_5F_FB : public GALGAS_basel
                                                                                       COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
-  public : static GALGAS_baseline_5F_intermediate_5F_instruction_5F_FB constructor_new (const class GALGAS_location & inOperand0,
-                                                                                        const class GALGAS_baseline_5F_bit_5F_oriented_5F_op & inOperand1,
-                                                                                        const class GALGAS_baseline_5F_intermediate_5F_registerExpression & inOperand2,
-                                                                                        const class GALGAS_uint & inOperand3
-                                                                                        COMMA_LOCATION_ARGS) ;
+  public : static class GALGAS_baseline_5F_intermediate_5F_instruction_5F_FB constructor_new (const class GALGAS_location & inOperand0,
+                                                                                              const class GALGAS_baseline_5F_bit_5F_oriented_5F_op & inOperand1,
+                                                                                              const class GALGAS_baseline_5F_intermediate_5F_registerExpression & inOperand2,
+                                                                                              const class GALGAS_uint & inOperand3
+                                                                                              COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public : typeComparisonResult objectCompare (const GALGAS_baseline_5F_intermediate_5F_instruction_5F_FB & inOperand) const ;
@@ -1906,11 +1906,11 @@ class GALGAS_baseline_5F_intermediate_5F_instruction_5F_FD : public GALGAS_basel
                                                                                       COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
-  public : static GALGAS_baseline_5F_intermediate_5F_instruction_5F_FD constructor_new (const class GALGAS_location & inOperand0,
-                                                                                        const class GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code & inOperand1,
-                                                                                        const class GALGAS_baseline_5F_intermediate_5F_registerExpression & inOperand2,
-                                                                                        const class GALGAS_bool & inOperand3
-                                                                                        COMMA_LOCATION_ARGS) ;
+  public : static class GALGAS_baseline_5F_intermediate_5F_instruction_5F_FD constructor_new (const class GALGAS_location & inOperand0,
+                                                                                              const class GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code & inOperand1,
+                                                                                              const class GALGAS_baseline_5F_intermediate_5F_registerExpression & inOperand2,
+                                                                                              const class GALGAS_bool & inOperand3
+                                                                                              COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public : typeComparisonResult objectCompare (const GALGAS_baseline_5F_intermediate_5F_instruction_5F_FD & inOperand) const ;
@@ -2004,9 +2004,9 @@ class GALGAS_baseline_5F_intermediate_5F_instruction_5F_MNOP : public GALGAS_bas
                                                                                         COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
-  public : static GALGAS_baseline_5F_intermediate_5F_instruction_5F_MNOP constructor_new (const class GALGAS_location & inOperand0,
-                                                                                          const class GALGAS_luint & inOperand1
-                                                                                          COMMA_LOCATION_ARGS) ;
+  public : static class GALGAS_baseline_5F_intermediate_5F_instruction_5F_MNOP constructor_new (const class GALGAS_location & inOperand0,
+                                                                                                const class GALGAS_luint & inOperand1
+                                                                                                COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public : typeComparisonResult objectCompare (const GALGAS_baseline_5F_intermediate_5F_instruction_5F_MNOP & inOperand) const ;
@@ -2087,10 +2087,10 @@ class GALGAS_baseline_5F_intermediate_5F_instruction_5F_literalOperation : publi
                                                                                                     COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
-  public : static GALGAS_baseline_5F_intermediate_5F_instruction_5F_literalOperation constructor_new (const class GALGAS_location & inOperand0,
-                                                                                                      const class GALGAS_baseline_5F_literal_5F_instruction_5F_opcode & inOperand1,
-                                                                                                      const class GALGAS_uint & inOperand2
-                                                                                                      COMMA_LOCATION_ARGS) ;
+  public : static class GALGAS_baseline_5F_intermediate_5F_instruction_5F_literalOperation constructor_new (const class GALGAS_location & inOperand0,
+                                                                                                            const class GALGAS_baseline_5F_literal_5F_instruction_5F_opcode & inOperand1,
+                                                                                                            const class GALGAS_uint & inOperand2
+                                                                                                            COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public : typeComparisonResult objectCompare (const GALGAS_baseline_5F_intermediate_5F_instruction_5F_literalOperation & inOperand) const ;
